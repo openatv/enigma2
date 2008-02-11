@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 01:32+0100\n"
-"PO-Revision-Date: 2007-11-09 23:39+0100\n"
+"POT-Creation-Date: 2008-02-11 23:57+0100\n"
+"PO-Revision-Date: 2008-02-11 11:42+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgid "About..."
 msgstr "Acerca de..."
 
 msgid "Action on long powerbutton press"
-msgstr ""
+msgstr "Acción al dejar pulsado el botón de encendido"
 
 msgid "Activate Picture in Picture"
 msgstr "Activar PiP"
@@ -297,7 +297,7 @@ msgid "Advanced"
 msgstr "Avanzado"
 
 msgid "Advanced Video Setup"
-msgstr ""
+msgstr "Configuración de video avanzada"
 
 msgid "After event"
 msgstr "Después del evento"
@@ -325,7 +325,7 @@ msgid "Alternative radio mode"
 msgstr "Modo de radio alternativo"
 
 msgid "Alternative services tuner priority"
-msgstr ""
+msgstr "Prioridad de sintonizadores alternativa"
 
 msgid "Arabic"
 msgstr "Arábigo"
@@ -557,7 +557,7 @@ msgid "Current Transponder"
 msgstr "Transpondedor actual"
 
 msgid "Current settings:"
-msgstr ""
+msgstr "Configuración actual:"
 
 msgid "Current version:"
 msgstr "Versión actual:"
@@ -944,13 +944,13 @@ msgid "Harddisk"
 msgstr "Disco duro"
 
 msgid "Harddisk setup"
-msgstr "Configuración de disco duro"
+msgstr "Configuración del disco duro"
 
 msgid "Harddisk standby after"
 msgstr "Disco duro en reposo después"
 
 msgid "Hierarchy Information"
-msgstr "Información de jerarquía"
+msgstr "Información jerárquica"
 
 msgid "Hierarchy mode"
 msgstr "Modo jerárquico"
@@ -1081,7 +1081,7 @@ msgid "Limits off"
 msgstr "Quitar límites"
 
 msgid "Limits on"
-msgstr "Límites on"
+msgstr "Límites activos"
 
 msgid "List of Storage Devices"
 msgstr "Listar dispositivos de almacenamiento"
@@ -1147,7 +1147,7 @@ msgid "Mkfs failed"
 msgstr "Falló mkfs"
 
 msgid "Mode"
-msgstr ""
+msgstr "Modo"
 
 msgid "Model: "
 msgstr "Modelo: "
@@ -1266,18 +1266,18 @@ msgid ""
 "(Timeout reading PAT)"
 msgstr ""
 "¡No hay datos en el transponder!\n"
-"(Fin de tiempo leyendo PAT)"
+"(Tiempo cumplido leyendo PAT)"
 
 msgid "No event info found, recording indefinitely."
 msgstr "No hay info del evento, grabando indefinidamente."
 
 msgid "No free tuner!"
-msgstr "No hay sintonizador libre"
+msgstr "¡No hay sintonizador libre!"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
-"No hay paquetes actualizados todavía. Así que puede chequear la red y probar "
+"No hay paquetes actualizados todavía. Así que puede repasar la red y probar "
 "de nuevo."
 
 msgid "No positioner capable frontend found."
@@ -1443,13 +1443,13 @@ msgid "Please select a playlist..."
 msgstr "Por favor, seleccione una lista de reproducción..."
 
 msgid "Please select a subservice to record..."
-msgstr "Por favor, seleccione un subservicio a grabar..."
+msgstr "Por favor, seleccione un subcanal a grabar..."
 
 msgid "Please select a subservice..."
-msgstr "Por favor, seleccione un subservicio..."
+msgstr "Por favor, seleccione un subcanal..."
 
 msgid "Please select keyword to filter..."
-msgstr "Por favor seleccione una palabra para filtrar..."
+msgstr "Por favor, seleccione una palabra para filtrar..."
 
 msgid "Please set up tuner B"
 msgstr "Por favor, configure sintonizador B"
@@ -1584,7 +1584,7 @@ msgid "Really delete this timer?"
 msgstr "¿Seguro que quiere borrar la programación?"
 
 msgid "Really exit the subservices quickzap?"
-msgstr "¿Quiere salir del zapeo rápido de subservicios?"
+msgstr "¿Quiere salir del zapeo rápido de subcananles?"
 
 msgid "Reception Settings"
 msgstr "Configuración de Recepción"
@@ -1848,6 +1848,8 @@ msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
+"¡Canal no disponible!\n"
+"¡Revisa la configuración del sintonizador!"
 
 msgid "Serviceinfo"
 msgstr "Info del canal"
@@ -1859,16 +1861,16 @@ msgid "Set limits"
 msgstr "Poner límites"
 
 msgid "Settings"
-msgstr "Configuraciones"
+msgstr "Parámetros"
 
 msgid "Setup"
-msgstr "Config"
+msgstr "Configuración"
 
 msgid "Setup Mode"
 msgstr "Modo configuración"
 
 msgid "Show blinking clock in display during recording"
-msgstr ""
+msgstr "Muestra parpadeo en el reloj mientras graba"
 
 msgid "Show infobar on channel change"
 msgstr "Mostrar la barra de información al cambiar de canal"
@@ -2021,10 +2023,10 @@ msgid "Stored position"
 msgstr "Posición almacenada"
 
 msgid "Subservice list..."
-msgstr "Lista de subservicios..."
+msgstr "Lista de subcanales..."
 
 msgid "Subservices"
-msgstr "Subservicios"
+msgstr "Subcanales"
 
 msgid "Subtitle selection"
 msgstr "Selección de subtítulo"
@@ -2045,10 +2047,10 @@ msgid "Swedish"
 msgstr "Sueco"
 
 msgid "Switch to next subservice"
-msgstr "Cambiar al subservicio siguiente"
+msgstr "Cambiar al subcanal siguiente"
 
 msgid "Switch to previous subservice"
-msgstr "Cambiar al subservicio anterior"
+msgstr "Cambiar al subcanal anterior"
 
 msgid "Symbol Rate"
 msgstr "Velocidad de símbolo"
@@ -2092,7 +2094,7 @@ msgstr ""
 "Por favor, pulse OK para comenzar su Dreambox."
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr "Backup ha fallado. Elija una localización diferente para el backup."
+msgstr "El backup ha fallado. Elija una localización diferente para el backup."
 
 msgid "The pin code has been changed successfully."
 msgstr "El pin ha sido cambiado correctamente."
@@ -2161,7 +2163,7 @@ msgid "Timer log"
 msgstr "Log de grabación"
 
 msgid "Timer sanity error"
-msgstr "Error de grabación sanity"
+msgstr "Error de grabación"
 
 msgid "Timer selection"
 msgstr "Selección de grabación"
@@ -2194,16 +2196,16 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Translation"
-msgstr ""
+msgstr "Traducción"
 
 msgid "Translation:"
-msgstr ""
+msgstr "Traducción:"
 
 msgid "Transmission Mode"
 msgstr "Modo de trasmisión"
 
 msgid "Transmission mode"
-msgstr "Modo trasmisión"
+msgstr "Modo de trasmisión"
 
 msgid "Transponder"
 msgstr "Transpondedor"
@@ -2237,13 +2239,13 @@ msgid "Tuner"
 msgstr "Sintonizador"
 
 msgid "Tuner "
-msgstr "Sintonizador"
+msgstr "Sintonizador "
 
 msgid "Tuner Slot"
 msgstr "Slot del sintonizador"
 
 msgid "Tuner configuration"
-msgstr "Configuracion sintonizador"
+msgstr "Configuración sintonizador"
 
 msgid "Tuner status"
 msgstr "Estado del sintonizador"
@@ -2352,10 +2354,10 @@ msgid "Video Output"
 msgstr ""
 
 msgid "Video Setup"
-msgstr ""
+msgstr "Configuración de Video"
 
 msgid "Video Wizard"
-msgstr ""
+msgstr "Asientente de video"
 
 msgid "View Rass interactive..."
 msgstr "Ver Rass interactivo..."
@@ -2389,7 +2391,7 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Bienvenido al asistente de actualización de imagen. El asistente le asistirá "
+"Bienvenido al asistente de actualización de imagen. El asistente le guiará "
 "en actualizar el firmware de su Dreambox dándole la posibilidad de hacer una "
 "copia de seguridad de la configuración actual y una pequeña explicación de "
 "cómo actualizar el firmware."
@@ -2779,7 +2781,7 @@ msgid "hours"
 msgstr "horas"
 
 msgid "immediate shutdown"
-msgstr ""
+msgstr "apagado inmediato"
 
 #, python-format
 msgid ""
@@ -3044,7 +3046,7 @@ msgid "show second tag"
 msgstr "mostrar la segunda etiqueta"
 
 msgid "show shutdown menu"
-msgstr ""
+msgstr "mostrar menú de apagado"
 
 msgid "show single service EPG..."
 msgstr "mostrar EPG de un canal..."
@@ -3155,7 +3157,7 @@ msgid "wait for ci..."
 msgstr "esperar al ci..."
 
 msgid "wait for mmi..."
-msgstr ""
+msgstr "esperar para nmi..."
 
 msgid "waiting"
 msgstr "esperando"
@@ -3176,7 +3178,7 @@ msgid ""
 "your dreambox might be unusable now. Please consult the manual for further "
 "assistance before rebooting your dreambox."
 msgstr ""
-"su dreambox puede no estar usable. Por favor, consulte el manual para más "
+"su dreambox puede estar estropeado. Por favor, consulte el manual para más "
 "asistencia antes de reiniciar su dreambox."
 
 msgid "zap"
@@ -3246,11 +3248,20 @@ msgstr "zapeado"
 #~ msgid "Movie Menu"
 #~ msgstr "Menú de Películas"
 
+#~ msgid "NIM "
+#~ msgstr "NIM"
+
 #~ msgid "New DVD"
 #~ msgstr "DVD nuevo"
 
+#~ msgid "Output Type"
+#~ msgstr "Tipo de Salida"
+
 #~ msgid "Quick"
 #~ msgstr "Rápido"
+
+#~ msgid "Rate"
+#~ msgstr "Velocidad"
 
 #~ msgid ""
 #~ "Recording(s) are in progress or comming up in few seconds... really "
@@ -3280,7 +3291,7 @@ msgstr "zapeado"
 #~ msgstr "Borrar el título"
 
 #~ msgid "Replace current playlist"
-#~ msgstr "Reemplazar la actual lista"
+#~ msgstr "Reemplazar la lista actual"
 
 #~ msgid "Save current project to disk"
 #~ msgstr "Guardar el proyecto actual a disco"
@@ -3294,8 +3305,17 @@ msgstr "zapeado"
 #~ msgid "Service scan type needed"
 #~ msgstr "Tipo de escaneo de canal necesario"
 
+#~ msgid "Slot "
+#~ msgstr "Slot"
+
+#~ msgid "Socket "
+#~ msgstr "Socket"
+
 #~ msgid "Transpondertype"
 #~ msgstr "Tipo de Transpondedor"
+
+#~ msgid "Video-Setup"
+#~ msgstr "Config-Video"
 
 #~ msgid "You selected a playlist"
 #~ msgstr "Seleccionó una lista"
