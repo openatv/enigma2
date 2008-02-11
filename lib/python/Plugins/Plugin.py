@@ -28,7 +28,7 @@ class PluginDescriptor:
 	# reason (0: start, 1: end)
 	WHERE_AUTOSTART = 5
 	
-	# start as wizard. In that case, fnc must be a screen class!
+	# start as wizard. In that case, fnc must be tuple (priority,class) with class being a screen class!
 	WHERE_WIZARD = 6
 	
 	# like autostart, but for a session. currently, only session starts are 
