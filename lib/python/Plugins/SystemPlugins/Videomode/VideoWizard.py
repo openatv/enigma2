@@ -5,6 +5,8 @@ from VideoHardware import video_hw
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.config import config, ConfigBoolean, configfile
 
+config.misc.showtestcard = ConfigBoolean(default = False)
+
 class VideoWizard(Wizard):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
@@ -36,7 +38,6 @@ class VideoWizard(Wizard):
 		self.port = None
 		self.mode = None
 		
-		config.misc.showtestcard = ConfigBoolean(default = False)
 		
 	def createSummary(self):
 		print "++++++++++++***++**** VideoWizard-createSummary"
