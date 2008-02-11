@@ -19,7 +19,7 @@ from xml.sax.handler import ContentHandler
 class WizardSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="text" position="6,4" size="120,42" font="Regular;14" />
+		<widget name="text" position="6,4" size="120,42" font="Regular;14" transparent="1" />
 		<widget source="parent.list" render="Label" position="6,25" size="120,21" font="Regular;16">
 			<convert type="StringListSelection" />
 		</widget>
