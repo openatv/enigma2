@@ -32,7 +32,7 @@ self["rc"].startMoving()
 self.condition = (self.port != "DVI")
 		</condition>		
 		<text value="Refresh rate selection." />
-		<displaytext value="Select video mode rate" />
+		<displaytext value="Select refresh rate" />
 		<list type="dynamic" source="listRates" evaluation="rateSelectionMade" onselect="rateSelectionMoved" />
 		<code>
 self["arrowup2"].moveTo(800, 320, 1)
