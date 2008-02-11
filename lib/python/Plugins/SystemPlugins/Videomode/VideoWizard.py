@@ -36,6 +36,8 @@ class VideoWizard(Wizard):
 		self.port = None
 		self.mode = None
 		
+		config.misc.showtestcard = ConfigBoolean(default = False)
+		
 	def createSummary(self):
 		print "++++++++++++***++**** VideoWizard-createSummary"
 		from Screens.Wizard import WizardSummary
@@ -111,3 +113,11 @@ class VideoWizard(Wizard):
 	def rateSelect(self, rate):
 		self.hw.setMode(port = self.port, mode = self.mode, rate = rate)
 
+	def showTestCard(self, selection = None):
+		if selection is None:
+			selection = self.selection
+		print "set config.misc.showtestcard to", {'yes': True, 'no': False}[selection]
+		if selection == "yes":
+			config.misc.showtestcard.value = True
+		else:
+			config.misc.showtestcard.value = False
