@@ -115,12 +115,12 @@ self.rateSelect("50Hz")
 		</code>
 	</step>
 	<step id="end">
-		<!--text value="The input port should be configured now.\nYou can now configure the screen by displaying some test pictures. Do you want to do that now?" /-->
-		<text value="You have successfully finished the video setup. If you want to change the settings later, you can do this in the settings menu."/>
+		<text value="The input port should be configured now.\nYou can now configure the screen by displaying some test pictures. Do you want to do that now?" />
+		<!--text value="You have successfully finished the video setup. If you want to change the settings later, you can do this in the settings menu."/-->
 		<displaytext value="No picture on TV? Press EXIT and retry." />
-		<!--list>
+		<list evaluation="showTestCard" onselect="showTestCard">
 			<listentry caption="Yes" step="yes" />
 			<listentry caption="No" step="no" />
-		</list-->
+		</list>
 		</step>
 </wizard>
