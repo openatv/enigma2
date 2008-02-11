@@ -73,7 +73,8 @@ class VideoWizard(Wizard):
 		list = []
 		print "modes for port", self.port
 		for mode in self.hw.getModeList(self.port):
-			list.append((mode[0], mode[0]))
+			if mode[0] != "PC":
+				list.append((mode[0], mode[0]))
 		return list
 	
 	def modeSelectionMade(self, index):
