@@ -139,7 +139,7 @@ class NimSetup(Screen, ConfigListScreen):
 	def run(self):
 		if self.have_advanced and self.nim.config_mode == "advanced":
 			self.fillAdvancedList()
-		for x in self["config"].list:
+		for x in self.list:
 			if x in [self.turnFastEpochBegin, self.turnFastEpochEnd]:
 				# workaround for storing only hour*3600+min*60 value in configfile
 				# not really needed.. just for cosmetics..
