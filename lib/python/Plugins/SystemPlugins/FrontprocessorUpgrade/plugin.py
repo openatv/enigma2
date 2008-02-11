@@ -52,6 +52,6 @@ def Plugins(**kwargs):
 	version = getFPVersion()
 	newversion = getUpgradeVersion() or 0
 	if version is not None and version < newversion:
-		return PluginDescriptor(name="FP Upgrade", where = PluginDescriptor.WHERE_WIZARD, fnc=FPUpgrade)
+		return PluginDescriptor(name="FP Upgrade", where = PluginDescriptor.WHERE_WIZARD, fnc=(8, FPUpgrade))
 	else:
 		return [ ]

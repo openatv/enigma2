@@ -34,7 +34,7 @@ class ImageWizard(Wizard):
 	def markDone(self):
 		pass
 
-wizardManager.registerWizard(ImageWizard, backupAvailable)
+wizardManager.registerWizard(ImageWizard, backupAvailable, priority = 10)
 
 def doBackup(path):
 	os.system('tar cvpf ' + path + backupfile + ' /etc/enigma2')
