@@ -105,6 +105,7 @@ class VideoHardware:
 		return True
 
 	def setMode(self, port, mode, rate, force = None):
+		print "setMode - port:", port, "mode:", mode, "rate:", rate
 		# we can ignore "port"
 		self.current_mode = mode
 		modes = self.rates[mode][rate]

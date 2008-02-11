@@ -55,9 +55,17 @@ class VideoWizard(Wizard):
 	def inputSelectionMade(self, index):
 		print "inputSelectionMade:", index
 		self.port = index
+		self.inputSelect(index)
 		
 	def inputSelectionMoved(self):
-		print "selection moved:", self.selection
+		print "input selection moved:", self.selection
+		self.inputSelect(self.selection)
+		
+	def inputSelect(self, port):
+		print "inputSelect:", port
+		modeList = self.hw.getModeList(self.selection)
+		print "modeList:", modeList
+		self.hw.setMode(port = port, mode = modeList[0][0], rate = modeList[0][1][0])
 		
 	def listModes(self):
 		list = []
@@ -69,22 +77,37 @@ class VideoWizard(Wizard):
 	def modeSelectionMade(self, index):
 		print "modeSelectionMade:", index
 		self.mode = index
+		self.modeSelect(index)
 		
 	def modeSelectionMoved(self):
-		print "selection moved:", self.selection
+		print "mode selection moved:", self.selection
+		self.modeSelect(self.selection)
 		
-	def listRates(self):
+	def modeSelect(self, mode):
+		ratesList = self.listRates(mode)
+		print "ratesList:", ratesList
+		self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
+		
+	def listRates(self, querymode = None):
+		if querymode is None:
+			querymode = self.mode
 		list = []
-		print "modes for port", self.port
+		print "modes for port", self.port, "and mode", querymode
 		for mode in self.hw.getModeList(self.port):
 			print mode
-			if mode[0] == self.mode:
+			if mode[0] == querymode:
 				for rate in mode[1]:
 					list.append((rate, rate))
 		return list
 	
 	def rateSelectionMade(self, index):
 		print "rateSelectionMade:", index
+		self.rateSelect(index)
 		
 	def rateSelectionMoved(self):
-		print "selection moved:", self.selection
+		print "rate selection moved:", self.selection
+		self.rateSelect(self.selection)
+
+	def rateSelect(self, rate):
+		self.hw.setMode(port = self.port, mode = self.mode, rate = rate)
+
