@@ -132,6 +132,11 @@ class VideoHardware:
 		except IOError:
 			print "writing initial videomode to /etc/videomode failed."
 
+		# workaround: this should not be set here.
+		if port != "Scart":
+			open("/proc/stb/video/aspect", "w").write("any")
+			open("/proc/stb/video/policy", "w").write("panscan")
+
 	def isPortAvailable(self, port):
 		# fixme
 		return True
