@@ -58,6 +58,7 @@ self["arrowup"].moveTo(800, 232, 1)
 self["arrowup"].startMoving()
 self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
+self.rateSelect("60Hz")
 		</code>
 	</step>
 	<step id="dvirateselection" timeout="10" timeoutaction="changestep" timeoutstep="notworking50Hz">
@@ -76,6 +77,10 @@ self["arrowup"].moveTo(800, 232, 1)
 self["arrowup"].startMoving()
 self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
+self.rateSelect("50Hz")
+		</code>
+		<code pos="after">
+self.rateSelect("60Hz")			
 		</code>
 	</step>
 	<step id="notworking50Hz" nextstep="end">
@@ -106,14 +111,16 @@ self["arrowup"].moveTo(800, 232, 1)
 self["arrowup"].startMoving()
 self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
+self.rateSelect("50Hz")
 		</code>
 	</step>
 	<step id="end">
-		<text value="The input port should be configured now.\nYou can now configure the screen by displaying some test pictures. Do you want to do that now?" />
+		<!--text value="The input port should be configured now.\nYou can now configure the screen by displaying some test pictures. Do you want to do that now?" /-->
+		<text value="You have successfully finished the video setup. If you want to change the settings later, you can do this in the settings menu."/>
 		<displaytext value="No picture on TV? Press EXIT and retry." />
-		<list evaluation="rateSelectionMade" onselect="rateSelectionMoved">
+		<!--list>
 			<listentry caption="Yes" step="yes" />
 			<listentry caption="No" step="no" />
-		</list>
+		</list-->
 		</step>
 </wizard>
