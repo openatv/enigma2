@@ -107,7 +107,20 @@ class Harddisk:
 		return numPart
 
 	def unmount(self):
-		cmd = "/bin/umount " + self.devidex + "part*"
+		procfile = tryOpen("/proc/mounts")
+
+		if procfile == "":
+			return -1
+
+		cmd = "/bin/umount"
+
+		for line in procfile:
+			if line.startswith(self.devidex):
+				parts = line.split()
+				cmd = ' '.join([cmd, parts[1]])
+
+		procfile.close()
+
 		res = system(cmd)
 		return (res >> 8)
 
@@ -135,7 +148,14 @@ class Harddisk:
 			return -1
 		return 0
 
-	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Unmount failed")]
+	def fsck(self):
+		# We autocorrect any failures
+		# TODO: we could check if the fs is actually ext3
+		cmd = "/sbin/fsck.ext3 -f -p " + self.devidex + "part1"
+		res = system(cmd)
+		return (res >> 8)
+
+	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Fsck failed"), _("Please Reboot"), _("Filesystem contains uncorrectable errors"), _("Unmount failed")]
 
 	def initialize(self):
 		self.unmount()
@@ -154,7 +174,26 @@ class Harddisk:
 			return -4
 		
 		return 0
-		
+
+	def check(self):
+		self.unmount()
+
+		res = self.fsck()
+		if res & 2 == 2:
+			return -6
+
+		if res & 4 == 4:
+			return -7
+
+		if res != 0 and res != 1:
+			# A sum containing 1 will also include a failure
+			return -5
+
+		if self.mount() != 0:
+			return -3
+
+		return 0
+
 def existHDD(num):
 	mediafile = tryOpen(num2prochdx(num) + "media")
 
