@@ -393,8 +393,22 @@ class RecordTimer(timer.Timer):
 	
 	def loadTimer(self):
 		# TODO: PATH!
-		doc = xml.dom.minidom.parse(self.Filename)
-		
+		try:
+			doc = xml.dom.minidom.parse(self.Filename)
+		except xml.parsers.expat.ExpatError:
+			from Tools.Notifications import AddPopup
+			from Screens.MessageBox import MessageBox
+
+			AddPopup(_("The timer file (timers.xml) is corrupt and could not be loaded."), type = MessageBox.TYPE_ERROR, timeout = 0, id = "TimerLoadFailed")
+
+			print "timers.xml failed to load!"
+			try:
+				import os
+				os.rename(self.Filename, self.Filename + "_old")
+			except IOError:
+				print "renaming broken timer failed"
+			return
+
 		root = doc.childNodes[0]
 		for timer in elementsWithTag(root.childNodes, "timer"):
 			self.record(createTimer(timer))
