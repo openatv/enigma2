@@ -22,6 +22,8 @@ DECLARE_REF(eComponentData);
 	std::string m_iso639LanguageCode;
 	std::string m_text;
 #endif
+	eComponentData(const eComponentData& d) { *this = d; } 
+	eComponentData() { m_streamContent = m_componentType = m_componentTag = 0; }
 	int getStreamContent(void) const { return m_streamContent; }
 	int getComponentType(void) const { return m_componentType; }
 	int getComponentTag(void) const { return m_componentTag; }
