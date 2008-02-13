@@ -4,9 +4,9 @@
 	#define __lib_python_python_class_h
 #endif
 
+#include <Python.h>
 #include <string>
 #include <lib/base/object.h>
-#include <Python.h>
 
 #if !defined(SKIP_PART1) && !defined(SWIG)
 class ePyObject
