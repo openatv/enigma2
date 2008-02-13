@@ -1901,21 +1901,22 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 			else
 			{
 				eServiceEvent evt;
-				Event *ev=0;
+				const eventData *ev_data=0;
 				if (stime)
 				{
 					singleLock s(cache_lock);
 					if (type == 2)
-						lookupEventId(ref, event_id, ev);
+						lookupEventId(ref, event_id, ev_data);
 					else
-						lookupEventTime(ref, stime, ev, type);
-					if (ev)
+						lookupEventTime(ref, stime, ev_data, type);
+					if (ev_data)
 					{
 						const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
-						evt.parseFrom(ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
+						Event ev((uint8_t*)ev_data->get());
+						evt.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
 					}
 				}
-				if (ev)
+				if (ev_data)
 				{
 					if (handleEvent(&evt, dest_list, argstring, argcount, service, nowTime, service_name, convertFunc, convertFuncArgs))
 						return 0; // error
@@ -2277,15 +2278,16 @@ PyObject *eEPGCache::search(ePyObject arg)
 					{
 					// create servive event
 						eServiceEvent ptr;
-						Event *ev=0;
+						const eventData *ev_data=0;
 						if (needServiceEvent)
 						{
-							if (lookupEventId(ref, evid, ev))
+							if (lookupEventId(ref, evid, ev_data))
 								eDebug("event not found !!!!!!!!!!!");
 							else
 							{
 								const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
-								ptr.parseFrom(ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
+								Event ev((uint8_t*)ev_data->get());
+								ptr.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
 							}
 						}
 					// create service name
@@ -2334,7 +2336,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 					// create tuple
 						ePyObject tuple = PyTuple_New(argcount);
 					// fill tuple
-						fillTuple2(tuple, argstring, argcount, evit->second, ev ? &ptr : 0, service_name, service_reference);
+						fillTuple2(tuple, argstring, argcount, evit->second, ev_data ? &ptr : 0, service_name, service_reference);
 						PyList_Append(ret, tuple);
 						Py_DECREF(tuple);
 						--maxcount;
