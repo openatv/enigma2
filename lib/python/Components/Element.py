@@ -48,11 +48,13 @@ class Element(object):
 		# we should not disconnect from upstream if
 		# there are still elements depending on us.
 		assert len(self.downstream_elements) == 0, "there are still downstream elements left"
-		
+
 		# Sources don't have a source themselves. don't do anything here.
 		if self.source is not None:
 			self.source.disconnectDownstream(self)
-	
+			# sources are owned by the Screen, so don't destroy them here.
+			self.destroy()
+
 	def disconnectDownstream(self, downstream):
 		self.downstream_elements.remove(downstream)
 		if self.master == downstream:
@@ -88,4 +90,7 @@ class Element(object):
 		self.suspended = reduce(lambda x, y: x and y.__suspended, self.downstream_elements, True)
 
 	def doSuspend(self, suspend):
+		pass
+
+	def destroy(self):
 		pass

@@ -26,3 +26,6 @@ class Clock(Source):
 		else:
 			self.clock_timer.start(1000)
 			self.poll()
+
+	def destroy(self):
+		self.clock_timer.timeout.get().remove(self.poll)

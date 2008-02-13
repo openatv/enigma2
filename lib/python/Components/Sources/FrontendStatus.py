@@ -47,3 +47,6 @@ class FrontendStatus(Source):
 		else:
 			self.poll_timer.start(self.update_interval)
 
+	def destroy(self):
+		self.poll_timer.timeout.get().remove(self.updateFrontendStatus)
+

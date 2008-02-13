@@ -29,3 +29,5 @@ class Poll(object):
 		if not suspended:
 			self.poll()
 
+	def destroy(self):
+		self.__poll_timer.timeout.get().remove(self.poll)
