@@ -98,18 +98,15 @@ class Screen(dict, GUISkin):
 		# but currently we destroy the screen afterwards
 		# anyway.
 		for val in self.renderer:
-			val.disconnectAll()  # disconnected converter/sources and probably destroy them
-		
+			val.disconnectAll()  # disconnected converter/sources and probably destroy them. Sources will not be destroyed.
+
 		del self.session
 		for (name, val) in self.items():
 			val.destroy()
 			del self[name]
-		
-		for val in self.renderer:
-			val.destroy()
-		
+
 		self.renderer = [ ]
-		
+
 		# really delete all elements now
 		self.__dict__.clear()
 	

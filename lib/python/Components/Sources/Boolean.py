@@ -18,6 +18,8 @@ class Boolean(Source, object):
 			self.poll_timer = eTimer()
 			self.poll_timer.timeout.get().append(self.poll)
 			self.poll_timer.start(poll)
+		else:
+			self.poll_timer = None
 
 	@cached
 	def getBoolean(self):
@@ -30,3 +32,7 @@ class Boolean(Source, object):
 
 	def poll(self):
 		self.changed((self.CHANGED_ALL,))
+
+	def destroy(self):
+		if self.poll_timer:
+			self.poll_timer.timeout.get().remove(self.poll)
