@@ -135,7 +135,6 @@ typedef long time_t;
 %include <lib/base/object.h>
 %include <lib/base/eerror.h>
 
-%immutable eTimer::timeout;
 %immutable eSocketNotifier::activated;
 %include <lib/base/ebase.h>
 %include <lib/base/smartptr.h>

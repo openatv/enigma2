@@ -1,28 +1,39 @@
+from Tools.Profile import profile
+
 from Screen import Screen
 from Components.Button import Button
 from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker
+profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode
 from Components.config import config, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
+profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
+profile("ChannelSelection.py 2.1")
 from Components.Sources.Source import ObsoleteSource
+profile("ChannelSelection.py 2.2")
 from Components.Sources.RdsDecoder import RdsDecoder
+profile("ChannelSelection.py 2.3")
 from Components.Sources.ServiceEvent import ServiceEvent
+profile("ChannelSelection.py 2.4")
 from Components.Input import Input
+profile("ChannelSelection.py 3")
 from Components.ParentalControl import parentalControl
 from Components.Pixmap import Pixmap
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
+profile("ChannelSelection.py 4")
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from re import compile
 from os import remove
+profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64 #define in lib/dvb/idvb.h as dxNewFound = 64
 
@@ -276,7 +287,7 @@ class SelectionEventInfo:
 		self["ServiceEvent"] = ServiceEvent()
 		self.servicelist.connectSelChanged(self.__selectionChanged)
 		self.timer = eTimer()
-		self.timer.timeout.get().append(self.updateEventInfo)
+		self.timer.callback.append(self.updateEventInfo)
 		self.onShown.append(self.__selectionChanged)
 
 	def __selectionChanged(self):
@@ -1081,7 +1092,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			})
 
 		self.lastChannelRootTimer = eTimer()
-		self.lastChannelRootTimer.timeout.get().append(self.__onCreate)
+		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100,True)
 
 		self.history_tv = [ ]

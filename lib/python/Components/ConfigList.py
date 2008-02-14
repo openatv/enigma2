@@ -19,7 +19,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmAscii)
-		self.timer.timeout.get().append(self.timeout)
+		self.timer.callback.append(self.timeout)
 
 	def execEnd(self):
 		rcinput = eRCInput.getInstance()

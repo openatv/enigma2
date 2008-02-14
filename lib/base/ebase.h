@@ -132,8 +132,6 @@ static inline long timeout_usec ( const timeval & orig )
 	return (orig-now).tv_sec*1000000 + (orig-now).tv_usec;
 }
 
-#endif
-
 class eMainloop;
 
 					// die beiden signalquellen: SocketNotifier...
@@ -154,6 +152,7 @@ private:
 	int fd;
 	int state;
 	int requested;		// requested events (POLLIN, ...)
+	void activate(int what) { /*emit*/ activated(what); }
 public:
 	/**
 	 * \brief Constructs a eSocketNotifier.
@@ -166,7 +165,6 @@ public:
 	~eSocketNotifier();
 
 	PSignal1<void, int> activated;
-	void activate(int what) { /*emit*/ activated(what); }
 
 	void start();
 	void stop();
@@ -176,6 +174,8 @@ public:
 	int getRequested() { return requested; }
 	void setRequested(int req) { requested=req; }
 };
+
+#endif
 
 class eTimer;
 
@@ -265,6 +265,7 @@ public:
 	}
 };
 
+#ifndef SWIG
 				// ... und Timer
 /**
  * \brief Gives a callback after a specified timeout.
@@ -280,6 +281,7 @@ class eTimer
 	bool bSingleShot;
 	bool bActive;
 	void addTimeOffset(int);
+	void activate();
 public:
 	/**
 	 * \brief Constructs a timer.
@@ -291,17 +293,17 @@ public:
 	~eTimer() { if (bActive) stop(); }
 
 	PSignal0<void> timeout;
-	void activate();
 
 	bool isActive() { return bActive; }
+
 	timeval &getNextActivation() { return nextActivation; }
 
 	void start(long msec, bool b=false);
 	void stop();
 	void changeInterval(long msek);
-#ifndef SWIG
-	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
-#endif
 	void startLongTimer( int seconds );
+	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
 };
+#endif  // SWIG
+
 #endif

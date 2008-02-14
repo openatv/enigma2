@@ -139,7 +139,7 @@ class RSSPoller:
 
 	def __init__(self):
 		self.poll_timer = eTimer()
-		self.poll_timer.timeout.get().append(self.poll)
+		self.poll_timer.callback.append(self.poll)
 		self.poll_timer.start(0, 1)
 		self.last_links = Set()
 		self.dialog = None

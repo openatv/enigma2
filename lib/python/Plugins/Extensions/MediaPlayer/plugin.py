@@ -159,11 +159,11 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 
 		self.righttimer = False
 		self.rightKeyTimer = eTimer()
-		self.rightKeyTimer.timeout.get().append(self.rightTimerFire)
+		self.rightKeyTimer.callback.append(self.rightTimerFire)
 
 		self.lefttimer = False
 		self.leftKeyTimer = eTimer()
-		self.leftKeyTimer.timeout.get().append(self.leftTimerFire)
+		self.leftKeyTimer.callback.append(self.leftTimerFire)
 
 		self.currList = "filelist"
 

@@ -298,7 +298,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		}, -2)
 
 		self.statusTimer = eTimer()
-		self.statusTimer.timeout.get().append(self.updateStatus)
+		self.statusTimer.callback.append(self.updateStatus)
 		#self.statusTimer.start(5000, True)
 
 		self.list = []

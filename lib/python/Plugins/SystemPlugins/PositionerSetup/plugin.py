@@ -123,7 +123,7 @@ class PositionerSetup(Screen):
 		self.updateColors("tune")
 		
 		self.statusTimer = eTimer()
-		self.statusTimer.timeout.get().append(self.updateStatus)
+		self.statusTimer.callback.append(self.updateStatus)
 		self.statusTimer.start(50, False)
 
 	def restartPrevService(self, yesno):

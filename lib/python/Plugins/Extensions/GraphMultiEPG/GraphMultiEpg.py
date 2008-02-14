@@ -380,7 +380,7 @@ class GraphMultiEPG(Screen):
 			},-1)
 
 		self.updateTimelineTimer = eTimer()
-		self.updateTimelineTimer.timeout.get().append(self.moveTimeLines)
+		self.updateTimelineTimer.callback.append(self.moveTimeLines)
 		self.updateTimelineTimer.start(60*1000)
 		self.onLayoutFinish.append(self.onCreate)
 

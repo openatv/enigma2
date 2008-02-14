@@ -24,7 +24,7 @@ class MovingPixmap(Pixmap):
 		self.clearPath()
 		
 		self.moveTimer = eTimer()
-		self.moveTimer.timeout.get().append(self.doMove)
+		self.moveTimer.callback.append(self.doMove)
 		
 	def clearPath(self, repeated = False):
 		if (self.moving):

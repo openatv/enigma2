@@ -2,18 +2,15 @@ from Tools.Profile import profile, profile_final
 
 from Screen import Screen
 
-profile("LOAD:MovieSelection")
-from Screens.MovieSelection import MovieSelection
+profile("LOAD:enigma")
+from enigma import iPlayableService
+
 profile("LOAD:ChannelSelectionRadio")
 from Screens.ChannelSelection import ChannelSelectionRadio
+profile("LOAD:MovieSelection")
+from Screens.MovieSelection import MovieSelection
 profile("LOAD:ChoiceBox")
 from Screens.ChoiceBox import ChoiceBox
-
-profile("LOAD:InitBar_Components")
-from Components.Sources.Source import ObsoleteSource
-from Components.ActionMap import HelpableActionMap
-from Components.config import config
-from Components.ServiceEventTracker import ServiceEventTracker
 
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
@@ -25,11 +22,14 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
 
+profile("LOAD:InitBar_Components")
+from Components.Sources.Source import ObsoleteSource
+from Components.ActionMap import HelpableActionMap
+from Components.config import config
+from Components.ServiceEventTracker import ServiceEventTracker
+
 profile("LOAD:HelpableScreen")
 from Screens.HelpMenu import HelpableScreen
-
-profile("LOAD:enigma")
-from enigma import iPlayableService
 
 class InfoBar(InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,

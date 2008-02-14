@@ -75,7 +75,7 @@ def stop():
 def run(duration = 1000):
 	stoptimer = eTimer()
 	stoptimer.start(duration * 1000.0)
-	stoptimer.timeout.get().append(stop)
+	stoptimer.callback.append(stop)
 	while not stopped:
 		runIteration()
 

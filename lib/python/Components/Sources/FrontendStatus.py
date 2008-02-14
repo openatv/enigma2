@@ -9,7 +9,7 @@ class FrontendStatus(Source):
 		self.frontend_source = frontend_source
 		self.invalidate()
 		self.poll_timer = eTimer()
-		self.poll_timer.timeout.get().append(self.updateFrontendStatus)
+		self.poll_timer.callback.append(self.updateFrontendStatus)
 		self.poll_timer.start(update_interval)
 
 	def invalidate(self):

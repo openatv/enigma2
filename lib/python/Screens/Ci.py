@@ -29,7 +29,7 @@ class MMIDialog(Screen):
 		self.slotid = slotid
 
 		self.timer = eTimer()
-		self.timer.timeout.get().append(self.keyCancel)
+		self.timer.callback.append(self.keyCancel)
 
 		#else the skins fails
 		self["title"] = Label("")

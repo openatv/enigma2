@@ -61,7 +61,7 @@ class MessageBox(Screen):
 		self.timeout = timeout
 		if timeout > 0:
 			self.timer = eTimer()
-			self.timer.timeout.get().append(self.timerTick)
+			self.timer.callback.append(self.timerTick)
 			self.onExecBegin.append(self.startTimer)
 			self.origTitle = None
 			if self.execing:
