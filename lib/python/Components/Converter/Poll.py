@@ -30,4 +30,4 @@ class Poll(object):
 			self.poll()
 
 	def destroy(self):
-		self.__poll_timer.timeout.get().remove(self.poll)
+		self.__poll_timer.callback.remove(self.poll)

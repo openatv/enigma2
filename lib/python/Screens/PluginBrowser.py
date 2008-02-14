@@ -141,8 +141,10 @@ class PluginDownloadBrowser(Screen):
 		
 	def installFinished(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+		self.container.appClosed.get().remove(self.runFinished)
+		self.container.dataAvail.get().remove(self.dataAvail)
 		self.close()
-		
+
 	def runFinished(self, retval):
 		self.remainingdata = ""
 		if self.run == 0:

@@ -61,4 +61,4 @@ class ConditionalShowHide(Converter, object):
 
 	def destroy(self):
 		if self.timer:
-			self.timer.timeout.get().remove(self.blinkFunc)
+			self.timer.callback.remove(self.blinkFunc)

@@ -39,6 +39,10 @@ class Listbox(Renderer, object):
 		self.wrap_around = self.wrap_around # trigger
 		self.selection_enabled = self.selection_enabled # trigger
 
+	def preWidgetRemove(self, instance):
+		instance.setContent(None)
+		instance.selectionChanged.get().remove(self.selectionChanged)
+
 	def setWrapAround(self, wrap_around):
 		self.__wrap_around = wrap_around
 		if self.instance is not None:

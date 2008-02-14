@@ -121,6 +121,10 @@ class CutList(GUIComponent):
 		instance.setItemHeight(30)
 		instance.selectionChanged.get().append(self.selectionChanged)
 
+	def preWidgetRemove(self, instance):
+		instance.setContent(None)
+		instance.selectionChanged.get().remove(self.selectionChanged)
+
 	def selectionChanged(self):
 		for x in self.onSelectionChanged:
 			x()

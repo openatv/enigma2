@@ -24,7 +24,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def execEnd(self):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmNone)
-		self.timer.timeout.get().remove(self.timeout)
+		self.timer.callback.remove(self.timeout)
 
 	def toggle(self):
 		selection = self.getCurrent()
@@ -77,6 +77,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		if self.current:
 			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
+		instance.setContent(None)
 	
 	def setList(self, l):
 		self.timer.stop()

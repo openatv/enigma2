@@ -25,6 +25,7 @@ class MenuList(HTMLComponent, GUIComponent):
 	
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)
+		instance.selectionChanged.get().remove(self.selectionChanged)
 
 	def selectionChanged(self):
 		for f in self.onSelectionChanged:

@@ -231,7 +231,7 @@ class RSSPoller:
 			self.d = getPage(config.simpleRSS.hostname.value).addCallback(self._gotPage).addErrback(self.error)
 
 	def shutdown(self):
-		self.poll_timer.timeout.get().remove(self.poll)
+		self.poll_timer.callback.remove(self.poll)
 		self.poll_timer = None
 
 def main(session, **kwargs):

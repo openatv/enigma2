@@ -99,11 +99,15 @@ class EPGList(HTMLComponent, GUIComponent):
 					pass
 
 	GUI_WIDGET = eListbox
-	
+
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
+
+	def preWidgetRemove(self, instance):
+		instance.selectionChanged.get().remove(self.selectionChanged)
+		instance.setContent(None)
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()

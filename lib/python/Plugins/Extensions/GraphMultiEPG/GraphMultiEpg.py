@@ -170,6 +170,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setSelectionClip(eRect(0,0,0,0), False)
 
+	def preWidgetRemove(self, instance):
+		instance.selectionChanged.get().remove(self.serviceChanged)
+		instance.setContent(None)
+
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
 		width = esize.width()
