@@ -131,6 +131,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		self.setMode(self.mode)
 
+	def preWidgetRemove(self, instance):
+		instance.setContent(None)
+		instance.selectionChanged.get().remove(self.selectionChanged)
+
 	def getRoot(self):
 		return self.root
 

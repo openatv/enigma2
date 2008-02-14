@@ -63,6 +63,8 @@ class Console(Screen):
 	def cancel(self):
 		if self.run == len(self.cmdlist):
 			self.close()
+			self.container.appClosed.get().remove(self.runFinished)
+			self.container.dataAvail.get().remove(self.dataAvail)
 
 	def dataAvail(self, str):
 		self["text"].setText(self["text"].getText() + str)

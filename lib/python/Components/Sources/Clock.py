@@ -28,4 +28,4 @@ class Clock(Source):
 			self.poll()
 
 	def destroy(self):
-		self.clock_timer.timeout.get().remove(self.poll)
+		self.clock_timer.callback.remove(self.poll)

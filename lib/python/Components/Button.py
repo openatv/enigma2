@@ -31,3 +31,6 @@ class Button(VariableText, HTMLComponent, GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setText(self.text)
 		instance.selected.get().append(self.push)
+
+	def preWidgetRemove(self, instance):
+		instance.selected.get().remove(self.push)
