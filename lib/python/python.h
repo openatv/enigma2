@@ -314,10 +314,16 @@ inline ePyObject Impl_PyTuple_GET_ITEM(ePyObject list, unsigned int pos)
 }
 #endif
 
+inline void Impl_INCREF(PyObject *ob)
+{
+	Py_INCREF(ob);
+}
+
 inline void Impl_DECREF(PyObject *ob)
 {
 	Py_DECREF(ob);
 }
+#define Org_Py_INCREF(obj) Impl_INCREF(obj)
 #define Org_Py_DECREF(obj) Impl_DECREF(obj)
 #undef Py_DECREF
 #undef Py_XDECREF

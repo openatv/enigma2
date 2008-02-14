@@ -3,7 +3,7 @@ from enigma import eTimer
 class Poll(object):
 	def __init__(self):
 		self.__poll_timer = eTimer()
-		self.__poll_timer.timeout.get().append(self.poll)
+		self.__poll_timer.callback.append(self.poll)
 		self.__interval = 1000
 		self.__enabled = False
 

@@ -94,7 +94,7 @@ class ThumbView(Screen):
 			self["label0"].setText(_("no Picture found"))
 		
 		self.ThumbTimer = eTimer()
-		self.ThumbTimer.timeout.get().append(self.showThumb)
+		self.ThumbTimer.callback.append(self.showThumb)
 
 		self.fillPage()
 		
@@ -244,11 +244,11 @@ class PicView(Screen):
 		self["pause"] = Pixmap()
 		
 		self.decodeTimer = eTimer()
-		self.decodeTimer.timeout.get().append(self.decodePic)
+		self.decodeTimer.callback.append(self.decodePic)
 		self.decodeTimer.start(300, True)
 
 		self.slideTimer = eTimer()
-		self.slideTimer.timeout.get().append(self.slidePic)
+		self.slideTimer.callback.append(self.slidePic)
 		
 		
 	def Pause(self):
@@ -457,7 +457,7 @@ class picmain(Screen):
 		self["thumbnail"] = Pixmap()
 		
 		self.ThumbTimer = eTimer()
-		self.ThumbTimer.timeout.get().append(self.showThumb)
+		self.ThumbTimer.callback.append(self.showThumb)
 		self.ThumbTimer.start(500, True)
 		
 	def up(self):

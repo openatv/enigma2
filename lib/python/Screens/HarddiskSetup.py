@@ -24,10 +24,10 @@ class HarddiskWait(Screen):
 		self.timer = eTimer()
 		if type == HarddiskSetup.HARDDISK_INITIALIZE:
 			text = _("Initializing Harddisk...")
-			self.timer.timeout.get().append(self.doInit)
+			self.timer.callback.append(self.doInit)
 		else:
 			text = _("Checking Filesystem...")
-			self.timer.timeout.get().append(self.doCheck)
+			self.timer.callback.append(self.doCheck)
 		self["wait"] = Label(text)
 		self.timer.start(100)
 

@@ -66,7 +66,7 @@ class VideoHardware:
 
 		# until we have the hotplug poll socket
 #		self.timer = eTimer()
-#		self.timer.timeout.get().append(self.readPreferredModes)
+#		self.timer.callback.append(self.readPreferredModes)
 #		self.timer.start(1000)
 
 	def readAvailableModes(self):

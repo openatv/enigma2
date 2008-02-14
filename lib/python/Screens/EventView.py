@@ -22,7 +22,7 @@ class EventViewBase:
 		self["key_red"] = Button("")
 		if similarEPGCB is not None:
 			self.SimilarBroadcastTimer = eTimer()
-			self.SimilarBroadcastTimer.timeout.get().append(self.getSimilarEvents)
+			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 		else:
 			self.SimilarBroadcastTimer = None
 		if self.isRecording:

@@ -139,7 +139,7 @@ class Timer:
 		self.processed_timers = [ ]
 		
 		self.timer = eTimer()
-		self.timer.timeout.get().append(self.calcNextActivation)
+		self.timer.callback.append(self.calcNextActivation)
 		self.lastActivation = time()
 		
 		self.calcNextActivation()

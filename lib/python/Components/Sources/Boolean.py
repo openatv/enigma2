@@ -16,7 +16,7 @@ class Boolean(Source, object):
 		self.fixed = fixed
 		if poll > 0:
 			self.poll_timer = eTimer()
-			self.poll_timer.timeout.get().append(self.poll)
+			self.poll_timer.callback.append(self.poll)
 			self.poll_timer.start(poll)
 		else:
 			self.poll_timer = None

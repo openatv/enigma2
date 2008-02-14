@@ -162,7 +162,7 @@ class Wizard(Screen, HelpableScreen):
 		self.currStep = 1
 		
 		self.timeoutTimer = eTimer()
-		self.timeoutTimer.timeout.get().append(self.timeoutCounterFired)
+		self.timeoutTimer.callback.append(self.timeoutCounterFired)
 
 		self["text"] = Label()
 

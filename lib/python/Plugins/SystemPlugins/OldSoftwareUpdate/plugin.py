@@ -30,7 +30,7 @@ class Upgrade(Screen):
 		
 		self.update = True
 		self.delayTimer = eTimer()
-		self.delayTimer.timeout.get().append(self.doUpdateDelay)
+		self.delayTimer.callback.append(self.doUpdateDelay)
 		
 	def go(self):
 		if self.update:

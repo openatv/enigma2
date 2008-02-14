@@ -3,6 +3,7 @@
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
 extern "C" void init_enigma();
+extern "C" void eBaseInit(void);
 extern void bsodFatal();
 
 #define SKIP_PART2
@@ -124,6 +125,7 @@ ePython::ePython()
 	PyEval_InitThreads();
 
 	init_enigma();
+	eBaseInit();
 }
 
 ePython::~ePython()

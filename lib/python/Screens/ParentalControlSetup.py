@@ -148,7 +148,7 @@ class ParentalControlEditor(Screen):
 		self.currentLetter = chr(SPECIAL_CHAR)
 		self.readServiceList()
 		self.chooseLetterTimer = eTimer()
-		self.chooseLetterTimer.timeout.get().append(self.chooseLetter)
+		self.chooseLetterTimer.callback.append(self.chooseLetter)
 		self.onLayoutFinish.append(self.LayoutFinished)
 
 		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions", "NumberActions"],

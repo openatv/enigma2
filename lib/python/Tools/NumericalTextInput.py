@@ -56,7 +56,7 @@ class NumericalTextInput:
 
 		if handleTimeout:
 			self.timer = eTimer()
-			self.timer.timeout.get().append(self.timeout)
+			self.timer.callback.append(self.timeout)
 		else:
 			self.timer = None
 		self.lastKey = -1

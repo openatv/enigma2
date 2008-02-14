@@ -1,3 +1,8 @@
+import eBaseImpl
+import enigma
+enigma.eTimer = eBaseImpl.eTimer
+enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
+
 from Tools.Profile import profile, profile_final
 
 profile("PYTHON_START")
@@ -141,7 +146,7 @@ class Session:
 		self.summary_desktop = summary_desktop
 		self.nav = navigation
 		self.delay_timer = eTimer()
-		self.delay_timer.timeout.get().append(self.processDelay)
+		self.delay_timer.callback.append(self.processDelay)
 
 		self.current_dialog = None
 
@@ -350,7 +355,7 @@ class VolumeControl:
 		self.muteDialog = session.instantiateDialog(Mute)
 
 		self.hideVolTimer = eTimer()
-		self.hideVolTimer.timeout.get().append(self.volHide)
+		self.hideVolTimer.callback.append(self.volHide)
 
 		vol = config.audio.volume.value
 		self.volumeDialog.setValue(vol)

@@ -11,7 +11,7 @@ class PerServiceBase(object):
 		self.navcore = navcore
 		self.navcore.event.append(self.event_callback)
 		self.poll_timer = eTimer()
-		self.poll_timer.timeout.get().append(self.poll)
+		self.poll_timer.callback.append(self.poll)
 		self.with_event = with_event
 		
 		# start with stopped state, so simulate that

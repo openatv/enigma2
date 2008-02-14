@@ -268,7 +268,7 @@ class UpdatePlugin(Screen):
 		
 		self.activity = 0
 		self.activityTimer = eTimer()
-		self.activityTimer.timeout.get().append(self.doActivityTimer)
+		self.activityTimer.callback.append(self.doActivityTimer)
 		self.activityTimer.start(100, False)
 				
 		self.ipkg = IpkgComponent()

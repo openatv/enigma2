@@ -71,7 +71,7 @@ class InfoBarShowHide:
 		self.__locked = 0
 
 		self.hideTimer = eTimer()
-		self.hideTimer.timeout.get().append(self.doTimerHide)
+		self.hideTimer.callback.append(self.doTimerHide)
 		self.hideTimer.start(5000, True)
 
 		self.onShow.append(self.__onShow)
@@ -171,7 +171,7 @@ class NumberZap(Screen):
 			})
 
 		self.Timer = eTimer()
-		self.Timer.timeout.get().append(self.keyOK)
+		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
 
 class InfoBarNumberZap:
@@ -1018,7 +1018,7 @@ class InfoBarTimeshift:
 		self.timeshift_enabled = 0
 		self.timeshift_state = 0
 		self.ts_rewind_timer = eTimer()
-		self.ts_rewind_timer.timeout.get().append(self.rewindService)
+		self.ts_rewind_timer.callback.append(self.rewindService)
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{

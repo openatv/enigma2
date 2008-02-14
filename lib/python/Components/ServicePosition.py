@@ -12,7 +12,7 @@ class ServicePosition(PerServiceDisplay, object):
 	def __init__(self, navcore, type):
 		object.__init__(self)
 		self.updateTimer = eTimer()
-		self.updateTimer.timeout.get().append(self.update)
+		self.updateTimer.callback.append(self.update)
 		PerServiceDisplay.__init__(self, navcore,
 			{
 				iPlayableService.evStart: self.newService,

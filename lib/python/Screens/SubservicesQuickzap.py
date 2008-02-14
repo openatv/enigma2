@@ -23,7 +23,7 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarServiceName, Info
 		self.currentlyPlayingSubservice = 0
 
 		self.timer = eTimer()
-		self.timer.timeout.get().append(self.playSubservice)
+		self.timer.callback.append(self.playSubservice)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 
 		self["actions"] = NumberActionMap( [ "InfobarSubserviceQuickzapActions", "NumberActions", "DirectionActions", "ColorActions" ], 
