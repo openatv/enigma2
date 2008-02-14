@@ -21,7 +21,7 @@ typedef struct
 {
 	unsigned int address;
 	unsigned int size;
-	char *file;
+	const char *file;
 	void *backtrace[BACKTRACE_DEPTH];
 	unsigned char btcount;
 	unsigned short line;
@@ -41,11 +41,11 @@ static inline void AddTrack(unsigned int addr,  unsigned int asize,  const char 
 		allocList = new(AllocList);
 
 	info.address = addr;
-	info.file = strdup(fname);
+	info.file = fname;
 	info.line = lnum;
 	info.size = asize;
 	info.type = type;
-	info.btcount = backtrace( info.backtrace, BACKTRACE_DEPTH );
+	info.btcount = 0; //backtrace( info.backtrace, BACKTRACE_DEPTH );
 	singleLock s(memLock);
 	(*allocList)[addr]=info;
 };
@@ -62,14 +62,11 @@ static inline void RemoveTrack(unsigned int addr, unsigned int type)
 		if ( i->second.type != type )
 			i->second.type=3;
 		else
-		{
-			free(i->second.file);
 			allocList->erase(i);
-		}
 	}
 };
 
-inline void * operator new(unsigned int size, const char *file, int line)
+inline void * operator new(size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
 	AddTrack((unsigned int)ptr, size, file, line, 1);
@@ -82,7 +79,7 @@ inline void operator delete(void *p)
 	free(p);
 };
 
-inline void * operator new[](unsigned int size, const char *file, int line)
+inline void * operator new[](size_t size, const char *file, int line)
 {
 	void *ptr = (void *)malloc(size);
 	AddTrack((unsigned int)ptr, size, file, line, 2);
