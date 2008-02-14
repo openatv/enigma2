@@ -11,7 +11,7 @@ class ConditionalShowHide(Converter, object):
 			self.blinktime = 500
 			self.timer = eTimer()
 			self.timer.callback.append(self.blinkFunc)
-		else
+		else:
 			self.timer = None
 
 	def blinkFunc(self):
