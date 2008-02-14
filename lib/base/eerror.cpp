@@ -20,14 +20,16 @@ void DumpUnfreed()
 	if(!allocList)
 		return;
 
+	FILE *f = fopen("/var/tmp/enigma2_mem.out", "w");
 	size_t len = 1024;
 	char *buffer = (char*)malloc(1024);
 	for(i = allocList->begin(); i != allocList->end(); i++)
 	{
 		unsigned int tmp;
-		printf("%s\tLINE %d\tADDRESS %p\t%d unfreed\ttype %d (btcount %d)\n",
+		fprintf(f, "%s\tLINE %d\tADDRESS %p\t%d unfreed\ttype %d (btcount %d)\n",
 			i->second.file, i->second.line, (void*)i->second.address, i->second.size, i->second.type, i->second.btcount);
 		totalSize += i->second.size;
+
 		char **bt_string = backtrace_symbols( i->second.backtrace, i->second.btcount );
 		for ( tmp=0; tmp < i->second.btcount; tmp++ )
 		{
@@ -47,24 +49,25 @@ void DumpUnfreed()
 							int state;
 							abi::__cxa_demangle(tmp1.c_str(), buffer, &len, &state);
 							if (!state)
-								printf("%d %s%s\n", tmp, buffer,tmp2.c_str());
+								fprintf(f, "%d %s%s\n", tmp, buffer,tmp2.c_str());
 							else
-								printf("%d %s\n", tmp, bt_string[tmp]);
+								fprintf(f, "%d %s\n", tmp, bt_string[tmp]);
 						}
 					}
 				}
 				else
-					printf("%d %s\n", tmp, bt_string[tmp]);
+					fprintf(f, "%d %s\n", tmp, bt_string[tmp]);
 			}
 		}
 		free(bt_string);
-		printf("\n");
+		if (i->second.btcount)
+			fprintf(f, "\n");
 	}
 	free(buffer);
 
-	printf("-----------------------------------------------------------\n");
-	printf("Total Unfreed: %d bytes\n", totalSize);
-	fflush(stdout);
+	fprintf(f, "-----------------------------------------------------------\n");
+	fprintf(f, "Total Unfreed: %d bytes\n", totalSize);
+	fflush(f);
 };
 #endif
 
