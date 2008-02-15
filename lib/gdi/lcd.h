@@ -27,6 +27,7 @@ public:
 	int lock();
 	void unlock();
 	int islocked() { return locked; }
+	bool detected() { return lcdfd >= 0; }
 #ifndef SWIG
 	eLCD(eSize size);
 	virtual ~eLCD();

@@ -1,6 +1,6 @@
 from config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing
-
 from enigma import eDBoxLCD
+from Components.SystemInfo import SystemInfo
 
 class LCD:
 	def __init__(self):
@@ -29,32 +29,34 @@ class LCD:
 		return eDBoxLCD.getInstance().isOled()
 
 def InitLcd():
+	detected = eDBoxLCD.getInstance().detected()
+	SystemInfo["Display"] = detected
+	if detected:
+		def setLCDbright(configElement):
+			ilcd.setBright(configElement.value);
 
-	def setLCDbright(configElement):
-		ilcd.setBright(configElement.value);
+		def setLCDcontrast(configElement):
+			ilcd.setContrast(configElement.value);
 
-	def setLCDcontrast(configElement):
-		ilcd.setContrast(configElement.value);
+		def setLCDinverted(configElement):
+			ilcd.setInverted(configElement.value);
 
-	def setLCDinverted(configElement):
-		ilcd.setInverted(configElement.value);
+		ilcd = LCD()
 
-	ilcd = LCD()
+		config.lcd = ConfigSubsection();
 
-	config.lcd = ConfigSubsection();
+		config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
+		config.lcd.bright.addNotifier(setLCDbright);
+		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
 
-	config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
-	config.lcd.bright.addNotifier(setLCDbright);
-	config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
+		if not ilcd.isOled():
+			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
+			config.lcd.contrast.addNotifier(setLCDcontrast);
+		else:
+			config.lcd.contrast = ConfigNothing()
 
-	if not ilcd.isOled():
-		config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
-		config.lcd.contrast.addNotifier(setLCDcontrast);
-	else:
-		config.lcd.contrast = ConfigNothing()
+		config.lcd.standby = ConfigSlider(default=0, limits=(0, 10))
+		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
 
-	config.lcd.standby = ConfigSlider(default=0, limits=(0, 10))
-	config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
-
-	config.lcd.invert = ConfigYesNo(default=False)
-	config.lcd.invert.addNotifier(setLCDinverted);
+		config.lcd.invert = ConfigYesNo(default=False)
+		config.lcd.invert.addNotifier(setLCDinverted);
