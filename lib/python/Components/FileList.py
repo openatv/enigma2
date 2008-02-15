@@ -43,7 +43,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 
 class FileList(MenuList):
 	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None, useServiceRef = False, isTop = False, enableWrapAround = False):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent())
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.mount_point = None
 		self.current_directory = None
 		self.useServiceRef = useServiceRef
