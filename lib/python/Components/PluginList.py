@@ -44,7 +44,7 @@ def PluginDownloadComponent(plugin, name):
 
 class PluginList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent())
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)

@@ -42,7 +42,7 @@ def PlaylistEntryComponent(serviceref, state):
 
 class PlayList(MenuList):
 	def __init__(self, enableWrapAround = False):
-		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent())
+		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 18))
 		self.l.setItemHeight(22)
 		self.currPlaying = -1
