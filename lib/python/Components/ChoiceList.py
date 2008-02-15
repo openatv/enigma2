@@ -1,5 +1,3 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
 from MenuList import MenuList
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eListbox, gFont
@@ -18,18 +16,13 @@ def ChoiceEntryComponent(key, text):
 	
 	return res
 
-class ChoiceList(MenuList, HTMLComponent, GUIComponent):
-	def __init__(self, list, selection = 0):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.list = list
-		self.l.setList(list)
+class ChoiceList(MenuList):
+	def __init__(self, list, selection = 0, enableWrapAround=False):
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent())
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setItemHeight(25)
 		self.selection = selection
 
-	GUI_WIDGET = eListbox
-		
 	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
+		MenuList.postWidgetCreate(self, instance)
 		self.moveToIndex(self.selection)
