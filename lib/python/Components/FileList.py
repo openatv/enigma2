@@ -1,5 +1,3 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
 import re
 
 from os import path as os_path, listdir
@@ -11,7 +9,6 @@ from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 from enigma import RT_HALIGN_LEFT, eListbox, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
 from Tools.LoadPixmap import LoadPixmap
-
 
 EXTENSIONS = {
 		"mp3": "music",
@@ -44,11 +41,9 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 	
 	return res
 
-class FileList(MenuList, HTMLComponent, GUIComponent):
-	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None, useServiceRef = False, isTop = False):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		
+class FileList(MenuList):
+	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None, useServiceRef = False, isTop = False, enableWrapAround = False):
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent())
 		self.mount_point = None
 		self.current_directory = None
 		self.useServiceRef = useServiceRef
@@ -67,30 +62,27 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		if self.l.getCurrentSelection() is None:
 			return None
 		return self.l.getCurrentSelection()[0]
-	
-	def getSelectionIndex(self):
-		return self.l.getCurrentSelectionIndex()
-	
+
 	def getCurrentEvent(self):
 		l = self.l.getCurrentSelection()
 		if not l or l[0][1] == True:
 			return None
 		else:
 			return self.serviceHandler.info(l[0][0]).getEvent(l[0][0])
-	
+
 	def getFileList(self):
 		return self.list
-	
+
 	def changeDir(self, directory, select = None):
 		self.list = []
-		
+
 		# if we are just entering from the list of mount points:
 		if self.current_directory is None:
 			self.mount_point = directory
 		self.current_directory = directory
 		directories = []
 		files = []
-		
+
 		if directory is None: # present available mountpoints
 			print "listing partitions:"
 			for p in harddiskmanager.getMountedPartitions():
@@ -104,7 +96,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 			root = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + directory)
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
-			
+
 			while 1:
 				s = list.getNext()
 				if not s.valid():
@@ -125,7 +117,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 				if os_path.isdir(directory + x):
 					directories.append(directory + x + "/")
 					files.remove(x)
-		
+
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.mount_point:
 				self.list.append(FileEntryComponent(name = ".. (" +_("List of Storage Devices") + ")", absolute = None, isDir = True))
@@ -145,7 +137,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 				else:
 					path = directory + x
 					name = x
-				
+
 				if self.matchingPattern is not None:
 					if re.compile(self.matchingPattern).search(path):
 						self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
@@ -153,7 +145,7 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 					self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
 
 		self.l.setList(self.list)
-		
+
 		if select is not None:
 			i = 0
 			self.moveToIndex(0)
@@ -174,12 +166,12 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 		if self.getSelection() is None:
 			return False
 		return self.getSelection()[1]
-	
+
 	def descent(self):
 		if self.getSelection() is None:
 			return
 		self.changeDir(self.getSelection()[0], select = self.current_directory)
-		
+
 	def getFilename(self):
 		if self.getSelection() is None:
 			return None
@@ -196,14 +188,9 @@ class FileList(MenuList, HTMLComponent, GUIComponent):
 			return x
 		return None
 
-	GUI_WIDGET = eListbox
-
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
-
 	def execBegin(self):
 		harddiskmanager.on_partition_list_change.append(self.partitionListChanged)
-		
+
 	def execEnd(self):
 		harddiskmanager.on_partition_list_change.remove(self.partitionListChanged)
 
