@@ -1,4 +1,3 @@
-from GUIComponent import GUIComponent
 from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
@@ -13,29 +12,21 @@ def SelectionEntryComponent(description, value, index, selected):
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 30, 30, selectionpng))
 	return res
 
-class SelectionList(MenuList, GUIComponent):
-	def __init__(self, list = None):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.list = list or []
-		self.setList(self.list)
+class SelectionList(MenuList):
+	def __init__(self, list = None, enableWrapAround = False):
+		MenuList.__init__(self, list or [], enableWrapAround, content = eListboxPythonMultiContent())
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setItemHeight(30)
-
-	GUI_WIDGET = eListbox
-		
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
 
 	def addSelection(self, description, value, index, selected = True):
 		self.list.append(SelectionEntryComponent(description, value, index, selected))
 		self.setList(self.list)
-		
+
 	def toggleSelection(self):
 		item = self.list[self.getSelectedIndex()][0]
 		self.list[self.getSelectedIndex()] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
 		self.setList(self.list)
-		
+
 	def getSelectionsList(self):
 		list = []
 		for item in self.list:
