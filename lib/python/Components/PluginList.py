@@ -1,6 +1,3 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-
 from MenuList import MenuList
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
@@ -45,17 +42,9 @@ def PluginDownloadComponent(plugin, name):
 	
 	return res
 
-class PluginList(MenuList, HTMLComponent, GUIComponent):
-	def __init__(self, list):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.list = list
-		self.l.setList(list)
+class PluginList(MenuList):
+	def __init__(self, list, enableWrapAround=False):
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent())
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 14))
 		self.l.setItemHeight(50)
-
-	GUI_WIDGET = eListbox
-
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
