@@ -31,6 +31,9 @@ class MenuList(HTMLComponent, GUIComponent):
 		for f in self.onSelectionChanged:
 			f()
 
+	def getSelectionIndex(self):
+		return self.l.getCurrentSelectionIndex()
+
 	def getSelectedIndex(self):
 		return self.l.getCurrentSelectionIndex()
 
