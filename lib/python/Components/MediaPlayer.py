@@ -1,6 +1,3 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-
 from MenuList import MenuList
 
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
@@ -9,7 +6,6 @@ from os import path
 from enigma import eListboxPythonMultiContent, eListbox, RT_VALIGN_CENTER, gFont, eServiceCenter
 
 from Tools.LoadPixmap import LoadPixmap
-
 
 STATE_PLAY = 0
 STATE_PAUSE = 1
@@ -44,34 +40,23 @@ def PlaylistEntryComponent(serviceref, state):
     
 	return res
 
-class PlayList(MenuList, HTMLComponent, GUIComponent):
-	def __init__(self):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.list = []
-		self.l.setList(self.list)
+class PlayList(MenuList):
+	def __init__(self, enableWrapAround = False):
+		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent())
 		self.l.setFont(0, gFont("Regular", 18))
 		self.l.setItemHeight(22)
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 		self.serviceHandler = eServiceCenter.getInstance()
-	
+
 	def clear(self):
 		del self.list[:]
 		self.l.setList(self.list)
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 
-	GUI_WIDGET = eListbox
-
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
-
 	def getSelection(self):
 		return self.l.getCurrentSelection()[0]
-		
-	def getSelectionIndex(self):
-		return self.l.getCurrentSelectionIndex()
 
 	def addFile(self, serviceref):
 		self.list.append(PlaylistEntryComponent(serviceref, STATE_NONE))
@@ -84,7 +69,7 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 	def setCurrentPlaying(self, index):
 		self.oldCurrPlaying = self.currPlaying
 		self.currPlaying = index
-	
+
 	def updateState(self, state):
 		if len(self.list) > self.oldCurrPlaying and self.oldCurrPlaying != -1:
 			self.list[self.oldCurrPlaying] = PlaylistEntryComponent(self.list[self.oldCurrPlaying][0], STATE_NONE)
@@ -103,13 +88,13 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 
 	def rewindFile(self):
 		self.updateState(STATE_REWIND)
-		
+
 	def forwardFile(self):
 		self.updateState(STATE_FORWARD)
-	
+
 	def updateList(self):
 		self.l.setList(self.list)
-		
+
 	def getCurrentIndex(self):
 		return self.currPlaying
 
@@ -120,9 +105,9 @@ class PlayList(MenuList, HTMLComponent, GUIComponent):
 	def getCurrent(self):
 		l = self.l.getCurrentSelection()
 		return l and l[0]
-	
+
 	def getServiceRefList(self):
 		return [ x[0] for x in self.list ]
-	
+
 	def __len__(self):
 		return len(self.list)
