@@ -1,6 +1,3 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-
 from MenuList import MenuList
 from Components.ParentalControl import parentalControl
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
@@ -17,23 +14,11 @@ def ParentalControlEntryComponent(service, name, locked = True):
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 32, 32, lockPicture))
 	return res
 
-class ParentalControlList(MenuList, HTMLComponent, GUIComponent):
-	def __init__(self, list):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.list = list
-		self.l.setList(list)
+class ParentalControlList(MenuList):
+	def __init__(self, list, enableWrapAround = False):
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent())
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setItemHeight(32)
-
-	GUI_WIDGET = eListbox
-	
-	def setList(self, list):
-		self.list = list
-		self.l.setList(list)
-		
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
 
 	def toggleSelectedLock(self):
 		print "self.l.getCurrentSelection():", self.l.getCurrentSelection()
