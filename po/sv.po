@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 01:32+0100\n"
-"PO-Revision-Date: 2007-12-30 11:01+0100\n"
+"POT-Creation-Date: 2008-02-16 11:59+0100\n"
+"PO-Revision-Date: 2008-01-30 10:27+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -176,7 +176,7 @@ msgid ""
 "Do you want to keep your version?"
 msgstr ""
 "En konfigurationsfil (%s) har ändrats sedan installationen.\n"
-"Vill du behålla den din version?"
+"Vill du behålla din version?"
 
 msgid ""
 "A finished record timer wants to set your\n"
@@ -193,7 +193,7 @@ msgstr ""
 "din Dreambox. Stänga av nu?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
-msgstr "En grafisk EPG för alla kanaler i en vald bouqet"
+msgstr "En grafisk EPG för alla kanaler i en vald favoritlista"
 
 #, python-format
 msgid ""
@@ -221,7 +221,7 @@ msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
-"En inspelning pågår. Vänligen avbryt inspelningen före du försöker startar "
+"En inspelning pågår. Vänligen avbryt inspelningen före du försöker starta "
 "satfinder."
 
 msgid ""
@@ -288,7 +288,7 @@ msgid "Add timer"
 msgstr "Lägg till timer"
 
 msgid "Add to bouquet"
-msgstr "Lägg till i bouquet"
+msgstr "Lägg till i favoritlista"
 
 msgid "Add to favourites"
 msgstr "Lägg till i favoriter"
@@ -297,7 +297,7 @@ msgid "Advanced"
 msgstr "Avancerat"
 
 msgid "Advanced Video Setup"
-msgstr ""
+msgstr "Avancerad videoinställning"
 
 msgid "After event"
 msgstr "Efter program"
@@ -325,7 +325,7 @@ msgid "Alternative radio mode"
 msgstr "Alternativt radioläge"
 
 msgid "Alternative services tuner priority"
-msgstr "Alternativ service tuner prioritet"
+msgstr "Alternativ tunerprioritering"
 
 msgid "Arabic"
 msgstr "Arabiska"
@@ -343,13 +343,13 @@ msgid "Audio"
 msgstr "Ljud"
 
 msgid "Audio Options..."
-msgstr "Ljud Optioner..."
+msgstr "Ljudval..."
 
 msgid "Auto"
 msgstr "Auto"
 
 msgid "Automatic Scan"
-msgstr "Automatisk Sökning"
+msgstr "Automatisk sökning"
 
 msgid "B"
 msgstr "B"
@@ -370,10 +370,10 @@ msgid "Backup"
 msgstr "Backup"
 
 msgid "Backup Location"
-msgstr "Backups Placering"
+msgstr "Backups placering"
 
 msgid "Backup Mode"
-msgstr "Backup Läge"
+msgstr "Backupläge"
 
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Backup klar. Vänligen tryck OK för resultat."
@@ -387,8 +387,20 @@ msgstr "Bandbredd"
 msgid "Begin time"
 msgstr "Starttid"
 
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
+msgstr ""
+
 msgid "Behaviour of 0 key in PiP-mode"
-msgstr "Uppförande av 0 i BiB läge"
+msgstr "Uppförande av 0 i BiB-läge"
 
 msgid "Brightness"
 msgstr "Ljusstyrka"
@@ -414,7 +426,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cache Thumbnails"
-msgstr "Cacha Thumbnails"
+msgstr "Buffra miniatyrer"
 
 msgid "Call monitoring"
 msgstr "Samtalsmonitorering"
@@ -432,16 +444,16 @@ msgid "Catalan"
 msgstr "Katalanska"
 
 msgid "Change bouquets in quickzap"
-msgstr "Byt bouquet med quickzap"
+msgstr "Byt favoritlista med quickzap"
 
 msgid "Change pin code"
 msgstr "Ändra PIN kod"
 
 msgid "Change service pin"
-msgstr "Ändra service PIN"
+msgstr "Ändra program PIN"
 
 msgid "Change service pins"
-msgstr "Ändra service PIN"
+msgstr "Ändra program PIN"
 
 msgid "Change setup pin"
 msgstr "Ändra installations PIN"
@@ -458,11 +470,17 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Kanallista meny"
 
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
+msgstr ""
+
 msgid "Choose Tuner"
-msgstr "Välj Tuner"
+msgstr "Välj tuner"
 
 msgid "Choose bouquet"
-msgstr "Välj bouquet"
+msgstr "Välj favoritlista"
 
 msgid "Choose source"
 msgstr "Välj källa"
@@ -495,7 +513,7 @@ msgid "Color Format"
 msgstr "Färgformat"
 
 msgid "Command order"
-msgstr "Kommando ordning"
+msgstr "Kommandoordning"
 
 msgid "Committed DiSEqC command"
 msgstr "Committed DiSEqC kommando"
@@ -544,7 +562,7 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 msgid "Create movie folder failed"
-msgstr "Skapa movie katalog misslyckades"
+msgstr "Skapa moviekatalog misslyckades"
 
 msgid "Creating partition failed"
 msgstr "Skapandet av partition misslyckades"
@@ -553,16 +571,22 @@ msgid "Croatian"
 msgstr "Kroatiska"
 
 msgid "Current Transponder"
-msgstr "Nuvarande Transponder"
+msgstr "Nuvarande transponder"
 
 msgid "Current settings:"
-msgstr ""
+msgstr "Nuvarande inställningar:"
 
 msgid "Current version:"
-msgstr "Aktuell Version:"
+msgstr "Nuvarande version:"
 
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Valfri hopptid för '1'/'3 tangenterna"
+
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
 
 msgid "Customize"
 msgstr "Anpassningar"
@@ -607,13 +631,13 @@ msgid "Description"
 msgstr "Beskrivning"
 
 msgid "Detected HDD:"
-msgstr "Hittad Hårddisk:"
+msgstr "Hittad hårddisk:"
 
 msgid "Detected NIMs:"
-msgstr "Hittade Tuners:"
+msgstr "Hittade tuners:"
 
 msgid "Device Setup..."
-msgstr "Nätverk Installation..."
+msgstr "Nätverk installation..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -640,7 +664,7 @@ msgid "Disable Picture in Picture"
 msgstr "Avaktivera Bild i Bild"
 
 msgid "Disable Subtitles"
-msgstr "Avaktivera Textning"
+msgstr "Avaktivera textning"
 
 msgid "Disabled"
 msgstr "Avaktivera"
@@ -655,11 +679,17 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "återförsöker..."
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "Parabol"
 
 msgid "Display Setup"
-msgstr "Display Installation"
+msgstr "Display installation"
 
 msgid ""
 "Do you really want to REMOVE\n"
@@ -667,6 +697,11 @@ msgid ""
 msgstr ""
 "Vill du verkligen TA BORT\n"
 "pluginen \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -754,7 +789,7 @@ msgid "E"
 msgstr "Ö"
 
 msgid "EPG Selection"
-msgstr "EPG Val"
+msgstr "EPG val"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -776,7 +811,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Aktivera 5V för aktiv antenn"
 
 msgid "Enable multiple bouquets"
-msgstr "Aktivera flera bouquets"
+msgstr "Aktivera flera favoritlistor"
 
 msgid "Enable parental control"
 msgstr "Aktivera föräldrarkontroll"
@@ -791,7 +826,7 @@ msgid "End time"
 msgstr "Sluttid"
 
 msgid "EndTime"
-msgstr "SlutTid"
+msgstr "Sluttid"
 
 msgid "English"
 msgstr "Engelska"
@@ -811,11 +846,17 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Gå till huvudmeny..."
 
 msgid "Enter the service pin"
-msgstr "Ange service PIN"
+msgstr "Ange kanal PIN"
 
 msgid "Error"
 msgstr "Fel"
@@ -827,7 +868,7 @@ msgid "Everything is fine"
 msgstr "Allting är bra"
 
 msgid "Execution Progress:"
-msgstr "Exekverings Framsteg:"
+msgstr "Exekverings pågår:"
 
 msgid "Execution finished!!"
 msgstr "Exekvering färdig!"
@@ -839,13 +880,13 @@ msgid "Exit the wizard"
 msgstr "Avsluta guiden"
 
 msgid "Exit wizard"
-msgstr "Avsluta guiden"
+msgstr "Avsluta guide"
 
 msgid "Expert"
 msgstr "Expert"
 
 msgid "Extended Setup..."
-msgstr "Utökad Installation..."
+msgstr "Utökad installation..."
 
 msgid "Extensions"
 msgstr "Utökningar"
@@ -859,11 +900,20 @@ msgstr "Snabb"
 msgid "Fast DiSEqC"
 msgstr "Fast DiSEqC"
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Snabb epoch"
 
 msgid "Favourites"
 msgstr "Favoriter"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "Fininställning"
@@ -898,6 +948,9 @@ msgstr "Fritz!Box FON IP adress"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor version: %d"
+
+msgid "Fsck failed"
+msgstr ""
 
 msgid "Function not yet implemented"
 msgstr "Funktionen är inte implementerad"
@@ -934,10 +987,10 @@ msgid "Greek"
 msgstr "Grekiska"
 
 msgid "Guard Interval"
-msgstr "Guard Intervall"
+msgstr "Guard intervall"
 
 msgid "Guard interval mode"
-msgstr "Guard interval läge"
+msgstr "Guard intervalläge"
 
 msgid "Harddisk"
 msgstr "Hårddisk"
@@ -949,7 +1002,7 @@ msgid "Harddisk standby after"
 msgstr "Viloläge för hårddisk efter"
 
 msgid "Hierarchy Information"
-msgstr "Hierarkisk Information "
+msgstr "Hierarkisk information "
 
 msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
@@ -961,7 +1014,7 @@ msgid "Hungarian"
 msgstr "Ungerska"
 
 msgid "IP Address"
-msgstr "IP Adress"
+msgstr "IP adress"
 
 msgid "Icelandic"
 msgstr "Isländska"
@@ -974,7 +1027,7 @@ msgstr ""
 "din scart kontakt. Tryck OK för återgå."
 
 msgid "Image-Upgrade"
-msgstr "Image Uppgradering"
+msgstr "Image uppgradering"
 
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
@@ -987,7 +1040,7 @@ msgid "Index"
 msgstr "Index"
 
 msgid "InfoBar"
-msgstr "InfoBalk"
+msgstr "Infobalk"
 
 msgid "Infobar timeout"
 msgstr "Infobalk timeout"
@@ -1005,7 +1058,7 @@ msgid "Initialize"
 msgstr "Initiera"
 
 msgid "Initializing Harddisk..."
-msgstr "Initierar Hårddisk..."
+msgstr "Initierar hårddisk..."
 
 msgid "Input"
 msgstr "Ingång"
@@ -1014,13 +1067,13 @@ msgid "Installing"
 msgstr "Installera"
 
 msgid "Installing Software..."
-msgstr "Installera Mjukvara..."
+msgstr "Installera mjukvara..."
 
 msgid "Instant Record..."
 msgstr "Direkt inspelning..."
 
 msgid "Integrated Ethernet"
-msgstr "Integrerat Nätverk"
+msgstr "Integrerat nätverk"
 
 msgid "Intermediate"
 msgstr "Mellan"
@@ -1083,7 +1136,7 @@ msgid "Limits on"
 msgstr "Gränser på"
 
 msgid "List of Storage Devices"
-msgstr "Lista på Lagringsenheter"
+msgstr "Lista på lagringsenheter"
 
 msgid "Lithuanian"
 msgstr "Litauiska"
@@ -1098,7 +1151,7 @@ msgid "Longitude"
 msgstr "Longitud"
 
 msgid "MMC Card"
-msgstr "MMC Kort"
+msgstr "MMC kort"
 
 msgid "MORE"
 msgstr "MER"
@@ -1119,13 +1172,13 @@ msgid "Make this mark just a mark"
 msgstr "Gör denna markör till en markör"
 
 msgid "Manual Scan"
-msgstr "Manuell Sökning"
+msgstr "Manuell sökning"
 
 msgid "Manual transponder"
 msgstr "Manuell transponder"
 
 msgid "Margin after record"
-msgstr "Marginal efter inspelning"
+msgstr "Marginal efter inspelning (i minuter)"
 
 msgid "Margin before record (minutes)"
 msgstr "Marginal innan inspelning (i minuter)"
@@ -1134,7 +1187,7 @@ msgid "Media player"
 msgstr "Mediaspelare"
 
 msgid "MediaPlayer"
-msgstr "MediaSpelare"
+msgstr "Mediaspelare"
 
 msgid "Menu"
 msgstr "Meny"
@@ -1146,7 +1199,7 @@ msgid "Mkfs failed"
 msgstr "Mkfs misslyckades"
 
 msgid "Mode"
-msgstr ""
+msgstr "Läge"
 
 msgid "Model: "
 msgstr "Modell: "
@@ -1194,7 +1247,7 @@ msgid "Mute"
 msgstr "Ljud av"
 
 msgid "N/A"
-msgstr "Inte Tillgänglig"
+msgstr "Inte tillgänglig"
 
 msgid "NEXT"
 msgstr "NÄSTA"
@@ -1216,22 +1269,22 @@ msgid "Nameserver %d"
 msgstr "Namnserver %d"
 
 msgid "Nameserver Setup"
-msgstr "Namnserver Installation"
+msgstr "Namnserver installation"
 
 msgid "Nameserver Setup..."
-msgstr "Namnserver Installation..."
+msgstr "Namnserver installation..."
 
 msgid "Netmask"
 msgstr "Nätmask"
 
 msgid "Network Mount"
-msgstr "Nätverk Montering"
+msgstr "Nätverksmonteringar"
 
 msgid "Network Setup"
-msgstr "Nätverk Inställningar"
+msgstr "Nätverk inställningar"
 
 msgid "Network scan"
-msgstr "Sök Nätverk"
+msgstr "Sök nätverk"
 
 msgid "Network setup"
 msgstr "Nätverk inställningar"
@@ -1246,7 +1299,7 @@ msgid "New pin"
 msgstr "Ny PIN"
 
 msgid "New version:"
-msgstr "Ny Version:"
+msgstr "Ny version:"
 
 msgid "Next"
 msgstr "Nästa"
@@ -1340,7 +1393,7 @@ msgstr ""
 "Vänligen konfigurera tuner före scanning efter kanaler."
 
 msgid "Now Playing"
-msgstr "Spelas Nu"
+msgstr "Spelas nu"
 
 msgid "OK"
 msgstr "OK"
@@ -1349,7 +1402,7 @@ msgid "OK, guide me through the upgrade process"
 msgstr "OK, guida mig genom uppgraderingen"
 
 msgid "OSD Settings"
-msgstr "OSD Inställning"
+msgstr "OSD inställning"
 
 msgid "Off"
 msgstr "Av"
@@ -1361,10 +1414,10 @@ msgid "One"
 msgstr "En"
 
 msgid "Online-Upgrade"
-msgstr "Online Uppgradering"
+msgstr "Online uppgradering"
 
 msgid "Orbital Position"
-msgstr "Orbital Position"
+msgstr "Orbital position"
 
 msgid "Other..."
 msgstr "Annat..."
@@ -1405,6 +1458,9 @@ msgstr "PIN kod behövs"
 msgid "Play recorded movies..."
 msgstr "Spela inspelade filmer..."
 
+msgid "Please Reboot"
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "Vänligen ändra inspelnings sluttid"
 
@@ -1415,7 +1471,7 @@ msgid "Please do not change values when you not know what you do!"
 msgstr "Vänligen ändra inte om du inte vet vad du gör!"
 
 msgid "Please enter a name for the new bouquet"
-msgstr "Ange namn för den nya bouquet"
+msgstr "Ange namn för den nya favoritlistan"
 
 msgid "Please enter a name for the new marker"
 msgstr "Vänligen ange namn för ny markör"
@@ -1470,7 +1526,7 @@ msgid "Please wait... Loading list..."
 msgstr "Vänligen vänta... Laddar lista..."
 
 msgid "Plugin browser"
-msgstr "Plugin browser"
+msgstr "Plugin bläddrare"
 
 msgid "Plugins"
 msgstr "Plugins"
@@ -1554,7 +1610,7 @@ msgid "Quickzap"
 msgstr "Quickzap"
 
 msgid "RC Menu"
-msgstr "Fjärrkontroll Meny"
+msgstr "Fjärrkontroll meny"
 
 msgid "RF output"
 msgstr "RF ut"
@@ -1635,7 +1691,7 @@ msgid "Repeat"
 msgstr "Repetera"
 
 msgid "Repeat Type"
-msgstr "Repeat Typ"
+msgstr "Repeat typ"
 
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Upprepande händelse spela in... Vad vill du göra?"
@@ -1661,6 +1717,9 @@ msgid ""
 msgstr ""
 "Återställning av inställningar klart. Tryck OK för aktivera återskapade "
 "inställningarna"
+
+msgid "Rewind speeds"
+msgstr ""
 
 msgid "Right"
 msgstr "Höger"
@@ -1690,13 +1749,13 @@ msgid "Sat"
 msgstr "Lör"
 
 msgid "Sat / Dish Setup"
-msgstr "Sat / Parabol Installation"
+msgstr "Sat / Parabol installation"
 
 msgid "Satellite"
 msgstr "Satellit"
 
 msgid "Satellite Equipment Setup"
-msgstr "Satellit Utrustning Installation"
+msgstr "Satellit utrustning installation"
 
 msgid "Satellites"
 msgstr "Satelliter"
@@ -1708,10 +1767,10 @@ msgid "Saturday"
 msgstr "Lördag"
 
 msgid "Save Playlist"
-msgstr "Spara Spellista"
+msgstr "Spara spellista"
 
 msgid "Scaling Mode"
-msgstr "Scaling Läge"
+msgstr "Scalingläge"
 
 msgid "Scan "
 msgstr "Söka"
@@ -1789,7 +1848,7 @@ msgid "Select HDD"
 msgstr "Välj hårddisk"
 
 msgid "Select Network Adapter"
-msgstr "Välj Nätverk Adapter"
+msgstr "Välj nätverksadapter"
 
 msgid "Select a movie"
 msgstr "Välj en film"
@@ -1819,7 +1878,7 @@ msgid "Service has been added to the favourites."
 msgstr "Kanal har lagts till i favoriter."
 
 msgid "Service has been added to the selected bouquet."
-msgstr "Kanal har lagts till i vald bouqet."
+msgstr "Kanal har lagts till i vald favoritlista."
 
 msgid ""
 "Service invalid!\n"
@@ -1859,10 +1918,10 @@ msgid "Setup"
 msgstr "Installation"
 
 msgid "Setup Mode"
-msgstr "Installations läge"
+msgstr "Installationsläge"
 
 msgid "Show blinking clock in display during recording"
-msgstr ""
+msgstr "Visa blinkande klocka i display under inspelning"
 
 msgid "Show infobar on channel change"
 msgstr "Visa infobalk vid kanalbyte"
@@ -1883,7 +1942,7 @@ msgid "Show the radio player..."
 msgstr "Visa radiospelaren..."
 
 msgid "Show the tv player..."
-msgstr "Visa tv spelare..."
+msgstr "Visa tvspelare..."
 
 msgid "Shutdown Dreambox after"
 msgstr "Stäng av Dreambox efter"
@@ -1916,7 +1975,7 @@ msgid "Sleep timer action:"
 msgstr "Sovtimer händelse:"
 
 msgid "Slideshow Interval (sec.)"
-msgstr "Slideshow Intervall (sec.)"
+msgstr "Slideshow intervall (sec.)"
 
 #, python-format
 msgid "Slot %d"
@@ -1924,6 +1983,9 @@ msgstr "Slot %d"
 
 msgid "Slow"
 msgstr "Sakta"
+
+msgid "Slow Motion speeds"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Några plugin är inte tillgängliga:\n"
@@ -1946,7 +2008,7 @@ msgstr "Sortera A-Z"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
-msgstr "Sortera Tid"
+msgstr "Sortera tid"
 
 msgid "Sound"
 msgstr "Ljud"
@@ -1973,13 +2035,13 @@ msgid "Start recording?"
 msgstr "Starta inspelning?"
 
 msgid "StartTime"
-msgstr "StartTid"
+msgstr "Starttid"
 
 msgid "Starting on"
 msgstr "Startar på"
 
 msgid "Startwizard"
-msgstr "Start guide"
+msgstr "Startguide"
 
 msgid "Step "
 msgstr "Steg "
@@ -1997,7 +2059,7 @@ msgid "Stop"
 msgstr "Avsluta"
 
 msgid "Stop Timeshift?"
-msgstr "Avsluta Timeshift?"
+msgstr "Avsluta timeshift?"
 
 msgid "Stop current event and disable coming events"
 msgstr "Avsluta nuvarande händelse och följande"
@@ -2100,6 +2162,9 @@ msgstr "Sovtimer har aktiverats."
 msgid "The sleep timer has been disabled."
 msgstr "Sovtimer är deaktiverad."
 
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
+
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
@@ -2130,7 +2195,7 @@ msgid "Time"
 msgstr "Tid"
 
 msgid "Time/Date Input"
-msgstr "Tid/Datum Inmatning"
+msgstr "Tid/Datum inmatning"
 
 msgid "Timer"
 msgstr "Timer"
@@ -2256,13 +2321,14 @@ msgid "USB Stick"
 msgstr "USB Minne"
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Kan inte initialisera hårddisken.\n"
-"Var vänlig läs i manualen.\n"
-"Fel: "
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
@@ -2340,7 +2406,7 @@ msgid "Video Output"
 msgstr ""
 
 msgid "Video Setup"
-msgstr ""
+msgstr "Video Inställning"
 
 msgid "Video Wizard"
 msgstr ""
@@ -3144,7 +3210,7 @@ msgid "wait for ci..."
 msgstr "vänta på ci..."
 
 msgid "wait for mmi..."
-msgstr ""
+msgstr "vänta på mmi..."
 
 msgid "waiting"
 msgstr "väntar"
@@ -3232,8 +3298,14 @@ msgstr "zapped"
 #~ msgid "New DVD"
 #~ msgstr "Ny DVD"
 
+#~ msgid "Output Type"
+#~ msgstr "Utgångstyp"
+
 #~ msgid "Quick"
 #~ msgstr "Snabb"
+
+#~ msgid "Rate"
+#~ msgstr "Hastighet"
 
 #~ msgid ""
 #~ "Recording(s) are in progress or comming up in few seconds... really "
@@ -3282,6 +3354,18 @@ msgstr "zapped"
 
 #~ msgid "Transpondertype"
 #~ msgstr "Transponertyp"
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Kan inte initialisera hårddisken.\n"
+#~ "Var vänlig läs i manualen.\n"
+#~ "Fel: "
+
+#~ msgid "Video-Setup"
+#~ msgstr "Video-Inställning"
 
 #~ msgid "You selected a playlist"
 #~ msgstr "Du valde en spellista"
