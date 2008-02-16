@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 01:32+0100\n"
-"PO-Revision-Date: 2007-11-16 14:17+0100\n"
+"POT-Creation-Date: 2008-02-16 11:51+0100\n"
+"PO-Revision-Date: 2008-02-14 11:44+0100\n"
 "Last-Translator: theMMMMMM <theMMMMMM@gmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -292,7 +292,7 @@ msgid "Advanced"
 msgstr "Avansert"
 
 msgid "Advanced Video Setup"
-msgstr ""
+msgstr "Avansert Video Oppsett"
 
 msgid "After event"
 msgstr "Etter program"
@@ -382,6 +382,18 @@ msgstr "Båndbredde"
 msgid "Begin time"
 msgstr "Starttid"
 
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
+msgstr ""
+
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "Oppsett av 0 key i BiB modus"
 
@@ -452,6 +464,12 @@ msgstr "Kanal:"
 
 msgid "Channellist menu"
 msgstr "Kanalliste-meny"
+
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
+msgstr ""
 
 msgid "Choose Tuner"
 msgstr "Velg Tuner"
@@ -551,13 +569,19 @@ msgid "Current Transponder"
 msgstr "Nåværende Transponder"
 
 msgid "Current settings:"
-msgstr ""
+msgstr "Nåværende innstillinger:"
 
 msgid "Current version:"
 msgstr "Aktuell Versjon:"
 
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Valgfritt hopptid for '1'/'3'-knapper"
+
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
 
 msgid "Customize"
 msgstr "Tilpass"
@@ -650,6 +674,12 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "prøver igjen..."
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "Parabol"
 
@@ -662,6 +692,11 @@ msgid ""
 msgstr ""
 "Vil du virkelig fjerne denne\n"
 "plugin \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -806,6 +841,12 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Åpne hovedmenyen"
 
@@ -854,11 +895,20 @@ msgstr "Hurtig"
 msgid "Fast DiSEqC"
 msgstr "Hurtig DiSEqC"
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Hurtig epoch"
 
 msgid "Favourites"
 msgstr "Favoritter"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "Fininstilling."
@@ -893,6 +943,9 @@ msgstr "Fritz!Box FON IP adresse"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprosessor-Versjon: %d"
+
+msgid "Fsck failed"
+msgstr ""
 
 msgid "Function not yet implemented"
 msgstr "Funksjon ikke enda implementert"
@@ -1143,7 +1196,7 @@ msgid "Mkfs failed"
 msgstr "Mkfs feilet"
 
 msgid "Mode"
-msgstr ""
+msgstr "Modus"
 
 msgid "Model: "
 msgstr "Modell:"
@@ -1405,6 +1458,9 @@ msgstr "Pin kode nødvendig"
 msgid "Play recorded movies..."
 msgstr "Spill av filmopptak..."
 
+msgid "Please Reboot"
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "Vennligst endre sluttid for innspilling"
 
@@ -1622,7 +1678,7 @@ msgid "Reenter new pin"
 msgstr "Skriv inn ny pin igjen"
 
 msgid "Refresh Rate"
-msgstr ""
+msgstr "Gjennoppfrisknings Rate"
 
 msgid "Remove Plugins"
 msgstr "Fjern Plugins"
@@ -1663,6 +1719,9 @@ msgid ""
 msgstr ""
 "Gjenoppretting av innstillinger er ferdig. Vennligst trykk OK for å aktivere "
 "dem nå."
+
+msgid "Rewind speeds"
+msgstr ""
 
 msgid "Right"
 msgstr "Høyre"
@@ -1844,6 +1903,8 @@ msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
+"Service utilgjengelig!\n"
+"Sjekk tuner konfigurasjon!"
 
 msgid "Serviceinfo"
 msgstr "Kanalinfo"
@@ -1926,6 +1987,9 @@ msgstr "Slot %d"
 
 msgid "Slow"
 msgstr "Langsom"
+
+msgid "Slow Motion speeds"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Noen plugins er ikke tilgjengelige:\n"
@@ -2103,6 +2167,9 @@ msgstr "Sleep timeren har blitt aktivert"
 msgid "The sleep timer has been disabled."
 msgstr "Sleep timeren har blitt deaktivert"
 
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
+
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
@@ -2259,13 +2326,14 @@ msgid "USB Stick"
 msgstr "USB Stick"
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Harddisk kunne ikke initialisieres.\n"
-"Vennligst les manualen.\n"
-"Feil: "
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
@@ -2339,13 +2407,13 @@ msgid "VCR scart"
 msgstr "VCR scart"
 
 msgid "Video Output"
-msgstr ""
+msgstr "Video Utgang"
 
 msgid "Video Setup"
-msgstr ""
+msgstr "Video Oppsett"
 
 msgid "Video Wizard"
-msgstr ""
+msgstr "Video Wizard"
 
 msgid "View Rass interactive..."
 msgstr "Vis Rass interaktiv..."
@@ -3144,7 +3212,7 @@ msgid "wait for ci..."
 msgstr "vent på ci..."
 
 msgid "wait for mmi..."
-msgstr ""
+msgstr "venter på mmi..."
 
 msgid "waiting"
 msgstr "venter"
@@ -3308,6 +3376,15 @@ msgstr "zapped"
 
 #~ msgid "Toggle EPG type with INFO button"
 #~ msgstr "Endre EPG-Type ved å trykke INFO knappen"
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Harddisk kunne ikke initialisieres.\n"
+#~ "Vennligst les manualen.\n"
+#~ "Feil: "
 
 #~ msgid "Usage"
 #~ msgstr "Anvendelse"
