@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-13 01:43+0100\n"
-"PO-Revision-Date: 2008-02-12 14:00+0200\n"
+"POT-Creation-Date: 2008-02-17 23:34+0100\n"
+"PO-Revision-Date: 2008-02-16 12:00+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -287,16 +287,14 @@ msgstr "Lisää suosikkilistalle"
 
 #  PALAA TÄHÄN
 msgid "Advanced"
-msgstr "Edistyneille"
+msgstr "Laajennetut"
 
 msgid "Advanced Video Setup"
 msgstr "Laajennetut video-asetukset"
 
-#  PALAA TÄHÄN
 msgid "After event"
-msgstr "Tapahtuman jälkeen"
+msgstr "Ajastuksen jälkeen"
 
-#  PALAA TÄHÄN
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
@@ -328,9 +326,6 @@ msgstr "Esittäjä:"
 
 msgid "Ask before shutdown:"
 msgstr "Kysy varmistus ennen sammutusta:"
-
-msgid "Ask user"
-msgstr ""
 
 msgid "Aspect Ratio"
 msgstr "Kuvasuhde"
@@ -384,16 +379,16 @@ msgid "Begin time"
 msgstr "Aloitusaika"
 
 msgid "Behavior when a movie is started"
-msgstr ""
+msgstr "Mitä tehdään toiston alussa"
 
 msgid "Behavior when a movie is stopped"
-msgstr ""
+msgstr "Mitä tehdään kun toisto pysäytetään"
 
 msgid "Behavior when a movie reaches the end"
-msgstr ""
+msgstr "Mitä tehdään kun tallenne loppuu"
 
 msgid "Behaviour of 'pause' when paused"
-msgstr ""
+msgstr "Pause-näppäimen toiminto pysäytyskuvassa"
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "0-näppäimen toiminta PiP-tilassa"
@@ -467,10 +462,10 @@ msgid "Channellist menu"
 msgstr "Kanavalistan muokkaus"
 
 msgid "Check"
-msgstr ""
+msgstr "Tarkista"
 
 msgid "Checking Filesystem..."
-msgstr ""
+msgstr "Tarkistetaan tiedostojärjestelmää"
 
 msgid "Choose Tuner"
 msgstr "Valitse viritin"
@@ -580,10 +575,10 @@ msgid "Custom skip time for '1'/'3'-keys"
 msgstr "'1'/'3'-nappuloiden hypyn pituus"
 
 msgid "Custom skip time for '4'/'6'-keys"
-msgstr ""
+msgstr "'4'/'6'-nappuloiden hypyn pituus"
 
 msgid "Custom skip time for '7'/'9'-keys"
-msgstr ""
+msgstr "'7'/'9'-nappuloiden hypyn pituus"
 
 msgid "Customize"
 msgstr "Toimintojen mukautus"
@@ -675,10 +670,10 @@ msgid ""
 msgstr ""
 
 msgid "Discontinuous playback at speeds above"
-msgstr ""
+msgstr "Hyppivä toisto nopeuksilla yli"
 
 msgid "Discontinuous playback frame repeat count"
-msgstr ""
+msgstr "Hyppivän toiston ruutujen toistomäärä"
 
 msgid "Dish"
 msgstr "Antenni"
@@ -697,6 +692,8 @@ msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
 msgstr ""
+"Haluatko tarkistaa tiedostojärjetelmän?\n"
+"Tarkistus saattaa kestää kauan!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -850,10 +847,10 @@ msgid ""
 msgstr ""
 
 msgid "Enter Fast Forward at speed"
-msgstr ""
+msgstr "Eteenpäinkelauksen aloitussnopeus"
 
 msgid "Enter Rewind at speed"
-msgstr ""
+msgstr "Taaksepäinkelauksen aloitusnopeus"
 
 msgid "Enter main menu..."
 msgstr "Mene päävalikkoon..."
@@ -906,7 +903,7 @@ msgid "Fast DiSEqC"
 msgstr "Nopea DiSEqC"
 
 msgid "Fast Forward speeds"
-msgstr ""
+msgstr "Eteenpäinkelauksen nopeudet"
 
 msgid "Fast epoch"
 msgstr ""
@@ -918,7 +915,7 @@ msgid "Filesystem Check..."
 msgstr ""
 
 msgid "Filesystem contains uncorrectable errors"
-msgstr ""
+msgstr "Tiedostojärjestelmässä on virheitä, joita ei voida korjata"
 
 msgid "Finetune"
 msgstr "Hienosäät."
@@ -936,10 +933,10 @@ msgid "Frequency bands"
 msgstr "Taajuusalueet"
 
 msgid "Frequency scan step size(khz)"
-msgstr ""
+msgstr "Taajuushaun askel (khz)"
 
 msgid "Frequency steps"
-msgstr ""
+msgstr "Taajuusaskel"
 
 msgid "Fri"
 msgstr "pe"
@@ -1049,10 +1046,10 @@ msgid "Index"
 msgstr "Indeksi"
 
 msgid "InfoBar"
-msgstr "Kanavatiedot"
+msgstr "Tietopalkki"
 
 msgid "Infobar timeout"
-msgstr "Kanavatietojen näyttöaika"
+msgstr "Tietopalkin näyttöaika"
 
 msgid "Information"
 msgstr "Tietoja"
@@ -1126,9 +1123,6 @@ msgstr "Kielivalinta"
 
 msgid "Language..."
 msgstr "Kielivalinta..."
-
-msgid "Last speed"
-msgstr ""
 
 msgid "Latitude"
 msgstr "Leveysaste"
@@ -1346,6 +1340,8 @@ msgstr "Kaikki virittimet ovat jo käytössä!"
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
+"Ohjelmistoja ei ole vielä päivitetty.\n"
+"Voit tarkistaa verkkoasetukset ja yrittää uudelleen."
 
 msgid "No positioner capable frontend found."
 msgstr ""
@@ -1455,7 +1451,7 @@ msgid "Parental control"
 msgstr "Lapsilukko"
 
 msgid "Parental control services Editor"
-msgstr "Lapsilukon palvelueditori"
+msgstr "Lapsilukon kanavaeditori"
 
 msgid "Parental control setup"
 msgstr "Lapsilukon asetukset"
@@ -1463,23 +1459,17 @@ msgstr "Lapsilukon asetukset"
 msgid "Parental control type"
 msgstr "Lapsilukon tyyppi"
 
-msgid "Pause movie at end"
-msgstr ""
-
 msgid "PiPSetup"
 msgstr "PiP-kuvan asetukset"
 
 msgid "Pin code needed"
 msgstr "Tarvitaan tunnusluku"
 
-msgid "Play"
-msgstr ""
-
 msgid "Play recorded movies..."
 msgstr "Toista tallenteet..."
 
 msgid "Please Reboot"
-msgstr ""
+msgstr "Uudelleenkäynnistä"
 
 msgid "Please change recording endtime"
 msgstr "Aseta tallennuksen päättymisaika"
@@ -1488,7 +1478,7 @@ msgid "Please choose an extension..."
 msgstr "Valitse laajennus..."
 
 msgid "Please do not change values when you not know what you do!"
-msgstr "Älä muuta arvoja ellet tiedä mitä teet!"
+msgstr "Älä muuta arvoja, ellet tiedä mitä teet!"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Anna uuden suosikkilistan nimi"
@@ -1741,20 +1731,8 @@ msgstr ""
 "Asetusten palautus on valmis. Paina OK ottaaksesi palautetut asetukset "
 "käyttöön."
 
-msgid "Resume from last position"
-msgstr ""
-
-msgid "Resuming playback"
-msgstr ""
-
-msgid "Return to movie list"
-msgstr ""
-
-msgid "Return to previous service"
-msgstr ""
-
 msgid "Rewind speeds"
-msgstr ""
+msgstr "Taaksepäinkelauksen nopeudet"
 
 msgid "Right"
 msgstr "Oikea"
@@ -1963,13 +1941,13 @@ msgid "Show blinking clock in display during recording"
 msgstr "Näytä vilkkuva kello tallennusten aikana"
 
 msgid "Show infobar on channel change"
-msgstr "Näytä kanavatiedot kanavaa vaihdettaessa"
+msgstr "Näytä tietopalkki kanavaa vaihdettaessa"
 
 msgid "Show infobar on event change"
-msgstr "Näytä kanavatiedot ohjelman vaihtuessa"
+msgstr "Näytä tietopalkki ohjelman vaihtuessa"
 
 msgid "Show infobar on skip forward/backward"
-msgstr "Näytä ohjelman tietopalkki kelauksien/hyppyjen aikana"
+msgstr "Näytä tietopalkki kelauksien/hyppyjen aikana"
 
 msgid "Show positioner movement"
 msgstr "Näytä kääntömoottorin toiminta tietopalkissa"
@@ -2007,9 +1985,6 @@ msgstr "Yksi satelliitti"
 msgid "Single transponder"
 msgstr "Yksi lähetin"
 
-msgid "Singlestep (GOP)"
-msgstr ""
-
 msgid "Sleep Timer"
 msgstr "Uniajastin"
 
@@ -2021,13 +1996,13 @@ msgstr "Kuvien näyttöaika (sekuntia)"
 
 #, python-format
 msgid "Slot %d"
-msgstr ""
+msgstr "Portti %d"
 
 msgid "Slow"
-msgstr ""
+msgstr "Hidas"
 
 msgid "Slow Motion speeds"
-msgstr ""
+msgstr "Hidastusnopeudet"
 
 msgid "Some plugins are not available:\n"
 msgstr "Seuraavat lisäosat eivät ole saatavilla:\n"
@@ -2073,9 +2048,6 @@ msgstr "Sammutusvalikko"
 #  Ajastusikkuna
 msgid "Start"
 msgstr "Aloitus"
-
-msgid "Start from the beginning"
-msgstr ""
 
 #  Suoratallennusikkuna.
 msgid "Start recording?"
@@ -2218,13 +2190,12 @@ msgid "The sleep timer has been disabled."
 msgstr "Uniajastin on kytketty pois päältä."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr ""
+msgstr "Ajastusluettelo (timers.xml) on korruptoitunut eikä sitä voida ladata"
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"Velho voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset "
-"nyt?"
+"Velho voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset?"
 
 msgid "The wizard is finished now."
 msgstr "Velho on lopettanut."
@@ -2328,10 +2299,10 @@ msgid "Tries left:"
 msgstr "Yrityksiä jäljellä:"
 
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr ""
+msgstr "Haetaan kaapeliverkon lähetystaajuuksia...odota..."
 
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr ""
+msgstr "Haetaan kaapeliverkon lähetystaajuuksia...odota..."
 
 msgid "Tue"
 msgstr "ti"
@@ -2382,11 +2353,15 @@ msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
+"Tiedostojärjestelmän tarkistus epäonnistui.\n"
+"Virhe: "
 
 msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
+"Kiintolevyn alustus epäonnistui.\n"
+"Virhe: "
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC-käsky"
@@ -2419,13 +2394,13 @@ msgid "Use DHCP"
 msgstr "Käytä DHCP:tä"
 
 msgid "Use Power Measurement"
-msgstr ""
+msgstr "Käytä virran mittausta"
 
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
 
 msgid "Use power measurement"
-msgstr "Käytä tehonmittausta"
+msgstr "Käytä virran mittausta"
 
 #  Ohjatun asennuksen (Start Wizard) kolmas ruutu. Teksti on rivitetty
 #  tilaansa käsin. Hyödyksi käytetään Unicode-nuolisymboleja.
@@ -2480,7 +2455,7 @@ msgid "Video Output"
 msgstr "Video-ulostulo"
 
 msgid "Video Setup"
-msgstr "Video asetukset"
+msgstr "Video-asetukset"
 
 msgid "Video Wizard"
 msgstr "Video-velho"
@@ -2586,9 +2561,6 @@ msgstr "Kyllä, sammuta nyt."
 msgid "Yes, restore the settings now"
 msgstr "Kyllä, palauta asetukset nyt"
 
-msgid "Yes, returning to movie list"
-msgstr ""
-
 msgid "Yes, view the tutorial"
 msgstr "Kyllä, katso opasohjelma"
 
@@ -2648,6 +2620,9 @@ msgid ""
 "Press the menu-key to define keywords.\n"
 "Do you want to define keywords now?"
 msgstr ""
+"Sinun pitää ensin määritellä hakusanat.\n"
+"Määrittele ne menu-napin kautta.\n"
+"Haluatko määritellä hakusanat nyt?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -2815,7 +2790,7 @@ msgid "delete cut"
 msgstr "Poista leikkaus"
 
 msgid "delete playlist entry"
-msgstr ""
+msgstr "poista soittolistan valinta"
 
 msgid "delete saved playlist"
 msgstr "poista tallennettu soittolista"
@@ -2977,7 +2952,7 @@ msgid "loopthrough to socket A"
 msgstr "Ketjutus virittimelle A"
 
 msgid "manual"
-msgstr "manuaali"
+msgstr "manuaalinen"
 
 msgid "menu"
 msgstr "valikko"
@@ -3052,13 +3027,13 @@ msgid "only /etc/enigma2 directory"
 msgstr "vain /etc/enigma2-hakemisto"
 
 msgid "open servicelist"
-msgstr "avaa palvelulista"
+msgstr "Avaa palvelulista"
 
 msgid "open servicelist(down)"
-msgstr "avaa palvelulista(alaspäin)"
+msgstr "Avaa palvelulista(alaspäin)"
 
 msgid "open servicelist(up)"
-msgstr "avaa palvelulista(ylöspäin)"
+msgstr "Avaa palvelulista(ylöspäin)"
 
 msgid "pass"
 msgstr "hyväksytty"
@@ -3069,10 +3044,10 @@ msgstr "tauko"
 msgid "play entry"
 msgstr "toista"
 
-msgid "play from next mark or playlist entry"
+msgid "play next playlist entry"
 msgstr ""
 
-msgid "play from previous mark or playlist entry"
+msgid "play previous playlist entry"
 msgstr ""
 
 msgid "please press OK when ready"
@@ -3082,10 +3057,10 @@ msgid "please wait, loading picture..."
 msgstr "Kuvaa ladataan. Odota..."
 
 msgid "previous channel"
-msgstr "edellinen kanava"
+msgstr "Edellinen kanava"
 
 msgid "previous channel in history"
-msgstr "edellinen kanava historiassa"
+msgstr "Edellinen kanava historiassa"
 
 msgid "record"
 msgstr "tallenna"
@@ -3212,11 +3187,17 @@ msgstr "siirry taaksepäin"
 msgid "skip backward (enter time)"
 msgstr "siirry taaksepäin (syötä aika)"
 
+msgid "skip backward (self defined)"
+msgstr ""
+
 msgid "skip forward"
 msgstr "siirry eteenpäin"
 
 msgid "skip forward (enter time)"
 msgstr "siirry eteenpäin (syötä aika)"
+
+msgid "skip forward (self defined)"
+msgstr ""
 
 msgid "sort by date"
 msgstr "Aikajärjestys"
@@ -3225,7 +3206,7 @@ msgid "standard"
 msgstr "Vakio"
 
 msgid "standby"
-msgstr "valmius"
+msgstr "valmiustila"
 
 msgid "start cut here"
 msgstr "Aloita leikkaus tästä"
@@ -3322,23 +3303,38 @@ msgstr "vaihto"
 msgid "zapped"
 msgstr "vaihdettu"
 
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Please refer to the user manual.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Kiintolevyn alustus epäonnistui.\n"
-#~ "Katso ohjeita levyn ohjekirjasta.\n"
-#~ "VIRHE: "
+#~ msgid "Ask user"
+#~ msgstr "Kysy käyttäjältä"
 
-#~ msgid "play next playlist entry"
-#~ msgstr "toista soittolistan seuraava"
+#~ msgid "Last speed"
+#~ msgstr "Viimeinen nopeus"
 
-#~ msgid "play previous playlist entry"
-#~ msgstr "toista soittolistan edellinen"
+#~ msgid "Pause movie at end"
+#~ msgstr "Pysäytä tallenne lopussa"
 
-#~ msgid "skip backward (self defined)"
-#~ msgstr "siirry taaksepäin (oma määritys)"
+#~ msgid "Play"
+#~ msgstr "Toista"
 
-#~ msgid "skip forward (self defined)"
-#~ msgstr "siirry eteenpäin (oma määritys)"
+#~ msgid "Resume from last position"
+#~ msgstr "Jatka viimeksi katsotusta kohdasta"
+
+#~ msgid "Resuming playback"
+#~ msgstr "Toiston jatko"
+
+#~ msgid "Return to movie list"
+#~ msgstr "Palaa tallenneluetteloon"
+
+#~ msgid "Return to previous service"
+#~ msgstr "Palaa TV-kanavalle"
+
+#~ msgid "Start from the beginning"
+#~ msgstr "Aloita alusta"
+
+#~ msgid "Yes, returning to movie list"
+#~ msgstr "Kyllä, palataan tallenneluetteloon"
+
+#~ msgid "play from next mark or playlist entry"
+#~ msgstr "toista seuraavasta merkistä tai valinnasta"
+
+#~ msgid "play from previous mark or playlist entry"
+#~ msgstr "toista edellisestä merkistä tai valinnasta"
