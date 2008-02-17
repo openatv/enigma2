@@ -669,9 +669,8 @@ int eDVBFrontend::readFrontendData(int type)
 			{
 				float snr_in_db=(snr-39075)/1764.7;
 				return (int)(snr_in_db * 100.0);
-			}
-			else
-				eDebug("no SNR dB calculation for frontendtype %s yet", m_description);
+			} /* else
+				eDebug("no SNR dB calculation for frontendtype %s yet", m_description); */
 			return 0x12345678;
 		}
 		case signalQuality:
