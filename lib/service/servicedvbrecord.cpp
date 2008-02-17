@@ -45,6 +45,14 @@ void eDVBServiceRecord::serviceEvent(int event)
 		m_event((iRecordableService*)this, evNewProgramInfo);
 		break;
 	}
+	case eDVBServicePMTHandler::eventMisconfiguration:
+		m_error = errMisconfiguration;
+		m_event((iRecordableService*)this, evTuneFailed);
+		break;
+	case eDVBServicePMTHandler::eventNoResources:
+		m_error = errNoResources;
+		m_event((iRecordableService*)this, evTuneFailed);
+		break;
 	}
 }
 

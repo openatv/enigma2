@@ -782,7 +782,9 @@ public:
 		errNoDemuxAvailable=-2,
 		errNoTsRecorderAvailable=-3,
 		errDiskFull=-4,
-		errTuneFailed=-255
+		errTuneFailed=-255,
+		errMisconfiguration = -256,
+		errNoResources = -257,
 	};
 };
 
