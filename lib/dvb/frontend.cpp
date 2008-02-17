@@ -671,7 +671,7 @@ int eDVBFrontend::readFrontendData(int type)
 				return (int)(snr_in_db * 100.0);
 			}
 			else
-				eDebug("no SNR dB caluclation for frontendtype %s yet", m_description);
+				eDebug("no SNR dB calculation for frontendtype %s yet", m_description);
 			return 0x12345678;
 		}
 		case signalQuality:
