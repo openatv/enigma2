@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 00:16+0100\n"
-"PO-Revision-Date: 2008-01-26 08:27+0100\n"
+"POT-Creation-Date: 2008-02-17 23:34+0100\n"
+"PO-Revision-Date: 2008-02-17 10:31+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -381,6 +381,18 @@ msgstr "Båndbredde"
 msgid "Begin time"
 msgstr "Start tid"
 
+msgid "Behavior when a movie is started"
+msgstr "Opførsel når en film startes"
+
+msgid "Behavior when a movie is stopped"
+msgstr "Opførsel når en film stoppes"
+
+msgid "Behavior when a movie reaches the end"
+msgstr "Opførsel når filmen er næsten slut"
+
+msgid "Behaviour of 'pause' when paused"
+msgstr "Opførsel ved 'pause' når den er pauset"
+
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "Opsætning af 0 key i PiP-type"
 
@@ -451,6 +463,12 @@ msgstr "Kanal:"
 
 msgid "Channellist menu"
 msgstr "Kanalliste menu"
+
+msgid "Check"
+msgstr "Undersøg"
+
+msgid "Checking Filesystem..."
+msgstr "Undersøge Filsystem..."
 
 msgid "Choose Tuner"
 msgstr "Vælg Tuner"
@@ -556,7 +574,13 @@ msgid "Current version:"
 msgstr "Nuværende Version:"
 
 msgid "Custom skip time for '1'/'3'-keys"
-msgstr "Bruger skip tid for  '1'/'3'-taster"
+msgstr "Bruger skip tid for '1'/'3'-taster"
+
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr "Bruger skip tid for '4'/'6'-taster"
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr "Bruger skip tid for '7'/'9'-taster"
 
 msgid "Customize"
 msgstr "Bruger Indstillinger"
@@ -649,6 +673,12 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "prøver igen..."
 
+msgid "Discontinuous playback at speeds above"
+msgstr "Usikker afspilning ved hastigheder over"
+
+msgid "Discontinuous playback frame repeat count"
+msgstr "Usikker afspilnings ramme gentagelses antal"
+
 msgid "Dish"
 msgstr "Parabol"
 
@@ -661,6 +691,11 @@ msgid ""
 msgstr ""
 "Vil du virkelig FJERNE\n"
 "dette plugin \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -805,6 +840,12 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+msgid "Enter Fast Forward at speed"
+msgstr "Sæt Hurtigfremspolings hastighed "
+
+msgid "Enter Rewind at speed"
+msgstr "Sæt Tilbagespolings hastighed"
+
 msgid "Enter main menu..."
 msgstr "Åbne hoved menu..."
 
@@ -853,11 +894,20 @@ msgstr "Hurtig"
 msgid "Fast DiSEqC"
 msgstr "Hurtig DiSEqC"
 
+msgid "Fast Forward speeds"
+msgstr "Hurtig Frem hastigheder"
+
 msgid "Fast epoch"
 msgstr "Hurtig epoch"
 
 msgid "Favourites"
 msgstr "Favoritter"
+
+msgid "Filesystem Check..."
+msgstr "Filsystem Kontrol..."
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr "Filsystem indeholder ikke rettelige fejl"
 
 msgid "Finetune"
 msgstr "Fin tuning"
@@ -892,6 +942,9 @@ msgstr "Fritz!Box PHONE IP adresse"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor Version: %d"
+
+msgid "Fsck failed"
+msgstr "Fsck fejlede"
 
 msgid "Function not yet implemented"
 msgstr "Funktion endnu ikke tilgængelig"
@@ -1402,6 +1455,9 @@ msgstr "Pin kode nødvendig"
 msgid "Play recorded movies..."
 msgstr "Afspil optagede film..."
 
+msgid "Please Reboot"
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "Venligst skift optagelses sluttid"
 
@@ -1640,7 +1696,7 @@ msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Gentage event optagelse som er igang... Hvad vil du foretage dig?"
 
 msgid "Reset"
-msgstr "Reset"
+msgstr "Genstart"
 
 msgid "Restart"
 msgstr "Genstarte"
@@ -1658,6 +1714,9 @@ msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
 "settings now."
 msgstr "Indstillinger genskabt. Tryk OK for at aktivere indstillingerne nu."
+
+msgid "Rewind speeds"
+msgstr "Tilbage hastigheder"
 
 msgid "Right"
 msgstr "Højre"
@@ -1924,6 +1983,9 @@ msgstr "Slot %d"
 msgid "Slow"
 msgstr "Langsom"
 
+msgid "Slow Motion speeds"
+msgstr "Langsom bevægelse hastigheder"
+
 msgid "Some plugins are not available:\n"
 msgstr "Nogle plugins er ikke tilstede:\n"
 
@@ -2055,7 +2117,7 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste opdatering: 26. Januar 2008\n"
+"Sidste opdatering: 17. Februar 2008\n"
 "\n"
 "Har du ændringer, forslag eller andet, så kontakt mig venligst!."
 
@@ -2098,6 +2160,9 @@ msgstr "Sleep timeren er blevet aktiveret."
 
 msgid "The sleep timer has been disabled."
 msgstr "Sleep timeren er ikke aktiveret."
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr "Timer filen (timers.xml) er korrupt og kan ikke bruges."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2256,13 +2321,14 @@ msgid "USB Stick"
 msgstr "USB Stick"
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Kunne ikke formatere HDD.\n"
-"Se venligst i manual.\n"
-"FEJL: "
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Ukommiteret DiSEqC kommando"
@@ -3212,6 +3278,15 @@ msgstr "Zappet"
 
 #~ msgid "Show Zap-Errors"
 #~ msgstr "Vis Zap-Fejl"
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Kunne ikke formatere HDD.\n"
+#~ "Se venligst i manual.\n"
+#~ "FEJL: "
 
 #~ msgid "Videoformat:"
 #~ msgstr "TVformat:"
