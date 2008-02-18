@@ -31,6 +31,7 @@ class LCD:
 def InitLcd():
 	detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
+	config.lcd = ConfigSubsection();
 	if detected:
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value);
@@ -42,8 +43,6 @@ def InitLcd():
 			ilcd.setInverted(configElement.value);
 
 		ilcd = LCD()
-
-		config.lcd = ConfigSubsection();
 
 		config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright);
@@ -61,5 +60,10 @@ def InitLcd():
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
 	else:
-		config.lcd.bright.apply = lambda : pass
-		config.lcd.standby.apply = lambda : pass
+		def doNothing():
+			pass
+		config.lcd.contrast = ConfigNothing()
+		config.lcd.bright = ConfigNothing()
+		config.lcd.standby = ConfigNothing()
+		config.lcd.bright.apply = lambda : doNothing()
+		config.lcd.standby.apply = lambda : doNothing()
