@@ -60,3 +60,6 @@ def InitLcd():
 
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
+	else:
+		config.lcd.bright.apply = lambda : pass
+		config.lcd.standby.apply = lambda : pass
