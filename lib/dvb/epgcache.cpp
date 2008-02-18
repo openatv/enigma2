@@ -461,12 +461,12 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 		--ptr;
 
 	// Cablecom HACK .. tsid / onid in eit data are incorrect.. so we use
-	// it from running service (just for current transport stream eit data)
-	bool use_eit_chid = data[0] == 0x4F || data[0] > 0x5F;
+	// it from running channel (just for current transport stream eit data)
+	bool use_transponder_chid = source == SCHEDULE || (source == NOWNEXT && data[0] == 0x4E);
 	eDVBChannelID chid = channel->channel->getChannelID();
 	uniqueEPGKey service( HILO(eit->service_id),
-		use_eit_chid ? HILO(eit->original_network_id) : chid.original_network_id.get(),
-		use_eit_chid ? HILO(eit->transport_stream_id) : chid.transport_stream_id.get() );
+		use_transponder_chid ? chid.original_network_id.get() : HILO(eit->original_network_id),
+		use_transponder_chid ? chid.transport_stream_id.get() : HILO(eit->transport_stream_id));
 
 	eit_event_struct* eit_event = (eit_event_struct*) (data+ptr);
 	int eit_event_size;
