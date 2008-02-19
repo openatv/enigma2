@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 23:34+0100\n"
-"PO-Revision-Date: 2008-02-17 10:31+0100\n"
+"POT-Creation-Date: 2008-02-20 00:33+0100\n"
+"PO-Revision-Date: 2008-02-19 16:53+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -329,6 +329,9 @@ msgstr "Artist:"
 
 msgid "Ask before shutdown:"
 msgstr "Spørg for slukning:"
+
+msgid "Ask user"
+msgstr ""
 
 msgid "Aspect Ratio"
 msgstr "Billed Format"
@@ -696,6 +699,8 @@ msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
 msgstr ""
+"Vil du virkelig kontrolere filsystemet?\n"
+"Dette kan tage lang tid!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -1111,6 +1116,9 @@ msgstr "Valg af Sprog"
 msgid "Language..."
 msgstr "Sprog..."
 
+msgid "Last speed"
+msgstr ""
+
 msgid "Latitude"
 msgstr "Breddegrad"
 
@@ -1446,11 +1454,17 @@ msgstr "Forældre kontrol opsætning"
 msgid "Parental control type"
 msgstr "Forældre kontrol type"
 
+msgid "Pause movie at end"
+msgstr ""
+
 msgid "PiPSetup"
 msgstr "PiP Opsætning"
 
 msgid "Pin code needed"
 msgstr "Pin kode nødvendig"
+
+msgid "Play"
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Afspil optagede film..."
@@ -1715,6 +1729,18 @@ msgid ""
 "settings now."
 msgstr "Indstillinger genskabt. Tryk OK for at aktivere indstillingerne nu."
 
+msgid "Resume from last position"
+msgstr ""
+
+msgid "Resuming playback"
+msgstr ""
+
+msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous service"
+msgstr ""
+
 msgid "Rewind speeds"
 msgstr "Tilbage hastigheder"
 
@@ -1967,6 +1993,9 @@ msgstr "Enkelt satellit"
 msgid "Single transponder"
 msgstr "Enkelt transponder"
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr "Sleep Timer"
 
@@ -2029,6 +2058,9 @@ msgstr "Afbryde / Genstarte"
 
 msgid "Start"
 msgstr "Start"
+
+msgid "Start from the beginning"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "Start optagelse?"
@@ -2117,7 +2149,7 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste opdatering: 17. Februar 2008\n"
+"Sidste opdatering: 19. Februar 2008\n"
 "\n"
 "Har du ændringer, forslag eller andet, så kontakt mig venligst!."
 
@@ -2324,6 +2356,8 @@ msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
+"Kan ikke kontrolere filsystemet.\n"
+"Fejl:"
 
 msgid ""
 "Unable to initialize harddisk.\n"
@@ -2499,6 +2533,9 @@ msgstr "Ja, afbryd nu."
 
 msgid "Yes, restore the settings now"
 msgstr "Ja, genetabler indstillinger nu"
+
+msgid "Yes, returning to movie list"
+msgstr ""
 
 msgid "Yes, view the tutorial"
 msgstr "Ja, vis mig en gennemgang"
@@ -2979,11 +3016,11 @@ msgstr "Pause"
 msgid "play entry"
 msgstr "Afspil denne"
 
-msgid "play next playlist entry"
-msgstr "Afspil næste i spilleliste"
+msgid "play from next mark or playlist entry"
+msgstr ""
 
-msgid "play previous playlist entry"
-msgstr "Afspil forrige i spilleliste"
+msgid "play from previous mark or playlist entry"
+msgstr ""
 
 msgid "please press OK when ready"
 msgstr "Tryk venligst OK når du er klar"
@@ -3122,17 +3159,11 @@ msgstr "Drop tilbage"
 msgid "skip backward (enter time)"
 msgstr "Skip bagud (skriv tiden)"
 
-msgid "skip backward (self defined)"
-msgstr "Skip tilbage (bruger defineret)"
-
 msgid "skip forward"
 msgstr "Drop fremad"
 
 msgid "skip forward (enter time)"
 msgstr "Skip fremad (skriv tiden)"
-
-msgid "skip forward (self defined)"
-msgstr "Skip frem (bruger defineret)"
 
 msgid "sort by date"
 msgstr "Sorter på Dato"
@@ -3293,3 +3324,15 @@ msgstr "Zappet"
 
 #~ msgid "Videosize:"
 #~ msgstr "Billedformat:"
+
+#~ msgid "play next playlist entry"
+#~ msgstr "Afspil næste i spilleliste"
+
+#~ msgid "play previous playlist entry"
+#~ msgstr "Afspil forrige i spilleliste"
+
+#~ msgid "skip backward (self defined)"
+#~ msgstr "Skip tilbage (bruger defineret)"
+
+#~ msgid "skip forward (self defined)"
+#~ msgstr "Skip frem (bruger defineret)"
