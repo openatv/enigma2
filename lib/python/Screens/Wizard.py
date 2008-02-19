@@ -211,12 +211,17 @@ class Wizard(Screen, HelpableScreen):
 		self.lcdCallbacks.append(callback)
 
 	def back(self):
+		print "getting back..."
+		print "stepHistory:", self.stepHistory
 		if len(self.stepHistory) > 1:
 			self.currStep = self.stepHistory[-2]
 			self.stepHistory = self.stepHistory[:-2]
 		if self.currStep < 1:
 			self.currStep = 1
+		print "currStep:", self.currStep
+		print "new stepHistory:", self.stepHistory
 		self.updateValues()
+		print "after updateValues stepHistory:", self.stepHistory
 		
 	def markDone(self):
 		pass
@@ -366,7 +371,8 @@ class Wizard(Screen, HelpableScreen):
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
 		if self.condition:
-			self.stepHistory.append(self.currStep)
+			if len(self.stepHistory) == 0 or self.stepHistory[-1] != self.currStep:
+				self.stepHistory.append(self.currStep)
 			print "wizard step:", self.wizard[self.currStep]
 			
 			if self.showSteps:
