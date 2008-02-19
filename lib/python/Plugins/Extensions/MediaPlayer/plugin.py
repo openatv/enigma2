@@ -110,8 +110,8 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 				"play": (self.xplayEntry, _("play entry")),
 				"pause": (self.pauseEntry, _("pause")),
 				"stop": (self.stopEntry, _("stop entry")),
-				"previous": (self.previousEntry, _("play previous playlist entry")),
-				"next": (self.nextEntry, _("play next playlist entry")),
+				"previous": (self.previousMarkOrEntry, _("play from previous mark or playlist entry")),
+				"next": (self.nextMarkOrEntry, _("play from next mark or playlist entry")),
 				"menu": (self.showMenu, _("menu")),
 				"skipListbegin": (self.skip_listbegin, _("jump to listbegin")),
 				"skipListend": (self.skip_listend, _("jump to listend")),
@@ -145,14 +145,6 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		}, -2)
 
 		InfoBarSeek.__init__(self, actionmap = "MediaPlayerSeekActions")
-
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				#iPlayableService.evStart: self.__serviceStarted,
-				#iPlayableService.evSeekableStatusChanged: InfoBarSeek.__seekableStatusChanged,
-
-				iPlayableService.evEOF: self.__evEOF,
-			})
 
 		self.onClose.append(self.delMPTimer)
 		self.onClose.append(self.__onClose)
@@ -196,8 +188,11 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 	def checkSkipShowHideLock(self):
 		self.updatedSeekState()
 
-	def __evEOF(self):
-		self.nextEntry()
+	def doEofInternal(self, playing):
+		if playing:
+			self.nextEntry()
+		else:
+			self.show()
 
 	def __onClose(self):
 		self.session.nav.playService(self.oldService)
@@ -570,10 +565,19 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 		if next < len(self.playlist):
 			self.changeEntry(next)
 
-	def previousEntry(self):
-		next = self.playlist.getCurrentIndex() - 1
-		if next >= 0:
-			self.changeEntry(next)
+	def nextMarkOrEntry(self):
+		if not self.jumpPreviousNextMark(lambda x: x):
+			next = self.playlist.getCurrentIndex() + 1
+			if next < len(self.playlist):
+				self.changeEntry(next)
+			else:
+				self.doSeek(-1)
+
+	def previousMarkOrEntry(self):
+		if not self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True):
+			next = self.playlist.getCurrentIndex() - 1
+			if next >= 0:
+				self.changeEntry(next)
 
 	def deleteEntry(self):
 		self.playlist.deleteFile(self.playlist.getSelectionIndex())
@@ -675,21 +679,9 @@ class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSup
 			self.playlist.pauseFile()
 		elif self.seekstate == self.SEEK_STATE_PLAY:
 			self.playlist.playFile()
-		elif self.seekstate in ( self.SEEK_STATE_FF_2X,
-								 self.SEEK_STATE_FF_4X,
-								 self.SEEK_STATE_FF_8X,
-								 self.SEEK_STATE_FF_16X,
-								 self.SEEK_STATE_FF_32X,
-								 self.SEEK_STATE_FF_48X,
-								 self.SEEK_STATE_FF_64X,
-								 self.SEEK_STATE_FF_128X):
+		elif self.isStateForward(self.seekstate):
 			self.playlist.forwardFile()
-		elif self.seekstate in ( self.SEEK_STATE_BACK_8X,
-								 self.SEEK_STATE_BACK_16X,
-								 self.SEEK_STATE_BACK_32X,
-								 self.SEEK_STATE_BACK_48X,
-								 self.SEEK_STATE_BACK_64X,
-								 self.SEEK_STATE_BACK_128X):
+		elif self.isStateBackward(self.seekstate):
 			self.playlist.rewindFile()
 
 	def pauseEntry(self):

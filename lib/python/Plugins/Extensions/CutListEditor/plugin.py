@@ -396,7 +396,7 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 	# we modify the "play" behaviour a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
 	def playpauseService(self):
-		if self.seekstate not in [self.SEEK_STATE_PLAY, self.SEEK_STATE_SM_HALF, self.SEEK_STATE_SM_QUARTER, self.SEEK_STATE_SM_EIGHTH]:
+		if self.seekstate != self.SEEK_STATE_PLAY and not self.isStateSlowMotion(self.seekstate):
 			self.unPauseService()
 		else:
 			self.pauseService()

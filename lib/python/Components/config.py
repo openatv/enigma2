@@ -133,6 +133,10 @@ def getKeyNumber(key):
 class ConfigSelection(ConfigElement):
 	def __init__(self, choices, default = None):
 		ConfigElement.__init__(self)
+		self._value = None
+		self.setChoices(choices, default)
+
+	def setChoices(self, choices, default = None):
 		self.choices = []
 		self.description = {}
 		
@@ -163,7 +167,10 @@ class ConfigSelection(ConfigElement):
 		for x in self.choices:
 			assert isinstance(x, str), "ConfigSelection choices must be strings"
 		
-		self.value = self.default = default
+		self.default = default
+
+		if self.value == None or not self.value in self.choices:
+			self.value = default
 
 	def setValue(self, value):
 		if value in self.choices:
@@ -699,7 +706,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	_value = property(getValue, setValue)
 
 	def getText(self):
-		return self.value
+		return self.text.encode("utf-8")
 
 	def getMulti(self, selected):
 		if self.visible_width:
@@ -713,7 +720,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = range(0, len(self.text))
 			else:
 				mark = [self.marked_pos]
-			return ("mtext"[1-selected:], self.value+" ", mark)
+			return ("mtext"[1-selected:], self.text.encode("utf-8")+" ", mark)
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -734,6 +741,54 @@ class ConfigText(ConfigElement, NumericalTextInput):
 
 	def unsafeAssign(self, value):
 		self.value = str(value)
+
+class ConfigNumber(ConfigText):
+	def __init__(self, default = 0):
+		ConfigText.__init__(self, str(default), fixed_size = False)
+
+	def getValue(self):
+		return int(self.text)
+		
+	def setValue(self, val):
+		self.text = str(val)
+
+	value = property(getValue, setValue)
+	_value = property(getValue, setValue)
+
+	def conform(self):
+		pos = len(self.text) - self.marked_pos
+		self.text = self.text.lstrip("0")
+		if self.text == "":
+			self.text = "0"
+		if pos > len(self.text):
+			self.marked_pos = 0
+		else:
+			self.marked_pos = len(self.text) - pos
+
+	def handleKey(self, key):
+		if key in KEY_NUMBERS or key == KEY_ASCII:
+			if key == KEY_ASCII:
+				ascii = getPrevAsciiCode()
+				if not (48 <= ascii <= 57):
+					return
+			else:
+				ascii = getKeyNumber(key) + 48
+  			newChar = unichr(ascii)
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			self.insertChar(newChar, self.marked_pos, False)
+			self.marked_pos += 1
+		else:
+			ConfigText.handleKey(self, key)
+		self.conform()
+
+	def onSelect(self, session):
+		self.allmarked = (self.value != "")
+
+	def onDeselect(self, session):
+		self.marked_pos = 0
+		self.offset = 0
 
 # a slider.
 class ConfigSlider(ConfigElement):
@@ -967,6 +1022,77 @@ class ConfigSubsection(object):
 
 	def dict(self):
 		return self.content.items
+
+class ConfigSet(ConfigElement):
+	def __init__(self, choices, default = []):
+		ConfigElement.__init__(self)
+		choices.sort()
+		self.choices = choices
+		self.pos = -1
+		default.sort()
+		self.default = default
+		self.value = default+[]
+
+	def toggleChoice(self, choice):
+		if choice in self.value:
+			self.value.remove(choice)
+		else:
+			self.value.append(choice)
+			self.value.sort()
+
+	def handleKey(self, key):
+		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
+			if self.pos != -1:
+				self.toggleChoice(self.choices[self.pos])
+		elif key == KEY_LEFT:
+			self.pos -= 1
+			if self.pos < -1:
+			    self.pos = len(self.choices)-1
+		elif key == KEY_RIGHT:
+			self.pos += 1
+			if self.pos >= len(self.choices):
+			    self.pos = -1
+		elif key in [KEY_HOME, KEY_END]:
+			self.pos = -1
+
+	def genString(self, lst):
+		res = ""
+		for x in lst:
+			res += str(x)+" "
+		return res
+
+	def getText(self):
+		self.genString(self.value)
+
+	def getMulti(self, selected):
+		if not selected or self.pos == -1:
+			return ("text", self.genString(self.value))
+		else:
+			tmp = self.value+[]
+			ch = self.choices[self.pos]
+			mem = ch in self.value
+			if not mem:
+				tmp.append(ch)
+				tmp.sort()
+			ind = tmp.index(ch)
+			val1 = self.genString(tmp[:ind])
+			val2 = " "+self.genString(tmp[ind+1:])
+			if mem:
+				chstr = " "+str(ch)+" "
+			else:
+				chstr = "("+str(ch)+")"
+			return ("mtext", val1+chstr+val2, range(len(val1),len(val1)+len(chstr)))
+
+	def onDeselect(self, session):
+		self.pos = -1
+		self.changed()
+		
+	def tostring(self, value):
+		return str(value)
+
+	def fromstring(self, val):
+		return eval(val)
+
 
 # the root config object, which also can "pickle" (=serialize)
 # down the whole config tree.
