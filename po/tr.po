@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tr 01\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 01:32+0100\n"
+"POT-Creation-Date: 2008-02-20 00:33+0100\n"
 "PO-Revision-Date: 2006-06-16 12:51+0200\n"
 "Last-Translator: koksal <goksel@goksel.com>\n"
 "Language-Team: GökselD& <gok_68@hotmail.com>\n"
@@ -315,6 +315,9 @@ msgstr "Sanatçı:"
 msgid "Ask before shutdown:"
 msgstr ""
 
+msgid "Ask user"
+msgstr ""
+
 msgid "Aspect Ratio"
 msgstr "Görüntü Oranı"
 
@@ -364,6 +367,18 @@ msgid "Bandwidth"
 msgstr "bant genişliği"
 
 msgid "Begin time"
+msgstr ""
+
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
 msgstr ""
 
 msgid "Behaviour of 0 key in PiP-mode"
@@ -436,6 +451,12 @@ msgstr "Kanal:"
 
 msgid "Channellist menu"
 msgstr "Kanal Menü  Liste"
+
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
+msgstr ""
 
 msgid "Choose Tuner"
 msgstr ""
@@ -540,6 +561,12 @@ msgstr "Kullanılan Versiyon:"
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr ""
 
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
+
 msgid "Customize"
 msgstr ""
 
@@ -628,6 +655,12 @@ msgid ""
 "retrying..."
 msgstr ""
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "Çanak"
 
@@ -640,6 +673,11 @@ msgid ""
 msgstr ""
 "Silmek İstediğinize Eminmisiniz\n"
 "O  plugin i \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -776,6 +814,12 @@ msgid ""
 "© 2006 - Stephan Reichholf"
 msgstr ""
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr ""
 
@@ -824,11 +868,20 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr "Hızlı  DiSEqC"
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr ""
 
 msgid "Favourites"
 msgstr "Favori"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "İnce Ayar"
@@ -863,6 +916,9 @@ msgstr ""
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Ön İşlemci: %d"
+
+msgid "Fsck failed"
+msgstr ""
 
 msgid "Function not yet implemented"
 msgstr "İşlev Yerine getir"
@@ -1023,6 +1079,9 @@ msgid "Language selection"
 msgstr "Lisan Seçimi"
 
 msgid "Language..."
+msgstr ""
+
+msgid "Last speed"
 msgstr ""
 
 msgid "Latitude"
@@ -1345,14 +1404,23 @@ msgstr ""
 msgid "Parental control type"
 msgstr ""
 
+msgid "Pause movie at end"
+msgstr ""
+
 msgid "PiPSetup"
 msgstr "PiP Ayarları"
 
 msgid "Pin code needed"
 msgstr ""
 
+msgid "Play"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Kayıtdaki Filmleri Oynat..."
+
+msgid "Please Reboot"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr ""
@@ -1603,6 +1671,21 @@ msgid ""
 msgstr ""
 "Geri Yükleme Tamamlandı Lütfen OK Tuşuna Basarak Ayarları Aktifleştirin Şimdi"
 
+msgid "Resume from last position"
+msgstr ""
+
+msgid "Resuming playback"
+msgstr ""
+
+msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous service"
+msgstr ""
+
+msgid "Rewind speeds"
+msgstr ""
+
 msgid "Right"
 msgstr ""
 
@@ -1846,6 +1929,9 @@ msgstr "Tek Uydu"
 msgid "Single transponder"
 msgstr "Tek Transponder"
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr ""
 
@@ -1860,6 +1946,9 @@ msgid "Slot %d"
 msgstr ""
 
 msgid "Slow"
+msgstr ""
+
+msgid "Slow Motion speeds"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -1905,6 +1994,9 @@ msgstr "Bekleme / yenidenbaşlat"
 
 msgid "Start"
 msgstr "Başla"
+
+msgid "Start from the beginning"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "Kaydı Başlat"
@@ -2032,6 +2124,9 @@ msgid "The sleep timer has been activated."
 msgstr ""
 
 msgid "The sleep timer has been disabled."
+msgstr ""
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
 msgid ""
@@ -2189,13 +2284,14 @@ msgid "USB Stick"
 msgstr "USB Çubuk Kullan"
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Başlangıç Durumuna Getirilemedi harddisk.\n"
-"Lütfen İlgili Ref  Kullanıcı Kitabına Bakın.\n"
-"Hata: "
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Bağımsız DiSEqC Emri"
@@ -2365,6 +2461,9 @@ msgstr "Evet, Şuanda Kapatmak istiyorum."
 
 msgid "Yes, restore the settings now"
 msgstr "Evet Şimdi Setingleri Geriyükle"
+
+msgid "Yes, returning to movie list"
+msgstr ""
 
 msgid "Yes, view the tutorial"
 msgstr "Evet, görmek İstiyorum"
@@ -2824,10 +2923,10 @@ msgstr ""
 msgid "play entry"
 msgstr ""
 
-msgid "play next playlist entry"
+msgid "play from next mark or playlist entry"
 msgstr ""
 
-msgid "play previous playlist entry"
+msgid "play from previous mark or playlist entry"
 msgstr ""
 
 msgid "please press OK when ready"
@@ -2967,16 +3066,10 @@ msgstr ""
 msgid "skip backward (enter time)"
 msgstr ""
 
-msgid "skip backward (self defined)"
-msgstr ""
-
 msgid "skip forward"
 msgstr ""
 
 msgid "skip forward (enter time)"
-msgstr ""
-
-msgid "skip forward (self defined)"
 msgstr ""
 
 msgid "sort by date"
@@ -3215,6 +3308,15 @@ msgstr ""
 
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF Birimi"
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Başlangıç Durumuna Getirilemedi harddisk.\n"
+#~ "Lütfen İlgili Ref  Kullanıcı Kitabına Bakın.\n"
+#~ "Hata: "
 
 #~ msgid "Usage Settings"
 #~ msgstr "Usül Ayarları"

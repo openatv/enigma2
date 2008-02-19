@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 01:32+0100\n"
+"POT-Creation-Date: 2008-02-20 00:33+0100\n"
 "PO-Revision-Date: 2006-04-01 02:52+0100\n"
 "Last-Translator: Musicbob <musicbob@satnews.tv.it>\n"
 "Language-Team: none\n"
@@ -318,6 +318,9 @@ msgstr ""
 msgid "Ask before shutdown:"
 msgstr ""
 
+msgid "Ask user"
+msgstr ""
+
 msgid "Aspect Ratio"
 msgstr "Modalità schermo"
 
@@ -367,6 +370,18 @@ msgid "Bandwidth"
 msgstr "Banda"
 
 msgid "Begin time"
+msgstr ""
+
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
 msgstr ""
 
 msgid "Behaviour of 0 key in PiP-mode"
@@ -439,6 +454,12 @@ msgstr "Canale:"
 
 msgid "Channellist menu"
 msgstr "Menu lista canali"
+
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
+msgstr ""
 
 msgid "Choose Tuner"
 msgstr ""
@@ -543,6 +564,12 @@ msgstr "Versione corrente:"
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr ""
 
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
+
 msgid "Customize"
 msgstr ""
 
@@ -631,6 +658,12 @@ msgid ""
 "retrying..."
 msgstr ""
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "Antenna"
 
@@ -643,6 +676,11 @@ msgid ""
 msgstr ""
 "Vuoi veramente rimuovere\n"
 "il plugin \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -779,6 +817,12 @@ msgid ""
 "© 2006 - Stephan Reichholf"
 msgstr ""
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr ""
 
@@ -827,11 +871,20 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr ""
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr ""
 
 msgid "Favourites"
 msgstr "Preferiti"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "Sinton.fine"
@@ -866,6 +919,9 @@ msgstr ""
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Versione Frontprocessor: %d"
+
+msgid "Fsck failed"
+msgstr ""
 
 msgid "Function not yet implemented"
 msgstr "Funzione non ancora implementata"
@@ -1026,6 +1082,9 @@ msgid "Language selection"
 msgstr "Selezione della lingua"
 
 msgid "Language..."
+msgstr ""
+
+msgid "Last speed"
 msgstr ""
 
 msgid "Latitude"
@@ -1350,14 +1409,23 @@ msgstr ""
 msgid "Parental control type"
 msgstr ""
 
+msgid "Pause movie at end"
+msgstr ""
+
 msgid "PiPSetup"
 msgstr ""
 
 msgid "Pin code needed"
 msgstr ""
 
+msgid "Play"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr " Vedi i programmi registrati..."
+
+msgid "Please Reboot"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr ""
@@ -1607,6 +1675,21 @@ msgid ""
 "settings now."
 msgstr "Il restore delle impostazioni è terminato, premi OK per attivarle ora."
 
+msgid "Resume from last position"
+msgstr ""
+
+msgid "Resuming playback"
+msgstr ""
+
+msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous service"
+msgstr ""
+
+msgid "Rewind speeds"
+msgstr ""
+
 msgid "Right"
 msgstr ""
 
@@ -1850,6 +1933,9 @@ msgstr "Satellite singolo"
 msgid "Single transponder"
 msgstr "Transponder singolo"
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr ""
 
@@ -1864,6 +1950,9 @@ msgid "Slot %d"
 msgstr ""
 
 msgid "Slow"
+msgstr ""
+
+msgid "Slow Motion speeds"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -1909,6 +1998,9 @@ msgstr "Riavvio / Spegnimento"
 
 msgid "Start"
 msgstr "Avvio"
+
+msgid "Start from the beginning"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "Avviare la registrazione?"
@@ -2037,6 +2129,9 @@ msgid "The sleep timer has been activated."
 msgstr ""
 
 msgid "The sleep timer has been disabled."
+msgstr ""
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
 msgid ""
@@ -2194,13 +2289,14 @@ msgid "USB Stick"
 msgstr ""
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Impossibile formattare l'Hard Disk.\n"
-"Per favore, fai riferimento al manuale utente.\n"
-"Errore: "
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Comando DiSEqC non impartito"
@@ -2373,6 +2469,9 @@ msgstr "Si, spegni il dreambox ora."
 
 msgid "Yes, restore the settings now"
 msgstr "Si, ricarica i settings ora"
+
+msgid "Yes, returning to movie list"
+msgstr ""
 
 msgid "Yes, view the tutorial"
 msgstr "Si, mostra la guida"
@@ -2844,10 +2943,10 @@ msgstr ""
 msgid "play entry"
 msgstr ""
 
-msgid "play next playlist entry"
+msgid "play from next mark or playlist entry"
 msgstr ""
 
-msgid "play previous playlist entry"
+msgid "play from previous mark or playlist entry"
 msgstr ""
 
 msgid "please press OK when ready"
@@ -2987,16 +3086,10 @@ msgstr ""
 msgid "skip backward (enter time)"
 msgstr ""
 
-msgid "skip backward (self defined)"
-msgstr ""
-
 msgid "skip forward"
 msgstr ""
 
 msgid "skip forward (enter time)"
-msgstr ""
-
-msgid "skip forward (self defined)"
 msgstr ""
 
 msgid "sort by date"
@@ -3240,6 +3333,15 @@ msgstr ""
 
 #~ msgid "UHF Modulator"
 #~ msgstr "Modulatore UHF"
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Impossibile formattare l'Hard Disk.\n"
+#~ "Per favore, fai riferimento al manuale utente.\n"
+#~ "Errore: "
 
 #~ msgid "Usage"
 #~ msgstr "Bedienung"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-11 23:57+0100\n"
+"POT-Creation-Date: 2008-02-20 00:33+0100\n"
 "PO-Revision-Date: 2008-02-11 11:42+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
@@ -336,6 +336,9 @@ msgstr "Artista:"
 msgid "Ask before shutdown:"
 msgstr "Preguntar antes de apagar:"
 
+msgid "Ask user"
+msgstr ""
+
 msgid "Aspect Ratio"
 msgstr "Relación de aspecto"
 
@@ -386,6 +389,18 @@ msgstr "Ancho de banda"
 
 msgid "Begin time"
 msgstr "Hora inicio"
+
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
+msgstr ""
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "Comportamiento del 0 en el modo PiP"
@@ -458,6 +473,12 @@ msgstr "Canal:"
 
 msgid "Channellist menu"
 msgstr "Menú lista de canales"
+
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
+msgstr ""
 
 msgid "Choose Tuner"
 msgstr "Elije Sintonizador"
@@ -565,6 +586,12 @@ msgstr "Versión actual:"
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Tiempo a saltar para las teclas '1'/'3'"
 
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
+
 msgid "Customize"
 msgstr "Parametrizar"
 
@@ -656,6 +683,12 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "reintentando..."
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "Antena"
 
@@ -668,6 +701,11 @@ msgid ""
 msgstr ""
 "Seguro que quiere BORRAR\n"
 "el plugin \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -812,6 +850,12 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Entre al menú principal..."
 
@@ -860,11 +904,20 @@ msgstr "Rápido"
 msgid "Fast DiSEqC"
 msgstr "DiSEqC Rapido"
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Época rápida"
 
 msgid "Favourites"
 msgstr "Favoritos"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "Ajuste fino"
@@ -899,6 +952,9 @@ msgstr "Fritz!Box FON dirección IP"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Versión Frontprocessor: %d"
+
+msgid "Fsck failed"
+msgstr ""
 
 msgid "Function not yet implemented"
 msgstr "Función no implementada todavía"
@@ -1064,6 +1120,9 @@ msgstr "Selección de idioma"
 
 msgid "Language..."
 msgstr "Idioma..."
+
+msgid "Last speed"
+msgstr ""
 
 msgid "Latitude"
 msgstr "Latitud"
@@ -1400,14 +1459,23 @@ msgstr "Configuración del control de adultos"
 msgid "Parental control type"
 msgstr "Tipo de control de adultos"
 
+msgid "Pause movie at end"
+msgstr ""
+
 msgid "PiPSetup"
 msgstr "PiPConfig"
 
 msgid "Pin code needed"
 msgstr "Necesario código pin"
 
+msgid "Play"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Reproducir películas grabadas..."
+
+msgid "Please Reboot"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "Por favor, cambie la finalización de la grabación"
@@ -1668,6 +1736,21 @@ msgstr ""
 "La restauración de la configuración está hecha. Pulse OK para activar la "
 "configuración ahora."
 
+msgid "Resume from last position"
+msgstr ""
+
+msgid "Resuming playback"
+msgstr ""
+
+msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous service"
+msgstr ""
+
+msgid "Rewind speeds"
+msgstr ""
+
 msgid "Right"
 msgstr "Dcha"
 
@@ -1917,6 +2000,9 @@ msgstr "Satélite único"
 msgid "Single transponder"
 msgstr "Transponder único"
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr "Apagado automático"
 
@@ -1932,6 +2018,9 @@ msgstr "Slot %d"
 
 msgid "Slow"
 msgstr "Lento"
+
+msgid "Slow Motion speeds"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Algunos plugins no están disponibles:\n"
@@ -1976,6 +2065,9 @@ msgstr "Reposo / Reiniciar"
 
 msgid "Start"
 msgstr "Inicio"
+
+msgid "Start from the beginning"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "¿Iniciar grabación?"
@@ -2110,6 +2202,9 @@ msgstr "El apagado automático ha sido activado."
 
 msgid "The sleep timer has been disabled."
 msgstr "El apagado automático ha sido cancelado."
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2269,13 +2364,14 @@ msgid "USB Stick"
 msgstr "Memoria USB"
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Imposible inicializar el disco duro.\n"
-"Por favor mire el manual de usuario.\n"
+
+msgid ""
+"Unable to initialize harddisk.\n"
 "Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Comando DiSEqC no enviado"
@@ -2449,6 +2545,9 @@ msgstr "Si, realice el apagado ahora."
 
 msgid "Yes, restore the settings now"
 msgstr "Si, restaure la configuración ahora"
+
+msgid "Yes, returning to movie list"
+msgstr ""
 
 msgid "Yes, view the tutorial"
 msgstr "Si, ver el tutorial"
@@ -2929,11 +3028,11 @@ msgstr "pausa"
 msgid "play entry"
 msgstr "reproducir elemento"
 
-msgid "play next playlist entry"
-msgstr "reproducir siguiente elemento de la lista de reproducción"
+msgid "play from next mark or playlist entry"
+msgstr ""
 
-msgid "play previous playlist entry"
-msgstr "reproducir elemento anterior de la lista de reproducción"
+msgid "play from previous mark or playlist entry"
+msgstr ""
 
 msgid "please press OK when ready"
 msgstr "pulse OK cuando esté preparado"
@@ -3072,17 +3171,11 @@ msgstr "saltar adelante"
 msgid "skip backward (enter time)"
 msgstr "pasar atrás (introducir hora)"
 
-msgid "skip backward (self defined)"
-msgstr "pasar atrás (definido)"
-
 msgid "skip forward"
 msgstr "saltar adelante"
 
 msgid "skip forward (enter time)"
 msgstr "pasar adelante (introducir tiempo)"
-
-msgid "skip forward (self defined)"
-msgstr "pasar adelante (definido)"
 
 msgid "sort by date"
 msgstr "ordenar por fecha"
@@ -3314,6 +3407,15 @@ msgstr "zapeado"
 #~ msgid "Transpondertype"
 #~ msgstr "Tipo de Transpondedor"
 
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Imposible inicializar el disco duro.\n"
+#~ "Por favor mire el manual de usuario.\n"
+#~ "Error: "
+
 #~ msgid "Video-Setup"
 #~ msgstr "Config-Video"
 
@@ -3325,6 +3427,12 @@ msgstr "zapeado"
 
 #~ msgid "list"
 #~ msgstr "lista"
+
+#~ msgid "play next playlist entry"
+#~ msgstr "reproducir siguiente elemento de la lista de reproducción"
+
+#~ msgid "play previous playlist entry"
+#~ msgstr "reproducir elemento anterior de la lista de reproducción"
 
 #~ msgid ""
 #~ "scan done!\n"
@@ -3356,3 +3464,9 @@ msgstr "zapeado"
 
 #~ msgid "select Slot"
 #~ msgstr "seleccionar Slot"
+
+#~ msgid "skip backward (self defined)"
+#~ msgstr "pasar atrás (definido)"
+
+#~ msgid "skip forward (self defined)"
+#~ msgstr "pasar adelante (definido)"
