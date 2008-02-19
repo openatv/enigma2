@@ -1,4 +1,4 @@
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigInteger
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigNothing
 from enigma import Misc_Options, setTunerTypePriorityOrder;
 from SystemInfo import SystemInfo
 import os
@@ -24,11 +24,17 @@ def InitUsageConfig():
 		("248", "4 " + _("hours")) ])
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
-	config.usage.self_defined_seek = ConfigInteger(default=10, limits=(1,9999))
 
 	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
+
+	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
+		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
+	config.usage.on_movie_stop = ConfigSelection(default = "ask", choices = [
+		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
+	config.usage.on_movie_eof = ConfigSelection(default = "ask", choices = [
+		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")) ])
 
 	config.usage.setup_level = ConfigSelection(default = "intermediate", choices = [
 		("simple", _("Simple")),
@@ -67,3 +73,50 @@ def InitUsageConfig():
 	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 
 	config.usage.keymap = ConfigText(default = "/usr/share/enigma2/keymap.xml")
+
+	config.seek = ConfigSubsection()
+	config.seek.selfdefined_13 = ConfigNumber(default=15)
+	config.seek.selfdefined_46 = ConfigNumber(default=60)
+	config.seek.selfdefined_79 = ConfigNumber(default=300)
+
+	config.seek.speeds_forward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
+	config.seek.speeds_backward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
+	config.seek.speeds_slowmotion = ConfigSet(default=[2, 4, 8], choices=[2, 4, 6, 8, 12, 16, 25])
+
+	config.seek.enter_forward = ConfigSelection(default = "2", choices = ["2"])
+	config.seek.enter_backward = ConfigSelection(default = "2", choices = ["2"])
+	config.seek.stepwise_minspeed = ConfigSelection(default = "16", choices = ["Never", "2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
+	config.seek.stepwise_repeat = ConfigSelection(default = "3", choices = ["2", "3", "4", "5", "6"])
+
+	config.seek.on_pause = ConfigSelection(default = "play", choices = [
+		("play", _("Play")),
+		("step", _("Singlestep (GOP)")),
+		("last", _("Last speed")) ])
+
+	def updateEnterForward(configElement):
+		if not configElement.value:
+			configElement.value = [2]
+		updateChoices(config.seek.enter_forward, configElement.value)
+
+	config.seek.speeds_forward.addNotifier(updateEnterForward)
+
+	def updateEnterBackward(configElement):
+		if not configElement.value:
+			configElement.value = [2]
+		updateChoices(config.seek.enter_backward, configElement.value)
+
+	config.seek.speeds_backward.addNotifier(updateEnterBackward)
+
+def updateChoices(sel, choices):
+	if choices:
+                defval = None
+                val = int(sel.value)
+		if not val in choices:
+                        tmp = choices+[]
+                        tmp.reverse()
+                        for x in tmp:
+                                if x < val:
+                                        defval = str(x)
+                                        break
+		sel.setChoices(map(str, choices), defval)
+

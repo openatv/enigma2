@@ -604,29 +604,8 @@ class InfoBarServiceName:
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
 
-	# ispause, isff, issm
 	SEEK_STATE_PLAY = (0, 0, 0, ">")
 	SEEK_STATE_PAUSE = (1, 0, 0, "||")
-	SEEK_STATE_FF_2X = (0, 2, 0, ">> 2x")
-	SEEK_STATE_FF_4X = (0, 4, 0, ">> 4x")
-	SEEK_STATE_FF_8X = (0, 8, 0, ">> 8x")
-	SEEK_STATE_FF_16X = (0, 16, 0, ">> 16x")
-	SEEK_STATE_FF_32X = (0, 32, 0, ">> 32x")
-	SEEK_STATE_FF_48X = (0, 48, 0, ">> 48x")
-	SEEK_STATE_FF_64X = (0, 64, 0, ">> 64x")
-	SEEK_STATE_FF_128X = (0, 128, 0, ">> 128x")
-
-	SEEK_STATE_BACK_8X = (0, -8, 0, "<< 8x")
-	SEEK_STATE_BACK_16X = (0, -16, 0, "<< 16x")
-	SEEK_STATE_BACK_32X = (0, -32, 0, "<< 32x")
-	SEEK_STATE_BACK_48X = (0, -48, 0, "<< 48x")
-	SEEK_STATE_BACK_64X = (0, -64, 0, "<< 64x")
-	SEEK_STATE_BACK_128X = (0, -128, 0, "<< 128x")
-
-	SEEK_STATE_SM_HALF = (0, 0, 2, "/2")
-	SEEK_STATE_SM_QUARTER = (0, 0, 4, "/4")
-	SEEK_STATE_SM_EIGHTH = (0, 0, 8, "/8")
-
 	SEEK_STATE_EOF = (1, 0, 0, "END")
 
 	def __init__(self, actionmap = "InfobarSeekActions"):
@@ -638,6 +617,13 @@ class InfoBarSeek:
 				iPlayableService.evEOF: self.__evEOF,
 				iPlayableService.evSOF: self.__evSOF,
 			})
+		self.eofState = 0
+		self.eofTimer = eTimer()
+		self.eofTimer.timeout.get().append(self.doEof)
+		self.eofInhibitTimer = eTimer()
+		self.eofInhibitTimer.timeout.get().append(self.inhibitEof)
+
+		self.minSpeedBackward = 16
 
 		class InfoBarSeekActionMap(HelpableActionMap):
 			def __init__(self, screen, *args, **kwargs):
@@ -648,10 +634,15 @@ class InfoBarSeek:
 				print "action:", action
 				if action[:5] == "seek:":
 					time = int(action[5:])
-					self.screen.seekRelative(time * 90000)
-					if config.usage.show_infobar_on_skip.value:
-						self.screen.showAfterSeek()
+					self.screen.doSeekRelative(time * 90000)
 					return 1
+				elif action[:8] == "seekdef:":
+					key = int(action[8:])
+					time = [-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
+						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
+						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value][key-1]
+					self.screen.doSeekRelative(time * 90000)
+					return 1					
 				else:
 					return HelpableActionMap.action(self, contexts, action)
 
@@ -664,24 +655,67 @@ class InfoBarSeek:
 				"seekFwd": (self.seekFwd, _("skip forward")),
 				"seekFwdManual": (self.seekFwdManual, _("skip forward (enter time)")),
 				"seekBack": (self.seekBack, _("skip backward")),
-				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)")),
-
-				"seekFwdDef": (self.seekFwdDef, _("skip forward (self defined)")),
-				"seekBackDef": (self.seekBackDef, _("skip backward (self defined)"))
+				"seekBackManual": (self.seekBackManual, _("skip backward (enter time)"))
 			}, prio=-1)
 			# give them a little more priority to win over color buttons
 
 		self["SeekActions"].setEnabled(False)
 
 		self.seekstate = self.SEEK_STATE_PLAY
-
-		self.seek_flag = True
+		self.lastseekstate = self.SEEK_STATE_PLAY
 
 		self.onPlayStateChanged = [ ]
 
 		self.lockedBecauseOfSkipping = False
 
 		self.__seekableStatusChanged()
+
+	def makeStateForward(self, n):
+		minspeed = config.seek.stepwise_minspeed.value
+		repeat = int(config.seek.stepwise_repeat.value)
+		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+			return (0, n * repeat, repeat, ">> %dx" % n)
+		else:
+			return (0, n, 0, ">> %dx" % n)
+
+	def makeStateBackward(self, n):
+		minspeed = config.seek.stepwise_minspeed.value
+		repeat = int(config.seek.stepwise_repeat.value)
+		if n < self.minSpeedBackward:
+			r = (self.minSpeedBackward - 1)/ n + 1
+			if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+				r = max(r, repeat)
+			return (0, -n * r, r, "<< %dx" % n)
+		elif minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+			return (0, -n * repeat, repeat, "<< %dx" % n)
+		else:
+			return (0, -n, 0, "<< %dx" % n)
+
+	def makeStateSlowMotion(self, n):
+		return (0, 0, n, "/%d" % n)
+
+	def isStateForward(self, state):
+		return state[1] > 1
+
+	def isStateBackward(self, state):
+		return state[1] < 0
+
+	def isStateSlowMotion(self, state):
+		return state[1] == 0 and state[2] > 1
+
+	def getHigher(self, n, lst):
+		for x in lst:
+			if x > n:
+				return x
+		return False
+
+	def getLower(self, n, lst):
+		lst = lst+[]
+		lst.reverse()
+		for x in lst:
+			if x < n:
+				return x
+		return False
 
 	def showAfterSeek(self):
 		if isinstance(self, InfoBarShowHide):
@@ -723,6 +757,9 @@ class InfoBarSeek:
 	def __serviceStarted(self):
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.__seekableStatusChanged()
+		if self.eofState != 0:
+			self.eofTimer.stop()
+		self.eofState = 0
 
 	def setSeekState(self, state):
 		service = self.session.nav.getCurrentService()
@@ -762,14 +799,16 @@ class InfoBarSeek:
 
 	def pauseService(self):
 		if self.seekstate == self.SEEK_STATE_PAUSE:
-			print "pause, but in fact unpause"
-			self.unPauseService()
+			if config.seek.on_pause.value == "play":
+				self.unPauseService()
+			elif config.seek.on_pause.value == "step":
+				self.doSeekRelative(0)
+			elif config.seek.on_pause.value == "last":
+				self.setSeekState(self.lastseekstate)
+				self.lastseekstate = self.SEEK_STATE_PLAY
 		else:
-			if self.seekstate == self.SEEK_STATE_PLAY:
-				print "yes, playing."
-			else:
-				print "no", self.seekstate
-			print "pause"
+			if self.seekstate != self.SEEK_STATE_EOF:
+				self.lastseekstate = self.seekstate
 			self.setSeekState(self.SEEK_STATE_PAUSE);
 
 	def unPauseService(self):
@@ -778,105 +817,112 @@ class InfoBarSeek:
 			return 0
 		self.setSeekState(self.SEEK_STATE_PLAY)
 
-	def doSeek(self, seektime):
-		print "doseek", seektime
-		service = self.session.nav.getCurrentService()
-		if service is None:
-			return
-
+	def doSeek(self, pts):
 		seekable = self.getSeek()
 		if seekable is None:
 			return
+		prevstate = self.seekstate
+		if self.eofState == 1:
+			self.eofState = 2
+			self.inhibitEof()
+		if self.seekstate == self.SEEK_STATE_EOF:
+			if prevstate == self.SEEK_STATE_PAUSE:
+				self.setSeekState(self.SEEK_STATE_PAUSE)
+			else:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+		self.eofInhibitTimer.start(200, True)
+		seekable.seekTo(pts)
 
-		seekable.seekTo(90 * seektime)
+	def doSeekRelative(self, pts):
+		seekable = self.getSeek()
+		if seekable is None:
+			return
+		prevstate = self.seekstate
+		if self.eofState == 1:
+			self.eofState = 2
+			self.inhibitEof()
+		if self.seekstate == self.SEEK_STATE_EOF:
+			if prevstate == self.SEEK_STATE_PAUSE:
+				self.setSeekState(self.SEEK_STATE_PAUSE)
+			else:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+		self.eofInhibitTimer.start(200, True)
+		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
+		if abs(pts) > 100 and config.usage.show_infobar_on_skip.value:
+			self.showAfterSeek()
 
 	def seekFwd(self):
-		lookup = {
-				self.SEEK_STATE_PLAY: self.SEEK_STATE_FF_2X,
-				self.SEEK_STATE_PAUSE: self.SEEK_STATE_SM_EIGHTH,
-				self.SEEK_STATE_FF_2X: self.SEEK_STATE_FF_4X,
-				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_8X,
-				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_16X,
-				self.SEEK_STATE_FF_16X: self.SEEK_STATE_FF_32X,
-				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_48X,
-				self.SEEK_STATE_FF_48X: self.SEEK_STATE_FF_64X,
-				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_128X,
-				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_128X,
-				self.SEEK_STATE_BACK_8X: self.SEEK_STATE_PLAY,
-				self.SEEK_STATE_BACK_16X: self.SEEK_STATE_BACK_8X,
-				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_16X,
-				self.SEEK_STATE_BACK_48X: self.SEEK_STATE_BACK_32X,
-				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_48X,
-				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_64X,
-				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_HALF,
-				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_HALF,
-				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_SM_QUARTER,
-				self.SEEK_STATE_EOF: self.SEEK_STATE_EOF,
-			}
-		self.setSeekState(lookup[self.seekstate])
+		if self.seekstate == self.SEEK_STATE_PLAY:
+			self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
+		elif self.seekstate == self.SEEK_STATE_PAUSE:
+			if config.seek.speeds_slowmotion:
+				self.setSeekState(self.makeStateSlowMotion(config.seek.speeds_slowmotion.value[-1]))
+			else:
+				self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
+		elif self.seekstate == self.SEEK_STATE_EOF:
+			pass
+		elif self.isStateForward(self.seekstate):
+			speed = self.seekstate[1]
+			if self.seekstate[2]:
+				speed /= self.seekstate[2]
+			speed = self.getHigher(speed, config.seek.speeds_forward.value) or config.seek.speeds_forward.value[-1]
+			self.setSeekState(self.makeStateForward(speed))
+		elif self.isStateBackward(self.seekstate):
+			speed = -self.seekstate[1]
+			if self.seekstate[2]:
+				speed /= self.seekstate[2]
+			speed = self.getLower(speed, config.seek.speeds_backward.value)
+			if speed:
+				self.setSeekState(self.makeStateBackward(speed))
+			else:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+		elif self.isStateSlowMotion(self.seekstate):
+			speed = self.getLower(self.seekstate[2], config.seek.speeds_slowmotion.value) or config.seek.speeds_slowmotion.value[0]
+			self.setSeekState(self.makeStateSlowMotion(speed))
 
 	def seekBack(self):
-		lookup = {
-				self.SEEK_STATE_PLAY: self.SEEK_STATE_BACK_8X,
-				self.SEEK_STATE_PAUSE: self.SEEK_STATE_PAUSE,
-				self.SEEK_STATE_FF_2X: self.SEEK_STATE_PLAY,
-				self.SEEK_STATE_FF_4X: self.SEEK_STATE_FF_2X,
-				self.SEEK_STATE_FF_8X: self.SEEK_STATE_FF_4X,
-				self.SEEK_STATE_FF_16X: self.SEEK_STATE_FF_8X,
-				self.SEEK_STATE_FF_32X: self.SEEK_STATE_FF_16X,
-				self.SEEK_STATE_FF_48X: self.SEEK_STATE_FF_32X,
-				self.SEEK_STATE_FF_64X: self.SEEK_STATE_FF_48X,
-				self.SEEK_STATE_FF_128X: self.SEEK_STATE_FF_64X,
-				self.SEEK_STATE_BACK_8X: self.SEEK_STATE_BACK_16X,
-				self.SEEK_STATE_BACK_16X: self.SEEK_STATE_BACK_32X,
-				self.SEEK_STATE_BACK_32X: self.SEEK_STATE_BACK_48X,
-				self.SEEK_STATE_BACK_48X: self.SEEK_STATE_BACK_64X,
-				self.SEEK_STATE_BACK_64X: self.SEEK_STATE_BACK_128X,
-				self.SEEK_STATE_BACK_128X: self.SEEK_STATE_BACK_128X,
-				self.SEEK_STATE_SM_HALF: self.SEEK_STATE_SM_QUARTER,
-				self.SEEK_STATE_SM_QUARTER: self.SEEK_STATE_SM_EIGHTH,
-				self.SEEK_STATE_SM_EIGHTH: self.SEEK_STATE_PAUSE,
-				self.SEEK_STATE_EOF: self.SEEK_STATE_BACK_8X,
-			}
-		self.setSeekState(lookup[self.seekstate])
-
-		if self.seekstate == self.SEEK_STATE_PAUSE:
-			seekable = self.getSeek()
-			if seekable is not None:
-				seekable.seekRelative(-1, 3)
-
-	def seekFwdDef(self):
-		self.seek_flag = False
-		seconds = config.usage.self_defined_seek.value
-		print "Seek", seconds, "seconds self defined forward"
-		seekable = self.getSeek()
-		if seekable is not None:
-			seekable.seekRelative(1, seconds * 90000)
-
-	def seekBackDef(self):
-		self.seek_flag = False
-		seconds = config.usage.self_defined_seek.value
-		print "Seek", seconds, "seconds self defined backward"
-		seekable = self.getSeek()
-		if seekable is not None:
-			seekable.seekRelative(1, 0 - seconds * 90000)
+		if self.seekstate == self.SEEK_STATE_PLAY:
+			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
+		elif self.seekstate == self.SEEK_STATE_EOF:
+			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
+			self.doSeekRelative(-6)
+		elif self.seekstate == self.SEEK_STATE_PAUSE:
+			self.doSeekRelative(-3)
+		elif self.isStateForward(self.seekstate):
+			speed = self.seekstate[1]
+			if self.seekstate[2]:
+				speed /= self.seekstate[2]
+			speed = self.getLower(speed, config.seek.speeds_forward.value)
+			if speed:
+				self.setSeekState(self.makeStateForward(speed))
+			else:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+		elif self.isStateBackward(self.seekstate):
+			speed = -self.seekstate[1]
+			if self.seekstate[2]:
+				speed /= self.seekstate[2]
+			speed = self.getHigher(speed, config.seek.speeds_backward.value) or config.seek.speeds_backward.value[-1]
+			self.setSeekState(self.makeStateBackward(speed))
+		elif self.isStateSlowMotion(self.seekstate):
+			speed = self.getHigher(self.seekstate[2], config.seek.speeds_slowmotion.value)
+			if speed:
+				self.setSeekState(self.makeStateSlowMotion(speed))
+			else:
+				self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def seekFwdManual(self):
 		self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
 	def fwdSeekTo(self, minutes):
 		print "Seek", minutes, "minutes forward"
-		if minutes != 0:
-			seekable = self.getSeek()
-			if seekable is not None:
-				seekable.seekRelative(1, minutes * 60 * 90000)
+		self.doSeekRelative(minutes * 60 * 90000)
 
 	def seekBackManual(self):
 		self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 
 	def rwdSeekTo(self, minutes):
 		print "rwdSeekTo"
-		self.fwdSeekTo(0 - minutes)
+		self.doSeekRelative(-minutes * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
 		wantlock = self.seekstate != self.SEEK_STATE_PLAY
@@ -890,50 +936,75 @@ class InfoBarSeek:
 				self.lockShow()
 				self.lockedBecauseOfSkipping = True
 
+	def calcRemainingTime(self):
+		seekable = self.getSeek()
+		if seekable is not None:
+			len = seekable.getLength()
+			try:
+				tmp = self.cueGetEndCutPosition()
+				if tmp:
+					len = [False, tmp]
+			except:
+				pass
+			pos = seekable.getPlayPosition()
+			speednom = self.seekstate[1] or 1
+			speedden = self.seekstate[2] or 1
+			if not len[0] and not pos[0]:
+				if len[1] <= pos[1]:
+					return 0
+				time = (len[1] - pos[1])*speedden/(90*speednom)
+				return time
+		return False
+		
 	def __evEOF(self):
+		if self.eofState == 0 and self.seekstate != self.SEEK_STATE_EOF:
+			self.eofState = 1
+			time = self.calcRemainingTime()
+			if not time:
+				time = 3000   # Failed to calc, use default
+			elif time == 0:
+				time = 300    # Passed end, shortest wait
+			elif time > 15000:
+				self.eofState = -2  # Too long, block eof
+				time = 15000
+			else:
+				time += 1000  # Add margin
+			self.eofTimer.start(time, True)
+
+	def inhibitEof(self):
+		if self.eofState >= 1:
+			self.eofState = -self.eofState
+			self.eofTimer.stop()
+			self.doEof()
+
+	def doEof(self):
 		if self.seekstate == self.SEEK_STATE_EOF:
 			return
-		if self.seekstate[1] < 0: # SEEK_STATE_BACK_*X
-			print "end of stream while seeking back, ignoring."
+		if self.eofState == -2 or self.isStateBackward(self.seekstate):
+			self.eofState = 0
 			return
 
 		# if we are seeking, we try to end up ~1s before the end, and pause there.
-		if not self.seekstate in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
+		eofstate = self.eofState
+		seekstate = self.seekstate
+		self.eofState = 0
+		if not self.seekstate == self.SEEK_STATE_PAUSE:
 			self.setSeekState(self.SEEK_STATE_EOF)
-			self.seekRelativeToEnd(-90000)
+		if eofstate == -1 or not seekstate in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
+			seekable = self.getSeek()
+			if seekable is not None:
+				seekable.seekTo(-1)
+		if eofstate == 1 and seekstate == self.SEEK_STATE_PLAY:
+			self.doEofInternal(True)
 		else:
-			self.setSeekState(self.SEEK_STATE_EOF)
+			self.doEofInternal(False)
+
+	def doEofInternal(self, playing):
+		pass		# Defined in subclasses
 
 	def __evSOF(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.doSeek(0)
-
-	def seekRelative(self, diff):
-		if self.seek_flag == True:
-			seekable = self.getSeek()
-			if seekable is not None:
-				print "seekRelative: res:", seekable.seekRelative(1, diff)
-			else:
-				print "seek failed!"
-		else:
-			self.seek_flag = True
-
-	def seekRelativeToEnd(self, diff):
-		assert diff <= 0, "diff is expected to be negative!"
-
-		# might sound like an evil hack, but:
-		# if we seekRelativeToEnd(0), we expect to be at the end, which is what we want,
-		# and we don't get that by passing 0 here (it would seek to begin).
-		if diff == 0:
-			diff = -1
-
-		# relative-to-end seeking is implemented as absolutes seeks with negative time
-		self.seekAbsolute(diff)
-
-	def seekAbsolute(self, abs):
-		seekable = self.getSeek()
-		if seekable is not None:
-			seekable.seekTo(abs)
 
 from Screens.PVRState import PVRState, TimeshiftState
 
@@ -1095,13 +1166,15 @@ class InfoBarTimeshift:
 			print "play, ..."
 			ts.activateTimeshift() # activate timeshift will automatically pause
 			self.setSeekState(self.SEEK_STATE_PAUSE)
-			self.seekRelativeToEnd(-90000) # seek approx. 1 sec before end
 
 		if back:
+			self.doSeek(-5) # seek some gops before end
 			self.ts_rewind_timer.start(200, 1)
+		else:
+			self.doSeek(-1) # seek 1 gop before end
 
 	def rewindService(self):
-		self.setSeekState(self.SEEK_STATE_BACK_16X)
+		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 
 	# same as activateTimeshiftEnd, but pauses afterwards.
 	def activateTimeshiftEndAndPause(self):
@@ -1807,13 +1880,14 @@ class InfoBarCueSheetSupport:
 
 			if last is not None:
 				self.resume_point = last
-				Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?"), timeout=10)
+				if config.usage.on_movie_start.value == "ask":
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?"), timeout=10)
+				elif config.usage.on_movie_start.value == "resume":
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
 	def playLastCB(self, answer):
 		if answer == True:
-			seekable = self.__getSeekable()
-			if seekable is not None:
-				seekable.seekTo(self.resume_point)
+			self.doSeek(self.resume_point)
 		self.hideAfterResume()
 
 	def hideAfterResume(self):
@@ -1835,37 +1909,64 @@ class InfoBarCueSheetSupport:
 			return None
 		return long(r[1])
 
-	def jumpPreviousNextMark(self, cmp, alternative=None):
+	def cueGetEndCutPosition(self):
+		ret = False
+		isin = True
+		for cp in self.cut_list:
+			if cp[1] == self.CUT_TYPE_OUT:
+				if isin:
+					isin = False
+					ret = cp[0]
+			elif cp[1] == self.CUT_TYPE_IN:
+				isin = True
+		return ret
+		
+	def jumpPreviousNextMark(self, cmp, start=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
- 			return
-		mark = self.getNearestCutPoint(current_pos, cmp=cmp)
+ 			return False
+		mark = self.getNearestCutPoint(current_pos, cmp=cmp, start=start)
 		if mark is not None:
 			pts = mark[0]
-		elif alternative is not None:
-			pts = alternative
 		else:
-			return
+			return False
 
-		seekable = self.__getSeekable()
-		if seekable is not None:
-			seekable.seekTo(pts)
+		self.doSeek(pts)
+		return True
 
 	def jumpPreviousMark(self):
 		# we add 2 seconds, so if the play position is <2s after
 		# the mark, the mark before will be used
-		self.jumpPreviousNextMark(lambda x: -x-5*90000, alternative=0)
+		self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True)
 
 	def jumpNextMark(self):
-		self.jumpPreviousNextMark(lambda x: x)
+		if not self.jumpPreviousNextMark(lambda x: x):
+			self.doSeek(-1)
 
-	def getNearestCutPoint(self, pts, cmp=abs):
+	def getNearestCutPoint(self, pts, cmp=abs, start=False):
 		# can be optimized
+		beforecut = False
 		nearest = None
+		if start:
+			beforecut = True
+			bestdiff = cmp(0 - pts)
+			if bestdiff >= 0:
+				nearest = [0, False]
 		for cp in self.cut_list:
-			diff = cmp(cp[0] - pts)
-			if cp[1] == self.CUT_TYPE_MARK and diff >= 0 and (nearest is None or cmp(nearest[0] - pts) > diff):
-				nearest = cp
+			if beforecut and cp[1] in [self.CUT_TYPE_IN, self.CUT_TYPE_OUT]:
+				beforecut = False
+				if cp[1] == self.CUT_TYPE_IN:  # Start is here, disregard previous marks
+					diff = cmp(cp[0] - pts)
+					if diff >= 0:
+						nearest = cp
+						bestdiff = diff
+					else:
+						nearest = None
+			if cp[1] in [self.CUT_TYPE_MARK, self.CUT_TYPE_LAST]:
+				diff = cmp(cp[0] - pts)
+				if diff >= 0 and (nearest is None or bestdiff > diff):
+					nearest = cp
+					bestdiff = diff
 		return nearest
 
 	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000, onlyreturn=False):

@@ -149,24 +149,51 @@ class MoviePlayer(InfoBarShowHide, \
 
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.playService(service)
+		self.returning = False
 
 	def leavePlayer(self):
 		self.is_closing = True
 
-		list = []
-		list.append((_("Yes"), "quit"))
-		list.append((_("No"), "continue"))
-		if config.usage.setup_level.index >= 2: # expert+
-			list.append((_("No, but restart from begin"), "restart"))
-		self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+		if config.usage.on_movie_stop.value == "ask":
+			list = []
+			list.append((_("Yes"), "quit"))
+			if config.usage.setup_level.index >= 2: # expert+
+				list.append((_("Yes, returning to movie list"), "movielist"))
+			list.append((_("No"), "continue"))
+			if config.usage.setup_level.index >= 2: # expert+
+				list.append((_("No, but restart from begin"), "restart"))
+			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+		else:
+			self.leavePlayerConfirmed([True, config.usage.on_movie_stop.value])
 
 	def leavePlayerConfirmed(self, answer):
 		answer = answer and answer[1]
 		if answer == "quit":
 			self.session.nav.playService(self.lastservice)
 			self.close()
+		elif answer == "movielist":
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			self.returning = True
+			self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
+			self.session.nav.playService(self.lastservice)
 		elif answer == "restart":
 			self.doSeek(0)
+
+	def doEofInternal(self, playing):
+		if not playing:
+			return
+		self.is_closing = True
+		if config.usage.on_movie_eof.value == "ask":
+			list = []
+			list.append((_("Yes"), "quit"))
+			if config.usage.setup_level.index >= 2: # expert+
+				list.append((_("Yes, returning to movie list"), "movielist"))
+			list.append((_("No"), "continue"))
+			if config.usage.setup_level.index >= 2: # expert+
+				list.append((_("No, but restart from begin"), "restart"))
+			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+		else:
+			self.leavePlayerConfirmed([True, config.usage.on_movie_eof.value])
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -174,4 +201,8 @@ class MoviePlayer(InfoBarShowHide, \
 
 	def movieSelected(self, service):
 		if service is not None:
+			self.is_closing = False
 			self.session.nav.playService(service)
+			self.returning = False
+		elif self.returning:
+			self.close()

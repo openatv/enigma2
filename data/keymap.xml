@@ -292,14 +292,12 @@
 
 		<key id="KEY_OK" mapto="unPauseService" flags="m" />
 		
-		<key id="KEY_1" mapto="seek:-15" flags="b" />
-		<key id="KEY_3" mapto="seek:15" flags="b" />
-		<key id="KEY_1" mapto="seekBackDef" flags="l" />
-		<key id="KEY_3" mapto="seekFwdDef" flags="l" />
-		<key id="KEY_4" mapto="seek:-60" flags="m" />
-		<key id="KEY_6" mapto="seek:60" flags="m" />
-		<key id="KEY_7" mapto="seek:-300" flags="m" />
-		<key id="KEY_9" mapto="seek:300" flags="m" />
+		<key id="KEY_1" mapto="seekdef:1" flags="m" />
+		<key id="KEY_3" mapto="seekdef:3" flags="m" />
+		<key id="KEY_4" mapto="seekdef:4" flags="m" />
+		<key id="KEY_6" mapto="seekdef:6" flags="m" />
+		<key id="KEY_7" mapto="seekdef:7" flags="m" />
+		<key id="KEY_9" mapto="seekdef:9" flags="m" />
 	</map>
 
 	<map context="MediaPlayerSeekActions">
@@ -322,14 +320,12 @@
 			<key id="KEY_FASTFORWARD" mapto="seekFwdManual" flags="l" />
 		</device>
 		
-		<key id="KEY_1" mapto="seek:-15" flags="b" />
-		<key id="KEY_3" mapto="seek:15" flags="b" />
-		<key id="KEY_1" mapto="seekBackDef" flags="l" />
-		<key id="KEY_3" mapto="seekFwdDef" flags="l" />
-		<key id="KEY_4" mapto="seek:-60" flags="m" />
-		<key id="KEY_6" mapto="seek:60" flags="m" />
-		<key id="KEY_7" mapto="seek:-300" flags="m" />
-		<key id="KEY_9" mapto="seek:300" flags="m" />
+		<key id="KEY_1" mapto="seekdef:1" flags="m" />
+		<key id="KEY_3" mapto="seekdef:3" flags="m" />
+		<key id="KEY_4" mapto="seekdef:4" flags="m" />
+		<key id="KEY_6" mapto="seekdef:6" flags="m" />
+		<key id="KEY_7" mapto="seekdef:7" flags="m" />
+		<key id="KEY_9" mapto="seekdef:9" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftActions">
@@ -350,7 +346,7 @@
 
 	<map context="InfobarTimeshiftActivateActions">
 		<device name="dreambox remote control (native)">
-			<key id="KEY_RED" mapto="timeshiftActivateEnd" flags="m" />
+			<key id="KEY_RED" mapto="timeshiftActivateEnd" flags="b" />
 			<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
@@ -410,22 +406,14 @@
 	
 	<map context="MediaPlayerCueSheetActions">
 		<device name="dreambox remote control (native)">
-			<key id="KEY_PREVIOUS" mapto="jumpPreviousMark" flags="b" />
-			<key id="KEY_NEXT" mapto="jumpNextMark" flags="b" />
 			<key id="KEY_0" mapto="toggleMark" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_PREVIOUS" mapto="jumpPreviousMark" flags="b" />
 			<key id="KEY_0" mapto="toggleMark" flags="m" />
-			<key id="KEY_NEXT" mapto="jumpNextMark" flags="b" />
-			<key id="KEY_RED" mapto="jumpPreviousMark" flags="m" />
 			<key id="KEY_YELLOW" mapto="toggleMark" flags="m" />
-			<key id="KEY_BLUE" mapto="jumpNextMark" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
-			<key id="KEY_PREVIOUSSONG" mapto="jumpPreviousMark" flags="b" />
 			<key id="KEY_TAB" mapto="toggleMark" flags="m" />
-			<key id="KEY_NEXTSONG" mapto="jumpNextMark" flags="b" />
 		</device>
 	</map>
 	
@@ -618,16 +606,18 @@
 			<key id="KEY_TV" mapto="stop" flags="b" />
 			<key id="KEY_TV" mapto="shift_stop" flags="l" />
 			<key id="KEY_RADIO" mapto="shift_record" flags="l" />
-			<key id="KEY_PREVIOUS" mapto="previous" flags="l" />
-			<key id="KEY_NEXT" mapto="next" flags="l" />
+			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
+			<key id="KEY_NEXT" mapto="next" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PLAYPAUSE" mapto="pause" flags="m" />
 			<key id="KEY_STOP" mapto="stop" flags="b" />
 			<key id="KEY_STOP" mapto="shift_stop" flags="l" />
 			<key id="KEY_RECORD" mapto="shift_record" flags="l" />
-			<key id="KEY_PREVIOUS" mapto="previous" flags="l" />
-			<key id="KEY_NEXT" mapto="next" flags="l" />
+			<key id="KEY_PREVIOUS" mapto="previous" flags="m" />
+			<key id="KEY_NEXT" mapto="next" flags="m" />
+			<key id="KEY_RED" mapto="previous" flags="m" />
+			<key id="KEY_BLUE" mapto="next" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_PAUSE" mapto="pause" flags="m" />
@@ -635,8 +625,8 @@
 			<key id="KEY_STOP" mapto="stop" flags="b" />
 			<key id="KEY_STOP" mapto="shift_stop" flags="l" />
 			<key id="KEY_RECORD" mapto="shift_record" flags="l" />
-			<key id="KEY_PREVIOUSSONG" mapto="previous" flags="l" />
-			<key id="KEY_NEXTSONG" mapto="next" flags="l" />
+			<key id="KEY_PREVIOUSSONG" mapto="previous" flags="m" />
+			<key id="KEY_NEXTSONG" mapto="next" flags="m" />
 		</device>
 		
 		<key id="KEY_MENU" mapto="menu" flags="m" />
