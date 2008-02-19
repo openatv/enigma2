@@ -47,6 +47,7 @@ to generate HTML."""
 	def setIndex(self, index):
 		if self.master is not None:
 			self.master.index = index
+			self.selectionChanged(index)
 
 	@cached
 	def getIndex(self):
