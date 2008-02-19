@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-25 01:32+0100\n"
+"POT-Creation-Date: 2008-02-20 00:33+0100\n"
 "PO-Revision-Date: 2006-01-10 01:17+0300\n"
 "Last-Translator: hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -314,6 +314,9 @@ msgstr ""
 msgid "Ask before shutdown:"
 msgstr ""
 
+msgid "Ask user"
+msgstr ""
+
 msgid "Aspect Ratio"
 msgstr ""
 
@@ -363,6 +366,18 @@ msgid "Bandwidth"
 msgstr ""
 
 msgid "Begin time"
+msgstr ""
+
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
 msgstr ""
 
 msgid "Behaviour of 0 key in PiP-mode"
@@ -434,6 +449,12 @@ msgid "Channel:"
 msgstr "قناه:"
 
 msgid "Channellist menu"
+msgstr ""
+
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
 msgstr ""
 
 msgid "Choose Tuner"
@@ -539,6 +560,12 @@ msgstr ""
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr ""
 
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
+
 msgid "Customize"
 msgstr ""
 
@@ -627,6 +654,12 @@ msgid ""
 "retrying..."
 msgstr ""
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "طبق الاستقبال"
 
@@ -636,6 +669,11 @@ msgstr ""
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \""
+msgstr ""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
 msgstr ""
 
 #, python-format
@@ -769,6 +807,12 @@ msgid ""
 "© 2006 - Stephan Reichholf"
 msgstr ""
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr ""
 
@@ -817,11 +861,20 @@ msgstr ""
 msgid "Fast DiSEqC"
 msgstr ""
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr ""
 
 msgid "Favourites"
 msgstr "المفضله"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "الضبط الدقيق"
@@ -855,6 +908,9 @@ msgstr ""
 
 #, python-format
 msgid "Frontprocessor version: %d"
+msgstr ""
+
+msgid "Fsck failed"
 msgstr ""
 
 msgid "Function not yet implemented"
@@ -1016,6 +1072,9 @@ msgid "Language selection"
 msgstr "إختيار اللغه"
 
 msgid "Language..."
+msgstr ""
+
+msgid "Last speed"
 msgstr ""
 
 msgid "Latitude"
@@ -1340,14 +1399,23 @@ msgstr ""
 msgid "Parental control type"
 msgstr ""
 
+msgid "Pause movie at end"
+msgstr ""
+
 msgid "PiPSetup"
 msgstr ""
 
 msgid "Pin code needed"
 msgstr ""
 
+msgid "Play"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "عرض الافلام المسجله"
+
+msgid "Please Reboot"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr ""
@@ -1597,6 +1665,21 @@ msgid ""
 "settings now."
 msgstr ""
 
+msgid "Resume from last position"
+msgstr ""
+
+msgid "Resuming playback"
+msgstr ""
+
+msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous service"
+msgstr ""
+
+msgid "Rewind speeds"
+msgstr ""
+
 msgid "Right"
 msgstr ""
 
@@ -1840,6 +1923,9 @@ msgstr ""
 msgid "Single transponder"
 msgstr ""
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr ""
 
@@ -1854,6 +1940,9 @@ msgid "Slot %d"
 msgstr ""
 
 msgid "Slow"
+msgstr ""
+
+msgid "Slow Motion speeds"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -1896,6 +1985,9 @@ msgstr "الاستعداد/إعاده التشغيل"
 
 msgid "Start"
 msgstr "أبـدأ"
+
+msgid "Start from the beginning"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "أبـدأ التسجيل؟"
@@ -2021,6 +2113,9 @@ msgid "The sleep timer has been activated."
 msgstr ""
 
 msgid "The sleep timer has been disabled."
+msgstr ""
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
 msgid ""
@@ -2178,13 +2273,14 @@ msgid "USB Stick"
 msgstr ""
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"فشل تشغيل القرص الصلب\n"
-"من فضلك راجع تعليمات التشغيل\n"
-"خطـأ .. "
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr ""
@@ -2350,6 +2446,9 @@ msgid "Yes, perform a shutdown now."
 msgstr ""
 
 msgid "Yes, restore the settings now"
+msgstr ""
+
+msgid "Yes, returning to movie list"
 msgstr ""
 
 msgid "Yes, view the tutorial"
@@ -2801,10 +2900,10 @@ msgstr ""
 msgid "play entry"
 msgstr ""
 
-msgid "play next playlist entry"
+msgid "play from next mark or playlist entry"
 msgstr ""
 
-msgid "play previous playlist entry"
+msgid "play from previous mark or playlist entry"
 msgstr ""
 
 msgid "please press OK when ready"
@@ -2944,16 +3043,10 @@ msgstr ""
 msgid "skip backward (enter time)"
 msgstr ""
 
-msgid "skip backward (self defined)"
-msgstr ""
-
 msgid "skip forward"
 msgstr ""
 
 msgid "skip forward (enter time)"
-msgstr ""
-
-msgid "skip forward (self defined)"
 msgstr ""
 
 msgid "sort by date"
@@ -3147,6 +3240,15 @@ msgstr ""
 
 #~ msgid "Thanks for using the wizard. Your box is now ready to use."
 #~ msgstr "شكرا، الرسيفر جاهز للاستخدام الان"
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "فشل تشغيل القرص الصلب\n"
+#~ "من فضلك راجع تعليمات التشغيل\n"
+#~ "خطـأ .. "
 
 #~ msgid "Video Audio"
 #~ msgstr "صوره صوت"

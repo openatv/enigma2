@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-28 00:16+0100\n"
+"POT-Creation-Date: 2008-02-20 00:33+0100\n"
 "PO-Revision-Date: 2008-01-27 23:38+0100\n"
 "Last-Translator: Jurica <jurica@clarkdigital.com>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -329,6 +329,9 @@ msgstr "Izvođač:"
 msgid "Ask before shutdown:"
 msgstr "Pitaj prije isključivanja:"
 
+msgid "Ask user"
+msgstr ""
+
 msgid "Aspect Ratio"
 msgstr "Omjer slike"
 
@@ -380,6 +383,18 @@ msgstr "Propusnost"
 
 msgid "Begin time"
 msgstr "Početno vrijeme"
+
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
+msgstr ""
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "Uloga tipke 0 u PIP-modu"
@@ -452,6 +467,12 @@ msgstr "Kanal:"
 
 msgid "Channellist menu"
 msgstr "Izbornik liste kanala"
+
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
+msgstr ""
 
 msgid "Choose Tuner"
 msgstr "Odaberi Tuner"
@@ -559,6 +580,12 @@ msgstr "Trenutna verzija:"
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Podesivo vrijeme preskoka za '1'/'3'-ključa"
 
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
+
 msgid "Customize"
 msgstr "Prilagodi"
 
@@ -650,6 +677,12 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "pokušavam ponovno..."
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "Antena"
 
@@ -662,6 +695,11 @@ msgid ""
 msgstr ""
 "Želite li stvarno OBRISATI\n"
 "dodatak \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -806,6 +844,12 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Uđi u Glavni Izbornik"
 
@@ -854,11 +898,20 @@ msgstr "Brzo"
 msgid "Fast DiSEqC"
 msgstr "Brzi DiSEqC"
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Brza epoha"
 
 msgid "Favourites"
 msgstr "Favoriti"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "Fino pod."
@@ -893,6 +946,9 @@ msgstr "Fritz!Box FON IP adresa"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Verzija Frontprocesora: %d"
+
+msgid "Fsck failed"
+msgstr ""
 
 msgid "Function not yet implemented"
 msgstr "Funkcija još nije implementirana"
@@ -1060,6 +1116,9 @@ msgstr "Odaberite Jezik"
 
 msgid "Language..."
 msgstr "Jezik..."
+
+msgid "Last speed"
+msgstr ""
 
 msgid "Latitude"
 msgstr "Latituda"
@@ -1395,14 +1454,23 @@ msgstr "Postavke roditeljske zaštite"
 msgid "Parental control type"
 msgstr "Vrsta roditeljske zaštite"
 
+msgid "Pause movie at end"
+msgstr ""
+
 msgid "PiPSetup"
 msgstr "PiPPostavke"
 
 msgid "Pin code needed"
 msgstr "Pin kod je potreban"
 
+msgid "Play"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Pokreni snimljene filmove..."
+
+msgid "Please Reboot"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "Molim promjenite završno vijeme snimanja"
@@ -1663,6 +1731,21 @@ msgstr ""
 "Vraćanje postavki je završeno.Molim pritisnite OK za aktiviranje vraćenih "
 "postavki sada."
 
+msgid "Resume from last position"
+msgstr ""
+
+msgid "Resuming playback"
+msgstr ""
+
+msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous service"
+msgstr ""
+
+msgid "Rewind speeds"
+msgstr ""
+
 msgid "Right"
 msgstr "Desno"
 
@@ -1912,6 +1995,9 @@ msgstr "Jedan satelit"
 msgid "Single transponder"
 msgstr "Jedan Transponder"
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr "Tajmer spavanja"
 
@@ -1927,6 +2013,9 @@ msgstr "Utor %d"
 
 msgid "Slow"
 msgstr "Usporeno"
+
+msgid "Slow Motion speeds"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Neki dodaci nisu dostupni:\n"
@@ -1971,6 +2060,9 @@ msgstr "stanje sprem./ restart"
 
 msgid "Start"
 msgstr "Početak"
+
+msgid "Start from the beginning"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "Započeti Snimanje?"
@@ -2100,6 +2192,9 @@ msgstr "Tajmer spavanja je aktiviran."
 
 msgid "The sleep timer has been disabled."
 msgstr "Tajmer je onemogućen."
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2262,13 +2357,14 @@ msgid "USB Stick"
 msgstr "USB Disk"
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Inicijalizacija Diska nije moguća.\n"
-"Molim pogledajte u korisničke upute.\n"
-"Greška:"
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC command"
@@ -2444,6 +2540,9 @@ msgstr "Da, započni isključivanje sada"
 
 msgid "Yes, restore the settings now"
 msgstr "Da, vratite pohranjene postavke sada"
+
+msgid "Yes, returning to movie list"
+msgstr ""
 
 msgid "Yes, view the tutorial"
 msgstr "Da, prikaži vodič"
@@ -2926,11 +3025,11 @@ msgstr "pauza"
 msgid "play entry"
 msgstr "pokreni unos"
 
-msgid "play next playlist entry"
-msgstr "pokreni sljedeći unos playliste"
+msgid "play from next mark or playlist entry"
+msgstr ""
 
-msgid "play previous playlist entry"
-msgstr "pokreni predhodni unos playliste"
+msgid "play from previous mark or playlist entry"
+msgstr ""
 
 msgid "please press OK when ready"
 msgstr "pritisni OK kada si spreman"
@@ -3069,17 +3168,11 @@ msgstr "preskoči unazad"
 msgid "skip backward (enter time)"
 msgstr "preskoči unazad (unesi vrijeme)"
 
-msgid "skip backward (self defined)"
-msgstr "preskoči unazad (definirano)"
-
 msgid "skip forward"
 msgstr "preskoči unaprijed"
 
 msgid "skip forward (enter time)"
 msgstr "preskoči naprijed (unesi vrijeme)"
-
-msgid "skip forward (self defined)"
-msgstr "preskoči naprijed (definirano)"
 
 msgid "sort by date"
 msgstr "sortiraj po datumu"
@@ -3430,6 +3523,15 @@ msgstr "prebačen"
 #~ msgid "UHF Modulator"
 #~ msgstr "UHF modulator"
 
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Inicijalizacija Diska nije moguća.\n"
+#~ "Molim pogledajte u korisničke upute.\n"
+#~ "Greška:"
+
 #~ msgid "Usage Settings"
 #~ msgstr "Postavke koriA!tenja"
 
@@ -3453,6 +3555,12 @@ msgstr "prebačen"
 
 #~ msgid "list"
 #~ msgstr "lista"
+
+#~ msgid "play next playlist entry"
+#~ msgstr "pokreni sljedeći unos playliste"
+
+#~ msgid "play previous playlist entry"
+#~ msgstr "pokreni predhodni unos playliste"
 
 #~ msgid "remove bouquet"
 #~ msgstr "obriA!i paket"
@@ -3490,6 +3598,12 @@ msgstr "prebačen"
 
 #~ msgid "select Slot"
 #~ msgstr "odaberi Utor"
+
+#~ msgid "skip backward (self defined)"
+#~ msgstr "preskoči unazad (definirano)"
+
+#~ msgid "skip forward (self defined)"
+#~ msgstr "preskoči naprijed (definirano)"
 
 #~ msgid "use power delta"
 #~ msgstr "koristite power delta"

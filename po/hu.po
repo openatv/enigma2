@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-29 14:23+0100\n"
+"POT-Creation-Date: 2008-02-20 00:33+0100\n"
 "PO-Revision-Date: 2008-01-29 08:58+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -335,6 +335,9 @@ msgstr "Előadó:"
 msgid "Ask before shutdown:"
 msgstr "Kikapcsolás elött rákérdez:"
 
+msgid "Ask user"
+msgstr ""
+
 msgid "Aspect Ratio"
 msgstr "Képarány"
 
@@ -385,6 +388,18 @@ msgstr "Sávszélesség"
 
 msgid "Begin time"
 msgstr "Kezdési idő"
+
+msgid "Behavior when a movie is started"
+msgstr ""
+
+msgid "Behavior when a movie is stopped"
+msgstr ""
+
+msgid "Behavior when a movie reaches the end"
+msgstr ""
+
+msgid "Behaviour of 'pause' when paused"
+msgstr ""
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "PiP módban a 0 gomb jelentése"
@@ -456,6 +471,12 @@ msgstr "Csatorna:"
 
 msgid "Channellist menu"
 msgstr "Csatornalista menü"
+
+msgid "Check"
+msgstr ""
+
+msgid "Checking Filesystem..."
+msgstr ""
 
 msgid "Choose Tuner"
 msgstr "Válasszon tunert"
@@ -563,6 +584,12 @@ msgstr "Jelenlegi verzió:"
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Átugrási idő megadása az '1'/'3' gombokra"
 
+msgid "Custom skip time for '4'/'6'-keys"
+msgstr ""
+
+msgid "Custom skip time for '7'/'9'-keys"
+msgstr ""
+
 msgid "Customize"
 msgstr "Beállítás"
 
@@ -654,6 +681,12 @@ msgstr ""
 "Fritz!Box!-ról (%s)\n"
 "újra próbálkozás..."
 
+msgid "Discontinuous playback at speeds above"
+msgstr ""
+
+msgid "Discontinuous playback frame repeat count"
+msgstr ""
+
 msgid "Dish"
 msgstr "Antenna"
 
@@ -666,6 +699,11 @@ msgid ""
 msgstr ""
 "Biztos hogy el akarja távolítani\n"
 "a plugin-t? \""
+
+msgid ""
+"Do you really want to check the filesystem?\n"
+"This could take lots of time!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -810,6 +848,12 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+msgid "Enter Fast Forward at speed"
+msgstr ""
+
+msgid "Enter Rewind at speed"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Belépés a főmenübe..."
 
@@ -858,11 +902,20 @@ msgstr "Gyors"
 msgid "Fast DiSEqC"
 msgstr "Gyors DiSEqC"
 
+msgid "Fast Forward speeds"
+msgstr ""
+
 msgid "Fast epoch"
 msgstr "Gyors korszak"
 
 msgid "Favourites"
 msgstr "Kedvencek"
+
+msgid "Filesystem Check..."
+msgstr ""
+
+msgid "Filesystem contains uncorrectable errors"
+msgstr ""
 
 msgid "Finetune"
 msgstr "Finomhangolás"
@@ -897,6 +950,9 @@ msgstr "Fritz!Box FON IP szám"
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Előlapi processzor verziója: %d"
+
+msgid "Fsck failed"
+msgstr ""
 
 msgid "Function not yet implemented"
 msgstr "Ez a funkció még nincs kivitelezve"
@@ -1062,6 +1118,9 @@ msgstr "Válasszon nyelvet"
 
 msgid "Language..."
 msgstr "Nyelvezet..."
+
+msgid "Last speed"
+msgstr ""
 
 msgid "Latitude"
 msgstr "Szélességi fok"
@@ -1397,14 +1456,23 @@ msgstr "Gyermekzár beállítások"
 msgid "Parental control type"
 msgstr "Gyermekzár típusa"
 
+msgid "Pause movie at end"
+msgstr ""
+
 msgid "PiPSetup"
 msgstr "PIP beállítások"
 
 msgid "Pin code needed"
 msgstr "PIN-kód szükséges"
 
+msgid "Play"
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Felvett filmek lejátszása..."
+
+msgid "Please Reboot"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "Kérem változtassa meg a felvétel vége idejét"
@@ -1661,6 +1729,21 @@ msgstr ""
 "A beállítások visszaállítása kész. Az OK gomb megnyomásával aktiválhatja a "
 "visszaállított beállításokat."
 
+msgid "Resume from last position"
+msgstr ""
+
+msgid "Resuming playback"
+msgstr ""
+
+msgid "Return to movie list"
+msgstr ""
+
+msgid "Return to previous service"
+msgstr ""
+
+msgid "Rewind speeds"
+msgstr ""
+
 msgid "Right"
 msgstr "Jobb"
 
@@ -1910,6 +1993,9 @@ msgstr "Szimpla műhold"
 msgid "Single transponder"
 msgstr "Szimpla transzponder"
 
+msgid "Singlestep (GOP)"
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr "Elalvás időzítő"
 
@@ -1925,6 +2011,9 @@ msgstr "%d nyílás"
 
 msgid "Slow"
 msgstr "Lassú"
+
+msgid "Slow Motion speeds"
+msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "Egyes pluginek nem elérhetőek:\n"
@@ -1969,6 +2058,9 @@ msgstr "Készenlét / Újraindítás"
 
 msgid "Start"
 msgstr "Indítási időpont"
+
+msgid "Start from the beginning"
+msgstr ""
 
 msgid "Start recording?"
 msgstr "Indítsam a felvételt?"
@@ -2103,6 +2195,9 @@ msgstr "Az elalvás időzítő aktiválva lett."
 
 msgid "The sleep timer has been disabled."
 msgstr "Az elalvásidőzítő ki van kapcsolva"
+
+msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2263,13 +2358,14 @@ msgid "USB Stick"
 msgstr "USB Stick"
 
 msgid ""
-"Unable to initialize harddisk.\n"
-"Please refer to the user manual.\n"
+"Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Nem lehet inicializálni a merevlemezt.\n"
-"Kérem nézzen utána a kezelési útmutatóban.\n"
-"Hiba:"
+
+msgid ""
+"Unable to initialize harddisk.\n"
+"Error: "
+msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Nem elkötelezett DiSEqC parancs"
@@ -2442,6 +2538,9 @@ msgstr "Igen, hajtsunk végre most egy kikapcsolást."
 
 msgid "Yes, restore the settings now"
 msgstr "Igen, állítsuk vissza most a beállításokat"
+
+msgid "Yes, returning to movie list"
+msgstr ""
 
 msgid "Yes, view the tutorial"
 msgstr "Igen, mutassa a leírást"
@@ -2925,11 +3024,11 @@ msgstr "Szünet"
 msgid "play entry"
 msgstr "bejegyzés lejátszása"
 
-msgid "play next playlist entry"
-msgstr "következő playlista bejegyzés lejátszása"
+msgid "play from next mark or playlist entry"
+msgstr ""
 
-msgid "play previous playlist entry"
-msgstr "előző playlista bejegyzés lejátszása"
+msgid "play from previous mark or playlist entry"
+msgstr ""
 
 msgid "please press OK when ready"
 msgstr "nyomja meg az OK-t ha kész"
@@ -3068,17 +3167,11 @@ msgstr "Vissza kihagyása"
 msgid "skip backward (enter time)"
 msgstr "Ugrás visszafelé (adja meg az időt)"
 
-msgid "skip backward (self defined)"
-msgstr "Ugrás visszafelé (előre megadott)"
-
 msgid "skip forward"
 msgstr "Előre kihagyása"
 
 msgid "skip forward (enter time)"
 msgstr "Ugrás előre (adja meg az időt)"
-
-msgid "skip forward (self defined)"
-msgstr "Ugrás előre (előre megadott)"
 
 msgid "sort by date"
 msgstr "rendezés dátum szerint"
@@ -3285,6 +3378,15 @@ msgstr "zap-elt"
 #~ msgid "Socket "
 #~ msgstr "Foglalat"
 
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "Nem lehet inicializálni a merevlemezt.\n"
+#~ "Kérem nézzen utána a kezelési útmutatóban.\n"
+#~ "Hiba:"
+
 #~ msgid "Video-Setup"
 #~ msgstr "Videó-beállítások"
 
@@ -3296,6 +3398,12 @@ msgstr "zap-elt"
 
 #~ msgid "list"
 #~ msgstr "lista"
+
+#~ msgid "play next playlist entry"
+#~ msgstr "következő playlista bejegyzés lejátszása"
+
+#~ msgid "play previous playlist entry"
+#~ msgstr "előző playlista bejegyzés lejátszása"
 
 #~ msgid ""
 #~ "scan done!\n"
@@ -3327,3 +3435,9 @@ msgstr "zap-elt"
 
 #~ msgid "select Slot"
 #~ msgstr "válasszon nyílást"
+
+#~ msgid "skip backward (self defined)"
+#~ msgstr "Ugrás visszafelé (előre megadott)"
+
+#~ msgid "skip forward (self defined)"
+#~ msgstr "Ugrás előre (előre megadott)"
