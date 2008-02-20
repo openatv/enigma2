@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 00:33+0100\n"
-"PO-Revision-Date: 2008-01-29 08:58+0100\n"
+"POT-Creation-Date: 2008-02-20 12:55+0100\n"
+"PO-Revision-Date: 2008-02-20 08:17+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -326,6 +326,9 @@ msgstr "Alternatív rádió mód"
 msgid "Alternative services tuner priority"
 msgstr "Tuner alternatív szolgáltatások "
 
+msgid "An empty filename is illegal."
+msgstr ""
+
 msgid "Arabic"
 msgstr "Arab"
 
@@ -336,7 +339,7 @@ msgid "Ask before shutdown:"
 msgstr "Kikapcsolás elött rákérdez:"
 
 msgid "Ask user"
-msgstr ""
+msgstr "Felhasználó kérdezése"
 
 msgid "Aspect Ratio"
 msgstr "Képarány"
@@ -375,7 +378,7 @@ msgid "Backup Location"
 msgstr "Mentés helye"
 
 msgid "Backup Mode"
-msgstr "Menstési mód"
+msgstr "Mentési mód"
 
 msgid "Backup is done. Please press OK to see the result."
 msgstr "A mentés készen van. Nyomja meg az OK-t a részletekért."
@@ -390,16 +393,16 @@ msgid "Begin time"
 msgstr "Kezdési idő"
 
 msgid "Behavior when a movie is started"
-msgstr ""
+msgstr "Művelet ha egy film elindul"
 
 msgid "Behavior when a movie is stopped"
-msgstr ""
+msgstr "Művelet ha egy film befejeződik"
 
 msgid "Behavior when a movie reaches the end"
-msgstr ""
+msgstr "Művelet ha egy film a végére ér"
 
 msgid "Behaviour of 'pause' when paused"
-msgstr ""
+msgstr "A 'szünet' viselkedése ha megállítjuk a filmet"
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "PiP módban a 0 gomb jelentése"
@@ -473,9 +476,12 @@ msgid "Channellist menu"
 msgstr "Csatornalista menü"
 
 msgid "Check"
-msgstr ""
+msgstr "Ellenőrzés"
 
 msgid "Checking Filesystem..."
+msgstr "Fájlrendszer ellenőrzése..."
+
+msgid "Choose Location"
 msgstr ""
 
 msgid "Choose Tuner"
@@ -486,6 +492,9 @@ msgstr "Bouquet kiválasztása"
 
 msgid "Choose source"
 msgstr "Forrás kiválasztása"
+
+msgid "Choose target folder"
+msgstr ""
 
 msgid "Choose your Skin"
 msgstr "Válasszon skin-t"
@@ -538,6 +547,9 @@ msgstr "Konfigurációs mód"
 msgid "Configuring"
 msgstr "Beállítás"
 
+msgid "Confirm"
+msgstr ""
+
 msgid "Conflicting timer"
 msgstr "Konfliktus időzítő"
 
@@ -558,7 +570,7 @@ msgstr ""
 "újra próbálkozom..."
 
 msgid "Constellation"
-msgstr "Csillagkép"
+msgstr "Együttállás"
 
 msgid "Contrast"
 msgstr "Kontraszt"
@@ -585,10 +597,10 @@ msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Átugrási idő megadása az '1'/'3' gombokra"
 
 msgid "Custom skip time for '4'/'6'-keys"
-msgstr ""
+msgstr "Állítható átugrási idő a  '4'/'6' gombokra"
 
 msgid "Custom skip time for '7'/'9'-keys"
-msgstr ""
+msgstr "Állítható átugrási idő a  '7'/'9' gombokra"
 
 msgid "Customize"
 msgstr "Beállítás"
@@ -682,10 +694,10 @@ msgstr ""
 "újra próbálkozás..."
 
 msgid "Discontinuous playback at speeds above"
-msgstr ""
+msgstr "Nem folytatólagos lejátszás a fenti sebességekre"
 
 msgid "Discontinuous playback frame repeat count"
-msgstr ""
+msgstr "Nem folytatólagos lejátszási képismétlés számolása"
 
 msgid "Dish"
 msgstr "Antenna"
@@ -704,6 +716,8 @@ msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
 msgstr ""
+"Biztos le akarja ellenőrizni a fájlrendszert?\n"
+"Ez hosszú ideig is eltarthat!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -849,10 +863,10 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 msgid "Enter Fast Forward at speed"
-msgstr ""
+msgstr "Adja meg a gyors előre csévélést ezen a sebességen"
 
 msgid "Enter Rewind at speed"
-msgstr ""
+msgstr "Adja meg a vissza csévélést ezen a sebességen"
 
 msgid "Enter main menu..."
 msgstr "Belépés a főmenübe..."
@@ -903,7 +917,7 @@ msgid "Fast DiSEqC"
 msgstr "Gyors DiSEqC"
 
 msgid "Fast Forward speeds"
-msgstr ""
+msgstr "Előre csévélési sebességek"
 
 msgid "Fast epoch"
 msgstr "Gyors korszak"
@@ -912,10 +926,10 @@ msgid "Favourites"
 msgstr "Kedvencek"
 
 msgid "Filesystem Check..."
-msgstr ""
+msgstr "Fájlrendszer ellenőrzés..."
 
 msgid "Filesystem contains uncorrectable errors"
-msgstr ""
+msgstr "A fájlrendszerben nem javítható hibák vannak"
 
 msgid "Finetune"
 msgstr "Finomhangolás"
@@ -952,7 +966,7 @@ msgid "Frontprocessor version: %d"
 msgstr "Előlapi processzor verziója: %d"
 
 msgid "Fsck failed"
-msgstr ""
+msgstr "Fsck sikertelen"
 
 msgid "Function not yet implemented"
 msgstr "Ez a funkció még nincs kivitelezve"
@@ -1083,6 +1097,9 @@ msgstr "Középfokú"
 msgid "Internal Flash"
 msgstr "Belső Flash"
 
+msgid "Invalid Location"
+msgstr ""
+
 msgid "Inversion"
 msgstr "Invertálás"
 
@@ -1120,7 +1137,7 @@ msgid "Language..."
 msgstr "Nyelvezet..."
 
 msgid "Last speed"
-msgstr ""
+msgstr "Utolsó sebesség"
 
 msgid "Latitude"
 msgstr "Szélességi fok"
@@ -1145,6 +1162,9 @@ msgstr "Tárolóeszközök listája"
 
 msgid "Lithuanian"
 msgstr "Litván"
+
+msgid "Location"
+msgstr ""
 
 msgid "Lock:"
 msgstr "Zárol:"
@@ -1457,7 +1477,7 @@ msgid "Parental control type"
 msgstr "Gyermekzár típusa"
 
 msgid "Pause movie at end"
-msgstr ""
+msgstr "Film megállítása a végén"
 
 msgid "PiPSetup"
 msgstr "PIP beállítások"
@@ -1466,13 +1486,13 @@ msgid "Pin code needed"
 msgstr "PIN-kód szükséges"
 
 msgid "Play"
-msgstr ""
+msgstr "Lejátszás"
 
 msgid "Play recorded movies..."
 msgstr "Felvett filmek lejátszása..."
 
 msgid "Please Reboot"
-msgstr ""
+msgstr "Kérem indítsa újra a rendszert"
 
 msgid "Please change recording endtime"
 msgstr "Kérem változtassa meg a felvétel vége idejét"
@@ -1489,6 +1509,9 @@ msgstr "Adja meg az új bouquet nevét"
 
 msgid "Please enter a name for the new marker"
 msgstr "Adja meg az új marker nevét"
+
+msgid "Please enter a new filename"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Adja meg a fájlnevet (üres = jelenlegi adatok használata)"
@@ -1516,6 +1539,9 @@ msgstr "Válasszon egy alcsatornát..."
 
 msgid "Please select keyword to filter..."
 msgstr "Válasszon egy keresési kulcsszót..."
+
+msgid "Please select the movie path..."
+msgstr ""
 
 msgid "Please set up tuner B"
 msgstr "Állítsa be a B tunert"
@@ -1698,6 +1724,9 @@ msgstr "Egy marker eltávolítása"
 msgid "Remove plugins"
 msgstr "Pluginek eltávolítása"
 
+msgid "Rename"
+msgstr ""
+
 msgid "Repeat"
 msgstr "Ismétlés"
 
@@ -1708,7 +1737,7 @@ msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Ismétlődő felvétel megy... Mit csináljak?"
 
 msgid "Reset"
-msgstr "Újraindítás"
+msgstr "Visszaállítás"
 
 msgid "Restart"
 msgstr "Újraindítás"
@@ -1730,19 +1759,19 @@ msgstr ""
 "visszaállított beállításokat."
 
 msgid "Resume from last position"
-msgstr ""
+msgstr "Folytatás az utolsó pozíciótól"
 
 msgid "Resuming playback"
-msgstr ""
+msgstr "Lejátszás folytatása"
 
 msgid "Return to movie list"
-msgstr ""
+msgstr "Visszatérés a film listához"
 
 msgid "Return to previous service"
-msgstr ""
+msgstr "Visszatérés az előző csatornához"
 
 msgid "Rewind speeds"
-msgstr ""
+msgstr "Viszacsévélési sebességek"
 
 msgid "Right"
 msgstr "Jobb"
@@ -1870,6 +1899,9 @@ msgstr "Keresés"
 msgid "Select HDD"
 msgstr "HDD kiválasztása"
 
+msgid "Select Location"
+msgstr ""
+
 msgid "Select Network Adapter"
 msgstr "Válasszon hálózati adaptert"
 
@@ -1994,7 +2026,7 @@ msgid "Single transponder"
 msgstr "Szimpla transzponder"
 
 msgid "Singlestep (GOP)"
-msgstr ""
+msgstr "Lépés (GOP)"
 
 msgid "Sleep Timer"
 msgstr "Elalvás időzítő"
@@ -2013,7 +2045,7 @@ msgid "Slow"
 msgstr "Lassú"
 
 msgid "Slow Motion speeds"
-msgstr ""
+msgstr "Lassítási sebességek"
 
 msgid "Some plugins are not available:\n"
 msgstr "Egyes pluginek nem elérhetőek:\n"
@@ -2060,7 +2092,7 @@ msgid "Start"
 msgstr "Indítási időpont"
 
 msgid "Start from the beginning"
-msgstr ""
+msgstr "Indítsa az elejétől"
 
 msgid "Start recording?"
 msgstr "Indítsam a felvételt?"
@@ -2197,7 +2229,7 @@ msgid "The sleep timer has been disabled."
 msgstr "Az elalvásidőzítő ki van kapcsolva"
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr ""
+msgstr "A timer fájl (timers.xml) sérült és nem lehet betölteni."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2207,6 +2239,11 @@ msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "A varázsló befejezte feladatát."
+
+msgid ""
+"There might not be enough Space on the selected Partition.\n"
+"Do you really want to continue?"
+msgstr ""
 
 msgid "This is step number 2."
 msgstr "Ez a 2. lépés."
@@ -2361,11 +2398,15 @@ msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
+"Nem lehet ellenőrizni a fájlrendszert.\n"
+"Hiba: "
 
 msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
+"Nem lehet inicializálni a merevlemezt.\n"
+"Hiba: "
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Nem elkötelezett DiSEqC parancs"
@@ -2540,7 +2581,7 @@ msgid "Yes, restore the settings now"
 msgstr "Igen, állítsuk vissza most a beállításokat"
 
 msgid "Yes, returning to movie list"
-msgstr ""
+msgstr "Igen, térjen vissza a filmlistához"
 
 msgid "Yes, view the tutorial"
 msgstr "Igen, mutassa a leírást"
@@ -3025,10 +3066,10 @@ msgid "play entry"
 msgstr "bejegyzés lejátszása"
 
 msgid "play from next mark or playlist entry"
-msgstr ""
+msgstr "lejátszás a következő markertől vagy lépjen be a playlistába"
 
 msgid "play from previous mark or playlist entry"
-msgstr ""
+msgstr "lejátszás az előző markertől vagy lépjen be a playlistába"
 
 msgid "please press OK when ready"
 msgstr "nyomja meg az OK-t ha kész"
@@ -3112,6 +3153,9 @@ msgstr "másodperc."
 
 msgid "select movie"
 msgstr "film kiválasztása"
+
+msgid "select the movie path"
+msgstr ""
 
 msgid "service pin"
 msgstr "csatornavédelem PIN"
