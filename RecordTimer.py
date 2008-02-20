@@ -91,7 +91,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False, dirname = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers == True:
@@ -114,6 +114,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.start_prepare = 0
 		self.justplay = justplay
 		self.afterEvent = afterEvent
+		self.dirname = dirname
 		
 		self.log_entries = []
 		self.resetState()
@@ -141,7 +142,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if self.name:
 			filename += " - " + self.name
 
-		self.Filename = Directories.getRecordingFilename(filename)
+		self.Filename = Directories.getRecordingFilename(filename, self.dirname)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		#begin_date + " - " + service_name + description)
 
@@ -359,10 +360,15 @@ def createTimer(xml):
 		eit = long(xml.getAttribute("eit"))
 	else:
 		eit = None
-	
+	if xml.hasAttribute("location") and xml.getAttribute("location") != "None":
+		location = str(xml.getAttribute("location")).encode("utf-8")
+	else:
+		location = None
+
+
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location)
 	entry.repeated = int(repeated)
 	
 	for l in elementsWithTag(xml.childNodes, "log"):
@@ -473,6 +479,8 @@ class RecordTimer(timer.Timer):
 			list.append(' afterevent="' + str(stringToXML({ AFTEREVENT.NONE: "nothing", AFTEREVENT.STANDBY: "standby", AFTEREVENT.DEEPSTANDBY: "deepstandby" }[timer.afterEvent])) + '"')
 			if timer.eit is not None:
 				list.append(' eit="' + str(timer.eit) + '"')
+			if timer.dirname is not None:
+				list.append(' location="' + str(stringToXML(timer.dirname)) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append('>\n')
