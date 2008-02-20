@@ -769,9 +769,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<screen name="TimerEntry" position="90,95" size="560,430" title="Timer entry">
 		<widget name="config" position="10,10" size="540,350" scrollbarMode="showOnDemand" />
 		<widget name="cancel" pixmap="skin_default/key-red.png" position="10,380" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+		<widget name="location" pixmap="skin_default/key-yellow.png" position="260,380" zPosition="1" size="140,40" transparent="1" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/key-green.png" position="410,380" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="canceltext" position="10,380" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" />
-		<widget name="oktext" position="410,380" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" transparent="1" />
+		<widget name="canceltext" position="10,380" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" backgroundColor="#9f1313" transparent="1" />
+		<widget name="locationtext" position="260,380" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" backgroundColor="#a08500" transparent="1" />
+		<widget name="oktext" position="410,380" zPosition="2" size="140,40" valign="center" halign="center" font="Regular;21" backgroundColor="#1f771f" transparent="1" />
 	</screen>
 	<!-- Timer log -->
 	<screen name="TimerLog" position="70,100" size="560,400" title="Timer log">

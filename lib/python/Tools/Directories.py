@@ -114,8 +114,8 @@ def fileExists(f):
 		exists = 1
 	return exists
 
-def getRecordingFilename(basename):
-		# filter out non-allowed characters
+def getRecordingFilename(basename, dirname = None):
+	# filter out non-allowed characters
 	non_allowed_characters = "/.\\:*?<>|\""
 	filename = ""
 	
@@ -125,7 +125,10 @@ def getRecordingFilename(basename):
 		if c in non_allowed_characters:
 			c = "_"
 		filename += c
-	
+
+	if dirname is not None:
+		filename = ''.join([dirname, filename])
+
 	i = 0
 	while True:
 		path = resolveFilename(SCOPE_HDD, filename)
