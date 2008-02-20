@@ -78,7 +78,20 @@ class FileList(MenuList):
 
 		# if we are just entering from the list of mount points:
 		if self.current_directory is None:
-			self.mount_point = directory
+			if directory is None:
+				self.mount_point = None
+			else:
+				# Sort Mountpoints by length (longest first)
+				sortedp = harddiskmanager.getMountedPartitions()
+				sortedp.sort(key=lambda p: 0 - len(p.mountpoint))
+
+				# Search for the longest matching mp (should at least match /)
+				for p in sortedp:
+					if directory.startswith(p.mountpoint):
+						self.mount_point = p.mountpoint
+						if p.mountpoint != "/":
+							self.mount_point += "/"
+						break
 		self.current_directory = directory
 		directories = []
 		files = []
