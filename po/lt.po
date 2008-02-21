@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 00:33+0100\n"
-"PO-Revision-Date: 2008-01-25 22:49+0200\n"
+"POT-Creation-Date: 2008-02-21 20:09+0100\n"
+"PO-Revision-Date: 2008-02-20 22:44+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgid "5"
 msgstr "5"
 
 msgid "5 minutes"
-msgstr "5 minutės"
+msgstr "5 minučių"
 
 msgid "6"
 msgstr "6"
@@ -316,10 +316,13 @@ msgid "Alpha"
 msgstr "Permatoma"
 
 msgid "Alternative radio mode"
-msgstr "Kitas radijo režimas"
+msgstr "Kitoks radijo būdas"
 
 msgid "Alternative services tuner priority"
 msgstr "Kitų kanalų imtuvo pirmenybė"
+
+msgid "An empty filename is illegal."
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabų"
@@ -328,13 +331,13 @@ msgid "Artist:"
 msgstr "Atlikėjas:"
 
 msgid "Ask before shutdown:"
-msgstr "Paklausti prieš išjungiant: "
+msgstr "Klausti prieš išjungiant: "
 
 msgid "Ask user"
-msgstr ""
+msgstr "Klausti vartotojo"
 
 msgid "Aspect Ratio"
-msgstr "Vaizdo formatas"
+msgstr "Rodymo formatas"
 
 msgid "Audio"
 msgstr "Garsas"
@@ -385,16 +388,16 @@ msgid "Begin time"
 msgstr "Pradžios laikas"
 
 msgid "Behavior when a movie is started"
-msgstr ""
+msgstr "Elgsena, kai filmas prasidėjęs"
 
 msgid "Behavior when a movie is stopped"
-msgstr ""
+msgstr "Elgsena, kai filmas sustabdytas"
 
 msgid "Behavior when a movie reaches the end"
-msgstr ""
+msgstr "Elgsena, kai filmas pasiekia pabaigą"
 
 msgid "Behaviour of 'pause' when paused"
-msgstr ""
+msgstr "Pauzės elgsena, kai daroma pauzė"
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "0 rakto padėtis PiP režime"
@@ -411,7 +414,7 @@ msgid ""
 msgstr "Infojuostos rodymui nuspauskite OK valdymo pultelyje."
 
 msgid "C-Band"
-msgstr "C-Diapazonas"
+msgstr "C-diapazonas"
 
 msgid "CF Drive"
 msgstr "CF kortelė"
@@ -468,9 +471,12 @@ msgid "Channellist menu"
 msgstr "Kanalų meniu sąrašas"
 
 msgid "Check"
-msgstr ""
+msgstr "Tikrinti"
 
 msgid "Checking Filesystem..."
+msgstr "Tikrinti failų sistemą..."
+
+msgid "Choose Location"
 msgstr ""
 
 msgid "Choose Tuner"
@@ -481,6 +487,9 @@ msgstr "Pasirinkite paketą"
 
 msgid "Choose source"
 msgstr "Pasirinkite šaltinį"
+
+msgid "Choose target folder"
+msgstr ""
 
 msgid "Choose your Skin"
 msgstr "Išsirinkite temą"
@@ -516,7 +525,7 @@ msgid "Committed DiSEqC command"
 msgstr "DiSEqC perjungimo komanda"
 
 msgid "Common Interface"
-msgstr "Įstatomas Modulis"
+msgstr "Įstatomas modulis"
 
 msgid "Compact Flash"
 msgstr "Kompaktinė atmintinė"
@@ -532,6 +541,9 @@ msgstr "Konfigūravimo būdas"
 
 msgid "Configuring"
 msgstr "Konfigūruojama"
+
+msgid "Confirm"
+msgstr ""
 
 msgid "Conflicting timer"
 msgstr "Laikmačio nesuderinamumas"
@@ -580,10 +592,10 @@ msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Praleisti laiką pasirinktinai '1'/'3'-mygtukams"
 
 msgid "Custom skip time for '4'/'6'-keys"
-msgstr ""
+msgstr "Praleisti laiką pasirinktinai '4'/'6'-mygtukams"
 
 msgid "Custom skip time for '7'/'9'-keys"
-msgstr ""
+msgstr "Praleisti laiką pasirinktinai '7'/'9'-mygtukams"
 
 msgid "Customize"
 msgstr "Vartotojo nustatymai"
@@ -631,7 +643,7 @@ msgid "Detected HDD:"
 msgstr "Rastas HDD:"
 
 msgid "Detected NIMs:"
-msgstr "Rasti NIMs:"
+msgstr "Rasti imtuvai:"
 
 msgid "Device Setup..."
 msgstr "Įrenginių nustatymas..."
@@ -677,10 +689,10 @@ msgstr ""
 "kartojama..."
 
 msgid "Discontinuous playback at speeds above"
-msgstr ""
+msgstr "Trukinėjantis atkūrimas prie didelių greičių"
 
 msgid "Discontinuous playback frame repeat count"
-msgstr ""
+msgstr "Trukinėjantis atkūrimas pasikartojančia struktūra"
 
 msgid "Dish"
 msgstr "Lėkštė"
@@ -699,6 +711,8 @@ msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
 msgstr ""
+"Tikrai norite atlikti failų sistemos tikrinimą?\n"
+"Tai gali trukti ilgą laiką!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -844,10 +858,10 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 msgid "Enter Fast Forward at speed"
-msgstr ""
+msgstr "Eiti į greitą prasukimą"
 
 msgid "Enter Rewind at speed"
-msgstr ""
+msgstr "Eiti į atsukimą "
 
 msgid "Enter main menu..."
 msgstr "Įeiti į pagrindinį meniu..."
@@ -898,7 +912,7 @@ msgid "Fast DiSEqC"
 msgstr "Greitas DiSEqC"
 
 msgid "Fast Forward speeds"
-msgstr ""
+msgstr "Greito prasukimo greičiai"
 
 msgid "Fast epoch"
 msgstr "Greita epocha"
@@ -907,10 +921,10 @@ msgid "Favourites"
 msgstr "Mėgstamiausi"
 
 msgid "Filesystem Check..."
-msgstr ""
+msgstr "Failų sistemos tikrinimas..."
 
 msgid "Filesystem contains uncorrectable errors"
-msgstr ""
+msgstr "Failų sistema turi nepataisomų klaidų"
 
 msgid "Finetune"
 msgstr "Tiksliau"
@@ -947,7 +961,7 @@ msgid "Frontprocessor version: %d"
 msgstr "Priekinio procesoriaus versija: %d"
 
 msgid "Fsck failed"
-msgstr ""
+msgstr "Fsck klaidingas"
 
 msgid "Function not yet implemented"
 msgstr "Funkcija neįvykdyta"
@@ -1080,6 +1094,9 @@ msgstr "Normalus"
 msgid "Internal Flash"
 msgstr "Vidinė atmintinė"
 
+msgid "Invalid Location"
+msgstr ""
+
 msgid "Inversion"
 msgstr "Pervertimas"
 
@@ -1099,7 +1116,7 @@ msgid "Keymap"
 msgstr "Mygtukų išdėstymas"
 
 msgid "LNB"
-msgstr "LNB"
+msgstr "LNB konverteris"
 
 msgid "LOF"
 msgstr "LOF"
@@ -1117,7 +1134,7 @@ msgid "Language..."
 msgstr "Kalba..."
 
 msgid "Last speed"
-msgstr ""
+msgstr "Paskutinis greitis"
 
 msgid "Latitude"
 msgstr "Platuma"
@@ -1143,8 +1160,11 @@ msgstr "Išsaugotų įrenginių sąrašas"
 msgid "Lithuanian"
 msgstr "Lietuvių"
 
+msgid "Location"
+msgstr ""
+
 msgid "Lock:"
-msgstr "Užraktas:"
+msgstr "Lock:"
 
 msgid "Long Keypress"
 msgstr "Ilgas mygtuko spaudimas"
@@ -1444,7 +1464,7 @@ msgid "Page"
 msgstr "Puslapis"
 
 msgid "Parental control"
-msgstr "Tėvų Kontrolė"
+msgstr "Tėvų kontrolė"
 
 msgid "Parental control services Editor"
 msgstr "Tėvų kontrolės kanalų redaktorius"
@@ -1456,7 +1476,7 @@ msgid "Parental control type"
 msgstr "Tėvų kontrolės rūšis"
 
 msgid "Pause movie at end"
-msgstr ""
+msgstr "Filmo pauzė pabaigoje"
 
 msgid "PiPSetup"
 msgstr "PiP Nustatymas"
@@ -1465,13 +1485,13 @@ msgid "Pin code needed"
 msgstr "Reikalingas pin kodas"
 
 msgid "Play"
-msgstr ""
+msgstr "Leisti"
 
 msgid "Play recorded movies..."
 msgstr "Rodyti įrašytus filmus..."
 
 msgid "Please Reboot"
-msgstr ""
+msgstr "Prašome perkrauti"
 
 msgid "Please change recording endtime"
 msgstr "Prašome pakeisti įrašymo pabaigos laiką"
@@ -1487,6 +1507,9 @@ msgstr "Prašome įrašyti naujo paketo pavadinimą"
 
 msgid "Please enter a name for the new marker"
 msgstr "Prašome įrašyti naujo žymeklio pavadinimą"
+
+msgid "Please enter a new filename"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Prašome įrašyti failo pavadinimą (tuščias = dabartiniai duomenys)"
@@ -1514,6 +1537,9 @@ msgstr "Prašome išsirinkti subkanalą..."
 
 msgid "Please select keyword to filter..."
 msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
+
+msgid "Please select the movie path..."
+msgstr ""
 
 msgid "Please set up tuner B"
 msgstr "Prašome atlikti imtuvo B nustatymą."
@@ -1698,6 +1724,9 @@ msgstr "Pašalinti žymeklį"
 msgid "Remove plugins"
 msgstr "Pašalinti priedus"
 
+msgid "Rename"
+msgstr ""
+
 msgid "Repeat"
 msgstr "Pakartoti"
 
@@ -1730,19 +1759,19 @@ msgstr ""
 "nustatymus dabar."
 
 msgid "Resume from last position"
-msgstr ""
+msgstr "Tęsti nuo paskutinės pozicijos"
 
 msgid "Resuming playback"
-msgstr ""
+msgstr "Tęsti leidimą"
 
 msgid "Return to movie list"
-msgstr ""
+msgstr "Grįžti į filmų sąrašą"
 
 msgid "Return to previous service"
-msgstr ""
+msgstr "Grįžkite į buvusį kanalą"
 
 msgid "Rewind speeds"
-msgstr ""
+msgstr "Persukimo greitis"
 
 msgid "Right"
 msgstr "Dešinys"
@@ -1870,6 +1899,9 @@ msgstr "Ieškoti"
 msgid "Select HDD"
 msgstr "Pasirinkite kietą diską"
 
+msgid "Select Location"
+msgstr ""
+
 msgid "Select Network Adapter"
 msgstr "Pasirinkite tinklo adapterį"
 
@@ -1892,10 +1924,10 @@ msgid "Service"
 msgstr "Apie kanalą"
 
 msgid "Service Scan"
-msgstr "Kanalų Paieška"
+msgstr "Kanalų paieška"
 
 msgid "Service Searching"
-msgstr "Kanalų Paieška"
+msgstr "Kanalų paieška"
 
 msgid "Service has been added to the favourites."
 msgstr "Kanalas ko gero jau įtrauktas į mėgstamiausius."
@@ -1994,7 +2026,7 @@ msgid "Single transponder"
 msgstr "Vienintelis transponderis"
 
 msgid "Singlestep (GOP)"
-msgstr ""
+msgstr "Vienpakopis (GOP)"
 
 msgid "Sleep Timer"
 msgstr "Budėjimo laikmatis"
@@ -2013,7 +2045,7 @@ msgid "Slow"
 msgstr "Lėtas"
 
 msgid "Slow Motion speeds"
-msgstr ""
+msgstr "Palėtinto judėjimo greitis"
 
 msgid "Some plugins are not available:\n"
 msgstr "Kai kurių priedų nėra:\n"
@@ -2060,7 +2092,7 @@ msgid "Start"
 msgstr "Pradėti"
 
 msgid "Start from the beginning"
-msgstr ""
+msgstr "Pradžia nuo pradžios"
 
 msgid "Start recording?"
 msgstr "Pradėti įrašymą?"
@@ -2072,7 +2104,7 @@ msgid "Starting on"
 msgstr "Paleidimas įjungtas"
 
 msgid "Startwizard"
-msgstr "Nustatymų Vedlys"
+msgstr "Nustatymų vedlys"
 
 msgid "Step "
 msgstr "Žingsnis"
@@ -2194,7 +2226,7 @@ msgid "The sleep timer has been disabled."
 msgstr "Budėjimo laikmatis jau išjungtas."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr ""
+msgstr "Laikmačio failas (timers.xml) yra sugadintas ir nebuvo užkrautas."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2204,6 +2236,11 @@ msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "Nustatymų vedlys baigė darbą."
+
+msgid ""
+"There might not be enough Space on the selected Partition.\n"
+"Do you really want to continue?"
+msgstr ""
 
 msgid "This is step number 2."
 msgstr "Šis žingsnis yra numeris 2."
@@ -2360,11 +2397,15 @@ msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
+"Negalima patikrinti failų sistemos.\n"
+"Klaida:"
 
 msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
+"Negalima inicializuoti kieto disko. \n"
+"Klaida:"
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Perjungimo komanda DiSEqC"
@@ -2538,7 +2579,7 @@ msgid "Yes, restore the settings now"
 msgstr "Taip, atkurti nustatymus dabar"
 
 msgid "Yes, returning to movie list"
-msgstr ""
+msgstr "Taip, grįžti į filmų sąrašą"
 
 msgid "Yes, view the tutorial"
 msgstr "Taip, žiūrėti instrukciją"
@@ -3020,10 +3061,10 @@ msgid "play entry"
 msgstr "leisti įrašą"
 
 msgid "play from next mark or playlist entry"
-msgstr ""
+msgstr "leisti nuo kito žymeklio arba grojaraščio užduoties"
 
 msgid "play from previous mark or playlist entry"
-msgstr ""
+msgstr "leisti nuo buvusio žymeklio arba grojaraščio užduoties"
 
 msgid "please press OK when ready"
 msgstr "prašome paspausti OK, kai būsite pasiruošę"
@@ -3107,6 +3148,9 @@ msgstr "sekundžių."
 
 msgid "select movie"
 msgstr "pasirinkite filmą"
+
+msgid "select the movie path"
+msgstr ""
 
 msgid "service pin"
 msgstr "kanalo PIN"
