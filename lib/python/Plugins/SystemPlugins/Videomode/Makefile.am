@@ -5,4 +5,5 @@ install_PYTHON =	\
 	plugin.py \
 	VideoHardware.py \
 	VideoWizard.py \
-	videowizard.xml
+	videowizard.xml \
+	*.png

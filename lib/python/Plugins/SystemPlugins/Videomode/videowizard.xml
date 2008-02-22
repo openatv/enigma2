@@ -4,6 +4,7 @@
 		<displaytext value="Select video input" />
 		<list type="dynamic" source="listInputChannels" evaluation="inputSelectionMade" onselect="inputSelectionMoved" />
 		<code>
+self["portpic"].show()
 self["arrowdown"].moveTo(557, 232, 1)
 self["arrowdown"].startMoving()
 self["arrowup"].moveTo(800, 232, 1)
@@ -25,6 +26,7 @@ self["arrowdown"].startMoving()
 self["arrowup"].startMoving()
 self["rc"].moveTo(500, 50, 1)
 self["rc"].startMoving()
+self["portpic"].hide()
 		</code>
 	</step>
 	<step id="rateselection" nextstep="dvirateintroduction" timeout="10" timeoutaction="selectnext">

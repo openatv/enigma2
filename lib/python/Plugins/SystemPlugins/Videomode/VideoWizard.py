@@ -1,36 +1,61 @@
-from Screens.Wizard import Wizard, wizardManager
+from Screens.Wizard import Wizard, wizardManager, WizardSummary
 import sys
 from VideoHardware import video_hw
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.config import config, ConfigBoolean, configfile
 
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from Tools.LoadPixmap import LoadPixmap
+
 config.misc.showtestcard = ConfigBoolean(default = False)
+
+class VideoWizardSummary(WizardSummary):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget name="text" position="6,4" size="120,42" font="Regular;14" transparent="1" />
+		<widget source="parent.list" render="Label" position="6,25" size="120,21" font="Regular;16">
+			<convert type="StringListSelection" />
+		</widget>
+		<!--widget name="pic" pixmap="%s" position="6,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->
+	</screen>""" #% (resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/lcd_Scart.png"))
+	
+	def __init__(self, session, parent):
+		WizardSummary.__init__(self, session, parent)
+		#self["pic"] = Pixmap()
+		
+	def setLCDPicCallback(self):
+		self.parent.setLCDTextCallback(self.setText)
+		
+	def setLCDPic(self, file):
+		self["pic"].instance.setPixmapFromFile(file)
 
 class VideoWizard(Wizard):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
-			<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
+			<widget source="list" render="Listbox" position="200,300" size="290,200" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
 			</widget>
 			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />			
-			<widget name="stepslider" position="50,500" zPosition="1" borderWidth="2" size="440,20" backgroundColor="dark" />
 			<widget name="wizard" pixmap="wizard.png" position="40,50" zPosition="10" size="110,174" transparent="1" alphatest="on"/>
+			<widget name="portpic" pixmap="%s" position="50,300" zPosition="10" size="150,150" transparent="1" alphatest="on"/>
 			<widget name="rc" pixmap="rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup2" pixmap="arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
-		</screen>"""
+		</screen>""" % (resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/Scart.png"))
 	
 	def __init__(self, session):
 		# FIXME anyone knows how to use relative paths from the plugin's directory?
-		self.xmlfile = sys.path[0] + "/Plugins/SystemPlugins/Videomode/videowizard.xml"
+		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/videowizard.xml")
 		self.hw = video_hw
 		
-		Wizard.__init__(self, session, showSteps = False)
+		Wizard.__init__(self, session, showSteps = False, showStepSlider = False)
 		self["wizard"] = Pixmap()
 		self["rc"] = MovingPixmap()
+		self["portpic"] = Pixmap()
 		self["arrowdown"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
 		self["arrowup2"] = MovingPixmap()
@@ -42,7 +67,7 @@ class VideoWizard(Wizard):
 	def createSummary(self):
 		print "++++++++++++***++**** VideoWizard-createSummary"
 		from Screens.Wizard import WizardSummary
-		return WizardSummary
+		return VideoWizardSummary
 		
 	def markDone(self):
 		pass
@@ -52,7 +77,8 @@ class VideoWizard(Wizard):
 
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
-				list.append((port, port))
+				list.append((port,port))
+		print "listInputChannels:", list
 		return list
 
 	def inputSelectionMade(self, index):
@@ -63,6 +89,8 @@ class VideoWizard(Wizard):
 	def inputSelectionMoved(self):
 		print "input selection moved:", self.selection
 		self.inputSelect(self.selection)
+		if self["portpic"].instance is not None:
+			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + self.selection + ".png"))
 		
 	def inputSelect(self, port):
 		print "inputSelect:", port
@@ -76,6 +104,7 @@ class VideoWizard(Wizard):
 		for mode in self.hw.getModeList(self.port):
 			if mode[0] != "PC":
 				list.append((mode[0], mode[0]))
+		print "modeslist:", list
 		return list
 	
 	def modeSelectionMade(self, index):
