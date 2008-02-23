@@ -7,6 +7,7 @@ from Components.Sources.FrontendInfo import FrontendInfo
 from Components.Sources.Source import Source
 from Components.Sources.TunerInfo import TunerInfo
 from Components.Sources.RecordState import RecordState
+from Components.Renderer.FrontpanelLed import FrontpanelLed
 
 class SessionGlobals(Screen):
 	def __init__(self, session):
@@ -21,6 +22,8 @@ class SessionGlobals(Screen):
 		self["RecordState"] = RecordState(session)
 		session.nav.event.append(self.serviceEvent)
 		self.service_state = 0
+
+		FrontpanelLed().connect(self["RecordState"])
 
 	def serviceEvent(self, evt):
 		if evt == iPlayableService.evStart:
