@@ -6,8 +6,6 @@ class FrontpanelLed(Element):
 		Element.__init__(self)
 
 	def changed(self, *args, **kwargs):
-		print ">> Frontpanel LED changed"
-		print ">> FP led:", self.source.value
 		if self.source.value:
 			pattern = 0x55555555
 			speed = 20
