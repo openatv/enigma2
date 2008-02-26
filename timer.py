@@ -21,7 +21,13 @@ class TimerEntry:
 		self.backoff = 0
 		
 		self.disabled = False
-		
+
+	def resetState(self):
+		self.state = self.StateWaiting
+		self.cancelled = False
+		self.first_try_prepare = True
+		self.timeChanged()
+
 	def resetRepeated(self):
 		self.repeated = int(0)
 
