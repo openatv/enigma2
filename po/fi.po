@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 00:23+0100\n"
-"PO-Revision-Date: 2008-02-16 12:00+0200\n"
+"POT-Creation-Date: 2008-02-27 00:39+0100\n"
+"PO-Revision-Date: 2008-02-24 11:00+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -96,6 +96,9 @@ msgstr "12V ulostulo"
 msgid "13 V"
 msgstr "13 V"
 
+msgid "16:10"
+msgstr ""
+
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -124,6 +127,9 @@ msgid "30 minutes"
 msgstr "30 minuuttia"
 
 msgid "4"
+msgstr ""
+
+msgid "4:3"
 msgstr ""
 
 msgid "4:3 Letterbox"
@@ -167,6 +173,8 @@ msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
+"Asetustiedostoa (%s) on muokattu asennuksen jälkeen.\n"
+"Haluatko säilyttää oman versiosi?"
 
 msgid ""
 "A finished record timer wants to set your\n"
@@ -299,6 +307,8 @@ msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
 msgstr ""
+"Kun alkuasennus on päättynyt, pitää sinun valita lapsilukolla suojattavat "
+"kanavat. Katso ohjekirjasta kuinka se tehdään."
 
 msgid "Album:"
 msgstr "Albumi:"
@@ -317,6 +327,9 @@ msgstr "TV-tyylinen radiokanavien selaus"
 
 msgid "Alternative services tuner priority"
 msgstr "Virittimien prioriteetti"
+
+msgid "An empty filename is illegal."
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabia"
@@ -341,6 +354,9 @@ msgstr "Äänivalinnat"
 
 msgid "Auto"
 msgstr "Automaattinen"
+
+msgid "Automatic"
+msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Automaattihaku"
@@ -373,7 +389,7 @@ msgid "Backup is done. Please press OK to see the result."
 msgstr "Varmuuskopio valmis. Paina OK nähdäksesi tulokset."
 
 msgid "Band"
-msgstr "Taajuus"
+msgstr "Taajuusalue"
 
 msgid "Bandwidth"
 msgstr "Kaistanleveys"
@@ -382,16 +398,16 @@ msgid "Begin time"
 msgstr "Aloitusaika"
 
 msgid "Behavior when a movie is started"
-msgstr "Mitä tehdään toiston alussa"
+msgstr "Toiminto toiston alussa"
 
 msgid "Behavior when a movie is stopped"
-msgstr "Mitä tehdään kun toisto pysäytetään"
+msgstr "Toiminto kun toisto pysäytetään"
 
 msgid "Behavior when a movie reaches the end"
-msgstr "Mitä tehdään kun tallenne loppuu"
+msgstr "Toiminto kun tallenne loppuu"
 
 msgid "Behaviour of 'pause' when paused"
-msgstr "Pause-näppäimen toiminto pysäytyskuvassa"
+msgstr "Pause-näppäimen toiminto"
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "0-näppäimen toiminta PiP-tilassa"
@@ -405,7 +421,7 @@ msgstr "Väylä: "
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
-msgstr "Paina kaukosäätimen OK-painiketta nähdäksesi kanavatiedot ruudulla."
+msgstr "Paina kaukosäätimen OK-painiketta nähdäksesi tietopalkki ruudulla."
 
 msgid "C-Band"
 msgstr "C-taajuusalue"
@@ -444,10 +460,10 @@ msgid "Change pin code"
 msgstr "Vaihda tunnusluku"
 
 msgid "Change service pin"
-msgstr "Vaihda palvelun tunnusluku"
+msgstr "Vaihda kanavan tunnusluku"
 
 msgid "Change service pins"
-msgstr "Vaihda palvelun tunnusluvut"
+msgstr "Vaihda kanavan tunnusluvut"
 
 msgid "Change setup pin"
 msgstr "Vaihda asetusten tunnusluku"
@@ -470,6 +486,9 @@ msgstr "Tarkista"
 msgid "Checking Filesystem..."
 msgstr "Tarkistetaan tiedostojärjestelmää"
 
+msgid "Choose Location"
+msgstr ""
+
 msgid "Choose Tuner"
 msgstr "Valitse viritin"
 
@@ -478,6 +497,9 @@ msgstr "Valitse suosikkilista"
 
 msgid "Choose source"
 msgstr "Valitse lähde"
+
+msgid "Choose target folder"
+msgstr ""
 
 msgid "Choose your Skin"
 msgstr "Valitse teema"
@@ -533,6 +555,9 @@ msgstr "Muokkaustila"
 
 msgid "Configuring"
 msgstr "Muokataan"
+
+msgid "Confirm"
+msgstr ""
 
 msgid "Conflicting timer"
 msgstr "Ristiriita ajastusten välillä"
@@ -673,10 +698,10 @@ msgid ""
 msgstr ""
 
 msgid "Discontinuous playback at speeds above"
-msgstr "Hyppivä toisto nopeuksilla yli"
+msgstr "Hyppivä kelaus kun nopeus ylittää"
 
 msgid "Discontinuous playback frame repeat count"
-msgstr "Hyppivän toiston ruutujen toistomäärä"
+msgstr "Ruudun toistomäärä hyppivällä kelauksella"
 
 msgid "Dish"
 msgstr "Antenni"
@@ -719,7 +744,7 @@ msgid ""
 "All data on the disk will be lost!"
 msgstr ""
 "Haluatko varmasti alustaa kiintolevyn?\n"
-"(Kaikki levyllä oleva tieto menetetään!)"
+"Kaikki levyllä oleva tieto menetetään!"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -765,7 +790,7 @@ msgid "Do you want to view a tutorial?"
 msgstr "Haluatko katsoa opasohjelman?"
 
 msgid "Don't stop current event but disable coming events"
-msgstr "Estä tulevat, mutta ei nykyistä ajastusta"
+msgstr "Älä pysäytä tallennusta, mutta estä tulevat ajastukset"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
@@ -807,7 +832,7 @@ msgid "East"
 msgstr "Itä"
 
 msgid "Edit services list"
-msgstr "Muokkaa palvelulistaa"
+msgstr "Muokkaa kanavalistaa"
 
 msgid "Electronic Program Guide"
 msgstr "Ohjelmaopas"
@@ -850,16 +875,16 @@ msgid ""
 msgstr ""
 
 msgid "Enter Fast Forward at speed"
-msgstr "Eteenpäinkelauksen aloitussnopeus"
+msgstr "Aloita kelaus eteenpäin nopeudella"
 
 msgid "Enter Rewind at speed"
-msgstr "Taaksepäinkelauksen aloitusnopeus"
+msgstr "Aloita kelaus taaksepäin nopeudella"
 
 msgid "Enter main menu..."
 msgstr "Mene päävalikkoon..."
 
 msgid "Enter the service pin"
-msgstr "Syötä palvelun tunnusluku"
+msgstr "Syötä kanavan tunnusluku"
 
 msgid "Error"
 msgstr "Virhe"
@@ -906,7 +931,7 @@ msgid "Fast DiSEqC"
 msgstr "Nopea DiSEqC"
 
 msgid "Fast Forward speeds"
-msgstr "Eteenpäinkelauksen nopeudet"
+msgstr "Kelausnopeudet eteenpäin"
 
 msgid "Fast epoch"
 msgstr ""
@@ -915,7 +940,7 @@ msgid "Favourites"
 msgstr "Suosikit"
 
 msgid "Filesystem Check..."
-msgstr ""
+msgstr "Tiedostojärjestelmän tarkistus..."
 
 msgid "Filesystem contains uncorrectable errors"
 msgstr "Tiedostojärjestelmässä on virheitä, joita ei voida korjata"
@@ -930,7 +955,7 @@ msgid "French"
 msgstr "Ranska"
 
 msgid "Frequency"
-msgstr "Toistokerrat"
+msgstr "Taajuus"
 
 msgid "Frequency bands"
 msgstr "Taajuusalueet"
@@ -955,7 +980,7 @@ msgid "Frontprocessor version: %d"
 msgstr "Etupaneelin suorittimen versio: %d"
 
 msgid "Fsck failed"
-msgstr ""
+msgstr "Tarkistus epäonnistui"
 
 msgid "Function not yet implemented"
 msgstr "Toimintoa ei ole vielä toteutettu"
@@ -1091,6 +1116,9 @@ msgstr "Keskitaso"
 msgid "Internal Flash"
 msgstr "Sisäinen flash-muisti"
 
+msgid "Invalid Location"
+msgstr ""
+
 msgid "Inversion"
 msgstr "Inversio"
 
@@ -1099,6 +1127,10 @@ msgstr "Käänteinen tekstin ja taustan väritys"
 
 msgid "Italian"
 msgstr "Italia"
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+msgid "Just Scale"
+msgstr ""
 
 msgid "Keyboard Map"
 msgstr "Näppäinasettelu"
@@ -1128,13 +1160,17 @@ msgid "Language..."
 msgstr "Kielivalinta..."
 
 msgid "Last speed"
-msgstr "Viimeinen nopeus"
+msgstr "Aikaisempi nopeus"
 
 msgid "Latitude"
 msgstr "Leveysaste"
 
 msgid "Left"
 msgstr "Vasen"
+
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Letterbox"
+msgstr ""
 
 msgid "Limit east"
 msgstr "Raja itään"
@@ -1153,6 +1189,9 @@ msgstr "Luettelo tallennusvälineistä"
 
 msgid "Lithuanian"
 msgstr "Liettua"
+
+msgid "Location"
+msgstr ""
 
 msgid "Lock:"
 msgstr "Lukitse:"
@@ -1251,7 +1290,7 @@ msgid "Multi EPG"
 msgstr "Kaikki kanavat"
 
 msgid "Multiple service support"
-msgstr "Usean palvelun tuki"
+msgstr "Usean kanavan tuki"
 
 msgid "Multisat"
 msgstr "Usea satelliitti"
@@ -1366,18 +1405,26 @@ msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
+"Viritintä ei ole määritetty!\n"
+"Määritä virittimen asetukset ennen kanavahaun aloittamista."
 
 msgid ""
 "No valid service PIN found!\n"
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
+"Kanavan lapsilukon tunnuslukua ei löydy!\n"
+"Haluatko määrittää kanavan tunnusluvun?\n"
+"Jos vastaat 'Ei', kanavaa ei suojata tunnusluvulla."
 
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
+"Asetuksien tunnuslukua ei löydy!\n"
+"Haluatko määrittää asetuksien tunnusluvun?\n"
+"Jos vastaat 'Ei', asetuksia ei suojata tunnusluvulla."
 
 msgid "No, but restart from begin"
 msgstr "Ei, aloita alusta"
@@ -1453,6 +1500,10 @@ msgstr "Pakettienhallinta"
 msgid "Page"
 msgstr "Sivu"
 
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+msgid "Pan&Scan"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Lapsilukko"
 
@@ -1466,16 +1517,20 @@ msgid "Parental control type"
 msgstr "Lapsilukon tyyppi"
 
 msgid "Pause movie at end"
-msgstr "Pysäytä tallenne lopussa"
+msgstr "Pysähdy tallenteen loppuun"
 
 msgid "PiPSetup"
 msgstr "PiP-kuvan asetukset"
+
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Pillarbox"
+msgstr ""
 
 msgid "Pin code needed"
 msgstr "Tarvitaan tunnusluku"
 
 msgid "Play"
-msgstr "Toista"
+msgstr "Jatka toistoa"
 
 msgid "Play recorded movies..."
 msgstr "Toista tallenteet..."
@@ -1497,6 +1552,9 @@ msgstr "Anna uuden suosikkilistan nimi"
 
 msgid "Please enter a name for the new marker"
 msgstr "Uusi väliotsikko"
+
+msgid "Please enter a new filename"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Syötä tiedoston nimi (tyhjä = nykyinen päiväys)"
@@ -1524,6 +1582,9 @@ msgstr "Valitse alipalvelu..."
 
 msgid "Please select keyword to filter..."
 msgstr "Valitse hakusana..."
+
+msgid "Please select the movie path..."
+msgstr ""
 
 #  Ohjatun asennuksen (Startup Wizard) nelosruudun ohjeteksti
 msgid "Please set up tuner B"
@@ -1712,6 +1773,9 @@ msgstr "Poista merkki"
 msgid "Remove plugins"
 msgstr "Poista lisäosia"
 
+msgid "Rename"
+msgstr ""
+
 msgid "Repeat"
 msgstr "Toista"
 
@@ -1719,7 +1783,7 @@ msgid "Repeat Type"
 msgstr "Ajastus toistetaan"
 
 msgid "Repeating event currently recording... What do you want to do?"
-msgstr "Toistuva ajastus tallentumassa... Mitä haluat tehdä?"
+msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
 
 msgid "Reset"
 msgstr "Käynnistä CA-moduuli uudelleen"
@@ -1747,16 +1811,16 @@ msgid "Resume from last position"
 msgstr "Jatka viimeksi katsotusta kohdasta"
 
 msgid "Resuming playback"
-msgstr "Toiston jatko"
+msgstr "Toisto jatkuu viimeksi katsotusta kohdasta"
 
 msgid "Return to movie list"
-msgstr "Palaa tallenneluetteloon"
+msgstr "Avaa tallenneluettelo"
 
 msgid "Return to previous service"
 msgstr "Palaa TV-kanavalle"
 
 msgid "Rewind speeds"
-msgstr "Taaksepäinkelauksen nopeudet"
+msgstr "Kelausnopeudet taaksepäin"
 
 msgid "Right"
 msgstr "Oikea"
@@ -1884,6 +1948,9 @@ msgstr "Etsi"
 msgid "Select HDD"
 msgstr "Valitse kiintolevy"
 
+msgid "Select Location"
+msgstr ""
+
 msgid "Select Network Adapter"
 msgstr "Valitse verkkosovitin"
 
@@ -1977,7 +2044,7 @@ msgid "Show positioner movement"
 msgstr "Näytä kääntömoottorin toiminta tietopalkissa"
 
 msgid "Show services beginning with"
-msgstr "Näytä palvelut jotka alkavat"
+msgstr "Näytä kanavat jotka alkavat"
 
 msgid "Show the radio player..."
 msgstr "Näytä radiosoitin..."
@@ -2010,7 +2077,7 @@ msgid "Single transponder"
 msgstr "Yksi lähetin"
 
 msgid "Singlestep (GOP)"
-msgstr ""
+msgstr "Kuva-kuvalta (GOP)"
 
 msgid "Sleep Timer"
 msgstr "Uniajastin"
@@ -2111,10 +2178,10 @@ msgid "Stop Timeshift?"
 msgstr "Lopetetaanko ajansiirtotallennus?"
 
 msgid "Stop current event and disable coming events"
-msgstr "Pysäytä nykyinen ja estä tulevat ajastukset"
+msgstr "Pysäytä tallennus ja estä tulevat ajastukset"
 
 msgid "Stop current event but not coming events"
-msgstr "Estä nykyinen, mutta ei tulevia ajastuksia"
+msgstr "Pysäytä tallennus, mutta älä estä tulevia ajastuksia"
 
 msgid "Stop playing this movie?"
 msgstr "Lopetetaanko tallenteen toistaminen?"
@@ -2229,6 +2296,11 @@ msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "Velho on lopettanut."
+
+msgid ""
+"There might not be enough Space on the selected Partition.\n"
+"Do you really want to continue?"
+msgstr ""
 
 msgid "This is step number 2."
 msgstr "Tämä on vaihe 2."
@@ -2654,7 +2726,7 @@ msgid ""
 "Do you want to define keywords now?"
 msgstr ""
 "Sinun pitää ensin määritellä hakusanat.\n"
-"Määrittele ne menu-napin kautta.\n"
+"Määrittele ne Menu-napin kautta.\n"
 "Haluatko määritellä hakusanat nyt?"
 
 msgid ""
@@ -2695,6 +2767,8 @@ msgstr ""
 
 msgid "Zap back to service before satfinder?"
 msgstr ""
+"Vaihdetaanko takaisin kanavalle, jota katsottiin\n"
+"ennen satelliittietsimen käyttöä?"
 
 msgid "[alternative edit]"
 msgstr "[Vaihtoehtojen lisäys ja poisto]"
@@ -2844,7 +2918,7 @@ msgid "disabled"
 msgstr "estetty"
 
 msgid "do not change"
-msgstr "ei muutosta"
+msgstr "Ei muutosta"
 
 msgid "do nothing"
 msgstr "älä tee mitään"
@@ -2931,7 +3005,7 @@ msgid "hours"
 msgstr "tuntia"
 
 msgid "immediate shutdown"
-msgstr "välitön sammutus"
+msgstr "Sammuta heti"
 
 #, python-format
 msgid ""
@@ -3060,13 +3134,13 @@ msgid "only /etc/enigma2 directory"
 msgstr "vain /etc/enigma2-hakemisto"
 
 msgid "open servicelist"
-msgstr "Avaa palvelulista"
+msgstr "Avaa kanavalista"
 
 msgid "open servicelist(down)"
-msgstr "Avaa palvelulista(alaspäin)"
+msgstr "Avaa kanavalista(alaspäin)"
 
 msgid "open servicelist(up)"
-msgstr "Avaa palvelulista(ylöspäin)"
+msgstr "Avaa kanavalista(ylöspäin)"
 
 msgid "pass"
 msgstr "hyväksytty"
@@ -3166,8 +3240,11 @@ msgstr "sekuntia."
 msgid "select movie"
 msgstr "valitse tallenne"
 
+msgid "select the movie path"
+msgstr ""
+
 msgid "service pin"
-msgstr "palveluiden tunnusluku"
+msgstr "kanavien tunnusluku"
 
 msgid "setup pin"
 msgstr "asetusten tunnusluku"
@@ -3272,7 +3349,7 @@ msgid "this recording"
 msgstr "tämä tallennus"
 
 msgid "this service is protected by a parental control pin"
-msgstr "tämä palvelu on suojattu lapsilukolla"
+msgstr "tämä kanava on suojattu lapsilukolla"
 
 msgid "toggle a cut mark at the current position"
 msgstr "aseta leikkausmerkki nykyiseen kohtaan"
@@ -3325,7 +3402,7 @@ msgstr ""
 "Katso käyttöoppaasta lisäohjeita ennen kuin käynnistät laitteen uudelleen."
 
 msgid "zap"
-msgstr "vaihto"
+msgstr "kanavanvaihto"
 
 msgid "zapped"
 msgstr "vaihdettu"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-21 20:09+0100\n"
-"PO-Revision-Date: 2008-02-20 22:44+0200\n"
+"POT-Creation-Date: 2008-02-27 00:39+0100\n"
+"PO-Revision-Date: 2008-02-22 00:11+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -98,6 +98,9 @@ msgstr "12V išėjimas"
 msgid "13 V"
 msgstr "13 V"
 
+msgid "16:10"
+msgstr ""
+
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -127,6 +130,9 @@ msgstr "30 minučių"
 
 msgid "4"
 msgstr "4"
+
+msgid "4:3"
+msgstr ""
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -322,7 +328,7 @@ msgid "Alternative services tuner priority"
 msgstr "Kitų kanalų imtuvo pirmenybė"
 
 msgid "An empty filename is illegal."
-msgstr ""
+msgstr "Tuščias failo pavadinimas negalimas"
 
 msgid "Arabic"
 msgstr "Arabų"
@@ -347,6 +353,9 @@ msgstr "Garso nustatymai..."
 
 msgid "Auto"
 msgstr "Automatinis"
+
+msgid "Automatic"
+msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Automatinė paieška"
@@ -477,7 +486,7 @@ msgid "Checking Filesystem..."
 msgstr "Tikrinti failų sistemą..."
 
 msgid "Choose Location"
-msgstr ""
+msgstr "Išsirinkite vietą"
 
 msgid "Choose Tuner"
 msgstr "Pasirinkite imtuvą"
@@ -489,7 +498,7 @@ msgid "Choose source"
 msgstr "Pasirinkite šaltinį"
 
 msgid "Choose target folder"
-msgstr ""
+msgstr "Išsirinkite aplanką"
 
 msgid "Choose your Skin"
 msgstr "Išsirinkite temą"
@@ -543,7 +552,7 @@ msgid "Configuring"
 msgstr "Konfigūruojama"
 
 msgid "Confirm"
-msgstr ""
+msgstr "Patvirtinti"
 
 msgid "Conflicting timer"
 msgstr "Laikmačio nesuderinamumas"
@@ -1095,7 +1104,7 @@ msgid "Internal Flash"
 msgstr "Vidinė atmintinė"
 
 msgid "Invalid Location"
-msgstr ""
+msgstr "Neteisinga vieta"
 
 msgid "Inversion"
 msgstr "Pervertimas"
@@ -1105,6 +1114,10 @@ msgstr "Monitoriaus pervertimas"
 
 msgid "Italian"
 msgstr "Italų"
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+msgid "Just Scale"
+msgstr ""
 
 msgid "Keyboard Map"
 msgstr "Klaviatūros išdėstymas"
@@ -1142,6 +1155,10 @@ msgstr "Platuma"
 msgid "Left"
 msgstr "Kairė"
 
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Letterbox"
+msgstr ""
+
 msgid "Limit east"
 msgstr "Rytų riba"
 
@@ -1161,7 +1178,7 @@ msgid "Lithuanian"
 msgstr "Lietuvių"
 
 msgid "Location"
-msgstr ""
+msgstr "Vieta"
 
 msgid "Lock:"
 msgstr "Lock:"
@@ -1463,6 +1480,10 @@ msgstr "Paketų valdymas"
 msgid "Page"
 msgstr "Puslapis"
 
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+msgid "Pan&Scan"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Tėvų kontrolė"
 
@@ -1480,6 +1501,10 @@ msgstr "Filmo pauzė pabaigoje"
 
 msgid "PiPSetup"
 msgstr "PiP Nustatymas"
+
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Pillarbox"
+msgstr ""
 
 msgid "Pin code needed"
 msgstr "Reikalingas pin kodas"
@@ -1509,7 +1534,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Prašome įrašyti naujo žymeklio pavadinimą"
 
 msgid "Please enter a new filename"
-msgstr ""
+msgstr "Prašome įrašyti naują failo pavadinimą"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Prašome įrašyti failo pavadinimą (tuščias = dabartiniai duomenys)"
@@ -1539,7 +1564,7 @@ msgid "Please select keyword to filter..."
 msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
 
 msgid "Please select the movie path..."
-msgstr ""
+msgstr "Prašome pasirinkti filmo kelią..."
 
 msgid "Please set up tuner B"
 msgstr "Prašome atlikti imtuvo B nustatymą."
@@ -1725,7 +1750,7 @@ msgid "Remove plugins"
 msgstr "Pašalinti priedus"
 
 msgid "Rename"
-msgstr ""
+msgstr "Pervardinti"
 
 msgid "Repeat"
 msgstr "Pakartoti"
@@ -1900,7 +1925,7 @@ msgid "Select HDD"
 msgstr "Pasirinkite kietą diską"
 
 msgid "Select Location"
-msgstr ""
+msgstr "Pasirinkite vietą"
 
 msgid "Select Network Adapter"
 msgstr "Pasirinkite tinklo adapterį"
@@ -2241,6 +2266,8 @@ msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
+"Gali trukti laisvos vietos pasirinktame skaidinyje.\n"
+"Ar norite tęsti?"
 
 msgid "This is step number 2."
 msgstr "Šis žingsnis yra numeris 2."
@@ -3150,7 +3177,7 @@ msgid "select movie"
 msgstr "pasirinkite filmą"
 
 msgid "select the movie path"
-msgstr ""
+msgstr "pasirinkite filmo kelią"
 
 msgid "service pin"
 msgstr "kanalo PIN"
