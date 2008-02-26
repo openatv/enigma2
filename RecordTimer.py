@@ -122,13 +122,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def log(self, code, msg):
 		self.log_entries.append((int(time.time()), code, msg))
 		print "[TIMER]", msg
-	
-	def resetState(self):
-		self.state = self.StateWaiting
-		self.cancelled = False
-		self.first_try_prepare = True
-		self.timeChanged()
-	
+
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
 		begin_date = time.strftime("%Y%m%d %H%M", time.localtime(self.begin))
