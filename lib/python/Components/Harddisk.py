@@ -198,15 +198,15 @@ def existHDD(num):
 	mediafile = tryOpen(num2prochdx(num) + "media")
 
 	if mediafile == "":
-		return -1
+		return False
 
 	line = mediafile.readline()
 	mediafile.close()
-	
+
 	if line.startswith("disk"):
-		return 1
-	
-	return -1
+		return True
+
+	return False
 
 class Partition:
 	def __init__(self, mountpoint, description = "", force_mounted = False):
