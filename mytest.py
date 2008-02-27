@@ -431,9 +431,9 @@ class PowerKey:
 
 	def shutdown(self):
 		print "PowerOff - Now!"
-		if not Screens.Standby.inTryQuitMainloop:
+		if not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
-		
+
 	def powerlong(self):
 		self.standbyblocked = 1
 		action = config.usage.on_long_powerpress.value
