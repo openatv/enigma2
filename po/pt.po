@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma Portuguese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 00:33+0100\n"
-"PO-Revision-Date: 2007-11-18 15:26-0000\n"
+"POT-Creation-Date: 2008-02-27 23:47+0100\n"
+"PO-Revision-Date: 2008-02-27 16:45-0000\n"
 "Last-Translator: Muaitai <muaitai@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -102,6 +102,9 @@ msgstr "12V output"
 msgid "13 V"
 msgstr "13 V"
 
+msgid "16:10"
+msgstr ""
+
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -131,6 +134,9 @@ msgstr "30 minutos"
 
 msgid "4"
 msgstr "4"
+
+msgid "4:3"
+msgstr ""
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -268,7 +274,7 @@ msgid "About..."
 msgstr "Sobre..."
 
 msgid "Action on long powerbutton press"
-msgstr ""
+msgstr "Acção ao premir longo do botão power"
 
 msgid "Activate Picture in Picture"
 msgstr "Activar Imagem na Imagem"
@@ -295,7 +301,7 @@ msgid "Advanced"
 msgstr "Avançadas"
 
 msgid "Advanced Video Setup"
-msgstr ""
+msgstr "Definições de  Video Avançadas"
 
 msgid "After event"
 msgstr "Depois do evento"
@@ -323,6 +329,9 @@ msgid "Alternative radio mode"
 msgstr "Modo radio alternativo"
 
 msgid "Alternative services tuner priority"
+msgstr "Prioridade dos serviços do Tuner"
+
+msgid "An empty filename is illegal."
 msgstr ""
 
 msgid "Arabic"
@@ -335,7 +344,7 @@ msgid "Ask before shutdown:"
 msgstr "Perguntar antes de desligar:"
 
 msgid "Ask user"
-msgstr ""
+msgstr "Consultar Utilizador"
 
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
@@ -348,6 +357,9 @@ msgstr "Opções de Audio"
 
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Automatic"
+msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Busca automatica"
@@ -389,16 +401,16 @@ msgid "Begin time"
 msgstr "Tempo de inicio"
 
 msgid "Behavior when a movie is started"
-msgstr ""
+msgstr "Comportamento ao iniciar um Filme"
 
 msgid "Behavior when a movie is stopped"
-msgstr ""
+msgstr "Comportamento ao parar o Filme"
 
 msgid "Behavior when a movie reaches the end"
-msgstr ""
+msgstr "Comportamento do Filme ao Terminar"
 
 msgid "Behaviour of 'pause' when paused"
-msgstr ""
+msgstr "Comporatmento da pausa, quando pausado"
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "comportamento da tecla 0 no modo PiP"
@@ -473,9 +485,12 @@ msgid "Channellist menu"
 msgstr "Menu da Lista de Canais"
 
 msgid "Check"
-msgstr ""
+msgstr "Verificar"
 
 msgid "Checking Filesystem..."
+msgstr "Verificar sistema de ficheiros"
+
+msgid "Choose Location"
 msgstr ""
 
 msgid "Choose Tuner"
@@ -486,6 +501,9 @@ msgstr "Escolha o Bouquet"
 
 msgid "Choose source"
 msgstr "Escolha a fonte"
+
+msgid "Choose target folder"
+msgstr ""
 
 msgid "Choose your Skin"
 msgstr "Escolha o Tema"
@@ -538,6 +556,9 @@ msgstr "Modo de configuração"
 msgid "Configuring"
 msgstr "A configurar"
 
+msgid "Confirm"
+msgstr ""
+
 msgid "Conflicting timer"
 msgstr "Conflito no Temporizador"
 
@@ -576,7 +597,7 @@ msgid "Current Transponder"
 msgstr "Transponder actual"
 
 msgid "Current settings:"
-msgstr ""
+msgstr "Definições actuais:"
 
 msgid "Current version:"
 msgstr "Versão instalada"
@@ -585,10 +606,10 @@ msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Tempo definido pelo utilizador, teclas- '1'/'3'"
 
 msgid "Custom skip time for '4'/'6'-keys"
-msgstr ""
+msgstr "Definir o tempo para as teclas '4'/'6'"
 
 msgid "Custom skip time for '7'/'9'-keys"
-msgstr ""
+msgstr "Definir o tempo para as teclas '7'/'9'"
 
 msgid "Customize"
 msgstr "Personalizar"
@@ -704,6 +725,8 @@ msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
 msgstr ""
+"Deseja mesmo verificar o sistema de ficheiros?\n"
+"Pode levar algum tempo!!!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -847,10 +870,10 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 msgid "Enter Fast Forward at speed"
-msgstr ""
+msgstr "Velocidade do avance rapido"
 
 msgid "Enter Rewind at speed"
-msgstr ""
+msgstr "Velocidade do retrocesso rapido"
 
 msgid "Enter main menu..."
 msgstr "Menu Principal"
@@ -901,7 +924,7 @@ msgid "Fast DiSEqC"
 msgstr "DiSEqC rápido"
 
 msgid "Fast Forward speeds"
-msgstr ""
+msgstr "Velocidade do avance rapido"
 
 msgid "Fast epoch"
 msgstr "Epoch Rapido"
@@ -910,10 +933,10 @@ msgid "Favourites"
 msgstr "Favoritos"
 
 msgid "Filesystem Check..."
-msgstr ""
+msgstr "Verificação do sistema de ficheiros"
 
 msgid "Filesystem contains uncorrectable errors"
-msgstr ""
+msgstr "O sistema de ficheiros encontrou erros incorrigiveis"
 
 msgid "Finetune"
 msgstr "Sintonizar fino"
@@ -950,7 +973,7 @@ msgid "Frontprocessor version: %d"
 msgstr "Versão do Processador: %d"
 
 msgid "Fsck failed"
-msgstr ""
+msgstr "Fsck failed"
 
 msgid "Function not yet implemented"
 msgstr "Função não implementada"
@@ -1081,6 +1104,9 @@ msgstr "Intermediario"
 msgid "Internal Flash"
 msgstr "Flash Interna"
 
+msgid "Invalid Location"
+msgstr ""
+
 msgid "Inversion"
 msgstr "Inversão"
 
@@ -1089,6 +1115,10 @@ msgstr "Inverter o Display"
 
 msgid "Italian"
 msgstr "Italiano"
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+msgid "Just Scale"
+msgstr ""
 
 msgid "Keyboard Map"
 msgstr "Mapa do Teclado"
@@ -1118,13 +1148,17 @@ msgid "Language..."
 msgstr "Idioma"
 
 msgid "Last speed"
-msgstr ""
+msgstr "Ultima velocidade"
 
 msgid "Latitude"
 msgstr "Latitude"
 
 msgid "Left"
 msgstr "Esquerda"
+
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Letterbox"
+msgstr ""
 
 msgid "Limit east"
 msgstr "Limite de Este"
@@ -1143,6 +1177,9 @@ msgstr "Lista de dispositivos de armazenamento"
 
 msgid "Lithuanian"
 msgstr "Lituano"
+
+msgid "Location"
+msgstr ""
 
 msgid "Lock:"
 msgstr "Lock:"
@@ -1202,7 +1239,7 @@ msgid "Mkfs failed"
 msgstr "Falha em Mkfs"
 
 msgid "Mode"
-msgstr ""
+msgstr "Mode"
 
 msgid "Model: "
 msgstr "Modelo:"
@@ -1440,6 +1477,10 @@ msgstr "Gestor dos Pacotes"
 msgid "Page"
 msgstr "Página"
 
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+msgid "Pan&Scan"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Controle Paternal"
 
@@ -1453,22 +1494,26 @@ msgid "Parental control type"
 msgstr "Tipo de Controle Paternal"
 
 msgid "Pause movie at end"
-msgstr ""
+msgstr "Pausar o filme quando terminar"
 
 msgid "PiPSetup"
 msgstr "Configurar PiP"
+
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Pillarbox"
+msgstr ""
 
 msgid "Pin code needed"
 msgstr "Necessita do PIN"
 
 msgid "Play"
-msgstr ""
+msgstr "Play"
 
 msgid "Play recorded movies..."
 msgstr "Reproduzir filmes gravados..."
 
 msgid "Please Reboot"
-msgstr ""
+msgstr "Por favor reinicie"
 
 msgid "Please change recording endtime"
 msgstr "Altere o tempo final da gravação"
@@ -1484,6 +1529,9 @@ msgstr "Escreva o nome do novo Bouquet"
 
 msgid "Please enter a name for the new marker"
 msgstr "Escreva o nome da nova marca"
+
+msgid "Please enter a new filename"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Introduza o nome do ficheiro (vazio = usra data actual)"
@@ -1511,6 +1559,9 @@ msgstr "Selecione um subserviço..."
 
 msgid "Please select keyword to filter..."
 msgstr "Escreva palavra a filtrar"
+
+msgid "Please select the movie path..."
+msgstr ""
 
 msgid "Please set up tuner B"
 msgstr "Por favor selecione o tuner B"
@@ -1687,7 +1738,7 @@ msgid "Reenter new pin"
 msgstr "Reintroduza o PIN"
 
 msgid "Refresh Rate"
-msgstr ""
+msgstr "Refresh Rate"
 
 msgid "Remove Plugins"
 msgstr "Remover Plugins"
@@ -1697,6 +1748,9 @@ msgstr "Remover Marca"
 
 msgid "Remove plugins"
 msgstr "Remover plugins"
+
+msgid "Rename"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Repetir"
@@ -1728,19 +1782,19 @@ msgid ""
 msgstr "O restauro está concluído. Por favor carregue em OK para activar."
 
 msgid "Resume from last position"
-msgstr ""
+msgstr "Iniciar a partir da ultima posição"
 
 msgid "Resuming playback"
-msgstr ""
+msgstr "Retomar "
 
 msgid "Return to movie list"
-msgstr ""
+msgstr "Voltar à lista de filmes"
 
 msgid "Return to previous service"
-msgstr ""
+msgstr "Voltar ao canal anterior"
 
 msgid "Rewind speeds"
-msgstr ""
+msgstr "Velocidade de retrocesso"
 
 msgid "Right"
 msgstr "Direita"
@@ -1868,6 +1922,9 @@ msgstr "Busca"
 msgid "Select HDD"
 msgstr "Seleccione o Disco"
 
+msgid "Select Location"
+msgstr ""
+
 msgid "Select Network Adapter"
 msgstr "Selecione adaptador de rede"
 
@@ -1922,6 +1979,8 @@ msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
+"Serviço indisponivel!\n"
+"Verifique o Tuner!"
 
 msgid "Serviceinfo"
 msgstr "Info "
@@ -1942,7 +2001,7 @@ msgid "Setup Mode"
 msgstr "Modo configuração"
 
 msgid "Show blinking clock in display during recording"
-msgstr ""
+msgstr "Mostrar o relogio a piscar durante a gravação"
 
 msgid "Show infobar on channel change"
 msgstr "Mostrar Info ao mudar de canal normal"
@@ -1990,7 +2049,7 @@ msgid "Single transponder"
 msgstr "Transponder unico"
 
 msgid "Singlestep (GOP)"
-msgstr ""
+msgstr "Singlestep (GOP)"
 
 msgid "Sleep Timer"
 msgstr "Temporizador"
@@ -2009,7 +2068,7 @@ msgid "Slow"
 msgstr "Lento"
 
 msgid "Slow Motion speeds"
-msgstr ""
+msgstr "Velocidades do modo camera lenta"
 
 msgid "Some plugins are not available:\n"
 msgstr "Alguns plugins não estão disponiveis:\n"
@@ -2056,7 +2115,7 @@ msgid "Start"
 msgstr "Iniciar"
 
 msgid "Start from the beginning"
-msgstr ""
+msgstr "Começar no inicio"
 
 msgid "Start recording?"
 msgstr "Iniciar a gravação?"
@@ -2188,6 +2247,7 @@ msgstr "Desactivou o sleep timer"
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
+"O ficheiro Timer (timers.xml) esta corrompido e não pode ser carregado."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2195,6 +2255,11 @@ msgstr "O assistente pode guardar os seus dados.Deseja guardá-los agora?"
 
 msgid "The wizard is finished now."
 msgstr "O assitente terminou."
+
+msgid ""
+"There might not be enough Space on the selected Partition.\n"
+"Do you really want to continue?"
+msgstr ""
 
 msgid "This is step number 2."
 msgstr "Passo 2."
@@ -2272,10 +2337,10 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Translation"
-msgstr ""
+msgstr "Tradução"
 
 msgid "Translation:"
-msgstr ""
+msgstr "Tradução:"
 
 msgid "Transmission Mode"
 msgstr "Modo de Transmissão"
@@ -2349,11 +2414,15 @@ msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
+"Erro ao completar a verificação do sistema de ficheiros.\n"
+"Erro:"
 
 msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
+"Erro ao iniciar o HDD.\n"
+"Erro:"
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Instrução de DiSECQ não permitida"
@@ -2429,13 +2498,13 @@ msgid "VCR scart"
 msgstr "Entrada VCR"
 
 msgid "Video Output"
-msgstr ""
+msgstr "Saída de Video"
 
 msgid "Video Setup"
-msgstr ""
+msgstr "Definições de Video"
 
 msgid "Video Wizard"
-msgstr ""
+msgstr "Assistente de Video"
 
 msgid "View Rass interactive..."
 msgstr "Ver Rass interactivo..."
@@ -2526,7 +2595,7 @@ msgid "Yes, restore the settings now"
 msgstr "Sim, guardar as definições"
 
 msgid "Yes, returning to movie list"
-msgstr ""
+msgstr "Sim, voltar à lista de filmes"
 
 msgid "Yes, view the tutorial"
 msgstr "Sim, ver o tutorial"
@@ -2853,7 +2922,7 @@ msgid "hours"
 msgstr "horas"
 
 msgid "immediate shutdown"
-msgstr ""
+msgstr "Desligar imediatamente"
 
 #, python-format
 msgid ""
@@ -3002,10 +3071,10 @@ msgid "play entry"
 msgstr "iniciar"
 
 msgid "play from next mark or playlist entry"
-msgstr ""
+msgstr "Iniciar na proxima MARCA ou entrada na lista "
 
 msgid "play from previous mark or playlist entry"
-msgstr ""
+msgstr "Iniciar na ultima MARCA ou entrada na lista "
 
 msgid "please press OK when ready"
 msgstr "Carregue OK quando terminar"
@@ -3090,6 +3159,9 @@ msgstr "segundos."
 msgid "select movie"
 msgstr "seleccione o filme"
 
+msgid "select the movie path"
+msgstr ""
+
 msgid "service pin"
 msgstr "PIN do canal"
 
@@ -3118,7 +3190,7 @@ msgid "show second tag"
 msgstr "mostrar segunda marca"
 
 msgid "show shutdown menu"
-msgstr ""
+msgstr "Mostrar menu desligar"
 
 msgid "show single service EPG..."
 msgstr "mostrar EPG simples"
@@ -3223,7 +3295,7 @@ msgid "wait for ci..."
 msgstr "espere pela ci..."
 
 msgid "wait for mmi..."
-msgstr ""
+msgstr "espere pelo mmi..."
 
 msgid "waiting"
 msgstr "Em espera"
