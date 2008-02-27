@@ -87,6 +87,7 @@ lib/python/Plugins/SystemPlugins/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareUpdate/Makefile
 lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/Makefile
 lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
+lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
