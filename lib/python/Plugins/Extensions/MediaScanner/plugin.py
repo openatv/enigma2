@@ -33,11 +33,24 @@ def scan(session):
 
 	from Components.Harddisk import harddiskmanager
 
-	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions() ]
-	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = "Please Select Medium to be Scanned", list = parts)
+	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
+	if len(parts):
+		session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
 
 def main(session, **kwargs):
 	scan(session)
 
+def menuEntry(*args):
+	mountpoint_choosen(args)
+
+def menuHook(menuid):
+	if menuid != "mainmenu": 
+		return [ ]
+
+	from Components.Harddisk import harddiskmanager
+	from Tools.BoundFunction import boundFunction
+	return [(_("Show files from %s") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug", None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name="MediaScanner", description="Scan Files...", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
+	return [ PluginDescriptor(name="MediaScanner", description="Scan Files...", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook)]
