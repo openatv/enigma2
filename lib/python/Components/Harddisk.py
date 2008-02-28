@@ -42,24 +42,29 @@ class Harddisk:
 		else:
 			return ret + "Master"
 
-	def capacity(self):
+	def diskSize(self):
 		procfile = tryOpen(self.prochdx + "capacity")
-		
+
 		if procfile == "":
-			return ""
+			return 0
 
 		line = procfile.readline()
 		procfile.close()
-		
+
 		try:
 			cap = int(line)
 		except:
+			return 0
+
+		return cap / 1000 * 512 / 1000
+
+	def capacity(self):
+		cap = self.diskSize()
+		if cap == 0:
 			return ""
 		
-		cap = cap / 1000 * 512 / 1000
-		
 		return "%d.%03d GB" % (cap/1024, cap%1024)
-								
+
 	def model(self):
 		procfile = tryOpen(self.prochdx + "model")
 
@@ -132,7 +137,10 @@ class Harddisk:
 		return 0
 
 	def mkfs(self):
-		cmd = "/sbin/mkfs.ext3 -T largefile -m0 " + self.devidex + "part1"
+		cmd = "/sbin/mkfs.ext3 "
+		if self.diskSize() > 4 * 1024:
+			cmd += "-T largefile "
+		cmd += "-m0 " + self.devidex + "part1"
 		res = system(cmd)
 		return (res >> 8)
 
