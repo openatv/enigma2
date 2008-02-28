@@ -21,18 +21,24 @@ class Hotplug(Protocol):
 	def connectionLost(self, reason):
 		data = self.received.split('\0')[:-1]
 
-		print "hotplug:", data
+		v = {}
 
-		if len(data) < 4:
-			return
+		for x in data:
+			i = x.find('=')
+			var, val = x[:i], x[i+1:]
+			v[var] = val
 
-		(action, device, physdev, driver) = data[:4]
+		print "hotplug:", v
+
+		action = v.get("ACTION")
+		device = v.get("DEVPATH")
+		physdevpath = v.get("PHYSDEVPATH")
 
 		dev = device.split('/')[-1]
 
 		if action == "add":
 			print "Medium found in", self.getUserfriendlyDeviceName(dev)
-			harddiskmanager.addHotplugPartition(dev, self.getUserfriendlyDeviceName(dev))
+			harddiskmanager.addHotplugPartition(dev, self.getUserfriendlyDeviceName(physdevpath))
 		elif action == "remove":
 			harddiskmanager.removeHotplugPartition(dev)
 
