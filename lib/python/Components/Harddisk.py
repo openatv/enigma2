@@ -213,6 +213,7 @@ class Partition:
 		self.mountpoint = mountpoint
 		self.description = description
 		self.force_mounted = force_mounted
+		self.is_hotplug = force_mounted # so far; this might change.
 
 	def stat(self):
 		return statvfs(self.mountpoint)
@@ -308,7 +309,7 @@ class HarddiskManager:
 
 		return list
 
-	def getMountedPartitions(self):
-		return [x for x in self.partitions if x.mounted()]
+	def getMountedPartitions(self, onlyhotplug = False):
+		return [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted()]
 
 harddiskmanager = HarddiskManager()
