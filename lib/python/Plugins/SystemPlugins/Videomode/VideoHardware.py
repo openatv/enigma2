@@ -137,6 +137,11 @@ class VideoHardware:
 			open("/proc/stb/video/aspect", "w").write("any")
 			open("/proc/stb/video/policy", "w").write("panscan")
 
+	def saveMode(self, port, mode, rate):
+		config.av.videoport.value = port
+		config.av.videomode[port].value = mode
+		config.av.videorate[mode].value = rate
+
 	def isPortAvailable(self, port):
 		# fixme
 		return True
@@ -194,6 +199,7 @@ class VideoHardware:
 
 		rate = config.av.videorate[mode].value
 		self.setMode(port, mode, rate)
+		
 
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
