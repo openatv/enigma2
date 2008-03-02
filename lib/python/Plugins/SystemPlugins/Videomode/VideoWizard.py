@@ -62,6 +62,7 @@ class VideoWizard(Wizard):
 		
 		self.port = None
 		self.mode = None
+		self.rate = None
 		
 		
 	def createSummary(self):
@@ -135,6 +136,7 @@ class VideoWizard(Wizard):
 	
 	def rateSelectionMade(self, index):
 		print "rateSelectionMade:", index
+		self.rate = index
 		self.rateSelect(index)
 		
 	def rateSelectionMoved(self):
