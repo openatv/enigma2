@@ -2563,7 +2563,16 @@ void eDVBServicePlay::cutlistToCuesheet()
 			}
 		}
 		
-		if (in != out)
+		if (in < 0)
+			in = 0;
+		if (out < 0)
+			out = 0;
+		if (in > length)
+			in = length;
+		if (out > length)
+			out = length;
+		
+		if (in < out)
 			m_cue->addSourceSpan(in, out);
 		
 		in = length;
