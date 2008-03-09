@@ -60,11 +60,27 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value]))
 			self.list.append(getConfigListEntry(_("Refresh Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
 
+		port = config.av.videoport.value
+		if port not in config.av.videomode:
+			mode = None
+		else:
+			mode = config.av.videomode[port].value
+
+		# some modes (720p, 1080i) are always widescreen. Don't let the user select something here, "auto" is not what he wants.
+		force_wide = self.hw.isWidescreenMode(port, mode)
+
+		if not force_wide:
+			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspect))
+
+		if force_wide or config.av.aspect.value in ["16_9", "16_10"]:
+			self.list.append(getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43))
+		elif config.av.aspect.value == "4_3":
+			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169))
+
 #		if config.av.videoport.value == "DVI":
 #			self.list.append(getConfigListEntry(_("Allow Unsupported Modes"), config.av.edid_override))
 		if config.av.videoport.value == "Scart":
 			self.list.append(getConfigListEntry(_("Color Format"), config.av.colorformat))
-			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspectratio))
 			if level >= 1:
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss))
 
