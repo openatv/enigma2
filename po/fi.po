@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-27 00:39+0100\n"
-"PO-Revision-Date: 2008-02-24 11:00+0200\n"
+"POT-Creation-Date: 2008-03-09 17:51+0100\n"
+"PO-Revision-Date: 2008-03-02 14:00+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -329,7 +329,7 @@ msgid "Alternative services tuner priority"
 msgstr "Virittimien prioriteetti"
 
 msgid "An empty filename is illegal."
-msgstr ""
+msgstr "Tyhjä nimi ei ole sallittu"
 
 msgid "Arabic"
 msgstr "Arabia"
@@ -356,7 +356,7 @@ msgid "Auto"
 msgstr "Automaattinen"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automaattinen"
 
 msgid "Automatic Scan"
 msgstr "Automaattihaku"
@@ -487,7 +487,7 @@ msgid "Checking Filesystem..."
 msgstr "Tarkistetaan tiedostojärjestelmää"
 
 msgid "Choose Location"
-msgstr ""
+msgstr "Hakemisto"
 
 msgid "Choose Tuner"
 msgstr "Valitse viritin"
@@ -499,7 +499,7 @@ msgid "Choose source"
 msgstr "Valitse lähde"
 
 msgid "Choose target folder"
-msgstr ""
+msgstr "Valitse kohdehakemisto"
 
 msgid "Choose your Skin"
 msgstr "Valitse teema"
@@ -557,7 +557,7 @@ msgid "Configuring"
 msgstr "Muokataan"
 
 msgid "Confirm"
-msgstr ""
+msgstr "Vahvista"
 
 msgid "Conflicting timer"
 msgstr "Ristiriita ajastusten välillä"
@@ -706,6 +706,12 @@ msgstr "Ruudun toistomäärä hyppivällä kelauksella"
 msgid "Dish"
 msgstr "Antenni"
 
+msgid "Display 16:9 content as"
+msgstr ""
+
+msgid "Display 4:3 content as"
+msgstr ""
+
 msgid "Display Setup"
 msgstr "Etupaneelin näyttö..."
 
@@ -822,7 +828,7 @@ msgid "E"
 msgstr "E"
 
 msgid "EPG Selection"
-msgstr "EPG-valinta"
+msgstr "Ohjelman valinta"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
@@ -1013,7 +1019,7 @@ msgid "Goto position"
 msgstr "Mene sijaintiin"
 
 msgid "Graphical Multi EPG"
-msgstr "Graafinen EPG"
+msgstr "Graafinen Kanavaopas"
 
 msgid "Greek"
 msgstr "Kreikka"
@@ -1117,7 +1123,7 @@ msgid "Internal Flash"
 msgstr "Sisäinen flash-muisti"
 
 msgid "Invalid Location"
-msgstr ""
+msgstr "Virheellinen sijainti"
 
 msgid "Inversion"
 msgstr "Inversio"
@@ -1191,7 +1197,7 @@ msgid "Lithuanian"
 msgstr "Liettua"
 
 msgid "Location"
-msgstr ""
+msgstr "Tallennushakemisto"
 
 msgid "Lock:"
 msgstr "Lukitse:"
@@ -1287,7 +1293,7 @@ msgid "Movielist menu"
 msgstr "Tallenneluettelon valikko"
 
 msgid "Multi EPG"
-msgstr "Kaikki kanavat"
+msgstr "Kanavaopas"
 
 msgid "Multiple service support"
 msgstr "Usean kanavan tuki"
@@ -1442,6 +1448,10 @@ msgstr "Ei, kanavat haetaan myöhemmin käsin"
 msgid "None"
 msgstr "Ei mitään"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "North"
 msgstr "Pohjoinen"
 
@@ -1538,6 +1548,9 @@ msgstr "Toista tallenteet..."
 msgid "Please Reboot"
 msgstr "Uudelleenkäynnistä"
 
+msgid "Please Select Medium to be Scanned"
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "Aseta tallennuksen päättymisaika"
 
@@ -1554,7 +1567,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Uusi väliotsikko"
 
 msgid "Please enter a new filename"
-msgstr ""
+msgstr "Syötä uusi nimi"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Syötä tiedoston nimi (tyhjä = nykyinen päiväys)"
@@ -1584,7 +1597,7 @@ msgid "Please select keyword to filter..."
 msgstr "Valitse hakusana..."
 
 msgid "Please select the movie path..."
-msgstr ""
+msgstr "Valitse tallennehakemisto..."
 
 #  Ohjatun asennuksen (Startup Wizard) nelosruudun ohjeteksti
 msgid "Please set up tuner B"
@@ -1774,7 +1787,7 @@ msgid "Remove plugins"
 msgstr "Poista lisäosia"
 
 msgid "Rename"
-msgstr ""
+msgstr "Muuta nimi"
 
 msgid "Repeat"
 msgstr "Toista"
@@ -1784,6 +1797,9 @@ msgstr "Ajastus toistetaan"
 
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
+
+msgid "Repeats"
+msgstr ""
 
 msgid "Reset"
 msgstr "Käynnistä CA-moduuli uudelleen"
@@ -1949,7 +1965,7 @@ msgid "Select HDD"
 msgstr "Valitse kiintolevy"
 
 msgid "Select Location"
-msgstr ""
+msgstr "Kohdehakemiston valinta"
 
 msgid "Select Network Adapter"
 msgstr "Valitse verkkosovitin"
@@ -2030,6 +2046,10 @@ msgstr "Asetusten laajuus"
 
 msgid "Show blinking clock in display during recording"
 msgstr "Näytä vilkkuva kello tallennusten aikana"
+
+#, python-format
+msgid "Show files from %s"
+msgstr ""
 
 msgid "Show infobar on channel change"
 msgstr "Näytä tietopalkki kanavaa vaihdettaessa"
@@ -2301,6 +2321,8 @@ msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
+"Kiintolevyn osiolla ei välttämättä ole riittävästi tilaa.\n"
+"Haluatko varmasti jatkaa?"
 
 msgid "This is step number 2."
 msgstr "Tämä on vaihe 2."
@@ -2612,9 +2634,9 @@ msgid ""
 msgstr ""
 "Tervetuloa.\n"
 "\n"
-"Tämä on ohjattu asennus-\n"
-"toiminto, joka loihtii Dream-\n"
-"boxisi perusasetukset kuntoon.\n"
+"Tämä asennustoiminto opastaa\n"
+"kuinka laitat Dreamboxin\n"
+"perusasetukset kuntoon.\n"
 "\n"
 "Aloita asennus painamalla\n"
 "kaukosäätimen OK-painiketta."
@@ -3241,7 +3263,7 @@ msgid "select movie"
 msgstr "valitse tallenne"
 
 msgid "select the movie path"
-msgstr ""
+msgstr "valitse tallennehakemisto"
 
 msgid "service pin"
 msgstr "kanavien tunnusluku"
