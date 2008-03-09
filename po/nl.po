@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-03 00:15+0100\n"
-"PO-Revision-Date: 2008-02-28 19:37+0100\n"
-"Last-Translator: Stefmac <stefmacje@hotmail.com>\n"
+"POT-Creation-Date: 2008-03-09 17:51+0100\n"
+"PO-Revision-Date: 2008-03-08 14:26+0100\n"
+"Last-Translator: Michel Weeren <michel@weeren.net>\n"
 "Language-Team: none <michel@weeren.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -275,7 +275,7 @@ msgid "About..."
 msgstr "Uw Dreambox"
 
 msgid "Action on long powerbutton press"
-msgstr "Lang drukken standby knop"
+msgstr "Actie bij lang indrukken stand-by toets"
 
 msgid "Activate Picture in Picture"
 msgstr "Activeer Picture In Picture"
@@ -302,7 +302,7 @@ msgid "Advanced"
 msgstr "Expert"
 
 msgid "Advanced Video Setup"
-msgstr "Uitgebreide Video instellingen"
+msgstr "Geavanceerde video instellingen"
 
 msgid "After event"
 msgstr "Na opname"
@@ -330,10 +330,10 @@ msgid "Alternative radio mode"
 msgstr "Alternative radio modus"
 
 msgid "Alternative services tuner priority"
-msgstr "Aternatieve tuner instellingen"
+msgstr "Alternatieve tuner prioriteit"
 
 msgid "An empty filename is illegal."
-msgstr "Bestandsnaam verplicht"
+msgstr "Een lege bestandsnaam is ongeledig"
 
 msgid "Arabic"
 msgstr "Arabisch"
@@ -402,16 +402,16 @@ msgid "Begin time"
 msgstr "Starttijd"
 
 msgid "Behavior when a movie is started"
-msgstr "Wanneer film word gestart"
+msgstr "Actie na 'start afspelen'"
 
 msgid "Behavior when a movie is stopped"
-msgstr "Wanneer film word gestopt"
+msgstr "Actie na 'stop afspelen'"
 
 msgid "Behavior when a movie reaches the end"
-msgstr "Wanneer film einde bereikt"
+msgstr "Actie na 'einde bestand'"
 
 msgid "Behaviour of 'pause' when paused"
-msgstr "Functie van pauze-toets bij pauze"
+msgstr "Actie bij 'pauzeren'"
 
 msgid "Behaviour of 0 key in PiP-mode"
 msgstr "Functie van 0-toets in PiP"
@@ -487,13 +487,13 @@ msgid "Channellist menu"
 msgstr "Zenderlijst menu"
 
 msgid "Check"
-msgstr "Controleren"
+msgstr "Controleer"
 
 msgid "Checking Filesystem..."
-msgstr "Controleer bestanden..."
+msgstr "Controleert bestandssysteem..."
 
 msgid "Choose Location"
-msgstr "Kies bestemming"
+msgstr "Kies locatie"
 
 msgid "Choose Tuner"
 msgstr "Selecteer een tuner"
@@ -505,7 +505,7 @@ msgid "Choose source"
 msgstr "Bron kiezen"
 
 msgid "Choose target folder"
-msgstr "Kies bestemmingsfolder"
+msgstr "Kies doelmap"
 
 msgid "Choose your Skin"
 msgstr "Kies een Skin"
@@ -559,7 +559,7 @@ msgid "Configuring"
 msgstr "Configureren"
 
 msgid "Confirm"
-msgstr "Bevestig"
+msgstr "Bevestigen"
 
 msgid "Conflicting timer"
 msgstr "Timer conflict!"
@@ -599,7 +599,7 @@ msgid "Current Transponder"
 msgstr "Huidige transponder"
 
 msgid "Current settings:"
-msgstr "Huidige instellingen"
+msgstr "Huidige instellingen:"
 
 msgid "Current version:"
 msgstr "Actuele versie:"
@@ -608,7 +608,7 @@ msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Aangepaste spoeltijd voor de '1'/'3'-toetsen"
 
 msgid "Custom skip time for '4'/'6'-keys"
-msgstr "Aangepaste spoeltijd voor de '4'/'6'-toetsen"
+msgstr "Aangepaste spoeltijd voor de '4'/63'-toetsen"
 
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr "Aangepaste spoeltijd voor de '7'/'9'-toetsen"
@@ -705,13 +705,19 @@ msgstr ""
 "probeer opnieuw..."
 
 msgid "Discontinuous playback at speeds above"
-msgstr "Overgeslagen 'frames' bij snelheden boven"
+msgstr "Langzaam afspelen op bovenstaande snelheid"
 
 msgid "Discontinuous playback frame repeat count"
-msgstr "Aantal overgeslagen 'frames' bij actie hierboven"
+msgstr "Langzaam afspelen op volgende frame-ratio"
 
 msgid "Dish"
 msgstr "Schotel"
+
+msgid "Display 16:9 content as"
+msgstr ""
+
+msgid "Display 4:3 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "LCD-scherm"
@@ -727,8 +733,8 @@ msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
 msgstr ""
-"Wilt u het bestandsysteem controleren?\n"
-"Dit kan even duren!"
+"Wilt u het bestandssysteem echt controleren?\n"
+"Dit kan enige tijd duren!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -874,10 +880,10 @@ msgstr ""
 "© 2007 - Stephan Reichholf"
 
 msgid "Enter Fast Forward at speed"
-msgstr "Start snelheid bij snel vooruit spoelen"
+msgstr "Snel vooruitspoelen op volgende snelheid"
 
 msgid "Enter Rewind at speed"
-msgstr "Start snelheid bij snel achteruit spoelen"
+msgstr "Snel terugspoelen op volgende snelheid"
 
 msgid "Enter main menu..."
 msgstr "Ga naar hoofdmenu..."
@@ -928,7 +934,7 @@ msgid "Fast DiSEqC"
 msgstr "Snelle DiSEqC"
 
 msgid "Fast Forward speeds"
-msgstr "Vooruit spoel snelheden"
+msgstr "Vooruitspoel snelheid"
 
 msgid "Fast epoch"
 msgstr "Snel spoelen"
@@ -937,10 +943,10 @@ msgid "Favourites"
 msgstr "Favorieten"
 
 msgid "Filesystem Check..."
-msgstr "Bestandsysteem controleren..."
+msgstr "Bestandssysteem controle..."
 
 msgid "Filesystem contains uncorrectable errors"
-msgstr "Bestandsysteem bevat onherstelbare fouten"
+msgstr "Bestandssysteem bevat onherstelbare fouten"
 
 msgid "Finetune"
 msgstr "Fijn afst."
@@ -1109,7 +1115,7 @@ msgid "Internal Flash"
 msgstr "Intern geheugen"
 
 msgid "Invalid Location"
-msgstr "Ongeldige bestemming"
+msgstr "Ongeldige locatie"
 
 msgid "Inversion"
 msgstr "Inversie"
@@ -1183,7 +1189,7 @@ msgid "Lithuanian"
 msgstr "Litouws"
 
 msgid "Location"
-msgstr "Bestemming"
+msgstr "Locatie"
 
 msgid "Lock:"
 msgstr "Lock:"
@@ -1243,7 +1249,7 @@ msgid "Mkfs failed"
 msgstr "MakeFileSystem mislukt"
 
 msgid "Mode"
-msgstr "Standaard"
+msgstr "Modus"
 
 msgid "Model: "
 msgstr "Model: "
@@ -1427,6 +1433,10 @@ msgstr "Nee, later handmatig zoeken."
 msgid "None"
 msgstr "geen"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "North"
 msgstr "Noord"
 
@@ -1502,7 +1512,7 @@ msgid "Parental control type"
 msgstr "Kinderslot type"
 
 msgid "Pause movie at end"
-msgstr "Pauzeer film op het einde"
+msgstr "Pauzeer afspelen aan het einde"
 
 msgid "PiPSetup"
 msgstr "PiP Instellingen"
@@ -1521,10 +1531,10 @@ msgid "Play recorded movies..."
 msgstr "Opname afspelen..."
 
 msgid "Please Reboot"
-msgstr "Herstarten A.U.B."
+msgstr "A.u.b. herstarten"
 
 msgid "Please Select Medium to be Scanned"
-msgstr ""
+msgstr "Selecteer het te scannen medium"
 
 msgid "Please change recording endtime"
 msgstr "Wijzig de opname eindtijd a.u.b."
@@ -1543,7 +1553,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Voer de naam voor uw nieuwe markeerpunt in"
 
 msgid "Please enter a new filename"
-msgstr "Gelieve een bestandsnaam in te vullen"
+msgstr "Voer a.u.b. een bestandsnaam in "
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Voer een bestandsnaam in (leeg=gebruik huidige datum)"
@@ -1573,7 +1583,7 @@ msgid "Please select keyword to filter..."
 msgstr "Selecteer te filteren sleutelwoord..."
 
 msgid "Please select the movie path..."
-msgstr "Gelieve het filmpad te kiezen"
+msgstr "Selecteer het opname pad..."
 
 msgid "Please set up tuner B"
 msgstr "Instellingen voor Tuner B"
@@ -1747,7 +1757,7 @@ msgid "Reenter new pin"
 msgstr "Voer nieuwe pincode nogmaals in"
 
 msgid "Refresh Rate"
-msgstr "Frequentie"
+msgstr "Ververs ratio"
 
 msgid "Remove Plugins"
 msgstr "Verwijderen"
@@ -1769,6 +1779,9 @@ msgstr "Timer frequentie"
 
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Een herhaalde timer maakt nu een opname... Wat wilt u doen?"
+
+msgid "Repeats"
+msgstr ""
 
 msgid "Reset"
 msgstr "Herladen"
@@ -1793,19 +1806,19 @@ msgstr ""
 "activeren."
 
 msgid "Resume from last position"
-msgstr "Hervat van laatste positie"
+msgstr "Ga door op laatste positie"
 
 msgid "Resuming playback"
-msgstr "Hervat afspeellijst"
+msgstr "Ga door met afspelen"
 
 msgid "Return to movie list"
-msgstr "Terug naar filmlijst"
+msgstr "Terug naar de opname lijst"
 
 msgid "Return to previous service"
-msgstr "Terug naar vorig menu"
+msgstr "Terug naar laatste zender"
 
 msgid "Rewind speeds"
-msgstr "Terug spoel snelheden"
+msgstr "Terugspoel snelheid"
 
 msgid "Right"
 msgstr "Rechts"
@@ -1934,7 +1947,7 @@ msgid "Select HDD"
 msgstr "Kies harde schijf"
 
 msgid "Select Location"
-msgstr ""
+msgstr "Selecteer locatie"
 
 msgid "Select Network Adapter"
 msgstr "Netwerk adapter selecteren"
@@ -1990,8 +2003,8 @@ msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
-"Service onbereikbaar!\n"
-"^Controleer tuner instellingen!"
+"Zender niet beschikbaar\n"
+"Controleer uw tuner configuratie!"
 
 msgid "Serviceinfo"
 msgstr "Zender"
@@ -2012,11 +2025,11 @@ msgid "Setup Mode"
 msgstr "Menu modus"
 
 msgid "Show blinking clock in display during recording"
-msgstr "Knipperende tijd in display tijdens opname"
+msgstr "Knipperende klok gedurende opname"
 
 #, python-format
 msgid "Show files from %s"
-msgstr ""
+msgstr "Bestanden op %s weergeven"
 
 msgid "Show infobar on channel change"
 msgstr "Infobalk zichtbaar na zenderwissel"
@@ -2064,7 +2077,7 @@ msgid "Single transponder"
 msgstr "Één transponder"
 
 msgid "Singlestep (GOP)"
-msgstr "Eén stap (GOP)"
+msgstr "Stap voor stap"
 
 msgid "Sleep Timer"
 msgstr "Slaaptimer"
@@ -2083,7 +2096,7 @@ msgid "Slow"
 msgstr "Langzaam"
 
 msgid "Slow Motion speeds"
-msgstr "Vertraagde weegave snelheden"
+msgstr "Stap snelheid"
 
 msgid "Some plugins are not available:\n"
 msgstr "Applicaties die niet beschikbaar zijn:\n"
@@ -2130,7 +2143,7 @@ msgid "Start"
 msgstr "Start"
 
 msgid "Start from the beginning"
-msgstr "Start van het begin"
+msgstr "Start vanaf het begin"
 
 msgid "Start recording?"
 msgstr "Start opname?"
@@ -2266,7 +2279,8 @@ msgid "The sleep timer has been disabled."
 msgstr "De slaaptimer is uitgeschakeld."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Timer dossier (timers.xml) is beschadigd en kan niet worden geladen."
+msgstr ""
+"Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2279,8 +2293,8 @@ msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
-"Onvoldoende diskruimte op deze partitie.\n"
-"Wilt u verder gaan?"
+"Er is mogelijk niet genoeg ruimte vrij op de geselecteerde partitie\n"
+"Weet u zeker dat u wilt doorgaan?"
 
 msgid "This is step number 2."
 msgstr "Dit is stap nummer 2."
@@ -2437,15 +2451,15 @@ msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
-"Onmogelijk om bestandsysteem te controleren.\n"
-"Fout:"
+"De bestandssysteemcontrole is mislukt.\n"
+"Foutmelding:"
 
 msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
-"Onmogelijk om hdd te initializeren.\n"
-"Fout:"
+"Kon de harde schijf niet initialiseren.\n"
+"Foutmelding:"
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC commando"
@@ -2621,7 +2635,7 @@ msgid "Yes, restore the settings now"
 msgstr "Ja, de gegevens nu terugplaatsen"
 
 msgid "Yes, returning to movie list"
-msgstr "Ja, terug naar filmlijst"
+msgstr "Ja, terug naar de opname lijst"
 
 msgid "Yes, view the tutorial"
 msgstr "Ja, de handleiding weergeven"
@@ -2956,7 +2970,7 @@ msgid "hours"
 msgstr "uren"
 
 msgid "immediate shutdown"
-msgstr "Onmiddellijk uitzetten"
+msgstr "Onmiddelijk uitschakelen"
 
 #, python-format
 msgid ""
@@ -3105,10 +3119,10 @@ msgid "play entry"
 msgstr "Afspelen"
 
 msgid "play from next mark or playlist entry"
-msgstr "Afspelen vanaf volgend merkteken of afspeellijst"
+msgstr "Afspelen vanaf het volgende markeerpunt of playlist item"
 
 msgid "play from previous mark or playlist entry"
-msgstr "Afspelen vanaf vorig merkteken of afspeellijst"
+msgstr "Afspelen vanaf het vorige markeerpunt of playlist item"
 
 msgid "please press OK when ready"
 msgstr "indien gereed, druk dan op OK a.u.b."
@@ -3194,7 +3208,7 @@ msgid "select movie"
 msgstr "Selecteer opname"
 
 msgid "select the movie path"
-msgstr "Selecteer het filmpad"
+msgstr "Selecteer het opname pad"
 
 msgid "service pin"
 msgstr "zender pincode"
@@ -3224,7 +3238,7 @@ msgid "show second tag"
 msgstr "Tweede markeerpunt weergeven"
 
 msgid "show shutdown menu"
-msgstr "Toon uitschakel menu"
+msgstr "Afsluitmenu weergeven"
 
 msgid "show single service EPG..."
 msgstr "Zender EPG weergeven..."
@@ -3329,7 +3343,7 @@ msgid "wait for ci..."
 msgstr "wacht op CI..."
 
 msgid "wait for mmi..."
-msgstr "Wacht op mmi"
+msgstr "Wacht op mmi..."
 
 msgid "waiting"
 msgstr "ingepland"
@@ -3360,6 +3374,150 @@ msgid "zapped"
 msgstr "zapte"
 
 #~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Na herstelling zal Enigma2 herstarten"
+
+#~ msgid "\"?"
+#~ msgstr "\"?"
+
+#~ msgid "4:3 Zoom"
+#~ msgstr "4:3 Zoom"
+
+#~ msgid "AC3 audio delay (ms)"
+#~ msgstr "AC3 audio vertraging (in ms)"
+
+#~ msgid "About Ronaldd image"
+#~ msgstr "Ronaldd image informatie"
+
+#~ msgid "April"
+#~ msgstr "April"
+
+#~ msgid "Aspect Ratio 16:9"
+#~ msgstr "Beeldverhouding 16:9"
+
+#~ msgid "Aspect Ratio 4:3"
+#~ msgstr "Beeldverhouding 4:3"
+
+#~ msgid "Aspect Ratio Rass"
+#~ msgstr "Beeldverhouding Rass"
+
+#~ msgid "August"
+#~ msgstr "Augustus"
+
+#~ msgid "Calculate movie length"
+#~ msgstr "Opname lengte calculeren"
+
+#~ msgid "Cas Setup"
+#~ msgstr "CAS instellingen"
+
+#~ msgid "December"
+#~ msgstr "December"
+
+#~ msgid "Do not Calculate movie length"
+#~ msgstr "Opname lengte niet calculeren"
+
+#~ msgid "Do not show video preview"
+#~ msgstr "Geen opname preview weergeven"
+
+#~ msgid "Februari"
+#~ msgstr "Februari"
+
+#~ msgid "Januari"
+#~ msgstr "Januari"
+
+#~ msgid "July"
+#~ msgstr "Juli"
+
+#~ msgid "June"
+#~ msgstr "Juni"
+
+#~ msgid "Local directory"
+#~ msgstr "Lokale map"
+
+#~ msgid "Lower smartcard"
+#~ msgstr "Onderste smartcard"
+
+#~ msgid "March"
+#~ msgstr "Maart"
+
+#~ msgid "May"
+#~ msgstr "Mei"
+
+#~ msgid "Mount manager"
+#~ msgstr "Mount manager"
+
+#~ msgid "Mount options"
+#~ msgstr "Mount opties"
+
+#~ msgid "Mount type"
+#~ msgstr "Mount type"
+
+#~ msgid "Movie Menu"
+#~ msgstr "Opname menu"
+
+#~ msgid "None (Softcam)"
+#~ msgstr "Geen (softcam)"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "October"
+#~ msgstr "Oktober"
+
+#~ msgid "PCM audio delay (ms)"
+#~ msgstr "PCM audio vertraging (in ms)"
+
+#~ msgid "Password"
+#~ msgstr "Wachtwoord"
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "Softcam en cardserver worden herstart, ogenblik a.u.b..."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Softcam wordt herstart. Ogenblik a.u.b..."
+
+#~ msgid "Reset Softcam"
+#~ msgstr "Herstart Softcam"
+
+#~ msgid "Reset both"
+#~ msgstr "Herstart beide"
+
+#~ msgid "Save"
+#~ msgstr "Opslaan"
+
+#~ msgid "Search for Picon on harddisk"
+#~ msgstr "Zoek naar picons op HDD"
+
+#~ msgid "Select Card Server"
+#~ msgstr "Selecteer Cardserver"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Selecteer Softcam"
+
+#~ msgid "September"
+#~ msgstr "September"
+
+#~ msgid "Server IP"
+#~ msgstr "Server IP adres"
+
+#~ msgid "Server SHARE"
+#~ msgstr "Server SHARE"
+
+#~ msgid "Settings installed. Press OK te restart enigma"
+#~ msgstr ""
+#~ "De zenderlijst is geinstalleerd\n"
+#~ "Druk op OK om Enigma2 te herstarten "
+
+#~ msgid "Show video preview"
+#~ msgstr "Video preview weergeven"
+
+#~ msgid "Softcam Setup"
+#~ msgstr "Softcam instellingen"
+
+#~ msgid ""
 #~ "Unable to initialize harddisk.\n"
 #~ "Please refer to the user manual.\n"
 #~ "Error: "
@@ -3367,6 +3525,12 @@ msgstr "zapte"
 #~ "De harde schijf kan niet geformatteerd worden.\n"
 #~ "Raadpleeg de handleiding a.u.b.\n"
 #~ "Fout:  "
+
+#~ msgid "Upper smartcard"
+#~ msgstr "Bovenste smartcard"
+
+#~ msgid "Username"
+#~ msgstr "Gebruikersnaam"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "Volgende afspelen"
