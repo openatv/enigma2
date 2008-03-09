@@ -181,7 +181,9 @@ class MoviePlayer(InfoBarShowHide, \
 			self.doSeek(0)
 
 	def doEofInternal(self, playing):
-		if not playing:
+		if not self.execing:
+			return
+		if not playing :
 			return
 		self.is_closing = True
 		if config.usage.on_movie_eof.value == "ask":
