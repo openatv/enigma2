@@ -150,7 +150,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_type.value == "once":
 			self.frequencyEntry = None
 		else: # repeated
-			self.frequencyEntry = getConfigListEntry(_("Frequency"), self.timerentry_repeated)
+			self.frequencyEntry = getConfigListEntry(_("Repeats"), self.timerentry_repeated)
 			self.list.append(self.frequencyEntry)
 			self.repeatedbegindateEntry = getConfigListEntry(_("Starting on"), self.timerentry_repeatedbegindate)
 			self.list.append(self.repeatedbegindateEntry)
