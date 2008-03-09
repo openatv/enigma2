@@ -53,6 +53,8 @@ class VideoHardware:
 	modes["YPbPr"] = ["720p", "1080i"]
 	modes["DVI"] = ["720p", "1080i", "PC"]
 
+	widescreen_modes = set(["720p", "1080i"])
+
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
@@ -63,6 +65,10 @@ class VideoHardware:
 #		self.on_hotplug.append(self.createConfig)
 
 		self.readPreferredModes()
+
+		config.av.aspect.addNotifier(self.updateAspect)
+		config.av.policy_169.addNotifier(self.updateAspect)
+		config.av.policy_43.addNotifier(self.updateAspect)
 
 		# until we have the hotplug poll socket
 #		self.timer = eTimer()
@@ -104,6 +110,9 @@ class VideoHardware:
 				return False
 		return True
 
+	def isWidescreenMode(self, port, mode):
+		return mode in self.widescreen_modes
+
 	def setMode(self, port, mode, rate, force = None):
 		print "setMode - port:", port, "mode:", mode, "rate:", rate
 		# we can ignore "port"
@@ -132,10 +141,7 @@ class VideoHardware:
 		except IOError:
 			print "writing initial videomode to /etc/videomode failed."
 
-		# workaround: this should not be set here.
-		if port != "Scart":
-			open("/proc/stb/video/aspect", "w").write("any")
-			open("/proc/stb/video/policy", "w").write("panscan")
+		self.updateAspect(None)
 
 	def saveMode(self, port, mode, rate):
 		config.av.videoport.value = port
@@ -200,6 +206,55 @@ class VideoHardware:
 		rate = config.av.videorate[mode].value
 		self.setMode(port, mode, rate)
 		
+
+	def updateAspect(self, cfgelement):
+		# determine aspect = {any,4:3,16:9,16:10}
+		# determine policy = {bestfit,letterbox,panscan,nonlinear}
+
+		# based on;
+		#   config.av.videoport.value: current video output device
+		#     Scart: 
+		#   config.av.aspect:
+		#     4_3:            use policy_169
+		#     16_9,16_10:     use policy_43
+		#     auto            always "bestfit"
+		#   config.av.policy_169
+		#     letterbox       use letterbox
+		#     panscan         use panscan
+		#     scale           use bestfit
+		#   config.av.policy_43
+		#     pillarbox       use panscan
+		#     panscan         use letterbox  ("panscan" is just a bad term, it's inverse-panscan)
+		#     nonlinear       use nonlinear
+		#     scale           use bestfit
+
+		port = config.av.videoport.value
+		if port not in config.av.videomode:
+			print "current port not available, not setting videomode"
+			return
+		mode = config.av.videomode[port].value
+
+		force_widescreen = self.isWidescreenMode(port, mode)
+
+		is_widescreen = force_widescreen or config.av.aspect.value in ["16_9", "16_10"]
+		is_auto = config.av.aspect.value == "auto"
+
+		if is_widescreen:
+			if force_widescreen:
+				aspect = "16:9"
+			else:
+				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
+			policy = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}[config.av.policy_43.value]
+		elif is_auto:
+			aspect = "any"
+			policy = "bestfit"
+		else:
+			aspect = "4:3"
+			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}[config.av.policy_169.value]
+
+		print "-> setting aspect, policy", aspect, policy
+		open("/proc/stb/video/aspect", "w").write(aspect)
+		open("/proc/stb/video/policy", "w").write(policy)
 
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
