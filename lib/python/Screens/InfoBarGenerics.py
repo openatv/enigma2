@@ -12,6 +12,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Source import ObsoleteSource
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
+from Components.SystemInfo import SystemInfo
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -1309,13 +1310,13 @@ class InfoBarSleepTimer:
 class InfoBarPiP:
 	def __init__(self):
 		self.session.pipshown = False
-
-		self.addExtension((self.getShowHideName, self.showPiP, self.available), "blue")
-		self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
-		self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
+		if SystemInfo.get("NumVideoDecoders", 1) > 1:
+			self.addExtension((self.getShowHideName, self.showPiP, self.available), "blue")
+			self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
+			self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
 
 	def available(self):
-		return True
+		return SystemInfo.get("NumVideoDecoders", 1) > 1
 
 	def pipShown(self):
 		return self.session.pipshown
