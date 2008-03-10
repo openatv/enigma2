@@ -751,21 +751,107 @@ error:
 class eDVBChannelFilePush: public eFilePushThread
 {
 public:
+	eDVBChannelFilePush() { setIFrameSearch(0); setTimebaseChange(0); }
 	void setIFrameSearch(int enabled) { m_iframe_search = enabled; m_iframe_state = 0; }
+
+			/* "timebase change" is for doing trickmode playback at an exact speed, even when pictures are skipped. */
+			/* you need to set it to 1/16 if you want 16x playback, for example. you need video master sync. */
+	void setTimebaseChange(int ratio) { m_timebase_change = ratio; } /* 16bit fixpoint, 0 for disable */
 protected:
 	int m_iframe_search, m_iframe_state, m_pid;
+	int m_timebase_change;
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 };
 
 int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, size_t &current_span_remaining)
 {
-#if 0 /* not yet */
+#if 0
+	if (m_timebase_change)
+	{
+		eDebug("timebase change: %d", m_timebase_change);
+		int offset;
+		for (offset = 0; offset < len; offset += 188)
+		{
+			unsigned char *pkt = (unsigned char*)_data + offset;
+			if (pkt[1] & 0x40) /* pusi */
+			{
+				if (pkt[3] & 0x20) // adaption field present?
+					pkt += pkt[4] + 4 + 1;  /* skip adaption field and header */
+				else
+					pkt += 4; /* skip header */
+				if (pkt[0] || pkt[1] || (pkt[2] != 1))
+				{
+					eWarning("broken startcode");
+					continue;
+				}
+
+				pts_t pts = 0;
+
+				if (pkt[7] & 0x80) // PTS present?
+				{
+					pts  = ((unsigned long long)(pkt[ 9]&0xE))  << 29;
+					pts |= ((unsigned long long)(pkt[10]&0xFF)) << 22;
+					pts |= ((unsigned long long)(pkt[11]&0xFE)) << 14;
+					pts |= ((unsigned long long)(pkt[12]&0xFF)) << 7;
+					pts |= ((unsigned long long)(pkt[13]&0xFE)) >> 1;
+
+#if 0
+					off_t off = 0;
+					RESULT r = m_tstools.fixupPTS(off, pts);
+					if (r)
+						eWarning("fixup PTS while trickmode playback failed.\n");
+#endif
+
+					int sec = pts / 90000;
+					int frm = pts % 90000;
+					int min = sec / 60;
+					sec %= 60;
+					int hr = min / 60;
+					min %= 60;
+					int d = hr / 24;
+					hr %= 24;
+
+//					eDebug("original, fixed pts: %016llx %d:%02d:%02d:%02d:%05d", pts, d, hr, min, sec, frm);
+
+					pts += 0x80000000LL;
+					pts *= m_timebase_change;
+					pts >>= 16;
+
+					sec = pts / 90000;
+					frm = pts % 90000;
+					min = sec / 60;
+					sec %= 60;
+					hr = min / 60;
+					min %= 60;
+					d = hr / 24;
+					hr %= 24;
+
+//					eDebug("new pts (after timebase change): %016llx %d:%02d:%02d:%02d:%05d", pts, d, hr, min, sec, frm);
+
+					pkt[9] &= ~0xE;
+					pkt[10] = 0;
+					pkt[11] &= ~1;
+					pkt[12] = 0;
+					pkt[13] &= ~1;
+
+					pkt[9]  |= (pts >> 29) & 0xE;
+					pkt[10] |= (pts >> 22) & 0xFF;
+					pkt[11] |= (pts >> 14) & 0xFE;
+					pkt[12] |= (pts >> 7) & 0xFF;
+					pkt[13] |= (pts << 1) & 0xFE;
+				}
+			}
+		}
+	}
+#endif
+
+#if 1 /* not yet */
 	if (!m_iframe_search)
 		return len;
 
 	unsigned char *data = (unsigned char*)_data; /* remove that const. we know what we are doing. */
 
-	eDebug("filterRecordData, size=%d (mod 188=%d), first byte is %02x", len, len %188, data[0]);
+//	eDebug("filterRecordData, size=%d (mod 188=%d), first byte is %02x", len, len %188, data[0]);
 
 	unsigned char *d = data;
 	while ((d = (unsigned char*)memmem(d, data + len - d, "\x00\x00\x01", 3)))
@@ -779,8 +865,8 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 		{
 			int picture_type = (d[5] >> 3) & 7;
 			d += 4;
-			
-			eDebug("%d-frame at %d, offset in TS packet: %d, pid=%04x", picture_type, offset, offset % 188, pid);
+
+//			eDebug("%d-frame at %d, offset in TS packet: %d, pid=%04x", picture_type, offset, offset % 188, pid);
 
 			if (m_iframe_state == 1)
 			{
@@ -802,19 +888,19 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 			{
 				if (picture_type != 1) /* we are only interested in I frames */
 					continue;
-			
+
 				unsigned char *fts = data;
 				while (fts < ts)
 				{
 					fts[1] |= 0x1f;
 					fts[2] |= 0xff; /* drop packet */
-				
+
 					fts += 188;
 				}
 						/* force payload only */
 				ts[3] &= ~0x30;
 				ts[3] |=  0x10;
-				
+
 //				memset(ts + 4, 0xFF, (offset % 188) - 4);
 
 				m_iframe_state = 1;
@@ -948,18 +1034,17 @@ void eDVBChannel::cueSheetEvent(int event)
 						/* i agree that this might look a bit like black magic. */
 				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
 				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio / 8;
-				
+
 				if (m_cue->m_skipmode_ratio < 0)
 					m_skipmode_m -= m_skipmode_n;
-	
+
 				eDebug("resolved to: %d %d", m_skipmode_m, m_skipmode_n);
-				
+
 				if (abs(m_skipmode_m) < abs(m_skipmode_n))
 				{
 					eWarning("something is wrong with this calculation");
 					m_skipmode_n = m_skipmode_m = 0;
 				}
-				
 			} else
 			{
 				eDebug("skipmode ratio is 0, normal play");
@@ -968,6 +1053,10 @@ void eDVBChannel::cueSheetEvent(int event)
 		}
 		ASSERT(m_pvr_thread);
 		m_pvr_thread->setIFrameSearch(m_skipmode_n != 0);
+		if (m_cue->m_skipmode_ratio != 0)
+			m_pvr_thread->setTimebaseChange(0x10000 * 9000 / (m_cue->m_skipmode_ratio / 10)); /* negative values are also ok */
+		else
+			m_pvr_thread->setTimebaseChange(0); /* normal playback */
 		eDebug("flush pvr");
 		flushPVR(m_cue->m_decoding_demux);
 		eDebug("done");
@@ -1477,6 +1566,7 @@ void eCueSheet::clear()
 
 void eCueSheet::addSourceSpan(const pts_t &begin, const pts_t &end)
 {
+	assert(begin < end);
 	m_lock.WrLock();
 	m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
 	m_lock.Unlock();
