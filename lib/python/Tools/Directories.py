@@ -105,9 +105,9 @@ def createDir(path):
 		ret = 1
 	return ret
 
-def fileExists(f):
+def fileExists(f, mode='r'):
 	try:
-		file = open(f)
+		file = open(f, mode)
 	except IOError:
 		exists = 0
 	else:
