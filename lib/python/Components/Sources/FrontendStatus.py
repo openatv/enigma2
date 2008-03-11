@@ -20,9 +20,9 @@ class FrontendStatus(Source):
 		if not status:
 			self.invalidate()
 		else:
-			self.snr = status.get("tuner_signal_power")
-			self.snr_db = status.get("tuner_signal_power_db")
-			self.agc = status.get("tuner_signal_quality")
+			self.snr = status.get("tuner_signal_quality")
+			self.snr_db = status.get("tuner_signal_quality_db")
+			self.agc = status.get("tuner_signal_power")
 			self.ber = status.get("tuner_bit_error_rate")
 			self.lock = status.get("tuner_locked")
 		self.changed((self.CHANGED_ALL, ))

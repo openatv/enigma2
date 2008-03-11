@@ -617,14 +617,14 @@ int eDVBFrontend::readFrontendData(int type)
 				eDebug("FE_READ_BER failed (%m)");
 			return ber;
 		}
-		case signalPower:
+		case signalQuality:
 		{
 			uint16_t snr=0;
 			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
 				eDebug("FE_READ_SNR failed (%m)");
 			return snr;
 		}
-		case signalPowerdB: /* this will move into the driver */
+		case signalQualitydB: /* this will move into the driver */
 		{
 			uint16_t snr=0;
 			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
@@ -669,11 +669,14 @@ int eDVBFrontend::readFrontendData(int type)
 			{
 				float snr_in_db=(snr-39075)/1764.7;
 				return (int)(snr_in_db * 100.0);
+			} else if (!strcmp(m_description, "Alps BSBE2"))
+			{
+				return (int)((snr >> 7) * 10.0);
 			} /* else
 				eDebug("no SNR dB calculation for frontendtype %s yet", m_description); */
 			return 0x12345678;
 		}
-		case signalQuality:
+		case signalPower:
 		{
 			uint16_t strength=0;
 			if (ioctl(m_fd, FE_READ_SIGNAL_STRENGTH, &strength) < 0 && errno != ERANGE)
@@ -1060,17 +1063,17 @@ void eDVBFrontend::getFrontendStatus(ePyObject dest)
 		PutToDict(dest, "tuner_locked", readFrontendData(locked));
 		PutToDict(dest, "tuner_synced", readFrontendData(synced));
 		PutToDict(dest, "tuner_bit_error_rate", readFrontendData(bitErrorRate));
-		PutToDict(dest, "tuner_signal_power", readFrontendData(signalPower));
-		int sigPowerdB = readFrontendData(signalPowerdB);
-		if (sigPowerdB == 0x12345678) // not support yet
+		PutToDict(dest, "tuner_signal_quality", readFrontendData(signalQuality));
+		int sigQualitydB = readFrontendData(signalQualitydB);
+		if (sigQualitydB == 0x12345678) // not support yet
 		{
 			ePyObject obj=Py_None;
 			Py_INCREF(obj);
-			PutToDict(dest, "tuner_signal_power_db", obj);
+			PutToDict(dest, "tuner_signal_quality_db", obj);
 		}
 		else
-			PutToDict(dest, "tuner_signal_power_db", sigPowerdB);
-		PutToDict(dest, "tuner_signal_quality", readFrontendData(signalQuality));
+			PutToDict(dest, "tuner_signal_quality_db", sigQualitydB);
+		PutToDict(dest, "tuner_signal_power", readFrontendData(signalPower));
 	}
 }
 
