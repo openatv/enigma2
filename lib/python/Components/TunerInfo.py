@@ -73,9 +73,9 @@ class TunerInfo(GUIComponent):
 	def getValue(self, what):
 		if self.statusDict:
 			if what == self.SNR:
-				return self.statusDict.get("tuner_signal_power", 0)
-			elif what == self.AGC:
 				return self.statusDict.get("tuner_signal_quality", 0)
+			elif what == self.AGC:
+				return self.statusDict.get("tuner_signal_power", 0)
 			elif what == self.BER:
 				return self.statusDict.get("tuner_bit_error_rate", 0)
 			elif what == self.LOCK:
@@ -86,9 +86,9 @@ class TunerInfo(GUIComponent):
 				feinfo = service.frontendInfo()
 				if feinfo is not None:
 					if what == self.SNR:
-						return feinfo.getFrontendInfo(iFrontendInformation.signalPower)
-					elif what == self.AGC:
 						return feinfo.getFrontendInfo(iFrontendInformation.signalQuality)
+					elif what == self.AGC:
+						return feinfo.getFrontendInfo(iFrontendInformation.signalPower)
 					elif what == self.BER:
 						return feinfo.getFrontendInfo(iFrontendInformation.bitErrorRate)
 					elif what == self.LOCK:
@@ -97,9 +97,9 @@ class TunerInfo(GUIComponent):
 			frontend = self.frontendfkt()
 			if frontend:
 				if what == self.SNR:
-					return frontend.readFrontendData(iFrontendInformation.signalPower)
-				elif what == self.AGC:
 					return frontend.readFrontendData(iFrontendInformation.signalQuality)
+				elif what == self.AGC:
+					return frontend.readFrontendData(iFrontendInformation.signalPower)
 				elif what == self.BER:
 					return frontend.readFrontendData(iFrontendInformation.bitErrorRate)
 				elif what == self.LOCK:
