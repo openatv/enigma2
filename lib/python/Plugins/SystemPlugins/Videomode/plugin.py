@@ -1,6 +1,6 @@
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
-
+from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config
 from Components.config import config
@@ -83,9 +83,13 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Color Format"), config.av.colorformat))
 			if level >= 1:
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss))
+				if SystemInfo["ScartSwitch"]:
+					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch))
 
 		if level >= 1:
 			self.list.append(getConfigListEntry(_("AC3 default"), config.av.defaultac3))
+			if SystemInfo["CanDownmixAC3"]:
+				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
