@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-03 00:15+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
 "PO-Revision-Date: 2008-02-28 09:41+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
@@ -263,6 +263,9 @@ msgstr "AB"
 msgid "AC3 default"
 msgstr "AC3 standard"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr "AGC"
 
@@ -359,6 +362,9 @@ msgstr "Ljudval..."
 
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Auto scart switching"
+msgstr ""
 
 msgid "Automatic"
 msgstr ""
@@ -703,14 +709,14 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "återförsöker..."
 
-msgid "Discontinuous playback at speeds above"
-msgstr "Diskontinuerlig uppspelning med hastighet"
-
-msgid "Discontinuous playback frame repeat count"
-msgstr "Diskontinuerlig uppspelning av antal bildrutor"
-
 msgid "Dish"
 msgstr "Parabol"
+
+msgid "Display 16:9 content as"
+msgstr ""
+
+msgid "Display 4:3 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Display installation"
@@ -872,6 +878,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Ange hastighet för snabbspolning framåt"
 
@@ -946,6 +957,9 @@ msgstr "Fininställn."
 
 msgid "Finnish"
 msgstr "Finska"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Franska"
@@ -1422,6 +1436,10 @@ msgstr "Nej, sök manuellt senare"
 msgid "None"
 msgstr "Inga"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "North"
 msgstr "Nord"
 
@@ -1765,6 +1783,9 @@ msgstr "Repeat typ"
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "En upprepande händelse spelas in... Vad vill du göra?"
 
+msgid "Repeats"
+msgstr ""
+
 msgid "Reset"
 msgstr "Nollställ"
 
@@ -1790,6 +1811,13 @@ msgstr ""
 msgid "Resume from last position"
 msgstr "Återuppspela från senaste position"
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Återuppta uppspelning"
 
@@ -2471,6 +2499,21 @@ msgstr "Använd Strömmätning"
 msgid "Use a gateway"
 msgstr "Använd en gateway"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Använd strömmätning"
 
@@ -2500,9 +2543,6 @@ msgstr "Använd kanal söktyp"
 
 msgid "User defined"
 msgstr "Användardefinierat"
-
-msgid "VCR Switch"
-msgstr "VCR Switch"
 
 msgid "VCR scart"
 msgstr "VCR Scart"
@@ -3376,6 +3416,12 @@ msgstr "zapped"
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Inställbar hopptid för 1/3 tangent"
 
+#~ msgid "Discontinuous playback at speeds above"
+#~ msgstr "Diskontinuerlig uppspelning med hastighet"
+
+#~ msgid "Discontinuous playback frame repeat count"
+#~ msgstr "Diskontinuerlig uppspelning av antal bildrutor"
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Vill du visa klipplist guiden?"
 
@@ -3468,6 +3514,9 @@ msgstr "zapped"
 #~ "Kan inte initialisera hårddisken.\n"
 #~ "Var vänlig läs i manualen.\n"
 #~ "Fel: "
+
+#~ msgid "VCR Switch"
+#~ msgstr "VCR Switch"
 
 #~ msgid "Video-Setup"
 #~ msgstr "Video-Inställning"

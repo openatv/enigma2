@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 00:33+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
 "PO-Revision-Date: 2007-06-14 10:15+0300\n"
 "Last-Translator: enigma® <enigma.ua@gmail.com>\n"
 "Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
@@ -99,6 +99,9 @@ msgstr "12V Выход"
 msgid "13 V"
 msgstr "13 V"
 
+msgid "16:10"
+msgstr ""
+
 msgid "16:10 Letterbox"
 msgstr ""
 
@@ -127,6 +130,9 @@ msgid "30 minutes"
 msgstr "30 минут"
 
 msgid "4"
+msgstr ""
+
+msgid "4:3"
 msgstr ""
 
 msgid "4:3 Letterbox"
@@ -238,6 +244,9 @@ msgstr "AB"
 msgid "AC3 default"
 msgstr "AC3 по умолчанию"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr ""
 
@@ -308,6 +317,9 @@ msgstr "Альтернативный радио режим "
 msgid "Alternative services tuner priority"
 msgstr ""
 
+msgid "An empty filename is illegal."
+msgstr ""
+
 msgid "Arabic"
 msgstr "Арабский"
 
@@ -331,6 +343,12 @@ msgstr "Аудио опции"
 
 msgid "Auto"
 msgstr "Автоматически"
+
+msgid "Auto scart switching"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Автоматический поиск"
@@ -460,6 +478,9 @@ msgstr ""
 msgid "Checking Filesystem..."
 msgstr ""
 
+msgid "Choose Location"
+msgstr ""
+
 msgid "Choose Tuner"
 msgstr ""
 
@@ -468,6 +489,9 @@ msgstr "Выберите пакет пользователя"
 
 msgid "Choose source"
 msgstr "Выберите иточник"
+
+msgid "Choose target folder"
+msgstr ""
 
 msgid "Choose your Skin"
 msgstr ""
@@ -518,6 +542,9 @@ msgid "Configuration Mode"
 msgstr "Режим конфигурации"
 
 msgid "Configuring"
+msgstr ""
+
+msgid "Confirm"
 msgstr ""
 
 msgid "Conflicting timer"
@@ -657,14 +684,14 @@ msgid ""
 "retrying..."
 msgstr ""
 
-msgid "Discontinuous playback at speeds above"
-msgstr ""
-
-msgid "Discontinuous playback frame repeat count"
-msgstr ""
-
 msgid "Dish"
 msgstr "Тарелка"
+
+msgid "Display 16:9 content as"
+msgstr ""
+
+msgid "Display 4:3 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr ""
@@ -818,6 +845,11 @@ msgid ""
 "© 2006 - Stephan Reichholf"
 msgstr ""
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr ""
 
@@ -892,6 +924,9 @@ msgstr "Точно"
 
 msgid "Finnish"
 msgstr "Окончание"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Французский"
@@ -1049,6 +1084,9 @@ msgstr ""
 msgid "Internal Flash"
 msgstr ""
 
+msgid "Invalid Location"
+msgstr ""
+
 msgid "Inversion"
 msgstr "Инверсия"
 
@@ -1057,6 +1095,10 @@ msgstr "Инверсия экрана"
 
 msgid "Italian"
 msgstr "Итальянский"
+
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+msgid "Just Scale"
+msgstr ""
 
 msgid "Keyboard Map"
 msgstr "Раскладка клавиатуры"
@@ -1094,6 +1136,10 @@ msgstr "Широта"
 msgid "Left"
 msgstr "Левый"
 
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Letterbox"
+msgstr ""
+
 msgid "Limit east"
 msgstr "Ограничение восток"
 
@@ -1110,6 +1156,9 @@ msgid "List of Storage Devices"
 msgstr ""
 
 msgid "Lithuanian"
+msgstr ""
+
+msgid "Location"
 msgstr ""
 
 msgid "Lock:"
@@ -1350,6 +1399,10 @@ msgstr "Нет, найти позже вручную."
 msgid "None"
 msgstr "Никакой"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "North"
 msgstr "Север"
 
@@ -1408,6 +1461,10 @@ msgstr "Управление пакетами"
 msgid "Page"
 msgstr ""
 
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+msgid "Pan&Scan"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Родительский контроль"
 
@@ -1426,6 +1483,10 @@ msgstr ""
 msgid "PiPSetup"
 msgstr "PiP установка"
 
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Pillarbox"
+msgstr ""
+
 msgid "Pin code needed"
 msgstr ""
 
@@ -1436,6 +1497,9 @@ msgid "Play recorded movies..."
 msgstr "Воспроизвести записанное видео..."
 
 msgid "Please Reboot"
+msgstr ""
+
+msgid "Please Select Medium to be Scanned"
 msgstr ""
 
 msgid "Please change recording endtime"
@@ -1452,6 +1516,9 @@ msgstr "Пожалуйста, введите имя для нового паке
 
 msgid "Please enter a name for the new marker"
 msgstr "Пожалуйста, введите имя для нового маркера"
+
+msgid "Please enter a new filename"
+msgstr ""
 
 msgid "Please enter filename (empty = use current date)"
 msgstr ""
@@ -1478,6 +1545,9 @@ msgid "Please select a subservice..."
 msgstr "Пожалуйста, выберите подсервис..."
 
 msgid "Please select keyword to filter..."
+msgstr ""
+
+msgid "Please select the movie path..."
 msgstr ""
 
 msgid "Please set up tuner B"
@@ -1660,6 +1730,9 @@ msgstr ""
 msgid "Remove plugins"
 msgstr "Удаление плагинов "
 
+msgid "Rename"
+msgstr ""
+
 msgid "Repeat"
 msgstr "Повторить"
 
@@ -1667,6 +1740,9 @@ msgid "Repeat Type"
 msgstr "Повторить тип"
 
 msgid "Repeating event currently recording... What do you want to do?"
+msgstr ""
+
+msgid "Repeats"
 msgstr ""
 
 msgid "Reset"
@@ -1694,6 +1770,13 @@ msgstr ""
 msgid "Resume from last position"
 msgstr ""
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr ""
 
@@ -1832,6 +1915,9 @@ msgstr "Искать"
 msgid "Select HDD"
 msgstr "Выбрать HDD"
 
+msgid "Select Location"
+msgstr ""
+
 msgid "Select Network Adapter"
 msgstr ""
 
@@ -1902,6 +1988,10 @@ msgid "Setup Mode"
 msgstr ""
 
 msgid "Show blinking clock in display during recording"
+msgstr ""
+
+#, python-format
+msgid "Show files from %s"
 msgstr ""
 
 msgid "Show infobar on channel change"
@@ -2157,6 +2247,11 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "Мастер закончил работу."
 
+msgid ""
+"There might not be enough Space on the selected Partition.\n"
+"Do you really want to continue?"
+msgstr ""
+
 msgid "This is step number 2."
 msgstr "Это шаг номер 2."
 
@@ -2350,6 +2445,21 @@ msgstr ""
 msgid "Use a gateway"
 msgstr ""
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Используйте измерение мощности"
 
@@ -2380,9 +2490,6 @@ msgstr ""
 
 msgid "User defined"
 msgstr "Определены пользователем"
-
-msgid "VCR Switch"
-msgstr "VCR переключатель"
 
 msgid "VCR scart"
 msgstr "Видеомагнитофон"
@@ -3048,6 +3155,9 @@ msgstr ""
 msgid "select movie"
 msgstr ""
 
+msgid "select the movie path"
+msgstr ""
+
 msgid "service pin"
 msgstr ""
 
@@ -3239,6 +3349,9 @@ msgstr ""
 #~ "Невозможно инициализировать жесткий диск.\n"
 #~ "Пожалуйста, обратитесь к инструкции пользователя.\n"
 #~ "Ошибка: "
+
+#~ msgid "VCR Switch"
+#~ msgstr "VCR переключатель"
 
 #~ msgid "You selected a playlist"
 #~ msgstr "Вы выбрали список воспроизведения"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 17:51+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
 "PO-Revision-Date: 2008-03-08 14:26+0100\n"
 "Last-Translator: Michel Weeren <michel@weeren.net>\n"
 "Language-Team: none <michel@weeren.net>\n"
@@ -262,6 +262,9 @@ msgstr "AB"
 msgid "AC3 default"
 msgstr "Standaard AC3"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr "AGC"
 
@@ -358,6 +361,9 @@ msgstr "Audio Opties..."
 
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Auto scart switching"
+msgstr ""
 
 msgid "Automatic"
 msgstr ""
@@ -704,12 +710,6 @@ msgstr ""
 "verbroken! (%s)\n"
 "probeer opnieuw..."
 
-msgid "Discontinuous playback at speeds above"
-msgstr "Langzaam afspelen op bovenstaande snelheid"
-
-msgid "Discontinuous playback frame repeat count"
-msgstr "Langzaam afspelen op volgende frame-ratio"
-
 msgid "Dish"
 msgstr "Schotel"
 
@@ -879,6 +879,11 @@ msgstr ""
 "\n"
 "© 2007 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Snel vooruitspoelen op volgende snelheid"
 
@@ -953,6 +958,9 @@ msgstr "Fijn afst."
 
 msgid "Finnish"
 msgstr "Fins"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Frans"
@@ -1808,6 +1816,13 @@ msgstr ""
 msgid "Resume from last position"
 msgstr "Ga door op laatste positie"
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Ga door met afspelen"
 
@@ -2499,6 +2514,21 @@ msgstr "Gebruik stroommeting"
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Meet stroomopname"
 
@@ -2529,9 +2559,6 @@ msgstr "Gebruikte zoekmethode"
 
 msgid "User defined"
 msgstr "Door u ingesteld"
-
-msgid "VCR Switch"
-msgstr "VCR Switch"
 
 msgid "VCR scart"
 msgstr "VCR scart"
@@ -3416,6 +3443,12 @@ msgstr "zapte"
 #~ msgid "December"
 #~ msgstr "December"
 
+#~ msgid "Discontinuous playback at speeds above"
+#~ msgstr "Langzaam afspelen op bovenstaande snelheid"
+
+#~ msgid "Discontinuous playback frame repeat count"
+#~ msgstr "Langzaam afspelen op volgende frame-ratio"
+
 #~ msgid "Do not Calculate movie length"
 #~ msgstr "Opname lengte niet calculeren"
 
@@ -3531,6 +3564,9 @@ msgstr "zapte"
 
 #~ msgid "Username"
 #~ msgstr "Gebruikersnaam"
+
+#~ msgid "VCR Switch"
+#~ msgstr "VCR Switch"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "Volgende afspelen"

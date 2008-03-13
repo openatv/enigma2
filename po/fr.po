@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 17:51+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
 "PO-Revision-Date: 2007-10-15 15:14+0200\n"
 "Last-Translator: mimi74 <remi.jarrige@cegetel.net>\n"
 "Language-Team: french\n"
@@ -255,6 +255,9 @@ msgstr ""
 msgid "AC3 default"
 msgstr "AC3 par défaut"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr ""
 
@@ -352,6 +355,9 @@ msgstr "options audio..."
 
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Auto scart switching"
+msgstr ""
 
 msgid "Automatic"
 msgstr ""
@@ -698,12 +704,6 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "Nouvel essai..."
 
-msgid "Discontinuous playback at speeds above"
-msgstr "Lecture discontinue aux vitesses ci-dessus"
-
-msgid "Discontinuous playback frame repeat count"
-msgstr "Lecture discontinue compteur répétition frame"
-
 msgid "Dish"
 msgstr "Parabole"
 
@@ -871,6 +871,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Entrer avance rapide à la vitesse"
 
@@ -945,6 +950,9 @@ msgstr "Accord fin"
 
 msgid "Finnish"
 msgstr "Finlandais"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Français"
@@ -1801,6 +1809,13 @@ msgstr ""
 msgid "Resume from last position"
 msgstr "Reprendre depuis la dernière position"
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Reprise de la lecture"
 
@@ -2485,6 +2500,21 @@ msgstr "Utiliser mesure puissance"
 msgid "Use a gateway"
 msgstr "Utiliser passerelle"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Utiliser mesure puissance"
 
@@ -2515,9 +2545,6 @@ msgstr "Type analyse service utilisé"
 
 msgid "User defined"
 msgstr "Défini par l'utilisateur"
-
-msgid "VCR Switch"
-msgstr "Commutateur VCR"
 
 msgid "VCR scart"
 msgstr "Péritel magnétoscope"
@@ -3362,6 +3389,12 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zappé"
 
+#~ msgid "Discontinuous playback at speeds above"
+#~ msgstr "Lecture discontinue aux vitesses ci-dessus"
+
+#~ msgid "Discontinuous playback frame repeat count"
+#~ msgstr "Lecture discontinue compteur répétition frame"
+
 #~ msgid ""
 #~ "Recording(s) are in progress or comming up in few seconds... really "
 #~ "reboot now?"
@@ -3397,6 +3430,9 @@ msgstr "zappé"
 #~ "Impossible d'initialiser le disque dur.\n"
 #~ "Veuillez vous référer au manuel.\n"
 #~ "Erreur: "
+
+#~ msgid "VCR Switch"
+#~ msgstr "Commutateur VCR"
 
 #~ msgid "Video Finetune"
 #~ msgstr "Réglages fin vidéo"

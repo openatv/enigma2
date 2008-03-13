@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-09 17:51+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
 "PO-Revision-Date: 2008-03-02 14:00+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -256,6 +256,9 @@ msgstr "AB"
 msgid "AC3 default"
 msgstr "AC3-ääni ensisijaisena"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr "AGC"
 
@@ -354,6 +357,9 @@ msgstr "Äänivalinnat"
 
 msgid "Auto"
 msgstr "Automaattinen"
+
+msgid "Auto scart switching"
+msgstr ""
 
 msgid "Automatic"
 msgstr "Automaattinen"
@@ -697,12 +703,6 @@ msgid ""
 "retrying..."
 msgstr ""
 
-msgid "Discontinuous playback at speeds above"
-msgstr "Hyppivä kelaus kun nopeus ylittää"
-
-msgid "Discontinuous playback frame repeat count"
-msgstr "Ruudun toistomäärä hyppivällä kelauksella"
-
 msgid "Dish"
 msgstr "Antenni"
 
@@ -880,6 +880,11 @@ msgid ""
 "© 2006 - Stephan Reichholf"
 msgstr ""
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Aloita kelaus eteenpäin nopeudella"
 
@@ -956,6 +961,9 @@ msgstr "Hienosäät."
 
 msgid "Finnish"
 msgstr "Suomi"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Ranska"
@@ -1826,6 +1834,13 @@ msgstr ""
 msgid "Resume from last position"
 msgstr "Jatka viimeksi katsotusta kohdasta"
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Toisto jatkuu viimeksi katsotusta kohdasta"
 
@@ -2523,6 +2538,21 @@ msgstr "Käytä virran mittausta"
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Käytä virran mittausta"
 
@@ -2567,9 +2597,6 @@ msgstr "Käytetty kanavahakutyyppi"
 
 msgid "User defined"
 msgstr "Käyttäjän määrittelemä"
-
-msgid "VCR Switch"
-msgstr "VCR-SCARTin läpivienti"
 
 #  Päävalikon VCR-SCART-toiminnon nimi
 msgid "VCR scart"
@@ -3428,3 +3455,12 @@ msgstr "kanavanvaihto"
 
 msgid "zapped"
 msgstr "vaihdettu"
+
+#~ msgid "Discontinuous playback at speeds above"
+#~ msgstr "Hyppivä kelaus kun nopeus ylittää"
+
+#~ msgid "Discontinuous playback frame repeat count"
+#~ msgstr "Ruudun toistomäärä hyppivällä kelauksella"
+
+#~ msgid "VCR Switch"
+#~ msgstr "VCR-SCARTin läpivienti"
