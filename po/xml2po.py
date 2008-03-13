@@ -3,30 +3,34 @@ import sys
 import os
 import string
 from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
+from xml.sax.handler import ContentHandler, property_lexical_handler
+from _xmlplus.sax.saxlib import LexicalHandler
 
-class parseXML(ContentHandler):
+class parseXML(ContentHandler, LexicalHandler):
 	def __init__(self, attrlist):
 		self.isPointsElement, self.isReboundsElement = 0, 0
 		self.attrlist = attrlist
+		self.last_comment = None
+
+	def comment(self, comment):
+		if comment.find("TRANSLATORS:") != -1:
+			self.last_comment = comment
 
 	def startElement(self, name, attrs):
-		if (attrs.has_key('text')):
-			attrlist[attrs.get('text', "")] = "foo"
-		if (attrs.has_key('title')):
-			attrlist[attrs.get('title', "")] = "foo"
-		if (attrs.has_key('value')):
-			attrlist[attrs.get('value', "")] = "foo"
-		if (attrs.has_key('caption')):
-			attrlist[attrs.get('caption', "")] = "foo"
+		for x in ["text", "title", "value", "caption"]:
+			try:
+				attrlist.add((attrs[x], self.last_comment))
+				self.last_comment = None
+			except KeyError:
+				pass
 
 parser = make_parser()
 
-attrlist = {}		
+attrlist = set()
 
 contentHandler = parseXML(attrlist)
 parser.setContentHandler(contentHandler)
-
+parser.setProperty(property_lexical_handler, contentHandler)
 dir = os.listdir(sys.argv[1])
 for x in dir:
 	if (str(x[-4:]) == ".xml"):
@@ -34,10 +38,16 @@ for x in dir:
 
 #parser.parse(sys.argv[1])
 
-for k, v in attrlist.items():
+attrlist = list(attrlist)
+attrlist.sort(key=lambda a: a[0])
+
+for (k,c) in attrlist:
 	print
 	print '#: ' + sys.argv[1]
 	string.replace(k, "\\n", "\"\n\"")
+	if c:
+		for l in c.split('\n'):
+			print "#. ", l
 	print 'msgid "' + str(k) + '"'
 	print 'msgstr ""'
 
