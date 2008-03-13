@@ -13,7 +13,8 @@
 			<item level="0" text="TV System">config.av.tvsystem</item>
 			<item level="1" text="WSS on 4:3">config.av.wss</item>
 			<item level="1" text="AC3 default">config.av.defaultac3</item>
-			<item level="1" text="VCR Switch" requires="ScartSwitch">config.av.vcrswitch</item>
+			<item level="1" text="AC3 downmix" requires="CanDownmixAC3">config.av.downmix_ac3</item>
+			<item level="1" text="Auto scart switching" requires="ScartSwitch">config.av.vcrswitch</item>
 		</setup>
 		<setup key="usage" title="Customize">
 			<item level="0" text="Setup Mode">config.usage.setup_level</item>
