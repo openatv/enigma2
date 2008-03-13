@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma Portuguese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-27 23:47+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
 "PO-Revision-Date: 2008-02-27 16:45-0000\n"
 "Last-Translator: Muaitai <muaitai@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -261,6 +261,9 @@ msgstr "AB"
 msgid "AC3 default"
 msgstr "AC3 por defeito"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr "AGC"
 
@@ -357,6 +360,9 @@ msgstr "Opções de Audio"
 
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Auto scart switching"
+msgstr ""
 
 msgid "Automatic"
 msgstr ""
@@ -702,14 +708,14 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "a tentar..."
 
-msgid "Discontinuous playback at speeds above"
-msgstr ""
-
-msgid "Discontinuous playback frame repeat count"
-msgstr ""
-
 msgid "Dish"
 msgstr "Antena"
+
+msgid "Display 16:9 content as"
+msgstr ""
+
+msgid "Display 4:3 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Definições do Display"
@@ -869,6 +875,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Velocidade do avance rapido"
 
@@ -943,6 +954,9 @@ msgstr "Sintonizar fino"
 
 msgid "Finnish"
 msgstr "Finlandês"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Francês"
@@ -1419,6 +1433,10 @@ msgstr "Não,busca manual depois"
 msgid "None"
 msgstr "Nenhum"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "North"
 msgstr "Norte"
 
@@ -1514,6 +1532,9 @@ msgstr "Reproduzir filmes gravados..."
 
 msgid "Please Reboot"
 msgstr "Por favor reinicie"
+
+msgid "Please Select Medium to be Scanned"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "Altere o tempo final da gravação"
@@ -1761,6 +1782,9 @@ msgstr "Tempo de repetição"
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "A repetir o programa que está a gravar actualmente… Continuar? "
 
+msgid "Repeats"
+msgstr ""
+
 msgid "Reset"
 msgstr "Reset"
 
@@ -1784,6 +1808,13 @@ msgstr "O restauro está concluído. Por favor carregue em OK para activar."
 msgid "Resume from last position"
 msgstr "Iniciar a partir da ultima posição"
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Retomar "
 
@@ -2002,6 +2033,10 @@ msgstr "Modo configuração"
 
 msgid "Show blinking clock in display during recording"
 msgstr "Mostrar o relogio a piscar durante a gravação"
+
+#, python-format
+msgid "Show files from %s"
+msgstr ""
 
 msgid "Show infobar on channel change"
 msgstr "Mostrar Info ao mudar de canal normal"
@@ -2460,6 +2495,21 @@ msgstr "Usar medidor de potência"
 msgid "Use a gateway"
 msgstr "Use gateway"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Usar controlo da alimentação"
 
@@ -2490,9 +2540,6 @@ msgstr "Tipo usado na busca"
 
 msgid "User defined"
 msgstr "Definições do utilizador"
-
-msgid "VCR Switch"
-msgstr "Mudar para VCR"
 
 msgid "VCR scart"
 msgstr "Entrada VCR"
@@ -3409,6 +3456,9 @@ msgstr "zapped"
 #~ "Impossivel Inicializar Disco Duro.\n"
 #~ "Por favor consulte o manual.\n"
 #~ "Erro:"
+
+#~ msgid "VCR Switch"
+#~ msgstr "Mudar para VCR"
 
 #~ msgid "You selected a playlist"
 #~ msgstr "Seleccionou uma playlist"

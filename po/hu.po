@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-20 12:55+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
 "PO-Revision-Date: 2008-02-20 08:17+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -102,6 +102,9 @@ msgstr "12V kimenet"
 msgid "13 V"
 msgstr "13 V"
 
+msgid "16:10"
+msgstr ""
+
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
@@ -131,6 +134,9 @@ msgstr "30 perc"
 
 msgid "4"
 msgstr "4"
+
+msgid "4:3"
+msgstr ""
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -255,6 +261,9 @@ msgstr "AB"
 msgid "AC3 default"
 msgstr "AC3 elsődlegesen"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr "AGC"
 
@@ -352,6 +361,12 @@ msgstr "Hang beállítások..."
 
 msgid "Auto"
 msgstr "Automata"
+
+msgid "Auto scart switching"
+msgstr ""
+
+msgid "Automatic"
+msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Automatikus keresés"
@@ -693,14 +708,14 @@ msgstr ""
 "Fritz!Box!-ról (%s)\n"
 "újra próbálkozás..."
 
-msgid "Discontinuous playback at speeds above"
-msgstr "Nem folytatólagos lejátszás a fenti sebességekre"
-
-msgid "Discontinuous playback frame repeat count"
-msgstr "Nem folytatólagos lejátszási képismétlés számolása"
-
 msgid "Dish"
 msgstr "Antenna"
+
+msgid "Display 16:9 content as"
+msgstr ""
+
+msgid "Display 4:3 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Kijelző beállítása"
@@ -862,6 +877,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Adja meg a gyors előre csévélést ezen a sebességen"
 
@@ -936,6 +956,9 @@ msgstr "Finomhangolás"
 
 msgid "Finnish"
 msgstr "Finn"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Francia"
@@ -1109,6 +1132,10 @@ msgstr "Kijelző invertálása"
 msgid "Italian"
 msgstr "Olasz"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
+msgid "Just Scale"
+msgstr ""
+
 msgid "Keyboard Map"
 msgstr "Billentyűzet térkép"
 
@@ -1144,6 +1171,10 @@ msgstr "Szélességi fok"
 
 msgid "Left"
 msgstr "Bal"
+
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Letterbox"
+msgstr ""
 
 msgid "Limit east"
 msgstr "Keleti limit"
@@ -1406,6 +1437,10 @@ msgstr "Nem, mad késöbb kézzel lekeresem."
 msgid "None"
 msgstr "Nincs"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr ""
+
 msgid "North"
 msgstr "Észak"
 
@@ -1464,6 +1499,10 @@ msgstr "Csomag intéző"
 msgid "Page"
 msgstr "Oldal"
 
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+msgid "Pan&Scan"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Gyermekzár"
 
@@ -1482,6 +1521,10 @@ msgstr "Film megállítása a végén"
 msgid "PiPSetup"
 msgstr "PIP beállítások"
 
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+msgid "Pillarbox"
+msgstr ""
+
 msgid "Pin code needed"
 msgstr "PIN-kód szükséges"
 
@@ -1493,6 +1536,9 @@ msgstr "Felvett filmek lejátszása..."
 
 msgid "Please Reboot"
 msgstr "Kérem indítsa újra a rendszert"
+
+msgid "Please Select Medium to be Scanned"
+msgstr ""
 
 msgid "Please change recording endtime"
 msgstr "Kérem változtassa meg a felvétel vége idejét"
@@ -1736,6 +1782,9 @@ msgstr "Ismétlés típusa"
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Ismétlődő felvétel megy... Mit csináljak?"
 
+msgid "Repeats"
+msgstr ""
+
 msgid "Reset"
 msgstr "Visszaállítás"
 
@@ -1761,6 +1810,13 @@ msgstr ""
 msgid "Resume from last position"
 msgstr "Folytatás az utolsó pozíciótól"
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Lejátszás folytatása"
 
@@ -1979,6 +2035,10 @@ msgstr "Beállítási mód"
 
 msgid "Show blinking clock in display during recording"
 msgstr "Felvétel közben a kijelző órája villogjon"
+
+#, python-format
+msgid "Show files from %s"
+msgstr ""
 
 msgid "Show infobar on channel change"
 msgstr "Csatornaváltáskor mutassa az infósort"
@@ -2444,6 +2504,21 @@ msgstr "Forgatási paraméterek használata"
 msgid "Use a gateway"
 msgstr "Átjáró használata"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Forgatási paraméterek megadása"
 
@@ -2473,9 +2548,6 @@ msgstr "Használt szolgáltatás keresési típusa"
 
 msgid "User defined"
 msgstr "Felh. által megadva"
-
-msgid "VCR Switch"
-msgstr "VCR kapcsoló"
 
 msgid "VCR scart"
 msgstr "VCR scart"
@@ -3371,6 +3443,12 @@ msgstr "zap-elt"
 #~ msgid "Allow Unsupported Modes"
 #~ msgstr "Nem támogatott módok engedélyezése"
 
+#~ msgid "Discontinuous playback at speeds above"
+#~ msgstr "Nem folytatólagos lejátszás a fenti sebességekre"
+
+#~ msgid "Discontinuous playback frame repeat count"
+#~ msgstr "Nem folytatólagos lejátszási képismétlés számolása"
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Meg szeretné nézni a vágólista ismertetöt?"
 
@@ -3430,6 +3508,9 @@ msgstr "zap-elt"
 #~ "Nem lehet inicializálni a merevlemezt.\n"
 #~ "Kérem nézzen utána a kezelési útmutatóban.\n"
 #~ "Hiba:"
+
+#~ msgid "VCR Switch"
+#~ msgstr "VCR kapcsoló"
 
 #~ msgid "Video-Setup"
 #~ msgstr "Videó-beállítások"
