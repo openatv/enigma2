@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-27 00:39+0100\n"
-"PO-Revision-Date: 2008-02-22 15:46+0100\n"
+"POT-Creation-Date: 2008-03-13 23:53+0100\n"
+"PO-Revision-Date: 2008-03-13 16:41+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -100,7 +100,7 @@ msgid "13 V"
 msgstr "13 V"
 
 msgid "16:10"
-msgstr ""
+msgstr "16:10"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 BrevBox"
@@ -133,7 +133,7 @@ msgid "4"
 msgstr "4"
 
 msgid "4:3"
-msgstr ""
+msgstr "4:3"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 BrevBox"
@@ -257,6 +257,9 @@ msgstr "AB"
 msgid "AC3 default"
 msgstr "AC3 Standard"
 
+msgid "AC3 downmix"
+msgstr ""
+
 msgid "AGC"
 msgstr "AGC"
 
@@ -354,8 +357,11 @@ msgstr "Lyd Valg..."
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Automatic"
+msgid "Auto scart switching"
 msgstr ""
+
+msgid "Automatic"
+msgstr "Automatisk"
 
 msgid "Automatic Scan"
 msgstr "Automatisk Søgning"
@@ -697,14 +703,14 @@ msgstr ""
 "Fritz!Box! (%s)\n"
 "prøver igen..."
 
-msgid "Discontinuous playback at speeds above"
-msgstr "Usikker afspilning ved hastigheder over"
-
-msgid "Discontinuous playback frame repeat count"
-msgstr "Usikker afspilnings ramme gentagelses antal"
-
 msgid "Dish"
 msgstr "Parabol"
+
+msgid "Display 16:9 content as"
+msgstr "Vis 16:9 indhold som"
+
+msgid "Display 4:3 content as"
+msgstr "Vis 4:3 indhold som"
 
 msgid "Display Setup"
 msgstr "Display Indstillinger"
@@ -866,6 +872,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Sæt Hurtigfremspolings hastighed "
 
@@ -940,6 +951,9 @@ msgstr "Fin tuning"
 
 msgid "Finnish"
 msgstr "Finsk"
+
+msgid "Frame repeat count during non-smooth winding"
+msgstr ""
 
 msgid "French"
 msgstr "Fransk"
@@ -1115,7 +1129,7 @@ msgstr "Italiensk"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
-msgstr ""
+msgstr "Fyld billede helt ud"
 
 msgid "Keyboard Map"
 msgstr "Tastatur Layout"
@@ -1155,7 +1169,7 @@ msgstr "Venstre"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
-msgstr ""
+msgstr "Sorte striber i top og bund af billede"
 
 msgid "Limit east"
 msgstr "Øst Limit"
@@ -1419,6 +1433,10 @@ msgstr "Nej, søg senere manuelt"
 msgid "None"
 msgstr "Ingen"
 
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
+msgid "Nonlinear"
+msgstr "Fuldt billede, venstre/højre"
+
 msgid "North"
 msgstr "Nord"
 
@@ -1479,7 +1497,7 @@ msgstr "Side"
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
-msgstr ""
+msgstr "Sorte striber lodret samt top og bund"
 
 msgid "Parental control"
 msgstr "Forældre kontrol"
@@ -1501,7 +1519,7 @@ msgstr "PiP Opsætning"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Pillarbox"
-msgstr ""
+msgstr "Sort stribe i top og bund af billede"
 
 msgid "Pin code needed"
 msgstr "Pin kode nødvendig"
@@ -1513,7 +1531,10 @@ msgid "Play recorded movies..."
 msgstr "Afspil optagede film..."
 
 msgid "Please Reboot"
-msgstr ""
+msgstr "Genstart Venligst"
+
+msgid "Please Select Medium to be Scanned"
+msgstr "Venligst Vælg Medium som skal Scannes"
 
 msgid "Please change recording endtime"
 msgstr "Venligst skift optagelses sluttid"
@@ -1761,6 +1782,9 @@ msgstr "Gentage type"
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Gentage event optagelse som er igang... Hvad vil du foretage dig?"
 
+msgid "Repeats"
+msgstr "Gentagelser"
+
 msgid "Reset"
 msgstr "Genstart"
 
@@ -1784,6 +1808,13 @@ msgstr "Indstillinger genskabt. Tryk OK for at aktivere indstillingerne nu."
 msgid "Resume from last position"
 msgstr "Genoptag fra sidste position"
 
+#. TRANSLATORS: The string "Resuming playback" flashes for a moment
+#. TRANSLATORS: at the start of a movie, when the user has selected
+#. TRANSLATORS: "Resume from last position" as start behavior.
+#. TRANSLATORS: The purpose is to notify the user that the movie starts
+#. TRANSLATORS: in the middle somewhere and not from the beginning.
+#. TRANSLATORS: (Some translators seem to have interpreted it as a
+#. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Genoptag afspilning"
 
@@ -2003,6 +2034,10 @@ msgstr "Bruger Niveau"
 msgid "Show blinking clock in display during recording"
 msgstr "Vis blinkende klokke i display under optagelse"
 
+#, python-format
+msgid "Show files from %s"
+msgstr "Vis filer fra %s"
+
 msgid "Show infobar on channel change"
 msgstr "Vis Infobar ved kanal skifte"
 
@@ -2204,7 +2239,7 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste opdatering: 22. Februar 2008\n"
+"Sidste opdatering: 14. Marts 2008\n"
 "\n"
 "Har du ændringer, forslag eller andet, så kontakt mig venligst!."
 
@@ -2462,6 +2497,21 @@ msgstr "Brug Strøm Måling"
 msgid "Use a gateway"
 msgstr "Brug af Router"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
+msgid "Use non-smooth winding at speeds above"
+msgstr ""
+
 msgid "Use power measurement"
 msgstr "Brug Strøm Måling"
 
@@ -2491,9 +2541,6 @@ msgstr "Brugt kanal søgnings type"
 
 msgid "User defined"
 msgstr "Brugerdefineret"
-
-msgid "VCR Switch"
-msgstr "Video Omskifter"
 
 msgid "VCR scart"
 msgstr "Scart / Video"
@@ -3342,6 +3389,12 @@ msgstr "Zappet"
 #~ msgid "Default-Wizard"
 #~ msgstr "Default-Guide"
 
+#~ msgid "Discontinuous playback at speeds above"
+#~ msgstr "Usikker afspilning ved hastigheder over"
+
+#~ msgid "Discontinuous playback frame repeat count"
+#~ msgstr "Usikker afspilnings ramme gentagelses antal"
+
 #~ msgid "Display spinner"
 #~ msgstr "Bruge Spinner"
 
@@ -3383,6 +3436,9 @@ msgstr "Zappet"
 #~ "Kunne ikke formatere HDD.\n"
 #~ "Se venligst i manual.\n"
 #~ "FEJL: "
+
+#~ msgid "VCR Switch"
+#~ msgstr "Video Omskifter"
 
 #~ msgid "Videoformat:"
 #~ msgstr "TVformat:"
