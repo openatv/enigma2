@@ -6,5 +6,6 @@ def getNumVideoDecoders():
 	idx = 0
 	while fileExists("/dev/dvb/adapter0/video%d"%(idx), 'w'):
 		idx += 1
+	return idx
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
