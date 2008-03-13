@@ -41,10 +41,27 @@
 			<item level="2" text="Fast Forward speeds">config.seek.speeds_forward</item>
 			<item level="2" text="Rewind speeds">config.seek.speeds_backward</item>
 			<item level="2" text="Slow Motion speeds">config.seek.speeds_slowmotion</item>
+<!-- TRANSLATORS: Note that "Enter" in the two strings below should *not*
+     be interpreted as "Give speed as input". The intended meaning is
+     instead "Initial speed when starting winding", i.e. the speed at
+     which "winding mode" is entered when first pressing "rewind" or
+     "fast forward". -->  
 			<item level="2" text="Enter Fast Forward at speed">config.seek.enter_forward</item>
 			<item level="2" text="Enter Rewind at speed">config.seek.enter_backward</item>
-			<item level="2" text="Discontinuous playback at speeds above">config.seek.stepwise_minspeed</item>
-			<item level="2" text="Discontinuous playback frame repeat count">config.seek.stepwise_repeat</item>
+<!-- TRANSLATORS: The effect of "Non-smooth winding" is that rather
+     than using ordinary "continuous" or "smooth" winding, a fast
+     sequence of stills is shown when winding at high speeds. This
+     makes it much easier too follow when almost each frame comes from
+     a new scene. The effect is achieved by repeating each shown frame
+     a couple of times. The settings control both at which speed this
+     winding mode sets in, and how many times each frame should be
+     repeated. This was previously called "Discontinuous playback"
+     which was incomprehensible. "Non-smooth winding" may be a better
+     term, but note that there is nothing irregular about it. Synonyms
+     better suited for translation to other languages may be "stepwise
+     winding/playback", or "winding/playback using stills". -->
+			<item level="2" text="Use non-smooth winding at speeds above">config.seek.stepwise_minspeed</item>
+			<item level="2" text="Frame repeat count during non-smooth winding">config.seek.stepwise_repeat</item>
 			<item level="2" text="Behaviour of 'pause' when paused">config.seek.on_pause</item>
 			<item level="2" text="Behaviour of 0 key in PiP-mode">config.usage.pip_zero_button</item>
 			<item level="2" text="Alternative services tuner priority">config.usage.alternatives_priority</item>
