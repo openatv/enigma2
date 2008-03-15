@@ -7,3 +7,5 @@ install_PYTHON =	\
 	VideoWizard.py \
 	videowizard.xml \
 	*.png
+
+install_DATA = LICENSE
