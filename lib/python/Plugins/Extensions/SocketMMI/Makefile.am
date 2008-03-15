@@ -5,3 +5,4 @@ install_PYTHON = \
 	plugin.py \
 	SocketMMI.py
 
+install_DATA = LICENSE
