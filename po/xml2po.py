@@ -4,7 +4,13 @@ import os
 import string
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, property_lexical_handler
-from _xmlplus.sax.saxlib import LexicalHandler
+try:
+	from _xmlplus.sax.saxlib import LexicalHandler
+	no_comments = False
+except ImportError:
+	class LexicalHandler:
+		pass
+	no_comments = True
 
 class parseXML(ContentHandler, LexicalHandler):
 	def __init__(self, attrlist):
@@ -30,7 +36,8 @@ attrlist = set()
 
 contentHandler = parseXML(attrlist)
 parser.setContentHandler(contentHandler)
-parser.setProperty(property_lexical_handler, contentHandler)
+if not no_comments:
+	parser.setProperty(property_lexical_handler, contentHandler)
 dir = os.listdir(sys.argv[1])
 for x in dir:
 	if (str(x[-4:]) == ".xml"):
