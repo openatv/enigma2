@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-03-13 23:53+0100\n"
-"PO-Revision-Date: 2008-03-02 14:00+0200\n"
+"PO-Revision-Date: 2008-03-15 12:00+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -257,7 +257,7 @@ msgid "AC3 default"
 msgstr "AC3-ääni ensisijaisena"
 
 msgid "AC3 downmix"
-msgstr ""
+msgstr "AC3 muunnos stereoksi"
 
 msgid "AGC"
 msgstr "AGC"
@@ -359,7 +359,7 @@ msgid "Auto"
 msgstr "Automaattinen"
 
 msgid "Auto scart switching"
-msgstr ""
+msgstr "Autom. SCARTin kytkentä"
 
 msgid "Automatic"
 msgstr "Automaattinen"
@@ -707,10 +707,10 @@ msgid "Dish"
 msgstr "Antenni"
 
 msgid "Display 16:9 content as"
-msgstr ""
+msgstr "Näytä 16:9 sisältö"
 
 msgid "Display 4:3 content as"
-msgstr ""
+msgstr "Näytä 4:3 sisältö"
 
 msgid "Display Setup"
 msgstr "Etupaneelin näyttö..."
@@ -963,7 +963,7 @@ msgid "Finnish"
 msgstr "Suomi"
 
 msgid "Frame repeat count during non-smooth winding"
-msgstr ""
+msgstr "Ruudun toistomäärä hyppivällä kelauksella"
 
 msgid "French"
 msgstr "Ranska"
@@ -1144,7 +1144,7 @@ msgstr "Italia"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
-msgstr ""
+msgstr "Aina kokoruutu"
 
 msgid "Keyboard Map"
 msgstr "Näppäinasettelu"
@@ -1458,7 +1458,7 @@ msgstr "Ei mitään"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
-msgstr ""
+msgstr "Epälineaarinen"
 
 msgid "North"
 msgstr "Pohjoinen"
@@ -1557,7 +1557,7 @@ msgid "Please Reboot"
 msgstr "Uudelleenkäynnistä"
 
 msgid "Please Select Medium to be Scanned"
-msgstr ""
+msgstr "Valitse lähde josta haetaan"
 
 msgid "Please change recording endtime"
 msgstr "Aseta tallennuksen päättymisaika"
@@ -1807,7 +1807,7 @@ msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Toistuvaa ajastusta tallennetaan... Mitä haluat tehdä?"
 
 msgid "Repeats"
-msgstr ""
+msgstr "Toistokerrat"
 
 msgid "Reset"
 msgstr "Käynnistä CA-moduuli uudelleen"
@@ -2064,7 +2064,7 @@ msgstr "Näytä vilkkuva kello tallennusten aikana"
 
 #, python-format
 msgid "Show files from %s"
-msgstr ""
+msgstr "Näytä %s tiedostot"
 
 msgid "Show infobar on channel change"
 msgstr "Näytä tietopalkki kanavaa vaihdettaessa"
@@ -2091,7 +2091,7 @@ msgid "Shutdown Dreambox after"
 msgstr "Sammuta Dreambox jälkeenpäin"
 
 msgid "Similar"
-msgstr "Samanlainen"
+msgstr "Samanlaiset"
 
 msgid "Similar broadcasts:"
 msgstr "Samantyyliset lähetykset:"
@@ -2551,7 +2551,7 @@ msgstr "Käytä yhdyskäytävää"
 #.       better suited for translation to other languages may be "stepwise
 #.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
-msgstr ""
+msgstr "Hyppivä kelaus kun nopeus ylittää"
 
 msgid "Use power measurement"
 msgstr "Käytä virran mittausta"
@@ -2937,13 +2937,13 @@ msgid "copy to bouquets"
 msgstr "kopioi suosikkilistalle"
 
 msgid "daily"
-msgstr "päivittäinen"
+msgstr "joka päivä"
 
 msgid "delete"
 msgstr "poista"
 
 msgid "delete cut"
-msgstr "Poista leikkaus"
+msgstr "Poista leikkausmääritys"
 
 msgid "delete playlist entry"
 msgstr "poista soittolistan valinta"
@@ -3219,7 +3219,7 @@ msgid "previous channel in history"
 msgstr "Edellinen kanava historiassa"
 
 msgid "record"
-msgstr "tallenna"
+msgstr "tallennus"
 
 msgid "recording..."
 msgstr "tallennetaan..."
@@ -3246,10 +3246,10 @@ msgid "remove new found flag"
 msgstr "poista uusi kanava-lippu"
 
 msgid "remove this mark"
-msgstr "poista merkki"
+msgstr "Poista tämä merkki"
 
 msgid "repeated"
-msgstr "toistuva"
+msgstr "useita kertoja"
 
 msgid "right"
 msgstr "oikea"
@@ -3431,7 +3431,7 @@ msgid "waiting"
 msgstr "odottaa"
 
 msgid "weekly"
-msgstr "viikottainen"
+msgstr "joka viikko"
 
 msgid "whitelist"
 msgstr "hyväksytyt"
@@ -3455,12 +3455,3 @@ msgstr "kanavanvaihto"
 
 msgid "zapped"
 msgstr "vaihdettu"
-
-#~ msgid "Discontinuous playback at speeds above"
-#~ msgstr "Hyppivä kelaus kun nopeus ylittää"
-
-#~ msgid "Discontinuous playback frame repeat count"
-#~ msgstr "Ruudun toistomäärä hyppivällä kelauksella"
-
-#~ msgid "VCR Switch"
-#~ msgstr "VCR-SCARTin läpivienti"
