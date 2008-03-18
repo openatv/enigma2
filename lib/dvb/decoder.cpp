@@ -927,7 +927,7 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
-	m_vpid = m_apid = m_pcrpid = pidNone;
+	m_vpid = m_apid = m_pcrpid = m_textpid = pidNone;
 	m_changed = -1;
 	setState();
 }
