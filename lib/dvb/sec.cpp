@@ -814,6 +814,18 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 	//reset some tuner configuration
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
 	{
+		int tmp;
+		if (!strcmp(it->m_frontend->getDescription(), "BCM4501 (internal)") && !it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp) && tmp != -1)
+		{
+			FILE *f=fopen("/proc/stb/tsmux/lnb_b_input", "w");
+			if (!f || fwrite("B", 1, 1, f) != 1)
+				eDebug("set /proc/stb/tsmux/lnb_b_input to B failed!! (%m)");
+			else
+			{
+				eDebug("set /proc/stb/tsmux/lnb_b_input to B OK");
+				fclose(f);
+			}
+		}
 		it->m_frontend->setData(eDVBFrontend::SATPOS_DEPENDS_PTR, -1);
 		it->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, -1);
 		it->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, -1);
@@ -1257,6 +1269,17 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 		{
 			p1->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (int)p2);
 			p2->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (int)p1);
+			if (!strcmp(p1->m_frontend->getDescription(), p2->m_frontend->getDescription()) && !strcmp(p1->m_frontend->getDescription(), "BCM4501 (internal)"))
+			{
+				FILE *f=fopen("/proc/stb/tsmux/lnb_b_input", "w");
+				if (!f || fwrite("A", 1, 1, f) != 1)
+					eDebug("set /proc/stb/tsmux/lnb_b_input to A failed!! (%m)");
+				else
+				{
+					eDebug("set /proc/stb/tsmux/lnb_b_input to A OK");
+					fclose(f);
+				}
+			}
 			return 0;
 		}
 	}
