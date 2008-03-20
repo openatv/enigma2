@@ -132,6 +132,7 @@ public:
 
 	int openFrontend();
 	int closeFrontend();
+	const char *getDescription() const { return m_description; }
 };
 
 #endif // SWIG
