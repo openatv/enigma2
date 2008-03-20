@@ -18,6 +18,7 @@ class ServiceScan:
 	def scanStatusChanged(self):
 		if self.state == self.Running:
 			self.progressbar.setValue(self.scan.getProgress())
+			self.lcd_summary.updateProgress(self.scan.getProgress())
 			if self.scan.isDone():
 				errcode = self.scan.getError()
 				
@@ -104,7 +105,7 @@ class ServiceScan:
 				self.run += 1
 				self.execBegin()
 	
-	def __init__(self, progressbar, text, servicelist, passNumber, scanList, network, transponder, frontendInfo):
+	def __init__(self, progressbar, text, servicelist, passNumber, scanList, network, transponder, frontendInfo, lcd_summary):
 		self.foundServices = 0
 		self.progressbar = progressbar
 		self.text = text
@@ -115,6 +116,7 @@ class ServiceScan:
 		self.transponder = transponder
 		self.network = network
 		self.run = 0
+		self.lcd_summary = lcd_summary
 
 	def doRun(self):
 		self.scan = eComponentScan()
@@ -160,6 +162,7 @@ class ServiceScan:
 	def newService(self):
 		newServiceName = self.scan.getLastServiceName()
 		self.servicelist.addItem(newServiceName)
+		self.lcd_summary.updateService(self.scan.getLastServiceName())
 
 	def destroy(self):
 		pass
