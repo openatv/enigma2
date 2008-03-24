@@ -1159,21 +1159,34 @@ void eDVBFrontend::getFrontendData(ePyObject dest)
 int eDVBFrontend::readInputpower()
 {
 	int power=m_slotid;  // this is needed for read inputpower from the correct tuner !
-
-	// open front prozessor
-	int fp=::open("/dev/dbox/fp0", O_RDWR);
-	if (fp < 0)
+	char proc_name[64];
+	sprintf(proc_name, "/proc/stb/fp/lnb_sense%d", m_slotid);
+	FILE *f=fopen(proc_name, "r");
+	if (f)
 	{
-		eDebug("couldn't open fp");
-		return -1;
+		if (fscanf(f, "%08x", &power) != 1)
+			eDebug("read %s failed!! (%m)", proc_name);
+		else
+			eDebug("%s is %d\n", proc_name, power);
+		fclose(f);
 	}
-	static bool old_fp = (::ioctl(fp, FP_IOCTL_GET_ID) < 0);
-	if ( ioctl( fp, old_fp ? 9 : 0x100, &power ) < 0 )
+	else
 	{
-		eDebug("FP_IOCTL_GET_LNB_CURRENT failed (%m)");
-		return -1;
+		// open front prozessor
+		int fp=::open("/dev/dbox/fp0", O_RDWR);
+		if (fp < 0)
+		{
+			eDebug("couldn't open fp");
+			return -1;
+		}
+		static bool old_fp = (::ioctl(fp, FP_IOCTL_GET_ID) < 0);
+		if ( ioctl( fp, old_fp ? 9 : 0x100, &power ) < 0 )
+		{
+			eDebug("FP_IOCTL_GET_LNB_CURRENT failed (%m)");
+			return -1;
+		}
+		::close(fp);
 	}
-	::close(fp);
 
 	return power;
 }
@@ -1446,37 +1459,37 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SET_POWER_LIMITING_MODE:
 			{
-				if (!m_need_rotor_workaround)
-					break;
-
-				char dev[16];
-
-				// FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
-				if (m_slotid < 2)
-					sprintf(dev, "/dev/i2c/%d", m_slotid);
-				else if (m_slotid == 2)
-					sprintf(dev, "/dev/i2c/2"); // first nim socket on DM8000 use /dev/i2c/2
-				else if (m_slotid == 3)
-					sprintf(dev, "/dev/i2c/4"); // second nim socket on DM8000 use /dev/i2c/4
-				int fd = ::open(dev, O_RDWR);
-
-				unsigned char data[2];
-				::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
-				if(::read(fd, data, 1) != 1)
-					eDebug("[SEC] error read lnbp (%m)");
-				if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
+				if (m_need_rotor_workaround)
 				{
-					data[0] |= 0x80;  // enable static current limiting
-					eDebug("[SEC] set static current limiting");
+					char dev[16];
+
+					// FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
+					if (m_slotid < 2)
+						sprintf(dev, "/dev/i2c/%d", m_slotid);
+					else if (m_slotid == 2)
+						sprintf(dev, "/dev/i2c/2"); // first nim socket on DM8000 use /dev/i2c/2
+					else if (m_slotid == 3)
+						sprintf(dev, "/dev/i2c/4"); // second nim socket on DM8000 use /dev/i2c/4
+					int fd = ::open(dev, O_RDWR);
+
+					unsigned char data[2];
+					::ioctl(fd, I2C_SLAVE_FORCE, 0x10 >> 1);
+					if(::read(fd, data, 1) != 1)
+						eDebug("[SEC] error read lnbp (%m)");
+					if ( m_sec_sequence.current()->mode == eSecCommand::modeStatic )
+					{
+						data[0] |= 0x80;  // enable static current limiting
+						eDebug("[SEC] set static current limiting");
+					}
+					else
+					{
+						data[0] &= ~0x80;  // enable dynamic current limiting
+						eDebug("[SEC] set dynamic current limiting");
+					}
+					if(::write(fd, data, 1) != 1)
+						eDebug("[SEC] error write lnbp (%m)");
+					::close(fd);
 				}
-				else
-				{
-					data[0] &= ~0x80;  // enable dynamic current limiting
-					eDebug("[SEC] set dynamic current limiting");
-				}
-				if(::write(fd, data, 1) != 1)
-					eDebug("[SEC] error write lnbp (%m)");
-				::close(fd);
 				++m_sec_sequence.current();
 				break;
 			}
