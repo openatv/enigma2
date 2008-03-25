@@ -443,7 +443,7 @@ static PyObject *
 eTimerPy_is_active(eTimerPy* self)
 {
 	PyObject *ret = NULL;
-	ret = !!self->tm->isActive() ? Py_True : Py_False;
+	ret = self->tm->isActive() ? Py_True : Py_False;
 	Org_Py_INCREF(ret);
 	return ret;
 }
