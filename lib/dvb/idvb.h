@@ -470,8 +470,8 @@ public:
 	virtual void getTransponderData(SWIG_PYOBJECT(ePyObject) dest, bool original)=0;
 	virtual void getFrontendData(SWIG_PYOBJECT(ePyObject) dest)=0;
 #ifndef SWIG
-	virtual RESULT getData(int num, int &data)=0;
-	virtual RESULT setData(int num, int val)=0;
+	virtual RESULT getData(int num, long &data)=0;
+	virtual RESULT setData(int num, long val)=0;
 		/* 0 means: not compatible. other values are a priority. */
 	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
 #endif
