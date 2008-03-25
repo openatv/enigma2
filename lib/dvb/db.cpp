@@ -417,7 +417,7 @@ void eDVBDB::reloadServicelist()
 		} else
 			while ((!str.empty()) && str[1]==':') // new: p:, f:, c:%02d...
 			{
-				unsigned int c=str.find(',');
+				size_t c=str.find(',');
 				char p=str[0];
 				std::string v;
 				if (c == std::string::npos)
@@ -560,7 +560,7 @@ void eDVBDB::loadBouquet(const char *path)
 		eDebug("Bouquet load failed.. no path given..");
 		return;
 	}
-	unsigned int pos = bouquet_name.rfind('/');
+	size_t pos = bouquet_name.rfind('/');
 	if ( pos != std::string::npos )
 		bouquet_name.erase(0, pos+1);
 	if (bouquet_name.empty())
@@ -627,7 +627,7 @@ void eDVBDB::loadBouquet(const char *path)
 				}
 				if ( tmp.flags&eServiceReference::canDescent )
 				{
-					unsigned int pos = tmp.path.rfind('/');
+					size_t pos = tmp.path.rfind('/');
 					char buf[256];
 					std::string path = tmp.path;
 					if ( pos != std::string::npos )
@@ -760,7 +760,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 		Py_INCREF(Py_False);
 		return Py_False;
 	}
-	int tmp, *dest,
+	int tmp, *dest = NULL,
 		modulation, system, freq, sr, pol, fec;
 	char *end_ptr;
 	const Attribute *at;
@@ -1335,7 +1335,7 @@ RESULT eDVBDB::getBouquet(const eServiceReference &ref, eBouquet* &bouquet)
 		eDebug("getBouquet failed.. no path given!");
 		return -1;
 	}
-	unsigned int pos = str.find("FROM BOUQUET \"");
+	size_t pos = str.find("FROM BOUQUET \"");
 	if ( pos != std::string::npos )
 	{
 		str.erase(0, pos+14);
