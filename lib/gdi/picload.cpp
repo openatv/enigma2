@@ -1,8 +1,7 @@
+#include <png.h>	// must be included before Python.h because of setjmp
 #include <lib/gdi/picload.h>
 #include "picexif.h"
 #include <lib/python/python.h>
-
-#include <png.h>
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -14,7 +13,6 @@ extern "C" {
 #include <gif_lib.h>
 //#include "transupp.h"
 }
-#include <setjmp.h>
 
 unsigned char *pic_buffer=NULL;
 
