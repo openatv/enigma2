@@ -597,6 +597,9 @@ class NimManager:
 		#
 		# Type will be either "DVB-S", "DVB-S2", "DVB-T", "DVB-C" or None.
 
+		# nim_slots is an array which has exactly one entry for each slot, even for empty ones.
+		self.nim_slots = [ ]
+
 		nimfile = tryOpen("/proc/bus/nim_sockets")
 
 		if nimfile is None:
@@ -621,9 +624,6 @@ class NimManager:
 				entries[current_slot]["name"] = _("N/A")
 		nimfile.close()
 		
-		# nim_slots is an array which has exactly one entry for each slot, even for empty ones.
-		self.nim_slots = [ ]
-
 		for id, entry in entries.items():
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
