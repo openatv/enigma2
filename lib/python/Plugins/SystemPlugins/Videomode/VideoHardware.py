@@ -58,6 +58,7 @@ class VideoHardware:
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
+		self.standby = False
 
 		self.readAvailableModes()
 
@@ -66,7 +67,16 @@ class VideoHardware:
 
 		self.readPreferredModes()
 
+		# take over old AVSwitch component :)
+		from Components.AVSwitch import AVSwitch
+#		config.av.colorformat.notifiers = [ ] 
+		config.av.aspectratio.notifiers = [ ]
+		config.av.tvsystem.notifiers = [ ]
+		config.av.wss.notifiers = [ ]
+		AVSwitch.setInput = self.AVSwitchSetInput
+
 		config.av.aspect.addNotifier(self.updateAspect)
+		config.av.wss.addNotifier(self.updateAspect)
 		config.av.policy_169.addNotifier(self.updateAspect)
 		config.av.policy_43.addNotifier(self.updateAspect)
 
@@ -74,6 +84,11 @@ class VideoHardware:
 #		self.timer = eTimer()
 #		self.timer.callback.append(self.readPreferredModes)
 #		self.timer.start(1000)
+
+
+	def AVSwitchSetInput(self, mode):
+		self.standby = mode == "SCART"
+		self.updateStandby()
 
 	def readAvailableModes(self):
 		try:
@@ -205,7 +220,6 @@ class VideoHardware:
 
 		rate = config.av.videorate[mode].value
 		self.setMode(port, mode, rate)
-		
 
 	def updateAspect(self, cfgelement):
 		# determine aspect = {any,4:3,16:9,16:10}
@@ -252,9 +266,35 @@ class VideoHardware:
 			aspect = "4:3"
 			policy = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}[config.av.policy_169.value]
 
-		print "-> setting aspect, policy", aspect, policy
+		if not config.av.wss.value:
+			wss = "auto(4:3_off)"
+		else:
+			wss = "auto"
+
+		print "-> setting aspect, policy, wss", aspect, policy, wss
 		open("/proc/stb/video/aspect", "w").write(aspect)
 		open("/proc/stb/video/policy", "w").write(policy)
+		open("/proc/stb/denc/0/wss", "w").write(wss)
+		self.updateSlowblank()
+
+	def updateSlowblank(self):
+		if self.standby:
+			from Components.SystemInfo import SystemInfo
+			if SystemInfo["ScartSwitch"]:
+				mode = "scart"
+				sb = "vcr"
+			else:
+				mode = "off"
+				sb = "0"
+		else:
+			mode = "encoder"
+			sb = "auto"
+
+		open("/proc/stb/avs/0/sb", "w").write(sb)
+		open("/proc/stb/avs/0/input", "w").write(mode)
+
+	def updateStandby(self):
+		self.updateSlowblank()
 
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
