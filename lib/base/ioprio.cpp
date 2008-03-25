@@ -31,8 +31,24 @@ extern "C" int sys_ioprio_get(int, int);
 #error "Unsupported arch"
 #endif
 
+#if defined(_syscall3) && defined(_syscall2)
+
 _syscall3(int, ioprio_set, int, which, int, who, int, ioprio);
 _syscall2(int, ioprio_get, int, which, int, who);
+
+#else
+
+static inline int ioprio_set(int which, int who, int ioprio)
+{
+	return syscall(__NR_ioprio_set, which, who, ioprio);
+}
+
+static inline int ioprio_get(int which, int who)
+{
+	return syscall(__NR_ioprio_get, which, who);
+}
+
+#endif
 
 #define IOPRIO_CLASS_SHIFT	13
 
