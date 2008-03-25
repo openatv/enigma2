@@ -200,7 +200,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 	if (additional)
 	{
 		PyObject *key, *val;
-		int pos=0;
+		Py_ssize_t pos=0;
 		while (PyDict_Next(additional, &pos, &key, &val)) {
 			pfd[i].fd = PyObject_AsFileDescriptor(key);
 			pfd[i++].events = PyInt_AsLong(val);
