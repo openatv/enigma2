@@ -6,6 +6,8 @@ noinst_LIBRARIES = libenigma_actions.a
 libenigma_actions_a_SOURCES = \
 	action.cpp 
 
+CLEANFILES = actionids.h
+
 action.cpp: actionids.h
 
 actionids.h:
