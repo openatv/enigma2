@@ -43,6 +43,7 @@ enigma2_LDADD = \
 	@ID3TAG_LIBS@ \
 	@MAD_LIBS@ \
 	@PNG_LIBS@ \
+	@SDL_LIBS@ \
 	@SIGC_LIBS@ \
 	@DVBSI_LIBS@ \
 	@FRIBIDI_LIBS@ \
