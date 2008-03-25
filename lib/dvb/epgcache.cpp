@@ -1600,7 +1600,7 @@ RESULT eEPGCache::getNextTimeEntry(ePtr<eServiceEvent> &result)
 	return -1;
 }
 
-void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service, eServiceEvent *ptr, ePyObject nowTime, ePyObject service_name )
+void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject service, eServiceEvent *ptr, ePyObject nowTime, ePyObject service_name )
 {
 	ePyObject tmp;
 	int spos=0, tpos=0;
@@ -1661,7 +1661,7 @@ void fillTuple(ePyObject tuple, char *argstring, int argcount, ePyObject service
 	}
 }
 
-int handleEvent(eServiceEvent *ptr, ePyObject dest_list, char* argstring, int argcount, ePyObject service, ePyObject nowTime, ePyObject service_name, ePyObject convertFunc, ePyObject convertFuncArgs)
+int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, int argcount, ePyObject service, ePyObject nowTime, ePyObject service_name, ePyObject convertFunc, ePyObject convertFuncArgs)
 {
 	if (convertFunc)
 	{
@@ -1725,7 +1725,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 {
 	ePyObject convertFuncArgs;
 	int argcount=0;
-	char *argstring=NULL;
+	const char *argstring=NULL;
 	if (!PyList_Check(list))
 	{
 		PyErr_SetString(PyExc_StandardError,

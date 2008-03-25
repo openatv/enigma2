@@ -40,7 +40,7 @@ void eVideoWidget::updatePosition(int disable)
 
 	for (int i=0; i<4; ++i)
 	{
-		char *targets[]={"left", "top", "width", "height"};
+		const char *targets[]={"left", "top", "width", "height"};
 		char filename[128];
 		snprintf(filename, 128, "/proc/stb/vmpeg/%d/dst_%s", m_decoder, targets[i]);
 		FILE *f = fopen(filename, "w");

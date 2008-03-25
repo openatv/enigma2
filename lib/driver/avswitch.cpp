@@ -103,7 +103,7 @@ void eAVSwitch::setInput(int val)
 	2-aux
 	*/
 
-	char *input[] = {"encoder", "scart", "aux"};
+	const char *input[] = {"encoder", "scart", "aux"};
 
 	int fd;
 	
@@ -122,7 +122,7 @@ void eAVSwitch::setInput(int val)
 void eAVSwitch::setFastBlank(int val)
 {
 	int fd;
-	char *fb[] = {"low", "high", "vcr"};
+	const char *fb[] = {"low", "high", "vcr"};
 
 	if((fd = open("/proc/stb/avs/0/fb", O_WRONLY)) < 0) {
 		eDebug("cannot open /proc/stb/avs/0/fb");
@@ -140,10 +140,10 @@ void eAVSwitch::setColorFormat(int format)
 	1-RGB
 	2-S-Video
 	*/
-	char *cvbs="cvbs";
-	char *rgb="rgb";
-	char *svideo="svideo";
-	char *yuv="yuv";
+	const char *cvbs="cvbs";
+	const char *rgb="rgb";
+	const char *svideo="svideo";
+	const char *yuv="yuv";
 	int fd;
 	
 	if((fd = open("/proc/stb/avs/0/colorformat", O_WRONLY)) < 0) {
@@ -178,8 +178,8 @@ void eAVSwitch::setAspectRatio(int ratio)
 	5-16:10 PanScan
 	6-16:9 forced ("letterbox")
 	*/
-	char *aspect[] = {"4:3", "4:3", "any", "16:9", "16:10", "16:10", "16:9", "16:9"};
-	char *policy[] = {"letterbox", "panscan", "bestfit", "panscan", "letterbox", "panscan", "letterbox"};
+	const char *aspect[] = {"4:3", "4:3", "any", "16:9", "16:10", "16:10", "16:9", "16:9"};
+	const char *policy[] = {"letterbox", "panscan", "bestfit", "panscan", "letterbox", "panscan", "letterbox"};
 
 	int fd;
 	if((fd = open("/proc/stb/video/aspect", O_WRONLY)) < 0) {
@@ -202,8 +202,8 @@ void eAVSwitch::setAspectRatio(int ratio)
 
 void eAVSwitch::setVideomode(int mode)
 {
-	char *pal="pal";
-	char *ntsc="ntsc";
+	const char *pal="pal";
+	const char *ntsc="ntsc";
 	
 	if (mode == m_video_mode)
 		return;
@@ -256,7 +256,7 @@ void eAVSwitch::setWSS(int val) // 0 = auto, 1 = auto(4:3_off)
 		eDebug("cannot open /proc/stb/denc/0/wss");
 		return;
 	}
-	char *wss[] = {
+	const char *wss[] = {
 		"off", "auto", "auto(4:3_off)", "4:3_full_format", "16:9_full_format",
 		"14:9_letterbox_center", "14:9_letterbox_top", "16:9_letterbox_center",
 		"16:9_letterbox_top", ">16:9_letterbox_center", "14:9_full_format"
@@ -273,7 +273,7 @@ void eAVSwitch::setSlowblank(int val)
 		eDebug("cannot open /proc/stb/avs/0/sb");
 		return;
 	}
-	char *sb[] = {"0", "6", "12", "vcr", "auto"};
+	const char *sb[] = {"0", "6", "12", "vcr", "auto"};
 	write(fd, sb[val], strlen(sb[val]));
 //	eDebug("set slow blanking to %s", sb[val]);
 	close(fd);

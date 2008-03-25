@@ -27,9 +27,9 @@ class eAutoInit
 	virtual void closeNow()=0;
 protected:
 	int rl;
-	char *description;
+	const char *description;
 public:
-	eAutoInit(int rl, char *description): rl(rl), description(description)
+	eAutoInit(int rl, const char *description): rl(rl), description(description)
 	{
 	}
 	virtual ~eAutoInit();
@@ -54,7 +54,7 @@ public:
 	{
 		return t;
 	}
-	eAutoInitP1(const T2 &arg, int runl, char *description): eAutoInit(runl, description), arg(arg)
+	eAutoInitP1(const T2 &arg, int runl, const char *description): eAutoInit(runl, description), arg(arg)
 	{
 		eInit::add(rl, this);
 	}
@@ -85,7 +85,7 @@ public:
 	{
 		return t;
 	}
-	eAutoInitP0(int runl, char *description): eAutoInit(runl, description)
+	eAutoInitP0(int runl, const char *description): eAutoInit(runl, description)
 	{
 		eInit::add(rl, this);
 	}
@@ -116,7 +116,7 @@ public:
 	{
 		return t;
 	}
-	eAutoInitPtr(int runl, char *description): eAutoInit(runl, description)
+	eAutoInitPtr(int runl, const char *description): eAutoInit(runl, description)
 	{
 		eInit::add(rl, this);
 	}
