@@ -550,6 +550,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							for ( int i = 0; i < loops;)  // fill commands...
 							{
 								eDVBDiseqcCommand diseqc;
+								memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
 								diseqc.len = 4;
 								diseqc.data[0] = i ? 0xE1 : 0xE0;
 								diseqc.data[1] = 0x10;
@@ -637,6 +638,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD]) ); // wait 700ms when diseqc changed
 
 						eDVBDiseqcCommand diseqc;
+						memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
 						diseqc.len = 3;
 						diseqc.data[0] = 0xE0;
 						diseqc.data[1] = 0x31;	// positioner
