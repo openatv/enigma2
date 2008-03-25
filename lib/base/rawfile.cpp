@@ -140,7 +140,7 @@ void eRawFile::scan()
 	{
 		if (!m_cached)
 		{
-			int f = openFile(m_nrfiles);
+			int f = openFileUncached(m_nrfiles);
 			if (f < 0)
 				break;
 			if (!m_nrfiles)
@@ -149,7 +149,7 @@ void eRawFile::scan()
 			::close(f);
 		} else
 		{
-			FILE *f = (FILE*)openFile(m_nrfiles);
+			FILE *f = openFileCached(m_nrfiles);
 			if (!f)
 				break;
 			::fseeko(f, 0, SEEK_END);
@@ -176,9 +176,9 @@ int eRawFile::switchOffset(off_t off)
 //			eDebug("-> %d", filenr);
 			close();
 			if (!m_cached)
-				m_fd = openFile(filenr);
+				m_fd = openFileUncached(filenr);
 			else
-				m_file = (FILE*)openFile(filenr);
+				m_file = openFileCached(filenr);
 			m_last_offset = m_base_offset = m_splitsize * filenr;
 			m_current_file = filenr;
 		}
@@ -201,7 +201,8 @@ int eRawFile::switchOffset(off_t off)
 	}
 }
 
-int eRawFile::openFile(int nr)
+/* m_cached */
+FILE *eRawFile::openFileCached(int nr)
 {
 	std::string filename = m_basename;
 	if (nr)
@@ -210,8 +211,18 @@ int eRawFile::openFile(int nr)
 		snprintf(suffix, 5, ".%03d", nr);
 		filename += suffix;
 	}
-	if (!m_cached)
-		return ::open(filename.c_str(), O_RDONLY | O_LARGEFILE);
-	else
-		return (int)::fopen64(filename.c_str(), "rb");
+	return ::fopen64(filename.c_str(), "rb");
+}
+
+/* !m_cached */
+int eRawFile::openFileUncached(int nr)
+{
+	std::string filename = m_basename;
+	if (nr)
+	{
+		char suffix[5];
+		snprintf(suffix, 5, ".%03d", nr);
+		filename += suffix;
+	}
+	return ::open(filename.c_str(), O_RDONLY | O_LARGEFILE);
 }
