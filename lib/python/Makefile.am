@@ -15,6 +15,8 @@ enigma_python_wrap.cxx: enigma_python.i
 
 enigma.py: enigma_python_wrap.cxx
 
+CLEANFILES = enigma.py enigma_python_wrap.cxx
+
 installdir = $(LIBDIR)/enigma2/python
 
 install_PYTHON = \
