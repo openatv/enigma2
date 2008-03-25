@@ -3,5 +3,7 @@ libopen.so.0.0:
 
 all: libopen.so.0.0
 
+CLEANFILES = libopen.so.0.0
+
 install: all
 	$(INSTALL) libopen.so.0.0 $(DESTDIR)/usr/lib
