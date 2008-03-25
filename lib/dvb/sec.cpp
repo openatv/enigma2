@@ -114,12 +114,12 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	setRotorPosNum(1); // stored pos 1
 }
 
-static void checkLinkedParams(int direction, int &linked_ptr, int &ret, const eDVBFrontendParametersSatellite &sat, int csw, int ucsw, int toneburst, bool diseqc, bool rotor, int RotorPos)
+static void checkLinkedParams(int direction, long &linked_ptr, int &ret, const eDVBFrontendParametersSatellite &sat, int csw, int ucsw, int toneburst, bool diseqc, bool rotor, int RotorPos)
 {
 	eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_ptr;
 	if (linked_fe->m_inuse)
 	{
-		int ocsw = -1,
+		long ocsw = -1,
 			oucsw = -1,
 			oToneburst = -1;
 		linked_fe->m_frontend->getData(eDVBFrontend::CSW, ocsw);
@@ -145,7 +145,7 @@ static void checkLinkedParams(int direction, int &linked_ptr, int &ret, const eD
 //		else
 //			eDebug("OK .. can tune this transponder with linked tuner in use :)");
 	}
-	linked_fe->m_frontend->getData(direction, linked_ptr);
+	linked_fe->m_frontend->getData(direction, (long&)linked_ptr);
 }
 
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id )
@@ -166,7 +166,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				lnb_param.m_satellites.find(sat.orbital_position);
 			if ( sit != lnb_param.m_satellites.end())
 			{
-				int band=0,
+				long band=0,
 					linked_prev_ptr=-1,
 					linked_next_ptr=-1,
 					satpos_depends_ptr=-1,
@@ -298,7 +298,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			bool doSetFrontend = true;
 			bool doSetVoltageToneFrontend = m_not_linked_slot_mask & slot_id;
 			bool allowDiseqc1_2 = true;
-			int band=0,
+			long band=0,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
 				csw = di_param.m_committed_cmd,
@@ -607,7 +607,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						}
 					}
 
-					eDebug("RotorCmd %02x, lastRotorCmd %02x", RotorCmd, lastRotorCmd);
+					eDebug("RotorCmd %02x, lastRotorCmd %02lx", RotorCmd, lastRotorCmd);
 					if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
 					{
 						eSecCommand::pair compare;
@@ -814,7 +814,7 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 	//reset some tuner configuration
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
 	{
-		int tmp;
+		long tmp;
 		if (!strcmp(it->m_frontend->getDescription(), "BCM4501 (internal)") && !it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp) && tmp != -1)
 		{
 			FILE *f=fopen("/proc/stb/tsmux/lnb_b_input", "w");
@@ -1167,7 +1167,7 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 
 			do 
 			{
-				int tmp;
+				long tmp;
 				p1->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp);
 				if (tmp != -1)
 					p1 = (eDVBRegisteredFrontend*)tmp;
@@ -1178,7 +1178,7 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 
 			do 
 			{
-				int tmp;
+				long tmp;
 				p2->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp);
 				if (tmp != -1)
 					p2 = (eDVBRegisteredFrontend*)tmp;
@@ -1189,8 +1189,8 @@ PyObject *eDVBSatelliteEquipmentControl::get_exclusive_satellites(int tu1, int t
 
 			if (p1 != p2)
 			{
-				int tmp1=-1;
-				int tmp2=-1;
+				long tmp1=-1;
+				long tmp2=-1;
 				// check for rotor dependency
 				p1->m_frontend->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, tmp1);
 				if (tmp1 != -1)
@@ -1267,8 +1267,8 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 		}
 		if (p1 && p2)
 		{
-			p1->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (int)p2);
-			p2->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (int)p1);
+			p1->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (long)p2);
+			p2->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (long)p1);
 			if (!strcmp(p1->m_frontend->getDescription(), p2->m_frontend->getDescription()) && !strcmp(p1->m_frontend->getDescription(), "BCM4501 (internal)"))
 			{
 				FILE *f=fopen("/proc/stb/tsmux/lnb_b_input", "w");
@@ -1304,8 +1304,8 @@ RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
 	}
 	if (p1 && p2)
 	{
-		p1->m_frontend->setData(eDVBFrontend::SATPOS_DEPENDS_PTR, (int)p2);
-		p2->m_frontend->setData(eDVBFrontend::SATPOS_DEPENDS_PTR, (int)p1);
+		p1->m_frontend->setData(eDVBFrontend::SATPOS_DEPENDS_PTR, (long)p2);
+		p2->m_frontend->setData(eDVBFrontend::SATPOS_DEPENDS_PTR, (long)p1);
 		return 0;
 	}
 	return -1;

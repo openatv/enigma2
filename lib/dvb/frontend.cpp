@@ -506,7 +506,7 @@ int eDVBFrontend::closeFrontend()
 				m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
 			return -1;
 		}
-		linked_fe->m_frontend->getData(LINKED_NEXT_PTR, (int&)linked_fe);
+		linked_fe->m_frontend->getData(LINKED_NEXT_PTR, (long&)linked_fe);
 	}
 	if (m_fd >= 0)
 	{
@@ -751,8 +751,8 @@ void PutToDict(ePyObject &dict, const char*key, const char *value)
 
 void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, eDVBFrontend *fe)
 {
-	int freq_offset=0;
-	int csw=0;
+	long freq_offset=0;
+	long csw=0;
 	const char *tmp=0;
 	fe->getData(eDVBFrontend::CSW, csw);
 	fe->getData(eDVBFrontend::FREQ_OFFSET, freq_offset);
@@ -1224,14 +1224,14 @@ void eDVBFrontend::setRotorData(int pos, int cmd)
 	else
 	{
 		eDVBRegisteredFrontend *next = (eDVBRegisteredFrontend *)m_data[LINKED_NEXT_PTR];
-		while ( (int)next != -1 )
+		while ( (long)next != -1 )
 		{
 			next->m_frontend->m_data[ROTOR_CMD] = cmd;
 			next->m_frontend->m_data[ROTOR_POS] = pos;
 			next = (eDVBRegisteredFrontend *)next->m_frontend->m_data[LINKED_NEXT_PTR];
 		}
 		eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *)m_data[LINKED_PREV_PTR];
-		while ( (int)prev != -1 )
+		while ( (long)prev != -1 )
 		{
 			prev->m_frontend->m_data[ROTOR_CMD] = cmd;
 			prev->m_frontend->m_data[ROTOR_POS] = pos;
@@ -2113,7 +2113,7 @@ RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
 	return 0;
 }
 
-RESULT eDVBFrontend::getData(int num, int &data)
+RESULT eDVBFrontend::getData(int num, long &data)
 {
 	if ( num < NUM_DATA_ENTRIES )
 	{
@@ -2123,7 +2123,7 @@ RESULT eDVBFrontend::getData(int num, int &data)
 	return -EINVAL;
 }
 
-RESULT eDVBFrontend::setData(int num, int val)
+RESULT eDVBFrontend::setData(int num, long val)
 {
 	if ( num < NUM_DATA_ENTRIES )
 	{

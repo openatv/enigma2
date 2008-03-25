@@ -242,8 +242,8 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 			{
 				if (prev_dvbt_frontend)
 				{
-					prev_dvbt_frontend->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (int)new_fe);
-					frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (int)&(*prev_dvbt_frontend));
+					prev_dvbt_frontend->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (long)new_fe);
+					frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (long)&(*prev_dvbt_frontend));
 				}
 				prev_dvbt_frontend = new_fe;
 			}
@@ -322,7 +322,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 			// check if another slot linked to this is in use
 			eDVBRegisteredFrontend *satpos_depends_to_fe =
 				(eDVBRegisteredFrontend*) i->m_frontend->m_data[eDVBFrontend::SATPOS_DEPENDS_PTR];
-			if ( (int)satpos_depends_to_fe != -1 )
+			if ( (long)satpos_depends_to_fe != -1 )
 			{
 				if (satpos_depends_to_fe->m_inuse)
 				{
@@ -335,7 +335,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 			{
 				eDVBRegisteredFrontend *next =
 					(eDVBRegisteredFrontend *) i->m_frontend->m_data[eDVBFrontend::LINKED_NEXT_PTR];
-				while ( (int)next != -1 )
+				while ( (long)next != -1 )
 				{
 					if (next->m_inuse)
 					{
@@ -347,7 +347,7 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 				}
 				eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *)
 					i->m_frontend->m_data[eDVBFrontend::LINKED_PREV_PTR];
-				while ( (int)prev != -1 )
+				while ( (long)prev != -1 )
 				{
 					if (prev->m_inuse)
 					{

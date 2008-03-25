@@ -82,7 +82,7 @@ class eDVBFrontend: public iDVBFrontend, public Object
 		NUM_DATA_ENTRIES
 	};
 
-	int m_data[NUM_DATA_ENTRIES];
+	long m_data[NUM_DATA_ENTRIES];
 
 	int m_idleInputpower[2];  // 13V .. 18V
 	int m_runningInputpower;
@@ -115,8 +115,8 @@ public:
 	RESULT sendToneburst(int burst);
 	RESULT setSEC(iDVBSatelliteEquipmentControl *sec);
 	RESULT setSecSequence(const eSecCommandList &list);
-	RESULT getData(int num, int &data);
-	RESULT setData(int num, int val);
+	RESULT getData(int num, long &data);
+	RESULT setData(int num, long val);
 
 	int readFrontendData(int type); // bitErrorRate, signalPower, signalQualitydB, signalQuality, locked, synced
 	void getFrontendStatus(ePyObject dest);
