@@ -219,7 +219,6 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
 off_t eMPEGStreamInformation::getAccessPoint(pts_t ts)
 {
 		/* FIXME: more efficient implementation */
-	pts_t delta = 0;
 	off_t last = 0;
 	for (std::map<off_t, pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
