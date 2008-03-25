@@ -146,7 +146,7 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 	std::multimap<pts_t, off_t>::const_iterator 
 		l = m_pts_to_offset.upper_bound(ts - 60 * 90000), 
 		u = m_pts_to_offset.upper_bound(ts + 60 * 90000), 
-		nearest = m_access_points.end();
+		nearest = m_pts_to_offset.end();
 
 	while (l != u)
 	{
@@ -154,7 +154,7 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 			nearest = l;
 		++l;
 	}
-	if (nearest == m_access_points.end())
+	if (nearest == m_pts_to_offset.end())
 		return 1;
 
 	ts -= getDelta(nearest->second);
