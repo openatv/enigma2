@@ -42,8 +42,10 @@ enigma2.pot:
 %.po:
 	msginit -l $@ -o $@ -i enigma2.pot --no-translator
 
-clean:
-	$(RM) *.mo *.pot
+CLEANFILES = $(foreach LANG, $(LANGS),$(LANG).mo)
+
+clean-local:
+	$(RM) -r $(LANGS)
 
 install-data-am: default
 	for lang in $(LANGS); do \
