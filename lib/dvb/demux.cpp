@@ -632,7 +632,6 @@ RESULT eDVBTSRecorder::startPID(int pid)
 	}
 	m_pids[pid] = fd;
 #else
-	bool retry=false;
 	while(true) {
 		if (::ioctl(m_source_fd, DMX_ADD_PID, pid) < 0) {
 			perror("DMX_ADD_PID");
