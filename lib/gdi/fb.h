@@ -1,8 +1,8 @@
 #ifndef __FB_H
 #define __FB_H
 
-#include <linux/fb.h>
 #include <lib/base/eerror.h>
+#include <linux/fb.h>
 
 class fbClass
 {
