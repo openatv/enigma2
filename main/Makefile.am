@@ -6,6 +6,8 @@ bin_PROGRAMS = enigma2
 enigma2_SOURCES = \
 	enigma.cpp bsod.cpp
 
+CLEANFILES = version.h
+
 bsod.o: version.h
 
 enigma.o: version.h
