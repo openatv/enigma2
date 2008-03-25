@@ -1,6 +1,6 @@
 #!/bin/sh
 
-package="tuxbox-enigma"
+package="enigma2"
 
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
