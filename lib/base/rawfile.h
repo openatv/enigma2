@@ -27,7 +27,8 @@ private:
 	void scan();
 	int m_current_file;
 	int switchOffset(off_t off);
-	int openFile(int nr);
+	FILE *openFileCached(int nr);
+	int openFileUncached(int nr);
 };
 
 #endif
