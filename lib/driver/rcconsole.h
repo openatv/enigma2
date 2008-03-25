@@ -35,7 +35,7 @@ public:
 class eRCConsole: public eRCDevice
 {
 public:
-	void handleCode(int code);
+	void handleCode(long code);
 	eRCConsole(eRCDriver *driver);
 	const char *getDescription() const;
 	const char *getKeyDescription(const eRCKey &key) const;

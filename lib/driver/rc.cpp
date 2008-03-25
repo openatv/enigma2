@@ -102,7 +102,7 @@ void eRCInputEventDriver::keyPressed(int)
 			break;
 		if (enabled && !input->islocked())
 			for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)
-				(*i)->handleCode((int)&ev);
+				(*i)->handleCode((long)&ev);
 	}
 }
 

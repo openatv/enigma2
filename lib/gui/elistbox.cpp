@@ -99,7 +99,7 @@ void eListbox::moveToEnd()
 	}
 }
 
-void eListbox::moveSelection(int dir)
+void eListbox::moveSelection(long dir)
 {
 		/* refuse to do anything without a valid list. */
 	if (!m_content)
@@ -360,7 +360,7 @@ int eListbox::event(int event, void *data, void *data2)
 	case evtAction:
 		if (isVisible())
 		{
-			moveSelection((int)data2);
+			moveSelection((long)data2);
 			return 1;
 		}
 		return 0;

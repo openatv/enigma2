@@ -90,7 +90,7 @@ void eRCConsoleDriver::keyPressed(int)
 	}
 }
 
-void eRCConsole::handleCode(int code)
+void eRCConsole::handleCode(long code)
 {
 	input->keyPressed(eRCKey(this, code, eRCKey::flagAscii));
 }

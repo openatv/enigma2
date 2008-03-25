@@ -7,7 +7,7 @@ class eRCDeviceInputDev: public eRCDevice
 {
 	int iskeyboard;
 public:
-	void handleCode(int code);
+	void handleCode(long code);
 	eRCDeviceInputDev(eRCInputEventDriver *driver);
 	const char *getDescription() const;
 };
