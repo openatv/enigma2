@@ -1871,7 +1871,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 
 						if (must_get_service_name == 1)
 						{
-							unsigned int pos;
+							size_t pos;
 							// filter short name brakets
 							while((pos = name.find("\xc2\x86")) != std::string::npos)
 								name.erase(pos,2);
@@ -2316,7 +2316,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 
 										if (must_get_service_name == 1)
 										{
-											unsigned int pos;
+											size_t pos;
 											// filter short name brakets
 											while((pos = name.find("\xc2\x86")) != std::string::npos)
 												name.erase(pos,2);
