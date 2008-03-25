@@ -1,7 +1,3 @@
-#ifdef WITH_SDL
-#define SDLDC
-#endif
-
 #include <stdio.h>
 #include <unistd.h>
 #include <libsig_comp.h>
@@ -150,7 +146,7 @@ int main(int argc, char **argv)
 	eMain main;
 
 #if 1
-#ifdef SDLDC
+#ifdef WITH_SDL
 	ePtr<gSDLDC> my_dc;
 	gSDLDC::getInstance(my_dc);
 #else

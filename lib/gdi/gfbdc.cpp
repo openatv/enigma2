@@ -242,6 +242,6 @@ void gFBDC::reloadSettings()
 }
 
 // eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
-#ifndef SDLDC
+#ifndef WITH_SDL
 eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
 #endif
