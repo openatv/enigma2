@@ -102,7 +102,7 @@ public:
 	}; */
 
 	int getCurrentIndex();
-	void moveSelection(int how);
+	void moveSelection(long how);
 	void moveSelectionTo(int index);
 	void moveToEnd();
 	bool atBegin();

@@ -41,7 +41,7 @@ public:
 	 * For Example, it might be 16bit codes with one bit make/break or special codes
 	 * for repeat.
 	 */
-	virtual void handleCode(int code)=0;
+	virtual void handleCode(long code)=0;
 	/**
 	 * \brief Get user readable description.
 	 * \result The description.

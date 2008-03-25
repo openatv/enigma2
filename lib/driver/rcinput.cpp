@@ -11,7 +11,7 @@
 #include <lib/base/init_num.h>
 #include <lib/driver/input_fake.h>
 
-void eRCDeviceInputDev::handleCode(int rccode)
+void eRCDeviceInputDev::handleCode(long rccode)
 {
 	struct input_event *ev = (struct input_event *)rccode;
 	if (ev->type!=EV_KEY)

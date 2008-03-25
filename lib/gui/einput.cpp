@@ -94,9 +94,9 @@ int eInput::event(int event, void *data, void *data2)
 	case evtAction:
 		if (isVisible())
 		{
-			if ((int)data == ASCII_ACTIONS)
+			if ((long)data == ASCII_ACTIONS)
 			{
-				if ((int)data2 == gotAsciiCode)
+				if ((long)data2 == gotAsciiCode)
 				{
 					if (m_content)
 					{
@@ -105,9 +105,9 @@ int eInput::event(int event, void *data, void *data2)
 					}
 				}
 			}
-			else if ((int)data == INPUT_ACTIONS)
+			else if ((long)data == INPUT_ACTIONS)
 			{
-				switch((int)data2)
+				switch((long)data2)
 				{
 				case moveLeft:
 					if (m_content)
@@ -146,8 +146,8 @@ int eInput::event(int event, void *data, void *data2)
 		return 0;
 	case evtKey:
 	{
-		int key = (int)data;
-		int flags = (int)data2;
+		long key = (long)data;
+		long flags = (long)data2;
 		if (m_content && !(flags & 1)) // only make/repeat, no break
 			return m_content->haveKey(key, m_mode);
 		break;
