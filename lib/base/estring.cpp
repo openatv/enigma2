@@ -10,10 +10,10 @@ std::string buildShortName( const std::string &str )
 	std::string tmp;
 	static char stropen[3] = { 0xc2, 0x86, 0x00 };
 	static char strclose[3] = { 0xc2, 0x87, 0x00 };
-	unsigned int open=std::string::npos-1;
+	size_t open=std::string::npos-1;
 	while ( (open = str.find(stropen, open+2)) != std::string::npos )
 	{
-		unsigned int close = str.find(strclose, open);
+		size_t close = str.find(strclose, open);
 		if ( close != std::string::npos )
 			tmp+=str.substr( open+2, close-(open+2) );
 	}
@@ -362,7 +362,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			switch(n)
 			{
 				case 12:
-					eDebug("unsup. ISO8859-12 enc.", n);
+					eDebug("unsup. ISO8859-12 enc.");
 					break;
 				default:
 					table=n;
