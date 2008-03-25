@@ -19,7 +19,10 @@ public:
 		/* timestampDelta is in fact the difference between */
 		/* the PTS in the stream and a real PTS from 0..max */
 	std::map<off_t, pts_t> m_timestamp_deltas;
-	
+
+		/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
+	std::multimap<pts_t, off_t> m_pts_to_offset; 
+
 	int save(const char *filename);
 	int load(const char *filename);
 	

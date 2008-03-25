@@ -35,6 +35,9 @@ int eMPEGStreamInformation::load(const char *filename)
 	if (!f)
 		return -1;
 	m_access_points.clear();
+	m_pts_to_offset.clear();
+	pts_t last = -(1LL<<62);
+	int loaded = 0, skipped = 0;
 	while (1)
 	{
 		unsigned long long d[2];
@@ -45,8 +48,16 @@ int eMPEGStreamInformation::load(const char *filename)
 		d[0] = bswap_64(d[0]);
 		d[1] = bswap_64(d[1]);
 #endif
-		m_access_points[d[0]] = d[1];
+		if ((d[1] - last) > 90000/2)
+		{
+			m_access_points[d[0]] = d[1];
+			m_pts_to_offset.insert(std::pair<pts_t,off_t>(d[1], d[0]));
+			last = d[1];
+			loaded++;
+		} else
+			skipped++;
 	}
+	eDebug("loaded %d, skipped %d", loaded, skipped);
 	fclose(f);
 	fixupDiscontinuties();
 	return 0;
@@ -123,7 +134,7 @@ pts_t eMPEGStreamInformation::getDelta(off_t offset)
 		/* i can be the first when you query for something before the first PTS */
 	if (i != m_timestamp_deltas.begin())
 		--i;
-	
+
 	return i->second;
 }
 
@@ -132,24 +143,29 @@ int eMPEGStreamInformation::fixupPTS(const off_t &offset, pts_t &ts)
 	if (!m_timestamp_deltas.size())
 		return -1;
 
-	std::map<off_t, pts_t>::const_iterator i = m_access_points.upper_bound(offset - 4 * 1024 * 1024), nearest = m_access_points.end();
-	
-	while (i != m_access_points.end())
+	std::multimap<pts_t, off_t>::const_iterator 
+		l = m_pts_to_offset.upper_bound(ts - 60 * 90000), 
+		u = m_pts_to_offset.upper_bound(ts + 60 * 90000), 
+		nearest = m_access_points.end();
+
+	while (l != u)
 	{
-		if ((nearest == m_access_points.end()) || (llabs(i->second - ts) < llabs(nearest->second - ts)))
-			nearest = i;
-		++i;
+		if ((nearest == m_pts_to_offset.end()) || (llabs(l->first - ts) < llabs(nearest->first - ts)))
+			nearest = l;
+		++l;
 	}
 	if (nearest == m_access_points.end())
-		return -1;
-	ts -= getDelta(nearest->first);
+		return 1;
+
+	ts -= getDelta(nearest->second);
+
 	return 0;
 }
 
 int eMPEGStreamInformation::getPTS(off_t &offset, pts_t &pts)
 {
 	std::map<off_t,pts_t>::iterator before = m_access_points.lower_bound(offset);
-	
+
 		/* usually, we prefer the AP before the given offset. however if there is none, we take any. */
 	if (before != m_access_points.begin())
 		--before;
@@ -170,7 +186,6 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
 {
 		/* get the PTS values before and after the offset. */
 	std::map<off_t,pts_t>::iterator before, after;
-	
 	after = m_access_points.upper_bound(offset);
 	before = after;
 
