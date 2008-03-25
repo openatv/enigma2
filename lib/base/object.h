@@ -140,7 +140,7 @@ public:
 				if (!ref) \
 					delete this; \
 			}
-	#elif defined(__i386__)
+	#elif defined(__i386__) || defined(__x86_64__)
 		#define DECLARE_REF(x) 			\
 			private: oRefCount ref; 	\
 			public: void AddRef(); 		\
@@ -151,14 +151,14 @@ public:
 				__asm__ __volatile__( \
 				"		lock ; incl	%0	\n" \
 				: "=m" (ref.count) \
-				: "m" (ref.count); \
+				: "m" (ref.count)); \
 			} \
 			void c::Release() \
 			{ \
 				__asm__ __volatile__( \
 				"		lock ; decl	%0	\n" \
 				: "=m" (ref.count) \
-				: "m" (ref.count); \
+				: "m" (ref.count)); \
 				if (!ref) \
 					delete this; \
 			}
