@@ -41,7 +41,10 @@ class Timezones:
 			unlink("/etc/localtime")
 		except OSError:
 			pass
-		symlink("/usr/share/zoneinfo/%s" %(self.timezones[index][1]), "/etc/localtime")
+		try:
+			symlink("/usr/share/zoneinfo/%s" %(self.timezones[index][1]), "/etc/localtime")
+		except OSError:
+			pass
 		try:
 			time.tzset()
 		except:
