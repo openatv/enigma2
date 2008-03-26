@@ -139,7 +139,6 @@ void eDVBRdsDecoder::removeFromPictureMask(int id)
 void eDVBRdsDecoder::processPESPacket(__u8 *data, int len)
 {
 	int pos=9+data[8];// skip pes header
-	int cnt=0;
 
 	while (pos < len)
 	{
@@ -151,7 +150,7 @@ void eDVBRdsDecoder::processPESPacket(__u8 *data, int len)
 		int channel = mode == 3 ? 1 : 2;
 		int id = (data[pos + 1] >> 3) & 1;
 		int emphasis_bit = data[pos + 3] & 3;
-		int protection_bit = data[pos + 1] & 1;
+		//int protection_bit = data[pos + 1] & 1;
 		int rate = -1;
 		int sample_freq = -1;
 		int layer = -1;
