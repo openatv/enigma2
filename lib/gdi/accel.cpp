@@ -90,7 +90,7 @@ int gAccel::accelAlloc(void *&addr, int &phys_addr, int size)
 {
 	if ((!size) || (!m_accel_allocation))
 	{
-		eDebug("size: %d, alloc %p", m_accel_allocation);
+		eDebug("size: %d, alloc %p", size, m_accel_allocation);
 		addr = 0;
 		phys_addr = 0;
 		return -1;
