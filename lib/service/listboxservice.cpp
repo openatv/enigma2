@@ -692,7 +692,7 @@ void eListboxServiceContent::setIgnoreService( const eServiceReference &service 
 	m_is_playable_ignore=service;
 }
 
-int eListboxServiceContent::setItemHeight(int height)
+void eListboxServiceContent::setItemHeight(int height)
 {
 	m_itemheight = height;
 	if (m_listbox)

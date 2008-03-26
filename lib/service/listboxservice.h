@@ -76,7 +76,7 @@ public:
 	void setNumberOffset(int offset) { m_numberoffset = offset; }
 	
 	int getItemHeight() { return m_itemheight; }
-	int setItemHeight(int height);
+	void setItemHeight(int height);
 
 	enum {
 		markedForeground,
