@@ -11,7 +11,7 @@ def videoFinetuneWizard(*args, **kwargs):
 		from Components.config import config
 		show_testcard = config.misc.showtestcard.value
 	except KeyError:
-		print "not showing finetune wizard, config variable doesn't exist"
+		print "not showing fine-tuning wizard, config variable doesn't exist"
 	if show_testcard:
 		from VideoFinetune import VideoFinetune
 		config.misc.showtestcard.value = False
@@ -30,10 +30,10 @@ def startSetup(menuid):
 	if menuid != "system": 
 		return [ ]
 
-	return [(("Video Finetune"), videoFinetuneMain, "video_finetune", None)]
+	return [(_("Video Fine-Tuning"), videoFinetuneMain, "video_finetune", None)]
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name=("Video Finetune"), description=("Fine-tune your video"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup),
-		PluginDescriptor(name=("Video Finetune Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=(1, videoFinetuneWizard))
+		PluginDescriptor(name=_("Video Fine-Tuning"), description=_("fine-tune your display"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup),
+		PluginDescriptor(name=_("Video Fine-Tuning Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=(1, videoFinetuneWizard))
 	]
