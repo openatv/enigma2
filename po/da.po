@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-13 23:53+0100\n"
-"PO-Revision-Date: 2008-03-13 16:41+0100\n"
+"POT-Creation-Date: 2008-03-27 02:58+0100\n"
+"PO-Revision-Date: 2008-03-25 13:08+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -258,7 +258,7 @@ msgid "AC3 default"
 msgstr "AC3 Standard"
 
 msgid "AC3 downmix"
-msgstr ""
+msgstr "AC3 nedmix"
 
 msgid "AGC"
 msgstr "AGC"
@@ -358,7 +358,7 @@ msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto scart switching"
-msgstr ""
+msgstr "Auto scart skift"
 
 msgid "Automatic"
 msgstr "Automatisk"
@@ -840,7 +840,7 @@ msgid "Enable multiple bouquets"
 msgstr "Tilføj multi pakker"
 
 msgid "Enable parental control"
-msgstr "Aktivere forældre kontrol"
+msgstr "Aktivere Forældre Kontrol?"
 
 msgid "Enabled"
 msgstr "Tilsluttet"
@@ -878,7 +878,7 @@ msgstr ""
 #.       which "winding mode" is entered when first pressing "rewind" or
 #.       "fast forward". 
 msgid "Enter Fast Forward at speed"
-msgstr "Sæt Hurtigfremspolings hastighed "
+msgstr "Nuværende hastighed ved spoling"
 
 msgid "Enter Rewind at speed"
 msgstr "Sæt Tilbagespolings hastighed"
@@ -911,7 +911,7 @@ msgid "Exit the wizard"
 msgstr "Afslut guiden"
 
 msgid "Exit wizard"
-msgstr "Afslut guide"
+msgstr "Afslut Start Hjælpen?"
 
 msgid "Expert"
 msgstr "Ekspert"
@@ -924,6 +924,9 @@ msgstr "Ekstra Menu"
 
 msgid "FEC"
 msgstr "FEC"
+
+msgid "Factoryreset"
+msgstr ""
 
 msgid "Fast"
 msgstr "Hurtig"
@@ -953,7 +956,7 @@ msgid "Finnish"
 msgstr "Finsk"
 
 msgid "Frame repeat count during non-smooth winding"
-msgstr ""
+msgstr "Billed gentagelses tæller ved hurtig spoling"
 
 msgid "French"
 msgstr "Fransk"
@@ -1033,7 +1036,7 @@ msgid "Harddisk setup"
 msgstr "Harddisk Indstilling"
 
 msgid "Harddisk standby after"
-msgstr "Harddisk Standby efter"
+msgstr "Harddisk Hvile efter:"
 
 msgid "Hierarchy Information"
 msgstr "Hiraki Information"
@@ -1086,10 +1089,10 @@ msgid "Init"
 msgstr "Initialiser"
 
 msgid "Initialization..."
-msgstr "Formaterer Harddisk..."
+msgstr "Initialisere Harddisk..."
 
 msgid "Initialize"
-msgstr "Initialisere"
+msgstr "Formatere"
 
 msgid "Initializing Harddisk..."
 msgstr "Initialiserer Harddisk..."
@@ -1500,16 +1503,16 @@ msgid "Pan&Scan"
 msgstr "Sorte striber lodret samt top og bund"
 
 msgid "Parental control"
-msgstr "Forældre kontrol"
+msgstr "Forældre Kontrol"
 
 msgid "Parental control services Editor"
-msgstr "Forældre kanal kontrol Editor"
+msgstr "Forældre Kanal Kontrol Editor"
 
 msgid "Parental control setup"
-msgstr "Forældre kontrol opsætning"
+msgstr "Forældre Kontrol Indstilling"
 
 msgid "Parental control type"
-msgstr "Forældre kontrol type"
+msgstr "Forældre Kontrol Type"
 
 msgid "Pause movie at end"
 msgstr ""
@@ -1534,7 +1537,7 @@ msgid "Please Reboot"
 msgstr "Genstart Venligst"
 
 msgid "Please Select Medium to be Scanned"
-msgstr "Venligst Vælg Medium som skal Scannes"
+msgstr "Venligst Vælg Media som skal Scannes"
 
 msgid "Please change recording endtime"
 msgstr "Venligst skift optagelses sluttid"
@@ -1672,10 +1675,10 @@ msgid "Prev"
 msgstr "Forrige"
 
 msgid "Protect services"
-msgstr "Beskyt kanaler"
+msgstr "Beskytte Kanaler?"
 
 msgid "Protect setup"
-msgstr "Beskyt opsætning"
+msgstr "Beskytte Indstillinger?"
 
 msgid "Provider"
 msgstr "Udbyder"
@@ -1951,7 +1954,7 @@ msgid "Seek"
 msgstr "Søg"
 
 msgid "Select HDD"
-msgstr "Vælg HDD"
+msgstr "Vælg Filsystem"
 
 msgid "Select Location"
 msgstr "Vælg Lokation"
@@ -2023,7 +2026,7 @@ msgid "Set limits"
 msgstr "Indstil limits"
 
 msgid "Settings"
-msgstr "Indstillinger"
+msgstr "Indstillings Menu"
 
 msgid "Setup"
 msgstr "Indstillinger"
@@ -2161,9 +2164,6 @@ msgstr "StartTid"
 msgid "Starting on"
 msgstr "Starter på"
 
-msgid "Startwizard"
-msgstr "Start Guide"
-
 msgid "Step "
 msgstr "Drej"
 
@@ -2239,7 +2239,7 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste opdatering: 14. Marts 2008\n"
+"Sidste opdatering: 25. Marts 2008\n"
 "\n"
 "Har du ændringer, forslag eller andet, så kontakt mig venligst!."
 
@@ -2262,7 +2262,7 @@ msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
 msgstr ""
-"Tak fordi du brugte guiden. Din Dreambox er nu klar til brug .\n"
+"Tak fordi du brugte Start Hjælpen. Din Dreambox er nu klar til brug .\n"
 "Tryk venligst OK, for at starte den."
 
 msgid "The backup failed. Please choose a different backup location."
@@ -2510,7 +2510,7 @@ msgstr "Brug af Router"
 #.       better suited for translation to other languages may be "stepwise
 #.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
-msgstr ""
+msgstr "Spoling/afspilning ved brug af stillbilleder"
 
 msgid "Use power measurement"
 msgstr "Brug Strøm Måling"
@@ -2534,7 +2534,7 @@ msgid "Use usals for this sat"
 msgstr "Brug USALS til denne position"
 
 msgid "Use wizard to set up basic features"
-msgstr "Brug guide til grundopsætningen"
+msgstr "Bruge Start Hjælpen til grundindstilling?"
 
 msgid "Used service scan type"
 msgstr "Brugt kanal søgnings type"
@@ -2586,7 +2586,7 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Velkommen til Image opdaterings guiden. Denne guide vil hjælpe dig gennem "
+"Velkommen til Image opdaterings hjælpen. Denne vil hjælpe dig gennem "
 "opdateringen. Firmwaren i din Dreambox giver dig mulighed for at lave backup "
 "af dine indstillinger, her er en kort gennemgang."
 
@@ -2596,9 +2596,9 @@ msgid ""
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
-"Din dreambox ønsker dig velkommen.\n"
+"Din Dreambox ønsker dig Velkommen.\n"
 "\n"
-"Denne guide vil hjælpe dig igennem opsætningen af din Dreambox.\n"
+"Denne Start Hjælp vil føre dig igennem grundindstillingen af din Dreambox.\n"
 "Tryk venligst OK på fjernbetjeningen, for at gå til næste trin."
 
 msgid "West"
@@ -3427,6 +3427,9 @@ msgstr "Zappet"
 
 #~ msgid "Show Zap-Errors"
 #~ msgstr "Vis Zap-Fejl"
+
+#~ msgid "Startwizard"
+#~ msgstr "Start Hjælp"
 
 #~ msgid ""
 #~ "Unable to initialize harddisk.\n"
