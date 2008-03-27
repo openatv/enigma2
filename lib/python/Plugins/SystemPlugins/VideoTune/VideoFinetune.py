@@ -80,11 +80,11 @@ class VideoFinetune(Screen):
 		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", 40), 
 			_("Brightness"))
 		c.writeText(xres / 10, yres / 6, xres * 4 / 7, yres / 6, RGB(255,255,255), RGB(0,0,0), gFont("Regular", 20),
-			("If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", "
-				"set it to standard. Adjust the backlight level to your favourite value. "
+			_("If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", "
+				"set it to standard. Adjust the backlight level to a value suiting your taste. "
 				"Turn down contrast on your TV as much as possible.\nThen turn the brightness setting as "
-				"low as possible, but make sure that the two lowermost shades of gray are still distinguishable.\n"
-				"Do not care for the bright shades now, they will be set up in the next step.\n"
+				"low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
+				"Do not care about the bright shades now. They will be set up in the next step.\n"
 				"If you are happy with the result, press OK."),
 				RT_WRAP)
 
@@ -134,8 +134,8 @@ class VideoFinetune(Screen):
 		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40), 
 			_("Contrast"))
 		c.writeText(xres / 10, yres / 6, xres / 2, yres / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", 20),
-			("Now, use the contrast setting to turn up the brightness of the background as much as possible, "
-				"but make sure that you can still see the difference between the two brightest level of shades."
+			_("Now, use the contrast setting to turn up the brightness of the background as much as possible, "
+				"but make sure that you can still see the difference between the two brightest levels of shades."
 				"If you have done that, press OK."),
 				RT_WRAP)
 
@@ -192,8 +192,8 @@ class VideoFinetune(Screen):
 		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40), 
 			("Color"))
 		c.writeText(xres / 10, yres / 6, xres / 2, yres / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", 20),
-			("Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. "
-				"If you are happy with the result, press OK to close the video finetuning, or use the number keys to select other test screens."),
+			_("Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. "
+				"If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."),
 				RT_WRAP)
 
 		c.flush()
