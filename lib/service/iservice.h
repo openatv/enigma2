@@ -665,6 +665,54 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iServiceOfflineOperations>, iServiceOfflineOperationsPtr);
 
+SWIG_IGNORE(iStreamableService);
+class iStreamableService: public iObject
+{
+#ifdef SWIG
+	iStreamableService();
+	~iStreamableService();
+#endif
+public:
+		/* returns a dict:
+			{ "demux": <n>,
+			  "pids": [(x,type),(y,type),(z,type),..],
+			  ...
+			}
+			with type being "video", "audio", "pmt", "pat"...
+		*/
+	virtual PyObject *getStreamingData()=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamableService>, iStreamableServicePtr);
+
+class iServiceKeys_ENUMS
+{
+#ifdef SWIG
+	iServiceKeys_ENUMS();
+	~iServiceKeys_ENUMS();
+#endif
+public:
+	enum {
+		keyLeft,
+		keyRight,
+		keyUp,
+		keyDown,
+		keyOk,
+		keyUser = 0x100
+	};
+};
+
+SWIG_IGNORE(iServiceKeys);
+class iServiceKeys: public iServiceKeys_ENUMS, public iObject
+{
+#ifdef SWIG
+	iServiceKeys();
+	~iServiceKeys();
+#endif
+public:
+	virtual SWIG_VOID(RESULT) keyPressed(int key)=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iServiceKeys>, iServiceKeysPtr);
+
 class iPlayableService_ENUMS
 {
 #ifdef SWIG
@@ -707,25 +755,6 @@ public:
 	};
 };
 
-SWIG_IGNORE(iStreamableService);
-class iStreamableService: public iObject
-{
-#ifdef SWIG
-	iStreamableService();
-	~iStreamableService();
-#endif
-public:
-		/* returns a dict:
-			{ "demux": <n>,
-			  "pids": [(x,type),(y,type),(z,type),..],
-			  ...
-			}
-			with type being "video", "audio", "pmt", "pat"...
-		*/
-	virtual PyObject *getStreamingData()=0;
-};
-SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamableService>, iStreamableServicePtr);
-
 SWIG_IGNORE(iPlayableService);
 class iPlayableService: public iPlayableService_ENUMS, public iObject
 {
@@ -755,6 +784,7 @@ public:
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) rdsDecoder(ePtr<iRdsDecoder> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) stream(ePtr<iStreamableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) keys(ePtr<iServiceKeys> &SWIG_OUTPUT)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
 
