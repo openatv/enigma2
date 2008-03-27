@@ -75,6 +75,12 @@ void eSubtitleWidget::clearPage()
 	m_visible_region.rects.clear();
 }
 
+void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed)
+{
+	m_pixmap = pixmap;
+	invalidate(changed);
+}
+
 int eSubtitleWidget::event(int event, void *data, void *data2)
 {
 	switch (event)
@@ -85,14 +91,15 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		gPainter &painter = *(gPainter*)data2;
 
 		getStyle(style);
-		
 		eWidget::event(event, data, data2);
-		ePtr<gFont> font = new gFont("Regular", 38);
-		painter.setFont(font);
-		
-		if (m_page_ok)
+
+		if (m_pixmap)
+			painter.blit(m_pixmap, ePoint(0,0));
+		else if (m_page_ok)
 		{
 			int elements = m_page.m_elements.size();
+			ePtr<gFont> font = new gFont("Regular", 38);
+			painter.setFont(font);
 			for (int i=0; i<elements; ++i)
 			{
 				eDVBTeletextSubtitlePageElement &element = m_page.m_elements[i];

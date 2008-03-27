@@ -16,6 +16,7 @@ public:
 	void setPage(const eDVBSubtitlePage &p);
 	void clearPage();
 
+	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed);
 protected:
 	int event(int event, void *data=0, void *data2=0);
 
@@ -29,6 +30,8 @@ private:
 	eTimer m_hide_subtitles_timer;
 
 	gRegion m_visible_region;
+
+	ePtr<gPixmap> m_pixmap;  // pixmap to paint on next evtPaint
 };
 
 #endif
