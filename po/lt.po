@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-28 13:58+0100\n"
-"PO-Revision-Date: 2008-03-14 20:28+0200\n"
-"Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
+"POT-Creation-Date: 2008-03-29 00:16+0100\n"
+"PO-Revision-Date: 2008-03-28 19:51+0200\n"
+"Last-Translator: Audronis Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,6 +302,11 @@ msgid ""
 "OK to close the video fine-tuning, or use the number keys to select other "
 "test screens."
 msgstr ""
+"Sureguliuokite spalvų nustatymus, kad visi spalvų atspalviai būtų "
+"atskiriami, bet atrodytų taip prisotinti kiek galima. Jei jūs esate "
+"patenkinti rezultatu, spauskite Gerai, kad uždarytumėte vaizdo tikslų "
+"suderinimą, ar pasinaudokite skaičių mygtukais, kad išrinktumėte kitus "
+"bandomuosius ekranus."
 
 msgid "Advanced"
 msgstr "Išplėstinis"
@@ -409,6 +414,12 @@ msgstr "Diapazono plotis"
 msgid "Begin time"
 msgstr "Pradžios laikas"
 
+msgid "Behavior of 'pause' when paused"
+msgstr ""
+
+msgid "Behavior of 0 key in PiP-mode"
+msgstr ""
+
 msgid "Behavior when a movie is started"
 msgstr "Elgsena, kai filmas prasidėjęs"
 
@@ -417,12 +428,6 @@ msgstr "Elgsena, kai filmas sustabdytas"
 
 msgid "Behavior when a movie reaches the end"
 msgstr "Elgsena, kai filmas pasiekia pabaigą"
-
-msgid "Behaviour of 'pause' when paused"
-msgstr "Pauzės elgsena, kai daroma pauzė"
-
-msgid "Behaviour of 0 key in PiP-mode"
-msgstr "0 mygtuko padėtis PiP režime"
 
 msgid "Brightness"
 msgstr "Šviesumas"
@@ -436,7 +441,7 @@ msgid ""
 msgstr "Infojuostos rodymui nuspauskite OK valdymo pultelyje."
 
 msgid "C-Band"
-msgstr "C- diapazonas"
+msgstr "C-diapazonas"
 
 msgid "CF Drive"
 msgstr "CF kortelė"
@@ -932,7 +937,7 @@ msgstr "Ekstra meniu"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "Factoryreset"
+msgid "Factory reset"
 msgstr ""
 
 msgid "Fast"
@@ -1081,6 +1086,16 @@ msgid ""
 "step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
+"Jeigu jūsų televizorius turi šviesumo arba kontrasto padidinimą, "
+"patvirtinkite tai. Jeigu yra kažkas pavadinta kaip \"dinaminis \", tai "
+"nustatykite tai, kaip standartą. Nustatykite lempos apšvietimo lygį, kuris "
+"yra jums tinkamiausias. Nustatykite kontrastą savo televizoriui tiek, kiek "
+"tai įmanoma.\n"
+"Tada nustatykite šviesumą tiek mažai kiek tai įmanoma, bet įsitikinkite kad "
+"du patys žemiausi pilki atspalviai atskirti. \n"
+"Dabar nebesirūpinkite šviesiais atspalviais . Jie bus nustatyti sekančiame "
+"žingsnyje.\n"
+"Jeigu Jūs patenkinti gautu rezultatu, spauskite Gerai."
 
 msgid "Image-Upgrade"
 msgstr "Atvaizdo atnaujinimas"
@@ -1310,7 +1325,7 @@ msgid "Movielist menu"
 msgstr "Filmų sąrašo meniu"
 
 msgid "Multi EPG"
-msgstr "Kelių kanalų EPG"
+msgstr "Kanalų EPG"
 
 msgid "Multiple service support"
 msgstr "Kelių kanalų palaikymas"
@@ -1483,6 +1498,10 @@ msgid ""
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
+"Dabar, panaudokite kontrasto nustatymą, kad padidinti fono šviesumą tiek "
+"kiek įmanoma, bet įsitikintumėte, kad jūs galite vis dar pamatyti skirtumą "
+"tarp dviejų ryškiausių atspalvių lygmenų. Jei jūs padarėte tai, spauskite "
+"Gerai."
 
 msgid "OK"
 msgstr "Gerai"
@@ -1546,7 +1565,7 @@ msgid "Pause movie at end"
 msgstr "Filmo pauzė pabaigoje"
 
 msgid "PiPSetup"
-msgstr "PiP Nustatymas"
+msgstr "PiP nustatymas"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Pillarbox"
@@ -1817,13 +1836,13 @@ msgid "Reset"
 msgstr "Perjungti"
 
 msgid "Restart"
-msgstr "Perkrauti"
+msgstr "Paleisti iš naujo"
 
 msgid "Restart GUI"
-msgstr "Perkrauti Enigma2"
+msgstr "Paleisti iš naujo Enigma2"
 
 msgid "Restart GUI now?"
-msgstr "Perkrauti Enigma2 dabar?"
+msgstr "Paleisti iš naujo Enigma2 dabar?"
 
 msgid "Restore"
 msgstr "Atkurti"
@@ -2034,7 +2053,7 @@ msgstr ""
 "(SID nėra  PAT)"
 
 msgid "Service scan"
-msgstr "Paieška"
+msgstr "Kanalų paieška"
 
 msgid ""
 "Service unavailable!\n"
@@ -2282,7 +2301,7 @@ msgid "Test mode"
 msgstr "Testuoti"
 
 msgid "Test-Messagebox?"
-msgstr "Testuoti pranešimų dėžutę"
+msgstr "Testuoti pranešimų dėžutę?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2445,7 +2464,7 @@ msgid "Tune"
 msgstr "Suderinti"
 
 msgid "Tune failed!"
-msgstr "Kanalas nerastas!"
+msgstr "Suderinimas nepavyko!"
 
 msgid "Tuner"
 msgstr "Imtuvas"
@@ -2580,10 +2599,10 @@ msgid "VCR scart"
 msgstr "Vaizdo grotuvas"
 
 msgid "Video Fine-Tuning"
-msgstr ""
+msgstr "Tikslus vaizdo suderinimas"
 
 msgid "Video Fine-Tuning Wizard"
-msgstr ""
+msgstr "Tikslaus vaizdo suderinimo vedlys"
 
 msgid "Video Output"
 msgstr "Vaizdo išėjimas"
@@ -2984,7 +3003,7 @@ msgid "exit movielist"
 msgstr "uždaryti filmų sąrašą"
 
 msgid "fine-tune your display"
-msgstr ""
+msgstr "tikslus jūsų ekrano suderinimas"
 
 msgid "free diskspace"
 msgstr "laisvos vietos diske"
@@ -3423,11 +3442,20 @@ msgstr "Jungti"
 msgid "zapped"
 msgstr "įjungta"
 
+#~ msgid "Behaviour of 'pause' when paused"
+#~ msgstr "Pauzės elgsena, kai daroma pauzė"
+
+#~ msgid "Behaviour of 0 key in PiP-mode"
+#~ msgstr "0 mygtuko padėtis PiP režime"
+
 #~ msgid "Discontinuous playback at speeds above"
 #~ msgstr "Trukinėjantis atkūrimas prie didelių greičių"
 
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Trukinėjantis atkūrimas pasikartojančia struktūra"
+
+#~ msgid "Factoryreset"
+#~ msgstr "Gamykliniai nustatymai"
 
 #~ msgid "Startwizard"
 #~ msgstr "Nustatymų vedlys"
