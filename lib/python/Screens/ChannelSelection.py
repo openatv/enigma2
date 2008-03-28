@@ -420,10 +420,10 @@ class ChannelSelectionEdit:
 		if mutableBouquetList:
 			if self.mode == MODE_TV:
 				bName += " (TV)"
-				str = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25) || (type == 134) FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(bName))
+				str = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			else:
 				bName += " (Radio)"
-				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(bName))
+				str = '1:7:2:0:0:0:0:0:0:0:FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			new_bouquet_ref = eServiceReference(str)
 			if not mutableBouquetList.addService(new_bouquet_ref):
 				mutableBouquetList.flushChanges()
@@ -997,14 +997,6 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.getCurrent()
 
 	def setCurrentSelection(self, service):
-		servicepath = service.getPath()
-		pos = servicepath.find(" FROM BOUQUET")
-		if pos != -1:
-			if self.mode == MODE_TV:
-				servicepath = '(type == 1) || (type == 17) || (type == 195) || (type == 25) || (type == 134)' + servicepath[pos:]
-			else:
-				servicepath = '(type == 2)' + servicepath[pos:]
-			service.setPath(servicepath)
 		self.servicelist.setCurrent(service)
 
 	def getBouquetList(self):
