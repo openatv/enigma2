@@ -420,7 +420,7 @@ class ChannelSelectionEdit:
 		if mutableBouquetList:
 			if self.mode == MODE_TV:
 				bName += " (TV)"
-				str = '1:7:1:0:0:0:0:0:0:0:(type == 1) FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(bName))
+				str = '1:7:1:0:0:0:0:0:0:0:(type == 1) || (type == 17) || (type == 195) || (type == 25) || (type == 134) FROM BOUQUET \"userbouquet.%s.tv\" ORDER BY bouquet'%(self.buildBouquetID(bName))
 			else:
 				bName += " (Radio)"
 				str = '1:7:2:0:0:0:0:0:0:0:(type == 2) FROM BOUQUET \"userbouquet.%s.radio\" ORDER BY bouquet'%(self.buildBouquetID(bName))
@@ -1001,7 +1001,7 @@ class ChannelSelectionBase(Screen):
 		pos = servicepath.find(" FROM BOUQUET")
 		if pos != -1:
 			if self.mode == MODE_TV:
-				servicepath = '(type == 1)' + servicepath[pos:]
+				servicepath = '(type == 1) || (type == 17) || (type == 195) || (type == 25) || (type == 134)' + servicepath[pos:]
 			else:
 				servicepath = '(type == 2)' + servicepath[pos:]
 			service.setPath(servicepath)
