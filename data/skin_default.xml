@@ -735,7 +735,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,10" size="405,325" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Subtitle area -->
-	<screen name="SubtitleDisplay" position="0,0" size="720,568" zPosition="-1" flags="wfNoBorder" />
+	<screen name="SubtitleDisplay" position="0,0" size="720,576" zPosition="-1" flags="wfNoBorder" />
 	<!-- Time & date input -->
 	<screen name="TimeDateInput" position="160,150" size="400,200" title="Time/Date Input">
 		<widget name="cancel" pixmap="skin_default/key-red.png" position="10,0" zPosition="1" size="140,40" alphatest="on" />
