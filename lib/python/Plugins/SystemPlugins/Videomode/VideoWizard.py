@@ -79,6 +79,7 @@ class VideoWizard(Wizard):
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
 				list.append((port,port))
+		list.sort(key = lambda x: x[0])
 		print "listInputChannels:", list
 		return list
 
