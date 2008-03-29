@@ -109,7 +109,7 @@ def InitAVSwitch():
 			"panscan": _("Pan&Scan"),  
 				# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 			"scale": _("Just Scale")},
-			default = "letterbox")
+			default = "scale")
 	config.av.policy_43 = ConfigSelection(choices={
 				# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 			"pillarbox": _("Pillarbox"), 
@@ -119,7 +119,7 @@ def InitAVSwitch():
 			"nonlinear": _("Nonlinear"),  
 				# TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 			"scale": _("Just Scale")},
-			default = "panscan")
+			default = "scale")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.defaultac3 = ConfigYesNo(default = False)
