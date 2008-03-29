@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-28 13:58+0100\n"
-"PO-Revision-Date: 2008-02-24 17:57+0100\n"
+"POT-Creation-Date: 2008-03-29 20:01+0100\n"
+"PO-Revision-Date: 2008-03-29 13:31+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgid "13 V"
 msgstr "13 V"
 
 msgid "16:10"
-msgstr ""
+msgstr "16:10"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -138,7 +138,7 @@ msgid "4"
 msgstr "4"
 
 msgid "4:3"
-msgstr ""
+msgstr "4:3"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -264,7 +264,7 @@ msgid "AC3 default"
 msgstr "AC3 por defecto"
 
 msgid "AC3 downmix"
-msgstr ""
+msgstr "mezcla AC3"
 
 msgid "AGC"
 msgstr "AGC"
@@ -308,6 +308,10 @@ msgid ""
 "OK to close the video fine-tuning, or use the number keys to select other "
 "test screens."
 msgstr ""
+"Ajuste la configuración del color de forma que todas las sombras de los "
+"colores se distingan, pero que estén tan saturadas como sea posible. Si está "
+"contento con el resultado, pulse OK para cerrar el ajuste de video fino, o "
+"use una tecla numérica para seleccionar otras pantallas de test."
 
 msgid "Advanced"
 msgstr "Avanzado"
@@ -371,10 +375,10 @@ msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto scart switching"
-msgstr ""
+msgstr "Intercambio a euroconector auto"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automático"
 
 msgid "Automatic Scan"
 msgstr "Búsqueda automática"
@@ -721,10 +725,10 @@ msgid "Dish"
 msgstr "Antena"
 
 msgid "Display 16:9 content as"
-msgstr ""
+msgstr "Visualice los contenidos 16:9 como"
 
 msgid "Display 4:3 content as"
-msgstr ""
+msgstr "Visualice los contenidos 4:3 como"
 
 msgid "Display Setup"
 msgstr "Configurar Display"
@@ -939,7 +943,7 @@ msgstr "Extensiones"
 msgid "FEC"
 msgstr "FEC"
 
-msgid "Factoryreset"
+msgid "Factory reset"
 msgstr ""
 
 msgid "Fast"
@@ -970,7 +974,7 @@ msgid "Finnish"
 msgstr "Finlandés"
 
 msgid "Frame repeat count during non-smooth winding"
-msgstr ""
+msgstr "Contador de tramas repetidas sin problemas de reproducción"
 
 msgid "French"
 msgstr "Francés"
@@ -1088,6 +1092,14 @@ msgid ""
 "step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
+"Si su TV tiene mejoras en el brillo o el contrase, desactívelo. Si hay algo "
+"llamado \"dinámico\", póngalo a estándar. Ajuste el nivel de luz trasera a "
+"un valor que le guste. Ponga el contraste en su TV lo más bajo posible.\n"
+"Ponga el brillo lo más bajo posible, pero esté seguro que los niveles de las "
+"sombras de grises más bajos son apreciables.\n"
+"No se preoucpe ahora sobre las sombras. Estas serán configuradas en el "
+"siguiente paso.\n"
+"Si está contento con los resultados, pulse OK."
 
 msgid "Image-Upgrade"
 msgstr "Imagen-Actualización"
@@ -1158,7 +1170,7 @@ msgstr "Italiano"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
-msgstr ""
+msgstr "Sólo escala"
 
 msgid "Keyboard Map"
 msgstr "Mapa del teclado"
@@ -1198,7 +1210,7 @@ msgstr "Izda"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
-msgstr ""
+msgstr "Letterbox"
 
 msgid "Limit east"
 msgstr "Límite este"
@@ -1464,7 +1476,7 @@ msgstr "Ninguno"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
-msgstr ""
+msgstr "No lineal"
 
 msgid "North"
 msgstr "Norte"
@@ -1487,6 +1499,9 @@ msgid ""
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
+"Ahora, use la configuración del contraste hacia arriba hasta que brille el "
+"fondo lo máximo posible, pero que siga viendo la diferencia entre los 2 "
+"niveles de sombra. Si esto está hecho, pulse OK."
 
 msgid "OK"
 msgstr "OK"
@@ -1532,7 +1547,7 @@ msgstr "Página"
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
-msgstr ""
+msgstr "Pan&Scan"
 
 msgid "Parental control"
 msgstr "Control de adultos"
@@ -1554,7 +1569,7 @@ msgstr "PiPConfig"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Pillarbox"
-msgstr ""
+msgstr "Pillarbox"
 
 msgid "Pin code needed"
 msgstr "Necesario código pin"
@@ -1569,7 +1584,7 @@ msgid "Please Reboot"
 msgstr "Por favor, Reiniciar"
 
 msgid "Please Select Medium to be Scanned"
-msgstr ""
+msgstr "Por favor, seleccione el medio a ser escaneado"
 
 msgid "Please change recording endtime"
 msgstr "Por favor, cambie la finalización de la grabación"
@@ -1818,7 +1833,7 @@ msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Repitiendo la grabación del evento actual... ¿Qué quiere hacer?"
 
 msgid "Repeats"
-msgstr ""
+msgstr "Repeticiones"
 
 msgid "Reset"
 msgstr "Resetear"
@@ -2073,7 +2088,7 @@ msgstr "Muestra parpadeo en el reloj mientras graba"
 
 #, python-format
 msgid "Show files from %s"
-msgstr ""
+msgstr "Mostrar ficheros desde %s"
 
 msgid "Show infobar on channel change"
 msgstr "Mostrar la barra de información al cambiar de canal"
@@ -2551,7 +2566,7 @@ msgstr "Usar puerta de enlace"
 #.       better suited for translation to other languages may be "stepwise
 #.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
-msgstr ""
+msgstr "Usar el el efecto de sombras a velocidades superiores"
 
 msgid "Use power measurement"
 msgstr "Usar medida de potencia"
@@ -2588,10 +2603,10 @@ msgid "VCR scart"
 msgstr "Euroconector VCR"
 
 msgid "Video Fine-Tuning"
-msgstr ""
+msgstr "Ajueste de video fino"
 
 msgid "Video Fine-Tuning Wizard"
-msgstr ""
+msgstr "Asistente de ajuste de vídeo"
 
 msgid "Video Output"
 msgstr "Salida de video"
@@ -2994,7 +3009,7 @@ msgid "exit movielist"
 msgstr "salir del menú de películas"
 
 msgid "fine-tune your display"
-msgstr ""
+msgstr "Configurar en detalle tu TV"
 
 msgid "free diskspace"
 msgstr "espacio libre en disco"
@@ -3487,6 +3502,9 @@ msgstr "zapeado"
 
 #~ msgid "Edit title..."
 #~ msgstr "Editar título..."
+
+#~ msgid "Factoryreset"
+#~ msgstr "Borrado de fábrica"
 
 #~ msgid "Games / Plugins"
 #~ msgstr "Juegos / Plugins"
