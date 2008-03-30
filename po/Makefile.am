@@ -29,6 +29,7 @@ enigma2.pot:
 			../lib/python/Plugins/*/*/*.py
 
 	./xml2po.py	../data/ >> enigma2.pot
+	./xml2po.py	../lib/python/Plugins/SystemPlugins/Videomode/ >> enigma2.pot
 	msguniq -o enigma2uniq.pot enigma2.pot
 	$(RM) enigma2.pot
 	mv enigma2uniq.pot enigma2.pot
