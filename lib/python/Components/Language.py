@@ -53,6 +53,9 @@ class Language:
 		except:
 			print "Selected language does not exist!"
 
+	def activateLanguageIndex(self, index):
+		self.activateLanguage(self.langlist[index])
+
 	def getLanguageList(self):
 		list = []
 		for x in self.langlist:
@@ -61,6 +64,12 @@ class Language:
 
 	def getActiveLanguage(self):
 		return self.activeLanguage
+	
+	def getActiveLanguageIndex(self):
+		for count in range(len(self.langlist)):
+			if self.langlist[count] == self.activeLanguage:
+				return count
+		return None			
 
 	def getLanguage(self):
 		try:
