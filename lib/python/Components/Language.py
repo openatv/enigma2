@@ -54,7 +54,8 @@ class Language:
 			print "Selected language does not exist!"
 
 	def activateLanguageIndex(self, index):
-		self.activateLanguage(self.langlist[index])
+		if index < len(self.langlist):
+			self.activateLanguage(self.langlist[index])
 
 	def getLanguageList(self):
 		list = []
