@@ -46,6 +46,9 @@ class WizardSummary(Screen):
 		self["text"].setText(text)
 
 class Wizard(Screen, HelpableScreen):
+	def createSummary(self):
+			print "WizardCreateSummary"
+			return WizardSummary
 
 	class parseWizard(ContentHandler):
 		def __init__(self, wizard):
@@ -54,9 +57,7 @@ class Wizard(Screen, HelpableScreen):
 			self.currContent = ""
 			self.lastStep = 0
 			
-		def createSummary(self):
-			print "WizardCreateSummary"
-			return WizardSummary
+		
 		
 		def startElement(self, name, attrs):
 			print "startElement", name
@@ -187,7 +188,7 @@ class Wizard(Screen, HelpableScreen):
 		
 		self.lcdCallbacks = []
 		
-		self["actions"] = NumberActionMap(["WizardActions", "NumberActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions"],
 		{
 			"ok": self.ok,
 			"back": self.back,
@@ -195,6 +196,10 @@ class Wizard(Screen, HelpableScreen):
 			"right": self.right,
 			"up": self.up,
 			"down": self.down,
+			"red": self.red,
+			"green": self.green,
+			"yellow": self.yellow,
+			"blue":self.blue,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -206,7 +211,23 @@ class Wizard(Screen, HelpableScreen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
+		
+	def red(self):
+		print "red"
+		pass
 
+	def green(self):
+		print "green"
+		pass
+	
+	def yellow(self):
+		print "yellow"
+		pass
+	
+	def blue(self):
+		print "blue"
+		pass
+	
 	def setLCDTextCallback(self, callback):
 		self.lcdCallbacks.append(callback)
 
@@ -310,7 +331,7 @@ class Wizard(Screen, HelpableScreen):
 			self["list"].selectPrevious()
 			if self.wizard[self.currStep].has_key("onselect"):
 				print "current:", self["list"].current
-				self.selection = self["list"].current[1]
+				self.selection = self["list"].current[-1]
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		print "up"
@@ -326,7 +347,7 @@ class Wizard(Screen, HelpableScreen):
 				print "current:", self["list"].current
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				#exec("self." + self.wizard[self.currStep]["onselect"] + "()")
-				self.selection = self["list"].current[1]
+				self.selection = self["list"].current[-1]
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		print "down"
@@ -338,7 +359,7 @@ class Wizard(Screen, HelpableScreen):
 				self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			if self.wizard[self.currStep].has_key("onselect"):
-				self.selection = self["list"].current[1]
+				self.selection = self["list"].current[-1]
 				print "self.selection:", self.selection
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		
@@ -444,7 +465,8 @@ class Wizard(Screen, HelpableScreen):
 				else:
 					self["config"].l.setList([])
 			else:
-				self["config"].hide()
+				if self.has_key("config"):
+					self["config"].hide()
 		else: # condition false
 				self.currStep += 1
 				self.updateValues()
