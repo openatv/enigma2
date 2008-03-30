@@ -331,7 +331,7 @@ int eListbox::event(int event, void *data, void *data2)
 				m_content->paint(painter, *style, ePoint(0, y), m_selected == m_content->cursorGet() && m_content->size() && m_selection_enabled);
 
 				/* (we could clip with entry_clip_rect, but 
-				   this shouldn't change the behaviour of any
+				   this shouldn't change the behavior of any
 				   well behaving content, so it would just
 				   degrade performance without any gain.) */
 

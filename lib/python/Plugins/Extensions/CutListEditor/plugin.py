@@ -393,7 +393,7 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 			bisect.insort(self.cut_list, (self.context_position, 1))
 			self.uploadCuesheet()
 
-	# we modify the "play" behaviour a bit:
+	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
 	def playpauseService(self):
 		if self.seekstate != self.SEEK_STATE_PLAY and not self.isStateSlowMotion(self.seekstate):

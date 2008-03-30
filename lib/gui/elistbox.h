@@ -15,7 +15,7 @@ public:
 		/* indices go from 0 to size().
 		   the end is reached when the cursor is on size(), 
 		   i.e. one after the last entry (this mimics 
-		   stl behaviour)
+		   stl behavior)
 		   
 		   cursors never invalidate - they can become invalid
 		   when stuff is removed. Cursors will always try

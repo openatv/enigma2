@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-29 20:01+0100\n"
-"PO-Revision-Date: 2008-03-29 09:55+0100\n"
+"POT-Creation-Date: 2008-03-30 13:01+0200\n"
+"PO-Revision-Date: 2008-03-29 21:42+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -413,6 +413,12 @@ msgstr "Båndbredde"
 msgid "Begin time"
 msgstr "Start tid"
 
+msgid "Behavior of 'pause' when paused"
+msgstr "Opførsel af 'pause' ved aktivering"
+
+msgid "Behavior of 0 key in PiP-mode"
+msgstr "Opførsel af 0 tast i PiP-type"
+
 msgid "Behavior when a movie is started"
 msgstr "Opførsel når en film startes"
 
@@ -421,12 +427,6 @@ msgstr "Opførsel når en film stoppes"
 
 msgid "Behavior when a movie reaches the end"
 msgstr "Opførsel når filmen er næsten slut"
-
-msgid "Behaviour of 'pause' when paused"
-msgstr ""
-
-msgid "Behaviour of 0 key in PiP-mode"
-msgstr ""
 
 msgid "Brightness"
 msgstr "Lysstyrke"
@@ -1560,7 +1560,7 @@ msgstr "Pause ved filmslutning"
 msgid "PiPSetup"
 msgstr "PiP Opsætning"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
 msgstr "Sort stribe i top og bund af billede"
 
@@ -2279,7 +2279,7 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste opdatering: 29. Marts 2008\n"
+"Sidste opdatering: 30. Marts 2008\n"
 "\n"
 "Har du ændringer, forslag eller andet, så kontakt mig venligst!."
 
@@ -3436,12 +3436,6 @@ msgstr "Zappet"
 
 #~ msgid "Allow Unsupported Modes"
 #~ msgstr "Tillade Usupporterede Typer"
-
-#~ msgid "Behavior of 'pause' when paused"
-#~ msgstr "Opførsel ved 'pause' når den er pauset"
-
-#~ msgid "Behavior of 0 key in PiP-mode"
-#~ msgstr "Opsætning af 0 key i PiP-type"
 
 #~ msgid "Default-Wizard"
 #~ msgstr "Default-Guide"
