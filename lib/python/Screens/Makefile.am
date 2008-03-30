@@ -12,7 +12,5 @@ install_PYTHON = \
 	Console.py InputBox.py ChoiceBox.py SimpleSummary.py ImageWizard.py \
 	TimerSelection.py PictureInPicture.py TimeDateInput.py \
 	SubtitleDisplay.py SubservicesQuickzap.py ParentalControlSetup.py NumericalTextInputHelpDialog.py \
-	SleepTimerEdit.py Ipkg.py RdsDisplay.py Globals.py 
+	SleepTimerEdit.py Ipkg.py RdsDisplay.py Globals.py \
 	SessionGlobals.py LocationBox.py WizardLanguage.py
-	#DefaultWizard.py \
-	#ServiceScanTutorial.py
