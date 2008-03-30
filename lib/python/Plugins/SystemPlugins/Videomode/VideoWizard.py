@@ -1,4 +1,5 @@
-from Screens.Wizard import Wizard, wizardManager, WizardSummary
+from Screens.Wizard import wizardManager, WizardSummary
+from Screens.WizardLanguage import WizardLanguage
 import sys
 from VideoHardware import video_hw
 
@@ -31,7 +32,7 @@ class VideoWizardSummary(WizardSummary):
 	def setLCDPic(self, file):
 		self["pic"].instance.setPixmapFromFile(file)
 
-class VideoWizard(Wizard):
+class VideoWizard(WizardLanguage):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
@@ -40,6 +41,8 @@ class VideoWizard(Wizard):
 			</widget>
 			<widget name="config" position="50,300" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />			
 			<widget name="wizard" pixmap="wizard.png" position="40,50" zPosition="10" size="110,174" transparent="1" alphatest="on"/>
+			<ePixmap pixmap="skin_default/button_red.png" position="40,225" zPosition="0" size="15,16" transparent="1" alphatest="on" />
+			<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
 			<widget name="portpic" pixmap="%s" position="50,300" zPosition="10" size="150,150" transparent="1" alphatest="on"/>
 			<widget name="rc" pixmap="rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
@@ -52,7 +55,7 @@ class VideoWizard(Wizard):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/videowizard.xml")
 		self.hw = video_hw
 		
-		Wizard.__init__(self, session, showSteps = False, showStepSlider = False)
+		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
 		self["wizard"] = Pixmap()
 		self["rc"] = MovingPixmap()
 		self["portpic"] = Pixmap()
