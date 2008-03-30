@@ -55,6 +55,7 @@ for (k,c) in attrlist:
 	if c:
 		for l in c.split('\n'):
 			print "#. ", l
-	print 'msgid "' + str(k) + '"'
-	print 'msgstr ""'
+	if str(k) != "":
+		print 'msgid "' + str(k) + '"'
+		print 'msgstr ""'
 
