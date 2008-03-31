@@ -301,7 +301,9 @@ public:
 		sVideoHeight,
 		sVideoWidth,
 
-		sTransponderData 	/* transponderdata as python dict */
+		sTransponderData, 	/* transponderdata as python dict */
+
+		sUser = 0x100
 	};
 	enum {
 		resNA = -1,
@@ -751,7 +753,9 @@ public:
 
 		evVideoSizeChanged,
 
-		evStopped
+		evStopped,
+
+		evUser = 0x100
 	};
 };
 
