@@ -1441,7 +1441,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
 				setRotorData(m_data[NEW_ROTOR_POS], m_data[NEW_ROTOR_CMD]);
-				eDebug("[SEC] update current rotorparams %d %04x %d", m_timeoutCount, m_data[ROTOR_CMD], m_data[ROTOR_POS]);
+				eDebug("[SEC] update current rotorparams %d %04lx %ld", m_timeoutCount, m_data[ROTOR_CMD], m_data[ROTOR_POS]);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_ROTOR_DISEQC_RETRYS:
