@@ -269,4 +269,4 @@ def showCurrent(session, **kwargs):
 def Plugins(**kwargs):
  	return [ PluginDescriptor(name="RSS Reader", description="A (really) simple RSS reader", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
  		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
- 		PluginDescriptor(name="View RSS", description="Let's you view current RSS entries", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=showCurrent) ]
+ 		PluginDescriptor(name="View RSS", description="Lets you view current RSS entries", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=showCurrent) ]
