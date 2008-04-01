@@ -580,7 +580,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="subpages_9" position="35,250" size="36,20" alphatest="on" />
 	</screen>
 	<!-- RDS info -->
-	<screen name="RdsInfoDisplay" position="0,0" zPosition="-2" size="720,568" backgroundColor="transparent" flags="wfNoBorder" >
+	<screen name="RdsInfoDisplay" position="0,0" zPosition="-2" size="720,576" backgroundColor="transparent" flags="wfNoBorder" >
 		<widget name="RadioText" position="50,481" size="620,29" font="Regular;21" noWrap="1" backgroundColor="#003258" shadowOffset="-2,-2" shadowColor="transpBlack" />
 		<widget name="RtpText" position="50,510" size="620,29" font="Regular;21" halign="right" noWrap="1" backgroundColor="#003258" shadowOffset="-2,-2" shadowColor="transpBlack" />
 		<widget name="RassLogo" pixmap="rass_logo.png" position="50,445" size="50,21" />
