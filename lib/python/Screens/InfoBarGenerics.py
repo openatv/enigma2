@@ -624,7 +624,7 @@ class InfoBarSeek:
 		self.eofInhibitTimer = eTimer()
 		self.eofInhibitTimer.timeout.get().append(self.inhibitEof)
 
-		self.minSpeedBackward = 16
+#		self.minSpeedBackward = 16
 
 		class InfoBarSeekActionMap(HelpableActionMap):
 			def __init__(self, screen, *args, **kwargs):
@@ -682,12 +682,13 @@ class InfoBarSeek:
 	def makeStateBackward(self, n):
 		minspeed = config.seek.stepwise_minspeed.value
 		repeat = int(config.seek.stepwise_repeat.value)
-		if n < self.minSpeedBackward:
-			r = (self.minSpeedBackward - 1)/ n + 1
-			if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-				r = max(r, repeat)
-			return (0, -n * r, r, "<< %dx" % n)
-		elif minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+#		if n < self.minSpeedBackward:
+#			r = (self.minSpeedBackward - 1)/ n + 1
+#			if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+#				r = max(r, repeat)
+#			return (0, -n * r, r, "<< %dx" % n)
+#		el
+		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
 			return (0, -n * repeat, repeat, "<< %dx" % n)
 		else:
 			return (0, -n, 0, "<< %dx" % n)
@@ -856,7 +857,7 @@ class InfoBarSeek:
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
 		elif self.seekstate == self.SEEK_STATE_PAUSE:
-			if config.seek.speeds_slowmotion:
+			if len(config.seek.speeds_slowmotion.value):
 				self.setSeekState(self.makeStateSlowMotion(config.seek.speeds_slowmotion.value[-1]))
 			else:
 				self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
