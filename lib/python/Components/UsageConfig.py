@@ -109,14 +109,13 @@ def InitUsageConfig():
 
 def updateChoices(sel, choices):
 	if choices:
-                defval = None
-                val = int(sel.value)
+		defval = None
+		val = int(sel.value)
 		if not val in choices:
-                        tmp = choices+[]
-                        tmp.reverse()
-                        for x in tmp:
-                                if x < val:
-                                        defval = str(x)
-                                        break
+			tmp = choices+[]
+			tmp.reverse()
+			for x in tmp:
+				if x < val:
+					defval = str(x)
+					break
 		sel.setChoices(map(str, choices), defval)
-
