@@ -8,7 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int bidirpipe(int pfd[], char *cmd , char *argv[])
+int bidirpipe(int pfd[], const char *cmd , const char * const argv[])
 {
 	int pfdin[2];  /* from child to parent */
 	int pfdout[2]; /* from parent to child */
@@ -37,7 +37,8 @@ int bidirpipe(int pfd[], char *cmd , char *argv[])
 		for (unsigned int i=3; i < 90; ++i )
 			close(i);
 
-		execvp(cmd,argv);
+		execvp(cmd, (char * const *)argv); 
+				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
 		_exit(0);
 	}
 	if (close(pfdout[0]) == -1 || close(pfdin[1]) == -1 || close(pfderr[1]) == -1)
@@ -80,11 +81,6 @@ static char *find_bracket(char ch)
 
 int eConsoleAppContainer::execute( const char *cmd )
 {
-	if (running())
-		return -1;
-	pid=-1;
-	killstate=0;
-
 	int cnt=0, slen=strlen(cmd);
 	char buf[slen+1];
 	char *tmp=0, *argv[64], *path=buf, *cmds = buf;
@@ -149,9 +145,19 @@ int eConsoleAppContainer::execute( const char *cmd )
 //	int tmp=0;
 //	while(argv[tmp])
 //		eDebug("%d is %s", tmp, argv[tmp++]);
+	return execute(argv[0], argv);
+}
+
+int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[])
+{
+	if (running())
+		return -1;
+
+	pid=-1;
+	killstate=0;
 
 	// get one read ,one write and the err pipe to the prog..
-	pid = bidirpipe(fd, argv[0], argv);
+	pid = bidirpipe(fd, cmdline, argv);
 
 	if ( pid == -1 )
 		return -3;
@@ -166,6 +172,28 @@ int eConsoleAppContainer::execute( const char *cmd )
 	CONNECT(err->activated, eConsoleAppContainer::readyErrRead);
 
 	return 0;
+}
+
+int eConsoleAppContainer::execute( PyObject *cmdline, PyObject *args )
+{
+	if (!PyString_Check(cmdline))
+		return -1;
+	if (!PyList_Check(args))
+		return -1;
+	const char *argv[PyList_Size(args) + 1];
+	int i;
+	for (i = 0; i < PyList_Size(args); ++i)
+	{
+		PyObject *arg = PyList_GetItem(args, i); /* borrowed ref */
+		if (!arg)
+			return -1;
+		if (!PyString_Check(arg))
+			return -1;
+		argv[i] = PyString_AsString(arg); /* borrowed pointer */
+	}
+	argv[i] = 0;
+
+	return execute(PyString_AsString(cmdline), argv); /* borrowed pointer */
 }
 
 eConsoleAppContainer::~eConsoleAppContainer()

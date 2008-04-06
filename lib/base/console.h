@@ -1,6 +1,7 @@
 #ifndef __LIB_BASE_CONSOLE_H__
 #define __LIB_BASE_CONSOLE_H__
 
+#include "Python.h"
 #include <string>
 #include <lib/base/ebase.h>
 #include <lib/python/connections.h>
@@ -34,6 +35,8 @@ class eConsoleAppContainer: public Object
 public:
 	eConsoleAppContainer();
 	int execute( const char *str );
+	int execute( const char *cmdline, const char *const argv[] );
+	int execute( PyObject *cmdline, PyObject *args );
 	~eConsoleAppContainer();
 	int getPID() { return pid; }
 	void kill();
