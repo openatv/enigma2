@@ -10,6 +10,12 @@
 // use this for init Freetype...
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#ifdef HAVE_FREETYPE2
+#define FTC_Image_Cache_New(a,b)	FTC_ImageCache_New(a,b)
+#define FTC_Image_Cache_Lookup(a,b,c,d)	FTC_ImageCache_Lookup(a,b,c,d,NULL)
+#define FTC_SBit_Cache_New(a,b)		FTC_SBitCache_New(a,b)
+#define FTC_SBit_Cache_Lookup(a,b,c,d)	FTC_SBitCache_Lookup(a,b,c,d,NULL)
+#endif
 
 #include <lib/base/eerror.h>
 #include <lib/gdi/lcd.h>
@@ -30,9 +36,10 @@
 fontRenderClass *fontRenderClass::instance;
 
 static pthread_mutex_t ftlock=PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
-static pthread_mutex_t refcntlck=PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 
+#ifndef HAVE_FREETYPE2
 static FTC_Font cache_current_font=0;
+#endif
 
 struct fntColorCacheKey
 {
@@ -198,7 +205,12 @@ float fontRenderClass::getLineHeight(const gFont& font)
 		return 0;
 	singleLock s(ftlock);
 	FT_Face current_face;
+#ifdef HAVE_FREETYPE2
+	if ((FTC_Manager_LookupFace(cacheManager, fnt->scaler.face_id, &current_face) < 0) ||
+	    (FTC_Manager_LookupSize(cacheManager, &fnt->scaler, &fnt->size) < 0))
+#else
 	if (FTC_Manager_Lookup_Size(cacheManager, &fnt->font.font, &current_face, &fnt->size)<0)
+#endif
 	{
 		delete fnt;
 		eDebug("FTC_Manager_Lookup_Size failed!");
@@ -247,10 +259,21 @@ DEFINE_REF(Font);
 Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): tabwidth(tw)
 {
 	renderer=render;
+#ifdef HAVE_FREETYPE2
+	font.face_id = faceid;
+	font.width = isize;
+	font.height = isize;
+	font.flags = FT_LOAD_DEFAULT;
+	scaler.face_id = faceid;
+	scaler.width = isize;
+	scaler.height = isize;
+	scaler.pixel = 1;
+#else
 	font.font.face_id=faceid;
 	font.font.pix_width	= isize;
 	font.font.pix_height = isize;
 	font.image_type = ftc_image_grays;
+#endif
 	height=isize;
 	if (tabwidth==-1)
 		tabwidth=8*isize;
@@ -438,9 +461,18 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 			// we ask for replacment_font first becauseof the cache
 	if (replacement_font)
 	{
+#ifdef HAVE_FREETYPE2
+		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+					    replacement_font->scaler.face_id,
+					    &replacement_face) < 0) ||
+		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+					    &replacement_font->scaler,
+					    &replacement_font->size) < 0))
+#else
 		if (FTC_Manager_Lookup_Size(fontRenderClass::instance->cacheManager, 
 				&replacement_font->font.font, &replacement_face, 
 				&replacement_font->size)<0)
+#endif
 		{
 			eDebug("FTC_Manager_Lookup_Size failed!");
 			return;
@@ -448,13 +480,24 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 	}
 	if (current_font)
 	{
+#ifdef HAVE_FREETYPE2
+		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+					    current_font->scaler.face_id,
+					    &current_face) < 0) ||
+		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+					    &current_font->scaler,
+					    &current_font->size) < 0))
+#else
 		if (FTC_Manager_Lookup_Size(fontRenderClass::instance->cacheManager, &current_font->font.font, &current_face, &current_font->size)<0)
+#endif
 		{
 			eDebug("FTC_Manager_Lookup_Size failed!");
 			return;
 		}
 	}
+#ifndef HAVE_FREETYPE2
 	cache_current_font=&current_font->font.font;
+#endif
 	previous=0;
 	use_kerning=FT_HAS_KERNING(current_face);
 }
@@ -475,6 +518,18 @@ int eTextPara::renderString(const char *string, int rflags)
 		left=cursor.x();
 	}
 		
+#ifdef HAVE_FREETYPE2
+	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+ 				    current_font->scaler.face_id,
+ 				    &current_face) < 0) ||
+	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+				    &current_font->scaler,
+				    &current_font->size) < 0))
+	{
+		eDebug("FTC_Manager_Lookup_Size failed!");
+		return -1;
+	}
+#else
 	if (&current_font->font.font != cache_current_font)
 	{
 		if (FTC_Manager_Lookup_Size(fontRenderClass::instance->cacheManager, &current_font->font.font, &current_face, &current_font->size)<0)
@@ -484,6 +539,7 @@ int eTextPara::renderString(const char *string, int rflags)
 		}
 		cache_current_font=&current_font->font.font;
 	}
+#endif
 	
 	std::vector<unsigned long> uc_string, uc_visual;
 	if (string)
@@ -656,6 +712,18 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	if (!current_font)
 		return;
 
+#ifdef HAVE_FREETYPE2
+	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
+ 				    current_font->scaler.face_id,
+ 				    &current_face) < 0) ||
+	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+				    &current_font->scaler,
+				    &current_font->size) < 0))
+	{
+		eDebug("FTC_Manager_Lookup_Size failed!");
+		return;
+	}
+#else
 	if (&current_font->font.font != cache_current_font)
 	{
 		if (FTC_Manager_Lookup_Size(fontRenderClass::instance->cacheManager, &current_font->font.font, &current_face, &current_font->size)<0)
@@ -665,6 +733,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 		}
 		cache_current_font=&current_font->font.font;
 	}
+#endif
 
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
