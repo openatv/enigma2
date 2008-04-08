@@ -8,6 +8,11 @@
 #include FT_CACHE_H
 #include FT_CACHE_IMAGE_H
 #include FT_CACHE_SMALL_BITMAPS_H
+#ifdef HAVE_FREETYPE2
+typedef FTC_ImageCache FTC_Image_Cache;
+typedef FTC_ImageTypeRec FTC_Image_Desc;
+typedef FTC_SBitCache FTC_SBit_Cache;
+#endif
 #include <vector>
 
 #include <lib/gdi/fb.h>
@@ -180,6 +185,9 @@ class Font: public iObject
 {
 DECLARE_REF(Font);
 public:
+#ifdef HAVE_FREETYPE2
+	FTC_ScalerRec scaler;
+#endif
 	FTC_Image_Desc font;
 	fontRenderClass *renderer;
 	FT_Error getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit);
