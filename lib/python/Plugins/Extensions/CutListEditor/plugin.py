@@ -158,7 +158,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceN
 
 			<widget source="CurrentService" render="Label" position="370,278" size="340,25" 
 				backgroundColor="#000000" foregroundColor="#ffffff" font="Regular;19" zPosition="1" >
-				<convert type="ServicePosition">PositionDetailed</convert>
+				<convert type="ServicePosition">Position,Detailed</convert>
 			</widget>
 
 			<widget name="Timeline" position="50,500" size="620,40" backgroundColor="#000000"

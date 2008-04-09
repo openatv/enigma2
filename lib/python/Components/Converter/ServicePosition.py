@@ -8,27 +8,33 @@ class ServicePosition(Converter, Poll, object):
 	TYPE_POSITION = 1
 	TYPE_REMAINING = 2
 	TYPE_GAUGE = 3
-	TYPE_POSITION_DETAILED = 4
 
 	def __init__(self, type):
 		Poll.__init__(self)
 		Converter.__init__(self, type)
 
-		self.poll_interval = 500
+		args = type.split(',')
+		type = args.pop(0)
+
+		self.negate = 'Negate' in args
+		self.detailed = 'Detailed' in args
+		self.showHours = 'ShowHours' in args
+
+		if self.detailed:
+			self.poll_interval = 100
+		else:
+			self.poll_interval = 500
 
 		if type == "Length":
 			self.type = self.TYPE_LENGTH
 		elif type == "Position":
 			self.type = self.TYPE_POSITION
-		elif type == "PositionDetailed":
-			self.type = self.TYPE_POSITION_DETAILED
-			self.poll_interval = 100
 		elif type == "Remaining":
 			self.type = self.TYPE_REMAINING
 		elif type == "Gauge":
 			self.type = self.TYPE_GAUGE
 		else:
-			raise "type must be {Length|Position|PositionDetaileed|Remaining|Gauge}"
+			raise "type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours}"
 
 		self.poll_enabled = self.type != self.TYPE_LENGTH
 
@@ -70,13 +76,15 @@ class ServicePosition(Converter, Poll, object):
 		else:
 			if self.type == self.TYPE_LENGTH:
 				l = self.length
-			elif self.type in [self.TYPE_POSITION, self.TYPE_POSITION_DETAILED]:
+			elif self.type == self.TYPE_POSITION:
 				l = self.position
 			elif self.type == self.TYPE_REMAINING:
 				l = self.length - self.position
 
-			if self.type != self.TYPE_POSITION_DETAILED:
+			if not self.detailed:
 				l /= 90000
+
+			if self.negate: l = -l
 
 			if l > 0:
 				sign = ""
@@ -84,10 +92,16 @@ class ServicePosition(Converter, Poll, object):
 				l = -l
 				sign = "-"
 
-			if self.type != self.TYPE_POSITION_DETAILED:
-				return sign + "%d:%02d" % (l/60, l%60)
+			if not self.detailed:
+				if self.showHours:
+					return sign + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+				else:
+					return sign + "%d:%02d" % (l/60, l%60)
 			else:
-				return sign + "%d:%02d:%03d" % ((l/60/90000), (l/90000)%60, (l%90000)/90)
+				if self.showHours:
+					return sign + "%d:%02d:%02d:%03d" % ((l/3600/90000), (l/90000)%3600/60, (l/90000)%60, (l%90000)/90)
+				else:
+					return sign + "%d:%02d:%03d" % ((l/60/90000), (l/90000)%60, (l%90000)/90)
 
 	# range/value are for the Progress renderer
 	range = 10000
