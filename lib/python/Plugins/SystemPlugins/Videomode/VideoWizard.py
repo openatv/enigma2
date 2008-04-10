@@ -158,3 +158,16 @@ class VideoWizard(WizardLanguage):
 			config.misc.showtestcard.value = True
 		else:
 			config.misc.showtestcard.value = False
+
+	def keyNumberGlobal(self, number):
+		if number in [1,2,3]:
+			if number == 1:
+				self.hw.saveMode("DVI", "720p", "multi")
+			elif number == 2:
+				self.hw.saveMode("DVI", "1080i", "multi")
+			elif number == 3:
+				self.hw.saveMode("Scart", "Multi", "multi")
+			self.hw.setConfiguredMode()
+			self.close()
+
+		WizardLanguage.keyNumberGlobal(self, number)
