@@ -85,6 +85,7 @@ class VideoHardware:
 #		self.timer.callback.append(self.readPreferredModes)
 #		self.timer.start(1000)
 
+		config.av.colorformat.addNotifier(self.updateFastblank) 
 
 	def AVSwitchSetInput(self, mode):
 		self.standby = mode == "SCART"
@@ -276,25 +277,41 @@ class VideoHardware:
 		open("/proc/stb/video/policy", "w").write(policy)
 		open("/proc/stb/denc/0/wss", "w").write(wss)
 		self.updateSlowblank()
+		self.updateFastblank()
 
 	def updateSlowblank(self):
 		if self.standby:
 			from Components.SystemInfo import SystemInfo
 			if SystemInfo["ScartSwitch"]:
-				mode = "scart"
+				input = "scart"
 				sb = "vcr"
 			else:
-				mode = "off"
+				input = "off"
 				sb = "0"
 		else:
-			mode = "encoder"
+			input = "encoder"
 			sb = "auto"
 
 		open("/proc/stb/avs/0/sb", "w").write(sb)
-		open("/proc/stb/avs/0/input", "w").write(mode)
+		open("/proc/stb/avs/0/input", "w").write(input)
 
 	def updateStandby(self):
 		self.updateSlowblank()
+		self.updateFastblank()
+
+	def updateFastblank(self, *args):
+		if self.standby:
+			from Components.SystemInfo import SystemInfo
+			if SystemInfo["ScartSwitch"]:
+				fb = "vcr"
+			else:
+				fb = "low"
+		else:
+			if config.av.videoport.value == "Scart" and config.av.colorformat.value == "rgb":
+				fb = "high"
+			else:
+				fb = "low"
+		open("/proc/stb/avs/0/fb", "w").write(fb)
 
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
