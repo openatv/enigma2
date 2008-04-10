@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 23:30+0200\n"
-"PO-Revision-Date: 2008-02-28 09:41+0100\n"
+"POT-Creation-Date: 2008-04-10 13:21+0200\n"
+"PO-Revision-Date: 2008-04-03 10:56+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -105,7 +105,7 @@ msgid "13 V"
 msgstr "13 V"
 
 msgid "16:10"
-msgstr ""
+msgstr "16:10"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -138,7 +138,7 @@ msgid "4"
 msgstr ""
 
 msgid "4:3"
-msgstr ""
+msgstr "4:#"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -153,7 +153,7 @@ msgid "5 minutes"
 msgstr "5 minuter"
 
 msgid "50 Hz"
-msgstr ""
+msgstr "50 Hz"
 
 msgid "6"
 msgstr ""
@@ -267,7 +267,7 @@ msgid "AC3 default"
 msgstr "AC3 standard"
 
 msgid "AC3 downmix"
-msgstr ""
+msgstr "AC3 nedmixning"
 
 msgid "AGC"
 msgstr "AGC"
@@ -311,6 +311,10 @@ msgid ""
 "OK to close the video fine-tuning, or use the number keys to select other "
 "test screens."
 msgstr ""
+"Justera färginställningarna så att alla färgnivåer är urskiljningsbara, men "
+"de ska vara så färgfulla som möjligt. När du är nöjd med resultatet, tryck "
+"OK för att stänga videoinställningarna eller tryck på nummerknapp för att "
+"välja annan testbild."
 
 msgid "Advanced"
 msgstr "Avancerat"
@@ -347,7 +351,7 @@ msgid "Alternative services tuner priority"
 msgstr "Alternativ tunerprioritering"
 
 msgid "An empty filename is illegal."
-msgstr ""
+msgstr "Ett tomt filnamn är inte tillåtet."
 
 msgid "Arabic"
 msgstr "Arabiska"
@@ -374,10 +378,10 @@ msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto scart switching"
-msgstr ""
+msgstr "Auto scart byte"
 
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisk"
 
 msgid "Automatic Scan"
 msgstr "Automatisk sökning"
@@ -435,6 +439,15 @@ msgstr "Beteende när en film slutar"
 
 msgid "Brightness"
 msgstr "Ljusstyrka"
+
+msgid "Burn"
+msgstr ""
+
+msgid "Burn DVD"
+msgstr ""
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -508,7 +521,7 @@ msgid "Checking Filesystem..."
 msgstr "Kontrollerar filsystem..."
 
 msgid "Choose Location"
-msgstr ""
+msgstr "Välj lokation"
 
 msgid "Choose Tuner"
 msgstr "Välj tuner"
@@ -520,7 +533,7 @@ msgid "Choose source"
 msgstr "Välj källa"
 
 msgid "Choose target folder"
-msgstr ""
+msgstr "Välj målkatalog"
 
 msgid "Choose your Skin"
 msgstr "Välj utseende"
@@ -574,7 +587,7 @@ msgid "Configuring"
 msgstr "Konfigurering"
 
 msgid "Confirm"
-msgstr ""
+msgstr "Bekräfta"
 
 msgid "Conflicting timer"
 msgstr "Timerkonflikt"
@@ -655,9 +668,6 @@ msgstr "Datum"
 msgid "Deep Standby"
 msgstr "Stäng av"
 
-msgid "Default-Wizard"
-msgstr ""
-
 msgid "Delay"
 msgstr "Fördröjning"
 
@@ -726,10 +736,10 @@ msgid "Dish"
 msgstr "Parabol"
 
 msgid "Display 16:9 content as"
-msgstr ""
+msgstr "Visa 16:9 sändning som"
 
 msgid "Display 4:3 content as"
-msgstr ""
+msgstr "Visa 4:3 sändning som"
 
 msgid "Display Setup"
 msgstr "Display installation"
@@ -843,8 +853,14 @@ msgstr "FEL - misslyckades söka (%s)!"
 msgid "East"
 msgstr "Öst"
 
+msgid "Edit current title"
+msgstr ""
+
 msgid "Edit services list"
 msgstr "Ändra kanallista"
+
+msgid "Edit title..."
+msgstr ""
 
 msgid "Electronic Program Guide"
 msgstr "Elektronisk Program Guide"
@@ -945,7 +961,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "Factory reset"
-msgstr ""
+msgstr "Fabriksåterställning"
 
 msgid "Fast"
 msgstr "Snabb"
@@ -975,7 +991,7 @@ msgid "Finnish"
 msgstr "Finska"
 
 msgid "Frame repeat count during non-smooth winding"
-msgstr ""
+msgstr "Bildupprepning vid hackig spolning"
 
 msgid "French"
 msgstr "Franska"
@@ -1076,7 +1092,7 @@ msgid "Icelandic"
 msgstr "Isländska"
 
 msgid "If you can see this page, please press OK."
-msgstr ""
+msgstr "Om du kan se denna sida, vänligen tryck på OK."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -1096,6 +1112,14 @@ msgid ""
 "step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
+"Om din TV har ljusstyrke- eller kontrastförbättrare rekommenderas du att "
+"stänga av den. Om det finns något som heter \"dynamic\" rekommenderas du att "
+"använda standard. Justera ljusstyrkan till en inställning som du tycker är "
+"bra. Använd så lite kontrast som möjligt.\n"
+"Sätt ljusstyrkan till så låg som möjligt, men säkerställ att de två lägsta "
+"nivåerna av grå är urskiljningsbara.\n"
+"Ta inte hänsyn till de ljusa nivåerna nu. De kommer justeras i nästa steg.\n"
+"När du är nöjd med resultatet, tryck OK."
 
 msgid "Image-Upgrade"
 msgstr "Image uppgradering"
@@ -1153,7 +1177,7 @@ msgid "Internal Flash"
 msgstr "Intern Flash"
 
 msgid "Invalid Location"
-msgstr ""
+msgstr "Ogiltig lokation"
 
 msgid "Inversion"
 msgstr "Inversion"
@@ -1166,7 +1190,7 @@ msgstr "Italienska"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
-msgstr ""
+msgstr "Bara skala"
 
 msgid "Keyboard Map"
 msgstr "Tangentbordslayout"
@@ -1206,7 +1230,7 @@ msgstr "Vänster"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
-msgstr ""
+msgstr "Letterbox"
 
 msgid "Limit east"
 msgstr "Östlig gräns"
@@ -1227,7 +1251,7 @@ msgid "Lithuanian"
 msgstr "Litauiska"
 
 msgid "Location"
-msgstr ""
+msgstr "Lokation"
 
 msgid "Lock:"
 msgstr "Lås:"
@@ -1383,6 +1407,9 @@ msgstr "Nätverk..."
 msgid "New"
 msgstr "Ny"
 
+msgid "New DVD"
+msgstr ""
+
 msgid "New pin"
 msgstr "Ny PIN"
 
@@ -1396,7 +1423,7 @@ msgid "No"
 msgstr "Nej"
 
 msgid "No 50 Hz, sorry. :("
-msgstr ""
+msgstr "Ingen 50 Hz, tyvärr. :("
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen hårddisk hittad eller initierad!"
@@ -1422,7 +1449,7 @@ msgid ""
 msgstr "Inga paket uppgraderade. Undersök ditt nätverk och prova igen."
 
 msgid "No picture on TV? Press EXIT and retry."
-msgstr ""
+msgstr "Ingen bild på TVn? Tryck EXIT för att försöka igen."
 
 msgid "No positioner capable frontend found."
 msgstr "Ingen motorkapabel frontend hittad."
@@ -1475,7 +1502,7 @@ msgstr "Inga"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
-msgstr ""
+msgstr "Ej linjär"
 
 msgid "North"
 msgstr "Nord"
@@ -1498,6 +1525,9 @@ msgid ""
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
+"Använd kontrastinställningen för att justera ljusstyrka på bakgrunden så "
+"mycket som möjligt, men säkerställ att du fortfarande kan se skillnaden "
+"mellan de två ljusaste nivåerna av skuggor. När du har gjort det tryck OK."
 
 msgid "OK"
 msgstr "OK"
@@ -1543,7 +1573,7 @@ msgstr "Sida"
 
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
-msgstr ""
+msgstr "Pan&Scan"
 
 msgid "Parental control"
 msgstr "Föräldrakontroll"
@@ -1565,7 +1595,7 @@ msgstr "BiB konfiguration"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
-msgstr ""
+msgstr "Svarta kanter"
 
 msgid "Pin code needed"
 msgstr "PIN kod behövs"
@@ -1580,7 +1610,7 @@ msgid "Please Reboot"
 msgstr "Vänligen starta om"
 
 msgid "Please Select Medium to be Scanned"
-msgstr ""
+msgstr "Vänligen ange media som ska undersökas"
 
 msgid "Please change recording endtime"
 msgstr "Vänligen ändra inspelnings sluttid"
@@ -1598,7 +1628,7 @@ msgid "Please enter a name for the new marker"
 msgstr "Vänligen ange namn för ny markör"
 
 msgid "Please enter a new filename"
-msgstr ""
+msgstr "Vänligen ange nytt filnamn"
 
 msgid "Please enter filename (empty = use current date)"
 msgstr "Vänligen ange filnamn (tomt = använd dagens datum)"
@@ -1610,7 +1640,7 @@ msgid "Please enter the old pin code"
 msgstr "Vänligen ange den gamla PIN koden"
 
 msgid "Please follow the instructions on the TV"
-msgstr ""
+msgstr "Vänligen följ instruktionerna på TVn"
 
 msgid "Please press OK!"
 msgstr "Vänligen tryck OK!"
@@ -1631,7 +1661,7 @@ msgid "Please select keyword to filter..."
 msgstr "Vänligen välj nyckelord för filter..."
 
 msgid "Please select the movie path..."
-msgstr ""
+msgstr "Vänligen ange filmens sökväg..."
 
 msgid "Please set up tuner B"
 msgstr "Vänligen installera tuner B"
@@ -1809,7 +1839,7 @@ msgid "Refresh Rate"
 msgstr "Uppdateringstakt"
 
 msgid "Refresh rate selection."
-msgstr ""
+msgstr "Uppdateringsfrekvens val."
 
 msgid "Remove Plugins"
 msgstr "Ta bort Plugins"
@@ -1817,11 +1847,17 @@ msgstr "Ta bort Plugins"
 msgid "Remove a mark"
 msgstr "Ta bort en markör"
 
+msgid "Remove currently selected title"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
 
-msgid "Rename"
+msgid "Remove title"
 msgstr ""
+
+msgid "Rename"
+msgstr "Byt namn"
 
 msgid "Repeat"
 msgstr "Repetera"
@@ -1833,7 +1869,7 @@ msgid "Repeating event currently recording... What do you want to do?"
 msgstr "En upprepande händelse spelas in... Vad vill du göra?"
 
 msgid "Repeats"
-msgstr ""
+msgstr "Upprepningar"
 
 msgid "Reset"
 msgstr "Nollställ"
@@ -1927,6 +1963,12 @@ msgstr "Lördag"
 msgid "Save Playlist"
 msgstr "Spara spellista"
 
+msgid "Save current project to disk"
+msgstr ""
+
+msgid "Save..."
+msgstr ""
+
 msgid "Scaling Mode"
 msgstr "Scalingläge"
 
@@ -2006,7 +2048,7 @@ msgid "Select HDD"
 msgstr "Välj hårddisk"
 
 msgid "Select Location"
-msgstr ""
+msgstr "Välj lokation"
 
 msgid "Select Network Adapter"
 msgstr "Välj nätverksadapter"
@@ -2024,13 +2066,13 @@ msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
 
 msgid "Select refresh rate"
-msgstr ""
+msgstr "Välj uppdateringsfrekvens"
 
 msgid "Select video input"
-msgstr ""
+msgstr "Välj video insignal"
 
 msgid "Select video mode"
-msgstr ""
+msgstr "Välj videoläge"
 
 msgid "Sequence repeat"
 msgstr "Repetera sekvens"
@@ -2097,7 +2139,7 @@ msgstr "Visa blinkande klocka i display under inspelning"
 
 #, python-format
 msgid "Show files from %s"
-msgstr ""
+msgstr "Visa filer från %s"
 
 msgid "Show infobar on channel change"
 msgstr "Visa infobalk vid kanalbyte"
@@ -2331,6 +2373,8 @@ msgid ""
 "You can now configure the screen by displaying some test pictures. Do you "
 "want to do that now?"
 msgstr ""
+"Ingångsport bör konfigureras nu.\n"
+"Du kan konfigurera skärmen med hjälp av några testbilder. Vill du gör det nu?"
 
 msgid "The pin code has been changed successfully."
 msgstr "Bytet av PIN koden utfördes."
@@ -2362,6 +2406,9 @@ msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
+"Det är inte säkert att det finns tillräckligt med utrymme på vald "
+"partition.\n"
+"Vill du verkligen forsätta?"
 
 msgid "This is step number 2."
 msgstr "Det här är steg 2."
@@ -2573,7 +2620,7 @@ msgstr "Använd en gateway"
 #.       better suited for translation to other languages may be "stepwise
 #.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
-msgstr ""
+msgstr "Använd hackig spolning vid hastigheter över"
 
 msgid "Use power measurement"
 msgstr "Använd strömmätning"
@@ -2609,10 +2656,10 @@ msgid "VCR scart"
 msgstr "VCR Scart"
 
 msgid "Video Fine-Tuning"
-msgstr ""
+msgstr "Video fininställning"
 
 msgid "Video Fine-Tuning Wizard"
-msgstr ""
+msgstr "Video fininställnings guide"
 
 msgid "Video Output"
 msgstr "Video Utsignal"
@@ -2631,9 +2678,15 @@ msgid ""
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
+"Video ingångsval\n"
+"\n"
+"Vänligen tryck OK om du kan se denna bild på din TV (eller välj annan "
+"ingångsport).\n"
+"\n"
+"Nästa ingångsport kommer automatiskt provas om 10 sekunder."
 
 msgid "Video mode selection."
-msgstr ""
+msgstr "Videoläges val."
 
 msgid "View Rass interactive..."
 msgstr "Visa Rass interaktivitet..."
@@ -2658,6 +2711,9 @@ msgid ""
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
 "Please press OK to begin."
 msgstr ""
+"Vi kommer nu testa om din TV kan hantera upplösningen i 50 Hz. Om din skärm "
+"blir svart, vänta ca 20 sek så kommer den att återgå till 60 Hz.\n"
+"Vänlig tryck OK för att starta."
 
 msgid "Wed"
 msgstr "Ons"
@@ -2808,7 +2864,7 @@ msgstr ""
 "Vill du ange PIN kod nu?"
 
 msgid "Your TV works with 50 Hz. Good!"
-msgstr ""
+msgstr "Din TV fungerar med 50 Hz. Bra!"
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -3037,7 +3093,7 @@ msgid "exit movielist"
 msgstr "avsluta filmlista"
 
 msgid "fine-tune your display"
-msgstr ""
+msgstr "fininställ din skärm"
 
 msgid "free diskspace"
 msgstr "ledigt diskutrymme"
@@ -3311,7 +3367,7 @@ msgid "select movie"
 msgstr "välj film"
 
 msgid "select the movie path"
-msgstr ""
+msgstr "välj film sökväg"
 
 msgid "service pin"
 msgstr "kanal PIN"
@@ -3475,194 +3531,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
-
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 startas om efter återställningen"
-
-#~ msgid "\"?"
-#~ msgstr "\"?"
-
-#~ msgid "Add a new title"
-#~ msgstr "Lägg till ny titel"
-
-#~ msgid "Add files to playlist"
-#~ msgstr "Lägg till i spellista"
-
-#~ msgid "Add title..."
-#~ msgstr "Lägg till titel..."
-
-#~ msgid "Burn"
-#~ msgstr "Skapa"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Skapa DVD"
-
-#~ msgid "Burn DVD..."
-#~ msgstr "Skapa DVD..."
-
-#~ msgid "Custom skip time for 1/3 keys"
-#~ msgstr "Inställbar hopptid för 1/3 tangent"
-
-#~ msgid "Discontinuous playback at speeds above"
-#~ msgstr "Diskontinuerlig uppspelning med hastighet"
-
-#~ msgid "Discontinuous playback frame repeat count"
-#~ msgstr "Diskontinuerlig uppspelning av antal bildrutor"
-
-#~ msgid "Do you want to view a cutlist tutorial?"
-#~ msgstr "Vill du visa klipplist guiden?"
-
-#~ msgid "Edit current title"
-#~ msgstr "Ändra nuvarande titel"
-
-#~ msgid "Edit title..."
-#~ msgstr "Ändra titel..."
-
-#~ msgid "Games / Plugins"
-#~ msgstr "Spel / Plugins"
-
-#~ msgid "Hello!"
-#~ msgstr "God dag!"
-
-#~ msgid "LCD Setup"
-#~ msgstr "LCD Inställning"
-
-#~ msgid "Movie Menu"
-#~ msgstr "Film Meny"
-
-#~ msgid "NIM "
-#~ msgstr "NIM "
-
-#~ msgid "New DVD"
-#~ msgstr "Ny DVD"
-
-#~ msgid "Output Type"
-#~ msgstr "Utgångstyp"
-
-#~ msgid "Quick"
-#~ msgstr "Snabb"
-
-#~ msgid "Rate"
-#~ msgstr "Hastighet"
-
-#~ msgid ""
-#~ "Recording(s) are in progress or comming up in few seconds... really "
-#~ "reboot now?"
-#~ msgstr ""
-#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen reboot nu?"
-
-#~ msgid ""
-#~ "Recording(s) are in progress or comming up in few seconds... really "
-#~ "restart now?"
-#~ msgstr ""
-#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
-
-#~ msgid ""
-#~ "Recording(s) are in progress or comming up in few seconds... really "
-#~ "shutdown now?"
-#~ msgstr ""
-#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
-
-#~ msgid "Remove currently selected title"
-#~ msgstr "Ta bort vald titel"
-
-#~ msgid "Remove title"
-#~ msgstr "Ta bort titel"
-
-#~ msgid "Replace current playlist"
-#~ msgstr "Byt ut nuvarande spellista"
-
-#~ msgid "Save current project to disk"
-#~ msgstr "Spara nuvarande projekt till disk"
-
-#~ msgid "Save..."
-#~ msgstr "Spara..."
-
-#~ msgid "Scan NIM"
-#~ msgstr "Scanna NIM"
-
-#~ msgid "Service scan type needed"
-#~ msgstr "Kanalsöknings typ krävs"
-
-#~ msgid "Slot "
-#~ msgstr "Slot "
-
-#~ msgid "Socket "
-#~ msgstr "Sockel "
-
-#~ msgid "Startwizard"
-#~ msgstr "Startguide"
-
-#~ msgid "Transpondertype"
-#~ msgstr "Transponertyp"
-
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Please refer to the user manual.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "Kan inte initialisera hårddisken.\n"
-#~ "Var vänlig läs i manualen.\n"
-#~ "Fel: "
-
-#~ msgid "VCR Switch"
-#~ msgstr "VCR Switch"
-
-#~ msgid "Video-Setup"
-#~ msgstr "Video-Inställning"
-
-#~ msgid "You selected a playlist"
-#~ msgstr "Du valde en spellista"
-
-#~ msgid "empty/unknown"
-#~ msgstr "tom/okänd"
-
-#~ msgid "list"
-#~ msgstr "list"
-
-#~ msgid "play next playlist entry"
-#~ msgstr "spela nästa spellistpost"
-
-#~ msgid "play previous playlist entry"
-#~ msgstr "spela föregående spellistpost"
-
-#~ msgid ""
-#~ "scan done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "sökning klar!\n"
-#~ "%d kanaler hittades!"
-
-#~ msgid ""
-#~ "scan done!\n"
-#~ "No service found!"
-#~ msgstr ""
-#~ "sökning klar!\n"
-#~ "Inga kanaler hittades!"
-
-#~ msgid ""
-#~ "scan done!\n"
-#~ "One service found!"
-#~ msgstr ""
-#~ "sökning klar!\n"
-#~ "En kanal hittades!"
-
-#~ msgid ""
-#~ "scan in progress - %d %% done!\n"
-#~ "%d services found!"
-#~ msgstr ""
-#~ "sökning pågår - %d %% klart!\n"
-#~ "%d kanaler hittade!"
-
-#~ msgid "select Slot"
-#~ msgstr "välj Slot"
-
-#~ msgid "skip backward (self defined)"
-#~ msgstr "hoppa bakåt (självangivet)"
-
-#~ msgid "skip forward (self defined)"
-#~ msgstr "hoppa framåt (självangivet)"
