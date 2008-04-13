@@ -6,7 +6,7 @@ install_PYTHON = \
 	ActionMap.py GUISkin.py PerServiceDisplay.py components.py              \
 	Button.py HTMLComponent.py ProgressBar.py TimerList.py config.py        \
 	HTMLSkin.py ServiceList.py VariableText.py                              \
-	ConfigList.py Header.py VariableValue.py                                \
+	ConfigList.py VariableValue.py                                          \
 	Label.py ServiceScan.py VolumeBar.py                       \
 	GUIComponent.py MenuList.py __init__.py MovieList.py                    \
 	InputDevice.py ServicePosition.py SetupDevices.py Harddisk.py           \
