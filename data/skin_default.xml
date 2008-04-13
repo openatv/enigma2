@@ -309,7 +309,15 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 	<!-- Language selection -->
 	<screen name="LanguageSelection" position="200,150" size="320,300" title="Language selection" >
 		<widget source="languages" render="Listbox" position="0,0" size="320,300" scrollbarMode="showOnDemand" >
-			<convert type="StaticMultiList" />
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (80, 10), size = (200, 50), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the language name,
+						MultiContentEntryPixmap(pos = (10, 5), size = (60, 40), png = 2), # index 2 is the pixmap
+					],
+				 "fonts": [gFont("Regular", 20)],
+				 "itemHeight": 50
+				}
+			</convert>
 		</widget>
 	</screen>
 	<!-- Mediaplayer -->
