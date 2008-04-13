@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = gnu
 
-SUBDIRS = menu
+SUBDIRS = menu icons buttons spinner
 
 installdir = $(DATADIR)/enigma2/skin_default
 
