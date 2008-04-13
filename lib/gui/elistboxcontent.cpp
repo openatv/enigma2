@@ -626,6 +626,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 	if (m_list && cursorValid())
 	{
+			/* a multicontent list can be used in two ways:
+				either each item is a list of (TYPE,...)-tuples,
+				or there is a template defined, which is a list of (TYPE,...)-tuples,
+				and the list is an unformatted tuple. The template then references items from the list.
+			*/
 		items = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
 
 		if (m_buildFunc)
@@ -647,14 +652,37 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			goto error_out;
 		}
 
-		if (!PyList_Check(items))
+		if (!m_template)
 		{
-			eDebug("eListboxPythonMultiContent: list entry %d is not a list", m_cursor);
-			goto error_out;
+			if (!PyList_Check(items))
+			{
+				eDebug("eListboxPythonMultiContent: list entry %d is not a list (non-templated)", m_cursor);
+				goto error_out;
+			}
+		} else
+		{
+			if (!PyTuple_Check(items))
+			{
+				eDebug("eListboxPythonMultiContent: list entry %d is not a tuple (templated)", m_cursor);
+				goto error_out;
+			}
+		}
+
+		ePyObject data;
+
+			/* if we have a template, use the template for the actual formatting. 
+				we will later detect that "data" is present, and refer to that, instead
+				of the immediate value. */
+		int start = 1;
+		if (m_template)
+		{
+			data = items;
+			items = m_template;
+			start = 0;
 		}
 
 		int size = PyList_Size(items);
-		for (int i = 1; i < size; ++i)
+		for (int i = start; i < size; ++i)
 		{
 			ePyObject item = PyList_GET_ITEM(items, i); // borrowed reference!
 
@@ -738,6 +766,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					if (pborderColor == Py_None)
 						pborderColor=ePyObject();
 				}
+
+				if (PyInt_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
+					pstring = PyTuple_GetItem(data, PyInt_AsLong(pstring));
 
 				const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
 				int x = PyInt_AsLong(px) + offset.x();
@@ -847,6 +878,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				int width = PyInt_AsLong(pwidth);
 				int height = PyInt_AsLong(pheight);
 				int filled = PyInt_AsLong(pfilled_perc);
+
+				if ((filled < 0) && data) /* if the string is in a negative number, it refers to the 'data' list. */
+					filled = PyInt_AsLong(PyTuple_GetItem(data, -filled));
+
 				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 2;
 
 				eRect rect(x, y, width, height);
@@ -897,6 +932,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PIXMAP, x, y, width, height, pixmap [, backColor, backColorSelected] ))");
 					goto error_out;
 				}
+
+				if (PyInt_Check(ppixmap) && data) /* if the pixemap is in fact a number, it refers to the 'data' list. */
+					ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
 
 				int x = PyInt_AsLong(px) + offset.x();
 				int y = PyInt_AsLong(py) + offset.y();
@@ -991,6 +1029,11 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 				item = PyList_GET_ITEM(item, 0);
 				if (item != Py_None)
 					return 1;
+			} else if (PyTuple_Check(item))
+			{
+				item = PyTuple_GET_ITEM(item, 0);
+				if (item != Py_None)
+					return 1;
 			}
 			else if (m_buildFunc && PyCallable_Check(m_buildFunc))
 				return 1;
@@ -1037,4 +1080,9 @@ void eListboxPythonMultiContent::entryRemoved(int idx)
 {
 	if (m_listbox)
 		m_listbox->entryRemoved(idx);
+}
+
+void eListboxPythonMultiContent::setTemplate(ePyObject tmplate)
+{
+	m_template = tmplate;
 }
