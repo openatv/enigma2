@@ -42,6 +42,7 @@ public:
 	void kill();
 	void sendCtrlC();
 	void write( const char *data, int len );
+	void write( PyObject *data );
 	bool running() { return (fd[0]!=-1) && (fd[1]!=-1) && (fd[2]!=-1); }
 	PSignal1<void, const char*> dataAvail;
 	PSignal1<void,int> dataSent;

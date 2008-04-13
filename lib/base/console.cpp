@@ -333,7 +333,18 @@ void eConsoleAppContainer::write( const char *data, int len )
 	char *tmp = new char[len];
 	memcpy(tmp, data, len);
 	outbuf.push(queue_data(tmp,len));
-	out->start();
+	if (out)
+		out->start();
+}
+
+void eConsoleAppContainer::write( PyObject *data )
+{
+	char *buffer;
+	int length;
+	if (PyString_AsStringAndSize(data, &buffer, &length))
+		return;
+	if (buffer && length)
+		write(buffer, length);
 }
 
 void eConsoleAppContainer::readyWrite(int what)
