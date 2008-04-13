@@ -187,7 +187,7 @@ int main(int argc, char **argv)
 	dsk_lcd.setDC(my_lcd_dc);
 
 	ePtr<gPixmap> m_pm;
-	loadPNG(m_pm, DATADIR "/enigma2/pal.png");
+	loadPNG(m_pm, DATADIR "/enigma2/skin_default/pal.png");
 	if (!m_pm)
 	{
 		eFatal("pal.png not found!");
@@ -211,7 +211,7 @@ int main(int argc, char **argv)
 		for (i=0; i<MAX_SPINNER; ++i)
 		{
 			char filename[strlen(DATADIR) + 20];
-			sprintf(filename, DATADIR "/enigma2/wait%d.png", i + 1);
+			sprintf(filename, DATADIR "/enigma2/skin_default/spinner/wait%d.png", i + 1);
 			loadPNG(wait[i], filename);
 			
 			if (!wait[i])

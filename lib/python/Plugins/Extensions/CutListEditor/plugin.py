@@ -162,7 +162,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceN
 			</widget>
 
 			<widget name="Timeline" position="50,500" size="620,40" backgroundColor="#000000"
-				pointer="/usr/share/enigma2/position_pointer.png:3,5" foregroundColor="#ffffff" />
+				pointer="/usr/share/enigma2/skin_default/position_arrow.png:3,5" foregroundColor="#ffffff" />
 			<widget name="Cutlist" position="50,325" size="620,175" scrollbarMode="showOnDemand" transparent="1" />
 		</screen>"""
 	def __init__(self, session, service):

@@ -39,7 +39,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if overjump_empty:
 			self.l.setSelectableFunc(self.isSelectable)
 		self.epgcache = eEPGCache.getInstance()
-		self.clock_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'epgclock-fs8.png'))
+		self.clock_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock.png'))
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None

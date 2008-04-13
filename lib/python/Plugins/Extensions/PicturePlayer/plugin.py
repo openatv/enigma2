@@ -196,13 +196,13 @@ class PicView(Screen):
 		<screen position="0,0" size="720,576" flags="wfNoBorder" title="PicturePlayer" >
 			<eLabel position="0,0" zPosition="0" size="720,576" backgroundColor="black" />
 			<widget name="picture" position="80,50" size="560,450" zPosition="1" transparent="1" />
-			<widget name="point" position="80,515" size="15,15" zPosition="1" pixmap="BlinkingPoint-fs8.png" alphatest="on" />
+			<widget name="point" position="80,515" size="14,14" zPosition="1" pixmap="skin_default/icons/record.png" alphatest="on" />
 			<widget name="file" position="150,510" size="350,30" font="Regular;20" halign="center" zPosition="1" transparent="1" />
-			<ePixmap position="500,515" size="36,20" pixmap="key_info-fs8.png" zPosition="1" alphatest="on" />
-			<ePixmap position="550,515" size="20,20" pixmap="ico_mp_rewind.png"  zPosition="1" alphatest="on" />
-			<widget name="play" position="575,515" size="20,20" pixmap="ico_mp_play.png"  zPosition="1" alphatest="on" />
-			<widget name="pause" position="600,515" size="20,20" pixmap="ico_mp_pause.png"  zPosition="1" alphatest="on" />
-			<ePixmap position="625,515" size="20,20" pixmap="ico_mp_forward.png"  zPosition="1" alphatest="on" />
+			<ePixmap position="500,515" size="36,20" pixmap="skin_default/buttons/key_info.png" zPosition="1" alphatest="on" />
+			<ePixmap position="550,515" size="20,20" pixmap="skin_default/icons/ico_mp_rewind.png"  zPosition="1" alphatest="on" />
+			<widget name="play" position="575,515" size="20,20" pixmap="skin_default/icons/ico_mp_play.png"  zPosition="1" alphatest="on" />
+			<widget name="pause" position="600,515" size="20,20" pixmap="skin_default/icons/ico_mp_pause.png"  zPosition="1" alphatest="on" />
+			<ePixmap position="625,515" size="20,20" pixmap="skin_default/icons/ico_mp_forward.png"  zPosition="1" alphatest="on" />
 		</screen>"""
 	
 	def __init__(self, session, filelist, name, path):
@@ -420,9 +420,9 @@ class PicSetup(Screen):
 class picmain(Screen):
 	skin = """
 		<screen position="160,90" size="400,390" title="PicturePlayer" >
-			<ePixmap position="10,40" size="36,20" pixmap="key_menu-fs8.png" transparent="1" alphatest="on" />
-			<ePixmap position="10,70" size="36,20" pixmap="key_info-fs8.png" transparent="1" alphatest="on" />
-			<ePixmap position="12,100" size="36,20" pixmap="key_red-fs8.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,40" size="36,20" pixmap="skin_default/buttons/key_menu.png" transparent="1" alphatest="on" />
+			<ePixmap position="10,70" size="36,20" pixmap="skin_default/buttons/key_info.png" transparent="1" alphatest="on" />
+			<ePixmap position="12,100" size="36,20" pixmap="skin_default/buttons/key_red.png" transparent="1" alphatest="on" />
 			<eLabel text="Settings" position="60,40" size="120,25" font="Regular;20" transparent="1" />
 			<eLabel text="Exif-Data" position="60,70" size="120,25" font="Regular;20" transparent="1" />
 			<eLabel text="Thumbnails" position="60,100" size="120,25" font="Regular;20" transparent="1" />

@@ -55,7 +55,7 @@ class Picon(Renderer):
 							if fileExists(str):
 								pngname = str
 						if pngname == "": # Fallback to enigma2 logo
-							pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/enigma2.png")
+							pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
 					self.nameCache["default"] = pngname
 			if self.pngname != pngname:
 				self.instance.setPixmapFromFile(pngname)

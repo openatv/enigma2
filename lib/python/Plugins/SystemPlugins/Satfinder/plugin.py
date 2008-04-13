@@ -69,11 +69,11 @@ class Satfinder(ScanSetup):
 			<widget source="Frontend" render="Progress" position="85,307" size="200,22" >
 				<convert type="FrontendInfo">BER</convert>
 			</widget>
-			<widget source="Frontend" render="Pixmap" pixmap="key_green-fs8.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
+			<widget source="Frontend" render="Pixmap" pixmap="skin_default/buttons/key_green.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
 				<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="Frontend" render="Pixmap" pixmap="key_red-fs8.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
+			<widget source="Frontend" render="Pixmap" pixmap="skin_default/buttons/key_red.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
 				<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide">Invert</convert>
 			</widget>

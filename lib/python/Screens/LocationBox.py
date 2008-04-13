@@ -30,9 +30,9 @@ class LocationBox(Screen, NumericalTextInput):
 			<widget name="text" position="0,2" size="540,22" font="Regular;22" />
 			<widget name="filelist" position="0,25" size="540,235" />
 			<widget name="target" position="0,260" size="540,40" valign="center" font="Regular;22" />
-			<widget name="yellow" position="260,300" zPosition="1" size="140,40" pixmap="skin_default/key-yellow.png" transparent="1" alphatest="on" />
+			<widget name="yellow" position="260,300" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
 			<widget name="key_yellow" position="260,300" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="green" position="400,300" zPosition="1" size="140,40" pixmap="skin_default/key-green.png" transparent="1" alphatest="on" />
+			<widget name="green" position="400,300" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
 			<widget name="key_green" position="400,300" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 

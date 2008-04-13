@@ -39,7 +39,7 @@ class MediaPixmap(Pixmap):
 					self.default_pixmap = value
 					break
 		if self.default_pixmap is None:
-			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "no_coverArt.png")
+			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/no_coverArt.png")
 		return Pixmap.applySkin(self, desktop)
 
 class MediaPlayer(Screen, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, HelpableScreen):

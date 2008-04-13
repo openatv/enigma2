@@ -3,7 +3,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT
 from Tools.LoadPixmap import LoadPixmap
 
-selectionpng = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "selectioncross-fs8.png"))
+selectionpng = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/selectioncross.png"))
 
 def SelectionEntryComponent(description, value, index, selected):
 	res = [ (description, value, index, selected) ]
