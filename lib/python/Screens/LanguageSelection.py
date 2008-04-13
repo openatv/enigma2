@@ -7,17 +7,13 @@ from Components.Sources.List import List
 
 from Tools.Directories import *
 
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 from Tools.LoadPixmap import LoadPixmap
 
 def LanguageEntryComponent(file, name, index):
-	res = [ index ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 10, 200, 50, 0, RT_HALIGN_LEFT ,name))
 	png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "countries/" + file + ".png"))
 	if png == None:
 		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "countries/missing.png"))
-	res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 10, 5, 60, 40, png))
-	
+	res = (index, name, png)
 	return res
 
 class LanguageSelection(Screen):
@@ -27,7 +23,7 @@ class LanguageSelection(Screen):
 		self.oldActiveLanguage = language.getActiveLanguage()
 
 		self.list = []
-		self["languages"] = List(self.list, item_height=50, fonts = [gFont("Regular", 20)])
+		self["languages"] = List(self.list)
 		self["languages"].onSelectionChanged.append(self.changed)
 
 		self.updateList()
@@ -78,7 +74,7 @@ class LanguageSelection(Screen):
 			for x in language.getLanguageList():
 				self.list.append(LanguageEntryComponent(file = x[1][2].lower(), name = _(x[1][0]), index = x[0]))
 		#self.list.sort(key=lambda x: x[1][7])
-		
+
 		print "updateList"
 		if first_time:
 			self["languages"].list = self.list
