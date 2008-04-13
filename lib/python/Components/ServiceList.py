@@ -17,11 +17,11 @@ class ServiceList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "folder.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 		if pic:
 			self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "marker-fs8.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/marker.png"))
 		if pic:
 			self.l.setPixmap(self.l.picMarker, pic)
 

@@ -122,10 +122,10 @@ class RassInteractive(Screen):
 			9 : self["subpages_9"] }
 
 		self.subpage_png = {
-			1 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page1.png")),
-			2 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page2.png")),
-			3 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page3.png")),
-			4 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "rass_page4.png")) }
+			1 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page1.png")),
+			2 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page2.png")),
+			3 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page3.png")),
+			4 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page4.png")) }
 
 		self.current_page=0;
 		self.current_subpage=0;

@@ -26,7 +26,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
-		self["locationtext"] = Label(_("Choose Location"))
+		self["locationtext"] = Label(_("Location"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
 		self["location"] = Pixmap()

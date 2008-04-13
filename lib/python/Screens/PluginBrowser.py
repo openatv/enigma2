@@ -187,9 +187,9 @@ class PluginDownloadBrowser(Screen):
 	
 	def updateList(self):
 		self.list = []
-		expandableIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "expandable-plugins.png"))
-		expandedIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "expanded-plugins.png"))
-		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "verticalline-plugins.png"))
+		expandableIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expandable-plugins.png"))
+		expandedIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expanded-plugins.png"))
+		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/verticalline-plugins.png"))
 		
 		self.plugins = {}
 		for x in self.pluginlist:
