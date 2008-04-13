@@ -63,6 +63,7 @@ class eListboxPythonMultiContent: public eListboxPythonStringContent
 {
 	ePyObject m_buildFunc;
 	ePyObject m_selectableFunc;
+	ePyObject m_template;
 	eRect m_selection_clip;
 	gRegion m_clip, m_old_clip;
 public:
@@ -79,6 +80,7 @@ public:
 	void setSelectionClip(eRect &rect, bool update=false);
 	void updateClip(gRegion &);
 	void entryRemoved(int idx);
+	void setTemplate(SWIG_PYOBJECT(ePyObject) tmplate);
 private:
 	std::map<int, ePtr<gFont> > m_font;
 };
