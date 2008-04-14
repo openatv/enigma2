@@ -187,16 +187,36 @@ RESULT eServiceCenter::offlineOperations(const eServiceReference &ref, ePtr<iSer
 	return i->second->offlineOperations(ref, ptr);
 }
 
-RESULT eServiceCenter::addServiceFactory(int id, iServiceHandler *hnd)
+RESULT eServiceCenter::addServiceFactory(int id, iServiceHandler *hnd, std::list<std::string> &extensions)
 {
 	handler.insert(std::pair<int,ePtr<iServiceHandler> >(id, hnd));
+	this->extensions[id]=extensions;
 	return 0;
 }
 
 RESULT eServiceCenter::removeServiceFactory(int id)
 {
 	handler.erase(id);
+	extensions.erase(id);
 	return 0;
+}
+
+int eServiceCenter::getServiceTypeForExtension(const char *str)
+{
+	for (std::map<int, std::list<std::string> >::iterator sit(extensions.begin()); sit != extensions.end(); ++sit)
+	{
+		for (std::list<std::string>::iterator eit(sit->second.begin()); eit != sit->second.end(); ++eit)
+		{
+			if (*eit == str)
+				return sit->first;
+		}
+	}
+	return -1;
+}
+
+int eServiceCenter::getServiceTypeForExtension(const std::string &str)
+{
+	return getServiceTypeForExtension(str.c_str());
 }
 
 	/* default handlers */

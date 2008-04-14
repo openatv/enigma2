@@ -668,7 +668,11 @@ eServiceFactoryDVB::eServiceFactoryDVB()
 	
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
-		sc->addServiceFactory(eServiceFactoryDVB::id, this);
+	{
+		std::list<std::string> extensions;
+		extensions.push_back("ts");
+		sc->addServiceFactory(eServiceFactoryDVB::id, this, extensions);
+	}
 
 	m_StaticServiceDVBInfo = new eStaticServiceDVBInformation;
 	m_StaticServiceDVBBouquetInfo = new eStaticServiceDVBBouquetInformation;

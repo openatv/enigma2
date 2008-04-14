@@ -16,6 +16,7 @@ class eServiceCenter: public iServiceHandler
 DECLARE_REF(eServiceCenter);
 private:
 	std::map<int,ePtr<iServiceHandler> > handler;
+	std::map<int,std::list<std::string> > extensions;
 	static eServiceCenter *instance;
 #ifdef SWIG
 	eServiceCenter();
@@ -26,6 +27,9 @@ public:
 	eServiceCenter();
 	virtual ~eServiceCenter();
 
+	int getServiceTypeForExtension(const char *str);
+	int getServiceTypeForExtension(const std::string &str);
+
 		// iServiceHandler
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
@@ -35,7 +39,7 @@ public:
 	
 		// eServiceCenter
 	static RESULT getPrivInstance(ePtr<eServiceCenter> &ptr) { ptr = instance; return 0; }
-	RESULT addServiceFactory(int id, iServiceHandler *hnd);
+	RESULT addServiceFactory(int id, iServiceHandler *hnd, std::list<std::string> &extensions);
 	RESULT removeServiceFactory(int id);
 #endif
 	static SWIG_VOID(RESULT) getInstance(ePtr<iServiceHandler> &SWIG_NAMED_OUTPUT(ptr)) { ptr = instance; return 0; }

@@ -42,8 +42,9 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 	return res
 
 class FileList(MenuList):
-	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None, useServiceRef = False, isTop = False, enableWrapAround = False):
+	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None, useServiceRef = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+		self.additional_extensions = additionalExtensions
 		self.mount_point = None
 		self.current_directory = None
 		self.useServiceRef = useServiceRef
@@ -107,6 +108,8 @@ class FileList(MenuList):
 			directories = [ ]
 		elif self.useServiceRef:
 			root = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + directory)
+			if self.additional_extensions:
+				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
 
