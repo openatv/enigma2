@@ -36,7 +36,10 @@ eServiceFactoryFS::eServiceFactoryFS()
 	
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
-		sc->addServiceFactory(eServiceFactoryFS::id, this);
+	{
+		std::list<std::string> extensions;
+		sc->addServiceFactory(eServiceFactoryFS::id, this, extensions);
+	}
 	
 	m_service_information = new eStaticServiceFSInformation();
 }
@@ -67,7 +70,7 @@ RESULT eServiceFactoryFS::record(const eServiceReference &ref, ePtr<iRecordableS
 
 RESULT eServiceFactoryFS::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
 {
-	ptr = new eServiceFS(ref.path.c_str());
+	ptr = new eServiceFS(ref.path.c_str(), ref.getName().length() ? ref.getName().c_str() : 0);
 	return 0;
 }
 
@@ -87,9 +90,64 @@ RESULT eServiceFactoryFS::offlineOperations(const eServiceReference &, ePtr<iSer
 
 DEFINE_REF(eServiceFS);
 
-eServiceFS::eServiceFS(const char *path): path(path)
+eServiceFS::eServiceFS(const char *path, const char *additional_extensions): path(path)
 {
 	m_list_valid = 0;
+	if (additional_extensions)
+	{
+		size_t slen=strlen(additional_extensions);
+		char buf[slen+1];
+		char *tmp=0, *cmds = buf;
+		memcpy(buf, additional_extensions, slen+1);
+
+		// strip spaces at beginning
+		while(cmds[0] == ' ')
+		{
+			++cmds;
+			--slen;
+		}
+
+		// strip spaces at the end
+		while(slen && cmds[slen-1] == ' ')
+		{
+			cmds[slen-1] = 0;
+			--slen;
+		}
+
+		if (slen)
+		{
+			if (*cmds)
+			{
+				int id;
+				char buf2[16];
+				while(1)
+				{
+					tmp = strchr(cmds, ' ');
+					if (tmp)
+						*tmp = 0;
+					if (strstr(cmds, "0x"))
+					{
+						if (sscanf(cmds, "0x%x:%s", &id, buf2) == 2)
+							m_additional_extensions[id].push_back(buf2);
+						else
+							eDebug("parse additional_extension (%s) failed", cmds);
+					}
+					else
+					{
+						if (sscanf(cmds, "%d:%s", &id, buf2) == 2)
+							m_additional_extensions[id].push_back(buf2);
+						else
+							eDebug("parse additional_extension (%s) failed", cmds);
+					}
+					if (!tmp)
+						break;
+					cmds = tmp+1;
+					while (*cmds && *cmds == ' ')
+						++cmds;
+				}
+			}
+		}
+	}
 }
 
 eServiceFS::~eServiceFS()
@@ -135,32 +193,29 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 		} else
 		{
 			size_t e = filename.rfind('.');
-			std::string extension = (e != std::string::npos) ? filename.substr(e) : "";
-			std::transform(extension.begin(), extension.end(), extension.begin(), lower);
-			int type = -1;
-			
-			if (extension == ".ts")
-				type = eServiceFactoryDVB::id;
-			else if (extension == ".mp3")
-				type = 0x1001;
-			else if (extension == ".ogg")
-				type = 0x1001;
-			else if (extension == ".mpg")
-				type = 0x1001;
-			else if (extension == ".vob")
-				type = 0x1001;
-			else if (extension == ".wav" || extension == ".wave")
-				type = 0x1001;
-			else if (extension == ".m3u" || extension == ".pls" || extension == ".e2pls")
-				type = 4098; // ?? this id is not defined in any service handler, just in python code.
-			
-			if (type != -1)
+			if (e != std::string::npos && e+1 < filename.length())
 			{
-				eServiceReference service(type,
-					0,
-					filename);
-				service.data[0] = 0;
-				list.push_back(service);
+				std::string extension = filename.substr(e+1);
+				std::transform(extension.begin(), extension.end(), extension.begin(), lower);
+				int type = getServiceTypeForExtension(extension);
+
+				if (type == -1)
+				{
+					ePtr<eServiceCenter> sc;
+					eServiceCenter::getPrivInstance(sc);
+					type = sc->getServiceTypeForExtension(extension);
+				}
+			
+				if (type != -1)
+				{
+					eServiceReference service(type,
+						0,
+						filename);
+					service.data[0] = 0;
+					list.push_back(service);
+				}
+				else
+					eDebug("unhandled extension %s", extension.c_str());
 			}
 		}
 	}
@@ -298,6 +353,24 @@ RESULT eServiceFS::startEdit(ePtr<iMutableServiceList> &res)
 {
 	res = 0;
 	return -1;
+}
+
+int eServiceFS::getServiceTypeForExtension(const char *str)
+{
+	for (std::map<int, std::list<std::string> >::iterator sit(m_additional_extensions.begin()); sit != m_additional_extensions.end(); ++sit)
+	{
+		for (std::list<std::string>::iterator eit(sit->second.begin()); eit != sit->second.end(); ++eit)
+		{
+			if (*eit == str)
+				return sit->first;
+		}
+	}
+	return -1;
+}
+
+int eServiceFS::getServiceTypeForExtension(const std::string &str)
+{
+	return getServiceTypeForExtension(str.c_str());
 }
 
 eAutoInitPtr<eServiceFactoryFS> init_eServiceFactoryFS(eAutoInitNumbers::service+1, "eServiceFactoryFS");

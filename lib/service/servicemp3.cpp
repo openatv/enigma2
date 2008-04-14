@@ -20,7 +20,16 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 	
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
-		sc->addServiceFactory(eServiceFactoryMP3::id, this);
+	{
+		std::list<std::string> extensions;
+		extensions.push_back("mp3");
+		extensions.push_back("ogg");
+		extensions.push_back("mpg");
+		extensions.push_back("vob");
+		extensions.push_back("wav");
+		extensions.push_back("wave");
+		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
+	}
 
 	m_service_info = new eStaticServiceMP3Info();
 }

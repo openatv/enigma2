@@ -84,7 +84,7 @@ public:
 #ifndef SWIG
 	std::string name;
 #endif
-	std::string getName() { return name; }
+	std::string getName() const { return name; }
 	void setName( const std::string &n ) { name=n; }
 
 	eServiceReference()

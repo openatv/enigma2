@@ -27,13 +27,16 @@ DECLARE_REF(eServiceFS);
 private:
 	std::string path;
 	friend class eServiceFactoryFS;
-	eServiceFS(const char *path);
+	eServiceFS(const char *path, const char *additional_extensions=0);
+	std::map<int, std::list<std::string> > m_additional_extensions;
 	
 	int m_list_valid;
 	std::list<eServiceReference> m_list;
+	int getServiceTypeForExtension(const char *str);
+	int getServiceTypeForExtension(const std::string &str);
 public:
 	virtual ~eServiceFS();
-	
+
 	RESULT getContent(std::list<eServiceReference> &list, bool sorted=false);
 	PyObject *getContent(const char *format, bool sorted=false);
 	RESULT getNext(eServiceReference &ptr);
