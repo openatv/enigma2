@@ -3,7 +3,6 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from enigma import eDVBVolumecontrol
-from Components.Sources.Source import ObsoleteSource
 
 inStandby = None
 
@@ -83,7 +82,6 @@ class StandbySummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
-		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox

@@ -7,7 +7,6 @@ from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
-from Components.Sources.Source import ObsoleteSource
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Screens.Screen import Screen
 from Screens.EventView import EventViewSimple
@@ -347,7 +346,6 @@ class GraphMultiEPG(Screen):
 		self["key_green"] = Button(_("Add timer"))
 		self["timeline_text"] = TimelineText()
 		self["Event"] = Event()
-		self["Clock"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 		self.time_lines = [ ]
 		for x in (0,1,2,3,4,5):
 			pm = Pixmap()

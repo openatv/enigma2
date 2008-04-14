@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-from Components.Sources.Source import ObsoleteSource
+#from Components.Sources.Source import ObsoleteSource
 
 class SimpleSummary(Screen):
 	skin = """
@@ -23,7 +23,6 @@ class SimpleSummary(Screen):
 		# if parent has a "skin_summary" defined, use that as default
 		self.skin = parent.__dict__.get("skin_summary", self.skin)
 
-		self["Clock"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 		self["Title"] = Label(parent.title or "")
 
 	def setTitle(self, title):
