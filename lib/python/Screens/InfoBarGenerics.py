@@ -9,7 +9,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.Sources.Source import ObsoleteSource
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
@@ -539,17 +538,6 @@ class InfoBarEPG:
 			self.epglist[1]=tmp
 			setEvent(self.epglist[0])
 
-class InfoBarTuner:
-	"""provides a snr/agc/ber display"""
-	def __init__(self):
-		self["FrontendStatus"] = ObsoleteSource(new_source = "session.FrontendStatus", removal_date = "2008-01")
-
-class InfoBarEvent:
-	"""provides a current/next event info display"""
-	def __init__(self):
-		self["Event_Now"] = ObsoleteSource(new_source = "session.Event_Now", removal_date = "2008-01")
-		self["Event_Next"] = ObsoleteSource(new_source = "session.Event_Next", removal_date = "2008-01")
-
 class InfoBarRdsDecoder:
 	"""provides RDS and Rass support/display"""
 	def __init__(self):
@@ -597,10 +585,6 @@ class InfoBarRdsDecoder:
 			self.rass_interactive = None
 			self.RassSlidePicChanged()
 		self.rds_display.show()
-
-class InfoBarServiceName:
-	def __init__(self):
-		self["CurrentService"] = ObsoleteSource(new_source = "session.CurrentService", removal_date = "2008-01")
 
 class InfoBarSeek:
 	"""handles actions like seeking, pause"""
@@ -1390,13 +1374,6 @@ class InfoBarInstantRecord:
 				"instantRecord": (self.instantRecord, _("Instant Record...")),
 			})
 		self.recording = []
-#### DEPRECATED CODE ####
-		self["BlinkingPoint"] = BlinkingPixmapConditional()
-		self["BlinkingPoint"].setConnect(self.session.nav.RecordTimer.isRecording)
-		self["BlinkingPoint"].deprecationInfo = (
-			"session.RecordState source, Pixmap renderer and "
-			"ConditionalShowHide/Blink Converter", "2008-02")
-#########################
 
 	def stopCurrentRecording(self, entry = -1):
 		if entry is not None and entry != -1:
@@ -1738,59 +1715,6 @@ class InfoBarAdditionalInfo:
 		self["RecordingPossible"] = Boolean(fixed=harddiskmanager.HDDCount() > 0)
 		self["TimeshiftPossible"] = self["RecordingPossible"]
 		self["ExtensionsAvailable"] = Boolean(fixed=1)
-
-######### DEPRECATED CODE ##########
-		self["NimA"] = Pixmap()
-		self["NimA"].deprecationInfo = (
-			"session.TunerInfo source, Pixmap renderer, TunerInfo/UseMask Converter"
-			", ValueBitTest(1) Converter and ConditionalShowHide Converter", "2008-02")
-		self["NimB"] = Pixmap()
-		self["NimB"].deprecationInfo = (
-			"session.TunerInfo source, Pixmap renderer, TunerInfo/UseMask Converter"
-			", ValueBitTest(2) Converter and ConditionalShowHide Converter", "2008-02")
-		self["NimA_Active"] = Pixmap()
-		self["NimA_Active"].deprecationInfo = (
-			"session.FrontendInfo source, Pixmap renderer, FrontendInfo/NUMBER Converter"
-			", ValueRange(1,1) Converter and ConditionalShowHide Converter", "2008-02")
-		self["NimB_Active"] = Pixmap()
-		self["NimB_Active"].deprecationInfo = (
-			"session.FrontendInfo source, Pixmap renderer, FrontendInfo/NUMBER Converter"
-			", ValueRange(1,1) Converter and ConditionalShowHide Converter", "2008-02")
-
-		res_mgr = eDVBResourceManager.getInstance()
-		if res_mgr:
-			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
-
-		self.session.nav.event.append(self.gotServiceEvent) # we like to get service events
-
-	def tunerUseMaskChanged(self, mask):
-		if mask&1:
-			self["NimA_Active"].show()
-		else:
-			self["NimA_Active"].hide()
-		if mask&2:
-			self["NimB_Active"].show()
-		else:
-			self["NimB_Active"].hide()
-
-	def checkTunerState(self, service):
-		info = service and service.frontendInfo()
-		feNumber = info and info.getFrontendInfo(iFrontendInformation.frontendNumber)
-		if feNumber is None:
-			self["NimA"].hide()
-			self["NimB"].hide()
-		elif feNumber == 0:
-			self["NimB"].hide()
-			self["NimA"].show()
-		elif feNumber == 1:
-			self["NimA"].hide()
-			self["NimB"].show()
-
-	def gotServiceEvent(self, ev):
-		service = self.session.nav.getCurrentService()
-		if ev == iPlayableService.evUpdatedInfo or ev == iPlayableService.evEnd:
-			self.checkTunerState(service)
-####################################
 
 class InfoBarNotifications:
 	def __init__(self):

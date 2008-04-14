@@ -7,7 +7,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.MultiContent import MultiContentEntryText
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.VideoWindow import VideoWindow
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceName
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from Components.GUIComponent import GUIComponent
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService, RT_HALIGN_RIGHT
 from Screens.FixedMenu import FixedMenu
@@ -144,7 +144,7 @@ class CutList(GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
 
-class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceName, HelpableScreen):
+class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
 		<screen position="0,0" size="720,576" flags="wfNoBorder" backgroundColor="#444444">
 			<eLabel position="360,0" size="360,313" backgroundColor="#ffffff" />
@@ -170,7 +170,6 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, InfoBarServiceN
 		Screen.__init__(self, session)
 		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
-		InfoBarServiceName.__init__(self)
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)

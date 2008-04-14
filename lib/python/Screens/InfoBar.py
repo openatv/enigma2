@@ -15,15 +15,14 @@ from Screens.ChoiceBox import ChoiceBox
 profile("LOAD:InfoBarGenerics")
 from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarRdsDecoder, \
-	InfoBarEPG, InfoBarEvent, InfoBarServiceName, InfoBarSeek, InfoBarInstantRecord, \
+	InfoBarEPG, InfoBarSeek, InfoBarInstantRecord, \
 	InfoBarAudioSelection, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, \
-	InfoBarSubserviceSelection, InfoBarTuner, InfoBarShowMovies, InfoBarTimeshift,  \
+	InfoBarSubserviceSelection, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
 
 profile("LOAD:InitBar_Components")
-from Components.Sources.Source import ObsoleteSource
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.ServiceEventTracker import ServiceEventTracker
@@ -33,9 +32,9 @@ from Screens.HelpMenu import HelpableScreen
 
 class InfoBar(InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
-	InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, 
+	InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
-	InfoBarSubserviceSelection, InfoBarTuner, InfoBarTimeshift, InfoBarSeek,
+	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
 	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport,
 	Screen):
@@ -55,17 +54,15 @@ class InfoBar(InfoBarShowHide,
 		for x in HelpableScreen, \
 				InfoBarShowHide, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, \
-				InfoBarEvent, InfoBarServiceName, InfoBarInstantRecord, InfoBarAudioSelection, \
+				InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
-				InfoBarTuner, InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
+				InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
 				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarSleepTimer, \
 				InfoBarPlugins, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("view recordings..."))]))
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("hear radio..."))]))
-
-		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -123,7 +120,7 @@ class InfoBar(InfoBarShowHide,
 
 class MoviePlayer(InfoBarShowHide, \
 		InfoBarMenu, \
-		InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
+		InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
 		InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
 		InfoBarServiceErrorPopupSupport):
@@ -140,7 +137,7 @@ class MoviePlayer(InfoBarShowHide, \
 			})
 		
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
-				InfoBarServiceName, InfoBarSeek, InfoBarShowMovies, \
+				InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \

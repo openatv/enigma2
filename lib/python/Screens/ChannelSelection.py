@@ -14,12 +14,10 @@ from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
 profile("ChannelSelection.py 2.1")
-from Components.Sources.Source import ObsoleteSource
-profile("ChannelSelection.py 2.2")
 from Components.Sources.RdsDecoder import RdsDecoder
-profile("ChannelSelection.py 2.3")
+profile("ChannelSelection.py 2.2")
 from Components.Sources.ServiceEvent import ServiceEvent
-profile("ChannelSelection.py 2.4")
+profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ParentalControl import parentalControl
@@ -1067,8 +1065,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 
-		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
-
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.cancel,
@@ -1321,14 +1317,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.asciiOff()
 		self.close(None)
 
-from Screens.InfoBarGenerics import InfoBarEvent, InfoBarServiceName
-
-class RadioInfoBar(Screen, InfoBarEvent, InfoBarServiceName):
+class RadioInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		InfoBarEvent.__init__(self)
-		InfoBarServiceName.__init__(self)
-		self["CurrentTime"] = ObsoleteSource(new_source = "global.CurrentTime", removal_date = "2008-01")
 		self["RdsDecoder"] = RdsDecoder(self.session.nav)
 		self["BlinkingPoint"] = Pixmap()
 		self["BlinkingPoint"].hide()
