@@ -13,4 +13,4 @@ install_PYTHON = \
 	TimerSelection.py PictureInPicture.py TimeDateInput.py \
 	SubtitleDisplay.py SubservicesQuickzap.py ParentalControlSetup.py NumericalTextInputHelpDialog.py \
 	SleepTimerEdit.py Ipkg.py RdsDisplay.py Globals.py \
-	SessionGlobals.py LocationBox.py WizardLanguage.py
+	SessionGlobals.py LocationBox.py WizardLanguage.py TaskView.py
