@@ -107,7 +107,25 @@ void bsodFatal()
 		gPainter p(my_dc);
 		p.resetOffset();
 		p.resetClip(eRect(ePoint(0, 0), my_dc->size()));
-		p.setBackgroundColor(gRGB(0x0000C0));
+#ifdef ENIGMA2_CHECKOUT_TAG
+		if (ENIGMA2_CHECKOUT_TAG[0] == 'T') /* tagged checkout (release) */
+			p.setBackgroundColor(gRGB(0x0000C0));
+		else if (ENIGMA2_CHECKOUT_TAG[0] == 'D') /* dated checkout (daily experimental build) */
+		{
+			int r = rand();
+			unsigned int col;
+			if (r & 1)
+				col |= 0x800000;
+			if (r & 2)
+				col |= 0x008000;
+			if (r & 4)
+				col |= 0x0000c0;
+			p.setBackgroundColor(gRGB(r));
+		}
+#else
+			p.setBackgroundColor(gRGB(0x008000));
+#endif
+
 		p.setForegroundColor(gRGB(0xFFFFFF));
 	
 		ePtr<gFont> font = new gFont("Regular", 20);
