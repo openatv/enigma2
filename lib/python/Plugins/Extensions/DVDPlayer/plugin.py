@@ -41,15 +41,14 @@ class FileBrowser(Screen):
 			})
 
 	def ok(self):
-		if self["filelist"].getFilename().upper().endswith("VIDEO_TS/"):
+		filename = self["filelist"].getFilename()
+		if filename is not None and filename.upper().endswith("VIDEO_TS/"):
 			print "dvd structure found, trying to open..."
-			self.close(self["filelist"].getFilename()[0:-9])
-		
+			self.close(filename[0:-9])
 		elif self["filelist"].canDescent(): # isDir
 			self["filelist"].descent()
-			
 		else:
-			self.close(self["filelist"].getFilename())
+			self.close(filename)
 			
 	def exit(self):
 		self.close(None)
@@ -380,13 +379,15 @@ class DVDPlayer(Screen, InfoBarNotifications, InfoBarSeek, InfoBarCueSheetSuppor
 		audioString = self.service.info().getInfoString(iPlayableService.evUser+6)
 		print "AudioInfoAvail "+audioString
 		self["audioLabel"].setText(audioString)
-		self.doShow()
+		if not self.in_menu:
+			self.doShow()
 
 	def __osdSubtitleInfoAvail(self):
 		subtitleString = self.service.info().getInfoString(iPlayableService.evUser+7)
 		print "SubtitleInfoAvail "+subtitleString
 		self["subtitleLabel"].setText(subtitleString)
-		self.doShow()
+		if not self.in_menu:
+			self.doShow()
 
 	def __chapterUpdated(self):
 		self.currentChapter = self.service.info().getInfo(iPlayableService.evUser+8)
@@ -399,7 +400,8 @@ class DVDPlayer(Screen, InfoBarNotifications, InfoBarSeek, InfoBarCueSheetSuppor
 		self.totalTitles = self.service.info().getInfo(iPlayableService.evUser+90)
 		self.setChapterLabel()
 		print "__titleUpdated: %d/%d" % (self.currentTitle, self.totalTitles)
-		self.doShow()
+		if not self.in_menu:
+			self.doShow()
 		
 	#def __initializeDVDinfo(self):
 		#self.__osdAudioInfoAvail()
@@ -516,7 +518,8 @@ class DVDPlayer(Screen, InfoBarNotifications, InfoBarSeek, InfoBarCueSheetSuppor
 		self.session.nav.playService(self.oldService)
 
 	def showAfterCuesheetOperation(self):
-		self.show()
+		if not self.in_menu:
+			self.show()
 
 	def createSummary(self):
 		print "DVDCreateSummary"
