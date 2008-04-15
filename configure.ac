@@ -14,6 +14,14 @@ AC_ARG_WITH(libsdl,
 	[[withsdl=yes]]
 )
 
+AC_CHECK_HEADER(dreamdvd/ddvdlib.h,have_ddvdlib="yes",have_ddvdlib="no")
+if test x"${have_ddvdlib}" = xyes ; then
+	AC_DEFINE(HAVE_DDVDLIB, 1,[Define if ddvdlib is available])
+else
+	AC_MSG_NOTICE([ddvdlib not found... dont build dvd plugin])
+fi
+AM_CONDITIONAL(HAVE_DDVDLIB, test "$have_ddvdlib" = "yes")
+
 AM_PATH_PYTHON()
 AC_PYTHON_DEVEL
 #AM_PATH_XINE(1.1.0,, AC_MSG_ERROR([*** Please install xine-lib (devel) first ***]))
