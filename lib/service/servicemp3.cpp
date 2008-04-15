@@ -491,6 +491,12 @@ RESULT eServiceMP3::setTrickmode(int trick)
 	return -1;
 }
 
+RESULT eServiceMP3::seekChapter(int chapter)
+{
+		/* seekChapter N/I. */
+	return -1;
+}
+
 RESULT eServiceMP3::isCurrentlySeekable()
 {
 	return 1;
