@@ -6,6 +6,3 @@ servicedvd.so:
 all: servicedvd.so
 
 CLEANFILES = servicedvd.so
-
-install: all
-	$(INSTALL) servicedvd.so $(DESTDIR)/$(LIBDIR)/enigma2/python/Plugins/Extensions/DVDPlayer
