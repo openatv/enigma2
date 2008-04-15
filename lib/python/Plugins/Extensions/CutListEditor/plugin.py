@@ -146,25 +146,26 @@ class CutList(GUIComponent):
 
 class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
-		<screen position="0,0" size="720,576" flags="wfNoBorder" backgroundColor="#444444">
-			<eLabel position="360,0" size="360,313" backgroundColor="#ffffff" />
-			<widget name="Video" position="370,10" size="340,268" backgroundColor="transparent" zPosition="1" />
+	<screen position="0,0" size="720,576" title="Cutlist editor" flags="wfNoBorder">
+		<eLabel text="Cutlist editor" position="65,60" size="300,25" font="Regular;20" />
+		<widget source="global.CurrentTime" render="Label" position="268,60" size="394,20" font="Regular;20" halign="right">
+			<convert type="ClockToText">Format:%A %B %d, %H:%M</convert>
+		</widget>
+		<eLabel position="268,98" size="394,304" backgroundColor="#505555" />
+		<widget name="Video" position="270,100" zPosition="1" size="390,300" backgroundColor="transparent" />
+		<widget source="session.CurrentService" render="Label" position="135,405" size="450,50" font="Regular;22" halign="center" valign="center">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="50,450" zPosition="1" size="620,25" font="Regular;20" halign="center" valign="center">
+			<convert type="ServicePosition">Position,Detailed</convert>
+		</widget>
+		<eLabel position="62,98" size="179,274" backgroundColor="#505555" />
+		<eLabel position="64,100" size="175,270" backgroundColor="#000000" />
+		<widget name="Cutlist" position="64,100" zPosition="1" size="175,270" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="Timeline" position="50,485" size="615,20" backgroundColor="#505555" pointer="skin_default/position_arrow.png:3,5" foregroundColor="black" />
+		<ePixmap pixmap="skin_default/icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
+	</screen>"""
 
-			<eLabel position="50,80" size="300,24" text="Name:" font="Regular;20" foregroundColor="#cccccc" transparent="1" />
-
-			<widget source="CurrentService" render="Label" position="50,110" size="300,60" font="Regular;22" >
-				<convert type="ServiceName">Name</convert>
-			</widget>
-
-			<widget source="CurrentService" render="Label" position="370,278" size="340,25" 
-				backgroundColor="#000000" foregroundColor="#ffffff" font="Regular;19" zPosition="1" >
-				<convert type="ServicePosition">Position,Detailed</convert>
-			</widget>
-
-			<widget name="Timeline" position="50,500" size="620,40" backgroundColor="#000000"
-				pointer="/usr/share/enigma2/skin_default/position_arrow.png:3,5" foregroundColor="#ffffff" />
-			<widget name="Cutlist" position="50,325" size="620,175" scrollbarMode="showOnDemand" transparent="1" />
-		</screen>"""
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)

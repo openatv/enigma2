@@ -19,15 +19,15 @@
 	<!-- Adapter setup -->
 	<screen name="AdapterSetup" position="130,140" size="460,330" title="Network Setup">
 		<widget name="introduction2" position="10,10" size="440,20" font="Regular;23" />
-		<widget name="IPtext" position="10,50" size="130,21" font="Regular;21" />
-		<widget name="Netmasktext" position="10,75" size="130,21" font="Regular;21" />
-		<widget name="Gatewaytext" position="10,100" size="130,21" font="Regular;21" />
-		<widget name="IP" position="140,50" size="300,21" font="Regular;21" />
-		<widget name="Mask" position="140,75" size="300,21" font="Regular;21" />
-		<widget name="Gateway" position="140,100" size="300,21" font="Regular;21" />
-		<widget name="iface" position="10,150" size="440,23" font="Regular;23" />
-		<widget name="config" position="10,185" size="440,100" scrollbarMode="showOnDemand" />
-		<widget name="introduction" position="0,300" size="460,20" font="Regular;21" halign="center" />
+		<widget name="IPtext" position="10,45" size="130,21" font="Regular;21" />
+		<widget name="Netmasktext" position="10,70" size="130,21" font="Regular;21" />
+		<widget name="Gatewaytext" position="10,95" size="130,21" font="Regular;21" />
+		<widget name="IP" position="140,45" size="300,21" font="Regular;21" />
+		<widget name="Mask" position="140,70" size="300,21" font="Regular;21" />
+		<widget name="Gateway" position="140,95" size="300,21" font="Regular;21" />
+		<widget name="iface" position="10,135" size="440,23" font="Regular;23" />
+		<widget name="config" position="10,170" size="440,125" scrollbarMode="showOnDemand" />
+		<widget name="introduction" position="0,305" size="460,20" font="Regular;21" halign="center" />
 	</screen>
 	<!-- Audio selection -->
 	<screen name="AudioSelection" position="210,203" size="300,170" title="Audio">
