@@ -950,8 +950,8 @@ def InitNimManager(nimmgr):
 			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
 			if n:
 				possible_scan_types.append(("provider", _("Provider")))
+				nim.cable.scan_provider = ConfigSelection(default = "0", choices = list)
 			nim.cable.scan_type = ConfigSelection(default = "bands", choices = possible_scan_types)
-			nim.cable.scan_provider = ConfigSelection(default = "0", choices = list)
 			nim.cable.scan_band_EU_VHF_I = ConfigYesNo(default = True)
 			nim.cable.scan_band_EU_MID = ConfigYesNo(default = True)
 			nim.cable.scan_band_EU_VHF_III = ConfigYesNo(default = True)
