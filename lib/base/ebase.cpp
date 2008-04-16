@@ -44,11 +44,10 @@ void eTimer::start(long msek, bool singleShot)
 	bActive = true;
 	bSingleShot = singleShot;
 	interval = msek;
-	gettimeofday(&nextActivation, 0);
-	nextActivation.tv_sec -= context.getTimeOffset();
-//	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_usec, msek);
+	clock_gettime(CLOCK_MONOTONIC, &nextActivation);
+//	eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_nsec, msek);
 	nextActivation += (msek<0 ? 0 : msek);
-//	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
+//	eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
 	context.addTimer(this);
 }
 
@@ -59,12 +58,11 @@ void eTimer::startLongTimer( int seconds )
 
 	bActive = bSingleShot = true;
 	interval = 0;
-	gettimeofday(&nextActivation, 0);
-	nextActivation.tv_sec -= context.getTimeOffset();
-//	eDebug("this = %p\nnow sec = %d, usec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_usec, seconds);
+	clock_gettime(CLOCK_MONOTONIC, &nextActivation);
+//	eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_nsec, seconds);
 	if ( seconds > 0 )
 		nextActivation.tv_sec += seconds;
-//	eDebug("next Activation sec = %d, usec = %d", nextActivation.tv_sec, nextActivation.tv_usec );
+//	eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
 	context.addTimer(this);
 }
 
@@ -108,18 +106,12 @@ void eTimer::activate()   // Internal Funktion... called from eApplication
 	/*emit*/ timeout();
 }
 
-void eTimer::addTimeOffset( int offset )
-{
-	nextActivation.tv_sec += offset;
-}
-
 // mainloop
 ePtrList<eMainloop> eMainloop::existing_loops;
 
 eMainloop::~eMainloop()
 {
 	existing_loops.remove(this);
-	pthread_mutex_destroy(&recalcLock);
 	for (std::map<int, eSocketNotifier*>::iterator it(notifiers.begin());it != notifiers.end();++it)
 		it->second->stop();
 	while(m_timer_list.begin() != m_timer_list.end())
@@ -157,15 +149,11 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 
 	if (!m_timer_list.empty() || twisted_timeout > 0)
 	{
-		applyTimeOffset();
 		if (!m_timer_list.empty())
 		{
 			/* process all timers which are ready. first remove them out of the list. */
 			while (!m_timer_list.empty() && (poll_timeout = timeout_usec( m_timer_list.begin()->getNextActivation() ) ) <= 0 )
-			{
 				m_timer_list.begin()->activate();
-				applyTimeOffset();
-			}
 			if (poll_timeout < 0)
 				poll_timeout = 0;
 			else /* convert us to ms */
@@ -216,7 +204,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		Py_END_ALLOW_THREADS
 	} else
 		ret = ::poll(pfd, fdcount, poll_timeout);
-	
+
 	m_is_idle = 0;
 
 			/* ret > 0 means that there are some active poll entries. */
@@ -283,7 +271,7 @@ int eMainloop::iterate(unsigned int twisted_timeout, PyObject **res, ePyObject d
 
 	if (twisted_timeout)
 	{
-		gettimeofday(&m_twisted_timer, 0);
+		clock_gettime(CLOCK_MONOTONIC, &m_twisted_timer);
 		m_twisted_timer += twisted_timeout;
 	}
 
@@ -302,15 +290,12 @@ int eMainloop::iterate(unsigned int twisted_timeout, PyObject **res, ePyObject d
 		int to = 0;
 		if (twisted_timeout)
 		{
-			timeval now, timeout;
-			gettimeofday(&now, 0);
-			m_twisted_timer += time_offset;  // apply pending offset
+			timespec now, timeout;
+			clock_gettime(CLOCK_MONOTONIC, &now);
 			if (m_twisted_timer<=now) // timeout
 				return 0;
 			timeout = m_twisted_timer - now;
-			to = timeout.tv_sec * 1000 + timeout.tv_usec / 1000;
-			// remove pending offset .. it is re-applied in next call of processOneEvent.. applyTimeOffset
-			m_twisted_timer -= time_offset;  
+			to = timeout.tv_sec * 1000 + timeout.tv_nsec / 1000000;
 		}
 		ret = processOneEvent(to, res, dict);
 	} while ( !ret && !(res && *res) );
@@ -355,38 +340,6 @@ void eMainloop::quit(int ret)
 {
 	retval = ret;
 	app_quit_now = true;
-}
-
-void eMainloop::addTimeOffset(int offset)
-{
-	for (ePtrList<eMainloop>::iterator it(existing_loops.begin()); it != existing_loops.end(); ++it )
-		it->addInstanceTimeOffset(offset);
-}
-
-void eMainloop::addInstanceTimeOffset(int offset)
-{
-	singleLock s(recalcLock);
-	if (m_timer_list.empty())
-		time_offset=0;
-	else
-	{
-		if ( time_offset )
-			eDebug("time_offset %d avail.. add new offset %d than new is %d",
-			time_offset, offset, time_offset+offset);
-		time_offset+=offset;
-	}
-}
-
-void eMainloop::applyTimeOffset()
-{
-	singleLock s(recalcLock);
-	if ( time_offset )
-	{
-		for (ePtrList<eTimer>::iterator it(m_timer_list.begin()); it != m_timer_list.end(); ++it )
-			it->addTimeOffset( time_offset );
-		m_twisted_timer += time_offset;
-		time_offset=0;
-	}
 }
 
 eApplication* eApp = 0;

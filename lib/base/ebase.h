@@ -21,115 +21,115 @@ extern eApplication* eApp;
 
 #ifndef SWIG
 	/* TODO: remove these inlines. */
-static inline bool operator<( const timeval &t1, const timeval &t2 )
+static inline bool operator<( const timespec &t1, const timespec &t2 )
 {
-	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_usec < t2.tv_usec);
+	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_nsec < t2.tv_nsec);
 }
 
-static inline bool operator<=( const timeval &t1, const timeval &t2 )
+static inline bool operator<=( const timespec &t1, const timespec &t2 )
 {
-	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_usec <= t2.tv_usec);
+	return t1.tv_sec < t2.tv_sec || (t1.tv_sec == t2.tv_sec && t1.tv_nsec <= t2.tv_nsec);
 }
 
-static inline timeval &operator+=( timeval &t1, const timeval &t2 )
+static inline timespec &operator+=( timespec &t1, const timespec &t2 )
 {
 	t1.tv_sec += t2.tv_sec;
-	if ( (t1.tv_usec += t2.tv_usec) >= 1000000 )
+	if ( (t1.tv_nsec += t2.tv_nsec) >= 1000000000 )
 	{
 		t1.tv_sec++;
-		t1.tv_usec -= 1000000;
+		t1.tv_nsec -= 1000000000;
 	}
 	return t1;
 }
 
-static inline timeval operator+( const timeval &t1, const timeval &t2 )
+static inline timespec operator+( const timespec &t1, const timespec &t2 )
 {
-	timeval tmp;
+	timespec tmp;
 	tmp.tv_sec = t1.tv_sec + t2.tv_sec;
-	if ( (tmp.tv_usec = t1.tv_usec + t2.tv_usec) >= 1000000 )
+	if ( (tmp.tv_nsec = t1.tv_nsec + t2.tv_nsec) >= 1000000000 )
 	{
 		tmp.tv_sec++;
-		tmp.tv_usec -= 1000000;
+		tmp.tv_nsec -= 1000000000;
 	}
 	return tmp;
 }
 
-static inline timeval operator-( const timeval &t1, const timeval &t2 )
+static inline timespec operator-( const timespec &t1, const timespec &t2 )
 {
-	timeval tmp;
+	timespec tmp;
 	tmp.tv_sec = t1.tv_sec - t2.tv_sec;
-	if ( (tmp.tv_usec = t1.tv_usec - t2.tv_usec) < 0 )
+	if ( (tmp.tv_nsec = t1.tv_nsec - t2.tv_nsec) < 0 )
 	{
 		tmp.tv_sec--;
-		tmp.tv_usec += 1000000;
+		tmp.tv_nsec += 1000000000;
 	}
 	return tmp;
 }
 
-static inline timeval operator-=( timeval &t1, const timeval &t2 )
+static inline timespec operator-=( timespec &t1, const timespec &t2 )
 {
 	t1.tv_sec -= t2.tv_sec;
-	if ( (t1.tv_usec -= t2.tv_usec) < 0 )
+	if ( (t1.tv_nsec -= t2.tv_nsec) < 0 )
 	{
 		t1.tv_sec--;
-		t1.tv_usec += 1000000;
+		t1.tv_nsec += 1000000000;
 	}
 	return t1;
 }
 
-static inline timeval &operator+=( timeval &t1, const long msek )
+static inline timespec &operator+=( timespec &t1, const long msek )
 {
 	t1.tv_sec += msek / 1000;
-	if ( (t1.tv_usec += (msek % 1000) * 1000) >= 1000000 )
+	if ( (t1.tv_nsec += (msek % 1000) * 1000000) >= 1000000000 )
 	{
 		t1.tv_sec++;
-		t1.tv_usec -= 1000000;
+		t1.tv_nsec -= 1000000000;
 	}
 	return t1;
 }
 
-static inline timeval operator+( const timeval &t1, const long msek )
+static inline timespec operator+( const timespec &t1, const long msek )
 {
-	timeval tmp;
+	timespec tmp;
 	tmp.tv_sec = t1.tv_sec + msek / 1000;
-	if ( (tmp.tv_usec = t1.tv_usec + (msek % 1000) * 1000) >= 1000000 )
+	if ( (tmp.tv_nsec = t1.tv_nsec + (msek % 1000) * 1000000) >= 1000000000 )
 	{
 		tmp.tv_sec++;
-		tmp.tv_usec -= 1000000;
+		tmp.tv_nsec -= 1000000;
 	}
 	return tmp;
 }
 
-static inline timeval operator-( const timeval &t1, const long msek )
+static inline timespec operator-( const timespec &t1, const long msek )
 {
-	timeval tmp;
+	timespec tmp;
 	tmp.tv_sec = t1.tv_sec - msek / 1000;
-	if ( (tmp.tv_usec = t1.tv_usec - (msek % 1000)*1000) < 0 )
+	if ( (tmp.tv_nsec = t1.tv_nsec - (msek % 1000)*1000000) < 0 )
 	{
 		tmp.tv_sec--;
-		tmp.tv_usec += 1000000;
+		tmp.tv_nsec += 1000000000;
 	}
 	return tmp;
 }
 
-static inline timeval operator-=( timeval &t1, const long msek )
+static inline timespec operator-=( timespec &t1, const long msek )
 {
 	t1.tv_sec -= msek / 1000;
-	if ( (t1.tv_usec -= (msek % 1000) * 1000) < 0 )
+	if ( (t1.tv_nsec -= (msek % 1000) * 1000000) < 0 )
 	{
 		t1.tv_sec--;
-		t1.tv_usec += 1000000;
+		t1.tv_nsec += 1000000000;
 	}
 	return t1;
 }
 
-static inline long timeout_usec ( const timeval & orig )
+static inline long timeout_usec ( const timespec & orig )
 {
-	timeval now;
-	gettimeofday(&now,0);
+	timespec now;
+	clock_gettime(CLOCK_MONOTONIC, &now);
 	if ( (orig-now).tv_sec > 2000 )
 		return 2000*1000*1000;
-	return (orig-now).tv_sec*1000000 + (orig-now).tv_usec;
+	return (orig-now).tv_sec*1000000 + (orig-now).tv_nsec/1000;
 }
 
 class eMainloop;
@@ -190,23 +190,16 @@ class eMainloop
 	int loop_level;
 	int processOneEvent(unsigned int user_timeout, PyObject **res=0, ePyObject additional=ePyObject());
 	int retval;
-	int time_offset;
 	int m_is_idle;
-	pthread_mutex_t recalcLock;
-	
+
 	int m_interrupt_requested;
-	timeval m_twisted_timer; // twisted timer
-	
+	timespec m_twisted_timer; // twisted timer
+
 	void addSocketNotifier(eSocketNotifier *sn);
 	void removeSocketNotifier(eSocketNotifier *sn);
 	void addTimer(eTimer* e);
 	void removeTimer(eTimer* e);
-	void applyTimeOffset();
 public:
-	static void addTimeOffset(int offset);
-	void addInstanceTimeOffset(int offset);
-	int getTimeOffset() { return time_offset; }
-
 #ifndef SWIG
 	static ePtrList<eMainloop> existing_loops;
 #endif
@@ -215,7 +208,6 @@ public:
 		:app_quit_now(0),loop_level(0),retval(0), m_is_idle(0), m_interrupt_requested(0)
 	{
 		existing_loops.push_back(this);
-		pthread_mutex_init(&recalcLock, 0);
 	}
 	virtual ~eMainloop();
 
@@ -235,12 +227,12 @@ public:
 		/* run will iterate endlessly until the app is quit, and return
 		   the exit code */
 	int runLoop();
-	
+
 		/* our new shared polling interface. */
 	PyObject *poll(SWIG_PYOBJECT(ePyObject) dict, SWIG_PYOBJECT(ePyObject) timeout);
 	void interruptPoll();
 	void reset();
-	
+
 		/* m_is_idle needs to be atomic, but it doesn't really matter much, as it's read-only from outside */
 	int isIdle() { return m_is_idle; }
 };
@@ -276,11 +268,10 @@ class eTimer
 {
 	friend class eMainloop;
 	eMainloop &context;
-	timeval nextActivation;
+	timespec nextActivation;
 	long interval;
 	bool bSingleShot;
 	bool bActive;
-	void addTimeOffset(int);
 	void activate();
 public:
 	/**
@@ -296,7 +287,7 @@ public:
 
 	bool isActive() { return bActive; }
 
-	timeval &getNextActivation() { return nextActivation; }
+	timespec &getNextActivation() { return nextActivation; }
 
 	void start(long msec, bool b=false);
 	void stop();
