@@ -52,7 +52,7 @@ enigma2_LDADD = \
 	@LIBUNGIF_LIBS@ \
 	@XML2_LIBS@ \
 	@XMLCCWRAP_LIBS@ \
-	-ldl -lpthread -lcrypt -lresolv
+	-ldl -lpthread -lcrypt -lresolv -lrt
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 #	@rm -f enigma2$(EXEEXT)
