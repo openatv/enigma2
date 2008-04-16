@@ -112,15 +112,16 @@ void bsodFatal()
 			p.setBackgroundColor(gRGB(0x0000C0));
 		else if (ENIGMA2_CHECKOUT_TAG[0] == 'D') /* dated checkout (daily experimental build) */
 		{
+			srand(time(0));
 			int r = rand();
-			unsigned int col;
+			unsigned int col = 0;
 			if (r & 1)
 				col |= 0x800000;
 			if (r & 2)
 				col |= 0x008000;
 			if (r & 4)
 				col |= 0x0000c0;
-			p.setBackgroundColor(gRGB(r));
+			p.setBackgroundColor(gRGB(col));
 		}
 #else
 			p.setBackgroundColor(gRGB(0x008000));
