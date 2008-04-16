@@ -279,8 +279,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 					eDebug("[eDVBLocalTimerHandler] use stored correction(<5 min)");
 					new_diff = ddiff;
 				}
-				else if ( /*eSystemInfo::getInstance()->getHwType() == eSystemInfo::DM7020 &&  TODO !!!*/
-						getRTC() )
+				else if ( getRTC() )
 				{
 					time_t rtc=getRTC();
 					m_timeOffsetMap[chan->getChannelID()] = rtc-tp_time;
@@ -330,6 +329,26 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			return;
 		}
 
+		if ( !update_count )
+		{
+			// set rtc to calced transponder time when the first tdt is received on this
+			// transponder
+			setRTC(t);
+			eDebug("[eDVBLocalTimerHandler] update RTC");
+		}
+		else if (getRTC())
+		{
+			if (abs(getRTC() - t) > 60)
+			{
+				eDebug("[eDVBLocalTimerHandler] difference between new linux time and RTC time is > 60 sec... transponder time looks not ok... use rtc time");
+				t = getRTC();
+			}
+			else
+				eDebug("[eDVBLocalTimerHandler] difference between linux time and RTC time is < 60 sec... so the transponder time looks ok");
+		}
+		else
+			eDebug("[eDVBLocalTimerHandler] no RTC available :(");
+
 		tm now;
 		localtime_r(&t, &now);
 		eDebug("[eDVBLocalTimerHandler] time update to %02d:%02d:%02d",
@@ -339,17 +358,6 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 
 		m_time_difference = t - linuxTime;   // calc our new linux_time -> enigma_time correction
 		eDebug("[eDVBLocalTimerHandler] m_time_difference is %d", m_time_difference );
-
-//		if ( eSystemInfo::getInstance()->getHwType() == eSystemInfo::DM7020 )  TODO !!
-		if ( !update_count )
-		{
-			// set rtc to calced transponder time when the first tdt is received on this
-			// transponder
-			setRTC(t);
-			eDebug("[eDVBLocalTimerHandler] update RTC");
-		}
-		else
-			eDebug("[eDVBLocalTimerHandler] don't update RTC");
 
 		if ( m_time_difference )
 		{
