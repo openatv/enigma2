@@ -19,6 +19,8 @@ from Tools.Directories import pathExists, fileExists
 import random
 import servicedvd # load c++ part of dvd player plugin
 
+lastpath = ""
+
 class FileBrowser(Screen):
 	skin = """
 	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
@@ -26,7 +28,11 @@ class FileBrowser(Screen):
 	</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		currDir = "/media/dvd/"
+		global lastpath
+		if lastpath is not None:
+			currDir = lastpath + "/"
+		else:
+			currDir = "/media/dvd/"
 		if not pathExists(currDir):
 			currDir = "/"
 		#else:
@@ -41,15 +47,18 @@ class FileBrowser(Screen):
 			})
 
 	def ok(self):
+		global lastpath
 		filename = self["filelist"].getFilename()
-		if filename is not None and filename.upper().endswith("VIDEO_TS/"):
-			print "dvd structure found, trying to open..."
-			self.close(filename[0:-9])
-		elif self["filelist"].canDescent(): # isDir
+		if filename is not None:
+			lastpath = filename[0:filename.rfind("/")]
+			if filename.upper().endswith("VIDEO_TS/"):
+				print "dvd structure found, trying to open..."
+				self.close(filename[0:-9])
+		if self["filelist"].canDescent(): # isDir
 			self["filelist"].descent()
 		else:
 			self.close(filename)
-			
+
 	def exit(self):
 		self.close(None)
 		
@@ -474,6 +483,8 @@ class DVDPlayer(Screen, InfoBarNotifications, InfoBarSeek, InfoBarCueSheetSuppor
 
 	def keyOk(self):
 		if self.service:
+			if not self.in_menu:
+				self.toggleInfo()
 			self.service.keys().keyPressed(iServiceKeys.keyOk)
 
 	def keyCancel(self):
