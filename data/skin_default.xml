@@ -538,7 +538,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="RdsInfo">RasInteractiveAvailable</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget name="BlinkingPoint" pixmap="skin_default/icons/record.png" position="480,3" zPosition="2" size="14,14" alphatest="on" />
+		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/icons/record.png" position="480,3" zPosition="2" size="14,14" alphatest="on" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 		<ePixmap pixmap="skin_default/icons/clock.png" position="480,3" zPosition="1" size="14,14" alphatest="on" />
 		<widget source="session.Event_Now" render="Progress" pixmap="skin_default/progress_medium.png" position="395,5" zPosition="2" size="71,11" borderWidth="2" borderColor="#cccccc" transparent="1">
 			<convert type="EventTime">Progress</convert>
@@ -761,7 +763,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Subservice quickzap -->
 	<screen name="SubservicesQuickzap" position="124,470" size="512,200" title="Subservices" backgroundColor="transparent" flags="wfNoBorder">
-		<widget name="BlinkingPoint" pixmap="skin_default/icons/record.png" position="450,0" zPosition="2" size="14,14" alphatest="on" />
+		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/icons/record.png" position="450,0" zPosition="2" size="14,14" alphatest="on" >
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
 		<eLabel text="Subservices" position="0,0" size="470,20" font="Regular;13" backgroundColor="#33294a6b" />
 		<widget name="CurrentSubserviceNumber" position="0,20" size="50,34" font="Regular;22" backgroundColor="#33294a6b" shadowColor="black" shadowOffset="-1,-1" />
 		<widget source="CurrentService" render="Label" position="50,20" size="420,34" font="Regular;22" backgroundColor="#33294a6b" shadowColor="black" shadowOffset="-1,-1">
