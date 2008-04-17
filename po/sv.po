@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-10 13:21+0200\n"
-"PO-Revision-Date: 2008-04-03 10:56+0100\n"
+"POT-Creation-Date: 2008-04-17 22:39+0200\n"
+"PO-Revision-Date: 2008-04-16 11:22+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,9 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid " "
+msgstr ""
 
 msgid "#000000"
 msgstr ""
@@ -76,6 +79,9 @@ msgstr "(ZAP)"
 
 msgid "(empty)"
 msgstr "(tom)"
+
+msgid "(show optional DVD audio menu)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 bibliotek"
@@ -296,8 +302,14 @@ msgstr "Lägg till"
 msgid "Add a mark"
 msgstr "Lägg till markör"
 
+msgid "Add a new title"
+msgstr ""
+
 msgid "Add timer"
 msgstr "Lägg till timer"
+
+msgid "Add title..."
+msgstr ""
 
 msgid "Add to bouquet"
 msgstr "Lägg till i favoritlista"
@@ -441,13 +453,13 @@ msgid "Brightness"
 msgstr "Ljusstyrka"
 
 msgid "Burn"
-msgstr ""
+msgstr "Skapa"
 
 msgid "Burn DVD"
-msgstr ""
+msgstr "Skapa DVD"
 
 msgid "Burn To DVD..."
-msgstr ""
+msgstr "Skapa DVD..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -514,14 +526,20 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Kanallista meny"
 
+msgid "Chap."
+msgstr ""
+
+msgid "Chapter"
+msgstr ""
+
+msgid "Chapter:"
+msgstr ""
+
 msgid "Check"
 msgstr "Kontrollera"
 
 msgid "Checking Filesystem..."
 msgstr "Kontrollerar filsystem..."
-
-msgid "Choose Location"
-msgstr "Välj lokation"
 
 msgid "Choose Tuner"
 msgstr "Välj tuner"
@@ -561,6 +579,9 @@ msgstr "Coderate LP"
 
 msgid "Color Format"
 msgstr "Färgformat"
+
+msgid "Command execution..."
+msgstr ""
 
 msgid "Command order"
 msgstr "Kommandoordning"
@@ -611,6 +632,9 @@ msgstr ""
 msgid "Constellation"
 msgstr "Konstellation"
 
+msgid "Continue playing"
+msgstr ""
+
 msgid "Contrast"
 msgstr "Kontrast"
 
@@ -658,6 +682,24 @@ msgstr "DVB-S"
 
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVD ENTER key"
+msgstr ""
+
+msgid "DVD Player"
+msgstr ""
+
+msgid "DVD down key"
+msgstr ""
+
+msgid "DVD left key"
+msgstr ""
+
+msgid "DVD right key"
+msgstr ""
+
+msgid "DVD up key"
+msgstr ""
 
 msgid "Danish"
 msgstr "Danska"
@@ -854,13 +896,13 @@ msgid "East"
 msgstr "Öst"
 
 msgid "Edit current title"
-msgstr ""
+msgstr "Ändra vald titel"
 
 msgid "Edit services list"
 msgstr "Ändra kanallista"
 
 msgid "Edit title..."
-msgstr ""
+msgstr "Ändra titel..."
 
 msgid "Electronic Program Guide"
 msgstr "Elektronisk Program Guide"
@@ -939,6 +981,9 @@ msgstr "Exekverings pågår:"
 msgid "Execution finished!!"
 msgstr "Exekvering färdig!"
 
+msgid "Exit"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Avsluta editor"
 
@@ -963,6 +1008,9 @@ msgstr "FEC"
 msgid "Factory reset"
 msgstr "Fabriksåterställning"
 
+msgid "Failed"
+msgstr ""
+
 msgid "Fast"
 msgstr "Snabb"
 
@@ -986,6 +1034,9 @@ msgstr "Filsystemet innehåller fel som ej kan åtgärdas"
 
 msgid "Finetune"
 msgstr "Fininställn."
+
+msgid "Finished"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Finska"
@@ -1124,6 +1175,9 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr "Image uppgradering"
 
+msgid "In Progress"
+msgstr ""
+
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "För att göra en timerinspelning, växlades TV till inspelande kanal!\n"
@@ -1188,6 +1242,12 @@ msgstr "Invertera LCD"
 msgid "Italian"
 msgstr "Italienska"
 
+msgid "Job View"
+msgstr ""
+
+msgid "Jump to video title 1 (play movie from start)"
+msgstr ""
+
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Bara skala"
@@ -1224,6 +1284,9 @@ msgstr "Föregående hastighet"
 
 msgid "Latitude"
 msgstr "Latitud"
+
+msgid "Leave DVD Player?"
+msgstr ""
 
 msgid "Left"
 msgstr "Vänster"
@@ -1408,7 +1471,7 @@ msgid "New"
 msgstr "Ny"
 
 msgid "New DVD"
-msgstr ""
+msgstr "Ny DVD"
 
 msgid "New pin"
 msgstr "Ny PIN"
@@ -1848,13 +1911,13 @@ msgid "Remove a mark"
 msgstr "Ta bort en markör"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "Ta bort vald titel"
 
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Ta bort titel"
 
 msgid "Rename"
 msgstr "Byt namn"
@@ -1905,6 +1968,9 @@ msgstr "Återuppspela från senaste position"
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Återuppta uppspelning"
+
+msgid "Return to file browser"
+msgstr ""
 
 msgid "Return to movie list"
 msgstr "Återvänd till filmlista"
@@ -1964,10 +2030,10 @@ msgid "Save Playlist"
 msgstr "Spara spellista"
 
 msgid "Save current project to disk"
-msgstr ""
+msgstr "Spara nuvarande project till disk"
 
 msgid "Save..."
-msgstr ""
+msgstr "Spara..."
 
 msgid "Scaling Mode"
 msgstr "Scalingläge"
@@ -2470,6 +2536,9 @@ msgstr "Timeshift inte möjligt!"
 msgid "Timezone"
 msgstr "Tidszon"
 
+msgid "Title"
+msgstr ""
+
 msgid "Title:"
 msgstr "Title:"
 
@@ -2706,6 +2775,9 @@ msgstr "V"
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
 
+msgid "Waiting"
+msgstr ""
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -2744,6 +2816,9 @@ msgstr ""
 "\n"
 "Den här guiden hjälper dig med grundinställningarna av din Dreambox.\n"
 "Tryck OK på din fjärrkontroll för att komma till nästa steg."
+
+msgid "Welcome..."
+msgstr ""
 
 msgid "West"
 msgstr "Väst"
@@ -3086,6 +3161,9 @@ msgstr "avsluta favoriter editor"
 msgid "equal to Socket A"
 msgstr "likadant som Ingång A"
 
+msgid "exit DVD player or return to file browser"
+msgstr ""
+
 msgid "exit mediaplayer"
 msgstr "avsluta mediaspelare"
 
@@ -3094,6 +3172,9 @@ msgstr "avsluta filmlista"
 
 msgid "fine-tune your display"
 msgstr "fininställ din skärm"
+
+msgid "forward to the next chapter"
+msgstr ""
 
 msgid "free diskspace"
 msgstr "ledigt diskutrymme"
@@ -3144,6 +3225,12 @@ msgstr "initiera modul"
 
 msgid "insert mark here"
 msgstr "infoga markör här"
+
+msgid "jump back to the previous title"
+msgstr ""
+
+msgid "jump forward to the next title"
+msgstr ""
 
 msgid "jump to listbegin"
 msgstr "hoppa till liststart"
@@ -3328,6 +3415,9 @@ msgstr "ta bort denna markör"
 msgid "repeated"
 msgstr "repeterande"
 
+msgid "rewind to the previous chapter"
+msgstr ""
+
 msgid "right"
 msgstr "höger"
 
@@ -3374,6 +3464,9 @@ msgstr "kanal PIN"
 
 msgid "setup pin"
 msgstr "installation PIN"
+
+msgid "show DVD main menu"
+msgstr ""
 
 msgid "show EPG..."
 msgstr "visa EPG..."
@@ -3468,6 +3561,12 @@ msgstr "byt till fillista"
 msgid "switch to playlist"
 msgstr "byt till spellista"
 
+msgid "switch to the next audio track"
+msgstr ""
+
+msgid "switch to the next subtitle language"
+msgstr ""
+
 msgid "text"
 msgstr "text"
 
@@ -3479,6 +3578,9 @@ msgstr "denna kanal är föräldraskyddad"
 
 msgid "toggle a cut mark at the current position"
 msgstr "skifta en klippmarkering på nuvarande position"
+
+msgid "toggle time, chapter, audio, subtitle info"
+msgstr ""
 
 msgid "unknown service"
 msgstr "okänd kanal"
@@ -3531,3 +3633,6 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapped"
+
+#~ msgid "Choose Location"
+#~ msgstr "Välj lokation"
