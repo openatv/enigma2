@@ -10,7 +10,7 @@ from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleM
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, fileExists
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -267,11 +267,9 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 			is_replacement = font.get("replacement") != ""
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
-				pos = config.skin.primary_skin.value.rfind('/')
-				if pos != -1:
-					skin_path = resolveFilename(SCOPE_SKIN, config.skin.primary_skin.value[:pos+1]+filename, path_prefix=path_prefix)
-					if fileExists(skin_path):
-						resolved_font = skin_path
+				skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
+				if fileExists(skin_path):
+					resolved_font = skin_path
 			addFont(resolved_font, name, scale, is_replacement)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 
