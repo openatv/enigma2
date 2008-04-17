@@ -52,21 +52,21 @@ class VideoFinetune(Screen):
 		bbw, bbh = xres / 192, yres / 192
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
 
+#		for i in range(8):
+#			col = (7-i) * 255 / 7
+#			width = xres - xres/5
+#			ew = width / 15
+#			offset = xres/10 + ew * i
+#			y = yres * 2 / 3
+#			height = yres / 6
+#
+#			c.fill(offset, y, ew, height, RGB(col, col, col))
+#
+#			if col == 0 or col == 16 or col == 116:
+#				self.bbox(offset, y, ew, height, RGB(255,255,255), bbw, bbh)
+
 		for i in range(15):
 			col = i * 116 / 14
-			width = xres - xres/5
-			ew = width / 15
-			offset = xres/10 + ew * i
-			y = yres * 2 / 3
-			height = yres / 6
-
-			c.fill(offset, y, ew, height, RGB(col, col, col))
-
-			if col == 0 or col == 16 or col == 116:
-				self.bbox(offset, y, ew, height, RGB(255,255,255), bbw, bbh)
-
-		for i in range(8):
-			col = (7-i) * 255 / 7
 			height = yres / 3
 			eh = height / 8
 			offset = yres/6 + eh * i
@@ -74,8 +74,12 @@ class VideoFinetune(Screen):
 			width = yres / 6
 
 			c.fill(x, offset, width, eh, RGB(col, col, col))
-			if col == 0 or col == 36:
-				self.bbox(x, offset, width, eh, RGB(255,255,255), bbw, bbh)
+			if col == 0 or col == 16 or col == 116:
+				c.fill(x, offset, width, 2, RGB(255, 255, 255))
+#			if col == 0 or col == 36:
+#				self.bbox(x, offset, width, eh, RGB(255,255,255), bbw, bbh)
+			if i < 2:
+				c.writeText(x + width, offset, width, eh, RGB(255, 255, 255), RGB(0,0,0), gFont("Regular", 20), "%d." % (i+1))
 
 		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", 40), 
 			_("Brightness"))
@@ -104,21 +108,22 @@ class VideoFinetune(Screen):
 		bbh = yres / 192
 		c.fill(0, 0, xres, yres, RGB(255,255,255))
 
+#		for i in range(15):
+#			col = 185 + i * 5
+#			width = xres - xres/5
+#			ew = width / 15
+#			offset = xres/10 + ew * i
+#			y = yres * 2 / 3
+#			height = yres / 6
+#
+#			c.fill(offset, y, ew, height, RGB(col, col, col))
+#
+#			if col == 185 or col == 235 or col == 255:
+#				self.bbox(offset, y, ew, height, RGB(0,0,0), bbw, bbh)
+
 		for i in range(15):
+#			col = (7-i) * 255 / 7
 			col = 185 + i * 5
-			width = xres - xres/5
-			ew = width / 15
-			offset = xres/10 + ew * i
-			y = yres * 2 / 3
-			height = yres / 6
-
-			c.fill(offset, y, ew, height, RGB(col, col, col))
-
-			if col == 185 or col == 235 or col == 255:
-				self.bbox(offset, y, ew, height, RGB(0,0,0), bbw, bbh)
-
-		for i in range(8):
-			col = (7-i) * 255 / 7
 			height = yres / 3
 			eh = height / 8
 			offset = yres/6 + eh * i
@@ -126,10 +131,14 @@ class VideoFinetune(Screen):
 			width = yres / 6
 
 			c.fill(x, offset, width, eh, RGB(col, col, col))
-			if col == 0 or col == 36:
-				self.bbox(x, offset, width, eh, RGB(255,255,255), bbw, bbh);
-			if col == 255:
-				self.bbox(x, offset, width, eh, RGB(0,0,0), bbw, bbh);
+#			if col == 0 or col == 36:
+#				self.bbox(x, offset, width, eh, RGB(255,255,255), bbw, bbh);
+#			if col == 255:
+#				self.bbox(x, offset, width, eh, RGB(0,0,0), bbw, bbh);
+			if col == 185 or col == 235 or col == 255:
+				c.fill(x, offset, width, 2, RGB(0,0,0)) 
+			if i >= 13:
+				c.writeText(x + width, offset, width, eh, RGB(0, 0, 0), RGB(255, 255, 255), gFont("Regular", 20), "%d." % (i-13+1))
 
 		c.writeText(xres / 10, yres / 6 - 40, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", 40), 
 			_("Contrast"))
