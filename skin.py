@@ -1,7 +1,6 @@
 from Tools.Profile import profile, profile_final
-
-profile("LOAD:minidom")
-import xml.dom.minidom
+profile("LOAD:ElementTree")
+import xml.etree.cElementTree
 from os import path
 
 profile("LOAD:enigma_skin")
@@ -40,7 +39,7 @@ def loadSkin(name):
 	# read the skin
 	filename = resolveFilename(SCOPE_SKIN, name)
 	mpath = path.dirname(filename) + "/"
-	dom_skins.append((mpath, xml.dom.minidom.parse(filename)))
+	dom_skins.append((mpath, xml.etree.cElementTree.parse(filename)))
 
 # we do our best to always select the "right" value
 # skins are loaded in order of priority: skin with
@@ -91,17 +90,14 @@ def parseColor(str):
 
 def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 	# walk all attributes
-	for p in range(node.attributes.length):
-		a = node.attributes.item(p)
-		
-		# convert to string (was: unicode)
-		attrib = str(a.name)
-		# TODO: localization? as in e1?
-		value = a.value.encode("utf-8")
-		
+	for a in node.items():
+		#print a
+		attrib = a[0]
+		value = a[1]
+
 		if attrib in ["pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap"]:
 			value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
-		
+
 		if attrib not in ignore:
 			skinAttributes.append((attrib, value))
 
@@ -229,17 +225,20 @@ def applyAllAttributes(guiObject, desktop, attributes):
 
 def loadSingleSkinData(desktop, dom_skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
-	
-	skin = dom_skin.childNodes[0]
-	assert skin.tagName == "skin", "root element in skin must be 'skin'!"
+	skin = dom_skin.getroot()
+	assert skin.tag == "skin", "root element in skin must be 'skin'!"
 
-	for c in elementsWithTag(skin.childNodes, "output"):
-		id = int(c.getAttribute("id") or "0")
+	#print "***SKIN: ", path_prefix
+
+	for c in skin.getiterator("output"):
+		id = int(c.get('id') or "0")
 		if id == 0: # framebuffer
-			for res in elementsWithTag(c.childNodes, "resolution"):
-				xres = int(res.getAttribute("xres" or "720"))
-				yres = int(res.getAttribute("yres" or "576"))
-				bpp = int(res.getAttribute("bpp" or "32"))
+			for res in c.getiterator("resolution"):
+				xres = int(res.get("xres" or "720"))
+				yres = int(res.get("yres" or "576"))
+				bpp = int(res.get("bpp" or "32"))
+
+				#print "Resolution:", xres,yres,bpp
 
 				from enigma import gFBDC
 				i = gFBDC.getInstance()
@@ -249,22 +248,23 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 					# load palette (not yet implemented)
 					pass
 
-	for c in elementsWithTag(skin.childNodes, "colors"):
-		for color in elementsWithTag(c.childNodes, "color"):
-			name = str(color.getAttribute("name"))
-			color = str(color.getAttribute("value"))
-			
+	for c in skin.getiterator("colors"):
+		for color in c.getiterator("color"):
+			name = str(color.get("name"))
+			color = str(color.get("value"))
+
 			if not len(color):
 				raise ("need color and name, got %s %s" % (name, color))
-				
+
 			colorNames[name] = parseColor(color)
-	
-	for c in elementsWithTag(skin.childNodes, "fonts"):
-		for font in elementsWithTag(c.childNodes, "font"):
-			filename = str(font.getAttribute("filename") or "<NONAME>")
-			name = str(font.getAttribute("name") or "Regular")
-			scale = int(font.getAttribute("scale") or "100")
-			is_replacement = font.getAttribute("replacement") != ""
+			#print "Color:", name, color
+
+	for c in skin.getiterator("fonts"):
+		for font in c.getiterator("font"):
+			filename = str(font.attrib.get("filename", "<NONAME>"))
+			name = str(font.get("name", "Regular"))
+			scale = int(font.get("scale", "100"))
+			is_replacement = font.get("replacement") != ""
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
 				pos = config.skin.primary_skin.value.rfind('/')
@@ -273,40 +273,48 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 					if fileExists(skin_path):
 						resolved_font = skin_path
 			addFont(resolved_font, name, scale, is_replacement)
-	
-	for windowstyle in elementsWithTag(skin.childNodes, "windowstyle"):
+			#print "Font: ", resolved_font, name, scale, is_replacement
+
+	for windowstyle in skin.getiterator("windowstyle"):
 		style = eWindowStyleSkinned()
-		id = int(windowstyle.getAttribute("id") or "0")
-		
+		id = int(windowstyle.attrib.get("id","0"))
+
+		#print "windowstyle:", id
+
 		# defaults
 		font = gFont("Regular", 20)
 		offset = eSize(20, 5)
-		
-		for title in elementsWithTag(windowstyle.childNodes, "title"):
-			offset = parseSize(title.getAttribute("offset"))
-			font = parseFont(str(title.getAttribute("font")))
+
+		for title in windowstyle.getiterator("title"):
+			offset = parseSize(title.get("offset"))
+			font = parseFont(str(title.get("font")))
 
 		style.setTitleFont(font);
 		style.setTitleOffset(offset)
-		
-		for borderset in elementsWithTag(windowstyle.childNodes, "borderset"):
-			bsName = str(borderset.getAttribute("name"))
-			for pixmap in elementsWithTag(borderset.childNodes, "pixmap"):
-				bpName = str(pixmap.getAttribute("pos"))
-				filename = str(pixmap.getAttribute("filename"))
-				
+		#print "  ", font, offset
+
+		for borderset in windowstyle.getiterator("borderset"):
+			bsName = str(borderset.get("name"))
+			for pixmap in borderset.getiterator("pixmap"):
+				bpName = str(pixmap.get("pos"))
+				filename = str(pixmap.get("filename"))
+
 				png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix), desktop)
 				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
+				#print "  borderset:", bpName, filename
 
-		for color in elementsWithTag(windowstyle.childNodes, "color"):
-			type = str(color.getAttribute("name"))
-			color = parseColor(color.getAttribute("color"))
-			
+		for color in windowstyle.getiterator("color"):
+			type = str(color.get("name"))
+			color = parseColor(color.get("color"))
+
 			try:
 				style.setColor(eWindowStyleSkinned.__dict__["col" + type], color)
 			except:
 				raise ("Unknown color %s" % (type))
-			
+				#pass
+
+			#print "  color:", type, color
+
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(id, style)
 
@@ -319,9 +327,9 @@ def loadSkinData(desktop):
 def lookupScreen(name):
 	for (path, dom_skin) in dom_skins:
 		# first, find the corresponding screen element
-		skin = dom_skin.childNodes[0] 
-		for x in elementsWithTag(skin.childNodes, "screen"):
-			if x.getAttribute('name') == name:
+		skin = dom_skin.getroot()
+		for x in skin.getiterator("screen"):
+			if x.get('name') == name:
 				return x, path
 	return None, None
 
@@ -344,35 +352,43 @@ def readSkin(screen, skin, names, desktop):
 
 	# try uncompiled embedded skin
 	if myscreen is None and getattr(screen, "skin", None):
-		myscreen = screen.parsedSkin = xml.dom.minidom.parseString(screen.skin).childNodes[0]
+		print "Looking for embedded skin"
+		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(screen.skin)
 
-	assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
+	#assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
+	if myscreen is None:
+		print "No skin to read..."
+		emptySkin = "<screen></screen>"
+		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(emptySkin)
+
 
 	screen.skinAttributes = [ ]
-	
+
 	skin_path_prefix = getattr(screen, "skin_path", path)
 
 	collectAttributes(screen.skinAttributes, myscreen, skin_path_prefix, ignore=["name"])
-	
+
 	screen.additionalWidgets = [ ]
 	screen.renderer = [ ]
-	
+
 	visited_components = set()
-	
+
 	# now walk all widgets
-	for widget in elementsWithTag(myscreen.childNodes, "widget"):
-		# ok, we either have 1:1-mapped widgets ('old style'), or 1:n-mapped 
+	for widget in myscreen.getiterator("widget"):
+		# ok, we either have 1:1-mapped widgets ('old style'), or 1:n-mapped
 		# widgets (source->renderer).
 
-		wname = widget.getAttribute('name')
-		wsource = widget.getAttribute('source')
-		
+		wname = widget.get('name')
+		wsource = widget.get('source')
+
 
 		if wname is None and wsource is None:
 			print "widget has no name and no source!"
 			continue
-		
+
 		if wname:
+
+			#print "Widget name=", wname
 			visited_components.add(wname)
 
 			# get corresponding 'gui' object
@@ -380,6 +396,7 @@ def readSkin(screen, skin, names, desktop):
 				attributes = screen[wname].skinAttributes = [ ]
 			except:
 				raise SkinError("component with name '" + wname + "' was not found in skin of screen '" + name + "'!")
+				#print "WARNING: component with name '" + wname + "' was not found in skin of screen '" + name + "'!"
 
 #			assert screen[wname] is not Source
 
@@ -387,6 +404,7 @@ def readSkin(screen, skin, names, desktop):
 			collectAttributes(attributes, widget, skin_path_prefix, ignore=['name'])
 		elif wsource:
 			# get corresponding source
+			#print "Widget source=", wsource
 
 			while True: # until we found a non-obsolete source
 
@@ -399,8 +417,8 @@ def readSkin(screen, skin, names, desktop):
 				while len(path) > 1:
 					scr = screen.getRelatedScreen(path[0])
 					if scr is None:
-						print wsource
-						print name
+						#print wsource
+						#print name
 						raise SkinError("specified related screen '" + wsource + "' was not found in screen '" + name + "'!")
 					path = path[1:]
 
@@ -420,20 +438,26 @@ def readSkin(screen, skin, names, desktop):
 
 			if source is None:
 				raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
-			
-			wrender = widget.getAttribute('render')
-			
+
+			wrender = widget.get('render')
+
 			if not wrender:
 				raise SkinError("you must define a renderer with render= for source '%s'" % (wsource))
-			
-			for converter in elementsWithTag(widget.childNodes, "convert"):
-				ctype = converter.getAttribute('type')
+
+			for converter in widget.getiterator("convert"):
+				ctype = converter.get('type')
 				assert ctype, "'convert'-tag needs a 'type'-attribute"
-				parms = mergeText(converter.childNodes).strip()
+				#print "Converter:", ctype
+				#parms = mergeText(converter.childNodes).strip()
+				try:
+					parms = converter.text.strip()
+				except:
+					parms = ""
+				#print "Params:", ctype
 				converter_class = my_import('.'.join(["Components", "Converter", ctype])).__dict__.get(ctype)
-				
+
 				c = None
-				
+
 				for i in source.downstream_elements:
 					if isinstance(i, converter_class) and i.converter_arguments == parms:
 						c = i
@@ -444,54 +468,67 @@ def readSkin(screen, skin, names, desktop):
 					c.connect(source)
 				else:
 					print "reused converter!"
-	
+
 				source = c
-			
+
 			renderer_class = my_import('.'.join(["Components", "Renderer", wrender])).__dict__.get(wrender)
-			
+
 			renderer = renderer_class() # instantiate renderer
-			
+
 			renderer.connect(source) # connect to source
 			attributes = renderer.skinAttributes = [ ]
 			collectAttributes(attributes, widget, skin_path_prefix, ignore=['render', 'source'])
-			
+
 			screen.renderer.append(renderer)
 
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]
-	
+
 	assert not nonvisited_components, "the following components in %s don't have a skin entry: %s" % (name, ', '.join(nonvisited_components))
 
 	# now walk additional objects
-	for widget in elementsWithTag(myscreen.childNodes, lambda x: x != "widget"):
-		if widget.tagName == "applet":
-			codeText = mergeText(widget.childNodes).strip()
-			type = widget.getAttribute('type')
+	for widget in myscreen.getchildren():
+
+		if widget.tag == "widget":
+			continue
+
+		if widget.tag == "applet":
+			try:
+				codeText = widget.text.strip()
+			except:
+				codeText = ""
+
+			#print "Found code:"
+			#print codeText
+			type = widget.get('type')
 
 			code = compile(codeText, "skin applet", "exec")
-			
+
 			if type == "onLayoutFinish":
 				screen.onLayoutFinish.append(code)
+				#print "onLayoutFinish = ", codeText
 			else:
 				raise SkinError("applet type '%s' unknown!" % type)
-			
+				#print "applet type '%s' unknown!" % type
+
 			continue
-		
+
 		class additionalWidget:
 			pass
-		
+
 		w = additionalWidget()
-		
-		if widget.tagName == "eLabel":
+
+		if widget.tag == "eLabel":
 			w.widget = eLabel
-		elif widget.tagName == "ePixmap":
+		elif widget.tag == "ePixmap":
 			w.widget = ePixmap
 		else:
-			raise SkinError("unsupported stuff : %s" % widget.tagName)
-		
+			raise SkinError("unsupported stuff : %s" % widget.tag)
+			#print "unsupported stuff : %s" % widget.tag
+
 		w.skinAttributes = [ ]
 		collectAttributes(w.skinAttributes, widget, skin_path_prefix, ignore=['name'])
-		
+
 		# applyAttributes(guiObject, widget, desktop)
 		# guiObject.thisown = 0
 		screen.additionalWidgets.append(w)
