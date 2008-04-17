@@ -13,6 +13,7 @@ SCOPE_HDD = 8
 SCOPE_PLUGINS = 9
 SCOPE_MEDIA = 10
 SCOPE_PLAYLIST = 11
+SCOPE_CURRENT_SKIN = 12
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -23,7 +24,7 @@ defaultPaths = {
 		SCOPE_FONTS: ("/usr/share/fonts/", PATH_DONTCREATE),
 		SCOPE_CONFIG: ("/etc/enigma2/", PATH_CREATE),
 		SCOPE_PLUGINS: ("/usr/lib/enigma2/python/Plugins/", PATH_CREATE),
-					    
+    
 		SCOPE_LANGUAGE: ("/usr/share/enigma2/po/", PATH_DONTCREATE),
 
 		SCOPE_SKIN: ("/usr/share/enigma2/", PATH_DONTCREATE),
@@ -34,7 +35,7 @@ defaultPaths = {
 		
 		SCOPE_USERETC: ("", PATH_DONTCREATE) # user home directory
 	}
-	
+
 FILE_COPY = 0 # copy files from fallback dir to the basedir
 FILE_MOVE = 1 # move files
 PATH_COPY = 2 # copy the complete fallback dir to the basedir
@@ -55,41 +56,51 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	if base[0:1] == '/':
 		return base
 
-	path = defaultPaths[scope]
+	if scope == SCOPE_CURRENT_SKIN:
+		from Components.config import config
+		tmp = defaultPaths[SCOPE_SKIN]
+		pos = config.skin.primary_skin.value.rfind('/')
+		if pos != -1:
+			path = tmp[0]+config.skin.primary_skin.value[:pos+1]
+		else:
+			path = tmp[0]
+	else:
+		tmp = defaultPaths[scope]
+		path = tmp[0]
 
-	if path[1] == PATH_CREATE:
-		if (not pathExists(defaultPaths[scope][0])):
-			mkdir(path[0])
-			
+	flags = tmp[1]
+
+	if flags == PATH_CREATE:
+		if (not pathExists(path)):
+			mkdir(path)
+
 	#if len(base) > 0 and base[0] == '/':
 		#path = ("", None)
-	
-	if not fileExists(path[0] + base):
+
+	if not fileExists(path + base):
 		#try:
 		if fallbackPaths.has_key(scope):
 			for x in fallbackPaths[scope]:
 				if x[1] == FILE_COPY:
 					if fileExists(x[0] + base):
-						system("cp " + x[0] + base + " " + path[0] + base)
+						system("cp " + x[0] + base + " " + path + base)
 						break
 				elif x[1] == FILE_MOVE:
 					if fileExists(x[0] + base):
-						system("mv " + x[0] + base + " " + path[0] + base)
+						system("mv " + x[0] + base + " " + path + base)
 						break
 				elif x[1] == PATH_COPY:
 					if pathExists(x[0]):
 						if not pathExists(defaultPaths[scope][0]):
-							mkdir(path[0])
-						system("cp -a " + x[0] + "* " + path[0])
+							mkdir(path)
+						system("cp -a " + x[0] + "* " + path)
 						break
 				elif x[1] == PATH_MOVE:
 					if pathExists(x[0]):
-						system("mv " + x[0] + " " + path[0])
+						system("mv " + x[0] + " " + path)
 						break
-
-	
 	# FIXME: we also have to handle DATADIR etc. here.
-	return path[0] + base
+	return path + base
 
 	# this is only the BASE - an extension must be added later.
 	
