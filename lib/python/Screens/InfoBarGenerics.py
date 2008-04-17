@@ -1419,10 +1419,6 @@ class InfoBarInstantRecord:
 		recording.dontSave = True
 		self.recording.append(recording)
 
-#### DEPRECATED CODE ####
-		self["BlinkingPoint"].setConnect(lambda: self.recording.isRunning())
-#########################
-
 	def isInstantRecordRunning(self):
 		print "self.recording:", self.recording
 		if len(self.recording) > 0:

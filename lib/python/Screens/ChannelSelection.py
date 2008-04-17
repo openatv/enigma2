@@ -1321,8 +1321,6 @@ class RadioInfoBar(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["RdsDecoder"] = RdsDecoder(self.session.nav)
-		self["BlinkingPoint"] = Pixmap()
-		self["BlinkingPoint"].hide()
 
 class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG):
 	ALLOW_SUSPEND = True
