@@ -58,8 +58,8 @@ public:
 	inline const T* last() const;
 
 // added operator methods
-	inline operator bool();
-	inline bool operator!();
+	inline operator bool() const;
+	inline bool operator!() const;
 
 // added compare struct ... to sort
 	struct less;
@@ -623,14 +623,14 @@ struct ePtrList<T>::less
 
 /////////////////// ePtrList operator bool ////////////////////
 template <class T>
-ePtrList<T>::operator bool()	
+ePtrList<T>::operator bool() const
 {
 //	Returns a bool that contains true, when the list is NOT empty otherwise false
 	return !std::list<T*>::empty();	
 }
 
 template <class T>
-bool ePtrList<T>::operator!()	
+bool ePtrList<T>::operator!() const
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
 	return std::list<T*>::empty();	
@@ -687,8 +687,8 @@ public:
 	inline const T* last() const;
 
 // added operator methods
-	inline operator bool();
-	inline bool operator!();
+	inline operator bool() const;
+	inline bool operator!() const;
 
 // added compare struct ... to sort
 	struct less;
@@ -1233,14 +1233,14 @@ struct eSmartPtrList<T>::less
 
 /////////////////// eSmartPtrList operator bool ////////////////////
 template <class T>
-eSmartPtrList<T>::operator bool()	
+eSmartPtrList<T>::operator bool() const
 {
 //	Returns a bool that contains true, when the list is NOT empty otherwise false
 	return !std::list<T>::empty();	
 }
 
 template <class T>
-bool eSmartPtrList<T>::operator!()	
+bool eSmartPtrList<T>::operator!() const
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
 	return std::list<T>::empty();	
