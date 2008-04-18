@@ -744,10 +744,10 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- Start Wizard -->
 	<screen name="StartWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder">
 		<widget name="text" position="153,50" size="340,270" font="Regular;23" />
-		<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand">
+		<widget source="list" render="Listbox" position="50,300" size="440,200" scrollbarMode="showOnDemand" >
 			<convert type="StringList" />
 		</widget>
-		<widget name="config" position="50,300" size="440,200" scrollbarMode="showOnDemand" />
+		<widget name="config" position="50,300" size="440,200" scrollbarMode="showOnDemand" zPosition="1" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/button_red.png" position="40,225" size="15,16" alphatest="on" />
 		<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
 		<widget name="stepslider" position="50,500" borderWidth="2" size="440,20" backgroundColor="background" />
