@@ -30,6 +30,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		s = self.long_text.size()
 		self.instance.move(self.long_text.position())
 		lineheight=fontRenderClass.getInstance().getLineHeight( self.long_text.getFont() )
+		if not lineheight:
+			lineheight = 30 # assume a random lineheight if nothing is visible
 		lines = (int)(s.height() / lineheight)
 		self.pageHeight = (int)(lines * lineheight)
 		self.instance.resize(eSize(s.width(), self.pageHeight+(int)(lineheight/6)))
