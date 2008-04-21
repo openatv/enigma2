@@ -13,7 +13,7 @@ def PluginEntryComponent(plugin):
 	res.append(MultiContentEntryText(pos=(120, 26), size=(320, 17), font=1, text=plugin.description))
 
 	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/plugin.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/plugin.png"))
 	else:
 		png = plugin.icon
 	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(100, 40), png = png))
@@ -35,7 +35,7 @@ def PluginDownloadComponent(plugin, name):
 	res.append(MultiContentEntryText(pos=(120, 26), size=(320, 17), font=1, text=plugin.description))
 
 	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/plugin.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/plugin.png"))
 	else:
 		png = plugin.icon
 	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(100, 50), png = png))
