@@ -312,7 +312,7 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 			dstptr+=area.left()+area.top()*surface->stride/4;
 			for (int y=0; y<area.height(); y++)
 			{
-				if (flag & blitAlphaTest)
+				if (flag & (blitAlphaTest|blitAlphaBlend))
 				{
 					int width=area.width();
 					unsigned long *src=(unsigned long*)srcptr;
