@@ -354,6 +354,9 @@ def lookupScreen(name):
 				return x, path
 	return None, None
 
+class additionalWidget:
+	pass
+
 def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
 		names = [names]
@@ -382,7 +385,6 @@ def readSkin(screen, skin, names, desktop):
 		emptySkin = "<screen></screen>"
 		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(emptySkin)
 
-
 	screen.skinAttributes = [ ]
 
 	skin_path_prefix = getattr(screen, "skin_path", path)
@@ -408,7 +410,6 @@ def readSkin(screen, skin, names, desktop):
 			continue
 
 		if wname:
-
 			#print "Widget name=", wname
 			visited_components.add(wname)
 
@@ -504,16 +505,16 @@ def readSkin(screen, skin, names, desktop):
 
 	from Components.GUIComponent import GUIComponent
 	nonvisited_components = [x for x in set(screen.keys()) - visited_components if isinstance(x, GUIComponent)]
-
 	assert not nonvisited_components, "the following components in %s don't have a skin entry: %s" % (name, ', '.join(nonvisited_components))
 
 	# now walk additional objects
 	for widget in myscreen.getchildren():
+		w_tag = widget.tag
 
-		if widget.tag == "widget":
+		if w_tag == "widget":
 			continue
 
-		if widget.tag == "applet":
+		if w_tag == "applet":
 			try:
 				codeText = widget.text.strip()
 			except:
@@ -521,7 +522,7 @@ def readSkin(screen, skin, names, desktop):
 
 			#print "Found code:"
 			#print codeText
-			type = get_attr('type')
+			type = widget.attrib.get('type')
 
 			code = compile(codeText, "skin applet", "exec")
 
@@ -534,17 +535,14 @@ def readSkin(screen, skin, names, desktop):
 
 			continue
 
-		class additionalWidget:
-			pass
-
 		w = additionalWidget()
 
-		if widget.tag == "eLabel":
+		if w_tag == "eLabel":
 			w.widget = eLabel
-		elif widget.tag == "ePixmap":
+		elif w_tag == "ePixmap":
 			w.widget = ePixmap
 		else:
-			raise SkinError("unsupported stuff : %s" % widget.tag)
+			raise SkinError("unsupported stuff : %s" % w_tag)
 			#print "unsupported stuff : %s" % widget.tag
 
 		w.skinAttributes = [ ]
