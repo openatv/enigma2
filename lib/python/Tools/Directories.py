@@ -71,39 +71,36 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	flags = tmp[1]
 
 	if flags == PATH_CREATE:
-		if (not pathExists(path)):
+		if not pathExists(path):
 			mkdir(path)
 
-	#if len(base) > 0 and base[0] == '/':
-		#path = ("", None)
+	fallbackPath = fallbackPaths.get(scope)
 
-	if not fileExists(path + base):
-		#try:
-		if fallbackPaths.has_key(scope):
-			for x in fallbackPaths[scope]:
-				if x[1] == FILE_COPY:
-					if fileExists(x[0] + base):
-						system("cp " + x[0] + base + " " + path + base)
-						break
-				elif x[1] == FILE_MOVE:
-					if fileExists(x[0] + base):
-						system("mv " + x[0] + base + " " + path + base)
-						break
-				elif x[1] == PATH_COPY:
-					if pathExists(x[0]):
-						if not pathExists(defaultPaths[scope][0]):
-							mkdir(path)
-						system("cp -a " + x[0] + "* " + path)
-						break
-				elif x[1] == PATH_MOVE:
-					if pathExists(x[0]):
-						system("mv " + x[0] + " " + path)
-						break
+	if fallbackPath and not fileExists(path + base):
+		for x in fallbackPath:
+			if x[1] == FILE_COPY:
+				if fileExists(x[0] + base):
+					system("cp " + x[0] + base + " " + path + base)
+					break
+			elif x[1] == FILE_MOVE:
+				if fileExists(x[0] + base):
+					system("mv " + x[0] + base + " " + path + base)
+					break
+			elif x[1] == PATH_COPY:
+				if pathExists(x[0]):
+					if not pathExists(defaultPaths[scope][0]):
+						mkdir(path)
+					system("cp -a " + x[0] + "* " + path)
+					break
+			elif x[1] == PATH_MOVE:
+				if pathExists(x[0]):
+					system("mv " + x[0] + " " + path)
+					break
+
 	# FIXME: we also have to handle DATADIR etc. here.
 	return path + base
-
 	# this is only the BASE - an extension must be added later.
-	
+
 def pathExists(path):
 	return os_path.exists(path)
 
