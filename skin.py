@@ -39,7 +39,7 @@ def loadSkin(name):
 	# read the skin
 	filename = resolveFilename(SCOPE_SKIN, name)
 	mpath = path.dirname(filename) + "/"
-	dom_skins.append((mpath, xml.etree.cElementTree.parse(filename)))
+	dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
 
 # we do our best to always select the "right" value
 # skins are loaded in order of priority: skin with
@@ -223,48 +223,67 @@ def applyAllAttributes(guiObject, desktop, attributes):
 	for (attrib, value) in attributes:
 		applySingleAttribute(guiObject, desktop, attrib, value)
 
-def loadSingleSkinData(desktop, dom_skin, path_prefix):
+def loadSingleSkinData(desktop, skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
-	skin = dom_skin.getroot()
 	assert skin.tag == "skin", "root element in skin must be 'skin'!"
 
 	#print "***SKIN: ", path_prefix
 
 	for c in skin.getiterator("output"):
-		id = int(c.get('id') or "0")
+		id = c.get('id')
+		if id:
+			id = int(id)
+		else:
+			id = 0
 		if id == 0: # framebuffer
-			for res in c.getiterator("resolution"):
-				xres = int(res.get("xres" or "720"))
-				yres = int(res.get("yres" or "576"))
-				bpp = int(res.get("bpp" or "32"))
-
+			for res in c.findall("resolution"):
+				get_attr = c.attrib.get
+				xres = get_attr("xres")
+				if xres:
+					xres = int(xres)
+				else:
+					xres = 720
+				yres = get_attr("yres")
+				if yres:
+					yres = int(yres)
+				else:
+					yres = 576
+				bpp = get_attr("bpp")
+				if bpp:
+					bpp = int(bpp)
+				else:
+					bpp = 32
 				#print "Resolution:", xres,yres,bpp
-
 				from enigma import gFBDC
 				i = gFBDC.getInstance()
 				i.setResolution(xres, yres)
-
 				if bpp != 32:
 					# load palette (not yet implemented)
 					pass
 
 	for c in skin.getiterator("colors"):
-		for color in c.getiterator("color"):
-			name = str(color.get("name"))
-			color = str(color.get("value"))
+		for color in c.findall("color"):
+			get_attr = color.attrib.get
+			name = get_attr("name")
+			color = get_attr("value")
 
-			if not len(color):
+			if name and color:
+				colorNames[name] = parseColor(color)
+				#print "Color:", name, color
+			else:
 				raise ("need color and name, got %s %s" % (name, color))
 
-			colorNames[name] = parseColor(color)
-			#print "Color:", name, color
-
 	for c in skin.getiterator("fonts"):
-		for font in c.getiterator("font"):
-			filename = str(font.attrib.get("filename", "<NONAME>"))
-			name = str(font.get("name", "Regular"))
-			scale = int(font.get("scale", "100"))
-			is_replacement = font.get("replacement") != ""
+		for font in c.findall("font"):
+			get_attr = font.attrib.get
+			filename = get_attr("filename", "<NONAME>")
+			name = get_attr("name", "Regular")
+			scale = get_attr("scale")
+			if scale:
+				scale = int(scale)
+			else:
+				scale = 100
+			is_replacement = get_attr("replacement") and True or False
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
 				skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
@@ -275,17 +294,21 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 
 	for windowstyle in skin.getiterator("windowstyle"):
 		style = eWindowStyleSkinned()
-		id = int(windowstyle.attrib.get("id","0"))
-
+		id = windowstyle.attrib.get("id")
+		if id:
+			id = int(id)
+		else:
+			id = 0
 		#print "windowstyle:", id
 
 		# defaults
 		font = gFont("Regular", 20)
 		offset = eSize(20, 5)
 
-		for title in windowstyle.getiterator("title"):
-			offset = parseSize(title.get("offset"))
-			font = parseFont(str(title.get("font")))
+		for title in windowstyle.findall("title"):
+			get_attr = title.attrib.get
+			offset = parseSize(get_attr("offset"))
+			font = parseFont(get_attr("font"))
 
 		style.setTitleFont(font);
 		style.setTitleOffset(offset)
@@ -293,18 +316,19 @@ def loadSingleSkinData(desktop, dom_skin, path_prefix):
 
 		for borderset in windowstyle.getiterator("borderset"):
 			bsName = str(borderset.get("name"))
-			for pixmap in borderset.getiterator("pixmap"):
-				bpName = str(pixmap.get("pos"))
-				filename = str(pixmap.get("filename"))
-
-				png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix), desktop)
-				style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
+			for pixmap in borderset.findall("pixmap"):
+				get_attr = pixmap.attrib.get
+				bpName = get_attr("pos")
+				filename = get_attr("filename")
+				if filename and bpName:
+					png = loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, filename, path_prefix=path_prefix), desktop)
+					style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 				#print "  borderset:", bpName, filename
 
-		for color in windowstyle.getiterator("color"):
-			type = str(color.get("name"))
-			color = parseColor(color.get("color"))
-
+		for color in windowstyle.findall("color"):
+			get_attr = color.attrib.get
+			type = get_attr("name")
+			color = parseColor(get_attr("color"))
 			try:
 				style.setColor(eWindowStyleSkinned.__dict__["col" + type], color)
 			except:
@@ -323,11 +347,10 @@ def loadSkinData(desktop):
 		loadSingleSkinData(desktop, dom_skin, path)
 
 def lookupScreen(name):
-	for (path, dom_skin) in dom_skins:
+	for (path, skin) in dom_skins:
 		# first, find the corresponding screen element
-		skin = dom_skin.getroot()
-		for x in skin.getiterator("screen"):
-			if x.get('name') == name:
+		for x in skin.findall("screen"):
+			if x.attrib.get('name', '') == name:
 				return x, path
 	return None, None
 
