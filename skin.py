@@ -229,8 +229,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 	#print "***SKIN: ", path_prefix
 
-	for c in skin.getiterator("output"):
-		id = c.get('id')
+	for c in skin.findall("output"):
+		id = c.attrib.get('id')
 		if id:
 			id = int(id)
 		else:
@@ -261,7 +261,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					# load palette (not yet implemented)
 					pass
 
-	for c in skin.getiterator("colors"):
+	for c in skin.findall("colors"):
 		for color in c.findall("color"):
 			get_attr = color.attrib.get
 			name = get_attr("name")
@@ -273,7 +273,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			else:
 				raise ("need color and name, got %s %s" % (name, color))
 
-	for c in skin.getiterator("fonts"):
+	for c in skin.findall("fonts"):
 		for font in c.findall("font"):
 			get_attr = font.attrib.get
 			filename = get_attr("filename", "<NONAME>")
@@ -292,7 +292,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			addFont(resolved_font, name, scale, is_replacement)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 
-	for windowstyle in skin.getiterator("windowstyle"):
+	for windowstyle in skin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
 		id = windowstyle.attrib.get("id")
 		if id:
@@ -314,8 +314,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		style.setTitleOffset(offset)
 		#print "  ", font, offset
 
-		for borderset in windowstyle.getiterator("borderset"):
-			bsName = str(borderset.get("name"))
+		for borderset in windowstyle.findall("borderset"):
+			bsName = str(borderset.attrib.get("name"))
 			for pixmap in borderset.findall("pixmap"):
 				get_attr = pixmap.attrib.get
 				bpName = get_attr("pos")
@@ -395,13 +395,13 @@ def readSkin(screen, skin, names, desktop):
 	visited_components = set()
 
 	# now walk all widgets
-	for widget in myscreen.getiterator("widget"):
+	for widget in myscreen.findall("widget"):
+		get_attr = widget.attrib.get
 		# ok, we either have 1:1-mapped widgets ('old style'), or 1:n-mapped
 		# widgets (source->renderer).
 
-		wname = widget.get('name')
-		wsource = widget.get('source')
-
+		wname = get_attr('name')
+		wsource = get_attr('source')
 
 		if wname is None and wsource is None:
 			print "widget has no name and no source!"
@@ -460,12 +460,12 @@ def readSkin(screen, skin, names, desktop):
 			if source is None:
 				raise SkinError("source '" + wsource + "' was not found in screen '" + name + "'!")
 
-			wrender = widget.get('render')
+			wrender = get_attr('render')
 
 			if not wrender:
 				raise SkinError("you must define a renderer with render= for source '%s'" % (wsource))
 
-			for converter in widget.getiterator("convert"):
+			for converter in widget.findall("convert"):
 				ctype = converter.get('type')
 				assert ctype, "'convert'-tag needs a 'type'-attribute"
 				#print "Converter:", ctype
@@ -521,7 +521,7 @@ def readSkin(screen, skin, names, desktop):
 
 			#print "Found code:"
 			#print codeText
-			type = widget.get('type')
+			type = get_attr('type')
 
 			code = compile(codeText, "skin applet", "exec")
 
