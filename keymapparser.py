@@ -1,11 +1,43 @@
-import xml.dom.minidom
 import enigma
-from Tools.XMLTools import elementsWithTag
+import xml.etree.cElementTree
 
 from keyids import KEYIDS;
 
 # these are only informational (for help)...
 from Tools.KeyBindings import addKeyBinding
+
+def parseKeys(context, filename, actionmap, device, keys):
+	for x in keys.findall("key"):
+		get_attr = x.attrib.get
+		mapto = get_attr("mapto")
+		id = get_attr("id")
+		flags = get_attr("flags")
+
+		flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
+
+		flags = sum(map(flag_ascii_to_id, flags))
+
+		assert mapto, "%s: must specify mapto in context %s, id '%s'" % (filename, context, id)
+		assert id, "%s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
+		assert flags, "%s: must specify at least one flag in context %s, id '%s'" % (filename, context, id)
+
+		if len(id) == 1:
+			keyid = ord(id) | 0x8000
+		elif id[0] == '\\':
+			if id[1] == 'x':
+				keyid = int(id[2:], 0x10) | 0x8000
+			elif id[1] == 'd':
+				keyid = int(id[2:]) | 0x8000
+			else:
+				raise "key id '" + str(id) + "' is neither hex nor dec"
+		else:
+			try:
+				keyid = KEYIDS[id]
+			except:
+				raise "key id '" + str(id) + "' is illegal"
+#				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
+		actionmap.bindKey(filename, device, keyid, flags, context, mapto)
+		addKeyBinding(filename, keyid, context, mapto, flags)
 
 def readKeymap(filename):
 	p = enigma.eActionMap.getInstance()
@@ -14,59 +46,20 @@ def readKeymap(filename):
 	source = open(filename)
 
 	try:
-		dom = xml.dom.minidom.parse(source)
+		dom = xml.etree.cElementTree.parse(source)
 	except:
 		raise "keymap %s not well-formed." % filename
 
-	keymap = dom.childNodes[0]
+	keymap = dom.getroot()
 
-	maps = elementsWithTag(keymap.childNodes, "map")
+	for cmap in keymap.findall("map"):
+		context = cmap.attrib.get("context")
+		assert context, "map must have context"
 
-	for cmap in maps:
-		context = str(cmap.getAttribute("context"))
-		assert context != "", "map must have context"
+		for device in cmap.findall("device"):
+			parseKeys(context, filename, p, device.attrib.get("name"), device)
 
-		def parseKeys(device, keys):
-			for x in elementsWithTag(keys.childNodes, "key"):
-				mapto = str(x.getAttribute("mapto"))
-				id = x.getAttribute("id")
-				flags = x.getAttribute("flags")
-
-				flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
-
-#				try:
-				flags = sum(map(flag_ascii_to_id, flags))
-#				print "-> " + str(flags)
-#				except:
-#					raise str("%s: illegal flags '%s' specificed in context %s, id '%s'" % (filename, flags, context, id))
-
-				assert mapto != "", "%s: must specify mapto in context %s, id '%s'" % (filename, context, id)
-				assert id != "", "%s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
-				assert flags != 0, "%s: must specify at least one flag in context %s, id '%s'" % (filename, context, id)
-
-				if len(id) == 1:
-					keyid = ord(id) | 0x8000
-				elif id[0] == '\\':
-					if id[1] == 'x':
-						keyid = int(id[2:], 0x10) | 0x8000
-					elif id[1] == 'd':
-						keyid = int(id[2:]) | 0x8000
-					else:
-						raise "key id '" + str(id) + "' is neither hex nor dec"
-				else:
-					try:
-						keyid = KEYIDS[id]
-					except:
-						raise "key id '" + str(id) + "' is illegal"
-
-#				print context + "::" + mapto + " -> " + device + "." + hex(keyid)
-				p.bindKey(filename, device, keyid, flags, context, mapto)
-				addKeyBinding(filename, keyid, context, mapto, flags)
-
-		for device in elementsWithTag(cmap.childNodes, "device"):
-			parseKeys(str(device.getAttribute("name")), device)
-
-		parseKeys("generic", cmap)
+		parseKeys(context, filename, p, "generic", cmap)
 
 def removeKeymap(filename):
 	p = enigma.eActionMap.getInstance()
