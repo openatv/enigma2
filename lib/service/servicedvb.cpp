@@ -1446,12 +1446,6 @@ RESULT eDVBServicePlay::isCurrentlySeekable()
 	return m_is_pvr || m_timeshift_active;
 }
 
-RESULT eDVBServicePlay::seekChapter(int chapter)
-{
-		/* seekChapter N/I. */
-	return -1;
-}
-
 RESULT eDVBServicePlay::frontendInfo(ePtr<iFrontendInformation> &ptr)
 {
 	ptr = this;

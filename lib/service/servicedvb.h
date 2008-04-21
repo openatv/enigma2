@@ -128,7 +128,6 @@ public:
 	RESULT getPlayPosition(pts_t &pos);
 	RESULT setTrickmode(int trick=0);
 	RESULT isCurrentlySeekable();
-	RESULT seekChapter(int chapter);
 
 		// iServiceInformation
 	RESULT getName(std::string &name);
