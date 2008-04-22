@@ -1,4 +1,6 @@
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime
+from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
+	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
+	ConfigSubDict, ConfigOnOff, ConfigDateTime
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteLNBParameters as lnbParam, \
@@ -6,9 +8,6 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 	eDVBSatelliteSwitchParameters as switchParam, \
 	eDVBSatelliteRotorParameters as rotorParam, \
 	eDVBResourceManager, eDVBDB
-
-#from xml.sax import make_parser
-#from xml.sax.handler import ContentHandler
 
 from time import localtime, mktime
 from datetime import datetime
@@ -411,101 +410,6 @@ class NIM(object):
 	empty = property(lambda self: self.type is None)
 
 class NimManager:
-#	class parseSats(ContentHandler):
-#		def __init__(self, satList, satellites, transponders):
-#			self.isPointsElement, self.isReboundsElement = 0, 0
-#			self.satList = satList
-#			self.satellites = satellites
-#			self.transponders = transponders
-#	
-#		def startElement(self, name, attrs):
-#			if (name == "sat"):
-#				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
-#				tpos = int(attrs.get('position',""))
-#				if tpos < 0:
-#					tpos = 3600 + tpos
-#				tname = attrs.get('name',"").encode("UTF-8")
-#				tflags = int(attrs.get('flags', '0'))
-#				self.satellites[tpos] = tname
-#				self.satList.append( (tpos, tname, tflags) )
-#				self.parsedSat = int(tpos)
-#			elif (name == "transponder"):
-#				modulation = int(attrs.get('modulation',"1")) # QPSK default
-#				system = int(attrs.get('system',"0")) # DVB-S default
-#				freq = int(attrs.get('frequency',""))
-#				sr = int(attrs.get('symbol_rate',""))
-#				pol = int(attrs.get('polarization',""))
-#				fec = int(attrs.get('fec_inner',"0")) # AUTO default
-#				if self.parsedSat in self.transponders:
-#					pass
-#				else:
-#					self.transponders[self.parsedSat] = [ ]
-#
-#				self.transponders[self.parsedSat].append((0, freq, sr, pol, fec, system, modulation))
-
-#	class parseCables(ContentHandler):
-#		def __init__(self, cablesList, transponders):
-#			self.isPointsElement, self.isReboundsElement = 0, 0
-#			self.cablesList = cablesList
-#			for x in self.cablesList:
-#				self.cablesList.remove(x)
-#			self.transponders = transponders
-#	
-#		def startElement(self, name, attrs):
-#			if (name == "cable"):
-#				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
-#				tname = attrs.get('name',"").encode("UTF-8")
-#				tflags = int(attrs.get('flags', '0'))
-#				self.cablesList.append((tname, tflags))
-#				self.parsedCab = tname
-#			elif (name == "transponder"):
-#				freq = int(attrs.get('frequency',""))
-#				while freq > 999999:
-#					freq /= 10
-#				sr = int(attrs.get('symbol_rate',"0"))
-#				mod = int(attrs.get('modulation',"3")) # QAM64 default
-#				fec = int(attrs.get('fec_inner',"0")) # AUTO default
-#				if self.parsedCab in self.transponders:
-#					pass
-#				else:
-#					self.transponders[self.parsedCab] = [ ]
-#				self.transponders[self.parsedCab].append((1, freq, sr, mod, fec))
-#
-#	class parseTerrestrials(ContentHandler):
-#		def __init__(self, terrestrialsList, transponders):
-#			self.isPointsElement, self.isReboundsElement = 0, 0
-#			self.terrestrialsList = terrestrialsList
-#			self.transponders = transponders
-#	
-#		def startElement(self, name, attrs):
-#			if (name == "terrestrial"):
-#				#print "found sat " + attrs.get('name',"") + " " + str(attrs.get('position',""))
-#				tname = attrs.get('name',"").encode("UTF-8")
-#				tflags = int(attrs.get('flags', '0'))
-#				self.terrestrialsList.append((tname, tflags))
-#				self.parsedTer = str(tname)
-#			elif (name == "transponder"):
-#				# TODO finish this!
-#				freq = int(attrs.get('centre_frequency',""))
-#				bw = int(attrs.get('bandwidth',"3")) # AUTO
-#				const = int(attrs.get('constellation',"1")) # AUTO
-#				crh = int(attrs.get('code_rate_hp',"5")) # AUTO
-#				if crh > 5: # our terrestrial.xml is buggy... 6 for AUTO
-#					crh = 5
-#				crl = int(attrs.get('code_rate_lp',"5")) # AUTO
-#				if crl > 5: # our terrestrial.xml is buggy... 6 for AUTO
-#					crl = 5
-#				guard = int(attrs.get('guard_interval',"4")) # AUTO
-#				transm = int(attrs.get('transmission_mode',"2")) # AUTO
-#				hierarchy = int(attrs.get('hierarchy_information',"4")) # AUTO
-#				inv = int(attrs.get('inversion',"2")) # AUTO
-#				if self.parsedTer in self.transponders:
-#					pass
-#				else:
-#					self.transponders[self.parsedTer] = [ ]
-#
-#				self.transponders[self.parsedTer].append((2, freq, bw, const, crh, crl, guard, transm, hierarchy, inv))
-
 	def getTransponders(self, pos):
 		if self.transponders.has_key(pos):
 			return self.transponders[pos]
@@ -547,13 +451,8 @@ class NimManager:
 		self.transponderscable = { }
 		self.transpondersterrestrial = { }
 		db = eDVBDB.getInstance()
-
-#		parser = make_parser()
 		if self.hasNimType("DVB-S"):
 			print "Reading satellites.xml"
-#			satHandler = self.parseSats(self.satList, self.satellites, self.transponders)
-#			parser.setContentHandler(satHandler)
-#			parser.parse('/etc/tuxbox/satellites.xml')
 			db.readSatellites(self.satList, self.satellites, self.transponders)
 #			print "SATLIST", self.satList
 #			print "SATS", self.satellites
@@ -561,18 +460,12 @@ class NimManager:
 
 		if self.hasNimType("DVB-C"):
 			print "Reading cables.xml"
-#			cabHandler = self.parseCables(self.cablesList, self.transponderscable)
-#			parser.setContentHandler(cabHandler)
-#			parser.parse('/etc/tuxbox/cables.xml')
 			db.readCables(self.cablesList, self.transponderscable)
 #			print "CABLIST", self.cablesList
 #			print "TRANSPONDERS", self.transponders
 
 		if self.hasNimType("DVB-T"):
 			print "Reading terrestrial.xml"
-#			terHandler = self.parseTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
-#			parser.setContentHandler(terHandler)
-#			parser.parse('/etc/tuxbox/terrestrial.xml')
 			db.readTerrestrials(self.terrestrialsList, self.transpondersterrestrial)
 #			print "TERLIST", self.terrestrialsList
 #			print "TRANSPONDERS", self.transpondersterrestrial
