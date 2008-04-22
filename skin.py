@@ -255,8 +255,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 					bpp = 32
 				#print "Resolution:", xres,yres,bpp
 				from enigma import gFBDC
-				i = gFBDC.getInstance()
-				i.setResolution(xres, yres)
+				gFBDC.getInstance().setResolution(xres, yres)
 				if bpp != 32:
 					# load palette (not yet implemented)
 					pass
@@ -266,7 +265,6 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			get_attr = color.attrib.get
 			name = get_attr("name")
 			color = get_attr("value")
-
 			if name and color:
 				colorNames[name] = parseColor(color)
 				#print "Color:", name, color
