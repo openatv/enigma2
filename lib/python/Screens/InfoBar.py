@@ -25,12 +25,12 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
-from Components.ServiceEventTracker import ServiceEventTracker
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 
 profile("LOAD:HelpableScreen")
 from Screens.HelpMenu import HelpableScreen
 
-class InfoBar(InfoBarShowHide,
+class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
 	InfoBarInstantRecord, InfoBarAudioSelection, 
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
@@ -43,7 +43,6 @@ class InfoBar(InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self["actions"] = HelpableActionMap(self, "InfobarActions",
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
@@ -52,7 +51,7 @@ class InfoBar(InfoBarShowHide,
 			}, prio=2)
 		
 		for x in HelpableScreen, \
-				InfoBarShowHide, \
+				InfoBarBase, InfoBarShowHide, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, \
 				InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
@@ -118,7 +117,7 @@ class InfoBar(InfoBarShowHide,
 		if service is not None:
 			self.session.open(MoviePlayer, service)
 
-class MoviePlayer(InfoBarShowHide, \
+class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, \
 		InfoBarSeek, InfoBarShowMovies, InfoBarAudioSelection, HelpableScreen, InfoBarNotifications,
 		InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView,
@@ -137,7 +136,7 @@ class MoviePlayer(InfoBarShowHide, \
 			})
 		
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
-				InfoBarSeek, InfoBarShowMovies, \
+				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarNotifications, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \

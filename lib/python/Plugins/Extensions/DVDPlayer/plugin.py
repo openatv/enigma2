@@ -10,7 +10,7 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueShee
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.FileList import FileList
-from Components.ServiceEventTracker import ServiceEventTracker
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Components.ProgressBar import ProgressBar
 from ServiceReference import ServiceReference
@@ -147,7 +147,7 @@ class ChapterZap(Screen):
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
 
-class DVDPlayer(Screen, InfoBarNotifications, InfoBarSeek, InfoBarCueSheetSupport, InfoBarPVRState, InfoBarShowHide, HelpableScreen):
+class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarCueSheetSupport, InfoBarPVRState, InfoBarShowHide, HelpableScreen):
 	ALLOW_SUSPEND = True
 	ENABLE_RESUME_SUPPORT = True
 	
@@ -220,6 +220,7 @@ class DVDPlayer(Screen, InfoBarNotifications, InfoBarSeek, InfoBarCueSheetSuppor
 
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
+		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
 		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
 		InfoBarShowHide.__init__(self)

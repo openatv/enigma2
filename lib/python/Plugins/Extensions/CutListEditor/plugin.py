@@ -5,7 +5,7 @@ from Screens.MessageBox import MessageBox
 from Components.ServicePosition import ServicePositionGauge
 from Components.ActionMap import HelpableActionMap
 from Components.MultiContent import MultiContentEntryText
-from Components.ServiceEventTracker import ServiceEventTracker
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.VideoWindow import VideoWindow
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from Components.GUIComponent import GUIComponent
@@ -144,7 +144,7 @@ class CutList(GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
 
-class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
+class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
 	<screen position="0,0" size="720,576" title="Cutlist editor" flags="wfNoBorder">
 		<eLabel text="Cutlist editor" position="65,60" size="300,25" font="Regular;20" />
@@ -171,6 +171,7 @@ class CutListEditor(Screen, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen)
 		Screen.__init__(self, session)
 		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
+		InfoBarBase.__init__(self)
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
