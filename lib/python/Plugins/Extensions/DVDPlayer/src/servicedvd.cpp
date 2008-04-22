@@ -205,20 +205,13 @@ void eServiceDVD::gotMessage(int what)
 		{
 			static struct ddvd_time last_info;
 			struct ddvd_time info;
-			eDebug("DVD_SHOWOSD_TIME!");
+//			eDebug("DVD_SHOWOSD_TIME!");
 			ddvd_get_last_time(m_ddvdconfig, &info);
-			int spu_id;
-			uint16_t spu_lang;
-			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
 			if ( info.pos_chapter != last_info.pos_chapter )
-			{
 				m_event(this, evUser+8); // chapterUpdated
-			}
 			if ( info.pos_title != last_info.pos_title )
-			{
 				m_event(this, evUser+9); // titleUpdated
-			}
-			ddvd_get_last_time(m_ddvdconfig, &last_info);
+			memcpy(&last_info, &info, sizeof(struct ddvd_time));
 			break;
 		}
 		case DDVD_SHOWOSD_TITLESTRING:
@@ -286,7 +279,10 @@ RESULT eServiceDVD::stop()
 		pos += info.pos_minutes * 60;
 		pos += info.pos_seconds;
 		pos *= 90000;
+		pos += info.pos_title * 256;
+		pos += info.pos_chapter;
 		m_cue_pts = pos;
+		eDebug("POS %llu\n", m_cue_pts);
 	}
 	saveCuesheet();
 	return 0;
@@ -566,8 +562,8 @@ RESULT eServiceDVD::seekTo(pts_t to)
 	cur = info.pos_hours * 3600;
 	cur += info.pos_minutes * 60;
 	cur += info.pos_seconds;
-	eDebug("seekTo %lld, cur %d, diff %lld", to, cur, cur - to);
-	ddvd_skip_seconds(m_ddvdconfig, cur - to);
+	eDebug("seekTo %lld, cur %d, diff %lld", to, cur, to - cur);
+	ddvd_skip_seconds(m_ddvdconfig, to - cur);
 	return 0;
 }
 
