@@ -339,10 +339,12 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarC
 	def __menuOpened(self):
 		self.hide()
 		self.in_menu = True
+		self["NumberActions"].setEnabled(False)
 
 	def __menuClosed(self):
 		self.show()
 		self.in_menu = False
+		self["NumberActions"].setEnabled(True)
 
 	def setChapterLabel(self):
 		chapterLCD = "Menu"
@@ -529,6 +531,12 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarC
 		self.restore_infobar_seek_config()
 		self.session.nav.playService(self.oldService)
 
+	def playLastCB(self, answer): # overwrite infobar cuesheet function
+		print "playLastCB", answer, self.resume_point
+#		if answer == True:
+#			self.doSeek(self.resume_point)
+		self.hideAfterResume()
+
 	def showAfterCuesheetOperation(self):
 		if not self.in_menu:
 			self.show()
@@ -536,6 +544,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarC
 	def createSummary(self):
 		print "DVDCreateSummary"
 		return DVDSummary
+
+#override some InfoBarSeek functions
+	def doEof(self):
+		self.setSeekState(self.SEEK_STATE_PLAY)
+
+	def calcRemainingTime(self):
+		return 0
 
 def main(session, **kwargs):
 	session.open(DVDPlayer)

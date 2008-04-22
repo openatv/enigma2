@@ -10,13 +10,11 @@
 #include <lib/gui/esubtitle.h>
 #include <lib/gdi/gpixmap.h>
 
-#ifdef cue
 #include <byteswap.h>
 #include <netinet/in.h>
 #ifndef BYTE_ORDER
 #error no byte order defined!
 #endif
-#endif //cue
 
 extern "C" {
 #include <dreamdvd/ddvdlib.h>
@@ -105,11 +103,7 @@ eServiceDVD::eServiceDVD(const char *filename):
 	CONNECT(m_sn.activated, eServiceDVD::gotMessage);
 	CONNECT(m_pump.recv_msg, eServiceDVD::gotThreadMessage);
 	strcpy(m_ddvd_titlestring,"");
-	m_doSeekTo = 0;
-	m_seekTitle = 0;
-#ifdef cue
 	m_cue_pts = 0;
-#endif
 }
 
 void eServiceDVD::gotThreadMessage(const int &msg)
@@ -203,7 +197,6 @@ void eServiceDVD::gotMessage(int what)
 			eDebug("DVD_EOF_REACHED!");
 			m_event(this, evEOF);
 			break;
-
 		case DDVD_SOF_REACHED:
 			eDebug("DVD_SOF_REACHED!");
 			m_event(this, evSOF);
@@ -212,24 +205,18 @@ void eServiceDVD::gotMessage(int what)
 		{
 			static struct ddvd_time last_info;
 			struct ddvd_time info;
+			eDebug("DVD_SHOWOSD_TIME!");
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			int spu_id;
 			uint16_t spu_lang;
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
 			if ( info.pos_chapter != last_info.pos_chapter )
 			{
-				eDebug("DVD_SHOWOSD_TIME!");
 				m_event(this, evUser+8); // chapterUpdated
 			}
-			if (  info.pos_title != last_info.pos_title )
+			if ( info.pos_title != last_info.pos_title )
 			{
 				m_event(this, evUser+9); // titleUpdated
-			}
-			if ( info.pos_title == m_seekTitle && m_doSeekTo )
-			{
-				seekRelative( +1, m_doSeekTo );
-				m_doSeekTo = 0;
-				m_seekTitle = 0;
 			}
 			ddvd_get_last_time(m_ddvdconfig, &last_info);
 			break;
@@ -240,16 +227,18 @@ void eServiceDVD::gotMessage(int what)
 			eDebug("DDVD_SHOWOSD_TITLESTRING: %s",m_ddvd_titlestring);
 			loadCuesheet();
 			m_event(this, evStart);
-//			m_event((iPlayableService*)this, evUpdatedEventInfo);
-// 			m_event(this, evUser+10);
 			break;
 		}
 		case DDVD_MENU_OPENED:
 			eDebug("DVD_MENU_OPENED!");
+			m_state = stMenu;
+			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+11);
 			break;
 		case DDVD_MENU_CLOSED:
 			eDebug("DVD_MENU_CLOSED!");
+			m_state = stRunning;
+			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+12);
 			break;
 		default:
@@ -288,7 +277,6 @@ RESULT eServiceDVD::stop()
 	eDebug("DVD: stop %s", m_filename.c_str());
 	m_state = stStopped;
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_EXIT);
-#ifdef cue
 	struct ddvd_time info;
 	ddvd_get_last_time(m_ddvdconfig, &info);
 	if ( info.pos_chapter < info.end_chapter )
@@ -300,10 +288,7 @@ RESULT eServiceDVD::stop()
 		pos *= 90000;
 		m_cue_pts = pos;
 	}
-	else	// last chapter - usually credits, don't save cue
-		m_cue_pts = 0;
 	saveCuesheet();
-#endif
 	return 0;
 }
 
@@ -378,12 +363,14 @@ RESULT eServiceDVD::setFastForward(int trick)
 
 RESULT eServiceDVD::pause()
 {
+	eDebug("set pause!\n");
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_PAUSE);
 	return 0;
 }
 
 RESULT eServiceDVD::unpause()
 {
+	eDebug("set unpause!\n");
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_PLAY);
 	return 0;
 }
@@ -440,7 +427,7 @@ int eServiceDVD::getInfo(int w)
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.end_chapter;
 		}
-	
+
 		case evUser+9:
 		{
 			struct ddvd_time info;
@@ -453,7 +440,7 @@ int eServiceDVD::getInfo(int w)
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.end_title;
 		}
-	
+
 		case sTXTPID:	// we abuse HAS_TELEXT icon in InfoBar to signalize subtitles status
 		{
 			int spu_id;
@@ -570,26 +557,17 @@ RESULT eServiceDVD::getLength(pts_t &len)
 	return 0;
 }
 
-// RESULT eServiceDVD::seekTo(pts_t to)
-// {
-// 	struct ddvd_time info;
-// 	to /= 90000;
-// 	int cur;
-// 	ddvd_get_last_time(m_ddvdconfig, &info);
-// 	cur = info.pos_hours * 3600;
-// 	cur += info.pos_minutes * 60;
-// 	cur += info.pos_seconds;
-// 	eDebug("seekTo %lld, cur %d, diff %lld", to, cur, cur - to);
-// 	ddvd_skip_seconds(m_ddvdconfig, cur - to);
-// 	return 0;
-// }
-
 RESULT eServiceDVD::seekTo(pts_t to)
 {
-	m_seekTitle = 1;
-	eDebug("seekTo %lld", to);
-	ddvd_set_title(m_ddvdconfig, m_seekTitle);
-	m_doSeekTo = to;
+	struct ddvd_time info;
+	to /= 90000;
+	int cur;
+	ddvd_get_last_time(m_ddvdconfig, &info);
+	cur = info.pos_hours * 3600;
+	cur += info.pos_minutes * 60;
+	cur += info.pos_seconds;
+	eDebug("seekTo %lld, cur %d, diff %lld", to, cur, cur - to);
+	ddvd_skip_seconds(m_ddvdconfig, cur - to);
 	return 0;
 }
 
@@ -614,6 +592,13 @@ RESULT eServiceDVD::getPlayPosition(pts_t &pos)
 	return 0;
 }
 
+RESULT eServiceDVD::seekTitle(int title)
+{
+	eDebug("setTitle %d", title);
+	ddvd_set_title(m_ddvdconfig, title);
+	return 0;
+}
+
 RESULT eServiceDVD::seekChapter(int chapter)
 {
 	eDebug("setChapter %d", chapter);
@@ -629,7 +614,7 @@ RESULT eServiceDVD::setTrickmode(int trick)
 
 RESULT eServiceDVD::isCurrentlySeekable()
 {
-	return 1;
+	return m_state == stRunning;
 }
 
 RESULT eServiceDVD::keyPressed(int key)
@@ -681,7 +666,6 @@ RESULT eServiceDVD::keyPressed(int key)
 	return 0;
 }
 
-#ifdef cue
 RESULT eServiceDVD::cueSheet(ePtr<iCueSheet> &ptr)
 {
 	if (m_cue_pts)
@@ -695,73 +679,21 @@ RESULT eServiceDVD::cueSheet(ePtr<iCueSheet> &ptr)
 
 PyObject *eServiceDVD::getCutList()
 {
-	ePyObject list = PyList_New(0);
-	
-// 	for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
-// 	{
-		ePyObject tuple = PyTuple_New(2);
-// 		PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(i->where));
-		PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(m_cue_pts));
-// 		PyTuple_SetItem(tuple, 1, PyInt_FromLong(i->what));
-		PyTuple_SetItem(tuple, 1, PyInt_FromLong(3));
-		PyList_Append(list, tuple);
-		Py_DECREF(tuple);
-// 	}
-
-// 	eDebug("eServiceDVD::getCutList() pts=%lld",m_cue_pts);
-
+	ePyObject list = PyList_New(1);
+	ePyObject tuple = PyTuple_New(2);
+	PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(m_cue_pts));
+	PyTuple_SetItem(tuple, 1, PyInt_FromLong(3));
+	PyList_SetItem(list, 0, tuple);
 	return list;
 }
 
 void eServiceDVD::setCutList(ePyObject list)
 {
-	eDebug("eServiceDVD::setCutList()");
-
-	if (!PyList_Check(list))
-		return;
-	int size = PyList_Size(list);
-	int i;
-	
-//	m_cue_entries.clear();
-	
-	for (i=0; i<size; ++i)
-	{
-		ePyObject tuple = PyList_GET_ITEM(list, i);
-		if (!PyTuple_Check(tuple))
-		{
-			eDebug("non-tuple in cutlist");
-			continue;
-		}
-		if (PyTuple_Size(tuple) != 2)
-		{
-			eDebug("cutlist entries need to be a 2-tuple");
-			continue;
-		}
-		ePyObject ppts = PyTuple_GET_ITEM(tuple, 0), ptype = PyTuple_GET_ITEM(tuple, 1);
-		if (!(PyLong_Check(ppts) && PyInt_Check(ptype)))
-		{
-			eDebug("cutlist entries need to be (pts, type)-tuples (%d %d)", PyLong_Check(ppts), PyInt_Check(ptype));
-			continue;
-		}
-// 		pts_t pts = PyLong_AsLongLong(ppts);
-		m_cue_pts = PyLong_AsLongLong(ppts);
-		int type = PyInt_AsLong(ptype);
-// 		m_cue_entries.insert(cueEntry(pts, type));
-		eDebug("eServiceDVD::setCutList() adding %08llx, %d", m_cue_pts, type);
-	}
-	m_cuesheet_changed = 1;
-	
-// 	cutlistToCuesheet();
-	m_event((iPlayableService*)this, evCuesheetChanged);
 }
 
 void eServiceDVD::setCutListEnable(int enable)
 {
-	eDebug("eServiceDVD::setCutListEnable()");
-	m_cutlist_enabled = enable;
-// 	cutlistToCuesheet();
 }
-
 
 void eServiceDVD::loadCuesheet()
 {
@@ -771,42 +703,31 @@ void eServiceDVD::loadCuesheet()
 		snprintf(filename, 128, "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
 
 	eDebug("eServiceDVD::loadCuesheet() filename=%s",filename);
-// 	m_cue_entries.clear();
 
 	FILE *f = fopen(filename, "rb");
 
 	if (f)
 	{
 		eDebug("loading cuts..");
-// 		while (1)
-		{
-			unsigned long long where;
-			unsigned int what;
-			
-			if (!fread(&where, sizeof(where), 1, f))
-				return;
-			if (!fread(&what, sizeof(what), 1, f))
-				return;
+		unsigned long long where;
+		unsigned int what;
+
+		if (!fread(&where, sizeof(where), 1, f))
+			return;
+
+		if (!fread(&what, sizeof(what), 1, f))
+			return;
 			
 #if BYTE_ORDER == LITTLE_ENDIAN
-			where = bswap_64(where);
+		where = bswap_64(where);
 #endif
-			what = ntohl(what);
-			
-// 			if (what > 3)
-// 				break;
+		what = ntohl(what);
 
-			m_cue_pts = where;
-			
-// 			m_cue_entries.insert(cueEntry(where, what));
-		}
+		m_cue_pts = where;
 		fclose(f);
-// 		eDebug("%d entries", m_cue_entries.size());
 	} else
 		eDebug("cutfile not found!");
-	
-	m_cuesheet_changed = 0;
-// 	cutlistToCuesheet();
+
 	eDebug("eServiceDVD::loadCuesheet() pts=%lld",m_cue_pts);
 
 	if (m_cue_pts)
@@ -827,27 +748,19 @@ void eServiceDVD::saveCuesheet()
 		unsigned long long where;
 		int what;
 
-// 		for (std::multiset<cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 		{
 #if BYTE_ORDER == BIG_ENDIAN
 			where = m_cue_pts;
-// 			where = i->where;
 #else
-// 			where = bswap_64(i->where);
 			where = bswap_64(m_cue_pts);
 #endif
-// 			what = htonl(i->what);
 			what = 3;
 			fwrite(&where, sizeof(where), 1, f);
 			fwrite(&what, sizeof(what), 1, f);
-			
 		}
 		fclose(f);
 	}
-	
-	m_cuesheet_changed = 0;
 }
-#endif
 
 eAutoInitPtr<eServiceFactoryDVD> init_eServiceFactoryDVD(eAutoInitNumbers::service+1, "eServiceFactoryDVD");
 
