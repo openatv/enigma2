@@ -863,6 +863,8 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				Py_DECREF(sat_pos);
 			if (sat_name)
 				Py_DECREF(sat_name);
+			if (sat_flags)
+				Py_DECREF(sat_flags);
 		}
 	}
 	Py_INCREF(Py_True);
