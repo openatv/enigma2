@@ -6,8 +6,6 @@
 #include <lib/base/thread.h>
 #include <lib/service/iservice.h>
 
-#define cue
-
 class eSubtitleWidget;
 class gPixmap;
 class eStaticServiceDVDInfo;
@@ -29,10 +27,7 @@ public:
 };
 
 class eServiceDVD: public iPlayableService, public iPauseableService, public iSeekableService,
-	public iServiceInformation, public iSubtitleOutput, public iServiceKeys, public eThread, public Object
-#ifdef cue
-, public iCueSheet
-#endif
+	public iServiceInformation, public iSubtitleOutput, public iServiceKeys, public iCueSheet, public eThread, public Object
 {
 	friend class eServiceFactoryDVD;
 DECLARE_REF(eServiceDVD);
@@ -47,11 +42,7 @@ public:
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = 0; return -1; }
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
 	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
-#ifdef cue
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
-#else
-	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
-#endif
 
 		// iPlayableService
 	RESULT connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
@@ -76,7 +67,6 @@ public:
 	PyObject *getSubtitleList();
 	PyObject *getCachedSubtitle();
 
-#if 1
 		// iSeekableService
 	RESULT getLength(pts_t &len);
 	RESULT seekTo(pts_t to);
@@ -85,7 +75,7 @@ public:
 	RESULT setTrickmode(int trick=0);
 	RESULT isCurrentlySeekable();
 	RESULT seekChapter(int chapter);
-#endif
+	RESULT seekTitle(int title);
 
 		// iServiceInformation
 	RESULT getName(std::string &name);
@@ -93,12 +83,11 @@ public:
 	std::string getInfoString(int w);
 	virtual PyObject *getInfoObject(int w);
 
-#ifdef cue
 		// iCueSheet
 	PyObject *getCutList();
 	void setCutList(SWIG_PYOBJECT(ePyObject));
 	void setCutListEnable(int enable);
-#endif
+
 		// iServiceKeys
 	RESULT keyPressed(int key);
 private:
@@ -121,46 +110,20 @@ private:
 
 	enum
 	{
-		stIdle, stRunning, stStopped,
+		stIdle, stRunning, stMenu, stStopped
 	};
 
 	int m_state;
 	int m_current_trick;
 
-	pts_t m_doSeekTo;
-	int m_seekTitle;
 	char m_ddvd_titlestring[96];
 
 	eSocketNotifier m_sn;
 	eFixedMessagePump<int> m_pump;
 
-#ifdef cue
-// 	ePtr<eCueSheet> m_cue;
-// 
-// 	struct cueEntry
-// 	{
-// 		pts_t where;
-// 		unsigned int what;
-// 		
-// 		bool operator < (const struct cueEntry &o) const
-// 		{
-// 			return where < o.where;
-// 		}
-// 		cueEntry(const pts_t &where, unsigned int what) :
-// 			where(where), what(what)
-// 		{
-// 		}
-// 	};
-	
-// 	std::multiset<cueEntry> m_cue_entries;
-	int m_cuesheet_changed, m_cutlist_enabled;
 	pts_t m_cue_pts;
-	
 	void loadCuesheet();
 	void saveCuesheet();
-	
-// 	void cutlistToCuesheet();
-#endif
 };
 
 #endif
