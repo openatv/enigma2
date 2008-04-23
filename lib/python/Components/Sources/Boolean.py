@@ -28,7 +28,12 @@ class Boolean(Source, object):
 		else:
 			return self.fixed
 
-	boolean = property(getBoolean)
+	def setBoolean(self, value):
+		assert self.function is None
+		self.fixed = value
+		self.poll()
+
+	boolean = property(getBoolean, setBoolean)
 
 	def poll(self):
 		self.changed((self.CHANGED_ALL,))
