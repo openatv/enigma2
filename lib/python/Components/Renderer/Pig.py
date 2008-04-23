@@ -14,10 +14,10 @@ class Pig(Renderer):
 	def postWidgetCreate(self, instance):
 		instance.setDecoder(0)
 
-	def applySkin(self, desktop):
-		ret = Renderer.applySkin(self, desktop)
+	def applySkin(self, desktop, parent):
+		ret = Renderer.applySkin(self, desktop, parent)
 		if ret:
-			self.Position = self.instance.position()
+			self.Position = self.instance.position() # fixme, scaling!
 			self.Size = self.instance.size()
 		return ret
 

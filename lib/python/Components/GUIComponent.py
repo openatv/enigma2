@@ -1,6 +1,6 @@
 import skin
 
-from enigma import ePoint
+from enigma import ePoint, eSize
 
 class GUIComponent(object):
 	""" GUI component """
@@ -29,14 +29,14 @@ class GUIComponent(object):
 		self.__dict__.clear()
 	
 	# this works only with normal widgets - if you don't have self.instance, override this.
-	def applySkin(self, desktop):
+	def applySkin(self, desktop, parent):
 		if not self.visible:
 			self.instance.hide()
 		
 		if self.skinAttributes is None:
 			return False
 
-		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes)
+		skin.applyAllAttributes(self.instance, desktop, self.skinAttributes, parent.scale)
 		return True
 
 	def move(self, x, y = None):
@@ -45,10 +45,13 @@ class GUIComponent(object):
 			self.instance.move(x)
 		else:
 			self.instance.move(ePoint(int(x), int(y)))
-		
-	def resize(self, size):
-		self.instance.resize(size)
-		
+
+	def resize(self, x, y = None):
+		if y is None:
+			self.instance.resize(x)
+		else:
+			self.instance.resize(eSize(int(x), int(y)))
+
 	def setZPosition(self, z):
 		self.instance.setZPosition(z)
 
