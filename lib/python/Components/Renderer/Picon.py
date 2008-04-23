@@ -16,7 +16,7 @@ class Picon(Renderer):
 		self.nameCache = { }
 		self.pngname = ""
 
-	def applySkin(self, desktop):
+	def applySkin(self, desktop, parent):
 		attribs = [ ]
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
@@ -24,7 +24,7 @@ class Picon(Renderer):
 			else:
 				attribs.append((attrib,value))
 		self.skinAttributes = attribs
-		return Renderer.applySkin(self, desktop)
+		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
 

@@ -68,17 +68,17 @@ profile("LoadSkinDefault")
 loadSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
-def parsePosition(str):
+def parsePosition(str, scale):
 	x, y = str.split(',')
-	return ePoint(int(x), int(y))
+	return ePoint(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1])
 
-def parseSize(str):
+def parseSize(str, scale):
 	x, y = str.split(',')
-	return eSize(int(x), int(y))
+	return eSize(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1])
 
-def parseFont(str):
+def parseFont(str, scale):
 	name, size = str.split(';')
-	return gFont(name, int(size))
+	return gFont(name, int(size) * scale[0][0] / scale[0][1])
 
 def parseColor(str):
 	if str[0] != '#':
@@ -113,19 +113,19 @@ def loadPixmap(path, desktop):
 		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr
 
-def applySingleAttribute(guiObject, desktop, attrib, value):
+def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1))):
 	# and set attributes
 	try:
 		if attrib == 'position':
-			guiObject.move(parsePosition(value))
+			guiObject.move(parsePosition(value, scale))
 		elif attrib == 'size':
-			guiObject.resize(parseSize(value))
+			guiObject.resize(parseSize(value, scale))
 		elif attrib == 'title':
 			guiObject.setTitle(_(value))
 		elif attrib == 'text':
 			guiObject.setText(_(value))
 		elif attrib == 'font':
-			guiObject.setFont(parseFont(value))
+			guiObject.setFont(parseFont(value, scale))
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
 		elif attrib in ["pixmap", "backgroundPixmap", "selectionPixmap"]:
@@ -206,11 +206,11 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 			guiObject.setWrapAround(True)
 		elif attrib == "pointer" or attrib == "seek_pointer":
 			(name, pos) = value.split(':')
-			pos = parsePosition(pos)
+			pos = parsePosition(pos, scale)
 			ptr = loadPixmap(name, desktop)
 			guiObject.setPointer({"pointer": 0, "seek_pointer": 1}[attrib], ptr, pos)
 		elif attrib == 'shadowOffset':
-			guiObject.setShadowOffset(parsePosition(value))
+			guiObject.setShadowOffset(parsePosition(value, scale))
 		elif attrib == 'noWrap':
 			guiObject.setNoWrap(1)
 		else:
@@ -219,9 +219,9 @@ def applySingleAttribute(guiObject, desktop, attrib, value):
 # AttributeError:
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
 
-def applyAllAttributes(guiObject, desktop, attributes):
+def applyAllAttributes(guiObject, desktop, attributes, scale):
 	for (attrib, value) in attributes:
-		applySingleAttribute(guiObject, desktop, attrib, value)
+		applySingleAttribute(guiObject, desktop, attrib, value, scale)
 
 def loadSingleSkinData(desktop, skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
@@ -305,8 +305,8 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 		for title in windowstyle.findall("title"):
 			get_attr = title.attrib.get
-			offset = parseSize(get_attr("offset"))
-			font = parseFont(get_attr("font"))
+			offset = parseSize(get_attr("offset"), ((1,1),(1,1)))
+			font = parseFont(get_attr("font"), ((1,1),(1,1)))
 
 		style.setTitleFont(font);
 		style.setTitleOffset(offset)

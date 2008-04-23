@@ -45,7 +45,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.mode = self.MODE_NORMAL
 		self.onSelectionChanged = [ ]
 
-	def applySkin(self, desktop):
+	def applySkin(self, desktop, parent):
 		attribs = [ ]
 		if self.skinAttributes is not None:
 			attribs = [ ]
@@ -63,7 +63,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 				else:
 					attribs.append((attrib, value))
 		self.skinAttributes = attribs
-		return GUIComponent.applySkin(self, desktop)
+		return GUIComponent.applySkin(self, desktop, parent)
 
 	def connectSelChanged(self, fnc):
 		if not fnc in self.onSelectionChanged:

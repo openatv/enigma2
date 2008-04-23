@@ -8,7 +8,7 @@ from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
 
 from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, eDVBVolumecontrol, \
-	getDesktop, ePythonConfigQuery, eAVSwitch, eWindow, eServiceEvent
+	getDesktop, ePythonConfigQuery, eAVSwitch, eServiceEvent
 from tools import *
 
 profile("LANGUAGE")
@@ -98,14 +98,6 @@ def dump(dir, p = ""):
 # + ":" + str(dir.__class__)
 
 # display
-
-class OutputDevice:
-	def create(self, screen): pass
-
-class GUIOutputDevice(OutputDevice):
-	parent = None
-	def create(self, comp, desktop):
-		comp.createGUIScreen(self.parent, desktop)
 
 profile("LOAD:ScreenGlobals")
 from Screens.Globals import Globals
@@ -249,20 +241,8 @@ class Session:
 		# create GUI view of this dialog
 		assert desktop is not None
 
-		z = 0
-		title = ""
-		for (key, value) in dlg.skinAttributes:
-			if key == "zPosition":
-				z = int(value)
-			elif key == "title":
-				title = value
-
-		dlg.instance = eWindow(desktop, z)
-		dlg.title = title
-		applyAllAttributes(dlg.instance, desktop, dlg.skinAttributes)
-		gui = GUIOutputDevice()
-		gui.parent = dlg.instance
-		gui.create(dlg, desktop)
+		dlg.setDesktop(desktop)
+		dlg.applySkin()
 
 		return dlg
 
