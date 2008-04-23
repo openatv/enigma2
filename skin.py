@@ -370,7 +370,8 @@ def readSkin(screen, skin, names, desktop):
 			break
 
 	# otherwise try embedded skin
-	myscreen = myscreen or getattr(screen, "parsedSkin", None)
+	if myscreen is None:
+		myscreen = getattr(screen, "parsedSkin", None)
 
 	# try uncompiled embedded skin
 	if myscreen is None and getattr(screen, "skin", None):

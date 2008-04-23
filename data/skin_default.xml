@@ -659,7 +659,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="footer" position="10,310" size="400,20" font="Regular;20" halign="center" />
 	</screen>
 	<!-- Scart -->
-	<screen name="Scart" position="0,0" size="720,576" />
+	<screen name="Scart" position="0,0" size="720,576" backgroundColor="transparent" />
 	<!-- Service info -->
 	<screen name="ServiceInfo" position="90,95" size="560,430" title="Serviceinfo">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -777,7 +777,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,10" zPosition="1" size="360,275" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Subtitle area -->
-	<screen name="SubtitleDisplay" position="0,0" size="720,576" zPosition="-1" flags="wfNoBorder" />
+	<screen name="SubtitleDisplay" position="0,0" size="720,576" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
 	<!-- Time & date input -->
 	<screen name="TimeDateInput" position="160,150" size="400,200" title="Time/Date Input">
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
