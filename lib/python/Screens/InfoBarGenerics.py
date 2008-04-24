@@ -593,7 +593,7 @@ class InfoBarSeek:
 	SEEK_STATE_PAUSE = (1, 0, 0, "||")
 	SEEK_STATE_EOF = (1, 0, 0, "END")
 
-	def __init__(self, actionmap = "InfobarSeekActions"):
+	def __init__(self, actionmap = "InfobarSeekActions", useSeekBackHack=True):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -608,7 +608,7 @@ class InfoBarSeek:
 		self.eofInhibitTimer = eTimer()
 		self.eofInhibitTimer.timeout.get().append(self.inhibitEof)
 
-#		self.minSpeedBackward = 16
+		self.minSpeedBackward = useSeekBackHack and 16 or 0
 
 		class InfoBarSeekActionMap(HelpableActionMap):
 			def __init__(self, screen, *args, **kwargs):
@@ -666,13 +666,12 @@ class InfoBarSeek:
 	def makeStateBackward(self, n):
 		minspeed = config.seek.stepwise_minspeed.value
 		repeat = int(config.seek.stepwise_repeat.value)
-#		if n < self.minSpeedBackward:
-#			r = (self.minSpeedBackward - 1)/ n + 1
-#			if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-#				r = max(r, repeat)
-#			return (0, -n * r, r, "<< %dx" % n)
-#		el
-		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+		if self.minSpeedBackward and n < self.minSpeedBackward:
+			r = (self.minSpeedBackward - 1)/ n + 1
+			if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+				r = max(r, repeat)
+			return (0, -n * r, r, "<< %dx" % n)
+		elif minspeed != "Never" and n >= int(minspeed) and repeat > 1:
 			return (0, -n * repeat, repeat, "<< %dx" % n)
 		else:
 			return (0, -n, 0, "<< %dx" % n)
