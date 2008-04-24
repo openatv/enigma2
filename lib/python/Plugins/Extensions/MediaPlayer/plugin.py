@@ -31,7 +31,7 @@ class MyPlayList(PlayList):
 		self.oldCurrPlaying = -1
 
 class MediaPixmap(Pixmap):
-	def applySkin(self, desktop):
+	def applySkin(self, desktop, screen):
 		self.default_pixmap = None
 		if self.skinAttributes is not None:
 			for (attrib, value) in self.skinAttributes:
@@ -40,7 +40,7 @@ class MediaPixmap(Pixmap):
 					break
 		if self.default_pixmap is None:
 			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/no_coverArt.png")
-		return Pixmap.applySkin(self, desktop)
+		return Pixmap.applySkin(self, desktop, screen)
 
 class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, HelpableScreen):
 	ALLOW_SUSPEND = True
