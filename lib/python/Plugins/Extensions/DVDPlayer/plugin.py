@@ -228,7 +228,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		HelpableScreen.__init__(self)
 		self.save_infobar_seek_config()
 		self.change_infobar_seek_config()
-		InfoBarSeek.__init__(self)
+		InfoBarSeek.__init__(self, useSeekBackHack=False)
 		InfoBarPVRState.__init__(self)
 		self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
 
