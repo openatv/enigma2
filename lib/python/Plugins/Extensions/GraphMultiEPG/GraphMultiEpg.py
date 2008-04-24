@@ -52,7 +52,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.foreColorService = None
 		self.backColorService = None
 
-	def applySkin(self, desktop):
+	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
@@ -73,7 +73,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
-		return GUIComponent.applySkin(self, desktop)
+		return GUIComponent.applySkin(self, desktop, screen)
 
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
