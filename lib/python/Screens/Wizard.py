@@ -382,6 +382,13 @@ class Wizard(Screen, HelpableScreen):
 		
 	def updateValues(self):
 		print "Updating values in step " + str(self.currStep)
+		# calling a step which doesn't exist can only happen if the condition in the last step is not fulfilled
+		# if a non-existing step is called, end the wizard 
+		if self.currStep >= len(self.wizard):
+			self.markDone()
+			self.close()
+			return
+
 		self.timeoutTimer.stop()
 		
 		if self.configInstance is not None:
