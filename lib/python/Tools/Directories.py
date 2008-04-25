@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from os import path as os_path, mkdir, system
+from os import path as os_path, mkdir, system, walk
+from re import compile
 
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
@@ -14,6 +15,8 @@ SCOPE_PLUGINS = 9
 SCOPE_MEDIA = 10
 SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
+SCOPE_DEFAULTDIR = 13
+SCOPE_DEFAULTPARTITION = 14
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -33,7 +36,10 @@ defaultPaths = {
 		SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
 		SCOPE_PLAYLIST: ("/etc/enigma2/playlist/", PATH_CREATE),
 		
-		SCOPE_USERETC: ("", PATH_DONTCREATE) # user home directory
+		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
+		
+		SCOPE_DEFAULTDIR: ("/usr/share/enigma2/defaults/", PATH_CREATE),
+		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock/4", PATH_DONTCREATE),
 	}
 
 FILE_COPY = 0 # copy files from fallback dir to the basedir
@@ -154,3 +160,14 @@ def InitFallbackFiles():
 	resolveFilename(SCOPE_CONFIG, "bouquets.tv")
 	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.radio")
 	resolveFilename(SCOPE_CONFIG, "bouquets.radio")
+
+# returns a list of tuples containing pathname and filename matching the given pattern
+# example-pattern: match all txt-files: ".*\.txt$"
+def crawlDirectory(directory, pattern):
+	expression = compile(pattern)
+	list = []
+	for root, dirs, files in walk(directory):
+		for file in files:
+			if expression.match(file) is not None:
+				list.append((root, file))
+	return list
