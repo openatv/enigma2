@@ -74,7 +74,9 @@ class VideoWizard(WizardLanguage):
 		return VideoWizardSummary
 		
 	def markDone(self):
-		pass
+		config.misc.videowizardenabled.value = 0
+		config.misc.videowizardenabled.save()
+		configfile.save()
 	
 	def listInputChannels(self):
 		list = []
