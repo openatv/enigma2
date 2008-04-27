@@ -2,10 +2,11 @@ from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config
-from Components.config import config
+from Components.config import getConfigListEntry, config, ConfigBoolean
 
 from VideoHardware import video_hw
+
+config.misc.videowizardenabled = ConfigBoolean(default = True)
 
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session, hw):
@@ -208,6 +209,6 @@ def Plugins(**kwargs):
 #		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
 		PluginDescriptor(name=_("Video Setup"), description=_("Advanced Video Setup"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup) 
 	]
-	if config.misc.firstrun.value:
+	if config.misc.videowizardenabled.value:
 		list.append(PluginDescriptor(name=_("Video Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=(0, VideoWizard)))
  	return list
