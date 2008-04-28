@@ -188,6 +188,8 @@ class Wizard(Screen, HelpableScreen):
 		
 		self.lcdCallbacks = []
 		
+		self.disableKeys = False
+		
 		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions"],
 		{
 			"ok": self.ok,
@@ -232,6 +234,8 @@ class Wizard(Screen, HelpableScreen):
 		self.lcdCallbacks.append(callback)
 
 	def back(self):
+		if self.disableKeys:
+			return
 		print "getting back..."
 		print "stepHistory:", self.stepHistory
 		if len(self.stepHistory) > 1:
@@ -291,6 +295,8 @@ class Wizard(Screen, HelpableScreen):
 
 	def ok(self):
 		print "OK"
+		if self.disableKeys:
+			return
 		currStep = self.currStep
 		
 		if self.showConfig:
