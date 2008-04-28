@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = gnu
 
-SUBDIRS = packages
+# SUBDIRS = packages
 
 installdir = $(DATADIR)/enigma2/defaults/Dream
 
