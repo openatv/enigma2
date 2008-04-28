@@ -200,15 +200,15 @@ class JobManager:
 #	def check(self, task):
 #		return getFreeDiskspace(task.workspace) >= self.diskspace_required
 #
-#class ToolExistsPrecondition:
-#	def check(self, task):
-#		import os
-#		return os.access(task.cmd, os.X_OK)
-#
-#class ReturncodePostcondition:
-#	def check(self, task):
-#		return task.returncode == 0
-#
+class ToolExistsPrecondition:
+	def check(self, task):
+		import os
+		return os.access(task.cmd, os.X_OK)
+
+class ReturncodePostcondition:
+	def check(self, task):
+		return task.returncode == 0
+
 #class HDDInitJob(Job):
 #	def __init__(self, device):
 #		Job.__init__(self, _("Initialize Harddisk"))
