@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 23:30+0200\n"
-"PO-Revision-Date: 2008-04-06 23:54+0100\n"
+"POT-Creation-Date: 2008-04-29 01:03+0200\n"
+"PO-Revision-Date: 2008-04-29 01:04+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,9 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid " "
+msgstr ""
 
 msgid "#000000"
 msgstr ""
@@ -76,6 +79,9 @@ msgstr "(ZAP)"
 
 msgid "(empty)"
 msgstr "(leer)"
+
+msgid "(show optional DVD audio menu)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 Verzeichnis"
@@ -219,19 +225,11 @@ msgstr ""
 "Zurzeit läuft eine Aufnahme.\n"
 "Was möchten Sie tun?"
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"configure the positioner."
-msgstr ""
-"Zurzeit läuft eine Aufnahme. Bitte beenden Sie die Aufnahme, bevor Sie das "
-"Rotor-Setup ausführen."
+msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgstr "Zurzeit läuft eine Aufnahme. Bitte beenden Sie die Aufnahme, bevor Sie das Rotor-Setup ausführen."
 
-msgid ""
-"A recording is currently running. Please stop the recording before trying to "
-"start the satfinder."
-msgstr ""
-"Zurzeit läuft eine Aufnahme. Bitte beenden Sie diese Aufnahme, bevor Sie den "
-"Sat-Finder starten."
+msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgstr "Zurzeit läuft eine Aufnahme. Bitte beenden Sie diese Aufnahme, bevor Sie den Sat-Finder starten."
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -305,17 +303,8 @@ msgstr "Zum Bouquet hinzufügen"
 msgid "Add to favourites"
 msgstr "Zu Favoriten hinfügen"
 
-msgid ""
-"Adjust the color settings so that all the color shades are distinguishable, "
-"but appear as saturated as possible. If you are happy with the result, press "
-"OK to close the video fine-tuning, or use the number keys to select other "
-"test screens."
-msgstr ""
-"Verändern Sie die Farbeinstellungen, so dass Sie alle Farbabstufungen "
-"voneinander unterscheiden können, diese aber so gesättigt wie möglich "
-"dargestellt werden. Wenn Sie mit dem Ergebnis zufrieden sind, drücken Sie "
-"OK, um die Feineinstellungen zu beenden. Mit den Zahlentasten können Sie "
-"weitere Testbilder auswählen."
+msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
+msgstr "Verändern Sie die Farbeinstellungen, so dass Sie alle Farbabstufungen voneinander unterscheiden können, diese aber so gesättigt wie möglich dargestellt werden. Wenn Sie mit dem Ergebnis zufrieden sind, drücken Sie OK, um die Feineinstellungen zu beenden. Mit den Zahlentasten können Sie weitere Testbilder auswählen."
 
 msgid "Advanced"
 msgstr "Erweitert"
@@ -326,13 +315,8 @@ msgstr "Erweitere Video-Einstellungen"
 msgid "After event"
 msgstr "Nach dem Ereignis"
 
-msgid ""
-"After the start wizard is completed, you need to protect single services. "
-"Refer to your dreambox's manual on how to do that."
-msgstr ""
-"Nachdem der Startassistent beendet wurde, müssen Sie noch die einzelnen "
-"Sender schützen. Wie Sie dies tun können, entnehmen Sie bitte dem Handbuch "
-"Ihrer Dreambox."
+msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
+msgstr "Nachdem der Startassistent beendet wurde, müssen Sie noch die einzelnen Sender schützen. Wie Sie dies tun können, entnehmen Sie bitte dem Handbuch Ihrer Dreambox."
 
 msgid "Album:"
 msgstr "Album:"
@@ -413,8 +397,7 @@ msgid "Backup Mode"
 msgstr "Sicherungs-Modus"
 
 msgid "Backup is done. Please press OK to see the result."
-msgstr ""
-"Sicherung wurde durchgeführt. Bitte drücken Sie OK, um das Ergebnis zu sehen."
+msgstr "Sicherung wurde durchgeführt. Bitte drücken Sie OK, um das Ergebnis zu sehen."
 
 msgid "Band"
 msgstr "Band"
@@ -446,9 +429,7 @@ msgstr "Helligkeit"
 msgid "Bus: "
 msgstr "Bus:"
 
-msgid ""
-"By pressing the OK Button on your remote control, the info bar is being "
-"displayed."
+msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
 msgstr "Um die Infobar anzuzeigen, drücken Sie OK."
 
 msgid "C-Band"
@@ -508,13 +489,19 @@ msgstr "Kanal:"
 msgid "Channellist menu"
 msgstr "Kanallisten-Menü"
 
+msgid "Chap."
+msgstr ""
+
+msgid "Chapter"
+msgstr ""
+
+msgid "Chapter:"
+msgstr ""
+
 msgid "Check"
 msgstr ""
 
 msgid "Checking Filesystem..."
-msgstr ""
-
-msgid "Choose Location"
 msgstr ""
 
 msgid "Choose Tuner"
@@ -555,6 +542,9 @@ msgstr "Empfangsrate LP"
 
 msgid "Color Format"
 msgstr "Farbformat"
+
+msgid "Command execution..."
+msgstr ""
 
 msgid "Command order"
 msgstr "Befehlsfolge"
@@ -605,6 +595,9 @@ msgstr ""
 msgid "Constellation"
 msgstr ""
 
+msgid "Continue playing"
+msgstr ""
+
 msgid "Contrast"
 msgstr "Kontrast"
 
@@ -653,6 +646,24 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD ENTER key"
+msgstr ""
+
+msgid "DVD Player"
+msgstr ""
+
+msgid "DVD down key"
+msgstr ""
+
+msgid "DVD left key"
+msgstr ""
+
+msgid "DVD right key"
+msgstr ""
+
+msgid "DVD up key"
+msgstr ""
+
 msgid "Danish"
 msgstr "Dänisch"
 
@@ -663,7 +674,7 @@ msgid "Deep Standby"
 msgstr "Ausschalten"
 
 msgid "Default-Wizard"
-msgstr ""
+msgstr "Standardeinstellungs-Assistent"
 
 msgid "Delay"
 msgstr "Verzögerung"
@@ -898,11 +909,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Anfängliche Vorlaufgeschwindigkeit eingeben"
 
@@ -930,6 +936,9 @@ msgstr "Ausführen eines externen Befehls:"
 msgid "Execution finished!!"
 msgstr "Ausführung beendet!"
 
+msgid "Exit"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Editor beenden"
 
@@ -954,6 +963,9 @@ msgstr "FEC"
 msgid "Factory reset"
 msgstr "Werkseinstellungen"
 
+msgid "Failed"
+msgstr ""
+
 msgid "Fast"
 msgstr "Schnell"
 
@@ -977,6 +989,9 @@ msgstr "Das Dateisystem enthält nicht behebbare Fehler"
 
 msgid "Finetune"
 msgstr "Feineinst."
+
+msgid "Finished"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Finnisch"
@@ -1095,34 +1110,23 @@ msgstr ""
 "drücken, um zurückzuspringen."
 
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is "
-"something called \"dynamic\", set it to standard. Adjust the backlight level "
-"to a value suiting your taste. Turn down contrast on your TV as much as "
-"possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the "
-"two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next "
-"step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Wenn Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, "
-"deaktivieren sie diese. Falls es eine \"Dynamik\"-Einstellung gibt, sollte "
-"sie auf Standard gesetzt werden. Verändern Sie die Intensität der "
-"Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie den Kontrast "
-"Ihres Fernsehers soweit wie möglich.\n"
-"Verringern Sie anschließend die Helligkeit soweit wie möglich. Stellen Sie "
-"dabei sicher, dass die beiden untersten Grauschattierungen erkennbar "
-"bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
+"Wenn Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, deaktivieren sie diese. Falls es eine \"Dynamik\"-Einstellung gibt, sollte sie auf Standard gesetzt werden. Verändern Sie die Intensität der Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie den Kontrast Ihres Fernsehers soweit wie möglich.\n"
+"Verringern Sie anschließend die Helligkeit soweit wie möglich. Stellen Sie dabei sicher, dass die beiden untersten Grauschattierungen erkennbar bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücken Sie OK, wenn Sie mit dem Ergebnis zufrieden sind."
 
 msgid "Image-Upgrade"
 msgstr "Image-Aktualisierung"
 
-msgid ""
-"In order to record a timer, the TV was switched to the recording service!\n"
+msgid "In Progress"
 msgstr ""
-"Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmenden "
-"Sender umgeschaltet!\n"
+
+msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr "Um die Timeraufnahme durchführen zu können, wurde auf den aufzunehmenden Sender umgeschaltet!\n"
 
 msgid "Increased voltage"
 msgstr "Erhöhte Spannung"
@@ -1160,6 +1164,9 @@ msgstr "Installiere"
 msgid "Installing Software..."
 msgstr "Softwareinstallation ..."
 
+msgid "Installing defaults... Please wait..."
+msgstr "Installiere Standardeinstellungen... Bitte warten..."
+
 msgid "Instant Record..."
 msgstr "Sofortaufnahme ..."
 
@@ -1183,6 +1190,12 @@ msgstr "Display invertieren"
 
 msgid "Italian"
 msgstr "Italienisch"
+
+msgid "Job View"
+msgstr ""
+
+msgid "Jump to video title 1 (play movie from start)"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -1220,6 +1233,9 @@ msgstr ""
 
 msgid "Latitude"
 msgstr "Breitengrad"
+
+msgid "Leave DVD Player?"
+msgstr ""
 
 msgid "Left"
 msgstr "Links"
@@ -1439,11 +1455,8 @@ msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
 msgid "No free tuner!"
 msgstr "Kein freier Tuner"
 
-msgid ""
-"No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
-"Es wurden noch keine Pakete aktualisiert. Bitte überprüfen Sie das Netzwerk "
-"und versuchen Sie es erneut."
+msgid "No packages were upgraded yet. So you can check your network and try again."
+msgstr "Es wurden noch keine Pakete aktualisiert. Bitte überprüfen Sie das Netzwerk und versuchen Sie es erneut."
 
 msgid "No picture on TV? Press EXIT and retry."
 msgstr ""
@@ -1455,8 +1468,7 @@ msgid "No satellite frontend found!!"
 msgstr "Kein Satellit-Tuner gefunden"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr ""
-"Es wurde kein Tuner für die Benutzung eines DiSEqC-Rotors konfiguriert."
+msgstr "Es wurde kein Tuner für die Benutzung eines DiSEqC-Rotors konfiguriert."
 
 msgid ""
 "No tuner is enabled!\n"
@@ -1518,15 +1530,8 @@ msgstr ""
 msgid "Now Playing"
 msgstr "Wiedergabe läuft"
 
-msgid ""
-"Now, use the contrast setting to turn up the brightness of the background as "
-"much as possible, but make sure that you can still see the difference "
-"between the two brightest levels of shades.If you have done that, press OK."
-msgstr ""
-"Benutzen Sie jetzt die Kontrastregelung, um die Helligkeit des Hintergrunds "
-"so weit wie möglich zu erhöhen. Achten Sie darauf, dass der Unterschied "
-"zwischen den beiden hellsten Schattierungen erkennbar bleibt. Drücken Sie "
-"anschließend OK. fine-tune your display\""
+msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
+msgstr "Benutzen Sie jetzt die Kontrastregelung, um die Helligkeit des Hintergrunds so weit wie möglich zu erhöhen. Achten Sie darauf, dass der Unterschied zwischen den beiden hellsten Schattierungen erkennbar bleibt. Drücken Sie anschließend OK. fine-tune your display\""
 
 msgid "OK"
 msgstr "OK"
@@ -1809,23 +1814,17 @@ msgstr "Aufgenommene Dateien ..."
 msgid "Recording"
 msgstr "Aufnahmen"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds... really reboot now?"
 msgstr ""
 "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
 "Wollen Sie trotzdem neu starten?"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds... really restart now?"
 msgstr ""
 "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
 "Wollen Sie trotzdem neu starten?"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds... really shutdown now?"
 msgstr ""
 "Zurzeit sind Aufnahmen aktiv oder starten gleich ...\n"
 "Wollen Sie trotzdem ausschalten?"
@@ -1883,12 +1882,8 @@ msgstr "Bedienoberfläche jetzt neu starten?"
 msgid "Restore"
 msgstr "Zurückspielen"
 
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Die Einstellungen wurden wiederhergestellt. Drücken Sie OK, um die "
-"wiederhergestellten Einstellungen nun zu aktivieren."
+msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
+msgstr "Die Einstellungen wurden wiederhergestellt. Drücken Sie OK, um die wiederhergestellten Einstellungen nun zu aktivieren."
 
 msgid "Resume from last position"
 msgstr "An letzter Position fortsetzen"
@@ -1902,6 +1897,9 @@ msgstr "An letzter Position fortsetzen"
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Setze Wiedergabe fort"
+
+msgid "Return to file browser"
+msgstr ""
 
 msgid "Return to movie list"
 msgstr "Zurück zur Filmliste"
@@ -2354,18 +2352,14 @@ msgstr ""
 "Bitte drücken Sie OK, um den Assistenten zu verlassen."
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr ""
-"Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort "
-"auswählen."
+msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort auswählen."
 
 msgid ""
 "The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you "
-"want to do that now?"
+"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
 msgstr ""
 "Der Videoeingang sollte nun konfiguriert sein.\n"
-"Sie können nun für weitere Bildschirmeinstellungen einige Testbilder "
-"anzeigen lassen. Möchten Sie dies nun tun?"
+"Sie können nun für weitere Bildschirmeinstellungen einige Testbilder anzeigen lassen. Möchten Sie dies nun tun?"
 
 msgid "The pin code has been changed successfully."
 msgstr "Der Pincode wurde erfolgreich geändert."
@@ -2383,14 +2377,10 @@ msgid "The sleep timer has been disabled."
 msgstr "Der Ausschalt-Timer wurde deaktiviert"
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr ""
-"Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
+msgstr "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
 
-msgid ""
-"The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr ""
-"Der Assistent kann jetzt Ihre Einstellungen sichern. Wollen Sie dies nun "
-"durchführen?"
+msgid "The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr "Der Assistent kann jetzt Ihre Einstellungen sichern. Wollen Sie dies nun durchführen?"
 
 msgid "The wizard is finished now."
 msgstr "Der Assistent ist nun beendet."
@@ -2459,6 +2449,9 @@ msgstr "Timeshift nicht möglich!"
 
 msgid "Timezone"
 msgstr "Zeitzone"
+
+msgid "Title"
+msgstr ""
 
 msgid "Title:"
 msgstr "Titel:"
@@ -2573,9 +2566,7 @@ msgid "Updating finished. Here is the result:"
 msgstr "Aktualisierung beendet. Hier das Ergebnis:"
 
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr ""
-"Update wird durchgeführt ... Bitte warten ... Der Vorgang kann einige "
-"Minuten dauern."
+msgstr "Update wird durchgeführt ... Bitte warten ... Der Vorgang kann einige Minuten dauern."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Aktualisierung beendet. Möchten Sie Ihre Dreambox nun neu starten?"
@@ -2595,18 +2586,6 @@ msgstr "Verwende Stromaufnahmen-Messung"
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
 
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr ""
 
@@ -2622,12 +2601,8 @@ msgstr ""
 "\n"
 "Einstellungen für Tuner A"
 
-msgid ""
-"Use the up/down keys on your remote control to select an option. After that, "
-"press OK."
-msgstr ""
-"Mit den hoch/runter-Tasten können Sie eine Option auswählen. Danach bitte OK "
-"drücken."
+msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgstr "Mit den hoch/runter-Tasten können Sie eine Option auswählen. Danach bitte OK drücken."
 
 msgid "Use usals for this sat"
 msgstr "USALS für diesen Sat benutzen"
@@ -2662,15 +2637,13 @@ msgstr "Video-Assistent"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different "
-"input port).\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
 "Auswahl des Videoeingangs\n"
 "\n"
-"Bitte drücken Sie OK, wenn Sie diese Seite auf Ihrem Fernseher sehen können "
-"(oder wählen Sie einen anderen Eingang aus).\n"
+"Bitte drücken Sie OK, wenn Sie diese Seite auf Ihrem Fernseher sehen können (oder wählen Sie einen anderen Eingang aus).\n"
 "\n"
 "Der nächste Videoeingang wird automatisch nach 10 Sekunden getestet."
 
@@ -2695,14 +2668,14 @@ msgstr "W"
 msgid "WSS on 4:3"
 msgstr "WSS bei 4:3"
 
+msgid "Waiting"
+msgstr ""
+
 msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If "
-"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+"We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
 "Please press OK to begin."
 msgstr ""
-"Wir testen nun, ob Ihr Fernseher diese Auflösung bei 50Hz darstellen kann. "
-"Sollte das Bild schwarz werden, so warten Sie bitte 20 Sekunden, um "
-"automatisch auf 60Hz zurückzuschalten.\n"
+"Wir testen nun, ob Ihr Fernseher diese Auflösung bei 50Hz darstellen kann. Sollte das Bild schwarz werden, so warten Sie bitte 20 Sekunden, um automatisch auf 60Hz zurückzuschalten.\n"
 "Bitte drücken Sie OK, um zu beginnen."
 
 msgid "Wed"
@@ -2714,15 +2687,8 @@ msgstr "Mittwoch"
 msgid "Weekday"
 msgstr "Wochentag"
 
-msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Willkommen im Image-Upgrade-Assistenten. Der Assistent wird Ihnen bei der "
-"Aktualisierung der Firmware helfen. Sie können mit diesem Assistenten die "
-"aktuellen Einstellungen sichern und bekommen eine kleine Einweisung, wie Sie "
-"die Firmware aktualisieren können."
+msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
+msgstr "Willkommen im Image-Upgrade-Assistenten. Der Assistent wird Ihnen bei der Aktualisierung der Firmware helfen. Sie können mit diesem Assistenten die aktuellen Einstellungen sichern und bekommen eine kleine Einweisung, wie Sie die Firmware aktualisieren können."
 
 msgid ""
 "Welcome.\n"
@@ -2732,9 +2698,11 @@ msgid ""
 msgstr ""
 "Willkommen.\n"
 "\n"
-"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox "
-"führen.\n"
+"Der Startassistent wird Sie durch die Grundeinstellungen Ihrer Dreambox führen.\n"
 "Drücken Sie OK auf Ihrer Fernbedienung, um zum nächsten Schritt zu gelangen."
+
+msgid "Welcome..."
+msgstr ""
 
 msgid "West"
 msgstr "West"
@@ -2787,56 +2755,35 @@ msgstr "Ja, Tutorial anzeigen"
 msgid "You cannot delete this!"
 msgstr "Sie können dies nicht löschen."
 
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Sie scheinen keine Festplatte in der Dreambox zu haben. Daher ist das "
-"Sichern auf Festplatte nicht möglich."
+msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
+msgstr "Sie scheinen keine Festplatte in der Dreambox zu haben. Daher ist das Sichern auf Festplatte nicht möglich."
 
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
+"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits "
-"im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf "
-"Festplatte!\n"
+"Sie wollen auf eine Compact Flash-Karte sichern. Die Karte muss sich bereits im Schacht befinden. Die bevorzugte Methode ist die Sicherung auf Festplatte!\n"
 "Bitte OK drücken, um die Sicherung trotzdem zu starten."
 
 msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Sie wollen eine Sicherung auf ein USB-Laufwerk durchführen. Die empfohlene "
-"Methode\n"
-"ist die Sicherung auf Festplatte! Bitte drücken Sie OK, um die Sicherung zu "
-"starten."
+"Sie wollen eine Sicherung auf ein USB-Laufwerk durchführen. Die empfohlene Methode\n"
+"ist die Sicherung auf Festplatte! Bitte drücken Sie OK, um die Sicherung zu starten."
 
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Sie wollen Ihre Einstellungen auf die Festplatte sichern. Bitte drücken Sie "
-"OK, um die Sicherung zu starten."
+msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
+msgstr "Sie wollen Ihre Einstellungen auf die Festplatte sichern. Bitte drücken Sie OK, um die Sicherung zu starten."
 
 msgid "You have to wait for"
 msgstr "Sie müssen warten"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, "
-"please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
+"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
-"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie "
-"weiterführende Informationen benötigen, besuchen Sie die Webseite http://www."
-"dm7025.de.\n"
-"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der "
-"Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, "
-"ob Sie die Einstellungen wiederherstellen wollen."
+"Sie müssen einen PC mit Ihrer Dreambox verbunden haben. Wenn Sie weiterführende Informationen benötigen, besuchen Sie die Webseite http://www.dm7025.de.\n"
+"Die Dreambox wird nun ausgeschaltet. Nachdem Sie das Update wie auf der Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, ob Sie die Einstellungen wiederherstellen wollen."
 
 msgid ""
 "You need to define some keywords first!\n"
@@ -2859,22 +2806,14 @@ msgstr ""
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Ihr Fernseher arbeitet mit 50 Hz. Prima!"
 
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"Ihre Sicherung ist geglückt. Die Dreambox wird nun den weiteren "
-"Aktualisierungs-Prozess erklären."
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgstr "Ihre Sicherung ist geglückt. Die Dreambox wird nun den weiteren Aktualisierungs-Prozess erklären."
 
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Ihre Dreambox schaltet sich nun aus. Bitte warten Sie einen Moment ..."
 
-msgid ""
-"Your dreambox isn't connected to the internet properly. Please check it and "
-"try again."
-msgstr ""
-"Ihre Dreambox ist nicht korrekt mit dem Internet verbunden. Bitte beheben "
-"Sie dies und versuchen Sie es dann erneut."
+msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
+msgstr "Ihre Dreambox ist nicht korrekt mit dem Internet verbunden. Bitte beheben Sie dies und versuchen Sie es dann erneut."
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
@@ -3083,6 +3022,9 @@ msgstr "Favoriteneditor beenden"
 msgid "equal to Socket A"
 msgstr "Wie Tuner A"
 
+msgid "exit DVD player or return to file browser"
+msgstr ""
+
 msgid "exit mediaplayer"
 msgstr "Mediaplayer beenden"
 
@@ -3091,6 +3033,9 @@ msgstr "Verlasse Filmliste"
 
 msgid "fine-tune your display"
 msgstr "Ändern Sie die Feineinstellungen Ihres Bildschirms"
+
+msgid "forward to the next chapter"
+msgstr ""
 
 msgid "free diskspace"
 msgstr "freier Festplattenspeicher"
@@ -3141,6 +3086,12 @@ msgstr "Modul initialisieren"
 
 msgid "insert mark here"
 msgstr "Markierung hier einfügen"
+
+msgid "jump back to the previous title"
+msgstr ""
+
+msgid "jump forward to the next title"
+msgstr ""
 
 msgid "jump to listbegin"
 msgstr "springe zum Listenanfang"
@@ -3325,6 +3276,9 @@ msgstr "Diese Markierung entfernen"
 msgid "repeated"
 msgstr "wiederholend"
 
+msgid "rewind to the previous chapter"
+msgstr ""
+
 msgid "right"
 msgstr "rechts"
 
@@ -3371,6 +3325,9 @@ msgstr "Kanal-Pincode"
 
 msgid "setup pin"
 msgstr "Einstellungs-Pincode"
+
+msgid "show DVD main menu"
+msgstr ""
 
 msgid "show EPG..."
 msgstr "Zeige EPG ..."
@@ -3465,6 +3422,12 @@ msgstr "In Dateiliste wechseln"
 msgid "switch to playlist"
 msgstr "In Wiedergabeliste wechseln"
 
+msgid "switch to the next audio track"
+msgstr ""
+
+msgid "switch to the next subtitle language"
+msgstr ""
+
 msgid "text"
 msgstr "Text"
 
@@ -3476,6 +3439,9 @@ msgstr "Dieser Kanal ist durch einen Jugendschutz-Pincode geschützt."
 
 msgid "toggle a cut mark at the current position"
 msgstr "Toggle Marker an der aktuellen Position"
+
+msgid "toggle time, chapter, audio, subtitle info"
+msgstr ""
 
 msgid "unknown service"
 msgstr "unbekannter Kanal"
@@ -3516,12 +3482,8 @@ msgstr "ja"
 msgid "yes (keep feeds)"
 msgstr "ja (Feeds behalten)"
 
-msgid ""
-"your dreambox might be unusable now. Please consult the manual for further "
-"assistance before rebooting your dreambox."
-msgstr ""
-"Ihre Dreambox könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das "
-"Handbuch bevor Sie Ihre Dreambox rebooten."
+msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
+msgstr "Ihre Dreambox könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das Handbuch bevor Sie Ihre Dreambox rebooten."
 
 msgid "zap"
 msgstr "Umschalten"
@@ -3535,55 +3497,38 @@ msgstr "umgeschaltet"
 #~ msgstr ""
 #~ "\n"
 #~ "Enigma2 wird nach der Wiederherstellung neustarten"
-
 #~ msgid "Add a new title"
 #~ msgstr "Füge neuen Titel hinzu"
-
 #~ msgid "Add title..."
 #~ msgstr "Füge Titel hinzu"
-
 #~ msgid "Burn"
 #~ msgstr "brenne"
-
 #~ msgid "Burn DVD"
 #~ msgstr "brenne DVD"
-
 #~ msgid "Burn DVD..."
 #~ msgstr "brenne DVD..."
-
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Benutzerspezifische Sprungzeit für 1/3 Tasten"
-
 #~ msgid "Edit current title"
 #~ msgstr "aktuellen Titel editieren"
-
 #~ msgid "Edit title..."
 #~ msgstr "Titel editieren..."
-
 #~ msgid "Games / Plugins"
 #~ msgstr "Spiele / Erweiterungen"
-
 #~ msgid "Movie Menu"
 #~ msgstr "Filmauswahl"
-
 #~ msgid "New DVD"
 #~ msgstr "neue DVD"
-
 #~ msgid "Remove currently selected title"
 #~ msgstr "entferne aktuell ausgewählten Titel"
-
 #~ msgid "Remove title"
 #~ msgstr "Titel entfernen"
-
 #~ msgid "Save current project to disk"
 #~ msgstr "Speichere aktuelles Projekt auf Festplatte"
-
 #~ msgid "Save..."
 #~ msgstr "speichern"
-
 #~ msgid "Startwizard"
 #~ msgstr "Startassistent"
-
 #~ msgid ""
 #~ "Unable to initialize harddisk.\n"
 #~ "Please refer to the user manual.\n"
@@ -3592,46 +3537,38 @@ msgstr "umgeschaltet"
 #~ "Konnte Festplatte nicht initialisieren.\n"
 #~ "Bitte schauen Sie in das Handbuch.\n"
 #~ "Fehler: "
-
 #~ msgid "VCR Switch"
 #~ msgstr "Videorekorderumschaltung"
-
 #~ msgid "play next playlist entry"
 #~ msgstr "nächsten Wiedergabelisteneintrag abspielen"
-
 #~ msgid "play previous playlist entry"
 #~ msgstr "vorherigen Wiedergabelisteneintrag abspielen"
-
 #~ msgid ""
 #~ "scan done!\n"
 #~ "%d services found!"
 #~ msgstr ""
 #~ "Suche beendet.\n"
 #~ "%d Kanäle gefunden."
-
 #~ msgid ""
 #~ "scan done!\n"
 #~ "No service found!"
 #~ msgstr ""
 #~ "Suche beendet.\n"
 #~ "Kein Kanal gefunden."
-
 #~ msgid ""
 #~ "scan done!\n"
 #~ "One service found!"
 #~ msgstr ""
 #~ "Suche beendet.\n"
 #~ "Ein Kanal gefunden."
-
 #~ msgid ""
 #~ "scan in progress - %d %% done!\n"
 #~ "%d services found!"
 #~ msgstr ""
 #~ "Suche läuft - %d %% erledigt!\n"
 #~ "%d Kanäle gefunden!"
-
 #~ msgid "skip backward (self defined)"
 #~ msgstr "Rückwärts springen (benutzerdefiniert)"
-
 #~ msgid "skip forward (self defined)"
 #~ msgstr "Vorwärts springen (benutzerdefiniert)"
+
