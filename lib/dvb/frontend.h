@@ -31,6 +31,7 @@ public:
 	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const;
 
 	RESULT getHash(unsigned long &) const;
+	RESULT calcLockTimeout(unsigned int &) const;
 };
 
 #ifndef SWIG
@@ -104,7 +105,7 @@ public:
 
 	RESULT getFrontendType(int &type);
 	RESULT tune(const iDVBFrontendParameters &where);
-	RESULT prepare_sat(const eDVBFrontendParametersSatellite &);
+	RESULT prepare_sat(const eDVBFrontendParametersSatellite &, unsigned int timeout);
 	RESULT prepare_cable(const eDVBFrontendParametersCable &);
 	RESULT prepare_terrestrial(const eDVBFrontendParametersTerrestrial &);
 	RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);

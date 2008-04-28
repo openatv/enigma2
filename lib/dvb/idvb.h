@@ -408,6 +408,7 @@ public:
 	
 	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT, bool exact) const = 0;
 	virtual RESULT getHash(unsigned long &SWIG_OUTPUT) const = 0;
+	virtual RESULT calcLockTimeout(unsigned int &) const = 0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontendParameters>, iDVBFrontendParametersPtr);
 
@@ -482,7 +483,7 @@ SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontend>, iDVBFrontendPtr);
 class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
-	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id)=0;
+	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id, unsigned int timeout)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id)=0;
 	virtual void setRotorMoving(bool)=0;
 };

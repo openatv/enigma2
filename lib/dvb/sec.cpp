@@ -280,7 +280,7 @@ bool need_turn_fast(int turn_speed)
 
 #define VOLTAGE(x) (lnb_param.m_increased_voltage ? iDVBFrontend::voltage##x##_5 : iDVBFrontend::voltage##x)
 
-RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int slot_id)
+RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int slot_id, unsigned int tunetimeout)
 {
 	for (int idx=0; idx <= m_lnbidx; ++idx )
 	{
@@ -788,7 +788,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			if (doSetFrontend)
 			{
-				sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, tunetimeout) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 			}
 			frontend.setSecSequence(sec_sequence);
