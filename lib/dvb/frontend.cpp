@@ -380,6 +380,37 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 	}
 }
 
+RESULT eDVBFrontendParameters::calcLockTimeout(unsigned int &timeout) const
+{
+	switch (m_type)
+	{
+	case iDVBFrontend::feSatellite:
+	{
+			/* high symbol rate transponders tune faster, due to 
+				requiring less zigzag and giving more symbols faster. 
+
+				5s are definitely not enough on really low SR when
+				zigzag has to find the exact frequency first.
+			*/
+		if (sat.symbol_rate > 20000000)
+			timeout = 5000;
+		else if (sat.symbol_rate > 10000000)
+			timeout = 10000;
+		else
+			timeout = 20000;
+		return 0;
+	}
+	case iDVBFrontend::feCable:
+		timeout = 5000;
+		return 0;
+	case iDVBFrontend::feTerrestrial:
+		timeout = 5000;
+		return 0;
+	default:
+		return -1;
+	}
+}
+
 DEFINE_REF(eDVBFrontend);
 
 int eDVBFrontend::PriorityOrder=0;
@@ -1317,9 +1348,11 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::START_TUNE_TIMEOUT:
-				m_timeout->start(5000, 1); // 5 sec timeout. TODO: symbolrate dependent
+			{
+				m_timeout->start(m_sec_sequence.current()->timeout, 1);
 				++m_sec_sequence.current();
 				break;
+			}
 			case eSecCommand::SET_TIMEOUT:
 				m_timeoutCount = m_sec_sequence.current()++->val;
 				eDebug("[SEC] set timeout %d", m_timeoutCount);
@@ -1522,7 +1555,7 @@ RESULT eDVBFrontend::getFrontendType(int &t)
 	return 0;
 }
 
-RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
+RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, unsigned int tunetimeout)
 {
 	int res;
 	if (!m_sec)
@@ -1530,7 +1563,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm)
 		eWarning("no SEC module active!");
 		return -ENOENT;
 	}
-	res = m_sec->prepare(*this, parm, feparm, 1 << m_slotid);
+	res = m_sec->prepare(*this, parm, feparm, 1 << m_slotid, tunetimeout);
 	if (!res)
 	{
 		eDebug("prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d",
@@ -1861,6 +1894,7 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 
 RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 {
+	unsigned int timeout = 5000;
 	eDebug("(%d)tune", m_dvbid);
 
 	m_timeout->stop();
@@ -1883,6 +1917,8 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	m_sn->stop();
 	m_sec_sequence.clear();
 
+	where.calcLockTimeout(timeout);
+
 	switch (m_type)
 	{
 	case feSatellite:
@@ -1895,7 +1931,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			goto tune_error;
 		}
 		m_sec->setRotorMoving(false);
-		res=prepare_sat(feparm);
+		res=prepare_sat(feparm, timeout);
 		if (res)
 			goto tune_error;
 
@@ -1913,7 +1949,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		if (res)
 			goto tune_error;
 
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 		break;
 	}
@@ -1933,7 +1969,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 		std::string enable_5V;
 		char configStr[255];
 		snprintf(configStr, 255, "config.Nims.%d.terrestrial_5V", m_slotid);
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
 		ePythonConfigQuery::getConfigValue(configStr, enable_5V);
 		if (enable_5V == "True")
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
