@@ -1,0 +1,28 @@
+<wizard>
+	<step id="welcome" nextstep="end">
+		<condition>
+packagelist = self.fillPackagesList()
+self.condition = (len(packagelist) > 1)
+		</condition>
+		<text value="Default-Wizard" />
+		<list type="dynamic" source="listDefaults" evaluation="selectionMade" />
+		<code pos="after">
+self.disableKeys = True
+		</code>
+	</step>
+	<step id="end">
+		<code>
+self.disableKeys = True			
+		</code>
+		<condition>
+packagelist = self.fillPackagesList()
+self.condition = (len(packagelist) > 0)
+		</condition>		
+		<code>
+print "len of packageslist", len(self.packageslist)
+if (len(self.packageslist) == 1):
+	self.installPackage(0)
+		</code>
+		<text value="Installing defaults... Please wait..." />
+	</step>
+</wizard>
