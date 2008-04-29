@@ -205,6 +205,8 @@ class DreamInfoHandler:
 			self.mergeServices(service["directory"], service["name"])
 				
 	def readfile(self, filename):
+		if not os.path.isfile(filename):
+			return []
 		fd = open(filename)
 		lines = fd.readlines()
 		fd.close()
