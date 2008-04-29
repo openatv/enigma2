@@ -1517,7 +1517,7 @@ RESULT eDVBDBBouquetQuery::getNextResult(eServiceReferenceDVB &ref)
 		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it =
 			m_db->m_services.find(ref);
 
-		int res = (!m_query) || it == m_db->m_services.end() || !it->second->isHidden() && it->second->checkFilter(ref, *m_query);
+		int res = (!m_query) || it == m_db->m_services.end() || !(it->second->isHidden() && it->second->checkFilter(ref, *m_query));
 
 		++m_cursor;
 
