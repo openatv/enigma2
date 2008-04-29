@@ -1160,10 +1160,15 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 			if ((unsigned int)sat.orbital_position != orbpos)
 				remove=false;
 		}
-		else if (orbpos != 0xFFFFFFFF) // do not remove -C or -T transponders when a orbital position is given..
-			remove=false;
-		if ( remove && chid.dvbnamespace != eNs && chid.dvbnamespace != ch.dvbnamespace )
-			remove=false;
+		if ( remove && chid.dvbnamespace != eNs )
+		{
+			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == 0xFFFF0000)
+				;
+			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == 0xEEEE0000)
+				;
+			else if ( chid.dvbnamespace != ch.dvbnamespace )
+				remove=false;
+		}
 		if ( remove && chid.original_network_id != eOnid && chid.original_network_id != ch.original_network_id )
 			remove=false;
 		if ( remove && chid.transport_stream_id != eTsid && chid.transport_stream_id != ch.transport_stream_id )
@@ -1249,8 +1254,15 @@ RESULT eDVBDB::removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned i
 			if ((unsigned int)sat.orbital_position != orbpos)
 				remove=false;
 		}
-		if ( remove && chid.dvbnamespace != eNs && chid.dvbnamespace != ch.dvbnamespace )
-			remove=false;
+		if ( remove && chid.dvbnamespace != eNs )
+		{
+			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == 0xFFFF0000)
+				;
+			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == 0xEEEE0000)
+				;
+			else if ( chid.dvbnamespace != ch.dvbnamespace )
+				remove=false;
+		}
 		if ( remove && chid.original_network_id != eOnid && chid.original_network_id != ch.original_network_id )
 			remove=false;
 		if ( remove && chid.transport_stream_id != eTsid && chid.transport_stream_id != ch.transport_stream_id )
