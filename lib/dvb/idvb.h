@@ -297,13 +297,14 @@ public:
 	enum
 	{
 		dxNoSDT=1,    // don't get SDT
-//nyi	dxDontshow=2,
+		dxDontshow=2,
 		dxNoDVB=4,  // dont use PMT for this service ( use cached pids )
 		dxHoldName=8,
 		dxNewFound=64,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
+	bool isHidden() const { return m_flags & dxDontshow; }
 
 	CAID_LIST m_ca;
 
