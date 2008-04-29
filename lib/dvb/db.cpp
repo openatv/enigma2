@@ -1480,14 +1480,20 @@ RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
 {
 	while (m_cursor != m_db->m_services.end())
 	{
-		ref = m_cursor->first;
+		ePtr<eDVBService> service = m_cursor->second;
+		if (service->isHidden())
+			++m_cursor;
+		else
+		{
+			ref = m_cursor->first;
 
-		int res = (!m_query) || m_cursor->second->checkFilter(ref, *m_query);
+			int res = (!m_query) || service->checkFilter(ref, *m_query);
 
-		++m_cursor;
+			++m_cursor;
 
-		if (res)
-			return 0;
+			if (res)
+				return 0;
+		}
 	}
 
 	ref.type = eServiceReference::idInvalid;
@@ -1511,7 +1517,7 @@ RESULT eDVBDBBouquetQuery::getNextResult(eServiceReferenceDVB &ref)
 		std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it =
 			m_db->m_services.find(ref);
 
-		int res = (!m_query) || it == m_db->m_services.end() || it->second->checkFilter(ref, *m_query);
+		int res = (!m_query) || it == m_db->m_services.end() || !it->second->isHidden() && it->second->checkFilter(ref, *m_query);
 
 		++m_cursor;
 
@@ -1565,7 +1571,7 @@ eDVBDBSatellitesQuery::eDVBDBSatellitesQuery(eDVBDB *db, const eServiceReference
 	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
 		it != m_db->m_services.end(); ++it)
 	{
-		int res = it->second->checkFilter(it->first, *query);
+		int res = !it->second->isHidden() && it->second->checkFilter(it->first, *query);
 		if (res)
 		{
 			unsigned int dvbnamespace = it->first.getDVBNamespace().get()&0xFFFF0000;
@@ -1612,7 +1618,7 @@ eDVBDBProvidersQuery::eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &
 	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_db->m_services.begin());
 		it != m_db->m_services.end(); ++it)
 	{
-		int res = it->second->checkFilter(it->first, *query);
+		int res = !it->second->isHidden() && it->second->checkFilter(it->first, *query);
 		if (res)
 		{
 			const char *provider_name = it->second->m_provider_name.length() ?
