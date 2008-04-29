@@ -80,7 +80,6 @@ data/fonts/Makefile
 data/countries/Makefile
 data/defaults/Makefile
 data/defaults/Dream/Makefile
-data/defaults/Dream/packages/Makefile
 data/extensions/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
