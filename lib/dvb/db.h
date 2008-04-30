@@ -58,14 +58,15 @@ public:
 
 	RESULT getBouquet(const eServiceReference &ref, eBouquet* &bouquet);
 //////
-	void saveServicelist();
 	void loadBouquet(const char *path);
 	eServiceReference searchReference(int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
 #endif
+	void loadServicelist(const char *filename);
 	static eDVBDB *getInstance() { return instance; }
 	void reloadServicelist();
+	void saveServicelist();
 	void reloadBouquets();
 };
 

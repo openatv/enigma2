@@ -260,12 +260,17 @@ void eDVBService::setCacheEntry(cacheID id, int pid)
 
 DEFINE_REF(eDVBDB);
 
-	/* THIS CODE IS BAD. it should be replaced by somethine better. */
 void eDVBDB::reloadServicelist()
 {
+	loadServicelist(CONFIGDIR"/enigma2/lamedb");
+}
+
+	/* THIS CODE IS BAD. it should be replaced by somethine better. */
+void eDVBDB::loadServicelist(const char *file)
+{
 	eDebug("---- opening lame channel db");
-	FILE *f=fopen(CONFIGDIR"/enigma2/lamedb", "rt");
-	if (!f)
+	FILE *f=fopen(file, "rt");
+	if (!f && strcmp(file, CONFIGDIR"/enigma2/lamedb") == 0)
 	{
 		struct stat s;
 		if ( !stat("lamedb", &s) )
