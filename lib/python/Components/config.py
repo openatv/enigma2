@@ -1005,10 +1005,10 @@ class ConfigSubsection(object):
 		values = dict(values)
 		
 		self.content.stored_values = values
-		
+
 		for (key, val) in self.content.items.items():
 			if key in values:
-				val.setSavedValue(values[key])
+				val.saved_value = values[key]
 
 	saved_value = property(getSavedValue, setSavedValue)
 

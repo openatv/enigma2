@@ -2,7 +2,8 @@ import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN
 from Components.NimManager import nimmanager
 from Components.Ipkg import IpkgComponent
-from enigma import eConsoleAppContainer
+from Components.config import config, configfile
+from enigma import eConsoleAppContainer, eDVBDB
 import os
 
 class InfoHandlerParseError(Exception):
@@ -214,36 +215,10 @@ class DreamInfoHandler:
 			
 	def mergeConfig(self, directory, name, merge = True):
 		print "merging config:", directory, " - ", name
-
-		newconfig = self.readfile(directory + name)
-		newconfig.sort()
-		print newconfig
-		
-		if merge:
-			oldconfig = self.readfile(resolveFilename(SCOPE_CONFIG) + "settings")
-			oldconfig.sort()
-			print oldconfig
-		else:
-			oldconfig = []
-		
-		# merge with duplicate removal through dictionary
-		mergeddict = {}
-		for list in oldconfig, newconfig:
-			for entry in list:
-				splitentry = entry.split("=")
-				if len(splitentry) != 2: # wrong entry
-					continue
-				mergeddict[splitentry[0]] = splitentry[1].strip()
-		
-		print "new:"
-		fd = open(resolveFilename(SCOPE_CONFIG) + "settings", "w")
-		for entry in mergeddict.keys():
-			print entry + "=" + mergeddict[entry]
-			fd.write(entry + "=" + mergeddict[entry] + '\n')
-		fd.close()
+		if os.path.isfile(directory + name):
+			config.loadFromFile(directory + name)
+			configfile.save()
 		self.installNext()
-		#configfile.load()
-		
 		
 	def installIPK(self, directory, name):
 		self.ipkg = IpkgComponent()
@@ -264,59 +239,13 @@ class DreamInfoHandler:
 			print "execute failed"
 			self.installNext()
 
-	def readServices(self, filename):
-		newservicesfile = self.readfile(filename)
-		
-		transponders = []
-		services = []
-		status = 0 # 0 = start, 1 = transponders, 2 = services
-		count = 0
-		while count < len(newservicesfile):
-			if status == 0:
-				if newservicesfile[count].strip() == "transponders":
-					status = 1
-			elif status == 1: # reading transponders
-				if newservicesfile[count].strip() == "end": # finished reading transponders
-					pass
-				elif newservicesfile[count].strip() == "services": # start of services section
-					status = 2
-				else:
-					transponders.append(''.join(newservicesfile[count:count + 3]))
-					count += 2
-			elif status == 2: # reading services
-				if newservicesfile[count].strip() == "end": # finished reading file
-					break
-				else:
-					services.append(''.join(newservicesfile[count:count + 3]))
-					count += 2
-			count += 1
-		return (transponders, services)
-	
 	def mergeServices(self, directory, name, merge = False):
 		print "merging services:", directory, " - ", name
 		
-		newtransponders, newservices = self.readServices(directory + name)
-		if merge:
-			oldtransponders, oldservices = self.readServices(resolveFilename(SCOPE_CONFIG) + "lamedb")
-		else:
-			oldtransponders, oldservices = [], []
-		
-		fp = open(resolveFilename(SCOPE_CONFIG) + "lamedb", "w")
-		fp.write("eDVB services /3/\n")
-		
-		fp.write("transponders\n")
-		for transponderlist in oldtransponders, newtransponders:
-			for transponder in transponderlist:
-				fp.write(transponder)
-		fp.write("end\n")
-		
-		fp.write("services\n")
-		for serviceslist in oldservices, newservices:
-			for service in serviceslist:
-				fp.write(service)
-		fp.write("end\n")
-		
-		fp.close()
+		db = eDVBDB.getInstance()
+		db.reloadServicelist()
+		db.loadServicelist(directory + name)
+		db.saveServicelist()
 		self.installNext()
 
 	def installFavourites(self, directory, name):
