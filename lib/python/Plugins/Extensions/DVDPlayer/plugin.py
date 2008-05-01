@@ -244,6 +244,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
+				iPlayableService.evStopped: self.__serviceStopped,
 				iPlayableService.evUser: self.__timeUpdated,
 				iPlayableService.evUser+1: self.__statePlay,
 				iPlayableService.evUser+2: self.__statePause,
@@ -330,8 +331,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if retval > 0:
 			self.zapToNumber(retval)
 
+	def __serviceStopped(self):
+		self.dvdScreen.hide()
+		self.service.subtitle().disableSubtitles(self.session.current_dialog.instance)
+
 	def serviceStarted(self): #override InfoBarShowHide function
-		pass
+		self.dvdScreen.show()
+		self.service.subtitle().enableSubtitles(self.dvdScreen.instance, None)
 
 	def doEofInternal(self, playing):
 		if self.in_menu:
@@ -510,15 +516,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				self.service = self.session.nav.getCurrentService()
 				print "self.service", self.service
 				print "cur_dlg", self.session.current_dialog
-				self.dvdScreen.show()
-				self.service.subtitle().enableSubtitles(self.dvdScreen.instance, None)
 
 	def exitCB(self, answer):
 		if answer is not None:
 			if answer[1] == "exit":
 				if self.service:
-					self.dvdScreen.hide()
-					self.service.subtitle().disableSubtitles(self.session.current_dialog.instance)
 					self.service = None
 				self.close()
 			if answer[1] == "browser":
