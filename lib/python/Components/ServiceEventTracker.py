@@ -1,6 +1,10 @@
 class InfoBarBase:
-	def __init__(self):
-		ServiceEventTracker.setActiveInfoBar(self)
+	def __init__(self, steal_current_service = False):
+		if steal_current_service:
+			ServiceEventTracker.setActiveInfoBar(self, None, None)
+		else:
+			nav = self.session.nav
+			ServiceEventTracker.setActiveInfoBar(self, not steal_current_service and nav.getCurrentService(), nav.getCurrentlyPlayingServiceReference())
 		self.onClose.append(self.__close)
 
 	def __close(self):
@@ -10,6 +14,7 @@ class ServiceEventTracker:
 	"""Tracks service events into a screen"""
 	InfoBarStack = [ ]
 	InfoBarStackSize = 0
+	oldService = None
 
 	def __init__(self, screen, eventmap):
 		self.__eventmap = eventmap
@@ -22,17 +27,29 @@ class ServiceEventTracker:
 
 	def __event(self, ev):
 		set = ServiceEventTracker
-		ssize = set.InfoBarStackSize
-		stack = set.InfoBarStack
+		screen = self.screen
+		nav = screen.session.nav
+		cur_ref = nav.getCurrentlyPlayingServiceReference()
+		old_service_running = set.oldRef and cur_ref and cur_ref == set.oldRef and set.oldService and set.oldService == str(nav.getCurrentService())
+		if not old_service_running:
+			set.oldService = None
+			set.oldRef = None
+#		print "old_service_running", old_service_running
 		if ev in self.__eventmap:
-			if not isinstance(self.screen, InfoBarBase) or (ssize and stack[ssize-1] == self.screen):
+			ssize = set.InfoBarStackSize
+			stack = set.InfoBarStack
+			if (not isinstance(screen, InfoBarBase) or # let pass all events to screens not derived from InfoBarBase
+				(not old_service_running and ssize and stack[ssize-1] == screen) or # let pass events from currently running service just to current active screen (derived from InfoBarBase)
+				(old_service_running and ssize > 1 and stack[ssize-2] == screen)): # let pass events from old running service just to previous active screen (derived from InfoBarBase)
 				self.__eventmap[ev]()
 #			else:
 #				print "ignore event", ev, "for inactive infobar '" + str(self.screen) + "'"
 
 	@staticmethod
-	def setActiveInfoBar(infobar):
+	def setActiveInfoBar(infobar, old_service, old_ref):
 		set = ServiceEventTracker
+		set.oldRef = old_ref
+		set.oldService = old_service and str(old_service)
 		assert infobar not in set.InfoBarStack, "FATAL: Infobar '" + str(infobar) + "' is already active!"
 		set.InfoBarStack.append(infobar)
 		set.InfoBarStackSize += 1
