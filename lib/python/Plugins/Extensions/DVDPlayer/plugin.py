@@ -389,28 +389,28 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		print "StringAvail"
 
 	def __osdAudioInfoAvail(self):
-		audioString = self.service.info().getInfoString(iPlayableService.evUser+6)
+		audioString = self.service.info().getInfoString(iServiceInformation.sUser+6)
 		print "AudioInfoAvail "+audioString
 		self["audioLabel"].setText(audioString)
 		if not self.in_menu:
 			self.doShow()
 
 	def __osdSubtitleInfoAvail(self):
-		subtitleString = self.service.info().getInfoString(iPlayableService.evUser+7)
+		subtitleString = self.service.info().getInfoString(iServiceInformation.sUser+7)
 		print "SubtitleInfoAvail "+subtitleString
 		self["subtitleLabel"].setText(subtitleString)
 		if not self.in_menu:
 			self.doShow()
 
 	def __chapterUpdated(self):
-		self.currentChapter = self.service.info().getInfo(iPlayableService.evUser+8)
-		self.totalChapters = self.service.info().getInfo(iPlayableService.evUser+80)
+		self.currentChapter = self.service.info().getInfo(iServiceInformation.sUser+8)
+		self.totalChapters = self.service.info().getInfo(iServiceInformation.sUser+80)
 		self.setChapterLabel()
 		print "__chapterUpdated: %d/%d" % (self.currentChapter, self.totalChapters)
 
 	def __titleUpdated(self):
-		self.currentTitle = self.service.info().getInfo(iPlayableService.evUser+9)
-		self.totalTitles = self.service.info().getInfo(iPlayableService.evUser+90)
+		self.currentTitle = self.service.info().getInfo(iServiceInformation.sUser+9)
+		self.totalTitles = self.service.info().getInfo(iServiceInformation.sUser+90)
 		self.setChapterLabel()
 		print "__titleUpdated: %d/%d" % (self.currentTitle, self.totalTitles)
 		if not self.in_menu:
@@ -454,13 +454,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def enterDVDMenu(self):
 		if self.service:
 			self.service.keys().keyPressed(iServiceKeys.keyUser+7)
-			
+
 	def seekBeginning(self):
 		if self.service:
 			seekable = self.getSeek()
 			if seekable is not None:
 				seekable.seekTo(0)
-				
+
 	def zapToNumber(self, number):
 		if self.service:
 			seekable = self.getSeek()
