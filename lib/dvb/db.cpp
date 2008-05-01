@@ -1167,9 +1167,9 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 		}
 		if ( remove && chid.dvbnamespace != eNs )
 		{
-			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == 0xFFFF0000)
+			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == (int)0xFFFF0000)
 				;
-			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == 0xEEEE0000)
+			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == (int)0xEEEE0000)
 				;
 			else if ( chid.dvbnamespace != ch.dvbnamespace )
 				remove=false;
@@ -1261,9 +1261,9 @@ RESULT eDVBDB::removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned i
 		}
 		if ( remove && chid.dvbnamespace != eNs )
 		{
-			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == 0xFFFF0000)
+			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == (int)0xFFFF0000)
 				;
-			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == 0xEEEE0000)
+			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == (int)0xEEEE0000)
 				;
 			else if ( chid.dvbnamespace != ch.dvbnamespace )
 				remove=false;
