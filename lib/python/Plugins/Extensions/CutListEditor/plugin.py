@@ -171,7 +171,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		Screen.__init__(self, session)
 		InfoBarSeek.__init__(self, actionmap = "CutlistSeekActions")
 		InfoBarCueSheetSupport.__init__(self)
-		InfoBarBase.__init__(self)
+		InfoBarBase.__init__(self, steal_current_service = True)
 		HelpableScreen.__init__(self)
 		self.old_service = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
