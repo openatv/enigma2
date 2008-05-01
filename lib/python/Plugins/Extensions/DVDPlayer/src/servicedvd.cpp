@@ -411,32 +411,30 @@ int eServiceDVD::getInfo(int w)
 		case sTracknumber:
 		case sGenre:
 			return resIsString;  // then getInfoString should be called
-		case evUser+8:
+		case sUser+8:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.pos_chapter;
 		}
-		case evUser+80:
+		case sUser+80:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.end_chapter;
 		}
-
-		case evUser+9:
+		case sUser+9:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.pos_title;
 		}
-		case evUser+90:
+		case sUser+90:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.end_title;
 		}
-
 		case sTXTPID:	// we abuse HAS_TELEXT icon in InfoBar to signalize subtitles status
 		{
 			int spu_id;
@@ -453,7 +451,7 @@ std::string eServiceDVD::getInfoString(int w)
 {
 	switch(w)
 	{
-		case evUser+7: {
+		case sUser+7: {
 			int spu_id;
 			uint16_t spu_lang;
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
@@ -466,7 +464,7 @@ std::string eServiceDVD::getInfoString(int w)
 // 			lbo_changed=1;
 			return osd;
 			}
-		case evUser+6:
+		case sUser+6:
 			{
 			int audio_id,audio_type;
 			uint16_t audio_lang;
