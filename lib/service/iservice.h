@@ -420,8 +420,8 @@ public:
 		   audio will be switched off, sync will be disabled etc. */
 	virtual RESULT setTrickmode(int trick=0)=0;
 	virtual RESULT isCurrentlySeekable()=0;
-	virtual RESULT seekChapter(int chapter) { return -1; }
-	virtual RESULT seekTitle(int chapter) { return -1; }
+	virtual RESULT seekChapter(int) { return -1; }
+	virtual RESULT seekTitle(int) { return -1; }
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iSeekableService>, iSeekableServicePtr);
 
