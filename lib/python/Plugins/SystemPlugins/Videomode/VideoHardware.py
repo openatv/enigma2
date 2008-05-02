@@ -59,6 +59,8 @@ class VideoHardware:
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
 		self.standby = False
+		self.current_mode = None
+		self.current_port = None
 
 		self.readAvailableModes()
 
@@ -133,6 +135,7 @@ class VideoHardware:
 		print "setMode - port:", port, "mode:", mode, "rate:", rate
 		# we can ignore "port"
 		self.current_mode = mode
+		self.current_port = port
 		modes = self.rates[mode][rate]
 
 		mode_50 = modes.get(50)
@@ -307,7 +310,7 @@ class VideoHardware:
 			else:
 				fb = "low"
 		else:
-			if config.av.videoport.value == "Scart" and config.av.colorformat.value == "rgb":
+			if self.current_port == "Scart" and config.av.colorformat.value == "rgb":
 				fb = "high"
 			else:
 				fb = "low"
