@@ -931,15 +931,7 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
-	if (m_video_clip_fd >= 0)
-	{
-		if (ioctl(m_video_clip_fd, VIDEO_STOP, 1) < 0)
-			eDebug("VIDEO_STOP failed (%m)");
-		if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
-			eDebug("VIDEO_SELECT_SOURCE DEMUX failed (%m)");
-		close(m_video_clip_fd);
-		m_video_clip_fd = -1;
-	}
+	finishShowSinglePic();
 	m_vpid = m_apid = m_pcrpid = m_textpid = pidNone;
 	m_changed = -1;
 	setState();
