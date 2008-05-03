@@ -26,6 +26,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <errno.h>
 
 	/* these are quite new... */
@@ -919,14 +921,25 @@ RESULT eTSMPEGDecoder::setAC3Delay(int delay)
 	return -1;
 }
 
-eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder): m_demux(demux), m_changed(0), m_decoder(decoder)
+eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
+	:m_demux(demux), m_changed(0), m_decoder(decoder), m_video_clip_fd(-1), m_showSinglePicTimer(eApp)
 {
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event_conn);
+	CONNECT(m_showSinglePicTimer.timeout, eTSMPEGDecoder::finishShowSinglePic);
 	m_is_ff = m_is_sm = m_is_trickmode = 0;
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
+	if (m_video_clip_fd >= 0)
+	{
+		if (ioctl(m_video_clip_fd, VIDEO_STOP, 1) < 0)
+			eDebug("VIDEO_STOP failed (%m)");
+		if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
+			eDebug("VIDEO_SELECT_SOURCE DEMUX failed (%m)");
+		close(m_video_clip_fd);
+		m_video_clip_fd = -1;
+	}
 	m_vpid = m_apid = m_pcrpid = m_textpid = pidNone;
 	m_changed = -1;
 	setState();
@@ -1141,61 +1154,43 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 {
 	if (m_decoder == 0)
 	{
-		FILE *f = fopen(filename, "r");
+		eDebug("showSinglePic %s", filename);
+		int f = open(filename, O_RDONLY);
 		if (f)
 		{
-			int vfd = open("/dev/dvb/adapter0/video0", O_RDWR);
-			if (vfd > 0)
+			struct stat s;
+			fstat(f, &s);
+			if (m_video_clip_fd == -1)
+				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY|O_NONBLOCK);
+			if (m_video_clip_fd >= 0)
 			{
-				fseek(f, 0, SEEK_END);
-				int length = ftell(f);
-				unsigned char *buffer = new unsigned char[length*2+9];
-				if (ioctl(vfd, VIDEO_FAST_FORWARD, 1) < 0)
-					eDebug("VIDEO_FAST_FORWARD failed (%m)");
-				if (ioctl(vfd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
+				bool seq_end_avail = false;
+				size_t pos=0;
+				unsigned char pes_header[] = { 0x00, 0x00, 0x01, 0xE0, 0x00, 0x00, 0x80, 0x00, 0x00 };
+				unsigned char seq_end[] = { 0x00, 0x00, 0x01, 0xB7 };
+				unsigned char iframe[s.st_size];
+				unsigned char stuffing[8192];
+				memset(stuffing, 0, 8192);
+				read(f, iframe, s.st_size);
+				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
 					eDebug("VIDEO_SELECT_SOURCE MEMORY failed (%m)");
-				if (ioctl(vfd, VIDEO_PLAY) < 0)
+				if (ioctl(m_video_clip_fd, VIDEO_PLAY) < 0)
 					eDebug("VIDEO_PLAY failed (%m)");
-				if (::ioctl(vfd, VIDEO_CONTINUE) < 0)
+				if (::ioctl(m_video_clip_fd, VIDEO_CONTINUE) < 0)
 					eDebug("video: VIDEO_CONTINUE: %m");
-				int cnt=0;
-				int pos=0;
-				while(cnt<2)
-				{
-					int rd;
-					fseek(f, 0, SEEK_SET);
-					if (!cnt)
-					{
-						buffer[pos++]=0;
-						buffer[pos++]=0;
-						buffer[pos++]=1;
-						buffer[pos++]=0xE0;
-						buffer[pos++]=(length*2)>>8;
-						buffer[pos++]=(length*2)&0xFF;
-						buffer[pos++]=0x80;
-						buffer[pos++]=0;
-						buffer[pos++]=0;
-					}
-					while(1)
-					{
-						rd = fread(buffer+pos, 1, length, f);
-						if (rd > 0)
-							pos += rd;
-						else
-							break;
-					}
-					++cnt;
-				}
-				write(vfd, buffer, pos);
-				usleep(75000);  // i dont like this.. but i dont have a better solution :(
-				if (ioctl(vfd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
-					eDebug("VIDEO_SELECT_SOURCE DEMUX failed (%m)");
-				if (ioctl(vfd, VIDEO_FAST_FORWARD, 0) < 0)
-					eDebug("VIDEO_FAST_FORWARD failed (%m)");
-				close(vfd);
-				delete [] buffer;
+				if (::ioctl(m_video_clip_fd, VIDEO_CLEAR_BUFFER) < 0)
+					eDebug("video: VIDEO_CLEAR_BUFFER: %m");
+				while(pos <= (s.st_size-4) && !(seq_end_avail = (!iframe[pos] && !iframe[pos+1] && iframe[pos+2] == 1 && iframe[pos+3] == 0xB7)))
+					++pos;
+				if ((iframe[3] >> 4) != 0xE) // no pes header
+					write(m_video_clip_fd, pes_header, sizeof(pes_header));
+				write(m_video_clip_fd, iframe, s.st_size);
+				if (!seq_end_avail)
+					write(m_video_clip_fd, seq_end, sizeof(seq_end));
+				write(m_video_clip_fd, stuffing, 8192);
+				m_showSinglePicTimer.start(150, true);
 			}
-			fclose(f);
+			close(f);
 		}
 		else
 		{
@@ -1209,6 +1204,19 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 		return -1;
 	}
 	return 0;
+}
+
+void eTSMPEGDecoder::finishShowSinglePic()
+{
+	if (m_video_clip_fd >= 0)
+	{
+		if (ioctl(m_video_clip_fd, VIDEO_STOP, 0) < 0)
+			eDebug("VIDEO_STOP failed (%m)");
+		if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
+				eDebug("VIDEO_SELECT_SOURCE DEMUX failed (%m)");
+		close(m_video_clip_fd);
+		m_video_clip_fd = -1;
+	}
 }
 
 RESULT eTSMPEGDecoder::connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &conn)
