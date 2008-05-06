@@ -869,7 +869,11 @@ void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, e
 void fillDictWithCableData(ePyObject dict, const FRONTENDPARAMETERS &parm)
 {
 	const char *tmp=0;
+#if HAVE_DVB_API_VERSION < 3
+	PutToDict(dict, "frequency", parm_frequency);
+#else
 	PutToDict(dict, "frequency", parm_frequency/1000);
+#endif
 	PutToDict(dict, "symbol_rate", parm_u_qam_symbol_rate);
 	switch(parm_u_qam_fec_inner)
 	{
@@ -1671,7 +1675,11 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 
 RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 {
+#if HAVE_DVB_API_VERSION < 3
+	parm_frequency = feparm.frequency;
+#else
 	parm_frequency = feparm.frequency * 1000;
+#endif
 	parm_u_qam_symbol_rate = feparm.symbol_rate;
 	switch (feparm.modulation)
 	{
