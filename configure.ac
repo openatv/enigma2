@@ -135,6 +135,7 @@ lib/components/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
+enigma2.pc
 ])
 
 #lib/python/Plugins/Extensions/SimpleRSS/Makefile
