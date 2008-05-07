@@ -282,9 +282,8 @@ void eDVBAudio::setChannel(int channel)
 
 int eDVBAudio::getPTS(pts_t &now)
 {
-	eDebugNoNewLine("AUDIO_GET_PTS - ");
 	if (::ioctl(m_fd, AUDIO_GET_PTS, &now) < 0)
-		eDebug("failed (%m)");
+		eDebug("AUDIO_GET_PTS failed (%m)");
 	return 0;
 }
 
