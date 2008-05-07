@@ -285,8 +285,6 @@ int eDVBAudio::getPTS(pts_t &now)
 	eDebugNoNewLine("AUDIO_GET_PTS - ");
 	if (::ioctl(m_fd, AUDIO_GET_PTS, &now) < 0)
 		eDebug("failed (%m)");
-	else
-		eDebug("ok");
 	return 0;
 }
 
