@@ -164,8 +164,11 @@ class VideoHardware:
 
 	def saveMode(self, port, mode, rate):
 		config.av.videoport.value = port
+		config.av.videoport.save()
 		config.av.videomode[port].value = mode
+		config.av.videomode[port].save()
 		config.av.videorate[mode].value = rate
+		config.av.videorate[mode].save()
 
 	def isPortAvailable(self, port):
 		# fixme
