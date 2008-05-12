@@ -482,6 +482,8 @@ class TunerScreen(ScanSetup):
 					pol = "CL"
 				elif x[3] == 3:
 					pol = "CR"
+				else:
+					pol = "??"
 				if x[4] == 0:
 					fec = "FEC_AUTO"
 				elif x[4] == 1:
@@ -494,10 +496,18 @@ class TunerScreen(ScanSetup):
 					fec = "FEC_5_6"
 				elif x[4] == 5:
 					fec = "FEC_7_8"
-				elif x[4] == 5:
-					fec = "FEC_8_9"
 				elif x[4] == 6:
+					fec = "FEC_8_9"
+				elif x[4] == 7:
+					fec = "FEC_3_5"
+				elif x[4] == 8:
+					fec = "FEC_4_5"
+				elif x[4] == 9:
+					fec = "FEC_9_10"
+				elif x[4] == 15:
 					fec = "FEC_None"
+				else:
+					fec = "FEC_Unknown"
 				tps.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
 			tuning.transponder = ConfigSelection(choices=tps)
 
