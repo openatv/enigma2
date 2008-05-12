@@ -46,12 +46,13 @@ class VideoHardware:
 		"1366x768" : { 60: "1366x768"},
 		"1366x768 multi" : { 50: "1366x768", 60: "1366x768_50"},
 		"1280x768": { 60: "1280x768"},
-		"640x480" : { 60: "640x480"} 
+		"640x480" : { 60: "640x480"}
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
 	modes["YPbPr"] = ["720p", "1080i"]
 	modes["DVI"] = ["720p", "1080i", "PC"]
+	modes["DVI-PC"] = ["PC"]
 
 	widescreen_modes = set(["720p", "1080i"])
 
