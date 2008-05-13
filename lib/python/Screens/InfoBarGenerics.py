@@ -1636,7 +1636,7 @@ class InfoBarSubserviceSelection:
 				if newservice.valid():
 					del subservices
 					del service
-					self.session.nav.playService(newservice)
+					self.session.nav.playService(newservice, False)
 
 	def subserviceSelection(self):
 		service = self.session.nav.getCurrentService()
@@ -1676,7 +1676,7 @@ class InfoBarSubserviceSelection:
 					self.session.open(SubservicesQuickzap, service[2])
 			else:
 				self["SubserviceQuickzapAction"].setEnabled(True)
-				self.session.nav.playService(service[1])
+				self.session.nav.playService(service[1], False)
 
 	def addSubserviceToBouquetCallback(self, service):
 		if len(service) > 1 and isinstance(service[1], eServiceReference):

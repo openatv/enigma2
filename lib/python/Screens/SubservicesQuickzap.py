@@ -112,7 +112,7 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, In
 	
 	def quit(self, answer):
 		if answer:
-			self.session.nav.playService(self.restoreService)
+			self.session.nav.playService(self.restoreService, False)
 			self.close()
 		
 	def playSubservice(self, number = 0):
@@ -121,7 +121,7 @@ class SubservicesQuickzap(InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, In
 			del self.subservices
 			del self.service
 			self.lastservice = self.currentlyPlayingSubservice
-			self.session.nav.playService(newservice)
+			self.session.nav.playService(newservice, False)
 			self.currentlyPlayingSubservice = number
 			self.currentSubserviceNumberLabel.setText(str(number))
 			self.doShow()
