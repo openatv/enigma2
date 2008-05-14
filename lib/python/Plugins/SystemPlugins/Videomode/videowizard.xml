@@ -119,6 +119,8 @@ self.rateSelect("50Hz")
 	<step id="end">
 		<code>
 self.hw.saveMode(self.port, self.mode, self.rate)
+from Components.config import configfile
+configfile.save() 
 		</code>
 		<text value="The input port should be configured now.\nYou can now configure the screen by displaying some test pictures. Do you want to do that now?" />
 		<!--text value="You have successfully finished the video setup. If you want to change the settings later, you can do this in the settings menu."/-->
