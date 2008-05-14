@@ -1279,10 +1279,7 @@ class InfoBarPlugins:
 # depends on InfoBarExtensions
 class InfoBarSleepTimer:
 	def __init__(self):
-		self.addExtension((self.getSleepTimerName, self.showSleepTimerSetup, self.available), "1")
-
-	def available(self):
-		return True
+		self.addExtension((self.getSleepTimerName, self.showSleepTimerSetup, lambda: True), "1")
 
 	def getSleepTimerName(self):
 		return _("Sleep Timer")
@@ -1295,12 +1292,9 @@ class InfoBarPiP:
 	def __init__(self):
 		self.session.pipshown = False
 		if SystemInfo.get("NumVideoDecoders", 1) > 1:
-			self.addExtension((self.getShowHideName, self.showPiP, self.available), "blue")
+			self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 			self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 			self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
-
-	def available(self):
-		return SystemInfo.get("NumVideoDecoders", 1) > 1
 
 	def pipShown(self):
 		return self.session.pipshown
