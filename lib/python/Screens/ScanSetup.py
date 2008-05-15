@@ -84,10 +84,12 @@ def getInitialTransponderList(tlist, pos):
 			parm.symbol_rate = x[2]
 			parm.polarisation = x[3]
 			parm.fec = x[4]
-			parm.inversion = 2 # AUTO
+			parm.inversion = x[7]
 			parm.orbital_position = pos
 			parm.system = x[5]
 			parm.modulation = x[6]
+			parm.rolloff = x[8]
+			parm.pilot = x[9]
 			tlist.append(parm)
 
 def getInitialCableTransponderList(tlist, nim):
@@ -335,6 +337,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		
 		self.typeOfScanEntry = None
 		self.systemEntry = None
+		self.modulationEntry = None
 		nim = nimmanager.nim_slots[index_to_scan]
 		if nim.isCompatible("DVB-S"):
 			self.typeOfScanEntry = getConfigListEntry(_("Type of scan"), self.scan_type)
@@ -364,7 +367,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
 				elif self.scan_sat.system.value == "dvb-s2":
 					self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
-					self.list.append(getConfigListEntry(_('Modulation'), self.scan_sat.modulation))
+					self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
+					self.list.append(self.modulationEntry)
+					self.list.append(getConfigListEntry(_('Rolloff'), self.scan_sat.rolloff))
+					if self.scan_sat.modulation.value == "8psk":
+						self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
 				self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 			elif self.scan_type.value == "single_satellite":
 				self.updateSatList()
@@ -438,7 +445,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		print "cur is", cur
 		if cur == self.typeOfScanEntry or \
 			cur == self.tunerEntry or \
-			cur == self.systemEntry:
+			cur == self.systemEntry or \
+			(self.modulationEntry and self.systemEntry[1].value == "dvb-s2" and cur == self.modulationEntry):
 			self.createSetup()
 
 	def createConfig(self, frontendData):
@@ -482,10 +490,12 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					defaultSat["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData.get("inversion", "INVERSION_AUTO")]
 					defaultSat["symbolrate"] = int(frontendData.get("symbol_rate", 0) / 1000)
 					defaultSat["polarization"] = {"HORIZONTAL": "horizontal", "VERTICAL": "vertical", "CIRCULAR_LEFT": "circular_left", "CIRCULAR_RIGHT": "circular_right", "UNKNOWN": None}[frontendData.get("polarization", "HORIZONTAL")]
-					
+
 					if frontendData.get("system", "DVB-S") == "DVB-S2":
 						defaultSat["fec_s2"] = {"FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_4_5": "4_5", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_9_10": "9_10"} \
 											[frontendData.get("fec_inner", "FEC_AUTO")]
+						defaultSat["rolloff"] = {"ROLLOFF_0_35" : "0_35", "ROLLOFF_0_25" : "0_25", "0_20" : "ROLLOFF_0_20"}[frontendData.get("rolloff", "ROLLOFF_0_35")]
+						defaultSat["pilot"] = {"PILOT_ON" : "on", "PILOT_OFF" : "off", "PILOT_AUTO" : "auto"}[frontendData.get("pilot", "PILOT_AUTO")]
 					else:
 						defaultSat["fec"] = {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_NONE": "none"} \
 							[frontendData.get("fec_inner", "FEC_AUTO")]
@@ -534,6 +544,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_sat.fec = ConfigSelection(default = defaultSat["fec"], choices = [("auto", _("Auto")), ("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("5_6", "5/6"), ("7_8", "7/8"), ("none", _("None"))])
 			self.scan_sat.fec_s2 = ConfigSelection(default = defaultSat["fec_s2"], choices = [("1_2", "1/2"), ("2_3", "2/3"), ("3_4", "3/4"), ("3_5", "3/5"), ("4_5", "4/5"), ("5_6", "5/6"), ("7_8", "7/8"), ("8_9", "8/9"), ("9_10", "9/10")])
 			self.scan_sat.modulation = ConfigSelection(default = defaultSat["modulation"], choices = [("qpsk", "QPSK"), ("8psk", "8PSK")])
+			self.scan_sat.rolloff = ConfigSelection(default = defaultSat.get("rolloff", "0_35"), choices = [("0_35", "0.35"), ("0_25", "0.25"), ("0_20", "0.20")])
+			self.scan_sat.pilot = ConfigSelection(default = defaultSat.get("pilot", "auto"), choices = [("off", _("off")), ("on", _("on")), ("auto", _("Auto"))])
 
 			# cable
 			self.scan_cab.frequency = ConfigInteger(default = defaultCab["frequency"], limits = (50, 999))
@@ -593,8 +605,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			   "none": 15
 			   }
 
-	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system, modulation):
-		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(self.fecmap[fec]) + " inversion: " + str(inversion) + " modulation: " + str(modulation) + " system: " + str(system)
+	def addSatTransponder(self, tlist, frequency, symbol_rate, polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot):
+		print "Add Sat: frequ: " + str(frequency) + " symbol: " + str(symbol_rate) + " pol: " + str(polarisation) + " fec: " + str(self.fecmap[fec]) + " inversion: " + str(inversion) + " modulation: " + str(modulation) + " system: " + str(system) + " rolloff" + str(rolloff) + " pilot" + str(pilot)
 		print "orbpos: " + str(orbital_position)
 		parm = eDVBFrontendParametersSatellite()
 		if modulation == 1:
@@ -608,6 +620,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		parm.fec = self.fecmap[fec]
 		parm.inversion = inversion
 		parm.orbital_position = int(orbital_position)
+		parm.rolloff = int(rolloff)
+		parm.pilot = int(pilot)
 		tlist.append(parm)
 
 	def addCabTransponder(self, tlist, frequency, symbol_rate, modulation, fec, inversion):
@@ -662,7 +676,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 								self.scan_sat.inversion.index,
 								orbpos,
 								self.scan_sat.system.index,
-								self.scan_sat.modulation.index)
+								self.scan_sat.modulation.index,
+								self.scan_sat.rolloff.index,
+								self.scan_sat.pilot.index)
 				flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
 				extFlags = False
 			elif self.scan_type.value == "single_satellite":

@@ -327,8 +327,9 @@ void eDVBDB::loadServicelist(const char *file)
 				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
 					system=eDVBFrontendParametersSatellite::System::DVB_S,
 					modulation=eDVBFrontendParametersSatellite::Modulation::QPSK,
-					rolloff=eDVBFrontendParametersSatellite::RollOff::alpha_auto;
-				sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff);
+					rolloff=eDVBFrontendParametersSatellite::RollOff::alpha_0_35,
+					pilot=eDVBFrontendParametersSatellite::Pilot::Unknown;
+				sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff, &pilot);
 				sat.frequency = frequency;
 				sat.symbol_rate = symbol_rate;
 				sat.polarisation = polarisation;
@@ -338,7 +339,8 @@ void eDVBDB::loadServicelist(const char *file)
 				sat.inversion = inversion;
 				sat.system = system;
 				sat.modulation = modulation;
-				sat.roll_off = rolloff;
+				sat.rolloff = rolloff;
+				sat.pilot = pilot;
 				feparm->setDVBS(sat);
 			} else if (line[1]=='t')
 			{
@@ -484,14 +486,18 @@ void eDVBDB::saveServicelist()
 		{
 			if (sat.system == eDVBFrontendParametersSatellite::System::DVB_S2)
 			{
-				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d\n",
+				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d",
 					sat.frequency, sat.symbol_rate,
 					sat.polarisation, sat.fec,
 					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
 					sat.inversion,
 					sat.system,
 					sat.modulation,
-					sat.roll_off);
+					sat.rolloff);
+				if (sat.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK)
+					fprintf(f, ":%d\n", sat.pilot);
+				else
+					fprintf(f, "\n");
 			}
 			else
 			{
@@ -766,7 +772,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 		return Py_False;
 	}
 	int tmp, *dest = NULL,
-		modulation, system, freq, sr, pol, fec;
+		modulation, system, freq, sr, pol, fec, inv, pilot, rolloff;
 	char *end_ptr;
 	const Attribute *at;
 	std::string name;
@@ -828,6 +834,9 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				sr = 0;
 				pol = -1;
 				fec = 0; // AUTO default
+				inv = 2; // AUTO default
+				pilot = 2; // AUTO default
+				rolloff = 0; // alpha 0.35
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
 //					eDebug("\t\tattr: %s", at->name().c_str());
@@ -839,6 +848,9 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					else if (name == "symbol_rate") dest = &sr;
 					else if (name == "polarization") dest = &pol;
 					else if (name == "fec_inner") dest = &fec;
+					else if (name == "inversion") dest = &inv;
+					else if (name == "rolloff") dest = &rolloff;
+					else if (name == "pilot") dest = &pilot;
 					if (dest)
 					{
 						tmp = strtol(at->value().c_str(), &end_ptr, 10);
@@ -848,7 +860,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				}
 				if (freq && sr && pol != -1)
 				{
-					tuple = PyTuple_New(7);
+					tuple = PyTuple_New(10);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
 					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(sr));
@@ -856,6 +868,9 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					PyTuple_SET_ITEM(tuple, 4, PyInt_FromLong(fec));
 					PyTuple_SET_ITEM(tuple, 5, PyInt_FromLong(system));
 					PyTuple_SET_ITEM(tuple, 6, PyInt_FromLong(modulation));
+					PyTuple_SET_ITEM(tuple, 7, PyInt_FromLong(inv));
+					PyTuple_SET_ITEM(tuple, 8, PyInt_FromLong(rolloff));
+					PyTuple_SET_ITEM(tuple, 9, PyInt_FromLong(pilot));
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}

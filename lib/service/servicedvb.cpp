@@ -166,15 +166,25 @@ void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &fe
 		default:
 		case eDVBFrontendParametersSatellite::System::DVB_S: tmp="DVB-S"; break;
 		case eDVBFrontendParametersSatellite::System::DVB_S2:
-			switch(feparm.roll_off)
+			switch(feparm.rolloff)
 			{
+				default:
 				case eDVBFrontendParametersSatellite::RollOff::alpha_0_35: tmp="0.35"; break;
 				case eDVBFrontendParametersSatellite::RollOff::alpha_0_25: tmp="0.25"; break;
 				case eDVBFrontendParametersSatellite::RollOff::alpha_0_20: tmp="0.20"; break;
-				default:
-				case eDVBFrontendParametersSatellite::RollOff::alpha_auto: tmp="AUTO"; break;
 			}
 			PutToDict(dict, "roll off", tmp);
+			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK)
+			{
+				switch(feparm.pilot)
+				{
+					case eDVBFrontendParametersSatellite::Pilot::On: tmp="ON"; break;
+					case eDVBFrontendParametersSatellite::Pilot::Off: tmp="OFF"; break;
+					default:
+					case eDVBFrontendParametersSatellite::Pilot::Unknown: tmp="AUTO"; break;
+				}
+				PutToDict(dict, "pilot", tmp);
+			}
 			tmp="DVB-S2";
 			break;
 	}

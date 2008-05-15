@@ -37,14 +37,21 @@ struct eDVBFrontendParametersSatellite
 			Auto, QPSK, M8PSK, QAM_16
 		};
 	};
-	struct RollOff {  // dvb-s2
+	// dvb-s2
+	struct RollOff {
 		enum {
-			alpha_0_35, alpha_0_25, alpha_0_20, alpha_auto
+			alpha_0_35, alpha_0_25, alpha_0_20
+		};
+	};
+	// only 8psk
+	struct Pilot {  
+		enum {
+			Off, On, Unknown
 		};
 	};
 	bool no_rotor_command_on_tune;
 	unsigned int frequency, symbol_rate;
-	int polarisation, fec, inversion, orbital_position, system, modulation, roll_off;
+	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersSatellite);
 
