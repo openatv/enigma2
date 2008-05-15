@@ -214,8 +214,6 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 					service.data[0] = 0;
 					list.push_back(service);
 				}
-				else
-					eDebug("unhandled extension %s", extension.c_str());
 			}
 		}
 	}
