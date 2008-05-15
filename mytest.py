@@ -606,6 +606,11 @@ profile("Init:CI")
 import Screens.Ci
 Screens.Ci.InitCiConfig()
 
+#from enigma import dump_malloc_stats
+#t = eTimer()
+#t.callback.append(dump_malloc_stats)
+#t.start(1000)
+
 # first, setup a screen
 try:
 	runScreenTest()

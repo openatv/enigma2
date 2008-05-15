@@ -292,3 +292,10 @@ const char *getEnigmaVersionString()
 #endif
 			"-" __DATE__;
 }
+#include <malloc.h>
+
+void dump_malloc_stats(void)
+{
+	struct mallinfo mi = mallinfo();
+	printf("MALLOC: %d total\n", mi.uordblks);
+}
