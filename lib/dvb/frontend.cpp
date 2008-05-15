@@ -125,6 +125,7 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 	if ( fec != FEC::fNone && fec > FEC::f9_10 )
 		fec = FEC::fAuto;
 	inversion = Inversion::Unknown;
+	pilot = Pilot::Unknown;
 	orbital_position  = ((descriptor.getOrbitalPosition() >> 12) & 0xF) * 1000;
 	orbital_position += ((descriptor.getOrbitalPosition() >> 8) & 0xF) * 100;
 	orbital_position += ((descriptor.getOrbitalPosition() >> 4) & 0xF) * 10;
@@ -138,16 +139,16 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 		eDebug("satellite_delivery_descriptor non valid modulation type.. force QPSK");
 		modulation=QPSK;
 	}
-	roll_off = descriptor.getRollOff();
+	rolloff = descriptor.getRollOff();
 	if (system == System::DVB_S2)
 	{
-		eDebug("SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, roll_off %d",
+		eDebug("SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, rolloff %d",
 			frequency,
 			polarisation ? "hor" : "vert",
 			orbital_position,
 			symbol_rate, fec,
 			modulation,
-			roll_off);
+			rolloff);
 	}
 	else
 	{
@@ -861,8 +862,43 @@ void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, e
 	PutToDict(dict, "modulation", "QPSK" );
 #endif
 	PutToDict(dict, "fec_inner", tmp);
-	tmp = parm_u_qpsk_fec_inner > FEC_AUTO ?
-		"DVB-S2" : "DVB-S";
+	if (parm_u_qpsk_fec_inner > FEC_AUTO)
+	{
+		switch(parm_inversion & 0xc)
+		{
+		default: // unknown rolloff
+		case 0: // 0.35
+			tmp = "ROLLOFF_0_35";
+			break;
+		case 4: // 0.25
+			tmp = "ROLLOFF_0_25";
+			break;
+		case 8: // 0.20
+			tmp = "ROLLOFF_0_20";
+			break;
+		}
+		PutToDict(dict, "rolloff", tmp);
+		if (parm_u_qpsk_fec_inner > FEC_S2_QPSK_9_10)
+		{
+			switch(parm_inversion & 0x30)
+			{
+			case 0: // pilot off
+				tmp = "PILOT_OFF";
+				break;
+			case 0x10: // pilot on
+				tmp = "PILOT_ON";
+				break;
+			case 0x20: // pilot auto
+				tmp = "PILOT_AUTO";
+				break;
+			}
+			PutToDict(dict, "pilot", tmp);
+		}
+		tmp = "DVB-S2";
+	}
+	else
+		tmp = "DVB-S";
+
 	PutToDict(dict, "system", tmp);
 }
 
@@ -1657,9 +1693,12 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 					eDebug("no valid fec for DVB-S2 set.. abort !!");
 					return -EINVAL;
 			}
-			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK)
+			parm_inversion |= (feparm.rolloff << 2); // Hack.. we use bit 2..3 of inversion param for rolloff
+			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK) {
 				parm_u_qpsk_fec_inner = (fe_code_rate_t)((int)parm_u_qpsk_fec_inner+9);
 				// 8PSK fec driver values are decimal 9 bigger
+				parm_inversion |= (feparm.pilot << 4); // Hack.. we use bit 4..5 of inversion param for pilot
+			}
 		}
 #endif
 		// FIXME !!! get frequency range from tuner

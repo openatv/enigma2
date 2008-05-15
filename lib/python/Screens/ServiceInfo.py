@@ -132,16 +132,17 @@ class ServiceInfo(Screen):
 		else:
 			if self.transponder_info:
 				conv = { "type" 			: _("Transponder Type"),
+						 "system"			: _("System"),
+						 "modulation"		: _("Modulation"),
+						 "orbital position" : _("Orbital Position"),
 						 "frequency"		: _("Frequency"),
 						 "symbolrate"		: _("Symbolrate"),
-						 "orbital position" : _("Orbital Position"),
-						 "inversion"		: _("Inversion"),
-						 "fec inner"		: _("FEC"),
-						 "modulation"		: _("Modulation"),
-						 "polarization"		: _("Polarization"),
-						 "roll off"			: _("Rolloff"),
-						 "system"			: _("System"),
 						 "bandwidth"		: _("Bandwidth"),
+						 "polarization"		: _("Polarization"),
+						 "inversion"		: _("Inversion"),
+						 "pilot"			: _("Pilot"),
+						 "roll off"			: _("Rolloff"),
+						 "fec inner"		: _("FEC"),
 						 "code rate lp"		: _("Coderate LP"),
 						 "code rate hp"		: _("Coderate HP"),
 						 "constellation"	: _("Constellation"),
@@ -190,7 +191,9 @@ class ServiceInfo(Screen):
 							("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
 							("Polarization", frontendData["polarization"], TYPE_TEXT),
 							("Inversion", frontendData["inversion"], TYPE_TEXT),
-							("FEC inner", frontendData["fec_inner"], TYPE_TEXT))
+							("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
+							("Pilot", frontendData.get("pilot", None), TYPE_TEXT),
+							("Rolloff", frontendData.get("rolloff", None), TYPE_TEXT))
 			elif frontendData["tuner_type"] == "DVB-C":
 				return (("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
 						("Type", frontendData["tuner_type"], TYPE_TEXT),
@@ -217,6 +220,8 @@ class ServiceInfo(Screen):
 		tlist = [ ]
 
 		for item in Labels:
+			if item[1] is None:
+				continue;
 			value = item[1]
 			if len(item) < 4:
 				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2]))
