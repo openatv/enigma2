@@ -17,6 +17,7 @@ SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
 SCOPE_DEFAULTDIR = 13
 SCOPE_DEFAULTPARTITION = 14
+SCOPE_DEFAULTPARTITIONMOUNTDIR = 14
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -40,6 +41,7 @@ defaultPaths = {
 		
 		SCOPE_DEFAULTDIR: ("/usr/share/enigma2/defaults/", PATH_CREATE),
 		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock/4", PATH_DONTCREATE),
+		SCOPE_DEFAULTPARTITIONMOUNTDIR: ("/usr/share/enigma2/dealer", PATH_CREATE),
 	}
 
 FILE_COPY = 0 # copy files from fallback dir to the basedir
