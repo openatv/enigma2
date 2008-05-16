@@ -1,8 +1,9 @@
-from Wizard import Wizard, wizardManager
-from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_DEFAULTDIR
+from Wizard import wizardManager
+from Screens.WizardLanguage import WizardLanguage
+from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTPARTITION
 
 from Components.Pixmap import Pixmap, MovingPixmap
-from Components.config import config, ConfigBoolean, configfile
+from Components.config import config, ConfigBoolean, configfile, ConfigYesNo, getConfigListEntry
 from Components.DreamInfoHandler import DreamInfoHandler, InfoHandler, InfoHandlerParseError
 import os
 
@@ -10,13 +11,15 @@ config.misc.defaultchosen = ConfigBoolean(default = True)
 
 import xml.sax
 
-class DefaultWizard(Wizard, DreamInfoHandler):
-	def __init__(self, session):
+class DefaultWizard(WizardLanguage, DreamInfoHandler):
+	def __init__(self, session, silent = True):
 		DreamInfoHandler.__init__(self, self.statusCallback)
-		self.directory = resolveFilename(SCOPE_DEFAULTDIR)
+		self.silent = silent
+		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
+		self.directory = resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)
 		self.xmlfile = "defaultwizard.xml"
         
-		Wizard.__init__(self, session, showSteps = False)
+		WizardLanguage.__init__(self, session, showSteps = False)
 		self["wizard"] = Pixmap()
 		self["rc"] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
@@ -31,19 +34,42 @@ class DefaultWizard(Wizard, DreamInfoHandler):
 	def statusCallback(self, status, progress):
 		print "statusCallback:", status, progress
 		if status == DreamInfoHandler.STATUS_DONE:
-			self["text"].setText(_("Finished"))
+			self["text"].setText(_("The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."))
 			self.markDone()
-			os.system("killall -9 enigma2")
+			self.disableKeys = False
 
-	def listDefaults(self):
+	def getConfigList(self):
 		self.packageslist = []
+		configList = []
 		self.fillPackagesList()
-		list = []
+		self.packagesConfig = []
 		for x in range(len(self.packageslist)):
-			list.append((self.packageslist[x][0]["attributes"]["name"], str(x)))
-		print "defaults list:", list
-		return list
-    
-	def selectionMade(self, index):
-		print "selected:", index
-		self.installPackage(int(index))
+			entry = ConfigYesNo()
+			self.packagesConfig.append(entry)
+			configList.append(getConfigListEntry(self.packageslist[x][0]["attributes"]["name"], entry))
+		return configList
+
+	def selectionMade(self):
+		print "selection made"
+		#self.installPackage(int(index))
+		indexList = []
+		for x in range(len(self.packagesConfig)):
+			if self.packagesConfig[x].value:
+				indexList.append(x)
+		self.installPackages(indexList)
+		
+class ImageDefaultInstaller(DreamInfoHandler):
+	def __init__(self):
+		DreamInfoHandler.__init__(self, self.statusCallback, blocking = True)
+		self.directory = resolveFilename(SCOPE_DEFAULTDIR)
+		self.fillPackagesList()
+		self.installPackage(0)
+		
+	def statusCallback(self, status, progress):
+		pass
+		
+wizardManager.registerWizard(DefaultWizard, config.misc.defaultchosen.value, priority = 6)
+if config.misc.defaultchosen.value:
+	print "Installing image defaults"
+	installer = ImageDefaultInstaller()
+	print "installing done!"
