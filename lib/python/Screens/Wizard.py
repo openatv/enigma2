@@ -3,7 +3,7 @@ from Screen import Screen
 import string
 
 from Screens.HelpMenu import HelpableScreen
-from Components.config import config
+from Components.config import config, KEY_LEFT, KEY_RIGHT
 from Components.Label import Label
 from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
@@ -104,12 +104,19 @@ class Wizard(Screen, HelpableScreen):
 			elif (name == "listentry"):
 				self.wizard[self.lastStep]["list"].append((str(attrs.get('caption')), str(attrs.get('step'))))
 			elif (name == "config"):
-				exec "from Screens." + str(attrs.get('module')) + " import *"
-				self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
-				if (attrs.has_key('args')):
-					print "has args"
-					self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
-				self.wizard[self.lastStep]["config"]["type"] = str(attrs.get('type'))
+				type = str(attrs.get('type'))
+				self.wizard[self.lastStep]["config"]["type"] = type
+				if type == "ConfigList" or type == "standalone":
+					exec "from Screens." + str(attrs.get('module')) + " import *"
+				
+					self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
+					if (attrs.has_key('args')):
+						print "has args"
+						self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
+				elif type == "dynamic":
+					self.wizard[self.lastStep]["config"]["source"] = str(attrs.get('source'))
+					if (attrs.has_key('evaluation')):
+						self.wizard[self.lastStep]["config"]["evaluation"] = str(attrs.get('evaluation'))
 			elif (name == "code"):
 				if attrs.has_key('pos') and str(attrs.get('pos')) == "after":
 					self.codeafter = True
@@ -268,7 +275,11 @@ class Wizard(Screen, HelpableScreen):
 
 		if self.updateValues not in self.onShown:
 			self.onShown.append(self.updateValues)
-
+			
+		if self.showConfig:
+			if self.wizard[currStep]["config"]["type"] == "dynamic":
+				eval("self." + self.wizard[currStep]["config"]["evaluation"])()
+			
 		if self.showList:
 			if (len(self.wizard[currStep]["evaluatedlist"]) > 0):
 				print "current:", self["list"].current
@@ -321,17 +332,21 @@ class Wizard(Screen, HelpableScreen):
 		self.resetCounter()
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self.configInstance.keyLeft()
+		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
+			self["config"].handleKey(KEY_LEFT)
 		print "left"
 	
 	def right(self):
 		self.resetCounter()
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self.configInstance.keyRight()
+		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
+			self["config"].handleKey(KEY_RIGHT)	
 		print "right"
 
 	def up(self):
 		self.resetCounter()
-		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None  or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 				self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			self["list"].selectPrevious()
@@ -344,7 +359,7 @@ class Wizard(Screen, HelpableScreen):
 		
 	def down(self):
 		self.resetCounter()
-		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
+		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None  or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			#self["list"].instance.moveSelection(self["list"].instance.moveDown)
@@ -460,8 +475,13 @@ class Wizard(Screen, HelpableScreen):
 				self["list"].hide()
 	
 			if self.showConfig:
+				print "showing config"
 				self["config"].instance.setZPosition(1)
-				if (self.wizard[self.currStep]["config"]["screen"] != None):
+				if self.wizard[self.currStep]["config"]["type"] == "dynamic":
+						print "config type is dynamic"
+						self["config"].instance.setZPosition(2)
+						self["config"].l.setList(eval("self." + self.wizard[self.currStep]["config"]["source"])())
+				elif (self.wizard[self.currStep]["config"]["screen"] != None):
 					if self.wizard[self.currStep]["config"]["type"] == "standalone":
 						print "Type is standalone"
 						self.session.openWithCallback(self.ok, self.wizard[self.currStep]["config"]["screen"])
