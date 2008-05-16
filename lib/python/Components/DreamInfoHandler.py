@@ -97,8 +97,14 @@ class DreamInfoHandler:
 	STATUS_ERROR = 2
 	STATUS_INIT = 4
 	
-	def __init__(self, statusCallback):
+	def __init__(self, statusCallback, blocking = False):
 		self.directory = "/"
+		
+		# caution: blocking should only be used, if further execution in enigma2 depends on the outcome of
+		# the installer!
+		self.blocking = blocking
+		
+		self.currentlyInstallingMetaIndex = None
 		
 		self.console = eConsoleAppContainer()
 		self.console.appClosed.get().append(self.installNext)
@@ -107,7 +113,7 @@ class DreamInfoHandler:
 		self.setStatus(self.STATUS_INIT)
 				
 		self.packageslist = []
-	
+			
 	def readInfo(self, directory, file):
 		print "Reading .info file", file
 		handler = InfoHandler(self.prerequisiteMet, directory)
@@ -146,7 +152,17 @@ class DreamInfoHandler:
 				# TODO: hardware detection
 				met = True
 		return True
-			
+	
+	def installPackages(self, indexes):
+		print "installing packages", indexes
+		if len(indexes) == 0:
+			self.setStatus(self.STATUS_DONE)
+			return
+		self.installIndexes = indexes
+		print "+++++++++++++++++++++++bla"
+		self.currentlyInstallingMetaIndex = 0
+		self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
+
 	def installPackage(self, index):
 		print "installing package with index", index, "and name", self.packageslist[index][0]["attributes"]["name"]
 		
@@ -164,10 +180,15 @@ class DreamInfoHandler:
 	def installNext(self, *args, **kwargs):
 		self.currentIndex += 1
 		attributes = self.installingAttributes
+		#print "attributes:", attributes
 		
-		if self.currentAttributeIndex >= len(self.attributeNames): # end reached
-			self.setStatus(self.STATUS_DONE)
-			return
+		if self.currentAttributeIndex >= len(self.attributeNames): # end of package reached
+			if self.currentlyInstallingMetaIndex is None or self.currentlyInstallingMetaIndex >= len(self.installIndexes) - 1:
+				self.setStatus(self.STATUS_DONE)
+				return
+			else:
+				self.currentlyInstallingMetaIndex += 1
+				self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
 		
 		self.setStatus(self.STATUS_WORKING)		
 		
@@ -221,9 +242,13 @@ class DreamInfoHandler:
 		self.installNext()
 		
 	def installIPK(self, directory, name):
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
-		self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': directory + name})
+		if self.blocking:
+			os.system("ipkg install " + directory + name)
+			self.installNext()
+		else:
+			self.ipkg = IpkgComponent()
+			self.ipkg.addCallback(self.ipkgCallback)
+			self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': directory + name})
 		
 	def ipkgCallback(self, event, param):
 		print "ipkgCallback"
@@ -235,9 +260,13 @@ class DreamInfoHandler:
 	def installSkin(self, directory, name):
 		print "installing skin:", directory, " - ", name
 		print "cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))
-		if self.console.execute("cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))):
-			print "execute failed"
+		if self.blocking:
+			os.system("cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN)))
 			self.installNext()
+		else:
+			if self.console.execute("cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))):
+				print "execute failed"
+				self.installNext()
 
 	def mergeServices(self, directory, name, merge = False):
 		print "merging services:", directory, " - ", name
@@ -251,6 +280,10 @@ class DreamInfoHandler:
 	def installFavourites(self, directory, name):
 		print "installing favourites:", directory, " - ", name
 
-		if self.console.execute("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG))):
-			print "execute failed"
+		if self.blocking:
+			os.system("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG)))
 			self.installNext()
+		else:
+			if self.console.execute("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG))):
+				print "execute failed"
+				self.installNext()
