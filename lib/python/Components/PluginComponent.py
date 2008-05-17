@@ -80,7 +80,7 @@ class PluginComponent:
 		# build a diff between the old list of plugins and the new one
 		# internally, the "fnc" argument will be compared with __eq__
 		plugins_added = [p for p in new_plugins if p not in self.pluginList]
-		plugins_removed = [p for p in self.pluginList if p not in new_plugins]
+		plugins_removed = [p for p in self.pluginList if not p.internal and p not in new_plugins]
 
 		for p in plugins_removed:
 			self.removePlugin(p)
@@ -94,6 +94,7 @@ class PluginComponent:
 		if type(where) is not list:
 			where = [ where ]
 		res = [ ]
+
 		for x in where:
 			for p in self.plugins.get(x, [ ]):
 				res.append(p)
