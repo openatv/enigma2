@@ -24,6 +24,8 @@ def getType(file):
 			return "application/x-debian-package"
 		elif ext == "ogg":
 			return "application/ogg"
+		elif ext == "dmpkg":
+			return "application/x-dream-package"
 	return type
 
 class Scanner:

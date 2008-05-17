@@ -5,6 +5,8 @@ from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_DEFAULTDIR,
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.config import config, ConfigBoolean, configfile, ConfigYesNo, getConfigListEntry
 from Components.DreamInfoHandler import DreamInfoHandler, InfoHandler, InfoHandlerParseError
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 import os
 
 config.misc.defaultchosen = ConfigBoolean(default = True)
@@ -15,9 +17,7 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 	def __init__(self, session, silent = True):
 		DreamInfoHandler.__init__(self, self.statusCallback)
 		self.silent = silent
-		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
-		self.directory = resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)
-		self.xmlfile = "defaultwizard.xml"
+		self.setDirectory()
         
 		WizardLanguage.__init__(self, session, showSteps = False)
 		self["wizard"] = Pixmap()
@@ -25,6 +25,11 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 		self["arrowdown"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
 		self["arrowup2"] = MovingPixmap()
+	
+	def setDirectory(self):
+		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
+		self.directory = resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)
+		self.xmlfile = "defaultwizard.xml"
         
 	def markDone(self):
 		config.misc.defaultchosen.value = 0
@@ -58,6 +63,17 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 				indexList.append(x)
 		self.installPackages(indexList)
 		
+class DreamPackageWizard(DefaultWizard):
+	def __init__(self, session, packagefile, silent = False):
+		os.system("mkdir /tmp/package")
+		os.system("tar xpzf %s -C /tmp/package" % packagefile)
+		self.packagefile = packagefile
+		DefaultWizard.__init__(self, session, silent)
+		
+	def setDirectory(self):
+		self.directory = "/tmp/package"
+		self.xmlfile = "dreampackagewizard.xml"
+		
 class ImageDefaultInstaller(DreamInfoHandler):
 	def __init__(self):
 		DreamInfoHandler.__init__(self, self.statusCallback, blocking = True)
@@ -67,8 +83,40 @@ class ImageDefaultInstaller(DreamInfoHandler):
 		
 	def statusCallback(self, status, progress):
 		pass
-		
+
+def install(choice):
+	if choice is not None:
+		#os.system("mkdir /tmp/package && tar xpzf %s ")
+		choice[2].open(DreamPackageWizard, choice[1])
+
+def filescan_open(list, session, **kwargs):
+	from Screens.ChoiceBox import ChoiceBox
+	print "open default wizard"
+	filelist = [(os.path.split(x.path)[1], x.path, session) for x in list]
+	print filelist
+	session.openWithCallback(install, ChoiceBox, title = _("Please choose he package..."), list=filelist)
+
+def filescan(**kwargs):
+	from Components.Scanner import Scanner, ScanPath
+	from mimetypes import add_type
+	add_type("application/x-dream-package", "dmpkg")
+	return \
+		Scanner(mimetypes = ["application/x-dream-package"], 
+			paths_to_scan = 
+				[
+					ScanPath(path = "dmpkg", with_subdirs = True), 
+					ScanPath(path = "", with_subdirs = False), 
+				], 
+			name = "Dream-Package", 
+			description = "Install settings, skins, software...", 
+			openfnc = filescan_open, )
+
+print "add dreampackage scanner plugin"
+plugins.addPlugin(PluginDescriptor(name="Dream-Package", where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan, internal = True))
+print "added"
+
 wizardManager.registerWizard(DefaultWizard, config.misc.defaultchosen.value, priority = 6)
+
 if config.misc.defaultchosen.value:
 	print "Installing image defaults"
 	installer = ImageDefaultInstaller()
