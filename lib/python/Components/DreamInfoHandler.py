@@ -203,6 +203,7 @@ class DreamInfoHandler:
 				self.installNext()
 				return
 		else: # nothing to install here
+			self.currentIndex = -1
 			self.currentAttributeIndex += 1
 			self.installNext()
 			return
