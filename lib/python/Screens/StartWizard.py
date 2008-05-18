@@ -2,11 +2,14 @@ from Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
 
 from Components.Pixmap import Pixmap, MovingPixmap
-from Components.config import config, ConfigBoolean, configfile
+from Components.config import config, ConfigBoolean, configfile, ConfigSubsection
 
 from LanguageSelection import LanguageSelection
 
 config.misc.firstrun = ConfigBoolean(default = True)
+config.misc.startwizard = ConfigSubsection()
+config.misc.startwizard.shownimconfig = ConfigBoolean(default = True)
+config.misc.startwizard.doservicescan = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
 
 class StartWizard(WizardLanguage):
