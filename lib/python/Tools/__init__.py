@@ -1,2 +1,1 @@
-import RedirectTime
 import RedirectOutput
