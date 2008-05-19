@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 23:30+0200\n"
-"PO-Revision-Date: 2008-03-29 13:31+0100\n"
+"POT-Creation-Date: 2008-05-19 15:07+0200\n"
+"PO-Revision-Date: 2008-05-08 01:20+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,9 @@ msgstr ""
 "X-Poedit-Language: Spanish\n"
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid " "
+msgstr " "
 
 msgid "#000000"
 msgstr "#000000"
@@ -76,6 +79,9 @@ msgstr "(ZAPEAR)"
 
 msgid "(empty)"
 msgstr "(vacío)"
+
+msgid "(show optional DVD audio menu)"
+msgstr "(muestra ménu de audio de DVD)"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "directorio /usr/share/enigma2"
@@ -153,7 +159,7 @@ msgid "5 minutes"
 msgstr "5 minutos"
 
 msgid "50 Hz"
-msgstr ""
+msgstr "50 Hz"
 
 msgid "6"
 msgstr "6"
@@ -255,7 +261,7 @@ msgstr ""
 "¿Desactivar TV y probar otra vez?\n"
 
 msgid "A/V Settings"
-msgstr "Config A/V"
+msgstr "Configurar A/V"
 
 msgid "AA"
 msgstr "AA"
@@ -282,7 +288,7 @@ msgid "About..."
 msgstr "Acerca de..."
 
 msgid "Action on long powerbutton press"
-msgstr "Acción al dejar pulsado el botón de encendido"
+msgstr "Acción dejando pulsado el encendido"
 
 msgid "Activate Picture in Picture"
 msgstr "Activar PiP"
@@ -296,8 +302,14 @@ msgstr "Añadir"
 msgid "Add a mark"
 msgstr "Añadir marca"
 
+msgid "Add a new title"
+msgstr "Añadir un nuevo título"
+
 msgid "Add timer"
 msgstr "Grabar"
+
+msgid "Add title..."
+msgstr "Añadir título..."
 
 msgid "Add to bouquet"
 msgstr "Añadir a la lista"
@@ -423,22 +435,31 @@ msgid "Begin time"
 msgstr "Hora inicio"
 
 msgid "Behavior of 'pause' when paused"
-msgstr "Comportamiento de \"pausa\" cuando está parado"
+msgstr "Tecla \"pausa\" cuando está parado"
 
 msgid "Behavior of 0 key in PiP-mode"
-msgstr "Comportamiento del 0 en el modo PiP"
+msgstr "Tecla 0 en el modo PiP"
 
 msgid "Behavior when a movie is started"
-msgstr "Comportamiento cuando una película ha comenzado"
+msgstr "Cuando una película ha comenzado"
 
 msgid "Behavior when a movie is stopped"
-msgstr "Comportamiento cuando una película ha parado"
+msgstr "Cuando una película ha parado"
 
 msgid "Behavior when a movie reaches the end"
-msgstr "Comportamiento cuando una película ha terminado"
+msgstr "Cuando una película ha terminado"
 
 msgid "Brightness"
 msgstr "Brillo"
+
+msgid "Burn"
+msgstr "Grabar"
+
+msgid "Burn DVD"
+msgstr "Grabar DVD"
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -506,14 +527,20 @@ msgstr "Canal:"
 msgid "Channellist menu"
 msgstr "Menú lista de canales"
 
+msgid "Chap."
+msgstr "Cap."
+
+msgid "Chapter"
+msgstr "Capítulo"
+
+msgid "Chapter:"
+msgstr "Capítulo:"
+
 msgid "Check"
 msgstr "Checkear"
 
 msgid "Checking Filesystem..."
 msgstr "Chequear sistema de archivos..."
-
-msgid "Choose Location"
-msgstr "Elegir localización"
 
 msgid "Choose Tuner"
 msgstr "Elije Sintonizador"
@@ -553,6 +580,9 @@ msgstr "Velocidad de código LP"
 
 msgid "Color Format"
 msgstr "Formato de Color"
+
+msgid "Command execution..."
+msgstr "Ejecución comando:"
 
 msgid "Command order"
 msgstr "Orden de comando"
@@ -603,6 +633,9 @@ msgstr ""
 msgid "Constellation"
 msgstr "Constelación"
 
+msgid "Continue playing"
+msgstr "Reproducción contínua"
+
 msgid "Contrast"
 msgstr "Contraste"
 
@@ -616,7 +649,7 @@ msgid "Croatian"
 msgstr "Croata"
 
 msgid "Current Transponder"
-msgstr "Transpondedor actual"
+msgstr "Transponder actual"
 
 msgid "Current settings:"
 msgstr "Configuración actual:"
@@ -634,7 +667,7 @@ msgid "Custom skip time for '7'/'9'-keys"
 msgstr "Tiempo a pasar para las teclas '7'/'9'"
 
 msgid "Customize"
-msgstr "Parametrizar"
+msgstr "Configurar"
 
 msgid "Cut"
 msgstr "Cortar"
@@ -651,6 +684,24 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD ENTER key"
+msgstr "DVD tecla ENTER"
+
+msgid "DVD Player"
+msgstr "Reproductor DVD"
+
+msgid "DVD down key"
+msgstr "DVD tecla abajo"
+
+msgid "DVD left key"
+msgstr "DVD tecla izda"
+
+msgid "DVD right key"
+msgstr "DVD tecla dcha"
+
+msgid "DVD up key"
+msgstr "DVD tecla arriba"
+
 msgid "Danish"
 msgstr "Danés"
 
@@ -660,7 +711,7 @@ msgstr "Fecha"
 msgid "Deep Standby"
 msgstr "Reposo profundo"
 
-msgid "Default-Wizard"
+msgid "Default settings"
 msgstr ""
 
 msgid "Delay"
@@ -737,14 +788,14 @@ msgid "Display 4:3 content as"
 msgstr "Visualice los contenidos 4:3 como"
 
 msgid "Display Setup"
-msgstr "Configurar Display"
+msgstr "Configurar Pantalla"
 
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \""
 msgstr ""
 "Seguro que quiere BORRAR\n"
-"el plugin \""
+"el complemento \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -762,7 +813,7 @@ msgid ""
 "the plugin \""
 msgstr ""
 "Seguro que quiere descargar\n"
-"el plugin \""
+"el complemento \""
 
 msgid "Do you really want to exit?"
 msgstr "¿Realmente quiere salir?"
@@ -821,7 +872,7 @@ msgid "Download Plugins"
 msgstr "Descargar Plugins"
 
 msgid "Downloadable new plugins"
-msgstr "Nuevos plugins descargables"
+msgstr "Nuevos complementos descargables"
 
 msgid "Downloadable plugins"
 msgstr "Plugins descargables"
@@ -830,7 +881,7 @@ msgid "Downloading"
 msgstr "Descargando"
 
 msgid "Downloading plugin information. Please wait..."
-msgstr "Descargando información del plugin. Espere..."
+msgstr "Descargando información del complemento. Espere..."
 
 msgid "Dutch"
 msgstr "Alemán"
@@ -848,8 +899,14 @@ msgstr "ERROR - ¡falló la búsqueda (%s)!"
 msgid "East"
 msgstr "Este"
 
+msgid "Edit current title"
+msgstr "Editar título actual"
+
 msgid "Edit services list"
 msgstr "Editar la lista de canales"
+
+msgid "Edit title..."
+msgstr "Editar título..."
 
 msgid "Electronic Program Guide"
 msgstr "Guía de Programación Electrónica"
@@ -928,6 +985,9 @@ msgstr "Progreso de ejecución:"
 msgid "Execution finished!!"
 msgstr "¡Ejecución terminó!"
 
+msgid "Exit"
+msgstr "Salir"
+
 msgid "Exit editor"
 msgstr "Salir del editor"
 
@@ -950,7 +1010,10 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "Factory reset"
-msgstr ""
+msgstr "Reinicio de fábrica"
+
+msgid "Failed"
+msgstr "Falló"
 
 msgid "Fast"
 msgstr "Rápido"
@@ -976,11 +1039,14 @@ msgstr "El sistema de archivos contiene errores graves"
 msgid "Finetune"
 msgstr "Ajuste fino"
 
+msgid "Finished"
+msgstr "Terminado"
+
 msgid "Finnish"
 msgstr "Finlandés"
 
 msgid "Frame repeat count during non-smooth winding"
-msgstr "Contador de tramas repetidas sin problemas de reproducción"
+msgstr "Contador de tramas sin problemas de sombras"
 
 msgid "French"
 msgstr "Francés"
@@ -1033,7 +1099,7 @@ msgid "German"
 msgstr "Alemán"
 
 msgid "Getting plugin information. Please wait..."
-msgstr "Leyendo información del plugin. Espere..."
+msgstr "Leyendo información del complemento. Espere..."
 
 msgid "Goto 0"
 msgstr "Ir a 0"
@@ -1081,7 +1147,7 @@ msgid "Icelandic"
 msgstr "Islandés"
 
 msgid "If you can see this page, please press OK."
-msgstr ""
+msgstr "Si quiere ver esta página, pulse OK."
 
 msgid ""
 "If you see this, something is wrong with\n"
@@ -1112,6 +1178,9 @@ msgstr ""
 
 msgid "Image-Upgrade"
 msgstr "Imagen-Actualización"
+
+msgid "In Progress"
+msgstr "En Progreso"
 
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
@@ -1153,6 +1222,12 @@ msgstr "Instalando"
 msgid "Installing Software..."
 msgstr "Instalando Software..."
 
+msgid "Installing defaults... Please wait..."
+msgstr "Instalando por defecto... Espere..."
+
+msgid "Installing package content... Please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr "Grabación instantánea..."
 
@@ -1176,6 +1251,12 @@ msgstr "Visualización invertida"
 
 msgid "Italian"
 msgstr "Italiano"
+
+msgid "Job View"
+msgstr "Ver Trabajo"
+
+msgid "Jump to video title 1 (play movie from start)"
+msgstr "Saltar al título 1 (reproducción desde el principio)"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -1213,6 +1294,9 @@ msgstr "Última velocidad"
 
 msgid "Latitude"
 msgstr "Latitud"
+
+msgid "Leave DVD Player?"
+msgstr "Dejar el Reproductor de DVD?"
 
 msgid "Left"
 msgstr "Izda"
@@ -1276,7 +1360,7 @@ msgid "Manual Scan"
 msgstr "Búsqueda Manual"
 
 msgid "Manual transponder"
-msgstr "Transpondedor manual"
+msgstr "Transponder manual"
 
 msgid "Margin after record"
 msgstr "Margen después de grabar"
@@ -1396,6 +1480,9 @@ msgstr "Red..."
 msgid "New"
 msgstr "Nuevo"
 
+msgid "New DVD"
+msgstr "DVD nuevo"
+
 msgid "New pin"
 msgstr "Nuevo pin"
 
@@ -1409,7 +1496,7 @@ msgid "No"
 msgstr "No"
 
 msgid "No 50 Hz, sorry. :("
-msgstr ""
+msgstr "Lo siento pero no hay 50 Hz. :("
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "¡HDD no encontrado o no inicializado!"
@@ -1437,7 +1524,7 @@ msgstr ""
 "de nuevo."
 
 msgid "No picture on TV? Press EXIT and retry."
-msgstr ""
+msgstr "No hay imagen en la TV? Pulse SALIR y reintente"
 
 msgid "No positioner capable frontend found."
 msgstr "No he encontrado motor capaz"
@@ -1586,6 +1673,9 @@ msgstr "PiPConfig"
 msgid "Pillarbox"
 msgstr "Pillarbox"
 
+msgid "Pilot"
+msgstr ""
+
 msgid "Pin code needed"
 msgstr "Necesario código pin"
 
@@ -1606,6 +1696,9 @@ msgstr "Por favor, cambie la finalización de la grabación"
 
 msgid "Please choose an extension..."
 msgstr "Por favor, elija una extensión..."
+
+msgid "Please choose he package..."
+msgstr ""
 
 msgid "Please do not change values when you not know what you do!"
 msgstr "¡Por favor no cambie valores cuando no sepa lo que hace!"
@@ -1629,7 +1722,7 @@ msgid "Please enter the old pin code"
 msgstr "Por favor ponga el pin antiguo"
 
 msgid "Please follow the instructions on the TV"
-msgstr ""
+msgstr "Siga las instrucciones en la TV"
 
 msgid "Please press OK!"
 msgstr "Por favor, pulse OK"
@@ -1674,7 +1767,7 @@ msgid "Please wait... Loading list..."
 msgstr "Espere... Cargando lista..."
 
 msgid "Plugin browser"
-msgstr "Plugin navegador"
+msgstr "Navegador de plugins"
 
 msgid "Plugins"
 msgstr "Plugins"
@@ -1722,7 +1815,7 @@ msgid "Power threshold in mA"
 msgstr "Potencia in mA"
 
 msgid "Predefined transponder"
-msgstr "Transpondedor predefinido"
+msgstr "Transponder predefinido"
 
 msgid "Preparing... Please wait"
 msgstr "Preparando... Por favor espere"
@@ -1830,7 +1923,7 @@ msgid "Refresh Rate"
 msgstr "Velocidad de refresco"
 
 msgid "Refresh rate selection."
-msgstr ""
+msgstr "Selección de velocidad de refresco."
 
 msgid "Remove Plugins"
 msgstr "Borrar Plugins"
@@ -1838,8 +1931,14 @@ msgstr "Borrar Plugins"
 msgid "Remove a mark"
 msgstr "Borrar una marca"
 
+msgid "Remove currently selected title"
+msgstr "Borrar el título seleccionado"
+
 msgid "Remove plugins"
-msgstr "Borrar plugins"
+msgstr "Borrar complmentos"
+
+msgid "Remove title"
+msgstr "Borrar el título"
 
 msgid "Rename"
 msgstr "Renombrar"
@@ -1890,6 +1989,9 @@ msgstr "Continuar desde la última posición"
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Continuar reproducción"
+
+msgid "Return to file browser"
+msgstr "Volver al visor de ficheros"
 
 msgid "Return to movie list"
 msgstr "Volver a la lista de películas"
@@ -1947,6 +2049,12 @@ msgstr "Sábado"
 
 msgid "Save Playlist"
 msgstr "Guardar lista de reproducción"
+
+msgid "Save current project to disk"
+msgstr "Guardar el proyecto actual a disco"
+
+msgid "Save..."
+msgstr "Guardar..."
 
 msgid "Scaling Mode"
 msgstr "Modo de búsqueda"
@@ -2045,13 +2153,13 @@ msgid "Select channel to record from"
 msgstr "Seleccione canal a grabar"
 
 msgid "Select refresh rate"
-msgstr ""
+msgstr "Seleccionar la velocidad de refresco"
 
 msgid "Select video input"
-msgstr ""
+msgstr "Seleccionar la entrada de video"
 
 msgid "Select video mode"
-msgstr ""
+msgstr "Seleccionar el modo de video"
 
 msgid "Sequence repeat"
 msgstr "Repetir secuencia"
@@ -2063,7 +2171,7 @@ msgid "Service Scan"
 msgstr "Búsqueda de canal"
 
 msgid "Service Searching"
-msgstr "Buscando Canal"
+msgstr "Buscando Canales"
 
 msgid "Service has been added to the favourites."
 msgstr "El canal ha sido añadido a los favoritos."
@@ -2188,7 +2296,7 @@ msgid "Slow Motion speeds"
 msgstr "Velocidades lentas"
 
 msgid "Some plugins are not available:\n"
-msgstr "Algunos plugins no están disponibles:\n"
+msgstr "Algunos complementos no están disponibles:\n"
 
 msgid "Somewhere else"
 msgstr "En alguna parte"
@@ -2355,6 +2463,17 @@ msgid ""
 "You can now configure the screen by displaying some test pictures. Do you "
 "want to do that now?"
 msgstr ""
+"El puerto de entrada debe ser configurado ahora.\n"
+"Quiere configurar la pantalla visualizando algunas imágenes. Quiere hacer "
+"esto ahora?"
+
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your Dreambox by pressing the OK button on the remote control."
+msgstr ""
+
+msgid "The package doesn't contain anything."
+msgstr ""
 
 msgid "The pin code has been changed successfully."
 msgstr "El pin ha sido cambiado correctamente."
@@ -2383,6 +2502,9 @@ msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "El asistente ha finalizado ahora."
+
+msgid "There are no default settings in your image."
+msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2451,6 +2573,9 @@ msgstr "¡Pausa no posible!"
 msgid "Timezone"
 msgstr "Zona horaria"
 
+msgid "Title"
+msgstr "Título"
+
 msgid "Title:"
 msgstr "Título:"
 
@@ -2479,10 +2604,10 @@ msgid "Transmission mode"
 msgstr "Modo de trasmisión"
 
 msgid "Transponder"
-msgstr "Transpondedor"
+msgstr "Transponder"
 
 msgid "Transponder Type"
-msgstr "Tipo de Transpondedor"
+msgstr "Tipo de Transponder"
 
 msgid "Tries left:"
 msgstr "Intentos que quedan:"
@@ -2519,7 +2644,7 @@ msgid "Tuner configuration"
 msgstr "Configuración sintonizador"
 
 msgid "Tuner status"
-msgstr "Estado del sintonizador"
+msgstr "Sintonizador"
 
 msgid "Turkish"
 msgstr "Turco"
@@ -2602,7 +2727,7 @@ msgstr "Usar puerta de enlace"
 #.       better suited for translation to other languages may be "stepwise
 #.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
-msgstr "Usar el el efecto de sombras a velocidades superiores"
+msgstr "Usar el el efecto de sombras a veloc. ^"
 
 msgid "Use power measurement"
 msgstr "Usar medida de potencia"
@@ -2661,9 +2786,16 @@ msgid ""
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
+"Selección entrada de vídeo\n"
+"\n"
+"Por favor, pulse OK si quiere ver esta página en su TV (o selecciones un "
+"puerto de entrada diferente).\n"
+"\n"
+"El puerto de entrada siguiente será automáticamente probado durante 10 "
+"segundos."
 
 msgid "Video mode selection."
-msgstr ""
+msgstr "Selección de modo de vídeo."
 
 msgid "View Rass interactive..."
 msgstr "Ver Rass interactivo..."
@@ -2683,11 +2815,17 @@ msgstr "W"
 msgid "WSS on 4:3"
 msgstr "WSS en 4:3"
 
+msgid "Waiting"
+msgstr "Esperando"
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
 "Please press OK to begin."
 msgstr ""
+"Ahora testearemos si su TV soporta la resolución a 50hz. Si la pantalla se "
+"vuelve negra, espere 20 segundos y volverá a 60hz.\n"
+"Pulse OK para comenzar."
 
 msgid "Wed"
 msgstr "Mié"
@@ -2719,6 +2857,9 @@ msgstr ""
 "Este asistente le guiará a través de una configuración básica de su "
 "Dreambox.\n"
 "Pulse el botón OK de su mando para ir al siguiente paso."
+
+msgid "Welcome..."
+msgstr "Bienvenido..."
 
 msgid "West"
 msgstr "Oeste"
@@ -2768,8 +2909,25 @@ msgstr "Si, vuelve a la lista de películas"
 msgid "Yes, view the tutorial"
 msgstr "Si, ver el tutorial"
 
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
+msgstr ""
+
+msgid "You can choose, what you want to install.."
+msgstr ""
+
 msgid "You cannot delete this!"
 msgstr "¡No puede borrar esto!"
+
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
+msgstr ""
+
+msgid ""
+"You chose not to install anything. Please press OK finish the install wizard."
+msgstr ""
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -2837,7 +2995,7 @@ msgstr ""
 "¿Quiere poner el pin ahora?"
 
 msgid "Your TV works with 50 Hz. Good!"
-msgstr ""
+msgstr "Su TV trabaja con 50 Hz. Bien!"
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -3059,6 +3217,9 @@ msgstr "fin edición de favoritos"
 msgid "equal to Socket A"
 msgstr "igual al socket A"
 
+msgid "exit DVD player or return to file browser"
+msgstr "salir del reproductor DVD o volver a sistema de archivos"
+
 msgid "exit mediaplayer"
 msgstr "salir del reproductor"
 
@@ -3067,6 +3228,9 @@ msgstr "salir del menú de películas"
 
 msgid "fine-tune your display"
 msgstr "Configurar en detalle tu TV"
+
+msgid "forward to the next chapter"
+msgstr "salte al capítulo siguiente"
 
 msgid "free diskspace"
 msgstr "espacio libre en disco"
@@ -3117,6 +3281,12 @@ msgstr "iniciar módulo"
 
 msgid "insert mark here"
 msgstr "insertar marca aquí"
+
+msgid "jump back to the previous title"
+msgstr "vuelva al título anterior"
+
+msgid "jump forward to the next title"
+msgstr "salte al título siguiente"
 
 msgid "jump to listbegin"
 msgstr "saltar al comienzo de la lista"
@@ -3301,6 +3471,9 @@ msgstr "borrar esta marca"
 msgid "repeated"
 msgstr "repetido"
 
+msgid "rewind to the previous chapter"
+msgstr "vuelva al capítulo anterior"
+
 msgid "right"
 msgstr "derecha"
 
@@ -3347,6 +3520,9 @@ msgstr "pin del canal"
 
 msgid "setup pin"
 msgstr "pin de configuración"
+
+msgid "show DVD main menu"
+msgstr "mostrar el menú principal de DVD"
 
 msgid "show EPG..."
 msgstr "mostrar EPG..."
@@ -3441,6 +3617,12 @@ msgstr "cambiar a lista de ficheros"
 msgid "switch to playlist"
 msgstr "cambiar a lista"
 
+msgid "switch to the next audio track"
+msgstr "cambiar a la siguiente pista de audio"
+
+msgid "switch to the next subtitle language"
+msgstr "cambiar al siguiente idioma de subtítulos"
+
 msgid "text"
 msgstr "texto"
 
@@ -3452,6 +3634,9 @@ msgstr "este canal está protegido por el pin de control de adultos"
 
 msgid "toggle a cut mark at the current position"
 msgstr "poner una marca de corte en la posición actual"
+
+msgid "toggle time, chapter, audio, subtitle info"
+msgstr "poner hora, capítulo, audio, info subtítulos"
 
 msgid "unknown service"
 msgstr "servicio desconocido"
@@ -3524,26 +3709,20 @@ msgstr "zapeado"
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
-#~ msgid "Add a new title"
-#~ msgstr "Añadir un nuevo título"
-
 #~ msgid "Add files to playlist"
 #~ msgstr "Añadir ficheros a la lista"
-
-#~ msgid "Add title..."
-#~ msgstr "Añadir título..."
-
-#~ msgid "Burn"
-#~ msgstr "Grabar"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Grabar DVD"
 
 #~ msgid "Burn DVD..."
 #~ msgstr "Grabar DVD..."
 
+#~ msgid "Choose Location"
+#~ msgstr "Elegir localización"
+
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Configura el tiempo a avanzar para las teclas 1/3"
+
+#~ msgid "Default-Wizard"
+#~ msgstr "Asistente-pordefecto"
 
 #~ msgid "Discontinuous playback at speeds above"
 #~ msgstr "Reproducción discontinua a las velocidades de arriba"
@@ -3553,12 +3732,6 @@ msgstr "zapeado"
 
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "¿Quiere ver un tutorial de la lista de corte?"
-
-#~ msgid "Edit current title"
-#~ msgstr "Editar título actual"
-
-#~ msgid "Edit title..."
-#~ msgstr "Editar título..."
 
 #~ msgid "Factoryreset"
 #~ msgstr "Borrado de fábrica"
@@ -3577,9 +3750,6 @@ msgstr "zapeado"
 
 #~ msgid "NIM "
 #~ msgstr "NIM"
-
-#~ msgid "New DVD"
-#~ msgstr "DVD nuevo"
 
 #~ msgid "Output Type"
 #~ msgstr "Tipo de Salida"
@@ -3611,20 +3781,8 @@ msgstr "zapeado"
 #~ "Hay grabaciones que están en proceso o que van a comenzar pronto... "
 #~ "¿quiere apagar ahora?"
 
-#~ msgid "Remove currently selected title"
-#~ msgstr "Borrar el título seleccionado"
-
-#~ msgid "Remove title"
-#~ msgstr "Borrar el título"
-
 #~ msgid "Replace current playlist"
 #~ msgstr "Reemplazar la lista actual"
-
-#~ msgid "Save current project to disk"
-#~ msgstr "Guardar el proyecto actual a disco"
-
-#~ msgid "Save..."
-#~ msgstr "Guardar..."
 
 #~ msgid "Scan NIM"
 #~ msgstr "Escanear NIM"
