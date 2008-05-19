@@ -855,13 +855,10 @@ void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, e
 		break;
 #endif
 	}
+	PutToDict(dict, "fec_inner", tmp);
 #if HAVE_DVB_API_VERSION >=3
 	PutToDict(dict, "modulation",
 		parm_u_qpsk_fec_inner > FEC_S2_QPSK_9_10 ? "8PSK": "QPSK" );
-#else
-	PutToDict(dict, "modulation", "QPSK" );
-#endif
-	PutToDict(dict, "fec_inner", tmp);
 	if (parm_u_qpsk_fec_inner > FEC_AUTO)
 	{
 		switch(parm_inversion & 0xc)
@@ -898,7 +895,10 @@ void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, e
 	}
 	else
 		tmp = "DVB-S";
-
+#else
+	PutToDict(dict, "modulation", "QPSK" );
+	tmp = "DVB-S";
+#endif
 	PutToDict(dict, "system", tmp);
 }
 
