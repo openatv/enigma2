@@ -473,7 +473,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	int duration;
 
 	time_t TM = parseDVBtime( eit_event->start_time_1, eit_event->start_time_2,	eit_event->start_time_3, eit_event->start_time_4, eit_event->start_time_5);
-	time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
+	time_t now = ::time(0);
 
 	if ( TM != 3599 && TM > -1)
 		channel->haveData |= source;
@@ -725,7 +725,7 @@ void eEPGCache::cleanLoop()
 	{
 		eDebug("[EPGC] start cleanloop");
 
-		time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
+		time_t now = ::time(0);
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
 		{
@@ -844,7 +844,7 @@ void eEPGCache::gotMessage( const Message &msg )
 					onid |= 0x80000000;  // we use highest bit as private epg indicator
 					chid.original_network_id = onid;
 					updateMap::iterator It = channelLastUpdated.find( chid );
-					int update = ( It != channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (eDVBLocalTimeHandler::getInstance()->nowTime()-It->second) * 1000 ) ) : ZAP_DELAY );
+					int update = ( It != channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (::time(0)-It->second) * 1000 ) ) : ZAP_DELAY );
 					if (update < ZAP_DELAY)
 						update = ZAP_DELAY;
 					data->startPrivateTimer.start(update, 1);
@@ -1107,7 +1107,7 @@ bool eEPGCache::channel_data::finishEPG()
 {
 	if (!isRunning)  // epg ready
 	{
-		eDebug("[EPGC] stop caching events(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
+		eDebug("[EPGC] stop caching events(%ld)", ::time(0));
 		zapTimer.start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
 		for (int i=0; i < 3; ++i)
@@ -1116,7 +1116,7 @@ bool eEPGCache::channel_data::finishEPG()
 			calcedSections[i].clear();
 		}
 		singleLock l(cache->cache_lock);
-		cache->channelLastUpdated[channel->getChannelID()] = eDVBLocalTimeHandler::getInstance()->nowTime();
+		cache->channelLastUpdated[channel->getChannelID()] = ::time(0);
 #ifdef ENABLE_MHW_EPG
 		cleanup();
 #endif
@@ -1127,7 +1127,7 @@ bool eEPGCache::channel_data::finishEPG()
 
 void eEPGCache::channel_data::startEPG()
 {
-	eDebug("[EPGC] start caching events(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
+	eDebug("[EPGC] start caching events(%ld)", ::time(0));
 	state=0;
 	haveData=0;
 	for (int i=0; i < 3; ++i)
@@ -1240,7 +1240,7 @@ void eEPGCache::channel_data::startChannel()
 	pthread_mutex_lock(&channel_active);
 	updateMap::iterator It = cache->channelLastUpdated.find( channel->getChannelID() );
 
-	int update = ( It != cache->channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (eDVBLocalTimeHandler::getInstance()->nowTime()-It->second) * 1000 ) ) : ZAP_DELAY );
+	int update = ( It != cache->channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (::time(0)-It->second) * 1000 ) ) : ZAP_DELAY );
 
 	if (update < ZAP_DELAY)
 		update = ZAP_DELAY;
@@ -1349,7 +1349,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 				break;
 			default: eDebugNoNewLine("unknown");break;
 		}
-		eDebug(" finished(%ld)", eDVBLocalTimeHandler::getInstance()->nowTime());
+		eDebug(" finished(%ld)", ::time(0));
 		if ( reader )
 			reader->stop();
 		isRunning &= ~source;
@@ -1399,7 +1399,7 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, co
 	if ( It != eventDB.end() && !It->second.first.empty() ) // entrys cached ?
 	{
 		if (t==-1)
-			t = eDVBLocalTimeHandler::getInstance()->nowTime();
+			t = ::time(0);
 		timeMap::iterator i = direction <= 0 ? It->second.second.lower_bound(t) :  // find > or equal
 			It->second.second.upper_bound(t); // just >
 		if ( i != It->second.second.end() )
@@ -1528,7 +1528,7 @@ RESULT eEPGCache::startTimeQuery(const eServiceReference &service, time_t begin,
 	singleLock s(cache_lock);
 	const eServiceReferenceDVB &ref = (const eServiceReferenceDVB&)handleGroup(service);
 	if (begin == -1)
-		begin = eDVBLocalTimeHandler::getInstance()->nowTime();
+		begin = ::time(0);
 	eventCache::iterator It = eventDB.find(ref);
 	if ( It != eventDB.end() && It->second.second.size() )
 	{
@@ -1773,7 +1773,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 	}
 
 	ePyObject nowTime = strchr(argstring, 'C') ?
-		PyLong_FromLong(eDVBLocalTimeHandler::getInstance()->nowTime()) :
+		PyLong_FromLong(::time(0)) :
 		ePyObject();
 
 	int must_get_service_name = strchr(argstring, 'N') ? 1 : strchr(argstring, 'n') ? 2 : 0;
@@ -1829,7 +1829,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 			}
 
 			if (minutes && stime == -1)
-				stime = eDVBLocalTimeHandler::getInstance()->nowTime();
+				stime = ::time(0);
 
 			eServiceReference ref(handleGroup(eServiceReference(PyString_AS_STRING(service))));
 			if (ref.type != eServiceReference::idDVB)
@@ -2590,7 +2590,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 	ASSERT(ptr <= 4098);
 	for ( std::map< date_time, std::list<uniqueEPGKey> >::iterator it(start_times.begin()); it != start_times.end(); ++it )
 	{
-		time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
+		time_t now = ::time(0);
 		if ( (it->first.tm + duration_sec) < now )
 			continue;
 		memcpy(event+2, it->first.data, 5);
@@ -2666,7 +2666,7 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 		int tmp = chid.original_network_id.get();
 		tmp |= 0x80000000; // we use highest bit as private epg indicator
 		chid.original_network_id = tmp;
-		cache->channelLastUpdated[chid] = eDVBLocalTimeHandler::getInstance()->nowTime();
+		cache->channelLastUpdated[chid] = ::time(0);
 		m_PrevVersion = (data[5] & 0x3E) >> 1;
 		startPrivateReader();
 	}
@@ -2725,7 +2725,7 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 
 	// As far as we know all mhw time data is sent in central Europe time zone.
 	// So, temporarily set timezone to western europe
-	time_t dt = eDVBLocalTimeHandler::getInstance()->nowTime();
+	time_t dt = ::time(0);
 
 	char *old_tz = getenv( "TZ" );
 	putenv("TZ=CET-1CEST,M3.5.0/2,M10.5.0/3");
@@ -3095,7 +3095,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		}
 	}
 	eDebug("[EPGC] mhw finished(%ld) %d summaries not found",
-		eDVBLocalTimeHandler::getInstance()->nowTime(),
+		::time(0),
 		m_program_ids.size());
 	// Summaries have been read, titles that have summaries have been stored.
 	// Now store titles that do not have summaries.
@@ -3400,7 +3400,7 @@ start_summary:
 			for (std::map<__u32, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
 				storeTitle( itTitle, "", data );
 			eDebug("[EPGC] mhw2 finished(%ld) %d summaries not found",
-				eDVBLocalTimeHandler::getInstance()->nowTime(),
+				::time(0),
 				m_program_ids.size());
 		}
 	}

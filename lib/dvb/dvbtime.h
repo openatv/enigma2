@@ -77,9 +77,7 @@ public:
 	~eDVBLocalTimeHandler();
 #endif
 	PSignal0<void> m_timeUpdated;
-	time_t nowTime() const { return m_time_ready ? ::time(0)+m_time_difference : -1; }
 	bool ready() const { return m_time_ready; }
-	int difference() const { return m_time_difference; }
 	static eDVBLocalTimeHandler *getInstance() { return instance; }
 };
 

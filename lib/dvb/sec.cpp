@@ -262,7 +262,7 @@ bool need_turn_fast(int turn_speed)
 	{
 		int begin = turn_speed >> 16; // high word is start time
 		int end = turn_speed&0xFFFF; // low word is end time
-		time_t now_time = eDVBLocalTimeHandler::getInstance()->nowTime();
+		time_t now_time = ::time(0);
 		tm nowTime;
 		localtime_r(&now_time, &nowTime);
 		int now = (nowTime.tm_hour + 1) * 60 + nowTime.tm_min + 1;

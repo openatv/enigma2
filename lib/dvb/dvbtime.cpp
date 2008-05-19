@@ -120,7 +120,7 @@ eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;
 DEFINE_REF(eDVBLocalTimeHandler);
 
 eDVBLocalTimeHandler::eDVBLocalTimeHandler()
-	:m_time_ready(false), m_time_difference(0)
+	:m_time_ready(false)
 {
 	if ( !instance )
 		instance=this;
@@ -151,7 +151,7 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	if (ready())
 	{
 		eDebug("set RTC to previous valid time");
-		setRTC(nowTime());
+		setRTC(::time(0));
 	}
 }
 
@@ -192,6 +192,7 @@ void eDVBLocalTimeHandler::writeTimeOffsetData( const char* filename )
 
 void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int update_count )
 {
+	int time_difference;
 	bool restart_tdt = false;
 	if (!tp_time)
 		restart_tdt = true;
@@ -213,24 +214,22 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 					now.tm_min,
 					now.tm_sec);
 				time_t linuxTime=time(0);
-				time_t nowTime=linuxTime+m_time_difference;
-				localtime_r(&nowTime, &now);
+				localtime_r(&linuxTime, &now);
 				eDebug("[eDVBLocalTimerHandler] Receiver time is %02d:%02d:%02d",
 					now.tm_hour,
 					now.tm_min,
 					now.tm_sec);
-				m_time_difference = rtc_time - linuxTime;
-				eDebug("[eDVBLocalTimerHandler] RTC to Receiver time difference is %ld seconds", nowTime - rtc_time );
-				if ( m_time_difference )
+				time_difference = rtc_time - linuxTime;
+				eDebug("[eDVBLocalTimerHandler] RTC to Receiver time difference is %ld seconds", linuxTime - rtc_time );
+				if ( time_difference )
 				{
 					eDebug("[eDVBLocalTimerHandler] set Linux Time to RTC Time");
 					timeval tnow;
 					gettimeofday(&tnow,0);
 					tnow.tv_sec=rtc_time;
 					settimeofday(&tnow,0);
-					m_time_difference=0;
 				}
-				else if ( !m_time_difference )
+				else if ( !time_difference )
 					eDebug("[eDVBLocalTimerHandler] no change needed");
 				else
 					eDebug("[eDVBLocalTimerHandler] set to RTC time");
@@ -247,11 +246,8 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
  // current linux time
 		time_t linuxTime = time(0);
 
- // current enigma time
-		time_t nowTime=linuxTime+m_time_difference;
-
 	// difference between current enigma time and transponder time
-		int enigma_diff = tp_time-nowTime;
+		int enigma_diff = tp_time-linuxTime;
 
 		int new_diff=0;
 
@@ -272,7 +268,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			{
 				eDebug("[eDVBLocalTimerHandler] we have correction %d", it->second);
 				time_t CorrectedTpTime = tp_time+it->second;
-				int ddiff = CorrectedTpTime-nowTime;
+				int ddiff = CorrectedTpTime-linuxTime;
 				eDebug("[eDVBLocalTimerHandler] diff after add correction is %d", ddiff);
 				if ( abs(it->second) < 300 ) // stored correction < 5 min
 				{
@@ -283,7 +279,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 				{
 					time_t rtc=getRTC();
 					m_timeOffsetMap[chan->getChannelID()] = rtc-tp_time;
-					new_diff = rtc-nowTime;  // set enigma time to rtc
+					new_diff = rtc-linuxTime;  // set enigma time to rtc
 					eDebug("[eDVBLocalTimerHandler] update stored correction to %ld (calced against RTC time)", rtc-tp_time );
 				}
 				else if ( abs(ddiff) <= 120 )
@@ -319,7 +315,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			m_time_ready=true;
 		}
 
-		time_t t = nowTime+new_diff;
+		time_t t = linuxTime+new_diff;
 		m_last_tp_time_difference=tp_time-t;
 
 		if (!new_diff &&
@@ -356,17 +352,16 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			now.tm_min,
 			now.tm_sec);
 
-		m_time_difference = t - linuxTime;   // calc our new linux_time -> enigma_time correction
-		eDebug("[eDVBLocalTimerHandler] m_time_difference is %d", m_time_difference );
+		time_difference = t - linuxTime;   // calc our new linux_time -> enigma_time correction
+		eDebug("[eDVBLocalTimerHandler] m_time_difference is %d", time_difference );
 
-		if ( m_time_difference )
+		if ( time_difference )
 		{
 			eDebug("[eDVBLocalTimerHandler] set Linux Time");
 			timeval tnow;
 			gettimeofday(&tnow,0);
 			tnow.tv_sec=t;
 			settimeofday(&tnow,0);
-			m_time_difference=0;
 		}
 
  		 /*emit*/ m_timeUpdated();
