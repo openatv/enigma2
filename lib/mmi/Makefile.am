@@ -3,4 +3,4 @@ INCLUDES = \
 
 noinst_LIBRARIES = libenigma_mmi.a
 
-libenigma_mmi_a_SOURCES = mmi_ui.cpp socket_mmi.cpp
+libenigma_mmi_a_SOURCES = mmi_ui.cpp
