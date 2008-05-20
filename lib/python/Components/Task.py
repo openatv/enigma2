@@ -7,6 +7,7 @@ class Job:
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
 	def __init__(self, name):
 		self.tasks = [ ]
+		self.workspace = "/tmp"
 		self.current_task = 0
 		self.callback = None
 		self.name = name
@@ -24,6 +25,7 @@ class Job:
 		return None
 
 	def addTask(self, task):
+		task.job = self
 		self.tasks.append(task)
 
 	def start(self, callback):
@@ -53,17 +55,18 @@ class Job:
 			self.runNext()
 
 class Task:
-	def __init__(self, name):
+	def __init__(self, job, name):
 		self.name = name
-		self.workspace = "/tmp"
 		self.immediate_preconditions = [ ]
 		self.global_preconditions = [ ]
 		self.postconditions = [ ]
 		self.returncode = None
 		self.initial_input = None
+		self.job = None
 
 		self.cmd = None
 		self.args = [ ]
+		job.addTask(self)
 
 	def setCommandline(self, cmd, args):
 		self.cmd = cmd
@@ -87,10 +90,11 @@ class Task:
 		return not_met
 
 	def run(self, callback):
-		failed_preconditions = self.checkPreconditions(True)
+		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
-			errback(failed_preconditions)
+			callback(failed_preconditions)
 			return
+		self.prepare()
 
 		self.callback = callback
 		from enigma import eConsoleAppContainer
