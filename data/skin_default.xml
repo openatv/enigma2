@@ -326,9 +326,9 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="config" position="50,350" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Inputbox -->
-	<screen name="InputBox" position="100,250" size="550,60" title="Input">
+	<screen name="InputBox" position="80,250" size="550,90" title="Input">
 		<widget name="text" position="10,20" size="550,25" font="Regular;23" />
-		<widget name="input" position="0,55" size="550,25" font="Regular;20" />
+		<widget name="input" position="10,55" size="550,25" font="Regular;20" />
 	</screen>
 	<!-- IPKG -->
 	<screen name="Ipkg" position="100,100" size="550,200" title="Installing Software...">
