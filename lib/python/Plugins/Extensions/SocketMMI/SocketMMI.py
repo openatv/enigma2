@@ -23,7 +23,7 @@ class SocketMMIMessageHandler:
 	def socketStateChanged(self, slot):
 		if slot in self.dlgs:
 			self.dlgs[slot].ciStateChanged()
-		elif self.handler.availableMMI(slot) == 1:
+		elif socketmmi.availableMMI(slot) == 1:
 			if self.session:
 				self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3, socketmmi, _("wait for mmi..."))
 
