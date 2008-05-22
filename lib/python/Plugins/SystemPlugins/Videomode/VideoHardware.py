@@ -146,17 +146,6 @@ class VideoHardware:
 		if mode_60 is None or force == 50: 
 			mode_60 = mode_50
 
-		dvimode = (mode_50.find('x') != -1 or mode_60.find('x') != -1) and '1' or '0'
-		try:
-			open("/etc/dvimode", "w").write(dvimode) # use 50Hz mode (if available) for booting
-		except IOError:
-			print "writing initial dvimode to /etc/dvimode failed."
-
-		try:
-			open("/proc/stb/hdmi/enable_hdmi_reset", "w").write(dvimode)
-		except IOError:
-			print "setting dvimode failed."
-
 		try:
 			open("/proc/stb/video/videomode_50hz", "w").write(mode_50)
 			open("/proc/stb/video/videomode_60hz", "w").write(mode_60)
