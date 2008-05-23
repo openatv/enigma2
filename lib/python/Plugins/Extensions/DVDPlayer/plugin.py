@@ -321,7 +321,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.onFirstExecBegin.append(self.showFileBrowser)
 		self.service = None
 		self.in_menu = False
-		
+		self.old_aspect = open("/proc/stb/video/aspect", "r").read()
+		self.old_policy = open("/proc/stb/video/policy", "r").read()
+		self.old_wss = open("/proc/stb/denc/0/wss", "r").read()
+
 	def keyNumberGlobal(self, number):
 		print "You pressed number " + str(number)
 		self.session.openWithCallback(self.numberEntered, ChapterZap, number)
@@ -531,6 +534,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				pass
 
 	def __onClose(self):
+		for i in (("/proc/stb/video/aspect", self.old_aspect), ("/proc/stb/video/policy", self.old_policy), ("/proc/stb/denc/0/wss", self.old_wss)):
+			try:
+				open(i[0], "w").write(i[1])
+			except IOError:
+				print "restore", i[0], "failed"
 		self.restore_infobar_seek_config()
 		self.session.nav.playService(self.oldService)
 
