@@ -49,7 +49,7 @@ self["rc"].startMoving()
 	</step>
 	<step id="dvirateintroduction" nextstep="dvirateselection">
 		<condition>
-self.condition = (self.port == "DVI" and self.mode != "PC")
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		</condition>
 		<text value="We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\nPlease press OK to begin." />
 		<displaytext value="Please follow the instructions on the TV" />
@@ -65,7 +65,7 @@ self.rateSelect("60Hz")
 	</step>
 	<step id="dvirateselection" timeout="10" timeoutaction="changestep" timeoutstep="notworking50Hz">
 		<condition>
-self.condition = (self.port == "DVI" and self.mode != "PC")
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		</condition>
 		<text value="If you can see this page, please press OK." />
 		<displaytext value="" />
@@ -87,7 +87,7 @@ self.rateSelect("60Hz")
 	</step>
 	<step id="notworking50Hz" nextstep="end">
 		<condition>
-self.condition = (self.port == "DVI" and self.mode != "PC")
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		</condition>
 		<text value="No 50 Hz, sorry. :(" />
 		<displaytext value="" />
@@ -102,7 +102,7 @@ self["rc"].startMoving()
 	</step>
 	<step id="working50Hz" nextstep="end" timeout="10" timeoutaction="nextstep">
 		<condition>
-self.condition = (self.port == "DVI" and self.mode != "PC")
+self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		</condition>
 		<text value="Your TV works with 50 Hz. Good!" />
 		<displaytext value="" />

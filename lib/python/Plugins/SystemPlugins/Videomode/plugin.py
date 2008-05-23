@@ -59,7 +59,10 @@ class VideoSetup(Screen, ConfigListScreen):
 		if config.av.videoport.value in config.av.videomode:
 			# add mode- and rate-selection:
 			self.list.append(getConfigListEntry(_("Mode"), config.av.videomode[config.av.videoport.value]))
-			self.list.append(getConfigListEntry(_("Refresh Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
+			if config.av.videomode[config.av.videoport.value].value == 'PC':
+				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
+			else:
+				self.list.append(getConfigListEntry(_("Refresh Rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value]))
 
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
