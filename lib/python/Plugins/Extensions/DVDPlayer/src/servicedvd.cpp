@@ -3,6 +3,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
+#include <lib/base/nconfig.h>
 #include <string>
 #include <lib/service/service.h>
 #include <lib/base/init_num.h>
@@ -54,7 +55,7 @@ RESULT eServiceFactoryDVD::play(const eServiceReference &ref, ePtr<iPlayableServ
 	return 0;
 }
 
-RESULT eServiceFactoryDVD::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
+RESULT eServiceFactoryDVD::record(const eServiceReference &/*ref*/, ePtr<iRecordableService> &ptr)
 {
 	ptr=0;
 	return -1;
@@ -67,7 +68,7 @@ RESULT eServiceFactoryDVD::list(const eServiceReference &, ePtr<iListableService
 }
 
 
-RESULT eServiceFactoryDVD::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
+RESULT eServiceFactoryDVD::info(const eServiceReference &/*ref*/, ePtr<iStaticServiceInformation> &ptr)
 {
 	ptr=0;
 	return -1;
@@ -93,12 +94,22 @@ eServiceDVD::eServiceDVD(const char *filename):
 	m_sn(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup),
 	m_pump(eApp, 1)
 {
+	std::string aspect;
 	eDebug("SERVICEDVD construct!");
 	// create handle
 	ddvd_set_dvd_path(m_ddvdconfig, filename);
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
 	ddvd_set_language(m_ddvdconfig, "de");
-	ddvd_set_video(m_ddvdconfig, DDVD_16_9, DDVD_PAL);
+
+	if (ePythonConfigQuery::getConfigValue("config.av.aspect", aspect) != 0)
+		aspect = "16_9";
+	if (aspect == "4_3_letterbox")
+		ddvd_set_video(m_ddvdconfig, DDVD_4_3_LETTERBOX, DDVD_PAL);
+	else if (aspect == "4_3_panscan")
+		ddvd_set_video(m_ddvdconfig, DDVD_4_3_PAN_SCAN, DDVD_PAL);
+	else
+		ddvd_set_video(m_ddvdconfig, DDVD_16_9, DDVD_PAL);
+
 	ddvd_set_lfb(m_ddvdconfig, (unsigned char *)m_pixmap->surface->data, 720, 576, 4, 720*4);
 	CONNECT(m_sn.activated, eServiceDVD::gotMessage);
 	CONNECT(m_pump.recv_msg, eServiceDVD::gotThreadMessage);
@@ -117,7 +128,7 @@ void eServiceDVD::gotThreadMessage(const int &msg)
 	}
 }
 
-void eServiceDVD::gotMessage(int what)
+void eServiceDVD::gotMessage(int /*what*/)
 {
 	switch(ddvd_get_next_message(m_ddvdconfig,1))
 	{
@@ -288,7 +299,7 @@ RESULT eServiceDVD::stop()
 	return 0;
 }
 
-RESULT eServiceDVD::setTarget(int target)
+RESULT eServiceDVD::setTarget(int /*target*/)
 {
 	return -1;
 }
@@ -318,7 +329,7 @@ RESULT eServiceDVD::keys(ePtr<iServiceKeys> &ptr)
 }
 
 	// iPausableService
-RESULT eServiceDVD::setSlowMotion(int ratio)
+RESULT eServiceDVD::setSlowMotion(int /*ratio*/)
 {
 	return -1;
 }
@@ -508,7 +519,7 @@ PyObject *eServiceDVD::getInfoObject(int w)
 	Py_RETURN_NONE;
 }
 
-RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) entry)
+RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) /*entry*/)
 {
 	if (m_subtitle_widget)
 		delete m_subtitle_widget;
@@ -520,7 +531,7 @@ RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) en
 	return 0;
 }
 
-RESULT eServiceDVD::disableSubtitles(eWidget *parent)
+RESULT eServiceDVD::disableSubtitles(eWidget */*parent*/)
 {
 	delete m_subtitle_widget;
 	m_subtitle_widget = 0;
@@ -601,7 +612,7 @@ RESULT eServiceDVD::seekChapter(int chapter)
 	return 0;
 }
 
-RESULT eServiceDVD::setTrickmode(int trick)
+RESULT eServiceDVD::setTrickmode(int /*trick*/)
 {
 	return -1;
 }
@@ -681,11 +692,11 @@ PyObject *eServiceDVD::getCutList()
 	return list;
 }
 
-void eServiceDVD::setCutList(ePyObject list)
+void eServiceDVD::setCutList(ePyObject /*list*/)
 {
 }
 
-void eServiceDVD::setCutListEnable(int enable)
+void eServiceDVD::setCutListEnable(int /*enable*/)
 {
 }
 
