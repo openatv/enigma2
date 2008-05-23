@@ -22,17 +22,26 @@ class VideoHardware:
 
 	modes = { }  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] =			{ "50Hz":		{ 50: "pal", 60: "pal"},
-												"60Hz":		{ 50: "pal60", 60: "pal60"},
-												"multi":	{ 50: "pal", 60: "pal60"} }
-	rates["NTSC"] =			{ "60Hz": 	{ 50: "ntsc", 60: "ntsc"} }
-	rates["Multi"] =		{ "multi": 	{ 50: "pal", 60: "ntsc"} }
-	rates["720p"] =			{	"50Hz": 	{ 50: "720p50", 60: "720p50"},
-												"60Hz": 	{ 50: "720p", 60: "720p"},
-												"multi": 	{ 50: "720p50", 60: "720p"} }
-	rates["1080i"] =		{ "50Hz":		{ 50: "1080i50", 60: "1080i50"},
-												"60Hz":		{ 50: "1080i", 60: "1080i"},
-												"multi":	{ 50: "1080i50", 60: "1080i"} }
+	rates["PAL"] =			{ "50Hz":		{ 50: "pal" },
+								"60Hz":		{ 60: "pal60" },
+								"multi":	{ 50: "pal", 60: "pal60" } }
+
+	rates["NTSC"] =			{ "60Hz": 	{ 60: "ntsc" } }
+
+	rates["Multi"] =		{ "multi": 	{ 50: "pal", 60: "ntsc" } }
+
+	rates["480p"] =			{ "60Hz": 	{ 60: "480p" } }
+
+	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
+
+	rates["720p"] =			{ "50Hz": 	{ 50: "720p50", 60: "720p50" },
+								"60Hz": 	{ 60: "720p" },
+								"multi": 	{ 50: "720p50" } }
+
+	rates["1080i"] =		{ "50Hz":		{ 50: "1080i50" },
+								"60Hz":		{ 60: "1080i" },
+								"multi":	{ 50: "1080i50", 60: "1080i" } }
+
 	rates["PC"] = { 
 		"1024x768": { 60: "1024x768"}, # not possible on DM7025
 		"800x600" : { 60: "800x600"},  # also not possible
@@ -50,8 +59,8 @@ class VideoHardware:
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-	modes["YPbPr"] = ["720p", "1080i"]
-	modes["DVI"] = ["720p", "1080i", "PC"]
+	modes["YPbPr"] = ["720p", "1080i", "576p", "480p"]
+	modes["DVI"] = ["720p", "1080i", "576p", "480p"]
 	modes["DVI-PC"] = ["PC"]
 
 	widescreen_modes = set(["720p", "1080i"])
