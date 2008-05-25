@@ -318,6 +318,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			})
 
 		self.onClose.append(self.__onClose)
+
+		if fileExists("/dev/cdroms/cdrom0"):
+			print "physical dvd found (/dev/cdroms/cdrom0)"
+			self.physicalDVD = True
+		else:
+			self.physicalDVD = False
+
 		self.onFirstExecBegin.append(self.showFileBrowser)
 		self.service = None
 		self.in_menu = False
@@ -504,7 +511,16 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.askLeavePlayer()
 
 	def showFileBrowser(self):
-		self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
+		if self.physicalDVD:
+			self.session.openWithCallback(self.DVDdriveCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
+		else:
+			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
+	
+	def DVDdriveCB(self, answer):
+		if answer == True:
+			self.FileBrowserClosed("/dev/cdroms/cdrom0")
+		else:
+			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
 
 	def FileBrowserClosed(self, val):
 		curref = self.session.nav.getCurrentlyPlayingServiceReference()
