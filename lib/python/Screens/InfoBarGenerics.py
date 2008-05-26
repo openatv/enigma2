@@ -1520,10 +1520,8 @@ class InfoBarAudioSelection:
 
 	def audioSelection(self):
 		service = self.session.nav.getCurrentService()
-		audio = service and service.audioTracks()
-		self.audioTracks = audio
+		self.audioTracks = audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
-		keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
 		tlist = []
 		if n > 0:
 			self.audioChannel = service.audioChannel()
@@ -1543,20 +1541,44 @@ class InfoBarAudioSelection:
 
 				tlist.append((description, x))
 
-			selectedAudio = audio.getCurrentTrack()
 			tlist.sort(key=lambda x: x[0])
 
-			selection = 2
+			selectedAudio = self.audioTracks.getCurrentTrack()
+
+			selection = 0
+
 			for x in tlist:
 				if x[1] != selectedAudio:
 					selection += 1
 				else:
 					break
 
-			tlist = [([_("Left"), _("Stereo"), _("Right")][self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
+			if SystemInfo["CanDownmixAC3"]:
+				tlist = [(_("AC3 downmix") + " - " +[_("Off"), _("On")][config.av.downmix_ac3.value and 1 or 0], "CALLFUNC", self.changeAC3Downmix),
+					([_("Left"), _("Stereo"), _("Right")][self.audioChannel.getCurrentChannel()], "mode"),
+					("--", "")] + tlist
+				keys = [ "red", "green", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
+				selection += 3
+			else:
+				tlist = [([_("Left"), _("Stereo"), _("Right")][self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
+				keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
+				selection += 2
 			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection, keys = keys)
 		else:
 			del self.audioTracks
+
+	def changeAC3Downmix(self, arg):
+		choicelist = self.session.current_dialog["list"]
+		list = choicelist.list
+		t = list[0][1]
+		list[0][1]=(t[0], t[1], t[2], t[3], t[4], t[5], t[6],
+			_("AC3 downmix") + " - " +[_("On"), _("Off")][config.av.downmix_ac3.value and 1 or 0])
+		choicelist.setList(list)
+		if config.av.downmix_ac3.value:
+			config.av.downmix_ac3.value = False
+		else:
+			config.av.downmix_ac3.value = True
+		config.av.downmix_ac3.save()
 
 	def audioSelected(self, audio):
 		if audio is not None:
