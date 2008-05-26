@@ -12,6 +12,8 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 from time import localtime, mktime
 from datetime import datetime
 
+from sets import Set
+
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
 	for x in satlist:
@@ -28,6 +30,13 @@ def tryOpen(filename):
 	return procFile
 
 class SecConfigure:
+	def getConfiguredSats(self):
+		return self.configuredSatellites
+
+	def addSatellite(self, sec, orbpos):
+		sec.addSatellite(orbpos)
+		self.configuredSatellites.add(orbpos)
+
 	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50):
 		#simple defaults
 		sec.addLNB()
@@ -55,8 +64,7 @@ class SecConfigure:
 		#print "set orbpos to:" + str(orbpos)
 
 		if 0 <= diseqcmode < 3:
-			sec.addSatellite(orbpos)
-			self.satList.append(orbpos)
+			self.addSatellite(sec, orbpos)
 		elif (diseqcmode == 3): # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
 				tunermask |= (1 << self.satposdepends[slotid])
@@ -70,11 +78,10 @@ class SecConfigure:
 
 			for x in self.NimManager.satList:
 				print "Add sat " + str(x[0])
-				sec.addSatellite(int(x[0]))
+				self.addSatellite(sec, int(x[0]))
 				sec.setVoltageMode(0)
 				sec.setToneMode(0)
 				sec.setRotorPosNum(0) # USALS
-				self.satList.append(int(x[0]))
 
 		sec.setLNBSlotMask(tunermask)
 
@@ -86,14 +93,11 @@ class SecConfigure:
 		print "link tuner", nim1, "to tuner", nim2
 		sec.setTunerLinked(nim1, nim2)
 
-	def getSatList(self):
-		return self.satList
-
 	def update(self):
 		sec = secClass.getInstance()
+		self.configuredSatellites = Set()
 		sec.clear() ## this do unlinking NIMs too !!
 		print "sec config cleared"
-		self.satList = []
 
 		self.linked = { }
 		self.satposdepends = { }
@@ -323,7 +327,7 @@ class SecConfigure:
 
 				# finally add the orbital positions
 				for y in lnbSat[x]:
-					sec.addSatellite(y)
+					self.addSatellite(sec, y)
 					currSat = config.Nims[slotid].advanced.sat[y]
 
 					if currSat.voltage.value == "polarization":
@@ -347,6 +351,7 @@ class SecConfigure:
 
 	def __init__(self, nimmgr):
 		self.NimManager = nimmgr
+		self.configuredSatellites = Set()
 		self.update()
 
 class NIM(object):
@@ -410,6 +415,9 @@ class NIM(object):
 	empty = property(lambda self: self.type is None)
 
 class NimManager:
+	def getConfiguredSats(self):
+		return self.sec.getConfiguredSats()
+
 	def getTransponders(self, pos):
 		if self.transponders.has_key(pos):
 			return self.transponders[pos]
@@ -436,9 +444,6 @@ class NimManager:
 
 	def getTerrestrialFlags(self, nim):
 		return self.terrestrialsList[config.Nims[nim].terrestrial.index][1]
-
-	def getConfiguredSats(self):
-		return self.sec.getSatList()
 
 	def getSatDescription(self, pos):
 		return self.satellites[pos]
