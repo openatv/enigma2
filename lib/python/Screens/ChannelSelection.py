@@ -112,6 +112,8 @@ class ChannelContextMenu(Screen):
 					else:
 						append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
 				else:
+					if current_root.getPath().find('FROM SATELLITES') != -1:
+						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level = 0)
 					if haveBouquets:
 						if not inBouquet and current_sel_path.find("PROVIDERS") == -1:
 							append_when_current_valid(current, menu, (_("copy to bouquets"), self.copyCurrentToBouquetList), level = 0)
@@ -204,6 +206,17 @@ class ChannelContextMenu(Screen):
 		self.bsel = None
 		if recursive:
 			self.close(False)
+
+	def removeSatelliteServices(self):
+		curpath = self.csel.getCurrentSelection().getPath()
+		idx = curpath.find("satellitePosition == ")
+		if idx != -1:
+			tmp = curpath[idx+21:]
+			idx = tmp.find(')')
+			if idx != -1:
+				satpos = int(tmp[:idx])
+				eDVBDB.getInstance().removeServices(-1, -1, -1, satpos)
+		self.close()
 
 	def copyCurrentToBouquetList(self):
 		self.csel.copyCurrentToBouquetList()
