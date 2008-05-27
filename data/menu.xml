@@ -38,6 +38,7 @@
 			<menu level="0" text="Service Searching" entryID="service_searching_selection">
 				<id val="scan" />
 				<item text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
+				<item text="Default services lists" entryID="default_lists"><screen module="ScanSetup" screen="DefaultSatLists" /></item>
 				<item text="Automatic Scan" entryID="auto_scan"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<!--<item text="Automatic Scan"><screen module="ServiceScan" /></item>-->
 				<item text="Manual Scan" entryID="manual_scan"><screen module="ScanSetup" /></item>
