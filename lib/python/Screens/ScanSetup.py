@@ -1,4 +1,5 @@
 from Screen import Screen
+from Screens.DefaultWizard import DefaultWizard
 from ServiceScan import ServiceScan
 from Components.config import config, ConfigSubsection, ConfigSelection, \
 	ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable
@@ -6,6 +7,7 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
+from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, \
 	eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, \
@@ -276,6 +278,14 @@ class CableTransponderSearchSupport:
 		tmpstr = _("Try to find used transponders in cable network.. please wait...")
 		tmpstr += "\n\n..."
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
+
+class DefaultSatLists(DefaultWizard):
+	def __init__(self, session, silent = True, showSteps = False):
+		DefaultWizard.__init__(self, session, silent, showSteps, neededTag = "services")
+
+	def setDirectory(self):
+		self.directory = resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)
+		self.xmlfile = "defaultsatlists.xml"		
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
