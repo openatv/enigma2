@@ -149,37 +149,7 @@ class NimSetup(Screen, ConfigListScreen):
 				dt = datetime(1970, 1, 1, tm.tm_hour, tm.tm_min)
 				x[1].value = int(mktime(dt.timetuple()))
 			x[1].save()
-
-		old_configured_sats = nimmanager.getConfiguredSats()
 		nimmanager.sec.update()
-		new_configured_sats = nimmanager.getConfiguredSats()
-		self.unconfed_sats = old_configured_sats - new_configured_sats
-		self.satpos_to_remove = None
-		self.deleteConfirmed(False)
-
-	def deleteConfirmed(self, confirmed):
-		if confirmed:
-			eDVBDB.getInstance().removeServices(-1, -1, -1, self.satpos_to_remove)
-
-		if self.satpos_to_remove is not None:
-			self.unconfed_sats.remove(self.satpos_to_remove)
-
-		self.satpos_to_remove = None
-		for orbpos in self.unconfed_sats:
-			self.satpos_to_remove = orbpos
-			orbpos = self.satpos_to_remove
-			try:
-				# why we need this cast?
-				sat_name = str(nimmanager.getSatDescription(orbpos))
-			except:
-				if orbpos > 1800: # west
-					orbpos = 3600 - orbpos
-					h = _("W")
-				else:
-					h = _("E")
-				sat_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Delete no more configured satellite\n%s?") %(sat_name))
-			break
 
 	def fillListWithAdvancedSatEntrys(self, Sat):
 		currLnb = self.nimConfig.advanced.lnb[int(Sat.lnb.value)]
@@ -249,8 +219,38 @@ class NimSetup(Screen, ConfigListScreen):
 		self["config"].list = self.list
 
 	def keySave(self):
+		old_configured_sats = nimmanager.getConfiguredSats()
 		self.run()
-		self.close()
+		new_configured_sats = nimmanager.getConfiguredSats()
+		self.unconfed_sats = old_configured_sats - new_configured_sats
+		self.satpos_to_remove = None
+		self.deleteConfirmed(False)
+
+	def deleteConfirmed(self, confirmed):
+		if confirmed:
+			eDVBDB.getInstance().removeServices(-1, -1, -1, self.satpos_to_remove)
+
+		if self.satpos_to_remove is not None:
+			self.unconfed_sats.remove(self.satpos_to_remove)
+
+		self.satpos_to_remove = None
+		for orbpos in self.unconfed_sats:
+			self.satpos_to_remove = orbpos
+			orbpos = self.satpos_to_remove
+			try:
+				# why we need this cast?
+				sat_name = str(nimmanager.getSatDescription(orbpos))
+			except:
+				if orbpos > 1800: # west
+					orbpos = 3600 - orbpos
+					h = _("W")
+				else:
+					h = _("E")
+				sat_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Delete no more configured satellite\n%s?") %(sat_name))
+			break
+		if not self.satpos_to_remove:
+			self.close()
 
 	def __init__(self, session, slotid):
 		Screen.__init__(self, session)
