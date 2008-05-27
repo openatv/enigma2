@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 23:30+0200\n"
+"POT-Creation-Date: 2008-05-27 17:48+0200\n"
 "PO-Revision-Date: 2008-03-15 12:00+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -10,6 +10,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid " "
+msgstr ""
 
 msgid "#000000"
 msgstr ""
@@ -68,6 +71,9 @@ msgstr "(Pelkkä kanavanvaihto)"
 
 msgid "(empty)"
 msgstr "(tyhjä)"
+
+msgid "(show optional DVD audio menu)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2-hakemisto"
@@ -290,8 +296,14 @@ msgstr "Lisää"
 msgid "Add a mark"
 msgstr "Lisää merkki"
 
+msgid "Add a new title"
+msgstr ""
+
 msgid "Add timer"
 msgstr "Lisää ajastus"
+
+msgid "Add title..."
+msgstr ""
 
 msgid "Add to bouquet"
 msgstr "Lisää suosikkilistalle"
@@ -431,6 +443,15 @@ msgstr "Toiminto kun tallenne loppuu"
 msgid "Brightness"
 msgstr "Kirkkaus"
 
+msgid "Burn"
+msgstr ""
+
+msgid "Burn DVD"
+msgstr ""
+
+msgid "Burn To DVD..."
+msgstr ""
+
 msgid "Bus: "
 msgstr "Väylä: "
 
@@ -496,14 +517,20 @@ msgstr "Kanava:"
 msgid "Channellist menu"
 msgstr "Kanavalistan muokkaus"
 
+msgid "Chap."
+msgstr ""
+
+msgid "Chapter"
+msgstr ""
+
+msgid "Chapter:"
+msgstr ""
+
 msgid "Check"
 msgstr "Tarkista"
 
 msgid "Checking Filesystem..."
 msgstr "Tarkistetaan tiedostojärjestelmää"
-
-msgid "Choose Location"
-msgstr "Hakemisto"
 
 msgid "Choose Tuner"
 msgstr "Valitse viritin"
@@ -547,6 +574,9 @@ msgstr "Koodinopeus (LP)"
 
 msgid "Color Format"
 msgstr "Videolähtö (TV-SCART)"
+
+msgid "Command execution..."
+msgstr ""
 
 msgid "Command order"
 msgstr "Käskyjen järjestys"
@@ -592,6 +622,9 @@ msgid ""
 msgstr ""
 
 msgid "Constellation"
+msgstr ""
+
+msgid "Continue playing"
 msgstr ""
 
 msgid "Contrast"
@@ -643,6 +676,24 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
+msgid "DVD ENTER key"
+msgstr ""
+
+msgid "DVD Player"
+msgstr ""
+
+msgid "DVD down key"
+msgstr ""
+
+msgid "DVD left key"
+msgstr ""
+
+msgid "DVD right key"
+msgstr ""
+
+msgid "DVD up key"
+msgstr ""
+
 msgid "Danish"
 msgstr "Tanska"
 
@@ -652,7 +703,10 @@ msgstr "Päiväys"
 msgid "Deep Standby"
 msgstr "Virransäästötila"
 
-msgid "Default-Wizard"
+msgid "Default services lists"
+msgstr ""
+
+msgid "Default settings"
 msgstr ""
 
 msgid "Delay"
@@ -666,6 +720,12 @@ msgstr "Poista valinta"
 
 msgid "Delete failed!"
 msgstr "Poisto epäonnistui!"
+
+#, python-format
+msgid ""
+"Delete no more configured satellite\n"
+"%s?"
+msgstr ""
 
 msgid "Description"
 msgstr "Kuvaus"
@@ -790,6 +850,9 @@ msgstr ""
 "Haluatko ottaa lapsilukon\n"
 "käyttöön?"
 
+msgid "Do you want to play DVD in drive?"
+msgstr ""
+
 msgid "Do you want to restore your settings?"
 msgstr "Haluatko palauttaa asetukset?"
 
@@ -850,8 +913,14 @@ msgstr "VIRHE - haku epäonnistui (%s)!"
 msgid "East"
 msgstr "Itä"
 
+msgid "Edit current title"
+msgstr ""
+
 msgid "Edit services list"
 msgstr "Muokkaa kanavalistaa"
+
+msgid "Edit title..."
+msgstr ""
 
 msgid "Electronic Program Guide"
 msgstr "Ohjelmaopas"
@@ -925,6 +994,9 @@ msgstr "Toimenpiteen edistyminen:"
 msgid "Execution finished!!"
 msgstr "Toimenpide valmis!"
 
+msgid "Exit"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Poistu editorista"
 
@@ -951,6 +1023,9 @@ msgstr "FEC"
 msgid "Factory reset"
 msgstr ""
 
+msgid "Failed"
+msgstr ""
+
 msgid "Fast"
 msgstr "Nopea"
 
@@ -974,6 +1049,9 @@ msgstr "Tiedostojärjestelmässä on virheitä, joita ei voida korjata"
 
 msgid "Finetune"
 msgstr "Hienosäät."
+
+msgid "Finished"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Suomi"
@@ -1106,6 +1184,9 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr "Image-päivitys"
 
+msgid "In Progress"
+msgstr ""
+
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
@@ -1149,6 +1230,15 @@ msgstr "Asennetaan"
 msgid "Installing Software..."
 msgstr "Asennetaan ohjelmistoa..."
 
+msgid "Installing default sat lists... Please wait..."
+msgstr ""
+
+msgid "Installing defaults... Please wait..."
+msgstr ""
+
+msgid "Installing package content... Please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr "Välitön tallennus..."
 
@@ -1172,6 +1262,12 @@ msgstr "Käänteinen tekstin ja taustan väritys"
 
 msgid "Italian"
 msgstr "Italia"
+
+msgid "Job View"
+msgstr ""
+
+msgid "Jump to video title 1 (play movie from start)"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -1209,6 +1305,9 @@ msgstr "Aikaisempi nopeus"
 
 msgid "Latitude"
 msgstr "Leveysaste"
+
+msgid "Leave DVD Player?"
+msgstr ""
 
 msgid "Left"
 msgstr "Vasen"
@@ -1392,6 +1491,9 @@ msgstr "Lähiverkkoasetukset..."
 msgid "New"
 msgstr "Uusi"
 
+msgid "New DVD"
+msgstr ""
+
 msgid "New pin"
 msgstr "Uusi tunnusluku"
 
@@ -1485,6 +1587,9 @@ msgstr "Ei, älä tee mitään."
 
 msgid "No, just start my dreambox"
 msgstr "Ei, käynnistä vain Dreambox"
+
+msgid "No, let me choose default lists"
+msgstr ""
 
 #  Ohjatun asennuksen (Startup Wizard) kutosruudun valintateksti
 msgid "No, scan later manually"
@@ -1587,6 +1692,9 @@ msgstr "PiP-kuvan asetukset"
 msgid "Pillarbox"
 msgstr ""
 
+msgid "Pilot"
+msgstr ""
+
 msgid "Pin code needed"
 msgstr "Tarvitaan tunnusluku"
 
@@ -1607,6 +1715,12 @@ msgstr "Aseta tallennuksen päättymisaika"
 
 msgid "Please choose an extension..."
 msgstr "Valitse laajennus..."
+
+msgid "Please choose he package..."
+msgstr ""
+
+msgid "Please choose the default services lists you want to install."
+msgstr ""
 
 msgid "Please do not change values when you not know what you do!"
 msgstr "Älä muuta arvoja, ellet tiedä mitä teet!"
@@ -1840,8 +1954,14 @@ msgstr "Poista lisäosia"
 msgid "Remove a mark"
 msgstr "Poista merkki"
 
+msgid "Remove currently selected title"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Poista lisäosia"
+
+msgid "Remove title"
+msgstr ""
 
 msgid "Rename"
 msgstr "Muuta nimi"
@@ -1860,6 +1980,9 @@ msgstr "Toistokerrat"
 
 msgid "Reset"
 msgstr "Käynnistä CA-moduuli uudelleen"
+
+msgid "Resolution"
+msgstr ""
 
 msgid "Restart"
 msgstr "Käynnistä Dreambox uudelleen"
@@ -1892,6 +2015,9 @@ msgstr "Jatka viimeksi katsotusta kohdasta"
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Toisto jatkuu viimeksi katsotusta kohdasta"
+
+msgid "Return to file browser"
+msgstr ""
 
 msgid "Return to movie list"
 msgstr "Avaa tallenneluettelo"
@@ -1949,6 +2075,12 @@ msgstr "Lauantai"
 
 msgid "Save Playlist"
 msgstr "Tallenna soittolista"
+
+msgid "Save current project to disk"
+msgstr ""
+
+msgid "Save..."
+msgstr ""
 
 msgid "Scaling Mode"
 msgstr "Skaalaustila"
@@ -2367,6 +2499,14 @@ msgid ""
 "want to do that now?"
 msgstr ""
 
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your Dreambox by pressing the OK button on the remote control."
+msgstr ""
+
+msgid "The package doesn't contain anything."
+msgstr ""
+
 msgid "The pin code has been changed successfully."
 msgstr "Tunnusluku on nyt vaihdettu."
 
@@ -2392,6 +2532,12 @@ msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "Velho on lopettanut."
+
+msgid "There are no default services lists in your image."
+msgstr ""
+
+msgid "There are no default settings in your image."
+msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2461,6 +2607,9 @@ msgstr "Ajansiirtotallennusta ei voida käyttää."
 
 msgid "Timezone"
 msgstr "Aikavyöhyke"
+
+msgid "Title"
+msgstr ""
 
 msgid "Title:"
 msgstr "Otsikko:"
@@ -2708,6 +2857,9 @@ msgstr "W"
 msgid "WSS on 4:3"
 msgstr "WSS-kuvasuhdesignaali"
 
+msgid "Waiting"
+msgstr ""
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -2752,6 +2904,9 @@ msgstr ""
 "\n"
 "Aloita asennus painamalla\n"
 "kaukosäätimen OK-painiketta."
+
+msgid "Welcome..."
+msgstr ""
 
 msgid "West"
 msgstr "Länsi"
@@ -2803,8 +2958,28 @@ msgstr "Kyllä, palataan tallenneluetteloon"
 msgid "Yes, view the tutorial"
 msgstr "Kyllä, katso opasohjelma"
 
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
+msgstr ""
+
+msgid "You can choose, what you want to install.."
+msgstr ""
+
 msgid "You cannot delete this!"
 msgstr "Et voi poistaa tätä!"
+
+msgid "You chose not to install any default services lists."
+msgstr ""
+
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
+msgstr ""
+
+msgid ""
+"You chose not to install anything. Please press OK finish the install wizard."
+msgstr ""
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -3102,6 +3277,9 @@ msgstr "Tallenna muutokset ja poistu"
 msgid "equal to Socket A"
 msgstr "sama kuin virittimellä A"
 
+msgid "exit DVD player or return to file browser"
+msgstr ""
+
 msgid "exit mediaplayer"
 msgstr "Poistu Mediatoistimesta"
 
@@ -3109,6 +3287,9 @@ msgid "exit movielist"
 msgstr "poistu tallenneluettelosta"
 
 msgid "fine-tune your display"
+msgstr ""
+
+msgid "forward to the next chapter"
 msgstr ""
 
 msgid "free diskspace"
@@ -3158,6 +3339,12 @@ msgstr "alusta moduuli"
 
 msgid "insert mark here"
 msgstr "Aseta tähän merkki"
+
+msgid "jump back to the previous title"
+msgstr ""
+
+msgid "jump forward to the next title"
+msgstr ""
 
 msgid "jump to listbegin"
 msgstr "mene listan alkuun"
@@ -3336,11 +3523,17 @@ msgstr "poista lapsilukosta"
 msgid "remove new found flag"
 msgstr "poista uusi kanava-lippu"
 
+msgid "remove selected satellite"
+msgstr ""
+
 msgid "remove this mark"
 msgstr "Poista tämä merkki"
 
 msgid "repeated"
 msgstr "useita kertoja"
+
+msgid "rewind to the previous chapter"
+msgstr ""
 
 msgid "right"
 msgstr "oikea"
@@ -3388,6 +3581,9 @@ msgstr "kanavien tunnusluku"
 
 msgid "setup pin"
 msgstr "asetusten tunnusluku"
+
+msgid "show DVD main menu"
+msgstr ""
 
 msgid "show EPG..."
 msgstr "näytä EPG..."
@@ -3482,6 +3678,12 @@ msgstr "vaihda tiedostolistaan"
 msgid "switch to playlist"
 msgstr "vaihda soittolistaan"
 
+msgid "switch to the next audio track"
+msgstr ""
+
+msgid "switch to the next subtitle language"
+msgstr ""
+
 msgid "text"
 msgstr "teksti"
 
@@ -3493,6 +3695,9 @@ msgstr "tämä kanava on suojattu lapsilukolla"
 
 msgid "toggle a cut mark at the current position"
 msgstr "aseta leikkausmerkki nykyiseen kohtaan"
+
+msgid "toggle time, chapter, audio, subtitle info"
+msgstr ""
 
 msgid "unknown service"
 msgstr "tuntematon kanava"
@@ -3546,6 +3751,9 @@ msgstr "kanavanvaihto"
 
 msgid "zapped"
 msgstr "vaihdettu"
+
+#~ msgid "Choose Location"
+#~ msgstr "Hakemisto"
 
 #~ msgid "Startwizard"
 #~ msgstr "Ohjattu asennus"
