@@ -49,7 +49,7 @@ def confirmed(answer):
 def SecSetupMain(Session, **kwargs):
 	global session
 	session = Session
-	session.openWithCallback(confirmed, MessageBox, _("Please do not change values when you not know what you do!"), MessageBox.TYPE_INFO)
+	session.openWithCallback(confirmed, MessageBox, _("Please do not change any values unless you know what you are doing!"), MessageBox.TYPE_INFO)
 
 def SecSetupStart(menuid):
 	show = False
