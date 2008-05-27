@@ -14,8 +14,8 @@ config.misc.defaultchosen = ConfigBoolean(default = True)
 import xml.sax
 
 class DefaultWizard(WizardLanguage, DreamInfoHandler):
-	def __init__(self, session, silent = True):
-		DreamInfoHandler.__init__(self, self.statusCallback)
+	def __init__(self, session, silent = True, showSteps = False, neededTag = None):
+		DreamInfoHandler.__init__(self, self.statusCallback, neededTag = neededTag)
 		self.silent = silent
 		self.setDirectory()
         

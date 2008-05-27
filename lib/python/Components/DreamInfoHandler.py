@@ -31,7 +31,7 @@ class InfoHandler(xml.sax.ContentHandler):
 	def startElement(self, name, attrs):
 		print name, ":", attrs.items()
 		self.elements.append(name)
-		if name in ["hardware", "bcastsystem", "satellite"]:
+		if name in ["hardware", "bcastsystem", "satellite", "tag"]:
 			if not attrs.has_key("type"):
 					self.printError(str(name) + " tag with no type attribute")
 			if self.elements[-3] == "default":
@@ -97,8 +97,10 @@ class DreamInfoHandler:
 	STATUS_ERROR = 2
 	STATUS_INIT = 4
 	
-	def __init__(self, statusCallback, blocking = False):
+	def __init__(self, statusCallback, blocking = False, neededTag = None):
 		self.directory = "/"
+		
+		self.neededTag = neededTag
 		
 		# caution: blocking should only be used, if further execution in enigma2 depends on the outcome of
 		# the installer!
@@ -142,6 +144,14 @@ class DreamInfoHandler:
 		# TODO: we need to implement a hardware detection here...
 		print "prerequisites:", prerequisites
 		met = True
+		if self.neededTag is None:
+			if prerequisites.has_key("tag"):
+				return False
+		else:
+			if prerequisites.has_key("tag"):
+				if self.neededTag in prerequisites["tag"]:
+					return True
+			return False
 		if prerequisites.has_key("bcastsystem"):
 			for bcastsystem in prerequisites["bcastsystem"]:
 				if nimmanager.hasNimType(bcastsystem):
@@ -271,11 +281,11 @@ class DreamInfoHandler:
 
 	def mergeServices(self, directory, name, merge = False):
 		print "merging services:", directory, " - ", name
-		
-		db = eDVBDB.getInstance()
-		db.reloadServicelist()
-		db.loadServicelist(directory + name)
-		db.saveServicelist()
+		if os.path.isfile(directory + name):
+			db = eDVBDB.getInstance()
+			db.reloadServicelist()
+			db.loadServicelist(directory + name)
+			db.saveServicelist()
 		self.installNext()
 
 	def installFavourites(self, directory, name):
