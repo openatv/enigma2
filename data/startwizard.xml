@@ -115,8 +115,15 @@ self["arrowup2"].startMoving()
 			<list>
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
+				<listentry caption="No, let me choose default lists" step="parentalcontrol" />
 				<listentry caption="No, scan later manually" step="parentalcontrol" />
 			</list>
+			<code pos="after">
+if self["list"].index == 2:
+	#from Screens.ScanSetup import ScanSetup
+	from Screens.ScanSetup import DefaultSatLists
+	self.session.open(DefaultSatLists)
+			</code>
 		</step>
 		<step id="scan" nextstep="parentalcontrol">
 			<condition>
