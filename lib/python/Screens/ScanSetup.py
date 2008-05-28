@@ -504,7 +504,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					if frontendData.get("system", "DVB-S") == "DVB-S2":
 						defaultSat["fec_s2"] = {"FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_4_5": "4_5", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_9_10": "9_10"} \
 											[frontendData.get("fec_inner", "FEC_AUTO")]
-						defaultSat["rolloff"] = {"ROLLOFF_0_35" : "0_35", "ROLLOFF_0_25" : "0_25", "0_20" : "ROLLOFF_0_20"}[frontendData.get("rolloff", "ROLLOFF_0_35")]
+						defaultSat["rolloff"] = {"ROLLOFF_0_35" : "0_35", "ROLLOFF_0_25" : "0_25", "ROLLOFF_0_20" : "0_20"}[frontendData.get("rolloff", "ROLLOFF_0_35")]
 						defaultSat["pilot"] = {"PILOT_ON" : "on", "PILOT_OFF" : "off", "PILOT_AUTO" : "auto"}[frontendData.get("pilot", "PILOT_AUTO")]
 					else:
 						defaultSat["fec"] = {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_NONE": "none"} \
