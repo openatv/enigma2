@@ -64,11 +64,12 @@
 				<!--<item text="Keyboard"><setup id="keyboard" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
 				<item requires="Display"><setup level="1" id="lcd" /></item>
-				<menu level="1" text="Network..." entryID="network_setup">
+				<item level="0" text="Network..." entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
+				<!--<menu level="1" text="Network..." entryID="network_setup">
 					<id val="network" />
 					<item level="1" text="Device Setup..." entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item level="1" text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>
-				</menu>
+				</menu>-->
 			</menu>
 			<item level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 			<item level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
