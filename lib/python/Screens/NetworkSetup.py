@@ -323,9 +323,11 @@ class AdapterSetupConfiguration(Screen):
 			"up": self.up,
 			"down": self.down,
 			"red": self.close,
+			"left": self.left,
+			"right": self.right,			
 		}, -2)
 
-		iNetwork.loadNetworkConfig()
+		iNetwork.getInterfaces()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.updateStatusbar()
 
@@ -355,6 +357,14 @@ class AdapterSetupConfiguration(Screen):
 
 	def down(self):
 		self["menulist"].down()
+		self.loadDescription()
+
+	def left(self):
+		self["menulist"].pageUp()
+		self.loadDescription()
+
+	def right(self):
+		self["menulist"].pageDown()
 		self.loadDescription()
 
 	def layoutFinished(self):
