@@ -5,7 +5,7 @@ packagelist = self.fillPackagesList()
 self.runWizard = (len(packagelist) > 0)
 self.condition = self.runWizard
 		</condition>
-		<text value="You can choose, what you want to install.." />
+		<text value="You can choose, what you want to install..." />
 		<!--list type="dynamic" source="listDefaults" evaluation="selectionMade" /-->
 		<config type="dynamic" source="getConfigList" evaluation="selectionMade" />
 		<code pos="after">
