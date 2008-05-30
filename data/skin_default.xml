@@ -38,9 +38,9 @@
 		<widget name="Adaptertext" position="20,325" size="100,21" zPosition="10" font="Regular;19" transparent="1" />
 		<widget name="Adapter" position="110,325" size="300,21" zPosition="10" font="Regular;19" transparent="1" />
 		<widget name="introduction2" position="110,360" size="300,20" zPosition="10" font="Regular;21" halign="center" transparent="1" />
-		<widget name="ButtonRedtext" position="430,325" size="80,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonRed" pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
-		<widget name="ButtonBluetext" position="430,360" size="80,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonBluetext" position="430,360" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonBlue" pixmap="skin_default/buttons/button_blue.png" position="410,360" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 	</screen>
 	<screen name="AdapterSetupConfiguration" position="90,100" size="550,400" title="Network Configuration..." >
@@ -53,7 +53,7 @@
 		<widget name="Statustext" position="20,350" size="60,21" zPosition="10" font="Regular;19" transparent="1"/>
 		<widget name="statuspic_inactive" pixmap="skin_default/buttons/button_green_off.png" position="70,350" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 		<widget name="statuspic_active" pixmap="skin_default/buttons/button_green.png" position="70,350" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
-		<widget name="ButtonRedtext" position="430,325" size="80,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonRed" pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 	</screen>
 	<!-- Audio selection -->
@@ -520,7 +520,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<screen name="NameserverSetup" position="90,100" size="550,400" title="Nameserver Setup" >
 		<widget name="config" position="10,10" size="530,175" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/bottombar.png" position="5,310" size="540,120" zPosition="1" transparent="1" alphatest="on" />
-		<widget name="ButtonRedtext" position="430,325" size="80,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="ButtonGreentext" position="60,325" size="150,21" zPosition="10" font="Regular;21" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/button_green.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
@@ -571,12 +571,12 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="EditSettingsButton_selected" pixmap="skin_default/buttons/blue_pressed.png" position="425,260" zPosition="1" size="140,40" transparent="1" alphatest="on" />
 		<widget name="EditSettings_Text" position="440,270" size="110,21" zPosition="2" font="Regular;19" foregroundColor="black" transparent="1" />
 		<ePixmap pixmap="skin_default/bottombar.png" position="15,310" size="540,120" zPosition="1" transparent="1" alphatest="on" />
-		<widget name="ButtonRedtext" position="430,325" size="80,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonRed" pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
-		<widget name="ButtonGreentext" position="60,325" size="80,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonGreentext" position="60,325" size="250,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonGreen" pixmap="skin_default/buttons/button_green.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="ButtonGreen_off" pixmap="skin_default/buttons/button_green_off.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
-		<widget name="ButtonYellowtext" position="60,355" size="80,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonYellowtext" position="60,355" size="250,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonYellow" pixmap="skin_default/buttons/button_yellow.png" position="30,355" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="ButtonYellow_off" pixmap="skin_default/buttons/button_yellow_off.png" position="30,355" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="InfoTextBorder" pixmap="skin_default/border_info.png" position="0,0" zPosition="20" size="550,300" alphatest="on" />
