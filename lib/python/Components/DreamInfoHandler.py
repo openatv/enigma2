@@ -149,9 +149,13 @@ class DreamInfoHandler:
 				return False
 		else:
 			if prerequisites.has_key("tag"):
-				if self.neededTag in prerequisites["tag"]:
-					return True
-			return False
+				if not self.neededTag in prerequisites["tag"]:
+					return False
+				
+		if prerequisites.has_key("satellite"):
+			for sat in prerequisites["satellite"]:
+				if int(sat) not in nimmanager.getConfiguredSats():
+					return False				
 		if prerequisites.has_key("bcastsystem"):
 			for bcastsystem in prerequisites["bcastsystem"]:
 				if nimmanager.hasNimType(bcastsystem):
@@ -193,10 +197,13 @@ class DreamInfoHandler:
 		#print "attributes:", attributes
 		
 		if self.currentAttributeIndex >= len(self.attributeNames): # end of package reached
+			print "end of package reached"
 			if self.currentlyInstallingMetaIndex is None or self.currentlyInstallingMetaIndex >= len(self.installIndexes) - 1:
+				print "set status to DONE"
 				self.setStatus(self.STATUS_DONE)
 				return
 			else:
+				print "increment meta index to install next package"
 				self.currentlyInstallingMetaIndex += 1
 				self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
 		
