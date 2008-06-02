@@ -8,7 +8,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-int bidirpipe(int pfd[], const char *cmd , const char * const argv[])
+int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char *cwd )
 {
 	int pfdin[2];  /* from child to parent */
 	int pfdout[2]; /* from parent to child */
@@ -36,6 +36,9 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[])
 
 		for (unsigned int i=3; i < 90; ++i )
 			close(i);
+
+		if (cwd)
+			chdir(cwd);
 
 		execvp(cmd, (char * const *)argv); 
 				/* the vfork will actually suspend the parent thread until execvp is called. thus it's ok to use the shared arg/cmdline pointers here. */
@@ -77,6 +80,20 @@ static char *find_bracket(char ch)
 		++idx;
 	}
 	return NULL;
+}
+
+int eConsoleAppContainer::setCWD( const char *path )
+{
+	struct stat dir_stat;
+
+	if (stat(path, &dir_stat) == -1)
+		return -1;
+
+	if (!S_ISDIR(dir_stat.st_mode))
+		return -2;
+
+	m_cwd = path;
+	return 0;
 }
 
 int eConsoleAppContainer::execute( const char *cmd )
@@ -157,7 +174,8 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	killstate=0;
 
 	// get one read ,one write and the err pipe to the prog..
-	pid = bidirpipe(fd, cmdline, argv);
+	pid = bidirpipe(fd, cmdline, argv, m_cwd.length() ? m_cwd.c_str() : 0);
+
 
 	if ( pid == -1 )
 		return -3;
