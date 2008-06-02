@@ -1,3 +1,5 @@
+from enigma import eDVBResourceManager
+
 SystemInfo = { }
 
 #FIXMEE...
@@ -9,3 +11,4 @@ def getNumVideoDecoders():
 	return idx
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
+SystemInfo["CanMeasureFrontendInputPower"] = eDVBResourceManager.getInstance().canMeasureFrontendInputPower()

@@ -1,5 +1,6 @@
 from enigma import eDVBDB
 from Screen import Screen
+from Components.SystemInfo import SystemInfo
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
@@ -29,18 +30,22 @@ class NimSetup(Screen, ConfigListScreen):
 		list.append(getConfigListEntry(" ", nim.longitudeOrientation))
 		list.append(getConfigListEntry(_("Latitude"), nim.latitude))
 		list.append(getConfigListEntry(" ", nim.latitudeOrientation))
-
-		self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), nim.powerMeasurement)
-		list.append(self.advancedPowerMeasurement)
-		if nim.powerMeasurement.value:
-			list.append(getConfigListEntry(_("Power threshold in mA"), nim.powerThreshold))
-			self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), nim.turningSpeed)
-			list.append(self.turningSpeed)
-			if nim.turningSpeed.value == "fast epoch":
-				self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), nim.fastTurningBegin)
-				self.turnFastEpochEnd = getConfigListEntry(_("End time"), nim.fastTurningEnd)
-				list.append(self.turnFastEpochBegin)
-				list.append(self.turnFastEpochEnd)
+		if SystemInfo["CanMeasureFrontendInputPower"]:
+			self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), nim.powerMeasurement)
+			list.append(self.advancedPowerMeasurement)
+			if nim.powerMeasurement.value:
+				list.append(getConfigListEntry(_("Power threshold in mA"), nim.powerThreshold))
+				self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), nim.turningSpeed)
+				list.append(self.turningSpeed)
+				if nim.turningSpeed.value == "fast epoch":
+					self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), nim.fastTurningBegin)
+					self.turnFastEpochEnd = getConfigListEntry(_("End time"), nim.fastTurningEnd)
+					list.append(self.turnFastEpochBegin)
+					list.append(self.turnFastEpochEnd)
+		else:
+			if nim.powerMeasurement.value:
+				nim.powerMeasurement.value = False
+				nim.powerMeasurement.save()
 
 	def createSetup(self):
 		print "Creating setup"
@@ -199,17 +204,22 @@ class NimSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(" ", currLnb.longitudeOrientation))
 					self.list.append(getConfigListEntry(_("Latitude"), currLnb.latitude))
 					self.list.append(getConfigListEntry(" ", currLnb.latitudeOrientation))
-					self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), currLnb.powerMeasurement)
-					self.list.append(self.advancedPowerMeasurement)
-					if currLnb.powerMeasurement.value:
-						self.list.append(getConfigListEntry(_("Power threshold in mA"), currLnb.powerThreshold))
-						self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), currLnb.turningSpeed)
-						self.list.append(self.turningSpeed)
-						if currLnb.turningSpeed.value == "fast epoch":
-							self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), currLnb.fastTurningBegin)
-							self.turnFastEpochEnd = getConfigListEntry(_("End time"), currLnb.fastTurningEnd)
-							self.list.append(self.turnFastEpochBegin)
-							self.list.append(self.turnFastEpochEnd)
+					if SystemInfo["CanMeasureFrontendInputPower"]:
+						self.advancedPowerMeasurement = getConfigListEntry(_("Use Power Measurement"), currLnb.powerMeasurement)
+						self.list.append(self.advancedPowerMeasurement)
+						if currLnb.powerMeasurement.value:
+							self.list.append(getConfigListEntry(_("Power threshold in mA"), currLnb.powerThreshold))
+							self.turningSpeed = getConfigListEntry(_("Rotor turning speed"), currLnb.turningSpeed)
+							self.list.append(self.turningSpeed)
+							if currLnb.turningSpeed.value == "fast epoch":
+								self.turnFastEpochBegin = getConfigListEntry(_("Begin time"), currLnb.fastTurningBegin)
+								self.turnFastEpochEnd = getConfigListEntry(_("End time"), currLnb.fastTurningEnd)
+								self.list.append(self.turnFastEpochBegin)
+								self.list.append(self.turnFastEpochEnd)
+					else:
+						if currLnb.powerMeasurement.value:
+							currLnb.powerMeasurement.value = False
+							currLnb.powerMeasurement.save()
 			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
 			self.list.append(self.advancedLof)
 			if currLnb.lof.value == "user_defined":
