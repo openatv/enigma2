@@ -103,7 +103,9 @@ class VideoWizard(WizardLanguage):
 		print "inputSelect:", port
 		modeList = self.hw.getModeList(self.selection)
 		print "modeList:", modeList
-		self.hw.setMode(port = port, mode = modeList[0][0], rate = modeList[0][1][0])
+		self.port = port
+		ratesList = self.listRates(modeList[0][0])
+		self.hw.setMode(port = port, mode = modeList[0][0], rate = ratesList[0][0])
 		
 	def listModes(self):
 		list = []
@@ -137,6 +139,11 @@ class VideoWizard(WizardLanguage):
 			print mode
 			if mode[0] == querymode:
 				for rate in mode[1]:
+					if self.port == "DVI-PC":
+						print "rate:", rate
+						if rate == "640x480":
+							list.insert(0, (rate, rate))
+							continue
 					list.append((rate, rate))
 		return list
 	
