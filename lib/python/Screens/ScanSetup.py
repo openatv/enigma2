@@ -285,7 +285,15 @@ class DefaultSatLists(DefaultWizard):
 
 	def setDirectory(self):
 		self.directory = resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)
-		self.xmlfile = "defaultsatlists.xml"		
+		self.xmlfile = "defaultsatlists.xml"
+		
+	def statusCallback(self, status, progress):
+		print "statusCallback:", status, progress
+		from Components.DreamInfoHandler import DreamInfoHandler
+		if status == DreamInfoHandler.STATUS_DONE:
+			self["text"].setText(_("The installation of the default services lists is finished."))
+			self.markDone()
+			self.disableKeys = False	
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def __init__(self, session):
