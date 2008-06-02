@@ -748,6 +748,15 @@ error:
 	return ret;
 }
 
+bool eDVBResourceManager::canMeasureFrontendInputPower()
+{
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	{
+		return i->m_frontend->readInputpower() >= 0;
+	}
+	return false;
+}
+
 class eDVBChannelFilePush: public eFilePushThread
 {
 public:

@@ -215,6 +215,7 @@ public:
 #ifdef SWIG
 public:
 #endif
+	bool canMeasureFrontendInputPower();
 	PSignal1<void,int> frontendUseMaskChanged;
 	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int slot_index);
 	PyObject *setFrontendSlotInformations(SWIG_PYOBJECT(ePyObject) list);

@@ -270,6 +270,7 @@ private:
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends;
 	bool m_rotorMoving;
 	int m_not_linked_slot_mask;
+	bool m_canMeasureInputPower;
 #endif
 #ifdef SWIG
 	eDVBSatelliteEquipmentControl();
@@ -324,6 +325,7 @@ public:
 	PyObject *get_exclusive_satellites(int tu1, int tu2);
 	void setRotorMoving(bool); // called from the frontend's
 	bool isRotorMoving();
+	bool canMeasureInputPower() { return m_canMeasureInputPower; }
 };
 
 #endif
