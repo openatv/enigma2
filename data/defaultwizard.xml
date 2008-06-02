@@ -50,7 +50,8 @@ if self.runWizard:
 			break 
 		</condition>
 		<code>
-self.disableKeys = True			
+self.disableKeys = True		
+self.installPackages(self.indexList)
 		</code>
 		<code>
 #print "len of packageslist", len(self.packageslist)
