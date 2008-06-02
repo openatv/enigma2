@@ -25,6 +25,7 @@ class eConsoleAppContainer: public Object
 	int fd[3];
 	int pid;
 	int killstate;
+	std::string m_cwd;
 	std::queue<struct queue_data> outbuf;
 	eSocketNotifier *in, *out, *err;
 	void readyRead(int what);
@@ -34,6 +35,7 @@ class eConsoleAppContainer: public Object
 #endif
 public:
 	eConsoleAppContainer();
+	int setCWD( const char *path );
 	int execute( const char *str );
 	int execute( const char *cmdline, const char *const argv[] );
 	int execute( PyObject *cmdline, PyObject *args );
