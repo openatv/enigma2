@@ -57,7 +57,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.turningSpeed = None
 		self.turnFastEpochBegin = None
 		self.turnFastEpochEnd = None
-
+		self.uncommittedDiseqcCommand = None
 		self.cableScanType = None
 
 		if self.nim.isCompatible("DVB-S"):
@@ -133,7 +133,8 @@ class NimSetup(Screen, ConfigListScreen):
 	def newConfig(self):
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, \
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
-			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, self.cableScanType)
+			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
+			self.uncommittedDiseqcCommand, self.cableScanType)
 		for x in checkList:
 			if self["config"].getCurrent() == x:
 				self.createSetup()
@@ -179,8 +180,19 @@ class NimSetup(Screen, ConfigListScreen):
 				if currLnb.diseqcMode.value == "1_0":
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder1_0))
 				else:
+					if currLnb.uncommittedDiseqcCommand.index:
+						if currLnb.commandOrder.value == "ct":
+							currLnb.commandOrder.value = "cut"
+						elif currLnb.commandOrder.value == "tc":
+							currLnb.commandOrder.value = "tcu"
+					else:
+						if currLnb.commandOrder.index & 1:
+							currLnb.commandOrder.value = "tc"
+						else:
+							currLnb.commandOrder.value = "ct"
 					self.list.append(getConfigListEntry(_("Command order"), currLnb.commandOrder))
-					self.list.append(getConfigListEntry(_("Uncommitted DiSEqC command"), currLnb.uncommittedDiseqcCommand))
+					self.uncommittedDiseqcCommand = getConfigListEntry(_("Uncommitted DiSEqC command"), currLnb.uncommittedDiseqcCommand)
+					self.list.append(self.uncommittedDiseqcCommand)
 					self.list.append(getConfigListEntry(_("DiSEqC repeats"), currLnb.diseqcRepeats))
 				if currLnb.diseqcMode.value == "1_2":
 					self.list.append(getConfigListEntry(_("Longitude"), currLnb.longitude))
