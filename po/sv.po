@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-19 15:07+0200\n"
-"PO-Revision-Date: 2008-05-14 15:07+0100\n"
+"POT-Creation-Date: 2008-06-03 15:14+0200\n"
+"PO-Revision-Date: 2008-06-02 10:04+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -296,6 +296,9 @@ msgstr "Aktivera Bild i Bild"
 msgid "Activate network settings"
 msgstr "Aktivera nätverksinställningar"
 
+msgid "Adapter settings"
+msgstr ""
+
 msgid "Add"
 msgstr "Lägg till"
 
@@ -368,6 +371,23 @@ msgstr "Ett tomt filnamn är inte tillåtet."
 msgid "Arabic"
 msgstr "Arabiska"
 
+msgid ""
+"Are you sure you want to enable WLAN support?\n"
+"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to reset \n"
+"your network configuration to defaults?\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restart your network interfaces?\n"
+"\n"
+msgstr ""
+
 msgid "Artist:"
 msgstr "Artist:"
 
@@ -412,6 +432,9 @@ msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "Back"
+msgstr ""
 
 msgid "Backup"
 msgstr "Backup"
@@ -565,6 +588,9 @@ msgstr "Rensa före sökning"
 msgid "Clear log"
 msgstr "Rensa logg"
 
+msgid "Close"
+msgstr ""
+
 msgid "Code rate high"
 msgstr "Code rate hög"
 
@@ -677,6 +703,9 @@ msgstr "Klipplist editor..."
 msgid "Czech"
 msgstr "Tjeckiska"
 
+msgid "DHCP"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
@@ -710,8 +739,11 @@ msgstr "Datum"
 msgid "Deep Standby"
 msgstr "Stäng av"
 
-msgid "Default settings"
+msgid "Default services lists"
 msgstr ""
+
+msgid "Default settings"
+msgstr "Grundinstallningar"
 
 msgid "Delay"
 msgstr "Fördröjning"
@@ -725,6 +757,12 @@ msgstr "Ta bort post"
 msgid "Delete failed!"
 msgstr "Borttagning misslyckades!"
 
+#, python-format
+msgid ""
+"Delete no more configured satellite\n"
+"%s?"
+msgstr ""
+
 msgid "Description"
 msgstr "Beskrivning"
 
@@ -733,9 +771,6 @@ msgstr "Hittad hårddisk:"
 
 msgid "Detected NIMs:"
 msgstr "Hittade tuners:"
-
-msgid "Device Setup..."
-msgstr "Nätverksinstallation..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -840,6 +875,9 @@ msgstr "Vill du göra en ny manuell sökning?"
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Vill du aktivera föräldrakontroll på din Dreambox?"
 
+msgid "Do you want to play DVD in drive?"
+msgstr ""
+
 msgid "Do you want to restore your settings?"
 msgstr "Vill du återställa dina inställningar?"
 
@@ -898,11 +936,23 @@ msgstr "FEL - misslyckades söka (%s)!"
 msgid "East"
 msgstr "Öst"
 
+msgid "Edit DNS"
+msgstr ""
+
 msgid "Edit current title"
 msgstr "Ändra vald titel"
 
 msgid "Edit services list"
 msgstr "Ändra kanallista"
+
+msgid "Edit settings"
+msgstr ""
+
+msgid "Edit the Nameserver configuration of your Dreambox.\n"
+msgstr ""
+
+msgid "Edit the network configuration of your Dreambox.\n"
+msgstr ""
 
 msgid "Edit title..."
 msgstr "Ändra titel..."
@@ -916,6 +966,9 @@ msgstr "Aktivera"
 msgid "Enable 5V for active antenna"
 msgstr "Aktivera 5V för aktiv antenn"
 
+msgid "Enable WLAN Support"
+msgstr ""
+
 msgid "Enable multiple bouquets"
 msgstr "Aktivera flera favoritlistor"
 
@@ -924,6 +977,15 @@ msgstr "Aktivera föräldrakontroll"
 
 msgid "Enabled"
 msgstr "Aktiverad"
+
+msgid "Encryption"
+msgstr ""
+
+msgid "Encryption Key"
+msgstr ""
+
+msgid "Encryption Type"
+msgstr ""
 
 msgid "End"
 msgstr "Slut"
@@ -998,9 +1060,6 @@ msgstr "Avsluta guide"
 
 msgid "Expert"
 msgstr "Expert"
-
-msgid "Extended Setup..."
-msgstr "Utökad installation..."
 
 msgid "Extensions"
 msgstr "Utökningar"
@@ -1221,11 +1280,14 @@ msgstr "Installera"
 msgid "Installing Software..."
 msgstr "Installera mjukvara..."
 
-msgid "Installing defaults... Please wait..."
+msgid "Installing default sat lists... Please wait..."
 msgstr ""
 
+msgid "Installing defaults... Please wait..."
+msgstr "Installerar grundinställningar... Vänligen vänta..."
+
 msgid "Installing package content... Please wait..."
-msgstr ""
+msgstr "Installerar paketinnehåll... Vänligen vänta..."
 
 msgid "Instant Record..."
 msgstr "Direktinspelning..."
@@ -1269,6 +1331,9 @@ msgstr "Tangentbords inställning"
 
 msgid "Keymap"
 msgstr "Tangentlayout"
+
+msgid "LAN Adapter"
+msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
@@ -1316,11 +1381,17 @@ msgstr "Gränser av"
 msgid "Limits on"
 msgstr "Gränser på"
 
+msgid "Link:"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "Lista på lagringsenheter"
 
 msgid "Lithuanian"
 msgstr "Litauiska"
+
+msgid "Local Network"
+msgstr ""
 
 msgid "Location"
 msgstr "Lokation"
@@ -1455,14 +1526,20 @@ msgstr "Namnserver %d"
 msgid "Nameserver Setup"
 msgstr "Namnserver installation"
 
-msgid "Nameserver Setup..."
-msgstr "Namnserver installation..."
+msgid "Nameserver settings"
+msgstr ""
 
 msgid "Netmask"
 msgstr "Nätmask"
 
+msgid "Network Configuration..."
+msgstr ""
+
 msgid "Network Mount"
 msgstr "Nätverksmonteringar"
+
+msgid "Network SSID"
+msgstr ""
 
 msgid "Network Setup"
 msgstr "Nätverksinställningar"
@@ -1473,8 +1550,17 @@ msgstr "Sök nätverk"
 msgid "Network setup"
 msgstr "Nätverksinställningar"
 
+msgid "Network test"
+msgstr ""
+
+msgid "Network test..."
+msgstr ""
+
 msgid "Network..."
 msgstr "Nätverk..."
+
+msgid "Network:"
+msgstr ""
 
 msgid "New"
 msgstr "Ny"
@@ -1565,6 +1651,9 @@ msgstr "Nej, gör inget."
 
 msgid "No, just start my dreambox"
 msgstr "Nej, starta bara dreamboxen"
+
+msgid "No, let me choose default lists"
+msgstr ""
 
 msgid "No, scan later manually"
 msgstr "Nej, sök manuellt senare"
@@ -1670,7 +1759,7 @@ msgid "Pillarbox"
 msgstr "Svarta kanter"
 
 msgid "Pilot"
-msgstr ""
+msgstr "Pilot"
 
 msgid "Pin code needed"
 msgstr "PIN kod behövs"
@@ -1694,6 +1783,9 @@ msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
 
 msgid "Please choose he package..."
+msgstr "Vänligen välj paket"
+
+msgid "Please choose the default services lists you want to install."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -1817,6 +1909,9 @@ msgstr "Fördefinerad transponder"
 msgid "Preparing... Please wait"
 msgstr "Förbereder... Vänligen vänta"
 
+msgid "Press OK on your remote control to continue."
+msgstr ""
+
 msgid "Press OK to activate the settings."
 msgstr "Tryck OK för aktivera inställningarna."
 
@@ -1826,8 +1921,18 @@ msgstr "Tryck OK för sökning"
 msgid "Press OK to start the scan"
 msgstr "Tryck OK för att starta sökning"
 
+msgid ""
+"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
+"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
+"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
+"\n"
+msgstr ""
+
 msgid "Prev"
 msgstr "Föregående"
+
+msgid "Primary DNS"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Skydda kanaler"
@@ -1952,6 +2057,17 @@ msgstr "Upprepningar"
 msgid "Reset"
 msgstr "Nollställ"
 
+msgid "Reset configuration"
+msgstr ""
+
+msgid ""
+"Reset the network configuration of your Dreambox.\n"
+"\n"
+msgstr ""
+
+msgid "Resolution"
+msgstr ""
+
 msgid "Restart"
 msgstr "Omstart"
 
@@ -1960,6 +2076,15 @@ msgstr "Omstart GUI"
 
 msgid "Restart GUI now?"
 msgstr "Omstart av GUI nu?"
+
+msgid "Restart network"
+msgstr ""
+
+msgid "Restart test"
+msgstr ""
+
+msgid "Restart your network connection and interfaces.\n"
+msgstr ""
 
 msgid "Restore"
 msgstr "Återställ"
@@ -2077,6 +2202,9 @@ msgstr "Söka SR6875"
 msgid "Scan SR6900"
 msgstr "Söka SR6900"
 
+msgid "Scan Wireless Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Sök ytterligare SR"
 
@@ -2116,11 +2244,23 @@ msgstr "Sök US MID band"
 msgid "Scan band US SUPER"
 msgstr "Sök US SUPER band"
 
+msgid ""
+"Scan your network for wireless Access Points and connect to them using your "
+"WLAN USB Stick\n"
+msgstr ""
+
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
+
 msgid "Search east"
 msgstr "Sök öst"
 
 msgid "Search west"
 msgstr "Sök väst"
+
+msgid "Secondary DNS"
+msgstr ""
 
 msgid "Seek"
 msgstr "Sök"
@@ -2215,6 +2355,12 @@ msgstr "Installation"
 msgid "Setup Mode"
 msgstr "Installationsläge"
 
+msgid "Show Info"
+msgstr ""
+
+msgid "Show WLAN Status"
+msgstr ""
+
 msgid "Show blinking clock in display during recording"
 msgstr "Visa blinkande klocka i display under inspelning"
 
@@ -2242,6 +2388,9 @@ msgstr "Visa radiospelaren..."
 
 msgid "Show the tv player..."
 msgstr "Visa tv spelare..."
+
+msgid "Shows the state of your wireless LAN connection.\n"
+msgstr ""
 
 msgid "Shutdown Dreambox after"
 msgstr "Stäng av Dreambox efter"
@@ -2339,6 +2488,9 @@ msgstr "Spela upp från början"
 msgid "Start recording?"
 msgstr "Starta inspelning?"
 
+msgid "Start test"
+msgstr ""
+
 msgid "StartTime"
 msgstr "Starttid"
 
@@ -2371,6 +2523,9 @@ msgstr "Avsluta nuvarande händelse men inte kommande"
 
 msgid "Stop playing this movie?"
 msgstr "Avsluta uppspelningen?"
+
+msgid "Stop test"
+msgstr ""
 
 msgid "Store position"
 msgstr "Lagra position"
@@ -2436,6 +2591,9 @@ msgstr "Marksänd leverantör"
 msgid "Test mode"
 msgstr "Testläge"
 
+msgid "Test the network configuration of your Dreambox.\n"
+msgstr ""
+
 msgid "Test-Messagebox?"
 msgstr "Test-Meddelandebox?"
 
@@ -2457,13 +2615,18 @@ msgstr ""
 "Ingångsport bör konfigureras nu.\n"
 "Du kan konfigurera skärmen med hjälp av några testbilder. Vill du gör det nu?"
 
+msgid "The installation of the default services lists is finished."
+msgstr ""
+
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
+"Installationen av grundinställningar är nu klar. Du kan nu slutföra din "
+"konfiguration av Dreambox med att trycka på OK knappen på din fjärrkontroll."
 
 msgid "The package doesn't contain anything."
-msgstr ""
+msgstr "Paketet innehåller ingenting."
 
 msgid "The pin code has been changed successfully."
 msgstr "Bytet av PIN koden utfördes."
@@ -2491,8 +2654,11 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "Guiden är nu färdig."
 
-msgid "There are no default settings in your image."
+msgid "There are no default services lists in your image."
 msgstr ""
+
+msgid "There are no default settings in your image."
+msgstr "Det finns inga grundinställningar i din image."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2507,6 +2673,42 @@ msgstr "Det här är steg 2."
 
 msgid "This is unsupported at the moment."
 msgstr "Detta stöds för närvarande inte."
+
+msgid ""
+"This test checks for configured Nameservers.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- please check your DHCP, cabling and Adapter setup\n"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
+msgstr ""
+
+msgid ""
+"This test checks whether a network cable is connected to your LAN-Adapter.\n"
+"If you get a \"disconnected\" message:\n"
+"- verify that a network cable is attached\n"
+"- verify that the cable is not broken"
+msgstr ""
+
+msgid ""
+"This test checks whether a valid IP Address is found for your LAN Adapter.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- no valid IP Address was found\n"
+"- please check your DHCP, cabling and adapter setup"
+msgstr ""
+
+msgid ""
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
+"If you get a \"disabled\" message:\n"
+" - then your LAN Adapter is configured for manual IP Setup\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
+"If you get an \"enabeld\" message:\n"
+"-verify that you have a configured and working DHCP Server in your network."
+msgstr ""
+
+msgid "This test detects your configured LAN-Adapter."
+msgstr ""
 
 msgid "Three"
 msgstr "Tre"
@@ -2798,6 +3000,15 @@ msgstr "Volym"
 msgid "W"
 msgstr "V"
 
+msgid "WEP"
+msgstr ""
+
+msgid "WPA"
+msgstr ""
+
+msgid "WPA2"
+msgstr ""
+
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
 
@@ -2858,6 +3069,9 @@ msgstr "Var vill du spara dina inställningar?"
 msgid "Wireless"
 msgstr "Trådlöst"
 
+msgid "Wireless Network"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Skrivfel under inspelning. Disken full?\n"
 
@@ -2898,21 +3112,30 @@ msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
 msgstr ""
+"Du kan välja från några grundinställningar nu. Vänligen välj de "
+"instaällningar du vill installera."
 
 msgid "You can choose, what you want to install..."
-msgstr ""
+msgstr "Du kan välja, vad vill du ska installeras..."
 
 msgid "You cannot delete this!"
 msgstr "Du kan inte ta bort detta!"
+
+msgid "You chose not to install any default services lists."
+msgstr ""
 
 msgid ""
 "You chose not to install any default settings. You can however install the "
 "default settings later in the settings menu."
 msgstr ""
+"Du har valt att inte installera grundinställningar. Du kan om du vill senare "
+"installera grundinställningarna via installations menyerna."
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr ""
+"Du har valt att inte installetra något. Vänligen tryck OK för att avsluta "
+"installations guiden."
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -2980,6 +3203,9 @@ msgstr ""
 "Du måste ange en PIN kod och gömma det från dina barn.\n"
 "\n"
 "Vill du ange PIN kod nu?"
+
+msgid "Your Dreambox will restart after pressing OK on your remote control."
+msgstr ""
 
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Din TV fungerar med 50 Hz. Bra!"
@@ -3123,6 +3349,12 @@ msgstr "komplex"
 msgid "config menu"
 msgstr "konfigurationsmeny"
 
+msgid "confirmed"
+msgstr ""
+
+msgid "connected"
+msgstr ""
+
 msgid "continue"
 msgstr "fortsätt"
 
@@ -3155,6 +3387,9 @@ msgstr "avaktivera flyttläge"
 
 msgid "disabled"
 msgstr "avaktiverad"
+
+msgid "disconnected"
+msgstr ""
 
 msgid "do not change"
 msgstr "ändra inte"
@@ -3452,6 +3687,9 @@ msgstr "ta bort från föräldraskydd"
 msgid "remove new found flag"
 msgstr "ta bort 'ny' flagga"
 
+msgid "remove selected satellite"
+msgstr ""
+
 msgid "remove this mark"
 msgstr "ta bort denna markör"
 
@@ -3625,6 +3863,9 @@ msgstr "skifta en klippmarkering på nuvarande position"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "skifta tid, kapitel, ljud, textning info"
 
+msgid "unconfirmed"
+msgstr ""
+
 msgid "unknown service"
 msgstr "okänd kanal"
 
@@ -3679,3 +3920,12 @@ msgstr "zapped"
 
 #~ msgid "Choose Location"
 #~ msgstr "Välj lokation"
+
+#~ msgid "Device Setup..."
+#~ msgstr "Nätverksinstallation..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Utökad installation..."
+
+#~ msgid "Nameserver Setup..."
+#~ msgstr "Namnserver installation..."
