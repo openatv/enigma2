@@ -3,7 +3,7 @@
 
 from Tools.CList import CList
 
-class Job:
+class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
 	def __init__(self, name):
 		self.tasks = [ ]
@@ -13,14 +13,10 @@ class Job:
 		self.name = name
 		self.finished = False
 		self.end = 100
-		self.progress = 0
+		self.__progress = 0
 		self.weightScale = 1
 
-		self.job_state_changed = CList()
-		#triggered when task finishes/fails
-		
-		self.task_state_changed = CList()
-		#triggered when external app generates output
+		self.state_changed = CList()
 
 		self.status = self.NOT_STARTED
 
@@ -31,11 +27,17 @@ class Job:
 	def createDescription(self):
 		return None
 
-	def task_state_changed_CB(self):
+	def getProgress(self):
+		if self.current_task == len(self.tasks):
+			return self.end
 		t = self.tasks[self.current_task]
 		jobprogress = t.weighting * t.progress / float(t.end) + sum([task.weighting for task in self.tasks[:self.current_task]])
-		self.progress = jobprogress*self.weightScale
-		self.task_state_changed()
+		return int(jobprogress*self.weightScale)
+
+	progress = property(getProgress)
+
+	def task_progress_changed_CB(self):
+		self.state_changed()
 
 	def addTask(self, task):
 		task.job = self
@@ -45,7 +47,7 @@ class Job:
 		assert self.callback is None
 		self.callback = callback
 		self.status = self.IN_PROGRESS
-		self.job_state_changed()
+		self.state_changed()
 		self.runNext()
 		sumTaskWeightings = sum([t.weighting for t in self.tasks])
 		self.weightScale = (self.end+1) / float(sumTaskWeightings)
@@ -54,23 +56,31 @@ class Job:
 		if self.current_task == len(self.tasks):
 			self.callback(self, [])
 			self.status = self.FINISHED
-			self.job_state_changed()
+			self.state_changed()
 		else:
-			self.tasks[self.current_task].run(self.taskCallback,self.task_state_changed_CB)
-			self.job_state_changed()
+			self.tasks[self.current_task].run(self.taskCallback,self.task_progress_changed_CB)
+			self.state_changed()
 
 	def taskCallback(self, res):
 		if len(res):
 			print ">>> Error:", res
 			self.status = self.FAILED
-			self.job_state_changed()
+			self.state_changed()
 			self.callback(self, res)
 		else:
-			self.progress = (self.progress + self.tasks[self.current_task].weighting*self.weightScale )
+			self.state_changed();
 			self.current_task += 1
 			self.runNext()
 
-class Task:
+	def abort(self):
+		if self.current_task < len(self.tasks):
+			self.tasks[self.current_task].abort()
+
+	def cancel(self):
+		# some Jobs might have a better idea of how to cancel a job
+		self.abort()
+
+class Task(object)	:
 	def __init__(self, job, name):
 		self.name = name
 		self.immediate_preconditions = [ ]
@@ -82,11 +92,11 @@ class Task:
 
 		self.end = 100
 		self.weighting = 100
-		self.progress = 0
+		self.__progress = 0
 		self.cmd = None
 		self.cwd = "/tmp"
 		self.args = [ ]
-		self.task_state_changed = None
+		self.task_progress_changed = None
 		job.addTask(self)
 
 	def setCommandline(self, cmd, args):
@@ -110,7 +120,7 @@ class Task:
 				not_met.append(precondition)
 		return not_met
 
-	def run(self, callback, task_state_changed):
+	def run(self, callback, task_progress_changed):
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
 			callback(failed_preconditions)
@@ -118,7 +128,7 @@ class Task:
 		self.prepare()
 
 		self.callback = callback
-		self.task_state_changed = task_state_changed
+		self.task_progress_changed = task_progress_changed
 		from enigma import eConsoleAppContainer
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.get().append(self.processFinished)
@@ -126,7 +136,7 @@ class Task:
 
 		assert self.cmd is not None
 		assert len(self.args) >= 1
-		
+
 		if self.cwd is not None:
 			self.container.setCWD(self.cwd)
 
@@ -147,12 +157,19 @@ class Task:
 		self.returncode = returncode
 		self.finish()
 
-	def finish(self):
+	def abort(self):
+		self.container.kill()
+		self.finish(aborted = True)
+
+	def finish(self, aborted = False):
 		self.afterRun()
 		not_met = [ ]
-		for postcondition in self.postconditions:
-			if not postcondition.check(self):
-				not_met.append(postcondition)
+		if aborted:
+			not_met.append(AbortedPostcondition())
+		else:
+			for postcondition in self.postconditions:
+				if not postcondition.check(self):
+					not_met.append(postcondition)
 
 		self.callback(not_met)
 
@@ -161,6 +178,16 @@ class Task:
 
 	def writeInput(self, input):
 		self.container.write(input)
+
+	def getProgress(self):
+		return self.__progress
+
+	def setProgress(self, progress):
+		print "progress now", progress
+		self.__progress = progress
+		self.task_progress_changed()
+
+	progress = property(getProgress, setProgress)
 
 class JobManager:
 	def __init__(self):
@@ -229,6 +256,7 @@ class JobManager:
 #	def check(self, task):
 #		return getFreeDiskspace(task.workspace) >= self.diskspace_required
 #
+
 class ToolExistsPrecondition:
 	def check(self, task):
 		import os
@@ -237,6 +265,9 @@ class ToolExistsPrecondition:
 		else:
 			realpath = self.cwd + '/' + self.cmd
 		return os.access(realpath, os.X_OK)
+
+class AbortedPostcondition:
+	pass
 
 class ReturncodePostcondition:
 	def check(self, task):
