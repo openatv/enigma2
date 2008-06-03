@@ -157,6 +157,8 @@ class DreamInfoHandler:
 			if prerequisites.has_key("tag"):
 				if not self.neededTag in prerequisites["tag"]:
 					return False
+			else:
+				return False
 				
 		if prerequisites.has_key("satellite"):
 			for sat in prerequisites["satellite"]:
