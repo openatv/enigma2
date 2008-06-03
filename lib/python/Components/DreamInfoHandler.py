@@ -29,7 +29,7 @@ class InfoHandler(xml.sax.ContentHandler):
 		raise InfoHandlerParseError, error
     
 	def startElement(self, name, attrs):
-		print name, ":", attrs.items()
+		#print name, ":", attrs.items()
 		self.elements.append(name)
 		if name in ["hardware", "bcastsystem", "satellite", "tag"]:
 			if not attrs.has_key("type"):
@@ -63,11 +63,11 @@ class InfoHandler(xml.sax.ContentHandler):
 						self.filetype = type
 						self.fileattrs = attrs
 	def endElement(self, name):
-		print "end", name
-		print "self.elements:", self.elements
+		#print "end", name
+		#print "self.elements:", self.elements
 		self.elements.pop()
 		if name == "file":
-			print "prerequisites:", self.prerequisites
+			#print "prerequisites:", self.prerequisites
 			if len(self.prerequisites) == 0 or self.prerequisitesMet(self.prerequisites):
 				if not self.attributes.has_key(self.filetype):
 					self.attributes[self.filetype] = []
@@ -89,7 +89,7 @@ class InfoHandler(xml.sax.ContentHandler):
 			self.attributes["author"] = str(data)
 		if self.elements[-1] == "name":
 			self.attributes["name"] = str(data)
-		print "characters", data
+		#print "characters", data
 		
 class DreamInfoHandler:
 	STATUS_WORKING = 0
@@ -144,7 +144,7 @@ class DreamInfoHandler:
 			for package in self.packageslist[:]:
 				if not self.prerequisiteMet(package[0]["prerequisites"]):
 					self.packageslist.remove(package)
-		return packages
+		return self.packageslist
 			
 	def prerequisiteMet(self, prerequisites):
 		# TODO: we need to implement a hardware detection here...
@@ -161,7 +161,7 @@ class DreamInfoHandler:
 		if prerequisites.has_key("satellite"):
 			for sat in prerequisites["satellite"]:
 				if int(sat) not in nimmanager.getConfiguredSats():
-					return False				
+					return False			
 		if prerequisites.has_key("bcastsystem"):
 			for bcastsystem in prerequisites["bcastsystem"]:
 				if nimmanager.hasNimType(bcastsystem):
