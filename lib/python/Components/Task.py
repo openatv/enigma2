@@ -12,8 +12,15 @@ class Job:
 		self.callback = None
 		self.name = name
 		self.finished = False
+		self.end = 100
+		self.progress = 0
+		self.weightScale = 1
 
-		self.state_changed = CList()
+		self.job_state_changed = CList()
+		#triggered when task finishes/fails
+		
+		self.task_state_changed = CList()
+		#triggered when external app generates output
 
 		self.status = self.NOT_STARTED
 
@@ -24,6 +31,12 @@ class Job:
 	def createDescription(self):
 		return None
 
+	def task_state_changed_CB(self):
+		t = self.tasks[self.current_task]
+		jobprogress = t.weighting * t.progress / float(t.end) + sum([task.weighting for task in self.tasks[:self.current_task]])
+		self.progress = jobprogress*self.weightScale
+		self.task_state_changed()
+
 	def addTask(self, task):
 		task.job = self
 		self.tasks.append(task)
@@ -32,25 +45,28 @@ class Job:
 		assert self.callback is None
 		self.callback = callback
 		self.status = self.IN_PROGRESS
-		self.state_changed()
+		self.job_state_changed()
 		self.runNext()
+		sumTaskWeightings = sum([t.weighting for t in self.tasks])
+		self.weightScale = (self.end+1) / float(sumTaskWeightings)
 
 	def runNext(self):
 		if self.current_task == len(self.tasks):
 			self.callback(self, [])
 			self.status = self.FINISHED
-			self.state_changed()
+			self.job_state_changed()
 		else:
-			self.tasks[self.current_task].run(self.taskCallback)
-			self.state_changed()
+			self.tasks[self.current_task].run(self.taskCallback,self.task_state_changed_CB)
+			self.job_state_changed()
 
 	def taskCallback(self, res):
 		if len(res):
 			print ">>> Error:", res
 			self.status = self.FAILED
-			self.state_changed()
+			self.job_state_changed()
 			self.callback(self, res)
 		else:
+			self.progress = (self.progress + self.tasks[self.current_task].weighting*self.weightScale )
 			self.current_task += 1
 			self.runNext()
 
@@ -64,8 +80,13 @@ class Task:
 		self.initial_input = None
 		self.job = None
 
+		self.end = 100
+		self.weighting = 100
+		self.progress = 0
 		self.cmd = None
+		self.cwd = "/tmp"
 		self.args = [ ]
+		self.task_state_changed = None
 		job.addTask(self)
 
 	def setCommandline(self, cmd, args):
@@ -89,7 +110,7 @@ class Task:
 				not_met.append(precondition)
 		return not_met
 
-	def run(self, callback):
+	def run(self, callback, task_state_changed):
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
 			callback(failed_preconditions)
@@ -97,6 +118,7 @@ class Task:
 		self.prepare()
 
 		self.callback = callback
+		self.task_state_changed = task_state_changed
 		from enigma import eConsoleAppContainer
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.get().append(self.processFinished)
@@ -104,6 +126,9 @@ class Task:
 
 		assert self.cmd is not None
 		assert len(self.args) >= 1
+		
+		if self.cwd is not None:
+			self.container.setCWD(self.cwd)
 
 		print "execute:", self.container.execute(self.cmd, self.args), self.cmd, self.args
 		if self.initial_input:
@@ -207,7 +232,11 @@ class JobManager:
 class ToolExistsPrecondition:
 	def check(self, task):
 		import os
-		return os.access(task.cmd, os.X_OK)
+		if task.cmd[0]=='/':
+			realpath = task.cmd
+		else:
+			realpath = self.cwd + '/' + self.cmd
+		return os.access(realpath, os.X_OK)
 
 class ReturncodePostcondition:
 	def check(self, task):
