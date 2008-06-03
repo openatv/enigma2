@@ -515,7 +515,7 @@ class AdapterSetupConfiguration(Screen):
 				self.iface = 'wlan0'
 				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, 'wlan0')
 			else:
-				self.session.openWithCallback(self.restartDreambox, MessageBox, _("Your wireless LAN Adapter could not be startet.\nDo you want to reboot your Dreambox to apply the new configuration?\n"))
+				self.session.openWithCallback(self.restartDreambox, MessageBox, _("Your wireless LAN Adapter could not be started.\nDo you want to reboot your Dreambox to apply the new configuration?\n"))
 
 	
 	def enableLan(self, ret = False):
@@ -526,7 +526,7 @@ class AdapterSetupConfiguration(Screen):
 				self.iface = 'eth0'
 				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, 'eth0')
 			else:
-				self.session.openWithCallback(self.restartDreambox, MessageBox, _("Your local LAN Adapter could not be startet.\nDo you want to reboot your Dreambox to apply the new configuration?\n"))
+				self.session.openWithCallback(self.restartDreambox, MessageBox, _("Your wired LAN Adapter could not be started.\nDo you want to reboot your Dreambox to apply the new configuration?\n"))
 
 
 	def restartLan(self, ret = False):
