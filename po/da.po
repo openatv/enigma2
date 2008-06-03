@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-19 15:07+0200\n"
-"PO-Revision-Date: 2008-05-12 14:00+0100\n"
+"POT-Creation-Date: 2008-06-03 15:14+0200\n"
+"PO-Revision-Date: 2008-05-27 19:35+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -290,6 +290,9 @@ msgstr "Start Billed i Billed"
 msgid "Activate network settings"
 msgstr "Aktiver netværks indstilling"
 
+msgid "Adapter settings"
+msgstr ""
+
 msgid "Add"
 msgstr "Tilføj"
 
@@ -362,6 +365,23 @@ msgstr "Et tomt filnavn er ugyldigt."
 msgid "Arabic"
 msgstr "Arabisk"
 
+msgid ""
+"Are you sure you want to enable WLAN support?\n"
+"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to reset \n"
+"your network configuration to defaults?\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restart your network interfaces?\n"
+"\n"
+msgstr ""
+
 msgid "Artist:"
 msgstr "Artist:"
 
@@ -406,6 +426,9 @@ msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "Back"
+msgstr ""
 
 msgid "Backup"
 msgstr "Kopi"
@@ -559,6 +582,9 @@ msgstr "Slet før søgning"
 msgid "Clear log"
 msgstr "Slet log"
 
+msgid "Close"
+msgstr ""
+
 msgid "Code rate high"
 msgstr "Kode rate høj"
 
@@ -671,6 +697,9 @@ msgstr "Klipliste editor..."
 msgid "Czech"
 msgstr "Tjekkisk"
 
+msgid "DHCP"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
@@ -704,8 +733,11 @@ msgstr "Dato"
 msgid "Deep Standby"
 msgstr "Afbryde"
 
-msgid "Default settings"
+msgid "Default services lists"
 msgstr ""
+
+msgid "Default settings"
+msgstr "Standard Indstillinger"
 
 msgid "Delay"
 msgstr "Forsinkelse"
@@ -719,6 +751,12 @@ msgstr "Slet indgang"
 msgid "Delete failed!"
 msgstr "Slette fejl!"
 
+#, python-format
+msgid ""
+"Delete no more configured satellite\n"
+"%s?"
+msgstr ""
+
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -727,9 +765,6 @@ msgstr "HDD fundet:"
 
 msgid "Detected NIMs:"
 msgstr "TUNERE fundet:"
-
-msgid "Device Setup..."
-msgstr "Netværks Opsætning..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -834,6 +869,9 @@ msgstr "Vil du lave en anden manuel søgning?"
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Vil du aktivere forældre kontrol muligheden på DreamBoxen?"
 
+msgid "Do you want to play DVD in drive?"
+msgstr ""
+
 msgid "Do you want to restore your settings?"
 msgstr "Vil du genskabe dine indstillinger?"
 
@@ -892,11 +930,23 @@ msgstr "FEJL - kan ikke søge (%s)!"
 msgid "East"
 msgstr "Øst"
 
+msgid "Edit DNS"
+msgstr ""
+
 msgid "Edit current title"
 msgstr "Editere nuværende titel"
 
 msgid "Edit services list"
 msgstr "Editere kanallister"
+
+msgid "Edit settings"
+msgstr ""
+
+msgid "Edit the Nameserver configuration of your Dreambox.\n"
+msgstr ""
+
+msgid "Edit the network configuration of your Dreambox.\n"
+msgstr ""
 
 msgid "Edit title..."
 msgstr "Editere titel..."
@@ -910,6 +960,9 @@ msgstr "Starte"
 msgid "Enable 5V for active antenna"
 msgstr "Tilslut 5V for aktiv antenne"
 
+msgid "Enable WLAN Support"
+msgstr ""
+
 msgid "Enable multiple bouquets"
 msgstr "Tilføj multi pakker"
 
@@ -918,6 +971,15 @@ msgstr "Aktivere Forældre Kontrol?"
 
 msgid "Enabled"
 msgstr "Tilsluttet"
+
+msgid "Encryption"
+msgstr ""
+
+msgid "Encryption Key"
+msgstr ""
+
+msgid "Encryption Type"
+msgstr ""
 
 msgid "End"
 msgstr "Slut"
@@ -992,9 +1054,6 @@ msgstr "Afslut Start Hjælpen?"
 
 msgid "Expert"
 msgstr "Ekspert"
-
-msgid "Extended Setup..."
-msgstr "Udvidet Opsætning..."
 
 msgid "Extensions"
 msgstr "Ekstra Menu"
@@ -1215,11 +1274,14 @@ msgstr "Indstalerer"
 msgid "Installing Software..."
 msgstr "Indstalerer Software..."
 
-msgid "Installing defaults... Please wait..."
+msgid "Installing default sat lists... Please wait..."
 msgstr ""
 
+msgid "Installing defaults... Please wait..."
+msgstr "Indstallerer standarder.. Vent venligst..."
+
 msgid "Installing package content... Please wait..."
-msgstr ""
+msgstr "Indstallerer pakke indhold... Vent venligst..."
 
 msgid "Instant Record..."
 msgstr "Hurtig Optagelse..."
@@ -1263,6 +1325,9 @@ msgstr "Tastatur Indstilling"
 
 msgid "Keymap"
 msgstr "Tastelayout"
+
+msgid "LAN Adapter"
+msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
@@ -1310,11 +1375,17 @@ msgstr "Limits fra"
 msgid "Limits on"
 msgstr "Limits til"
 
+msgid "Link:"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "Liste med Memory Muligheder"
 
 msgid "Lithuanian"
 msgstr "Litauisk"
+
+msgid "Local Network"
+msgstr ""
 
 msgid "Location"
 msgstr "Lokation"
@@ -1449,14 +1520,20 @@ msgstr "Navneserver %d"
 msgid "Nameserver Setup"
 msgstr "Navneserver Opsætning"
 
-msgid "Nameserver Setup..."
-msgstr "Navneserver Opsætning..."
+msgid "Nameserver settings"
+msgstr ""
 
 msgid "Netmask"
 msgstr "Netmaske"
 
+msgid "Network Configuration..."
+msgstr ""
+
 msgid "Network Mount"
 msgstr "Netværks Indstilling"
+
+msgid "Network SSID"
+msgstr ""
 
 msgid "Network Setup"
 msgstr "Netværks Opsætning"
@@ -1467,8 +1544,17 @@ msgstr "Netværks Søgning"
 msgid "Network setup"
 msgstr "Netværks opsætning"
 
+msgid "Network test"
+msgstr ""
+
+msgid "Network test..."
+msgstr ""
+
 msgid "Network..."
 msgstr "Netværk..."
+
+msgid "Network:"
+msgstr ""
 
 msgid "New"
 msgstr "Ny"
@@ -1562,6 +1648,9 @@ msgstr "Nej, gør intet."
 
 msgid "No, just start my dreambox"
 msgstr "Nej, bare start min Dreambox"
+
+msgid "No, let me choose default lists"
+msgstr ""
 
 msgid "No, scan later manually"
 msgstr "Nej, søg senere manuelt"
@@ -1667,7 +1756,7 @@ msgid "Pillarbox"
 msgstr "Sort stribe i top og bund af billede"
 
 msgid "Pilot"
-msgstr ""
+msgstr "Pilot"
 
 msgid "Pin code needed"
 msgstr "Pin kode nødvendig"
@@ -1691,6 +1780,9 @@ msgid "Please choose an extension..."
 msgstr "Vælg venligst en udvidelse..."
 
 msgid "Please choose he package..."
+msgstr "Vælg venligst en pakke..."
+
+msgid "Please choose the default services lists you want to install."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -1813,6 +1905,9 @@ msgstr "Predefineret transponder"
 msgid "Preparing... Please wait"
 msgstr "Forbereder... Vent venligst"
 
+msgid "Press OK on your remote control to continue."
+msgstr ""
+
 msgid "Press OK to activate the settings."
 msgstr "Tryk OK for at aktivere indstillinger."
 
@@ -1822,8 +1917,18 @@ msgstr "Tryk OK for at søge"
 msgid "Press OK to start the scan"
 msgstr "Tryk OK for at starte søgningen"
 
+msgid ""
+"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
+"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
+"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
+"\n"
+msgstr ""
+
 msgid "Prev"
 msgstr "Forrige"
+
+msgid "Primary DNS"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Beskytte Kanaler?"
@@ -1951,6 +2056,17 @@ msgstr "Gentagelser"
 msgid "Reset"
 msgstr "Genstart"
 
+msgid "Reset configuration"
+msgstr ""
+
+msgid ""
+"Reset the network configuration of your Dreambox.\n"
+"\n"
+msgstr ""
+
+msgid "Resolution"
+msgstr ""
+
 msgid "Restart"
 msgstr "Genstarte"
 
@@ -1959,6 +2075,15 @@ msgstr "Genstarte GUI"
 
 msgid "Restart GUI now?"
 msgstr "Genstarte GUI nu?"
+
+msgid "Restart network"
+msgstr ""
+
+msgid "Restart test"
+msgstr ""
+
+msgid "Restart your network connection and interfaces.\n"
+msgstr ""
 
 msgid "Restore"
 msgstr "Gendanne"
@@ -2074,6 +2199,9 @@ msgstr "Søge SR6875"
 msgid "Scan SR6900"
 msgstr "Søge SR6900"
 
+msgid "Scan Wireless Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Søge yderligere SR"
 
@@ -2113,11 +2241,23 @@ msgstr "Søge bånd US MID"
 msgid "Scan band US SUPER"
 msgstr "Søge bånd US SUPER"
 
+msgid ""
+"Scan your network for wireless Access Points and connect to them using your "
+"WLAN USB Stick\n"
+msgstr ""
+
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
+
 msgid "Search east"
 msgstr "Søg Øst"
 
 msgid "Search west"
 msgstr "Søg Vest"
+
+msgid "Secondary DNS"
+msgstr ""
 
 msgid "Seek"
 msgstr "Søg"
@@ -2212,6 +2352,12 @@ msgstr "Indstillinger"
 msgid "Setup Mode"
 msgstr "Bruger Niveau"
 
+msgid "Show Info"
+msgstr ""
+
+msgid "Show WLAN Status"
+msgstr ""
+
 msgid "Show blinking clock in display during recording"
 msgstr "Vis blinkende klokke i display under optagelse"
 
@@ -2239,6 +2385,9 @@ msgstr "Vis radio afspilleren..."
 
 msgid "Show the tv player..."
 msgstr "Vis TV afspiller..."
+
+msgid "Shows the state of your wireless LAN connection.\n"
+msgstr ""
 
 msgid "Shutdown Dreambox after"
 msgstr "Slukke Dreambox efter"
@@ -2336,6 +2485,9 @@ msgstr "Start fra begyndelse"
 msgid "Start recording?"
 msgstr "Start optagelse?"
 
+msgid "Start test"
+msgstr ""
+
 msgid "StartTime"
 msgstr "StartTid"
 
@@ -2368,6 +2520,9 @@ msgstr "Stoppe nuværende event men ikke kommende events"
 
 msgid "Stop playing this movie?"
 msgstr "Stoppe afspilning af denne film?"
+
+msgid "Stop test"
+msgstr ""
 
 msgid "Store position"
 msgstr "Gemme Position"
@@ -2417,7 +2572,7 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste opdatering: 12. May 2008\n"
+"Sidste opdatering: 28. May 2008\n"
 "\n"
 "Har du ændringer, forslag eller andet, så kontakt mig venligst!.\n"
 "\n"
@@ -2436,6 +2591,9 @@ msgstr "DVB T udbyder"
 
 msgid "Test mode"
 msgstr "Test type"
+
+msgid "Test the network configuration of your Dreambox.\n"
+msgstr ""
 
 msgid "Test-Messagebox?"
 msgstr "Test-Beskedbox?"
@@ -2459,13 +2617,18 @@ msgstr ""
 "Du kan nu konfigurere billedet ved at vise nogle test billeder. Vil du "
 "udføre dette lige nu?"
 
+msgid "The installation of the default services lists is finished."
+msgstr ""
+
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
+"Indstallationen af standard indstillinger er fuldført. Du kan nu fortsætte "
+"med konfigurationen af din Dreambox ved at trykke OK på din fjernbetjening."
 
 msgid "The package doesn't contain anything."
-msgstr ""
+msgstr "Pakken indeholder ingenting."
 
 msgid "The pin code has been changed successfully."
 msgstr "Din pin kode ændring var succesfuld."
@@ -2494,8 +2657,11 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "Brugen af guiden er færdig nu."
 
-msgid "There are no default settings in your image."
+msgid "There are no default services lists in your image."
 msgstr ""
+
+msgid "There are no default settings in your image."
+msgstr "Der er ingen standard indstillinger i dit Image."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2509,6 +2675,42 @@ msgstr "Dette er skridt nummer 2."
 
 msgid "This is unsupported at the moment."
 msgstr "Denne funktion er ikke understøttet."
+
+msgid ""
+"This test checks for configured Nameservers.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- please check your DHCP, cabling and Adapter setup\n"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
+msgstr ""
+
+msgid ""
+"This test checks whether a network cable is connected to your LAN-Adapter.\n"
+"If you get a \"disconnected\" message:\n"
+"- verify that a network cable is attached\n"
+"- verify that the cable is not broken"
+msgstr ""
+
+msgid ""
+"This test checks whether a valid IP Address is found for your LAN Adapter.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- no valid IP Address was found\n"
+"- please check your DHCP, cabling and adapter setup"
+msgstr ""
+
+msgid ""
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
+"If you get a \"disabled\" message:\n"
+" - then your LAN Adapter is configured for manual IP Setup\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
+"If you get an \"enabeld\" message:\n"
+"-verify that you have a configured and working DHCP Server in your network."
+msgstr ""
+
+msgid "This test detects your configured LAN-Adapter."
+msgstr ""
 
 msgid "Three"
 msgstr "Tre"
@@ -2800,6 +3002,15 @@ msgstr "Lydstyrke"
 msgid "W"
 msgstr "V"
 
+msgid "WEP"
+msgstr ""
+
+msgid "WPA"
+msgstr ""
+
+msgid "WPA2"
+msgstr ""
+
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
 
@@ -2859,6 +3070,9 @@ msgstr "Hvor vil du lave en backup af dine indstillinger?"
 msgid "Wireless"
 msgstr "Trådløs"
 
+msgid "Wireless Network"
+msgstr ""
+
 msgid "Write error while recording. Disk full?\n"
 msgstr "Skrive fejl under optagelse. Disken fuld?\n"
 
@@ -2899,6 +3113,8 @@ msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
 msgstr ""
+"Du kan nu vælge nogle standard indstillinger. Venligst vælg de indstillinger "
+"du vil have indstalleret."
 
 msgid "You can choose, what you want to install..."
 msgstr ""
@@ -2906,14 +3122,21 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr "Dette kan ikke slettes!"
 
+msgid "You chose not to install any default services lists."
+msgstr ""
+
 msgid ""
 "You chose not to install any default settings. You can however install the "
 "default settings later in the settings menu."
 msgstr ""
+"Du har valgt ikke at indstallere nogle standard indstillinger. Men du kan "
+"senere indstallere standard indstillinger i indstillings menuen."
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr ""
+"Du valgte ikke at indstallere noget. Venligst tryk OK for at afslutte "
+"indstallations hjælpen."
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -2979,6 +3202,9 @@ msgstr ""
 "Du skal opsætte en pin kode og gemme den for dine børn.\n"
 "\n"
 "Vil du opsætte pin kode nu?"
+
+msgid "Your Dreambox will restart after pressing OK on your remote control."
+msgstr ""
 
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Dit TV virker ved 50 Hz. Tillykke!"
@@ -3122,6 +3348,12 @@ msgstr "Komplex"
 msgid "config menu"
 msgstr "Konfigurations menu"
 
+msgid "confirmed"
+msgstr ""
+
+msgid "connected"
+msgstr ""
+
 msgid "continue"
 msgstr "Fortsæt"
 
@@ -3154,6 +3386,9 @@ msgstr "Slå flytte type fra"
 
 msgid "disabled"
 msgstr "Slukket"
+
+msgid "disconnected"
+msgstr ""
 
 msgid "do not change"
 msgstr "Ikke ændre"
@@ -3451,6 +3686,9 @@ msgstr "Fjerne fra forældre beskyttelse"
 msgid "remove new found flag"
 msgstr "Fjerne nye fundne flag"
 
+msgid "remove selected satellite"
+msgstr ""
+
 msgid "remove this mark"
 msgstr "Fjerne dette mærke"
 
@@ -3624,6 +3862,9 @@ msgstr "Flytte en klippe markør til nuværende position"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Skift mellem tid, kapitel, lyd, undertekst info"
 
+msgid "unconfirmed"
+msgstr ""
+
 msgid "unknown service"
 msgstr "Ukendt kanal"
 
@@ -3688,6 +3929,9 @@ msgstr "Zappet"
 #~ msgid "Default-Wizard"
 #~ msgstr "Default-Guide"
 
+#~ msgid "Device Setup..."
+#~ msgstr "Netværks Opsætning..."
+
 #~ msgid "Discontinuous playback at speeds above"
 #~ msgstr "Usikker afspilning ved hastigheder over"
 
@@ -3700,6 +3944,9 @@ msgstr "Zappet"
 #~ msgid "Enable zap history"
 #~ msgstr "Aktivere zap historie"
 
+#~ msgid "Extended Setup..."
+#~ msgstr "Udvidet Opsætning..."
+
 #~ msgid "Hello!"
 #~ msgstr "Goddag!"
 
@@ -3711,6 +3958,9 @@ msgstr "Zappet"
 
 #~ msgid "Name:"
 #~ msgstr "Navn:"
+
+#~ msgid "Nameserver Setup..."
+#~ msgstr "Navneserver Opsætning..."
 
 #~ msgid "Namespace:"
 #~ msgstr "Navneplads:"
@@ -3750,6 +4000,9 @@ msgstr "Zappet"
 
 #~ msgid "Videosize:"
 #~ msgstr "Billedformat:"
+
+#~ msgid "You can choose, what you want to install.."
+#~ msgstr "Du kan vælge, hvad du vil have indstalleret..."
 
 #~ msgid "play next playlist entry"
 #~ msgstr "Afspil næste i spilleliste"
