@@ -171,6 +171,7 @@ class Task(object)	:
 				if not postcondition.check(self):
 					not_met.append(postcondition)
 
+		self.cleanup(not_met)
 		self.callback(not_met)
 
 	def afterRun(self):
@@ -248,14 +249,22 @@ class JobManager:
 #		if filesystem is not None:
 #			self.args += ["-t", filesystem]
 #		self.args.append(device + "part%d" % partition)
-#
-#class DiskspacePrecondition:
-#	def __init__(self, diskspace_required):
-#		self.diskspace_required = diskspace_required
-#
-#	def check(self, task):
-#		return getFreeDiskspace(task.workspace) >= self.diskspace_required
-#
+
+class WorkspaceExistsPrecondition:
+	def check(self, task):
+		return os.access(task.job.workspace, os.W_OK)
+
+class DiskspacePrecondition:
+	def __init__(self, diskspace_required):
+		self.diskspace_required = diskspace_required
+
+	def check(self, task):
+		import os
+		try:
+			s = os.statvfs(task.job.workspace)
+			return s.f_bsize * s.f_bavail >= self.diskspace_required
+		except OSError:
+			return False
 
 class ToolExistsPrecondition:
 	def check(self, task):
