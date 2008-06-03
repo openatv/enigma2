@@ -130,7 +130,13 @@ class DreamInfoHandler:
 	# prerequisites = True: give only packages matching the prerequisites
 	def fillPackagesList(self, prerequisites = True):
 		self.packageslist = []
-		packages = crawlDirectory(self.directory, ".*\.info$")
+		packages = []
+		if not isinstance(self.directory, list):
+			self.directory = [self.directory]
+		
+		for directory in self.directory:
+			packages += crawlDirectory(directory, ".*\.info$")
+
 		for package in packages:
 			self.readInfo(package[0] + "/", package[0] + "/" + package[1])
 			
