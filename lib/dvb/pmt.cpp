@@ -231,6 +231,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						}
 						//break; fall through !!!
 					case 0x06: // PES Private
+					case 0x81: // user private
 							/* PES private can contain AC-3, DTS or lots of other stuff.
 							   check descriptors to get the exact type. */
 						for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
@@ -311,6 +312,25 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							{
 								CaDescriptor *descr = (CaDescriptor*)(*desc);
 								program.caids.insert(descr->getCaSystemId());
+								break;
+							}
+							case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
+							{
+									/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
+								if ((*desc)->getLength() != 4)
+									break;
+								unsigned char descr[6];
+								(*desc)->writeToBuffer(descr);
+								int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
+								switch (format_identifier)
+								{
+								case 0x41432d33:
+									isaudio = 1;
+									audio.type = audioStream::atAC3;
+									break;
+								default:
+									break;
+								}
 								break;
 							}
 							}
