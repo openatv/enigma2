@@ -1145,7 +1145,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 	{
 		eDebug("showSinglePic %s", filename);
 		int f = open(filename, O_RDONLY);
-		if (f)
+		if (f >= 0)
 		{
 			struct stat s;
 			fstat(f, &s);
