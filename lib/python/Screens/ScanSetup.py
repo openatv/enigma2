@@ -7,7 +7,7 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
-from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR
+from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, \
 	eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, \
@@ -282,9 +282,14 @@ class CableTransponderSearchSupport:
 class DefaultSatLists(DefaultWizard):
 	def __init__(self, session, silent = True, showSteps = False):
 		DefaultWizard.__init__(self, session, silent, showSteps, neededTag = "services")
+		print "configuredSats:", nimmanager.getConfiguredSats()
 
 	def setDirectory(self):
-		self.directory = resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)
+		self.directory = []
+		self.directory.append(resolveFilename(SCOPE_DEFAULTDIR))
+		import os
+		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
+		self.directory.append(resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR))
 		self.xmlfile = "defaultsatlists.xml"
 		
 	def statusCallback(self, status, progress):
