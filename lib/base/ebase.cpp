@@ -147,18 +147,15 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 
 	long poll_timeout = -1; /* infinite in case of empty timer list */
 
-	if (!m_timer_list.empty() || twisted_timeout > 0)
+	if (!m_timer_list.empty())
 	{
-		if (!m_timer_list.empty())
-		{
-			/* process all timers which are ready. first remove them out of the list. */
-			while (!m_timer_list.empty() && (poll_timeout = timeout_usec( m_timer_list.begin()->getNextActivation() ) ) <= 0 )
-				m_timer_list.begin()->activate();
-			if (poll_timeout < 0)
-				poll_timeout = 0;
-			else /* convert us to ms */
-				poll_timeout /= 1000;
-		}
+		/* process all timers which are ready. first remove them out of the list. */
+		while (!m_timer_list.empty() && (poll_timeout = timeout_usec( m_timer_list.begin()->getNextActivation() ) ) <= 0 )
+			m_timer_list.begin()->activate();
+		if (poll_timeout < 0)
+			poll_timeout = 0;
+		else /* convert us to ms */
+			poll_timeout /= 1000;
 	}
 
 	if ((twisted_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > twisted_timeout))
