@@ -6,6 +6,7 @@ from enigma import eTimer, eConsoleAppContainer
 class Network:
 	def __init__(self):
 		self.ifaces = {}
+		self.configuredInterfaces = {}
 		self.nameservers = []
 		self.getInterfaces()
 		self.ethtool_bin = "/usr/sbin/ethtool"
@@ -159,7 +160,8 @@ class Network:
 					ifaces[currif]["netmask"] = map(int, split[1].split('.'))
 				if (split[0] == "gateway"):
 					ifaces[currif]["gateway"] = map(int, split[1].split('.'))
-
+		
+		self.configuredInterfaces = ifaces
 		print "read interfaces:", ifaces
 		for ifacename, iface in ifaces.items():
 			if self.ifaces.has_key(ifacename):
@@ -281,8 +283,17 @@ class Network:
 			os.system("ifconfig wlan0 down")
 
 	def checkNetworkState(self):
-		ret=os.system("ping -c 1 www.dream-multimedia-tv.de")
-		if ret == 0:
+		ok_counter = 0
+		ret1=os.system("ping -c 1 www.dream-multimedia-tv.de")
+		if ret1 != 0:
+			ok_counter = ok_counter + 1
+		ret2=os.system("ping -c 1 www.heise.de")
+		if ret2 != 0:
+			ok_counter = ok_counter + 1
+		ret3=os.system("ping -c 1 www.google.de")
+		if ret2 != 0:
+			ok_counter = ok_counter + 1		
+		if ok_counter == 0:
 			return True
 		else:
 			return False
