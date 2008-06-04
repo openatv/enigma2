@@ -30,6 +30,10 @@ class VideoHardware:
 
 	rates["Multi"] =		{ "multi": 	{ 50: "pal", 60: "ntsc" } }
 
+	rates["480i"] =			{ "60Hz": 	{ 60: "480i" } }
+
+	rates["576i"] =			{ "50Hz": 	{ 50: "576i" } }
+
 	rates["480p"] =			{ "60Hz": 	{ 60: "480p" } }
 
 	rates["576p"] =			{ "50Hz": 	{ 50: "576p" } }
@@ -59,8 +63,8 @@ class VideoHardware:
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
-	modes["YPbPr"] = ["720p", "1080i", "576p", "480p"]
-	modes["DVI"] = ["720p", "1080i", "576p", "480p"]
+	modes["YPbPr"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
+	modes["DVI"] = ["720p", "1080i", "576p", "480p", "576i", "480i"]
 	modes["DVI-PC"] = ["PC"]
 
 	widescreen_modes = set(["720p", "1080i"])
