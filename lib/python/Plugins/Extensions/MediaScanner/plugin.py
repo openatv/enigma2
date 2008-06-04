@@ -22,6 +22,8 @@ def mountpoint_choosen(option):
 
 	if list == [ ]:
 		print "nothing found"
+		from Screens.MessageBox import MessageBox
+		session.open(MessageBox, "No displayable files on this medium found!", MessageBox.TYPE_ERROR)
 		return
 
 	session.openWithCallback(execute, ChoiceBox, 
@@ -49,7 +51,7 @@ def menuHook(menuid):
 
 	from Components.Harddisk import harddiskmanager
 	from Tools.BoundFunction import boundFunction
-	return [(_("Show files from %s") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug", None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
 
 def Plugins(**kwargs):
 	return [ PluginDescriptor(name="MediaScanner", description="Scan Files...", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
