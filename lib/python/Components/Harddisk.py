@@ -265,6 +265,8 @@ class HarddiskManager:
 				hdd = Harddisk(hddNum)
 				self.hdd.append(hdd)
 
+		self.enumerateBlockDevices()
+
 		SystemInfo["Harddisc"] = len(self.hdd) > 0
 
 		# currently, this is just an enumeration of what's possible,
@@ -285,6 +287,49 @@ class HarddiskManager:
 		
 		for x in p:
 			self.partitions.append(Partition(mountpoint = x[0], description = x[1]))
+
+	def enumerateBlockDevices(self):
+		print "enumerating block devices..."
+		import os
+		for blockdev in os.listdir("/sys/block"):
+			devpath = "/sys/block/" + blockdev
+			error = False
+			removable = False
+			blacklisted = False
+			is_cdrom = False
+			partitions = []
+			try:
+				removable = bool(int(open(devpath + "/removable").read()))
+				dev = int(open(devpath + "/dev").read().split(':')[0])
+				if dev in [7, 31]: # loop, mtdblock
+					blacklisted = True
+				if blockdev[0:2] == 'sr':
+					is_cdrom = True
+				if blockdev[0:2] == 'hd':
+					try:
+						media = open("/proc/ide/%s/media" % blockdev).read()
+						if media.find("cdrom") != -1:
+							is_cdrom = True
+					except IOError:
+						error = True
+				# check for partitions
+				if not is_cdrom:
+					for partition in os.listdir(devpath):
+						if partition[0:len(blockdev)] != blockdev:
+							continue
+						partitions.append(partition)
+			except IOError:
+				error = True
+			print "found block device '%s':" % blockdev, 
+			if error:
+				print "error querying properties"
+			elif blacklisted:
+				print "blacklisted"
+			else:
+				print "ok, removable=%s, cdrom=%s, partitions=%s" % (removable, is_cdrom, partitions)
+				self.addHotplugPartition(blockdev, blockdev)
+				for part in partitions:
+					self.addHotplugPartition(part, part)
 
 	def getAutofsMountpoint(self, device):
 		return "/autofs/%s/" % (device)
