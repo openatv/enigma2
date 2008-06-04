@@ -126,13 +126,14 @@ class FileList(MenuList):
 			directories.sort()
 			files.sort()
 		else:
-			files = listdir(directory)
-			files.sort()
-			tmpfiles = files[:]
-			for x in tmpfiles:
-				if os_path.isdir(directory + x):
-					directories.append(directory + x + "/")
-					files.remove(x)
+			if os_path.exists(directory):
+				files = listdir(directory)
+				files.sort()
+				tmpfiles = files[:]
+				for x in tmpfiles:
+					if os_path.isdir(directory + x):
+						directories.append(directory + x + "/")
+						files.remove(x)
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.mount_point:
