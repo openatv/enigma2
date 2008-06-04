@@ -119,7 +119,7 @@ void *gRC::thread()
 				break;
 			else if (o.opcode==gOpcode::notify)
 				need_notify = 1;
-			else
+			else if(o.dc)
 			{
 				o.dc->exec(&o);
 				// o.dc is a gDC* filled with grabref... so we must release it here
@@ -139,24 +139,21 @@ void *gRC::thread()
 			
 					/* when the main thread is non-idle for a too long time without any display output,
 					   we want to display a spinner. */
-
-				struct timeval time;
 				struct timespec timeout;
-				gettimeofday(&time, NULL);
-				timeout.tv_sec = time.tv_sec;
-				timeout.tv_nsec = time.tv_usec * 1000;
-				
+				clock_gettime(CLOCK_REALTIME, &timeout);
+
 				if (m_spinner_enabled)
+				{
 					timeout.tv_nsec += 100*1000*1000;
+					/* yes, this is required. */
+					if (timeout.tv_nsec > 1000*1000*1000)
+					{
+						timeout.tv_nsec -= 1000*1000*1000;
+						timeout.tv_sec++;
+					}
+				}
 				else
 					timeout.tv_sec += 2;
-
-					/* yes, this is required. */
-				if (timeout.tv_nsec > 1000*1000*1000)
-				{
-					timeout.tv_nsec -= 1000*1000*1000;
-					timeout.tv_sec++;
-				}
 
 				int idle = 1;
 
@@ -165,8 +162,6 @@ void *gRC::thread()
 					if (eApp && !eApp->isIdle())
 						idle = 0;
 				}
-				
-				pthread_mutex_unlock(&mutex);
 
 				if (!idle)
 				{
@@ -176,6 +171,7 @@ void *gRC::thread()
 				} else
 					disableSpinner();
 			}
+			pthread_mutex_unlock(&mutex);
 #endif
 		}
 	}
