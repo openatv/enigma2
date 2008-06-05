@@ -462,10 +462,10 @@ void eDVBDB::loadServicelist(const char *file)
 	fclose(f);
 }
 
-void eDVBDB::saveServicelist()
+void eDVBDB::saveServicelist(const char *file)
 {
 	eDebug("---- saving lame channel db");
-	FILE *f=fopen(CONFIGDIR"/enigma2/lamedb", "w");
+	FILE *f=fopen(file, "w");
 	int channels=0, services=0;
 	if (!f)
 		eFatal("couldn't save lame channel db!");
@@ -561,6 +561,11 @@ void eDVBDB::saveServicelist()
 	fprintf(f, "end\nHave a lot of bugs!\n");
 	eDebug("saved %d channels and %d services!", channels, services);
 	fclose(f);
+}
+
+void eDVBDB::saveServicelist()
+{
+	saveServicelist(CONFIGDIR"/enigma2/lamedb");
 }
 
 void eDVBDB::loadBouquet(const char *path)
