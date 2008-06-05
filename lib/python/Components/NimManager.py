@@ -38,6 +38,8 @@ class SecConfigure:
 		self.configuredSatellites.add(orbpos)
 
 	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50):
+		if orbpos is None:
+			return
 		#simple defaults
 		sec.addLNB()
 		tunermask = 1 << slotid

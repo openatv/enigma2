@@ -64,6 +64,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.turnFastEpochEnd = None
 		self.uncommittedDiseqcCommand = None
 		self.cableScanType = None
+		self.have_advanced = False
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
@@ -84,11 +85,12 @@ class NimSetup(Screen, ConfigListScreen):
 				self.list.append(self.advancedSatsEntry)
 				cur_orb_pos = self.nimConfig.advanced.sats.orbital_position
 				satlist = self.nimConfig.advanced.sat.keys()
-				if cur_orb_pos not in satlist:
-					cur_orb_pos = satlist[0]
-				currSat = self.nimConfig.advanced.sat[cur_orb_pos]
-				self.fillListWithAdvancedSatEntrys(currSat)
-			self.have_advanced = True
+				if cur_orb_pos is not None:
+					if cur_orb_pos not in satlist:
+						cur_orb_pos = satlist[0]
+					currSat = self.nimConfig.advanced.sat[cur_orb_pos]
+					self.fillListWithAdvancedSatEntrys(currSat)
+				self.have_advanced = True
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
