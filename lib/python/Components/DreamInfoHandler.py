@@ -313,3 +313,4 @@ class DreamInfoHandler:
 			if self.console.execute("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG))):
 				print "execute failed"
 				self.installNext()
+		db = eDVBDB.getInstance().loadBouquet("bouquets.tv")
