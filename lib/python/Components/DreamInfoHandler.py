@@ -22,8 +22,7 @@ class InfoHandler(xml.sax.ContentHandler):
 		self.elements = []
 		self.validFileTypes = ["skin", "config", "services", "favourites", "package"]
 		self.prerequisitesMet = prerequisiteMet
-	
-				
+		
 	def printError(self, error):
 		print "Error in defaults xml files:", error
 		raise InfoHandlerParseError, error
@@ -110,6 +109,7 @@ class DreamInfoHandler:
 		
 		self.console = eConsoleAppContainer()
 		self.console.appClosed.get().append(self.installNext)
+		self.reloadFavourites = False
 		
 		self.statusCallback = statusCallback
 		self.setStatus(self.STATUS_INIT)
@@ -200,6 +200,10 @@ class DreamInfoHandler:
 		self.statusCallback(self.status, None)
 						
 	def installNext(self, *args, **kwargs):
+		if self.reloadFavourites:
+			self.reloadFavourites = False
+			db = eDVBDB.getInstance().reloadBouquets()
+
 		self.currentIndex += 1
 		attributes = self.installingAttributes
 		#print "attributes:", attributes
@@ -305,7 +309,8 @@ class DreamInfoHandler:
 
 	def installFavourites(self, directory, name):
 		print "installing favourites:", directory, " - ", name
-
+		self.reloadFavourites = True
+		
 		if self.blocking:
 			os.system("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG)))
 			self.installNext()
@@ -313,4 +318,3 @@ class DreamInfoHandler:
 			if self.console.execute("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG))):
 				print "execute failed"
 				self.installNext()
-		db = eDVBDB.getInstance().loadBouquet("bouquets.tv")
