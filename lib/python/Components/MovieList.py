@@ -229,7 +229,7 @@ class MovieList(GUIComponent):
 		ref = x[0]
 		info = self.serviceHandler.info(ref)
 		name = info and info.getName(ref)
-		return name and name.lower() or ""
+		return (name and name.lower() or "", -x[2])
 
 	def moveTo(self, serviceref):
 		count = 0
