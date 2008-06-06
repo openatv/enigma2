@@ -116,7 +116,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.allmarked = False
 		if self.type == self.TEXT:
 			self.timeout()
-		if self.Text[self.currPos] == "9" or self.Text[self.currPos] == " ":
+		if self.currPos == len(self.Text) or self.Text[self.currPos] == "9" or self.Text[self.currPos] == " ":
 			newNumber = "0"
 		else:
 			newNumber = str(int(self.Text[self.currPos]) + 1)
@@ -127,7 +127,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		self.allmarked = False
 		if self.type == self.TEXT:
 			self.timeout()
-		if self.Text[self.currPos] == "0" or self.Text[self.currPos] == " ":
+		if self.currPos == len(self.Text) or self.Text[self.currPos] == "0" or self.Text[self.currPos] == " ":
 			newNumber = "9"
 		else:
 			newNumber = str(int(self.Text[self.currPos]) - 1)
