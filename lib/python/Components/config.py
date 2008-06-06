@@ -1026,8 +1026,24 @@ class ConfigSubsection(object):
 class ConfigSet(ConfigElement):
 	def __init__(self, choices, default = []):
 		ConfigElement.__init__(self)
-		choices.sort()
-		self.choices = choices
+		self.choices = []
+		self.description = {}
+		if isinstance(choices, list):
+			choices.sort()
+			for x in choices:
+				if isinstance(x, tuple):
+					self.choices.append(x[0])
+					self.description[x[0]] = str(x[1])
+				else:
+					self.choices.append(x)
+					self.description[x] = str(x)
+		else:
+			assert False, "ConfigSet choices must be a list!"
+		if len(self.choices) == 0:
+			self.choices = [""]
+			self.description[""] = ""
+		if default is None:
+			default = []
 		self.pos = -1
 		default.sort()
 		self.default = default
@@ -1058,11 +1074,11 @@ class ConfigSet(ConfigElement):
 	def genString(self, lst):
 		res = ""
 		for x in lst:
-			res += str(x)+" "
+			res += self.description[x]+" "
 		return res
 
 	def getText(self):
-		self.genString(self.value)
+		return self.genString(self.value)
 
 	def getMulti(self, selected):
 		if not selected or self.pos == -1:
@@ -1078,9 +1094,9 @@ class ConfigSet(ConfigElement):
 			val1 = self.genString(tmp[:ind])
 			val2 = " "+self.genString(tmp[ind+1:])
 			if mem:
-				chstr = " "+str(ch)+" "
+				chstr = " "+self.description[ch]+" "
 			else:
-				chstr = "("+str(ch)+")"
+				chstr = "("+self.description[ch]+")"
 			return ("mtext", val1+chstr+val2, range(len(val1),len(val1)+len(chstr)))
 
 	def onDeselect(self, session):
