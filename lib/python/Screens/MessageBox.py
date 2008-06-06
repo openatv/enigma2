@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
+from Components.Sources.StaticText import StaticText
 from enigma import eTimer
 
 class MessageBox(Screen):
@@ -16,6 +17,7 @@ class MessageBox(Screen):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(text)
+		self["Text"] = StaticText(text)
 
 		self.text = text
 		self.close_on_any_key = close_on_any_key

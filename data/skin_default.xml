@@ -476,6 +476,15 @@ newwidth = wsize[0]
 self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
 	</screen>
+	<screen name="MessageBox_summary" position="0,0" size="132,64">
+		 <widget source="parent.Text" render="Label" position="6,0" size="120,32" font="Regular;12" halign="center" valign="center" />
+		 <widget source="global.CurrentTime" render="Label" position="6,32" size="90,32" font="Regular;32" halign="right" valign="top">
+			  <convert type="ClockToText">Format:%H:%M</convert>
+		 </widget>
+		 <widget source="global.CurrentTime" render="Label" position="100,34" zPosition="1" size="26,30" font="Regular;16" valign="top">
+			  <convert type="ClockToText">Format:%S</convert>
+		 </widget>
+	</screen>
 	<!-- Minute input -->
 	<screen name="MinuteInput" position="200,140" size="280,60" title="Seek">
 		<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
