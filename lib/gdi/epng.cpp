@@ -70,9 +70,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename)
 	
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, 0, 0, 0);
 	
-//	eDebug("%s: %dx%dx%d png, %d", filename, (int)width, (int)height, (int)bit_depth, color_type);
-	
-	if (color_type != 6)
+	if (color_type == PNG_COLOR_TYPE_GRAY || color_type & PNG_COLOR_MASK_PALETTE)
 	{
 		result=new gPixmap(eSize(width, height), bit_depth);
 		gSurface *surface = result->surface;
@@ -117,8 +115,10 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename)
 		}
 		surface->clut.start=0;
 		png_read_end(png_ptr, end_info);
-	} else
+	} else {
 		result=0;
+		eDebug("%s: %dx%dx%d png, %d", filename, (int)width, (int)height, (int)bit_depth, color_type);
+	}
 
 	png_destroy_read_struct(&png_ptr, &info_ptr,&end_info);
 	fclose(fp);
