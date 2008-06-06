@@ -145,16 +145,30 @@ RESULT eDVBScan::startFilter()
 	if (startSDT && (m_ready_all & readySDT))
 	{
 		m_SDT = new eTable<ServiceDescriptionSection>();
+		int tsid=-1;
 		if (m_ready & readyPAT && m_ready & validPAT)
 		{
 			std::vector<ProgramAssociationSection*>::const_iterator i =
 				m_PAT->getSections().begin();
 			assert(i != m_PAT->getSections().end());
-			int tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
-			if (m_SDT->start(m_demux, eDVBSDTSpec(tsid, true)))
-				return -1;
+			tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
+
+			// KabelBW HACK ... on 618 Mhz the transport stream id in PAT and SDT is different
+			{
+				int type;
+				m_ch_current->getSystem(type);
+				if (type == iDVBFrontend::feCable)
+				{
+					eDVBFrontendParametersCable parm;
+					m_ch_current->getDVBC(parm);
+					if (tsid == 0x00d7 & abs(parm.frequency-618000) < 2000)
+						tsid = -1;
+				}
+			}
 		}
-		else if (m_SDT->start(m_demux, eDVBSDTSpec()))
+		if (tsid == -1 && m_SDT->start(m_demux, eDVBSDTSpec()))
+			return -1;
+		else if (m_SDT->start(m_demux, eDVBSDTSpec(tsid, true)))
 			return -1;
 		CONNECT(m_SDT->tableReady, eDVBScan::SDTready);
 	}
