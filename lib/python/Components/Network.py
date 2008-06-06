@@ -293,7 +293,7 @@ class Network:
 		ret3=os.system("ping -c 1 www.google.de")
 		if ret2 != 0:
 			ok_counter = ok_counter + 1		
-		if ok_counter == 0:
+		if ok_counter <= 2:
 			return True
 		else:
 			return False
@@ -313,6 +313,29 @@ class Network:
 		self.container.appClosed.get().remove(self.cmdFinished)
 		self.container.dataAvail.get().remove(self.dataAvail)
 
+	def checkforInterface(self,iface):
+		ret=os.system("ifconfig " + iface + " up")
+		if ret == 0:
+			return True
+		else:
+			return False
+
+	def checkDNSLookup(self):
+		ok_counter = 0
+		ret1=os.system("nslookup www.dream-multimedia-tv.de")
+		if ret1 != 0:
+			ok_counter = ok_counter + 1
+		ret2=os.system("nslookup www.heise.de")
+		if ret2 != 0:
+			ok_counter = ok_counter + 1
+		ret3=os.system("nslookup www.google.de")
+		if ret2 != 0:
+			ok_counter = ok_counter + 1		
+		if ok_counter <= 2:
+			return True
+		else:
+			return False
+		
 iNetwork = Network()
 
 def InitNetwork():
