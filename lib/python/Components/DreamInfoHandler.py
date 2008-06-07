@@ -208,7 +208,7 @@ class DreamInfoHandler:
 		attributes = self.installingAttributes
 		#print "attributes:", attributes
 		
-		if self.currentAttributeIndex >= len(self.attributeNames) - 1: # end of package reached
+		if self.currentAttributeIndex >= len(self.attributeNames): # end of package reached
 			print "end of package reached"
 			if self.currentlyInstallingMetaIndex is None or self.currentlyInstallingMetaIndex >= len(self.installIndexes) - 1:
 				print "set status to DONE"
@@ -219,9 +219,11 @@ class DreamInfoHandler:
 				self.currentlyInstallingMetaIndex += 1
 				self.currentAttributeIndex = 0
 				self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
+				return
 		
 		self.setStatus(self.STATUS_WORKING)		
 		
+		print "currentAttributeIndex:", self.currentAttributeIndex
 		currentAttribute = self.attributeNames[self.currentAttributeIndex]
 		
 		print "installing", currentAttribute, "with index", self.currentIndex
