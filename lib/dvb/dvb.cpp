@@ -1023,6 +1023,9 @@ void eDVBChannel::pvrEvent(int event)
 
 void eDVBChannel::cueSheetEvent(int event)
 {
+		/* we might end up here if playing failed or stopped, but the client hasn't (yet) noted. */
+	if (!m_pvr_thread)
+		return;
 	switch (event)
 	{
 	case eCueSheet::evtSeek:
@@ -1060,7 +1063,6 @@ void eDVBChannel::cueSheetEvent(int event)
 				m_skipmode_n = m_skipmode_m = 0;
 			}
 		}
-		ASSERT(m_pvr_thread);
 		m_pvr_thread->setIFrameSearch(m_skipmode_n != 0);
 		if (m_cue->m_skipmode_ratio != 0)
 			m_pvr_thread->setTimebaseChange(0x10000 * 9000 / (m_cue->m_skipmode_ratio / 10)); /* negative values are also ok */
