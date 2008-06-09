@@ -98,7 +98,10 @@ class IpkgComponent:
 				self.callCallbacks(self.EVENT_ERROR, None)
 			elif data.find('ipkg_download: ERROR:') == 0:
 				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.find('    Configuration file') == 0:
+			elif data.find('    Configuration file \'') >= 0:
+				# Note: the config file update question doesn't end with a newline, so
+				# if we get multiple config file update questions, the next ones
+				# don't necessarily start at the beginning of a line
 				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 1)[1][:-1])
 
 	def callCallbacks(self, event, param = None):
