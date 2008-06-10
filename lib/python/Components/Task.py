@@ -97,6 +97,7 @@ class Task(object)	:
 		self.cwd = "/tmp"
 		self.args = [ ]
 		self.task_progress_changed = None
+		self.output_line = ""
 		job.addTask(self)
 
 	def setCommandline(self, cmd, args):
@@ -151,6 +152,15 @@ class Task(object)	:
 		pass
 
 	def processOutput(self, data):
+		self.output_line += data
+		while True:
+			i = self.output_line.find('\n')
+			if i == -1:
+				break
+			self.processOutputLine(self.output_line[:i+1])
+			self.output_line = self.output_line[i+1:]
+
+	def processOutputLine(self, line):
 		pass
 
 	def processFinished(self, returncode):
@@ -184,6 +194,10 @@ class Task(object)	:
 		return self.__progress
 
 	def setProgress(self, progress):
+		if progress > self.end:
+			progress = self.end
+		if progress < 0:
+			progress = 0
 		print "progress now", progress
 		self.__progress = progress
 		self.task_progress_changed()
