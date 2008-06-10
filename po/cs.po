@@ -7,13 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 23:30+0200\n"
+"POT-Creation-Date: 2008-06-10 11:43+0200\n"
 "PO-Revision-Date: 2008-04-03 19:16+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"\n"
+"Enigma2 will restart after the restore"
+msgstr ""
+"\n"
+"Enigma2 se restartuje po obnovení"
+
+msgid " "
+msgstr ""
+
+msgid "\"?"
+msgstr "\"?"
 
 msgid "#000000"
 msgstr "#000000"
@@ -72,6 +85,9 @@ msgstr "(Přepnout)"
 
 msgid "(empty)"
 msgstr "(prázdné)"
+
+msgid "(show optional DVD audio menu)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 adresář"
@@ -277,6 +293,9 @@ msgstr "Aktivovat obraz v obraze"
 msgid "Activate network settings"
 msgstr "Aktivovat síťové nastavení"
 
+msgid "Adapter settings"
+msgstr ""
+
 msgid "Add"
 msgstr "Přidat"
 
@@ -343,6 +362,22 @@ msgstr "Neplatný název souboru."
 msgid "Arabic"
 msgstr "Arabsky"
 
+msgid ""
+"Are you sure you want to enable WLAN support?\n"
+"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to enable your local network?\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restart your network interfaces?\n"
+"\n"
+msgstr ""
+
 msgid "Artist:"
 msgstr "Herec:"
 
@@ -387,6 +422,9 @@ msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "Back"
+msgstr ""
 
 msgid "Backup"
 msgstr "Záloha"
@@ -492,14 +530,20 @@ msgstr "Kanál:"
 msgid "Channellist menu"
 msgstr "Menu seznamu kanálů"
 
+msgid "Chap."
+msgstr ""
+
+msgid "Chapter"
+msgstr ""
+
+msgid "Chapter:"
+msgstr ""
+
 msgid "Check"
 msgstr "Ověřit"
 
 msgid "Checking Filesystem..."
 msgstr "Ověřuji souborový systém..."
-
-msgid "Choose Location"
-msgstr "Vyberte umístění"
 
 msgid "Choose Tuner"
 msgstr "Vyber tuner"
@@ -525,6 +569,9 @@ msgstr "Vymazat před skenováním"
 msgid "Clear log"
 msgstr "Vymazat log"
 
+msgid "Close"
+msgstr ""
+
 msgid "Code rate high"
 msgstr "Vysoká kódová rychlost"
 
@@ -539,6 +586,9 @@ msgstr "Rychlost LP"
 
 msgid "Color Format"
 msgstr "Barevný formát"
+
+msgid "Command execution..."
+msgstr ""
 
 msgid "Command order"
 msgstr "Pořadí příkazů"
@@ -561,6 +611,18 @@ msgstr "Kompletní"
 msgid "Configuration Mode"
 msgstr "Konfigurační mód"
 
+msgid "Configure your internal LAN"
+msgstr ""
+
+msgid "Configure your internal LAN again"
+msgstr ""
+
+msgid "Configure your wireless LAN"
+msgstr ""
+
+msgid "Configure your wireless LAN again"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Konfiguruji"
 
@@ -569,6 +631,12 @@ msgstr "Potvrdit"
 
 msgid "Conflicting timer"
 msgstr "Konfliktní časování"
+
+msgid "Connect to the Internet with a USB Wlan Stick"
+msgstr ""
+
+msgid "Connect to the Internet with your local LAN"
+msgstr ""
 
 msgid "Connected to Fritz!Box!"
 msgstr "Připojeno k Fritz!Box!"
@@ -588,6 +656,9 @@ msgstr ""
 
 msgid "Constellation"
 msgstr "Sestava"
+
+msgid "Continue playing"
+msgstr ""
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -631,11 +702,32 @@ msgstr "Editor střihu..."
 msgid "Czech"
 msgstr "Česky"
 
+msgid "DHCP"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVD ENTER key"
+msgstr ""
+
+msgid "DVD Player"
+msgstr ""
+
+msgid "DVD down key"
+msgstr ""
+
+msgid "DVD left key"
+msgstr ""
+
+msgid "DVD right key"
+msgstr ""
+
+msgid "DVD up key"
+msgstr ""
 
 msgid "Danish"
 msgstr "Dánsky"
@@ -646,7 +738,10 @@ msgstr "Datum"
 msgid "Deep Standby"
 msgstr "Hluboký spánek"
 
-msgid "Default-Wizard"
+msgid "Default services lists"
+msgstr ""
+
+msgid "Default settings"
 msgstr ""
 
 msgid "Delay"
@@ -661,6 +756,12 @@ msgstr "Vymazat záznam"
 msgid "Delete failed!"
 msgstr "Vymazání selhalo!"
 
+#, python-format
+msgid ""
+"Delete no more configured satellite\n"
+"%s?"
+msgstr ""
+
 msgid "Description"
 msgstr "Popis"
 
@@ -669,9 +770,6 @@ msgstr "Detekován HDD:"
 
 msgid "Detected NIMs:"
 msgstr "Detekován NIMs:"
-
-msgid "Device Setup..."
-msgstr "Nastavení zařízení..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -776,6 +874,9 @@ msgstr "Chcete provést další manuální prohledávání?"
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Chcete povolit rodičovskou kontrolu na vašem Dreamboxu?"
 
+msgid "Do you want to play DVD in drive?"
+msgstr ""
+
 msgid "Do you want to restore your settings?"
 msgstr "Chcete obnovit vaše nastavení?"
 
@@ -834,8 +935,20 @@ msgstr "CHYBA - prohledávání selhalo (%s)!"
 msgid "East"
 msgstr "Východní"
 
+msgid "Edit DNS"
+msgstr ""
+
 msgid "Edit services list"
 msgstr "Upravit seznam kanálů"
+
+msgid "Edit settings"
+msgstr ""
+
+msgid "Edit the Nameserver configuration of your Dreambox.\n"
+msgstr ""
+
+msgid "Edit the network configuration of your Dreambox.\n"
+msgstr ""
 
 msgid "Electronic Program Guide"
 msgstr "EPG"
@@ -846,14 +959,34 @@ msgstr "Povolit"
 msgid "Enable 5V for active antenna"
 msgstr "Povolit 5V pro aktivní anténu"
 
+msgid "Enable LAN"
+msgstr ""
+
+msgid "Enable WLAN"
+msgstr ""
+
 msgid "Enable multiple bouquets"
 msgstr "Povolit vícenásobné bukety"
 
 msgid "Enable parental control"
 msgstr "Povolit rodičkovský zámek"
 
+msgid ""
+"Enable the local network of your Dreambox.\n"
+"\n"
+msgstr ""
+
 msgid "Enabled"
 msgstr "Povoleno"
+
+msgid "Encryption"
+msgstr ""
+
+msgid "Encryption Key"
+msgstr ""
+
+msgid "Encryption Type"
+msgstr ""
 
 msgid "End"
 msgstr "Konec"
@@ -914,6 +1047,9 @@ msgstr "Začátek programu:"
 msgid "Execution finished!!"
 msgstr "Konec programu!"
 
+msgid "Exit"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Ukončit editor"
 
@@ -923,11 +1059,11 @@ msgstr "Ukončit průvodce"
 msgid "Exit wizard"
 msgstr "Ukončit průvodce"
 
+msgid "Exit wizard and configure later manually"
+msgstr ""
+
 msgid "Expert"
 msgstr "Expert"
-
-msgid "Extended Setup..."
-msgstr "Rozšířené nastavení..."
 
 msgid "Extensions"
 msgstr "Rozšíření"
@@ -937,6 +1073,9 @@ msgstr "FEC"
 
 msgid "Factory reset"
 msgstr "Tovární nastavení"
+
+msgid "Failed"
+msgstr ""
 
 msgid "Fast"
 msgstr "Rychlý"
@@ -961,6 +1100,9 @@ msgstr "Souborový systém obsahuje nezvratné chyby"
 
 msgid "Finetune"
 msgstr "Doladit"
+
+msgid "Finished"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Finsky"
@@ -1099,6 +1241,9 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr "Aktualizace image"
 
+msgid "In Progress"
+msgstr ""
+
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
@@ -1140,6 +1285,15 @@ msgstr "Instaluji"
 msgid "Installing Software..."
 msgstr "Instaluji software..."
 
+msgid "Installing default sat lists... Please wait..."
+msgstr ""
+
+msgid "Installing defaults... Please wait..."
+msgstr ""
+
+msgid "Installing package content... Please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr "Okamžité nahrávání..."
 
@@ -1164,6 +1318,12 @@ msgstr "Invertovat display"
 msgid "Italian"
 msgstr "Italsky"
 
+msgid "Job View"
+msgstr ""
+
+msgid "Jump to video title 1 (play movie from start)"
+msgstr ""
+
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Zobrazit přes celou obrazovku (nedodržuje poměr stran)"
@@ -1176,6 +1336,9 @@ msgstr "Nastavení klávesnice"
 
 msgid "Keymap"
 msgstr "Rozložení kláves"
+
+msgid "LAN Adapter"
+msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
@@ -1201,6 +1364,9 @@ msgstr "Poslední rychlost"
 msgid "Latitude"
 msgstr "Zeměpisná šířka"
 
+msgid "Leave DVD Player?"
+msgstr ""
+
 msgid "Left"
 msgstr "Vlevo"
 
@@ -1220,11 +1386,17 @@ msgstr "Vypnout limit"
 msgid "Limits on"
 msgstr "Zapnout limit"
 
+msgid "Link:"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "Seznam záznamových zařízeních"
 
 msgid "Lithuanian"
 msgstr "Litevsky"
+
+msgid "Local Network"
+msgstr ""
 
 msgid "Location"
 msgstr "Umístění"
@@ -1359,14 +1531,20 @@ msgstr "DNS (nameserver) %d"
 msgid "Nameserver Setup"
 msgstr "Nastavení DNS (nameserver)"
 
-msgid "Nameserver Setup..."
-msgstr "Nastavení DNS (nameserver)..."
+msgid "Nameserver settings"
+msgstr ""
 
 msgid "Netmask"
 msgstr "Síťová maska"
 
+msgid "Network Configuration..."
+msgstr ""
+
 msgid "Network Mount"
 msgstr "Síťové připojení"
+
+msgid "Network SSID"
+msgstr ""
 
 msgid "Network Setup"
 msgstr "Nastavení sítě"
@@ -1377,8 +1555,20 @@ msgstr "Prohledávání sítě"
 msgid "Network setup"
 msgstr "Nastavení sítě"
 
+msgid "Network test"
+msgstr ""
+
+msgid "Network test..."
+msgstr ""
+
 msgid "Network..."
 msgstr "Nastavení sítě..."
+
+msgid "Network:"
+msgstr ""
+
+msgid "NetworkWizard"
+msgstr ""
 
 msgid "New"
 msgstr "Nové programy"
@@ -1460,6 +1650,24 @@ msgstr ""
 "Chcete nyní změnit PIN?\n"
 "Pokud 'Ne' tak ochrana nastavení zůstane vypnuta!"
 
+msgid ""
+"No working local networkadapter found.\n"
+"Please verify that you have attached a network cable and your Network is "
+"configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless interface found.\n"
+" Please verify that you have attached a compatible WLAN USB Stick or enable "
+"you local network interface."
+msgstr ""
+
+msgid ""
+"No working wireless networkadapter found.\n"
+"Please verify that you have attached a compatible WLAN USB Stick and your "
+"Network is configured correctly."
+msgstr ""
+
 msgid "No, but restart from begin"
 msgstr "Ne, jen restartovat"
 
@@ -1468,6 +1676,9 @@ msgstr "Ne, nic nedělej."
 
 msgid "No, just start my dreambox"
 msgstr "Ne, jen pusť můj dreambox"
+
+msgid "No, let me choose default lists"
+msgstr ""
 
 msgid "No, scan later manually"
 msgstr "Ne, prohledám později manuálně"
@@ -1572,6 +1783,9 @@ msgstr "Nastavení PiP"
 msgid "Pillarbox"
 msgstr ""
 
+msgid "Pilot"
+msgstr ""
+
 msgid "Pin code needed"
 msgstr "Je vyžadován kód PIN"
 
@@ -1587,11 +1801,35 @@ msgstr "Prosím restartujte"
 msgid "Please Select Medium to be Scanned"
 msgstr "Prosím vyberte médium pro prozkoumání"
 
+msgid ""
+"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
+"Dreambox and press the OK button on your remote control to enable the built "
+"in wireless network support"
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "Prosím, změňte nahrávácí dobu"
 
 msgid "Please choose an extension..."
 msgstr "Prosím vyberte si z nabídky možností"
+
+msgid "Please choose he package..."
+msgstr ""
+
+msgid "Please choose the default services lists you want to install."
+msgstr ""
+
+msgid ""
+"Please configure your local LAN internet connection by filling out the "
+"needed values.\n"
+"When you are ready please press OK to continue."
+msgstr ""
+
+msgid ""
+"Please configure your wireless LAN internet connection by filling out the "
+"needed values.\n"
+"When you are ready please press OK to continue."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Prosíme neměňte hodnoty pokud nevíte co děláte!"
@@ -1631,6 +1869,9 @@ msgstr "Prosím vyberte subkanál pro nahrávání..."
 
 msgid "Please select a subservice..."
 msgstr "Prosím vyberte podkanál..."
+
+msgid "Please select below the wireless network you want to connect to."
+msgstr ""
 
 msgid "Please select keyword to filter..."
 msgstr "Prosím vyberte klíčové slovo pro filtr..."
@@ -1713,6 +1954,9 @@ msgstr "Předdefinovný transpodér"
 msgid "Preparing... Please wait"
 msgstr "Připravuji... Prosím čekejte"
 
+msgid "Press OK on your remote control to continue."
+msgstr ""
+
 msgid "Press OK to activate the settings."
 msgstr "Stiskněte OK k aktivovaní nastavení."
 
@@ -1722,8 +1966,18 @@ msgstr "Stiskněte OK pro prohledávání"
 msgid "Press OK to start the scan"
 msgstr "Stiskněte OK pro spuštění prohledávání"
 
+msgid ""
+"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
+"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
+"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
+"\n"
+msgstr ""
+
 msgid "Prev"
 msgstr "Předchozí"
+
+msgid "Primary DNS"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Ochránit kanály"
@@ -1845,6 +2099,9 @@ msgstr "Opakovat"
 msgid "Reset"
 msgstr "Reset"
 
+msgid "Resolution"
+msgstr ""
+
 msgid "Restart"
 msgstr "Restart"
 
@@ -1853,6 +2110,18 @@ msgstr "Restartovat GUI"
 
 msgid "Restart GUI now?"
 msgstr "Restart nyní GUI?"
+
+msgid "Restart network"
+msgstr ""
+
+msgid "Restart test"
+msgstr ""
+
+msgid "Restart your network connection and interfaces.\n"
+msgstr ""
+
+msgid "Restart your wireless interface"
+msgstr ""
 
 msgid "Restore"
 msgstr "Obnovit"
@@ -1875,6 +2144,9 @@ msgstr "Pokračovat z poslední pozice"
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Obnovuji přehrávání"
+
+msgid "Return to file browser"
+msgstr ""
 
 msgid "Return to movie list"
 msgstr "Návrat na seznam filmů"
@@ -1960,6 +2232,9 @@ msgstr "Prohledat SR6875"
 msgid "Scan SR6900"
 msgstr "Prohledat SR6900"
 
+msgid "Scan Wireless Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Prohledat dodatečný SR"
 
@@ -1999,11 +2274,23 @@ msgstr "Prohledat pásmo US MID"
 msgid "Scan band US SUPER"
 msgstr "Prohledat pásmo US SUPER"
 
+msgid ""
+"Scan your network for wireless Access Points and connect to them using your "
+"WLAN USB Stick\n"
+msgstr ""
+
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
+
 msgid "Search east"
 msgstr "Hledej východ"
 
 msgid "Search west"
 msgstr "Hledej západ"
+
+msgid "Secondary DNS"
+msgstr ""
 
 msgid "Seek"
 msgstr "Posunout (min)"
@@ -2098,12 +2385,14 @@ msgstr "Nastavení"
 msgid "Setup Mode"
 msgstr "Nastavovací mód"
 
+msgid "Show Info"
+msgstr ""
+
+msgid "Show WLAN Status"
+msgstr ""
+
 msgid "Show blinking clock in display during recording"
 msgstr "Zobrazit blikající hodiny při nahrávání"
-
-#, python-format
-msgid "Show files from %s"
-msgstr "Zobrazit soubory z %s"
 
 msgid "Show infobar on channel change"
 msgstr "Zobrazit infobar při přepnutí programu"
@@ -2125,6 +2414,9 @@ msgstr "Zobrazit přehrávač rádií"
 
 msgid "Show the tv player..."
 msgstr "Zobrazit TV..."
+
+msgid "Shows the state of your wireless LAN connection.\n"
+msgstr ""
 
 msgid "Shutdown Dreambox after"
 msgstr "Vypnout Dreambox po"
@@ -2222,6 +2514,9 @@ msgstr "Spustit od začátku"
 msgid "Start recording?"
 msgstr "Začít nahrávat?"
 
+msgid "Start test"
+msgstr ""
+
 msgid "StartTime"
 msgstr "Začátek"
 
@@ -2254,6 +2549,9 @@ msgstr "Zastavit aktuální událost, ale nezakazovat následující události"
 
 msgid "Stop playing this movie?"
 msgstr "Zastavit přehrávání toho filmu?"
+
+msgid "Stop test"
+msgstr ""
 
 msgid "Store position"
 msgstr "Ulož pozici"
@@ -2322,8 +2620,32 @@ msgstr "Pozemní poskytovatel"
 msgid "Test mode"
 msgstr "Testovací mód"
 
+msgid "Test the network configuration of your Dreambox.\n"
+msgstr ""
+
 msgid "Test-Messagebox?"
 msgstr "Vzkaz"
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"\n"
+"Your local LAN internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"\n"
+"Your wireless internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"Please press OK to start using your Dreambox."
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2343,6 +2665,17 @@ msgstr ""
 "Vstupní zdroj signálu by měl být nyní nakonfigurován.\n"
 "Nyní můžete nastavit obrazovku zobrazením testovacích obrázků. Chcete "
 "provést nastavení?"
+
+msgid "The installation of the default services lists is finished."
+msgstr ""
+
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your Dreambox by pressing the OK button on the remote control."
+msgstr ""
+
+msgid "The package doesn't contain anything."
+msgstr ""
 
 msgid "The pin code has been changed successfully."
 msgstr "PIN byl úspěšně změněn"
@@ -2370,6 +2703,12 @@ msgstr "Průvodce může uložit vaše nastavení. Chcete nyní provést zálohu
 msgid "The wizard is finished now."
 msgstr "Průvodce skončil."
 
+msgid "There are no default services lists in your image."
+msgstr ""
+
+msgid "There are no default settings in your image."
+msgstr ""
+
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -2382,6 +2721,42 @@ msgstr "Toto je 2. krok."
 
 msgid "This is unsupported at the moment."
 msgstr "Toto není momentálně nepodporováno."
+
+msgid ""
+"This test checks for configured Nameservers.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- please check your DHCP, cabling and Adapter setup\n"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
+msgstr ""
+
+msgid ""
+"This test checks whether a network cable is connected to your LAN-Adapter.\n"
+"If you get a \"disconnected\" message:\n"
+"- verify that a network cable is attached\n"
+"- verify that the cable is not broken"
+msgstr ""
+
+msgid ""
+"This test checks whether a valid IP Address is found for your LAN Adapter.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- no valid IP Address was found\n"
+"- please check your DHCP, cabling and adapter setup"
+msgstr ""
+
+msgid ""
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
+"If you get a \"disabled\" message:\n"
+" - then your LAN Adapter is configured for manual IP Setup\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
+"If you get an \"enabeld\" message:\n"
+"-verify that you have a configured and working DHCP Server in your network."
+msgstr ""
+
+msgid "This test detects your configured LAN-Adapter."
+msgstr ""
 
 msgid "Three"
 msgstr "Tři"
@@ -2436,6 +2811,9 @@ msgstr "Časový posun není možný!"
 
 msgid "Timezone"
 msgstr "Čas. pásmo"
+
+msgid "Title"
+msgstr ""
 
 msgid "Title:"
 msgstr "Název:"
@@ -2594,6 +2972,9 @@ msgstr "Použít skokové přetáčení s rychlostmi uvedenými výše"
 msgid "Use power measurement"
 msgstr "Použít sílu měření (???)"
 
+msgid "Use the Networkwizard to configure your Network\n"
+msgstr ""
+
 msgid ""
 "Use the left and right buttons to change an option.\n"
 "\n"
@@ -2672,8 +3053,20 @@ msgstr "Hlasitost"
 msgid "W"
 msgstr "Západní"
 
+msgid "WEP"
+msgstr ""
+
+msgid "WPA"
+msgstr ""
+
+msgid "WPA2"
+msgstr ""
+
 msgid "WSS on 4:3"
 msgstr "WSS na 4:3"
+
+msgid "Waiting"
+msgstr ""
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -2706,6 +3099,15 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+
+msgid ""
+"Welcome.\n"
+"\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
@@ -2713,6 +3115,9 @@ msgstr ""
 "\n"
 "Tento průvodce vás provede základním nastavením vašeho Dreamboxu.\n"
 "Stiskněte OK na vašem dálkovém ovladači pro přesun na další krok."
+
+msgid "Welcome..."
+msgstr ""
 
 msgid "West"
 msgstr "Západ"
@@ -2725,6 +3130,9 @@ msgstr "Kam chcete zazálohovat vaše nastavení?"
 
 msgid "Wireless"
 msgstr "Bezdrátové"
+
+msgid "Wireless Network"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Zapsat chybu při nahrávání. Disk plný?\n"
@@ -2762,8 +3170,28 @@ msgstr "Ano, vrátit se na seznam filmů"
 msgid "Yes, view the tutorial"
 msgstr "Ano, zobraz tutorial"
 
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
+msgstr ""
+
+msgid "You can choose, what you want to install..."
+msgstr ""
+
 msgid "You cannot delete this!"
 msgstr "Nemůžete toto smazat!"
+
+msgid "You chose not to install any default services lists."
+msgstr ""
+
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
+msgstr ""
+
+msgid ""
+"You chose not to install anything. Please press OK finish the install wizard."
+msgstr ""
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -2829,6 +3257,9 @@ msgstr ""
 "\n"
 "Chcete nyní nastavit PIN?"
 
+msgid "Your Dreambox will restart after pressing OK on your remote control."
+msgstr ""
+
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Vaše televize pracuje na 50Hz. "
 
@@ -2855,6 +3286,31 @@ msgid ""
 msgstr ""
 "Firmware vašeho frontprocesoru musí být aktualizován.\n"
 "Stiskněte OK pro aktualizaci."
+
+msgid ""
+"Your local LAN internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+
+msgid ""
+"Your network is restarting.\n"
+"You will be automatically forwarded to the next step."
+msgstr ""
+
+msgid ""
+"Your wired LAN Adapter could not be started.\n"
+"Do you want to reboot your Dreambox to apply the new configuration?\n"
+msgstr ""
+
+msgid ""
+"Your wireless LAN Adapter could not be started.\n"
+"Do you want to reboot your Dreambox to apply the new configuration?\n"
+msgstr ""
+
+msgid ""
+"Your wireless internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Přepnout zpět na kanál před nastavováním positioneru?"
@@ -2971,6 +3427,12 @@ msgstr "komplexní"
 msgid "config menu"
 msgstr "Konfigurační menu"
 
+msgid "confirmed"
+msgstr ""
+
+msgid "connected"
+msgstr ""
+
 msgid "continue"
 msgstr "Pokračovat"
 
@@ -3003,6 +3465,9 @@ msgstr "Vypnout přesunovací mód"
 
 msgid "disabled"
 msgstr "zakázáno"
+
+msgid "disconnected"
+msgstr ""
 
 msgid "do not change"
 msgstr "neměnit"
@@ -3052,6 +3517,9 @@ msgstr "Ukončit úpravu oblíbené"
 msgid "equal to Socket A"
 msgstr "rovno slotu A"
 
+msgid "exit DVD player or return to file browser"
+msgstr ""
+
 msgid "exit mediaplayer"
 msgstr "ukončit přehrávač médií"
 
@@ -3060,6 +3528,9 @@ msgstr "zavřít seznam filmů"
 
 msgid "fine-tune your display"
 msgstr "doladit váš display"
+
+msgid "forward to the next chapter"
+msgstr ""
 
 msgid "free diskspace"
 msgstr "volné místo na HDD"
@@ -3110,6 +3581,12 @@ msgstr "inicializační modul"
 
 msgid "insert mark here"
 msgstr "vložit sem popisovač"
+
+msgid "jump back to the previous title"
+msgstr ""
+
+msgid "jump forward to the next title"
+msgstr ""
 
 msgid "jump to listbegin"
 msgstr "skočit na začátek seznamu"
@@ -3288,11 +3765,17 @@ msgstr "Odebrat z rodičovské ochrany"
 msgid "remove new found flag"
 msgstr "Odebrat z \"nově nalezeno\""
 
+msgid "remove selected satellite"
+msgstr ""
+
 msgid "remove this mark"
 msgstr "Odebrat popisovač"
 
 msgid "repeated"
 msgstr "opakování"
+
+msgid "rewind to the previous chapter"
+msgstr ""
 
 msgid "right"
 msgstr "vpravo"
@@ -3346,6 +3829,9 @@ msgstr "PIN programu"
 
 msgid "setup pin"
 msgstr "nastavit PIN"
+
+msgid "show DVD main menu"
+msgstr ""
 
 msgid "show EPG..."
 msgstr "Zobrazit EPG..."
@@ -3440,6 +3926,12 @@ msgstr "Přepnout na seznam souborů"
 msgid "switch to playlist"
 msgstr "Přepnout na playlist"
 
+msgid "switch to the next audio track"
+msgstr ""
+
+msgid "switch to the next subtitle language"
+msgstr ""
+
 msgid "text"
 msgstr "text"
 
@@ -3451,6 +3943,12 @@ msgstr "Tento kanál je chráněný rodičovským zámkem"
 
 msgid "toggle a cut mark at the current position"
 msgstr "prohodit střihovou značku na této pozici"
+
+msgid "toggle time, chapter, audio, subtitle info"
+msgstr ""
+
+msgid "unconfirmed"
+msgstr ""
 
 msgid "unknown service"
 msgstr "neznámý kanál"
@@ -3504,16 +4002,6 @@ msgstr "přepnout"
 msgid "zapped"
 msgstr "přepnutý"
 
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 se restartuje po obnovení"
-
-#~ msgid "\"?"
-#~ msgstr "\"?"
-
 #~ msgid "#003258"
 #~ msgstr "#003258"
 
@@ -3538,8 +4026,14 @@ msgstr "přepnutý"
 #~ msgid "Burn DVD..."
 #~ msgstr "Vypálit DVD..."
 
+#~ msgid "Choose Location"
+#~ msgstr "Vyberte umístění"
+
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Vlastní čas posunu pro tlačítka 1/3"
+
+#~ msgid "Device Setup..."
+#~ msgstr "Nastavení zařízení..."
 
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Chcete zobrazit tutorial pro střih?"
@@ -3550,6 +4044,9 @@ msgstr "přepnutý"
 #~ msgid "Edit title..."
 #~ msgstr "Upravit titul..."
 
+#~ msgid "Extended Setup..."
+#~ msgstr "Rozšířené nastavení..."
+
 #~ msgid "Games / Plugins"
 #~ msgstr "Hry / Pluginy"
 
@@ -3558,6 +4055,9 @@ msgstr "přepnutý"
 
 #~ msgid "Movie Menu"
 #~ msgstr "Filmové menu"
+
+#~ msgid "Nameserver Setup..."
+#~ msgstr "Nastavení DNS (nameserver)..."
 
 #~ msgid "New DVD"
 #~ msgstr "Nové DVD"
@@ -3573,6 +4073,9 @@ msgstr "přepnutý"
 
 #~ msgid "Save..."
 #~ msgstr "Uložit..."
+
+#~ msgid "Show files from %s"
+#~ msgstr "Zobrazit soubory z %s"
 
 #~ msgid "Startwizard"
 #~ msgstr "Spustit průvodce"

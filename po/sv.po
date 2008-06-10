@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-03 15:14+0200\n"
+"POT-Creation-Date: 2008-06-10 11:43+0200\n"
 "PO-Revision-Date: 2008-06-02 10:04+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
@@ -19,8 +19,16 @@ msgstr ""
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
+msgid ""
+"\n"
+"Enigma2 will restart after the restore"
+msgstr ""
+
 msgid " "
 msgstr " "
+
+msgid "\"?"
+msgstr ""
 
 msgid "#000000"
 msgstr ""
@@ -305,14 +313,8 @@ msgstr "Lägg till"
 msgid "Add a mark"
 msgstr "Lägg till markör"
 
-msgid "Add a new title"
-msgstr "Lägg till ny titel"
-
 msgid "Add timer"
 msgstr "Lägg till timer"
-
-msgid "Add title..."
-msgstr "Lägg till titel..."
 
 msgid "Add to bouquet"
 msgstr "Lägg till i favoritlista"
@@ -378,8 +380,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Are you sure you want to reset \n"
-"your network configuration to defaults?\n"
+"Are you sure you want to enable your local network?\n"
 "\n"
 msgstr ""
 
@@ -474,15 +475,6 @@ msgstr "Beteende när en film slutar"
 
 msgid "Brightness"
 msgstr "Ljusstyrka"
-
-msgid "Burn"
-msgstr "Skapa"
-
-msgid "Burn DVD"
-msgstr "Skapa DVD"
-
-msgid "Burn To DVD..."
-msgstr "Skapa DVD..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -630,6 +622,18 @@ msgstr "Komplett"
 msgid "Configuration Mode"
 msgstr "Konfigurationsläge"
 
+msgid "Configure your internal LAN"
+msgstr ""
+
+msgid "Configure your internal LAN again"
+msgstr ""
+
+msgid "Configure your wireless LAN"
+msgstr ""
+
+msgid "Configure your wireless LAN again"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Konfigurering"
 
@@ -638,6 +642,12 @@ msgstr "Bekräfta"
 
 msgid "Conflicting timer"
 msgstr "Timerkonflikt"
+
+msgid "Connect to the Internet with a USB Wlan Stick"
+msgstr ""
+
+msgid "Connect to the Internet with your local LAN"
+msgstr ""
 
 msgid "Connected to Fritz!Box!"
 msgstr "Ansluten till Fritz!Box!"
@@ -939,9 +949,6 @@ msgstr "Öst"
 msgid "Edit DNS"
 msgstr ""
 
-msgid "Edit current title"
-msgstr "Ändra vald titel"
-
 msgid "Edit services list"
 msgstr "Ändra kanallista"
 
@@ -954,9 +961,6 @@ msgstr ""
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
 
-msgid "Edit title..."
-msgstr "Ändra titel..."
-
 msgid "Electronic Program Guide"
 msgstr "Elektronisk Program Guide"
 
@@ -966,7 +970,10 @@ msgstr "Aktivera"
 msgid "Enable 5V for active antenna"
 msgstr "Aktivera 5V för aktiv antenn"
 
-msgid "Enable WLAN Support"
+msgid "Enable LAN"
+msgstr ""
+
+msgid "Enable WLAN"
 msgstr ""
 
 msgid "Enable multiple bouquets"
@@ -974,6 +981,11 @@ msgstr "Aktivera flera favoritlistor"
 
 msgid "Enable parental control"
 msgstr "Aktivera föräldrakontroll"
+
+msgid ""
+"Enable the local network of your Dreambox.\n"
+"\n"
+msgstr ""
 
 msgid "Enabled"
 msgstr "Aktiverad"
@@ -1057,6 +1069,9 @@ msgstr "Avsluta guiden"
 
 msgid "Exit wizard"
 msgstr "Avsluta guide"
+
+msgid "Exit wizard and configure later manually"
+msgstr ""
 
 msgid "Expert"
 msgstr "Expert"
@@ -1562,11 +1577,11 @@ msgstr "Nätverk..."
 msgid "Network:"
 msgstr ""
 
+msgid "NetworkWizard"
+msgstr ""
+
 msgid "New"
 msgstr "Ny"
-
-msgid "New DVD"
-msgstr "Ny DVD"
 
 msgid "New pin"
 msgstr "Ny PIN"
@@ -1642,6 +1657,24 @@ msgstr ""
 "Ingen giltig installations PIN hittad!\n"
 "Vill du ändra installations PIN nu?\n"
 "Om du anger 'Nej' här kommer installationsskyddet vara avaktiverat!"
+
+msgid ""
+"No working local networkadapter found.\n"
+"Please verify that you have attached a network cable and your Network is "
+"configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless interface found.\n"
+" Please verify that you have attached a compatible WLAN USB Stick or enable "
+"you local network interface."
+msgstr ""
+
+msgid ""
+"No working wireless networkadapter found.\n"
+"Please verify that you have attached a compatible WLAN USB Stick and your "
+"Network is configured correctly."
+msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Nej, men starta om från början"
@@ -1776,6 +1809,12 @@ msgstr "Vänligen starta om"
 msgid "Please Select Medium to be Scanned"
 msgstr "Vänligen ange media som ska undersökas"
 
+msgid ""
+"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
+"Dreambox and press the OK button on your remote control to enable the built "
+"in wireless network support"
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "Vänligen ändra inspelnings sluttid"
 
@@ -1786,6 +1825,18 @@ msgid "Please choose he package..."
 msgstr "Vänligen välj paket"
 
 msgid "Please choose the default services lists you want to install."
+msgstr ""
+
+msgid ""
+"Please configure your local LAN internet connection by filling out the "
+"needed values.\n"
+"When you are ready please press OK to continue."
+msgstr ""
+
+msgid ""
+"Please configure your wireless LAN internet connection by filling out the "
+"needed values.\n"
+"When you are ready please press OK to continue."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -1826,6 +1877,9 @@ msgstr "Vänligen välj en underkanal för inspelning..."
 
 msgid "Please select a subservice..."
 msgstr "Vänligen välj en underkanal..."
+
+msgid "Please select below the wireless network you want to connect to."
+msgstr ""
 
 msgid "Please select keyword to filter..."
 msgstr "Vänligen välj nyckelord för filter..."
@@ -2030,14 +2084,8 @@ msgstr "Ta bort Plugins"
 msgid "Remove a mark"
 msgstr "Ta bort en markör"
 
-msgid "Remove currently selected title"
-msgstr "Ta bort vald titel"
-
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
-
-msgid "Remove title"
-msgstr "Ta bort titel"
 
 msgid "Rename"
 msgstr "Byt namn"
@@ -2056,14 +2104,6 @@ msgstr "Upprepningar"
 
 msgid "Reset"
 msgstr "Nollställ"
-
-msgid "Reset configuration"
-msgstr ""
-
-msgid ""
-"Reset the network configuration of your Dreambox.\n"
-"\n"
-msgstr ""
 
 msgid "Resolution"
 msgstr ""
@@ -2084,6 +2124,9 @@ msgid "Restart test"
 msgstr ""
 
 msgid "Restart your network connection and interfaces.\n"
+msgstr ""
+
+msgid "Restart your wireless interface"
 msgstr ""
 
 msgid "Restore"
@@ -2168,12 +2211,6 @@ msgstr "Lördag"
 
 msgid "Save Playlist"
 msgstr "Spara spellista"
-
-msgid "Save current project to disk"
-msgstr "Spara nuvarande project till disk"
-
-msgid "Save..."
-msgstr "Spara..."
 
 msgid "Scaling Mode"
 msgstr "Scalingläge"
@@ -2363,10 +2400,6 @@ msgstr ""
 
 msgid "Show blinking clock in display during recording"
 msgstr "Visa blinkande klocka i display under inspelning"
-
-#, python-format
-msgid "Show files from %s"
-msgstr "Visa filer från %s"
 
 msgid "Show infobar on channel change"
 msgstr "Visa infobalk vid kanalbyte"
@@ -2596,6 +2629,27 @@ msgstr ""
 
 msgid "Test-Messagebox?"
 msgstr "Test-Meddelandebox?"
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"\n"
+"Your local LAN internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"\n"
+"Your wireless internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"Please press OK to start using your Dreambox."
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2922,6 +2976,9 @@ msgstr "Använd hackig spolning vid hastigheter över"
 msgid "Use power measurement"
 msgstr "Använd strömmätning"
 
+msgid "Use the Networkwizard to configure your Network\n"
+msgstr ""
+
 msgid ""
 "Use the left and right buttons to change an option.\n"
 "\n"
@@ -3042,6 +3099,15 @@ msgstr ""
 "av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet till "
 "dina aktuella inställningar och en kort förklaring hur du uppgraderar "
 "mjukvaran."
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
 
 msgid ""
 "Welcome.\n"
@@ -3233,6 +3299,31 @@ msgid ""
 msgstr ""
 "Din frontprocessors mjukvara måste uppgraderas.\n"
 "Tryck OK för att starta."
+
+msgid ""
+"Your local LAN internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+
+msgid ""
+"Your network is restarting.\n"
+"You will be automatically forwarded to the next step."
+msgstr ""
+
+msgid ""
+"Your wired LAN Adapter could not be started.\n"
+"Do you want to reboot your Dreambox to apply the new configuration?\n"
+msgstr ""
+
+msgid ""
+"Your wireless LAN Adapter could not be started.\n"
+"Do you want to reboot your Dreambox to apply the new configuration?\n"
+msgstr ""
+
+msgid ""
+"Your wireless internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Gå till föregående kanal före motorinstallation?"
@@ -3918,14 +4009,53 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapped"
 
+#~ msgid "Add a new title"
+#~ msgstr "Lägg till ny titel"
+
+#~ msgid "Add title..."
+#~ msgstr "Lägg till titel..."
+
+#~ msgid "Burn"
+#~ msgstr "Skapa"
+
+#~ msgid "Burn DVD"
+#~ msgstr "Skapa DVD"
+
+#~ msgid "Burn To DVD..."
+#~ msgstr "Skapa DVD..."
+
 #~ msgid "Choose Location"
 #~ msgstr "Välj lokation"
 
 #~ msgid "Device Setup..."
 #~ msgstr "Nätverksinstallation..."
 
+#~ msgid "Edit current title"
+#~ msgstr "Ändra vald titel"
+
+#~ msgid "Edit title..."
+#~ msgstr "Ändra titel..."
+
 #~ msgid "Extended Setup..."
 #~ msgstr "Utökad installation..."
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Namnserver installation..."
+
+#~ msgid "New DVD"
+#~ msgstr "Ny DVD"
+
+#~ msgid "Remove currently selected title"
+#~ msgstr "Ta bort vald titel"
+
+#~ msgid "Remove title"
+#~ msgstr "Ta bort titel"
+
+#~ msgid "Save current project to disk"
+#~ msgstr "Spara nuvarande project till disk"
+
+#~ msgid "Save..."
+#~ msgstr "Spara..."
+
+#~ msgid "Show files from %s"
+#~ msgstr "Visa filer från %s"
