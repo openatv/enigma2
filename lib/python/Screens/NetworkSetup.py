@@ -17,9 +17,6 @@ from enigma import eTimer, eConsoleAppContainer,gRGB
 import time, os, re
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
-def getColor(str):
-	return gRGB(int(str[1:], 0x10))
-
 class NetworkAdapterSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -645,7 +642,7 @@ class NetworkAdapterTest(Screen):
 			self["AdapterInfo"].setPixmapNum(0)
 
 	def runTest(self):
-		self.nextstep += 1
+		next = self.nextstep
 		if next == 0:
 			self.doStep1()
 		elif next == 1:
@@ -658,6 +655,7 @@ class NetworkAdapterTest(Screen):
 			self.doStep5()
 		elif next == 5:
 			self.doStep6()
+		self.nextstep += 1
 
 	def doStep1(self):
 		self.steptimer = True
