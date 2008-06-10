@@ -94,8 +94,8 @@ class MultiPixmap(Pixmap):
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "pixmaps":
 					pixmaps = value.split(',')
-					for pixmap in pixmaps:
-						self.pixmaps.append(loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, pixmap, path_prefix=skin_path_prefix), desktop) )
+					for p in pixmaps:
+						self.pixmaps.append(loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, p, path_prefix=skin_path_prefix), desktop) )
 					if not pixmap:
 						pixmap = resolveFilename(SCOPE_SKIN_IMAGE, pixmaps[0], path_prefix=skin_path_prefix)
 				elif attrib == "pixmap":
