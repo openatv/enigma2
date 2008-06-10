@@ -46,20 +46,32 @@ class MultiColorLabel(Label):
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
+			foregroundColor = None
+			backgroundColor = None
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "foregroundColors":
 					colors = value.split(',')
-					attribs.append(("foregroundColor",colors[0] ))
 					for color in colors:
 						self.foreColors.append(parseColor(color))
+					if not foregroundColor:
+						foregroundColor = colors[0]
 				elif attrib == "backgroundColors":
 					colors = value.split(',')
-					attribs.append(("backgroundColor",colors[0] ))
 					for color in colors:
 						self.backColors.append(parseColor(color))
+					if not backgroundColor:
+						backgroundColor = colors[0]
+				elif attrib == "backgroundColor":
+					backgroundColor = value
+				elif attrib == "foregroundColor":
+					foregroundColor = value
 				else:
 					attribs.append((attrib,value))
+			if foregroundColor:
+				attribs.append(("foregroundColor",foregroundColor))
+			if backgroundColor:
+				attribs.append(("backgroundColor",backgroundColor))
 			self.skinAttributes = attribs
 		return GUIComponent.applySkin(self, desktop, screen)
 	
