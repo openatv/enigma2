@@ -7,6 +7,7 @@
 #include <poll.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <fcntl.h>
 
 int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char *cwd )
 {
@@ -176,12 +177,13 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	// get one read ,one write and the err pipe to the prog..
 	pid = bidirpipe(fd, cmdline, argv, m_cwd.length() ? m_cwd.c_str() : 0);
 
-
 	if ( pid == -1 )
 		return -3;
 
 //	eDebug("pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
 
+	::fcntl(fd[1], F_SETFL, O_NONBLOCK);
+	::fcntl(fd[2], F_SETFL, O_NONBLOCK);
 	in = new eSocketNotifier(eApp, fd[0], eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Hungup );
 	out = new eSocketNotifier(eApp, fd[1], eSocketNotifier::Write, false);  
 	err = new eSocketNotifier(eApp, fd[2], eSocketNotifier::Read|eSocketNotifier::Priority );
@@ -296,12 +298,10 @@ void eConsoleAppContainer::readyRead(int what)
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
 //		eDebug("what = %d");
-		char buf[2048];
+		char buf[2049];
 		int rd;
-		while((rd = read(fd[0], buf, 2047)) > 0)
+		while((rd = read(fd[0], buf, 2048)) > 0)
 		{
-/*			for ( int i = 0; i < rd; i++ )
-				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
 			buf[rd]=0;
 			/*emit*/ dataAvail(buf);
 			if (!hungup)
@@ -334,9 +334,9 @@ void eConsoleAppContainer::readyErrRead(int what)
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
 	{
 //		eDebug("what = %d");
-		char buf[2048];
+		char buf[2049];
 		int rd;
-		while((rd = read(fd[2], buf, 2047)) > 0)
+		while((rd = read(fd[2], buf, 2048)) > 0)
 		{
 /*			for ( int i = 0; i < rd; i++ )
 				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
