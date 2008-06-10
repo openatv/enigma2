@@ -1,7 +1,7 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from VariableText import VariableText
-
+from skin import parseColor
 from ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetConditional
 
 from enigma import eLabel
@@ -37,3 +37,43 @@ class BlinkingLabelConditional(BlinkingWidgetConditional, LabelConditional):
 	def __init__(self, text = ""):
 		LabelConditional.__init__(self, text = text)
 		BlinkingWidgetConditional.__init__(self)
+
+class MultiColorLabel(Label):
+	def __init__(self, text=""):
+		Label.__init__(self,text)
+		self.foreColors = []
+		self.backColors = []
+
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "foregroundColors":
+					colors = value.split(',')
+					attribs.append(("foregroundColor",colors[0] ))
+					for color in colors:
+						self.foreColors.append(parseColor(color))
+				elif attrib == "backgroundColors":
+					colors = value.split(',')
+					attribs.append(("backgroundColor",colors[0] ))
+					for color in colors:
+						self.backColors.append(parseColor(color))
+				else:
+					attribs.append((attrib,value))
+			self.skinAttributes = attribs
+		return GUIComponent.applySkin(self, desktop, screen)
+	
+	def setForegroundColorNum(self, x):
+		if self.instance:
+			if len(self.foreColors) > x:
+				self.instance.setForegroundColor(self.foreColors[x])
+			else:
+				print "setForegroundColorNum(%d) failed! defined colors:" %(x), self.foreColors
+
+	def setBackgroundColorNum(self, x):
+		if self.instance:
+			if len(self.backColors) > x:
+				self.instance.setBackgroundColor(self.backColors[x])
+			else:
+				print "setBackgroundColorNum(%d) failed! defined colors:" %(x), self.backColors
+
