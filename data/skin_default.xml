@@ -38,10 +38,10 @@
 		<widget name="Adaptertext" position="20,325" size="100,21" zPosition="10" font="Regular;19" transparent="1" />
 		<widget name="Adapter" position="110,325" size="300,21" zPosition="10" font="Regular;19" transparent="1" />
 		<widget name="introduction2" position="110,360" size="300,20" zPosition="10" font="Regular;21" halign="center" transparent="1" />
-		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
-		<widget name="ButtonRed" pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
-		<widget name="ButtonBluetext" position="430,360" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
-		<widget name="ButtonBlue" pixmap="skin_default/buttons/button_blue.png" position="410,360" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="ButtonRedtext" position="410,325" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonRed" pixmap="skin_default/buttons/button_red.png" position="390,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="ButtonBluetext" position="410,360" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
+		<widget name="ButtonBlue" pixmap="skin_default/buttons/button_blue.png" position="390,360" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 	</screen>
 	<screen name="AdapterSetupConfiguration" position="90,100" size="550,400" title="Network Configuration..." >
 		<ePixmap pixmap="skin_default/border_menu.png" position="10,10" zPosition="1" size="250,300" transparent="1" alphatest="on" />
@@ -50,9 +50,8 @@
 		<widget name="BottomBG" pixmap="skin_default/bottombar.png" position="5,310" size="540,120" zPosition="1" transparent="1" alphatest="on" />
 		<widget name="IFtext" position="20,325" size="100,21" zPosition="10" font="Regular;19" transparent="1" />
 		<widget name="IF" position="110,325" size="300,21" zPosition="10" font="Regular;19" transparent="1" />
-		<widget name="Statustext" position="20,350" size="60,21" zPosition="10" font="Regular;19" transparent="1"/>
-		<widget name="statuspic_inactive" pixmap="skin_default/buttons/button_green_off.png" position="70,350" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
-		<widget name="statuspic_active" pixmap="skin_default/buttons/button_green.png" position="70,350" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+		<widget name="Statustext" position="20,350" size="115,21" zPosition="10" font="Regular;19" transparent="1"/>
+		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="120,350" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonRed" pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 	</screen>
@@ -540,54 +539,42 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<screen name="NetworkAdapterSelection" position="130,140" size="460,330" title="Select Network Adapter">
 		<widget name="adapterlist" position="10,10" size="440,310" />
 	</screen>
-	<!-- Network adapter test -->
+	<!-- Network adapter test Black = "#000000" Grey = "#8c8c93" Green = "#1cff1c" Red = #f23d21-->
 	<screen name="NetworkAdapterTest" position="70,100" size="570,400" title="Network test..." >
-		<widget name="Adaptertext" position="10,20" size="120,21" zPosition="1" font="Regular;19" foregroundColor="#8c8c93" />			
-		<widget name="Adapter" position="130,20" size="270,21" zPosition="1" font="Regular;19" halign="center" foregroundColor="#8c8c93" />
-		<widget name="AdapterInfo" pixmap="skin_default/buttons/blue.png" position="425,10" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="AdapterInfo_selected" pixmap="skin_default/buttons/blue_pressed.png" position="425,10" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="AdapterInfo_Text" position="440,20" size="110,21" zPosition="2" font="Regular;19" foregroundColor="#8c8c93" transparent="1" />
+		<widget name="Adaptertext" position="10,20" size="120,21" zPosition="1" font="Regular;19" foregroundColors="#8c8c93,#1cff1c" />			
+		<widget name="Adapter" position="130,20" size="270,21" zPosition="1" font="Regular;19" halign="center" foregroundColors="#8c8c93,#f23d21,#1cff1c" />
+		<widget name="AdapterInfo" pixmaps="skin_default/buttons/blue.png,skin_default/buttons/blue_pressed.png" position="425,10" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+		<widget name="AdapterInfo_Text" position="440,20" size="110,21" zPosition="2" font="Regular;19" transparent="1" foregroundColors="#8c8c93,#000000" />
 		<widget name="AdapterInfo_OK" pixmap="skin_default/icons/lock_on.png" position="400,15" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="Networktext" position="10,70" size="120,21" zPosition="1" font="Regular;19" foregroundColor="#8c8c93" />			
-		<widget name="Network" position="160,70" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColor="#8c8c93" />
-		<widget name="NetworkInfo" pixmap="skin_default/buttons/blue.png" position="425,60" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="NetworkInfo_selected" pixmap="skin_default/buttons/blue_pressed.png" position="425,60" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="NetworkInfo_Text" position="440,70" size="110,21" zPosition="2" font="Regular;19" foregroundColor="#8c8c93" transparent="1"/>
-		<widget name="NetworkInfo_OK" pixmap="skin_default/icons/lock_on.png" position="400,65" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="NetworkInfo_NOK" pixmap="skin_default/icons/lock_error.png" position="400,65" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="Dhcptext" position="10,120" size="120,21" zPosition="1" font="Regular;19" foregroundColor="#8c8c93" />			
-		<widget name="Dhcp" position="160,120" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColor="#8c8c93" />
-		<widget name="DhcpInfo" pixmap="skin_default/buttons/blue.png" position="425,110" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="DhcpInfo_selected" pixmap="skin_default/buttons/blue_pressed.png" position="425,110" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="DhcpInfo_Text" position="440,120" size="110,21" zPosition="2" font="Regular;19" foregroundColor="#8c8c93" transparent="1" />
-		<widget name="DhcpInfo_OK" pixmap="skin_default/icons/lock_on.png" position="400,115" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="DhcpInfo_NOK" pixmap="skin_default/icons/lock_error.png" position="400,115" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="IPtext" position="10,170" size="120,21" zPosition="1" font="Regular;19" foregroundColor="#8c8c93" />			
-		<widget name="IP" position="160,170" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColor="#8c8c93" />
-		<widget name="IPInfo" pixmap="skin_default/buttons/blue.png" position="425,160" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="IPInfo_selected" pixmap="skin_default/buttons/blue_pressed.png" position="425,160" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="IPInfo_Text" position="440,170" size="110,21" zPosition="2" font="Regular;19" foregroundColor="#8c8c93" transparent="1" />
-		<widget name="IPInfo_OK" pixmap="skin_default/icons/lock_on.png" position="400,165" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="IPInfo_NOK" pixmap="skin_default/icons/lock_error.png" position="400,165" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="DNStext" position="10,220" size="120,21" zPosition="1" font="Regular;19" foregroundColor="#8c8c93" />			
-		<widget name="DNS" position="160,220" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColor="#8c8c93" />
-		<widget name="DNSInfo" pixmap="skin_default/buttons/blue.png" position="425,210" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="DNSInfo_selected" pixmap="skin_default/buttons/blue_pressed.png" position="425,210" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="DNSInfo_Text" position="440,220" size="110,21" zPosition="2" font="Regular;19" foregroundColor="#8c8c93" transparent="1" />
-		<widget name="DNSInfo_OK" pixmap="skin_default/icons/lock_on.png" position="400,215" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="DNSInfo_NOK" pixmap="skin_default/icons/lock_error.png" position="400,215" size="38,31" alphatest="on" zPosition="2" />
-		<widget name="EditSettingsButton" pixmap="skin_default/buttons/blue.png" position="425,260" zPosition="1" size="140,40" transparent="1" alphatest="on" />
-		<widget name="EditSettingsButton_selected" pixmap="skin_default/buttons/blue_pressed.png" position="425,260" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+		<widget name="Networktext" position="10,70" size="120,21" zPosition="1" font="Regular;19" foregroundColors="#8c8c93,#1cff1c" />			
+		<widget name="Network" position="160,70" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColors="#8c8c93,#f23d21,#1cff1c" />
+		<widget name="NetworkInfo" pixmaps="skin_default/buttons/blue.png,skin_default/buttons/blue_pressed.png" position="425,60" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+		<widget name="NetworkInfo_Text" position="440,70" size="110,21" zPosition="2" font="Regular;19" transparent="1" foregroundColors="#8c8c93,#000000" />
+		<widget name="NetworkInfo_Check" pixmaps="skin_default/icons/lock_on.png,skin_default/icons/lock_error.png" position="400,65" size="38,31" alphatest="on" zPosition="2" />
+		<widget name="Dhcptext" position="10,120" size="120,21" zPosition="1" font="Regular;19" foregroundColors="#8c8c93,#1cff1c" />			
+		<widget name="Dhcp" position="160,120" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColors="#8c8c93,#f23d21,#1cff1c" />
+		<widget name="DhcpInfo" pixmaps="skin_default/buttons/blue.png,skin_default/buttons/blue_pressed.png" position="425,110" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+		<widget name="DhcpInfo_Text" position="440,120" size="110,21" zPosition="2" font="Regular;19" transparent="1" foregroundColors="#8c8c93,#000000" />
+		<widget name="DhcpInfo_Check" pixmaps="skin_default/icons/lock_on.png,skin_default/icons/lock_error.png" position="400,115" size="38,31" alphatest="on" zPosition="2" />
+		<widget name="IPtext" position="10,170" size="120,21" zPosition="1" font="Regular;19" foregroundColors="#8c8c93,#1cff1c" />			
+		<widget name="IP" position="160,170" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColors="#8c8c93,#f23d21,#1cff1c" />
+		<widget name="IPInfo" pixmaps="skin_default/buttons/blue.png,skin_default/buttons/blue_pressed.png" position="425,160" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+		<widget name="IPInfo_Text" position="440,170" size="110,21" zPosition="2" font="Regular;19" transparent="1" foregroundColors="#8c8c93,#000000" />
+		<widget name="IPInfo_Check" pixmaps="skin_default/icons/lock_on.png,skin_default/icons/lock_error.png" position="400,165" size="38,31" alphatest="on" zPosition="2" />
+		<widget name="DNStext" position="10,220" size="120,21" zPosition="1" font="Regular;19" foregroundColors="#8c8c93,#1cff1c" />			
+		<widget name="DNS" position="160,220" size="240,21" zPosition="1" font="Regular;19" halign="center" foregroundColors="#8c8c93,#f23d21,#1cff1c" />
+		<widget name="DNSInfo" pixmaps="skin_default/buttons/blue.png,skin_default/buttons/blue_pressed.png" position="425,210" zPosition="1" size="140,40" transparent="1" alphatest="on" />
+		<widget name="DNSInfo_Text" position="440,220" size="110,21" zPosition="2" font="Regular;19" transparent="1" foregroundColors="#8c8c93,#000000" />
+		<widget name="DNSInfo_Check" pixmaps="skin_default/icons/lock_on.png,skin_default/icons/lock_error.png" position="400,215" size="38,31" alphatest="on" zPosition="2" />
+		<widget name="EditSettingsButton" pixmaps="skin_default/buttons/blue.png,skin_default/buttons/blue_pressed.png" position="425,260" zPosition="1" size="140,40" transparent="1" alphatest="on" />
 		<widget name="EditSettings_Text" position="440,270" size="110,21" zPosition="2" font="Regular;19" foregroundColor="black" transparent="1" />
 		<ePixmap pixmap="skin_default/bottombar.png" position="15,310" size="540,120" zPosition="1" transparent="1" alphatest="on" />
 		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonRed" pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="ButtonGreentext" position="60,325" size="250,21" zPosition="10" font="Regular;21" transparent="1" />
-		<widget name="ButtonGreen" pixmap="skin_default/buttons/button_green.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
-		<widget name="ButtonGreen_off" pixmap="skin_default/buttons/button_green_off.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="ButtonGreen_Check" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="ButtonYellowtext" position="60,355" size="250,21" zPosition="10" font="Regular;21" transparent="1" />
-		<widget name="ButtonYellow" pixmap="skin_default/buttons/button_yellow.png" position="30,355" zPosition="10" size="15,16" transparent="1" alphatest="on" />
-		<widget name="ButtonYellow_off" pixmap="skin_default/buttons/button_yellow_off.png" position="30,355" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="ButtonYellow_Check" pixmaps="skin_default/buttons/button_yellow.png,skin_default/buttons/button_yellow_off.png" position="30,355" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="InfoTextBorder" pixmap="skin_default/border_info.png" position="0,0" zPosition="20" size="550,300" alphatest="on" />
 		<widget name="InfoText" position="5,5" size="541,290" zPosition="25" font="Regular;21" />
 	</screen>
