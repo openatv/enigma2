@@ -3,6 +3,10 @@ from GUIComponent import GUIComponent
 
 from enigma import ePixmap, eTimer
 
+from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
+from os import path
+from skin import loadPixmap
+
 class Pixmap(GUIComponent):
 	GUI_WIDGET = ePixmap
 
@@ -76,3 +80,36 @@ class MovingPixmap(Pixmap):
 			else:
 				self.moving = False
 				self.startMoving()
+
+class MultiPixmap(Pixmap):
+	def __init__(self):
+		Pixmap.__init__(self)
+		self.pixmaps = []
+
+	def applySkin(self, desktop, screen):
+		if self.skinAttributes is not None:
+			skin_path_prefix = getattr(screen, "skin_path", path)
+			pixmap = None
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				if attrib == "pixmaps":
+					pixmaps = value.split(',')
+					for pixmap in pixmaps:
+						self.pixmaps.append(loadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, pixmap, path_prefix=skin_path_prefix), desktop) )
+					if not pixmap:
+						pixmap = resolveFilename(SCOPE_SKIN_IMAGE, pixmaps[0], path_prefix=skin_path_prefix)
+				elif attrib == "pixmap":
+					pixmap = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
+				else:
+					attribs.append((attrib,value))
+			if pixmap:
+				attribs.append(("pixmap", pixmap))
+			self.skinAttributes = attribs
+		return GUIComponent.applySkin(self, desktop, screen)
+
+	def setPixmapNum(self, x):
+		if self.instance:
+			if len(self.pixmaps) > x:
+				self.instance.setPixmap(self.pixmaps[x])
+			else:
+				print "setPixmapNum(%d) failed! defined pixmaps:" %(x), self.pixmaps

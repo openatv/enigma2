@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-07 23:30+0200\n"
+"POT-Creation-Date: 2008-06-10 11:43+0200\n"
 "PO-Revision-Date: 2008-03-30 18:12+0200\n"
 "Last-Translator: Audronis Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
@@ -12,6 +12,17 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-Country: LITHUANIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+msgid ""
+"\n"
+"Enigma2 will restart after the restore"
+msgstr ""
+
+msgid " "
+msgstr ""
+
+msgid "\"?"
+msgstr ""
 
 msgid "#000000"
 msgstr "#000000"
@@ -70,6 +81,9 @@ msgstr "(JUNGTI)"
 
 msgid "(empty)"
 msgstr "(laisva)"
+
+msgid "(show optional DVD audio menu)"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 direktoriją"
@@ -284,6 +298,9 @@ msgstr "Aktyvuoti paveikslėlį paveikslėlyje"
 msgid "Activate network settings"
 msgstr "Aktyvuoti tinklo nustatymus"
 
+msgid "Adapter settings"
+msgstr ""
+
 msgid "Add"
 msgstr "Pridėti"
 
@@ -351,6 +368,22 @@ msgstr "Tuščias failo pavadinimas negalimas"
 msgid "Arabic"
 msgstr "Arabų"
 
+msgid ""
+"Are you sure you want to enable WLAN support?\n"
+"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to enable your local network?\n"
+"\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restart your network interfaces?\n"
+"\n"
+msgstr ""
+
 msgid "Artist:"
 msgstr "Atlikėjas:"
 
@@ -395,6 +428,9 @@ msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "Back"
+msgstr ""
 
 msgid "Backup"
 msgstr "Atsarginė kopija"
@@ -500,14 +536,20 @@ msgstr "Kanalas:"
 msgid "Channellist menu"
 msgstr "Kanalų meniu sąrašas"
 
+msgid "Chap."
+msgstr ""
+
+msgid "Chapter"
+msgstr ""
+
+msgid "Chapter:"
+msgstr ""
+
 msgid "Check"
 msgstr "Tikrinti"
 
 msgid "Checking Filesystem..."
 msgstr "Tikrinti failų sistemą..."
-
-msgid "Choose Location"
-msgstr "Išsirinkite vietą"
 
 msgid "Choose Tuner"
 msgstr "Pasirinkite imtuvą"
@@ -533,6 +575,9 @@ msgstr "Išvalyti prieš skanavimą"
 msgid "Clear log"
 msgstr "Išvalyti log"
 
+msgid "Close"
+msgstr ""
+
 msgid "Code rate high"
 msgstr "Aukštas kodavimo greitis"
 
@@ -547,6 +592,9 @@ msgstr "Kodavimo greitis LP"
 
 msgid "Color Format"
 msgstr "Spalvų formatas"
+
+msgid "Command execution..."
+msgstr ""
 
 msgid "Command order"
 msgstr "Komandų seka"
@@ -569,6 +617,18 @@ msgstr "Įvykdyta"
 msgid "Configuration Mode"
 msgstr "Konfigūravimo būdas"
 
+msgid "Configure your internal LAN"
+msgstr ""
+
+msgid "Configure your internal LAN again"
+msgstr ""
+
+msgid "Configure your wireless LAN"
+msgstr ""
+
+msgid "Configure your wireless LAN again"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Konfigūruojama"
 
@@ -577,6 +637,12 @@ msgstr "Patvirtinti"
 
 msgid "Conflicting timer"
 msgstr "Laikmačio nesuderinamumas"
+
+msgid "Connect to the Internet with a USB Wlan Stick"
+msgstr ""
+
+msgid "Connect to the Internet with your local LAN"
+msgstr ""
 
 msgid "Connected to Fritz!Box!"
 msgstr "Prijungta prie Fritz!Box!"
@@ -596,6 +662,9 @@ msgstr ""
 
 msgid "Constellation"
 msgstr "Žvaigždynas"
+
+msgid "Continue playing"
+msgstr ""
 
 msgid "Contrast"
 msgstr "Kontrastas"
@@ -639,11 +708,32 @@ msgstr "Iškirpimo redaktorius..."
 msgid "Czech"
 msgstr "Čekų"
 
+msgid "DHCP"
+msgstr ""
+
 msgid "DVB-S"
 msgstr "DVB-S"
 
 msgid "DVB-S2"
 msgstr "DVB-S2"
+
+msgid "DVD ENTER key"
+msgstr ""
+
+msgid "DVD Player"
+msgstr ""
+
+msgid "DVD down key"
+msgstr ""
+
+msgid "DVD left key"
+msgstr ""
+
+msgid "DVD right key"
+msgstr ""
+
+msgid "DVD up key"
+msgstr ""
 
 msgid "Danish"
 msgstr "Danų"
@@ -654,8 +744,11 @@ msgstr "Duomenys"
 msgid "Deep Standby"
 msgstr "Visiškai išjungti"
 
-msgid "Default-Wizard"
-msgstr "Numatytas vedlys"
+msgid "Default services lists"
+msgstr ""
+
+msgid "Default settings"
+msgstr ""
 
 msgid "Delay"
 msgstr "Užlaikymas"
@@ -669,6 +762,12 @@ msgstr "Pašalinti "
 msgid "Delete failed!"
 msgstr "Pašalinimas klaidingas!"
 
+#, python-format
+msgid ""
+"Delete no more configured satellite\n"
+"%s?"
+msgstr ""
+
 msgid "Description"
 msgstr "Aprašymas"
 
@@ -677,9 +776,6 @@ msgstr "Rastas HDD:"
 
 msgid "Detected NIMs:"
 msgstr "Rasti imtuvai:"
-
-msgid "Device Setup..."
-msgstr "Įrenginių nustatymas..."
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -784,6 +880,9 @@ msgstr "Jūs norite atlikti rankinį kanalų skanavimą?"
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Jūs norite įdiegti tėvų kontrolę Jūsų imtuvui?"
 
+msgid "Do you want to play DVD in drive?"
+msgstr ""
+
 msgid "Do you want to restore your settings?"
 msgstr "Jūs norite atkurti nustatymus?"
 
@@ -842,8 +941,20 @@ msgstr "KLAIDA - nenuskanuota (%s)!"
 msgid "East"
 msgstr "Rytai"
 
+msgid "Edit DNS"
+msgstr ""
+
 msgid "Edit services list"
 msgstr "Redaguoti kanalų sąrašą"
+
+msgid "Edit settings"
+msgstr ""
+
+msgid "Edit the Nameserver configuration of your Dreambox.\n"
+msgstr ""
+
+msgid "Edit the network configuration of your Dreambox.\n"
+msgstr ""
 
 msgid "Electronic Program Guide"
 msgstr "Elektroninis programų gidas"
@@ -854,14 +965,34 @@ msgstr "Įjungti"
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
 
+msgid "Enable LAN"
+msgstr ""
+
+msgid "Enable WLAN"
+msgstr ""
+
 msgid "Enable multiple bouquets"
 msgstr "Įjungti daugiau paketų"
 
 msgid "Enable parental control"
 msgstr "Įjungti tėvų kontrolę"
 
+msgid ""
+"Enable the local network of your Dreambox.\n"
+"\n"
+msgstr ""
+
 msgid "Enabled"
 msgstr "Įjungta"
+
+msgid "Encryption"
+msgstr ""
+
+msgid "Encryption Key"
+msgstr ""
+
+msgid "Encryption Type"
+msgstr ""
 
 msgid "End"
 msgstr "Pabaiga"
@@ -922,6 +1053,9 @@ msgstr "Vykdymo eiga:"
 msgid "Execution finished!!"
 msgstr "Vykdymas baigtas!!"
 
+msgid "Exit"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Išeiti iš redaktoriaus"
 
@@ -931,11 +1065,11 @@ msgstr "Išeiti iš nustatymų vedlio"
 msgid "Exit wizard"
 msgstr "Išeiti iš nustatymų "
 
+msgid "Exit wizard and configure later manually"
+msgstr ""
+
 msgid "Expert"
 msgstr "Išplėstinis"
-
-msgid "Extended Setup..."
-msgstr "Išplėstiniai nustatymai..."
 
 msgid "Extensions"
 msgstr "Ekstra meniu"
@@ -945,6 +1079,9 @@ msgstr "FEC"
 
 msgid "Factory reset"
 msgstr "Gamykliniai nustatymai"
+
+msgid "Failed"
+msgstr ""
 
 msgid "Fast"
 msgstr "Greitas"
@@ -969,6 +1106,9 @@ msgstr "Failų sistema turi nepataisomų klaidų"
 
 msgid "Finetune"
 msgstr "Tiksliau"
+
+msgid "Finished"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Suomių"
@@ -1109,6 +1249,9 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr "Atvaizdo atnaujinimas"
 
+msgid "In Progress"
+msgstr ""
+
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
@@ -1151,6 +1294,15 @@ msgstr "Įdiegiama"
 msgid "Installing Software..."
 msgstr "Įdiegiama programinė įranga..."
 
+msgid "Installing default sat lists... Please wait..."
+msgstr ""
+
+msgid "Installing defaults... Please wait..."
+msgstr ""
+
+msgid "Installing package content... Please wait..."
+msgstr ""
+
 msgid "Instant Record..."
 msgstr "Staigus įrašymas..."
 
@@ -1175,6 +1327,12 @@ msgstr "Monitoriaus pervertimas"
 msgid "Italian"
 msgstr "Italų"
 
+msgid "Job View"
+msgstr ""
+
+msgid "Jump to video title 1 (play movie from start)"
+msgstr ""
+
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Tik skalė"
@@ -1187,6 +1345,9 @@ msgstr "Klaviatūros nustatymas"
 
 msgid "Keymap"
 msgstr "Mygtukų išdėstymas"
+
+msgid "LAN Adapter"
+msgstr ""
 
 msgid "LNB"
 msgstr "LNB konverteris"
@@ -1212,6 +1373,9 @@ msgstr "Paskutinis greitis"
 msgid "Latitude"
 msgstr "Platuma"
 
+msgid "Leave DVD Player?"
+msgstr ""
+
 msgid "Left"
 msgstr "Kairė"
 
@@ -1231,11 +1395,17 @@ msgstr "Ribos išjungtos"
 msgid "Limits on"
 msgstr "Ribos įjungtos"
 
+msgid "Link:"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "Išsaugotų įrenginių sąrašas"
 
 msgid "Lithuanian"
 msgstr "Lietuvių"
+
+msgid "Local Network"
+msgstr ""
 
 msgid "Location"
 msgstr "Vieta"
@@ -1370,14 +1540,20 @@ msgstr "Serverio pavadinimas %d"
 msgid "Nameserver Setup"
 msgstr "Serverio pavadinimo nustatymas"
 
-msgid "Nameserver Setup..."
-msgstr "Serverio nustatymas..."
+msgid "Nameserver settings"
+msgstr ""
 
 msgid "Netmask"
 msgstr "Potinklio kaukė"
 
+msgid "Network Configuration..."
+msgstr ""
+
 msgid "Network Mount"
 msgstr "Pajungti tinklą"
+
+msgid "Network SSID"
+msgstr ""
 
 msgid "Network Setup"
 msgstr "Tinklo nustatymas"
@@ -1388,8 +1564,20 @@ msgstr "Tinklo paieška"
 msgid "Network setup"
 msgstr "Tinklo nustatymas"
 
+msgid "Network test"
+msgstr ""
+
+msgid "Network test..."
+msgstr ""
+
 msgid "Network..."
 msgstr "Tinklas..."
+
+msgid "Network:"
+msgstr ""
+
+msgid "NetworkWizard"
+msgstr ""
 
 msgid "New"
 msgstr "Naujas"
@@ -1474,6 +1662,24 @@ msgstr ""
 "Jeigu jūs atsakysite 'NE', tai kanalo apsauga \n"
 "nebus įjungta!"
 
+msgid ""
+"No working local networkadapter found.\n"
+"Please verify that you have attached a network cable and your Network is "
+"configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless interface found.\n"
+" Please verify that you have attached a compatible WLAN USB Stick or enable "
+"you local network interface."
+msgstr ""
+
+msgid ""
+"No working wireless networkadapter found.\n"
+"Please verify that you have attached a compatible WLAN USB Stick and your "
+"Network is configured correctly."
+msgstr ""
+
 msgid "No, but restart from begin"
 msgstr "Ne, paleisti nuo pradžių"
 
@@ -1482,6 +1688,9 @@ msgstr "Ne, nereikia"
 
 msgid "No, just start my dreambox"
 msgstr "Ne, įjungti mano imtuvą"
+
+msgid "No, let me choose default lists"
+msgstr ""
 
 msgid "No, scan later manually"
 msgstr "Ne, skanuoti vėliau rankiniu būdu"
@@ -1586,6 +1795,9 @@ msgstr "PiP nustatymas"
 msgid "Pillarbox"
 msgstr "Pillarbox"
 
+msgid "Pilot"
+msgstr ""
+
 msgid "Pin code needed"
 msgstr "Reikalingas pin kodas"
 
@@ -1601,11 +1813,35 @@ msgstr "Prašome perkrauti"
 msgid "Please Select Medium to be Scanned"
 msgstr "Prašome išsirinkti sritį kuri bus skanuojama"
 
+msgid ""
+"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
+"Dreambox and press the OK button on your remote control to enable the built "
+"in wireless network support"
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "Prašome pakeisti įrašymo pabaigos laiką"
 
 msgid "Please choose an extension..."
 msgstr "Prašome išsirinkti papildymus..."
+
+msgid "Please choose he package..."
+msgstr ""
+
+msgid "Please choose the default services lists you want to install."
+msgstr ""
+
+msgid ""
+"Please configure your local LAN internet connection by filling out the "
+"needed values.\n"
+"When you are ready please press OK to continue."
+msgstr ""
+
+msgid ""
+"Please configure your wireless LAN internet connection by filling out the "
+"needed values.\n"
+"When you are ready please press OK to continue."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Prašome nekeisti reikšmių, jeigu Jūs nežinote ką darote! "
@@ -1645,6 +1881,9 @@ msgstr "Prašome išsirinkti subkanalą dėl įrašymo..."
 
 msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
+
+msgid "Please select below the wireless network you want to connect to."
+msgstr ""
 
 msgid "Please select keyword to filter..."
 msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
@@ -1727,6 +1966,9 @@ msgstr "Nenustatytas transponderis"
 msgid "Preparing... Please wait"
 msgstr "Pasiruošiama... Prašome palaukti"
 
+msgid "Press OK on your remote control to continue."
+msgstr ""
+
 msgid "Press OK to activate the settings."
 msgstr "Spauskite OK norėdami aktyvuoti nustatymus"
 
@@ -1736,8 +1978,18 @@ msgstr "Spauskite OK paieškai."
 msgid "Press OK to start the scan"
 msgstr "Spauskite OK norėdami pradėti paiešką."
 
+msgid ""
+"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
+"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
+"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
+"\n"
+msgstr ""
+
 msgid "Prev"
 msgstr "Buvęs"
+
+msgid "Primary DNS"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Apsaugoti kanalus"
@@ -1856,6 +2108,9 @@ msgstr "Pakartojimai"
 msgid "Reset"
 msgstr "Perjungti"
 
+msgid "Resolution"
+msgstr ""
+
 msgid "Restart"
 msgstr "Paleisti iš naujo"
 
@@ -1864,6 +2119,18 @@ msgstr "Paleisti iš naujo Enigma2"
 
 msgid "Restart GUI now?"
 msgstr "Paleisti iš naujo Enigma2 dabar?"
+
+msgid "Restart network"
+msgstr ""
+
+msgid "Restart test"
+msgstr ""
+
+msgid "Restart your network connection and interfaces.\n"
+msgstr ""
+
+msgid "Restart your wireless interface"
+msgstr ""
 
 msgid "Restore"
 msgstr "Atkurti"
@@ -1887,6 +2154,9 @@ msgstr "Tęsti nuo paskutinės pozicijos"
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Tęsti leidimą"
+
+msgid "Return to file browser"
+msgstr ""
 
 msgid "Return to movie list"
 msgstr "Grįžti į filmų sąrašą"
@@ -1972,6 +2242,9 @@ msgstr "Skanuoti SR6875"
 msgid "Scan SR6900"
 msgstr "Skanuoti SR6900"
 
+msgid "Scan Wireless Networks"
+msgstr ""
+
 msgid "Scan additional SR"
 msgstr "Papildomai skanuoti SR"
 
@@ -2011,11 +2284,23 @@ msgstr "Skanuoti diapazoną US MID"
 msgid "Scan band US SUPER"
 msgstr "Skanuoti diapazoną US SUPER"
 
+msgid ""
+"Scan your network for wireless Access Points and connect to them using your "
+"WLAN USB Stick\n"
+msgstr ""
+
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
+
 msgid "Search east"
 msgstr "Paieška rytai"
 
 msgid "Search west"
 msgstr "Paieška vakarai"
+
+msgid "Secondary DNS"
+msgstr ""
 
 msgid "Seek"
 msgstr "Ieškoti"
@@ -2110,12 +2395,14 @@ msgstr "Nustatymai"
 msgid "Setup Mode"
 msgstr "Valdymo būdas"
 
+msgid "Show Info"
+msgstr ""
+
+msgid "Show WLAN Status"
+msgstr ""
+
 msgid "Show blinking clock in display during recording"
 msgstr "Rodyti mirksintį laikrodį monitoriuje, įrašymo metu"
-
-#, python-format
-msgid "Show files from %s"
-msgstr "Rodyti failus iš %s"
 
 msgid "Show infobar on channel change"
 msgstr "Rodyti infojuostą perjungiant kanalą"
@@ -2137,6 +2424,9 @@ msgstr "Rodyti radijo grotuvą..."
 
 msgid "Show the tv player..."
 msgstr "Rodyti TV grotuvą ..."
+
+msgid "Shows the state of your wireless LAN connection.\n"
+msgstr ""
 
 msgid "Shutdown Dreambox after"
 msgstr "Išjungti imtuvą po:  "
@@ -2234,6 +2524,9 @@ msgstr "Pradžia nuo pradžios"
 msgid "Start recording?"
 msgstr "Pradėti įrašymą?"
 
+msgid "Start test"
+msgstr ""
+
 msgid "StartTime"
 msgstr "Paleidimo pradžia"
 
@@ -2266,6 +2559,9 @@ msgstr "Sustabdyti dabartinę užduotį, nevykdant sekančių užduočių"
 
 msgid "Stop playing this movie?"
 msgstr "Sustabdyti šio filmo žiūrėjimą ?"
+
+msgid "Stop test"
+msgstr ""
 
 msgid "Store position"
 msgstr "Išsaugoti vietą"
@@ -2330,8 +2626,32 @@ msgstr "Antžeminės transliuotojas"
 msgid "Test mode"
 msgstr "Testuoti"
 
+msgid "Test the network configuration of your Dreambox.\n"
+msgstr ""
+
 msgid "Test-Messagebox?"
 msgstr "Testuoti pranešimų dėžutę?"
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"\n"
+"Your local LAN internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"\n"
+"Your wireless internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"Please press OK to start using your Dreambox."
+msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2352,6 +2672,17 @@ msgstr ""
 "Įėjimo jungtis turi būti sukonfigūruota dabar \n"
 ", Jūs galite dabar konfigūruoti ekraną, naudojant kai kuriuos bandomuosius "
 "paveikslėlius. Jūs norite padaryti tai dabar?"
+
+msgid "The installation of the default services lists is finished."
+msgstr ""
+
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your Dreambox by pressing the OK button on the remote control."
+msgstr ""
+
+msgid "The package doesn't contain anything."
+msgstr ""
 
 msgid "The pin code has been changed successfully."
 msgstr "PIN kodas sėkmingai pakeistas."
@@ -2380,6 +2711,12 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "Nustatymų vedlys baigė darbą."
 
+msgid "There are no default services lists in your image."
+msgstr ""
+
+msgid "There are no default settings in your image."
+msgstr ""
+
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -2392,6 +2729,42 @@ msgstr "Šis žingsnis yra numeris 2."
 
 msgid "This is unsupported at the moment."
 msgstr "Šiuo metu tai nepalaikoma."
+
+msgid ""
+"This test checks for configured Nameservers.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- please check your DHCP, cabling and Adapter setup\n"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
+msgstr ""
+
+msgid ""
+"This test checks whether a network cable is connected to your LAN-Adapter.\n"
+"If you get a \"disconnected\" message:\n"
+"- verify that a network cable is attached\n"
+"- verify that the cable is not broken"
+msgstr ""
+
+msgid ""
+"This test checks whether a valid IP Address is found for your LAN Adapter.\n"
+"If you get a \"unconfirmed\" message:\n"
+"- no valid IP Address was found\n"
+"- please check your DHCP, cabling and adapter setup"
+msgstr ""
+
+msgid ""
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
+"If you get a \"disabled\" message:\n"
+" - then your LAN Adapter is configured for manual IP Setup\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
+"If you get an \"enabeld\" message:\n"
+"-verify that you have a configured and working DHCP Server in your network."
+msgstr ""
+
+msgid "This test detects your configured LAN-Adapter."
+msgstr ""
 
 msgid "Three"
 msgstr "Trys"
@@ -2446,6 +2819,9 @@ msgstr "Laiko perstumimas negalimas!"
 
 msgid "Timezone"
 msgstr "Laiko juosta"
+
+msgid "Title"
+msgstr ""
 
 msgid "Title:"
 msgstr "Pavadinimas:"
@@ -2606,6 +2982,9 @@ msgstr "Panaudokite nelygų vingiavimą greičiais virš"
 msgid "Use power measurement"
 msgstr "Naudoti įtampos išmatavimus"
 
+msgid "Use the Networkwizard to configure your Network\n"
+msgstr ""
+
 msgid ""
 "Use the left and right buttons to change an option.\n"
 "\n"
@@ -2685,8 +3064,20 @@ msgstr "Garsumas"
 msgid "W"
 msgstr "W"
 
+msgid "WEP"
+msgstr ""
+
+msgid "WPA"
+msgstr ""
+
+msgid "WPA2"
+msgstr ""
+
 msgid "WSS on 4:3"
 msgstr "WSS į 4:3"
+
+msgid "Waiting"
+msgstr ""
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -2719,6 +3110,15 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+
+msgid ""
+"Welcome.\n"
+"\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
@@ -2726,6 +3126,9 @@ msgstr ""
 "\n"
 "Šis vedlys padės Jums nustatyti pagrindinius parametrus Jūsų imtuvui.\n"
 "Spauskite OK valdymo pulte, norint eiti toliau."
+
+msgid "Welcome..."
+msgstr ""
 
 msgid "West"
 msgstr "Vakarai"
@@ -2738,6 +3141,9 @@ msgstr "Kur Jūs norite išsaugoti nustatymų atsarginę kopiją?"
 
 msgid "Wireless"
 msgstr "Belaidis tinklas"
+
+msgid "Wireless Network"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Įrašymo klaida. Diskas pilnas?\n"
@@ -2775,8 +3181,28 @@ msgstr "Taip, grįžti į filmų sąrašą"
 msgid "Yes, view the tutorial"
 msgstr "Taip, žiūrėti instrukciją"
 
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
+msgstr ""
+
+msgid "You can choose, what you want to install..."
+msgstr ""
+
 msgid "You cannot delete this!"
 msgstr "Jūs negalite to ištrinti!"
+
+msgid "You chose not to install any default services lists."
+msgstr ""
+
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
+msgstr ""
+
+msgid ""
+"You chose not to install anything. Please press OK finish the install wizard."
+msgstr ""
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -2845,6 +3271,9 @@ msgstr ""
 "\n"
 "Norite tai padaryti dabar?"
 
+msgid "Your Dreambox will restart after pressing OK on your remote control."
+msgstr ""
+
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Jūsų televizorius dirba su 50 Hz. Gerai!"
 
@@ -2869,6 +3298,31 @@ msgid ""
 msgstr ""
 "Reikalingas front procesoriaus atnaujinimas.\n"
 "Spauskite OK, kad pradėti atnaujinimą."
+
+msgid ""
+"Your local LAN internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+
+msgid ""
+"Your network is restarting.\n"
+"You will be automatically forwarded to the next step."
+msgstr ""
+
+msgid ""
+"Your wired LAN Adapter could not be started.\n"
+"Do you want to reboot your Dreambox to apply the new configuration?\n"
+msgstr ""
+
+msgid ""
+"Your wireless LAN Adapter could not be started.\n"
+"Do you want to reboot your Dreambox to apply the new configuration?\n"
+msgstr ""
+
+msgid ""
+"Your wireless internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Perjungti atgal į kanalą po pozicionieriaus nustatymo?"
@@ -2985,6 +3439,12 @@ msgstr "sudėtinis"
 msgid "config menu"
 msgstr "konfigūracijos meniu"
 
+msgid "confirmed"
+msgstr ""
+
+msgid "connected"
+msgstr ""
+
 msgid "continue"
 msgstr "Tęsti"
 
@@ -3017,6 +3477,9 @@ msgstr "išjungti perkėlimą"
 
 msgid "disabled"
 msgstr "išjungtas"
+
+msgid "disconnected"
+msgstr ""
 
 msgid "do not change"
 msgstr "nieko nekeisti"
@@ -3066,6 +3529,9 @@ msgstr "baigti mėgstamiausių redagavimą"
 msgid "equal to Socket A"
 msgstr "į imtuvą A"
 
+msgid "exit DVD player or return to file browser"
+msgstr ""
+
 msgid "exit mediaplayer"
 msgstr "išjungti media grotuvą"
 
@@ -3074,6 +3540,9 @@ msgstr "uždaryti filmų sąrašą"
 
 msgid "fine-tune your display"
 msgstr "tikslus jūsų ekrano suderinimas"
+
+msgid "forward to the next chapter"
+msgstr ""
 
 msgid "free diskspace"
 msgstr "laisvos vietos diske"
@@ -3124,6 +3593,12 @@ msgstr "aptikti modulį"
 
 msgid "insert mark here"
 msgstr "įterpkite žymeklį čia"
+
+msgid "jump back to the previous title"
+msgstr ""
+
+msgid "jump forward to the next title"
+msgstr ""
 
 msgid "jump to listbegin"
 msgstr "šuolis į pradžios sąrašą"
@@ -3302,11 +3777,17 @@ msgstr "panaikinti tėvų kontrolę"
 msgid "remove new found flag"
 msgstr "šalinti žymeklį 'naujas'"
 
+msgid "remove selected satellite"
+msgstr ""
+
 msgid "remove this mark"
 msgstr "šalinti šį žymeklį"
 
 msgid "repeated"
 msgstr "pakartotinis"
+
+msgid "rewind to the previous chapter"
+msgstr ""
 
 msgid "right"
 msgstr "dešinys"
@@ -3354,6 +3835,9 @@ msgstr "kanalo PIN"
 
 msgid "setup pin"
 msgstr "nustatymų PIN"
+
+msgid "show DVD main menu"
+msgstr ""
 
 msgid "show EPG..."
 msgstr "Rodyti EPG..."
@@ -3448,6 +3932,12 @@ msgstr "perjungti į failų sąrašą"
 msgid "switch to playlist"
 msgstr "perjungti į grojaraštį"
 
+msgid "switch to the next audio track"
+msgstr ""
+
+msgid "switch to the next subtitle language"
+msgstr ""
+
 msgid "text"
 msgstr "tekstas"
 
@@ -3459,6 +3949,12 @@ msgstr "šis kanalas apsaugotas tėvų kontrolės PIN kodu"
 
 msgid "toggle a cut mark at the current position"
 msgstr "Iškirpti žymeklį dabartinėje pozicijoje"
+
+msgid "toggle time, chapter, audio, subtitle info"
+msgstr ""
+
+msgid "unconfirmed"
+msgstr ""
 
 msgid "unknown service"
 msgstr "nežinomas kanalas"
@@ -3512,14 +4008,32 @@ msgstr "Jungti"
 msgid "zapped"
 msgstr "įjungta"
 
+#~ msgid "Choose Location"
+#~ msgstr "Išsirinkite vietą"
+
+#~ msgid "Default-Wizard"
+#~ msgstr "Numatytas vedlys"
+
+#~ msgid "Device Setup..."
+#~ msgstr "Įrenginių nustatymas..."
+
 #~ msgid "Discontinuous playback at speeds above"
 #~ msgstr "Trukinėjantis atkūrimas prie didelių greičių"
 
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Trukinėjantis atkūrimas pasikartojančia struktūra"
 
+#~ msgid "Extended Setup..."
+#~ msgstr "Išplėstiniai nustatymai..."
+
 #~ msgid "Factoryreset"
 #~ msgstr "Gamykliniai nustatymai"
+
+#~ msgid "Nameserver Setup..."
+#~ msgstr "Serverio nustatymas..."
+
+#~ msgid "Show files from %s"
+#~ msgstr "Rodyti failus iš %s"
 
 #~ msgid "Startwizard"
 #~ msgstr "Nustatymų vedlys"
