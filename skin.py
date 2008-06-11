@@ -256,6 +256,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				#print "Resolution:", xres,yres,bpp
 				from enigma import gFBDC
 				gFBDC.getInstance().setResolution(xres, yres)
+				desktop.resize(eSize(xres, yres))
 				if bpp != 32:
 					# load palette (not yet implemented)
 					pass
