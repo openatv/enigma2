@@ -507,3 +507,9 @@ void eWidgetDesktop::clearVisibility(eWidget *widget)
 	for (ePtrList<eWidget>::iterator i(widget->m_childs.begin()); i != widget->m_childs.end(); ++i)
 		clearVisibility(*i);
 }
+
+void eWidgetDesktop::resize(eSize size)
+{
+	m_screen.m_dirty_region = gRegion(eRect(ePoint(0, 0), size));
+	m_screen.m_screen_size = size;
+}
