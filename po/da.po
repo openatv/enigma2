@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
-"PO-Revision-Date: 2008-06-05 22:33+0100\n"
+"POT-Creation-Date: 2008-06-11 12:23+0200\n"
+"PO-Revision-Date: 2008-06-10 19:45+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
 "MIME-Version: 1.0\n"
@@ -14,15 +14,7 @@ msgstr ""
 "X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-
 msgid " "
-msgstr ""
-
-msgid "\"?"
 msgstr ""
 
 msgid "#000000"
@@ -241,6 +233,10 @@ msgid ""
 msgstr ""
 "En optagelse er igang. Stop, venligst denne optagelse før start af Satfinder."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -307,8 +303,14 @@ msgstr "Tilføj"
 msgid "Add a mark"
 msgstr "Tilføj en markør"
 
+msgid "Add a new title"
+msgstr "Tilføj en ny titel"
+
 msgid "Add timer"
 msgstr "Tilføj timer"
+
+msgid "Add title..."
+msgstr "Tilføj titel..."
 
 msgid "Add to bouquet"
 msgstr "Tilføj til pakke..."
@@ -364,6 +366,10 @@ msgstr "Alternativ kanal tuner prioritet"
 msgid "An empty filename is illegal."
 msgstr "Et tomt filnavn er ugyldigt."
 
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr ""
+
 msgid "Arabic"
 msgstr "Arabisk"
 
@@ -380,6 +386,8 @@ msgid ""
 "Are you sure you want to enable your local network?\n"
 "\n"
 msgstr ""
+"Er du sikker på at du vil tilslutte dit lokale netværk?\n"
+"\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -410,7 +418,7 @@ msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto scart switching"
-msgstr "Auto scart skift"
+msgstr "Auto Scart skift"
 
 msgid "Automatic"
 msgstr "Automatisk"
@@ -474,6 +482,15 @@ msgstr "Opførsel når filmen er næsten slut"
 
 msgid "Brightness"
 msgstr "Lysstyrke"
+
+msgid "Burn"
+msgstr "Brænd"
+
+msgid "Burn DVD"
+msgstr "Brænde DVD"
+
+msgid "Burn To DVD..."
+msgstr "Brænd til DVD..."
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -621,18 +638,6 @@ msgstr "Færdig"
 msgid "Configuration Mode"
 msgstr "Konfigurations Type"
 
-msgid "Configure your internal LAN"
-msgstr ""
-
-msgid "Configure your internal LAN again"
-msgstr ""
-
-msgid "Configure your wireless LAN"
-msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Konfigurerer"
 
@@ -641,12 +646,6 @@ msgstr "Bekræft"
 
 msgid "Conflicting timer"
 msgstr "Timer konflikt"
-
-msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr ""
-
-msgid "Connect to the Internet with your local LAN"
-msgstr ""
 
 msgid "Connected to Fritz!Box!"
 msgstr "Forbindelse Ok til Fritz!Box!"
@@ -950,6 +949,9 @@ msgstr "Øst"
 msgid "Edit DNS"
 msgstr "Ændre DNS"
 
+msgid "Edit current title"
+msgstr "Ændre nuværende titel"
+
 msgid "Edit services list"
 msgstr "Ændre kanallister"
 
@@ -962,6 +964,9 @@ msgstr "Ændre Navneserver konfiguration på din Dreambox.\n"
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Ændre din netværks konfiguration på  Dreamboxen.\n"
 
+msgid "Edit title..."
+msgstr "Ændre titel..."
+
 msgid "Electronic Program Guide"
 msgstr "Elektronisk Program Guide"
 
@@ -972,10 +977,10 @@ msgid "Enable 5V for active antenna"
 msgstr "Aktivere 5V for aktiv antenne"
 
 msgid "Enable LAN"
-msgstr ""
+msgstr "Tilslut LAN"
 
 msgid "Enable WLAN"
-msgstr ""
+msgstr "Tilslut WLAN"
 
 msgid "Enable multiple bouquets"
 msgstr "Aktivere multi pakker"
@@ -987,6 +992,8 @@ msgid ""
 "Enable the local network of your Dreambox.\n"
 "\n"
 msgstr ""
+"Tilslutte det lokale netværk til din Dreambox.\n"
+"\n"
 
 msgid "Enabled"
 msgstr "Aktiveret"
@@ -1047,6 +1054,12 @@ msgstr "Skriv service koden"
 msgid "Error"
 msgstr "Fejl"
 
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+
 msgid "Eventview"
 msgstr "Programoversigt"
 
@@ -1070,9 +1083,6 @@ msgstr "Afslut guiden"
 
 msgid "Exit wizard"
 msgstr "Afslut Start Hjælpen?"
-
-msgid "Exit wizard and configure later manually"
-msgstr ""
 
 msgid "Expert"
 msgstr "Ekspert"
@@ -1579,10 +1589,13 @@ msgid "Network:"
 msgstr "Netværk:"
 
 msgid "NetworkWizard"
-msgstr ""
+msgstr "NetværksHjælp"
 
 msgid "New"
 msgstr "Ny"
+
+msgid "New DVD"
+msgstr "Ny DVD"
 
 msgid "New pin"
 msgstr "Ny pin kode"
@@ -1667,18 +1680,27 @@ msgid ""
 "Please verify that you have attached a network cable and your Network is "
 "configured correctly."
 msgstr ""
+"Ingen virkende lokal netværksadapter fundet.\n"
+"Venligst undersøg om du har tilsluttet et netværks kabel og om dit Netværk "
+"er konfigureret rigtigt."
 
 msgid ""
 "No working wireless interface found.\n"
 " Please verify that you have attached a compatible WLAN USB Stick or enable "
 "you local network interface."
 msgstr ""
+"Intet virkende trådløst interface fundet.\n"
+" Venligst undersøg om du har en kompatibel WLAN USB Stick eller aktiver dit "
+"lokale netværks interface."
 
 msgid ""
 "No working wireless networkadapter found.\n"
 "Please verify that you have attached a compatible WLAN USB Stick and your "
 "Network is configured correctly."
 msgstr ""
+"Ingen virkende trådløs netværksadapter fundet.\n"
+"Venligst undersøg om du har en kompatibel WLAN USB Stick eller at dit lokale "
+"Netværk er konfigureret rigtigt."
 
 msgid "No, but restart from begin"
 msgstr "Nej, men genstart fra begyndelse"
@@ -1708,12 +1730,18 @@ msgstr "Nord"
 msgid "Norwegian"
 msgstr "Norsk"
 
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Intet at søge!\n"
-"Sæt venligst Tuner indstilling op før du starter søgning."
+"Venligst opsæt Tuner indstilling op før du starter søgning."
 
 msgid "Now Playing"
 msgstr "Nu Afspilles"
@@ -1777,10 +1805,10 @@ msgid "Parental control"
 msgstr "Forældre Kontrol"
 
 msgid "Parental control services Editor"
-msgstr "Forældre Kanal Kontrol Editor"
+msgstr "Forældre Kanal Kontrol Redigering"
 
 msgid "Parental control setup"
-msgstr "Forældre Kontrol Indstilling"
+msgstr "Forældre Kontrol Opsætning"
 
 msgid "Parental control type"
 msgstr "Forældre Kontrol Type"
@@ -1813,12 +1841,6 @@ msgstr "Genstart Venligst"
 msgid "Please Select Medium to be Scanned"
 msgstr "Venligst Vælg Media som skal Scannes"
 
-msgid ""
-"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-"Dreambox and press the OK button on your remote control to enable the built "
-"in wireless network support"
-msgstr ""
-
 msgid "Please change recording endtime"
 msgstr "Venligst skift optagelses sluttid"
 
@@ -1830,18 +1852,6 @@ msgstr "Vælg venligst en pakke..."
 
 msgid "Please choose the default services lists you want to install."
 msgstr "Vælg venligst standard kanal lister som du ønsker at indstallere."
-
-msgid ""
-"Please configure your local LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-
-msgid ""
-"Please configure your wireless LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Venligst ikke ændre værdier hvis du ikke ved hvad du gør!"
@@ -1881,9 +1891,6 @@ msgstr "Vælg en underkanal til at optagelse..."
 
 msgid "Please select a subservice..."
 msgstr "Vælg venligst en underkanal..."
-
-msgid "Please select below the wireless network you want to connect to."
-msgstr ""
 
 msgid "Please select keyword to filter..."
 msgstr "Vælg venligst et nøgleord til filter..."
@@ -2094,8 +2101,14 @@ msgstr "Fjerne Plugins"
 msgid "Remove a mark"
 msgstr "Fjerne et mærke"
 
+msgid "Remove currently selected title"
+msgstr "Fjerne nuværende valgte titel"
+
 msgid "Remove plugins"
 msgstr "Fjerne plugins"
+
+msgid "Remove title"
+msgstr "Fjerne titel"
 
 msgid "Rename"
 msgstr "Omdøb"
@@ -2135,9 +2148,6 @@ msgstr "Genstart Test"
 
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Genstart din netværk opkobling og interfaces.\n"
-
-msgid "Restart your wireless interface"
-msgstr ""
 
 msgid "Restore"
 msgstr "Gendanne"
@@ -2219,6 +2229,12 @@ msgstr "Lørdag"
 
 msgid "Save Playlist"
 msgstr "Gemme Spilleliste"
+
+msgid "Save current project to disk"
+msgstr "Gemme nuværende projekt på disk"
+
+msgid "Save..."
+msgstr "Gemme..."
 
 msgid "Scaling Mode"
 msgstr "Skalerings Type"
@@ -2619,7 +2635,7 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Sidste opdatering: 06. Juni 2008\n"
+"Sidste opdatering: 11. Juni 2008\n"
 "\n"
 "Har du ændringer, forslag eller andet, så kontakt mig venligst!.\n"
 "\n"
@@ -2644,27 +2660,6 @@ msgstr "Test netværks konfiguration på din Dreambox.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Test-Beskedbox?"
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your local LAN internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your wireless internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"Please press OK to start using your Dreambox."
-msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2719,14 +2714,14 @@ msgstr "Timer filen (timers.xml) er korrupt og kan ikke bruges."
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"Guiden kan gemme dine nuværende indstillinger. Vil du gemme dine "
+"Hjælpen kan gemme dine nuværende indstillinger. Vil du gemme dine "
 "indstillinger nu?"
 
 msgid "The wizard is finished now."
-msgstr "Brugen af guiden er færdig nu."
+msgstr "Brugen af hjælpen er færdig nu."
 
 msgid "There are no default services lists in your image."
-msgstr "Der er ingen standard kanal lister i dit Image."
+msgstr "Der er ingen standard kanallister i dit Image."
 
 msgid "There are no default settings in your image."
 msgstr "Der er ingen standard indstillinger i dit Image."
@@ -2790,6 +2785,13 @@ msgid ""
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
+"Denne test undersøger om din LAN Adapter er sat op til automatisk IP Adresse "
+"konfiguration med DHCP.\n"
+"Hvis du får en \"afbrudt\" besked:\n"
+" - så er din LAN Adapter konfigureret til manual IP Opsætning\n"
+"- undersøg om du har korrekt IP informationer i AdapterOpsætnings dialog.\n"
+"Hvis du får en \"aktiveret\" besked:\n"
+"-undersøg om du har en konfigureret og virkende DHCP Server i dit netværk."
 
 msgid "This test detects your configured LAN-Adapter."
 msgstr "Denne test finder din konfigurerede LAN-Adapter."
@@ -3007,7 +3009,7 @@ msgid "Use power measurement"
 msgstr "Brug Strøm Måling"
 
 msgid "Use the Networkwizard to configure your Network\n"
-msgstr ""
+msgstr "Brug Netværkshjælpen til at konfigurere dit Netværk\n"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
@@ -3132,21 +3134,12 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
 "Din Dreambox ønsker dig Velkommen.\n"
 "\n"
-"Denne Start Hjælp vil føre dig igennem grundindstillingen af din Dreambox.\n"
+"Denne Start Hjælp vil føre dig igennem grundopsætningen af din Dreambox.\n"
 "Tryk venligst OK på fjernbetjeningen, for at gå til næste trin."
 
 msgid "Welcome..."
@@ -3159,7 +3152,7 @@ msgid "What do you want to scan?"
 msgstr "Hvad vil du søge?"
 
 msgid "Where do you want to backup your settings?"
-msgstr "Hvor vil du lave en backup af dine indstillinger?"
+msgstr "Hvor vil du lave en kopi af dine indstillinger?"
 
 msgid "Wireless"
 msgstr "Trådløst"
@@ -3180,7 +3173,7 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid "Yes, backup my settings!"
-msgstr "Ja, start en backup af mine indstillinger!"
+msgstr "Ja, start kopiering af mine indstillinger!"
 
 msgid "Yes, do a manual scan now"
 msgstr "Ja, start en manuel søgning nu"
@@ -3195,7 +3188,7 @@ msgid "Yes, perform a shutdown now."
 msgstr "Ja, start afbrydelse nu."
 
 msgid "Yes, restore the settings now"
-msgstr "Ja, genetabler indstillinger nu"
+msgstr "Ja, genskab indstillinger nu"
 
 msgid "Yes, returning to movie list"
 msgstr "Ja, gå til Film Liste"
@@ -3328,29 +3321,18 @@ msgstr ""
 "Tryk OK for at starte opdateringen."
 
 msgid ""
-"Your local LAN internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
-msgid ""
-"Your network is restarting.\n"
-"You will be automatically forwarded to the next step."
-msgstr ""
-
-msgid ""
 "Your wired LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
+"Din kabel LAN Adapter kunne ikke startes.\n"
+"Vil du reboote din Dreambox for at starte din nye konfiguration?\n"
 
 msgid ""
 "Your wireless LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
-
-msgid ""
-"Your wireless internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
+"Din trådløse LAN Adapter kunne ikke startes.\n"
+"Vil du reboote din Dreambox for at starte din nye konfiguration?\n"
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Skift tilbage til kanal før Motor Opsætning?"
@@ -4036,14 +4018,18 @@ msgstr "Zap"
 msgid "zapped"
 msgstr "Zappet"
 
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 vil genstarte efter gendannelse"
+
+#~ msgid "\"?"
+#~ msgstr "\"?"
+
 #~ msgid "AV-Setup"
 #~ msgstr "AV-Indstilling"
-
-#~ msgid "Add a new title"
-#~ msgstr "Tilføj en ny titel"
-
-#~ msgid "Add title..."
-#~ msgstr "Tilføj titel..."
 
 #~ msgid "Allow Unsupported Modes"
 #~ msgstr "Tillade Usupporterede Typer"
@@ -4057,17 +4043,26 @@ msgstr "Zappet"
 #~ "din netværks konfiguration til standard?\n"
 #~ "\n"
 
-#~ msgid "Burn"
-#~ msgstr "Brænd"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Brænde DVD"
-
-#~ msgid "Burn To DVD..."
-#~ msgstr "Brænd til DVD..."
-
 #~ msgid "Choose Location"
 #~ msgstr "Vælg Position"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Konfigurer dit interne LAN"
+
+#~ msgid "Configure your internal LAN again"
+#~ msgstr "Konfigurer dit interne LAN igen"
+
+#~ msgid "Configure your wireless LAN"
+#~ msgstr "Konfigurer dit trådløse LAN"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Konfigurer dit trådløse LAN igen"
+
+#~ msgid "Connect to the Internet with a USB Wlan Stick"
+#~ msgstr "Tilslutte Internet med en USB Wlan Stick"
+
+#~ msgid "Connect to the Internet with your local LAN"
+#~ msgstr "Tilslutte Internet til dit lokale LAN netværk"
 
 #~ msgid "Default-Wizard"
 #~ msgstr "Default-Guide"
@@ -4084,17 +4079,14 @@ msgstr "Zappet"
 #~ msgid "Display spinner"
 #~ msgstr "Bruge Spinner"
 
-#~ msgid "Edit current title"
-#~ msgstr "Ændre nuværende titel"
-
-#~ msgid "Edit title..."
-#~ msgstr "Ændre titel..."
-
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktivere WLAN Support"
 
 #~ msgid "Enable zap history"
 #~ msgstr "Aktivere zap historie"
+
+#~ msgid "Exit wizard and configure later manually"
+#~ msgstr "Afslutte hjælpen og konfigure manuelt senere"
 
 #~ msgid "Extended Setup..."
 #~ msgstr "Udvidet Opsætning..."
@@ -4117,23 +4109,45 @@ msgstr "Zappet"
 #~ msgid "Namespace:"
 #~ msgstr "Navneplads:"
 
-#~ msgid "New DVD"
-#~ msgstr "Ny DVD"
-
 #~ msgid "Output Type"
 #~ msgstr "Udgangs Type"
+
+#~ msgid ""
+#~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
+#~ "Dreambox and press the OK button on your remote control to enable the "
+#~ "built in wireless network support"
+#~ msgstr ""
+#~ "Venligst tilslut din Zydas ZD1211B chipset kombatible WLAN USB Stick til "
+#~ "din Dreambox og tryk OK på din fjernbetjening for at tilslutte det "
+#~ "indbyggede trådløse netværks undrstøttelse"
+
+#~ msgid ""
+#~ "Please configure your local LAN internet connection by filling out the "
+#~ "needed values.\n"
+#~ "When you are ready please press OK to continue."
+#~ msgstr ""
+#~ "Venligst konfigurer din lokale LAN internet tilslutning ved at udfylde de "
+#~ "nødvendige oplysnings værdier.\n"
+#~ "Når du er færdig venligst tryk på OK for at fortsætte."
+
+#~ msgid ""
+#~ "Please configure your wireless LAN internet connection by filling out the "
+#~ "needed values.\n"
+#~ "When you are ready please press OK to continue."
+#~ msgstr ""
+#~ "Venligst konfigurer din trådløse LAN internet tilslutning ved at udfylde "
+#~ "de nødvendige oplysnings værdier.\n"
+#~ "Når du er færdig venligst tryk på OK for at fortsætte."
+
+#~ msgid "Please select below the wireless network you want to connect to."
+#~ msgstr ""
+#~ "Venligst vælg nedenunder det trådløse Netværk du vil tilsluttes til."
 
 #~ msgid "Provider:"
 #~ msgstr "Udbyder:"
 
 #~ msgid "Rate"
 #~ msgstr "Billedfrekvens"
-
-#~ msgid "Remove currently selected title"
-#~ msgstr "Fjerne nuværende valgte titel"
-
-#~ msgid "Remove title"
-#~ msgstr "Fjerne titel"
 
 #~ msgid "Reset configuration"
 #~ msgstr "Genstart Konfiguration"
@@ -4145,11 +4159,8 @@ msgstr "Zappet"
 #~ "Genstart netværks konfigurationen på din Dreambox.\n"
 #~ "\n"
 
-#~ msgid "Save current project to disk"
-#~ msgstr "Gemme nuværende projekt på disk"
-
-#~ msgid "Save..."
-#~ msgstr "Gemme..."
+#~ msgid "Restart your wireless interface"
+#~ msgstr "Genstart dit trådløse interface"
 
 #~ msgid "Service Reference:"
 #~ msgstr "Kanal reference:"
@@ -4162,6 +4173,39 @@ msgstr "Zappet"
 
 #~ msgid "Startwizard"
 #~ msgstr "Start Hjælp"
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "\n"
+#~ "Your local LAN internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Tak fordi du brugte hjælpen. Din Dreambox er nu klar til brug.\n"
+#~ "\n"
+#~ "Din lokale LAN internet tilslutning virker nu.\n"
+#~ "\n"
+#~ "Venligst tryk på OK for at fortsætte."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "\n"
+#~ "Your wireless internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Tak fordi du brugte hjælpen. Din Dreambox er nu klar til brug.\n"
+#~ "\n"
+#~ "Din trådløse internet tilslutning virker nu.\n"
+#~ "\n"
+#~ "Venligst tryk på OK for at fortsætte."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "Please press OK to start using your Dreambox."
+#~ msgstr ""
+#~ "Tak fordi du brugte hjælpen. Din Dreambox er nu klar til brug.\n"
+#~ "Tryk venligst OK for at starte din Dreambox nu."
 
 #~ msgid ""
 #~ "This test checks whether your LAN Adapter is set up for automatic IP "
@@ -4201,8 +4245,44 @@ msgstr "Zappet"
 #~ msgid "Videosize:"
 #~ msgstr "Billedformat:"
 
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "If you want to connect your Dreambox to the Internet, this wizard will "
+#~ "guide you through the basic network setup of your Dreambox.\n"
+#~ "\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "Velkommen.\n"
+#~ "\n"
+#~ "Hvis du ønsker at tilslutte din Dreambox til Internet, vil denne hjælp "
+#~ "føre dig igennem Netværks opsætningen af din Dreambox.\n"
+#~ "\n"
+#~ "Tryk OK på din fjernbetjening for at gå videre til næste trin."
+
 #~ msgid "You can choose, what you want to install.."
 #~ msgstr "Du kan vælge, hvad du vil have indstalleret..."
+
+#~ msgid ""
+#~ "Your local LAN internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Din lokale LAN internet tilslutning virker ikke!\n"
+#~ "Vælg venligst hvad du nu vil gøre."
+
+#~ msgid ""
+#~ "Your network is restarting.\n"
+#~ "You will be automatically forwarded to the next step."
+#~ msgstr ""
+#~ "Dit netværk genstarter nu.\n"
+#~ "Du vil automatisk blive ført til næste trin."
+
+#~ msgid ""
+#~ "Your wireless internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Din trådløse LAN internet tilslutning virker ikke!\n"
+#~ "Vælg venligst hvad du nu vil gøre."
 
 #~ msgid "play next playlist entry"
 #~ msgstr "Afspil næste i spilleliste"
