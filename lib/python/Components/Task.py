@@ -46,6 +46,9 @@ class Job(object):
 	def start(self, callback):
 		assert self.callback is None
 		self.callback = callback
+		self.restart()
+
+	def restart(self):
 		self.status = self.IN_PROGRESS
 		self.state_changed()
 		self.runNext()
@@ -54,23 +57,29 @@ class Job(object):
 
 	def runNext(self):
 		if self.current_task == len(self.tasks):
-			self.callback(self, [])
+			cb = self.callback
+			self.callback = None
 			self.status = self.FINISHED
 			self.state_changed()
+			cb(self, None, [])
 		else:
-			self.tasks[self.current_task].run(self.taskCallback,self.task_progress_changed_CB)
+			self.tasks[self.current_task].run(self.taskCallback, self.task_progress_changed_CB)
 			self.state_changed()
 
-	def taskCallback(self, res):
+	def taskCallback(self, task, res):
 		if len(res):
 			print ">>> Error:", res
 			self.status = self.FAILED
 			self.state_changed()
-			self.callback(self, res)
+			self.callback(self, task, res)
 		else:
 			self.state_changed();
 			self.current_task += 1
 			self.runNext()
+
+	def retry(self):
+		assert self.status == self.FAILED
+		self.restart()
 
 	def abort(self):
 		if self.current_task < len(self.tasks):
@@ -124,7 +133,7 @@ class Task(object)	:
 	def run(self, callback, task_progress_changed):
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
-			callback(failed_preconditions)
+			callback(self, failed_preconditions)
 			return
 		self.prepare()
 
@@ -182,7 +191,7 @@ class Task(object)	:
 					not_met.append(postcondition)
 
 		self.cleanup(not_met)
-		self.callback(not_met)
+		self.callback(self, not_met)
 
 	def afterRun(self):
 		pass
@@ -204,6 +213,9 @@ class Task(object)	:
 
 	progress = property(getProgress, setProgress)
 
+# The jobmanager will execute multiple jobs, each after another.
+# later, it will also support suspending jobs (and continuing them after reboot etc)
+# It also supports a notification when some error occured, and possibly a retry.
 class JobManager:
 	def __init__(self):
 		self.active_jobs = [ ]
@@ -221,13 +233,27 @@ class JobManager:
 				self.active_job = self.active_jobs.pop(0)
 				self.active_job.start(self.jobDone)
 
-	def jobDone(self, job, problems):
-		print "job", job, "completed with", problems
+	def jobDone(self, job, task, problems):
+		print "job", job, "completed with", problems, "in", task
 		if problems:
-			self.failed_jobs.append(self.active_job)
+			from Tools import Notifications
+			from Screens.MessageBox import MessageBox
+			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
+			return
+			#self.failed_jobs.append(self.active_job)
 
 		self.active_job = None
 		self.kick()
+
+	def errorCB(self, answer):
+		if answer:
+			print "retrying job"
+			self.active_job.retry()
+		else:
+			print "not retrying job."
+			self.failed_jobs.append(self.active_job)
+			self.active_job = None
+			self.kick()
 
 # some examples:
 #class PartitionExistsPostcondition:
@@ -264,35 +290,50 @@ class JobManager:
 #			self.args += ["-t", filesystem]
 #		self.args.append(device + "part%d" % partition)
 
-class WorkspaceExistsPrecondition:
+class Condition:
+	RECOVERABLE = False
+
+	def getErrorMessage(self, task):
+		return _("An error has occured. (%s)") % (self.__class__.__name__)
+
+class WorkspaceExistsPrecondition(Condition):
 	def check(self, task):
 		return os.access(task.job.workspace, os.W_OK)
 
-class DiskspacePrecondition:
+class DiskspacePrecondition(Condition):
 	def __init__(self, diskspace_required):
 		self.diskspace_required = diskspace_required
+		self.diskspace_available = None
 
 	def check(self, task):
 		import os
 		try:
 			s = os.statvfs(task.job.workspace)
-			return s.f_bsize * s.f_bavail >= self.diskspace_required
+			self.diskspace_available = s.f_bsize * s.f_bavail 
+			return self.diskspace_available >= self.diskspace_required
 		except OSError:
 			return False
 
-class ToolExistsPrecondition:
+	def getErrorMessage(self, task):
+		return _("Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)") % (self.diskspace_required / 1024 / 1024, self.diskspace_available / 1024 / 1024)
+
+class ToolExistsPrecondition(Condition):
 	def check(self, task):
 		import os
 		if task.cmd[0]=='/':
 			realpath = task.cmd
 		else:
 			realpath = self.cwd + '/' + self.cmd
+		self.realpath = realpath
 		return os.access(realpath, os.X_OK)
 
-class AbortedPostcondition:
+	def getErrorMessage(self, task):
+		return _("A required tool (%s) was not found.") % (self.realpath)
+
+class AbortedPostcondition(Condition):
 	pass
 
-class ReturncodePostcondition:
+class ReturncodePostcondition(Condition):
 	def check(self, task):
 		return task.returncode == 0
 
