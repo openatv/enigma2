@@ -363,11 +363,11 @@ class ConfigSequence(ConfigElement):
 		for i in self._value:
 			max_pos += len(str(self.limits[num][1]))
 
-			while self._value[num] < self.limits[num][0]:
-				self._value[num] += 1
+			if self._value[num] < self.limits[num][0]:
+				self._value[num] = self.limits[num][0]
 
-			while self._value[num] > self.limits[num][1]:
-				self._value[num] -= 1
+			if self._value[num] > self.limits[num][1]:
+				self._value[num] = self.limits[num][1]
 
 			num += 1
 
@@ -517,7 +517,7 @@ class ConfigClock(ConfigSequence):
 		ConfigSequence.__init__(self, seperator = ":", limits = [(0,23),(0,59)], default = [t.tm_hour, t.tm_min])
 
 class ConfigInteger(ConfigSequence):
-	def __init__(self, default, limits = (0, 10000000000)):
+	def __init__(self, default, limits = (0, 9999999999)):
 		ConfigSequence.__init__(self, seperator = ":", limits = [limits], default = default)
 	
 	# you need to override this to do input validation
