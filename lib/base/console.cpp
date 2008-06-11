@@ -308,6 +308,7 @@ void eConsoleAppContainer::readyRead(int what)
 				break;
 		}
 	}
+	readyErrRead(eSocketNotifier::Priority|eSocketNotifier::Read); /* be sure to flush all data which might be already written */
 	if (hungup)
 	{
 		eDebug("child has terminated");
