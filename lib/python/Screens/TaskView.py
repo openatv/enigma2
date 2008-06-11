@@ -1,12 +1,14 @@
 from Screen import Screen
+from InfoBarGenerics import InfoBarNotifications
 
-class JobView(Screen):
+class JobView(InfoBarNotifications, Screen):
 	def __init__(self, session, job, cancelable = True, close_on_finish = False):
 		from Components.Sources.StaticText import StaticText
 		from Components.Sources.Progress import Progress
 		from Components.Sources.Boolean import Boolean
 		from Components.ActionMap import ActionMap
 		Screen.__init__(self, session)
+		InfoBarNotifications.__init__(self)
 		self.job = job
 		self.close_on_finish = close_on_finish
 		self.cancelable = cancelable
