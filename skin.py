@@ -237,7 +237,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			id = 0
 		if id == 0: # framebuffer
 			for res in c.findall("resolution"):
-				get_attr = c.attrib.get
+				get_attr = res.attrib.get
 				xres = get_attr("xres")
 				if xres:
 					xres = int(xres)
