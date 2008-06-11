@@ -54,16 +54,10 @@ void eListbox::setWrapAround(bool state)
 
 void eListbox::setContent(iListboxContent *content)
 {
-	int oldsel = m_selected;
 	m_content = content;
 	if (content)
 		m_content->setListbox(this);
 	entryReset();
-			/* if oldsel != m_selected, selectionChanged was already 
-			   emitted in entryReset. we want it in any case, so otherwise,
-			   emit it now. */
-	if (oldsel == m_selected)
-		/* emit */ selectionChanged();
 }
 
 bool eListbox::atBegin()
@@ -457,6 +451,7 @@ void eListbox::entryReset(bool selectionHome)
 {
 	m_content_changed = true;
 	m_prev_scrollbar_page = -1;
+	int oldsel;
 
 	if (selectionHome)
 	{
@@ -473,10 +468,15 @@ void eListbox::entryReset(bool selectionHome)
 		else
 			m_selected = 0;
 		m_content->cursorSet(m_selected);
-		selectionChanged();
 	}
 	
+	oldsel = m_selected;
 	moveSelection(justCheck);
+		/* if oldsel != m_selected, selectionChanged was already 
+		   emitted in moveSelection. we want it in any case, so otherwise,
+		   emit it now. */
+	if (oldsel == m_selected)
+		/* emit */ selectionChanged();
 	invalidate();
 }
 
