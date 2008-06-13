@@ -11,8 +11,7 @@
 
 class eDVBScan: public Object, public iObject
 {
-DECLARE_REF(eDVBScan);
-private:
+	DECLARE_REF(eDVBScan);
 		/* chid helper functions: */
 		
 		/* heuristically determine if onid/tsid is valid */

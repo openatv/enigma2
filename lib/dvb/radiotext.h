@@ -15,11 +15,11 @@ class eDVBRdsDecoder: public iObject, public ePESParser, public Object
 	unsigned char qdar[60*1024]; //60 kB for holding Rass qdar archive
 	unsigned short crc16, crc;
 	long part, parts, partcnt;
-	enum { RadioTextChanged, RtpTextChanged, RassInteractivePicMaskChanged, RecvRassSlidePic };
 	unsigned char rass_picture_mask[5];  // 40 bits... (10 * 4 pictures)
 	void addToPictureMask(int id);
 	void removeFromPictureMask(int id);
 public:
+	enum { RadioTextChanged, RtpTextChanged, RassInteractivePicMaskChanged, RecvRassSlidePic };
 	eDVBRdsDecoder(iDVBDemux *demux);
 	~eDVBRdsDecoder();
 	int start(int pid);

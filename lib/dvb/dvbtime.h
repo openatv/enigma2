@@ -46,6 +46,7 @@ public:
 
 class eDVBLocalTimeHandler: public Object
 {
+	DECLARE_REF(eDVBLocalTimeHandler);
 	struct channel_data
 	{
 		TDT *tdt;
@@ -54,7 +55,6 @@ class eDVBLocalTimeHandler: public Object
 		int m_prevChannelState;
 	};
 	friend class TDT;
-	DECLARE_REF(eDVBLocalTimeHandler)
 	std::map<iDVBChannel*, channel_data> m_knownChannels;
 	std::map<eDVBChannelID,int> m_timeOffsetMap;
 	ePtr<eConnection> m_chanAddedConn;

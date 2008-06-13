@@ -8,7 +8,7 @@ class eSocketNotifier;
 
 class eDVBAudio: public iObject
 {
-DECLARE_REF(eDVBAudio);
+	DECLARE_REF(eDVBAudio);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux, m_dev, m_is_freezed;
@@ -36,7 +36,7 @@ public:
 
 class eDVBVideo: public iObject, public Object
 {
-DECLARE_REF(eDVBVideo);
+	DECLARE_REF(eDVBVideo);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux, m_dev;
@@ -71,7 +71,7 @@ public:
 
 class eDVBPCR: public iObject
 {
-DECLARE_REF(eDVBPCR);
+	DECLARE_REF(eDVBPCR);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd_demux;
@@ -89,7 +89,7 @@ public:
 
 class eDVBTText: public iObject
 {
-DECLARE_REF(eDVBTText);
+	DECLARE_REF(eDVBTText);
 private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd_demux;
@@ -102,10 +102,11 @@ public:
 
 class eTSMPEGDecoder: public Object, public iTSMPEGDecoder
 {
+	DECLARE_REF(eTSMPEGDecoder);
+private:
 	static int m_pcm_delay;
 	static int m_ac3_delay;
 	static int m_audio_channel;
-DECLARE_REF(eTSMPEGDecoder);
 	std::string m_radio_pic;
 	ePtr<eDVBDemux> m_demux;
 	ePtr<eDVBAudio> m_audio;

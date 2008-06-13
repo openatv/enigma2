@@ -100,9 +100,8 @@ class eLCD;
 
 class eTextPara: public iObject
 {
-DECLARE_REF(eTextPara);
-private:
- 	ePtr<Font> current_font, replacement_font;
+	DECLARE_REF(eTextPara);
+	ePtr<Font> current_font, replacement_font;
 	FT_Face current_face, replacement_face;
 	int use_kerning;
 	int previous;
@@ -183,7 +182,7 @@ public:
 
 class Font: public iObject
 {
-DECLARE_REF(Font);
+	DECLARE_REF(Font);
 public:
 #ifdef HAVE_FREETYPE2
 	FTC_ScalerRec scaler;

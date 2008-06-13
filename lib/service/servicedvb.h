@@ -38,7 +38,7 @@ class eBouquet;
 
 class eDVBServiceList: public iListableService, public iMutableServiceList
 {
-DECLARE_REF(eDVBServiceList);
+	DECLARE_REF(eDVBServiceList);
 public:
 	virtual ~eDVBServiceList();
 	PyObject *getContent(const char* formatstr, bool sorted=false);
@@ -91,7 +91,7 @@ class eDVBServicePlay: public eDVBServiceBase,
 		public iCueSheet, public iSubtitleOutput, public iAudioDelay,
 		public iRdsDecoder, public iStreamableService
 {
-DECLARE_REF(eDVBServicePlay);
+	DECLARE_REF(eDVBServicePlay);
 public:
 	virtual ~eDVBServicePlay();
 

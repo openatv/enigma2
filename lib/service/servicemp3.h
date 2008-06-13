@@ -10,7 +10,7 @@ class eStaticServiceMP3Info;
 
 class eServiceFactoryMP3: public iServiceHandler
 {
-DECLARE_REF(eServiceFactoryMP3);
+	DECLARE_REF(eServiceFactoryMP3);
 public:
 	eServiceFactoryMP3();
 	virtual ~eServiceFactoryMP3();
@@ -41,7 +41,7 @@ typedef struct _GstElement GstElement;
 class eServiceMP3: public iPlayableService, public iPauseableService, 
 	public iServiceInformation, public iSeekableService, public Object
 {
-DECLARE_REF(eServiceMP3);
+	DECLARE_REF(eServiceMP3);
 public:
 	virtual ~eServiceMP3();
 

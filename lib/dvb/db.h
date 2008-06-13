@@ -10,8 +10,8 @@ class ServiceDescriptionSection;
 
 class eDVBDB: public iDVBChannelList
 {
+	DECLARE_REF(eDVBDB);
 	static eDVBDB *instance;
-DECLARE_REF(eDVBDB);
 	friend class eDVBDBQuery;
 	friend class eDVBDBBouquetQuery;
 	friend class eDVBDBSatellitesQuery;
@@ -75,7 +75,7 @@ public:
 	// we have to add a possibility to invalidate here.
 class eDVBDBQueryBase: public iDVBChannelListQuery
 {
-DECLARE_REF(eDVBDBQueryBase);
+	DECLARE_REF(eDVBDBQueryBase);
 protected:
 	ePtr<eDVBDB> m_db;
 	ePtr<eDVBChannelQuery> m_query;

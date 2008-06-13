@@ -8,8 +8,7 @@ class eDVBScan;
 
 class eComponentScan: public Object, public iObject
 {
-DECLARE_REF(eComponentScan);
-private:
+	DECLARE_REF(eComponentScan);
 #ifndef SWIG
 	void scanEvent(int event);
 	ePtr<eConnection> m_scan_event_connection;

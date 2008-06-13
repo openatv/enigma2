@@ -23,13 +23,13 @@ class eDVBRegisteredFrontend: public iObject, public Object
 {
 	DECLARE_REF(eDVBRegisteredFrontend);
 	eTimer *disable;
-	Signal0<void> stateChanged;
 	void closeFrontend()
 	{
 		if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
 			disable->start(60000, true);  // retry close in 60secs
 	}
 public:
+	Signal0<void> stateChanged;
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
 		:disable(new eTimer(eApp)), m_adapter(adap), m_frontend(fe), m_inuse(0)
 	{
@@ -62,7 +62,7 @@ public:
 
 struct eDVBRegisteredDemux
 {
-DECLARE_REF(eDVBRegisteredDemux);
+	DECLARE_REF(eDVBRegisteredDemux);
 public:
 	iDVBAdapter *m_adapter;
 	ePtr<eDVBDemux> m_demux;
@@ -72,7 +72,7 @@ public:
 
 class eDVBAllocatedFrontend
 {
-DECLARE_REF(eDVBAllocatedFrontend);
+	DECLARE_REF(eDVBAllocatedFrontend);
 public:
 	
 	eDVBAllocatedFrontend(eDVBRegisteredFrontend *fe);
@@ -87,7 +87,7 @@ private:
 
 class eDVBAllocatedDemux
 {
-DECLARE_REF(eDVBAllocatedDemux);
+	DECLARE_REF(eDVBAllocatedDemux);
 public:
 	
 	eDVBAllocatedDemux(eDVBRegisteredDemux *demux);
@@ -112,7 +112,7 @@ public:
 
 class eDVBAdapterLinux: public iDVBAdapter
 {
-DECLARE_REF(eDVBAdapterLinux);
+	DECLARE_REF(eDVBAdapterLinux);
 public:
 	eDVBAdapterLinux(int nr);
 

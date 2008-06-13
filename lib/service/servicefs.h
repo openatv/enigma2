@@ -5,7 +5,7 @@
 
 class eServiceFactoryFS: public iServiceHandler
 {
-DECLARE_REF(eServiceFactoryFS);
+	DECLARE_REF(eServiceFactoryFS);
 public:
 	eServiceFactoryFS();
 	virtual ~eServiceFactoryFS();
@@ -23,8 +23,7 @@ private:
 
 class eServiceFS: public iListableService
 {
-DECLARE_REF(eServiceFS);
-private:
+	DECLARE_REF(eServiceFS);
 	std::string path;
 	friend class eServiceFactoryFS;
 	eServiceFS(const char *path, const char *additional_extensions=0);

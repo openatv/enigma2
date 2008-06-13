@@ -6,8 +6,7 @@
 
 class eConnection: public iObject, public Connection
 {
-DECLARE_REF(eConnection);
-private:
+	DECLARE_REF(eConnection);
 	ePtr<iObject> m_owner;
 public:
 	eConnection(iObject *owner, const Connection &conn): Connection(conn), m_owner(owner) { };

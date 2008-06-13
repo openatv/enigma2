@@ -145,8 +145,7 @@ struct gOpcode
 		/* gRC is the singleton which controls the fifo and dispatches commands */
 class gRC: public iObject, public Object
 {
-DECLARE_REF(gRC);
-private:
+	DECLARE_REF(gRC);
 	friend class gPainter;
 	static gRC *instance;
 
@@ -257,7 +256,7 @@ public:
 
 class gDC: public iObject
 {
-DECLARE_REF(gDC);
+	DECLARE_REF(gDC);
 protected:
 	ePtr<gPixmap> m_pixmap;
 

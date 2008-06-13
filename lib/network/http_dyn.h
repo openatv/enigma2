@@ -6,7 +6,6 @@
 class eHTTPDyn: public eHTTPDataSource
 {
 	DECLARE_REF(eHTTPDyn);
-private:
 	std::string result;
 	int wptr, size;
 public:
@@ -18,7 +17,6 @@ public:
 class eHTTPDynPathResolver: public iHTTPPathResolver
 {
 	DECLARE_REF(eHTTPDynPathResolver);
-private:
 	struct eHTTPDynEntry: public iObject
 	{
 		DECLARE_REF(eHTTPDynEntry);
