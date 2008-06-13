@@ -127,10 +127,12 @@ class NameserverSetup(Screen, ConfigListScreen):
 			self.createSetup()
 
 class AdapterSetup(Screen, ConfigListScreen):
-	def __init__(self, session, iface):
+	def __init__(self, session, iface,essid=None, aplist=None):
 		Screen.__init__(self, session)
 		self.session = session
 		iNetwork.getInterfaces()
+		self.essid = essid
+		self.aplist = aplist
 		## FIXME , workaround against current wizzard not able to send arguments
 		if iface == 0:
 			self.iface = "eth0"
@@ -146,33 +148,35 @@ class AdapterSetup(Screen, ConfigListScreen):
 			list.append(_("WEP"))
 			list.append(_("WPA"))
 			list.append(_("WPA2"))
-			if iNetwork.getAdapterAttribute('wlan0', 'up') is True:
-				try:
-					self.w = Wlan('wlan0')
-					aps = self.w.getNetworkList()
-					nwlist = []
-					if aps is not None:
-						print "[Wlan.py] got Accespoints!"
-						for ap in aps:
-							a = aps[ap]
-							if a['active']:
-								if a['essid'] == "":
-									a['essid'] = a['bssid']
-								nwlist.append( a['essid'])
-					nwlist.sort(key = lambda x: x[0])
-				except:
-					nwlist = []
-					nwlist.append("No Networks found")
-					
-			if nwlist is None:
-				nwlist = []
-				nwlist.append("No Networks found")
-			
-			config.plugins.wlan.essid = NoSave(ConfigSelection(nwlist, default = nwlist[0]))
-			config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = False))
-			config.plugins.wlan.encryption.type = NoSave(ConfigSelection(list, default = _("WPA")))
-			config.plugins.wlan.encryption.psk = NoSave(ConfigText(default = "mysecurewlan", fixed_size = False))
-			self.ws.loadConfig()
+			if self.aplist is not None:
+				self.nwlist = self.aplist
+				self.nwlist.sort(key = lambda x: x[0])
+			else:
+				if iNetwork.getAdapterAttribute('wlan0', 'up') is True:
+					self.nwlist = []
+					try:
+						self.w = Wlan('wlan0')
+						aps = self.w.getNetworkList()
+						if aps is not None:
+							print "[Wlan.py] got Accespoints!"
+							for ap in aps:
+								a = aps[ap]
+								if a['active']:
+									if a['essid'] == "":
+										a['essid'] = a['bssid']
+									self.nwlist.append( a['essid'])
+						self.nwlist.sort(key = lambda x: x[0])
+					except:
+						self.nwlist.append("No Networks found")
+				else:
+					self.nwlist.append("No Networks found")
+				
+			wsconfig = self.ws.loadConfig()
+			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.essid or wsconfig['ssid'] ))
+			config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = wsconfig['encryption'] ))
+			config.plugins.wlan.encryption.type = NoSave(ConfigSelection(list, default = wsconfig['encryption_type'] ))
+			config.plugins.wlan.encryption.psk = NoSave(ConfigText(default = wsconfig['key'], fixed_size = False,visible_width = 30))
+			#self.ws.loadConfig()
 		
 		self.dhcpConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "dhcp") or False))
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=True))
@@ -372,7 +376,7 @@ class AdapterSetupConfiguration(Screen):
 			self.wlanresponse = ifobj.getStatistics()
 			if self.wlanresponse[0] != 19:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
-				self.session.open(WlanScan,self.iface)
+				self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
 			else:
 				# Display Wlan not available Message
 				self.showErrorMessage()
@@ -444,7 +448,7 @@ class AdapterSetupConfiguration(Screen):
 		
 		if self.iface == 'wlan0':
 			try:
-				from Plugins.SystemPlugins.WirelessLan.Wlan import Wlan, WlanList, wpaSupplicant
+				from Plugins.SystemPlugins.WirelessLan.Wlan import Wlan
 				w = Wlan(self.iface)
 				stats = w.getStatus()
 				if stats['BSSID'] == "00:00:00:00:00:00":
@@ -488,6 +492,13 @@ class AdapterSetupConfiguration(Screen):
 	def AdapterSetupClosed(self, *ret):
 		self.mainmenu = self.genMainMenu()
 		self["menulist"].l.setList(self.mainmenu)
+		self.updateStatusbar()
+
+	def WlanScanClosed(self,*ret):
+		if ret[0] is not None:
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, 'wlan0',ret[0],ret[1])
+		else:
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, 'wlan0',None,ret[0])
 
 	def enableWlan(self, ret = False):
 		if (ret == True):
@@ -495,7 +506,12 @@ class AdapterSetupConfiguration(Screen):
 			iNetwork.getInterfaces()
 			if iNetwork.getAdapterAttribute('wlan0', 'up') is True:
 				self.iface = 'wlan0'
-				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, 'wlan0')
+				try:
+					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
+				except ImportError:
+					self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+				else:	
+					self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
 			else:
 				self.session.openWithCallback(self.restartDreambox, MessageBox, _("Your wireless LAN Adapter could not be started.\nDo you want to reboot your Dreambox to apply the new configuration?\n"))
 
@@ -618,29 +634,47 @@ class NetworkAdapterTest(Screen):
 	def setActiveButton(self,button):
 		if button == 1:
 			self["EditSettingsButton"].setPixmapNum(0)
+			self["EditSettings_Text"].setForegroundColorNum(0)
 			self["NetworkInfo"].setPixmapNum(0)
-			self["AdapterInfo"].setPixmapNum(1)
+			self["NetworkInfo_Text"].setForegroundColorNum(1)
+			self["AdapterInfo"].setPixmapNum(1) 		  # active
+			self["AdapterInfo_Text"].setForegroundColorNum(2) # active
 		if button == 2:
+			self["AdapterInfo_Text"].setForegroundColorNum(1)
 			self["AdapterInfo"].setPixmapNum(0)
 			self["DhcpInfo"].setPixmapNum(0)
-			self["NetworkInfo"].setPixmapNum(1)
+			self["DhcpInfo_Text"].setForegroundColorNum(1)
+			self["NetworkInfo"].setPixmapNum(1) 		  # active
+			self["NetworkInfo_Text"].setForegroundColorNum(2) # active
 		if button == 3:
 			self["NetworkInfo"].setPixmapNum(0)
+			self["NetworkInfo_Text"].setForegroundColorNum(1)
 			self["IPInfo"].setPixmapNum(0)
-			self["DhcpInfo"].setPixmapNum(1)
+			self["IPInfo_Text"].setForegroundColorNum(1)
+			self["DhcpInfo"].setPixmapNum(1) 		  # active
+			self["DhcpInfo_Text"].setForegroundColorNum(2) 	  # active
 		if button == 4:
 			self["DhcpInfo"].setPixmapNum(0)
+			self["DhcpInfo_Text"].setForegroundColorNum(1)
 			self["DNSInfo"].setPixmapNum(0)
-			self["IPInfo"].setPixmapNum(1)
+			self["DNSInfo_Text"].setForegroundColorNum(1)
+			self["IPInfo"].setPixmapNum(1)			# active
+			self["IPInfo_Text"].setForegroundColorNum(2)	# active		
 		if button == 5:
 			self["IPInfo"].setPixmapNum(0)
+			self["IPInfo_Text"].setForegroundColorNum(1)
 			self["EditSettingsButton"].setPixmapNum(0)
-			self["DNSInfo"].setPixmapNum(1)
+			self["EditSettings_Text"].setForegroundColorNum(0)
+			self["DNSInfo"].setPixmapNum(1)			# active
+			self["DNSInfo_Text"].setForegroundColorNum(2)	# active
 		if button == 6:
 			self["DNSInfo"].setPixmapNum(0)
-			self["EditSettingsButton"].setPixmapNum(1)
+			self["DNSInfo_Text"].setForegroundColorNum(1)
+			self["EditSettingsButton"].setPixmapNum(1) 	   # active
+			self["EditSettings_Text"].setForegroundColorNum(2) # active
 			self["AdapterInfo"].setPixmapNum(0)
-
+			self["AdapterInfo_Text"].setForegroundColorNum(1)
+			
 	def runTest(self):
 		next = self.nextstep
 		if next == 0:
@@ -726,6 +760,7 @@ class NetworkAdapterTest(Screen):
 		
 		self["EditSettings_Text"].show()
 		self["EditSettingsButton"].setPixmapNum(1)
+		self["EditSettings_Text"].setForegroundColorNum(2) # active
 		self["EditSettingsButton"].show()
 		self["ButtonYellow_Check"].setPixmapNum(1)
 		self["ButtonGreentext"].setText(_("Restart test"))
@@ -856,7 +891,7 @@ class NetworkAdapterTest(Screen):
 		self["DNSInfo_Text"] = MultiColorLabel(_("Show Info"))
 		self["DNSInfo_Check"] = MultiPixmap()
 		
-		self["EditSettings_Text"] = Label(_("Edit settings"))
+		self["EditSettings_Text"] = MultiColorLabel(_("Edit settings"))
 		self["EditSettingsButton"] = MultiPixmap()
 		
 		self["ButtonRedtext"] = Label(_("Close"))
