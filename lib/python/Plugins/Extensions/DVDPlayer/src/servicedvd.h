@@ -12,7 +12,7 @@ class eStaticServiceDVDInfo;
 
 class eServiceFactoryDVD: public iServiceHandler
 {
-DECLARE_REF(eServiceFactoryDVD);
+	DECLARE_REF(eServiceFactoryDVD);
 public:
 	eServiceFactoryDVD();
 	virtual ~eServiceFactoryDVD();
@@ -30,7 +30,7 @@ class eServiceDVD: public iPlayableService, public iPauseableService, public iSe
 	public iServiceInformation, public iSubtitleOutput, public iServiceKeys, public iCueSheet, public eThread, public Object
 {
 	friend class eServiceFactoryDVD;
-DECLARE_REF(eServiceDVD);
+	DECLARE_REF(eServiceDVD);
 public:
 	virtual ~eServiceDVD();
 		// not implemented (yet)

@@ -41,31 +41,7 @@ class eSecCommandList;
 
 class eDVBFrontend: public iDVBFrontend, public Object
 {
-	DECLARE_REF(eDVBFrontend);
-	bool m_enabled;
-	int m_type;
-	int m_dvbid;
-	int m_slotid;
-	int m_fd;
-	bool m_need_rotor_workaround;
-	char m_filename[128];
-	char m_description[128];
-#if HAVE_DVB_API_VERSION < 3
-	int m_secfd;
-	char m_sec_filename[128];
-#endif
-
-	FRONTENDPARAMETERS parm;
-	int m_state;
-	Signal1<void,iDVBFrontend*> m_stateChanged;
-	ePtr<iDVBSatelliteEquipmentControl> m_sec;
-	eSocketNotifier *m_sn;
-	int m_tuning;
-	eTimer *m_timeout;
-	eTimer *m_tuneTimer;
-
-	eSecCommandList m_sec_sequence;
-
+public:
 	enum {
 		CSW,                  // state of the committed switch
 		UCSW,                 // state of the uncommitted switch
@@ -82,6 +58,30 @@ class eDVBFrontend: public iDVBFrontend, public Object
 		CUR_TONE,             // current continuous tone
 		NUM_DATA_ENTRIES
 	};
+	Signal1<void,iDVBFrontend*> m_stateChanged;
+private:
+	DECLARE_REF(eDVBFrontend);
+	bool m_enabled;
+	int m_type;
+	int m_dvbid;
+	int m_slotid;
+	int m_fd;
+	bool m_need_rotor_workaround;
+	char m_filename[128];
+	char m_description[128];
+#if HAVE_DVB_API_VERSION < 3
+	int m_secfd;
+	char m_sec_filename[128];
+#endif
+	FRONTENDPARAMETERS parm;
+	int m_state;
+	ePtr<iDVBSatelliteEquipmentControl> m_sec;
+	eSocketNotifier *m_sn;
+	int m_tuning;
+	eTimer *m_timeout;
+	eTimer *m_tuneTimer;
+
+	eSecCommandList m_sec_sequence;
 
 	long m_data[NUM_DATA_ENTRIES];
 
@@ -95,7 +95,6 @@ class eDVBFrontend: public iDVBFrontend, public Object
 	void timeout();
 	void tuneLoop();  // called by m_tuneTimer
 	void setFrontend();
-	int readInputpower();
 	bool setSecSequencePos(int steps);
 	void setRotorData(int pos, int cmd);
 	static int PriorityOrder;
@@ -103,6 +102,7 @@ public:
 	eDVBFrontend(int adap, int fe, int &ok);	
 	virtual ~eDVBFrontend();
 
+	int readInputpower();
 	RESULT getFrontendType(int &type);
 	RESULT tune(const iDVBFrontendParameters &where);
 	RESULT prepare_sat(const eDVBFrontendParametersSatellite &, unsigned int timeout);

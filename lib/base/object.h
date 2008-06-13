@@ -18,9 +18,15 @@ private:
 	void operator=(const iObject &);
 protected:
 	virtual ~iObject() { }
-public:
+#ifdef SWIG
 	virtual void AddRef()=0;
 	virtual void Release()=0;
+#endif
+public:
+#ifndef SWIG
+	virtual void AddRef()=0;
+	virtual void Release()=0;
+#endif
 };
 
 #ifndef SWIG
@@ -43,10 +49,10 @@ public:
 	#if defined(OBJECT_DEBUG)
 		extern int object_total_remaining;
 		#define DECLARE_REF(x) 			\
-			private:oRefCount ref; 	\
-					eSingleLock ref_lock; \
 			public: void AddRef(); 		\
-					void Release();
+					void Release();		\
+			private:oRefCount ref; 		\
+					eSingleLock ref_lock;
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
@@ -68,9 +74,9 @@ public:
 			}
 	#elif defined(__mips__)
 		#define DECLARE_REF(x) 			\
-			private: oRefCount ref; 	\
 			public: void AddRef(); 		\
-					void Release();
+					void Release();		\
+			private: oRefCount ref; 
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
@@ -108,9 +114,9 @@ public:
 			}
 	#elif defined(__ppc__) || defined(__powerpc__)
 		#define DECLARE_REF(x) 			\
-			private: oRefCount ref; 	\
 			public: void AddRef(); 		\
-					void Release();
+					void Release();		\
+			private: oRefCount ref;
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
@@ -142,9 +148,9 @@ public:
 			}
 	#elif defined(__i386__) || defined(__x86_64__)
 		#define DECLARE_REF(x) 			\
-			private: oRefCount ref; 	\
 			public: void AddRef(); 		\
-					void Release();
+					void Release();		\
+			private: oRefCount ref;
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
@@ -165,10 +171,10 @@ public:
 	#else
 		#warning use non optimized implementation of refcounting.
 		#define DECLARE_REF(x) 			\
-			private:oRefCount ref; 	\
-					eSingleLock ref_lock; \
 			public: void AddRef(); 		\
-					void Release();
+					void Release();		\
+			private:oRefCount ref; 	\
+					eSingleLock ref_lock;
 		#define DEFINE_REF(c) \
 			void c::AddRef() \
 			{ \
@@ -190,9 +196,6 @@ public:
 		private: \
 			void AddRef(); \
 			void Release();
-	class Object
-	{
-	};
 #endif  // SWIG
 
 #endif  // __base_object_h

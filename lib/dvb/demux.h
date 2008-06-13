@@ -47,7 +47,6 @@ private:
 class eDVBSectionReader: public iDVBSectionReader, public Object
 {
 	DECLARE_REF(eDVBSectionReader);
-private:
 	int fd;
 	Signal1<void, const __u8*> read;
 	ePtr<eDVBDemux> demux;
@@ -67,7 +66,6 @@ public:
 class eDVBPESReader: public iDVBPESReader, public Object
 {
 	DECLARE_REF(eDVBPESReader);
-private:
 	int m_fd;
 	Signal2<void, const __u8*, int> m_read;
 	ePtr<eDVBDemux> m_demux;

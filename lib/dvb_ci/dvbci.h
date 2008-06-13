@@ -41,8 +41,7 @@ enum data_source
 class eDVBCISlot: public iObject, public Object
 {
 	friend class eDVBCIInterfaces;
-DECLARE_REF(eDVBCISlot);
-private:
+	DECLARE_REF(eDVBCISlot);
 	int slotid;
 	int fd;
 	eSocketNotifier *notifier;
@@ -112,9 +111,8 @@ typedef std::list<CIPmtHandler> PMTHandlerList;
 
 class eDVBCIInterfaces
 {
-DECLARE_REF(eDVBCIInterfaces);
+	DECLARE_REF(eDVBCIInterfaces);
 	static eDVBCIInterfaces *instance;
-private:
 	eSmartPtrList<eDVBCISlot> m_slots;
 	eDVBCISlot *getSlot(int slotid);
 	PMTHandlerList m_pmt_handlers; 

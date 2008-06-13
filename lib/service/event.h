@@ -14,14 +14,14 @@ class Event;
 SWIG_IGNORE(eComponentData);
 struct eComponentData
 {
-DECLARE_REF(eComponentData);
-#ifndef SWIG
+	friend class eServiceEvent;
+	DECLARE_REF(eComponentData);
 	uint8_t m_streamContent;
 	uint8_t m_componentType;
 	uint8_t m_componentTag;
 	std::string m_iso639LanguageCode;
 	std::string m_text;
-#endif
+public:
 	eComponentData(const eComponentData& d) { *this = d; } 
 	eComponentData() { m_streamContent = m_componentType = m_componentTag = 0; }
 	int getStreamContent(void) const { return m_streamContent; }

@@ -86,7 +86,6 @@ SWIG_EXTEND(ePtr<eWindowStyleManager>,
 class eWindowStyleSimple: public eWindowStyle
 {
 	DECLARE_REF(eWindowStyleSimple);
-private:
 	ePtr<gFont> m_fnt;
 	gColor m_border_color_tl, m_border_color_br, m_title_color_back, m_title_color, m_background_color;
 	

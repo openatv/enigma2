@@ -15,7 +15,7 @@ class eDVBServiceRecord: public eDVBServiceBase,
 	public iStreamableService,
 	public Object
 {
-DECLARE_REF(eDVBServiceRecord);
+	DECLARE_REF(eDVBServiceRecord);
 public:
 	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id);

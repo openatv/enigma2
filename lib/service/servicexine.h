@@ -13,7 +13,7 @@ class eStaticServiceXineInfo;
 
 class eServiceFactoryXine: public iServiceHandler
 {
-DECLARE_REF(eServiceFactoryXine);
+	DECLARE_REF(eServiceFactoryXine);
 public:
 	eServiceFactoryXine();
 	virtual ~eServiceFactoryXine();
@@ -44,7 +44,7 @@ typedef struct _GstElement GstElement;
 class eServiceXine: public iPlayableService, public iPauseableService, 
 	public iServiceInformation, public iSeekableService, public Object
 {
-DECLARE_REF(eServiceXine);
+	DECLARE_REF(eServiceXine);
 public:
 	virtual ~eServiceXine();
 

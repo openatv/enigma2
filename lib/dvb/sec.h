@@ -243,6 +243,7 @@ class eDVBRegisteredFrontend;
 
 class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 {
+	DECLARE_REF(eDVBSatelliteEquipmentControl);
 public:
 	enum {
 		DELAY_AFTER_CONT_TONE=0,  // delay after continuous tone change
@@ -280,7 +281,6 @@ private:
 public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends);
-	DECLARE_REF(eDVBSatelliteEquipmentControl);
 	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id, unsigned int tunetimeout);
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }

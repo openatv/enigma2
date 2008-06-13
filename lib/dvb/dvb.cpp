@@ -320,10 +320,11 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 		if (!i->m_inuse && i->m_frontend->getSlotID() == slot_index)
 		{
 			// check if another slot linked to this is in use
-			eDVBRegisteredFrontend *satpos_depends_to_fe =
-				(eDVBRegisteredFrontend*) i->m_frontend->m_data[eDVBFrontend::SATPOS_DEPENDS_PTR];
-			if ( (long)satpos_depends_to_fe != -1 )
+			long tmp;
+			i->m_frontend->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, tmp);
+			if ( tmp != -1 )
 			{
+				eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend *)tmp;
 				if (satpos_depends_to_fe->m_inuse)
 				{
 					eDebug("another satpos depending frontend is in use.. so allocateFrontendByIndex not possible!");
@@ -333,29 +334,29 @@ RESULT eDVBResourceManager::allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> 
 			}
 			else // check linked tuners
 			{
-				eDVBRegisteredFrontend *next =
-					(eDVBRegisteredFrontend *) i->m_frontend->m_data[eDVBFrontend::LINKED_NEXT_PTR];
-				while ( (long)next != -1 )
+				i->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, tmp);
+				while ( tmp != -1 )
 				{
+					eDVBRegisteredFrontend *next = (eDVBRegisteredFrontend *) tmp;
 					if (next->m_inuse)
 					{
 						eDebug("another linked frontend is in use.. so allocateFrontendByIndex not possible!");
 						err = errAllSourcesBusy;
 						goto alloc_fe_by_id_not_possible;
 					}
-					next = (eDVBRegisteredFrontend *)next->m_frontend->m_data[eDVBFrontend::LINKED_NEXT_PTR];
+					next->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, tmp);
 				}
-				eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *)
-					i->m_frontend->m_data[eDVBFrontend::LINKED_PREV_PTR];
-				while ( (long)prev != -1 )
+				i->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp);
+				while ( tmp != -1 )
 				{
+					eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *) tmp;
 					if (prev->m_inuse)
 					{
 						eDebug("another linked frontend is in use.. so allocateFrontendByIndex not possible!");
 						err = errAllSourcesBusy;
 						goto alloc_fe_by_id_not_possible;
 					}
-					prev = (eDVBRegisteredFrontend *)prev->m_frontend->m_data[eDVBFrontend::LINKED_PREV_PTR];
+					prev->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp);
 				}
 			}
 			fe = new eDVBAllocatedFrontend(i);

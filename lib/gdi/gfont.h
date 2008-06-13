@@ -12,7 +12,7 @@
  */
 class gFont: public iObject
 {
-DECLARE_REF(gFont);
+	DECLARE_REF(gFont);
 public:
 
 	std::string family;
