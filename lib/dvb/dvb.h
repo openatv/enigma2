@@ -137,26 +137,10 @@ class eDVBResourceManager: public iObject, public Object
 	int avail, busy;
 
 	eSmartPtrList<iDVBAdapter> m_adapter;
-	
 	eSmartPtrList<eDVBRegisteredDemux> m_demux;
 	eSmartPtrList<eDVBRegisteredFrontend> m_frontend;
-	
 	void addAdapter(iDVBAdapter *adapter);
-	
-			/* allocates a frontend able to tune to frontend paramters 'feperm'.
-			   the frontend must be tuned lateron. there is no guarante
-			   that tuning will succeed - it just means that if this frontend
-			   can't tune, no other frontend could do it.
-			   
-			   there might be a priority given to certain frontend/chid 
-			   combinations. this will be evaluated here. */
-			   
-	RESULT allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm);
-	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index);
-	
-			/* allocate a demux able to filter on the selected frontend. */
-	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap);
-	
+
 	struct active_channel
 	{
 		eDVBChannelID m_channel_id;
@@ -177,8 +161,6 @@ class eDVBResourceManager: public iObject, public Object
 	RESULT removeChannel(eDVBChannel *ch);
 
 	Signal1<void,eDVBChannel*> m_channelAdded;
-
-	int canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
 
 	eUsePtr<iDVBChannel> m_cached_channel;
 	Connection m_cached_channel_state_changed_conn;
@@ -212,9 +194,23 @@ public:
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
 	static RESULT getInstance(ePtr<eDVBResourceManager> &);
+
+			/* allocates a frontend able to tune to frontend paramters 'feperm'.
+			   the frontend must be tuned lateron. there is no guarante
+			   that tuning will succeed - it just means that if this frontend
+			   can't tune, no other frontend could do it.
+
+			   there might be a priority given to certain frontend/chid
+			   combinations. this will be evaluated here. */
+	RESULT allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm);
+
+	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index);
+			/* allocate a demux able to filter on the selected frontend. */
+	RESULT allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBAllocatedDemux> &demux, int cap);
 #ifdef SWIG
 public:
 #endif
+	int canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
 	bool canMeasureFrontendInputPower();
 	PSignal1<void,int> frontendUseMaskChanged;
 	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int slot_index);
