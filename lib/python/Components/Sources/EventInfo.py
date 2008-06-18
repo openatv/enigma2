@@ -1,8 +1,7 @@
 from Components.PerServiceDisplay import PerServiceBase
 from Components.Element import cached
-from enigma import iPlayableService
+from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
 from Source import Source
-
 
 class EventInfo(PerServiceBase, Source, object):
 	NOW = 0
@@ -16,19 +15,23 @@ class EventInfo(PerServiceBase, Source, object):
 				iPlayableService.evUpdatedEventInfo: self.gotEvent,
 				iPlayableService.evEnd: self.gotEvent
 			}, with_event=True)
-		
 		self.now_or_next = now_or_next
+		self.epgQuery = eEPGCache.getInstance().lookupEventTime
 
 	@cached
 	def getEvent(self):
 		service = self.navcore.getCurrentService()
 		info = service and service.info()
-		return info and info.getEvent(self.now_or_next)
+		ret = info and info.getEvent(self.now_or_next)
+		if not ret and info:
+			refstr = info.getInfoString(iServiceInformation.sServiceref)
+			ret = self.epgQuery(eServiceReference(refstr), -1, self.now_or_next and 1 or 0)
+		return ret
 
 	event = property(getEvent)
 
 	def gotEvent(self, what):
-		if what in [iPlayableService.evStart, iPlayableService.evEnd]:
+		if what == iPlayableService.evEnd:
 			self.changed((self.CHANGED_CLEAR,))
 		else:
 			self.changed((self.CHANGED_ALL,))
