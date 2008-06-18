@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
-"PO-Revision-Date: 2008-04-08 10:29+0100\n"
+"POT-Creation-Date: 2008-06-18 12:43+0200\n"
+"PO-Revision-Date: 2008-06-17 11:01+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -17,18 +17,8 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Bookmarks: -1,-1,-1,706,-1,-1,-1,-1,-1,-1\n"
 
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"A visszaállítás után az Enigma2 újraindul"
-
 msgid " "
-msgstr ""
-
-msgid "\"?"
-msgstr "\"?"
+msgstr " "
 
 msgid "#000000"
 msgstr "#000000"
@@ -89,7 +79,7 @@ msgid "(empty)"
 msgstr "(üres)"
 
 msgid "(show optional DVD audio menu)"
-msgstr ""
+msgstr "(mutassa a DVD audio menüt ha van)"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 könyvtár"
@@ -247,6 +237,10 @@ msgstr ""
 "Egy felvétel éppen fut. Ha futtani kívánja a Műholdkeresöt, akkor elötte "
 "állítsa meg a felvételt."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -305,7 +299,7 @@ msgid "Activate network settings"
 msgstr "Hálózati beállítások aktiválása"
 
 msgid "Adapter settings"
-msgstr ""
+msgstr "Adapter beállítások"
 
 msgid "Add"
 msgstr "Hozzáadás"
@@ -313,8 +307,14 @@ msgstr "Hozzáadás"
 msgid "Add a mark"
 msgstr "Jelző hozzáadása"
 
+msgid "Add a new title"
+msgstr ""
+
 msgid "Add timer"
 msgstr "Időzítés"
+
+msgid "Add title..."
+msgstr ""
 
 msgid "Add to bouquet"
 msgstr "Hozzáadás a bouquet listához"
@@ -371,6 +371,10 @@ msgstr "Tuner alternatív szolgáltatások "
 msgid "An empty filename is illegal."
 msgstr "Egy üres fájl érvénytelen."
 
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr ""
+
 msgid "Arabic"
 msgstr "Arab"
 
@@ -379,16 +383,23 @@ msgid ""
 "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
 "\n"
 msgstr ""
+"Biztos hogy engedélyezni akarja a WLAN támogatást?\n"
+"Csatlakoztassa a Wlan USB Sticket a Dreamboxhoz és nyomja meg az OK-t.\n"
+"\n"
 
 msgid ""
 "Are you sure you want to enable your local network?\n"
 "\n"
 msgstr ""
+"Biztos hogy engedélyezni akarja a helyi hálózatot?\n"
+"\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
+"Biztos hogy újra akarja indítani a hálózati interfészt?\n"
+"\n"
 
 msgid "Artist:"
 msgstr "Előadó:"
@@ -436,7 +447,7 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "Back"
-msgstr ""
+msgstr "Vissza"
 
 msgid "Backup"
 msgstr "Mentés"
@@ -476,6 +487,15 @@ msgstr "Művelet ha egy film a végére ér"
 
 msgid "Brightness"
 msgstr "Fényerő"
+
+msgid "Burn"
+msgstr ""
+
+msgid "Burn DVD"
+msgstr ""
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -543,13 +563,13 @@ msgid "Channellist menu"
 msgstr "Csatornalista menü"
 
 msgid "Chap."
-msgstr ""
+msgstr "Chap."
 
 msgid "Chapter"
-msgstr ""
+msgstr "Chapter"
 
 msgid "Chapter:"
-msgstr ""
+msgstr "Chapter:"
 
 msgid "Check"
 msgstr "Ellenőrzés"
@@ -582,7 +602,7 @@ msgid "Clear log"
 msgstr "Log törlése"
 
 msgid "Close"
-msgstr ""
+msgstr "Bezár"
 
 msgid "Code rate high"
 msgstr "Felsö kódarány"
@@ -600,7 +620,7 @@ msgid "Color Format"
 msgstr "Színformátum"
 
 msgid "Command execution..."
-msgstr ""
+msgstr "Parancs végrehajtása..."
 
 msgid "Command order"
 msgstr "Parancs sorrend"
@@ -624,16 +644,16 @@ msgid "Configuration Mode"
 msgstr "Konfigurációs mód"
 
 msgid "Configure your internal LAN"
-msgstr ""
+msgstr "Belső hálózat beállítása"
 
 msgid "Configure your internal LAN again"
-msgstr ""
+msgstr "Belső hálózat ismételt beállítása"
 
 msgid "Configure your wireless LAN"
-msgstr ""
+msgstr "Wireless hálózat beállítása"
 
 msgid "Configure your wireless LAN again"
-msgstr ""
+msgstr "Wireless hálózat ismételt beállítása"
 
 msgid "Configuring"
 msgstr "Beállítás"
@@ -645,10 +665,10 @@ msgid "Conflicting timer"
 msgstr "Konfliktus időzítő"
 
 msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr ""
+msgstr "Csatlakozás az Internethez egy USB Wlan Stick segítségével"
 
 msgid "Connect to the Internet with your local LAN"
-msgstr ""
+msgstr "Csatlakozás az Internethez a helyi hálózat segítségével"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Fritz!Box!-hoz csatlakoztatva"
@@ -670,7 +690,7 @@ msgid "Constellation"
 msgstr "Együttállás"
 
 msgid "Continue playing"
-msgstr ""
+msgstr "Lejátszás folytatása"
 
 msgid "Contrast"
 msgstr "Kontraszt"
@@ -715,7 +735,7 @@ msgid "Czech"
 msgstr "Cseh"
 
 msgid "DHCP"
-msgstr ""
+msgstr "DHCP"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -724,22 +744,22 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVD ENTER key"
-msgstr ""
+msgstr "DVD ENTER gomb"
 
 msgid "DVD Player"
-msgstr ""
+msgstr "DVD lejátszó"
 
 msgid "DVD down key"
-msgstr ""
+msgstr "DVD le gomb"
 
 msgid "DVD left key"
-msgstr ""
+msgstr "DVD balra gomb"
 
 msgid "DVD right key"
-msgstr ""
+msgstr "DVD jobbra gomb"
 
 msgid "DVD up key"
-msgstr ""
+msgstr "DVD fel gomb"
 
 msgid "Danish"
 msgstr "Dán"
@@ -751,10 +771,10 @@ msgid "Deep Standby"
 msgstr "Teljes kikapcsolás"
 
 msgid "Default services lists"
-msgstr ""
+msgstr "Alaphelyzeti szolgáltatások listája"
 
 msgid "Default settings"
-msgstr ""
+msgstr "Alapbeállítások"
 
 msgid "Delay"
 msgstr "Késleltetés"
@@ -773,6 +793,8 @@ msgid ""
 "Delete no more configured satellite\n"
 "%s?"
 msgstr ""
+"Nem beállított műholdak törlése?\n"
+"%s?"
 
 msgid "Description"
 msgstr "Leírás"
@@ -887,7 +909,7 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Szeretné bekapcsolni a DreamBox gyermekzárját?"
 
 msgid "Do you want to play DVD in drive?"
-msgstr ""
+msgstr "Le akarja játszani a behelyezett DVD-t?"
 
 msgid "Do you want to restore your settings?"
 msgstr "Szeretné visszaállítani a beállításait?"
@@ -948,18 +970,24 @@ msgid "East"
 msgstr "Kelet"
 
 msgid "Edit DNS"
+msgstr "DNS módosítása"
+
+msgid "Edit current title"
 msgstr ""
 
 msgid "Edit services list"
 msgstr "Védett csatornák kijelölése"
 
 msgid "Edit settings"
-msgstr ""
+msgstr "Beállítások módosítása"
 
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr ""
+msgstr "A Dreambox névszerver beállítások módosítása.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
+msgstr "A Dreambox hálózati beállítások módosítása.\n"
+
+msgid "Edit title..."
 msgstr ""
 
 msgid "Electronic Program Guide"
@@ -972,10 +1000,10 @@ msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
 
 msgid "Enable LAN"
-msgstr ""
+msgstr "LAN engedélyezése"
 
 msgid "Enable WLAN"
-msgstr ""
+msgstr "WLAN engedélyezése"
 
 msgid "Enable multiple bouquets"
 msgstr "Többszörös bouquetek engedélyezése"
@@ -987,18 +1015,20 @@ msgid ""
 "Enable the local network of your Dreambox.\n"
 "\n"
 msgstr ""
+"A Dreambox helyi hálózatának engedélyezése.\n"
+"\n"
 
 msgid "Enabled"
 msgstr "Engedélyezve"
 
 msgid "Encryption"
-msgstr ""
+msgstr "Kódolás"
 
 msgid "Encryption Key"
-msgstr ""
+msgstr "Kódolási kulcs"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Kódolás típusa"
 
 msgid "End"
 msgstr "Befejezési időpont"
@@ -1047,6 +1077,12 @@ msgstr "Adja meg a csatornavédelem PIN kódját"
 msgid "Error"
 msgstr "Hiba"
 
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+
 msgid "Eventview"
 msgstr "Eseménynézet"
 
@@ -1060,7 +1096,7 @@ msgid "Execution finished!!"
 msgstr "Végrehajtás befejezve!"
 
 msgid "Exit"
-msgstr ""
+msgstr "Kilépés"
 
 msgid "Exit editor"
 msgstr "Kilépés az editorból"
@@ -1072,7 +1108,7 @@ msgid "Exit wizard"
 msgstr "Kilépés a varázslóból"
 
 msgid "Exit wizard and configure later manually"
-msgstr ""
+msgstr "Kilépés a varázslóból, beállítás kézi módszerrel késöbb"
 
 msgid "Expert"
 msgstr "Haladó"
@@ -1087,7 +1123,7 @@ msgid "Factory reset"
 msgstr "Gyári alapbeállítások"
 
 msgid "Failed"
-msgstr ""
+msgstr "Sikertelen"
 
 msgid "Fast"
 msgstr "Gyors"
@@ -1114,7 +1150,7 @@ msgid "Finetune"
 msgstr "Finomhangolás"
 
 msgid "Finished"
-msgstr ""
+msgstr "Kész"
 
 msgid "Finnish"
 msgstr "Finn"
@@ -1257,7 +1293,7 @@ msgid "Image-Upgrade"
 msgstr "Image-Frissítés"
 
 msgid "In Progress"
-msgstr ""
+msgstr "Folyamatban"
 
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
@@ -1300,13 +1336,13 @@ msgid "Installing Software..."
 msgstr "Szoftver telepítése..."
 
 msgid "Installing default sat lists... Please wait..."
-msgstr ""
+msgstr "Alaphelyzeti műholdlista telepítése... Kérem várjon..."
 
 msgid "Installing defaults... Please wait..."
-msgstr ""
+msgstr "Alaphelyzeti beállítások betöltése... Kérem várjon..."
 
 msgid "Installing package content... Please wait..."
-msgstr ""
+msgstr "Csomag tartalmak telepítése... Kérem várjon..."
 
 msgid "Instant Record..."
 msgstr "Felvétel azonnali indítása..."
@@ -1333,10 +1369,10 @@ msgid "Italian"
 msgstr "Olasz"
 
 msgid "Job View"
-msgstr ""
+msgstr "Folyamat nézet"
 
 msgid "Jump to video title 1 (play movie from start)"
-msgstr ""
+msgstr "Ugrás a videó 1 címére (lejátszás az elejétől)"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -1352,7 +1388,7 @@ msgid "Keymap"
 msgstr "Bill. kiosztás"
 
 msgid "LAN Adapter"
-msgstr ""
+msgstr "LAN Adapter"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1379,7 +1415,7 @@ msgid "Latitude"
 msgstr "Szélességi fok"
 
 msgid "Leave DVD Player?"
-msgstr ""
+msgstr "Kilépjek a DVD lejátszóból?"
 
 msgid "Left"
 msgstr "Bal"
@@ -1401,7 +1437,7 @@ msgid "Limits on"
 msgstr "Limitek bekapcsolva"
 
 msgid "Link:"
-msgstr ""
+msgstr "Link:"
 
 msgid "List of Storage Devices"
 msgstr "Tárolóeszközök listája"
@@ -1410,7 +1446,7 @@ msgid "Lithuanian"
 msgstr "Litván"
 
 msgid "Local Network"
-msgstr ""
+msgstr "Helyi hálózat"
 
 msgid "Location"
 msgstr "Pozíció"
@@ -1546,19 +1582,19 @@ msgid "Nameserver Setup"
 msgstr "Névszerver beállítások"
 
 msgid "Nameserver settings"
-msgstr ""
+msgstr "Névszerver beállítások..."
 
 msgid "Netmask"
 msgstr "Alhálózati maszk"
 
 msgid "Network Configuration..."
-msgstr ""
+msgstr "Hálózati beállítások..."
 
 msgid "Network Mount"
 msgstr "Hálózat felépítése"
 
 msgid "Network SSID"
-msgstr ""
+msgstr "Hálózati SSID"
 
 msgid "Network Setup"
 msgstr "Hálózati beállítások"
@@ -1570,22 +1606,25 @@ msgid "Network setup"
 msgstr "Hálózati beállítások"
 
 msgid "Network test"
-msgstr ""
+msgstr "Hálózat ellenőrzése"
 
 msgid "Network test..."
-msgstr ""
+msgstr "Hálózat ellenőrzése..."
 
 msgid "Network..."
 msgstr "Hálózat..."
 
 msgid "Network:"
-msgstr ""
+msgstr "Hálózat:"
 
 msgid "NetworkWizard"
-msgstr ""
+msgstr "Hálózati varázsló"
 
 msgid "New"
 msgstr "Új"
+
+msgid "New DVD"
+msgstr ""
 
 msgid "New pin"
 msgstr "Új PIN"
@@ -1669,18 +1708,27 @@ msgid ""
 "Please verify that you have attached a network cable and your Network is "
 "configured correctly."
 msgstr ""
+"Nem találtam működő helyi hálózati adaptert.\n"
+"Ellenőrizze hogy be van dugva a hálózati kábel és hogy a hálózatot helyesen "
+"állította be."
 
 msgid ""
 "No working wireless interface found.\n"
 " Please verify that you have attached a compatible WLAN USB Stick or enable "
 "you local network interface."
 msgstr ""
+"Nem találtam működő wireles hálózati interfészt.\n"
+"Ellenőrizze hogy be van dugva egy a Dreamboxal kompatibilis wireless "
+"hálózati eszköz vagy engedélyezze a helyi hálózati interfészt."
 
 msgid ""
 "No working wireless networkadapter found.\n"
 "Please verify that you have attached a compatible WLAN USB Stick and your "
 "Network is configured correctly."
 msgstr ""
+"Nem találtam működő wireles hálózati interfészt.\n"
+"Ellenőrizze hogy be van dugva egy a Dreamboxal kompatibilis wireless "
+"hálózati eszköz és hogy a hálózat helyesen van beállítva."
 
 msgid "No, but restart from begin"
 msgstr "Nem, de indítsa elölröl"
@@ -1692,7 +1740,7 @@ msgid "No, just start my dreambox"
 msgstr "Nem, csak indítsa el a DreamBox-ot."
 
 msgid "No, let me choose default lists"
-msgstr ""
+msgstr "Nem, az alaphelyzeti listát választom"
 
 msgid "No, scan later manually"
 msgstr "Nem, mad késöbb kézzel lekeresem."
@@ -1709,6 +1757,12 @@ msgstr "Észak"
 
 msgid "Norwegian"
 msgstr "Norvég"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -1799,7 +1853,7 @@ msgid "Pillarbox"
 msgstr "Pillarbox"
 
 msgid "Pilot"
-msgstr ""
+msgstr "Pilot"
 
 msgid "Pin code needed"
 msgstr "PIN-kód szükséges"
@@ -1821,6 +1875,9 @@ msgid ""
 "Dreambox and press the OK button on your remote control to enable the built "
 "in wireless network support"
 msgstr ""
+"Kérem csatlakoztassa a Zydas ZD1211B chipset kompatibilis WLAN USB Sticket a "
+"Dreamboxhoz és nyomja meg az OK gombot a távirányítón hogy engedélyezze a "
+"wireless hálózati támogatást"
 
 msgid "Please change recording endtime"
 msgstr "Kérem változtassa meg a felvétel vége idejét"
@@ -1829,22 +1886,28 @@ msgid "Please choose an extension..."
 msgstr "Kérem válasszon egy funkciót..."
 
 msgid "Please choose he package..."
-msgstr ""
+msgstr "Válassza ki a csomagot..."
 
 msgid "Please choose the default services lists you want to install."
-msgstr ""
+msgstr "Válassza ki azt a csatornalistát melyet telepíteni szeretne."
 
 msgid ""
 "Please configure your local LAN internet connection by filling out the "
 "needed values.\n"
 "When you are ready please press OK to continue."
 msgstr ""
+"Kérem állítsa be a helyi LAN internet csatlakozást a szükséges értékek "
+"megadásával.\n"
+"Ha elkészült nyomja meg az OK gombot a folytatáshoz."
 
 msgid ""
 "Please configure your wireless LAN internet connection by filling out the "
 "needed values.\n"
 "When you are ready please press OK to continue."
 msgstr ""
+"Kérem állítsa be a wireless LAN internet csatlakozást a szükséges értékek "
+"megadásával.\n"
+"Ha elkészült nyomja meg az OK gombot a folytatáshoz."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr ""
@@ -1888,6 +1951,7 @@ msgstr "Válasszon egy alcsatornát..."
 
 msgid "Please select below the wireless network you want to connect to."
 msgstr ""
+"Válassza ki alul azt a wireless hálózatot melyhez csatlakozni szeretne."
 
 msgid "Please select keyword to filter..."
 msgstr "Válasszon egy keresési kulcsszót..."
@@ -1972,7 +2036,7 @@ msgid "Preparing... Please wait"
 msgstr "Előkészítés... Kérem várjon"
 
 msgid "Press OK on your remote control to continue."
-msgstr ""
+msgstr "Nyomja meg az OK gombot a távirányítón a folytatáshoz."
 
 msgid "Press OK to activate the settings."
 msgstr "Az OK gombbal aktiválhatja a beállításokat."
@@ -1989,12 +2053,19 @@ msgid ""
 "Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
 "\n"
 msgstr ""
+"Az OK gomb megnyomásával engedélyezheti a wireless LAN támogatást a "
+"Dreamboxon.\n"
+"A Zydas ZD1211B and RAlink RT73 Chipsetes USB Stickeket támogatja a "
+"rendszer.\n"
+"Az OK gomb megnyomása előtt csatlakoztassa a wlan USB Sticket a "
+"Dreamboxhoz.\n"
+"\n"
 
 msgid "Prev"
 msgstr "Előző"
 
 msgid "Primary DNS"
-msgstr ""
+msgstr "Elsődleges DNS"
 
 msgid "Protect services"
 msgstr "Csatornák védelme"
@@ -2089,8 +2160,14 @@ msgstr "Pluginek eltávolítása"
 msgid "Remove a mark"
 msgstr "Egy marker eltávolítása"
 
+msgid "Remove currently selected title"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Pluginek eltávolítása"
+
+msgid "Remove title"
+msgstr ""
 
 msgid "Rename"
 msgstr "Átnevezés"
@@ -2111,7 +2188,7 @@ msgid "Reset"
 msgstr "Visszaállítás"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Felbontás"
 
 msgid "Restart"
 msgstr "Újraindítás"
@@ -2123,16 +2200,16 @@ msgid "Restart GUI now?"
 msgstr "Indítsam most újra a GUI-t?"
 
 msgid "Restart network"
-msgstr ""
+msgstr "Hálózat újraindítása"
 
 msgid "Restart test"
-msgstr ""
+msgstr "Teszt újraindítása"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr ""
+msgstr "Hálózati kapcsolatok és interfészek újraindítása.\n"
 
 msgid "Restart your wireless interface"
-msgstr ""
+msgstr "Wireless interfész újraindítása"
 
 msgid "Restore"
 msgstr "Visszaállítás"
@@ -2158,7 +2235,7 @@ msgid "Resuming playback"
 msgstr "Lejátszás folytatása"
 
 msgid "Return to file browser"
-msgstr ""
+msgstr "Visszatérés a fájlbrowserhez"
 
 msgid "Return to movie list"
 msgstr "Visszatérés a film listához"
@@ -2217,6 +2294,12 @@ msgstr "Szombat"
 msgid "Save Playlist"
 msgstr "Playlista mentése"
 
+msgid "Save current project to disk"
+msgstr ""
+
+msgid "Save..."
+msgstr ""
+
 msgid "Scaling Mode"
 msgstr "Arány módozat"
 
@@ -2245,7 +2328,7 @@ msgid "Scan SR6900"
 msgstr "SR6900 szkennelés"
 
 msgid "Scan Wireless Networks"
-msgstr ""
+msgstr "Wireless hálózatok keresése"
 
 msgid "Scan additional SR"
 msgstr "Egyéb SR-ek szkennelése"
@@ -2290,10 +2373,12 @@ msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
 msgstr ""
+"Wireless Access Point keresése a hálózaton és csatlakozás rá a WLAN USB "
+"Stick segítségével\n"
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr ""
+msgstr "Műholdanként rendezett Lamedb keresése csatlakoztatott pozícionerhez"
 
 msgid "Search east"
 msgstr "Léptetés kelet felé"
@@ -2302,7 +2387,7 @@ msgid "Search west"
 msgstr "Léptetés nyugat felé"
 
 msgid "Secondary DNS"
-msgstr ""
+msgstr "Másodlagos DNS"
 
 msgid "Seek"
 msgstr "Keresés"
@@ -2398,10 +2483,10 @@ msgid "Setup Mode"
 msgstr "Beállítási mód"
 
 msgid "Show Info"
-msgstr ""
+msgstr "Info mutatása"
 
 msgid "Show WLAN Status"
-msgstr ""
+msgstr "WLAN állapot mutatása"
 
 msgid "Show blinking clock in display during recording"
 msgstr "Felvétel közben a kijelző órája villogjon"
@@ -2428,7 +2513,7 @@ msgid "Show the tv player..."
 msgstr "TV csatorna lista..."
 
 msgid "Shows the state of your wireless LAN connection.\n"
-msgstr ""
+msgstr "Megmutatja a wireless LAN kapcsolat pillanatnyi állapotát.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Kapcsolja le a DreamBox-ot miután"
@@ -2527,7 +2612,7 @@ msgid "Start recording?"
 msgstr "Indítsam a felvételt?"
 
 msgid "Start test"
-msgstr ""
+msgstr "Teszt indítása"
 
 msgid "StartTime"
 msgstr "Kezdési időpont"
@@ -2563,7 +2648,7 @@ msgid "Stop playing this movie?"
 msgstr "Megállítsam ezt a filmet?"
 
 msgid "Stop test"
-msgstr ""
+msgstr "Teszt megállítása"
 
 msgid "Store position"
 msgstr "Pozíció tárolása"
@@ -2633,7 +2718,7 @@ msgid "Test mode"
 msgstr "Teszt mód"
 
 msgid "Test the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "A Dreambox hálózati beállításánal ellenőrzése.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Teszteljem az Üzenet-dobozt?"
@@ -2645,6 +2730,12 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
+"Köszönöm hogy használta a Varázslót. A készüléket most már használatba "
+"veheti.\n"
+"\n"
+"A helyi LAN internet kapcsolat most már működik.\n"
+"\n"
+"Nyomja meg az OK-t a folytatáshoz."
 
 msgid ""
 "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
@@ -2653,11 +2744,20 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
+"Köszönöm hogy használta a Varázslót. A készüléket most már használatba "
+"veheti.\n"
+"\n"
+"A wireless internet kapcsolat most már működik.\n"
+"\n"
+"Nyomja meg az OK-t a folytatáshoz."
 
 msgid ""
 "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
+"Köszönöm hogy használta a Varázslót. A készüléket most már használatba "
+"veheti.\n"
+"Nyomja meg az OK-t a folytatáshoz."
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2678,15 +2778,17 @@ msgstr ""
 "Most a képernyőt állíthatja be teszt képek segítségével. Szeretné folytatni?"
 
 msgid "The installation of the default services lists is finished."
-msgstr ""
+msgstr "A csatornalisták telepítése elkészült."
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
+"A beállítások telepítése elkészült. Az OK gomb megnyomásával folytathatja a  "
+"készülék további beállítását."
 
 msgid "The package doesn't contain anything."
-msgstr ""
+msgstr "A csomag nem tartalmaz semmit."
 
 msgid "The pin code has been changed successfully."
 msgstr "A PIN kódot sikeresen megváltoztattam."
@@ -2707,6 +2809,11 @@ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "A timer fájl (timers.xml) sérült és nem lehet betölteni."
 
 msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
 "A varázsló el tudja menteni a jelenlegi beállításait. Akar most egy mentést "
@@ -2716,10 +2823,10 @@ msgid "The wizard is finished now."
 msgstr "A varázsló befejezte feladatát."
 
 msgid "There are no default services lists in your image."
-msgstr ""
+msgstr "Az image nem tartalmaz semmilyen csatornalistát."
 
 msgid "There are no default settings in your image."
-msgstr ""
+msgstr "Az image nem tartalmaz semmilyen csatornalistát."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2741,6 +2848,11 @@ msgid ""
 "- if you configured your Nameservers manually please verify your entries in "
 "the \"Nameserver\" Configuration"
 msgstr ""
+"Ez a teszt leellenőrzi a beállított névszervereket.\n"
+"Ha eredményként \"nem igazolt\", akkor:\n"
+"- ellenőrizze a DHCP beállítást, a kábelezért és az adapter beállításait\n"
+"- ha a névszervert kézzel állította be, akkor ellenőrizze a bejegyzéseket a "
+"\"Névszerver\" beállításokban"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -2748,6 +2860,11 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
+"Ez a teszt leellenőrzi hogy a LAN-Adapterhez van-e hálózati kábel "
+"csatlakoztatva.\n"
+"Ha válaszként a \"nincs csatlakoztatva\" üzenetet kapja, akkor:\n"
+"- van-e kábel csatlakoztatva\n"
+"- ellenőrizze hogy a csatlakoztatott kábel szakadt-e"
 
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
@@ -2755,6 +2872,10 @@ msgid ""
 "- no valid IP Address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
+"Ez a teszt leellenőrzi hogy van-e érvényes IP cím a LAN Adapterben.\n"
+"Ha válaszként a \"nem igazolt\" választ kapja, akkor:\n"
+"- nem található érvényes IP cím- ellenőrizze a DHCP beállításokat, a "
+"kábelezést és az Adapter beállításait"
 
 msgid ""
 "This test checks whether your LAN Adapter is set up for automatic IP Address "
@@ -2766,9 +2887,17 @@ msgid ""
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
+"Ez a teszt leellenőrzi hogy a LAN Adapter be lett-e állítva az automatikus "
+"IP cím beállítására a DHCP használatához.\n"
+"Ha válaszként a \"kikapcsolva\" üzenetet kapja, akkor:\n"
+"- a LAN Adapter csak manuális IP cím megadására lett beállítva\n"
+"- ellenőrizze, hogy helyes IP adatokat adott meg az Adapter beállításaiban\n"
+"Ha válaszként a \"engedélyezve\" üzenetet kapja, akkor:\n"
+"- ellenőrizze hogy a hálózatában létezik-e jól beállított és működő DHCP "
+"szerver."
 
 msgid "This test detects your configured LAN-Adapter."
-msgstr ""
+msgstr "Ez a teszt leellenőrzi a beállított LAN-Adaptert."
 
 msgid "Three"
 msgstr "Három"
@@ -2825,7 +2954,7 @@ msgid "Timezone"
 msgstr "Időzóna"
 
 msgid "Title"
-msgstr ""
+msgstr "Cím"
 
 msgid "Title:"
 msgstr "Cím:"
@@ -2985,7 +3114,7 @@ msgid "Use power measurement"
 msgstr "Forgatási paraméterek megadása"
 
 msgid "Use the Networkwizard to configure your Network\n"
-msgstr ""
+msgstr "A hálózat beállításához használja a hálózati Varázslót\n"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
@@ -3065,19 +3194,19 @@ msgid "W"
 msgstr "Ny"
 
 msgid "WEP"
-msgstr ""
+msgstr "WEP"
 
 msgid "WPA"
-msgstr ""
+msgstr "WPA"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS 4:3-on"
 
 msgid "Waiting"
-msgstr ""
+msgstr "Várakozás"
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3116,6 +3245,11 @@ msgid ""
 "\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
+"Üdvözlöm.\n"
+"A Dreamboxa Internethez való csatlakoztatásához ez a kis Varázsló nagy "
+"segítség lehet, mely végigvezeti Önt a beállításokon.\n"
+"\n"
+"Nyomja meg az OK gombot a távirányítón a következő lépéshez."
 
 msgid ""
 "Welcome.\n"
@@ -3130,7 +3264,7 @@ msgstr ""
 "Nyomja meg az OK gombot a távirányítón a következő lépéshez."
 
 msgid "Welcome..."
-msgstr ""
+msgstr "Üdvözlöm..."
 
 msgid "West"
 msgstr "Nyugat"
@@ -3145,7 +3279,7 @@ msgid "Wireless"
 msgstr "Wireless"
 
 msgid "Wireless Network"
-msgstr ""
+msgstr "Wireless hálózat"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Felvétel közben írási hiba történt. Megtelt a lemez?\n"
@@ -3187,24 +3321,30 @@ msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
 msgstr ""
+"Most kiválaszthat pár alaphelyzeti bállítást. Kérem válassza ki azt a "
+"beállítást melyet telepíteni szeretne."
 
 msgid "You can choose, what you want to install..."
-msgstr ""
+msgstr "Itt kiválaszhatja mit szeretne telepíteni..."
 
 msgid "You cannot delete this!"
 msgstr "Ez nem törölheti le!"
 
 msgid "You chose not to install any default services lists."
-msgstr ""
+msgstr "Nem választott ki egyetlen csatornalistát sem."
 
 msgid ""
 "You chose not to install any default settings. You can however install the "
 "default settings later in the settings menu."
 msgstr ""
+"Nem választott ki telepítésre egyetlen beállítást sem. Később természetesen "
+"bármikor telepítheti ezeket a beállítások menüben."
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr ""
+"Úgy döntött, hogy nem telepít semmit. Az OK gomb megnyomásával bezárhatja a "
+"varázslót."
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -3275,7 +3415,7 @@ msgstr ""
 "Meg akarja most adni a PIN kódot?"
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr ""
+msgstr "Az OK gomb megnyomása után a Dreambox újra fog indulni."
 
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "A TV készüléke alkalmas az 50 Hz-re. Rendben van!"
@@ -3308,26 +3448,36 @@ msgid ""
 "Your local LAN internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
+"A helyi LAN internet kapcsolata nem műkösik!\n"
+"Kérem válassza ki mit szeretne tenni."
 
 msgid ""
 "Your network is restarting.\n"
 "You will be automatically forwarded to the next step."
 msgstr ""
+"A hálózat újraindul.\n"
+"Automatikusan tovább lesz irányítva a következő lépéshez."
 
 msgid ""
 "Your wired LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
+"A kábeles LAn adaptert nem lehetett elindítani.\n"
+"Újraindítsam a DreamBox-ot az új konfiguráció élesítéséhez?\n"
 
 msgid ""
 "Your wireless LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
+"A wireless LAn adaptert nem lehetett elindítani.\n"
+"Újraindítsam a DreamBox-ot az új konfiguráció élesítéséhez?\n"
 
 msgid ""
 "Your wireless internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
+"A wireless LAN internet kapcsolata nem műkösik!\n"
+"Kérem válassza ki mit szeretne tenni."
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Ugorjunk vissza a pozícioner beállítás előtti csatornához?"
@@ -3445,10 +3595,10 @@ msgid "config menu"
 msgstr "konfig. menü"
 
 msgid "confirmed"
-msgstr ""
+msgstr "visszaigazolt"
 
 msgid "connected"
-msgstr ""
+msgstr "csatlakoztatva"
 
 msgid "continue"
 msgstr "Folytatás"
@@ -3484,7 +3634,7 @@ msgid "disabled"
 msgstr "kikapcsolva"
 
 msgid "disconnected"
-msgstr ""
+msgstr "nincs csatlakoztatva"
 
 msgid "do not change"
 msgstr "ne változtassa meg"
@@ -3535,7 +3685,7 @@ msgid "equal to Socket A"
 msgstr "olyan mint az A foglalat"
 
 msgid "exit DVD player or return to file browser"
-msgstr ""
+msgstr "DVD Player bezárása és visszatérés a keresőbe"
 
 msgid "exit mediaplayer"
 msgstr "kilépés a mediaplayerből"
@@ -3547,7 +3697,7 @@ msgid "fine-tune your display"
 msgstr "megjelenítő finom beállítása"
 
 msgid "forward to the next chapter"
-msgstr ""
+msgstr "ugrás a következő chapterre"
 
 msgid "free diskspace"
 msgstr "üres terület van a HDD-n."
@@ -3600,10 +3750,10 @@ msgid "insert mark here"
 msgstr "jelző elhelyezése ide"
 
 msgid "jump back to the previous title"
-msgstr ""
+msgstr "vissza az előző chapterhez"
 
 msgid "jump forward to the next title"
-msgstr ""
+msgstr "ugrás a következő címhez"
 
 msgid "jump to listbegin"
 msgstr "ugrás a lista elejére"
@@ -3783,7 +3933,7 @@ msgid "remove new found flag"
 msgstr "'új' jelző eltávolítása"
 
 msgid "remove selected satellite"
-msgstr ""
+msgstr "kiválasztott műhold törlése"
 
 msgid "remove this mark"
 msgstr "e jelzö eltávolítása"
@@ -3792,7 +3942,7 @@ msgid "repeated"
 msgstr "többszöri"
 
 msgid "rewind to the previous chapter"
-msgstr ""
+msgstr "visszatekerés az előző chapterhez"
 
 msgid "right"
 msgstr "jobb"
@@ -3842,7 +3992,7 @@ msgid "setup pin"
 msgstr "menüvédelem PIN"
 
 msgid "show DVD main menu"
-msgstr ""
+msgstr "DVD főmenü mutatéása"
 
 msgid "show EPG..."
 msgstr "EPG megnyitása..."
@@ -3938,10 +4088,10 @@ msgid "switch to playlist"
 msgstr "kapcsolás playlistára"
 
 msgid "switch to the next audio track"
-msgstr ""
+msgstr "átkapcsolás a következő hangsávra"
 
 msgid "switch to the next subtitle language"
-msgstr ""
+msgstr "átkapcsolás a következő felirat nyelvre"
 
 msgid "text"
 msgstr "text"
@@ -3956,10 +4106,10 @@ msgid "toggle a cut mark at the current position"
 msgstr "jelenlegi pozícióra vágási jelet tenni"
 
 msgid "toggle time, chapter, audio, subtitle info"
-msgstr ""
+msgstr "idő, chapter, hangsáv, feliratsáv választás"
 
 msgid "unconfirmed"
-msgstr ""
+msgstr "nem igazolt"
 
 msgid "unknown service"
 msgstr "ismeretlen csatorna"
@@ -4012,6 +4162,16 @@ msgstr "átkapcsolás"
 
 msgid "zapped"
 msgstr "zap-elt"
+
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "A visszaállítás után az Enigma2 újraindul"
+
+#~ msgid "\"?"
+#~ msgstr "\"?"
 
 #~ msgid "#33294a6b"
 #~ msgstr "#33294a6b"
