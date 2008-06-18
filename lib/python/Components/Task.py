@@ -53,7 +53,7 @@ class Job(object):
 		self.state_changed()
 		self.runNext()
 		sumTaskWeightings = sum([t.weighting for t in self.tasks])
-		self.weightScale = (self.end+1) / float(sumTaskWeightings)
+		self.weightScale = self.end / float(sumTaskWeightings)
 
 	def runNext(self):
 		if self.current_task == len(self.tasks):
@@ -89,7 +89,7 @@ class Job(object):
 		# some Jobs might have a better idea of how to cancel a job
 		self.abort()
 
-class Task(object)	:
+class Task(object):
 	def __init__(self, job, name):
 		self.name = name
 		self.immediate_preconditions = [ ]
@@ -323,7 +323,7 @@ class ToolExistsPrecondition(Condition):
 		if task.cmd[0]=='/':
 			realpath = task.cmd
 		else:
-			realpath = self.cwd + '/' + self.cmd
+			realpath = task.cwd + '/' + task.cmd
 		self.realpath = realpath
 		return os.access(realpath, os.X_OK)
 
