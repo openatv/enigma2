@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
-"PO-Revision-Date: 2008-05-08 01:20+0100\n"
+"POT-Creation-Date: 2008-06-18 12:43+0200\n"
+"PO-Revision-Date: 2008-06-16 00:17+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -19,18 +19,8 @@ msgstr ""
 "X-Poedit-Country: SPAIN\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 reiniciará después de la restauración"
-
 msgid " "
 msgstr " "
-
-msgid "\"?"
-msgstr "\"?"
 
 msgid "#000000"
 msgstr "#000000"
@@ -249,6 +239,10 @@ msgstr ""
 "Una grabación se está ejecutando. Por favor, pare la grabación antes de "
 "intentar el buscador de satélites."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr "Una herramienta obligatoria (%s) no fue encontrada"
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -307,7 +301,7 @@ msgid "Activate network settings"
 msgstr "Activar configuración de red"
 
 msgid "Adapter settings"
-msgstr ""
+msgstr "Configuración de adaptador"
 
 msgid "Add"
 msgstr "Añadir"
@@ -315,8 +309,14 @@ msgstr "Añadir"
 msgid "Add a mark"
 msgstr "Añadir marca"
 
+msgid "Add a new title"
+msgstr "Añadir un nuevo título"
+
 msgid "Add timer"
 msgstr "Grabar"
+
+msgid "Add title..."
+msgstr "Añadir título..."
 
 msgid "Add to bouquet"
 msgstr "Añadir a la lista"
@@ -372,6 +372,10 @@ msgstr "Prioridad de sintonizadores alternativa"
 msgid "An empty filename is illegal."
 msgstr "Un nombre de fichero vacío es ilegal."
 
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr "Ha ocurrido un error. (%s)"
+
 msgid "Arabic"
 msgstr "Arábigo"
 
@@ -380,16 +384,23 @@ msgid ""
 "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
 "\n"
 msgstr ""
+"Seguro que quiere habilitar soporte WLAN?\n"
+"Conecte su USB Wlan a su Dreambox y pulse OK.\n"
+"\n"
 
 msgid ""
 "Are you sure you want to enable your local network?\n"
 "\n"
 msgstr ""
+"Seguro que quiere habilitar su red local?\n"
+"\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
+"Quiere reiniciar sus adaptadores de red?\n"
+"\n"
 
 msgid "Artist:"
 msgstr "Artista:"
@@ -437,7 +448,7 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "Back"
-msgstr ""
+msgstr "Atrás"
 
 msgid "Backup"
 msgstr "Backup"
@@ -477,6 +488,15 @@ msgstr "Cuando una película ha terminado"
 
 msgid "Brightness"
 msgstr "Brillo"
+
+msgid "Burn"
+msgstr "Grabar"
+
+msgid "Burn DVD"
+msgstr "Grabar DVD"
+
+msgid "Burn To DVD..."
+msgstr "Grabar a DVD..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -584,7 +604,7 @@ msgid "Clear log"
 msgstr "Borrar log"
 
 msgid "Close"
-msgstr ""
+msgstr "Cerrar"
 
 msgid "Code rate high"
 msgstr "Velocidad de código alta"
@@ -717,7 +737,7 @@ msgid "Czech"
 msgstr "Checo"
 
 msgid "DHCP"
-msgstr ""
+msgstr "DHCP"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -753,10 +773,10 @@ msgid "Deep Standby"
 msgstr "Reposo profundo"
 
 msgid "Default services lists"
-msgstr ""
+msgstr "Lista de canales por defecto"
 
 msgid "Default settings"
-msgstr ""
+msgstr "Configuración por defecto"
 
 msgid "Delay"
 msgstr "Retardo"
@@ -775,6 +795,8 @@ msgid ""
 "Delete no more configured satellite\n"
 "%s?"
 msgstr ""
+"No borrar más satélite configurado\n"
+"%s?"
 
 msgid "Description"
 msgstr "Descripción"
@@ -889,7 +911,7 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "¿Quiere activar el control de adultos en su dreambox?"
 
 msgid "Do you want to play DVD in drive?"
-msgstr ""
+msgstr "Ejecutar el DVD de la unidad?"
 
 msgid "Do you want to restore your settings?"
 msgstr "¿Quiere restaurar su configuración?"
@@ -922,7 +944,7 @@ msgid "Download Plugins"
 msgstr "Descargar Plugins"
 
 msgid "Downloadable new plugins"
-msgstr "Nuevos complementos descargables"
+msgstr "Nuevos plugins descargables"
 
 msgid "Downloadable plugins"
 msgstr "Plugins descargables"
@@ -931,7 +953,7 @@ msgid "Downloading"
 msgstr "Descargando"
 
 msgid "Downloading plugin information. Please wait..."
-msgstr "Descargando información del complemento. Espere..."
+msgstr "Descargando información del plugin. Espere..."
 
 msgid "Dutch"
 msgstr "Alemán"
@@ -950,19 +972,25 @@ msgid "East"
 msgstr "Este"
 
 msgid "Edit DNS"
-msgstr ""
+msgstr "Editar DNS"
+
+msgid "Edit current title"
+msgstr "Editar título actual"
 
 msgid "Edit services list"
 msgstr "Editar la lista de canales"
 
 msgid "Edit settings"
-msgstr ""
+msgstr "Editar configuración"
 
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr ""
+msgstr "Editar el nombre de configuración de su Dreambox.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "Editar la configuración de red de su Dreambox.\n"
+
+msgid "Edit title..."
+msgstr "Editar título..."
 
 msgid "Electronic Program Guide"
 msgstr "Guía de Programación Electrónica"
@@ -974,10 +1002,10 @@ msgid "Enable 5V for active antenna"
 msgstr "Activar 5V para la antena activa"
 
 msgid "Enable LAN"
-msgstr ""
+msgstr "Habilitar LAN"
 
 msgid "Enable WLAN"
-msgstr ""
+msgstr "Habilitar WLAN"
 
 msgid "Enable multiple bouquets"
 msgstr "Habilitar multiples listas"
@@ -989,18 +1017,20 @@ msgid ""
 "Enable the local network of your Dreambox.\n"
 "\n"
 msgstr ""
+"Habilitar la red local de su Dreambox.\n"
+"\n"
 
 msgid "Enabled"
 msgstr "Activado"
 
 msgid "Encryption"
-msgstr ""
+msgstr "Encriptación"
 
 msgid "Encryption Key"
-msgstr ""
+msgstr "Clave de Encriptación"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Tipo de Encriptación"
 
 msgid "End"
 msgstr "Fin"
@@ -1048,6 +1078,14 @@ msgstr "Ponga el pin del canal"
 
 msgid "Error"
 msgstr "Error"
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+"Error: %s\n"
+"Reintentar?"
 
 msgid "Eventview"
 msgstr "Ver eventos"
@@ -1299,13 +1337,13 @@ msgid "Installing Software..."
 msgstr "Instalando Software..."
 
 msgid "Installing default sat lists... Please wait..."
-msgstr ""
+msgstr "Instalando las lista de sat por defecto... Espere..."
 
 msgid "Installing defaults... Please wait..."
 msgstr "Instalando por defecto... Espere..."
 
 msgid "Installing package content... Please wait..."
-msgstr ""
+msgstr "Instalando el contenido del paquete... Espere..."
 
 msgid "Instant Record..."
 msgstr "Grabación instantánea..."
@@ -1351,7 +1389,7 @@ msgid "Keymap"
 msgstr "Mapa de teclado"
 
 msgid "LAN Adapter"
-msgstr ""
+msgstr "Adaptador de red"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1400,7 +1438,7 @@ msgid "Limits on"
 msgstr "Límites activos"
 
 msgid "Link:"
-msgstr ""
+msgstr "Enlace:"
 
 msgid "List of Storage Devices"
 msgstr "Listar dispositivos de almacenamiento"
@@ -1409,7 +1447,7 @@ msgid "Lithuanian"
 msgstr "Lituano"
 
 msgid "Local Network"
-msgstr ""
+msgstr "Red Local"
 
 msgid "Location"
 msgstr "Localización"
@@ -1545,19 +1583,19 @@ msgid "Nameserver Setup"
 msgstr "Configuración servidor de nombres"
 
 msgid "Nameserver settings"
-msgstr ""
+msgstr "Configuración de Servidor de Nombres"
 
 msgid "Netmask"
 msgstr "Máscara"
 
 msgid "Network Configuration..."
-msgstr ""
+msgstr "Configuración de Red..."
 
 msgid "Network Mount"
 msgstr "Montar Red"
 
 msgid "Network SSID"
-msgstr ""
+msgstr "SSID de Red"
 
 msgid "Network Setup"
 msgstr "Configuración de la red"
@@ -1569,22 +1607,25 @@ msgid "Network setup"
 msgstr "Configuración de red"
 
 msgid "Network test"
-msgstr ""
+msgstr "Testear Red"
 
 msgid "Network test..."
-msgstr ""
+msgstr "Testear Red..."
 
 msgid "Network..."
 msgstr "Red..."
 
 msgid "Network:"
-msgstr ""
+msgstr "Red:"
 
 msgid "NetworkWizard"
-msgstr ""
+msgstr "Asistente de Red"
 
 msgid "New"
 msgstr "Nuevo"
+
+msgid "New DVD"
+msgstr "DVD nuevo"
 
 msgid "New pin"
 msgstr "Nuevo pin"
@@ -1669,18 +1710,27 @@ msgid ""
 "Please verify that you have attached a network cable and your Network is "
 "configured correctly."
 msgstr ""
+"No hay adaptador de red local que funcione.\n"
+"Por favor, verifique que ha conectado un cable de red y su Red está "
+"configurada correctamente."
 
 msgid ""
 "No working wireless interface found.\n"
 " Please verify that you have attached a compatible WLAN USB Stick or enable "
 "you local network interface."
 msgstr ""
+"No hay adaptador inalámbrico que funcione.\n"
+"Por favor, verifique que ha conectado un USB WLAN compatible o active su "
+"conexión de red local."
 
 msgid ""
 "No working wireless networkadapter found.\n"
 "Please verify that you have attached a compatible WLAN USB Stick and your "
 "Network is configured correctly."
 msgstr ""
+"No hay adaptador de red local que funcione.\n"
+"Por favor, verifique que ha conectado un cable de red y su Red está "
+"configurada correctamente."
 
 msgid "No, but restart from begin"
 msgstr "No, debe reiniciar desde el principio"
@@ -1692,7 +1742,7 @@ msgid "No, just start my dreambox"
 msgstr "No, sólo arranque mi dreambox"
 
 msgid "No, let me choose default lists"
-msgstr ""
+msgstr "No, dejeme elegir las listas por defecto"
 
 msgid "No, scan later manually"
 msgstr "No, buscar más tarde manualmente"
@@ -1709,6 +1759,14 @@ msgstr "Norte"
 
 msgid "Norwegian"
 msgstr "Noruego"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+"No hay suficiente espacio libre. Por famove libere espacio y reinténtelo. (%"
+"d MB requeridos, %d MB disponibles)"
 
 msgid ""
 "Nothing to scan!\n"
@@ -1798,7 +1856,7 @@ msgid "Pillarbox"
 msgstr "Pillarbox"
 
 msgid "Pilot"
-msgstr ""
+msgstr "Piloto"
 
 msgid "Pin code needed"
 msgstr "Necesario código pin"
@@ -1828,10 +1886,10 @@ msgid "Please choose an extension..."
 msgstr "Por favor, elija una extensión..."
 
 msgid "Please choose he package..."
-msgstr ""
+msgstr "Por favor, elija su paquete..."
 
 msgid "Please choose the default services lists you want to install."
-msgstr ""
+msgstr "Por favor, elija la lista de canales por defecto que quiere instalar."
 
 msgid ""
 "Please configure your local LAN internet connection by filling out the "
@@ -1969,7 +2027,7 @@ msgid "Preparing... Please wait"
 msgstr "Preparando... Por favor espere"
 
 msgid "Press OK on your remote control to continue."
-msgstr ""
+msgstr "Pulse OK en el mando a distancia para continuar."
 
 msgid "Press OK to activate the settings."
 msgstr "Pulse OK para activar la configuración."
@@ -1986,12 +2044,16 @@ msgid ""
 "Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
 "\n"
 msgstr ""
+"Presionando OK, activa el soporte inalámbrico de su Dreambox.\n"
+"USB Wlan con Zydas ZD1211B y RAlink RT73 Chipset son soportados.\n"
+"Conecte su USB Wlan a su Dreambox antes de presionar OK.\n"
+"\n"
 
 msgid "Prev"
 msgstr "Ant"
 
 msgid "Primary DNS"
-msgstr ""
+msgstr "DNS Principal"
 
 msgid "Protect services"
 msgstr "Proteger canales"
@@ -2092,8 +2154,14 @@ msgstr "Borrar Plugins"
 msgid "Remove a mark"
 msgstr "Borrar una marca"
 
+msgid "Remove currently selected title"
+msgstr "Borrar el título seleccionado"
+
 msgid "Remove plugins"
 msgstr "Borrar complmentos"
+
+msgid "Remove title"
+msgstr "Borrar el título"
 
 msgid "Rename"
 msgstr "Renombrar"
@@ -2114,7 +2182,7 @@ msgid "Reset"
 msgstr "Resetear"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Resolución"
 
 msgid "Restart"
 msgstr "Reiniciar"
@@ -2126,13 +2194,13 @@ msgid "Restart GUI now?"
 msgstr "¿Reiniciar el GUI ahora?"
 
 msgid "Restart network"
-msgstr ""
+msgstr "Reiniciar Red"
 
 msgid "Restart test"
-msgstr ""
+msgstr "Reiniciar test"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr ""
+msgstr "Reiniciar su conexión y dispositivos de red.\n"
 
 msgid "Restart your wireless interface"
 msgstr ""
@@ -2220,6 +2288,12 @@ msgstr "Sábado"
 msgid "Save Playlist"
 msgstr "Guardar lista de reproducción"
 
+msgid "Save current project to disk"
+msgstr "Guardar el proyecto actual a disco"
+
+msgid "Save..."
+msgstr "Guardar..."
+
 msgid "Scaling Mode"
 msgstr "Modo de búsqueda"
 
@@ -2248,7 +2322,7 @@ msgid "Scan SR6900"
 msgstr "Escanear SR6900"
 
 msgid "Scan Wireless Networks"
-msgstr ""
+msgstr "Escanear Redes Inalámbricas"
 
 msgid "Scan additional SR"
 msgstr "Escanear otro SR"
@@ -2293,10 +2367,12 @@ msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
 msgstr ""
+"Escanear su red para puntos de acceso y conecte a ellos con su USB Wlan\n"
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
+"Escanee el lamedbs por defecto de satélites ordenados con un motor conectado"
 
 msgid "Search east"
 msgstr "Buscar este"
@@ -2305,7 +2381,7 @@ msgid "Search west"
 msgstr "Buscar oeste"
 
 msgid "Secondary DNS"
-msgstr ""
+msgstr "DNS Secundario"
 
 msgid "Seek"
 msgstr "Posicionar"
@@ -2401,10 +2477,10 @@ msgid "Setup Mode"
 msgstr "Modo configuración"
 
 msgid "Show Info"
-msgstr ""
+msgstr "Mostar Info"
 
 msgid "Show WLAN Status"
-msgstr ""
+msgstr "Mostrar estado de la WLAN"
 
 msgid "Show blinking clock in display during recording"
 msgstr "Muestra parpadeo en el reloj mientras graba"
@@ -2431,7 +2507,7 @@ msgid "Show the tv player..."
 msgstr "Mostrar el reproductor de tv"
 
 msgid "Shows the state of your wireless LAN connection.\n"
-msgstr ""
+msgstr "Mostrar el estado de su conexión inalámbrica.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Apagar Dreambox después"
@@ -2530,7 +2606,7 @@ msgid "Start recording?"
 msgstr "¿Iniciar grabación?"
 
 msgid "Start test"
-msgstr ""
+msgstr "Comenzar test"
 
 msgid "StartTime"
 msgstr "HoraInicio"
@@ -2566,7 +2642,7 @@ msgid "Stop playing this movie?"
 msgstr "¿Parar la reproducción de esta película?"
 
 msgid "Stop test"
-msgstr ""
+msgstr "Parar test"
 
 msgid "Store position"
 msgstr "Almacenar posición"
@@ -2636,7 +2712,7 @@ msgid "Test mode"
 msgstr "Modo test"
 
 msgid "Test the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "Testear la configuración de red de su Dreambox.\n"
 
 msgid "Test-Messagebox?"
 msgstr "¿Testear-Mensaje?"
@@ -2682,15 +2758,18 @@ msgstr ""
 "esto ahora?"
 
 msgid "The installation of the default services lists is finished."
-msgstr ""
+msgstr "La instalación de la lista de canales por defecto ha terminado."
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
+"La instalación de la configuración por defecto ha terminado. Puede ahora "
+"continuar configurando su Dreambox presionando el botón OK de su mando a "
+"distancia."
 
 msgid "The package doesn't contain anything."
-msgstr ""
+msgstr "El paquete no contiene nada."
 
 msgid "The pin code has been changed successfully."
 msgstr "El pin ha sido cambiado correctamente."
@@ -2712,6 +2791,13 @@ msgstr ""
 "El fichero de grabaciones (timers.xml) está corrupto y no puede cargarse."
 
 msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
+"El plugin de la red inalámbrica no ha sido instalado!\n"
+"Por favor, instálelo."
+
+msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
 "El asistente puede backup tu configuración actual. ¿Quiere hacer el backup "
@@ -2721,10 +2807,10 @@ msgid "The wizard is finished now."
 msgstr "El asistente ha finalizado ahora."
 
 msgid "There are no default services lists in your image."
-msgstr ""
+msgstr "No hay lista de canales por defecto en su imagen."
 
 msgid "There are no default settings in your image."
-msgstr ""
+msgstr "No hay configuración por defecto en su imagen."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2746,6 +2832,11 @@ msgid ""
 "- if you configured your Nameservers manually please verify your entries in "
 "the \"Nameserver\" Configuration"
 msgstr ""
+"Este test chequea los DNSs configurados.\n"
+"Si obtiene un mensaje \"no confirmado\":\n"
+"- chequee su DHCP, cable o configuración del adaptador\n"
+"- si ha configurado los DNSs manualmente, verifíquelos en su Configuración "
+"de DNS"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -2753,6 +2844,10 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
+"Este test chequea si su cable de red está conectado a su adaptador de red.\n"
+"Si consigue un mensaje de \"desconectado\"\n"
+"- verifique que su cable de red está conectado\n"
+"- verifique que el cable no está roto"
 
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
@@ -2760,6 +2855,10 @@ msgid ""
 "- no valid IP Address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
+"Este test chequea si una IP válida es encontrada para su Adaptador de Red.\n"
+"Si consigue un mensaje de \"no confirmado\":\n"
+"- no hay una IP válida\n"
+"- verifique su DHCP, cable o configuración del adaptador"
 
 msgid ""
 "This test checks whether your LAN Adapter is set up for automatic IP Address "
@@ -2771,9 +2870,17 @@ msgid ""
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
+"Este test chequea si su adaptador de Red es configurado para IP automática "
+"con DHCP.\n"
+"Si consigue un mensaje de \"desabilitado\":- entonces su Adaptador de Red es "
+"configurado con IP manual\n"
+"- verifique que ha entrado una información de IP correcta en la "
+"configuración de Red.\n"
+"Si consigue un mensaje de \"activado\":- verifique que ha configurado y está "
+"trabajando un servidor DHCP en su red."
 
 msgid "This test detects your configured LAN-Adapter."
-msgstr ""
+msgstr "Este test detecta su adaptador de red configurado."
 
 msgid "Three"
 msgstr "Tres"
@@ -2989,7 +3096,7 @@ msgid "Use power measurement"
 msgstr "Usar medida de potencia"
 
 msgid "Use the Networkwizard to configure your Network\n"
-msgstr ""
+msgstr "Use este asistente para configurar su Red\n"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
@@ -3072,13 +3179,13 @@ msgid "W"
 msgstr "W"
 
 msgid "WEP"
-msgstr ""
+msgstr "WEP"
 
 msgid "WPA"
-msgstr ""
+msgstr "WPA"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS en 4:3"
@@ -3151,7 +3258,7 @@ msgid "Wireless"
 msgstr "Inalámbrico"
 
 msgid "Wireless Network"
-msgstr ""
+msgstr "Red Inalámbrica"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Error mientras grababa. ¿Disco lleno?\n"
@@ -3193,24 +3300,30 @@ msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
 msgstr ""
+"Ha elegido algunas configuraciones por defecto. Seleccione las "
+"configuraciones que quiere instalar."
 
 msgid "You can choose, what you want to install..."
-msgstr ""
+msgstr "Puede elegir lo que quiere instalar..."
 
 msgid "You cannot delete this!"
 msgstr "¡No puede borrar esto!"
 
 msgid "You chose not to install any default services lists."
-msgstr ""
+msgstr "Ha elegido no instalar ninguna lista de canales por defecto."
 
 msgid ""
 "You chose not to install any default settings. You can however install the "
 "default settings later in the settings menu."
 msgstr ""
+"Elige no instalar ninguna configuración por defecto. Sin embargo, más tarde "
+"puede instalar alguna en el menú de configuración."
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr ""
+"Ha elegido no instalar nada. Pulse OK para terminar el asistente de "
+"instalación."
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -3278,7 +3391,7 @@ msgstr ""
 "¿Quiere poner el pin ahora?"
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr ""
+msgstr "Su Dreambox reiniciará después de pulsar OK en su mando a distancia."
 
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Su TV trabaja con 50 Hz. Bien!"
@@ -3321,11 +3434,15 @@ msgid ""
 "Your wired LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
+"Su Adaptador de Red de cable no puede ser iniciado.\n"
+"Quiere reiniciar su Dreambox para aplicar la nueva configuración?\n"
 
 msgid ""
 "Your wireless LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
+"Su Adaptador de Red inalámbrica no puede ser iniciado.\n"
+"Quiere reiniciar su Dreambox para aplicar la nueva configuración?\n"
 
 msgid ""
 "Your wireless internet connection is not working!\n"
@@ -3448,10 +3565,10 @@ msgid "config menu"
 msgstr "menú configuración"
 
 msgid "confirmed"
-msgstr ""
+msgstr "confirmado"
 
 msgid "connected"
-msgstr ""
+msgstr "conectado"
 
 msgid "continue"
 msgstr "continuar"
@@ -3487,7 +3604,7 @@ msgid "disabled"
 msgstr "desactivado"
 
 msgid "disconnected"
-msgstr ""
+msgstr "desconectado"
 
 msgid "do not change"
 msgstr "no cambiar"
@@ -3786,7 +3903,7 @@ msgid "remove new found flag"
 msgstr "borrar nueva marca encontrada"
 
 msgid "remove selected satellite"
-msgstr ""
+msgstr "borrar satélite seleccionado"
 
 msgid "remove this mark"
 msgstr "borrar esta marca"
@@ -3962,7 +4079,7 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "poner hora, capítulo, audio, info subtítulos"
 
 msgid "unconfirmed"
-msgstr ""
+msgstr "no confirmado"
 
 msgid "unknown service"
 msgstr "servicio desconocido"
@@ -4016,6 +4133,16 @@ msgstr "zapear"
 msgid "zapped"
 msgstr "zapeado"
 
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 reiniciará después de la restauración"
+
+#~ msgid "\"?"
+#~ msgstr "\"?"
+
 #~ msgid "#003258"
 #~ msgstr "#003258"
 
@@ -4025,20 +4152,8 @@ msgstr "zapeado"
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
-#~ msgid "Add a new title"
-#~ msgstr "Añadir un nuevo título"
-
 #~ msgid "Add files to playlist"
 #~ msgstr "Añadir ficheros a la lista"
-
-#~ msgid "Add title..."
-#~ msgstr "Añadir título..."
-
-#~ msgid "Burn"
-#~ msgstr "Grabar"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Grabar DVD"
 
 #~ msgid "Burn DVD..."
 #~ msgstr "Grabar DVD..."
@@ -4064,12 +4179,6 @@ msgstr "zapeado"
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "¿Quiere ver un tutorial de la lista de corte?"
 
-#~ msgid "Edit current title"
-#~ msgstr "Editar título actual"
-
-#~ msgid "Edit title..."
-#~ msgstr "Editar título..."
-
 #~ msgid "Extended Setup..."
 #~ msgstr "Configuración avanzada..."
 
@@ -4093,9 +4202,6 @@ msgstr "zapeado"
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Configuración del servidor de nombres..."
-
-#~ msgid "New DVD"
-#~ msgstr "DVD nuevo"
 
 #~ msgid "Output Type"
 #~ msgstr "Tipo de Salida"
@@ -4127,20 +4233,8 @@ msgstr "zapeado"
 #~ "Hay grabaciones que están en proceso o que van a comenzar pronto... "
 #~ "¿quiere apagar ahora?"
 
-#~ msgid "Remove currently selected title"
-#~ msgstr "Borrar el título seleccionado"
-
-#~ msgid "Remove title"
-#~ msgstr "Borrar el título"
-
 #~ msgid "Replace current playlist"
 #~ msgstr "Reemplazar la lista actual"
-
-#~ msgid "Save current project to disk"
-#~ msgstr "Guardar el proyecto actual a disco"
-
-#~ msgid "Save..."
-#~ msgstr "Guardar..."
 
 #~ msgid "Scan NIM"
 #~ msgstr "Escanear NIM"
