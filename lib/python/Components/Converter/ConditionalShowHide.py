@@ -3,7 +3,7 @@ from Converter import Converter
 
 class ConditionalShowHide(Converter, object):
 	def __init__(self, argstr):
-		Converter.__init__(self, type)
+		Converter.__init__(self, argstr)
 		args = argstr.split(',')
 		self.invert = "Invert" in args
 		self.blink = "Blink" in args
