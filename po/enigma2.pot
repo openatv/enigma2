@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-06-21 17:05+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,6 +211,11 @@ msgid ""
 "start the satfinder."
 msgstr ""
 
+#: ../lib/python/Components/Task.py:331
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 #: ../SleepTimer.py:30
 msgid ""
 "A sleep timer wants to set your\n"
@@ -260,11 +265,11 @@ msgstr ""
 msgid "Activate Picture in Picture"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:484
+#: ../lib/python/Screens/NetworkSetup.py:470
 msgid "Adapter settings"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:77
+#: ../lib/python/Screens/NetworkSetup.py:67
 #: ../lib/python/Screens/TimerEdit.py:26
 msgid "Add"
 msgstr ""
@@ -273,10 +278,18 @@ msgstr ""
 msgid "Add a mark"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:27
+msgid "Add a new title"
+msgstr ""
+
 #: ../lib/python/Screens/EpgSelection.py:59
 #: ../lib/python/Screens/EventView.py:31
 #: ../lib/python/Plugins/Extensions/GraphMultiEPG/GraphMultiEpg.py:346
 msgid "Add timer"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:27
+msgid "Add title..."
 msgstr ""
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1675
@@ -324,24 +337,29 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr ""
 
+#: ../lib/python/Components/Task.py:297
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr ""
+
 #: ../lib/python/Components/Language.py:15
 msgid "Arabic"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:408
+#: ../lib/python/Screens/NetworkSetup.py:396
 msgid ""
 "Are you sure you want to enable WLAN support?\n"
 "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
 "\n"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:410
+#: ../lib/python/Screens/NetworkSetup.py:398
 msgid ""
 "Are you sure you want to enable your local network?\n"
 "\n"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:406
+#: ../lib/python/Screens/NetworkSetup.py:394
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
@@ -409,11 +427,11 @@ msgstr ""
 msgid "BB"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:825
-#: ../lib/python/Screens/NetworkSetup.py:830
-#: ../lib/python/Screens/NetworkSetup.py:835
-#: ../lib/python/Screens/NetworkSetup.py:840
-#: ../lib/python/Screens/NetworkSetup.py:845
+#: ../lib/python/Screens/NetworkSetup.py:812
+#: ../lib/python/Screens/NetworkSetup.py:817
+#: ../lib/python/Screens/NetworkSetup.py:822
+#: ../lib/python/Screens/NetworkSetup.py:827
+#: ../lib/python/Screens/NetworkSetup.py:832
 msgid "Back"
 msgstr ""
 
@@ -445,6 +463,18 @@ msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/VideoTune/VideoFinetune.py:85 ../data/
 msgid "Brightness"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:31
+msgid "Burn"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:31
+msgid "Burn DVD"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/plugin.py:11
+msgid "Burn To DVD..."
 msgstr ""
 
 #: ../lib/python/Screens/HarddiskSetup.py:49
@@ -565,11 +595,11 @@ msgstr ""
 msgid "Clear log"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:79
-#: ../lib/python/Screens/NetworkSetup.py:230
-#: ../lib/python/Screens/NetworkSetup.py:347
-#: ../lib/python/Screens/NetworkSetup.py:618
-#: ../lib/python/Screens/NetworkSetup.py:940
+#: ../lib/python/Screens/NetworkSetup.py:69
+#: ../lib/python/Screens/NetworkSetup.py:223
+#: ../lib/python/Screens/NetworkSetup.py:335
+#: ../lib/python/Screens/NetworkSetup.py:609
+#: ../lib/python/Screens/NetworkSetup.py:897
 msgid "Close"
 msgstr ""
 
@@ -674,7 +704,7 @@ msgstr ""
 msgid "Current Transponder"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:215
+#: ../lib/python/Screens/NetworkSetup.py:208
 msgid "Current settings:"
 msgstr ""
 
@@ -694,7 +724,7 @@ msgstr ""
 msgid "Czech"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:912
+#: ../lib/python/Screens/NetworkSetup.py:876
 msgid "DHCP"
 msgstr ""
 
@@ -742,7 +772,7 @@ msgstr ""
 msgid "Deep Standby"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:78
+#: ../lib/python/Screens/NetworkSetup.py:68
 #: ../lib/python/Screens/TimerEdit.py:25
 msgid "Delete"
 msgstr ""
@@ -934,24 +964,32 @@ msgstr ""
 msgid "East"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:232
+#: ../lib/python/Screens/NetworkSetup.py:225
 msgid "Edit DNS"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:28
+msgid "Edit current title"
 msgstr ""
 
 #: ../lib/python/Screens/ParentalControlSetup.py:78
 msgid "Edit services list"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:936
+#: ../lib/python/Screens/NetworkSetup.py:894
 msgid "Edit settings"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:444
+#: ../lib/python/Screens/NetworkSetup.py:432
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:438
+#: ../lib/python/Screens/NetworkSetup.py:426
 msgid "Edit the network configuration of your Dreambox.\n"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:28
+msgid "Edit title..."
 msgstr ""
 
 #: ../lib/python/Screens/Subtitles.py:44
@@ -963,12 +1001,12 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:496
-#: ../lib/python/Screens/NetworkSetup.py:500
+#: ../lib/python/Screens/NetworkSetup.py:482
+#: ../lib/python/Screens/NetworkSetup.py:486
 msgid "Enable LAN"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:498
+#: ../lib/python/Screens/NetworkSetup.py:484
 msgid "Enable WLAN"
 msgstr ""
 
@@ -976,7 +1014,7 @@ msgstr ""
 msgid "Enable parental control"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:442
+#: ../lib/python/Screens/NetworkSetup.py:430
 msgid ""
 "Enable the local network of your Dreambox.\n"
 "\n"
@@ -986,15 +1024,15 @@ msgstr ""
 msgid "Enabled"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:271
+#: ../lib/python/Screens/NetworkSetup.py:263
 msgid "Encryption"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:276
+#: ../lib/python/Screens/NetworkSetup.py:268
 msgid "Encryption Key"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:275
+#: ../lib/python/Screens/NetworkSetup.py:267
 msgid "Encryption Type"
 msgstr ""
 
@@ -1039,6 +1077,13 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#: ../lib/python/Components/Task.py:241
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+
 #: ../lib/python/Components/Harddisk.py:166
 msgid "Everything is fine"
 msgstr ""
@@ -1072,7 +1117,7 @@ msgstr ""
 msgid "FEC"
 msgstr ""
 
-#: ../lib/python/Screens/TaskView.py:41
+#: ../lib/python/Screens/TaskView.py:43
 msgid "Failed"
 msgstr ""
 
@@ -1098,7 +1143,7 @@ msgstr ""
 msgid "Filesystem contains uncorrectable errors"
 msgstr ""
 
-#: ../lib/python/Screens/TaskView.py:41
+#: ../lib/python/Screens/TaskView.py:43
 msgid "Finished"
 msgstr ""
 
@@ -1166,8 +1211,8 @@ msgid ""
 "Do you want to Restart the GUI now?"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:219
-#: ../lib/python/Screens/NetworkSetup.py:256 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:212
+#: ../lib/python/Screens/NetworkSetup.py:248 ../data/
 msgid "Gateway"
 msgstr ""
 
@@ -1231,9 +1276,9 @@ msgstr ""
 msgid "Hungarian"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:217
-#: ../lib/python/Screens/NetworkSetup.py:252
-#: ../lib/python/Screens/NetworkSetup.py:920 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:210
+#: ../lib/python/Screens/NetworkSetup.py:244
+#: ../lib/python/Screens/NetworkSetup.py:882 ../data/
 msgid "IP Address"
 msgstr ""
 
@@ -1264,7 +1309,7 @@ msgstr ""
 msgid "Image-Upgrade"
 msgstr ""
 
-#: ../lib/python/Screens/TaskView.py:41
+#: ../lib/python/Screens/TaskView.py:43
 msgid "In Progress"
 msgstr ""
 
@@ -1341,7 +1386,7 @@ msgstr ""
 msgid "Just Scale"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:893
+#: ../lib/python/Screens/NetworkSetup.py:860
 msgid "LAN Adapter"
 msgstr ""
 
@@ -1404,7 +1449,7 @@ msgstr ""
 msgid "Limits on"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:460
+#: ../lib/python/Screens/NetworkSetup.py:447
 msgid "Link:"
 msgstr ""
 
@@ -1416,7 +1461,7 @@ msgstr ""
 msgid "Lithuanian"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:903
+#: ../lib/python/Screens/NetworkSetup.py:869
 msgid "Local Network"
 msgstr ""
 
@@ -1535,21 +1580,21 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:928 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:888 ../data/
 msgid "Nameserver"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:106
+#: ../lib/python/Screens/NetworkSetup.py:96
 #, python-format
 msgid "Nameserver %d"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:485
+#: ../lib/python/Screens/NetworkSetup.py:471
 msgid "Nameserver settings"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:218
-#: ../lib/python/Screens/NetworkSetup.py:253 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:211
+#: ../lib/python/Screens/NetworkSetup.py:245 ../data/
 msgid "Netmask"
 msgstr ""
 
@@ -1557,7 +1602,7 @@ msgstr ""
 msgid "Network Mount"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:270
+#: ../lib/python/Screens/NetworkSetup.py:262
 msgid "Network SSID"
 msgstr ""
 
@@ -1567,21 +1612,25 @@ msgstr ""
 msgid "Network scan"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:486
+#: ../lib/python/Screens/NetworkSetup.py:472
 msgid "Network test"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:226
-#: ../lib/python/Screens/NetworkSetup.py:458
+#: ../lib/python/Screens/NetworkSetup.py:219
+#: ../lib/python/Screens/NetworkSetup.py:445
 msgid "Network:"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:503
+#: ../lib/python/Screens/NetworkSetup.py:489
 msgid "NetworkWizard"
 msgstr ""
 
 #: ../lib/python/Screens/ChannelSelection.py:900
 msgid "New"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/DVDProject.py:5
+msgid "New DVD"
 msgstr ""
 
 #: ../lib/python/Screens/ParentalControlSetup.py:235
@@ -1657,21 +1706,21 @@ msgid ""
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:34
+#: ../lib/python/Screens/NetworkSetup.py:25
 msgid ""
 "No working local networkadapter found.\n"
 "Please verify that you have attached a network cable and your Network is "
 "configured correctly."
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:351
+#: ../lib/python/Screens/NetworkSetup.py:339
 msgid ""
 "No working wireless interface found.\n"
 " Please verify that you have attached a compatible WLAN USB Stick or enable "
 "you local network interface."
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:33
+#: ../lib/python/Screens/NetworkSetup.py:24
 msgid ""
 "No working wireless networkadapter found.\n"
 "Please verify that you have attached a compatible WLAN USB Stick and your "
@@ -1705,6 +1754,13 @@ msgstr ""
 
 #: ../lib/python/Components/Language.py:28
 msgid "Norwegian"
+msgstr ""
+
+#: ../lib/python/Components/Task.py:318
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
 msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:787
@@ -1974,11 +2030,11 @@ msgstr ""
 msgid "Preparing... Please wait"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:349
+#: ../lib/python/Screens/NetworkSetup.py:337
 msgid "Press OK on your remote control to continue."
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:228
+#: ../lib/python/Screens/NetworkSetup.py:221
 msgid "Press OK to activate the settings."
 msgstr ""
 
@@ -1990,7 +2046,7 @@ msgstr ""
 msgid "Press OK to start the scan"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:452
+#: ../lib/python/Screens/NetworkSetup.py:440
 msgid ""
 "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
 "Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
@@ -2002,7 +2058,7 @@ msgstr ""
 msgid "Prev"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:210
+#: ../lib/python/Screens/NetworkSetup.py:203
 msgid "Primary DNS"
 msgstr ""
 
@@ -2104,8 +2160,16 @@ msgstr ""
 msgid "Remove a mark"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:29
+msgid "Remove currently selected title"
+msgstr ""
+
 #: ../lib/python/Screens/PluginBrowser.py:132
 msgid "Remove plugins"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:29
+msgid "Remove title"
 msgstr ""
 
 #: ../lib/python/Screens/LocationBox.py:69
@@ -2136,16 +2200,16 @@ msgstr ""
 msgid "Restart GUI now?"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:487
+#: ../lib/python/Screens/NetworkSetup.py:473
 msgid "Restart network"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:771
-#: ../lib/python/Screens/NetworkSetup.py:855
+#: ../lib/python/Screens/NetworkSetup.py:766
+#: ../lib/python/Screens/NetworkSetup.py:841
 msgid "Restart test"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:450
+#: ../lib/python/Screens/NetworkSetup.py:438
 msgid "Restart your network connection and interfaces.\n"
 msgstr ""
 
@@ -2251,6 +2315,14 @@ msgstr ""
 msgid "Save Playlist"
 msgstr ""
 
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:30
+msgid "Save current project to disk"
+msgstr ""
+
+#: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:30
+msgid "Save..."
+msgstr ""
+
 #: ../lib/python/Plugins/Extensions/PicturePlayer/plugin.py:404
 msgid "Scaling Mode"
 msgstr ""
@@ -2287,7 +2359,7 @@ msgstr ""
 msgid "Scan SR6900"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:494
+#: ../lib/python/Screens/NetworkSetup.py:480
 msgid "Scan Wireless Networks"
 msgstr ""
 
@@ -2344,7 +2416,7 @@ msgstr ""
 msgid "Scan band US SUPER"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:446
+#: ../lib/python/Screens/NetworkSetup.py:434
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
@@ -2363,7 +2435,7 @@ msgstr ""
 msgid "Search west"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:211
+#: ../lib/python/Screens/NetworkSetup.py:204
 msgid "Secondary DNS"
 msgstr ""
 
@@ -2430,15 +2502,15 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:897
-#: ../lib/python/Screens/NetworkSetup.py:908
-#: ../lib/python/Screens/NetworkSetup.py:916
-#: ../lib/python/Screens/NetworkSetup.py:924
-#: ../lib/python/Screens/NetworkSetup.py:932
+#: ../lib/python/Screens/NetworkSetup.py:863
+#: ../lib/python/Screens/NetworkSetup.py:873
+#: ../lib/python/Screens/NetworkSetup.py:879
+#: ../lib/python/Screens/NetworkSetup.py:885
+#: ../lib/python/Screens/NetworkSetup.py:891
 msgid "Show Info"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:495
+#: ../lib/python/Screens/NetworkSetup.py:481
 msgid "Show WLAN Status"
 msgstr ""
 
@@ -2454,7 +2526,7 @@ msgstr ""
 msgid "Show the tv player..."
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:448
+#: ../lib/python/Screens/NetworkSetup.py:436
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr ""
 
@@ -2553,7 +2625,7 @@ msgstr ""
 msgid "Standby"
 msgstr ""
 
-#: ../mytest.py:438 ../data/
+#: ../mytest.py:362 ../data/
 msgid "Standby / Restart"
 msgstr ""
 
@@ -2569,7 +2641,7 @@ msgstr ""
 msgid "Start recording?"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:942
+#: ../lib/python/Screens/NetworkSetup.py:900
 msgid "Start test"
 msgstr ""
 
@@ -2621,7 +2693,7 @@ msgstr ""
 msgid "Stop playing this movie?"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:945
+#: ../lib/python/Screens/NetworkSetup.py:903
 msgid "Stop test"
 msgstr ""
 
@@ -2695,7 +2767,7 @@ msgstr ""
 msgid "Terrestrial provider"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:440
+#: ../lib/python/Screens/NetworkSetup.py:428
 msgid "Test the network configuration of your Dreambox.\n"
 msgstr ""
 
@@ -2739,13 +2811,19 @@ msgstr ""
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
+#: ../lib/python/Screens/NetworkSetup.py:512
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
 #: ../lib/python/Screens/LocationBox.py:181
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:842
+#: ../lib/python/Screens/NetworkSetup.py:829
 msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
@@ -2754,7 +2832,7 @@ msgid ""
 "the \"Nameserver\" Configuration"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:827
+#: ../lib/python/Screens/NetworkSetup.py:814
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
 "If you get a \"disconnected\" message:\n"
@@ -2762,7 +2840,7 @@ msgid ""
 "- verify that the cable is not broken"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:837
+#: ../lib/python/Screens/NetworkSetup.py:824
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
 "If you get a \"unconfirmed\" message:\n"
@@ -2770,7 +2848,7 @@ msgid ""
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:832
+#: ../lib/python/Screens/NetworkSetup.py:819
 msgid ""
 "This test checks whether your LAN Adapter is set up for automatic IP Address "
 "configuration with DHCP.\n"
@@ -2782,7 +2860,7 @@ msgid ""
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:822
+#: ../lib/python/Screens/NetworkSetup.py:809
 msgid "This test detects your configured LAN-Adapter."
 msgstr ""
 
@@ -2991,7 +3069,7 @@ msgstr ""
 msgid "Upgrading Dreambox... Please wait"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:249 ../data/
+#: ../lib/python/Screens/NetworkSetup.py:241 ../data/
 msgid "Use DHCP"
 msgstr ""
 
@@ -3000,11 +3078,11 @@ msgstr ""
 msgid "Use Power Measurement"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:254
+#: ../lib/python/Screens/NetworkSetup.py:246
 msgid "Use a gateway"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:454
+#: ../lib/python/Screens/NetworkSetup.py:442
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr ""
 
@@ -3060,19 +3138,18 @@ msgid "W"
 msgstr ""
 
 #: ../lib/python/Screens/InetWizard.py:16
-#: ../lib/python/Screens/NetworkSetup.py:157
+#: ../lib/python/Screens/NetworkSetup.py:148
 msgid "WEP"
 msgstr ""
 
 #: ../lib/python/Screens/InetWizard.py:17
 #: ../lib/python/Screens/InetWizard.py:25
-#: ../lib/python/Screens/NetworkSetup.py:158
-#: ../lib/python/Screens/NetworkSetup.py:184
+#: ../lib/python/Screens/NetworkSetup.py:149
 msgid "WPA"
 msgstr ""
 
 #: ../lib/python/Screens/InetWizard.py:18
-#: ../lib/python/Screens/NetworkSetup.py:159
+#: ../lib/python/Screens/NetworkSetup.py:150
 msgid "WPA2"
 msgstr ""
 
@@ -3080,7 +3157,7 @@ msgstr ""
 msgid "WSS on 4:3"
 msgstr ""
 
-#: ../lib/python/Screens/TaskView.py:41
+#: ../lib/python/Screens/TaskView.py:43
 msgid "Waiting"
 msgstr ""
 
@@ -3109,7 +3186,7 @@ msgstr ""
 msgid "Wireless"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:901
+#: ../lib/python/Screens/NetworkSetup.py:867
 msgid "Wireless Network"
 msgstr ""
 
@@ -3150,7 +3227,7 @@ msgid ""
 "Do you want to define keywords now?"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:350
+#: ../lib/python/Screens/NetworkSetup.py:338
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
 
@@ -3166,13 +3243,13 @@ msgid ""
 "Press OK to start upgrade."
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:529
+#: ../lib/python/Screens/NetworkSetup.py:526
 msgid ""
 "Your wired LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:518
+#: ../lib/python/Screens/NetworkSetup.py:516
 msgid ""
 "Your wireless LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
@@ -3331,13 +3408,13 @@ msgstr ""
 msgid "complex"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:740
-#: ../lib/python/Screens/NetworkSetup.py:757
+#: ../lib/python/Screens/NetworkSetup.py:734
+#: ../lib/python/Screens/NetworkSetup.py:752
 msgid "confirmed"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:965
-#: ../lib/python/Screens/NetworkSetup.py:983
+#: ../lib/python/Screens/NetworkSetup.py:922
+#: ../lib/python/Screens/NetworkSetup.py:940
 msgid "connected"
 msgstr ""
 
@@ -3382,15 +3459,15 @@ msgstr ""
 msgid "disable move mode"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:729
+#: ../lib/python/Screens/NetworkSetup.py:722
 #: ../lib/python/Components/NimManager.py:892
 #: ../lib/python/Components/TimerList.py:61
 msgid "disabled"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:960
-#: ../lib/python/Screens/NetworkSetup.py:970
-#: ../lib/python/Screens/NetworkSetup.py:988
+#: ../lib/python/Screens/NetworkSetup.py:917
+#: ../lib/python/Screens/NetworkSetup.py:927
+#: ../lib/python/Screens/NetworkSetup.py:944
 msgid "disconnected"
 msgstr ""
 
@@ -3435,7 +3512,7 @@ msgstr ""
 msgid "enable move mode"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:724
+#: ../lib/python/Screens/NetworkSetup.py:718
 #: ../lib/python/Components/NimManager.py:840
 #: ../lib/python/Components/NimManager.py:880
 msgid "enabled"
@@ -4064,8 +4141,8 @@ msgstr ""
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
-#: ../lib/python/Screens/NetworkSetup.py:745
-#: ../lib/python/Screens/NetworkSetup.py:762
+#: ../lib/python/Screens/NetworkSetup.py:738
+#: ../lib/python/Screens/NetworkSetup.py:756
 msgid "unconfirmed"
 msgstr ""
 

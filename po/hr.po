@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-06-21 17:05+0200\n"
 "PO-Revision-Date: 2008-01-27 23:38+0100\n"
 "Last-Translator: Jurica <jurica@clarkdigital.com>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -242,6 +242,10 @@ msgstr ""
 "Snimanje je trenutno u tijeku. Molim zaustavite prvo snimanje prije negoli "
 "pokrenete Sat tražitelj."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -308,8 +312,14 @@ msgstr "Dodaj"
 msgid "Add a mark"
 msgstr "Dodaj oznaku"
 
+msgid "Add a new title"
+msgstr "Dodaj novi titl"
+
 msgid "Add timer"
 msgstr "Dodaj Tajmer"
+
+msgid "Add title..."
+msgstr "Dodaj titl..."
 
 msgid "Add to bouquet"
 msgstr "Dodaj u paket"
@@ -359,6 +369,10 @@ msgid "Alternative services tuner priority"
 msgstr "Prioritet alternativnih usluga tunera"
 
 msgid "An empty filename is illegal."
+msgstr ""
+
+#, python-format
+msgid "An error has occured. (%s)"
 msgstr ""
 
 msgid "Arabic"
@@ -467,6 +481,15 @@ msgstr ""
 
 msgid "Brightness"
 msgstr "Svjetlost"
+
+msgid "Burn"
+msgstr "Snimi"
+
+msgid "Burn DVD"
+msgstr "Snimi DVD"
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -940,6 +963,9 @@ msgstr "Istok"
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit current title"
+msgstr "Uredi trenutni titl"
+
 msgid "Edit services list"
 msgstr "Editiraj list usluga"
 
@@ -951,6 +977,9 @@ msgstr ""
 
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
+
+msgid "Edit title..."
+msgstr "Uredi titl..."
 
 msgid "Electronic Program Guide"
 msgstr "Elektronički Programski Vodič"
@@ -1036,6 +1065,12 @@ msgstr "Unesite pin za Usluge"
 
 msgid "Error"
 msgstr "Greška"
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
 
 msgid "Eventview"
 msgstr "Pregled događaja"
@@ -1568,6 +1603,9 @@ msgstr ""
 msgid "New"
 msgstr "Novo"
 
+msgid "New DVD"
+msgstr "Novi DVD"
+
 msgid "New pin"
 msgstr "Novi pin"
 
@@ -1690,6 +1728,12 @@ msgstr "Sjever"
 
 msgid "Norwegian"
 msgstr "Norveški"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -2070,8 +2114,14 @@ msgstr "Obriši dodatak"
 msgid "Remove a mark"
 msgstr "Obriši oznaku"
 
+msgid "Remove currently selected title"
+msgstr "Ukloni trenutno odabrani titl"
+
 msgid "Remove plugins"
 msgstr "Obriši dodatke"
+
+msgid "Remove title"
+msgstr "Ukloni titl"
 
 msgid "Rename"
 msgstr ""
@@ -2197,6 +2247,12 @@ msgstr "Subota"
 
 msgid "Save Playlist"
 msgstr "Pohrani playlistu"
+
+msgid "Save current project to disk"
+msgstr "Pohrani trenutni projekt na disk"
+
+msgid "Save..."
+msgstr "Pohrani..."
 
 msgid "Scaling Mode"
 msgstr "Mod razmjera"
@@ -2678,6 +2734,11 @@ msgid "The sleep timer has been disabled."
 msgstr "Tajmer je onemogućen."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
 msgstr ""
 
 msgid ""
@@ -4008,9 +4069,6 @@ msgstr "prebačen"
 #~ "Tajmer spavanja želi isključiti\n"
 #~ "vaš Dreambox. Isključiti sada?"
 
-#~ msgid "Add a new title"
-#~ msgstr "Dodaj novi titl"
-
 #~ msgid "Add alternative"
 #~ msgstr "dodaj alternativu"
 
@@ -4020,9 +4078,6 @@ msgstr "prebačen"
 #~ msgid "Add service"
 #~ msgstr "dodaj uslugu"
 
-#~ msgid "Add title..."
-#~ msgstr "Dodaj titl..."
-
 #~ msgid "Ask before zapping"
 #~ msgstr "Pitaj prije prebacivanja"
 
@@ -4031,12 +4086,6 @@ msgstr "prebačen"
 
 #~ msgid "Auto show inforbar"
 #~ msgstr "Automatski prikaA3i info traku "
-
-#~ msgid "Burn"
-#~ msgstr "Snimi"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Snimi DVD"
 
 #~ msgid "Burn DVD..."
 #~ msgstr "Snimi DVD..."
@@ -4061,12 +4110,6 @@ msgstr "prebačen"
 
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Želite li pregledati skraćeni vodič?"
-
-#~ msgid "Edit current title"
-#~ msgstr "Uredi trenutni titl"
-
-#~ msgid "Edit title..."
-#~ msgstr "Uredi titl..."
 
 #~ msgid "Equal to Socket A"
 #~ msgstr "Jednako kao Utor A"
@@ -4116,9 +4159,6 @@ msgstr "prebačen"
 #~ msgid "Network"
 #~ msgstr "MreA3a"
 
-#~ msgid "New DVD"
-#~ msgstr "Novi DVD"
-
 #~ msgid "Nothing connected"
 #~ msgstr "NiA!ta nije priklju?eno"
 
@@ -4158,14 +4198,8 @@ msgstr "prebačen"
 #~ "Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite "
 #~ "isključiti sada?"
 
-#~ msgid "Remove currently selected title"
-#~ msgstr "Ukloni trenutno odabrani titl"
-
 #~ msgid "Remove service"
 #~ msgstr "Izbriši uslugu"
-
-#~ msgid "Remove title"
-#~ msgstr "Ukloni titl"
 
 #~ msgid "Replace current playlist"
 #~ msgstr "Zamjeni trenutnu playlistu"
@@ -4175,12 +4209,6 @@ msgstr "prebačen"
 
 #~ msgid "Satelliteconfig"
 #~ msgstr "Satelitskakonfig"
-
-#~ msgid "Save current project to disk"
-#~ msgstr "Pohrani trenutni projekt na disk"
-
-#~ msgid "Save..."
-#~ msgstr "Pohrani..."
 
 #~ msgid "Scan NIM"
 #~ msgstr "Skeniraj NIM"

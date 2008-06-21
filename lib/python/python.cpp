@@ -133,6 +133,16 @@ ePython::~ePython()
 	Py_Finalize();
 }
 
+int ePython::execFile(const char *file)
+{
+	FILE *fp = fopen(file, "r");
+	if (!fp)
+		return -ENOENT;
+	int ret = PyRun_SimpleFile(fp, file);
+	fclose(fp);
+	return ret;
+}
+
 int ePython::execute(const std::string &pythonfile, const std::string &funcname)
 {
 	ePyObject pName, pModule, pDict, pFunc, pArgs, pValue;

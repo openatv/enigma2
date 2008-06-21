@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-06-21 17:05+0200\n"
 "PO-Revision-Date: 2008-04-03 19:16+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
@@ -240,6 +240,10 @@ msgid ""
 msgstr ""
 "Právě se nahrává pořad. Prosím, zastavte nahrávání před spuštěním satfinderu."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -302,8 +306,14 @@ msgstr "Přidat"
 msgid "Add a mark"
 msgstr "Přidat značku"
 
+msgid "Add a new title"
+msgstr "Přidat nový titul"
+
 msgid "Add timer"
 msgstr "Přidat časování"
+
+msgid "Add title..."
+msgstr "Přidat titul..."
 
 msgid "Add to bouquet"
 msgstr "Přidat do bukletu"
@@ -358,6 +368,10 @@ msgstr "Alternativní "
 
 msgid "An empty filename is illegal."
 msgstr "Neplatný název souboru."
+
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabsky"
@@ -464,6 +478,15 @@ msgstr "Režim když film dosáhne konce"
 
 msgid "Brightness"
 msgstr "Světlost"
+
+msgid "Burn"
+msgstr "Vypláti"
+
+msgid "Burn DVD"
+msgstr "Vypálit DVD"
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Sběrnice: "
@@ -938,6 +961,9 @@ msgstr "Východní"
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit current title"
+msgstr "Upravit tento titul"
+
 msgid "Edit services list"
 msgstr "Upravit seznam kanálů"
 
@@ -949,6 +975,9 @@ msgstr ""
 
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
+
+msgid "Edit title..."
+msgstr "Upravit titul..."
 
 msgid "Electronic Program Guide"
 msgstr "EPG"
@@ -1034,6 +1063,12 @@ msgstr "Zadat PIN pro kanál"
 
 msgid "Error"
 msgstr "Chyba"
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
 
 msgid "Eventview"
 msgstr "Zobrazení události"
@@ -1573,6 +1608,9 @@ msgstr ""
 msgid "New"
 msgstr "Nové programy"
 
+msgid "New DVD"
+msgstr "Nové DVD"
+
 msgid "New pin"
 msgstr "Nový PIN"
 
@@ -1695,6 +1733,12 @@ msgstr "Severní"
 
 msgid "Norwegian"
 msgstr "Norsky"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -2078,8 +2122,14 @@ msgstr "Odebrat plugin"
 msgid "Remove a mark"
 msgstr "Odebrat značku"
 
+msgid "Remove currently selected title"
+msgstr "Odstranit vybraný titul"
+
 msgid "Remove plugins"
 msgstr "Odebrat plugin"
+
+msgid "Remove title"
+msgstr "Odebrat titul"
 
 msgid "Rename"
 msgstr "Přejmenovat"
@@ -2204,6 +2254,12 @@ msgstr "Sobota"
 
 msgid "Save Playlist"
 msgstr "Uložit playlist"
+
+msgid "Save current project to disk"
+msgstr "Uložit projekt na disk"
+
+msgid "Save..."
+msgstr "Uložit..."
 
 msgid "Scaling Mode"
 msgstr "Nastavovací mód"
@@ -2695,6 +2751,11 @@ msgstr "Časovač byl deaktivován."
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "Soubor s konfigurací časovače (timers.xml) je poškozen a nemůže být nahrán."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -4011,18 +4072,6 @@ msgstr "přepnutý"
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
-#~ msgid "Add a new title"
-#~ msgstr "Přidat nový titul"
-
-#~ msgid "Add title..."
-#~ msgstr "Přidat titul..."
-
-#~ msgid "Burn"
-#~ msgstr "Vypláti"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Vypálit DVD"
-
 #~ msgid "Burn DVD..."
 #~ msgstr "Vypálit DVD..."
 
@@ -4038,12 +4087,6 @@ msgstr "přepnutý"
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Chcete zobrazit tutorial pro střih?"
 
-#~ msgid "Edit current title"
-#~ msgstr "Upravit tento titul"
-
-#~ msgid "Edit title..."
-#~ msgstr "Upravit titul..."
-
 #~ msgid "Extended Setup..."
 #~ msgstr "Rozšířené nastavení..."
 
@@ -4058,21 +4101,6 @@ msgstr "přepnutý"
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nastavení DNS (nameserver)..."
-
-#~ msgid "New DVD"
-#~ msgstr "Nové DVD"
-
-#~ msgid "Remove currently selected title"
-#~ msgstr "Odstranit vybraný titul"
-
-#~ msgid "Remove title"
-#~ msgstr "Odebrat titul"
-
-#~ msgid "Save current project to disk"
-#~ msgstr "Uložit projekt na disk"
-
-#~ msgid "Save..."
-#~ msgstr "Uložit..."
 
 #~ msgid "Show files from %s"
 #~ msgstr "Zobrazit soubory z %s"

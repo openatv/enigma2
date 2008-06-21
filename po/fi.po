@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-06-21 17:05+0200\n"
 "PO-Revision-Date: 2008-03-15 12:00+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -239,6 +239,10 @@ msgstr ""
 "Tallennus on parhaillaan käynnissä. Pysäytä tallennus\n"
 "ennen kuin käynnistät satelliittietsimen."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -307,8 +311,14 @@ msgstr "Lisää"
 msgid "Add a mark"
 msgstr "Lisää merkki"
 
+msgid "Add a new title"
+msgstr ""
+
 msgid "Add timer"
 msgstr "Lisää ajastus"
+
+msgid "Add title..."
+msgstr ""
 
 msgid "Add to bouquet"
 msgstr "Lisää suosikkilistalle"
@@ -360,6 +370,10 @@ msgstr "Virittimien prioriteetti"
 
 msgid "An empty filename is illegal."
 msgstr "Tyhjä nimi ei ole sallittu"
+
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabia"
@@ -466,6 +480,15 @@ msgstr "Toiminto kun tallenne loppuu"
 
 msgid "Brightness"
 msgstr "Kirkkaus"
+
+msgid "Burn"
+msgstr ""
+
+msgid "Burn DVD"
+msgstr ""
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Väylä: "
@@ -952,6 +975,9 @@ msgstr "Itä"
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit current title"
+msgstr ""
+
 msgid "Edit services list"
 msgstr "Muokkaa kanavalistaa"
 
@@ -962,6 +988,9 @@ msgid "Edit the Nameserver configuration of your Dreambox.\n"
 msgstr ""
 
 msgid "Edit the network configuration of your Dreambox.\n"
+msgstr ""
+
+msgid "Edit title..."
 msgstr ""
 
 msgid "Electronic Program Guide"
@@ -1043,6 +1072,12 @@ msgstr "Syötä kanavan tunnusluku"
 
 msgid "Error"
 msgstr "Virhe"
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
 
 msgid "Eventview"
 msgstr "Ohjelmatiedot"
@@ -1580,6 +1615,9 @@ msgstr ""
 msgid "New"
 msgstr "Uusi"
 
+msgid "New DVD"
+msgstr ""
+
 msgid "New pin"
 msgstr "Uusi tunnusluku"
 
@@ -1711,6 +1749,12 @@ msgstr "Pohjoinen"
 
 msgid "Norwegian"
 msgstr "Norja"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -2092,8 +2136,14 @@ msgstr "Poista lisäosia"
 msgid "Remove a mark"
 msgstr "Poista merkki"
 
+msgid "Remove currently selected title"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Poista lisäosia"
+
+msgid "Remove title"
+msgstr ""
 
 msgid "Rename"
 msgstr "Muuta nimi"
@@ -2219,6 +2269,12 @@ msgstr "Lauantai"
 
 msgid "Save Playlist"
 msgstr "Tallenna soittolista"
+
+msgid "Save current project to disk"
+msgstr ""
+
+msgid "Save..."
+msgstr ""
 
 msgid "Scaling Mode"
 msgstr "Skaalaustila"
@@ -2715,6 +2771,11 @@ msgstr "Uniajastin on kytketty pois päältä."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Ajastusluettelo (timers.xml) on korruptoitunut eikä sitä voida ladata"
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"

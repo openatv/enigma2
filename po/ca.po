@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-06-21 17:05+0200\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -254,6 +254,10 @@ msgstr ""
 "En aquests moments s'està realitzant una gravació. Sisplau, atura-la abans "
 "de posar en marxa el satfinder."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -320,8 +324,14 @@ msgstr "Afegir"
 msgid "Add a mark"
 msgstr "Afegir una marca"
 
+msgid "Add a new title"
+msgstr "Afegir un nou títol"
+
 msgid "Add timer"
 msgstr "Gravar"
+
+msgid "Add title..."
+msgstr "Afegir títol..."
 
 msgid "Add to bouquet"
 msgstr "Afegir a la llista"
@@ -371,6 +381,10 @@ msgid "Alternative services tuner priority"
 msgstr ""
 
 msgid "An empty filename is illegal."
+msgstr ""
+
+#, python-format
+msgid "An error has occured. (%s)"
 msgstr ""
 
 msgid "Arabic"
@@ -478,6 +492,15 @@ msgstr ""
 
 msgid "Brightness"
 msgstr "Brillantor"
+
+msgid "Burn"
+msgstr "Gravar"
+
+msgid "Burn DVD"
+msgstr "Gravar DVD"
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -951,6 +974,9 @@ msgstr "Est"
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit current title"
+msgstr "Editar títol actual"
+
 msgid "Edit services list"
 msgstr "Editar llista de canals"
 
@@ -962,6 +988,9 @@ msgstr ""
 
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
+
+msgid "Edit title..."
+msgstr "Editar títol..."
 
 msgid "Electronic Program Guide"
 msgstr ""
@@ -1047,6 +1076,12 @@ msgstr "Entra el pin del canal"
 
 msgid "Error"
 msgstr "Error"
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
 
 msgid "Eventview"
 msgstr "Veure programes"
@@ -1581,6 +1616,9 @@ msgstr ""
 msgid "New"
 msgstr "Nou"
 
+msgid "New DVD"
+msgstr "Nou DVD"
+
 msgid "New pin"
 msgstr "Nou pin"
 
@@ -1703,6 +1741,12 @@ msgstr "Nord"
 
 msgid "Norwegian"
 msgstr "Noruec"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -2087,8 +2131,14 @@ msgstr "Esborrar plugins"
 msgid "Remove a mark"
 msgstr "Esborrar una marca"
 
+msgid "Remove currently selected title"
+msgstr "Esborra el títol seleccionat"
+
 msgid "Remove plugins"
 msgstr "Esborrar plugins"
+
+msgid "Remove title"
+msgstr "Esborra títol"
 
 msgid "Rename"
 msgstr ""
@@ -2213,6 +2263,12 @@ msgstr "Dissabte"
 
 msgid "Save Playlist"
 msgstr "Grava llista de reproducció"
+
+msgid "Save current project to disk"
+msgstr "Grava el projecte actual al disc"
+
+msgid "Save..."
+msgstr "Gravar..."
 
 msgid "Scaling Mode"
 msgstr "Mode d'escalat"
@@ -2695,6 +2751,11 @@ msgid "The sleep timer has been disabled."
 msgstr "S'ha desactivat la programació d'aturada."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
+msgstr ""
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
 msgstr ""
 
 msgid ""
@@ -4003,18 +4064,6 @@ msgstr "zappejat"
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
-#~ msgid "Add a new title"
-#~ msgstr "Afegir un nou títol"
-
-#~ msgid "Add title..."
-#~ msgstr "Afegir títol..."
-
-#~ msgid "Burn"
-#~ msgstr "Gravar"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Gravar DVD"
-
 #~ msgid "Burn DVD..."
 #~ msgstr "Gravar DVD..."
 
@@ -4027,12 +4076,6 @@ msgstr "zappejat"
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Vols veure un manual d'edició?"
 
-#~ msgid "Edit current title"
-#~ msgstr "Editar títol actual"
-
-#~ msgid "Edit title..."
-#~ msgstr "Editar títol..."
-
 #~ msgid "Extended Setup..."
 #~ msgstr "Configuració avançada..."
 
@@ -4044,21 +4087,6 @@ msgstr "zappejat"
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Configuració dels DNS..."
-
-#~ msgid "New DVD"
-#~ msgstr "Nou DVD"
-
-#~ msgid "Remove currently selected title"
-#~ msgstr "Esborra el títol seleccionat"
-
-#~ msgid "Remove title"
-#~ msgstr "Esborra títol"
-
-#~ msgid "Save current project to disk"
-#~ msgstr "Grava el projecte actual al disc"
-
-#~ msgid "Save..."
-#~ msgstr "Gravar..."
 
 #~ msgid "Startwizard"
 #~ msgstr "Assistent d'inici"
