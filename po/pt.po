@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma Portuguese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-06-21 17:05+0200\n"
 "PO-Revision-Date: 2008-03-30 18:45-0000\n"
 "Last-Translator: Muaitai <muaitai@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -247,6 +247,10 @@ msgstr ""
 "Uma gravação está a decorrer.Por favor páre a gravação antes de iniciar a "
 "busca de satelites"
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -313,8 +317,14 @@ msgstr "Adicionar"
 msgid "Add a mark"
 msgstr "Adicionar marca"
 
+msgid "Add a new title"
+msgstr "Adicionar novo titulo"
+
 msgid "Add timer"
 msgstr "Adicionar Temporizador"
+
+msgid "Add title..."
+msgstr "Adicionar titulo..."
 
 msgid "Add to bouquet"
 msgstr "Adicionar aos Bouquets"
@@ -368,6 +378,10 @@ msgstr "Prioridade dos serviços do Tuner"
 
 msgid "An empty filename is illegal."
 msgstr "Um ficheiro vazio é ilegal."
+
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabe"
@@ -474,6 +488,15 @@ msgstr "Comportamento do Filme ao Terminar"
 
 msgid "Brightness"
 msgstr "Brilho"
+
+msgid "Burn"
+msgstr "Gravar"
+
+msgid "Burn DVD"
+msgstr "Gravar DVD"
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -947,6 +970,9 @@ msgstr "Este"
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit current title"
+msgstr "Editar o titulo actual"
+
 msgid "Edit services list"
 msgstr "Editar lista de canais"
 
@@ -958,6 +984,9 @@ msgstr ""
 
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
+
+msgid "Edit title..."
+msgstr "Editar o titulo..."
 
 msgid "Electronic Program Guide"
 msgstr "Electronic Program Guide"
@@ -1043,6 +1072,12 @@ msgstr "Introduzir o PIN"
 
 msgid "Error"
 msgstr "Erro"
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
 
 msgid "Eventview"
 msgstr "Ver Evento"
@@ -1581,6 +1616,9 @@ msgstr ""
 msgid "New"
 msgstr "Novo"
 
+msgid "New DVD"
+msgstr "Novo DVD"
+
 msgid "New pin"
 msgstr "Novo Pin"
 
@@ -1701,6 +1739,12 @@ msgstr "Norte"
 
 msgid "Norwegian"
 msgstr "Norueguês"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -2084,8 +2128,14 @@ msgstr "Remover Plugins"
 msgid "Remove a mark"
 msgstr "Remover Marca"
 
+msgid "Remove currently selected title"
+msgstr "Remover o título actualmente selecionado "
+
 msgid "Remove plugins"
 msgstr "Remover plugins"
+
+msgid "Remove title"
+msgstr "Remover o título"
 
 msgid "Rename"
 msgstr "Renomear"
@@ -2209,6 +2259,12 @@ msgstr "Sábado"
 
 msgid "Save Playlist"
 msgstr "Gravar lista"
+
+msgid "Save current project to disk"
+msgstr "Gravar para o Disco rigido"
+
+msgid "Save..."
+msgstr "Guardar..."
 
 msgid "Scaling Mode"
 msgstr "Mode de Escala"
@@ -2694,6 +2750,11 @@ msgstr "Desactivou o sleep timer"
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "O ficheiro Timer (timers.xml) esta corrompido e não pode ser carregado."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -3998,20 +4059,8 @@ msgstr "zapped"
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
-#~ msgid "Add a new title"
-#~ msgstr "Adicionar novo titulo"
-
 #~ msgid "Add files to playlist"
 #~ msgstr "Adicionar ficheiros á lista de reprodução"
-
-#~ msgid "Add title..."
-#~ msgstr "Adicionar titulo..."
-
-#~ msgid "Burn"
-#~ msgstr "Gravar"
-
-#~ msgid "Burn DVD"
-#~ msgstr "Gravar DVD"
 
 #~ msgid "Burn DVD..."
 #~ msgstr "Gravar DVD..."
@@ -4028,12 +4077,6 @@ msgstr "zapped"
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Deseja ver um manual do editor de listas?"
 
-#~ msgid "Edit current title"
-#~ msgstr "Editar o titulo actual"
-
-#~ msgid "Edit title..."
-#~ msgstr "Editar o titulo..."
-
 #~ msgid "Extended Setup..."
 #~ msgstr "Configurações avançadas"
 
@@ -4049,26 +4092,11 @@ msgstr "zapped"
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nameserver Setup..."
 
-#~ msgid "New DVD"
-#~ msgstr "Novo DVD"
-
-#~ msgid "Remove currently selected title"
-#~ msgstr "Remover o título actualmente selecionado "
-
-#~ msgid "Remove title"
-#~ msgstr "Remover o título"
-
 #~ msgid "Replace current playlist"
 #~ msgstr "Substituir a lista actual"
 
 #~ msgid "Restart Enigma2"
 #~ msgstr "Reiniciar Enigma2"
-
-#~ msgid "Save current project to disk"
-#~ msgstr "Gravar para o Disco rigido"
-
-#~ msgid "Save..."
-#~ msgstr "Guardar..."
 
 #~ msgid "Show files from %s"
 #~ msgstr "Mostras os ficheiros de %s"

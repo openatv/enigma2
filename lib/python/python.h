@@ -370,6 +370,7 @@ class ePython
 public:
 	ePython();
 	~ePython();
+	int execFile(const char *file);
 	int execute(const std::string &pythonfile, const std::string &funcname);
 	static int call(ePyObject pFunc, ePyObject args);
 	static ePyObject resolve(const std::string &pythonfile, const std::string &funcname);

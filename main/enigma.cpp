@@ -239,8 +239,9 @@ int main(int argc, char **argv)
 
 	setIoPrio(IOPRIO_CLASS_BE, 3);
 
-	python.execute("mytest", "__main__");
-	
+//	python.execute("mytest", "__main__");
+	python.execFile("/usr/lib/enigma2/python/mytest.py");
+
 	if (exit_code == 5) /* python crash */
 	{
 		eDebug("(exit code 5)");
