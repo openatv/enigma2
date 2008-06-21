@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-21 17:05+0200\n"
+"POT-Creation-Date: 2008-06-10 11:43+0200\n"
 "PO-Revision-Date: 2008-06-02 13:45+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -249,10 +249,6 @@ msgstr ""
 "Zurzeit läuft eine Aufnahme. Bitte beenden Sie diese Aufnahme, bevor Sie den "
 "Sat-Finder starten."
 
-#, python-format
-msgid "A required tool (%s) was not found."
-msgstr ""
-
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -319,14 +315,8 @@ msgstr "Hinzufügen"
 msgid "Add a mark"
 msgstr "Marker hinzufügen"
 
-msgid "Add a new title"
-msgstr "Füge neuen Titel hinzu"
-
 msgid "Add timer"
 msgstr "Timer setzen"
-
-msgid "Add title..."
-msgstr "Füge Titel hinzu"
 
 msgid "Add to bouquet"
 msgstr "Zum Bouquet hinzufügen"
@@ -383,10 +373,6 @@ msgstr "Tuner-Priorität bei Alternativen Services"
 
 msgid "An empty filename is illegal."
 msgstr "Leerer Dateiname nicht erlaubt."
-
-#, python-format
-msgid "An error has occured. (%s)"
-msgstr ""
 
 msgid "Arabic"
 msgstr "Arabisch"
@@ -500,15 +486,6 @@ msgstr "Verhalten beim Filmende"
 
 msgid "Brightness"
 msgstr "Helligkeit"
-
-msgid "Burn"
-msgstr "brenne"
-
-msgid "Burn DVD"
-msgstr "brenne DVD"
-
-msgid "Burn To DVD..."
-msgstr ""
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -985,9 +962,6 @@ msgstr "Ost"
 msgid "Edit DNS"
 msgstr "Bearbeite DNS"
 
-msgid "Edit current title"
-msgstr "aktuellen Titel editieren"
-
 msgid "Edit services list"
 msgstr "Kanalliste bearbeiten"
 
@@ -999,9 +973,6 @@ msgstr "Bearbeiten Sie die Nameserver-Einstellungen Ihrer Dreambox.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Bearbeiten Sie die Netzwerk-Konfiguration Ihrer Dreambox.\n"
-
-msgid "Edit title..."
-msgstr "Titel editieren..."
 
 msgid "Electronic Program Guide"
 msgstr "Elektronischer Programmführer"
@@ -1087,12 +1058,6 @@ msgstr "Geben Sie den Kanal-Pincode ein"
 
 msgid "Error"
 msgstr "Fehler"
-
-#, python-format
-msgid ""
-"Error: %s\n"
-"Retry?"
-msgstr ""
 
 msgid "Eventview"
 msgstr "Programmübersicht"
@@ -1636,9 +1601,6 @@ msgstr ""
 msgid "New"
 msgstr "Neu"
 
-msgid "New DVD"
-msgstr "neue DVD"
-
 msgid "New pin"
 msgstr "Neuer Pincode"
 
@@ -1766,12 +1728,6 @@ msgstr "Nord"
 
 msgid "Norwegian"
 msgstr "Norwegisch"
-
-#, python-format
-msgid ""
-"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
-"required, %d MB available)"
-msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -2162,14 +2118,8 @@ msgstr "Plugins entfernen"
 msgid "Remove a mark"
 msgstr "Markierung entfernen"
 
-msgid "Remove currently selected title"
-msgstr "entferne aktuell ausgewählten Titel"
-
 msgid "Remove plugins"
 msgstr "Plugins entfernen"
-
-msgid "Remove title"
-msgstr "Titel entfernen"
 
 msgid "Rename"
 msgstr "Umbenennen"
@@ -2297,12 +2247,6 @@ msgstr "Samstag"
 
 msgid "Save Playlist"
 msgstr "Wiedergabeliste speichern"
-
-msgid "Save current project to disk"
-msgstr "Speichere aktuelles Projekt auf Festplatte"
-
-msgid "Save..."
-msgstr "speichern"
 
 msgid "Scaling Mode"
 msgstr "Skalierungsmodus"
@@ -2795,11 +2739,6 @@ msgstr "Der Ausschalt-Timer wurde deaktiviert"
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it."
-msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -4147,6 +4086,12 @@ msgstr "Umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
+#~ msgid "Add a new title"
+#~ msgstr "Füge neuen Titel hinzu"
+
+#~ msgid "Add title..."
+#~ msgstr "Füge Titel hinzu"
+
 #~ msgid ""
 #~ "Are you sure you want to reset \n"
 #~ "your network configuration to defaults?\n"
@@ -4155,6 +4100,12 @@ msgstr "umgeschaltet"
 #~ "Sind Sie sicher, dass Sie die Netzwerkkonfiguration\n"
 #~ "auf die Standardeinstellungen zurücksetzen wollen?\n"
 #~ "\n"
+
+#~ msgid "Burn"
+#~ msgstr "brenne"
+
+#~ msgid "Burn DVD"
+#~ msgstr "brenne DVD"
 
 #~ msgid "Burn DVD..."
 #~ msgstr "brenne DVD..."
@@ -4167,6 +4118,12 @@ msgstr "umgeschaltet"
 
 #~ msgid "Device Setup..."
 #~ msgstr "Geräteeinstellungen..."
+
+#~ msgid "Edit current title"
+#~ msgstr "aktuellen Titel editieren"
+
+#~ msgid "Edit title..."
+#~ msgstr "Titel editieren..."
 
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktiviere WLAN Unterstützung"
@@ -4183,6 +4140,15 @@ msgstr "umgeschaltet"
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nameserver-Einstellungen..."
 
+#~ msgid "New DVD"
+#~ msgstr "neue DVD"
+
+#~ msgid "Remove currently selected title"
+#~ msgstr "entferne aktuell ausgewählten Titel"
+
+#~ msgid "Remove title"
+#~ msgstr "Titel entfernen"
+
 #~ msgid "Reset configuration"
 #~ msgstr "Konfig. zurücksetzen"
 
@@ -4192,6 +4158,12 @@ msgstr "umgeschaltet"
 #~ msgstr ""
 #~ "Setzen Sie die Netzwerk-Konfiguration Ihrer Dreambox auf Standardwerte "
 #~ "zurück\n"
+
+#~ msgid "Save current project to disk"
+#~ msgstr "Speichere aktuelles Projekt auf Festplatte"
+
+#~ msgid "Save..."
+#~ msgstr "speichern"
 
 #~ msgid "Show files from %s"
 #~ msgstr "Zeige Dateien von %s"
