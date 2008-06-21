@@ -690,6 +690,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 void eListboxServiceContent::setIgnoreService( const eServiceReference &service )
 {
 	m_is_playable_ignore=service;
+	if (m_listbox && m_listbox->isVisible())
+		m_listbox->invalidate();
 }
 
 void eListboxServiceContent::setItemHeight(int height)
