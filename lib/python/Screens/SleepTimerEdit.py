@@ -4,7 +4,10 @@ from Components.ActionMap import NumberActionMap
 from Components.Input import Input
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.config import config
+from Components.config import config, ConfigInteger
+from SleepTimer import SleepTimer
+
+config.SleepTimer.defaulttime = ConfigInteger(default = 30)
 
 class SleepTimerEdit(Screen):
 	def __init__(self, session):
@@ -18,11 +21,24 @@ class SleepTimerEdit(Screen):
 		self["green_text"] = Label()
 		self["yellow_text"] = Label()
 		self["blue_text"] = Label()
+		self["current_status"] = Label()
 		self.is_active = self.session.nav.SleepTimer.isActive()
+		if self.is_active:
+			self["current_status"].setText(_("Timer status:") + " " + _("Enabled"))
+		else:
+			self["current_status"].setText(_("Timer status:") + " " + _("Disabled"))
+		
+		if self.is_active:
+			self.time = self.session.nav.SleepTimer.getCurrentSleepTime()
+		else:
+			self.time = config.SleepTimer.defaulttime.value
+		self["input"] = Input(text = str(self.time), maxSize = False, type = Input.NUMBER)
+		
+		self.status = True
 		self.updateColors()
 		
+		
 		self["pretext"] = Label(_("Shutdown Dreambox after"))
-		self["input"] = Input(text = str(self.session.nav.SleepTimer.getCurrentSleepTime()), maxSize = False, type = Input.NUMBER)
 		self["aftertext"] = Label(_("minutes"))
 		
 		self["actions"] = NumberActionMap(["SleepTimerEditorActions", "TextEntryActions", "KeyboardInputActions"], 
@@ -53,10 +69,10 @@ class SleepTimerEdit(Screen):
 		}, -1)
 
 	def updateColors(self):
-		if self.is_active:
-			self["red_text"].setText(_("Timer status:") + " " + _("Enabled"))
+		if self.status:
+			self["red_text"].setText(_("Action:") + " " + _("Enable timer"))
 		else:
-			self["red_text"].setText(_("Timer status:") + " " + _("Disabled"))
+			self["red_text"].setText(_("Action:") + " " + _("Disable timer"))
 		
 		if config.SleepTimer.action.value == "shutdown":
 			self["green_text"].setText(_("Sleep timer action:") + " " + _("Deep Standby"))
@@ -75,8 +91,10 @@ class SleepTimerEdit(Screen):
 		self.close()
 
 	def select(self):
-		if self.is_active:
-			self.session.nav.SleepTimer.setSleepTime(int(self["input"].getText()))
+		if self.status:
+			time = int(self["input"].getText())
+			config.SleepTimer.defaulttime.setValue(time)
+			self.session.nav.SleepTimer.setSleepTime(time)
 			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
 		else:
 			self.session.nav.SleepTimer.clear()
@@ -104,7 +122,7 @@ class SleepTimerEdit(Screen):
 		self["input"].deleteBackward()
 	
 	def disableTimer(self):
-		self.is_active = not self.is_active
+		self.status = not self.status
 		self.updateColors()
 
 	def toggleAction(self):

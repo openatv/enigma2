@@ -848,15 +848,16 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="Preview" position="305,45" size="280,210" alphatest="on" />
 	</screen>
 	<!-- Sleeptimer edit -->
-	<screen name="SleepTimerEdit" position="110,215" size="500,160" title="Sleep Timer">
-		<widget name="red" pixmap="skin_default/buttons/button_red.png" position="10,48" size="12,12" alphatest="on" />
-		<widget name="green" pixmap="skin_default/buttons/button_green.png" position="10,88" size="12,12" alphatest="on" />
-		<widget name="yellow" pixmap="skin_default/buttons/button_yellow.png" position="10,128" size="12,12" alphatest="on" />
+	<screen name="SleepTimerEdit" position="110,215" size="500,200" title="Sleep Timer">
+		<widget name="current_status" position="40,40" size="400,30" valign="center" font="Regular;20" />
+		<widget name="red" pixmap="skin_default/buttons/button_red.png" position="10,88" size="12,12" alphatest="on" />
+		<widget name="green" pixmap="skin_default/buttons/button_green.png" position="10,128" size="12,12" alphatest="on" />
+		<widget name="yellow" pixmap="skin_default/buttons/button_yellow.png" position="10,168" size="12,12" alphatest="on" />
 		<widget name="blue" pixmap="skin_default/buttons/button_blue.png" position="10,168" size="12,12" alphatest="on" />
-		<widget name="red_text" position="40,40" size="400,30" valign="center" font="Regular;20" />
-		<widget name="green_text" position="40,80" size="400,30" valign="center" font="Regular;20" />
-		<widget name="yellow_text" position="40,120" size="400,30" valign="center" font="Regular;20" />
-		<widget name="blue_text" position="40,160" size="400,30" valign="center" font="Regular;20" />
+		<widget name="red_text" position="40,80" size="400,30" valign="center" font="Regular;20" />
+		<widget name="green_text" position="40,120" size="400,30" valign="center" font="Regular;20" />
+		<widget name="yellow_text" position="40,160" size="400,30" valign="center" font="Regular;20" />
+		<widget name="blue_text" position="40,200" size="400,30" valign="center" font="Regular;20" />
 		<widget name="pretext" position="15,10" size="235,25" font="Regular;19" />
 		<widget name="input" position="260,10" size="40,25" font="Regular;19" />
 		<widget name="aftertext" position="305,10" size="100,25" font="Regular;19" />
@@ -963,9 +964,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<widget name="timer1" position="10,45" size="280,80" scrollbarMode="showOnDemand" />
-		<widget name="timer2" position="310,45" size="280,80" scrollbarMode="showOnDemand" />
-		<widget name="list" position="0,140" size="250,290" scrollbarMode="showOnDemand" />
+		<widget name="timer1" position="10,45" size="280,220" scrollbarMode="showOnDemand" />
+		<widget name="timer2" position="310,45" size="280,220" scrollbarMode="showOnDemand" />
+		<widget name="list" position="0,280" size="500,290" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timer Selection -->
 	<screen name="TimerSelection" position="90,95" size="560,430" title="Timer selection">
