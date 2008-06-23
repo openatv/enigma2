@@ -9,6 +9,10 @@ from Components.config import config, ConfigYesNo, ConfigSelection, ConfigSubsec
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 
+config.SleepTimer = ConfigSubsection()
+config.SleepTimer.ask = ConfigYesNo(default = True)
+config.SleepTimer.action = ConfigSelection(default = "shutdown", choices = [("shutdown", _("shutdown")), ("standby", _("standby"))])
+
 class SleepTimerEntry(timer.TimerEntry):
 	def __init__(self, begin):
 		timer.TimerEntry.__init__(self, int(begin), int(begin))
@@ -48,9 +52,6 @@ class SleepTimerEntry(timer.TimerEntry):
 
 class SleepTimer(timer.Timer):
 	def __init__(self):
-		config.SleepTimer = ConfigSubsection()
-		config.SleepTimer.ask = ConfigYesNo(default = True)
-		config.SleepTimer.action = ConfigSelection(default = "shutdown", choices = [("shutdown", _("shutdown")), ("standby", _("standby"))])
 		timer.Timer.__init__(self)
 		self.defaultTime = 30
 
