@@ -45,14 +45,40 @@ def main(session, **kwargs):
 def menuEntry(*args):
 	mountpoint_choosen(args)
 
+from Components.Harddisk import harddiskmanager
+
 def menuHook(menuid):
 	if menuid != "mainmenu": 
 		return [ ]
 
-	from Components.Harddisk import harddiskmanager
 	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
 
+global_session = None
+
+def partitionListChanged(action, device):
+	if action == 'add' and device.is_hotplug:
+		print "mountpoint", device.mountpoint
+		print "description", device.description
+		print "force_mounted", device.force_mounted
+		mountpoint_choosen((device.description, device.mountpoint, global_session))
+
+def sessionstart(reason, session):
+	global global_session
+	global_session = session
+
+def autostart(reason, **kwargs):
+	global global_session
+	if reason == 0:
+		harddiskmanager.on_partition_list_change.append(partitionListChanged)
+	elif reason == 1:
+		harddiskmanager.on_partition_list_change.remove(partitionListChanged)
+		global_session = None
+
 def Plugins(**kwargs):
-	return [ PluginDescriptor(name="MediaScanner", description="Scan Files...", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
-		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook)]
+	return [
+		PluginDescriptor(name="MediaScanner", description="Scan Files...", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+#		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
+		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = sessionstart),
+ 		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = autostart)
+		]

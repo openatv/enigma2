@@ -224,7 +224,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.stepwise_repeat.value = self.saved_config_seek_stepwise_repeat
 		config.seek.on_pause.value = self.saved_config_seek_on_pause
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, dvd_device = None, args = None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
@@ -324,11 +324,17 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 		self.onClose.append(self.__onClose)
 
-		if fileExists("/dev/cdroms/cdrom0"):
-			print "physical dvd found (/dev/cdroms/cdrom0)"
-			self.physicalDVD = True
+		if dvd_device:
+				self.dvd_device = dvd_device
+				self.physicalDVD = True
 		else:
-			self.physicalDVD = False
+			if fileExists("/dev/cdroms/cdrom0"):
+				print "physical dvd found (/dev/cdroms/cdrom0)"
+				self.dvd_device = "/dev/cdroms/cdrom0"
+				self.physicalDVD = True
+			else:
+				self.dvd_device = None
+				self.physicalDVD = False
 
 		self.onFirstExecBegin.append(self.showFileBrowser)
 		self.service = None
@@ -442,7 +448,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		#self.__osdSubtitleInfoAvail()
 
 	def askLeavePlayer(self):
-		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=[(_("Exit"), "exit"), (_("Return to file browser"), "browser"), (_("Continue playing"), "play")])
+		if self.physicalDVD:
+			self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=[(_("Continue playing"), "play"), (_("Exit"), "exit")])
+		else:
+			self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=[(_("Continue playing"), "play"), (_("Return to file browser"), "browser"), (_("Exit"), "exit")])
 
 	def nextAudioTrack(self):
 		if self.service:
@@ -517,13 +526,16 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def showFileBrowser(self):
 		if self.physicalDVD:
-			self.session.openWithCallback(self.DVDdriveCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
+			if self.dvd_device == "/dev/cdroms/cdrom0":
+				self.session.openWithCallback(self.DVDdriveCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
+			else:
+				self.DVDdriveCB(True)
 		else:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
 	
 	def DVDdriveCB(self, answer):
 		if answer == True:
-			self.FileBrowserClosed("/dev/cdroms/cdrom0")
+			self.FileBrowserClosed(self.dvd_device)
 		else:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
 
@@ -607,5 +619,39 @@ def menu(menuid, **kwargs):
 	return []
 
 from Plugins.Plugin import PluginDescriptor
+
+#TODO add *.iso to filescanner and ask when more than one iso file is found
+
+def filescan_open(list, session, **kwargs):
+	for x in list:
+		splitted = x.path.split('/')
+		print "splitted", splitted
+		if len(splitted) > 2:
+			if splitted[1] == 'autofs':
+				session.open(DVDPlayer, "/dev/%s" %(splitted[2]))
+				return
+			else:
+				print "splitted[0]", splitted[1]
+
+def filescan(**kwargs):
+	from Components.Scanner import Scanner, ScanPath
+
+	# Overwrite checkFile to only detect local
+	class LocalScanner(Scanner):
+		def checkFile(self, file):
+			return fileExists(file.path)
+
+	return \
+		LocalScanner(mimetypes = None,
+			paths_to_scan =
+				[
+					ScanPath(path = "video_ts", with_subdirs = False),
+				],
+			name = "DVD",
+			description = "Play DVD",
+			openfnc = filescan_open,
+		)
+
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, fnc = menu)]
+	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, fnc = menu),
+		 	PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]

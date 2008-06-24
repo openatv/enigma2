@@ -33,14 +33,21 @@ class Hotplug(Protocol):
 		action = v.get("ACTION")
 		device = v.get("DEVPATH")
 		physdevpath = v.get("PHYSDEVPATH")
+		media_state = v.get("X_E2_MEDIA_STATUS")
 
 		dev = device.split('/')[-1]
 
-		if action == "add":
+		if action is not None and action == "add":
 			print "Medium found in", self.getUserfriendlyDeviceName(dev)
 			harddiskmanager.addHotplugPartition(dev, self.getUserfriendlyDeviceName(physdevpath))
-		elif action == "remove":
+		elif action is not None and action == "remove":
 			harddiskmanager.removeHotplugPartition(dev)
+		elif media_state is not None:
+			if media_state == '1':
+				harddiskmanager.removeHotplugPartition(dev)
+				harddiskmanager.addHotplugPartition(dev, self.getUserfriendlyDeviceName(physdevpath))
+			elif media_state == '0':
+				harddiskmanager.removeHotplugPartition(dev)
 
 def autostart(reason, **kwargs):
 	if reason == 0:
