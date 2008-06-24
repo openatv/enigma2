@@ -357,7 +357,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description):
+	def __init__(self, slot, type, description, has_outputs = True):
 		self.slot = slot
 
 		if type not in ["DVB-S", "DVB-C", "DVB-T", "DVB-S2", None]:
@@ -366,6 +366,7 @@ class NIM(object):
 
 		self.type = type
 		self.description = description
+		self.has_outputs = has_outputs
 
 	def isCompatible(self, what):
 		compatible = {
@@ -387,6 +388,9 @@ class NIM(object):
 
 	def getSlotID(self):
 		return chr(ord('A') + self.slot)
+	
+	def hasOutputs(self):
+		return self.has_outputs
 
 	slot_id = property(getSlotID)
 
@@ -519,6 +523,9 @@ class NimManager:
 				entries[current_slot]["type"] = str(line.strip()[6:])
 			elif line.strip().startswith("Name:"):
 				entries[current_slot]["name"] = str(line.strip()[6:])
+			elif line.strip().startswith("Has_Outputs:"):
+				input = str(line.strip()[6:])
+				entries[current_slot]["has_outputs"] = (input == "yes") 
 			elif line.strip().startswith("empty"):
 				entries[current_slot]["type"] = None
 				entries[current_slot]["name"] = _("N/A")
@@ -528,7 +535,9 @@ class NimManager:
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"]))
+			if not (entry.has_key("has_outputs")):
+				entry["has_outputs"] = True
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -558,6 +567,12 @@ class NimManager:
 		for slot in self.nim_slots:
 			list.append(slot.friendly_full_description)
 		return list
+	
+	def hasOutputs(self, slotid):
+		return self.nim_slots[slotid].hasOutputs()
+	
+	def getNimConfig(self, slotid):
+		return config.Nims[slotid]
 
 	def getSatList(self):
 		return self.satList
