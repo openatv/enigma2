@@ -57,11 +57,12 @@ def menuHook(menuid):
 global_session = None
 
 def partitionListChanged(action, device):
-	if action == 'add' and device.is_hotplug:
-		print "mountpoint", device.mountpoint
-		print "description", device.description
-		print "force_mounted", device.force_mounted
-		mountpoint_choosen((device.description, device.mountpoint, global_session))
+	pass
+#	if action == 'add' and device.is_hotplug:
+#		print "mountpoint", device.mountpoint
+#		print "description", device.description
+#		print "force_mounted", device.force_mounted
+#		mountpoint_choosen((device.description, device.mountpoint, global_session))
 
 def sessionstart(reason, session):
 	global global_session
