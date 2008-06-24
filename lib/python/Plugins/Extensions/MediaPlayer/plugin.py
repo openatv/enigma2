@@ -728,7 +728,7 @@ class MediaPlayerLCDScreen(Screen):
 			self["text4"].setText(text)
 
 def main(session, **kwargs):
-        session.open(MediaPlayer)
+	session.open(MediaPlayer)
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
