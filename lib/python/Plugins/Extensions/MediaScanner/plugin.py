@@ -1,5 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
+from Screens.InfoBar import InfoBar
 
 def execute(option):
 	print "execute", option
@@ -57,12 +58,17 @@ def menuHook(menuid):
 global_session = None
 
 def partitionListChanged(action, device):
-	pass
-#	if action == 'add' and device.is_hotplug:
-#		print "mountpoint", device.mountpoint
-#		print "description", device.description
-#		print "force_mounted", device.force_mounted
-#		mountpoint_choosen((device.description, device.mountpoint, global_session))
+	if InfoBar.instance:
+		if InfoBar.instance.execing:
+			if action == 'add' and device.is_hotplug:
+				print "mountpoint", device.mountpoint
+				print "description", device.description
+				print "force_mounted", device.force_mounted
+				mountpoint_choosen((device.description, device.mountpoint, global_session))
+		else:
+			print "main infobar is not execing... so we ignore hotplug event!"
+	else:
+			print "hotplug event.. but no infobar"
 
 def sessionstart(reason, session):
 	global global_session
