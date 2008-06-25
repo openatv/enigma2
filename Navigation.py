@@ -1,4 +1,4 @@
-from enigma import eServiceCenter, eServiceReference, pNavigation, getBestPlayableServiceReference
+from enigma import eServiceCenter, eServiceReference, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
 import RecordTimer
@@ -32,6 +32,9 @@ class Navigation:
 	def dispatchEvent(self, i):
 		for x in self.event:
 			x(i)
+		if i == iPlayableService.evEnd:
+			self.currentlyPlayingServiceReference = None
+			self.currentlyPlayingService = None
 
 	def dispatchRecordEvent(self, rec_service, event):
 #		print "record_event", rec_service, event
@@ -44,8 +47,6 @@ class Navigation:
 			print "ignore request to play already running service"
 			return 0
 		print "playing", ref and ref.toString()
-		self.currentlyPlayingServiceReference = None
-		self.currentlyPlayingService = None
 		if ref is None:
 			self.stopService()
 			return 0
@@ -98,8 +99,6 @@ class Navigation:
 		print "stopService"
 		if self.pnav:
 			self.pnav.stopService()
-		self.currentlyPlayingService = None
-		self.currentlyPlayingServiceReference = None
 
 	def pause(self, p):
 		return self.pnav and self.pnav.pause(p)
