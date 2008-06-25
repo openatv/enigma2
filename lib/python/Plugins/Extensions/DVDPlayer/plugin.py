@@ -56,8 +56,7 @@ class FileBrowser(Screen):
 				self.close(filename[0:-9])
 		if self["filelist"].canDescent(): # isDir
 			self["filelist"].descent()
-			pathname = self["filelist"].getCurrentDirectory()
-			print self["filelist"].getFilename()
+			pathname = self["filelist"].getCurrentDirectory() or ""
 			if fileExists(pathname+"VIDEO_TS.IFO"):
 				print "dvd structure found, trying to open..."
 				self.close(pathname)
