@@ -4,7 +4,7 @@ from Components.SystemInfo import SystemInfo
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
-from Components.NimManager import nimmanager
+from Components.NimManager import nimmanager, InitNimManager
 from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection
 from Screens.MessageBox import MessageBox
 
@@ -46,7 +46,22 @@ class NimSetup(Screen, ConfigListScreen):
 			if nim.powerMeasurement.value:
 				nim.powerMeasurement.value = False
 				nim.powerMeasurement.save()
-				
+		
+	def createConfigMode(self):
+		choices = { "nothing": _("nothing connected"),
+					"simple": _("simple"),
+					"advanced": _("advanced")}
+		#if len(nimmanager.getNimListOfType(nimmanager.getNimType(self.slotid), exception = x)) > 0:
+		#	choices["equal"] = _("equal to")
+		#	choices["satposdepends"] = _("second cable of motorized LNB")
+		if len(nimmanager.canEqualTo(self.slotid)) > 0:
+			choices["equal"] = _("equal to")
+		if len(nimmanager.canDependOn(self.slotid)) > 0:
+			choices["satposdepends"] = _("second cable of motorized LNB")
+		if len(nimmanager.canConnectTo(self.slotid)) > 0:
+			choices["loopthrough"] = _("loopthrough to")
+		self.nimConfig.configMode = ConfigSelection(choices = choices, default = "simple")
+					
 	def createSetup(self):
 		print "Creating setup"
 		self.list = [ ]
@@ -77,12 +92,17 @@ class NimSetup(Screen, ConfigListScreen):
 					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 				if self.nimConfig.diseqcMode.value == "positioner":
 					self.createPositionerSetup(self.list)
-			elif self.nimConfig.configMode.value in ["satposdepends", "equal"]:
+			elif self.nimConfig.configMode.value == "equal":
 				choices = []
-				if self.nim.type == "DVB-S2":
-					nimlist = nimmanager.getNimListOfType("DVB-S", exception = self.nim.slot)
-				else:
-					nimlist = nimmanager.getNimListOfType(self.nim.type, exception = self.nim.slot)
+				nimlist = nimmanager.canEqualTo(self.nim.slot)
+				for id in nimlist:
+					#choices.append((str(id), str(chr(65 + id))))
+					choices.append((str(id), nimmanager.getNimDescription(id)))
+				self.nimConfig.connectedTo = ConfigSelection(choices = choices)
+				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
+			elif self.nimConfig.configMode.value == "satposdepends":
+				choices = []
+				nimlist = nimmanager.canDependOn(self.nim.slot)
 				for id in nimlist:
 					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
@@ -90,8 +110,8 @@ class NimSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "loopthrough":
 				choices = []
-				print "connectable to:", nimmanager.connectableTo(self.slotid)
-				connectable = nimmanager.connectableTo(self.slotid) 
+				print "connectable to:", nimmanager.canConnectTo(self.slotid)
+				connectable = nimmanager.canConnectTo(self.slotid) 
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo = ConfigSelection(choices = choices)
@@ -310,6 +330,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.slotid = slotid
 		self.nim = nimmanager.nim_slots[slotid]
 		self.nimConfig = self.nim.config
+		self.createConfigMode()
 		self.createSetup()
 
 	def keyLeft(self):

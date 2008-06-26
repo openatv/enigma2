@@ -563,6 +563,9 @@ class NimManager:
 				return True
 		return False
 	
+	def getNimType(self, slotid):
+		return self.nim_slots[slotid].type
+	
 	def getNimDescription(self, slotid):
 		return self.nim_slots[slotid].friendly_full_description
 
@@ -595,17 +598,49 @@ class NimManager:
 	def hasOutputs(self, slotid):
 		return self.nim_slots[slotid].hasOutputs()
 	
-	def connectableTo(self, slotid):
+	def canConnectTo(self, slotid):
 		slots = []
 		if self.nim_slots[slotid].internallyConnectableTo() is not None:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
 		for type in self.nim_slots[slotid].connectableTo(): 
 			for slot in self.getNimListOfType(type, exception = slotid):
-				if self.hasOutputs(slot):
-					slots.append(slot)
+				# FIXME we restrict loopthrough from dvb-s2 to dvb-s, because the c++ part can't handle it
+				if not (type == "DVB-S" and self.getNimType(slot)):
+					if self.hasOutputs(slot):
+						slots.append(slot)
 		slots.sort()
 		
 		return slots
+	
+	def canEqualTo(self, slotid):
+		type = self.getNimType(slotid)
+		if self.getNimConfig(slotid) == "DVB-S2":
+			type = "DVB-S"
+		nimList = self.getNimListOfType(type, slotid)
+		for nim in nimList[:]:
+			mode = self.getNimConfig(nim)
+			if mode.configMode.value == "loopthrough" or mode.configMode.value == "satposdepends":
+				nimList.remove(nim)
+		return nimList
+	
+	def canDependOn(self, slotid):
+		type = self.getNimType(slotid)
+		if self.getNimConfig(slotid) == "DVB-S2":
+			type = "DVB-S"
+		nimList = self.getNimListOfType(type, slotid)
+		positionerList = []
+		for nim in nimList[:]:
+			mode = self.getNimConfig(nim)
+			if mode.configMode.value == "simple" and mode.diseqcMode.value == "positioner":
+				alreadyConnected = False
+				for testnim in nimList:
+					testmode = self.getNimConfig(testnim)
+					if testmode.configMode.value == "satposdepends" and int(testmode.connectedTo.value) == int(nim):
+						alreadyConnected = True
+						break
+				if not alreadyConnected:
+					positionerList.append(nim)
+		return positionerList
 	
 	def getNimConfig(self, slotid):
 		return config.Nims[slotid]
@@ -743,8 +778,6 @@ def InitNimManager(nimmgr):
 		x = slot.slot
 		nim = config.Nims[x]
 		
-		# HACK: currently, we can only looptrough to socket A
-
 		if slot.isCompatible("DVB-S"):
 			choices = { "nothing": _("nothing connected"),
 					"simple": _("simple"),
@@ -752,7 +785,7 @@ def InitNimManager(nimmgr):
 			if len(nimmgr.getNimListOfType(slot.type, exception = x)) > 0:
 				choices["equal"] = _("equal to")
 				choices["satposdepends"] = _("second cable of motorized LNB")
-			if len(nimmgr.connectableTo(x)) > 0:
+			if len(nimmgr.canConnectTo(x)) > 0:
 				choices["loopthrough"] = _("loopthrough to")
 			nim.configMode = ConfigSelection(choices = choices, default = "simple")
 
