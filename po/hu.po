@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-18 12:43+0200\n"
-"PO-Revision-Date: 2008-06-17 11:01+0100\n"
+"POT-Creation-Date: 2008-06-26 15:12+0200\n"
+"PO-Revision-Date: 2008-06-24 15:31+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -239,7 +239,7 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr ""
+msgstr "A keresett eszköz (%s) nem található."
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -292,6 +292,9 @@ msgstr "Beltéri infó..."
 msgid "Action on long powerbutton press"
 msgstr "Be/Ki hosszan lenyomva:"
 
+msgid "Action:"
+msgstr ""
+
 msgid "Activate Picture in Picture"
 msgstr "PiP bekapcsolása"
 
@@ -308,13 +311,13 @@ msgid "Add a mark"
 msgstr "Jelző hozzáadása"
 
 msgid "Add a new title"
-msgstr ""
+msgstr "Új cím hozzáadása"
 
 msgid "Add timer"
 msgstr "Időzítés"
 
 msgid "Add title..."
-msgstr ""
+msgstr "Cím hozzáadása..."
 
 msgid "Add to bouquet"
 msgstr "Hozzáadás a bouquet listához"
@@ -373,7 +376,7 @@ msgstr "Egy üres fájl érvénytelen."
 
 #, python-format
 msgid "An error has occured. (%s)"
-msgstr ""
+msgstr "Hibát érzékeltem. (%s)"
 
 msgid "Arabic"
 msgstr "Arab"
@@ -489,13 +492,13 @@ msgid "Brightness"
 msgstr "Fényerő"
 
 msgid "Burn"
-msgstr ""
+msgstr "Égetés"
 
 msgid "Burn DVD"
-msgstr ""
+msgstr "DVD égetés"
 
 msgid "Burn To DVD..."
-msgstr ""
+msgstr "Kiírás DVD-re..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -832,6 +835,9 @@ msgstr "PiP kikapcsolása"
 msgid "Disable Subtitles"
 msgstr "Feliratok letiltása"
 
+msgid "Disable timer"
+msgstr ""
+
 msgid "Disabled"
 msgstr "Letiltva"
 
@@ -973,7 +979,7 @@ msgid "Edit DNS"
 msgstr "DNS módosítása"
 
 msgid "Edit current title"
-msgstr ""
+msgstr "Kijelölt cím módosítása"
 
 msgid "Edit services list"
 msgstr "Védett csatornák kijelölése"
@@ -988,7 +994,7 @@ msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "A Dreambox hálózati beállítások módosítása.\n"
 
 msgid "Edit title..."
-msgstr ""
+msgstr "Cím módosítása..."
 
 msgid "Electronic Program Guide"
 msgstr "Elektronikus Műsorújság"
@@ -1017,6 +1023,9 @@ msgid ""
 msgstr ""
 "A Dreambox helyi hálózatának engedélyezése.\n"
 "\n"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enabled"
 msgstr "Engedélyezve"
@@ -1082,6 +1091,8 @@ msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
+"Hiba? %s\n"
+"Próbáljam újra?"
 
 msgid "Eventview"
 msgstr "Eseménynézet"
@@ -1624,7 +1635,7 @@ msgid "New"
 msgstr "Új"
 
 msgid "New DVD"
-msgstr ""
+msgstr "Új DVD"
 
 msgid "New pin"
 msgstr "Új PIN"
@@ -1763,6 +1774,8 @@ msgid ""
 "Not enough diskspace. Please free up some diskspace and try again. (%d MB "
 "required, %d MB available)"
 msgstr ""
+"Nincs elég lemezhely. Kérem szabadítson fel némi helyet és próbálja újra. (%"
+"d MB területre lenne szükség, %d MB hely szabad jelenleg)"
 
 msgid ""
 "Nothing to scan!\n"
@@ -2161,13 +2174,13 @@ msgid "Remove a mark"
 msgstr "Egy marker eltávolítása"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "Kijelölt címek eltávolítása"
 
 msgid "Remove plugins"
 msgstr "Pluginek eltávolítása"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Cím eltávolítása"
 
 msgid "Rename"
 msgstr "Átnevezés"
@@ -2295,10 +2308,10 @@ msgid "Save Playlist"
 msgstr "Playlista mentése"
 
 msgid "Save current project to disk"
-msgstr ""
+msgstr "Jelenlegi project mentése lemezre"
 
 msgid "Save..."
-msgstr ""
+msgstr "Mentés..."
 
 msgid "Scaling Mode"
 msgstr "Arány módozat"
@@ -2812,6 +2825,8 @@ msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"A wireless LAN plugin nincs telepítve!\n"
+"Kérem telepítse."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
