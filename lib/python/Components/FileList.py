@@ -42,22 +42,51 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 	return res
 
 class FileList(MenuList):
-	def __init__(self, directory, showDirectories = True, showFiles = True, matchingPattern = None, useServiceRef = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
+	def __init__(self, directory, showDirectories = True, showFiles = True, showMountpoints = True, matchingPattern = None, useServiceRef = False, inhibitDirs = False, inhibitMounts = False, enableWrapAround = False, additionalExtensions = None):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.additional_extensions = additionalExtensions
-		self.mount_point = None
+		self.mountpoints = []
 		self.current_directory = None
+		self.current_mountpoint = None
 		self.useServiceRef = useServiceRef
 		self.showDirectories = showDirectories
+		self.showMountpoints = showMountpoints
 		self.showFiles = showFiles
-		self.isTop = isTop
 		# example: matching .nfi and .ts files: "^.*\.(nfi|ts)"
 		self.matchingPattern = matchingPattern
-		self.changeDir(directory)
+		self.inhibitDirs = inhibitDirs or []
+		self.inhibitMounts = inhibitMounts or []
 
+		self.refreshMountpoints()
+		self.changeDir(directory)
 		self.l.setFont(0, gFont("Regular", 18))
 		self.l.setItemHeight(23)
 		self.serviceHandler = eServiceCenter.getInstance()
+
+	def refreshMountpoints(self):
+		self.mountpoints = [os_path.join(p.mountpoint, "") for p in harddiskmanager.getMountedPartitions()]
+		self.mountpoints.sort(reverse = True)
+
+	def getMountpoint(self, file):
+		file = os_path.join(os_path.realpath(file), "")
+		for m in self.mountpoints:
+			if file.startswith(m):
+				return m
+		return False
+
+	def getMountpointLink(self, file):
+		if os_path.realpath(file) == file:
+			return self.getMountpoint(file)
+		else:
+			if file[-1] == "/":
+				file = file[:-1]
+			mp = self.getMountpoint(file)
+			last = file
+			file = os_path.dirname(file)
+			while last != "/" and mp == self.getMountpoint(file):
+				last = file
+				file = os_path.dirname(file)
+			return os_path.join(last, "")
 
 	def getSelection(self):
 		if self.l.getCurrentSelection() is None:
@@ -74,36 +103,33 @@ class FileList(MenuList):
 	def getFileList(self):
 		return self.list
 
+	def inParentDirs(self, dir, parents):
+		dir = os_path.realpath(dir)
+		for p in parents:
+			if dir.startswith(p):
+				return True
+		return False
+
 	def changeDir(self, directory, select = None):
 		self.list = []
 
+		if directory and not os_path.isdir(directory):
+			directory = None
 		# if we are just entering from the list of mount points:
 		if self.current_directory is None:
-			if directory is None:
-				self.mount_point = None
+			if directory and self.showMountpoints:
+				self.current_mountpoint = self.getMountpointLink(directory)
 			else:
-				# Sort Mountpoints by length (longest first)
-				sortedp = harddiskmanager.getMountedPartitions()
-				sortedp.sort(key=lambda p: 0 - len(p.mountpoint))
-
-				# Search for the longest matching mp (should at least match /)
-				for p in sortedp:
-					if directory.startswith(p.mountpoint):
-						self.mount_point = p.mountpoint
-						if p.mountpoint != "/":
-							self.mount_point += "/"
-						break
+				self.current_mountpoint = None
 		self.current_directory = directory
 		directories = []
 		files = []
 
-		if directory is None: # present available mountpoints
-			print "listing partitions:"
+		if directory is None and self.showMountpoints: # present available mountpoints
 			for p in harddiskmanager.getMountedPartitions():
-				if p.mountpoint == "/":
-					self.list.append(FileEntryComponent(name = p.description, absolute = p.mountpoint, isDir = True))
-				else:
-					self.list.append(FileEntryComponent(name = p.description, absolute = p.mountpoint + "/", isDir = True))
+				path = os_path.join(p.mountpoint,"")
+				if not self.inhibitMounts or ((not path in self.inhibitMounts) and (not self.inParentDirs(path, self.inhibitDirs))):
+					self.list.append(FileEntryComponent(name = p.description, absolute = path, isDir = True))
 			files = [ ]
 			directories = [ ]
 		elif self.useServiceRef:
@@ -122,7 +148,6 @@ class FileList(MenuList):
 					directories.append(s.getPath())
 				else:
 					files.append(s)
-				print s.getName(), s.flags
 			directories.sort()
 			files.sort()
 		else:
@@ -135,16 +160,17 @@ class FileList(MenuList):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
-		if directory is not None and self.showDirectories and not self.isTop:
-			if directory == self.mount_point:
-				self.list.append(FileEntryComponent(name = ".. (" +_("List of Storage Devices") + ")", absolute = None, isDir = True))
-			else:
-				self.list.append(FileEntryComponent(name = "..", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
+		if directory is not None and self.showDirectories:
+			if directory == self.current_mountpoint and self.showMountpoints:
+				self.list.append(FileEntryComponent(name = "<" +_("List of Storage Devices") + ">", absolute = None, isDir = True))
+			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+				self.list.append(FileEntryComponent(name = "<" +_("Parent Directory") + ">", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
 
 		if self.showDirectories:
 			for x in directories:
-				name = x.split('/')[-2]
-				self.list.append(FileEntryComponent(name = name, absolute = x, isDir = True))
+				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
+					name = x.split('/')[-2]
+					self.list.append(FileEntryComponent(name = name, absolute = x, isDir = True))
 
 		if self.showFiles:
 			for x in files:
@@ -155,10 +181,7 @@ class FileList(MenuList):
 					path = directory + x
 					name = x
 
-				if self.matchingPattern is not None:
-					if re.compile(self.matchingPattern).search(path):
-						self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
-				else:
+				if (self.matchingPattern is None) or re.compile(self.matchingPattern).search(path):
 					self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
 
 		self.l.setList(self.list)
@@ -215,5 +238,6 @@ class FileList(MenuList):
 		self.changeDir(self.current_directory, self.getFilename())
 
 	def partitionListChanged(self, action, device):
+		self.refreshMountpoints()
 		if self.current_directory is None:
 			self.refresh()

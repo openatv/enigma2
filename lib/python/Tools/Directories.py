@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from os import path as os_path, mkdir, system, walk
+from os import path as os_path, mkdir, rmdir, system, walk
 from re import compile
 
 SCOPE_TRANSPONDERDATA = 0
@@ -115,6 +115,15 @@ def pathExists(path):
 def createDir(path):
 	try:
 		mkdir(path)
+	except:
+		ret = 0
+	else:
+		ret = 1
+	return ret
+
+def removeDir(path):
+	try:
+		rmdir(path)
 	except:
 		ret = 0
 	else:

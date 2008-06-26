@@ -2,8 +2,9 @@ import time
 from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
+from Components.Harddisk import harddiskmanager
 import copy
-
+import os
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -845,6 +846,237 @@ class ConfigSatlist(ConfigSelection):
 	
 	orbital_position = property(getOrbitalPosition)
 
+class ConfigSet(ConfigElement):
+	def __init__(self, choices, default = []):
+		ConfigElement.__init__(self)
+		self.choices = []
+		self.description = {}
+		if isinstance(choices, list):
+			choices.sort()
+			for x in choices:
+				if isinstance(x, tuple):
+					self.choices.append(x[0])
+					self.description[x[0]] = str(x[1])
+				else:
+					self.choices.append(x)
+					self.description[x] = str(x)
+		else:
+			assert False, "ConfigSet choices must be a list!"
+		if len(self.choices) == 0:
+			self.choices = [""]
+			self.description[""] = ""
+		if default is None:
+			default = []
+		self.pos = -1
+		default.sort()
+		self.default = default
+		self.value = default+[]
+
+	def toggleChoice(self, choice):
+		if choice in self.value:
+			self.value.remove(choice)
+		else:
+			self.value.append(choice)
+			self.value.sort()
+
+	def handleKey(self, key):
+		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
+			if self.pos != -1:
+				self.toggleChoice(self.choices[self.pos])
+		elif key == KEY_LEFT:
+			self.pos -= 1
+			if self.pos < -1:
+			    self.pos = len(self.choices)-1
+		elif key == KEY_RIGHT:
+			self.pos += 1
+			if self.pos >= len(self.choices):
+			    self.pos = -1
+		elif key in [KEY_HOME, KEY_END]:
+			self.pos = -1
+
+	def genString(self, lst):
+		res = ""
+		for x in lst:
+			res += self.description[x]+" "
+		return res
+
+	def getText(self):
+		return self.genString(self.value)
+
+	def getMulti(self, selected):
+		if not selected or self.pos == -1:
+			return ("text", self.genString(self.value))
+		else:
+			tmp = self.value+[]
+			ch = self.choices[self.pos]
+			mem = ch in self.value
+			if not mem:
+				tmp.append(ch)
+				tmp.sort()
+			ind = tmp.index(ch)
+			val1 = self.genString(tmp[:ind])
+			val2 = " "+self.genString(tmp[ind+1:])
+			if mem:
+				chstr = " "+self.description[ch]+" "
+			else:
+				chstr = "("+self.description[ch]+")"
+			return ("mtext", val1+chstr+val2, range(len(val1),len(val1)+len(chstr)))
+
+	def onDeselect(self, session):
+		self.pos = -1
+		self.changed()
+		
+	def tostring(self, value):
+		return str(value)
+
+	def fromstring(self, val):
+		return eval(val)
+
+class ConfigLocations(ConfigElement):
+	def __init__(self, default = [], visible_width = False):
+		ConfigElement.__init__(self)
+		self.pos = -1
+		self.default = default
+		self.locations = []
+		self.mountpoints = []
+		harddiskmanager.on_partition_list_change.append(self.mountpointsChanged)
+
+	def setValue(self, value):
+		loc = [x[0] for x in self.locations if x[3]]
+		add = [x for x in value if not x in loc]
+		diff = add + [x for x in loc if not x in value]
+		self.locations = [x for x in self.locations if not x[0] in diff] + [[x, self.getMountpoint(x), True, True] for x in add]
+		self.locations.sort(key = lambda x: x[0])
+		self.changed()
+
+	def getValue(self):
+		self.checkChangedMountpoints()
+		for x in self.locations:
+			x[3] = x[2]
+		return [x[0] for x in self.locations if x[3]]
+	
+	value = property(getValue, setValue)
+
+	def tostring(self, value):
+		return str(value)
+
+	def fromstring(self, val):
+		return eval(val)
+
+	def load(self):
+		if self.saved_value is None:
+			tmp = self.default
+		else:
+			tmp = self.fromstring(self.saved_value)
+		self.locations = [[x, None, False, False] for x in tmp]
+		self.refreshMountpoints()
+		for x in self.locations:
+			if os.path.exists(x[0]):
+				x[1] = self.getMountpoint(x[0])
+				x[2] = True
+
+	def save(self):
+		if self.save_disabled or self.locations == []:
+			self.saved_value = None
+		else:
+			self.saved_value = self.tostring([x[0] for x in self.locations])
+
+	def isChanged(self):
+		if self.saved_value is None and self.locations == []:
+			return False
+		return self.tostring([x[0] for x in self.locations]) != self.saved_value
+
+	def mountpointsChanged(self, action, dev):
+		print "Mounts changed: ", action, dev
+		mp = dev.mountpoint+"/"
+		if action == "add":
+			self.addedMount(mp)
+		elif action == "remove":
+			self.removedMount(mp)
+		self.refreshMountpoints()
+
+	def addedMount(self, mp):
+		for x in self.locations:
+			if x[1] == mp:
+				x[2] = True
+			elif x[1] == None and os.path.exists(x[0]):
+				x[1] = self.getMountpoint(x[0])
+				x[2] = True
+
+	def removedMount(self, mp):
+		for x in self.locations:
+			if x[1] == mp:
+				x[2] = False
+		
+	def refreshMountpoints(self):
+		self.mountpoints = [p.mountpoint + "/" for p in harddiskmanager.getMountedPartitions() if p.mountpoint != "/"]
+		self.mountpoints.sort(key = lambda x: -len(x))
+
+	def checkChangedMountpoints(self):
+		oldmounts = self.mountpoints
+		self.refreshMountpoints()
+		if oldmounts == self.mountpoints:
+			return
+		for x in oldmounts:
+			if not x in self.mountpoints:
+				self.removedMount(x)
+		for x in self.mountpoints:
+			if not x in oldmounts:
+				self.addedMount(x)
+
+	def getMountpoint(self, file):
+		file = os.path.realpath(file)+"/"
+		for m in self.mountpoints:
+			if file.startswith(m):
+				return m
+		return None
+
+	def handleKey(self, key):
+		if key == KEY_LEFT:
+			self.pos -= 1
+			if self.pos < -1:
+			    self.pos = len(self.value)-1
+		elif key == KEY_RIGHT:
+			self.pos += 1
+			if self.pos >= len(self.value):
+			    self.pos = -1
+		elif key in [KEY_HOME, KEY_END]:
+			self.pos = -1
+
+	def getText(self):
+		return " ".join(self.value)
+
+	def getMulti(self, selected):
+		if not selected:
+			valstr = " ".join(self.value)
+			if self.visible_width and len(valstr) > self.visible_width:
+				return ("text", valstr[0:self.visible_width])
+			else:
+				return ("text", valstr)
+		else:
+			i = 0
+			valstr = ""
+			ind1 = 0
+			ind2 = 0
+			for val in self.value:
+				if i == self.pos:
+					ind1 = len(valstr)
+				valstr += str(val)+" "
+				if i == self.pos:
+					ind2 = len(valstr)
+				i += 1
+			if self.visible_width and len(valstr) > self.visible_width:
+				if ind1+1 < self.visible_width/2:
+					off = 0
+				else:
+					off = min(ind1+1-self.visible_width/2, len(valstr)-self.visible_width)
+				return ("mtext", valstr[off:off+self.visible_width], range(ind1-off,ind2-off))
+			else:
+				return ("mtext", valstr, range(ind1,ind2))
+
+	def onDeselect(self, session):
+		self.pos = -1
+		
 # nothing.
 class ConfigNothing(ConfigSelection):
 	def __init__(self):
@@ -1022,93 +1254,6 @@ class ConfigSubsection(object):
 
 	def dict(self):
 		return self.content.items
-
-class ConfigSet(ConfigElement):
-	def __init__(self, choices, default = []):
-		ConfigElement.__init__(self)
-		self.choices = []
-		self.description = {}
-		if isinstance(choices, list):
-			choices.sort()
-			for x in choices:
-				if isinstance(x, tuple):
-					self.choices.append(x[0])
-					self.description[x[0]] = str(x[1])
-				else:
-					self.choices.append(x)
-					self.description[x] = str(x)
-		else:
-			assert False, "ConfigSet choices must be a list!"
-		if len(self.choices) == 0:
-			self.choices = [""]
-			self.description[""] = ""
-		if default is None:
-			default = []
-		self.pos = -1
-		default.sort()
-		self.default = default
-		self.value = default+[]
-
-	def toggleChoice(self, choice):
-		if choice in self.value:
-			self.value.remove(choice)
-		else:
-			self.value.append(choice)
-			self.value.sort()
-
-	def handleKey(self, key):
-		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
-			if self.pos != -1:
-				self.toggleChoice(self.choices[self.pos])
-		elif key == KEY_LEFT:
-			self.pos -= 1
-			if self.pos < -1:
-			    self.pos = len(self.choices)-1
-		elif key == KEY_RIGHT:
-			self.pos += 1
-			if self.pos >= len(self.choices):
-			    self.pos = -1
-		elif key in [KEY_HOME, KEY_END]:
-			self.pos = -1
-
-	def genString(self, lst):
-		res = ""
-		for x in lst:
-			res += self.description[x]+" "
-		return res
-
-	def getText(self):
-		return self.genString(self.value)
-
-	def getMulti(self, selected):
-		if not selected or self.pos == -1:
-			return ("text", self.genString(self.value))
-		else:
-			tmp = self.value+[]
-			ch = self.choices[self.pos]
-			mem = ch in self.value
-			if not mem:
-				tmp.append(ch)
-				tmp.sort()
-			ind = tmp.index(ch)
-			val1 = self.genString(tmp[:ind])
-			val2 = " "+self.genString(tmp[ind+1:])
-			if mem:
-				chstr = " "+self.description[ch]+" "
-			else:
-				chstr = "("+self.description[ch]+")"
-			return ("mtext", val1+chstr+val2, range(len(val1),len(val1)+len(chstr)))
-
-	def onDeselect(self, session):
-		self.pos = -1
-		self.changed()
-		
-	def tostring(self, value):
-		return str(value)
-
-	def fromstring(self, val):
-		return eval(val)
-
 
 # the root config object, which also can "pickle" (=serialize)
 # down the whole config tree.

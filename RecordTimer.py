@@ -115,6 +115,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.justplay = justplay
 		self.afterEvent = afterEvent
 		self.dirname = dirname
+		self.dirnameHadToFallback = False
 		
 		self.log_entries = []
 		self.resetState()
@@ -136,7 +137,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if self.name:
 			filename += " - " + self.name
 
-		self.Filename = Directories.getRecordingFilename(filename, self.dirname)
+		if self.dirname and not Directories.pathExists(self.dirname):
+			self.dirnameHadToFallback = True
+			self.Filename = Directories.getRecordingFilename(filename, None)
+		else:
+			self.Filename = Directories.getRecordingFilename(filename, self.dirname)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		#begin_date + " - " + service_name + description)
 
@@ -323,8 +328,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
 		elif event == iRecordableService.evStart:
+			text = _("A record has been started:\n%s") % self.name
+			if self.dirnameHadToFallback:
+				text = '\n'.join([text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")])
+
 			# maybe this should be configurable?
-			Notifications.AddPopup(text = _("A record has been started:\n%s") % self.name, type = MessageBox.TYPE_INFO, timeout = 3)
+			Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
 
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
@@ -355,10 +364,9 @@ def createTimer(xml):
 	else:
 		eit = None
 	if xml.hasAttribute("location") and xml.getAttribute("location") != "None":
-		location = str(xml.getAttribute("location")).encode("utf-8")
+		location = xml.getAttribute("location").encode("utf-8")
 	else:
 		location = None
-
 
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
