@@ -67,6 +67,7 @@ private:
 	int m_slotid;
 	int m_fd;
 	bool m_need_rotor_workaround;
+	bool m_can_handle_dvbs2;
 	char m_filename[128];
 	char m_description[128];
 #if HAVE_DVB_API_VERSION < 3
