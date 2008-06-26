@@ -121,13 +121,13 @@ class SecConfigure:
 				# save what nim we link to/are equal to/satposdepends to.
 				# this is stored in the *value* (not index!) of the config list
 				if nim.configMode.value == "equal":
-					self.equal[int(nim.equalTo.value)]=x
+					self.equal[int(nim.connectedTo.value)]=x
 				elif nim.configMode.value == "loopthrough":
-					self.linkNIMs(sec, x, int(nim.linkedTo.value))
-					self.linked[int(nim.linkedTo.value)]=x
+					self.linkNIMs(sec, x, int(nim.connectedTo.value))
+					self.linked[int(nim.connectedTo.value)]=x
 				elif nim.configMode.value == "satposdepends":
-					self.setSatposDepends(sec, x, int(nim.satposDependsTo.value))
-					self.satposdepends[int(nim.satposDependsTo.value)]=x
+					self.setSatposDepends(sec, x, int(nim.connectedTo.value))
+					self.satposdepends[int(nim.connectedTo.value)]=x
 
 		for slot in nim_slots:
 			x = slot.slot
@@ -357,7 +357,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None):
 		self.slot = slot
 
 		if type not in ["DVB-S", "DVB-C", "DVB-T", "DVB-S2", None]:
@@ -367,6 +367,7 @@ class NIM(object):
 		self.type = type
 		self.description = description
 		self.has_outputs = has_outputs
+		self.internally_connectable = internally_connectable
 
 	def isCompatible(self, what):
 		compatible = {
@@ -377,6 +378,15 @@ class NIM(object):
 				"DVB-S2": ["DVB-S", "DVB-S2", None]
 			}
 		return what in compatible[self.type]
+	
+	def connectableTo(self):
+		connectable = {
+				"DVB-S": ["DVB-S", "DVB-S2"],
+				"DVB-C": ["DVB-C"],
+				"DVB-T": ["DVB-T"],
+				"DVB-S2": ["DVB-S", "DVB-S2"]
+			}
+		return connectable[self.type]
 
 	def getSlotName(self):
 		# get a friendly description for a slot name.
@@ -391,6 +401,9 @@ class NIM(object):
 	
 	def hasOutputs(self):
 		return self.has_outputs
+	
+	def internallyConnectableTo(self):
+		return self.internally_connectable
 
 	slot_id = property(getSlotID)
 
@@ -524,8 +537,11 @@ class NimManager:
 			elif line.strip().startswith("Name:"):
 				entries[current_slot]["name"] = str(line.strip()[6:])
 			elif line.strip().startswith("Has_Outputs:"):
-				input = str(line.strip()[6:])
-				entries[current_slot]["has_outputs"] = (input == "yes") 
+				input = str(line.strip()[len("Has_Outputs:") + 1:])
+				entries[current_slot]["has_outputs"] = (input == "yes")
+			elif line.strip().startswith("Internally_Connectable:"):
+				input = int(line.strip()[len("Internally_Connectable:") + 1:])
+				entries[current_slot]["internally_connectable"] = input 
 			elif line.strip().startswith("empty"):
 				entries[current_slot]["type"] = None
 				entries[current_slot]["name"] = _("N/A")
@@ -537,13 +553,18 @@ class NimManager:
 				entry["type"] = None
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"]))
+			if not (entry.has_key("internally_connectable")):
+				entry["internally_connectable"] = None
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
 			if slot.isCompatible(chktype):
 				return True
 		return False
+	
+	def getNimDescription(self, slotid):
+		return self.nim_slots[slotid].friendly_full_description
 
 	def getNimListOfType(self, type, exception = -1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
@@ -568,8 +589,23 @@ class NimManager:
 			list.append(slot.friendly_full_description)
 		return list
 	
+	def getSlotCount(self):
+		return len(self.nim_slots)
+	
 	def hasOutputs(self, slotid):
 		return self.nim_slots[slotid].hasOutputs()
+	
+	def connectableTo(self, slotid):
+		slots = []
+		if self.nim_slots[slotid].internallyConnectableTo() is not None:
+			slots.append(self.nim_slots[slotid].internallyConnectableTo())
+		for type in self.nim_slots[slotid].connectableTo(): 
+			for slot in self.getNimListOfType(type, exception = slotid):
+				if self.hasOutputs(slot):
+					slots.append(slot)
+		slots.sort()
+		
+		return slots
 	
 	def getNimConfig(self, slotid):
 		return config.Nims[slotid]
@@ -710,24 +746,15 @@ def InitNimManager(nimmgr):
 		# HACK: currently, we can only looptrough to socket A
 
 		if slot.isCompatible("DVB-S"):
-			if slot.slot == 0:
-				nim.configMode = ConfigSelection(
-					choices = {
-						"simple": _("simple"),
-						"advanced": _("advanced"),
-						"nothing": _("nothing connected"),
-						},
-					default = "simple")
-			else:
-				nim.configMode = ConfigSelection(
-					choices = {
-						"equal": _("equal to Socket A"),
-						"loopthrough": _("loopthrough to socket A"),
-						"nothing": _("nothing connected"),
-						"satposdepends": _("second cable of motorized LNB"),
-						"simple": _("simple"),
-						"advanced": _("advanced")},
-					default = "loopthrough")
+			choices = { "nothing": _("nothing connected"),
+					"simple": _("simple"),
+					"advanced": _("advanced")}
+			if len(nimmgr.getNimListOfType(slot.type, exception = x)) > 0:
+				choices["equal"] = _("equal to")
+				choices["satposdepends"] = _("second cable of motorized LNB")
+			if len(nimmgr.connectableTo(x)) > 0:
+				choices["loopthrough"] = _("loopthrough to")
+			nim.configMode = ConfigSelection(choices = choices, default = "simple")
 
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
 			# CHECKME: is this logic correct for >2 slots?
@@ -754,6 +781,11 @@ def InitNimManager(nimmgr):
 					("positioner", _("Positioner"))],
 				default = "diseqc_a_b")
 
+			choices = []
+			for id in nimmgr.getNimListOfType("DVB-S"):
+				if id != x:
+					choices.append((str(id), str(chr(65 + id))))
+			nim.connectedTo = ConfigSelection(choices = choices)
 			nim.diseqcA = getConfigSatlist(192, nimmgr.satList)
 			nim.diseqcB = getConfigSatlist(130, nimmgr.satList)
 			nim.diseqcC = ConfigSatlist(list = nimmgr.satList)
@@ -774,19 +806,6 @@ def InitNimManager(nimmgr):
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
 			etime = datetime(1970, 1, 1, 19, 0);
 			nim.fastTurningEnd = ConfigDateTime(default = mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 900)
-			# get other frontends of the same type
-
-			satNimList = nimmgr.getNimListOfType("DVB-S", slot.slot)
-			satNimListNames = {}
-
-			for x in satNimList:
-				n = nimmgr.nim_slots[x]
-				satNimListNames["%d" % n.slot] = n.friendly_full_description
-
-			if len(satNimListNames):
-				nim.equalTo = ConfigSelection(choices = satNimListNames)
-				nim.linkedTo = ConfigSelection(choices = satNimListNames)
-				nim.satposDependsTo = ConfigSelection(choices = satNimListNames)
 
 			# advanced config:
 			nim.advanced = ConfigSubsection()
