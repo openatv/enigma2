@@ -420,7 +420,8 @@ int eDVBFrontend::PriorityOrder=0;
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok)
 	:m_enabled(false), m_type(-1), m_dvbid(fe), m_slotid(fe)
-	,m_fd(-1), m_need_rotor_workaround(false), m_sn(0), m_timeout(0), m_tuneTimer(0)
+	,m_fd(-1), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
+	,m_sn(0), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
 #endif
@@ -2230,7 +2231,11 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		eDVBFrontendParametersSatellite sat_parm;
 		int ret = feparm->getDVBS(sat_parm);
 		ASSERT(!ret);
-		return m_sec->canTune(sat_parm, this, 1 << m_slotid);
+		if (sat_parm.system == eDVBFrontendParametersSatellite::System::DVB_S2 && !m_can_handle_dvbs2)
+			return 0;
+		ret = m_sec->canTune(sat_parm, this, 1 << m_slotid);
+		if (ret > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System::DVB_S && m_can_handle_dvbs2)
+			ret -= 1;
 	}
 	else if (m_type == eDVBFrontend::feCable)
 		return 2;  // more prio for cable frontends
@@ -2254,6 +2259,7 @@ bool eDVBFrontend::setSlotInfo(ePyObject obj)
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||
 		!!strstr(m_description, "Alps BSBE2") ||
 		!!strstr(m_description, "Alps -S");
+	m_can_handle_dvbs2 = !!strstr(m_description, "Alps BSBE2") || !!strstr(m_description, "bcm4501");
 	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s",
 		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No" );
 	return true;
