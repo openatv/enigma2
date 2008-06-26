@@ -1,5 +1,6 @@
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.config import config
 from Components.MenuList import MenuList
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -174,7 +175,7 @@ class TimerEditList(Screen):
 		else:
 			data = parseEvent(event, description = False)
 
-		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, *data))
+		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, dirname = config.movielist.last_timer_videodir.value, *data))
 		
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)

@@ -498,7 +498,7 @@ class GraphMultiEPG(Screen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
+		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = config.movielist.last_timer_videodir.value, *parseEvent(event))
 		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 
 	def timerEditFinished(self, answer):

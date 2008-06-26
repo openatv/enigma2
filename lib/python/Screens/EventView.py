@@ -7,6 +7,7 @@ from enigma import eEPGCache, eTimer, eServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry
 from time import localtime
+from Components.config import config
 
 class EventViewBase:
 	def __init__(self, Event, Ref, callback=None, similarEPGCB=None):
@@ -58,7 +59,7 @@ class EventViewBase:
 
 	def timerAdd(self):
 		if not self.isRecording:
-			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, *parseEvent(self.event))
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = config.movielist.last_timer_videodir.value, *parseEvent(self.event))
 			self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
 
 	def timerEditFinished(self, answer):

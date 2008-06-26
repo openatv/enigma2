@@ -1356,7 +1356,7 @@ class InfoBarPiP:
 		elif "stop" == use:
 			self.showPiP()
 
-from RecordTimer import parseEvent
+from RecordTimer import parseEvent, RecordTimerEntry
 
 class InfoBarInstantRecord:
 	"""Instant Record - handles the instantRecord action in order to
@@ -1406,10 +1406,14 @@ class InfoBarInstantRecord:
 			if limitEvent:
 				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
 
-		data = (begin, end, name, description, eventid)
+		# TODO: needed?
+		if isinstance(serviceref, eServiceReference):
+			serviceref = ServiceReference(serviceref)
 
-		recording = self.session.nav.recordWithTimer(serviceref, *data)
+		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = config.movielist.last_videodir.value)
 		recording.dontSave = True
+
+		self.session.nav.RecordTimer.record(recording)
 		self.recording.append(recording)
 
 	def isInstantRecordRunning(self):

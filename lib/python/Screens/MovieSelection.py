@@ -7,14 +7,14 @@ from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, configfile
+from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations
 from Components.Sources.ServiceEvent import ServiceEvent
 
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import LocationBox
+from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 
 from Tools.Directories import *
@@ -26,8 +26,9 @@ config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
 config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_ORIGINAL)
 config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
-# FIXME: see if this is always accessible by InfoBarGenerics
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
+config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
+config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 
 class MovieContextMenu(Screen):
 	def __init__(self, session, csel, service):
@@ -69,7 +70,6 @@ class MovieContextMenu(Screen):
 		self.close(False)
 
 	def sortBy(self, newType):
-		self.csel.saveflag = True
 		config.movielist.moviesort.value = newType
 		self.csel.selectedmovie = self.csel.getCurrent()
 		self.csel.setSortType(newType)
@@ -78,14 +78,12 @@ class MovieContextMenu(Screen):
 		self.close()
 
 	def listType(self, newType):
-		self.csel.saveflag = True
 		config.movielist.listtype.value = newType
 		self.csel.setListType(newType)
 		self.csel.list.redrawList()
 		self.close()
 
 	def showDescription(self, newType):
-		self.csel.saveflag = True
 		config.movielist.description.value = newType
 		self.csel.setDescriptionState(newType)
 		self.csel.updateDescription()
@@ -124,7 +122,8 @@ class MovieContextMenu(Screen):
 		if result == False:
 			self.session.openWithCallback(self.close, MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 		else:
-			list = self.csel["list"].removeService(self.service)
+			self.csel["list"].removeService(self.service)
+ 			self.csel["freeDiskSpace"].update()
 			self.close()
 
 class SelectionEventInfo:
@@ -148,12 +147,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
-		self.saveflag = False
-
 		self.tags = [ ]
 		self.selected_tags = None
-
-		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
 
 		self.movemode = False
 		self.bouquet_mark_edit = False
@@ -166,6 +161,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# create optional description border and hide immediately
 		self["DescriptionBorder"] = Pixmap()
 		self["DescriptionBorder"].hide()
+
+		if not pathExists(config.movielist.last_videodir.value):
+			config.movielist.last_videodir.value = resolveFilename(SCOPE_HDD)
+			config.movielist.last_videodir.save()
+		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
 
 		self["list"] = MovieList(None,
 			config.movielist.listtype.value,
@@ -183,8 +183,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
 
-		#self["freeDiskSpace"] = DiskInfo(resolveFilename(SCOPE_HDD), DiskInfo.FREE, update=False)
-		self["freeDiskSpace"] = self.diskinfo = DiskInfo(resolveFilename(SCOPE_HDD), DiskInfo.FREE, update=False)
+		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
 		if config.usage.setup_level.index >= 2: # expert+
 			self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
@@ -214,6 +213,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			})
 
 		self.onShown.append(self.go)
+		self.onLayoutFinish.append(self.saveListsize)
 		self.inited = False
 
 	def updateDescription(self):
@@ -238,8 +238,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# this is of course not the right way to do this.
 			self.delayTimer.start(10, 1)
 			self.inited=True
-		# as this workaround is here anyways we can wait until the skin is initialized
-		# and afterwards read out the information we need to draw the dynamic style
+
+	def saveListsize(self):
 			listsize = self["list"].instance.size()
 			self.listWidth = listsize.width()
 			self.listHeight = listsize.height()
@@ -250,7 +250,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
  		if self.selectedmovie is not None:
 			self.moveTo()
 		self["waitingtext"].visible = False
-		self["freeDiskSpace"].update()
 		self.updateTags()
 
 	def moveTo(self):
@@ -275,12 +274,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.close(None)
 
 	def saveconfig(self):
-		if self.saveflag == True:
-			config.movielist.moviesort.save()
-			config.movielist.listtype.save()
-			config.movielist.description.save()
-			configfile.save()
-			self.saveflag = False
+		config.movielist.moviesort.save()
+		config.movielist.listtype.save()
+		config.movielist.description.save()
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
@@ -322,6 +318,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["list"].setSortType(type)
 
 	def reloadList(self):
+		if not pathExists(config.movielist.last_videodir.value):
+			path = resolveFilename(SCOPE_HDD)
+			config.movielist.last_videodir.value = path
+			config.movielist.last_videodir.save()
+			self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+			self["freeDiskSpace"].path = path
 		self["list"].reload(self.current_ref, self.selected_tags)
 		title = _("Recorded files...")
 		if self.selected_tags is not None:
@@ -329,21 +331,31 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		if config.usage.setup_level.index >= 2: # expert+
 			title += "  " + config.movielist.last_videodir.value
 		self.setTitle(title)
+		self["freeDiskSpace"].update()
 
 	def doPathSelect(self):
 		self.session.openWithCallback(
 			self.gotFilename,
-			LocationBox,
+			MovieLocationBox,
 			_("Please select the movie path..."),
-			currDir = config.movielist.last_videodir.value
+			config.movielist.last_videodir.value
 		)
 
 	def gotFilename(self, res):
 		if res is not None and res is not config.movielist.last_videodir.value:
-			config.movielist.last_videodir.value = res
-			self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + res)
-			self.reloadList()
-			self.updateTags()
+			if pathExists(res):
+				config.movielist.last_videodir.value = res
+				config.movielist.last_videodir.save()
+				self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + res)
+				self["freeDiskSpace"].path = res
+				self.reloadList()
+			else:
+				self.session.open(
+					MessageBox,
+					_("Directory %s nonexistent.") % (res),
+					type = MessageBox.TYPE_ERROR,
+					timeout = 5
+					)
 
 	def showAll(self):
 		self.selected_tags = None

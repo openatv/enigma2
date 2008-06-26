@@ -1,5 +1,4 @@
 from Screen import Screen
-from LocationBox import LocationBox
 import ChannelSelection
 from ServiceReference import ServiceReference
 from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
@@ -9,9 +8,13 @@ from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.SelectionList import SelectionList, SelectionEntryComponent
+from Components.MovieList import MovieList
+from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from RecordTimer import AFTEREVENT
-from enigma import eEPGCache
+from Tools.Directories import resolveFilename, SCOPE_HDD
+from enigma import eEPGCache, eServiceReference
 import time
 import datetime
 
@@ -19,44 +22,34 @@ class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.timer = timer
-		
+
 		self.entryStartDate = None
 		self.entryEndDate = None
 		self.entryService = None
-		
+
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
-		self["locationtext"] = Label(_("Location"))
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-		self["location"] = Pixmap()
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
-			"yellow": self.selectPath,
 		}, -2)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = session)
 		self.createSetup("config")
 
-		self.onLayoutFinish.append(self.handleLocation)
-
-	def handleLocation(self):
-		if config.usage.setup_level.index < 2: # -expert
-			self["locationtext"].hide()
-			self["location"].hide()
-
 	def createConfig(self):
 			justplay = self.timer.justplay
-				
+
 			afterevent = { AFTEREVENT.NONE: "nothing", AFTEREVENT.DEEPSTANDBY: "deepstandby", AFTEREVENT.STANDBY: "standby"}[self.timer.afterEvent]
-			
+
 			weekday_table = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 
 			# calculate default values
@@ -91,7 +84,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				repeated = None
 				weekday = (int(time.strftime("%w", time.localtime(self.timer.begin))) - 1) % 7
 				day[weekday] = 1
-			
+
 			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
 			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby"))], default = afterevent)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
@@ -106,7 +99,10 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_enddate = ConfigDateTime(default = self.timer.end, formatstring =  _("%d.%B %Y"), increment = 86400)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
 
-			self.timerentry_dirname = ConfigSelection(choices = [self.timer.dirname or "/hdd/movie/"])
+			tmp = config.movielist.videodirs.value
+			if self.timer.dirname and not self.timer.dirname in tmp:
+				tmp.append(self.timer.dirname)
+			self.timerentry_dirname = ConfigSelection(default = self.timer.dirname or resolveFilename(SCOPE_HDD), choices = tmp)
 
 			self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
 
@@ -124,7 +120,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				pass
 			self.timerentry_service_ref = self.timer.service_ref
 			self.timerentry_service = ConfigSelection([servicename])
-			
+
 			self.timerentry_startdate.addNotifier(self.checkDate)
 			self.timerentry_enddate.addNotifier(self.checkDate)
 
@@ -191,7 +187,8 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timerentry_justplay.value != "zap":
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(getConfigListEntry(_("Location"), self.timerentry_dirname))
+				self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname)
+				self.list.append(self.dirname)
 			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
 
 		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service)
@@ -222,10 +219,23 @@ class TimerEntry(Screen, ConfigListScreen):
 		else:
 			ConfigListScreen.keyRight(self)
 			self.newConfig()
-		
+
 	def keySelect(self):
-		if self["config"].getCurrent() == self.channelEntry:
-			self.session.openWithCallback(self.finishedChannelSelection, ChannelSelection.SimpleChannelSelection, _("Select channel to record from"))
+		cur = self["config"].getCurrent()
+		if cur == self.channelEntry:
+			self.session.openWithCallback(
+				self.finishedChannelSelection,
+				ChannelSelection.SimpleChannelSelection,
+				_("Select channel to record from")
+			)
+		elif config.usage.setup_level.index >= 2 and cur == self.dirname:
+			self.session.openWithCallback(
+				self.pathSelected,
+				MovieLocationBox,
+				_("Choose target folder"),
+				self.timerentry_dirname.value,
+				minFree = 100 # We require at least 100MB free space
+			)
 		else:
 			self.keyGo()
 
@@ -248,13 +258,13 @@ class TimerEntry(Screen, ConfigListScreen):
 	def getBeginEnd(self):
 		enddate = self.timerentry_enddate.value
 		endtime = self.timerentry_endtime.value
-		
+
 		startdate = self.timerentry_startdate.value
 		starttime = self.timerentry_starttime.value
-		
+
 		begin = self.getTimestamp(startdate, starttime)
 		end = self.getTimestamp(enddate, endtime)
-		
+
 		# because of the dateChecks, startdate can't be < enddate.
 		# however, the endtime can be less than the starttime.
 		# in this case, add 1 day.
@@ -270,11 +280,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.afterEvent = {"nothing": AFTEREVENT.NONE, "deepstandby": AFTEREVENT.DEEPSTANDBY, "standby": AFTEREVENT.STANDBY}[self.timerentry_afterevent.value]
 		self.timer.service_ref = self.timerentry_service_ref
 
-		# TODO: fix that thing with none (this might as well just be ignored)
-		if self.timerentry_dirname.value == "/hdd/movie/":
-			self.timer.dirname = None
-		else:
-			self.timer.dirname = self.timerentry_dirname.value
+		self.timer.dirname = self.timerentry_dirname.value
+		config.movielist.last_timer_videodir.value = self.timer.dirname
+		config.movielist.last_timer_videodir.save()
 
 		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()
@@ -285,11 +293,11 @@ class TimerEntry(Screen, ConfigListScreen):
 
 			if self.timerentry_repeated.value == "weekly":
 				self.timer.setRepeated(self.timerentry_weekday.index)
-				
+
 			if self.timerentry_repeated.value == "weekdays":
 				for x in range(0,5):
 					self.timer.setRepeated(x)
-				
+
 			if self.timerentry_repeated.value == "user":
 				for x in range(0,7):
 					if self.timerentry_day[x].value:
@@ -298,7 +306,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timer.repeatedbegindate = self.buildRepeatedBegin(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
 			self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.value)
 			self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.value)
-			
+
 			# when a timer end is set before the start, add 1 day
 			if self.timer.end < self.timer.begin:
 				self.timer.end += 86400
@@ -335,22 +343,10 @@ class TimerEntry(Screen, ConfigListScreen):
 	def keyCancel(self):
 		self.close((False,))
 
-	def selectPath(self):
-		if config.usage.setup_level.index < 2: #-expert
-			return
-		self.session.openWithCallback(
-			self.pathSelected,
-			LocationBox,
-			text = _("Choose target folder"),
-			filename = "",
-			currDir = None, # TODO: fix FileList to correctly determine mountpoint
-			minFree = 100
-		)
-
 	def pathSelected(self, res):
 		if res is not None:
-			self.timerentry_dirname.choices.append(res)
-			self.timerentry_dirname.description[res] = res
+			if config.movielist.videodirs.value != self.timerentry_dirname.choices:
+				self.timerentry_dirname.setChoices(config.movielist.videodirs.value, default=res)
 			self.timerentry_dirname.value = res
 
 class TimerLog(Screen):
@@ -358,17 +354,17 @@ class TimerLog(Screen):
 		Screen.__init__(self, session)
 		self.timer = timer;
 		self.log_entries = self.timer.log_entries[:]
-		
+
 		self.fillLogList()
-		
+
 		self["loglist"] = MenuList(self.list)
 		self["logentry"] = Label()
-		
+
 		self["key_red"] = Button(_("Delete entry"))
 		self["key_green"] = Button()
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button(_("Clear log"))
-		
+
 		self.onShown.append(self.updateText)
 
 		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
@@ -396,24 +392,24 @@ class TimerLog(Screen):
 		self.list = [ ]
 		for x in self.log_entries:
 			self.list.append((str(time.strftime("%Y-%m-%d %H-%M", time.localtime(x[0])) + " - " + x[2]), x))
-	
-	def clearLog(self):		
+
+	def clearLog(self):
 		self.log_entries = []
 		self.fillLogList()
 		self["loglist"].l.setList(self.list)
 		self.updateText()
-		
+
 	def keyClose(self):
 		if self.timer.log_entries != self.log_entries:
 			self.timer.log_entries = self.log_entries
 			self.close((True, self.timer))
 		else:
 			self.close((False,))
-		
+
 	def up(self):
 		self["loglist"].instance.moveSelection(self["loglist"].instance.moveUp)
 		self.updateText()
-		
+
 	def down(self):
 		self["loglist"].instance.moveSelection(self["loglist"].instance.moveDown)
 		self.updateText()
@@ -421,7 +417,7 @@ class TimerLog(Screen):
 	def left(self):
 		self["loglist"].instance.moveSelection(self["loglist"].instance.pageUp)
 		self.updateText()
-		
+
 	def right(self):
 		self["loglist"].instance.moveSelection(self["loglist"].instance.pageDown)
 		self.updateText()
