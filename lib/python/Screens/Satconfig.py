@@ -79,7 +79,10 @@ class NimSetup(Screen, ConfigListScreen):
 					self.createPositionerSetup(self.list)
 			elif self.nimConfig.configMode.value in ["satposdepends", "equal"]:
 				choices = []
-				nimlist = nimmanager.getNimListOfType(self.nim.type, exception = self.nim.slot)
+				if self.nim.type == "DVB-S2":
+					nimlist = nimmanager.getNimListOfType("DVB-S", exception = self.nim.slot)
+				else:
+					nimlist = nimmanager.getNimListOfType(self.nim.type, exception = self.nim.slot)
 				for id in nimlist:
 					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
