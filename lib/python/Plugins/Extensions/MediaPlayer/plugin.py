@@ -532,7 +532,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def copyDirectory(self, directory, recursive = True):
 		print "copyDirectory", directory
-		filelist = FileList(directory, useServiceRef = True, isTop = True)
+		filelist = FileList(directory, useServiceRef = True)
 
 		for x in filelist.getFileList():
 			if x[0][1] == True: #isDir
