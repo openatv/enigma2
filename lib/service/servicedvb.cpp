@@ -1110,6 +1110,7 @@ void eDVBServicePlay::serviceEvent(int event)
 			else
 				m_event_handler.start(m_demux, sid);
 		}
+		m_event((iPlayableService*)this, evTunedIn);
 		break;
 	}
 	case eDVBServicePMTHandler::eventNoResources:

@@ -730,6 +730,7 @@ public:
 		evStart,
 		evEnd,
 
+		evTunedIn,
 		evTuneFailed,
 
 			/* when iServiceInformation is implemented:*/
