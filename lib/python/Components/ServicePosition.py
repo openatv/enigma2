@@ -164,3 +164,7 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 			self.instance.setSeekPosition(pos)
 	
 	seek_pointer_position = property(getSeekPosition, setSeekPosition)
+
+	def destroy(self):
+		PerServiceBase.destroy(self)
+		GUIComponent.destroy(self)

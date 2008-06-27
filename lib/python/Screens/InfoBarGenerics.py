@@ -1619,16 +1619,18 @@ class InfoBarSubserviceSelection:
 			}, -1)
 		self["SubserviceQuickzapAction"].setEnabled(False)
 
-		self.session.nav.event.append(self.checkSubservicesAvail) # we like to get service events
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedInfo: self.checkSubservicesAvail
+			})
 
 		self.bsel = None
 
-	def checkSubservicesAvail(self, ev):
-		if ev == iPlayableService.evUpdatedEventInfo:
-			service = self.session.nav.getCurrentService()
-			subservices = service and service.subServices()
-			if not subservices or subservices.getNumberOfSubservices() == 0:
-				self["SubserviceQuickzapAction"].setEnabled(False)
+	def checkSubservicesAvail(self):
+		service = self.session.nav.getCurrentService()
+		subservices = service and service.subServices()
+		if not subservices or subservices.getNumberOfSubservices() == 0:
+			self["SubserviceQuickzapAction"].setEnabled(False)
 
 	def nextSubservice(self):
 		self.changeSubservice(+1)

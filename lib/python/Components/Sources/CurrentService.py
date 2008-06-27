@@ -27,3 +27,8 @@ class CurrentService(PerServiceBase, Source):
 		return self.navcore.getCurrentService()
 
 	service = property(getCurrentService)
+
+	def destroy(self):
+		PerServiceBase.destroy(self)
+		Source.destroy(self)
+
