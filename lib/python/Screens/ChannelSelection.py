@@ -1086,7 +1086,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"keyTV": self.setModeTv,
 			})
 
-		self.__event_tracker = ServiceEventTracker(screen=self, in_thread=True, eventmap=
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__evServiceStart,
 				iPlayableService.evEnd: self.__evServiceEnd
@@ -1356,7 +1356,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 				"ok": self.channelSelected,
 			})
 
-		self.__event_tracker = ServiceEventTracker(screen=self, in_thread=True, eventmap=
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__evServiceStart,
 				iPlayableService.evEnd: self.__evServiceEnd
