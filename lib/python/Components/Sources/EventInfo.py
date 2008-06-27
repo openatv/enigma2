@@ -35,3 +35,8 @@ class EventInfo(PerServiceBase, Source, object):
 			self.changed((self.CHANGED_CLEAR,))
 		else:
 			self.changed((self.CHANGED_ALL,))
+
+	def destroy(self):
+		PerServiceBase.destroy(self)
+		Source.destroy(self)
+

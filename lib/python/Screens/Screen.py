@@ -75,10 +75,11 @@ class Screen(dict, GUISkin):
 				x()
 	
 	def execEnd(self):
+		active_components = self.active_components
 #		for (name, val) in self.items():
-		for val in self.active_components:
+		self.active_components = None
+		for val in active_components:
 			val.execEnd()
-		del self.active_components
 #		assert self.session != None, "execEnd on non-execing screen!"
 #		self.session = None
 		self.execing = False

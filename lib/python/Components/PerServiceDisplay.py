@@ -22,12 +22,13 @@ class PerServiceBase(object):
 
 	def event_callback(self, ev):
 		# loop up if we need to handle this event
-		if self.eventmap.has_key(ev):
+		func = self.eventmap.get(ev)
+		if func:
 			# call handler
 			if self.with_event:
-				self.eventmap[ev](ev)
+				func(ev)
 			else:
-				self.eventmap[ev]()
+				func()
 	
 	def enablePolling(self, interval=60000):
 		if interval:
@@ -48,6 +49,10 @@ class PerServiceDisplay(PerServiceBase, VariableText, GUIComponent):
 		VariableText.__init__(self)
 		PerServiceBase.__init__(self, navcore, eventmap)
 
+	def destroy(self):
+		PerServiceBase.destroy(self)
+		GUIComponent.destroy(self)
+
 	GUI_WIDGET = eLabel
 
 class PerServiceDisplayProgress(PerServiceBase, VariableValue, GUIComponent):
@@ -63,3 +68,7 @@ class PerServiceDisplayProgress(PerServiceBase, VariableValue, GUIComponent):
 		self.event(iPlayableService.evEnd)
 
 	GUI_WIDGET = eSlider
+
+	def destroy(self):
+		PerServiceBase.destroy(self)
+		GUIComponent.destroy(self)

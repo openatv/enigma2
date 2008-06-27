@@ -8,11 +8,12 @@ from Tools.CList import CList
 def cached(f):
 	name = f.__name__
 	def wrapper(self):
-		if self.cache is None:
+		cache = self.cache
+		if cache is None:
 			return f(self)
-		if name not in self.cache:
-			self.cache[name] = (True, f(self))
-		return self.cache[name][1]
+		if name not in cache:
+			cache[name] = (True, f(self))
+		return cache[name][1]
 	return wrapper
 
 class Element(object):

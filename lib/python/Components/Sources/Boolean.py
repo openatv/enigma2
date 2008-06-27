@@ -41,3 +41,4 @@ class Boolean(Source, object):
 	def destroy(self):
 		if self.poll_timer:
 			self.poll_timer.callback.remove(self.poll)
+		Source.destroy(self)

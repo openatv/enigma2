@@ -27,3 +27,7 @@ class RdsDecoder(PerServiceBase, Source, object):
 			self.changed((self.CHANGED_CLEAR,))
 		else:
 			self.changed((self.CHANGED_SPECIFIC, what))
+
+	def destroy(self):
+		PerServiceBase.destroy(self)
+		Source.destroy(self)

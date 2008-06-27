@@ -26,22 +26,23 @@ class ServiceEventTracker:
 		self.screen.session.nav.event.remove(self.__event)
 
 	def __event(self, ev):
-		set = ServiceEventTracker
-		screen = self.screen
-		nav = screen.session.nav
-		cur_ref = nav.getCurrentlyPlayingServiceReference()
-		old_service_running = set.oldRef and cur_ref and cur_ref == set.oldRef and set.oldService and set.oldService == str(nav.getCurrentService())
-		if not old_service_running:
-			set.oldService = None
-			set.oldRef = None
+		func = self.__eventmap.get(ev)
+		if func:
+			set = ServiceEventTracker
+			screen = self.screen
+			nav = screen.session.nav
+			cur_ref = nav.getCurrentlyPlayingServiceReference()
+			old_service_running = set.oldRef and cur_ref and cur_ref == set.oldRef and set.oldService and set.oldService == str(nav.getCurrentService())
+			if not old_service_running:
+				set.oldService = None
+				set.oldRef = None
 #		print "old_service_running", old_service_running
-		if ev in self.__eventmap:
 			ssize = set.InfoBarStackSize
 			stack = set.InfoBarStack
 			if (not isinstance(screen, InfoBarBase) or # let pass all events to screens not derived from InfoBarBase
 				(not old_service_running and ssize and stack[ssize-1] == screen) or # let pass events from currently running service just to current active screen (derived from InfoBarBase)
 				(old_service_running and ssize > 1 and stack[ssize-2] == screen)): # let pass events from old running service just to previous active screen (derived from InfoBarBase)
-				self.__eventmap[ev]()
+				func()
 #			else:
 #				print "ignore event", ev, "for inactive infobar '" + str(self.screen) + "'"
 
