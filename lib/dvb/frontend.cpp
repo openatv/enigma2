@@ -2259,9 +2259,9 @@ bool eDVBFrontend::setSlotInfo(ePyObject obj)
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||
 		!!strstr(m_description, "Alps BSBE2") ||
 		!!strstr(m_description, "Alps -S");
-	m_can_handle_dvbs2 = !!strstr(m_description, "Alps BSBE2") || !!strstr(m_description, "bcm4501");
-	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s",
-		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No" );
+	m_can_handle_dvbs2 = !!strstr(m_description, "Alps BSBE2") || !!strstr(m_description, "BCM4501");
+	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
+		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", m_can_handle_dvbs2 ? "Yes" : "No" );
 	return true;
 arg_error:
 	PyErr_SetString(PyExc_StandardError,
