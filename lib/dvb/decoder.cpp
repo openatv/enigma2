@@ -1007,12 +1007,7 @@ RESULT eTSMPEGDecoder::setSyncMaster(int who)
 
 RESULT eTSMPEGDecoder::start()
 {
-	timespec now, tmp;
-	extern timespec service_start;
 	RESULT r;
-	clock_gettime(CLOCK_MONOTONIC, &now);
-	tmp = now - service_start;
-	eDebug("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! %d:%d", tmp.tv_sec, tmp.tv_nsec);
 	r = setState();
 	if (r)
 		return r;

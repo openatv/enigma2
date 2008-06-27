@@ -18,4 +18,4 @@ install_PYTHON = \
 	MultiContent.py MediaPlayer.py TunerInfo.py VideoWindow.py ChoiceList.py \
 	Element.py Playlist.py ParentalControl.py ParentalControlList.py \
 	Ipkg.py SelectionList.py Scanner.py SystemInfo.py DreamInfoHandler.py \
-	Task.py Thread.py
+	Task.py
