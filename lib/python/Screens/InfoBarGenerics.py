@@ -62,7 +62,7 @@ class InfoBarShowHide:
 				"hide": self.hide,
 			}, 1) # lower prio to make it possible to override ok and cancel..
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+		self.__event_tracker = ServiceEventTracker(screen=self, in_thread=True, eventmap=
 			{
 				iPlayableService.evStart: self.serviceStarted,
 			})

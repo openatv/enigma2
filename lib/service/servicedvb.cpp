@@ -939,6 +939,8 @@ RESULT eDVBServiceList::setListName(const std::string &name)
 	return m_bouquet->setListName(name);
 }
 
+timespec service_start;
+
 RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 	ePtr<eDVBService> service;
@@ -946,6 +948,7 @@ RESULT eServiceFactoryDVB::play(const eServiceReference &ref, ePtr<iPlayableServ
 	if (r)
 		service = 0;
 		// check resources...
+	clock_gettime(CLOCK_MONOTONIC, &service_start);
 	ptr = new eDVBServicePlay(ref, service);
 	return 0;
 }
