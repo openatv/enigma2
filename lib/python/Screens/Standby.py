@@ -12,8 +12,6 @@ class Standby(Screen):
 		#set input to encoder
 		self.avswitch.setInput("ENCODER")
 		#restart last played service
-		if self.prev_running_service:
-			self.session.nav.playService(self.prev_running_service)
 		#unmute adc
 		self.leaveMute()
 		#set brightness of lcd
@@ -56,6 +54,11 @@ class Standby(Screen):
 		config.lcd.standby.apply()
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		if self.prev_running_service:
+			self.session.nav.playService(self.prev_running_service)
 
 	def createSummary(self):
 		return StandbySummary

@@ -1371,6 +1371,11 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		},-1)
 		self["RdsActions"].setEnabled(False)
 		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		lastservice=eServiceReference(config.tv.lastservice.value)
+		self.session.nav.playService(lastservice)
 
 	def startRassInteractive(self):
 		self.info.hide();
@@ -1389,8 +1394,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.infobar.rds_display.onRassInteractivePossibilityChanged.remove(self.RassInteractivePossibilityChanged)
 		self.info.hide()
 		#set previous tv service
-		lastservice=eServiceReference(config.tv.lastservice.value)
-		self.session.nav.playService(lastservice)
 		self.close(None)
 
 	def __evServiceStart(self):

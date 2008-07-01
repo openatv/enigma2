@@ -730,14 +730,14 @@ class InfoBarSeek:
 		return True
 
 	def __seekableStatusChanged(self):
-		print "seekable status changed!"
+#		print "seekable status changed!"
 		if not self.isSeekable():
 			self["SeekActions"].setEnabled(False)
-			print "not seekable, return to play"
+#			print "not seekable, return to play"
 			self.setSeekState(self.SEEK_STATE_PLAY)
 		else:
 			self["SeekActions"].setEnabled(True)
-			print "seekable"
+#			print "seekable"
 
 	def __serviceStarted(self):
 		self.seekstate = self.SEEK_STATE_PLAY
@@ -1170,8 +1170,8 @@ class InfoBarTimeshift:
 	def __seekableStatusChanged(self):
 		enabled = False
 
-		print "self.isSeekable", self.isSeekable()
-		print "self.timeshift_enabled", self.timeshift_enabled
+#		print "self.isSeekable", self.isSeekable()
+#		print "self.timeshift_enabled", self.timeshift_enabled
 
 		# when this service is not seekable, but timeshift
 		# is enabled, this means we can activate
@@ -1179,7 +1179,7 @@ class InfoBarTimeshift:
 		if not self.isSeekable() and self.timeshift_enabled:
 			enabled = True
 
-		print "timeshift activate:", enabled
+#		print "timeshift activate:", enabled
 		self["TimeshiftActivateActions"].setEnabled(enabled)
 
 	def __serviceStarted(self):

@@ -125,15 +125,20 @@ class PositionerSetup(Screen):
 		self.statusTimer = eTimer()
 		self.statusTimer.callback.append(self.updateStatus)
 		self.statusTimer.start(50, False)
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		self.session.nav.playService(self.oldref)
 
 	def restartPrevService(self, yesno):
 		if yesno:
 			if self.frontend:
 				self.frontend = None
 				del self.raw_channel
-			self.session.nav.playService(self.oldref)
-		self.close(None)
-	
+		else:
+			self.oldref=None
+		self.close(None)	
+
 	def keyCancel(self):
 		if self.oldref:
 			self.session.openWithCallback(self.restartPrevService, MessageBox, _("Zap back to service before positioner setup?"), MessageBox.TYPE_YESNO)
