@@ -115,6 +115,10 @@ class Satfinder(ScanSetup):
 		self["introduction"].setText("")
 		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
 		self.initcomplete = True
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		self.session.nav.playService(self.oldref)
 
 	def createSetup(self):
 		self.typeOfTuningEntry = None
@@ -227,7 +231,8 @@ class Satfinder(ScanSetup):
 			if self.frontend:
 				self.frontend = None
 				del self.raw_channel
-			self.session.nav.playService(self.oldref)
+		else:
+			self.oldref = None
 		self.close(None)
 
 	def keyCancel(self):

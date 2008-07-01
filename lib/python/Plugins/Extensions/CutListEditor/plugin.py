@@ -213,6 +213,10 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		# to track new entries we save the last version of the cutlist
 		self.last_cuts = [ ]
 		self.cut_start = None
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		self.session.nav.playService(self.old_service)
 
 	def showTutorial(self):
 		if not self.tutorial_seen:
@@ -258,7 +262,6 @@ Then seek to the end, press OK, select 'end cut'. That's it.
 			self.removeMark(m)
 
 	def exit(self):
-		self.session.nav.playService(self.old_service)
 		self.close()
 
 	def getCutlist(self):

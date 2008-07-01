@@ -152,6 +152,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.playService(service)
 		self.returning = False
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		self.session.nav.playService(self.lastservice)
 
 	def leavePlayer(self):
 		self.is_closing = True
@@ -171,14 +175,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayerConfirmed(self, answer):
 		answer = answer and answer[1]
 		if answer == "quit":
-			self.session.nav.playService(self.lastservice)
 			config.movielist.last_videodir.cancel()
 			self.close()
 		elif answer == "movielist":
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.returning = True
 			self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
-			self.session.nav.playService(self.lastservice)
 		elif answer == "restart":
 			self.doSeek(0)
 

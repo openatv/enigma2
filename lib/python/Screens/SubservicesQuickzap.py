@@ -46,6 +46,11 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarInst
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumberGlobal
 			}, 0)
+		
+		self.onClose.append(self.__onClose)
+
+	def __onClose(self):
+		self.session.nav.playService(self.restoreService, False)
 
 	def onLayoutFinished(self):
 		self.timer.start(0,True)
@@ -113,7 +118,6 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarInst
 	
 	def quit(self, answer):
 		if answer:
-			self.session.nav.playService(self.restoreService, False)
 			self.close()
 		
 	def playSubservice(self, number = 0):
