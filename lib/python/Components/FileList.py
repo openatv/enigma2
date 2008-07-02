@@ -127,8 +127,8 @@ class FileList(MenuList):
 
 		if directory is None and self.showMountpoints: # present available mountpoints
 			for p in harddiskmanager.getMountedPartitions():
-				path = os_path.join(p.mountpoint,"")
-				if not self.inhibitMounts or ((not path in self.inhibitMounts) and (not self.inParentDirs(path, self.inhibitDirs))):
+				path = os_path.join(p.mountpoint, "")
+				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(FileEntryComponent(name = p.description, absolute = path, isDir = True))
 			files = [ ]
 			directories = [ ]

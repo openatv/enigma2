@@ -31,7 +31,7 @@ from Screens.TimeDateInput import TimeDateInput
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
-from Tools.Directories import SCOPE_HDD, resolveFilename
+from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eDVBResourceManager, iFrontendInformation, eEPGCache
@@ -1487,9 +1487,13 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def instantRecord(self):
+		dir = config.movielist.last_videodir.value
+		if not pathExists(dir):
+			dir = resolveFilename(SCOPE_HDD)
 		try:
-			stat = os_stat(resolveFilename(SCOPE_HDD))
+			stat = os_stat(dir)
 		except:
+			# XXX: this message is a little odd as we might be recording to a remote device
 			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 

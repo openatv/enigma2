@@ -935,6 +935,7 @@ class ConfigSet(ConfigElement):
 class ConfigLocations(ConfigElement):
 	def __init__(self, default = [], visible_width = False):
 		ConfigElement.__init__(self)
+		self.visible_width = visible_width
 		self.pos = -1
 		self.default = default
 		self.locations = []

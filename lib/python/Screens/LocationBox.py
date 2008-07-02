@@ -325,12 +325,17 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		else:
 			return self["booklist"].getCurrent()
 
-	def selectConfirmed(self, res):
-		if res:
+	def selectConfirmed(self, ret):
+		if ret:
 			ret = ''.join([self.getPreferredFolder(), self.filename])
-			if self.realBookmarks and self.autoAdd and not ret in self.bookmarks:
-				self.bookmarks.append(self.getPreferredFolder())
-				self.bookmarks.sort()
+			if self.realBookmarks:
+				if self.autoAdd and not ret in self.bookmarks:
+					self.bookmarks.append(self.getPreferredFolder())
+					self.bookmarks.sort()
+
+				if self.bookmarks != self.realBookmarks.value:
+					self.realBookmarks.value = self.bookmarks
+					self.realBookmarks.save()
 			self.close(ret)
 
 	def select(self):
@@ -355,15 +360,9 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					_("There might not be enough Space on the selected Partition.\nDo you really want to continue?"),
 					type = MessageBox.TYPE_YESNO
 				)
-				# No minimum free Space means we can safely close
+			# No minimum free Space means we can safely close
 			else:
 				self.selectConfirmed(True)
-
-	def close(self, ret):
-		if ret and self.realBookmarks and self.bookmarks != self.realBookmarks.value:
-			self.realBookmarks.value = self.bookmarks
-			self.realBookmarks.save()
-		Screen.close(self, ret)
 
 	def changeName(self):
 		if self.filename != "":
@@ -402,13 +401,13 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			menu = []
 			if self.currList == "filelist":
 				menu.append((_("switch to bookmarks"), self.switchToBookList))
-				menu.append((_("add bookmark"), self.AddRemoveBookmark))
+				menu.append((_("add bookmark"), self.addRemoveBookmark))
 				if self.editDir:
 					menu.append((_("create directory"), self.createDir))
 					menu.append((_("remove directory"), self.removeDir))
 			else:
 				menu.append((_("switch to filelist"), self.switchToFileList))
-				menu.append((_("remove bookmark"), self.AddRemoveBookmark))
+				menu.append((_("remove bookmark"), self.addRemoveBookmark))
 
 			self.session.openWithCallback(
 				self.menuCallback,
@@ -501,7 +500,5 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 class MovieLocationBox(LocationBox):
 	def __init__(self, session, text, dir, minFree = None):
-		inhibitMounts = []
-		if config.usage.setup_level.index < 2: # -expert
-			inhibitMounts.append("/")
-		LocationBox.__init__(self, session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitMounts = inhibitMounts, minFree = minFree)
+		inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
+		LocationBox.__init__(self, session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = inhibitDirs, minFree = minFree)

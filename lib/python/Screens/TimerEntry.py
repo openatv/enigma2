@@ -99,10 +99,11 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_enddate = ConfigDateTime(default = self.timer.end, formatstring =  _("%d.%B %Y"), increment = 86400)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
 
+			default = self.timer.dirname or resolveFilename(SCOPE_HDD)
 			tmp = config.movielist.videodirs.value
-			if self.timer.dirname and not self.timer.dirname in tmp:
-				tmp.append(self.timer.dirname)
-			self.timerentry_dirname = ConfigSelection(default = self.timer.dirname or resolveFilename(SCOPE_HDD), choices = tmp)
+			if default not in tmp:
+				tmp.append(default)
+			self.timerentry_dirname = ConfigSelection(default = default, choices = tmp)
 
 			self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
 
