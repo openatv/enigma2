@@ -23,10 +23,10 @@ class VideoFinetune(Screen):
 		{
 			"1": self.testpic_brightness,
 			"2": self.testpic_contrast,
-			"3": self.testpic_colors,
-			"4": self.testpic_filter,
-			"5": self.testpic_gamma,
-			"6": self.testpic_fubk,
+#			"3": self.testpic_colors,
+			"3": self.testpic_filter,
+			"4": self.testpic_gamma,
+			"5": self.testpic_fubk,
 			"ok": self.callNext,
 			"cancel": self.close,
 		})
@@ -95,7 +95,8 @@ class VideoFinetune(Screen):
 		c.flush()
 
 	def testpic_contrast(self):
-		self.next = self.testpic_colors
+#		self.next = self.testpic_colors
+		self.next = self.close
 
 		c = self["Canvas"]
 
