@@ -3,6 +3,7 @@ from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCO
 from Components.NimManager import nimmanager
 from Components.Ipkg import IpkgComponent
 from Components.config import config, configfile
+from Tools.HardwareInfo import HardwareInfo
 from enigma import eConsoleAppContainer, eDVBDB
 import os
 
@@ -97,6 +98,7 @@ class DreamInfoHandler:
 	STATUS_INIT = 4
 	
 	def __init__(self, statusCallback, blocking = False, neededTag = None):
+		self.hardware_info = HardwareInfo()
 		self.directory = "/"
 		
 		self.neededTag = neededTag
@@ -165,14 +167,19 @@ class DreamInfoHandler:
 				if int(sat) not in nimmanager.getConfiguredSats():
 					return False			
 		if prerequisites.has_key("bcastsystem"):
+			has_system = False
 			for bcastsystem in prerequisites["bcastsystem"]:
 				if nimmanager.hasNimType(bcastsystem):
-					return True
-			return False
+					has_system = True
+			if not has_system:
+				return False
 		if prerequisites.has_key("hardware"):
+			hardware_found = False
 			for hardware in prerequisites["hardware"]:
-				# TODO: hardware detection
-				met = True
+				if hardware == self.hardware_info.device_name:
+					hardware_found = True
+			if not hardware_found:
+				return False
 		return True
 	
 	def installPackages(self, indexes):
@@ -186,6 +193,10 @@ class DreamInfoHandler:
 		self.installPackage(self.installIndexes[self.currentlyInstallingMetaIndex])
 
 	def installPackage(self, index):
+		print "self.packageslist:", self.packageslist
+		if len(self.packageslist) <= index:
+			print "no package with index", index, "found... installing nothing"
+			return
 		print "installing package with index", index, "and name", self.packageslist[index][0]["attributes"]["name"]
 		
 		attributes = self.packageslist[index][0]["attributes"]
