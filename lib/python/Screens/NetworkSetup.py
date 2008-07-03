@@ -172,7 +172,10 @@ class AdapterSetup(Screen, ConfigListScreen):
 					self.nwlist.append("No Networks found")
 				
 			wsconfig = self.ws.loadConfig()
-			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.essid or wsconfig['ssid'] ))
+			default = self.essid or wsconfig['ssid']
+			if default not in self.nwlist:
+				self.nwlist.append(default)
+			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = default ))
 			config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = wsconfig['encryption'] ))
 			config.plugins.wlan.encryption.type = NoSave(ConfigSelection(list, default = wsconfig['encryption_type'] ))
 			config.plugins.wlan.encryption.psk = NoSave(ConfigText(default = wsconfig['key'], fixed_size = False,visible_width = 30))
