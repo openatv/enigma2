@@ -303,13 +303,13 @@ class WorkspaceExistsPrecondition(Condition):
 class DiskspacePrecondition(Condition):
 	def __init__(self, diskspace_required):
 		self.diskspace_required = diskspace_required
-		self.diskspace_available = None
+		self.diskspace_available = 0
 
 	def check(self, task):
 		import os
 		try:
 			s = os.statvfs(task.job.workspace)
-			self.diskspace_available = s.f_bsize * s.f_bavail 
+			self.diskspace_available = s.f_bsize * s.f_bavail
 			return self.diskspace_available >= self.diskspace_required
 		except OSError:
 			return False
