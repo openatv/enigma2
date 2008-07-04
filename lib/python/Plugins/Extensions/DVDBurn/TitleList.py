@@ -3,15 +3,26 @@ import DVDProject, DVDTitle, TitleList, TitleCutter
 from Screens.Screen import Screen
 from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 
 class TitleList(Screen):
 
 	skin = """
-		<screen position="100,100" size="550,400" title="DVD Tool" >
-			<widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="0,0" size="400,400">
-				<convert type="StaticMultiList" />
-			</widget>
+		<screen position="90,83" size="560,445" title="DVD Tool" >
+		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		    <ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		    <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		    <ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		    <widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		    <widget source="title_label" render="Label" position="6,48" size="436,24" font="Regular;18" />
+		    <widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="6,72" size="400,350">
+			<convert type="StaticMultiList" />
+		    </widget>
+		    <widget source="statusbar" render="Label" position="6,422" size="436,24" font="Regular;18" halign="left" />
 		</screen>"""
 
 	def __init__(self, session, project = None):
@@ -31,6 +42,14 @@ class TitleList(Screen):
 				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn")),
 			})
 
+		self["key_red"] = StaticText(_("Add title"))
+		self["key_green"] = StaticText(_("Edit title"))
+		self["key_yellow"] = StaticText(_("Remove title"))
+		self["key_blue"] = StaticText(_("Save"))
+
+		self["title_label"] = StaticText(_("Table of content to be burned to DVD:"))
+		self["statusbar"] = StaticText(_("When complete, press Key 0 to burn the collection!"))
+
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"cancel": self.leave
@@ -38,7 +57,7 @@ class TitleList(Screen):
 
 		#Action("addTitle", self.addTitle)
 
-		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=50, fonts = [gFont("Regular", 20)])
+		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
 		self.updateTitleList()
 
 		#self["addTitle"] = ActionButton("titleactions", "addTitle")
