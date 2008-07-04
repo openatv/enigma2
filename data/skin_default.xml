@@ -1083,11 +1083,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 	</screen>
 	<screen name="JobView" position="84,122" size="522,324" title="Job View">
-		<widget source="job_progress" render="Progress" position="130,184" size="362,29" borderWidth="1" />
-		<widget source="job_status" render="Label" position="15,246" size="278,62" font="Regular;32" />
-		<widget source="job_name" render="Label" position="25,12" size="464,76" font="Regular;32" />
-		<widget source="job_task" render="Label" position="19,93" size="475,61" font="Regular;32" />
-		<widget source="job_progress" render="Label" position="18,164" size="106,65" font="Regular;48">
+		<widget source="job_progress" render="Progress" position="130,184" size="362,28" borderWidth="1" />
+		<widget source="job_status" render="Label" position="15,246" size="278,62" font="Regular;28" />
+		<widget source="job_name" render="Label" position="25,12" size="464,76" font="Regular;28" />
+		<widget source="job_task" render="Label" position="19,93" size="475,61" font="Regular;28" />
+		<widget source="job_progress" render="Label" position="18,182" size="106,65" font="Regular;32">
 			<convert type="ProgressToText" />
 		</widget>
 		<widget source="finished" render="Pixmap" pixmap="skin_default/buttons/green.png" position="339,251" size="140,40" alphatest="on" >
