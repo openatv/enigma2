@@ -33,7 +33,8 @@ class JobView(InfoBarNotifications, Screen):
 		self.state_changed()
 
 	def windowHide(self):
-		self.job.state_changed.remove(self.state_changed)
+		if len(self.job.state_changed) > 0:
+		    self.job.state_changed.remove(self.state_changed)
 
 	def state_changed(self):
 		j = self.job
