@@ -28,6 +28,8 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("vob");
 		extensions.push_back("wav");
 		extensions.push_back("wave");
+		extensions.push_back("mkv");
+		extensions.push_back("avi");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -133,11 +135,13 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 
 	int is_mpeg_ps = !(strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin"));
 	int is_mpeg_ts = !strcasecmp(ext, ".ts");
+	int is_matroska = !strcasecmp(ext, ".mkv");
+	int is_avi = !strcasecmp(ext, ".avi");
 	int is_mp3 = !strcasecmp(ext, ".mp3"); /* force mp3 instead of decodebin */
-	int is_video = is_mpeg_ps || is_mpeg_ts;
+	int is_video = is_mpeg_ps || is_mpeg_ts || is_matroska || is_avi;
 	int is_streaming = !strncmp(filename, "http://", 7);
 	
-	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3);
+	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi);
 	
 	int is_audio = !is_video;
 	
@@ -215,9 +219,13 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		
 		if (is_mpeg_ps)
 			mpegdemux = gst_element_factory_make("flupsdemux", "mpegdemux");
-		else
+		else if (is_mpeg_ts)
 			mpegdemux = gst_element_factory_make("flutsdemux", "mpegdemux");
-			
+		else if (is_matroska)
+			mpegdemux = gst_element_factory_make("matroskademux", "mpegdemux");
+		else if (is_avi)
+			mpegdemux = gst_element_factory_make("avidemux", "mpegdemux");
+
 		if (!mpegdemux)
 		{
 			eDebug("fluendo mpegdemux not available, falling back to mpegdemux\n");
@@ -268,7 +276,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				/* create audio bin with the audioconverter, the capsfilter and the audiosink */
 			m_gst_audio = gst_bin_new ("audiobin");
 
-			GstPad *audiopad = gst_element_get_pad (conv, "sink");
+			GstPad *audiopad = gst_element_get_static_pad (conv, "sink");
 			gst_bin_add_many(GST_BIN(m_gst_audio), conv, flt, sink, (char*)0);
 			gst_element_link_many(conv, flt, sink, (char*)0);
 			gst_element_add_pad(m_gst_audio, gst_ghost_pad_new ("sink", audiopad));
@@ -638,22 +646,22 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	
 	gchar *name;
 	name = gst_pad_get_name (pad);
 	g_print ("A new pad %s was created\n", name);
-	if (!strncmp(name, "audio_", 6)) // mpegdemux uses video_nn with n=0,1,.., flupsdemux uses stream id
-		gst_pad_link(pad, gst_element_get_pad (_this->m_gst_audioqueue, "sink"));
-	if (!strncmp(name, "video_", 6))
-		gst_pad_link(pad, gst_element_get_pad (_this->m_gst_videoqueue, "sink"));
+	GstPad *sinkpad;
+
+	if (g_strrstr(name,"audio")) // mpegdemux uses video_nn with n=0,1,.., flupsdemux uses stream id
+		gst_pad_link(pad, gst_element_get_static_pad (_this->m_gst_audioqueue, "sink"));
+	if (g_strrstr(name,"video"))
+		gst_pad_link(pad, gst_element_get_static_pad (_this->m_gst_videoqueue, "sink"));
 	g_free (name);
-	
 }
 
 void eServiceMP3::gstCBfilterPadAdded(GstElement *filter, GstPad *pad, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	gst_pad_link(pad, gst_element_get_pad (_this->m_decoder, "sink"));
+	gst_pad_link(pad, gst_element_get_static_pad (_this->m_decoder, "sink"));
 }
 
 void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer user_data)
@@ -664,7 +672,7 @@ void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last,
 	GstPad *audiopad;
 
 	/* only link once */
-	audiopad = gst_element_get_pad (_this->m_gst_audio, "sink");
+	audiopad = gst_element_get_request_pad (_this->m_gst_audio, "sink");
 	if (GST_PAD_IS_LINKED (audiopad)) {
 		eDebug("audio already linked!");
 		g_object_unref (audiopad);
