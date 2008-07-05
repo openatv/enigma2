@@ -1535,7 +1535,19 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SET_POWER_LIMITING_MODE:
 			{
-				if (m_need_rotor_workaround)
+				char proc_name[64];
+				sprintf(proc_name, "/proc/stb/frontend/%d/static_current_limiting", m_dvbid);
+				FILE *f=fopen(proc_name, "w");
+				if (f) // new interface exist?
+				{
+					bool slimiting = m_sec_sequence.current()->mode == eSecCommand::modeStatic;
+					if (fprintf(f, "%s", slimiting ? "on" : "off") != 1)
+						eDebug("write %s failed!! (%m)", proc_name);
+					else
+						eDebug("[SEC] set %s current limiting", slimiting ? "static" : "dynamic");
+					fclose(f);
+				}
+				else if (m_need_rotor_workaround)
 				{
 					char dev[16];
 
@@ -2258,7 +2270,8 @@ bool eDVBFrontend::setSlotInfo(ePyObject obj)
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||
 		!!strstr(m_description, "Alps BSBE2") ||
-		!!strstr(m_description, "Alps -S");
+		!!strstr(m_description, "Alps -S") ||
+		!!strstr(m_description, "BCM4501");
 	m_can_handle_dvbs2 = !!strstr(m_description, "Alps BSBE2") || !!strstr(m_description, "BCM4501");
 	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
 		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", m_can_handle_dvbs2 ? "Yes" : "No" );
