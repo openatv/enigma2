@@ -55,12 +55,10 @@ class Wizard(Screen, HelpableScreen):
 			self.isPointsElement, self.isReboundsElement = 0, 0
 			self.wizard = wizard
 			self.currContent = ""
-			self.lastStep = 0
-			
-		
-		
+			self.lastStep = 0	
+
 		def startElement(self, name, attrs):
-			print "startElement", name
+			#print "startElement", name
 			self.currContent = name
 			if (name == "step"):
 				self.lastStep += 1
@@ -68,7 +66,7 @@ class Wizard(Screen, HelpableScreen):
 					id = str(attrs.get('id'))
 				else:
 					id = ""
-				print "id:", id
+				#print "id:", id
 				if attrs.has_key('nextstep'):
 					nextstep = str(attrs.get('nextstep'))
 				else:
@@ -97,7 +95,7 @@ class Wizard(Screen, HelpableScreen):
 						self.wizard[self.lastStep]["dynamiclist"] = attrs.get("source")
 					#self.wizard[self.lastStep]["list"].append(("Hallo", "test"))
 				if (attrs.has_key("evaluation")):
-					print "evaluation"
+					#print "evaluation"
 					self.wizard[self.lastStep]["listevaluation"] = attrs.get("evaluation")
 				if (attrs.has_key("onselect")):
 					self.wizard[self.lastStep]["onselect"] = attrs.get("onselect")			
@@ -111,7 +109,7 @@ class Wizard(Screen, HelpableScreen):
 				
 					self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
 					if (attrs.has_key('args')):
-						print "has args"
+						#print "has args"
 						self.wizard[self.lastStep]["config"]["args"] = str(attrs.get('args'))
 				elif type == "dynamic":
 					self.wizard[self.lastStep]["config"]["source"] = str(attrs.get('source'))
@@ -124,6 +122,7 @@ class Wizard(Screen, HelpableScreen):
 					self.codeafter = False
 			elif (name == "condition"):
 				pass
+			
 		def endElement(self, name):
 			self.currContent = ""
 			if name == 'code':
@@ -134,7 +133,8 @@ class Wizard(Screen, HelpableScreen):
 			elif name == 'condition':
 				self.wizard[self.lastStep]["condition"] = self.wizard[self.lastStep]["condition"].strip()
 			elif name == 'step':
-				print "Step number", self.lastStep, ":", self.wizard[self.lastStep]
+				#print "Step number", self.lastStep, ":", self.wizard[self.lastStep]
+				pass
 								
 		def characters(self, ch):
 			if self.currContent == "code":
@@ -153,13 +153,16 @@ class Wizard(Screen, HelpableScreen):
 
 		self.wizard = {}
 		parser = make_parser()
-		print "Reading " + self.xmlfile
+		if not isinstance(self.xmlfile, list):
+			self.xmlfile = [self.xmlfile]
+		print "Reading ", self.xmlfile
 		wizardHandler = self.parseWizard(self.wizard)
 		parser.setContentHandler(wizardHandler)
-		if self.xmlfile[0] != '/':
-			parser.parse('/usr/share/enigma2/' + self.xmlfile)
-		else:
-			parser.parse(self.xmlfile)
+		for xmlfile in self.xmlfile:
+			if xmlfile[0] != '/':
+				parser.parse('/usr/share/enigma2/' + xmlfile)
+			else:
+				parser.parse(xmlfile)
 
 		self.showSteps = showSteps
 		self.showStepSlider = showStepSlider
@@ -167,7 +170,7 @@ class Wizard(Screen, HelpableScreen):
 		self.showConfig = showConfig
 
 		self.numSteps = len(self.wizard)
-		self.currStep = 1
+		self.currStep = self.getStepWithID("start") + 1
 		
 		self.timeoutTimer = eTimer()
 		self.timeoutTimer.callback.append(self.timeoutCounterFired)
@@ -261,7 +264,7 @@ class Wizard(Screen, HelpableScreen):
 	def getStepWithID(self, id):
 		print "getStepWithID:", id
 		count = 0
-		for x in self.wizard:
+		for x in self.wizard.keys():
 			if self.wizard[x]["id"] == id:
 				print "result:", count
 				return count
@@ -289,7 +292,8 @@ class Wizard(Screen, HelpableScreen):
 				else:
 					self.currStep = self.getStepWithID(nextStep)
 
-		if (currStep == self.numSteps): # wizard finished
+		if ((currStep == self.numSteps and self.wizard[currStep]["nextstep"] is None) or self.wizard[currStep]["id"] == "end"): # wizard finished
+			print "wizard finished"
 			self.markDone()
 			self.close()
 		else:

@@ -281,6 +281,7 @@ class CableTransponderSearchSupport:
 
 class DefaultSatLists(DefaultWizard):
 	def __init__(self, session, silent = True, showSteps = False):
+		self.xmlfile = "defaultsatlists.xml"
 		DefaultWizard.__init__(self, session, silent, showSteps, neededTag = "services")
 		print "configuredSats:", nimmanager.getConfiguredSats()
 
@@ -290,8 +291,7 @@ class DefaultSatLists(DefaultWizard):
 		import os
 		os.system("mount %s %s" % (resolveFilename(SCOPE_DEFAULTPARTITION), resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR)))
 		self.directory.append(resolveFilename(SCOPE_DEFAULTPARTITIONMOUNTDIR))
-		self.xmlfile = "defaultsatlists.xml"
-		
+				
 	def statusCallback(self, status, progress):
 		print "statusCallback:", status, progress
 		from Components.DreamInfoHandler import DreamInfoHandler
