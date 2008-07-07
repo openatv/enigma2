@@ -1,5 +1,7 @@
 from Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
+from Screens.ScanSetup import DefaultSatLists
+from Screens.DefaultWizard import DefaultWizard
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.config import config, ConfigBoolean, configfile, ConfigSubsection
@@ -12,10 +14,11 @@ config.misc.startwizard.shownimconfig = ConfigBoolean(default = True)
 config.misc.startwizard.doservicescan = ConfigBoolean(default = True)
 config.misc.languageselected = ConfigBoolean(default = True)
 
-class StartWizard(WizardLanguage):
-	def __init__(self, session):
-		self.xmlfile = "startwizard.xml"
+class StartWizard(DefaultSatLists):
+	def __init__(self, session, silent = True, showSteps = False, neededTag = None):
+		self.xmlfile = ["startwizard.xml", "defaultsatlists.xml"]
 		WizardLanguage.__init__(self, session, showSteps = False)
+		DefaultWizard.__init__(self, session, silent, showSteps, neededTag = "services")
 		self["wizard"] = Pixmap()
 		self["rc"] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()

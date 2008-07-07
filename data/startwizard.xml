@@ -1,5 +1,5 @@
 <wizard>
-		<step id="welcome" nextstep="introduction">
+		<step id="start" nextstep="introduction">
 			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your Dreambox.\nPress the OK button on your remote control to move to the next step." />
 			<code>
 self["arrowdown"].moveTo(557, 232, 1)
@@ -99,6 +99,25 @@ self["arrowdown"].moveTo(740, 355, 1)
 self["arrowdown"].startMoving()
 			</code>
 		</step>
+		<step id="satlistsquestion">
+			<text value="Do you want to install default sat lists?" />
+			<condition>
+self.condition = config.misc.startwizard.doservicescan.value
+			</condition>
+			<code>
+self["rc"].moveTo(800, 50, 1)
+self["rc"].startMoving()
+self["arrowup"].moveTo(800, 310, 1)
+self["arrowup"].startMoving()
+self["arrowup2"].moveTo(800, 310, 1)
+self["arrowup2"].startMoving()
+			</code>
+			<list>
+				<listentry caption="Yes" step="startdefaultlists" />
+				<listentry caption="No" step="scanquestion" />
+			</list>
+		</step>
+
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<condition>
@@ -115,17 +134,10 @@ self["arrowup2"].startMoving()
 			<list>
 				<listentry caption="Yes, do an automatic scan now" step="scan" />
 				<listentry caption="Yes, do a manual scan now" step="manualscan" />
-				<listentry caption="No, let me choose default lists" step="parentalcontrol" />
-				<listentry caption="No, scan later manually" step="parentalcontrol" />
+				<listentry caption="No, scan later manually" step="finisheddefaultsatlists" />
 			</list>
-			<code pos="after">
-if self["list"].index == 2:
-	#from Screens.ScanSetup import ScanSetup
-	from Screens.ScanSetup import DefaultSatLists
-	self.session.open(DefaultSatLists)
-			</code>
 		</step>
-		<step id="scan" nextstep="parentalcontrol">
+		<step id="scan" nextstep="finisheddefaultsatlists">
 			<condition>
 self.condition = config.misc.startwizard.doservicescan.value
 			</condition>			
@@ -146,10 +158,10 @@ self.condition = config.misc.startwizard.doservicescan.value
 			<text value="Do you want to do another manual service scan?" />
 			<list>
 				<listentry caption="Yes, do another manual scan now" step="manualscan" />
-				<listentry caption="No, scan later manually" step="parentalcontrol" />
+				<listentry caption="No, scan later manually" step="finisheddefaultsatlists" />
 			</list>
 		</step>
-		<step id="parentalcontrol">
+		<step id="finisheddefaultsatlists">
 			<text value="Do you want to enable the parental control feature on your dreambox?" />
 			<list>
 				<listentry caption="Yes" step="parentalsetup" />

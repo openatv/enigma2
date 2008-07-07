@@ -1,5 +1,5 @@
 <wizard>
-	<step id="welcome" nextstep="nothingtoinstall">
+	<step id="startdefaultlists" nextstep="nothingtoinstall">
 		<condition>
 packagelist = self.fillPackagesList()
 self.runWizard = (len(packagelist) > 0)
@@ -12,11 +12,11 @@ self.condition = self.runWizard
 self.disableKeys = True
 		</code>
 	</step>
-	<step id="nopackages" nextstep="install">
+	<step id="nopackages" nextstep="finisheddefaultsatlists">
 		<text value="There are no default services lists in your image." />
 	</step>
 	
-	<step id="nothingtoinstall" nextstep="install">
+	<step id="nothingtoinstall" nextstep="finisheddefaultsatlists">
 		<condition>
 if self.runWizard:
 	self.condition = True
@@ -32,12 +32,9 @@ else:
 		<code>
 self.disableKeys = False
 		</code>
-		<code pos="after">
-self.markDone()
-		</code>
 	</step>
 	
-	<step id="install">
+	<step id="install" nextstep="finisheddefaultsatlists">
 		<condition>
 self.condition = False
 if self.runWizard:
@@ -50,11 +47,13 @@ if self.runWizard:
 self.disableKeys = True			
 self.installPackages(self.indexList)
 		</code>
-		<code>
-#print "len of packageslist", len(self.packageslist)
-#if (len(self.packageslist) == 1):
-	#self.installPackage(0)
-		</code>
 		<text value="Installing default sat lists... Please wait..." />
+	</step>
+	
+	<step id="finisheddefaultsatlists">
+		<condition>
+self.markDone()
+self.condition = False
+		</condition>
 	</step>
 </wizard>
