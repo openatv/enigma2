@@ -180,13 +180,17 @@ class RemoveDVDFolder(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Remove temp. files")
 		self.setTool("/bin/rm")
-		self.args += ["-rf", self.job.workspace + "/dvd"]
+		self.args += ["-rf", self.job.workspace]
 
 class DVDJob(Job):
 	def __init__(self, cue):
 		Job.__init__(self, "DVD Burn")
 		self.cue = cue
-		self.workspace = "/media/hdd/tmp"
+		from time import strftime
+		from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
+		new_workspace = resolveFilename(SCOPE_HDD) + "tmp/" + strftime("%Y%m%d%H%M%S")
+		createDir(new_workspace)
+		self.workspace = new_workspace
 		self.fromDescription(self.createDescription())
 
 	def fromDescription(self, description):
