@@ -396,8 +396,11 @@ class Wizard(Screen, HelpableScreen):
 			print "code", code
 			exec(code)
 			
+	def getTranslation(self, text):
+		return _(text)
+			
 	def updateText(self, firstset = False):
-		text = _(self.wizard[self.currStep]["text"])
+		text = self.getTranslation(self.wizard[self.currStep]["text"])
 		if text.find("[timeout]") != -1:
 			text = text.replace("[timeout]", str(self.timeoutCounter))
 			self["text"].setText(text)
@@ -429,7 +432,7 @@ class Wizard(Screen, HelpableScreen):
 			print "wizard step:", self.wizard[self.currStep]
 			
 			if self.showSteps:
-				self["step"].setText(_("Step ") + str(self.currStep) + "/" + str(self.numSteps))
+				self["step"].setText(self.getTranslation("Step ") + str(self.currStep) + "/" + str(self.numSteps))
 			if self.showStepSlider:
 				self["stepslider"].setValue(self.currStep)
 		
@@ -437,7 +440,7 @@ class Wizard(Screen, HelpableScreen):
 				self.resetCounter() 
 				self.timeoutTimer.start(1000)
 			
-			print "wizard text", _(self.wizard[self.currStep]["text"])
+			print "wizard text", self.getTranslation(self.wizard[self.currStep]["text"])
 			self.updateText(firstset = True)
 			if self.wizard[self.currStep].has_key("displaytext"):
 				displaytext = self.wizard[self.currStep]["displaytext"]
@@ -471,7 +474,7 @@ class Wizard(Screen, HelpableScreen):
 				if (len(self.wizard[self.currStep]["list"]) > 0):
 					#self["list"].instance.setZPosition(2)
 					for x in self.wizard[self.currStep]["list"]:
-						self.list.append((_(x[0]), x[1]))
+						self.list.append((self.getTranslation(x[0]), x[1]))
 				self.wizard[self.currStep]["evaluatedlist"] = self.list
 				self["list"].list = self.list
 				self["list"].index = 0
