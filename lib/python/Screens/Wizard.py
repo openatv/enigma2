@@ -105,7 +105,10 @@ class Wizard(Screen, HelpableScreen):
 				type = str(attrs.get('type'))
 				self.wizard[self.lastStep]["config"]["type"] = type
 				if type == "ConfigList" or type == "standalone":
-					exec "from Screens." + str(attrs.get('module')) + " import *"
+					try:
+						exec "from Screens." + str(attrs.get('module')) + " import *"
+					except:
+						exec "from " + str(attrs.get('module')) + " import *"
 				
 					self.wizard[self.lastStep]["config"]["screen"] = eval(str(attrs.get('screen')))
 					if (attrs.has_key('args')):
