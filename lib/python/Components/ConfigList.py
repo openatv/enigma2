@@ -172,12 +172,15 @@ class ConfigListScreen:
 	def keyNumberGlobal(self, number):
 		self["config"].handleKey(KEY_0 + number)
 		self.__changed()
+		
+	def saveAll(self):
+		for x in self["config"].list:
+			x[1].save()
 
 	# keySave and keyCancel are just provided in case you need them.
 	# you have to call them by yourself.
 	def keySave(self):
-		for x in self["config"].list:
-			x[1].save()
+		self.saveAll()
 		self.close()
 	
 	def cancelConfirm(self, result):
