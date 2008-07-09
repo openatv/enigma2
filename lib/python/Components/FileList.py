@@ -44,7 +44,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 	return res
 
 class FileList(MenuList):
-	def __init__(self, directory, showDirectories = True, showFiles = True, showMountpoints = True, matchingPattern = None, useServiceRef = False, inhibitDirs = False, inhibitMounts = False, enableWrapAround = False, additionalExtensions = None):
+	def __init__(self, directory, showDirectories = True, showFiles = True, showMountpoints = True, matchingPattern = None, useServiceRef = False, inhibitDirs = False, inhibitMounts = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.additional_extensions = additionalExtensions
 		self.mountpoints = []
@@ -54,6 +54,7 @@ class FileList(MenuList):
 		self.showDirectories = showDirectories
 		self.showMountpoints = showMountpoints
 		self.showFiles = showFiles
+		self.isTop = isTop
 		# example: matching .nfi and .ts files: "^.*\.(nfi|ts)"
 		self.matchingPattern = matchingPattern
 		self.inhibitDirs = inhibitDirs or []
@@ -162,7 +163,7 @@ class FileList(MenuList):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
-		if directory is not None and self.showDirectories:
+		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
 				self.list.append(FileEntryComponent(name = "<" +_("List of Storage Devices") + ">", absolute = None, isDir = True))
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
