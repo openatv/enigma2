@@ -184,6 +184,7 @@ class Satfinder(ScanSetup):
 		if orb_pos is not None:
 			transponderlist = nimmanager.getTransponders(orb_pos)
 			list = []
+			default = None
 			for x in transponderlist:
 				if x[3] == 0:
 					pol = "H"
@@ -219,8 +220,11 @@ class Satfinder(ScanSetup):
 					fec = "FEC_None"
 				else:
 					fec = "FEC_Unknown"
-				list.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
-			self.tuning_transponder = ConfigSelection(choices = list)
+				e = str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec
+				if default is None:
+					default = e
+				list.append(e)
+			self.tuning_transponder = ConfigSelection(choices = list, default = default)
 			self.tuning_transponder.addNotifier(self.retune, initial_call = False)
 
 	def keyGo(self):
