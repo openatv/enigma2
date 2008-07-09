@@ -213,6 +213,11 @@ class ConfigSelection(ConfigElement):
 			self.value = self.choices[0]
 		elif key == KEY_END:
 			self.value = self.choices[nchoices - 1]
+			
+	def selectNext(self):
+		nchoices = len(self.choices)
+		i = self.choices.index(self.value)
+		self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
 		descr = self.description[self.value]
@@ -1363,6 +1368,10 @@ configfile.load()
 def getConfigListEntry(*args):
 	assert len(args) > 1, "getConfigListEntry needs a minimum of two arguments (descr, configElement)"
 	return args
+
+def updateConfigElement(element, newelement):
+	newelement.value = element.value
+	return newelement
 
 #def _(x):
 #	return x

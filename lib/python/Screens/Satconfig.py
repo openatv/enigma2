@@ -5,7 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager, InitNimManager
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection
+from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement
 from Screens.MessageBox import MessageBox
 
 from time import mktime, localtime
@@ -60,7 +60,7 @@ class NimSetup(Screen, ConfigListScreen):
 			choices["satposdepends"] = _("second cable of motorized LNB")
 		if len(nimmanager.canConnectTo(self.slotid)) > 0:
 			choices["loopthrough"] = _("loopthrough to")
-		self.nimConfig.configMode = ConfigSelection(choices = choices, default = "simple")
+		self.nimConfig.configMode = updateConfigElement(self.nimConfig.configMode, ConfigSelection(choices = choices, default = "simple"))
 					
 	def createSetup(self):
 		print "Creating setup"
@@ -98,7 +98,7 @@ class NimSetup(Screen, ConfigListScreen):
 				for id in nimlist:
 					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				self.nimConfig.connectedTo = ConfigSelection(choices = choices)
+				self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "satposdepends":
 				choices = []
@@ -106,7 +106,7 @@ class NimSetup(Screen, ConfigListScreen):
 				for id in nimlist:
 					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				self.nimConfig.connectedTo = ConfigSelection(choices = choices)
+				self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "loopthrough":
 				choices = []
@@ -114,7 +114,7 @@ class NimSetup(Screen, ConfigListScreen):
 				connectable = nimmanager.canConnectTo(self.slotid) 
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				self.nimConfig.connectedTo = ConfigSelection(choices = choices)
+				self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Connected to"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "nothing":
 				pass
