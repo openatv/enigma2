@@ -1541,7 +1541,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				if (f) // new interface exist?
 				{
 					bool slimiting = m_sec_sequence.current()->mode == eSecCommand::modeStatic;
-					if (fprintf(f, "%s", slimiting ? "on" : "off") != 1)
+					if (fprintf(f, "%s", slimiting ? "on" : "off") <= 0)
 						eDebug("write %s failed!! (%m)", proc_name);
 					else
 						eDebug("[SEC] set %s current limiting", slimiting ? "static" : "dynamic");
