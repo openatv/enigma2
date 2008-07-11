@@ -1,8 +1,6 @@
-from os import system, listdir, statvfs, popen, makedirs
-
+from os import system, listdir, statvfs, popen, makedirs, readlink, stat, major, minor
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.CList import CList
-
 from SystemInfo import SystemInfo
 
 def tryOpen(filename):
@@ -12,69 +10,74 @@ def tryOpen(filename):
 		return ""
 	return procFile
 
-def num2prochdx(num):
-	return "/proc/ide/hd" + ("a","b","c","d","e","f","g","h","i")[num] + "/"
-
 class Harddisk:
-	def __init__(self, index):
-		self.index = index
+	def __init__(self, device):
+		self.device = device
+		procfile = tryOpen("/sys/block/"+self.device+"/dev")
+		tmp = procfile.readline().split(':')
+		s_major = int(tmp[0])
+		s_minor = int(tmp[1])
+		for disc in listdir("/dev/discs"):
+			path = readlink('/dev/discs/'+disc)
+			devidex = '/dev'+path[2:]+'/'
+			disc = devidex+'disc'
+			ret = stat(disc).st_rdev
+			if s_major == major(ret) and s_minor == minor(ret):
+				self.devidex = devidex
+				print "new Harddisk",  device, self.devidex
+				break
 
-		host = (self.index & 2) >> 1
-		bus = 0
-		target = (self.index & 1)
-
-		self.prochdx = num2prochdx(index)
-		self.devidex = "/dev/ide/host%d/bus%d/target%d/lun0/" % (host, bus, target)
-
-	def getIndex(self):
-		return self.index
+	def __lt__(self, ob):
+		return self.device < ob.device
 
 	def bus(self):
-		ret = ""
-
-		if self.index & 2:
-			ret = "External (CF) - "
+		ide_cf = self.device.find("hd") == 0 and self.devidex.find("host0") == -1 # 7025 specific
+		internal = self.device.find("hd") == 0 and self.devidex
+		if ide_cf:
+			ret = "External (CF)"
+		elif internal:
+			ret = "Internal"
 		else:
-			ret = "Internal - "
-		
-		if self.index & 1:
-			return ret + "Slave"
-		else:
-			return ret + "Master"
+			ret = "External"
+		return ret
 
 	def diskSize(self):
-		procfile = tryOpen(self.prochdx + "capacity")
-
+		procfile = tryOpen("/sys/block/"+self.device+"/size")
 		if procfile == "":
 			return 0
-
 		line = procfile.readline()
 		procfile.close()
-
 		try:
 			cap = int(line)
 		except:
-			return 0
-
+			return 0;
 		return cap / 1000 * 512 / 1000
 
 	def capacity(self):
 		cap = self.diskSize()
 		if cap == 0:
 			return ""
-		
 		return "%d.%03d GB" % (cap/1024, cap%1024)
 
 	def model(self):
-		procfile = tryOpen(self.prochdx + "model")
-
-		if procfile == "":
-			return ""
-
-		line = procfile.readline()
-		procfile.close()
-
-		return line.strip()
+		if self.device.find("hd") == 0:
+			procfile = tryOpen("/proc/ide/"+self.device+"/model")
+			if procfile == "":
+				return ""
+			line = procfile.readline()
+			procfile.close()
+			return line.strip()
+		elif self.device.find("sd") == 0:
+			procfile = tryOpen("/sys/block/"+self.device+"/device/vendor")
+			if procfile == "":
+				return ""
+			vendor = procfile.readline().strip()
+			procfile.close()
+			procfile = tryOpen("/sys/block/"+self.device+"/device/model")
+			model = procfile.readline().strip()
+			return vendor+'('+model+')'
+		else:
+			assert False, "no hdX or sdX"
 
 	def free(self):
 		procfile = tryOpen("/proc/mounts")
@@ -96,7 +99,7 @@ class Harddisk:
 				free = stat.f_bfree/1000 * stat.f_bsize/1000
 				break
 		procfile.close()
-		return free		
+		return free
 
 	def numPartitions(self):
 		try:
@@ -177,10 +180,9 @@ class Harddisk:
 		if self.mount() != 0:
 			return -3
 
-		#only create a movie folder on the internal hdd
-		if not self.index & 2 and self.createMovieFolder() != 0:
+		if self.createMovieFolder() != 0:
 			return -4
-		
+
 		return 0
 
 	def check(self):
@@ -201,20 +203,6 @@ class Harddisk:
 			return -3
 
 		return 0
-
-def existHDD(num):
-	mediafile = tryOpen(num2prochdx(num) + "media")
-
-	if mediafile == "":
-		return False
-
-	line = mediafile.readline()
-	mediafile.close()
-
-	if line.startswith("disk"):
-		return True
-
-	return False
 
 class Partition:
 	def __init__(self, mountpoint, description = "", force_mounted = False):
@@ -253,22 +241,14 @@ class Partition:
 
 class HarddiskManager:
 	def __init__(self):
-		hddNum = 0
 		self.hdd = [ ]
 		
 		self.partitions = [ ]
 		
 		self.on_partition_list_change = CList()
 		
-		for hddNum in range(8):
-			if existHDD(hddNum):
-				hdd = Harddisk(hddNum)
-				self.hdd.append(hdd)
-
 		self.enumerateBlockDevices()
-
-		SystemInfo["Harddisc"] = len(self.hdd) > 0
-
+		
 		# currently, this is just an enumeration of what's possible,
 		# this probably has to be changed to support automount stuff.
 		# still, if stuff is mounted into the correct mountpoints by
@@ -288,45 +268,48 @@ class HarddiskManager:
 		for x in p:
 			self.partitions.append(Partition(mountpoint = x[0], description = x[1]))
 
+	def getBlockDevInfo(self, blockdev):
+		devpath = "/sys/block/" + blockdev
+		error = False
+		removable = False
+		blacklisted = False
+		is_cdrom = False
+		partitions = []
+		try:
+			removable = bool(int(open(devpath + "/removable").read()))
+			dev = int(open(devpath + "/dev").read().split(':')[0])
+			if dev in [7, 31]: # loop, mtdblock
+				blacklisted = True
+			if blockdev[0:2] == 'sr':
+				is_cdrom = True
+			if blockdev[0:2] == 'hd':
+				try:
+					media = open("/proc/ide/%s/media" % blockdev).read()
+					if media.find("cdrom") != -1:
+						is_cdrom = True
+				except IOError:
+					error = True
+			# check for partitions
+			if not is_cdrom:
+				for partition in listdir(devpath):
+					if partition[0:len(blockdev)] != blockdev:
+						continue
+					partitions.append(partition)
+		except IOError:
+			error = True
+		return error, blacklisted, removable, is_cdrom, partitions
+
 	def enumerateBlockDevices(self):
 		print "enumerating block devices..."
-		import os
-		for blockdev in os.listdir("/sys/block"):
-			devpath = "/sys/block/" + blockdev
-			error = False
-			removable = False
-			blacklisted = False
-			is_cdrom = False
-			partitions = []
-			try:
-				removable = bool(int(open(devpath + "/removable").read()))
-				dev = int(open(devpath + "/dev").read().split(':')[0])
-				if dev in [7, 31]: # loop, mtdblock
-					blacklisted = True
-				if blockdev[0:2] == 'sr':
-					is_cdrom = True
-				if blockdev[0:2] == 'hd':
-					try:
-						media = open("/proc/ide/%s/media" % blockdev).read()
-						if media.find("cdrom") != -1:
-							is_cdrom = True
-					except IOError:
-						error = True
-				# check for partitions
-				if not is_cdrom:
-					for partition in os.listdir(devpath):
-						if partition[0:len(blockdev)] != blockdev:
-							continue
-						partitions.append(partition)
-			except IOError:
-				error = True
+		for blockdev in listdir("/sys/block"):
+			error, blacklisted, removable, is_cdrom, partitions = self.getBlockDevInfo(blockdev)
 			print "found block device '%s':" % blockdev, 
 			if error:
 				print "error querying properties"
 			elif blacklisted:
 				print "blacklisted"
 			else:
-				print "ok, removable=%s, cdrom=%s, partitions=%s" % (removable, is_cdrom, partitions)
+				print "ok, removable=%s, cdrom=%s, partitions=%s, device=%s" % (removable, is_cdrom, partitions, blockdev)
 				self.addHotplugPartition(blockdev, blockdev)
 				for part in partitions:
 					self.addHotplugPartition(part, part)
@@ -338,6 +321,13 @@ class HarddiskManager:
 		p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True)
 		self.partitions.append(p)
 		self.on_partition_list_change("add", p)
+		l = len(device)
+		if l and device[l-1] not in ('0','1','2','3','4','5','6','7','8','9'):
+			error, blacklisted, removable, is_cdrom, partitions = self.getBlockDevInfo(device)
+			if not blacklisted and not removable and not is_cdrom:
+				self.hdd.append(Harddisk(device))
+				self.hdd.sort()
+				SystemInfo["Harddisc"] = len(self.hdd) > 0
 
 	def removeHotplugPartition(self, device):
 		mountpoint = self.getAutofsMountpoint(device)
@@ -345,6 +335,14 @@ class HarddiskManager:
 			if x.mountpoint == mountpoint:
 				self.partitions.remove(x)
 				self.on_partition_list_change("remove", x)
+		l = len(device)
+		if l and device[l-1] not in ('0','1','2','3','4','5','6','7','8','9'):
+			idx = 0
+			for hdd in self.hdd:
+				if hdd.device == device:
+					del self.hdd[idx]
+					break
+			SystemInfo["Harddisc"] = len(self.hdd) > 0
 
 	def HDDCount(self):
 		return len(self.hdd)
@@ -352,14 +350,12 @@ class HarddiskManager:
 	def HDDList(self):
 		list = [ ]
 		for hd in self.hdd:
-			hdd = hd.model() + " (" 
-			hdd += hd.bus()
-			cap = hd.capacity()	
+			hdd = hd.model() + " - " + hd.bus()
+			cap = hd.capacity()
 			if cap != "":
-				hdd += ", " + cap
-			hdd += ")"
+				hdd += " (" + cap + ")"
 			list.append((hdd, hd))
-
+		print "list", list
 		return list
 
 	def getMountedPartitions(self, onlyhotplug = False):
