@@ -7,7 +7,10 @@ class VariableValue(object):
 	def setValue(self, value):
 		self.__value = value
 		if self.instance:
-			self.instance.setValue(self.__value)
+			try:
+				self.instance.setValue(self.__value)
+			except TypeError:
+				self.instance.setValue(0)
 
 	def getValue(self):
 		return self.__value
