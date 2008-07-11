@@ -40,7 +40,7 @@ defaultPaths = {
 		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
 		
 		SCOPE_DEFAULTDIR: ("/usr/share/enigma2/defaults/", PATH_CREATE),
-		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock/4", PATH_DONTCREATE),
+		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock/6", PATH_DONTCREATE),
 		SCOPE_DEFAULTPARTITIONMOUNTDIR: ("/usr/share/enigma2/dealer", PATH_CREATE),
 	}
 
