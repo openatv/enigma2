@@ -593,10 +593,7 @@ RESULT eServiceDVD::getPlayPosition(pts_t &pos)
 	pos += info.pos_minutes * 60;
 	pos += info.pos_seconds;
 // 	eDebug("getPlayPosition %lld", pos);
-	if ( pos > 0 && pos < 32768 )
-	    pos *= 90000;
-	else
-	    pos = 0;
+	pos *= 90000;
 	return 0;
 }
 
