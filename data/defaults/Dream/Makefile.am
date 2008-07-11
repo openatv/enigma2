@@ -5,6 +5,6 @@ AUTOMAKE_OPTIONS = gnu
 installdir = $(DATADIR)/enigma2/defaults/Dream
 
 install_DATA = \
-	dm7025.info \
+	*.info \
 	userbouquet.favourites.tv bouquets.tv \
 	lamedb.192
