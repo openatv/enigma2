@@ -561,6 +561,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			if answer[1] == "browser":
 				#TODO check here if a paused dvd playback is already running... then re-start it...
 				#else
+				if self.service:
+					self.service = None
 				self.showFileBrowser()
 			else:
 				pass
@@ -599,7 +601,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.show()
 
 	def createSummary(self):
-		print "DVDCreateSummary"
 		return DVDSummary
 
 #override some InfoBarSeek functions
