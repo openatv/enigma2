@@ -23,7 +23,6 @@ class Streaming(Converter):
 
 		if s is None:
 			err = service.getError()
-			from enigma import iRecordableService
 			if err:
 				return "-SERVICE ERROR:%d\n" % err
 			else:

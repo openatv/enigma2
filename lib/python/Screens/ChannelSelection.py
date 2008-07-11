@@ -21,7 +21,6 @@ profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ParentalControl import parentalControl
-from Components.Pixmap import Pixmap
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo

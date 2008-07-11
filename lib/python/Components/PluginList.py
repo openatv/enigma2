@@ -3,7 +3,7 @@ from MenuList import MenuList
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont
+from enigma import eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 
 def PluginEntryComponent(plugin):

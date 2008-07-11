@@ -1,4 +1,4 @@
-from Tools.Profile import profile, profile_final
+from Tools.Profile import profile
 
 profile("LOAD:GUISkin")
 from Components.GUISkin import GUISkin

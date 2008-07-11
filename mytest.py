@@ -36,11 +36,11 @@ profile("LOAD:Navigation")
 from Navigation import Navigation
 
 profile("LOAD:skin")
-from skin import readSkin, applyAllAttributes
+from skin import readSkin
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-from Components.config import config, configfile, ConfigText, ConfigSubsection, ConfigInteger
+from Components.config import config, configfile, ConfigText
 InitFallbackFiles()
 
 profile("ReloadProfiles")

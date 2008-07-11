@@ -12,8 +12,7 @@ from Screens.ChoiceBox import ChoiceBox
 # Generic
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import *
-from Components.config import config, configfile, ConfigSubList, ConfigSubsection, \
-		ConfigText, ConfigNumber, ConfigBoolean
+from Components.config import config
 import os
 
 # Quickselect

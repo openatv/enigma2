@@ -4,7 +4,7 @@ from Components.SystemInfo import SystemInfo
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
-from Components.NimManager import nimmanager, InitNimManager
+from Components.NimManager import nimmanager
 from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement
 from Screens.MessageBox import MessageBox
 

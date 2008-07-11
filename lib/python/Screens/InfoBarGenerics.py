@@ -2,11 +2,9 @@ from ChannelSelection import ChannelSelection, BouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
-from Components.BlinkingPixmap import BlinkingPixmapConditional
 from Components.Harddisk import harddiskmanager
 from Components.Input import Input
 from Components.Label import Label
-from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
@@ -34,7 +32,7 @@ from Tools import Notifications
 from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
-	iPlayableService, eServiceReference, eDVBResourceManager, iFrontendInformation, eEPGCache
+	iPlayableService, eServiceReference, eEPGCache
 
 from time import time, localtime, strftime
 from os import stat as os_stat

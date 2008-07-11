@@ -1,4 +1,4 @@
-from Tools.Profile import profile, profile_final
+from Tools.Profile import profile
 
 from Screen import Screen
 

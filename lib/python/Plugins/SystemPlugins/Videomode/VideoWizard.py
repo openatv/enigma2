@@ -1,14 +1,11 @@
-from Screens.Wizard import wizardManager, WizardSummary
+from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
-import sys
 from VideoHardware import video_hw
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.config import config, ConfigBoolean, configfile
 
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
-from Tools.LoadPixmap import LoadPixmap
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 

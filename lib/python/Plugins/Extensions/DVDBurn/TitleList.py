@@ -1,4 +1,4 @@
-import DVDProject, DVDTitle, TitleList, TitleCutter
+import DVDProject, TitleList, TitleCutter
 
 from Screens.Screen import Screen
 from Components.ActionMap import HelpableActionMap, ActionMap
