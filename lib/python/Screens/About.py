@@ -1,7 +1,7 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import Harddisk
+from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.About import about
 
@@ -32,10 +32,11 @@ class About(Screen):
 				self["Tuner" + str(count)] = StaticText("")
 
 		self["HDDHeader"] = StaticText(_("Detected HDD:"))
-		hdd = Harddisk(0)
-		if hdd.model() != "":
+		hddlist = harddiskmanager.HDDList()
+		hdd = len(hddlist) > 0 and hddlist[0][1] or None
+		if hdd is not None and hdd.model() != "":
 			self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
-		else:			
+		else:
 			self["hddA"] = StaticText(_("none"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 

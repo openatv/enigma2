@@ -355,7 +355,6 @@ class HarddiskManager:
 			if cap != "":
 				hdd += " (" + cap + ")"
 			list.append((hdd, hd))
-		print "list", list
 		return list
 
 	def getMountedPartitions(self, onlyhotplug = False):
