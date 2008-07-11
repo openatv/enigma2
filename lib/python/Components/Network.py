@@ -1,4 +1,4 @@
-from os import system, popen
+from os import system, popen, path as os_path, listdir
 from re import compile as re_compile
 from socket import *
 from enigma import eConsoleAppContainer
@@ -21,6 +21,8 @@ class Network:
 		for line in result:
 			try:
 				device = devicesPattern.search(line).group()
+				if device == 'wifi0':
+					continue
 				self.ifaces[device] = self.getDataForInterface(device)
 				# Show only UP Interfaces in E2
 				#if self.getAdapterAttribute(device, 'up') is False:
@@ -356,13 +358,16 @@ class Network:
 		self.wlanmodule = None
 		rt73_dir = "/sys/bus/usb/drivers/rt73/"
 		zd1211b_dir = "/sys/bus/usb/drivers/zd1211b/"
-		if os_path.exists(rt73_dir):
-			files = []
+		madwifi_dir = "/sys/bus/pci/drivers/ath_pci/"
+		if os_path.exists(madwifi_dir):
+			files = listdir(madwifi_dir)
+			if len(files) >= 1:
+				self.wlanmodule = 'madwifi'
+		elif os_path.exists(rt73_dir):
 			files = listdir(rt73_dir)
 			if len(files) >= 1:
 				self.wlanmodule = 'ralink'
-		if os_path.exists(zd1211b_dir):
-			files = []
+		elif os_path.exists(zd1211b_dir):
 			files = listdir(zd1211b_dir)
 			if len(files) != 0:
 				self.wlanmodule = 'zydas'
