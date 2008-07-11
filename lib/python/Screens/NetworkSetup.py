@@ -111,6 +111,9 @@ class NameserverSetup(Screen, ConfigListScreen):
 		iNetwork.writeNameserverConfig()
 		self.close()
 
+	def run(self):
+		self.ok()
+
 	def cancel(self):
 		iNetwork.clearNameservers()
 		print "backup-list:", self.backupNameserverList
