@@ -1,4 +1,4 @@
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigNothing
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet
 from enigma import Misc_Options, setTunerTypePriorityOrder;
 from SystemInfo import SystemInfo
 import os

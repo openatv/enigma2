@@ -8,15 +8,13 @@ from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
-from Components.SelectionList import SelectionList, SelectionEntryComponent
-from Components.MovieList import MovieList
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from RecordTimer import AFTEREVENT
 from Tools.Directories import resolveFilename, SCOPE_HDD
-from enigma import eEPGCache, eServiceReference
-import time
-import datetime
+from enigma import eEPGCache
+from time import localtime, mktime, time, strftime
+from datetime import datetime
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
@@ -82,7 +80,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			else: # once
 				type = "once"
 				repeated = None
-				weekday = (int(time.strftime("%w", time.localtime(self.timer.begin))) - 1) % 7
+				weekday = (int(strftime("%w", localtime(self.timer.begin))) - 1) % 7
 				day[weekday] = 1
 
 			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
@@ -247,14 +245,14 @@ class TimerEntry(Screen, ConfigListScreen):
 			self["config"].invalidate(self.channelEntry)
 
 	def getTimestamp(self, date, mytime):
-		d = time.localtime(date)
-		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
-		return int(time.mktime(dt.timetuple()))
+		d = localtime(date)
+		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
+		return int(mktime(dt.timetuple()))
 
 	def buildRepeatedBegin(self, rep_time, start_time):
-		d = time.localtime(rep_time)
-		dt = datetime.datetime(d.tm_year, d.tm_mon, d.tm_mday, start_time[0], start_time[1])
-		return int(time.mktime(dt.timetuple()))
+		d = localtime(rep_time)
+		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, start_time[0], start_time[1])
+		return int(mktime(dt.timetuple()))
 
 	def getBeginEnd(self):
 		enddate = self.timerentry_enddate.value
@@ -305,8 +303,8 @@ class TimerEntry(Screen, ConfigListScreen):
 						self.timer.setRepeated(x)
 
 			self.timer.repeatedbegindate = self.buildRepeatedBegin(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
-			self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.value)
-			self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.value)
+			self.timer.begin = self.getTimestamp(time(), self.timerentry_starttime.value)
+			self.timer.end = self.getTimestamp(time(), self.timerentry_endtime.value)
 
 			# when a timer end is set before the start, add 1 day
 			if self.timer.end < self.timer.begin:
@@ -392,7 +390,7 @@ class TimerLog(Screen):
 	def fillLogList(self):
 		self.list = [ ]
 		for x in self.log_entries:
-			self.list.append((str(time.strftime("%Y-%m-%d %H-%M", time.localtime(x[0])) + " - " + x[2]), x))
+			self.list.append((str(strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x))
 
 	def clearLog(self):
 		self.log_entries = []

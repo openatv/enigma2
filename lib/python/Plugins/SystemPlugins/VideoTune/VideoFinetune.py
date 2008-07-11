@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Components.Sources.CanvasSource import CanvasSource
 from Components.ActionMap import ActionMap
 from enigma import gFont
-from enigma import RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP
+from enigma import RT_HALIGN_RIGHT, RT_WRAP
 
 def RGB(r,g,b):
 	return (r<<16)|(g<<8)|b

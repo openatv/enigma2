@@ -1,15 +1,5 @@
-from Screens.Screen import Screen
-from Plugins.Plugin import PluginDescriptor
-
 from enigma import eTimer
-
-from Components.ActionMap import ActionMap
-from Components.Label import Label
-from Components.Pixmap import Pixmap
-from Screens.MessageBox import MessageBox
-from Screens.Setup import SetupSummary
-from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigSelection, ConfigSubDict, ConfigYesNo
+from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 
 from Tools.CList import CList
 

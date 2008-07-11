@@ -7,8 +7,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 
 import xml.dom.minidom
-from skin import elementsWithTag
-
 from Tools import XMLTools
 
 # FIXME: use resolveFile!
@@ -151,7 +149,7 @@ class Setup(ConfigListScreen, Screen):
 
 def getSetupTitle(id):
 	xmldata = setupdom.childNodes[0].childNodes
-	for x in elementsWithTag(xmldata, "setup"):
+	for x in XMLTools.elementsWithTag(xmldata, "setup"):
 		if x.getAttribute("key") == id:
 			return x.getAttribute("title").encode("UTF-8")
 	raise "unknown setup id '%s'!" % repr(id)

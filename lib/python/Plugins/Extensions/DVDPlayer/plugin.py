@@ -1,10 +1,8 @@
 from os import path as os_path, remove as os_remove, listdir as os_listdir, system
-from time import strftime
-from enigma import eTimer, iPlayableService, eServiceCenter, iServiceInformation, eServiceReference, iServiceKeys
+from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.InputBox import InputBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
@@ -12,11 +10,8 @@ from Components.Label import Label
 from Components.FileList import FileList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
-from Components.ProgressBar import ProgressBar
-from ServiceReference import ServiceReference
 from Tools.Directories import pathExists, fileExists
 
-import random
 import servicedvd # load c++ part of dvd player plugin
 
 lastpath = ""

@@ -1,6 +1,6 @@
 from os import path as os_path, remove as os_remove, listdir as os_listdir
 from time import strftime
-from enigma import eTimer, iPlayableService, eServiceCenter, iServiceInformation
+from enigma import eTimer, eServiceCenter, iServiceInformation
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
@@ -12,7 +12,7 @@ from Components.FileList import FileList
 from Components.MediaPlayer import PlayList
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_SKIN_IMAGE
 from Components.ServicePosition import ServicePositionGauge
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.ServiceEventTracker import InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications
 from ServiceReference import ServiceReference

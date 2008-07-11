@@ -1,12 +1,11 @@
-import re
-
+from re import compile as re_compile
 from os import path as os_path, listdir
 from MenuList import MenuList
 from Components.Harddisk import harddiskmanager
 
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
-from enigma import RT_HALIGN_LEFT, eListbox, eListboxPythonMultiContent, \
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
 from Tools.LoadPixmap import LoadPixmap
 
@@ -184,7 +183,7 @@ class FileList(MenuList):
 					path = directory + x
 					name = x
 
-				if (self.matchingPattern is None) or re.compile(self.matchingPattern).search(path):
+				if (self.matchingPattern is None) or re_compile(self.matchingPattern).search(path):
 					self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
 
 		self.l.setList(self.list)

@@ -1,4 +1,4 @@
-from Tools.Profile import profile, profile_final
+from Tools.Profile import profile
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree
 from os import path
@@ -14,7 +14,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCO
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
-from Tools.XMLTools import elementsWithTag, mergeText
+from Tools.XMLTools import mergeText
 
 colorNames = dict()
 
