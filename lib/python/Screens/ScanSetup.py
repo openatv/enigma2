@@ -296,7 +296,7 @@ class DefaultSatLists(DefaultWizard):
 		print "statusCallback:", status, progress
 		from Components.DreamInfoHandler import DreamInfoHandler
 		if status == DreamInfoHandler.STATUS_DONE:
-			self["text"].setText(_("The installation of the default services lists is finished."))
+			self["text"].setText(_("The installation of the default services lists is finished.") + "\n\n" + _("Please press OK to continue."))
 			self.markDone()
 			self.disableKeys = False	
 
