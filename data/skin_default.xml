@@ -538,6 +538,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/buttons/button_green.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="ButtonYellowtext" position="60,355" size="150,21" zPosition="10" font="Regular;21" transparent="1" />
 		<ePixmap pixmap="skin_default/buttons/button_yellow.png" position="30,355" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="introduction" position="140,360" size="300,20" zPosition="10" font="Regular;21" halign="center" transparent="1" />
 	</screen>
 	<!-- Network adapter selection -->
 	<screen name="NetworkAdapterSelection" position="130,140" size="460,330" title="Select Network Adapter">
