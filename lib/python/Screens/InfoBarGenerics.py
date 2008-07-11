@@ -1623,7 +1623,7 @@ class InfoBarSubserviceSelection:
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evUpdatedInfo: self.checkSubservicesAvail
+				iPlayableService.evUpdatedEventInfo: self.checkSubservicesAvail
 			})
 
 		self.bsel = None
