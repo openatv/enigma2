@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
-"PO-Revision-Date: 2008-06-02 13:45+0100\n"
+"POT-Creation-Date: 2008-07-11 17:04+0200\n"
+"PO-Revision-Date: 2008-07-11 17:03+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -19,17 +19,7 @@ msgstr ""
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 wird nach der Wiederherstellung neu starten"
-
 msgid " "
-msgstr ""
-
-msgid "\"?"
 msgstr ""
 
 msgid "#000000"
@@ -249,6 +239,10 @@ msgstr ""
 "Zurzeit läuft eine Aufnahme. Bitte beenden Sie diese Aufnahme, bevor Sie den "
 "Sat-Finder starten."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -300,6 +294,9 @@ msgstr "Über..."
 msgid "Action on long powerbutton press"
 msgstr "Aktion beim langen Druck auf Power"
 
+msgid "Action:"
+msgstr ""
+
 msgid "Activate Picture in Picture"
 msgstr "Bild in Bild aktivieren"
 
@@ -312,11 +309,23 @@ msgstr "Adapter-Einstellungen"
 msgid "Add"
 msgstr "Hinzufügen"
 
+msgid "Add Bookmark"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Marker hinzufügen"
 
+msgid "Add a new title"
+msgstr "Füge neuen Titel hinzu"
+
 msgid "Add timer"
 msgstr "Timer setzen"
+
+msgid "Add title"
+msgstr ""
+
+msgid "Add title..."
+msgstr "Füge Titel hinzu"
 
 msgid "Add to bouquet"
 msgstr "Zum Bouquet hinzufügen"
@@ -373,6 +382,10 @@ msgstr "Tuner-Priorität bei Alternativen Services"
 
 msgid "An empty filename is illegal."
 msgstr "Leerer Dateiname nicht erlaubt."
+
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabisch"
@@ -484,8 +497,20 @@ msgstr "Verhalten beim Stoppen eines Films"
 msgid "Behavior when a movie reaches the end"
 msgstr "Verhalten beim Filmende"
 
+msgid "Bookmarks"
+msgstr ""
+
 msgid "Brightness"
 msgstr "Helligkeit"
+
+msgid "Burn"
+msgstr "brenne"
+
+msgid "Burn DVD"
+msgstr "brenne DVD"
+
+msgid "Burn To DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -633,31 +658,13 @@ msgstr "Komplett"
 msgid "Configuration Mode"
 msgstr "Konfiguration"
 
-msgid "Configure your internal LAN"
-msgstr ""
-
-msgid "Configure your internal LAN again"
-msgstr ""
-
-msgid "Configure your wireless LAN"
-msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Konfiguriere"
-
-msgid "Confirm"
-msgstr "Bestätigen"
 
 msgid "Conflicting timer"
 msgstr "In Konflikt stehender Timer"
 
-msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr ""
-
-msgid "Connect to the Internet with your local LAN"
+msgid "Connected to"
 msgstr ""
 
 msgid "Connected to Fritz!Box!"
@@ -687,6 +694,10 @@ msgstr "Kontrast"
 
 msgid "Create movie folder failed"
 msgstr "Erzeugen des Film-Verzeichnisses fehlgeschlagen"
+
+#, python-format
+msgid "Creating directory %s failed."
+msgstr ""
 
 msgid "Creating partition failed"
 msgstr "Partitionserzeugung fehlgeschlagen"
@@ -813,6 +824,10 @@ msgstr "DiSEqC-Modus"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC-Wiederholungen"
 
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr ""
+
 msgid "Disable"
 msgstr "Aus"
 
@@ -821,6 +836,9 @@ msgstr "Bild in Bild ausschalten"
 
 msgid "Disable Subtitles"
 msgstr "Untertitel abschalten"
+
+msgid "Disable timer"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Ausgeschaltet"
@@ -882,6 +900,14 @@ msgstr ""
 "Wollen Sie die Festplatte wirklich initialisieren?\n"
 "Es werden alle Daten gelöscht!"
 
+#, python-format
+msgid "Do you really want to remove directory %s from the disk?"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to remove your bookmark of %s?"
+msgstr ""
+
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
@@ -897,6 +923,9 @@ msgstr "Wollen Sie eine weitere manuelle Suche durchführen?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Möchten Sie den Jugendschutz Ihrer Dreambox aktivieren?"
+
+msgid "Do you want to install default sat lists?"
+msgstr "Wollen Sie nun Standardkanallisten installieren?"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Wollen Sie die DVD im Laufwerk abspielen?"
@@ -962,6 +991,9 @@ msgstr "Ost"
 msgid "Edit DNS"
 msgstr "Bearbeite DNS"
 
+msgid "Edit current title"
+msgstr "aktuellen Titel editieren"
+
 msgid "Edit services list"
 msgstr "Kanalliste bearbeiten"
 
@@ -973,6 +1005,12 @@ msgstr "Bearbeiten Sie die Nameserver-Einstellungen Ihrer Dreambox.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Bearbeiten Sie die Netzwerk-Konfiguration Ihrer Dreambox.\n"
+
+msgid "Edit title"
+msgstr ""
+
+msgid "Edit title..."
+msgstr "Titel editieren..."
 
 msgid "Electronic Program Guide"
 msgstr "Elektronischer Programmführer"
@@ -998,6 +1036,9 @@ msgstr "Jugendschutz anschalten"
 msgid ""
 "Enable the local network of your Dreambox.\n"
 "\n"
+msgstr ""
+
+msgid "Enable timer"
 msgstr ""
 
 msgid "Enabled"
@@ -1039,11 +1080,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Anfängliche Vorlaufgeschwindigkeit eingeben"
 
@@ -1058,6 +1094,12 @@ msgstr "Geben Sie den Kanal-Pincode ein"
 
 msgid "Error"
 msgstr "Fehler"
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
 
 msgid "Eventview"
 msgstr "Programmübersicht"
@@ -1082,9 +1124,6 @@ msgstr "Assistent beenden"
 
 msgid "Exit wizard"
 msgstr "Assistenten beenden"
-
-msgid "Exit wizard and configure later manually"
-msgstr ""
 
 msgid "Expert"
 msgstr "Experte"
@@ -1336,6 +1375,10 @@ msgstr "Interner Flash"
 
 msgid "Invalid Location"
 msgstr "Fehlerhafter Ort"
+
+#, python-format
+msgid "Invalid directory selected: %s"
+msgstr ""
 
 msgid "Inversion"
 msgstr "Inversion"
@@ -1601,6 +1644,9 @@ msgstr ""
 msgid "New"
 msgstr "Neu"
 
+msgid "New DVD"
+msgstr "neue DVD"
+
 msgid "New pin"
 msgstr "Neuer Pincode"
 
@@ -1710,9 +1756,6 @@ msgstr "Nein, nichts tun"
 msgid "No, just start my dreambox"
 msgstr "Nein, nur die Dreambox starten"
 
-msgid "No, let me choose default lists"
-msgstr "Nein, Standard-Kanalliste verwenden."
-
 msgid "No, scan later manually"
 msgstr "Nein, später suchen."
 
@@ -1728,6 +1771,12 @@ msgstr "Nord"
 
 msgid "Norwegian"
 msgstr "Norwegisch"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
 
 msgid ""
 "Nothing to scan!\n"
@@ -1795,6 +1844,9 @@ msgstr "Seite"
 msgid "Pan&Scan"
 msgstr ""
 
+msgid "Parent Directory"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Jugendschutz"
 
@@ -1835,12 +1887,6 @@ msgstr "Bitte neu starten"
 msgid "Please Select Medium to be Scanned"
 msgstr "Bitte Medium zum Scannen auswählen"
 
-msgid ""
-"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-"Dreambox and press the OK button on your remote control to enable the built "
-"in wireless network support"
-msgstr ""
-
 msgid "Please change recording endtime"
 msgstr "Bitte Aufnahmeendzeit ändern"
 
@@ -1853,18 +1899,6 @@ msgstr "Bitte wählen Sie das Paket aus..."
 msgid "Please choose the default services lists you want to install."
 msgstr ""
 "Bitte wählen Sie die Standard-Kanallisten, die Sie installieren wollen."
-
-msgid ""
-"Please configure your local LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-
-msgid ""
-"Please configure your wireless LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Bitte ändern Sie keine Werte, falls Sie nicht wissen, was Sie tun!"
@@ -1881,6 +1915,9 @@ msgstr "Bitte neuen Dateinamen eingeben"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Bitte einen Dateinamen eingeben (leer = Dateiname ist aktuelles Datum)"
 
+msgid "Please enter name of the new directory"
+msgstr ""
+
 msgid "Please enter the correct pin code"
 msgstr "Bitte den korrekten Pincode eingeben"
 
@@ -1889,6 +1926,14 @@ msgstr "Bitte den alten Pincode eingeben"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Bitte folgen Sie den Angaben auf Ihrem Fernseher."
+
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+
+msgid "Please press OK to continue."
+msgstr "Zum Fortfahren bitte OK drücken."
 
 msgid "Please press OK!"
 msgstr "Bitte OK drücken"
@@ -1904,9 +1949,6 @@ msgstr "Bitte einen Unterkanal zur Aufnahme auswählen..."
 
 msgid "Please select a subservice..."
 msgstr "Bitte einen Unterkanal auswählen..."
-
-msgid "Please select below the wireless network you want to connect to."
-msgstr ""
 
 msgid "Please select keyword to filter..."
 msgstr "Bitte wählen Sie ein Schlüsselwort zum Filtern"
@@ -2112,14 +2154,27 @@ msgstr "Bildwiederholrate"
 msgid "Refresh rate selection."
 msgstr "Auswahl der Bildwiederholungsrate."
 
+msgid "Remove Bookmark"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Plugins entfernen"
 
 msgid "Remove a mark"
 msgstr "Markierung entfernen"
 
+msgid "Remove currently selected title"
+msgstr "entferne aktuell ausgewählten Titel"
+
 msgid "Remove plugins"
 msgstr "Plugins entfernen"
+
+msgid "Remove title"
+msgstr "Titel entfernen"
+
+#, python-format
+msgid "Removing directory %s failed. (Maybe not empty.)"
+msgstr ""
 
 msgid "Rename"
 msgstr "Umbenennen"
@@ -2161,9 +2216,6 @@ msgstr "Test wiederholen"
 
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Neustart der Netzwerk-Konfiguration Ihrer Dreambox.\n"
-
-msgid "Restart your wireless interface"
-msgstr ""
 
 msgid "Restore"
 msgstr "Zurückspielen"
@@ -2245,8 +2297,17 @@ msgstr "Sat-Finder"
 msgid "Saturday"
 msgstr "Samstag"
 
+msgid "Save"
+msgstr ""
+
 msgid "Save Playlist"
 msgstr "Wiedergabeliste speichern"
+
+msgid "Save current project to disk"
+msgstr "Speichere aktuelles Projekt auf Festplatte"
+
+msgid "Save..."
+msgstr "speichern"
 
 msgid "Scaling Mode"
 msgstr "Skalierungsmodus"
@@ -2568,9 +2629,6 @@ msgstr "Startzeit"
 msgid "Starting on"
 msgstr "Beginnend ab"
 
-msgid "Step "
-msgstr "Schritt "
-
 msgid "Step east"
 msgstr "Schritt nach Osten"
 
@@ -2650,6 +2708,9 @@ msgstr ""
 msgid "TV System"
 msgstr "Fernsehnorm"
 
+msgid "Table of content to be burned to DVD:"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Terrestrisch"
 
@@ -2663,27 +2724,6 @@ msgid "Test the network configuration of your Dreambox.\n"
 msgstr "Überprüfen Sie die Netzwerk-Konfiguration Ihrer Dreambox\n"
 
 msgid "Test-Messagebox?"
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your local LAN internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your wireless internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"Please press OK to start using your Dreambox."
 msgstr ""
 
 msgid ""
@@ -2721,6 +2761,10 @@ msgstr ""
 msgid "The package doesn't contain anything."
 msgstr "Das Paket enthält keine Daten"
 
+#, python-format
+msgid "The path %s already exists."
+msgstr ""
+
 msgid "The pin code has been changed successfully."
 msgstr "Der Pincode wurde erfolgreich geändert."
 
@@ -2739,6 +2783,11 @@ msgstr "Der Ausschalt-Timer wurde deaktiviert"
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -3024,18 +3073,6 @@ msgstr "Verwende Stromaufnahmen-Messung"
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
 
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr ""
 
@@ -3171,15 +3208,6 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
@@ -3197,6 +3225,9 @@ msgstr "West"
 
 msgid "What do you want to scan?"
 msgstr "Was wollen Sie scannen?"
+
+msgid "When complete, press Key 0 to burn the collection!"
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin möchten Sie die Einstellungen sichern?"
@@ -3374,16 +3405,6 @@ msgstr ""
 "Drücken Sie OK, um das Upgrade zu starten."
 
 msgid ""
-"Your local LAN internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
-msgid ""
-"Your network is restarting.\n"
-"You will be automatically forwarded to the next step."
-msgstr ""
-
-msgid ""
 "Your wired LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
 msgstr ""
@@ -3391,11 +3412,6 @@ msgstr ""
 msgid ""
 "Your wireless LAN Adapter could not be started.\n"
 "Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-
-msgid ""
-"Your wireless internet connection is not working!\n"
-"Please choose what you want to do next."
 msgstr ""
 
 msgid "Zap back to service before positioner setup?"
@@ -3434,6 +3450,9 @@ msgstr "startet gleich"
 
 msgid "add alternatives"
 msgstr "Alternativen hinzufügen"
+
+msgid "add bookmark"
+msgstr ""
 
 msgid "add bouquet"
 msgstr "Bouquet einfügen"
@@ -3496,6 +3515,9 @@ msgstr "Negativliste"
 msgid "by Exif"
 msgstr ""
 
+msgid "cancel"
+msgstr ""
+
 msgid "change recording (duration)"
 msgstr "Aufnahme ändern (Aufnahmelänge)"
 
@@ -3528,6 +3550,9 @@ msgstr "Weiter"
 
 msgid "copy to bouquets"
 msgstr "in Bouquets kopieren"
+
+msgid "create directory"
+msgstr ""
 
 msgid "daily"
 msgstr "täglich"
@@ -3604,8 +3629,8 @@ msgstr "Schnitt endet hier"
 msgid "end favourites edit"
 msgstr "Favoriteneditor beenden"
 
-msgid "equal to Socket A"
-msgstr "Wie Tuner A"
+msgid "equal to"
+msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "DVD Player verlassen oder zurück zum Dateimanager"
@@ -3714,8 +3739,8 @@ msgstr "Wiedergabeliste laden"
 msgid "locked"
 msgstr "Signal"
 
-msgid "loopthrough to socket A"
-msgstr "Verbunden mit Tuner A"
+msgid "loopthrough to"
+msgstr ""
 
 msgid "manual"
 msgstr "manuell"
@@ -3846,6 +3871,12 @@ msgstr "Entfernen aller 'neu gefunden'-Kennzeichnungen"
 msgid "remove before this position"
 msgstr "Vor dieser Position entfernen"
 
+msgid "remove bookmark"
+msgstr ""
+
+msgid "remove directory"
+msgstr ""
+
 msgid "remove entry"
 msgstr "Eintrag entfernen"
 
@@ -3901,6 +3932,9 @@ msgstr "Sekunden"
 
 msgid "seconds."
 msgstr "Sekunden warten."
+
+msgid "select"
+msgstr ""
 
 msgid "select movie"
 msgstr "Wähle Film"
@@ -4004,6 +4038,9 @@ msgstr "Timeshift beenden"
 msgid "swap PiP and main picture"
 msgstr "Tausche PiP mit Hauptbild"
 
+msgid "switch to bookmarks"
+msgstr ""
+
 msgid "switch to filelist"
 msgstr "In Dateiliste wechseln"
 
@@ -4015,9 +4052,6 @@ msgstr "Zum nächsten Audio-Titel wechseln"
 
 msgid "switch to the next subtitle language"
 msgstr "Zur nächsten Untertitel-Sprache wechseln"
-
-msgid "text"
-msgstr "Text"
 
 msgid "this recording"
 msgstr "Diese Aufnahme"
@@ -4086,11 +4120,12 @@ msgstr "Umschalten"
 msgid "zapped"
 msgstr "umgeschaltet"
 
-#~ msgid "Add a new title"
-#~ msgstr "Füge neuen Titel hinzu"
-
-#~ msgid "Add title..."
-#~ msgstr "Füge Titel hinzu"
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 wird nach der Wiederherstellung neu starten"
 
 #~ msgid ""
 #~ "Are you sure you want to reset \n"
@@ -4101,14 +4136,11 @@ msgstr "umgeschaltet"
 #~ "auf die Standardeinstellungen zurücksetzen wollen?\n"
 #~ "\n"
 
-#~ msgid "Burn"
-#~ msgstr "brenne"
-
-#~ msgid "Burn DVD"
-#~ msgstr "brenne DVD"
-
 #~ msgid "Burn DVD..."
 #~ msgstr "brenne DVD..."
+
+#~ msgid "Confirm"
+#~ msgstr "Bestätigen"
 
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Benutzerspezifische Sprungzeit für 1/3 Tasten"
@@ -4118,12 +4150,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "Device Setup..."
 #~ msgstr "Geräteeinstellungen..."
-
-#~ msgid "Edit current title"
-#~ msgstr "aktuellen Titel editieren"
-
-#~ msgid "Edit title..."
-#~ msgstr "Titel editieren..."
 
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktiviere WLAN Unterstützung"
@@ -4140,14 +4166,8 @@ msgstr "umgeschaltet"
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nameserver-Einstellungen..."
 
-#~ msgid "New DVD"
-#~ msgstr "neue DVD"
-
-#~ msgid "Remove currently selected title"
-#~ msgstr "entferne aktuell ausgewählten Titel"
-
-#~ msgid "Remove title"
-#~ msgstr "Titel entfernen"
+#~ msgid "No, let me choose default lists"
+#~ msgstr "Nein, Standard-Kanalliste verwenden."
 
 #~ msgid "Reset configuration"
 #~ msgstr "Konfig. zurücksetzen"
@@ -4159,17 +4179,14 @@ msgstr "umgeschaltet"
 #~ "Setzen Sie die Netzwerk-Konfiguration Ihrer Dreambox auf Standardwerte "
 #~ "zurück\n"
 
-#~ msgid "Save current project to disk"
-#~ msgstr "Speichere aktuelles Projekt auf Festplatte"
-
-#~ msgid "Save..."
-#~ msgstr "speichern"
-
 #~ msgid "Show files from %s"
 #~ msgstr "Zeige Dateien von %s"
 
 #~ msgid "Startwizard"
 #~ msgstr "Startassistent"
+
+#~ msgid "Step "
+#~ msgstr "Schritt "
 
 #~ msgid ""
 #~ "The installation of the default settings is finished. Your can now "
@@ -4188,6 +4205,12 @@ msgstr "umgeschaltet"
 
 #~ msgid "VCR Switch"
 #~ msgstr "Videorekorderumschaltung"
+
+#~ msgid "equal to Socket A"
+#~ msgstr "Wie Tuner A"
+
+#~ msgid "loopthrough to socket A"
+#~ msgstr "Verbunden mit Tuner A"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "nächsten Wiedergabelisteneintrag abspielen"
@@ -4228,3 +4251,6 @@ msgstr "umgeschaltet"
 
 #~ msgid "skip forward (self defined)"
 #~ msgstr "Vorwärts springen (benutzerdefiniert)"
+
+#~ msgid "text"
+#~ msgstr "Text"
