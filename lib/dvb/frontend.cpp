@@ -2236,7 +2236,6 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 	int type;
 	if (feparm->getSystem(type) || type != m_type || !m_enabled)
 		return 0;
-
 	if (m_type == eDVBFrontend::feSatellite)
 	{
 		ASSERT(m_sec);
@@ -2248,10 +2247,13 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		ret = m_sec->canTune(sat_parm, this, 1 << m_slotid);
 		if (ret > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System::DVB_S && m_can_handle_dvbs2)
 			ret -= 1;
+		return ret;
 	}
 	else if (m_type == eDVBFrontend::feCable)
 		return 2;  // more prio for cable frontends
-	return 1;
+	else if (m_type == eDVBFrontend::feTerrestrial)
+		return 1;
+	return 0;
 }
 
 bool eDVBFrontend::setSlotInfo(ePyObject obj)
