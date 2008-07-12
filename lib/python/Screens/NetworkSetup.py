@@ -510,7 +510,8 @@ class AdapterSetupConfiguration(Screen):
 			callFnc = p.__call__["ifaceSupported"](self.iface)
 			if callFnc is not None:
 				menu.append((_("Scan Wireless Networks"), "scanwlan"))
-				menu.append((_("Show WLAN Status"), "wlanstatus"))
+				if iNetwork.getAdapterAttribute(self.iface, "up"):
+					menu.append((_("Show WLAN Status"), "wlanstatus"))
 				
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("NetworkWizard"), "openwizard"));
