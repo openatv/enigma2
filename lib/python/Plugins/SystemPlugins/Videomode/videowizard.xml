@@ -5,12 +5,8 @@
 		<list type="dynamic" source="listInputChannels" evaluation="inputSelectionMade" onselect="inputSelectionMoved" />
 		<code>
 self["portpic"].show()
-self["arrowdown"].moveTo(557, 232, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].moveTo(800, 232, 1)
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("OK")
 		</code>
 	</step>
 	<step id="modeselection" nextstep="rateselection" timeout="10" timeoutaction="selectnext">
@@ -18,14 +14,9 @@ self["rc"].startMoving()
 		<displaytext value="Select video mode" />
 		<list type="dynamic" source="listModes" evaluation="modeSelectionMade" onselect="modeSelectionMoved" />
 		<code>
-self["arrowup2"].moveTo(800, 320, 1)
-self["arrowup2"].startMoving()
-self["arrowdown"].moveTo(557, 200, 1)
-self["arrowup"].moveTo(557, 355, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 self["portpic"].hide()
 		</code>
 	</step>
@@ -37,14 +28,9 @@ self.condition = (self.port != "DVI" or self.mode == "PC")
 		<displaytext value="Select refresh rate" />
 		<list type="dynamic" source="listRates" evaluation="rateSelectionMade" onselect="rateSelectionMoved" />
 		<code>
-self["arrowup2"].moveTo(800, 320, 1)
-self["arrowup2"].startMoving()
-self["arrowdown"].moveTo(557, 200, 1)
-self["arrowup"].moveTo(557, 355, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 		</code>
 	</step>
 	<step id="dvirateintroduction" nextstep="dvirateselection">
@@ -54,12 +40,9 @@ self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		<text value="We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\nPlease press OK to begin." />
 		<displaytext value="Please follow the instructions on the TV" />
 		<code>
-self["arrowdown"].moveTo(557, 232, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].moveTo(800, 232, 1)
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 self.rateSelect("60Hz")
 		</code>
 	</step>
@@ -73,12 +56,9 @@ self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 			<listentry caption="50 Hz" step="working50Hz" />
 		</list>
 		<code>
-self["arrowdown"].moveTo(557, 232, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].moveTo(800, 232, 1)
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 self.rateSelect("50Hz")
 		</code>
 		<code pos="after">
@@ -92,12 +72,9 @@ self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		<text value="No 50 Hz, sorry. :(" />
 		<displaytext value="" />
 		<code>
-self["arrowdown"].moveTo(557, 232, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].moveTo(800, 232, 1)
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 		</code>
 	</step>
 	<step id="working50Hz" nextstep="end" timeout="10" timeoutaction="nextstep">
@@ -107,12 +84,9 @@ self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		<text value="Your TV works with 50 Hz. Good!" />
 		<displaytext value="" />
 		<code>
-self["arrowdown"].moveTo(557, 232, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].moveTo(800, 232, 1)
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 self.rateSelect("50Hz")
 		</code>
 	</step>
