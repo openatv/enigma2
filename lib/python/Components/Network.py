@@ -294,9 +294,10 @@ class Network:
 		self.getInterfaces()	
 
 	def checkNetworkState(self):
-		return system("ping -c 1 82.149.226.170") == 0 or \ # www.dream-multimedia-tv.de
-			system("ping -c 1 193.99.144.85") == 0 or \ # www.heise.de
-			system("ping -c 1 209.85.135.103") == 0 # www.google.de
+		 # www.dream-multimedia-tv.de, www.heise.de, www.google.de
+		return system("ping -c 1 82.149.226.170") == 0 or \
+			system("ping -c 1 193.99.144.85") == 0 or \
+			system("ping -c 1 209.85.135.103") == 0
 
 	def restartNetwork(self):
 		iNetwork.deactivateNetworkConfig()
