@@ -35,19 +35,14 @@ class Rc:
 		for rc in rcs:
 			id = int(rc.attrib["id"])
 			self.rcs[id] = {}
-			print "id:", id
 			for key in rc:
 				name = key.attrib["name"]
 				pos = key.attrib["pos"].split(",")
-				print "name:", name
-				print "pos:", pos
 				self.rcs[id][name] = (int(pos[0]), int(pos[1]))
 		
 	def getSelectPic(self, pos):
 		for selectPic in self.selectpics:
 			if pos[1] <= selectPic[0]:
-				print "pos[1]:", pos[1]
-				print "selectPic[0]:", selectPic[0]
 				return (selectPic[1], selectPic[2])
 		return None
 	
