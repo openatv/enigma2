@@ -294,8 +294,8 @@ class Network:
 		self.getInterfaces()	
 
 	def checkNetworkState(self):
-		return system("ping -c 1 82.149.226.170") == 0 or # www.dream-multimedia-tv.de
-			system("ping -c 1 193.99.144.85") == 0 or # www.heise.de
+		return system("ping -c 1 82.149.226.170") == 0 or \ # www.dream-multimedia-tv.de
+			system("ping -c 1 193.99.144.85") == 0 or \ # www.heise.de
 			system("ping -c 1 209.85.135.103") == 0 # www.google.de
 
 	def restartNetwork(self):
@@ -325,8 +325,8 @@ class Network:
 				return False
 
 	def checkDNSLookup(self):
-		return system("nslookup www.dream-multimedia-tv.de") == 0 or
-			system("nslookup www.heise.de") == 0 or
+		return system("nslookup www.dream-multimedia-tv.de") == 0 or \
+			system("nslookup www.heise.de") == 0 or \
 			system("nslookup www.google.de")
 
 	def deactivateInterface(self,iface):
