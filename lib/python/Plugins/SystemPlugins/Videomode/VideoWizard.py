@@ -1,8 +1,9 @@
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
+from Screens.Rc import Rc
 from VideoHardware import video_hw
 
-from Components.Pixmap import Pixmap, MovingPixmap
+from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
@@ -29,7 +30,7 @@ class VideoWizardSummary(WizardSummary):
 	def setLCDPic(self, file):
 		self["pic"].instance.setPixmapFromFile(file)
 
-class VideoWizard(WizardLanguage):
+class VideoWizard(WizardLanguage, Rc):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
 			<widget name="text" position="153,50" size="340,270" font="Regular;23" />
@@ -41,8 +42,9 @@ class VideoWizard(WizardLanguage):
 			<ePixmap pixmap="skin_default/buttons/button_red.png" position="40,225" zPosition="0" size="15,16" transparent="1" alphatest="on" />
 			<widget name="languagetext" position="55,225" size="95,30" font="Regular;18" />
 			<widget name="portpic" pixmap="%s" position="50,300" zPosition="10" size="150,150" transparent="1" alphatest="on"/>
-			<widget name="rc" pixmap="skin_default/rc.png" position="500,600" zPosition="10" size="154,475" transparent="1" alphatest="on"/>
+			<widget name="rc" pixmaps="skin_default/rc.png,skin_default/rcold.png" position="500,50" zPosition="10" size="154,500" transparent="1" alphatest="on"/>
 			<widget name="arrowdown" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
+			<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="0,0" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" transparent="1" alphatest="on"/>
 		</screen>""" % (resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/Scart.png"))
@@ -53,12 +55,9 @@ class VideoWizard(WizardLanguage):
 		self.hw = video_hw
 		
 		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
+		Rc.__init__(self)
 		self["wizard"] = Pixmap()
-		self["rc"] = MovingPixmap()
 		self["portpic"] = Pixmap()
-		self["arrowdown"] = MovingPixmap()
-		self["arrowup"] = MovingPixmap()
-		self["arrowup2"] = MovingPixmap()
 		
 		self.port = None
 		self.mode = None
