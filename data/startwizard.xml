@@ -2,12 +2,8 @@
 		<step id="start" nextstep="introduction">
 			<text value="Welcome.\n\nThis start wizard will guide you through the basic setup of your Dreambox.\nPress the OK button on your remote control to move to the next step." />
 			<code>
-self["arrowdown"].moveTo(557, 232, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].moveTo(800, 232, 1)
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("OK")
 			</code>
 		</step>
 		<step id="introduction" >
@@ -17,14 +13,9 @@ self["rc"].startMoving()
 				<listentry caption="Exit wizard" step="end" />
 			</list>
 			<code>
-self["arrowup2"].moveTo(800, 320, 1)
-self["arrowup2"].startMoving()
-self["arrowdown"].moveTo(557, 200, 1)
-self["arrowup"].moveTo(557, 355, 1)
-self["arrowdown"].startMoving()
-self["arrowup"].startMoving()
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("UP")
+self.selectKey("DOWN")
 			</code>
 		</step>
 		<step id="nima">
@@ -35,14 +26,9 @@ self.condition = len(nimmanager.nim_slots) > 0 and not nimmanager.nim_slots[0].e
 			<text value="Use the left and right buttons to change an option.\n\nPlease set up tuner A" />
 			<config screen="NimSetup" module="Satconfig" args="0" type="ConfigList" />
 			<code>
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
-self["arrowup"].moveTo(525, 320, 1)
-self["arrowup"].startMoving()
-self["arrowup2"].moveTo(590, 320, 1)
-self["arrowup2"].startMoving()
-self["arrowdown"].moveTo(740, 355, 1)
-self["arrowdown"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
 			</code>
 		</step>
 		<step id="nimb">
@@ -53,14 +39,9 @@ self.condition = len(nimmanager.nim_slots) > 1 and not nimmanager.nim_slots[1].e
 			<text value="Please set up tuner B" />
 			<config screen="NimSetup" module="Satconfig" args="1" type="ConfigList" />
 			<code>
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
-self["arrowup"].moveTo(525, 320, 1)
-self["arrowup"].startMoving()
-self["arrowup2"].moveTo(590, 320, 1)
-self["arrowup2"].startMoving()
-self["arrowdown"].moveTo(740, 355, 1)
-self["arrowdown"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
 			</code>
 		</step>
 		<step id="nimc">
@@ -71,14 +52,9 @@ self.condition = len(nimmanager.nim_slots) > 2 and not nimmanager.nim_slots[2].e
 			<text value="Please set up tuner C" />
 			<config screen="NimSetup" module="Satconfig" args="2" type="ConfigList" />
 			<code>
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
-self["arrowup"].moveTo(525, 320, 1)
-self["arrowup"].startMoving()
-self["arrowup2"].moveTo(590, 320, 1)
-self["arrowup2"].startMoving()
-self["arrowdown"].moveTo(740, 355, 1)
-self["arrowdown"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
 			</code>
 		</step>
 		<step id="nimd">
@@ -89,14 +65,9 @@ self.condition = len(nimmanager.nim_slots) > 3 and not nimmanager.nim_slots[3].e
 			<text value="Please set up tuner D" />
 			<config screen="NimSetup" module="Satconfig" args="3" type="ConfigList" />
 			<code>
-self["rc"].moveTo(500, 50, 1)
-self["rc"].startMoving()
-self["arrowup"].moveTo(525, 320, 1)
-self["arrowup"].startMoving()
-self["arrowup2"].moveTo(590, 320, 1)
-self["arrowup2"].startMoving()
-self["arrowdown"].moveTo(740, 355, 1)
-self["arrowdown"].startMoving()
+self.clearSelectedKeys()
+self.selectKey("LEFT")
+self.selectKey("RIGHT")
 			</code>
 		</step>
 		<step id="satlistsquestion">
@@ -105,12 +76,7 @@ self["arrowdown"].startMoving()
 self.condition = config.misc.startwizard.doservicescan.value
 			</condition>
 			<code>
-self["rc"].moveTo(800, 50, 1)
-self["rc"].startMoving()
-self["arrowup"].moveTo(800, 310, 1)
-self["arrowup"].startMoving()
-self["arrowup2"].moveTo(800, 310, 1)
-self["arrowup2"].startMoving()
+self.hideRc()
 			</code>
 			<list>
 				<listentry caption="Yes" step="startdefaultlists" />
@@ -124,12 +90,7 @@ self["arrowup2"].startMoving()
 self.condition = config.misc.startwizard.doservicescan.value
 			</condition>
 			<code>
-self["rc"].moveTo(800, 50, 1)
-self["rc"].startMoving()
-self["arrowup"].moveTo(800, 310, 1)
-self["arrowup"].startMoving()
-self["arrowup2"].moveTo(800, 310, 1)
-self["arrowup2"].startMoving()
+self.hideRc()
 			</code>
 			<list>
 				<listentry caption="Yes, do an automatic scan now" step="scan" />

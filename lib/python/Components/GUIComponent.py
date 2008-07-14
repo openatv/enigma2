@@ -47,6 +47,8 @@ class GUIComponent(object):
 			self.instance.move(ePoint(int(x), int(y)))
 
 	def resize(self, x, y = None):
+		self.width = x
+		self.height = y
 		if y is None:
 			self.instance.resize(x)
 		else:
@@ -90,6 +92,12 @@ class GUIComponent(object):
 	def getPosition(self):
 		p = self.instance.position()
 		return (p.x(), p.y())
+	
+	def getWidth(self):
+		return self.width
+	
+	def getHeight(self):
+		return self.height
 
 	position = property(getPosition, setPosition)
 
