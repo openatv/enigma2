@@ -269,7 +269,7 @@ class Network:
 			fp.write("iface wlan0 inet dhcp\n")
 		if mode == 'wlan-mpci':
 			fp.write("auto ath0\n")
-			fp.write("iface eth0 inet dhcp\n")
+			fp.write("iface ath0 inet dhcp\n")
 		if mode == 'lan':
 			fp.write("auto eth0\n")
 			fp.write("iface eth0 inet dhcp\n")
