@@ -294,20 +294,9 @@ class Network:
 		self.getInterfaces()	
 
 	def checkNetworkState(self):
-		ok_counter = 0
-		ret1=system("ping -c 1 www.dream-multimedia-tv.de")
-		if ret1 != 0:
-			ok_counter = ok_counter + 1
-		ret2=system("ping -c 1 www.heise.de")
-		if ret2 != 0:
-			ok_counter = ok_counter + 1
-		ret3=system("ping -c 1 www.google.de")
-		if ret2 != 0:
-			ok_counter = ok_counter + 1		
-		if ok_counter <= 2:
-			return True
-		else:
-			return False
+		return system("ping -c 1 82.149.226.170") == 0 or # www.dream-multimedia-tv.de
+			system("ping -c 1 193.99.144.85") == 0 or # www.heise.de
+			system("ping -c 1 209.85.135.103") == 0 # www.google.de
 
 	def restartNetwork(self):
 		iNetwork.deactivateNetworkConfig()
@@ -334,26 +323,15 @@ class Network:
 				return True
 			else:
 				return False
-		
+
 	def checkDNSLookup(self):
-		ok_counter = 0
-		ret1=system("nslookup www.dream-multimedia-tv.de")
-		if ret1 != 0:
-			ok_counter = ok_counter + 1
-		ret2=system("nslookup www.heise.de")
-		if ret2 != 0:
-			ok_counter = ok_counter + 1
-		ret3=system("nslookup www.google.de")
-		if ret2 != 0:
-			ok_counter = ok_counter + 1		
-		if ok_counter <= 2:
-			return True
-		else:
-			return False
-		
+		return system("nslookup www.dream-multimedia-tv.de") == 0 or
+			system("nslookup www.heise.de") == 0 or
+			system("nslookup www.google.de")
+
 	def deactivateInterface(self,iface):
 		system("ifconfig " + iface + " down")
-		
+
 	def detectWlanModule(self):
 		self.wlanmodule = None
 		rt73_dir = "/sys/bus/usb/drivers/rt73/"
