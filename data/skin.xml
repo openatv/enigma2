@@ -204,8 +204,18 @@
 		<widget source="TimeshiftPossible" render="Pixmap" pixmap="skin_default/buttons/button_yellow.png" position="440,130" zPosition="1" size="15,16" alphatest="on">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<eLabel text="Timeshift" position="460,130" size="85,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1" />
+		<widget source="ShowTimeshiftOnYellow" render="FixedLabel" text="Timeshift" position="460,130" zPosition="1" size="85,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" shadowOffset="-1,-1" transparent="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget source="TimeshiftPossible" render="FixedLabel" text="Timeshift" position="460,130" zPosition="1" size="85,22" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		
+		<!-- Yellow button (used for audio on boxes with new rc?) -->
+		<widget source="ShowAudioOnYellow" render="Pixmap" pixmap="skin_default/buttons/button_yellow.png" position="440,130" zPosition="1" size="15,16" alphatest="on">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="ShowAudioOnYellow" render="FixedLabel" text="Audio" position="460,130" zPosition="1" size="85,22" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<!-- Blue button (is extensions available?) -->
