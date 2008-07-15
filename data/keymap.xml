@@ -89,7 +89,9 @@
 		<device name="dreambox ir keyboard">
 			<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
 		</device>
-		<key id="KEY_RED" mapto="instantRecord" flags="b" />
+		<device name="dreambox remote control (native)">
+			<key id="KEY_RED" mapto="instantRecord" flags="b" />
+		</device>
 	</map>
 
 	<map context="InfobarExtensions">

@@ -184,7 +184,10 @@
 		<widget source="RecordingPossible" render="Pixmap" pixmap="skin_default/buttons/button_red.png" position="212,130" zPosition="1" size="15,16" alphatest="on">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<eLabel text="Record" position="232,130" size="80,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1" />
+		<!--eLabel text="Record" position="232,130" size="80,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1" /-->
+		<widget source="ShowRecordOnRed" render="FixedLabel" text="Record" position="232,130" zPosition="1" size="80,22" font="Regular;16" foregroundColor="#7f848d" backgroundColor="#182946" transparent="1">
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget source="RecordingPossible" render="FixedLabel" text="Record" position="232,130" zPosition="1" size="80,22" font="Regular;16" backgroundColor="#182946" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
 			<convert type="ConditionalShowHide" />
 		</widget>
