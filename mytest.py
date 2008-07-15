@@ -72,10 +72,11 @@ from Components.PluginComponent import plugins
 
 profile("LOAD:Wizard")
 from Screens.Wizard import wizardManager
+from Screens.DefaultWizard import *
 from Screens.ImageWizard import *
 from Screens.StartWizard import *
-from Screens.DefaultWizard import *
 from Screens.TutorialWizard import *
+import Screens.Rc
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 
