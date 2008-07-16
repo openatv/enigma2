@@ -3,18 +3,15 @@ from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.HelpMenuList import HelpMenuList
+from Screens.Rc import Rc
 
-class HelpMenu(Screen):
+class HelpMenu(Screen, Rc):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 		self.onSelChanged = [ ]
 		self["list"] = HelpMenuList(list, self.close)
 		self["list"].onSelChanged.append(self.SelectionChanged)
-		self["rc"] = Pixmap()
-		self["arrowup"] = MovingPixmap()
-		self["arrowup"].hide()
-		self["sh_arrowup"] = Pixmap()
-		self["sh_arrowup"].hide()
+		Rc.__init__(self)
 		self["long_key"] = Label("")
 
 		self["actions"] = ActionMap(["WizardActions"], 
@@ -26,27 +23,26 @@ class HelpMenu(Screen):
 		self.onLayoutFinish.append(self.SelectionChanged)
 
 	def SelectionChanged(self):
+		self.clearSelectedKeys()
 		selection = self["list"].getCurrent()
-		selection = selection and selection[3]
-		arrow = self["arrowup"]
-		sh_arrow = self["sh_arrowup"]
+		selection = selection[3]
+		#arrow = self["arrowup"]
+		print "selection:", selection
 
-		if selection and selection[0][:3] == "sh_":
-			sh_arrow.show()
-		else:
-			sh_arrow.hide()
+		if selection and len(selection) > 1 and selection[1] == "SHIFT":
+			self.selectKey("SHIFT")
 
-		if selection and selection[0][:2] == "l_":
+		if selection and len(selection) > 1 and selection[1] == "long":
 			self["long_key"].setText(_("Long Keypress"))
 		else:
 			self["long_key"].setText("")
 
-		if selection is None:
-			arrow.hide()
-		else:
-			arrow.moveTo(selection[1], selection[2], 1)
-			arrow.startMoving()
-			arrow.show()
+		self.selectKey(selection[0])
+		#if selection is None:
+		print "select arrow"
+		#	arrow.moveTo(selection[1], selection[2], 1)
+		#	arrow.startMoving()
+		#	arrow.show()
 
 class HelpableScreen:
 	def __init__(self):
