@@ -34,7 +34,9 @@ class HelpMenuList(GUIComponent):
 						break
 
 				if flags & 8: # for long keypresses, prepend l_ into the key name.
-					name = ("l_" + name[0], name[1], name[2])
+					name = (name[0], "long")
+					
+				print "name:", name
 
 				entry.append( (actionmap, context, action, name ) )
 				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 28, 0, 0, help) )
