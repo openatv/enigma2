@@ -60,8 +60,8 @@ class NimSetup(Screen, ConfigListScreen):
 			choices["satposdepends"] = _("second cable of motorized LNB")
 		if len(nimmanager.canConnectTo(self.slotid)) > 0:
 			choices["loopthrough"] = _("loopthrough to")
-		self.nimConfig.configMode = updateConfigElement(self.nimConfig.configMode, ConfigSelection(choices = choices, default = "simple"))
-					
+		self.nim.config.configMode.setChoices(choices)
+							
 	def createSetup(self):
 		print "Creating setup"
 		self.list = [ ]
@@ -98,7 +98,8 @@ class NimSetup(Screen, ConfigListScreen):
 				for id in nimlist:
 					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
+				self.nimConfig.connectedTo.setChoices(choices)
+				#self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "satposdepends":
 				choices = []
@@ -106,7 +107,8 @@ class NimSetup(Screen, ConfigListScreen):
 				for id in nimlist:
 					#choices.append((str(id), str(chr(65 + id))))
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
+				self.nimConfig.connectedTo.setChoices(choices)
+				#self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Tuner"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "loopthrough":
 				choices = []
@@ -114,7 +116,8 @@ class NimSetup(Screen, ConfigListScreen):
 				connectable = nimmanager.canConnectTo(self.slotid) 
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
-				self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
+				self.nimConfig.connectedTo.setChoices(choices)
+				#self.nimConfig.connectedTo = updateConfigElement(self.nimConfig.connectedTo, ConfigSelection(choices = choices))
 				self.list.append(getConfigListEntry(_("Connected to"), self.nimConfig.connectedTo))
 			elif self.nimConfig.configMode.value == "nothing":
 				pass
