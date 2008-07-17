@@ -134,7 +134,7 @@ class SecConfigure:
 			nim = slot.config
 			if slot.isCompatible("DVB-S"):
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				print "diseqcmode: ", nim.configMode.value
+				print "diseqcmode: ", nim.diseqcMode.value
 				if nim.configMode.value in [ "loopthrough", "satposdepends", "nothing" ]:
 					pass
 				else:
@@ -787,23 +787,23 @@ def InitNimManager(nimmgr):
 				choices["satposdepends"] = _("second cable of motorized LNB")
 			if len(nimmgr.canConnectTo(x)) > 0:
 				choices["loopthrough"] = _("loopthrough to")
-			nim.configMode = ConfigSelection(choices = choices, default = "simple")
+			nim.configMode = ConfigSelection(choices = choices, default = "nothing")
 
 			#important - check if just the 2nd one is LT only and the first one is DVB-S
 			# CHECKME: is this logic correct for >2 slots?
-			if nim.configMode.value in ["loopthrough", "satposdepends", "equal"]:
-				if x == 0: # first one can never be linked to anything
-					# reset to simple
-					nim.configMode.value = "simple"
-					nim.configMode.save()
-				else:
+#			if nim.configMode.value in ["loopthrough", "satposdepends", "equal"]:
+#				if x == 0: # first one can never be linked to anything
+#					# reset to simple
+#					nim.configMode.value = "simple"
+#					nim.configMode.save()
+#				else:
 					#FIXME: make it better
-					for y in nimmgr.nim_slots:
-						if y.slot == 0:
-							if not y.isCompatible("DVB-S"):
-								# reset to simple
-								nim.configMode.value = "simple"
-								nim.configMode.save()
+			for y in nimmgr.nim_slots:
+				if y.slot == 0:
+					if not y.isCompatible("DVB-S"):
+						# reset to simple
+						nim.configMode.value = "simple"
+						nim.configMode.save()
 
 			nim.diseqcMode = ConfigSelection(
 				choices = [
