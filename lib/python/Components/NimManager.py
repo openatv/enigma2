@@ -629,6 +629,13 @@ class NimManager:
 				if not (type == "DVB-S" and self.getNimType(slot)):
 					if self.hasOutputs(slot):
 						slots.append(slot)
+		# remove nims, that have a conntectedTo reference on
+		for testnim in slots[:]:
+			for nim in self.getNimListOfType("DVB-S", slotid):
+				nimConfig = self.getNimConfig(nim)
+				if nimConfig.content.items.has_key("configMode") and nimConfig.configMode.value == "loopthrough" and int(nimConfig.connectedTo.value) == testnim:
+					slots.remove(testnim)
+					break 
 		slots.sort()
 		
 		return slots
