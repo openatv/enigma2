@@ -382,7 +382,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	
 	ePtr<eDVBRegisteredDemux> unused;
 	
-	if (m_demux.length() < 5)
+	if (m_demux.size() < 5)
 	{
 		/* FIXME: hardware demux policy */
 		if (!(cap & iDVBChannel::capDecode))
