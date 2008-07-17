@@ -374,40 +374,80 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	eDebug("allocate demux");
 	eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin());
-	
+
+	int n=0;
+
 	if (i == m_demux.end())
 		return -1;
-		
-	int n=0;
-		/* FIXME: hardware demux policy */
-	if (!(cap & iDVBChannel::capDecode))
-	{
-		if (m_demux.size() > 2)  /* assumed to be true, otherwise we have lost anyway */
-		{
-			++i, ++n;
-			++i, ++n;
-		}
-	}
 	
-	for (; i != m_demux.end(); ++i, ++n)
+	ePtr<eDVBRegisteredDemux> unused;
+	
+	if (m_demux.length() < 5)
 	{
-		int is_decode = n < 2;
-		
-		int in_use = is_decode ? (i->m_demux->getRefCount() != 2) : i->m_inuse;
-		
-		if ((!in_use) && ((!fe) || (i->m_adapter == fe->m_adapter)))
+		/* FIXME: hardware demux policy */
+		if (!(cap & iDVBChannel::capDecode))
 		{
-			if ((cap & iDVBChannel::capDecode) && !is_decode)
-				continue;
-			
-			demux = new eDVBAllocatedDemux(i);
-			if (fe)
-				demux->get().setSourceFrontend(fe->m_frontend->getDVBID());
-			else
-				demux->get().setSourcePVR(0);
-			return 0;
+			if (m_demux.size() > 2)  /* assumed to be true, otherwise we have lost anyway */
+			{
+				++i, ++n;
+				++i, ++n;
+			}
+		}
+
+		for (; i != m_demux.end(); ++i, ++n)
+		{
+			int is_decode = n < 2;
+		
+			int in_use = is_decode ? (i->m_demux->getRefCount() != 2) : i->m_inuse;
+		
+			if ((!in_use) && ((!fe) || (i->m_adapter == fe->m_adapter)))
+			{
+				if ((cap & iDVBChannel::capDecode) && !is_decode)
+					continue;
+				unused = i;	
+				break;
+			}
 		}
 	}
+	else // we asume dm8000
+	{
+		for (; i != m_demux.end(); ++i, ++n)
+		{
+			if (fe)
+			{
+				if (!i->m_inuse)
+				{
+					if (!unused)
+						unused = i;
+				}
+				else if (i->m_adapter == fe->m_adapter && 
+				    i->m_demux->getSource() == fe->m_frontend->getDVBID())
+				{
+					demux = new eDVBAllocatedDemux(i);
+					return 0;
+				}
+			}
+			else if (n == 4) // always use demux4 for PVR (demux 4 can not descramble...)
+			{
+				if (i->m_inuse) {
+					demux = new eDVBAllocatedDemux(i);
+					return 0;
+				}
+				unused = i;
+			}
+		}
+	}
+
+	if (unused)
+	{
+		demux = new eDVBAllocatedDemux(unused);
+		if (fe)
+			demux->get().setSourceFrontend(fe->m_frontend->getDVBID());
+		else
+			demux->get().setSourcePVR(0);
+		return 0;
+	}
+
 	eDebug("demux not found");
 	return -1;
 }

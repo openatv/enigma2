@@ -15,6 +15,7 @@ public:
 	virtual ~eDVBDemux();
 	
 	RESULT setSourceFrontend(int fenum);
+	int getSource() { return source; }
 	RESULT setSourcePVR(int pvrnum);
 	
 	RESULT createSectionReader(eMainloop *context, ePtr<iDVBSectionReader> &reader);
@@ -28,7 +29,7 @@ public:
 	
 	int getRefCount() { return ref; }
 private:
-	int adapter, demux;
+	int adapter, demux, source;
 	
 	int m_dvr_busy;
 	friend class eDVBSectionReader;
