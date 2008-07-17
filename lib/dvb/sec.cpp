@@ -849,7 +849,7 @@ RESULT eDVBSatelliteEquipmentControl::addLNB()
 		eDebug("no more LNB free... cnt is %d", m_lnbidx);
 		return -ENOSPC;
 	}
-	eSecDebug("eDVBSatelliteEquipmentControl::addLNB(%d)", m_lnbidx-1);
+	eSecDebug("eDVBSatelliteEquipmentControl::addLNB(%d)", m_lnbidx);
 	return 0;
 }
 
@@ -1260,12 +1260,11 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 	{
 		eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
 
-		int cnt=0;
-		for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it, ++cnt)
+		for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
 		{
-			if (cnt == tu1)
+			if (it->m_frontend->getSlotID() == tu1)
 				p1 = *it;
-			else if (cnt == tu2)
+			else if (it->m_frontend->getSlotID() == tu2)
 				p2 = *it;
 		}
 		if (p1 && p2)
@@ -1297,12 +1296,11 @@ RESULT eDVBSatelliteEquipmentControl::setTunerDepends(int tu1, int tu2)
 
 	eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
 
-	int cnt=0;
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it, ++cnt)
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
 	{
-		if (cnt == tu1)
+		if (it->m_frontend->getSlotID() == tu1)
 			p1 = *it;
-		else if (cnt == tu2)
+		else if (it->m_frontend->getSlotID() == tu2)
 			p2 = *it;
 	}
 	if (p1 && p2)
