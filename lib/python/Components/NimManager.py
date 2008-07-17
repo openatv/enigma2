@@ -44,9 +44,11 @@ class SecConfigure:
 		sec.addLNB()
 		tunermask = 1 << slotid
 		if self.equal.has_key(slotid):
-			tunermask |= (1 << self.equal[slotid])
+			for slot in self.equal[slotid]:
+				tunermask |= (1 << slot)
 		elif self.linked.has_key(slotid):
-			tunermask |= (1 << self.linked[slotid])
+			for slot in self.linked[slotid]:
+				tunermask |= (1 << slot)
 		sec.setLNBLOFL(9750000)
 		sec.setLNBLOFH(10600000)
 		sec.setLNBThreshold(11700000)
@@ -84,7 +86,7 @@ class SecConfigure:
 				sec.setVoltageMode(0)
 				sec.setToneMode(0)
 				sec.setRotorPosNum(0) # USALS
-
+		
 		sec.setLNBSlotMask(tunermask)
 
 	def setSatposDepends(self, sec, nim1, nim2):
@@ -94,6 +96,15 @@ class SecConfigure:
 	def linkNIMs(self, sec, nim1, nim2):
 		print "link tuner", nim1, "to tuner", nim2
 		sec.setTunerLinked(nim1, nim2)
+		
+	def getRoot(self, slotid, connto):
+		visited = []
+		while (self.NimManager.getNimConfig(connto).configMode.value in ["satposdepends", "equal", "loopthrough"]):
+			connto = int(self.NimManager.getNimConfig(connto).connectedTo.value)
+			if connto in visited: # prevent endless loop
+				return slotid
+			visited.append(connto)
+		return connto
 
 	def update(self):
 		sec = secClass.getInstance()
@@ -121,13 +132,23 @@ class SecConfigure:
 				# save what nim we link to/are equal to/satposdepends to.
 				# this is stored in the *value* (not index!) of the config list
 				if nim.configMode.value == "equal":
-					self.equal[int(nim.connectedTo.value)]=x
+					connto = self.getRoot(x, int(nim.connectedTo.value))
+					if not self.equal.has_key(connto):
+						self.equal[connto] = []
+					self.equal[connto].append(x)
 				elif nim.configMode.value == "loopthrough":
 					self.linkNIMs(sec, x, int(nim.connectedTo.value))
-					self.linked[int(nim.connectedTo.value)]=x
+					connto = self.getRoot(x, int(nim.connectedTo.value))
+					if not self.linked.has_key(connto):
+						self.linked[connto] = []
+					self.linked[connto].append(x)
 				elif nim.configMode.value == "satposdepends":
 					self.setSatposDepends(sec, x, int(nim.connectedTo.value))
-					self.satposdepends[int(nim.connectedTo.value)]=x
+					connto = self.getRoot(x, int(nim.connectedTo.value))
+					if not self.satposdepends.has_key(connto):
+						self.satposdepends[connto] = []
+					self.satposdepends[connto].append(x)
+					
 
 		for slot in nim_slots:
 			x = slot.slot
@@ -817,7 +838,7 @@ def InitNimManager(nimmgr):
 			choices = []
 			for id in nimmgr.getNimListOfType("DVB-S"):
 				if id != x:
-					choices.append((str(id), str(chr(65 + id))))
+					choices.append((str(id), nimmgr.getNimDescription(id)))
 			nim.connectedTo = ConfigSelection(choices = choices)
 			nim.diseqcA = getConfigSatlist(192, nimmgr.satList)
 			nim.diseqcB = getConfigSatlist(130, nimmgr.satList)
