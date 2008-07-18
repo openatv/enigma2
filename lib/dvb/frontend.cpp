@@ -532,16 +532,17 @@ int eDVBFrontend::openFrontend()
 
 int eDVBFrontend::closeFrontend()
 {
-	eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)m_data[LINKED_NEXT_PTR];
-	while (linked_fe != (eDVBRegisteredFrontend*)-1)
+	long tmp = m_data[LINKED_NEXT_PTR];
+	while (tmp != -1)
 	{
+		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
 		if (linked_fe->m_inuse)
 		{
 			eDebug("dont close frontend %d until the linked frontend %d in slot %d is still in use",
 				m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
 			return -1;
 		}
-		linked_fe->m_frontend->getData(LINKED_NEXT_PTR, (long&)linked_fe);
+		linked_fe->m_frontend->getData(LINKED_NEXT_PTR, tmp);
 	}
 	if (m_fd >= 0)
 	{
