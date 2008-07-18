@@ -574,6 +574,7 @@ int eDVBFrontend::closeFrontend()
 
 eDVBFrontend::~eDVBFrontend()
 {
+	m_data[LINKED_PREV_PTR] = m_data[LINKED_NEXT_PTR] = -1;
 	closeFrontend();
 	delete m_timeout;
 	delete m_tuneTimer;
