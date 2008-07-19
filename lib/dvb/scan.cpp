@@ -153,7 +153,7 @@ RESULT eDVBScan::startFilter()
 			assert(i != m_PAT->getSections().end());
 			tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
 
-			// KabelBW HACK ... on 618 Mhz the transport stream id in PAT and SDT is different
+			// KabelBW HACK ... on 618Mhz and 626Mhz the transport stream id in PAT and SDT is different
 			{
 				int type;
 				m_ch_current->getSystem(type);
@@ -161,7 +161,8 @@ RESULT eDVBScan::startFilter()
 				{
 					eDVBFrontendParametersCable parm;
 					m_ch_current->getDVBC(parm);
-					if (tsid == 0x00d7 & abs(parm.frequency-618000) < 2000)
+					if ((tsid == 0x00d7 && abs(parm.frequency-618000) < 2000) ||
+						(tsid == 0x00d8 && abs(parm.frequency-626000) < 2000))
 						tsid = -1;
 				}
 			}
