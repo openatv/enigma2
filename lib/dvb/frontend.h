@@ -133,7 +133,7 @@ public:
 	static int getTypePriorityOrder() { return PriorityOrder; }
 
 	int openFrontend();
-	int closeFrontend();
+	int closeFrontend(bool force=false);
 	const char *getDescription() const { return m_description; }
 };
 
