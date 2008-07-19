@@ -296,7 +296,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		{
 			eDVBSatelliteSwitchParameters &sw_param = sit->second;
 			bool doSetFrontend = true;
-			bool doSetVoltageToneFrontend = m_not_linked_slot_mask & slot_id;
+			bool doSetVoltageToneFrontend = true;
 			bool allowDiseqc1_2 = true;
 			long band=0,
 				voltage = iDVBFrontend::voltageOff,
@@ -318,11 +318,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			frontend.getData(eDVBFrontend::ROTOR_POS, curRotorPos);
 			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satposDependPtr);
 
-			if (satposDependPtr != -1 && !doSetVoltageToneFrontend)
-			{
+			if (satposDependPtr != -1 && !(m_not_linked_slot_mask & slot_id))
 				allowDiseqc1_2 = false;
-				doSetVoltageToneFrontend = true;
-			}
 
 			if ( sat.frequency > lnb_param.m_lof_threshold )
 				band |= 1;
@@ -428,7 +425,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						eDebugNoNewLine("0");
 				eDebug("");
 #endif
-
 				if (doSetVoltageToneFrontend)
 				{
 					int RotorCmd=-1;

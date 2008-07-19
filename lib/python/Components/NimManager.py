@@ -227,9 +227,11 @@ class SecConfigure:
 
 				tunermask = 1 << slotid
 				if self.equal.has_key(slotid):
-					tunermask |= (1 << self.equal[slotid])
+					for slot in self.equal[slotid]:
+						tunermask |= (1 << slot)
 				elif self.linked.has_key(slotid):
-					tunermask |= (1 << self.linked[slotid])
+					for slot in self.linked[slotid]:
+						tunermask |= (1 << slot)
 
 				if currLnb.lof.value == "universal_lnb":
 					sec.setLNBLOFL(9750000)
@@ -625,10 +627,8 @@ class NimManager:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
 		for type in self.nim_slots[slotid].connectableTo(): 
 			for slot in self.getNimListOfType(type, exception = slotid):
-				# FIXME we restrict loopthrough from dvb-s2 to dvb-s, because the c++ part can't handle it
-				if not (type == "DVB-S" and self.getNimType(slot)):
-					if self.hasOutputs(slot):
-						slots.append(slot)
+				if self.hasOutputs(slot):
+					slots.append(slot)
 		# remove nims, that have a conntectedTo reference on
 		for testnim in slots[:]:
 			for nim in self.getNimListOfType("DVB-S", slotid):

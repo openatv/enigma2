@@ -452,7 +452,7 @@ int eDVBFrontend::openFrontend()
 	if (m_sn)
 		return -1;  // already opened
 
-	m_state=0;
+	m_state=stateIdle;
 	m_tuning=0;
 
 #if HAVE_DVB_API_VERSION < 3
@@ -524,25 +524,28 @@ int eDVBFrontend::openFrontend()
 	setTone(iDVBFrontend::toneOff);
 	setVoltage(iDVBFrontend::voltageOff);
 
-	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read);
+	m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read, false);
 	CONNECT(m_sn->activated, eDVBFrontend::feEvent);
 
 	return 0;
 }
 
-int eDVBFrontend::closeFrontend()
+int eDVBFrontend::closeFrontend(bool force)
 {
-	long tmp = m_data[LINKED_NEXT_PTR];
-	while (tmp != -1)
+	if (!force && m_data[CUR_VOLTAGE] != -1 && m_data[CUR_VOLTAGE] != iDVBFrontend::voltageOff)
 	{
-		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
-		if (linked_fe->m_inuse)
+		long tmp = m_data[LINKED_NEXT_PTR];
+		while (tmp != -1)
 		{
-			eDebug("dont close frontend %d until the linked frontend %d in slot %d is still in use",
-				m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
-			return -1;
+			eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
+			if (linked_fe->m_inuse)
+			{
+				eDebug("dont close frontend %d until the linked frontend %d in slot %d is still in use",
+					m_dvbid, linked_fe->m_frontend->getDVBID(), linked_fe->m_frontend->getSlotID());
+				return -1;
+			}
+			linked_fe->m_frontend->getData(LINKED_NEXT_PTR, tmp);
 		}
-		linked_fe->m_frontend->getData(LINKED_NEXT_PTR, tmp);
 	}
 	if (m_fd >= 0)
 	{
@@ -569,6 +572,7 @@ int eDVBFrontend::closeFrontend()
 #endif
 	delete m_sn;
 	m_sn=0;
+	m_state = stateClosed;
 
 	return 0;
 }
@@ -1319,8 +1323,32 @@ void eDVBFrontend::setRotorData(int pos, int cmd)
 void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 {
 	int delay=0;
+	eDVBFrontend *fe = this;
+	eDVBRegisteredFrontend *regFE = 0;
+	long tmp = m_data[LINKED_PREV_PTR];
+	while ( tmp != -1 )
+	{
+		eDVBRegisteredFrontend *prev = (eDVBRegisteredFrontend *)tmp;
+		fe = prev->m_frontend;
+		tmp = prev->m_frontend->m_data[LINKED_PREV_PTR];
+		if (tmp == -1 && fe != this && !prev->m_inuse) {
+			int state = fe->m_state;
+			if (state != eDVBFrontend::stateIdle && state != stateClosed)
+			{
+				fe->closeFrontend(true);
+				state = fe->m_state;
+			}
+			if (state == eDVBFrontend::stateClosed)
+			{
+				regFE = prev;
+				prev->inc_use();
+			}
+		}
+	}
+
 	if ( m_sec_sequence && m_sec_sequence.current() != m_sec_sequence.end() )
 	{
+		long *m_data = fe->m_data;
 //		eDebug("tuneLoop %d\n", m_sec_sequence.current()->cmd);
 		switch (m_sec_sequence.current()->cmd)
 		{
@@ -1336,7 +1364,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			{
 				int voltage = m_sec_sequence.current()++->voltage;
 				eDebug("[SEC] setVoltage %d", voltage);
-				setVoltage(voltage);
+				fe->setVoltage(voltage);
 				break;
 			}
 			case eSecCommand::IF_VOLTAGE_GOTO:
@@ -1373,10 +1401,10 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			}
 			case eSecCommand::SET_TONE:
 				eDebug("[SEC] setTone %d", m_sec_sequence.current()->tone);
-				setTone(m_sec_sequence.current()++->tone);
+				fe->setTone(m_sec_sequence.current()++->tone);
 				break;
 			case eSecCommand::SEND_DISEQC:
-				sendDiseqc(m_sec_sequence.current()->diseqc);
+				fe->sendDiseqc(m_sec_sequence.current()->diseqc);
 				eDebugNoNewLine("[SEC] sendDiseqc: ");
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 				    eDebugNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
@@ -1385,7 +1413,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SEND_TONEBURST:
 				eDebug("[SEC] sendToneburst: %d", m_sec_sequence.current()->toneburst);
-				sendToneburst(m_sec_sequence.current()++->toneburst);
+				fe->sendToneburst(m_sec_sequence.current()++->toneburst);
 				break;
 			case eSecCommand::SET_FRONTEND:
 				eDebug("[SEC] setFrontend");
@@ -1417,7 +1445,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				int idx = m_sec_sequence.current()++->val;
 				if ( idx == 0 || idx == 1 )
 				{
-					m_idleInputpower[idx] = readInputpower();
+					m_idleInputpower[idx] = fe->readInputpower();
 					eDebug("[SEC] idleInputpower[%d] is %d", idx, m_idleInputpower[idx]);
 				}
 				else
@@ -1430,7 +1458,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				int idx = compare.val;
 				if ( idx == 0 || idx == 1 )
 				{
-					int idle = readInputpower();
+					int idle = fe->readInputpower();
 					int diff = abs(idle-m_idleInputpower[idx]);
 					if ( diff > 0)
 					{
@@ -1468,7 +1496,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			}
 			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
-				m_runningInputpower = readInputpower();
+				m_runningInputpower = fe->readInputpower();
 				eDebug("[SEC] runningInputpower is %d", m_runningInputpower);
 				++m_sec_sequence.current();
 				break;
@@ -1514,11 +1542,11 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_ROTORPARMS:
 				eDebug("[SEC] invalidate current rotorparams");
-				setRotorData(-1,-1);	
+				fe->setRotorData(-1,-1);	
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::UPDATE_CURRENT_ROTORPARAMS:
-				setRotorData(m_data[NEW_ROTOR_POS], m_data[NEW_ROTOR_CMD]);
+				fe->setRotorData(m_data[NEW_ROTOR_POS], m_data[NEW_ROTOR_CMD]);
 				eDebug("[SEC] update current rotorparams %d %04lx %ld", m_timeoutCount, m_data[ROTOR_CMD], m_data[ROTOR_POS]);
 				++m_sec_sequence.current();
 				break;
@@ -1538,7 +1566,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			case eSecCommand::SET_POWER_LIMITING_MODE:
 			{
 				char proc_name[64];
-				sprintf(proc_name, "/proc/stb/frontend/%d/static_current_limiting", m_dvbid);
+				sprintf(proc_name, "/proc/stb/frontend/%d/static_current_limiting", fe->m_dvbid);
 				FILE *f=fopen(proc_name, "w");
 				if (f) // new interface exist?
 				{
@@ -1549,16 +1577,16 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 						eDebug("[SEC] set %s current limiting", slimiting ? "static" : "dynamic");
 					fclose(f);
 				}
-				else if (m_need_rotor_workaround)
+				else if (fe->m_need_rotor_workaround)
 				{
 					char dev[16];
-
+					int slotid = fe->m_slotid;
 					// FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
-					if (m_slotid < 2)
-						sprintf(dev, "/dev/i2c/%d", m_slotid);
-					else if (m_slotid == 2)
+					if (slotid < 2)
+						sprintf(dev, "/dev/i2c/%d", slotid);
+					else if (slotid == 2)
 						sprintf(dev, "/dev/i2c/2"); // first nim socket on DM8000 use /dev/i2c/2
-					else if (m_slotid == 3)
+					else if (slotid == 3)
 						sprintf(dev, "/dev/i2c/4"); // second nim socket on DM8000 use /dev/i2c/4
 					int fd = ::open(dev, O_RDWR);
 
@@ -1590,6 +1618,8 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 		}
 		m_tuneTimer->start(delay,true);
 	}
+	if (regFE)
+		regFE->dec_use();
 }
 
 void eDVBFrontend::setFrontend()
