@@ -322,7 +322,6 @@ public:
 	RESULT setTunerDepends(int from, int to);
 	void setSlotNotLinked(int tuner_no);
 
-	PyObject *get_exclusive_satellites(int tu1, int tu2);
 	void setRotorMoving(bool); // called from the frontend's
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }

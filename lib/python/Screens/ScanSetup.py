@@ -797,18 +797,6 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def getNetworksForNim(self, nim):
 		if nim.isCompatible("DVB-S"):
 			networks = nimmanager.getSatListForNim(nim.slot)
-# the original code took "loopthrough" etc. into account. Do we need this?
-#			if nimmanager.getNimConfigMode(1) in ["loopthrough", "satposdepends", "equal", "nothing"]:
-#				return False
-#			sec = eDVBSatelliteEquipmentControl.getInstance()
-#			if sec is not None:
-#				exclusive_satellites = sec.get_exclusive_satellites(0,1)
-#				if len(exclusive_satellites) == 2:
-#					return False
-#				idx = exclusive_satellites[0]+1
-#				exclusive_nim_sats = exclusive_satellites[idx+1:idx+1+exclusive_satellites[idx]]
-#				if len(exclusive_nim_sats):
-#					return True
 		elif not nim.empty:
 			networks = [ nim.type ] # "DVB-C" or "DVB-T". TODO: seperate networks for different C/T tuners, if we want to support that.
 		else:
