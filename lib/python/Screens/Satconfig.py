@@ -60,7 +60,7 @@ class NimSetup(Screen, ConfigListScreen):
 			choices["satposdepends"] = _("second cable of motorized LNB")
 		if len(nimmanager.canConnectTo(self.slotid)) > 0:
 			choices["loopthrough"] = _("loopthrough to")
-		self.nim.config.configMode.setChoices(choices)
+		self.nimConfig.configMode.setChoices(choices)
 							
 	def createSetup(self):
 		print "Creating setup"
@@ -113,7 +113,7 @@ class NimSetup(Screen, ConfigListScreen):
 			elif self.nimConfig.configMode.value == "loopthrough":
 				choices = []
 				print "connectable to:", nimmanager.canConnectTo(self.slotid)
-				connectable = nimmanager.canConnectTo(self.slotid) 
+				connectable = nimmanager.canConnectTo(self.slotid)
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
 				self.nimConfig.connectedTo.setChoices(choices)
@@ -336,7 +336,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.createConfigMode()
 		self.createSetup()
 		# safeAll is needed, so that keyCancel works properly
-		self.saveAll()
+		ConfigListScreen.saveAll(self)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -345,6 +345,17 @@ class NimSetup(Screen, ConfigListScreen):
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		self.newConfig()
+		
+	def saveAll(self):
+		if self.nim.isCompatible("DVB-S"):
+			# reset connectedTo to all choices to properly store the default value
+			choices = []
+			nimlist = nimmanager.getNimListOfType("DVB-S", self.slotid)
+			for id in nimlist:
+				choices.append((str(id), nimmanager.getNimDescription(id)))
+			self.nimConfig.connectedTo.setChoices(choices)
+		for x in self["config"].list:
+			x[1].save()
 
 class NimSelection(Screen):
 	def __init__(self, session):
