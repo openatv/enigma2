@@ -291,6 +291,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.unconfed_sats = old_configured_sats - new_configured_sats
 		self.satpos_to_remove = None
 		self.deleteConfirmed(False)
+		self.saveAll()
 
 	def deleteConfirmed(self, confirmed):
 		if confirmed:
@@ -356,7 +357,7 @@ class NimSetup(Screen, ConfigListScreen):
 			self.nimConfig.connectedTo.setChoices(choices)
 		for x in self["config"].list:
 			x[1].save()
-
+			
 class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
