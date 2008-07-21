@@ -200,6 +200,7 @@ class NimSetup(Screen, ConfigListScreen):
 				x[1].value = int(mktime(dt.timetuple()))
 			x[1].save()
 		nimmanager.sec.update()
+		self.saveAll()
 
 	def fillListWithAdvancedSatEntrys(self, Sat):
 		currLnb = self.nimConfig.advanced.lnb[int(Sat.lnb.value)]
@@ -291,7 +292,6 @@ class NimSetup(Screen, ConfigListScreen):
 		self.unconfed_sats = old_configured_sats - new_configured_sats
 		self.satpos_to_remove = None
 		self.deleteConfirmed(False)
-		self.saveAll()
 
 	def deleteConfirmed(self, confirmed):
 		if confirmed:
