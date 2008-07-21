@@ -1,13 +1,13 @@
 from Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
-from Tools.Directories import resolveFilename, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTPARTITION
+from Tools.Directories import pathExists, resolveFilename, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTPARTITION
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.config import config, ConfigBoolean, configfile, ConfigYesNo, getConfigListEntry
 from Components.DreamInfoHandler import DreamInfoHandler
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
-from os import system as os_system, path as os_path
+from os import system as os_system, path as os_path, mkdir
 
 config.misc.defaultchosen = ConfigBoolean(default = True)
 
@@ -59,10 +59,11 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 		for x in range(len(self.packagesConfig)):
 			if self.packagesConfig[x].value:
 				self.indexList.append(x)
-		
+
 class DreamPackageWizard(DefaultWizard):
 	def __init__(self, session, packagefile, silent = False):
-		os_system("mkdir /tmp/package")
+		if not pathExists("/tmp/package"):
+			mkdir("/tmp/package")
 		os_system("tar xpzf %s -C /tmp/package" % packagefile)
 		self.packagefile = packagefile
 		DefaultWizard.__init__(self, session, silent)

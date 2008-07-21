@@ -9,10 +9,10 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.ScanSetup import ScanSetup
 from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
-from Tools.Directories import resolveFilename, SCOPE_CONFIG
+from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
 #from Screens.Screen import Screen
+from file import unlink
 from enigma import eTimer, eDVBDB
-import os
 
 class DefaultServiceScan(ServiceScan):
 	skin = """
@@ -39,9 +39,12 @@ class DefaultServiceScan(ServiceScan):
 		<widget name="scan_progress" position="10,105" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 		<widget name="servicelist" position="10,135" size="400,265" selectionDisabled="1" />
 	</screen>"""
-		
+
 	def __init__(self, session, scanList):
-		os.system("rm " + resolveFilename(SCOPE_CONFIG) + "/lamedb")
+		try:
+			unlink("rm " + resolveFilename(SCOPE_CONFIG) + "/lamedb");
+		except OSError:
+			pass
 		db = eDVBDB.getInstance()
 		db.reloadServicelist()
 		ServiceScan.__init__(self, session, scanList)
@@ -59,7 +62,8 @@ class DefaultServicesScannerPlugin(ScanSetup):
 	def __init__(self, session, args = None):
 		ScanSetup.__init__(self, session)
 		# backup lamedb
-		os.system("cp " + resolveFilename(SCOPE_CONFIG) + "/lamedb " + resolveFilename(SCOPE_CONFIG) + "/lamedb.backup")
+		confdir = resolveFilename(SCOPE_CONFIG)
+		copyfile(confdir + "/lamedb", confdir + "/lamedb.backup)
 		self.scan_type.value = "multisat"
 		self.createSetup()
 		self.scanIndex = 0
@@ -115,7 +119,8 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		self.scanIndex += 1
 		if self.scanIndex + 1 >= len(self.multiscanlist):
 			print "no more sats to scan"
-			os.system("cp " + resolveFilename(SCOPE_CONFIG) + "/lamedb.backup " + resolveFilename(SCOPE_CONFIG) + "/lamedb")
+			confdir = resolveFilename(SCOPE_CONFIG)
+			copyfile(confdir + "/lamedb.backup", confdir + "/lamedb)
 			db.reloadServicelist()
 			self.close()
 		else:
