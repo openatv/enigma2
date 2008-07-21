@@ -3,8 +3,6 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
 
-config.misc.rcused = ConfigInteger(default = 1)
-
 class Rc:
 	def __init__(self):
 		self["rc"] = MultiPixmap()
@@ -12,6 +10,8 @@ class Rc:
 		self["arrowdown2"] = MovingPixmap()
 		self["arrowup"] = MovingPixmap()
 		self["arrowup2"] = MovingPixmap()
+		
+		config.misc.rcused = ConfigInteger(default = 1)
 		
 		self.rcheight = 500
 		self.rcheighthalf = 250
@@ -25,8 +25,7 @@ class Rc:
 		self.onShown.append(self.initRc)
 
 	def initRc(self):
-		self["rc"].setPixmapNum(config.misc.rcused.value)
-		
+		self["rc"].setPixmapNum(config.misc.rcused.value)		
 				
 	def readPositions(self):
 		tree = ElementTree(file = resolveFilename(SCOPE_SKIN, "rcpositions.xml"))
@@ -66,9 +65,9 @@ class Rc:
 					break
 			if selectPic is not None:
 				print "selectPic:", selectPic
-				self[selectPic].show()
 				self[selectPic].moveTo(rcpos[0] + pos[0] + selectPics[1][0], rcpos[1] + pos[1] + selectPics[1][1], 1)
 				self[selectPic].startMoving()
+				self[selectPic].show()
 				self.selectedKeys.append(selectPic)
 	
 	def clearSelectedKeys(self):
