@@ -679,40 +679,44 @@ class NimManager:
 	def getSatListForNim(self, slotid):
 		list = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
+			nim = config.Nims[slotid]
 			#print "slotid:", slotid
 
 			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.index]
 			#print "diseqcA:", config.Nims[slotid].diseqcA.value
-			configMode = config.Nims[slotid].configMode.value
+			configMode = nim.configMode.value
 
 			if configMode == "equal":
-				slotid=0 #FIXME add handling for more than two tuners !!!
-				configMode = config.Nims[slotid].configMode.value
+				slotid = int(nim.connectedTo.value)
+				nim = config.Nims[slotid]
+				configMode = nim.configMode.value
+			elif configMode == "loopthrough":
+				slotid = self.sec.getRoot(slotid, int(nim.connectedTo.value))
+				nim = config.Nims[slotid]
+				configMode = nim.configMode.value
 
 			if configMode == "simple":
-				dm = config.Nims[slotid].diseqcMode.value
+				dm = nim.diseqcMode.value
 				if dm in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-					list.append(self.satList[config.Nims[slotid].diseqcA.index])
+					list.append(self.satList[nim.diseqcA.index])
 				if dm in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-					list.append(self.satList[config.Nims[slotid].diseqcB.index])
+					list.append(self.satList[nim.diseqcB.index])
 				if dm == "diseqc_a_b_c_d":
-					list.append(self.satList[config.Nims[slotid].diseqcC.index])
-					list.append(self.satList[config.Nims[slotid].diseqcD.index])
+					list.append(self.satList[nim.diseqcC.index])
+					list.append(self.satList[nim.diseqcD.index])
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
 			elif configMode == "advanced":
 				for x in self.satList:
-					if int(config.Nims[slotid].advanced.sat[x[0]].lnb.value) != 0:
+					if int(nim.advanced.sat[x[0]].lnb.value) != 0:
 						list.append(x)
-		
 		return list
 
 	def getRotorSatListForNim(self, slotid):
 		list = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
 			#print "slotid:", slotid
-
 			#print "self.satellites:", self.satList[config.Nims[slotid].diseqcA.value]
 			#print "diseqcA:", config.Nims[slotid].diseqcA.value
 			configMode = config.Nims[slotid].configMode.value
