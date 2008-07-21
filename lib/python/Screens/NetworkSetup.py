@@ -110,9 +110,11 @@ class NetworkAdapterSelection(Screen):
 			fp.write(selection[0])
 			fp.close()
 			iNetwork.restartNetwork()
+			self.updateList()
 		elif old_default_gw and num_if < 2:
 			unlink("/etc/default_gw")
 			iNetwork.restartNetwork()
+			self.updateList()
 
 	def okbuttonClick(self):
 		selection = self["list"].getCurrent()
