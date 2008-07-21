@@ -1,5 +1,5 @@
 import xml.sax
-from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN
+from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
 from Components.NimManager import nimmanager
 from Components.Ipkg import IpkgComponent
 from Components.config import config, configfile
@@ -305,7 +305,7 @@ class DreamInfoHandler:
 		print "installing skin:", directory, " - ", name
 		print "cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))
 		if self.blocking:
-			os.system("cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN)))
+			copytree(directory, resolveFilename(SCOPE_SKIN))
 			self.installNext()
 		else:
 			if self.console.execute("cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))):
@@ -324,9 +324,9 @@ class DreamInfoHandler:
 	def installFavourites(self, directory, name):
 		print "installing favourites:", directory, " - ", name
 		self.reloadFavourites = True
-		
+
 		if self.blocking:
-			os.system("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG)))
+			copyfile(directory + name, resolveFilename(SCOPE_CONFIG))
 			self.installNext()
 		else:
 			if self.console.execute("cp %s %s" % ((directory + name), resolveFilename(SCOPE_CONFIG))):

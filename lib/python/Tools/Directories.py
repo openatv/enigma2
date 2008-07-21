@@ -1,6 +1,20 @@
 # -*- coding: utf-8 -*-
-from os import path as os_path, mkdir, rmdir, system, walk
+
+from os import path as os_path, mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink
+from stat import S_IMODE
 from re import compile
+
+try:
+	from os import chmod
+	have_chmod = True
+except:
+	have_chmod = False
+
+try:
+	from os import utime
+	have_utime = True
+except:
+	have_utime = False
 
 SCOPE_TRANSPONDERDATA = 0
 SCOPE_SYSETC = 1
@@ -182,3 +196,56 @@ def crawlDirectory(directory, pattern):
 			if expression.match(file) is not None:
 				list.append((root, file))
 	return list
+
+def copyfile(src, dst):
+	try:
+		f1 = open(src, "rb")
+		if os_path.isdir(dst):
+			dst = os_path.join(dst, os_path.basename(src))
+		f2 = open(dst, "w+b")
+		while True:
+			buf = f1.read(16*1024)
+			if not buf:
+				break
+			f2.write(buf)
+		st = os_stat(src)
+		mode = S_IMODE(st.st_mode)
+		if have_chmod:
+			chmod(dst, mode)
+		if have_utime:
+			utime(dst, (st.st_atime, st.st_mtime))
+	except:
+		print "copy", src, "to", dst, "failed!"
+		return -1
+	return 0
+
+def copytree(src, dst, symlinks=False):
+	names = listdir(src)
+	if os_path.isdir(dst):
+		dst = os_path.join(dst, os_path.basename(src))
+		if not os_path.isdir(dst):
+			mkdir(dst)
+	else:
+		makedirs(dst)
+	for name in names:
+		srcname = os_path.join(src, name)
+		dstname = os_path.join(dst, name)
+		try:
+			if symlinks and os_path.islink(srcname):
+				linkto = readlink(srcname)
+				symlink(linkto, dstname)
+			elif os_path.isdir(srcname):
+				copytree(srcname, dstname, symlinks)
+			else:
+				copyfile(srcname, dstname)
+		except:
+			print "dont copy srcname (no file or link or folder)"
+	try:
+		st = os_stat(src)
+		mode = S_IMODE(st.st_mode)
+		if have_chmod:
+			chmod(dst, mode)
+		if have_utime:
+			utime(dst, (st.st_atime, st.st_mtime))
+	except:
+		print "copy stats for", src, "failed!"
