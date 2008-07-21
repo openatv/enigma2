@@ -2,20 +2,45 @@ from Screen import Screen
 from Components.ActionMap import ActionMap,NumberActionMap
 from Screens.MessageBox import MessageBox
 from Screens.Standby import *
-from Components.ConfigList import ConfigListScreen
-from Components.config import config, getConfigListEntry
 from Components.Network import iNetwork
-from Tools.Directories import resolveFilename
 from Components.Label import Label,MultiColorLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
 from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigSelection, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer
-from os import path as os_path
+from os import path as os_path, system as os_system
 from re import compile as re_compile, search as re_search
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+
+from Tools.Directories import SCOPE_SKIN_IMAGE,SCOPE_PLUGINS, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
+
+class InterfaceList(MenuList):
+	def __init__(self, list, enableWrapAround=False):
+		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+		self.l.setFont(0, gFont("Regular", 20))
+		self.l.setItemHeight(30)
+
+def InterfaceEntryComponent(index,name,default,active ):
+	res = [ (index) ]
+	res.append(MultiContentEntryText(pos=(80, 5), size=(430, 25), font=0, text=name))
+	if default is True:
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/buttons/button_blue.png"))
+	if default is False:
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/buttons/button_blue_off.png"))
+	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(25, 25), png = png))
+	if active is True:
+		png2 = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_on.png"))
+	if active is False:
+		png2 = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_error.png"))
+	res.append(MultiContentEntryPixmapAlphaTest(pos=(40, 1), size=(25, 25), png = png2))
+	return res
+
 
 class NetworkAdapterSelection(Screen):
 	def __init__(self, session):
@@ -23,24 +48,75 @@ class NetworkAdapterSelection(Screen):
 		iNetwork.getInterfaces()
 		self.wlan_errortext = _("No working wireless networkadapter found.\nPlease verify that you have attached a compatible WLAN USB Stick and your Network is configured correctly.")
 		self.lan_errortext = _("No working local networkadapter found.\nPlease verify that you have attached a network cable and your Network is configured correctly.")
+		
+		self["ButtonBluetext"] = Label(_("Set as default Interface"))
+		self["ButtonRedtext"] = Label(_("Close"))
+		self["introduction"] = Label(_("Press OK to edit the settings."))
+		
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+
 		if len(self.adapters) == 0:
 			self.onFirstExecBegin.append(self.NetworkFallback)
-			
-		self["adapterlist"] = MenuList(self.adapters)
-		self["actions"] = ActionMap(["OkCancelActions"],
+
+		self.list = []
+		self["list"] = InterfaceList(self.list)
+		self.updateList()
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 		{
 			"ok": self.okbuttonClick,
-			"cancel": self.close
-		})
+			"cancel": self.close,
+			"blue": self.setDefaultInterface,			
+			"red": self.close
+		}, -2)
 
 		if len(self.adapters) == 1:
 			self.onFirstExecBegin.append(self.okbuttonClick)
 
+	def updateList(self):
+		print "update list"
+		self.list = []
+		default_gw = None
+		if os_path.exists("/etc/default_gw"):
+			fp = file('/etc/default_gw', 'r')
+			result = fp.read()
+			fp.close()
+			default_gw = result
+
+		if len(self.adapters) == 0: # no interface available => display only eth0
+			self.list.append(InterfaceEntryComponent("eth0",iNetwork.getFriendlyAdapterName('eth0'),True,True ))
+		else:
+			for x in self.adapters:
+				if x[1] == default_gw:
+					default_int = True
+				else:
+					default_int = False
+				if iNetwork.getAdapterAttribute(x[1], 'up') is True:
+					active_int = True
+				else:
+					active_int = False
+				self.list.append(InterfaceEntryComponent(index = x[1],name = _(x[0]),default=default_int,active=active_int ))
+		self["list"].l.setList(self.list)
+
+	def setDefaultInterface(self):
+		selection = self["list"].getCurrent()
+		backupdefault_gw = None
+		if os_path.exists("/etc/default_gw"):
+			fp = file('/etc/default_gw', 'r')
+			backupdefault_gw  = fp.read()
+			fp.close()
+		if selection[0] != backupdefault_gw:
+			os_system("rm -rf /etc/default_gw")
+			fp = file('/etc/default_gw', 'w')	
+			fp.write(selection[0])				
+			fp.close()
+			iNetwork.restartNetwork()
+		self.updateList()
+			
 	def okbuttonClick(self):
-		selection = self["adapterlist"].getCurrent()
+		selection = self["list"].getCurrent()
+		print "selection",selection
 		if selection is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[1])
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0])
 
 	def AdapterSetupClosed(self, *ret):
 		if len(self.adapters) == 1:
@@ -310,7 +386,6 @@ class AdapterSetup(Screen, ConfigListScreen):
 				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
-				
 			if self.extended is not None and self.configStrings is not None:
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 				self.ws.writeConfig()

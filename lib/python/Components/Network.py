@@ -109,19 +109,19 @@ class Network:
 		for ifacename, iface in self.ifaces.items():
 			if iface['up'] == True:
 				fp.write("auto " + ifacename + "\n")
-				if iface['dhcp'] == True:
-					fp.write("iface "+ ifacename +" inet dhcp\n")
-				if iface['dhcp'] == False:
-					fp.write("iface "+ ifacename +" inet static\n")
-					if iface.has_key('ip'):
-						print tuple(iface['ip'])
-						fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
-						fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
-						if iface.has_key('gateway'):
-							fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
-				if iface.has_key("configStrings"):
-					fp.write("\n" + iface["configStrings"] + "\n")
-				fp.write("\n")				
+			if iface['dhcp'] == True:
+				fp.write("iface "+ ifacename +" inet dhcp\n")
+			if iface['dhcp'] == False:
+				fp.write("iface "+ ifacename +" inet static\n")
+				if iface.has_key('ip'):
+					print tuple(iface['ip'])
+					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
+					fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
+					if iface.has_key('gateway'):
+						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
+			if iface.has_key("configStrings"):
+				fp.write("\n" + iface["configStrings"] + "\n")
+			fp.write("\n")				
 		fp.close()
 		self.writeNameserverConfig()
 

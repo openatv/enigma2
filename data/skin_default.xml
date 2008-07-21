@@ -18,12 +18,12 @@
 	</screen>
 	<!-- Adapter setup -->
 	<screen name="AdapterSetup" position="90,100" size="550,400" title="Network Setup" >
-		<widget name="config" position="10,10" size="530,130" scrollbarMode="showOnDemand" />
+		<widget name="config" position="10,10" size="530,125" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,140" zPosition="1" size="550,2" />
 		<widget name="DNS1text" position="10,145" size="190,21" zPosition="1" font="Regular;19" />
 		<widget name="DNS2text" position="10,175" size="190,21" zPosition="1" font="Regular;19" />
-		<widget name="DNS1" position="430,145" size="120,21" zPosition="1" font="Regular;17" />
-		<widget name="DNS2" position="430,175" size="120,21" zPosition="1" font="Regular;17" />
+		<widget name="DNS1" position="420,145" size="130,21" zPosition="1" font="Regular;17" />
+		<widget name="DNS2" position="420,175" size="130,21" zPosition="1" font="Regular;17" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,200" zPosition="1" size="550,2" />		
 		<widget name="introduction" position="10,205" size="440,20" font="Regular;19" halign="center" />
 
@@ -543,8 +543,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="introduction" position="140,360" size="300,20" zPosition="10" font="Regular;21" halign="center" transparent="1" />
 	</screen>
 	<!-- Network adapter selection -->
-	<screen name="NetworkAdapterSelection" position="130,140" size="460,330" title="Select Network Adapter">
-		<widget name="adapterlist" position="10,10" size="440,310" />
+	<screen name="NetworkAdapterSelection" position="70,100" size="550,400" title="Select Network Adapter">
+		<widget name="list" position="10,10" size="530,250" scrollbarMode="showOnDemand" zPosition="10"/>    
+		<ePixmap pixmap="skin_default/bottombar.png" position="5,310" size="540,120" zPosition="1" transparent="1" alphatest="on" />
+		<widget name="ButtonRedtext" position="430,325" size="120,21" zPosition="10" font="Regular;21" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="ButtonBluetext" position="60,325" size="300,21" zPosition="10" font="Regular;21" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/button_blue.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="introduction" position="140,360" size="300,21" zPosition="10" font="Regular;21" halign="center" transparent="1" />
 	</screen>
 	<!-- Network adapter test Black = "#000000" Grey = "#8c8c93" Green = "#1cff1c" Red = #f23d21-->
 	<screen name="NetworkAdapterTest" position="70,100" size="570,400" title="Network test..." >
