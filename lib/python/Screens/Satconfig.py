@@ -356,6 +356,16 @@ class NimSetup(Screen, ConfigListScreen):
 		for x in self["config"].list:
 			x[1].save()
 			
+	def cancelConfirm(self, result):
+		if not result:
+			return
+
+		for x in self["config"].list:
+			x[1].cancel()
+		# we need to call saveAll to reset the connectedTo choices
+		self.saveAll()
+		self.close()
+			
 class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
