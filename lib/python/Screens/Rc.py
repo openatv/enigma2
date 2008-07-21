@@ -3,6 +3,8 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
 
+config.misc.rcused = ConfigInteger(default = 1)
+
 class Rc:
 	def __init__(self):
 		self["rc"] = MultiPixmap()
