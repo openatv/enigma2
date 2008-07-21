@@ -336,8 +336,6 @@ class NimSetup(Screen, ConfigListScreen):
 		self.nimConfig = self.nim.config
 		self.createConfigMode()
 		self.createSetup()
-		# safeAll is needed, so that keyCancel works properly
-		ConfigListScreen.saveAll(self)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
