@@ -11,7 +11,7 @@ from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
 #from Screens.Screen import Screen
-from file import unlink
+from os import unlink
 from enigma import eTimer, eDVBDB
 
 class DefaultServiceScan(ServiceScan):
