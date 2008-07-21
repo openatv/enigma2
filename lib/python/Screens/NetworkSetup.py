@@ -12,7 +12,7 @@ from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer
-from os import path as os_path, system as os_system
+from os import path as os_path, system as os_system, unlink
 from re import compile as re_compile, search as re_search
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
@@ -99,19 +99,21 @@ class NetworkAdapterSelection(Screen):
 
 	def setDefaultInterface(self):
 		selection = self["list"].getCurrent()
-		backupdefault_gw = None
+		num_if = len(self.list)
+		old_default_gw = None
 		if os_path.exists("/etc/default_gw"):
-			fp = file('/etc/default_gw', 'r')
-			backupdefault_gw  = fp.read()
+			fp = open('/etc/default_gw', 'r')
+			old_default_gw = fp.read()
 			fp.close()
-		if selection[0] != backupdefault_gw:
-			os_system("rm -rf /etc/default_gw")
-			fp = file('/etc/default_gw', 'w')	
-			fp.write(selection[0])				
+		if num_if > 1 and (not old_default_gw or old_default_gw != selection[0]):
+			fp = open('/etc/default_gw', 'w+')
+			fp.write(selection[0])
 			fp.close()
 			iNetwork.restartNetwork()
-		self.updateList()
-			
+		elif old_default_gw and num_if < 2:
+			unlink("/etc/default_gw")
+			iNetwork.restartNetwork()
+
 	def okbuttonClick(self):
 		selection = self["list"].getCurrent()
 		print "selection",selection
