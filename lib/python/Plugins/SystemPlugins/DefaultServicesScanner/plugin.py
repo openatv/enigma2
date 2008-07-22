@@ -63,7 +63,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		ScanSetup.__init__(self, session)
 		# backup lamedb
 		confdir = resolveFilename(SCOPE_CONFIG)
-		copyfile(confdir + "/lamedb", confdir + "/lamedb.backup)
+		copyfile(confdir + "/lamedb", confdir + "/lamedb.backup")
 		self.scan_type.value = "multisat"
 		self.createSetup()
 		self.scanIndex = 0
