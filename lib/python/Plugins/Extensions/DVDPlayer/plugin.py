@@ -424,14 +424,14 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.doShow()
 
 	def __chapterUpdated(self):
-		self.currentChapter = self.service.info().getInfo(iServiceInformation.sUser+8)
-		self.totalChapters = self.service.info().getInfo(iServiceInformation.sUser+80)
+		self.currentChapter = self.service.info().getInfo(iServiceInformation.sCurrentChapter)
+		self.totalChapters = self.service.info().getInfo(iServiceInformation.sTotalChapters)
 		self.setChapterLabel()
 		print "__chapterUpdated: %d/%d" % (self.currentChapter, self.totalChapters)
 
 	def __titleUpdated(self):
-		self.currentTitle = self.service.info().getInfo(iServiceInformation.sUser+9)
-		self.totalTitles = self.service.info().getInfo(iServiceInformation.sUser+90)
+		self.currentTitle = self.service.info().getInfo(iServiceInformation.sCurrentTitle)
+		self.totalTitles = self.service.info().getInfo(iServiceInformation.sTotalTitles)
 		self.setChapterLabel()
 		print "__titleUpdated: %d/%d" % (self.currentTitle, self.totalTitles)
 		if not self.in_menu:

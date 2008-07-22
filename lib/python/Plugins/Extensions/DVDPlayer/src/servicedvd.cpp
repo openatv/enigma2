@@ -419,28 +419,27 @@ int eServiceDVD::getInfo(int w)
 		case sAlbum:
 			return resIsPyObject;  // then getInfoObject should be called
 		case sComment:
-		case sTracknumber:
 		case sGenre:
 			return resIsString;  // then getInfoString should be called
-		case sUser+8:
+		case sCurrentChapter:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.pos_chapter;
 		}
-		case sUser+80:
+		case sTotalChapters:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.end_chapter;
 		}
-		case sUser+9:
+		case sCurrentTitle:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
 			return info.pos_title;
 		}
-		case sUser+90:
+		case sTotalTitles:
 		{
 			struct ddvd_time info;
 			ddvd_get_last_time(m_ddvdconfig, &info);
