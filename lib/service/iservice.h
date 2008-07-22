@@ -303,6 +303,11 @@ public:
 
 		sTransponderData, 	/* transponderdata as python dict */
 
+		sCurrentChapter,
+		sCurrentTitle,
+		sTotalChapters,
+		sTotalTitles,
+
 		sUser = 0x100
 	};
 	enum {
