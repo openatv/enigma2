@@ -120,7 +120,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		if self.scanIndex + 1 >= len(self.multiscanlist):
 			print "no more sats to scan"
 			confdir = resolveFilename(SCOPE_CONFIG)
-			copyfile(confdir + "/lamedb.backup", confdir + "/lamedb)
+			copyfile(confdir + "/lamedb.backup", confdir + "/lamedb")
 			db.reloadServicelist()
 			self.close()
 		else:
