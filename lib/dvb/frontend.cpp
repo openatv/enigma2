@@ -1213,7 +1213,7 @@ void eDVBFrontend::getFrontendData(ePyObject dest)
 	if (dest && PyDict_Check(dest))
 	{
 		const char *tmp=0;
-		PutToDict(dest, "tuner_number", m_dvbid);
+		PutToDict(dest, "tuner_number", m_slotid);
 		switch(m_type)
 		{
 			case feSatellite:
