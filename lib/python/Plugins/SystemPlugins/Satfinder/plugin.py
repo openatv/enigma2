@@ -158,10 +158,14 @@ class Satfinder(ScanSetup):
 		if satpos is not None:
 			if self.tuning_type.value == "manual_transponder":
 				returnvalue = (self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.index, self.scan_sat.fec.index, self.scan_sat.inversion.index, satpos)
+				self.tune(returnvalue)
 			elif self.tuning_type.value == "predefined_transponder":
-				transponder = nimmanager.getTransponders(satpos)[self.tuning_transponder.index]
-				returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, satpos)
-			self.tune(returnvalue)
+				tps = nimmanager.getTransponders(satpos)
+				l = len(tps)
+				if l > self.tuning_transponder.index:
+					transponder = nimmanager.getTransponders(satpos)[self.tuning_transponder.index]
+					returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, satpos)
+					self.tune(returnvalue)
 
 	def createConfig(self, foo):
 		self.tuning_transponder = None
