@@ -7,7 +7,7 @@ from Screens.Rc import Rc
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile, ConfigSubsection
 
-from LanguageSelection import LanguageSelection
+from LanguageSelection import LanguageWizard
 
 config.misc.firstrun = ConfigBoolean(default = True)
 config.misc.startwizard = ConfigSubsection()
@@ -28,5 +28,5 @@ class StartWizard(DefaultSatLists, Rc):
 		config.misc.firstrun.save()
 		configfile.save()
 		
-wizardManager.registerWizard(LanguageSelection, config.misc.languageselected.value, priority = 5)
+wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority = 5)
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority = 20)
