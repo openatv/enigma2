@@ -1244,7 +1244,7 @@ int eDVBFrontend::readInputpower()
 	FILE *f=fopen(proc_name, "r");
 	if (f)
 	{
-		if (fscanf(f, "%08x", &power) != 1)
+		if (fscanf(f, "%d", &power) != 1)
 			eDebug("read %s failed!! (%m)", proc_name);
 		else
 			eDebug("%s is %d\n", proc_name, power);
