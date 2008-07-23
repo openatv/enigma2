@@ -4,8 +4,12 @@ from Components.ActionMap import ActionMap
 from Components.Language import language
 from Components.config import config
 from Components.Sources.List import List
+from Components.Label import Label
+from Components.Pixmap import Pixmap
 
-from Tools.Directories import *
+from Screens.Rc import Rc
+
+from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
 from Tools.LoadPixmap import LoadPixmap
 
@@ -85,3 +89,27 @@ class LanguageSelection(Screen):
 	def changed(self):
 		self.run()
 		self.updateList()
+
+class LanguageWizard(LanguageSelection, Rc):
+	def __init__(self, session):
+		LanguageSelection.__init__(self, session)
+		Rc.__init__(self)
+		self.onLayoutFinish.append(self.selectKeys)
+				
+		self["wizard"] = Pixmap()
+		self["text"] = Label()
+		self.setText()
+		
+	def selectKeys(self):
+		self.clearSelectedKeys()
+		self.selectKey("UP")
+		self.selectKey("DOWN")
+		
+	def changed(self):
+		self.run()
+		self.updateList()
+		self.setText()
+		
+	def setText(self):
+		self["text"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
+
