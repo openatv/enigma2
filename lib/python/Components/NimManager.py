@@ -757,6 +757,10 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
 	config.sec.delay_after_toneburst = x
 
+	x = ConfigInteger(default=20, limits = (0, 9999))
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, configElement.value))
+	config.sec.delay_after_change_voltage_before_switch_command = x
+
 	x = ConfigInteger(default=200, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS, configElement.value))
 	config.sec.delay_after_enable_voltage_before_switch_command = x
@@ -765,7 +769,7 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BETWEEN_SWITCH_AND_MOTOR_CMD, configElement.value))
 	config.sec.delay_between_switch_and_motor_command = x
 
-	x = ConfigInteger(default=150, limits = (0, 9999))
+	x = ConfigInteger(default=500, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, configElement.value))
 	config.sec.delay_after_voltage_change_before_measure_idle_inputpower = x
 
@@ -773,11 +777,11 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_enable_voltage_before_motor_command = x
 
-	x = ConfigInteger(default=150, limits = (0, 9999))
+	x = ConfigInteger(default=500, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_MOTOR_STOP_CMD, configElement.value))
 	config.sec.delay_after_motor_stop_command = x
 
-	x = ConfigInteger(default=150, limits = (0, 9999))
+	x = ConfigInteger(default=500, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_voltage_change_before_motor_command = x
 
@@ -788,10 +792,6 @@ def InitSecParams():
 	x = ConfigInteger(default=1, limits = (0, 5))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
 	config.sec.motor_command_retries = x
-
-	x = ConfigInteger(default=20, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, configElement.value))
-	config.sec.delay_after_change_voltage_before_switch_command = x
 
 # TODO add support for satpos depending nims to advanced nim configuration
 # so a second/third/fourth cable from a motorized lnb can used behind a
