@@ -6,6 +6,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
 from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement
+from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 
 from time import mktime, localtime
@@ -48,19 +49,20 @@ class NimSetup(Screen, ConfigListScreen):
 				nim.powerMeasurement.save()
 		
 	def createConfigMode(self):
-		choices = { "nothing": _("nothing connected"),
-					"simple": _("simple"),
-					"advanced": _("advanced")}
-		#if len(nimmanager.getNimListOfType(nimmanager.getNimType(self.slotid), exception = x)) > 0:
-		#	choices["equal"] = _("equal to")
-		#	choices["satposdepends"] = _("second cable of motorized LNB")
-		if len(nimmanager.canEqualTo(self.slotid)) > 0:
-			choices["equal"] = _("equal to")
-		if len(nimmanager.canDependOn(self.slotid)) > 0:
-			choices["satposdepends"] = _("second cable of motorized LNB")
-		if len(nimmanager.canConnectTo(self.slotid)) > 0:
-			choices["loopthrough"] = _("loopthrough to")
-		self.nimConfig.configMode.setChoices(choices)
+		if self.nim.isCompatible("DVB-S"):
+			choices = { "nothing": _("nothing connected"),
+						"simple": _("simple"),
+						"advanced": _("advanced")}
+			#if len(nimmanager.getNimListOfType(nimmanager.getNimType(self.slotid), exception = x)) > 0:
+			#	choices["equal"] = _("equal to")
+			#	choices["satposdepends"] = _("second cable of motorized LNB")
+			if len(nimmanager.canEqualTo(self.slotid)) > 0:
+				choices["equal"] = _("equal to")
+			if len(nimmanager.canDependOn(self.slotid)) > 0:
+				choices["satposdepends"] = _("second cable of motorized LNB")
+			if len(nimmanager.canConnectTo(self.slotid)) > 0:
+				choices["loopthrough"] = _("loopthrough to")
+			self.nimConfig.configMode.setChoices(choices)
 							
 	def createSetup(self):
 		print "Creating setup"
@@ -370,11 +372,9 @@ class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
-		menu = [ ]
-		for x in nimmanager.nim_slots:
-			menu.append((x.friendly_full_description, x))
-
-		self["nimlist"] = MenuList(menu)
+		self.list = [None] * nimmanager.getSlotCount()
+		self["nimlist"] = List(self.list)
+		self.updateList()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
@@ -384,6 +384,47 @@ class NimSelection(Screen):
 
 	def okbuttonClick(self):
 		nim = self["nimlist"].getCurrent()
-		nim = nim and nim[1]
+		nim = nim and nim[3]
 		if nim is not None and not nim.empty:
-			self.session.open(NimSetup, nim.slot)
+			self.session.openWithCallback(self.updateList, NimSetup, nim.slot)
+
+	def updateList(self):
+		self.list = [ ]
+		for x in nimmanager.nim_slots:
+			slotid = x.slot
+			nimConfig = nimmanager.getNimConfig(x.slot)
+			text = nimConfig.configMode.value
+			if x.isCompatible("DVB-S"):
+				if nimConfig.configMode.value in ["loopthrough", "equal", "satposdepends"]:
+					text = { "loopthrough": _("loopthrough to"),
+							 "equal": _("equal to"),
+							 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
+					text += _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
+				elif nimConfig.configMode.value == "nothing":
+					text = _("nothing connected")
+				elif nimConfig.configMode.value == "simple":
+					if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+						text = _("Sats") + ": " + nimmanager.getSatName(int(nimConfig.diseqcA.value))
+						if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+							text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
+						if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
+							text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
+							text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
+					elif nimConfig.diseqcMode.value == "positioner":
+						text = _("Positioner") + ":"
+						if nimConfig.positionerMode.value == "usals":
+							text += _("USALS")
+						elif nimConfig.positionerMode.value == "manual":
+							text += _("manual")
+					else:	
+						text = _("simple")
+				elif nimConfig.configMode.value == "advanced":
+					text = _("advanced")
+			elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
+				if nimConfig.configMode.value == "nothing":
+					text = _("nothing connected")
+				elif nimConfig.configMode.value == "enabled":
+					text = _("enabled")
+				
+			self.list.append((slotid, x.friendly_full_description, text, x))
+		self["nimlist"].updateList(self.list)
