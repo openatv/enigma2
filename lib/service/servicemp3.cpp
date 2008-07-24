@@ -251,16 +251,19 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 
 		if (is_audio)
 		{
+			queue_audio = gst_element_factory_make("queue", "queue_audio");
+
 			if (!is_mp3)
 			{
 					/* decodebin has dynamic pads. When they get created, we connect them to the audio bin */
 				g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
 				g_signal_connect (decoder, "unknown-type", G_CALLBACK(gstCBunknownType), this);
+				g_object_set (G_OBJECT (sink), "preroll-queue-len", 80, NULL);
 			}
 
 				/* gst_bin will take the 'floating references' */
 			gst_bin_add_many (GST_BIN (m_gst_pipeline),
-						source, decoder, NULL);
+						source, queue_audio, decoder, NULL);
 
 			if (filter)
 			{
@@ -271,7 +274,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				g_signal_connect (filter, "pad-added", G_CALLBACK(gstCBfilterPadAdded), this);
 			} else
 					/* in decodebin's case we can just connect the source with the decodebin, and decodebin will take care about id3demux (or whatever is required) */
-				gst_element_link(source, decoder);
+				gst_element_link_many(source, queue_audio, decoder, NULL);
 
 				/* create audio bin with the audioconverter, the capsfilter and the audiosink */
 			m_gst_audio = gst_bin_new ("audiobin");
@@ -286,7 +289,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				/* in mad's case, we can directly connect the decoder to the audiobin. otherwise, we do this in gstCBnewPad */
 			if (is_mp3)
 				gst_element_link(decoder, m_gst_audio);
-		} else
+		} else /* is_video */
 		{
 			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, mpegdemux, audio, queue_audio, video, queue_video, NULL);
 			gst_element_link(source, mpegdemux);
@@ -523,6 +526,8 @@ RESULT eServiceMP3::getName(std::string &name)
 
 int eServiceMP3::getInfo(int w)
 {
+	gchar *tag = 0;
+
 	switch (w)
 	{
 	case sTitle:
@@ -532,10 +537,25 @@ int eServiceMP3::getInfo(int w)
 	case sTracknumber:
 	case sGenre:
 		return resIsString;
-
+	case sCurrentTitle:
+		tag = GST_TAG_TRACK_NUMBER;
+		break;
+	case sTotalTitles:
+		tag = GST_TAG_TRACK_COUNT;
+		break;
 	default:
 		return resNA;
 	}
+
+	if (!m_stream_tags || !tag)
+		return 0;
+	
+	guint value;
+	if (gst_tag_list_get_uint(m_stream_tags, tag, &value))
+		return (int) value;
+	
+	return 0;
+
 }
 
 std::string eServiceMP3::getInfoString(int w)
@@ -592,9 +612,14 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 {
 	if (msg)
 	{
-		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
-		eDebug("gst_message: %s", string);
-		g_free(string);
+		if (gst_message_get_structure(msg))
+		{
+			gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
+			eDebug("gst_message: %s", string);
+			g_free(string);
+		}
+		else
+			eDebug("gst_message: %s (without structure)", GST_MESSAGE_TYPE_NAME(msg));
 	}
 	
 	switch (GST_MESSAGE_TYPE (msg))
@@ -672,8 +697,8 @@ void eServiceMP3::gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last,
 	GstPad *audiopad;
 
 	/* only link once */
-	audiopad = gst_element_get_request_pad (_this->m_gst_audio, "sink");
-	if (GST_PAD_IS_LINKED (audiopad)) {
+	audiopad = gst_element_get_static_pad (_this->m_gst_audio, "sink");
+	if ( !audiopad || GST_PAD_IS_LINKED (audiopad)) {
 		eDebug("audio already linked!");
 		g_object_unref (audiopad);
 		return;

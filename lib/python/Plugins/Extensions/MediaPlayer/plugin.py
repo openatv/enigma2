@@ -161,6 +161,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.currList = "filelist"
 
 		self.coverArtFileName = ""
+		self.isAudioCD = False
 
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
@@ -183,7 +184,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			self.playlistIOInternal.clear()
 			for x in self.playlist.list:
 				self.playlistIOInternal.addService(ServiceReference(x[0]))
-			self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
+			if not self.isAudioCD:
+				self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 			self.close()
 
 	def checkSkipShowHideLock(self):
@@ -749,6 +751,24 @@ def filescan_open(list, session, **kwargs):
 	mp.playServiceRefEntry(ref)
 	mp.playlist.updateList()
 
+def audioCD_open(list, session, **kwargs):
+	from enigma import eServiceReference
+
+	mp = session.open(MediaPlayer)
+
+	mp.playlist.clear()
+	mp.isAudioCD = True
+
+	mp.switchToPlayList()
+	for file in list:
+		ref = eServiceReference(4097, 0, file.path)
+		mp.playlist.addFile(ref)
+
+	# TODO: rather play first than last file?
+	mp.playServiceRefEntry(ref)
+	mp.playlist.updateList()
+	mp.changeEntry(0)
+
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return [
@@ -769,6 +789,15 @@ def filescan(**kwargs):
 			name = "Music",
 			description = "Play Music...",
 			openfnc = filescan_open,
+		),
+		Scanner(mimetypes = ["audio/x-cda", "audio/x-wav"],
+			paths_to_scan =
+				[
+					ScanPath(path = "", with_subdirs = False),
+				],
+			name = "Audio-CD",
+			description = "Play Audio-CD...",
+			openfnc = audioCD_open,
 		)
 	]
 
