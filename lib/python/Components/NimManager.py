@@ -672,6 +672,12 @@ class NimManager:
 	
 	def getNimConfig(self, slotid):
 		return config.Nims[slotid]
+	
+	def getSatName(self, pos):
+		for sat in self.satList:
+			if sat[0] == pos:
+				return sat[1]
+		return _("N/A")
 
 	def getSatList(self):
 		return self.satList

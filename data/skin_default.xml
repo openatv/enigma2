@@ -616,8 +616,18 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="menu" position="10,10" size="440,310" />
 	</screen>
 	<!-- Nim selection -->
-	<screen name="NimSelection" position="160,223" size="400,130" title="Choose Tuner">
-		<widget name="nimlist" position="10,10" size="380,105" />
+	<screen name="NimSelection" position="160,123" size="400,330" title="Choose Tuner">
+		<widget source="nimlist" render="Listbox" position="0,0" size="380,300" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 5), size = (360, 30), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the nim name,
+						MultiContentEntryText(pos = (50, 30), size = (320, 30), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is a description of the nim settings,
+					],
+				 "fonts": [gFont("Regular", 20), gFont("Regular", 15)],
+				 "itemHeight": 70
+				}
+			</convert>
+		</widget>
 	</screen>
 	<!-- Nim setup -->
 	<screen name="NimSetup" position="80,95" size="560,412" title="Reception Settings">
