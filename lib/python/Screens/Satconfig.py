@@ -399,7 +399,7 @@ class NimSelection(Screen):
 					text = { "loopthrough": _("loopthrough to"),
 							 "equal": _("equal to"),
 							 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
-					text += + " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
+					text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
 				elif nimConfig.configMode.value == "nothing":
 					text = _("nothing connected")
 				elif nimConfig.configMode.value == "simple":
