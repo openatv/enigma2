@@ -97,7 +97,6 @@ private:
 	void tuneLoop();  // called by m_tuneTimer
 	void setFrontend();
 	bool setSecSequencePos(int steps);
-	void setRotorData(int pos, int cmd);
 	static int PriorityOrder;
 public:
 	eDVBFrontend(int adap, int fe, int &ok);	
