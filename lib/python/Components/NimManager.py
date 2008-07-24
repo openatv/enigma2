@@ -71,7 +71,8 @@ class SecConfigure:
 			self.addSatellite(sec, orbpos)
 		elif (diseqcmode == 3): # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
-				tunermask |= (1 << self.satposdepends[slotid])
+				for slot in self.satposdepends[slotid]:
+					tunermask |= (1 << slot)
 			sec.setLatitude(latitude)
 			sec.setLaDirection(laDirection)
 			sec.setLongitude(longitude)
