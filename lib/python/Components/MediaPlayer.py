@@ -22,7 +22,10 @@ ForwardIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/i
 
 def PlaylistEntryComponent(serviceref, state):
 	res = [ serviceref ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 0, 470, 32, 0, RT_VALIGN_CENTER, path.split(serviceref.getPath().split('/')[-1])[1]))
+	text = serviceref.getName()
+	if text is "":
+		text = path.split(serviceref.getPath().split('/')[-1])[1]
+	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 0, 470, 32, 0, RT_VALIGN_CENTER, text))
 	png = None
 	if state == STATE_PLAY:
 		png = PlayIcon
