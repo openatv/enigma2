@@ -433,14 +433,14 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 	<!-- Mediaplayer -->
 	<screen name="MediaPlayer" position="70,70" size="580,475" title="MediaPlayer">
 		<ePixmap pixmap="skin_default/mediaplayer_bg.png" position="13,9" zPosition="-1" size="554,460" alphatest="on" />
-		<widget name="artisttext" position="20,11" size="60,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
-		<widget name="artist" position="80,11" size="353,17" font="Regular;16" valign="top" transparent="1" />
-		<widget name="albumtext" position="20,29" size="60,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
-		<widget name="album" position="80,29" size="353,17" font="Regular;16" valign="top" transparent="1" />
-		<widget name="yeartext" position="20,47" size="60,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
-		<widget name="year" position="80,47" size="353,17" font="Regular;16" valign="top" transparent="1" />
-		<widget name="genretext" position="20,65" size="60,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
-		<widget name="genre" position="80,65" size="353,17" font="Regular;16" valign="top" transparent="1" />
+		<widget name="artisttext" position="20,11" size="74,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
+		<widget name="artist" position="94,11" size="339,17" font="Regular;16" valign="top" transparent="1" />
+		<widget name="albumtext" position="20,29" size="74,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
+		<widget name="album" position="94,29" size="339,17" font="Regular;16" valign="top" transparent="1" />
+		<widget name="yeartext" position="20,47" size="74,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
+		<widget name="year" position="94,47" size="339,17" font="Regular;16" valign="top" transparent="1" />
+		<widget name="genretext" position="20,65" size="74,17" font="Regular;16" valign="top" foregroundColor="#cccccc" transparent="1" />
+		<widget name="genre" position="94,65" size="339,17" font="Regular;16" valign="top" transparent="1" />
 		<eLabel name="nowPlaying" position="20,92" size="413,16" text="Now Playing" font="Regular;14" foregroundColor="#ffc435" transparent="1" />
 		<widget name="title" position="20,108" size="413,18" font="Regular;16" valign="top" transparent="1" />
 		<widget name="coverArt" pixmap="skin_default/no_coverArt.png" position="446,11" size="116,116" transparent="1" alphatest="blend" />
