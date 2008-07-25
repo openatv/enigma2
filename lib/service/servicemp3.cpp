@@ -140,8 +140,9 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	int is_mp3 = !strcasecmp(ext, ".mp3"); /* force mp3 instead of decodebin */
 	int is_video = is_mpeg_ps || is_mpeg_ts || is_matroska || is_avi;
 	int is_streaming = !strncmp(filename, "http://", 7);
+	int is_AudioCD = !(strncmp(filename, "/autofs/hda/track-", 18) || strcasecmp(ext, ".wav"));
 	
-	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi);
+	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d, is_AudioCD: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi, is_AudioCD);
 	
 	int is_audio = !is_video;
 	
@@ -151,9 +152,17 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	if (!m_gst_pipeline)
 		eWarning("failed to create pipeline");
 
-	if (!is_streaming)
+	if (is_AudioCD)
+	{
+		source = gst_element_factory_make ("cdiocddasrc", "cda-source");
+		if (source)
+			g_object_set (G_OBJECT (source), "device", "/dev/cdroms/cdrom0", NULL);
+		else
+			is_AudioCD = 0;
+	}
+	if ( !is_streaming && !is_AudioCD )
 		source = gst_element_factory_make ("filesrc", "file-source");
-	else
+	else if ( is_streaming ) 
 	{
 		source = gst_element_factory_make ("neonhttpsrc", "http-source");
 		if (source)
@@ -162,9 +171,16 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 
 	if (!source)
 		eWarning("failed to create %s", is_streaming ? "neonhttpsrc" : "filesrc");
-	else
 				/* configure source */
+	else if (!is_AudioCD)
 		g_object_set (G_OBJECT (source), "location", filename, NULL);
+	else
+	{ 
+		int track = atoi(filename+18);
+		eDebug("play audio CD track #%i",track);
+		if (track > 0)
+			g_object_set (G_OBJECT (source), "track", track, NULL);
+	}
 
 	if (is_audio)
 	{
@@ -249,7 +265,14 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	{
 		gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_pipeline)), gstBusSyncHandler, this);
 
-		if (is_audio)
+		if (is_AudioCD)
+		{
+			queue_audio = gst_element_factory_make("queue", "queue_audio");
+			g_object_set (G_OBJECT (sink), "preroll-queue-len", 80, NULL);
+			gst_bin_add_many (GST_BIN (m_gst_pipeline), source, queue_audio, conv, sink, NULL);
+			gst_element_link_many(source, queue_audio, conv, sink, NULL);
+		}
+		else if (is_audio)
 		{
 			queue_audio = gst_element_factory_make("queue", "queue_audio");
 

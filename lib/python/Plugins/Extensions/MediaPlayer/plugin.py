@@ -1,6 +1,6 @@
-from os import path as os_path, remove as os_remove, listdir as os_listdir
+from os import path as os_path, remove as os_remove, listdir as os_listdir, popen
 from time import strftime
-from enigma import eTimer, eServiceCenter, iServiceInformation
+from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
@@ -12,7 +12,7 @@ from Components.FileList import FileList
 from Components.MediaPlayer import PlayList
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_SKIN_IMAGE
 from Components.ServicePosition import ServicePositionGauge
-from Components.ServiceEventTracker import InfoBarBase
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications
 from ServiceReference import ServiceReference
@@ -162,6 +162,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		self.coverArtFileName = ""
 		self.isAudioCD = False
+		self.AudioCD_albuminfo = {}
 
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
@@ -169,6 +170,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			for x in list:
 				self.playlist.addFile(x.ref)
 			self.playlist.updateList()
+
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo
+			})
 
 	def doNothing(self):
 		pass
@@ -200,6 +206,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def __onClose(self):
 		self.session.nav.playService(self.oldService)
 
+	def __evUpdatedInfo(self):
+		currPlay = self.session.nav.getCurrentService()
+		currenttitle = currPlay.info().getInfo(iServiceInformation.sCurrentTitle)
+		totaltitles = currPlay.info().getInfo(iServiceInformation.sTotalTitles)
+		sTitle = currPlay.info().getInfoString(iServiceInformation.sTitle)
+		print "[__evUpdatedInfo] title %d of %d (%s)" % (currenttitle, totaltitles, sTitle)
+		self.readTitleInformation()
+
 	def delMPTimer(self):
 		del self.rightKeyTimer
 		del self.leftKeyTimer
@@ -207,15 +221,23 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def readTitleInformation(self):
 		currPlay = self.session.nav.getCurrentService()
 		if currPlay is not None:
-			stitle = currPlay.info().getInfoString(iServiceInformation.sTitle)
-			if stitle == "":
-				stitle = currPlay.info().getName().split('/')[-1]
+			sTitle = currPlay.info().getInfoString(iServiceInformation.sTitle)
+			sAlbum = currPlay.info().getInfoString(iServiceInformation.sAlbum)
+			sGenre = currPlay.info().getInfoString(iServiceInformation.sGenre)
+			sArtist = currPlay.info().getInfoString(iServiceInformation.sArtist)
 
-			self.updateMusicInformation( artist = currPlay.info().getInfoString(iServiceInformation.sArtist),
-										 title = stitle,
-										 album = currPlay.info().getInfoString(iServiceInformation.sAlbum),
-										 genre = currPlay.info().getInfoString(iServiceInformation.sGenre),
-										 clear = True)
+			if sTitle == "":
+				sTitle = currPlay.info().getName().split('/')[-1]
+
+			if self.AudioCD_albuminfo:
+				if sAlbum == "" and "TITLE" in self.AudioCD_albuminfo:
+					sAlbum = self.AudioCD_albuminfo["TITLE"]
+				if sGenre == "" and "GENRE" in self.AudioCD_albuminfo:
+					sGenre = self.AudioCD_albuminfo["GENRE"]
+				if sArtist == "" and "PERFORMER" in self.AudioCD_albuminfo:
+					sArtist = self.AudioCD_albuminfo["PERFORMER"]
+
+			self.updateMusicInformation( artist = sArtist, title = sTitle, album = sAlbum, genre = sGenre, clear = True )
 		else:
 			self.updateMusicInformation()
 
@@ -304,6 +326,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def hideAfterResume(self):
 		self.hide()
 
+	def getIdentifier(self, ref):
+		if self.isAudioCD:
+			return ref.getName()
+		else:
+			text = ref.getPath()
+			return text.split('/')[-1]
+
 	# FIXME: maybe this code can be optimized 
 	def updateCurrentInfo(self):
 		text = ""
@@ -351,16 +380,14 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			if t is None:
 				return
 			#display current selected entry on LCD
-			text = t.getPath()
-			text = text.split('/')[-1]
+			text = self.getIdentifier(t)
 			self.summaries.setText(text,1)
 			self["currenttext"].setText(text)
 			idx = self.playlist.getSelectionIndex()
 			idx += 1
 			if idx < len(self.playlist):
 				currref = self.playlist.getServiceRefList()[idx]
-				text = currref.getPath()
-				text = text.split('/')[-1]
+				text = self.getIdentifier(currref)
 				self.summaries.setText(text,3)
 			else:
 				self.summaries.setText(" ",3)
@@ -368,8 +395,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			idx += 1
 			if idx < len(self.playlist):
 				currref = self.playlist.getServiceRefList()[idx]
-				text = currref.getPath()
-				text = text.split('/')[-1]
+				text = self.getIdentifier(currref)
 				self.summaries.setText(text,4)
 			else:
 				self.summaries.setText(" ",4)
@@ -628,13 +654,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				# display just playing musik on LCD
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
-				text = currref.getPath()
-				text = text.split('/')[-1]
+				text = self.getIdentifier(currref)
 				text = ">"+text
 				ext = text[-3:].lower()
 
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in ["mp3", "wav", "ogg"]:
+				if ext not in ["mp3", "wav", "ogg"] and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
@@ -644,8 +669,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				idx += 1
 				if idx < len(self.playlist):
 					currref = self.playlist.getServiceRefList()[idx]
-					text = currref.getPath()
-					text = text.split('/')[-1]
+					text = self.getIdentifier(currref)
 					self.summaries.setText(text,3)
 				else:
 					self.summaries.setText(" ",3)
@@ -653,8 +677,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				idx += 1
 				if idx < len(self.playlist):
 					currref = self.playlist.getServiceRefList()[idx]
-					text = currref.getPath()
-					text = text.split('/')[-1]
+					text = self.getIdentifier(currref)
 					self.summaries.setText(text,4)
 				else:
 					self.summaries.setText(" ",4)
@@ -663,7 +686,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
 				ext = text[-3:].lower()
-				if ext not in ["mp3", "wav", "ogg"]:
+				if ext not in ["mp3", "wav", "ogg"] and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
@@ -760,14 +783,29 @@ def audioCD_open(list, session, **kwargs):
 	mp.isAudioCD = True
 
 	mp.switchToPlayList()
+	cdtext = popen('cdtextinfo -l').read()
+	tracklist = []
+	if cdtext is not "":
+		tracklist = cdtext.splitlines()
+		cdtext = popen('cdtextinfo -a').read()
+		if cdtext is not "":
+			albumtags = cdtext.splitlines()
+			for tag in albumtags:
+				tag = tag.split(':',1)
+				mp.AudioCD_albuminfo[tag[0]] = tag[1]
+			print mp.AudioCD_albuminfo
+	idx = 0
 	for file in list:
 		ref = eServiceReference(4097, 0, file.path)
+		if idx < len(tracklist):
+			track = tracklist[idx]
+			ref.setName("%d - %s" % (int(track.split(':',1)[0]), track.split(':')[1]))
+			idx += 1
 		mp.playlist.addFile(ref)
 
-	# TODO: rather play first than last file?
-	mp.playServiceRefEntry(ref)
-	mp.playlist.updateList()
 	mp.changeEntry(0)
+	mp.playlist.updateList()
+	mp.switchToPlayList()
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
