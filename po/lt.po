@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-25 14:05+0200\n"
-"PO-Revision-Date: 2008-06-18 20:22+0200\n"
+"POT-Creation-Date: 2008-07-28 08:26+0200\n"
+"PO-Revision-Date: 2008-07-20 01:32+0200\n"
 "Last-Translator: Audronis Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -288,6 +288,9 @@ msgstr "Apie..."
 msgid "Action on long powerbutton press"
 msgstr "Ilgai spausti įtampos išjungimo mygtuką"
 
+msgid "Action:"
+msgstr ""
+
 msgid "Activate Picture in Picture"
 msgstr "Aktyvuoti paveikslėlį paveikslėlyje"
 
@@ -300,6 +303,9 @@ msgstr "Tinklo nustatymai"
 msgid "Add"
 msgstr "Pridėti"
 
+msgid "Add Bookmark"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Pridėti žymeklį"
 
@@ -308,6 +314,9 @@ msgstr "Pridėkite naują pavadinimą"
 
 msgid "Add timer"
 msgstr "Laikmatis"
+
+msgid "Add title"
+msgstr ""
 
 msgid "Add title..."
 msgstr "Pridėkite pavadinimą..."
@@ -373,22 +382,6 @@ msgstr "Įvyko klaida. (%s)"
 
 msgid "Arabic"
 msgstr "Arabų"
-
-msgid ""
-"Are you sure you want to enable WLAN support?\n"
-"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-"\n"
-msgstr ""
-"Jūs norite įjungti belaidžio tinklo palaikymą?\n"
-"Pajunkite savo USB belaidžio tinklo įrenginį prie imtuvo ir spauskite OK.\n"
-"\n"
-
-msgid ""
-"Are you sure you want to enable your local network?\n"
-"\n"
-msgstr ""
-"Jūs esate įsitikinęs, kad jūs norite įjungti savo vietinį tinklą? \n"
-"\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -482,6 +475,9 @@ msgstr "Elgsena, kai filmas sustabdytas"
 msgid "Behavior when a movie reaches the end"
 msgstr "Elgsena, kai filmas pasiekia pabaigą"
 
+msgid "Bookmarks"
+msgstr ""
+
 msgid "Brightness"
 msgstr "Šviesumas"
 
@@ -501,6 +497,9 @@ msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
 msgstr "Infojuostos rodymui spauskite OK valdymo pultelyje."
+
+msgid "C"
+msgstr ""
 
 msgid "C-Band"
 msgstr "C-diapazonas"
@@ -640,32 +639,14 @@ msgstr "Įvykdyta"
 msgid "Configuration Mode"
 msgstr "Konfigūravimo būdas"
 
-msgid "Configure your internal LAN"
-msgstr "Konfigūruokite savo vidinį tinklą"
-
-msgid "Configure your internal LAN again"
-msgstr "Konfigūruokite savo vidinį tinklą dar kartą"
-
-msgid "Configure your wireless LAN"
-msgstr "Konfigūruokite savo belaidį tinklą"
-
-msgid "Configure your wireless LAN again"
-msgstr "Konfigūruokite savo belaidį tinklą dar kartą"
-
 msgid "Configuring"
 msgstr "Konfigūruojama"
-
-msgid "Confirm"
-msgstr "Patvirtinti"
 
 msgid "Conflicting timer"
 msgstr "Laikmačio nesuderinamumas"
 
-msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr "Junkitės prie interneto su USB belaidžio tinklo įrenginiu"
-
-msgid "Connect to the Internet with your local LAN"
-msgstr "Prisijunkite prie interneto su vietiniu tinklu"
+msgid "Connected to"
+msgstr ""
 
 msgid "Connected to Fritz!Box!"
 msgstr "Prisijungta prie Fritz!Box!"
@@ -687,13 +668,17 @@ msgid "Constellation"
 msgstr "Žvaigždynas"
 
 msgid "Continue playing"
-msgstr "Tęskite žiūrėjimą"
+msgstr "Tęsti žiūrėjimą"
 
 msgid "Contrast"
 msgstr "Kontrastas"
 
 msgid "Create movie folder failed"
 msgstr "Fimų aplanko sukurti nepavyko"
+
+#, python-format
+msgid "Creating directory %s failed."
+msgstr ""
 
 msgid "Creating partition failed"
 msgstr "Disko skaidinio sukurti nepavyko"
@@ -731,6 +716,9 @@ msgstr "Iškirpimo redaktorius..."
 msgid "Czech"
 msgstr "Čekų"
 
+msgid "D"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -741,7 +729,7 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVD ENTER key"
-msgstr "DVD RINKTIS raktas"
+msgstr "DVD SURINKTI raktą"
 
 msgid "DVD Player"
 msgstr "DVD grotuvas"
@@ -820,6 +808,10 @@ msgstr "DiSEqC pasirinkimas"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC pakartojimai"
 
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr ""
+
 msgid "Disable"
 msgstr "Išjungti"
 
@@ -828,6 +820,9 @@ msgstr "Išjungti paveikslėlį paveikslėlyje"
 
 msgid "Disable Subtitles"
 msgstr "Išjungti subtitrus"
+
+msgid "Disable timer"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Išjungtas"
@@ -889,6 +884,14 @@ msgstr ""
 "Jūs tikrai norite atlikti kieto disko inicializaciją?\n"
 "Visi duomenys iš disko bus pašalinti!"
 
+#, python-format
+msgid "Do you really want to remove directory %s from the disk?"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to remove your bookmark of %s?"
+msgstr ""
+
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
@@ -904,6 +907,9 @@ msgstr "Jūs norite atlikti rankinį kanalų skanavimą?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Jūs norite įdiegti tėvų kontrolę Jūsų imtuvui?"
+
+msgid "Do you want to install default sat lists?"
+msgstr ""
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Jūs norite paleisti DVD?"
@@ -984,6 +990,9 @@ msgstr "Redaguokite serverio pavadinimo konfigūraciją savo imtuve.\n"
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Redaguokite tinklo konfigūraciją savo imtuve.\n"
 
+msgid "Edit title"
+msgstr ""
+
 msgid "Edit title..."
 msgstr "Suredaguokite pavadinimą..."
 
@@ -996,24 +1005,14 @@ msgstr "Įjungti"
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
 
-msgid "Enable LAN"
-msgstr "Įjungti tinklą"
-
-msgid "Enable WLAN"
-msgstr "Įjungti belaidį tinklą"
-
 msgid "Enable multiple bouquets"
 msgstr "Įjungti daugiau paketų"
 
 msgid "Enable parental control"
 msgstr "Įjungti tėvų kontrolę"
 
-msgid ""
-"Enable the local network of your Dreambox.\n"
-"\n"
+msgid "Enable timer"
 msgstr ""
-"Įjunkite vietinį tinklą savo imtuve.\n"
-"\n"
 
 msgid "Enabled"
 msgstr "Įjungta"
@@ -1105,9 +1104,6 @@ msgstr "Išeiti iš nustatymų vedlio"
 
 msgid "Exit wizard"
 msgstr "Išeiti iš nustatymų "
-
-msgid "Exit wizard and configure later manually"
-msgstr "Išjunkite nustatymų vedlį ir konfigūruokite vėliau rankiniu būdu "
 
 msgid "Expert"
 msgstr "Išplėstinis"
@@ -1350,6 +1346,9 @@ msgstr "Greitas įrašas..."
 msgid "Integrated Ethernet"
 msgstr "Integruotas tinklo adapteris"
 
+msgid "Integrated Wireless"
+msgstr ""
+
 msgid "Intermediate"
 msgstr "Normalus"
 
@@ -1358,6 +1357,10 @@ msgstr "Vidinė atmintinė"
 
 msgid "Invalid Location"
 msgstr "Neteisinga vieta"
+
+#, python-format
+msgid "Invalid directory selected: %s"
+msgstr ""
 
 msgid "Inversion"
 msgstr "Pervertimas"
@@ -1415,7 +1418,7 @@ msgid "Latitude"
 msgstr "Platuma"
 
 msgid "Leave DVD Player?"
-msgstr "Laivas DVD leistuvas?"
+msgstr "Laisvas DVD grotuvas?"
 
 msgid "Left"
 msgstr "Kairė"
@@ -1717,12 +1720,9 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN USB Stick or enable "
-"you local network interface."
+" Please verify that you have attached a compatible WLAN device or enable you "
+"local network interface."
 msgstr ""
-"Jokių dirbančių belaidžių įrenginių nerasta.\n"
-" Prašome patikrinti, ar jūs prijungėte suderinamą USB belaidžio tinklo "
-"įrenginį arba įjunkite savo vietinio tinklo įrenginius."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -1741,9 +1741,6 @@ msgstr "Ne, nereikia"
 
 msgid "No, just start my dreambox"
 msgstr "Ne, įjungti mano imtuvą"
-
-msgid "No, let me choose default lists"
-msgstr "Ne, leiskite man pasirinkti numatytuosius sąrašus"
 
 msgid "No, scan later manually"
 msgstr "Ne, skanuoti vėliau rankiniu būdu"
@@ -1834,6 +1831,9 @@ msgstr "Puslapis"
 msgid "Pan&Scan"
 msgstr "Pan&Scan"
 
+msgid "Parent Directory"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Tėvų kontrolė"
 
@@ -1874,15 +1874,6 @@ msgstr "Prašome perjungti"
 msgid "Please Select Medium to be Scanned"
 msgstr "Prašome išsirinkti sritį kuri bus skanuojama"
 
-msgid ""
-"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-"Dreambox and press the OK button on your remote control to enable the built "
-"in wireless network support"
-msgstr ""
-"Prašome prijungti jūsų Zydas ZD1211B chipset suderinamą USB belaidžio tinklo "
-"įrenginį imtuve ir spauskite OK mygtuką savo distanciniame valdymo pulte, "
-"kad įjungti belaidžio tinklo palaikymą"
-
 msgid "Please change recording endtime"
 msgstr "Prašome pakeisti įrašymo pabaigos laiką"
 
@@ -1895,24 +1886,6 @@ msgstr "Prašom išsirinkti, paketą..."
 msgid "Please choose the default services lists you want to install."
 msgstr ""
 "Prašome pasirinkti numatytuosius kanalų sąrašus, kuriuos jūs norite įdiegti."
-
-msgid ""
-"Please configure your local LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-"Prašome sukonfigūruotii savo vietino tinklo interneto ryšį, užpildydami "
-"būtinas reikšmes. \n"
-"Kai jūs esate pasiruošęs, prašome spausti OK, kad tęsti."
-
-msgid ""
-"Please configure your wireless LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-"Prašome sukonfigūruoti savo belaidžio tinklo interneto ryšį, užpildydami "
-"būtinas reikšmes. \n"
-"Kai jūs būsite pasiruošęs, prašome spausti OK, kad tęsti."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Prašome nekeisti reikšmių, jeigu Jūs nežinote ką darote! "
@@ -1929,6 +1902,9 @@ msgstr "Prašome įrašyti naują failo pavadinimą"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Prašome įrašyti failo pavadinimą (tuščias = dabartiniai duomenys)"
 
+msgid "Please enter name of the new directory"
+msgstr ""
+
 msgid "Please enter the correct pin code"
 msgstr "Prašome įrašyti teisingą PIN kodą"
 
@@ -1937,6 +1913,14 @@ msgstr "Prašome įrašyti seną PIN kodą"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Prašome sekti instrukcijas televizoriuje"
+
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+
+msgid "Please press OK to continue."
+msgstr ""
 
 msgid "Please press OK!"
 msgstr "Prašome spausti OK!"
@@ -1952,9 +1936,6 @@ msgstr "Prašome išsirinkti subkanalą dėl įrašymo..."
 
 msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
-
-msgid "Please select below the wireless network you want to connect to."
-msgstr "Prašome išsirinkti belaidį tinklą, prie kurio jūs norite jungtis."
 
 msgid "Please select keyword to filter..."
 msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
@@ -1979,6 +1960,11 @@ msgstr ""
 "Prašome, naudoti valdymo mygtukus dėl PiP lango perkėlimo.\n"
 "Spauskite Bouquet +/- dėl lango dydžio pakeitimo.\n"
 "Spauskite OK  norint grįžti į TV arba EXIT norint nutraukti judėjimą."
+
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Prašome laukti... Užkraunamas sąrašas..."
@@ -2043,23 +2029,14 @@ msgstr "Spauskite OK savo valdymo pulte, kad tęsti."
 msgid "Press OK to activate the settings."
 msgstr "Spauskite OK norėdami aktyvuoti nustatymus"
 
+msgid "Press OK to edit the settings."
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr "Spauskite OK paieškai."
 
 msgid "Press OK to start the scan"
 msgstr "Spauskite OK norėdami pradėti paiešką."
-
-msgid ""
-"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
-"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
-"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
-"\n"
-msgstr ""
-"Spauskite OK ir įjunkite belaidžio tinklo palaikymą savo Imtuve.\n"
-"Belaidžio tinklo USB įrenginiai su Zydas ZD1211B, ir RAlink RT73 Chipset yra "
-"palaikomi.\n"
-"Prijunkite belaidžio tinklo USB įrenginį savo imtuve, prieš spaudžiant OK.\n"
-"\n"
 
 msgid "Prev"
 msgstr "Buvęs"
@@ -2158,6 +2135,9 @@ msgstr "Atnaujinimo norma"
 msgid "Refresh rate selection."
 msgstr "Atnaujinkite normos pasirinkimą"
 
+msgid "Remove Bookmark"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Pašalinti priedus"
 
@@ -2172,6 +2152,10 @@ msgstr "Pašalinti priedus"
 
 msgid "Remove title"
 msgstr "Pašalinti pavadinimą"
+
+#, python-format
+msgid "Removing directory %s failed. (Maybe not empty.)"
+msgstr ""
 
 msgid "Rename"
 msgstr "Pervardinti"
@@ -2211,9 +2195,6 @@ msgstr "Paleisti iš naujo testą"
 
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Iš naujo paleiskite savo tinklo ryšį ir įrenginius. \n"
-
-msgid "Restart your wireless interface"
-msgstr "Paleiskite iš naujo savo belaidį įrenginį"
 
 msgid "Restore"
 msgstr "Atkurti"
@@ -2292,8 +2273,14 @@ msgstr "Palydovai"
 msgid "Satfinder"
 msgstr "Palydovo signalo paieška"
 
+msgid "Sats"
+msgstr ""
+
 msgid "Saturday"
 msgstr "Šeštadienis"
+
+msgid "Save"
+msgstr ""
 
 msgid "Save Playlist"
 msgstr "Išsaugoti grojaraštį"
@@ -2476,6 +2463,9 @@ msgstr "Kanalo informacija"
 msgid "Services"
 msgstr "Kanalai"
 
+msgid "Set as default Interface"
+msgstr ""
+
 msgid "Set limits"
 msgstr "Nustatykite ribas"
 
@@ -2626,9 +2616,6 @@ msgstr "Paleidimo pradžia"
 msgid "Starting on"
 msgstr "Paleidimas įjungtas"
 
-msgid "Step "
-msgstr "Žingsnis"
-
 msgid "Step east"
 msgstr "Žingsnis į rytus"
 
@@ -2708,6 +2695,9 @@ msgstr "Audronis Grincevičius (ADGA) Pasvalys, Lietuva"
 msgid "TV System"
 msgstr "TV sistema"
 
+msgid "Table of content to be burned to DVD:"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Antžeminė"
 
@@ -2722,39 +2712,6 @@ msgstr "Testuoti tinklo konfigūraciją savo imtuve.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Testuoti pranešimų dėžutę?"
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your local LAN internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Ačiū, kad naudojatės nustatymų vedliu. Jūsų imtuvas paruoštas naudojimui.\n"
-"\n"
-"Jūsų vietinio tinklo interneto prisijungimas dabar veikia.\n"
-"\n"
-"Prašome spausti OK, kad tęsti."
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your wireless internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Ačiū, kad naudojatės nustatymų vedliu. Jūsų imtuvas paruoštas naudojimui.\n"
-"\n"
-"Jūsų belaidžio interneto prisijungimas dabar veikia.\n"
-"\n"
-"Prašome spausti OK, kad tęsti."
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"Please press OK to start using your Dreambox."
-msgstr ""
-"Ačiū, kad naudojatės nustatymų vedliu. Jūsų imtuvas paruoštas naudojimui.\n"
-"Prašome spausti OK, kad pradėti naudotis savo imtuvu."
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2788,6 +2745,10 @@ msgstr ""
 
 msgid "The package doesn't contain anything."
 msgstr "Paketas neturi savyje nieko."
+
+#, python-format
+msgid "The path %s already exists."
+msgstr ""
 
 msgid "The pin code has been changed successfully."
 msgstr "PIN kodas sėkmingai pakeistas."
@@ -3092,6 +3053,9 @@ msgstr "Atnaujinamas imtuvas... Prašome palaukti"
 msgid "Use DHCP"
 msgstr "Naudoti DHCP"
 
+msgid "Use Interface"
+msgstr ""
+
 msgid "Use Power Measurement"
 msgstr "Naudoti įtampos matavimą"
 
@@ -3244,22 +3208,6 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Sveiki atvykę. \n"
-"\n"
-"Jei jūs norėsite prijungti savo imtuvą prie interneto, šis vedlys ves jus "
-"per pagrindinę tinklo sąranką jūsų imtuve.\n"
-"\n"
-"Spauskite OK mygtuką ant jūsų distancinio valdymo pulto, kad pereiti į kitą "
-"žingsnį."
-
-msgid ""
-"Welcome.\n"
-"\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
@@ -3277,6 +3225,9 @@ msgstr "Vakarai"
 
 msgid "What do you want to scan?"
 msgstr "Ką Jūs norite skanuoti?"
+
+msgid "When complete, press Key 0 to burn the collection!"
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kur Jūs norite išsaugoti nustatymų atsarginę kopiją?"
@@ -3448,42 +3399,6 @@ msgstr ""
 "Reikalingas priekinio procesoriaus atnaujinimas.\n"
 "Spauskite OK, kad pradėti atnaujinimą."
 
-msgid ""
-"Your local LAN internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Jūsų vietinio tinklo interneto prisijungimas neveikia!\n"
-"Prašome išsirinkti tai, ką jūs norite daryti vėliau."
-
-msgid ""
-"Your network is restarting.\n"
-"You will be automatically forwarded to the next step."
-msgstr ""
-"Jūsų tinklas paleidžiamas iš naujo.\n"
-"Jūs būsite automatiškai perkeltas į kitą žingsnį."
-
-msgid ""
-"Your wired LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-"Jūsų belaidžio tinklo adapteris nestartavo.\n"
-"Jūs norite paleisti iš naujo savo imtuvą, kad pavtirtinti naują "
-"konfigūraciją?\n"
-
-msgid ""
-"Your wireless LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-"Jūsų belaidžio tinklo adapteris nestartavo.\n"
-"Jūs norite perjungti savo imtuvą, kad patvirtinti naują konfigūraciją?\n"
-
-msgid ""
-"Your wireless internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Jūsų belaidžio interneto prisijungimas neveikia!\n"
-"Prašom pasirinkti tai, ką jūs norite padaryti paskui."
-
 msgid "Zap back to service before positioner setup?"
 msgstr "Perjungti atgal į kanalą po pozicionieriaus nustatymo?"
 
@@ -3516,6 +3431,9 @@ msgstr "apie pradžią"
 
 msgid "add alternatives"
 msgstr "pridėti kitus"
+
+msgid "add bookmark"
+msgstr ""
 
 msgid "add bouquet"
 msgstr "pridėti paketą"
@@ -3578,6 +3496,9 @@ msgstr "juodas sąrašas"
 msgid "by Exif"
 msgstr "pagal Exif"
 
+msgid "cancel"
+msgstr ""
+
 msgid "change recording (duration)"
 msgstr "pakeisti įrašymą (trukmę)"
 
@@ -3610,6 +3531,9 @@ msgstr "Tęsti"
 
 msgid "copy to bouquets"
 msgstr "kopijuoti į paketus"
+
+msgid "create directory"
+msgstr ""
 
 msgid "daily"
 msgstr "kasdien"
@@ -3686,8 +3610,8 @@ msgstr "kirpimo pabaiga čia"
 msgid "end favourites edit"
 msgstr "baigti mėgstamiausių redagavimą"
 
-msgid "equal to Socket A"
-msgstr "lygus lizdui A"
+msgid "equal to"
+msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "išeiti iš DVD grotuvo arba sugrįžti į failų naršyklę"
@@ -3796,8 +3720,8 @@ msgstr "užkraunamas grojaraštis"
 msgid "locked"
 msgstr "užrakinta"
 
-msgid "loopthrough to socket A"
-msgstr "į imtuvą A"
+msgid "loopthrough to"
+msgstr ""
 
 msgid "manual"
 msgstr "rankinis"
@@ -3928,6 +3852,12 @@ msgstr "šalinti visus žymeklius 'naujas'"
 msgid "remove before this position"
 msgstr "pašalinti po šios vietos"
 
+msgid "remove bookmark"
+msgstr ""
+
+msgid "remove directory"
+msgstr ""
+
 msgid "remove entry"
 msgstr "pašalinti"
 
@@ -3983,6 +3913,9 @@ msgstr "Sekundžių"
 
 msgid "seconds."
 msgstr "sekundžių."
+
+msgid "select"
+msgstr ""
 
 msgid "select movie"
 msgstr "pasirinkite filmą"
@@ -4086,6 +4019,9 @@ msgstr "išjungti laiko perstumimą"
 msgid "swap PiP and main picture"
 msgstr "perkelti PiP į mano paveikslėlį"
 
+msgid "switch to bookmarks"
+msgstr ""
+
 msgid "switch to filelist"
 msgstr "perjungti į failų sąrašą"
 
@@ -4097,9 +4033,6 @@ msgstr "perjungti į kitą garso takelį"
 
 msgid "switch to the next subtitle language"
 msgstr "perjungti į kitą subtitrų kalbą"
-
-msgid "text"
-msgstr "tekstas"
 
 msgid "this recording"
 msgstr "tai įrašyta"
@@ -4178,8 +4111,46 @@ msgstr "įjungta"
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
+#~ msgid ""
+#~ "Are you sure you want to enable WLAN support?\n"
+#~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Jūs norite įjungti belaidžio tinklo palaikymą?\n"
+#~ "Pajunkite savo USB belaidžio tinklo įrenginį prie imtuvo ir spauskite "
+#~ "OK.\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Are you sure you want to enable your local network?\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Jūs esate įsitikinęs, kad jūs norite įjungti savo vietinį tinklą? \n"
+#~ "\n"
+
 #~ msgid "Choose Location"
 #~ msgstr "Išsirinkite vietą"
+
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Konfigūruokite savo vidinį tinklą"
+
+#~ msgid "Configure your internal LAN again"
+#~ msgstr "Konfigūruokite savo vidinį tinklą dar kartą"
+
+#~ msgid "Configure your wireless LAN"
+#~ msgstr "Konfigūruokite savo belaidį tinklą"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Konfigūruokite savo belaidį tinklą dar kartą"
+
+#~ msgid "Confirm"
+#~ msgstr "Patvirtinti"
+
+#~ msgid "Connect to the Internet with a USB Wlan Stick"
+#~ msgstr "Junkitės prie interneto su USB belaidžio tinklo įrenginiu"
+
+#~ msgid "Connect to the Internet with your local LAN"
+#~ msgstr "Prisijunkite prie interneto su vietiniu tinklu"
 
 #~ msgid "Default-Wizard"
 #~ msgstr "Numatytas vedlys"
@@ -4193,6 +4164,22 @@ msgstr "įjungta"
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Trukinėjantis atkūrimas pasikartojančia struktūra"
 
+#~ msgid "Enable LAN"
+#~ msgstr "Įjungti tinklą"
+
+#~ msgid "Enable WLAN"
+#~ msgstr "Įjungti belaidį tinklą"
+
+#~ msgid ""
+#~ "Enable the local network of your Dreambox.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Įjunkite vietinį tinklą savo imtuve.\n"
+#~ "\n"
+
+#~ msgid "Exit wizard and configure later manually"
+#~ msgstr "Išjunkite nustatymų vedlį ir konfigūruokite vėliau rankiniu būdu "
+
 #~ msgid "Extended Setup..."
 #~ msgstr "Išplėstiniai nustatymai..."
 
@@ -4202,11 +4189,170 @@ msgstr "įjungta"
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Serverio nustatymas..."
 
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN USB Stick or "
+#~ "enable you local network interface."
+#~ msgstr ""
+#~ "Jokių dirbančių belaidžių įrenginių nerasta.\n"
+#~ " Prašome patikrinti, ar jūs prijungėte suderinamą USB belaidžio tinklo "
+#~ "įrenginį arba įjunkite savo vietinio tinklo įrenginius."
+
+#~ msgid "No, let me choose default lists"
+#~ msgstr "Ne, leiskite man pasirinkti numatytuosius sąrašus"
+
+#~ msgid ""
+#~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
+#~ "Dreambox and press the OK button on your remote control to enable the "
+#~ "built in wireless network support"
+#~ msgstr ""
+#~ "Prašome prijungti jūsų Zydas ZD1211B chipset suderinamą USB belaidžio "
+#~ "tinklo įrenginį imtuve ir spauskite OK mygtuką savo distanciniame valdymo "
+#~ "pulte, kad įjungti belaidžio tinklo palaikymą"
+
+#~ msgid ""
+#~ "Please configure your local LAN internet connection by filling out the "
+#~ "needed values.\n"
+#~ "When you are ready please press OK to continue."
+#~ msgstr ""
+#~ "Prašome sukonfigūruotii savo vietino tinklo interneto ryšį, užpildydami "
+#~ "būtinas reikšmes. \n"
+#~ "Kai jūs esate pasiruošęs, prašome spausti OK, kad tęsti."
+
+#~ msgid ""
+#~ "Please configure your wireless LAN internet connection by filling out the "
+#~ "needed values.\n"
+#~ "When you are ready please press OK to continue."
+#~ msgstr ""
+#~ "Prašome sukonfigūruoti savo belaidžio tinklo interneto ryšį, užpildydami "
+#~ "būtinas reikšmes. \n"
+#~ "Kai jūs būsite pasiruošęs, prašome spausti OK, kad tęsti."
+
+#~ msgid "Please select below the wireless network you want to connect to."
+#~ msgstr "Prašome išsirinkti belaidį tinklą, prie kurio jūs norite jungtis."
+
+#~ msgid ""
+#~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
+#~ "Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are "
+#~ "supported.\n"
+#~ "Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Spauskite OK ir įjunkite belaidžio tinklo palaikymą savo Imtuve.\n"
+#~ "Belaidžio tinklo USB įrenginiai su Zydas ZD1211B, ir RAlink RT73 Chipset "
+#~ "yra palaikomi.\n"
+#~ "Prijunkite belaidžio tinklo USB įrenginį savo imtuve, prieš spaudžiant "
+#~ "OK.\n"
+#~ "\n"
+
+#~ msgid "Restart your wireless interface"
+#~ msgstr "Paleiskite iš naujo savo belaidį įrenginį"
+
 #~ msgid "Show files from %s"
 #~ msgstr "Rodyti failus iš %s"
 
 #~ msgid "Startwizard"
 #~ msgstr "Nustatymų vedlys"
 
+#~ msgid "Step "
+#~ msgstr "Žingsnis"
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "\n"
+#~ "Your local LAN internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Ačiū, kad naudojatės nustatymų vedliu. Jūsų imtuvas paruoštas "
+#~ "naudojimui.\n"
+#~ "\n"
+#~ "Jūsų vietinio tinklo interneto prisijungimas dabar veikia.\n"
+#~ "\n"
+#~ "Prašome spausti OK, kad tęsti."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "\n"
+#~ "Your wireless internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Ačiū, kad naudojatės nustatymų vedliu. Jūsų imtuvas paruoštas "
+#~ "naudojimui.\n"
+#~ "\n"
+#~ "Jūsų belaidžio interneto prisijungimas dabar veikia.\n"
+#~ "\n"
+#~ "Prašome spausti OK, kad tęsti."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "Please press OK to start using your Dreambox."
+#~ msgstr ""
+#~ "Ačiū, kad naudojatės nustatymų vedliu. Jūsų imtuvas paruoštas "
+#~ "naudojimui.\n"
+#~ "Prašome spausti OK, kad pradėti naudotis savo imtuvu."
+
 #~ msgid "VCR Switch"
 #~ msgstr "VCR perjungėjas"
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "If you want to connect your Dreambox to the Internet, this wizard will "
+#~ "guide you through the basic network setup of your Dreambox.\n"
+#~ "\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "Sveiki atvykę. \n"
+#~ "\n"
+#~ "Jei jūs norėsite prijungti savo imtuvą prie interneto, šis vedlys ves jus "
+#~ "per pagrindinę tinklo sąranką jūsų imtuve.\n"
+#~ "\n"
+#~ "Spauskite OK mygtuką ant jūsų distancinio valdymo pulto, kad pereiti į "
+#~ "kitą žingsnį."
+
+#~ msgid ""
+#~ "Your local LAN internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Jūsų vietinio tinklo interneto prisijungimas neveikia!\n"
+#~ "Prašome išsirinkti tai, ką jūs norite daryti vėliau."
+
+#~ msgid ""
+#~ "Your network is restarting.\n"
+#~ "You will be automatically forwarded to the next step."
+#~ msgstr ""
+#~ "Jūsų tinklas paleidžiamas iš naujo.\n"
+#~ "Jūs būsite automatiškai perkeltas į kitą žingsnį."
+
+#~ msgid ""
+#~ "Your wired LAN Adapter could not be started.\n"
+#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
+#~ msgstr ""
+#~ "Jūsų belaidžio tinklo adapteris nestartavo.\n"
+#~ "Jūs norite paleisti iš naujo savo imtuvą, kad pavtirtinti naują "
+#~ "konfigūraciją?\n"
+
+#~ msgid ""
+#~ "Your wireless LAN Adapter could not be started.\n"
+#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
+#~ msgstr ""
+#~ "Jūsų belaidžio tinklo adapteris nestartavo.\n"
+#~ "Jūs norite perjungti savo imtuvą, kad patvirtinti naują konfigūraciją?\n"
+
+#~ msgid ""
+#~ "Your wireless internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Jūsų belaidžio interneto prisijungimas neveikia!\n"
+#~ "Prašom pasirinkti tai, ką jūs norite padaryti paskui."
+
+#~ msgid "equal to Socket A"
+#~ msgstr "lygus lizdui A"
+
+#~ msgid "loopthrough to socket A"
+#~ msgstr "į imtuvą A"
+
+#~ msgid "text"
+#~ msgstr "tekstas"
