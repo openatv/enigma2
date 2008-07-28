@@ -1,3 +1,4 @@
+from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet
 from enigma import Misc_Options, setTunerTypePriorityOrder;
 from SystemInfo import SystemInfo
@@ -60,7 +61,8 @@ def InitUsageConfig():
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged)
 
 	def setHDDStandby(configElement):
-		os.system("hdparm -S" + configElement.value + " /dev/ide/host0/bus0/target0/lun0/disc")
+		for hdd in harddiskmanager.HDDList():
+			os.system("hdparm -S%s %s" % (configElement.value, hdd[1].getDeviceName()))
 	config.usage.hdd_standby.addNotifier(setHDDStandby)
 
 	def set12VOutput(configElement):

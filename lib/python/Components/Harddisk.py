@@ -203,6 +203,12 @@ class Harddisk:
 			return -3
 
 		return 0
+	
+	def getDeviceDir(self):
+		return self.devidex
+	
+	def getDeviceName(self):
+		return self.getDeviceDir() + "disc"
 
 class Partition:
 	def __init__(self, mountpoint, description = "", force_mounted = False):
