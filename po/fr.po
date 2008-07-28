@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-25 14:05+0200\n"
+"POT-Creation-Date: 2008-07-28 08:17+0200\n"
 "PO-Revision-Date: 2008-06-02 13:45+0100\n"
 "Last-Translator: mimi74 <remi.jarrige@cegetel.net>\n"
 "Language-Team: french\n"
@@ -286,6 +286,9 @@ msgstr "À propos..."
 msgid "Action on long powerbutton press"
 msgstr "Mode appui long sur bouton éteindre"
 
+msgid "Action:"
+msgstr ""
+
 msgid "Activate Picture in Picture"
 msgstr "Activer l'incrustation d'image"
 
@@ -298,6 +301,9 @@ msgstr "Paramètres adaptateur"
 msgid "Add"
 msgstr "Ajouter"
 
+msgid "Add Bookmark"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Ajouter un marqueur"
 
@@ -306,6 +312,9 @@ msgstr "Ajouter un nouveau titre"
 
 msgid "Add timer"
 msgstr "Programmer"
+
+msgid "Add title"
+msgstr ""
 
 msgid "Add title..."
 msgstr "Ajouter titre..."
@@ -372,22 +381,6 @@ msgstr "Une erreur est arrivée. (%s)"
 
 msgid "Arabic"
 msgstr "Arabe"
-
-msgid ""
-"Are you sure you want to enable WLAN support?\n"
-"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-"\n"
-msgstr ""
-"Etes-vous sûr de vouloir activer le support WLAN?\n"
-"Connecter votre clé USB Wlan USB à votre Dreambox et presser OK.\n"
-"\n"
-
-msgid ""
-"Are you sure you want to enable your local network?\n"
-"\n"
-msgstr ""
-"Etes-vous sûr de vouloir activer votre réseau local?\n"
-"\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -480,6 +473,9 @@ msgstr "Action lorsqu'un film est stoppé"
 msgid "Behavior when a movie reaches the end"
 msgstr "Action lorsqu'un film atteint la fin"
 
+msgid "Bookmarks"
+msgstr ""
+
 msgid "Brightness"
 msgstr "Luminosité"
 
@@ -501,6 +497,9 @@ msgid ""
 msgstr ""
 "En pressant le bouton OK de votre télécommande, la barre d'information est "
 "affichée."
+
+msgid "C"
+msgstr ""
 
 msgid "C-Band"
 msgstr "Bande C"
@@ -640,32 +639,14 @@ msgstr "Terminé"
 msgid "Configuration Mode"
 msgstr "Mode de configuration"
 
-msgid "Configure your internal LAN"
-msgstr "Configurer votre LAN interne"
-
-msgid "Configure your internal LAN again"
-msgstr "Configurer encore votre LAN interne"
-
-msgid "Configure your wireless LAN"
-msgstr "Configurer votre LAN sans fil"
-
-msgid "Configure your wireless LAN again"
-msgstr "Configurer encore votre LAN sans fil"
-
 msgid "Configuring"
 msgstr "configuration"
-
-msgid "Confirm"
-msgstr "Confirmer"
 
 msgid "Conflicting timer"
 msgstr "Programmation conflictuelle"
 
-msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr "Connection à internet avec la clé USB Wlan"
-
-msgid "Connect to the Internet with your local LAN"
-msgstr "Connection à internet avec votre LAN local"
+msgid "Connected to"
+msgstr ""
 
 msgid "Connected to Fritz!Box!"
 msgstr "Connecté à Fritz!Box!"
@@ -694,6 +675,10 @@ msgstr "Contraste"
 
 msgid "Create movie folder failed"
 msgstr "Echec création dossier films"
+
+#, python-format
+msgid "Creating directory %s failed."
+msgstr ""
 
 msgid "Creating partition failed"
 msgstr "Echec création partition"
@@ -730,6 +715,9 @@ msgstr "éditeur monter/couper..."
 
 msgid "Czech"
 msgstr "Tchèque"
+
+msgid "D"
+msgstr ""
 
 msgid "DHCP"
 msgstr ""
@@ -820,6 +808,10 @@ msgstr "Mode DiSEqC"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC-Répétitions"
 
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr ""
+
 msgid "Disable"
 msgstr "Désactiver"
 
@@ -828,6 +820,9 @@ msgstr "Désactiver l'incrustation d'image"
 
 msgid "Disable Subtitles"
 msgstr "Désactiver sous-titres"
+
+msgid "Disable timer"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Désactivé"
@@ -887,6 +882,14 @@ msgstr ""
 "Voulez-vous vraiment formatter le disque dur ?\n"
 "Toutes les données du disque vont être perdues !"
 
+#, python-format
+msgid "Do you really want to remove directory %s from the disk?"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to remove your bookmark of %s?"
+msgstr ""
+
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
@@ -902,6 +905,9 @@ msgstr "Voulez-vous faire une autre analyse manuelle des services?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Voulez-vous activer la fonction contrôle parental sur votre dreambox?"
+
+msgid "Do you want to install default sat lists?"
+msgstr ""
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Voulez-vous lire le DVD dans le lecteur?"
@@ -982,6 +988,9 @@ msgstr "Editer la configuation nom serveur de votre Dreambox.\n"
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Editer la configuration réseau de votre Dreambox.\n"
 
+msgid "Edit title"
+msgstr ""
+
 msgid "Edit title..."
 msgstr "Editer titre..."
 
@@ -994,24 +1003,14 @@ msgstr "Activer"
 msgid "Enable 5V for active antenna"
 msgstr "Autoriser 5V pour antenne active"
 
-msgid "Enable LAN"
-msgstr "Activer LAN"
-
-msgid "Enable WLAN"
-msgstr "Activer WLAN"
-
 msgid "Enable multiple bouquets"
 msgstr "Activer bouquets multiples"
 
 msgid "Enable parental control"
 msgstr "Activer contrôle parental"
 
-msgid ""
-"Enable the local network of your Dreambox.\n"
-"\n"
+msgid "Enable timer"
 msgstr ""
-"Activer le réseau local de votre Dreambox.\n"
-"\n"
 
 msgid "Enabled"
 msgstr "Activer"
@@ -1103,9 +1102,6 @@ msgstr "Quitter l'assistant"
 
 msgid "Exit wizard"
 msgstr "Quitter l'assistant"
-
-msgid "Exit wizard and configure later manually"
-msgstr "Quitter l'assistant et configurer plus tard manuellement"
 
 msgid "Expert"
 msgstr "Expert"
@@ -1348,6 +1344,9 @@ msgstr "enregistrement immédiat..."
 msgid "Integrated Ethernet"
 msgstr "Ethernet intégrée"
 
+msgid "Integrated Wireless"
+msgstr ""
+
 msgid "Intermediate"
 msgstr "Intermédiaire"
 
@@ -1356,6 +1355,10 @@ msgstr "Flash interne"
 
 msgid "Invalid Location"
 msgstr "Emplacement non valide"
+
+#, python-format
+msgid "Invalid directory selected: %s"
+msgstr ""
 
 msgid "Inversion"
 msgstr "Inversion"
@@ -1714,12 +1717,9 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN USB Stick or enable "
-"you local network interface."
+" Please verify that you have attached a compatible WLAN device or enable you "
+"local network interface."
 msgstr ""
-"Aucun interface sans fil fonctionnel trouvé.\n"
-"Veuillez vérifier que vous avez inséré une clé WLAN USB compatible ou "
-"activez votre interface réseau locale."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -1738,9 +1738,6 @@ msgstr "Non, ne rien faire."
 
 msgid "No, just start my dreambox"
 msgstr "Non, juste démarrer ma Dreambox"
-
-msgid "No, let me choose default lists"
-msgstr "Non, laissez moi choisir une liste standard"
 
 msgid "No, scan later manually"
 msgstr "Non, analyser manuellement plus tard"
@@ -1832,6 +1829,9 @@ msgstr "Page"
 msgid "Pan&Scan"
 msgstr ""
 
+msgid "Parent Directory"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Contrôle parental"
 
@@ -1872,15 +1872,6 @@ msgstr "Veuiller rebooter"
 msgid "Please Select Medium to be Scanned"
 msgstr "Veuillez choisir média à scanner"
 
-msgid ""
-"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-"Dreambox and press the OK button on your remote control to enable the built "
-"in wireless network support"
-msgstr ""
-"Veuillez connecter votre clé WLAN USB chipset Zydas ZD1211B compatible à "
-"votre Dreambox et presser le bouton OK sur votre télécommande pour activer "
-"le support du réseau intégré sans fil"
-
 msgid "Please change recording endtime"
 msgstr "Veuillez changer heure fin enregistrement"
 
@@ -1892,24 +1883,6 @@ msgstr "Veuillez choisir le paquet..."
 
 msgid "Please choose the default services lists you want to install."
 msgstr "Veuillez chisir la liste services standard à installer."
-
-msgid ""
-"Please configure your local LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-"Veuillez configurer votre connection locale internet LAN en renseignant les "
-"valeurs nécessaires.\n"
-"Quand vous serez prèt, pressez OK pour continuer."
-
-msgid ""
-"Please configure your wireless LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-"Veuillez configurer votre connection sans fil internet LAN en renseignant "
-"les valeurs nécessaires.\n"
-"Quand vous serez prèt, pressez OK pour continuer."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Veuillez ne changer aucune valeur avant de savoir ce que vous faites!"
@@ -1926,6 +1899,9 @@ msgstr "Veuillez saisir un nouveau nom fichier"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Veuillez saisir données (vide = utiliser date courante)"
 
+msgid "Please enter name of the new directory"
+msgstr ""
+
 msgid "Please enter the correct pin code"
 msgstr "Veuillez saisir le code pin correcte"
 
@@ -1934,6 +1910,14 @@ msgstr "Veuillez saisir l'ancien code pin"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Veuillez suivre les instructions sur la TV"
+
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+
+msgid "Please press OK to continue."
+msgstr ""
 
 msgid "Please press OK!"
 msgstr "Veuille presser OK"
@@ -1949,9 +1933,6 @@ msgstr "Veuillez choisir un sous-service à enregistrer..."
 
 msgid "Please select a subservice..."
 msgstr "Veuillez choisir un sous-service..."
-
-msgid "Please select below the wireless network you want to connect to."
-msgstr "Veuillez choisir ici le réseau sans fil auquel se connecter."
 
 msgid "Please select keyword to filter..."
 msgstr "Veuillez choisir un mot-clé à filtrer..."
@@ -1976,6 +1957,11 @@ msgstr ""
 "Veuillez utiliser les touches direction pour bouger la fenêtre PiP.\n"
 "Presser Bouquet +/- pour redimmensionner la fenêtre.\n"
 "Presser OK pour revenir au mode TV ou EXIT pour annuler le déplacement."
+
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Veuillez patienter... Chargement de la liste..."
@@ -2040,23 +2026,14 @@ msgstr "Presser OK sur la télécommande pour continuer."
 msgid "Press OK to activate the settings."
 msgstr "Pressez OK pour activer les paramètres."
 
+msgid "Press OK to edit the settings."
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr "Pressez OK pour analyser"
 
 msgid "Press OK to start the scan"
 msgstr "Pressez OK pour commencer l'analyse"
-
-msgid ""
-"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
-"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
-"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
-"\n"
-msgstr ""
-"Presser OK active le support du LAN intégré sans fil de votre Dreambox.\n"
-"LEs clés Wlan USB avec le chipset Zydas ZD1211B et RAlink RT73 sont "
-"supportés.\n"
-"Connecter votre clé Wlan USB à votre Dreambox avant de presser OK.\n"
-"\n"
 
 msgid "Prev"
 msgstr "Précédent"
@@ -2157,6 +2134,9 @@ msgstr "Vitesse rafraîchissement"
 msgid "Refresh rate selection."
 msgstr "Sélection vitesse rafraîchissement "
 
+msgid "Remove Bookmark"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Enlever extensions"
 
@@ -2171,6 +2151,10 @@ msgstr "Enlever extensions"
 
 msgid "Remove title"
 msgstr "Retirer titre"
+
+#, python-format
+msgid "Removing directory %s failed. (Maybe not empty.)"
+msgstr ""
 
 msgid "Rename"
 msgstr "Renommer"
@@ -2212,9 +2196,6 @@ msgstr "Relancer le test"
 
 msgid "Restart your network connection and interfaces.\n"
 msgstr "Relancer votre connection et interface réseau.\n"
-
-msgid "Restart your wireless interface"
-msgstr "Redémarrer votre interface sans fil"
 
 msgid "Restore"
 msgstr "Restaurer"
@@ -2293,8 +2274,14 @@ msgstr "Satellites"
 msgid "Satfinder"
 msgstr "Pointeur satellites"
 
+msgid "Sats"
+msgstr ""
+
 msgid "Saturday"
 msgstr "Samedi"
+
+msgid "Save"
+msgstr ""
 
 msgid "Save Playlist"
 msgstr "Sauver liste lecture"
@@ -2477,6 +2464,9 @@ msgstr "Info service"
 msgid "Services"
 msgstr "Services"
 
+msgid "Set as default Interface"
+msgstr ""
+
 msgid "Set limits"
 msgstr "Fixer les limites"
 
@@ -2627,9 +2617,6 @@ msgstr "Départ"
 msgid "Starting on"
 msgstr "Démarre sur"
 
-msgid "Step "
-msgstr "Étape"
-
 msgid "Step east"
 msgstr "Un pas vers l'Est"
 
@@ -2709,6 +2696,9 @@ msgstr "mimi74 a traduit"
 msgid "TV System"
 msgstr "Système TV"
 
+msgid "Table of content to be burned to DVD:"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Terrestre"
 
@@ -2723,42 +2713,6 @@ msgstr "tester la configuration réseau de votre Dreambox\n"
 
 msgid "Test-Messagebox?"
 msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your local LAN internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Merci d'utiliser l'assistant. Votre Dreambox est maintenant prète à "
-"l'usage.\n"
-"\n"
-"Votre connection internet locale LAN fonctionne maintenant.\n"
-"\n"
-"Veuillez presser OK pour continuer."
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your wireless internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-"Merci d'utiliser l'assistant. Votre Dreambox est maintenant prète à "
-"l'usage.\n"
-"\n"
-"Votre connection internet sans fil fonctionne maintenant.\n"
-"\n"
-"Veuillez presser OK pour continuer."
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"Please press OK to start using your Dreambox."
-msgstr ""
-"Merci d'utiliser l'assistant. Votre Dreambox est maintenant prète à "
-"l'usage.\n"
-"Veuillez appuyer sur OK pour commencer à l'utiliser."
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2792,6 +2746,10 @@ msgstr ""
 
 msgid "The package doesn't contain anything."
 msgstr "Le paquet ne contient rien."
+
+#, python-format
+msgid "The path %s already exists."
+msgstr ""
 
 msgid "The pin code has been changed successfully."
 msgstr "Le code pin a été changé avec succès."
@@ -3097,6 +3055,9 @@ msgstr "Mise à jour Dreambox... Veuillez patienter"
 msgid "Use DHCP"
 msgstr "Utiliser DHCP"
 
+msgid "Use Interface"
+msgstr ""
+
 msgid "Use Power Measurement"
 msgstr "Utiliser mesure puissance"
 
@@ -3250,21 +3211,6 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-"Bienvenue.\n"
-"\n"
-"Si vous voulez connecter votre Dreambox à internet, cette assistant vous "
-"guidera à paramètrer les réglages basiques du réseau de votre Dreambox.\n"
-"\n"
-"Presser le bouton OK sur votre télécommande pour passer à l'étape suivante."
-
-msgid ""
-"Welcome.\n"
-"\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
@@ -3283,6 +3229,9 @@ msgstr "Ouest"
 
 msgid "What do you want to scan?"
 msgstr "Que voulez-vous analyser ?"
+
+msgid "When complete, press Key 0 to burn the collection!"
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Où voulez-vous sauver vos paramètres ?"
@@ -3457,43 +3406,6 @@ msgstr ""
 "Le logiciel de votre frontprocessor doit être mis à jour.\n"
 "Veuillez appuyer sur OK pour commencer la mise à jour."
 
-msgid ""
-"Your local LAN internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Votre connection internet LAN locale ne fonctionne pas!\n"
-"Veuillez choisir ce que vous voulez faire ensuite."
-
-msgid ""
-"Your network is restarting.\n"
-"You will be automatically forwarded to the next step."
-msgstr ""
-"Votre réseau redémarre.\n"
-"Vous passerez automatiquement à l'étape suivante."
-
-msgid ""
-"Your wired LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-"Votre adaptateur cablé LAN ne peut-être démarré.\n"
-"Voulez-vous relancer votre Dreambox pour appliquer la nouvelle "
-"configuration?\n"
-
-msgid ""
-"Your wireless LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-"Votre adaptateur sans fil LAN ne peut-être démarré.\n"
-"Voulez-vous relancer votre Dreambox pour appliquer la nouvelle "
-"configuration?\n"
-
-msgid ""
-"Your wireless internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-"Votre connection internet sans fil ne fonctionne pas!\n"
-"Veuillez choisir ce que vous voulez faire ensuite."
-
 msgid "Zap back to service before positioner setup?"
 msgstr "Revenir sur le service avant réglage positionneur?"
 
@@ -3526,6 +3438,9 @@ msgstr "sur le point de commencer"
 
 msgid "add alternatives"
 msgstr "ajouter les alternatifs"
+
+msgid "add bookmark"
+msgstr ""
 
 msgid "add bouquet"
 msgstr "ajouter bouquet"
@@ -3588,6 +3503,9 @@ msgstr "liste noire"
 msgid "by Exif"
 msgstr "par exif"
 
+msgid "cancel"
+msgstr ""
+
 msgid "change recording (duration)"
 msgstr "modifier un enregistrement (durée)"
 
@@ -3620,6 +3538,9 @@ msgstr "continuer"
 
 msgid "copy to bouquets"
 msgstr "copier vers bouquets"
+
+msgid "create directory"
+msgstr ""
 
 msgid "daily"
 msgstr "quotidien"
@@ -3696,8 +3617,8 @@ msgstr "fin de coupe ici"
 msgid "end favourites edit"
 msgstr "terminer l'édition des favoris"
 
-msgid "equal to Socket A"
-msgstr "égale au tuner A"
+msgid "equal to"
+msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "quitter le lecteur DVD ou retourner au sélecteur fichiers"
@@ -3806,8 +3727,8 @@ msgstr "charger liste lecture"
 msgid "locked"
 msgstr "verrouillé"
 
-msgid "loopthrough to socket A"
-msgstr "rebouclé par tuner A"
+msgid "loopthrough to"
+msgstr ""
 
 msgid "manual"
 msgstr "manuel"
@@ -3938,6 +3859,12 @@ msgstr "enlever tous les nouveaux indicateurs"
 msgid "remove before this position"
 msgstr "retirer avant cette position"
 
+msgid "remove bookmark"
+msgstr ""
+
+msgid "remove directory"
+msgstr ""
+
 msgid "remove entry"
 msgstr "retirer l'entrée"
 
@@ -3993,6 +3920,9 @@ msgstr "secondes"
 
 msgid "seconds."
 msgstr "secondes."
+
+msgid "select"
+msgstr ""
 
 msgid "select movie"
 msgstr "choisir film"
@@ -4096,6 +4026,9 @@ msgstr "arrêter PauseDirect"
 msgid "swap PiP and main picture"
 msgstr "inverser Pip et principale"
 
+msgid "switch to bookmarks"
+msgstr ""
+
 msgid "switch to filelist"
 msgstr "basculer vers la liste des fichiers"
 
@@ -4107,9 +4040,6 @@ msgstr "basculer vers piste audio suivante"
 
 msgid "switch to the next subtitle language"
 msgstr "basculer vers le langage sous-titre suivant"
-
-msgid "text"
-msgstr "texte"
 
 msgid "this recording"
 msgstr "cet enregistrement"
@@ -4178,14 +4108,226 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zappé"
 
+#~ msgid ""
+#~ "Are you sure you want to enable WLAN support?\n"
+#~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Etes-vous sûr de vouloir activer le support WLAN?\n"
+#~ "Connecter votre clé USB Wlan USB à votre Dreambox et presser OK.\n"
+#~ "\n"
+
+#~ msgid ""
+#~ "Are you sure you want to enable your local network?\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Etes-vous sûr de vouloir activer votre réseau local?\n"
+#~ "\n"
+
 #~ msgid "Behaviour of 'pause' when paused"
 #~ msgstr "Comportement de 'pause' si déjà en pause"
 
 #~ msgid "Behaviour of 0 key in PiP-mode"
 #~ msgstr "Effet touche 0 en mode PiP"
 
+#~ msgid "Configure your internal LAN"
+#~ msgstr "Configurer votre LAN interne"
+
+#~ msgid "Configure your internal LAN again"
+#~ msgstr "Configurer encore votre LAN interne"
+
+#~ msgid "Configure your wireless LAN"
+#~ msgstr "Configurer votre LAN sans fil"
+
+#~ msgid "Configure your wireless LAN again"
+#~ msgstr "Configurer encore votre LAN sans fil"
+
+#~ msgid "Confirm"
+#~ msgstr "Confirmer"
+
+#~ msgid "Connect to the Internet with a USB Wlan Stick"
+#~ msgstr "Connection à internet avec la clé USB Wlan"
+
+#~ msgid "Connect to the Internet with your local LAN"
+#~ msgstr "Connection à internet avec votre LAN local"
+
+#~ msgid "Enable LAN"
+#~ msgstr "Activer LAN"
+
+#~ msgid "Enable WLAN"
+#~ msgstr "Activer WLAN"
+
+#~ msgid ""
+#~ "Enable the local network of your Dreambox.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Activer le réseau local de votre Dreambox.\n"
+#~ "\n"
+
+#~ msgid "Exit wizard and configure later manually"
+#~ msgstr "Quitter l'assistant et configurer plus tard manuellement"
+
 #~ msgid "Nameserver Settings"
 #~ msgstr "Paramètres nom serveur"
 
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN USB Stick or "
+#~ "enable you local network interface."
+#~ msgstr ""
+#~ "Aucun interface sans fil fonctionnel trouvé.\n"
+#~ "Veuillez vérifier que vous avez inséré une clé WLAN USB compatible ou "
+#~ "activez votre interface réseau locale."
+
+#~ msgid "No, let me choose default lists"
+#~ msgstr "Non, laissez moi choisir une liste standard"
+
+#~ msgid ""
+#~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
+#~ "Dreambox and press the OK button on your remote control to enable the "
+#~ "built in wireless network support"
+#~ msgstr ""
+#~ "Veuillez connecter votre clé WLAN USB chipset Zydas ZD1211B compatible à "
+#~ "votre Dreambox et presser le bouton OK sur votre télécommande pour "
+#~ "activer le support du réseau intégré sans fil"
+
+#~ msgid ""
+#~ "Please configure your local LAN internet connection by filling out the "
+#~ "needed values.\n"
+#~ "When you are ready please press OK to continue."
+#~ msgstr ""
+#~ "Veuillez configurer votre connection locale internet LAN en renseignant "
+#~ "les valeurs nécessaires.\n"
+#~ "Quand vous serez prèt, pressez OK pour continuer."
+
+#~ msgid ""
+#~ "Please configure your wireless LAN internet connection by filling out the "
+#~ "needed values.\n"
+#~ "When you are ready please press OK to continue."
+#~ msgstr ""
+#~ "Veuillez configurer votre connection sans fil internet LAN en renseignant "
+#~ "les valeurs nécessaires.\n"
+#~ "Quand vous serez prèt, pressez OK pour continuer."
+
+#~ msgid "Please select below the wireless network you want to connect to."
+#~ msgstr "Veuillez choisir ici le réseau sans fil auquel se connecter."
+
+#~ msgid ""
+#~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
+#~ "Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are "
+#~ "supported.\n"
+#~ "Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Presser OK active le support du LAN intégré sans fil de votre Dreambox.\n"
+#~ "LEs clés Wlan USB avec le chipset Zydas ZD1211B et RAlink RT73 sont "
+#~ "supportés.\n"
+#~ "Connecter votre clé Wlan USB à votre Dreambox avant de presser OK.\n"
+#~ "\n"
+
+#~ msgid "Restart your wireless interface"
+#~ msgstr "Redémarrer votre interface sans fil"
+
+#~ msgid "Step "
+#~ msgstr "Étape"
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "\n"
+#~ "Your local LAN internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Merci d'utiliser l'assistant. Votre Dreambox est maintenant prète à "
+#~ "l'usage.\n"
+#~ "\n"
+#~ "Votre connection internet locale LAN fonctionne maintenant.\n"
+#~ "\n"
+#~ "Veuillez presser OK pour continuer."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "\n"
+#~ "Your wireless internet connection is working now.\n"
+#~ "\n"
+#~ "Please press OK to continue."
+#~ msgstr ""
+#~ "Merci d'utiliser l'assistant. Votre Dreambox est maintenant prète à "
+#~ "l'usage.\n"
+#~ "\n"
+#~ "Votre connection internet sans fil fonctionne maintenant.\n"
+#~ "\n"
+#~ "Veuillez presser OK pour continuer."
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+#~ "Please press OK to start using your Dreambox."
+#~ msgstr ""
+#~ "Merci d'utiliser l'assistant. Votre Dreambox est maintenant prète à "
+#~ "l'usage.\n"
+#~ "Veuillez appuyer sur OK pour commencer à l'utiliser."
+
+#~ msgid ""
+#~ "Welcome.\n"
+#~ "\n"
+#~ "If you want to connect your Dreambox to the Internet, this wizard will "
+#~ "guide you through the basic network setup of your Dreambox.\n"
+#~ "\n"
+#~ "Press the OK button on your remote control to move to the next step."
+#~ msgstr ""
+#~ "Bienvenue.\n"
+#~ "\n"
+#~ "Si vous voulez connecter votre Dreambox à internet, cette assistant vous "
+#~ "guidera à paramètrer les réglages basiques du réseau de votre Dreambox.\n"
+#~ "\n"
+#~ "Presser le bouton OK sur votre télécommande pour passer à l'étape "
+#~ "suivante."
+
 #~ msgid "You can choose, what you want to install.."
 #~ msgstr "Vous pouvez choisir ce que vous voulez installer..."
+
+#~ msgid ""
+#~ "Your local LAN internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Votre connection internet LAN locale ne fonctionne pas!\n"
+#~ "Veuillez choisir ce que vous voulez faire ensuite."
+
+#~ msgid ""
+#~ "Your network is restarting.\n"
+#~ "You will be automatically forwarded to the next step."
+#~ msgstr ""
+#~ "Votre réseau redémarre.\n"
+#~ "Vous passerez automatiquement à l'étape suivante."
+
+#~ msgid ""
+#~ "Your wired LAN Adapter could not be started.\n"
+#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
+#~ msgstr ""
+#~ "Votre adaptateur cablé LAN ne peut-être démarré.\n"
+#~ "Voulez-vous relancer votre Dreambox pour appliquer la nouvelle "
+#~ "configuration?\n"
+
+#~ msgid ""
+#~ "Your wireless LAN Adapter could not be started.\n"
+#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
+#~ msgstr ""
+#~ "Votre adaptateur sans fil LAN ne peut-être démarré.\n"
+#~ "Voulez-vous relancer votre Dreambox pour appliquer la nouvelle "
+#~ "configuration?\n"
+
+#~ msgid ""
+#~ "Your wireless internet connection is not working!\n"
+#~ "Please choose what you want to do next."
+#~ msgstr ""
+#~ "Votre connection internet sans fil ne fonctionne pas!\n"
+#~ "Veuillez choisir ce que vous voulez faire ensuite."
+
+#~ msgid "equal to Socket A"
+#~ msgstr "égale au tuner A"
+
+#~ msgid "loopthrough to socket A"
+#~ msgstr "rebouclé par tuner A"
+
+#~ msgid "text"
+#~ msgstr "texte"
