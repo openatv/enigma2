@@ -225,19 +225,25 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			sAlbum = currPlay.info().getInfoString(iServiceInformation.sAlbum)
 			sGenre = currPlay.info().getInfoString(iServiceInformation.sGenre)
 			sArtist = currPlay.info().getInfoString(iServiceInformation.sArtist)
+			sYear = ""
 
 			if sTitle == "":
-				sTitle = currPlay.info().getName().split('/')[-1]
+				if not self.isAudioCD:
+					sTitle = currPlay.info().getName().split('/')[-1]
+				else:
+					sTitle = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()].getName()
 
 			if self.AudioCD_albuminfo:
-				if sAlbum == "" and "TITLE" in self.AudioCD_albuminfo:
-					sAlbum = self.AudioCD_albuminfo["TITLE"]
-				if sGenre == "" and "GENRE" in self.AudioCD_albuminfo:
-					sGenre = self.AudioCD_albuminfo["GENRE"]
-				if sArtist == "" and "PERFORMER" in self.AudioCD_albuminfo:
-					sArtist = self.AudioCD_albuminfo["PERFORMER"]
+				if sAlbum == "" and "title" in self.AudioCD_albuminfo:
+					sAlbum = self.AudioCD_albuminfo["title"]
+				if sGenre == "" and "genre" in self.AudioCD_albuminfo:
+					sGenre = self.AudioCD_albuminfo["genre"]
+				if sArtist == "" and "artist" in self.AudioCD_albuminfo:
+					sArtist = self.AudioCD_albuminfo["artist"]
+				if "year" in self.AudioCD_albuminfo:
+					sYear = self.AudioCD_albuminfo["year"]
 
-			self.updateMusicInformation( artist = sArtist, title = sTitle, album = sAlbum, genre = sGenre, clear = True )
+			self.updateMusicInformation( sArtist, sTitle, sAlbum, sYear, sGenre, clear = True )
 		else:
 			self.updateMusicInformation()
 
@@ -723,7 +729,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
 
-
 class MediaPlayerLCDScreen(Screen):
 	skin = """
 	<screen position="0,0" size="132,64" title="LCD Text">
@@ -782,34 +787,19 @@ def audioCD_open(list, session, **kwargs):
 	mp.playlist.clear()
 	mp.isAudioCD = True
 
-	mp.switchToPlayList()
-	cdtext = popen('cdtextinfo -l').read()
-	tracklist = []
-	if cdtext is not "":
-		tracklist = cdtext.splitlines()
-		cdtext = popen('cdtextinfo -a').read()
-		if cdtext is not "":
-			albumtags = cdtext.splitlines()
-			for tag in albumtags:
-				tag = tag.split(':',1)
-				mp.AudioCD_albuminfo[tag[0]] = tag[1]
-			print mp.AudioCD_albuminfo
-	idx = 0
 	for file in list:
 		ref = eServiceReference(4097, 0, file.path)
-		if idx < len(tracklist):
-			track = tracklist[idx]
-			ref.setName("%d - %s" % (int(track.split(':',1)[0]), track.split(':')[1]))
-			idx += 1
 		mp.playlist.addFile(ref)
+	from Plugins.Extensions.CDInfo.plugin import Query
+	cdinfo = Query(mp)
+	cdinfo.scan()
 
 	mp.changeEntry(0)
-	mp.playlist.updateList()
 	mp.switchToPlayList()
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
-	return [
+	mediatypes = [
 		Scanner(mimetypes = ["video/mpeg"],
 			paths_to_scan =
 				[
@@ -827,8 +817,10 @@ def filescan(**kwargs):
 			name = "Music",
 			description = "Play Music...",
 			openfnc = filescan_open,
-		),
-		Scanner(mimetypes = ["audio/x-cda", "audio/x-wav"],
+		)]
+	try:
+		from Plugins.Extensions.CDInfo.plugin import Query
+		mediatypes.append(Scanner(mimetypes = ["audio/x-cda", "audio/x-wav"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
@@ -836,8 +828,10 @@ def filescan(**kwargs):
 			name = "Audio-CD",
 			description = "Play Audio-CD...",
 			openfnc = audioCD_open,
-		)
-	]
+		))
+		return mediatypes
+	except ImportError:
+		return mediatypes
 
 from Plugins.Plugin import PluginDescriptor
 def Plugins(**kwargs):

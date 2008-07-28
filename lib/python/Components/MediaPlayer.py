@@ -64,6 +64,10 @@ class PlayList(MenuList):
 	def addFile(self, serviceref):
 		self.list.append(PlaylistEntryComponent(serviceref, STATE_NONE))
 
+	def updateFile(self, index, newserviceref):
+		if index < len(self.list):
+		    self.list[index] = PlaylistEntryComponent(newserviceref, STATE_NONE)
+
 	def deleteFile(self, index):
 		if self.currPlaying >= index:
 			self.currPlaying -= 1
