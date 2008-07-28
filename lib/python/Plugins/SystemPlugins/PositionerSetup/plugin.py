@@ -535,7 +535,7 @@ class TunerScreen(ScanSetup):
 	def keyCancel(self):
 		self.close(None)
 
-class NimSelection(Screen):
+class RotorNimSelection(Screen):
 	skin = """
 		<screen position="140,165" size="400,100" title="select Slot">
 			<widget name="nimlist" position="20,10" size="360,75" />
@@ -577,7 +577,7 @@ def PositionerMain(session, **kwargs):
 			if len(usableNims) == 1:
 				session.open(PositionerSetup, usableNims[0])
 			elif len(usableNims) > 1:
-				session.open(NimSelection)
+				session.open(RotorNimSelection)
 			else:
 				session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 

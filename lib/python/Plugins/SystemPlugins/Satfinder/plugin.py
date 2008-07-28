@@ -254,7 +254,7 @@ class Satfinder(ScanSetup):
 			if transponder is not None:
 				self.tuner.tune(transponder)
 
-class NimSelection(Screen):
+class SatNimSelection(Screen):
 	skin = """
 		<screen position="140,165" size="400,100" title="select Slot">
 			<widget name="nimlist" position="20,10" size="360,75" />
@@ -291,7 +291,7 @@ def SatfinderMain(session, **kwargs):
 			if len(nimList) == 1:
 				session.open(Satfinder, nimList[0])
 			else:
-				session.open(NimSelection)
+				session.open(SatNimSelection)
 
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
