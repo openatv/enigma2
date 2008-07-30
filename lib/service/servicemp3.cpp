@@ -140,7 +140,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	int is_mp3 = !strcasecmp(ext, ".mp3"); /* force mp3 instead of decodebin */
 	int is_video = is_mpeg_ps || is_mpeg_ts || is_matroska || is_avi;
 	int is_streaming = !strncmp(filename, "http://", 7);
-	int is_AudioCD = !(strncmp(filename, "/autofs/hda/track-", 18) || strcasecmp(ext, ".wav"));
+	int is_AudioCD = !(strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav"));
 	
 	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d, is_AudioCD: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi, is_AudioCD);
 	
