@@ -1,6 +1,6 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
-from skin import parseColor
+from skin import parseColor, parseFont
 
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
 from Tools.LoadPixmap import LoadPixmap
@@ -43,6 +43,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		self.root = None
 		self.mode = self.MODE_NORMAL
+		self.ItemHeight = 28
+		self.ServiceNameFont = parseFont("Regular;22", ((1,1),(1,1)))
+		self.ServiceInfoFont = parseFont("Regular;18", ((1,1),(1,1)))
+		self.ServiceNumberFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.onSelectionChanged = [ ]
 
 	def applySkin(self, desktop, parent):
@@ -60,6 +64,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
 				elif attrib == "foregroundColorServiceNotAvail":
 					self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+				elif attrib == "serviceItemHeight":
+					self.ItemHeight = int(value)
+				elif attrib == "serviceNameFont":
+					self.ServiceNameFont = parseFont(value, ((1,1),(1,1)))
+				elif attrib == "serviceInfoFont":
+					self.ServiceInfoFont = parseFont(value, ((1,1),(1,1)))
+				elif attrib == "serviceNumberFont":
+					self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
 				else:
 					attribs.append((attrib, value))
 		self.skinAttributes = attribs
@@ -203,18 +215,17 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setMode(self, mode):
 		self.mode = mode
-
 		if mode == self.MODE_NORMAL:
-			self.l.setItemHeight(28)
+			self.l.setItemHeight(self.ItemHeight)
 			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
-			self.l.setElementFont(self.l.celServiceName, gFont("Regular", 22))
-			self.l.setElementPosition(self.l.celServiceName, eRect(0, 0, self.instance.size().width(), 28))
-			self.l.setElementFont(self.l.celServiceInfo, gFont("Regular", 18))
+			self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
+			self.l.setElementPosition(self.l.celServiceName, eRect(0, 0, self.instance.size().width(), self.ItemHeight))
+			self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		else:
-			self.l.setItemHeight(28)
+			self.l.setItemHeight(self.ItemHeight)
 			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
-			self.l.setElementFont(self.l.celServiceNumber, gFont("Regular", 20))
-			self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, 50, 28))
-			self.l.setElementFont(self.l.celServiceName, gFont("Regular", 22))
-			self.l.setElementPosition(self.l.celServiceName, eRect(60, 0, self.instance.size().width()-60, 28))
-			self.l.setElementFont(self.l.celServiceInfo, gFont("Regular", 18))
+			self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
+			self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, 50, self.ItemHeight))
+			self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
+			self.l.setElementPosition(self.l.celServiceName, eRect(60, 0, self.instance.size().width()-60, self.ItemHeight))
+			self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
