@@ -586,6 +586,14 @@ eDVBFrontend::~eDVBFrontend()
 
 void eDVBFrontend::feEvent(int w)
 {
+	eDVBFrontend *sec_fe = this;
+	long tmp = m_data[LINKED_PREV_PTR];
+	while (tmp != -1)
+	{
+		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
+		sec_fe = linked_fe->m_frontend;
+		sec_fe->getData(LINKED_NEXT_PTR, tmp);
+	}
 	while (1)
 	{
 #if HAVE_DVB_API_VERSION < 3
@@ -623,22 +631,12 @@ void eDVBFrontend::feEvent(int w)
 				state = stateTuning;
 			else
 			{
-				eDVBFrontend *sec_fe = this;
-				long tmp = m_data[LINKED_PREV_PTR];
-
 				eDebug("stateLostLock");
 				state = stateLostLock;
-
-				while (tmp != -1)
-				{
-					eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
-					sec_fe = linked_fe->m_frontend;
-					sec_fe->getData(LINKED_NEXT_PTR, tmp);
-				}
 				sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
 			}
 		}
-		if (m_state != state)
+		if (m_state != state && ((m_idleInputpower[0] && m_idleInputpower[1]) || (sec_fe->m_data[ROTOR_POS] == sec_fe->m_data[NEW_ROTOR_POS])))
 		{
 			m_state = state;
 			m_stateChanged(this);
@@ -1457,7 +1455,6 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				if (!m_timeoutCount)
 				{
 					eDebug("[SEC] rotor timout");
-					m_sec->setRotorMoving(false);
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				}
 				else
@@ -1495,25 +1492,40 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			}
 			case eSecCommand::IF_TUNER_LOCKED_GOTO:
 			{
+				int signal = 0;
+				int isLocked = readFrontendData(locked);
+				m_idleInputpower[0] = m_idleInputpower[1] = 0;
 				eSecCommand::rotor &cmd = m_sec_sequence.current()->measure;
-				if (readFrontendData(locked))
+				if (isLocked && ((abs((signal = readFrontendData(signalQualitydB)) - cmd.lastSignal) < 50) || !cmd.lastSignal))
 				{
-					eDebug("[SEC] locked step %d ok", cmd.okcount);
-					++cmd.okcount;
-					if (cmd.okcount > 12)
+					if (cmd.lastSignal)
+						eDebug("[SEC] locked step %d ok (%d %d)", cmd.okcount, signal, cmd.lastSignal);
+					else
 					{
-						eDebug("ok > 12 .. goto %d\n",m_sec_sequence.current()->steps);
+						eDebug("[SEC] locked step %d ok", cmd.okcount);
+						cmd.lastSignal = signal;
+					}
+					++cmd.okcount;
+					if (cmd.okcount > 4)
+					{
+						eDebug("ok > 4 .. goto %d\n",cmd.steps);
 						setSecSequencePos(cmd.steps);
+						m_state = stateLock;
+						m_stateChanged(this);
 						break;
 					}
 				}
 				else
 				{
-					eDebug("[SEC] rotor locked step %d failed", cmd.okcount);
+					if (isLocked)
+						eDebug("[SEC] rotor locked step %d failed (oldSignal %d, curSignal %d)", cmd.okcount, signal, cmd.lastSignal);
+					else
+						eDebug("[SEC] rotor locked step %d failed (not locked)", cmd.okcount);
 					--m_timeoutCount;
 					if (!m_timeoutCount && m_retryCount > 0)
 						--m_retryCount;
 					cmd.okcount=0;
+					cmd.lastSignal=0;
 				}
 				++m_sec_sequence.current();
 				break;
@@ -1521,6 +1533,14 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 			case eSecCommand::MEASURE_RUNNING_INPUTPOWER:
 				m_runningInputpower = sec_fe->readInputpower();
 				eDebug("[SEC] runningInputpower is %d", m_runningInputpower);
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::SET_ROTOR_MOVING:
+				m_sec->setRotorMoving(true);
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::SET_ROTOR_STOPPED:
+				m_sec->setRotorMoving(false);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::IF_INPUTPOWER_DELTA_GOTO:
@@ -1540,7 +1560,6 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					eDebug("[SEC] rotor %s step %d ok", txt, cmd.okcount);
 					if ( cmd.okcount > 6 )
 					{
-						m_sec->setRotorMoving(cmd.direction);
 						eDebug("[SEC] rotor is %s", txt);
 						if (setSecSequencePos(cmd.steps))
 							break;

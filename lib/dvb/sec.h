@@ -23,12 +23,17 @@ public:
 		IF_ROTORPOS_VALID_GOTO,
 		IF_TUNER_LOCKED_GOTO,
 		IF_TONE_GOTO, IF_NOT_TONE_GOTO,
-		START_TUNE_TIMEOUT
+		START_TUNE_TIMEOUT,
+		SET_ROTOR_MOVING,
+		SET_ROTOR_STOPPED
 	};
 	int cmd;
 	struct rotor
 	{
-		int deltaA;   // difference in mA between running and stopped rotor
+		union {
+			int deltaA;   // difference in mA between running and stopped rotor
+			int lastSignal;
+		};
 		int okcount;  // counter
 		int steps;    // goto steps
 		int direction;

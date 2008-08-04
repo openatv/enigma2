@@ -730,9 +730,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_INPUTPOWER_DELTA_GOTO, cmd ) );  // check if rotor has started
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +2 ) );  // timeout .. we assume now the rotor is already at the correct position
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // goto loop start
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, turn_fast ? 9 : 8 ) );  // timeout .. we assume now the rotor is already at the correct position	
+							sec_sequence.push_back( eSecCommand(eSecCommand::IF_NO_MORE_ROTOR_DISEQC_RETRYS_GOTO, turn_fast ? 10 : 9 ) );  // timeout .. we assume now the rotor is already at the correct position	
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -8) );  // goto loop start
 ////////////////////
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );
 							if (turn_fast)
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*20) );  // 2 minutes running timeout
@@ -747,6 +748,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 /////////////////////
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_STOPPED) );
 						}
 						else
 						{  // use normal turning mode
@@ -762,6 +764,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
 
 							compare.voltage = voltage;
@@ -787,6 +790,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -3) );  // goto loop start
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_STOPPED) );
 						}
 						sec_fe->setData(eDVBFrontend::NEW_ROTOR_CMD, RotorCmd);
 						sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
