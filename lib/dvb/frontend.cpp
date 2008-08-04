@@ -559,7 +559,6 @@ int eDVBFrontend::closeFrontend(bool force)
 			m_fd=-1;
 		else
 			eWarning("couldnt close frontend %d", m_dvbid);
-		m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1;
 	}
 #if HAVE_DVB_API_VERSION < 3
 	if (m_secfd >= 0)
@@ -1518,6 +1517,20 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 					setSecSequencePos(m_sec_sequence.current()->steps);
 				else
 					++m_sec_sequence.current();
+				break;
+			case eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS:
+				eDebug("[SEC] invalidate current switch params");
+				sec_fe_data[CSW] = -1;
+				sec_fe_data[UCSW] = -1;
+				sec_fe_data[TONEBURST] = -1;
+				++m_sec_sequence.current();
+				break;
+			case eSecCommand::UPDATE_CURRENT_SWITCHPARMS:
+				sec_fe_data[CSW] = sec_fe_data[NEW_CSW];
+				sec_fe_data[UCSW] = sec_fe_data[NEW_UCSW];
+				sec_fe_data[TONEBURST] = sec_fe_data[NEW_TONEBURST];
+				eDebug("[SEC] update current switch params");
+				++m_sec_sequence.current();
 				break;
 			case eSecCommand::INVALIDATE_CURRENT_ROTORPARMS:
 				eDebug("[SEC] invalidate current rotorparams");

@@ -544,8 +544,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 						// check if voltage is disabled
 						compare.voltage = iDVBFrontend::voltageOff;
-						compare.steps = +4;
+						compare.steps = +5;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS) );
 
 						// voltage is changed... use DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, vlt) );
@@ -793,11 +794,14 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				}
 			}
 			else
+			{
+				sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS) );
 				csw = band;
+			}
 
-			sec_fe->setData(eDVBFrontend::CSW, csw);
-			sec_fe->setData(eDVBFrontend::UCSW, ucsw);
-			sec_fe->setData(eDVBFrontend::TONEBURST, di_param.m_toneburst_param);
+			sec_fe->setData(eDVBFrontend::NEW_CSW, csw);
+			sec_fe->setData(eDVBFrontend::NEW_UCSW, ucsw);
+			sec_fe->setData(eDVBFrontend::NEW_TONEBURST, di_param.m_toneburst_param);
 
 			if (doSetVoltageToneFrontend)
 			{
@@ -812,6 +816,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
 			}
+
+			sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_SWITCHPARMS) );
 
 			if (doSetFrontend)
 			{
