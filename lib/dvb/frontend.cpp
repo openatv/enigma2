@@ -656,6 +656,8 @@ void eDVBFrontend::timeout()
 	}
 }
 
+#define INRANGE(X,Y,Z) (((X<=Y) && (Y<=Z))||((Z<=Y) && (Y<=X)) ? 1 : 0)
+
 int eDVBFrontend::readFrontendData(int type)
 {
 	switch(type)
@@ -711,6 +713,49 @@ int eDVBFrontend::readFrontendData(int type)
 				snr_in_db = fval1;
 			
 				return (int)(snr_in_db * 100.0);
+			}
+			else if (strstr(m_description, "Alps BSBE1 C01A") ||
+				!strcmp(m_description, "Alps -S(STV0288)"))
+			{
+				if (snr == 0)
+					return 0;
+				else if (snr == 0xFFFF) // i think this should not happen
+					return 100*100;
+				else
+				{
+					enum { REALVAL, REGVAL };
+					const long CN_lookup[31][2] = {
+						{20,8900}, {25,8680}, {30,8420}, {35,8217}, {40,7897},
+						{50,7333}, {60,6747}, {70,6162}, {80,5580}, {90,5029},
+						{100,4529}, {110,4080}, {120,3685}, {130,3316}, {140,2982},
+						{150,2688}, {160,2418}, {170,2188}, {180,1982}, {190,1802},
+						{200,1663}, {210,1520}, {220,1400}, {230,1295}, {240,1201},
+						{250,1123}, {260,1058}, {270,1004}, {280,957}, {290,920},
+						{300,890}
+					};
+					long regval = 0xFFFF - ((snr / 3) + 0xA100), // revert some dvb api calulations to get the real register value
+						Imin=0,
+						Imax=30,
+						i;
+					if(INRANGE(CN_lookup[Imin][REGVAL],regval,CN_lookup[Imax][REGVAL]))
+					{
+						long val;
+						while((Imax-Imin)>1)
+						{
+							i=(Imax+Imin)/2;
+							if(INRANGE(CN_lookup[Imin][REGVAL],regval,CN_lookup[i][REGVAL]))
+								Imax = i;
+							else
+								Imin = i;
+						}
+						return (((regval - CN_lookup[Imin][REGVAL])
+								* (CN_lookup[Imax][REALVAL] - CN_lookup[Imin][REALVAL])
+								/ (CN_lookup[Imax][REGVAL] - CN_lookup[Imin][REGVAL]))
+								+ CN_lookup[Imin][REALVAL]) * 10;
+					}
+					return 100;
+				}
+				return 0;
 			}
 			else if (!strcmp(m_description, "Alps BSBE1 702A") ||  // some frontends with STV0299
 				!strcmp(m_description, "Alps -S") ||
