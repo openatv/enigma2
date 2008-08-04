@@ -43,6 +43,9 @@ class eDVBFrontend: public iDVBFrontend, public Object
 {
 public:
 	enum {
+		NEW_CSW,
+		NEW_UCSW,
+		NEW_TONEBURST,
 		CSW,                  // state of the committed switch
 		UCSW,                 // state of the uncommitted switch
 		TONEBURST,            // current state of toneburst switch
