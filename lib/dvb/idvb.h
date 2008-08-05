@@ -697,10 +697,16 @@ public:
 
 	struct videoEvent
 	{
-		enum { eventUnknown = 0, eventSizeChanged = VIDEO_EVENT_SIZE_CHANGED } type;
+		enum { eventUnknown = 0,
+			eventSizeChanged = VIDEO_EVENT_SIZE_CHANGED,
+			eventFrameRateChanged = VIDEO_EVENT_FRAME_RATE_CHANGED,
+			eventProgressiveChanged = 16
+		} type;
 		unsigned char aspect;
 		unsigned short height;
 		unsigned short width;
+		bool progressive;
+		unsigned short framerate;
 	};
 
 	virtual RESULT connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;

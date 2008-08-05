@@ -2954,7 +2954,17 @@ void eDVBServicePlay::setPCMDelay(int delay)
 void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 {
 	memcpy(&m_videoEventData, &event, sizeof(iTSMPEGDecoder::videoEvent));
-	m_event((iPlayableService*)this, evVideoSizeChanged);
+	switch(event.type) {
+		case iTSMPEGDecoder::videoEvent::eventSizeChanged:
+			m_event((iPlayableService*)this, evVideoSizeChanged);
+			break;
+		case iTSMPEGDecoder::videoEvent::eventFrameRateChanged:
+			m_event((iPlayableService*)this, evVideoFramerateChanged);
+			break;
+		case iTSMPEGDecoder::videoEvent::eventProgressiveChanged:
+			m_event((iPlayableService*)this, evVideoProgressiveChanged);
+			break;
+	}
 }
 
 RESULT eDVBServicePlay::stream(ePtr<iStreamableService> &ptr)
