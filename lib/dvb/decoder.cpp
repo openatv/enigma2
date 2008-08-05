@@ -563,6 +563,20 @@ void eDVBVideo::video_event(int)
 			event.width = evt.u.size.w;
 			/* emit */ m_event(event);
 		}
+		else if (evt.type == VIDEO_EVENT_FRAME_RATE_CHANGED)
+		{
+			struct iTSMPEGDecoder::videoEvent event;
+			event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
+			event.framerate = evt.u.frame_rate;
+			/* emit */ m_event(event);
+		}
+		else if (evt.type == 16 /*VIDEO_EVENT_PROGRESSIVE_CHANGED*/)
+		{
+			struct iTSMPEGDecoder::videoEvent event;
+			event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
+			event.progressive = evt.u.frame_rate;
+			/* emit */ m_event(event);
+		}
 		else
 			eDebug("unhandled DVBAPI Video Event %d", evt.type);
 	}

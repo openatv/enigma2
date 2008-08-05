@@ -760,6 +760,8 @@ public:
 		evUpdatedRassInteractivePicMask,
 
 		evVideoSizeChanged,
+		evVideoFramerateChanged,
+		evVideoProgressiveChanged,
 
 		evStopped,
 
