@@ -84,7 +84,7 @@
 	<map context="InfobarInstantRecord">
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
-			<key id="KEY_STOP" mapto="instantRecord" flags="m" />
+			<!-- this breaks timeshift end!!! key id="KEY_STOP" mapto="instantRecord" flags="m" /-->
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_RECORD" mapto="instantRecord" flags="m" />
@@ -332,18 +332,20 @@
 
 	<map context="InfobarTimeshiftActions">
 		<device name="dreambox remote control (native)">
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PLAY" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_PLAYPAUSE" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		</device>
 		<device name="dreambox ir keyboard">
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
 			<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
 		</device>
-		<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftActivateActions">
