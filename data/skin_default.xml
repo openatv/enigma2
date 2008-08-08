@@ -445,7 +445,8 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="title" position="20,108" size="413,18" font="Regular;16" valign="top" transparent="1" />
 		<widget name="coverArt" pixmap="skin_default/no_coverArt.png" position="446,11" size="116,116" transparent="1" alphatest="blend" />
 		<ePixmap pixmap="skin_default/icons/mp_buttons.png" position="454,136" size="108,13" alphatest="on" />
-		<widget name="PositionGauge" position="15,138" size="418,10" pointer="skin_default/position_pointer.png:540,0" seek_pointer="skin_default/position_pointer.png:540,0" transparent="1" />
+		<widget name="PositionGauge" position="15,138" size="396,10" pointer="skin_default/position_pointer.png:540,0" seek_pointer="skin_default/position_pointer.png:540,0" transparent="1" />
+		<widget name="repeat" pixmaps="skin_default/icons/repeat_off.png,skin_default/icons/repeat_on.png" position="416,135" size="22,15" transparent="1" alphatest="on"/>
 		<widget name="filelist" position="15,163" size="550,138" scrollbarMode="showOnDemand" />
 		<widget name="playlist" position="15,314" size="550,154" scrollbarMode="showOnDemand" selectionDisabled="1" />
 		<widget name="currenttext" position="0,0" size="0,0" />
