@@ -165,7 +165,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.coverArtFileName = ""
 		self.isAudioCD = False
 		self.AudioCD_albuminfo = {}
-		
+
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 		if list:
