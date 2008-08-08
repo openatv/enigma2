@@ -539,7 +539,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 						// check if voltage is already correct..
 						compare.voltage = vlt;
-						compare.steps = +7;
+						compare.steps = +8;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 
 						// check if voltage is disabled

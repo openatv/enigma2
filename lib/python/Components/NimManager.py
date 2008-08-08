@@ -84,8 +84,8 @@ class SecConfigure:
 			for x in self.NimManager.satList:
 				print "Add sat " + str(x[0])
 				self.addSatellite(sec, int(x[0]))
-				sec.setVoltageMode(0)
-				sec.setToneMode(0)
+				sec.setVoltageMode(switchParam.HV)
+				sec.setToneMode(switchParam.HILO)
 				sec.setRotorPosNum(0) # USALS
 		
 		sec.setLNBSlotMask(tunermask)
@@ -155,7 +155,6 @@ class SecConfigure:
 			nim = slot.config
 			if slot.isCompatible("DVB-S"):
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				print "diseqcmode: ", nim.diseqcMode.value
 				if nim.configMode.value in [ "loopthrough", "satposdepends", "nothing" ]:
 					pass
 				else:
@@ -163,6 +162,7 @@ class SecConfigure:
 					if nim.configMode.value == "equal":
 						pass
 					elif nim.configMode.value == "simple":		#simple config
+						print "diseqcmode: ", nim.diseqcMode.value
 						if nim.diseqcMode.value == "single":			#single
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
 						elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
@@ -371,12 +371,12 @@ class SecConfigure:
 						sec.setVoltageMode(switchParam._14V)
 					elif currSat.voltage.value == "18V":
 						sec.setVoltageMode(switchParam._18V)
-						
-					if currSat.tonemode == "band":
+
+					if currSat.tonemode.value == "band":
 						sec.setToneMode(switchParam.HILO)
-					elif currSat.tonemode == "on":
+					elif currSat.tonemode.value == "on":
 						sec.setToneMode(switchParam.ON)
-					elif currSat.tonemode == "off":
+					elif currSat.tonemode.value == "off":
 						sec.setToneMode(switchParam.OFF)
 						
 					if not currSat.usals.value and x < 34:
