@@ -42,7 +42,7 @@ class DefaultServiceScan(ServiceScan):
 
 	def __init__(self, session, scanList):
 		try:
-			unlink("rm " + resolveFilename(SCOPE_CONFIG) + "/lamedb");
+			unlink(resolveFilename(SCOPE_CONFIG) + "/lamedb");
 		except OSError:
 			pass
 		db = eDVBDB.getInstance()
