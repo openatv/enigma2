@@ -214,7 +214,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
 		self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
 		if currLnb and currLnb.diseqcMode.value == "1_2":
-			if lnbnum < 125:
+			if lnbnum < 33:
 				self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
 				self.list.append(self.advancedUsalsEntry)
 				if not Sat.usals.value:
@@ -224,7 +224,7 @@ class NimSetup(Screen, ConfigListScreen):
 		self.advancedLnbsEntry = getConfigListEntry(_("LNB"), Sat.lnb)
 		self.list.append(self.advancedLnbsEntry)
 		if currLnb:
-			if lnbnum < 125:
+			if lnbnum < 33:
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
