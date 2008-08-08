@@ -271,7 +271,7 @@ public:
 private:
 #ifndef SWIG
 	static eDVBSatelliteEquipmentControl *instance;
-	eDVBSatelliteLNBParameters m_lnbs[128]; // i think its enough
+	eDVBSatelliteLNBParameters m_lnbs[144]; // i think its enough
 	int m_lnbidx; // current index for set parameters
 	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends;
