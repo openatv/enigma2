@@ -724,9 +724,14 @@ class NimManager:
 					for x in self.satList:
 						list.append(x)
 			elif configMode == "advanced":
-				for x in self.satList:
-					if int(nim.advanced.sat[x[0]].lnb.value) != 0:
-						list.append(x)
+				for x in range(3601, 3605):
+					if int(nim.advanced.sat[x].lnb.value) != 0:
+						for x in self.satList:
+							list.append(x)
+				if not list:
+					for x in self.satList:
+						if int(nim.advanced.sat[x[0]].lnb.value) != 0:
+							list.append(x)
 		return list
 
 	def getRotorSatListForNim(self, slotid):
@@ -741,13 +746,18 @@ class NimManager:
 					for x in self.satList:
 						list.append(x)
 			elif configMode == "advanced":
-				for x in self.satList:
-					nim = config.Nims[slotid]
-					lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
-					if lnbnum != 0:
-						lnb = nim.advanced.lnb[lnbnum]
-						if lnb.diseqcMode.value == "1_2":
+				nim = config.Nims[slotid]
+				for x in range(3601, 3605):
+					if int(nim.advanced.sat[x].lnb.value) != 0:
+						for x in self.satList:
 							list.append(x)
+				if not list:
+					for x in self.satList:
+						lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
+						if lnbnum != 0:
+							lnb = nim.advanced.lnb[lnbnum]
+							if lnb.diseqcMode.value == "1_2":
+								list.append(x)
 		return list
 
 def InitSecParams():
