@@ -6,7 +6,7 @@ from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
-from Components.Pixmap import Pixmap
+from Components.Pixmap import Pixmap,MultiPixmap
 from Components.Label import Label
 from Components.FileList import FileList
 from Components.MediaPlayer import PlayList
@@ -87,7 +87,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self["genretext"] = Label(_("Genre:"))
 		self["genre"] = Label("")
 		self["coverArt"] = MediaPixmap()
+		self["repeat"] = MultiPixmap()
 
+		self.repeat = False
 		self.seek_target = None
 
 		class MoviePlayerActionMap(NumberActionMap):
@@ -163,7 +165,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.coverArtFileName = ""
 		self.isAudioCD = False
 		self.AudioCD_albuminfo = {}
-
+		
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 		if list:
@@ -437,6 +439,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		menu.append((_("save playlist"), "saveplaylist"));
 		menu.append((_("load playlist"), "loadplaylist"));
 		menu.append((_("delete saved playlist"), "deleteplaylist"));
+		menu.append((_("repeat playlist"), "repeat"));
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
@@ -472,7 +475,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			self.delete_saved_playlist()
 		elif choice[1] == "shuffle":
 			self.playlist.PlayListShuffle()
-
+		elif choice[1] == "repeat":
+			if self.repeat == True:
+				self.repeat = False
+				self["repeat"].setPixmapNum(0)
+			else:
+				self.repeat = True
+				self["repeat"].setPixmapNum(1)
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
@@ -599,6 +608,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		next = self.playlist.getCurrentIndex() + 1
 		if next < len(self.playlist):
 			self.changeEntry(next)
+		elif ( len(self.playlist) > 0 ) and ( self.repeat == True ):
+			self.stopEntry()
+			self.changeEntry(0)
 
 	def nextMarkOrEntry(self):
 		if not self.jumpPreviousNextMark(lambda x: x):
