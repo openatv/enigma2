@@ -1,6 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
 from Screens.InfoBar import InfoBar
+from os import access, F_OK, R_OK
 
 def execute(option):
 	print "execute", option
@@ -22,9 +23,11 @@ def mountpoint_choosen(option):
 	list = [ (r.description, r, res[r], session) for r in res ]
 
 	if list == [ ]:
-		print "nothing found"
 		from Screens.MessageBox import MessageBox
-		session.open(MessageBox, "No displayable files on this medium found!", MessageBox.TYPE_ERROR)
+		if access(mountpoint, F_OK|R_OK):
+			session.open(MessageBox, "No displayable files on this medium found!", MessageBox.TYPE_ERROR)
+		else:
+			print "ignore", mountpoint, "because its not accessible"
 		return
 
 	session.openWithCallback(execute, ChoiceBox, 
