@@ -205,7 +205,8 @@ class NimSetup(Screen, ConfigListScreen):
 		self.saveAll()
 
 	def fillListWithAdvancedSatEntrys(self, Sat):
-		currLnb = self.nimConfig.advanced.lnb[int(Sat.lnb.value)]
+		lnbnum = int(Sat.lnb.value)
+		currLnb = self.nimConfig.advanced.lnb[lnbnum]
 		
 		if isinstance(currLnb, ConfigNothing):
 			currLnb = None
@@ -213,17 +214,19 @@ class NimSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
 		self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
 		if currLnb and currLnb.diseqcMode.value == "1_2":
-			self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
-			self.list.append(self.advancedUsalsEntry)
-			if not Sat.usals.value:
-				self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
+			if lnbnum < 125:
+				self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
+				self.list.append(self.advancedUsalsEntry)
+				if not Sat.usals.value:
+					self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
 
 		# LNBs
 		self.advancedLnbsEntry = getConfigListEntry(_("LNB"), Sat.lnb)
 		self.list.append(self.advancedLnbsEntry)
 		if currLnb:
-			self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
-			self.list.append(self.advancedDiseqcMode)
+			if lnbnum < 125:
+				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
+				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
 				self.list.append(getConfigListEntry(_("Toneburst"), currLnb.toneburst))
 				self.list.append(getConfigListEntry(_("Committed DiSEqC command"), currLnb.commitedDiseqcCommand))
@@ -282,8 +285,8 @@ class NimSetup(Screen, ConfigListScreen):
 		self.list.append(self.configMode)
 		self.advancedSatsEntry = getConfigListEntry(_("Satellite"), self.nimConfig.advanced.sats)
 		self.list.append(self.advancedSatsEntry)
-		for x in nimmanager.satList:
-			Sat = self.nimConfig.advanced.sat[x[0]]
+		for x in self.nimConfig.advanced.sat.keys():
+			Sat = self.nimConfig.advanced.sat[x]
 			self.fillListWithAdvancedSatEntrys(Sat)
 		self["config"].list = self.list
 

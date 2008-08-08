@@ -149,7 +149,6 @@ class SecConfigure:
 					if not self.satposdepends.has_key(connto):
 						self.satposdepends[connto] = []
 					self.satposdepends[connto].append(x)
-					
 
 		for slot in nim_slots:
 			x = slot.slot
@@ -214,14 +213,24 @@ class SecConfigure:
 
 	def updateAdvanced(self, sec, slotid):
 		lnbSat = {}
-		for x in range(1,33):
+		for x in range(1,129):
 			lnbSat[x] = []
+
+		#wildcard for all satellites ( for rotor )
+		for x in range(3601, 3605):
+			lnb = int(config.Nims[slotid].advanced.sat[x].lnb.value)
+			if lnb != 0:
+				for x in self.NimManager.satList:
+					print "add", x[0], "to", lnb
+					lnbSat[lnb].append(x[0])
+
 		for x in self.NimManager.satList:
 			lnb = int(config.Nims[slotid].advanced.sat[x[0]].lnb.value)
 			if lnb != 0:
 				print "add", x[0], "to", lnb
 				lnbSat[lnb].append(x[0])
-		for x in range(1,33):
+
+		for x in range(1,129):
 			if len(lnbSat[x]) > 0:
 				currLnb = config.Nims[slotid].advanced.lnb[x]
 				sec.addLNB()
@@ -370,7 +379,7 @@ class SecConfigure:
 					elif currSat.tonemode == "off":
 						sec.setToneMode(switchParam.OFF)
 						
-					if not currSat.usals.value:
+					if not currSat.usals.value and x < 125:
 						sec.setRotorPosNum(currSat.rotorposition.value)
 					else:
 						sec.setRotorPosNum(0) #USALS
@@ -881,10 +890,11 @@ def InitNimManager(nimmgr):
 
 			# advanced config:
 			nim.advanced = ConfigSubsection()
-			nim.advanced.sats = getConfigSatlist(192,nimmgr.satList)
+			tmp = [(3601, _('All Satellites 1'), 1), (3602, _('All Satellites 2'), 1), (3603, _('All Satellites 3'), 1), (3604, _('All Satellites 4'), 1)]
+			nim.advanced.sats = getConfigSatlist(192,nimmgr.satList+tmp)
 			nim.advanced.sat = ConfigSubDict()
 			lnbs = [("0", "not available")]
-			for y in range(1, 33):
+			for y in range(1, 125):
 				lnbs.append((str(y), "LNB " + str(y)))
 
 			for x in nimmgr.satList:
@@ -894,6 +904,15 @@ def InitNimManager(nimmgr):
 				nim.advanced.sat[x[0]].usals = ConfigYesNo(default=True)
 				nim.advanced.sat[x[0]].rotorposition = ConfigInteger(default=1, limits=(1, 255))
 				nim.advanced.sat[x[0]].lnb = ConfigSelection(choices = lnbs)
+
+			for x in range(3601, 3605):
+				nim.advanced.sat[x] = ConfigSubsection()
+				nim.advanced.sat[x].voltage = ConfigSelection(choices={"polarization": _("Polarization"), "13V": _("13 V"), "18V": _("18 V")}, default = "polarization")
+				nim.advanced.sat[x].tonemode = ConfigSelection(choices={"band": _("Band"), "on": _("On"), "off": _("Off")}, default = "band")
+				nim.advanced.sat[x].usals = ConfigYesNo(default=True)
+				nim.advanced.sat[x].rotorposition = ConfigInteger(default=1, limits=(1, 255))
+				lnbnum = 125+x-3601
+				nim.advanced.sat[x].lnb = ConfigSelection(choices = [("0", "not available"), (str(lnbnum), "LNB %d"%(lnbnum))], default="0")
 
 			csw = [("none", _("None")), ("AA", _("AA")), ("AB", _("AB")), ("BA", _("BA")), ("BB", _("BB"))]
 			for y in range(0, 16):
@@ -905,7 +924,7 @@ def InitNimManager(nimmgr):
 
 			nim.advanced.lnb = ConfigSubList()
 			nim.advanced.lnb.append(ConfigNothing())
-			for x in range(1, 33):
+			for x in range(1, 129):
 				nim.advanced.lnb.append(ConfigSubsection())
 				nim.advanced.lnb[x].lof = ConfigSelection(choices={"universal_lnb": _("Universal LNB"), "c_band": _("C-Band"), "user_defined": _("User defined")}, default="universal_lnb")
 				nim.advanced.lnb[x].lofl = ConfigInteger(default=9750, limits = (0, 99999))
@@ -914,7 +933,10 @@ def InitNimManager(nimmgr):
 #				nim.advanced.lnb[x].output_12v = ConfigSelection(choices = [("0V", _("0 V")), ("12V", _("12 V"))], default="0V")
 				nim.advanced.lnb[x].increased_voltage = ConfigYesNo(default=False)
 				nim.advanced.lnb[x].toneburst = ConfigSelection(choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))], default = "none")
-				nim.advanced.lnb[x].diseqcMode = ConfigSelection(choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))], default = "none")
+				if x > 124:
+					nim.advanced.lnb[x].diseqcMode = ConfigSelection(choices = [("1_2", _("1.2"))], default = "1_2")
+				else:
+					nim.advanced.lnb[x].diseqcMode = ConfigSelection(choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))], default = "none")
 				nim.advanced.lnb[x].commitedDiseqcCommand = ConfigSelection(choices = csw)
 				nim.advanced.lnb[x].fastDiseqc = ConfigYesNo(default=False)
 				nim.advanced.lnb[x].sequenceRepeat = ConfigYesNo(default=False)
