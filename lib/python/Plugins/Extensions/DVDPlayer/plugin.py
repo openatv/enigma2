@@ -8,6 +8,7 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueShee
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.FileList import FileList
+from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
@@ -21,19 +22,25 @@ class FileBrowser(Screen):
 	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
 		<widget name="filelist" position="0,0" size="520,376" scrollbarMode="showOnDemand" />
 	</screen>"""
-	def __init__(self, session):
+	def __init__(self, session, dvd_filelist = None):
 		Screen.__init__(self, session)
-		global lastpath
-		if lastpath is not None:
-			currDir = lastpath + "/"
+
+		if dvd_filelist:
+			self.dvd_filelist = dvd_filelist
+			self["filelist"] = MenuList(self.dvd_filelist)
+
 		else:
-			currDir = "/media/dvd/"
-		if not pathExists(currDir):
-			currDir = "/"
-		#else:
-			#print system("mount "+currDir)
-		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso)", useServiceRef = True)
-		self["filelist"] = self.filelist
+			self.dvd_filelist = None
+			global lastpath
+			if lastpath is not None:
+				currDir = lastpath + "/"
+			else:
+				currDir = "/media/dvd/"
+			if not pathExists(currDir):
+				currDir = "/"
+
+			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso)", useServiceRef = True)
+			self["filelist"] = self.filelist
 
 		self["FilelistActions"] = ActionMap(["OkCancelActions"],
 			{
@@ -42,25 +49,29 @@ class FileBrowser(Screen):
 			})
 
 	def ok(self):
-		global lastpath
-		filename = self["filelist"].getFilename()
-		if filename is not None:
-			lastpath = filename[0:filename.rfind("/")]
-			if filename.upper().endswith("VIDEO_TS/"):
-				print "dvd structure found, trying to open..."
-				self.close(filename[0:-9])
-		if self["filelist"].canDescent(): # isDir
-			self["filelist"].descent()
-			pathname = self["filelist"].getCurrentDirectory() or ""
-			if fileExists(pathname+"VIDEO_TS.IFO"):
-				print "dvd structure found, trying to open..."
-				self.close(pathname)
+		if self.dvd_filelist:
+			print "OK " + self["filelist"].getCurrent()
+			self.close(self["filelist"].getCurrent())
 		else:
-			self.close(filename)
+			global lastpath
+			filename = self["filelist"].getFilename()
+			if filename is not None:
+				lastpath = filename[0:filename.rfind("/")]
+				if filename.upper().endswith("VIDEO_TS/"):
+					print "dvd structure found, trying to open..."
+					self.close(filename[0:-9])
+			if self["filelist"].canDescent(): # isDir
+				self["filelist"].descent()
+				pathname = self["filelist"].getCurrentDirectory() or ""
+				if fileExists(pathname+"VIDEO_TS.IFO"):
+					print "dvd structure found, trying to open..."
+					self.close(pathname)
+			else:
+				self.close(filename)
 
 	def exit(self):
 		self.close(None)
-		
+
 class DVDSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -218,7 +229,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.stepwise_repeat.value = self.saved_config_seek_stepwise_repeat
 		config.seek.on_pause.value = self.saved_config_seek_on_pause
 
-	def __init__(self, session, dvd_device = None, args = None):
+	def __init__(self, session, dvd_device = None, dvd_filelist = None, args = None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
@@ -330,6 +341,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				self.dvd_device = None
 				self.physicalDVD = False
 
+		self.dvd_filelist = dvd_filelist
 		self.onFirstExecBegin.append(self.showFileBrowser)
 		self.service = None
 		self.in_menu = False
@@ -525,7 +537,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			else:
 				self.DVDdriveCB(True)
 		else:
-			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
+			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, self.dvd_filelist)
 	
 	def DVDdriveCB(self, answer):
 		if answer == True:
@@ -615,18 +627,24 @@ def menu(menuid, **kwargs):
 
 from Plugins.Plugin import PluginDescriptor
 
-#TODO add *.iso to filescanner and ask when more than one iso file is found
-
 def filescan_open(list, session, **kwargs):
-	for x in list:
-		splitted = x.path.split('/')
+	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
+		splitted = list[0].path.split('/')
 		print "splitted", splitted
 		if len(splitted) > 2:
 			if splitted[1] == 'autofs':
-				session.open(DVDPlayer, "/dev/%s" %(splitted[2]))
+				session.open(DVDPlayer, dvd_device="/dev/%s" %(splitted[2]))
 				return
 			else:
 				print "splitted[0]", splitted[1]
+	else:
+		dvd_filelist = []
+		for x in list:
+			if x.mimetype == "video/x-dvd-iso":
+				dvd_filelist.append(x.path)
+			if x.mimetype == "video/x-dvd":
+				dvd_filelist.append(x.path.rsplit('/',1)[0])			
+		session.open(DVDPlayer, dvd_filelist=dvd_filelist)
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -636,16 +654,17 @@ def filescan(**kwargs):
 		def checkFile(self, file):
 			return fileExists(file.path)
 
-	return \
-		LocalScanner(mimetypes = None,
+	return [
+		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],
 			paths_to_scan =
 				[
 					ScanPath(path = "video_ts", with_subdirs = False),
+					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "DVD",
 			description = "Play DVD",
 			openfnc = filescan_open,
-		)
+		)]		
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, fnc = menu),
