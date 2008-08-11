@@ -44,6 +44,7 @@ public:
 #ifndef SWIG
 	RESULT removeFlags(unsigned int flagmask, eDVBChannelID chid, unsigned int orb_pos);
 	RESULT removeServices(eDVBChannelID chid, unsigned int orb_pos);
+	RESULT removeServices(iDVBFrontendParameters *feparm);
 
 	RESULT addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters *feparm);
 	RESULT removeChannel(const eDVBChannelID &id);

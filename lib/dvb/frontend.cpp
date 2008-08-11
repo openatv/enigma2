@@ -204,7 +204,8 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 		guard_interval, hierarchy, modulation);
 }
 
-eDVBFrontendParameters::eDVBFrontendParameters(): m_type(-1)
+eDVBFrontendParameters::eDVBFrontendParameters()
+	:m_type(-1), m_flags(0)
 {
 }
 
