@@ -5,9 +5,22 @@
 #include <dvbsi++/network_information_section.h>
 #include <dvbsi++/bouquet_association_section.h>
 #include <dvbsi++/program_association_section.h>
+#include <dvbsi++/program_map_section.h>
+
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/db.h>
+
+struct service
+{
+	service(unsigned short pmtPid)
+		:pmtPid(pmtPid), serviceType(0xFF), scrambled(false)
+	{
+	}
+	unsigned short pmtPid;
+	unsigned char serviceType;
+	bool scrambled;
+};
 
 class eDVBScan: public Object, public iObject
 {
@@ -41,21 +54,29 @@ class eDVBScan: public Object, public iObject
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_new_services;
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_last_service;
-	
+
+	std::map<unsigned short, service> m_pmts_to_read;
+	std::map<unsigned short, service>::iterator m_pmt_in_progress;
+	bool m_pmt_running;
+	bool m_abort_current_pmt;
+
 	std::list<ePtr<iDVBFrontendParameters> > m_ch_toScan, m_ch_scanned, m_ch_unavailable;
 	ePtr<iDVBFrontendParameters> m_ch_current;
 	eDVBChannelID m_chid_current;
-	
+	eTransportStreamID m_pat_tsid;
+
 	ePtr<eTable<ServiceDescriptionSection> > m_SDT;
 	ePtr<eTable<NetworkInformationSection> > m_NIT;
 	ePtr<eTable<BouquetAssociationSection> > m_BAT;
 	ePtr<eTable<ProgramAssociationSection> > m_PAT;
-		
+	ePtr<eTable<ProgramMapSection> > m_PMT;
+
 	void SDTready(int err);
 	void NITready(int err);
 	void BATready(int err);
 	void PATready(int err);
-		
+	void PMTready(int err);
+
 	void addKnownGoodChannel(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
 	void addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameters *feparm);
 
@@ -75,7 +96,8 @@ public:
 	enum {
 		scanNetworkSearch = 1, scanSearchBAT = 2,
 		scanRemoveServices = 4, scanDontRemoveFeeds = 8,
-		clearToScanOnFirstNIT = 16 };
+		scanDontRemoveUnscanned = 16,
+		clearToScanOnFirstNIT = 32, scanOnlyFree = 64 };
 
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
 

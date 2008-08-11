@@ -400,12 +400,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.updateSatList()
 				print self.scan_satselection[index_to_scan]
 				self.list.append(getConfigListEntry(_("Satellite"), self.scan_satselection[index_to_scan]))
-				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
+				self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
 			elif self.scan_type.value == "multisat":
-				# if (norotor)
 				tlist = []
 				SatList = nimmanager.getSatListForNim(index_to_scan)
-				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 				for x in SatList:
 					if self.Satexists(tlist, x[0]) == 0:
 						tlist.append(x[0])
@@ -413,9 +411,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						configEntry = getConfigListEntry(nimmanager.getSatDescription(x[0]), sat)
 						self.list.append(configEntry)
 						self.multiscanlist.append((x[0], sat))
-				# if (rotor):
-    			   # for sat in nimmanager.satList:
-				#	self.list.append(getConfigListEntry(sat[1], self.scan_scansat[sat[0]]))
 		elif nim.isCompatible("DVB-C"):
 			if self.scan_typecable.value == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_cab.frequency))
@@ -424,8 +419,6 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Modulation"), self.scan_cab.modulation))
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
 				self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
-			elif self.scan_typecable.value == "complete":
-				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.value == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
@@ -438,22 +431,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Guard interval mode"), self.scan_ter.guard))
 				self.list.append(getConfigListEntry(_("Hierarchy mode"), self.scan_ter.hierarchy))
 				self.list.append(getConfigListEntry(_("Network scan"), self.scan_networkScan))
-			elif self.scan_typeterrestrial.value == "complete":
-				self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
-
-#		if (nim.isCompatible("DVB-S") and self.scan_type.type == "single_transponder") or \
-#			(nim.isCompatbile("DVB-C") and self.scan_typecable.type == "single_transponder") or \
-#			(nim.isCompatible("DVB-T") and self.scan_typeterrestrial.type == "single_transponder"):
-#				self.configElementSNR = getConfigListEntry(_("SNR"), self.scan_snr)
-#				self.list.append(self.configElementSNR)
-#				self.configElementACG = getConfigListEntry(_("AGC"), self.scan_agc)
-#				self.list.append(self.configElementACG)
-#				self.configElementBER = getConfigListEntry(_("BER"), self.scan_ber)
-#				self.list.append(self.configElementBER)
-#				self.statusTimer.start(500, False)
-#		else:
-#			self.statusTimer.stop()
-
+		self.list.append(getConfigListEntry(_("Clear before scan"), self.scan_clearallservices))
+		self.list.append(getConfigListEntry(_("Only Free scan"), self.scan_onlyfree))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -540,6 +519,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_typecable = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
 			self.scan_typeterrestrial = ConfigSelection(default = "single_transponder", choices = [("single_transponder", _("Single transponder")), ("complete", _("Complete"))])
 			self.scan_clearallservices = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("yes_hold_feeds", _("yes (keep feeds)"))])
+			self.scan_onlyfree = ConfigYesNo(default = False)
 			self.scan_networkScan = ConfigYesNo(default = False)
 
 			nim_list = []
@@ -663,9 +643,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 	def keyGo(self):
 		tlist = []
 		flags = None
-		extFlags = True
-		
 		startScan = True
+		removeAll = True
 		index_to_scan = int(self.scan_nims.value)
 		
 		if self.scan_nims == [ ]:
@@ -703,10 +682,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 								self.scan_sat.rolloff.index,
 								self.scan_sat.pilot.index)
 				flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
-				extFlags = False
+				removeAll = False
 			elif self.scan_type.value == "single_satellite":
 				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
 				getInitialTransponderList(tlist, sat[0])
+				flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
 			elif self.scan_type.value == "multisat":
 				SatList = nimmanager.getSatListForNim(index_to_scan)
 				for x in self.multiscanlist:
@@ -723,7 +703,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 											  fec,
 											  self.scan_cab.inversion.index)
 				flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
-				extFlags = False
+				removeAll = False
 			elif self.scan_typecable.value == "complete":
 				if config.Nims[index_to_scan].cable.scan_type.value == "provider":
 					getInitialCableTransponderList(tlist, index_to_scan)
@@ -743,20 +723,25 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						guard = self.scan_ter.guard.index,
 						hierarchy = self.scan_ter.hierarchy.index)
 				flags = self.scan_networkScan.value and eComponentScan.scanNetworkSearch or 0
-				extFlags = False
+				removeAll = False
 			elif self.scan_typeterrestrial.value == "complete":
 				getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(index_to_scan))
 
 		if flags is None:
 			flags = eComponentScan.scanNetworkSearch
 
-		if extFlags:
-			tmp = self.scan_clearallservices.value
-			if tmp == "yes":
-				flags |= eComponentScan.scanRemoveServices
-			elif tmp == "yes_hold_feeds":
-				flags |= eComponentScan.scanRemoveServices
-				flags |= eComponentScan.scanDontRemoveFeeds
+		tmp = self.scan_clearallservices.value
+		if tmp == "yes":
+			flags |= eComponentScan.scanRemoveServices
+		elif tmp == "yes_hold_feeds":
+			flags |= eComponentScan.scanRemoveServices
+			flags |= eComponentScan.scanDontRemoveFeeds
+
+		if tmp != "no" and not removeAll:
+			flags |= eComponentScan.scanDontRemoveUnscanned
+
+		if self.scan_onlyfree.value:
+			flags |= eComponentScan.scanOnlyFree
 
 		for x in self["config"].list:
 			x[1].save()

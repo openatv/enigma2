@@ -13,6 +13,7 @@ class eDVBFrontendParameters: public iDVBFrontendParameters
 		eDVBFrontendParametersTerrestrial terrestrial;
 	};
 	int m_type;
+	int m_flags;
 public:
 	eDVBFrontendParameters();
 	~eDVBFrontendParameters()
@@ -32,6 +33,9 @@ public:
 
 	RESULT getHash(unsigned long &) const;
 	RESULT calcLockTimeout(unsigned int &) const;
+
+	RESULT getFlags(unsigned int &flags) const { flags = m_flags; return 0; }
+	RESULT setFlags(unsigned int flags) { m_flags = flags; return 0; }
 };
 
 #ifndef SWIG
