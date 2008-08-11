@@ -275,7 +275,7 @@ void eDVBScan::PMTready(int err)
 			if (pcrpid == 0xFFFF)
 				pcrpid = pmt.getPcrPid();
 			else
-				eDebug("already have a pcrpid %04x %04x", pcrpid, pmt.getPcrPid());
+				SCAN_eDebug("already have a pcrpid %04x %04x", pcrpid, pmt.getPcrPid());
 			ElementaryStreamInfoConstIterator es;
 			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 			{
@@ -395,7 +395,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	{
 		eDVBFrontendParametersSatellite parm;
 		feparm->getDVBS(parm);
-		eDebug("try to add %d %d %d %d %d %d",
+		SCAN_eDebug("try to add %d %d %d %d %d %d",
 			parm.orbital_position, parm.frequency, parm.symbol_rate, parm.polarisation, parm.fec, parm.modulation);
 		break;
 	}
@@ -403,7 +403,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	{
 		eDVBFrontendParametersCable parm;
 		feparm->getDVBC(parm);
-		eDebug("try to add %d %d %d %d",
+		SCAN_eDebug("try to add %d %d %d %d",
 			parm.frequency, parm.symbol_rate, parm.modulation, parm.fec_inner);
 		break;
 	}
@@ -411,7 +411,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	{
 		eDVBFrontendParametersTerrestrial parm;
 		feparm->getDVBT(parm);
-		eDebug("try to add %d %d %d %d %d %d %d %d",
+		SCAN_eDebug("try to add %d %d %d %d %d %d %d %d",
 			parm.frequency, parm.modulation, parm.transmission_mode, parm.hierarchy,
 			parm.guard_interval, parm.code_rate_LP, parm.code_rate_HP, parm.bandwidth);
 		break;
@@ -427,11 +427,11 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 			if (!found_count)
 			{
 				*i = feparm;  // update
-				eDebug("update");
+				SCAN_eDebug("update");
 			}
 			else
 			{
-				eDebug("remove dupe");
+				SCAN_eDebug("remove dupe");
 				m_ch_toScan.erase(i++);
 				continue;
 			}
@@ -442,7 +442,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 
 	if (found_count > 0)
 	{
-		eDebug("already in todo list");
+		SCAN_eDebug("already in todo list");
 		return;
 	}
 
@@ -450,7 +450,7 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_scanned.begin()); i != m_ch_scanned.end(); ++i)
 		if (sameChannel(*i, feparm))
 		{
-			eDebug("successfully scanned");
+			SCAN_eDebug("successfully scanned");
 			return;
 		}
 
@@ -458,18 +458,18 @@ void eDVBScan::addChannelToScan(const eDVBChannelID &chid, iDVBFrontendParameter
 	for (std::list<ePtr<iDVBFrontendParameters> >::const_iterator i(m_ch_unavailable.begin()); i != m_ch_unavailable.end(); ++i)
 		if (sameChannel(*i, feparm, true))
 		{
-			eDebug("scanned but not available");
+			SCAN_eDebug("scanned but not available");
 			return;
 		}
 
 		/* ... on the current channel */
 	if (sameChannel(m_ch_current, feparm))
 	{
-		eDebug("is current");
+		SCAN_eDebug("is current");
 		return;
 	}
 
-	eDebug("really add");
+	SCAN_eDebug("really add");
 		/* otherwise, add it to the todo list. */
 	m_ch_toScan.push_front(feparm); // better.. then the rotor not turning wild from east to west :)
 }
@@ -516,7 +516,6 @@ void eDVBScan::channelDone()
 	
 	if (m_ready & validNIT)
 	{
-		eDebug("validNIT");
 		int system;
 		std::list<ePtr<iDVBFrontendParameters> > m_ch_toScan_backup;
 		m_ch_current->getSystem(system);
@@ -604,7 +603,7 @@ void eDVBScan::channelDone()
 
 						if ( abs(abs(3600 - p.orbital_position) - sat.orbital_position) < 5 )
 						{
-							eDebug("found transponder with incorrect west/east flag ... correct this");
+							SCAN_eDebug("found transponder with incorrect west/east flag ... correct this");
 							sat.orbital_position = p.orbital_position;
 						}
 
@@ -792,7 +791,7 @@ void eDVBScan::channelDone()
 	{
 		if (sameChannel(*i, m_ch_current))
 		{
-			eDebug("remove dupe 2");
+			SCAN_eDebug("remove dupe 2");
 			m_ch_toScan.erase(i++);
 			continue;
 		}
@@ -841,10 +840,8 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 		std::list<ePtr<iDVBFrontendParameters> >::iterator it(m_ch_scanned.begin());
 		for (;it != m_ch_scanned.end(); ++it)
 		{
-			if (m_flags & scanDontRemoveUnscanned) {
-				eDebug("scanDontRemoveUnscanned!");
+			if (m_flags & scanDontRemoveUnscanned)
 				db->removeServices(&(*(*it)));
-			}
 			else
 			{
 				int system;
