@@ -66,6 +66,7 @@ to generate HTML."""
 				self.index = 0
 		else:
 			self.index += 1
+		self.setIndex()
 
 	def selectPrevious(self):
 		if self.getIndex() - 1 < 0:
@@ -73,6 +74,7 @@ to generate HTML."""
 				self.index = self.count() - 1
 		else:
 			self.index -= 1
+		self.setIndex()
 
 	def updateList(self, list):
 		"""Changes the list without changing the selection or emitting changed Events"""
