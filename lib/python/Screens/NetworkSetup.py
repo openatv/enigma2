@@ -45,7 +45,7 @@ def InterfaceEntryComponent(index,name,default,active ):
 class NetworkAdapterSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		iNetwork.getInterfaces()
+
 		self.wlan_errortext = _("No working wireless networkadapter found.\nPlease verify that you have attached a compatible WLAN USB Stick and your Network is configured correctly.")
 		self.lan_errortext = _("No working local networkadapter found.\nPlease verify that you have attached a network cable and your Network is configured correctly.")
 		
@@ -74,8 +74,14 @@ class NetworkAdapterSelection(Screen):
 
 	def updateList(self):
 		print "update list"
+		iNetwork.getInterfaces()
 		self.list = []
 		default_gw = None
+		num_configured_if = len(iNetwork.configuredInterfaces)
+		print "num_configured_if :",num_configured_if 
+		if num_configured_if < 2 and os_path.exists("/etc/default_gw"):
+			unlink("/etc/default_gw")
+			
 		if os_path.exists("/etc/default_gw"):
 			fp = file('/etc/default_gw', 'r')
 			result = fp.read()
@@ -125,6 +131,8 @@ class NetworkAdapterSelection(Screen):
 	def AdapterSetupClosed(self, *ret):
 		if len(self.adapters) == 1:
 			self.close()
+		else:
+			self.updateList()
 
 	def NetworkFallback(self):
 		if iNetwork.configuredInterfaces.has_key('wlan0') is True:
