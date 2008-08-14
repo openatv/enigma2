@@ -784,7 +784,11 @@ def filescan_open(list, session, **kwargs):
 
 	mp.switchToPlayList()
 	for file in list:
-		ref = eServiceReference(4097, 0, file.path)
+		if file.mimetype == "video/MP2T":
+			stype = 1
+		else:
+			stype = 4097
+		ref = eServiceReference(stype, 0, file.path)
 		mp.playlist.addFile(ref)
 
 	# TODO: rather play first than last file?
@@ -812,7 +816,7 @@ def audioCD_open(list, session, **kwargs):
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	mediatypes = [
-		Scanner(mimetypes = ["video/mpeg"],
+		Scanner(mimetypes = ["video/mpeg", "video/MP2T"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),

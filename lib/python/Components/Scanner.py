@@ -26,8 +26,10 @@ def getType(file):
 			return "application/ogg"
 		elif ext == "dmpkg":
 			return "application/x-dream-package"
+		elif ext == "ts":
+			return "video/MP2T"
 		elif ext == "iso":
-			return "video/x-dvd-iso"	
+			return "video/x-dvd-iso"
 		elif file[-12:].lower() == "video_ts.ifo":
 			return "video/x-dvd"
 	return type
