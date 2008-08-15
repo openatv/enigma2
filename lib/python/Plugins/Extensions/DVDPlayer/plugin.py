@@ -157,10 +157,9 @@ class ChapterZap(Screen):
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
 
-class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen):
-#InfoBarCueSheetSupport, 
+class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport):
 #	ALLOW_SUSPEND = True
-#	ENABLE_RESUME_SUPPORT = True
+	ENABLE_RESUME_SUPPORT = True
 	
 	skin = """
 	<screen name="DVDPlayer" flags="wfNoBorder" position="0,380" size="720,160" title="InfoBar" backgroundColor="transparent" >
@@ -233,7 +232,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
-#		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
+		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
 		InfoBarShowHide.__init__(self)
 		HelpableScreen.__init__(self)
 		self.save_infobar_seek_config()
@@ -244,7 +243,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
-		self["audioLabel"] = Label("1")
+		self["audioLabel"] = Label("n/a")
 		self["subtitleLabel"] = Label("")
 		self["chapterLabel"] = Label("")
 		self.totalChapters = 0
@@ -265,7 +264,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				iPlayableService.evUser+7: self.__osdSubtitleInfoAvail,
 				iPlayableService.evUser+8: self.__chapterUpdated,
 				iPlayableService.evUser+9: self.__titleUpdated,
-				#iPlayableService.evUser+10: self.__initializeDVDinfo,
 				iPlayableService.evUser+11: self.__menuOpened,
 				iPlayableService.evUser+12: self.__menuClosed
 			})
@@ -422,15 +420,19 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		print "StringAvail"
 
 	def __osdAudioInfoAvail(self):
-		audioString = self.service.info().getInfoString(iServiceInformation.sUser+6)
-		print "AudioInfoAvail "+audioString
+		audioTuple = self.service.info().getInfoObject(iServiceInformation.sUser+6)
+		print "AudioInfoAvail ", repr(audioTuple)
+		audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
 		self["audioLabel"].setText(audioString)
 		if not self.in_menu:
 			self.doShow()
 
 	def __osdSubtitleInfoAvail(self):
-		subtitleString = self.service.info().getInfoString(iServiceInformation.sUser+7)
-		print "SubtitleInfoAvail "+subtitleString
+		subtitleTuple = self.service.info().getInfoObject(iServiceInformation.sUser+7)
+		print "SubtitleInfoAvail ", repr(subtitleTuple)
+		subtitleString = ""
+		if subtitleTuple[0] is not 0:
+			subtitleString = "%d: %s" % (subtitleTuple[0],subtitleTuple[1])
 		self["subtitleLabel"].setText(subtitleString)
 		if not self.in_menu:
 			self.doShow()
@@ -449,10 +451,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if not self.in_menu:
 			self.doShow()
 		
-	#def __initializeDVDinfo(self):
-		#self.__osdAudioInfoAvail()
-		#self.__osdSubtitleInfoAvail()
-
 	def askLeavePlayer(self):
 		if self.physicalDVD:
 			self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=[(_("Continue playing"), "play"), (_("Exit"), "exit")])
@@ -583,25 +581,12 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.restore_infobar_seek_config()
 		self.session.nav.playService(self.oldService)
 
-#	def playLastCB(self, answer): # overwrite infobar cuesheet function
-#		print "playLastCB", answer, self.resume_point
-#		pos = self.resume_point
-#		title = self.resume_point % 90000
-#		pos -= title
-#		chapter = title % 256
-#		title /= 256
-#		print "pos", pos, "title", title, "chapter", chapter
-#		if self.service:
-#			seek = self.service.seek()
-#			if title != 1:
-#				seek.seekTitle(title)
-#				self.resume_state = 1
-#			elif chapter != 1:
-#				seek.seekChapter(chapter)
-#				self.resume_state = 2
-#			else:
-#				seek.seekTo(pos)
-#		self.hideAfterResume()
+	def playLastCB(self, answer): # overwrite infobar cuesheet function
+		print "playLastCB", answer, self.resume_point
+		if self.service:
+			seek = self.service.seek()
+			seek.seekTo(self.resume_point)
+		self.hideAfterResume()
 
 	def showAfterCuesheetOperation(self):
 		if not self.in_menu:

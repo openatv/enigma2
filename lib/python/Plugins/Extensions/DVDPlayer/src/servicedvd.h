@@ -122,6 +122,8 @@ private:
 	eFixedMessagePump<int> m_pump;
 
 	pts_t m_cue_pts;
+	struct ddvd_resume m_resume_info;
+
 	void loadCuesheet();
 	void saveCuesheet();
 };
