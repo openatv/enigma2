@@ -1,5 +1,4 @@
 /* yes, it's dvd  */
-#include "servicedvd.h"
 #include <lib/base/eerror.h>
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
@@ -20,6 +19,7 @@
 extern "C" {
 #include <dreamdvd/ddvdlib.h>
 }
+#include "servicedvd.h"
 
 // eServiceFactoryDVD
 
@@ -254,6 +254,7 @@ eServiceDVD::~eServiceDVD()
 {
 	eDebug("SERVICEDVD destruct!");
 	kill();
+	saveCuesheet();
 	ddvd_close(m_ddvdconfig);
 }
 
@@ -281,21 +282,7 @@ RESULT eServiceDVD::stop()
 	eDebug("DVD: stop %s", m_filename.c_str());
 	m_state = stStopped;
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_EXIT);
-	struct ddvd_time info;
-	ddvd_get_last_time(m_ddvdconfig, &info);
-	if ( info.pos_chapter < info.end_chapter )
-	{
-		pts_t pos;
-		pos = info.pos_hours * 3600;
-		pos += info.pos_minutes * 60;
-		pos += info.pos_seconds;
-		pos *= 90000;
-		pos += info.pos_title * 256;
-		pos += info.pos_chapter;
-		m_cue_pts = pos;
-		eDebug("POS %llu\n", m_cue_pts);
-	}
-	saveCuesheet();
+
 	return 0;
 }
 
@@ -413,14 +400,7 @@ RESULT eServiceDVD::getName(std::string &name)
 int eServiceDVD::getInfo(int w)
 {
 	switch (w)
-		{
-		case sUser:
-		case sArtist:
-		case sAlbum:
-			return resIsPyObject;  // then getInfoObject should be called
-		case sComment:
-		case sGenre:
-			return resIsString;  // then getInfoString should be called
+	{
 		case sCurrentChapter:
 		{
 			struct ddvd_time info;
@@ -452,6 +432,9 @@ int eServiceDVD::getInfo(int w)
 			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
 			return spu_id;
 		}
+		case sUser+6:
+		case sUser+7:
+			return resIsPyObject;
 		default:
 			return resNA;
 	}
@@ -461,47 +444,8 @@ std::string eServiceDVD::getInfoString(int w)
 {
 	switch(w)
 	{
-		case sUser+7: {
-			int spu_id;
-			uint16_t spu_lang;
-			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
-			unsigned char spu_string[3]={spu_lang >> 8, spu_lang, 0};
-			char osd[100];
-			if (spu_id == -1)
-				sprintf(osd,"");
-			else
-				sprintf(osd,"%d - %s",spu_id+1,spu_string);
-// 			lbo_changed=1;
-			return osd;
-			}
-		case sUser+6:
-			{
-			int audio_id,audio_type;
-			uint16_t audio_lang;
-			ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
-			char audio_string[3]={audio_lang >> 8, audio_lang, 0};
-			char audio_form[5];
-			switch(audio_type)
-			{
-				case DDVD_MPEG:
-					sprintf(audio_form,"MPEG");
-					break;
-				case DDVD_AC3:
-					sprintf(audio_form,"AC3");
-					break;
-				case DDVD_DTS:
-					sprintf(audio_form,"DTS");
-					break;
-				case DDVD_LPCM:
-					sprintf(audio_form,"LPCM");
-					break;
-				default:
-					sprintf(audio_form,"-");
-			}
-			char osd[100];
-			sprintf(osd,"%d - %s (%s)",audio_id+1,audio_string,audio_form);
-			return osd;
-			}
+		case sServiceref:
+			break;
 		default:
 			eDebug("unhandled getInfoString(%d)", w);
 	}
@@ -512,6 +456,53 @@ PyObject *eServiceDVD::getInfoObject(int w)
 {
 	switch(w)
 	{
+		case sUser+6:
+		{
+			ePyObject tuple = PyTuple_New(3);
+			int audio_id,audio_type;
+			uint16_t audio_lang;
+			ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
+			char audio_string[3]={audio_lang >> 8, audio_lang, 0};
+			PyTuple_SetItem(tuple, 0, PyInt_FromLong(audio_id+1));
+			PyTuple_SetItem(tuple, 1, PyString_FromString(audio_string));
+			switch(audio_type)
+			{
+				case DDVD_MPEG:
+					PyTuple_SetItem(tuple, 2, PyString_FromString("MPEG"));
+					break;
+				case DDVD_AC3:
+					PyTuple_SetItem(tuple, 2, PyString_FromString("AC3"));
+					break;
+				case DDVD_DTS:
+					PyTuple_SetItem(tuple, 2, PyString_FromString("DTS"));
+					break;
+				case DDVD_LPCM:
+					PyTuple_SetItem(tuple, 2, PyString_FromString("LPCM"));
+					break;
+				default:
+					PyTuple_SetItem(tuple, 2, PyString_FromString(""));
+			}
+			return tuple;
+		}
+		case sUser+7:
+		{
+			ePyObject tuple = PyTuple_New(2);
+			int spu_id;
+			uint16_t spu_lang;
+			ddvd_get_last_spu(m_ddvdconfig, &spu_id, &spu_lang);
+			char spu_string[3]={spu_lang >> 8, spu_lang, 0};
+			if (spu_id == -1)
+			{
+				PyTuple_SetItem(tuple, 0, PyInt_FromLong(0));
+				PyTuple_SetItem(tuple, 1, PyString_FromString(""));
+			}
+			else
+			{
+				PyTuple_SetItem(tuple, 0, PyInt_FromLong(spu_id+1));
+				PyTuple_SetItem(tuple, 1, PyString_FromString(spu_string));
+			}				
+			return tuple;
+		}
 		default:
 			eDebug("unhandled getInfoObject(%d)", w);
 	}
@@ -563,15 +554,12 @@ RESULT eServiceDVD::getLength(pts_t &len)
 
 RESULT eServiceDVD::seekTo(pts_t to)
 {
-	struct ddvd_time info;
-	to /= 90000;
-	int cur;
-	ddvd_get_last_time(m_ddvdconfig, &info);
-	cur = info.pos_hours * 3600;
-	cur += info.pos_minutes * 60;
-	cur += info.pos_seconds;
-	eDebug("seekTo %lld, cur %d, diff %lld", to, cur, to - cur);
-	ddvd_skip_seconds(m_ddvdconfig, to - cur);
+	eDebug("eServiceDVD::seekTo(%lld)",to);
+	if ( to > 0 )
+	{
+		eDebug("set_resume_pos: resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d",m_resume_info.title,m_resume_info.chapter,m_resume_info.block,m_resume_info.audio_id, m_resume_info.audio_lock, m_resume_info.spu_id, m_resume_info.spu_lock);
+		ddvd_set_resume_pos(m_ddvdconfig, m_resume_info);
+	}
 	return 0;
 }
 
@@ -701,10 +689,11 @@ void eServiceDVD::setCutListEnable(int /*enable*/)
 
 void eServiceDVD::loadCuesheet()
 {
-	eDebug("eServiceDVD::loadCuesheet()");
 	char filename[128];
 	if ( m_ddvd_titlestring[0] != '\0' )
 		snprintf(filename, 128, "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+	else
+		snprintf(filename, 128, "%s/dvd.cuts", m_filename.c_str());
 
 	eDebug("eServiceDVD::loadCuesheet() filename=%s",filename);
 
@@ -712,38 +701,65 @@ void eServiceDVD::loadCuesheet()
 
 	if (f)
 	{
-		eDebug("loading cuts..");
 		unsigned long long where;
 		unsigned int what;
 
 		if (!fread(&where, sizeof(where), 1, f))
 			return;
-
 		if (!fread(&what, sizeof(what), 1, f))
 			return;
-			
 #if BYTE_ORDER == LITTLE_ENDIAN
 		where = bswap_64(where);
 #endif
 		what = ntohl(what);
 
-		m_cue_pts = where;
+		if (!fread(&m_resume_info, sizeof(struct ddvd_resume), 1, f))
+			return;
+		if (!fread(&what, sizeof(what), 1, f))
+			return;
+
+		what = ntohl(what);
+		if (what != 4 )
+			return;
+
+ 		m_cue_pts = where;
+
 		fclose(f);
 	} else
 		eDebug("cutfile not found!");
 
-	eDebug("eServiceDVD::loadCuesheet() pts=%lld",m_cue_pts);
-
 	if (m_cue_pts)
+	{
 		m_event((iPlayableService*)this, evCuesheetChanged);
+		eDebug("eServiceDVD::loadCuesheet() pts=%lld",m_cue_pts);
+	}
 }
 
 void eServiceDVD::saveCuesheet()
 {
-	eDebug("eServiceDVD::saveCuesheet() pts=%lld",m_cue_pts);
+	eDebug("eServiceDVD::saveCuesheet()");
+
+	struct ddvd_time info;
+	ddvd_get_last_time(m_ddvdconfig, &info);
+	if ( info.pos_chapter < info.end_chapter )
+	{
+		pts_t pos;
+		pos = info.pos_hours * 3600;
+		pos += info.pos_minutes * 60;
+		pos += info.pos_seconds;
+		pos *= 90000;
+		m_cue_pts = pos;
+	}
+
+	struct ddvd_resume resume_info;
+	ddvd_get_resume_pos(m_ddvdconfig, &resume_info);
+ 	eDebug("ddvd_get_resume_pos resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d  (pts=%llu)",resume_info.title,resume_info.chapter,resume_info.block,resume_info.audio_id, resume_info.audio_lock, resume_info.spu_id, resume_info.spu_lock,m_cue_pts);
+
 	char filename[128];
 	if ( m_ddvd_titlestring[0] != '\0' )
 		snprintf(filename, 128, "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
+	else
+		snprintf(filename, 128, "%s/dvd.cuts", m_filename.c_str());
 	
 	FILE *f = fopen(filename, "wb");
 
@@ -752,16 +768,19 @@ void eServiceDVD::saveCuesheet()
 		unsigned long long where;
 		int what;
 
-		{
 #if BYTE_ORDER == BIG_ENDIAN
-			where = m_cue_pts;
+		where = m_cue_pts;
 #else
-			where = bswap_64(m_cue_pts);
+		where = bswap_64(m_cue_pts);
 #endif
-			what = 3;
-			fwrite(&where, sizeof(where), 1, f);
-			fwrite(&what, sizeof(what), 1, f);
-		}
+		what = htonl(3);
+		fwrite(&where, sizeof(where), 1, f);
+		fwrite(&what, sizeof(what), 1, f);
+		
+		what = htonl(4);
+		fwrite(&resume_info, sizeof(struct ddvd_resume), 1, f);
+		fwrite(&what, sizeof(what), 1, f);
+
 		fclose(f);
 	}
 }
