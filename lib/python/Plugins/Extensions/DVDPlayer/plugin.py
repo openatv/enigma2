@@ -246,6 +246,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self["audioLabel"] = Label("n/a")
 		self["subtitleLabel"] = Label("")
 		self["chapterLabel"] = Label("")
+		self.last_audioTuple = None
+		self.last_subtitleTuple = None
 		self.totalChapters = 0
 		self.currentChapter = 0
 		self.totalTitles = 0
@@ -424,8 +426,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		print "AudioInfoAvail ", repr(audioTuple)
 		audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
 		self["audioLabel"].setText(audioString)
-		if not self.in_menu:
+		if audioTuple != self.last_audioTuple and not self.in_menu:
 			self.doShow()
+		self.last_audioTuple = audioTuple
 
 	def __osdSubtitleInfoAvail(self):
 		subtitleTuple = self.service.info().getInfoObject(iServiceInformation.sUser+7)
@@ -434,8 +437,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if subtitleTuple[0] is not 0:
 			subtitleString = "%d: %s" % (subtitleTuple[0],subtitleTuple[1])
 		self["subtitleLabel"].setText(subtitleString)
-		if not self.in_menu:
+		if subtitleTuple != self.last_subtitleTuple and not self.in_menu:
 			self.doShow()
+		self.last_subtitleTuple = subtitleTuple
 
 	def __chapterUpdated(self):
 		self.currentChapter = self.service.info().getInfo(iServiceInformation.sCurrentChapter)
@@ -583,7 +587,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print "playLastCB", answer, self.resume_point
-		if self.service:
+		if self.service and answer == True:
 			seek = self.service.seek()
 			seek.seekTo(self.resume_point)
 		self.hideAfterResume()

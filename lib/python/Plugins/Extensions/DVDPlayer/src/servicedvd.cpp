@@ -739,21 +739,26 @@ void eServiceDVD::saveCuesheet()
 {
 	eDebug("eServiceDVD::saveCuesheet()");
 
-	struct ddvd_time info;
-	ddvd_get_last_time(m_ddvdconfig, &info);
-	if ( info.pos_chapter < info.end_chapter )
+	struct ddvd_resume resume_info;
+	ddvd_get_resume_pos(m_ddvdconfig, &resume_info);
+
+	if (resume_info.title)
 	{
+		struct ddvd_time info;
+		ddvd_get_last_time(m_ddvdconfig, &info);
 		pts_t pos;
 		pos = info.pos_hours * 3600;
 		pos += info.pos_minutes * 60;
 		pos += info.pos_seconds;
 		pos *= 90000;
 		m_cue_pts = pos;
+	 	eDebug("ddvd_get_resume_pos resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d  (pts=%llu)",resume_info.title,resume_info.chapter,resume_info.block,resume_info.audio_id, resume_info.audio_lock, resume_info.spu_id, resume_info.spu_lock,m_cue_pts);
 	}
-
-	struct ddvd_resume resume_info;
-	ddvd_get_resume_pos(m_ddvdconfig, &resume_info);
- 	eDebug("ddvd_get_resume_pos resume_info.title=%d, chapter=%d, block=%lu, audio_id=%d, audio_lock=%d, spu_id=%d, spu_lock=%d  (pts=%llu)",resume_info.title,resume_info.chapter,resume_info.block,resume_info.audio_id, resume_info.audio_lock, resume_info.spu_id, resume_info.spu_lock,m_cue_pts);
+	else
+	{
+		eDebug("we're in a menu or somewhere else funny. so save cuesheet with pts=0");
+		m_cue_pts = 0;
+	}
 
 	char filename[128];
 	if ( m_ddvd_titlestring[0] != '\0' )
