@@ -791,6 +791,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_STOPPED) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +3) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -5) );
 						}
 						sec_fe->setData(eDVBFrontend::NEW_ROTOR_CMD, RotorCmd);
 						sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
