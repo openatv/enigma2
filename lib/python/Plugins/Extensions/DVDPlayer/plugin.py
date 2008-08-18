@@ -587,9 +587,12 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print "playLastCB", answer, self.resume_point
-		if self.service and answer == True:
+		if self.service:
 			seek = self.service.seek()
-			seek.seekTo(self.resume_point)
+			if answer == True:
+				seek.seekTo(self.resume_point)
+			pause = self.service.pause()
+			pause.unpause()
 		self.hideAfterResume()
 
 	def showAfterCuesheetOperation(self):
