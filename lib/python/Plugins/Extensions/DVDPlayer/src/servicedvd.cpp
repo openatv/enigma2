@@ -115,6 +115,7 @@ eServiceDVD::eServiceDVD(const char *filename):
 	CONNECT(m_pump.recv_msg, eServiceDVD::gotThreadMessage);
 	strcpy(m_ddvd_titlestring,"");
 	m_cue_pts = 0;
+	pause();
 }
 
 void eServiceDVD::gotThreadMessage(const int &msg)
@@ -733,6 +734,8 @@ void eServiceDVD::loadCuesheet()
 		m_event((iPlayableService*)this, evCuesheetChanged);
 		eDebug("eServiceDVD::loadCuesheet() pts=%lld",m_cue_pts);
 	}
+	else
+		unpause();
 }
 
 void eServiceDVD::saveCuesheet()
