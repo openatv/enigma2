@@ -637,7 +637,7 @@ void eDVBFrontend::feEvent(int w)
 				sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
 			}
 		}
-		if (m_state != state && ((m_idleInputpower[0] && m_idleInputpower[1]) || (sec_fe->m_data[ROTOR_POS] == sec_fe->m_data[NEW_ROTOR_POS])))
+		if (m_state != state)
 		{
 			m_state = state;
 			m_stateChanged(this);
@@ -1513,6 +1513,8 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 						setSecSequencePos(cmd.steps);
 						m_state = stateLock;
 						m_stateChanged(this);
+						feEvent(-1);
+						m_sn->start();
 						break;
 					}
 				}
