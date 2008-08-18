@@ -231,6 +231,8 @@ void eServiceDVD::gotMessage(int /*what*/)
 			ddvd_get_title_string(m_ddvdconfig, m_ddvd_titlestring);
 			eDebug("DDVD_SHOWOSD_TITLESTRING: %s",m_ddvd_titlestring);
 			loadCuesheet();
+			if (!m_cue_pts)
+				unpause();
 			m_event(this, evStart);
 			break;
 		}
@@ -734,8 +736,6 @@ void eServiceDVD::loadCuesheet()
 		m_event((iPlayableService*)this, evCuesheetChanged);
 		eDebug("eServiceDVD::loadCuesheet() pts=%lld",m_cue_pts);
 	}
-	else
-		unpause();
 }
 
 void eServiceDVD::saveCuesheet()

@@ -56,17 +56,24 @@ class FileBrowser(Screen):
 			global lastpath
 			filename = self["filelist"].getFilename()
 			if filename is not None:
-				lastpath = filename[0:filename.rfind("/")]
 				if filename.upper().endswith("VIDEO_TS/"):
 					print "dvd structure found, trying to open..."
-					self.close(filename[0:-9])
+					dvdpath = filename[0:-9]
+					lastpath = (dvdpath.rstrip("/").rsplit("/",1))[0]
+					print "lastpath video_ts/=", lastpath
+					self.close(dvdpath)
+					return
 			if self["filelist"].canDescent(): # isDir
 				self["filelist"].descent()
 				pathname = self["filelist"].getCurrentDirectory() or ""
 				if fileExists(pathname+"VIDEO_TS.IFO"):
 					print "dvd structure found, trying to open..."
+					lastpath = (pathname.rstrip("/").rsplit("/",1))[0]
+					print "lastpath video_ts.ifo=", lastpath
 					self.close(pathname)
 			else:
+				lastpath = filename[0:filename.rfind("/")]
+				print "lastpath directory=", lastpath
 				self.close(filename)
 
 	def exit(self):
@@ -456,10 +463,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.doShow()
 		
 	def askLeavePlayer(self):
-		if self.physicalDVD:
-			self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=[(_("Continue playing"), "play"), (_("Exit"), "exit")])
-		else:
-			self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list=[(_("Continue playing"), "play"), (_("Return to file browser"), "browser"), (_("Exit"), "exit")])
+		choices = [(_("Continue playing"), "play"), (_("Exit"), "exit")]
+		if not self.physicalDVD:
+			choices.insert(1,(_("Return to file browser"), "browser"))			
+		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
 
 	def nextAudioTrack(self):
 		if self.service:
@@ -546,6 +553,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.FileBrowserClosed(self.dvd_device)
 		else:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
+			self.physicalDVD = False
 
 	def FileBrowserClosed(self, val):
 		curref = self.session.nav.getCurrentlyPlayingServiceReference()
