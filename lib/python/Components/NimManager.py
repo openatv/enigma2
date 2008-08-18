@@ -276,8 +276,9 @@ class SecConfigure:
 				elif dm == "1_2":
 					sec.setDiSEqCMode(diseqcParam.V1_2)
 
-					if self.satposdepends.has_key(slotid):  # only useable with rotors
-						tunermask |= (1 << self.satposdepends[slotid])
+				if self.satposdepends.has_key(slotid):
+					for slot in self.satposdepends[slotid]:
+						tunermask |= (1 << slot)
 
 				if dm != "none":
 					if currLnb.toneburst.value == "none":
@@ -847,15 +848,6 @@ def InitNimManager(nimmgr):
 				choices["loopthrough"] = _("loopthrough to")
 			nim.configMode = ConfigSelection(choices = choices, default = "nothing")
 
-			#important - check if just the 2nd one is LT only and the first one is DVB-S
-			# CHECKME: is this logic correct for >2 slots?
-#			if nim.configMode.value in ["loopthrough", "satposdepends", "equal"]:
-#				if x == 0: # first one can never be linked to anything
-#					# reset to simple
-#					nim.configMode.value = "simple"
-#					nim.configMode.save()
-#				else:
-					#FIXME: make it better
 			for y in nimmgr.nim_slots:
 				if y.slot == 0:
 					if not y.isCompatible("DVB-S"):
