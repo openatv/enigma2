@@ -823,9 +823,7 @@ class ConfigSlider(ConfigElement):
 			self.value = self.max
 		else:
 			return
-
 		self.checkValues()
-		self.changed()
 
 	def getText(self):
 		return "%d / %d" % (self.value, self.max)
