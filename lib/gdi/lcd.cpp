@@ -95,18 +95,27 @@ int eDBoxLCD::setLCDContrast(int contrast)
 
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
-	int fp;
-	if((fp=open("/dev/dbox/fp0", O_RDWR))<=0)
+	eDebug("setLCDBrightness %d", brightness);
+	FILE *f=fopen("/proc/stb/fp/oled_brightness", "w");
+	if (f)
 	{
-		eDebug("[LCD] can't open /dev/dbox/fp0");
-		return(-1);
+		if (fprintf(f, "%d", brightness) == 0)
+			eDebug("write /proc/stb/fp/oled_brightness failed!! (%m)");
+		fclose(f);
 	}
+	else
+	{
+		int fp;
+		if((fp=open("/dev/dbox/fp0", O_RDWR))<=0)
+		{
+			eDebug("[LCD] can't open /dev/dbox/fp0");
+			return(-1);
+		}
 
-	if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness))
-	{
-		eDebug("[LCD] can't set lcd brightness");
+		if(ioctl(fp, FP_IOCTL_LCD_DIMM, &brightness)<=0)
+			eDebug("[LCD] can't set lcd brightness (%m)");
+		close(fp);
 	}
-	close(fp);
 	return(0);
 }
 
