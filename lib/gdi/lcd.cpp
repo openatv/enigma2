@@ -44,12 +44,18 @@ void eLCD::unlock()
 
 eDBoxLCD::eDBoxLCD(): eLCD(eSize(132, 64))
 {
+	is_oled = 0;
 #ifndef NO_LCD
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	if (lcdfd < 0)
 	{
+		FILE *f=fopen("/proc/stb/fp/oled_brightness", "w");
+		if (f)
+		{
+			is_oled = 2;
+			fclose(f);
+		}
 		lcdfd = open("/dev/dbox/lcd0", O_RDWR);
-		is_oled = 0;
 	} else
 	{
 		eDebug("found OLED display!");
@@ -135,7 +141,7 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
-	if (!is_oled)
+	if (!is_oled || is_oled == 2)
 	{
 		unsigned char raw[132*8];
 		int x, y, yy;
