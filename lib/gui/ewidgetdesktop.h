@@ -72,6 +72,7 @@ public:
 	void setStyleID(int id) { m_style_id = id; }
 	
 	void resize(eSize size);
+	eSize size() const { return m_screen.m_screen_size; }
 private:
 	ePtrList<eWidget> m_root;
 	void calcWidgetClipRegion(eWidget *widget, gRegion &parent_visible);
