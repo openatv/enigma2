@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-28 08:46+0200\n"
+"POT-Creation-Date: 2008-08-21 09:33+0200\n"
 "PO-Revision-Date: 2008-07-24 21:51+0100\n"
 "Last-Translator: mimi74 <remi.jarrige0293@wanadoo.fr>\n"
 "Language-Team: french\n"
@@ -363,6 +363,18 @@ msgstr "Album:"
 msgid "All"
 msgstr "Toutes"
 
+msgid "All Satellites 1"
+msgstr ""
+
+msgid "All Satellites 2"
+msgstr ""
+
+msgid "All Satellites 3"
+msgstr ""
+
+msgid "All Satellites 4"
+msgstr ""
+
 msgid "All..."
 msgstr "Tous..."
 
@@ -462,10 +474,10 @@ msgid "Begin time"
 msgstr "Heure début"
 
 msgid "Behavior of 'pause' when paused"
-msgstr ""
+msgstr "Comportement de 'pause' si déjà en pause"
 
 msgid "Behavior of 0 key in PiP-mode"
-msgstr ""
+msgstr "Effet touche 0 en mode PiP"
 
 msgid "Behavior when a movie is started"
 msgstr "Action lorsqu'un film est démarré"
@@ -649,7 +661,7 @@ msgid "Conflicting timer"
 msgstr "Programmation conflictuelle"
 
 msgid "Connected to"
-msgstr ""
+msgstr "Connecté à"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Connecté à Fritz!Box!"
@@ -825,7 +837,7 @@ msgid "Disable Subtitles"
 msgstr "Désactiver sous-titres"
 
 msgid "Disable timer"
-msgstr ""
+msgstr "Désactiver programmation"
 
 msgid "Disabled"
 msgstr "Désactivé"
@@ -910,7 +922,7 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Voulez-vous activer la fonction contrôle parental sur votre dreambox?"
 
 msgid "Do you want to install default sat lists?"
-msgstr ""
+msgstr "Voulez-vous installer liste par défaut sat?"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Voulez-vous lire le DVD dans le lecteur?"
@@ -1013,7 +1025,7 @@ msgid "Enable parental control"
 msgstr "Activer contrôle parental"
 
 msgid "Enable timer"
-msgstr ""
+msgstr "Activer programmation"
 
 msgid "Enabled"
 msgstr "Activer"
@@ -1807,6 +1819,9 @@ msgstr "Un"
 msgid "Online-Upgrade"
 msgstr "Mise à jour en ligne"
 
+msgid "Only Free scan"
+msgstr ""
+
 msgid "Orbital Position"
 msgstr "Position orbitale"
 
@@ -1885,7 +1900,7 @@ msgid "Please choose he package..."
 msgstr "Veuillez choisir le paquet..."
 
 msgid "Please choose the default services lists you want to install."
-msgstr "Veuillez chisir la liste services standard à installer."
+msgstr "Veuillez choisir la liste services standard à installer."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Veuillez ne changer aucune valeur avant de savoir ce que vous faites!"
@@ -2034,7 +2049,7 @@ msgid "Press OK to activate the settings."
 msgstr "Pressez OK pour activer les paramètres."
 
 msgid "Press OK to edit the settings."
-msgstr ""
+msgstr "Pressez OK pour éditer les paramètres."
 
 msgid "Press OK to scan"
 msgstr "Pressez OK pour analyser"
@@ -2088,7 +2103,7 @@ msgid "Really close without saving settings?"
 msgstr "Vraiment fermer sans sauver les paramètres?"
 
 msgid "Really delete done timers?"
-msgstr "Enlever les enregistrements effectués ?"
+msgstr "Enlever les programmations effectués ?"
 
 msgid "Really delete this timer?"
 msgstr "Vraiment effacer cette programmation?"
@@ -2546,6 +2561,9 @@ msgstr "Transpondeur unique"
 msgid "Singlestep (GOP)"
 msgstr "Pas unique (GOP)"
 
+msgid "Skin..."
+msgstr "Thème..."
+
 msgid "Sleep Timer"
 msgstr "Veille programmée"
 
@@ -2704,7 +2722,7 @@ msgid "TV System"
 msgstr "Système TV"
 
 msgid "Table of content to be burned to DVD:"
-msgstr ""
+msgstr "Table du contenu à graver sur le DVD:"
 
 msgid "Terrestrial"
 msgstr "Terrestre"
@@ -2754,7 +2772,7 @@ msgstr "Le paquet ne contient rien."
 
 #, python-format
 msgid "The path %s already exists."
-msgstr ""
+msgstr "Le chemin %s existe déjà."
 
 msgid "The pin code has been changed successfully."
 msgstr "Le code pin a été changé avec succès."
@@ -3124,7 +3142,7 @@ msgid "VCR scart"
 msgstr "Péritel magnétoscope"
 
 msgid "Video Fine-Tuning"
-msgstr "Accord-fin vidéo"
+msgstr "Accord-fin vidéo..."
 
 msgid "Video Fine-Tuning Wizard"
 msgstr "Assistant accord-fin vidéo"
@@ -3238,7 +3256,7 @@ msgid "What do you want to scan?"
 msgstr "Que voulez-vous analyser ?"
 
 msgid "When complete, press Key 0 to burn the collection!"
-msgstr ""
+msgstr "Lorsque complèté, presser la toche 0 pour graver la collection!"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Où voulez-vous sauver vos paramètres ?"
@@ -3735,7 +3753,7 @@ msgid "locked"
 msgstr "verrouillé"
 
 msgid "loopthrough to"
-msgstr ""
+msgstr "rebouclé par"
 
 msgid "manual"
 msgstr "manuel"
@@ -3932,7 +3950,7 @@ msgid "seconds."
 msgstr "secondes."
 
 msgid "select"
-msgstr ""
+msgstr "sélectionner"
 
 msgid "select movie"
 msgstr "choisir film"
@@ -4118,17 +4136,29 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zappé"
 
-#~ msgid "Behaviour of 'pause' when paused"
-#~ msgstr "Comportement de 'pause' si déjà en pause"
+#~ msgid "Adress"
+#~ msgstr "Adresse"
 
-#~ msgid "Behaviour of 0 key in PiP-mode"
-#~ msgstr "Effet touche 0 en mode PiP"
+#~ msgid "Allow zapping via webif"
+#~ msgstr "Permettre le zap depuis webif"
+
+#~ msgid "Autowrite timer"
+#~ msgstr "Ecriture auto programmation"
+
+#~ msgid "Configuration for the Webinterface"
+#~ msgstr "Configuration pour la Webinterface"
 
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Connection à internet avec votre LAN local"
 
+#~ msgid "Enable /hdd"
+#~ msgstr "Activer /hdd"
+
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Quitter l'assistant, configurer plus tard"
+
+#~ msgid "Load movie-length"
+#~ msgstr "Charger longueur-film"
 
 #~ msgid ""
 #~ "No working wireless interface found.\n"
@@ -4170,6 +4200,12 @@ msgstr "zappé"
 #~ "votre connection internet.\n"
 #~ "\n"
 #~ "Veuillez presser OK pour continuer."
+
+#~ msgid "Port"
+#~ msgstr "Port"
+
+#~ msgid "Start Webinterface"
+#~ msgstr "Lancer Webinterface"
 
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
@@ -4222,6 +4258,15 @@ msgstr "zappé"
 #~ "Merci d'utilisé l'assistant. Votre Dreambox est maintenant prête à "
 #~ "l'usage.\n"
 #~ "Veuillez appuyer sur OK pour commencer à l'utiliser."
+
+#~ msgid "Use Authorization"
+#~ msgstr "Utiliser Authorization"
+
+#~ msgid "Use SSL"
+#~ msgstr "Utiliser SSL"
+
+#~ msgid "Use SSL Encryption"
+#~ msgstr "Utiliser Cryptage SSL"
 
 #~ msgid ""
 #~ "Welcome.\n"
@@ -4293,6 +4338,3 @@ msgstr "zappé"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "égale au tuner A"
-
-#~ msgid "loopthrough to socket A"
-#~ msgstr "rebouclé par tuner A"
