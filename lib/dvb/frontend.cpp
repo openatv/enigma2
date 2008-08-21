@@ -732,7 +732,8 @@ int eDVBFrontend::readFrontendData(int type)
 						{250,1123}, {260,1058}, {270,1004}, {280,957}, {290,920},
 						{300,890}
 					};
-					long regval = 0xFFFF - ((snr / 3) + 0xA100), // revert some dvb api calulations to get the real register value
+					int add=strchr(m_description, '.') ? 0xA250 : 0xA100;
+					long regval = 0xFFFF - ((snr / 3) + add), // revert some dvb api calulations to get the real register value
 						Imin=0,
 						Imax=30,
 						i;
