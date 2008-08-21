@@ -892,7 +892,7 @@ def InitNimManager(nimmgr):
 
 			# advanced config:
 			nim.advanced = ConfigSubsection()
-			tmp = [(3601, _('All Satellites 1'), 1), (3602, _('All Satellites 2'), 1), (3603, _('All Satellites 3'), 1), (3604, _('All Satellites 4'), 1)]
+			tmp = [(3601, _('All Satellites')+' 1', 1), (3602, _('All Satellites')+' 2', 1), (3603, _('All Satellites')+' 3', 1), (3604, _('All Satellites')+' 4', 1)]
 			nim.advanced.sats = getConfigSatlist(192,nimmgr.satList+tmp)
 			nim.advanced.sat = ConfigSubDict()
 			lnbs = [("0", "not available")]
