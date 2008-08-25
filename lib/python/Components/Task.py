@@ -7,6 +7,7 @@ class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
 	def __init__(self, name):
 		self.tasks = [ ]
+		self.resident_tasks = [ ]
 		self.workspace = "/tmp"
 		self.current_task = 0
 		self.callback = None
@@ -57,23 +58,38 @@ class Job(object):
 
 	def runNext(self):
 		if self.current_task == len(self.tasks):
-			cb = self.callback
-			self.callback = None
-			self.status = self.FINISHED
-			self.state_changed()
-			cb(self, None, [])
+			if len(self.resident_tasks) == 0:
+				cb = self.callback
+				self.callback = None
+				self.status = self.FINISHED
+				self.state_changed()
+				cb(self, None, [])
+			else:
+				print "still waiting for %d resident task(s) %s to finish" % (len(self.resident_tasks), str(self.resident_tasks))
 		else:
 			self.tasks[self.current_task].run(self.taskCallback, self.task_progress_changed_CB)
 			self.state_changed()
 
-	def taskCallback(self, task, res):
+	def taskCallback(self, task, res, stay_resident = False):
+		cb_idx = self.tasks.index(task)
+		if stay_resident:
+			if cb_idx not in self.resident_tasks:
+				self.resident_tasks.append(self.current_task)
+				print "task going resident:", task
+			else:
+				print "task keeps staying resident:", task
+				return
 		if len(res):
 			print ">>> Error:", res
 			self.status = self.FAILED
 			self.state_changed()
 			self.callback(self, task, res)
-		else:
-			self.state_changed();
+		if cb_idx != self.current_task:
+			if cb_idx in self.resident_tasks:
+				print "resident task finished:", task
+				self.resident_tasks.remove(cb_idx)
+		if res == []:
+			self.state_changed()
 			self.current_task += 1
 			self.runNext()
 
@@ -84,6 +100,8 @@ class Job(object):
 	def abort(self):
 		if self.current_task < len(self.tasks):
 			self.tasks[self.current_task].abort()
+		for i in self.resident_tasks:
+			self.tasks[i].abort()
 
 	def cancel(self):
 		# some Jobs might have a better idea of how to cancel a job
@@ -150,7 +168,7 @@ class Task(object):
 		if self.cwd is not None:
 			self.container.setCWD(self.cwd)
 
-		print "execute:", self.container.execute(self.cmd, self.args), self.cmd, self.args
+		print "execute:", self.container.execute(self.cmd, self.args), self.cmd, " ".join(self.args)
 		if self.initial_input:
 			self.writeInput(self.initial_input)
 
@@ -189,7 +207,6 @@ class Task(object):
 			for postcondition in self.postconditions:
 				if not postcondition.check(self):
 					not_met.append(postcondition)
-
 		self.cleanup(not_met)
 		self.callback(self, not_met)
 
@@ -207,7 +224,6 @@ class Task(object):
 			progress = self.end
 		if progress < 0:
 			progress = 0
-		print "progress now", progress
 		self.__progress = progress
 		self.task_progress_changed()
 
