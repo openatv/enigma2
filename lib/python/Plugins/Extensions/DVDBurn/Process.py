@@ -1,11 +1,24 @@
 from Components.Task import Task, Job, job_manager, DiskspacePrecondition, Condition
 
+class MakeFifoNode(Task):
+	def __init__(self, job, number):
+		Task.__init__(self, job, "Make FIFO Nodes")
+		self.setTool("/bin/mknod")
+		nodename = self.job.workspace + "/dvd_title_%d" % number + ".mpg"
+		self.args += [nodename, "p"]
+
+class LinkTS(Task):
+	def __init__(self, job, sourcefile, link_name):
+		Task.__init__(self, job, "Creating Symlink for source titles")
+		self.setTool("/bin/ln")
+		self.args += ["-s", sourcefile, link_name]
+
 class DemuxTask(Task):
 	def __init__(self, job, inputfile, cutlist):
 		Task.__init__(self, job, "Demux video into ES")
 
 		self.global_preconditions.append(DiskspacePrecondition(4*1024*1024))
-		self.setTool("/opt/bin/projectx")
+		self.setTool("/usr/bin/projectx")
 		self.cutfile = self.job.workspace + "/cut.Xcl"
 		self.generated_files = [ ]
 		self.cutlist = cutlist
@@ -47,7 +60,6 @@ class DemuxTask(Task):
 			self.prog_state += 1
 		else:
 			try:
-				print "have progress:", progress
 				p = int(progress)
 				p = p - 1 + self.prog_state * 100
 				if p > self.progress:
@@ -83,10 +95,13 @@ class MplexTask(Task):
 		self.weighting = 500
 		self.demux_task = demux_task
 		self.setTool("/usr/bin/mplex")
-		self.args += ["-f8", "-o", self.job.workspace + "/" + outputfile, "-v1"]
+		self.args += ["-f8", "-o", outputfile, "-v1"]
 
 	def prepare(self):
 		self.args += self.demux_task.generated_files
+
+	def processOutputLine(self, line):
+		print "[MplexTask] processOutputLine=", line
 
 class RemoveESFiles(Task):
 	def __init__(self, job, demux_task):
@@ -100,25 +115,33 @@ class RemoveESFiles(Task):
 		self.args += [self.demux_task.cutfile]
 
 class DVDAuthorTask(Task):
-	def __init__(self, job, inputfiles, chapterlist):
-		Task.__init__(self, job, "dvdauthor")
+	def __init__(self, job):
+		Task.__init__(self, job, "Authoring DVD")
 
 		self.weighting = 300
 		self.setTool("/usr/bin/dvdauthor")
-		chapterargs = "--chapters=" + ','.join(["%d:%02d:%02d.%03d" % (p / (90000 * 3600), p % (90000 * 3600) / (90000 * 60), p % (90000 * 60) / 90000, (p % 90000) / 90) for p in chapterlist])
-		self.args += ["-t", chapterargs, "-o", self.job.workspace + "/dvd", "-f"] + inputfiles
+		self.CWD = self.job.workspace
+		self.args += ["-x", self.job.workspace+"/dvdauthor.xml"]
 
-class RemovePSFile(Task):
-	def __init__(self, job, psfile):
-		Task.__init__(self, job, "Remove temp. files")
-		self.setTool("/bin/rm")
-		self.args += ["-f", psfile]
+	def processOutputLine(self, line):
+		print "[DVDAuthorTask] processOutputLine=", line
+		if line.startswith("STAT: Processing"):
+			self.callback(self, [], stay_resident=True)
 
 class DVDAuthorFinalTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "dvdauthor finalize")
 		self.setTool("/usr/bin/dvdauthor")
 		self.args += ["-T", "-o", self.job.workspace + "/dvd"]
+
+class WaitForResidentTasks(Task):
+	def __init__(self, job):
+		Task.__init__(self, job, "waiting for dvdauthor to finalize")
+		
+	def run(self, callback, task_progress_changed):
+		print "waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks),str(self.job.resident_tasks))
+		if self.job.resident_tasks == 0:
+			callback(self, [])
 
 class BurnTaskPostcondition(Condition):
 	def check(self, task):
@@ -195,6 +218,49 @@ class DVDJob(Job):
 
 	def fromDescription(self, description):
 		nr_titles = int(description["nr_titles"])
+		authorxml = """
+<dvdauthor dest="%s">
+   <vmgm>
+      <menus>
+         <pgc>
+            <post> jump title 1; </post>
+         </pgc>
+      </menus>
+   </vmgm>
+   <titleset>
+      <titles>""" % (self.workspace+"/dvd")
+		for i in range(nr_titles):
+			chapterlist_entries = description["chapterlist%d_entries" % i]
+			chapterlist = [ ]
+			print str(chapterlist_entries)
+			for j in range(chapterlist_entries):
+				chapterlist.append(int(description["chapterlist%d_%d" % (i, j)]))
+			print str(chapterlist)
+			chapters = ','.join(["%d:%02d:%02d.%03d," % (p / (90000 * 3600), p % (90000 * 3600) / (90000 * 60), p % (90000 * 60) / 90000, (p % 90000) / 90) for p in chapterlist])
+
+			title_no = i+1
+			MakeFifoNode(self, title_no)
+			vob_tag = """file="%s/dvd_title_%d.mpg" chapters="%s" />""" % (self.workspace, title_no, chapters)
+						
+			if title_no < nr_titles:
+				post_tag = "> jump title %d;</post>" % ( title_no+1 )
+			else:
+				post_tag = " />"
+			authorxml += """
+         <pgc>
+            <vob %s
+            <post%s
+         </pgc>""" % (vob_tag, post_tag)
+	 	authorxml += """
+      </titles>
+   </titleset>
+</dvdauthor>
+"""
+		f = open(self.workspace+"/dvdauthor.xml", "w")
+		f.write(authorxml)
+		f.close()
+
+		DVDAuthorTask(self)
 
 		for i in range(nr_titles):
 			inputfile = description["inputfile%d" % i]
@@ -203,22 +269,18 @@ class DVDJob(Job):
 			for j in range(cutlist_entries):
 				cutlist.append(int(description["cutlist%d_%d" % (i, j)]))
 
-			chapterlist_entries = description["chapterlist%d_entries" % i]
-			chapterlist = [ ]
-			for j in range(chapterlist_entries):
-				chapterlist.append(int(description["chapterlist%d_%d" % (i, j)]))
-
-			demux = DemuxTask(self, inputfile = inputfile, cutlist = cutlist)
-
-			title_filename =  self.workspace + "/dvd_title_%d.mpg" % i
-
-			MplexTask(self, "dvd_title_%d.mpg" % i, demux)
+			link_name =  self.workspace + "/source_title_%d.ts" % (i+1)
+			LinkTS(self, inputfile, link_name)
+			demux = DemuxTask(self, inputfile = link_name, cutlist = cutlist)
+			title_filename =  self.workspace + "/dvd_title_%d.mpg" % (i+1)
+			MplexTask(self, title_filename, demux)
 			RemoveESFiles(self, demux)
-			DVDAuthorTask(self, [title_filename], chapterlist = chapterlist)
-			RemovePSFile(self, title_filename)
-		DVDAuthorFinalTask(self)
+			
+			#RemovePSFile(self, title_filename)
+		#DVDAuthorFinalTask(self)
+		WaitForResidentTasks(self)
 		BurnTask(self)
-		RemoveDVDFolder(self)
+		#RemoveDVDFolder(self)
 
 	def createDescription(self):
 		# self.cue is a list of titles, with 

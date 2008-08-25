@@ -19,10 +19,10 @@ class TitleList(Screen):
 		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		    <widget source="title_label" render="Label" position="6,48" size="436,24" font="Regular;18" />
-		    <widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="6,72" size="400,350">
+		    <widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="6,72" size="540,350">
 			<convert type="StaticMultiList" />
 		    </widget>
-		    <widget source="statusbar" render="Label" position="6,422" size="436,24" font="Regular;18" halign="left" />
+		    <widget source="statusbar" render="Label" position="6,422" size="548,24" font="Regular;18" halign="left" />
 		</screen>"""
 
 	def __init__(self, session, project = None):
@@ -48,7 +48,7 @@ class TitleList(Screen):
 		self["key_blue"] = StaticText(_("Save"))
 
 		self["title_label"] = StaticText(_("Table of content to be burned to DVD:"))
-		self["statusbar"] = StaticText(_("When complete, press Key 0 to burn the collection!"))
+		self["statusbar"] = StaticText(_("When complete, press record key to burn the collection!"))
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
@@ -79,8 +79,7 @@ class TitleList(Screen):
 			return None
 		t = self.project.addService(source)
 		self.updateTitleList()
-
-		self.editTitle(t)
+		#self.editTitle(t)
 
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
@@ -94,6 +93,7 @@ class TitleList(Screen):
 	def burnProject(self):
 		print "producing final cue sheet:"
 		cue = self.produceFinalCuesheet()
+		print str(cue)
 		import Process
 		job = Process.Burn(self.session, cue)
 		print cue
