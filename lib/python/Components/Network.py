@@ -30,7 +30,7 @@ class Network:
 			except AttributeError:
 				pass
 
-		print "self.ifaces:", self.ifaces
+		#print "self.ifaces:", self.ifaces
 		self.loadNetworkConfig()
 		#self.writeNetworkConfig()
 		#print ord(' ')
@@ -67,7 +67,7 @@ class Network:
 		fp = popen("ifconfig " + iface)
 		result = fp.readlines()
 		fp.close()
-		data = { 'up': False, 'dhcp': False }
+		data = { 'up': False, 'dhcp': False, 'preup' : False, 'postdown' : False }
 		for line in result:
 			ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, line))
 			netmask = self.regExpMatch(ipPattern, self.regExpMatch(netmaskLinePattern, line))
@@ -113,9 +113,9 @@ class Network:
 			if iface['up'] == True:
 				fp.write("auto " + ifacename + "\n")
 				self.configuredInterfaces.append(ifacename)
-			if iface['dhcp'] == True and iface['up'] == True:
+			if iface['dhcp'] == True:
 				fp.write("iface "+ ifacename +" inet dhcp\n")
-			if iface['dhcp'] == False and iface['up'] == True:
+			if iface['dhcp'] == False:
 				fp.write("iface "+ ifacename +" inet static\n")
 				if iface.has_key('ip'):
 					print tuple(iface['ip'])
@@ -125,6 +125,9 @@ class Network:
 						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
 			if iface.has_key("configStrings"):
 				fp.write("\n" + iface["configStrings"] + "\n")
+			if iface["preup"] is not False and not iface.has_key("configStrings"):
+				fp.write(iface["preup"])
+				fp.write(iface["postdown"])
 			fp.write("\n")				
 		fp.close()
 		self.writeNameserverConfig()
@@ -164,13 +167,15 @@ class Network:
 					ifaces[currif]["netmask"] = map(int, split[1].split('.'))
 				if (split[0] == "gateway"):
 					ifaces[currif]["gateway"] = map(int, split[1].split('.'))
-		
-		#self.configuredInterfaces = ifaces
+				if (split[0] == "pre-up"):
+					self.ifaces[currif]["preup"] = i
+				if (split[0] == "post-down"):
+					self.ifaces[currif]["postdown"] = i
+
 		print "read interfaces:", ifaces
 		for ifacename, iface in ifaces.items():
 			if self.ifaces.has_key(ifacename):
 				self.ifaces[ifacename]["dhcp"] = iface["dhcp"]
-
 		print "self.ifaces after loading:", self.ifaces
 
 	def loadNameserverConfig(self):
