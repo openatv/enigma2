@@ -390,23 +390,24 @@ class AdapterSetup(Screen, ConfigListScreen):
 
 	def ok(self):
 		iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.value)
-		if self.activateInterfaceEntry.value is True:
-			iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.value)
-			iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.value)
-			iNetwork.setAdapterAttribute(self.iface, "netmask", self.netmaskConfigEntry.value)
-			if self.hasGatewayConfigEntry.value:
-				iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
-			else:
-				iNetwork.removeAdapterAttribute(self.iface, "gateway")
-			if self.extended is not None and self.configStrings is not None:
-				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
-				self.ws.writeConfig()
+		#if self.activateInterfaceEntry.value is True:
+		iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.value)
+		iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.value)
+		iNetwork.setAdapterAttribute(self.iface, "netmask", self.netmaskConfigEntry.value)
+		if self.hasGatewayConfigEntry.value:
+			iNetwork.setAdapterAttribute(self.iface, "gateway", self.gatewayConfigEntry.value)
 		else:
-			iNetwork.removeAdapterAttribute(self.iface, "ip")
-			iNetwork.removeAdapterAttribute(self.iface, "netmask")
 			iNetwork.removeAdapterAttribute(self.iface, "gateway")
+		if self.extended is not None and self.configStrings is not None:
+			iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
+			self.ws.writeConfig()
+		#else:
+		#	iNetwork.removeAdapterAttribute(self.iface, "ip")
+		#	iNetwork.removeAdapterAttribute(self.iface, "netmask")
+		#	iNetwork.removeAdapterAttribute(self.iface, "gateway")
+		#	iNetwork.deactivateInterface(self.iface)
+		if self.activateInterfaceEntry.value is False:
 			iNetwork.deactivateInterface(self.iface)
-
 		iNetwork.deactivateNetworkConfig()
 		iNetwork.writeNetworkConfig()
 		iNetwork.activateNetworkConfig()
