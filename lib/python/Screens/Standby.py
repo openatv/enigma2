@@ -93,7 +93,7 @@ from time import time
 inTryQuitMainloop = False
 
 class TryQuitMainloop(MessageBox):
-	def __init__(self, session, retvalue=1, timeout=-1):
+	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
 		self.retval=retvalue
 		recordings = len(session.nav.getRecordings())
 		self.connected = False
@@ -102,13 +102,13 @@ class TryQuitMainloop(MessageBox):
 			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			if retvalue == 1:
-				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout)
+				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 			elif retvalue == 2:
-				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout)
+				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 			elif retvalue == 4:
 				pass
 			else:
-				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout)
+				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 			self.skinName = "MessageBox"
 			session.nav.record_event.append(self.getRecordEvent)
 			self.connected = True

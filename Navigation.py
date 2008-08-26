@@ -1,9 +1,11 @@
 from enigma import eServiceCenter, eServiceReference, pNavigation, getBestPlayableServiceReference, iPlayableService
 from Components.ParentalControl import parentalControl
 from Tools.BoundFunction import boundFunction
+from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, getFPWasTimerWakeup, clearFPWasTimerWakeup
+from time import time
 import RecordTimer
 import SleepTimer
-
+import Screens.Standby
 import NavigationInstance
 import ServiceReference
 
@@ -27,6 +29,19 @@ class Navigation:
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
 		self.RecordTimer = RecordTimer.RecordTimer()
+		if getFPWasTimerWakeup():
+			clearFPWasTimerWakeup()
+			if getFPWasTimerWakeup(): # sanity check to detect if the FP driver is working correct!
+				print "buggy fp driver detected!!! please update drivers.... ignore timer wakeup!"
+				setFPWakeuptime(0)
+			elif len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+				setFPWakeuptime(0x89ABCDEF)
+				if getFPWakeuptime() != 0x89ABCDEF: # sanity check to detect if the FP Atmel Firmware is working correct!
+					print "buggy atmel firmware detected!! atmel update needed... ignore fp timer wakeup!"
+					setFPWakeuptime(0)
+				elif not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
+					RecordTimer.RecordTimerEntry.TryQuitMainloop(0) # start shutdown handling
+		setFPWakeuptime(1)
 		self.SleepTimer = SleepTimer.SleepTimer()
 
 	def dispatchEvent(self, i):

@@ -467,7 +467,7 @@ def runScreenTest():
 
 	profile("wakeup")
 	from time import time
-	from Tools.DreamboxHardware import setFPWakeuptime
+	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
@@ -478,12 +478,16 @@ def runScreenTest():
 		if x != -1
 	]
 	wakeupList.sort()
-	if len(wakeupList):
+	if len(wakeupList) and getFPWakeuptime(): # getFPWakeuptime returns 1 when the sanity check in Navigation.py was okay..
 		startTime = wakeupList.pop(0)
-		if (startTime - nowTime < 330): # no time to switch box back on
-			setFPWakeuptime(nowTime + 30) # so switch back on in 30 seconds
+		if (startTime - nowTime) < 330: # no time to switch box back on
+			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			setFPWakeuptime(startTime - 300)
+			wptime = startTime - 300
+		setFPWakeuptime(wptime)
+	else:
+		print "buggy atmel firmware detected... dont set a wakeup time!"
+		setFPWakeuptime(0)
 	profile("stopService")
 	session.nav.stopService()
 	profile("nav shutdown")

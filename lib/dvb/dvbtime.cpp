@@ -15,26 +15,61 @@ static time_t prev_time;
 
 void setRTC(time_t time)
 {
-	int fd = open("/dev/dbox/fp0", O_RDWR);
-	if ( fd >= 0 )
+	FILE *f = fopen("/proc/stb/fp/rtc", "w");
+	if (f)
 	{
-		if ( ::ioctl(fd, FP_IOCTL_SET_RTC, (void*)&time ) < 0 )
-			eDebug("FP_IOCTL_SET_RTC failed(%m)");
+		time_t wakeup=0;
+		FILE *f2 = fopen("/proc/stb/fp/wakeup_time", "r");
+		if (f2)
+		{
+			fscanf(f2, "%u", &wakeup);
+			fclose(f2);
+		}
+		if (wakeup) // atmel firmware okay?
+		{
+			if (fprintf(f, "%u", time))
+				prev_time = time;
+			else
+				eDebug("write /proc/stb/fp/rtc failed (%m)");
+			fclose(f);
+		}
 		else
-			prev_time = time;
-		close(fd);
+			eDebug("dont set rtc because of buggy atmel firmware!");
+	}
+	else
+	{
+		int fd = open("/dev/dbox/fp0", O_RDWR);
+		if ( fd >= 0 )
+		{
+			if ( ::ioctl(fd, FP_IOCTL_SET_RTC, (void*)&time ) < 0 )
+				eDebug("FP_IOCTL_SET_RTC failed(%m)");
+			else
+				prev_time = time;
+			close(fd);
+		}
 	}
 }
 
 time_t getRTC()
 {
 	time_t rtc_time=0;
-	int fd = open("/dev/dbox/fp0", O_RDWR);
-	if ( fd >= 0 )
+	FILE *f = fopen("/proc/stb/fp/rtc", "r");
+	if (f)
 	{
-		if ( ::ioctl(fd, FP_IOCTL_GET_RTC, (void*)&rtc_time ) < 0 )
-			eDebug("FP_IOCTL_GET_RTC failed(%m)");
-		close(fd);
+		// sanity check to detect corrupt atmel firmware
+		if (fscanf(f, "%u", &rtc_time) != 1)
+			eDebug("read /proc/stb/fp/rtc failed (%m)");
+		fclose(f);
+	}
+	else
+	{
+		int fd = open("/dev/dbox/fp0", O_RDWR);
+		if ( fd >= 0 )
+		{
+			if ( ::ioctl(fd, FP_IOCTL_GET_RTC, (void*)&rtc_time ) < 0 )
+				eDebug("FP_IOCTL_GET_RTC failed(%m)");
+			close(fd);
+		}
 	}
 	return rtc_time != prev_time ? rtc_time : 0;
 }
