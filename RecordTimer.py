@@ -79,7 +79,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		RecordTimerEntry.receiveRecordEvents = False
 
 	@staticmethod
-	def TryQuitMainloop():
+	def TryQuitMainloop(default_yes = True):
 		if not RecordTimerEntry.receiveRecordEvents:
 			print "RecordTimer.TryQuitMainloop"
 			NavigationInstance.instance.record_event.append(RecordTimerEntry.staticGotRecordEvent)
@@ -88,7 +88,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# other timers start in a few seconds
 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
 			# send normal notification for the case the user leave the standby now..
-			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop)
+			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False, dirname = None):
@@ -271,9 +271,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby: # not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
-			if self.afterEvent == AFTEREVENT.DEEPSTANDBY:
+			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
-					if Screens.Standby.inStandby: # not in standby
+					if Screens.Standby.inStandby: # in standby
 						RecordTimerEntry.TryQuitMainloop() # start shutdown handling without screen
 					else:
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
