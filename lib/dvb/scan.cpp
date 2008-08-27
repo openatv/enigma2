@@ -653,7 +653,7 @@ void eDVBScan::channelDone()
 		if (m_abort_current_pmt)
 		{
 			m_abort_current_pmt = false;
-			PMTready(-1);
+			PMTready(-2);
 		}
 		return;
 	}
