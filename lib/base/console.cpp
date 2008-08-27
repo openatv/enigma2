@@ -371,18 +371,17 @@ void eConsoleAppContainer::readyWrite(int what)
 	if (what&eSocketNotifier::Write && outbuf.size() )
 	{
 		queue_data d = outbuf.front();
-		outbuf.pop();
-		if ( ::write( fd[1], d.data, d.len ) != d.len )
-		{
-			/* emit */ dataSent(-1);
-//			eDebug("writeError");
-		}
+		int wr = ::write( fd[1], d.data+d.dataSent, d.len-d.dataSent );
+		if (wr < 0)
+			eDebug("eConsoleAppContainer write failed (%m)");
 		else
+			d.dataSent += wr;
+		if (d.dataSent == d.len)
 		{
+			outbuf.pop();
+			delete [] d.data;
 			/* emit */ dataSent(0);
-//			eDebug("write ok");
 		}
-		delete [] d.data;
 	}
 	if ( !outbuf.size() )
 		out->stop();
