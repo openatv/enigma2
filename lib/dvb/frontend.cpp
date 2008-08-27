@@ -2351,13 +2351,14 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 
 bool eDVBFrontend::setSlotInfo(ePyObject obj)
 {
-	ePyObject Id, Descr, Enabled;
-	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 3)
+	ePyObject Id, Descr, Enabled, IsDVBS2;
+	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 4)
 		goto arg_error;
 	Id = PyTuple_GET_ITEM(obj, 0);
 	Descr = PyTuple_GET_ITEM(obj, 1);
 	Enabled = PyTuple_GET_ITEM(obj, 2);
-	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled))
+	IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
+	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2))
 		goto arg_error;
 	strcpy(m_description, PyString_AS_STRING(Descr));
 	m_slotid = PyInt_AsLong(Id);
@@ -2367,7 +2368,7 @@ bool eDVBFrontend::setSlotInfo(ePyObject obj)
 		!!strstr(m_description, "Alps BSBE2") ||
 		!!strstr(m_description, "Alps -S") ||
 		!!strstr(m_description, "BCM4501");
-	m_can_handle_dvbs2 = !!strstr(m_description, "Alps BSBE2") || !!strstr(m_description, "BCM4501");
+	m_can_handle_dvbs2 = IsDVBS2 == Py_True;
 	eDebug("setSlotInfo for dvb frontend %d to slotid %d, descr %s, need rotorworkaround %s, enabled %s, DVB-S2 %s",
 		m_dvbid, m_slotid, m_description, m_need_rotor_workaround ? "Yes" : "No", m_enabled ? "Yes" : "No", m_can_handle_dvbs2 ? "Yes" : "No" );
 	return true;
