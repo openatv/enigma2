@@ -12,7 +12,7 @@
 #endif
 #include <lib/base/eerror.h>
 
-//#define SEC_DEBUG
+#define SEC_DEBUG
 
 #ifdef SEC_DEBUG
 #define eSecDebug(arg...) eDebug(arg)
@@ -539,14 +539,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 						// check if voltage is already correct..
 						compare.voltage = vlt;
-						compare.steps = +8;
+						compare.steps = +7;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 
 						// check if voltage is disabled
 						compare.voltage = iDVBFrontend::voltageOff;
-						compare.steps = +5;
+						compare.steps = +4;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS) );
 
 						// voltage is changed... use DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, vlt) );
@@ -557,6 +556,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, vlt) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS]) );
 
+						sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS) );
 						for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
 						{
 							if ( send_mask & 4 )
