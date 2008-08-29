@@ -299,35 +299,38 @@ void eDVBScan::PMTready(int err)
 					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 							desc != (*es)->getDescriptors()->end(); ++desc)
 					{
-						switch ((*desc)->getTag())
+						uint8_t tag = (*desc)->getTag();
+						if (!isaudio && !isvideo)
 						{
-						case DTS_DESCRIPTOR:
-						case AAC_DESCRIPTOR:
-							isaudio = 1;
-						case AC3_DESCRIPTOR:
-							isaudio = 1;
-							break;
-						case CA_DESCRIPTOR:
-							is_scrambled = 1;
-							break;
-						case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
-						{
-								/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
-							if ((*desc)->getLength() != 4)
-								break;
-							unsigned char descr[6];
-							(*desc)->writeToBuffer(descr);
-							int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
-							switch (format_identifier)
+							switch (tag)
 							{
-							case 0x41432d33:
+							case DTS_DESCRIPTOR:
+							case AAC_DESCRIPTOR:
 								isaudio = 1;
-							default:
+							case AC3_DESCRIPTOR:
+								isaudio = 1;
+							break;
+							case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
+							{
+									/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
+								if ((*desc)->getLength() != 4)
+									break;
+								unsigned char descr[6];
+								(*desc)->writeToBuffer(descr);
+								int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
+								switch (format_identifier)
+								{
+								case 0x41432d33:
+									isaudio = 1;
+								default:
+									break;
+								}
 								break;
 							}
-							break;
+							}
 						}
-						}
+						if (tag == CA_DESCRIPTOR)
+							is_scrambled = 1;
 					}
 					break;
 				}
