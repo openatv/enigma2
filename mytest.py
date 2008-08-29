@@ -478,16 +478,13 @@ def runScreenTest():
 		if x != -1
 	]
 	wakeupList.sort()
-	if len(wakeupList) and getFPWakeuptime(): # getFPWakeuptime returns 1 when the sanity check in Navigation.py was okay..
+	if len(wakeupList):
 		startTime = wakeupList.pop(0)
 		if (startTime - nowTime) < 330: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			wptime = startTime - 300
 		setFPWakeuptime(wptime)
-	else:
-		print "buggy atmel firmware detected... dont set a wakeup time!"
-		setFPWakeuptime(0)
 	profile("stopService")
 	session.nav.stopService()
 	profile("nav shutdown")
