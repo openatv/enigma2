@@ -232,43 +232,46 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						//break; fall through !!!
 					case 0x06: // PES Private
 					case 0x81: // user private
-							/* PES private can contain AC-3, DTS or lots of other stuff.
-							   check descriptors to get the exact type. */
 						for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 								desc != (*es)->getDescriptors()->end(); ++desc)
 						{
-							switch ((*desc)->getTag())
+							uint8_t tag = (*desc)->getTag();
+							if (!isaudio && !isvideo)
 							{
-							case SUBTITLING_DESCRIPTOR:
-							{
-								SubtitlingDescriptor *d = (SubtitlingDescriptor*)(*desc);
-								const SubtitlingList *list = d->getSubtitlings();
-								subtitleStream s;
-								s.pid = (*es)->getPid();
-								for (SubtitlingConstIterator it(list->begin()); it != list->end(); ++it)
+								/* PES private can contain AC-3, DTS or lots of other stuff.
+								   check descriptors to get the exakt type. */
+								switch (tag)
 								{
-									s.subtitling_type = (*it)->getSubtitlingType();
-									s.composition_page_id = (*it)->getCompositionPageId();
-									s.ancillary_page_id = (*it)->getAncillaryPageId();
-									s.language_code = (*it)->getIso639LanguageCode();
-//									eDebug("add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
-//										s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
-									program.subtitleStreams.push_back(s);
-								}
-								break;
-							}
-							case TELETEXT_DESCRIPTOR:
-								if ( program.textPid == -1 || (*es)->getPid() == cached_tpid )
+								case SUBTITLING_DESCRIPTOR:
 								{
+									SubtitlingDescriptor *d = (SubtitlingDescriptor*)(*desc);
+									const SubtitlingList *list = d->getSubtitlings();
 									subtitleStream s;
-									s.subtitling_type = 0x01; // EBU TELETEXT SUBTITLES
-									s.pid = program.textPid = (*es)->getPid();
-									TeletextDescriptor *d = (TeletextDescriptor*)(*desc);
-									const VbiTeletextList *list = d->getVbiTeletexts();
-									for (VbiTeletextConstIterator it(list->begin()); it != list->end(); ++it)
+									s.pid = (*es)->getPid();
+									for (SubtitlingConstIterator it(list->begin()); it != list->end(); ++it)
 									{
-										switch((*it)->getTeletextType())
+										s.subtitling_type = (*it)->getSubtitlingType();
+										s.composition_page_id = (*it)->getCompositionPageId();
+										s.ancillary_page_id = (*it)->getAncillaryPageId();
+										s.language_code = (*it)->getIso639LanguageCode();
+	//									eDebug("add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
+	//										s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
+										program.subtitleStreams.push_back(s);
+									}
+									break;
+								}
+								case TELETEXT_DESCRIPTOR:
+									if ( program.textPid == -1 || (*es)->getPid() == cached_tpid )
+									{
+										subtitleStream s;
+										s.subtitling_type = 0x01; // EBU TELETEXT SUBTITLES
+										s.pid = program.textPid = (*es)->getPid();
+										TeletextDescriptor *d = (TeletextDescriptor*)(*desc);
+										const VbiTeletextList *list = d->getVbiTeletexts();
+										for (VbiTeletextConstIterator it(list->begin()); it != list->end(); ++it)
 										{
+											switch((*it)->getTeletextType())
+											{
 											case 0x02: // Teletext subtitle page
 											case 0x05: // Teletext subtitle page for hearing impaired pepople
 												s.language_code = (*it)->getIso639LanguageCode();
@@ -278,64 +281,72 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 //													s.language_code.c_str(), s.pid, s.teletext_page_number, s.teletext_magazine_number);
 												program.subtitleStreams.push_back(s);
 												break;
+											}
 										}
 									}
-								}
-								break;
-							case DTS_DESCRIPTOR:
-								isaudio = 1;
-								audio.type = audioStream::atDTS;
-								break;
-							case AAC_DESCRIPTOR:
-								isaudio = 1;
-								audio.type = audioStream::atAAC;
-								break;
-							case AC3_DESCRIPTOR:
-								isaudio = 1;
-								audio.type = audioStream::atAC3;
-								break;
-							case ISO_639_LANGUAGE_DESCRIPTOR:
-								if (!isvideo)
-								{
-									const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
-										/* use last language code */
-									for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
-										audio.language_code = (*i)->getIso639LanguageCode();
-								}
-								break;
-							case STREAM_IDENTIFIER_DESCRIPTOR:
-								audio.component_tag =
-									video.component_tag =
-										((StreamIdentifierDescriptor*)*desc)->getComponentTag();
-								break;
-							case CA_DESCRIPTOR:
-							{
-								CaDescriptor *descr = (CaDescriptor*)(*desc);
-								program.caids.insert(descr->getCaSystemId());
-								break;
-							}
-							case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
-							{
-									/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
-								if ((*desc)->getLength() != 4)
 									break;
-								unsigned char descr[6];
-								(*desc)->writeToBuffer(descr);
-								int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
-								switch (format_identifier)
-								{
-								case 0x41432d33:
+								case DTS_DESCRIPTOR:
+									isaudio = 1;
+									audio.type = audioStream::atDTS;
+									break;
+								case AAC_DESCRIPTOR:
+									isaudio = 1;
+									audio.type = audioStream::atAAC;
+									break;
+								case AC3_DESCRIPTOR:
 									isaudio = 1;
 									audio.type = audioStream::atAC3;
 									break;
+								case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
+								{
+										/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
+									if ((*desc)->getLength() != 4)
+										break;
+									unsigned char descr[6];
+									(*desc)->writeToBuffer(descr);
+									int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
+									switch (format_identifier)
+									{
+									case 0x41432d33:
+										isaudio = 1;
+										audio.type = audioStream::atAC3;
+										break;
+									default:
+										break;
+									}
+									break;
+								}
 								default:
 									break;
 								}
-								break;
 							}
+							switch (tag)
+							{
+								case ISO_639_LANGUAGE_DESCRIPTOR:
+									if (!isvideo)
+									{
+										const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
+											/* use last language code */
+										for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
+											audio.language_code = (*i)->getIso639LanguageCode();
+									}
+									break;
+								case STREAM_IDENTIFIER_DESCRIPTOR:
+									audio.component_tag =
+										video.component_tag =
+											((StreamIdentifierDescriptor*)*desc)->getComponentTag();
+									break;
+								case CA_DESCRIPTOR:
+								{
+									CaDescriptor *descr = (CaDescriptor*)(*desc);
+									program.caids.insert(descr->getCaSystemId());
+									break;
+								}
+								default:
+									break;
 							}
+							break;
 						}
-						break;
 					}
 					if (isaudio)
 					{
