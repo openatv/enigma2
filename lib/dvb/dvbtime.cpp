@@ -18,23 +18,11 @@ void setRTC(time_t time)
 	FILE *f = fopen("/proc/stb/fp/rtc", "w");
 	if (f)
 	{
-		time_t wakeup=0;
-		FILE *f2 = fopen("/proc/stb/fp/wakeup_time", "r");
-		if (f2)
-		{
-			fscanf(f2, "%u", &wakeup);
-			fclose(f2);
-		}
-		if (wakeup) // atmel firmware okay?
-		{
-			if (fprintf(f, "%u", time))
-				prev_time = time;
-			else
-				eDebug("write /proc/stb/fp/rtc failed (%m)");
-			fclose(f);
-		}
+		if (fprintf(f, "%u", time))
+			prev_time = time;
 		else
-			eDebug("dont set rtc because of buggy atmel firmware!");
+			eDebug("write /proc/stb/fp/rtc failed (%m)");
+		fclose(f);
 	}
 	else
 	{
