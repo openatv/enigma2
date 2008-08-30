@@ -306,10 +306,9 @@ void eDVBScan::PMTready(int err)
 							{
 							case DTS_DESCRIPTOR:
 							case AAC_DESCRIPTOR:
-								isaudio = 1;
 							case AC3_DESCRIPTOR:
 								isaudio = 1;
-							break;
+								break;
 							case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
 							{
 									/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
