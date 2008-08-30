@@ -345,8 +345,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 								default:
 									break;
 							}
-							break;
 						}
+						break;
 					}
 					if (isaudio)
 					{
