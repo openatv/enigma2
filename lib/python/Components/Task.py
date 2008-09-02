@@ -160,7 +160,8 @@ class Task(object):
 		from enigma import eConsoleAppContainer
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.get().append(self.processFinished)
-		self.container.dataAvail.get().append(self.processOutput)
+		self.container.stdoutAvail.get().append(self.processStdout)
+		self.container.stderrAvail.get().append(self.processStderr)
 
 		assert self.cmd is not None
 		assert len(self.args) >= 1
@@ -177,6 +178,12 @@ class Task(object):
 
 	def cleanup(self, failed):
 		pass
+	
+	def processStdout(self, data):
+		self.processOutput(data)
+		
+	def processStderr(self, data):
+		self.processOutput(data)
 
 	def processOutput(self, data):
 		self.output_line += data

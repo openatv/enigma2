@@ -59,7 +59,10 @@ eConsoleAppContainer::eConsoleAppContainer()
 :pid(-1), killstate(0), in(0), out(0), err(0)
 {
 	for (int i=0; i < 3; ++i)
+	{
 		fd[i]=-1;
+		filefd[i]=-1;
+	}
 }
 
 static char brakets[][2] = {
@@ -244,6 +247,12 @@ void eConsoleAppContainer::kill()
 	delete out;
 	delete err;
 	in=out=err=0;
+
+	for (int i=0; i < 3; ++i)
+	{
+		if ( filefd[i] > 0 )
+			close(filefd[i]);
+	}
 }
 
 void eConsoleAppContainer::sendCtrlC()
@@ -304,6 +313,9 @@ void eConsoleAppContainer::readyRead(int what)
 		{
 			buf[rd]=0;
 			/*emit*/ dataAvail(buf);
+			stdoutAvail(buf);
+			if ( filefd[1] > 0 )
+				::write(filefd[1], buf, rd);
 			if (!hungup)
 				break;
 		}
@@ -343,8 +355,27 @@ void eConsoleAppContainer::readyErrRead(int what)
 				eDebug("%d = %c (%02x)", i, buf[i], buf[i] );*/
 			buf[rd]=0;
 			/*emit*/ dataAvail(buf);
+			stderrAvail(buf);
 		}
 	}
+}
+
+void eConsoleAppContainer::dumpToFile( PyObject *py_filename )
+{
+	char *filename = PyString_AsString(py_filename);
+	filefd[1] = open(filename, O_WRONLY|O_CREAT|O_TRUNC, 0644);
+	eDebug("eConsoleAppContainer::dumpToFile open(%s, O_WRONLY|O_CREAT|O_TRUNC, 0644)=%i", filename, filefd[1]);
+}
+
+void eConsoleAppContainer::readFromFile( PyObject *py_filename )
+{
+	char *filename = PyString_AsString(py_filename);
+	char readbuf[32*1024];
+	filefd[0] = open(filename, O_RDONLY);
+	int rsize = read(filefd[0], readbuf, 32*1024);
+	eDebug("eConsoleAppContainer::readFromFile open(%s, O_RDONLY)=%i, read: %i", filename, filefd[0], rsize);
+	if ( filefd[0] > 0 && rsize > 0 )
+		write(readbuf, rsize);
 }
 
 void eConsoleAppContainer::write( const char *data, int len )
@@ -380,9 +411,30 @@ void eConsoleAppContainer::readyWrite(int what)
 		{
 			outbuf.pop();
 			delete [] d.data;
+			if ( filefd[0] == -1 )
 			/* emit */ dataSent(0);
 		}
 	}
 	if ( !outbuf.size() )
-		out->stop();
+	{
+		if ( filefd[0] > 0 )
+		{
+			char readbuf[32*1024];
+			int rsize = read(filefd[0], readbuf, 32*1024);
+			if ( rsize > 0 )
+				write(readbuf, rsize);
+			else
+			{
+				close(filefd[0]);
+				filefd[0] = -1;
+				::close(fd[1]);
+				eDebug("readFromFile done - closing eConsoleAppContainer stdin pipe");
+				fd[1]=-1;
+				dataSent(0);
+				out->stop();
+			}
+		}
+		else
+			out->stop();
+	}
 }

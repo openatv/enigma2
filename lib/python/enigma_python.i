@@ -144,6 +144,8 @@ typedef long time_t;
 // TODO: embed these...
 %immutable eConsoleAppContainer::appClosed;
 %immutable eConsoleAppContainer::dataAvail;
+%immutable eConsoleAppContainer::stdoutAvail;
+%immutable eConsoleAppContainer::stderrAvail;
 %immutable eConsoleAppContainer::dataSent;
 %immutable eButton::selected;
 %immutable eInput::changed;

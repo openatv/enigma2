@@ -24,6 +24,7 @@ class eConsoleAppContainer: public Object
 {
 #ifndef SWIG
 	int fd[3];
+	int filefd[3];
 	int pid;
 	int killstate;
 	std::string m_cwd;
@@ -46,8 +47,12 @@ public:
 	void sendCtrlC();
 	void write( const char *data, int len );
 	void write( PyObject *data );
+	void readFromFile( PyObject *py_filename );
+	void dumpToFile( PyObject *py_filename );
 	bool running() { return (fd[0]!=-1) && (fd[1]!=-1) && (fd[2]!=-1); }
 	PSignal1<void, const char*> dataAvail;
+	PSignal1<void, const char*> stdoutAvail;
+	PSignal1<void, const char*> stderrAvail;
 	PSignal1<void,int> dataSent;
 	PSignal1<void,int> appClosed;
 };
