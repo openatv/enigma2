@@ -91,12 +91,15 @@ class DefaultServicesScannerPlugin(ScanSetup):
 
 	def scanFinished(self, value = None):
 		print "finished"
+		print "self.scanIndex:", self.scanIndex
 		db = eDVBDB.getInstance()
-		satint = self.multiscanlist[self.scanIndex][0]
-		print "scanned sat:", satint
-		db.saveServicelist("/tmp/lamedb." + str(satint))
-		file = open("/tmp/sat" + str(satint) + ".info", "w")
-		xml = """<default>
+		print "self.multiscanlist:", self.multiscanlist
+		if len(self.multiscanlist) - 1 >= self.scanIndex and len(self.multiscanlist[self.scanIndex]) > 0:
+			satint = self.multiscanlist[self.scanIndex][0]
+			print "scanned sat:", satint
+			db.saveServicelist("/tmp/lamedb." + str(satint))
+			file = open("/tmp/sat" + str(satint) + ".info", "w")
+			xml = """<default>
 	<prerequisites>
 		<tag type="services" />
 		<bcastsystem type="DVB-S" />
@@ -113,8 +116,8 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		</file>
 	</files>
 </default>""" % (satint, "Dream", nimmanager.getSatDescription(satint), satint)
-		file.write(xml)
-		file.close()
+			file.write(xml)
+			file.close()
 		
 		self.scanIndex += 1
 		if self.scanIndex + 1 >= len(self.multiscanlist):
