@@ -1,13 +1,67 @@
 import DVDProject, TitleList, TitleCutter
 
 from Screens.Screen import Screen
+from Screens.ChoiceBox import ChoiceBox
+from Screens.InputBox import InputBox
+from Screens.MessageBox import MessageBox
 from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
+from Components.Sources.Progress import Progress
+from Components.FileList import FileList
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 
-class TitleList(Screen):
+class WaitBox(MessageBox):
+	def __init__(self, session, callback):
+		MessageBox.__init__(self, session, text=_("Preparing... Please wait"), type = MessageBox.TYPE_INFO)
+		self.skinName = "MessageBox"
+		self.CB = callback
+		self.onShown.append(self.runCB)
+	
+	def ok(self):
+		pass
 
+	def runCB(self):
+		from enigma import eTimer
+		self.delayTimer = eTimer()
+		self.delayTimer.callback.append(self.CB)
+		self.delayTimer.start(10,1)
+
+class FileBrowser(Screen):
+	skin = """
+	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
+		<widget name="filelist" position="0,0" size="520,376" scrollbarMode="showOnDemand" />
+	</screen>"""
+	def __init__(self, session, currDir = None, projectBrowser = False):
+		Screen.__init__(self, session)
+		self.projectBrowser = projectBrowser
+		if not currDir:
+			currDir = "/"
+
+		if projectBrowser:
+			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(ddvdp\.xml)")
+		else:
+			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)")
+		self["filelist"] = self.filelist
+
+		self["FilelistActions"] = ActionMap(["OkCancelActions"],
+			{
+				"ok": self.ok,
+				"cancel": self.exit
+			})
+
+	def ok(self):
+		if self.filelist.canDescent():
+			self.filelist.descent()
+		else:
+			ret = self["filelist"].getCurrentDirectory() + '/' + self["filelist"].getFilename()
+			self.close(ret,self.projectBrowser)
+
+	def exit(self):
+		self.close(None)
+
+
+class TitleList(Screen):
 	skin = """
 		<screen position="90,83" size="560,445" title="DVD Tool" >
 		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -18,28 +72,29 @@ class TitleList(Screen):
 		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget source="title_label" render="Label" position="6,48" size="436,24" font="Regular;18" />
-		    <widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="6,72" size="540,350">
+		    <widget source="title_label" render="Label" position="6,48" size="540,38" font="Regular;18" />
+		    <widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="540,312">
 			<convert type="StaticMultiList" />
 		    </widget>
-		    <widget source="statusbar" render="Label" position="6,422" size="548,24" font="Regular;18" halign="left" />
+		    <widget source="space_bar" render="Progress" position="10,410" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
+		    <widget source="space_label" render="Label" position="40,414" size="480,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
 		</screen>"""
 
 	def __init__(self, session, project = None):
 		Screen.__init__(self, session)
-
-		if project is not None:
-			self.project = project
-		else:
-			self.newProject()
-
+		
 		self["titleactions"] = HelpableActionMap(self, "DVDTitleList",
 			{
-				"addTitle": (self.addTitle, _("Add a new title"), _("Add title...")),
-				"editTitle": (self.editTitle, _("Edit current title"), _("Edit title...")),
+				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
+				"editTitle": (self.editTitle, _("Edit chapters of current title"), _("Edit title")),
 				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
-				"saveProject": (self.saveProject, _("Save current project to disk"), _("Save...")),
-				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn")),
+				"saveProject": (self.saveProject, _("Save current project to disk"), _("Save")),
+				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn DVD")),
+			})
+
+		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
+			{
+				"contextMenu": (self.showMenu, _("menu")),
 			})
 
 		self["key_red"] = StaticText(_("Add title"))
@@ -47,8 +102,9 @@ class TitleList(Screen):
 		self["key_yellow"] = StaticText(_("Remove title"))
 		self["key_blue"] = StaticText(_("Save"))
 
-		self["title_label"] = StaticText(_("Table of content to be burned to DVD:"))
-		self["statusbar"] = StaticText(_("When complete, press record key to burn the collection!"))
+		self["title_label"] = StaticText()
+		self["space_label"] = StaticText()
+		self["space_bar"] = Progress()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
@@ -56,30 +112,92 @@ class TitleList(Screen):
 			})
 
 		#Action("addTitle", self.addTitle)
+		
+		if project is not None:
+			self.project = project
+		else:
+			self.newProject()
 
 		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
 		self.updateTitleList()
-
+		self.updateCollectionName()
+				
 		#self["addTitle"] = ActionButton("titleactions", "addTitle")
 		#self["editTitle"] = ActionButton("titleactions", "editTitle")
 		#self["removeCurrentTitle"] = ActionButton("titleactions", "removeCurrentTitle")
 		#self["saveProject"] = ActionButton("titleactions", "saveProject")
 		#self["burnProject"] = ActionButton("titleactions", "burnProject")
+		
+	def showMenu(self):
+		menu = []
+		menu.append((_("Add a new title"), "addtitle"));
+		menu.append((_("Remove title"), "removetitle"));
+		menu.append((_("Edit chapters of current title"), "edittitle"));
+		menu.append((_("Set collection name"), "setname"));
+		menu.append((_("Set menu background"), "setbackground"));
+		menu.append((_("Save current project to disk"), "save"));
+		menu.append((_("Load saved project from disk"), "load"));
+		menu.append((_("Preview menu"), "previewMenu"));
+		menu.append((_("Burn DVD"), "burn"));
+		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
+
+	def menuCallback(self, choice):
+		if choice is None:
+			return
+
+		if choice[1] == "removetitle":
+			self.removeCurrentTitle()
+		elif choice[1] == "addtitle":
+			self.addTitle()
+		elif choice[1] == "edittitle":
+			self.editTitle()
+		elif choice[1] == "setname":
+			self.setName()
+		elif choice[1] == "setbackground":
+			self.showFileBrowser(False)
+		elif choice[1] == "save":
+			self.saveProject()
+		elif choice[1] == "load":
+			self.showFileBrowser(True)
+		elif choice[1] == "previewMenu":
+			self.previewMenu()
+		elif choice[1] == "burn":
+			self.burnProject()
+
+	def setName(self):
+		self.session.openWithCallback(self.setNameCallback, InputBox, title=_("Set collection name"), text=self.project.name, maxSize=False, visible_width = 56)
+		
+	def setNameCallback(self, name):
+		if name is not None:
+			self.project.name = name
+			self.updateCollectionName()
 
 	def newProject(self):
 		self.project = DVDProject.DVDProject()
 		self.project.titles = [ ]
+		self.project.session = self.session
+		self.updateCollectionName()
+
+	def updateCollectionName(self):
+		self["title_label"].text = _("Table of content for collection") + " \"" + self.project.name + "\":"
 
 	def addTitle(self):
 		from Screens.MovieSelection import MovieSelection
-		self.session.openWithCallback(self.selectedSource, MovieSelection)
+		class MovieSelectionNoMenu(MovieSelection):
+			def __init__(self, session):
+				MovieSelection.__init__(self, session)
+				self.skinName = "MovieSelection"
+
+			def doContext(self):
+				print "context menu forbidden inside DVDBurn to prevent calling multiple instances"
+				
+		self.session.openWithCallback(self.selectedSource, MovieSelectionNoMenu)
 
 	def selectedSource(self, source):
 		if source is None:
 			return None
 		t = self.project.addService(source)
-		self.updateTitleList()
-		#self.editTitle(t)
+		self.editTitle(t, readOnly=True)
 
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
@@ -88,92 +206,86 @@ class TitleList(Screen):
 			self.updateTitleList()
 
 	def saveProject(self):
-		pass
+		self.project.saveProject("/testProgs/dvd/")
 
 	def burnProject(self):
-		print "producing final cue sheet:"
-		cue = self.produceFinalCuesheet()
-		print str(cue)
+		self.project.waitboxref = self.project.session.open(WaitBox,self.burnProjectCB)
+
+	def burnProjectCB(self):
 		import Process
-		job = Process.Burn(self.session, cue)
-		print cue
+		job = Process.Burn(self.session, self.project)
 		from Screens.TaskView import JobView
 		self.session.open(JobView, job)
 
+	def previewMenu(self):
+		self.project.waitboxref = self.project.session.open(WaitBox,self.previewMenuCB)
+		
+	def previewMenuCB(self):
+		import Process
+		job = Process.PreviewMenu(self.session, self.project)
+
 	def updateTitleList(self):
 		res = [ ]
+		totalsize = 0
 		for title in self.project.titles:
-			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 10, 400, 50, 0, RT_HALIGN_LEFT, title.name)  ]
+			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 10, 500, 50, 0, RT_HALIGN_LEFT, title.name)  ]
 			res.append(a)
-
+			totalsize += title.estimatedDiskspace
 		self["titles"].list = res
+		self.updateSize(totalsize)
+		
+	def updateSize(self, totalsize):
+		size = int((totalsize/1024)/1024)
+		max_SL = 4370
+		max_DL = 7950
+		if size > max_DL:
+			percent = 100 * size / float(max_DL)
+			self["space_label"].text = "%d MB - " % size + _("exceeds dual layer medium!") + " (%.2f%% " % (100-percent) + _("free") + ")"
+			self["space_bar"].value = int(percent)
+		elif size > max_SL:
+			percent = 100 * size / float(max_DL)
+			self["space_label"].text = "%d MB  " % size + _("of a DUAL layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
+			self["space_bar"].value = int(percent)
+		elif size < max_SL:
+			percent = 100 * size / float(max_SL)
+			self["space_label"].text = "%d MB " % size + _("of a SINGLE layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
+			self["space_bar"].value = int(percent)
 
 	def getCurrentTitle(self):
 		t = self["titles"].getCurrent()
 		return t and t[0]
 
-	def editTitle(self, title = None):
+	def editTitle(self, title = None, readOnly = False):
 		t = title or self.getCurrentTitle()
 		if t is not None:
 			self.current_edit_title = t
-			self.session.openWithCallback(self.titleEditDone, TitleCutter.TitleCutter, t)
+			if readOnly:
+				self.session.openWithCallback(self.titleEditDone, TitleCutter.CutlistReader, t)
+			else:
+				self.session.openWithCallback(self.titleEditDone, TitleCutter.TitleCutter, t)
 
 	def titleEditDone(self, cutlist):
 		t = self.current_edit_title
-		t.cutlist = cutlist
-		print "title edit of %s done, resulting cutlist:" % (t.source.toString()), t.cutlist
+		t.cuesheet = cutlist
+		t.produceFinalCuesheet()
+		print "title edit of %s done, resulting cutlist:" % (t.source.toString()), t.cutlist, "chaptermarks:", t.chaptermarks
+		self.updateTitleList()
 
 	def leave(self):
 		self.close()
 
-	def produceFinalCuesheet(self):
-		res = [ ]
-		for title in self.project.titles:
-			path = title.source.getPath()
-			print ">>> path:", path
-			cutlist = title.cutlist
-
-			# our demuxer expects *stricly* IN,OUT lists.
-			first = True
-			currently_in = False
-			CUT_TYPE_IN = 0
-			CUT_TYPE_OUT = 1
-			CUT_TYPE_MARK = 2
-			CUT_TYPE_LAST = 3
-
-			accumulated_in = 0
-			accumulated_at = 0
-			last_in = 0
-
-			res_cutlist = [ ]
-
-			res_chaptermarks = [0]
-
-			for (pts, type) in cutlist:
-				if first and type == CUT_TYPE_OUT: # first mark is "out"
-					res_cutlist.append(0) # emulate "in" at first
-					currently_in = True
-
-				first = False
-
-				if type == CUT_TYPE_IN and not currently_in:
-					res_cutlist.append(pts)
-					last_in = pts
-					currently_in = True
-
-				if type == CUT_TYPE_OUT and currently_in:
-					res_cutlist.append(pts)
-
-					# accumulate the segment
-					accumulated_in += pts - last_in 
-					accumulated_at = pts
-					currently_in = False
-
-				if type == CUT_TYPE_MARK and currently_in:
-					# relocate chaptermark against "in" time. This is not 100% accurate,
-					# as the in/out points are not.
-					res_chaptermarks.append(pts - accumulated_at + accumulated_in)
-
-			res.append( (path, res_cutlist, res_chaptermarks) )
-
-		return res
+	def showFileBrowser(self, projectBrowser=False):
+		if projectBrowser:
+			currDir = "/home/root"
+		else:
+			currDir = self.project.menubg
+			if len(currDir) > 1:
+				currDir = (currDir.rstrip("/").rsplit("/",1))[0]
+		self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, currDir, projectBrowser)
+	
+	def FileBrowserClosed(self, path, projectBrowser=False):
+		print "FileBrowserClosed", path, projectBrowser
+		if projectBrowser:
+			print "would load project", path
+		else:
+			self.project.menubg = path
