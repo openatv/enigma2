@@ -206,7 +206,8 @@ class TitleList(Screen):
 			self.updateTitleList()
 
 	def saveProject(self):
-		self.project.saveProject("/testProgs/dvd/")
+		from Tools.Directories import resolveFilename, SCOPE_PLAYLIST		
+		self.project.saveProject(resolveFilename(SCOPE_PLAYLIST))
 
 	def burnProject(self):
 		self.project.waitboxref = self.project.session.open(WaitBox,self.burnProjectCB)
