@@ -22,15 +22,13 @@ class FileBrowser(Screen):
 	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
 		<widget name="filelist" position="0,0" size="520,376" scrollbarMode="showOnDemand" />
 	</screen>"""
-	def __init__(self, session, dvd_filelist = None):
+	def __init__(self, session, dvd_filelist = [ ]):
 		Screen.__init__(self, session)
 
-		if dvd_filelist:
-			self.dvd_filelist = dvd_filelist
+		self.dvd_filelist = dvd_filelist
+		if len(dvd_filelist):	
 			self["filelist"] = MenuList(self.dvd_filelist)
-
 		else:
-			self.dvd_filelist = None
 			global lastpath
 			if lastpath is not None:
 				currDir = lastpath + "/"
@@ -49,7 +47,7 @@ class FileBrowser(Screen):
 			})
 
 	def ok(self):
-		if self.dvd_filelist:
+		if len(self.dvd_filelist):
 			print "OK " + self["filelist"].getCurrent()
 			self.close(self["filelist"].getCurrent())
 		else:
@@ -235,7 +233,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.stepwise_repeat.value = self.saved_config_seek_stepwise_repeat
 		config.seek.on_pause.value = self.saved_config_seek_on_pause
 
-	def __init__(self, session, dvd_device = None, dvd_filelist = None, args = None):
+	def __init__(self, session, dvd_device = None, dvd_filelist = [ ], args = None):
 		Screen.__init__(self, session)
 		InfoBarBase.__init__(self)
 		InfoBarNotifications.__init__(self)
@@ -540,11 +538,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.askLeavePlayer()
 
 	def showFileBrowser(self):
-		if self.physicalDVD:
+		if self.physicalDVD and len(self.dvd_filelist) == 0:
 			if self.dvd_device == "/dev/cdroms/cdrom0":
 				self.session.openWithCallback(self.DVDdriveCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
 			else:
 				self.DVDdriveCB(True)
+		elif len(self.dvd_filelist) == 1:
+			self.FileBrowserClosed(self.dvd_filelist[0])
 		else:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, self.dvd_filelist)
 	
