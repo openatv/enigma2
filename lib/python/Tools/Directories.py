@@ -126,9 +126,12 @@ def resolveFilename(scope, base = "", path_prefix = None):
 def pathExists(path):
 	return os_path.exists(path)
 
-def createDir(path):
+def createDir(path, makeParents = False):
 	try:
-		mkdir(path)
+		if makeParents:
+			makedirs(path)
+		else:
+			mkdir(path)
 	except:
 		ret = 0
 	else:
