@@ -213,11 +213,12 @@ class BurnTaskPostcondition(Condition):
 			task.ERROR_SIZE: ("Content does not fit on DVD!"),
 			task.ERROR_WRITE_FAILED: ("Write failed!"),
 			task.ERROR_DVDROM: ("No (supported) DVDROM found!"),
+			task.ERROR_ISOFS: ("Medium is not empty!"),
 			task.ERROR_UNKNOWN: ("An unknown error occured!")
 		}[task.error]
 
 class BurnTask(Task):
-	ERROR_MEDIA, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_UNKNOWN = range(5)
+	ERROR_MEDIA, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_UNKNOWN = range(6)
 	def __init__(self, job):
 		Task.__init__(self, job, "burn")
 
@@ -265,6 +266,12 @@ class BurnTask(Task):
 				self.error = self.ERROR_DVDROM
 			elif line.find("media is not recognized as recordable DVD") != -1:
 				self.error = self.ERROR_MEDIA
+			else:
+				self.error = self.ERROR_UNKNOWN
+				print "BurnTask: unknown error %s" % line
+		elif line.startswith("FATAL:"):
+			if line.find("already carries isofs!"):
+				self.error = self.ERROR_ISOFS
 			else:
 				self.error = self.ERROR_UNKNOWN
 				print "BurnTask: unknown error %s" % line
@@ -449,79 +456,70 @@ def CreateMenus(job):
 def CreateAuthoringXML(job):
 	nr_titles = len(job.project.titles)
 	titles_per_menu = getTitlesPerMenu(nr_titles)
-	authorxml = """<?xml version="1.0" encoding="utf-8"?>
-<dvdauthor dest="%s">
-   <vmgm>
-      <menus>
-         <pgc>
-            <vob file="%s" />
-            <post> jump titleset 1 menu; </post>
-         </pgc>
-      </menus>
-   </vmgm>
-   <titleset>
-      <menus>
-         <video aspect="4:3"/>"""% (job.workspace+"/dvd", job.project.vmgm)
-	for menu_count in range(1 , job.nr_menus+1):
-		if menu_count == 1:
-			authorxml += """
-         <pgc entry="root">"""
-		else:
-			authorxml += """
-         <pgc>"""
-		menu_start_title = (menu_count-1)*titles_per_menu + 1
-		menu_end_title = (menu_count)*titles_per_menu + 1
-		if menu_end_title > nr_titles:
-			menu_end_title = nr_titles+1
-		for i in range( menu_start_title , menu_end_title ):
-			authorxml += """
-            <button name="button%s">jump title %d;</button>""" % (str(i).zfill(2), i)
-		
-		if menu_count > 1:
-			authorxml += """
-            <button name="button_prev">jump menu %d;</button>""" % (menu_count-1)
-			
-		if menu_count < job.nr_menus:
-			authorxml += """
-            <button name="button_next">jump menu %d;</button>""" % (menu_count+1)
-
-		menuoutputfilename = job.workspace+"/dvdmenu"+str(menu_count)+".mpg"
-		authorxml += """
-            <vob file="%s" pause="inf"/>
-	 </pgc>""" % menuoutputfilename
-	authorxml += """
-      </menus>
-      <titles>"""
+	authorxml = []
+	authorxml.append('<?xml version="1.0" encoding="utf-8"?>\n')
+	authorxml.append(' <dvdauthor dest="' + (job.workspace+"/dvd") + '">\n')
+	authorxml.append('  <vmgm>\n')
+	authorxml.append('   <menus>\n')
+	authorxml.append('    <pgc>\n')
+	authorxml.append('     <vob file="' + job.project.vmgm + '" />\n', )
+	if job.project.menu:
+		authorxml.append('     <post> jump titleset 1 menu; </post>\n')
+	else:
+		authorxml.append('     <post> jump title 1; </post>\n')
+	authorxml.append('    </pgc>\n')
+	authorxml.append('   </menus>\n')
+	authorxml.append('  </vmgm>\n')
+	authorxml.append('  <titleset>\n')
+	if job.project.menu:
+		authorxml.append('   <menus>\n')
+		authorxml.append('    <video aspect="4:3"/>\n')
+		for menu_count in range(1 , job.nr_menus+1):
+			if menu_count == 1:
+				authorxml.append('    <pgc entry="root">\n')
+			else:
+				authorxml.append('    <pgc>\n')
+			menu_start_title = (menu_count-1)*titles_per_menu + 1
+			menu_end_title = (menu_count)*titles_per_menu + 1
+			if menu_end_title > nr_titles:
+				menu_end_title = nr_titles+1
+			for i in range( menu_start_title , menu_end_title ):
+				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump title ' + str(i) +'; </button>\n')
+			if menu_count > 1:
+				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
+			if menu_count < job.nr_menus:
+				authorxml.append('     <button name="button_next"> jump menu ' + str(menu_count+1) + '; </button>\n')
+			menuoutputfilename = job.workspace+"/dvdmenu"+str(menu_count)+".mpg"
+			authorxml.append('     <vob file="' + menuoutputfilename + '" pause="inf"/>\n')
+			authorxml.append('    </pgc>\n')
+		authorxml.append('   </menus>\n')
+	authorxml.append('   <titles>\n')
 	for i in range( nr_titles ):
 		chapters = ','.join(["%d:%02d:%02d.%03d" % (p / (90000 * 3600), p % (90000 * 3600) / (90000 * 60), p % (90000 * 60) / 90000, (p % 90000) / 90) for p in job.project.titles[i].chaptermarks])
-
 		title_no = i+1
 		title_filename = job.workspace + "/dvd_title_%d.mpg" % (title_no)
-		
 		if job.menupreview:
 			LinkTS(job, job.project.vmgm, title_filename)
 		else:
 			MakeFifoNode(job, title_no)
 		
-		vob_tag = """file="%s" chapters="%s" />""" % (title_filename, chapters)
-					
-		if title_no < nr_titles:
+		if job.project.linktitles and title_no < nr_titles:
 			post_tag = "jump title %d;" % ( title_no+1 )
-		else:
+		elif job.project.menu:
 			post_tag = "call vmgm menu 1;"
-		authorxml += """
-         <pgc>
-            <vob %s
-            <post> %s </post>
-         </pgc>""" % (vob_tag, post_tag)
-	 
-	authorxml += """
-     </titles>
-   </titleset>
-</dvdauthor>
-"""
+		else:	post_tag = ""
+
+		authorxml.append('    <pgc>\n')
+		authorxml.append('     <vob file="' + title_filename + '" chapters="' + chapters + '" />\n')
+		authorxml.append('     <post> ' + post_tag + ' </post>\n')
+		authorxml.append('    </pgc>\n')
+
+	authorxml.append('   </titles>\n')
+	authorxml.append('  </titleset>\n')
+	authorxml.append(' </dvdauthor>\n')
 	f = open(job.workspace+"/dvdauthor.xml", "w")
-	f.write(authorxml)
+	for x in authorxml:
+		f.write(x)
 	f.close()
 
 class DVDJob(Job):
@@ -531,14 +529,15 @@ class DVDJob(Job):
 		from time import strftime
 		from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
 		new_workspace = resolveFilename(SCOPE_HDD) + "tmp/" + strftime("%Y%m%d%H%M%S")
-		createDir(new_workspace)
+		createDir(new_workspace, True)
 		self.workspace = new_workspace
 		self.project.workspace = self.workspace
 		self.menupreview = menupreview
 		self.conduct()
 
 	def conduct(self):
-		CreateMenus(self)
+		if self.project.menu or self.menupreview:
+			CreateMenus(self)
 		CreateAuthoringXML(self)
 
 		totalsize = 50*1024*1024 # require an extra safety 50 MB
