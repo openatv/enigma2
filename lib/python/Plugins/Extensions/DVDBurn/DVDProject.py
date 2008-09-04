@@ -1,23 +1,9 @@
-from Tools.Directories import resolveFilename, fileExists, SCOPE_FONTS, SCOPE_PLUGINS, SCOPE_SKIN
+from Tools.Directories import fileExists
+
 class DVDProject:
 	def __init__(self):
 		self.titles = [ ]
 		self.target = None
-		self.name = _("Dreambox DVD record")
-		self.vmgm = resolveFilename(SCOPE_PLUGINS,"Extensions/DVDBurn/dreamvmgm.mpg")
-		self.menuaudio = resolveFilename(SCOPE_PLUGINS,"Extensions/DVDBurn/silence.mp2")
-		self.menubg = resolveFilename(SCOPE_SKIN, "dreamdvd_02.jpg")
-		# tuples with R, G, B values
-		self.color_button	= ( 0x08, 0x00, 0x00 )
-		self.color_highlight	= ( 0x00, 0xC0, 0xC0 )
-		self.color_headline	= ( 0x00, 0x00, 0x80 )
-		self.font_face = resolveFilename(SCOPE_FONTS, "nmsbd.ttf")
-		# tuple with three pixel values ( headline, title, subtitle )
-		self.font_size = ( 48, 28, 16 )
-		# please supply even numbers for all dimensions
-		self.space_left = 30
-		self.space_top = 120
-		self.space_rows = 36
 
 	def addService(self, service):
 		import DVDTitle
@@ -25,18 +11,19 @@ class DVDProject:
 		title.addService(service)
 		self.titles.append(title)
 		return title
-	
+
 	def saveProject(self, path):
 		import xml.dom.minidom
 		from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 		list = []
 		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
 		list.append('<DreamDVDBurnerProject>\n')
-		list.append('\t<config')
+		list.append('\t<project')
 		list.append(' name="' + self.name + '"')
 		list.append(' vmgm="' + self.vmgm + '"')
 		list.append(' />\n')
 		list.append('\t<menu')
+		list.append('\tuse="' + str(self.menu) + '"\n')
 		list.append('\tbg="' + self.menubg + '"\n')
 		list.append('\t\taudio="' + self.menuaudio + '"\n')
 		list.append('\t\tcolor_button="' + str(self.color_button) + '"\n')
@@ -48,7 +35,9 @@ class DVDProject:
 		list.append('\t\tspace_top="' + str(self.space_top) + '"\n')
 		list.append('\t\tspace_rows="' + str(self.space_rows) + '"')
 		list.append(' />\n')
-		list.append('\t<titles>\n')
+		list.append('\t<titles')
+		list.append(' link="' + str(self.linktitles) + '"')
+		list.append(' />\n')
 		for title in self.titles:
 			list.append('\t\t<path>')
 			list.append(stringToXML(title.source.getPath()))
@@ -66,3 +55,55 @@ class DVDProject:
 		for x in list:
 			file.write(x)
 		file.close()
+
+	def loadProject(self, filename):
+		import xml.dom.minidom
+		print "[loadProject]", filename
+		try:
+		  if not fileExists(filename):
+			self.error = "file not found!"
+			raise AttributeError
+		  else:
+			self.error = ""
+		  file = open(filename, "r")
+		  data = file.read().decode("utf-8").replace('&',"&amp;").encode("ascii",'xmlcharrefreplace')
+		  file.close()
+		  projectfiledom = xml.dom.minidom.parseString(data)
+		  for project in projectfiledom.childNodes[0].childNodes:
+		    if project.nodeType == xml.dom.minidom.Element.nodeType:
+		      if project.tagName == 'project':
+			self.name = project.getAttribute("name").encode("utf-8")
+			self.vmgm = project.getAttribute("vmgm").encode("utf-8")
+		      if project.tagName == 'menu':
+			self.menu = eval(project.getAttribute("use"))
+			self.menubg = project.getAttribute("bg").encode("utf-8")
+			self.menuaudio = project.getAttribute("audio").encode("utf-8")	
+			# tuples with R, G, B values
+			self.color_button = eval(project.getAttribute("color_button"))
+			self.color_highlight = eval(project.getAttribute("color_highlight"))
+			self.color_headline = eval(project.getAttribute("color_headline"))
+			self.font_face = project.getAttribute("font_face").encode("utf-8")
+			# tuple with three pixel sizes ( headline, title, subtitle )
+			self.font_size = eval(project.getAttribute("font_size"))
+			# please supply even numbers for all dimensions
+			self.space_left = int(project.getAttribute("space_left"))
+			self.space_top = int(project.getAttribute("space_top"))
+			self.space_rows = int(project.getAttribute("space_rows"))
+		      if project.tagName == 'titles':
+			self.linktitles = eval(project.getAttribute("link"))
+		  if not fileExists(self.vmgm):
+			self.error += "\nvmgm '%s' not found" % self.vmgm
+		  if not fileExists(self.menubg):
+			self.error += "\nmenu background '%s' not found" % self.menubg
+		  if not fileExists(self.menuaudio):
+			self.error += "\nmenu audio '%s' not found" % self.menuaudio
+		  if not fileExists(self.font_face):
+			self.error += "\nmenu font '%s' not found" % self.font_face
+		  print "len(self.error):", len(self.error)
+		  if len(self.error):
+		  	raise AttributeError
+		except:
+			print "len(self.error):, error", len(self.error), len(self.error)
+			self.error = ("error parsing project xml file '%s'" % filename) + self.error
+			return False
+		return True
