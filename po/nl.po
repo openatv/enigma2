@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
-"PO-Revision-Date: 2008-06-04 09:29+0100\n"
-"Last-Translator: Satellietland - M. Weeren <info@satellietland.nl>\n"
+"POT-Creation-Date: 2008-09-04 10:06+0200\n"
+"PO-Revision-Date: 2008-09-02 19:32+0100\n"
+"Last-Translator: Michel Weeren <michel@media-labs.nl>\n"
 "Language-Team: none <michel@weeren.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,15 +18,7 @@ msgstr ""
 "X-Poedit-Country: NEDERLAND\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-
 msgid " "
-msgstr ""
-
-msgid "\"?"
 msgstr ""
 
 msgid "#000000"
@@ -246,6 +238,10 @@ msgstr ""
 "U bent aan het opnemen. Stop eerst de opname voordat u de signaalmeting "
 "start."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr "Het benodigde hulpmiddel (%s) kon niet worden gevonden."
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -297,6 +293,9 @@ msgstr "Uw Dreambox"
 msgid "Action on long powerbutton press"
 msgstr "Bij lang indrukken stand-by toets"
 
+msgid "Action:"
+msgstr "Aktie:"
+
 msgid "Activate Picture in Picture"
 msgstr "Activeer Picture In Picture"
 
@@ -304,16 +303,25 @@ msgid "Activate network settings"
 msgstr "Activeer netwerkinstellingen"
 
 msgid "Adapter settings"
-msgstr ""
+msgstr "Adapter instelllingen"
 
 msgid "Add"
 msgstr "Toevoegen"
 
+msgid "Add Bookmark"
+msgstr "Markeerpunt toevoegen"
+
 msgid "Add a mark"
 msgstr "Plaats markering"
 
+msgid "Add a new title"
+msgstr "Nieuwe titel toevoegen"
+
 msgid "Add timer"
 msgstr "Timer"
+
+msgid "Add title"
+msgstr "Titel toevoegen"
 
 msgid "Add to bouquet"
 msgstr "Aan boeket toevoegen"
@@ -328,7 +336,7 @@ msgid ""
 "test screens."
 msgstr ""
 "Wijzig de kleuren zodanig dat alle tinten zichtbaar, maar wel zo kleurig "
-"mogelijk zijn. Zodra het resultaat je bevalt, druk dan op OK om dit menu af "
+"mogelijk zijn. Zodra het resultaat u bevalt, druk dan op OK om dit menu af "
 "te sluiten of gebruik de nummertoetsen om een ander testscherm te selecteren."
 
 msgid "Advanced"
@@ -353,6 +361,9 @@ msgstr "Album:"
 msgid "All"
 msgstr "Alles"
 
+msgid "All Satellites"
+msgstr ""
+
 msgid "All..."
 msgstr "Alles..."
 
@@ -368,24 +379,19 @@ msgstr "Alternatieve tuner prioriteit"
 msgid "An empty filename is illegal."
 msgstr "Een lege bestandsnaam is ongeldig"
 
+#, python-format
+msgid "An error has occured. (%s)"
+msgstr "Er is een fout opgetreden. (%s)"
+
 msgid "Arabic"
 msgstr "Arabisch"
-
-msgid ""
-"Are you sure you want to enable WLAN support?\n"
-"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-"\n"
-msgstr ""
-
-msgid ""
-"Are you sure you want to enable your local network?\n"
-"\n"
-msgstr ""
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
+"Weet u zeker dat u de netwerkverbinding wilt herstarten?\n"
+"\n"
 
 msgid "Artist:"
 msgstr "Artiest:"
@@ -433,7 +439,7 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "Back"
-msgstr ""
+msgstr "Terug"
 
 msgid "Backup"
 msgstr "Backup"
@@ -471,8 +477,17 @@ msgstr "Aktie na 'stop afspelen'"
 msgid "Behavior when a movie reaches the end"
 msgstr "Aktie na 'einde bestand'"
 
+msgid "Bookmarks"
+msgstr "Markeerpunten"
+
 msgid "Brightness"
 msgstr "helderheid"
+
+msgid "Burn DVD"
+msgstr "Beschrijf DVD"
+
+msgid "Burn to DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -483,6 +498,9 @@ msgid ""
 msgstr ""
 "Door op de OK Knop van de afstandsbediening te drukken, word de infobalk "
 "zichtbaar."
+
+msgid "C"
+msgstr "C"
 
 msgid "C-Band"
 msgstr "C-Band"
@@ -581,7 +599,7 @@ msgid "Clear log"
 msgstr "Log wissen"
 
 msgid "Close"
-msgstr ""
+msgstr "Sluiten"
 
 msgid "Code rate high"
 msgstr "Hoge ontvangst rate"
@@ -622,32 +640,14 @@ msgstr "Compleet"
 msgid "Configuration Mode"
 msgstr "Configuratie modus"
 
-msgid "Configure your internal LAN"
-msgstr ""
-
-msgid "Configure your internal LAN again"
-msgstr ""
-
-msgid "Configure your wireless LAN"
-msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Configureren"
-
-msgid "Confirm"
-msgstr "Bevestigen"
 
 msgid "Conflicting timer"
 msgstr "Timer conflict!"
 
-msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr ""
-
-msgid "Connect to the Internet with your local LAN"
-msgstr ""
+msgid "Connected to"
+msgstr "Verbonden met"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Verbonden met Fritz!Box!"
@@ -676,6 +676,10 @@ msgstr "Contrast"
 
 msgid "Create movie folder failed"
 msgstr "Aanmaken van de opname map is mislukt"
+
+#, python-format
+msgid "Creating directory %s failed."
+msgstr "Het aanmaken van map %s is mislukt."
 
 msgid "Creating partition failed"
 msgstr "Aanmaken van de partitie is mislukt"
@@ -713,8 +717,11 @@ msgstr "Cutlist editor..."
 msgid "Czech"
 msgstr "Tsjechisch"
 
+msgid "D"
+msgstr "D"
+
 msgid "DHCP"
-msgstr ""
+msgstr "DHCP"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -750,10 +757,10 @@ msgid "Deep Standby"
 msgstr "Uitschakelen"
 
 msgid "Default services lists"
-msgstr ""
+msgstr "Standaard zenderlijst"
 
 msgid "Default settings"
-msgstr ""
+msgstr "Standaard instellingen"
 
 msgid "Delay"
 msgstr "Vertraging"
@@ -772,6 +779,8 @@ msgid ""
 "Delete no more configured satellite\n"
 "%s?"
 msgstr ""
+"Niet geconfigureerde satellietpositie\n"
+" \v%s verwijderen?"
 
 msgid "Description"
 msgstr "Omschrijving"
@@ -800,6 +809,10 @@ msgstr "DiSEqC-modus"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC herhaling"
 
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr "Map %s bestaat niet."
+
 msgid "Disable"
 msgstr "Uit"
 
@@ -808,6 +821,9 @@ msgstr "Picture In Picture uitschakelen"
 
 msgid "Disable Subtitles"
 msgstr "Ondertitels uit"
+
+msgid "Disable timer"
+msgstr "Timer uitschakelen"
 
 msgid "Disabled"
 msgstr "Gedeactiveerd"
@@ -869,12 +885,23 @@ msgstr ""
 "Weet u zeker dat u de harde schijf wilt formatteren?\n"
 "Alle gegevens op de harde schijf gaat dan verloren!"
 
+#, python-format
+msgid "Do you really want to remove directory %s from the disk?"
+msgstr "Weet u zeker dat u map %s van de harde schijf wilt wissen?"
+
+#, python-format
+msgid "Do you really want to remove your bookmark of %s?"
+msgstr "Weet u zeker dat u het markeerpunt van %s wilt wissen?"
+
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Wilt u nu een backup maken?\n"
 "Druk op OK en een ogenblik geduld!"
+
+msgid "Do you want to burn this project to DVD medium?"
+msgstr ""
 
 msgid "Do you want to do a service scan?"
 msgstr "Wilt u nu zenders zoeken?"
@@ -885,7 +912,13 @@ msgstr "Wilt u opnieuw handmatig zoeken?"
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Wilt u het kinderslot van uw dreambox activeren?"
 
+msgid "Do you want to install default sat lists?"
+msgstr "Wilt u de standaard satellietlijst installeren?"
+
 msgid "Do you want to play DVD in drive?"
+msgstr "Wilt u de DVD in de speler afspelen?"
+
+msgid "Do you want to preview this project before burning?"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -930,6 +963,9 @@ msgstr "Downloading"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ophalen informatie. Een ogenblik a.u.b..."
 
+msgid "Dreambox DVD record"
+msgstr ""
+
 msgid "Dutch"
 msgstr "Nederlands"
 
@@ -947,19 +983,25 @@ msgid "East"
 msgstr "Oost"
 
 msgid "Edit DNS"
+msgstr "DNS wijzigen"
+
+msgid "Edit chapters of current title"
 msgstr ""
 
 msgid "Edit services list"
 msgstr "Wijzig zenderlijst"
 
 msgid "Edit settings"
-msgstr ""
+msgstr "Instellingen wijzigen"
 
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr ""
+msgstr "De nameserver configuaratie van uw Dreambox wijzigen.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "De netwerk configuratie van uw Dreambox wijzigen.\n"
+
+msgid "Edit title"
+msgstr "Wijzig titel"
 
 msgid "Electronic Program Guide"
 msgstr "Electronische Programma Gids"
@@ -970,34 +1012,26 @@ msgstr "Aan"
 msgid "Enable 5V for active antenna"
 msgstr "5V voor aktieve antenne aanschakelen"
 
-msgid "Enable LAN"
-msgstr ""
-
-msgid "Enable WLAN"
-msgstr ""
-
 msgid "Enable multiple bouquets"
 msgstr "Meerdere boeketten toestaan"
 
 msgid "Enable parental control"
 msgstr "Zet kinderslot aan"
 
-msgid ""
-"Enable the local network of your Dreambox.\n"
-"\n"
-msgstr ""
+msgid "Enable timer"
+msgstr "Timer activeren"
 
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
 msgid "Encryption"
-msgstr ""
+msgstr "Encryptie"
 
 msgid "Encryption Key"
-msgstr ""
+msgstr "Encryptie sleutel"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Encryptie type"
 
 msgid "End"
 msgstr "Einde"
@@ -1046,6 +1080,14 @@ msgstr "Voer de zender pincode in"
 msgid "Error"
 msgstr "Fout"
 
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+"Fout: %s\n"
+"Opnieuw?"
+
 msgid "Eventview"
 msgstr "Programma overzicht"
 
@@ -1069,9 +1111,6 @@ msgstr "Wizard afsluiten"
 
 msgid "Exit wizard"
 msgstr "Wizard afsluiten"
-
-msgid "Exit wizard and configure later manually"
-msgstr ""
 
 msgid "Expert"
 msgstr "Expert"
@@ -1298,19 +1337,22 @@ msgid "Installing Software..."
 msgstr "Software wordt geïnstalleerd..."
 
 msgid "Installing default sat lists... Please wait..."
-msgstr ""
+msgstr "De standaard satellietlijst wordt geïnstalleerd. Een ogenblik a.u.b."
 
 msgid "Installing defaults... Please wait..."
 msgstr "Herstel standaardwaarden... Een ogenblik a.u.b..."
 
 msgid "Installing package content... Please wait..."
-msgstr ""
+msgstr "Pakket inhoud wordt geïnstalleerd. Een ogenblik a.u.b..."
 
 msgid "Instant Record..."
 msgstr "Directe opname..."
 
 msgid "Integrated Ethernet"
 msgstr "Geïntegreerde ethernet"
+
+msgid "Integrated Wireless"
+msgstr "Geïntegreerde WiFi"
 
 msgid "Intermediate"
 msgstr "Uitgebreid"
@@ -1320,6 +1362,10 @@ msgstr "Intern geheugen"
 
 msgid "Invalid Location"
 msgstr "Ongeldige locatie"
+
+#, python-format
+msgid "Invalid directory selected: %s"
+msgstr "Ongeldige map geselecteerd: %s"
 
 msgid "Inversion"
 msgstr "Inversie"
@@ -1350,7 +1396,7 @@ msgid "Keymap"
 msgstr "Toetsenbord layout"
 
 msgid "LAN Adapter"
-msgstr ""
+msgstr "LAN adapter"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1399,7 +1445,7 @@ msgid "Limits on"
 msgstr "Limieten aan"
 
 msgid "Link:"
-msgstr ""
+msgstr "Link:"
 
 msgid "List of Storage Devices"
 msgstr "Lijst van opslagmedia"
@@ -1407,8 +1453,11 @@ msgstr "Lijst van opslagmedia"
 msgid "Lithuanian"
 msgstr "Litouws"
 
-msgid "Local Network"
+msgid "Load saved project from disk"
 msgstr ""
+
+msgid "Local Network"
+msgstr "Lokaal netwerk"
 
 msgid "Location"
 msgstr "Locatie"
@@ -1544,19 +1593,19 @@ msgid "Nameserver Setup"
 msgstr "Nameserver instellingen"
 
 msgid "Nameserver settings"
-msgstr ""
+msgstr "Nameserver instellingen"
 
 msgid "Netmask"
 msgstr "Netmask"
 
 msgid "Network Configuration..."
-msgstr ""
+msgstr "Netwerk configuratie"
 
 msgid "Network Mount"
 msgstr "Netwerk mount"
 
 msgid "Network SSID"
-msgstr ""
+msgstr "Netwerk SSID"
 
 msgid "Network Setup"
 msgstr "Netwerk instellingen"
@@ -1568,19 +1617,19 @@ msgid "Network setup"
 msgstr "Netwerk instellingen"
 
 msgid "Network test"
-msgstr ""
+msgstr "Netwerk test"
 
 msgid "Network test..."
-msgstr ""
+msgstr "Netwerk test..."
 
 msgid "Network..."
 msgstr "Netwerk..."
 
 msgid "Network:"
-msgstr ""
+msgstr "Netwerk:"
 
 msgid "NetworkWizard"
-msgstr ""
+msgstr "Netwerk wizard"
 
 msgid "New"
 msgstr "Nieuw"
@@ -1669,18 +1718,27 @@ msgid ""
 "Please verify that you have attached a network cable and your Network is "
 "configured correctly."
 msgstr ""
+"Geen werkende lokale netwerk adapter gevonden.\n"
+"Controleer of u de netwerk kabel goed verbonden hebt en uw netwerk "
+"instellingen correct zijn."
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN USB Stick or enable "
-"you local network interface."
+" Please verify that you have attached a compatible WLAN device or enable you "
+"local network interface."
 msgstr ""
+"Geen werkende WiFi adapter gevonden.\n"
+"Controleer of u de WiFi module correct geplaatst heeft of schakel de lokale "
+"netwerk adapter aan."
 
 msgid ""
 "No working wireless networkadapter found.\n"
 "Please verify that you have attached a compatible WLAN USB Stick and your "
 "Network is configured correctly."
 msgstr ""
+"Geen werkende WiFi adapter gevonden.\n"
+"Controleer of u een geschikte USB WiFi adapter geplaatst heeft of controleer "
+"de netwerk instellingen."
 
 msgid "No, but restart from begin"
 msgstr "Nee, vanaf begin herstarten"
@@ -1690,9 +1748,6 @@ msgstr "nee, geen aktie."
 
 msgid "No, just start my dreambox"
 msgstr "Nee, uitsluitend Dreambox starten"
-
-msgid "No, let me choose default lists"
-msgstr ""
 
 msgid "No, scan later manually"
 msgstr "Nee, later handmatig zoeken."
@@ -1709,6 +1764,14 @@ msgstr "Noord"
 
 msgid "Norwegian"
 msgstr "Noors"
+
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+"Onvoldoende harde schijf ruimte. Maak ruimte vrij en probeer het opnieuw (%d "
+"MB benodigd, %d MB beschikbaar)"
 
 msgid ""
 "Nothing to scan!\n"
@@ -1751,6 +1814,9 @@ msgstr "Een"
 msgid "Online-Upgrade"
 msgstr "Online software update"
 
+msgid "Only Free scan"
+msgstr "Alleen ongecodeerde zenders scannen"
+
 msgid "Orbital Position"
 msgstr "Orbit positie"
 
@@ -1775,6 +1841,9 @@ msgstr "Pagina"
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr "Pan&Scan"
+
+msgid "Parent Directory"
+msgstr "Bovengelegen map"
 
 msgid "Parental control"
 msgstr "Kinderslot"
@@ -1816,12 +1885,6 @@ msgstr "A.u.b. herstarten"
 msgid "Please Select Medium to be Scanned"
 msgstr "Selecteer het te scannen medium"
 
-msgid ""
-"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-"Dreambox and press the OK button on your remote control to enable the built "
-"in wireless network support"
-msgstr ""
-
 msgid "Please change recording endtime"
 msgstr "Wijzig de opname eindtijd a.u.b."
 
@@ -1829,25 +1892,15 @@ msgid "Please choose an extension..."
 msgstr "Kies een applicatie a.u.b..."
 
 msgid "Please choose he package..."
-msgstr ""
+msgstr "Kies het gewenste pakket a.u.b..."
 
 msgid "Please choose the default services lists you want to install."
-msgstr ""
-
-msgid ""
-"Please configure your local LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-
-msgid ""
-"Please configure your wireless LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
+msgstr "Kies de te installeren standaard zenderlijst a.u.b."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr ""
+"Wijzig hier geen instellingen indien u niet precies weet waar u mee bezig "
+"bent. "
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Voer de naam voor uw nieuwe boeket in"
@@ -1861,6 +1914,9 @@ msgstr "Voer a.u.b. een bestandsnaam in "
 msgid "Please enter filename (empty = use current date)"
 msgstr "Voer een bestandsnaam in (leeg=gebruik huidige datum)"
 
+msgid "Please enter name of the new directory"
+msgstr "Voer de naam van de nieuwe map in a.u.b."
+
 msgid "Please enter the correct pin code"
 msgstr "Gelieve de juiste pincode in te voeren"
 
@@ -1869,6 +1925,16 @@ msgstr "Oude pincode invoeren a.u.b."
 
 msgid "Please follow the instructions on the TV"
 msgstr "Volg nu de instructies op uw TV"
+
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+"De voorheen geselecteerde media kon niet worden benaderd en om die reden "
+"wordt nu de standaard map gebruikt."
+
+msgid "Please press OK to continue."
+msgstr "Druk op OK om door te gaan."
 
 msgid "Please press OK!"
 msgstr "Druk op OK a.u.b!"
@@ -1884,9 +1950,6 @@ msgstr "Selecteer een subzender voor opname a.u.b..."
 
 msgid "Please select a subservice..."
 msgstr "Selecteer een subzender..."
-
-msgid "Please select below the wireless network you want to connect to."
-msgstr ""
 
 msgid "Please select keyword to filter..."
 msgstr "Selecteer te filteren sleutelwoord..."
@@ -1911,6 +1974,13 @@ msgstr ""
 "Gebruik de pijltoetsen om het PiP venster te verplaatsen.\n"
 "Druk op Boeket +/- om PiP venster te vergroten of verkleinen.\n"
 "Druk op OK om terug te gaan naar TV modus of EXIT na verplaatsen."
+
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
+msgstr ""
+"Gebruik de omhoog/omlaag toeten om de gewenste taal te selecteren. Druk "
+"daarna op OK."
 
 msgid "Please wait... Loading list..."
 msgstr "Ogenblik a.u.b. De lijst wordt geladen..."
@@ -1970,10 +2040,13 @@ msgid "Preparing... Please wait"
 msgstr "Voorbereiden... Een ogenblik a.u.b."
 
 msgid "Press OK on your remote control to continue."
-msgstr ""
+msgstr "Druk op de OK toets om door te gaan."
 
 msgid "Press OK to activate the settings."
 msgstr "Druk op OK om op te slaan"
+
+msgid "Press OK to edit the settings."
+msgstr "Druk op OK om de instellingen te wijzigen."
 
 msgid "Press OK to scan"
 msgstr "Druk OK om te zoeken."
@@ -1981,18 +2054,14 @@ msgstr "Druk OK om te zoeken."
 msgid "Press OK to start the scan"
 msgstr "Druk OK om te zoeken."
 
-msgid ""
-"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
-"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
-"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
-"\n"
-msgstr ""
-
 msgid "Prev"
 msgstr "Vorige"
 
-msgid "Primary DNS"
+msgid "Preview menu"
 msgstr ""
+
+msgid "Primary DNS"
+msgstr "Primaire DNS"
 
 msgid "Protect services"
 msgstr "Beveilig zenders"
@@ -2084,14 +2153,27 @@ msgstr "Ververs ratio"
 msgid "Refresh rate selection."
 msgstr "Herhalingsfrequentie selectie"
 
+msgid "Remove Bookmark"
+msgstr "Markeerpunt verwijderen"
+
 msgid "Remove Plugins"
 msgstr "Verwijderen"
 
 msgid "Remove a mark"
 msgstr "Verwijder een markeerpunt"
 
+msgid "Remove currently selected title"
+msgstr "De momenteel geselecteerde titel verwijderen"
+
 msgid "Remove plugins"
 msgstr "Verwijderen"
+
+msgid "Remove title"
+msgstr "Titel verwijderen"
+
+#, python-format
+msgid "Removing directory %s failed. (Maybe not empty.)"
+msgstr "Verwijderen van map %s mislukt (map niet leeg?)."
 
 msgid "Rename"
 msgstr "Hernoemen"
@@ -2112,7 +2194,7 @@ msgid "Reset"
 msgstr "Herladen"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Resolutie"
 
 msgid "Restart"
 msgstr "Dreambox herstarten"
@@ -2124,16 +2206,13 @@ msgid "Restart GUI now?"
 msgstr "Herstart Enigma2 nu?"
 
 msgid "Restart network"
-msgstr ""
+msgstr "Netwerk herstarten"
 
 msgid "Restart test"
-msgstr ""
+msgstr "Herstart test"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr ""
-
-msgid "Restart your wireless interface"
-msgstr ""
+msgstr "Herstart het netwerk en alle adapters.\n"
 
 msgid "Restore"
 msgstr "Herstellen"
@@ -2212,11 +2291,20 @@ msgstr "Satellieten"
 msgid "Satfinder"
 msgstr "Signaalzoeker"
 
+msgid "Sats"
+msgstr "Satellieten"
+
 msgid "Saturday"
 msgstr "Zaterdag"
 
+msgid "Save"
+msgstr "Opslaan"
+
 msgid "Save Playlist"
 msgstr "Afspeellijst opslaan"
+
+msgid "Save current project to disk"
+msgstr "Huidig project op schijf opslaan"
 
 msgid "Scaling Mode"
 msgstr "Schaalmodus"
@@ -2246,7 +2334,7 @@ msgid "Scan SR6900"
 msgstr "Zoek SR6900"
 
 msgid "Scan Wireless Networks"
-msgstr ""
+msgstr "Naar WiFi netwerken zoeken"
 
 msgid "Scan additional SR"
 msgstr "Zoek ook op SR"
@@ -2291,10 +2379,13 @@ msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
 msgstr ""
+"Zoek naar WiFi accesspoints en verbind hiermee middels uw WLAN USB Stick.\n"
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
+"Doorzoekt standaard lamedbs gesorteerd op satelliet, middels een verbonden "
+"DiSEqC rotor"
 
 msgid "Search east"
 msgstr "Zoek oost"
@@ -2303,7 +2394,7 @@ msgid "Search west"
 msgstr "Zoek west"
 
 msgid "Secondary DNS"
-msgstr ""
+msgstr "Secondaire DNS"
 
 msgid "Seek"
 msgstr "Zoeken"
@@ -2386,8 +2477,17 @@ msgstr "Zender"
 msgid "Services"
 msgstr "Zenders"
 
+msgid "Set as default Interface"
+msgstr "Als standaard interface instellen"
+
+msgid "Set collection name"
+msgstr ""
+
 msgid "Set limits"
 msgstr "Limieten instellen"
+
+msgid "Set menu background"
+msgstr ""
 
 msgid "Settings"
 msgstr "Instellingen"
@@ -2399,10 +2499,10 @@ msgid "Setup Mode"
 msgstr "Menu modus"
 
 msgid "Show Info"
-msgstr ""
+msgstr "Info weergeven"
 
 msgid "Show WLAN Status"
-msgstr ""
+msgstr "WLAN status weergeven"
 
 msgid "Show blinking clock in display during recording"
 msgstr "Knipperende klok gedurende opname"
@@ -2429,7 +2529,7 @@ msgid "Show the tv player..."
 msgstr "TV weergave modus..."
 
 msgid "Shows the state of your wireless LAN connection.\n"
-msgstr ""
+msgstr "Geeft de status van uw WiFi verbinding weer.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Slaaptimer activeren na"
@@ -2457,6 +2557,9 @@ msgstr "Één transponder"
 
 msgid "Singlestep (GOP)"
 msgstr "Stap voor stap"
+
+msgid "Skin..."
+msgstr ""
 
 msgid "Sleep Timer"
 msgstr "Slaaptimer"
@@ -2528,16 +2631,13 @@ msgid "Start recording?"
 msgstr "Start opname?"
 
 msgid "Start test"
-msgstr ""
+msgstr "Start test"
 
 msgid "StartTime"
 msgstr "Starttijd"
 
 msgid "Starting on"
 msgstr "Start op"
-
-msgid "Step "
-msgstr "Stap "
 
 msgid "Step east"
 msgstr "Stap > oost"
@@ -2564,7 +2664,7 @@ msgid "Stop playing this movie?"
 msgstr "Stop afspelen van deze opname?"
 
 msgid "Stop test"
-msgstr ""
+msgstr "Stop test"
 
 msgid "Store position"
 msgstr "Sla positie op"
@@ -2623,6 +2723,9 @@ msgstr ""
 msgid "TV System"
 msgstr "TV Systeem"
 
+msgid "Table of content for collection"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Terrestrisch"
 
@@ -2633,31 +2736,10 @@ msgid "Test mode"
 msgstr "Test modus"
 
 msgid "Test the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "Test de netwerk configuratie van uw Dreambox.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Test-berichtbox?"
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your local LAN internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your wireless internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"Please press OK to start using your Dreambox."
-msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -2679,15 +2761,21 @@ msgstr ""
 "nu doen?"
 
 msgid "The installation of the default services lists is finished."
-msgstr ""
+msgstr "De installatie van de standaard zenderlijst is voltooid."
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
+"De installatie van de standaard zenderlijst is voltooid. U kunt nu Dreambox "
+"verder configureren door op OK te drukken."
 
 msgid "The package doesn't contain anything."
-msgstr ""
+msgstr "Dit pakket bevat geen data."
+
+#, python-format
+msgid "The path %s already exists."
+msgstr "Het pad %s bestaat al."
 
 msgid "The pin code has been changed successfully."
 msgstr "De pincode is succesvol gewijzigd."
@@ -2709,6 +2797,12 @@ msgstr ""
 "Het timer bestand (timer.xml) is beschadigd en kan niet worden geladen."
 
 msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
+"De WiFi plugin is niet geïnstalleerd.Deze plugin eerst installeren a.u.b."
+
+msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "De wizard kan uw huidige settings opslaan. Wilt u nu een backup maken?"
 
@@ -2716,10 +2810,10 @@ msgid "The wizard is finished now."
 msgstr "De wizard is nu gereed."
 
 msgid "There are no default services lists in your image."
-msgstr ""
+msgstr "Er is geen standaard zenderlijst in uw firmware gevonden."
 
 msgid "There are no default settings in your image."
-msgstr ""
+msgstr "Er zijn geen standaard instellingen in uw firmware gevonden."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2741,6 +2835,10 @@ msgid ""
 "- if you configured your Nameservers manually please verify your entries in "
 "the \"Nameserver\" Configuration"
 msgstr ""
+"Deze test controleert de Nameservers.\n"
+"Indien u een \"onbevestigd\" bericht ziet:\n"
+"- Controleer dan uw DHCP server, kabels en instellingen\n"
+"- Indien de Nameservers handmatig ingesteld zijn, controleer deze dan."
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -2748,6 +2846,11 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
+"Deze test controleert of er een netwerk kabel met uw LAN adapter verbonden "
+"is.\n"
+"Indien u een \"disconnected\" bericht ziet:\n"
+"- Controleer of de netwerk kabel goed aangesloten is\n"
+"- Controleer of de kabel niet defect is."
 
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
@@ -2755,6 +2858,11 @@ msgid ""
 "- no valid IP Address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
+"Deze test controleert of er voor uw LAN adapter een geldig IP adres gevonden "
+"is.\n"
+"Indien u de \"onbevestigd\" melding ziet:\n"
+"- Is er geen geldig IP adres gevonden\n"
+"- Dient u uw DHCP server, kabels en instellingen te controleren"
 
 msgid ""
 "This test checks whether your LAN Adapter is set up for automatic IP Address "
@@ -2766,9 +2874,17 @@ msgid ""
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
+"Deze test controleert of uw LAN adapter ingesteld is voor automatisch "
+"toewijzen van het IP adres middels DHCP.\n"
+"Indien u de \"Gedeactiveerd\" melding ziet:\n"
+"- Is uw LAN adapter mogelijk handmatig ingesteld\n"
+"- controleer dan of u wel de juiste (IP) gegevens gebruikt heeft\n"
+"Indien u een \"Ingeschakeld\" melding ziet:\n"
+"- Controleer dan of u wel een correct werkende DHCP server in uw netwerk "
+"heeft."
 
 msgid "This test detects your configured LAN-Adapter."
-msgstr ""
+msgstr "Deze test detecteert de geconfigureerde LAN-adapter."
 
 msgid "Three"
 msgstr "Drie"
@@ -2964,6 +3080,9 @@ msgstr "Dreambox update bezig... Een ogenblik geduld a.u.b."
 msgid "Use DHCP"
 msgstr "Automatisch IP verkrijgen (DHCP)"
 
+msgid "Use Interface"
+msgstr "Gebruik interface"
+
 msgid "Use Power Measurement"
 msgstr "Gebruik stroommeting"
 
@@ -2989,7 +3108,7 @@ msgid "Use power measurement"
 msgstr "Meet stroomopname"
 
 msgid "Use the Networkwizard to configure your Network\n"
-msgstr ""
+msgstr "Gebruik de netwerk wizard om het netwerk te configureren\n"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
@@ -3069,13 +3188,13 @@ msgid "W"
 msgstr "W"
 
 msgid "WEP"
-msgstr ""
+msgstr "WEP"
 
 msgid "WPA"
-msgstr ""
+msgstr "WPA"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS bij 4:3"
@@ -3114,15 +3233,6 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
 "Press the OK button on your remote control to move to the next step."
 msgstr ""
@@ -3147,7 +3257,7 @@ msgid "Wireless"
 msgstr "Draadloos"
 
 msgid "Wireless Network"
-msgstr ""
+msgstr "Draadloos netwerk"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
@@ -3189,24 +3299,30 @@ msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
 msgstr ""
+"U kunt nu een standaard zenderlijst installeren. Kies de zenderlijst die u "
+"wenst te installeren."
 
 msgid "You can choose, what you want to install..."
-msgstr ""
+msgstr "U kunt hier kiezen wat u wenst te installeren."
 
 msgid "You cannot delete this!"
 msgstr "U kunt dit niet wissen!"
 
 msgid "You chose not to install any default services lists."
-msgstr ""
+msgstr "U heeft er voor gekozen om geen standaard zenderlijst te installeren."
 
 msgid ""
 "You chose not to install any default settings. You can however install the "
 "default settings later in the settings menu."
 msgstr ""
+"U heeft er voor gekozen om standaard instellingen niet te gebruiken. U kunt "
+"dit later vanuit het menu alsnog doen."
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr ""
+"U heeft er voor gekozen om niets te installeren. Druk op OK om de wizard af "
+"te sluiten. "
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -3276,7 +3392,7 @@ msgstr ""
 "Wilt u nu een pincode instellen?"
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr ""
+msgstr "Uw Dreambox zal na OK drukken herstarten."
 
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Uw TV werkt prima op 50Hz!"
@@ -3304,31 +3420,6 @@ msgid ""
 msgstr ""
 "De frontprocessor firmware moet vernieuwd worden.\n"
 "Druk op OK, om dit proces te starten."
-
-msgid ""
-"Your local LAN internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
-msgid ""
-"Your network is restarting.\n"
-"You will be automatically forwarded to the next step."
-msgstr ""
-
-msgid ""
-"Your wired LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-
-msgid ""
-"Your wireless LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-
-msgid ""
-"Your wireless internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Wilt u terugkeren naar de vorige zender?"
@@ -3362,6 +3453,9 @@ msgstr "start direct"
 
 msgid "add alternatives"
 msgstr "alternatieven toevoegen"
+
+msgid "add bookmark"
+msgstr "Markeerpunt toevoegen"
 
 msgid "add bouquet"
 msgstr "boeket toevoegen"
@@ -3424,11 +3518,17 @@ msgstr "zwarte lijst"
 msgid "by Exif"
 msgstr "door Exif"
 
+msgid "cancel"
+msgstr "Annuleren"
+
 msgid "change recording (duration)"
 msgstr "Wijzig opnameduur"
 
 msgid "change recording (endtime)"
 msgstr "Wijzig opname eindtijd"
+
+msgid "chapters"
+msgstr ""
 
 msgid "circular left"
 msgstr "circular links"
@@ -3446,16 +3546,19 @@ msgid "config menu"
 msgstr "configuratiemenu"
 
 msgid "confirmed"
-msgstr ""
+msgstr "bevestigd"
 
 msgid "connected"
-msgstr ""
+msgstr "Verbonden"
 
 msgid "continue"
 msgstr "Doorgaan"
 
 msgid "copy to bouquets"
 msgstr "kopieer naar boeketten"
+
+msgid "create directory"
+msgstr "Map aanmaken"
 
 msgid "daily"
 msgstr "dagelijks"
@@ -3485,7 +3588,7 @@ msgid "disabled"
 msgstr "gedeactiveerd"
 
 msgid "disconnected"
-msgstr ""
+msgstr "Verbroken"
 
 msgid "do not change"
 msgstr "niet schakelen"
@@ -3532,8 +3635,11 @@ msgstr "stop snijpunt hier"
 msgid "end favourites edit"
 msgstr "favorieten bewerken deactiveren "
 
-msgid "equal to Socket A"
-msgstr "gelijk aan socket A"
+msgid "equal to"
+msgstr "gelijk aan"
+
+msgid "exceeds dual layer medium!"
+msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "DVD speler afsluiten of terug naar bestandslijst"
@@ -3549,6 +3655,9 @@ msgstr "Uw scherm fijn-afstellen"
 
 msgid "forward to the next chapter"
 msgstr "Vooruit naar volgend hoofdstuk"
+
+msgid "free"
+msgstr ""
 
 msgid "free diskspace"
 msgstr "ruimte vrij..."
@@ -3642,8 +3751,8 @@ msgstr "Afspeellijst laden"
 msgid "locked"
 msgstr "Ja"
 
-msgid "loopthrough to socket A"
-msgstr "doorgelust naar socket A"
+msgid "loopthrough to"
+msgstr "Doorlus naar"
 
 msgid "manual"
 msgstr "handmatig"
@@ -3707,6 +3816,12 @@ msgstr "Nee"
 
 msgid "nothing connected"
 msgstr "niets aangesloten"
+
+msgid "of a DUAL layer medium used."
+msgstr ""
+
+msgid "of a SINGLE layer medium used."
+msgstr ""
 
 msgid "off"
 msgstr "uit"
@@ -3774,6 +3889,12 @@ msgstr "verwijder alle 'nieuw gevonden' vlaggetjes"
 msgid "remove before this position"
 msgstr "verwijder voor deze positie"
 
+msgid "remove bookmark"
+msgstr "Markeerpunt verwijderen"
+
+msgid "remove directory"
+msgstr "Map verwijderen"
+
 msgid "remove entry"
 msgstr "invoer verwijderen"
 
@@ -3784,10 +3905,13 @@ msgid "remove new found flag"
 msgstr "verwijder 'nieuw gevonden' vlag"
 
 msgid "remove selected satellite"
-msgstr ""
+msgstr "geselecteerde satelliet verwijderen"
 
 msgid "remove this mark"
 msgstr "verwijder dit merkteken"
+
+msgid "repeat playlist"
+msgstr "herhaal afspeellijst"
 
 msgid "repeated"
 msgstr "herhalen"
@@ -3829,6 +3953,9 @@ msgstr "seconden"
 
 msgid "seconds."
 msgstr "seconden."
+
+msgid "select"
+msgstr "selecteer"
 
 msgid "select movie"
 msgstr "Selecteer opname"
@@ -3932,6 +4059,9 @@ msgstr "Stop timeshift"
 msgid "swap PiP and main picture"
 msgstr "PiP/hoofdbeeld omwisselen"
 
+msgid "switch to bookmarks"
+msgstr "ga naar markeerpunten"
+
 msgid "switch to filelist"
 msgstr "Ga naar bestandenlijst"
 
@@ -3943,9 +4073,6 @@ msgstr "Volgend audio spoor"
 
 msgid "switch to the next subtitle language"
 msgstr "Volgende ondertitel taal"
-
-msgid "text"
-msgstr "tekst"
 
 msgid "this recording"
 msgstr "deze opname"
@@ -3960,7 +4087,7 @@ msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Tijd, hoofdstuk, audio en ondertitels instellen"
 
 msgid "unconfirmed"
-msgstr ""
+msgstr "onbevestigd"
 
 msgid "unknown service"
 msgstr "onbekende zender"
@@ -4013,3 +4140,235 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
+
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Na herstelling zal Enigma2 herstarten"
+
+#~ msgid "\"?"
+#~ msgstr "\"?"
+
+#~ msgid "4:3 Zoom"
+#~ msgstr "4:3 Zoom"
+
+#~ msgid "AC3 audio delay (ms)"
+#~ msgstr "AC3 audio vertraging (in ms)"
+
+#~ msgid "Add title..."
+#~ msgstr "Titel toevoegen..."
+
+#~ msgid "All Satellites 1"
+#~ msgstr "Alle satellieten 1"
+
+#~ msgid "All Satellites 2"
+#~ msgstr "Alle satellieten 2"
+
+#~ msgid "All Satellites 3"
+#~ msgstr "Alle satellieten 3"
+
+#~ msgid "All Satellites 4"
+#~ msgstr "Alle satellieten 4"
+
+#~ msgid "April"
+#~ msgstr "April"
+
+#~ msgid "Aspect Ratio 16:9"
+#~ msgstr "Beeldverhouding 16:9"
+
+#~ msgid "Aspect Ratio 4:3"
+#~ msgstr "Beeldverhouding 4:3"
+
+#~ msgid "Aspect Ratio Rass"
+#~ msgstr "Beeldverhouding Rass"
+
+#~ msgid "August"
+#~ msgstr "Augustus"
+
+#~ msgid "Behaviour of 'pause' when paused"
+#~ msgstr "Aktie bij 'pauzeren'"
+
+#~ msgid "Behaviour of 0 key in PiP-mode"
+#~ msgstr "Functie van 0-toets in PiP"
+
+#~ msgid "Burn"
+#~ msgstr "Schrijven"
+
+#~ msgid "Burn To DVD..."
+#~ msgstr "Schrijf naar DVD..."
+
+#~ msgid "Calculate movie length"
+#~ msgstr "Opname lengte calculeren"
+
+#~ msgid "Cas Setup"
+#~ msgstr "CAS instellingen"
+
+#~ msgid "Choose Location"
+#~ msgstr "Kies locatie"
+
+#~ msgid "Confirm"
+#~ msgstr "Bevestigen"
+
+#~ msgid "December"
+#~ msgstr "December"
+
+#~ msgid "Default-Wizard"
+#~ msgstr "Herstel-Wizard"
+
+#~ msgid "Device Setup..."
+#~ msgstr "Apparaat instellingen..."
+
+#~ msgid "Discontinuous playback at speeds above"
+#~ msgstr "Langzaam afspelen op volgende snelheid"
+
+#~ msgid "Discontinuous playback frame repeat count"
+#~ msgstr "Langzaam afspelen op volgende frame-ratio"
+
+#~ msgid "Do not Calculate movie length"
+#~ msgstr "Opname lengte niet calculeren"
+
+#~ msgid "Do not show video preview"
+#~ msgstr "Geen opname preview weergeven"
+
+#~ msgid "Edit current title"
+#~ msgstr "Huidige titel wijzigen"
+
+#~ msgid "Edit title..."
+#~ msgstr "Wijzig titel..."
+
+#~ msgid "Extended Setup..."
+#~ msgstr "Uitgebreide instellingen..."
+
+#~ msgid "Factoryreset"
+#~ msgstr "Fabrieksinstellingen"
+
+#~ msgid "Februari"
+#~ msgstr "Februari"
+
+#~ msgid "Januari"
+#~ msgstr "Januari"
+
+#~ msgid "July"
+#~ msgstr "Juli"
+
+#~ msgid "June"
+#~ msgstr "Juni"
+
+#~ msgid "Local directory"
+#~ msgstr "Lokale map"
+
+#~ msgid "March"
+#~ msgstr "Maart"
+
+#~ msgid "May"
+#~ msgstr "Mei"
+
+#~ msgid "Mount manager"
+#~ msgstr "Mount manager"
+
+#~ msgid "Mount options"
+#~ msgstr "Mount opties"
+
+#~ msgid "Mount type"
+#~ msgstr "Mount type"
+
+#~ msgid "Movie Menu"
+#~ msgstr "Opname menu"
+
+#~ msgid "Nameserver Setup..."
+#~ msgstr "Nameserver instellingen..."
+
+#~ msgid "New DVD"
+#~ msgstr "Nieuwe DVD"
+
+#~ msgid "November"
+#~ msgstr "November"
+
+#~ msgid "October"
+#~ msgstr "Oktober"
+
+#~ msgid "PCM audio delay (ms)"
+#~ msgstr "PCM audio vertraging (in ms)"
+
+#~ msgid "Password"
+#~ msgstr "Wachtwoord"
+
+#~ msgid "Please do not change values when you not know what you do!"
+#~ msgstr ""
+#~ "Wijzig deze instellingen niet als je niet exact weet waar ze voor staan!"
+
+#~ msgid "Reset both"
+#~ msgstr "Herstart beide"
+
+#~ msgid "Save..."
+#~ msgstr "Opslaan..."
+
+#~ msgid "Search for Picon on harddisk"
+#~ msgstr "Zoek naar picons op harde schijf"
+
+#~ msgid "September"
+#~ msgstr "September"
+
+#~ msgid "Server IP"
+#~ msgstr "Server IP adres"
+
+#~ msgid "Server SHARE"
+#~ msgstr "Server SHARE"
+
+#~ msgid "Settings installed. Press OK te restart enigma"
+#~ msgstr ""
+#~ "De zenderlijst is geinstalleerd\n"
+#~ "Druk op OK om Enigma2 te herstarten "
+
+#~ msgid "Show files from %s"
+#~ msgstr "Bestanden op %s weergeven"
+
+#~ msgid "Show video preview"
+#~ msgstr "Video preview weergeven"
+
+#~ msgid "Startwizard"
+#~ msgstr "Installatiewizard"
+
+#~ msgid "Step "
+#~ msgstr "Stap "
+
+#~ msgid "Table of content to be burned to DVD:"
+#~ msgstr "Inhoudsopgave zoals deze naar DVD gebrand moet worden:"
+
+#~ msgid ""
+#~ "Unable to initialize harddisk.\n"
+#~ "Please refer to the user manual.\n"
+#~ "Error: "
+#~ msgstr ""
+#~ "De harde schijf kan niet geformatteerd worden.\n"
+#~ "Raadpleeg de handleiding a.u.b.\n"
+#~ "Fout:  "
+
+#~ msgid "VCR Switch"
+#~ msgstr "VCR Switch"
+
+#~ msgid "When complete, press Key 0 to burn the collection!"
+#~ msgstr "Indien gereed, druk dan op de 0-toets om de verzameling te branden."
+
+#~ msgid "equal to Socket A"
+#~ msgstr "gelijk aan socket A"
+
+#~ msgid "loopthrough to socket A"
+#~ msgstr "doorgelust naar socket A"
+
+#~ msgid "play next playlist entry"
+#~ msgstr "Volgende afspelen"
+
+#~ msgid "play previous playlist entry"
+#~ msgstr "Vorige afspelen"
+
+#~ msgid "skip backward (self defined)"
+#~ msgstr "Verspring terugwaarts (invoeren)"
+
+#~ msgid "skip forward (self defined)"
+#~ msgstr "Verspring voorwaarts (invoeren)"
+
+#~ msgid "text"
+#~ msgstr "tekst"

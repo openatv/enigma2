@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-28 10:38+0200\n"
-"PO-Revision-Date: 2008-07-28 09:17+0100\n"
-"Last-Translator: Dawid Bańkowski <SileliS@tlen.pl>\n"
+"POT-Creation-Date: 2008-09-04 10:06+0200\n"
+"PO-Revision-Date: 2008-09-03 09:35+0100\n"
+"Last-Translator:  <silelis@tlen.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,22 +187,22 @@ msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
-"Plik konfiguracyjny (%s) został zmodyfikowany od instalacji.\n"
+"Plik konfiguracyjny (%s) został zmodyfikowany od czasu instalacji.\n"
 "Czy zachować aktualną wersję?"
 
 msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"Zakończone nagrywanie chce ustawić twojego\n"
+"Timer zakończonego nagrywanie chce ustawić Twojego\n"
 "Dreamboxa w stan czuwania. Zrobić to teraz?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"Zakończone nagrywanie chce wyłączyć\n"
-"twojego Dreamboxa. Wyłączyć teraz?"
+"Timer zakończonego nagrywanie chce wyłączyć\n"
+"Twojego Dreamboxa. Wyłączyć teraz?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Graficzny EPG dla wszystkich usług określonego bukietu"
@@ -242,7 +242,7 @@ msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"Wyłącznik czasowy chce ustawić twojego\n"
+"Wyłącznik czasowy chce ustawićTwojego\n"
 "Dreamboxa w trybie czuwania. Zrobić to teraz?"
 
 msgid ""
@@ -250,7 +250,7 @@ msgid ""
 "your Dreambox. Shutdown now?"
 msgstr ""
 "Wyłącznik czasowy chce wyłączyć\n"
-"twojego Dreamboxa. Wyłączyć teraz?"
+"Twojego Dreamboxa. Wyłączyć teraz?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -308,7 +308,7 @@ msgid "Add Bookmark"
 msgstr "Dodaj zakładkę"
 
 msgid "Add a mark"
-msgstr "Dodaj zaznaczone"
+msgstr "Dodaj znacznik"
 
 msgid "Add a new title"
 msgstr "Dodaj nowy tytuł"
@@ -318,9 +318,6 @@ msgstr "Dodaj timer"
 
 msgid "Add title"
 msgstr "Dodaj tytuł"
-
-msgid "Add title..."
-msgstr "Dodaję tytuł..."
 
 msgid "Add to bouquet"
 msgstr "Dodaj do bukietu"
@@ -352,14 +349,18 @@ msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
 msgstr ""
-"Gdy kreator zostanie zakończony , możesz ochronić pojedyncze serwisy. "
-"Nakierować ręcznie Dreamboxa jak to zrobić."
+"Gdy kreator zostanie zakończony, możesz ochronić pojedyncze serwisy. Aby "
+"dowiedzieć sie więcej jak to uczynić, przeczytaj instrukcję obsługi "
+"Dreamboxa."
 
 msgid "Album:"
 msgstr "Album:"
 
 msgid "All"
 msgstr "Wszystkie"
+
+msgid "All Satellites"
+msgstr ""
 
 msgid "All..."
 msgstr "Wszystkie..."
@@ -371,10 +372,10 @@ msgid "Alternative radio mode"
 msgstr "Alternatywny tryb radiowy"
 
 msgid "Alternative services tuner priority"
-msgstr "Alternatywny priorytet tunera usług"
+msgstr "Alternatywny priorytet usług tunera"
 
 msgid "An empty filename is illegal."
-msgstr "Pusta nazwa pliku jest nielegalna."
+msgstr "Pusta nazwa pliku jest nieldozwolona."
 
 #, python-format
 msgid "An error has occured. (%s)"
@@ -439,16 +440,16 @@ msgid "Back"
 msgstr "Powrót"
 
 msgid "Backup"
-msgstr "Kopia"
+msgstr "Kopia zapasowa"
 
 msgid "Backup Location"
-msgstr "Lokalizacja kopii"
+msgstr "Lokalizacja kopii zapasowej"
 
 msgid "Backup Mode"
-msgstr "Tryb kopii"
+msgstr "Tryb kopii zapasowej"
 
 msgid "Backup is done. Please press OK to see the result."
-msgstr "Kopia ukończona. Wciśnij OK aby zobaczyć rezultat."
+msgstr "Kopia zapasowa utworzona pomyslnie. Wciśnij OK aby zobaczyć rezultat."
 
 msgid "Band"
 msgstr "Pasmo"
@@ -460,7 +461,7 @@ msgid "Begin time"
 msgstr "Czas rozpoczęcia"
 
 msgid "Behavior of 'pause' when paused"
-msgstr "Zachowanie 'przerwy' gdy zatrzymany"
+msgstr "Zachowanie 'przerwę' gdy zatrzymany"
 
 msgid "Behavior of 0 key in PiP-mode"
 msgstr "Zachowanie przycisku 0 w trybie PiP"
@@ -480,14 +481,11 @@ msgstr "Zakładki"
 msgid "Brightness"
 msgstr "Jasność"
 
-msgid "Burn"
-msgstr "Wypal"
-
 msgid "Burn DVD"
 msgstr "Wypal DVD"
 
-msgid "Burn To DVD..."
-msgstr "Wypalanie DVD..."
+msgid "Burn to DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -495,7 +493,7 @@ msgstr "Bus:"
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
-msgstr "Poprzez wciśnięcie OK na pilocie, pasek info będzie wyświetlany."
+msgstr "Naciśnięcie przycisku OK spowodyje wyświetlenie pasek info."
 
 msgid "C"
 msgstr "C"
@@ -513,7 +511,7 @@ msgid "Cable"
 msgstr "Kablówka"
 
 msgid "Cache Thumbnails"
-msgstr "Przechowuj strony"
+msgstr "Przechowuj miniatury."
 
 msgid "Call monitoring"
 msgstr "Monitor rozmów"
@@ -543,7 +541,7 @@ msgid "Change service pins"
 msgstr "Zmień piny serwisowe"
 
 msgid "Change setup pin"
-msgstr "Zmień pin instalatora"
+msgstr "Zmień pin ustawień"
 
 msgid "Channel"
 msgstr "Kanał"
@@ -585,7 +583,7 @@ msgid "Choose target folder"
 msgstr "Wybierz folder docelowy"
 
 msgid "Choose your Skin"
-msgstr "Wybierz swój skin"
+msgstr "Wybierz Skin"
 
 msgid "Cleanup"
 msgstr "Czyść"
@@ -633,7 +631,7 @@ msgid "Compact flash card"
 msgstr "Karta Compact flash"
 
 msgid "Complete"
-msgstr "Ukończono"
+msgstr "Zakończ"
 
 msgid "Configuration Mode"
 msgstr "Tryb konfiguracji"
@@ -673,14 +671,14 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 msgid "Create movie folder failed"
-msgstr "Tworzenie katalogu filmu nieudane"
+msgstr "Tworzenie katalogu filmu nie powiodło się"
 
 #, python-format
 msgid "Creating directory %s failed."
 msgstr "Utworzenie katalogu %s nie powiodło się."
 
 msgid "Creating partition failed"
-msgstr "Tworzenie partycji nieudane"
+msgstr "Tworzenie partycji nie powiodło się"
 
 msgid "Croatian"
 msgstr "Chorwacki"
@@ -767,10 +765,10 @@ msgid "Delete"
 msgstr "Skasuj"
 
 msgid "Delete entry"
-msgstr "Skasuj wstęp"
+msgstr "Skasuj wpis"
 
 msgid "Delete failed!"
-msgstr "Kasowanie nieudane!"
+msgstr "Kasowanie nie powiodło się!"
 
 #, python-format
 msgid ""
@@ -846,13 +844,13 @@ msgid "Display 4:3 content as"
 msgstr "Wyświetlaj zawartość 4:3 jako"
 
 msgid "Display Setup"
-msgstr "Ustawienia LCD"
+msgstr "Ustawienia wyświtlania"
 
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \""
 msgstr ""
-"Czy naprawdę chcesz usunąć\n"
+"Czy na pewno chcesz usunąć\n"
 "plugin \""
 
 msgid ""
@@ -860,7 +858,7 @@ msgid ""
 "This could take lots of time!"
 msgstr ""
 "Czy na pewno chcesz sprawdzić sysem plików?\n"
-"To może długo potrwać!"
+"Czynność może zająć dużo czasu!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -870,11 +868,11 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \""
 msgstr ""
-"Czy naprawdę chcesz pobrać\n"
+"Czy na pewno chcesz pobrać\n"
 "plugin \""
 
 msgid "Do you really want to exit?"
-msgstr "Czy chcesz wyjść?"
+msgstr "Czy na pewno chcesz wyjść?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -885,18 +883,21 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr "Czy naprawdę chcesz usunąć katalog %s z dysku?"
+msgstr "Czy na pewno chcesz usunąć katalog %s z dysku?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr "Czy naprawdę chcesz usunąć zakładke %s?"
+msgstr "Czy na pewno chcesz usunąć zakładke %s?"
 
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Czy chcesz zrobić teraz kopię?\n"
+"Czy chcesz zrobić teraz kopię zapasową?\n"
 "Po naciśnięciu OK, proszę czekać!"
+
+msgid "Do you want to burn this project to DVD medium?"
+msgstr ""
 
 msgid "Do you want to do a service scan?"
 msgstr "Czy chcesz przeprowadzić skanowanie serwisów?"
@@ -905,13 +906,16 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Czy chcesz wykonać kolejne ręczne skanowanie?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
-msgstr "czy chcesz włączyć kontrole rodzicielską w twoim Dreamboxie?"
+msgstr "czy chcesz włączyć kontrole rodzicielską w Twoim Dreamboxie?"
 
 msgid "Do you want to install default sat lists?"
 msgstr "Czy chcesz zainstalować domyślna listę satelit?"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Czy chcesz odtważać DVD znajdujące się w czytniku?"
+
+msgid "Do you want to preview this project before burning?"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Czy chcesz przywrócić swoje ustawienia?"
@@ -923,11 +927,11 @@ msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Czy chcesz zaktualizować swojego Dreamboxa?\n"
+"Czy chcesz zaktualizować Dreamboxa?\n"
 "Po naciśnięciu OK, proszę czekać!"
 
 msgid "Do you want to view a tutorial?"
-msgstr "Czy chcesz zobaczyć podręcznik?"
+msgstr "Czy chcesz zobaczyć wprowadzenie?"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Nie zatrzymuj aktualnego wydarzenia ale wyłącz nadchodzące"
@@ -955,6 +959,9 @@ msgstr "Pobieranie..."
 msgid "Downloading plugin information. Please wait..."
 msgstr "Pobieranie informacji o pluginie. Proszę czekać..."
 
+msgid "Dreambox DVD record"
+msgstr ""
+
 msgid "Dutch"
 msgstr "Holenderski"
 
@@ -966,7 +973,7 @@ msgstr "Wybór EPG"
 
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
-msgstr "BŁĄD - skanowanie nieudane (%s)!"
+msgstr "BŁĄD - skanowanie (%s) nie powiodło się!"
 
 msgid "East"
 msgstr "Wschód"
@@ -974,8 +981,8 @@ msgstr "Wschód"
 msgid "Edit DNS"
 msgstr "Edytuj DNS"
 
-msgid "Edit current title"
-msgstr "Edytuj aktualny tytuł"
+msgid "Edit chapters of current title"
+msgstr ""
 
 msgid "Edit services list"
 msgstr "Edytuj listę serwisów"
@@ -984,16 +991,13 @@ msgid "Edit settings"
 msgstr "Edytuj ustawienia"
 
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr "Edytuj ustawienia servera nazw Dreambox.\n"
+msgstr "Edytuj ustawienia servera nazw Dreamboxa.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
-msgstr "Edytuj ustawienia sieci Dreambox.\n"
+msgstr "Edytuj ustawienia sieci Dreamboxa.\n"
 
 msgid "Edit title"
 msgstr "Edytuj tytuł"
-
-msgid "Edit title..."
-msgstr "Edytuję tytuł..."
 
 msgid "Electronic Program Guide"
 msgstr "Elektroniczny Przewodnik Programowy"
@@ -1005,7 +1009,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
 
 msgid "Enable multiple bouquets"
-msgstr "Aktywuj tryb wielu bukietów"
+msgstr "Włącz tryb wielu bukietów"
 
 msgid "Enable parental control"
 msgstr "Włącz kontrole rodzicielską"
@@ -1061,7 +1065,7 @@ msgid "Enter Fast Forward at speed"
 msgstr "Przejdź do przodu bardzo szybko"
 
 msgid "Enter Rewind at speed"
-msgstr "Przejdź do przewijania bardzo szybko"
+msgstr "Przejdź wstecz bardzo szybko"
 
 msgid "Enter main menu..."
 msgstr "Wejdź do menu głównego..."
@@ -1081,7 +1085,7 @@ msgstr ""
 "Ponowić?"
 
 msgid "Eventview"
-msgstr "Widok wydarzenia"
+msgstr "Widok zdarzenia"
 
 msgid "Everything is fine"
 msgstr "Wszystko jest OK"
@@ -1096,13 +1100,13 @@ msgid "Exit"
 msgstr "Wyjście"
 
 msgid "Exit editor"
-msgstr "Wyjdx z edytora"
+msgstr "Opuść edytor"
 
 msgid "Exit the wizard"
-msgstr "Wyjdź z kreatora"
+msgstr "Opuść kreator"
 
 msgid "Exit wizard"
-msgstr "Zamknij kreatora"
+msgstr "Opuść kreatora"
 
 msgid "Expert"
 msgstr "Ekspert"
@@ -1114,7 +1118,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "Factory reset"
-msgstr "Ustawienia Fabryczne"
+msgstr "Twardy reset"
 
 msgid "Failed"
 msgstr "Błąd"
@@ -1138,7 +1142,7 @@ msgid "Filesystem Check..."
 msgstr "Sprawdzanie systemu plików..."
 
 msgid "Filesystem contains uncorrectable errors"
-msgstr "System plików zawiera błędy nie do naprawienia"
+msgstr "System plików zawiera błędy, których nie dało się naprawić"
 
 msgid "Finetune"
 msgstr "Strojenie"
@@ -1184,7 +1188,7 @@ msgid "Fsck failed"
 msgstr "Fsck zawiódł"
 
 msgid "Function not yet implemented"
-msgstr "Funkcja jeszcze nie wprowadzona"
+msgstr "Funkcja jeszcze nie zaimplementowana"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
@@ -1224,7 +1228,7 @@ msgid "Guard interval mode"
 msgstr "Tryb odstepu strażnika"
 
 msgid "Harddisk"
-msgstr "Dysk twardy..."
+msgstr "Dysk twardy"
 
 msgid "Harddisk setup"
 msgstr "Ustawienia dysku twardego"
@@ -1239,7 +1243,7 @@ msgid "Hierarchy mode"
 msgstr "Tryb hierarchii"
 
 msgid "How many minutes do you want to record?"
-msgstr "Ile minut chcesz nagrać?"
+msgstr "Ile minut ma trwać nagranie?"
 
 msgid "Hungarian"
 msgstr "Węgierski"
@@ -1258,7 +1262,7 @@ msgid ""
 "your scart connection. Press OK to return."
 msgstr ""
 "Jeśli to widzisz coś jest nie tak z\n"
-"twoim połączeniem. Naciśnij OK aby wrócić."
+"Twoim interfejsem scart. Naciśnij OK aby wrócić."
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is "
@@ -1271,7 +1275,7 @@ msgid ""
 "step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Jeśli twój TV posiada poprawę jasności i kontrastu, wyłącz to. Jeśli masz "
+"Jeśli Twój TV posiada poprawę jasności i kontrastu, wyłącz to. Jeśli masz "
 "opcje ustawioną na \"Dynamiczne\", zmień ją na Standardową. Dostosuj poziom "
 "podświetlania do własnej wartości .Zmniejsz kontrast w TV do najniższej "
 "wartości.\n"
@@ -1282,7 +1286,7 @@ msgstr ""
 "Jeśli jesteś zadowolony z rezultatu wciśnij OK."
 
 msgid "Image-Upgrade"
-msgstr "Image - Aktualizacja"
+msgstr " Aktualizacja Image'a"
 
 msgid "In Progress"
 msgstr "W toku"
@@ -1362,7 +1366,7 @@ msgid "Inversion"
 msgstr "Inversja"
 
 msgid "Invert display"
-msgstr "Odwróć wyświetlacz"
+msgstr "Odwrócone wyświetlanie"
 
 msgid "Italian"
 msgstr "Włoski"
@@ -1430,10 +1434,10 @@ msgid "Limit west"
 msgstr "Limit zachodni"
 
 msgid "Limits off"
-msgstr "Wyłącz limity"
+msgstr "Limity wyłaczonyy"
 
 msgid "Limits on"
-msgstr "Włącz limity"
+msgstr "Limity właczony"
 
 msgid "Link:"
 msgstr "Łącze:"
@@ -1443,6 +1447,9 @@ msgstr "Lista zapamiętanych urządzeń"
 
 msgid "Lithuanian"
 msgstr "Litewski"
+
+msgid "Load saved project from disk"
+msgstr ""
 
 msgid "Local Network"
 msgstr "Sieć lokalna"
@@ -1454,13 +1461,13 @@ msgid "Lock:"
 msgstr "Blokada:"
 
 msgid "Long Keypress"
-msgstr "Długie naciskanie"
+msgstr "Długie naciskanie klawisza"
 
 msgid "Longitude"
 msgstr "Długość geogr."
 
 msgid "MMC Card"
-msgstr "Karta mmc"
+msgstr "Karta MMC"
 
 msgid "MORE"
 msgstr "Więcej"
@@ -1472,13 +1479,13 @@ msgid "Mainmenu"
 msgstr "Menu Główne"
 
 msgid "Make this mark an 'in' point"
-msgstr "Zrób to zaznaczenie jako wewnętrzny punkt"
+msgstr "Traktuj znacznik jako wewnętrzny punkt"
 
 msgid "Make this mark an 'out' point"
-msgstr "Zrób to zaznaczenie jako zewnętrzny punkt"
+msgstr "Traktuj znacznik jako zewnętrzny punkt"
 
 msgid "Make this mark just a mark"
-msgstr "Zrób to zaznaczenie po prostu zaznaczeniem"
+msgstr "Traktuj znacznik po prostu jak zaznaczenie"
 
 msgid "Manual Scan"
 msgstr "Ręczne skanowanie"
@@ -1608,7 +1615,7 @@ msgid "Network test"
 msgstr "Test połaczenia sieciowego"
 
 msgid "Network test..."
-msgstr "Test połączenia sieciowego..."
+msgstr "Testowanie połączenia sieciowego..."
 
 msgid "Network..."
 msgstr "Sieć..."
@@ -1621,9 +1628,6 @@ msgstr "Kreator sieci"
 
 msgid "New"
 msgstr "Nowy"
-
-msgid "New DVD"
-msgstr "Nowe DVD"
 
 msgid "New pin"
 msgstr "Nowy pin"
@@ -1644,7 +1648,7 @@ msgid "No HDD found or HDD not initialized!"
 msgstr "Nie znaleziono HDD lub HDD nie jest zainicjowany!"
 
 msgid "No backup needed"
-msgstr "Kopia jest nie potrzebna"
+msgstr "Kopia zapasowa jest nie potrzebna"
 
 msgid ""
 "No data on transponder!\n"
@@ -1675,14 +1679,14 @@ msgid "No satellite frontend found!!"
 msgstr "Nie znaleziono satelity!!!"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Brak skonfigurowanego tunera aby uzywac go z pozycjonerem diseqc!"
+msgstr "Brak skonfigurowanego tunera aby używać go z pozycjonerem diseqc!"
 
 msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Brak włączonego tunera!\n"
-"Ustaw swój tuner przed rozpoczęciem skanowania."
+"Ustaw tuner przed rozpoczęciem skanowania."
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1690,7 +1694,7 @@ msgid ""
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
 "Nie znaleziono kodu PIN serwisu!\n"
-"czy chcesz zmienić PIN serwisu?\n"
+"Czy chcesz zmienić PIN serwisu?\n"
 "Gdy wciśniesz NIE ochrona serwisu zostanie wyłączona!"
 
 msgid ""
@@ -1726,8 +1730,8 @@ msgid ""
 "Network is configured correctly."
 msgstr ""
 "Nie znaleziono działającego adaptera sieci bezprzewodowej.\n"
-"Sprawdź czy Twój WLAN USB Stick jest kompatybilny oraz poprawność "
-"konfiguracji sieci."
+"Sprawdź kompatybilność Twojegp WLAN USB Stick oraz poprawność konfiguracji "
+"sieci."
 
 msgid "No, but restart from begin"
 msgstr "Nie, ale zrestartuj od początku"
@@ -1736,7 +1740,7 @@ msgid "No, do nothing."
 msgstr "Nie, nie rób nic."
 
 msgid "No, just start my dreambox"
-msgstr "Nie, tylko włącz mojego dreamboxa"
+msgstr "Nie, tylko włącz Dreamboxa"
 
 msgid "No, scan later manually"
 msgstr "Nie, skanuj ręcznie później"
@@ -1767,10 +1771,10 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Nic do skanowania!\n"
-"Ustaw swój tuner przed rozpoczeciem skanowania."
+"Ustaw tuner przed rozpoczeciem skanowania."
 
 msgid "Now Playing"
-msgstr "Teraz odtwarzane"
+msgstr "Odtwarzane"
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1801,6 +1805,9 @@ msgstr "Jeden"
 
 msgid "Online-Upgrade"
 msgstr "Online - Aktualizacja"
+
+msgid "Only Free scan"
+msgstr ""
 
 msgid "Orbital Position"
 msgstr "Pozycja orbitalna"
@@ -1859,10 +1866,10 @@ msgid "Pin code needed"
 msgstr "Potrzebny kod pin"
 
 msgid "Play"
-msgstr "Play"
+msgstr "Odtwarzaj"
 
 msgid "Play recorded movies..."
-msgstr "Odtwarzaj nagrane filmy..."
+msgstr "Odtwarzanie nagranego filmu..."
 
 msgid "Please Reboot"
 msgstr "Proszę uruchom ponownie"
@@ -1889,7 +1896,7 @@ msgid "Please enter a name for the new bouquet"
 msgstr "Wpisz nazwę dla nowego bukietu"
 
 msgid "Please enter a name for the new marker"
-msgstr "Wpisz nazwę dla nowego zaznaczenia"
+msgstr "Wpisz nazwę dla nowego zanacznika"
 
 msgid "Please enter a new filename"
 msgstr "Wpisz nową nazwę pliku"
@@ -1907,7 +1914,7 @@ msgid "Please enter the old pin code"
 msgstr "Wpisz stary kod pin"
 
 msgid "Please follow the instructions on the TV"
-msgstr "Proszę podążaj za instrukcjami na TV"
+msgstr "Podążaj za instrukcjami na TV"
 
 msgid ""
 "Please note that the previously selected media could not be accessed and "
@@ -2040,6 +2047,9 @@ msgstr "Wciśnij OK aby rozpocząć skanowanie"
 msgid "Prev"
 msgstr "Poprzedni"
 
+msgid "Preview menu"
+msgstr ""
+
 msgid "Primary DNS"
 msgstr "Pierwszy DNS"
 
@@ -2077,10 +2087,10 @@ msgid "Radio"
 msgstr "Radio"
 
 msgid "Ram Disk"
-msgstr "Dysk ramu"
+msgstr "Ram Dysk"
 
 msgid "Really close without saving settings?"
-msgstr "Naprawdę wyjść bez zapisywania ustawień?"
+msgstr "Wyjść bez zapisywania ustawień?"
 
 msgid "Really delete done timers?"
 msgstr "Usunąć wykonane timery?"
@@ -2143,7 +2153,7 @@ msgid "Remove Plugins"
 msgstr "Usuń pluginy"
 
 msgid "Remove a mark"
-msgstr "Usuń zaznaczenie"
+msgstr "Usuń znacznik"
 
 msgid "Remove currently selected title"
 msgstr "Usuń aktualnie wybrany tytuł"
@@ -2181,7 +2191,7 @@ msgid "Resolution"
 msgstr "Rozdzielczość"
 
 msgid "Restart"
-msgstr "Restartuj"
+msgstr "Restart"
 
 msgid "Restart GUI"
 msgstr "Restartuj GUI"
@@ -2196,7 +2206,7 @@ msgid "Restart test"
 msgstr "Restart testu"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Restaty adaprera i połaczenia sieciowego.\n"
+msgstr "Restart adaprera i połaczenia sieciowego.\n"
 
 msgid "Restore"
 msgstr "Przywróć"
@@ -2290,9 +2300,6 @@ msgstr "Zachowaj Playliste"
 msgid "Save current project to disk"
 msgstr "Zapisz aktualny projekt na dysku"
 
-msgid "Save..."
-msgstr "Zapisywanie..."
-
 msgid "Scaling Mode"
 msgstr "Tryb skalowania"
 
@@ -2366,8 +2373,8 @@ msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
 msgstr ""
-"Skanuj sieć w poszukiwaniu bezprzewodowych Access Piontów i połącz się z nim "
-"przy użyciu WLAN USB Stick\n"
+"Skanuj sieć w poszukiwaniu bezprzewodowych punktów dostępu i połącz się z "
+"nim przy użyciu WLAN USB Stick\n"
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -2390,7 +2397,7 @@ msgid "Select HDD"
 msgstr "Wybierz HDD"
 
 msgid "Select Location"
-msgstr "Wybierz Lokalizację"
+msgstr "Wybierz lokalizację"
 
 msgid "Select Network Adapter"
 msgstr "Wybierz adapter sieciowy"
@@ -2420,7 +2427,7 @@ msgid "Sequence repeat"
 msgstr "Potwórka sekwencji"
 
 msgid "Service"
-msgstr "Informacja o serwisie"
+msgstr "Serwis"
 
 msgid "Service Scan"
 msgstr "Skanowanie serwisu"
@@ -2438,7 +2445,7 @@ msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
-"Serwis nieważny!\n"
+"Serwis niewłaściwy!\n"
 "(Koniec czasu czytania PMT)"
 
 msgid ""
@@ -2459,7 +2466,7 @@ msgstr ""
 "Sprawdź konfigurację tunera!"
 
 msgid "Serviceinfo"
-msgstr "Info serwisowe"
+msgstr "Info o serwisie"
 
 msgid "Services"
 msgstr "Serwisy"
@@ -2467,8 +2474,14 @@ msgstr "Serwisy"
 msgid "Set as default Interface"
 msgstr "Ustaw jako domyslny interfejs"
 
+msgid "Set collection name"
+msgstr ""
+
 msgid "Set limits"
 msgstr "Ustaw limity"
+
+msgid "Set menu background"
+msgstr ""
 
 msgid "Settings"
 msgstr "Ustawienia"
@@ -2528,7 +2541,7 @@ msgid "Single"
 msgstr "Jeden"
 
 msgid "Single EPG"
-msgstr "Zwykłe EPG"
+msgstr "Pojedyńczy EPG"
 
 msgid "Single satellite"
 msgstr "Jeden satelita"
@@ -2539,11 +2552,14 @@ msgstr "Jeden transponder"
 msgid "Singlestep (GOP)"
 msgstr "Pojedyńczy krok (GOP)"
 
+msgid "Skin..."
+msgstr ""
+
 msgid "Sleep Timer"
 msgstr "Wyłącznik czasowy"
 
 msgid "Sleep timer action:"
-msgstr "Akcja wyłącznika:"
+msgstr "Akcja wyłącznika czasowego:"
 
 msgid "Slideshow Interval (sec.)"
 msgstr "Odstępy w pokazie slajdów (w sec)"
@@ -2556,7 +2572,7 @@ msgid "Slow"
 msgstr "Wolno"
 
 msgid "Slow Motion speeds"
-msgstr "Prędkości wolnego ruchu"
+msgstr "Odtważanie w zwolnionym tempie"
 
 msgid "Some plugins are not available:\n"
 msgstr "Niektóre pluginy są niedostępne:\n"
@@ -2569,7 +2585,7 @@ msgid ""
 "\n"
 "Please choose an other one."
 msgstr ""
-"Przepraszam ale ścieżka dostępu do kopii nie istnieje\n"
+"Przepraszam ale ścieżka dostępu do kopii zapasowej nie istnieje\n"
 "\n"
 "Wybierz inną."
 
@@ -2579,7 +2595,7 @@ msgstr "Sortuj od A-Z"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
-msgstr "Czas sortowania"
+msgstr "Sortuj po czasie"
 
 msgid "Sound"
 msgstr "Dźwięk"
@@ -2612,7 +2628,7 @@ msgid "Start test"
 msgstr "Zacznij test"
 
 msgid "StartTime"
-msgstr "czas rozpoczęcia"
+msgstr "Czas rozpoczęcia"
 
 msgid "Starting on"
 msgstr "Rozpocznij na"
@@ -2699,8 +2715,8 @@ msgstr ""
 msgid "TV System"
 msgstr "System TV"
 
-msgid "Table of content to be burned to DVD:"
-msgstr "Dane do wypalenia na DVD:"
+msgid "Table of content for collection"
+msgstr ""
 
 msgid "Terrestrial"
 msgstr "Naziemny"
@@ -2715,17 +2731,17 @@ msgid "Test the network configuration of your Dreambox.\n"
 msgstr "Test configuracji sieci Dreambox.\n"
 
 msgid "Test-Messagebox?"
-msgstr "Testowa Informacja?"
+msgstr "Informacja testowa?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using you Dreambox."
 msgstr ""
-"dziękuję za uzycie kreatora. Twój tuner jest juz gotowy do użycia.\n"
+"Dziękuję za użycie kreatora. Twój tuner jest już gotowy do użycia.\n"
 "Wciśnij OK i rozpocznij zabawę z Dreamboxem."
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr "Kopia nieudana. Wybierz inna lokalizacje kopii."
+msgstr "Nieudane tworzenie kopia zapasowa. Wybierz inna lokalizacje kopii."
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2751,7 +2767,7 @@ msgstr "Pakiet nie zawiera informacji."
 
 #, python-format
 msgid "The path %s already exists."
-msgstr "Ścieżka %s juz istnieje."
+msgstr "Ścieżka %s już istnieje."
 
 msgid "The pin code has been changed successfully."
 msgstr "Kod pin został zmieniony pomyślnie."
@@ -2781,7 +2797,8 @@ msgstr ""
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"Kreator może utworzyć kopie twoich ustawień. Chcesz zrobić kopie teraz?"
+"Kreator może utworzyć kopie zapasową Twoich ustawień. Chcesz zrobić kopie "
+"teraz?"
 
 msgid "The wizard is finished now."
 msgstr "Kreator zakończony."
@@ -2803,7 +2820,7 @@ msgid "This is step number 2."
 msgstr "To jest krok numer 2."
 
 msgid "This is unsupported at the moment."
-msgstr "To jest nie obsługiwane w tym momencie."
+msgstr "Opcja jest nieobsługiwana w tym momencie."
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -2865,7 +2882,7 @@ msgid "Three"
 msgstr "Trzy"
 
 msgid "Threshold"
-msgstr "Przedsionek"
+msgstr "Próg"
 
 msgid "Thu"
 msgstr "Czw"
@@ -2943,7 +2960,7 @@ msgid "Transmission Mode"
 msgstr "Tryb transmisji"
 
 msgid "Transmission mode"
-msgstr "tryb transmisji"
+msgstr "Tryb transmisji"
 
 msgid "Transponder"
 msgstr "Transponder"
@@ -3031,7 +3048,7 @@ msgid "Unmount failed"
 msgstr "Błąd odmontowania"
 
 msgid "Updates your receiver's software"
-msgstr "Aktualizuje oprogramowanie twojego tunera"
+msgstr "Aktualizuje oprogramowanie Twojego tunera"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Aktualizacja skończona. Oto rezultat:"
@@ -3052,7 +3069,7 @@ msgid "Use DHCP"
 msgstr "Użyj DHCP"
 
 msgid "Use Interface"
-msgstr "Uzyj intrefejsu"
+msgstr "Użyj intrefejsu"
 
 msgid "Use Power Measurement"
 msgstr "Użyj Pomiaru Mocy"
@@ -3093,7 +3110,7 @@ msgstr ""
 msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
-msgstr "Uzyj przycisku góra/dół aby zmienić opcje. Po tym , wciśnij OK."
+msgstr "Użyj przycisku góra/dół aby zmienić opcje. Po tym , wciśnij OK."
 
 msgid "Use usals for this sat"
 msgstr "Użyj USALD dla tej satelity"
@@ -3105,16 +3122,16 @@ msgid "Used service scan type"
 msgstr "Użyj typu skanowania serwisów"
 
 msgid "User defined"
-msgstr "Zdefiniowany przez uzytkownika"
+msgstr "Zdefiniowany przez użytkownika"
 
 msgid "VCR scart"
 msgstr "Przełącz VCR"
 
 msgid "Video Fine-Tuning"
-msgstr "Ustawienia Czystego Obrazu"
+msgstr "Ustawienia czysości obrazu"
 
 msgid "Video Fine-Tuning Wizard"
-msgstr "Kreator Czystego Obrazu "
+msgstr "Kreator czystości obrazu "
 
 msgid "Video Output"
 msgstr "Wyjście Wideo"
@@ -3135,7 +3152,7 @@ msgid ""
 msgstr ""
 "Wybór wejścia wideo\n"
 "\n"
-"Prosze wciśnij OK jeśli widzisz ta stronę na ekranie TV (lub wybierz inny "
+"Proszę wciśnij OK jeśli widzisz tą stronę na ekranie TV (lub wybierz inny "
 "port wejścia).\n"
 "\n"
 "Kolejny port wejścia będzie wypróbowany za 10 sekund."
@@ -3178,8 +3195,9 @@ msgid ""
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
 "Please press OK to begin."
 msgstr ""
-"Teraz sprawdzimy czy twój TV może wyświetlić obraz w 50hz. Jesli twój obraz "
-"stanie się czarny, poczekaj 20 sekund wtedy zostanie przełączony na 60hz.\n"
+"Teraz sprawdzimy czy telewizor może wyświetlić obraz w 50hz. Jeśli obraz "
+"telewizora stanie się czarny, poczekaj 20 sekund wtedy zostanie przełączony "
+"na 60hz.\n"
 "Proszę wciśnij OK aby rozpocząć."
 
 msgid "Wed"
@@ -3196,9 +3214,9 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Witaj w kreatorze aktualizacji oprogramowania. Kreator będzie twoim "
-"asystentem aktualizując oprogramowanie w twoim Dreamboxie przez dostarczenie "
-"kopii twoich aktualnych ustawień i krótko wyjaśni jak zaktualizować twoje "
+"Witaj w kreatorze aktualizacji oprogramowania. Kreator będzie Twoim "
+"asystentem aktualizując oprogramowanie w Dreamboxie przez dostarczenie kopii "
+"zapasowej aktualnych ustawień i krótko wyjaśni jak zaktualizować "
 "oprogramowanie."
 
 msgid ""
@@ -3209,8 +3227,7 @@ msgid ""
 msgstr ""
 "Witaj.\n"
 "\n"
-"Ten kreator przeprowadzi ciebie przez podstawowe ustawienia twojego "
-"Dreamboxa.\n"
+"Ten kreator przeprowadzi Ciebie przez podstawowe ustawienia Dreamboxa.\n"
 "Wciśnij OK na pilocie aby przejść do kolejnego kroku."
 
 msgid "Welcome..."
@@ -3222,11 +3239,8 @@ msgstr "Zachód"
 msgid "What do you want to scan?"
 msgstr "Co chcesz skanować?"
 
-msgid "When complete, press Key 0 to burn the collection!"
-msgstr "Kiedy skończys, w celu nagrania kolekcji nacisnij klawisz 0!"
-
 msgid "Where do you want to backup your settings?"
-msgstr "Gdzie chcesz zrobić kopie twoich ustawień?"
+msgstr "Gdzie chcesz zrobić kopie zapasową ustawień?"
 
 msgid "Wireless"
 msgstr "Bezprzewodowy"
@@ -3281,7 +3295,7 @@ msgid "You can choose, what you want to install..."
 msgstr "Proszę wybrać komponenty do zainstalowania..."
 
 msgid "You cannot delete this!"
-msgstr "Nie można usunąc tego!"
+msgstr "Tego nie można usunąć!"
 
 msgid "You chose not to install any default services lists."
 msgstr "Nie wybrałeś żadnej listy serwisów."
@@ -3291,7 +3305,7 @@ msgid ""
 "default settings later in the settings menu."
 msgstr ""
 "Nie wybrałeś do zainstalowania żadnych ustawień standardowych. Możesz "
-"zainstalować ustawienia standardowe później w menu ustawień standardowych."
+"zainstalować to później w menu ustawień standardowych."
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
@@ -3303,8 +3317,8 @@ msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
 "harddisk is not an option for you."
 msgstr ""
-"Wydaje się że nie masz HDD w Dreamboxie. Więc tworzenie kopii na HDD nie "
-"jest opcją dla ciebie."
+"Wydaje się, że nie masz HDD w Dreamboxie. Utworzenie kopii zapasowej na HDD "
+"nie jest możliwe."
 
 msgid ""
 "You have chosen to backup to a compact flash card. The card must be in the "
@@ -3313,7 +3327,7 @@ msgid ""
 "Please press OK to start the backup now."
 msgstr ""
 "Wybrałeś kopie na karcie CF. Karta musi być w slocie. Nie można zweryfikować "
-"czy jest  w użyciu teraz. Wiec lepiej zrób kopie na HDD!\n"
+"czy jest  ona w użyciu teraz. Więc lepiej zrób kopie na HDD!\n"
 "Wciśnij OK aby rozpocząć tworzenie kopii teraz."
 
 msgid ""
@@ -3326,7 +3340,7 @@ msgstr ""
 msgid ""
 "You have chosen to backup to your harddisk. Please press OK to start the "
 "backup now."
-msgstr "Wybrałeś kopie na HDD. Wciśnij OK aby rozpocząc tworzenie kopii teraz."
+msgstr "Wybrałeś kopie na HDD. Wciśnij OK aby rozpocząć tworzenie kopii teraz."
 
 msgid "You have to wait for"
 msgstr "Musisz poczekać na"
@@ -3338,11 +3352,10 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Potrzebujesz PC połączony do twojego Dreamboxa. Jeśli potrzebujesz więcej "
-"informacji odwiedź stronę http://www.dm7025.de.\n"
-"Teraz twój Dreambox zostanie zatrzymany. Po wykonaniu  instrukcji "
-"aktualizacji ze strony, twoje nowe oprogramowanie zapyta ciebie o "
-"przywrócenie twoich ustawień."
+"Potrzebujesz PC połączony do Dreamboxa. Jeśli potrzebujesz więcej informacji "
+"odwiedź stronę http://www.dm7025.de.\n"
+"Teraz Dreambox zostanie zatrzymany. Po wykonaniu  instrukcji aktualizacji ze "
+"strony, nowe oprogramowanie zapyta Ciebie czy powinno przywrocić ustawienia."
 
 msgid ""
 "You need to define some keywords first!\n"
@@ -3351,28 +3364,29 @@ msgid ""
 msgstr ""
 "Najpierw musisz zdefiniować kilka wyrażeń!\n"
 "Wciśnij przycisk MENU aby zdefiniować wyrażenia.\n"
-"Czy chcesz zdefiniować teraz?"
+"Czy chcesz zdefiniować je teraz?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"Ustaw kod PIN i ukryj to przed twoimi dziećmi.\n"
+"Ustaw kod PIN i ukryj to przed Twoimi dziećmi.\n"
 "\n"
-"czy chcesz ustawić kod PIN teraz?"
+"Czy chcesz ustawić kod PIN teraz?"
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
-msgstr "W celu zrestartowania Dreamboxa nacisnij przycisk OK pilota."
+msgstr "W celu zrestartowania Dreamboxa naciśnij przycisk OK pilota."
 
 msgid "Your TV works with 50 Hz. Good!"
-msgstr "Twój TV działa z 50 Hz. Wspaniale!"
+msgstr "Twój telewizor działa z 50 Hz. Wspaniale!"
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
 msgstr ""
-"Twoja kopia zrobiona. Będziemy kontynuować wyjaśnianie procesu aktualizacji."
+"Twoja kopia zapasowa została zrobiona. Będziemy kontynuować wyjaśnianie "
+"procesu aktualizacji."
 
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Twój Dreambox jest wyłączany. Prosze czekać..."
@@ -3410,61 +3424,61 @@ msgid "[move mode]"
 msgstr "[tryb przesuwania]"
 
 msgid "abort alternatives edit"
-msgstr "Przerwij edycje wybranych"
+msgstr "przerwij edycje wybranych"
 
 msgid "abort bouquet edit"
-msgstr "Przerwij edycje bukietów"
+msgstr "przerwij edycje bukietów"
 
 msgid "abort favourites edit"
-msgstr "Przerwij edycje ulubionych"
+msgstr "przerwij edycje ulubionych"
 
 msgid "about to start"
-msgstr "Jak rozpocząć"
+msgstr "jak rozpocząć"
 
 msgid "add alternatives"
-msgstr "Dodaj wybrane"
+msgstr "dodaj wybrane"
 
 msgid "add bookmark"
 msgstr "dodaj zakładkę"
 
 msgid "add bouquet"
-msgstr "Dodaj bukiet"
+msgstr "dodaj bukiet"
 
 msgid "add directory to playlist"
-msgstr "Dodaj katalog do playlisty "
+msgstr "dodaj katalog do playlisty "
 
 msgid "add file to playlist"
-msgstr "Dodaj plik do playlisty"
+msgstr "dodaj plik do playlisty"
 
 msgid "add files to playlist"
 msgstr "dodaj pliki do playlisty"
 
 msgid "add marker"
-msgstr "Dodaj zaznaczenie"
+msgstr "dodaj zaznaczenie"
 
 msgid "add recording (enter recording duration)"
-msgstr "Dodaj nagranie (wpisz trwanie nagrania)"
+msgstr "dodaj nagranie (wpisz trwanie nagrania)"
 
 msgid "add recording (enter recording endtime)"
-msgstr "Dodaj nagranie (wpisz koniec czasu nagrania)"
+msgstr "dodaj nagranie (wpisz koniec czasu nagrania)"
 
 msgid "add recording (indefinitely)"
-msgstr "Dodaj nagranie (na czas nieokreślony)"
+msgstr "dodaj nagranie (na czas nieokreślony)"
 
 msgid "add recording (stop after current event)"
-msgstr "Dodaj nagranie (zatrzymaj po aktualnym wydarzeniu)"
+msgstr "dodaj nagranie (zatrzymaj po aktualnym wydarzeniu)"
 
 msgid "add service to bouquet"
-msgstr "Dodaj serwis do bukietu"
+msgstr "dodaj serwis do bukietu"
 
 msgid "add service to favourites"
-msgstr "Dodaj serwis do ulubionych"
+msgstr "dodaj serwis do ulubionych"
 
 msgid "add to parental protection"
-msgstr "Dodaj do kontroli rodzicielskiej"
+msgstr "dodaj do kontroli rodzicielskiej"
 
 msgid "advanced"
-msgstr "Zaawansowane"
+msgstr "zaawansowane"
 
 msgid "alphabetic sort"
 msgstr "sortuj alfabetycznie"
@@ -3477,25 +3491,28 @@ msgstr ""
 "następującą kopie:\n"
 
 msgid "back"
-msgstr "Wróć"
+msgstr "wróć"
 
 msgid "better"
-msgstr "Lepszy"
+msgstr "lepszy"
 
 msgid "blacklist"
 msgstr "Czarna lista"
 
 msgid "by Exif"
-msgstr "Przez Exif"
+msgstr "przez Exif"
 
 msgid "cancel"
 msgstr "skauj"
 
 msgid "change recording (duration)"
-msgstr "Zmień czas trwania nagrania"
+msgstr "zmień czas trwania nagrania"
 
 msgid "change recording (endtime)"
-msgstr "Zmień koniec czasu nagrania"
+msgstr "zmień koniec czasu nagrania"
+
+msgid "chapters"
+msgstr ""
 
 msgid "circular left"
 msgstr "Kołój w lewo"
@@ -3507,7 +3524,7 @@ msgid "clear playlist"
 msgstr "Wyczyść playliste"
 
 msgid "complex"
-msgstr "Złożony"
+msgstr "złożony"
 
 msgid "config menu"
 msgstr "Menu konfiguracji"
@@ -3516,10 +3533,10 @@ msgid "confirmed"
 msgstr "potwierdzone"
 
 msgid "connected"
-msgstr "piołączone"
+msgstr "połączony"
 
 msgid "continue"
-msgstr "Kontynuuj"
+msgstr "kontynuuj"
 
 msgid "copy to bouquets"
 msgstr "Kopiuj do bukietów"
@@ -3531,13 +3548,13 @@ msgid "daily"
 msgstr "Codziennie"
 
 msgid "delete"
-msgstr "Usuń"
+msgstr "usuń"
 
 msgid "delete cut"
 msgstr "Usuń wycięte"
 
 msgid "delete playlist entry"
-msgstr "usuń wpis playlisty"
+msgstr "Usuń wpis playlisty"
 
 msgid "delete saved playlist"
 msgstr "usuń zachowaną playlistę"
@@ -3605,20 +3622,26 @@ msgstr "Koniec edycji ulubionych"
 msgid "equal to"
 msgstr "równy"
 
+msgid "exceeds dual layer medium!"
+msgstr ""
+
 msgid "exit DVD player or return to file browser"
-msgstr "wyjdź z odtważacza DVD lub powróć do przeglądarki plików"
+msgstr "Wyjdź z odtważacza DVD lub powróć do przeglądarki plików"
 
 msgid "exit mediaplayer"
-msgstr "wyjdź z mediaplayera"
+msgstr "Wyjdź z mediaplayera"
 
 msgid "exit movielist"
-msgstr "wyjdź z listy filmów"
+msgstr "Wyjdź z listy filmów"
 
 msgid "fine-tune your display"
 msgstr "czysto ustaw swój ekran"
 
 msgid "forward to the next chapter"
 msgstr "Przeskocz do nastepnego rozdziału"
+
+msgid "free"
+msgstr ""
 
 msgid "free diskspace"
 msgstr "Wolna przestrzeń dyskowa"
@@ -3668,13 +3691,13 @@ msgid "init module"
 msgstr "Moduł init"
 
 msgid "insert mark here"
-msgstr "Wstaw zaznaczenie tu"
+msgstr "Wstaw znacznik tutaj"
 
 msgid "jump back to the previous title"
-msgstr "powróc do poprzedniego rozdziału"
+msgstr "powróć do poprzedniego rozdziału"
 
 msgid "jump forward to the next title"
-msgstr "przeskocz do nastepnego tytułu"
+msgstr "przeskocz do następnego tytułu"
 
 msgid "jump to listbegin"
 msgstr "skocz do początku listy"
@@ -3710,7 +3733,7 @@ msgid "load playlist"
 msgstr "załaduj playliste"
 
 msgid "locked"
-msgstr "Zablokowany"
+msgstr "zablokowany"
 
 msgid "loopthrough to"
 msgstr "Za pomocą pętki do"
@@ -3777,6 +3800,12 @@ msgstr "Nie zablokowany"
 
 msgid "nothing connected"
 msgstr "nic nie połączono"
+
+msgid "of a DUAL layer medium used."
+msgstr ""
+
+msgid "of a SINGLE layer medium used."
+msgstr ""
 
 msgid "off"
 msgstr "Wyłączony"
@@ -3864,6 +3893,9 @@ msgstr "usuń wybranego satelitę"
 
 msgid "remove this mark"
 msgstr "Usuń to zaznaczenie"
+
+msgid "repeat playlist"
+msgstr ""
 
 msgid "repeated"
 msgstr "Powtórzone"
@@ -4012,7 +4044,7 @@ msgid "swap PiP and main picture"
 msgstr "zmień PiP i  główny obraz"
 
 msgid "switch to bookmarks"
-msgstr "Przeńącz na zakładkę"
+msgstr "Przełącz na zakładkę"
 
 msgid "switch to filelist"
 msgstr "Przeącz na listę plików"
@@ -4033,7 +4065,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "Ten serwis jest chroniony kodem blokady"
 
 msgid "toggle a cut mark at the current position"
-msgstr "przetkaj ucięty znak w aktualnej pozycji"
+msgstr "przełącz ucięty znacznik w aktualną pozycję"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "czas odtważania, rozdział, audio, informacja o napisach"
@@ -4060,10 +4092,10 @@ msgid "view recordings..."
 msgstr "Wyświetl nagrania..."
 
 msgid "wait for ci..."
-msgstr "Czekan na ci..."
+msgstr "Czekam na CI..."
 
 msgid "wait for mmi..."
-msgstr "czekaj na mmi..."
+msgstr "czekam na MMI..."
 
 msgid "waiting"
 msgstr "Oczekiwanie"
@@ -4104,6 +4136,9 @@ msgstr "Przełączony"
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
+#~ msgid "Add title..."
+#~ msgstr "Dodaję tytuł..."
+
 #~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"
 #~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
@@ -4119,6 +4154,12 @@ msgstr "Przełączony"
 #~ msgstr ""
 #~ "Czy jesteś pewien, że chcesz włączyć sieć lokalną?\n"
 #~ "\n"
+
+#~ msgid "Burn"
+#~ msgstr "Wypal"
+
+#~ msgid "Burn To DVD..."
+#~ msgstr "Wypalanie DVD..."
 
 #~ msgid "Choose Location"
 #~ msgstr "Sprawdzanie Lokalizacji"
@@ -4150,6 +4191,12 @@ msgstr "Przełączony"
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "czy chcesz zobaczyć podręcznik wyciętej listy?"
 
+#~ msgid "Edit current title"
+#~ msgstr "Edytuj aktualny tytuł"
+
+#~ msgid "Edit title..."
+#~ msgstr "Edytuję tytuł..."
+
 #~ msgid "Enable LAN"
 #~ msgstr "Włącza LAN"
 
@@ -4177,6 +4224,9 @@ msgstr "Przełączony"
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Ustawienia Nameserver..."
+
+#~ msgid "New DVD"
+#~ msgstr "Nowe DVD"
 
 #~ msgid ""
 #~ "No working wireless interface found.\n"
@@ -4236,6 +4286,9 @@ msgstr "Przełączony"
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Restary interfejsu bezprzewodowego"
 
+#~ msgid "Save..."
+#~ msgstr "Zapisywanie..."
+
 #~ msgid "Show files from %s"
 #~ msgstr "Pokaż pliki od %s"
 
@@ -4244,6 +4297,9 @@ msgstr "Przełączony"
 
 #~ msgid "Step "
 #~ msgstr "Krok"
+
+#~ msgid "Table of content to be burned to DVD:"
+#~ msgstr "Dane do wypalenia na DVD:"
 
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
@@ -4304,6 +4360,9 @@ msgstr "Przełączony"
 #~ "Deamboxa pozwalających Ci na podłączenie z Internetem.\n"
 #~ "\n"
 #~ "Aby przejść do nastepnego kroku nacisnij przycisk OK pilota. "
+
+#~ msgid "When complete, press Key 0 to burn the collection!"
+#~ msgstr "Kiedy skończysz, w celu nagrania kolekcji nacisnij klawisz 0!"
 
 #~ msgid ""
 #~ "Your local LAN internet connection is not working!\n"
