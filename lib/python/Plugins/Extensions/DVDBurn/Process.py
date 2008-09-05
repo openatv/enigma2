@@ -296,7 +296,7 @@ class PreviewTask(Task):
 		if self.job.menupreview:
 			self.waitAndOpenPlayer()
 		else:
-			self.job.project.session.openWithCallback(self.previewCB, MessageBox, _("Do you want to preview this project before burning?"), timeout = 60, default = False)
+			self.job.project.session.openWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False)
 	
 	def previewCB(self, answer):
 		if answer == True:
@@ -308,7 +308,7 @@ class PreviewTask(Task):
 		if self.job.menupreview:
 			self.closedCB(True)
 		else:
-			self.job.project.session.openWithCallback(self.closedCB, MessageBox, _("Do you want to burn this project to DVD medium?") )
+			self.job.project.session.openWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?") )
 
 	def closedCB(self, answer):
 		if answer == True:
@@ -341,24 +341,31 @@ def getTitlesPerMenu(nr_titles):
 	return titles_per_menu
 
 def formatTitle(template, title, track):
-	import re
+	print template
 	template = template.replace("$i", str(track))
+	print template
 	template = template.replace("$t", title.name)
+	print template
 	template = template.replace("$d", title.descr)
+	print template
 	template = template.replace("$c", str(len(title.chaptermarks)+1))
+	print template
 	template = template.replace("$f", title.inputfile)
+	print template
+	template = template.replace("$C", title.channel)
+	print template
 	l = title.length
 	lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
 	template = template.replace("$l", lengthstring)
-	res = re.search("(?:/.*?).*/(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2}).(?P<hour>\d{2})(?P<minute>\d{2}).-.*.?.ts", title.inputfile)
-	if res:
-		template = template.replace("$Y", res.group("year"))
-		template = template.replace("$M", res.group("month"))
-		template = template.replace("$D", res.group("day"))
-		template = template.replace("$h", res.group("hour"))
-		template = template.replace("$m", res.group("minute"))
+	print template
+	if title.timeCreate:
+		template = template.replace("$Y", str(title.timeCreate[0]))
+		template = template.replace("$M", str(title.timeCreate[1]))
+		template = template.replace("$D", str(title.timeCreate[2]))
+		timestring = "%d:%02d" % (title.timeCreate[3], title.timeCreate[4])
+		template = template.replace("$T", timestring)
 	else:
-		template = template.replace("$Y", "").replace("$M", "").replace("$D", "").replace("$h", "").replace("$m", "")
+		template = template.replace("$Y", "").replace("$M", "").replace("$D", "").replace("$T", "")
 	return template.decode("utf-8")
 
 def CreateMenus(job):
