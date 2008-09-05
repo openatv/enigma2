@@ -209,12 +209,12 @@ class BurnTaskPostcondition(Condition):
 
 	def getErrorMessage(self, task):
 		return {
-			task.ERROR_MEDIA: ("Medium is not a writeable DVD!"),
-			task.ERROR_SIZE: ("Content does not fit on DVD!"),
-			task.ERROR_WRITE_FAILED: ("Write failed!"),
-			task.ERROR_DVDROM: ("No (supported) DVDROM found!"),
-			task.ERROR_ISOFS: ("Medium is not empty!"),
-			task.ERROR_UNKNOWN: ("An unknown error occured!")
+			task.ERROR_MEDIA: _("Medium is not a writeable DVD!"),
+			task.ERROR_SIZE: _("Content does not fit on DVD!"),
+			task.ERROR_WRITE_FAILED: _("Write failed!"),
+			task.ERROR_DVDROM: _("No (supported) DVDROM found!"),
+			task.ERROR_ISOFS: _("Medium is not empty!"),
+			task.ERROR_UNKNOWN: _("An unknown error occured!")
 		}[task.error]
 
 class BurnTask(Task):
@@ -226,8 +226,8 @@ class BurnTask(Task):
 		self.end = 120 # 100 for writing, 10 for buffer flush, 10 for closing disc
 		self.postconditions.append(BurnTaskPostcondition())
 		self.setTool("/bin/growisofs")
-		
-		self.args += ["-dvd-video", "-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", self.getASCIIname(job.project.name), "-P", "Dreambox", "-use-the-force-luke=dummy", self.job.workspace + "/dvd"]
+		volName = self.getASCIIname(job.project.settings.name.getValue())
+		self.args += ["-dvd-video", "-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", volName, "-P", "Dreambox", "-use-the-force-luke=dummy", self.job.workspace + "/dvd"]
 
 	def getASCIIname(self, name):
 		ASCIIname = ""
@@ -285,6 +285,7 @@ class RemoveDVDFolder(Task):
 class PreviewTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Preview")
+		self.postconditions.append(PreviewTaskPostcondition())
 		self.job = job
 
 	def run(self, callback, task_progress_changed):
@@ -325,6 +326,13 @@ class PreviewTask(Task):
 		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
 		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist= [ self.job.project.workspace + "/dvd/VIDEO_TS/" ])
 
+class PreviewTaskPostcondition(Condition):
+	def check(self, task):
+		return task.returncode == 0
+
+	def getErrorMessage(self, task):
+		return "Cancel"
+
 def getTitlesPerMenu(nr_titles):
 	if nr_titles < 6:
 		titles_per_menu = 5
@@ -332,19 +340,47 @@ def getTitlesPerMenu(nr_titles):
 		titles_per_menu = 4
 	return titles_per_menu
 
+def formatTitle(template, title, track):
+	import re
+	template = template.replace("$i", str(track))
+	template = template.replace("$t", title.name)
+	template = template.replace("$d", title.descr)
+	template = template.replace("$c", str(len(title.chaptermarks)+1))
+	template = template.replace("$f", title.inputfile)
+	l = title.length
+	lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+	template = template.replace("$l", lengthstring)
+	res = re.search("(?:/.*?).*/(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2}).(?P<hour>\d{2})(?P<minute>\d{2}).-.*.?.ts", title.inputfile)
+	if res:
+		template = template.replace("$Y", res.group("year"))
+		template = template.replace("$M", res.group("month"))
+		template = template.replace("$D", res.group("day"))
+		template = template.replace("$h", res.group("hour"))
+		template = template.replace("$m", res.group("minute"))
+	else:
+		template = template.replace("$Y", "").replace("$M", "").replace("$D", "").replace("$h", "").replace("$m", "")
+	return template.decode("utf-8")
+
 def CreateMenus(job):
-	import os, Image, ImageDraw, ImageFont, re
+	import os, Image, ImageDraw, ImageFont
 	imgwidth = 720
 	imgheight = 576
-	
-	im_bg_orig = Image.open(job.project.menubg)
+	s = job.project.settings
+	im_bg_orig = Image.open(s.menubg.getValue())
 	if im_bg_orig.size != (imgwidth, imgheight):
 		im_bg_orig = im_bg_orig.resize((720, 576))
+	
+	fontsizes = s.font_size.getValue()
+	fontface = s.font_face.getValue()
+	
+	font0 = ImageFont.truetype(fontface, fontsizes[0])
+	font1 = ImageFont.truetype(fontface, fontsizes[1])
+	font2 = ImageFont.truetype(fontface, fontsizes[2])
 
-	font0 = ImageFont.truetype(job.project.font_face, job.project.font_size[0])
-	font1 = ImageFont.truetype(job.project.font_face, job.project.font_size[1])
-	font2 = ImageFont.truetype(job.project.font_face, job.project.font_size[2])
-	spu_palette = [	0x60, 0x60, 0x60 ] + list(job.project.color_highlight)
+	color_headline = tuple(s.color_headline.getValue())
+	color_button = tuple(s.color_button.getValue())
+	color_highlight = tuple(s.color_highlight.getValue())
+	spu_palette = [	0x60, 0x60, 0x60 ] + s.color_highlight.getValue()
 
 	nr_titles = len(job.project.titles)
 	titles_per_menu = getTitlesPerMenu(nr_titles)
@@ -359,13 +395,13 @@ def CreateMenus(job):
 		draw_high = ImageDraw.Draw(im_high)
 
 		if menu_count == 1:
-			headline = job.project.name.decode("utf-8")
+			headline = s.name.getValue().decode("utf-8")
 			textsize = draw_bg.textsize(headline, font=font0)
 			if textsize[0] > imgwidth:
 				offset = (0 , 20)
 			else:
 				offset = (((imgwidth-textsize[0]) / 2) , 20)
-			draw_bg.text(offset, headline, fill=job.project.color_headline, font=font0)
+			draw_bg.text(offset, headline, fill=color_headline, font=font0)
 		
 		menubgpngfilename = job.workspace+"/dvd_menubg"+str(menu_count)+".png"
 		highlightpngfilename = job.workspace+"/dvd_highlight"+str(menu_count)+".png"
@@ -377,8 +413,8 @@ def CreateMenus(job):
 	transparent="%02x%02x%02x"
 	start="00:00:00.00"
 	force="yes" >""" % (highlightpngfilename, spu_palette[0], spu_palette[1], spu_palette[2])
-
-		rowheight = (job.project.font_size[1]+job.project.font_size[2]+job.project.space_rows)
+		s_top, s_rows, s_left = s.space.getValue()
+		rowheight = (fontsizes[1]+fontsizes[2]+s_rows)
 		menu_start_title = (menu_count-1)*titles_per_menu + 1
 		menu_end_title = (menu_count)*titles_per_menu + 1
 		if menu_end_title > nr_titles:
@@ -386,33 +422,24 @@ def CreateMenus(job):
 		menu_i = 0
 		for title_no in range( menu_start_title , menu_end_title ):
 			i = title_no-1
-			top = job.project.space_top + ( menu_i * rowheight )
+			top = s_top + ( menu_i * rowheight )
 			menu_i += 1
 			title = job.project.titles[i]
-			titlename = title.name.decode("utf-8")
-			menuitem = "%d. %s" % (title_no, titlename)
-			draw_bg.text((job.project.space_left,top), menuitem, fill=job.project.color_button, font=font1)
-			draw_high.text((job.project.space_left,top), menuitem, fill=1, font=font1)
-			res = re.search("(?:/.*?).*/(?P<year>\d{4})(?P<month>\d{2})(?P<day>\d{2}).(?P<hour>\d{2})(?P<minute>\d{2}).-.*.?.ts", title.inputfile)
-			subtitle = ""
-			if res:
-				subtitle = "%s-%s-%s, %s:%s. " % (res.group("year"),res.group("month"),res.group("day"),res.group("hour"),res.group("minute"))
-			if len(title.descr) > 1:
-				subtitle += title.descr.decode("utf-8") + ". "
-			if len(title.chaptermarks) > 1:
-				subtitle += (" (%d %s)" % (len(title.chaptermarks)+1, _("chapters")))
-			draw_bg.text((job.project.space_left,top+36), subtitle, fill=job.project.color_button, font=font2)
-	
+			titleText = formatTitle(s.titleformat.getValue(), title, title_no)
+			draw_bg.text((s_left,top), titleText, fill=color_button, font=font1)
+			draw_high.text((s_left,top), titleText, fill=1, font=font1)
+			subtitleText = formatTitle(s.subtitleformat.getValue(), title, title_no)
+			draw_bg.text((s_left,top+36), subtitleText, fill=color_button, font=font2)
 			bottom = top+rowheight
 			if bottom > imgheight:
 				bottom = imgheight
 			spuxml += """
-	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),job.project.space_left,imgwidth,top,bottom )
+	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),s_left,imgwidth,top,bottom )
 		if menu_count > 1:
 			prev_page_text = "<<<"
 			textsize = draw_bg.textsize(prev_page_text, font=font1)
-			offset = ( 2*job.project.space_left, job.project.space_top + ( titles_per_menu * rowheight ) )
-			draw_bg.text(offset, prev_page_text, fill=job.project.color_button, font=font1)
+			offset = ( 2*s_left, s_top + ( titles_per_menu * rowheight ) )
+			draw_bg.text(offset, prev_page_text, fill=color_button, font=font1)
 			draw_high.text(offset, prev_page_text, fill=1, font=font1)
 			spuxml += """
 	<button name="button_prev" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
@@ -420,8 +447,8 @@ def CreateMenus(job):
 		if menu_count < job.nr_menus:
 			next_page_text = ">>>"
 			textsize = draw_bg.textsize(next_page_text, font=font1)
-			offset = ( imgwidth-textsize[0]-2*job.project.space_left, job.project.space_top + ( titles_per_menu * rowheight ) )
-			draw_bg.text(offset, next_page_text, fill=job.project.color_button, font=font1)
+			offset = ( imgwidth-textsize[0]-2*s_left, s_top + ( titles_per_menu * rowheight ) )
+			draw_bg.text(offset, next_page_text, fill=color_button, font=font1)
 			draw_high.text(offset, next_page_text, fill=1, font=font1)
 			spuxml += """
 	<button name="button_next" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
@@ -439,7 +466,8 @@ def CreateMenus(job):
 		menubgm2vfilename = job.workspace+"/dvdmenubg"+str(menu_count)+".mv2"
 		mpeg2encTask(job, job.workspace+"/dvdmenubg"+str(menu_count)+".yuv", menubgm2vfilename)
 		menubgmpgfilename = job.workspace+"/dvdmenubg"+str(menu_count)+".mpg"
-		MplexTask(job, outputfile=menubgmpgfilename, inputfiles = [menubgm2vfilename, job.project.menuaudio])
+		menuaudiofilename = s.menuaudio.getValue()
+		MplexTask(job, outputfile=menubgmpgfilename, inputfiles = [menubgm2vfilename, menuaudiofilename])
 	
 		spuxml += """
 	</spu>
@@ -456,14 +484,15 @@ def CreateMenus(job):
 def CreateAuthoringXML(job):
 	nr_titles = len(job.project.titles)
 	titles_per_menu = getTitlesPerMenu(nr_titles)
+	mode = job.project.settings.authormode.getValue()
 	authorxml = []
 	authorxml.append('<?xml version="1.0" encoding="utf-8"?>\n')
 	authorxml.append(' <dvdauthor dest="' + (job.workspace+"/dvd") + '">\n')
 	authorxml.append('  <vmgm>\n')
 	authorxml.append('   <menus>\n')
 	authorxml.append('    <pgc>\n')
-	authorxml.append('     <vob file="' + job.project.vmgm + '" />\n', )
-	if job.project.menu:
+	authorxml.append('     <vob file="' + job.project.settings.vmgm.getValue() + '" />\n', )
+	if mode.startswith("menu"):
 		authorxml.append('     <post> jump titleset 1 menu; </post>\n')
 	else:
 		authorxml.append('     <post> jump title 1; </post>\n')
@@ -471,7 +500,7 @@ def CreateAuthoringXML(job):
 	authorxml.append('   </menus>\n')
 	authorxml.append('  </vmgm>\n')
 	authorxml.append('  <titleset>\n')
-	if job.project.menu:
+	if mode.startswith("menu"):
 		authorxml.append('   <menus>\n')
 		authorxml.append('    <video aspect="4:3"/>\n')
 		for menu_count in range(1 , job.nr_menus+1):
@@ -499,13 +528,12 @@ def CreateAuthoringXML(job):
 		title_no = i+1
 		title_filename = job.workspace + "/dvd_title_%d.mpg" % (title_no)
 		if job.menupreview:
-			LinkTS(job, job.project.vmgm, title_filename)
+			LinkTS(job, job.project.settings.vmgm.getValue(), title_filename)
 		else:
 			MakeFifoNode(job, title_no)
-		
-		if job.project.linktitles and title_no < nr_titles:
+		if mode.endswith("linked") and title_no < nr_titles:
 			post_tag = "jump title %d;" % ( title_no+1 )
-		elif job.project.menu:
+		elif mode.startswith("menu"):
 			post_tag = "call vmgm menu 1;"
 		else:	post_tag = ""
 
@@ -536,7 +564,7 @@ class DVDJob(Job):
 		self.conduct()
 
 	def conduct(self):
-		if self.project.menu or self.menupreview:
+		if self.project.settings.authormode.getValue().startswith("menu") or self.menupreview:
 			CreateMenus(self)
 		CreateAuthoringXML(self)
 
@@ -567,7 +595,7 @@ class DVDJob(Job):
 			WaitForResidentTasks(self)
 			PreviewTask(self)
 			BurnTask(self)
-		#RemoveDVDFolder(self)
+		RemoveDVDFolder(self)
 
 def Burn(session, project):
 	print "burning cuesheet!"

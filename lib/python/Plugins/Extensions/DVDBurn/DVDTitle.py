@@ -1,4 +1,3 @@
-
 class DVDTitle:
 	def __init__(self):
 		self.cuesheet = [ ]
@@ -22,6 +21,7 @@ class DVDTitle:
 		self.inputfile = service.getPath()
 		self.filesize = path.getsize(self.inputfile)
 		self.estimatedDiskspace = self.filesize
+		self.length = info.getLength(service)
 
 	def produceFinalCuesheet(self):
 		print "[produceFinalCuesheet] >>> ", self.inputfile, self.cuesheet
@@ -67,12 +67,8 @@ class DVDTitle:
 		print "cutlist =", self.cutlist, "chaptermarks =", self.chaptermarks, "accumulated_in =", accumulated_in
 
 		if len(self.cutlist) > 1:
-			from enigma import eServiceCenter, iServiceInformation
-			serviceHandler = eServiceCenter.getInstance()
-			service = self.source
-			info = serviceHandler.info(service)
-			lenpts = info.getLength(service) * 90000
-			part = accumulated_in / float(lenpts)
+			part = accumulated_in / (self.length*90000.0)
 			usedsize = int ( part * self.filesize )
-			print "lenpts=", lenpts, "part=", part, "filesize=", self.filesize, "estimatedDiskspace=", usedsize
+			print "part=", part, "filesize=", self.filesize, "estimatedDiskspace=", usedsize
 			self.estimatedDiskspace = usedsize
+			self.length = accumulated_in / 90000
