@@ -341,23 +341,15 @@ def getTitlesPerMenu(nr_titles):
 	return titles_per_menu
 
 def formatTitle(template, title, track):
-	print template
 	template = template.replace("$i", str(track))
-	print template
 	template = template.replace("$t", title.name)
-	print template
 	template = template.replace("$d", title.descr)
-	print template
 	template = template.replace("$c", str(len(title.chaptermarks)+1))
-	print template
 	template = template.replace("$f", title.inputfile)
-	print template
 	template = template.replace("$C", title.channel)
-	print template
 	l = title.length
 	lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
 	template = template.replace("$l", lengthstring)
-	print template
 	if title.timeCreate:
 		template = template.replace("$Y", str(title.timeCreate[0]))
 		template = template.replace("$M", str(title.timeCreate[1]))
@@ -582,7 +574,6 @@ class DVDJob(Job):
 			if titlesize > maxsize: maxsize = titlesize
 			totalsize += titlesize
 		diskSpaceNeeded = totalsize + maxsize
-		print "diskSpaceNeeded:", diskSpaceNeeded
 
 		DVDAuthorTask(self, diskSpaceNeeded)
 		
@@ -605,13 +596,11 @@ class DVDJob(Job):
 		RemoveDVDFolder(self)
 
 def Burn(session, project):
-	print "burning cuesheet!"
 	j = DVDJob(project)
 	job_manager.AddJob(j)
 	return j
 
 def PreviewMenu(session, project):
-	print "preview DVD menu!"
 	j = DVDJob(project, menupreview=True)
 	job_manager.AddJob(j)
 	return j
