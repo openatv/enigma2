@@ -1,5 +1,4 @@
-import DVDProject, TitleList, TitleCutter
-
+import DVDProject, TitleList, TitleCutter, ProjectSettings
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
@@ -10,59 +9,9 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.FileList import FileList
+from Components.Label import Label
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 from Tools.Directories import resolveFilename, SCOPE_PLAYLIST
-
-class WaitBox(MessageBox):
-	def __init__(self, session, callback):
-		MessageBox.__init__(self, session, text=_("please wait, loading picture..."), type = MessageBox.TYPE_INFO)
-		self.skinName = "MessageBox"
-		self.CB = callback
-		self.onShown.append(self.runCB)
-
-	def ok(self):
-		pass
-
-	def runCB(self):
-		from enigma import eTimer
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.CB)
-		self.delayTimer.start(10,1)
-
-class FileBrowser(Screen, HelpableScreen):
-	skin = """
-	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
-		<widget name="filelist" position="0,0" size="520,376" scrollbarMode="showOnDemand" />
-	</screen>"""
-	def __init__(self, session, currDir = None, projectBrowser = False):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
-		self.projectBrowser = projectBrowser
-		if not currDir:
-			currDir = "/"
-
-		if projectBrowser:
-			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(ddvdp\.xml)")
-		else:
-			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)")
-		self["filelist"] = self.filelist
-
-		self["FilelistActions"] = ActionMap(["OkCancelActions"],
-			{
-				"ok": self.ok,
-				"cancel": self.exit
-			})
-
-	def ok(self):
-		if self.filelist.canDescent():
-			self.filelist.descent()
-		else:
-			ret = self["filelist"].getCurrentDirectory() + self["filelist"].getFilename()
-			self.close(ret,self.projectBrowser)
-
-	def exit(self):
-		self.close(None)
-
 
 class TitleList(Screen):
 	skin = """
@@ -75,7 +24,8 @@ class TitleList(Screen):
 		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget source="title_label" render="Label" position="6,48" size="540,38" font="Regular;18" />
+		    <widget source="title_label" render="Label" position="10,48" size="540,38" font="Regular;18" />
+		    <widget name="error_label" position="10,48" size="540,395" zPosition="3" font="Regular;20" />
 		    <widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="540,312">
 			<convert type="StaticMultiList" />
 		    </widget>
@@ -91,7 +41,7 @@ class TitleList(Screen):
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
 				"editTitle": (self.editTitle, _("Edit chapters of current title"), _("Edit title")),
 				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
-				"saveProject": (self.saveProject, _("Save current collection to disk"), _("Save")),
+				"settings": (self.settings, _("Project settings"), _("Settings")),
 				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn DVD")),
 			})
 
@@ -100,22 +50,21 @@ class TitleList(Screen):
 				"contextMenu": (self.showMenu, _("menu")),
 			})
 
-		self["key_red"] = StaticText(_("Add title"))
-		self["key_green"] = StaticText(_("Edit title"))
-		self["key_yellow"] = StaticText(_("Remove title"))
-		self["key_blue"] = StaticText(_("Save"))
-
-		self["title_label"] = StaticText()
-		self["space_label"] = StaticText()
-		self["space_bar"] = Progress()
-
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"cancel": self.leave
 			})
 
-		#Action("addTitle", self.addTitle)
-		
+		self["key_red"] = StaticText(_("Add title"))
+		self["key_green"] = StaticText(_("Edit title"))
+		self["key_yellow"] = StaticText(_("Remove title"))
+		self["key_blue"] = StaticText(_("Settings"))
+
+		self["title_label"] = StaticText()
+		self["error_label"] = Label("")
+		self["space_label"] = StaticText()
+		self["space_bar"] = Progress()
+
 		if project is not None:
 			self.project = project
 		else:
@@ -123,7 +72,6 @@ class TitleList(Screen):
 
 		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
 		self.updateTitleList()
-		self.updateCollectionName()
 				
 		#self["addTitle"] = ActionButton("titleactions", "addTitle")
 		#self["editTitle"] = ActionButton("titleactions", "editTitle")
@@ -133,56 +81,38 @@ class TitleList(Screen):
 		
 	def showMenu(self):
 		menu = []
+		menu.append((_("Collection settings"), "settings"));
 		menu.append((_("Add a new title"), "addtitle"));
 		menu.append((_("Remove title"), "removetitle"));
 		menu.append((_("Edit chapters of current title"), "edittitle"));
-		menu.append((_("Set collection name"), "setname"));
-		menu.append((_("Set menu background"), "setbackground"));
-		menu.append((_("Save current collection to disk"), "save"));
-		menu.append((_("Load saved collection from disk"), "load"));
 		menu.append((_("Preview menu"), "previewMenu"));
 		menu.append((_("Burn DVD"), "burn"));
+		menu.append((_("Exit"), "exit"));
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
 		if choice is None:
 			return
-
 		if choice[1] == "removetitle":
 			self.removeCurrentTitle()
 		elif choice[1] == "addtitle":
 			self.addTitle()
 		elif choice[1] == "edittitle":
 			self.editTitle()
-		elif choice[1] == "setname":
-			self.setName()
-		elif choice[1] == "setbackground":
-			self.showFileBrowser(False)
-		elif choice[1] == "save":
-			self.saveProject()
-		elif choice[1] == "load":
-			self.showFileBrowser(True)
+		elif choice[1] == "settings":
+			self.settings()
 		elif choice[1] == "previewMenu":
 			self.previewMenu()
 		elif choice[1] == "burn":
 			self.burnProject()
-
-	def setName(self):
-		self.session.openWithCallback(self.setNameCallback, InputBox, title=_("Set collection name"), text=self.project.name, maxSize=False, visible_width = 56)
-		
-	def setNameCallback(self, name):
-		if name is not None:
-			self.project.name = name
-			self.updateCollectionName()
+		elif choice[1] == "exit":
+			self.leave()
 
 	def newProject(self):
 		self.project = DVDProject.DVDProject()
-		if self.loadProject():
+		if self.loadTemplate():
 			self.project.session = self.session
-			self.updateCollectionName()
-
-	def updateCollectionName(self):
-		self["title_label"].text = _("Table of content for collection") + " \"" + self.project.name + "\":"
+			self.settingsCB()
 
 	def addTitle(self):
 		from Screens.MovieSelection import MovieSelection
@@ -208,24 +138,27 @@ class TitleList(Screen):
 			self.project.titles.remove(title)
 			self.updateTitleList()
 
-	def saveProject(self):
-		self.project.saveProject(resolveFilename(SCOPE_PLAYLIST))
+	def settings(self):
+		self.session.openWithCallback(self.settingsCB, ProjectSettings.ProjectSettings, self.project)
 
-	def loadProject(self, filename=None):
-		if not filename:
-			filename = resolveFilename(SCOPE_PLAYLIST)+"DreamboxDVDtemplate.ddvdp.xml"
+	def settingsCB(self, update=True):
+		if not update:
+			return
+		self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"
+
+	def loadTemplate(self):
+		filename = resolveFilename(SCOPE_PLAYLIST)+"DreamboxDVDtemplate.ddvdp.xml"
 		if self.project.loadProject(filename):
+			self["error_label"].hide()
 			return True
 		else:
-			try:
-				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
-			except:
-				self["title_label"].text = self.project.error
-				print self.project.error
+			self["error_label"].text = self.project.error
+			self["error_label"].show()
+			print self.project.error
 			return False
 
 	def burnProject(self):
-		self.project.waitboxref = self.project.session.open(WaitBox,self.burnProjectCB)
+		self.project.waitboxref = self.project.session.open(ProjectSettings.WaitBox,self.burnProjectCB)
 
 	def burnProjectCB(self):
 		import Process
@@ -234,7 +167,7 @@ class TitleList(Screen):
 		self.session.open(JobView, job)
 
 	def previewMenu(self):
-		self.project.waitboxref = self.project.session.open(WaitBox,self.previewMenuCB)
+		self.project.waitboxref = self.project.session.open(ProjectSettings.WaitBox,self.previewMenuCB)
 		
 	def previewMenuCB(self):
 		import Process
@@ -289,18 +222,3 @@ class TitleList(Screen):
 
 	def leave(self):
 		self.close()
-
-	def showFileBrowser(self, projectBrowser=False):
-		if projectBrowser:
-			currDir = resolveFilename(SCOPE_PLAYLIST)
-		else:
-			currDir = self.project.menubg
-			if len(currDir) > 1:
-				currDir = (currDir.rstrip("/").rsplit("/",1))[0]
-		self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, currDir, projectBrowser)
-	
-	def FileBrowserClosed(self, path, projectBrowser=False):
-		if projectBrowser:
-			self.loadProject(path)
-		else:
-			self.project.menubg = path
