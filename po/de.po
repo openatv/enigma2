@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-24 21:51+0200\n"
+"POT-Creation-Date: 2008-09-05 23:42+0200\n"
 "PO-Revision-Date: 2008-07-24 21:51+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -322,10 +322,7 @@ msgid "Add timer"
 msgstr "Timer setzen"
 
 msgid "Add title"
-msgstr ""
-
-msgid "Add title..."
-msgstr "Füge Titel hinzu"
+msgstr "Weiterer Titel"
 
 msgid "Add to bouquet"
 msgstr "Zum Bouquet hinzufügen"
@@ -387,6 +384,9 @@ msgstr "Leerer Dateiname nicht erlaubt."
 msgid "An error has occured. (%s)"
 msgstr ""
 
+msgid "An unknown error occured!"
+msgstr "Es ist ein unbekannter Fehler aufgetreten!"
+
 msgid "Arabic"
 msgstr "Arabisch"
 
@@ -415,6 +415,9 @@ msgstr "Ton"
 msgid "Audio Options..."
 msgstr "Audio-Optionen..."
 
+msgid "Authoring mode"
+msgstr "Ablaufmodus"
+
 msgid "Auto"
 msgstr "Auto"
 
@@ -426,6 +429,9 @@ msgstr "Automatisch"
 
 msgid "Automatic Scan"
 msgstr "Automatische Suche"
+
+msgid "Available format variables"
+msgstr "Verfügbare Formatierungsvariablen"
 
 msgid "B"
 msgstr "B"
@@ -488,14 +494,11 @@ msgstr ""
 msgid "Brightness"
 msgstr "Helligkeit"
 
-msgid "Burn"
-msgstr "brenne"
-
 msgid "Burn DVD"
 msgstr "brenne DVD"
 
-msgid "Burn To DVD..."
-msgstr ""
+msgid "Burn to DVD..."
+msgstr "Auf DVD brennen..."
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -619,6 +622,12 @@ msgstr "Empfangsrate HP"
 msgid "Coderate LP"
 msgstr "Empfangsrate LP"
 
+msgid "Collection name"
+msgstr "Zusammenstellungsname"
+
+msgid "Collection settings"
+msgstr "Zusammenstellungseinstellungen"
+
 msgid "Color Format"
 msgstr "Farbformat"
 
@@ -673,6 +682,9 @@ msgstr ""
 
 msgid "Constellation"
 msgstr "Konstellation"
+
+msgid "Content does not fit on DVD!"
+msgstr "Inhalt passt nicht auf die DVD!"
 
 msgid "Continue playing"
 msgstr "Abspielen fortsetzen"
@@ -815,6 +827,9 @@ msgstr "DiSEqC-Modus"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC-Wiederholungen"
 
+msgid "Direct playback of linked titles without menu"
+msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
+
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr ""
@@ -906,6 +921,9 @@ msgstr ""
 "Wollen Sie jetzt eine Sicherung durchführen?\n"
 "Nach einem Druck auf OK bitte warten!"
 
+msgid "Do you want to burn this collection to DVD medium?"
+msgstr "Soll diese Zusammenstellung auf DVD gebrannt werden?"
+
 msgid "Do you want to do a service scan?"
 msgstr "Jetzt nach Kanälen suchen?"
 
@@ -920,6 +938,9 @@ msgstr "Wollen Sie nun Standardkanallisten installieren?"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Wollen Sie die DVD im Laufwerk abspielen?"
+
+msgid "Do you want to preview this DVD before burning?"
+msgstr "Wollen Sie vor dem Brennen eine Vorschau der DVD ansehen?"
 
 msgid "Do you want to restore your settings?"
 msgstr "Wollen Sie die Einstellungen wiederherstellen?"
@@ -982,8 +1003,8 @@ msgstr "Ost"
 msgid "Edit DNS"
 msgstr "Bearbeite DNS"
 
-msgid "Edit current title"
-msgstr "aktuellen Titel editieren"
+msgid "Edit chapters of current title"
+msgstr "Kapitel des ausgewählten Titels schneiden"
 
 msgid "Edit services list"
 msgstr "Kanalliste bearbeiten"
@@ -998,10 +1019,7 @@ msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Bearbeiten Sie die Netzwerk-Konfiguration Ihrer Dreambox.\n"
 
 msgid "Edit title"
-msgstr ""
-
-msgid "Edit title..."
-msgstr "Titel editieren..."
+msgstr "Titel schneiden"
 
 msgid "Electronic Program Guide"
 msgstr "Elektronischer Programmführer"
@@ -1060,6 +1078,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Anfängliche Vorlaufgeschwindigkeit eingeben"
 
@@ -1080,6 +1103,8 @@ msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
+"Fehler aufgetreten: %s\n"
+"Erneut versuchen?"
 
 msgid "Eventview"
 msgstr "Programmübersicht"
@@ -1149,6 +1174,9 @@ msgstr "Beendet"
 
 msgid "Finnish"
 msgstr "Finnisch"
+
+msgid "Font size"
+msgstr "Schriftgröße"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr ""
@@ -1443,11 +1471,17 @@ msgstr "Limits aktiviert"
 msgid "Link:"
 msgstr "Verbindung:"
 
+msgid "Linked titles with a DVD menu"
+msgstr "Verknüpfte Titel mit einem DVD-Menü"
+
 msgid "List of Storage Devices"
 msgstr "Speichergeräteliste"
 
 msgid "Lithuanian"
 msgstr "litauisch"
+
+msgid "Load"
+msgstr "Laden"
 
 msgid "Local Network"
 msgstr "Int. Netzwerk"
@@ -1502,6 +1536,12 @@ msgstr "Media Player"
 
 msgid "MediaPlayer"
 msgstr "Medienwiedergabe"
+
+msgid "Medium is not a writeable DVD!"
+msgstr "Das Medium ist keine beschreibbare DVD!"
+
+msgid "Medium is not empty!"
+msgstr "Das Medium ist nicht leer!"
 
 msgid "Menu"
 msgstr "Menü"
@@ -1627,9 +1667,6 @@ msgstr ""
 msgid "New"
 msgstr "Neu"
 
-msgid "New DVD"
-msgstr "neue DVD"
-
 msgid "New pin"
 msgstr "Neuer Pincode"
 
@@ -1641,6 +1678,9 @@ msgstr "Vor"
 
 msgid "No"
 msgstr "Nein"
+
+msgid "No (supported) DVDROM found!"
+msgstr "Kein (unterstütztes) DVD-Laufwerk gefunden!"
 
 msgid "No 50 Hz, sorry. :("
 msgstr "50 Hz nicht möglich. :("
@@ -2039,6 +2079,9 @@ msgstr "Zum Starten der Suche OK drücken."
 msgid "Prev"
 msgstr "Zurück"
 
+msgid "Preview menu"
+msgstr "Vorschau des DVD-Menüs"
+
 msgid "Primary DNS"
 msgstr "Primärer DNS"
 
@@ -2282,16 +2325,10 @@ msgid "Saturday"
 msgstr "Samstag"
 
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 msgid "Save Playlist"
 msgstr "Wiedergabeliste speichern"
-
-msgid "Save current project to disk"
-msgstr "Speichere aktuelles Projekt auf Festplatte"
-
-msgid "Save..."
-msgstr "speichern"
 
 msgid "Scaling Mode"
 msgstr "Skalierungsmodus"
@@ -2414,6 +2451,9 @@ msgstr "Wähle Video-Eingang"
 
 msgid "Select video mode"
 msgstr "Wähle Video-Modus"
+
+msgid "Seperate titles with a main menu"
+msgstr "Separate Titel mit Hauptmenü"
 
 msgid "Sequence repeat"
 msgstr "Sequenz-Wiederholung"
@@ -2695,8 +2735,8 @@ msgstr ""
 msgid "TV System"
 msgstr "Fernsehnorm"
 
-msgid "Table of content to be burned to DVD:"
-msgstr ""
+msgid "Table of content for collection"
+msgstr "Inhalt der Zusammenstellung"
 
 msgid "Terrestrial"
 msgstr "Terrestrisch"
@@ -2936,6 +2976,9 @@ msgstr "Toneburst"
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
+msgid "Track"
+msgstr "Spur"
+
 msgid "Translation"
 msgstr ""
 
@@ -3063,6 +3106,18 @@ msgstr "Verwende Stromaufnahmen-Messung"
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr ""
 
@@ -3102,6 +3157,9 @@ msgstr "Benutzerdefiniert"
 
 msgid "VCR scart"
 msgstr "Scart-Videorekorder"
+
+msgid "VMGM (intro trailer)"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Video-Feineinstellung"
@@ -3216,9 +3274,6 @@ msgstr "West"
 msgid "What do you want to scan?"
 msgstr "Was wollen Sie scannen?"
 
-msgid "When complete, press Key 0 to burn the collection!"
-msgstr ""
-
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin möchten Sie die Einstellungen sichern?"
 
@@ -3230,6 +3285,9 @@ msgstr "Funk Netzwerk"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
+
+msgid "Write failed!"
+msgstr "Schreiben fehlgeschlagen!"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3486,6 +3544,9 @@ msgstr ""
 msgid "back"
 msgstr "zurück"
 
+msgid "background image"
+msgstr "Hintergrundbild"
+
 msgid "better"
 msgstr "besser"
 
@@ -3495,14 +3556,14 @@ msgstr "Negativliste"
 msgid "by Exif"
 msgstr ""
 
-msgid "cancel"
-msgstr ""
-
 msgid "change recording (duration)"
 msgstr "Aufnahme ändern (Aufnahmelänge)"
 
 msgid "change recording (endtime)"
 msgstr "Aufnahme ändern (Aufnahmeendzeit)"
+
+msgid "chapters"
+msgstr "Kapitel"
 
 msgid "circular left"
 msgstr "links-zirkulär"
@@ -3512,6 +3573,9 @@ msgstr "rechts-zirkulär"
 
 msgid "clear playlist"
 msgstr "Wiedergabeliste leeren"
+
+msgid "color"
+msgstr "Farbe"
 
 msgid "complex"
 msgstr "Komplex"
@@ -3536,6 +3600,9 @@ msgstr ""
 
 msgid "daily"
 msgstr "täglich"
+
+msgid "day"
+msgstr "Tag"
 
 msgid "delete"
 msgstr "Löschen"
@@ -3612,6 +3679,9 @@ msgstr "Favoriteneditor beenden"
 msgid "equal to"
 msgstr "Gleich wie"
 
+msgid "exceeds dual layer medium!"
+msgstr "übersteigt Größe eines Dual-Layer-Mediums!"
+
 msgid "exit DVD player or return to file browser"
 msgstr "DVD Player verlassen oder zurück zum Dateimanager"
 
@@ -3621,11 +3691,20 @@ msgstr "Mediaplayer beenden"
 msgid "exit movielist"
 msgstr "Verlasse Filmliste"
 
+msgid "filename"
+msgstr "Dateiname"
+
 msgid "fine-tune your display"
 msgstr "Ändern Sie die Feineinstellungen Ihres Bildschirms"
 
+msgid "font face"
+msgstr "Schriftart"
+
 msgid "forward to the next chapter"
 msgstr "Weiter zum nächsten Kapitel"
+
+msgid "free"
+msgstr "frei"
 
 msgid "free diskspace"
 msgstr "freier Festplattenspeicher"
@@ -3639,6 +3718,9 @@ msgstr "Box abschalten"
 msgid "go to standby"
 msgstr "schalte in Standby"
 
+msgid "headline"
+msgstr "Überschrift"
+
 msgid "hear radio..."
 msgstr "Radio hören..."
 
@@ -3650,6 +3732,9 @@ msgstr "erweiterte Beschreibung ausblenden"
 
 msgid "hide player"
 msgstr "Player ausblenden"
+
+msgid "highlighted button"
+msgstr "hervorgehobener Knopf"
 
 msgid "horizontal"
 msgstr "horizontal"
@@ -3701,6 +3786,9 @@ msgstr "Abspielmodus verlassen..."
 msgid "left"
 msgstr "links"
 
+msgid "length"
+msgstr "Länge"
+
 msgid "list style compact"
 msgstr "kompakte Listenansicht"
 
@@ -3739,6 +3827,9 @@ msgstr "Minuten"
 
 msgid "minutes and"
 msgstr "Minuten und"
+
+msgid "month"
+msgstr "Monat"
 
 msgid "move PiP to main picture"
 msgstr "PiP tauschen und beenden"
@@ -3784,6 +3875,12 @@ msgstr "Kein Signal"
 
 msgid "nothing connected"
 msgstr "Nichts angeschlossen"
+
+msgid "of a DUAL layer medium used."
+msgstr "eines DUAL-Layer-Mediums benutzt."
+
+msgid "of a SINGLE layer medium used."
+msgstr "eines SINGLE-Layer-Mediums benutzt."
 
 msgid "off"
 msgstr "aus"
@@ -3991,6 +4088,9 @@ msgstr "Vorwärts springen (Zeit eingeben)"
 msgid "sort by date"
 msgstr "Aufnahmen nach Datum sortieren"
 
+msgid "spaces (top, between rows, left)"
+msgstr "Abstände (oben, zwischen Reihen, links)"
+
 msgid "standard"
 msgstr "Standard"
 
@@ -4035,6 +4135,9 @@ msgstr "Zum nächsten Audio-Titel wechseln"
 
 msgid "switch to the next subtitle language"
 msgstr "Zur nächsten Untertitel-Sprache wechseln"
+
+msgid "text"
+msgstr "Text"
 
 msgid "this recording"
 msgstr "Diese Aufnahme"
@@ -4084,6 +4187,9 @@ msgstr "wöchentlich"
 msgid "whitelist"
 msgstr "Positivliste"
 
+msgid "year"
+msgstr "Jahr"
+
 msgid "yes"
 msgstr "ja"
 
@@ -4128,9 +4234,6 @@ msgstr "umgeschaltet"
 #~ "Sind Sie sicher, dass Sie die Netzwerkkonfiguration\n"
 #~ "auf die Standardeinstellungen zurücksetzen wollen?\n"
 #~ "\n"
-
-#~ msgid "Burn DVD..."
-#~ msgstr "brenne DVD..."
 
 #~ msgid "Confirm"
 #~ msgstr "Bestätigen"
@@ -4257,6 +4360,3 @@ msgstr "umgeschaltet"
 
 #~ msgid "skip forward (self defined)"
 #~ msgstr "Vorwärts springen (benutzerdefiniert)"
-
-#~ msgid "text"
-#~ msgstr "Text"
