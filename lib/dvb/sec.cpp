@@ -315,6 +315,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			bool doSetFrontend = true;
 			bool doSetVoltageToneFrontend = true;
 			bool allowDiseqc1_2 = true;
+			bool sendDiSEqC = false;
 			long band=0,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
@@ -633,6 +634,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_TONEBURST]) );
 							}
 						}
+						sendDiSEqC = true;
 					}
 
 					eDebug("RotorCmd %02x, lastRotorCmd %02lx", RotorCmd, lastRotorCmd);
@@ -715,7 +717,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							compare.val = 0;
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
 ////////////////////////////
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_DISEQC_RETRYS, m_params[MOTOR_COMMAND_RETRIES]) );  // 2 retries
 							sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
@@ -747,7 +748,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );  // running loop start
 /////////////////////
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_STOPPED) );
 						}
 						else
@@ -762,7 +762,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
 
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
@@ -789,14 +788,14 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) ); 
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -3) );  // goto loop start
 							sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_STOPPED) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +3) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -5) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );
 						}
 						sec_fe->setData(eDVBFrontend::NEW_ROTOR_CMD, RotorCmd);
 						sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
+						sendDiSEqC = true;
 					}
 				}
 			}
@@ -805,6 +804,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS) );
 				csw = band;
 			}
+
+			if (sendDiSEqC)
+				sec_sequence.push_front( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
 
 			sec_fe->setData(eDVBFrontend::NEW_CSW, csw);
 			sec_fe->setData(eDVBFrontend::NEW_UCSW, ucsw);
@@ -831,6 +833,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, tunetimeout) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 			}
+
+			if (sendDiSEqC)
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+
 			frontend.setSecSequence(sec_sequence);
 
 			return 0;
