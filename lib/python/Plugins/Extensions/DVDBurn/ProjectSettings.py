@@ -93,8 +93,8 @@ class ProjectSettings(Screen,ConfigListScreen):
 		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget name="config" position="20,50" size="540,276" scrollbarMode="showOnDemand" />
-		    <widget source="info" render="Label" position="20,330" size="520,110" font="Regular;20" />
+		    <widget name="config" position="10,50" size="540,276" scrollbarMode="showOnDemand" />
+		    <widget source="info" render="Label" position="20,350" size="520,90" font="Regular;16" />
 		</screen>"""
 
 	def __init__(self, session, project = None):
@@ -106,24 +106,24 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self["key_yellow"] = StaticText(_("Load"))
 		self["key_blue"] = StaticText(_("Save"))
 		
-		infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + "\n" + _("Record") + " $Y=" + _("year") + ", $M=" + _("month") + ", $D=" + _("day") + ", $h=" + _("hour") + ", $m=" + _("minute") + ", $f=" + _("filename")
+		infotext = _("Available format variables") + ":\n%i=" + _("Track") + ", %t=" + _("Title") + ", %d=" + _("Description") + ", %l=" + _("length") + ", %c=" + _("chapters") + ",\n" + _("Record") + " %T=" + _("Begin time") + ", %Y=" + _("year") + ", %M=" + _("month") + ", %D=" + _("day") + ",\n%C=" + _("Channel") + ", %f=" + _("filename")
 		self["info"] = StaticText(infotext)
 
 		self.settings = project.settings
 		self.list = []
-		self.list.append(getConfigListEntry("Collection name", self.settings.name))
-		self.list.append(getConfigListEntry("Authoring mode", self.settings.authormode))
-		self.list.append(getConfigListEntry("Menu background image", self.settings.menubg))
-		self.list.append(getConfigListEntry("Menu title format", self.settings.titleformat))
-		self.list.append(getConfigListEntry("Menu subtitle format", self.settings.subtitleformat))
-		self.list.append(getConfigListEntry("Menu headline color", self.settings.color_headline))
-		self.list.append(getConfigListEntry("Menu plain text color", self.settings.color_button))
-		self.list.append(getConfigListEntry("Menu highlighted button color", self.settings.color_highlight))
-		self.list.append(getConfigListEntry("Menu font face", self.settings.font_face))
-		self.list.append(getConfigListEntry("Font size (headline, titles, subtitles)", self.settings.font_size))
-		self.list.append(getConfigListEntry("Menu spaces (top, between rows, left)", self.settings.space))
-		self.list.append(getConfigListEntry("Menu audio", self.settings.menuaudio))
-		self.list.append(getConfigListEntry("VMGM (intro trailer)", self.settings.vmgm))
+		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
+		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.settings.menubg))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.settings.titleformat))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.settings.subtitleformat))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("headline")+' '+_("color"), self.settings.color_headline))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("text")+' '+_("color"), self.settings.color_button))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("highlighted button")+' '+_("color"), self.settings.color_highlight))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("font face"), self.settings.font_face))
+		self.list.append(getConfigListEntry(_("Font size")+' ('+_("headline")+', '+_("Title")+', '+_("Subtitles")+')', self.settings.font_size))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
+		self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
+		self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
 		ConfigListScreen.__init__(self, self.list)
 		
 		self.keydict = {}

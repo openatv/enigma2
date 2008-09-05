@@ -1,9 +1,9 @@
 <keymap>
 	<map context="DVDTitleList">
-		<key id="KEY_RED" mapto="addTitle" flags="m" />
-		<key id="KEY_GREEN" mapto="editTitle" flags="m" />
+		<key id="KEY_RED" mapto="removeCurrentTitle" flags="m" />
+		<key id="KEY_GREEN" mapto="addTitle" flags="m" />
+		<key id="KEY_YELLOW" mapto="editTitle" flags="m" />
 		<key id="KEY_BLUE" mapto="settings" flags="m" />
-		<key id="KEY_YELLOW" mapto="removeCurrentTitle" flags="m" />
 		<key id="KEY_RECORD" mapto="burnProject" flags="m" />
 		<key id="KEY_0" mapto="burnProject" flags="m" />
 		<key id="KEY_VIDEO" mapto="addTitle" flags="m" />

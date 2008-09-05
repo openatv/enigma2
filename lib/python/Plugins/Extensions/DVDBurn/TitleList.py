@@ -41,7 +41,7 @@ class TitleList(Screen):
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
 				"editTitle": (self.editTitle, _("Edit chapters of current title"), _("Edit title")),
 				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
-				"settings": (self.settings, _("Project settings"), _("Settings")),
+				"settings": (self.settings, _("Collection settings"), _("Settings")),
 				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn DVD")),
 			})
 
@@ -55,9 +55,9 @@ class TitleList(Screen):
 				"cancel": self.leave
 			})
 
-		self["key_red"] = StaticText(_("Add title"))
-		self["key_green"] = StaticText(_("Edit title"))
-		self["key_yellow"] = StaticText(_("Remove title"))
+		self["key_red"] = StaticText(_("Remove title"))
+		self["key_green"] = StaticText(_("Add title"))
+		self["key_yellow"] = StaticText(_("Edit title"))
 		self["key_blue"] = StaticText(_("Settings"))
 
 		self["title_label"] = StaticText()
@@ -81,12 +81,12 @@ class TitleList(Screen):
 		
 	def showMenu(self):
 		menu = []
+		menu.append((_("Burn DVD"), "burn"));
+		menu.append((_("Preview menu"), "previewMenu"));
 		menu.append((_("Collection settings"), "settings"));
 		menu.append((_("Add a new title"), "addtitle"));
 		menu.append((_("Remove title"), "removetitle"));
 		menu.append((_("Edit chapters of current title"), "edittitle"));
-		menu.append((_("Preview menu"), "previewMenu"));
-		menu.append((_("Burn DVD"), "burn"));
 		menu.append((_("Exit"), "exit"));
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 

@@ -9,15 +9,23 @@ class DVDTitle:
 		self.inputfile = ""
 		self.cutlist = [ ]
 		self.chaptermarks = [ ]
+		self.timeCreate = None
 
 	def addService(self, service):
 		from os import path
 		from enigma import eServiceCenter, iServiceInformation
+		from ServiceReference import ServiceReference
+		from time import localtime, time
 		self.source = service
 		serviceHandler = eServiceCenter.getInstance()
 		info = serviceHandler.info(service)
 		self.descr = info and " " + info.getInfoString(service, iServiceInformation.sDescription) or ""
+		sTimeCreate = info.getInfo(service, iServiceInformation.sTimeCreate)
+		if sTimeCreate > 1:
+			self.timeCreate = localtime(sTimeCreate)
+		serviceref = ServiceReference(info.getInfoString(service, iServiceInformation.sServiceref))
 		self.name = info and info.getName(service) or "Title" + t.descr
+		self.channel = serviceref.getServiceName()
 		self.inputfile = service.getPath()
 		self.filesize = path.getsize(self.inputfile)
 		self.estimatedDiskspace = self.filesize

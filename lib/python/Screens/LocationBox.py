@@ -125,7 +125,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				"up": self.up,
 				"down": self.down,
 				"ok": (self.ok, _("select")),
-				"back": (self.cancel, _("cancel")),
+				"back": (self.cancel, _("Cancel")),
 			}, -2)
 
 		self["ColorActions"] = LocationBoxActionMap(self, "ColorActions",
