@@ -124,7 +124,7 @@ class PositionerSetup(Screen):
 		
 		self.statusTimer = eTimer()
 		self.statusTimer.callback.append(self.updateStatus)
-		self.statusTimer.start(50, False)
+		self.statusTimer.start(50, True)
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
@@ -345,6 +345,7 @@ class PositionerSetup(Screen):
 			self.isMoving = False
 			self.stopOnLock = False
 			self.updateColors(self.getCurrentConfigPath())
+		self.statusTimer.start(50, True)
 
 	def tune(self, transponder):
 		if transponder is not None:
