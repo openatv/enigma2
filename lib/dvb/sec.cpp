@@ -114,9 +114,12 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 	setRotorPosNum(1); // stored pos 1
 }
 
-int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id )
+int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id, int *highest_score_lnb)
 {
-	int ret=0, satcount=0;
+	int score=0, satcount=0;
+
+	if (highest_score_lnb)
+		*highest_score_lnb = -1;
 
 	for (int idx=0; idx <= m_lnbidx; ++idx )
 	{
@@ -124,6 +127,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
 		if ( lnb_param.slot_mask & slot_id ) // lnb for correct tuner?
 		{
+			int ret = 0;
 			eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 
 			satcount += lnb_param.m_satellites.size();
@@ -261,14 +265,20 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					if (tuner_freq < 900000 || tuner_freq > 2200000)
 						ret=0;
 				}
+				if (ret > score)
+				{
+					score = ret;
+					if (highest_score_lnb)
+						*highest_score_lnb = idx;
+				}
 			}
 		}
 	}
-	if (ret && satcount)
-		ret -= (satcount-1);
-	if (ret && m_not_linked_slot_mask & slot_id)
-		ret += 5; // increase score for tuners with direct sat connection
-	return ret;
+	if (score && satcount)
+		score -= (satcount-1);
+	if (score && m_not_linked_slot_mask & slot_id)
+		score += 5; // increase score for tuners with direct sat connection
+	return score;
 }
 
 bool need_turn_fast(int turn_speed)
@@ -299,11 +309,10 @@ bool need_turn_fast(int turn_speed)
 
 RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int slot_id, unsigned int tunetimeout)
 {
-	for (int idx=0; idx <= m_lnbidx; ++idx )
+	int lnb_idx = -1;
+	if (canTune(sat, &frontend, slot_id, &lnb_idx))
 	{
-		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
-		if (!(lnb_param.slot_mask & slot_id)) // lnb for correct tuner?
-			continue;
+		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[lnb_idx];
 		eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
 		eDVBSatelliteRotorParameters &rotor_param = lnb_param.m_rotor_parameters;
 
@@ -842,6 +851,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			return 0;
 		}
 	}
+	else
+		eFatal("canTune failed in sec prepare!!! this should never ever happen!");
 
 	eDebug("found no useable satellite configuration for orbital position (%d)", sat.orbital_position );
 	return -1;
