@@ -364,8 +364,11 @@ class SecConfigure:
 				# finally add the orbital positions
 				for y in lnbSat[x]:
 					self.addSatellite(sec, y)
-					currSat = config.Nims[slotid].advanced.sat[y]
-
+					if x > 32:
+						satpos = x > 32 and (3604-(36 - x)) or y
+					else:
+						satpos = y
+					currSat = config.Nims[slotid].advanced.sat[satpos]
 					if currSat.voltage.value == "polarization":
 						sec.setVoltageMode(switchParam.HV)
 					elif currSat.voltage.value == "13V":
