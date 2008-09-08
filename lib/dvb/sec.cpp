@@ -851,10 +851,16 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			return 0;
 		}
 	}
-	else
-		eFatal("canTune failed in sec prepare!!! this should never ever happen!");
-
-	eDebug("found no useable satellite configuration for orbital position (%d)", sat.orbital_position );
+	eDebug("found no useable satellite configuration for %s freq %d%s %s on orbital position (%d)",
+		sat.system ? "DVB-S2" : "DVB-S",
+		sat.frequency,
+		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal ? "H" :
+			eDVBFrontendParametersSatellite::Polarisation::Vertical ? "V" :
+			eDVBFrontendParametersSatellite::Polarisation::CircularLeft ? "CL" : "CR",
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation::Auto ? "AUTO" :
+			eDVBFrontendParametersSatellite::Modulation::QPSK ? "QPSK" :
+			eDVBFrontendParametersSatellite::Modulation::M8PSK ? "8PSK" : "QAM16",
+		sat.orbital_position );
 	return -1;
 }
 
