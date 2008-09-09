@@ -124,6 +124,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
 		self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
 		self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
+		self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.settings.autochapter))
 		ConfigListScreen.__init__(self, self.list)
 		
 		self.keydict = {}
@@ -150,8 +151,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		
 	def ok(self):
 		key = self.keydict[self["config"].getCurrent()[1]]
-		browseKeys = ["menubg", "menuaudio", "vmgm", "font_face"]
-		if key in browseKeys:
+		if key in self.project.filekeys:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self.settings)
 
 	def cancel(self):
@@ -171,8 +171,8 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self.session.open(MessageBox,text,type = MessageBox.TYPE_ERROR)
 
 	def FileBrowserClosed(self, path, scope):
-		if scope == "project":
+		if scope in self.project.filekeys:
+			self.settings.dict()[scope].setValue(path)
+		elif scope == "project":
 			if not self.project.loadProject(path):
 				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
-		elif scope:
-			self.settings.dict()[scope].setValue(path)
