@@ -158,6 +158,10 @@ class TitleList(Screen):
 			return False
 
 	def burnProject(self):
+		autochapter = self.project.settings.autochapter.getValue()
+		if autochapter > 0:
+			for title in self.project.titles:
+				title.produceAutoChapter(autochapter)
 		self.project.waitboxref = self.project.session.open(ProjectSettings.WaitBox,self.burnProjectCB)
 
 	def burnProjectCB(self):

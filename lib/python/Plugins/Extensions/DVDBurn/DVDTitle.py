@@ -32,8 +32,6 @@ class DVDTitle:
 		self.length = info.getLength(service)
 
 	def produceFinalCuesheet(self):
-		print "[produceFinalCuesheet] >>> ", self.inputfile, self.cuesheet
-
 		CUT_TYPE_IN = 0
 		CUT_TYPE_OUT = 1
 		CUT_TYPE_MARK = 2
@@ -72,11 +70,15 @@ class DVDTitle:
 				reloc_pts = pts - last_in + accumulated_in
 				self.chaptermarks.append(reloc_pts)
 				
-		print "cutlist =", self.cutlist, "chaptermarks =", self.chaptermarks, "accumulated_in =", accumulated_in
-
 		if len(self.cutlist) > 1:
 			part = accumulated_in / (self.length*90000.0)
 			usedsize = int ( part * self.filesize )
-			print "part=", part, "filesize=", self.filesize, "estimatedDiskspace=", usedsize
 			self.estimatedDiskspace = usedsize
 			self.length = accumulated_in / 90000
+
+	def produceAutoChapter(self, minutes):
+		if len(self.chaptermarks) < 1:
+			chapterpts = self.cutlist[0]
+			while chapterpts < self.length*90000:
+				chapterpts += 90000 * 60 * minutes
+				self.chaptermarks.append(chapterpts)

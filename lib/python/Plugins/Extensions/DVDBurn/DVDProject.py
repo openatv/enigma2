@@ -27,6 +27,8 @@ class DVDProject:
 		self.settings.font_size = ConfigPixelvals()
 		self.settings.space = ConfigPixelvals()
 		self.settings.vmgm = ConfigText(visible_width = 40)
+		self.settings.autochapter = ConfigInteger(default = 0, limits = (0, 99))
+		self.filekeys = ["vmgm", "menubg", "menuaudio", "font_face"]
 
 	def addService(self, service):
 		import DVDTitle
@@ -100,8 +102,7 @@ class DVDProject:
 						self.error = "unknown attribute '%s'" % (key)
 						raise AttributeError
 					i += 1
-			checkfiles = ["vmgm", "menubg", "menuaudio", "font_face"]
-			for key in checkfiles:
+			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):
 					self.error += "\n%s '%s' not found" % (key, val)
