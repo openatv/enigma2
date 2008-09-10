@@ -164,7 +164,7 @@ RESULT eDVBScan::startFilter()
 			}
 			m_PMT = new eTable<ProgramMapSection>();
 			CONNECT(m_PMT->tableReady, eDVBScan::PMTready);
-			PMTready(-1);
+			PMTready(-2);
 
 			// KabelBW HACK ... on 618Mhz and 626Mhz the transport stream id in PAT and SDT is different
 			{
@@ -357,7 +357,7 @@ void eDVBScan::PMTready(int err)
 		else
 			m_pmt_in_progress->second.serviceType = 100;
 	}
-	if (err == -2) // aborted in sdt progress
+	if (err == -1) // aborted in sdt progress or pmt timout..
 		m_pmts_to_read.erase(m_pmt_in_progress++);
 	else if (m_pmt_running)
 		++m_pmt_in_progress;
@@ -655,7 +655,7 @@ void eDVBScan::channelDone()
 		if (m_abort_current_pmt)
 		{
 			m_abort_current_pmt = false;
-			PMTready(-2);
+			PMTready(-1);
 		}
 		return;
 	}
