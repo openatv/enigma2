@@ -13,18 +13,17 @@
 #include <lib/base/estring.h>
 #include <errno.h>
 
-static bool scan_debug;
-#define SCAN_eDebug(x...) do { if (scan_debug) eDebug(x); } while(0)
-#define SCAN_eDebugNoNewLine(x...) do { if (scan_debug) eDebugNoNewLine(x); } while(0)
+#define SCAN_eDebug(x...) do { if (m_scan_debug) eDebug(x); } while(0)
+#define SCAN_eDebugNoNewLine(x...) do { if (m_scan_debug) eDebugNoNewLine(x); } while(0)
 
 DEFINE_REF(eDVBScan);
 
 eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
 	:m_channel(channel), m_channel_state(iDVBChannel::state_idle)
 	,m_ready(0), m_ready_all(usePAT ? (readySDT|readyPAT) : readySDT)
-	,m_pmt_running(false), m_abort_current_pmt(false), m_flags(0), m_usePAT(usePAT)
+	,m_pmt_running(false), m_abort_current_pmt(false), m_flags(0)
+	,m_usePAT(usePAT), m_scan_debug(debug)
 {
-	scan_debug=debug;
 	if (m_channel->getDemux(m_demux))
 		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
@@ -143,10 +142,20 @@ RESULT eDVBScan::startFilter()
 	if (m_ready_all & readyPAT)
 		startSDT = m_ready & readyPAT;
 
+	// m_ch_current is not set, when eDVBScan is just used for a SDT update
+	if (!m_ch_current)
+	{
+		unsigned int channelFlags;
+		m_channel->getCurrentFrontendParameters(m_ch_current);
+		m_ch_current->getFlags(channelFlags);
+		if (channelFlags & iDVBFrontendParameters::flagOnlyFree)
+			m_flags |= scanOnlyFree;
+	}
+
 	m_SDT = 0;
 	if (startSDT && (m_ready_all & readySDT))
 	{
-		m_SDT = new eTable<ServiceDescriptionSection>();
+		m_SDT = new eTable<ServiceDescriptionSection>(m_scan_debug);
 		int tsid=-1;
 		if (m_ready & readyPAT && m_ready & validPAT)
 		{
@@ -162,11 +171,11 @@ RESULT eDVBScan::startFilter()
 				for (; program != pat.getPrograms()->end(); ++program)
 					m_pmts_to_read.insert(std::pair<unsigned short, service>((*program)->getProgramNumber(), service((*program)->getProgramMapPid())));
 			}
-			m_PMT = new eTable<ProgramMapSection>();
+			m_PMT = new eTable<ProgramMapSection>(m_scan_debug);
 			CONNECT(m_PMT->tableReady, eDVBScan::PMTready);
 			PMTready(-2);
-
 			// KabelBW HACK ... on 618Mhz and 626Mhz the transport stream id in PAT and SDT is different
+
 			{
 				int type;
 				m_ch_current->getSystem(type);
@@ -195,7 +204,7 @@ RESULT eDVBScan::startFilter()
 		m_PAT = 0;
 		if (m_ready_all & readyPAT)
 		{
-			m_PAT = new eTable<ProgramAssociationSection>();
+			m_PAT = new eTable<ProgramAssociationSection>(m_scan_debug);
 			if (m_PAT->start(m_demux, eDVBPATSpec()))
 				return -1;
 			CONNECT(m_PAT->tableReady, eDVBScan::PATready);
@@ -204,7 +213,7 @@ RESULT eDVBScan::startFilter()
 		m_NIT = 0;
 		if (m_ready_all & readyNIT)
 		{
-			m_NIT = new eTable<NetworkInformationSection>();
+			m_NIT = new eTable<NetworkInformationSection>(m_scan_debug);
 			if (m_NIT->start(m_demux, eDVBNITSpec()))
 				return -1;
 			CONNECT(m_NIT->tableReady, eDVBScan::NITready);
@@ -213,13 +222,12 @@ RESULT eDVBScan::startFilter()
 		m_BAT = 0;
 		if (m_ready_all & readyBAT)
 		{
-			m_BAT = new eTable<BouquetAssociationSection>();
+			m_BAT = new eTable<BouquetAssociationSection>(m_scan_debug);
 			if (m_BAT->start(m_demux, eDVBBATSpec()))
 				return -1;
 			CONNECT(m_BAT->tableReady, eDVBScan::BATready);
 		}
 	}
-
 	return 0;
 }
 
@@ -357,7 +365,7 @@ void eDVBScan::PMTready(int err)
 		else
 			m_pmt_in_progress->second.serviceType = 100;
 	}
-	if (err == -1) // aborted in sdt progress or pmt timout..
+	if (err == -1) // timeout or removed by sdt
 		m_pmts_to_read.erase(m_pmt_in_progress++);
 	else if (m_pmt_running)
 		++m_pmt_in_progress;
@@ -371,6 +379,7 @@ void eDVBScan::PMTready(int err)
 		m_PMT->start(m_demux, eDVBPMTSpec(m_pmt_in_progress->second.pmtPid, m_pmt_in_progress->first));
 	else
 	{
+		m_PMT = 0;
 		m_pmt_running = false;
 		channelDone();
 	}
@@ -491,16 +500,6 @@ void eDVBScan::channelDone()
 	if (m_ready & validSDT && (!(m_flags & scanOnlyFree) || !m_pmt_running))
 	{
 		unsigned long hash = 0;
-
-		// m_ch_current is not set, when eDVBScan is just used for a SDT update
-		if (!m_ch_current)
-		{
-			unsigned int channelFlags;
-			m_channel->getCurrentFrontendParameters(m_ch_current);
-			m_ch_current->getFlags(channelFlags);
-			if (channelFlags & iDVBFrontendParameters::flagOnlyFree)
-				m_flags |= scanOnlyFree;
-		}
 
 		m_ch_current->getHash(hash);
 		
@@ -693,16 +692,6 @@ void eDVBScan::channelDone()
 		{
 			unsigned long hash = 0;
 
-			// m_ch_current is not set, when eDVBScan is just used for a SDT update
-			if (!m_ch_current)
-			{
-				unsigned int channelFlags;
-				m_channel->getCurrentFrontendParameters(m_ch_current);
-				m_ch_current->getFlags(channelFlags);
-				if (channelFlags & iDVBFrontendParameters::flagOnlyFree)
-					m_flags |= scanOnlyFree;
-			}
-
 			m_ch_current->getHash(hash);
 
 			m_chid_current = eDVBChannelID(
@@ -772,13 +761,17 @@ void eDVBScan::channelDone()
 			service->m_provider_name = pname;
 		}
 
-		std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i = m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
-
-		if (i.second)
-		{
-			m_last_service = i.first;
-			m_event(evtNewService);
+		if (!(m_flags & scanOnlyFree) || !m_pmt_in_progress->second.scrambled) {
+			SCAN_eDebug("add not scrambled!");
+			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i = m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
+			if (i.second)
+			{
+				m_last_service = i.first;
+				m_event(evtNewService);
+			}
 		}
+		else
+			SCAN_eDebug("dont add... is scrambled!");
 		m_pmts_to_read.erase(m_pmt_in_progress++);
 	}
 
@@ -989,9 +982,13 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 					SCAN_eDebug("is scrambled!");
 					add = false;
 				}
+				else
+					SCAN_eDebug("is free");
 			}
-			else
+			else {
 				SCAN_eDebug("not found in PAT.. so we assume it is scrambled!!");
+				add = false;
+			}
 		}
 
 		if (add)

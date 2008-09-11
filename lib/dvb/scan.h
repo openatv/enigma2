@@ -89,6 +89,7 @@ class eDVBScan: public Object, public iObject
 	
 	int m_flags;
 	bool m_usePAT;
+	bool m_scan_debug;
 public:
 	eDVBScan(iDVBChannel *channel, bool usePAT=true, bool debug=true );
 	~eDVBScan();
