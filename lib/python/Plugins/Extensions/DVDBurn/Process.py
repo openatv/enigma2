@@ -523,6 +523,8 @@ def CreateAuthoringXML(job):
 		authorxml.append('   </menus>\n')
 	authorxml.append('   <titles>\n')
 	for i in range( nr_titles ):
+		for audiotrack in job.project.titles[i].audiotracks:
+			authorxml.append('    <audio format="'+audiotrack[0]+'" lang="'+audiotrack[1]+'" />\n')
 		chapters = ','.join(["%d:%02d:%02d.%03d" % (p / (90000 * 3600), p % (90000 * 3600) / (90000 * 60), p % (90000 * 60) / 90000, (p % 90000) / 90) for p in job.project.titles[i].chaptermarks])
 		title_no = i+1
 		title_filename = job.workspace + "/dvd_title_%d.mpg" % (title_no)
