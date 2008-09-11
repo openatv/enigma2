@@ -9,6 +9,7 @@ class DVDTitle:
 		self.inputfile = ""
 		self.cutlist = [ ]
 		self.chaptermarks = [ ]
+		self.audiotracks = [ ]
 		self.timeCreate = None
 
 	def addService(self, service):
