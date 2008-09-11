@@ -4,6 +4,9 @@
 #include <lib/dvb/idemux.h>
 #include <set>
 
+#define TABLE_eDebug(x...) do { if (m_debug) eDebug(x); } while(0)
+#define TABLE_eDebugNoNewLine(x...) do { if (m_debug) eDebugNoNewLine(x); } while(0)
+
 class eGTable: public iObject, public Object
 {
 	DECLARE_REF(eGTable);
@@ -18,10 +21,11 @@ class eGTable: public iObject, public Object
 	void timeout();
 	ePtr<eConnection> m_sectionRead_conn;
 protected:
+	bool m_debug;
 	virtual int createTable(unsigned int nr, const __u8 *data, unsigned int max)=0;
 public:
 	Signal1<void, int> tableReady;
-	eGTable();
+	eGTable(bool debug=true);
 	RESULT start(iDVBSectionReader *reader, const eDVBTableSpec &table);
 	RESULT start(iDVBDemux *reader, const eDVBTableSpec &table);
 	RESULT getSpec(eDVBTableSpec &spec) { spec = m_table; return 0; }
@@ -42,7 +46,7 @@ protected:
 		unsigned int ssize = sections.size();
 		if (max < ssize || nr >= max)
 		{
-			eDebug("kaputt max(%d) < ssize(%d) || nr(%d) >= max(%d)",
+			TABLE_eDebug("kaputt max(%d) < ssize(%d) || nr(%d) >= max(%d)",
 				max, ssize, nr, max);
 			return 0;
 		}
@@ -55,22 +59,22 @@ protected:
 
 		for (unsigned int i = 0; i < max; ++i)
 			if (avail.find(i) != avail.end())
-				eDebugNoNewLine("+");
+				TABLE_eDebugNoNewLine("+");
 			else
-				eDebugNoNewLine("-");
+				TABLE_eDebugNoNewLine("-");
 				
-		eDebug(" %d/%d TID %02x", avail.size(), max, data[0]);
+		TABLE_eDebug(" %d/%d TID %02x", avail.size(), max, data[0]);
 
 		if (avail.size() == max)
 		{
-			eDebug("done!");
+			TABLE_eDebug("done!");
 			return 1;
 		} else
 			return 0;
 	}
 public:
 	std::vector<Section*> &getSections() { return sections; }
-	eTable(): eGTable()
+	eTable(bool debug=true): eGTable(debug)
 	{
 	}
 	~eTable()

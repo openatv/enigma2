@@ -37,7 +37,7 @@ void eGTable::sectionRead(const __u8 *d)
 
 void eGTable::timeout()
 {
-	eDebug("timeout %04x!", m_table.pid);
+	TABLE_eDebug("timeout %04x!", m_table.pid);
 	if (m_reader)
 	{
 		m_reader->stop();
@@ -49,8 +49,8 @@ void eGTable::timeout()
 	tableReady(error);
 }
 
-eGTable::eGTable():
-		m_timeout(0), error(0)
+eGTable::eGTable(bool debug):
+		m_timeout(0), m_debug(debug), error(0)
 {
 }
 
@@ -103,28 +103,28 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 	
 	if (!(m_table.flags & eDVBTableSpec::tfAnyVersion))
 	{
-		eDebug("doing version filtering");
+		TABLE_eDebug("doing version filtering");
 		mask.data[3] |= (m_table.version << 1)|1;
 		mask.mask[3] |= 0x3f;
 		if (!(m_table.flags & eDVBTableSpec::tfThisVersion))
 			mask.mode[3] |= 0x3e; // negative filtering
 	} else
-		eDebug("no version filtering");
-	
-	eDebug("%04x:  %02x %02x %02x %02x %02x %02x",
+		TABLE_eDebug("no version filtering");
+
+	TABLE_eDebug("%04x:  %02x %02x %02x %02x %02x %02x",
 		mask.pid,
 		mask.data[0], mask.data[1], mask.data[2],
 		mask.data[3], mask.data[4], mask.data[5]);
-	eDebug("mask:  %02x %02x %02x %02x %02x %02x",
+	TABLE_eDebug("mask:  %02x %02x %02x %02x %02x %02x",
 		mask.mask[0], mask.mask[1], mask.mask[2],
 		mask.mask[3], mask.mask[4], mask.mask[5]);
-	eDebug("mode:  %02x %02x %02x %02x %02x %02x",
+	TABLE_eDebug("mode:  %02x %02x %02x %02x %02x %02x",
 		mask.mode[0], mask.mode[1], mask.mode[2],
 		mask.mode[3], mask.mode[4], mask.mode[5]);
 
 	if ((res = m_reader->start(mask)))
 	{
-		eDebug("reader failed to start.");
+		TABLE_eDebug("reader failed to start.");
 		return res;
 	}
 	
