@@ -12,33 +12,33 @@ class NumericalTextInput:
 		if self.lang == 'de_DE':
 			self.mapping.append (u".,?'\"0-()@/:_$") # 0
 			self.mapping.append (u" 1") # 1
-			self.mapping.append (u"aï¿½bc2Aï¿½BC") # 2
+			self.mapping.append (u"aäbc2AÄBC") # 2
 			self.mapping.append (u"def3DEF") # 3
 			self.mapping.append (u"ghi4GHI") # 4
 			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnoï¿½6MNOï¿½") # 6
-			self.mapping.append (u"pqrsï¿½7PQRSï¿½") # 7
-			self.mapping.append (u"tuï¿½v8TUï¿½V") # 8
+			self.mapping.append (u"mnoö6MNOÖ") # 6
+			self.mapping.append (u"pqrsß7PQRSß") # 7
+			self.mapping.append (u"tuüv8TUÜV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		elif self.lang == 'es_ES':
 			self.mapping.append (u".,?'\"0-()@/:_$") # 0
 			self.mapping.append (u" 1") # 1
-			self.mapping.append (u"abcï¿½ï¿½2ABCï¿½ï¿½") # 2
-			self.mapping.append (u"deï¿½ï¿½f3DEFï¿½ï¿½") # 3
-			self.mapping.append (u"ghiï¿½ï¿½4GHIï¿½ï¿½") # 4
+			self.mapping.append (u"abcáà2ABCÁÀ") # 2
+			self.mapping.append (u"deéèf3DEFÉÈ") # 3
+			self.mapping.append (u"ghiíì4GHIÍÌ") # 4
 			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnï¿½oï¿½ï¿½6MNï¿½Oï¿½ï¿½") # 6
+			self.mapping.append (u"mnñoóò6MNÑOÓÒ") # 6
 			self.mapping.append (u"pqrs7PQRS") # 7
-			self.mapping.append (u"tuvï¿½ï¿½8TUVï¿½ï¿½") # 8
+			self.mapping.append (u"tuvúù8TUVÚÙ") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		if self.lang in ['sv_SE', 'fi_FI']:
 			self.mapping.append (u".,?'\"0-()@/:_$") # 0
 			self.mapping.append (u" 1") # 1
-			self.mapping.append (u"abcï¿½ï¿½2ABCï¿½ï¿½") # 2
-			self.mapping.append (u"defï¿½3DEFï¿½") # 3
+			self.mapping.append (u"abcåä2ABCÅÄ") # 2
+			self.mapping.append (u"defé3DEFÉ") # 3
 			self.mapping.append (u"ghi4GHI") # 4
 			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnoï¿½6MNOï¿½") # 6
+			self.mapping.append (u"mnoö6MNOÖ") # 6
 			self.mapping.append (u"pqrs7PQRS") # 7
 			self.mapping.append (u"tuv8TUV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
