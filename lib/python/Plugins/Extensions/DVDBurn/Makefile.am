@@ -5,6 +5,5 @@ install_PYTHON =	\
 	plugin.py \
 	DVDProject.py DVDTitle.py TitleCutter.py TitleList.py Process.py ProjectSettings.py
 
-install_DATA = keymap.xml
+install_DATA = *.xml *.jpg *.mpg *.mp2
 
-SUBDIRS = data template

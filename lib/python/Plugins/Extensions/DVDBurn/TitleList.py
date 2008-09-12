@@ -11,7 +11,7 @@ from Components.Sources.Progress import Progress
 from Components.FileList import FileList
 from Components.Label import Label
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
-from Tools.Directories import resolveFilename, SCOPE_PLAYLIST
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 class TitleList(Screen):
 	skin = """
@@ -130,7 +130,7 @@ class TitleList(Screen):
 		if source is None:
 			return None
 		t = self.project.addService(source)
-		self.editTitle(t, readOnly=True)
+		self.editTitle(t, readOnly=False)
 
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
@@ -147,7 +147,7 @@ class TitleList(Screen):
 		self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"
 
 	def loadTemplate(self):
-		filename = resolveFilename(SCOPE_PLAYLIST)+"DreamboxDVDtemplate.ddvdp.xml"
+		filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVDtemplate.ddvdp.xml"
 		if self.project.loadProject(filename):
 			self["error_label"].hide()
 			return True

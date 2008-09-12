@@ -1,3 +1,4 @@
+
 from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence
 
@@ -9,24 +10,41 @@ class ConfigPixelvals(ConfigSequence):
 	def __init__(self):
 		ConfigSequence.__init__(self, seperator = ",", limits = [(0,200),(0,200),(0,200)])
 
+class ConfigPixelvals(ConfigSequence):
+	def __init__(self):
+		ConfigSequence.__init__(self, seperator = ",", limits = [(0,200),(0,200),(0,200)])
+
+class ConfigFilename(ConfigText):
+	def __init__(self):
+		ConfigText.__init__(self, default = "", fixed_size = True, visible_width = False)
+
+	def getMulti(self, selected):
+		filename = (self.text.rstrip("/").rsplit("/",1))[1].encode("utf-8")[:40] + " "
+		print "ConfigFilename =", filename
+		if self.allmarked:
+			mark = range(0, len(filename))
+		else:
+			mark = [filename]
+		return ("mtext"[1-selected:], filename, mark)
+	
 class DVDProject:
 	def __init__(self):
 		self.titles = [ ]
 		self.target = None
 		self.settings = ConfigSubsection()
-		self.settings.name = ConfigText(visible_width = 40)
+		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
 		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ])
-		self.settings.menubg = ConfigText(visible_width = 40)
-		self.settings.menuaudio = ConfigText(visible_width = 40)
-		self.settings.titleformat = ConfigText(visible_width = 40)
-		self.settings.subtitleformat = ConfigText(visible_width = 40)
+		self.settings.menubg = ConfigFilename()
+		self.settings.menuaudio = ConfigFilename()
+		self.settings.titleformat = ConfigText(fixed_size = False, visible_width = 40)
+		self.settings.subtitleformat = ConfigText(fixed_size = False, visible_width = 40)
 		self.settings.color_headline = ConfigColor()
 		self.settings.color_highlight = ConfigColor()
 		self.settings.color_button = ConfigColor()
-		self.settings.font_face = ConfigText(visible_width = 40)
+		self.settings.font_face = ConfigFilename()
 		self.settings.font_size = ConfigPixelvals()
 		self.settings.space = ConfigPixelvals()
-		self.settings.vmgm = ConfigText(visible_width = 40)
+		self.settings.vmgm = ConfigFilename()
 		self.settings.autochapter = ConfigInteger(default = 0, limits = (0, 99))
 		self.filekeys = ["vmgm", "menubg", "menuaudio", "font_face"]
 

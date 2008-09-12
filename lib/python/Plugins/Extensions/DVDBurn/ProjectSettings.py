@@ -9,7 +9,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.FileList import FileList
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
-from Tools.Directories import resolveFilename, SCOPE_PLAYLIST, SCOPE_SKIN, SCOPE_FONTS
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 
@@ -41,16 +41,16 @@ class FileBrowser(Screen, HelpableScreen):
 		pattern = ""
 		currDir = "/"
 		if self.scope == "project":
-			currDir = resolveFilename(SCOPE_PLAYLIST)
+			currDir = self.getDir()
 			pattern = "(?i)^.*\.(ddvdp\.xml)"		
 		if self.scope == "menubg":
-			currDir = self.getDir(settings.menubg, resolveFilename(SCOPE_SKIN))
+			currDir = self.getDir(settings.menubg)
 			pattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)"
 		elif self.scope == "menuaudio":
-			currDir = self.getDir(settings.menuaudio, resolveFilename(SCOPE_SKIN))
+			currDir = self.getDir(settings.menuaudio)
 			pattern = "(?i)^.*\.(mp2|m2a|ac3)"
 		elif self.scope == "vmgm":
-			currDir = self.getDir(settings.vmgm, resolveFilename(SCOPE_SKIN))
+			currDir = self.getDir(settings.vmgm)
 			pattern = "(?i)^.*\.(mpg|mpeg)"
 		elif self.scope == "font_face":
 			currDir = self.getDir(settings.font_face, resolveFilename(SCOPE_FONTS))
@@ -65,12 +65,12 @@ class FileBrowser(Screen, HelpableScreen):
 				"cancel": self.exit
 			})
 
-	def getDir(self, key, defaultDir):
-		settingDir = key.getValue()
-		if len(settingDir) > 1:
-			return (settingDir.rstrip("/").rsplit("/",1))[0]
-		else:
-			return defaultDir
+	def getDir(self, key=None, defaultDir=None):
+		if key:
+			settingDir = key.getValue()
+			if len(settingDir) > 1:
+				return (settingDir.rstrip("/").rsplit("/",1))[0]
+		return defaultDir or (resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
 
 	def ok(self):
 		if self.filelist.canDescent():
@@ -106,7 +106,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self["key_yellow"] = StaticText(_("Load"))
 		self["key_blue"] = StaticText(_("Save"))
 		
-		infotext = _("Available format variables") + ":\n%i=" + _("Track") + ", %t=" + _("Title") + ", %d=" + _("Description") + ", %l=" + _("length") + ", %c=" + _("chapters") + ",\n" + _("Record") + " %T=" + _("Begin time") + ", %Y=" + _("year") + ", %M=" + _("month") + ", %D=" + _("day") + ",\n%C=" + _("Channel") + ", %f=" + _("filename")
+		infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
 		self["info"] = StaticText(infotext)
 
 		self.settings = project.settings
