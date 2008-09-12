@@ -1,5 +1,6 @@
 from Plugins.Extensions.CutListEditor.plugin import CutListEditor
 from Components.ServiceEventTracker import ServiceEventTracker
+from enigma import iPlayableService
 
 class TitleCutter(CutListEditor):
 	def __init__(self, session, t):
@@ -23,11 +24,11 @@ class TitleCutter(CutListEditor):
 		if n > 0:
 			for x in range(n):
 				i = audio.getTrackInfo(x)
-				language = i.getLanguage()[:2]
+				language = i.getLanguage()
 				description = i.getDescription()
 				if description == "MPEG":
-					description = "mp2"
-				self.t.audiotracks.append((description, language))
+					description = "MP2"
+				self.t.audiotracks.append((language, description))
 		print "audiotracks", self.t.audiotracks
 
 	def exit(self):
