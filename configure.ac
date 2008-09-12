@@ -124,6 +124,7 @@ lib/python/Plugins/Extensions/FileManager/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
+lib/python/Plugins/Extensions/DVDBurn/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/Makefile
 lib/python/Plugins/Extensions/DVDPlayer/src/Makefile
 lib/python/Plugins/Extensions/PicturePlayer/Makefile
