@@ -20,7 +20,6 @@ class ConfigFilename(ConfigText):
 
 	def getMulti(self, selected):
 		filename = (self.text.rstrip("/").rsplit("/",1))[1].encode("utf-8")[:40] + " "
-		print "ConfigFilename =", filename
 		if self.allmarked:
 			mark = range(0, len(filename))
 		else:
