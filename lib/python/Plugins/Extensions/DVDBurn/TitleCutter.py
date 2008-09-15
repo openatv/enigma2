@@ -1,6 +1,6 @@
 from Plugins.Extensions.CutListEditor.plugin import CutListEditor
 from Components.ServiceEventTracker import ServiceEventTracker
-from enigma import iPlayableService
+from enigma import iPlayableService, iServiceInformation
 
 class TitleCutter(CutListEditor):
 	def __init__(self, session, t):
@@ -10,17 +10,15 @@ class TitleCutter(CutListEditor):
 		self.t = t
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evUpdatedInfo: self.getAudioTracks,
+				iPlayableService.evUpdatedInfo: self.getPMTInfo,
 				iPlayableService.evCuesheetChanged: self.refillList
 			})
 		self.onExecBegin.remove(self.showTutorial)
 
-	def getAudioTracks(self):
+	def getPMTInfo(self):
 		service = self.session.nav.getCurrentService()
 		audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
-		print "self.t", self.t
-		print "self.t.audiotracks", self.t.audiotracks
 		if n > 0:
 			for x in range(n):
 				i = audio.getTrackInfo(x)
@@ -29,7 +27,11 @@ class TitleCutter(CutListEditor):
 				if description == "MPEG":
 					description = "MP2"
 				self.t.audiotracks.append((language, description))
-		print "audiotracks", self.t.audiotracks
+		print "[DVDBurn getAudioTracks]", self.t.audiotracks
+		sVideoType = service.info().getInfo(iServiceInformation.sVideoType)
+		print "[DVDBurn getVideoType]", sVideoType
+		if sVideoType != 0:
+			self.close(False)
 
 	def exit(self):
 		self.session.nav.stopService()

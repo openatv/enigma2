@@ -134,6 +134,9 @@ class TitleList(Screen):
 
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
+		self.removeTitle(title)
+	
+	def removeTitle(self, title):
 		if title is not None:
 			self.project.titles.remove(title)
 			self.updateTitleList()
@@ -218,11 +221,14 @@ class TitleList(Screen):
 				self.session.openWithCallback(self.titleEditDone, TitleCutter.TitleCutter, t)
 
 	def titleEditDone(self, cutlist):
-		t = self.current_edit_title
-		t.cuesheet = cutlist
-		t.produceFinalCuesheet()
-		print "title edit of %s done, resulting cutlist:" % (t.source.toString()), t.cutlist, "chaptermarks:", t.chaptermarks
-		self.updateTitleList()
+		if cutlist != False:
+			t = self.current_edit_title
+			t.cuesheet = cutlist
+			t.produceFinalCuesheet()
+			self.updateTitleList()
+		else:
+			self.session.open(MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams!"),type = MessageBox.TYPE_ERROR)
+			self.removeTitle(self.current_edit_title)
 
 	def leave(self):
 		self.close()
