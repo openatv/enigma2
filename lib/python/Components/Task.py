@@ -261,7 +261,11 @@ class JobManager:
 		if problems:
 			from Tools import Notifications
 			from Screens.MessageBox import MessageBox
-			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
+			if problems[0].RECOVERABLE:
+				Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
+			else:
+				Notifications.AddNotification(MessageBox, _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+				self.errorCB(False)
 			return
 			#self.failed_jobs.append(self.active_job)
 
@@ -317,7 +321,7 @@ class Condition:
 	RECOVERABLE = False
 
 	def getErrorMessage(self, task):
-		return _("An error has occured. (%s)") % (self.__class__.__name__)
+		return _("An error has occured. (%s in %s)") % (self.__class__.__name__, task.__class__.__name__)
 
 class WorkspaceExistsPrecondition(Condition):
 	def check(self, task):
