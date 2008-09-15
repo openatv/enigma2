@@ -1,4 +1,4 @@
-from Components.Task import Task, Job, job_manager, DiskspacePrecondition, Condition
+from Components.Task import Task, Job, job_manager, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Screens.MessageBox import MessageBox
 
 class png2yuvTask(Task):
@@ -11,13 +11,11 @@ class png2yuvTask(Task):
 
 	def run(self, callback, task_progress_changed):
 		Task.run(self, callback, task_progress_changed)
+		self.container.stdoutAvail.get().remove(self.processStdout)
 		self.container.dumpToFile(self.dumpFile)
 
 	def processStderr(self, data):
-		print "[png2yuvTask]", data
-
-	def processStdout(self, data):
-		pass
+		print "[png2yuvTask]", data[:-1]
 
 class mpeg2encTask(Task):
 	def __init__(self, job, inputfile, outputfile):
@@ -45,14 +43,12 @@ class spumuxTask(Task):
 
 	def run(self, callback, task_progress_changed):
 		Task.run(self, callback, task_progress_changed)
+		self.container.stdoutAvail.get().remove(self.processStdout)
 		self.container.dumpToFile(self.dumpFile)
 		self.container.readFromFile(self.inputFile)
 
 	def processStderr(self, data):
 		print "[spumuxTask]", data[:-1]
-
-	def processStdout(self, data):
-		pass
 
 class MakeFifoNode(Task):
 	def __init__(self, job, number):
@@ -146,6 +142,8 @@ class DemuxTask(Task):
 
 class MplexTaskPostcondition(Condition):
 	def check(self, task):
+		if task.error == task.ERROR_UNDERRUN:
+			return True
 		return task.error is None
 
 	def getErrorMessage(self, task):
@@ -167,6 +165,12 @@ class MplexTask(Task):
 		if inputfiles:
 			self.args += inputfiles
 
+	def setTool(self, tool):
+		self.cmd = tool
+		self.args = [tool]
+		self.global_preconditions.append(ToolExistsPrecondition())
+		# we don't want the ReturncodePostcondition in this case because for right now we're just gonna ignore the fact that mplex fails with a buffer underrun error on some streams (this always at the very end)
+
 	def prepare(self):
 		self.error = None			
 		if self.demux_task:
@@ -177,7 +181,6 @@ class MplexTask(Task):
 		if line.startswith("**ERROR:"):
 			if line.find("Frame data under-runs detected") != -1:
 				self.error = self.ERROR_UNDERRUN
-				print "BUFFER UNDERRUN ERROR !!!"
 			else:
 				self.error = self.ERROR_UNKNOWN
 
