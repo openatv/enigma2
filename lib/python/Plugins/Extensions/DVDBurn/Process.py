@@ -32,7 +32,7 @@ class mpeg2encTask(Task):
 		self.container.readFromFile(self.inputFile)
 
 	def processOutputLine(self, line):
-		print "[mpeg2encTask]", line
+		print "[mpeg2encTask]", line[:-1]
 
 class spumuxTask(Task):
 	def __init__(self, job, xmlfile, inputfile, outputfile):
@@ -49,7 +49,7 @@ class spumuxTask(Task):
 		self.container.readFromFile(self.inputFile)
 
 	def processStderr(self, data):
-		print "[spumuxTask]", data
+		print "[spumuxTask]", data[:-1]
 
 	def processStdout(self, data):
 		pass
@@ -107,7 +107,7 @@ class DemuxTask(Task):
 		self.generated_files.append(file)
 
 	def haveProgress(self, progress):
-		print "PROGRESS [%s]" % progress
+		#print "PROGRESS [%s]" % progress
 		MSG_CHECK = "check & synchronize audio file"
 		MSG_DONE = "done..."
 		if progress == "preparing collection(s)...":
@@ -144,22 +144,42 @@ class DemuxTask(Task):
 			for f in self.generated_files:
 				os.remove(f)
 
+class MplexTaskPostcondition(Condition):
+	def check(self, task):
+		return task.error is None
+
+	def getErrorMessage(self, task):
+		print "[MplexTaskPostcondition] getErrorMessage", task
+		return {
+			task.ERROR_UNDERRUN: ("Can't multiplex source video!"),
+			task.ERROR_UNKNOWN: ("An unknown error occured!")
+		}[task.error]
+
 class MplexTask(Task):
+	ERROR_UNDERRUN, ERROR_UNKNOWN = range(2)
 	def __init__(self, job, outputfile, inputfiles=None, demux_task=None):
 		Task.__init__(self, job, "Mux ES into PS")
 		self.weighting = 500
 		self.demux_task = demux_task
+		self.postconditions.append(MplexTaskPostcondition())
 		self.setTool("/usr/bin/mplex")
 		self.args += ["-f8", "-o", outputfile, "-v1"]
 		if inputfiles:
 			self.args += inputfiles
 
 	def prepare(self):
+		self.error = None			
 		if self.demux_task:
 			self.args += self.demux_task.generated_files
 
 	def processOutputLine(self, line):
-		print "[MplexTask] processOutputLine=", line
+		print "[MplexTask] processOutputLine=", line[:-1]
+		if line.startswith("**ERROR:"):
+			if line.find("Frame data under-runs detected") != -1:
+				self.error = self.ERROR_UNDERRUN
+				print "BUFFER UNDERRUN ERROR !!!"
+			else:
+				self.error = self.ERROR_UNKNOWN
 
 class RemoveESFiles(Task):
 	def __init__(self, job, demux_task):
@@ -184,7 +204,7 @@ class DVDAuthorTask(Task):
 		self.menupreview = job.menupreview
 
 	def processOutputLine(self, line):
-		print "[DVDAuthorTask] processOutputLine=", line
+		print "[DVDAuthorTask] processOutputLine=", line[:-1]
 		if not self.menupreview and line.startswith("STAT: Processing"):
 			self.callback(self, [], stay_resident=True)
 
@@ -204,6 +224,7 @@ class WaitForResidentTasks(Task):
 			callback(self, [])
 
 class BurnTaskPostcondition(Condition):
+	RECOVERABLE = True
 	def check(self, task):
 		return task.error is None
 
