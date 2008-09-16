@@ -28,10 +28,8 @@ class TitleCutter(CutListEditor):
 					description = "MP2"
 				self.t.audiotracks.append((language, description))
 		print "[DVDBurn getAudioTracks]", self.t.audiotracks
-		sVideoType = service.info().getInfo(iServiceInformation.sVideoType)
-		print "[DVDBurn getVideoType]", sVideoType
-		if sVideoType != 0:
-			self.close(False)
+		self.t.sVideoType = service.info().getInfo(iServiceInformation.sVideoType)
+		print "[DVDBurn getVideoType]", self.t.sVideoType
 
 	def exit(self):
 		self.session.nav.stopService()

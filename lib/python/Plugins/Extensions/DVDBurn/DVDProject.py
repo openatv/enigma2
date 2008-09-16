@@ -32,7 +32,7 @@ class DVDProject:
 		self.target = None
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
-		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ])
+		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("data_ts", _("Dreambox format data DVD (HDTV compatible)"))])
 		self.settings.menubg = ConfigFilename()
 		self.settings.menuaudio = ConfigFilename()
 		self.settings.titleformat = ConfigText(fixed_size = False, visible_width = 40)
