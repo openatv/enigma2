@@ -161,11 +161,17 @@ class TitleList(Screen):
 			return False
 
 	def burnProject(self):
-		autochapter = self.project.settings.autochapter.getValue()
-		if autochapter > 0:
-			for title in self.project.titles:
-				title.produceAutoChapter(autochapter)
-		self.project.waitboxref = self.project.session.open(ProjectSettings.WaitBox,self.burnProjectCB)
+		if self.project.settings.authormode.getValue() == "data_ts":
+			import Process
+			job = Process.BurnDataTS(self.session, self.project)
+			from Screens.TaskView import JobView
+			self.session.open(JobView, job)
+		else:
+			autochapter = self.project.settings.autochapter.getValue()
+			if autochapter > 0:
+				for title in self.project.titles:
+					title.produceAutoChapter(autochapter)
+			self.project.waitboxref = self.project.session.open(ProjectSettings.WaitBox,self.burnProjectCB)
 
 	def burnProjectCB(self):
 		import Process
@@ -221,14 +227,21 @@ class TitleList(Screen):
 				self.session.openWithCallback(self.titleEditDone, TitleCutter.TitleCutter, t)
 
 	def titleEditDone(self, cutlist):
-		if cutlist != False:
-			t = self.current_edit_title
-			t.cuesheet = cutlist
-			t.produceFinalCuesheet()
+		t = self.current_edit_title
+		t.cuesheet = cutlist
+		t.produceFinalCuesheet()
+		if t.sVideoType != 0:
+			self.session.openWithCallback(self.DVDformatCB,MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"), type = MessageBox.TYPE_YESNO)
+		else:
+			self.updateTitleList()
+
+	def DVDformatCB(self, answer):
+		t = self.current_edit_title
+		if answer == True:
+			self.project.settings.authormode.setValue("data_ts")
 			self.updateTitleList()
 		else:
-			self.session.open(MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams!"),type = MessageBox.TYPE_ERROR)
-			self.removeTitle(self.current_edit_title)
+			self.removeTitle(t)
 
 	def leave(self):
 		self.close()

@@ -65,6 +65,19 @@ class LinkTS(Task):
 		self.args += ["-s", sourcefile, link_name]
 		self.weighting = 10
 
+class CopyMeta(Task):
+	def __init__(self, job, sourcefile):
+		Task.__init__(self, job, "Copy title meta files")
+		self.setTool("/bin/cp")
+		from os import listdir
+		path, filename = sourcefile.rstrip("/").rsplit("/",1)
+		tsfiles = listdir(path)
+		for file in tsfiles:
+			if file.startswith(filename+"."):
+				self.args += [path+'/'+file]
+		self.args += [self.job.workspace]
+		self.weighting = 10
+
 class DemuxTask(Task):
 	def __init__(self, job, inputfile):
 		Task.__init__(self, job, "Demux video into ES")
@@ -243,7 +256,7 @@ class BurnTaskPostcondition(Condition):
 
 class BurnTask(Task):
 	ERROR_MEDIA, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_UNKNOWN = range(6)
-	def __init__(self, job):
+	def __init__(self, job, extra_args=[]):
 		Task.__init__(self, job, "burn")
 
 		self.weighting = 500
@@ -251,7 +264,8 @@ class BurnTask(Task):
 		self.postconditions.append(BurnTaskPostcondition())
 		self.setTool("/bin/growisofs")
 		volName = self.getASCIIname(job.project.settings.name.getValue())
-		self.args += ["-dvd-video", "-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", volName, "-P", "Dreambox", "-use-the-force-luke=dummy", self.job.workspace + "/dvd"]
+		self.args += ["-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", volName, "-P", "Dreambox", "-use-the-force-luke=dummy", self.job.workspace + "/dvd"]
+		self.args += extra_args
 
 	def getASCIIname(self, name):
 		ASCIIname = ""
@@ -619,7 +633,34 @@ class DVDJob(Job):
 				RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
 			PreviewTask(self)
-			BurnTask(self)
+			BurnTask(self,["-dvd-video"])
+		RemoveDVDFolder(self)
+
+class DVDdataJob(Job):
+	def __init__(self, project):
+		Job.__init__(self, "Data DVD Burn")
+		self.project = project
+		from time import strftime
+		from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
+		new_workspace = resolveFilename(SCOPE_HDD) + "tmp/" + strftime("%Y%m%d%H%M%S") + "/dvd/"
+		createDir(new_workspace, True)
+		self.workspace = new_workspace
+		self.project.workspace = self.workspace
+		self.conduct()
+
+	def conduct(self):
+		diskSpaceNeeded = 50*1024*1024 # require an extra safety 50 MB
+		for title in self.project.titles:
+			diskSpaceNeeded += title.filesize
+		nr_titles = len(self.project.titles)
+
+		for self.i in range(nr_titles):
+			title = self.project.titles[self.i]
+			filename = title.inputfile.rstrip("/").rsplit("/",1)[1]
+			link_name =  self.workspace + filename
+			LinkTS(self, title.inputfile, link_name)
+			CopyMeta(self, title.inputfile)
+		BurnTask(self)
 		RemoveDVDFolder(self)
 
 def Burn(session, project):
@@ -629,5 +670,10 @@ def Burn(session, project):
 
 def PreviewMenu(session, project):
 	j = DVDJob(project, menupreview=True)
+	job_manager.AddJob(j)
+	return j
+
+def BurnDataTS(session, project):
+	j = DVDdataJob(project)
 	job_manager.AddJob(j)
 	return j

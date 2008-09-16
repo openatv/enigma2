@@ -110,23 +110,9 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self["info"] = StaticText(infotext)
 
 		self.settings = project.settings
-		self.list = []
-		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
-		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.settings.menubg))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.settings.titleformat))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.settings.subtitleformat))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("headline")+' '+_("color"), self.settings.color_headline))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("text")+' '+_("color"), self.settings.color_button))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("highlighted button")+' '+_("color"), self.settings.color_highlight))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("font face"), self.settings.font_face))
-		self.list.append(getConfigListEntry(_("Font size")+' ('+_("headline")+', '+_("Title")+', '+_("Subtitles")+')', self.settings.font_size))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
-		self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
-		self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
-		self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.settings.autochapter))
-		ConfigListScreen.__init__(self, self.list)
-		
+		ConfigListScreen.__init__(self, [])
+		self.initConfigList(self.settings.authormode.getValue())
+			
 		self.keydict = {}
 		for key, val in self.settings.dict().iteritems():
 			self.keydict[val] = key
@@ -140,7 +126,42 @@ class ProjectSettings(Screen,ConfigListScreen):
 		    "cancel": self.cancel,
 		    "ok": self.ok,
 		}, -2)
-	
+
+	def changedConfigList(self):
+		if self.keydict[self["config"].getCurrent()[1]] == "authormode":
+			self.initConfigList(self.settings.authormode.getValue())
+		
+	def initConfigList(self, authormode=""):
+		print "initConfigList(%s)" % authormode
+		self.list = []
+		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
+		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
+		if authormode.startswith("menu"):
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.settings.menubg))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.settings.titleformat))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.settings.subtitleformat))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("headline")+' '+_("color"), self.settings.color_headline))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("text")+' '+_("color"), self.settings.color_button))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("highlighted button")+' '+_("color"), self.settings.color_highlight))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("font face"), self.settings.font_face))
+			self.list.append(getConfigListEntry(_("Font size")+' ('+_("headline")+', '+_("Title")+', '+_("Subtitles")+')', self.settings.font_size))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
+		if authormode != "data_ts":
+			self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
+			self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.settings.autochapter))
+		self["config"].setList(self.list)
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+		if self.keydict[self["config"].getCurrent()[1]] == "authormode":
+			self.initConfigList(self.settings.authormode.getValue())
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+		if self.keydict[self["config"].getCurrent()[1]] == "authormode":
+			self.initConfigList(self.settings.authormode.getValue())
+
 	def exit(self):
 		self.applySettings()
 		self.close(True)
@@ -162,7 +183,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 
 	def saveProject(self):
 		self.applySettings()
-		ret = self.project.saveProject(resolveFilename(SCOPE_PLAYLIST))
+		ret = self.project.saveProject(resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
 		if ret.startswith:
 			text = _("Save")+' '+_('OK')+':\n'+ret
 			self.session.open(MessageBox,text,type = MessageBox.TYPE_INFO)

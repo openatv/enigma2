@@ -11,6 +11,7 @@ class DVDTitle:
 		self.chaptermarks = [ ]
 		self.audiotracks = [ ]
 		self.timeCreate = None
+		self.sVideoType = -1
 
 	def addService(self, service):
 		from os import path
