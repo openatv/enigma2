@@ -171,18 +171,12 @@ class TitleList(Screen):
 			if autochapter > 0:
 				for title in self.project.titles:
 					title.produceAutoChapter(autochapter)
-			self.project.waitboxref = self.project.session.open(ProjectSettings.WaitBox,self.burnProjectCB)
-
-	def burnProjectCB(self):
-		import Process
-		job = Process.Burn(self.session, self.project)
-		from Screens.TaskView import JobView
-		self.session.open(JobView, job)
+			import Process
+			job = Process.Burn(self.session, self.project)
+			from Screens.TaskView import JobView
+			self.session.open(JobView, job)
 
 	def previewMenu(self):
-		self.project.waitboxref = self.project.session.open(ProjectSettings.WaitBox,self.previewMenuCB)
-		
-	def previewMenuCB(self):
 		import Process
 		job = Process.PreviewMenu(self.session, self.project)
 

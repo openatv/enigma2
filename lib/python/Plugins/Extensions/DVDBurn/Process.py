@@ -246,7 +246,8 @@ class BurnTaskPostcondition(Condition):
 
 	def getErrorMessage(self, task):
 		return {
-			task.ERROR_MEDIA: _("Medium is not a writeable DVD!"),
+			task.ERROR_NOTWRITEABLE: _("Medium is not a writeable DVD!"),
+			task.ERROR_LOAD: _("Could not load Medium! No disc inserted?"),
 			task.ERROR_SIZE: _("Content does not fit on DVD!"),
 			task.ERROR_WRITE_FAILED: _("Write failed!"),
 			task.ERROR_DVDROM: _("No (supported) DVDROM found!"),
@@ -255,7 +256,7 @@ class BurnTaskPostcondition(Condition):
 		}[task.error]
 
 class BurnTask(Task):
-	ERROR_MEDIA, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_UNKNOWN = range(6)
+	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_UNKNOWN = range(7)
 	def __init__(self, job, extra_args=[]):
 		Task.__init__(self, job, "burn")
 
@@ -291,7 +292,9 @@ class BurnTask(Task):
 			self.progress = 110
 		elif line.startswith(":-["):
 			if line.find("ASC=30h") != -1:
-				self.error = self.ERROR_MEDIA
+				self.error = self.ERROR_NOTWRITEABLE
+			if line.find("ASC=24h") != -1:
+				self.error = self.ERROR_LOAD
 			else:
 				self.error = self.ERROR_UNKNOWN
 				print "BurnTask: unknown error %s" % line
@@ -303,7 +306,7 @@ class BurnTask(Task):
 			elif line.find("unable to open64(\"/dev/cdroms/cdrom0\",O_RDONLY): No such file or directory") != -1: # fixme
 				self.error = self.ERROR_DVDROM
 			elif line.find("media is not recognized as recordable DVD") != -1:
-				self.error = self.ERROR_MEDIA
+				self.error = self.ERROR_NOTWRITEABLE
 			else:
 				self.error = self.ERROR_UNKNOWN
 				print "BurnTask: unknown error %s" % line
@@ -329,8 +332,6 @@ class PreviewTask(Task):
 	def run(self, callback, task_progress_changed):
 		self.callback = callback
 		self.task_progress_changed = task_progress_changed
-		if self.job.project.waitboxref:
-			self.job.project.waitboxref.close()
 		if self.job.menupreview:
 			self.waitAndOpenPlayer()
 		else:
@@ -371,13 +372,6 @@ class PreviewTaskPostcondition(Condition):
 	def getErrorMessage(self, task):
 		return "Cancel"
 
-def getTitlesPerMenu(nr_titles):
-	if nr_titles < 6:
-		titles_per_menu = 5
-	else:
-		titles_per_menu = 4
-	return titles_per_menu
-
 def formatTitle(template, title, track):
 	template = template.replace("$i", str(track))
 	template = template.replace("$t", title.name)
@@ -399,138 +393,189 @@ def formatTitle(template, title, track):
 		template = template.replace("$Y", "").replace("$M", "").replace("$D", "").replace("$T", "")
 	return template.decode("utf-8")
 
-def CreateMenus(job):
-	try:
-		from ImageFont import truetype
-		import ImageDraw, Image, os
-	except ImportError:
-		job.project.session.open(MessageBox, ("missing python-imaging"), type = MessageBox.TYPE_ERROR)
-		if job.project.waitboxref:
-			job.project.waitboxref.close()
-		return False
+class ImagingPostcondition(Condition):
+	def check(self, task):
+		return task.returncode == 0
 
-	imgwidth = 720
-	imgheight = 576
-	s = job.project.settings
-	im_bg_orig = Image.open(s.menubg.getValue())
-	if im_bg_orig.size != (imgwidth, imgheight):
-		im_bg_orig = im_bg_orig.resize((720, 576))
-	
-	fontsizes = s.font_size.getValue()
-	fontface = s.font_face.getValue()
-	
-	font0 = truetype(fontface, fontsizes[0])
-	font1 = truetype(fontface, fontsizes[1])
-	font2 = truetype(fontface, fontsizes[2])
+	def getErrorMessage(self, task):
+		return "python-imaging " + _("failed")
 
-	color_headline = tuple(s.color_headline.getValue())
-	color_button = tuple(s.color_button.getValue())
-	color_highlight = tuple(s.color_highlight.getValue())
-	spu_palette = [	0x60, 0x60, 0x60 ] + s.color_highlight.getValue()
-
-	nr_titles = len(job.project.titles)
-	titles_per_menu = getTitlesPerMenu(nr_titles)
-	job.nr_menus = ((nr_titles+titles_per_menu-1)/titles_per_menu)
-
-	#a new menu_count every 5 titles (1,2,3,4,5->1 ; 6,7,8,9,10->2 etc.)
-	for menu_count in range(1 , job.nr_menus+1):
-		im_bg = im_bg_orig.copy()
-		im_high = Image.new("P", (imgwidth, imgheight), 0)
-		im_high.putpalette(spu_palette)
-		draw_bg = ImageDraw.Draw(im_bg)
-		draw_high = ImageDraw.Draw(im_high)
-
-		if menu_count == 1:
-			headline = s.name.getValue().decode("utf-8")
-			textsize = draw_bg.textsize(headline, font=font0)
-			if textsize[0] > imgwidth:
-				offset = (0 , 20)
-			else:
-				offset = (((imgwidth-textsize[0]) / 2) , 20)
-			draw_bg.text(offset, headline, fill=color_headline, font=font0)
+class ImagePrepareTask(Task):
+	def __init__(self, job):
+		Task.__init__(self, job, _("please wait, loading picture..."))
+		self.postconditions.append(ImagingPostcondition())
+		self.weighting = 20
+		self.job = job
+		self.Menus = job.Menus
 		
-		menubgpngfilename = job.workspace+"/dvd_menubg"+str(menu_count)+".png"
-		highlightpngfilename = job.workspace+"/dvd_highlight"+str(menu_count)+".png"
-		spuxml = """<?xml version="1.0" encoding="utf-8"?>
-	<subpictures>
-	<stream>
-	<spu 
-	highlight="%s"
-	transparent="%02x%02x%02x"
-	start="00:00:00.00"
-	force="yes" >""" % (highlightpngfilename, spu_palette[0], spu_palette[1], spu_palette[2])
-		s_top, s_rows, s_left = s.space.getValue()
-		rowheight = (fontsizes[1]+fontsizes[2]+s_rows)
-		menu_start_title = (menu_count-1)*titles_per_menu + 1
-		menu_end_title = (menu_count)*titles_per_menu + 1
-		if menu_end_title > nr_titles:
-			menu_end_title = nr_titles+1
-		menu_i = 0
-		for title_no in range( menu_start_title , menu_end_title ):
-			i = title_no-1
-			top = s_top + ( menu_i * rowheight )
-			menu_i += 1
-			title = job.project.titles[i]
-			titleText = formatTitle(s.titleformat.getValue(), title, title_no)
-			draw_bg.text((s_left,top), titleText, fill=color_button, font=font1)
-			draw_high.text((s_left,top), titleText, fill=1, font=font1)
-			subtitleText = formatTitle(s.subtitleformat.getValue(), title, title_no)
-			draw_bg.text((s_left,top+36), subtitleText, fill=color_button, font=font2)
-			bottom = top+rowheight
-			if bottom > imgheight:
-				bottom = imgheight
-			spuxml += """
-	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),s_left,imgwidth,top,bottom )
-		if menu_count > 1:
-			prev_page_text = "<<<"
-			textsize = draw_bg.textsize(prev_page_text, font=font1)
-			offset = ( 2*s_left, s_top + ( titles_per_menu * rowheight ) )
-			draw_bg.text(offset, prev_page_text, fill=color_button, font=font1)
-			draw_high.text(offset, prev_page_text, fill=1, font=font1)
-			spuxml += """
-	<button name="button_prev" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
+	def run(self, callback, task_progress_changed):			
+		self.callback = callback
+		self.task_progress_changed = task_progress_changed
+		# we are doing it this weird way so that the TaskView Screen actually pops up before the spinner comes
+		from enigma import eTimer
+		self.delayTimer = eTimer()
+		self.delayTimer.callback.append(self.conduct)
+		self.delayTimer.start(10,1)
 
-		if menu_count < job.nr_menus:
-			next_page_text = ">>>"
-			textsize = draw_bg.textsize(next_page_text, font=font1)
-			offset = ( imgwidth-textsize[0]-2*s_left, s_top + ( titles_per_menu * rowheight ) )
-			draw_bg.text(offset, next_page_text, fill=color_button, font=font1)
-			draw_high.text(offset, next_page_text, fill=1, font=font1)
-			spuxml += """
-	<button name="button_next" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
-				
-		del draw_bg
-		del draw_high
-		fd=open(menubgpngfilename,"w")
-		im_bg.save(fd,"PNG")
-		fd.close()
-		fd=open(highlightpngfilename,"w")
-		im_high.save(fd,"PNG")
-		fd.close()
-	
-		png2yuvTask(job, menubgpngfilename, job.workspace+"/dvdmenubg"+str(menu_count)+".yuv")
-		menubgm2vfilename = job.workspace+"/dvdmenubg"+str(menu_count)+".mv2"
-		mpeg2encTask(job, job.workspace+"/dvdmenubg"+str(menu_count)+".yuv", menubgm2vfilename)
-		menubgmpgfilename = job.workspace+"/dvdmenubg"+str(menu_count)+".mpg"
-		menuaudiofilename = s.menuaudio.getValue()
-		MplexTask(job, outputfile=menubgmpgfilename, inputfiles = [menubgm2vfilename, menuaudiofilename])
-	
-		spuxml += """
-	</spu>
-	</stream>
-	</subpictures>"""
-		spuxmlfilename = job.workspace+"/spumux"+str(menu_count)+".xml"
-		f = open(spuxmlfilename, "w")
-		f.write(spuxml)
-		f.close()
+	def conduct(self):
+		try:
+			from ImageFont import truetype
+			from Image import open as Image_open		
+			s = self.job.project.settings
+			self.Menus.im_bg_orig = Image_open(s.menubg.getValue())
+			if self.Menus.im_bg_orig.size != (self.Menus.imgwidth, self.Menus.imgheight):
+				self.Menus.im_bg_orig = self.Menus.im_bg_orig.resize((720, 576))	
+			self.Menus.fontsizes = s.font_size.getValue()
+			fontface = s.font_face.getValue()
+			self.Menus.fonts = [truetype(fontface, self.Menus.fontsizes[0]), truetype(fontface, self.Menus.fontsizes[1]), truetype(fontface, self.Menus.fontsizes[2])]
+			Task.processFinished(self, 0)
+		except:
+			Task.processFinished(self, 1)
+
+class MenuImageTask(Task):
+	def __init__(self, job):
+		Task.__init__(self, job, "Create Menu %d Image" % job.Menus.menu_count)
+		self.postconditions.append(ImagingPostcondition())
+		self.weighting = 20 
+		self.job = job
+		self.Menus = job.Menus
+
+	def run(self, callback, task_progress_changed):
+		self.callback = callback
+		self.task_progress_changed = task_progress_changed
+		try:
+			import ImageDraw, Image, os
 		
-		menuoutputfilename = job.workspace+"/dvdmenu"+str(menu_count)+".mpg"
-		spumuxTask(job, spuxmlfilename, menubgmpgfilename, menuoutputfilename)
-	return True
+			s = self.job.project.settings
+			fonts = self.Menus.fonts
+	
+			im_bg = self.Menus.im_bg_orig.copy()
+			im_high = Image.new("P", (self.Menus.imgwidth, self.Menus.imgheight), 0)
+			im_high.putpalette(self.Menus.spu_palette)
+			draw_bg = ImageDraw.Draw(im_bg)
+			draw_high = ImageDraw.Draw(im_high)
+	
+			if self.Menus.menu_count == 1:
+				headline = s.name.getValue().decode("utf-8")
+				textsize = draw_bg.textsize(headline, font=fonts[0])
+				if textsize[0] > self.Menus.imgwidth:
+					offset = (0 , 20)
+				else:
+					offset = (((self.Menus.imgwidth-textsize[0]) / 2) , 20)
+				draw_bg.text(offset, headline, fill=self.Menus.color_headline, font=fonts[0])
+	
+			spuxml = """<?xml version="1.0" encoding="utf-8"?>
+		<subpictures>
+		<stream>
+		<spu 
+		highlight="%s"
+		transparent="%02x%02x%02x"
+		start="00:00:00.00"
+		force="yes" >""" % (self.Menus.highlightpngfilename, self.Menus.spu_palette[0], self.Menus.spu_palette[1], self.Menus.spu_palette[2])
+			s_top, s_rows, s_left = s.space.getValue()
+			rowheight = (self.Menus.fontsizes[1]+self.Menus.fontsizes[2]+s_rows)
+			menu_start_title = (self.Menus.menu_count-1)*self.job.titles_per_menu + 1
+			menu_end_title = (self.Menus.menu_count)*self.job.titles_per_menu + 1
+			nr_titles = len(self.job.project.titles)
+			if menu_end_title > nr_titles:
+				menu_end_title = nr_titles+1
+			menu_i = 0
+			for title_no in range( menu_start_title , menu_end_title ):
+				i = title_no-1
+				top = s_top + ( menu_i * rowheight )
+				menu_i += 1
+				title = self.job.project.titles[i]
+				titleText = formatTitle(s.titleformat.getValue(), title, title_no)
+				draw_bg.text((s_left,top), titleText, fill=self.Menus.color_button, font=fonts[1])
+				draw_high.text((s_left,top), titleText, fill=1, font=self.Menus.fonts[1])
+				subtitleText = formatTitle(s.subtitleformat.getValue(), title, title_no)
+				draw_bg.text((s_left,top+36), subtitleText, fill=self.Menus.color_button, font=fonts[2])
+				bottom = top+rowheight
+				if bottom > self.Menus.imgheight:
+					bottom = self.Menus.imgheight
+				spuxml += """
+		<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),s_left,self.Menus.imgwidth,top,bottom )
+			if self.Menus.menu_count > 1:
+				prev_page_text = "<<<"
+				textsize = draw_bg.textsize(prev_page_text, font=fonts[1])
+				offset = ( 2*s_left, s_top + ( self.job.titles_per_menu * rowheight ) )
+				draw_bg.text(offset, prev_page_text, fill=self.Menus.color_button, font=fonts[1])
+				draw_high.text(offset, prev_page_text, fill=1, font=fonts[1])
+				spuxml += """
+		<button name="button_prev" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
+	
+			if self.Menus.menu_count < self.job.nr_menus:
+				next_page_text = ">>>"
+				textsize = draw_bg.textsize(next_page_text, font=fonts[1])
+				offset = ( self.Menus.imgwidth-textsize[0]-2*s_left, s_top + ( self.job.titles_per_menu * rowheight ) )
+				draw_bg.text(offset, next_page_text, fill=self.Menus.color_button, font=fonts[1])
+				draw_high.text(offset, next_page_text, fill=1, font=fonts[1])
+				spuxml += """
+		<button name="button_next" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
+					
+			del draw_bg
+			del draw_high
+			fd=open(self.Menus.menubgpngfilename,"w")
+			im_bg.save(fd,"PNG")
+			fd.close()
+			fd=open(self.Menus.highlightpngfilename,"w")
+			im_high.save(fd,"PNG")
+			fd.close()
+			spuxml += """
+		</spu>
+		</stream>
+		</subpictures>"""
+	
+			f = open(self.Menus.spuxmlfilename, "w")
+			f.write(spuxml)
+			f.close()
+			Task.processFinished(self, 0)
+		except:
+			Task.processFinished(self, 1)
+
+class Menus:
+	def __init__(self, job):
+		self.job = job
+		job.Menus = self
+		
+		s = self.job.project.settings
+
+		self.imgwidth = 720
+		self.imgheight = 576
+
+		self.color_headline = tuple(s.color_headline.getValue())
+		self.color_button = tuple(s.color_button.getValue())
+		self.color_highlight = tuple(s.color_highlight.getValue())
+		self.spu_palette = [ 0x60, 0x60, 0x60 ] + s.color_highlight.getValue()
+
+		ImagePrepareTask(job)
+		print "[nach ImagePrepareTask]"
+		nr_titles = len(job.project.titles)
+		if nr_titles < 6:
+			job.titles_per_menu = 5
+		else:
+			job.titles_per_menu = 4
+		job.nr_menus = ((nr_titles+job.titles_per_menu-1)/job.titles_per_menu)
+
+		#a new menu_count every 4 titles (1,2,3,4->1 ; 5,6,7,8->2 etc.)
+		for self.menu_count in range(1 , job.nr_menus+1):
+			num = str(self.menu_count)
+			self.spuxmlfilename = job.workspace+"/spumux"+num+".xml"
+			self.menubgpngfilename = job.workspace+"/dvd_menubg"+num+".png"
+			self.highlightpngfilename = job.workspace+"/dvd_highlight"+num+".png"
+
+			MenuImageTask(job)
+			png2yuvTask(job, self.menubgpngfilename, job.workspace+"/dvdmenubg"+num+".yuv")
+			menubgm2vfilename = job.workspace+"/dvdmenubg"+num+".mv2"
+			mpeg2encTask(job, job.workspace+"/dvdmenubg"+num+".yuv", menubgm2vfilename)
+			menubgmpgfilename = job.workspace+"/dvdmenubg"+num+".mpg"
+			menuaudiofilename = s.menuaudio.getValue()
+			MplexTask(job, outputfile=menubgmpgfilename, inputfiles = [menubgm2vfilename, menuaudiofilename])
+			menuoutputfilename = job.workspace+"/dvdmenu"+num+".mpg"
+			spumuxTask(job, self.spuxmlfilename, menubgmpgfilename, menuoutputfilename)
 		
 def CreateAuthoringXML(job):
 	nr_titles = len(job.project.titles)
-	titles_per_menu = getTitlesPerMenu(nr_titles)
 	mode = job.project.settings.authormode.getValue()
 	authorxml = []
 	authorxml.append('<?xml version="1.0" encoding="utf-8"?>\n')
@@ -555,8 +600,8 @@ def CreateAuthoringXML(job):
 				authorxml.append('    <pgc entry="root">\n')
 			else:
 				authorxml.append('    <pgc>\n')
-			menu_start_title = (menu_count-1)*titles_per_menu + 1
-			menu_end_title = (menu_count)*titles_per_menu + 1
+			menu_start_title = (menu_count-1)*job.titles_per_menu + 1
+			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
 				menu_end_title = nr_titles+1
 			for i in range( menu_start_title , menu_end_title ):
@@ -614,8 +659,7 @@ class DVDJob(Job):
 
 	def conduct(self):
 		if self.project.settings.authormode.getValue().startswith("menu") or self.menupreview:
-			if not CreateMenus(self):
-				return
+			Menus(self)
 		CreateAuthoringXML(self)
 
 		totalsize = 50*1024*1024 # require an extra safety 50 MB
