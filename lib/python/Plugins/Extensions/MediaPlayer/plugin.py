@@ -176,7 +176,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
-				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo
+				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
+				iPlayableService.evUser+11: self.__evDecodeError
 			})
 
 	def doNothing(self):
@@ -216,6 +217,12 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		sTitle = currPlay.info().getInfoString(iServiceInformation.sTitle)
 		print "[__evUpdatedInfo] title %d of %d (%s)" % (currenttitle, totaltitles, sTitle)
 		self.readTitleInformation()
+
+	def __evDecodeError(self):
+		currPlay = self.session.nav.getCurrentService()
+		sVideoType = currPlay.info().getInfoString(iServiceInformation.sVideoType)
+		print "[__evDecodeError] video-codec %s can't be decoded by hardware" % (sVideoType)
+		self.session.open(MessageBox, _("This Dreambox can't decode %s video streams!") % sVideoType, type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def delMPTimer(self):
 		del self.rightKeyTimer

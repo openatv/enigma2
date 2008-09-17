@@ -148,7 +148,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	
 	int all_ok = 0;
 
-	m_gst_pipeline = gst_pipeline_new ("audio-player");
+	m_gst_pipeline = gst_pipeline_new ("mediaplayer");
 	if (!m_gst_pipeline)
 		eWarning("failed to create pipeline");
 
@@ -227,10 +227,10 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			/* filesrc -> mpegdemux -> | queue_audio -> dvbaudiosink
 			                           | queue_video -> dvbvideosink */
 
-		audio = gst_element_factory_make("dvbaudiosink", "audio");
+		audio = gst_element_factory_make("dvbaudiosink", "audiosink");
 		queue_audio = gst_element_factory_make("queue", "queue_audio");
 		
-		video = gst_element_factory_make("dvbvideosink", "video");
+		video = gst_element_factory_make("dvbvideosink", "videosink");
 		queue_video = gst_element_factory_make("queue", "queue_video");
 		
 		if (is_mpeg_ps)
@@ -559,6 +559,7 @@ int eServiceMP3::getInfo(int w)
 	case sComment:
 	case sTracknumber:
 	case sGenre:
+	case sVideoType:
 		return resIsString;
 	case sCurrentTitle:
 		tag = GST_TAG_TRACK_NUMBER;
@@ -603,6 +604,9 @@ std::string eServiceMP3::getInfoString(int w)
 		break;
 	case sGenre:
 		tag = GST_TAG_GENRE;
+		break;
+	case sVideoType:
+		tag = GST_TAG_VIDEO_CODEC;
 		break;
 	default:
 		return "";
@@ -652,11 +656,21 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		break;
 	case GST_MESSAGE_ERROR:
 	{
-		gchar *debug;
+		gchar *debug, *sourceName;
 		GError *err;
+		GstObject *source;
+
+		source = GST_MESSAGE_SRC(msg);
+		sourceName = gst_object_get_name(source);
+
 		gst_message_parse_error (msg, &err, &debug);
 		g_free (debug);
-		eWarning("Gstreamer error: %s", err->message);
+		eWarning("Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName );
+		if ( err->domain == GST_STREAM_ERROR && err->code == GST_STREAM_ERROR_DECODE )
+		{
+			if ( g_strrstr(sourceName, "videosink") )
+				m_event((iPlayableService*)this, evUser+11);
+		}
 		g_error_free(err);
 			/* TODO: signal error condition to user */
 		break;
