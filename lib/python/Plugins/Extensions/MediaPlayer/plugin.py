@@ -165,6 +165,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.coverArtFileName = ""
 		self.isAudioCD = False
 		self.AudioCD_albuminfo = {}
+		self.savePlaylistOnExit = False
 
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
@@ -192,7 +193,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			self.playlistIOInternal.clear()
 			for x in self.playlist.list:
 				self.playlistIOInternal.addService(ServiceReference(x[0]))
-			if not self.isAudioCD:
+			if self.savePlaylistOnExit:
 				self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
 			self.close()
 
@@ -781,19 +782,19 @@ def filescan_open(list, session, **kwargs):
 	from enigma import eServiceReference
 
 	mp = session.open(MediaPlayer)
+	mp.playlist.clear()
+	mp.savePlaylistOnExit = False
 
-	mp.switchToPlayList()
 	for file in list:
-		if file.mimetype == "video/MP2T":
+		if file.mimetype.startswith("video"):
 			stype = 1
 		else:
 			stype = 4097
 		ref = eServiceReference(stype, 0, file.path)
 		mp.playlist.addFile(ref)
 
-	# TODO: rather play first than last file?
-	mp.playServiceRefEntry(ref)
-	mp.playlist.updateList()
+	mp.changeEntry(0)
+	mp.switchToPlayList()
 
 def audioCD_open(list, session, **kwargs):
 	from enigma import eServiceReference
@@ -801,6 +802,7 @@ def audioCD_open(list, session, **kwargs):
 	mp = session.open(MediaPlayer)
 
 	mp.playlist.clear()
+	mp.savePlaylistOnExit = False
 	mp.isAudioCD = True
 
 	for file in list:
