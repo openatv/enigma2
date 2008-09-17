@@ -13,22 +13,6 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 
-class WaitBox(MessageBox):
-	def __init__(self, session, callback):
-		MessageBox.__init__(self, session, text=_("please wait, loading picture..."), type = MessageBox.TYPE_INFO)
-		self.skinName = "MessageBox"
-		self.CB = callback
-		self.onShown.append(self.runCB)
-
-	def ok(self):
-		pass
-
-	def runCB(self):
-		from enigma import eTimer
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.CB)
-		self.delayTimer.start(10,1)
-
 class FileBrowser(Screen, HelpableScreen):
 	skin = """
 	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
