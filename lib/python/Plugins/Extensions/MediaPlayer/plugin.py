@@ -63,7 +63,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
 		# 'None' is magic to start at the list of mountpoints
-		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
+		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|mkv)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 
 		self.playlist = MyPlayList()
@@ -786,7 +786,7 @@ def filescan_open(list, session, **kwargs):
 	mp.savePlaylistOnExit = False
 
 	for file in list:
-		if file.mimetype.startswith("video"):
+		if file.mimetype == "video/MP2T":
 			stype = 1
 		else:
 			stype = 4097
