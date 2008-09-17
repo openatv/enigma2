@@ -400,7 +400,15 @@ def formatTitle(template, title, track):
 	return template.decode("utf-8")
 
 def CreateMenus(job):
-	import os, Image, ImageDraw, ImageFont
+	try:
+		from ImageFont import truetype
+		import ImageDraw, Image, os
+	except ImportError:
+		job.project.session.open(MessageBox, ("missing python-imaging"), type = MessageBox.TYPE_ERROR)
+		if job.project.waitboxref:
+			job.project.waitboxref.close()
+		return False
+
 	imgwidth = 720
 	imgheight = 576
 	s = job.project.settings
@@ -411,9 +419,9 @@ def CreateMenus(job):
 	fontsizes = s.font_size.getValue()
 	fontface = s.font_face.getValue()
 	
-	font0 = ImageFont.truetype(fontface, fontsizes[0])
-	font1 = ImageFont.truetype(fontface, fontsizes[1])
-	font2 = ImageFont.truetype(fontface, fontsizes[2])
+	font0 = truetype(fontface, fontsizes[0])
+	font1 = truetype(fontface, fontsizes[1])
+	font2 = truetype(fontface, fontsizes[2])
 
 	color_headline = tuple(s.color_headline.getValue())
 	color_button = tuple(s.color_button.getValue())
@@ -518,6 +526,7 @@ def CreateMenus(job):
 		
 		menuoutputfilename = job.workspace+"/dvdmenu"+str(menu_count)+".mpg"
 		spumuxTask(job, spuxmlfilename, menubgmpgfilename, menuoutputfilename)
+	return True
 		
 def CreateAuthoringXML(job):
 	nr_titles = len(job.project.titles)
@@ -605,7 +614,8 @@ class DVDJob(Job):
 
 	def conduct(self):
 		if self.project.settings.authormode.getValue().startswith("menu") or self.menupreview:
-			CreateMenus(self)
+			if not CreateMenus(self):
+				return
 		CreateAuthoringXML(self)
 
 		totalsize = 50*1024*1024 # require an extra safety 50 MB
