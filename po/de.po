@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-15 12:41+0200\n"
-"PO-Revision-Date: 2008-09-15 12:44+0100\n"
+"POT-Creation-Date: 2008-09-18 12:35+0200\n"
+"PO-Revision-Date: 2008-09-18 12:57+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -241,7 +241,7 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr ""
+msgstr "Ein erforderliches Hilfsprogramm (%s) wurde nicht gefunden."
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -379,10 +379,6 @@ msgstr "Tuner-Priorität bei Alternativen Services"
 
 msgid "An empty filename is illegal."
 msgstr "Leerer Dateiname nicht erlaubt."
-
-#, python-format
-msgid "An error has occured. (%s)"
-msgstr ""
 
 msgid "An unknown error occured!"
 msgstr "Es ist ein unbekannter Fehler aufgetreten!"
@@ -695,6 +691,9 @@ msgstr "Abspielen fortsetzen"
 msgid "Contrast"
 msgstr "Kontrast"
 
+msgid "Could not load Medium! No disc inserted?"
+msgstr "Konnte das Medium nicht laden! Keine DVD eingelegt?"
+
 msgid "Create movie folder failed"
 msgstr "Erzeugen des Film-Verzeichnisses fehlgeschlagen"
 
@@ -986,6 +985,9 @@ msgstr "Herunterladen"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
+
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr "Daten-DVD im Dreambox-Format (HDTV-kompatibel)"
 
 msgid "Dutch"
 msgstr "Holländisch"
@@ -2763,8 +2765,8 @@ msgstr ""
 "Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden.\n"
 "Bitte drücken Sie OK, um den Assistenten zu verlassen."
 
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams!"
-msgstr "Die DVD-Norm erlaubt keine H.264 (HDTV) Videos!"
+msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
+msgstr "Der DVD-Standard unterstützt keine H.264 (HDTV) Videos. Soll stattdessen eine Daten-DVD im Dreambox-Format (die nicht in einem herkömmlichen DVD-Player abspielbar ist) erstellt werden?"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
