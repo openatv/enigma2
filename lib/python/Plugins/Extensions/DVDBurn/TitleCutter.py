@@ -39,6 +39,6 @@ class CutlistReader(TitleCutter):
 	def __init__(self, session, t):
 		TitleCutter.__init__(self, session, t)
 
-	def getAudioTracks(self):
-		TitleCutter.getAudioTracks()
-		self.exit()
+	def getPMTInfo(self):
+		TitleCutter.getPMTInfo(self)
+		self.close(self.cut_list[:])

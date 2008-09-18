@@ -72,12 +72,6 @@ class TitleList(Screen):
 
 		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
 		self.updateTitleList()
-				
-		#self["addTitle"] = ActionButton("titleactions", "addTitle")
-		#self["editTitle"] = ActionButton("titleactions", "editTitle")
-		#self["removeCurrentTitle"] = ActionButton("titleactions", "removeCurrentTitle")
-		#self["saveProject"] = ActionButton("titleactions", "saveProject")
-		#self["burnProject"] = ActionButton("titleactions", "burnProject")
 		
 	def showMenu(self):
 		menu = []
@@ -116,21 +110,44 @@ class TitleList(Screen):
 
 	def addTitle(self):
 		from Screens.MovieSelection import MovieSelection
+		from Components.Button import Button
+		from Components.ActionMap import HelpableActionMap
 		class MovieSelectionNoMenu(MovieSelection):
 			def __init__(self, session):
 				MovieSelection.__init__(self, session)
 				self.skinName = "MovieSelection"
-
+				self["key_red"] = Button(_("Edit title"))
+				self["key_green"] = Button(_("Add"))
+				self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+				{
+					"red": (self.movieSelected, _("Add a new title")),
+					"green": (self.insertWithoutEdit, ("insert without cutlist editor"))
+				})
+			def updateTags(self):
+				pass
 			def doContext(self):
 				print "context menu forbidden inside DVDBurn to prevent calling multiple instances"
-				
+			def insertWithoutEdit(self):
+				current = self.getCurrent()
+				if current is not None:
+					current.edit = False
+					self.close(current)
+			def movieSelected(self):
+				current = self.getCurrent()
+				if current is not None:
+					current.edit = True
+					self.close(current)
 		self.session.openWithCallback(self.selectedSource, MovieSelectionNoMenu)
 
 	def selectedSource(self, source):
 		if source is None:
 			return None
 		t = self.project.addService(source)
-		self.editTitle(t, readOnly=False)
+		try:
+			editor = source.edit
+		except AttributeError:
+			editor = True
+		self.editTitle(t, editor)
 
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
@@ -157,7 +174,6 @@ class TitleList(Screen):
 		else:
 			self["error_label"].text = self.project.error
 			self["error_label"].show()
-			print self.project.error
 			return False
 
 	def burnProject(self):
@@ -211,14 +227,14 @@ class TitleList(Screen):
 		t = self["titles"].getCurrent()
 		return t and t[0]
 
-	def editTitle(self, title = None, readOnly = False):
+	def editTitle(self, title = None, editor = True):
 		t = title or self.getCurrentTitle()
 		if t is not None:
 			self.current_edit_title = t
-			if readOnly:
-				self.session.openWithCallback(self.titleEditDone, TitleCutter.CutlistReader, t)
-			else:
+			if editor:
 				self.session.openWithCallback(self.titleEditDone, TitleCutter.TitleCutter, t)
+			else:
+				self.session.openWithCallback(self.titleEditDone, TitleCutter.CutlistReader, t)
 
 	def titleEditDone(self, cutlist):
 		t = self.current_edit_title
