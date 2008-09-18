@@ -53,7 +53,7 @@ class Job(object):
 		self.status = self.IN_PROGRESS
 		self.state_changed()
 		self.runNext()
-		sumTaskWeightings = sum([t.weighting for t in self.tasks])
+		sumTaskWeightings = sum([t.weighting for t in self.tasks]) or 1
 		self.weightScale = self.end / float(sumTaskWeightings)
 
 	def runNext(self):
@@ -321,7 +321,7 @@ class Condition:
 	RECOVERABLE = False
 
 	def getErrorMessage(self, task):
-		return _("An error has occured. (%s in %s)") % (self.__class__.__name__, task.__class__.__name__)
+		return _("An unknown error occured!") + " (%s @ task %s)" % (self.__class__.__name__, task.__class__.__name__)
 
 class WorkspaceExistsPrecondition(Condition):
 	def check(self, task):
