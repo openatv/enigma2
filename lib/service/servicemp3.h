@@ -4,6 +4,7 @@
 #ifdef HAVE_GSTREAMER
 #include <lib/base/message.h>
 #include <lib/service/iservice.h>
+#include <lib/dvb/pmt.h>
 #include <gst/gst.h>
 
 class eStaticServiceMP3Info;
@@ -39,7 +40,7 @@ public:
 typedef struct _GstElement GstElement;
 
 class eServiceMP3: public iPlayableService, public iPauseableService, 
-	public iServiceInformation, public iSeekableService, public Object
+	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public Object
 {
 	DECLARE_REF(eServiceMP3);
 public:
@@ -56,10 +57,10 @@ public:
 	RESULT setFastForward(int ratio);
 
 	RESULT seek(ePtr<iSeekableService> &ptr);
+	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
+	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr);
 
 		// not implemented (yet)
-	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr) { ptr = 0; return -1; }
-	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; }
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
@@ -88,20 +89,40 @@ public:
 	RESULT getName(std::string &name);
 	int getInfo(int w);
 	std::string getInfoString(int w);
+
+		// iAudioTrackSelection	
+	int getNumberOfTracks();
+	RESULT selectTrack(unsigned int i);
+	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
+	int getCurrentTrack();
+
+		// iAudioChannelSelection	
+	int getCurrentChannel();
+	RESULT selectChannel(int i);
+
+	struct audioStream
+	{
+		GstPad* pad;
+		enum { atMP2, atMP3, atAC3, atDTS, atAAC };
+		int type; // mpeg2, ac3, dts, ...
+		std::string language_code; /* iso-639, if available. */
+	};
 private:
+	int m_currentAudioStream;
+	std::vector<audioStream> m_audioStreams;
 	friend class eServiceFactoryMP3;
 	std::string m_filename;
-	eServiceMP3(const char *filename);	
+	eServiceMP3(const char *filename);
 	Signal2<void,iPlayableService*,int> m_event;
 	enum
 	{
 		stIdle, stRunning, stStopped,
 	};
 	int m_state;
-	GstElement *m_gst_pipeline, *m_gst_audio, *m_gst_videoqueue, *m_gst_audioqueue, *m_decoder;
+	GstElement *m_gst_pipeline;
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
-	
+
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer data); /* for mpegdemux */
