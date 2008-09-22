@@ -414,6 +414,7 @@ AC_DEFUN([AC_PYTHON_DEVEL],[
 		python_path=
 		for i in $CPPFLAGS ; do
 			p=`echo $i | sed "s,^-I,,"`
+			p=`echo $p | sed "s,^-isystem,,"`
 			if test -f "$p/python$cross_PYTHON_VERSION/Python.h"; then
 				python_path="$p/python$cross_PYTHON_VERSION"
 				break
