@@ -172,7 +172,7 @@ void bsodFatal()
 #if defined(__MIPSEL__)
 void oops(const mcontext_t &context, int dumpcode)
 {
-	eDebug("PC: %08lx, vaddr: %08lx", (unsigned long)context.pc, (unsigned long)context.badvaddr);
+	eDebug("PC: %08lx", (unsigned long)context.pc);
 	int i;
 	for (i=0; i<32; ++i)
 	{
