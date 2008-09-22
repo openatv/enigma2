@@ -27,9 +27,9 @@ std::string getNum(int val, int sys)
 	char buf[12];
 
 	if (sys == 10)
-		std::snprintf(buf, 12, "%i", val);
+		snprintf(buf, 12, "%i", val);
 	else if (sys == 16)
-		std::snprintf(buf, 12, "%X", val);		
+		snprintf(buf, 12, "%X", val);		
 	
 	std::string res;
 	res.assign(buf);
