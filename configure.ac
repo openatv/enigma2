@@ -52,7 +52,10 @@ TUXBOX_APPS_LIB_PKGCONFIG(XML2,libxml-2.0)
 
 # ok, we are in trouble: XMLCCWRAP only defines C++ symbols. So let's just check if linking works,
 # and assume everything will be ok. Then just check for the "exit" symbol, which should be always there.
+AC_LANG_SAVE
+AC_LANG_CPLUSPLUS
 TUXBOX_APPS_LIB_SYMBOL(XMLCCWRAP, xmlccwrap, exit)
+AC_LANG_RESTORE
 
 if test "$withsdl" = "yes" ; then
 	_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(SDL,sdl,WITH_SDL)
