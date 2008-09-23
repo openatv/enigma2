@@ -116,6 +116,7 @@ int eStaticServiceMP3Info::getLength(const eServiceReference &ref)
 eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eApp, 1)
 {
 	m_stream_tags = 0;
+	m_audioStreams.clear();
 	m_currentAudioStream = 0;
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	GstElement *source = 0;
@@ -148,10 +149,6 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	int is_audio = !is_video;
 	
 	int all_ok = 0;
-
-// 	GError *blubb = NULL;
-// 	GstElement* m_gst_pipeline = gst_parse_launch("filesrc location=/media/hdd/movie/artehd_2lang.mkv ! matroskademux name=demux  demux.audio_00 ! input-selector name=a demux.audio_01 ! a.   a. ! queue ! dvbaudiosink", &blubb);
-// 	return;
 
 	m_gst_pipeline = gst_pipeline_new ("mediaplayer");
 	if (!m_gst_pipeline)
@@ -318,11 +315,15 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				gst_element_link(decoder, audio);
 		} else /* is_video */
 		{
+			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, audio, queue_audio, video, queue_video, NULL);
 			switch_audio = gst_element_factory_make ("input-selector", "switch_audio");
-			g_object_set (G_OBJECT (switch_audio), "select-all", TRUE, NULL);
-			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, switch_audio, audio, queue_audio, video, queue_video, NULL);
+			if (switch_audio)
+			{
+				g_object_set (G_OBJECT (switch_audio), "select-all", TRUE, NULL);
+				gst_bin_add(GST_BIN(m_gst_pipeline), switch_audio);
+				gst_element_link(switch_audio, queue_audio);
+			}
 			gst_element_link(source, videodemux);
-			gst_element_link(switch_audio, queue_audio);
 			gst_element_link(queue_audio, audio);
 			gst_element_link(queue_video, video);
 			g_signal_connect(videodemux, "pad-added", G_CALLBACK (gstCBpadAdded), this);
@@ -644,41 +645,36 @@ RESULT eServiceMP3::audioTracks(ePtr<iAudioTrackSelection> &ptr)
 
 int eServiceMP3::getNumberOfTracks()
 {
-	eDebug("eServiceMP3::getNumberOfTracks()=%i",m_audioStreams.size());
  	return m_audioStreams.size();
 }
 
 int eServiceMP3::getCurrentTrack()
 {
-	eDebug("eServiceMP3::getCurrentTrack()=%i",m_currentAudioStream);
 	return m_currentAudioStream;
 }
 
 RESULT eServiceMP3::selectTrack(unsigned int i)
 {
-	eDebug("eServiceMP3::selectTrack(%i)",i);
-
-	GstPadLinkReturn ret;
 	gint nb_sources;
 	GstPad *active_pad;
-	
 	GstElement *selector = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"switch_audio");
+	if ( !selector)
+	{
+		eDebug("can't switch audio tracks! gst-plugin-selector needed");
+		return -1;
+	}
 	g_object_get (G_OBJECT (selector), "n-pads", &nb_sources, NULL);
 	g_object_get (G_OBJECT (selector), "active-pad", &active_pad, NULL);
-	
  	if ( i >= m_audioStreams.size() || i >= nb_sources || m_currentAudioStream >= m_audioStreams.size() )
 		return -2;
-
 	char sinkpad[8];
 	sprintf(sinkpad, "sink%d", i);
-
 	g_object_set (G_OBJECT (selector), "active-pad", gst_element_get_pad (selector, sinkpad), NULL);
 	g_object_get (G_OBJECT (selector), "active-pad", &active_pad, NULL);
-
 	gchar *name;
 	name = gst_pad_get_name (active_pad);
 	eDebug ("switched audio to (%s)", name);
-
+	g_free(name);
 	m_currentAudioStream = i;
 	return 0;
 }
@@ -769,23 +765,21 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				gst_tag_list_free(m_stream_tags);
 			m_stream_tags = result;
 		}
-
 		gchar *g_audiocodec;
 		if (gst_tag_list_get_string(m_stream_tags, GST_TAG_AUDIO_CODEC, &g_audiocodec))
 		{
-			static int a_str_cnt = 0;
+			std::vector<audioStream>::iterator IterAudioStream = m_audioStreams.begin();
+			while ( IterAudioStream->language_code.length() && IterAudioStream != m_audioStreams.end())
+				IterAudioStream++;
 			if ( g_strrstr(g_audiocodec, "MPEG-1 layer 2") )
-				m_audioStreams[a_str_cnt].type = audioStream::atMP2;
+				IterAudioStream->type = audioStream::atMP2;
 			else if ( g_strrstr(g_audiocodec, "AC-3 audio") )
-				m_audioStreams[a_str_cnt].type = audioStream::atAC3;
+				IterAudioStream->type = audioStream::atAC3;
 			gchar *g_language;
 			if ( gst_tag_list_get_string(m_stream_tags, GST_TAG_LANGUAGE_CODE, &g_language) )
-			{
-				m_audioStreams[a_str_cnt].language_code = std::string(g_language);
-				g_free (g_language);
-			}
+				IterAudioStream->language_code = std::string(g_language);
+			g_free (g_language);
 			g_free (g_audiocodec);
-			a_str_cnt++;
 		}
 		break;
 	}
@@ -806,28 +800,33 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	GstBin *pipeline = GST_BIN(_this->m_gst_pipeline);
 	gchar *name;
 	name = gst_pad_get_name (pad);
 	eDebug ("A new pad %s was created", name);
 	if (g_strrstr(name,"audio")) // mpegdemux, matroskademux, avidemux use video_nn with n=0,1,.., flupsdemux uses stream id
 	{
+		GstElement *selector = gst_bin_get_by_name(pipeline , "switch_audio" );
 		audioStream audio;
 		audio.pad = pad;
 		_this->m_audioStreams.push_back(audio);
-		GstElement *selector = gst_bin_get_by_name( GST_BIN(_this->m_gst_pipeline), "switch_audio" );
-		GstPadLinkReturn ret = gst_pad_link(pad, gst_element_get_request_pad (selector, "sink%d"));
- 		if ( _this->m_audioStreams.size() == 1 )
- 		{
-	 		_this->selectTrack(_this->m_audioStreams.size()-1);
-			gst_element_set_state (_this->m_gst_pipeline, GST_STATE_PLAYING);
+		if ( selector )
+		{
+			GstPadLinkReturn ret = gst_pad_link(pad, gst_element_get_request_pad (selector, "sink%d"));
+			if ( _this->m_audioStreams.size() == 1 )
+			{
+				_this->selectTrack(0);
+				gst_element_set_state (_this->m_gst_pipeline, GST_STATE_PLAYING);
+			}
+			else
+				g_object_set (G_OBJECT (selector), "select-all", FALSE, NULL);
 		}
 		else
-			g_object_set (G_OBJECT (selector), "select-all", FALSE, NULL);
+			gst_pad_link(pad, gst_element_get_static_pad(gst_bin_get_by_name(pipeline,"queue_audio"), "sink"));
 	}
 	if (g_strrstr(name,"video"))
 	{
-		GstElement *video = gst_bin_get_by_name(GST_BIN (_this->m_gst_pipeline),"queue_video");
-		gst_pad_link(pad, gst_element_get_static_pad (video, "sink"));
+		gst_pad_link(pad, gst_element_get_static_pad(gst_bin_get_by_name(pipeline,"queue_video"), "sink"));
 	}
 	g_free (name);
 }
