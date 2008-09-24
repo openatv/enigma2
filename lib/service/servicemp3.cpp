@@ -766,7 +766,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			m_stream_tags = result;
 		}
 		gchar *g_audiocodec;
-		if (gst_tag_list_get_string(m_stream_tags, GST_TAG_AUDIO_CODEC, &g_audiocodec))
+		if (gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_audiocodec))
 		{
 			std::vector<audioStream>::iterator IterAudioStream = m_audioStreams.begin();
 			while ( IterAudioStream->language_code.length() && IterAudioStream != m_audioStreams.end())
@@ -776,7 +776,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			else if ( g_strrstr(g_audiocodec, "AC-3 audio") )
 				IterAudioStream->type = audioStream::atAC3;
 			gchar *g_language;
-			if ( gst_tag_list_get_string(m_stream_tags, GST_TAG_LANGUAGE_CODE, &g_language) )
+			if ( gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
 				IterAudioStream->language_code = std::string(g_language);
 			g_free (g_language);
 			g_free (g_audiocodec);
