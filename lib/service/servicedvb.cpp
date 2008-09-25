@@ -2977,6 +2977,7 @@ void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 			m_event((iPlayableService*)this, evVideoProgressiveChanged);
 			break;
 	}
+	m_videoEventData.type = event.type;
 }
 
 RESULT eDVBServicePlay::stream(ePtr<iStreamableService> &ptr)
