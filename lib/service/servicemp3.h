@@ -109,7 +109,10 @@ public:
 	};
 private:
 	int m_currentAudioStream;
-	int m_currentTrickRate;
+	int m_currentTrickRatio;
+	eTimer m_seekTimeout;
+	void eServiceMP3::seekTimeoutCB();
+	int selectAudioStream(int i);
 	std::vector<audioStream> m_audioStreams;
 	friend class eServiceFactoryMP3;
 	std::string m_filename;

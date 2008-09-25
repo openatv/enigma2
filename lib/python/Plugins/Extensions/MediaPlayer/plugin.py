@@ -738,7 +738,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def pauseEntry(self):
 		self.pauseService()
-		self.show()
+		if self.seekstate == self.SEEK_STATE_PAUSE:
+			self.show()
+		else:
+			self.hide()
 
 	def stopEntry(self):
 		self.playlist.stopFile()
