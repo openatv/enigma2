@@ -1594,8 +1594,16 @@ int eDVBServicePlay::getInfo(int w)
 		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
 			return m_videoEventData.width;
 		return -1;
+	case sFrameRate:
+		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+			return m_videoEventData.framerate;
+		return -1;
+	case sProgressive:
+		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+			return m_videoEventData.progressive;
+		return -1;
 #else
-#warning "FIXMEE implement sVideoHeight, sVideoWidth for old DVB API"
+#warning "FIXMEE implement sFrameRate, sProgressive, sVideoHeight, sVideoWidth for old DVB API"
 #endif
 	case sAspect:
 #if HAVE_DVB_API_VERSION >= 3
@@ -2953,15 +2961,19 @@ void eDVBServicePlay::setPCMDelay(int delay)
 
 void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 {
-	memcpy(&m_videoEventData, &event, sizeof(iTSMPEGDecoder::videoEvent));
 	switch(event.type) {
 		case iTSMPEGDecoder::videoEvent::eventSizeChanged:
+			m_videoEventData.aspect = event.aspect;
+			m_videoEventData.height = event.height;
+			m_videoEventData.width = event.width;
 			m_event((iPlayableService*)this, evVideoSizeChanged);
 			break;
 		case iTSMPEGDecoder::videoEvent::eventFrameRateChanged:
+			m_videoEventData.framerate = event.framerate;
 			m_event((iPlayableService*)this, evVideoFramerateChanged);
 			break;
 		case iTSMPEGDecoder::videoEvent::eventProgressiveChanged:
+			m_videoEventData.progressive = event.progressive;
 			m_event((iPlayableService*)this, evVideoProgressiveChanged);
 			break;
 	}
