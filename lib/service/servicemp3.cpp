@@ -309,10 +309,11 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			gst_element_add_pad(audio, gst_ghost_pad_new ("sink", audiopad));
 			gst_object_unref(audiopad);
 			gst_bin_add (GST_BIN(m_gst_pipeline), audio);
-
 				/* in mad's case, we can directly connect the decoder to the audiobin. otherwise, we do this in gstCBnewPad */
 			if (is_mp3)
 				gst_element_link(decoder, audio);
+			audioStream audioStreamElem;
+			m_audioStreams.push_back(audioStreamElem);
 		} else /* is_video */
 		{
 			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, audio, queue_audio, video, queue_video, NULL);
@@ -703,8 +704,12 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 		info.m_description = "AC3";
 	else if (m_audioStreams[i].type == audioStream::atAAC)
 		info.m_description = "AAC";
-	else  if (m_audioStreams[i].type == audioStream::atDTS)
+	else if (m_audioStreams[i].type == audioStream::atDTS)
 		info.m_description = "DTS";
+	else if (m_audioStreams[i].type == audioStream::atPCM)
+		info.m_description = "PCM";
+	else if (m_audioStreams[i].type == audioStream::atOGG)
+		info.m_description = "OGG";
 	else
 		info.m_description = "???";
 	if (info.m_language.empty())
@@ -766,15 +771,19 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			m_stream_tags = result;
 		}
 		gchar *g_audiocodec;
-		if (gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_audiocodec))
+		if (gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_audiocodec) && m_audioStreams.size())
 		{
 			std::vector<audioStream>::iterator IterAudioStream = m_audioStreams.begin();
 			while ( IterAudioStream->language_code.length() && IterAudioStream != m_audioStreams.end())
 				IterAudioStream++;
 			if ( g_strrstr(g_audiocodec, "MPEG-1 layer 2") )
 				IterAudioStream->type = audioStream::atMP2;
+			else if ( g_strrstr(g_audiocodec, "MPEG-1 layer 3") )
+				IterAudioStream->type = audioStream::atMP3;
 			else if ( g_strrstr(g_audiocodec, "AC-3 audio") )
 				IterAudioStream->type = audioStream::atAC3;
+			else if ( g_strrstr(g_audiocodec, "Uncompressed\ 16-bit\ PCM\ audio") )
+				IterAudioStream->type = audioStream::atPCM;
 			gchar *g_language;
 			if ( gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
 				IterAudioStream->language_code = std::string(g_language);

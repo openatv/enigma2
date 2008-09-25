@@ -103,12 +103,13 @@ public:
 	struct audioStream
 	{
 		GstPad* pad;
-		enum { atMP2, atMP3, atAC3, atDTS, atAAC };
+		enum { atMP2, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG };
 		int type; // mpeg2, ac3, dts, ...
 		std::string language_code; /* iso-639, if available. */
 	};
 private:
 	int m_currentAudioStream;
+	int m_currentTrickRate;
 	std::vector<audioStream> m_audioStreams;
 	friend class eServiceFactoryMP3;
 	std::string m_filename;
