@@ -118,6 +118,8 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	m_stream_tags = 0;
 	m_audioStreams.clear();
 	m_currentAudioStream = 0;
+	m_currentTrickRatio = 0;
+	CONNECT(m_seekTimeout.timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	GstElement *source = 0;
 	
@@ -352,6 +354,8 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			gst_object_unref(GST_OBJECT(queue_video));
 		if (videodemux)
 			gst_object_unref(GST_OBJECT(videodemux));
+		if (switch_audio)
+			gst_object_unref(GST_OBJECT(switch_audio));
 
 		eDebug("sorry, can't play.");
 		m_gst_pipeline = 0;
@@ -421,20 +425,54 @@ RESULT eServiceMP3::pause(ePtr<iPauseableService> &ptr)
 
 RESULT eServiceMP3::setSlowMotion(int ratio)
 {
+	/* we can't do slomo yet */
 	return -1;
 }
 
 RESULT eServiceMP3::setFastForward(int ratio)
 {
-	return -1;
+	m_currentTrickRatio = ratio;
+	if (ratio)
+		m_seekTimeout.start(1000, 0);
+	else
+		m_seekTimeout.stop();
+	return 0;
 }
-  
+
+void eServiceMP3::seekTimeoutCB()
+{
+	pts_t ppos, len;
+	getPlayPosition(ppos);
+	getLength(len);
+	ppos += 90000*m_currentTrickRatio;
+	
+	if (ppos < 0)
+	{
+		ppos = 0;
+		m_seekTimeout.stop();
+	}
+	if (ppos > len)
+	{
+		ppos = 0;
+		stop();
+		m_seekTimeout.stop();
+		return;
+	}
+	seekTo(ppos);
+}
+
 		// iPausableService
 RESULT eServiceMP3::pause()
 {
 	if (!m_gst_pipeline)
 		return -1;
-	gst_element_set_state(m_gst_pipeline, GST_STATE_PAUSED);
+	GstStateChangeReturn res = gst_element_set_state(m_gst_pipeline, GST_STATE_PAUSED);
+	if (res == GST_STATE_CHANGE_ASYNC)
+	{
+		pts_t ppos;
+		getPlayPosition(ppos);
+		seekTo(ppos);
+	}
 	return 0;
 }
 
@@ -442,7 +480,9 @@ RESULT eServiceMP3::unpause()
 {
 	if (!m_gst_pipeline)
 		return -1;
-	gst_element_set_state(m_gst_pipeline, GST_STATE_PLAYING);
+
+	GstStateChangeReturn res;
+	res = gst_element_set_state(m_gst_pipeline, GST_STATE_PLAYING);
 	return 0;
 }
 
@@ -494,8 +534,6 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 	if (!m_gst_pipeline)
 		return -1;
 
-	pause();
-
 	pts_t ppos;
 	getPlayPosition(ppos);
 	ppos += to * direction;
@@ -503,8 +541,6 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 		ppos = 0;
 	seekTo(ppos);
 	
-	unpause();
-
 	return 0;
 }
 
@@ -528,7 +564,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 
 RESULT eServiceMP3::setTrickmode(int trick)
 {
-		/* trickmode currently doesn't make any sense for us. */
+		/* trickmode is not yet supported by our dvbmediasinks. */
 	return -1;
 }
 
@@ -656,6 +692,17 @@ int eServiceMP3::getCurrentTrack()
 
 RESULT eServiceMP3::selectTrack(unsigned int i)
 {
+	int ret = selectAudioStream(i);
+	/* flush */
+	pts_t ppos;
+	getPlayPosition(ppos);
+	seekTo(ppos);
+
+	return ret;
+}
+
+int eServiceMP3::selectAudioStream(int i)
+{
 	gint nb_sources;
 	GstPad *active_pad;
 	GstElement *selector = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"switch_audio");
@@ -665,7 +712,6 @@ RESULT eServiceMP3::selectTrack(unsigned int i)
 		return -1;
 	}
 	g_object_get (G_OBJECT (selector), "n-pads", &nb_sources, NULL);
-	g_object_get (G_OBJECT (selector), "active-pad", &active_pad, NULL);
  	if ( i >= m_audioStreams.size() || i >= nb_sources || m_currentAudioStream >= m_audioStreams.size() )
 		return -2;
 	char sinkpad[8];
@@ -782,7 +828,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				IterAudioStream->type = audioStream::atMP3;
 			else if ( g_strrstr(g_audiocodec, "AC-3 audio") )
 				IterAudioStream->type = audioStream::atAC3;
-			else if ( g_strrstr(g_audiocodec, "Uncompressed\ 16-bit\ PCM\ audio") )
+			else if ( g_strrstr(g_audiocodec, "Uncompressed 16-bit PCM audio") )
 				IterAudioStream->type = audioStream::atPCM;
 			gchar *g_language;
 			if ( gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
@@ -824,7 +870,7 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 			GstPadLinkReturn ret = gst_pad_link(pad, gst_element_get_request_pad (selector, "sink%d"));
 			if ( _this->m_audioStreams.size() == 1 )
 			{
-				_this->selectTrack(0);
+				_this->selectAudioStream(0);
 				gst_element_set_state (_this->m_gst_pipeline, GST_STATE_PLAYING);
 			}
 			else
