@@ -264,8 +264,9 @@ class BurnTask(Task):
 		self.postconditions.append(BurnTaskPostcondition())
 		self.setTool("/bin/growisofs")
 		volName = self.getASCIIname(job.project.settings.name.getValue())
-		self.args += ["-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", volName, "-P", "Dreambox", "-use-the-force-luke=dummy", self.job.workspace + "/dvd"]
+		self.args += [ "-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", volName, "-publisher", "Dreambox", "-use-the-force-luke=dummy" ]
 		self.args += extra_args
+		self.args += [ self.job.workspace + "/dvd" ]
 
 	def getASCIIname(self, name):
 		ASCIIname = ""
