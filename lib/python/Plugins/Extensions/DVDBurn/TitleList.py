@@ -1,4 +1,4 @@
-import DVDProject, TitleList, TitleCutter, ProjectSettings
+import DVDProject, TitleList, TitleCutter, ProjectSettings, DVDToolbox
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
@@ -77,6 +77,7 @@ class TitleList(Screen):
 		menu = []
 		menu.append((_("Burn DVD"), "burn"));
 		menu.append((_("Preview menu"), "previewMenu"));
+		menu.append((_("DVD media toolbox"), "toolbox"));
 		menu.append((_("Collection settings"), "settings"));
 		menu.append((_("Add a new title"), "addtitle"));
 		menu.append((_("Remove title"), "removetitle"));
@@ -93,6 +94,8 @@ class TitleList(Screen):
 			self.addTitle()
 		elif choice[1] == "edittitle":
 			self.editTitle()
+		elif choice[1] == "toolbox":
+			self.toolbox()
 		elif choice[1] == "settings":
 			self.settings()
 		elif choice[1] == "previewMenu":
@@ -157,6 +160,9 @@ class TitleList(Screen):
 		if title is not None:
 			self.project.titles.remove(title)
 			self.updateTitleList()
+
+	def toolbox(self):
+		self.session.open(DVDToolbox.DVDToolbox, self.project)
 
 	def settings(self):
 		self.session.openWithCallback(self.settingsCB, ProjectSettings.ProjectSettings, self.project)
