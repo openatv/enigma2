@@ -181,6 +181,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.returning = True
 			self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
+			self.session.nav.stopService()
 		elif answer == "restart":
 			self.doSeek(0)
 
