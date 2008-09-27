@@ -1569,46 +1569,67 @@ RESULT eDVBServicePlay::getEvent(ePtr<eServiceEvent> &evt, int nownext)
 	return m_event_handler.getEvent(evt, nownext);
 }
 
+static int readMpegProc(char *str, int decoder)
+{
+	int val = -1;
+	char tmp[64];
+	sprintf(tmp, "/proc/stb/vmpeg/%d/%s", decoder, str);
+	FILE *f = fopen(tmp, "r");
+	if (f)
+	{
+		fscanf(f, "%x", &val);
+		fclose(f);
+	}
+	return val;
+}
+
 int eDVBServicePlay::getInfo(int w)
 {
 	eDVBServicePMTHandler::program program;
-	
+
 	if (w == sCAIDs)
 		return resIsPyObject;
 
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
-	
+
 	int no_program_info = 0;
-	
+
 	if (h.getProgramInfo(program))
 		no_program_info = 1;
-	
+
 	switch (w)
 	{
 #if HAVE_DVB_API_VERSION >= 3
 	case sVideoHeight:
 		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
 			return m_videoEventData.height;
-		return -1;
+		else
+			return readMpegProc("yres", !m_is_primary);
 	case sVideoWidth:
 		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
 			return m_videoEventData.width;
-		return -1;
+		else
+			return readMpegProc("xres", !m_is_primary);
 	case sFrameRate:
 		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
 			return m_videoEventData.framerate;
-		return -1;
+		else
+			return readMpegProc("framerate", !m_is_primary);
 	case sProgressive:
 		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
 			return m_videoEventData.progressive;
-		return -1;
+		return readMpegProc("progressive", !m_is_primary);
 #else
 #warning "FIXMEE implement sFrameRate, sProgressive, sVideoHeight, sVideoWidth for old DVB API"
 #endif
 	case sAspect:
+	{
+		int val;
 #if HAVE_DVB_API_VERSION >= 3
 		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
 			return m_videoEventData.aspect == VIDEO_FORMAT_4_3 ? 1 : 3;
+		else if ((val=readMpegProc("aspect", !m_is_primary)) != -1)
+			return val;
 		else
 #else
 #warning "FIXMEE implement sAspect for old DVB API"
@@ -1653,6 +1674,7 @@ int eDVBServicePlay::getInfo(int w)
 			}
 		}
 		return -1;
+	}
 	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
 	case sVideoPID: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
 	case sVideoType: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
@@ -2961,23 +2983,18 @@ void eDVBServicePlay::setPCMDelay(int delay)
 
 void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 {
+	memcpy(&m_videoEventData, &event, sizeof(event));
 	switch(event.type) {
 		case iTSMPEGDecoder::videoEvent::eventSizeChanged:
-			m_videoEventData.aspect = event.aspect;
-			m_videoEventData.height = event.height;
-			m_videoEventData.width = event.width;
 			m_event((iPlayableService*)this, evVideoSizeChanged);
 			break;
 		case iTSMPEGDecoder::videoEvent::eventFrameRateChanged:
-			m_videoEventData.framerate = event.framerate;
 			m_event((iPlayableService*)this, evVideoFramerateChanged);
 			break;
 		case iTSMPEGDecoder::videoEvent::eventProgressiveChanged:
-			m_videoEventData.progressive = event.progressive;
 			m_event((iPlayableService*)this, evVideoProgressiveChanged);
 			break;
 	}
-	m_videoEventData.type = event.type;
 }
 
 RESULT eDVBServicePlay::stream(ePtr<iStreamableService> &ptr)
