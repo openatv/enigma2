@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
 from enigma import eTimer
@@ -16,8 +17,9 @@ class MessageBox(Screen):
 		self.type = type
 		Screen.__init__(self, session)
 
-		self["text"] = Label(text)
+ 		self["text"] = Label(text)
 		self["Text"] = StaticText(text)
+		self["selectedChoice"] = StaticText()
 
 		self.text = text
 		self.close_on_any_key = close_on_any_key
@@ -41,7 +43,9 @@ class MessageBox(Screen):
 				self.list = [ (_("yes"), 0), (_("no"), 1) ]
 			else:
 				self.list = [ (_("no"), 1), (_("yes"), 0) ]
-
+		
+		if len(self.list):
+			self["selectedChoice"].setText(self.list[0][0])
 		self["list"] = MenuList(self.list)
 
 		self["actions"] = ActionMap(["MsgBoxActions", "DirectionActions"], 
@@ -130,6 +134,8 @@ class MessageBox(Screen):
 		if self.close_on_any_key:
 			self.close(True)
 		self["list"].instance.moveSelection(direction)
+		if len(self.list):
+			self["selectedChoice"].setText(self["list"].getCurrent()[0])
 		self.stopTimer()
 
 	def __repr__(self):
