@@ -59,6 +59,10 @@ msgstr ""
 msgid "%d min"
 msgstr "%d min"
 
+#, python-format
+msgid "%d services found!"
+msgstr "%d Kanäle gefunden!"
+
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -1182,6 +1186,9 @@ msgstr "Finnisch"
 
 msgid "Font size"
 msgstr "Schriftgröße"
+
+msgid "Format"
+msgstr "Formatieren"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr ""
@@ -2847,6 +2854,15 @@ msgstr ""
 "der gewählten Partition vorhanden ist.\n"
 "Wollen Sie wirklich fortfahren?"
 
+msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
+msgstr ""
+"Dieses wiederbeschreibbare Medium ist bereits formatiert - durch eine "
+"Neuformatierung wird der gesamte Inhalt gelöscht"
+
+#, python-format
+msgid "This Dreambox can't decode %s video streams!"
+msgstr "Diese Dreambox kann keine Videos vom Typ %s wiedergeben!"
+
 msgid "This is step number 2."
 msgstr "Dies ist Schritt 2."
 
@@ -3836,9 +3852,6 @@ msgstr "Minute"
 msgid "minutes"
 msgstr "Minuten"
 
-msgid "minutes and"
-msgstr "Minuten und"
-
 msgid "month"
 msgstr "Monat"
 
@@ -3898,6 +3911,9 @@ msgstr "aus"
 
 msgid "on"
 msgstr "an"
+
+msgid "on READ ONLY medium."
+msgstr "auf dem nicht beschreibbaren Medium."
 
 msgid "once"
 msgstr "einmalig"
@@ -3995,19 +4011,12 @@ msgstr "rechts"
 msgid "save playlist"
 msgstr "Wiedergabeliste speichern"
 
-#, python-format
-msgid "scan done! %d services found!"
-msgstr "Suche beendet! %d Kanäle gefunden!"
-
-msgid "scan done! No service found!"
-msgstr "Suche beendet! Kein Kanal gefunden!"
-
-msgid "scan done! One service found!"
-msgstr "Suche beendet! Ein Kanal gefunden!"
+msgid "scan done!"
+msgstr "Suche beendet!"
 
 #, python-format
-msgid "scan in progress - %d %% done! %d services found!"
-msgstr "Suche läuft - %d %% erledigt! %d Kanäle gefunden!"
+msgid "scan in progress - %d%% done!"
+msgstr "Suche läuft - %d%% erledigt!"
 
 msgid "scan state"
 msgstr "Status"
@@ -4020,9 +4029,6 @@ msgstr "Zweites Kabel vom Rotor"
 
 msgid "seconds"
 msgstr "Sekunden"
-
-msgid "seconds."
-msgstr "Sekunden warten."
 
 msgid "select"
 msgstr ""
