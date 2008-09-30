@@ -858,12 +858,12 @@ def InitNimManager(nimmgr):
 				choices["loopthrough"] = _("loopthrough to")
 			nim.configMode = ConfigSelection(choices = choices, default = "nothing")
 
-			for y in nimmgr.nim_slots:
-				if y.slot == 0:
-					if not y.isCompatible("DVB-S"):
-						# reset to simple
-						nim.configMode.value = "simple"
-						nim.configMode.save()
+#			for y in nimmgr.nim_slots:
+#				if y.slot == 0:
+#					if not y.isCompatible("DVB-S"):
+#						# reset to simple
+#						nim.configMode.value = "simple"
+#						nim.configMode.save()
 
 			nim.diseqcMode = ConfigSelection(
 				choices = [
