@@ -163,10 +163,19 @@ class Network:
 			if (currif != ""):
 				if (split[0] == "address"):
 					ifaces[currif]["address"] = map(int, split[1].split('.'))
+					if self.ifaces[currif].has_key("ip"):
+						if self.ifaces[currif]["ip"] != ifaces[currif]["address"] and ifaces[currif]["dhcp"] == False:
+							self.ifaces[currif]["ip"] = map(int, split[1].split('.'))
 				if (split[0] == "netmask"):
 					ifaces[currif]["netmask"] = map(int, split[1].split('.'))
+					if self.ifaces[currif].has_key("netmask"):
+						if self.ifaces[currif]["netmask"] != ifaces[currif]["netmask"] and ifaces[currif]["dhcp"] == False:
+							self.ifaces[currif]["netmask"] = map(int, split[1].split('.'))
 				if (split[0] == "gateway"):
 					ifaces[currif]["gateway"] = map(int, split[1].split('.'))
+					if self.ifaces[currif].has_key("gateway"):
+						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] == False:
+							self.ifaces[currif]["gateway"] = map(int, split[1].split('.'))					
 				if (split[0] == "pre-up"):
 					self.ifaces[currif]["preup"] = i
 				if (split[0] == "post-down"):

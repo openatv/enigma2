@@ -1,12 +1,13 @@
 from Screen import Screen
 from Components.ActionMap import ActionMap,NumberActionMap
 from Screens.MessageBox import MessageBox
+from Screens.InputBox import InputBox
 from Screens.Standby import *
 from Components.Network import iNetwork
 from Components.Label import Label,MultiColorLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigSelection, getConfigListEntry
+from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigSelection, getConfigListEntry, ConfigNothing
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
@@ -73,12 +74,10 @@ class NetworkAdapterSelection(Screen):
 			self.onFirstExecBegin.append(self.okbuttonClick)
 
 	def updateList(self):
-		print "update list"
 		iNetwork.getInterfaces()
 		self.list = []
 		default_gw = None
 		num_configured_if = len(iNetwork.configuredInterfaces)
-		print "num_configured_if :",num_configured_if 
 		if num_configured_if < 2 and os_path.exists("/etc/default_gw"):
 			unlink("/etc/default_gw")
 			
@@ -231,61 +230,12 @@ class AdapterSetup(Screen, ConfigListScreen):
 		self.essid = essid
 		self.aplist = aplist
 		self.extended = None
+		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
 		iNetwork.getInterfaces()
 
-		if self.iface == "wlan0" or self.iface == "ath0" :
-			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant,Wlan
-			self.ws = wpaSupplicant()
-			list = []
-			list.append(_("WEP"))
-			list.append(_("WPA"))
-			list.append(_("WPA2"))
-			if self.aplist is not None:
-				self.nwlist = self.aplist
-				self.nwlist.sort(key = lambda x: x[0])
-			else:
-				self.nwlist = []
-				self.w = None
-				self.aps = None
-				try:
-					self.w = Wlan(self.iface)
-					self.aps = self.w.getNetworkList()
-					if self.aps is not None:
-						print "[Wlan.py] got Accespoints!"
-						for ap in aps:
-							a = aps[ap]
-							if a['active']:
-								if a['essid'] == "":
-									a['essid'] = a['bssid']
-								self.nwlist.append( a['essid'])
-					self.nwlist.sort(key = lambda x: x[0])
-				except:
-					self.nwlist.append("No Networks found")
-
-			wsconfig = self.ws.loadConfig()
-			default = self.essid or wsconfig['ssid']
-			if default not in self.nwlist:
-				self.nwlist.append(default)
-			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = default ))
-			config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = wsconfig['encryption'] ))
-			config.plugins.wlan.encryption.type = NoSave(ConfigSelection(list, default = wsconfig['encryption_type'] ))
-			config.plugins.wlan.encryption.psk = NoSave(ConfigText(default = wsconfig['key'], fixed_size = False,visible_width = 30))
+		self.createConfig()
 		
-		self.activateInterfaceEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "up") or False))
-		self.dhcpConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "dhcp") or False))
-		self.ipConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "ip")) or [0,0,0,0])
-		self.netmaskConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "netmask") or [255,0,0,0]))
-		if iNetwork.getAdapterAttribute(self.iface, "gateway"):
-			self.dhcpdefault=True
-		else:
-			self.dhcpdefault=False
-		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
-		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0,0,0,0]))
-		nameserver = (iNetwork.getNameserverList() + [[0,0,0,0]] * 2)[0:2]
-		self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
-		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
-		
-		self["actions"] = ActionMap(["SetupActions","ShortcutActions"],
+		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.ok,
 			"cancel": self.cancel,
@@ -294,7 +244,7 @@ class AdapterSetup(Screen, ConfigListScreen):
 		}, -2)
 		
 		self.list = []
-		ConfigListScreen.__init__(self, self.list)
+		ConfigListScreen.__init__(self, self.list,session = self.session)
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 		
@@ -337,10 +287,79 @@ class AdapterSetup(Screen, ConfigListScreen):
 			self["Gatewaytext"].hide()
 		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 
+	def createConfig(self):
+		self.InterfaceEntry = None
+		self.dhcpEntry = None
+		self.gatewayEntry = None
+		self.SSIDscan = None
+		self.wlanSSID = None
+		self.manualwlanSSID = None
+		self.encryptionEnabled = None
+		self.encryptionKey = None
+		self.nwlist = None
+		self.wsconfig = None
+		self.default = None
+		
+		if self.iface == "wlan0" or self.iface == "ath0" :
+			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant,Wlan
+			self.ws = wpaSupplicant()
+			list = []
+			list.append(_("WEP"))
+			list.append(_("WPA"))
+			list.append(_("WPA2"))
+			if self.aplist is not None:
+				self.nwlist = self.aplist
+				self.nwlist.sort(key = lambda x: x[0])
+			else:
+				self.nwlist = []
+				self.w = None
+				self.aps = None
+				try:
+					self.w = Wlan(self.iface)
+					self.aps = self.w.getNetworkList()
+					if self.aps is not None:
+						print "[NetworkSetup.py] got Accespoints!"
+						for ap in aps:
+							a = aps[ap]
+							if a['active']:
+								if a['essid'] == "":
+									a['essid'] = a['bssid']
+								self.nwlist.append( a['essid'])
+					self.nwlist.sort(key = lambda x: x[0])
+				except:
+					self.nwlist.append("No Networks found")
+
+			self.wsconfig = self.ws.loadConfig()
+			self.default = self.essid or self.wsconfig['ssid']
+			if self.default not in self.nwlist:
+				self.nwlist.append(self.default)
+			config.plugins.wlan.essidscan = NoSave(ConfigYesNo(default = self.wsconfig['ssidscan']))
+			if self.wsconfig['ssidscan'] is True:
+				config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
+			else:
+				config.plugins.wlan.essid = NoSave(ConfigText(default = self.default, visible_width = 50, fixed_size = False))
+			config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = self.wsconfig['encryption'] ))
+			config.plugins.wlan.encryption.type = NoSave(ConfigSelection(list, default = self.wsconfig['encryption_type'] ))
+			config.plugins.wlan.encryption.psk = NoSave(ConfigText(default = self.wsconfig['key'], visible_width = 50, fixed_size = False))
+		
+		self.activateInterfaceEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "up") or False))
+		self.dhcpConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "dhcp") or False))
+		self.ipConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "ip")) or [0,0,0,0])
+		self.netmaskConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "netmask") or [255,0,0,0]))
+		if iNetwork.getAdapterAttribute(self.iface, "gateway"):
+			self.dhcpdefault=True
+		else:
+			self.dhcpdefault=False
+		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
+		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0,0,0,0]))
+		nameserver = (iNetwork.getNameserverList() + [[0,0,0,0]] * 2)[0:2]
+		self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
+		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
 	def createSetup(self):
 		self.list = []
 		self.InterfaceEntry = getConfigListEntry(_("Use Interface"), self.activateInterfaceEntry)
+		
 		self.list.append(self.InterfaceEntry)
 		if self.activateInterfaceEntry.value:
 			self.dhcpEntry = getConfigListEntry(_("Use DHCP"), self.dhcpConfigEntry)
@@ -348,26 +367,32 @@ class AdapterSetup(Screen, ConfigListScreen):
 			if not self.dhcpConfigEntry.value:
 				self.list.append(getConfigListEntry(_('IP Address'), self.ipConfigEntry))
 				self.list.append(getConfigListEntry(_('Netmask'), self.netmaskConfigEntry))
-				self.list.append(getConfigListEntry(_('Use a gateway'), self.hasGatewayConfigEntry))
+				self.gatewayEntry = getConfigListEntry(_('Use a gateway'), self.hasGatewayConfigEntry)
+				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
-					
+			
+			self.extended = None		
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
 				callFnc = p.__call__["ifaceSupported"](self.iface)
 				if callFnc is not None:
-					self.extended = callFnc
-					if p.__call__.has_key("configStrings"):
-						self.configStrings = p.__call__["configStrings"]
-					else:
-						self.configStrings = None
+					if p.__call__.has_key("WlanPluginEntry"): # internally used only for WLAN Plugin
+						self.extended = callFnc
+						if p.__call__.has_key("configStrings"):
+							self.configStrings = p.__call__["configStrings"]
+						else:
+							self.configStrings = None
+						self.SSIDscan = getConfigListEntry(_("Automatic SSID lookup"), config.plugins.wlan.essidscan)
+						self.list.append(self.SSIDscan)
+						self.wlanSSID = getConfigListEntry(_("Network SSID"), config.plugins.wlan.essid)
+						self.list.append(self.wlanSSID)
+						self.encryptionEnabled = getConfigListEntry(_("Encryption"), config.plugins.wlan.encryption.enabled)
+						self.list.append(self.encryptionEnabled)
 						
-					self.list.append(getConfigListEntry(_("Network SSID"), config.plugins.wlan.essid))
-					self.encryptionEnabled = getConfigListEntry(_("Encryption"), config.plugins.wlan.encryption.enabled)
-					self.list.append(self.encryptionEnabled)
-					
-					if config.plugins.wlan.encryption.enabled.value:
-						self.list.append(getConfigListEntry(_("Encryption Type"), config.plugins.wlan.encryption.type))
-						self.list.append(getConfigListEntry(_("Encryption Key"), config.plugins.wlan.encryption.psk))
+						if config.plugins.wlan.encryption.enabled.value:
+							self.list.append(getConfigListEntry(_("Encryption Type"), config.plugins.wlan.encryption.type))
+							self.encryptionKey = getConfigListEntry(_("Encryption Key"), config.plugins.wlan.encryption.psk)						
+							self.list.append(self.encryptionKey)
 		
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -377,20 +402,32 @@ class AdapterSetup(Screen, ConfigListScreen):
 
 	def newConfig(self):
 		print self["config"].getCurrent()
+		if self["config"].getCurrent() == self.InterfaceEntry:
+			self.createSetup()
 		if self["config"].getCurrent() == self.dhcpEntry:
 			self.createSetup()
-
+		if self["config"].getCurrent() == self.gatewayEntry:
+			self.createSetup()
+		if self.iface == "wlan0" or self.iface == "ath0" :	
+			if self["config"].getCurrent() == self.SSIDscan:
+				if config.plugins.wlan.essidscan.value is True:
+					config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
+				else:
+					config.plugins.wlan.essid = NoSave(ConfigText(default = self.default, visible_width = 50, fixed_size = False))
+				self.createSetup()
+			if self["config"].getCurrent() == self.encryptionEnabled:
+				self.createSetup()
+		
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		self.createSetup()
+		self.newConfig()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		self.createSetup()
+		self.newConfig()
 
 	def ok(self):
 		iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.value)
-		#if self.activateInterfaceEntry.value is True:
 		iNetwork.setAdapterAttribute(self.iface, "dhcp", self.dhcpConfigEntry.value)
 		iNetwork.setAdapterAttribute(self.iface, "ip", self.ipConfigEntry.value)
 		iNetwork.setAdapterAttribute(self.iface, "netmask", self.netmaskConfigEntry.value)
@@ -401,19 +438,16 @@ class AdapterSetup(Screen, ConfigListScreen):
 		if self.extended is not None and self.configStrings is not None:
 			iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 			self.ws.writeConfig()
-		#else:
-		#	iNetwork.removeAdapterAttribute(self.iface, "ip")
-		#	iNetwork.removeAdapterAttribute(self.iface, "netmask")
-		#	iNetwork.removeAdapterAttribute(self.iface, "gateway")
-		#	iNetwork.deactivateInterface(self.iface)
 		if self.activateInterfaceEntry.value is False:
 			iNetwork.deactivateInterface(self.iface)
-		iNetwork.deactivateNetworkConfig()
 		iNetwork.writeNetworkConfig()
+		iNetwork.deactivateNetworkConfig()
 		iNetwork.activateNetworkConfig()
 		self.close()
 
 	def cancel(self):
+		iNetwork.setAdapterAttribute(self.iface, "up", self.oldInterfaceState)
+		self.activateInterfaceEntry.value = self.oldInterfaceState
 		if self.activateInterfaceEntry.value is False:
 			iNetwork.deactivateInterface(self.iface)
 		iNetwork.getInterfaces()
@@ -469,8 +503,6 @@ class AdapterSetupConfiguration(Screen):
 		self.updateStatusbar()
 
 	def ok(self):
-		print "SELF.iFACE im OK Klick",self.iface
-		print "self.menulist.getCurrent()[1]",self["menulist"].getCurrent()[1]
 		if self["menulist"].getCurrent()[1] == 'edit':
 			if self.iface == 'wlan0' or self.iface == 'ath0':
 				try:
@@ -516,7 +548,8 @@ class AdapterSetupConfiguration(Screen):
 				ifobj = Wireless(self.iface) # a Wireless NIC Object
 				self.wlanresponse = ifobj.getStatistics()
 				if self.wlanresponse[0] != 19:
-					self.session.open(WlanStatus,self.iface)
+					self.session.openWithCallback(self.AdapterSetupClosed, WlanStatus,self.iface)
+					#self.session.open(WlanStatus,self.iface)
 				else:
 					# Display Wlan not available Message
 					self.showErrorMessage()
@@ -525,6 +558,9 @@ class AdapterSetupConfiguration(Screen):
 		if self["menulist"].getCurrent()[1] == 'openwizard':
 			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 			self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard)
+		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
+			self.extended = self["menulist"].getCurrent()[1][2]
+			self.extended(self.session, self.iface)
 	
 	def up(self):
 		self["menulist"].up()
@@ -562,7 +598,9 @@ class AdapterSetupConfiguration(Screen):
 			self["description"].setText(_("Restart your network connection and interfaces.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'openwizard':
 			self["description"].setText(_("Use the Networkwizard to configure your Network\n" ) + self.oktext )
-
+		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
+			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
+		
 	def updateStatusbar(self):
 		self["IFtext"].setText(_("Network:"))
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
@@ -593,16 +631,33 @@ class AdapterSetupConfiguration(Screen):
 		menu.append((_("Nameserver settings"), "dns"))
 		menu.append((_("Network test"), "test"))
 		menu.append((_("Restart network"), "lanrestart"))
-		
+
+		self.extended = None
+		self.extendedSetup = None		
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
 			callFnc = p.__call__["ifaceSupported"](self.iface)
 			if callFnc is not None:
-				menu.append((_("Scan Wireless Networks"), "scanwlan"))
-				if iNetwork.getAdapterAttribute(self.iface, "up"):
-					menu.append((_("Show WLAN Status"), "wlanstatus"))
-				
+				self.extended = callFnc
+				print p.__call__
+				if p.__call__.has_key("WlanPluginEntry"): # internally used only for WLAN Plugin
+					menu.append((_("Scan Wireless Networks"), "scanwlan"))
+					if iNetwork.getAdapterAttribute(self.iface, "up"):
+						menu.append((_("Show WLAN Status"), "wlanstatus"))
+				else:
+					if p.__call__.has_key("menuEntryName"):
+						menuEntryName = p.__call__["menuEntryName"](self.iface)
+					else:
+						menuEntryName = _('Extended Setup...')
+					if p.__call__.has_key("menuEntryDescription"):
+						menuEntryDescription = p.__call__["menuEntryDescription"](self.iface)
+					else:
+						menuEntryDescription = _('Extended Networksetup Plugin...')
+					self.extendedSetup = ('extendedSetup',menuEntryDescription, self.extended)
+					menu.append((menuEntryName,self.extendedSetup))					
+			
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
-			menu.append((_("NetworkWizard"), "openwizard"));
+			menu.append((_("NetworkWizard"), "openwizard"))
+
 		return menu
 
 	def AdapterSetupClosed(self, *ret):
