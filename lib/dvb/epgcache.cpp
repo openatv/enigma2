@@ -1018,7 +1018,7 @@ void eEPGCache::save()
 	{
 		unsigned int magic = 0x98765432;
 		fwrite( &magic, sizeof(int), 1, f);
-		const char *text = "ENIGMA_EPG_V7";
+		const char *text = "UNFINISHED_V7";
 		fwrite( text, 13, 1, f );
 		int size = eventDB.size();
 		fwrite( &size, sizeof(int), 1, f );
@@ -1065,6 +1065,11 @@ void eEPGCache::save()
 			}
 		}
 #endif
+		// write version string after binary data
+		// has been written to disk.
+		fsync(fileno(f));
+		fseek(f, sizeof(int), SEEK_SET);
+		fwrite("ENIGMA_EPG_V7", 13, 1, f);
 		fclose(f);
 #if 0
 		unsigned char md5[16];
