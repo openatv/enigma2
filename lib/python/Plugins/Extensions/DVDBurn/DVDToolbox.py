@@ -102,13 +102,13 @@ class DVDToolbox(Screen):
 			self["key_yellow"].text = ""
 		percent = 100 * used / capacity
 		if capacity > 4600:
-			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a DUAL layer medium used.)")
+			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a DUAL layer medium used.") + ")"
 			self["space_bar"].value = int(percent)
 		elif capacity > 1:
-			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a SINGLE layer medium used.)")
+			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a SINGLE layer medium used.") + ")"
 			self["space_bar"].value = int(percent)
 		elif capacity == 1 and used > 0:
-			self["space_label"].text = "%d MB" % (used) + _(" on READ ONLY medium.")
+			self["space_label"].text = "%d MB " % (used) + _("on READ ONLY medium.")
 			self["space_bar"].value = int(percent)
 		else:
 			self["space_label"].text = _("Medium is not a writeable DVD!")
