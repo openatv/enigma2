@@ -136,6 +136,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 				lnb_param.m_satellites.find(sat.orbital_position);
 			if ( sit != lnb_param.m_satellites.end())
 			{
+				bool diseqc=false;
+				bool direct_connected = m_not_linked_slot_mask & slot_id;
 				long band=0,
 					linked_prev_ptr=-1,
 					linked_next_ptr=-1,
@@ -152,8 +154,6 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					band |= 1;
 				if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical))
 					band |= 2;
-
-				bool diseqc=false;
 
 				if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 				{
@@ -175,7 +175,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					ret = 15000;
 				}
 
-				if (m_not_linked_slot_mask & slot_id)  // frontend with direct connection?
+				if (direct_connected)  // frontend with direct connection?
 				{
 					long ocsw = -1,
 						oucsw = -1,
@@ -243,8 +243,9 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					}
 				}
 
-				if (ret && rotor && curRotorPos != -1)
+				if (ret && rotor && curRotorPos != -1 && direct_connected) {
 					ret -= abs(curRotorPos-sat.orbital_position);
+				}
 
 				if (ret)
 					if (satpos_depends_ptr != -1)
@@ -252,6 +253,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
 						if ( satpos_depends_to_fe->m_inuse )
 						{
+							if (!direct_connected)
+								satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
 							if (!rotor || curRotorPos != sat.orbital_position)
 								ret=0;
 						}
@@ -265,6 +268,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					if (tuner_freq < 900000 || tuner_freq > 2200000)
 						ret=0;
 				}
+
 				if (ret > score)
 				{
 					score = ret;
@@ -323,7 +327,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			eDVBSatelliteSwitchParameters &sw_param = sit->second;
 			bool doSetFrontend = true;
 			bool doSetVoltageToneFrontend = true;
-			bool allowDiseqc1_2 = true;
 			bool sendDiSEqC = false;
 			long band=0,
 				voltage = iDVBFrontend::voltageOff,
@@ -338,6 +341,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				curRotorPos = -1,
 				satposDependPtr = -1;
 			iDVBFrontend *sec_fe=&frontend;
+			eDVBSatelliteDiseqcParameters::t_diseqc_mode diseqc_mode = di_param.m_diseqc_mode;
 
 			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satposDependPtr);
 
@@ -351,8 +355,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					sec_fe = linked_fe->m_frontend;
 					sec_fe->getData(eDVBFrontend::LINKED_PREV_PTR, (long&)linked_prev_ptr);
 				}
-				if (satposDependPtr != -1)
-					allowDiseqc1_2 = false;
+				if (satposDependPtr != -1)  // we dont need uncommitted switch and rotor cmds on second output of a rotor lnb
+					diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
 			}
 
 			sec_fe->getData(eDVBFrontend::CSW, lastcsw);
@@ -393,7 +397,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			eSecCommandList sec_sequence;
 
-			if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
+			if (diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 			{
 				if ( di_param.m_committed_cmd < eDVBSatelliteDiseqcParameters::SENDNO )
 					csw = 0xF0 | (csw << 2);
@@ -406,7 +410,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				bool changed_csw = send_csw && csw != lastcsw;
 
 				bool send_ucsw =
-					(di_param.m_uncommitted_cmd && di_param.m_diseqc_mode > eDVBSatelliteDiseqcParameters::V1_0);
+					(di_param.m_uncommitted_cmd && diseqc_mode > eDVBSatelliteDiseqcParameters::V1_0);
 				bool changed_ucsw = send_ucsw && ucsw != lastucsw;
 
 				bool send_burst =
@@ -469,9 +473,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				{
 					int RotorCmd=-1;
 					bool useGotoXX = false;
-					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
-						&& !sat.no_rotor_command_on_tune
-						&& allowDiseqc1_2 )
+					if ( diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2
+						&& !sat.no_rotor_command_on_tune )
 					{
 						if (sw_param.m_rotorPosNum) // we have stored rotor pos?
 							RotorCmd=sw_param.m_rotorPosNum;

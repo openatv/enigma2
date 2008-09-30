@@ -673,7 +673,14 @@ class NimManager:
 		positionerList = []
 		for nim in nimList[:]:
 			mode = self.getNimConfig(nim)
-			if mode.configMode.value == "simple" and mode.diseqcMode.value == "positioner":
+			nimHaveRotor = mode.configMode.value == "simple" and mode.diseqcMode.value == "positioner"
+			if not nimHaveRotor and mode.configMode.value == "advanced":
+				for x in range(3601, 3605):
+					lnb = int(mode.advanced.sat[x].lnb.value)
+					if lnb != 0:
+						nimHaveRotor = True
+						break
+			if nimHaveRotor:
 				alreadyConnected = False
 				for testnim in nimList:
 					testmode = self.getNimConfig(testnim)
