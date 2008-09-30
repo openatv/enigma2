@@ -58,6 +58,10 @@ msgstr "%H:%M"
 msgid "%d min"
 msgstr "%d min"
 
+#, python-format
+msgid "%d services found!"
+msgstr "%d zenders gevonden"
+
 msgid "%d.%B %Y"
 msgstr "%d-%m-%Y"
 
@@ -3925,19 +3929,12 @@ msgstr "rechts"
 msgid "save playlist"
 msgstr "Afspeellijst opslaan"
 
-#, python-format
-msgid "scan done! %d services found!"
-msgstr "Zoeken voltooid. %d zenders gevonden"
-
-msgid "scan done! No service found!"
-msgstr "Zoeken voltooid. Geen zenders gevonden"
-
-msgid "scan done! One service found!"
-msgstr "Zoeken voltooid. 1 zender gevonden"
+msgid "scan done!"
+msgstr "Zoeken voltooid."
 
 #, python-format
-msgid "scan in progress - %d %% done! %d services found!"
-msgstr "Bezig met zoeken - %d %% voltooid. %d zenders gevonden"
+msgid "scan in progress - %d%% done!"
+msgstr "Bezig met zoeken - %d%% voltooid."
 
 msgid "scan state"
 msgstr "status"
