@@ -8,6 +8,7 @@
 #include <string>
 #include <lib/service/servicemp3.h>
 #include <lib/service/service.h>
+#include <lib/components/file_eraser.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <gst/gst.h>
@@ -73,12 +74,63 @@ RESULT eServiceFactoryMP3::info(const eServiceReference &ref, ePtr<iStaticServic
 	return 0;
 }
 
-RESULT eServiceFactoryMP3::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
+class eMP3ServiceOfflineOperations: public iServiceOfflineOperations
 {
-	ptr = 0;
-	return -1;
+	DECLARE_REF(eMP3ServiceOfflineOperations);
+	eServiceReference m_ref;
+public:
+	eMP3ServiceOfflineOperations(const eServiceReference &ref);
+	
+	RESULT deleteFromDisk(int simulate);
+	RESULT getListOfFilenames(std::list<std::string> &);
+};
+
+DEFINE_REF(eMP3ServiceOfflineOperations);
+
+eMP3ServiceOfflineOperations::eMP3ServiceOfflineOperations(const eServiceReference &ref): m_ref((const eServiceReference&)ref)
+{
 }
 
+RESULT eMP3ServiceOfflineOperations::deleteFromDisk(int simulate)
+{
+	if (simulate)
+		return 0;
+	else
+	{
+		std::list<std::string> res;
+		if (getListOfFilenames(res))
+			return -1;
+		
+		eBackgroundFileEraser *eraser = eBackgroundFileEraser::getInstance();
+		if (!eraser)
+			eDebug("FATAL !! can't get background file eraser");
+		
+		for (std::list<std::string>::iterator i(res.begin()); i != res.end(); ++i)
+		{
+			eDebug("Removing %s...", i->c_str());
+			if (eraser)
+				eraser->erase(i->c_str());
+			else
+				::unlink(i->c_str());
+		}
+		
+		return 0;
+	}
+}
+
+RESULT eMP3ServiceOfflineOperations::getListOfFilenames(std::list<std::string> &res)
+{
+	res.clear();
+	res.push_back(m_ref.path);
+	return 0;
+}
+
+
+RESULT eServiceFactoryMP3::offlineOperations(const eServiceReference &ref, ePtr<iServiceOfflineOperations> &ptr)
+{
+	ptr = new eMP3ServiceOfflineOperations(ref);
+	return 0;
+}
 
 // eStaticServiceMP3Info
 
