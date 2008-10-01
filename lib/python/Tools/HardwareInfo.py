@@ -12,13 +12,13 @@ class HardwareInfo:
 			print "fallback to detect hardware via /proc/cpuinfo!!"
 			try:
 				rd = open("/proc/cpuinfo", "r").read()
-				if rd.find("Brcm4380 V4.2") != 0:
+				if rd.find("Brcm4380 V4.2") != -1:
 					self.device = "dm8000"
 					print "dm8000 detected!"
-				elif rd.find("Brcm7401 V0.0") != 0:
+				elif rd.find("Brcm7401 V0.0") != -1:
 					self.device = "dm800"
 					print "dm800 detected!"
-				elif rd.find("MIPS 4KEc V4.8") != 0:
+				elif rd.find("MIPS 4KEc V4.8") != -1:
 					self.device = "dm7025"
 					print "dm7025 detected!"
 			except:
