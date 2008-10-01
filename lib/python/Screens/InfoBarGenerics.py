@@ -1012,7 +1012,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		InfoBarPVRState.__init__(self, screen=TimeshiftState)
 
 	def _mayShow(self):
-		if self.execing and self.timeshift_enabled:
+		if self.execing and self.timeshift_enabled and self.seekstate != self.SEEK_STATE_PLAY:
 			self.pvrStateDialog.show()
 
 class InfoBarShowMovies:
