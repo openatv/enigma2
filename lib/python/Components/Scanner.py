@@ -126,6 +126,14 @@ def scanDevice(mountpoint):
 
 	# convert to list
 	paths_to_scan = list(paths_to_scan)
+	
+	from Components.Harddisk import HarddiskManager	
+	class CdromManager(HarddiskManager):
+		def __init__(self):
+			pass
+	cdaman = CdromManager()
+	blockdev = mountpoint.split('/')[2]
+	error, blacklisted, removable, is_cdrom, partitions = cdaman.getBlockDevInfo(blockdev)
 
 	# now scan the paths
 	for p in paths_to_scan:
@@ -133,7 +141,11 @@ def scanDevice(mountpoint):
 
 		for root, dirs, files in os_walk(path):
 			for f in files:
-				sfile = ScanFile(os_path.join(root, f))
+				path = os_path.join(root, f)
+				if is_cdrom and path.endswith(".wav") and path[-13:-6] == ("/track-"):
+					sfile = ScanFile(path,"audio/x-cda")
+				else:
+					sfile = ScanFile(path)
 				for s in scanner:
 					s.handleFile(res, sfile)
 

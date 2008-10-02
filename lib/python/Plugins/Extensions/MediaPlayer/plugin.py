@@ -848,7 +848,8 @@ def filescan(**kwargs):
 		)]
 	try:
 		from Plugins.Extensions.CDInfo.plugin import Query
-		mediatypes.insert(0,Scanner(mimetypes = ["audio/x-cda", "audio/x-wav"],
+		mediatypes.append(
+		Scanner(mimetypes = ["audio/x-cda"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),
