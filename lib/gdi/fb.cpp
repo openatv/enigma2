@@ -102,7 +102,32 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	screeninfo.width=0;
 	screeninfo.xoffset=screeninfo.yoffset=0;
 	screeninfo.bits_per_pixel=nbpp;
-	
+
+	switch (nbpp) {
+	case 16:
+		// ARGB 1555
+		screeninfo.transp.offset = 15;
+		screeninfo.transp.length = 1;
+		screeninfo.red.offset = 10;
+		screeninfo.red.length = 5;
+		screeninfo.green.offset = 5;
+		screeninfo.green.length = 5;
+		screeninfo.blue.offset = 0;
+		screeninfo.blue.length = 5;
+		break;
+	case 32:
+		// ARGB 8888
+		screeninfo.transp.offset = 24;
+		screeninfo.transp.length = 8;
+		screeninfo.red.offset = 16;
+		screeninfo.red.length = 8;
+		screeninfo.green.offset = 8;
+		screeninfo.green.length = 8;
+		screeninfo.blue.offset = 0;
+		screeninfo.blue.length = 8;
+		break;
+	}
+
 	if (ioctl(fd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 	{
 		// try single buffering
