@@ -5,9 +5,13 @@
 #include <lib/base/message.h>
 #include <lib/service/iservice.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/subtitle.h>
+#include <lib/dvb/teletext.h>
 #include <gst/gst.h>
 
 class eStaticServiceMP3Info;
+
+class eSubtitleWidget;
 
 class eServiceFactoryMP3: public iServiceHandler
 {
@@ -40,7 +44,7 @@ public:
 typedef struct _GstElement GstElement;
 
 class eServiceMP3: public iPlayableService, public iPauseableService, 
-	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public Object
+	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public iSubtitleOutput, public Object
 {
 	DECLARE_REF(eServiceMP3);
 public:
@@ -59,13 +63,13 @@ public:
 	RESULT seek(ePtr<iSeekableService> &ptr);
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr);
+	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 
 		// not implemented (yet)
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
 	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
-	RESULT subtitle(ePtr<iSubtitleOutput> &ptr) { ptr = 0; return -1; }
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = 0; return -1; }
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
 	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
@@ -100,6 +104,12 @@ public:
 	int getCurrentChannel();
 	RESULT selectChannel(int i);
 
+		// iSubtitleOutput
+	RESULT enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) entry);
+	RESULT disableSubtitles(eWidget *parent);
+	PyObject *getSubtitleList();
+	PyObject *getCachedSubtitle();
+
 	struct audioStream
 	{
 		GstPad* pad;
@@ -107,13 +117,21 @@ public:
 		int type; // mpeg2, ac3, dts, ...
 		std::string language_code; /* iso-639, if available. */
 	};
+	struct subtitleStream
+	{
+		GstElement* element;
+		std::string language_code; /* iso-639, if available. */
+	};
 private:
 	int m_currentAudioStream;
+	int m_currentSubtitleStream;
+	int selectAudioStream(int i);
+	std::vector<audioStream> m_audioStreams;
+	std::vector<subtitleStream> m_subtitleStreams;
+	eSubtitleWidget *m_subtitle_widget;
 	int m_currentTrickRatio;
 	eTimer m_seekTimeout;
 	void eServiceMP3::seekTimeoutCB();
-	int selectAudioStream(int i);
-	std::vector<audioStream> m_audioStreams;
 	friend class eServiceFactoryMP3;
 	std::string m_filename;
 	eServiceMP3(const char *filename);
@@ -133,6 +151,7 @@ private:
 	static void gstCBfilterPadAdded(GstElement *filter, GstPad *pad, gpointer user_data); /* for id3demux */
 	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data); /* for decodebin */
 	static void gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *l, gpointer data);
+	static void gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data);
 	void gstPoll(const int&);
 };
 #endif
