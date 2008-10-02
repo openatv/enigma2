@@ -12,7 +12,8 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <gst/gst.h>
-		/* for subtitles */
+#include <sys/stat.h>
+/* for subtitles */
 #include <lib/gui/esubtitle.h>
 
 // eServiceFactoryMP3
@@ -206,7 +207,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d, is_AudioCD: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi, is_AudioCD);
 	
 	int is_audio = !is_video;
-	
+
 	int all_ok = 0;
 
 	m_gst_pipeline = gst_pipeline_new ("mediaplayer");
@@ -375,6 +376,35 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			m_audioStreams.push_back(audioStreamElem);
 		} else /* is_video */
 		{
+			char srt_filename[strlen(filename)+1];
+			strncpy(srt_filename,filename,strlen(filename)-3);
+			srt_filename[strlen(filename)-3]='\0';
+			strcat(srt_filename, "srt");
+			struct stat buffer;
+			if (stat(srt_filename, &buffer) == 0)
+			{
+				eDebug("subtitle file found: %s",srt_filename);
+				GstElement *subsource;
+				subsource = gst_element_factory_make ("filesrc", "srt_source");
+				g_object_set (G_OBJECT (subsource), "location", filename, NULL);
+				GstElement *parser = gst_element_factory_make("subparse", "srt_parse");
+				eDebug ("subparse = %p", parser);
+				GstElement *sink = gst_element_factory_make("fakesink", "srt_sink");
+				eDebug ("fakesink = %p", sink);
+				g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
+				gst_bin_add_many(GST_BIN (m_gst_pipeline), subsource, parser, sink, NULL);
+				GstPadLinkReturn res = gst_element_link(subsource, parser);
+				eDebug ("parser link = %d", res);
+				res = gst_element_link(parser, sink);
+				eDebug ("sink link = %d", res);
+				g_signal_connect(sink, "handoff", G_CALLBACK(gstCBsubtitleAvail), this);
+				subtitleStream subs;
+				subs.element = sink;
+				m_subtitleStreams.push_back(subs);
+			}
+			else
+				eDebug("subtitle file not found: %s",srt_filename);
+
 			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, audio, queue_audio, video, queue_video, NULL);
 			switch_audio = gst_element_factory_make ("input-selector", "switch_audio");
 			if (switch_audio)
@@ -1099,7 +1129,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	return 0;
 error_out:
 	eDebug("enableSubtitles needs a tuple as 2nd argument!\n"
-		"for gst subtitles (2, subtitle_stream_count)"
+		"for gst subtitles (2, subtitle_stream_count)");
 	return -1;
 }
 
