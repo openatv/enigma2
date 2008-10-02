@@ -838,6 +838,8 @@ class NetworkAdapterTest(Screen):
 	def doStep1(self):
 		self.steptimer = True
 		self.nextStepTimer.start(3000)
+		self["ButtonYellow_Check"].show()
+		self["ButtonYellowtext"].show()
 
 	def doStep2(self):
 		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
@@ -999,6 +1001,8 @@ class NetworkAdapterTest(Screen):
 		self["EditSettingsButton"].hide()
 		self["InfoText"].hide()
 		self["InfoTextBorder"].hide()
+		self["ButtonYellow_Check"].hide()
+		self["ButtonYellowtext"].hide()
 
 	def setLabels(self):
 		self["Adaptertext"] = MultiColorLabel(_("LAN Adapter"))
