@@ -14,7 +14,7 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCO
 from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport
 from ServiceReference import ServiceReference
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
@@ -42,7 +42,7 @@ class MediaPixmap(Pixmap):
 			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/no_coverArt.png")
 		return Pixmap.applySkin(self, desktop, screen)
 
-class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, HelpableScreen):
+class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
 	ALLOW_SUSPEND = True
 	ENABLE_RESUME_SUPPORT = True
 
@@ -52,6 +52,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
 		InfoBarNotifications.__init__(self)
 		InfoBarBase.__init__(self)
+		InfoBarSubtitleSupport.__init__(self)
 		HelpableScreen.__init__(self)
 		self.summary = None
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -123,6 +124,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				"delete": (self.deletePlaylistEntry, _("delete playlist entry")),
 				"shift_stop": (self.clear_playlist, _("clear playlist")),
 				"shift_record": (self.playlist.PlayListShuffle, _("shuffle playlist")),
+				"subtitles": (self.subtitleSelection, _("Subtitle selection")),
 			}, -2)
 
 		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions", 
@@ -751,6 +753,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
+		
+	def subtitleSelection(self):
+		from Screens.Subtitles import Subtitles
+		self.session.open(Subtitles)		
 
 class MediaPlayerLCDScreen(Screen):
 	skin = """

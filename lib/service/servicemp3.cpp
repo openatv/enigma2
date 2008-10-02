@@ -12,6 +12,8 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <gst/gst.h>
+		/* for subtitles */
+#include <lib/gui/esubtitle.h>
 
 // eServiceFactoryMP3
 
@@ -169,7 +171,10 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 {
 	m_stream_tags = 0;
 	m_audioStreams.clear();
+	m_subtitleStreams.clear();
 	m_currentAudioStream = 0;
+	m_currentSubtitleStream = 0;
+	m_subtitle_widget = 0;
 	m_currentTrickRatio = 0;
 	CONNECT(m_seekTimeout.timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
@@ -418,6 +423,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 
 eServiceMP3::~eServiceMP3()
 {
+	delete m_subtitle_widget;
 	if (m_state == stRunning)
 		stop();
 	
@@ -732,6 +738,12 @@ RESULT eServiceMP3::audioTracks(ePtr<iAudioTrackSelection> &ptr)
 	return 0;
 }
 
+RESULT eServiceMP3::subtitle(ePtr<iSubtitleOutput> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 int eServiceMP3::getNumberOfTracks()
 {
  	return m_audioStreams.size();
@@ -823,7 +835,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 	GstObject *source;
 
 	source = GST_MESSAGE_SRC(msg);
-	sourceName = gst_object_get_name(source);	
+	sourceName = gst_object_get_name(source);
 
 	if (gst_message_get_structure(msg))
 	{
@@ -919,7 +931,7 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 		_this->m_audioStreams.push_back(audio);
 		if ( selector )
 		{
-			GstPadLinkReturn ret = gst_pad_link(pad, gst_element_get_request_pad (selector, "sink%d"));
+			gst_pad_link(pad, gst_element_get_request_pad (selector, "sink%d"));
 			if ( _this->m_audioStreams.size() == 1 )
 			{
 				_this->selectAudioStream(0);
@@ -934,6 +946,30 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 	if (g_strrstr(name,"video"))
 	{
 		gst_pad_link(pad, gst_element_get_static_pad(gst_bin_get_by_name(pipeline,"queue_video"), "sink"));
+	}
+	if (g_strrstr(name,"subtitle"))
+	{
+// 		GstCaps *caps;
+// 		const GstStructure *structure;	
+// 		caps = gst_pad_get_caps(name);
+// 		structure = gst_caps_get_structure(caps, 0);
+		char elemname[17];
+		sprintf(elemname, "%s_pars", name);
+		GstElement *parser = gst_element_factory_make("ssaparse", elemname);
+		eDebug ("ssaparse %s = %p", elemname, parser);
+		sprintf(elemname, "%s_sink", name);
+		GstElement *sink = gst_element_factory_make("fakesink", elemname);
+		eDebug ("fakesink %s = %p", elemname, sink);
+		g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
+		gst_bin_add_many(pipeline, parser, sink, NULL);
+		GstPadLinkReturn res = gst_pad_link(pad, gst_element_get_static_pad(parser, "sink"));
+		eDebug ("parser link = %d", res);
+		res = gst_element_link(parser, sink);
+		eDebug ("sink link = %d", res);
+		g_signal_connect(sink, "handoff", G_CALLBACK(gstCBsubtitleAvail), _this);
+		subtitleStream subs;
+		subs.element = sink;
+		_this->m_subtitleStreams.push_back(subs);
 	}
 	g_free (name);
 }
@@ -1010,3 +1046,98 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 #else
 #warning gstreamer not available, not building media player
 #endif
+
+void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
+{
+	const char *text = (unsigned char *)GST_BUFFER_DATA(buffer);
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	gchar *sourceName;
+	sourceName = gst_object_get_name(GST_OBJECT(element));
+	if ( _this->m_subtitle_widget && _this->m_subtitleStreams.at(_this->m_currentSubtitleStream).element == element)
+	{
+		eDVBTeletextSubtitlePage page;
+		gRGB rgbcol(0xD0,0xD0,0xD0);
+		page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, text));
+		(_this->m_subtitle_widget)->setPage(page);
+	}
+	else
+		eDebug("on inactive element: %s (%p) saw subtitle: %s",sourceName, element, text);
+	return TRUE;
+}
+
+RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
+{
+	eDebug("eServiceMP3::enableSubtitles");
+
+	ePyObject entry;
+	int tuplesize = PyTuple_Size(tuple);
+	int type = 0;
+	int page, magazine, pid;
+
+	if (!PyTuple_Check(tuple))
+		goto error_out;
+
+	if (tuplesize < 1)
+		goto error_out;
+
+	entry = PyTuple_GET_ITEM(tuple, 0);
+
+	if (!PyInt_Check(entry))
+		goto error_out;
+
+	type = PyInt_AsLong(entry);
+
+	entry = PyTuple_GET_ITEM(tuple, 1);
+	if (!PyInt_Check(entry))
+		goto error_out;
+	pid = PyInt_AsLong(entry);
+
+	m_subtitle_widget = new eSubtitleWidget(parent);
+	m_subtitle_widget->resize(parent->size()); /* full size */
+	m_currentSubtitleStream = pid;
+
+	return 0;
+error_out:
+	eDebug("enableSubtitles needs a tuple as 2nd argument!\n"
+		"for gst subtitles (2, subtitle_stream_count)"
+	return -1;
+}
+
+RESULT eServiceMP3::disableSubtitles(eWidget *parent)
+{
+	eDebug("eServiceMP3::disableSubtitles");
+	delete m_subtitle_widget;
+	m_subtitle_widget = 0;
+	return 0;
+}
+
+PyObject *eServiceMP3::getCachedSubtitle()
+{
+	eDebug("eServiceMP3::eDVBServicePlay");
+	Py_RETURN_NONE;
+}
+
+PyObject *eServiceMP3::getSubtitleList()
+{
+	eDebug("eServiceMP3::getSubtitleList");
+
+	ePyObject l = PyList_New(0);
+	gchar *sourceName;
+	int stream_count = 0;
+
+	for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
+	{
+		ePyObject tuple = PyTuple_New(5);
+		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(stream_count));
+		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(0));
+		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(0));
+		sourceName = gst_object_get_name(GST_OBJECT (IterSubtitleStream->element));
+		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(sourceName));
+		PyList_Append(l, tuple);
+		Py_DECREF(tuple);
+		stream_count++;
+	}
+
+	return l;
+}
