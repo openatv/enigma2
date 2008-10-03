@@ -68,6 +68,7 @@ public:
 	Signal1<void,iDVBFrontend*> m_stateChanged;
 private:
 	DECLARE_REF(eDVBFrontend);
+	bool m_simulate;
 	bool m_enabled;
 	int m_type;
 	int m_dvbid;
@@ -106,7 +107,7 @@ private:
 	bool setSecSequencePos(int steps);
 	static int PriorityOrder;
 public:
-	eDVBFrontend(int adap, int fe, int &ok);	
+	eDVBFrontend(int adap, int fe, int &ok, bool simulate=false);
 	virtual ~eDVBFrontend();
 
 	int readInputpower();
@@ -141,6 +142,7 @@ public:
 	int openFrontend();
 	int closeFrontend(bool force=false);
 	const char *getDescription() const { return m_description; }
+	bool is_simulate() const { return m_simulate; }
 };
 
 #endif // SWIG

@@ -3,6 +3,8 @@ from time import strftime, time, localtime, mktime
 from enigma import eTimer
 import datetime
 
+import NavigationInstance
+
 class TimerEntry:
 	StateWaiting  = 0
 	StatePrepared = 1
@@ -175,6 +177,27 @@ class Timer:
 			insort(self.timer_list, entry)
 			if not noRecalc:
 				self.calcNextActivation()
+
+# small piece of example code to understand how to use record simulation
+#		if NavigationInstance.instance:
+#			lst = [ ]
+#			cnt = 0
+#			for timer in self.timer_list:
+#				print "timer", cnt
+#				cnt += 1
+#				if timer.state == 0: #waiting
+#					lst.append(NavigationInstance.instance.recordService(timer.service_ref))
+#				else:
+#					print "STATE: ", timer.state
+#
+#			for rec in lst:
+#				if rec.start(True): #simulate
+#					print "FAILED!!!!!!!!!!!!"
+#				else:
+#					print "OK!!!!!!!!!!!!!!"
+#				NavigationInstance.instance.stopRecordService(rec)
+#		else:
+#			print "no NAV"
 	
 	def setNextActivation(self, when):
 		delay = int((when - time()) * 1000)

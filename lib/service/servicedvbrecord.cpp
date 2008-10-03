@@ -14,6 +14,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref
 	m_target_fd = -1;
 	m_error = 0;
 	m_streaming = 0;
+	m_simulate = false;
 }
 
 void eDVBServiceRecord::serviceEvent(int event)
@@ -122,18 +123,19 @@ RESULT eDVBServiceRecord::prepareStreaming()
 	return -1;
 }
 
-RESULT eDVBServiceRecord::start()
+RESULT eDVBServiceRecord::start(bool simulate)
 {
+	m_simulate = simulate;
 	m_want_record = 1;
 		/* when tune wasn't yet successfully, doRecord stays in "prepared"-state which is fine. */
 	m_event((iRecordableService*)this, evStart);
 	return doRecord();
 }
 
-
 RESULT eDVBServiceRecord::stop()
 {
-	eDebug("stop recording!");
+	if (!m_simulate)
+		eDebug("stop recording!");
 	if (m_state == stateRecording)
 	{
 		if (m_record)
@@ -144,7 +146,7 @@ RESULT eDVBServiceRecord::stop()
 			m_target_fd = -1;
 		}
 		m_state = statePrepared;
-	} else
+	} else if (!m_simulate)
 		eDebug("(was not recording)");
 	if (m_state == statePrepared)
 	{
@@ -155,7 +157,6 @@ RESULT eDVBServiceRecord::stop()
 	return 0;
 }
 
-
 int eDVBServiceRecord::doPrepare()
 {
 		/* allocate a ts recorder if we don't already have one. */
@@ -163,7 +164,7 @@ int eDVBServiceRecord::doPrepare()
 	{
 		m_pids_active.clear();
 		m_state = statePrepared;
-		return m_service_handler.tune(m_ref, 0);
+		return m_service_handler.tune(m_ref, 0, 0, m_simulate);
 	}
 	return 0;
 }
@@ -181,7 +182,7 @@ int eDVBServiceRecord::doRecord()
 	if (!m_tuned)
 		return 0; /* try it again when we are tuned in */
 	
-	if (!m_record && m_tuned && !m_streaming)
+	if (!m_record && m_tuned && !m_streaming && !m_simulate)
 	{
 		eDebug("Recording to %s...", m_filename.c_str());
 		::remove(m_filename.c_str());

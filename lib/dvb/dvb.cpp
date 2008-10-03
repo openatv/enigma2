@@ -65,7 +65,8 @@ eDVBResourceManager::eDVBResourceManager()
 {
 	avail = 1;
 	busy = 0;
-	m_sec = new eDVBSatelliteEquipmentControl(m_frontend);
+	m_sec = new eDVBSatelliteEquipmentControl(m_frontend, m_simulate_frontend);
+
 	if (!instance)
 		instance = this;
 		
@@ -80,8 +81,8 @@ eDVBResourceManager::eDVBResourceManager()
 		num_adapter++;
 	}
 	
-	eDebug("found %d adapter, %d frontends and %d demux", 
-		m_adapter.size(), m_frontend.size(), m_demux.size());
+	eDebug("found %d adapter, %d frontends(%d sim) and %d demux", 
+		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size());
 
 	eDVBCAService::registerChannelCallback(this);
 
@@ -117,10 +118,18 @@ eDVBAdapterLinux::eDVBAdapterLinux(int nr): m_nr(nr)
 			break;
 		ePtr<eDVBFrontend> fe;
 
-		int ok = 0;
-		fe = new eDVBFrontend(m_nr, num_fe, ok);
-		if (ok)
-			m_frontend.push_back(fe);
+		{
+			int ok = 0;
+			fe = new eDVBFrontend(m_nr, num_fe, ok);
+			if (ok)
+				m_frontend.push_back(fe);
+		}
+		{
+			int ok = 0;
+			fe = new eDVBFrontend(m_nr, num_fe, ok, true);
+			if (ok)
+				m_simulate_frontend.push_back(fe);
+		}
 		++num_fe;
 	}
 	
@@ -173,9 +182,9 @@ int eDVBAdapterLinux::getNumFrontends()
 	return m_frontend.size();
 }
 
-RESULT eDVBAdapterLinux::getFrontend(ePtr<eDVBFrontend> &fe, int nr)
+RESULT eDVBAdapterLinux::getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simulate)
 {
-	eSmartPtrList<eDVBFrontend>::iterator i(m_frontend.begin());
+	eSmartPtrList<eDVBFrontend>::iterator i(simulate ? m_simulate_frontend.begin() : m_frontend.begin());
 	while (nr && (i != m_frontend.end()))
 	{
 		--nr;
@@ -249,6 +258,32 @@ void eDVBResourceManager::addAdapter(iDVBAdapter *adapter)
 			}
 		}
 	}
+
+	prev_dvbt_frontend = 0;
+	for (i=0; i<num_fe; ++i)
+	{
+		ePtr<eDVBFrontend> frontend;
+		if (!adapter->getFrontend(frontend, i, true))
+		{
+			int frontendType=0;
+			frontend->getFrontendType(frontendType);
+			eDVBRegisteredFrontend *new_fe = new eDVBRegisteredFrontend(frontend, adapter);
+//			CONNECT(new_fe->stateChanged, eDVBResourceManager::feStateChanged);
+			m_simulate_frontend.push_back(new_fe);
+			frontend->setSEC(m_sec);
+			// we must link all dvb-t frontends ( for active antenna voltage )
+			if (frontendType == iDVBFrontend::feTerrestrial)
+			{
+				if (prev_dvbt_frontend)
+				{
+					prev_dvbt_frontend->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (long)new_fe);
+					frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (long)&(*prev_dvbt_frontend));
+				}
+				prev_dvbt_frontend = new_fe;
+			}
+		}
+	}
+
 }
 
 PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
@@ -273,16 +308,24 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		if (!i->m_frontend->setSlotInfo(obj))
 			return NULL;
 	}
+	pos=0;
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_simulate_frontend.begin()); i != m_simulate_frontend.end(); ++i)
+	{
+		ePyObject obj = PyList_GET_ITEM(list, pos++);
+		if (!i->m_frontend->setSlotInfo(obj))
+			return NULL;
+	}
 	Py_RETURN_NONE;
 }
 
-RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm)
+RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm, bool simulate)
 {
+	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
 	int foundone = 0;
 
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 	{
 		int c = i->m_frontend->isCompatibleWith(feparm);
 
@@ -291,12 +334,15 @@ RESULT eDVBResourceManager::allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, eP
 
 		if (!i->m_inuse)
 		{
+//			eDebug("Slot %d, score %d", i->m_frontend->getSlotID(), c);
 			if (c > bestval)
 			{
 				bestval = c;
 				best = i;
 			}
 		}
+//		else
+//			eDebug("Slot %d, score %d... but BUSY!!!!!!!!!!!", i->m_frontend->getSlotID(), c);
 	}
 
 	if (best)
@@ -467,11 +513,24 @@ RESULT eDVBResourceManager::getChannelList(ePtr<iDVBChannelList> &list)
 		return -ENOENT;
 }
 
-RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel)
+#define eDebugNoSimulate(x...) \
+	do { \
+		if (!simulate) \
+			eDebug(x); \
+	} while(0)
+//		else \
+//		{ \
+//			eDebugNoNewLine("SIMULATE:"); \
+//			eDebug(x); \
+//		} \
+
+
+RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool simulate)
 {
 		/* first, check if a channel is already existing. */
+	std::list<active_channel> &active_channels = simulate ? m_active_simulate_channels : m_active_channels;
 
-	if (m_cached_channel)
+	if (!simulate && m_cached_channel)
 	{
 		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
 		if(channelid==cache_chan->getChannelID())
@@ -485,30 +544,30 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		m_releaseCachedChannelTimer.stop();
 	}
 
-//	eDebug("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
-	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i)
+	eDebugNoSimulate("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
+	for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end(); ++i)
 	{
-//		eDebug("available channel.. %04x:%04x", i->m_channel_id.transport_stream_id.get(), i->m_channel_id.original_network_id.get());
+		eDebugNoSimulate("available channel.. %04x:%04x", i->m_channel_id.transport_stream_id.get(), i->m_channel_id.original_network_id.get());
 		if (i->m_channel_id == channelid)
 		{
-//			eDebug("found shared channel..");
+			eDebugNoSimulate("found shared channel..");
 			channel = i->m_channel;
 			return 0;
 		}
 	}
-	
+
 	/* no currently available channel is tuned to this channelid. create a new one, if possible. */
 
 	if (!m_list)
 	{
-		eDebug("no channel list set!");
+		eDebugNoSimulate("no channel list set!");
 		return errNoChannelList;
 	}
 
 	ePtr<iDVBFrontendParameters> feparm;
 	if (m_list->getChannelFrontendData(channelid, feparm))
 	{
-		eDebug("channel not found!");
+		eDebugNoSimulate("channel not found!");
 		return errChannelNotInList;
 	}
 
@@ -516,7 +575,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 	
 	ePtr<eDVBAllocatedFrontend> fe;
 
-	int err = allocateFrontend(fe, feparm);
+	int err = allocateFrontend(fe, feparm, simulate);
 	if (err)
 		return err;
 
@@ -530,9 +589,15 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		channel = 0;
 		return errChidNotFound;
 	}
-	m_cached_channel = channel = ch;
-	m_cached_channel_state_changed_conn =
-		CONNECT(ch->m_stateChanged,eDVBResourceManager::DVBChannelStateChanged);
+
+	if (simulate)
+		channel = ch;
+	else
+	{
+		m_cached_channel = channel = ch;
+		m_cached_channel_state_changed_conn =
+			CONNECT(ch->m_stateChanged,eDVBResourceManager::DVBChannelStateChanged);
+	}
 
 	return 0;
 }
@@ -610,26 +675,42 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 
 RESULT eDVBResourceManager::addChannel(const eDVBChannelID &chid, eDVBChannel *ch)
 {
-	m_active_channels.push_back(active_channel(chid, ch));
-	/* emit */ m_channelAdded(ch);
+	ePtr<iDVBFrontend> fe;
+	if (!ch->getFrontend(fe))
+	{
+		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
+		if (frontend->is_simulate())
+			m_active_simulate_channels.push_back(active_channel(chid, ch));
+		else
+		{
+			m_active_channels.push_back(active_channel(chid, ch));
+			/* emit */ m_channelAdded(ch);
+		}
+	}
 	return 0;
 }
 
 RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 {
-	int cnt = 0;
-	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end();)
+	ePtr<iDVBFrontend> fe;
+	if (!ch->getFrontend(fe))
 	{
-		if (i->m_channel == ch)
+		eDVBFrontend *frontend = (eDVBFrontend*)&(*fe);
+		std::list<active_channel> &active_channels = frontend->is_simulate() ? m_active_simulate_channels : m_active_channels;
+		int cnt = 0;
+		for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end();)
 		{
-			i = m_active_channels.erase(i);
-			++cnt;
-		} else
-			++i;
+			if (i->m_channel == ch)
+			{
+				i = active_channels.erase(i);
+				++cnt;
+			} else
+				++i;
+		}
+		ASSERT(cnt == 1);
+		if (cnt == 1)
+			return 0;
 	}
-	ASSERT(cnt == 1);
-	if (cnt == 1)
-		return 0;
 	return -ENOENT;
 }
 

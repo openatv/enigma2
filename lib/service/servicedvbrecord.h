@@ -20,7 +20,7 @@ public:
 	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id);
 	RESULT prepareStreaming();
-	RESULT start();
+	RESULT start(bool simulate=false);
 	RESULT stop();
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	RESULT getError(int &error) { error = m_error; return 0; }
@@ -31,6 +31,7 @@ public:
 
 private:
 	enum { stateIdle, statePrepared, stateRecording };
+	bool m_simulate;
 	int m_state, m_want_record;
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref);
