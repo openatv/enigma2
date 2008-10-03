@@ -235,7 +235,7 @@ class AdapterSetup(Screen, ConfigListScreen):
 
 		self.createConfig()
 		
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "ColorActions"],
 		{
 			"ok": self.ok,
 			"cancel": self.cancel,
