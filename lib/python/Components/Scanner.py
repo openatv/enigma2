@@ -32,6 +32,8 @@ def getType(file):
 			return "video/x-dvd-iso"
 		elif file[-12:].lower() == "video_ts.ifo":
 			return "video/x-dvd"
+		elif ext == "dat" and file[-11:-6].lower() == "avseq":
+			return "video/x-vcd"
 	return type
 
 class Scanner:

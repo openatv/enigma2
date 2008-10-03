@@ -195,7 +195,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	if (!ext)
 		ext = filename;
 
-	int is_mpeg_ps = !(strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin"));
+	int is_mpeg_ps = !(strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin") && strcasecmp(ext, ".dat"));
 	int is_mpeg_ts = !strcasecmp(ext, ".ts");
 	int is_matroska = !strcasecmp(ext, ".mkv");
 	int is_avi = !strcasecmp(ext, ".avi");
@@ -1092,7 +1092,6 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, Gst
 	}
 	else
 		eDebug("on inactive element: %s (%p) saw subtitle: %s",sourceName, element, text);
-	return TRUE;
 }
 
 RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
