@@ -2994,6 +2994,8 @@ void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 		case iTSMPEGDecoder::videoEvent::eventProgressiveChanged:
 			m_event((iPlayableService*)this, evVideoProgressiveChanged);
 			break;
+		default:
+			break;
 	}
 }
 

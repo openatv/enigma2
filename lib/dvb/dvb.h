@@ -107,7 +107,7 @@ public:
 	virtual RESULT getDemux(ePtr<eDVBDemux> &demux, int nr) = 0;
 	
 	virtual int getNumFrontends() = 0;
-	virtual RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr) = 0;
+	virtual RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simulate=false) = 0;
 };
 
 class eDVBAdapterLinux: public iDVBAdapter
@@ -120,12 +120,12 @@ public:
 	RESULT getDemux(ePtr<eDVBDemux> &demux, int nr);
 	
 	int getNumFrontends();
-	RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr);
+	RESULT getFrontend(ePtr<eDVBFrontend> &fe, int nr, bool simulate=false);
 	
 	static int exist(int nr);
 private:
 	int m_nr;
-	eSmartPtrList<eDVBFrontend> m_frontend;
+	eSmartPtrList<eDVBFrontend> m_frontend, m_simulate_frontend;
 	eSmartPtrList<eDVBDemux>    m_demux;
 };
 #endif // SWIG
@@ -138,7 +138,7 @@ class eDVBResourceManager: public iObject, public Object
 
 	eSmartPtrList<iDVBAdapter> m_adapter;
 	eSmartPtrList<eDVBRegisteredDemux> m_demux;
-	eSmartPtrList<eDVBRegisteredFrontend> m_frontend;
+	eSmartPtrList<eDVBRegisteredFrontend> m_frontend, m_simulate_frontend;
 	void addAdapter(iDVBAdapter *adapter);
 
 	struct active_channel
@@ -150,7 +150,7 @@ class eDVBResourceManager: public iObject, public Object
 		active_channel(const eDVBChannelID &chid, eDVBChannel *ch) : m_channel_id(chid), m_channel(ch) { }
 	};
 	
-	std::list<active_channel> m_active_channels;
+	std::list<active_channel> m_active_channels, m_active_simulate_channels;
 	
 	ePtr<iDVBChannelList> m_list;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
@@ -191,7 +191,7 @@ public:
 	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
 
 		/* allocate channel... */
-	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel);
+	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool simulate=false);
 	RESULT allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel);
 	static RESULT getInstance(ePtr<eDVBResourceManager> &);
 
@@ -202,7 +202,7 @@ public:
 
 			   there might be a priority given to certain frontend/chid
 			   combinations. this will be evaluated here. */
-	RESULT allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm);
+	RESULT allocateFrontend(ePtr<eDVBAllocatedFrontend> &fe, ePtr<iDVBFrontendParameters> &feparm, bool simulate=false);
 
 	RESULT allocateFrontendByIndex(ePtr<eDVBAllocatedFrontend> &fe, int slot_index);
 			/* allocate a demux able to filter on the selected frontend. */

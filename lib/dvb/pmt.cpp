@@ -524,9 +524,9 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 	}
 }
 
-int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue)
+int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate)
 {
-	RESULT res;
+	RESULT res=0;
 	m_reference = ref;
 	
 	m_use_decode_demux = use_decode_demux;
@@ -536,16 +536,17 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 	{
 		eDVBChannelID chid;
 		ref.getChannelID(chid);
-		res = m_resourceManager->allocateChannel(chid, m_channel);
-		eDebug("allocate Channel: res %d", res);
+		res = m_resourceManager->allocateChannel(chid, m_channel, simulate);
+		if (!simulate)
+			eDebug("allocate Channel: res %d", res);
 
 		ePtr<iDVBChannelList> db;
 		if (!m_resourceManager->getChannelList(db))
-				db->getService((eServiceReferenceDVB&)m_reference, m_service);
+			db->getService((eServiceReferenceDVB&)m_reference, m_service);
 
-		if (!res)
+		if (!res && !simulate)
 			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
-	} else
+	} else if (!simulate) // no simulation of playback services
 	{
 		eDVBMetaParser parser;
 
@@ -577,37 +578,40 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		m_channel = m_pvr_channel;
 	}
 
-	if (m_channel)
+	if (!simulate)
 	{
-		m_channel->connectStateChange(
-			slot(*this, &eDVBServicePMTHandler::channelStateChanged), 
-			m_channelStateChanged_connection);
-		m_last_channel_state = -1;
-		channelStateChanged(m_channel);
-
-		m_channel->connectEvent(
-			slot(*this, &eDVBServicePMTHandler::channelEvent), 
-			m_channelEvent_connection);
-
-		if (ref.path.empty())
+		if (m_channel)
 		{
-			delete m_dvb_scan;
-			m_dvb_scan = new eDVBScan(m_channel, true, false);
-			m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
-		}
-	} else
-	{
-		if (res == eDVBResourceManager::errAllSourcesBusy)
-			serviceEvent(eventNoResources);
-		else /* errChidNotFound, errNoChannelList, errChannelNotInList, errNoSourceFound */
-			serviceEvent(eventMisconfiguration);
-		return res;
-	}
+			m_channel->connectStateChange(
+				slot(*this, &eDVBServicePMTHandler::channelStateChanged), 
+				m_channelStateChanged_connection);
+			m_last_channel_state = -1;
+			channelStateChanged(m_channel);
+	
+			m_channel->connectEvent(
+				slot(*this, &eDVBServicePMTHandler::channelEvent), 
+				m_channelEvent_connection);
 
-	if (m_pvr_channel)
-	{
-		m_pvr_channel->setCueSheet(cue);
-		m_pvr_channel->playFile(ref.path.c_str());
+			if (ref.path.empty())
+			{
+				delete m_dvb_scan;
+				m_dvb_scan = new eDVBScan(m_channel, true, false);
+				m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
+			}
+		} else
+		{
+			if (res == eDVBResourceManager::errAllSourcesBusy)
+				serviceEvent(eventNoResources);
+			else /* errChidNotFound, errNoChannelList, errChannelNotInList, errNoSourceFound */
+				serviceEvent(eventMisconfiguration);
+			return res;
+		}
+
+		if (m_pvr_channel)
+		{
+			m_pvr_channel->setCueSheet(cue);
+			m_pvr_channel->playFile(ref.path.c_str());
+		}
 	}
 
 	return res;
@@ -642,6 +646,7 @@ void eDVBServicePMTHandler::free()
 		m_pvr_channel->stopFile();
 		m_pvr_channel->setCueSheet(0);
 	}
+
 	m_PMT.stop();
 	m_PAT.stop();
 	m_service = 0;

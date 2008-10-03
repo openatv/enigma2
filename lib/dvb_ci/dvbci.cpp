@@ -525,9 +525,9 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 //			eDebug("use_count is now %d", slot->use_count);
 			slot = next;
 		}
+		// check if another service is waiting for the CI
+		recheckPMTHandlers();
 	}
-	// check if another service is waiting for the CI
-	recheckPMTHandlers();
 }
 
 void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
