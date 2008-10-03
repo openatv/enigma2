@@ -127,11 +127,8 @@ class VideoSetup(Screen, ConfigListScreen):
 	def apply(self):
 		port = config.av.videoport.value
 		mode = config.av.videomode[port].value
-		rate =config.av.videorate[mode].value
+		rate = config.av.videorate[mode].value
 		if (port, mode, rate) != self.last_good:
-			config.av.videoport.value = self.last_good[0]
-			config.av.videomode[port].value = self.last_good[1]
-			config.av.videorate[mode].value = self.last_good[2]
 			self.hw.setMode(port, mode, rate)
 			from Screens.MessageBox import MessageBox
 			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 20, default = False)

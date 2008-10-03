@@ -167,6 +167,7 @@ class VideoHardware:
 		self.updateAspect(None)
 
 	def saveMode(self, port, mode, rate):
+		print "saveMode", port, mode, rate
 		config.av.videoport.value = port
 		config.av.videoport.save()
 		config.av.videomode[port].value = mode
