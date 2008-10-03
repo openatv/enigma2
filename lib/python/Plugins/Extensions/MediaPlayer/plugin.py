@@ -843,6 +843,15 @@ def filescan(**kwargs):
 			description = "View Movies...",
 			openfnc = filescan_open,
 		),
+		Scanner(mimetypes = ["video/x-vcd"],
+			paths_to_scan =
+				[
+					ScanPath(path = "mpegav", with_subdirs = False),
+				],
+			name = "Video CD",
+			description = "View Video CD...",
+			openfnc = filescan_open,
+		),
 		Scanner(mimetypes = ["audio/mpeg", "audio/x-wav", "application/ogg"],
 			paths_to_scan =
 				[
