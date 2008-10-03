@@ -1,4 +1,4 @@
-from config import config, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean
+from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean
 from enigma import eAVSwitch
 from SystemInfo import SystemInfo
 
@@ -162,3 +162,17 @@ def InitAVSwitch():
 			open("/proc/stb/audio/ac3", "w").write(configElement.value and "downmix" or "passthrough")
 		config.av.downmix_ac3 = ConfigYesNo(default = True)
 		config.av.downmix_ac3.addNotifier(setAC3Downmix)
+
+	try:
+		can_osd_alpha = open("/proc/stb/video/alpha", "r") and True or False
+	except:
+		can_osd_alpha = False
+
+	SystemInfo["CanChangeOsdAlpha"] = can_osd_alpha
+
+	def setAlpha(config):
+		open("/proc/stb/video/alpha", "w").write(str(config.value))
+
+	if can_osd_alpha:
+		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
+		config.av.osd_alpha.addNotifier(setAlpha)
