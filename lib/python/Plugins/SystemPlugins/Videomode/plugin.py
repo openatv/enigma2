@@ -95,6 +95,9 @@ class VideoSetup(Screen, ConfigListScreen):
 			if SystemInfo["CanDownmixAC3"]:
 				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3))
 
+		if SystemInfo["CanChangeOsdAlpha"]:
+			self.list.append(getConfigListEntry(_("OSD visibility"), config.av.osd_alpha))
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 

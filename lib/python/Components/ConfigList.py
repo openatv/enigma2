@@ -9,7 +9,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session = None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		self.l.setSeperation(100)
+		self.l.setSeperation(200)
 		self.timer = eTimer()
 		self.list = list
 		self.onSelectionChanged = [ ]
