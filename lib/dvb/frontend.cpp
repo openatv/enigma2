@@ -1276,14 +1276,15 @@ void eDVBFrontend::getTransponderData(ePyObject dest, bool original)
 			case feTerrestrial:
 			{
 				FRONTENDPARAMETERS front;
-				if (!original)
+				if (m_fd == -1 && !original)
+					original = true;
+				else if (ioctl(m_fd, FE_GET_FRONTEND, &front)<0)
 				{
-					if (!m_simulate && m_fd != -1 && ioctl(m_fd, FE_GET_FRONTEND, &front)<0)
-						eDebug("FE_GET_FRONTEND (%m)");
+					eDebug("FE_GET_FRONTEND failed (%m)");
+					original = true;
 				}
-				else
 				{
-					const FRONTENDPARAMETERS &parm = original ? this->parm : front;
+					const FRONTENDPARAMETERS &parm = original || m_simulate ? this->parm : front;
 					const char *tmp = "INVERSION_AUTO";
 					switch(parm_inversion)
 					{
