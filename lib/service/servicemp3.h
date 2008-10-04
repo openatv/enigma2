@@ -113,9 +113,12 @@ public:
 	struct audioStream
 	{
 		GstPad* pad;
-		enum { atMP2, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG };
-		int type; // mpeg2, ac3, dts, ...
+		enum { atUnknown, atMP2, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG } type;
 		std::string language_code; /* iso-639, if available. */
+		audioStream()
+			:pad(0), type(atUnknown)
+		{
+		}
 	};
 	struct subtitleStream
 	{

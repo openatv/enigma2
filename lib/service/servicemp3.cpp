@@ -393,7 +393,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				eDebug ("fakesink = %p", sink);
 				g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
 				gst_bin_add_many(GST_BIN (m_gst_pipeline), subsource, parser, sink, NULL);
-				GstPadLinkReturn res = gst_element_link(subsource, parser);
+				gboolean res = gst_element_link(subsource, parser);
 				eDebug ("parser link = %d", res);
 				res = gst_element_link(parser, sink);
 				eDebug ("sink link = %d", res);
@@ -806,7 +806,7 @@ int eServiceMP3::selectAudioStream(int i)
 		return -1;
 	}
 	g_object_get (G_OBJECT (selector), "n-pads", &nb_sources, NULL);
- 	if ( i >= m_audioStreams.size() || i >= nb_sources || m_currentAudioStream >= m_audioStreams.size() )
+ 	if ( (unsigned int)i >= m_audioStreams.size() || i >= nb_sources || (unsigned int)m_currentAudioStream >= m_audioStreams.size() )
 		return -2;
 	char sinkpad[8];
 	sprintf(sinkpad, "sink%d", i);
@@ -914,16 +914,22 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		if (gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_audiocodec) && m_audioStreams.size())
 		{
 			std::vector<audioStream>::iterator IterAudioStream = m_audioStreams.begin();
-			while ( IterAudioStream->language_code.length() && IterAudioStream != m_audioStreams.end())
-				IterAudioStream++;
+			while ( IterAudioStream != m_audioStreams.end() && (!IterAudioStream->language_code.empty() || IterAudioStream->type != audioStream::atUnknown))
+				++IterAudioStream;
 			if ( g_strrstr(g_audiocodec, "MPEG-1 layer 2") )
 				IterAudioStream->type = audioStream::atMP2;
 			else if ( g_strrstr(g_audiocodec, "MPEG-1 layer 3") )
 				IterAudioStream->type = audioStream::atMP3;
+			else if ( g_strrstr(g_audiocodec, "AAC audio") ) // dont checked if correct
+				IterAudioStream->type = audioStream::atAAC;
+			else if ( g_strrstr(g_audiocodec, "DTS audio") )
+				IterAudioStream->type = audioStream::atDTS;
 			else if ( g_strrstr(g_audiocodec, "AC-3 audio") )
 				IterAudioStream->type = audioStream::atAC3;
 			else if ( g_strrstr(g_audiocodec, "Uncompressed 16-bit PCM audio") )
 				IterAudioStream->type = audioStream::atPCM;
+			else
+				eDebug("unknown audiocodec '%s'!", g_audiocodec);
 			gchar *g_language;
 			if ( gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
 				IterAudioStream->language_code = std::string(g_language);
@@ -992,7 +998,7 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 		eDebug ("fakesink %s = %p", elemname, sink);
 		g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
 		gst_bin_add_many(pipeline, parser, sink, NULL);
-		GstPadLinkReturn res = gst_pad_link(pad, gst_element_get_static_pad(parser, "sink"));
+		gboolean res = gst_pad_link(pad, gst_element_get_static_pad(parser, "sink"));
 		eDebug ("parser link = %d", res);
 		res = gst_element_link(parser, sink);
 		eDebug ("sink link = %d", res);
@@ -1079,7 +1085,7 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 
 void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
 {
-	const char *text = (unsigned char *)GST_BUFFER_DATA(buffer);
+	const unsigned char *text = (unsigned char *)GST_BUFFER_DATA(buffer);
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	gchar *sourceName;
 	sourceName = gst_object_get_name(GST_OBJECT(element));
@@ -1087,11 +1093,11 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, Gst
 	{
 		eDVBTeletextSubtitlePage page;
 		gRGB rgbcol(0xD0,0xD0,0xD0);
-		page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, text));
+		page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, (const char*)text));
 		(_this->m_subtitle_widget)->setPage(page);
 	}
 	else
-		eDebug("on inactive element: %s (%p) saw subtitle: %s",sourceName, element, text);
+		eDebug("on inactive element: %s (%p) saw subtitle: %s",sourceName, element, (const char*)text);
 }
 
 RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
@@ -1101,7 +1107,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	ePyObject entry;
 	int tuplesize = PyTuple_Size(tuple);
 	int type = 0;
-	int page, magazine, pid;
+	int pid;
 
 	if (!PyTuple_Check(tuple))
 		goto error_out;
