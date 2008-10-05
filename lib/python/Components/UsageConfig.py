@@ -55,7 +55,8 @@ def InitUsageConfig():
 		("5", "DVB-T/-S/-C") ])
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
-
+	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
+	
 	def TunerTypePriorityOrderChanged(configElement):
 		setTunerTypePriorityOrder(int(configElement.value))
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged)
