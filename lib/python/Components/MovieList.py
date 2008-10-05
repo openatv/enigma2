@@ -2,6 +2,7 @@ from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
 from Components.MultiContent import MultiContentEntryText
+from Components.config import config
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
@@ -83,13 +84,19 @@ class MovieList(GUIComponent):
 		if len <= 0: #recalc len when not already done
 			cur_idx = self.l.getCurrentSelectionIndex()
 			x = self.list[cur_idx]
-			len = x[1].getLength(x[0]) #recalc the movie length...
+			if config.usage.load_length_of_movies_in_moviellist.value:
+				len = x[1].getLength(x[0]) #recalc the movie length...
+			else:
+				len = 0 #dont recalc movielist to speedup loading the list
 			self.list[cur_idx] = (x[0], x[1], x[2], len) #update entry in list... so next time we don't need to recalc
 		
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
-			len = "?:??"
+			if config.usage.load_length_of_movies_in_moviellist.value:
+				len = "?:??"
+			else:
+				len = "X:XX"
 		
 		res = [ None ]
 		
