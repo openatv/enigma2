@@ -498,6 +498,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		return str(type(self)) + "(" + self.text + ")"
 
 class MovieLocationBox(LocationBox):
+	skinName = "LocationBox"
+
 	def __init__(self, session, text, dir, minFree = None):
 		inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 		LocationBox.__init__(self, session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = inhibitDirs, minFree = minFree)
