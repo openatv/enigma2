@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-04 10:06+0200\n"
-"PO-Revision-Date: 2008-09-03 09:35+0100\n"
+"POT-Creation-Date: 2008-10-05 22:57+0200\n"
+"PO-Revision-Date: 2008-10-03 10:56+0100\n"
 "Last-Translator:  <silelis@tlen.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -364,7 +364,7 @@ msgid "All"
 msgstr "Wszystkie"
 
 msgid "All Satellites"
-msgstr ""
+msgstr "Wwszystkie satelity"
 
 msgid "All..."
 msgstr "Wszystkie..."
@@ -381,9 +381,8 @@ msgstr "Alternatywny priorytet usług tunera"
 msgid "An empty filename is illegal."
 msgstr "Pusta nazwa pliku jest nieldozwolona."
 
-#, python-format
-msgid "An error has occured. (%s)"
-msgstr "Pojawił się błąd. (%s)"
+msgid "An unknown error occured!"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabski"
@@ -413,8 +412,14 @@ msgstr "Dźwięk"
 msgid "Audio Options..."
 msgstr "Opcje Dźwięku..."
 
+msgid "Authoring mode"
+msgstr ""
+
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Auto chapter split every ? minutes (0=never)"
+msgstr ""
 
 msgid "Auto scart switching"
 msgstr "Auto przełączanie scart"
@@ -422,8 +427,14 @@ msgstr "Auto przełączanie scart"
 msgid "Automatic"
 msgstr "Automatycznie"
 
+msgid "Automatic SSID lookup"
+msgstr ""
+
 msgid "Automatic Scan"
 msgstr "Automatyczne skanowanie"
+
+msgid "Available format variables"
+msgstr ""
 
 msgid "B"
 msgstr "B"
@@ -489,7 +500,7 @@ msgid "Burn DVD"
 msgstr "Wypal DVD"
 
 msgid "Burn to DVD..."
-msgstr ""
+msgstr "Nagrywanie na DVD..."
 
 msgid "Bus: "
 msgstr "Bus:"
@@ -613,6 +624,12 @@ msgstr "Poziom kodu HP"
 msgid "Coderate LP"
 msgstr "Poziom kodu LP"
 
+msgid "Collection name"
+msgstr ""
+
+msgid "Collection settings"
+msgstr ""
+
 msgid "Color Format"
 msgstr "Format kolorów"
 
@@ -668,11 +685,17 @@ msgstr ""
 msgid "Constellation"
 msgstr "Konstelacja"
 
+msgid "Content does not fit on DVD!"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Kontynuuj odtwarzanie"
 
 msgid "Contrast"
 msgstr "Kontrast"
+
+msgid "Could not load Medium! No disc inserted?"
+msgstr ""
 
 msgid "Create movie folder failed"
 msgstr "Tworzenie katalogu filmu nie powiodło się"
@@ -741,6 +764,9 @@ msgstr "DVD przycisk dół"
 msgid "DVD left key"
 msgstr "DVD przycisk lewo"
 
+msgid "DVD media toolbox"
+msgstr ""
+
 msgid "DVD right key"
 msgstr "DVD przycisk prawo"
 
@@ -808,6 +834,9 @@ msgstr "Tryb DiSEqC"
 
 msgid "DiSEqC repeats"
 msgstr "Odpowiedzi DiSEqC"
+
+msgid "Direct playback of linked titles without menu"
+msgstr ""
 
 #, python-format
 msgid "Directory %s nonexistent."
@@ -900,7 +929,7 @@ msgstr ""
 "Czy chcesz zrobić teraz kopię zapasową?\n"
 "Po naciśnięciu OK, proszę czekać!"
 
-msgid "Do you want to burn this project to DVD medium?"
+msgid "Do you want to burn this collection to DVD medium?"
 msgstr ""
 
 msgid "Do you want to do a service scan?"
@@ -918,7 +947,7 @@ msgstr "Czy chcesz zainstalować domyślna listę satelit?"
 msgid "Do you want to play DVD in drive?"
 msgstr "Czy chcesz odtważać DVD znajdujące się w czytniku?"
 
-msgid "Do you want to preview this project before burning?"
+msgid "Do you want to preview this DVD before burning?"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -963,7 +992,7 @@ msgstr "Pobieranie..."
 msgid "Downloading plugin information. Please wait..."
 msgstr "Pobieranie informacji o pluginie. Proszę czekać..."
 
-msgid "Dreambox DVD record"
+msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr ""
 
 msgid "Dutch"
@@ -986,7 +1015,7 @@ msgid "Edit DNS"
 msgstr "Edytuj DNS"
 
 msgid "Edit chapters of current title"
-msgstr ""
+msgstr "Edycja rozdziału"
 
 msgid "Edit services list"
 msgstr "Edytuj listę serwisów"
@@ -1115,6 +1144,12 @@ msgstr "Opuść kreatora"
 msgid "Expert"
 msgstr "Ekspert"
 
+msgid "Extended Networksetup Plugin..."
+msgstr ""
+
+msgid "Extended Setup..."
+msgstr "Zaawansowana konfiguracja..."
+
 msgid "Extensions"
 msgstr "Rozszerzenia"
 
@@ -1156,6 +1191,12 @@ msgstr "Skończone"
 
 msgid "Finnish"
 msgstr "Fiński"
+
+msgid "Font size"
+msgstr ""
+
+msgid "Format"
+msgstr ""
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Oblicz powtórzenie ramki podczas nie-płynnego zwijania"
@@ -1446,13 +1487,16 @@ msgstr "Limity właczony"
 msgid "Link:"
 msgstr "Łącze:"
 
+msgid "Linked titles with a DVD menu"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "Lista zapamiętanych urządzeń"
 
 msgid "Lithuanian"
 msgstr "Litewski"
 
-msgid "Load saved project from disk"
+msgid "Load"
 msgstr ""
 
 msgid "Local Network"
@@ -1508,6 +1552,12 @@ msgstr "Odtwarzacz Multimedialny"
 
 msgid "MediaPlayer"
 msgstr "Odtwarzacz Multimedialny"
+
+msgid "Medium is not a writeable DVD!"
+msgstr ""
+
+msgid "Medium is not empty!"
+msgstr ""
 
 msgid "Menu"
 msgstr "Menu"
@@ -1644,6 +1694,9 @@ msgstr "Następny"
 
 msgid "No"
 msgstr "Nie"
+
+msgid "No (supported) DVDROM found!"
+msgstr ""
 
 msgid "No 50 Hz, sorry. :("
 msgstr "Brak 50 Hz, przepraszam. :("
@@ -1798,6 +1851,9 @@ msgstr "OK, przeprowadź mnie poprzez proces aktualizacji"
 msgid "OSD Settings"
 msgstr "Ustawienia OSD"
 
+msgid "OSD visibility"
+msgstr ""
+
 msgid "Off"
 msgstr "Wyłącz"
 
@@ -1811,7 +1867,7 @@ msgid "Online-Upgrade"
 msgstr "Online - Aktualizacja"
 
 msgid "Only Free scan"
-msgstr ""
+msgstr "Tylko wolne skanowanie"
 
 msgid "Orbital Position"
 msgstr "Pozycja orbitalna"
@@ -2052,7 +2108,7 @@ msgid "Prev"
 msgstr "Poprzedni"
 
 msgid "Preview menu"
-msgstr ""
+msgstr "Podgląd menu"
 
 msgid "Primary DNS"
 msgstr "Pierwszy DNS"
@@ -2301,9 +2357,6 @@ msgstr "Zapisz"
 msgid "Save Playlist"
 msgstr "Zachowaj Playliste"
 
-msgid "Save current project to disk"
-msgstr "Zapisz aktualny projekt na dysku"
-
 msgid "Scaling Mode"
 msgstr "Tryb skalowania"
 
@@ -2427,6 +2480,9 @@ msgstr "Wybierz wejście Wideo"
 msgid "Select video mode"
 msgstr "Wybierz tryb wideo"
 
+msgid "Seperate titles with a main menu"
+msgstr ""
+
 msgid "Sequence repeat"
 msgstr "Potwórka sekwencji"
 
@@ -2478,14 +2534,8 @@ msgstr "Serwisy"
 msgid "Set as default Interface"
 msgstr "Ustaw jako domyslny interfejs"
 
-msgid "Set collection name"
-msgstr ""
-
 msgid "Set limits"
 msgstr "Ustaw limity"
-
-msgid "Set menu background"
-msgstr ""
 
 msgid "Settings"
 msgstr "Ustawienia"
@@ -2557,7 +2607,7 @@ msgid "Singlestep (GOP)"
 msgstr "Pojedyńczy krok (GOP)"
 
 msgid "Skin..."
-msgstr ""
+msgstr "Skóry..."
 
 msgid "Sleep Timer"
 msgstr "Wyłącznik czasowy"
@@ -2720,7 +2770,7 @@ msgid "TV System"
 msgstr "System TV"
 
 msgid "Table of content for collection"
-msgstr ""
+msgstr "Tabela zawartości dla kolekcji"
 
 msgid "Terrestrial"
 msgstr "Naziemny"
@@ -2743,6 +2793,12 @@ msgid ""
 msgstr ""
 "Dziękuję za użycie kreatora. Twój tuner jest już gotowy do użycia.\n"
 "Wciśnij OK i rozpocznij zabawę z Dreamboxem."
+
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Nieudane tworzenie kopia zapasowa. Wybierz inna lokalizacje kopii."
@@ -2819,6 +2875,15 @@ msgid ""
 msgstr ""
 "Nie ma wystarczająco miejsca na wybranej partycji.\n"
 "Czy kontynuować?"
+
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
+msgstr ""
+
+#, python-format
+msgid "This Dreambox can't decode %s video streams!"
+msgstr ""
 
 msgid "This is step number 2."
 msgstr "To jest krok numer 2."
@@ -2954,6 +3019,9 @@ msgstr "Toneburst"
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
+msgid "Track"
+msgstr ""
+
 msgid "Translation"
 msgstr "Tłumaczenie"
 
@@ -3051,6 +3119,9 @@ msgstr "Uniwersalny LNB"
 msgid "Unmount failed"
 msgstr "Błąd odmontowania"
 
+msgid "Update"
+msgstr ""
+
 msgid "Updates your receiver's software"
 msgstr "Aktualizuje oprogramowanie Twojego tunera"
 
@@ -3130,6 +3201,9 @@ msgstr "Zdefiniowany przez użytkownika"
 
 msgid "VCR scart"
 msgstr "Przełącz VCR"
+
+msgid "VMGM (intro trailer)"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Ustawienia czysości obrazu"
@@ -3214,6 +3288,15 @@ msgid "Weekday"
 msgstr "Dzień tygodnia"
 
 msgid ""
+"Welcome to the Cutlist editor.\n"
+"\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
+"\n"
+"Then seek to the end, press OK, select 'end cut'. That's it."
+msgstr ""
+
+msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
@@ -3254,6 +3337,9 @@ msgstr "Sieć bezprzewodowa"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Błąd zapisu podczas nagrywania. Dysk jest pełny?\n"
+
+msgid "Write failed!"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3495,8 +3581,14 @@ msgstr ""
 "Jesteś pewien że chcesz przywrócić\n"
 "następującą kopie:\n"
 
+msgid "audio tracks"
+msgstr ""
+
 msgid "back"
 msgstr "wróć"
+
+msgid "background image"
+msgstr ""
 
 msgid "better"
 msgstr "lepszy"
@@ -3507,9 +3599,6 @@ msgstr "Czarna lista"
 msgid "by Exif"
 msgstr "przez Exif"
 
-msgid "cancel"
-msgstr "skauj"
-
 msgid "change recording (duration)"
 msgstr "zmień czas trwania nagrania"
 
@@ -3517,7 +3606,7 @@ msgid "change recording (endtime)"
 msgstr "zmień koniec czasu nagrania"
 
 msgid "chapters"
-msgstr ""
+msgstr "rozdziały"
 
 msgid "circular left"
 msgstr "Kołój w lewo"
@@ -3527,6 +3616,9 @@ msgstr "Kołój w prawo"
 
 msgid "clear playlist"
 msgstr "Wyczyść playliste"
+
+msgid "color"
+msgstr ""
 
 msgid "complex"
 msgstr "złożony"
@@ -3551,6 +3643,9 @@ msgstr "Utwórz katalog"
 
 msgid "daily"
 msgstr "Codziennie"
+
+msgid "day"
+msgstr ""
 
 msgid "delete"
 msgstr "usuń"
@@ -3628,7 +3723,7 @@ msgid "equal to"
 msgstr "równy"
 
 msgid "exceeds dual layer medium!"
-msgstr ""
+msgstr "przekroczona pojemność nosnika dual layer!"
 
 msgid "exit DVD player or return to file browser"
 msgstr "Wyjdź z odtważacza DVD lub powróć do przeglądarki plików"
@@ -3639,14 +3734,23 @@ msgstr "Wyjdź z mediaplayera"
 msgid "exit movielist"
 msgstr "Wyjdź z listy filmów"
 
+msgid "failed"
+msgstr ""
+
+msgid "filename"
+msgstr ""
+
 msgid "fine-tune your display"
 msgstr "czysto ustaw swój ekran"
+
+msgid "font face"
+msgstr ""
 
 msgid "forward to the next chapter"
 msgstr "Przeskocz do nastepnego rozdziału"
 
 msgid "free"
-msgstr ""
+msgstr "wolne"
 
 msgid "free diskspace"
 msgstr "Wolna przestrzeń dyskowa"
@@ -3660,6 +3764,9 @@ msgstr "Przejdź do głębokiego czuwania"
 msgid "go to standby"
 msgstr "Przejdź do stanu czuwania"
 
+msgid "headline"
+msgstr ""
+
 msgid "hear radio..."
 msgstr "Słuchaj radia..."
 
@@ -3671,6 +3778,9 @@ msgstr "ukryj rozszerzony opis"
 
 msgid "hide player"
 msgstr "Ukryj odtwarzacz"
+
+msgid "highlighted button"
+msgstr ""
 
 msgid "horizontal"
 msgstr "Pozioma (H)"
@@ -3722,6 +3832,9 @@ msgstr "Opuść odtwarzacz filmów..."
 msgid "left"
 msgstr "Lewo"
 
+msgid "length"
+msgstr ""
+
 msgid "list style compact"
 msgstr "kompaktowy styl listy"
 
@@ -3749,6 +3862,9 @@ msgstr "Ręcznie"
 msgid "menu"
 msgstr "menu"
 
+msgid "menulist"
+msgstr ""
+
 msgid "mins"
 msgstr "min's"
 
@@ -3759,7 +3875,7 @@ msgid "minutes"
 msgstr "Minutach"
 
 msgid "month"
-msgstr ""
+msgstr "miesiąc"
 
 msgid "move PiP to main picture"
 msgstr "przesuń PiP do głównego obrazu"
@@ -3807,16 +3923,19 @@ msgid "nothing connected"
 msgstr "nic nie połączono"
 
 msgid "of a DUAL layer medium used."
-msgstr ""
+msgstr "nośnika dual laye zużyto."
 
 msgid "of a SINGLE layer medium used."
-msgstr ""
+msgstr "nosnika single layer zużyto."
 
 msgid "off"
 msgstr "Wyłączony"
 
 msgid "on"
 msgstr "Włączony"
+
+msgid "on READ ONLY medium."
+msgstr ""
 
 msgid "once"
 msgstr "Raz"
@@ -3900,7 +4019,7 @@ msgid "remove this mark"
 msgstr "Usuń to zaznaczenie"
 
 msgid "repeat playlist"
-msgstr ""
+msgstr "Powtarzaj playlistę."
 
 msgid "repeated"
 msgstr "Powtórzone"
@@ -4008,6 +4127,9 @@ msgstr "skocz naprzód (wpisz czas)"
 msgid "sort by date"
 msgstr "sortuj poprzez datę"
 
+msgid "spaces (top, between rows, left)"
+msgstr ""
+
 msgid "standard"
 msgstr "standardowy"
 
@@ -4052,6 +4174,9 @@ msgstr "przełącz na następna ścieżke audio"
 
 msgid "switch to the next subtitle language"
 msgstr "przełącz na nastepną sćieżkę napisów"
+
+msgid "text"
+msgstr "Tekst"
 
 msgid "this recording"
 msgstr "To nagranie"
@@ -4101,6 +4226,9 @@ msgstr "Tygodniowy"
 msgid "whitelist"
 msgstr "Biała lista"
 
+msgid "year"
+msgstr ""
+
 msgid "yes"
 msgstr "Tak"
 
@@ -4133,6 +4261,9 @@ msgstr "Przełączony"
 
 #~ msgid "Add title..."
 #~ msgstr "Dodaję tytuł..."
+
+#~ msgid "An error has occured. (%s)"
+#~ msgstr "Pojawił się błąd. (%s)"
 
 #~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"
@@ -4183,8 +4314,17 @@ msgstr "Przełączony"
 #~ msgid "Device Setup..."
 #~ msgstr "Ustawienia urządzenia:"
 
+#~ msgid "Do you want to burn this project to DVD medium?"
+#~ msgstr "Czy chcesz zapisac projekt na nośnik DVD"
+
+#~ msgid "Do you want to preview this project before burning?"
+#~ msgstr "Czy chcesz obejrzec projekt przed nagraniem?"
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "czy chcesz zobaczyć podręcznik wyciętej listy?"
+
+#~ msgid "Dreambox DVD record"
+#~ msgstr "Nagrywarka DVD Dreambox"
 
 #~ msgid "Edit current title"
 #~ msgstr "Edytuj aktualny tytuł"
@@ -4208,11 +4348,11 @@ msgstr "Przełączony"
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Zamknij kreator i skonfiguruj ręcznie w późniejszym czasie"
 
-#~ msgid "Extended Setup..."
-#~ msgstr "Zaawansowana konfiguracja..."
-
 #~ msgid "Games / Plugins"
 #~ msgstr "Gry / Pluginy"
+
+#~ msgid "Load saved project from disk"
+#~ msgstr "Odczytaj projekt z dysku"
 
 #~ msgid "Movie Menu"
 #~ msgstr "Menu filmu"
@@ -4281,8 +4421,17 @@ msgstr "Przełączony"
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Restary interfejsu bezprzewodowego"
 
+#~ msgid "Save current project to disk"
+#~ msgstr "Zapisz aktualny projekt na dysku"
+
 #~ msgid "Save..."
 #~ msgstr "Zapisywanie..."
+
+#~ msgid "Set collection name"
+#~ msgstr "Ustaw nazwe kolekcji"
+
+#~ msgid "Set menu background"
+#~ msgstr "Ustaw tło menu"
 
 #~ msgid "Show files from %s"
 #~ msgstr "Pokaż pliki od %s"
@@ -4394,6 +4543,9 @@ msgstr "Przełączony"
 #~ "Interfejs sieci bezprzewodowej nie działa!\n"
 #~ "Proszę wybrać kolejną akcję."
 
+#~ msgid "cancel"
+#~ msgstr "skauj"
+
 #~ msgid "equal to Socket A"
 #~ msgstr "Równaj do Gniazda A"
 
@@ -4427,6 +4579,3 @@ msgstr "Przełączony"
 #~ msgstr ""
 #~ "Skanowanie w toku - %d %% Zakończone!\n"
 #~ "%d znalezionych serwisów!"
-
-#~ msgid "text"
-#~ msgstr "Tekst"
