@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-28 08:17+0200\n"
-"PO-Revision-Date: 2008-06-16 00:17+0100\n"
+"POT-Creation-Date: 2008-10-06 14:09+0200\n"
+"PO-Revision-Date: 2008-10-06 12:56+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -299,7 +299,7 @@ msgid "Action on long powerbutton press"
 msgstr "Acción dejando pulsado el encendido"
 
 msgid "Action:"
-msgstr ""
+msgstr "Acción:"
 
 msgid "Activate Picture in Picture"
 msgstr "Activar PiP"
@@ -314,7 +314,7 @@ msgid "Add"
 msgstr "Añadir"
 
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Añadir Marcador"
 
 msgid "Add a mark"
 msgstr "Añadir marca"
@@ -326,10 +326,7 @@ msgid "Add timer"
 msgstr "Grabar"
 
 msgid "Add title"
-msgstr ""
-
-msgid "Add title..."
-msgstr "Añadir título..."
+msgstr "Añadir título"
 
 msgid "Add to bouquet"
 msgstr "Añadir a la lista"
@@ -370,6 +367,9 @@ msgstr "Album:"
 msgid "All"
 msgstr "Todo"
 
+msgid "All Satellites"
+msgstr "Todos satélites"
+
 msgid "All..."
 msgstr "Todo..."
 
@@ -385,9 +385,8 @@ msgstr "Prioridad de sintonizadores alternativa"
 msgid "An empty filename is illegal."
 msgstr "Un nombre de fichero vacío es ilegal."
 
-#, python-format
-msgid "An error has occured. (%s)"
-msgstr "Ha ocurrido un error. (%s)"
+msgid "An unknown error occured!"
+msgstr "¡Ocurrió un error desconocido!"
 
 msgid "Arabic"
 msgstr "Arábigo"
@@ -417,8 +416,14 @@ msgstr "Sonido"
 msgid "Audio Options..."
 msgstr "Opciones de sonido..."
 
+msgid "Authoring mode"
+msgstr "Modo autorizativo"
+
 msgid "Auto"
 msgstr "Auto"
+
+msgid "Auto chapter split every ? minutes (0=never)"
+msgstr "Dividir capítulo cada ? minutos (0=nunca)"
 
 msgid "Auto scart switching"
 msgstr "Intercambio a euroconector auto"
@@ -426,8 +431,14 @@ msgstr "Intercambio a euroconector auto"
 msgid "Automatic"
 msgstr "Automático"
 
+msgid "Automatic SSID lookup"
+msgstr "Buscar SSID automático"
+
 msgid "Automatic Scan"
 msgstr "Búsqueda automática"
+
+msgid "Available format variables"
+msgstr "Variables de formato disponibles"
 
 msgid "B"
 msgstr "B"
@@ -484,18 +495,15 @@ msgid "Behavior when a movie reaches the end"
 msgstr "Cuando una película ha terminado"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Marcadores"
 
 msgid "Brightness"
 msgstr "Brillo"
 
-msgid "Burn"
-msgstr "Grabar"
-
 msgid "Burn DVD"
 msgstr "Grabar DVD"
 
-msgid "Burn To DVD..."
+msgid "Burn to DVD..."
 msgstr "Grabar a DVD..."
 
 msgid "Bus: "
@@ -508,7 +516,7 @@ msgstr ""
 "Presionando el botón OK en el mando, la barra de información será visible."
 
 msgid "C"
-msgstr ""
+msgstr "C"
 
 msgid "C-Band"
 msgstr "Banda-C"
@@ -621,6 +629,12 @@ msgstr "Velocidad de código HP"
 msgid "Coderate LP"
 msgstr "Velocidad de código LP"
 
+msgid "Collection name"
+msgstr "Nombre de la colección"
+
+msgid "Collection settings"
+msgstr "Configuración de la colección"
+
 msgid "Color Format"
 msgstr "Formato de Color"
 
@@ -655,7 +669,7 @@ msgid "Conflicting timer"
 msgstr "Grabación en conflicto"
 
 msgid "Connected to"
-msgstr ""
+msgstr "Conectado a"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Conectado a Fritz!Box!"
@@ -676,18 +690,24 @@ msgstr ""
 msgid "Constellation"
 msgstr "Constelación"
 
+msgid "Content does not fit on DVD!"
+msgstr "¡Los contenidos no caben en un DVD!"
+
 msgid "Continue playing"
 msgstr "Reproducción contínua"
 
 msgid "Contrast"
 msgstr "Contraste"
 
+msgid "Could not load Medium! No disc inserted?"
+msgstr "No puedo cargar el Medio! Hay disco insertado?"
+
 msgid "Create movie folder failed"
 msgstr "Falló la creación de la carpeta de películas"
 
 #, python-format
 msgid "Creating directory %s failed."
-msgstr ""
+msgstr "Falló la creación del directorio %s."
 
 msgid "Creating partition failed"
 msgstr "Falló la creación de la partición"
@@ -726,7 +746,7 @@ msgid "Czech"
 msgstr "Checo"
 
 msgid "D"
-msgstr ""
+msgstr "D"
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -748,6 +768,9 @@ msgstr "DVD tecla abajo"
 
 msgid "DVD left key"
 msgstr "DVD tecla izda"
+
+msgid "DVD media toolbox"
+msgstr "Barra de disco DVD"
 
 msgid "DVD right key"
 msgstr "DVD tecla dcha"
@@ -817,9 +840,12 @@ msgstr "Modo DiSEqC"
 msgid "DiSEqC repeats"
 msgstr "Repetir DiSEqC"
 
+msgid "Direct playback of linked titles without menu"
+msgstr "Reproduce los títulos enlazados sin menú"
+
 #, python-format
 msgid "Directory %s nonexistent."
-msgstr ""
+msgstr "No existe el directorio %s."
 
 msgid "Disable"
 msgstr "Desabilitar"
@@ -831,7 +857,7 @@ msgid "Disable Subtitles"
 msgstr "Desactivar Subtítulos"
 
 msgid "Disable timer"
-msgstr ""
+msgstr "Desactivar programación"
 
 msgid "Disabled"
 msgstr "Desactivado"
@@ -895,11 +921,11 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr ""
+msgstr "¿Quiere borrar el directorio %s del disco?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr ""
+msgstr "¿Quiere borrar su marcador %s?"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -907,6 +933,9 @@ msgid ""
 msgstr ""
 "¿Quiere hacer un backup ahora?\n"
 "Después de pulsar OK, ¡por favor espere!"
+
+msgid "Do you want to burn this collection to DVD medium?"
+msgstr "¿Quiere grabar esta colección a disco DVD?"
 
 msgid "Do you want to do a service scan?"
 msgstr "¿Quiere hacer una búsqueda de canales?"
@@ -918,10 +947,13 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "¿Quiere activar el control de adultos en su dreambox?"
 
 msgid "Do you want to install default sat lists?"
-msgstr ""
+msgstr "¿Quiere instalar las listas de satélite por defecto?"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Ejecutar el DVD de la unidad?"
+
+msgid "Do you want to preview this DVD before burning?"
+msgstr "¿Quiere prever este DVD antes de grabarlo?"
 
 msgid "Do you want to restore your settings?"
 msgstr "¿Quiere restaurar su configuración?"
@@ -965,6 +997,9 @@ msgstr "Descargando"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Descargando información del plugin. Espere..."
 
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr "Formato dreambox DVD (HDTV compatible)"
+
 msgid "Dutch"
 msgstr "Alemán"
 
@@ -984,8 +1019,8 @@ msgstr "Este"
 msgid "Edit DNS"
 msgstr "Editar DNS"
 
-msgid "Edit current title"
-msgstr "Editar título actual"
+msgid "Edit chapters of current title"
+msgstr "Editar capítulos del título actual"
 
 msgid "Edit services list"
 msgstr "Editar la lista de canales"
@@ -1000,10 +1035,7 @@ msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Editar la configuración de red de su Dreambox.\n"
 
 msgid "Edit title"
-msgstr ""
-
-msgid "Edit title..."
-msgstr "Editar título..."
+msgstr "Editar título"
 
 msgid "Electronic Program Guide"
 msgstr "Guía de Programación Electrónica"
@@ -1021,7 +1053,7 @@ msgid "Enable parental control"
 msgstr "Activar el control de adultos"
 
 msgid "Enable timer"
-msgstr ""
+msgstr "Activar programación"
 
 msgid "Enabled"
 msgstr "Activado"
@@ -1117,6 +1149,12 @@ msgstr "Salir del asistente"
 msgid "Expert"
 msgstr "Experto"
 
+msgid "Extended Networksetup Plugin..."
+msgstr "Plugin de configuración de red extendido..."
+
+msgid "Extended Setup..."
+msgstr "Configuración avanzada..."
+
 msgid "Extensions"
 msgstr "Extensiones"
 
@@ -1158,6 +1196,12 @@ msgstr "Terminado"
 
 msgid "Finnish"
 msgstr "Finlandés"
+
+msgid "Font size"
+msgstr "Tamaño de fuente"
+
+msgid "Format"
+msgstr "Formato"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Contador de tramas sin problemas de sombras"
@@ -1352,7 +1396,7 @@ msgid "Integrated Ethernet"
 msgstr "Ethernet integrado"
 
 msgid "Integrated Wireless"
-msgstr ""
+msgstr "Wireless integrado"
 
 msgid "Intermediate"
 msgstr "Intermedio"
@@ -1365,7 +1409,7 @@ msgstr "Localización inválida"
 
 #, python-format
 msgid "Invalid directory selected: %s"
-msgstr ""
+msgstr "Directorio seleccionado inválido: %s"
 
 msgid "Inversion"
 msgstr "Inversión"
@@ -1447,11 +1491,20 @@ msgstr "Límites activos"
 msgid "Link:"
 msgstr "Enlace:"
 
+msgid "Linked titles with a DVD menu"
+msgstr "Enlazar los títulos con un menú de DVD"
+
 msgid "List of Storage Devices"
 msgstr "Listar dispositivos de almacenamiento"
 
 msgid "Lithuanian"
 msgstr "Lituano"
+
+msgid "Load"
+msgstr "Cargar"
+
+msgid "Load Length of Movies in Movielist"
+msgstr "Calcular longitud de Películas en la lista"
 
 msgid "Local Network"
 msgstr "Red Local"
@@ -1506,6 +1559,12 @@ msgstr "Reproductor"
 
 msgid "MediaPlayer"
 msgstr "Reproductor"
+
+msgid "Medium is not a writeable DVD!"
+msgstr "¡El disco no es un DVD escribible!"
+
+msgid "Medium is not empty!"
+msgstr "¡El disco no está vacío!"
 
 msgid "Menu"
 msgstr "Menú"
@@ -1631,9 +1690,6 @@ msgstr "Asistente de Red"
 msgid "New"
 msgstr "Nuevo"
 
-msgid "New DVD"
-msgstr "DVD nuevo"
-
 msgid "New pin"
 msgstr "Nuevo pin"
 
@@ -1645,6 +1701,9 @@ msgstr "Siguiente"
 
 msgid "No"
 msgstr "No"
+
+msgid "No (supported) DVDROM found!"
+msgstr "¡DVDROM no soportado!"
 
 msgid "No 50 Hz, sorry. :("
 msgstr "Lo siento pero no hay 50 Hz. :("
@@ -1726,6 +1785,8 @@ msgid ""
 " Please verify that you have attached a compatible WLAN device or enable you "
 "local network interface."
 msgstr ""
+"He encontrado un interface wireless que no funciona.\n"
+"Por favor, verifique que ha conectado un dispositivo WLAN compatible."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -1797,6 +1858,9 @@ msgstr "OK, guíeme a través del proceso de actualización"
 msgid "OSD Settings"
 msgstr "Configurar OSD"
 
+msgid "OSD visibility"
+msgstr "Visibilidad OSD"
+
 msgid "Off"
 msgstr "Off"
 
@@ -1808,6 +1872,9 @@ msgstr "Uno"
 
 msgid "Online-Upgrade"
 msgstr "Actualización-Online"
+
+msgid "Only Free scan"
+msgstr "Sólo escanear libres"
 
 msgid "Orbital Position"
 msgstr "Posición Orbital"
@@ -1835,7 +1902,7 @@ msgid "Pan&Scan"
 msgstr "Pan&Scan"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Directorio padre"
 
 msgid "Parental control"
 msgstr "Control de adultos"
@@ -1905,7 +1972,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Por favor, introduzca un nombre de fichero (vacío = usar fecha actual)"
 
 msgid "Please enter name of the new directory"
-msgstr ""
+msgstr "Entre un nombre para el directorio nuevo"
 
 msgid "Please enter the correct pin code"
 msgstr "Por favor, ponga el pin correcto"
@@ -1920,9 +1987,11 @@ msgid ""
 "Please note that the previously selected media could not be accessed and "
 "therefore the default directory is being used instead."
 msgstr ""
+"El medio seleccionado anterior no puede ser accedido y el directorio por "
+"defecto va a ser usado en su lugar."
 
 msgid "Please press OK to continue."
-msgstr ""
+msgstr "Pulse OK para continuar."
 
 msgid "Please press OK!"
 msgstr "Por favor, pulse OK"
@@ -1967,6 +2036,8 @@ msgid ""
 "Please use the UP and DOWN keys to select your language. Afterwards press "
 "the OK button."
 msgstr ""
+"Use las teclas ARRIBA y ABAJO para seleccionar su idioma. Después, pulse el "
+"botón OK."
 
 msgid "Please wait... Loading list..."
 msgstr "Espere... Cargando lista..."
@@ -2032,7 +2103,7 @@ msgid "Press OK to activate the settings."
 msgstr "Pulse OK para activar la configuración."
 
 msgid "Press OK to edit the settings."
-msgstr ""
+msgstr "Pulse OK para editar la configuración."
 
 msgid "Press OK to scan"
 msgstr "Pulse OK para buscar"
@@ -2042,6 +2113,9 @@ msgstr "Pulse OK para comenzar la búsqueda"
 
 msgid "Prev"
 msgstr "Ant"
+
+msgid "Preview menu"
+msgstr "Menú previsualizar"
 
 msgid "Primary DNS"
 msgstr "DNS Principal"
@@ -2140,7 +2214,7 @@ msgid "Refresh rate selection."
 msgstr "Selección de velocidad de refresco."
 
 msgid "Remove Bookmark"
-msgstr ""
+msgstr "Borrar Marcador"
 
 msgid "Remove Plugins"
 msgstr "Borrar Plugins"
@@ -2159,7 +2233,7 @@ msgstr "Borrar el título"
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
-msgstr ""
+msgstr "Falló el borrado del directorio %s. (Puede no estar vacío)"
 
 msgid "Rename"
 msgstr "Renombrar"
@@ -2278,22 +2352,16 @@ msgid "Satfinder"
 msgstr "Buscador de satélites"
 
 msgid "Sats"
-msgstr ""
+msgstr "Sats"
 
 msgid "Saturday"
 msgstr "Sábado"
 
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 msgid "Save Playlist"
 msgstr "Guardar lista de reproducción"
-
-msgid "Save current project to disk"
-msgstr "Guardar el proyecto actual a disco"
-
-msgid "Save..."
-msgstr "Guardar..."
 
 msgid "Scaling Mode"
 msgstr "Modo de búsqueda"
@@ -2417,6 +2485,9 @@ msgstr "Seleccionar la entrada de video"
 msgid "Select video mode"
 msgstr "Seleccionar el modo de video"
 
+msgid "Seperate titles with a main menu"
+msgstr "Separar títulos con un menú principal"
+
 msgid "Sequence repeat"
 msgstr "Repetir secuencia"
 
@@ -2466,7 +2537,7 @@ msgid "Services"
 msgstr "Canales"
 
 msgid "Set as default Interface"
-msgstr ""
+msgstr "Poner como interface por defecto"
 
 msgid "Set limits"
 msgstr "Poner límites"
@@ -2539,6 +2610,9 @@ msgstr "Transponder único"
 
 msgid "Singlestep (GOP)"
 msgstr "En un solo paso (GOP)"
+
+msgid "Skin..."
+msgstr "Piel..."
 
 msgid "Sleep Timer"
 msgstr "Apagado automático"
@@ -2703,8 +2777,8 @@ msgstr ""
 msgid "TV System"
 msgstr "Sistema de TV"
 
-msgid "Table of content to be burned to DVD:"
-msgstr ""
+msgid "Table of content for collection"
+msgstr "Tabla de contenido para la colección"
 
 msgid "Terrestrial"
 msgstr "Terrestre"
@@ -2727,6 +2801,14 @@ msgid ""
 msgstr ""
 "Gracias por usar el asistente. Su dream está ahora listo para su uso.\n"
 "Por favor, pulse OK para comenzar su Dreambox."
+
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
+"El estándar DVD no soporta video H.264 (HDTV). ¿Quiere crear un DVD de datos "
+"Dreambox (el cuál no podrá ser reproducido por un reproductor de DVDs)?"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "El backup ha fallado. Elija una localización diferente para el backup."
@@ -2756,7 +2838,7 @@ msgstr "El paquete no contiene nada."
 
 #, python-format
 msgid "The path %s already exists."
-msgstr ""
+msgstr "El directorio %s ya existe."
 
 msgid "The pin code has been changed successfully."
 msgstr "El pin ha sido cambiado correctamente."
@@ -2805,6 +2887,17 @@ msgid ""
 msgstr ""
 "No debe haber suficiente especio en la partición seleccionada.\n"
 "¿Seguro que quiere continuar?"
+
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
+msgstr ""
+"El disco DVD-RW está ya formateado - reformatear borrará todos los "
+"contenidos del disco."
+
+#, python-format
+msgid "This Dreambox can't decode %s video streams!"
+msgstr "¡Este Dreambox no puede reproducir videos %s!"
 
 msgid "This is step number 2."
 msgstr "Este es el paso número 2."
@@ -2941,6 +3034,9 @@ msgstr "Toneburst"
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
+msgid "Track"
+msgstr "Pista"
+
 msgid "Translation"
 msgstr "Traducción"
 
@@ -3037,6 +3133,9 @@ msgstr "LNB Universal"
 msgid "Unmount failed"
 msgstr "Falló el desmonte"
 
+msgid "Update"
+msgstr "Actualizar"
+
 msgid "Updates your receiver's software"
 msgstr "Actualizaciones a su software del receptor"
 
@@ -3059,7 +3158,7 @@ msgid "Use DHCP"
 msgstr "Usar DHCP"
 
 msgid "Use Interface"
-msgstr ""
+msgstr "Interface en uso"
 
 msgid "Use Power Measurement"
 msgstr "Medida de Potencia Usada"
@@ -3118,6 +3217,9 @@ msgstr "Definido por el usuario"
 
 msgid "VCR scart"
 msgstr "Euroconector VCR"
+
+msgid "VMGM (intro trailer)"
+msgstr "VMGM (trailer intro)"
 
 msgid "Video Fine-Tuning"
 msgstr "Ajueste de video fino"
@@ -3202,6 +3304,20 @@ msgid "Weekday"
 msgstr "DiaSemana"
 
 msgid ""
+"Welcome to the Cutlist editor.\n"
+"\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
+"\n"
+"Then seek to the end, press OK, select 'end cut'. That's it."
+msgstr ""
+"Bienvenido al editor de listas de cortes.\n"
+"\n"
+"Vaya al comienzo que quiera cortar. Pulse OK, seleccione corte inicial'.\n"
+"\n"
+"Vaya al final, pulse OK, seleccione 'corte final'. Eso es todo."
+
+msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
@@ -3232,9 +3348,6 @@ msgstr "Oeste"
 msgid "What do you want to scan?"
 msgstr "¿Qué quiere buscar?"
 
-msgid "When complete, press Key 0 to burn the collection!"
-msgstr ""
-
 msgid "Where do you want to backup your settings?"
 msgstr "¿Donde quiere backup su configuración?"
 
@@ -3246,6 +3359,9 @@ msgstr "Red Inalámbrica"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Error mientras grababa. ¿Disco lleno?\n"
+
+msgid "Write failed!"
+msgstr "¡Falló la escritura!"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3439,7 +3555,7 @@ msgid "add alternatives"
 msgstr "añadir alternativas"
 
 msgid "add bookmark"
-msgstr ""
+msgstr "añadir marcador"
 
 msgid "add bouquet"
 msgstr "añadir lista"
@@ -3490,8 +3606,14 @@ msgstr ""
 "está seguro que quiere restaurar\n"
 "el siguiente backup:\n"
 
+msgid "audio tracks"
+msgstr "pistas de audio"
+
 msgid "back"
 msgstr "atrás"
+
+msgid "background image"
+msgstr "imagen de fondo"
 
 msgid "better"
 msgstr "mejor"
@@ -3502,14 +3624,14 @@ msgstr "lista negra"
 msgid "by Exif"
 msgstr "por Exif"
 
-msgid "cancel"
-msgstr ""
-
 msgid "change recording (duration)"
 msgstr "cambiar la grabación (duración)"
 
 msgid "change recording (endtime)"
 msgstr "cambiar grabación (hora fin)"
+
+msgid "chapters"
+msgstr "capítulos"
 
 msgid "circular left"
 msgstr "circular izda"
@@ -3519,6 +3641,9 @@ msgstr "circular dcha"
 
 msgid "clear playlist"
 msgstr "limpiar lista"
+
+msgid "color"
+msgstr "color"
 
 msgid "complex"
 msgstr "complejo"
@@ -3539,10 +3664,13 @@ msgid "copy to bouquets"
 msgstr "copiar a listas"
 
 msgid "create directory"
-msgstr ""
+msgstr "crear directorio"
 
 msgid "daily"
 msgstr "diariamente"
+
+msgid "day"
+msgstr "día"
 
 msgid "delete"
 msgstr "borrar"
@@ -3617,7 +3745,10 @@ msgid "end favourites edit"
 msgstr "fin edición de favoritos"
 
 msgid "equal to"
-msgstr ""
+msgstr "igual a"
+
+msgid "exceeds dual layer medium!"
+msgstr "¡excede el disco de doble capa!"
 
 msgid "exit DVD player or return to file browser"
 msgstr "salir del reproductor DVD o volver a sistema de archivos"
@@ -3628,11 +3759,23 @@ msgstr "salir del reproductor"
 msgid "exit movielist"
 msgstr "salir del menú de películas"
 
+msgid "failed"
+msgstr "falló"
+
+msgid "filename"
+msgstr "nombre de fichero"
+
 msgid "fine-tune your display"
 msgstr "Configurar en detalle tu TV"
 
+msgid "font face"
+msgstr "fuente"
+
 msgid "forward to the next chapter"
 msgstr "salte al capítulo siguiente"
+
+msgid "free"
+msgstr "libre"
 
 msgid "free diskspace"
 msgstr "espacio libre en disco"
@@ -3646,6 +3789,9 @@ msgstr "ir a pausa profunda"
 msgid "go to standby"
 msgstr "ir a pausa"
 
+msgid "headline"
+msgstr "cabecera"
+
 msgid "hear radio..."
 msgstr "escuchar radio..."
 
@@ -3657,6 +3803,9 @@ msgstr "ocultar descripción extendida"
 
 msgid "hide player"
 msgstr "ocultar reproductor"
+
+msgid "highlighted button"
+msgstr "botón iluminado"
 
 msgid "horizontal"
 msgstr "horizontal"
@@ -3708,6 +3857,9 @@ msgstr "salir del reproductor de películas..."
 msgid "left"
 msgstr "izquierda"
 
+msgid "length"
+msgstr "longitud"
+
 msgid "list style compact"
 msgstr "estilo de lista compacto"
 
@@ -3727,13 +3879,16 @@ msgid "locked"
 msgstr "bloqueado"
 
 msgid "loopthrough to"
-msgstr ""
+msgstr "conectado a"
 
 msgid "manual"
 msgstr "manual"
 
 msgid "menu"
 msgstr "menú"
+
+msgid "menulist"
+msgstr "lista de menú"
 
 msgid "mins"
 msgstr "mins"
@@ -3745,7 +3900,7 @@ msgid "minutes"
 msgstr "minutos"
 
 msgid "month"
-msgstr ""
+msgstr "mes"
 
 msgid "move PiP to main picture"
 msgstr "mover PiP a la imagen principal"
@@ -3792,11 +3947,20 @@ msgstr "no bloqueado"
 msgid "nothing connected"
 msgstr "nada conectado"
 
+msgid "of a DUAL layer medium used."
+msgstr "de un disco de DOBLE cara usado."
+
+msgid "of a SINGLE layer medium used."
+msgstr "de un disco de cara SIMPLE usado."
+
 msgid "off"
 msgstr "off"
 
 msgid "on"
 msgstr "on"
+
+msgid "on READ ONLY medium."
+msgstr "en disco SOLO LECTURA."
 
 msgid "once"
 msgstr "una vez"
@@ -3859,10 +4023,10 @@ msgid "remove before this position"
 msgstr "borrar antes de esta posición"
 
 msgid "remove bookmark"
-msgstr ""
+msgstr "borrar marcador"
 
 msgid "remove directory"
-msgstr ""
+msgstr "borrar directorio"
 
 msgid "remove entry"
 msgstr "eliminar entrada"
@@ -3914,7 +4078,7 @@ msgid "seconds"
 msgstr "segundos"
 
 msgid "select"
-msgstr ""
+msgstr "seleccionar"
 
 msgid "select movie"
 msgstr "seleccionar película"
@@ -3988,6 +4152,9 @@ msgstr "pasar adelante (introducir tiempo)"
 msgid "sort by date"
 msgstr "ordenar por fecha"
 
+msgid "spaces (top, between rows, left)"
+msgstr "espacios (arriba, entre filas, izda)"
+
 msgid "standard"
 msgstr "estándar"
 
@@ -4019,7 +4186,7 @@ msgid "swap PiP and main picture"
 msgstr "intercambiar PiP con la imagen principal"
 
 msgid "switch to bookmarks"
-msgstr ""
+msgstr "pasar a marcadores"
 
 msgid "switch to filelist"
 msgstr "cambiar a lista de ficheros"
@@ -4032,6 +4199,9 @@ msgstr "cambiar a la siguiente pista de audio"
 
 msgid "switch to the next subtitle language"
 msgstr "cambiar al siguiente idioma de subtítulos"
+
+msgid "text"
+msgstr "texto"
 
 msgid "this recording"
 msgstr "esta grabación"
@@ -4081,6 +4251,9 @@ msgstr "semanalmente"
 msgid "whitelist"
 msgstr "lista blanca"
 
+msgid "year"
+msgstr "año"
+
 msgid "yes"
 msgstr "si"
 
@@ -4122,6 +4295,12 @@ msgstr "zapeado"
 #~ msgid "Add files to playlist"
 #~ msgstr "Añadir ficheros a la lista"
 
+#~ msgid "Add title..."
+#~ msgstr "Añadir título..."
+
+#~ msgid "An error has occured. (%s)"
+#~ msgstr "Ha ocurrido un error. (%s)"
+
 #~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"
 #~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
@@ -4138,8 +4317,14 @@ msgstr "zapeado"
 #~ "Seguro que quiere habilitar su red local?\n"
 #~ "\n"
 
+#~ msgid "Burn"
+#~ msgstr "Grabar"
+
 #~ msgid "Burn DVD..."
 #~ msgstr "Grabar DVD..."
+
+#~ msgid "Burn To DVD..."
+#~ msgstr "Grabar a DVD..."
 
 #~ msgid "Choose Location"
 #~ msgstr "Elegir localización"
@@ -4165,6 +4350,12 @@ msgstr "zapeado"
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "¿Quiere ver un tutorial de la lista de corte?"
 
+#~ msgid "Edit current title"
+#~ msgstr "Editar título actual"
+
+#~ msgid "Edit title..."
+#~ msgstr "Editar título..."
+
 #~ msgid "Enable LAN"
 #~ msgstr "Habilitar LAN"
 
@@ -4177,9 +4368,6 @@ msgstr "zapeado"
 #~ msgstr ""
 #~ "Habilitar la red local de su Dreambox.\n"
 #~ "\n"
-
-#~ msgid "Extended Setup..."
-#~ msgstr "Configuración avanzada..."
 
 #~ msgid "Factoryreset"
 #~ msgstr "Borrado de fábrica"
@@ -4201,6 +4389,9 @@ msgstr "zapeado"
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Configuración del servidor de nombres..."
+
+#~ msgid "New DVD"
+#~ msgstr "DVD nuevo"
 
 #~ msgid ""
 #~ "No working wireless interface found.\n"
@@ -4258,6 +4449,12 @@ msgstr "zapeado"
 
 #~ msgid "Replace current playlist"
 #~ msgstr "Reemplazar la lista actual"
+
+#~ msgid "Save current project to disk"
+#~ msgstr "Guardar el proyecto actual a disco"
+
+#~ msgid "Save..."
+#~ msgstr "Guardar..."
 
 #~ msgid "Scan NIM"
 #~ msgstr "Escanear NIM"
@@ -4369,6 +4566,3 @@ msgstr "zapeado"
 
 #~ msgid "skip forward (self defined)"
 #~ msgstr "pasar adelante (definido)"
-
-#~ msgid "text"
-#~ msgstr "texto"
