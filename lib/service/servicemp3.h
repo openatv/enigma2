@@ -43,6 +43,8 @@ public:
 
 typedef struct _GstElement GstElement;
 
+typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG } audiotype_t;
+
 class eServiceMP3: public iPlayableService, public iPauseableService, 
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public iSubtitleOutput, public Object
 {
@@ -113,7 +115,7 @@ public:
 	struct audioStream
 	{
 		GstPad* pad;
-		enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG } type;
+		audiotype_t type;
 		std::string language_code; /* iso-639, if available. */
 		audioStream()
 			:pad(0), type(atUnknown)
@@ -152,7 +154,7 @@ private:
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
 
-	int gstCheckAudioPad(GstStructure* structure);
+	audiotype_t gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer data); /* for mpegdemux */
