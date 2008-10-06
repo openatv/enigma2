@@ -814,19 +814,19 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 // 	eDebug("eServiceMP3::getTrackInfo(&info, %i)",i);
  	if (i >= m_audioStreams.size())
 		return -2;
-	if (m_audioStreams[i].type == audioStream::atMPEG)
+	if (m_audioStreams[i].type == atMPEG)
 		info.m_description = "MPEG";
-	else if (m_audioStreams[i].type == audioStream::atMP3)
+	else if (m_audioStreams[i].type == atMP3)
 		info.m_description = "MP3";
-	else if (m_audioStreams[i].type == audioStream::atAC3)
+	else if (m_audioStreams[i].type == atAC3)
 		info.m_description = "AC3";
-	else if (m_audioStreams[i].type == audioStream::atAAC)
+	else if (m_audioStreams[i].type == atAAC)
 		info.m_description = "AAC";
-	else if (m_audioStreams[i].type == audioStream::atDTS)
+	else if (m_audioStreams[i].type == atDTS)
 		info.m_description = "DTS";
-	else if (m_audioStreams[i].type == audioStream::atPCM)
+	else if (m_audioStreams[i].type == atPCM)
 		info.m_description = "PCM";
-	else if (m_audioStreams[i].type == audioStream::atOGG)
+	else if (m_audioStreams[i].type == atOGG)
 		info.m_description = "OGG";
 	else
 		info.m_description = "???";
@@ -949,7 +949,7 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	return GST_BUS_PASS;
 }
 
-int eServiceMP3::gstCheckAudioPad(GstStructure* structure)
+audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 {
 	const gchar* type;
 	type = gst_structure_get_name(structure);
@@ -963,29 +963,29 @@ int eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 				case 1:
 				{
 					if ( layer == 3 )
-						return audioStream::atMP3;
+						return atMP3;
 					else
-						return audioStream::atMPEG;
+						return atMPEG;
 				}
 				case 2:
-					return audioStream::atMPEG;
+					return atMPEG;
 				case 4:
-					return audioStream::atAAC;
+					return atAAC;
 				default:
-					return audioStream::atUnknown;
+					return atUnknown;
 			}
 		}
 	else
 	{
 		eDebug("mime %s", type);
 		if (!strcmp(type, "audio/x-ac3") || !strcmp(type, "audio/ac3"))
-			return audioStream::atAC3;
+			return atAC3;
 		else if (!strcmp(type, "audio/x-dts") || !strcmp(type, "audio/dts"))
-			return audioStream::atDTS;
+			return atDTS;
 		else if (!strcmp(type, "audio/x-raw-int"))
-			return audioStream::atPCM;
+			return atPCM;
 	}
-	return audioStream::atUnknown;
+	return atUnknown;
 }
 
 void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer user_data)
