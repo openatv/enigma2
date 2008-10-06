@@ -1601,22 +1601,22 @@ int eDVBServicePlay::getInfo(int w)
 	{
 #if HAVE_DVB_API_VERSION >= 3
 	case sVideoHeight:
-		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventSizeChanged)
 			return m_videoEventData.height;
 		else
 			return readMpegProc("yres", !m_is_primary);
 	case sVideoWidth:
-		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventSizeChanged)
 			return m_videoEventData.width;
 		else
 			return readMpegProc("xres", !m_is_primary);
 	case sFrameRate:
-		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventFrameRateChanged)
 			return m_videoEventData.framerate;
 		else
 			return readMpegProc("framerate", !m_is_primary);
 	case sProgressive:
-		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventProgressiveChanged)
 			return m_videoEventData.progressive;
 		return readMpegProc("progressive", !m_is_primary);
 #else
@@ -1626,7 +1626,7 @@ int eDVBServicePlay::getInfo(int w)
 	{
 		int val;
 #if HAVE_DVB_API_VERSION >= 3
-		if (m_videoEventData.type != iTSMPEGDecoder::videoEvent::eventUnknown)
+		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventSizeChanged)
 			return m_videoEventData.aspect == VIDEO_FORMAT_4_3 ? 1 : 3;
 		else if ((val=readMpegProc("aspect", !m_is_primary)) != -1)
 			return val;
