@@ -113,7 +113,7 @@ public:
 	struct audioStream
 	{
 		GstPad* pad;
-		enum { atUnknown, atMP2, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG } type;
+		enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG } type;
 		std::string language_code; /* iso-639, if available. */
 		audioStream()
 			:pad(0), type(atUnknown)
@@ -122,8 +122,12 @@ public:
 	};
 	struct subtitleStream
 	{
-		GstElement* element;
+		GstPad* pad;
 		std::string language_code; /* iso-639, if available. */
+		subtitleStream()
+			:pad(0)
+		{
+		}
 	};
 private:
 	int m_currentAudioStream;
@@ -134,7 +138,7 @@ private:
 	eSubtitleWidget *m_subtitle_widget;
 	int m_currentTrickRatio;
 	eTimer m_seekTimeout;
-	void eServiceMP3::seekTimeoutCB();
+	void seekTimeoutCB();
 	friend class eServiceFactoryMP3;
 	std::string m_filename;
 	eServiceMP3(const char *filename);
@@ -148,6 +152,7 @@ private:
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
 
+	int gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer data); /* for mpegdemux */
@@ -155,6 +160,7 @@ private:
 	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data); /* for decodebin */
 	static void gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *l, gpointer data);
 	static void gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data);
+	static void gstCBsubtitlePadEvent(GstPad *pad, GstEvent *event, gpointer user_data);
 	void gstPoll(const int&);
 };
 #endif
