@@ -366,27 +366,23 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			if (stat(srt_filename, &buffer) == 0)
 			{
 				eDebug("subtitle file found: %s",srt_filename);
-				GstElement *subsource;
-				subsource = gst_element_factory_make ("filesrc", "srt_source");
-				g_object_set (G_OBJECT (subsource), "location", filename, NULL);
-				GstElement *parser = gst_element_factory_make("subparse", "srt_parse");
-				eDebug ("subparse = %p", parser);
-				GstElement *sink = gst_element_factory_make("fakesink", "srt_sink");
-				eDebug ("fakesink = %p", sink);
+				GstElement *subsource = gst_element_factory_make ("filesrc", "srt_source");
+				g_object_set (G_OBJECT (subsource), "location", srt_filename, NULL);
+				GstElement *parser = gst_element_factory_make("subparse", "parse_subtitles");
+				GstElement *switch_subtitles = gst_element_factory_make ("input-selector", "switch_subtitles");
+				GstElement *sink = gst_element_factory_make("fakesink", "sink_subtitles");
+				gst_bin_add_many(GST_BIN (m_gst_pipeline), subsource, switch_subtitles, parser, sink, NULL);
+				gst_element_link(subsource, switch_subtitles);
+				gst_element_link(switch_subtitles, parser);
+				gst_element_link(parser, sink);
+				g_object_set (G_OBJECT(switch_subtitles), "select-all", TRUE, NULL);
 				g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
-				gst_bin_add_many(GST_BIN (m_gst_pipeline), subsource, parser, sink, NULL);
-				gboolean res = gst_element_link(subsource, parser);
-				eDebug ("parser link = %d", res);
-				res = gst_element_link(parser, sink);
-				eDebug ("sink link = %d", res);
+				g_object_set (G_OBJECT(sink), "sync", TRUE, NULL);
 				g_signal_connect(sink, "handoff", G_CALLBACK(gstCBsubtitleAvail), this);
 				subtitleStream subs;
-// 				subs.element = sink;
+				subs.language_code = std::string(".srt file");
 				m_subtitleStreams.push_back(subs);
 			}
-			else
-				eDebug("subtitle file not found: %s",srt_filename);
-
 			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, audio, queue_audio, video, queue_video, NULL);
 			switch_audio = gst_element_factory_make ("input-selector", "switch_audio");
 			if (switch_audio)
