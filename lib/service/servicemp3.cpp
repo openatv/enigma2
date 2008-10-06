@@ -926,7 +926,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		}
 		for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
 		{
-			if ( IterAudioStream->pad )
+			if ( IterSubtitleStream->pad )
 			{
 				g_object_get(IterSubtitleStream->pad, "tags", &tags, NULL);
 				gchar *g_language;
@@ -1037,7 +1037,6 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 	}
 	if (g_strrstr(type,"application/x-ssa") || g_strrstr(type,"application/x-ass"))
 	{
-GstPadLinkReturn res;
 		GstElement *switch_subtitles = gst_bin_get_by_name(pipeline,"switch_subtitles");
 		if ( !switch_subtitles )
 		{
@@ -1049,12 +1048,11 @@ GstPadLinkReturn res;
 			gst_bin_add_many(pipeline, switch_subtitles, parser, sink, NULL);
 			gst_element_link(switch_subtitles, parser);
 			gst_element_link(parser, sink);
-			g_object_set (G_OBJECT(switch_subtitles), "select-all", TRUE, NULL);
 			g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
 			g_signal_connect(sink, "handoff", G_CALLBACK(gstCBsubtitleAvail), _this);
 		}
 		GstPad *sinkpad = gst_element_get_request_pad (switch_subtitles, "sink%d");
-		res = gst_pad_link(pad, sinkpad);
+		gst_pad_link(pad, sinkpad);
 		subtitleStream subs;
 		subs.pad = sinkpad;
 		_this->m_subtitleStreams.push_back(subs);
@@ -1136,12 +1134,11 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 
 void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
 {
-	eDebug("gstCBsubtitleAvail");
 	const unsigned char *text = (unsigned char *)GST_BUFFER_DATA(buffer);
+	eDebug("gstCBsubtitleAvail: %s",text);
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	if ( _this->m_subtitle_widget )
 	{
-		eDebug("subtitle text: %s",text);
 		eDVBTeletextSubtitlePage page;
 		gRGB rgbcol(0xD0,0xD0,0xD0);
 		page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, (const char*)text));
@@ -1184,7 +1181,6 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	sprintf(sinkpad, "sink%d", pid);
 	g_object_set (G_OBJECT (switch_subtitles), "active-pad", gst_element_get_pad (switch_subtitles, sinkpad), NULL);
 	g_object_get (G_OBJECT (switch_subtitles), "active-pad", &active_pad, NULL);
-	g_object_set (G_OBJECT (switch_subtitles), "select-all", FALSE, NULL);
 	gchar *name;
 	name = gst_pad_get_name (active_pad);
 	eDebug ("switched subtitles to (%s)", name);
