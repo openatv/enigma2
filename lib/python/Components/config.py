@@ -764,7 +764,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 
 class ConfigPassword(ConfigText):
 	def __init__(self, default = "", fixed_size = False, visible_width = False, censor = "*"):
-		ConfigText.__init__(self, default = "", fixed_size = fixed_size, visible_width = visible_width)
+		ConfigText.__init__(self, default = default, fixed_size = fixed_size, visible_width = visible_width)
 		self.censor_char = censor
 		self.hidden = True
 
