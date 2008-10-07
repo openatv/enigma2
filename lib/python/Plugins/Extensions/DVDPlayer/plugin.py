@@ -275,13 +275,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				iPlayableService.evUser+12: self.__menuClosed
 			})
 
-		self["DVDPlayerDirectionActions"] = HelpableActionMap(self, "DirectionActions",
+		self["DVDPlayerDirectionActions"] = ActionMap(["DirectionActions"],
 			{
 				#MENU KEY DOWN ACTIONS
-				"left": (self.keyLeft, _("DVD left key")),
-				"right": (self.keyRight, _("DVD right key")),
-				"up": (self.keyUp, _("DVD up key")),
-				"down": (self.keyDown, _("DVD down key")),
+				"left": self.keyLeft,
+				"right": self.keyRight,
+				"up": self.keyUp,
+				"down": self.keyDown,
 
 				#MENU KEY REPEATED ACTIONS
 				"leftRepeated": self.doNothing,
@@ -294,13 +294,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"rightUp": self.doNothing,
 				"upUp": self.doNothing,
 				"downUp": self.doNothing,
-			}, -2)
+			})
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		self["OkCancelActions"] = ActionMap(["OkCancelActions"],
 			{
-				"ok": (self.keyOk, _("DVD ENTER key")),
+				"ok": self.keyOk,
 				"cancel": self.keyCancel,
-			}, -2)
+			})
 
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "DVDPlayerActions",
 			{
@@ -315,7 +315,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(show optional DVD audio menu)")),
 				"nextAudioTrack": (self.nextAudioTrack, _("switch to the next audio track")),
 				"nextSubtitleTrack": (self.nextSubtitleTrack, _("switch to the next subtitle language")),
-				"seekBeginning": (self.seekBeginning, _("Jump to video title 1 (play movie from start)")),
+				"seekBeginning": self.seekBeginning,
 			}, -2)
 			
 		self["NumberActions"] = NumberActionMap( [ "NumberActions"],
