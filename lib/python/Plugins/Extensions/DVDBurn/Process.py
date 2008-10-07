@@ -392,7 +392,7 @@ class ImagingPostcondition(Condition):
 		return task.returncode == 0
 
 	def getErrorMessage(self, task):
-		return "python-imaging " + _("failed")
+		return _("Failed") + ": python-imaging"
 
 class ImagePrepareTask(Task):
 	def __init__(self, job):
