@@ -762,6 +762,26 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	def unsafeAssign(self, value):
 		self.value = str(value)
 
+class ConfigPassword(ConfigText):
+	def __init__(self, default = "", fixed_size = False, visible_width = False, censor = "*"):
+		ConfigText.__init__(self, default = "", fixed_size = fixed_size, visible_width = visible_width)
+		self.censor_char = censor
+		self.hidden = True
+
+	def getMulti(self, selected):
+		mtext, text, mark = ConfigText.getMulti(self, selected)
+		if self.hidden:
+			text = len(text) * self.censor_char
+		return (mtext, text, mark)
+			
+	def onSelect(self, session):
+		ConfigText.onSelect(self, session)
+		self.hidden = False
+
+	def onDeselect(self, session):
+		ConfigText.onDeselect(self, session)
+		self.hidden = True
+
 class ConfigNumber(ConfigText):
 	def __init__(self, default = 0):
 		ConfigText.__init__(self, str(default), fixed_size = False)
