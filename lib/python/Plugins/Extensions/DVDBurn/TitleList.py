@@ -13,7 +13,7 @@ from Components.Label import Label
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
-class TitleList(Screen):
+class TitleList(Screen, HelpableScreen):
 	skin = """
 		<screen position="90,83" size="560,445" title="DVD Tool" >
 		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -35,6 +35,7 @@ class TitleList(Screen):
 
 	def __init__(self, session, project = None):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		
 		self["titleactions"] = HelpableActionMap(self, "DVDTitleList",
 			{
