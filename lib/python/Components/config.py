@@ -507,6 +507,19 @@ class ConfigIP(ConfigSequence):
 	def getHTML(self, id):
 		# we definitely don't want leading zeros
 		return '.'.join(["%d" % d for d in self.value])
+	
+	def genText(self):
+		value = ""
+		mPos = self.marked_pos
+		num = 0;
+		for i in self._value:
+			if len(value):
+				value += self.seperator
+				if mPos >= len(value) - 1:
+					mPos += 1
+			value += str(i)
+			num += 1
+		return (value, mPos)
 
 class ConfigMAC(ConfigSequence):
 	def __init__(self, default):
