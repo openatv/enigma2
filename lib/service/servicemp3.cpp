@@ -1124,9 +1124,6 @@ void eServiceMP3::gstPoll(const int&)
 }
 
 eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::service+1, "eServiceFactoryMP3");
-#else
-#warning gstreamer not available, not building media player
-#endif
 
 void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
 {
@@ -1226,3 +1223,7 @@ PyObject *eServiceMP3::getSubtitleList()
 
 	return l;
 }
+
+#else
+#warning gstreamer not available, not building media player
+#endif
