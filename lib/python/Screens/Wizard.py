@@ -45,7 +45,7 @@ class WizardSummary(Screen):
 	def setText(self, text):
 		self["text"].setText(text)
 
-class Wizard(Screen, HelpableScreen):
+class Wizard(Screen):
 	def createSummary(self):
 			print "WizardCreateSummary"
 			return WizardSummary
@@ -150,7 +150,6 @@ class Wizard(Screen, HelpableScreen):
 
 	def __init__(self, session, showSteps = True, showStepSlider = True, showList = True, showConfig = True):
 		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
 
 		self.stepHistory = []
 
