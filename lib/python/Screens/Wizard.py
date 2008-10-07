@@ -3,7 +3,7 @@ from Screen import Screen
 import string
 
 from Screens.HelpMenu import HelpableScreen
-from Components.config import config, KEY_LEFT, KEY_RIGHT
+from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_DELETE, KEY_BACKSPACE
 from Components.Label import Label
 from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
@@ -180,7 +180,7 @@ class Wizard(Screen):
 		self["text"] = Label()
 
 		if showConfig:
-			self["config"] = ConfigList([])
+			self["config"] = ConfigList([], session = session)
 
 		if self.showSteps:
 			self["step"] = Label()
@@ -202,7 +202,7 @@ class Wizard(Screen):
 		
 		self.disableKeys = False
 		
-		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions", "SetupActions"],
 		{
 			"ok": self.ok,
 			"back": self.back,
@@ -214,6 +214,8 @@ class Wizard(Screen):
 			"green": self.green,
 			"yellow": self.yellow,
 			"blue":self.blue,
+			"deleteBackward": self.deleteBackward,
+			"deleteForward": self.deleteForward,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
 			"3": self.keyNumberGlobal,
@@ -241,6 +243,22 @@ class Wizard(Screen):
 	def blue(self):
 		print "blue"
 		pass
+	
+	def deleteForward(self):
+		self.resetCounter()
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.keyDelete()
+		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
+			self["config"].handleKey(KEY_DELETE)
+		print "deleteForward"
+
+	def deleteBackward(self):
+		self.resetCounter()
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self.configInstance.keyBackspace()
+		elif (self.wizard[self.currStep]["config"]["type"] == "dynamic"):
+			self["config"].handleKey(KEY_BACKSPACE)
+		print "deleteBackward"
 	
 	def setLCDTextCallback(self, callback):
 		self.lcdCallbacks.append(callback)
