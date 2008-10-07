@@ -517,6 +517,7 @@ class ConfigIP(ConfigSequence):
 				value += self.seperator
 				if mPos >= len(value) - 1:
 					mPos += 1
+			value += (" " * (len(str(self.limits[num][1]))-len(str(i))))
 			value += str(i)
 			num += 1
 		return (value, mPos)
