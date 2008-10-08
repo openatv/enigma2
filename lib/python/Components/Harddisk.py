@@ -248,7 +248,7 @@ class Partition:
 class HarddiskManager:
 	def __init__(self):
 		self.hdd = [ ]
-		
+		self.cd = ""
 		self.partitions = [ ]
 		
 		self.on_partition_list_change = CList()
@@ -301,6 +301,8 @@ class HarddiskManager:
 					if partition[0:len(blockdev)] != blockdev:
 						continue
 					partitions.append(partition)
+			else:
+				self.cd = "/dev/"+blockdev
 		except IOError:
 			error = True
 		return error, blacklisted, removable, is_cdrom, partitions
@@ -362,6 +364,9 @@ class HarddiskManager:
 				hdd += " (" + cap + ")"
 			list.append((hdd, hd))
 		return list
+
+	def getCD(self):
+		return self.cd
 
 	def getMountedPartitions(self, onlyhotplug = False):
 		return [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted()]

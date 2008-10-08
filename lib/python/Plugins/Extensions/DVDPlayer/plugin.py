@@ -12,6 +12,7 @@ from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
+from Components.Harddisk import harddiskmanager
 
 import servicedvd # load c++ part of dvd player plugin
 
@@ -338,9 +339,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				self.dvd_device = dvd_device
 				self.physicalDVD = True
 		else:
-			if fileExists("/dev/cdroms/cdrom0"):
-				print "physical dvd found (/dev/cdroms/cdrom0)"
-				self.dvd_device = "/dev/cdroms/cdrom0"
+			if fileExists(harddiskmanager.getCD()):
+				print "physical dvd found:", harddiskmanager.getCD()
+				self.dvd_device = harddiskmanager.getCD()
 				self.physicalDVD = True
 			else:
 				self.dvd_device = None
@@ -541,7 +542,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def showFileBrowser(self):
 		if self.physicalDVD and len(self.dvd_filelist) == 0:
-			if self.dvd_device == "/dev/cdroms/cdrom0":
+			if self.dvd_device == harddiskmanager.getCD():
 				self.session.openWithCallback(self.DVDdriveCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
 			else:
 				self.DVDdriveCB(True)

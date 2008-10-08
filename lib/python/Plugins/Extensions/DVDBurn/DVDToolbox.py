@@ -7,6 +7,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.Task import Task, Job, job_manager, Condition
 from Components.ScrollLabel import ScrollLabel
+from Components.Harddisk import harddiskmanager
 
 class DVDToolbox(Screen):
 	skin = """
@@ -161,7 +162,7 @@ class DVDformatTask(Task):
 		self.toolbox = job.toolbox
 		self.postconditions.append(DVDformatTaskPostcondition())
 		self.setTool("/bin/dvd+rw-format")
-		self.args += [ "/dev/cdroms/cdrom0" ]
+		self.args += [ harddiskmanager.getCD() ]
 		self.end = 1100
 
 	def prepare(self):
@@ -205,7 +206,7 @@ class DVDinfoTask(Task):
 		self.toolbox = job.toolbox
 		self.postconditions.append(DVDinfoTaskPostcondition())
 		self.setTool("/bin/dvd+rw-mediainfo")
-		self.args += [ "/dev/cdroms/cdrom0" ]
+		self.args += [ harddiskmanager.getCD() ]
 
 	def prepare(self):
 		self.error = None
