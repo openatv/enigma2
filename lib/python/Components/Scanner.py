@@ -129,13 +129,9 @@ def scanDevice(mountpoint):
 	# convert to list
 	paths_to_scan = list(paths_to_scan)
 	
-	from Components.Harddisk import HarddiskManager	
-	class CdromManager(HarddiskManager):
-		def __init__(self):
-			pass
-	cdaman = CdromManager()
+	from Components.Harddisk import harddiskmanager	
 	blockdev = mountpoint.split('/')[2]
-	error, blacklisted, removable, is_cdrom, partitions = cdaman.getBlockDevInfo(blockdev)
+	error, blacklisted, removable, is_cdrom, partitions = harddiskmanager.getBlockDevInfo(blockdev)
 
 	# now scan the paths
 	for p in paths_to_scan:
