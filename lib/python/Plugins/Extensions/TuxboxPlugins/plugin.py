@@ -2,6 +2,7 @@
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists
 from Plugins.Plugin import PluginDescriptor
+from pluginrunner import PluginRunner
 
 from os import listdir
 
@@ -36,6 +37,7 @@ def getPluginParams(file):
 def main(session, plugin, **kwargs):
 	print "Running plugin " + plugin[:-4] + ".so with config file", plugin
 	print getPluginParams(plugin)
+	session.open(PluginRunner, plugin[:-4].split(".so")[0])
 	
 def Plugins(**kwargs):
 	return getPlugins()
