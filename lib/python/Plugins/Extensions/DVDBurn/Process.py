@@ -1,4 +1,5 @@
 from Components.Task import Task, Job, job_manager, DiskspacePrecondition, Condition, ToolExistsPrecondition
+from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
 
 class png2yuvTask(Task):
@@ -264,7 +265,7 @@ class BurnTask(Task):
 		self.postconditions.append(BurnTaskPostcondition())
 		self.setTool("/bin/growisofs")
 		volName = self.getASCIIname(job.project.settings.name.getValue())
-		self.args += [ "-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", volName, "-publisher", "Dreambox", "-use-the-force-luke=dummy" ]
+		self.args += [ "-dvd-compat", "-Z", harddiskmanager.getCD(), "-V", volName, "-publisher", "Dreambox", "-use-the-force-luke=dummy" ]
 		self.args += extra_args
 
 	def getASCIIname(self, name):
@@ -302,7 +303,7 @@ class BurnTask(Task):
 				self.error = self.ERROR_SIZE
 			elif line.find("write failed") != -1:
 				self.error = self.ERROR_WRITE_FAILED
-			elif line.find("unable to open64(\"/dev/cdroms/cdrom0\",O_RDONLY): No such file or directory") != -1: # fixme
+			elif line.find("unable to open64(") != -1 and line.find(",O_RDONLY): No such file or directory") != -1:
 				self.error = self.ERROR_DVDROM
 			elif line.find("media is not recognized as recordable DVD") != -1:
 				self.error = self.ERROR_NOTWRITEABLE
