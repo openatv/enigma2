@@ -94,13 +94,20 @@ class DVDToolbox(Screen):
 					print "[Disc status] capacity=%d, used=0" % (capacity)
 					capacity = used
 					used = 0
+			elif line.find("Free Blocks:") > -1:
+				size = line[15:-3].split('*')
+				size = int(size[0])*int(size[1])*1024
+				if size > 0:
+					capacity = size
+					used = capacity-used				
+					print "[free blocks] capacity=%d, used=%d" % (capacity, used)
 			infotext += line
 		self["details"].setText(infotext)
 		if self.formattable:
 			self["key_yellow"].text = _("Format")
 		else:
 			self["key_yellow"].text = ""
-		percent = 100 * used / capacity
+		percent = 100 * used / (capacity or 1)
 		if capacity > 4600:
 			self["space_label"].text = "%d / %d MB" % (used, capacity) + " (%.2f%% " % percent + _("of a DUAL layer medium used.") + ")"
 			self["space_bar"].value = int(percent)
