@@ -266,7 +266,6 @@ class BurnTask(Task):
 		volName = self.getASCIIname(job.project.settings.name.getValue())
 		self.args += [ "-dvd-compat", "-Z", "/dev/cdroms/cdrom0", "-V", volName, "-publisher", "Dreambox", "-use-the-force-luke=dummy" ]
 		self.args += extra_args
-		self.args += [ self.job.workspace + "/dvd" ]
 
 	def getASCIIname(self, name):
 		ASCIIname = ""
@@ -677,7 +676,7 @@ class DVDJob(Job):
 				RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
 			PreviewTask(self)
-			BurnTask(self,["-dvd-video"])
+			BurnTask(self, ["-dvd-video", self.workspace + "/dvd"])
 		RemoveDVDFolder(self)
 
 class DVDdataJob(Job):
@@ -704,7 +703,7 @@ class DVDdataJob(Job):
 			link_name =  self.workspace + filename
 			LinkTS(self, title.inputfile, link_name)
 			CopyMeta(self, title.inputfile)
-		BurnTask(self)
+		BurnTask(self, ["-follow-links", self.workspace])
 		RemoveDVDFolder(self)
 
 def Burn(session, project):
