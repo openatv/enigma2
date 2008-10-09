@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from os import path as os_path, mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink
+from os import path as os_path, mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK
 from stat import S_IMODE
 from re import compile
 
@@ -148,13 +148,13 @@ def removeDir(path):
 	return ret
 
 def fileExists(f, mode='r'):
-	try:
-		file = open(f, mode)
-	except IOError:
-		exists = 0
+	if mode == 'r':
+		acc_mode = R_OK
+	elif mode == 'w':
+		acc_mode = W_OK
 	else:
-		exists = 1
-	return exists
+		acc_mode = F_OK
+	return access(f, acc_mode)
 
 def getRecordingFilename(basename, dirname = None):
 	# filter out non-allowed characters
