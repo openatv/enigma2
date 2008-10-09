@@ -62,8 +62,8 @@ class NimSetup(Screen, ConfigListScreen):
 				choices["satposdepends"] = _("second cable of motorized LNB")
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("loopthrough to")
-			self.nimConfig.configMode.setChoices(choices)
-							
+			self.nimConfig.configMode.setChoices(choices, default = "nothing")
+
 	def createSetup(self):
 		print "Creating setup"
 		self.list = [ ]
