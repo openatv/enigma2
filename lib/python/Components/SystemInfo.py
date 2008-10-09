@@ -6,7 +6,7 @@ SystemInfo = { }
 def getNumVideoDecoders():
 	from Tools.Directories import fileExists
 	idx = 0
-	while fileExists("/dev/dvb/adapter0/video%d"%(idx), 'r'):
+	while fileExists("/dev/dvb/adapter0/video%d"%(idx), 'f'):
 		idx += 1
 	return idx
 
