@@ -394,7 +394,7 @@ static int png_load(const char *filename,  int *x, int *y)
 
 	if (width * height > 1000000) // 1000x1000 or equiv.
 	{
-		eDebug("[png_load] image size is %d x %d, which is \"too large\".", width, height);
+		eDebug("[png_load] image size is %u x %u, which is \"too large\".", (unsigned int)width, (unsigned int)height);
 		png_read_end(png_ptr, info_ptr);
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 		fclose(fh);
@@ -649,10 +649,10 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 		double aspect_ratio;
 		switch(aspect)
 		{
-			case 1:		aspect_ratio = 1.778 / ((double)702/576); break; //16:9
-			case 2:		aspect_ratio = 1.600 / ((double)702/576); break; //16:10
-			//case 3:	aspect_ratio = 1.250 / ((double)702/576); break; //5:4
-			default:	aspect_ratio = 1.333 / ((double)702/576); //4:3
+			case 1:		aspect_ratio = 1.778 / ((double)720/576); break; //16:9
+			case 2:		aspect_ratio = 1.600 / ((double)720/576); break; //16:10
+			case 3:		aspect_ratio = 1.250 / ((double)720/576); break; //5:4
+			default:	aspect_ratio = 1.333 / ((double)720/576); //4:3
 		}
 
 		if((aspect_ratio * oy * w / ox) <= h)
@@ -688,7 +688,7 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 	int o_y=0, u_y=0, v_x=0, h_x=0;
 	unsigned char clear[4] = {0x00,0x00,0x00,0x00};
 	if(background)	clear[3]=0xFF;
-	unsigned char *tmp_buffer = new unsigned char[4];
+	unsigned char *tmp_buffer=((unsigned char *)(surface->data));
 
 	if(oy < h)
 	{
@@ -706,8 +706,8 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 	if(oy < h)
 		for(a=0; a<(o_y*ox)+1; a++, nc+=4)
 		{
-			memcpy(tmp_buffer, clear, sizeof(clear));
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
+			memcpy(tmp_buffer, clear, sizeof(clear));
 		}
 	
 	for(a=0; a<oy; a++)
@@ -715,33 +715,33 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 		if(ox < w)
 			for(b=0; b<v_x; b++, nc+=4)
 			{
-				memcpy(tmp_buffer, clear, sizeof(clear));
 				tmp_buffer=((unsigned char *)(surface->data)) + nc;
+				memcpy(tmp_buffer, clear, sizeof(clear));
 			}
 
 		for(b=0; b<(ox*3); b+=3, nc+=4)
 		{
+			tmp_buffer=((unsigned char *)(surface->data)) + nc;
 			tmp_buffer[3]=0xFF;
 			tmp_buffer[2]=pic_buffer[oc++];
 			tmp_buffer[1]=pic_buffer[oc++];
 			tmp_buffer[0]=pic_buffer[oc++];
 
-			tmp_buffer=((unsigned char *)(surface->data)) + nc;
 		}
 		
 		if(ox < w)
 			for(b=0; b<h_x; b++, nc+=4)
 			{
-				memcpy(tmp_buffer, clear, sizeof(clear));
 				tmp_buffer=((unsigned char *)(surface->data)) + nc;
+				memcpy(tmp_buffer, clear, sizeof(clear));
 			}
 	}
 
 	if(oy < h)
 		for(a=0; a<(u_y*ox)+1; a++, nc+=4)
 		{
-			memcpy(tmp_buffer, clear, sizeof(clear));
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
+			memcpy(tmp_buffer, clear, sizeof(clear));
 		}
 	
 	//eDebug("[PIC] buffer=%d, nc=%d oc=%d ox=%d, oy=%d",w*h*4, nc, oc, ox, oy);
