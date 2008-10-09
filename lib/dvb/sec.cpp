@@ -689,6 +689,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_TONEBURST, di_param.m_toneburst_param) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_TONEBURST]) );
 							}
+
+							if (di_param.m_seq_repeat && seq_repeat == 0)
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_BEFORE_SEQUENCE_REPEAT]) );
 						}
 						sendDiSEqC = true;
 					}

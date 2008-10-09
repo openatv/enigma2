@@ -35,6 +35,7 @@ class SecParameterSetup(Screen, ConfigListScreen):
 			("Delay after enable voltage before motor command", config.sec.delay_after_enable_voltage_before_motor_command),
 			("Delay after motor stop command", config.sec.delay_after_motor_stop_command),
 			("Delay after voltage change before motor command", config.sec.delay_after_voltage_change_before_motor_command),
+			("Delay before sequence repeat", config.sec.delay_before_sequence_repeat),
 			("Motor running timeout", config.sec.motor_running_timeout),
 			("Motor command retries", config.sec.motor_command_retries) ]
 		ConfigListScreen.__init__(self, list)

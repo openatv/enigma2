@@ -822,6 +822,10 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_voltage_change_before_motor_command = x
 
+	x = ConfigInteger(default=70, limits = (0, 9999))
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_BEFORE_SEQUENCE_REPEAT, configElement.value))
+	config.sec.delay_before_sequence_repeat = x
+
 	x = ConfigInteger(default=360, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_RUNNING_TIMEOUT, configElement.value))
 	config.sec.motor_running_timeout = x
@@ -1030,7 +1034,8 @@ def InitNimManager(nimmgr):
 			nim.terrestrial_5V = ConfigOnOff()
 		else:
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
-			print "pls add support for this frontend type!"		
+			if slot.type is not None:
+				print "pls add support for this frontend type!", slot.type
 #			assert False
 
 	nimmgr.sec = SecConfigure(nimmgr)
