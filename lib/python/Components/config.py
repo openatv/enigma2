@@ -51,10 +51,11 @@ class ConfigElement(object):
 
 	# you can overide this for fancy default handling
 	def load(self):
-		if self.saved_value is None:
+		sv = self.saved_value
+		if sv is None:
 			self.value = self.default
 		else:
-			self.value = self.fromstring(self.saved_value)
+			self.value = self.fromstring(sv)
 
 	def tostring(self, value):
 		return str(value)
@@ -70,9 +71,10 @@ class ConfigElement(object):
 		self.load()
 
 	def isChanged(self):
-		if self.saved_value is None and self.value == self.default:
+		sv = self.saved_value
+		if sv is None and self.value == self.default:
 			return False
-		return self.tostring(self.value) != self.saved_value
+		return self.tostring(self.value) != sv
 
 	def changed(self):
 		for x in self.notifiers:
@@ -1002,10 +1004,11 @@ class ConfigLocations(ConfigElement):
 		return eval(val)
 
 	def load(self):
-		if self.saved_value is None:
+		sv = self.saved_value
+		if sv is None:
 			tmp = self.default
 		else:
-			tmp = self.fromstring(self.saved_value)
+			tmp = self.fromstring(sv)
 		self.locations = [[x, None, False, False] for x in tmp]
 		self.refreshMountpoints()
 		for x in self.locations:
@@ -1020,9 +1023,10 @@ class ConfigLocations(ConfigElement):
 			self.saved_value = self.tostring([x[0] for x in self.locations])
 
 	def isChanged(self):
-		if self.saved_value is None and self.locations == []:
+		sv = self.saved_value
+		if val is None and self.locations == []:
 			return False
-		return self.tostring([x[0] for x in self.locations]) != self.saved_value
+		return self.tostring([x[0] for x in self.locations]) != sv
 
 	def mountpointsChanged(self, action, dev):
 		print "Mounts changed: ", action, dev
@@ -1174,7 +1178,7 @@ class ConfigSubList(list, object):
 				self[int(key)].saved_value = val
 
 	saved_value = property(getSavedValue, setSavedValue)
-	
+
 	def append(self, item):
 		i = str(len(self))
 		list.append(self, item)
@@ -1209,8 +1213,9 @@ class ConfigSubDict(dict, object):
 	def getSavedValue(self):
 		res = {}
 		for (key, val) in self.items():
-			if val.saved_value is not None:
-				res[str(key)] = val.saved_value
+			sv = val.saved_value
+			if sv is not None:
+				res[str(key)] = sv
 		return res
 
 	def setSavedValue(self, values):
@@ -1264,11 +1269,11 @@ class ConfigSubsection(object):
 	def getSavedValue(self):
 		res = self.content.stored_values
 		for (key, val) in self.content.items.items():
-			if val.saved_value is not None:
-				res[key] = val.saved_value
+			sv = val.saved_value
+			if sv is not None:
+				res[key] = sv
 			elif key in res:
 				del res[key]
-				
 		return res
 
 	def setSavedValue(self, values):
