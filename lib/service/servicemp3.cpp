@@ -378,6 +378,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				g_object_set (G_OBJECT(switch_subtitles), "select-all", TRUE, NULL);
 				g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
 				g_object_set (G_OBJECT(sink), "sync", TRUE, NULL);
+				g_object_set (G_OBJECT(parser), "subtitle-encoding", "ISO-8859-15", NULL);
 				g_signal_connect(sink, "handoff", G_CALLBACK(gstCBsubtitleAvail), this);
 				subtitleStream subs;
 				subs.language_code = std::string(".srt file");

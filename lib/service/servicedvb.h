@@ -81,7 +81,7 @@ public:
 	PyObject *getAll(bool original); // a sum of getFrontendData/Status/TransponderData
 };
 
-class eSubtitleWidget; 
+class eSubtitleWidget;
 
 class eDVBServicePlay: public eDVBServiceBase,
 		public iPlayableService, public iPauseableService, 
