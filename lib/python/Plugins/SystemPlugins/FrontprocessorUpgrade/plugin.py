@@ -12,7 +12,7 @@ def getUpgradeVersion():
 	if r[:16] != "FP update tool v":
 		return None
 	else:
-		return int(r[16:])
+		return int(r[16:17])
 
 class FPUpgrade(Screen):
 	skin = """
