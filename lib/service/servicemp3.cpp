@@ -856,7 +856,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 	source = GST_MESSAGE_SRC(msg);
 	sourceName = gst_object_get_name(source);
-#ifdef 0
+#if 0
 	if (gst_message_get_structure(msg))
 	{
 		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
