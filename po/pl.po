@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-05 22:57+0200\n"
-"PO-Revision-Date: 2008-10-03 10:56+0100\n"
+"POT-Creation-Date: 2008-10-12 22:50+0200\n"
+"PO-Revision-Date: 2008-10-10 09:10+0100\n"
 "Last-Translator:  <silelis@tlen.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -83,6 +83,16 @@ msgstr "(puste)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(pokaż opcjonalne menu ustawień DVD audio)"
+
+msgid ".NFI Download failed:"
+msgstr ""
+
+msgid ".NFI Flasher bootable USB stick successfully created."
+msgstr ""
+
+msgid ""
+".NFI file passed md5sum signature check. You can safely flash this image!"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "katalog /usr/share/enigma2"
@@ -382,7 +392,7 @@ msgid "An empty filename is illegal."
 msgstr "Pusta nazwa pliku jest nieldozwolona."
 
 msgid "An unknown error occured!"
-msgstr ""
+msgstr "Wystąpił nieznany błąd!"
 
 msgid "Arabic"
 msgstr "Arabski"
@@ -413,13 +423,13 @@ msgid "Audio Options..."
 msgstr "Opcje Dźwięku..."
 
 msgid "Authoring mode"
-msgstr ""
+msgstr "Tryb autoringu"
 
 msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto chapter split every ? minutes (0=never)"
-msgstr ""
+msgstr "Auto podział rozdzoałów co ? minuty (0=nigdy)"
 
 msgid "Auto scart switching"
 msgstr "Auto przełączanie scart"
@@ -428,13 +438,13 @@ msgid "Automatic"
 msgstr "Automatycznie"
 
 msgid "Automatic SSID lookup"
-msgstr ""
+msgstr "Automatyczne oddzukiwanie SSID"
 
 msgid "Automatic Scan"
 msgstr "Automatyczne skanowanie"
 
 msgid "Available format variables"
-msgstr ""
+msgstr "Dostępne zmienne formatu"
 
 msgid "B"
 msgstr "B"
@@ -534,6 +544,9 @@ msgstr "Monitor rozmów"
 msgid "Cancel"
 msgstr "Anuluj"
 
+msgid "Cannot parse feed directory"
+msgstr ""
+
 msgid "Capacity: "
 msgstr "Pojemność:"
 
@@ -545,6 +558,9 @@ msgstr "Hiszpański"
 
 msgid "Change bouquets in quickzap"
 msgstr "Automatyczna zmiana bukietów"
+
+msgid "Change dir."
+msgstr ""
 
 msgid "Change pin code"
 msgstr "Zmień kod pin"
@@ -625,10 +641,10 @@ msgid "Coderate LP"
 msgstr "Poziom kodu LP"
 
 msgid "Collection name"
-msgstr ""
+msgstr "Nazwa kolekcji"
 
 msgid "Collection settings"
-msgstr ""
+msgstr "Ustawienia kolekcji"
 
 msgid "Color Format"
 msgstr "Format kolorów"
@@ -686,7 +702,7 @@ msgid "Constellation"
 msgstr "Konstelacja"
 
 msgid "Content does not fit on DVD!"
-msgstr ""
+msgstr "Zawartość nie pasuje do DVD!"
 
 msgid "Continue playing"
 msgstr "Kontynuuj odtwarzanie"
@@ -694,8 +710,14 @@ msgstr "Kontynuuj odtwarzanie"
 msgid "Contrast"
 msgstr "Kontrast"
 
-msgid "Could not load Medium! No disc inserted?"
+msgid "Copying USB flasher boot image to stick..."
 msgstr ""
+
+msgid "Could not connect to Dreambox .NFI Image Feed Server:"
+msgstr ""
+
+msgid "Could not load Medium! No disc inserted?"
+msgstr "Nie moge odczytać nosnika. Czy nośnik znajduje się w czytniku?"
 
 msgid "Create movie folder failed"
 msgstr "Tworzenie katalogu filmu nie powiodło się"
@@ -752,32 +774,20 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
-msgid "DVD ENTER key"
-msgstr "DVD przycisk ENTER"
-
 msgid "DVD Player"
 msgstr "Odtważacz DVD"
 
-msgid "DVD down key"
-msgstr "DVD przycisk dół"
-
-msgid "DVD left key"
-msgstr "DVD przycisk lewo"
-
 msgid "DVD media toolbox"
-msgstr ""
-
-msgid "DVD right key"
-msgstr "DVD przycisk prawo"
-
-msgid "DVD up key"
-msgstr "DVD przycisk góra"
+msgstr "Narzedzia nosnika DVD"
 
 msgid "Danish"
 msgstr "Duński"
 
 msgid "Date"
 msgstr "Data"
+
+msgid "Decompressing USB stick flasher boot image..."
+msgstr ""
 
 msgid "Deep Standby"
 msgstr "Głębokie Czuwanie"
@@ -811,6 +821,9 @@ msgstr ""
 msgid "Description"
 msgstr "Opis"
 
+msgid "Destination directory"
+msgstr ""
+
 msgid "Detected HDD:"
 msgstr "Wykryto Hdd:"
 
@@ -836,7 +849,7 @@ msgid "DiSEqC repeats"
 msgstr "Odpowiedzi DiSEqC"
 
 msgid "Direct playback of linked titles without menu"
-msgstr ""
+msgstr "Bezpośrednie odtważanie podczepionych tytułów bez menu"
 
 #, python-format
 msgid "Directory %s nonexistent."
@@ -930,7 +943,7 @@ msgstr ""
 "Po naciśnięciu OK, proszę czekać!"
 
 msgid "Do you want to burn this collection to DVD medium?"
-msgstr ""
+msgstr "Czy chcesz nagrać tę kolekcje na nosniku DVD?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Czy chcesz przeprowadzić skanowanie serwisów?"
@@ -948,7 +961,7 @@ msgid "Do you want to play DVD in drive?"
 msgstr "Czy chcesz odtważać DVD znajdujące się w czytniku?"
 
 msgid "Do you want to preview this DVD before burning?"
-msgstr ""
+msgstr "Czy chcesz obejrzeć DVD przed jego nagraniem?"
 
 msgid "Do you want to restore your settings?"
 msgstr "Czy chcesz przywrócić swoje ustawienia?"
@@ -977,8 +990,17 @@ msgstr "Zrobione - Instalowanie lub aktualizowanie %d pakietów"
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Zrobione - Instalowanie lub aktualizowanie %d pakietów z %d błędami"
 
+msgid "Download"
+msgstr ""
+
+msgid "Download .NFI-Files for USB-Flasher"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Pobierz pluginy"
+
+msgid "Download of USB flasher boot image failed: "
+msgstr ""
 
 msgid "Downloadable new plugins"
 msgstr "Do pobrania nowe pluginy"
@@ -989,11 +1011,14 @@ msgstr "Pluginy do pobrania"
 msgid "Downloading"
 msgstr "Pobieranie..."
 
+msgid "Downloading image description..."
+msgstr ""
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Pobieranie informacji o pluginie. Proszę czekać..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "Format danych DVD (kompatybilny z HDTV)"
 
 msgid "Dutch"
 msgstr "Holenderski"
@@ -1109,6 +1134,9 @@ msgstr "Wpisz Pin serwisu"
 msgid "Error"
 msgstr "Błąd"
 
+msgid "Error executing plugin"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -1145,7 +1173,7 @@ msgid "Expert"
 msgstr "Ekspert"
 
 msgid "Extended Networksetup Plugin..."
-msgstr ""
+msgstr "Wtyczki rozszeżonego ustawienia sieci..."
 
 msgid "Extended Setup..."
 msgstr "Zaawansowana konfiguracja..."
@@ -1192,11 +1220,24 @@ msgstr "Skończone"
 msgid "Finnish"
 msgstr "Fiński"
 
-msgid "Font size"
+msgid ""
+"First we need to download the latest boot environment for the USB flasher."
 msgstr ""
 
-msgid "Format"
+msgid "Fix USB stick"
 msgstr ""
+
+msgid "Flash"
+msgstr ""
+
+msgid "Flashing failed"
+msgstr ""
+
+msgid "Font size"
+msgstr "Rozmiar fontu"
+
+msgid "Format"
+msgstr "Format"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Oblicz powtórzenie ramki podczas nie-płynnego zwijania"
@@ -1330,6 +1371,9 @@ msgstr ""
 "kolejnym kroku.\n"
 "Jeśli jesteś zadowolony z rezultatu wciśnij OK."
 
+msgid "Image flash utility"
+msgstr ""
+
 msgid "Image-Upgrade"
 msgstr " Aktualizacja Image'a"
 
@@ -1419,9 +1463,6 @@ msgstr "Włoski"
 msgid "Job View"
 msgstr "Podgląd zajęć"
 
-msgid "Jump to video title 1 (play movie from start)"
-msgstr "Skocz do tytułu 1  (odtważaj film od początku)"
-
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Po prostu skaluj"
@@ -1488,7 +1529,7 @@ msgid "Link:"
 msgstr "Łącze:"
 
 msgid "Linked titles with a DVD menu"
-msgstr ""
+msgstr "Połącz tytuł z menu DVD"
 
 msgid "List of Storage Devices"
 msgstr "Lista zapamiętanych urządzeń"
@@ -1497,6 +1538,9 @@ msgid "Lithuanian"
 msgstr "Litewski"
 
 msgid "Load"
+msgstr "Otwórz"
+
+msgid "Load Length of Movies in Movielist"
 msgstr ""
 
 msgid "Local Network"
@@ -1554,10 +1598,10 @@ msgid "MediaPlayer"
 msgstr "Odtwarzacz Multimedialny"
 
 msgid "Medium is not a writeable DVD!"
-msgstr ""
+msgstr "Nosnik nie jest zapisywalnym DVD!"
 
 msgid "Medium is not empty!"
-msgstr ""
+msgstr "Nosnik nie jest pusty!"
 
 msgid "Menu"
 msgstr "Menu"
@@ -1621,6 +1665,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "Następny"
+
+msgid "NFI image flashing completed. Press Yellow to Reboot!"
+msgstr ""
 
 msgid "NOW"
 msgstr "Teraz"
@@ -1696,7 +1743,7 @@ msgid "No"
 msgstr "Nie"
 
 msgid "No (supported) DVDROM found!"
-msgstr ""
+msgstr "Nie znaleziono (wspomaganego) nośnika DVDROM!"
 
 msgid "No 50 Hz, sorry. :("
 msgstr "Brak 50 Hz, przepraszam. :("
@@ -1713,6 +1760,9 @@ msgid ""
 msgstr ""
 "Brak danych na transponderze!\n"
 "(Koniec czasu czytania PAT)"
+
+msgid "No details for this image file"
+msgstr ""
 
 msgid "No event info found, recording indefinitely."
 msgstr "Nie znaleziono informacji o wydarzeniu, nagrywanie nieokreślone."
@@ -1744,6 +1794,9 @@ msgid ""
 msgstr ""
 "Brak włączonego tunera!\n"
 "Ustaw tuner przed rozpoczęciem skanowania."
+
+msgid "No useable USB stick found"
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1834,6 +1887,12 @@ msgid "Now Playing"
 msgstr "Odtwarzane"
 
 msgid ""
+"Now please insert the USB stick (minimum size is 64 MB) that you want to "
+"format and use as .NFI image flasher. Press OK after you've put the stick "
+"back in."
+msgstr ""
+
+msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -1852,7 +1911,7 @@ msgid "OSD Settings"
 msgstr "Ustawienia OSD"
 
 msgid "OSD visibility"
-msgstr ""
+msgstr "wizualizacja OSD"
 
 msgid "Off"
 msgstr "Wyłącz"
@@ -1909,6 +1968,9 @@ msgstr "Ustawienia kontroli rodzicielskiej"
 msgid "Parental control type"
 msgstr "Typ kontroli rodzicielskiej"
 
+msgid "Partitioning USB stick..."
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "Zatrzymaj film na końcu"
 
@@ -1939,6 +2001,12 @@ msgstr "Wybierz pośrednio aby skanować"
 
 msgid "Please change recording endtime"
 msgstr "Proszę zmień koniec czasu nagrywania"
+
+msgid "Please check your network settings!"
+msgstr ""
+
+msgid "Please choose .NFI image file from feed server to download"
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Proszę wybierz rozszerzenie..."
@@ -1989,6 +2057,9 @@ msgstr "Aby kontynuować naciśnij OK."
 msgid "Please press OK!"
 msgstr "Wciśnij OK!"
 
+msgid "Please select .NFI flash image file from medium"
+msgstr ""
+
 msgid "Please select a playlist to delete..."
 msgstr "Wybierz playliste do usunięcia..."
 
@@ -2003,6 +2074,9 @@ msgstr "Prosze wybierz subserwis..."
 
 msgid "Please select keyword to filter..."
 msgstr "Wybierz słowo kluczowe do filtrowania..."
+
+msgid "Please select target directory or medium"
+msgstr ""
 
 msgid "Please select the movie path..."
 msgstr "Wybierz ścieżkę filmu..."
@@ -2031,6 +2105,9 @@ msgid ""
 msgstr ""
 "W celu wyboru języka użyj klawiszy GÓRA i DÓŁ. Nastepnie nacisnij przycisk "
 "OK."
+
+msgid "Please wait for md5 signature verification..."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Proszę czekać... Ładowanie listy..."
@@ -2161,6 +2238,9 @@ msgstr "Usunąć ten timer?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Wyjść z subserwisów?"
 
+msgid "Reboot"
+msgstr ""
+
 msgid "Reception Settings"
 msgstr "Ustawienia powitania"
 
@@ -2206,6 +2286,9 @@ msgstr "Wartość odświeżania"
 msgid "Refresh rate selection."
 msgstr "Wybór prędkości odświeżania"
 
+msgid "Remounting stick partition..."
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Usuń zakładkę"
 
@@ -2220,6 +2303,12 @@ msgstr "Usuń aktualnie wybrany tytuł"
 
 msgid "Remove plugins"
 msgstr "Usuń pluginy"
+
+msgid "Remove the broken .NFI file?"
+msgstr ""
+
+msgid "Remove the incomplete .NFI file?"
+msgstr ""
 
 msgid "Remove title"
 msgstr "Usuń tytuł"
@@ -2471,6 +2560,9 @@ msgstr "Wybierz ścieżke audio"
 msgid "Select channel to record from"
 msgstr "Wybierz kanał do nagrania z "
 
+msgid "Select image"
+msgstr ""
+
 msgid "Select refresh rate"
 msgstr "Wybierz prędkość odświeżania"
 
@@ -2480,8 +2572,11 @@ msgstr "Wybierz wejście Wideo"
 msgid "Select video mode"
 msgstr "Wybierz tryb wideo"
 
-msgid "Seperate titles with a main menu"
+msgid "Selected source image"
 msgstr ""
+
+msgid "Seperate titles with a main menu"
+msgstr "Rozdziel tytuły z wykozystaniem menu"
 
 msgid "Sequence repeat"
 msgstr "Potwórka sekwencji"
@@ -2795,13 +2890,32 @@ msgstr ""
 "Wciśnij OK i rozpocznij zabawę z Dreamboxem."
 
 msgid ""
+"The .NFI Image flasher USB stick is now ready to use. Please download an ."
+"NFI image file from the feed server and save it on the stick. Then reboot "
+"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
+"stick!"
+msgstr ""
+
+msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
+"Standard DVD nie wspomaga strumienia video H.264 (HDTV). Czy zamiast tego "
+"chcesz nagrać dane w formacie data DVD? Dane nie będą czytane w "
+"stacjonarnych czytnikach DVD."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Nieudane tworzenie kopia zapasowa. Wybierz inna lokalizacje kopii."
+
+#, python-format
+msgid ""
+"The following device was found:\n"
+"\n"
+"%s\n"
+"\n"
+"Do you want to write the USB flasher to this stick?"
+msgstr ""
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2821,6 +2935,17 @@ msgid ""
 msgstr ""
 "Instalacja ustawień standardowych została zakończona. Aby kontynuować "
 "konfigurację Dreamboxa naciśnij przycisk OK pilota."
+
+msgid ""
+"The md5sum validation failed, the file may be corrupted! Are you sure that "
+"you want to burn this image to flash memory? You are doing this at your own "
+"risk!"
+msgstr ""
+
+msgid ""
+"The md5sum validation failed, the file may be downloaded incompletely or be "
+"corrupted!"
+msgstr ""
 
 msgid "The package doesn't contain anything."
 msgstr "Pakiet nie zawiera informacji."
@@ -2876,14 +3001,30 @@ msgstr ""
 "Nie ma wystarczająco miejsca na wybranej partycji.\n"
 "Czy kontynuować?"
 
+#, python-format
+msgid "This .NFI file does not contain a valid %s image!"
+msgstr ""
+
+msgid ""
+"This .NFI file does not have a md5sum signature and is not guaranteed to "
+"work. Do you really want to burn this image to flash memory?"
+msgstr ""
+
+msgid ""
+"This .NFI file has a valid md5 signature. Continue programming this image to "
+"flash memory?"
+msgstr ""
+
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
 msgstr ""
+"Nosnik DVD RW zawiera dane- jego sformatowanie spowoduje utrate danych na "
+"nosniku."
 
 #, python-format
 msgid "This Dreambox can't decode %s video streams!"
-msgstr ""
+msgstr "Dreambox nie moze zdekodować %s strumienia video!"
 
 msgid "This is step number 2."
 msgstr "To jest krok numer 2."
@@ -3007,6 +3148,11 @@ msgstr "Tytuł"
 msgid "Title:"
 msgstr "Tytuł:"
 
+msgid ""
+"To make sure you intend to do this, please remove the target USB stick now "
+"and stick it back in upon prompt. Press OK when you have taken the stick out."
+msgstr ""
+
 msgid "Today"
 msgstr "Dzisiaj"
 
@@ -3020,7 +3166,7 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Track"
-msgstr ""
+msgstr "Ścieżka"
 
 msgid "Translation"
 msgstr "Tłumaczenie"
@@ -3120,7 +3266,7 @@ msgid "Unmount failed"
 msgstr "Błąd odmontowania"
 
 msgid "Update"
-msgstr ""
+msgstr "uaktualnienie"
 
 msgid "Updates your receiver's software"
 msgstr "Aktualizuje oprogramowanie Twojego tunera"
@@ -3203,7 +3349,7 @@ msgid "VCR scart"
 msgstr "Przełącz VCR"
 
 msgid "VMGM (intro trailer)"
-msgstr ""
+msgstr "VMGM (intro trailer)"
 
 msgid "Video Fine-Tuning"
 msgstr "Ustawienia czysości obrazu"
@@ -3268,6 +3414,9 @@ msgstr "WSS na 4:3"
 msgid "Waiting"
 msgstr "Oczekiwanie"
 
+msgid "Waiting for USB stick to settle..."
+msgstr ""
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3295,6 +3444,13 @@ msgid ""
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
+"Witamy w edytorze prycięć.\n"
+"\n"
+"Przejdź do miejsca, które ma być nowym początkiem pliku. Nacisnij OK, "
+"wybierz 'początek cięcia'.\n"
+"\n"
+"Przejdź do miejsca, które ma być nowym końcem pliku. Nacisnij OK, wybierz "
+"'koniec cięcia'. To wszystko."
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
@@ -3339,6 +3495,12 @@ msgid "Write error while recording. Disk full?\n"
 msgstr "Błąd zapisu podczas nagrywania. Dysk jest pełny?\n"
 
 msgid "Write failed!"
+msgstr "Błąd zapisu!"
+
+msgid "Writing NFI image file to flash completed"
+msgstr ""
+
+msgid "Writing image file to NAND Flash"
 msgstr ""
 
 msgid "YPbPr"
@@ -3431,6 +3593,11 @@ msgid ""
 "You have chosen to backup to your harddisk. Please press OK to start the "
 "backup now."
 msgstr "Wybrałeś kopie na HDD. Wciśnij OK aby rozpocząć tworzenie kopii teraz."
+
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3582,13 +3749,13 @@ msgstr ""
 "następującą kopie:\n"
 
 msgid "audio tracks"
-msgstr ""
+msgstr "ścieżki audio"
 
 msgid "back"
 msgstr "wróć"
 
 msgid "background image"
-msgstr ""
+msgstr "obraz tła"
 
 msgid "better"
 msgstr "lepszy"
@@ -3608,6 +3775,9 @@ msgstr "zmień koniec czasu nagrania"
 msgid "chapters"
 msgstr "rozdziały"
 
+msgid "choose destination directory"
+msgstr ""
+
 msgid "circular left"
 msgstr "Kołój w lewo"
 
@@ -3618,7 +3788,7 @@ msgid "clear playlist"
 msgstr "Wyczyść playliste"
 
 msgid "color"
-msgstr ""
+msgstr "kolor"
 
 msgid "complex"
 msgstr "złożony"
@@ -3645,7 +3815,7 @@ msgid "daily"
 msgstr "Codziennie"
 
 msgid "day"
-msgstr ""
+msgstr "dzień"
 
 msgid "delete"
 msgstr "usuń"
@@ -3735,16 +3905,16 @@ msgid "exit movielist"
 msgstr "Wyjdź z listy filmów"
 
 msgid "failed"
-msgstr ""
+msgstr "zawiódł"
 
 msgid "filename"
-msgstr ""
+msgstr "nazwa pliku"
 
 msgid "fine-tune your display"
 msgstr "czysto ustaw swój ekran"
 
 msgid "font face"
-msgstr ""
+msgstr "font face"
 
 msgid "forward to the next chapter"
 msgstr "Przeskocz do nastepnego rozdziału"
@@ -3765,7 +3935,7 @@ msgid "go to standby"
 msgstr "Przejdź do stanu czuwania"
 
 msgid "headline"
-msgstr ""
+msgstr "nagłówek"
 
 msgid "hear radio..."
 msgstr "Słuchaj radia..."
@@ -3780,7 +3950,7 @@ msgid "hide player"
 msgstr "Ukryj odtwarzacz"
 
 msgid "highlighted button"
-msgstr ""
+msgstr "podświetlone przyciski"
 
 msgid "horizontal"
 msgstr "Pozioma (H)"
@@ -3833,7 +4003,7 @@ msgid "left"
 msgstr "Lewo"
 
 msgid "length"
-msgstr ""
+msgstr "długość"
 
 msgid "list style compact"
 msgstr "kompaktowy styl listy"
@@ -3863,7 +4033,7 @@ msgid "menu"
 msgstr "menu"
 
 msgid "menulist"
-msgstr ""
+msgstr "lista menu"
 
 msgid "mins"
 msgstr "min's"
@@ -3935,7 +4105,7 @@ msgid "on"
 msgstr "Włączony"
 
 msgid "on READ ONLY medium."
-msgstr ""
+msgstr "nosnik tylko do odczytu."
 
 msgid "once"
 msgstr "Raz"
@@ -3978,6 +4148,9 @@ msgstr "Poprzedni kanał"
 
 msgid "previous channel in history"
 msgstr "Poprzedni kanał w historii"
+
+msgid "rebooting..."
+msgstr ""
 
 msgid "record"
 msgstr "Nagraj"
@@ -4055,6 +4228,12 @@ msgstr "Sekundy"
 msgid "select"
 msgstr "wybierz"
 
+msgid "select .NFI flash file"
+msgstr ""
+
+msgid "select image from server"
+msgstr ""
+
 msgid "select movie"
 msgstr "wybierz film"
 
@@ -4128,7 +4307,7 @@ msgid "sort by date"
 msgstr "sortuj poprzez datę"
 
 msgid "spaces (top, between rows, left)"
-msgstr ""
+msgstr "przestrzeń (góra, pomiedzy rzedami, lewo)"
 
 msgid "standard"
 msgstr "standardowy"
@@ -4227,7 +4406,7 @@ msgid "whitelist"
 msgstr "Biała lista"
 
 msgid "year"
-msgstr ""
+msgstr "rok"
 
 msgid "yes"
 msgstr "Tak"
@@ -4311,6 +4490,21 @@ msgstr "Przełączony"
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Podłącz do Internetu przy użyciu lokalnego LAN"
 
+#~ msgid "DVD ENTER key"
+#~ msgstr "DVD przycisk ENTER"
+
+#~ msgid "DVD down key"
+#~ msgstr "DVD przycisk dół"
+
+#~ msgid "DVD left key"
+#~ msgstr "DVD przycisk lewo"
+
+#~ msgid "DVD right key"
+#~ msgstr "DVD przycisk prawo"
+
+#~ msgid "DVD up key"
+#~ msgstr "DVD przycisk góra"
+
 #~ msgid "Device Setup..."
 #~ msgstr "Ustawienia urządzenia:"
 
@@ -4350,6 +4544,9 @@ msgstr "Przełączony"
 
 #~ msgid "Games / Plugins"
 #~ msgstr "Gry / Pluginy"
+
+#~ msgid "Jump to video title 1 (play movie from start)"
+#~ msgstr "Skocz do tytułu 1  (odtważaj film od początku)"
 
 #~ msgid "Load saved project from disk"
 #~ msgstr "Odczytaj projekt z dysku"
