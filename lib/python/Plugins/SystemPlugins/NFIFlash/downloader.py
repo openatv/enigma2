@@ -400,6 +400,7 @@ class NFIDownload(Screen):
 	def nfi_finished(self, string=""):
 		print "[nfi_finished] " + str(string)
 		if self.nfo != "":
+			self.nfofilename = self["destlist"].getCurrentDirectory() + '/' + self["feedlist"].getNFOname()
 			nfofd = open(self.nfofilename, "w")
 			if nfofd:
 				nfofd.write(self.nfo)
