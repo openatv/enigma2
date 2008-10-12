@@ -469,7 +469,7 @@ class NFIDownload(Screen):
 		print "[flasherdownload_failed] " + error_message
 		message = "%s %s" % (_("Download of USB flasher boot image failed: "),error_message)
 		self.session.open(MessageBox, message, MessageBox.TYPE_ERROR)
-		self.query_remove_img(True)
+		self.remove_img(True)
 
 	def flasherdownload_finished(self, string=""):
 		print "[flasherdownload_finished] " + str(string)	
@@ -555,7 +555,7 @@ class NFIDownload(Screen):
 			self.delayTimer.callback.append(self.progress_increment)
 			self.delayTimer.start(105, False)
 		else:
-			self.remove_img()
+			self.remove_img(True)
 
 	def fdisk_finished(self, retval):
 		self.container.appClosed.get().remove(self.fdisk_finished)
