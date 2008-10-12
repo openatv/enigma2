@@ -34,6 +34,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("wave");
 		extensions.push_back("mkv");
 		extensions.push_back("avi");
+		extensions.push_back("dat");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -203,8 +204,9 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	int is_video = is_mpeg_ps || is_mpeg_ts || is_matroska || is_avi;
 	int is_streaming = !strncmp(filename, "http://", 7);
 	int is_AudioCD = !(strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav"));
+	int is_VCD = !strcasecmp(ext, ".dat");
 	
-	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d, is_AudioCD: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi, is_AudioCD);
+	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d, is_AudioCD: %d, is_VCD: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi, is_AudioCD, is_VCD);
 	
 	int is_audio = !is_video;
 
@@ -392,7 +394,16 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				gst_bin_add(GST_BIN(m_gst_pipeline), switch_audio);
 				gst_element_link(switch_audio, queue_audio);
 			}
-			gst_element_link(source, videodemux);
+
+			if (is_VCD)
+			{
+				GstElement *cdxaparse = gst_element_factory_make("cdxaparse", "cdxaparse");
+				gst_bin_add(GST_BIN(m_gst_pipeline), cdxaparse);
+				gst_element_link(source, cdxaparse);
+				gst_element_link(cdxaparse, videodemux);
+			}
+			else
+				gst_element_link(source, videodemux);
 			gst_element_link(queue_audio, audio);
 			gst_element_link(queue_video, video);
 			g_signal_connect(videodemux, "pad-added", G_CALLBACK (gstCBpadAdded), this);
@@ -845,7 +856,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 	source = GST_MESSAGE_SRC(msg);
 	sourceName = gst_object_get_name(source);
-
+#ifdef 0
 	if (gst_message_get_structure(msg))
 	{
 		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
@@ -854,7 +865,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 	}
 	else
 		eDebug("gst_message from %s: %s (without structure)", sourceName, GST_MESSAGE_TYPE_NAME(msg));
-
+#endif
 	switch (GST_MESSAGE_TYPE (msg))
 	{
 	case GST_MESSAGE_EOS:
