@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-18 12:35+0200\n"
+"POT-Creation-Date: 2008-10-13 22:55+0200\n"
 "PO-Revision-Date: 2008-09-18 12:57+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -85,6 +85,16 @@ msgid "(empty)"
 msgstr "(leer)"
 
 msgid "(show optional DVD audio menu)"
+msgstr ""
+
+msgid ".NFI Download failed:"
+msgstr ""
+
+msgid ".NFI Flasher bootable USB stick successfully created."
+msgstr ""
+
+msgid ""
+".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
 
 msgid "/usr/share/enigma2 directory"
@@ -289,6 +299,9 @@ msgstr ""
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr "Über"
 
@@ -369,6 +382,9 @@ msgstr "Album:"
 msgid "All"
 msgstr "Alle"
 
+msgid "All Satellites"
+msgstr ""
+
 msgid "All..."
 msgstr "Alle..."
 
@@ -430,6 +446,9 @@ msgstr "Automatische Scart-Umschaltung"
 msgid "Automatic"
 msgstr "Automatisch"
 
+msgid "Automatic SSID lookup"
+msgstr ""
+
 msgid "Automatic Scan"
 msgstr "Automatische Suche"
 
@@ -453,6 +472,9 @@ msgstr "BER:"
 
 msgid "Back"
 msgstr "Zurück"
+
+msgid "Background"
+msgstr ""
 
 msgid "Backup"
 msgstr "Sicherung"
@@ -535,6 +557,9 @@ msgstr "Anrufmonitor"
 msgid "Cancel"
 msgstr "Abbruch"
 
+msgid "Cannot parse feed directory"
+msgstr ""
+
 msgid "Capacity: "
 msgstr "Kapazität: "
 
@@ -546,6 +571,9 @@ msgstr "Katalanisch"
 
 msgid "Change bouquets in quickzap"
 msgstr "Bouquet wechseln beim Quickzap"
+
+msgid "Change dir."
+msgstr ""
 
 msgid "Change pin code"
 msgstr "Pincode ändern"
@@ -695,6 +723,12 @@ msgstr "Abspielen fortsetzen"
 msgid "Contrast"
 msgstr "Kontrast"
 
+msgid "Copying USB flasher boot image to stick..."
+msgstr ""
+
+msgid "Could not connect to Dreambox .NFI Image Feed Server:"
+msgstr ""
+
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Konnte das Medium nicht laden! Keine DVD eingelegt?"
 
@@ -753,22 +787,10 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
-msgid "DVD ENTER key"
-msgstr ""
-
 msgid "DVD Player"
 msgstr ""
 
-msgid "DVD down key"
-msgstr ""
-
-msgid "DVD left key"
-msgstr ""
-
-msgid "DVD right key"
-msgstr ""
-
-msgid "DVD up key"
+msgid "DVD media toolbox"
 msgstr ""
 
 msgid "Danish"
@@ -776,6 +798,9 @@ msgstr "Dänisch"
 
 msgid "Date"
 msgstr "Datum"
+
+msgid "Decompressing USB stick flasher boot image..."
+msgstr ""
 
 msgid "Deep Standby"
 msgstr "Ausschalten"
@@ -808,6 +833,9 @@ msgstr ""
 
 msgid "Description"
 msgstr "Beschreibung"
+
+msgid "Destination directory"
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Erkannte Festplatte:"
@@ -975,8 +1003,17 @@ msgstr "Beendet - %d installierte oder aktualisierte Pakete"
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Beendet - %d installierte oder aktualisierte Pakete mit %d Fehlern"
 
+msgid "Download"
+msgstr ""
+
+msgid "Download .NFI-Files for USB-Flasher"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Plugins herunterladen"
+
+msgid "Download of USB flasher boot image failed: "
+msgstr ""
 
 msgid "Downloadable new plugins"
 msgstr "Herunterladbare neue Plugins"
@@ -986,6 +1023,9 @@ msgstr "Herunterladbare Erweiterungen"
 
 msgid "Downloading"
 msgstr "Herunterladen"
+
+msgid "Downloading image description..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
@@ -1107,6 +1147,9 @@ msgstr "Geben Sie den Kanal-Pincode ein"
 msgid "Error"
 msgstr "Fehler"
 
+msgid "Error executing plugin"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -1141,6 +1184,12 @@ msgstr "Assistenten beenden"
 
 msgid "Expert"
 msgstr "Experte"
+
+msgid "Extended Networksetup Plugin..."
+msgstr ""
+
+msgid "Extended Setup..."
+msgstr "Erweiterte-Einstellungen..."
 
 msgid "Extensions"
 msgstr "Erweiterungen"
@@ -1183,6 +1232,19 @@ msgstr "Beendet"
 
 msgid "Finnish"
 msgstr "Finnisch"
+
+msgid ""
+"First we need to download the latest boot environment for the USB flasher."
+msgstr ""
+
+msgid "Fix USB stick"
+msgstr ""
+
+msgid "Flash"
+msgstr ""
+
+msgid "Flashing failed"
+msgstr ""
 
 msgid "Font size"
 msgstr "Schriftgröße"
@@ -1324,6 +1386,9 @@ msgstr ""
 "bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücken Sie OK, wenn Sie mit dem Ergebnis zufrieden sind."
 
+msgid "Image flash utility"
+msgstr ""
+
 msgid "Image-Upgrade"
 msgstr "Image-Aktualisierung"
 
@@ -1415,9 +1480,6 @@ msgstr "Italienisch"
 msgid "Job View"
 msgstr ""
 
-msgid "Jump to video title 1 (play movie from start)"
-msgstr "Springe zu Videotitel 1 (Film von Anfang abspielen)"
-
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr ""
@@ -1494,6 +1556,9 @@ msgstr "litauisch"
 
 msgid "Load"
 msgstr "Laden"
+
+msgid "Load Length of Movies in Movielist"
+msgstr ""
 
 msgid "Local Network"
 msgstr "Int. Netzwerk"
@@ -1618,6 +1683,9 @@ msgstr "Nicht verfügbar"
 msgid "NEXT"
 msgstr "NÄCHSTE"
 
+msgid "NFI image flashing completed. Press Yellow to Reboot!"
+msgstr ""
+
 msgid "NOW"
 msgstr "JETZT"
 
@@ -1712,6 +1780,9 @@ msgstr ""
 "Keine Daten auf dem Transponder!\n"
 "(Zeit lief beim Lesen der PAT ab)"
 
+msgid "No details for this image file"
+msgstr ""
+
 msgid "No event info found, recording indefinitely."
 msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
 
@@ -1745,6 +1816,9 @@ msgid ""
 msgstr ""
 "Kein Tuner angeschaltet!\n"
 "Bitte die Tuner konfigurieren bevor die Kanalsuche gestartet wird."
+
+msgid "No useable USB stick found"
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1824,6 +1898,12 @@ msgid "Now Playing"
 msgstr "Wiedergabe läuft"
 
 msgid ""
+"Now please insert the USB stick (minimum size is 64 MB) that you want to "
+"format and use as .NFI image flasher. Press OK after you've put the stick "
+"back in."
+msgstr ""
+
+msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -1842,6 +1922,9 @@ msgstr "OK, führen Sie mich durch den Aktualisierungsprozess"
 msgid "OSD Settings"
 msgstr "OSD-Einstellungen"
 
+msgid "OSD visibility"
+msgstr ""
+
 msgid "Off"
 msgstr "Aus"
 
@@ -1853,6 +1936,9 @@ msgstr "Eins"
 
 msgid "Online-Upgrade"
 msgstr "Online-Aktualisierung"
+
+msgid "Only Free scan"
+msgstr ""
 
 msgid "Orbital Position"
 msgstr "Orbitposition"
@@ -1894,6 +1980,9 @@ msgstr "Jugendschutz-Einstellungen"
 msgid "Parental control type"
 msgstr "Jugendschutz-Typ"
 
+msgid "Partitioning USB stick..."
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "Am Filmende pausieren"
 
@@ -1924,6 +2013,12 @@ msgstr "Bitte Medium zum Scannen auswählen"
 
 msgid "Please change recording endtime"
 msgstr "Bitte Aufnahmeendzeit ändern"
+
+msgid "Please check your network settings!"
+msgstr ""
+
+msgid "Please choose .NFI image file from feed server to download"
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Bitte eine Erweiterung auswählen..."
@@ -1973,6 +2068,9 @@ msgstr "Zum Fortfahren bitte OK drücken."
 msgid "Please press OK!"
 msgstr "Bitte OK drücken"
 
+msgid "Please select .NFI flash image file from medium"
+msgstr ""
+
 msgid "Please select a playlist to delete..."
 msgstr "Bitte wählen Sie eine Wiedergabeliste zum Löschen..."
 
@@ -1987,6 +2085,9 @@ msgstr "Bitte einen Unterkanal auswählen..."
 
 msgid "Please select keyword to filter..."
 msgstr "Bitte wählen Sie ein Schlüsselwort zum Filtern"
+
+msgid "Please select target directory or medium"
+msgstr ""
 
 msgid "Please select the movie path..."
 msgstr "Bitte den Filmpfad angeben..."
@@ -2015,6 +2116,9 @@ msgid ""
 msgstr ""
 "Bitte benutzen Sie die Hoch/Runter-Tasten, um Ihre Sprache auszuwählen. "
 "Danach drücken Sie bitte OK."
+
+msgid "Please wait for md5 signature verification..."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Bitte warten... Liste wird geladen..."
@@ -2145,6 +2249,9 @@ msgstr "Diesen Timer wirklich löschen?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Den Subservices-Schnellumschalter wirklich beenden?"
 
+msgid "Reboot"
+msgstr ""
+
 msgid "Reception Settings"
 msgstr "Empfangseinstellungen"
 
@@ -2190,6 +2297,9 @@ msgstr "Bildwiederholrate"
 msgid "Refresh rate selection."
 msgstr "Auswahl der Bildwiederholungsrate."
 
+msgid "Remounting stick partition..."
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr ""
 
@@ -2204,6 +2314,12 @@ msgstr "entferne aktuell ausgewählten Titel"
 
 msgid "Remove plugins"
 msgstr "Plugins entfernen"
+
+msgid "Remove the broken .NFI file?"
+msgstr ""
+
+msgid "Remove the incomplete .NFI file?"
+msgstr ""
 
 msgid "Remove title"
 msgstr "Titel entfernen"
@@ -2455,6 +2571,9 @@ msgstr "Tonspur auswählen"
 msgid "Select channel to record from"
 msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 
+msgid "Select image"
+msgstr ""
+
 msgid "Select refresh rate"
 msgstr "Wähle Bildwiederholrate"
 
@@ -2463,6 +2582,9 @@ msgstr "Wähle Video-Eingang"
 
 msgid "Select video mode"
 msgstr "Wähle Video-Modus"
+
+msgid "Selected source image"
+msgstr ""
 
 msgid "Seperate titles with a main menu"
 msgstr "Separate Titel mit Hauptmenü"
@@ -2589,6 +2711,9 @@ msgstr "Einzelnen Transponder"
 
 msgid "Singlestep (GOP)"
 msgstr "Einzelschritt (GOP)"
+
+msgid "Skin..."
+msgstr ""
 
 msgid "Sleep Timer"
 msgstr "Ausschalt-Timer"
@@ -2767,18 +2892,40 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
+"Please press OK to start using your Dreambox."
 msgstr ""
 "Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden.\n"
 "Bitte drücken Sie OK, um den Assistenten zu verlassen."
 
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "Der DVD-Standard unterstützt keine H.264 (HDTV) Videos. Soll stattdessen eine Daten-DVD im Dreambox-Format (die nicht in einem herkömmlichen DVD-Player abspielbar ist) erstellt werden?"
+msgid ""
+"The .NFI Image flasher USB stick is now ready to use. Please download an ."
+"NFI image file from the feed server and save it on the stick. Then reboot "
+"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
+"stick!"
+msgstr ""
+
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
+"Der DVD-Standard unterstützt keine H.264 (HDTV) Videos. Soll stattdessen "
+"eine Daten-DVD im Dreambox-Format (die nicht in einem herkömmlichen DVD-"
+"Player abspielbar ist) erstellt werden?"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 "Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort "
 "auswählen."
+
+#, python-format
+msgid ""
+"The following device was found:\n"
+"\n"
+"%s\n"
+"\n"
+"Do you want to write the USB flasher to this stick?"
+msgstr ""
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2799,6 +2946,17 @@ msgstr ""
 "Die Installation der Standardeinstellungen wurde beendet. Sie können nun mit "
 "der Konfiguration Ihrer Dreambox fortfahren, indem Sie die OK-Taste auf "
 "Ihrer Fernbedienung drücken."
+
+msgid ""
+"The md5sum validation failed, the file may be corrupted! Are you sure that "
+"you want to burn this image to flash memory? You are doing this at your own "
+"risk!"
+msgstr ""
+
+msgid ""
+"The md5sum validation failed, the file may be downloaded incompletely or be "
+"corrupted!"
+msgstr ""
 
 msgid "The package doesn't contain anything."
 msgstr "Das Paket enthält keine Daten"
@@ -2854,7 +3012,23 @@ msgstr ""
 "der gewählten Partition vorhanden ist.\n"
 "Wollen Sie wirklich fortfahren?"
 
-msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
+#, python-format
+msgid "This .NFI file does not contain a valid %s image!"
+msgstr ""
+
+msgid ""
+"This .NFI file does not have a md5sum signature and is not guaranteed to "
+"work. Do you really want to burn this image to flash memory?"
+msgstr ""
+
+msgid ""
+"This .NFI file has a valid md5 signature. Continue programming this image to "
+"flash memory?"
+msgstr ""
+
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
 msgstr ""
 "Dieses wiederbeschreibbare Medium ist bereits formatiert - durch eine "
 "Neuformatierung wird der gesamte Inhalt gelöscht"
@@ -2988,6 +3162,11 @@ msgstr "Titel"
 msgid "Title:"
 msgstr "Titel:"
 
+msgid ""
+"To make sure you intend to do this, please remove the target USB stick now "
+"and stick it back in upon prompt. Press OK when you have taken the stick out."
+msgstr ""
+
 msgid "Today"
 msgstr "Heute"
 
@@ -3097,6 +3276,9 @@ msgstr "Universal-LNB"
 
 msgid "Unmount failed"
 msgstr "Unmounten fehlgeschlagen"
+
+msgid "Update"
+msgstr ""
 
 msgid "Updates your receiver's software"
 msgstr "Aktualisiert die Software Ihres Receivers"
@@ -3248,6 +3430,9 @@ msgstr "WSS bei 4:3"
 msgid "Waiting"
 msgstr ""
 
+msgid "Waiting for USB stick to settle..."
+msgstr ""
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3266,6 +3451,15 @@ msgstr "Mittwoch"
 
 msgid "Weekday"
 msgstr "Wochentag"
+
+msgid ""
+"Welcome to the Cutlist editor.\n"
+"\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
+"\n"
+"Then seek to the end, press OK, select 'end cut'. That's it."
+msgstr ""
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
@@ -3312,6 +3506,12 @@ msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
 
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
+
+msgid "Writing NFI image file to flash completed"
+msgstr ""
+
+msgid "Writing image file to NAND Flash"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3409,8 +3609,14 @@ msgstr ""
 "Sie wollen Ihre Einstellungen auf die Festplatte sichern. Bitte drücken Sie "
 "OK, um die Sicherung zu starten."
 
-msgid "You have to wait for"
-msgstr "Sie müssen warten"
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+
+#, python-format
+msgid "You have to wait %s!"
+msgstr ""
 
 msgid ""
 "You need a PC connected to your dreambox. If you need further instructions, "
@@ -3592,6 +3798,9 @@ msgstr "Aufnahme ändern (Aufnahmeendzeit)"
 msgid "chapters"
 msgstr "Kapitel"
 
+msgid "choose destination directory"
+msgstr ""
+
 msgid "circular left"
 msgstr "links-zirkulär"
 
@@ -3718,6 +3927,9 @@ msgstr "Mediaplayer beenden"
 msgid "exit movielist"
 msgstr "Verlasse Filmliste"
 
+msgid "failed"
+msgstr ""
+
 msgid "filename"
 msgstr "Dateiname"
 
@@ -3843,6 +4055,9 @@ msgstr "manuell"
 msgid "menu"
 msgstr "Menü"
 
+msgid "menulist"
+msgstr ""
+
 msgid "mins"
 msgstr "min"
 
@@ -3957,6 +4172,9 @@ msgstr "Vorheriger Kanal"
 msgid "previous channel in history"
 msgstr "Vorheriger Kanal im Verlauf"
 
+msgid "rebooting..."
+msgstr ""
+
 msgid "record"
 msgstr "Aufnehmen"
 
@@ -4031,6 +4249,12 @@ msgid "seconds"
 msgstr "Sekunden"
 
 msgid "select"
+msgstr ""
+
+msgid "select .NFI flash file"
+msgstr ""
+
+msgid "select image from server"
 msgstr ""
 
 msgid "select movie"
@@ -4267,11 +4491,11 @@ msgstr "umgeschaltet"
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktiviere WLAN Unterstützung"
 
-#~ msgid "Extended Setup..."
-#~ msgstr "Erweiterte-Einstellungen..."
-
 #~ msgid "Games / Plugins"
 #~ msgstr "Spiele / Erweiterungen"
+
+#~ msgid "Jump to video title 1 (play movie from start)"
+#~ msgstr "Springe zu Videotitel 1 (Film von Anfang abspielen)"
 
 #~ msgid "Movie Menu"
 #~ msgstr "Filmauswahl"
@@ -4331,6 +4555,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "VCR Switch"
 #~ msgstr "Videorekorderumschaltung"
+
+#~ msgid "You have to wait for"
+#~ msgstr "Sie müssen warten"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Wie Tuner A"

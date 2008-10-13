@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandic translation v.1.36\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-10-13 22:55+0200\n"
 "PO-Revision-Date: 2008-04-01 21:39-0000\n"
 "Last-Translator: Baldur Sveinsson <baddi@oreind.is>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -17,18 +17,8 @@ msgstr ""
 "X-Poedit-Country: ICELAND\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 mun endurræsa eftir að hafa sett inn afrit"
-
 msgid " "
 msgstr ""
-
-msgid "\"?"
-msgstr "\"?"
 
 msgid "#000000"
 msgstr "#000000"
@@ -93,6 +83,16 @@ msgid "(empty)"
 msgstr "(tómt)"
 
 msgid "(show optional DVD audio menu)"
+msgstr ""
+
+msgid ".NFI Download failed:"
+msgstr ""
+
+msgid ".NFI Flasher bootable USB stick successfully created."
+msgstr ""
+
+msgid ""
+".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
 
 msgid "/usr/share/enigma2 directory"
@@ -251,6 +251,10 @@ msgstr ""
 "Upptaka er í gangi núna. Stoppaðu upptökuna áður en að þú byrjar "
 "gervihnattaleit."
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -293,6 +297,9 @@ msgstr "AGC"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr "Um...."
 
@@ -301,6 +308,9 @@ msgstr "Um....."
 
 msgid "Action on long powerbutton press"
 msgstr "Hvað skal gera ef ýtt er lengi á power takka"
+
+msgid "Action:"
+msgstr ""
 
 msgid "Activate Picture in Picture"
 msgstr "Virkja Mynd í Mynd"
@@ -314,11 +324,20 @@ msgstr ""
 msgid "Add"
 msgstr "Viðbót"
 
+msgid "Add Bookmark"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Bæta við merki"
 
+msgid "Add a new title"
+msgstr ""
+
 msgid "Add timer"
 msgstr "Taka upp"
+
+msgid "Add title"
+msgstr ""
 
 msgid "Add to bouquet"
 msgstr "Bæta við rásavönd"
@@ -358,6 +377,9 @@ msgstr "Albúm:"
 msgid "All"
 msgstr "Allt"
 
+msgid "All Satellites"
+msgstr ""
+
 msgid "All..."
 msgstr "Allt..."
 
@@ -373,19 +395,11 @@ msgstr "Móttakara forgangur við rásaval"
 msgid "An empty filename is illegal."
 msgstr "Ekkert skráarnafn er ógilt."
 
+msgid "An unknown error occured!"
+msgstr ""
+
 msgid "Arabic"
 msgstr "Arabíska"
-
-msgid ""
-"Are you sure you want to enable WLAN support?\n"
-"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-"\n"
-msgstr ""
-
-msgid ""
-"Are you sure you want to enable your local network?\n"
-"\n"
-msgstr ""
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -410,8 +424,14 @@ msgstr "Hljóð"
 msgid "Audio Options..."
 msgstr "Hljóð stillingar..."
 
+msgid "Authoring mode"
+msgstr ""
+
 msgid "Auto"
 msgstr "Sjálfvirkt"
+
+msgid "Auto chapter split every ? minutes (0=never)"
+msgstr ""
 
 msgid "Auto scart switching"
 msgstr "Sjálfvirk skipting á scarti"
@@ -419,8 +439,14 @@ msgstr "Sjálfvirk skipting á scarti"
 msgid "Automatic"
 msgstr "Sjálfvirkt"
 
+msgid "Automatic SSID lookup"
+msgstr ""
+
 msgid "Automatic Scan"
 msgstr "Sjálfvirk leit"
+
+msgid "Available format variables"
+msgstr ""
 
 msgid "B"
 msgstr "B"
@@ -438,6 +464,9 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "Back"
+msgstr ""
+
+msgid "Background"
 msgstr ""
 
 msgid "Backup"
@@ -476,8 +505,17 @@ msgstr "Aðgerð þegar mynd er stoppuð"
 msgid "Behavior when a movie reaches the end"
 msgstr "Aðgerð þegar mynd er búin"
 
+msgid "Bookmarks"
+msgstr ""
+
 msgid "Brightness"
 msgstr "Birta"
+
+msgid "Burn DVD"
+msgstr ""
+
+msgid "Burn to DVD..."
+msgstr ""
 
 msgid "Bus: "
 msgstr "Rás:"
@@ -488,6 +526,9 @@ msgid ""
 msgstr ""
 "Með því að ýta á OK takkann á fjárstýringunni þá sjást upplýsingarnar á "
 "skjánum."
+
+msgid "C"
+msgstr ""
 
 msgid "C-Band"
 msgstr "C-Band"
@@ -510,6 +551,9 @@ msgstr "Fylgist með hringingum"
 msgid "Cancel"
 msgstr "Hætta við"
 
+msgid "Cannot parse feed directory"
+msgstr ""
+
 msgid "Capacity: "
 msgstr "Stærð:"
 
@@ -521,6 +565,9 @@ msgstr "Catalan"
 
 msgid "Change bouquets in quickzap"
 msgstr "Skipta á milli rása flétta í rásastökki"
+
+msgid "Change dir."
+msgstr ""
 
 msgid "Change pin code"
 msgstr "Breyta aðgangskóða"
@@ -600,6 +647,12 @@ msgstr "Gagnahraði HP"
 msgid "Coderate LP"
 msgstr "Gagnahraði LP"
 
+msgid "Collection name"
+msgstr ""
+
+msgid "Collection settings"
+msgstr ""
+
 msgid "Color Format"
 msgstr "Lita kerfi"
 
@@ -627,31 +680,13 @@ msgstr "Búið"
 msgid "Configuration Mode"
 msgstr "Stillingar"
 
-msgid "Configure your internal LAN"
-msgstr ""
-
-msgid "Configure your internal LAN again"
-msgstr ""
-
-msgid "Configure your wireless LAN"
-msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Stilli"
-
-msgid "Confirm"
-msgstr "Staðfestu"
 
 msgid "Conflicting timer"
 msgstr "Tímastilling skarast"
 
-msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr ""
-
-msgid "Connect to the Internet with your local LAN"
+msgid "Connected to"
 msgstr ""
 
 msgid "Connected to Fritz!Box!"
@@ -673,14 +708,30 @@ msgstr ""
 msgid "Constellation"
 msgstr "Constellation"
 
+msgid "Content does not fit on DVD!"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
 msgid "Contrast"
 msgstr "Skerpa"
 
+msgid "Copying USB flasher boot image to stick..."
+msgstr ""
+
+msgid "Could not connect to Dreambox .NFI Image Feed Server:"
+msgstr ""
+
+msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
 msgid "Create movie folder failed"
 msgstr "Tókst ekki að búa til bíómyndamöppu"
+
+#, python-format
+msgid "Creating directory %s failed."
+msgstr ""
 
 msgid "Creating partition failed"
 msgstr "Tókst ekki að búa til diskhluta"
@@ -718,6 +769,9 @@ msgstr "Klippingastjóri"
 msgid "Czech"
 msgstr "Tékkneska"
 
+msgid "D"
+msgstr ""
+
 msgid "DHCP"
 msgstr ""
 
@@ -727,22 +781,10 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
-msgid "DVD ENTER key"
-msgstr ""
-
 msgid "DVD Player"
 msgstr ""
 
-msgid "DVD down key"
-msgstr ""
-
-msgid "DVD left key"
-msgstr ""
-
-msgid "DVD right key"
-msgstr ""
-
-msgid "DVD up key"
+msgid "DVD media toolbox"
 msgstr ""
 
 msgid "Danish"
@@ -750,6 +792,9 @@ msgstr "Danska"
 
 msgid "Date"
 msgstr "Dags"
+
+msgid "Decompressing USB stick flasher boot image..."
+msgstr ""
 
 msgid "Deep Standby"
 msgstr "Djúp biðstaða"
@@ -781,6 +826,9 @@ msgstr ""
 msgid "Description"
 msgstr "Lýsing"
 
+msgid "Destination directory"
+msgstr ""
+
 msgid "Detected HDD:"
 msgstr "Fann harðan disk:"
 
@@ -805,6 +853,13 @@ msgstr "DiSEqC gerð"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC endurtekning"
 
+msgid "Direct playback of linked titles without menu"
+msgstr ""
+
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr ""
+
 msgid "Disable"
 msgstr "Gera óvirkt"
 
@@ -813,6 +868,9 @@ msgstr "Gera Mynd í Mynd óvirka"
 
 msgid "Disable Subtitles"
 msgstr "Ekki undirtexta"
+
+msgid "Disable timer"
+msgstr ""
 
 msgid "Disabled"
 msgstr "Óvirkt"
@@ -874,12 +932,23 @@ msgstr ""
 "Viltu örugglega frumstilla harða diskinn?\n"
 "Öll gögn eyðast af diskinum!"
 
+#, python-format
+msgid "Do you really want to remove directory %s from the disk?"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to remove your bookmark of %s?"
+msgstr ""
+
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Viltu taka afrit núna?\n"
 "Eftir að hafa ýtt á OK þá bíðið!"
+
+msgid "Do you want to burn this collection to DVD medium?"
+msgstr ""
 
 msgid "Do you want to do a service scan?"
 msgstr "Viltu leita að rásum?"
@@ -890,7 +959,13 @@ msgstr "Viltu leita aftur handvirkt?"
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Viltu gera virkan foreldrastýrðan aðgang að dreamboxinu?"
 
+msgid "Do you want to install default sat lists?"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
+msgstr ""
+
+msgid "Do you want to preview this DVD before burning?"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -920,8 +995,17 @@ msgstr "Búinn - %d pakkar settir inn eða uppfærðir"
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Búinn - %d pakkar settir inn eða upp færðir með %d villum"
 
+msgid "Download"
+msgstr ""
+
+msgid "Download .NFI-Files for USB-Flasher"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Hala niður innskotum"
+
+msgid "Download of USB flasher boot image failed: "
+msgstr ""
 
 msgid "Downloadable new plugins"
 msgstr "Niðurhalanleg ný innskot"
@@ -932,8 +1016,14 @@ msgstr "Niðurhalanleg innskot"
 msgid "Downloading"
 msgstr "Hleð  niður"
 
+msgid "Downloading image description..."
+msgstr ""
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Hala niður innskots upplýsingum. Vinsamlega bíðið..."
+
+msgid "Dreambox format data DVD (HDTV compatible)"
+msgstr ""
 
 msgid "Dutch"
 msgstr "Hollenska"
@@ -954,6 +1044,9 @@ msgstr "Austur"
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit chapters of current title"
+msgstr ""
+
 msgid "Edit services list"
 msgstr "Breyta rása lista"
 
@@ -966,6 +1059,9 @@ msgstr ""
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
 
+msgid "Edit title"
+msgstr ""
+
 msgid "Electronic Program Guide"
 msgstr "Rafrænn dagskrárstjóri (EPG)"
 
@@ -975,21 +1071,13 @@ msgstr "Virkja"
 msgid "Enable 5V for active antenna"
 msgstr "Kveikja á 5V fyrir loftnet með magnara"
 
-msgid "Enable LAN"
-msgstr ""
-
-msgid "Enable WLAN"
-msgstr ""
-
 msgid "Enable multiple bouquets"
 msgstr "Virkja marga rásavendi"
 
 msgid "Enable parental control"
 msgstr "Virkja foreldra stýringu"
 
-msgid ""
-"Enable the local network of your Dreambox.\n"
-"\n"
+msgid "Enable timer"
 msgstr ""
 
 msgid "Enabled"
@@ -1051,6 +1139,15 @@ msgstr "Sláðu inn kóða"
 msgid "Error"
 msgstr "Villa"
 
+msgid "Error executing plugin"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+
 msgid "Eventview"
 msgstr "Skoða atriði"
 
@@ -1075,11 +1172,14 @@ msgstr "Hætta í álfinum"
 msgid "Exit wizard"
 msgstr "Hætta í álfi"
 
-msgid "Exit wizard and configure later manually"
-msgstr ""
-
 msgid "Expert"
 msgstr "Sérfræði"
+
+msgid "Extended Networksetup Plugin..."
+msgstr ""
+
+msgid "Extended Setup..."
+msgstr "Meiri stillingar..."
 
 msgid "Extensions"
 msgstr "Viðbætur"
@@ -1122,6 +1222,25 @@ msgstr ""
 
 msgid "Finnish"
 msgstr "Finnska"
+
+msgid ""
+"First we need to download the latest boot environment for the USB flasher."
+msgstr ""
+
+msgid "Fix USB stick"
+msgstr ""
+
+msgid "Flash"
+msgstr ""
+
+msgid "Flashing failed"
+msgstr ""
+
+msgid "Font size"
+msgstr ""
+
+msgid "Format"
+msgstr ""
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Fjöldi ramma við hraðspólun"
@@ -1253,6 +1372,9 @@ msgstr ""
 "Ekki hafa áhyggjur af björtum svæðum núna. Þeir verða stilltir næst.\n"
 "Ef stillingin er orðin eins og þér finnst best ýttu þá á OK."
 
+msgid "Image flash utility"
+msgstr ""
+
 msgid "Image-Upgrade"
 msgstr "Uppfærsla stýrikerfi"
 
@@ -1315,6 +1437,9 @@ msgstr "Skyndi upptaka..."
 msgid "Integrated Ethernet"
 msgstr "Innbyggt Netkort"
 
+msgid "Integrated Wireless"
+msgstr ""
+
 msgid "Intermediate"
 msgstr "millistig"
 
@@ -1323,6 +1448,10 @@ msgstr "Innra Flash minni"
 
 msgid "Invalid Location"
 msgstr "Ógildur staður"
+
+#, python-format
+msgid "Invalid directory selected: %s"
+msgstr ""
 
 msgid "Inversion"
 msgstr "Umbreyting"
@@ -1334,9 +1463,6 @@ msgid "Italian"
 msgstr "Ítalska"
 
 msgid "Job View"
-msgstr ""
-
-msgid "Jump to video title 1 (play movie from start)"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -1404,11 +1530,20 @@ msgstr "Mörk á"
 msgid "Link:"
 msgstr ""
 
+msgid "Linked titles with a DVD menu"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr "Listi minnis hluta"
 
 msgid "Lithuanian"
 msgstr "Litháíska"
+
+msgid "Load"
+msgstr ""
+
+msgid "Load Length of Movies in Movielist"
+msgstr ""
 
 msgid "Local Network"
 msgstr ""
@@ -1463,6 +1598,12 @@ msgstr "Spilari"
 
 msgid "MediaPlayer"
 msgstr "Spilari"
+
+msgid "Medium is not a writeable DVD!"
+msgstr ""
+
+msgid "Medium is not empty!"
+msgstr ""
 
 msgid "Menu"
 msgstr "Valmynd"
@@ -1526,6 +1667,9 @@ msgstr "Ekki til"
 
 msgid "NEXT"
 msgstr "NÆST"
+
+msgid "NFI image flashing completed. Press Yellow to Reboot!"
+msgstr ""
 
 msgid "NOW"
 msgstr "NÚNA"
@@ -1600,6 +1744,9 @@ msgstr "Næsta"
 msgid "No"
 msgstr "Nei"
 
+msgid "No (supported) DVDROM found!"
+msgstr ""
+
 msgid "No 50 Hz, sorry. :("
 msgstr "Ekki 50 Hz, því miður. :("
 
@@ -1615,6 +1762,9 @@ msgid ""
 msgstr ""
 "Engin gögn á sendi!\n"
 "(Rann út á tíma við lestur PAT)"
+
+msgid "No details for this image file"
+msgstr ""
 
 msgid "No event info found, recording indefinitely."
 msgstr "Engar upplýsingar um atriði fundust, tek upp endalaust."
@@ -1646,6 +1796,9 @@ msgstr ""
 "Enginn móttakari er valinn!\n"
 "Stilltu móttakara áður er að þú ferð að leita að rásum."
 
+msgid "No useable USB stick found"
+msgstr ""
+
 msgid ""
 "No valid service PIN found!\n"
 "Do you like to change the service PIN now?\n"
@@ -1672,8 +1825,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN USB Stick or enable "
-"you local network interface."
+" Please verify that you have attached a compatible WLAN device or enable you "
+"local network interface."
 msgstr ""
 
 msgid ""
@@ -1691,9 +1844,6 @@ msgstr "Nei, ekki gera neitt."
 msgid "No, just start my dreambox"
 msgstr "Nei, ræstu bara boxið mitt"
 
-msgid "No, let me choose default lists"
-msgstr ""
-
 msgid "No, scan later manually"
 msgstr "Nei, leita seinna handvirkt"
 
@@ -1710,6 +1860,12 @@ msgstr "Norður"
 msgid "Norwegian"
 msgstr "Norska"
 
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -1719,6 +1875,12 @@ msgstr ""
 
 msgid "Now Playing"
 msgstr "Spila núna"
+
+msgid ""
+"Now please insert the USB stick (minimum size is 64 MB) that you want to "
+"format and use as .NFI image flasher. Press OK after you've put the stick "
+"back in."
+msgstr ""
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1738,6 +1900,9 @@ msgstr "Leiðbeindu mér með uppfærsluna"
 msgid "OSD Settings"
 msgstr "Stilling valmynda"
 
+msgid "OSD visibility"
+msgstr ""
+
 msgid "Off"
 msgstr "Af"
 
@@ -1749,6 +1914,9 @@ msgstr "Einn"
 
 msgid "Online-Upgrade"
 msgstr "Uppfærsla frá neti"
+
+msgid "Only Free scan"
+msgstr ""
 
 msgid "Orbital Position"
 msgstr "Staðsetnging gervihnattar"
@@ -1775,6 +1943,9 @@ msgstr "Blaðsíða"
 msgid "Pan&Scan"
 msgstr "Pan&Scan"
 
+msgid "Parent Directory"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Foreldrastýring"
 
@@ -1786,6 +1957,9 @@ msgstr "Uppsetning á foreldrastýringu"
 
 msgid "Parental control type"
 msgstr "Gerð foreldrastýringar"
+
+msgid "Partitioning USB stick..."
+msgstr ""
 
 msgid "Pause movie at end"
 msgstr "Setja á pásu við enda myndar"
@@ -1815,14 +1989,14 @@ msgstr "Vinsamlega endurræsið"
 msgid "Please Select Medium to be Scanned"
 msgstr "Vinsamlega veljið stað sem á að skoða"
 
-msgid ""
-"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-"Dreambox and press the OK button on your remote control to enable the built "
-"in wireless network support"
-msgstr ""
-
 msgid "Please change recording endtime"
 msgstr "Sláðu inn lokatíma upptöku"
+
+msgid "Please check your network settings!"
+msgstr ""
+
+msgid "Please choose .NFI image file from feed server to download"
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Vinsamlega veldu viðbót.."
@@ -1831,18 +2005,6 @@ msgid "Please choose he package..."
 msgstr ""
 
 msgid "Please choose the default services lists you want to install."
-msgstr ""
-
-msgid ""
-"Please configure your local LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-
-msgid ""
-"Please configure your wireless LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -1860,6 +2022,9 @@ msgstr "Sláðu inn nýtt skráarnafn"
 msgid "Please enter filename (empty = use current date)"
 msgstr "Sláðu inn skráarnafn (tómt = nota núverandi dag)"
 
+msgid "Please enter name of the new directory"
+msgstr ""
+
 msgid "Please enter the correct pin code"
 msgstr "Sláðu inn réttan kóða"
 
@@ -1869,8 +2034,19 @@ msgstr "Sláðu inn gamla kóðann"
 msgid "Please follow the instructions on the TV"
 msgstr "Fylgdu leiðbeiningum á skjá."
 
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+
+msgid "Please press OK to continue."
+msgstr ""
+
 msgid "Please press OK!"
 msgstr "Ýtið á OK!"
+
+msgid "Please select .NFI flash image file from medium"
+msgstr ""
 
 msgid "Please select a playlist to delete..."
 msgstr "Veldu spilunarlista til að eyða..."
@@ -1884,11 +2060,11 @@ msgstr "Velja undirrás til að taka upp..."
 msgid "Please select a subservice..."
 msgstr "Vinsamlega veldu undirrás..."
 
-msgid "Please select below the wireless network you want to connect to."
-msgstr ""
-
 msgid "Please select keyword to filter..."
 msgstr "Veldu orð til að leita út..."
+
+msgid "Please select target directory or medium"
+msgstr ""
 
 msgid "Please select the movie path..."
 msgstr "Veldu slóð að mynd..."
@@ -1910,6 +2086,14 @@ msgstr ""
 "Vinsamlega notið örvatakka til að færa Mynd í Mynd glugga.\n"
 "Ýttu á Bouquet +/- til að breyta stærð á glugga.\n"
 "Ýttu á OK til að fara aftur í venjulega stillingu eða EXIT til að hætta við."
+
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
+msgstr ""
+
+msgid "Please wait for md5 signature verification..."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Vinsamlega bíðið.. les inn lista...."
@@ -1974,21 +2158,20 @@ msgstr ""
 msgid "Press OK to activate the settings."
 msgstr "Ýtið á OK til að virkja stillingar."
 
+msgid "Press OK to edit the settings."
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr "Ýtið á OK til að leita"
 
 msgid "Press OK to start the scan"
 msgstr "Ýtið á OK til að byrja að leita"
 
-msgid ""
-"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
-"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
-"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
-"\n"
-msgstr ""
-
 msgid "Prev"
 msgstr "Fyrri"
+
+msgid "Preview menu"
+msgstr ""
 
 msgid "Primary DNS"
 msgstr ""
@@ -2041,6 +2224,9 @@ msgstr "Viltu eyða þessu atriði?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Viltu hætta í undirrása hraðstökki?"
 
+msgid "Reboot"
+msgstr ""
+
 msgid "Reception Settings"
 msgstr "Stilling móttöku"
 
@@ -2080,14 +2266,36 @@ msgstr "Hressingar tíðni"
 msgid "Refresh rate selection."
 msgstr "Hressingar tíðni val."
 
+msgid "Remounting stick partition..."
+msgstr ""
+
+msgid "Remove Bookmark"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr "Taka út Innskot"
 
 msgid "Remove a mark"
 msgstr "Eyða merkingu"
 
+msgid "Remove currently selected title"
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Taka út innskot"
+
+msgid "Remove the broken .NFI file?"
+msgstr ""
+
+msgid "Remove the incomplete .NFI file?"
+msgstr ""
+
+msgid "Remove title"
+msgstr ""
+
+#, python-format
+msgid "Removing directory %s failed. (Maybe not empty.)"
+msgstr ""
 
 msgid "Rename"
 msgstr "Endurnefna"
@@ -2126,9 +2334,6 @@ msgid "Restart test"
 msgstr ""
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr ""
-
-msgid "Restart your wireless interface"
 msgstr ""
 
 msgid "Restore"
@@ -2207,8 +2412,14 @@ msgstr "Gervihnettir"
 msgid "Satfinder"
 msgstr "Gervihnattaleit"
 
+msgid "Sats"
+msgstr ""
+
 msgid "Saturday"
 msgstr "Laugardagur"
+
+msgid "Save"
+msgstr ""
 
 msgid "Save Playlist"
 msgstr "Vista spilunarlista"
@@ -2324,6 +2535,9 @@ msgstr "Veldu hljóð rás"
 msgid "Select channel to record from"
 msgstr "Veldu rás til að taka upp frá"
 
+msgid "Select image"
+msgstr ""
+
 msgid "Select refresh rate"
 msgstr "Veldu hressingar tíðni."
 
@@ -2332,6 +2546,12 @@ msgstr "Veldu mynd inngang"
 
 msgid "Select video mode"
 msgstr "Veldu mynd stillingu"
+
+msgid "Selected source image"
+msgstr ""
+
+msgid "Seperate titles with a main menu"
+msgstr ""
 
 msgid "Sequence repeat"
 msgstr "Endurtaka runu"
@@ -2380,6 +2600,9 @@ msgstr "Upplýsingar"
 
 msgid "Services"
 msgstr "Rásir"
+
+msgid "Set as default Interface"
+msgstr ""
 
 msgid "Set limits"
 msgstr "Setja mörk"
@@ -2452,6 +2675,9 @@ msgstr "Einn sendir"
 
 msgid "Singlestep (GOP)"
 msgstr "Eitt skref (GOP)"
+
+msgid "Skin..."
+msgstr ""
 
 msgid "Sleep Timer"
 msgstr "Tímastilling"
@@ -2530,9 +2756,6 @@ msgstr "Byrjunartími"
 
 msgid "Starting on"
 msgstr "Byrja á"
-
-msgid "Step "
-msgstr "Þrep"
 
 msgid "Step east"
 msgstr "Skref austur"
@@ -2619,6 +2842,9 @@ msgstr ""
 msgid "TV System"
 msgstr "Sjónvarps kerfi"
 
+msgid "Table of content for collection"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Stafrænt í lofti"
 
@@ -2635,35 +2861,36 @@ msgid "Test-Messagebox?"
 msgstr "Prófa skilaboðaskjóðu?"
 
 msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your local LAN internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your wireless internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"Please press OK to start using your Dreambox."
-msgstr ""
-
-msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
+"Please press OK to start using your Dreambox."
 msgstr ""
 "Takk fyrir að nota álfinn. Núna er móttakarinn tilbúinn til notkunar.\n"
 "Ýttu á OK til að byrja að nota móttakarann,"
 
+msgid ""
+"The .NFI Image flasher USB stick is now ready to use. Please download an ."
+"NFI image file from the feed server and save it on the stick. Then reboot "
+"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
+"stick!"
+msgstr ""
+
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
+
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Afritun mistókst. Veldu annan stað fyrir afritið."
+
+#, python-format
+msgid ""
+"The following device was found:\n"
+"\n"
+"%s\n"
+"\n"
+"Do you want to write the USB flasher to this stick?"
+msgstr ""
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2681,7 +2908,22 @@ msgid ""
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
 
+msgid ""
+"The md5sum validation failed, the file may be corrupted! Are you sure that "
+"you want to burn this image to flash memory? You are doing this at your own "
+"risk!"
+msgstr ""
+
+msgid ""
+"The md5sum validation failed, the file may be downloaded incompletely or be "
+"corrupted!"
+msgstr ""
+
 msgid "The package doesn't contain anything."
+msgstr ""
+
+#, python-format
+msgid "The path %s already exists."
 msgstr ""
 
 msgid "The pin code has been changed successfully."
@@ -2703,6 +2945,11 @@ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Atriða skrá (timer.xml) er skemmd og var ekki hægt að lesa hana."
 
 msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Álfurinn getur tekið afrit af stillingum þínum. Viltu taka afrit núna?"
 
@@ -2721,6 +2968,29 @@ msgid ""
 msgstr ""
 "Það gæti verið of lítið pláss á valinni disksneið,\n"
 "Viltu örugglega halda áfram?"
+
+#, python-format
+msgid "This .NFI file does not contain a valid %s image!"
+msgstr ""
+
+msgid ""
+"This .NFI file does not have a md5sum signature and is not guaranteed to "
+"work. Do you really want to burn this image to flash memory?"
+msgstr ""
+
+msgid ""
+"This .NFI file has a valid md5 signature. Continue programming this image to "
+"flash memory?"
+msgstr ""
+
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
+msgstr ""
+
+#, python-format
+msgid "This Dreambox can't decode %s video streams!"
+msgstr ""
 
 msgid "This is step number 2."
 msgstr "Þetta er hluti númer 2"
@@ -2824,6 +3094,11 @@ msgstr ""
 msgid "Title:"
 msgstr "Titill:"
 
+msgid ""
+"To make sure you intend to do this, please remove the target USB stick now "
+"and stick it back in upon prompt. Press OK when you have taken the stick out."
+msgstr ""
+
 msgid "Today"
 msgstr "Í dag"
 
@@ -2835,6 +3110,9 @@ msgstr "Tónstýring"
 
 msgid "Toneburst A/B"
 msgstr "Tón stýring A/B"
+
+msgid "Track"
+msgstr ""
 
 msgid "Translation"
 msgstr "Þýðing"
@@ -2931,6 +3209,9 @@ msgstr "Venjulegt LNB"
 msgid "Unmount failed"
 msgstr "Aftenging tókst ekki"
 
+msgid "Update"
+msgstr ""
+
 msgid "Updates your receiver's software"
 msgstr "Uppfærir forrit móttakarans"
 
@@ -2951,6 +3232,9 @@ msgstr "Uppfæri Dreamboxið...vinsamlegast bíðið"
 
 msgid "Use DHCP"
 msgstr "Nota DHCP"
+
+msgid "Use Interface"
+msgstr ""
 
 msgid "Use Power Measurement"
 msgstr "Nota afl mælingu"
@@ -3007,6 +3291,9 @@ msgstr "Stillt af notanda"
 
 msgid "VCR scart"
 msgstr "Vídeó scart"
+
+msgid "VMGM (intro trailer)"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Mynd fínstillingar"
@@ -3070,6 +3357,9 @@ msgstr "WSS á 4:3"
 msgid "Waiting"
 msgstr ""
 
+msgid "Waiting for USB stick to settle..."
+msgstr ""
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3090,6 +3380,15 @@ msgid "Weekday"
 msgstr "Vikudagur"
 
 msgid ""
+"Welcome to the Cutlist editor.\n"
+"\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
+"\n"
+"Then seek to the end, press OK, select 'end cut'. That's it."
+msgstr ""
+
+msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
@@ -3097,15 +3396,6 @@ msgstr ""
 "Velkominn til stýrikerfis uppfærslu álfinn. Álfurinn aðstoðar þig við að "
 "uppfæra stýrikerfi Dreamboxins með því að sjá um afritun af þínum stillingum "
 "og sýnir svo hverning uppfærslan fer fram."
-
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
-msgstr ""
 
 msgid ""
 "Welcome.\n"
@@ -3138,6 +3428,15 @@ msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Villla við upptöku. Diskur fullur?\n"
+
+msgid "Write failed!"
+msgstr ""
+
+msgid "Writing NFI image file to flash completed"
+msgstr ""
+
+msgid "Writing image file to NAND Flash"
+msgstr ""
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3228,6 +3527,11 @@ msgstr ""
 "Þú hefur valið að senda afritið á harða diskinn. Ýttu á OK til að byrja "
 "afritunina núna."
 
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Þú þarf að bíða %s!"
@@ -3289,31 +3593,6 @@ msgstr ""
 "Það þarf að uppfæra heila í framtölvu.\n"
 "Ýtið á OK til að byrja uppfærslu."
 
-msgid ""
-"Your local LAN internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
-msgid ""
-"Your network is restarting.\n"
-"You will be automatically forwarded to the next step."
-msgstr ""
-
-msgid ""
-"Your wired LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-
-msgid ""
-"Your wireless LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-
-msgid ""
-"Your wireless internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
 msgid "Zap back to service before positioner setup?"
 msgstr "Fara aftur á rás fyrir stillingu á mótorstýringu?"
 
@@ -3346,6 +3625,9 @@ msgstr "er að byrja"
 
 msgid "add alternatives"
 msgstr "bæta við valkosti"
+
+msgid "add bookmark"
+msgstr ""
 
 msgid "add bouquet"
 msgstr "bæta rásavendi við"
@@ -3396,8 +3678,14 @@ msgstr ""
 "ertu viss um að þú viljir setja inn\n"
 "eftirfarandi afrit:\n"
 
+msgid "audio tracks"
+msgstr ""
+
 msgid "back"
 msgstr "til baka"
+
+msgid "background image"
+msgstr ""
 
 msgid "better"
 msgstr "betra"
@@ -3414,6 +3702,12 @@ msgstr "breyta upptöku (tíma)"
 msgid "change recording (endtime)"
 msgstr "breyta upptöku (lokatíma)"
 
+msgid "chapters"
+msgstr ""
+
+msgid "choose destination directory"
+msgstr ""
+
 msgid "circular left"
 msgstr "hringpólun vinstri"
 
@@ -3422,6 +3716,9 @@ msgstr "hringpólun hægri"
 
 msgid "clear playlist"
 msgstr "hreinsa spilunarlista"
+
+msgid "color"
+msgstr ""
 
 msgid "complex"
 msgstr "flókinn"
@@ -3441,8 +3738,14 @@ msgstr "halda áfram"
 msgid "copy to bouquets"
 msgstr "afrita til rásavanda"
 
+msgid "create directory"
+msgstr ""
+
 msgid "daily"
 msgstr "daglega"
+
+msgid "day"
+msgstr ""
 
 msgid "delete"
 msgstr "eyða"
@@ -3516,8 +3819,11 @@ msgstr "enda klippingu hér"
 msgid "end favourites edit"
 msgstr "hætta að breyta uppáhalds lista"
 
-msgid "equal to Socket A"
-msgstr "eins og tengi A"
+msgid "equal to"
+msgstr ""
+
+msgid "exceeds dual layer medium!"
+msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr ""
@@ -3528,10 +3834,22 @@ msgstr "hætta í spilara"
 msgid "exit movielist"
 msgstr "loka myndalista"
 
+msgid "failed"
+msgstr ""
+
+msgid "filename"
+msgstr ""
+
 msgid "fine-tune your display"
 msgstr "fínstilla sjónvarpið"
 
+msgid "font face"
+msgstr ""
+
 msgid "forward to the next chapter"
+msgstr ""
+
+msgid "free"
 msgstr ""
 
 msgid "free diskspace"
@@ -3546,6 +3864,9 @@ msgstr "fara í djúpsvefn"
 msgid "go to standby"
 msgstr "fara í biðstöðu"
 
+msgid "headline"
+msgstr ""
+
 msgid "hear radio..."
 msgstr "hlusta á útvarp...."
 
@@ -3557,6 +3878,9 @@ msgstr "fela auka upplýsingar"
 
 msgid "hide player"
 msgstr "fela spilara"
+
+msgid "highlighted button"
+msgstr ""
 
 msgid "horizontal"
 msgstr "lárétt"
@@ -3608,6 +3932,9 @@ msgstr "hætta í spilara"
 msgid "left"
 msgstr "vinstri"
 
+msgid "length"
+msgstr ""
+
 msgid "list style compact"
 msgstr "stíll lista lítill"
 
@@ -3626,14 +3953,17 @@ msgstr "hlaða inn spilunarlista"
 msgid "locked"
 msgstr "læst"
 
-msgid "loopthrough to socket A"
-msgstr "tengt frá tengi A"
+msgid "loopthrough to"
+msgstr ""
 
 msgid "manual"
 msgstr "handvirkt"
 
 msgid "menu"
 msgstr "valmynd"
+
+msgid "menulist"
+msgstr ""
 
 msgid "mins"
 msgstr "mín"
@@ -3692,11 +4022,20 @@ msgstr "ekki læst"
 msgid "nothing connected"
 msgstr "ekkert tengt"
 
+msgid "of a DUAL layer medium used."
+msgstr ""
+
+msgid "of a SINGLE layer medium used."
+msgstr ""
+
 msgid "off"
 msgstr "af"
 
 msgid "on"
 msgstr "á"
+
+msgid "on READ ONLY medium."
+msgstr ""
 
 msgid "once"
 msgstr "einu sinni"
@@ -3740,6 +4079,9 @@ msgstr "fyrri rás"
 msgid "previous channel in history"
 msgstr "fyrri rás í sögu"
 
+msgid "rebooting..."
+msgstr ""
+
 msgid "record"
 msgstr "taka upp"
 
@@ -3758,6 +4100,12 @@ msgstr "eyða öllum merkingum um nýfundna rás"
 msgid "remove before this position"
 msgstr "eyða fyrir framan þetta"
 
+msgid "remove bookmark"
+msgstr ""
+
+msgid "remove directory"
+msgstr ""
+
 msgid "remove entry"
 msgstr "taka út"
 
@@ -3772,6 +4120,9 @@ msgstr ""
 
 msgid "remove this mark"
 msgstr "taka út þetta merki"
+
+msgid "repeat playlist"
+msgstr ""
 
 msgid "repeated"
 msgstr "endurtekinn"
@@ -3805,6 +4156,12 @@ msgid "seconds"
 msgstr "sekúndur"
 
 msgid "select"
+msgstr ""
+
+msgid "select .NFI flash file"
+msgstr ""
+
+msgid "select image from server"
 msgstr ""
 
 msgid "select movie"
@@ -3879,6 +4236,9 @@ msgstr "stökkva áfram (slá inn tíma)"
 msgid "sort by date"
 msgstr "raða eftir dagsetningu"
 
+msgid "spaces (top, between rows, left)"
+msgstr ""
+
 msgid "standard"
 msgstr "venjulegt"
 
@@ -3908,6 +4268,9 @@ msgstr "stoppa lifandi pásu"
 
 msgid "swap PiP and main picture"
 msgstr "skipta á PiP og aðal mynd"
+
+msgid "switch to bookmarks"
+msgstr ""
 
 msgid "switch to filelist"
 msgstr "skipta í skráarlista"
@@ -3972,6 +4335,9 @@ msgstr "vikulega"
 msgid "whitelist"
 msgstr "hvíti listi"
 
+msgid "year"
+msgstr ""
+
 msgid "yes"
 msgstr "já"
 
@@ -3990,6 +4356,16 @@ msgstr "stökk"
 
 msgid "zapped"
 msgstr "stokkið"
+
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 mun endurræsa eftir að hafa sett inn afrit"
+
+#~ msgid "\"?"
+#~ msgstr "\"?"
 
 #~ msgid "#0000ff"
 #~ msgstr "#0000ff"
@@ -4077,6 +4453,9 @@ msgstr "stokkið"
 #~ msgid "Classic"
 #~ msgstr "Sígilt"
 
+#~ msgid "Confirm"
+#~ msgstr "Staðfestu"
+
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Setja sökk tímabil fyrir 1/3 lykla"
 
@@ -4116,9 +4495,6 @@ msgstr "stokkið"
 
 #~ msgid "Expert Setup"
 #~ msgstr "Sérfræði uppsetning"
-
-#~ msgid "Extended Setup..."
-#~ msgstr "Meiri stillingar..."
 
 #~ msgid "Fast zapping"
 #~ msgstr "Stökkva hratt"
@@ -4255,6 +4631,9 @@ msgstr "stokkið"
 #~ msgid "Startwizard"
 #~ msgstr "Byrja álf"
 
+#~ msgid "Step "
+#~ msgstr "Þrep"
+
 #~ msgid "Swap services"
 #~ msgstr "Skipta á milli rása"
 
@@ -4306,8 +4685,14 @@ msgstr "stokkið"
 #~ msgid "empty/unknown"
 #~ msgstr "tómur/óþekkt"
 
+#~ msgid "equal to Socket A"
+#~ msgstr "eins og tengi A"
+
 #~ msgid "list"
 #~ msgstr "listi"
+
+#~ msgid "loopthrough to socket A"
+#~ msgstr "tengt frá tengi A"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "spila næsta atriði á spilunarlista"

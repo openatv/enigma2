@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-12 22:50+0200\n"
-"PO-Revision-Date: 2008-10-10 09:10+0100\n"
+"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"PO-Revision-Date: 2008-10-13 11:44+0100\n"
 "Last-Translator:  <silelis@tlen.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -85,14 +85,16 @@ msgid "(show optional DVD audio menu)"
 msgstr "(pokaż opcjonalne menu ustawień DVD audio)"
 
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr "Ładowanie pliku .NFI nie powiodło się:"
 
 msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
+msgstr "Utworzenie bootowalnego nośnika USB z .NFI Flasher powiodło się."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
+"Suma kontrolna md5 pliku .NFi została sprawdzona. Możesz bezpiecznie "
+"flashować tym image'm!"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "katalog /usr/share/enigma2"
@@ -294,6 +296,9 @@ msgstr "AGC"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr "O tunerze..."
 
@@ -464,6 +469,9 @@ msgstr "BER:"
 msgid "Back"
 msgstr "Powrót"
 
+msgid "Background"
+msgstr ""
+
 msgid "Backup"
 msgstr "Kopia zapasowa"
 
@@ -545,7 +553,7 @@ msgid "Cancel"
 msgstr "Anuluj"
 
 msgid "Cannot parse feed directory"
-msgstr ""
+msgstr "Nie można odnaleść katalogu"
 
 msgid "Capacity: "
 msgstr "Pojemność:"
@@ -560,7 +568,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Automatyczna zmiana bukietów"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Zmień katalog"
 
 msgid "Change pin code"
 msgstr "Zmień kod pin"
@@ -711,10 +719,10 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 msgid "Copying USB flasher boot image to stick..."
-msgstr ""
+msgstr "Kopiowanie USB flasher image'a na nosnik..."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "Połączenie z Dreambox .NFI Image Serwerem nie powiodło sie:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nie moge odczytać nosnika. Czy nośnik znajduje się w czytniku?"
@@ -787,7 +795,7 @@ msgid "Date"
 msgstr "Data"
 
 msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
+msgstr "Dekompresja USB flasher image'a..."
 
 msgid "Deep Standby"
 msgstr "Głębokie Czuwanie"
@@ -822,7 +830,7 @@ msgid "Description"
 msgstr "Opis"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Katalog docelowy"
 
 msgid "Detected HDD:"
 msgstr "Wykryto Hdd:"
@@ -991,16 +999,16 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Zrobione - Instalowanie lub aktualizowanie %d pakietów z %d błędami"
 
 msgid "Download"
-msgstr ""
+msgstr "Ładuj"
 
 msgid "Download .NFI-Files for USB-Flasher"
-msgstr ""
+msgstr "Ładuj pliki .NFI z USB Flasher"
 
 msgid "Download Plugins"
 msgstr "Pobierz pluginy"
 
 msgid "Download of USB flasher boot image failed: "
-msgstr ""
+msgstr "Ładowanie image'a z USB flasher'a nie powiodło się:"
 
 msgid "Downloadable new plugins"
 msgstr "Do pobrania nowe pluginy"
@@ -1012,7 +1020,7 @@ msgid "Downloading"
 msgstr "Pobieranie..."
 
 msgid "Downloading image description..."
-msgstr ""
+msgstr "Ładowanie opisu image'u..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Pobieranie informacji o pluginie. Proszę czekać..."
@@ -1135,7 +1143,7 @@ msgid "Error"
 msgstr "Błąd"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "Błąd wykonania wtyczki"
 
 #, python-format
 msgid ""
@@ -1223,15 +1231,18 @@ msgstr "Fiński"
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
+"najpierw musisz załadować najnowszą wersję środowiska bootującego dla  USB "
+"flash'era."
 
+#, fuzzy
 msgid "Fix USB stick"
-msgstr ""
+msgstr "Ustaw nośnik USB"
 
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "Flash'owanie nie powiodło się"
 
 msgid "Font size"
 msgstr "Rozmiar fontu"
@@ -1372,7 +1383,7 @@ msgstr ""
 "Jeśli jesteś zadowolony z rezultatu wciśnij OK."
 
 msgid "Image flash utility"
-msgstr ""
+msgstr "Narzędzia flash'a"
 
 msgid "Image-Upgrade"
 msgstr " Aktualizacja Image'a"
@@ -1541,7 +1552,7 @@ msgid "Load"
 msgstr "Otwórz"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Wyświetlaj długość filmy na liście"
 
 msgid "Local Network"
 msgstr "Sieć lokalna"
@@ -1668,6 +1679,7 @@ msgstr "Następny"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
+"Flaskowanie plikiem NFI zakończone. Aby zrestartować wciśnij Żółty przycisk!"
 
 msgid "NOW"
 msgstr "Teraz"
@@ -1762,7 +1774,7 @@ msgstr ""
 "(Koniec czasu czytania PAT)"
 
 msgid "No details for this image file"
-msgstr ""
+msgstr "Brak opisu dla tego image'a"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Nie znaleziono informacji o wydarzeniu, nagrywanie nieokreślone."
@@ -1796,7 +1808,7 @@ msgstr ""
 "Ustaw tuner przed rozpoczęciem skanowania."
 
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "Nie znaleziono uzytecznego nośnika USB"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1891,6 +1903,8 @@ msgid ""
 "format and use as .NFI image flasher. Press OK after you've put the stick "
 "back in."
 msgstr ""
+"Proszę włożyć nosnik USB (minimalny rozmiar 64MB) który chcesz sformatować i "
+"używać jako .NFI image flasher. Po podłączeniu napędu nacisnij przycisk OK."
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1969,7 +1983,7 @@ msgid "Parental control type"
 msgstr "Typ kontroli rodzicielskiej"
 
 msgid "Partitioning USB stick..."
-msgstr ""
+msgstr "Tworzenie partycji na nośniku USB..."
 
 msgid "Pause movie at end"
 msgstr "Zatrzymaj film na końcu"
@@ -2003,10 +2017,10 @@ msgid "Please change recording endtime"
 msgstr "Proszę zmień koniec czasu nagrywania"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Proszę sprawdzić ustawienia sieciowe!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "Proszę wybrać plik do ściągnięcia z serwera .NFI"
 
 msgid "Please choose an extension..."
 msgstr "Proszę wybierz rozszerzenie..."
@@ -2058,7 +2072,7 @@ msgid "Please press OK!"
 msgstr "Wciśnij OK!"
 
 msgid "Please select .NFI flash image file from medium"
-msgstr ""
+msgstr "Proszę wybrać plik .NFI z medium"
 
 msgid "Please select a playlist to delete..."
 msgstr "Wybierz playliste do usunięcia..."
@@ -2076,7 +2090,7 @@ msgid "Please select keyword to filter..."
 msgstr "Wybierz słowo kluczowe do filtrowania..."
 
 msgid "Please select target directory or medium"
-msgstr ""
+msgstr "Proszę wybrać nośnik lub katalog docelowy"
 
 msgid "Please select the movie path..."
 msgstr "Wybierz ścieżkę filmu..."
@@ -2107,7 +2121,7 @@ msgstr ""
 "OK."
 
 msgid "Please wait for md5 signature verification..."
-msgstr ""
+msgstr "Suma kontrolna md5 jest sprawdzana. Proszę czekać..."
 
 msgid "Please wait... Loading list..."
 msgstr "Proszę czekać... Ładowanie listy..."
@@ -2239,7 +2253,7 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Wyjść z subserwisów?"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Restart"
 
 msgid "Reception Settings"
 msgstr "Ustawienia powitania"
@@ -2287,7 +2301,7 @@ msgid "Refresh rate selection."
 msgstr "Wybór prędkości odświeżania"
 
 msgid "Remounting stick partition..."
-msgstr ""
+msgstr "Podowne montowanie partycji USB..."
 
 msgid "Remove Bookmark"
 msgstr "Usuń zakładkę"
@@ -2305,10 +2319,10 @@ msgid "Remove plugins"
 msgstr "Usuń pluginy"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "Czy usunąć popsuty plik .NFI?"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "Czy usunąć niekompletne pliki .NFI?"
 
 msgid "Remove title"
 msgstr "Usuń tytuł"
@@ -2561,7 +2575,7 @@ msgid "Select channel to record from"
 msgstr "Wybierz kanał do nagrania z "
 
 msgid "Select image"
-msgstr ""
+msgstr "Wybierz image"
 
 msgid "Select refresh rate"
 msgstr "Wybierz prędkość odświeżania"
@@ -2573,7 +2587,7 @@ msgid "Select video mode"
 msgstr "Wybierz tryb wideo"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "Wybierz image źródłowy"
 
 msgid "Seperate titles with a main menu"
 msgstr "Rozdziel tytuły z wykozystaniem menu"
@@ -2884,7 +2898,7 @@ msgstr "Informacja testowa?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
+"Please press OK to start using your Dreambox."
 msgstr ""
 "Dziękuję za użycie kreatora. Twój tuner jest już gotowy do użycia.\n"
 "Wciśnij OK i rozpocznij zabawę z Dreamboxem."
@@ -2895,6 +2909,8 @@ msgid ""
 "and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
 "stick!"
 msgstr ""
+"Naped USB .NFI flash'era jest gotowy do użycia. Proszę załadować omage .NFI "
+"z serwera"
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
@@ -2916,6 +2932,11 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"Odnaleziono nastepujący sprzet\n"
+"\n"
+"%s\n"
+"\n"
+"Czy chesz zapisać USB flash'er na tym napedzie?"
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2941,11 +2962,15 @@ msgid ""
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"Suma kontrolna md5 jest niewłaściwa- plik może być uszkodzony! Czy jesteś "
+"pewien, że chcesz go wypalić w pamięci flash? Robisz to na własne ryzyko!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
 msgstr ""
+"Suma kontrolna md5 jest nieprawidłowa. Ściągnięty plik może byc niekompletny "
+"lub zepsuty!"
 
 msgid "The package doesn't contain anything."
 msgstr "Pakiet nie zawiera informacji."
@@ -3003,17 +3028,22 @@ msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "Plik .NFI nie posiada prawidłowego %s image'a!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"Ten plik .nFI nie posiadsa pospidu dla sumy kontrolnej md5 co nie gwarantuje "
+"poprawności jego działania. Czy napewno chcesz wypalić ten image w pamięci "
+"flash?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+"Suma kontrolna pliku .NFI jest prawidłowa. Czy chcesz nim zaprogramować "
+"pamięć flash?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -3152,6 +3182,8 @@ msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
 "and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
+"Aby się upewnić, że tego oczekiwałeś, usuń docelowy napęd USB i podłącz go "
+"ponownie po zgłoszeniu takiej konieczności."
 
 msgid "Today"
 msgstr "Dzisiaj"
@@ -3415,7 +3447,7 @@ msgid "Waiting"
 msgstr "Oczekiwanie"
 
 msgid "Waiting for USB stick to settle..."
-msgstr ""
+msgstr "Oczekuję na osadzenie nośnika USB..."
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3498,10 +3530,10 @@ msgid "Write failed!"
 msgstr "Błąd zapisu!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "Zapisywanie image'a NFI do flash'a zakończone"
 
 msgid "Writing image file to NAND Flash"
-msgstr ""
+msgstr "Zapisywanie pliku image'a do NAND Flash"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3598,6 +3630,9 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
+"Wybrałes o-pcję utworzenia nowego napędu USB z narzedziem boot'owania .NFI "
+"Flasher. Spowoduje to spartycjonowanie nosnika USB i wymazanie wszystkich "
+"danych."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3776,7 +3811,7 @@ msgid "chapters"
 msgstr "rozdziały"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "wybierz folder docelowy"
 
 msgid "circular left"
 msgstr "Kołój w lewo"
@@ -4150,7 +4185,7 @@ msgid "previous channel in history"
 msgstr "Poprzedni kanał w historii"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "restatrowanie..."
 
 msgid "record"
 msgstr "Nagraj"
@@ -4229,10 +4264,10 @@ msgid "select"
 msgstr "wybierz"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "wybierz plik .NFI flash"
 
 msgid "select image from server"
-msgstr ""
+msgstr "wybierz plik z serwera"
 
 msgid "select movie"
 msgstr "wybierz film"
