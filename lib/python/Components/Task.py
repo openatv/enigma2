@@ -244,6 +244,7 @@ class JobManager:
 		self.active_jobs = [ ]
 		self.failed_jobs = [ ]
 		self.job_classes = [ ]
+		self.in_background = False
 		self.active_job = None
 
 	def AddJob(self, job):
@@ -258,8 +259,11 @@ class JobManager:
 
 	def jobDone(self, job, task, problems):
 		print "job", job, "completed with", problems, "in", task
+		from Tools import Notifications
+		if self.in_background:
+			from Screens.TaskView import JobView
+			Notifications.AddNotification(JobView, self.active_job)
 		if problems:
-			from Tools import Notifications
 			from Screens.MessageBox import MessageBox
 			if problems[0].RECOVERABLE:
 				Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
@@ -282,6 +286,12 @@ class JobManager:
 			self.active_job = None
 			self.kick()
 
+	def getPendingJobs(self):
+		list = [ ]
+		if self.active_job:
+			list.append(self.active_job)
+		list += self.active_jobs
+		return list
 # some examples:
 #class PartitionExistsPostcondition:
 #	def __init__(self, device):

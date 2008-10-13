@@ -1274,6 +1274,30 @@ class InfoBarPlugins:
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
 
+from Components.Task import job_manager
+class InfoBarJobman:
+	def __init__(self):
+		self.addExtension(extension = self.getJobList, type = InfoBarExtensions.EXTENSION_LIST)
+
+	def getJobList(self):
+		list = []
+		for job in job_manager.getPendingJobs():
+			list.append(((boundFunction(self.getJobName, job), boundFunction(self.showJobView, job), lambda: True), None))
+		return list
+
+	def getJobName(self, job):
+		statustext = {job.NOT_STARTED: _("Waiting"), job.IN_PROGRESS: _("In Progress"), job.FINISHED: _("Finished"), job.FAILED: _("Failed")}[job.status]
+		return "%s: %s (%d%%)" % (statustext, job.name, int(100*job.progress/float(job.end)))
+
+	def showJobView(self, job):
+		from Screens.TaskView import JobView
+		job_manager.in_background = False
+		self.session.openWithCallback(self.JobViewCB, JobView, job)
+	
+	def JobViewCB(self, in_background):
+		from Screens.TaskView import JobView
+		job_manager.in_background = in_background
+
 # depends on InfoBarExtensions
 class InfoBarSleepTimer:
 	def __init__(self):
