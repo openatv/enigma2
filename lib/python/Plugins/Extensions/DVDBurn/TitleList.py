@@ -1,9 +1,11 @@
-import DVDProject, TitleList, TitleCutter, ProjectSettings, DVDToolbox
+import DVDProject, TitleList, TitleCutter, ProjectSettings, DVDToolbox, Process
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
+from Screens.TaskView import JobView
+from Components.Task import job_manager
 from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -185,24 +187,28 @@ class TitleList(Screen, HelpableScreen):
 
 	def burnProject(self):
 		if self.project.settings.authormode.getValue() == "data_ts":
-			import Process
-			job = Process.BurnDataTS(self.session, self.project)
-			from Screens.TaskView import JobView
-			self.session.open(JobView, job)
+			job = Process.DVDdataJob(self.project)
+			job_manager.AddJob(job)
+			job_manager.in_background = False
+			self.session.openWithCallback(self.JobViewCB, JobView, job)
 		else:
 			autochapter = self.project.settings.autochapter.getValue()
 			if autochapter > 0:
 				for title in self.project.titles:
 					title.produceAutoChapter(autochapter)
-			import Process
-			job = Process.Burn(self.session, self.project)
-			from Screens.TaskView import JobView
-			self.session.open(JobView, job)
+			job = Process.DVDJob(self.project)
+			job_manager.AddJob(job)
+			job_manager.in_background = False
+			self.session.openWithCallback(self.JobViewCB, JobView, job)
+
+	def JobViewCB(self, in_background):
+		job_manager.in_background = in_background
 
 	def previewMenu(self):
-		import Process
-		job = Process.PreviewMenu(self.session, self.project)
-
+		job = Process.DVDJob(self.project, menupreview=True)
+		job_manager.in_background = False
+		job_manager.AddJob(job)
+		
 	def updateTitleList(self):
 		res = [ ]
 		totalsize = 0

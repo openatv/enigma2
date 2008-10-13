@@ -1,4 +1,4 @@
-from Components.Task import Task, Job, job_manager, DiskspacePrecondition, Condition, ToolExistsPrecondition
+from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
 
@@ -663,7 +663,7 @@ class DVDJob(Job):
 		DVDAuthorTask(self, diskSpaceNeeded)
 		
 		nr_titles = len(self.project.titles)
-		
+
 		if self.menupreview:
 			PreviewTask(self)
 		else:
@@ -706,18 +706,3 @@ class DVDdataJob(Job):
 			CopyMeta(self, title.inputfile)
 		BurnTask(self, ["-follow-links", self.workspace])
 		RemoveDVDFolder(self)
-
-def Burn(session, project):
-	j = DVDJob(project)
-	job_manager.AddJob(j)
-	return j
-
-def PreviewMenu(session, project):
-	j = DVDJob(project, menupreview=True)
-	job_manager.AddJob(j)
-	return j
-
-def BurnDataTS(session, project):
-	j = DVDdataJob(project)
-	job_manager.AddJob(j)
-	return j

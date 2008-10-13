@@ -20,7 +20,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarSubserviceSelection, InfoBarShowMovies, InfoBarTimeshift,  \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
-	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport
+	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport, InfoBarJobman
 
 profile("LOAD:InitBar_Components")
 from Components.ActionMap import HelpableActionMap
@@ -36,7 +36,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	HelpableScreen, InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish,
 	InfoBarSubserviceSelection, InfoBarTimeshift, InfoBarSeek,
 	InfoBarSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions,
-	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport,
+	InfoBarPiP, InfoBarPlugins, InfoBarSubtitleSupport, InfoBarSleepTimer, InfoBarServiceErrorPopupSupport, InfoBarJobman,
 	Screen):
 	
 	ALLOW_SUSPEND = True
@@ -57,8 +57,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarInstantRecord, InfoBarAudioSelection, \
 				InfoBarAdditionalInfo, InfoBarNotifications, InfoBarDish, InfoBarSubserviceSelection, \
 				InfoBarTimeshift, InfoBarSeek, InfoBarSummarySupport, InfoBarTimeshiftState, \
-				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarSleepTimer, \
-				InfoBarPlugins, InfoBarServiceErrorPopupSupport:
+				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, \
+				InfoBarSleepTimer, InfoBarPlugins, InfoBarServiceErrorPopupSupport:
 			x.__init__(self)
 
 		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("view recordings..."))]))
