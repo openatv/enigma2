@@ -1,5 +1,3 @@
-# -*- coding: utf8 -*-
-
 def Plugins(**kwargs):
 	from Plugins.Plugin import PluginDescriptor
 	from Tools.Directories import fileExists

@@ -1,4 +1,3 @@
-# -*- coding: utf8 -*-
 from Components.MenuList import MenuList
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
