@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-05 22:57+0200\n"
+"POT-Creation-Date: 2008-10-13 22:55+0200\n"
 "PO-Revision-Date: 2008-10-02 10:56+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -84,6 +84,16 @@ msgstr "(üres)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(mutassa a DVD audio menüt ha van)"
+
+msgid ".NFI Download failed:"
+msgstr ""
+
+msgid ".NFI Flasher bootable USB stick successfully created."
+msgstr ""
+
+msgid ""
+".NFI file passed md5sum signature check. You can safely flash this image!"
+msgstr ""
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 könyvtár"
@@ -287,6 +297,9 @@ msgstr "AGC"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr "Infó"
 
@@ -457,6 +470,9 @@ msgstr "BER:"
 msgid "Back"
 msgstr "Vissza"
 
+msgid "Background"
+msgstr ""
+
 msgid "Backup"
 msgstr "Mentés"
 
@@ -537,6 +553,9 @@ msgstr "Hivás figyelése"
 msgid "Cancel"
 msgstr "Mégse"
 
+msgid "Cannot parse feed directory"
+msgstr ""
+
 msgid "Capacity: "
 msgstr "Kapacitás:"
 
@@ -548,6 +567,9 @@ msgstr "Katalán"
 
 msgid "Change bouquets in quickzap"
 msgstr "Bouquet-ek változtatása a gyors ZAP-ben"
+
+msgid "Change dir."
+msgstr ""
 
 msgid "Change pin code"
 msgstr "PIN kód megváltoztatása"
@@ -697,6 +719,12 @@ msgstr "Lejátszás folytatása"
 msgid "Contrast"
 msgstr "Kontraszt"
 
+msgid "Copying USB flasher boot image to stick..."
+msgstr ""
+
+msgid "Could not connect to Dreambox .NFI Image Feed Server:"
+msgstr ""
+
 msgid "Could not load Medium! No disc inserted?"
 msgstr ""
 
@@ -755,32 +783,20 @@ msgstr "DVB-S"
 msgid "DVB-S2"
 msgstr "DVB-S2"
 
-msgid "DVD ENTER key"
-msgstr "DVD ENTER gomb"
-
 msgid "DVD Player"
 msgstr "DVD lejátszó"
 
-msgid "DVD down key"
-msgstr "DVD le gomb"
-
-msgid "DVD left key"
-msgstr "DVD balra gomb"
-
 msgid "DVD media toolbox"
 msgstr ""
-
-msgid "DVD right key"
-msgstr "DVD jobbra gomb"
-
-msgid "DVD up key"
-msgstr "DVD fel gomb"
 
 msgid "Danish"
 msgstr "Dán"
 
 msgid "Date"
 msgstr "Dátum"
+
+msgid "Decompressing USB stick flasher boot image..."
+msgstr ""
 
 msgid "Deep Standby"
 msgstr "Teljes kikapcsolás"
@@ -813,6 +829,9 @@ msgstr ""
 
 msgid "Description"
 msgstr "Leírás"
+
+msgid "Destination directory"
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Beépített merevlemez:"
@@ -980,8 +999,17 @@ msgstr "Kész - A %d csomag módosítása/telepítése megtörtént"
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Kész - A %d csomag módosítása/telepítése %d hibával megtörtént"
 
+msgid "Download"
+msgstr ""
+
+msgid "Download .NFI-Files for USB-Flasher"
+msgstr ""
+
 msgid "Download Plugins"
 msgstr "Pluginek letöltése"
+
+msgid "Download of USB flasher boot image failed: "
+msgstr ""
 
 msgid "Downloadable new plugins"
 msgstr "Letölthető új pluginek"
@@ -991,6 +1019,9 @@ msgstr "Letölthető pluginek"
 
 msgid "Downloading"
 msgstr "Letöltés"
+
+msgid "Downloading image description..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Plugin információk letöltése. Kérem várjon..."
@@ -1112,6 +1143,9 @@ msgstr "Adja meg a csatornavédelem PIN kódját"
 msgid "Error"
 msgstr "Hiba"
 
+msgid "Error executing plugin"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error: %s\n"
@@ -1194,6 +1228,19 @@ msgstr "Kész"
 
 msgid "Finnish"
 msgstr "Finn"
+
+msgid ""
+"First we need to download the latest boot environment for the USB flasher."
+msgstr ""
+
+msgid "Fix USB stick"
+msgstr ""
+
+msgid "Flash"
+msgstr ""
+
+msgid "Flashing failed"
+msgstr ""
 
 msgid "Font size"
 msgstr ""
@@ -1335,6 +1382,9 @@ msgstr ""
 "beállítani.\n"
 "Amennyiben az eredmény megfelelő, nyomja meg az OK gombot."
 
+msgid "Image flash utility"
+msgstr ""
+
 msgid "Image-Upgrade"
 msgstr "Image-Frissítés"
 
@@ -1424,9 +1474,6 @@ msgstr "Olasz"
 msgid "Job View"
 msgstr "Folyamat nézet"
 
-msgid "Jump to video title 1 (play movie from start)"
-msgstr "Ugrás a videó 1 címére (lejátszás az elejétől)"
-
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Skálázás"
@@ -1502,6 +1549,9 @@ msgid "Lithuanian"
 msgstr "Litván"
 
 msgid "Load"
+msgstr ""
+
+msgid "Load Length of Movies in Movielist"
 msgstr ""
 
 msgid "Local Network"
@@ -1627,6 +1677,9 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "KÖVETKEZŐ"
 
+msgid "NFI image flashing completed. Press Yellow to Reboot!"
+msgstr ""
+
 msgid "NOW"
 msgstr "MOST"
 
@@ -1719,6 +1772,9 @@ msgstr ""
 "Nincs adat a transzponderen!\n"
 "(PAT olvasási időtúllépés)"
 
+msgid "No details for this image file"
+msgstr ""
+
 msgid "No event info found, recording indefinitely."
 msgstr "Nincs esemény infó, felvétel korlátlanul."
 
@@ -1749,6 +1805,9 @@ msgid ""
 msgstr ""
 "Nincs engedélyezett tuner!\n"
 "Csatornakeresés előtt állítsa be a tunereket."
+
+msgid "No useable USB stick found"
+msgstr ""
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1836,6 +1895,12 @@ msgid "Now Playing"
 msgstr "Most "
 
 msgid ""
+"Now please insert the USB stick (minimum size is 64 MB) that you want to "
+"format and use as .NFI image flasher. Press OK after you've put the stick "
+"back in."
+msgstr ""
+
+msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -1912,6 +1977,9 @@ msgstr "Gyermekzár beállítások"
 msgid "Parental control type"
 msgstr "Gyermekzár típusa"
 
+msgid "Partitioning USB stick..."
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "Film megállítása a végén"
 
@@ -1942,6 +2010,12 @@ msgstr "Válassza ki a keresendő médiumot"
 
 msgid "Please change recording endtime"
 msgstr "Kérem változtassa meg a felvétel vége idejét"
+
+msgid "Please check your network settings!"
+msgstr ""
+
+msgid "Please choose .NFI image file from feed server to download"
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Kérem válasszon egy funkciót..."
@@ -1991,6 +2065,9 @@ msgstr ""
 msgid "Please press OK!"
 msgstr "Nyomja meg az OK-t!"
 
+msgid "Please select .NFI flash image file from medium"
+msgstr ""
+
 msgid "Please select a playlist to delete..."
 msgstr "Válasszon ki a playlistát melyet törölni szeretne..."
 
@@ -2005,6 +2082,9 @@ msgstr "Válasszon egy alcsatornát..."
 
 msgid "Please select keyword to filter..."
 msgstr "Válasszon egy keresési kulcsszót..."
+
+msgid "Please select target directory or medium"
+msgstr ""
 
 msgid "Please select the movie path..."
 msgstr "Válassza ki a film útvonalát..."
@@ -2031,6 +2111,9 @@ msgstr ""
 msgid ""
 "Please use the UP and DOWN keys to select your language. Afterwards press "
 "the OK button."
+msgstr ""
+
+msgid "Please wait for md5 signature verification..."
 msgstr ""
 
 msgid "Please wait... Loading list..."
@@ -2162,6 +2245,9 @@ msgstr "Biztos töröljem ezt az időzítést?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Biztos ki akar lépni az alcsatorna gyorsZAP módból?"
 
+msgid "Reboot"
+msgstr ""
+
 msgid "Reception Settings"
 msgstr "Vételi beállítások"
 
@@ -2201,6 +2287,9 @@ msgstr "Frissítési arány"
 msgid "Refresh rate selection."
 msgstr "Frissítés kiválasztása."
 
+msgid "Remounting stick partition..."
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr ""
 
@@ -2215,6 +2304,12 @@ msgstr "Kijelölt címek eltávolítása"
 
 msgid "Remove plugins"
 msgstr "Pluginek eltávolítása"
+
+msgid "Remove the broken .NFI file?"
+msgstr ""
+
+msgid "Remove the incomplete .NFI file?"
+msgstr ""
 
 msgid "Remove title"
 msgstr "Cím eltávolítása"
@@ -2464,6 +2559,9 @@ msgstr "Hangsáv kiválasztása"
 msgid "Select channel to record from"
 msgstr "Csatorna kiválasztása melyről fel szeretne venni"
 
+msgid "Select image"
+msgstr ""
+
 msgid "Select refresh rate"
 msgstr "Válassza ki a frissítési arányt"
 
@@ -2472,6 +2570,9 @@ msgstr "Válassza ki a video bemenetet"
 
 msgid "Select video mode"
 msgstr "Válassza ki a video módot"
+
+msgid "Selected source image"
+msgstr ""
 
 msgid "Seperate titles with a main menu"
 msgstr ""
@@ -2785,10 +2886,17 @@ msgstr "Teszteljem az Üzenet-dobozt?"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
+"Please press OK to start using your Dreambox."
 msgstr ""
 "Köszönöm hogy használta a varázslót. A készüléke most már be van állítva.\n"
 "Az OK gomb megnyomása után máris használatba veheti a beltérijét."
+
+msgid ""
+"The .NFI Image flasher USB stick is now ready to use. Please download an ."
+"NFI image file from the feed server and save it on the stick. Then reboot "
+"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
+"stick!"
+msgstr ""
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
@@ -2798,6 +2906,15 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "A mentés nem sikerült. Válasszon másik célt ahova menthetem."
+
+#, python-format
+msgid ""
+"The following device was found:\n"
+"\n"
+"%s\n"
+"\n"
+"Do you want to write the USB flasher to this stick?"
+msgstr ""
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2816,6 +2933,17 @@ msgid ""
 msgstr ""
 "A beállítások telepítése elkészült. Az OK gomb megnyomásával folytathatja a  "
 "készülék további beállítását."
+
+msgid ""
+"The md5sum validation failed, the file may be corrupted! Are you sure that "
+"you want to burn this image to flash memory? You are doing this at your own "
+"risk!"
+msgstr ""
+
+msgid ""
+"The md5sum validation failed, the file may be downloaded incompletely or be "
+"corrupted!"
+msgstr ""
 
 msgid "The package doesn't contain anything."
 msgstr "A csomag nem tartalmaz semmit."
@@ -2870,6 +2998,20 @@ msgid ""
 msgstr ""
 "Nincs elég hely a kiválasztott partíción.\n"
 "Biztos folytatni akarja?"
+
+#, python-format
+msgid "This .NFI file does not contain a valid %s image!"
+msgstr ""
+
+msgid ""
+"This .NFI file does not have a md5sum signature and is not guaranteed to "
+"work. Do you really want to burn this image to flash memory?"
+msgstr ""
+
+msgid ""
+"This .NFI file has a valid md5 signature. Continue programming this image to "
+"flash memory?"
+msgstr ""
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -3003,6 +3145,11 @@ msgstr "Cím"
 
 msgid "Title:"
 msgstr "Cím:"
+
+msgid ""
+"To make sure you intend to do this, please remove the target USB stick now "
+"and stick it back in upon prompt. Press OK when you have taken the stick out."
+msgstr ""
 
 msgid "Today"
 msgstr "Ma"
@@ -3265,6 +3412,9 @@ msgstr "WSS 4:3-on"
 msgid "Waiting"
 msgstr "Várakozás"
 
+msgid "Waiting for USB stick to settle..."
+msgstr ""
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3337,6 +3487,12 @@ msgid "Write error while recording. Disk full?\n"
 msgstr "Felvétel közben írási hiba történt. Megtelt a lemez?\n"
 
 msgid "Write failed!"
+msgstr ""
+
+msgid "Writing NFI image file to flash completed"
+msgstr ""
+
+msgid "Writing image file to NAND Flash"
 msgstr ""
 
 msgid "YPbPr"
@@ -3434,6 +3590,11 @@ msgid ""
 msgstr ""
 "Ön azt választotta, hogy a mentést a merevlemezre tároljam el. Nyomja meg az "
 "OK-t a mentés elindításához."
+
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3610,6 +3771,9 @@ msgid "change recording (endtime)"
 msgstr "felvétel módosítása (vége időpont)"
 
 msgid "chapters"
+msgstr ""
+
+msgid "choose destination directory"
 msgstr ""
 
 msgid "circular left"
@@ -3983,6 +4147,9 @@ msgstr "Előző csatorna"
 msgid "previous channel in history"
 msgstr "Előző csatorna az előzményekben"
 
+msgid "rebooting..."
+msgstr ""
+
 msgid "record"
 msgstr "felvétel"
 
@@ -4058,6 +4225,12 @@ msgstr "másodperc"
 
 msgid "select"
 msgstr "válasszon"
+
+msgid "select .NFI flash file"
+msgstr ""
+
+msgid "select image from server"
+msgstr ""
 
 msgid "select movie"
 msgstr "film kiválasztása"
@@ -4355,6 +4528,21 @@ msgstr "zap-elt"
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Csatlakozás az Internethez a helyi hálózat segítségével"
 
+#~ msgid "DVD ENTER key"
+#~ msgstr "DVD ENTER gomb"
+
+#~ msgid "DVD down key"
+#~ msgstr "DVD le gomb"
+
+#~ msgid "DVD left key"
+#~ msgstr "DVD balra gomb"
+
+#~ msgid "DVD right key"
+#~ msgstr "DVD jobbra gomb"
+
+#~ msgid "DVD up key"
+#~ msgstr "DVD fel gomb"
+
 #~ msgid "Default-Wizard"
 #~ msgstr "Alap-Varázsló"
 
@@ -4397,6 +4585,9 @@ msgstr "zap-elt"
 
 #~ msgid "Hello!"
 #~ msgstr "Helló!"
+
+#~ msgid "Jump to video title 1 (play movie from start)"
+#~ msgstr "Ugrás a videó 1 címére (lejátszás az elejétől)"
 
 #~ msgid "LCD Setup"
 #~ msgstr "LCD beállítás"

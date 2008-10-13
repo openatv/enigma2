@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-10 11:43+0200\n"
+"POT-Creation-Date: 2008-10-13 22:55+0200\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -16,15 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-
 msgid " "
-msgstr ""
-
-msgid "\"?"
 msgstr ""
 
 msgid "#000000"
@@ -64,6 +56,10 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
+#, python-format
+msgid "%d services found!"
+msgstr ""
+
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -84,6 +80,16 @@ msgid "(empty)"
 msgstr ""
 
 msgid "(show optional DVD audio menu)"
+msgstr ""
+
+msgid ".NFI Download failed:"
+msgstr ""
+
+msgid ".NFI Flasher bootable USB stick successfully created."
+msgstr ""
+
+msgid ""
+".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
 
 msgid "/usr/share/enigma2 directory"
@@ -228,6 +234,10 @@ msgid ""
 "start the satfinder."
 msgstr ""
 
+#, python-format
+msgid "A required tool (%s) was not found."
+msgstr ""
+
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
@@ -264,6 +274,9 @@ msgstr ""
 msgid "AGC:"
 msgstr ""
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr ""
 
@@ -271,6 +284,9 @@ msgid "About..."
 msgstr ""
 
 msgid "Action on long powerbutton press"
+msgstr ""
+
+msgid "Action:"
 msgstr ""
 
 msgid "Activate Picture in Picture"
@@ -285,10 +301,19 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
+msgid "Add Bookmark"
+msgstr ""
+
 msgid "Add a mark"
 msgstr ""
 
+msgid "Add a new title"
+msgstr ""
+
 msgid "Add timer"
+msgstr ""
+
+msgid "Add title"
 msgstr ""
 
 msgid "Add to bouquet"
@@ -324,6 +349,9 @@ msgstr ""
 msgid "All"
 msgstr ""
 
+msgid "All Satellites"
+msgstr ""
+
 msgid "All..."
 msgstr ""
 
@@ -339,18 +367,10 @@ msgstr ""
 msgid "An empty filename is illegal."
 msgstr ""
 
+msgid "An unknown error occured!"
+msgstr ""
+
 msgid "Arabic"
-msgstr ""
-
-msgid ""
-"Are you sure you want to enable WLAN support?\n"
-"Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-"\n"
-msgstr ""
-
-msgid ""
-"Are you sure you want to enable your local network?\n"
-"\n"
 msgstr ""
 
 msgid ""
@@ -376,7 +396,13 @@ msgstr ""
 msgid "Audio Options..."
 msgstr ""
 
+msgid "Authoring mode"
+msgstr ""
+
 msgid "Auto"
+msgstr ""
+
+msgid "Auto chapter split every ? minutes (0=never)"
 msgstr ""
 
 msgid "Auto scart switching"
@@ -385,7 +411,13 @@ msgstr ""
 msgid "Automatic"
 msgstr ""
 
+msgid "Automatic SSID lookup"
+msgstr ""
+
 msgid "Automatic Scan"
+msgstr ""
+
+msgid "Available format variables"
 msgstr ""
 
 msgid "B"
@@ -404,6 +436,9 @@ msgid "BER:"
 msgstr ""
 
 msgid "Back"
+msgstr ""
+
+msgid "Background"
 msgstr ""
 
 msgid "Backup"
@@ -442,7 +477,16 @@ msgstr ""
 msgid "Behavior when a movie reaches the end"
 msgstr ""
 
+msgid "Bookmarks"
+msgstr ""
+
 msgid "Brightness"
+msgstr ""
+
+msgid "Burn DVD"
+msgstr ""
+
+msgid "Burn to DVD..."
 msgstr ""
 
 msgid "Bus: "
@@ -451,6 +495,9 @@ msgstr ""
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
+msgstr ""
+
+msgid "C"
 msgstr ""
 
 msgid "C-Band"
@@ -474,6 +521,9 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+msgid "Cannot parse feed directory"
+msgstr ""
+
 msgid "Capacity: "
 msgstr ""
 
@@ -484,6 +534,9 @@ msgid "Catalan"
 msgstr ""
 
 msgid "Change bouquets in quickzap"
+msgstr ""
+
+msgid "Change dir."
 msgstr ""
 
 msgid "Change pin code"
@@ -564,6 +617,12 @@ msgstr ""
 msgid "Coderate LP"
 msgstr ""
 
+msgid "Collection name"
+msgstr ""
+
+msgid "Collection settings"
+msgstr ""
+
 msgid "Color Format"
 msgstr ""
 
@@ -591,31 +650,13 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr ""
 
-msgid "Configure your internal LAN"
-msgstr ""
-
-msgid "Configure your internal LAN again"
-msgstr ""
-
-msgid "Configure your wireless LAN"
-msgstr ""
-
-msgid "Configure your wireless LAN again"
-msgstr ""
-
 msgid "Configuring"
-msgstr ""
-
-msgid "Confirm"
 msgstr ""
 
 msgid "Conflicting timer"
 msgstr ""
 
-msgid "Connect to the Internet with a USB Wlan Stick"
-msgstr ""
-
-msgid "Connect to the Internet with your local LAN"
+msgid "Connected to"
 msgstr ""
 
 msgid "Connected to Fritz!Box!"
@@ -634,13 +675,29 @@ msgstr ""
 msgid "Constellation"
 msgstr ""
 
+msgid "Content does not fit on DVD!"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
 msgid "Contrast"
 msgstr ""
 
+msgid "Copying USB flasher boot image to stick..."
+msgstr ""
+
+msgid "Could not connect to Dreambox .NFI Image Feed Server:"
+msgstr ""
+
+msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
 msgid "Create movie folder failed"
+msgstr ""
+
+#, python-format
+msgid "Creating directory %s failed."
 msgstr ""
 
 msgid "Creating partition failed"
@@ -679,6 +736,9 @@ msgstr ""
 msgid "Czech"
 msgstr ""
 
+msgid "D"
+msgstr ""
+
 msgid "DHCP"
 msgstr ""
 
@@ -688,28 +748,19 @@ msgstr ""
 msgid "DVB-S2"
 msgstr ""
 
-msgid "DVD ENTER key"
-msgstr ""
-
 msgid "DVD Player"
 msgstr ""
 
-msgid "DVD down key"
-msgstr ""
-
-msgid "DVD left key"
-msgstr ""
-
-msgid "DVD right key"
-msgstr ""
-
-msgid "DVD up key"
+msgid "DVD media toolbox"
 msgstr ""
 
 msgid "Danish"
 msgstr ""
 
 msgid "Date"
+msgstr ""
+
+msgid "Decompressing USB stick flasher boot image..."
 msgstr ""
 
 msgid "Deep Standby"
@@ -742,6 +793,9 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
+msgid "Destination directory"
+msgstr ""
+
 msgid "Detected HDD:"
 msgstr ""
 
@@ -766,6 +820,13 @@ msgstr ""
 msgid "DiSEqC repeats"
 msgstr ""
 
+msgid "Direct playback of linked titles without menu"
+msgstr ""
+
+#, python-format
+msgid "Directory %s nonexistent."
+msgstr ""
+
 msgid "Disable"
 msgstr ""
 
@@ -773,6 +834,9 @@ msgid "Disable Picture in Picture"
 msgstr ""
 
 msgid "Disable Subtitles"
+msgstr ""
+
+msgid "Disable timer"
 msgstr ""
 
 msgid "Disabled"
@@ -824,9 +888,20 @@ msgid ""
 "All data on the disk will be lost!"
 msgstr ""
 
+#, python-format
+msgid "Do you really want to remove directory %s from the disk?"
+msgstr ""
+
+#, python-format
+msgid "Do you really want to remove your bookmark of %s?"
+msgstr ""
+
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
+msgstr ""
+
+msgid "Do you want to burn this collection to DVD medium?"
 msgstr ""
 
 msgid "Do you want to do a service scan?"
@@ -838,7 +913,13 @@ msgstr ""
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr ""
 
+msgid "Do you want to install default sat lists?"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
+msgstr ""
+
+msgid "Do you want to preview this DVD before burning?"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -866,7 +947,16 @@ msgstr ""
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr ""
 
+msgid "Download"
+msgstr ""
+
+msgid "Download .NFI-Files for USB-Flasher"
+msgstr ""
+
 msgid "Download Plugins"
+msgstr ""
+
+msgid "Download of USB flasher boot image failed: "
 msgstr ""
 
 msgid "Downloadable new plugins"
@@ -878,7 +968,13 @@ msgstr ""
 msgid "Downloading"
 msgstr ""
 
+msgid "Downloading image description..."
+msgstr ""
+
 msgid "Downloading plugin information. Please wait..."
+msgstr ""
+
+msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr ""
 
 msgid "Dutch"
@@ -900,6 +996,9 @@ msgstr ""
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit chapters of current title"
+msgstr ""
+
 msgid "Edit services list"
 msgstr ""
 
@@ -912,6 +1011,9 @@ msgstr ""
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
 
+msgid "Edit title"
+msgstr ""
+
 msgid "Electronic Program Guide"
 msgstr ""
 
@@ -921,21 +1023,13 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr ""
 
-msgid "Enable LAN"
-msgstr ""
-
-msgid "Enable WLAN"
-msgstr ""
-
 msgid "Enable multiple bouquets"
 msgstr ""
 
 msgid "Enable parental control"
 msgstr ""
 
-msgid ""
-"Enable the local network of your Dreambox.\n"
-"\n"
+msgid "Enable timer"
 msgstr ""
 
 msgid "Enabled"
@@ -991,6 +1085,15 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+msgid "Error executing plugin"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error: %s\n"
+"Retry?"
+msgstr ""
+
 msgid "Eventview"
 msgstr ""
 
@@ -1015,10 +1118,13 @@ msgstr ""
 msgid "Exit wizard"
 msgstr ""
 
-msgid "Exit wizard and configure later manually"
+msgid "Expert"
 msgstr ""
 
-msgid "Expert"
+msgid "Extended Networksetup Plugin..."
+msgstr ""
+
+msgid "Extended Setup..."
 msgstr ""
 
 msgid "Extensions"
@@ -1061,6 +1167,25 @@ msgid "Finished"
 msgstr ""
 
 msgid "Finnish"
+msgstr ""
+
+msgid ""
+"First we need to download the latest boot environment for the USB flasher."
+msgstr ""
+
+msgid "Fix USB stick"
+msgstr ""
+
+msgid "Flash"
+msgstr ""
+
+msgid "Flashing failed"
+msgstr ""
+
+msgid "Font size"
+msgstr ""
+
+msgid "Format"
 msgstr ""
 
 msgid "Frame repeat count during non-smooth winding"
@@ -1182,6 +1307,9 @@ msgid ""
 "If you are happy with the result, press OK."
 msgstr ""
 
+msgid "Image flash utility"
+msgstr ""
+
 msgid "Image-Upgrade"
 msgstr ""
 
@@ -1243,6 +1371,9 @@ msgstr ""
 msgid "Integrated Ethernet"
 msgstr ""
 
+msgid "Integrated Wireless"
+msgstr ""
+
 msgid "Intermediate"
 msgstr ""
 
@@ -1250,6 +1381,10 @@ msgid "Internal Flash"
 msgstr ""
 
 msgid "Invalid Location"
+msgstr ""
+
+#, python-format
+msgid "Invalid directory selected: %s"
 msgstr ""
 
 msgid "Inversion"
@@ -1262,9 +1397,6 @@ msgid "Italian"
 msgstr ""
 
 msgid "Job View"
-msgstr ""
-
-msgid "Jump to video title 1 (play movie from start)"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
@@ -1332,10 +1464,19 @@ msgstr ""
 msgid "Link:"
 msgstr ""
 
+msgid "Linked titles with a DVD menu"
+msgstr ""
+
 msgid "List of Storage Devices"
 msgstr ""
 
 msgid "Lithuanian"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Load Length of Movies in Movielist"
 msgstr ""
 
 msgid "Local Network"
@@ -1390,6 +1531,12 @@ msgid "Media player"
 msgstr ""
 
 msgid "MediaPlayer"
+msgstr ""
+
+msgid "Medium is not a writeable DVD!"
+msgstr ""
+
+msgid "Medium is not empty!"
 msgstr ""
 
 msgid "Menu"
@@ -1453,6 +1600,9 @@ msgid "N/A"
 msgstr ""
 
 msgid "NEXT"
+msgstr ""
+
+msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
 
 msgid "NOW"
@@ -1528,6 +1678,9 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+msgid "No (supported) DVDROM found!"
+msgstr ""
+
 msgid "No 50 Hz, sorry. :("
 msgstr ""
 
@@ -1540,6 +1693,9 @@ msgstr ""
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
+msgstr ""
+
+msgid "No details for this image file"
 msgstr ""
 
 msgid "No event info found, recording indefinitely."
@@ -1569,6 +1725,9 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 
+msgid "No useable USB stick found"
+msgstr ""
+
 msgid ""
 "No valid service PIN found!\n"
 "Do you like to change the service PIN now?\n"
@@ -1589,8 +1748,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN USB Stick or enable "
-"you local network interface."
+" Please verify that you have attached a compatible WLAN device or enable you "
+"local network interface."
 msgstr ""
 
 msgid ""
@@ -1606,9 +1765,6 @@ msgid "No, do nothing."
 msgstr ""
 
 msgid "No, just start my dreambox"
-msgstr ""
-
-msgid "No, let me choose default lists"
 msgstr ""
 
 msgid "No, scan later manually"
@@ -1627,12 +1783,24 @@ msgstr ""
 msgid "Norwegian"
 msgstr ""
 
+#, python-format
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 
 msgid "Now Playing"
+msgstr ""
+
+msgid ""
+"Now please insert the USB stick (minimum size is 64 MB) that you want to "
+"format and use as .NFI image flasher. Press OK after you've put the stick "
+"back in."
 msgstr ""
 
 msgid ""
@@ -1650,6 +1818,9 @@ msgstr ""
 msgid "OSD Settings"
 msgstr ""
 
+msgid "OSD visibility"
+msgstr ""
+
 msgid "Off"
 msgstr ""
 
@@ -1660,6 +1831,9 @@ msgid "One"
 msgstr ""
 
 msgid "Online-Upgrade"
+msgstr ""
+
+msgid "Only Free scan"
 msgstr ""
 
 msgid "Orbital Position"
@@ -1687,6 +1861,9 @@ msgstr ""
 msgid "Pan&Scan"
 msgstr ""
 
+msgid "Parent Directory"
+msgstr ""
+
 msgid "Parental control"
 msgstr ""
 
@@ -1697,6 +1874,9 @@ msgid "Parental control setup"
 msgstr ""
 
 msgid "Parental control type"
+msgstr ""
+
+msgid "Partitioning USB stick..."
 msgstr ""
 
 msgid "Pause movie at end"
@@ -1727,13 +1907,13 @@ msgstr ""
 msgid "Please Select Medium to be Scanned"
 msgstr ""
 
-msgid ""
-"Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
-"Dreambox and press the OK button on your remote control to enable the built "
-"in wireless network support"
+msgid "Please change recording endtime"
 msgstr ""
 
-msgid "Please change recording endtime"
+msgid "Please check your network settings!"
+msgstr ""
+
+msgid "Please choose .NFI image file from feed server to download"
 msgstr ""
 
 msgid "Please choose an extension..."
@@ -1743,18 +1923,6 @@ msgid "Please choose he package..."
 msgstr ""
 
 msgid "Please choose the default services lists you want to install."
-msgstr ""
-
-msgid ""
-"Please configure your local LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
-msgstr ""
-
-msgid ""
-"Please configure your wireless LAN internet connection by filling out the "
-"needed values.\n"
-"When you are ready please press OK to continue."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -1772,6 +1940,9 @@ msgstr ""
 msgid "Please enter filename (empty = use current date)"
 msgstr ""
 
+msgid "Please enter name of the new directory"
+msgstr ""
+
 msgid "Please enter the correct pin code"
 msgstr ""
 
@@ -1781,7 +1952,18 @@ msgstr ""
 msgid "Please follow the instructions on the TV"
 msgstr ""
 
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+
+msgid "Please press OK to continue."
+msgstr ""
+
 msgid "Please press OK!"
+msgstr ""
+
+msgid "Please select .NFI flash image file from medium"
 msgstr ""
 
 msgid "Please select a playlist to delete..."
@@ -1796,10 +1978,10 @@ msgstr ""
 msgid "Please select a subservice..."
 msgstr ""
 
-msgid "Please select below the wireless network you want to connect to."
+msgid "Please select keyword to filter..."
 msgstr ""
 
-msgid "Please select keyword to filter..."
+msgid "Please select target directory or medium"
 msgstr ""
 
 msgid "Please select the movie path..."
@@ -1818,6 +2000,14 @@ msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
+msgstr ""
+
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
+msgstr ""
+
+msgid "Please wait for md5 signature verification..."
 msgstr ""
 
 msgid "Please wait... Loading list..."
@@ -1883,20 +2073,19 @@ msgstr ""
 msgid "Press OK to activate the settings."
 msgstr ""
 
+msgid "Press OK to edit the settings."
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr ""
 
 msgid "Press OK to start the scan"
 msgstr ""
 
-msgid ""
-"Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
-"Wlan USB Sticks with Zydas ZD1211B and RAlink RT73 Chipset are supported.\n"
-"Connect your Wlan USB Stick to your Dreambox before pressing OK.\n"
-"\n"
+msgid "Prev"
 msgstr ""
 
-msgid "Prev"
+msgid "Preview menu"
 msgstr ""
 
 msgid "Primary DNS"
@@ -1950,6 +2139,9 @@ msgstr ""
 msgid "Really exit the subservices quickzap?"
 msgstr ""
 
+msgid "Reboot"
+msgstr ""
+
 msgid "Reception Settings"
 msgstr ""
 
@@ -1989,13 +2181,35 @@ msgstr ""
 msgid "Refresh rate selection."
 msgstr ""
 
+msgid "Remounting stick partition..."
+msgstr ""
+
+msgid "Remove Bookmark"
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr ""
 
 msgid "Remove a mark"
 msgstr ""
 
+msgid "Remove currently selected title"
+msgstr ""
+
 msgid "Remove plugins"
+msgstr ""
+
+msgid "Remove the broken .NFI file?"
+msgstr ""
+
+msgid "Remove the incomplete .NFI file?"
+msgstr ""
+
+msgid "Remove title"
+msgstr ""
+
+#, python-format
+msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr ""
 
 msgid "Rename"
@@ -2035,9 +2249,6 @@ msgid "Restart test"
 msgstr ""
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr ""
-
-msgid "Restart your wireless interface"
 msgstr ""
 
 msgid "Restore"
@@ -2115,7 +2326,13 @@ msgstr ""
 msgid "Satfinder"
 msgstr ""
 
+msgid "Sats"
+msgstr ""
+
 msgid "Saturday"
+msgstr ""
+
+msgid "Save"
 msgstr ""
 
 msgid "Save Playlist"
@@ -2232,6 +2449,9 @@ msgstr ""
 msgid "Select channel to record from"
 msgstr ""
 
+msgid "Select image"
+msgstr ""
+
 msgid "Select refresh rate"
 msgstr ""
 
@@ -2239,6 +2459,12 @@ msgid "Select video input"
 msgstr ""
 
 msgid "Select video mode"
+msgstr ""
+
+msgid "Selected source image"
+msgstr ""
+
+msgid "Seperate titles with a main menu"
 msgstr ""
 
 msgid "Sequence repeat"
@@ -2281,6 +2507,9 @@ msgid "Serviceinfo"
 msgstr ""
 
 msgid "Services"
+msgstr ""
+
+msgid "Set as default Interface"
 msgstr ""
 
 msgid "Set limits"
@@ -2353,6 +2582,9 @@ msgid "Single transponder"
 msgstr ""
 
 msgid "Singlestep (GOP)"
+msgstr ""
+
+msgid "Skin..."
 msgstr ""
 
 msgid "Sleep Timer"
@@ -2428,9 +2660,6 @@ msgid "StartTime"
 msgstr ""
 
 msgid "Starting on"
-msgstr ""
-
-msgid "Step "
 msgstr ""
 
 msgid "Step east"
@@ -2512,6 +2741,9 @@ msgstr ""
 msgid "TV System"
 msgstr ""
 
+msgid "Table of content for collection"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr ""
 
@@ -2528,32 +2760,33 @@ msgid "Test-Messagebox?"
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your local LAN internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
-"\n"
-"Your wireless internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard. Your Dreambox is now ready to use.\n"
+"Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
 
 msgid ""
-"Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
+"The .NFI Image flasher USB stick is now ready to use. Please download an ."
+"NFI image file from the feed server and save it on the stick. Then reboot "
+"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
+"stick!"
+msgstr ""
+
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
+msgstr ""
+
+#, python-format
+msgid ""
+"The following device was found:\n"
+"\n"
+"%s\n"
+"\n"
+"Do you want to write the USB flasher to this stick?"
 msgstr ""
 
 msgid ""
@@ -2570,7 +2803,22 @@ msgid ""
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
 
+msgid ""
+"The md5sum validation failed, the file may be corrupted! Are you sure that "
+"you want to burn this image to flash memory? You are doing this at your own "
+"risk!"
+msgstr ""
+
+msgid ""
+"The md5sum validation failed, the file may be downloaded incompletely or be "
+"corrupted!"
+msgstr ""
+
 msgid "The package doesn't contain anything."
+msgstr ""
+
+#, python-format
+msgid "The path %s already exists."
 msgstr ""
 
 msgid "The pin code has been changed successfully."
@@ -2592,6 +2840,11 @@ msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
 msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
 
@@ -2607,6 +2860,29 @@ msgstr ""
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
+msgstr ""
+
+#, python-format
+msgid "This .NFI file does not contain a valid %s image!"
+msgstr ""
+
+msgid ""
+"This .NFI file does not have a md5sum signature and is not guaranteed to "
+"work. Do you really want to burn this image to flash memory?"
+msgstr ""
+
+msgid ""
+"This .NFI file has a valid md5 signature. Continue programming this image to "
+"flash memory?"
+msgstr ""
+
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
+msgstr ""
+
+#, python-format
+msgid "This Dreambox can't decode %s video streams!"
 msgstr ""
 
 msgid "This is step number 2."
@@ -2711,6 +2987,11 @@ msgstr ""
 msgid "Title:"
 msgstr ""
 
+msgid ""
+"To make sure you intend to do this, please remove the target USB stick now "
+"and stick it back in upon prompt. Press OK when you have taken the stick out."
+msgstr ""
+
 msgid "Today"
 msgstr ""
 
@@ -2721,6 +3002,9 @@ msgid "Toneburst"
 msgstr ""
 
 msgid "Toneburst A/B"
+msgstr ""
+
+msgid "Track"
 msgstr ""
 
 msgid "Translation"
@@ -2814,6 +3098,9 @@ msgstr ""
 msgid "Unmount failed"
 msgstr ""
 
+msgid "Update"
+msgstr ""
+
 msgid "Updates your receiver's software"
 msgstr ""
 
@@ -2833,6 +3120,9 @@ msgid "Upgrading Dreambox... Please wait"
 msgstr ""
 
 msgid "Use DHCP"
+msgstr ""
+
+msgid "Use Interface"
 msgstr ""
 
 msgid "Use Power Measurement"
@@ -2886,6 +3176,9 @@ msgid "User defined"
 msgstr ""
 
 msgid "VCR scart"
+msgstr ""
+
+msgid "VMGM (intro trailer)"
 msgstr ""
 
 msgid "Video Fine-Tuning"
@@ -2945,6 +3238,9 @@ msgstr ""
 msgid "Waiting"
 msgstr ""
 
+msgid "Waiting for USB stick to settle..."
+msgstr ""
+
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -2961,18 +3257,18 @@ msgid "Weekday"
 msgstr ""
 
 msgid ""
-"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your Dreambox by providing a backup facility for your "
-"current settings and a short explanation of how to upgrade your firmware."
+"Welcome to the Cutlist editor.\n"
+"\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
+"\n"
+"Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
 msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide "
-"you through the basic network setup of your Dreambox.\n"
-"\n"
-"Press the OK button on your remote control to move to the next step."
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 
 msgid ""
@@ -3001,6 +3297,15 @@ msgid "Wireless Network"
 msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
+msgstr ""
+
+msgid "Write failed!"
+msgstr ""
+
+msgid "Writing NFI image file to flash completed"
+msgstr ""
+
+msgid "Writing image file to NAND Flash"
 msgstr ""
 
 msgid "YPbPr"
@@ -3081,7 +3386,13 @@ msgid ""
 "backup now."
 msgstr ""
 
-msgid "You have to wait for"
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+
+#, python-format
+msgid "You have to wait %s!"
 msgstr ""
 
 msgid ""
@@ -3128,31 +3439,6 @@ msgid ""
 "Press OK to start upgrade."
 msgstr ""
 
-msgid ""
-"Your local LAN internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
-msgid ""
-"Your network is restarting.\n"
-"You will be automatically forwarded to the next step."
-msgstr ""
-
-msgid ""
-"Your wired LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-
-msgid ""
-"Your wireless LAN Adapter could not be started.\n"
-"Do you want to reboot your Dreambox to apply the new configuration?\n"
-msgstr ""
-
-msgid ""
-"Your wireless internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
 msgid "Zap back to service before positioner setup?"
 msgstr ""
 
@@ -3184,6 +3470,9 @@ msgid "about to start"
 msgstr ""
 
 msgid "add alternatives"
+msgstr ""
+
+msgid "add bookmark"
 msgstr ""
 
 msgid "add bouquet"
@@ -3233,7 +3522,13 @@ msgid ""
 "following backup:\n"
 msgstr ""
 
+msgid "audio tracks"
+msgstr ""
+
 msgid "back"
+msgstr ""
+
+msgid "background image"
 msgstr ""
 
 msgid "better"
@@ -3251,6 +3546,12 @@ msgstr ""
 msgid "change recording (endtime)"
 msgstr ""
 
+msgid "chapters"
+msgstr ""
+
+msgid "choose destination directory"
+msgstr ""
+
 msgid "circular left"
 msgstr ""
 
@@ -3258,6 +3559,9 @@ msgid "circular right"
 msgstr ""
 
 msgid "clear playlist"
+msgstr ""
+
+msgid "color"
 msgstr ""
 
 msgid "complex"
@@ -3278,7 +3582,13 @@ msgstr ""
 msgid "copy to bouquets"
 msgstr ""
 
+msgid "create directory"
+msgstr ""
+
 msgid "daily"
+msgstr ""
+
+msgid "day"
 msgstr ""
 
 msgid "delete"
@@ -3353,7 +3663,10 @@ msgstr ""
 msgid "end favourites edit"
 msgstr ""
 
-msgid "equal to Socket A"
+msgid "equal to"
+msgstr ""
+
+msgid "exceeds dual layer medium!"
 msgstr ""
 
 msgid "exit DVD player or return to file browser"
@@ -3365,10 +3678,22 @@ msgstr ""
 msgid "exit movielist"
 msgstr ""
 
+msgid "failed"
+msgstr ""
+
+msgid "filename"
+msgstr ""
+
 msgid "fine-tune your display"
 msgstr ""
 
+msgid "font face"
+msgstr ""
+
 msgid "forward to the next chapter"
+msgstr ""
+
+msgid "free"
 msgstr ""
 
 msgid "free diskspace"
@@ -3383,6 +3708,9 @@ msgstr ""
 msgid "go to standby"
 msgstr ""
 
+msgid "headline"
+msgstr ""
+
 msgid "hear radio..."
 msgstr ""
 
@@ -3393,6 +3721,9 @@ msgid "hide extended description"
 msgstr ""
 
 msgid "hide player"
+msgstr ""
+
+msgid "highlighted button"
 msgstr ""
 
 msgid "horizontal"
@@ -3443,6 +3774,9 @@ msgstr ""
 msgid "left"
 msgstr ""
 
+msgid "length"
+msgstr ""
+
 msgid "list style compact"
 msgstr ""
 
@@ -3461,13 +3795,16 @@ msgstr ""
 msgid "locked"
 msgstr ""
 
-msgid "loopthrough to socket A"
+msgid "loopthrough to"
 msgstr ""
 
 msgid "manual"
 msgstr ""
 
 msgid "menu"
+msgstr ""
+
+msgid "menulist"
 msgstr ""
 
 msgid "mins"
@@ -3479,7 +3816,7 @@ msgstr ""
 msgid "minutes"
 msgstr ""
 
-msgid "minutes and"
+msgid "month"
 msgstr ""
 
 msgid "move PiP to main picture"
@@ -3527,10 +3864,19 @@ msgstr ""
 msgid "nothing connected"
 msgstr ""
 
+msgid "of a DUAL layer medium used."
+msgstr ""
+
+msgid "of a SINGLE layer medium used."
+msgstr ""
+
 msgid "off"
 msgstr ""
 
 msgid "on"
+msgstr ""
+
+msgid "on READ ONLY medium."
 msgstr ""
 
 msgid "once"
@@ -3575,6 +3921,9 @@ msgstr ""
 msgid "previous channel in history"
 msgstr ""
 
+msgid "rebooting..."
+msgstr ""
+
 msgid "record"
 msgstr ""
 
@@ -3593,6 +3942,12 @@ msgstr ""
 msgid "remove before this position"
 msgstr ""
 
+msgid "remove bookmark"
+msgstr ""
+
+msgid "remove directory"
+msgstr ""
+
 msgid "remove entry"
 msgstr ""
 
@@ -3608,6 +3963,9 @@ msgstr ""
 msgid "remove this mark"
 msgstr ""
 
+msgid "repeat playlist"
+msgstr ""
+
 msgid "repeated"
 msgstr ""
 
@@ -3620,18 +3978,11 @@ msgstr ""
 msgid "save playlist"
 msgstr ""
 
-#, python-format
-msgid "scan done! %d services found!"
-msgstr ""
-
-msgid "scan done! No service found!"
-msgstr ""
-
-msgid "scan done! One service found!"
+msgid "scan done!"
 msgstr ""
 
 #, python-format
-msgid "scan in progress - %d %% done! %d services found!"
+msgid "scan in progress - %d%% done!"
 msgstr ""
 
 msgid "scan state"
@@ -3646,7 +3997,13 @@ msgstr ""
 msgid "seconds"
 msgstr ""
 
-msgid "seconds."
+msgid "select"
+msgstr ""
+
+msgid "select .NFI flash file"
+msgstr ""
+
+msgid "select image from server"
 msgstr ""
 
 msgid "select movie"
@@ -3721,6 +4078,9 @@ msgstr ""
 msgid "sort by date"
 msgstr ""
 
+msgid "spaces (top, between rows, left)"
+msgstr ""
+
 msgid "standard"
 msgstr ""
 
@@ -3749,6 +4109,9 @@ msgid "stop timeshift"
 msgstr ""
 
 msgid "swap PiP and main picture"
+msgstr ""
+
+msgid "switch to bookmarks"
 msgstr ""
 
 msgid "switch to filelist"
@@ -3812,6 +4175,9 @@ msgid "weekly"
 msgstr ""
 
 msgid "whitelist"
+msgstr ""
+
+msgid "year"
 msgstr ""
 
 msgid "yes"
