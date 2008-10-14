@@ -302,7 +302,7 @@ class Wizard(Screen):
 		if self.showConfig:
 			if self.wizard[currStep]["config"]["type"] == "dynamic":
 				eval("self." + self.wizard[currStep]["config"]["evaluation"])()
-			
+
 		if self.showList:
 			if (len(self.wizard[currStep]["evaluatedlist"]) > 0):
 				print "current:", self["list"].current
@@ -401,7 +401,7 @@ class Wizard(Screen):
 		self.resetCounter()
 		
 		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None):
-				self["config"].instance.moveSelection(self["config"].instance.moveUp)
+			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			if self.wizard[self.currStep].has_key("onselect"):
 				self.selection = self["list"].current[-1]
@@ -440,6 +440,8 @@ class Wizard(Screen):
 		self.timeoutTimer.stop()
 		
 		if self.configInstance is not None:
+			# remove callbacks
+			self.configInstance["config"].onSelectionChanged = []
 			del self.configInstance["config"]
 			self.configInstance.doClose()
 			self.configInstance = None
@@ -521,7 +523,9 @@ class Wizard(Screen):
 							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
 						self["config"].l.setList(self.configInstance["config"].list)
 						self.configInstance["config"].destroy()
+						print "clearConfigList", self.configInstance["config"], self["config"] 
 						self.configInstance["config"] = self["config"]
+						print "clearConfigList", self.configInstance["config"], self["config"]
 				else:
 					self["config"].l.setList([])
 			else:
