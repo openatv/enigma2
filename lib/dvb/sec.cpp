@@ -128,6 +128,7 @@ eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBR
 int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite &sat, iDVBFrontend *fe, int slot_id, int *highest_score_lnb)
 {
 	bool simulate = ((eDVBFrontend*)fe)->is_simulate();
+	bool direct_connected = m_not_linked_slot_mask & slot_id;
 	int score=0, satcount=0;
 
 	if (highest_score_lnb)
@@ -153,7 +154,6 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			if ( sit != lnb_param.m_satellites.end())
 			{
 				bool diseqc=false;
-				bool direct_connected = m_not_linked_slot_mask & slot_id;
 				long band=0,
 					linked_prev_ptr=-1,
 					linked_next_ptr=-1,
@@ -268,12 +268,6 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					eSecDebugNoSimulate("ret4 %d", ret);
 				}
 
-				if (ret && rotor && curRotorPos != -1 && direct_connected) {
-					ret -= abs(curRotorPos-sat.orbital_position);
-				}
-
-				eSecDebugNoSimulate("ret5 %d", ret);
-
 				if (ret)
 					if (satpos_depends_ptr != -1)
 					{
@@ -286,8 +280,13 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							if (!rotor || curRotorPos != sat.orbital_position)
 								ret=0;
 						}
-						eSecDebugNoSimulate("ret6 %d", ret);
+						eSecDebugNoSimulate("ret5 %d", ret);
 					}
+
+				if (ret && rotor && curRotorPos != -1 && (direct_connected || !satpos_depends_ptr) )  // direct conntected or loopthrough!
+					ret -= abs(curRotorPos-sat.orbital_position);
+
+				eSecDebugNoSimulate("ret6 %d", ret);
 
 				if (ret)
 				{
@@ -311,7 +310,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	}
 	if (score && satcount)
 		score -= (satcount-1);
-	if (score && m_not_linked_slot_mask & slot_id)
+	if (score && direct_connected)
 		score += 5; // increase score for tuners with direct sat connection
 	eSecDebugNoSimulate("final score %d", score);
 	return score;
