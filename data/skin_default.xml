@@ -1118,30 +1118,31 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-	<screen name="JobView" position="84,122" size="522,374" title="Job View">
-		<widget source="job_progress" render="Progress" position="130,184" size="362,28" borderWidth="1" />
-		<widget source="job_status" render="Label" position="15,246" size="278,62" font="Regular;28" />
-		<widget source="job_name" render="Label" position="25,12" size="464,76" font="Regular;28" />
-		<widget source="job_task" render="Label" position="19,93" size="475,61" font="Regular;28" />
-		<widget source="job_progress" render="Label" position="16,182" size="106,65" font="Regular;28">
+	<screen name="JobView" position="84,122" size="520,350" title="Job View">
+		<widget source="job_name" render="Label" position="20,12" size="480,60" font="Regular;28" />
+		<widget source="job_task" render="Label" position="20,90" size="480,50" font="Regular;23" />
+		<widget source="job_progress" render="Progress" position="20,162" size="480,36" borderWidth="2" backgroundColor="#254f7497" />
+		<widget source="job_progress" render="Label" position="120,166" size="280,32" font="Regular;28" foregroundColor="#000000" zPosition="2" halign="center" transparent="1"  >
 			<convert type="ProgressToText" />
 		</widget>
-		<widget source="cancelable" render="Pixmap" pixmap="skin_default/buttons/red.png" position="0,330" size="140,40" alphatest="on" >
+		<widget source="job_status" render="Label" position="20,212" size="480,26" font="Regular;23" />
+		<widget name="config" position="20,254" size="480,20" />
+		<widget source="cancelable" render="Pixmap" pixmap="skin_default/buttons/red.png" position="20,300" size="140,40" alphatest="on" >
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="cancelable" render="FixedLabel" text="Abort" position="0,330" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" >
+		<widget source="cancelable" render="FixedLabel" text="Cancel" position="20,300" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" >
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="finished" render="Pixmap" pixmap="skin_default/buttons/green.png" position="170,330" size="140,40" alphatest="on" >
+		<widget source="finished" render="Pixmap" pixmap="skin_default/buttons/green.png" position="190,300" size="140,40" alphatest="on" >
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="finished" render="FixedLabel" text="OK" font="Regular;20" halign="center" valign="center" position="170,330" size="140,40" transparent="1" backgroundColor="#1f771f" >
+		<widget source="finished" render="FixedLabel" text="OK" font="Regular;20" halign="center" valign="center" position="190,300" size="140,40" transparent="1" backgroundColor="#1f771f" >
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="backgroundable" render="Pixmap" pixmap="skin_default/buttons/blue.png" position="380,330" size="140,40" alphatest="on" >
+		<widget source="backgroundable" render="Pixmap" pixmap="skin_default/buttons/blue.png" position="360,300" size="140,40" alphatest="on" >
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="backgroundable" render="FixedLabel" text="Background" font="Regular;20" halign="center" valign="center" position="380,330" size="140,40" transparent="1" backgroundColor="#18188b" >
+		<widget source="backgroundable" render="FixedLabel" text="Continue in background" font="Regular;20" halign="center" valign="center" position="360,300" size="140,40" transparent="1" backgroundColor="#18188b" >
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
