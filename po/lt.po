@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
-"PO-Revision-Date: 2008-10-06 00:15+0200\n"
+"POT-Creation-Date: 2008-10-15 03:32+0200\n"
+"PO-Revision-Date: 2008-10-14 20:59+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -82,14 +82,16 @@ msgid "(show optional DVD audio menu)"
 msgstr "(rodyti pasirenkamą DVD garso meniu)"
 
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr ".NFI parsisiuntimas klaidingas:"
 
 msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
+msgstr ".NFI diegėjo paleidimo USB raktelis sėkmingai sukurtas."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
+".NFI failas atitinka md5sum parašo tikrinimą. Jūs galite saugiai diegti šį "
+"atvaizdą!"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 direktoriją"
@@ -293,9 +295,6 @@ msgstr "AGC"
 msgid "AGC:"
 msgstr "AGC:"
 
-msgid "Abort"
-msgstr ""
-
 msgid "About"
 msgstr "Apie"
 
@@ -333,7 +332,7 @@ msgid "Add timer"
 msgstr "Laikmatis"
 
 msgid "Add title"
-msgstr "Pridėkite antraštę"
+msgstr "Pridėti"
 
 msgid "Add to bouquet"
 msgstr "Pridėti į paketą"
@@ -385,7 +384,7 @@ msgid "Alpha"
 msgstr "Permatoma"
 
 msgid "Alternative radio mode"
-msgstr "Alternatyvus radijo būdas"
+msgstr "Kitoks radijo būdas"
 
 msgid "Alternative services tuner priority"
 msgstr "Kitų kanalų imtuvo pirmenybė"
@@ -394,7 +393,7 @@ msgid "An empty filename is illegal."
 msgstr "Tuščias failo pavadinimas negalimas"
 
 msgid "An unknown error occured!"
-msgstr "Nežinoma klaida įvyko!"
+msgstr "Įvyko nežinoma klaida!"
 
 msgid "Arabic"
 msgstr "Arabų"
@@ -416,7 +415,7 @@ msgid "Ask user"
 msgstr "Klausti vartotojo"
 
 msgid "Aspect Ratio"
-msgstr "Rodymo formatas"
+msgstr "Vaizdo formatas"
 
 msgid "Audio"
 msgstr "Garsas"
@@ -431,7 +430,7 @@ msgid "Auto"
 msgstr "Automatinis"
 
 msgid "Auto chapter split every ? minutes (0=never)"
-msgstr "Automatinis skyriaus perskėlimas kiekvieną? minutę (0=never)"
+msgstr "Automatinis skyriaus perskėlimas kiekvieną? minutę (0=niekada)"
 
 msgid "Auto scart switching"
 msgstr "Automatinis skarto perjungimas"
@@ -446,7 +445,7 @@ msgid "Automatic Scan"
 msgstr "Automatinė paieška"
 
 msgid "Available format variables"
-msgstr "Galimi formatai"
+msgstr "Galimi kintami formatai"
 
 msgid "B"
 msgstr "B"
@@ -467,7 +466,7 @@ msgid "Back"
 msgstr "Atgal"
 
 msgid "Background"
-msgstr ""
+msgstr "Fonas"
 
 msgid "Backup"
 msgstr "Atsarginė kopija"
@@ -482,7 +481,7 @@ msgid "Backup is done. Please press OK to see the result."
 msgstr "Išsaugota. Prašome paspausti OK rezultato peržiūrai."
 
 msgid "Band"
-msgstr "Diapazonas"
+msgstr "Juosta"
 
 msgid "Bandwidth"
 msgstr "Juostos plotis"
@@ -529,7 +528,7 @@ msgid "C"
 msgstr "C"
 
 msgid "C-Band"
-msgstr "C-diapazonas"
+msgstr "C-juosta"
 
 msgid "CF Drive"
 msgstr "CF kortelė"
@@ -550,7 +549,7 @@ msgid "Cancel"
 msgstr "Atšaukti"
 
 msgid "Cannot parse feed directory"
-msgstr ""
+msgstr "Negali rasti perdavimo direktorijos"
 
 msgid "Capacity: "
 msgstr "Talpa: "
@@ -565,7 +564,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Keisti paketus greitai perjungiant"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Pakeisti dir."
 
 msgid "Change pin code"
 msgstr "Pakeisti PIN kodą"
@@ -607,13 +606,13 @@ msgid "Checking Filesystem..."
 msgstr "Tikrinti failų sistemą..."
 
 msgid "Choose Tuner"
-msgstr "Pasirinkite imtuvą"
+msgstr "Išsirinkite imtuvą"
 
 msgid "Choose bouquet"
-msgstr "Pasirinkite paketą"
+msgstr "Išsirinkite paketą"
 
 msgid "Choose source"
-msgstr "Pasirinkite šaltinį"
+msgstr "Išsirinkite šaltinį"
 
 msgid "Choose target folder"
 msgstr "Išsirinkite aplanką"
@@ -655,7 +654,7 @@ msgid "Color Format"
 msgstr "Spalvų formatas"
 
 msgid "Command execution..."
-msgstr "Komandos vykdymas..."
+msgstr "Vykdoma komanda..."
 
 msgid "Command order"
 msgstr "Komandų seka"
@@ -664,7 +663,7 @@ msgid "Committed DiSEqC command"
 msgstr "DiSEqC perjungimo komanda"
 
 msgid "Common Interface"
-msgstr "Įstatomo modulio sąsaja"
+msgstr "Įstatomi moduliai"
 
 msgid "Compact Flash"
 msgstr "Kompaktinė atmintinė"
@@ -709,6 +708,9 @@ msgstr "Žvaigždynas"
 msgid "Content does not fit on DVD!"
 msgstr "Turinys netinka dėl DVD!"
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Tęsti žiūrėjimą"
 
@@ -716,10 +718,10 @@ msgid "Contrast"
 msgstr "Kontrastas"
 
 msgid "Copying USB flasher boot image to stick..."
-msgstr ""
+msgstr "Kopijuojamas USB diegėjo paleidimo atvaizdas į raktelį..."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "Negalima prisijungti prie Dreambox .NFI atvaizdo perdavimo serverio:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Negalima užkrauti! Joks diskas neįdėtas?"
@@ -792,7 +794,7 @@ msgid "Date"
 msgstr "Duomenys"
 
 msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
+msgstr "Dekompresuojamas USB raktelis, diegėjo paleidžiamasis atvaizdas..."
 
 msgid "Deep Standby"
 msgstr "Visiškai išjungti"
@@ -827,7 +829,7 @@ msgid "Description"
 msgstr "Aprašymas"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Direktorijos vieta"
 
 msgid "Detected HDD:"
 msgstr "Rastas HDD:"
@@ -858,7 +860,7 @@ msgstr "Tiesioginis atkūrimas sujungtų pavadinimų be meniu"
 
 #, python-format
 msgid "Directory %s nonexistent."
-msgstr "Direktorija %s neegzistuoja."
+msgstr "Direktorijos %s nėra."
 
 msgid "Disable"
 msgstr "Išjungti"
@@ -996,16 +998,16 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Baigta - Įdiegta arba atnaujinta %d paketų su %d klaidomis"
 
 msgid "Download"
-msgstr ""
+msgstr "Parsisiuntimas"
 
 msgid "Download .NFI-Files for USB-Flasher"
-msgstr ""
+msgstr "Parsisiunčiami .NFI failai į USB diegėją"
 
 msgid "Download Plugins"
 msgstr "Parsisiųsti priedus"
 
 msgid "Download of USB flasher boot image failed: "
-msgstr ""
+msgstr "USB diegėjo atvaizdo parsisiuntimas klaidingas:"
 
 msgid "Downloadable new plugins"
 msgstr "Galimi įdiegti nauji priedai"
@@ -1017,7 +1019,7 @@ msgid "Downloading"
 msgstr "Parsisiunčiama"
 
 msgid "Downloading image description..."
-msgstr ""
+msgstr "Atvaizdo apibūdinimo parsisiuntimas..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Parsiunčiama informacija apie priedus. Prašome palaukti..."
@@ -1060,7 +1062,7 @@ msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Redaguokite tinklo konfigūraciją savo imtuve.\n"
 
 msgid "Edit title"
-msgstr "Redaguoti antraštę"
+msgstr "Redaguoti"
 
 msgid "Electronic Program Guide"
 msgstr "Elektroninis programų gidas"
@@ -1140,7 +1142,7 @@ msgid "Error"
 msgstr "Klaida"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "Klaida paleidžiant priedą"
 
 #, python-format
 msgid ""
@@ -1220,23 +1222,23 @@ msgid "Finetune"
 msgstr "Tiksliau"
 
 msgid "Finished"
-msgstr "Baigta"
+msgstr "Baigtas"
 
 msgid "Finnish"
 msgstr "Suomių"
 
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
-msgstr ""
+msgstr "Iš pradžių reikia parsisiųsti paskutinę aplinką USB atvaizdo diegėjui."
 
 msgid "Fix USB stick"
-msgstr ""
+msgstr "Taisyti USB"
 
 msgid "Flash"
-msgstr ""
+msgstr "Fliašas"
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "Diegimas klaidingas"
 
 msgid "Font size"
 msgstr "Šrifto dydis"
@@ -1254,7 +1256,7 @@ msgid "Frequency"
 msgstr "Dažnis"
 
 msgid "Frequency bands"
-msgstr "Dažnio diapazonai"
+msgstr "Dažnio juostos"
 
 msgid "Frequency scan step size(khz)"
 msgstr "Skanavimo dažnio žingsnio dydis(khz)"
@@ -1285,8 +1287,8 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"Reikia perkrauti Enigma2 ,kad patvirtinti naują temą\n"
-"Jūs norite perkrauti Enigma2 dabar?"
+"Reikia paleisti iš naujo Enigma2 ,kad patvirtinti naują temą\n"
+"Jūs norite paleisti iš naujo Enigma2 dabar?"
 
 msgid "Gateway"
 msgstr "Šliuzas"
@@ -1301,7 +1303,7 @@ msgid "Getting plugin information. Please wait..."
 msgstr "Gaunama informacija apie priedus. Prašome palaukti..."
 
 msgid "Goto 0"
-msgstr "Eiti į poziciją 0"
+msgstr "Eiti į 0"
 
 msgid "Goto position"
 msgstr "Eiti į poziciją"
@@ -1378,7 +1380,7 @@ msgstr ""
 "Jeigu Jūs patenkinti gautu rezultatu, spauskite OK."
 
 msgid "Image flash utility"
-msgstr ""
+msgstr "Atvaizdo diegimo programėlė"
 
 msgid "Image-Upgrade"
 msgstr "Atvaizdo atnaujinimas"
@@ -1441,7 +1443,7 @@ msgid "Instant Record..."
 msgstr "Greitas įrašas..."
 
 msgid "Integrated Ethernet"
-msgstr "Integruotas tinklo adapteris"
+msgstr "Integruotas tinklas"
 
 msgid "Integrated Wireless"
 msgstr "Integruotas belaidis tinklas"
@@ -1549,7 +1551,7 @@ msgid "Load"
 msgstr "Užkraunama"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Užkrauti kino filmų ilgį filmo sąraše"
 
 msgid "Local Network"
 msgstr "Vietinis tinklas"
@@ -1676,6 +1678,8 @@ msgstr "KITAS"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
+"NFI atvaizdo diegimas baigtas. Spauskite geltoną mygtuką, kad paleisti iš "
+"naujo!"
 
 msgid "NOW"
 msgstr "DABAR"
@@ -1770,7 +1774,7 @@ msgstr ""
 "(Skaitymo pertrauka PAT)"
 
 msgid "No details for this image file"
-msgstr ""
+msgstr "Nėra informacijos apie šį atvaizdą"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Informacija apie įvykius nerasta, tęsiamas įrašymas."
@@ -1805,7 +1809,7 @@ msgstr ""
 "Prašome nustatyti Jūsų imtuvą, prieš pradedant ieškoti kanalų."
 
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "Joks tinkamas USB raktelis nesurastas"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1902,6 +1906,9 @@ msgid ""
 "format and use as .NFI image flasher. Press OK after you've put the stick "
 "back in."
 msgstr ""
+"Dabar prašome įdėti USB raktelį (minimalus dydis yra 64 MB), kad "
+"suformatuoti ir naudoti kaip.NFI atvaizdo diegėją. Spauskite OK  po to, kai "
+"jūs įdėjote raktelį."
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1980,7 +1987,7 @@ msgid "Parental control type"
 msgstr "Tėvų kontrolės rūšis"
 
 msgid "Partitioning USB stick..."
-msgstr ""
+msgstr "Padalijamas USB raktelis..."
 
 msgid "Pause movie at end"
 msgstr "Filmo pauzė pabaigoje"
@@ -2014,10 +2021,10 @@ msgid "Please change recording endtime"
 msgstr "Prašome pakeisti įrašymo pabaigos laiką"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Prašome tikrinti savo tinklo nustatymus!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "Prašome pasirinkti.NFI atvaizdo failą iš parsisiuntimo serverio"
 
 msgid "Please choose an extension..."
 msgstr "Prašome išsirinkti papildymus..."
@@ -2070,7 +2077,7 @@ msgid "Please press OK!"
 msgstr "Prašome spausti OK!"
 
 msgid "Please select .NFI flash image file from medium"
-msgstr ""
+msgstr "Prašome išsirinkti.NFI diegimo atvaizdo failą iš disko"
 
 msgid "Please select a playlist to delete..."
 msgstr "Prašome išsirinkti ką norite trinti iš grojaraščio..."
@@ -2088,7 +2095,7 @@ msgid "Please select keyword to filter..."
 msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
 
 msgid "Please select target directory or medium"
-msgstr ""
+msgstr "Prašome išsirinkti direktoriją arba diską"
 
 msgid "Please select the movie path..."
 msgstr "Prašome išsirinkti filmo kelią..."
@@ -2119,7 +2126,7 @@ msgstr ""
 "to spauskite OK mygtuką."
 
 msgid "Please wait for md5 signature verification..."
-msgstr ""
+msgstr "Prašome laukti md5 parašo patikrinimo..."
 
 msgid "Please wait... Loading list..."
 msgstr "Prašome laukti... Užkraunamas sąrašas..."
@@ -2179,13 +2186,13 @@ msgid "Preparing... Please wait"
 msgstr "Pasiruošiama... Prašome laukti"
 
 msgid "Press OK on your remote control to continue."
-msgstr "Spauskite OK savo valdymo pulte, kad tęsti."
+msgstr "Spauskite OK savo valdymo pulte ir tęskite."
 
 msgid "Press OK to activate the settings."
 msgstr "Spauskite OK norėdami aktyvuoti nustatymus"
 
 msgid "Press OK to edit the settings."
-msgstr "Spauskite OK, kad suredaguotumėte nustatymus."
+msgstr "Spauskite OK ir redaguokite nustatymus."
 
 msgid "Press OK to scan"
 msgstr "Spauskite OK paieškai."
@@ -2209,7 +2216,7 @@ msgid "Protect setup"
 msgstr "Apsaugoti nustatymus"
 
 msgid "Provider"
-msgstr "Tiekėjai"
+msgstr "Tiekėjas"
 
 msgid "Provider to scan"
 msgstr "Tiekėjas, kurį norite skanuoti"
@@ -2230,7 +2237,7 @@ msgid "RGB"
 msgstr "RGB"
 
 msgid "RSS Feed URI"
-msgstr "RSS Feed URI"
+msgstr "RSS perdavimo URI"
 
 msgid "Radio"
 msgstr "Radijas"
@@ -2251,7 +2258,7 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Tikrai išeiti iš subkanalų greito perjungimo?"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Perkrauti"
 
 msgid "Reception Settings"
 msgstr "Priėmimo nustatymai"
@@ -2297,7 +2304,7 @@ msgid "Refresh rate selection."
 msgstr "Atnaujinkite normos pasirinkimą"
 
 msgid "Remounting stick partition..."
-msgstr ""
+msgstr "Perjungiamas raktelio padalinimas..."
 
 msgid "Remove Bookmark"
 msgstr "Pašalinti žymę"
@@ -2315,13 +2322,13 @@ msgid "Remove plugins"
 msgstr "Pašalinti priedus"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "Pašalinti brokuotą .NFI failą?"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "Pašalinti neužbaigtą .NFI failą?"
 
 msgid "Remove title"
-msgstr "Pašalinti pavadinimą"
+msgstr "Pašalinti "
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2571,7 +2578,7 @@ msgid "Select channel to record from"
 msgstr "Pasirinkite kanalą įrašymui"
 
 msgid "Select image"
-msgstr ""
+msgstr "Išsirinkite atvaizdą"
 
 msgid "Select refresh rate"
 msgstr "Pasirinkite atnujinimo normą"
@@ -2583,7 +2590,7 @@ msgid "Select video mode"
 msgstr "Pasirinkite vaizdo būdą"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "Išsirinktas šaltinio atvaizdas"
 
 msgid "Seperate titles with a main menu"
 msgstr "Pavadinimai su pagrindiniu meniu"
@@ -2643,7 +2650,7 @@ msgid "Set limits"
 msgstr "Nustatykite ribas"
 
 msgid "Settings"
-msgstr "Nustatymų parametrai"
+msgstr "Nustatymai"
 
 msgid "Setup"
 msgstr "Nustatymai"
@@ -2903,6 +2910,10 @@ msgid ""
 "and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
 "stick!"
 msgstr ""
+".NFI atvaizdo diegimo USB raktelis yra paruoštas naudoti. Prašome perkelti ."
+"NFI atvaizdo failą iš perdavimo serverio ir išsaugoti jį raktelyje. Tada "
+"perkraukite ir laikykite nuspaustą mygtuką 'Žemyn' ant priekinės imtuvo "
+"panėlės kad paleisti .NFI diegėją iš raktelio!"
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
@@ -2924,6 +2935,11 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"Surastas įrenginys:\n"
+"\n"
+"%s\n"
+"\n"
+"Jūs norite įrašyti USB diegėją į šį raktelį?"
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2949,11 +2965,16 @@ msgid ""
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"Md5sum patvirtinimas klaidingas, failas gali būti sugadintas! Jūs esate "
+"įsitikinęs, kad norite diegti šį atvaizdą vidinę atmintį? Jūs darote tai su "
+"rizika!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
 msgstr ""
+"Md5sum patvirtinimas klaidingas, failas gali būti nepilnai persisiųstas arba "
+"sugadintas!"
 
 msgid "The package doesn't contain anything."
 msgstr "Paketas neturi savyje nieko."
@@ -3011,17 +3032,21 @@ msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "Šis .NFI failas neturi galiojančio %s atvaizdo!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"Šis .NFI failas neturi md5sum parašo ir nėra garantijos, kad dirbs. Jūs iš "
+"tikrųjų norite diegti šį atvaizdą į vidinę atmintį?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+"Šis .NFI failas turi galiojantį md5 parašą. Tęskite šio atvaizdo diegimą į "
+"vidinę atmintį?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -3164,6 +3189,8 @@ msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
 "and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
+"Jeigu jūs ketinate daryti tai, prašome pašalinti USB raktelį dabar. "
+"Spauskite OK, kai išimsite raktelįį."
 
 msgid "Today"
 msgstr "Šiandien"
@@ -3429,7 +3456,7 @@ msgid "Waiting"
 msgstr "Laukite"
 
 msgid "Waiting for USB stick to settle..."
-msgstr ""
+msgstr "Laukite kol USB raktelis susitvarkys..."
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3512,10 +3539,10 @@ msgid "Write failed!"
 msgstr "Įrašymas klaidingas!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "NFI atvaizdo failo įrašymas į vidinę atmintį užbaigtas"
 
 msgid "Writing image file to NAND Flash"
-msgstr ""
+msgstr "Atvaizdo failo į NAND fliašą įrašymas"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3617,6 +3644,8 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
+"Jūs nusprendėte sukurti naują .NFI diegėją USB raktelyje. Tada bus "
+"perdalintas USB raktelis ir visi duomenys jame bus ištrinti."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3794,7 +3823,7 @@ msgid "chapters"
 msgstr "skyriai"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "pasirinkite direktoriją"
 
 msgid "circular left"
 msgstr "apskritiminė kairė"
@@ -4168,7 +4197,7 @@ msgid "previous channel in history"
 msgstr "Buvęs kanalas į istoriją"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "perleidžiama..."
 
 msgid "record"
 msgstr "įrašas"
@@ -4247,10 +4276,10 @@ msgid "select"
 msgstr "pasirinkti"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "išsirinkite .NFI diegimo failą"
 
 msgid "select image from server"
-msgstr ""
+msgstr "išsirinkite atvaizdą iš serverio"
 
 msgid "select movie"
 msgstr "pasirinkite filmą"
@@ -4454,6 +4483,9 @@ msgstr "įjungta"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
+
+#~ msgid "Abort"
+#~ msgstr "Nutraukti"
 
 #~ msgid "Add title..."
 #~ msgstr "Pridėkite pavadinimą..."
