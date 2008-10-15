@@ -13,6 +13,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		from Components.ActionMap import ActionMap
 		Screen.__init__(self, session, parent)
 		InfoBarNotifications.__init__(self)
+		ConfigListScreen.__init__(self, [])
 		self.parent = parent
 		self.job = job
 		self.job.taskview = self
@@ -30,18 +31,15 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		self.onShow.append(self.windowShow)
 		self.onHide.append(self.windowHide)
 
-		self["actions"] = ActionMap(["OkCancelActions"], 
-			{
-				"ok": self.ok,
-				"cancel": self.ok
-			})
-		self["ColorActions"] = ActionMap(["ColorActions"],
-			{
-				"red": self.abort,
-				"green": self.ok,
-				"blue": self.background,
-			})
-		ConfigListScreen.__init__(self, [])
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		{
+		    "green": self.ok,
+		    "red": self.abort,
+		    "blue": self.background,
+		    "cancel": self.ok,
+		    "ok": self.ok,
+		}, -2)
+
 		self.afterevents = [ "nothing", "standby", "deepstandby", "close" ]
 		self.settings = ConfigSubsection()
 		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby"))], default = self.afterevents[afterEvent])
@@ -71,7 +69,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		self["job_progress"].range = j.end
 		self["job_progress"].value = j.progress
 		#print "JobView::state_changed:", j.end, j.progress
-		self["job_status"].text = {j.NOT_STARTED: _("Waiting"), j.IN_PROGRESS: _("In Progress"), j.FINISHED: _("Finished"), j.FAILED: _("Failed")}[j.status]
+		self["job_status"].text = j.getStatustext()
 		if j.status == j.IN_PROGRESS:
 			self["job_task"].text = j.tasks[j.current_task].name
 		else:
@@ -100,6 +98,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 			self.job.cancel()
 
 	def performAfterEvent(self):
+		self["config"].hide()
 		if self.settings.afterEvent.getValue() == "nothing":
 			return
 		elif self.settings.afterEvent.getValue() == "close":

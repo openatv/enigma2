@@ -37,6 +37,9 @@ class Job(object):
 
 	progress = property(getProgress)
 
+	def getStatustext(self):
+		return { self.NOT_STARTED: _("Waiting"), self.IN_PROGRESS: _("In Progress"), self.FINISHED: _("Finished"), self.FAILED: _("Failed") }[self.status]
+
 	def task_progress_changed_CB(self):
 		self.state_changed()
 
