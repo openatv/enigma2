@@ -153,6 +153,7 @@ private:
 	GstElement *m_gst_pipeline;
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
+	std::string m_error_message;
 
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstBus *bus, GstMessage *msg);

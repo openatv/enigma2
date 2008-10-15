@@ -12,6 +12,7 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <gst/gst.h>
+#include <gst/pbutils/missing-plugins.h>find 
 #include <sys/stat.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
@@ -35,6 +36,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("mkv");
 		extensions.push_back("avi");
 		extensions.push_back("dat");
+		extensions.push_back("flac");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -679,6 +681,7 @@ int eServiceMP3::getInfo(int w)
 	case sTracknumber:
 	case sGenre:
 	case sVideoType:
+	case sUser+12:
 		return resIsString;
 	case sCurrentTitle:
 		tag = GST_TAG_TRACK_NUMBER;
@@ -727,6 +730,8 @@ std::string eServiceMP3::getInfoString(int w)
 	case sVideoType:
 		tag = GST_TAG_VIDEO_CODEC;
 		break;
+	case sUser+12:
+		return m_error_message;
 	default:
 		return "";
 	}
@@ -944,6 +949,19 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 					IterSubtitleStream->language_code = std::string(g_language);
 					g_free (g_language);
 				}
+			}
+		}
+	}
+        case GST_MESSAGE_ELEMENT:
+	{
+		if ( gst_is_missing_plugin_message(msg) )
+		{
+			gchar *description = gst_missing_plugin_message_get_description(msg);			
+			if ( description )
+			{
+				m_error_message = description;
+				g_free(description);
+				m_event((iPlayableService*)this, evUser+12);
 			}
 		}
 	}
