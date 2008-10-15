@@ -12,7 +12,7 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
 #include <gst/gst.h>
-#include <gst/pbutils/missing-plugins.h>find 
+#include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
