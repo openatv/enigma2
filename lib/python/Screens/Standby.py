@@ -89,6 +89,7 @@ class StandbySummary(Screen):
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox
 from time import time
+from Components.Task import job_manager
 
 inTryQuitMainloop = False
 
@@ -96,19 +97,29 @@ class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
 		self.retval=retvalue
 		recordings = len(session.nav.getRecordings())
+		jobs = len(job_manager.getPendingJobs())
 		self.connected = False
+		reason = ""
 		next_rec_time = -1
 		if not recordings:
-			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
+			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()	
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
+		if jobs:
+			if jobs == 1:
+				job = job_manager.getPendingJobs()[0]
+				reason += "%s: %s (%d%%)\n" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
+			else:
+				reason += (_("%d jobs are running in the background!") % jobs) + '\n'
+		if reason:
 			if retvalue == 1:
-				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				MessageBox.__init__(self, session, reason+_("Really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 			elif retvalue == 2:
-				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				MessageBox.__init__(self, session, reason+_("Really reboot now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 			elif retvalue == 4:
 				pass
 			else:
-				MessageBox.__init__(self, session, _("Recording(s) are in progress or coming up in few seconds... really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				MessageBox.__init__(self, session, reason+_("Really restart now?"), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
 			self.skinName = "MessageBox"
 			session.nav.record_event.append(self.getRecordEvent)
 			self.connected = True

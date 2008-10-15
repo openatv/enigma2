@@ -1286,8 +1286,7 @@ class InfoBarJobman:
 		return list
 
 	def getJobName(self, job):
-		statustext = {job.NOT_STARTED: _("Waiting"), job.IN_PROGRESS: _("In Progress"), job.FINISHED: _("Finished"), job.FAILED: _("Failed")}[job.status]
-		return "%s: %s (%d%%)" % (statustext, job.name, int(100*job.progress/float(job.end)))
+		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
 
 	def showJobView(self, job):
 		from Screens.TaskView import JobView

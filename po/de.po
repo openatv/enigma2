@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
-"PO-Revision-Date: 2008-09-18 12:57+0100\n"
+"POT-Creation-Date: 2008-10-15 12:23+0200\n"
+"PO-Revision-Date: 2008-10-15 12:10+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -54,6 +54,10 @@ msgstr ""
 
 msgid "%H:%M"
 msgstr ""
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr "Es laufen noch %d Jobs im Hintergrund!"
 
 #, python-format
 msgid "%d min"
@@ -298,9 +302,6 @@ msgstr ""
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Über"
@@ -2252,6 +2253,15 @@ msgstr "Diesen Timer wirklich löschen?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Den Subservices-Schnellumschalter wirklich beenden?"
 
+msgid "Really reboot now?"
+msgstr "Wollen Sie trotzdem neu booten?"
+
+msgid "Really restart now?"
+msgstr "Wollen Sie trotzdem neu starten?"
+
+msgid "Really shutdown now?"
+msgstr "Wollen Sie trotzdem ausschalten?"
+
 msgid "Reboot"
 msgstr ""
 
@@ -2267,26 +2277,8 @@ msgstr "Aufgenommene Dateien..."
 msgid "Recording"
 msgstr "Aufnahmen"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr ""
-"Zurzeit sind Aufnahmen aktiv oder starten gleich...\n"
-"Wollen Sie trotzdem neu starten?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Zurzeit sind Aufnahmen aktiv oder starten gleich...\n"
-"Wollen Sie trotzdem neu starten?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Zurzeit sind Aufnahmen aktiv oder starten gleich...\n"
-"Wollen Sie trotzdem ausschalten?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
+msgstr "Zur Zeit sind Aufnahmen aktiv oder starten gleich!"
 
 msgid "Recordings always have priority"
 msgstr "Aufnahmen haben immer Vorrang"
@@ -2895,10 +2887,8 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using your Dreambox."
+"Please press OK to start using you Dreambox."
 msgstr ""
-"Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden.\n"
-"Bitte drücken Sie OK, um den Assistenten zu verlassen."
 
 msgid ""
 "The .NFI Image flasher USB stick is now ready to use. Please download an ."
@@ -4522,6 +4512,27 @@ msgstr "umgeschaltet"
 #~ "Schließen Sie Ihren USB-Stick an, bevor Sie OK drücken.\n"
 #~ "\n"
 
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich...\n"
+#~ "Wollen Sie trotzdem neu starten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich...\n"
+#~ "Wollen Sie trotzdem neu starten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Zurzeit sind Aufnahmen aktiv oder starten gleich...\n"
+#~ "Wollen Sie trotzdem ausschalten?"
+
 #~ msgid "Reset configuration"
 #~ msgstr "Konfig. zurücksetzen"
 
@@ -4540,6 +4551,14 @@ msgstr "umgeschaltet"
 
 #~ msgid "Step "
 #~ msgstr "Schritt "
+
+#~ msgid ""
+#~ "Thank you for using the wizard. Your box is now ready to use.\n"
+#~ "Please press OK to start using your Dreambox."
+#~ msgstr ""
+#~ "Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt "
+#~ "werden.\n"
+#~ "Bitte drücken Sie OK, um den Assistenten zu verlassen."
 
 #~ msgid ""
 #~ "The installation of the default settings is finished. Your can now "
