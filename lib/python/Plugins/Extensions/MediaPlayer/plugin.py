@@ -64,7 +64,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
 		# 'None' is magic to start at the list of mountpoints
-		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|mkv|dat)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
+		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|mkv|dat|flac)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 
 		self.playlist = MyPlayList()
@@ -179,7 +179,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
-				iPlayableService.evUser+11: self.__evDecodeError
+				iPlayableService.evUser+11: self.__evDecodeError,
+				iPlayableService.evUser+12: self.__evPluginError
 			})
 
 	def doNothing(self):
@@ -224,7 +225,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		currPlay = self.session.nav.getCurrentService()
 		sVideoType = currPlay.info().getInfoString(iServiceInformation.sVideoType)
 		print "[__evDecodeError] video-codec %s can't be decoded by hardware" % (sVideoType)
-		self.session.open(MessageBox, _("This Dreambox can't decode %s video streams!") % sVideoType, type = MessageBox.TYPE_INFO,timeout = 10 )
+		self.session.open(MessageBox, _("This Dreambox can't decode %s video streams!") % sVideoType, type = MessageBox.TYPE_INFO,timeout = 20 )
+
+	def __evPluginError(self):
+		currPlay = self.session.nav.getCurrentService()
+		message = currPlay.info().getInfoString(iServiceInformation.sUser+12)
+		print "[__evPluginError]" , message
+		self.session.open(MessageBox, ("GStreamer Error: missing %s") % message, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def delMPTimer(self):
 		del self.rightKeyTimer
@@ -684,10 +691,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				currref = self.playlist.getServiceRefList()[idx]
 				text = self.getIdentifier(currref)
 				text = ">"+text
-				ext = text[-3:].lower()
+				ext = text[-4:].lower()
 
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in ["mp3", "wav", "ogg"] and not self.isAudioCD:
+				if ext not in [".mp3", ".wav", ".ogg", "flac"] and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
@@ -713,8 +720,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				idx = self.playlist.getCurrentIndex()
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
-				ext = text[-3:].lower()
-				if ext not in ["mp3", "wav", "ogg"] and not self.isAudioCD:
+				ext = text[-4:].lower()
+				if ext not in [".mp3", ".wav", ".ogg", "flac"] and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
@@ -852,7 +859,7 @@ def filescan(**kwargs):
 			description = "View Video CD...",
 			openfnc = filescan_open,
 		),
-		Scanner(mimetypes = ["audio/mpeg", "audio/x-wav", "application/ogg"],
+		Scanner(mimetypes = ["audio/mpeg", "audio/x-wav", "application/ogg", "audio/x-flac"],
 			paths_to_scan =
 				[
 					ScanPath(path = "", with_subdirs = False),

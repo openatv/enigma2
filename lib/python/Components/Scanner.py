@@ -16,6 +16,7 @@ def getExtension(file):
 
 def getType(file):
 	(type, _) = guess_type(file)
+	print "guessed type:", type
 	if type is None:
 		# Detect some mimetypes unknown to dm7025
 		# TODO: do mimetypes.add_type once should be better
@@ -24,6 +25,8 @@ def getType(file):
 			return "application/x-debian-package"
 		elif ext == "ogg":
 			return "application/ogg"
+		elif ext == "flac":
+			return "audio/x-flac"
 		elif ext == "dmpkg":
 			return "application/x-dream-package"
 		elif ext == "ts":
