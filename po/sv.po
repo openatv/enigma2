@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
-"PO-Revision-Date: 2008-10-13 10:15+0100\n"
+"POT-Creation-Date: 2008-10-15 03:32+0200\n"
+"PO-Revision-Date: 2008-10-14 14:21+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -88,14 +88,15 @@ msgid "(show optional DVD audio menu)"
 msgstr "(visa utökad DVD ljudmeny)"
 
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr ".NFI Nedladdning misslyckades:"
 
 msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
+msgstr ".NFI Flash bootbar USB stick skapad. "
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
+".NFI fil passerade md5sum signatur kontroll. Du kan använda denna image!"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 bibliotek"
@@ -299,9 +300,6 @@ msgstr "AGC"
 msgid "AGC:"
 msgstr "AGC:"
 
-msgid "Abort"
-msgstr ""
-
 msgid "About"
 msgstr "Om"
 
@@ -472,7 +470,7 @@ msgid "Back"
 msgstr "Tillbaka"
 
 msgid "Background"
-msgstr ""
+msgstr "Bakgrund"
 
 msgid "Backup"
 msgstr "Backup"
@@ -555,7 +553,7 @@ msgid "Cancel"
 msgstr "Avbryt"
 
 msgid "Cannot parse feed directory"
-msgstr ""
+msgstr "Kan inte läsa feed bibliotek"
 
 msgid "Capacity: "
 msgstr "Kapacitet: "
@@ -570,7 +568,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Byt favoritlista med snabbzap"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Byt bibl."
 
 msgid "Change pin code"
 msgstr "Ändra PIN kod"
@@ -714,6 +712,9 @@ msgstr "Konstellation"
 msgid "Content does not fit on DVD!"
 msgstr "Innehåll för stort för en DVD!"
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Forsätt spela"
 
@@ -721,10 +722,10 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 msgid "Copying USB flasher boot image to stick..."
-msgstr ""
+msgstr "Kopiera USB flash boot image till stick..."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "Kunde inte ansluta till Dreambox .NFI image feed Server:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Kunde inte ladda media! Ingen disk istoppad?"
@@ -797,7 +798,7 @@ msgid "Date"
 msgstr "Datum"
 
 msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
+msgstr "Packar upp USB flash boot image..."
 
 msgid "Deep Standby"
 msgstr "Stäng av"
@@ -832,7 +833,7 @@ msgid "Description"
 msgstr "Beskrivning"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Målbibliotek"
 
 msgid "Detected HDD:"
 msgstr "Hittad hårddisk:"
@@ -1001,16 +1002,16 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Klar - Installerat eller uppgraderat %d paket med %d fel"
 
 msgid "Download"
-msgstr ""
+msgstr "Nedladdning"
 
 msgid "Download .NFI-Files for USB-Flasher"
-msgstr ""
+msgstr "Ladda ner .NFI filer för USB-Flasher"
 
 msgid "Download Plugins"
 msgstr "Ladda ner Plugins"
 
 msgid "Download of USB flasher boot image failed: "
-msgstr ""
+msgstr "Ladda ner USB flash boot image misslyckades:"
 
 msgid "Downloadable new plugins"
 msgstr "Nerladdningsbara nya plugins"
@@ -1022,7 +1023,7 @@ msgid "Downloading"
 msgstr "Laddar ner"
 
 msgid "Downloading image description..."
-msgstr ""
+msgstr "Ladda ner image beskrivning..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Hämtar plugin information. Var vänlig vänta..."
@@ -1145,7 +1146,7 @@ msgid "Error"
 msgstr "Fel"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "Fel vid körning av plugin"
 
 #, python-format
 msgid ""
@@ -1232,16 +1233,16 @@ msgstr "Finska"
 
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
-msgstr ""
+msgstr "Först måste vi ladda ner senaste bootmiljön för USB flasher."
 
 msgid "Fix USB stick"
-msgstr ""
+msgstr "Fix USB stick"
 
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "Flashning misslyckades"
 
 msgid "Font size"
 msgstr "Font storlek"
@@ -1381,7 +1382,7 @@ msgstr ""
 "När du är nöjd med resultatet, tryck OK."
 
 msgid "Image flash utility"
-msgstr ""
+msgstr "Image flash redskap"
 
 msgid "Image-Upgrade"
 msgstr "Image uppgradering"
@@ -1550,7 +1551,7 @@ msgid "Load"
 msgstr "Ladda"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Ladda filmens längd i Filmlistan"
 
 msgid "Local Network"
 msgstr "Lokalt Nätverk"
@@ -1676,7 +1677,7 @@ msgid "NEXT"
 msgstr "NÄSTA"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr ""
+msgstr "NFI image flashning klar. Tryck Gul för omstart!"
 
 msgid "NOW"
 msgstr "NU"
@@ -1771,7 +1772,7 @@ msgstr ""
 "(Timeout vid läsning av PAT)"
 
 msgid "No details for this image file"
-msgstr ""
+msgstr "Inga detaljer för denna image fil"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen programinfo hittades, inspelning oändlig."
@@ -1803,7 +1804,7 @@ msgstr ""
 "Vänligen konfigurera tuner före scanning efter kanaler."
 
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "Ingen användbar USB stick hittad"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1898,6 +1899,8 @@ msgid ""
 "format and use as .NFI image flasher. Press OK after you've put the stick "
 "back in."
 msgstr ""
+"Vänligen anslut nu USB stick (minsta storlek 64MB) som du vill formatera och "
+"använda som .NFI image flasher. Tryck OK efter du anslutit stickan i boxen. "
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1976,7 +1979,7 @@ msgid "Parental control type"
 msgstr "Föräldrakontroll typ"
 
 msgid "Partitioning USB stick..."
-msgstr ""
+msgstr "Partitionera USB stick..."
 
 msgid "Pause movie at end"
 msgstr "Pausa filmen"
@@ -2010,10 +2013,10 @@ msgid "Please change recording endtime"
 msgstr "Vänligen ändra inspelnings sluttid"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Vänligen kontrollera dina nätverksinställningar!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "Vänligen välj .NFI image fil från feed server som ska laddas ner"
 
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
@@ -2065,7 +2068,7 @@ msgid "Please press OK!"
 msgstr "Vänligen tryck OK!"
 
 msgid "Please select .NFI flash image file from medium"
-msgstr ""
+msgstr "Vänligen välj .NFI flash image fil från media"
 
 msgid "Please select a playlist to delete..."
 msgstr "Vänligen välj en spellista för borttagning..."
@@ -2083,7 +2086,7 @@ msgid "Please select keyword to filter..."
 msgstr "Vänligen välj nyckelord för filter..."
 
 msgid "Please select target directory or medium"
-msgstr ""
+msgstr "Vänligen välj målbibliotek eller media"
 
 msgid "Please select the movie path..."
 msgstr "Vänligen ange filmens sökväg..."
@@ -2115,7 +2118,7 @@ msgstr ""
 "knappen."
 
 msgid "Please wait for md5 signature verification..."
-msgstr ""
+msgstr "Vänligen vänta för md5 signatur verifiering..."
 
 msgid "Please wait... Loading list..."
 msgstr "Vänligen vänta... Laddar lista..."
@@ -2247,7 +2250,7 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Verkligen avsluta underkanals snabbzap?"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Omstart"
 
 msgid "Reception Settings"
 msgstr "Mottagning inställningar"
@@ -2292,7 +2295,7 @@ msgid "Refresh rate selection."
 msgstr "Uppdateringsfrekvens val."
 
 msgid "Remounting stick partition..."
-msgstr ""
+msgstr "Ommontera stcik partition..."
 
 msgid "Remove Bookmark"
 msgstr "Ta bort Bokmärke"
@@ -2310,10 +2313,10 @@ msgid "Remove plugins"
 msgstr "Ta bort plugins"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "Ta bort trasig .NFI fil?"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "Ta bort ofullständig .NFI fil?"
 
 msgid "Remove title"
 msgstr "Ta bort titel"
@@ -2564,7 +2567,7 @@ msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
 
 msgid "Select image"
-msgstr ""
+msgstr "Välj image"
 
 msgid "Select refresh rate"
 msgstr "Välj uppdateringsfrekvens"
@@ -2576,7 +2579,7 @@ msgid "Select video mode"
 msgstr "Välj videoläge"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "Välj käll image"
 
 msgid "Seperate titles with a main menu"
 msgstr "Separera titlar med en huvudmeny"
@@ -2898,6 +2901,10 @@ msgid ""
 "and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
 "stick!"
 msgstr ""
+".NFI Image flasher USB stick är nu klar för att användas. Vänligen ladda "
+"ner .NFI image fil från feed server och spara på stickan. Efter det starta "
+"om och håll 'Ner' knappen på fronten intryckt för att starta .NFI flasher "
+"från stickan!"
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
@@ -2919,6 +2926,11 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"Följande device hittades:\n"
+"\n"
+"%s\n"
+"\n"
+"Vill du skriva USB flasher till den stickan?"
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2943,11 +2955,15 @@ msgid ""
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"md5sun validering misslyckades, filen kan vara korrupt! Är du säker på att "
+"du vill flasha denna image till flashminnet? Du utför detta på egen risk!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
 msgstr ""
+"md5sum validering misslyckades, filen kanske inte blev helt nedladdad eller "
+"är korrupt!"
 
 msgid "The package doesn't contain anything."
 msgstr "Paketet innehåller ingenting."
@@ -3005,17 +3021,21 @@ msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "Denna .NFI fil innehåller ingen giltig %s image!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"Denna .NFI har ingen md5sum signatur och är inte garanterad att den "
+"fungerar. Vill du verkligen flasha denna image till flashminnet?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+"Denna .NFI har giltig md5sum. Forsätta programmera denna image till "
+"flashminnet?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -3157,6 +3177,9 @@ msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
 "and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
+"För att säkerställa att du verkligen vill göra detta, vänligen ta ut mål USB "
+"stickan nu och sätt tillbaka den vid begäran. Tryck OK när du har tagit ut "
+"stickan."
 
 msgid "Today"
 msgstr "Idag"
@@ -3419,7 +3442,7 @@ msgid "Waiting"
 msgstr "Väntar"
 
 msgid "Waiting for USB stick to settle..."
-msgstr ""
+msgstr "Väntar på USB stick..."
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3500,10 +3523,10 @@ msgid "Write failed!"
 msgstr "Skrivning misslyckades!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "Skrivning av NFI image fil till flash klart"
 
 msgid "Writing image file to NAND Flash"
-msgstr ""
+msgstr "Skrivning av image fil till NAND flash"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3604,6 +3627,8 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
+"Du har valt att skapa en ny .NFI flash startbar USB stick. Detta kommer "
+"repartitionera USB stickan och efter det kommer all data på den vara borta."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3783,7 +3808,7 @@ msgid "chapters"
 msgstr "kapitel"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "välj destinationsbibliotek"
 
 msgid "circular left"
 msgstr "cirkulär vänster"
@@ -4157,7 +4182,7 @@ msgid "previous channel in history"
 msgstr "föregående kanal i historiken"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "startar om..."
 
 msgid "record"
 msgstr "spela in"
@@ -4236,10 +4261,10 @@ msgid "select"
 msgstr "välj"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "välj .NFI flash fil"
 
 msgid "select image from server"
-msgstr ""
+msgstr "välj image från server"
 
 msgid "select movie"
 msgstr "välj film"
@@ -4443,6 +4468,9 @@ msgstr "zapped"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
+
+#~ msgid "Abort"
+#~ msgstr "Avbryt"
 
 #~ msgid "Add title..."
 #~ msgstr "Lägg till titel..."
