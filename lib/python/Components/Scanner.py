@@ -16,7 +16,6 @@ def getExtension(file):
 
 def getType(file):
 	(type, _) = guess_type(file)
-	print "guessed type:", type
 	if type is None:
 		# Detect some mimetypes unknown to dm7025
 		# TODO: do mimetypes.add_type once should be better
