@@ -503,24 +503,25 @@ class ConfigSequence(ConfigElement):
 		return [int(x) for x in value.split(self.seperator)]
 
 class ConfigIP(ConfigSequence):
-	def __init__(self, default):
+	def __init__(self, default, auto_jump = False):
 		ConfigSequence.__init__(self, seperator = ".", limits = [(0,255),(0,255),(0,255),(0,255)], default = default)
 		self.block_len = []
 		for x in self.limits:
 			self.block_len.append(len(str(x[1])))
 		self.marked_block = 0
 		self.overwrite = True
+		self.auto_jump = auto_jump
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:
 			if self.marked_block > 0:
 				self.marked_block -= 1
-				self.overwrite = True
+			self.overwrite = True
 
 		if key == KEY_RIGHT:
 			if self.marked_block < len(self.limits)-1:
 				self.marked_block += 1
-				self.overwrite = True
+			self.overwrite = True
 
 		if key == KEY_HOME:
 			self.marked_block = 0
@@ -539,7 +540,13 @@ class ConfigIP(ConfigSequence):
 				self.overwrite = False		
 			else:
 				oldvalue *= 10
-				self._value[self.marked_block] = oldvalue + number
+				newvalue = oldvalue + number
+				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
+					self.handleKey(KEY_RIGHT)
+					self.handleKey(key)
+					return
+				else:
+					self._value[self.marked_block] = newvalue
 
 			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
 				self.handleKey(KEY_RIGHT)
