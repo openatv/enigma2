@@ -505,24 +505,71 @@ class ConfigSequence(ConfigElement):
 class ConfigIP(ConfigSequence):
 	def __init__(self, default):
 		ConfigSequence.__init__(self, seperator = ".", limits = [(0,255),(0,255),(0,255),(0,255)], default = default)
+		self.block_len = []
+		for x in self.limits:
+			self.block_len.append(len(str(x[1])))
+		self.marked_block = 0
+		self.overwrite = True
+
+	def handleKey(self, key):
+		if key == KEY_LEFT:
+			if self.marked_block > 0:
+				self.marked_block -= 1
+				self.overwrite = True
+
+		if key == KEY_RIGHT:
+			if self.marked_block < len(self.limits)-1:
+				self.marked_block += 1
+				self.overwrite = True
+
+		if key == KEY_HOME:
+			self.marked_block = 0
+			self.overwrite = True
+
+		if key == KEY_END:
+			self.marked_block = len(self.limits)-1
+			self.overwrite = True
+
+		if key in KEY_NUMBERS:
+			number = getKeyNumber(key)
+			oldvalue = self._value[self.marked_block]
+			
+			if self.overwrite:
+				self._value[self.marked_block] = number
+				self.overwrite = False		
+			else:
+				oldvalue *= 10
+				self._value[self.marked_block] = oldvalue + number
+
+			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
+				self.handleKey(KEY_RIGHT)
+
+			self.validate()
+			self.changed()
+
+	def genText(self):
+		value = ""
+		block_strlen = []
+		for i in self._value:
+			block_strlen.append(len(str(i)))	
+			if len(value):
+				value += self.seperator
+			value += str(i)
+		leftPos = sum(block_strlen[:(self.marked_block)])+self.marked_block
+		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
+		mBlock = range(leftPos, rightPos)
+		return (value, mBlock)
 	
+	def getMulti(self, selected):
+		(value, mBlock) = self.genText()
+		if self.enabled:
+			return ("mtext"[1-selected:], value, mBlock)
+		else:
+			return ("text", value)
+
 	def getHTML(self, id):
 		# we definitely don't want leading zeros
 		return '.'.join(["%d" % d for d in self.value])
-	
-	def genText(self):
-		value = ""
-		mPos = self.marked_pos
-		num = 0;
-		for i in self._value:
-			if len(value):
-				value += self.seperator
-				if mPos >= len(value) - 1:
-					mPos += 1
-			value += (" " * (len(str(self.limits[num][1]))-len(str(i))))
-			value += str(i)
-			num += 1
-		return (value, mPos)
 
 class ConfigMAC(ConfigSequence):
 	def __init__(self, default):
