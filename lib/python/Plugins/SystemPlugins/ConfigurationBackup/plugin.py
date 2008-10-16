@@ -33,10 +33,10 @@ class BackupSetup(Screen):
 	skin = """
 		<screen position="135,144" size="450,300" title="Backup and Restore" >
 			<widget name="config" position="10,10" size="430,240" />
-			<widget name="ok" position="10,255" size="100,40" pixmap="~/green.png" transparent="1" alphatest="on" />
-			<widget name="oktext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
-			<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />
+			<widget name="cancel" position="10,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />
 			<widget name="canceltext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
+			<widget name="ok" position="120,255" size="100,40" pixmap="~/green.png" transparent="1" alphatest="on" />
+			<widget name="oktext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
 			<widget name="restore" position="230,255" size="100,40" pixmap="~/yellow.png" transparent="1" alphatest="on" />
 			<widget name="restoretext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
 			<widget name="backup" position="340,255" size="100,40" pixmap="~/blue.png" transparent="1" alphatest="on" />
@@ -104,7 +104,7 @@ class BackupSetup(Screen):
 		self.list = [ ]
 		self["config"] = ConfigList(self.list)
 		self.backup = ConfigSubsection()
-		self.backup.type = ConfigSelection(choices = [("full", _("full /etc directory")), ("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
+		self.backup.type = ConfigSelection(choices = [("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
 		self.backup.location = ConfigSelection(choices = [("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))])
 		self.list.append(getConfigListEntry(_("Backup Mode"), self.backup.type))
 		self.list.append(getConfigListEntry(_("Backup Location"), self.backup.location))
@@ -130,10 +130,7 @@ class BackupSetup(Screen):
 				d = localtime()
 				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
 				self.path = BackupPath[self.backup.location.value]
-				if self.backup.type.value == "full":
-					print "Backup Mode: Full"
-					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_full_backup.tar.gz /etc/"])
-				elif self.backup.type.value == "settings":
+				if self.backup.type.value == "settings":
 					print "Backup Mode: Settings"
 					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/"])
 				elif self.backup.type.value == "var":
