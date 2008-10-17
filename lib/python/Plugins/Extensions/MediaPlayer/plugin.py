@@ -854,6 +854,7 @@ def filescan(**kwargs):
 			paths_to_scan =
 				[
 					ScanPath(path = "mpegav", with_subdirs = False),
+					ScanPath(path = "MPEGAV", with_subdirs = False),
 				],
 			name = "Video CD",
 			description = "View Video CD...",
