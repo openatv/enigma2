@@ -69,7 +69,7 @@ class DVDToolbox(Screen):
 		job = DVDinfoJob(self)
 		job_manager.AddJob(job)
 		
-	def infoJobCB(self, in_background):
+	def infoJobCB(self, in_background=False):
 		capacity = 1
 		used = 0
 		infotext = ""
