@@ -522,9 +522,11 @@ class Wizard(Screen):
 						else:
 							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"], eval(self.wizard[self.currStep]["config"]["args"]))
 						self["config"].l.setList(self.configInstance["config"].list)
+						callbacks = self.configInstance["config"].onSelectionChanged
 						self.configInstance["config"].destroy()
 						print "clearConfigList", self.configInstance["config"], self["config"] 
 						self.configInstance["config"] = self["config"]
+						self.configInstance["config"].onSelectionChanged = callbacks
 						print "clearConfigList", self.configInstance["config"], self["config"]
 				else:
 					self["config"].l.setList([])
