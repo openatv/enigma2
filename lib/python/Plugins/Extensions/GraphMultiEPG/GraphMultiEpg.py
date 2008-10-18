@@ -8,11 +8,13 @@ from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.TimerList import TimerList
 from Screens.Screen import Screen
 from Screens.EventView import EventViewSimple
 from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
 from Screens.EpgSelection import EPGSelection
+from Screens.TimerEdit import TimerSanityConflict
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from RecordTimer import RecordTimerEntry, parseEvent
 from ServiceReference import ServiceReference
@@ -498,14 +500,26 @@ class GraphMultiEPG(Screen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = config.movielist.last_timer_videodir.value, *parseEvent(event))
-		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
+		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
+		self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
-	def timerEditFinished(self, answer):
+	def finishedAdd(self, answer):
+		print "finished add"
 		if answer[0]:
-			self.session.nav.RecordTimer.record(answer[1])
+			entry = answer[1]
+			simulTimerList = self.session.nav.RecordTimer.record(entry)
+			if simulTimerList is not None:
+				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
+					simulTimerList[1].end = entry.begin - 30
+					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
+					self.session.nav.RecordTimer.record(entry)
+				else:
+					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 		else:
-			print "Timeredit aborted"
+			print "Timeredit aborted"		
+	
+	def finishSanityCorrection(self, answer):
+		self.finishedAdd(answer)
 
 	def onSelectionChanged(self):
 		evt = self["list"].getCurrent()

@@ -1,8 +1,10 @@
 from Screen import Screen
+from Screens.TimerEdit import TimerSanityConflict
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
+from Components.TimerList import TimerList
 from enigma import eEPGCache, eTimer, eServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent
 from TimerEntry import TimerEntry
@@ -59,14 +61,26 @@ class EventViewBase:
 
 	def timerAdd(self):
 		if not self.isRecording:
-			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = config.movielist.last_timer_videodir.value, *parseEvent(self.event))
-			self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, *parseEvent(self.event))
+			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
-	def timerEditFinished(self, answer):
-		if (answer[0]):
-			self.session.nav.RecordTimer.record(answer[1])
+	def finishedAdd(self, answer):
+		print "finished add"
+		if answer[0]:
+			entry = answer[1]
+			simulTimerList = self.session.nav.RecordTimer.record(entry)
+			if simulTimerList is not None:
+				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
+					simulTimerList[1].end = entry.begin - 30
+					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
+					self.session.nav.RecordTimer.record(entry)
+				else:
+					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 		else:
-			print "Timeredit aborted"
+			print "Timeredit aborted"		
+
+	def finishSanityCorrection(self, answer):
+		self.finishedAdd(answer)
 
 	def setService(self, service):
 		self.currentService=service
