@@ -5,6 +5,7 @@ from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.EpgList import EPGList, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI
 from Components.ActionMap import ActionMap
+from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewSimple
 from TimeDateInput import TimeDateInput
 from enigma import eServiceReference
@@ -184,14 +185,26 @@ class EPGSelection(Screen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, dirname = config.movielist.last_timer_videodir.value, *parseEvent(event))
-		self.session.openWithCallback(self.timerEditFinished, TimerEntry, newEntry)
+		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
+		self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
-	def timerEditFinished(self, answer):
+	def finishedAdd(self, answer):
+		print "finished add"
 		if answer[0]:
-			self.session.nav.RecordTimer.record(answer[1])
+			entry = answer[1]
+			simulTimerList = self.session.nav.RecordTimer.record(entry)
+			if simulTimerList is not None:
+				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
+					simulTimerList[1].end = entry.begin - 30
+					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
+					self.session.nav.RecordTimer.record(entry)
+				else:
+					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 		else:
-			print "Timeredit aborted"	
+			print "Timeredit aborted"		
+	
+	def finishSanityCorrection(self, answer):
+		self.finishedAdd(answer)
 
 	def moveUp(self):
 		self["list"].moveUp()

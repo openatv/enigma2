@@ -994,18 +994,18 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="logentry" position="0,300" size="560,130" font="Regular;20" />
 	</screen>
 	<!-- Timer sanity conflict -->
-	<screen name="TimerSanityConflict" position="70,95" size="600,430" title="Timer sanity error">
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		<widget name="timer1" position="10,45" size="280,220" scrollbarMode="showOnDemand" />
-		<widget name="timer2" position="310,45" size="280,220" scrollbarMode="showOnDemand" />
-		<widget name="list" position="0,280" size="500,290" scrollbarMode="showOnDemand" />
+	<screen name="TimerSanityConflict" position="70,100" size="560,430" title="Timer sanity error">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="0,120" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="140,120" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="key_yellow" position="0,120" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
+		<widget name="key_blue" position="140,120" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
+		<widget name="timer1" position="0,45" size="560,75" scrollbarMode="showNever" />
+		<widget name="timer2" position="0,165" size="560,75" scrollbarMode="showNever" />
+		<widget name="list" position="0,260" size="560,144" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timer Selection -->
 	<screen name="TimerSelection" position="90,95" size="560,430" title="Timer selection">

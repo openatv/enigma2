@@ -302,9 +302,13 @@ class TimerEntry(Screen, ConfigListScreen):
 					if self.timerentry_day[x].value:
 						self.timer.setRepeated(x)
 
-			self.timer.repeatedbegindate = self.buildRepeatedBegin(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
-			self.timer.begin = self.getTimestamp(time(), self.timerentry_starttime.value)
-			self.timer.end = self.getTimestamp(time(), self.timerentry_endtime.value)
+			self.timer.repeatedbegindate = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
+			if self.timer.repeated:
+				self.timer.begin = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_starttime.value)
+				self.timer.end = self.getTimestamp(self.timerentry_repeatedbegindate.value, self.timerentry_endtime.value)
+			else:
+				self.timer.begin = self.getTimestamp(time.time(), self.timerentry_starttime.value)
+				self.timer.end = self.getTimestamp(time.time(), self.timerentry_endtime.value)
 
 			# when a timer end is set before the start, add 1 day
 			if self.timer.end < self.timer.begin:

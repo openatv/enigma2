@@ -10,7 +10,7 @@ from enigma import eEPGCache, getBestPlayableServiceReference, \
 	eServiceReference, iRecordableService, quitMainloop
 
 from Screens.MessageBox import MessageBox
-
+from Components.TimerSanityCheck import TimerSanityCheck
 import NavigationInstance
 
 import Screens.Standby
@@ -116,7 +116,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.afterEvent = afterEvent
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
-		
+		self.autoincrease = False
+
 		self.log_entries = []
 		self.resetState()
 	
@@ -418,8 +419,16 @@ class RecordTimer(timer.Timer):
 			return
 
 		root = doc.childNodes[0]
+
+		# put out a message when at least one timer overlaps
+		checkit = True
 		for timer in elementsWithTag(root.childNodes, "timer"):
-			self.record(createTimer(timer))
+			newTimer = createTimer(timer)
+			if (self.record(newTimer, True, True) is not None) and (checkit == True):
+				from Tools.Notifications import AddPopup
+				from Screens.MessageBox import MessageBox
+				AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!"), type = MessageBox.TYPE_ERROR, timeout = 0, id = "TimerLoadFailed")
+				checkit = False # at moment it is enough when the message is displayed one time
 
 	def saveTimer(self):
 		#doc = xml.dom.minidom.Document()
@@ -521,12 +530,24 @@ class RecordTimer(timer.Timer):
 			return timer.begin
 		return -1
 
-	def record(self, entry):
+	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
+		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
+		if not timersanitycheck.check():
+			if ignoreTSC != True:
+				print "timer conflict detected!"
+				print timersanitycheck.getSimulTimerList()
+				return timersanitycheck.getSimulTimerList()
+			else:
+				print "ignore timer conflict"
+		elif timersanitycheck.doubleCheck():
+			print "ignore double timer"
 		entry.timeChanged()
 		print "[Timer] Record " + str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
-		self.saveTimer()
+		if dosave:
+			self.saveTimer()
+		return None
 		
 	def isInTimer(self, eventid, begin, duration, service):
 		time_match = 0

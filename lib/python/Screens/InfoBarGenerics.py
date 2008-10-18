@@ -38,6 +38,8 @@ from time import time, localtime, strftime
 from os import stat as os_stat
 from bisect import insort
 
+from RecordTimer import RecordTimerEntry, RecordTimer
+
 # hack alert!
 from Menu import MainMenu, mdom
 
@@ -1411,7 +1413,7 @@ class InfoBarInstantRecord:
 			pass
 
 		begin = time()
-		end = time() + 3600 * 10
+		end = time() + 3600 * 24 * 365 * 1 # 1 year
 		name = "instant record"
 		description = ""
 		eventid = None
@@ -1427,14 +1429,23 @@ class InfoBarInstantRecord:
 			if limitEvent:
 				self.session.open(MessageBox, _("No event info found, recording indefinitely."), MessageBox.TYPE_INFO)
 
-		# TODO: needed?
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
 		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = config.movielist.last_videodir.value)
 		recording.dontSave = True
+		recording.autoincrease = True
 
-		self.session.nav.RecordTimer.record(recording)
+		simulTimerList = self.session.nav.RecordTimer.record(recording)
+		if simulTimerList is not None:
+			print "timer conflict detected!"
+			if (len(simulTimerList) > 1):
+				print "tsc_list > 1"
+				recording.end = simulTimerList[1].begin - 30
+				self.session.nav.RecordTimer.record(recording)
+				print "new endtime applied"
+			else:
+				print "conflict with only one timer? ! ?"
 		self.recording.append(recording)
 
 	def isInstantRecordRunning(self):
@@ -1493,6 +1504,8 @@ class InfoBarInstantRecord:
 			if ret[0]:
 				localendtime = localtime(ret[1])
 				print "stopping recording at", strftime("%c", localendtime)
+				if self.recording[self.selectedEntry].end != ret[1]:
+					recording.autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
 				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
@@ -1504,6 +1517,8 @@ class InfoBarInstantRecord:
 	def inputCallback(self, value):
 		if value is not None:
 			print "stopping recording after", int(value), "minutes."
+			if int(value) != 0:
+				recording.autoincrease = False
 			self.recording[self.selectedEntry].end = time() + 60 * int(value)
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 

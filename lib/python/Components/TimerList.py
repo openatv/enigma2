@@ -33,14 +33,14 @@ class TimerList(HTMLComponent, GUIComponent, object):
 						count += 1
 					flags = flags >> 1
 			if timer.justplay:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1]))))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1]))))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))))
 		else:
 			if timer.justplay:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
 			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, 400, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:] + ((timer.end - timer.begin) / 60,)))))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:] + ((timer.end - timer.begin) / 60,)))))
 
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
@@ -52,6 +52,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 					state = _("zapped")
 				else:
 					state = _("recording...")
+			elif timer.state == TimerEntry.StateEnded:
+				state = _("done!")
 			else:
 				state = _("<unknown>")
 		else:
@@ -60,7 +62,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if timer.disabled:
 			state = _("disabled")
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, width-240, 50, 240, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, width-150, 50, 150, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
 
 		if timer.disabled:
 			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/redx.png"))
