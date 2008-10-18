@@ -452,7 +452,7 @@ class picmain(Screen):
 		if not pathExists(currDir):
 			currDir = "/"
 
-		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)")
+		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
 		self["filelist"] = self.filelist
 		self["thumbnail"] = Pixmap()
 		
@@ -557,5 +557,5 @@ def filescan(**kwargs):
 
 def Plugins(**kwargs):
 	return \
-		[PluginDescriptor(name="PicturePlayer", description="Picture Viewer (BMP, PNG, JPG)", icon="pictureplayer.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+		[PluginDescriptor(name="PicturePlayer", description="Picture Viewer (BMP, PNG, JPG, GIF)", icon="pictureplayer.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
 		 PluginDescriptor(name="PicturePlayer", where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]

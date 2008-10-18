@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <epng.h>	// savePNG need it
+
 extern "C" {
 #include <jpeglib.h>
 #include <gif_lib.h>
@@ -16,11 +18,35 @@ extern "C" {
 
 unsigned char *pic_buffer=NULL;
 
+static unsigned char *conv24to32(unsigned char * orgin, int size, int background = 0)
+{
+	int s, d;
+	unsigned char *cr = new unsigned char[size * 4];
+	if (cr == NULL)
+	{
+		printf("[CONV32] Error: malloc\n");
+		return(orgin);
+	}
+
+	unsigned char alpha = 0x00;
+	if(background)	alpha = 0xFF;
+
+	for (s = 0, d = 0 ; s < (size * 3); s += 3, d += 4 )
+	{
+		cr[d] = orgin[s];
+		cr[d+1] = orgin[s + 1];
+		cr[d+2] = orgin[s + 2];
+		cr[d+3] = alpha;
+	}
+	delete [] orgin;
+	return(cr);
+}
+
 static unsigned char *simple_resize(unsigned char * orgin, int ox, int oy, int dx, int dy)
 {
 	unsigned char *cr, *p, *l;
 	int i, j, k, ip;
-	cr = new unsigned char[dx * dy * 3]; 
+	cr = new unsigned char[dx * dy * 4]; 
 	if (cr == NULL)
 	{
 		printf("[RESIZE] Error: malloc\n");
@@ -28,15 +54,16 @@ static unsigned char *simple_resize(unsigned char * orgin, int ox, int oy, int d
 	}
 	l = cr;
 
-	for (j = 0; j < dy; j++,l += dx * 3)
+	for (j = 0; j < dy; j++,l += dx * 4)
 	{
-		p = orgin + (j * oy / dy * ox * 3);
-		for (i = 0, k = 0; i < dx; i++, k += 3)
+		p = orgin + (j * oy / dy * ox * 4);
+		for (i = 0, k = 0; i < dx; i++, k += 4)
 		{
-			ip = i * ox / dx * 3;
+			ip = i * ox / dx * 4;
 			l[k] = p[ip];
 			l[k+1] = p[ip + 1];
 			l[k+2] = p[ip + 2];
+			l[k+3] = p[ip + 3];
 		}
 	}
 	delete [] orgin;
@@ -47,8 +74,8 @@ static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx
 {
 	unsigned char *cr, *p, *q;
 	int i, j, k, l, xa, xb, ya, yb;
-	int sq, r, g, b;
-	cr = new unsigned char[dx * dy * 3];
+	int sq, r, g, b, a;
+	cr = new unsigned char[dx * dy * 4];
 	if (cr == NULL)
 	{
 		printf("[RESIZE] Error: malloc\n");
@@ -58,7 +85,7 @@ static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx
 
 	for (j = 0; j < dy; j++)
 	{
-		for (i = 0; i < dx; i++, p += 3)
+		for (i = 0; i < dx; i++, p += 4)
 		{
 			xa = i * ox / dx;
 			ya = j * oy / dy;
@@ -68,15 +95,15 @@ static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx
 			yb = (j + 1) * oy / dy; 
 			if (yb >= oy)
 				yb = oy - 1;
-			for (l = ya, r = 0, g = 0, b = 0, sq = 0; l <= yb; l++)
+			for (l = ya, r = 0, g = 0, b = 0, a = 0, sq = 0; l <= yb; l++)
 			{
-				q = orgin + ((l * ox + xa) * 3);
-				for (k = xa; k <= xb; k++, q += 3, sq++)
+				q = orgin + ((l * ox + xa) * 4);
+				for (k = xa; k <= xb; k++, q += 4, sq++)
 				{
-					r += q[0]; g += q[1]; b += q[2];
+					r += q[0]; g += q[1]; b += q[2]; a += q[3];
 				}
 			}
-			p[0] = r / sq; p[1] = g / sq; p[2] = b / sq;
+			p[0] = r / sq; p[1] = g / sq; p[2] = b / sq; p[3] = a / sq;
 		}
 	}
 	delete [] orgin;
@@ -326,7 +353,6 @@ static int bmp_load(const char *filename,  int *x, int *y)
 }
 
 //---------------------------------------------------------------------------------------------
-
 static int png_load(const char *filename,  int *x, int *y)
 {
 	static const png_color_16 my_background = {0, 0, 0, 0, 0};
@@ -365,28 +391,18 @@ static int png_load(const char *filename,  int *x, int *y)
 	png_read_info(png_ptr, info_ptr);
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
 
-	if (color_type == PNG_COLOR_TYPE_PALETTE)
-	{
-		png_set_palette_to_rgb(png_ptr);
-		png_set_background(png_ptr, (png_color_16 *)&my_background, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
-	}
-
+	if ((color_type == PNG_COLOR_TYPE_PALETTE)||(color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)||(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)))
+		png_set_expand(png_ptr);
+	if (bit_depth == 16)
+		png_set_strip_16(png_ptr);
 	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
-	{
 		png_set_gray_to_rgb(png_ptr);
-		png_set_background(png_ptr, (png_color_16 *)&my_background, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
-	}
-
-	if (color_type & PNG_COLOR_MASK_ALPHA)
-		png_set_strip_alpha(png_ptr);
-
-	if (bit_depth < 8)	png_set_packing(png_ptr);
-	if (bit_depth == 16)	png_set_strip_16(png_ptr);
 
 	number_passes = png_set_interlace_handling(png_ptr);
 	png_read_update_info(png_ptr, info_ptr);
 
-	if (width * 3 != png_get_rowbytes(png_ptr, info_ptr))
+	int bpp =  png_get_rowbytes(png_ptr, info_ptr)/width;
+	if ((bpp !=4) && (bpp !=3))
 	{
 		eDebug("[PNG] Error processing");
 		return 0;
@@ -394,26 +410,28 @@ static int png_load(const char *filename,  int *x, int *y)
 
 	if (width * height > 1000000) // 1000x1000 or equiv.
 	{
-		eDebug("[png_load] image size is %u x %u, which is \"too large\".", (unsigned int)width, (unsigned int)height);
+		eDebug("[png_load] image size is %d x %d, which is \"too large\".", width, height);
 		png_read_end(png_ptr, info_ptr);
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 		fclose(fh);
 		return 0;
 	}
 
-	pic_buffer = new unsigned char[width * height * 3];
+	pic_buffer = new unsigned char[width * height * bpp];
 	*x=width;
 	*y=height;
 
 	for(pass = 0; pass < number_passes; pass++)
 	{
 		fbptr = (png_byte *)pic_buffer;
-		for (i = 0; i < height; i++, fbptr += width * 3)
+		for (i = 0; i < height; i++, fbptr += width * bpp)
 			png_read_row(png_ptr, fbptr, NULL);
 	}
 	png_read_end(png_ptr, info_ptr);
 	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 	fclose(fh);
+	if (bpp == 3)
+		pic_buffer = conv24to32(pic_buffer, width * height, 1);
 	return 1;
 }
 
@@ -623,8 +641,7 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 
 	if(cachefile.length())
 	{
-		cache = true;
-		if(jpeg_load(cachefile.c_str(), &ox, &oy))
+		if(png_load(cachefile.c_str(), &ox, &oy))
 			eDebug("[CACHEPIC] x-size=%d, y-size=%d", ox, oy);
 	}
 
@@ -632,17 +649,15 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 	{
 		switch(pic_id(filename.c_str()))
 		{
-			case F_PNG:	png_load(filename.c_str(), &ox, &oy); break;
-			case F_JPEG:	jpeg_load(filename.c_str(), &ox, &oy); break;
-			case F_BMP:	bmp_load(filename.c_str(), &ox, &oy); break;
-			case F_GIF:	gif_load(filename.c_str(), &ox, &oy); break;
+			case F_PNG:	png_load(filename.c_str(), &ox, &oy);break;
+			case F_JPEG:	jpeg_load(filename.c_str(), &ox, &oy);pic_buffer = conv24to32(pic_buffer, ox*oy, 1); break;
+			case F_BMP:	bmp_load(filename.c_str(), &ox, &oy);pic_buffer = conv24to32(pic_buffer, ox*oy, 1); break;
+			case F_GIF:	gif_load(filename.c_str(), &ox, &oy);pic_buffer = conv24to32(pic_buffer, ox*oy, 1); break;
 			default:
 				eDebug("[PIC] <format not supportet>");
 				return 0;
 		}
 	
-		eDebug("[FULLPIC] x-size=%d, y-size=%d", ox, oy);
-
 		if(pic_buffer==NULL)
 			return 0;
 
@@ -671,15 +686,8 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 
 		ox = imx;
 		oy = imy;
-		
-		if(cache)
-		{
-			jpeg_save(pic_buffer, cachefile.c_str(), 50, oy, ox);
-			eDebug("[SAVEPIC] x-size=%d, y-size=%d", ox, oy);
-		}
-		
 	}
-
+	else cache = true;
 	
 	result=new gPixmap(eSize(w, h), 32);
 	gSurface *surface = result->surface;
@@ -704,12 +712,12 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 	//eDebug("o_y=%d u_y=%d v_x=%d h_x=%d", o_y, u_y, v_x, h_x);
 
 	if(oy < h)
-		for(a=0; a<(o_y*ox)+1; a++, nc+=4)
+		for(a=0; a<(o_y*ox); a++, nc+=4)
 		{
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
 			memcpy(tmp_buffer, clear, sizeof(clear));
 		}
-	
+
 	for(a=0; a<oy; a++)
 	{
 		if(ox < w)
@@ -719,13 +727,13 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 				memcpy(tmp_buffer, clear, sizeof(clear));
 			}
 
-		for(b=0; b<(ox*3); b+=3, nc+=4)
+		for(b=0; b<(ox*4); b+=4, nc+=4)
 		{
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
-			tmp_buffer[3]=0xFF;
 			tmp_buffer[2]=pic_buffer[oc++];
 			tmp_buffer[1]=pic_buffer[oc++];
 			tmp_buffer[0]=pic_buffer[oc++];
+			tmp_buffer[3]=pic_buffer[oc++];
 
 		}
 		
@@ -738,7 +746,7 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 	}
 
 	if(oy < h)
-		for(a=0; a<(u_y*ox)+1; a++, nc+=4)
+		for(a=0; a<(u_y*ox); a++, nc+=4)
 		{
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
 			memcpy(tmp_buffer, clear, sizeof(clear));
@@ -751,6 +759,12 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 	surface->clut.start=0;
 	
 	delete [] pic_buffer;
+
+	if(cachefile.length() && !cache)
+	{
+		savePNG( cachefile.c_str(), result);
+		eDebug("[SAVEPIC] x-size=%d, y-size=%d", ox, oy);
+	}
 
 	return 0;
 }

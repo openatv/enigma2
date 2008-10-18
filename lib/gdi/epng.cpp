@@ -229,6 +229,8 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 
 int savePNG(const char *filename, gPixmap *pixmap)
 {
+
+	eDebug("\33[33m %s \33[0m",filename);
 	FILE *fp=fopen(filename, "wb");
 	if (!fp)
 		return -1;
@@ -254,6 +256,11 @@ int savePNG(const char *filename, gPixmap *pixmap)
 		unlink(filename);
 		return -3;
 	}
+
+	png_set_IHDR(png_ptr, info_ptr, surface->x, surface->y, surface->bpp/surface->bypp, 
+		PNG_COLOR_TYPE_RGB_ALPHA, 
+		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
+
 	if (setjmp(png_ptr->jmpbuf))
 	{
 		eDebug("error :/");
@@ -266,29 +273,35 @@ int savePNG(const char *filename, gPixmap *pixmap)
 	png_set_filter(png_ptr, 0, PNG_FILTER_NONE|PNG_FILTER_SUB|PNG_FILTER_PAETH);
 	png_set_compression_level(png_ptr, Z_BEST_COMPRESSION);
 
-	png_set_IHDR(png_ptr, info_ptr, surface->x, surface->y, surface->bpp, 
-		surface->clut.data ? PNG_COLOR_TYPE_PALETTE : PNG_COLOR_TYPE_GRAY, 
-		PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_DEFAULT, PNG_FILTER_TYPE_DEFAULT);
-	if (surface->clut.data)
-	{
-		png_color palette[surface->clut.colors];
-		png_byte trans[surface->clut.colors];
-		for (int i=0; i<surface->clut.colors; ++i)
-		{
-			palette[i].red=surface->clut.data[i].r;
-			palette[i].green=surface->clut.data[i].g;
-			palette[i].blue=surface->clut.data[i].b;
-			trans[i]=255-surface->clut.data[i].a;
-		}
-		png_set_PLTE(png_ptr, info_ptr, palette, surface->clut.colors);
-		png_set_tRNS(png_ptr, info_ptr, trans, surface->clut.colors, 0);
-	}
 	png_write_info(png_ptr, info_ptr);
 	png_set_packing(png_ptr);
-	png_byte *row_pointers[surface->y];
+
+	png_byte *row_pointer;
+	png_byte *cr = new png_byte[surface->y * surface->stride];
+	if (cr == NULL)
+	{
+		printf("Error: malloc\n");
+		return -5;
+	}
 	for (int i=0; i<surface->y; ++i)
-		row_pointers[i]=((png_byte*)surface->data)+i*surface->stride;
-	png_write_image(png_ptr, row_pointers);
+	{
+		row_pointer=((png_byte*)surface->data)+i*surface->stride;
+		if (surface->bypp == 4)
+		{
+			memcpy(cr, row_pointer, surface->stride);
+			for (int j=0; j<surface->stride; j+=4)
+			{
+				unsigned char tmp = cr[j];
+				cr[j] = cr[j+2];
+				cr[j+2]= tmp;
+			}
+			png_write_row(png_ptr, cr);
+		}
+		else
+			png_write_row(png_ptr, row_pointer);
+	}
+	delete cr;
+
 	png_write_end(png_ptr, info_ptr);
 	png_destroy_write_struct(&png_ptr, &info_ptr);
 	fclose(fp);
