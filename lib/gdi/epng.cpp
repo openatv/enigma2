@@ -300,7 +300,7 @@ int savePNG(const char *filename, gPixmap *pixmap)
 		else
 			png_write_row(png_ptr, row_pointer);
 	}
-	delete cr;
+	delete [] cr;
 
 	png_write_end(png_ptr, info_ptr);
 	png_destroy_write_struct(&png_ptr, &info_ptr);
