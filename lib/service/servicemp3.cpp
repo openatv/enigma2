@@ -681,6 +681,7 @@ int eServiceMP3::getInfo(int w)
 	case sTracknumber:
 	case sGenre:
 	case sVideoType:
+	case sTimeCreate:
 	case sUser+12:
 		return resIsString;
 	case sCurrentTitle:
@@ -706,6 +707,8 @@ int eServiceMP3::getInfo(int w)
 
 std::string eServiceMP3::getInfoString(int w)
 {
+	if ( !m_stream_tags )
+		return "";
 	gchar *tag = 0;
 	switch (w)
 	{
@@ -730,24 +733,29 @@ std::string eServiceMP3::getInfoString(int w)
 	case sVideoType:
 		tag = GST_TAG_VIDEO_CODEC;
 		break;
+	case sTimeCreate:
+		GDate *date;
+		if (gst_tag_list_get_date(m_stream_tags, GST_TAG_DATE, &date))
+		{
+			gchar res[5];
+ 			g_date_strftime (res, sizeof(res), "%Y", date); 
+			return (std::string)res;
+		}
+		break;
 	case sUser+12:
 		return m_error_message;
 	default:
 		return "";
 	}
-	
-	if (!m_stream_tags || !tag)
+	if ( !tag )
 		return "";
-	
 	gchar *value;
-	
 	if (gst_tag_list_get_string(m_stream_tags, tag, &value))
 	{
 		std::string res = value;
 		g_free(value);
 		return res;
 	}
-	
 	return "";
 }
 
@@ -918,6 +926,9 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			audio.type = gstCheckAudioPad(str);
 			m_audioStreams.push_back(audio);
 		}
+
+		gst_tag_list_free(tags);
+		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
 	case GST_MESSAGE_ASYNC_DONE:

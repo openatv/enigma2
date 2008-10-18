@@ -244,7 +244,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			sAlbum = currPlay.info().getInfoString(iServiceInformation.sAlbum)
 			sGenre = currPlay.info().getInfoString(iServiceInformation.sGenre)
 			sArtist = currPlay.info().getInfoString(iServiceInformation.sArtist)
-			sYear = ""
+			sYear = currPlay.info().getInfoString(iServiceInformation.sTimeCreate)
 
 			if sTitle == "":
 				if not self.isAudioCD:
