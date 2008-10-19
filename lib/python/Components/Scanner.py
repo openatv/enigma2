@@ -28,6 +28,8 @@ def getType(file):
 			return "audio/x-flac"
 		elif ext == "dmpkg":
 			return "application/x-dream-package"
+		elif ext == "nfi":
+			return "application/x-dream-image"
 		elif ext == "ts":
 			return "video/MP2T"
 		elif ext == "iso":
