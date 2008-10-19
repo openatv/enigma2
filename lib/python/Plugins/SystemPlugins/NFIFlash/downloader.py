@@ -35,7 +35,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 			client.HTTPDownloader.page(self, "")
 		else:
 			client.HTTPDownloader.noPage(self, reason)
-	
+
 	def gotHeaders(self, headers):
 		if self.status == "200":
 			if headers.has_key("content-length"):
@@ -44,14 +44,14 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 				self.totalbytes = 0
 			self.currentbytes = 0.0
 		return client.HTTPDownloader.gotHeaders(self, headers)
-	
+
 	def pagePart(self, packet):
 		if self.status == "200":
 			self.currentbytes += len(packet)
 		if self.totalbytes and self.progress_callback:
 			self.progress_callback(self.currentbytes, self.totalbytes)
 		return client.HTTPDownloader.pagePart(self, packet)
-	
+
 	def pageEnd(self):
 		return client.HTTPDownloader.pageEnd(self)
 
@@ -60,10 +60,10 @@ class downloadWithProgress:
 		scheme, host, port, path = client._parse(url)
 		self.factory = HTTPProgressDownloader(url, outputfile, *args, **kwargs)
 		self.connection = reactor.connectTCP(host, port, self.factory)
-	
+
 	def start(self):
 		return self.factory.deferred
-	
+
 	def stop(self):
 		print "[stop]"
 		self.connection.disconnect()
@@ -86,11 +86,11 @@ class Feedlist(MenuList):
 	def getNFIname(self):
 		l = self.l.getCurrentSelection()
 		return l and l[0][0]
-	
+
 	def getNFIurl(self):
 		l = self.l.getCurrentSelection()
 		return l and l[0][1]
-	
+
 	def getNFOname(self):
 		l = self.l.getCurrentSelection()
 		return l and l[0][0][:-3]+"nfo"
@@ -105,7 +105,7 @@ class Feedlist(MenuList):
 			return False
 		else:
 			return True
-	
+
 	def moveSelection(self,idx=0):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(idx)
@@ -169,7 +169,7 @@ class NFIDownload(Screen):
 		self.box = HardwareInfo().get_device_name()
 		self.feed_base = "http://www.dreamboxupdate.com/opendreambox/1.5/%s/images/" % self.box
 		self.nfi_filter = "" # "release" # only show NFIs containing this string, or all if ""
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "EPGSelectActions"],
 		{
 			"cancel": self.closeCB,
@@ -187,16 +187,15 @@ class NFIDownload(Screen):
 			"downRepeated": self.down,
 			"down": self.down
 		}, -1)
-		
+
 		self.feed_download()
-	
+
 	def downloading(self, state=True):
 		if state is True:	
 			self["key_red"].text = _("Cancel")
 			self["key_green"].text = ""
 			self["key_yellow"].text = ""
 			self["key_blue"].text = ""
-			
 		else:
 			self.download = None
 			self["key_red"].text = _("Exit")
@@ -207,20 +206,20 @@ class NFIDownload(Screen):
 				else:
 					self["key_yellow"].text = (_("Select image"))
 			self["key_blue"].text = (_("Fix USB stick"))
-		
+
 	def switchList(self,to_where=None):
 		if self.download or not self["feedlist"].isValid():
 			return
-		
+
 		self["job_progressbar"].value = 0
 		self["job_progresslabel"].text = ""
-		
+
 		if to_where is None:
 			if self.focus is self.LIST_SOURCE:
 				to_where = self.LIST_DEST
 			if self.focus is self.LIST_DEST:
 				to_where = self.LIST_SOURCE
-				
+
 		if to_where is self.LIST_DEST:
 			self.focus = self.LIST_DEST
 			self["statusbar"].text = _("Please select target directory or medium")
@@ -230,7 +229,7 @@ class NFIDownload(Screen):
 			self["label_bottom"].text = _("Selected source image")+":"
 			self["path_bottom"].text = str(self["feedlist"].getNFIname())
 			self["key_yellow"].text = (_("Select image"))
-		
+
 		elif to_where is self.LIST_SOURCE:
 			self.focus = self.LIST_SOURCE
 			self["statusbar"].text = _("Please choose .NFI image file from feed server to download")
@@ -240,7 +239,7 @@ class NFIDownload(Screen):
 			self["label_bottom"].text = _("Destination directory")+":"
 			self["path_bottom"].text = str(self["destlist"].getCurrentDirectory())
 			self["key_yellow"].text = (_("Change dir."))
-			
+
 	def up(self):
 		if self.download:
 			return
@@ -249,7 +248,7 @@ class NFIDownload(Screen):
 			self.nfo_download()
 		if self.focus is self.LIST_DEST:
 			self["destlist"].up()
-	
+
 	def down(self):
 		if self.download:
 			return
@@ -258,7 +257,7 @@ class NFIDownload(Screen):
 			self.nfo_download()
 		if self.focus is self.LIST_DEST:
 			self["destlist"].down()
-			
+
 	def left(self):
 		if self.download:
 			return
@@ -267,7 +266,7 @@ class NFIDownload(Screen):
 			self.nfo_download()
 		if self.focus is self.LIST_DEST:
 			self["destlist"].pageUp()
-	
+
 	def right(self):
 		if self.download:
 			return
@@ -345,7 +344,7 @@ class NFIDownload(Screen):
 		self.nfofilename = ""
 		self.nfo = ""
 		self.downloading(False)
-	
+
 	def nfo_finished(self,nfodata=""):
 		print "[nfo_finished] " + str(nfodata)
 		self.downloading(False)
@@ -363,9 +362,9 @@ class NFIDownload(Screen):
 			self.switchList(self.LIST_TARGET)
 		if self["feedlist"].isValid():
 			url = self["feedlist"].getNFIurl()
-			localfile = self["destlist"].getCurrentDirectory()+'/'+self["feedlist"].getNFIname()
-			print "[nfi_download] downloading %s to %s" % (url, localfile)
-			self.download = downloadWithProgress(url,localfile)
+			self.nfilocal = self["destlist"].getCurrentDirectory()+'/'+self["feedlist"].getNFIname()
+			print "[nfi_download] downloading %s to %s" % (url, self.nfilocal)
+			self.download = downloadWithProgress(url,self.nfilocal)
 			self.download.addProgress(self.nfi_progress)
 			self["job_progressbar"].range = 1000
 			self.download.start().addCallback(self.nfi_finished).addErrback(self.nfi_failed)
@@ -375,7 +374,7 @@ class NFIDownload(Screen):
 		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
 		self["job_progressbar"].value = int(1000*recvbytes/float(totalbytes))
 		self["job_progresslabel"].text = "%d of %d kBytes (%.2f%%)" % (recvbytes/1024, totalbytes/1024, 100*recvbytes/float(totalbytes))
-	
+
 	def nfi_failed(self, failure_instance=None, error_message=""):
 		if error_message == "" and failure_instance is not None:
 			error_message = failure_instance.getErrorMessage()
@@ -388,14 +387,6 @@ class NFIDownload(Screen):
 			self.session.open(MessageBox, message, MessageBox.TYPE_ERROR)
 			self.downloading(False)
 
-	#def nfi_failed(self, failure_instance):
-		#print "[nfi_failed] " 
-		#print failure_instance
-		#if isinstance(failure_instance, Plugins.SystemPlugins.NFIFlash.plugin.UserRequestedCancel):
-			#print "is instance of Plugins.SystemPlugins.NFIFlash.plugin.UserRequestedCancel"
-		#else:
-			#print "not an instance of Plugins.SystemPlugins.NFIFlash.plugin.UserRequestedCancel"
-
 	def nfi_finished(self, string=""):
 		print "[nfi_finished] " + str(string)
 		if self.nfo != "":
@@ -406,21 +397,27 @@ class NFIDownload(Screen):
 				nfofd.close()
 			else:
 				print "couldn't save nfo file " + self.nfofilename
-	
-			pos = self.nfo.find("md5sum")
-			if pos > 0:					
+
+			pos = self.nfo.find("MD5:")
+			if pos > 0 and len(self.nfo) >= pos+5+32:					
 				self["statusbar"].text = _("Please wait for md5 signature verification...")
-				cmd = "md5sum -cs " + self.nfofilename
-				print cmd
+				cmd = "md5sum -c -"
+				md5 = self.nfo[pos+5:pos+5+32] + "  " + self.nfilocal
+				print cmd, md5
 				self.download_container.setCWD(self["destlist"].getCurrentDirectory())
 				self.download_container.appClosed.get().append(self.md5finished)
 				self.download_container.execute(cmd)
+				self.download_container.write(md5)
+				self.download_container.dataSent.get().append(self.md5ready)
 			else:
 				self["statusbar"].text = "Download completed."
 				self.downloading(False)
 		else:
 			self["statusbar"].text = "Download completed."
 			self.downloading(False)
+
+	def md5ready(self, retval):
+		self.download_container.sendEOF()
 
 	def md5finished(self, retval):
 		print "[md5finished]: " + str(retval)
@@ -431,7 +428,7 @@ class NFIDownload(Screen):
 			self.downloading(False)
 		else:
 			self.session.openWithCallback(self.nfi_remove, MessageBox, (_("The md5sum validation failed, the file may be downloaded incompletely or be corrupted!") + "\n" + _("Remove the broken .NFI file?")), MessageBox.TYPE_YESNO)
-	
+
 	def nfi_remove(self, answer):
 		self.downloading(False)
 		if answer == True:
@@ -447,7 +444,7 @@ class NFIDownload(Screen):
 		self.imagefilename = "/tmp/nfiflash_" + self.box + ".img"
 		message = _("You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased.")
 		self.session.openWithCallback(self.flasherdownload_query, MessageBox, (message + '\n' + _("First we need to download the latest boot environment for the USB flasher.")), MessageBox.TYPE_YESNO)
-		
+
 	def flasherdownload_query(self, answer):
 		if answer is False:
 			self.downloading(False)
@@ -500,7 +497,7 @@ class NFIDownload(Screen):
 		self.cmd = "dmesg -c"
 		print "executing " + self.cmd
 		self.container.execute(self.cmd)
-		
+
 	def dmesg_cleared(self, retval):
 		self.container.appClosed.get().remove(self.dmesg_cleared)
 		self.session.openWithCallback(self.stick_back_in, MessageBox, (_("Now please insert the USB stick (minimum size is 64 MB) that you want to format and use as .NFI image flasher. Press OK after you've put the stick back in.")), MessageBox.TYPE_INFO)
@@ -524,7 +521,7 @@ class NFIDownload(Screen):
 			self.cmd = "dmesg"
 			print "executing " + self.cmd
 			self.container.execute(self.cmd)
-		
+
 	def dmesg_scanned(self, retval):
 		self.container.appClosed.get().remove(self.dmesg_scanned)
 		dmesg_lines = self.taskstring.splitlines()
@@ -540,7 +537,7 @@ class NFIDownload(Screen):
 			self.session.openWithCallback(self.remove_img, MessageBox, _("No useable USB stick found"), MessageBox.TYPE_ERROR)
 		else:
 			self.session.openWithCallback(self.fdisk_query, MessageBox, (_("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % self.devicetext), MessageBox.TYPE_YESNO)
-	
+
 	def fdisk_query(self, answer):
 		if answer == True:
 			self["statusbar"].text = _("Partitioning USB stick...")
@@ -630,7 +627,7 @@ class NFIDownload(Screen):
 			self["destlist"].changeDir("/mnt/usb")
 		else:
 			self.session.openWithCallback(self.remove_img, MessageBox, (self.cmd + " " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
-	
+
 	def remove_img(self, answer):
 		if fileExists("/tmp/nfiflasher_image.tar.bz2"):
 			remove("/tmp/nfiflasher_image.tar.bz2")
