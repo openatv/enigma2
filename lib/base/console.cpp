@@ -268,6 +268,17 @@ void eConsoleAppContainer::sendCtrlC()
 	}
 }
 
+void eConsoleAppContainer::sendEOF()
+{
+	if (out)
+		out->stop();
+	if (fd[1] != -1)
+	{
+		::close(fd[1]);
+		fd[1]=-1;
+	}
+}
+
 void eConsoleAppContainer::closePipes()
 {
 	if (in)

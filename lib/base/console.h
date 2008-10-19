@@ -45,6 +45,7 @@ public:
 	int getPID() { return pid; }
 	void kill();
 	void sendCtrlC();
+	void sendEOF();
 	void write( const char *data, int len );
 	void write( PyObject *data );
 	void readFromFile( PyObject *py_filename );
