@@ -25,7 +25,6 @@ class TimerSanityCheck:
 		else:
 			self.simultimer = [ self.newtimer ]
 		return self.checkTimerlist()
-		
 
 	def getSimulTimerList(self):
 		return self.simultimer
@@ -178,11 +177,13 @@ class TimerSanityCheck:
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
 						ConflictSlot = tunerSlot
+				del feinfo
 			elif event[2] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0]:
 						NavigationInstance.instance.stopRecordService(fakeRec[1])
 						fakeRecList.remove(fakeRec)
+				del fakeRec
 				if overlaplist.count(timer):
 					overlaplist.remove(timer)
 			else:
