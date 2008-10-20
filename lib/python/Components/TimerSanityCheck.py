@@ -141,9 +141,12 @@ class TimerSanityCheck:
 					self.nrep_eventlist.extend([(new_event_begin, event[1], self.bflag),(new_event_end, event[1], self.eflag)])
 
 		def sort_func(x, y):
-			if x[0] == y[0]:
-				return cmp(y[2], x[2])
-			return cmp(x[0], y[0])
+			ret = cmp(x[0], y[0])
+			if not ret:
+				ret = cmp(y[2], x[2])
+				if not ret:
+					return cmp(x[1], y[1])
+			return ret
 ################################################################################
 # order list chronological
 		self.nrep_eventlist.sort(sort_func)
