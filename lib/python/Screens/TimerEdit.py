@@ -107,23 +107,29 @@ class TimerEditList(Screen):
 		cur = self["timerlist"].getCurrent()
 		if cur:
 			if self["key_red"].getText()!=(_("Delete")):
+				self["actions"].actions.update({"red":self.removeTimerQuestion})
 				self["key_red"].setText(_("Delete"))
 				self["key_red"].instance.invalidate()
 			
 			if cur.disabled and (self["key_yellow"].getText()!=(_("Enable"))):
+				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
 				self["key_yellow"].instance.invalidate()
 			elif cur.isRunning() and (self["key_yellow"].getText()!=(_(" "))):
+				del self["actions"].actions["yellow"]
 				self["key_yellow"].setText(_(" "))
 				self["key_yellow"].instance.invalidate()
 			elif (not cur.isRunning()) and (not cur.disabled) and (self["key_yellow"].getText()!=(_("Disable"))):
+				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
 				self["key_yellow"].instance.invalidate()
 		else:
 			if self["key_red"].getText()!=(_(" ")):
+				del self["actions"].actions["red"]
 				self["key_red"].setText(_(" "))
 				self["key_red"].instance.invalidate()
 			if self["key_yellow"].getText()!=(_(" ")):
+				del self["actions"].actions["yellow"]
 				self["key_yellow"].setText(_(" "))
 				self["key_yellow"].instance.invalidate()
 		
@@ -135,9 +141,11 @@ class TimerEditList(Screen):
 			showCleanup = False
 		
 		if showCleanup and (self["key_blue"].getText()!=(_("Cleanup"))):
+			self["actions"].actions.update({"blue":self.cleanupQuestion})
 			self["key_blue"].setText(_("Cleanup"))
 			self["key_blue"].instance.invalidate()
 		elif (not showCleanup) and (self["key_blue"].getText()!=(_(" "))):
+			del self["actions"].actions["blue"]
 			self["key_blue"].setText(_(" "))
 			self["key_blue"].instance.invalidate()
 
@@ -304,8 +312,7 @@ class TimerSanityConflict(Screen):
 
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
-		
-		
+
 		self["key_red"] = Button("Edit")
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("Edit")
@@ -371,28 +378,44 @@ class TimerSanityConflict(Screen):
 	
 	def updateState(self):
 		if self.timer[0] is not None:
-			if self.timer[0].disabled and (self["key_green"].getText()!=(_("Enable"))):
+			green_text = self["key_green"].getText()
+			print "green_text '%s'" %(green_text)
+			if self.timer[0].disabled and green_text != _("Enable"):
+				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Enable"))
 				self["key_green"].instance.invalidate()
-			elif self.timer[0].isRunning() and (self["key_green"].getText()!= (_(" "))):
-				self["key_green"].setText(_(" "))
+			elif self.timer[0].isRunning() and green_text != "":
+				del self["actions"].actions["green"]
+				self["key_green"].setText("")
 				self["key_green"].instance.invalidate()
-			elif (not self.timer[0].disabled)and(self["key_green"].getText()!= (_("Disable"))):
+			elif not self.timer[0].disabled and green_text != _("Disable"):
+				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Disable"))
 				self["key_green"].instance.invalidate()
-		if (len(self.timer) >1 ):
+		if len(self.timer) > 1:
 			x = self["list"].getSelectedIndex()
+			print "x: ",x
+			print "timer[x]: ", self.timer[x]
 			if self.timer[x] is not None:
-				if self.timer[x].disabled and (self["key_blue"].getText()!=(_("Enable"))):
+				blue_text = self["key_blue"].getText()
+				print "blue_text '%s'" %(blue_text)
+				if self.timer[x].disabled and blue_text != _("Enable"):
+					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Enable"))
 					self["key_blue"].instance.invalidate()
-				elif self.timer[x].isRunning() and (self["key_blue"].getText()!=(_(" "))):
-					self["key_blue"].setText(_(" "))
+				elif self.timer[x].isRunning() and blue_text != "":
+					del self["actions"].actions["blue"]
+					self["key_blue"].setText("")
 					self["key_blue"].instance.invalidate()
-				elif (not self.timer[x].disabled)and(self["key_blue"].getText()!=(_("Disable"))):
+				elif not self.timer[x].disabled and blue_text != _("Disable"):
+					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Disable"))
 					self["key_blue"].instance.invalidate()
 		else:
 #FIXME.... this doesnt hide the buttons self.... just the text
-			self["key_blue"].hide
-			self["key_yellow"].hide
+			del self["actions"].actions["yellow"]
+			self["key_yellow"].setText("")
+			self["key_yellow"].instance.invalidate()
+			del self["actions"].actions["blue"]
+			self["key_blue"].setText("")
+			self["key_blue"].instance.invalidate()

@@ -99,7 +99,7 @@ class TimerSanityCheck:
 
 ################################################################################
 # journalize timer repeations
-		if len(self.nrep_eventlist):
+		if self.nrep_eventlist:
 			interval_begin = min(self.nrep_eventlist)[0]
 			interval_end = max(self.nrep_eventlist)[0]
 			offset_0 = interval_begin - (interval_begin % 604800)
@@ -140,9 +140,13 @@ class TimerSanityCheck:
 					new_event_end = new_event_begin + (event_end - event_begin)
 					self.nrep_eventlist.extend([(new_event_begin, event[1], self.bflag),(new_event_end, event[1], self.eflag)])
 
+		def sort_func(x, y):
+			if x[0] == y[0]:
+				return cmp(y[2], x[2])
+			return cmp(x[0], y[0])
 ################################################################################
 # order list chronological
-		self.nrep_eventlist.sort()
+		self.nrep_eventlist.sort(sort_func)
 
 ##################################################################################
 # detect overlapping timers and overlapping times
