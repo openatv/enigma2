@@ -1168,14 +1168,16 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 
 void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
 {
+	gint64 duration_ns = GST_BUFFER_DURATION(buffer);
 	const unsigned char *text = (unsigned char *)GST_BUFFER_DATA(buffer);
 	eDebug("gstCBsubtitleAvail: %s",text);
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	if ( _this->m_subtitle_widget )
 	{
-		eDVBTeletextSubtitlePage page;
+		ePangoSubtitlePage page;
 		gRGB rgbcol(0xD0,0xD0,0xD0);
-		page.m_elements.push_back(eDVBTeletextSubtitlePageElement(rgbcol, (const char*)text));
+		page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)text));
+		page.m_timeout = duration_ns / 1000000;
 		(_this->m_subtitle_widget)->setPage(page);
 	}
 }
