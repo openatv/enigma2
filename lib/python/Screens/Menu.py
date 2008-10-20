@@ -238,6 +238,7 @@ class Menu(Screen):
 			})
 
 		a = parent.getAttribute("title").encode("UTF-8") or None
+		a = a and _(a)
 		if a is None:
 			a = _(parent.getAttribute("text").encode("UTF-8"))
 		self["title"] = StaticText(a)
