@@ -114,6 +114,7 @@ lib/python/Plugins/SystemPlugins/PositionerSetup/Makefile
 lib/python/Plugins/SystemPlugins/Hotplug/Makefile
 lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/SystemPlugins/DefaultServicesScanner/Makefile
+lib/python/Plugins/SystemPlugins/NFIFlash/Makefile
 lib/python/Plugins/SystemPlugins/Satfinder/Makefile
 lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
 lib/python/Plugins/SystemPlugins/SatelliteEquipmentControl/Makefile
