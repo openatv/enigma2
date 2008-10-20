@@ -187,8 +187,9 @@ class TimerSanityCheck:
 						NavigationInstance.instance.stopRecordService(fakeRec[1])
 						fakeRecList.remove(fakeRec)
 				del fakeRec
-				if overlaplist.count(timer):
-					overlaplist.remove(timer)
+				for entry in overlaplist:
+					if entry[1] == timer:
+						overlaplist.remove(entry)
 			else:
 				print "Bug: unknown flag!"
 			self.nrep_eventlist[idx] = (event[0],event[1],event[2],cnt,overlaplist[:]) # insert a duplicate into current overlaplist
