@@ -379,7 +379,6 @@ class TimerSanityConflict(Screen):
 	def updateState(self):
 		if self.timer[0] is not None:
 			green_text = self["key_green"].getText()
-			print "green_text '%s'" %(green_text)
 			if self.timer[0].disabled and green_text != _("Enable"):
 				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Enable"))
@@ -394,11 +393,8 @@ class TimerSanityConflict(Screen):
 				self["key_green"].instance.invalidate()
 		if len(self.timer) > 1:
 			x = self["list"].getSelectedIndex()
-			print "x: ",x
-			print "timer[x]: ", self.timer[x]
 			if self.timer[x] is not None:
 				blue_text = self["key_blue"].getText()
-				print "blue_text '%s'" %(blue_text)
 				if self.timer[x].disabled and blue_text != _("Enable"):
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Enable"))
