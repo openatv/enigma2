@@ -146,9 +146,9 @@ class NFIFlash(Screen):
 			if fileExists(nfofilename):
 				nfocontent = open(nfofilename, "r").read()
 				self["infolabel"].text = nfocontent
-				pos = nfocontent.find("md5sum")
+				pos = nfocontent.find("MD5:")
 				if pos > 0:
-					self.md5sum = nfofilename
+					self.md5sum = nfocontent[pos+5:pos+5+32] + "  " + self.nfifile
 				else:
 					self.md5sum = ""
 			else:
@@ -179,12 +179,17 @@ class NFIFlash(Screen):
 				self.container = eConsoleAppContainer()
 				self.container.setCWD(self["filelist"].getCurrentDirectory())
 				self.container.appClosed.get().append(self.md5finished)
-				self.container.execute("md5sum -cs " + self.md5sum)
+				self.container.dataSent.get().append(self.md5ready)
+				self.container.execute("md5sum -cw -")
+				self.container.write(self.md5sum)
 			else:
 				self.session.openWithCallback(self.queryCB, MessageBox, _("This .NFI file does not have a md5sum signature and is not guaranteed to work. Do you really want to burn this image to flash memory?"), MessageBox.TYPE_YESNO)
 		else:
 			self.session.open(MessageBox, (_("This .NFI file does not contain a valid %s image!") % (self.box.upper())), MessageBox.TYPE_ERROR)
-			
+
+	def md5ready(self, retval):
+		self.container.sendEOF()
+
 	def md5finished(self, retval):
 		if retval==0:
 			self.session.openWithCallback(self.queryCB, MessageBox, _("This .NFI file has a valid md5 signature. Continue programming this image to flash memory?"), MessageBox.TYPE_YESNO)
