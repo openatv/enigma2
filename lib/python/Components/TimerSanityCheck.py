@@ -177,7 +177,6 @@ class TimerSanityCheck:
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
 						ConflictSlot = tunerSlot
-				del feinfo
 			elif event[2] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0]:
