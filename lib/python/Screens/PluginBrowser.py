@@ -114,9 +114,9 @@ class PluginDownloadBrowser(Screen):
 			self.updateList()
 		else:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"" + sel[0].name + "\"?"))
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"%s\"?") % sel[0].name)
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"" + sel[0].name + "\"?"))
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"%s\"?") % sel[0].name)
 
 	def runInstall(self, val):
 		if val:
