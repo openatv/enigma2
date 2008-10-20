@@ -176,7 +176,7 @@ class TimerSanityCheck:
 					if ConflictTimer is None: # just take care of the first conflict
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
-						ConflictSlot = tunerSlot
+						ConflictTunerSlot = tunerSlot
 			elif event[2] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0]:
