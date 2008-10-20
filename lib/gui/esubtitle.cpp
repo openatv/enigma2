@@ -66,11 +66,43 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 	invalidate(m_visible_region);  // invalidate new regions
 }
 
+void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
+{
+	m_pango_page = p;
+	m_pango_page_ok = 1;
+	invalidate(m_visible_region);  // invalidate old visible regions
+	m_visible_region.rects.clear();
+
+	int elements = m_pango_page.m_elements.size();
+	if (elements)
+	{
+		int startY = elements > 1
+			? size().height() / 2
+			: size().height() / 3 * 2;
+		int width = size().width() - startX * 2;
+		int height = size().height() - startY;
+		int size_per_element = height / (elements ? elements : 1);
+		for (int i=0; i<elements; ++i)
+		{
+			eRect &area = m_pango_page.m_elements[i].m_area;
+			area.setLeft(startX);
+			area.setTop(size_per_element * i + startY);
+			area.setWidth(width);
+			area.setHeight(size_per_element);
+			m_visible_region.rects.push_back(area);
+		}
+	}
+	int timeout_ms = m_pango_page.m_timeout;
+	m_hide_subtitles_timer.start(timeout_ms, true);
+	invalidate(m_visible_region);  // invalidate new regions
+}
+
 void eSubtitleWidget::clearPage()
 {
 	eDebug("subtitle timeout... hide");
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
+	m_pango_page_ok = 0;
 	invalidate(m_visible_region);
 	m_visible_region.rects.clear();
 }
@@ -79,6 +111,15 @@ void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed)
 {
 	m_pixmap = pixmap;
 	invalidate(changed);
+}
+
+std::string eSubtitleWidget::replace_all(const std::string &in, const std::string &entity, const std::string &symbol)
+{
+	std::string out = in;
+	std::string::size_type loc = 0;
+	while (( loc = out.find(entity, loc)) != std::string::npos )
+	out.replace(loc, entity.length(), symbol);
+	return out;
 }
 
 int eSubtitleWidget::event(int event, void *data, void *data2)
@@ -110,6 +151,45 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				painter.renderText(shadow, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 				painter.setForegroundColor(element.m_color);
 				painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+			}
+		}
+		else if (m_pango_page_ok)
+		{
+			int elements = m_pango_page.m_elements.size();
+			ePtr<gFont> font = new gFont("Regular", 38);
+			for (int i=0; i<elements; ++i)
+			{
+				ePangoSubtitlePageElement &element = m_pango_page.m_elements[i];
+				std::string text = element.m_pango_line;				
+				std::string::size_type loc = text.find("<", 0 );
+				if ( loc != std::string::npos )
+				{
+					switch (char(text.at(1)))
+					{
+					case 'i':
+						eDebug("found italic");
+						font = new gFont("LCD", 40);
+						break;
+					case 'b':
+						eDebug("found bold");
+						font = new gFont("Replacement", 40);
+						break;
+					default:
+						break;
+					}
+					text = text.substr(3, text.length()-7);
+				}
+				text = replace_all(text, "&apos;", "'");
+				text = replace_all(text, "&quot;", "\"");
+				text = replace_all(text, "&amp;", "&");
+				painter.setFont(font);		
+				eRect &area = element.m_area;
+				eRect shadow = area;
+				shadow.moveBy(3,3);
+				painter.setForegroundColor(gRGB(0,0,0));
+				painter.renderText(shadow, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.setForegroundColor(element.m_color);
+				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 			}
 		}
 		else if (m_dvb_page_ok)

@@ -5,7 +5,29 @@
 #include <lib/dvb/teletext.h>
 #include <lib/dvb/subtitle.h>
 
+struct ePangoSubtitlePageElement
+{
+	gRGB m_color;
+	std::string m_pango_line;
+	eRect m_area;
+	ePangoSubtitlePageElement(const gRGB &color, const std::string &text)
+		: m_color(color), m_pango_line(text)
+	{
+	}
+};
+
+struct ePangoSubtitlePage
+{
+	pts_t m_pts;
+	int m_have_pts;
+	int m_timeout; /* in milliseconds */
+	std::vector<ePangoSubtitlePageElement> m_elements;
+	void clear() { m_elements.clear(); }
+};
+
 class eDVBTeletextSubtitlePage;
+class eDVBPangoSubtitlePage;
+class ePangoSubtitlePage;
 
 class eSubtitleWidget: public eWidget, public Object
 {
@@ -14,6 +36,7 @@ public:
 	
 	void setPage(const eDVBTeletextSubtitlePage &p);
 	void setPage(const eDVBSubtitlePage &p);
+	void setPage(const ePangoSubtitlePage &p);
 	void clearPage();
 
 	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed);
@@ -27,11 +50,15 @@ private:
 	int m_dvb_page_ok;
 	eDVBSubtitlePage m_dvb_page;
 
+	int m_pango_page_ok;
+	ePangoSubtitlePage m_pango_page;
+
 	eTimer m_hide_subtitles_timer;
 
 	gRegion m_visible_region;
 
 	ePtr<gPixmap> m_pixmap;  // pixmap to paint on next evtPaint
+	std::string eSubtitleWidget::replace_all(const std::string &in, const std::string &entity, const std::string &symbol);
 };
 
 #endif
