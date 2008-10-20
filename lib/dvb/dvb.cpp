@@ -580,8 +580,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		return err;
 
 	RESULT res;
-	ePtr<eDVBChannel> ch;
-	ch = new eDVBChannel(this, fe);
+	ePtr<eDVBChannel> ch = new eDVBChannel(this, fe);
 
 	res = ch->setChannel(channelid, feparm);
 	if (res)
@@ -647,10 +646,7 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 	if (err)
 		return err;
 
-	eDVBChannel *ch;
-	ch = new eDVBChannel(this, fe);
-
-	channel = ch;
+	channel = new eDVBChannel(this, fe);
 	return 0;
 }
 
@@ -666,10 +662,7 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 		m_releaseCachedChannelTimer.stop();
 	}
 
-	eDVBChannel *ch;
-	ch = new eDVBChannel(this, 0);
-
-	channel = ch;
+	channel = new eDVBChannel(this, 0);
 	return 0;
 }
 
