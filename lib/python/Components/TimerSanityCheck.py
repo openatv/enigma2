@@ -163,13 +163,13 @@ class TimerSanityCheck:
 				timer = self.timerlist[event[1]]
 			if event[2] == self.bflag:
 				fakeRecService = NavigationInstance.instance.recordService(timer.service_ref)
+				fakeRecResult = fakeRecService.start(True)
 				feinfo = fakeRecService.frontendInfo().getFrontendData()
 				tunerType = feinfo.get("tuner_type")
 				tunerSlot = feinfo.get("tuner_number")
 				if event[1] == -1: # new timer
 					newTimerTunerType = tunerType
 					newTimerTunerSlot = tunerSlot
-				fakeRecResult = fakeRecService.start(True)
 				overlaplist.append((fakeRecResult, timer, tunerType, tunerSlot))
 				fakeRecList.append((timer, fakeRecService))
 				if fakeRecResult:
@@ -189,9 +189,6 @@ class TimerSanityCheck:
 				print "Bug: unknown flag!"
 			self.nrep_eventlist[idx] = (event[0],event[1],event[2],cnt,overlaplist[:]) # insert a duplicate into current overlaplist
 			idx += 1
-
-		for fakeRec in fakeRecList:
-			NavigationInstance.instance.stopRecordService(fakeRec[1])
 
 		if ConflictTimer is None: # no conflict found :)
 			return True
