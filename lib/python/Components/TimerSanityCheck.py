@@ -13,8 +13,8 @@ class TimerSanityCheck:
 		self.simultimer = []
 		self.rep_eventlist = []
 		self.nrep_eventlist = []
-		self.bflag = -1
-		self.eflag = 1
+		self.bflag = 1
+		self.eflag = -1
 
 	def check(self, ext_timer=1):
 		print "check"
@@ -50,8 +50,8 @@ class TimerSanityCheck:
 		#with special service for external plugins
 		# Entries in eventlist
 		# timeindex
+		# BeginEndFlag 1 for begin, -1 for end
 		# index -1 for the new Timer, 0..n index of the existing timers
-		# BeginEndFlag -1 for begin, +1 for end
 		# count of running timers
 
 		print "checkTimerlist"
@@ -77,7 +77,7 @@ class TimerSanityCheck:
 					begin += 86400
 					rflags >>= 1
 			else:
-				self.nrep_eventlist.extend([(self.newtimer.begin,-1,self.bflag),(self.newtimer.end,-1,self.eflag)])
+				self.nrep_eventlist.extend([(self.newtimer.begin,self.bflag,-1),(self.newtimer.end,self.eflag,-1)])
 
 ##################################################################################
 # now process existing timers
@@ -94,7 +94,7 @@ class TimerSanityCheck:
 						begin += 86400
 						rflags >>= 1
 				else:
-					self.nrep_eventlist.extend([(timer.begin,idx,self.bflag),(timer.end,idx,self.eflag)])
+					self.nrep_eventlist.extend([(timer.begin,self.bflag,idx),(timer.end,self.eflag,idx)])
 			idx += 1
 
 ################################################################################
@@ -121,10 +121,10 @@ class TimerSanityCheck:
 					new_event_end = new_event_begin + (event_end - event_begin)
 					if event[1] == -1:
 						if new_event_begin >= self.newtimer.begin: # is the soap already running?
-							self.nrep_eventlist.extend([(new_event_begin, event[1], self.bflag),(new_event_end, event[1], self.eflag)])
+							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
 					else:
 						if new_event_begin >= self.timerlist[event[1]].begin: # is the soap already running?
-							self.nrep_eventlist.extend([(new_event_begin, event[1], self.bflag),(new_event_end, event[1], self.eflag)])
+							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
 		else:
 			offset_0 = 345600 # the Epoch begins on Thursday
 			weeks = 2 # test two weeks to take care of Sunday-Monday transitions
@@ -138,18 +138,11 @@ class TimerSanityCheck:
 						event_end = self.timerlist[event[1]].end
 					new_event_begin = event[0] + offset_0 + (cnt * 604800)
 					new_event_end = new_event_begin + (event_end - event_begin)
-					self.nrep_eventlist.extend([(new_event_begin, event[1], self.bflag),(new_event_end, event[1], self.eflag)])
+					self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
 
-		def sort_func(x, y):
-			ret = cmp(x[0], y[0])
-			if not ret:
-				ret = cmp(y[2], x[2])
-				if not ret:
-					return cmp(x[1], y[1])
-			return ret
 ################################################################################
 # order list chronological
-		self.nrep_eventlist.sort(sort_func)
+		self.nrep_eventlist.sort()
 
 ##################################################################################
 # detect overlapping timers and overlapping times
@@ -163,18 +156,18 @@ class TimerSanityCheck:
 		idx = 0
 		overlaplist = []
 		for event in self.nrep_eventlist:
-			cnt -= event[2]
-			if event[1] == -1: # new timer
+			cnt -= event[1]
+			if event[2] == -1: # new timer
 				timer = self.newtimer
 			else:
-				timer = self.timerlist[event[1]]
-			if event[2] == self.bflag:
+				timer = self.timerlist[event[2]]
+			if event[1] == self.bflag:
 				fakeRecService = NavigationInstance.instance.recordService(timer.service_ref)
 				fakeRecResult = fakeRecService.start(True)
 				feinfo = fakeRecService.frontendInfo().getFrontendData()
 				tunerType = feinfo.get("tuner_type")
 				tunerSlot = feinfo.get("tuner_number")
-				if event[1] == -1: # new timer
+				if event[2] == -1: # new timer
 					newTimerTunerType = tunerType
 					newTimerTunerSlot = tunerSlot
 				overlaplist.append((fakeRecResult, timer, tunerType, tunerSlot))
@@ -184,7 +177,7 @@ class TimerSanityCheck:
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
 						ConflictTunerSlot = tunerSlot
-			elif event[2] == self.eflag:
+			elif event[1] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0]:
 						NavigationInstance.instance.stopRecordService(fakeRec[1])
