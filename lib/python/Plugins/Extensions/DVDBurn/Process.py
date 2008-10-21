@@ -265,7 +265,7 @@ class BurnTask(Task):
 		self.postconditions.append(BurnTaskPostcondition())
 		self.setTool("/bin/growisofs")
 		volName = self.getASCIIname(job.project.settings.name.getValue())
-		self.args += [ "-dvd-compat", "-Z", harddiskmanager.getCD(), "-V", volName, "-publisher", "Dreambox", "-use-the-force-luke=dummy" ]
+		self.args += [ "-dvd-compat", "-Z", "/dev/" + harddiskmanager.getCD(), "-V", volName, "-publisher", "Dreambox", "-use-the-force-luke=dummy" ]
 		self.args += extra_args
 
 	def getASCIIname(self, name):
@@ -336,6 +336,9 @@ class PreviewTask(Task):
 			self.previewProject()
 		else:
 			self.job.project.session.openWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False)
+
+	def abort(self):
+		self.finish(aborted = True)
 	
 	def previewCB(self, answer):
 		if answer == True:
