@@ -4,7 +4,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Components.Sources.StaticText import StaticText
 from enigma import eTimer
 
 class MessageBox(Screen):
