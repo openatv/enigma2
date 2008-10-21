@@ -58,7 +58,7 @@ private:
 	gRegion m_visible_region;
 
 	ePtr<gPixmap> m_pixmap;  // pixmap to paint on next evtPaint
-	std::string eSubtitleWidget::replace_all(const std::string &in, const std::string &entity, const std::string &symbol);
+	std::string replace_all(const std::string &in, const std::string &entity, const std::string &symbol);
 };
 
 #endif
