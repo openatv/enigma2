@@ -18,6 +18,8 @@ from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarC
 from ServiceReference import ServiceReference
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
+from Components.Harddisk import harddiskmanager
+from Tools.Directories import fileExists, pathExists
 import random
 
 class MyPlayList(PlayList):
@@ -283,7 +285,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			path = path[:-1]
 		pngname = path + "folder.png"
 		
-		if not os_path.exists(pngname):
+		if not fileExists(pngname):
 			pngname = self["coverArt"].default_pixmap
 		if self.coverArtFileName != pngname:
 			self.coverArtFileName = pngname
@@ -457,6 +459,19 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		menu.append((_("load playlist"), "loadplaylist"));
 		menu.append((_("delete saved playlist"), "deleteplaylist"));
 		menu.append((_("repeat playlist"), "repeat"));
+		self.cdAudioTrackFiles = []
+		drivepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+		if pathExists(drivepath):
+			from Components.Scanner import scanDevice
+			res = scanDevice(drivepath)
+			list = [ (r.description, r, res[r], self.session) for r in res ]
+			if list:
+				(desc, scanner, files, session) = list[0]
+				for file in files:
+					if file.mimetype == "audio/x-cda":
+						self.cdAudioTrackFiles.append(file.path)
+		if len(self.cdAudioTrackFiles):
+			menu.insert(0,(_("Play Audio-CD..."), "audiocd"))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
@@ -499,6 +514,22 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			else:
 				self.repeat = True
 				self["repeat"].setPixmapNum(1)
+		elif choice[1] == "audiocd":
+			self.playAudioCD()
+			
+	def playAudioCD(self):
+		from enigma import eServiceReference
+		from Plugins.Extensions.CDInfo.plugin import Query
+		self.playlist.clear()
+		self.savePlaylistOnExit = False
+		self.isAudioCD = True
+		for file in self.cdAudioTrackFiles:
+			ref = eServiceReference(4097, 0, file)
+			self.playlist.addFile(ref)
+		cdinfo = Query(self)
+		cdinfo.scan()
+		self.changeEntry(0)
+		self.switchToPlayList()
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
@@ -823,20 +854,10 @@ def audioCD_open(list, session, **kwargs):
 	from enigma import eServiceReference
 
 	mp = session.open(MediaPlayer)
-
-	mp.playlist.clear()
-	mp.savePlaylistOnExit = False
-	mp.isAudioCD = True
-
+	mp.cdAudioTrackFiles = []
 	for file in list:
-		ref = eServiceReference(4097, 0, file.path)
-		mp.playlist.addFile(ref)
-	from Plugins.Extensions.CDInfo.plugin import Query
-	cdinfo = Query(mp)
-	cdinfo.scan()
-
-	mp.changeEntry(0)
-	mp.switchToPlayList()
+		mp.cdAudioTrackFiles.append(file.path)
+	mp.playAudioCD()
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
