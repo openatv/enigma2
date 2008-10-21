@@ -401,7 +401,7 @@ void eConsoleAppContainer::write( const char *data, int len )
 void eConsoleAppContainer::write( PyObject *data )
 {
 	char *buffer;
-	int length;
+	Py_ssize_t length;
 	if (PyString_AsStringAndSize(data, &buffer, &length))
 		return;
 	if (buffer && length)
