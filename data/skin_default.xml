@@ -158,6 +158,9 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 
 		</applet>
 	</screen>
+	<screen name="ChoiceBox_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_list" render="Label" position="6,0" size="126,64" font="Regular;11" />
+	</screen>	
 	<!-- Common interface -->
 	<screen name="MMIDialog" position="135,153" size="450,270">
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />

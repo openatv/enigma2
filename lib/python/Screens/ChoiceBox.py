@@ -2,6 +2,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
+from Components.Sources.StaticText import StaticText
 
 class ChoiceBox(Screen):
 	def __init__(self, session, title = "", list = [], keys = None, selection = 0):
@@ -9,6 +10,7 @@ class ChoiceBox(Screen):
 
 		self["text"] = Label(title)
 		self.list = []
+		self.summarylist = []
 		if keys is None:
 			self.__keys = [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue" ] + (len(list) - 10) * [""]
 		else:
@@ -21,8 +23,11 @@ class ChoiceBox(Screen):
 			self.list.append(ChoiceEntryComponent(key = strpos, text = x))
 			if self.__keys[pos] != "":
 				self.keymap[self.__keys[pos]] = list[pos]
+			self.summarylist.append((self.__keys[pos],x[0]))
 			pos += 1
 		self["list"] = ChoiceList(list = self.list, selection = selection)
+		self["summary_list"] = StaticText()
+		self.updateSummary()
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"], 
 		{
@@ -56,6 +61,7 @@ class ChoiceBox(Screen):
 		if len(self["list"].list) > 0:
 			while 1:
 				self["list"].instance.moveSelection(self["list"].instance.moveUp)
+				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
 					break
 
@@ -63,6 +69,7 @@ class ChoiceBox(Screen):
 		if len(self["list"].list) > 0:
 			while 1:
 				self["list"].instance.moveSelection(self["list"].instance.moveDown)
+				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
 					break
 
@@ -105,6 +112,19 @@ class ChoiceBox(Screen):
 
 	def keyBlue(self):
 		self.goKey("blue")
+
+	def updateSummary(self, curpos=0):
+		pos = 0
+		summarytext = ""
+		for entry in self.summarylist:
+			if pos > curpos-2 and pos < curpos+5:
+				if pos == curpos:
+					summarytext += ">"
+				else:
+					summarytext += entry[0]
+				summarytext += ' ' + entry[1] + '\n'
+			pos += 1
+		self["summary_list"].setText(summarytext)
 
 	def cancel(self):
 		self.close(None)
