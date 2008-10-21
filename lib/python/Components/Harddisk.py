@@ -302,7 +302,7 @@ class HarddiskManager:
 						continue
 					partitions.append(partition)
 			else:
-				self.cd = "/dev/"+blockdev
+				self.cd = blockdev
 		except IOError:
 			error = True
 		return error, blacklisted, removable, is_cdrom, partitions

@@ -334,18 +334,25 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			})
 
 		self.onClose.append(self.__onClose)
-
+		self.physicalDVD = False
+		self.dvd_device = None
 		if dvd_device:
 				self.dvd_device = dvd_device
 				self.physicalDVD = True
 		else:
-			if fileExists(harddiskmanager.getCD()):
-				print "physical dvd found:", harddiskmanager.getCD()
-				self.dvd_device = harddiskmanager.getCD()
-				self.physicalDVD = True
-			else:
-				self.dvd_device = None
-				self.physicalDVD = False
+			devicepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+			if pathExists(devicepath):
+				from Components.Scanner import scanDevice
+				res = scanDevice(devicepath)
+				list = [ (r.description, r, res[r], self.session) for r in res ]
+				if list:
+					(desc, scanner, files, session) = list[0]
+					for file in files:
+						print file
+						if file.mimetype == "video/x-dvd":
+							self.dvd_device = devicepath
+							print "physical dvd found:", self.dvd_device
+							self.physicalDVD = True			
 
 		self.dvd_filelist = dvd_filelist
 		self.onFirstExecBegin.append(self.showFileBrowser)
@@ -542,7 +549,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def showFileBrowser(self):
 		if self.physicalDVD and len(self.dvd_filelist) == 0:
-			if self.dvd_device == harddiskmanager.getCD():
+			if self.dvd_device == harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()):
 				self.session.openWithCallback(self.DVDdriveCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
 			else:
 				self.DVDdriveCB(True)

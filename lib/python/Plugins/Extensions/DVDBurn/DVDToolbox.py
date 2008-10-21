@@ -164,7 +164,7 @@ class DVDformatTask(Task):
 		self.toolbox = job.toolbox
 		self.postconditions.append(DVDformatTaskPostcondition())
 		self.setTool("/bin/dvd+rw-format")
-		self.args += [ harddiskmanager.getCD() ]
+		self.args += [ "/dev/" + harddiskmanager.getCD() ]
 		self.end = 1100
 
 	def prepare(self):
@@ -208,7 +208,7 @@ class DVDinfoTask(Task):
 		self.toolbox = job.toolbox
 		self.postconditions.append(DVDinfoTaskPostcondition())
 		self.setTool("/bin/dvd+rw-mediainfo")
-		self.args += [ harddiskmanager.getCD() ]
+		self.args += [ "/dev/" + harddiskmanager.getCD() ]
 
 	def prepare(self):
 		self.error = None
