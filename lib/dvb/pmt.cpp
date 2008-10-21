@@ -251,11 +251,22 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									for (SubtitlingConstIterator it(list->begin()); it != list->end(); ++it)
 									{
 										s.subtitling_type = (*it)->getSubtitlingType();
+										switch(s.subtitling_type)
+										{
+										case 0x10 ... 0x13:
+										case 0x20 ... 0x23: // dvb subtitles
+											break;
+										default:
+											eDebug("dvb subtitle %s PID %04x with wrong subtitling type (%02x)... force 0x10!!",
+												s.language_code.c_str(), s.pid, s.subtitling_type);
+											s.subtitling_type = 0x10;
+											break;
+										}
 										s.composition_page_id = (*it)->getCompositionPageId();
 										s.ancillary_page_id = (*it)->getAncillaryPageId();
 										s.language_code = (*it)->getIso639LanguageCode();
-	//									eDebug("add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
-	//										s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
+//										eDebug("add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
+//											s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
 										program.subtitleStreams.push_back(s);
 									}
 									break;
