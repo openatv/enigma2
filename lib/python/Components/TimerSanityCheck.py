@@ -156,7 +156,7 @@ class TimerSanityCheck:
 		idx = 0
 		overlaplist = []
 		for event in self.nrep_eventlist:
-			cnt -= event[1]
+			cnt += event[1]
 			if event[2] == -1: # new timer
 				timer = self.newtimer
 			else:
