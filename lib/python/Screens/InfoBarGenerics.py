@@ -1505,7 +1505,7 @@ class InfoBarInstantRecord:
 				localendtime = localtime(ret[1])
 				print "stopping recording at", strftime("%c", localendtime)
 				if self.recording[self.selectedEntry].end != ret[1]:
-					recording.autoincrease = False
+					self.recording[self.selectedEntry].autoincrease = False
 				self.recording[self.selectedEntry].end = ret[1]
 				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
@@ -1518,7 +1518,7 @@ class InfoBarInstantRecord:
 		if value is not None:
 			print "stopping recording after", int(value), "minutes."
 			if int(value) != 0:
-				recording.autoincrease = False
+				self.recording[self.selectedEntry].autoincrease = False
 			self.recording[self.selectedEntry].end = time() + 60 * int(value)
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
