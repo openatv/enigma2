@@ -26,9 +26,8 @@ class DVDToolbox(Screen):
 		    <widget source="space_label" render="Label" position="20,414" size="520,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
 		</screen>"""
 
-	def __init__(self, session, project = None):
+	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.project = project
 		
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("Update"))

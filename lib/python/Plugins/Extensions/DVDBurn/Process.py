@@ -8,7 +8,7 @@ class png2yuvTask(Task):
 		self.setTool("/usr/bin/png2yuv")
 		self.args += ["-n1", "-Ip", "-f25", "-j", inputfile]
 		self.dumpFile = outputfile
-		self.weighting = 10
+		self.weighting = 15
 
 	def run(self, callback, task_progress_changed):
 		Task.run(self, callback, task_progress_changed)
@@ -24,7 +24,7 @@ class mpeg2encTask(Task):
 		self.setTool("/usr/bin/mpeg2enc")
 		self.args += ["-f8", "-np", "-a2", "-o", outputfile]
 		self.inputFile = inputfile
-		self.weighting = 10
+		self.weighting = 25
 		
 	def run(self, callback, task_progress_changed):
 		Task.run(self, callback, task_progress_changed)
@@ -40,7 +40,7 @@ class spumuxTask(Task):
 		self.args += [xmlfile]
 		self.inputFile = inputfile
 		self.dumpFile = outputfile
-		self.weighting = 10
+		self.weighting = 15
 
 	def run(self, callback, task_progress_changed):
 		Task.run(self, callback, task_progress_changed)
@@ -77,7 +77,7 @@ class CopyMeta(Task):
 			if file.startswith(filename+"."):
 				self.args += [path+'/'+file]
 		self.args += [self.job.workspace]
-		self.weighting = 10
+		self.weighting = 15
 
 class DemuxTask(Task):
 	def __init__(self, job, inputfile):
@@ -168,9 +168,9 @@ class MplexTaskPostcondition(Condition):
 
 class MplexTask(Task):
 	ERROR_UNDERRUN, ERROR_UNKNOWN = range(2)
-	def __init__(self, job, outputfile, inputfiles=None, demux_task=None):
+	def __init__(self, job, outputfile, inputfiles=None, demux_task=None, weighting = 500):
 		Task.__init__(self, job, "Mux ES into PS")
-		self.weighting = 500
+		self.weighting = weighting
 		self.demux_task = demux_task
 		self.postconditions.append(MplexTaskPostcondition())
 		self.setTool("/usr/bin/mplex")
@@ -202,6 +202,7 @@ class RemoveESFiles(Task):
 		Task.__init__(self, job, "Remove temp. files")
 		self.demux_task = demux_task
 		self.setTool("/bin/rm")
+		self.weighting = 10
 
 	def prepare(self):
 		self.args += ["-f"]
@@ -211,7 +212,6 @@ class RemoveESFiles(Task):
 class DVDAuthorTask(Task):
 	def __init__(self, job, diskspaceNeeded):
 		Task.__init__(self, job, "Authoring DVD")
-
 		self.global_preconditions.append(DiskspacePrecondition(diskspaceNeeded))
 		self.weighting = 300
 		self.setTool("/usr/bin/dvdauthor")
@@ -322,12 +322,14 @@ class RemoveDVDFolder(Task):
 		Task.__init__(self, job, "Remove temp. files")
 		self.setTool("/bin/rm")
 		self.args += ["-rf", self.job.workspace]
+		self.weighting = 10
 
 class PreviewTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Preview")
 		self.postconditions.append(PreviewTaskPostcondition())
 		self.job = job
+		self.weighting = 10
 
 	def run(self, callback, task_progress_changed):
 		self.callback = callback
@@ -433,7 +435,7 @@ class MenuImageTask(Task):
 	def __init__(self, job, menu_count, spuxmlfilename, menubgpngfilename, highlightpngfilename):
 		Task.__init__(self, job, "Create Menu %d Image" % menu_count)
 		self.postconditions.append(ImagingPostcondition())
-		self.weighting = 20 
+		self.weighting = 10
 		self.job = job
 		self.Menus = job.Menus
 		self.menu_count = menu_count
@@ -563,7 +565,7 @@ class Menus:
 			mpeg2encTask(job, job.workspace+"/dvdmenubg"+num+".yuv", menubgm2vfilename)
 			menubgmpgfilename = job.workspace+"/dvdmenubg"+num+".mpg"
 			menuaudiofilename = s.menuaudio.getValue()
-			MplexTask(job, outputfile=menubgmpgfilename, inputfiles = [menubgm2vfilename, menuaudiofilename])
+			MplexTask(job, outputfile=menubgmpgfilename, inputfiles = [menubgm2vfilename, menuaudiofilename], weighting = 20)
 			menuoutputfilename = job.workspace+"/dvdmenu"+num+".mpg"
 			spumuxTask(job, spuxmlfilename, menubgmpgfilename, menuoutputfilename)
 		

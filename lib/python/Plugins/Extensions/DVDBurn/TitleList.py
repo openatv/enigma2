@@ -165,7 +165,7 @@ class TitleList(Screen, HelpableScreen):
 			self.updateTitleList()
 
 	def toolbox(self):
-		self.session.open(DVDToolbox.DVDToolbox, self.project)
+		self.session.open(DVDToolbox.DVDToolbox)
 
 	def settings(self):
 		self.session.openWithCallback(self.settingsCB, ProjectSettings.ProjectSettings, self.project)
