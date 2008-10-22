@@ -44,6 +44,7 @@ public:
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG } audiotype_t;
+typedef enum { stPlainText, stSSA, stSRT } subtype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService, 
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public iSubtitleOutput, public Object
@@ -125,6 +126,7 @@ public:
 	struct subtitleStream
 	{
 		GstPad* pad;
+		subtype_t type;
 		std::string language_code; /* iso-639, if available. */
 		subtitleStream()
 			:pad(0)
@@ -164,6 +166,7 @@ private:
 	static void gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *l, gpointer data);
 	static void gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data);
 	static void gstCBsubtitlePadEvent(GstPad *pad, GstEvent *event, gpointer user_data);
+	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
 };
 #endif

@@ -372,20 +372,13 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				eDebug("subtitle file found: %s",srt_filename);
 				GstElement *subsource = gst_element_factory_make ("filesrc", "srt_source");
 				g_object_set (G_OBJECT (subsource), "location", srt_filename, NULL);
-				GstElement *parser = gst_element_factory_make("subparse", "parse_subtitles");
-				GstElement *switch_subtitles = gst_element_factory_make ("input-selector", "switch_subtitles");
-				GstElement *sink = gst_element_factory_make("fakesink", "sink_subtitles");
-				gst_bin_add_many(GST_BIN (m_gst_pipeline), subsource, switch_subtitles, parser, sink, NULL);
-				gst_element_link(subsource, switch_subtitles);
-				gst_element_link(switch_subtitles, parser);
-				gst_element_link(parser, sink);
-				g_object_set (G_OBJECT(switch_subtitles), "select-all", TRUE, NULL);
-				g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
-				g_object_set (G_OBJECT(sink), "sync", TRUE, NULL);
-				g_object_set (G_OBJECT(parser), "subtitle-encoding", "ISO-8859-15", NULL);
-				g_signal_connect(sink, "handoff", G_CALLBACK(gstCBsubtitleAvail), this);
+				gst_bin_add(GST_BIN (m_gst_pipeline), subsource);
+				GstPad *switchpad = gstCreateSubtitleSink(this, stSRT);
+				gst_pad_link(gst_element_get_pad (subsource, "src"), switchpad);
 				subtitleStream subs;
-				subs.language_code = std::string(".srt file");
+				subs.pad = switchpad;
+				subs.type = stSRT;
+				subs.language_code = std::string("und");
 				m_subtitleStreams.push_back(subs);
 			}
 			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, audio, queue_audio, video, queue_video, NULL);
@@ -1074,26 +1067,72 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 	}
 	if (g_strrstr(type,"application/x-ssa") || g_strrstr(type,"application/x-ass"))
 	{
-		GstElement *switch_subtitles = gst_bin_get_by_name(pipeline,"switch_subtitles");
-		if ( !switch_subtitles )
-		{
-			switch_subtitles = gst_element_factory_make ("input-selector", "switch_subtitles");
-			if ( !switch_subtitles )
-				return;
-			GstElement *parser = gst_element_factory_make("ssaparse", "parse_subtitles");
-			GstElement *sink = gst_element_factory_make("fakesink", "sink_subtitles");
-			gst_bin_add_many(pipeline, switch_subtitles, parser, sink, NULL);
-			gst_element_link(switch_subtitles, parser);
-			gst_element_link(parser, sink);
-			g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
-			g_signal_connect(sink, "handoff", G_CALLBACK(gstCBsubtitleAvail), _this);
-		}
-		GstPad *sinkpad = gst_element_get_request_pad (switch_subtitles, "sink%d");
-		gst_pad_link(pad, sinkpad);
+		GstPad *switchpad = _this->gstCreateSubtitleSink(_this, stSSA);
+		gst_pad_link(pad, switchpad);
 		subtitleStream subs;
-		subs.pad = sinkpad;
+		subs.pad = switchpad;
+		subs.type = stSSA;
 		_this->m_subtitleStreams.push_back(subs);
 	}
+	if (g_strrstr(type,"text/plain"))
+	{
+		GstPad *switchpad = _this->gstCreateSubtitleSink(_this, stPlainText);
+		gst_pad_link(pad, switchpad);
+		subtitleStream subs;
+		subs.pad = switchpad;
+		subs.type = stPlainText;
+		_this->m_subtitleStreams.push_back(subs);
+	}
+}
+
+GstPad* eServiceMP3::gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type)
+{
+	GstBin *pipeline = GST_BIN(_this->m_gst_pipeline);
+	GstElement *switch_subparse = gst_bin_get_by_name(pipeline,"switch_subparse");
+	if ( !switch_subparse )
+	{
+		switch_subparse = gst_element_factory_make ("input-selector", "switch_subparse");
+		GstElement *sink = gst_element_factory_make("fakesink", "sink_subtitles");
+		gst_bin_add_many(pipeline, switch_subparse, sink, NULL);
+		gst_element_link(switch_subparse, sink);
+		g_object_set (G_OBJECT(sink), "signal-handoffs", TRUE, NULL);
+		g_object_set (G_OBJECT(sink), "sync", TRUE, NULL);
+		g_object_set (G_OBJECT(sink), "async", FALSE, NULL);
+		g_signal_connect(sink, "handoff", G_CALLBACK(_this->gstCBsubtitleAvail), _this);
+	
+		// order is essential since requested sink pad names can't be explicitely chosen
+		GstElement *switch_substream_plain = gst_element_factory_make ("input-selector", "switch_substream_plain");
+		gst_bin_add(pipeline, switch_substream_plain);
+		GstPad *sinkpad_plain = gst_element_get_request_pad (switch_subparse, "sink%d");
+		gst_pad_link(gst_element_get_pad (switch_substream_plain, "src"), sinkpad_plain);
+	
+		GstElement *switch_substream_ssa = gst_element_factory_make ("input-selector", "switch_substream_ssa");
+		GstElement *ssaparse = gst_element_factory_make("ssaparse", "ssaparse");
+		gst_bin_add_many(pipeline, switch_substream_ssa, ssaparse, NULL);
+		GstPad *sinkpad_ssa = gst_element_get_request_pad (switch_subparse, "sink%d");
+		gst_element_link(switch_substream_ssa, ssaparse);
+		gst_pad_link(gst_element_get_pad (ssaparse, "src"), sinkpad_ssa);
+	
+		GstElement *switch_substream_srt = gst_element_factory_make ("input-selector", "switch_substream_srt");
+		GstElement *srtparse = gst_element_factory_make("subparse", "srtparse");
+		gst_bin_add_many(pipeline, switch_substream_srt, srtparse, NULL);
+		GstPad *sinkpad_srt = gst_element_get_request_pad (switch_subparse, "sink%d");
+		gst_element_link(switch_substream_srt, srtparse);
+		gst_pad_link(gst_element_get_pad (srtparse, "src"), sinkpad_srt);
+		g_object_set (G_OBJECT(srtparse), "subtitle-encoding", "ISO-8859-15", NULL);
+	}
+
+	switch (type)
+	{
+		case stSSA:
+			return gst_element_get_request_pad (gst_bin_get_by_name(pipeline,"switch_substream_ssa"), "sink%d");
+		case stSRT:
+			return gst_element_get_request_pad (gst_bin_get_by_name(pipeline,"switch_substream_srt"), "sink%d");
+		case stPlainText:
+		default:
+			break;
+	}
+	return gst_element_get_request_pad (gst_bin_get_by_name(pipeline,"switch_substream_plain"), "sink%d");
 }
 
 void eServiceMP3::gstCBfilterPadAdded(GstElement *filter, GstPad *pad, gpointer user_data)
@@ -1184,14 +1223,14 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, Gst
 
 RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 {
-	eDebug("eServiceMP3::enableSubtitles");
-
 	ePyObject entry;
 	int tuplesize = PyTuple_Size(tuple);
 	int pid;
+	int type;
 	gint nb_sources;
 	GstPad *active_pad;
-	GstElement *switch_subtitles = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"switch_subtitles");
+	GstElement *switch_substream = NULL;
+	GstElement *switch_subparse = gst_bin_get_by_name (GST_BIN(m_gst_pipeline), "switch_subparse");
 
 	if (!PyTuple_Check(tuple))
 		goto error_out;
@@ -1201,32 +1240,52 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	if (!PyInt_Check(entry))
 		goto error_out;
 	pid = PyInt_AsLong(entry);
+	entry = PyTuple_GET_ITEM(tuple, 2);
+	if (!PyInt_Check(entry))
+		goto error_out;
+	type = PyInt_AsLong(entry);
+
+	switch ((subtype_t)type)
+	{
+		case stPlainText:
+			switch_substream = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"switch_substream_plain");
+			break;
+		case stSSA:
+			switch_substream = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"switch_substream_ssa");
+			break;
+		case stSRT:
+			switch_substream = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"switch_substream_srt");
+			break;
+		default:
+			goto error_out;
+	}
 
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size()); /* full size */
 
-	if ( !switch_subtitles )
+	if ( !switch_substream )
 	{
 		eDebug("can't switch subtitle tracks! gst-plugin-selector needed");
 		return -2;
 	}
-	g_object_get (G_OBJECT (switch_subtitles), "n-pads", &nb_sources, NULL);
+	g_object_get (G_OBJECT (switch_substream), "n-pads", &nb_sources, NULL);
  	if ( (unsigned int)pid >= m_subtitleStreams.size() || pid >= nb_sources || (unsigned int)m_currentSubtitleStream >= m_subtitleStreams.size() )
 		return -2;
-	char sinkpad[8];
+	g_object_get (G_OBJECT (switch_subparse), "n-pads", &nb_sources, NULL);
+	if ( type < 0 || type >= nb_sources )
+		return -2;
+
+	char sinkpad[6];
+	sprintf(sinkpad, "sink%d", type);
+	g_object_set (G_OBJECT (switch_subparse), "active-pad", gst_element_get_pad (switch_subparse, sinkpad), NULL);
 	sprintf(sinkpad, "sink%d", pid);
-	g_object_set (G_OBJECT (switch_subtitles), "active-pad", gst_element_get_pad (switch_subtitles, sinkpad), NULL);
-	g_object_get (G_OBJECT (switch_subtitles), "active-pad", &active_pad, NULL);
-	gchar *name;
-	name = gst_pad_get_name (active_pad);
-	eDebug ("switched subtitles to (%s)", name);
-	g_free(name);
+	g_object_set (G_OBJECT (switch_substream), "active-pad", gst_element_get_pad (switch_substream, sinkpad), NULL);
 	m_currentSubtitleStream = pid;
 
 	return 0;
 error_out:
 	eDebug("enableSubtitles needs a tuple as 2nd argument!\n"
-		"for gst subtitles (2, subtitle_stream_count)");
+		"for gst subtitles (2, subtitle_stream_count, subtitle_type)");
 	return -1;
 }
 
@@ -1249,21 +1308,23 @@ PyObject *eServiceMP3::getSubtitleList()
 	eDebug("eServiceMP3::getSubtitleList");
 
 	ePyObject l = PyList_New(0);
-	int stream_count = 0;
+	int stream_count[sizeof(subtype_t)];
+	for ( int i = 0; i < sizeof(subtype_t); i++ )
+		stream_count[i] = 0;
 
 	for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
 	{
+		subtype_t type = IterSubtitleStream->type;
 		ePyObject tuple = PyTuple_New(5);
 		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(stream_count));
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(0));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(stream_count[type]));
+		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(int(type)));
 		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(0));
 		PyTuple_SET_ITEM(tuple, 4, PyString_FromString((IterSubtitleStream->language_code).c_str()));
 		PyList_Append(l, tuple);
 		Py_DECREF(tuple);
-		stream_count++;
+		stream_count[type]++;
 	}
-
 	return l;
 }
 
