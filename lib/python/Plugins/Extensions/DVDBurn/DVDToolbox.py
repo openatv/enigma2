@@ -42,7 +42,7 @@ class DVDToolbox(Screen):
 		self["details"] = ScrollLabel()
 		self["info"] = StaticText()
 
-		self["toolboxactions"] = ActionMap(["ColorActions", "DVDToolbox"],
+		self["toolboxactions"] = ActionMap(["ColorActions", "DVDToolbox", "OkCancelActions"],
 		{
 		    "red": self.close,
 		    "green": self.update,
@@ -100,8 +100,9 @@ class DVDToolbox(Screen):
 				except:
 					size = 0
 				if size > 0:
-					capacity = size
-					used = capacity-used				
+					capacity = size / 1048576
+					if used:
+						used = capacity-used
 					print "[free blocks] capacity=%d, used=%d" % (capacity, used)
 			infotext += line
 		self["details"].setText(infotext)
