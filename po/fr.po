@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-15 03:32+0200\n"
+"POT-Creation-Date: 2008-10-23 14:43+0200\n"
 "PO-Revision-Date: 2008-07-24 21:51+0100\n"
 "Last-Translator: mimi74 <remi.jarrige0293@wanadoo.fr>\n"
 "Language-Team: french\n"
@@ -48,6 +48,10 @@ msgid "#ffffffff"
 msgstr ""
 
 msgid "%H:%M"
+msgstr ""
+
+#, python-format
+msgid "%d jobs are running in the background!"
 msgstr ""
 
 #, python-format
@@ -903,12 +907,11 @@ msgstr "Afficher contenu 4:3 comme"
 msgid "Display Setup"
 msgstr "Paramètres afficheur"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Voulez-vous vraiment ENLEVER\n"
-"le plugin \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -921,10 +924,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Voulez-vous vraiment effacer %s ?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
-msgstr "Voulez-vous vraiment télécharger le plugin ?"
+"the plugin \"%s\"?"
+msgstr ""
 
 msgid "Do you really want to exit?"
 msgstr "Voulez-vous vraiment quitter?"
@@ -2007,6 +2011,9 @@ msgstr "Code Pin requis"
 msgid "Play"
 msgstr "Jouer"
 
+msgid "Play Audio-CD..."
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "lire les films enregistrés..."
 
@@ -2255,6 +2262,15 @@ msgstr "Vraiment effacer cette programmation?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Vraiment quitter sous services zaprapide?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Reboot"
 
@@ -2270,26 +2286,8 @@ msgstr "Fichiers enregistrés..."
 msgid "Recording"
 msgstr "Enregistrement"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Des enregistrement(s) sont en cours ou se terminent dans quelques "
-"secondes... Vraiment redémarrer maintenant?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Des enregistrement(s) sont en cours ou se terminent dans quelques "
-"secondes... Vraiment relancer maintenant?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Des enregistrement(s) sont en cours ou se terminent dans quelques "
-"secondes... Vraiment arrèter maintenant?"
 
 msgid "Recordings always have priority"
 msgstr "Enregistrements toujours prioritaires"
@@ -3170,6 +3168,11 @@ msgstr "Programmation d'un enregistrement"
 msgid "Timer log"
 msgstr "Journal des enregistrements"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Erreur de programmation"
 
@@ -3989,9 +3992,6 @@ msgstr "libre"
 msgid "free diskspace"
 msgstr "espace disque libre"
 
-msgid "full /etc directory"
-msgstr "répertoire /etc entier"
-
 msgid "go to deep standby"
 msgstr "mettre en veille profonde"
 
@@ -4542,6 +4542,18 @@ msgstr "zappé"
 #~ msgid "Do not show video preview"
 #~ msgstr "ne pas montrer prévue film"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Voulez-vous vraiment ENLEVER\n"
+#~ "le plugin \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr "Voulez-vous vraiment télécharger le plugin ?"
+
 #~ msgid "Edit current title"
 #~ msgstr "Editer titre actuel"
 
@@ -4580,6 +4592,27 @@ msgstr "zappé"
 
 #~ msgid "Port"
 #~ msgstr "Port"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Des enregistrement(s) sont en cours ou se terminent dans quelques "
+#~ "secondes... Vraiment redémarrer maintenant?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Des enregistrement(s) sont en cours ou se terminent dans quelques "
+#~ "secondes... Vraiment relancer maintenant?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Des enregistrement(s) sont en cours ou se terminent dans quelques "
+#~ "secondes... Vraiment arrèter maintenant?"
 
 #~ msgid "Save current project to disk"
 #~ msgstr "Sauver projet actuel vers disque"
@@ -4642,6 +4675,9 @@ msgstr "zappé"
 
 #~ msgid "enable /hdd"
 #~ msgstr "Activer /hdd"
+
+#~ msgid "full /etc directory"
+#~ msgstr "répertoire /etc entier"
 
 #~ msgid "list of configured Interfaces"
 #~ msgstr "Liste des interfaces configurées"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-15 03:32+0200\n"
+"POT-Creation-Date: 2008-10-23 14:43+0200\n"
 "PO-Revision-Date: 2008-10-14 14:21+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
@@ -54,6 +54,10 @@ msgstr ""
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -903,12 +907,11 @@ msgstr "Visa 4:3 sändning som"
 msgid "Display Setup"
 msgstr "Display installation"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Vill du verkligen TA BORT\n"
-"pluginen \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -921,12 +924,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Vill du verkligen ta bort %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Vill du verkligen ladda ner\n"
-"pluginen \""
 
 msgid "Do you really want to exit?"
 msgstr "Vill du verkligen avsluta?"
@@ -2000,6 +2002,9 @@ msgstr "PIN kod behövs"
 msgid "Play"
 msgstr "Spela upp"
 
+msgid "Play Audio-CD..."
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Spela inspelade filmer..."
 
@@ -2249,6 +2254,15 @@ msgstr "Verkligen ta bort denna timer?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Verkligen avsluta underkanals snabbzap?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Omstart"
 
@@ -2264,23 +2278,8 @@ msgstr "Inspelade filer..."
 msgid "Recording"
 msgstr "Spelar in"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
 
 msgid "Recordings always have priority"
 msgstr "Inspelningar har alltid prioritet"
@@ -3149,6 +3148,11 @@ msgstr "Timer inmatning"
 msgid "Timer log"
 msgstr "Timer log"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Timer fel"
 
@@ -3957,9 +3961,6 @@ msgstr "fri"
 msgid "free diskspace"
 msgstr "ledigt diskutrymme"
 
-msgid "full /etc directory"
-msgstr "fullt /etc bibliotek"
-
 msgid "go to deep standby"
 msgstr "stäng av mottagaren"
 
@@ -4542,6 +4543,20 @@ msgstr "zapped"
 #~ msgid "Device Setup..."
 #~ msgstr "Nätverksinstallation..."
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Vill du verkligen TA BORT\n"
+#~ "pluginen \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Vill du verkligen ladda ner\n"
+#~ "pluginen \""
+
 #~ msgid "Edit current title"
 #~ msgstr "Ändra vald titel"
 
@@ -4628,6 +4643,24 @@ msgstr "zapped"
 #~ "detta.\n"
 #~ "Anslut ditt WLAN USB Stick till din Dreambox före du trycker på OK.\n"
 #~ "\n"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen starta om nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
 
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Omstart av din trådlösa adapter"
@@ -4732,6 +4765,9 @@ msgstr "zapped"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "likadant som Ingång A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "fullt /etc bibliotek"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "loopthrough till ingång A"
