@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-15 03:32+0200\n"
+"POT-Creation-Date: 2008-10-23 14:43+0200\n"
 "PO-Revision-Date: 2008-10-14 20:59+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
@@ -48,6 +48,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -899,12 +903,11 @@ msgstr "Rodyti kaip 4:3 "
 msgid "Display Setup"
 msgstr "Monitoriaus nustatymas"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Jūs tikrai norite PAŠALINTI\n"
-"priedą \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -917,12 +920,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Jūs tikrai norite pašalinti %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Jūs tikrai norite parsisiųsti\n"
-"priedą \""
 
 msgid "Do you really want to exit?"
 msgstr "Jūs tikrai norite išeiti?"
@@ -2008,6 +2010,9 @@ msgstr "Reikalingas pin kodas"
 msgid "Play"
 msgstr "Leisti"
 
+msgid "Play Audio-CD..."
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Leisti įrašytus filmus..."
 
@@ -2257,6 +2262,15 @@ msgstr "Tikrai pašalinti šį laikmatį?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Tikrai išeiti iš subkanalų greito perjungimo?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Perkrauti"
 
@@ -2272,24 +2286,8 @@ msgstr "Įrašyti failai..."
 msgid "Recording"
 msgstr "Įrašymas"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Vyksta įrašymas arba netrukus prasidės... tikrai norite perjungti dabar?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Vyksta įrašymas arba netrukus prasidės... tikrai norite paleisti iš naujo "
-"dabar?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Vyksta įrašymas arba netrukus prasidės... tikrai norite išjungti dabar?"
 
 msgid "Recordings always have priority"
 msgstr "Įrašai visada turi pirmenybę"
@@ -3161,6 +3159,11 @@ msgstr "Laikmačio užduotis"
 msgid "Timer log"
 msgstr "Laikmačio log"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Laikmačio padėties klaida"
 
@@ -3972,9 +3975,6 @@ msgstr "laisvi"
 msgid "free diskspace"
 msgstr "laisvos vietos diske"
 
-msgid "full /etc directory"
-msgstr "pilną /etc direktoriją"
-
 msgid "go to deep standby"
 msgstr "eiti į visišką išjungimą"
 
@@ -4581,6 +4581,20 @@ msgstr "įjungta"
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Trukinėjantis atkūrimas pasikartojančia struktūra"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Jūs tikrai norite PAŠALINTI\n"
+#~ "priedą \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Jūs tikrai norite parsisiųsti\n"
+#~ "priedą \""
+
 #~ msgid "Edit current title"
 #~ msgstr "Suredaguokite dabartinį pavadinimą"
 
@@ -4716,6 +4730,25 @@ msgstr "įjungta"
 #~ "Prijunkite belaidžio tinklo USB įrenginį savo imtuve, prieš spaudžiant "
 #~ "OK.\n"
 #~ "\n"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Vyksta įrašymas arba netrukus prasidės... tikrai norite perjungti dabar?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Vyksta įrašymas arba netrukus prasidės... tikrai norite paleisti iš naujo "
+#~ "dabar?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Vyksta įrašymas arba netrukus prasidės... tikrai norite išjungti dabar?"
 
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Paleiskite iš naujo savo belaidį įrenginį"
@@ -4893,6 +4926,9 @@ msgstr "įjungta"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "lygus lizdui A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "pilną /etc direktoriją"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "į imtuvą A"

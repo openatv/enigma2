@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 14:43+0200\n"
 "PO-Revision-Date: 2008-06-11 16:07+0100\n"
 "Last-Translator: Gaj1 <jagg@tdcadsl.dk>\n"
 "Language-Team: Gaj1 <jagg@tdcadsl.dk>\n"
@@ -49,6 +49,10 @@ msgstr ""
 
 msgid "%H:%M"
 msgstr "%T:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -292,9 +296,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Info"
@@ -708,6 +709,9 @@ msgstr "Konstellation"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Fortsæt afspilning"
 
@@ -896,12 +900,11 @@ msgstr "Vis 4:3 indhold som"
 msgid "Display Setup"
 msgstr "Display Indstillinger"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Vil du virkelig FJERNE\n"
-"dette plugin \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -914,12 +917,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Vil du virkelig slette %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Vil du virkelig downloade\n"
-"dette plugin \""
 
 msgid "Do you really want to exit?"
 msgstr "Ønsker du virkelig at afslutte?"
@@ -1991,6 +1993,9 @@ msgstr "Pin kode nødvendig"
 msgid "Play"
 msgstr "Afspil"
 
+msgid "Play Audio-CD..."
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Afspil optagede film..."
 
@@ -2235,6 +2240,15 @@ msgstr "Vil du virkelig slette denne timer?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Vil du afslutte underkanals hurtigskift?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2250,26 +2264,8 @@ msgstr "Optagede filer..."
 msgid "Recording"
 msgstr "Optager"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Optagelse(r) er igang eller starter op om få sekunder... vil du virkelig "
-"reboote nu?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Optagelse(r) er igang eller starter op om få sekunder... vil du virkelig "
-"genstarte nu?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Optagelse(r) er igang eller starter op om få sekunder... vil du virkelig "
-"afbryde nu?"
 
 msgid "Recordings always have priority"
 msgstr "Optagelser har altid prioritet"
@@ -3116,6 +3112,11 @@ msgstr "Indstil timer"
 msgid "Timer log"
 msgstr "Timer Log"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Timer sanity fejl"
 
@@ -3910,9 +3911,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "Fri HDD plads"
 
-msgid "full /etc directory"
-msgstr "full /etc direktorie"
-
 msgid "go to deep standby"
 msgstr "Gå til dyb standby"
 
@@ -4519,6 +4517,20 @@ msgstr "Zappet"
 #~ msgid "Display spinner"
 #~ msgstr "Bruge Spinner"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Vil du virkelig FJERNE\n"
+#~ "dette plugin \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Vil du virkelig downloade\n"
+#~ "dette plugin \""
+
 #~ msgid "Edit current title"
 #~ msgstr "Ændre nuværende titel"
 
@@ -4636,6 +4648,27 @@ msgstr "Zappet"
 
 #~ msgid "Rate"
 #~ msgstr "Billedfrekvens"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Optagelse(r) er igang eller starter op om få sekunder... vil du virkelig "
+#~ "reboote nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Optagelse(r) er igang eller starter op om få sekunder... vil du virkelig "
+#~ "genstarte nu?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Optagelse(r) er igang eller starter op om få sekunder... vil du virkelig "
+#~ "afbryde nu?"
 
 #~ msgid "Reset configuration"
 #~ msgstr "Genstart Konfiguration"
@@ -4797,6 +4830,9 @@ msgstr "Zappet"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Som Tuner A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "full /etc direktorie"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Forbundet til Tuner A"
