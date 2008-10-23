@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma Portuguese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-03-30 18:45-0000\n"
 "Last-Translator: Muaitai <muaitai@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -52,6 +52,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -296,9 +300,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Sobre"
@@ -710,6 +711,9 @@ msgstr "Constelação"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
@@ -896,12 +900,11 @@ msgstr "Mostrar em 4:3"
 msgid "Display Setup"
 msgstr "Definições do Display"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"De certeza que quer REMOVER\n"
-"o plugin \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -914,10 +917,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Deseja mesmo apagar %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
-msgstr "Descarregar plugin \""
+"the plugin \"%s\"?"
+msgstr ""
 
 msgid "Do you really want to exit?"
 msgstr "Deseja realmente sair?"
@@ -1821,8 +1825,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1975,6 +1979,9 @@ msgstr "Necessita do PIN"
 
 msgid "Play"
 msgstr "Play"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Reproduzir filmes gravados..."
@@ -2220,6 +2227,15 @@ msgstr "Apagar este timer?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Deseja realmente sair?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2235,26 +2251,8 @@ msgstr "Ficheiros Gravados..."
 msgid "Recording"
 msgstr "A gravar"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
-"reiniciar agora? "
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
-"reiniciar agora? "
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
-"desligar agora? "
 
 msgid "Recordings always have priority"
 msgstr "Gravações têm sempre prioridade"
@@ -3067,6 +3065,11 @@ msgstr "Entrada para Temporizador"
 msgid "Timer log"
 msgstr "Registo do Temporizador"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Erro do Temporizador"
 
@@ -3851,9 +3854,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "Espaço livre"
 
-msgid "full /etc directory"
-msgstr "pasta full /etc "
-
 msgid "go to deep standby"
 msgstr "Ir para reiniciar profundo"
 
@@ -4396,6 +4396,18 @@ msgstr "zapped"
 #~ msgid "Device Setup..."
 #~ msgstr "Definições..."
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "De certeza que quer REMOVER\n"
+#~ "o plugin \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr "Descarregar plugin \""
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Deseja ver um manual do editor de listas?"
 
@@ -4419,6 +4431,27 @@ msgstr "zapped"
 
 #~ msgid "New DVD"
 #~ msgstr "Novo DVD"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
+#~ "reiniciar agora? "
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
+#~ "reiniciar agora? "
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
+#~ "desligar agora? "
 
 #~ msgid "Replace current playlist"
 #~ msgstr "Substituir a lista actual"
@@ -4458,6 +4491,9 @@ msgstr "zapped"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Igual ao socket A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "pasta full /etc "
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Passagem atraves do socket A"

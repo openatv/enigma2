@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-09-28 18:09+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
@@ -50,6 +50,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -285,9 +289,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "O Dreamboxu"
@@ -701,6 +702,9 @@ msgstr "Sestava"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Pokračovat v přehrávání"
 
@@ -889,12 +893,11 @@ msgstr "Zobrazit obraz 4:3 jako"
 msgid "Display Setup"
 msgstr "Nastavení displeje"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Opravdu chcete ODEBRAT\n"
-"tento plugin \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -907,12 +910,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Opravdu chcete smazat \"%s\"?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Opravdu chcete stáhnout\n"
-"tento plugin \""
 
 msgid "Do you really want to exit?"
 msgstr "Opravdu chcete ukončit?"
@@ -1821,8 +1823,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1977,6 +1979,9 @@ msgstr "Je vyžadován kód PIN"
 
 msgid "Play"
 msgstr "Play"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Přehrát nahrané pořady..."
@@ -2222,6 +2227,15 @@ msgstr "Opravdu smazat tento časovač?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Opravdu vyskočit z rychlého přepínání podprogramů?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2237,26 +2251,8 @@ msgstr "Nahrané pořady..."
 msgid "Recording"
 msgstr "Nahrávání"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
-"rebootovat?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
-"restartovat?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete nyní "
-"vypnout?"
 
 msgid "Recordings always have priority"
 msgstr "Nahrávání má vždy prioritu"
@@ -3101,6 +3097,11 @@ msgstr "Vstup časovače"
 msgid "Timer log"
 msgstr "Log časovače"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Nelogické časování"
 
@@ -3897,9 +3898,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "volné místo na HDD"
 
-msgid "full /etc directory"
-msgstr "plný adresář /etc"
-
 msgid "go to deep standby"
 msgstr "přejít do hlubokého spánku"
 
@@ -4488,6 +4486,20 @@ msgstr "přepnutý"
 #~ msgid "Device Setup..."
 #~ msgstr "Nastavení zařízení..."
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Opravdu chcete ODEBRAT\n"
+#~ "tento plugin \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Opravdu chcete stáhnout\n"
+#~ "tento plugin \""
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Chcete zobrazit tutorial pro střih?"
 
@@ -4532,7 +4544,7 @@ msgstr "přepnutý"
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable you local network interface."
+#~ "enable your local network interface."
 #~ msgstr ""
 #~ "Nebyl nalezen funkční adapter pro bezdrátovou síť.\n"
 #~ "Zkontrolujte prosím, zda máte připojen kompatibilní WLAN USB klíč nebo "
@@ -4584,6 +4596,27 @@ msgstr "přepnutý"
 #~ "podporovány.\n"
 #~ "Připojete bezdrátový adaptér před stisknutím OK.\n"
 #~ "\n"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete "
+#~ "nyní rebootovat?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete "
+#~ "nyní restartovat?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Náhrává se pořad nebo se během chvilky začne nahrávat... opravdu chcete "
+#~ "nyní vypnout?"
 
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Restartovat bezdrátové rozhraní."
@@ -4706,6 +4739,9 @@ msgstr "přepnutý"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "rovno slotu A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "plný adresář /etc"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "smyčka přes slot A"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandic translation v.1.36\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-04-01 21:39-0000\n"
 "Last-Translator: Baldur Sveinsson <baddi@oreind.is>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -52,6 +52,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -296,9 +300,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Um...."
@@ -711,6 +712,9 @@ msgstr "Constellation"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
@@ -897,12 +901,11 @@ msgstr "Sýna 4:3 innihald sem"
 msgid "Display Setup"
 msgstr "Uppsetning skjás"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Viltu örugglega taka út\n"
-"þetta innskot \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -915,12 +918,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Viltu virkilega eyða %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Viltu örugglega hala niður\n"
-"þetta innskot \""
 
 msgid "Do you really want to exit?"
 msgstr "Viltu virkilega hætta?"
@@ -1825,8 +1827,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1979,6 +1981,9 @@ msgstr "Kóða vantar"
 
 msgid "Play"
 msgstr "Spila"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Spila uppteknar myndir..."
@@ -2224,6 +2229,15 @@ msgstr "Viltu eyða þessu atriði?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Viltu hætta í undirrása hraðstökki?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2239,20 +2253,8 @@ msgstr "Uppteknar skrár..."
 msgid "Recording"
 msgstr "Upptaka"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr "Upptaka byrjar eftir smástund... viltu virkilega endurræsa núna?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr "Upptaka byrjar eftir smástund... viltu virkilega endurræsa núna?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr "Upptaka byrjar eftir smástund... viltu virkilega slökkva núna?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
+msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "Upptaka hefur alltaf forgang"
@@ -3070,6 +3072,11 @@ msgstr "Innsláttur tímastilltra atriða"
 msgid "Timer log"
 msgstr "Tíma skrá"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Villa í tímastillingu"
 
@@ -3855,9 +3862,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "laust diskpláss"
 
-msgid "full /etc directory"
-msgstr "alla /etc möppuna"
-
 msgid "go to deep standby"
 msgstr "fara í djúpsvefn"
 
@@ -4468,8 +4472,22 @@ msgstr "stokkið"
 #~ msgid "Disable subtitles"
 #~ msgstr "Taka af undirtexta"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Viltu örugglega taka út\n"
+#~ "þetta innskot \""
+
 #~ msgid "Do you really want to delete this recording?"
 #~ msgstr "Viltu virkilega eyða þessari upptöku?"
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Viltu örugglega hala niður\n"
+#~ "þetta innskot \""
 
 #~ msgid "Do you want to enable the parental control feature or your dreambox?"
 #~ msgstr "Viltu gera barnalæsingu virka í Dreamboxinu?"
@@ -4558,6 +4576,21 @@ msgstr "stokkið"
 
 #~ msgid "Record Splitsize"
 #~ msgstr "Stærð upptökuhluta"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr "Upptaka byrjar eftir smástund... viltu virkilega endurræsa núna?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr "Upptaka byrjar eftir smástund... viltu virkilega endurræsa núna?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr "Upptaka byrjar eftir smástund... viltu virkilega slökkva núna?"
 
 #~ msgid ""
 #~ "Recording(s) are in progress or comming up in few seconds... really "
@@ -4687,6 +4720,9 @@ msgstr "stokkið"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "eins og tengi A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "alla /etc möppuna"
 
 #~ msgid "list"
 #~ msgstr "listi"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:05+0200\n"
 "PO-Revision-Date: 2005-11-17 20:53+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -50,6 +50,10 @@ msgid "#ffffffff"
 msgstr ""
 
 msgid "%H:%M"
+msgstr ""
+
+#, python-format
+msgid "%d jobs are running in the background!"
 msgstr ""
 
 #, python-format
@@ -272,9 +276,6 @@ msgid "AGC"
 msgstr ""
 
 msgid "AGC:"
-msgstr ""
-
-msgid "Abort"
 msgstr ""
 
 msgid "About"
@@ -678,6 +679,9 @@ msgstr ""
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
@@ -861,9 +865,10 @@ msgstr ""
 msgid "Display Setup"
 msgstr ""
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
 
 msgid ""
@@ -875,9 +880,10 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr ""
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
 
 msgid "Do you really want to exit?"
@@ -1748,8 +1754,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1896,6 +1902,9 @@ msgid "Pin code needed"
 msgstr ""
 
 msgid "Play"
+msgstr ""
+
+msgid "Play Audio-CD..."
 msgstr ""
 
 msgid "Play recorded movies..."
@@ -2139,6 +2148,15 @@ msgstr ""
 msgid "Really exit the subservices quickzap?"
 msgstr ""
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2154,19 +2172,7 @@ msgstr ""
 msgid "Recording"
 msgstr ""
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr ""
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
 msgid "Recordings always have priority"
@@ -2963,6 +2969,11 @@ msgstr ""
 msgid "Timer log"
 msgstr ""
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr ""
 
@@ -3697,9 +3708,6 @@ msgid "free"
 msgstr ""
 
 msgid "free diskspace"
-msgstr ""
-
-msgid "full /etc directory"
 msgstr ""
 
 msgid "go to deep standby"

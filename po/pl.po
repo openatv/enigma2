@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-15 03:32+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-10-14 15:32+0100\n"
 "Last-Translator:  <silelis@tlen.pl>\n"
 "Language-Team: none\n"
@@ -51,6 +51,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -900,12 +904,11 @@ msgstr "Wyświetlaj zawartość 4:3 jako"
 msgid "Display Setup"
 msgstr "Ustawienia wyświtlania"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Czy na pewno chcesz usunąć\n"
-"plugin \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -918,12 +921,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Czy naprawdę chcesz usunąć %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Czy na pewno chcesz pobrać\n"
-"plugin \""
 
 msgid "Do you really want to exit?"
 msgstr "Czy na pewno chcesz wyjść?"
@@ -1839,12 +1841,9 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
-"Nie znaleziono działąjącego interfejsu sieci bezprzewodowych.\n"
-"Sprawdź cz podłączyłeś kompatybilne urządzenie WLAN oraz czy Twoja "
-"urządzenie jest włączone."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -2003,6 +2002,9 @@ msgstr "Potrzebny kod pin"
 
 msgid "Play"
 msgstr "Odtwarzaj"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Odtwarzanie nagranego filmu..."
@@ -2252,6 +2254,15 @@ msgstr "Usunąć ten timer?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Wyjść z subserwisów?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Restart"
 
@@ -2267,26 +2278,8 @@ msgstr "Nagrane pliki..."
 msgid "Recording"
 msgstr "Nagrywanie"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Nagrywanie(a) są w toku lub rozpoczyną się za kilka sekund... uruchomić "
-"ponownie teraz?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Nagrywanie(a) są w toku lub rozpoczną się za kilka sekund... uruchomić "
-"ponownie teraz?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Nagrywanie(a) są w toku lub rozpoczną się za kilka sekund... wyłączyć "
-"ponownie teraz?"
 
 msgid "Recordings always have priority"
 msgstr "Nagrywanie zawsze ma priorytet"
@@ -3154,6 +3147,11 @@ msgstr "Wstęp timera"
 msgid "Timer log"
 msgstr "Log timera"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Błąd timera"
 
@@ -3960,9 +3958,6 @@ msgstr "wolne"
 msgid "free diskspace"
 msgstr "Wolna przestrzeń dyskowa"
 
-msgid "full /etc directory"
-msgstr "Pełen folder /etc"
-
 msgid "go to deep standby"
 msgstr "Przejdź do głębokiego czuwania"
 
@@ -4546,6 +4541,20 @@ msgstr "Przełączony"
 #~ msgid "Device Setup..."
 #~ msgstr "Ustawienia urządzenia:"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Czy na pewno chcesz usunąć\n"
+#~ "plugin \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Czy na pewno chcesz pobrać\n"
+#~ "plugin \""
+
 #~ msgid "Do you want to burn this project to DVD medium?"
 #~ msgstr "Czy chcesz zapisac projekt na nośnik DVD"
 
@@ -4601,11 +4610,20 @@ msgstr "Przełączony"
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable you local network interface."
+#~ "enable your local network interface."
 #~ msgstr ""
 #~ "Nie znaleziono działającego interfejsu bezprzewodowego.\n"
 #~ "Sprawdź czy Twój WLAN USB Stick jest kompatybilny oraz czy włączyłeś "
 #~ "interfejs sieci lokalnej."
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "you local network interface."
+#~ msgstr ""
+#~ "Nie znaleziono działąjącego interfejsu sieci bezprzewodowych.\n"
+#~ "Sprawdź cz podłączyłeś kompatybilne urządzenie WLAN oraz czy Twoja "
+#~ "urządzenie jest włączone."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nie, pozwól mi wybrać listę standardową"
@@ -4652,6 +4670,27 @@ msgstr "Przełączony"
 #~ "z Dreamboxem.\n"
 #~ "Przed naciśnięciem OK podłącz Wlan USB Stick do Dreamboxa.\n"
 #~ "\n"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Nagrywanie(a) są w toku lub rozpoczyną się za kilka sekund... uruchomić "
+#~ "ponownie teraz?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Nagrywanie(a) są w toku lub rozpoczną się za kilka sekund... uruchomić "
+#~ "ponownie teraz?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Nagrywanie(a) są w toku lub rozpoczną się za kilka sekund... wyłączyć "
+#~ "ponownie teraz?"
 
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Restary interfejsu bezprzewodowego"
@@ -4783,6 +4822,9 @@ msgstr "Przełączony"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Równaj do Gniazda A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "Pełen folder /etc"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Zapętl bezpośrednio do Gniazda A"

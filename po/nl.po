@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-09-02 19:32+0100\n"
 "Last-Translator: Michel Weeren <michel@media-labs.nl>\n"
 "Language-Team: none <michel@weeren.net>\n"
@@ -53,6 +53,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -297,9 +301,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Uw Dreambox"
@@ -714,6 +715,9 @@ msgstr "Constellatie"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Afspelen voortzetten"
 
@@ -826,7 +830,7 @@ msgid ""
 "%s?"
 msgstr ""
 "Niet geconfigureerde satellietpositie\n"
-" \v%s verwijderen?"
+"%s verwijderen?"
 
 msgid "Description"
 msgstr "Omschrijving"
@@ -902,12 +906,11 @@ msgstr "4:3 materiaal weergeven als"
 msgid "Display Setup"
 msgstr "Display instellingen"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Wilt u deze applicatie echt\n"
-"verwijderen? \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -920,12 +923,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Wilt u %s echt wissen?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Wilt u dit bestand echt\n"
-"downloaden \""
 
 msgid "Do you really want to exit?"
 msgstr "Wilt u echt afsluiten?"
@@ -1840,12 +1842,9 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
-"Geen werkende WiFi adapter gevonden.\n"
-"Controleer of u de WiFi module correct geplaatst heeft of schakel de lokale "
-"netwerk adapter aan."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -2003,6 +2002,9 @@ msgstr "Pincode benodigd"
 
 msgid "Play"
 msgstr "Afspelen"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Opname afspelen..."
@@ -2254,6 +2256,15 @@ msgstr "Wilt u deze timer echt verwijderen?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Subzenders snelzap verlaten?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2269,23 +2280,8 @@ msgstr "Opgenomen bestanden..."
 msgid "Recording"
 msgstr "Opnemen"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Een opname is bezig of zal elk moment aanvangen. Wilt u toch herstarten?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Een opname is bezig of zal elk moment aanvangen. Wilt u toch herstarten?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Een opname is bezig of zal elk moment aanvangen. Wilt u toch uitschakelen?"
 
 msgid "Recordings always have priority"
 msgstr "Een opname heeft te allen tijde voorang"
@@ -3133,6 +3129,11 @@ msgstr "Timer invoer"
 msgid "Timer log"
 msgstr "Timer log"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Timerlogica fout"
 
@@ -3935,9 +3936,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "ruimte vrij..."
 
-msgid "full /etc directory"
-msgstr "complete map /etc "
-
 msgid "go to deep standby"
 msgstr "uitschakelen"
 
@@ -4546,6 +4544,20 @@ msgstr "zapte"
 #~ msgid "Do not show video preview"
 #~ msgstr "Geen opname preview weergeven"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Wilt u deze applicatie echt\n"
+#~ "verwijderen? \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Wilt u dit bestand echt\n"
+#~ "downloaden \""
+
 #~ msgid "Edit current title"
 #~ msgstr "Huidige titel wijzigen"
 
@@ -4597,6 +4609,15 @@ msgstr "zapte"
 #~ msgid "New DVD"
 #~ msgstr "Nieuwe DVD"
 
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "you local network interface."
+#~ msgstr ""
+#~ "Geen werkende WiFi adapter gevonden.\n"
+#~ "Controleer of u de WiFi module correct geplaatst heeft of schakel de "
+#~ "lokale netwerk adapter aan."
+
 #~ msgid "November"
 #~ msgstr "November"
 
@@ -4612,6 +4633,24 @@ msgstr "zapte"
 #~ msgid "Please do not change values when you not know what you do!"
 #~ msgstr ""
 #~ "Wijzig deze instellingen niet als je niet exact weet waar ze voor staan!"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Een opname is bezig of zal elk moment aanvangen. Wilt u toch herstarten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Een opname is bezig of zal elk moment aanvangen. Wilt u toch herstarten?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Een opname is bezig of zal elk moment aanvangen. Wilt u toch uitschakelen?"
 
 #~ msgid "Reset both"
 #~ msgstr "Herstart beide"
@@ -4674,6 +4713,9 @@ msgstr "zapte"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "gelijk aan socket A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "complete map /etc "
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "doorgelust naar socket A"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-15 12:23+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-10-15 12:10+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -909,12 +909,11 @@ msgstr "4:3-Inhalt anzeigen als"
 msgid "Display Setup"
 msgstr "Display-Einstellungen"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Möchten Sie das Plugin wirklich\n"
-"entfernen \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -927,12 +926,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Wollen Sie \"%s\" wirklich löschen?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Wollen Sie das Plugin mit\n"
-"dem Namen \" wirklich herunterladen?"
 
 msgid "Do you really want to exit?"
 msgstr "Wollen Sie wirklich beenden?"
@@ -1850,8 +1848,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -2005,6 +2003,9 @@ msgstr "Pincode benötigt"
 
 msgid "Play"
 msgstr "Abspielen"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
@@ -2887,8 +2888,10 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
-"Please press OK to start using you Dreambox."
+"Please press OK to start using your Dreambox."
 msgstr ""
+"Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt werden.\n"
+"Bitte drücken Sie OK, um den Assistenten zu verlassen."
 
 msgid ""
 "The .NFI Image flasher USB stick is now ready to use. Please download an ."
@@ -3130,6 +3133,11 @@ msgstr "Timer-Eintrag"
 
 msgid "Timer log"
 msgstr "Timer-Logbuch"
+
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
 
 msgid "Timer sanity error"
 msgstr "Fehler bei Timerprüfung"
@@ -3941,9 +3949,6 @@ msgstr "frei"
 msgid "free diskspace"
 msgstr "freier Festplattenspeicher"
 
-msgid "full /etc directory"
-msgstr "komplettes Verzeichnis /etc"
-
 msgid "go to deep standby"
 msgstr "Box abschalten"
 
@@ -4481,6 +4486,20 @@ msgstr "umgeschaltet"
 #~ msgid "Device Setup..."
 #~ msgstr "Geräteeinstellungen..."
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Möchten Sie das Plugin wirklich\n"
+#~ "entfernen \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Wollen Sie das Plugin mit\n"
+#~ "dem Namen \" wirklich herunterladen?"
+
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktiviere WLAN Unterstützung"
 
@@ -4553,14 +4572,6 @@ msgstr "umgeschaltet"
 #~ msgstr "Schritt "
 
 #~ msgid ""
-#~ "Thank you for using the wizard. Your box is now ready to use.\n"
-#~ "Please press OK to start using your Dreambox."
-#~ msgstr ""
-#~ "Der Assistent ist hiermit beendet. Ihre Dreambox kann nun benutzt "
-#~ "werden.\n"
-#~ "Bitte drücken Sie OK, um den Assistenten zu verlassen."
-
-#~ msgid ""
 #~ "The installation of the default settings is finished. Your can now "
 #~ "continue configuring your Dreambox by pressing the OK button on the "
 #~ "remote control."
@@ -4583,6 +4594,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Wie Tuner A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "komplettes Verzeichnis /etc"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Verbunden mit Tuner A"

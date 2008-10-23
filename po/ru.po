@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2007-06-14 10:15+0300\n"
 "Last-Translator: enigma® <enigma.ua@gmail.com>\n"
 "Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
@@ -48,6 +48,10 @@ msgid "#ffffffff"
 msgstr ""
 
 msgid "%H:%M"
+msgstr ""
+
+#, python-format
+msgid "%d jobs are running in the background!"
 msgstr ""
 
 #, python-format
@@ -279,9 +283,6 @@ msgstr ""
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Информация"
@@ -686,6 +687,9 @@ msgstr ""
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
@@ -869,12 +873,11 @@ msgstr ""
 msgid "Display Setup"
 msgstr ""
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Вы действительно хотите удалить\n"
-"плагин \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -885,12 +888,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Вы действительно хотите удалить %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Вы действительно хотите скачать\n"
-"плагин \""
 
 msgid "Do you really want to exit?"
 msgstr ""
@@ -1776,8 +1778,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1926,6 +1928,9 @@ msgid "Pin code needed"
 msgstr ""
 
 msgid "Play"
+msgstr ""
+
+msgid "Play Audio-CD..."
 msgstr ""
 
 msgid "Play recorded movies..."
@@ -2172,6 +2177,15 @@ msgstr "Действительно удалить данный таймер?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Действительно выйти из подсервиса quickzap?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2187,19 +2201,7 @@ msgstr ""
 msgid "Recording"
 msgstr "Запись"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr ""
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
 msgid "Recordings always have priority"
@@ -3004,6 +3006,11 @@ msgstr "Ввод таймера"
 msgid "Timer log"
 msgstr "Лог таймера"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Ошибка состояния таймера"
 
@@ -3774,9 +3781,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "свободное место на диске"
 
-msgid "full /etc directory"
-msgstr "всю папку /etc"
-
 msgid "go to deep standby"
 msgstr "полностью выключить"
 
@@ -4285,6 +4289,20 @@ msgstr ""
 #~ msgid "Add files to playlist"
 #~ msgstr "Добавить файлы к списку воспроизведения"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Вы действительно хотите удалить\n"
+#~ "плагин \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Вы действительно хотите скачать\n"
+#~ "плагин \""
+
 #~ msgid "Games / Plugins"
 #~ msgstr "Игры / Плагины"
 
@@ -4314,6 +4332,9 @@ msgstr ""
 
 #~ msgid "You selected a playlist"
 #~ msgstr "Вы выбрали список воспроизведения"
+
+#~ msgid "full /etc directory"
+#~ msgstr "всю папку /etc"
 
 #~ msgid ""
 #~ "scan done!\n"
