@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-10-06 12:56+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
@@ -54,6 +54,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -298,9 +302,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Acerca de"
@@ -715,6 +716,9 @@ msgstr "Constelación"
 msgid "Content does not fit on DVD!"
 msgstr "¡Los contenidos no caben en un DVD!"
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Reproducción contínua"
 
@@ -903,12 +907,11 @@ msgstr "Visualice los contenidos 4:3 como"
 msgid "Display Setup"
 msgstr "Configurar Pantalla"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Seguro que quiere BORRAR\n"
-"el complemento \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -921,12 +924,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "¿Seguro que quiere borrar %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Seguro que quiere descargar\n"
-"el complemento \""
 
 msgid "Do you really want to exit?"
 msgstr "¿Realmente quiere salir?"
@@ -1838,11 +1840,9 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
-"He encontrado un interface wireless que no funciona.\n"
-"Por favor, verifique que ha conectado un dispositivo WLAN compatible."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -1999,6 +1999,9 @@ msgstr "Necesario código pin"
 
 msgid "Play"
 msgstr "Reproducir"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Reproducir películas grabadas..."
@@ -2248,6 +2251,15 @@ msgstr "¿Seguro que quiere borrar la programación?"
 msgid "Really exit the subservices quickzap?"
 msgstr "¿Quiere salir del zapeo rápido de subcananles?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2263,26 +2275,8 @@ msgstr "Ficheros grabados..."
 msgid "Recording"
 msgstr "Grabando"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Hay grabacion(es) en progreso o comenzarán en pocos segundos... ¿realmente "
-"quiere reiniciar ahora?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Hay grabacion(es) en progreso o comenzarán en pocos segundos... ¿realmente "
-"quiere reiniciar ahora?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Hay grabacion(es) en progreso o comenzarán en pocos segundos... ¿realmente "
-"quiere apagar ahora?"
 
 msgid "Recordings always have priority"
 msgstr "Las grabaciones siempre tienen prioridad"
@@ -3137,6 +3131,11 @@ msgstr "Grabación"
 msgid "Timer log"
 msgstr "Log de grabación"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Error de grabación"
 
@@ -3941,9 +3940,6 @@ msgstr "libre"
 msgid "free diskspace"
 msgstr "espacio libre en disco"
 
-msgid "full /etc directory"
-msgstr "todo el directorio /etc"
-
 msgid "go to deep standby"
 msgstr "ir a pausa profunda"
 
@@ -4532,6 +4528,20 @@ msgstr "zapeado"
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Reproducción discontinua a la velocidad de"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Seguro que quiere BORRAR\n"
+#~ "el complemento \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Seguro que quiere descargar\n"
+#~ "el complemento \""
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "¿Quiere ver un tutorial de la lista de corte?"
 
@@ -4584,11 +4594,19 @@ msgstr "zapeado"
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable you local network interface."
+#~ "enable your local network interface."
 #~ msgstr ""
 #~ "No hay adaptador inalámbrico que funcione.\n"
 #~ "Por favor, verifique que ha conectado un USB WLAN compatible o active su "
 #~ "conexión de red local."
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "you local network interface."
+#~ msgstr ""
+#~ "He encontrado un interface wireless que no funciona.\n"
+#~ "Por favor, verifique que ha conectado un dispositivo WLAN compatible."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "No, dejeme elegir las listas por defecto"
@@ -4613,6 +4631,27 @@ msgstr "zapeado"
 
 #~ msgid "Rate"
 #~ msgstr "Velocidad"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Hay grabacion(es) en progreso o comenzarán en pocos segundos... "
+#~ "¿realmente quiere reiniciar ahora?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Hay grabacion(es) en progreso o comenzarán en pocos segundos... "
+#~ "¿realmente quiere reiniciar ahora?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Hay grabacion(es) en progreso o comenzarán en pocos segundos... "
+#~ "¿realmente quiere apagar ahora?"
 
 #~ msgid ""
 #~ "Recording(s) are in progress or comming up in few seconds... really "
@@ -4705,6 +4744,9 @@ msgstr "zapeado"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "igual al socket A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "todo el directorio /etc"
 
 #~ msgid "list"
 #~ msgstr "lista"

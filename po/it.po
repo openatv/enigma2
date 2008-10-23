@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Italian Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-09-23 09:02+0100\n"
 "Last-Translator: Spaeleus <spaeleus@croci.org>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
@@ -51,6 +51,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -292,9 +296,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Info"
@@ -708,6 +709,9 @@ msgstr "Costellazione"
 msgid "Content does not fit on DVD!"
 msgstr "Le dimensioni superano la capacità del DVD!"
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Riproduzione continua"
 
@@ -896,12 +900,11 @@ msgstr "Mostrare contenuti in 4:3 come"
 msgid "Display Setup"
 msgstr "Configurazione Display"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Si conferma la rimozione\n"
-"del plugin \"%s\"?"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -914,12 +917,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Cancellare %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Si conferma il download\n"
-"del plugin \"%s\"?"
 
 msgid "Do you really want to exit?"
 msgstr "Uscire?"
@@ -1833,12 +1835,9 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
-"Nessun adattatore di rete wireless trovato!\n"
-"Verificare di aver collegato un adattatore WLAN USB compatibile o abilitare "
-"l'intefaccia di rete locale."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -1995,6 +1994,9 @@ msgstr "Richiesto codice PIN"
 
 msgid "Play"
 msgstr "Play"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Riprodurre Registrazioni"
@@ -2245,6 +2247,15 @@ msgstr "Cancellare questo timer?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Uscire dallo zapping veloce sottoservizi?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2260,20 +2271,8 @@ msgstr "Registrazioni..."
 msgid "Recording"
 msgstr "Registrazione in corso"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr "Registrazioni in corso o in avvio a breve! Riavviare ora?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr "Registrazioni in corso o in avvio a breve! Riavviare ora?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr "Registrazioni in corso o in avvio a breve! Spegnere ora?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
+msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "Le registrazioni hanno sempre la priorità"
@@ -3127,6 +3126,11 @@ msgstr "Voce Timer"
 msgid "Timer log"
 msgstr "Log Timer"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Errore congruenza Timer!"
 
@@ -3931,9 +3935,6 @@ msgstr "Libero"
 msgid "free diskspace"
 msgstr "di spazio libero su disco"
 
-msgid "full /etc directory"
-msgstr "Cartella /etc completa"
-
 msgid "go to deep standby"
 msgstr "Spegnimento (Deep Standby)"
 
@@ -4458,5 +4459,46 @@ msgstr "Zapped"
 #~ msgid "DVD up key"
 #~ msgstr "Tasto 'Sù' DVD"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Si conferma la rimozione\n"
+#~ "del plugin \"%s\"?"
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Si conferma il download\n"
+#~ "del plugin \"%s\"?"
+
 #~ msgid "Jump to video title 1 (play movie from start)"
 #~ msgstr "Passare al titolo video 1 (riprodurre dall'inizio)"
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "you local network interface."
+#~ msgstr ""
+#~ "Nessun adattatore di rete wireless trovato!\n"
+#~ "Verificare di aver collegato un adattatore WLAN USB compatibile o "
+#~ "abilitare l'intefaccia di rete locale."
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr "Registrazioni in corso o in avvio a breve! Riavviare ora?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr "Registrazioni in corso o in avvio a breve! Riavviare ora?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr "Registrazioni in corso o in avvio a breve! Spegnere ora?"
+
+#~ msgid "full /etc directory"
+#~ msgstr "Cartella /etc completa"

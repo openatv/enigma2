@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-10-02 10:56+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -52,6 +52,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -296,9 +300,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Infó"
@@ -713,6 +714,9 @@ msgstr "Együttállás"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Lejátszás folytatása"
 
@@ -901,12 +905,11 @@ msgstr "A 4:3-as tartalmat mutassa mint"
 msgid "Display Setup"
 msgstr "Kijelző beállítása"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Biztos hogy el akarja távolítani\n"
-"a plugin-t? \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -919,12 +922,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Biztos hogy törölni akarja a %s-t?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Biztos le akarja tölteni a\n"
-"plugint? \""
 
 msgid "Do you really want to exit?"
 msgstr "Biztos ki akar lépni?"
@@ -1838,8 +1840,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1998,6 +2000,9 @@ msgstr "PIN-kód szükséges"
 
 msgid "Play"
 msgstr "Lejátszás"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Felvett filmek lejátszása..."
@@ -2245,6 +2250,15 @@ msgstr "Biztos töröljem ezt az időzítést?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Biztos ki akar lépni az alcsatorna gyorsZAP módból?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2260,20 +2274,8 @@ msgstr "Felvett filmek..."
 msgid "Recording"
 msgstr "Felvétel"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr "Felvétel van éppen, vagy hamarosan indul... biztos újraindítsam most?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr "Felvétel van éppen, vagy hamarosan indul... biztos újraindítsam most?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr "Felvétel van éppen, vagy hamarosan indul... biztos kikapcsoljam most?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
+msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "A felvételnek mindíg elsőbbsége van"
@@ -3122,6 +3124,11 @@ msgstr "Időzítés megadása"
 msgid "Timer log"
 msgstr "Időzítő lognapló"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Időzítési logikai hiba"
 
@@ -3923,9 +3930,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "üres terület van a HDD-n."
 
-msgid "full /etc directory"
-msgstr "a teljes /etc könyvtár"
-
 msgid "go to deep standby"
 msgstr "teljes kikapcsoláshoz ugrás"
 
@@ -4555,6 +4559,20 @@ msgstr "zap-elt"
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Nem folytatólagos lejátszási képismétlés számolása"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Biztos hogy el akarja távolítani\n"
+#~ "a plugin-t? \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Biztos le akarja tölteni a\n"
+#~ "plugint? \""
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Meg szeretné nézni a vágólista ismertetöt?"
 
@@ -4607,7 +4625,7 @@ msgstr "zap-elt"
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable you local network interface."
+#~ "enable your local network interface."
 #~ msgstr ""
 #~ "Nem találtam működő wireles hálózati interfészt.\n"
 #~ "Ellenőrizze hogy be van dugva egy a Dreamboxal kompatibilis wireless "
@@ -4670,6 +4688,24 @@ msgstr "zap-elt"
 
 #~ msgid "Rate"
 #~ msgstr "Arány"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Felvétel van éppen, vagy hamarosan indul... biztos újraindítsam most?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Felvétel van éppen, vagy hamarosan indul... biztos újraindítsam most?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Felvétel van éppen, vagy hamarosan indul... biztos kikapcsoljam most?"
 
 #~ msgid "Remove service"
 #~ msgstr "Csatorna eltávolítása"
@@ -4821,6 +4857,9 @@ msgstr "zap-elt"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "olyan mint az A foglalat"
+
+#~ msgid "full /etc directory"
+#~ msgstr "a teljes /etc könyvtár"
 
 #~ msgid "list"
 #~ msgstr "lista"

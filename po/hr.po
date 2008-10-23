@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-01-27 23:38+0100\n"
 "Last-Translator: Jurica <jurica@clarkdigital.com>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -47,6 +47,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%S:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -291,9 +295,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "O programu"
@@ -703,6 +704,9 @@ msgstr "Konstalacija"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
@@ -889,12 +893,11 @@ msgstr ""
 msgid "Display Setup"
 msgstr "Postavke prednjeg zaslona"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Želite li stvarno OBRISATI\n"
-"dodatak \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -905,12 +908,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Jeste li sigurni da želite obrisati datoteku %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Želite li stvarno skinuti\n"
-"dodatak \""
 
 msgid "Do you really want to exit?"
 msgstr "Želite li stvarno izaći?"
@@ -1810,8 +1812,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1960,6 +1962,9 @@ msgid "Pin code needed"
 msgstr "Pin kod je potreban"
 
 msgid "Play"
+msgstr ""
+
+msgid "Play Audio-CD..."
 msgstr ""
 
 msgid "Play recorded movies..."
@@ -2206,6 +2211,15 @@ msgstr "Želite li stvarno obrisati ovaj tajmer?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Želite li stvarno izaći iz podusluge brzogzap-a?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2221,26 +2235,8 @@ msgstr "Snimljene datoteke..."
 msgid "Recording"
 msgstr "Snimanje"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Snimanje je trenutno u toku ili će uskoro početi...želite li stvarno reboot "
-"sada?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Snimanje je trenutno u toku ili će uskoro početi...želite li stvarno restart "
-"sada?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Snimanje je trenutno u toku ili će uskoro početi...želite li stvarno "
-"isključiti sada?"
 
 msgid "Recordings always have priority"
 msgstr "Snimanje uvijek ima prioritet"
@@ -3052,6 +3048,11 @@ msgstr "Unos Tajmera"
 msgid "Timer log"
 msgstr "Tajmer log"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Greška nerazumnog tajmera"
 
@@ -3838,9 +3839,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "slobodan prostor na disku"
 
-msgid "full /etc directory"
-msgstr "puni /etc direktorij"
-
 msgid "go to deep standby"
 msgstr "pokreni Isključivanje Dreamboxa"
 
@@ -4427,6 +4425,20 @@ msgstr "prebačen"
 #~ msgid "Device Setup..."
 #~ msgstr "Postavke Uređaja..."
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Želite li stvarno OBRISATI\n"
+#~ "dodatak \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Želite li stvarno skinuti\n"
+#~ "dodatak \""
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Želite li pregledati skraćeni vodič?"
 
@@ -4501,6 +4513,27 @@ msgstr "prebačen"
 
 #~ msgid "Record Splitsize"
 #~ msgstr "Vel.Dat. kod Snimanja"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Snimanje je trenutno u toku ili će uskoro početi...želite li stvarno "
+#~ "reboot sada?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Snimanje je trenutno u toku ili će uskoro početi...želite li stvarno "
+#~ "restart sada?"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Snimanje je trenutno u toku ili će uskoro početi...želite li stvarno "
+#~ "isključiti sada?"
 
 #~ msgid ""
 #~ "Recording(s) are in progress or comming up in few seconds... really "
@@ -4621,6 +4654,9 @@ msgstr "prebačen"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "jednako kao Utor A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "puni /etc direktorij"
 
 #~ msgid "list"
 #~ msgstr "lista"

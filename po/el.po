@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2008-07-17 12:13+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -46,6 +46,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -290,9 +294,6 @@ msgstr "AGC"
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Περί"
@@ -704,6 +705,9 @@ msgstr "Διάταξη"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr "Παίξιμο σθνεχείυετε..."
 
@@ -890,12 +894,11 @@ msgstr "Εμφάνιση περιεχόμενο 4:3 σαν"
 msgid "Display Setup"
 msgstr "Εμφανιση Setup"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Θέλετε πραγματικά να\n"
-"διαγράψετε το plugin \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -908,12 +911,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Θέλετε πραγματικά να διαγράψετε το %s;"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Θέλετε πραγματικά να\n"
-"κατεβάσετε το plugin \""
 
 msgid "Do you really want to exit?"
 msgstr "Είστε σίγουρος οτι θέλετε να βγείτε;"
@@ -1831,8 +1833,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1987,6 +1989,9 @@ msgstr "Χρειάζεται το Pin code"
 
 msgid "Play"
 msgstr "Play"
+
+msgid "Play Audio-CD..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Αναπαραγωγή ταινίας..."
@@ -2234,6 +2239,15 @@ msgstr "Να διαγράψω αυτόν τον timer;"
 msgid "Really exit the subservices quickzap?"
 msgstr "Έξοδος απο γρήγορο zapping στης υπό-υπηρεσίες?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2249,20 +2263,8 @@ msgstr "Μαγνητοσκοπημένες ταινίες..."
 msgid "Recording"
 msgstr "Γίνεται εγγραφή"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Να γινει επανεκκίνηση;"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Να γινει επανεκκίνηση;"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Σίγουρα να κλείσιει τώρα;"
+msgid "Recording(s) are in progress or coming up in few seconds!"
+msgstr ""
 
 msgid "Recordings always have priority"
 msgstr "Οι εγγραφές έχουν πάντα προτεραιότητα"
@@ -3101,6 +3103,11 @@ msgstr "Timer entry"
 msgid "Timer log"
 msgstr "Timer log"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Timer sanity error"
 
@@ -3898,9 +3905,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "Ελεύθερος χώρος δίσκου"
 
-msgid "full /etc directory"
-msgstr "full /etc directory"
-
 msgid "go to deep standby"
 msgstr "Πήγαινε σε κατάσταση \"βαθιάς\" αναμονής"
 
@@ -4468,6 +4472,20 @@ msgstr "zapped"
 #~ msgid "DVD up key"
 #~ msgstr "Πληκτρο \"πανω\" για DVD"
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Θέλετε πραγματικά να\n"
+#~ "διαγράψετε το plugin \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Θέλετε πραγματικά να\n"
+#~ "κατεβάσετε το plugin \""
+
 #~ msgid "Enable LAN"
 #~ msgstr "Ενεργοποίησε LAN"
 
@@ -4496,7 +4514,7 @@ msgstr "zapped"
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable you local network interface."
+#~ "enable your local network interface."
 #~ msgstr ""
 #~ "Δεν βρέθηκε wireless interface.\n"
 #~ "Σιγουρευτείτε οτι συνδέσατε ενα υποστηριζόμενο WLAN USB Stick ή "
@@ -4547,6 +4565,21 @@ msgstr "zapped"
 #~ "Υποστιρίζοντε Wlan USB Sticks με Zydas ZD1211B και RAlink RT73 Chipset.\n"
 #~ "Πιέστε ΟΚ αφου συνδέσατε το Wlan USB Stick .\n"
 #~ "\n"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Να γινει επανεκκίνηση;"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Να γινει επανεκκίνηση;"
+
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr "Εγγραφή(ές) ειναι προγραμματισμένες... Σίγουρα να κλείσιει τώρα;"
 
 #~ msgid "Replace current playlist"
 #~ msgstr "Αντικατέστησε την τρέχουσα playlist"
@@ -4665,6 +4698,9 @@ msgstr "zapped"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Ίδιο με το Socket A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "full /etc directory"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "loopthrough to socket A"

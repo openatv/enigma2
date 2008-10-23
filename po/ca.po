@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
+"POT-Creation-Date: 2008-10-23 17:06+0200\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -56,6 +56,10 @@ msgstr "#ffffffff"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d min"
@@ -303,9 +307,6 @@ msgstr ""
 
 msgid "AGC:"
 msgstr "AGC:"
-
-msgid "Abort"
-msgstr ""
 
 msgid "About"
 msgstr "Quant a"
@@ -714,6 +715,9 @@ msgstr "Constel·lació"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
+msgid "Continue in background"
+msgstr ""
+
 msgid "Continue playing"
 msgstr ""
 
@@ -900,12 +904,11 @@ msgstr ""
 msgid "Display Setup"
 msgstr "Configurar Display"
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Segur que vols ESBORRAR\n"
-"el plugin \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -916,12 +919,11 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr "Segur que vols esborrar %s?"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Segur que vols descarregar\n"
-"el plugin \""
 
 msgid "Do you really want to exit?"
 msgstr "Segur que vols sortir?"
@@ -1823,8 +1825,8 @@ msgstr ""
 
 msgid ""
 "No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable you "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid ""
@@ -1974,6 +1976,9 @@ msgid "Pin code needed"
 msgstr "Cal un codi pin"
 
 msgid "Play"
+msgstr ""
+
+msgid "Play Audio-CD..."
 msgstr ""
 
 msgid "Play recorded movies..."
@@ -2220,6 +2225,15 @@ msgstr "Esborrar aquesta programació?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Sortir del zappeig ràpid dels subserveis?"
 
+msgid "Really reboot now?"
+msgstr ""
+
+msgid "Really restart now?"
+msgstr ""
+
+msgid "Really shutdown now?"
+msgstr ""
+
 msgid "Reboot"
 msgstr ""
 
@@ -2235,29 +2249,8 @@ msgstr "Arxius gravats..."
 msgid "Recording"
 msgstr "Gravant"
 
-#, fuzzy
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
-"Hi ha gravacions en progrés o que començaran en breu. Realment vols "
-"reiniciar ara?"
-
-#, fuzzy
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Hi ha gravacions en progrés o que començaran en breu. Realment vols tornar a "
-"arrancar ara?"
-
-#, fuzzy
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Hi ha gravacions en progrés o que començaran en breu. Realment vols apagar "
-"ara?"
 
 msgid "Recordings always have priority"
 msgstr "Les gravacions tenen prioritat"
@@ -3069,6 +3062,11 @@ msgstr "Gravació"
 msgid "Timer log"
 msgstr "Registre de gravació"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Error de programació"
 
@@ -3853,9 +3851,6 @@ msgstr ""
 msgid "free diskspace"
 msgstr "espai lliure al disc"
 
-msgid "full /etc directory"
-msgstr "tot el directori /etc"
-
 msgid "go to deep standby"
 msgstr "aturar completament"
 
@@ -4392,6 +4387,20 @@ msgstr "zappejat"
 #~ msgid "Device Setup..."
 #~ msgstr "Configuració del dispositiu..."
 
+#~ msgid ""
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Segur que vols ESBORRAR\n"
+#~ "el plugin \""
+
+#~ msgid ""
+#~ "Do you really want to download\n"
+#~ "the plugin \""
+#~ msgstr ""
+#~ "Segur que vols descarregar\n"
+#~ "el plugin \""
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Vols veure un manual d'edició?"
 
@@ -4412,6 +4421,30 @@ msgstr "zappejat"
 
 #~ msgid "New DVD"
 #~ msgstr "Nou DVD"
+
+#, fuzzy
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really reboot "
+#~ "now?"
+#~ msgstr ""
+#~ "Hi ha gravacions en progrés o que començaran en breu. Realment vols "
+#~ "reiniciar ara?"
+
+#, fuzzy
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "restart now?"
+#~ msgstr ""
+#~ "Hi ha gravacions en progrés o que començaran en breu. Realment vols "
+#~ "tornar a arrancar ara?"
+
+#, fuzzy
+#~ msgid ""
+#~ "Recording(s) are in progress or coming up in few seconds... really "
+#~ "shutdown now?"
+#~ msgstr ""
+#~ "Hi ha gravacions en progrés o que començaran en breu. Realment vols "
+#~ "apagar ara?"
 
 #~ msgid "Save current project to disk"
 #~ msgstr "Grava el projecte actual al disc"
@@ -4442,6 +4475,9 @@ msgstr "zappejat"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "igual al Socket A"
+
+#~ msgid "full /etc directory"
+#~ msgstr "tot el directori /etc"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "connectat al socket A"
