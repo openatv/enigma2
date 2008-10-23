@@ -20,10 +20,12 @@ void PSignal::callPython(ePyObject tuple)
 	}
 }
 
-PyObject *PSignal::get()
+PyObject *PSignal::get(bool steal)
 {
-	if (!m_list)
-		m_list = PyList_New(0);
-	Py_INCREF(m_list);
+	if (!steal) {
+		if (!m_list)
+			m_list = PyList_New(0);
+		Py_INCREF(m_list);
+	}
 	return m_list;
 }

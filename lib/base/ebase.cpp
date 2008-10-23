@@ -368,16 +368,19 @@ struct eTimerPy
 static int
 eTimerPy_traverse(eTimerPy *self, visitproc visit, void *arg)
 {
-	PyObject *obj = self->tm->timeout.get();
-	Py_VISIT(obj);
+	PyObject *obj = self->tm->timeout.get(true);
+	if (obj) {
+		Py_VISIT(obj);
+	}
 	return 0;
 }
 
 static int
 eTimerPy_clear(eTimerPy *self)
 {
-	PyObject *obj = self->tm->timeout.get();
-	Py_CLEAR(obj);
+	PyObject *obj = self->tm->timeout.get(true);
+	if (obj)
+		Py_CLEAR(obj);
 	return 0;
 }
 
@@ -572,16 +575,18 @@ struct eSocketNotifierPy
 static int
 eSocketNotifierPy_traverse(eSocketNotifierPy *self, visitproc visit, void *arg)
 {
-	PyObject *obj = self->sn->activated.get();
-	Py_VISIT(obj);
+	PyObject *obj = self->sn->activated.get(true);
+	if (obj)
+		Py_VISIT(obj);
 	return 0;
 }
 
 static int
 eSocketNotifierPy_clear(eSocketNotifierPy *self)
 {
-	PyObject *obj = self->sn->activated.get();
-	Py_CLEAR(obj);
+	PyObject *obj = self->sn->activated.get(true);
+	if (obj)
+		Py_CLEAR(obj);
 	return 0;
 }
 

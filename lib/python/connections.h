@@ -18,7 +18,7 @@ public:
 	PSignal();
 	~PSignal();
 	void callPython(SWIG_PYOBJECT(ePyObject) tuple);
-	PyObject *get();
+	PyObject *get(bool steal=false);
 };
 
 inline PyObject *PyFrom(int v)
