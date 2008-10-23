@@ -1078,7 +1078,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-	<!-- LCD screen (menu's) -->
+	<!-- LCD screen (menus) -->
 	<screen name="MenuSummary" position="0,0" size="132,64">
 		<widget source="parent.title" render="Label" position="6,0" size="120,32" font="Regular;14" halign="center" valign="center"/>
 		<widget source="parent.menu" render="Label" position="6,32" size="120,32" font="Regular;16" halign="center" valign="center">
@@ -1147,6 +1147,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 		<widget source="backgroundable" render="FixedLabel" text="Continue in background" font="Regular;20" halign="center" valign="center" position="360,300" size="140,40" transparent="1" backgroundColor="#18188b" >
 			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<screen name="JobView_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="Regular;16" />
+		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="Regular;12" />
+		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="Regular;12" zPosition="2" halign="center" transparent="1"  >
+			<convert type="ProgressToText" />
 		</widget>
 	</screen>
 </skin>

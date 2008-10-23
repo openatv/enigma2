@@ -16,12 +16,14 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, [])
 		self.parent = parent
 		self.job = job
-		self.job.taskview = self
 
 		self["job_name"] = StaticText(job.name)
 		self["job_progress"] = Progress()
-		self["job_status"] = StaticText()
 		self["job_task"] = StaticText()
+		self["summary_job_name"] = StaticText(job.name)
+		self["summary_job_progress"] = Progress()
+		self["summary_job_task"] = StaticText()
+		self["job_status"] = StaticText()
 		self["finished"] = Boolean()
 		self["cancelable"] = Boolean(cancelable)
 		self["backgroundable"] = Boolean(backgroundable)
@@ -67,13 +69,17 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 	def state_changed(self):
 		j = self.job
 		self["job_progress"].range = j.end
+		self["summary_job_progress"].range = j.end
 		self["job_progress"].value = j.progress
+		self["summary_job_progress"].value = j.progress
 		#print "JobView::state_changed:", j.end, j.progress
 		self["job_status"].text = j.getStatustext()
 		if j.status == j.IN_PROGRESS:
 			self["job_task"].text = j.tasks[j.current_task].name
+			self["summary_job_task"].text = j.tasks[j.current_task].name
 		else:
 			self["job_task"].text = ""
+			self["summary_job_task"].text = j.getStatustext()
 		if j.status in [j.FINISHED, j.FAILED]:
 			self.performAfterEvent()
 			self["backgroundable"].boolean = False
