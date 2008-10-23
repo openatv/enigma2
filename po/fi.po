@@ -2,14 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-13 22:55+0200\n"
-"PO-Revision-Date: 2008-07-06 14:56+0200\n"
+"POT-Creation-Date: 2008-10-23 15:27+0200\n"
+"PO-Revision-Date: 2008-10-21 22:46+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Language: Finnish\n"
+"X-Poedit-Country: FINLAND\n"
 
 msgid " "
 msgstr ""
@@ -48,6 +50,10 @@ msgid "%H:%M"
 msgstr ""
 
 #, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
+
+#, python-format
 msgid "%d min"
 msgstr "%d min"
 
@@ -80,14 +86,16 @@ msgid "(show optional DVD audio menu)"
 msgstr "(näytä  DVD-äänen lisävalikko)"
 
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr ".NFI lataus epäonnistui:"
 
 msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
+msgstr ".NFI-päivitysohjelman asennus USB-muistille onnistui."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
+".NFI-tiedoston md5sum-allekirjoitus on kunnossa. Voit asentaa tämän "
+"päivityksen."
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2-hakemisto"
@@ -247,7 +255,7 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr ""
+msgstr "Tarvittavaa osaa (%s) ei löytynyt."
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -292,9 +300,6 @@ msgstr "AGC"
 msgid "AGC:"
 msgstr "AGC:"
 
-msgid "Abort"
-msgstr ""
-
 msgid "About"
 msgstr "Tietoja"
 
@@ -305,7 +310,7 @@ msgid "Action on long powerbutton press"
 msgstr "Sammutusnapin pitkä painallus"
 
 msgid "Action:"
-msgstr ""
+msgstr "Toiminto:"
 
 msgid "Activate Picture in Picture"
 msgstr "Avaa PiP-kuva"
@@ -314,26 +319,26 @@ msgid "Activate network settings"
 msgstr "Ota verkkoasetukset käyttöön"
 
 msgid "Adapter settings"
-msgstr "Adapterin asetukset"
+msgstr "Sovittimen asetukset"
 
 msgid "Add"
 msgstr "Lisää"
 
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Lisää kirjanmerkki"
 
 #  PALAA TÄHÄN
 msgid "Add a mark"
 msgstr "Lisää merkki"
 
 msgid "Add a new title"
-msgstr ""
+msgstr "Lisää uusi otsikko"
 
 msgid "Add timer"
 msgstr "Lisää ajastus"
 
 msgid "Add title"
-msgstr ""
+msgstr "Lisää otsikko"
 
 msgid "Add to bouquet"
 msgstr "Lisää suosikkilistalle"
@@ -378,7 +383,7 @@ msgid "All"
 msgstr "Kaikki"
 
 msgid "All Satellites"
-msgstr ""
+msgstr "Kaikki satelliitit"
 
 msgid "All..."
 msgstr "Kaikki"
@@ -396,7 +401,7 @@ msgid "An empty filename is illegal."
 msgstr "Tyhjä nimi ei ole sallittu"
 
 msgid "An unknown error occured!"
-msgstr ""
+msgstr "Tuntematon virhe!"
 
 msgid "Arabic"
 msgstr "Arabia"
@@ -427,13 +432,13 @@ msgid "Audio Options..."
 msgstr "Äänivalinnat"
 
 msgid "Authoring mode"
-msgstr ""
+msgstr "Muokkaustila"
 
 msgid "Auto"
 msgstr "Automaattinen"
 
 msgid "Auto chapter split every ? minutes (0=never)"
-msgstr ""
+msgstr "Automaattinen kappalejako joka ? min välein (0=ei koskaan)"
 
 msgid "Auto scart switching"
 msgstr "Autom. SCARTin kytkentä"
@@ -442,13 +447,13 @@ msgid "Automatic"
 msgstr "Automaattinen"
 
 msgid "Automatic SSID lookup"
-msgstr ""
+msgstr "Automaattinen SSID etsintä"
 
 msgid "Automatic Scan"
 msgstr "Automaattihaku"
 
 msgid "Available format variables"
-msgstr ""
+msgstr "Formaatti-muuttujat"
 
 msgid "B"
 msgstr "B"
@@ -469,7 +474,7 @@ msgid "Back"
 msgstr "Takaisin"
 
 msgid "Background"
-msgstr ""
+msgstr "Tausta"
 
 msgid "Backup"
 msgstr "Luo"
@@ -508,13 +513,13 @@ msgid "Behavior when a movie reaches the end"
 msgstr "Toiminto kun tallenne loppuu"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Kirjanmerkit"
 
 msgid "Brightness"
 msgstr "Kirkkaus"
 
 msgid "Burn DVD"
-msgstr ""
+msgstr "Polta DVD"
 
 msgid "Burn to DVD..."
 msgstr ""
@@ -552,7 +557,7 @@ msgid "Cancel"
 msgstr "Peruuta"
 
 msgid "Cannot parse feed directory"
-msgstr ""
+msgstr "Lataushakemistoa ei voitu lukea"
 
 msgid "Capacity: "
 msgstr "Kapasiteetti:"
@@ -567,7 +572,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Suosikkilistojen vaihto myös sivunuolilla"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Muuta hak."
 
 msgid "Change pin code"
 msgstr "Vaihda tunnusluku"
@@ -597,10 +602,10 @@ msgid "Chap."
 msgstr "Osa"
 
 msgid "Chapter"
-msgstr "Osa"
+msgstr "Kappale"
 
 msgid "Chapter:"
-msgstr "Osa:"
+msgstr "Kappale:"
 
 msgid "Check"
 msgstr "Tarkista"
@@ -652,10 +657,10 @@ msgid "Coderate LP"
 msgstr "Koodinopeus (LP)"
 
 msgid "Collection name"
-msgstr ""
+msgstr "Kokoelman nimi"
 
 msgid "Collection settings"
-msgstr ""
+msgstr "Kokoelman asetukset"
 
 msgid "Color Format"
 msgstr "Videolähtö (TV-SCART)"
@@ -670,7 +675,7 @@ msgid "Committed DiSEqC command"
 msgstr "Committed DiSEqC-käsky"
 
 msgid "Common Interface"
-msgstr "CI-liitäntä"
+msgstr "CI-liitäntä/CAM"
 
 msgid "Compact Flash"
 msgstr "CompactFlash"
@@ -710,6 +715,9 @@ msgid "Constellation"
 msgstr ""
 
 msgid "Content does not fit on DVD!"
+msgstr "Sisältö ei mahdu DVD:lle!"
+
+msgid "Continue in background"
 msgstr ""
 
 msgid "Continue playing"
@@ -719,20 +727,20 @@ msgid "Contrast"
 msgstr "Kontrasti"
 
 msgid "Copying USB flasher boot image to stick..."
-msgstr ""
+msgstr "Päivitysohjelman kopiointi USB-muistille käynnissä.."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "NFI-ohjelmistopäivityksien palvelimelle ei saatu yhteyttä:"
 
 msgid "Could not load Medium! No disc inserted?"
-msgstr ""
+msgstr "Levyä ei voitu ladata! Levy puuttuu?"
 
 msgid "Create movie folder failed"
 msgstr "Tallennehakemiston luonti epäonnistui"
 
 #, python-format
 msgid "Creating directory %s failed."
-msgstr ""
+msgstr "Hakemiston %s luominen epäonnistui."
 
 msgid "Creating partition failed"
 msgstr "Kiintolevyosion luonti epäonnistui"
@@ -741,7 +749,7 @@ msgid "Croatian"
 msgstr "Kroatia"
 
 msgid "Current Transponder"
-msgstr "Nykyinen transponderi"
+msgstr "Nykyinen lähetin"
 
 msgid "Current settings:"
 msgstr "Nykyiset asetukset"
@@ -787,7 +795,7 @@ msgid "DVD Player"
 msgstr "DVD-soitin"
 
 msgid "DVD media toolbox"
-msgstr ""
+msgstr "DVD-levyn työkalut"
 
 msgid "Danish"
 msgstr "Tanska"
@@ -796,16 +804,16 @@ msgid "Date"
 msgstr "Päiväys"
 
 msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
+msgstr "Puretaan päivitysohjelmaa USB-muistia varten..."
 
 msgid "Deep Standby"
 msgstr "Virransäästötila"
 
 msgid "Default services lists"
-msgstr "Oletuskanavalista"
+msgstr "Lataa oletuskanavalista"
 
 msgid "Default settings"
-msgstr "Oletusasetukset"
+msgstr "Lataa oletusarvot"
 
 msgid "Delay"
 msgstr "Viive"
@@ -831,7 +839,7 @@ msgid "Description"
 msgstr "Kuvaus"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Kohdehakemisto"
 
 msgid "Detected HDD:"
 msgstr "Asennettu kiintolevy:"
@@ -858,14 +866,14 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC-toistoja"
 
 msgid "Direct playback of linked titles without menu"
-msgstr ""
+msgstr "Linkitettyjen tiedostojen suora toisto ilman valikkoa"
 
 #, python-format
 msgid "Directory %s nonexistent."
-msgstr ""
+msgstr "Hakemistoa %s ei löydy."
 
 msgid "Disable"
-msgstr "Estä"
+msgstr "Keskeytä"
 
 msgid "Disable Picture in Picture"
 msgstr "Sulje PiP-kuva"
@@ -874,10 +882,10 @@ msgid "Disable Subtitles"
 msgstr "Poista tekstitys"
 
 msgid "Disable timer"
-msgstr ""
+msgstr "Poista käytöstä"
 
 msgid "Disabled"
-msgstr "Poistettu käytöstä"
+msgstr "Ei käytössä"
 
 #, python-format
 msgid ""
@@ -898,12 +906,11 @@ msgstr "Näytä 4:3 sisältö"
 msgid "Display Setup"
 msgstr "Etupaneelin näyttö..."
 
+#, python-format
 msgid ""
 "Do you really want to REMOVE\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Haluatko poistaa\n"
-"tämän lisäosan \""
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -918,12 +925,11 @@ msgstr ""
 "Haluatko poistaa tallenteen\n"
 "”%s?”"
 
+#, python-format
 msgid ""
 "Do you really want to download\n"
-"the plugin \""
+"the plugin \"%s\"?"
 msgstr ""
-"Haluatko ladata\n"
-"tämän lisäosan \""
 
 msgid "Do you really want to exit?"
 msgstr "Haluatko lopettaa?"
@@ -937,11 +943,11 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa levyltä hakemiston %s?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr ""
+msgstr "Oletko varma, että haluat poistaa kirjanmerkin %s?"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -951,7 +957,7 @@ msgstr ""
 "Paina OK ja odota!"
 
 msgid "Do you want to burn this collection to DVD medium?"
-msgstr ""
+msgstr "Haluatko polttaa tämän kokoelman DVD:lle?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Haluatko tehdä kanavahaun?"
@@ -972,13 +978,13 @@ msgstr ""
 "käyttöön?"
 
 msgid "Do you want to install default sat lists?"
-msgstr ""
+msgstr "Haluatko asentaa oletusarvoiset satelliittilistat?"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Haluatko toistaa asemassa olevan DVD:n?"
 
 msgid "Do you want to preview this DVD before burning?"
-msgstr ""
+msgstr "Haluatko esikatsella tämän DVD:n ennen polttoa?"
 
 msgid "Do you want to restore your settings?"
 msgstr "Haluatko palauttaa asetukset?"
@@ -1010,16 +1016,16 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Valmis - asennettu tai päivitetty %d lisäosaa, %d virhettä"
 
 msgid "Download"
-msgstr ""
+msgstr "Lataa"
 
 msgid "Download .NFI-Files for USB-Flasher"
-msgstr ""
+msgstr "Lataa .NFI-tiedostoja USB-päivitysohjelmalle"
 
 msgid "Download Plugins"
 msgstr "Lataa lisäosia"
 
 msgid "Download of USB flasher boot image failed: "
-msgstr ""
+msgstr "Päivitystiedoston lataaminen epäonnistui:"
 
 msgid "Downloadable new plugins"
 msgstr "Uusia ladattavia lisäosia"
@@ -1031,13 +1037,13 @@ msgid "Downloading"
 msgstr "Ladataan"
 
 msgid "Downloading image description..."
-msgstr ""
+msgstr "Ladataan päivitystiedoston kuvausta..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ladataan tietoja lisäosista. Odota..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "Dreambox-tiedostomuotoinen DVD (HDTV-yhteensopiva)"
 
 msgid "Dutch"
 msgstr "Hollanti"
@@ -1059,7 +1065,7 @@ msgid "Edit DNS"
 msgstr "Muuta DNS"
 
 msgid "Edit chapters of current title"
-msgstr ""
+msgstr "Muokkaa kappaleita"
 
 msgid "Edit services list"
 msgstr "Muokkaa kanavalistaa"
@@ -1074,13 +1080,13 @@ msgid "Edit the network configuration of your Dreambox.\n"
 msgstr "Muokkaa lähiverkon asetuksia.\n"
 
 msgid "Edit title"
-msgstr ""
+msgstr "Muokkaa otsikkoa"
 
 msgid "Electronic Program Guide"
 msgstr "Ohjelmaopas"
 
 msgid "Enable"
-msgstr "Salli"
+msgstr "Ota käyttöön"
 
 msgid "Enable 5V for active antenna"
 msgstr "Syötä 5 voltin käyttöjännite aktiiviantennille"
@@ -1092,7 +1098,7 @@ msgid "Enable parental control"
 msgstr "Ota lapsilukko käyttöön"
 
 msgid "Enable timer"
-msgstr ""
+msgstr "Ajastin päälle"
 
 msgid "Enabled"
 msgstr "Käytössä"
@@ -1149,13 +1155,15 @@ msgid "Error"
 msgstr "Virhe"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "Virhe plugin-lisäosan suorittamisessa"
 
 #, python-format
 msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
+"Virhe: %s\n"
+"Yritä uudelleen?"
 
 msgid "Eventview"
 msgstr "Ohjelmatiedot"
@@ -1187,10 +1195,10 @@ msgid "Expert"
 msgstr "Laaja"
 
 msgid "Extended Networksetup Plugin..."
-msgstr ""
+msgstr "Laajennetut verkkoasetukset"
 
 msgid "Extended Setup..."
-msgstr ""
+msgstr "Laajat asetukset..."
 
 msgid "Extensions"
 msgstr "Laajennukset"
@@ -1237,21 +1245,22 @@ msgstr "Suomi"
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
+"Aluksi lataamme viimeisimmän käynnistysympäristön USB-päivitysohjelmalle."
 
 msgid "Fix USB stick"
-msgstr ""
+msgstr "Korjaa USB-muisti"
 
 msgid "Flash"
 msgstr ""
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "Päivitys epäonnistui"
 
 msgid "Font size"
-msgstr ""
+msgstr "Fonttikoko"
 
 msgid "Format"
-msgstr ""
+msgstr "Alusta"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Ruudun toistomäärä hyppivällä kelauksella"
@@ -1390,10 +1399,10 @@ msgstr ""
 "Kun olet tyytyväinen tulokseen, paina OK."
 
 msgid "Image flash utility"
-msgstr ""
+msgstr "Päivityksen asennusohjelma"
 
 msgid "Image-Upgrade"
-msgstr "Image-päivitys"
+msgstr "Päivitys"
 
 msgid "In Progress"
 msgstr "Käynnissä"
@@ -1457,7 +1466,7 @@ msgid "Integrated Ethernet"
 msgstr "Sisäinen verkkokortti"
 
 msgid "Integrated Wireless"
-msgstr ""
+msgstr "Sisäänrakennettu WLAN"
 
 msgid "Intermediate"
 msgstr "Keskitaso"
@@ -1470,7 +1479,7 @@ msgstr "Virheellinen sijainti"
 
 #, python-format
 msgid "Invalid directory selected: %s"
-msgstr ""
+msgstr "Virheellinen hakemisto valittu: %s"
 
 msgid "Inversion"
 msgstr "Inversio"
@@ -1498,7 +1507,7 @@ msgid "Keymap"
 msgstr "Näppäinasettelu"
 
 msgid "LAN Adapter"
-msgstr "LAN-adapteri"
+msgstr "Verkkosovitin"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1550,7 +1559,7 @@ msgid "Link:"
 msgstr "Linkki:"
 
 msgid "Linked titles with a DVD menu"
-msgstr ""
+msgstr "Linkitetyt otsikot DVD-valikon kanssa"
 
 msgid "List of Storage Devices"
 msgstr "Luettelo tallennusvälineistä"
@@ -1559,10 +1568,10 @@ msgid "Lithuanian"
 msgstr "Liettua"
 
 msgid "Load"
-msgstr ""
+msgstr "Lataa"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Lataa tallenteiden pituus tallennelistassa "
 
 msgid "Local Network"
 msgstr "Lähiverkko"
@@ -1604,7 +1613,7 @@ msgid "Manual Scan"
 msgstr "Manuaalihaku"
 
 msgid "Manual transponder"
-msgstr "Manuaalinen transponderi"
+msgstr "Manuaalinen lähetin"
 
 msgid "Margin after record"
 msgstr "Lisäaika tallenteen loppuun (minuuttia)"
@@ -1619,10 +1628,10 @@ msgid "MediaPlayer"
 msgstr "Mediatoistin"
 
 msgid "Medium is not a writeable DVD!"
-msgstr ""
+msgstr "Levy ei ole kirjoitettava DVD!"
 
 msgid "Medium is not empty!"
-msgstr ""
+msgstr "Levy ei ole tyhjä!"
 
 msgid "Menu"
 msgstr "Valikko"
@@ -1689,6 +1698,7 @@ msgstr "SEURAAVA"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
+"NFI-päivityksen asennus on valmis. Uudelleenkäynnistä keltaisella napilla!"
 
 msgid "NOW"
 msgstr "NYT"
@@ -1764,7 +1774,7 @@ msgid "No"
 msgstr "Ei"
 
 msgid "No (supported) DVDROM found!"
-msgstr ""
+msgstr "DVDROM-asemaa ei löytynyt!"
 
 msgid "No 50 Hz, sorry. :("
 msgstr "Ei 50Hz tilaa. :("
@@ -1781,11 +1791,11 @@ msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
 msgstr ""
-"Ei dataa transponderilla!\n"
+"Lähettimessä ei dataa!\n"
 "(Aikaraja ylittyi luettaessa PAT)"
 
 msgid "No details for this image file"
-msgstr ""
+msgstr "Ei tietoja tästä päivityksestä"
 
 msgid "No event info found, recording indefinitely."
 msgstr ""
@@ -1825,7 +1835,7 @@ msgstr ""
 "Määritä virittimen asetukset ennen kanavahaun aloittamista."
 
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "Käyttökelpoista USB-muistitikkua ei löytynyt"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1859,13 +1869,16 @@ msgid ""
 " Please verify that you have attached a compatible WLAN device or enable you "
 "local network interface."
 msgstr ""
+"Toimivaa langatonta yhteyttä ei löydy.\n"
+"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen tai kytke "
+"lähiverkko päälle."
 
 msgid ""
 "No working wireless networkadapter found.\n"
 "Please verify that you have attached a compatible WLAN USB Stick and your "
 "Network is configured correctly."
 msgstr ""
-"Toimivaa WLAN-adapteria ei löydy.\n"
+"Toimivaa WLAN-sovitinta ei löydy.\n"
 "Tarkista, että olet kytkenyt yhteensopivan USB WLAN-tikun ja verkkoasetukset "
 "ovat oikein."
 
@@ -1900,6 +1913,8 @@ msgid ""
 "Not enough diskspace. Please free up some diskspace and try again. (%d MB "
 "required, %d MB available)"
 msgstr ""
+"Liian vähän levytilaa. Vapauta levytilaa ja yritä uudelleen. (%d Mt "
+"tarvitaan, %d Mt vapaana)"
 
 msgid ""
 "Nothing to scan!\n"
@@ -1916,6 +1931,8 @@ msgid ""
 "format and use as .NFI image flasher. Press OK after you've put the stick "
 "back in."
 msgstr ""
+"Kytke USB-muisti (minimikoko 64MB) jota haluat käyttää NFI-päivitykseen. "
+"Paina OK-nappia kun olet kytkenyt muistin."
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1932,13 +1949,13 @@ msgid "OK"
 msgstr "OK"
 
 msgid "OK, guide me through the upgrade process"
-msgstr "OK, opasta päivityksessä"
+msgstr "OK, opasta minua päivityksessä"
 
 msgid "OSD Settings"
 msgstr "Kuvaruutunäytön asetukset"
 
 msgid "OSD visibility"
-msgstr ""
+msgstr "OSD:n näkyvyys"
 
 msgid "Off"
 msgstr "Pois"
@@ -1953,7 +1970,7 @@ msgid "Online-Upgrade"
 msgstr "Online-päivitys"
 
 msgid "Only Free scan"
-msgstr ""
+msgstr "Hae vain salaamattomat"
 
 msgid "Orbital Position"
 msgstr "Sijainti"
@@ -1981,7 +1998,7 @@ msgid "Pan&Scan"
 msgstr ""
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Päähakemisto"
 
 msgid "Parental control"
 msgstr "Lapsilukko"
@@ -1996,7 +2013,7 @@ msgid "Parental control type"
 msgstr "Lapsilukon tyyppi"
 
 msgid "Partitioning USB stick..."
-msgstr ""
+msgstr "Osioidaan USB-muistitikku..."
 
 msgid "Pause movie at end"
 msgstr "Pysähdy tallenteen loppuun"
@@ -2017,6 +2034,9 @@ msgstr "Tarvitaan tunnusluku"
 msgid "Play"
 msgstr "Jatka toistoa"
 
+msgid "Play Audio-CD..."
+msgstr ""
+
 msgid "Play recorded movies..."
 msgstr "Toista tallenteet..."
 
@@ -2030,10 +2050,10 @@ msgid "Please change recording endtime"
 msgstr "Aseta tallennuksen päättymisaika"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Tarkista verkkoasetukset!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "Valitse päivityspalvelimelta NFI-päivitys latausta varten"
 
 msgid "Please choose an extension..."
 msgstr "Valitse laajennus..."
@@ -2060,7 +2080,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Syötä tiedoston nimi (tyhjä = nykyinen päiväys)"
 
 msgid "Please enter name of the new directory"
-msgstr ""
+msgstr "Syötä uuden hakemiston nimi"
 
 msgid "Please enter the correct pin code"
 msgstr "Syötä oikea tunnusluku"
@@ -2075,15 +2095,17 @@ msgid ""
 "Please note that the previously selected media could not be accessed and "
 "therefore the default directory is being used instead."
 msgstr ""
+"Huomaa, että oletushakemisto on käytössä, koska aikaisemmin valittua levyä "
+"ei voitu ladata."
 
 msgid "Please press OK to continue."
-msgstr ""
+msgstr "Jatka painamalla OK-nappia."
 
 msgid "Please press OK!"
 msgstr "Paina OK."
 
 msgid "Please select .NFI flash image file from medium"
-msgstr ""
+msgstr "Valitse NFI-päivitystiedosto"
 
 msgid "Please select a playlist to delete..."
 msgstr "Valitse poistettava soittolista..."
@@ -2101,7 +2123,7 @@ msgid "Please select keyword to filter..."
 msgstr "Valitse hakusana..."
 
 msgid "Please select target directory or medium"
-msgstr ""
+msgstr "Valitse kohdehakemisto tai levy"
 
 msgid "Please select the movie path..."
 msgstr "Valitse tallennehakemisto..."
@@ -2128,10 +2150,10 @@ msgstr ""
 msgid ""
 "Please use the UP and DOWN keys to select your language. Afterwards press "
 "the OK button."
-msgstr ""
+msgstr "Valitse kieli ylös/alas nappuloilla ja paina OK."
 
 msgid "Please wait for md5 signature verification..."
-msgstr ""
+msgstr "Odota md5-allekirjoituksen tarkistusta..."
 
 msgid "Please wait... Loading list..."
 msgstr "Odota... Luetteloa ladataan..."
@@ -2185,7 +2207,7 @@ msgid "Power threshold in mA"
 msgstr "Tunnistusvirta mA"
 
 msgid "Predefined transponder"
-msgstr "Ennalta määritelty transponderi"
+msgstr "Ennalta määritelty lähetin"
 
 msgid "Preparing... Please wait"
 msgstr "Valmistellaan... Odota hetki!"
@@ -2197,7 +2219,7 @@ msgid "Press OK to activate the settings."
 msgstr "Hyväksy asetukset painamalla OK."
 
 msgid "Press OK to edit the settings."
-msgstr ""
+msgstr "Muokkaa asetuksia painamalla OK-nappia."
 
 msgid "Press OK to scan"
 msgstr "Aloita haku painamalla OK"
@@ -2209,7 +2231,7 @@ msgid "Prev"
 msgstr "Edellinen"
 
 msgid "Preview menu"
-msgstr ""
+msgstr "Esikatsele valikkoa"
 
 msgid "Primary DNS"
 msgstr "Ensisijainen DNS"
@@ -2262,8 +2284,17 @@ msgstr "Poistetaanko tämä ajastus?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Poistu alipalveluiden pikavaihdosta?"
 
+msgid "Really reboot now?"
+msgstr "Haluatko silti uudelleenkäynnistää?"
+
+msgid "Really restart now?"
+msgstr "Haluatko silti uudelleenkäynnistää?"
+
+msgid "Really shutdown now?"
+msgstr "Haluatko silti sammuttaa?"
+
 msgid "Reboot"
-msgstr ""
+msgstr "Uudelleenkäynnistys"
 
 msgid "Reception Settings"
 msgstr "Vastaanotinasetukset"
@@ -2277,26 +2308,8 @@ msgstr "Tallenteet..."
 msgid "Recording"
 msgstr "Tallenne"
 
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really reboot "
-"now?"
-msgstr ""
-"Tallennuksia käynnissä tai käynnistymässä!\n"
-"Haluatko uudelleenkäynnistää?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really restart "
-"now?"
-msgstr ""
-"Tallennuksia käynnissä tai käynnistymässä!\n"
-"Haluatko uudelleenkäynnistää?"
-
-msgid ""
-"Recording(s) are in progress or coming up in few seconds... really shutdown "
-"now?"
-msgstr ""
-"Tallennuksia käynnissä tai käynnistymässä!\n"
-"Haluatko sammuttaa?"
+msgid "Recording(s) are in progress or coming up in few seconds!"
+msgstr "Tallennuksia käynnissä tai käynnistymässä!"
 
 msgid "Recordings always have priority"
 msgstr "Tallennukset saavat keskeyttää suoran katselun"
@@ -2311,10 +2324,10 @@ msgid "Refresh rate selection."
 msgstr "Virkistystaajuuden valinta."
 
 msgid "Remounting stick partition..."
-msgstr ""
+msgstr "Uudelleenliitetään USB-muistitikun osio..."
 
 msgid "Remove Bookmark"
-msgstr ""
+msgstr "Poista kirjanmerkki"
 
 msgid "Remove Plugins"
 msgstr "Poista lisäosia"
@@ -2323,23 +2336,23 @@ msgid "Remove a mark"
 msgstr "Poista merkki"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "Poista valittu otsikko"
 
 msgid "Remove plugins"
 msgstr "Poista lisäosia"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "Poista vioittunut .NFI-tiedosto"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "Poista keskeneräinen .NFI-tiedosto"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Poista otsikko"
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
-msgstr ""
+msgstr "Hakemiston %s poisto epäonnistui. (Ei ehkä ole tyhjä.)"
 
 msgid "Rename"
 msgstr "Muuta nimi"
@@ -2464,7 +2477,7 @@ msgid "Saturday"
 msgstr "Lauantai"
 
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 msgid "Save Playlist"
 msgstr "Tallenna soittolista"
@@ -2541,11 +2554,13 @@ msgstr ""
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
-msgstr ""
+msgstr "Hae WLAN-tukiasemia ja kytkeydy niihin USB WLAN-tikun avulla\n"
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
+"Hakee oletuskanavalistan satelliittijärjestyksessä käyttäen kytkettyä "
+"antennimoottoria"
 
 msgid "Search east"
 msgstr "Etsintä itään"
@@ -2581,7 +2596,7 @@ msgid "Select channel to record from"
 msgstr "Valitse tallennettava kanava"
 
 msgid "Select image"
-msgstr ""
+msgstr "Valitse päivitys"
 
 msgid "Select refresh rate"
 msgstr "Valitse virkistystaajuus"
@@ -2593,10 +2608,10 @@ msgid "Select video mode"
 msgstr "Valitse video-tila"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "Valittu päivitys"
 
 msgid "Seperate titles with a main menu"
-msgstr ""
+msgstr "Erilliset otsikot päävalikon kanssa"
 
 msgid "Sequence repeat"
 msgstr "Jakson toisto"
@@ -2605,10 +2620,10 @@ msgid "Service"
 msgstr "Kanava"
 
 msgid "Service Scan"
-msgstr "Kanavahaku"
+msgstr "Kanavien haku"
 
 msgid "Service Searching"
-msgstr "Kanavahaku"
+msgstr "Kanavien haku"
 
 msgid "Service has been added to the favourites."
 msgstr "Kanava on lisätty suosikkeihin."
@@ -2649,7 +2664,7 @@ msgid "Services"
 msgstr "Kanavat"
 
 msgid "Set as default Interface"
-msgstr ""
+msgstr "Aseta oletukseksi"
 
 msgid "Set limits"
 msgstr "Aseta rajat"
@@ -2658,10 +2673,10 @@ msgid "Settings"
 msgstr "Asetukset"
 
 msgid "Setup"
-msgstr "Asetukset ja viritys"
+msgstr "Asetukset"
 
 msgid "Setup Mode"
-msgstr "Asetusten laajuus"
+msgstr "Mukautusvalintojen laajuus"
 
 msgid "Show Info"
 msgstr "Näytä tiedot"
@@ -2724,7 +2739,7 @@ msgid "Singlestep (GOP)"
 msgstr "Kuva-kuvalta (GOP)"
 
 msgid "Skin..."
-msgstr ""
+msgstr "Teema..."
 
 msgid "Sleep Timer"
 msgstr "Uniajastin"
@@ -2876,7 +2891,7 @@ msgid "Symbolrate"
 msgstr "Symbolinopeus"
 
 msgid "System"
-msgstr "Lisäasetukset"
+msgstr "Muut asetukset"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
@@ -2886,7 +2901,7 @@ msgid "TV System"
 msgstr "TV-järjestelmä"
 
 msgid "Table of content for collection"
-msgstr ""
+msgstr "Kokoelman hakemisto"
 
 msgid "Terrestrial"
 msgstr "Antennivastaanotto (DVB-T)"
@@ -2927,12 +2942,18 @@ msgid ""
 "and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
 "stick!"
 msgstr ""
+"NFI-päivitysohjelmalle tarkoitettu USB-muisti on nyt käyttövalmis. Lataa ."
+"NFI-päivitystiedosto palvelimelta ja tallenna se USB-muistille. Sen jälkeen "
+"uudelleenkäynnistä Dreambox ja pidä etupaneelin 'alas' nappia pohjassa "
+"jotta .NFI-päivitys käynnistyy USB-muistilta."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
+"DVD-standardi ei tue H.264 (HDTV) videota. Haluatko luoda Dreamboxin omassa "
+"formaatissa olevan data-DVD:n? Levy ei toistu normaaleissa DVD-soittimissa."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varmuuskopiointi epäonnistui. Valitse toinen varmuuskopiointipaikka."
@@ -2945,12 +2966,19 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"Seuraava laite löytyi:\n"
+"\n"
+"%s\n"
+"\n"
+"Haluatko tallentaa ohjelmistopäivitysohjelman tälle USB-muistille?"
 
 msgid ""
 "The input port should be configured now.\n"
 "You can now configure the screen by displaying some test pictures. Do you "
 "want to do that now?"
 msgstr ""
+"Näytön liitäntä pitäisi nyt olla kunnossa.\n"
+"Voit nyt säätää näyttöä testikuvien avulla. Haluatko tehdä sen?"
 
 msgid "The installation of the default services lists is finished."
 msgstr "Oletuskanavalistojen asennus on valmis."
@@ -2967,18 +2995,23 @@ msgid ""
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"MD5SUM-tarkistusluku virheellinen, tiedosto voi olla vioittunut! Oletko "
+"varma, että haluat asentaa tämän ohjelmistopäivityksen? Teet sen omalla "
+"vastuulla!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
 msgstr ""
+"MD5SUM-tarkistusluku virheellinen, tiedosto voi olla keskeneräinen tai "
+"vioittunut!"
 
 msgid "The package doesn't contain anything."
 msgstr "Paketti ei sisällä mitään."
 
 #, python-format
 msgid "The path %s already exists."
-msgstr ""
+msgstr "Polku %s on jo olemassa."
 
 msgid "The pin code has been changed successfully."
 msgstr "Tunnusluku on nyt vaihdettu."
@@ -3002,6 +3035,8 @@ msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"WLAN-lisäosaa ei ole asennettu!\n"
+"Asenna se."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -3012,10 +3047,10 @@ msgid "The wizard is finished now."
 msgstr "Velho on lopettanut."
 
 msgid "There are no default services lists in your image."
-msgstr "Oletuskanavalistoja ei löydy."
+msgstr "Oletuskanavalistoja ei löydy. Paina OK."
 
 msgid "There are no default settings in your image."
-msgstr "Oletusarvoja ei löydy."
+msgstr "Oletusarvoja ei löydy. Paina OK."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3026,26 +3061,32 @@ msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "Tämä .NFI-tiedosto ei sisällä toimivaa ohjelmistopäivitystä!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"Tällä .NFI-tiedostolla ei ole MD5SUM-tarkistuslukua eikä sen toiminnasta ole "
+"takeita. Oletko varma, että haluat asentaa tämän ohjelmistopäivityksen?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+".NFI-tiedoston MD5-tarkistusluku on kunnossa. Jatketaanko "
+"ohjelmistopäivityksen asentamista?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
 msgstr ""
+"Tämä DVD-RW levy on jo alustettu - uudelleenalustus tuhoaa levyn kaiken "
+"sisällön."
 
 #, python-format
 msgid "This Dreambox can't decode %s video streams!"
-msgstr ""
+msgstr "Dreambox ei voi purkaa %s video-raitoja!"
 
 msgid "This is step number 2."
 msgstr "Tämä on vaihe 2."
@@ -3060,6 +3101,11 @@ msgid ""
 "- if you configured your Nameservers manually please verify your entries in "
 "the \"Nameserver\" Configuration"
 msgstr ""
+"Tämä testi tarkistaa nimipalvelimet.\n"
+"Jos näet \"vahvistamaton\" ilmoituksen:\n"
+"- tarkista DHCP, kaapelointi ja Sovittimen asetukset\n"
+"- jos määrittelit nimipalvelimet käsin, tarkista arvot \"Nimipalvelimen "
+"asetukset\" kohdassa"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -3067,6 +3113,10 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
+"Tämä testi tarkistaa, onko verkkokaapeli kytketty verkkokorttiin.\n"
+"Jos näet \"ei kytketty\" ilmoituksen:\n"
+"- tarkista, että kaapeli on kytketty\n"
+"- tarkista, ettei kaapeli ole vaurioitunut"
 
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
@@ -3127,6 +3177,11 @@ msgstr "Ajastettava ohjelma"
 msgid "Timer log"
 msgstr "Ajastinloki"
 
+msgid ""
+"Timer overlap in timers.xml detected!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Ajastinvirhe"
 
@@ -3155,6 +3210,9 @@ msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
 "and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
+"Varmistaaksemme, että haluat todella tehdä tämän, ota USB-muisti nyt irti ja "
+"laita se takaisin ruudulla näkyvän kehoitteen jälkeen. Paina OK-nappia kun "
+"olet ottanut USB-muistin irti."
 
 msgid "Today"
 msgstr "Tänään"
@@ -3169,7 +3227,7 @@ msgid "Toneburst A/B"
 msgstr "Äänipurske A/B"
 
 msgid "Track"
-msgstr ""
+msgstr "Raita"
 
 msgid "Translation"
 msgstr "Käännös"
@@ -3184,10 +3242,10 @@ msgid "Transmission mode"
 msgstr "Lähetystapa"
 
 msgid "Transponder"
-msgstr "Transponderi"
+msgstr "Lähetin"
 
 msgid "Transponder Type"
-msgstr "Transponderin tyyppi"
+msgstr "Lähettimen tyyppi"
 
 msgid "Tries left:"
 msgstr "Yrityksiä jäljellä:"
@@ -3232,7 +3290,7 @@ msgid "Two"
 msgstr "Kaksi"
 
 msgid "Type of scan"
-msgstr "Skannauksen tyyppi"
+msgstr "Hakutapa"
 
 msgid "USALS"
 msgstr "USALS"
@@ -3241,7 +3299,7 @@ msgid "USB"
 msgstr "USB"
 
 msgid "USB Stick"
-msgstr "USB-muistitikku"
+msgstr "USB-muisti"
 
 msgid ""
 "Unable to complete filesystem check.\n"
@@ -3267,7 +3325,7 @@ msgid "Unmount failed"
 msgstr "Irrottaminen epäonnistui"
 
 msgid "Update"
-msgstr ""
+msgstr "Päivitä"
 
 msgid "Updates your receiver's software"
 msgstr "Päivittää vastaanottimen ohjelmiston"
@@ -3291,7 +3349,7 @@ msgid "Use DHCP"
 msgstr "Käytä DHCP:tä"
 
 msgid "Use Interface"
-msgstr ""
+msgstr "Käytä verkkoa"
 
 msgid "Use Power Measurement"
 msgstr "Käytä virran mittausta"
@@ -3433,7 +3491,7 @@ msgid "Waiting"
 msgstr "Odottaa"
 
 msgid "Waiting for USB stick to settle..."
-msgstr ""
+msgstr "Odotetaan USB-muistia..."
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3517,13 +3575,13 @@ msgid "Write error while recording. Disk full?\n"
 msgstr "Kirjoitusvirhe tallennuksessa. Levy täynnä?\n"
 
 msgid "Write failed!"
-msgstr ""
+msgstr "Kirjoitus epäonnistui!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "NFI-päivityksen asennus valmis"
 
 msgid "Writing image file to NAND Flash"
-msgstr ""
+msgstr "Suoritetaan ohjelmistopäivitystä"
 
 msgid "YPbPr"
 msgstr "Komponentti (YPbPr)"
@@ -3620,6 +3678,8 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
+"Olet valinnut .NFI-päivitysohjelman asennuksen USB-muistille. Tämä toiminto "
+"osioi USB-muistin ja tuhoaa siltä kaikki tiedostot."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3721,7 +3781,7 @@ msgid "add alternatives"
 msgstr "Vaihtoehtojen lisäys ja poisto"
 
 msgid "add bookmark"
-msgstr ""
+msgstr "lisää kirjanmerkki"
 
 msgid "add bouquet"
 msgstr "Lisää uusi suosikkilista"
@@ -3773,7 +3833,7 @@ msgstr ""
 "seuraavan varmuuskopion:\n"
 
 msgid "audio tracks"
-msgstr ""
+msgstr "ääniraidat"
 
 #  Tämä teksti näytetään monessa valikossa EXIT-napin
 #  kaltaisena poistumistoimintona.
@@ -3781,7 +3841,7 @@ msgid "back"
 msgstr "Takaisin"
 
 msgid "background image"
-msgstr ""
+msgstr "taustakuva"
 
 msgid "better"
 msgstr "parempi"
@@ -3799,10 +3859,10 @@ msgid "change recording (endtime)"
 msgstr "Aseta tallennuksen päättymisaika"
 
 msgid "chapters"
-msgstr ""
+msgstr "kappaleet"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "valitse kohdehakemisto"
 
 msgid "circular left"
 msgstr "Kiertopolarisaatio vasen"
@@ -3814,7 +3874,7 @@ msgid "clear playlist"
 msgstr "tyhjennä soittolista"
 
 msgid "color"
-msgstr ""
+msgstr "väri"
 
 msgid "complex"
 msgstr "monipuolinen"
@@ -3835,13 +3895,13 @@ msgid "copy to bouquets"
 msgstr "kopioi suosikkilistalle"
 
 msgid "create directory"
-msgstr ""
+msgstr "luo hakemisto"
 
 msgid "daily"
 msgstr "joka päivä"
 
 msgid "day"
-msgstr ""
+msgstr "päivä"
 
 msgid "delete"
 msgstr "poista"
@@ -3868,7 +3928,7 @@ msgid "disable move mode"
 msgstr "Poistu siirtotilasta"
 
 msgid "disabled"
-msgstr "estetty"
+msgstr "ei käyt."
 
 msgid "disconnected"
 msgstr "ei kytketty"
@@ -3919,10 +3979,10 @@ msgid "end favourites edit"
 msgstr "Tallenna muutokset ja poistu"
 
 msgid "equal to"
-msgstr ""
+msgstr "sama kuin"
 
 msgid "exceeds dual layer medium!"
-msgstr ""
+msgstr "ylittää kaksikerroslevyn tilavuuden!"
 
 msgid "exit DVD player or return to file browser"
 msgstr "poistu DVD-soittimesta tai palaa tiedostonhallintaan"
@@ -3934,28 +3994,25 @@ msgid "exit movielist"
 msgstr "poistu tallenneluettelosta"
 
 msgid "failed"
-msgstr ""
+msgstr "epäonnistui"
 
 msgid "filename"
-msgstr ""
+msgstr "tiedostonimi"
 
 msgid "fine-tune your display"
 msgstr "hienosäädä näyttöä"
 
 msgid "font face"
-msgstr ""
+msgstr "fonttityyli"
 
 msgid "forward to the next chapter"
-msgstr "eteenpäin seuraavaan osaan"
+msgstr "eteenpäin seuraavaan kappaleeseen"
 
 msgid "free"
-msgstr ""
+msgstr "vapaana"
 
 msgid "free diskspace"
 msgstr "vapaata levytilaa"
-
-msgid "full /etc directory"
-msgstr "koko /etc-hakemisto"
 
 msgid "go to deep standby"
 msgstr "siirry virransäästötilaan"
@@ -3964,7 +4021,7 @@ msgid "go to standby"
 msgstr "siirry valmiustilaan"
 
 msgid "headline"
-msgstr ""
+msgstr "otsikko"
 
 msgid "hear radio..."
 msgstr "kuuntele radiota..."
@@ -3979,7 +4036,7 @@ msgid "hide player"
 msgstr "piilota soitin"
 
 msgid "highlighted button"
-msgstr ""
+msgstr "valittu painike"
 
 msgid "horizontal"
 msgstr "horisontaali"
@@ -4030,7 +4087,7 @@ msgid "left"
 msgstr "vasen"
 
 msgid "length"
-msgstr ""
+msgstr "pituus"
 
 msgid "list style compact"
 msgstr "Luettelon tyyli: tiivistetty"
@@ -4051,7 +4108,7 @@ msgid "locked"
 msgstr "lukittu"
 
 msgid "loopthrough to"
-msgstr ""
+msgstr "läpisyöttö ->"
 
 msgid "manual"
 msgstr "manuaalinen"
@@ -4060,7 +4117,7 @@ msgid "menu"
 msgstr "valikko"
 
 msgid "menulist"
-msgstr ""
+msgstr "valikkoluettelo"
 
 msgid "mins"
 msgstr "minuuttia"
@@ -4072,7 +4129,7 @@ msgid "minutes"
 msgstr "minuuttia"
 
 msgid "month"
-msgstr ""
+msgstr "kuukausi"
 
 msgid "move PiP to main picture"
 msgstr "Siirrä PiP pääkuvaan"
@@ -4120,10 +4177,10 @@ msgid "nothing connected"
 msgstr "ei kytketty"
 
 msgid "of a DUAL layer medium used."
-msgstr ""
+msgstr "kaksikerros-DVD-levystä käytetty."
 
 msgid "of a SINGLE layer medium used."
-msgstr ""
+msgstr "yksikerros-DVD-levystä käytetty."
 
 msgid "off"
 msgstr "Pois"
@@ -4132,7 +4189,7 @@ msgid "on"
 msgstr "Päällä"
 
 msgid "on READ ONLY medium."
-msgstr ""
+msgstr "vain-luku levystä."
 
 msgid "once"
 msgstr "kerran"
@@ -4177,7 +4234,7 @@ msgid "previous channel in history"
 msgstr "Edellinen kanava historiassa"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "uudelleenkäynnistetään..."
 
 msgid "record"
 msgstr "tallennus"
@@ -4198,10 +4255,10 @@ msgid "remove before this position"
 msgstr "Poista kaikki ennen tätä kohtaa"
 
 msgid "remove bookmark"
-msgstr ""
+msgstr "poista kirjanmerkki"
 
 msgid "remove directory"
-msgstr ""
+msgstr "poista hakemisto"
 
 msgid "remove entry"
 msgstr "Poista"
@@ -4219,13 +4276,13 @@ msgid "remove this mark"
 msgstr "Poista tämä merkki"
 
 msgid "repeat playlist"
-msgstr ""
+msgstr "toista soittolista"
 
 msgid "repeated"
 msgstr "useita kertoja"
 
 msgid "rewind to the previous chapter"
-msgstr "kelaa edelliseen osaan"
+msgstr "kelaa edelliseen kappaleeseen"
 
 msgid "right"
 msgstr "oikea"
@@ -4253,13 +4310,13 @@ msgid "seconds"
 msgstr "sekuntia"
 
 msgid "select"
-msgstr ""
+msgstr "valitse"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "valitse .NFI flash-tiedosto"
 
 msgid "select image from server"
-msgstr ""
+msgstr "valitse päivitys palvelimelta"
 
 msgid "select movie"
 msgstr "valitse tallenne"
@@ -4307,7 +4364,7 @@ msgid "show tag menu"
 msgstr "näytä avainsanavalikko"
 
 msgid "show transponder info"
-msgstr "näytä tietoja transponderista"
+msgstr "Näytä lähettimen tietoja"
 
 msgid "shuffle playlist"
 msgstr "arvo soittolista"
@@ -4334,7 +4391,7 @@ msgid "sort by date"
 msgstr "Aikajärjestys"
 
 msgid "spaces (top, between rows, left)"
-msgstr ""
+msgstr "välit (yläosa, rivien väli, vasen)"
 
 msgid "standard"
 msgstr "Vakio"
@@ -4367,7 +4424,7 @@ msgid "swap PiP and main picture"
 msgstr "Vaihda PiP- ja pääkuva"
 
 msgid "switch to bookmarks"
-msgstr ""
+msgstr "vaihda kirjanmerkkeihin"
 
 msgid "switch to filelist"
 msgstr "vaihda tiedostolistaan"
@@ -4394,7 +4451,7 @@ msgid "toggle a cut mark at the current position"
 msgstr "aseta leikkausmerkki nykyiseen kohtaan"
 
 msgid "toggle time, chapter, audio, subtitle info"
-msgstr "valitse aika, osa, ääni, tekstitys"
+msgstr "valitse aika, kappale, ääni, tekstitys"
 
 msgid "unconfirmed"
 msgstr "vahvistamaton"
@@ -4433,7 +4490,7 @@ msgid "whitelist"
 msgstr "hyväksytyt"
 
 msgid "year"
-msgstr ""
+msgstr "vuosi"
 
 msgid "yes"
 msgstr "Kyllä"
@@ -4455,144 +4512,25 @@ msgstr "kanavanvaihto"
 msgid "zapped"
 msgstr "vaihdettu"
 
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 käynnistyy uudelleen palautuksen jälkeen"
+#~ msgid "Abort"
+#~ msgstr "Keskeytä"
+
+#~ msgid "Burn To DVD..."
+#~ msgstr "Polta DVD:lle"
 
 #~ msgid ""
-#~ "Are you sure you want to enable WLAN support?\n"
-#~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
-#~ "\n"
+#~ "Do you really want to REMOVE\n"
+#~ "the plugin \""
 #~ msgstr ""
-#~ "Haluatko ottaa WLAN:in käyttöön?\n"
-#~ "Kytke WLAN USB-tikku Dreamboxiin ja paina OK.\n"
-#~ "\n"
+#~ "Haluatko poistaa\n"
+#~ "tämän lisäosan \""
 
 #~ msgid ""
-#~ "Are you sure you want to enable your local network?\n"
-#~ "\n"
+#~ "Do you really want to download\n"
+#~ "the plugin \""
 #~ msgstr ""
-#~ "Haluatko ottaa lähiverkon käyttöön?\n"
-#~ "\n"
+#~ "Haluatko ladata\n"
+#~ "tämän lisäosan \""
 
-#~ msgid "Configure your internal LAN"
-#~ msgstr "Määritä sisäinen LAN"
-
-#~ msgid "Configure your internal LAN again"
-#~ msgstr "Määritä sisäinen LAN uudelleen"
-
-#~ msgid "Configure your wireless LAN"
-#~ msgstr "Määritän langaton LAN"
-
-#~ msgid "Configure your wireless LAN again"
-#~ msgstr "Määritä langaton LAN uudelleen"
-
-#~ msgid "Confirm"
-#~ msgstr "Vahvista"
-
-#~ msgid "Connect to the Internet with a USB Wlan Stick"
-#~ msgstr "Yhdistä Internetiin USB WLAN-tikun kautta"
-
-#~ msgid "Connect to the Internet with your local LAN"
-#~ msgstr "Yhdistä Internetiin LAN-liitännän kautta"
-
-#~ msgid "DVD ENTER key"
-#~ msgstr "DVD ENTER näppäin"
-
-#~ msgid "DVD down key"
-#~ msgstr "DVD alas näppäin"
-
-#~ msgid "DVD left key"
-#~ msgstr "DVD vasen näppäin"
-
-#~ msgid "DVD right key"
-#~ msgstr "DVD oikea näppäin"
-
-#~ msgid "DVD up key"
-#~ msgstr "DVD ylös näppäin"
-
-#~ msgid "Enable LAN"
-#~ msgstr "Ota LAN käyttöön"
-
-#~ msgid "Enable WLAN"
-#~ msgstr "Ota WLAN käyttöön"
-
-#~ msgid ""
-#~ "Enable the local network of your Dreambox.\n"
-#~ "\n"
-#~ msgstr ""
-#~ "Ota Dreamboxin lähiverkko käyttöön.\n"
-#~ "\n"
-
-#~ msgid "Exit wizard and configure later manually"
-#~ msgstr "Poistu ja määritä asetukset manuaalisesti"
-
-#~ msgid "Jump to video title 1 (play movie from start)"
-#~ msgstr "Hyppää 1. osaa (toista elokuva alusta)"
-
-#~ msgid ""
-#~ "No working wireless interface found.\n"
-#~ " Please verify that you have attached a compatible WLAN USB Stick or "
-#~ "enable you local network interface."
-#~ msgstr ""
-#~ "Toimivaa langatonta yhteyttä ei löydy.\n"
-#~ "Tarkista, että olet kytkenyt yhteensopivan USB WLAN-tikun  tai kytke "
-#~ "lähiverkko päälle."
-
-#~ msgid "No, let me choose default lists"
-#~ msgstr "Ei, haluan valita oletuslistat"
-
-#~ msgid "Please select below the wireless network you want to connect to."
-#~ msgstr "Valitse langaton verkko johon haluat kytkeytyä."
-
-#~ msgid "Restart your wireless interface"
-#~ msgstr "Käynnistä langaton yhteys uudelleen"
-
-#~ msgid "Step "
-#~ msgstr "Askel"
-
-#~ msgid ""
-#~ "Your local LAN internet connection is not working!\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Lähiverkon Internetyhteys ei toimi!\n"
-#~ "Valitse mitä haluat tehdä seuraavaksi."
-
-#~ msgid ""
-#~ "Your network is restarting.\n"
-#~ "You will be automatically forwarded to the next step."
-#~ msgstr ""
-#~ "Lähiverkko käynnistyy uudelleen.\n"
-#~ "Seuraavaan kohtaan siirrytään automaattisesti."
-
-#~ msgid ""
-#~ "Your wired LAN Adapter could not be started.\n"
-#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
-#~ msgstr ""
-#~ "LAN-adapteria ei voitu käynnistää.\n"
-#~ "Haluatko käynnistää Dreamboxin uudellaan ja ottaa uudet asetukset "
-#~ "käyttöön?\n"
-
-#~ msgid ""
-#~ "Your wireless LAN Adapter could not be started.\n"
-#~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
-#~ msgstr ""
-#~ "WLAN-adapteria ei voitu käynnistää.\n"
-#~ "Haluatko käynnistää Dreamboxin uudellaan ja ottaa uudet asetukset "
-#~ "käyttöön?\n"
-
-#~ msgid ""
-#~ "Your wireless internet connection is not working!\n"
-#~ "Please choose what you want to do next."
-#~ msgstr ""
-#~ "Langaton yhteys ei toimi!\n"
-#~ "Valitse mitä haluat tehdä seuraavaksi."
-
-#~ msgid "equal to Socket A"
-#~ msgstr "sama kuin virittimellä A"
-
-#~ msgid "loopthrough to socket A"
-#~ msgstr "Ketjutus virittimelle A"
+#~ msgid "full /etc directory"
+#~ msgstr "koko /etc-hakemisto"
