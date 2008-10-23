@@ -485,7 +485,7 @@ class AdapterSetupConfiguration(Screen):
 		
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.reboottext = _("Your Dreambox will restart after pressing OK on your remote control.")
-		self.errortext = _("No working wireless interface found.\n Please verify that you have attached a compatible WLAN device or enable you local network interface.")	
+		self.errortext = _("No working wireless interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")	
 		
 		self["actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
 		{
