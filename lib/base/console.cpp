@@ -65,27 +65,6 @@ eConsoleAppContainer::eConsoleAppContainer()
 	}
 }
 
-static char brakets[][2] = {
-	{ '\'','\'' },
-	{'"','"'},
-	{'`','`'},
-	{'(',')'},
-	{'{','}'},
-	{'[',']'},
-	{'<','>'}
-};
-
-static char *find_bracket(char ch)
-{
-	size_t idx=0;
-	while (idx < sizeof(brakets)/2) {
-		if (brakets[idx][0] == ch)
-			return &brakets[idx][0];
-		++idx;
-	}
-	return NULL;
-}
-
 int eConsoleAppContainer::setCWD( const char *path )
 {
 	struct stat dir_stat;
@@ -102,70 +81,13 @@ int eConsoleAppContainer::setCWD( const char *path )
 
 int eConsoleAppContainer::execute( const char *cmd )
 {
-	int cnt=0, slen=strlen(cmd);
-	char buf[slen+1];
-	char *tmp=0, *argv[64], *path=buf, *cmds = buf;
-	memcpy(buf, cmd, slen+1);
+	int argc = 3;
+	const char *argv[argc + 1];
+	argv[0] = "/bin/sh";
+	argv[1] = "-c";
+	argv[2] = cmd;
+	argv[argc] = NULL;
 
-//	printf("cmd = %s, len %d\n", cmd, slen);
-
-	// kill spaces at beginning
-	while(path[0] == ' ') {
-		++path;
-		++cmds;
-		--slen;
-	}
-
-	// kill spaces at the end
-	while(slen && path[slen-1] == ' ') {
-		path[slen-1] = 0;
-		--slen;
-	}
-
-	if (!slen)
-		return -2;
-
-	tmp = strchr(path, ' ');
-	if (tmp) {
-		*tmp = 0;
-		cmds = tmp+1;
-		while(*cmds && *cmds == ' ')
-			++cmds;
-	}
-	else
-		cmds = path+slen;
-
-	memset(argv, 0, sizeof(argv));
-	argv[cnt++] = path;
-
-	if (*cmds) {
-		char *argb=NULL, *it=NULL;
-		while ( (tmp = strchr(cmds, ' ')) ) {
-			if (!it && *cmds && (it = find_bracket(*cmds)) )
-				*cmds = 'X'; // replace open braket...
-			if (!argb) // not arg begin
-				argb = cmds;
-			if (it && *(tmp-1) == it[1]) {
-				*argb = it[0]; // set old char for open braket
-				it = 0;
-			}
-			if (!it) { // end of arg
-				*tmp = 0;
-				argv[cnt++] = argb;
-				argb=0; // reset arg begin
-			}
-			cmds = tmp+1;
-			while (*cmds && *cmds == ' ')
-				++cmds;
-		}
-		argv[cnt++] = argb ? argb : cmds;
-		if (it)
-		    *argv[cnt-1] = it[0]; // set old char for open braket
-	}
-
-//	int tmp=0;
-//	while(argv[tmp])
-//		eDebug("%d is %s", tmp, argv[tmp++]);
 	return execute(argv[0], argv);
 }
 
