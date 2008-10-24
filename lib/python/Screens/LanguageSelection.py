@@ -6,6 +6,10 @@ from Components.config import config
 from Components.Sources.List import List
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.language_cache import LANG_TEXT
+
+def _cached(x):
+	return LANG_TEXT.get(config.osd.language.value, {}).get(x, "")
 
 from Screens.Rc import Rc
 
@@ -56,27 +60,30 @@ class LanguageSelection(Screen):
 		language.activateLanguage(self.oldActiveLanguage)
 		self.close()
 
-	def run(self):
+	def run(self, justlocal = False):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
-		language.activateLanguage(lang)
 		config.osd.language.value = lang
 		config.osd.language.save()
+		self.setTitle(_cached("T2"))
+		
+		if justlocal:
+			return
+
+		language.activateLanguage(lang)
 		config.misc.languageselected.value = 0
 		config.misc.languageselected.save()
-		self.setTitle(_("Language selection"))
 		print "ok"
 
 	def updateList(self):
-		print "update list"
 		first_time = len(self.list) == 0
 
 		self.list = []
 		if len(language.getLanguageList()) == 0: # no language available => display only english
-			self.list.append(LanguageEntryComponent("en", _("English"), "en_EN"))
+			self.list.append(LanguageEntryComponent("en", _cached("en_EN"), "en_EN"))
 		else:
 			for x in language.getLanguageList():
-				self.list.append(LanguageEntryComponent(file = x[1][2].lower(), name = _(x[1][0]), index = x[0]))
+				self.list.append(LanguageEntryComponent(file = x[1][2].lower(), name = _cached("%s_%s" % x[1][1:3]), index = x[0]))
 		#self.list.sort(key=lambda x: x[1][7])
 
 		print "updateList"
@@ -87,7 +94,7 @@ class LanguageSelection(Screen):
 		print "done"
 
 	def changed(self):
-		self.run()
+		self.run(justlocal = True)
 		self.updateList()
 
 class LanguageWizard(LanguageSelection, Rc):
@@ -106,10 +113,10 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.selectKey("DOWN")
 		
 	def changed(self):
-		self.run()
+		self.run(justlocal = True)
 		self.updateList()
 		self.setText()
 		
 	def setText(self):
-		self["text"].setText(_("Please use the UP and DOWN keys to select your language. Afterwards press the OK button."))
-
+		
+		self["text"].setText(_cached("T1"))

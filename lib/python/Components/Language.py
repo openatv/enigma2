@@ -2,6 +2,8 @@ import gettext
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
+import language_cache
+
 class Language:
 	def __init__(self):
 		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
@@ -10,6 +12,7 @@ class Language:
 		self.langlist = []
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
+		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
 		self.addLanguage(_("English"), "en", "EN")
 		self.addLanguage(_("German"), "de", "DE")
 		self.addLanguage(_("Arabic"), "ar", "AE")
@@ -80,5 +83,24 @@ class Language:
 
 	def addCallback(self, callback):
 		self.callbacks.append(callback)
+
+	def precalcLanguageList(self):
+		# excuse me for those T1, T2 hacks please. The goal was to keep the language_cache.py as small as possible, *and* 
+		# don't duplicate these strings.
+		T1 = _("Please use the UP and DOWN keys to select your language. Afterwards press the OK button.")
+		T2 = _("Language selection")
+		l = open("language_cache.py", "w")
+		print >>l, "# -*- coding: UTF-8 -*-"
+		print >>l, "LANG_TEXT = {"
+		for language in self.langlist:
+			self.activateLanguage(language)
+			print >>l, '"%s": {' % language
+			for name, lang, country in self.lang.values():
+				print >>l, '\t"%s_%s": "%s",' % (lang, country, _(name))
+
+			print >>l, '\t"T1": "%s",' % (_(T1))
+			print >>l, '\t"T2": "%s",' % (_(T2))
+			print >>l, '},'
+		print >>l, "}"
 
 language = Language()
