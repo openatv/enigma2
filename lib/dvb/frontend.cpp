@@ -1418,11 +1418,13 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 		tmp = prev->m_frontend->m_data[LINKED_PREV_PTR];
 		if (tmp == -1 && sec_fe != this && !prev->m_inuse) {
 			int state = sec_fe->m_state;
+			// workaround to put the kernel frontend thread into idle state!
 			if (state != eDVBFrontend::stateIdle && state != stateClosed)
 			{
 				sec_fe->closeFrontend(true);
 				state = sec_fe->m_state;
 			}
+			// sec_fe is closed... we must reopen it here..
 			if (state == eDVBFrontend::stateClosed)
 			{
 				regFE = prev;

@@ -371,6 +371,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			bool doSetFrontend = true;
 			bool doSetVoltageToneFrontend = true;
 			bool sendDiSEqC = false;
+			bool forceChanged = false;
 			long band=0,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
@@ -384,6 +385,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				curRotorPos = -1,
 				satposDependPtr = -1;
 			iDVBFrontend *sec_fe=&frontend;
+			eDVBRegisteredFrontend *linked_fe = 0;
 			eDVBSatelliteDiseqcParameters::t_diseqc_mode diseqc_mode = di_param.m_diseqc_mode;
 
 			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satposDependPtr);
@@ -394,12 +396,20 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				frontend.getData(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr);
 				while (linked_prev_ptr != -1)
 				{
-					eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
+					linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
 					sec_fe = linked_fe->m_frontend;
 					sec_fe->getData(eDVBFrontend::LINKED_PREV_PTR, (long&)linked_prev_ptr);
 				}
 				if (satposDependPtr != -1)  // we dont need uncommitted switch and rotor cmds on second output of a rotor lnb
 					diseqc_mode = eDVBSatelliteDiseqcParameters::V1_0;
+				else {
+					// in eDVBFrontend::tuneLoop we call closeFrontend and ->inc_use() in this this condition (to put the kernel frontend thread into idle state)
+					// so we must resend all diseqc stuff (voltage is disabled when the frontend is closed)
+					int state;
+					sec_fe->getState(state);
+					if (!linked_fe->m_inuse && state != eDVBFrontend::stateIdle)
+						forceChanged = true;
+				}
 			}
 
 			sec_fe->getData(eDVBFrontend::CSW, lastcsw);
@@ -450,15 +460,15 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 				bool send_csw =
 					(di_param.m_committed_cmd != eDVBSatelliteDiseqcParameters::SENDNO);
-				bool changed_csw = send_csw && csw != lastcsw;
+				bool changed_csw = send_csw && (forceChanged || csw != lastcsw);
 
 				bool send_ucsw =
 					(di_param.m_uncommitted_cmd && diseqc_mode > eDVBSatelliteDiseqcParameters::V1_0);
-				bool changed_ucsw = send_ucsw && ucsw != lastucsw;
+				bool changed_ucsw = send_ucsw && (forceChanged || ucsw != lastucsw);
 
 				bool send_burst =
 					(di_param.m_toneburst_param != eDVBSatelliteDiseqcParameters::NO);
-				bool changed_burst = send_burst && toneburst != lastToneburst;
+				bool changed_burst = send_burst && (forceChanged || toneburst != lastToneburst);
 
 				int send_mask = 0; /*
 					1 must send csw
