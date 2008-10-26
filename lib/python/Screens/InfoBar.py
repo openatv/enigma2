@@ -1,5 +1,8 @@
 from Tools.Profile import profile
 
+# workaround for required config entry dependencies.
+from Screens.MovieSelection import MovieSelection
+
 from Screen import Screen
 
 profile("LOAD:enigma")
