@@ -709,5 +709,5 @@ class DVDdataJob(Job):
 			link_name =  self.workspace + filename
 			LinkTS(self, title.inputfile, link_name)
 			CopyMeta(self, title.inputfile)
-		BurnTask(self, ["-follow-links", self.workspace])
+		BurnTask(self, ["-iso-level", "4", "-follow-links", self.workspace])
 		RemoveDVDFolder(self)
