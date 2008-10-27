@@ -2,15 +2,17 @@ from os import system, popen, path as os_path, listdir
 from re import compile as re_compile
 from socket import *
 from enigma import eConsoleAppContainer
+from Components.Console import Console
 
 class Network:
 	def __init__(self):
 		self.ifaces = {}
-		self.configuredInterfaces = []
+		self.configuredInterfaces = []		
 		self.nameservers = []
-		self.getInterfaces()
 		self.ethtool_bin = "/usr/sbin/ethtool"
 		self.container = eConsoleAppContainer()
+		self.Console = Console()
+		self.getInterfaces()
 
 	def getInterfaces(self):
 		devicesPattern = re_compile('[a-z]+[0-9]+')
@@ -23,7 +25,7 @@ class Network:
 				device = devicesPattern.search(line).group()
 				if device == 'wifi0':
 					continue
-				self.ifaces[device] = self.getDataForInterface(device)
+				self.getDataForInterface(device)
 				# Show only UP Interfaces in E2
 				#if self.getAdapterAttribute(device, 'up') is False:
 				#	del self.ifaces[device]
@@ -31,7 +33,6 @@ class Network:
 				pass
 
 		#print "self.ifaces:", self.ifaces
-		self.loadNetworkConfig()
 		#self.writeNetworkConfig()
 		#print ord(' ')
 		#for line in result:
@@ -55,7 +56,11 @@ class Network:
 		return ip
 
 	def getDataForInterface(self, iface):
-		#ipRegexp = '[0-9]{1,2,3}\.[0-9]{1,2,3}\.[0-9]{1,2,3}\.[0-9]{1,2,3}'
+		cmd = "ifconfig " + iface
+		self.Console.ePopen(cmd, self.ifconfigFinished, iface)
+		
+	def ifconfigFinished(self, result, retval, iface):
+		data = { 'up': False, 'dhcp': False, 'preup' : False, 'postdown' : False }
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
 		ipLinePattern = re_compile('inet addr:' + ipRegexp)
 		netmaskLinePattern = re_compile('Mask:' + ipRegexp)
@@ -63,12 +68,8 @@ class Network:
 		ipPattern = re_compile(ipRegexp)
 		upPattern = re_compile('UP ')
 		macPattern = re_compile('[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}')
-
-		fp = popen("ifconfig " + iface)
-		result = fp.readlines()
-		fp.close()
-		data = { 'up': False, 'dhcp': False, 'preup' : False, 'postdown' : False }
-		for line in result:
+		
+		for line in result.splitlines():
 			ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, line))
 			netmask = self.regExpMatch(ipPattern, self.regExpMatch(netmaskLinePattern, line))
 			bcast = self.regExpMatch(ipPattern, self.regExpMatch(bcastLinePattern, line))
@@ -92,16 +93,21 @@ class Network:
 			data['netmask'] = [0, 0, 0, 0]
 			data['gateway'] = [0, 0, 0, 0]
 			
-		fp = popen("route -n | grep  " + iface)
-		result = fp.readlines()
-		fp.close()
-		for line in result:
+		cmd = "route -n | grep  " + iface
+		self.Console.ePopen(cmd,self.routeFinished,[iface,data,ipPattern])
+
+	def routeFinished(self, result, retval, extra_args):
+		(iface, data, ipPattern) = extra_args
+		
+		for line in result.splitlines():
 			print line[0:7]
 			if line[0:7] == "0.0.0.0":
 				gateway = self.regExpMatch(ipPattern, line[16:31])
 				if gateway is not None:
 					data['gateway'] = self.convertIP(gateway)
-		return data
+		self.ifaces[iface] = data
+		if len(self.Console.appContainers) == 0:
+			self.loadNetworkConfig()
 
 	def writeNetworkConfig(self):
 		self.configuredInterfaces = []
