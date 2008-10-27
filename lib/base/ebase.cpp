@@ -439,8 +439,8 @@ eTimerPy_start(eTimerPy* self, PyObject *args)
 static PyObject *
 eTimerPy_start_long(eTimerPy* self, PyObject *args)
 {
-	long v=0;
-	if (!PyArg_ParseTuple(args, "l", &v)) {
+	int v=0;
+	if (!PyArg_ParseTuple(args, "i", &v)) {
 		return NULL;
 	}
 	self->tm->startLongTimer(v);
