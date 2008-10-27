@@ -4,6 +4,7 @@
 #define _POSIX_C_SOURCE 200112L
 extern "C" void init_enigma();
 extern "C" void eBaseInit(void);
+extern "C" void eConsoleInit(void);
 extern void bsodFatal();
 
 #define SKIP_PART2
@@ -126,6 +127,7 @@ ePython::ePython()
 
 	init_enigma();
 	eBaseInit();
+	eConsoleInit();
 }
 
 ePython::~ePython()
