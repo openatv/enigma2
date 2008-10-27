@@ -1,11 +1,14 @@
 #include <lib/python/connections.h>
 
 PSignal::PSignal()
+	:m_destroyed(0)
 {
 }
 
 PSignal::~PSignal()
 {
+	if (m_destroyed)
+		*m_destroyed = true;
 	Py_XDECREF(m_list);
 }
 

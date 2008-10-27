@@ -14,6 +14,7 @@ class PSignal
 {
 protected:
 	ePyObject m_list;
+	bool *m_destroyed;
 public:
 	PSignal();
 	~PSignal();
@@ -37,13 +38,18 @@ class PSignal0: public PSignal, public Signal0<R>
 public:
 	R operator()()
 	{
+		bool destroyed=false;
+		m_destroyed = &destroyed;
 		if (m_list)
 		{
 			PyObject *pArgs = PyTuple_New(0);
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
-		return Signal0<R>::operator()();
+		if (!destroyed) {
+			m_destroyed = 0;
+			return Signal0<R>::operator()();
+		}
 	}
 };
 
@@ -53,6 +59,8 @@ class PSignal1: public PSignal, public Signal1<R,V0>
 public:
 	R operator()(V0 a0)
 	{
+		bool destroyed=false;
+		m_destroyed = &destroyed;
 		if (m_list)
 		{
 			PyObject *pArgs = PyTuple_New(1);
@@ -60,7 +68,10 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
-		return Signal1<R,V0>::operator()(a0);
+		if (!destroyed) {
+			m_destroyed = 0;
+			return Signal1<R,V0>::operator()(a0);
+		}
 	}
 };
 
@@ -70,6 +81,8 @@ class PSignal2: public PSignal, public Signal2<R,V0,V1>
 public:
 	R operator()(V0 a0, V1 a1)
 	{
+		bool destroyed=false;
+		m_destroyed = &destroyed;
 		if (m_list)
 		{
 			PyObject *pArgs = PyTuple_New(2);
@@ -78,7 +91,10 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
-		return Signal2<R,V0,V1>::operator()(a0, a1);
+		if (!destroyed) {
+			m_destroyed = 0;
+			return Signal2<R,V0,V1>::operator()(a0, a1);
+		}
 	}
 };
 
