@@ -119,28 +119,6 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 	return 0;
 }
 
-int eConsoleAppContainer::execute( PyObject *cmdline, PyObject *args )
-{
-	if (!PyString_Check(cmdline))
-		return -1;
-	if (!PyList_Check(args))
-		return -1;
-	const char *argv[PyList_Size(args) + 1];
-	int i;
-	for (i = 0; i < PyList_Size(args); ++i)
-	{
-		PyObject *arg = PyList_GetItem(args, i); /* borrowed ref */
-		if (!arg)
-			return -1;
-		if (!PyString_Check(arg))
-			return -1;
-		argv[i] = PyString_AsString(arg); /* borrowed pointer */
-	}
-	argv[i] = 0;
-
-	return execute(PyString_AsString(cmdline), argv); /* borrowed pointer */
-}
-
 eConsoleAppContainer::~eConsoleAppContainer()
 {
 	kill();
@@ -293,24 +271,6 @@ void eConsoleAppContainer::readyErrRead(int what)
 	}
 }
 
-void eConsoleAppContainer::dumpToFile( PyObject *py_filename )
-{
-	char *filename = PyString_AsString(py_filename);
-	filefd[1] = open(filename, O_WRONLY|O_CREAT|O_TRUNC, 0644);
-	eDebug("eConsoleAppContainer::dumpToFile open(%s, O_WRONLY|O_CREAT|O_TRUNC, 0644)=%i", filename, filefd[1]);
-}
-
-void eConsoleAppContainer::readFromFile( PyObject *py_filename )
-{
-	char *filename = PyString_AsString(py_filename);
-	char readbuf[32*1024];
-	filefd[0] = open(filename, O_RDONLY);
-	int rsize = read(filefd[0], readbuf, 32*1024);
-	eDebug("eConsoleAppContainer::readFromFile open(%s, O_RDONLY)=%i, read: %i", filename, filefd[0], rsize);
-	if ( filefd[0] > 0 && rsize > 0 )
-		write(readbuf, rsize);
-}
-
 void eConsoleAppContainer::write( const char *data, int len )
 {
 	char *tmp = new char[len];
@@ -318,16 +278,6 @@ void eConsoleAppContainer::write( const char *data, int len )
 	outbuf.push(queue_data(tmp,len));
 	if (out)
 		out->start();
-}
-
-void eConsoleAppContainer::write( PyObject *data )
-{
-	char *buffer;
-	Py_ssize_t length;
-	if (PyString_AsStringAndSize(data, &buffer, &length))
-		return;
-	if (buffer && length)
-		write(buffer, length);
 }
 
 void eConsoleAppContainer::readyWrite(int what)
@@ -370,4 +320,540 @@ void eConsoleAppContainer::readyWrite(int what)
 		else
 			out->stop();
 	}
+}
+
+#include "structmember.h"
+
+extern "C" {
+
+struct eConsolePy
+{
+	PyObject_HEAD
+	eConsoleAppContainer *cont;
+	PyObject *in_weakreflist; /* List of weak references */
+};
+
+#define COMPATIBILITY_MODE
+// with COMPATIBILITY_MODE enabled the callback list is accessed via console.appClosed.get()
+// we remove this code after next enigma2 release... then the list should be accessed via console.appClosed ( without .get() )
+
+#ifdef COMPATIBILITY_MODE
+struct eListCompatibilityWrapper
+{
+	PyObject_HEAD
+	PyObject *list;
+	PyObject *in_weakreflist; /* List of weak references */
+};
+
+static int
+eListCompatibilityWrapper_traverse(eListCompatibilityWrapper *self, visitproc visit, void *arg)
+{
+	Py_VISIT(self->list);
+	return 0;
+}
+
+static int
+eListCompatibilityWrapper_clear(eListCompatibilityWrapper *self)
+{
+	Py_CLEAR(self->list);
+	return 0;
+}
+
+static void
+eListCompatibilityWrapper_dealloc(eListCompatibilityWrapper* self)
+{
+	eDebug("eListCompatibilityWrapper_dealloc(eListCompatibilityWrapper* self) %p", self);
+	if (self->in_weakreflist != NULL)
+		PyObject_ClearWeakRefs((PyObject *) self);
+	eDebug("wrapper->list is %p",self->list);
+	eListCompatibilityWrapper_clear(self);
+	Org_Py_DECREF(self->list);
+	self->ob_type->tp_free((PyObject*)self);
+}
+
+static PyObject *
+eListCompatibilityWrapper_get(eListCompatibilityWrapper *self, void *closure)
+{
+	eDebug("eListCompatibilityWrapper_get(eListCompatibilityWrapper *self, void *closure)");
+	Org_Py_INCREF(self->list);
+	return self->list;
+}
+
+static PyMethodDef eListCompatibilityWrapper_methods[] = {
+	{"get", (PyCFunction)eListCompatibilityWrapper_get, METH_NOARGS,
+	 "returns the list"
+	},
+	{NULL}  /* Sentinel */
+};
+
+static PyGetSetDef eListCompatibilityWrapper_getseters[] = {
+	{NULL} /* Sentinel */
+};
+
+static PyTypeObject eListCompatibilityWrapperType = {
+	PyObject_HEAD_INIT(NULL)
+	0, /*ob_size*/
+	"eConsoleImpl.eListCompatibilityWrapper", /*tp_name*/
+	sizeof(eListCompatibilityWrapper), /*tp_basicsize*/
+	0, /*tp_itemsize*/
+	(destructor)eListCompatibilityWrapper_dealloc, /*tp_dealloc*/
+	0, /*tp_print*/
+	0, /*tp_getattr*/
+	0, /*tp_setattr*/
+	0, /*tp_compare*/
+	0, /*tp_repr*/
+	0, /*tp_as_number*/
+	0, /*tp_as_sequence*/
+	0, /*tp_as_mapping*/
+	0, /*tp_hash */
+	0, /*tp_call*/
+	0, /*tp_str*/
+	0, /*tp_getattro*/
+	0, /*tp_setattro*/
+	0, /*tp_as_buffer*/
+	Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC, /*tp_flags*/
+	"eListCompatibilityWrapper objects", /* tp_doc */
+	(traverseproc)eListCompatibilityWrapper_traverse, /* tp_traverse */
+	(inquiry)eListCompatibilityWrapper_clear, /* tp_clear */
+	0, /* tp_richcompare */
+	offsetof(eListCompatibilityWrapper, in_weakreflist), /* tp_weaklistoffset */
+	0, /* tp_iter */
+	0, /* tp_iternext */
+	eListCompatibilityWrapper_methods, /* tp_methods */
+	0, /* tp_members */
+	eListCompatibilityWrapper_getseters, /* tp_getset */
+	0, /* tp_base */
+	0, /* tp_dict */
+	0, /* tp_descr_get */
+	0, /* tp_descr_set */
+	0, /* tp_dictoffset */
+	0, /* tp_init */
+	0, /* tp_alloc */
+	0, /* tp_new */
+};
+
+static PyObject *
+eConsolePy_dataAvail(eConsolePy *self, void *closure)
+{
+	eListCompatibilityWrapper *wrapper = (eListCompatibilityWrapper *)eListCompatibilityWrapperType.tp_alloc(&eListCompatibilityWrapperType, 0);
+	Org_Py_INCREF((PyObject*)wrapper);
+	wrapper->list = self->cont->dataAvail.get();
+	wrapper->in_weakreflist = NULL;
+	return (PyObject*)wrapper;
+}
+
+static PyObject *
+eConsolePy_stdoutAvail(eConsolePy *self, void *closure)
+{
+	eListCompatibilityWrapper *wrapper = (eListCompatibilityWrapper *)eListCompatibilityWrapperType.tp_alloc(&eListCompatibilityWrapperType, 0);
+	Org_Py_INCREF((PyObject*)wrapper);
+	wrapper->list = self->cont->stdoutAvail.get();
+	wrapper->in_weakreflist = NULL;
+	return (PyObject*)wrapper;
+}
+
+static PyObject *
+eConsolePy_stderrAvail(eConsolePy *self, void *closure)
+{
+	eListCompatibilityWrapper *wrapper = (eListCompatibilityWrapper *)eListCompatibilityWrapperType.tp_alloc(&eListCompatibilityWrapperType, 0);
+	Org_Py_INCREF((PyObject*)wrapper);
+	wrapper->list = self->cont->stderrAvail.get();
+	wrapper->in_weakreflist = NULL;
+	return (PyObject*)wrapper;
+}
+
+static PyObject *
+eConsolePy_dataSent(eConsolePy *self, void *closure)
+{
+	eListCompatibilityWrapper *wrapper = (eListCompatibilityWrapper *)eListCompatibilityWrapperType.tp_alloc(&eListCompatibilityWrapperType, 0);
+	Org_Py_INCREF((PyObject*)wrapper);
+	wrapper->list = self->cont->dataSent.get();
+	wrapper->in_weakreflist = NULL;
+	return (PyObject*)wrapper;
+}
+
+static PyObject *
+eConsolePy_appClosed(eConsolePy *self, void *closure)
+{
+	eListCompatibilityWrapper *wrapper = (eListCompatibilityWrapper *)eListCompatibilityWrapperType.tp_alloc(&eListCompatibilityWrapperType, 0);
+	Org_Py_INCREF((PyObject*)wrapper);
+	wrapper->list = self->cont->appClosed.get();
+	wrapper->in_weakreflist = NULL;
+	return (PyObject*)wrapper;
+}
+#else
+static PyObject *
+eConsolePy_dataAvail(eConsolePy *self, void *closure)
+{
+	return self->cont->dataAvail.get();
+}
+
+static PyObject *
+eConsolePy_stdoutAvail(eConsolePy *self, void *closure)
+{
+	return self->cont->stdoutAvail.get();
+}
+
+static PyObject *
+eConsolePy_stderrAvail(eConsolePy *self, void *closure)
+{
+	return self->cont->stderrAvail.get();
+}
+
+static PyObject *
+eConsolePy_dataSent(eConsolePy *self, void *closure)
+{
+	return self->cont->dataSent.get();
+}
+
+static PyObject *
+eConsolePy_appClosed(eConsolePy *self, void *closure)
+{
+	return self->cont->appClosed.get();
+}
+#endif
+
+static PyGetSetDef eConsolePy_getseters[] = {
+	{"dataAvail",
+	 (getter)eConsolePy_dataAvail, (setter)0,
+	 "dataAvail callback list",
+	 NULL},
+	{"stdoutAvail",
+	 (getter)eConsolePy_stdoutAvail, (setter)0,
+	 "stdoutAvail callback list",
+	 NULL},
+	{"stderrAvail",
+	 (getter)eConsolePy_stderrAvail, (setter)0,
+	 "stderrAvail callback list",
+	 NULL},
+	{"dataSent",
+	 (getter)eConsolePy_dataSent, (setter)0,
+	 "dataSent callback list",
+	 NULL},
+	{"appClosed",
+	 (getter)eConsolePy_appClosed, (setter)0,
+	 "appClosed callback list",
+	 NULL},
+	{NULL} /* Sentinel */
+};
+
+static int
+eConsolePy_traverse(eConsolePy *self, visitproc visit, void *arg)
+{
+	PyObject *obj = self->cont->dataAvail.get(true);
+	if (obj) {
+		Py_VISIT(obj);
+	}
+	obj = self->cont->stdoutAvail.get(true);
+	if (obj) {
+		Py_VISIT(obj);
+	}
+	obj = self->cont->stderrAvail.get(true);
+	if (obj) {
+		Py_VISIT(obj);
+	}
+	obj = self->cont->dataSent.get(true);
+	if (obj) {
+		Py_VISIT(obj);
+	}
+	obj = self->cont->appClosed.get(true);
+	if (obj) {
+		Py_VISIT(obj);
+	}
+	return 0;
+}
+
+static int
+eConsolePy_clear(eConsolePy *self)
+{
+	PyObject *obj = self->cont->dataAvail.get(true);
+	if (obj) {
+		Py_CLEAR(obj);
+	}
+	obj = self->cont->stdoutAvail.get(true);
+	if (obj) {
+		Py_CLEAR(obj);
+	}
+	obj = self->cont->stderrAvail.get(true);
+	if (obj) {
+		Py_CLEAR(obj);
+	}
+	obj = self->cont->dataSent.get(true);
+	if (obj) {
+		Py_CLEAR(obj);
+	}
+	obj = self->cont->appClosed.get(true);
+	if (obj) {
+		Py_CLEAR(obj);
+	}
+	return 0;
+}
+
+static void
+eConsolePy_dealloc(eConsolePy* self)
+{
+	if (self->in_weakreflist != NULL)
+		PyObject_ClearWeakRefs((PyObject *) self);
+	eConsolePy_clear(self);
+	delete self->cont;
+	self->ob_type->tp_free((PyObject*)self);
+}
+
+static PyObject *
+eConsolePy_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
+{
+	eConsolePy *self = (eConsolePy *)type->tp_alloc(type, 0);
+	self->cont = new eConsoleAppContainer();
+	self->in_weakreflist = NULL;
+	return (PyObject *)self;
+}
+
+static PyObject *
+eConsolePy_running(eConsolePy* self)
+{
+	PyObject *ret = NULL;
+	ret = self->cont->running() ? Py_True : Py_False;
+	Org_Py_INCREF(ret);
+	return ret;
+}
+
+static PyObject *
+eConsolePy_execute(eConsolePy* self, PyObject *argt)
+{
+	if (PyTuple_Size(argt) > 1)
+	{
+		PyObject *cmdline, *args;
+		PyArg_ParseTuple(args, "OO", &cmdline, &args);
+		if (!PyString_Check(cmdline) || !PyList_Check(args))
+			return PyInt_FromLong(-2);
+		else
+		{
+			const char *argv[PyList_Size(args) + 1];
+			int i=0;
+			for (; i < PyList_Size(args); ++i)
+			{
+				PyObject *arg = PyList_GetItem(args, i); /* borrowed ref */
+				if (!PyString_Check(arg))
+					return PyInt_FromLong(-3);
+				argv[i] = PyString_AsString(arg); /* borrowed pointer */
+			}
+			argv[i] = 0;
+			return PyInt_FromLong(self->cont->execute(PyString_AsString(cmdline), argv)); /* borrowed pointer */
+		}
+	}
+	else
+	{
+		const char *str;
+		if (PyArg_ParseTuple(argt, "s", &str))
+			return PyInt_FromLong(self->cont->execute(str));
+	}
+	return NULL;
+}
+
+static PyObject *
+eConsolePy_write(eConsolePy* self, PyObject *args)
+{
+	int len;
+	char *data;
+	if (PyArg_ParseTuple(args, "si", &data, &len))
+		;
+	else
+	{
+		PyObject *ob;
+		if (!PyArg_ParseTuple(args, "O", &ob) || !PyString_Check(ob))
+			return NULL;
+		else
+		{
+			Py_ssize_t length;
+			if (!PyString_AsStringAndSize(ob, &data, &length))
+				len = length;
+			else
+				len = 0;
+		}
+	}
+	self->cont->write(data, len);
+	Py_RETURN_NONE;
+}
+
+static PyObject *
+eConsolePy_getPID(eConsolePy* self)
+{
+	return PyInt_FromLong(self->cont->getPID());
+}
+
+static PyObject *
+eConsolePy_setCWD(eConsolePy* self, PyObject *args)
+{
+	const char *path=0;
+	if (!PyArg_ParseTuple(args, "s", &path))
+		return NULL;
+	self->cont->setCWD(path);
+	Py_RETURN_NONE;
+}
+
+static PyObject *
+eConsolePy_kill(eConsolePy* self)
+{
+	self->cont->kill();
+	Py_RETURN_NONE;
+}
+
+static PyObject *
+eConsolePy_sendCtrlC(eConsolePy* self)
+{
+	self->cont->sendCtrlC();
+	Py_RETURN_NONE;
+}
+
+static PyObject *
+eConsolePy_sendEOF(eConsolePy* self)
+{
+	self->cont->sendEOF();
+	Py_RETURN_NONE;
+}
+
+static PyObject *
+eConsolePy_dumpToFile(eConsolePy* self, PyObject *args)
+{
+	char *filename;
+	if (!PyArg_ParseTuple(args, "s", &filename))
+		return NULL;
+	else
+	{
+		int fd = open(filename, O_WRONLY|O_CREAT|O_TRUNC, 0644);
+		self->cont->setFileFD(1, fd);
+		eDebug("eConsoleAppContainer::dumpToFile open(%s, O_WRONLY|O_CREAT|O_TRUNC, 0644)=%d", filename, fd);
+	}
+	Py_RETURN_NONE;
+}
+
+static PyObject *
+eConsolePy_readFromFile(eConsolePy* self, PyObject *args)
+{
+	char *filename;
+	if (!PyArg_ParseTuple(args, "s", &filename))
+		return NULL;
+	else
+	{
+		int fd = open(filename, O_RDONLY);
+		if (fd >= 0)
+		{
+			char readbuf[32*1024];
+			int rsize = read(fd, readbuf, 32*1024);
+			self->cont->setFileFD(0, fd);
+			eDebug("eConsoleAppContainer::readFromFile open(%s, O_RDONLY)=%d, read: %d", filename, fd, rsize);
+			self->cont->write(readbuf, rsize);
+		}
+		else
+		{
+			eDebug("eConsoleAppContainer::readFromFile %s not exist!", filename);
+			self->cont->setFileFD(0, -1);
+		}
+	}
+	Py_RETURN_NONE;
+}
+
+static PyMethodDef eConsolePy_methods[] = {
+	{"setCWD", (PyCFunction)eConsolePy_setCWD, METH_VARARGS,
+	 "set working dir"
+	},
+	{"execute", (PyCFunction)eConsolePy_execute, METH_VARARGS,
+	 "execute command"
+	},
+	{"dumpToFile", (PyCFunction)eConsolePy_dumpToFile, METH_VARARGS,
+	 "set output file"
+	},
+	{"readFromFile", (PyCFunction)eConsolePy_readFromFile, METH_VARARGS,
+	 "set input file"
+	},
+	{"getPID", (PyCFunction)eConsolePy_getPID, METH_NOARGS,
+	 "execute command"
+	},
+	{"kill", (PyCFunction)eConsolePy_kill, METH_NOARGS,
+	 "kill application"
+	},
+	{"sendCtrlC", (PyCFunction)eConsolePy_sendCtrlC, METH_NOARGS,
+	 "send Ctrl-C to application"
+	},
+	{"sendEOF", (PyCFunction)eConsolePy_sendEOF, METH_NOARGS,
+	 "send EOF to application"
+	},
+	{"write", (PyCFunction)eConsolePy_write, METH_VARARGS,
+	 "write data to application"
+	},
+	{"running", (PyCFunction)eConsolePy_running, METH_NOARGS,
+	 "returns the running state"
+	},
+	{NULL}  /* Sentinel */
+};
+
+static PyTypeObject eConsolePyType = {
+	PyObject_HEAD_INIT(NULL)
+	0, /*ob_size*/
+	"eConsoleImpl.eConsoleAppContainer", /*tp_name*/
+	sizeof(eConsolePy), /*tp_basicsize*/
+	0, /*tp_itemsize*/
+	(destructor)eConsolePy_dealloc, /*tp_dealloc*/
+	0, /*tp_print*/
+	0, /*tp_getattr*/
+	0, /*tp_setattr*/
+	0, /*tp_compare*/
+	0, /*tp_repr*/
+	0, /*tp_as_number*/
+	0, /*tp_as_sequence*/
+	0, /*tp_as_mapping*/
+	0, /*tp_hash */
+	0, /*tp_call*/
+	0, /*tp_str*/
+	0, /*tp_getattro*/
+	0, /*tp_setattro*/
+	0, /*tp_as_buffer*/
+	Py_TPFLAGS_DEFAULT | Py_TPFLAGS_HAVE_GC, /*tp_flags*/
+	"eConsoleAppContainer objects", /* tp_doc */
+	(traverseproc)eConsolePy_traverse, /* tp_traverse */
+	(inquiry)eConsolePy_clear, /* tp_clear */
+	0, /* tp_richcompare */
+	offsetof(eConsolePy, in_weakreflist), /* tp_weaklistoffset */
+	0, /* tp_iter */
+	0, /* tp_iternext */
+	eConsolePy_methods, /* tp_methods */
+	0, /* tp_members */
+	eConsolePy_getseters, /* tp_getset */
+	0, /* tp_base */
+	0, /* tp_dict */
+	0, /* tp_descr_get */
+	0, /* tp_descr_set */
+	0, /* tp_dictoffset */
+	0, /* tp_init */
+	0, /* tp_alloc */
+	eConsolePy_new, /* tp_new */
+};
+
+static PyMethodDef module_methods[] = {
+	{NULL}  /* Sentinel */
+};
+
+void eConsoleInit(void)
+{
+	PyObject* m;
+
+	m = Py_InitModule3("eConsoleImpl", module_methods,
+		"Module that implements eConsoleAppContainer with working cyclic garbage collection.");
+
+	if (m == NULL)
+		return;
+
+#ifdef COMPATIBILITY_MODE
+	if (!PyType_Ready(&eListCompatibilityWrapperType))
+	{
+		Org_Py_INCREF((PyObject*)&eListCompatibilityWrapperType);
+		PyModule_AddObject(m, "eListCompatibilityWrapper", (PyObject*)&eListCompatibilityWrapperType);
+	}
+#endif
+	if (!PyType_Ready(&eConsolePyType))
+	{
+		Org_Py_INCREF((PyObject*)&eConsolePyType);
+		PyModule_AddObject(m, "eConsoleAppContainer", (PyObject*)&eConsolePyType);
+	}
+}
 }

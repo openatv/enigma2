@@ -1,7 +1,9 @@
+import eConsoleImpl
 import eBaseImpl
 import enigma
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
+enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
 from Tools.Profile import profile, profile_final
 

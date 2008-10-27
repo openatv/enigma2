@@ -39,7 +39,6 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
-#include <lib/base/console.h>
 #include <lib/base/nconfig.h>
 #include <lib/base/message.h>
 #include <lib/driver/rc.h>
@@ -142,11 +141,6 @@ typedef long time_t;
 %include <lib/service/service.h>
 
 // TODO: embed these...
-%immutable eConsoleAppContainer::appClosed;
-%immutable eConsoleAppContainer::dataAvail;
-%immutable eConsoleAppContainer::stdoutAvail;
-%immutable eConsoleAppContainer::stderrAvail;
-%immutable eConsoleAppContainer::dataSent;
 %immutable eButton::selected;
 %immutable eInput::changed;
 %immutable eComponentScan::statusChanged;
@@ -161,7 +155,6 @@ typedef long time_t;
 %immutable ePythonMessagePump::recv_msg;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
 %include <lib/base/message.h>
-%include <lib/base/console.h>
 %include <lib/base/nconfig.h>
 %include <lib/driver/rc.h>
 %include <lib/gdi/fb.h>
