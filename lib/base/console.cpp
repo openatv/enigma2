@@ -362,10 +362,8 @@ eListCompatibilityWrapper_clear(eListCompatibilityWrapper *self)
 static void
 eListCompatibilityWrapper_dealloc(eListCompatibilityWrapper* self)
 {
-	eDebug("eListCompatibilityWrapper_dealloc(eListCompatibilityWrapper* self) %p", self);
 	if (self->in_weakreflist != NULL)
 		PyObject_ClearWeakRefs((PyObject *) self);
-	eDebug("wrapper->list is %p",self->list);
 	eListCompatibilityWrapper_clear(self);
 	Org_Py_DECREF(self->list);
 	self->ob_type->tp_free((PyObject*)self);
@@ -374,7 +372,6 @@ eListCompatibilityWrapper_dealloc(eListCompatibilityWrapper* self)
 static PyObject *
 eListCompatibilityWrapper_get(eListCompatibilityWrapper *self, void *closure)
 {
-	eDebug("eListCompatibilityWrapper_get(eListCompatibilityWrapper *self, void *closure)");
 	Org_Py_INCREF(self->list);
 	return self->list;
 }
@@ -623,16 +620,18 @@ eConsolePy_execute(eConsolePy* self, PyObject *argt)
 	if (PyTuple_Size(argt) > 1)
 	{
 		PyObject *cmdline, *args;
-		PyArg_ParseTuple(args, "OO", &cmdline, &args);
-		if (!PyString_Check(cmdline) || !PyList_Check(args))
+		PyArg_ParseTuple(argt, "OO", &cmdline, &args);
+		if (!PyString_Check(cmdline) || !PySequence_Check(args))
 			return PyInt_FromLong(-2);
 		else
 		{
-			const char *argv[PyList_Size(args) + 1];
+			PyObject *fast = PySequence_Fast(args, "2nd arg is not a sequence");
+			Py_ssize_t size = PySequence_Fast_GET_SIZE(fast);
+			const char *argv[size + 1];
 			int i=0;
-			for (; i < PyList_Size(args); ++i)
+			for (; i < size; ++i)
 			{
-				PyObject *arg = PyList_GetItem(args, i); /* borrowed ref */
+				PyObject *arg = PySequence_Fast_GET_ITEM(fast, i); /* borrowed ref */
 				if (!PyString_Check(arg))
 					return PyInt_FromLong(-3);
 				argv[i] = PyString_AsString(arg); /* borrowed pointer */
