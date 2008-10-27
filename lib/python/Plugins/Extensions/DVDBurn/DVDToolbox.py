@@ -8,6 +8,7 @@ from Components.Sources.Progress import Progress
 from Components.Task import Task, Job, job_manager, Condition
 from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
+from Components.Console import Console
 
 class DVDToolbox(Screen):
 	skin = """
@@ -44,7 +45,7 @@ class DVDToolbox(Screen):
 
 		self["toolboxactions"] = ActionMap(["ColorActions", "DVDToolbox", "OkCancelActions"],
 		{
-		    "red": self.close,
+		    "red": self.exit,
 		    "green": self.update,
 		    "yellow": self.format,
 		    #"blue": self.eject,
@@ -64,16 +65,26 @@ class DVDToolbox(Screen):
 		self["space_label"].text = _("Please wait... Loading list...")
 		self["info"].text = ""
 		self["details"].setText("")
-		self.mediuminfo = [ ]
-		job = DVDinfoJob(self)
-		job_manager.AddJob(job)
-		
-	def infoJobCB(self, in_background=False):
+		self.Console = Console()
+		cmd = "/bin/dvd+rw-mediainfo /dev/" + harddiskmanager.getCD()
+		self.Console.ePopen(cmd, self.mediainfoCB)
+
+	def format(self):
+		if self.formattable:
+			job = DVDformatJob(self)
+			job_manager.AddJob(job)
+			from Screens.TaskView import JobView
+			self.session.openWithCallback(self.formatCB, JobView, job)
+	
+	def formatCB(self, in_background):
+		self.update()
+
+	def mediainfoCB(self, mediuminfo, retval, extra_args):
 		capacity = 1
 		used = 0
 		infotext = ""
 		mediatype = ""
-		for line in self.mediuminfo:
+		for line in mediuminfo.splitlines():
 			if line.find("Mounted Media:") > -1:
 				mediatype = line.rsplit(',',1)[1][1:-1]
 				if mediatype.find("RW") > 0:
@@ -128,12 +139,9 @@ class DVDToolbox(Screen):
 			free = 0
 		self["info"].text = "Media-Type:\t\t%s\nFree capacity:\t\t%d MB" % (mediatype or "NO DVD", free)
 
-	def format(self):
-		if self.formattable:
-			job = DVDformatJob(self)
-			job_manager.AddJob(job)
-			from Screens.TaskView import JobView
-			self.session.openWithCallback(self.infoJobCB, JobView, job)
+	def exit(self):
+		del self.Console
+		self.close()
 
 class DVDformatJob(Job):
 	def __init__(self, toolbox):
@@ -184,39 +192,3 @@ class DVDformatTask(Task):
 			self.progress = int(float(data[:-1])*10)
 		else:
 			Task.processOutput(self, data)
-
-class DVDinfoJob(Job):
-	def __init__(self, toolbox):
-		Job.__init__(self, "DVD media toolbox")
-		self.toolbox = toolbox
-		DVDinfoTask(self)
-
-class DVDinfoTaskPostcondition(Condition):
-	RECOVERABLE = True
-	def check(self, task):
-		return task.error is None
-
-	def getErrorMessage(self, task):
-		return {
-			task.ERROR_UNKNOWN: _("An unknown error occured!")
-		}[task.error]
-
-class DVDinfoTask(Task):
-	ERROR_UNKNOWN = range(1)
-	def __init__(self, job, extra_args=[]):
-		Task.__init__(self, job, ("mediainfo"))
-		self.toolbox = job.toolbox
-		self.postconditions.append(DVDinfoTaskPostcondition())
-		self.setTool("/bin/dvd+rw-mediainfo")
-		self.args += [ "/dev/" + harddiskmanager.getCD() ]
-
-	def prepare(self):
-		self.error = None
-
-	def processOutputLine(self, line):
-		print "[DVDinfoTask]", line[:-1]
-		self.toolbox.mediuminfo.append(line)
-
-	def processFinished(self, returncode):
-		Task.processFinished(self, returncode)
-		self.toolbox.infoJobCB()
