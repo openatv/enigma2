@@ -88,9 +88,9 @@ class Network:
 				data['mac'] = mac
 		if not data.has_key('ip'):
 			data['dhcp'] = True
-			data['ip'] = [192, 168, 1, 2]
-			data['netmask'] = [255, 255, 255, 0]
-			data['gateway'] = [192, 168, 1, 1]
+			data['ip'] = [0, 0, 0, 0]
+			data['netmask'] = [0, 0, 0, 0]
+			data['gateway'] = [0, 0, 0, 0]
 			
 		fp = popen("route -n | grep  " + iface)
 		result = fp.readlines()
@@ -177,9 +177,11 @@ class Network:
 						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] == False:
 							self.ifaces[currif]["gateway"] = map(int, split[1].split('.'))					
 				if (split[0] == "pre-up"):
-					self.ifaces[currif]["preup"] = i
+					if self.ifaces[currif].has_key("preup"):
+						self.ifaces[currif]["preup"] = i
 				if (split[0] == "post-down"):
-					self.ifaces[currif]["postdown"] = i
+					if self.ifaces[currif].has_key("postdown"):
+						self.ifaces[currif]["postdown"] = i
 
 		print "read interfaces:", ifaces
 		for ifacename, iface in ifaces.items():
@@ -331,6 +333,12 @@ class Network:
 	def cmdFinished(self,retval):
 		self.container.appClosed.get().remove(self.cmdFinished)
 		self.container.dataAvail.get().remove(self.dataAvail)
+
+	def stopContainer(self):
+		self.container.kill()
+		
+	def ContainerRunning(self):
+		return self.container.running()
 
 	def checkforInterface(self,iface):
 		if self.getAdapterAttribute(iface, 'up') is True:
