@@ -834,9 +834,7 @@ static PyMethodDef module_methods[] = {
 
 void eConsoleInit(void)
 {
-	PyObject* m;
-
-	m = Py_InitModule3("eConsoleImpl", module_methods,
+	PyObject* m = Py_InitModule3("eConsoleImpl", module_methods,
 		"Module that implements eConsoleAppContainer with working cyclic garbage collection.");
 
 	if (m == NULL)

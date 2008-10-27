@@ -753,9 +753,7 @@ static PyMethodDef module_methods[] = {
 
 void eBaseInit(void)
 {
-	PyObject* m;
-
-	m = Py_InitModule3("eBaseImpl", module_methods,
+	PyObject* m = Py_InitModule3("eBaseImpl", module_methods,
 		"Module that implements some enigma classes with working cyclic garbage collection.");
 
 	if (m == NULL)
