@@ -86,7 +86,7 @@ class DVDToolbox(Screen):
 		mediatype = ""
 		for line in mediuminfo.splitlines():
 			if line.find("Mounted Media:") > -1:
-				mediatype = line.rsplit(',',1)[1][1:-1]
+				mediatype = line.rsplit(',',1)[1][1:]
 				if mediatype.find("RW") > 0:
 					self.formattable = True
 				else:
@@ -115,7 +115,7 @@ class DVDToolbox(Screen):
 					if used:
 						used = capacity-used
 					print "[free blocks] capacity=%d, used=%d" % (capacity, used)
-			infotext += line
+			infotext += line+'\n'
 		self["details"].setText(infotext)
 		if self.formattable:
 			self["key_yellow"].text = _("Format")
