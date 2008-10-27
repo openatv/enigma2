@@ -205,7 +205,7 @@ RESULT eDVBScan::startFilter()
 		if (m_ready_all & readyPAT)
 		{
 			m_PAT = new eTable<ProgramAssociationSection>(m_scan_debug);
-			if (m_PAT->start(m_demux, eDVBPATSpec()))
+			if (m_PAT->start(m_demux, eDVBPATSpec(4000)))
 				return -1;
 			CONNECT(m_PAT->tableReady, eDVBScan::PATready);
 		}
@@ -376,7 +376,7 @@ void eDVBScan::PMTready(int err)
 	}
 
 	if (m_pmt_in_progress != m_pmts_to_read.end())
-		m_PMT->start(m_demux, eDVBPMTSpec(m_pmt_in_progress->second.pmtPid, m_pmt_in_progress->first));
+		m_PMT->start(m_demux, eDVBPMTSpec(m_pmt_in_progress->second.pmtPid, m_pmt_in_progress->first, 4000));
 	else
 	{
 		m_PMT = 0;

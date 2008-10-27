@@ -14,12 +14,12 @@ struct eDVBPMTSpec
 {
 	eDVBTableSpec m_spec;
 public:
-	eDVBPMTSpec(int pid, int sid, bool long_timeout = false)
+	eDVBPMTSpec(int pid, int sid, int timeout = 20000)
 	{
 		m_spec.pid     = pid;
 		m_spec.tid     = ProgramMapSection::TID;
 		m_spec.tidext  = sid;
-		m_spec.timeout = long_timeout ? 20000 : 4000; // ProgramMapSection::TIMEOUT;
+		m_spec.timeout = timeout; // ProgramMapSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion | 
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfHaveTIDExt | 
 			eDVBTableSpec::tfCheckCRC | eDVBTableSpec::tfHaveTimeout;
@@ -108,11 +108,11 @@ struct eDVBPATSpec
 {
 	eDVBTableSpec m_spec;
 public:
-	eDVBPATSpec(bool long_timeout=false)
+	eDVBPATSpec(int timeout=20000)
 	{
 		m_spec.pid     = ProgramAssociationSection::PID;
 		m_spec.tid     = ProgramAssociationSection::TID;
-		m_spec.timeout = long_timeout ? 20000 : 4000; // ProgramAssociationSection::TIMEOUT;
+		m_spec.timeout = timeout; // ProgramAssociationSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
