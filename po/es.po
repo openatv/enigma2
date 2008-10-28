@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 17:06+0200\n"
-"PO-Revision-Date: 2008-10-06 12:56+0100\n"
+"POT-Creation-Date: 2008-10-28 11:20+0100\n"
+"PO-Revision-Date: 2008-10-24 13:27+0100\n"
 "Last-Translator: José Juan Zapater <josej@zapater.fdns.net>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgstr "%H:%M"
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "¡%d trabajos está ejecutándose en segundo plano!"
 
 #, python-format
 msgid "%d min"
@@ -92,14 +92,16 @@ msgid "(show optional DVD audio menu)"
 msgstr "(muestra ménu de audio de DVD)"
 
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr "Falló la descarga del .NFI:"
 
 msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
+msgstr "Flasher .NFI de arranque USB creado correctamente."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
+"El fichero .NFI páso el chequeo de firma. ¡Puede flashear esta imagen de "
+"manera segura!"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "directorio /usr/share/enigma2"
@@ -473,7 +475,7 @@ msgid "Back"
 msgstr "Atrás"
 
 msgid "Background"
-msgstr ""
+msgstr "Segundo plano"
 
 msgid "Backup"
 msgstr "Backup"
@@ -557,7 +559,7 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Cannot parse feed directory"
-msgstr ""
+msgstr "No puedo leer el directorio de fuentes"
 
 msgid "Capacity: "
 msgstr "Capacidad: "
@@ -572,7 +574,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Cambiar de lista en zapin rápido"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Cambiar directorio."
 
 msgid "Change pin code"
 msgstr "Cambiar código pin"
@@ -717,7 +719,7 @@ msgid "Content does not fit on DVD!"
 msgstr "¡Los contenidos no caben en un DVD!"
 
 msgid "Continue in background"
-msgstr ""
+msgstr "Continuar en segundo plano"
 
 msgid "Continue playing"
 msgstr "Reproducción contínua"
@@ -726,10 +728,10 @@ msgid "Contrast"
 msgstr "Contraste"
 
 msgid "Copying USB flasher boot image to stick..."
-msgstr ""
+msgstr "Copiando el flasher de arranque a la memoria USB..."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "No puedo conectar al servidor de imágenes .NFI de Dreambox:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "No puedo cargar el Medio! Hay disco insertado?"
@@ -802,7 +804,7 @@ msgid "Date"
 msgstr "Fecha"
 
 msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
+msgstr "Descomprimiendo la imagen de arranque de la memoria USB..."
 
 msgid "Deep Standby"
 msgstr "Reposo profundo"
@@ -837,7 +839,7 @@ msgid "Description"
 msgstr "Descripción"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Directorio destino"
 
 msgid "Detected HDD:"
 msgstr "HDD detectado:"
@@ -912,6 +914,8 @@ msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \"%s\"?"
 msgstr ""
+"Seguro que quiere BORRAR\n"
+"el plugin \"%s\"?"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -929,6 +933,8 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
+"Seguro que quiere descargar\n"
+"el plugin \"%s\"?"
 
 msgid "Do you really want to exit?"
 msgstr "¿Realmente quiere salir?"
@@ -1004,16 +1010,16 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Hecho - Instalados o actualizados %d paquetes con %d errores"
 
 msgid "Download"
-msgstr ""
+msgstr "Descargar"
 
 msgid "Download .NFI-Files for USB-Flasher"
-msgstr ""
+msgstr "Descargar ficheros .NFI para el USB-Flasher"
 
 msgid "Download Plugins"
 msgstr "Descargar Plugins"
 
 msgid "Download of USB flasher boot image failed: "
-msgstr ""
+msgstr "Falló la descarga del USB flasher:"
 
 msgid "Downloadable new plugins"
 msgstr "Nuevos plugins descargables"
@@ -1025,7 +1031,7 @@ msgid "Downloading"
 msgstr "Descargando"
 
 msgid "Downloading image description..."
-msgstr ""
+msgstr "Descargando la descripción de la imagen..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Descargando información del plugin. Espere..."
@@ -1148,7 +1154,7 @@ msgid "Error"
 msgstr "Error"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "Error ejecutando el plugin"
 
 #, python-format
 msgid ""
@@ -1236,15 +1242,17 @@ msgstr "Finlandés"
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
+"Primero necesitamos descargar el último entorno de arranque para el flasher "
+"USB."
 
 msgid "Fix USB stick"
-msgstr ""
+msgstr "Fijar memoria USB"
 
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "Falló el flasheo"
 
 msgid "Font size"
 msgstr "Tamaño de fuente"
@@ -1384,7 +1392,7 @@ msgstr ""
 "Si está contento con los resultados, pulse OK."
 
 msgid "Image flash utility"
-msgstr ""
+msgstr "Utilidad de imagen flash"
 
 msgid "Image-Upgrade"
 msgstr "Imagen-Actualización"
@@ -1680,6 +1688,7 @@ msgstr "SIGUIENTE"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
+"Se descargó la imagen flash correctamente. ¡Pulse Amarillo para reiniciar!"
 
 msgid "NOW"
 msgstr "AHORA"
@@ -1774,7 +1783,7 @@ msgstr ""
 "(Tiempo cumplido leyendo PAT)"
 
 msgid "No details for this image file"
-msgstr ""
+msgstr "No hay detalles para este fichero de imagen"
 
 msgid "No event info found, recording indefinitely."
 msgstr "No hay info del evento, grabando indefinidamente."
@@ -1809,7 +1818,7 @@ msgstr ""
 "canales."
 
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "Encontré una memoria USB no válida"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1843,6 +1852,9 @@ msgid ""
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
+"No he encontrado ningún interfaz inalámbrico que funcione.\n"
+"Verifique que tiene un dispositivo WLAN compatible o active el interfaz de "
+"área local."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -1901,6 +1913,8 @@ msgid ""
 "format and use as .NFI image flasher. Press OK after you've put the stick "
 "back in."
 msgstr ""
+"Ahora inserte el USB stick (tamaño mínimo 64 MB) que quiera formatear y usar "
+"para flashear una imagen .NFI. Pulse OK despúes de conectarlo."
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1979,7 +1993,7 @@ msgid "Parental control type"
 msgstr "Tipo de control de adultos"
 
 msgid "Partitioning USB stick..."
-msgstr ""
+msgstr "Particionando la memoria USB ..."
 
 msgid "Pause movie at end"
 msgstr "Parar película al final"
@@ -2001,7 +2015,7 @@ msgid "Play"
 msgstr "Reproducir"
 
 msgid "Play Audio-CD..."
-msgstr ""
+msgstr "Reproducir Audio-CD..."
 
 msgid "Play recorded movies..."
 msgstr "Reproducir películas grabadas..."
@@ -2016,10 +2030,10 @@ msgid "Please change recording endtime"
 msgstr "Por favor, cambie la finalización de la grabación"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Por favor, ¡chequee su configuración de red!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "Elija la imagen flash .NFI desde el servidor para descargar"
 
 msgid "Please choose an extension..."
 msgstr "Por favor, elija una extensión..."
@@ -2071,7 +2085,7 @@ msgid "Please press OK!"
 msgstr "Por favor, pulse OK"
 
 msgid "Please select .NFI flash image file from medium"
-msgstr ""
+msgstr "Seleccione el fichero de imagen .NFI flash desde el medio"
 
 msgid "Please select a playlist to delete..."
 msgstr "Por favor, seleccione una lista de reproducción a borrar..."
@@ -2089,7 +2103,7 @@ msgid "Please select keyword to filter..."
 msgstr "Por favor, seleccione una palabra para filtrar..."
 
 msgid "Please select target directory or medium"
-msgstr ""
+msgstr "Seleccione el directorio destino o el medio"
 
 msgid "Please select the movie path..."
 msgstr "Por favor, seleccione un directorio de películas..."
@@ -2120,7 +2134,7 @@ msgstr ""
 "botón OK."
 
 msgid "Please wait for md5 signature verification..."
-msgstr ""
+msgstr "Espere para la verificación de firma md5..."
 
 msgid "Please wait... Loading list..."
 msgstr "Espere... Cargando lista..."
@@ -2225,7 +2239,7 @@ msgid "RC Menu"
 msgstr "Menú RC"
 
 msgid "RF output"
-msgstr "Salida RF"
+msgstr "Salida de antena"
 
 msgid "RGB"
 msgstr "RGB"
@@ -2252,16 +2266,16 @@ msgid "Really exit the subservices quickzap?"
 msgstr "¿Quiere salir del zapeo rápido de subcananles?"
 
 msgid "Really reboot now?"
-msgstr ""
+msgstr "¿Quiere reiniciar ahora?"
 
 msgid "Really restart now?"
-msgstr ""
+msgstr "¿Quiere reiniciar ahora?"
 
 msgid "Really shutdown now?"
-msgstr ""
+msgstr "¿Quiere apagar ahora?"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Reiniciar"
 
 msgid "Reception Settings"
 msgstr "Configuración de Recepción"
@@ -2277,6 +2291,7 @@ msgstr "Grabando"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
+"¡Grabación(es) está(n) en proceso o va(n) a comenzar en pocos segundos!"
 
 msgid "Recordings always have priority"
 msgstr "Las grabaciones siempre tienen prioridad"
@@ -2291,7 +2306,7 @@ msgid "Refresh rate selection."
 msgstr "Selección de velocidad de refresco."
 
 msgid "Remounting stick partition..."
-msgstr ""
+msgstr "Remontando la partición de la memoria USB..."
 
 msgid "Remove Bookmark"
 msgstr "Borrar Marcador"
@@ -2309,10 +2324,10 @@ msgid "Remove plugins"
 msgstr "Borrar complmentos"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "¿Borrar el fichero corrupto .NFI?"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "¿Borrar el fichero .NFI incompleto?"
 
 msgid "Remove title"
 msgstr "Borrar el título"
@@ -2563,7 +2578,7 @@ msgid "Select channel to record from"
 msgstr "Seleccione canal a grabar"
 
 msgid "Select image"
-msgstr ""
+msgstr "Seleccionar imagen"
 
 msgid "Select refresh rate"
 msgstr "Seleccionar la velocidad de refresco"
@@ -2575,7 +2590,7 @@ msgid "Select video mode"
 msgstr "Seleccionar el modo de video"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "Imagen origen seleccionada"
 
 msgid "Seperate titles with a main menu"
 msgstr "Separar títulos con un menú principal"
@@ -2900,6 +2915,10 @@ msgid ""
 "and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
 "stick!"
 msgstr ""
+"El flasher de imagen .NFI a USB stick está preparado. Descarge una imagen ."
+"NFI desde el servidor y guárdela en la memoria USB. Entonces reinicie y "
+"pulse la tecla 'Abajo' en el panel frontal para arrancar desde el .NFI "
+"flasher desde la memoria USB."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
@@ -2920,6 +2939,11 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"El siguiente dispositivo fué encontrado:\n"
+"\n"
+"%s\n"
+"\n"
+"¿Quiere escribir el USB flasher a esta memoria USB?"
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2946,11 +2970,16 @@ msgid ""
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"La validación md5sum ha fallado, el fichero puede estar corrupto. ¿Está "
+"seguro que quiere escribir esta imagen en la memoria flash? ¡Lo estará "
+"haciendo bajo su riesgo!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
 msgstr ""
+"Falló la validación md5sum, el fichero puede estar descargado incompleto o "
+"estar corrupto."
 
 msgid "The package doesn't contain anything."
 msgstr "El paquete no contiene nada."
@@ -3009,17 +3038,21 @@ msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "¡Este fichero .NFI no contiene una imagen válida %s!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"El fichero .NFI no tiene una firma md5 y no garantizamos que trabaje. "
+"¿Seguro que quiere escribir esta imagen a la memoria flash?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+"El fichero .NFI tiene una firma md5 válida. ¿Continuamos programando esta "
+"imagen a la memoria flash?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -3135,6 +3168,8 @@ msgid ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
 msgstr ""
+"¡Programaciones solapadas en timers.xml!\n"
+"¡Chequéelo!"
 
 msgid "Timer sanity error"
 msgstr "Error de grabación"
@@ -3164,6 +3199,8 @@ msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
 "and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
+"Esté seguro que realiza ésto. Quite el stick USB destino ahora y vuelvalo a "
+"ponerlo. Pulse OK cuando lo haya sacado."
 
 msgid "Today"
 msgstr "Hoy"
@@ -3365,7 +3402,7 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (trailer intro)"
 
 msgid "Video Fine-Tuning"
-msgstr "Ajueste de video fino"
+msgstr "Ajuste de video fino"
 
 msgid "Video Fine-Tuning Wizard"
 msgstr "Asistente de ajuste de vídeo"
@@ -3429,7 +3466,7 @@ msgid "Waiting"
 msgstr "Esperando"
 
 msgid "Waiting for USB stick to settle..."
-msgstr ""
+msgstr "Esperando a la memoria USB a resolver..."
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3510,10 +3547,10 @@ msgid "Write failed!"
 msgstr "¡Falló la escritura!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "Se completó la escritura de la imagen la memoria flash"
 
 msgid "Writing image file to NAND Flash"
-msgstr ""
+msgstr "Escribiendo el fichero de imagen a la Flash NAND"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3523,6 +3560,9 @@ msgstr "Año:"
 
 msgid "Yes"
 msgstr "Si"
+
+msgid "Yes, and delete this movie"
+msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Si, ¡backup mi configuración!"
@@ -3613,6 +3653,8 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
+"Ha elegido crear un nuevo .NFI flasher autoarrancable memoria USB. Esto "
+"reparticiona la memoria USB y todos los datos serán borrados."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3791,7 +3833,7 @@ msgid "chapters"
 msgstr "capítulos"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "Elija el directorio destino."
 
 msgid "circular left"
 msgstr "circular izda"
@@ -4162,7 +4204,7 @@ msgid "previous channel in history"
 msgstr "canal anterior en historia"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "reiniciando..."
 
 msgid "record"
 msgstr "grabar"
@@ -4241,10 +4283,10 @@ msgid "select"
 msgstr "seleccionar"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "seleccione fichero flash .NFI"
 
 msgid "select image from server"
-msgstr ""
+msgstr "seleccione imagen desde el servidor"
 
 msgid "select movie"
 msgstr "seleccionar película"
