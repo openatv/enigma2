@@ -74,8 +74,8 @@ class PluginDownloadBrowser(Screen):
 		self.type = type
 		
 		self.container = eConsoleAppContainer()
-		self.container.appClosed.get().append(self.runFinished)
-		self.container.dataAvail.get().append(self.dataAvail)
+		self.container.appClosed.append(self.runFinished)
+		self.container.dataAvail.append(self.dataAvail)
 		self.onLayoutFinish.append(self.startRun)
 		self.onShown.append(self.setWindowTitle)
 		
@@ -141,8 +141,8 @@ class PluginDownloadBrowser(Screen):
 		
 	def installFinished(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
-		self.container.appClosed.get().remove(self.runFinished)
-		self.container.dataAvail.get().remove(self.dataAvail)
+		self.container.appClosed.remove(self.runFinished)
+		self.container.dataAvail.remove(self.dataAvail)
 		self.close()
 
 	def runFinished(self, retval):

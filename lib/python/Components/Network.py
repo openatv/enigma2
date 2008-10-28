@@ -332,13 +332,13 @@ class Network:
 	def getLinkState(self,iface,callback):
 		self.dataAvail = callback
 		cmd = self.ethtool_bin + " " + iface
-		self.container.appClosed.get().append(self.cmdFinished)
-		self.container.dataAvail.get().append(callback)
+		self.container.appClosed.append(self.cmdFinished)
+		self.container.dataAvail.append(callback)
 		self.container.execute(cmd)
 
 	def cmdFinished(self,retval):
-		self.container.appClosed.get().remove(self.cmdFinished)
-		self.container.dataAvail.get().remove(self.dataAvail)
+		self.container.appClosed.remove(self.cmdFinished)
+		self.container.dataAvail.remove(self.dataAvail)
 
 	def stopContainer(self):
 		self.container.kill()

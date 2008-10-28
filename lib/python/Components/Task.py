@@ -162,9 +162,9 @@ class Task(object):
 		self.task_progress_changed = task_progress_changed
 		from enigma import eConsoleAppContainer
 		self.container = eConsoleAppContainer()
-		self.container.appClosed.get().append(self.processFinished)
-		self.container.stdoutAvail.get().append(self.processStdout)
-		self.container.stderrAvail.get().append(self.processStderr)
+		self.container.appClosed.append(self.processFinished)
+		self.container.stdoutAvail.append(self.processStdout)
+		self.container.stderrAvail.append(self.processStderr)
 
 		assert self.cmd is not None
 		assert len(self.args) >= 1

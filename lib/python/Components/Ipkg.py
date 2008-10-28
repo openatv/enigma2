@@ -31,8 +31,8 @@ class IpkgComponent:
 		
 	def runCmd(self, cmd):
 		print "executing", self.ipkg, cmd
-		self.cmd.appClosed.get().append(self.cmdFinished)
-		self.cmd.dataAvail.get().append(self.cmdData)
+		self.cmd.appClosed.append(self.cmdFinished)
+		self.cmd.dataAvail.append(self.cmdData)
 		if self.cmd.execute(self.ipkg + " " + cmd):
 			self.cmdFinished(-1)
 
@@ -56,8 +56,8 @@ class IpkgComponent:
 	
 	def cmdFinished(self, retval):
 		self.callCallbacks(self.EVENT_DONE)
-		self.cmd.appClosed.get().remove(self.cmdFinished)
-		self.cmd.dataAvail.get().remove(self.cmdData)
+		self.cmd.appClosed.remove(self.cmdFinished)
+		self.cmd.dataAvail.remove(self.cmdData)
 
 	def cmdData(self, data):
 		print "data:", data

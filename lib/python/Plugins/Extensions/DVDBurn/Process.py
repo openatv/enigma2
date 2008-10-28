@@ -12,7 +12,7 @@ class png2yuvTask(Task):
 
 	def run(self, callback, task_progress_changed):
 		Task.run(self, callback, task_progress_changed)
-		self.container.stdoutAvail.get().remove(self.processStdout)
+		self.container.stdoutAvail.remove(self.processStdout)
 		self.container.dumpToFile(self.dumpFile)
 
 	def processStderr(self, data):
@@ -44,7 +44,7 @@ class spumuxTask(Task):
 
 	def run(self, callback, task_progress_changed):
 		Task.run(self, callback, task_progress_changed)
-		self.container.stdoutAvail.get().remove(self.processStdout)
+		self.container.stdoutAvail.remove(self.processStdout)
 		self.container.dumpToFile(self.dumpFile)
 		self.container.readFromFile(self.inputFile)
 

@@ -10,7 +10,7 @@ class PluginRunner(Screen):
 		self.skin = PluginRunner.skin
 		Screen.__init__(self, session)
 		self.container = eConsoleAppContainer()
-		self.container.appClosed.get().append(self.finishedExecution)
+		self.container.appClosed.append(self.finishedExecution)
 		self.runPlugin(pluginname)
 		
 	def runPlugin(self, pluginname):

@@ -160,8 +160,8 @@ class CableTransponderSearchSupport:
 
 	def cableTransponderSearchSessionClosed(self, *val):
 		print "cableTransponderSearchSessionClosed, val", val
-		self.cable_search_container.appClosed.get().remove(self.cableTransponderSearchClosed)
-		self.cable_search_container.dataAvail.get().remove(self.getCableTransponderData)
+		self.cable_search_container.appClosed.remove(self.cableTransponderSearchClosed)
+		self.cable_search_container.dataAvail.remove(self.getCableTransponderData)
 		self.cable_search_container = None
 		self.cable_search_session = None
 		if val and len(val) and val[0]:
@@ -207,8 +207,8 @@ class CableTransponderSearchSupport:
 					return
 		self.__tlist = [ ]
 		self.cable_search_container = eConsoleAppContainer()
-		self.cable_search_container.appClosed.get().append(self.cableTransponderSearchClosed)
-		self.cable_search_container.dataAvail.get().append(self.getCableTransponderData)
+		self.cable_search_container.appClosed.append(self.cableTransponderSearchClosed)
+		self.cable_search_container.dataAvail.append(self.getCableTransponderData)
 		cableConfig = config.Nims[nim_idx].cable
 		cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
 		#FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
