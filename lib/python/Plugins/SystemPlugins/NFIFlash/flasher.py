@@ -178,8 +178,8 @@ class NFIFlash(Screen):
 				self.session.summary.setText(_("Please wait for md5 signature verification..."))
 				self.container = eConsoleAppContainer()
 				self.container.setCWD(self["filelist"].getCurrentDirectory())
-				self.container.appClosed.get().append(self.md5finished)
-				self.container.dataSent.get().append(self.md5ready)
+				self.container.appClosed.append(self.md5finished)
+				self.container.dataSent.append(self.md5ready)
 				self.container.execute("md5sum -cw -")
 				self.container.write(self.md5sum)
 			else:

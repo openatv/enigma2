@@ -405,10 +405,10 @@ class NFIDownload(Screen):
 				md5 = self.nfo[pos+5:pos+5+32] + "  " + self.nfilocal
 				print cmd, md5
 				self.download_container.setCWD(self["destlist"].getCurrentDirectory())
-				self.download_container.appClosed.get().append(self.md5finished)
+				self.download_container.appClosed.append(self.md5finished)
 				self.download_container.execute(cmd)
 				self.download_container.write(md5)
-				self.download_container.dataSent.get().append(self.md5ready)
+				self.download_container.dataSent.append(self.md5ready)
 			else:
 				self["statusbar"].text = "Download completed."
 				self.downloading(False)
@@ -421,7 +421,7 @@ class NFIDownload(Screen):
 
 	def md5finished(self, retval):
 		print "[md5finished]: " + str(retval)
-		self.download_container.appClosed.get().remove(self.md5finished)
+		self.download_container.appClosed.remove(self.md5finished)
 		if retval==0:
 			self["statusbar"].text = _(".NFI file passed md5sum signature check. You can safely flash this image!")
 			self.switchList(self.LIST_SOURCE)
@@ -471,8 +471,8 @@ class NFIDownload(Screen):
 	def flasherdownload_finished(self, string=""):
 		print "[flasherdownload_finished] " + str(string)	
 		self.container = eConsoleAppContainer()
-		self.container.appClosed.get().append(self.umount_finished)
-		self.container.dataAvail.get().append(self.tool_avail)
+		self.container.appClosed.append(self.umount_finished)
+		self.container.dataAvail.append(self.tool_avail)
 		self.taskstring = ""
 		umountdevs = ""
 		from os import listdir
@@ -488,18 +488,18 @@ class NFIDownload(Screen):
 		self.taskstring += string
 
 	def umount_finished(self, retval):
-		self.container.appClosed.get().remove(self.umount_finished)
+		self.container.appClosed.remove(self.umount_finished)
 		self.session.openWithCallback(self.dmesg_clear, MessageBox, _("To make sure you intend to do this, please remove the target USB stick now and stick it back in upon prompt. Press OK when you have taken the stick out."), MessageBox.TYPE_INFO)
 
 	def dmesg_clear(self, answer):
-		self.container.appClosed.get().append(self.dmesg_cleared)
+		self.container.appClosed.append(self.dmesg_cleared)
 		self.taskstring = ""
 		self.cmd = "dmesg -c"
 		print "executing " + self.cmd
 		self.container.execute(self.cmd)
 
 	def dmesg_cleared(self, retval):
-		self.container.appClosed.get().remove(self.dmesg_cleared)
+		self.container.appClosed.remove(self.dmesg_cleared)
 		self.session.openWithCallback(self.stick_back_in, MessageBox, (_("Now please insert the USB stick (minimum size is 64 MB) that you want to format and use as .NFI image flasher. Press OK after you've put the stick back in.")), MessageBox.TYPE_INFO)
 
 	def stick_back_in(self, answer):
@@ -516,14 +516,14 @@ class NFIDownload(Screen):
 		self["job_progresslabel"].text = "-%d s" % (6-self.delayCount)
 		if self.delayCount > 5:
 			self.delayTimer.stop()
-			self.container.appClosed.get().append(self.dmesg_scanned)
+			self.container.appClosed.append(self.dmesg_scanned)
 			self.taskstring = ""
 			self.cmd = "dmesg"
 			print "executing " + self.cmd
 			self.container.execute(self.cmd)
 
 	def dmesg_scanned(self, retval):
-		self.container.appClosed.get().remove(self.dmesg_scanned)
+		self.container.appClosed.remove(self.dmesg_scanned)
 		dmesg_lines = self.taskstring.splitlines()
 		self.devicetext = None
 		self.stickdevice = None
@@ -545,7 +545,7 @@ class NFIDownload(Screen):
 			self["job_progressbar"].value = 100
 			self["job_progresslabel"].text = "5.00%"
 			self.taskstring = ""
-			self.container.appClosed.get().append(self.fdisk_finished)
+			self.container.appClosed.append(self.fdisk_finished)
 			self.container.execute("fdisk " + self.stickdevice + "/disc")
 			self.container.write("d\nn\np\n1\n\n\nt\n6\nw\n")
 			self.delayTimer = eTimer()
@@ -555,7 +555,7 @@ class NFIDownload(Screen):
 			self.remove_img(True)
 
 	def fdisk_finished(self, retval):
-		self.container.appClosed.get().remove(self.fdisk_finished)
+		self.container.appClosed.remove(self.fdisk_finished)
 		self.delayTimer.stop()
 		if retval == 0:
 			if fileExists(self.imagefilename):
@@ -564,7 +564,7 @@ class NFIDownload(Screen):
 			else:
 				self["statusbar"].text = _("Decompressing USB stick flasher boot image...")
 				self.taskstring = ""
-				self.container.appClosed.get().append(self.tar_finished)
+				self.container.appClosed.append(self.tar_finished)
 				self.container.setCWD("/tmp")
 				self.cmd = "tar -xjvf nfiflasher_image.tar.bz2"
 				self.container.execute(self.cmd)
@@ -584,13 +584,13 @@ class NFIDownload(Screen):
 
 	def tar_finished(self, retval):
 		self.delayTimer.stop()
-		if len(self.container.appClosed.get()) > 0:
-			self.container.appClosed.get().remove(self.tar_finished)
+		if len(self.container.appClosed) > 0:
+			self.container.appClosed.remove(self.tar_finished)
 		if retval == 0:
 			self.imagefilename = "/tmp/nfiflash_" + self.box + ".img"
 			self["statusbar"].text = _("Copying USB flasher boot image to stick...")
 			self.taskstring = ""
-			self.container.appClosed.get().append(self.dd_finished)
+			self.container.appClosed.append(self.dd_finished)
 			self.cmd = "dd if=%s of=%s" % (self.imagefilename,self.stickdevice+"/part1")
 			self.container.execute(self.cmd)
 			print "executing " + self.cmd
@@ -602,14 +602,14 @@ class NFIDownload(Screen):
 
 	def dd_finished(self, retval):
 		self.delayTimer.stop()
-		self.container.appClosed.get().remove(self.dd_finished)
+		self.container.appClosed.remove(self.dd_finished)
 		self.downloading(False)
 		if retval == 0:
 			self["job_progressbar"].value = 950
 			self["job_progresslabel"].text = "95.00%"
 			self["statusbar"].text = _("Remounting stick partition...")
 			self.taskstring = ""
-			self.container.appClosed.get().append(self.mount_finished)
+			self.container.appClosed.append(self.mount_finished)
 			self.cmd = "mount %s /mnt/usb -o rw,sync" % (self.stickdevice+"/part1")
 			self.container.execute(self.cmd)
 			print "executing " + self.cmd
@@ -617,8 +617,8 @@ class NFIDownload(Screen):
 			self.session.openWithCallback(self.remove_img, MessageBox, (self.cmd + " " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
 
 	def mount_finished(self, retval):
-		self.container.dataAvail.get().remove(self.tool_avail)
-		self.container.appClosed.get().remove(self.mount_finished)
+		self.container.dataAvail.remove(self.tool_avail)
+		self.container.appClosed.remove(self.mount_finished)
 		if retval == 0:
 			self["job_progressbar"].value = 1000
 			self["job_progresslabel"].text = "100.00%"
