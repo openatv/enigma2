@@ -37,6 +37,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("avi");
 		extensions.push_back("dat");
 		extensions.push_back("flac");
+		extensions.push_back("mp4");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -198,48 +199,58 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	if (!ext)
 		ext = filename;
 
-	int is_mpeg_ps = !(strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin") && strcasecmp(ext, ".dat"));
-	int is_mpeg_ts = !strcasecmp(ext, ".ts");
-	int is_matroska = !strcasecmp(ext, ".mkv");
-	int is_avi = !strcasecmp(ext, ".avi");
-	int is_mp3 = !strcasecmp(ext, ".mp3"); /* force mp3 instead of decodebin */
-	int is_video = is_mpeg_ps || is_mpeg_ts || is_matroska || is_avi;
-	int is_streaming = !strncmp(filename, "http://", 7);
-	int is_AudioCD = !(strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav"));
-	int is_VCD = !strcasecmp(ext, ".dat");
-	
-	eDebug("filename: %s, is_mpeg_ps: %d, is_mpeg_ts: %d, is_video: %d, is_streaming: %d, is_mp3: %d, is_matroska: %d, is_avi: %d, is_AudioCD: %d, is_VCD: %d", filename, is_mpeg_ps, is_mpeg_ts, is_video, is_streaming, is_mp3, is_matroska, is_avi, is_AudioCD, is_VCD);
-	
-	int is_audio = !is_video;
+	sourceStream sourceinfo;
+	if ( (strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin") && strcasecmp(ext, ".dat") ) == 0 )
+		sourceinfo.containertype = ctMPEGPS;
+	else if ( strcasecmp(ext, ".ts") == 0 )
+		sourceinfo.containertype = ctMPEGTS;
+	else if ( strcasecmp(ext, ".mkv") == 0 )
+		sourceinfo.containertype = ctMKV;
+	else if ( strcasecmp(ext, ".avi") == 0 )
+		sourceinfo.containertype = ctAVI;
+	else if ( strcasecmp(ext, ".mp4") == 0 )
+		sourceinfo.containertype = ctMP4;
+	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
+		sourceinfo.containertype = ctCDA;
+	if ( strcasecmp(ext, ".dat") == 0 )
+		sourceinfo.containertype = ctVCD;
+	if ( (strncmp(filename, "http://", 7)) == 0 )
+		sourceinfo.is_streaming = TRUE;
+
+	sourceinfo.is_video = ( sourceinfo.containertype && sourceinfo.containertype != ctCDA );
+
+	eDebug("filename=%s, containertype=%d, is_video=%d, is_streaming=%d", filename, sourceinfo.containertype, sourceinfo.is_video, sourceinfo.is_streaming);
 
 	int all_ok = 0;
 
 	m_gst_pipeline = gst_pipeline_new ("mediaplayer");
 	if (!m_gst_pipeline)
-		eWarning("failed to create pipeline");
+		m_error_message = "failed to create GStreamer pipeline!\n";
 
-	if (is_AudioCD)
+	if ( sourceinfo.containertype == ctCDA )
 	{
 		source = gst_element_factory_make ("cdiocddasrc", "cda-source");
 		if (source)
 			g_object_set (G_OBJECT (source), "device", "/dev/cdroms/cdrom0", NULL);
 		else
-			is_AudioCD = 0;
+			sourceinfo.containertype = ctNone;
 	}
-	if ( !is_streaming && !is_AudioCD )
+	if ( !sourceinfo.is_streaming && sourceinfo.containertype != ctCDA )
+	{
 		source = gst_element_factory_make ("filesrc", "file-source");
-	else if ( is_streaming ) 
+		if (source)
+			g_object_set (G_OBJECT (source), "location", filename, NULL);
+		else
+			m_error_message = "GStreamer can't open filesrc " + (std::string)filename + "!\n";
+	}
+	else if ( sourceinfo.is_streaming ) 
 	{
 		source = gst_element_factory_make ("neonhttpsrc", "http-source");
 		if (source)
 			g_object_set (G_OBJECT (source), "automatic-redirect", TRUE, NULL);
+		else
+			m_error_message = "GStreamer plugin neonhttpsrc not available!\n";
 	}
-
-	if (!source)
-		eWarning("failed to create %s", is_streaming ? "neonhttpsrc" : "filesrc");
-				/* configure source */
-	else if (!is_AudioCD)
-		g_object_set (G_OBJECT (source), "location", filename, NULL);
 	else
 	{ 
 		int track = atoi(filename+18);
@@ -247,67 +258,53 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		if (track > 0)
 			g_object_set (G_OBJECT (source), "track", track, NULL);
 	}
-
-	if (is_audio)
-	{
-			/* filesrc -> decodebin -> audioconvert -> capsfilter -> alsasink */
-		const char *decodertype = "decodebin";
-
-		decoder = gst_element_factory_make (decodertype, "decoder");
-		if (!decoder)
-			eWarning("failed to create %s decoder", decodertype);
-
-		conv = gst_element_factory_make ("audioconvert", "converter");
-		if (!conv)
-			eWarning("failed to create audioconvert");
-
-		flt = gst_element_factory_make ("capsfilter", "flt");
-		if (!flt)
-			eWarning("failed to create capsfilter");
-
-			/* for some reasons, we need to set the sample format to depth/width=16, because auto negotiation doesn't work. */
-			/* endianness, however, is not required to be set anymore. */
-		if (flt)
-		{
-			GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", /* "endianness", G_TYPE_INT, 4321, */ "depth", G_TYPE_INT, 16, "width", G_TYPE_INT, 16, /*"channels", G_TYPE_INT, 2, */(char*)0);
-			g_object_set (G_OBJECT (flt), "caps", caps, (char*)0);
-			gst_caps_unref(caps);
-		}
-
-		sink = gst_element_factory_make ("alsasink", "alsa-output");
-		if (!sink)
-			eWarning("failed to create osssink");
-
-		if (source && decoder && conv && sink)
-			all_ok = 1;
-	} else /* is_video */
+	if ( sourceinfo.is_video )
 	{
 			/* filesrc -> mpegdemux -> | queue_audio -> dvbaudiosink
 			                           | queue_video -> dvbvideosink */
 
 		audio = gst_element_factory_make("dvbaudiosink", "audiosink");
-		queue_audio = gst_element_factory_make("queue", "queue_audio");
+		if (!audio)
+			m_error_message += "failed to create Gstreamer element dvbaudiosink\n";
 		
 		video = gst_element_factory_make("dvbvideosink", "videosink");
+		if (!video)
+			m_error_message += "failed to create Gstreamer element dvbvideosink\n";
+
+		queue_audio = gst_element_factory_make("queue", "queue_audio");
 		queue_video = gst_element_factory_make("queue", "queue_video");
-		
-		if (is_mpeg_ps)
-			videodemux = gst_element_factory_make("flupsdemux", "videodemux");
-		else if (is_mpeg_ts)
-			videodemux = gst_element_factory_make("flutsdemux", "videodemux");
-		else if (is_matroska)
-			videodemux = gst_element_factory_make("matroskademux", "videodemux");
-		else if (is_avi)
-			videodemux = gst_element_factory_make("avidemux", "videodemux");
 
-		if (!videodemux)
+		char demux_type[14];
+		switch (sourceinfo.containertype)
 		{
-			eDebug("fluendo mpegdemux not available, falling back to mpegdemux\n");
-			videodemux = gst_element_factory_make("mpegdemux", "videodemux");
+			case ctMPEGTS:
+				strcat(demux_type, "flutsdemux");
+				break;
+			case ctMPEGPS:
+			case ctVCD:
+				strcat(demux_type, "flupsdemux");
+				break;
+			case ctMKV:
+				strcat(demux_type, "matroskademux");
+				break;
+			case ctAVI:
+				strcat(demux_type, "avidemux");
+				break;
+			case ctMP4:
+				strcat(demux_type, "qtdemux");
+				break;
+			default:
+				break;
 		}
+		videodemux = gst_element_factory_make(demux_type, "videodemux");
+		if (!videodemux)
+			m_error_message = "GStreamer plugin " + (std::string)demux_type + " not available!\n";
 
-		eDebug("audio: %p, queue_audio %p, video %p, queue_video %p, videodemux %p", audio, queue_audio, video, queue_video, videodemux);
-		if (audio && queue_audio && video && queue_video && videodemux)
+		switch_audio = gst_element_factory_make ("input-selector", "switch_audio");
+		if (!switch_audio)
+			m_error_message = "GStreamer plugin input-selector not available!\n";
+
+		if (audio && queue_audio && video && queue_video && videodemux && switch_audio)
 		{
 			g_object_set (G_OBJECT (queue_audio), "max-size-bytes", 256*1024, NULL);
 			g_object_set (G_OBJECT (queue_audio), "max-size-buffers", 0, NULL);
@@ -315,52 +312,53 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			g_object_set (G_OBJECT (queue_video), "max-size-buffers", 0, NULL);
 			g_object_set (G_OBJECT (queue_video), "max-size-bytes", 2*1024*1024, NULL);
 			g_object_set (G_OBJECT (queue_video), "max-size-time", (guint64)0, NULL);
+			g_object_set (G_OBJECT (switch_audio), "select-all", TRUE, NULL);
 			all_ok = 1;
 		}
+	} else /* is audio */
+	{
+
+			/* filesrc -> decodebin -> audioconvert -> capsfilter -> alsasink */
+		decoder = gst_element_factory_make ("decodebin", "decoder");
+		if (!decoder)
+			m_error_message += "failed to create Gstreamer element decodebin\n";
+
+		conv = gst_element_factory_make ("audioconvert", "converter");
+		if (!conv)
+			m_error_message += "failed to create Gstreamer element audioconvert\n";
+
+		flt = gst_element_factory_make ("capsfilter", "flt");
+		if (!flt)
+			m_error_message += "failed to create Gstreamer element capsfilter\n";
+
+			/* for some reasons, we need to set the sample format to depth/width=16, because auto negotiation doesn't work. */
+			/* endianness, however, is not required to be set anymore. */
+		if (flt)
+		{
+			GstCaps *caps = gst_caps_new_simple("audio/x-raw-int", /* "endianness", G_TYPE_INT, 4321, */ "depth", G_TYPE_INT, 16, "width", G_TYPE_INT, 16, /*"channels", G_TYPE_INT, 2, */NULL);
+			g_object_set (G_OBJECT (flt), "caps", caps, NULL);
+			gst_caps_unref(caps);
+		}
+
+		sink = gst_element_factory_make ("alsasink", "alsa-output");
+		if (!sink)
+			m_error_message += "failed to create Gstreamer element alsasink\n";
+
+		if (source && decoder && conv && sink)
+			all_ok = 1;
 	}
-	
 	if (m_gst_pipeline && all_ok)
 	{
 		gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_pipeline)), gstBusSyncHandler, this);
 
-		if (is_AudioCD)
+		if ( sourceinfo.containertype == ctCDA )
 		{
 			queue_audio = gst_element_factory_make("queue", "queue_audio");
 			g_object_set (G_OBJECT (sink), "preroll-queue-len", 80, NULL);
 			gst_bin_add_many (GST_BIN (m_gst_pipeline), source, queue_audio, conv, sink, NULL);
 			gst_element_link_many(source, queue_audio, conv, sink, NULL);
 		}
-		else if (is_audio)
-		{
-			queue_audio = gst_element_factory_make("queue", "queue_audio");
-
-			g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
-			g_signal_connect (decoder, "unknown-type", G_CALLBACK(gstCBunknownType), this);
-
-			if (!is_mp3)
-				g_object_set (G_OBJECT (sink), "preroll-queue-len", 80, NULL);
-
-				/* gst_bin will take the 'floating references' */
-			gst_bin_add_many (GST_BIN (m_gst_pipeline),
-						source, queue_audio, decoder, NULL);
-
-				/* in decodebin's case we can just connect the source with the decodebin, and decodebin will take care about id3demux (or whatever is required) */
-			gst_element_link_many(source, queue_audio, decoder, NULL);
-
-				/* create audio bin with the audioconverter, the capsfilter and the audiosink */
-			audio = gst_bin_new ("audiobin");
-
-			GstPad *audiopad = gst_element_get_static_pad (conv, "sink");
-			gst_bin_add_many(GST_BIN(audio), conv, flt, sink, (char*)0);
-			gst_element_link_many(conv, flt, sink, (char*)0);
-			gst_element_add_pad(audio, gst_ghost_pad_new ("sink", audiopad));
-			gst_object_unref(audiopad);
-			gst_bin_add (GST_BIN(m_gst_pipeline), audio);
-				/* in mad's case, we can directly connect the decoder to the audiobin. otherwise, we do this in gstCBnewPad */
-			if (is_mp3)
-				gst_element_link(decoder, audio);
-
-		} else /* is_video */
+		else if ( sourceinfo.is_video )
 		{
 			char srt_filename[strlen(filename)+1];
 			strncpy(srt_filename,filename,strlen(filename)-3);
@@ -381,16 +379,9 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 				subs.language_code = std::string("und");
 				m_subtitleStreams.push_back(subs);
 			}
-			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, audio, queue_audio, video, queue_video, NULL);
-			switch_audio = gst_element_factory_make ("input-selector", "switch_audio");
-			if (switch_audio)
-			{
-				g_object_set (G_OBJECT (switch_audio), "select-all", TRUE, NULL);
-				gst_bin_add(GST_BIN(m_gst_pipeline), switch_audio);
-				gst_element_link(switch_audio, queue_audio);
-			}
+			gst_bin_add_many(GST_BIN(m_gst_pipeline), source, videodemux, audio, queue_audio, video, queue_video, switch_audio, NULL);
 
-			if (is_VCD)
+			if ( sourceinfo.containertype == ctVCD )
 			{
 				GstElement *cdxaparse = gst_element_factory_make("cdxaparse", "cdxaparse");
 				gst_bin_add(GST_BIN(m_gst_pipeline), cdxaparse);
@@ -399,12 +390,42 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			}
 			else
 				gst_element_link(source, videodemux);
+
+			gst_element_link(switch_audio, queue_audio);
 			gst_element_link(queue_audio, audio);
 			gst_element_link(queue_video, video);
 			g_signal_connect(videodemux, "pad-added", G_CALLBACK (gstCBpadAdded), this);
+
+		} else /* is audio*/
+		{
+			queue_audio = gst_element_factory_make("queue", "queue_audio");
+
+			g_signal_connect (decoder, "new-decoded-pad", G_CALLBACK(gstCBnewPad), this);
+			g_signal_connect (decoder, "unknown-type", G_CALLBACK(gstCBunknownType), this);
+
+			g_object_set (G_OBJECT (sink), "preroll-queue-len", 80, NULL);
+
+				/* gst_bin will take the 'floating references' */
+			gst_bin_add_many (GST_BIN (m_gst_pipeline),
+						source, queue_audio, decoder, NULL);
+
+				/* in decodebin's case we can just connect the source with the decodebin, and decodebin will take care about id3demux (or whatever is required) */
+			gst_element_link_many(source, queue_audio, decoder, NULL);
+
+				/* create audio bin with the audioconverter, the capsfilter and the audiosink */
+			audio = gst_bin_new ("audiobin");
+
+			GstPad *audiopad = gst_element_get_static_pad (conv, "sink");
+			gst_bin_add_many(GST_BIN(audio), conv, flt, sink, NULL);
+			gst_element_link_many(conv, flt, sink, NULL);
+			gst_element_add_pad(audio, gst_ghost_pad_new ("sink", audiopad));
+			gst_object_unref(audiopad);
+			gst_bin_add (GST_BIN(m_gst_pipeline), audio);
 		}
 	} else
 	{
+		m_event((iPlayableService*)this, evUser+12);
+
 		if (m_gst_pipeline)
 			gst_object_unref(GST_OBJECT(m_gst_pipeline));
 		if (source)
@@ -429,10 +450,10 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		if (switch_audio)
 			gst_object_unref(GST_OBJECT(switch_audio));
 
-		eDebug("sorry, can't play.");
+		eDebug("sorry, can't play: %s",m_error_message.c_str());
 		m_gst_pipeline = 0;
 	}
-	
+
 	gst_element_set_state (m_gst_pipeline, GST_STATE_PLAYING);
 }
 
@@ -963,7 +984,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			gchar *description = gst_missing_plugin_message_get_description(msg);			
 			if ( description )
 			{
-				m_error_message = description;
+				m_error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
 				g_free(description);
 				m_event((iPlayableService*)this, evUser+12);
 			}

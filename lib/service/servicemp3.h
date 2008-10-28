@@ -43,8 +43,9 @@ public:
 
 typedef struct _GstElement GstElement;
 
-typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG } audiotype_t;
+typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC } audiotype_t;
 typedef enum { stPlainText, stSSA, stSRT } subtype_t;
+typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService, 
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public iSubtitleOutput, public Object
@@ -130,6 +131,17 @@ public:
 		std::string language_code; /* iso-639, if available. */
 		subtitleStream()
 			:pad(0)
+		{
+		}
+	};
+	struct sourceStream
+	{
+		audiotype_t audiotype;
+		containertype_t containertype;
+		bool is_video;
+		bool is_streaming;
+		sourceStream()
+			:audiotype(atUnknown), containertype(ctNone), is_video(FALSE), is_streaming(FALSE)
 		{
 		}
 	};

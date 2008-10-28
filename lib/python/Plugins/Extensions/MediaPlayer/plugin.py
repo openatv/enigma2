@@ -1,4 +1,4 @@
-from os import path as os_path, remove as os_remove, listdir as os_listdir, popen
+from os import path as os_path, remove as os_remove, listdir as os_listdir
 from time import strftime
 from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation
 from Screens.Screen import Screen
@@ -66,7 +66,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.addPlaylistParser(PlaylistIOInternal, "e2pls")
 
 		# 'None' is magic to start at the list of mountpoints
-		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|mkv|dat|flac)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
+		self.filelist = FileList(None, matchingPattern = "(?i)^.*\.(mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|mkv|mp4|dat|flac)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 
 		self.playlist = MyPlayList()
@@ -233,7 +233,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		currPlay = self.session.nav.getCurrentService()
 		message = currPlay.info().getInfoString(iServiceInformation.sUser+12)
 		print "[__evPluginError]" , message
-		self.session.open(MessageBox, ("GStreamer Error: missing %s") % message, type = MessageBox.TYPE_INFO,timeout = 20 )
+		self.session.open(MessageBox, message, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def delMPTimer(self):
 		del self.rightKeyTimer
@@ -459,18 +459,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		menu.append((_("load playlist"), "loadplaylist"));
 		menu.append((_("delete saved playlist"), "deleteplaylist"));
 		menu.append((_("repeat playlist"), "repeat"));
-		self.cdAudioTrackFiles = []
 		drivepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
 		if pathExists(drivepath):
-			from Components.Scanner import scanDevice
-			res = scanDevice(drivepath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
-			if list:
-				(desc, scanner, files, session) = list[0]
-				for file in files:
-					if file.mimetype == "audio/x-cda":
-						self.cdAudioTrackFiles.append(file.path)
-		if len(self.cdAudioTrackFiles):
 			menu.insert(0,(_("Play Audio-CD..."), "audiocd"))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
@@ -515,21 +505,33 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				self.repeat = True
 				self["repeat"].setPixmapNum(1)
 		elif choice[1] == "audiocd":
+			from Components.Scanner import scanDevice
+			drivepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+			self.cdAudioTrackFiles = []
+			res = scanDevice(drivepath)
+			list = [ (r.description, r, res[r], self.session) for r in res ]
+			if list:
+				(desc, scanner, files, session) = list[0]
+				for file in files:
+					if file.mimetype == "audio/x-cda":
+						self.cdAudioTrackFiles.append(file.path)
 			self.playAudioCD()
-			
+
 	def playAudioCD(self):
 		from enigma import eServiceReference
 		from Plugins.Extensions.CDInfo.plugin import Query
-		self.playlist.clear()
-		self.savePlaylistOnExit = False
-		self.isAudioCD = True
-		for file in self.cdAudioTrackFiles:
-			ref = eServiceReference(4097, 0, file)
-			self.playlist.addFile(ref)
-		cdinfo = Query(self)
-		cdinfo.scan()
-		self.changeEntry(0)
-		self.switchToPlayList()
+
+		if len(self.cdAudioTrackFiles):
+			self.playlist.clear()
+			self.savePlaylistOnExit = False
+			self.isAudioCD = True
+			for file in self.cdAudioTrackFiles:
+				ref = eServiceReference(4097, 0, file)
+				self.playlist.addFile(ref)
+			cdinfo = Query(self)
+			cdinfo.scan()
+			self.changeEntry(0)
+			self.switchToPlayList()
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
