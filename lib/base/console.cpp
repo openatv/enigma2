@@ -617,35 +617,11 @@ eConsolePy_running(eConsolePy* self)
 static PyObject *
 eConsolePy_execute(eConsolePy* self, PyObject *argt)
 {
-	if (PyTuple_Size(argt) > 1)
-	{
-		PyObject *cmdline, *args;
-		PyArg_ParseTuple(argt, "OO", &cmdline, &args);
-		if (!PyString_Check(cmdline) || !PySequence_Check(args))
-			return PyInt_FromLong(-2);
-		else
-		{
-			PyObject *fast = PySequence_Fast(args, "2nd arg is not a sequence");
-			Py_ssize_t size = PySequence_Fast_GET_SIZE(fast);
-			const char *argv[size + 1];
-			int i=0;
-			for (; i < size; ++i)
-			{
-				PyObject *arg = PySequence_Fast_GET_ITEM(fast, i); /* borrowed ref */
-				if (!PyString_Check(arg))
-					return PyInt_FromLong(-3);
-				argv[i] = PyString_AsString(arg); /* borrowed pointer */
-			}
-			argv[i] = 0;
-			return PyInt_FromLong(self->cont->execute(PyString_AsString(cmdline), argv)); /* borrowed pointer */
-		}
-	}
-	else
-	{
-		const char *str;
-		if (PyArg_ParseTuple(argt, "s", &str))
-			return PyInt_FromLong(self->cont->execute(str));
-	}
+	const char *str;
+	if (PyArg_ParseTuple(argt, "s", &str))
+		return PyInt_FromLong(self->cont->execute(str));
+	PyErr_SetString(PyExc_TypeError,
+		"argument is not a string");
 	return NULL;
 }
 
@@ -660,7 +636,11 @@ eConsolePy_write(eConsolePy* self, PyObject *args)
 	{
 		PyObject *ob;
 		if (!PyArg_ParseTuple(args, "O", &ob) || !PyString_Check(ob))
+		{
+			PyErr_SetString(PyExc_TypeError,
+				"1st arg must be a string, optionaly 2nd arg can be the string length");
 			return NULL;
+		}
 		else
 		{
 			Py_ssize_t length;
@@ -716,7 +696,11 @@ eConsolePy_dumpToFile(eConsolePy* self, PyObject *args)
 {
 	char *filename;
 	if (!PyArg_ParseTuple(args, "s", &filename))
+	{
+		PyErr_SetString(PyExc_TypeError,
+			"arg must be a string (filename)");
 		return NULL;
+	}
 	else
 	{
 		int fd = open(filename, O_WRONLY|O_CREAT|O_TRUNC, 0644);
@@ -731,7 +715,11 @@ eConsolePy_readFromFile(eConsolePy* self, PyObject *args)
 {
 	char *filename;
 	if (!PyArg_ParseTuple(args, "s", &filename))
+	{
+		PyErr_SetString(PyExc_TypeError,
+			"arg must be a string (filename)");
 		return NULL;
+	}
 	else
 	{
 		int fd = open(filename, O_RDONLY);
