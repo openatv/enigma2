@@ -1330,7 +1330,7 @@ PyObject *eServiceMP3::getSubtitleList()
 
 	ePyObject l = PyList_New(0);
 	int stream_count[sizeof(subtype_t)];
-	for ( int i = 0; i < sizeof(subtype_t); i++ )
+	for ( unsigned int i = 0; i < sizeof(subtype_t); i++ )
 		stream_count[i] = 0;
 
 	for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
