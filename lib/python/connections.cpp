@@ -1,14 +1,11 @@
 #include <lib/python/connections.h>
 
 PSignal::PSignal()
-	:m_destroyed(0)
 {
 }
 
 PSignal::~PSignal()
 {
-	if (m_destroyed)
-		*m_destroyed = true;
 	Py_XDECREF(m_list);
 }
 
@@ -23,12 +20,21 @@ void PSignal::callPython(ePyObject tuple)
 	}
 }
 
-PyObject *PSignal::get(bool steal)
+PyObject *PSignal::get()
 {
-	if (!steal) {
-		if (!m_list)
-			m_list = PyList_New(0);
-		Py_INCREF(m_list);
+	if (!m_list)
+		m_list = PyList_New(0);
+	Py_INCREF(m_list);
+	return m_list;
+}
+
+PyObject *PSignal::getSteal(bool clear)
+{
+	if (clear)
+	{
+		ePyObject ret = m_list;
+		m_list = (PyObject*)0;
+		return ret;
 	}
 	return m_list;
 }

@@ -95,7 +95,7 @@ class eRCShortDriver: public eRCDriver
 {
 protected:
 	int handle;
-	eSocketNotifier *sn;
+	ePtr<eSocketNotifier> sn;
 	void keyPressed(int);
 public:
 	eRCShortDriver(const char *filename);
@@ -106,7 +106,7 @@ class eRCInputEventDriver: public eRCDriver
 {
 protected:
 	int handle;
-	eSocketNotifier *sn;
+	ePtr<eSocketNotifier> sn;
 	void keyPressed(int);
 public:
 	std::string getDeviceName();

@@ -9,7 +9,7 @@ class eRCConsoleDriver: public eRCDriver
 	struct termios ot;
 protected:
 	int handle;
-	eSocketNotifier *sn;
+	ePtr<eSocketNotifier> sn;
 	void keyPressed(int);
 public:
 	eRCConsoleDriver(const char *filename);

@@ -315,7 +315,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 		eWarning("%s: %m", filename);
 	else
 	{
-		m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Priority);
+		m_sn = eSocketNotifier::create(eApp, m_fd, eSocketNotifier::Priority);
 		CONNECT(m_sn->activated, eDVBVideo::video_event);
 	}
 	eDebug("Video Device: %s", filename);
@@ -527,8 +527,6 @@ int eDVBVideo::getPTS(pts_t &now)
 
 eDVBVideo::~eDVBVideo()
 {
-	if (m_sn)
-		delete m_sn;
 	if (m_is_slow_motion)
 		setSlowMotion(0);
 	if (m_is_fast_forward)

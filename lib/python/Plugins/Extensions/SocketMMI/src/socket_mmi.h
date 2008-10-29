@@ -16,7 +16,7 @@ class eSocketMMIHandler: public Object
 	eIOBuffer buffer;
 	int listenfd, connfd, clilen;
 	struct sockaddr_un servaddr;
-	eSocketNotifier *listensn, *connsn;
+	ePtr<eSocketNotifier> listensn, connsn;
 	void listenDataAvail(int what);
 	void connDataAvail(int what);
 	void closeConn();

@@ -55,8 +55,10 @@ int bidirpipe(int pfd[], const char *cmd , const char * const argv[], const char
 	return(pid);
 }
 
+DEFINE_REF(eConsoleAppContainer);
+
 eConsoleAppContainer::eConsoleAppContainer()
-:pid(-1), killstate(0), in(0), out(0), err(0)
+:pid(-1), killstate(0)
 {
 	for (int i=0; i < 3; ++i)
 	{
@@ -109,12 +111,15 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 
 	::fcntl(fd[1], F_SETFL, O_NONBLOCK);
 	::fcntl(fd[2], F_SETFL, O_NONBLOCK);
-	in = new eSocketNotifier(eApp, fd[0], eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Hungup );
-	out = new eSocketNotifier(eApp, fd[1], eSocketNotifier::Write, false);  
-	err = new eSocketNotifier(eApp, fd[2], eSocketNotifier::Read|eSocketNotifier::Priority );
+	in = eSocketNotifier::create(eApp, fd[0], eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Hungup );
+	out = eSocketNotifier::create(eApp, fd[1], eSocketNotifier::Write, false);  
+	err = eSocketNotifier::create(eApp, fd[2], eSocketNotifier::Read|eSocketNotifier::Priority );
 	CONNECT(in->activated, eConsoleAppContainer::readyRead);
 	CONNECT(out->activated, eConsoleAppContainer::readyWrite);
 	CONNECT(err->activated, eConsoleAppContainer::readyErrRead);
+	in->m_clients.push_back(this);
+	out->m_clients.push_back(this);
+	err->m_clients.push_back(this);
 
 	return 0;
 }
@@ -143,10 +148,9 @@ void eConsoleAppContainer::kill()
 		outbuf.pop();
 		delete [] d.data;
 	}
-	delete in;
-	delete out;
-	delete err;
-	in=out=err=0;
+	in = 0;
+	out = 0;
+	err = 0;
 
 	for (int i=0; i < 3; ++i)
 	{
@@ -209,6 +213,7 @@ void eConsoleAppContainer::closePipes()
 		outbuf.pop();
 		delete [] d.data;
 	}
+	in = 0; out = 0; err = 0;
 	pid = -1;
 }
 
@@ -390,23 +395,23 @@ static PyGetSetDef eConsolePy_getseters[] = {
 static int
 eConsolePy_traverse(eConsolePy *self, visitproc visit, void *arg)
 {
-	PyObject *obj = self->cont->dataAvail.get(true);
+	PyObject *obj = self->cont->dataAvail.getSteal();
 	if (obj) {
 		Py_VISIT(obj);
 	}
-	obj = self->cont->stdoutAvail.get(true);
+	obj = self->cont->stdoutAvail.getSteal();
 	if (obj) {
 		Py_VISIT(obj);
 	}
-	obj = self->cont->stderrAvail.get(true);
+	obj = self->cont->stderrAvail.getSteal();
 	if (obj) {
 		Py_VISIT(obj);
 	}
-	obj = self->cont->dataSent.get(true);
+	obj = self->cont->dataSent.getSteal();
 	if (obj) {
 		Py_VISIT(obj);
 	}
-	obj = self->cont->appClosed.get(true);
+	obj = self->cont->appClosed.getSteal();
 	if (obj) {
 		Py_VISIT(obj);
 	}
@@ -416,23 +421,23 @@ eConsolePy_traverse(eConsolePy *self, visitproc visit, void *arg)
 static int
 eConsolePy_clear(eConsolePy *self)
 {
-	PyObject *obj = self->cont->dataAvail.get(true);
+	PyObject *obj = self->cont->dataAvail.getSteal(true);
 	if (obj) {
 		Py_CLEAR(obj);
 	}
-	obj = self->cont->stdoutAvail.get(true);
+	obj = self->cont->stdoutAvail.getSteal(true);
 	if (obj) {
 		Py_CLEAR(obj);
 	}
-	obj = self->cont->stderrAvail.get(true);
+	obj = self->cont->stderrAvail.getSteal(true);
 	if (obj) {
 		Py_CLEAR(obj);
 	}
-	obj = self->cont->dataSent.get(true);
+	obj = self->cont->dataSent.getSteal(true);
 	if (obj) {
 		Py_CLEAR(obj);
 	}
-	obj = self->cont->appClosed.get(true);
+	obj = self->cont->appClosed.getSteal(true);
 	if (obj) {
 		Py_CLEAR(obj);
 	}
@@ -445,7 +450,7 @@ eConsolePy_dealloc(eConsolePy* self)
 	if (self->in_weakreflist != NULL)
 		PyObject_ClearWeakRefs((PyObject *) self);
 	eConsolePy_clear(self);
-	delete self->cont;
+	self->cont->Release();
 	self->ob_type->tp_free((PyObject*)self);
 }
 
@@ -454,6 +459,7 @@ eConsolePy_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
 	eConsolePy *self = (eConsolePy *)type->tp_alloc(type, 0);
 	self->cont = new eConsoleAppContainer();
+	self->cont->AddRef();
 	self->in_weakreflist = NULL;
 	return (PyObject *)self;
 }

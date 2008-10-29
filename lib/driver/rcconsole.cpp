@@ -14,7 +14,7 @@ eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::ge
 		sn=0;
 	} else
 	{
-		sn=new eSocketNotifier(eApp, handle, eSocketNotifier::Read);
+		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCConsoleDriver::keyPressed);
 		eRCInput::getInstance()->setFile(handle);
 	}
@@ -32,8 +32,6 @@ eRCConsoleDriver::~eRCConsoleDriver()
 	tcsetattr(handle,TCSANOW, &ot);
  	if (handle>=0)
 		close(handle);
-	if (sn)
-		delete sn;
 }
 
 void eRCConsoleDriver::keyPressed(int)

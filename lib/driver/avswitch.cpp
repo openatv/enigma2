@@ -24,7 +24,7 @@ eAVSwitch::eAVSwitch()
 	}
 	else
 	{
-		m_fp_notifier = new eSocketNotifier(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
+		m_fp_notifier = eSocketNotifier::create(eApp, m_fp_fd, eSocketNotifier::Read|POLLERR);
 		CONNECT(m_fp_notifier->activated, eAVSwitch::fp_event);
 	}
 }
@@ -93,8 +93,6 @@ eAVSwitch::~eAVSwitch()
 {
 	if ( m_fp_fd >= 0 )
 		close(m_fp_fd);
-	if (m_fp_notifier)
-		delete m_fp_notifier;
 }
 
 eAVSwitch *eAVSwitch::getInstance()

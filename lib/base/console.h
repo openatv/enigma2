@@ -18,15 +18,16 @@ struct queue_data
 	int dataSent;
 };
 
-class eConsoleAppContainer: public Object
+class eConsoleAppContainer: public Object, public iObject
 {
+	DECLARE_REF(eConsoleAppContainer);
 	int fd[3];
 	int filefd[3];
 	int pid;
 	int killstate;
 	std::string m_cwd;
 	std::queue<struct queue_data> outbuf;
-	eSocketNotifier *in, *out, *err;
+	ePtr<eSocketNotifier> in, out, err;
 	void readyRead(int what);
 	void readyErrRead(int what);
 	void readyWrite(int what);

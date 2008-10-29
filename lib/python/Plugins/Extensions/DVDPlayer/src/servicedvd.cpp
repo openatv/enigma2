@@ -91,9 +91,9 @@ eServiceDVD::eServiceDVD(const char *filename):
 	m_subtitle_widget(0),
 	m_state(stIdle),
 	m_current_trick(0),
-	m_sn(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup),
 	m_pump(eApp, 1)
 {
+	m_sn = eSocketNotifier::create(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
 	std::string aspect;
 	eDebug("SERVICEDVD construct!");
 	// create handle
@@ -111,7 +111,7 @@ eServiceDVD::eServiceDVD(const char *filename):
 		ddvd_set_video(m_ddvdconfig, DDVD_16_9, DDVD_PAL);
 
 	ddvd_set_lfb(m_ddvdconfig, (unsigned char *)m_pixmap->surface->data, 720, 576, 4, 720*4);
-	CONNECT(m_sn.activated, eServiceDVD::gotMessage);
+	CONNECT(m_sn->activated, eServiceDVD::gotMessage);
 	CONNECT(m_pump.recv_msg, eServiceDVD::gotThreadMessage);
 	strcpy(m_ddvd_titlestring,"");
 	m_cue_pts = 0;

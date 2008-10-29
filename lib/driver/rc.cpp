@@ -79,7 +79,7 @@ eRCShortDriver::eRCShortDriver(const char *filename): eRCDriver(eRCInput::getIns
 		sn=0;
 	} else
 	{
-		sn=new eSocketNotifier(eApp, handle, eSocketNotifier::Read);
+		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCShortDriver::keyPressed);
 		eRCInput::getInstance()->setFile(handle);
 	}
@@ -89,8 +89,6 @@ eRCShortDriver::~eRCShortDriver()
 {
 	if (handle>=0)
 		close(handle);
-	if (sn)
-		delete sn;
 }
 
 void eRCInputEventDriver::keyPressed(int)
@@ -115,7 +113,7 @@ eRCInputEventDriver::eRCInputEventDriver(const char *filename): eRCDriver(eRCInp
 		sn=0;
 	} else
 	{
-		sn=new eSocketNotifier(eApp, handle, eSocketNotifier::Read);
+		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCInputEventDriver::keyPressed);
 		eRCInput::getInstance()->setFile(handle);
 	}
@@ -133,8 +131,6 @@ eRCInputEventDriver::~eRCInputEventDriver()
 {
 	if (handle>=0)
 		close(handle);
-	if (sn)
-		delete sn;
 }
 
 eRCConfig::eRCConfig()

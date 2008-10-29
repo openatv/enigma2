@@ -39,7 +39,7 @@ protected:
 template<class T>
 class eFixedMessagePump: private eMessagePump, public Object
 {
-	eSocketNotifier *sn;
+	ePtr<eSocketNotifier> sn;
 	void do_recv(int)
 	{
 		T msg;
@@ -54,14 +54,9 @@ public:
 	}
 	eFixedMessagePump(eMainloop *context, int mt): eMessagePump(mt)
 	{
-		sn=new eSocketNotifier(context, getOutputFD(), eSocketNotifier::Read);
+		sn=eSocketNotifier::create(context, getOutputFD(), eSocketNotifier::Read);
 		CONNECT(sn->activated, eFixedMessagePump<T>::do_recv);
 		sn->start();
-	}
-	~eFixedMessagePump()
-	{
-		delete sn;
-		sn=0;
 	}
 	void start() { if (sn) sn->start(); }
 	void stop() { if (sn) sn->stop(); }
@@ -70,7 +65,7 @@ public:
 
 class ePythonMessagePump: public eMessagePump, public Object
 {
-	eSocketNotifier *sn;
+	ePtr<eSocketNotifier> sn;
 	void do_recv(int)
 	{
 		int msg;
@@ -86,16 +81,9 @@ public:
 	ePythonMessagePump()
 		:eMessagePump(1)
 	{
-		eDebug("add python messagepump %p", this);
-		sn=new eSocketNotifier(eApp, getOutputFD(), eSocketNotifier::Read);
+		sn=eSocketNotifier::create(eApp, getOutputFD(), eSocketNotifier::Read);
 		CONNECT(sn->activated, ePythonMessagePump::do_recv);
 		sn->start();
-	}
-	~ePythonMessagePump()
-	{
-		eDebug("remove python messagepump %p", this);
-		delete sn;
-		sn=0;
 	}
 	void start() { if (sn) sn->start(); }
 	void stop() { if (sn) sn->stop(); }

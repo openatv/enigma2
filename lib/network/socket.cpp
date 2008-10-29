@@ -10,7 +10,6 @@ void eSocket::close()
 	if (writebuffer.empty())
 	{
 		int wasconnected=(mystate==Connection) || (mystate==Closing);
-		delete rsn;
 		rsn=0;
 		::close(socketdesc);
 		socketdesc=-1;
@@ -87,9 +86,8 @@ int eSocket::setSocket(int s, int iss, eMainloop *ml)
 	fcntl(socketdesc, F_SETFL, O_NONBLOCK);
 	last_break = 0xFFFFFFFF;
 
-	if (rsn)
-		delete rsn;
-	rsn=new eSocketNotifier(ml, getDescriptor(), 
+	rsn = 0;
+	rsn=eSocketNotifier::create(ml, getDescriptor(), 
 		eSocketNotifier::Read|eSocketNotifier::Hungup);
 	CONNECT(rsn->activated, eSocket::notifier);
 	return 0;
@@ -278,7 +276,7 @@ eSocket::eSocket(eMainloop *ml): readbuffer(32768), writebuffer(32768), rsn(0)
 	setSocket(s, 1, ml);
 }
 
-eSocket::eSocket(int socket, int issocket, eMainloop *ml): readbuffer(32768), writebuffer(32768), rsn(0)
+eSocket::eSocket(int socket, int issocket, eMainloop *ml): readbuffer(32768), writebuffer(32768)
 {
 	setSocket(socket, issocket, ml);
 	mystate=Connection;
@@ -286,8 +284,6 @@ eSocket::eSocket(int socket, int issocket, eMainloop *ml): readbuffer(32768), wr
 
 eSocket::~eSocket()
 {
-	if (rsn)
-		delete rsn;
 	if(socketdesc>=0)
 	{
 		::close(socketdesc);

@@ -206,7 +206,7 @@ eDVBSectionReader::eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESUL
 	
 	if (fd >= 0)
 	{
-		notifier=new eSocketNotifier(context, fd, eSocketNotifier::Read, false);
+		notifier=eSocketNotifier::create(context, fd, eSocketNotifier::Read, false);
 		CONNECT(notifier->activated, eDVBSectionReader::data);
 		res = 0;
 	} else
@@ -220,8 +220,6 @@ DEFINE_REF(eDVBSectionReader)
 
 eDVBSectionReader::~eDVBSectionReader()
 {
-	if (notifier)
-		delete notifier;
 	if (fd >= 0)
 		::close(fd);
 }
@@ -331,7 +329,7 @@ eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res):
 	{
 		::ioctl(m_fd, DMX_SET_BUFFER_SIZE, 64*1024);
 		::fcntl(m_fd, F_SETFL, O_NONBLOCK);
-		m_notifier = new eSocketNotifier(context, m_fd, eSocketNotifier::Read, false);
+		m_notifier = eSocketNotifier::create(context, m_fd, eSocketNotifier::Read, false);
 		CONNECT(m_notifier->activated, eDVBPESReader::data);
 		res = 0;
 	} else
@@ -345,8 +343,6 @@ DEFINE_REF(eDVBPESReader)
 
 eDVBPESReader::~eDVBPESReader()
 {
-	if (m_notifier)
-		delete m_notifier;
 	if (m_fd >= 0)
 		::close(m_fd);
 }

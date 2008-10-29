@@ -118,7 +118,7 @@ private:
 
 	char m_ddvd_titlestring[96];
 
-	eSocketNotifier m_sn;
+	ePtr<eSocketNotifier> m_sn;
 	eFixedMessagePump<int> m_pump;
 
 	pts_t m_cue_pts;

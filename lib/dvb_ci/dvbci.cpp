@@ -898,7 +898,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 	if (fd >= 0)
 	{
-		notifier = new eSocketNotifier(context, fd, eSocketNotifier::Read | eSocketNotifier::Priority | eSocketNotifier::Write);
+		notifier = eSocketNotifier::create(context, fd, eSocketNotifier::Read | eSocketNotifier::Priority | eSocketNotifier::Write);
 		CONNECT(notifier->activated, eDVBCISlot::data);
 	} else
 	{
@@ -908,7 +908,6 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 eDVBCISlot::~eDVBCISlot()
 {
-	delete notifier;
 }
 
 void eDVBCISlot::setAppManager( eDVBCIApplicationManagerSession *session )

@@ -54,7 +54,7 @@ class eDVBSectionReader: public iDVBSectionReader, public Object
 	int active;
 	int checkcrc;
 	void data(int);
-	eSocketNotifier *notifier;
+	ePtr<eSocketNotifier> notifier;
 public:
 	
 	eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res);
@@ -72,7 +72,7 @@ class eDVBPESReader: public iDVBPESReader, public Object
 	ePtr<eDVBDemux> m_demux;
 	int m_active;
 	void data(int);
-	eSocketNotifier *m_notifier;
+	ePtr<eSocketNotifier> m_notifier;
 public:
 	eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res);
 	virtual ~eDVBPESReader();

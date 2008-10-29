@@ -44,7 +44,7 @@ private:
 	m_fd_video;
 #endif
 	int m_is_slow_motion, m_is_fast_forward, m_is_freezed;
-	eSocketNotifier *m_sn;
+	ePtr<eSocketNotifier> m_sn;
 	void video_event(int what);
 	Signal1<void, struct iTSMPEGDecoder::videoEvent> m_event;
 public:

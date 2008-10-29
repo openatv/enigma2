@@ -10,7 +10,7 @@ class eAVSwitch: public Object
 {
 	static eAVSwitch *instance;
 	int m_video_mode;
-	eSocketNotifier *m_fp_notifier;
+	ePtr<eSocketNotifier> m_fp_notifier;
 	void fp_event(int what);
 	int m_fp_fd;
 #ifdef SWIG
