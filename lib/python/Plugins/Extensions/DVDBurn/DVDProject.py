@@ -1,4 +1,3 @@
-
 from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence
 
@@ -33,6 +32,9 @@ class DVDProject:
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
 		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("data_ts", _("Dreambox format data DVD (HDTV compatible)"))])
+		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("dvd", _("Burn DVD"))])
+		self.settings.isopath = ConfigText(fixed_size = False, visible_width = 40)
+		self.settings.dataformat = ConfigSelection(choices = [("iso9660_1", ("ISO9660 Level 1")), ("iso9660_4", ("ISO9660 version 2")), ("udf", ("UDF"))])			
 		self.settings.menubg = ConfigFilename()
 		self.settings.menuaudio = ConfigFilename()
 		self.settings.titleformat = ConfigText(fixed_size = False, visible_width = 40)
@@ -45,7 +47,7 @@ class DVDProject:
 		self.settings.space = ConfigPixelvals()
 		self.settings.vmgm = ConfigFilename()
 		self.settings.autochapter = ConfigInteger(default = 0, limits = (0, 99))
-		self.filekeys = ["vmgm", "menubg", "menuaudio", "font_face"]
+		self.filekeys = ["vmgm", "menubg", "menuaudio", "font_face", "isopath"]
 
 	def addService(self, service):
 		import DVDTitle

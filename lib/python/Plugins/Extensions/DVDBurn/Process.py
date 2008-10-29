@@ -210,9 +210,8 @@ class RemoveESFiles(Task):
 		self.args += [self.demux_task.cutfile]
 
 class DVDAuthorTask(Task):
-	def __init__(self, job, diskspaceNeeded):
+	def __init__(self, job):
 		Task.__init__(self, job, "Authoring DVD")
-		self.global_preconditions.append(DiskspacePrecondition(diskspaceNeeded))
 		self.weighting = 300
 		self.setTool("/usr/bin/dvdauthor")
 		self.CWD = self.job.workspace
@@ -257,26 +256,14 @@ class BurnTaskPostcondition(Condition):
 
 class BurnTask(Task):
 	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_UNKNOWN = range(7)
-	def __init__(self, job, extra_args=[]):
-		Task.__init__(self, job, _("Burn to DVD..."))
-
+	def __init__(self, job, extra_args=[], tool="/bin/growisofs"):
+		Task.__init__(self, job, job.name)
 		self.weighting = 500
 		self.end = 120 # 100 for writing, 10 for buffer flush, 10 for closing disc
 		self.postconditions.append(BurnTaskPostcondition())
-		self.setTool("/bin/growisofs")
-		volName = self.getASCIIname(job.project.settings.name.getValue())
-		self.args += [ "-dvd-compat", "-Z", "/dev/" + harddiskmanager.getCD(), "-V", volName, "-publisher", "Dreambox", "-use-the-force-luke=dummy" ]
+		self.setTool(tool)
 		self.args += extra_args
-
-	def getASCIIname(self, name):
-		ASCIIname = ""
-		for char in name.decode("utf-8").encode("ascii","replace"):
-			if ord(char) <= 0x20 or ( ord(char) >= 0x3a and ord(char) <= 0x40 ):
-				ASCIIname += '_'
-			else:
-				ASCIIname += char
-		return ASCIIname
-		
+	
 	def prepare(self):
 		self.error = None
 
@@ -324,11 +311,34 @@ class RemoveDVDFolder(Task):
 		self.args += ["-rf", self.job.workspace]
 		self.weighting = 10
 
-class PreviewTask(Task):
+class CheckDiskspaceTask(Task):
 	def __init__(self, job):
+		Task.__init__(self, job, "Checking free space")
+		totalsize = 50*1024*1024 # require an extra safety 50 MB
+		maxsize = 0
+		for title in job.project.titles:
+			titlesize = title.estimatedDiskspace
+			if titlesize > maxsize: maxsize = titlesize
+			totalsize += titlesize
+		diskSpaceNeeded = totalsize + maxsize
+		self.global_preconditions.append(DiskspacePrecondition(diskSpaceNeeded))
+		self.weighting = 5
+
+	def run(self, callback, task_progress_changed):
+		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
+		if len(failed_preconditions):
+			callback(self, failed_preconditions)
+			return
+		self.callback = callback
+		self.task_progress_changed = task_progress_changed
+		Task.processFinished(self, 0)
+
+class PreviewTask(Task):
+	def __init__(self, job, path):
 		Task.__init__(self, job, "Preview")
 		self.postconditions.append(PreviewTaskPostcondition())
 		self.job = job
+		self.path = path
 		self.weighting = 10
 
 	def run(self, callback, task_progress_changed):
@@ -337,7 +347,8 @@ class PreviewTask(Task):
 		if self.job.menupreview:
 			self.previewProject()
 		else:
-			self.job.project.session.openWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False)
+			from Tools import Notifications
+			Notifications.AddNotificationWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False)
 
 	def abort(self):
 		self.finish(aborted = True)
@@ -352,17 +363,18 @@ class PreviewTask(Task):
 		if self.job.menupreview:
 			self.closedCB(True)
 		else:
-			self.job.project.session.openWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?") )
+			from Tools import Notifications
+			Notifications.AddNotificationWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?") )
 
 	def closedCB(self, answer):
 		if answer == True:
 			Task.processFinished(self, 0)
 		else:
 			Task.processFinished(self, 1)
-		
+
 	def previewProject(self):
 		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
-		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist= [ self.job.project.workspace + "/dvd/VIDEO_TS/" ])
+		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist= [ self.path ])
 
 class PreviewTaskPostcondition(Condition):
 	def check(self, task):
@@ -639,9 +651,18 @@ def CreateAuthoringXML(job):
 		f.write(x)
 	f.close()
 
+def getISOfilename(isopath, volName):
+	from Tools.Directories import fileExists
+	i = 0
+	filename = isopath+'/'+volName+".iso"
+	while fileExists(filename):
+		i = i+1
+		filename = isopath+'/'+volName + str(i).zfill(3) + ".iso"
+	return filename
+
 class DVDJob(Job):
 	def __init__(self, project, menupreview=False):
-		Job.__init__(self, _("Burn DVD"))
+		Job.__init__(self, "DVDBurn Job")
 		self.project = project
 		from time import strftime
 		from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
@@ -653,24 +674,17 @@ class DVDJob(Job):
 		self.conduct()
 
 	def conduct(self):
+		CheckDiskspaceTask(self)
 		if self.project.settings.authormode.getValue().startswith("menu") or self.menupreview:
 			Menus(self)
 		CreateAuthoringXML(self)
 
-		totalsize = 50*1024*1024 # require an extra safety 50 MB
-		maxsize = 0
-		for title in self.project.titles:
-			titlesize = title.estimatedDiskspace
-			if titlesize > maxsize: maxsize = titlesize
-			totalsize += titlesize
-		diskSpaceNeeded = totalsize + maxsize
-
-		DVDAuthorTask(self, diskSpaceNeeded)
+		DVDAuthorTask(self)
 		
 		nr_titles = len(self.project.titles)
 
 		if self.menupreview:
-			PreviewTask(self)
+			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 		else:
 			for self.i in range(nr_titles):
 				title = self.project.titles[self.i]
@@ -681,8 +695,20 @@ class DVDJob(Job):
 				MplexTask(self, outputfile=title_filename, demux_task=demux)
 				RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
-			PreviewTask(self)
-			BurnTask(self, ["-dvd-video", self.workspace + "/dvd"])
+			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
+			output = self.project.settings.output.getValue()
+			volName = self.project.settings.name.getValue()
+			if output == "dvd":
+				self.name = _("Burn DVD")
+				tool = "/bin/growisofs"
+				burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=dummy" ]
+			elif output == "iso":
+				self.name = _("Create DVD-ISO")
+				tool = "/usr/bin/mkisofs"
+				isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
+				burnargs = [ "-o", isopathfile ]
+			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, self.workspace + "/dvd" ]
+			BurnTask(self, burnargs, tool)
 		RemoveDVDFolder(self)
 
 class DVDdataJob(Job):
@@ -698,16 +724,49 @@ class DVDdataJob(Job):
 		self.conduct()
 
 	def conduct(self):
-		diskSpaceNeeded = 50*1024*1024 # require an extra safety 50 MB
-		for title in self.project.titles:
-			diskSpaceNeeded += title.filesize
+		if self.project.settings.output.getValue() == "iso":
+			CheckDiskspaceTask(self)
 		nr_titles = len(self.project.titles)
-
 		for self.i in range(nr_titles):
 			title = self.project.titles[self.i]
 			filename = title.inputfile.rstrip("/").rsplit("/",1)[1]
 			link_name =  self.workspace + filename
 			LinkTS(self, title.inputfile, link_name)
 			CopyMeta(self, title.inputfile)
-		BurnTask(self, ["-iso-level", "4", "-follow-links", self.workspace])
+
+		output = self.project.settings.output.getValue()
+		volName = self.project.settings.name.getValue()
+		tool = "/bin/growisofs"
+		if output == "dvd":
+			self.name = _("Burn DVD")
+			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=dummy" ]
+		elif output == "iso":
+			tool = "/usr/bin/mkisofs"
+			self.name = _("Create DVD-ISO")
+			isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
+			burnargs = [ "-o", isopathfile ]
+		if self.project.settings.dataformat.getValue() == "iso9660_1":
+			burnargs += ["-iso-level", "1" ]
+		elif self.project.settings.dataformat.getValue() == "iso9660_4":
+			burnargs += ["-iso-level", "4", "-allow-limited-size" ]
+		elif self.project.settings.dataformat.getValue() == "udf":
+			burnargs += ["-udf", "-allow-limited-size" ]
+		burnargs += [ "-publisher", "Dreambox", "-V", volName, "-follow-links", self.workspace ]
+		BurnTask(self, burnargs, tool)
 		RemoveDVDFolder(self)
+
+class DVDisoJob(Job):
+	def __init__(self, project, imagepath):
+		Job.__init__(self, _("Burn DVD"))
+		self.project = project
+		self.menupreview = False
+		if imagepath.endswith(".iso"):
+			PreviewTask(self, imagepath)
+			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD() + '='+imagepath, "-dvd-compat", "-use-the-force-luke=dummy" ]
+		else:
+			PreviewTask(self, imagepath + "/VIDEO_TS/")
+			volName = self.project.settings.name.getValue()
+			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=dummy" ]
+			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, imagepath ]
+		tool = "/bin/growisofs"
+		BurnTask(self, burnargs, tool)
