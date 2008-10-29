@@ -86,10 +86,10 @@ time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5)
 }
 
 TDT::TDT(eDVBChannel *chan, int update_count)
-	:chan(chan), update_count(update_count)
+	:chan(chan), m_interval_timer(eTimer::create()), update_count(update_count)
 {
 	CONNECT(tableReady, TDT::ready);
-	CONNECT(m_interval_timer.timeout, TDT::start);
+	CONNECT(m_interval_timer->timeout, TDT::start);
 	if (chan)
 		chan->getDemux(demux, 0);
 }
@@ -136,7 +136,7 @@ void TDT::start()
 
 void TDT::startTimer( int interval )
 {
-	m_interval_timer.start(interval, true);
+	m_interval_timer->start(interval, true);
 }
 
 eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;

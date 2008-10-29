@@ -25,7 +25,7 @@ class eBackgroundFileEraser: public eMainloop, private eThread, public Object
 	void gotMessage(const Message &message);
 	void thread();
 	void idle();
-	eTimer stop_thread_timer;
+	ePtr<eTimer> stop_thread_timer;
 #ifndef SWIG
 public:
 #endif

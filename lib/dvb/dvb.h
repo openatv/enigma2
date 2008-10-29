@@ -22,7 +22,7 @@ class iDVBAdapter;
 class eDVBRegisteredFrontend: public iObject, public Object
 {
 	DECLARE_REF(eDVBRegisteredFrontend);
-	eTimer *disable;
+	ePtr<eTimer> disable;
 	void closeFrontend()
 	{
 		if (!m_inuse && m_frontend->closeFrontend()) // frontend busy
@@ -31,13 +31,9 @@ class eDVBRegisteredFrontend: public iObject, public Object
 public:
 	Signal0<void> stateChanged;
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
-		:disable(new eTimer(eApp)), m_adapter(adap), m_frontend(fe), m_inuse(0)
+		:disable(eTimer::create(eApp)), m_adapter(adap), m_frontend(fe), m_inuse(0)
 	{
 		CONNECT(disable->timeout, eDVBRegisteredFrontend::closeFrontend);
-	}
-	~eDVBRegisteredFrontend()
-	{
-		delete disable;
 	}
 	void dec_use()
 	{
@@ -164,7 +160,7 @@ class eDVBResourceManager: public iObject, public Object
 
 	eUsePtr<iDVBChannel> m_cached_channel;
 	Connection m_cached_channel_state_changed_conn;
-	eTimer m_releaseCachedChannelTimer;
+	ePtr<eTimer> m_releaseCachedChannelTimer;
 	void DVBChannelStateChanged(iDVBChannel*);
 	void feStateChanged();
 #ifndef SWIG

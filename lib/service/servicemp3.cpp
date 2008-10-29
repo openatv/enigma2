@@ -174,14 +174,13 @@ int eStaticServiceMP3Info::getLength(const eServiceReference &ref)
 
 eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eApp, 1)
 {
+	m_seekTimeout = eTimer::create(eApp);
 	m_stream_tags = 0;
-	m_audioStreams.clear();
-	m_subtitleStreams.clear();
 	m_currentAudioStream = 0;
 	m_currentSubtitleStream = 0;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 0;
-	CONNECT(m_seekTimeout.timeout, eServiceMP3::seekTimeoutCB);
+	CONNECT(m_seekTimeout->timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	GstElement *source = 0;
 	
@@ -527,9 +526,9 @@ RESULT eServiceMP3::setFastForward(int ratio)
 {
 	m_currentTrickRatio = ratio;
 	if (ratio)
-		m_seekTimeout.start(1000, 0);
+		m_seekTimeout->start(1000, 0);
 	else
-		m_seekTimeout.stop();
+		m_seekTimeout->stop();
 	return 0;
 }
 
@@ -543,13 +542,13 @@ void eServiceMP3::seekTimeoutCB()
 	if (ppos < 0)
 	{
 		ppos = 0;
-		m_seekTimeout.stop();
+		m_seekTimeout->stop();
 	}
 	if (ppos > len)
 	{
 		ppos = 0;
 		stop();
-		m_seekTimeout.stop();
+		m_seekTimeout->stop();
 		return;
 	}
 	seekTo(ppos);

@@ -79,7 +79,7 @@ private:
 	void paintBackground(eWidgetDesktopCompBuffer *comp);
 	
 	eMainloop *m_mainloop;
-	eTimer *m_timer;
+	ePtr<eTimer> m_timer;
 	
 	int m_comp_mode;
 	int m_require_redraw;

@@ -931,10 +931,10 @@ RESULT eTSMPEGDecoder::setAC3Delay(int delay)
 }
 
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
-	:m_demux(demux), m_changed(0), m_decoder(decoder), m_video_clip_fd(-1), m_showSinglePicTimer(eApp)
+	:m_demux(demux), m_changed(0), m_decoder(decoder), m_video_clip_fd(-1), m_showSinglePicTimer(eTimer::create(eApp))
 {
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event_conn);
-	CONNECT(m_showSinglePicTimer.timeout, eTSMPEGDecoder::finishShowSinglePic);
+	CONNECT(m_showSinglePicTimer->timeout, eTSMPEGDecoder::finishShowSinglePic);
 	m_is_ff = m_is_sm = m_is_trickmode = 0;
 }
 
@@ -1191,7 +1191,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				if (!seq_end_avail)
 					write(m_video_clip_fd, seq_end, sizeof(seq_end));
 				write(m_video_clip_fd, stuffing, 8192);
-				m_showSinglePicTimer.start(150, true);
+				m_showSinglePicTimer->start(150, true);
 			}
 			close(f);
 		}

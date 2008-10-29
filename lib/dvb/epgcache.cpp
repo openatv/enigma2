@@ -213,13 +213,13 @@ pthread_mutex_t eEPGCache::channel_map_lock=
 DEFINE_REF(eEPGCache)
 
 eEPGCache::eEPGCache()
-	:messages(this,1), cleanTimer(this)//, paused(0)
+	:messages(this,1), cleanTimer(eTimer::create(this))//, paused(0)
 {
 	eDebug("[EPGC] Initialized EPGCache");
 
 	CONNECT(messages.recv_msg, eEPGCache::gotMessage);
 	CONNECT(eDVBLocalTimeHandler::getInstance()->m_timeUpdated, eEPGCache::timeUpdated);
-	CONNECT(cleanTimer.timeout, eEPGCache::cleanLoop);
+	CONNECT(cleanTimer->timeout, eEPGCache::cleanLoop);
 
 	ePtr<eDVBResourceManager> res_mgr;
 	eDVBResourceManager::getInstance(res_mgr);
@@ -783,7 +783,7 @@ void eEPGCache::cleanLoop()
 		eDebug("[EPGC] stop cleanloop");
 		eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
 	}
-	cleanTimer.start(CLEAN_INTERVAL,true);
+	cleanTimer->start(CLEAN_INTERVAL,true);
 }
 
 eEPGCache::~eEPGCache()
@@ -847,7 +847,7 @@ void eEPGCache::gotMessage( const Message &msg )
 					int update = ( It != channelLastUpdated.end() ? ( UPDATE_INTERVAL - ( (::time(0)-It->second) * 1000 ) ) : ZAP_DELAY );
 					if (update < ZAP_DELAY)
 						update = ZAP_DELAY;
-					data->startPrivateTimer.start(update, 1);
+					data->startPrivateTimer->start(update, 1);
 					if (update >= 60000)
 						eDebug("[EPGC] next private update in %i min", update/60000);
 					else if (update >= 1000)
@@ -1088,22 +1088,22 @@ void eEPGCache::save()
 
 eEPGCache::channel_data::channel_data(eEPGCache *ml)
 	:cache(ml)
-	,abortTimer(ml), zapTimer(ml), state(0)
+	,abortTimer(eTimer::create(ml)), zapTimer(eTimer::create(ml)), state(0)
 	,isRunning(0), haveData(0)
 #ifdef ENABLE_PRIVATE_EPG
-	,startPrivateTimer(ml)
+	,startPrivateTimer(eTimer::create(ml))
 #endif
 #ifdef ENABLE_MHW_EPG
-	,m_MHWTimeoutTimer(ml)
+	,m_MHWTimeoutTimer(eTimer::create(ml))
 #endif
 {
 #ifdef ENABLE_MHW_EPG
-	CONNECT(m_MHWTimeoutTimer.timeout, eEPGCache::channel_data::MHWTimeout);
+	CONNECT(m_MHWTimeoutTimer->timeout, eEPGCache::channel_data::MHWTimeout);
 #endif
-	CONNECT(zapTimer.timeout, eEPGCache::channel_data::startEPG);
-	CONNECT(abortTimer.timeout, eEPGCache::channel_data::abortNonAvail);
+	CONNECT(zapTimer->timeout, eEPGCache::channel_data::startEPG);
+	CONNECT(abortTimer->timeout, eEPGCache::channel_data::abortNonAvail);
 #ifdef ENABLE_PRIVATE_EPG
-	CONNECT(startPrivateTimer.timeout, eEPGCache::channel_data::startPrivateReader);
+	CONNECT(startPrivateTimer->timeout, eEPGCache::channel_data::startPrivateReader);
 #endif
 	pthread_mutex_init(&channel_active, 0);
 }
@@ -1113,7 +1113,7 @@ bool eEPGCache::channel_data::finishEPG()
 	if (!isRunning)  // epg ready
 	{
 		eDebug("[EPGC] stop caching events(%ld)", ::time(0));
-		zapTimer.start(UPDATE_INTERVAL, 1);
+		zapTimer->start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
 		for (int i=0; i < 3; ++i)
 		{
@@ -1186,7 +1186,7 @@ void eEPGCache::channel_data::startEPG()
 	m_ScheduleOtherReader->start(mask);
 	isRunning |= SCHEDULE_OTHER;
 
-	abortTimer.start(7000,true);
+	abortTimer->start(7000,true);
 }
 
 void eEPGCache::channel_data::abortNonAvail()
@@ -1226,7 +1226,7 @@ void eEPGCache::channel_data::abortNonAvail()
 		}
 #endif
 		if ( isRunning )
-			abortTimer.start(90000, true);
+			abortTimer->start(90000, true);
 		else
 		{
 			++state;
@@ -1250,7 +1250,7 @@ void eEPGCache::channel_data::startChannel()
 	if (update < ZAP_DELAY)
 		update = ZAP_DELAY;
 
-	zapTimer.start(update, 1);
+	zapTimer->start(update, 1);
 	if (update >= 60000)
 		eDebug("[EPGC] next update in %i min", update/60000);
 	else if (update >= 1000)
@@ -1264,8 +1264,8 @@ void eEPGCache::channel_data::abortEPG()
 		seenSections[i].clear();
 		calcedSections[i].clear();
 	}
-	abortTimer.stop();
-	zapTimer.stop();
+	abortTimer->stop();
+	zapTimer->stop();
 	if (isRunning)
 	{
 		eDebug("[EPGC] abort caching events !!");
@@ -2919,7 +2919,7 @@ void eEPGCache::channel_data::storeTitle(std::map<__u32, mhw_title_t>::iterator 
 
 void eEPGCache::channel_data::startTimeout(int msec)
 {
-	m_MHWTimeoutTimer.start(msec,true);
+	m_MHWTimeoutTimer->start(msec,true);
 	m_MHWTimeoutet=false;
 }
 

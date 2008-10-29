@@ -153,7 +153,7 @@ private:
 	std::vector<subtitleStream> m_subtitleStreams;
 	eSubtitleWidget *m_subtitle_widget;
 	int m_currentTrickRatio;
-	eTimer m_seekTimeout;
+	ePtr<eTimer> m_seekTimeout;
 	void seekTimeoutCB();
 	friend class eServiceFactoryMP3;
 	std::string m_filename;

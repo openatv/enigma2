@@ -37,7 +37,7 @@ private:
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
 	Signal1<void, int> m_event;
-	eTimer m_abortTimer;
+	ePtr<eTimer> m_abortTimer;
 };
 
 #endif

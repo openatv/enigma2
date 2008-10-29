@@ -61,7 +61,7 @@ ePtr<eDVBResourceManager> NewResourceManagerPtr(void)
 }
 
 eDVBResourceManager::eDVBResourceManager()
-	:m_releaseCachedChannelTimer(eApp)
+	:m_releaseCachedChannelTimer(eTimer::create(eApp))
 {
 	avail = 1;
 	busy = 0;
@@ -86,7 +86,7 @@ eDVBResourceManager::eDVBResourceManager()
 
 	eDVBCAService::registerChannelCallback(this);
 
-	CONNECT(m_releaseCachedChannelTimer.timeout, eDVBResourceManager::releaseCachedChannel);
+	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
 
 void eDVBResourceManager::feStateChanged()
@@ -541,7 +541,7 @@ RESULT eDVBResourceManager::allocateChannel(const eDVBChannelID &channelid, eUse
 		}
 		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
-		m_releaseCachedChannelTimer.stop();
+		m_releaseCachedChannelTimer->stop();
 	}
 
 	eDebugNoSimulate("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
@@ -611,13 +611,13 @@ void eDVBResourceManager::DVBChannelStateChanged(iDVBChannel *chan)
 		case iDVBChannel::state_ok:
 		{
 			eDebug("stop release channel timer");
-			m_releaseCachedChannelTimer.stop();
+			m_releaseCachedChannelTimer->stop();
 			break;
 		}
 		case iDVBChannel::state_last_instance:
 		{
 			eDebug("start release channel timer");
-			m_releaseCachedChannelTimer.start(3000, true);
+			m_releaseCachedChannelTimer->start(3000, true);
 			break;
 		}
 		default: // ignore all other events
@@ -639,7 +639,7 @@ RESULT eDVBResourceManager::allocateRawChannel(eUsePtr<iDVBChannel> &channel, in
 	{
 		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
-		m_releaseCachedChannelTimer.stop();
+		m_releaseCachedChannelTimer->stop();
 	}
 
 	int err = allocateFrontendByIndex(fe, slot_index);
@@ -655,11 +655,11 @@ RESULT eDVBResourceManager::allocatePVRChannel(eUsePtr<iDVBPVRChannel> &channel)
 {
 	ePtr<eDVBAllocatedDemux> demux;
 
-	if (m_cached_channel && m_releaseCachedChannelTimer.isActive())
+	if (m_cached_channel && m_releaseCachedChannelTimer->isActive())
 	{
 		m_cached_channel_state_changed_conn.disconnect();
 		m_cached_channel=0;
-		m_releaseCachedChannelTimer.stop();
+		m_releaseCachedChannelTimer->stop();
 	}
 
 	channel = new eDVBChannel(this, 0);

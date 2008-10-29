@@ -39,7 +39,8 @@ void eSocketNotifier::stop()
 	}
 }
 
-					// timer
+DEFINE_REF(eTimer);
+
 void eTimer::start(long msek, bool singleShot)
 {
 	if (bActive)
@@ -160,7 +161,12 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 	{
 		/* process all timers which are ready. first remove them out of the list. */
 		while (!m_timer_list.empty() && (poll_timeout = timeout_usec( m_timer_list.begin()->getNextActivation() ) ) <= 0 )
-			m_timer_list.begin()->activate();
+		{
+			eTimer *tmr = m_timer_list.begin();
+			tmr->AddRef();
+			tmr->activate();
+			tmr->Release();
+		}
 		if (poll_timeout < 0)
 			poll_timeout = 0;
 		else /* convert us to ms */
@@ -403,7 +409,7 @@ eTimerPy_dealloc(eTimerPy* self)
 	if (self->in_weakreflist != NULL)
 		PyObject_ClearWeakRefs((PyObject *) self);
 	eTimerPy_clear(self);
-	delete self->tm;
+	self->tm->Release();
 	self->ob_type->tp_free((PyObject*)self);
 }
 
@@ -411,7 +417,8 @@ static PyObject *
 eTimerPy_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 {
 	eTimerPy *self = (eTimerPy *)type->tp_alloc(type, 0);
-	self->tm = new eTimer(eApp);
+	self->tm = eTimer::create(eApp);
+	self->tm->AddRef();
 	self->in_weakreflist = NULL;
 	return (PyObject *)self;
 }

@@ -155,7 +155,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		pthread_mutex_t channel_active;
 		channel_data(eEPGCache*);
 		eEPGCache *cache;
-		eTimer abortTimer, zapTimer;
+		ePtr<eTimer> abortTimer, zapTimer;
 		int prevChannelState;
 		__u8 state, isRunning, haveData;
 		ePtr<eDVBChannel> channel;
@@ -163,7 +163,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
 		tidMap seenSections[3], calcedSections[3];
 #ifdef ENABLE_PRIVATE_EPG
-		eTimer startPrivateTimer;
+		ePtr<eTimer> startPrivateTimer;
 		int m_PrevVersion;
 		int m_PrivatePid;
 		uniqueEPGKey m_PrivateService;
@@ -181,7 +181,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<eConnection> m_MHWConn, m_MHWConn2;
 		ePtr<iDVBSectionReader> m_MHWReader, m_MHWReader2;
 		eDVBSectionFilterMask m_MHWFilterMask, m_MHWFilterMask2;
-		eTimer m_MHWTimeoutTimer;
+		ePtr<eTimer> m_MHWTimeoutTimer;
 		bool m_MHWTimeoutet;
 		void MHWTimeout() { m_MHWTimeoutet=true; }
 		void readMHWData(const __u8 *data);
@@ -249,7 +249,7 @@ private:
 	friend class channel_data;
 	static eEPGCache *instance;
 
-	eTimer cleanTimer;
+	ePtr<eTimer> cleanTimer;
 	std::map<iDVBChannel*, channel_data*> m_knownChannels;
 	ePtr<eConnection> m_chanAddedConn;
 

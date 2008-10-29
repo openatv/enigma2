@@ -11,12 +11,12 @@
  	*/	
 
 eSubtitleWidget::eSubtitleWidget(eWidget *parent)
-	: eWidget(parent), m_hide_subtitles_timer(eApp)
+	: eWidget(parent), m_hide_subtitles_timer(eTimer::create(eApp))
 {
 	setBackgroundColor(gRGB(0,0,0,255));
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
-	CONNECT(m_hide_subtitles_timer.timeout, eSubtitleWidget::clearPage);
+	CONNECT(m_hide_subtitles_timer->timeout, eSubtitleWidget::clearPage);
 }
 
 #define startX 50
@@ -46,7 +46,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 			m_visible_region.rects.push_back(area);
 		}
 	}
-	m_hide_subtitles_timer.start(7500, true);
+	m_hide_subtitles_timer->start(7500, true);
 	invalidate(m_visible_region);  // invalidate new regions
 }
 
@@ -62,7 +62,7 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 		m_visible_region.rects.push_back(eRect(it->m_position, it->m_pixmap->size()));
 	}
 	m_dvb_page_ok = 1;
-	m_hide_subtitles_timer.start(7500, true);
+	m_hide_subtitles_timer->start(7500, true);
 	invalidate(m_visible_region);  // invalidate new regions
 }
 
@@ -93,7 +93,7 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 		}
 	}
 	int timeout_ms = m_pango_page.m_timeout;
-	m_hide_subtitles_timer.start(timeout_ms, true);
+	m_hide_subtitles_timer->start(timeout_ms, true);
 	invalidate(m_visible_region);  // invalidate new regions
 }
 

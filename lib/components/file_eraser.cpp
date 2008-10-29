@@ -11,12 +11,12 @@
 eBackgroundFileEraser *eBackgroundFileEraser::instance;
 
 eBackgroundFileEraser::eBackgroundFileEraser()
-	:messages(this,1), stop_thread_timer(this)
+	:messages(this,1), stop_thread_timer(eTimer::create(this))
 {
 	if (!instance)
 		instance=this;
 	CONNECT(messages.recv_msg, eBackgroundFileEraser::gotMessage);
-	CONNECT(stop_thread_timer.timeout, eBackgroundFileEraser::idle);
+	CONNECT(stop_thread_timer->timeout, eBackgroundFileEraser::idle);
 }
 
 void eBackgroundFileEraser::idle()
@@ -44,7 +44,7 @@ void eBackgroundFileEraser::thread()
 
 	runLoop();
 
-	stop_thread_timer.stop();
+	stop_thread_timer->stop();
 }
 
 void eBackgroundFileEraser::erase(const char *filename)
@@ -76,7 +76,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 					eDebug("file %s erased", msg.filename);
 				free((char*)msg.filename);
 			}
-			stop_thread_timer.start(1000, true); // stop thread in one seconds
+			stop_thread_timer->start(1000, true); // stop thread in one seconds
 			break;
 		case Message::quit:
 			quit(0);
