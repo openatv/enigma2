@@ -25,20 +25,20 @@ class Console(object):
 		if retval:
 			self.finishedCB(name, retval)
 
-	def eBatch(self, cmds, callback, debug=False):
+	def eBatch(self, cmds, callback, extra_args=[], debug=False):
 		self.debug = debug
 		cmd = cmds.pop(0)
-		self.ePopen(cmd, self.eBatchCB, [cmds, callback, cmd])
+		self.ePopen(cmd, self.eBatchCB, [cmds, callback, extra_args])
 
-	def eBatchCB(self, data, retval, extra_args):
-		(cmds, callback, lastcmd) = extra_args
+	def eBatchCB(self, data, retval, _extra_args):
+		(cmds, callback, extra_args) = _extra_args
 		if self.debug:
-			print '[eBatch] cmd="%s", retval=%s, cmds left=%d, data:\n%s' % (lastcmd, retval, len(cmds), data)
+			print '[eBatch] retval=%s, cmds left=%d, data:\n%s' % (retval, len(cmds), data)
 		if len(cmds):
 			cmd = cmds.pop(0)
-			self.ePopen(cmd, self.eBatchCB, [cmds, callback, cmd])
+			self.ePopen(cmd, self.eBatchCB, [cmds, callback, extra_args])
 		else:
-			callback()
+			callback(extra_args)
 
 	def dataAvailCB(self, name, data):
 		self.appResults[name] += data
