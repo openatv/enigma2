@@ -131,7 +131,7 @@ private:
 	void video_event(struct videoEvent);
 	Signal1<void, struct videoEvent> m_video_event;
 	int m_video_clip_fd;
-	eTimer m_showSinglePicTimer;
+	ePtr<eTimer> m_showSinglePicTimer;
 	void finishShowSinglePic(); // called by timer
 public:
 	enum { pidNone = -1 };

@@ -1065,7 +1065,9 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	
 	m_tune_state = -1;
 
-	CONNECT(m_subtitle_sync_timer.timeout, eDVBServicePlay::checkSubtitleTiming);
+	m_subtitle_sync_timer = eTimer::create(eApp);
+
+	CONNECT(m_subtitle_sync_timer->timeout, eDVBServicePlay::checkSubtitleTiming);
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -2926,7 +2928,7 @@ void eDVBServicePlay::checkSubtitleTiming()
 		} else
 		{
 			eDebug("start subtitle delay %d", diff / 90);
-			m_subtitle_sync_timer.start(diff / 90, 1);
+			m_subtitle_sync_timer->start(diff / 90, 1);
 			break;
 		}
 	}

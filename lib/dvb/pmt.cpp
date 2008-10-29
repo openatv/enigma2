@@ -671,10 +671,10 @@ ChannelMap eDVBCAService::exist_channels;
 ePtr<eConnection> eDVBCAService::m_chanAddedConn;
 
 eDVBCAService::eDVBCAService()
-	: m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eApp)
+	: m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eTimer::create(eApp))
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
-	CONNECT(m_retryTimer.timeout, eDVBCAService::sendCAPMT);
+	CONNECT(m_retryTimer->timeout, eDVBCAService::sendCAPMT);
 	Connect();
 }
 
@@ -1040,11 +1040,11 @@ void eDVBCAService::sendCAPMT()
 		{
 			case 0xFFFFFFFF:
 				++m_sendstate;
-				m_retryTimer.start(0,true);
+				m_retryTimer->start(0,true);
 //				eDebug("[eDVBCAService] send failed .. immediate retry");
 				break;
 			default:
-				m_retryTimer.start(5000,true);
+				m_retryTimer->start(5000,true);
 //				eDebug("[eDVBCAService] send failed .. retry in 5 sec");
 				break;
 		}

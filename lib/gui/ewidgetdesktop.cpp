@@ -343,12 +343,11 @@ void eWidgetDesktop::setRedrawTask(eMainloop &ml)
 {
 	if (m_mainloop)
 	{
-		delete m_timer;
 		m_timer = 0;
 		m_mainloop = 0;
 	}
 	m_mainloop = &ml;
-	m_timer = new eTimer(m_mainloop);
+	m_timer = eTimer::create(m_mainloop);
 	CONNECT(m_timer->timeout, eWidgetDesktop::paint);
 	
 	if (m_require_redraw)
@@ -399,7 +398,7 @@ void eWidgetDesktop::setCompositionMode(int mode)
 				removeBufferForWidget(*i, l);
 }
 
-eWidgetDesktop::eWidgetDesktop(eSize size): m_mainloop(0), m_timer(0)
+eWidgetDesktop::eWidgetDesktop(eSize size): m_mainloop(0)
 {
 	m_screen.m_dirty_region = gRegion(eRect(ePoint(0, 0), size));
 	m_screen.m_screen_size = size;

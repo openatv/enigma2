@@ -44,7 +44,7 @@ class eDVBCAService: public Object
 	struct sockaddr_un m_servaddr;
 	unsigned int m_sendstate;
 	unsigned char m_capmt[2048];
-	eTimer m_retryTimer;
+	ePtr<eTimer> m_retryTimer;
 	void sendCAPMT();
 	void Connect();
 	void socketCB(int what);

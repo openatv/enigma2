@@ -269,8 +269,9 @@ public:
  *
  * This class emits the signal \c eTimer::timeout after the specified timeout.
  */
-class eTimer
+class eTimer: iObject
 {
+	DECLARE_REF(eTimer);
 	friend class eMainloop;
 	eMainloop &context;
 	timespec nextActivation;
@@ -278,6 +279,9 @@ class eTimer
 	bool bSingleShot;
 	bool bActive;
 	void activate();
+
+	eTimer(eMainloop *context): context(*context), bActive(false) { }
+	void operator delete(void *pmem) { ::operator delete(pmem); }
 public:
 	/**
 	 * \brief Constructs a timer.
@@ -285,7 +289,7 @@ public:
 	 * The timer is not yet active, it has to be started with \c start.
 	 * \param context The thread from which the signal should be emitted.
 	 */
-	eTimer(eMainloop *context=eApp): context(*context), bActive(false) { }
+	static eTimer *create(eMainloop *context=eApp) { return new eTimer(context); }
 	~eTimer() { if (bActive) stop(); }
 
 	PSignal0<void> timeout;
@@ -299,6 +303,7 @@ public:
 	void changeInterval(long msek);
 	void startLongTimer( int seconds );
 	bool operator<(const eTimer& t) const { return nextActivation < t.nextActivation; }
+	eSmartPtrList<iObject> m_clients;
 };
 #endif  // SWIG
 

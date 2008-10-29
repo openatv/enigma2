@@ -7,7 +7,7 @@ DEFINE_REF(eDVBRdsDecoder);
 
 eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux)
 	:msgPtr(0), bsflag(0), qdar_pos(0), t_ptr(0), qdarmvi_show(0), state(0)
-	,m_abortTimer(eApp)
+	,m_abortTimer(eTimer::create(eApp))
 {
 	setStreamID(0xC0, 0xC0);
 
@@ -18,7 +18,7 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux)
 		eDebug("failed to create PES reader!");
 	else
 		m_pes_reader->connectRead(slot(*this, &eDVBRdsDecoder::processData), m_read_connection);
-	CONNECT(m_abortTimer.timeout, eDVBRdsDecoder::abortNonAvail);
+	CONNECT(m_abortTimer->timeout, eDVBRdsDecoder::abortNonAvail);
 }
 
 eDVBRdsDecoder::~eDVBRdsDecoder()
@@ -193,7 +193,7 @@ void eDVBRdsDecoder::processPESPacket(__u8 *data, int len)
 
 		if (data[offs] == 0xFD)
 		{
-			m_abortTimer.stop();
+			m_abortTimer->stop();
 			int ancillary_len = 1 + data[offs - 1];
 			offs -= ancillary_len;
 			gotAncillaryData(data+offs, ancillary_len);
@@ -639,7 +639,7 @@ int eDVBRdsDecoder::start(int pid)
 {
 	int ret = -1;
 	if (m_pes_reader && !(ret = m_pes_reader->start(pid)))
-		m_abortTimer.startLongTimer(20);
+		m_abortTimer->startLongTimer(20);
 	return ret;
 }
 

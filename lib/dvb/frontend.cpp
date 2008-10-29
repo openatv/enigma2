@@ -455,10 +455,10 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 	sprintf(m_filename, "/dev/dvb/adapter%d/frontend%d", adap, fe);
 #endif
 
-	m_timeout = new eTimer(eApp);
+	m_timeout = eTimer::create(eApp);
 	CONNECT(m_timeout->timeout, eDVBFrontend::timeout);
 
-	m_tuneTimer = new eTimer(eApp);
+	m_tuneTimer = eTimer::create(eApp);
 	CONNECT(m_tuneTimer->timeout, eDVBFrontend::tuneLoop);
 
 	for (int i=0; i<eDVBFrontend::NUM_DATA_ENTRIES; ++i)
@@ -617,8 +617,6 @@ eDVBFrontend::~eDVBFrontend()
 {
 	m_data[LINKED_PREV_PTR] = m_data[LINKED_NEXT_PTR] = -1;
 	closeFrontend();
-	delete m_timeout;
-	delete m_tuneTimer;
 }
 
 void eDVBFrontend::feEvent(int w)

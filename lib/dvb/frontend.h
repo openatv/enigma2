@@ -87,8 +87,7 @@ private:
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	ePtr<eSocketNotifier> m_sn;
 	int m_tuning;
-	eTimer *m_timeout;
-	eTimer *m_tuneTimer;
+	ePtr<eTimer> m_timeout, m_tuneTimer;
 
 	eSecCommandList m_sec_sequence;
 

@@ -53,7 +53,7 @@ private:
 	int m_pango_page_ok;
 	ePangoSubtitlePage m_pango_page;
 
-	eTimer m_hide_subtitles_timer;
+	ePtr<eTimer> m_hide_subtitles_timer;
 
 	gRegion m_visible_region;
 

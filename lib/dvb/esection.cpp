@@ -50,7 +50,7 @@ void eGTable::timeout()
 }
 
 eGTable::eGTable(bool debug):
-		m_timeout(0), m_debug(debug), error(0)
+		m_debug(debug), error(0)
 {
 }
 
@@ -130,9 +130,7 @@ RESULT eGTable::start(iDVBSectionReader *reader, const eDVBTableSpec &table)
 	
 	if (m_table.flags & eDVBTableSpec::tfHaveTimeout)
 	{
-		if (m_timeout)
-			delete m_timeout;
-		m_timeout = new eTimer(eApp);
+		m_timeout = eTimer::create(eApp);
 		m_timeout->start(m_table.timeout, 1); // begin timeout
 		CONNECT(m_timeout->timeout, eGTable::timeout);
 	}
@@ -152,8 +150,6 @@ RESULT eGTable::start(iDVBDemux *demux, const eDVBTableSpec &table)
 
 eGTable::~eGTable()
 {
-	if (m_timeout)
-		delete m_timeout;
 }
 
 void eAUGTable::slotTableReady(int error)

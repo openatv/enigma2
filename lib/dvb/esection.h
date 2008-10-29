@@ -15,7 +15,7 @@ class eGTable: public iObject, public Object
 	
 	unsigned int m_tries;
 	
-	eTimer *m_timeout;
+	ePtr<eTimer> m_timeout;
 
 	void sectionRead(const __u8 *data);
 	void timeout();

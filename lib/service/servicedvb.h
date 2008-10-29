@@ -272,7 +272,7 @@ private:
 	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
 	std::list<eDVBSubtitlePage> m_dvb_subtitle_pages;
 
-	eTimer m_subtitle_sync_timer;
+	ePtr<eTimer> m_subtitle_sync_timer;
 	void checkSubtitleTiming();
 
 		/* radiotext */
