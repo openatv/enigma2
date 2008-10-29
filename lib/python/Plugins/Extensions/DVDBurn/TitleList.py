@@ -10,7 +10,6 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
-from Components.FileList import FileList
 from Components.Label import Label
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
@@ -78,13 +77,17 @@ class TitleList(Screen, HelpableScreen):
 		
 	def showMenu(self):
 		menu = []
-		menu.append((_("Burn DVD"), "burn"));
+		if self.project.settings.output.getValue() == "dvd":
+			menu.append((_("Burn DVD"), "burn"));
+		elif self.project.settings.output.getValue() == "iso":
+			menu.append((_("Create DVD-ISO"), "burn"));
 		menu.append((_("Preview menu"), "previewMenu"));
 		menu.append((_("DVD media toolbox"), "toolbox"));
 		menu.append((_("Collection settings"), "settings"));
 		menu.append((_("Add a new title"), "addtitle"));
 		menu.append((_("Remove title"), "removetitle"));
 		menu.append((_("Edit chapters of current title"), "edittitle"));
+		menu.append((_("Burn existing image to DVD"), "burniso"));
 		menu.append((_("Exit"), "exit"));
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
@@ -105,6 +108,8 @@ class TitleList(Screen, HelpableScreen):
 			self.previewMenu()
 		elif choice[1] == "burn":
 			self.burnProject()
+		elif choice[1] == "burniso":
+			self.session.openWithCallback(self.burnISO, ProjectSettings.FileBrowser, "image", self.project.settings)
 		elif choice[1] == "exit":
 			self.leave()
 
@@ -200,6 +205,12 @@ class TitleList(Screen, HelpableScreen):
 			job_manager.AddJob(job)
 			job_manager.in_background = False
 			self.session.openWithCallback(self.JobViewCB, JobView, job)
+
+	def burnISO(self, path, scope):
+		job = Process.DVDisoJob(self.project, path)
+		job_manager.AddJob(job)
+		job_manager.in_background = False
+		self.session.openWithCallback(self.JobViewCB, JobView, job)
 
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background

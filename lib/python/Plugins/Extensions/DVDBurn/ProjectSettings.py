@@ -9,7 +9,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.FileList import FileList
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 
@@ -39,6 +39,11 @@ class FileBrowser(Screen, HelpableScreen):
 		elif self.scope == "font_face":
 			currDir = self.getDir(settings.font_face, resolveFilename(SCOPE_FONTS))
 			pattern = "(?i)^.*\.(ttf)"
+		elif self.scope == "isopath":
+			currDir = settings.isopath.getValue()
+		elif self.scope == "image":
+			currDir = resolveFilename(SCOPE_HDD)
+			pattern = "(?i)^.*\.(iso)"
 
 		self.filelist = FileList(currDir, matchingPattern=pattern)
 		self["filelist"] = self.filelist
@@ -59,11 +64,17 @@ class FileBrowser(Screen, HelpableScreen):
 	def ok(self):
 		if self.filelist.canDescent():
 			self.filelist.descent()
+			if self.scope == "image":
+				path = self["filelist"].getCurrentDirectory() or ""
+				if fileExists(path+"VIDEO_TS"):
+					self.close(path,self.scope)
 		else:
 			ret = self["filelist"].getCurrentDirectory() + '/' + self["filelist"].getFilename()
 			self.close(ret,self.scope)
 
 	def exit(self):
+		if self.scope == "isopath":
+			self.close(self["filelist"].getCurrentDirectory(),self.scope)
 		self.close(None,False)
 
 class ProjectSettings(Screen,ConfigListScreen):
@@ -95,7 +106,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 
 		self.settings = project.settings
 		ConfigListScreen.__init__(self, [])
-		self.initConfigList(self.settings.authormode.getValue())
+		self.initConfigList()
 			
 		self.keydict = {}
 		for key, val in self.settings.dict().iteritems():
@@ -112,14 +123,19 @@ class ProjectSettings(Screen,ConfigListScreen):
 		}, -2)
 
 	def changedConfigList(self):
-		if self.keydict[self["config"].getCurrent()[1]] == "authormode":
-			self.initConfigList(self.settings.authormode.getValue())
-		
-	def initConfigList(self, authormode=""):
-		print "initConfigList(%s)" % authormode
+		key = self.keydict[self["config"].getCurrent()[1]]
+		if key == "authormode" or key == "output":
+			self.initConfigList()
+
+	def initConfigList(self):
+		authormode = self.settings.authormode.getValue()
+		output = self.settings.output.getValue()
 		self.list = []
 		self.list.append(getConfigListEntry(_("Collection name"), self.settings.name))
 		self.list.append(getConfigListEntry(_("Authoring mode"), self.settings.authormode))
+		self.list.append(getConfigListEntry(("Output"), self.settings.output))
+		if output == "iso":
+			self.list.append(getConfigListEntry(_("ISO path"), self.settings.isopath))
 		if authormode.startswith("menu"):
 			self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.settings.menubg))
 			self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.settings.titleformat))
@@ -134,17 +150,22 @@ class ProjectSettings(Screen,ConfigListScreen):
 		if authormode != "data_ts":
 			self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
 			self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.settings.autochapter))
+		else:
+			self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
+		
 		self["config"].setList(self.list)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
-		if self.keydict[self["config"].getCurrent()[1]] == "authormode":
-			self.initConfigList(self.settings.authormode.getValue())
+		key = self.keydict[self["config"].getCurrent()[1]]
+		if key == "authormode" or key == "output":
+			self.initConfigList()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
-		if self.keydict[self["config"].getCurrent()[1]] == "authormode":
-			self.initConfigList(self.settings.authormode.getValue())
+		key = self.keydict[self["config"].getCurrent()[1]]
+		if key == "authormode" or key == "output":
+			self.initConfigList()
 
 	def exit(self):
 		self.applySettings()
