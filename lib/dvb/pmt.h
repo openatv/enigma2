@@ -35,7 +35,7 @@ typedef std::map<iDVBChannel*, channel_data*> ChannelMap;
 
 class eDVBCAService: public Object
 {
-	eSocketNotifier *m_sn;
+	ePtr<eSocketNotifier> m_sn;
 	eServiceReferenceDVB m_service;
 	uint8_t m_used_demux[32];
 	unsigned int m_prev_build_hash;

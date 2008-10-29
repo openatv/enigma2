@@ -129,7 +129,7 @@ int eSocketMMIHandler::send_to_mmisock( void* buf, size_t len)
 }
 
 eSocketMMIHandler::eSocketMMIHandler()
-	:buffer(512), connfd(-1), connsn(0), sockname("/tmp/mmi.socket"), name(0)
+	:buffer(512), connfd(-1), sockname("/tmp/mmi.socket"), name(0)
 {
 	memset(&servaddr, 0, sizeof(struct sockaddr_un));
 	servaddr.sun_family = AF_UNIX;
@@ -154,7 +154,7 @@ eSocketMMIHandler::eSocketMMIHandler()
 	else if (listen(listenfd, 0) == -1)
 		eDebug("[eSocketMMIHandler] listen (%m)");
 	else {
-		listensn = new eSocketNotifier( eApp, listenfd, POLLIN );
+		listensn = eSocketNotifier::create( eApp, listenfd, POLLIN );
 		listensn->start();
 		CONNECT( listensn->activated, eSocketMMIHandler::listenDataAvail );
 		eDebug("[eSocketMMIHandler] created successfully");
@@ -186,7 +186,7 @@ void eSocketMMIHandler::listenDataAvail(int what)
 		else if (fcntl(connfd, F_SETFL, val | O_NONBLOCK) == -1)
 			eDebug("[eSocketMMIHandler] F_SETFL (%m)");
 		else {
-			connsn = new eSocketNotifier( eApp, connfd, POLLIN|POLLHUP|POLLERR );
+			connsn = eSocketNotifier::create( eApp, connfd, POLLIN|POLLHUP|POLLERR );
 			CONNECT( connsn->activated, eSocketMMIHandler::connDataAvail );
 			return;
 		}
@@ -294,11 +294,7 @@ void eSocketMMIHandler::closeConn()
 		close(connfd);
 		connfd=-1;
 	}
-	if ( connsn )
-	{
-		delete connsn;
-		connsn=0;
-	}
+	connsn=0;
 	if ( name )
 	{
 		delete [] name;
@@ -309,7 +305,6 @@ void eSocketMMIHandler::closeConn()
 eSocketMMIHandler::~eSocketMMIHandler()
 {
 	closeConn();
-	delete listensn;
 	unlink(sockname);
 }
 

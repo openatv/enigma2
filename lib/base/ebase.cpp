@@ -8,9 +8,11 @@
 #include <lib/base/elock.h>
 #include <lib/gdi/grc.h>
 
+DEFINE_REF(eSocketNotifier);
+
 eSocketNotifier::eSocketNotifier(eMainloop *context, int fd, int requested, bool startnow): context(*context), fd(fd), state(0), requested(requested)
 {
-	if (startnow)	
+	if (startnow)
 		start();
 }
 
@@ -31,9 +33,10 @@ void eSocketNotifier::start()
 void eSocketNotifier::stop()
 {
 	if (state)
+	{
+		state=0;
 		context.removeSocketNotifier(this);
-
-	state=0;
+	}
 }
 
 					// timer
@@ -131,8 +134,13 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 	int fd = sn->getFD();
 	std::map<int,eSocketNotifier*>::iterator i(notifiers.find(fd));
 	if (i != notifiers.end())
-		return notifiers.erase(i);
-	eFatal("removed socket notifier which is not present");
+	{
+		notifiers.erase(i);
+		return;
+	}
+	for (i = notifiers.begin(); i != notifiers.end(); ++i)
+		eDebug("fd=%d, sn=%d", i->second->getFD(), (void*)i->second);
+	eFatal("removed socket notifier which is not present, fd=%d", fd);
 }
 
 int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePyObject additional)
@@ -175,6 +183,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		// build the poll aray
 	pollfd pfd[fdcount];  // make new pollfd array
 	std::map<int,eSocketNotifier*>::iterator it = notifiers.begin();
+
 	int i=0;
 	for (; i < nativecount; ++i, ++it)
 	{
@@ -228,9 +237,13 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 				if (it != notifiers.end()
 					&& it->second->state == 1) // added and in poll
 				{
-					int req = it->second->getRequested();
-					if (pfd[i].revents & req)
-						it->second->activate(pfd[i].revents & req);
+					eSocketNotifier *sn = it->second;
+					int req = sn->getRequested();
+					if (pfd[i].revents & req) {
+						sn->AddRef();
+						sn->activate(pfd[i].revents & req);
+						sn->Release();
+					}
 					pfd[i].revents &= ~req;
 				}
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
@@ -368,7 +381,7 @@ struct eTimerPy
 static int
 eTimerPy_traverse(eTimerPy *self, visitproc visit, void *arg)
 {
-	PyObject *obj = self->tm->timeout.get(true);
+	PyObject *obj = self->tm->timeout.getSteal();
 	if (obj) {
 		Py_VISIT(obj);
 	}
@@ -378,7 +391,7 @@ eTimerPy_traverse(eTimerPy *self, visitproc visit, void *arg)
 static int
 eTimerPy_clear(eTimerPy *self)
 {
-	PyObject *obj = self->tm->timeout.get(true);
+	PyObject *obj = self->tm->timeout.getSteal(true);
 	if (obj)
 		Py_CLEAR(obj);
 	return 0;
@@ -575,7 +588,7 @@ struct eSocketNotifierPy
 static int
 eSocketNotifierPy_traverse(eSocketNotifierPy *self, visitproc visit, void *arg)
 {
-	PyObject *obj = self->sn->activated.get(true);
+	PyObject *obj = self->sn->activated.getSteal();
 	if (obj)
 		Py_VISIT(obj);
 	return 0;
@@ -584,7 +597,7 @@ eSocketNotifierPy_traverse(eSocketNotifierPy *self, visitproc visit, void *arg)
 static int
 eSocketNotifierPy_clear(eSocketNotifierPy *self)
 {
-	PyObject *obj = self->sn->activated.get(true);
+	PyObject *obj = self->sn->activated.getSteal(true);
 	if (obj)
 		Py_CLEAR(obj);
 	return 0;
@@ -596,7 +609,7 @@ eSocketNotifierPy_dealloc(eSocketNotifierPy* self)
 	if (self->in_weakreflist != NULL)
 		PyObject_ClearWeakRefs((PyObject *) self);
 	eSocketNotifierPy_clear(self);
-	delete self->sn;
+	self->sn->Release();
 	self->ob_type->tp_free((PyObject*)self);
 }
 
@@ -620,7 +633,8 @@ eSocketNotifierPy_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 	}
 	else if (size < 2 || !PyArg_ParseTuple(args, "ii", &fd, &req))
 		return NULL;
-	self->sn = new eSocketNotifier(eApp, fd, req, immediate_start);
+	self->sn = eSocketNotifier::create(eApp, fd, req, immediate_start);
+	self->sn->AddRef();
 	self->in_weakreflist = NULL;
 	return (PyObject *)self;
 }

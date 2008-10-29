@@ -443,7 +443,7 @@ int eDVBFrontend::PriorityOrder=0;
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 	:m_simulate(simulate), m_enabled(false), m_type(-1), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
-	,m_sn(0), m_timeout(0), m_tuneTimer(0)
+	, m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
 #endif
@@ -555,7 +555,7 @@ int eDVBFrontend::openFrontend()
 
 	if (!m_simulate)
 	{
-		m_sn = new eSocketNotifier(eApp, m_fd, eSocketNotifier::Read, false);
+		m_sn = eSocketNotifier::create(eApp, m_fd, eSocketNotifier::Read, false);
 		CONNECT(m_sn->activated, eDVBFrontend::feEvent);
 	}
 
@@ -607,7 +607,6 @@ int eDVBFrontend::closeFrontend(bool force)
 			eWarning("couldnt close sec %d", m_dvbid);
 	}
 #endif
-	delete m_sn;
 	m_sn=0;
 	m_state = stateClosed;
 

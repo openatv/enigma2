@@ -85,7 +85,7 @@ private:
 	FRONTENDPARAMETERS parm;
 	int m_state;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
-	eSocketNotifier *m_sn;
+	ePtr<eSocketNotifier> m_sn;
 	int m_tuning;
 	eTimer *m_timeout;
 	eTimer *m_tuneTimer;

@@ -26,7 +26,7 @@ private:
 	int writebusy;
 	sockaddr_in  serv_addr;
 protected:
-	eSocketNotifier	*rsn;
+	ePtr<eSocketNotifier> rsn;
 	virtual void notifier(int);
 public:
 	eSocket(eMainloop *ml);

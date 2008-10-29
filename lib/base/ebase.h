@@ -142,8 +142,9 @@ class eMainloop;
  * This class emits the signal \c eSocketNotifier::activate whenever the
  * event specified by \c req is available.
  */
-class eSocketNotifier
+class eSocketNotifier: iObject
 {
+	DECLARE_REF(eSocketNotifier);
 	friend class eMainloop;
 public:
 	enum { Read=POLLIN, Write=POLLOUT, Priority=POLLPRI, Error=POLLERR, Hungup=POLLHUP };
@@ -153,6 +154,7 @@ private:
 	int state;
 	int requested;		// requested events (POLLIN, ...)
 	void activate(int what) { /*emit*/ activated(what); }
+	eSocketNotifier(eMainloop *context, int fd, int req, bool startnow);
 public:
 	/**
 	 * \brief Constructs a eSocketNotifier.
@@ -161,7 +163,7 @@ public:
 	 * \param req The events to watch to, normally either \c Read or \c Write. You can specify any events that \c poll supports.
 	 * \param startnow Specifies if the socketnotifier should start immediately.
 	 */
-	eSocketNotifier(eMainloop *context, int fd, int req, bool startnow=true);
+	static eSocketNotifier* create(eMainloop *context, int fd, int req, bool startnow=true) { return new eSocketNotifier(context, fd, req, startnow); }
 	~eSocketNotifier();
 
 	PSignal1<void, int> activated;
@@ -173,6 +175,8 @@ public:
 	int getFD() { return fd; }
 	int getRequested() { return requested; }
 	void setRequested(int req) { requested=req; }
+
+	eSmartPtrList<iObject> m_clients;
 };
 
 #endif

@@ -44,7 +44,7 @@ class eDVBCISlot: public iObject, public Object
 	DECLARE_REF(eDVBCISlot);
 	int slotid;
 	int fd;
-	eSocketNotifier *notifier;
+	ePtr<eSocketNotifier> notifier;
 	int state;
 	std::map<uint16_t, uint8_t> running_services;
 	eDVBCIApplicationManagerSession *application_manager;
