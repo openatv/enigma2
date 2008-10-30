@@ -1492,7 +1492,12 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				eDebugNoSimulateNoNewLine("[SEC] sendDiseqc: ");
 				for (int i=0; i < m_sec_sequence.current()->diseqc.len; ++i)
 				    eDebugNoSimulateNoNewLine("%02x", m_sec_sequence.current()->diseqc.data[i]);
-				eDebugNoSimulate("");
+			 	if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x00", 3))
+					eDebugNoSimulate("(DiSEqC reset)");
+				else if (!memcmp(m_sec_sequence.current()->diseqc.data, "\xE0\x00\x03", 3))
+					eDebugNoSimulate("(DiSEqC peripherial power on)");
+				else
+					eDebugNoSimulate("");
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SEND_TONEBURST:
