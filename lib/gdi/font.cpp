@@ -212,7 +212,6 @@ float fontRenderClass::getLineHeight(const gFont& font)
 	if (FTC_Manager_Lookup_Size(cacheManager, &fnt->font.font, &current_face, &fnt->size)<0)
 #endif
 	{
-		delete fnt;
 		eDebug("FTC_Manager_Lookup_Size failed!");
 		return 0;
 	}

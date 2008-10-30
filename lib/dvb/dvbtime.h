@@ -49,7 +49,7 @@ class eDVBLocalTimeHandler: public Object
 	DECLARE_REF(eDVBLocalTimeHandler);
 	struct channel_data
 	{
-		TDT *tdt;
+		ePtr<TDT> tdt;
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn;
 		int m_prevChannelState;

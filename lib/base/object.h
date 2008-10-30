@@ -17,6 +17,7 @@ private:
 		/* we don't allow the default operator here, as it would break the refcount. */
 	void operator=(const iObject &);
 protected:
+	void operator delete(void *p) { ::operator delete(p); }
 	virtual ~iObject() { }
 #ifdef SWIG
 	virtual void AddRef()=0;

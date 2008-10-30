@@ -169,8 +169,6 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 {
 	instance=0;
-	for (std::map<iDVBChannel*, channel_data>::iterator it=m_knownChannels.begin(); it != m_knownChannels.end(); ++it)
-		delete it->second.tdt;
 	if (ready())
 	{
 		eDebug("set RTC to previous valid time");
@@ -396,10 +394,8 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			m_knownChannels.find(chan);
 		if ( it != m_knownChannels.end() )
 		{
-			TDT *prev_tdt = it->second.tdt;
-			it->second.tdt = new TDT(chan, prev_tdt->getUpdateCount());
+			it->second.tdt = new TDT(chan, it->second.tdt->getUpdateCount());
 			it->second.tdt->startTimer(60*60*1000);  // restart TDT for this transponder in 60min
-			delete prev_tdt;
 		}
 	}
 }
@@ -437,7 +433,6 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 					break;
 				case iDVBChannel::state_release:
 					eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);
-					delete it->second.tdt;
 					m_knownChannels.erase(it);
 					break;
 				default: // ignore all other events

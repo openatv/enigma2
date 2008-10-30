@@ -76,7 +76,7 @@ class eDVBServicePMTHandler: public Object
 
 	int m_last_channel_state;
 	eDVBCAService *m_ca_servicePtr;
-	eDVBScan *m_dvb_scan; // for sdt scan
+	ePtr<eDVBScan> m_dvb_scan; // for sdt scan
 
 	eAUTable<eTable<ProgramMapSection> > m_PMT;
 	eAUTable<eTable<ProgramAssociationSection> > m_PAT;

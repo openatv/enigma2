@@ -155,7 +155,6 @@ private:
 	int requested;		// requested events (POLLIN, ...)
 	void activate(int what) { /*emit*/ activated(what); }
 	eSocketNotifier(eMainloop *context, int fd, int req, bool startnow);
-	void operator delete(void *pmem) { ::operator delete(pmem); }
 public:
 	/**
 	 * \brief Constructs a eSocketNotifier.
@@ -281,7 +280,6 @@ class eTimer: iObject
 	void activate();
 
 	eTimer(eMainloop *context): context(*context), bActive(false) { }
-	void operator delete(void *pmem) { ::operator delete(pmem); }
 public:
 	/**
 	 * \brief Constructs a timer.

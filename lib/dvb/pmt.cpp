@@ -605,7 +605,6 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 
 			if (ref.path.empty())
 			{
-				delete m_dvb_scan;
 				m_dvb_scan = new eDVBScan(m_channel, true, false);
 				m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
 			}
@@ -631,7 +630,6 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 void eDVBServicePMTHandler::free()
 {
 	m_dvb_scan = 0;
-	delete m_dvb_scan;
 
 	if (m_ca_servicePtr)
 	{
