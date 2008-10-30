@@ -372,6 +372,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			bool doSetVoltageToneFrontend = true;
 			bool sendDiSEqC = false;
 			bool forceChanged = false;
+			bool needDiSEqCReset = false;
 			long band=0,
 				voltage = iDVBFrontend::voltageOff,
 				tone = iDVBFrontend::toneOff,
@@ -417,6 +418,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			sec_fe->getData(eDVBFrontend::TONEBURST, lastToneburst);
 			sec_fe->getData(eDVBFrontend::ROTOR_CMD, lastRotorCmd);
 			sec_fe->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
+
+			if (lastcsw == lastucsw && lastToneburst == lastucsw && lastucsw == -1)
+				needDiSEqCReset = true;
 
 			if ( sat.frequency > lnb_param.m_lof_threshold )
 				band |= 1;
@@ -623,6 +627,23 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_SWITCH_CMDS]) );
 
 						sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_SWITCHPARMS) );
+						if (needDiSEqCReset)
+						{
+							eDVBDiseqcCommand diseqc;
+							memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
+							diseqc.len = 3;
+							diseqc.data[0] = 0xE0;
+							diseqc.data[1] = 0;
+							diseqc.data[2] = 0;
+							// diseqc reset
+							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+							diseqc.data[2] = 3;
+							// diseqc peripherial powersupply on
+							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 150) );
+						}
+
 						for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
 						{
 							if ( send_mask & 4 )
