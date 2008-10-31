@@ -14,10 +14,11 @@ class Network:
 		self.Console = Console()
 		self.getInterfaces()
 
-	def getInterfaces(self):
+	def getInterfaces(self, callback = None):
 		devicesPattern = re_compile('[a-z]+[0-9]+')
 		self.configuredInterfaces = []
 		fp = file('/proc/net/dev', 'r')
+		system("cat /proc/net/dev")
 		result = fp.readlines()
 		fp.close()
 		for line in result:
@@ -25,18 +26,9 @@ class Network:
 				device = devicesPattern.search(line).group()
 				if device == 'wifi0':
 					continue
-				self.getDataForInterface(device)
-				# Show only UP Interfaces in E2
-				#if self.getAdapterAttribute(device, 'up') is False:
-				#	del self.ifaces[device]
+				self.getDataForInterface(device, callback)
 			except AttributeError:
 				pass
-
-		#print "self.ifaces:", self.ifaces
-		#self.writeNetworkConfig()
-		#print ord(' ')
-		#for line in result:
-		#	print ord(line[0])
 
 	# helper function
 	def regExpMatch(self, pattern, string):
@@ -55,12 +47,37 @@ class Network:
 			ip.append(int(x))
 		return ip
 
-	def getDataForInterface(self, iface):
-		cmd = "ifconfig " + iface
-		self.Console.ePopen(cmd, self.ifconfigFinished, iface)
-		
-	def ifconfigFinished(self, result, retval, iface):
+	def IPaddrFinished(self, result, retval, extra_args):
+		(iface, callback ) = extra_args
 		data = { 'up': False, 'dhcp': False, 'preup' : False, 'postdown' : False }
+		globalIPpattern = re_compile("scope global")
+		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+		ipLinePattern = re_compile('inet ' + ipRegexp +'/')
+		ipPattern = re_compile(ipRegexp)
+
+		for line in result.splitlines():
+			split = line.strip().split(' ',2)
+			if (split[1] == iface):
+				if re_search(globalIPpattern, split[2]):
+					ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, split[2]))
+					if ip is not None:
+						data['ip'] = self.convertIP(ip)
+		if not data.has_key('ip'):
+			data['dhcp'] = True
+			data['ip'] = [0, 0, 0, 0]
+			data['netmask'] = [0, 0, 0, 0]
+			data['gateway'] = [0, 0, 0, 0]
+
+		cmd = "ifconfig " + iface
+		self.Console.ePopen(cmd, self.ifconfigFinished, [iface, data, callback])
+
+	def getDataForInterface(self, iface,callback):
+		#get ip out of ip addr, as avahi sometimes overrides it in ifconfig.
+		cmd = "ip -o addr"
+		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
+
+	def ifconfigFinished(self, result, retval, extra_args ):
+		(iface, data, callback ) = extra_args
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
 		ipLinePattern = re_compile('inet addr:' + ipRegexp)
 		netmaskLinePattern = re_compile('Mask:' + ipRegexp)
@@ -68,15 +85,15 @@ class Network:
 		ipPattern = re_compile(ipRegexp)
 		upPattern = re_compile('UP ')
 		macPattern = re_compile('[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}')
-		
+
 		for line in result.splitlines():
-			ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, line))
+			#ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, line))
 			netmask = self.regExpMatch(ipPattern, self.regExpMatch(netmaskLinePattern, line))
 			bcast = self.regExpMatch(ipPattern, self.regExpMatch(bcastLinePattern, line))
 			up = self.regExpMatch(upPattern, line)
 			mac = self.regExpMatch(macPattern, line)
-			if ip is not None:
-				data['ip'] = self.convertIP(ip)
+			#if ip is not None:
+			#       data['ip'] = self.convertIP(ip)
 			if netmask is not None:
 				data['netmask'] = self.convertIP(netmask)
 			if bcast is not None:
@@ -87,27 +104,34 @@ class Network:
 					self.configuredInterfaces.append(iface)
 			if mac is not None:
 				data['mac'] = mac
-		if not data.has_key('ip'):
-			data['dhcp'] = True
-			data['ip'] = [0, 0, 0, 0]
-			data['netmask'] = [0, 0, 0, 0]
-			data['gateway'] = [0, 0, 0, 0]
-			
+
 		cmd = "route -n | grep  " + iface
-		self.Console.ePopen(cmd,self.routeFinished,[iface,data,ipPattern])
+		self.Console.ePopen(cmd,self.routeFinished,[iface,data,callback])
 
 	def routeFinished(self, result, retval, extra_args):
-		(iface, data, ipPattern) = extra_args
-		
+		(iface, data, callback) = extra_args
+		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+		ipPattern = re_compile(ipRegexp)
+		ipLinePattern = re_compile(ipRegexp)
+
 		for line in result.splitlines():
 			print line[0:7]
 			if line[0:7] == "0.0.0.0":
 				gateway = self.regExpMatch(ipPattern, line[16:31])
 				if gateway is not None:
 					data['gateway'] = self.convertIP(gateway)
+
+		for line in result.splitlines(): #get real netmask in case avahi has overridden ifconfig netmask
+			split = line.strip().split('   ')
+			if re_search(ipPattern, split[0]):
+				foundip = self.convertIP(split[0])
+				if (foundip[0] == data['ip'][0] and foundip[1] == data['ip'][1]):
+					if re_search(ipPattern, split[4]):
+						mask = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, split[4]))
+						if mask is not None:
+							data['netmask'] = self.convertIP(mask)
 		self.ifaces[iface] = data
-		if len(self.Console.appContainers) == 0:
-			self.loadNetworkConfig()
+		self.loadNetworkConfig(iface,callback)
 
 	def writeNetworkConfig(self):
 		self.configuredInterfaces = []
@@ -144,8 +168,7 @@ class Network:
 			fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
 		fp.close()
 
-	def loadNetworkConfig(self):
-		self.loadNameserverConfig()
+	def loadNetworkConfig(self,iface,callback = None):
 		interfaces = []
 		# parse the interfaces-file
 		try:
@@ -166,7 +189,7 @@ class Network:
 					ifaces[currif]["dhcp"] = True
 				else:
 					ifaces[currif]["dhcp"] = False
-			if (currif != ""):
+			if (currif == iface): #read information only for available interfaces
 				if (split[0] == "address"):
 					ifaces[currif]["address"] = map(int, split[1].split('.'))
 					if self.ifaces[currif].has_key("ip"):
@@ -181,7 +204,7 @@ class Network:
 					ifaces[currif]["gateway"] = map(int, split[1].split('.'))
 					if self.ifaces[currif].has_key("gateway"):
 						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] == False:
-							self.ifaces[currif]["gateway"] = map(int, split[1].split('.'))					
+							self.ifaces[currif]["gateway"] = map(int, split[1].split('.'))
 				if (split[0] == "pre-up"):
 					if self.ifaces[currif].has_key("preup"):
 						self.ifaces[currif]["preup"] = i
@@ -189,11 +212,16 @@ class Network:
 					if self.ifaces[currif].has_key("postdown"):
 						self.ifaces[currif]["postdown"] = i
 
-		print "read interfaces:", ifaces
 		for ifacename, iface in ifaces.items():
 			if self.ifaces.has_key(ifacename):
 				self.ifaces[ifacename]["dhcp"] = iface["dhcp"]
-		print "self.ifaces after loading:", self.ifaces
+		if len(self.Console.appContainers) == 0:
+			# load ns only once
+			self.loadNameserverConfig()
+			print "read configured interfac:", ifaces
+			print "self.ifaces after loading:", self.ifaces
+			if callback is not None:
+				callback(True)
 
 	def loadNameserverConfig(self):
 		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
