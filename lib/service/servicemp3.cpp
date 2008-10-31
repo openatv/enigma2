@@ -273,31 +273,31 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		queue_audio = gst_element_factory_make("queue", "queue_audio");
 		queue_video = gst_element_factory_make("queue", "queue_video");
 
-		char demux_type[14];
+		std::string demux_type;
 		switch (sourceinfo.containertype)
 		{
 			case ctMPEGTS:
-				strcat(demux_type, "flutsdemux");
+				demux_type = "flutsdemux";
 				break;
 			case ctMPEGPS:
 			case ctVCD:
-				strcat(demux_type, "flupsdemux");
+				demux_type = "flupsdemux";
 				break;
 			case ctMKV:
-				strcat(demux_type, "matroskademux");
+				demux_type = "matroskademux";
 				break;
 			case ctAVI:
-				strcat(demux_type, "avidemux");
+				demux_type = "avidemux";
 				break;
 			case ctMP4:
-				strcat(demux_type, "qtdemux");
+				demux_type = "qtdemux";
 				break;
 			default:
 				break;
 		}
-		videodemux = gst_element_factory_make(demux_type, "videodemux");
+		videodemux = gst_element_factory_make(demux_type.c_str(), "videodemux");
 		if (!videodemux)
-			m_error_message = "GStreamer plugin " + (std::string)demux_type + " not available!\n";
+			m_error_message = "GStreamer plugin " + demux_type + " not available!\n";
 
 		switch_audio = gst_element_factory_make ("input-selector", "switch_audio");
 		if (!switch_audio)
