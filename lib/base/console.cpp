@@ -497,7 +497,7 @@ eConsolePy_execute(eConsolePy* self, PyObject *argt)
 			argv[argpos++] = PyString_AsString(arg);
 		}
 		argv[argpos] = 0;
-		return PyInt_FromLong(self->cont->execute(argv[0], argv));
+		return PyInt_FromLong(self->cont->execute(argv[0], argv+1));
 	}
 	else
 	{
