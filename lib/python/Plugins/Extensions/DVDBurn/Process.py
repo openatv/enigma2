@@ -701,7 +701,7 @@ class DVDJob(Job):
 			if output == "dvd":
 				self.name = _("Burn DVD")
 				tool = "/bin/growisofs"
-				burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=dummy" ]
+				burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
 			elif output == "iso":
 				self.name = _("Create DVD-ISO")
 				tool = "/usr/bin/mkisofs"
@@ -739,7 +739,7 @@ class DVDdataJob(Job):
 		tool = "/bin/growisofs"
 		if output == "dvd":
 			self.name = _("Burn DVD")
-			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=dummy" ]
+			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
 		elif output == "iso":
 			tool = "/usr/bin/mkisofs"
 			self.name = _("Create DVD-ISO")
@@ -762,11 +762,11 @@ class DVDisoJob(Job):
 		self.menupreview = False
 		if imagepath.endswith(".iso"):
 			PreviewTask(self, imagepath)
-			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD() + '='+imagepath, "-dvd-compat", "-use-the-force-luke=dummy" ]
+			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD() + '='+imagepath, "-dvd-compat" ]
 		else:
 			PreviewTask(self, imagepath + "/VIDEO_TS/")
 			volName = self.project.settings.name.getValue()
-			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=dummy" ]
+			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
 			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, imagepath ]
 		tool = "/bin/growisofs"
 		BurnTask(self, burnargs, tool)
