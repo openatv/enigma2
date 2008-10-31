@@ -251,11 +251,13 @@ class BurnTaskPostcondition(Condition):
 			task.ERROR_WRITE_FAILED: _("Write failed!"),
 			task.ERROR_DVDROM: _("No (supported) DVDROM found!"),
 			task.ERROR_ISOFS: _("Medium is not empty!"),
+			task.ERROR_FILETOOLARGE: _("TS file is too large for ISO9660 level 1!"),
+			task.ERROR_ISOTOOLARGE: _("ISO file is too large for this filesystem!"),
 			task.ERROR_UNKNOWN: _("An unknown error occured!")
 		}[task.error]
 
 class BurnTask(Task):
-	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_UNKNOWN = range(7)
+	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_UNKNOWN = range(9)
 	def __init__(self, job, extra_args=[], tool="/bin/growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500
@@ -303,6 +305,10 @@ class BurnTask(Task):
 			else:
 				self.error = self.ERROR_UNKNOWN
 				print "BurnTask: unknown error %s" % line
+		elif line.find("-allow-limited-size was not specified. There is no way do represent this file size. Aborting.") != -1:
+			self.error = self.ERROR_FILETOOLARGE
+		elif line.startswith("genisoimage: File too large."):
+			self.error = self.ERROR_ISOTOOLARGE
 
 class RemoveDVDFolder(Task):
 	def __init__(self, job):
