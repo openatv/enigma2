@@ -36,8 +36,6 @@ int eMPEGStreamInformation::load(const char *filename)
 		return -1;
 	m_access_points.clear();
 	m_pts_to_offset.clear();
-	pts_t last = -(1LL<<62);
-	int loaded = 0, skipped = 0;
 	while (1)
 	{
 		unsigned long long d[2];
@@ -48,16 +46,9 @@ int eMPEGStreamInformation::load(const char *filename)
 		d[0] = bswap_64(d[0]);
 		d[1] = bswap_64(d[1]);
 #endif
-		if ((d[1] - last) > 90000/2)
-		{
-			m_access_points[d[0]] = d[1];
-			m_pts_to_offset.insert(std::pair<pts_t,off_t>(d[1], d[0]));
-			last = d[1];
-			loaded++;
-		} else
-			skipped++;
+		m_access_points[d[0]] = d[1];
+		m_pts_to_offset.insert(std::pair<pts_t,off_t>(d[1], d[0]));
 	}
-	eDebug("loaded %d, skipped %d", loaded, skipped);
 	fclose(f);
 	fixupDiscontinuties();
 	return 0;
@@ -216,30 +207,45 @@ pts_t eMPEGStreamInformation::getInterpolated(off_t offset)
 	return before_ts + diff;
 }
  
-off_t eMPEGStreamInformation::getAccessPoint(pts_t ts)
+off_t eMPEGStreamInformation::getAccessPoint(pts_t ts, int marg)
 {
 		/* FIXME: more efficient implementation */
 	off_t last = 0;
+	off_t last2 = 0;
+	pts_t lastc = 0;
 	for (std::map<off_t, pts_t>::const_iterator i(m_access_points.begin()); i != m_access_points.end(); ++i)
 	{
 		pts_t delta = getDelta(i->first);
 		pts_t c = i->second - delta;
-		if (c > ts)
-			break;
+		if (c > ts) {
+			if (marg > 0)
+				return (last + i->first)/376*188;
+			else if (marg < 0)
+				return (last + last2)/376*188;
+			else
+				return last;
+		}
+		lastc = c;
+		last2 = last;
 		last = i->first;
 	}
-	return last;
+	if (marg < 0)
+		return (last + last2)/376*188;
+	else
+		return last;
 }
 
 int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction)
 {
 	off_t offset = getAccessPoint(start);
+	pts_t c1, c2;
 	std::map<off_t, pts_t>::const_iterator i = m_access_points.find(offset);
 	if (i == m_access_points.end())
 	{
 		eDebug("getNextAccessPoint: initial AP not found");
 		return -1;
 	}
+	c1 = i->second - getDelta(i->first);
 	while (direction)
 	{
 		if (direction > 0)
@@ -247,6 +253,12 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 			if (i == m_access_points.end())
 				return -1;
 			++i;
+			c2 = i->second - getDelta(i->first);
+			if (c1 == c2) { // Discontinuity
+				++i;
+				c2 = i->second - getDelta(i->first);
+			}
+			c1 = c2;
 			direction--;
 		}
 		if (direction < 0)
@@ -257,6 +269,12 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 				return -1;
 			}
 			--i;
+			c2 = i->second - getDelta(i->first);
+			if (c1 == c2) { // Discontinuity
+				--i;
+				c2 = i->second - getDelta(i->first);
+			}
+			c1 = c2;
 			direction++;
 		}
 	}
