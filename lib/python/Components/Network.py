@@ -18,7 +18,6 @@ class Network:
 		devicesPattern = re_compile('[a-z]+[0-9]+')
 		self.configuredInterfaces = []
 		fp = file('/proc/net/dev', 'r')
-		system("cat /proc/net/dev")
 		result = fp.readlines()
 		fp.close()
 		for line in result:
