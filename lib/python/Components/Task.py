@@ -172,7 +172,7 @@ class Task(object):
 		if self.cwd is not None:
 			self.container.setCWD(self.cwd)
 
-		print "execute:", self.container.execute(self.cmd, *self.args), self.cmd, *self.args
+		print "execute:", self.container.execute(self.cmd, *self.args), self.cmd, self.args
 		if self.initial_input:
 			self.writeInput(self.initial_input)
 
