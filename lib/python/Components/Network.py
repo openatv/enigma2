@@ -1,5 +1,5 @@
 from os import system, popen, path as os_path, listdir
-from re import compile as re_compile
+from re import compile as re_compile, search as re_search
 from socket import *
 from enigma import eConsoleAppContainer
 from Components.Console import Console
