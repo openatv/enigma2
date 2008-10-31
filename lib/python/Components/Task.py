@@ -136,6 +136,7 @@ class Task(object):
 
 	def setTool(self, tool):
 		self.cmd = tool
+		self.args = [tool]
 		self.global_preconditions.append(ToolExistsPrecondition())
 		self.postconditions.append(ReturncodePostcondition())
 
@@ -171,8 +172,7 @@ class Task(object):
 		if self.cwd is not None:
 			self.container.setCWD(self.cwd)
 
-		execstr = " ".join([self.cmd]+self.args)
-		print "execute:", self.container.execute(execstr), execstr
+		print "execute:", self.container.execute(self.cmd, *self.args), self.cmd, *self.args
 		if self.initial_input:
 			self.writeInput(self.initial_input)
 

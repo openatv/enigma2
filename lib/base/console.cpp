@@ -476,11 +476,37 @@ eConsolePy_running(eConsolePy* self)
 static PyObject *
 eConsolePy_execute(eConsolePy* self, PyObject *argt)
 {
-	const char *str;
-	if (PyArg_ParseTuple(argt, "s", &str))
-		return PyInt_FromLong(self->cont->execute(str));
-	PyErr_SetString(PyExc_TypeError,
-		"argument is not a string");
+	Py_ssize_t argc = PyTuple_Size(argt);
+	if (argc > 1)
+	{
+		const char *argv[argc + 1];
+		int argpos=0;
+		while(argpos < argc)
+		{
+			PyObject *arg = PyTuple_GET_ITEM(argt, argpos);
+			if (!PyString_Check(arg))
+			{
+				char err[255];
+				if (argpos)
+					snprintf(err, 255, "arg %d is not a string", argpos);
+				else
+					snprintf(err, 255, "cmd is not a string!");
+				PyErr_SetString(PyExc_TypeError, err);
+				return NULL;
+			}
+			argv[argpos++] = PyString_AsString(arg);
+		}
+		argv[argpos] = 0;
+		return PyInt_FromLong(self->cont->execute(argv[0], argv));
+	}
+	else
+	{
+		const char *str;
+		if (PyArg_ParseTuple(argt, "s", &str))
+			return PyInt_FromLong(self->cont->execute(str));
+		PyErr_SetString(PyExc_TypeError,
+			"cmd is not a string!");
+	}
 	return NULL;
 }
 
