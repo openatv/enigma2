@@ -1195,7 +1195,7 @@ void eDVBChannel::cueSheetEvent(int event)
 		{
 			off_t offset_in, offset_out;
 			pts_t pts_in = i->first, pts_out = i->second;
-			if (m_tstools.getOffset(offset_in, pts_in) || m_tstools.getOffset(offset_out, pts_out))
+			if (m_tstools.getOffset(offset_in, pts_in, -1) || m_tstools.getOffset(offset_out, pts_out, 1))
 			{
 				eDebug("span translation failed.\n");
 				continue;
@@ -1323,13 +1323,13 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				eDebug("AP relative seeking failed!");
 			} else
 			{
-				eDebug("next ap is %llx\n", pts);
 				pts = nextap;
+				eDebug("next ap is %llx\n", pts);
 			}
 		}
 		
 		off_t offset = 0;
-		if (m_tstools.getOffset(offset, pts))
+		if (m_tstools.getOffset(offset, pts, -1))
 		{
 			eDebug("get offset for pts=%lld failed!", pts);
 			continue;
@@ -1403,15 +1403,25 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 	}
 
-	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
-	{
-		eDebug("reached SOF");
-		m_skipmode_m = 0;
-		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
+	if (m_source_span.empty()) {
+		if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
+		{
+			eDebug("reached SOF");
+			m_skipmode_m = 0;
+			m_pvr_thread->sendEvent(eFilePushThread::evtUser);
+		}
+		start = current_offset;
+		size = max;
+	} else {
+		off_t tmp = align(m_source_span.rbegin()->second, blocksize);
+		if (current_offset == tmp) {
+			start = current_offset;
+			size = 0;
+		} else {
+			start = tmp - align(512*1024, blocksize);
+			size = align(512*1024, blocksize);
+		}
 	}
-
-	start = current_offset;
-	size = max;
 
 	eDebug("END OF CUESHEET. (%08llx, %d)", start, size);
 	return;

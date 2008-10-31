@@ -40,7 +40,7 @@ public:
 	int fixupPTS(const off_t &offset, pts_t &pts);
 	
 		/* get (approximate) offset corresponding to PTS */
-	int getOffset(off_t &offset, pts_t &pts);
+	int getOffset(off_t &offset, pts_t &pts, int marg=0);
 	
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
 	

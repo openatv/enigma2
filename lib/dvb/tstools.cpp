@@ -209,11 +209,14 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 	}
 }
 
-int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
+int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 {
 	if (m_use_streaminfo)
 	{
-		offset = m_streaminfo.getAccessPoint(pts);
+		if (pts >= m_pts_end && marg > 0 && m_end_valid)
+			offset = m_offset_end;
+		else
+			offset = m_streaminfo.getAccessPoint(pts, marg);
 		return 0;
 	} else
 	{

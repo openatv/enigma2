@@ -41,7 +41,7 @@ public:
 		/* inter/extrapolate timestamp from offset */
 	pts_t getInterpolated(off_t offset);
 	
-	off_t getAccessPoint(pts_t ts);
+	off_t getAccessPoint(pts_t ts, int marg=0);
 	
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
 	
