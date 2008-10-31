@@ -19,7 +19,7 @@ enigma.o: version.h
 
 # this depends on Entries and not on Tag because Tag isn't always there.
 # Entries, however, will change then Tag is changed, so everything is fine.
-version.h: ../CVS/Entries ../CVS/Root
+version.h: # ../CVS/Entries ../CVS/Root
 	> version.h
 	if [ -f ../CVS/Tag ]; then echo "#define ENIGMA2_CHECKOUT_TAG \"`cat ../CVS/Tag`\"" >> version.h; fi
 	if [ -f ../CVS/Root ]; then echo "#define ENIGMA2_CHECKOUT_ROOT \"`cat ../CVS/Root`\"" >> version.h; fi
