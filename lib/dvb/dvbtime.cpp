@@ -394,7 +394,9 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			m_knownChannels.find(chan);
 		if ( it != m_knownChannels.end() )
 		{
-			it->second.tdt = new TDT(chan, it->second.tdt->getUpdateCount());
+			int updateCount = it->second.tdt->getUpdateCount();
+			it->second.tdt = 0;
+			it->second.tdt = new TDT(chan, updateCount);
 			it->second.tdt->startTimer(60*60*1000);  // restart TDT for this transponder in 60min
 		}
 	}
