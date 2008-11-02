@@ -135,7 +135,19 @@ void eDVBServicePMTHandler::PATready(int)
 		if (pmtpid == -1)
 			serviceEvent(eventNoPATEntry);
 		else
+		{ // here we know a pat entry for this service id exist
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
+			if (m_reference.path.empty())
+			{ // also check the tsid now before start sdt update
+				eDVBChannelID chid;
+				m_reference.getChannelID(chid);
+				if (eTransportStreamID((*i)->getTableIdExtension()) == chid.transport_stream_id)
+				{
+					m_dvb_scan = new eDVBScan(m_channel, true, false);
+					m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
+				}
+			}
+		}
 	} else
 		serviceEvent(eventNoPAT);
 }
@@ -604,10 +616,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 				m_channelEvent_connection);
 
 			if (ref.path.empty())
-			{
-				m_dvb_scan = new eDVBScan(m_channel, true, false);
-				m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
-			}
+				m_dvb_scan = 0;
 		} else
 		{
 			if (res == eDVBResourceManager::errAllSourcesBusy)
