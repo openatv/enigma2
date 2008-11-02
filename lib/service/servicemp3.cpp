@@ -27,6 +27,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 	if (sc)
 	{
 		std::list<std::string> extensions;
+		extensions.push_back("mp2");
 		extensions.push_back("mp3");
 		extensions.push_back("ogg");
 		extensions.push_back("mpg");
