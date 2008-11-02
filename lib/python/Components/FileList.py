@@ -10,6 +10,7 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 from Tools.LoadPixmap import LoadPixmap
 
 EXTENSIONS = {
+		"mp2": "music",
 		"mp3": "music",
 		"wav": "music",
 		"ogg": "music",
