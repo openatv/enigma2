@@ -524,8 +524,15 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 				eDebug("no channel list");
 			else
 			{
-				m_dvb_scan->insertInto(db, true);
-				eDebug("sdt update done!");
+				eDVBChannelID chid;
+				m_reference.getChannelID(chid);
+				if (chid == m_dvb_scan->getCurrentChannelID())
+				{
+					m_dvb_scan->insertInto(db, true);
+					eDebug("sdt update done!");
+				}
+				else
+					eDebug("ignore sdt update data.... incorrect transponder tuned!!!");
 			}
 			break;
 		}
@@ -605,6 +612,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 
 			if (ref.path.empty())
 			{
+				m_dvb_scan = 0;
 				m_dvb_scan = new eDVBScan(m_channel, true, false);
 				m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
 			}
