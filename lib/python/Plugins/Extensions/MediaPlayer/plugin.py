@@ -592,12 +592,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def PlaylistSelected(self,path):
 		if path is not None:
 			self.clear_playlist()
-			self.playlistIOInternal = PlaylistIOInternal()
-			list = self.playlistIOInternal.open(path[1])
-			if list:
+			extension = path[0].rsplit('.',1)[-1]
+			if self.playlistparsers.has_key(extension):
+				playlist = self.playlistparsers[extension]()
+				list = playlist.open(path[1])
 				for x in list:
 					self.playlist.addFile(x.ref)
-				self.playlist.updateList()
+			self.playlist.updateList()
 
 	def delete_saved_playlist(self):
 		listpath = []
