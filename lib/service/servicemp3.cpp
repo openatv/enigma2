@@ -227,11 +227,29 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	if (!m_gst_pipeline)
 		m_error_message = "failed to create GStreamer pipeline!\n";
 
-	if ( sourceinfo.containertype == ctCDA )
+	if ( sourceinfo.is_streaming )
+	{
+		eDebug("play webradio!");
+		source = gst_element_factory_make ("neonhttpsrc", "http-source");
+		if (source)
+		{
+			g_object_set (G_OBJECT (source), "location", filename, NULL);
+			g_object_set (G_OBJECT (source), "automatic-redirect", TRUE, NULL);
+		}
+		else
+			m_error_message = "GStreamer plugin neonhttpsrc not available!\n";
+	}
+	else if ( sourceinfo.containertype == ctCDA )
 	{
 		source = gst_element_factory_make ("cdiocddasrc", "cda-source");
 		if (source)
+		{
 			g_object_set (G_OBJECT (source), "device", "/dev/cdroms/cdrom0", NULL);
+			int track = atoi(filename+18);
+			eDebug("play audio CD track #%i",track);
+			if (track > 0)
+				g_object_set (G_OBJECT (source), "track", track, NULL);
+		}
 		else
 			sourceinfo.containertype = ctNone;
 	}
@@ -242,21 +260,6 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			g_object_set (G_OBJECT (source), "location", filename, NULL);
 		else
 			m_error_message = "GStreamer can't open filesrc " + (std::string)filename + "!\n";
-	}
-	else if ( sourceinfo.is_streaming ) 
-	{
-		source = gst_element_factory_make ("neonhttpsrc", "http-source");
-		if (source)
-			g_object_set (G_OBJECT (source), "automatic-redirect", TRUE, NULL);
-		else
-			m_error_message = "GStreamer plugin neonhttpsrc not available!\n";
-	}
-	else
-	{ 
-		int track = atoi(filename+18);
-		eDebug("play audio CD track #%i",track);
-		if (track > 0)
-			g_object_set (G_OBJECT (source), "track", track, NULL);
 	}
 	if ( sourceinfo.is_video )
 	{

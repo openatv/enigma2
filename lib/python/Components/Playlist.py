@@ -70,6 +70,8 @@ class PlaylistIOM3U(PlaylistIO):
 				# TODO: use e2 facilities to create a service ref from file
 				if entry[0] == "/":
 					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry))
+				elif entry.startswith("http"):
+					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry.replace(':',"%3a")))
 				else:
 					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + entry))
 		file.close()
