@@ -1,14 +1,14 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 17:06+0200\n"
-"PO-Revision-Date: 2008-09-02 19:32+0100\n"
-"Last-Translator: Michel Weeren <michel@media-labs.nl>\n"
+"POT-Creation-Date: 2008-11-03 17:09+0100\n"
+"PO-Revision-Date: 2008-10-26 01:38+0100\n"
+"Last-Translator: FeReNGi\n"
 "Language-Team: none <michel@weeren.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid "#000000"
 msgstr "#000000"
@@ -56,7 +56,7 @@ msgstr "%H:%M"
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "%d opdrachten draaien op de achtergrond!"
 
 #, python-format
 msgid "%d min"
@@ -64,7 +64,7 @@ msgstr "%d min"
 
 #, python-format
 msgid "%d services found!"
-msgstr "%d zenders gevonden"
+msgstr "%d zenders gevonden!"
 
 msgid "%d.%B %Y"
 msgstr "%d-%m-%Y"
@@ -91,14 +91,16 @@ msgid "(show optional DVD audio menu)"
 msgstr "(optioneel DVD audio menu weergeven)"
 
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr ".NFI Download mislukt:"
 
 msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
+msgstr ".NFI Flasher opstart USB stick succesvol aangemaakt."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
+".NFI bestand heeft sucesvol de md5 controle doorlopen. U kan veilig dit "
+"image schrijven!"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 map"
@@ -380,7 +382,7 @@ msgid "All"
 msgstr "Alles"
 
 msgid "All Satellites"
-msgstr ""
+msgstr "Alle Satellieten"
 
 msgid "All..."
 msgstr "Alles..."
@@ -398,7 +400,7 @@ msgid "An empty filename is illegal."
 msgstr "Een lege bestandsnaam is ongeldig"
 
 msgid "An unknown error occured!"
-msgstr ""
+msgstr "Een onbekende fout is gebeurd!"
 
 msgid "Arabic"
 msgstr "Arabisch"
@@ -429,13 +431,13 @@ msgid "Audio Options..."
 msgstr "Audio Opties..."
 
 msgid "Authoring mode"
-msgstr ""
+msgstr "Creatie wijze"
 
 msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto chapter split every ? minutes (0=never)"
-msgstr ""
+msgstr "Automatisch hoofdstuk splitsen elke ? min (0=nooit)"
 
 msgid "Auto scart switching"
 msgstr "Automatisch scart schakelen"
@@ -444,13 +446,13 @@ msgid "Automatic"
 msgstr "Automatisch"
 
 msgid "Automatic SSID lookup"
-msgstr ""
+msgstr "Automatisch SSID zoeken"
 
 msgid "Automatic Scan"
 msgstr "Automatisch zoeken"
 
 msgid "Available format variables"
-msgstr ""
+msgstr "Beschikbare formaten"
 
 msgid "B"
 msgstr "B"
@@ -471,7 +473,7 @@ msgid "Back"
 msgstr "Terug"
 
 msgid "Background"
-msgstr ""
+msgstr "Achtergrond"
 
 msgid "Backup"
 msgstr "Backup"
@@ -513,13 +515,16 @@ msgid "Bookmarks"
 msgstr "Markeerpunten"
 
 msgid "Brightness"
-msgstr "helderheid"
+msgstr "Helderheid"
 
 msgid "Burn DVD"
 msgstr "Beschrijf DVD"
 
-msgid "Burn to DVD..."
+msgid "Burn existing image to DVD"
 msgstr ""
+
+msgid "Burn to DVD..."
+msgstr "Schrijf op DVD..."
 
 msgid "Bus: "
 msgstr "Bus: "
@@ -556,7 +561,7 @@ msgid "Cancel"
 msgstr "Annuleren"
 
 msgid "Cannot parse feed directory"
-msgstr ""
+msgstr "Kan feed map niet doorgeven"
 
 msgid "Capacity: "
 msgstr "Capaciteit: "
@@ -571,7 +576,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Verander van boeket tijdens zappen"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Wijzig map."
 
 msgid "Change pin code"
 msgstr "Verander pincode"
@@ -652,10 +657,10 @@ msgid "Coderate LP"
 msgstr "Coderate LP"
 
 msgid "Collection name"
-msgstr ""
+msgstr "DVD naam"
 
 msgid "Collection settings"
-msgstr ""
+msgstr "Verzamel instellingen"
 
 msgid "Color Format"
 msgstr "Beeldinstelling"
@@ -713,10 +718,10 @@ msgid "Constellation"
 msgstr "Constellatie"
 
 msgid "Content does not fit on DVD!"
-msgstr ""
+msgstr "De inhoud pas niet op deze DVD!"
 
 msgid "Continue in background"
-msgstr ""
+msgstr "Verder in de achtergrond"
 
 msgid "Continue playing"
 msgstr "Afspelen voortzetten"
@@ -725,12 +730,15 @@ msgid "Contrast"
 msgstr "Contrast"
 
 msgid "Copying USB flasher boot image to stick..."
-msgstr ""
+msgstr "Kopieer USB flasher opstart bestand naar stick..."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "Kan niet connecteren naar Dreambox .NFI Feed Server:"
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr "Kan medium niet laden! Geen disk in speler?"
+
+msgid "Create DVD-ISO"
 msgstr ""
 
 msgid "Create movie folder failed"
@@ -759,7 +767,7 @@ msgid "Custom skip time for '1'/'3'-keys"
 msgstr "Aangepaste spoeltijd voor de '1'/'3'-toetsen"
 
 msgid "Custom skip time for '4'/'6'-keys"
-msgstr "Aangepaste spoeltijd voor de '4'/6'-toetsen"
+msgstr "Aangepaste spoeltijd voor de '4'/'6'-toetsen"
 
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr "Aangepaste spoeltijd voor de '7'/'9'-toetsen"
@@ -792,7 +800,7 @@ msgid "DVD Player"
 msgstr "DVD speler"
 
 msgid "DVD media toolbox"
-msgstr ""
+msgstr "DVD medium hulpmiddel"
 
 msgid "Danish"
 msgstr "Deens"
@@ -801,7 +809,7 @@ msgid "Date"
 msgstr "Datum"
 
 msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
+msgstr "Uitpakken flasher opstart bestand van USB stick..."
 
 msgid "Deep Standby"
 msgstr "Uitschakelen"
@@ -836,7 +844,7 @@ msgid "Description"
 msgstr "Omschrijving"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Doel map"
 
 msgid "Detected HDD:"
 msgstr "Gedetecteerde harde schijf:"
@@ -863,7 +871,7 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC herhaling"
 
 msgid "Direct playback of linked titles without menu"
-msgstr ""
+msgstr "Direct afspelen van titels zonder menu"
 
 #, python-format
 msgid "Directory %s nonexistent."
@@ -911,6 +919,8 @@ msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \"%s\"?"
 msgstr ""
+"Wilt u echt deze applicatie\n"
+"\"%s\" verwijderen?"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -928,6 +938,8 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
+"Wilt u echt deze applicatie\n"
+"\"%s\" downloaden?"
 
 msgid "Do you really want to exit?"
 msgstr "Wilt u echt afsluiten?"
@@ -955,7 +967,7 @@ msgstr ""
 "Druk op OK en een ogenblik geduld!"
 
 msgid "Do you want to burn this collection to DVD medium?"
-msgstr ""
+msgstr "Wilt u deze verzameling op een DVD medium schrijven?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Wilt u nu zenders zoeken?"
@@ -973,7 +985,7 @@ msgid "Do you want to play DVD in drive?"
 msgstr "Wilt u de DVD in de speler afspelen?"
 
 msgid "Do you want to preview this DVD before burning?"
-msgstr ""
+msgstr "Wilt u de DVD bekijken alvorens te schrijven?"
 
 msgid "Do you want to restore your settings?"
 msgstr "Wilt u uw instelingen nu terugzetten?"
@@ -1003,16 +1015,16 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Klaar - %d paket(ten) geïnstalleerd of vervangen. %d fout(en)"
 
 msgid "Download"
-msgstr ""
+msgstr "Downloaden"
 
 msgid "Download .NFI-Files for USB-Flasher"
-msgstr ""
+msgstr "Download .NFI-Bestanden naar USB-Flasher"
 
 msgid "Download Plugins"
 msgstr "Downloaden"
 
 msgid "Download of USB flasher boot image failed: "
-msgstr ""
+msgstr "Downloaden van USB flasher opstart bestand mislukt: "
 
 msgid "Downloadable new plugins"
 msgstr "Beschikbare nieuwe applicaties"
@@ -1024,13 +1036,13 @@ msgid "Downloading"
 msgstr "Downloading"
 
 msgid "Downloading image description..."
-msgstr ""
+msgstr "Downloaden beschrijving..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ophalen informatie. Een ogenblik a.u.b..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "Dreambox formaat data DVD (HDTV compatibel)"
 
 msgid "Dutch"
 msgstr "Nederlands"
@@ -1052,7 +1064,7 @@ msgid "Edit DNS"
 msgstr "DNS wijzigen"
 
 msgid "Edit chapters of current title"
-msgstr ""
+msgstr "Wijzig hoofdstuk van de huidige titel"
 
 msgid "Edit services list"
 msgstr "Wijzig zenderlijst"
@@ -1147,7 +1159,7 @@ msgid "Error"
 msgstr "Fout"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "Fout bij uitvoeren applicatie"
 
 #, python-format
 msgid ""
@@ -1185,7 +1197,7 @@ msgid "Expert"
 msgstr "Expert"
 
 msgid "Extended Networksetup Plugin..."
-msgstr ""
+msgstr "Uitgebreide Netwerk instellingen..."
 
 msgid "Extended Setup..."
 msgstr "Uitgebreide instellingen..."
@@ -1227,32 +1239,32 @@ msgid "Finetune"
 msgstr "Fijn afst."
 
 msgid "Finished"
-msgstr "Voltooit"
+msgstr "Voltooid"
 
 msgid "Finnish"
 msgstr "Fins"
 
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
-msgstr ""
+msgstr "Eerst dienen we de opstart omgeving voor de USB flasher te downloaden."
 
 msgid "Fix USB stick"
-msgstr ""
+msgstr "Herstel USB stick"
 
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "Flashen mislukt"
 
 msgid "Font size"
-msgstr ""
+msgstr "Font formaat"
 
 msgid "Format"
-msgstr ""
+msgstr "Formaat"
 
 msgid "Frame repeat count during non-smooth winding"
-msgstr "beeldherhalingsfrequentie tijdens 'ruw' spoelen"
+msgstr "Beeldherhalingsfrequentie tijdens 'ruw' spoelen"
 
 msgid "French"
 msgstr "Frans"
@@ -1349,6 +1361,12 @@ msgstr "Hongaars"
 msgid "IP Address"
 msgstr "IP Adres"
 
+msgid "ISO file is too large for this filesystem!"
+msgstr ""
+
+msgid "ISO path"
+msgstr ""
+
 msgid "Icelandic"
 msgstr "Ijslands"
 
@@ -1385,7 +1403,7 @@ msgstr ""
 "Indien het resultaat nu goed is, druk dan op OK."
 
 msgid "Image flash utility"
-msgstr ""
+msgstr "Image flash utility"
 
 msgid "Image-Upgrade"
 msgstr "Image vernieuwen"
@@ -1542,7 +1560,7 @@ msgid "Link:"
 msgstr "Link:"
 
 msgid "Linked titles with a DVD menu"
-msgstr ""
+msgstr "Verbind titels met een DVD menu"
 
 msgid "List of Storage Devices"
 msgstr "Lijst van opslagmedia"
@@ -1551,10 +1569,10 @@ msgid "Lithuanian"
 msgstr "Litouws"
 
 msgid "Load"
-msgstr ""
+msgstr "Laden"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Laad lengte van opnames in opname menu"
 
 msgid "Local Network"
 msgstr "Lokaal netwerk"
@@ -1611,10 +1629,10 @@ msgid "MediaPlayer"
 msgstr "Mediaspeler"
 
 msgid "Medium is not a writeable DVD!"
-msgstr ""
+msgstr "Dit medium is geen beschrijfbare DVD!"
 
 msgid "Medium is not empty!"
-msgstr ""
+msgstr "Medium is niet leeg!"
 
 msgid "Menu"
 msgstr "Menu"
@@ -1680,7 +1698,7 @@ msgid "NEXT"
 msgstr "VOLGENDE"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr ""
+msgstr "NFI image schrijven is gereed. Druk op Gele toets om te herstarten!"
 
 msgid "NOW"
 msgstr "NU"
@@ -1708,7 +1726,7 @@ msgid "Netmask"
 msgstr "Netmask"
 
 msgid "Network Configuration..."
-msgstr "Netwerk configuratie"
+msgstr "Netwerk Configuratie..."
 
 msgid "Network Mount"
 msgstr "Netwerk mount"
@@ -1756,15 +1774,13 @@ msgid "No"
 msgstr "Nee"
 
 msgid "No (supported) DVDROM found!"
-msgstr ""
+msgstr "Geen (gesupporteerde) DVDROM gevonden!"
 
 msgid "No 50 Hz, sorry. :("
 msgstr "Geen 50Hz, sorry! :("
 
 msgid "No HDD found or HDD not initialized!"
-msgstr ""
-"Geen harde schijf gevonden of\n"
-"De harde schijf is niet geformatteerd."
+msgstr "Geen harde schijf gevonden of de harde schijf is niet geformatteerd."
 
 msgid "No backup needed"
 msgstr "Backup niet benodigd"
@@ -1777,7 +1793,7 @@ msgstr ""
 "(Timeout reading PAT)"
 
 msgid "No details for this image file"
-msgstr ""
+msgstr "Geen gedetailleerde gegevens voor dit bestand"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
@@ -1811,7 +1827,7 @@ msgstr ""
 "Controleer uw tunerinstellingen alvorens zenders te zoeken."
 
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "Geen bruikbare USB stick gevonden"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1845,6 +1861,9 @@ msgid ""
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
+"Geen werkende WiFi gevonden.\n"
+"Controleer of u een geschikte WiFi adapter geplaatst heeft of activeer de "
+"netwerk instellingen."
 
 msgid ""
 "No working wireless networkadapter found.\n"
@@ -1903,6 +1922,8 @@ msgid ""
 "format and use as .NFI image flasher. Press OK after you've put the stick "
 "back in."
 msgstr ""
+"Plaats nu de USB stick (min grootte 64 MB) dat u wenst te formatteren en te "
+"gebruiken als .NFI image flasher. Druk op OK na het plaatsen van de stick."
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1921,10 +1942,10 @@ msgid "OK, guide me through the upgrade process"
 msgstr "OK, mij tijdens de software update begeleiden"
 
 msgid "OSD Settings"
-msgstr "OSD instellingen"
+msgstr "OSD Instellingen"
 
 msgid "OSD visibility"
-msgstr ""
+msgstr "OSD tranparantie"
 
 msgid "Off"
 msgstr "Uit"
@@ -1982,7 +2003,7 @@ msgid "Parental control type"
 msgstr "Kinderslot type"
 
 msgid "Partitioning USB stick..."
-msgstr ""
+msgstr "Bezig partitie te maken op USB stick..."
 
 msgid "Pause movie at end"
 msgstr "Pauzeer afspelen aan het einde"
@@ -2004,7 +2025,7 @@ msgid "Play"
 msgstr "Afspelen"
 
 msgid "Play Audio-CD..."
-msgstr ""
+msgstr "Speel Muziek-CD"
 
 msgid "Play recorded movies..."
 msgstr "Opname afspelen..."
@@ -2019,10 +2040,10 @@ msgid "Please change recording endtime"
 msgstr "Wijzig de opname eindtijd a.u.b."
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Controleer uw netwerk instellingen a.u.b.!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "Kies .NFI image bestand van feed server om te downloaden"
 
 msgid "Please choose an extension..."
 msgstr "Kies een applicatie a.u.b..."
@@ -2076,7 +2097,7 @@ msgid "Please press OK!"
 msgstr "Druk op OK a.u.b!"
 
 msgid "Please select .NFI flash image file from medium"
-msgstr ""
+msgstr "Selecteer.NFI flash image bestand van medium"
 
 msgid "Please select a playlist to delete..."
 msgstr "Selecteer de afspeellijst die u wilt verwijderen"
@@ -2094,7 +2115,7 @@ msgid "Please select keyword to filter..."
 msgstr "Selecteer te filteren sleutelwoord..."
 
 msgid "Please select target directory or medium"
-msgstr ""
+msgstr "Selecteer doel map of medium"
 
 msgid "Please select the movie path..."
 msgstr "Selecteer het opname pad..."
@@ -2125,16 +2146,16 @@ msgstr ""
 "daarna op OK."
 
 msgid "Please wait for md5 signature verification..."
-msgstr ""
+msgstr "Wacht op md5 controle verificatie..."
 
 msgid "Please wait... Loading list..."
 msgstr "Ogenblik a.u.b. De lijst wordt geladen..."
 
 msgid "Plugin browser"
-msgstr "Spelletjes & Applicaties"
+msgstr "Applicatie browser"
 
 msgid "Plugins"
-msgstr "Spelletjes en applicaties"
+msgstr "Applicaties"
 
 msgid "Polarity"
 msgstr "Polariteit"
@@ -2191,7 +2212,7 @@ msgid "Press OK to activate the settings."
 msgstr "Druk op OK om op te slaan"
 
 msgid "Press OK to edit the settings."
-msgstr "Druk op OK om de instellingen te wijzigen."
+msgstr "Druk op OK om te wijzigen."
 
 msgid "Press OK to scan"
 msgstr "Druk OK om te zoeken."
@@ -2203,7 +2224,7 @@ msgid "Prev"
 msgstr "Vorige"
 
 msgid "Preview menu"
-msgstr ""
+msgstr "Voorbeeld menu"
 
 msgid "Primary DNS"
 msgstr "Primaire DNS"
@@ -2257,16 +2278,16 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Subzenders snelzap verlaten?"
 
 msgid "Really reboot now?"
-msgstr ""
+msgstr "Nu herstarten?"
 
 msgid "Really restart now?"
-msgstr ""
+msgstr "Nu herstarten?"
 
 msgid "Really shutdown now?"
-msgstr ""
+msgstr "Nu uitschakelen?"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Herstarten"
 
 msgid "Reception Settings"
 msgstr "Ontvangstinstellingen"
@@ -2281,7 +2302,7 @@ msgid "Recording"
 msgstr "Opnemen"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
-msgstr ""
+msgstr "Een opname is bezig of zal elk moment aanvangen in een paar seconden!"
 
 msgid "Recordings always have priority"
 msgstr "Een opname heeft te allen tijde voorang"
@@ -2296,7 +2317,7 @@ msgid "Refresh rate selection."
 msgstr "Herhalingsfrequentie selectie"
 
 msgid "Remounting stick partition..."
-msgstr ""
+msgstr "Herladen USB stick partitie..."
 
 msgid "Remove Bookmark"
 msgstr "Markeerpunt verwijderen"
@@ -2314,10 +2335,10 @@ msgid "Remove plugins"
 msgstr "Verwijderen"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "Verwijder het defecte .NFI bestand?"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "Verwijder het onvolledige .NFI bestand?"
 
 msgid "Remove title"
 msgstr "Titel verwijderen"
@@ -2482,7 +2503,7 @@ msgid "Scan SR6900"
 msgstr "Zoek SR6900"
 
 msgid "Scan Wireless Networks"
-msgstr "Naar WiFi netwerken zoeken"
+msgstr "WiFi netwerken zoeken"
 
 msgid "Scan additional SR"
 msgstr "Zoek ook op SR"
@@ -2569,7 +2590,7 @@ msgid "Select channel to record from"
 msgstr "Selecteer een zender voor opname"
 
 msgid "Select image"
-msgstr ""
+msgstr "Selecteer bestand"
 
 msgid "Select refresh rate"
 msgstr "Selecteer herhalingsfrequentie"
@@ -2581,10 +2602,10 @@ msgid "Select video mode"
 msgstr "Selecteer video modus"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "Selecteer bron bestand"
 
 msgid "Seperate titles with a main menu"
-msgstr ""
+msgstr "Zonder titels af met een hoofdmenu"
 
 msgid "Sequence repeat"
 msgstr "Herhaal sequence"
@@ -2710,7 +2731,7 @@ msgid "Singlestep (GOP)"
 msgstr "Stap voor stap"
 
 msgid "Skin..."
-msgstr ""
+msgstr "Skin..."
 
 msgid "Sleep Timer"
 msgstr "Slaaptimer"
@@ -2871,11 +2892,14 @@ msgstr ""
 "Officieel distributeur van\n"
 "Dream Multimedia producten"
 
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr ""
+
 msgid "TV System"
 msgstr "TV Systeem"
 
 msgid "Table of content for collection"
-msgstr ""
+msgstr "Inhoudslijst voor verzameling"
 
 msgid "Terrestrial"
 msgstr "Terrestrisch"
@@ -2896,8 +2920,8 @@ msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
-"De wizard is gereed. U kunt uw Dreambox nu gebruiken.\n"
-"Druk OK om de installatiewizard te verlaten."
+"Bedankt voor het gebruik van deze wizard. Uw box is klaar voor gebruik.\n"
+"Druk op OK om uw Dreambox te gebruiken."
 
 msgid ""
 "The .NFI Image flasher USB stick is now ready to use. Please download an ."
@@ -2905,12 +2929,18 @@ msgid ""
 "and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
 "stick!"
 msgstr ""
+"De .NFI Image flasher USB stick is klaar voor gebruik. Download eerst een ."
+"NFI image bestand van de feed server en bewaar het op de stick. Herstart en "
+"druk op de 'Down' toets op het front paneel om te starten van de .NFI "
+"flasher stick!"
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
+"De DVD standaard  supporteerd geen H.264 (HDTV) video. Wil je een Dreambox "
+"formaat data DVD maken (deze speelt niet af in een DVD speler) ?"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backup is mislukt. Kies een andere backup locatie a.u.b."
@@ -2923,6 +2953,11 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"Het volgende apparaat is gevonden:\n"
+"\n"
+"%s\n"
+"\n"
+"Wenst u de USB flasher op deze stick te schrijven?"
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2948,11 +2983,15 @@ msgid ""
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"De md5 validatie is mislukt, het bestand is waarschijnlijk beschadigd! Bent "
+"u zeker dat u dit image wil schrijven naar het flash geheugen? Dit is op uw "
+"eigen risico!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
 msgstr ""
+"De md5 validatie is mislukt, het bestand is niet compleet of beschadigd!"
 
 msgid "The package doesn't contain anything."
 msgstr "Dit pakket bevat geen data."
@@ -3003,31 +3042,37 @@ msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
-"Er is mogelijk niet genoeg ruimte vrij op de geselecteerde partitie\n"
+"Er is mogelijk niet genoeg ruimte vrij op de geselecteerde partitie.\n"
 "Weet u zeker dat u wilt doorgaan?"
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "Dit .NFI bestand bevat geen geldig %s image!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"Dit .NFI bestand bevat geen geldige md5 signatuur en is niet gegarandeerd om "
+"te werken. Wilt u echt dit image schrijven in het flash geheugen?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+"Dit .NFI bestand heeft een geldige md5 signatuur. Wilt u dit image schrijven "
+"in het flash geheugen?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
 msgstr ""
+"Deze DVD RW medium is reeds geformatteerd - herformatteren zal alles wissen "
+"op deze disk."
 
 #, python-format
 msgid "This Dreambox can't decode %s video streams!"
-msgstr ""
+msgstr "Deze Dreambox kan volgende %s video niet decoderen"
 
 msgid "This is step number 2."
 msgstr "Dit is stap nummer 2."
@@ -3133,6 +3178,8 @@ msgid ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
 msgstr ""
+"Timer overlappen in timers.xml gedetecteerd!\n"
+"A.u.b. herbekjk het!"
 
 msgid "Timer sanity error"
 msgstr "Timerlogica fout"
@@ -3162,6 +3209,8 @@ msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
 "and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
+"Om er zeker van te zijn, verwijder nu de doel USB stick en plaats terug "
+"wanneer gevraagd. Druk op  OK wanneer de stick is verwijderd."
 
 msgid "Today"
 msgstr "Vandaag"
@@ -3176,7 +3225,7 @@ msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
 msgid "Track"
-msgstr ""
+msgstr "Spoor"
 
 msgid "Translation"
 msgstr "Vertaling"
@@ -3278,7 +3327,7 @@ msgid "Unmount failed"
 msgstr "Unmount mislukt"
 
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 msgid "Updates your receiver's software"
 msgstr "Dreambox software vernieuwen"
@@ -3365,10 +3414,10 @@ msgid "VCR scart"
 msgstr "VCR scart"
 
 msgid "VMGM (intro trailer)"
-msgstr ""
+msgstr "VMGM (intro trailer)"
 
 msgid "Video Fine-Tuning"
-msgstr "Video fijn instellingen"
+msgstr "Video fijn instellingen..."
 
 msgid "Video Fine-Tuning Wizard"
 msgstr "Video fijn instellingen wizard"
@@ -3429,7 +3478,7 @@ msgid "Waiting"
 msgstr "Wacht..."
 
 msgid "Waiting for USB stick to settle..."
-msgstr ""
+msgstr "Wachten op USB stick..."
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3458,6 +3507,12 @@ msgid ""
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
+"Wekom bij de Cutlist editor.\n"
+"\n"
+"Start met zoeken wat je wenst te verwijderen. Druk op OK, selecteer 'start "
+"cut'.\n"
+"\n"
+"Ga naar het einde, druk op OK, selecteer 'end cut'. Eenvoudiger kan niet."
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
@@ -3501,13 +3556,13 @@ msgid "Write error while recording. Disk full?\n"
 msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
 
 msgid "Write failed!"
-msgstr ""
+msgstr "Schrijven mislukt!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "Schrijven NFI image naar flash is voltooid"
 
 msgid "Writing image file to NAND Flash"
-msgstr ""
+msgstr "Bezig NAND FLash aan het schrijven"
 
 msgid "YPbPr"
 msgstr "Component"
@@ -3517,6 +3572,9 @@ msgstr "Jaar:"
 
 msgid "Yes"
 msgstr "Ja"
+
+msgid "Yes, and delete this movie"
+msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Ja, mijn instellingen opslaan!"
@@ -3608,6 +3666,8 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
+"U heeft gekozen om een nieuwe .NFI flasher opstart USB stick aan te maken. "
+"Alle data op de USB stick gaat onherroepelijk verloren."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3693,7 +3753,7 @@ msgid "[move mode]"
 msgstr "[verplaats modus]"
 
 msgid "abort alternatives edit"
-msgstr "alternatieven bewerken afsluiten"
+msgstr "Alternatieven bewerken afsluiten"
 
 msgid "abort bouquet edit"
 msgstr "Boeket bewerken afsluiten"
@@ -3705,25 +3765,25 @@ msgid "about to start"
 msgstr "start direct"
 
 msgid "add alternatives"
-msgstr "alternatieven toevoegen"
+msgstr "Alternatieven toevoegen"
 
 msgid "add bookmark"
 msgstr "Markeerpunt toevoegen"
 
 msgid "add bouquet"
-msgstr "boeket toevoegen"
+msgstr "Boeket toevoegen"
 
 msgid "add directory to playlist"
 msgstr "Map aan afspeellijst toevoegen"
 
 msgid "add file to playlist"
-msgstr "voeg bestand toe aan afspeellijst"
+msgstr "Voeg bestand toe aan afspeellijst"
 
 msgid "add files to playlist"
-msgstr "bestanden aan de afspeellijst toevoegen"
+msgstr "Bestanden aan de afspeellijst toevoegen"
 
 msgid "add marker"
-msgstr "markeerpunt invoegen"
+msgstr "Markeerpunt invoegen"
 
 msgid "add recording (enter recording duration)"
 msgstr "Start opname en voer opnameduur in"
@@ -3738,13 +3798,13 @@ msgid "add recording (stop after current event)"
 msgstr "Start opname en stop na huidige uitzending"
 
 msgid "add service to bouquet"
-msgstr "zender toevoegen aan boeket"
+msgstr "Zender toevoegen aan boeket"
 
 msgid "add service to favourites"
-msgstr "zender toevoegen aan favorieten"
+msgstr "Zender toevoegen aan favorieten"
 
 msgid "add to parental protection"
-msgstr "zender op kinderslot zetten"
+msgstr "Zender op kinderslot zetten"
 
 msgid "advanced"
 msgstr "geavanceerd"
@@ -3760,13 +3820,13 @@ msgstr ""
 "wilt zetten:\n"
 
 msgid "audio tracks"
-msgstr ""
+msgstr "audio sporen"
 
 msgid "back"
-msgstr "terug"
+msgstr "Terug"
 
 msgid "background image"
-msgstr ""
+msgstr "achtergrond bestand"
 
 msgid "better"
 msgstr "beter"
@@ -3784,10 +3844,10 @@ msgid "change recording (endtime)"
 msgstr "Wijzig opname eindtijd"
 
 msgid "chapters"
-msgstr ""
+msgstr "hoofdstukken"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "kies doel map"
 
 msgid "circular left"
 msgstr "circular links"
@@ -3799,7 +3859,7 @@ msgid "clear playlist"
 msgstr "afspeellijst legen"
 
 msgid "color"
-msgstr ""
+msgstr "kleur"
 
 msgid "complex"
 msgstr "complex"
@@ -3826,7 +3886,7 @@ msgid "daily"
 msgstr "dagelijks"
 
 msgid "day"
-msgstr ""
+msgstr "dag"
 
 msgid "delete"
 msgstr "wissen"
@@ -3847,7 +3907,7 @@ msgid "disable"
 msgstr "deactiveren"
 
 msgid "disable move mode"
-msgstr "verplaats modus deactiveren"
+msgstr "Verplaats modus deactiveren"
 
 msgid "disabled"
 msgstr "gedeactiveerd"
@@ -3868,7 +3928,7 @@ msgid "done!"
 msgstr "gereed!"
 
 msgid "edit alternatives"
-msgstr "alternatieven bewerken"
+msgstr "Alternatieven bewerken"
 
 msgid "empty"
 msgstr "leeg"
@@ -3877,22 +3937,22 @@ msgid "enable"
 msgstr "activeren"
 
 msgid "enable bouquet edit"
-msgstr "boeket bewerken activeren"
+msgstr "Boeket bewerken activeren"
 
 msgid "enable favourite edit"
 msgstr "favorieten bewerken activeren"
 
 msgid "enable move mode"
-msgstr "verplaatsmodus activeren"
+msgstr "Verplaatsmodus activeren"
 
 msgid "enabled"
 msgstr "geactiveerd"
 
 msgid "end alternatives edit"
-msgstr "alternatieven bewerken deactiveren"
+msgstr "Alternatieven bewerken deactiveren"
 
 msgid "end bouquet edit"
-msgstr "boeket bewerken deactiveren"
+msgstr "Boeket bewerken deactiveren"
 
 msgid "end cut here"
 msgstr "stop snijpunt hier"
@@ -3904,7 +3964,7 @@ msgid "equal to"
 msgstr "gelijk aan"
 
 msgid "exceeds dual layer medium!"
-msgstr ""
+msgstr "overschrijdt dubbel lagen medium!"
 
 msgid "exit DVD player or return to file browser"
 msgstr "DVD speler afsluiten of terug naar bestandslijst"
@@ -3916,22 +3976,22 @@ msgid "exit movielist"
 msgstr "Opname menu afsluiten"
 
 msgid "failed"
-msgstr ""
+msgstr "mislukt"
 
 msgid "filename"
-msgstr ""
+msgstr "bestandnaam"
 
 msgid "fine-tune your display"
 msgstr "Uw scherm fijn-afstellen"
 
 msgid "font face"
-msgstr ""
+msgstr "font layout"
 
 msgid "forward to the next chapter"
 msgstr "Vooruit naar volgend hoofdstuk"
 
 msgid "free"
-msgstr ""
+msgstr "vrij"
 
 msgid "free diskspace"
 msgstr "ruimte vrij..."
@@ -3943,7 +4003,7 @@ msgid "go to standby"
 msgstr "standby-stand"
 
 msgid "headline"
-msgstr ""
+msgstr "kop"
 
 msgid "hear radio..."
 msgstr "Luister naar radio..."
@@ -3958,7 +4018,7 @@ msgid "hide player"
 msgstr "Afspelen op de achtergrond"
 
 msgid "highlighted button"
-msgstr ""
+msgstr "gemarkeerde kop"
 
 msgid "horizontal"
 msgstr "horizontaal"
@@ -4011,7 +4071,7 @@ msgid "left"
 msgstr "links"
 
 msgid "length"
-msgstr ""
+msgstr "lengte"
 
 msgid "list style compact"
 msgstr "Weergave: Compact"
@@ -4041,7 +4101,7 @@ msgid "menu"
 msgstr "menu"
 
 msgid "menulist"
-msgstr ""
+msgstr "menulijst"
 
 msgid "mins"
 msgstr "min"
@@ -4053,7 +4113,7 @@ msgid "minutes"
 msgstr "minuten"
 
 msgid "month"
-msgstr ""
+msgstr "maand"
 
 msgid "move PiP to main picture"
 msgstr "PiP naar hoofdbeeld"
@@ -4101,10 +4161,10 @@ msgid "nothing connected"
 msgstr "niets aangesloten"
 
 msgid "of a DUAL layer medium used."
-msgstr ""
+msgstr "op een DUBBEL laag medium gebruikt."
 
 msgid "of a SINGLE layer medium used."
-msgstr ""
+msgstr "op een ENKEL laag medium gebruikt."
 
 msgid "off"
 msgstr "uit"
@@ -4113,7 +4173,7 @@ msgid "on"
 msgstr "aan"
 
 msgid "on READ ONLY medium."
-msgstr ""
+msgstr "op ALLEEN LEZEN medium."
 
 msgid "once"
 msgstr "éénmalig"
@@ -4158,7 +4218,7 @@ msgid "previous channel in history"
 msgstr "Vorige zender in geschiedenis"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "herstarten..."
 
 msgid "record"
 msgstr "opname"
@@ -4170,7 +4230,7 @@ msgid "remove after this position"
 msgstr "verwijder achter deze positie"
 
 msgid "remove all alternatives"
-msgstr "verwijder alle alternatieven"
+msgstr "Verwijder alle alternatieven"
 
 msgid "remove all new found flags"
 msgstr "verwijder alle 'nieuw gevonden' vlaggetjes"
@@ -4185,10 +4245,10 @@ msgid "remove directory"
 msgstr "Map verwijderen"
 
 msgid "remove entry"
-msgstr "invoer verwijderen"
+msgstr "Invoer verwijderen"
 
 msgid "remove from parental protection"
-msgstr "verwijder kinderslot"
+msgstr "Verwijder kinderslot"
 
 msgid "remove new found flag"
 msgstr "verwijder 'nieuw gevonden' vlag"
@@ -4237,10 +4297,10 @@ msgid "select"
 msgstr "selecteer"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "selecteer .NFI flash bestand"
 
 msgid "select image from server"
-msgstr ""
+msgstr "selecteer image van server"
 
 msgid "select movie"
 msgstr "Selecteer opname"
@@ -4264,7 +4324,7 @@ msgid "show all"
 msgstr "alles weergeven"
 
 msgid "show alternatives"
-msgstr "alternatieven weergeven"
+msgstr "Alternatieven weergeven"
 
 msgid "show event details"
 msgstr "EPG details weergeven"
@@ -4315,7 +4375,7 @@ msgid "sort by date"
 msgstr "Alfabetisch"
 
 msgid "spaces (top, between rows, left)"
-msgstr ""
+msgstr "spacies (boven, tussen rijen, links)"
 
 msgid "standard"
 msgstr "Standaard"
@@ -4348,7 +4408,7 @@ msgid "swap PiP and main picture"
 msgstr "PiP/hoofdbeeld omwisselen"
 
 msgid "switch to bookmarks"
-msgstr "ga naar markeerpunten"
+msgstr "Ga naar markeerpunten"
 
 msgid "switch to filelist"
 msgstr "Ga naar bestandenlijst"
@@ -4402,7 +4462,7 @@ msgid "wait for ci..."
 msgstr "wacht op CI..."
 
 msgid "wait for mmi..."
-msgstr "Wacht op mmi..."
+msgstr "wacht op mmi..."
 
 msgid "waiting"
 msgstr "ingepland"
@@ -4414,7 +4474,7 @@ msgid "whitelist"
 msgstr "witte lijst"
 
 msgid "year"
-msgstr ""
+msgstr "jaar"
 
 msgid "yes"
 msgstr "ja"
@@ -4450,6 +4510,9 @@ msgstr "zapte"
 
 #~ msgid "AC3 audio delay (ms)"
 #~ msgstr "AC3 audio vertraging (in ms)"
+
+#~ msgid "About Ronaldd image"
+#~ msgstr "Ronaldd image informatie"
 
 #~ msgid "Add title..."
 #~ msgstr "Titel toevoegen..."
@@ -4585,6 +4648,9 @@ msgstr "zapte"
 #~ msgid "Local directory"
 #~ msgstr "Lokale map"
 
+#~ msgid "Lower smartcard"
+#~ msgstr "Onderste smartcard"
+
 #~ msgid "March"
 #~ msgstr "Maart"
 
@@ -4606,6 +4672,9 @@ msgstr "zapte"
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nameserver instellingen..."
 
+#~ msgid "Netbios name"
+#~ msgstr "Netbios naam"
+
 #~ msgid "New DVD"
 #~ msgstr "Nieuwe DVD"
 
@@ -4617,6 +4686,9 @@ msgstr "zapte"
 #~ "Geen werkende WiFi adapter gevonden.\n"
 #~ "Controleer of u de WiFi module correct geplaatst heeft of schakel de "
 #~ "lokale netwerk adapter aan."
+
+#~ msgid "None (Softcam)"
+#~ msgstr "Geen (softcam)"
 
 #~ msgid "November"
 #~ msgstr "November"
@@ -4633,6 +4705,12 @@ msgstr "zapte"
 #~ msgid "Please do not change values when you not know what you do!"
 #~ msgstr ""
 #~ "Wijzig deze instellingen niet als je niet exact weet waar ze voor staan!"
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "Softcam en cardserver worden herstart, ogenblik a.u.b..."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Softcam wordt herstart. Ogenblik a.u.b..."
 
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really reboot "
@@ -4652,8 +4730,20 @@ msgstr "zapte"
 #~ msgstr ""
 #~ "Een opname is bezig of zal elk moment aanvangen. Wilt u toch uitschakelen?"
 
+#~ msgid "Remote Control setup"
+#~ msgstr "Afstandsbediening instellingen"
+
+#~ msgid "Reset Softcam"
+#~ msgstr "Herstart Softcam"
+
 #~ msgid "Reset both"
 #~ msgstr "Herstart beide"
+
+#~ msgid "Samba settings"
+#~ msgstr "Samba gegevens"
+
+#~ msgid "Samba setup"
+#~ msgstr "Samba instellingen"
 
 #~ msgid "Save current project to disk"
 #~ msgstr "Huidig project op schijf opslaan"
@@ -4663,6 +4753,12 @@ msgstr "zapte"
 
 #~ msgid "Search for Picon on harddisk"
 #~ msgstr "Zoek naar picons op harde schijf"
+
+#~ msgid "Select Card Server"
+#~ msgstr "Selecteer Cardserver"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Selecteer Softcam"
 
 #~ msgid "September"
 #~ msgstr "September"
@@ -4684,6 +4780,9 @@ msgstr "zapte"
 #~ msgid "Show video preview"
 #~ msgstr "Video preview weergeven"
 
+#~ msgid "Softcam Setup"
+#~ msgstr "Softcam instellingen"
+
 #~ msgid "Startwizard"
 #~ msgstr "Installatiewizard"
 
@@ -4694,6 +4793,13 @@ msgstr "zapte"
 #~ msgstr "Inhoudsopgave zoals deze naar DVD gebrand moet worden:"
 
 #~ msgid ""
+#~ "Thank you for using the wizard. Your box is now ready to use.\n"
+#~ "Please press OK to start using you Dreambox."
+#~ msgstr ""
+#~ "De wizard is gereed. U kunt uw Dreambox nu gebruiken.\n"
+#~ "Druk OK om de installatiewizard te verlaten."
+
+#~ msgid ""
 #~ "Unable to initialize harddisk.\n"
 #~ "Please refer to the user manual.\n"
 #~ "Error: "
@@ -4702,11 +4808,23 @@ msgstr "zapte"
 #~ "Raadpleeg de handleiding a.u.b.\n"
 #~ "Fout:  "
 
+#~ msgid "Upper smartcard"
+#~ msgstr "Bovenste smartcard"
+
+#~ msgid "Username"
+#~ msgstr "Gebruikersnaam"
+
 #~ msgid "VCR Switch"
 #~ msgstr "VCR Switch"
 
 #~ msgid "When complete, press Key 0 to burn the collection!"
 #~ msgstr "Indien gereed, druk dan op de 0-toets om de verzameling te branden."
+
+#~ msgid "Workgroup"
+#~ msgstr "Werkgroep"
+
+#~ msgid "You have to wait for"
+#~ msgstr "Wacht op"
 
 #~ msgid "cancel"
 #~ msgstr "Annuleren"
@@ -4720,11 +4838,29 @@ msgstr "zapte"
 #~ msgid "loopthrough to socket A"
 #~ msgstr "doorgelust naar socket A"
 
+#~ msgid "minutes and"
+#~ msgstr "minuten en"
+
 #~ msgid "play next playlist entry"
 #~ msgstr "Volgende afspelen"
 
 #~ msgid "play previous playlist entry"
 #~ msgstr "Vorige afspelen"
+
+#~ msgid "scan done! %d services found!"
+#~ msgstr "Zoeken voltooid. %d zenders gevonden"
+
+#~ msgid "scan done! No service found!"
+#~ msgstr "Zoeken voltooid. Geen zenders gevonden"
+
+#~ msgid "scan done! One service found!"
+#~ msgstr "Zoeken voltooid. 1 zender gevonden"
+
+#~ msgid "scan in progress - %d %% done! %d services found!"
+#~ msgstr "Bezig met zoeken - %d %% voltooid. %d zenders gevonden"
+
+#~ msgid "seconds."
+#~ msgstr "seconden."
 
 #~ msgid "skip backward (self defined)"
 #~ msgstr "Verspring terugwaarts (invoeren)"
