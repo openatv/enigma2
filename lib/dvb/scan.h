@@ -110,6 +110,7 @@ public:
 	void getLastServiceName(std::string &name);
 	RESULT getFrontend(ePtr<iDVBFrontend> &);
 	RESULT getCurrentTransponder(ePtr<iDVBFrontendParameters> &);
+	eDVBChannelID getCurrentChannelID() { return m_chid_current; }
 };
 
 #endif
