@@ -104,8 +104,8 @@ class BackupSetup(Screen):
 		self.list = [ ]
 		self["config"] = ConfigList(self.list)
 		self.backup = ConfigSubsection()
-		self.backup.type = ConfigSelection(choices = [("settings", _("only /etc/enigma2 directory")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
-		self.backup.location = ConfigSelection(choices = [("usb", _("USB Stick")), ("cf", _("CF Drive")), ("hdd", _("Harddisk"))])
+		self.backup.type = ConfigSelection(choices = [("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
+		self.backup.location = ConfigSelection(choices = [("hdd", _("Harddisk")), ("usb", _("USB Stick")), ("cf", _("CF Drive"))])
 		self.list.append(getConfigListEntry(_("Backup Mode"), self.backup.type))
 		self.list.append(getConfigListEntry(_("Backup Location"), self.backup.location))
 
@@ -132,7 +132,7 @@ class BackupSetup(Screen):
 				self.path = BackupPath[self.backup.location.value]
 				if self.backup.type.value == "settings":
 					print "Backup Mode: Settings"
-					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/"])
+					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"])
 				elif self.backup.type.value == "var":
 					print "Backup Mode: var"
 					self.session.open(Console, title = "Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
