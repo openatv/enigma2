@@ -70,7 +70,6 @@ void eRCConsoleDriver::keyPressed(int)
 				code = -1;
 			else switch(code)
 			{
-			case 0x35:  // mute
 			case 0x7E:  // mute, einfg, entf
 			case 0x7F:  // backspace
 			code = -1;
