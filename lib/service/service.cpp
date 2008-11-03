@@ -41,8 +41,8 @@ static std::string decode(const std::string s)
 			i += 2;
 			if (i >= len)
 				break;
-			char s[3] = {s[i - 1], s[i], 0};
-			unsigned char r = strtoul(s, 0, 0x10);
+			char t[3] = {s[i - 1], s[i], 0};
+			unsigned char r = strtoul(t, 0, 0x10);
 			if (r)
 				res += r;
 		}
