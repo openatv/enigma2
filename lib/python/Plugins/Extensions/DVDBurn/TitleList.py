@@ -207,10 +207,11 @@ class TitleList(Screen, HelpableScreen):
 			self.session.openWithCallback(self.JobViewCB, JobView, job)
 
 	def burnISO(self, path, scope):
-		job = Process.DVDisoJob(self.project, path)
-		job_manager.AddJob(job)
-		job_manager.in_background = False
-		self.session.openWithCallback(self.JobViewCB, JobView, job)
+		if path:
+			job = Process.DVDisoJob(self.project, path)
+			job_manager.AddJob(job)
+			job_manager.in_background = False
+			self.session.openWithCallback(self.JobViewCB, JobView, job)
 
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
