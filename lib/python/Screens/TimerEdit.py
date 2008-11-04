@@ -117,41 +117,40 @@ class TimerEditList(Screen):
 			self.session.nav.RecordTimer.timeChanged(t)
 			self.refill()
 			self.updateState()
-		
+
+	def removeAction(self, descr):
+		actions = self["actions"].actions
+		if descr in actions:
+			del actions[descr]
+
 	def updateState(self):
 		cur = self["timerlist"].getCurrent()
 		if cur:
 			if self.key_red_choice != self.DELETE:
 				self["actions"].actions.update({"red":self.removeTimerQuestion})
 				self["key_red"].setText(_("Delete"))
-				self["key_red"].instance.invalidate()
 				self.key_red_choice = self.DELETE
 			
 			if cur.disabled and (self.key_yellow_choice != self.ENABLE):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
-				self["key_yellow"].instance.invalidate()
 				self.key_yellow_choice = self.ENABLE
 			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
-				del self["actions"].actions["yellow"]
+				self.removeAction("yellow")
 				self["key_yellow"].setText(" ")
-				self["key_yellow"].instance.invalidate()
 				self.key_yellow_choice = self.EMPTY
 			elif ((not cur.isRunning())or cur.repeated ) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
-				self["key_yellow"].instance.invalidate()
 				self.key_yellow_choice = self.DISABLE
 		else:
 			if self.key_red_choice != self.EMPTY:
-				del self["actions"].actions["red"]
+				self.removeAction("red")
 				self["key_red"].setText(" ")
-				self["key_red"].instance.invalidate()
 				self.key_red_choice = self.EMPTY
 			if self.key_yellow_choice != self.EMPTY:
-				del self["actions"].actions["yellow"]
+				self.removeAction("yellow")
 				self["key_yellow"].setText(" ")
-				self["key_yellow"].instance.invalidate()
 				self.key_yellow_choice = self.EMPTY
 		
 		showCleanup = True
@@ -164,14 +163,11 @@ class TimerEditList(Screen):
 		if showCleanup and (self.key_blue_choice != self.CLEANUP):
 			self["actions"].actions.update({"blue":self.cleanupQuestion})
 			self["key_blue"].setText(_("Cleanup"))
-			self["key_blue"].instance.invalidate()
 			self.key_blue_choice = self.CLEANUP
 		elif (not showCleanup) and (self.key_blue_choice != self.EMPTY):
-			del self["actions"].actions["blue"]
+			self.removeAction("blue")
 			self["key_blue"].setText(" ")
-			self["key_blue"].instance.invalidate()
 			self.key_blue_choice = self.EMPTY
-
 
 	def fillTimerList(self):
 		del self.list[:]
@@ -399,23 +395,25 @@ class TimerSanityConflict(Screen):
 	def down(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self["timer2"].moveToIndex(self["list"].getSelectedIndex())
-	
+
+	def removeAction(self, descr):
+		actions = self["actions"].actions
+		if descr in actions:
+			del actions[descr]
+
 	def updateState(self):
 		if self.timer[0] is not None:
 			if self.timer[0].disabled and self.key_green_choice != self.ENABLE:
 				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Enable"))
-				self["key_green"].instance.invalidate()
 				self.key_green_choice = self.ENABLE
 			elif self.timer[0].isRunning() and not timer[0].repeated and self.key_green_choice != self.EMPTY:
-				del self["actions"].actions["green"]
+				self.removeAction("green")
 				self["key_green"].setText(" ")
-				self["key_green"].instance.invalidate()
 				self.key_green_choice = self.EMPTY
 			elif (not self.timer[0].isRunning() or self.timer[0].repeated ) and self.key_green_choice != self.DISABLE:
 				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Disable"))
-				self["key_green"].instance.invalidate()
 				self.key_green_choice = self.DISABLE
 		if len(self.timer) > 1:
 			x = self["list"].getSelectedIndex()
@@ -423,25 +421,20 @@ class TimerSanityConflict(Screen):
 				if self.timer[x].disabled and self.key_blue_choice != self.ENABLE:
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Enable"))
-					self["key_blue"].instance.invalidate()
 					self.key_blue_choice = self.ENABLE
 				elif self.timer[x].isRunning() and not timer[x].repeated and self.key_blue_choice != self.EMPTY:
-					del self["actions"].actions["blue"]
+					self.removeAction("blue")
 					self["key_blue"].setText(" ")
-					self["key_blue"].instance.invalidate()
 					self.key_blue_choice = self.EMPTY
 				elif (not self.timer[x].isRunning() or self.timer[x].repeated ) and self.key_blue_choice != self.DISABLE:
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Disable"))
-					self["key_blue"].instance.invalidate()
 					self.key_blue_choice = self.DISABLE
 		else:
 #FIXME.... this doesnt hide the buttons self.... just the text
-			del self["actions"].actions["yellow"]
+			self.removeAction("yellow")
 			self["key_yellow"].setText(" ")
-			self["key_yellow"].instance.invalidate()
 			self.key_yellow_choice = self.EMPTY
-			del self["actions"].actions["blue"]
+			self.removeAction("blue")
 			self["key_blue"].setText(" ")
-			self["key_blue"].instance.invalidate()
 			self.key_blue_choice = self.EMPTY
