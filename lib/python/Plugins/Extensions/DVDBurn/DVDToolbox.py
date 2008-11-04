@@ -150,7 +150,7 @@ class DVDformatJob(Job):
 		DVDformatTask(self)
 		
 	def retry(self):
-		self.tasks[0].args += [ "-force" ]
+		self.tasks[0].args += self.tasks[0].retryargs
 		Job.retry(self)
 
 class DVDformatTaskPostcondition(Condition):
@@ -174,6 +174,7 @@ class DVDformatTask(Task):
 		self.setTool("/bin/dvd+rw-format")
 		self.args += [ "/dev/" + harddiskmanager.getCD() ]
 		self.end = 1100
+		self.retryargs = [ ]
 
 	def prepare(self):
 		self.error = None
@@ -181,7 +182,10 @@ class DVDformatTask(Task):
 	def processOutputLine(self, line):
 		if line.startswith("- media is already formatted"):
 			self.error = self.ERROR_ALREADYFORMATTED
-			self.force = True
+			self.retryargs = [ "-force" ]
+		if line.startswith("- media is not blank"):
+			self.error = self.ERROR_ALREADYFORMATTED
+			self.retryargs = [ "-blank" ]
 		if line.startswith(":-( mounted media doesn't appear to be"):
 			self.error = self.ERROR_NOTWRITEABLE
 
