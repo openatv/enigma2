@@ -241,7 +241,11 @@ class WaitForResidentTasks(Task):
 class BurnTaskPostcondition(Condition):
 	RECOVERABLE = True
 	def check(self, task):
-		return task.error is None
+		if task.returncode == 0:
+			return True
+		elif task.error is None or task.error is task.ERROR_MINUSRWBUG:
+			return True
+		return False
 
 	def getErrorMessage(self, task):
 		return {
@@ -257,7 +261,7 @@ class BurnTaskPostcondition(Condition):
 		}[task.error]
 
 class BurnTask(Task):
-	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_UNKNOWN = range(9)
+	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = range(10)
 	def __init__(self, job, extra_args=[], tool="/bin/growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500
@@ -284,12 +288,17 @@ class BurnTask(Task):
 				self.error = self.ERROR_NOTWRITEABLE
 			if line.find("ASC=24h") != -1:
 				self.error = self.ERROR_LOAD
+			if line.find("SK=5h/ASC=A8h/ACQ=04h") != -1:
+				self.error = self.ERROR_MINUSRWBUG
 			else:
 				self.error = self.ERROR_UNKNOWN
 				print "BurnTask: unknown error %s" % line
 		elif line.startswith(":-("):
 			if line.find("No space left on device") != -1:
 				self.error = self.ERROR_SIZE
+			elif self.error == self.ERROR_MINUSRWBUG:
+				print "*sigh* this is a known bug. we're simply gonna assume everything is fine."
+				self.postconditions = []
 			elif line.find("write failed") != -1:
 				self.error = self.ERROR_WRITE_FAILED
 			elif line.find("unable to open64(") != -1 and line.find(",O_RDONLY): No such file or directory") != -1:
@@ -309,6 +318,11 @@ class BurnTask(Task):
 			self.error = self.ERROR_FILETOOLARGE
 		elif line.startswith("genisoimage: File too large."):
 			self.error = self.ERROR_ISOTOOLARGE
+	
+	def setTool(self, tool):
+		self.cmd = tool
+		self.args = [tool]
+		self.global_preconditions.append(ToolExistsPrecondition())
 
 class RemoveDVDFolder(Task):
 	def __init__(self, job):
