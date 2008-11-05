@@ -20,6 +20,7 @@ class Network:
 		self.deactivateConsole = Console()
 		self.activateConsole = Console()
 		self.resetNetworkConsole = Console()
+		self.DnsConsole = Console()
 		self.getInterfaces()
 
 	def getInterfaces(self, callback = None):
@@ -444,6 +445,10 @@ class Network:
 	def stopLinkStateConsole(self):
 		if self.LinkConsole is not None:
 			self.LinkConsole = None
+
+	def stopDNSConsole(self):
+		if self.DnsConsole is not None:
+			self.DnsConsole = None
 
 	def stopRestartConsole(self):
 		if self.restartConsole is not None:
