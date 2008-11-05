@@ -413,7 +413,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 					self.aps = self.w.getNetworkList()
 					if self.aps is not None:
 						print "[NetworkSetup.py] got Accespoints!"
-						print self.aps
+						#print self.aps
 						for ap in self.aps:
 							a = self.aps[ap]
 							if a['active']:
@@ -957,18 +957,13 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			iStatus.stopWlanConsole()
 
 	def getInfoCB(self,data,status):
-		print "im getInfoCB"
 		if data is not None:
 			if data is True:
 				if status is not None:
-					print "im getInfoCB status"
-					print "acesspoint",status[self.iface]["acesspoint"]
 					if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
-						print "setting statuspix 1"
 						self["statuspic"].setPixmapNum(1)
 					else:
 						self["statuspic"].setPixmapNum(0)
-						print "setting statuspix 0"
 					self["statuspic"].show()
 
 class NetworkAdapterTest(Screen):	
