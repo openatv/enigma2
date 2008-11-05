@@ -109,6 +109,7 @@ int eConsoleAppContainer::execute(const char *cmdline, const char * const argv[]
 
 //	eDebug("pipe in = %d, out = %d, err = %d", fd[0], fd[1], fd[2]);
 
+	::fcntl(fd[0], F_SETFL, O_NONBLOCK);
 	::fcntl(fd[1], F_SETFL, O_NONBLOCK);
 	::fcntl(fd[2], F_SETFL, O_NONBLOCK);
 	in = eSocketNotifier::create(eApp, fd[0], eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Hungup );
