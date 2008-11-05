@@ -10,8 +10,8 @@ class png2yuvTask(Task):
 		self.dumpFile = outputfile
 		self.weighting = 15
 
-	def run(self, callback, task_progress_changed):
-		Task.run(self, callback, task_progress_changed)
+	def run(self, callback):
+		Task.run(self, callback)
 		self.container.stdoutAvail.remove(self.processStdout)
 		self.container.dumpToFile(self.dumpFile)
 
@@ -26,8 +26,8 @@ class mpeg2encTask(Task):
 		self.inputFile = inputfile
 		self.weighting = 25
 		
-	def run(self, callback, task_progress_changed):
-		Task.run(self, callback, task_progress_changed)
+	def run(self, callback):
+		Task.run(self, callback)
 		self.container.readFromFile(self.inputFile)
 
 	def processOutputLine(self, line):
@@ -42,8 +42,8 @@ class spumuxTask(Task):
 		self.dumpFile = outputfile
 		self.weighting = 15
 
-	def run(self, callback, task_progress_changed):
-		Task.run(self, callback, task_progress_changed)
+	def run(self, callback):
+		Task.run(self, callback)
 		self.container.stdoutAvail.remove(self.processStdout)
 		self.container.dumpToFile(self.dumpFile)
 		self.container.readFromFile(self.inputFile)
@@ -212,7 +212,7 @@ class RemoveESFiles(Task):
 class DVDAuthorTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Authoring DVD")
-		self.weighting = 300
+		self.weighting = 20
 		self.setTool("/usr/bin/dvdauthor")
 		self.CWD = self.job.workspace
 		self.args += ["-x", self.job.workspace+"/dvdauthor.xml"]
@@ -222,6 +222,14 @@ class DVDAuthorTask(Task):
 		print "[DVDAuthorTask] ", line[:-1]
 		if not self.menupreview and line.startswith("STAT: Processing"):
 			self.callback(self, [], stay_resident=True)
+		elif line.startswith("STAT: VOBU"):
+			try:
+				progress = int(line.split("MB")[0].split(" ")[-1])
+				if progress:
+					self.job.mplextask.progress = progress
+					print "[DVDAuthorTask] update mplextask progress:", self.job.mplextask.progress, "of", self.job.mplextask.end
+			except:
+				print "couldn't set mux progress"
 
 class DVDAuthorFinalTask(Task):
 	def __init__(self, job):
@@ -233,7 +241,7 @@ class WaitForResidentTasks(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "waiting for dvdauthor to finalize")
 		
-	def run(self, callback, task_progress_changed):
+	def run(self, callback):
 		print "waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks),str(self.job.resident_tasks))
 		if self.job.resident_tasks == 0:
 			callback(self, [])
@@ -334,23 +342,24 @@ class RemoveDVDFolder(Task):
 class CheckDiskspaceTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Checking free space")
-		totalsize = 50*1024*1024 # require an extra safety 50 MB
+		totalsize = 0 # require an extra safety 50 MB
 		maxsize = 0
 		for title in job.project.titles:
 			titlesize = title.estimatedDiskspace
 			if titlesize > maxsize: maxsize = titlesize
 			totalsize += titlesize
 		diskSpaceNeeded = totalsize + maxsize
+		job.estimateddvdsize = totalsize / 1024 / 1024
+		totalsize += 50*1024*1024 # require an extra safety 50 MB
 		self.global_preconditions.append(DiskspacePrecondition(diskSpaceNeeded))
 		self.weighting = 5
 
-	def run(self, callback, task_progress_changed):
+	def run(self, callback):
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
 			callback(self, failed_preconditions)
 			return
 		self.callback = callback
-		self.task_progress_changed = task_progress_changed
 		Task.processFinished(self, 0)
 
 class PreviewTask(Task):
@@ -361,9 +370,8 @@ class PreviewTask(Task):
 		self.path = path
 		self.weighting = 10
 
-	def run(self, callback, task_progress_changed):
+	def run(self, callback):
 		self.callback = callback
-		self.task_progress_changed = task_progress_changed
 		if self.job.menupreview:
 			self.previewProject()
 		else:
@@ -439,9 +447,8 @@ class ImagePrepareTask(Task):
 		self.job = job
 		self.Menus = job.Menus
 		
-	def run(self, callback, task_progress_changed):			
+	def run(self, callback):
 		self.callback = callback
-		self.task_progress_changed = task_progress_changed
 		# we are doing it this weird way so that the TaskView Screen actually pops up before the spinner comes
 		from enigma import eTimer
 		self.delayTimer = eTimer()
@@ -451,7 +458,7 @@ class ImagePrepareTask(Task):
 	def conduct(self):
 		try:
 			from ImageFont import truetype
-			from Image import open as Image_open		
+			from Image import open as Image_open
 			s = self.job.project.settings
 			self.Menus.im_bg_orig = Image_open(s.menubg.getValue())
 			if self.Menus.im_bg_orig.size != (self.Menus.imgwidth, self.Menus.imgheight):
@@ -475,9 +482,8 @@ class MenuImageTask(Task):
 		self.menubgpngfilename = menubgpngfilename
 		self.highlightpngfilename = highlightpngfilename
 
-	def run(self, callback, task_progress_changed):
+	def run(self, callback):
 		self.callback = callback
-		self.task_progress_changed = task_progress_changed
 		try:
 			import ImageDraw, Image, os
 			s = self.job.project.settings
@@ -712,7 +718,8 @@ class DVDJob(Job):
 				title_filename = self.workspace + "/dvd_title_%d.mpg" % (self.i+1)
 				LinkTS(self, title.inputfile, link_name)
 				demux = DemuxTask(self, link_name)
-				MplexTask(self, outputfile=title_filename, demux_task=demux)
+				self.mplextask = MplexTask(self, outputfile=title_filename, demux_task=demux)
+				self.mplextask.end = self.estimateddvdsize
 				RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
