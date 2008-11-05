@@ -265,6 +265,7 @@ class JobManager:
 		from Tools import Notifications
 		if self.in_background:
 			from Screens.TaskView import JobView
+			self.in_background = False
 			Notifications.AddNotification(JobView, self.active_job)
 		if problems:
 			from Screens.MessageBox import MessageBox
