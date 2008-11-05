@@ -770,7 +770,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				ifobj = Wireless(self.iface) # a Wireless NIC Object
 				self.wlanresponse = ifobj.getStatistics()
 				if self.wlanresponse[0] != 19:
-					self.session.openWithCallback(self.AdapterSetupClosed, WlanStatus,self.iface)
+					self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
 				else:
 					# Display Wlan not available Message
 					self.showErrorMessage()
@@ -830,19 +830,14 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		
 		if self.iface == 'wlan0' or self.iface == 'ath0':
 			try:
-				from Plugins.SystemPlugins.WirelessLan.Wlan import Wlan
-				w = Wlan(self.iface)
-				stats = w.getStatus()
-				if stats['BSSID'] == "00:00:00:00:00:00":
-					self["statuspic"].setPixmapNum(1)
-				else:
-					self["statuspic"].setPixmapNum(0)
-				self["statuspic"].show()
+				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
 			except:
 					self["statuspic"].setPixmapNum(1)
 					self["statuspic"].show()
+			else:
+				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 		else:
-			self.getLinkState(self.iface)
+			iNetwork.getLinkState(self.iface,self.dataAvail)
 
 	def doNothing(self):
 		pass
@@ -894,7 +889,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					ifobj = Wireless(self.iface) # a Wireless NIC Object
 					self.wlanresponse = ifobj.getStatistics()
 					if self.wlanresponse[0] != 19:
-						self.session.openWithCallback(self.AdapterSetupClosed, WlanStatus,self.iface)
+						self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
 					else:
 						# Display Wlan not available Message
 						self.showErrorMessage()
@@ -903,6 +898,14 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				self["menulist"].l.setList(self.mainmenu)
 				iNetwork.getInterfaces(self.updateStatusbar)
 		else:
+			self.mainmenu = self.genMainMenu()
+			self["menulist"].l.setList(self.mainmenu)
+			iNetwork.getInterfaces(self.updateStatusbar)
+
+	def WlanStatusClosed(self, *ret):
+		if ret is not None and len(ret):
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+			iStatus.stopWlanConsole()
 			self.mainmenu = self.genMainMenu()
 			self["menulist"].l.setList(self.mainmenu)
 			iNetwork.getInterfaces(self.updateStatusbar)
@@ -930,18 +933,15 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if data is True:
 			self.session.open(MessageBox, _("Finished restarting your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
-	def getLinkState(self,iface):
-		iNetwork.getLinkState(iface,self.dataAvail)
-
 	def dataAvail(self,data):
 		self.output = data.strip()
 		result = self.output.split('\n')
 		pattern = re_compile("Link detected: yes")
 		for item in result:
 			if re_search(pattern, item):
-				self["statuspic"].setPixmapNum(0)
-			else:
 				self["statuspic"].setPixmapNum(1)
+			else:
+				self["statuspic"].setPixmapNum(0)
 		self["statuspic"].show()
 
 	def showErrorMessage(self):
@@ -949,7 +949,27 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
+		try:
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+		except ImportError:
+			pass
+		else:
+			iStatus.stopWlanConsole()
 
+	def getInfoCB(self,data,status):
+		print "im getInfoCB"
+		if data is not None:
+			if data is True:
+				if status is not None:
+					print "im getInfoCB status"
+					print "acesspoint",status[self.iface]["acesspoint"]
+					if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
+						print "setting statuspix 1"
+						self["statuspic"].setPixmapNum(1)
+					else:
+						self["statuspic"].setPixmapNum(0)
+						print "setting statuspix 0"
+					self["statuspic"].show()
 
 class NetworkAdapterTest(Screen):	
 	def __init__(self, session,iface):
@@ -958,6 +978,8 @@ class NetworkAdapterTest(Screen):
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
 		iNetwork.getInterfaces()
 		self.setLabels()
+		self.onClose.append(self.cleanup)
+		self.onHide.append(self.cleanup)
 		
 		self["updown_actions"] = NumberActionMap(["WizardActions","ShortcutActions"],
 		{
@@ -1115,6 +1137,7 @@ class NetworkAdapterTest(Screen):
 
 	def doStep3(self):
 		self["Networktext"].setForegroundColorNum(1)
+		self["Network"].setText(_("Please wait..."))
 		self.getLinkState(self.iface)
 		self["NetworkInfo_Text"].setForegroundColorNum(1)
 		self.steptimer = True
@@ -1287,24 +1310,14 @@ class NetworkAdapterTest(Screen):
 	def getLinkState(self,iface):
 		if iface == 'wlan0' or iface == 'ath0':
 			try:
-				from Plugins.SystemPlugins.WirelessLan.Wlan import Wlan
-				w = Wlan(iface)
-				stats = w.getStatus()
-				if stats['BSSID'] == "00:00:00:00:00:00":
-					self["Network"].setForegroundColorNum(1)
-					self["Network"].setText(_("disconnected"))
-					self["NetworkInfo_Check"].setPixmapNum(1)
-					self["NetworkInfo_Check"].show()
-				else:
-					self["Network"].setForegroundColorNum(2)
-					self["Network"].setText(_("connected"))
-					self["NetworkInfo_Check"].setPixmapNum(0)
-					self["NetworkInfo_Check"].show()
+				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
 			except:
 					self["Network"].setForegroundColorNum(1)
 					self["Network"].setText(_("disconnected"))
 					self["NetworkInfo_Check"].setPixmapNum(1)
 					self["NetworkInfo_Check"].show()
+			else:
+				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 		else:
 			iNetwork.getLinkState(iface,self.LinkStatedataAvail)
 
@@ -1324,7 +1337,6 @@ class NetworkAdapterTest(Screen):
 		self["NetworkInfo_Check"].show()
 
 	def NetworkStatedataAvail(self,data):
-		print "DATA",data
 		if data <= 2:
 			self["IP"].setForegroundColorNum(2)
 			self["IP"].setText(_("confirmed"))
@@ -1339,7 +1351,6 @@ class NetworkAdapterTest(Screen):
 		self.nextStepTimer.start(3000)		
 		
 	def DNSLookupdataAvail(self,data):
-		print "DATA",data
 		if data <= 2:
 			self["DNS"].setForegroundColorNum(2)
 			self["DNS"].setText(_("confirmed"))
@@ -1362,5 +1373,28 @@ class NetworkAdapterTest(Screen):
 		self["shortcutsyellow"].setEnabled(False)
 		self["updown_actions"].setEnabled(True)
 		self.activebutton = 6
-		
-		
+
+	def getInfoCB(self,data,status):
+		if data is not None:
+			if data is True:
+				if status is not None:
+					if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
+						self["Network"].setForegroundColorNum(1)
+						self["Network"].setText(_("disconnected"))
+						self["NetworkInfo_Check"].setPixmapNum(1)
+						self["NetworkInfo_Check"].show()
+					else:
+						self["Network"].setForegroundColorNum(2)
+						self["Network"].setText(_("connected"))
+						self["NetworkInfo_Check"].setPixmapNum(0)
+						self["NetworkInfo_Check"].show()
+						
+	def cleanup(self):
+		iNetwork.stopLinkStateConsole()
+		iNetwork.stopDNSConsole()
+		try:
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+		except ImportError:
+			pass
+		else:
+			iStatus.stopWlanConsole()						
