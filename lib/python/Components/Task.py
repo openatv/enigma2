@@ -45,6 +45,7 @@ class Job(object):
 
 	def addTask(self, task):
 		task.job = self
+		task.task_progress_changed = self.task_progress_changed_CB
 		self.tasks.append(task)
 
 	def start(self, callback):
@@ -70,7 +71,7 @@ class Job(object):
 			else:
 				print "still waiting for %d resident task(s) %s to finish" % (len(self.resident_tasks), str(self.resident_tasks))
 		else:
-			self.tasks[self.current_task].run(self.taskCallback, self.task_progress_changed_CB)
+			self.tasks[self.current_task].run(self.taskCallback)
 			self.state_changed()
 
 	def taskCallback(self, task, res, stay_resident = False):
@@ -151,7 +152,7 @@ class Task(object):
 				not_met.append(precondition)
 		return not_met
 
-	def run(self, callback, task_progress_changed):
+	def run(self, callback):
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
 			callback(self, failed_preconditions)
@@ -159,7 +160,6 @@ class Task(object):
 		self.prepare()
 
 		self.callback = callback
-		self.task_progress_changed = task_progress_changed
 		from enigma import eConsoleAppContainer
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.processFinished)
@@ -235,7 +235,8 @@ class Task(object):
 		if progress < 0:
 			progress = 0
 		self.__progress = progress
-		self.task_progress_changed()
+		if self.task_progress_changed:
+			self.task_progress_changed()
 
 	progress = property(getProgress, setProgress)
 
@@ -372,7 +373,8 @@ class ToolExistsPrecondition(Condition):
 		return _("A required tool (%s) was not found.") % (self.realpath)
 
 class AbortedPostcondition(Condition):
-	pass
+	def getErrorMessage(self, task):
+		return "Cancelled upon user request"
 
 class ReturncodePostcondition(Condition):
 	def check(self, task):
