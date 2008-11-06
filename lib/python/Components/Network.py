@@ -74,7 +74,7 @@ class Network:
 		macRegexp = '[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}'
 		ipLinePattern = re_compile('inet ' + ipRegexp + '/')
 		ipPattern = re_compile(ipRegexp)
-		netmaskLinePattern = re_compile('/' + netRegexp + ' brd ')
+		netmaskLinePattern = re_compile(ipRegexp + '/' + netRegexp)
 		netmaskPattern = re_compile(netRegexp)
 		bcastLinePattern = re_compile(' brd ' + ipRegexp)
 		upPattern = re_compile('UP')
