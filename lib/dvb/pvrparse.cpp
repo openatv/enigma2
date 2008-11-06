@@ -347,9 +347,9 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			if (ptsvalid)
 			{
 				m_streaminfo.m_access_points[offset] = pts;
-				eDebug("Sequence header at %llx, pts %llx", offset, pts);
+//				eDebug("Sequence header at %llx, pts %llx", offset, pts);
 			} else
-				eDebug("Sequence header but no valid PTS value.");
+				/*eDebug("Sequence header but no valid PTS value.")*/;
 		}
 
 		if (pkt[3] == 0x09) /* MPEG4 AVC unit access delimiter */
@@ -357,9 +357,9 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			if (ptsvalid)
 			{
 				m_streaminfo.m_access_points[offset] = pts;
-				eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
+//				eDebug("MPEG4 AVC UAD at %llx, pts %llx", offset, pts);
 			} else
-				eDebug("MPEG4 AVC UAD but no valid PTS value.");
+				/*eDebug("MPEG4 AVC UAD but no valid PTS value.")*/;
 		}
 	}
 	return 0;
