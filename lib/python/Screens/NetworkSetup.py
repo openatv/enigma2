@@ -285,13 +285,12 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.finished_cb = None
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
-		#iNetwork.getInterfaces()
 		
 		self.createConfig()
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("exit networkadapter setup menu")),
+			"cancel": (self.cancel, _("exit networkadapter setup menu")),
 			"ok": (self.ok, _("select menu entry")),
 			})
 
@@ -413,7 +412,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 					self.aps = self.w.getNetworkList()
 					if self.aps is not None:
 						print "[NetworkSetup.py] got Accespoints!"
-						#print self.aps
 						for ap in self.aps:
 							a = self.aps[ap]
 							if a['active']:
@@ -638,17 +636,26 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.applyConfig(True)
 			
 	def ConfigfinishedCB(self,data):
-		if data is True:
-			self.close('ok')
+		if data is not None:
+			if data is True:
+				self.close('ok')
 
 	def cancel(self):
-		iNetwork.setAdapterAttribute(self.iface, "up", self.oldInterfaceState)
-		self.activateInterfaceEntry.value = self.oldInterfaceState
-		if self.activateInterfaceEntry.value is False:
-			iNetwork.deactivateInterface(self.iface)
-		iNetwork.getInterfaces()
-		self.close('cancel')
+		if self.oldInterfaceState is False:
+			iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
+		else:
+			self.close('cancel')
 
+	def deactivateInterfaceCB(self,data):
+		if data is not None:
+			if data is True:
+				iNetwork.getInterfaces(self.cancelCB)
+	
+	def cancelCB(self,data):			
+		if data is not None:
+			if data is True:
+				self.close('cancel')
+				
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
 		self.ok()
@@ -663,7 +670,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
-		iNetwork.stopRestartConsole()	
+		iNetwork.stopDeactivateInterfaceConsole()
+		
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def __init__(self, session,iface):
@@ -722,7 +730,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		iNetwork.getInterfaces(self.updateStatusbar)
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
-		self.onHide.append(self.cleanup)
 
 	def ok(self):
 		if self["menulist"].getCurrent()[1] == 'edit':
@@ -914,8 +921,12 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if ret[0] is not None:
 			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface,ret[0],ret[1])
 		else:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface,None,None)
-
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+			iStatus.stopWlanConsole()
+			self.mainmenu = self.genMainMenu()
+			self["menulist"].l.setList(self.mainmenu)
+			iNetwork.getInterfaces(self.updateStatusbar)
+			
 	def restartLan(self, ret = False):
 		if (ret == True):
 			iNetwork.restartNetwork(self.restartLanDataAvail)
@@ -949,6 +960,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
+		iNetwork.stopDeactivateInterfaceConsole()
 		try:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
 		except ImportError:
