@@ -371,13 +371,25 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if retval > 0:
 			self.zapToNumber(retval)
 
+	def getServiceInterface(self, iface):
+		service = self.service
+		if service:
+			attr = getattr(service, iface, None)
+			if callable(attr):
+				return attr()
+		return None
+
 	def __serviceStopped(self):
 		self.dvdScreen.hide()
-		self.service.subtitle().disableSubtitles(self.session.current_dialog.instance)
+		subs = self.getServiceInterface("subtitle")
+		if subs:
+			subs.disableSubtitles(self.session.current_dialog.instance)
 
 	def serviceStarted(self): #override InfoBarShowHide function
 		self.dvdScreen.show()
-		self.service.subtitle().enableSubtitles(self.dvdScreen.instance, None)
+		subs = self.getServiceInterface("subtitle")
+		if subs:
+			subs.enableSubtitles(self.dvdScreen.instance, None)
 
 	def doEofInternal(self, playing):
 		if self.in_menu:
@@ -435,17 +447,19 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		print "StringAvail"
 
 	def __osdAudioInfoAvail(self):
-		audioTuple = self.service.info().getInfoObject(iServiceInformation.sUser+6)
+		info = self.getServiceInterface("info")
+		audioTuple = info and info.getInfoObject(iServiceInformation.sUser+6)
 		print "AudioInfoAvail ", repr(audioTuple)
 		if audioTuple:
 			audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
 			self["audioLabel"].setText(audioString)
 			if audioTuple != self.last_audioTuple and not self.in_menu:
 				self.doShow()
-			self.last_audioTuple = audioTuple
+		self.last_audioTuple = audioTuple
 
 	def __osdSubtitleInfoAvail(self):
-		subtitleTuple = self.service.info().getInfoObject(iServiceInformation.sUser+7)
+		info = self.getServiceInterface("info")
+		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser+7)
 		print "SubtitleInfoAvail ", repr(subtitleTuple)
 		if subtitleTuple:
 			subtitleString = ""
@@ -454,21 +468,25 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self["subtitleLabel"].setText(subtitleString)
 			if subtitleTuple != self.last_subtitleTuple and not self.in_menu:
 				self.doShow()
-			self.last_subtitleTuple = subtitleTuple
+		self.last_subtitleTuple = subtitleTuple
 
 	def __chapterUpdated(self):
-		self.currentChapter = self.service.info().getInfo(iServiceInformation.sCurrentChapter)
-		self.totalChapters = self.service.info().getInfo(iServiceInformation.sTotalChapters)
-		self.setChapterLabel()
-		print "__chapterUpdated: %d/%d" % (self.currentChapter, self.totalChapters)
+		info = self.getServiceInterface("info")
+		if info:
+			self.currentChapter = info.getInfo(iServiceInformation.sCurrentChapter)
+			self.totalChapters = info.getInfo(iServiceInformation.sTotalChapters)
+			self.setChapterLabel()
+			print "__chapterUpdated: %d/%d" % (self.currentChapter, self.totalChapters)
 
 	def __titleUpdated(self):
-		self.currentTitle = self.service.info().getInfo(iServiceInformation.sCurrentTitle)
-		self.totalTitles = self.service.info().getInfo(iServiceInformation.sTotalTitles)
-		self.setChapterLabel()
-		print "__titleUpdated: %d/%d" % (self.currentTitle, self.totalTitles)
-		if not self.in_menu:
-			self.doShow()
+		info = self.getServiceInterface("info")
+		if info:
+			self.currentTitle = info.getInfo(iServiceInformation.sCurrentTitle)
+			self.totalTitles = info.getInfo(iServiceInformation.sTotalTitles)
+			self.setChapterLabel()
+			print "__titleUpdated: %d/%d" % (self.currentTitle, self.totalTitles)
+			if not self.in_menu:
+				self.doShow()
 		
 	def askLeavePlayer(self):
 		choices = [(_("Continue playing"), "play"), (_("Exit"), "exit")]
@@ -476,73 +494,65 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			choices.insert(1,(_("Return to file browser"), "browser"))			
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
 
+	def sendKey(self, key):
+		keys = self.getServiceInterface("keys")
+		if keys:
+			keys.keyPressed(key)
+		return keys
+
 	def nextAudioTrack(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser)
+		self.sendKey(iServiceKeys.keyUser)
 
 	def nextSubtitleTrack(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser+1)
+		self.sendKey(iServiceKeys.keyUser+1)
 
 	def enterDVDAudioMenu(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser+2)
+		self.sendKey(iServiceKeys.keyUser+2)
 
 	def nextChapter(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser+3)
+		self.sendKey(iServiceKeys.keyUser+3)
 
 	def prevChapter(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser+4)
+		self.sendKey(iServiceKeys.keyUser+4)
 
 	def nextTitle(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser+5)
+		self.sendKey(iServiceKeys.keyUser+5)
 
 	def prevTitle(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser+6)
+		self.sendKey(iServiceKeys.keyUser+6)
 
 	def enterDVDMenu(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUser+7)
+		self.sendKey(iServiceKeys.keyUser+7)
 
 	def seekBeginning(self):
 		if self.service:
 			seekable = self.getSeek()
-			if seekable is not None:
+			if seekable:
 				seekable.seekTo(0)
 
 	def zapToNumber(self, number):
 		if self.service:
 			seekable = self.getSeek()
-			if seekable is not None:
+			if seekable:
 				print "seek to chapter %d" % number
 				seekable.seekChapter(number)
 
 #	MENU ACTIONS
 	def keyRight(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyRight)
+		self.sendKey(iServiceKeys.keyRight)
 
 	def keyLeft(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyLeft)
+		self.sendKey(iServiceKeys.keyLeft)
 
 	def keyUp(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyUp)
+		self.sendKey(iServiceKeys.keyUp)
 
 	def keyDown(self):
-		if self.service:
-			self.service.keys().keyPressed(iServiceKeys.keyDown)
+		self.sendKey(iServiceKeys.keyDown)
 
 	def keyOk(self):
-		if self.service:
-			if not self.in_menu:
-				self.toggleInfo()
-			self.service.keys().keyPressed(iServiceKeys.keyOk)
+		if self.sendKey(iServiceKeys.keyOk) and not self.in_menu:
+			self.toggleInfo()
 
 	def keyCancel(self):
 		self.askLeavePlayer()
@@ -606,9 +616,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print "playLastCB", answer, self.resume_point
 		if self.service:
-			seek = self.service.seek()
 			if answer == True:
-				seek.seekTo(self.resume_point)
+				seekable = self.getSeek()
+				if seekable:
+					seekable.seekTo(self.resume_point)
 			pause = self.service.pause()
 			pause.unpause()
 		self.hideAfterResume()
