@@ -629,7 +629,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if data is False:
 			self.close('ok')
 		else:
-			configuredInterfaces = configuredNetworkAdapters
+			configuredInterfaces = iNetwork.getConfiguredAdapters()
 			for interface in configuredInterfaces:
 				if interface == self.iface:
 					continue
