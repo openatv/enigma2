@@ -18,6 +18,7 @@ class Network:
 		self.LinkConsole = Console()
 		self.restartConsole = Console()
 		self.deactivateConsole = Console()
+		self.deactivateInterfaceConsole = Console()
 		self.activateConsole = Console()
 		self.resetNetworkConsole = Console()
 		self.DnsConsole = Console()
@@ -74,7 +75,7 @@ class Network:
 		macRegexp = '[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}'
 		ipLinePattern = re_compile('inet ' + ipRegexp + '/')
 		ipPattern = re_compile(ipRegexp)
-		netmaskLinePattern = re_compile(ipRegexp + '/' + netRegexp)
+		netmaskLinePattern = re_compile('/' + netRegexp)
 		netmaskPattern = re_compile(netRegexp)
 		bcastLinePattern = re_compile(' brd ' + ipRegexp)
 		upPattern = re_compile('UP')
@@ -412,7 +413,7 @@ class Network:
 				if len(self.PingConsole.appContainers) == 0:
 					statecallback(self.NetworkState)
 		
-	def restartNetwork(self,callback):
+	def restartNetwork(self,callback = None):
 		self.restartConsole = Console()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
@@ -427,8 +428,8 @@ class Network:
 		self.restartConsole.eBatch(self.commands, self.restartNetworkFinished, callback, debug=True)
 	
 	def restartNetworkFinished(self,extra_args):
-		callback = extra_args
-		if len(self.restartConsole.appContainers) == 0:
+		( callback ) = extra_args
+		if callback is not None:
 			callback(True)
 
 	def getLinkState(self,iface,callback):
@@ -454,12 +455,13 @@ class Network:
 		if self.restartConsole is not None:
 			self.restartConsole = None
 			
-	def RestartConsoleRunning(self):
-		if self.restartConsole is not None:
-			if len(self.restartConsole.appContainers) == 0:
-				return False
-			else:
-				return True
+	def stopGetInterfacesConsole(self):
+		if self.Console is not None:
+			self.Console = None
+
+	def stopDeactivateInterfaceConsole(self):
+		if self.deactivateInterfaceConsole:
+			self.deactivateInterfaceConsole = None
 			
 	def checkforInterface(self,iface):
 		if self.getAdapterAttribute(iface, 'up') is True:
@@ -492,17 +494,20 @@ class Network:
 				if len(self.DnsConsole.appContainers) == 0:
 					statecallback(self.DnsState)
 
-	def deactivateInterface(self,iface):
+	def deactivateInterface(self,iface,callback = None):
 		self.deactivateInterfaceConsole = Console()
 		self.commands = []
 		cmd1 = "ip addr flush " + iface
 		cmd2 = "ifconfig " + iface + " down"
 		self.commands.append(cmd1)
 		self.commands.append(cmd2)
-		self.deactivateInterfaceConsole.eBatch(self.commands, self.deactivateInterfaceFinished, extra_args = None, debug=True)
+		self.deactivateInterfaceConsole.eBatch(self.commands, self.deactivateInterfaceFinished, callback, debug=True)
 
 	def deactivateInterfaceFinished(self,extra_args):
-		pass
+		callback = extra_args
+		if len(self.deactivateInterfaceConsole.appContainers) == 0:
+			if callback is not None:
+				callback(True)
 
 	def detectWlanModule(self):
 		self.wlanmodule = None
