@@ -1082,6 +1082,7 @@ RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 	m_is_sm = repeat != 0;
 
 	setState();
+	unfreeze(); // audio might be restarted and still in preroll (freezed) state.
 
 	if (m_video)
 		return m_video->setSlowMotion(repeat);
