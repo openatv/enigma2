@@ -34,6 +34,7 @@ class ConfigElement(object):
 		self.save_disabled = False
 		self.notifiers = []
 		self.enabled = True
+		self.callNotifiersOnSaveAndCancel = False
 
 	# you need to override this to do input validation
 	def setValue(self, value):
@@ -66,9 +67,13 @@ class ConfigElement(object):
 			self.saved_value = None
 		else:
 			self.saved_value = self.tostring(self.value)
+		if self.callNotifiersOnSaveAndCancel:
+			self.changed()
 
 	def cancel(self):
 		self.load()
+		if self.callNotifiersOnSaveAndCancel:
+			self.changed()
 
 	def isChanged(self):
 		sv = self.saved_value
