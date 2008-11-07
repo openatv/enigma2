@@ -44,18 +44,20 @@ def InitLcd():
 
 		ilcd = LCD()
 
-		config.lcd.bright = ConfigSlider(default=10, limits=(0, 10))
+		config.lcd.standby = ConfigSlider(default=0, limits=(0, 10))
+		config.lcd.standby.addNotifier(setLCDbright);
+		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
+
+		config.lcd.bright = ConfigSlider(default=5, limits=(0, 10))
 		config.lcd.bright.addNotifier(setLCDbright);
 		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
+		config.lcd.bright.callNotifiersOnSaveAndCancel = True
 
 		if not ilcd.isOled():
 			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
 			config.lcd.contrast.addNotifier(setLCDcontrast);
 		else:
 			config.lcd.contrast = ConfigNothing()
-
-		config.lcd.standby = ConfigSlider(default=0, limits=(0, 10))
-		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
 
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);
