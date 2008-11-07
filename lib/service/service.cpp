@@ -239,7 +239,7 @@ int iStaticServiceInformation::getLength(const eServiceReference &ref)
 	return -1;
 }
 
-int iStaticServiceInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+int iStaticServiceInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
 	return 0;
 }
