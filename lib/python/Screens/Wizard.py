@@ -311,7 +311,7 @@ class Wizard(Screen):
 
 		if self.updateValues not in self.onShown:
 			self.onShown.append(self.updateValues)
-
+			
 		if self.showConfig:
 			if self.wizard[currStep]["config"]["type"] == "dynamic":
 				eval("self." + self.wizard[currStep]["config"]["evaluation"])()
@@ -325,25 +325,24 @@ class Wizard(Screen):
 				else:
 					self.currStep = self.getStepWithID(nextStep)
 
+		print_now = True
 		if ((currStep == self.numSteps and self.wizard[currStep]["nextstep"] is None) or self.wizard[currStep]["id"] == "end"): # wizard finished
 			print "wizard finished"
 			self.markDone()
 			self.close()
 		else:
-			self.codeafter=True
+			self.codeafter = True
 			self.runCode(self.wizard[currStep]["codeafter"])
-			async = self.runCode(self.wizard[currStep]["codeafter_async"])
-			if self.wizard[currStep]["nextstep"] is not None:
-				self.currStep = self.getStepWithID(self.wizard[currStep]["nextstep"])
-			if gotoStep is not None:
-				self.currStep = self.getStepWithID(gotoStep)
-			if not async:
-				self.currStep += 1
-				self.updateValues()
-				print "Now: " + str(self.currStep)
+			self.prevStep = currStep
+			self.gotoStep = gotoStep
+			if not self.runCode(self.wizard[currStep]["codeafter_async"]):
+				self.afterAsyncCode()
 			else:
-				self.onShown.remove(self.updateValues)
-				print "Now: " + str(self.currStep+1), "(after async code finished)"
+				if self.updateValues in self.onShown:
+					self.onShown.remove(self.updateValues)
+
+		if print_now:
+			print "Now: " + str(self.currStep)
 
 	def ok(self):
 		print "OK"
@@ -358,7 +357,8 @@ class Wizard(Screen):
 				# for this. If there is one, please do a more specific check
 				# and/or a comment in which situation there is no run()
 				if callable(getattr(self.configInstance, "runAsync", None)):
-					self.onShown.remove(self.updateValues)
+					if self.updateValues in self.onShown:
+						self.onShown.remove(self.updateValues)
 					self.configInstance.runAsync(self.finished)
 					return
 				else:
@@ -464,10 +464,13 @@ class Wizard(Screen):
 			del self.configInstance["config"]
 			self.configInstance.doClose()
 			self.configInstance = None
-		
+
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
-		if self.condition:
+		if not self.condition:
+			self.currStep += 1
+			self.updateValues()
+		else:
 			if len(self.stepHistory) == 0 or self.stepHistory[-1] != self.currStep:
 				self.stepHistory.append(self.currStep)
 			print "wizard step:", self.wizard[self.currStep]
@@ -491,21 +494,24 @@ class Wizard(Screen):
 				
 			self.codeafter=False
 			self.runCode(self.wizard[self.currStep]["code"])
-			self.async = self.runCode(self.wizard[self.currStep]["code_async"])
-			if self.async:
-				self.onShown.remove(self.updateValues)
+			if self.runCode(self.wizard[self.currStep]["code_async"]):
+				if self.updateValues in self.onShown:
+					self.onShown.remove(self.updateValues)
 			else:
 				self.afterAsyncCode()
-		else:
-			self.currStep += 1
-			self.updateValues()
 
 	def afterAsyncCode(self):
-		if self.updateValues not in self.onShown:
+		if not self.updateValues in self.onShown:
 			self.onShown.append(self.updateValues)
+
 		if self.codeafter:
+			if self.wizard[self.prevStep]["nextstep"] is not None:
+				self.currStep = self.getStepWithID(self.wizard[self.prevStep]["nextstep"])
+			if self.gotoStep is not None:
+				self.currStep = self.getStepWithID(self.gotoStep)
 			self.currStep += 1
 			self.updateValues()
+			print "Now: " + str(self.currStep)
 		else:
 			if self.showList:
 				print "showing list,", self.currStep

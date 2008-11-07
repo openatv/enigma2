@@ -513,6 +513,7 @@ class ConfigIP(ConfigSequence):
 		self.auto_jump = auto_jump
 
 	def handleKey(self, key):
+		
 		if key == KEY_LEFT:
 			if self.marked_block > 0:
 				self.marked_block -= 1
@@ -531,8 +532,14 @@ class ConfigIP(ConfigSequence):
 			self.marked_block = len(self.limits)-1
 			self.overwrite = True
 
-		if key in KEY_NUMBERS:
-			number = getKeyNumber(key)
+		if key in KEY_NUMBERS or key == KEY_ASCII:
+			if key == KEY_ASCII:
+				code = getPrevAsciiCode()
+				if code < 48 or code > 57:
+					return
+				number = code - 48
+			else:	
+				number = getKeyNumber(key)
 			oldvalue = self._value[self.marked_block]
 			
 			if self.overwrite:
