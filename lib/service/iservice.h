@@ -240,7 +240,7 @@ public:
 	virtual int getLength(const eServiceReference &ref);
 	virtual SWIG_VOID(RESULT) getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time=-1);
 		// returns true when not implemented
-	virtual int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+	virtual int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate=false);
 
 	virtual int getInfo(const eServiceReference &ref, int w);
 	virtual std::string getInfoString(const eServiceReference &ref,int w);

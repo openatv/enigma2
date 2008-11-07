@@ -293,7 +293,7 @@ public:
 	eServiceReference &getPlayableService() { return m_playable_service; }
 	RESULT getName(const eServiceReference &ref, std::string &name);
 	int getLength(const eServiceReference &ref);
-	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore);
+	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate=false);
 	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &ptr, time_t start_time);
 };
 
