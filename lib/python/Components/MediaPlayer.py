@@ -40,7 +40,7 @@ def PlaylistEntryComponent(serviceref, state):
 
 	if png is not None:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 16, 16, png))
-    
+
 	return res
 
 class PlayList(MenuList):
@@ -76,6 +76,7 @@ class PlayList(MenuList):
 	def setCurrentPlaying(self, index):
 		self.oldCurrPlaying = self.currPlaying
 		self.currPlaying = index
+		self.moveToIndex(index)
 
 	def updateState(self, state):
 		if len(self.list) > self.oldCurrPlaying and self.oldCurrPlaying != -1:
