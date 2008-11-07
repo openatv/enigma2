@@ -632,7 +632,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			if x[0][1] == True: #isDir
 				if recursive:
 					self.copyDirectory(x[0][0])
-			else:
+			elif filelist.getServiceRef().type != 4098:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
 
@@ -646,6 +646,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				list = playlist.open(ServiceRef.getPath())
 				for x in list:
 					self.playlist.addFile(x.ref)
+			self.playlist.updateList()
 		else:
 			self.playlist.addFile(self.filelist.getServiceRef())
 			self.playlist.updateList()
