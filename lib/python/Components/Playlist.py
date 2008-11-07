@@ -58,6 +58,7 @@ class PlaylistIOM3U(PlaylistIO):
 	
 	def open(self, filename):
 		self.clear()
+		self.displayname = None
 		try:
 			file = open(filename, "r")
 		except IOError:
@@ -66,14 +67,22 @@ class PlaylistIOM3U(PlaylistIO):
 			entry = file.readline().strip()
 			if entry == "":
 				break
-			if entry[0] != "#":
+			if entry.startswith("#EXTINF:"):
+				extinf = entry.split(',',1)
+				if len(extinf) > 1:
+					self.displayname = extinf[1]
 				# TODO: use e2 facilities to create a service ref from file
+			elif entry[0] != "#":
 				if entry[0] == "/":
-					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry))
+					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry)
 				elif entry.startswith("http"):
-					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry.replace(':',"%3a")))
+					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry.replace(':',"%3a"))
 				else:
-					self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + entry))
+					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + entry)
+				if self.displayname:
+					sref.ref.setName(self.displayname)
+					self.displayname = None
+				self.addService(sref)
 		file.close()
 		return self.list
 		
