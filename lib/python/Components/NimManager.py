@@ -188,7 +188,7 @@ class SecConfigure:
 								loValue = rotorParam.EAST
 							else:
 								loValue = rotorParam.WEST
-							inputPowerDelta=hw.get_device_name() == "dm8000" and 50 or 15
+							inputPowerDelta=hw.get_device_name() == "dm8000" and 15 or 50
 							useInputPower=False
 							turning_speed=0
 							if nim.powerMeasurement.value:
