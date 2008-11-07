@@ -1,6 +1,6 @@
 from os import path as os_path, remove as os_remove, listdir as os_listdir
 from time import strftime
-from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation
+from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, loadPic
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
@@ -14,6 +14,7 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCO
 from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
+from Components.AVSwitch import AVSwitch
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport
 from ServiceReference import ServiceReference
 from Screens.ChoiceBox import ChoiceBox
@@ -42,6 +43,7 @@ class MediaPixmap(Pixmap):
 					break
 		if self.default_pixmap is None:
 			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/no_coverArt.png")
+		self.coverFileNames = ["folder.png", "folder.jpg"]
 		return Pixmap.applySkin(self, desktop, screen)
 
 class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
@@ -283,13 +285,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def updateCoverArtPixmap(self, path):
 		while not path.endswith("/"):
 			path = path[:-1]
-		pngname = path + "folder.png"
-		
-		if not fileExists(pngname):
-			pngname = self["coverArt"].default_pixmap
-		if self.coverArtFileName != pngname:
-			self.coverArtFileName = pngname
-			self["coverArt"].instance.setPixmapFromFile(self.coverArtFileName)
+		new_coverArtFileName = self["coverArt"].default_pixmap
+		for filename in self["coverArt"].coverFileNames:
+			if fileExists(path + filename):
+				new_coverArtFileName = path + filename
+		if self.coverArtFileName != new_coverArtFileName:
+			self.coverArtFileName = new_coverArtFileName
+			pixmap = loadPic(self.coverArtFileName, 116, 116, AVSwitch().getAspectRatioSetting()/2,1,0,0)
+			if pixmap is not None:
+				self["coverArt"].instance.setPixmap(pixmap.__deref__())
 
 	def leftDown(self):
 		self.lefttimer = True
@@ -632,7 +636,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			if x[0][1] == True: #isDir
 				if recursive:
 					self.copyDirectory(x[0][0])
-			elif filelist.getServiceRef().type != 4098:
+			elif filelist.getServiceRef() and filelist.getServiceRef().type == 4097:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
 
@@ -640,7 +644,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if self.filelist.getServiceRef().type == 4098: # playlist
 			ServiceRef = self.filelist.getServiceRef()
 			extension = ServiceRef.getPath()[ServiceRef.getPath().rfind('.') + 1:]
-			print "extension:", extension
 			if self.playlistparsers.has_key(extension):
 				playlist = self.playlistparsers[extension]()
 				list = playlist.open(ServiceRef.getPath())
@@ -763,7 +766,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 			self.unPauseService()
 			if needsInfoUpdate == True:
-				self.updateCoverArtPixmap(currref.getPath())
+				path = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()].getPath()
+				self.updateCoverArtPixmap(path)
 			else:
 				pngname = self["coverArt"].default_pixmap
 				self.coverArtFileName = pngname
@@ -815,7 +819,6 @@ class MediaPlayerLCDScreen(Screen):
 		self["text4"] = Label("")
 
 	def setText(self, text, line):
-		print "lcd set text:", text, line
 		if len(text) > 10:
 			if text[-4:] == ".mp3":
 				text = text[:-4]
