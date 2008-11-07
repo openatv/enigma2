@@ -659,7 +659,7 @@ class NimManager:
 	
 	def canEqualTo(self, slotid):
 		type = self.getNimType(slotid)
-		if self.getNimConfig(slotid) == "DVB-S2":
+		if type == "DVB-S2":
 			type = "DVB-S"
 		nimList = self.getNimListOfType(type, slotid)
 		for nim in nimList[:]:
@@ -667,10 +667,10 @@ class NimManager:
 			if mode.configMode.value == "loopthrough" or mode.configMode.value == "satposdepends":
 				nimList.remove(nim)
 		return nimList
-	
+
 	def canDependOn(self, slotid):
 		type = self.getNimType(slotid)
-		if self.getNimConfig(slotid) == "DVB-S2":
+		if type == "DVB-S2":
 			type = "DVB-S"
 		nimList = self.getNimListOfType(type, slotid)
 		positionerList = []
