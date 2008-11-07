@@ -317,6 +317,7 @@ class TimerSanityConflict(Screen):
 	EMPTY = 0
 	ENABLE = 1
 	DISABLE = 2
+	EDIT = 3
 	
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -338,10 +339,11 @@ class TimerSanityConflict(Screen):
 
 		self["key_red"] = Button("Edit")
 		self["key_green"] = Button(" ")
-		self["key_yellow"] = Button("Edit")
+		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button(" ")
 
 		self.key_green_choice = self.EMPTY
+		self.key_yellow_choice = self.EMPTY
 		self.key_blue_choice = self.EMPTY
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], 
@@ -415,9 +417,14 @@ class TimerSanityConflict(Screen):
 				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Disable"))
 				self.key_green_choice = self.DISABLE
+		
 		if len(self.timer) > 1:
 			x = self["list"].getSelectedIndex()
 			if self.timer[x] is not None:
+				if self.key_yellow_choice == self.EMPTY:
+					self["actions"].actions.update({"yellow":self.editTimer2})
+					self["key_yellow"].setText(_("Edit"))
+					self.key_yellow_choice = self.EDIT
 				if self.timer[x].disabled and self.key_blue_choice != self.ENABLE:
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Enable"))
@@ -432,9 +439,11 @@ class TimerSanityConflict(Screen):
 					self.key_blue_choice = self.DISABLE
 		else:
 #FIXME.... this doesnt hide the buttons self.... just the text
-			self.removeAction("yellow")
-			self["key_yellow"].setText(" ")
-			self.key_yellow_choice = self.EMPTY
-			self.removeAction("blue")
-			self["key_blue"].setText(" ")
-			self.key_blue_choice = self.EMPTY
+			if self.key_yellow_choice != self.EMPTY:
+				self.removeAction("yellow")
+				self["key_yellow"].setText(" ")
+				self.key_yellow_choice = self.EMPTY
+			if self.key_blue_choice != self.EMPTY:
+				self.removeAction("blue")
+				self["key_blue"].setText(" ")
+				self.key_blue_choice = self.EMPTY
