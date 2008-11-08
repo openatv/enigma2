@@ -1,3 +1,4 @@
+#include <lib/base/nconfig.h> // access to python config
 #include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/specs.h>
@@ -6,6 +7,7 @@
 #include <lib/dvb_ci/dvbci.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/scan.h>
+#include <lib/dvb_ci/dvbci_session.h>
 #include <dvbsi++/ca_descriptor.h>
 #include <dvbsi++/ca_program_map_section.h>
 #include <dvbsi++/teletext_descriptor.h>
@@ -14,7 +16,6 @@
 #include <dvbsi++/stream_identifier_descriptor.h>
 #include <dvbsi++/subtitling_descriptor.h>
 #include <dvbsi++/teletext_descriptor.h>
-#include <lib/base/nconfig.h> // access to python config
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
@@ -677,7 +678,7 @@ ChannelMap eDVBCAService::exist_channels;
 ePtr<eConnection> eDVBCAService::m_chanAddedConn;
 
 eDVBCAService::eDVBCAService()
-	: m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eTimer::create(eApp))
+	:m_buffer(512), m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eTimer::create(eApp))
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
 	CONNECT(m_retryTimer->timeout, eDVBCAService::sendCAPMT);
@@ -864,19 +865,100 @@ channel_data *eDVBCAService::getChannelData(eDVBChannelID &chid)
 }
 // end static methods
 
+#define CA_REPLY_DEBUG
+#define MAX_LENGTH_BYTES 4
+#define MIN_LENGTH_BYTES 1
+
 void eDVBCAService::socketCB(int what)
 {
-	if (what & eSocketNotifier::Read)
-		/*eDebug("[eDVBCAService] data to read\n")*/;
-	if (what & eSocketNotifier::Priority)
-		/*eDebug("[eDVBCAService] priority data to read\n")*/;
+	if (what & (eSocketNotifier::Read | eSocketNotifier::Priority))
+	{
+		char msgbuffer[4096];
+		ssize_t length = read(m_sock, msgbuffer, sizeof(msgbuffer));
+		if (length == -1)
+		{
+			if (errno != EAGAIN && errno != EINTR && errno != EBUSY)
+			{
+				eDebug("[eSocketMMIHandler] read (%m)");
+				what |= eSocketNotifier::Error;
+			}
+		} else if (length == 0)
+		{
+			what |= eSocketNotifier::Hungup;
+		} else
+		{
+			int len = length;
+			unsigned char *data = (unsigned char*)msgbuffer;
+			int clear = 1;
+	// If a new message starts, then the previous message
+	// should already have been processed. Otherwise the
+	// previous message was incomplete and should therefore
+	// be deleted.
+			if ((len >= 1) && ((data[0] & 0xFF) != 0x9f))
+				clear = 0;
+			if ((len >= 2) && ((data[1] & 0x80) != 0x80))
+				clear = 0;
+			if ((len >= 3) && ((data[2] & 0x80) != 0x00))
+				clear = 0;
+			if (clear)
+			{
+				m_buffer.clear();
+#ifdef CA_REPLY_DEBUG
+				eDebug("clear buffer");
+#endif
+			}
+#ifdef CA_REPLY_DEBUG
+			eDebug("Put to buffer:");
+			for (int i=0; i < len; ++i)
+				eDebugNoNewLine("%02x ", data[i]);
+			eDebug("\n--------");
+#endif
+			m_buffer.write( data, len );
+
+			while ( m_buffer.size() >= (3 + MIN_LENGTH_BYTES) )
+			{
+				unsigned char tmp[3+MAX_LENGTH_BYTES];
+				m_buffer.peek(tmp, 3+MIN_LENGTH_BYTES);
+				if (((tmp[0] & 0xFF) != 0x9f) || ((tmp[1] & 0x80) != 0x80) || ((tmp[2] & 0x80) != 0x00))
+				{
+					m_buffer.skip(1);
+#ifdef CA_REPLY_DEBUG
+					eDebug("skip %02x", tmp[0]);
+#endif
+					continue;
+				}
+				if (tmp[3] & 0x80)
+				{
+					int peekLength = (tmp[3] & 0x7f) + 4;
+					if (m_buffer.size() < peekLength)
+						continue;
+					m_buffer.peek(tmp, peekLength);
+				}
+				int size=0;
+				int LengthBytes=eDVBCISession::parseLengthField(tmp+3, size);
+				int messageLength = 3+LengthBytes+size;
+				if ( m_buffer.size() >= messageLength )
+				{
+					unsigned char dest[messageLength];
+					m_buffer.read(dest, messageLength);
+#ifdef CA_REPLY_DEBUG
+					eDebug("dump ca reply:");
+					for (int i=0; i < messageLength; ++i)
+						eDebugNoNewLine("%02x ", dest[i]);
+					eDebug("\n--------");
+#endif
+//					/*emit*/ mmi_progress(0, dest, (const void*)(dest+3+LengthBytes), messageLength-3-LengthBytes);
+				}
+			}
+		}
+	}
 	if (what & eSocketNotifier::Hungup) {
-		/*eDebug("[eDVBCAService] connection closed\n")*/;
+		/*eDebug("[eDVBCAService] connection closed")*/;
 		m_sendstate=1;
 		sendCAPMT();
 	}
 	if (what & eSocketNotifier::Error)
-		/*eDebug("[eDVBCAService] connection error\n")*/;
+		eDebug("[eDVBCAService] connection error");
 }
 
 void eDVBCAService::Connect()
