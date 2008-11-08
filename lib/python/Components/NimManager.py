@@ -683,6 +683,13 @@ class NimManager:
 					if lnb != 0:
 						nimHaveRotor = True
 						break
+				if not nimHaveRotor:
+					for sat in mode.advanced.sat.values():
+						lnb_num = int(sat.lnb.value)
+						diseqcmode = lnb_num and mode.advanced.lnb[lnb_num].diseqcMode.value or ""
+						if diseqcmode == "1_2":
+							nimHaveRotor = True
+							break
 			if nimHaveRotor:
 				alreadyConnected = False
 				for testnim in nimList:
