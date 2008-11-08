@@ -81,22 +81,26 @@
 		if (!m_simulate) \
 			eDebug(x); \
 	} while(0)
-//		else \
-//		{ \
-//			eDebugNoNewLine("SIMULATE:"); \
-//			eDebug(x); \
-//		} \
+#if 0
+		else \
+		{ \
+			eDebugNoNewLine("SIMULATE:"); \
+			eDebug(x); \
+		}
+#endif
 
 #define eDebugNoSimulateNoNewLine(x...) \
 	do { \
 		if (!m_simulate) \
 			eDebugNoNewLine(x); \
 	} while(0)
-//		else \
-//		{ \
-//			eDebugNoNewLine("SIMULATE:"); \
-//			eDebugNoNewLine(x); \
-//		} \
+#if 0
+		else \
+		{ \
+			eDebugNoNewLine("SIMULATE:"); \
+			eDebugNoNewLine(x); \
+		}
+#endif
 
 void eDVBDiseqcCommand::setCommandString(const char *str)
 {
@@ -725,34 +729,58 @@ int eDVBFrontend::readFrontendData(int type)
 			if (!strcmp(m_description, "BCM4501 (internal)"))
 			{
 				unsigned int SDS_SNRE = snr << 16;
+				float snr_in_db;
 
-				static float SNR_COEFF[6] = {
-					100.0 / 4194304.0,
-					-7136.0 / 4194304.0,
-					197418.0 / 4194304.0,
-					-2602183.0 / 4194304.0,
-					20377212.0 / 4194304.0,
-					-37791203.0 / 4194304.0,
-				};
-
-				float fval1, fval2, snr_in_db;
-				int i;
-				fval1 = 12.44714 - (2.0 * log10(SDS_SNRE / 256.0));
-				fval2 = pow(10.0, fval1)-1;
-				fval1 = 10.0 * log10(fval2);
-
-				if (fval1 < 10.0)
+				if (parm_u_qpsk_fec_inner <= FEC_AUTO) // DVB-S1 / QPSK
 				{
-					fval2 = SNR_COEFF[0];
-					for (i=0; i<6; ++i)
-					{
-						fval2 *= fval1;
-						fval2 += SNR_COEFF[i];
-					}
-					fval1 = fval2;
-				}
-				snr_in_db = fval1;
+					static float SNR_COEFF[6] = {
+						100.0 / 4194304.0,
+						-7136.0 / 4194304.0,
+						197418.0 / 4194304.0,
+						-2602183.0 / 4194304.0,
+						20377212.0 / 4194304.0,
+						-37791203.0 / 4194304.0,
+					};
+					float fval1 = 12.44714 - (2.0 * log10(SDS_SNRE / 256.0)),
+	    				  fval2 = pow(10.0, fval1)-1;
+					fval1 = 10.0 * log10(fval2);
 
+					if (fval1 < 10.0)
+					{
+						fval2 = SNR_COEFF[0];
+						for (int i=0; i<6; ++i)
+						{
+							fval2 *= fval1;
+							fval2 += SNR_COEFF[i];
+						}
+						fval1 = fval2;
+					}
+					snr_in_db = fval1;
+				}
+#if HAVE_DVB_API_VERSION >= 3
+				else
+				{
+					float fval1 = SDS_SNRE / 268435456.0,
+						  fval2, fval3, fval4;
+
+					if (parm_u_qpsk_fec_inner <= FEC_S2_QPSK_9_10) // DVB-S2 QPSK
+					{
+						fval2 = 6.76;
+						fval3 = 4.35;
+					}
+					else // 8PSK
+					{
+						fval1 *= 0.5;
+						fval2 = 8.06;
+						fval3 = 6.18;
+					}
+					fval4 = -10.0 * log10(fval1);
+					fval1 = fval4;
+					for (int i=0; i < 5; ++i)
+						fval1 = fval4 - fval2 * log10(1.0+pow(10.0, (fval3-fval1)/fval2));
+					snr_in_db = fval1;
+				}
+#endif
 				return (int)(snr_in_db * 100.0);
 			}
 			else if (strstr(m_description, "Alps BSBE1 C01A") ||
@@ -781,7 +809,6 @@ int eDVBFrontend::readFrontendData(int type)
 						i;
 					if(INRANGE(CN_lookup[Imin][REGVAL],regval,CN_lookup[Imax][REGVAL]))
 					{
-						long val;
 						while((Imax-Imin)>1)
 						{
 							i=(Imax+Imin)/2;
