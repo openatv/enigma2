@@ -3,6 +3,7 @@
 
 #ifndef SWIG
 #include <map>
+#include <lib/base/buffer.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/idemux.h>
@@ -35,6 +36,7 @@ typedef std::map<iDVBChannel*, channel_data*> ChannelMap;
 
 class eDVBCAService: public Object
 {
+	eIOBuffer m_buffer;
 	ePtr<eSocketNotifier> m_sn;
 	eServiceReferenceDVB m_service;
 	uint8_t m_used_demux[32];
