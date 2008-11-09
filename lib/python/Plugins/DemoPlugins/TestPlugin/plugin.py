@@ -50,6 +50,8 @@ class Test(Screen):
 	
 	def mycallback(self, answer):
 		print "answer:", answer
+		if answer:
+			raise "test-crash"
 		self.close()
 	
 	def keyLeft(self):
