@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 17:06+0200\n"
-"PO-Revision-Date: 2008-10-23 14:56+0100\n"
+"POT-Creation-Date: 2008-11-10 00:07+0100\n"
+"PO-Revision-Date: 2008-11-08 07:56+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -90,6 +90,12 @@ msgstr "(tom)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(visa utökad DVD ljudmeny)"
+
+msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "* Only available when entering hidden SSID or network key"
+msgstr ""
 
 msgid ".NFI Download failed:"
 msgstr ".NFI Nedladdning misslyckades:"
@@ -407,6 +413,11 @@ msgid "Arabic"
 msgstr "Arabiska"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -445,9 +456,6 @@ msgstr "Auto scart byte"
 
 msgid "Automatic"
 msgstr "Automatisk"
-
-msgid "Automatic SSID lookup"
-msgstr "Automatisk SSID sökning"
 
 msgid "Automatic Scan"
 msgstr "Automatisk sökning"
@@ -520,6 +528,9 @@ msgstr "Ljusstyrka"
 
 msgid "Burn DVD"
 msgstr "Skapa DVD"
+
+msgid "Burn existing image to DVD"
+msgstr ""
 
 msgid "Burn to DVD..."
 msgstr "Bränn till DVD..."
@@ -733,6 +744,9 @@ msgstr "Kunde inte ansluta till Dreambox .NFI image feed Server:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Kunde inte ladda media! Ingen disk istoppad?"
+
+msgid "Create DVD-ISO"
+msgstr ""
 
 msgid "Create movie folder failed"
 msgstr "Det gick inte att skapa en filmkatalog"
@@ -972,7 +986,7 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Vill du aktivera föräldrakontroll på din Dreambox?"
 
 msgid "Do you want to install default sat lists?"
-msgstr "Vill du installera "
+msgstr "Vill du installera grundsatellitlista?"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Vill du spela upp DVD i spelaren?"
@@ -1053,6 +1067,9 @@ msgstr "FEL - misslyckades söka (%s)!"
 msgid "East"
 msgstr "Öst"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "Ändra DNS"
 
@@ -1101,6 +1118,9 @@ msgstr "Kryptering"
 msgid "Encryption Key"
 msgstr "Krypteringsnyckel"
 
+msgid "Encryption Keytype"
+msgstr ""
+
 msgid "Encryption Type"
 msgstr "Krypteringstyp"
 
@@ -1141,6 +1161,12 @@ msgstr "Ange hastighet för snabbspolning framåt"
 
 msgid "Enter Rewind at speed"
 msgstr "Ange hastighet för snabbspolning bakåt"
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr ""
 
 msgid "Enter main menu..."
 msgstr "Gå till huvudmeny..."
@@ -1233,6 +1259,12 @@ msgstr "Fininställn."
 
 msgid "Finished"
 msgstr "Klart"
+
+msgid "Finished configuring your network"
+msgstr ""
+
+msgid "Finished restarting your network"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Finska"
@@ -1339,6 +1371,9 @@ msgstr "Hårddisk installation"
 msgid "Harddisk standby after"
 msgstr "Viloläge för hårddisk efter"
 
+msgid "Hidden network SSID"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Hierarkisk information "
 
@@ -1353,6 +1388,12 @@ msgstr "Ungerska"
 
 msgid "IP Address"
 msgstr "IP adress"
+
+msgid "ISO file is too large for this filesystem!"
+msgstr ""
+
+msgid "ISO path"
+msgstr ""
 
 msgid "Icelandic"
 msgstr "Isländska"
@@ -1831,28 +1872,22 @@ msgstr ""
 "Om du anger 'Nej' här kommer installationsskyddet vara avaktiverat!"
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Inget fungerades lokalt nätverkskort hittat.\n"
-"Vänligen bekräfta att du har anslutit en nätverkskabel och att ditt Nätverk "
-"är korrekt konfigurerat."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
-msgstr ""
-"Inget fungerande trådlöst nätverkskort hittat.\n"
-"Vänligen bekräfta att du har anslutit ett kompatibelt WLAN USB Stick och "
-"konfigurerat ditt Nätverk korrekt."
 
 msgid "No, but restart from begin"
 msgstr "Nej, men starta om från början"
@@ -2123,8 +2158,20 @@ msgstr ""
 "Vänligen använd UPP och NER pil för att välja språk. Efter val tryck på OK "
 "knappen."
 
+msgid "Please wait for activation of your network configuration..."
+msgstr ""
+
 msgid "Please wait for md5 signature verification..."
 msgstr "Vänligen vänta för md5 signatur verifiering..."
+
+msgid "Please wait while we configure your network..."
+msgstr ""
+
+msgid "Please wait while your network is restarting..."
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Vänligen vänta... Laddar lista..."
@@ -2457,7 +2504,7 @@ msgid "Scaling Mode"
 msgstr "Scalingläge"
 
 msgid "Scan "
-msgstr "Söka"
+msgstr "Söka "
 
 msgid "Scan QAM128"
 msgstr "Söka QAM128"
@@ -2634,6 +2681,9 @@ msgstr "Kanaler"
 
 msgid "Set as default Interface"
 msgstr "Använd som standard Interface"
+
+msgid "Set interface as default Interface"
+msgstr ""
 
 msgid "Set limits"
 msgstr "Ange gräns"
@@ -2866,6 +2916,9 @@ msgstr ""
 "Översättning utfört av: WeeGull\n"
 "Förslag på förändringar skicka ett epost:\n"
 "weegull@hotmail.com"
+
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr ""
 
 msgid "TV System"
 msgstr "TV System"
@@ -3424,6 +3477,9 @@ msgstr "Visa Rass interaktivitet..."
 msgid "View teletext..."
 msgstr "Visa teletext..."
 
+msgid "Virtual KeyBoard"
+msgstr ""
+
 msgid "Voltage mode"
 msgstr "Spännings läge"
 
@@ -3438,6 +3494,9 @@ msgstr "WEP"
 
 msgid "WPA"
 msgstr "WPA"
+
+msgid "WPA or WPA2"
+msgstr ""
 
 msgid "WPA2"
 msgstr "WPA2"
@@ -3544,6 +3603,9 @@ msgstr "År:"
 msgid "Yes"
 msgstr "Ja"
 
+msgid "Yes, and delete this movie"
+msgstr ""
+
 msgid "Yes, backup my settings!"
 msgstr "Ja, ta backup på inställningar!"
 
@@ -3573,7 +3635,7 @@ msgid ""
 "want to be installed."
 msgstr ""
 "Du kan välja från några grundinställningar nu. Vänligen välj de "
-"instaällningar du vill installera."
+"inställningar du vill installera."
 
 msgid "You can choose, what you want to install..."
 msgstr "Du kan välja, vad vill du ska installeras..."
@@ -3702,6 +3764,16 @@ msgstr ""
 "Din frontprocessors mjukvara måste uppgraderas.\n"
 "Tryck OK för att starta."
 
+msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr "Gå till föregående kanal före motorinstallation?"
 
@@ -3731,6 +3803,12 @@ msgstr "avbryt editera favoriter"
 
 msgid "about to start"
 msgstr "håller på att starta"
+
+msgid "activate current configuration"
+msgstr ""
+
+msgid "add a nameserver entry"
+msgstr ""
 
 msgid "add alternatives"
 msgstr "lägg till alternativ"
@@ -3928,6 +4006,9 @@ msgstr "slutklipp här"
 msgid "end favourites edit"
 msgstr "avsluta favoriter editor"
 
+msgid "enigma2 and network"
+msgstr ""
+
 msgid "equal to"
 msgstr "lika med"
 
@@ -3942,6 +4023,21 @@ msgstr "avsluta mediaspelare"
 
 msgid "exit movielist"
 msgstr "avsluta filmlista"
+
+msgid "exit nameserver configuration"
+msgstr ""
+
+msgid "exit network adapter configuration"
+msgstr ""
+
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "exit network interface list"
+msgstr ""
+
+msgid "exit networkadapter setup menu"
+msgstr ""
 
 msgid "failed"
 msgstr "misslyckades"
@@ -4086,6 +4182,18 @@ msgstr "månad"
 msgid "move PiP to main picture"
 msgstr "flytta BiB till huvudbild"
 
+msgid "move down to last entry"
+msgstr ""
+
+msgid "move down to next entry"
+msgstr ""
+
+msgid "move up to first entry"
+msgstr ""
+
+msgid "move up to previous entry"
+msgstr ""
+
 msgid "movie list"
 msgstr "filmlista"
 
@@ -4146,8 +4254,8 @@ msgstr "på READ ONLY media."
 msgid "once"
 msgstr "en gång"
 
-msgid "only /etc/enigma2 directory"
-msgstr "endast /etc/enigma2 bibliotek"
+msgid "open nameserver configuration"
+msgstr ""
 
 msgid "open servicelist"
 msgstr "öppna kanallista"
@@ -4157,6 +4265,9 @@ msgstr "öppna kanallista(ner)"
 
 msgid "open servicelist(up)"
 msgstr "öppna kanallista(upp)"
+
+msgid "open virtual keyboard input help"
+msgstr ""
 
 msgid "pass"
 msgstr "klart"
@@ -4193,6 +4304,9 @@ msgstr "spela in"
 
 msgid "recording..."
 msgstr "spelar in..."
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "ta bort efter denna position"
@@ -4269,6 +4383,12 @@ msgstr "välj .NFI flash fil"
 
 msgid "select image from server"
 msgstr "välj image från server"
+
+msgid "select interface"
+msgstr ""
+
+msgid "select menu entry"
+msgstr ""
 
 msgid "select movie"
 msgstr "välj film"
@@ -4498,6 +4618,9 @@ msgstr "zapped"
 #~ "Är du säker på att du vill aktivera lokalt nätverk?\n"
 #~ "\n"
 
+#~ msgid "Automatic SSID lookup"
+#~ msgstr "Automatisk SSID sökning"
+
 #~ msgid "Burn"
 #~ msgstr "Skapa"
 
@@ -4592,6 +4715,15 @@ msgstr "zapped"
 #~ msgstr "Ny DVD"
 
 #~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Inget fungerades lokalt nätverkskort hittat.\n"
+#~ "Vänligen bekräfta att du har anslutit en nätverkskabel och att ditt "
+#~ "Nätverk är korrekt konfigurerat."
+
+#~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
 #~ "enable your local network interface."
@@ -4608,6 +4740,24 @@ msgstr "zapped"
 #~ "Inget fungerandes trådlöst kort hittat.\n"
 #~ " Vänligen bekräfta att du har anslutit ett kompatibelt WLAN kort eller "
 #~ "aktiverat lokalt nätverkskort."
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "your local network interface."
+#~ msgstr ""
+#~ "Inget fungerandes trådlöst kort hittat.\n"
+#~ " Vänligen bekräfta att du har anslutit ett kompatibelt WLAN kort eller "
+#~ "aktiverat ditt lokala nätverkskort."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Inget fungerande trådlöst nätverkskort hittat.\n"
+#~ "Vänligen bekräfta att du har anslutit ett kompatibelt WLAN USB Stick och "
+#~ "konfigurerat ditt Nätverk korrekt."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nej, låt mig välja grundlista"
@@ -4783,3 +4933,6 @@ msgstr "zapped"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "loopthrough till ingång A"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "endast /etc/enigma2 bibliotek"
