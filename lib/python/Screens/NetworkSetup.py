@@ -90,7 +90,6 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		self.onClose.append(self.cleanup)
 		
 	def updateList(self):
-		iNetwork.getInterfaces()
 		self.list = []
 		default_gw = None
 		num_configured_if = len(iNetwork.getConfiguredAdapters())
@@ -290,7 +289,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.finished_cb = None
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
-		
+
 		self.createConfig()
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
@@ -675,8 +674,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
-		iNetwork.stopDeactivateInterfaceConsole()
-		
+	
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def __init__(self, session,iface):
@@ -732,7 +730,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			"right": self.right,
 		}, -2)
 		
-		iNetwork.getInterfaces(self.updateStatusbar)
+		self.updateStatusbar()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
 
@@ -908,11 +906,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			else:
 				self.mainmenu = self.genMainMenu()
 				self["menulist"].l.setList(self.mainmenu)
-				iNetwork.getInterfaces(self.updateStatusbar)
+				self.updateStatusbar()
 		else:
 			self.mainmenu = self.genMainMenu()
 			self["menulist"].l.setList(self.mainmenu)
-			iNetwork.getInterfaces(self.updateStatusbar)
+			self.updateStatusbar()
 
 	def WlanStatusClosed(self, *ret):
 		if ret is not None and len(ret):
@@ -920,7 +918,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			iStatus.stopWlanConsole()
 			self.mainmenu = self.genMainMenu()
 			self["menulist"].l.setList(self.mainmenu)
-			iNetwork.getInterfaces(self.updateStatusbar)
+			self.updateStatusbar()
 
 	def WlanScanClosed(self,*ret):
 		if ret[0] is not None:
@@ -930,7 +928,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			iStatus.stopWlanConsole()
 			self.mainmenu = self.genMainMenu()
 			self["menulist"].l.setList(self.mainmenu)
-			iNetwork.getInterfaces(self.updateStatusbar)
+			self.updateStatusbar()
 			
 	def restartLan(self, ret = False):
 		if (ret == True):
@@ -955,9 +953,9 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		pattern = re_compile("Link detected: yes")
 		for item in result:
 			if re_search(pattern, item):
-				self["statuspic"].setPixmapNum(1)
-			else:
 				self["statuspic"].setPixmapNum(0)
+			else:
+				self["statuspic"].setPixmapNum(1)
 		self["statuspic"].show()
 
 	def showErrorMessage(self):
@@ -988,7 +986,6 @@ class NetworkAdapterTest(Screen):
 		Screen.__init__(self, session)
 		self.iface = iface
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")
-		iNetwork.getInterfaces()
 		self.setLabels()
 		self.onClose.append(self.cleanup)
 		self.onHide.append(self.cleanup)
