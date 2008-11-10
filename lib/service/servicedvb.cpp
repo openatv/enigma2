@@ -412,7 +412,7 @@ RESULT eStaticServiceDVBBouquetInformation::getName(const eServiceReference &ref
 		return -1;
 }
 
-int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
 	if (ref.flags & eServiceReference::isGroup)
 	{
@@ -453,7 +453,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 				{ 2, 1, 3 }  // -T -S -C
 			};
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
-			int tmp=res->canAllocateChannel(chid, chid_ignore);
+			int tmp=res->canAllocateChannel(chid, chid_ignore, simulate);
 			switch(tmp)
 			{
 				case 0:

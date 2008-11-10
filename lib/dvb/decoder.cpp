@@ -1069,6 +1069,7 @@ RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
 	m_is_ff = frames_to_skip != 0;
 
 	setState();
+	unfreeze(); // audio might be restarted and still in preroll (freezed) state.
 
 	if (m_video)
 		return m_video->setFastForward(frames_to_skip);
@@ -1081,6 +1082,7 @@ RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 	m_is_sm = repeat != 0;
 
 	setState();
+	unfreeze(); // audio might be restarted and still in preroll (freezed) state.
 
 	if (m_video)
 		return m_video->setSlowMotion(repeat);

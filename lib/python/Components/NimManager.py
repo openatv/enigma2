@@ -1,3 +1,5 @@
+from Tools.HardwareInfo import HardwareInfo
+
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
 	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
 	ConfigSubDict, ConfigOnOff, ConfigDateTime
@@ -153,6 +155,7 @@ class SecConfigure:
 		for slot in nim_slots:
 			x = slot.slot
 			nim = slot.config
+			hw = HardwareInfo()
 			if slot.isCompatible("DVB-S"):
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
 				if nim.configMode.value in [ "loopthrough", "satposdepends", "nothing" ]:
@@ -185,7 +188,7 @@ class SecConfigure:
 								loValue = rotorParam.EAST
 							else:
 								loValue = rotorParam.WEST
-							inputPowerDelta=50
+							inputPowerDelta=hw.get_device_name() == "dm8000" and 15 or 50
 							useInputPower=False
 							turning_speed=0
 							if nim.powerMeasurement.value:
@@ -656,7 +659,7 @@ class NimManager:
 	
 	def canEqualTo(self, slotid):
 		type = self.getNimType(slotid)
-		if self.getNimConfig(slotid) == "DVB-S2":
+		if type == "DVB-S2":
 			type = "DVB-S"
 		nimList = self.getNimListOfType(type, slotid)
 		for nim in nimList[:]:
@@ -664,10 +667,10 @@ class NimManager:
 			if mode.configMode.value == "loopthrough" or mode.configMode.value == "satposdepends":
 				nimList.remove(nim)
 		return nimList
-	
+
 	def canDependOn(self, slotid):
 		type = self.getNimType(slotid)
-		if self.getNimConfig(slotid) == "DVB-S2":
+		if type == "DVB-S2":
 			type = "DVB-S"
 		nimList = self.getNimListOfType(type, slotid)
 		positionerList = []
@@ -680,6 +683,13 @@ class NimManager:
 					if lnb != 0:
 						nimHaveRotor = True
 						break
+				if not nimHaveRotor:
+					for sat in mode.advanced.sat.values():
+						lnb_num = int(sat.lnb.value)
+						diseqcmode = lnb_num and mode.advanced.lnb[lnb_num].diseqcMode.value or ""
+						if diseqcmode == "1_2":
+							nimHaveRotor = True
+							break
 			if nimHaveRotor:
 				alreadyConnected = False
 				for testnim in nimList:
@@ -842,6 +852,7 @@ def InitSecParams():
 
 def InitNimManager(nimmgr):
 	InitSecParams()
+	hw = HardwareInfo()
 
 	config.Nims = ConfigSubList()
 	for x in range(len(nimmgr.nim_slots)):
@@ -972,7 +983,7 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].latitude = ConfigFloat(default = [50,767], limits = [(0,359),(0,999)])
 				nim.advanced.lnb[x].latitudeOrientation = ConfigSelection(choices = [("north", _("North")), ("south", _("South"))], default = "north")
 				nim.advanced.lnb[x].powerMeasurement = ConfigYesNo(default=True)
-				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=50, limits=(0, 100))
+				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 				nim.advanced.lnb[x].turningSpeed = ConfigSelection(choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch"))], default = "fast")
 				btime = datetime(1970, 1, 1, 7, 0);
 				nim.advanced.lnb[x].fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 600)

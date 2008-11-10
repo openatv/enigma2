@@ -79,14 +79,14 @@ class Navigation:
 	def getCurrentlyPlayingServiceReference(self):
 		return self.currentlyPlayingServiceReference
 	
-	def recordService(self, ref):
+	def recordService(self, ref, simulate=False):
 		service = None
 		print "recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
-				ref = getBestPlayableServiceReference(ref, eServiceReference())
+				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
 			service = ref and self.pnav and self.pnav.recordService(ref)
 			if service is None:
 				print "record returned non-zero"

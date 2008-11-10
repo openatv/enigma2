@@ -713,12 +713,13 @@ RESULT eDVBResourceManager::connectChannelAdded(const Slot1<void,eDVBChannel*> &
 	return 0;
 }
 
-int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm)
+int eDVBResourceManager::canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm, bool simulate)
 {
+	eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 	ePtr<eDVBRegisteredFrontend> best;
 	int bestval = 0;
 
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(frontends.begin()); i != frontends.end(); ++i)
 		if (!i->m_inuse)
 		{
 			int c = i->m_frontend->isCompatibleWith(feparm);
@@ -755,10 +756,11 @@ int tuner_type_channel_default(ePtr<iDVBChannelList> &channellist, const eDVBCha
 	return 0;
 }
 
-int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore)
+int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID& ignore, bool simulate)
 {
+	std::list<active_channel> &active_channels = simulate ? m_active_simulate_channels : m_active_channels;
 	int ret=0;
-	if (m_cached_channel)
+	if (!simulate && m_cached_channel)
 	{
 		eDVBChannel *cache_chan = (eDVBChannel*)&(*m_cached_channel);
 		if(channelid==cache_chan->getChannelID())
@@ -767,7 +769,7 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 
 		/* first, check if a channel is already existing. */
 //	eDebug("allocate channel.. %04x:%04x", channelid.transport_stream_id.get(), channelid.original_network_id.get());
-	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i)
+	for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end(); ++i)
 	{
 //		eDebug("available channel.. %04x:%04x", i->m_channel_id.transport_stream_id.get(), i->m_channel_id.original_network_id.get());
 		if (i->m_channel_id == channelid)
@@ -780,8 +782,9 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 	int *decremented_cached_channel_fe_usecount=NULL,
 		*decremented_fe_usecount=NULL;
 
-	for (std::list<active_channel>::iterator i(m_active_channels.begin()); i != m_active_channels.end(); ++i)
+	for (std::list<active_channel>::iterator i(active_channels.begin()); i != active_channels.end(); ++i)
 	{
+		eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
 //		eDebug("available channel.. %04x:%04x", i->m_channel_id.transport_stream_id.get(), i->m_channel_id.original_network_id.get());
 		if (i->m_channel_id == ignore)
 		{
@@ -795,7 +798,7 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 				ePtr<iDVBFrontend> fe;
 				if (!i->m_channel->getFrontend(fe))
 				{
-					for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(m_frontend.begin()); ii != m_frontend.end(); ++ii)
+					for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(frontends.begin()); ii != frontends.end(); ++ii)
 					{
 						if ( &(*fe) == &(*ii->m_frontend) )
 						{
@@ -822,7 +825,8 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 				ePtr<iDVBFrontend> fe;
 				if (!channel->getFrontend(fe))
 				{
-					for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(m_frontend.begin()); ii != m_frontend.end(); ++ii)
+					eSmartPtrList<eDVBRegisteredFrontend> &frontends = simulate ? m_simulate_frontend : m_frontend;
+					for (eSmartPtrList<eDVBRegisteredFrontend>::iterator ii(frontends.begin()); ii != frontends.end(); ++ii)
 					{
 						if ( &(*fe) == &(*ii->m_frontend) )
 						{
@@ -852,7 +856,7 @@ int eDVBResourceManager::canAllocateChannel(const eDVBChannelID &channelid, cons
 		goto error;
 	}
 
-	ret = canAllocateFrontend(feparm);
+	ret = canAllocateFrontend(feparm, simulate);
 
 error:
 	if (decremented_fe_usecount)
