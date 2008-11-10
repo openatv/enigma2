@@ -282,9 +282,9 @@ PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ptr)
 
 /* needed for service groups */
 
-PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore);
+PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore, bool simulate=false);
 %{
-PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore)
+PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore, bool simulate=false)
 {
 	eStaticServiceDVBBouquetInformation info;
 	if (info.isPlayable(bouquet_ref, ignore))

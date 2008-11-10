@@ -166,8 +166,14 @@ void eDBoxLCD::update()
 		memset(raw, 0, 64*64);
 		for (y=0; y<64; y++)
 		{
+			int pix=0;
 			for (x=0; x<128 / 2; x++)
-				raw[y*64+x] = (_buffer[y*132 + x * 2 + 2] & 0xF0) |(_buffer[y*132 + x * 2 + 1 + 2] >> 4);
+			{
+				pix = (_buffer[y*132 + x * 2 + 2] & 0xF0) |(_buffer[y*132 + x * 2 + 1 + 2] >> 4);
+				if (inverted)
+					pix = 0xFF - pix;
+				raw[y*64+x] = pix;
+			}
 		}
 		if (lcdfd >= 0)
 			write(lcdfd, raw, 64*64);

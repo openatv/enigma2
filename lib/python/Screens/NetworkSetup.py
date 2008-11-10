@@ -50,8 +50,8 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		
-		self.wlan_errortext = _("No working wireless networkadapter found.\nPlease verify that you have attached a compatible WLAN USB Stick and your Network is configured correctly.")
-		self.lan_errortext = _("No working local networkadapter found.\nPlease verify that you have attached a network cable and your Network is configured correctly.")
+		self.wlan_errortext = _("No working wireless network adapter found.\nPlease verify that you have attached a compatible WLAN device and your network is configured correctly.")
+		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.restartLanRef = None
 		
@@ -67,18 +67,18 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.close, _("exit networkinterface list")),
+			"cancel": (self.close, _("exit network interface list")),
 			"ok": (self.okbuttonClick, _("select interface")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.close, _("exit networkinterface list")),	
+			"red": (self.close, _("exit network interface list")),	
 			})
 		
 		self["DefaultInterfaceAction"] = HelpableActionMap(self, "ColorActions",
 			{
-			"blue": (self.setDefaultInterface, [_("Set interface as default Interface"),_("* Only available if more then one interface is active.")] ),	
+			"blue": (self.setDefaultInterface, [_("Set interface as default Interface"),_("* Only available if more than one interface is active.")] ),	
 			})
 		
 		self.list = []
@@ -273,13 +273,18 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 	
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session, iface,essid=None, aplist=None):
+	def __init__(self, session, networkinfo, essid=None, aplist=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.session = session
-		self.iface = iface
-		self.essid = essid
-		self.aplist = aplist
+		if isinstance(networkinfo, (list, tuple)):
+			self.iface = networkinfo[0]
+			self.essid = networkinfo[1]
+			self.aplist = networkinfo[2]
+		else:
+			self.iface = networkinfo
+			self.essid = essid
+			self.aplist = aplist
 		self.extended = None
 		self.applyConfigRef = None
 		self.finished_cb = None
@@ -290,19 +295,19 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.cancel, _("exit networkadapter setup menu")),
+			"cancel": (self.cancel, _("exit network adapter setup menu")),
 			"ok": (self.ok, _("select menu entry")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.cancel, _("exit networkadapter configuration")),
+			"red": (self.cancel, _("exit network adapter configuration")),
 			"blue": (self.KeyBlue, _("open nameserver configuration")),
 			})
 
 		self["VirtualKB"] = HelpableActionMap(self, "ColorActions",
 			{
-			"green": (self.KeyGreen, [_("open virtual keyboard input help"),_("* Only available when entering hidden ssid or network key")] ),					
+			"green": (self.KeyGreen, [_("open virtual keyboard input help"),_("* Only available when entering hidden SSID or network key")] ),					
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -516,7 +521,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if self.iface == "wlan0" or self.iface == "ath0" :	
 			if self["config"].getCurrent() == self.hiddenSSID:
 				if config.plugins.wlan.essid.value == 'hidden...':
-					self.session.openWithCallback(self.VirtualKeyBoardSSIDCallback, VirtualKeyBoard, title = (_("Enter WLAN networkname/SSID:")), text = config.plugins.wlan.essid.value)
+					self.session.openWithCallback(self.VirtualKeyBoardSSIDCallback, VirtualKeyBoard, title = (_("Enter WLAN network name/SSID:")), text = config.plugins.wlan.essid.value)
 			if self["config"].getCurrent() == self.encryptionKey:
 				self.session.openWithCallback(self.VirtualKeyBoardKeyCallback, VirtualKeyBoard, title = (_("Enter WLAN passphrase/key:")), text = config.plugins.wlan.encryption.psk.value)
 	
@@ -600,7 +605,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				iNetwork.deactivateInterface(self.iface)
 			iNetwork.writeNetworkConfig()			
 			iNetwork.restartNetwork(self.applyConfigDataAvail)
-			self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait while activating your network configuration..."), type = MessageBox.TYPE_INFO, enable_input = False)
+			self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type = MessageBox.TYPE_INFO, enable_input = False)
 		else:
 			self.cancel()
 			
@@ -616,10 +621,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if data is True:
 			num_configured_if = len(iNetwork.getConfiguredAdapters())
 			if num_configured_if >= 2:
-				self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("Your network configuration has been activated.\nA second configured interface has been found.\n\nDo you want to disable the second networkinterface?"), default = True)
+				self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("Your network configuration has been activated.\nA second configured interface has been found.\n\nDo you want to disable the second network interface?"), default = True)
 			else:
 				if self.finished_cb:
-					self.session.openWithCallback(self.finished_cb, MessageBox, _("Your network configuration has been activated."), type = MessageBox.TYPE_INFO, timeout = 10)
+					self.session.openWithCallback(lambda x : self.finished_cb(), MessageBox, _("Your network configuration has been activated."), type = MessageBox.TYPE_INFO, timeout = 10)
 				else:
 					self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, _("Your network configuration has been activated."), type = MessageBox.TYPE_INFO, timeout = 10)
 	
@@ -695,7 +700,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.reboottext = _("Your Dreambox will restart after pressing OK on your remote control.")
-		self.errortext = _("No working wireless interface found.\n Please verify that you have attached a compatible WLAN device or enable you local network interface.")	
+		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")	
 		
 		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
 			{
@@ -1404,4 +1409,5 @@ class NetworkAdapterTest(Screen):
 		except ImportError:
 			pass
 		else:
-			iStatus.stopWlanConsole()						
+			iStatus.stopWlanConsole()
+			

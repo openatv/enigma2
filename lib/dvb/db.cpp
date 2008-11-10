@@ -151,7 +151,7 @@ RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &
 	return eEPGCache::getInstance()->lookupEventTime(ref, start_time, ptr);
 }
 
-int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
@@ -161,7 +161,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		eDVBChannelID chid, chid_ignore;
 		((const eServiceReferenceDVB&)ref).getChannelID(chid);
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
-		return res_mgr->canAllocateChannel(chid, chid_ignore);
+		return res_mgr->canAllocateChannel(chid, chid_ignore, simulate);
 	}
 	return 0;
 }
