@@ -403,8 +403,8 @@ class InfoBarEPG:
 		self.eventView = None
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventInfo": (self.openEventView, _("show EPG...")),
-				"showSingleServiceEPG": (self.openSingleServiceEPG, _("show single service EPG...")),
+				"showEventView": (self.openEventView, _("show EPG...")),
+				"showEventInfoPlugin": (self.showEventInfoPlugins, _("show single service EPG...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
 
@@ -488,6 +488,23 @@ class InfoBarEPG:
 	def openSingleServiceEPG(self):
 		ref=self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.open(EPGSelection, ref)
+
+	def showEventInfoPlugins(self):
+		list = []
+		for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO):
+			list.append((p.name, boundFunction(self.runPlugin, p)))
+		if len(list):
+			list.append((_("show single service EPG..."), self.openSingleServiceEPG))
+			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list)
+		else:
+			self.openSingleServiceEPG()
+			
+	def runPlugin(self, plugin):
+		plugin(session = self.session, servicelist = self.servicelist)
+		
+	def EventInfoPluginChosen(self, answer):
+		if answer is not None:
+			answer[1]()
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, None, eventid)
@@ -1258,7 +1275,6 @@ class InfoBarExtensions:
 from Tools.BoundFunction import boundFunction
 
 # depends on InfoBarExtensions
-from Components.PluginComponent import plugins
 
 class InfoBarPlugins:
 	def __init__(self):
