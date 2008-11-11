@@ -1,4 +1,4 @@
-import DVDProject, TitleList, TitleCutter, ProjectSettings, DVDToolbox, Process
+import DVDProject, TitleList, TitleCutter, TitleProperties, ProjectSettings, DVDToolbox, Process
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
@@ -41,7 +41,7 @@ class TitleList(Screen, HelpableScreen):
 		self["titleactions"] = HelpableActionMap(self, "DVDTitleList",
 			{
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
-				"editTitle": (self.editTitle, _("Edit chapters of current title"), _("Edit title")),
+				"titleProperties": (self.titleProperties, ("Properties of current title"), _("Title properties")),
 				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
 				"settings": (self.settings, _("Collection settings"), _("Settings")),
 				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn DVD")),
@@ -59,7 +59,7 @@ class TitleList(Screen, HelpableScreen):
 
 		self["key_red"] = StaticText(_("Remove title"))
 		self["key_green"] = StaticText(_("Add title"))
-		self["key_yellow"] = StaticText(_("Edit title"))
+		self["key_yellow"] = StaticText(_("Title properties"))
 		self["key_blue"] = StaticText(_("Settings"))
 
 		self["title_label"] = StaticText()
@@ -78,40 +78,31 @@ class TitleList(Screen, HelpableScreen):
 	def showMenu(self):
 		menu = []
 		if self.project.settings.output.getValue() == "dvd":
-			menu.append((_("Burn DVD"), "burn"));
+			menu.append((_("Burn DVD"), self.burnProject))
 		elif self.project.settings.output.getValue() == "iso":
-			menu.append((_("Create DVD-ISO"), "burn"));
-		menu.append((_("Preview menu"), "previewMenu"));
-		menu.append((_("DVD media toolbox"), "toolbox"));
-		menu.append((_("Collection settings"), "settings"));
-		menu.append((_("Add a new title"), "addtitle"));
-		menu.append((_("Remove title"), "removetitle"));
-		menu.append((_("Edit chapters of current title"), "edittitle"));
-		menu.append((_("Burn existing image to DVD"), "burniso"));
-		menu.append((_("Exit"), "exit"));
+			menu.append((_("Create DVD-ISO"), self.burnProject))
+		menu.append((_("Burn existing image to DVD"), self.selectImage))
+		menu.append((_("DVD media toolbox"), self.toolbox))
+		menu.append((_("Preview menu"), self.previewMenu))
+		menu.append((_("Collection settings"), self.settings))
+		menu.append(("Reset and renumerate title names", self.resetTitles))
+		menu.append((_("Edit chapters of current title"), self.editTitle))
+		menu.append(("Properties of current title", self.titleProperties))
+		menu.append((_("Add a new title"), self.addTitle))
+		menu.append((_("Remove title"), self.removeCurrentTitle))
+		menu.append((_("Exit"), self.leave))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
-		if choice is None:
-			return
-		if choice[1] == "removetitle":
-			self.removeCurrentTitle()
-		elif choice[1] == "addtitle":
-			self.addTitle()
-		elif choice[1] == "edittitle":
-			self.editTitle()
-		elif choice[1] == "toolbox":
-			self.toolbox()
-		elif choice[1] == "settings":
-			self.settings()
-		elif choice[1] == "previewMenu":
-			self.previewMenu()
-		elif choice[1] == "burn":
-			self.burnProject()
-		elif choice[1] == "burniso":
-			self.session.openWithCallback(self.burnISO, ProjectSettings.FileBrowser, "image", self.project.settings)
-		elif choice[1] == "exit":
-			self.leave()
+		if choice:
+			choice[1]()
+
+	def titleProperties(self):
+		if self.getCurrentTitle():
+			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
+
+	def selectImage(self):
+		self.session.openWithCallback(self.burnISO, ProjectSettings.FileBrowser, "image", self.project.settings)
 
 	def newProject(self):
 		self.project = DVDProject.DVDProject()
@@ -225,7 +216,7 @@ class TitleList(Screen, HelpableScreen):
 		res = [ ]
 		totalsize = 0
 		for title in self.project.titles:
-			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 10, 500, 50, 0, RT_HALIGN_LEFT, title.name)  ]
+			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 10, 500, 50, 0, RT_HALIGN_LEFT, title.properties.menutitle.getValue())  ]
 			res.append(a)
 			totalsize += title.estimatedDiskspace
 		self["titles"].list = res
@@ -263,12 +254,20 @@ class TitleList(Screen, HelpableScreen):
 
 	def titleEditDone(self, cutlist):
 		t = self.current_edit_title
+		t.initDVDmenuText(self.project,len(self.project.titles))
 		t.cuesheet = cutlist
 		t.produceFinalCuesheet()
-		if t.sVideoType != 0:
+		if t.VideoType != 0:
 			self.session.openWithCallback(self.DVDformatCB,MessageBox,text = _("The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"), type = MessageBox.TYPE_YESNO)
 		else:
 			self.updateTitleList()
+
+	def resetTitles(self):
+		count = 0
+		for title in self.project.titles:
+			count += 1
+			title.initDVDmenuText(self.project,count)
+		self.updateTitleList()
 
 	def DVDformatCB(self, answer):
 		t = self.current_edit_title

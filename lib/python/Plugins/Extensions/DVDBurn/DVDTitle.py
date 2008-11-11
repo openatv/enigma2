@@ -1,17 +1,35 @@
+from Components.config import config, ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigYesNo
+
+class ConfigFixedText(ConfigText):
+	def __init__(self, text, visible_width=60):
+		ConfigText.__init__(self, default = text, fixed_size = True, visible_width = visible_width)
+	def handleKey(self, key):
+		pass
+
+class ConfigActiveTrack(ConfigYesNo):
+	def __init__(self, default = True):
+		ConfigYesNo.__init__(self, default)
+
 class DVDTitle:
 	def __init__(self):
+		self.properties = ConfigSubsection()
+		self.properties.menutitle = ConfigText(fixed_size = False, visible_width = 80)
+		self.properties.menusubtitle = ConfigText(fixed_size = False, visible_width = 80)
+		self.DVBname = _("Title")
+		self.DVBdescr = _("Description")
+		self.DVBchannel = _("Channel")
+		self.properties.aspect = ConfigSelection(choices = [("4:3", "4:3"), ("16:9", "16:9")])
+		self.properties.widescreen = ConfigSelection(choices = [("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
+		self.properties.audiotracks = ConfigSubList()
 		self.cuesheet = [ ]
 		self.source = None
-		self.name = ""
-		self.descr = ""
 		self.filesize = 0
 		self.estimatedDiskspace = 0
 		self.inputfile = ""
 		self.cutlist = [ ]
 		self.chaptermarks = [ ]
-		self.audiotracks = [ ]
 		self.timeCreate = None
-		self.sVideoType = -1
+		self.VideoType = -1
 
 	def addService(self, service):
 		from os import path
@@ -21,18 +39,61 @@ class DVDTitle:
 		self.source = service
 		serviceHandler = eServiceCenter.getInstance()
 		info = serviceHandler.info(service)
-		self.descr = info and " " + info.getInfoString(service, iServiceInformation.sDescription) or ""
+		sDescr = info and " " + info.getInfoString(service, iServiceInformation.sDescription) or ""
+		self.DVBdescr = sDescr
 		sTimeCreate = info.getInfo(service, iServiceInformation.sTimeCreate)
 		if sTimeCreate > 1:
 			self.timeCreate = localtime(sTimeCreate)
 		serviceref = ServiceReference(info.getInfoString(service, iServiceInformation.sServiceref))
-		self.name = info and info.getName(service) or "Title" + t.descr
-		self.channel = serviceref.getServiceName()
+		name = info and info.getName(service) or "Title" + sDescr
+		self.DVBname = name
+		self.DVBchannel = serviceref.getServiceName()
 		self.inputfile = service.getPath()
 		self.filesize = path.getsize(self.inputfile)
 		self.estimatedDiskspace = self.filesize
 		self.length = info.getLength(service)
 
+	def initDVDmenuText(self, project, track):
+		self.properties.menutitle.setValue(self.formatDVDmenuText(project.settings.titleformat.getValue(), track))
+		self.properties.menusubtitle.setValue(self.formatDVDmenuText(project.settings.subtitleformat.getValue(), track))
+
+	def formatDVDmenuText(self, template, track):
+		properties = self.properties
+		template = template.replace("$i", str(track))
+		template = template.replace("$t", self.DVBname)
+		template = template.replace("$d", self.DVBdescr)
+		template = template.replace("$c", str(len(self.chaptermarks)+1))
+		template = template.replace("$f", self.inputfile)
+		template = template.replace("$C", self.DVBchannel)
+		
+		#if template.find("$A") >= 0:
+		from TitleProperties import languageChoices
+		audiolist = [ ]
+		for audiotrack in self.properties.audiotracks:
+			active = audiotrack.active.getValue()
+			if active:
+				trackstring = audiotrack.format.getValue()
+				language = audiotrack.language.getValue()
+				if languageChoices.langdict.has_key(language):
+					trackstring += ' (' + languageChoices.langdict[language] + ')'
+				audiolist.append(trackstring)
+		audiostring = ', '.join(audiolist)
+		template = template.replace("$A", audiostring)
+		
+		if template.find("$l") >= 0:
+			l = self.length
+			lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+			template = template.replace("$l", lengthstring)
+		if self.timeCreate:
+			template = template.replace("$Y", str(self.timeCreate[0]))
+			template = template.replace("$M", str(self.timeCreate[1]))
+			template = template.replace("$D", str(self.timeCreate[2]))
+			timestring = "%d:%02d" % (self.timeCreate[3], self.timeCreate[4])
+			template = template.replace("$T", timestring)
+		else:
+			template = template.replace("$Y", "").replace("$M", "").replace("$D", "").replace("$T", "")
+		return template
+	
 	def produceFinalCuesheet(self):
 		CUT_TYPE_IN = 0
 		CUT_TYPE_OUT = 1
@@ -84,3 +145,13 @@ class DVDTitle:
 			while chapterpts < self.length*90000:
 				chapterpts += 90000 * 60 * minutes
 				self.chaptermarks.append(chapterpts)
+
+	def getChapterMarks(self):
+		timestamps = []
+		for p in self.chaptermarks:
+			h = p / (90000 * 3600)
+			m = p % (90000 * 3600) / (90000 * 60)
+			s = p % (90000 * 60) / 90000
+			ms = (p % 90000) / 90
+			timestamps.append("%d:%02d:%02d.%03d" % (h, m, s, ms))
+		return timestamps

@@ -20,16 +20,31 @@ class TitleCutter(CutListEditor):
 		audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
 		if n > 0:
+			from DVDTitle import ConfigFixedText, ConfigActiveTrack
+			from TitleProperties import languageChoices
+			from Components.config import config, ConfigSubsection, ConfigSelection
 			for x in range(n):
 				i = audio.getTrackInfo(x)
 				language = i.getLanguage()
 				description = i.getDescription()
+				pid = str(i.getPID())
 				if description == "MPEG":
 					description = "MP2"
-				self.t.audiotracks.append((language, description))
-		print "[DVDBurn getAudioTracks]", self.t.audiotracks
-		self.t.sVideoType = service.info().getInfo(iServiceInformation.sVideoType)
-		print "[DVDBurn getVideoType]", self.t.sVideoType
+				if not languageChoices.langdict.has_key(language):
+					language="nolang"
+				print "[audiotrack] pid:", pid, "description:", description, "language:", language
+				self.t.properties.audiotracks.append(ConfigSubsection())
+				self.t.properties.audiotracks[-1].active = ConfigActiveTrack()
+				self.t.properties.audiotracks[-1].format = ConfigFixedText(description)
+				self.t.properties.audiotracks[-1].language = ConfigSelection(choices = languageChoices.choices, default=language)
+				self.t.properties.audiotracks[-1].pid = ConfigFixedText(pid)
+		sAspect = service.info().getInfo(iServiceInformation.sAspect)
+		if sAspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
+			aspect = "4:3"
+		else:
+			aspect = "16:9"
+		self.t.properties.aspect.setValue(aspect)
+		self.t.VideoType = service.info().getInfo(iServiceInformation.sVideoType)
 
 	def exit(self):
 		self.session.nav.stopService()
