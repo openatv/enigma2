@@ -505,9 +505,10 @@ class Network:
 
 	def deactivateInterfaceFinished(self,extra_args):
 		callback = extra_args
-		if len(self.deactivateInterfaceConsole.appContainers) == 0:
-			if callback is not None:
-				callback(True)
+		if self.deactivateInterfaceConsole:
+			if len(self.deactivateInterfaceConsole.appContainers) == 0:
+				if callback is not None:
+					callback(True)
 
 	def detectWlanModule(self):
 		self.wlanmodule = None
