@@ -188,12 +188,11 @@ class SecConfigure:
 								loValue = rotorParam.EAST
 							else:
 								loValue = rotorParam.WEST
-							inputPowerDelta=hw.get_device_name() == "dm8000" and 15 or 50
+							inputPowerDelta=nim.powerThreshold.value
 							useInputPower=False
 							turning_speed=0
 							if nim.powerMeasurement.value:
 								useInputPower=True
-								inputPowerDelta=nim.powerThreshold.value
 								turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
 								if turn_speed_dict.has_key(nim.turningSpeed.value):
 									turning_speed = turn_speed_dict[nim.turningSpeed.value]
@@ -908,7 +907,7 @@ def InitNimManager(nimmgr):
 			nim.latitude = ConfigFloat(default=[50,767], limits=[(0,359),(0,999)])
 			nim.latitudeOrientation = ConfigSelection(choices={"north": _("North"), "south": _("South")}, default="north")
 			nim.powerMeasurement = ConfigYesNo(default=True)
-			nim.powerThreshold = ConfigInteger(default=50, limits=(0, 100))
+			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch")) ], default = "fast")
 			btime = datetime(1970, 1, 1, 7, 0);
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
