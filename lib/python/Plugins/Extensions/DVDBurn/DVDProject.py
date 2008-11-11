@@ -1,5 +1,5 @@
 from Tools.Directories import fileExists
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence
 
 class ConfigColor(ConfigSequence):
 	def __init__(self):
