@@ -14,16 +14,21 @@ from datetime import datetime
 
 class NimSetup(Screen, ConfigListScreen):
 	def createSimpleSetup(self, list, mode):
+		nim = self.nimConfig
 		if mode == "single":
-			list.append(getConfigListEntry(_("Satellite"), self.nimConfig.diseqcA))
+			list.append(getConfigListEntry(_("Satellite"), nim.diseqcA))
+			list.append(getConfigListEntry(_("Send DiSEqC"), nim.simpleSingleSendDiSEqC))
 		else:
-			list.append(getConfigListEntry(_("Port A"), self.nimConfig.diseqcA))
+			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
 		if mode in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-			list.append(getConfigListEntry(_("Port B"), self.nimConfig.diseqcB))
+			list.append(getConfigListEntry(_("Port B"), nim.diseqcB))
 			if mode == "diseqc_a_b_c_d":
-				list.append(getConfigListEntry(_("Port C"), self.nimConfig.diseqcC))
-				list.append(getConfigListEntry(_("Port D"), self.nimConfig.diseqcD))
+				list.append(getConfigListEntry(_("Port C"), nim.diseqcC))
+				list.append(getConfigListEntry(_("Port D"), nim.diseqcD))
+			if mode != "toneburst_a_b":
+				list.append(getConfigListEntry(_("Set Voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone))
+				list.append(getConfigListEntry(_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange))
 
 	def createPositionerSetup(self, list):
 		nim = self.nimConfig
@@ -88,7 +93,7 @@ class NimSetup(Screen, ConfigListScreen):
 			self.list.append(self.configMode)
 
 			if self.nimConfig.configMode.value == "simple":			#simple setup
-				self.diseqcModeEntry = getConfigListEntry(_("DiSEqC Mode"), self.nimConfig.diseqcMode)
+				self.diseqcModeEntry = getConfigListEntry(_("Mode"), self.nimConfig.diseqcMode)
 				self.list.append(self.diseqcModeEntry)
 				if self.nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
 					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
@@ -407,12 +412,17 @@ class NimSelection(Screen):
 					text = _("nothing connected")
 				elif nimConfig.configMode.value == "simple":
 					if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-						text = _("Sats") + ": " + nimmanager.getSatName(int(nimConfig.diseqcA.value))
+						text = _("Sats") + ": " 
+						if nimConfig.diseqcA.orbital_position != 3601:
+							text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
 						if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-							text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
+							if nimConfig.diseqcB.orbital_position != 3601:
+								text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
 						if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
-							text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
-							text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
+							if nimConfig.diseqcC.orbital_position != 3601:
+								text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
+							if nimConfig.diseqcD.orbital_position != 3601:
+								text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
 					elif nimConfig.diseqcMode.value == "positioner":
 						text = _("Positioner") + ":"
 						if nimConfig.positionerMode.value == "usals":

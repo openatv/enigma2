@@ -39,8 +39,8 @@ class SecConfigure:
 		sec.addSatellite(orbpos)
 		self.configuredSatellites.add(orbpos)
 
-	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50):
-		if orbpos is None:
+	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC = False, setVoltageTone = True):
+		if orbpos is None or orbpos == 3601:
 			return
 		#simple defaults
 		sec.addLNB()
@@ -56,10 +56,16 @@ class SecConfigure:
 		sec.setLNBThreshold(11700000)
 		sec.setLNBIncreasedVoltage(lnbParam.OFF)
 		sec.setRepeats(0)
-		sec.setFastDiSEqC(0)
+		sec.setFastDiSEqC(fastDiSEqC)
 		sec.setSeqRepeat(0)
-		sec.setVoltageMode(switchParam.HV)
-		sec.setToneMode(switchParam.HILO)
+
+		if setVoltageTone:
+			sec.setVoltageMode(switchParam.HV)
+			sec.setToneMode(switchParam.HILO)
+		else:
+			sec.setVoltageMode(switchParam._14V)
+			sec.setToneMode(switchParam.OFF)
+
 		sec.setCommandOrder(0)
 
 		#user values
@@ -167,18 +173,25 @@ class SecConfigure:
 					elif nim.configMode.value == "simple":		#simple config
 						print "diseqcmode: ", nim.diseqcMode.value
 						if nim.diseqcMode.value == "single":			#single
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
+							if nim.simpleSingleSendDiSEqC.value:
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
+							else:
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
 						elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
 						elif nim.diseqcMode.value == "diseqc_a_b":		#DiSEqC A/B
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
+							fastDiSEqC = nim.simpleDiSEqCOnlyOnSatChange.value
+							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.value
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
 						elif nim.diseqcMode.value == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB)
+							fastDiSEqC = nim.simpleDiSEqCOnlyOnSatChange.value
+							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.value
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
 						elif nim.diseqcMode.value == "positioner":		#Positioner
 							if nim.latitudeOrientation.value == "north":
 								laValue = rotorParam.NORTH
@@ -893,10 +906,13 @@ def InitNimManager(nimmgr):
 				if id != x:
 					choices.append((str(id), nimmgr.getNimDescription(id)))
 			nim.connectedTo = ConfigSelection(choices = choices)
-			nim.diseqcA = getConfigSatlist(192, nimmgr.satList)
-			nim.diseqcB = getConfigSatlist(130, nimmgr.satList)
-			nim.diseqcC = ConfigSatlist(list = nimmgr.satList)
-			nim.diseqcD = ConfigSatlist(list = nimmgr.satList)
+			nim.simpleSingleSendDiSEqC = ConfigYesNo(default=False)
+			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(default=True)
+			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(default=False)
+			nim.diseqcA = getConfigSatlist(192, [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcB = getConfigSatlist(130, [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcC = ConfigSatlist(list = [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcD = ConfigSatlist(list = [(3601, _('nothing connected'), 1)] + nimmgr.satList)
 			nim.positionerMode = ConfigSelection(
 				choices = [
 					("usals", _("USALS")),
