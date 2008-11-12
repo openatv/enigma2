@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-10 00:07+0100\n"
-"PO-Revision-Date: 2008-11-08 07:56+0100\n"
+"POT-Creation-Date: 2008-11-12 17:42+0100\n"
+"PO-Revision-Date: 2008-11-12 12:27+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -92,10 +92,10 @@ msgid "(show optional DVD audio menu)"
 msgstr "(visa utökad DVD ljudmeny)"
 
 msgid "* Only available if more than one interface is active."
-msgstr ""
+msgstr "* Enbart tillgänglig om mer än ett kort är aktivt."
 
 msgid "* Only available when entering hidden SSID or network key"
-msgstr ""
+msgstr "* Enbart tillgänglig vid angiven dold SSID eller nätverksnyckel"
 
 msgid ".NFI Download failed:"
 msgstr ".NFI Nedladdning misslyckades:"
@@ -416,6 +416,8 @@ msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
 msgstr ""
+"Är du säker på att du vill aktivera den här nätverkskonfigurationen?\n"
+"\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -530,7 +532,7 @@ msgid "Burn DVD"
 msgstr "Skapa DVD"
 
 msgid "Burn existing image to DVD"
-msgstr ""
+msgstr "Bränn existerande image till DVD"
 
 msgid "Burn to DVD..."
 msgstr "Bränn till DVD..."
@@ -728,10 +730,10 @@ msgid "Content does not fit on DVD!"
 msgstr "Innehåll för stort för en DVD!"
 
 msgid "Continue in background"
-msgstr "Forsätta i bakgrund"
+msgstr "Fortsätta i bakgrund"
 
 msgid "Continue playing"
-msgstr "Forsätt spela"
+msgstr "Fortsätt spela"
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -746,7 +748,7 @@ msgid "Could not load Medium! No disc inserted?"
 msgstr "Kunde inte ladda media! Ingen disk istoppad?"
 
 msgid "Create DVD-ISO"
-msgstr ""
+msgstr "Skapa DVD-ISO"
 
 msgid "Create movie folder failed"
 msgstr "Det gick inte att skapa en filmkatalog"
@@ -867,9 +869,6 @@ msgstr "DiSEqC A/B"
 
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
-
-msgid "Mode"
-msgstr "Läge"
 
 msgid "DiSEqC mode"
 msgstr "DiSEqC läge"
@@ -1068,10 +1067,13 @@ msgid "East"
 msgstr "Öst"
 
 msgid "Edit"
-msgstr ""
+msgstr "Ändra"
 
 msgid "Edit DNS"
 msgstr "Ändra DNS"
+
+msgid "Edit Title"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr "Ändra kapitel i nuvarande titel"
@@ -1119,7 +1121,7 @@ msgid "Encryption Key"
 msgstr "Krypteringsnyckel"
 
 msgid "Encryption Keytype"
-msgstr ""
+msgstr "Krypterings Nyckelvariant"
 
 msgid "Encryption Type"
 msgstr "Krypteringstyp"
@@ -1163,10 +1165,10 @@ msgid "Enter Rewind at speed"
 msgstr "Ange hastighet för snabbspolning bakåt"
 
 msgid "Enter WLAN network name/SSID:"
-msgstr ""
+msgstr "Ange WLAN nätverks namn/SSID:"
 
 msgid "Enter WLAN passphrase/key:"
-msgstr ""
+msgstr "Ange WLAN passphrase/nyckel:"
 
 msgid "Enter main menu..."
 msgstr "Gå till huvudmeny..."
@@ -1261,10 +1263,10 @@ msgid "Finished"
 msgstr "Klart"
 
 msgid "Finished configuring your network"
-msgstr ""
+msgstr "Klar med konfigureringen av ditt nätverk"
 
 msgid "Finished restarting your network"
-msgstr ""
+msgstr "Klar med omstarten av ditt nätverk"
 
 msgid "Finnish"
 msgstr "Finska"
@@ -1372,7 +1374,7 @@ msgid "Harddisk standby after"
 msgstr "Viloläge för hårddisk efter"
 
 msgid "Hidden network SSID"
-msgstr ""
+msgstr "Dold nätverks SSID"
 
 msgid "Hierarchy Information"
 msgstr "Hierarkisk information "
@@ -1390,10 +1392,10 @@ msgid "IP Address"
 msgstr "IP adress"
 
 msgid "ISO file is too large for this filesystem!"
-msgstr ""
+msgstr "ISO fil är för stor för använt filsystem!"
 
 msgid "ISO path"
-msgstr ""
+msgstr "ISO sökväg"
 
 msgid "Icelandic"
 msgstr "Isländska"
@@ -1669,6 +1671,9 @@ msgstr "Meddelande"
 msgid "Mkfs failed"
 msgstr "Mkfs misslyckades"
 
+msgid "Mode"
+msgstr "Läge"
+
 msgid "Model: "
 msgstr "Modell: "
 
@@ -1873,18 +1878,27 @@ msgid ""
 "Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
+"Inget fungerandes lokalt nätverkskort funnet.\n"
+"Vänligen bekräfta att du har anslutit en nätverkskabel och att ditt nätverk "
+"är korrekt konfigurerat."
 
 msgid ""
 "No working wireless network adapter found.\n"
 "Please verify that you have attached a compatible WLAN device and your "
 "network is configured correctly."
 msgstr ""
+"Inget fungerandes trådlöst nätverkskort funnet.\n"
+"Vänligen bekräfta att du har anslutit ett kompatibelt WLAN enhet och att din "
+"nätverkskonfiguration är korrekt."
 
 msgid ""
 "No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
+"Inget fungerandes trådlöst nätverkskort funnet.\n"
+"Vänligen bekräfta att du har anslutit ett kompatibelt WLAN enhet eller "
+"aktiverat ditt lokala nätverkskort."
 
 msgid "No, but restart from begin"
 msgstr "Nej, men starta om från början"
@@ -2156,19 +2170,19 @@ msgstr ""
 "knappen."
 
 msgid "Please wait for activation of your network configuration..."
-msgstr ""
+msgstr "Vänligen vänta för aktivering av din nätverkskonfiguration..."
 
 msgid "Please wait for md5 signature verification..."
 msgstr "Vänligen vänta för md5 signatur verifiering..."
 
 msgid "Please wait while we configure your network..."
-msgstr ""
+msgstr "Vänligen vänta medans ditt nätverk konfigureras..."
 
 msgid "Please wait while your network is restarting..."
-msgstr ""
+msgstr "Vänligen vänta medans ditt nätverk startas om..."
 
 msgid "Please wait..."
-msgstr ""
+msgstr "Vänligen vänta..."
 
 msgid "Please wait... Loading list..."
 msgstr "Vänligen vänta... Laddar lista..."
@@ -2228,7 +2242,7 @@ msgid "Preparing... Please wait"
 msgstr "Förbereder... Vänligen vänta"
 
 msgid "Press OK on your remote control to continue."
-msgstr "Tryck OK på din fjärrkontroll för att forsätta."
+msgstr "Tryck OK på din fjärrkontroll för att fortsätta."
 
 msgid "Press OK to activate the settings."
 msgstr "Tryck OK för aktivera inställningarna."
@@ -2625,6 +2639,12 @@ msgstr "Välj videoläge"
 msgid "Selected source image"
 msgstr "Välj käll image"
 
+msgid "Send DiSEqC"
+msgstr ""
+
+msgid "Send DiSEqC only on satellite change"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Separera titlar med en huvudmeny"
 
@@ -2676,11 +2696,14 @@ msgstr "Kanalinfo"
 msgid "Services"
 msgstr "Kanaler"
 
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
 msgid "Set as default Interface"
 msgstr "Använd som standard Interface"
 
 msgid "Set interface as default Interface"
-msgstr ""
+msgstr "Använd kort som standard kort"
 
 msgid "Set limits"
 msgstr "Ange gräns"
@@ -2915,7 +2938,7 @@ msgstr ""
 "weegull@hotmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
-msgstr ""
+msgstr "TS fil för stor för ISO9660 level 1!"
 
 msgid "TV System"
 msgstr "TV System"
@@ -3067,7 +3090,7 @@ msgid ""
 msgstr ""
 "Det är inte säkert att det finns tillräckligt med utrymme på vald "
 "partition.\n"
-"Vill du verkligen forsätta?"
+"Vill du verkligen fortsätta?"
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
@@ -3084,7 +3107,7 @@ msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
-"Denna .NFI har giltig md5sum. Forsätta programmera denna image till "
+"Denna .NFI har giltig md5sum. Fortsätta programmera denna image till "
 "flashminnet?"
 
 msgid ""
@@ -3226,6 +3249,9 @@ msgstr "Tidszon"
 
 msgid "Title"
 msgstr "Titel"
+
+msgid "Title properties"
+msgstr ""
 
 msgid "Title:"
 msgstr "Title:"
@@ -3475,7 +3501,7 @@ msgid "View teletext..."
 msgstr "Visa teletext..."
 
 msgid "Virtual KeyBoard"
-msgstr ""
+msgstr "Virtuellt tangentbord"
 
 msgid "Voltage mode"
 msgstr "Spännings läge"
@@ -3493,7 +3519,7 @@ msgid "WPA"
 msgstr "WPA"
 
 msgid "WPA or WPA2"
-msgstr ""
+msgstr "WPA eller WPA2"
 
 msgid "WPA2"
 msgstr "WPA2"
@@ -3601,7 +3627,7 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid "Yes, and delete this movie"
-msgstr ""
+msgstr "Ja, och ta bort den här filmen."
 
 msgid "Yes, backup my settings!"
 msgstr "Ja, ta backup på inställningar!"
@@ -3762,7 +3788,7 @@ msgstr ""
 "Tryck OK för att starta."
 
 msgid "Your network configuration has been activated."
-msgstr ""
+msgstr "Din nätverkskonfiguration har aktiverats."
 
 msgid ""
 "Your network configuration has been activated.\n"
@@ -3770,6 +3796,10 @@ msgid ""
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
+"Din nätverkskonfiguration har aktiverats.\n"
+"Ett annat konfigurerat kort har hittats.\n"
+"\n"
+"Vill du akaktivera det andra nätverkskortet?"
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Gå till föregående kanal före motorinstallation?"
@@ -3802,10 +3832,10 @@ msgid "about to start"
 msgstr "håller på att starta"
 
 msgid "activate current configuration"
-msgstr ""
+msgstr "aktivera nuvarande konfiguration"
 
 msgid "add a nameserver entry"
-msgstr ""
+msgstr "lägga till en namnserver post"
 
 msgid "add alternatives"
 msgstr "lägg till alternativ"
@@ -4004,7 +4034,7 @@ msgid "end favourites edit"
 msgstr "avsluta favoriter editor"
 
 msgid "enigma2 and network"
-msgstr ""
+msgstr "enigma2 och nätverk"
 
 msgid "equal to"
 msgstr "lika med"
@@ -4022,19 +4052,19 @@ msgid "exit movielist"
 msgstr "avsluta filmlista"
 
 msgid "exit nameserver configuration"
-msgstr ""
+msgstr "avsluta namnserver konfiguration"
 
 msgid "exit network adapter configuration"
-msgstr ""
+msgstr "avsluta nätverkskorts konfiguration"
 
 msgid "exit network adapter setup menu"
-msgstr ""
+msgstr "avsluta nätverkskorts installationsmeny"
 
 msgid "exit network interface list"
-msgstr ""
+msgstr "avsluta nätverkskorts lista"
 
 msgid "exit networkadapter setup menu"
-msgstr ""
+msgstr "avsluta nätverkskort installationsmeny"
 
 msgid "failed"
 msgstr "misslyckades"
@@ -4180,16 +4210,16 @@ msgid "move PiP to main picture"
 msgstr "flytta BiB till huvudbild"
 
 msgid "move down to last entry"
-msgstr ""
+msgstr "flytta ner till sista posten"
 
 msgid "move down to next entry"
-msgstr ""
+msgstr "flytta ner till nästa post"
 
 msgid "move up to first entry"
-msgstr ""
+msgstr "flytta upp till första posten"
 
 msgid "move up to previous entry"
-msgstr ""
+msgstr "flytta upp till föregående post"
 
 msgid "movie list"
 msgstr "filmlista"
@@ -4252,7 +4282,7 @@ msgid "once"
 msgstr "en gång"
 
 msgid "open nameserver configuration"
-msgstr ""
+msgstr "öppna namnserver konfiguration"
 
 msgid "open servicelist"
 msgstr "öppna kanallista"
@@ -4264,7 +4294,7 @@ msgid "open servicelist(up)"
 msgstr "öppna kanallista(upp)"
 
 msgid "open virtual keyboard input help"
-msgstr ""
+msgstr "öppna virtuellt tangentbordsinmatningshjälp"
 
 msgid "pass"
 msgstr "klart"
@@ -4303,7 +4333,7 @@ msgid "recording..."
 msgstr "spelar in..."
 
 msgid "remove a nameserver entry"
-msgstr ""
+msgstr "ta bort en namnserver post"
 
 msgid "remove after this position"
 msgstr "ta bort efter denna position"
@@ -4382,10 +4412,10 @@ msgid "select image from server"
 msgstr "välj image från server"
 
 msgid "select interface"
-msgstr ""
+msgstr "välj kort"
 
 msgid "select menu entry"
-msgstr ""
+msgstr "välj meny post"
 
 msgid "select movie"
 msgstr "välj film"
@@ -4665,6 +4695,9 @@ msgstr "zapped"
 
 #~ msgid "Device Setup..."
 #~ msgstr "Nätverksinstallation..."
+
+#~ msgid "DiSEqC Mode"
+#~ msgstr "DiSEqC Läge"
 
 #~ msgid ""
 #~ "Do you really want to REMOVE\n"
