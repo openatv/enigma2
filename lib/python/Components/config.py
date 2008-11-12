@@ -782,12 +782,12 @@ class ConfigText(ConfigElement, NumericalTextInput):
 
 	def getValue(self):
 		return self.text.encode("utf-8")
-		
+
 	def setValue(self, val):
 		try:
 			self.text = val.decode("utf-8")
 		except UnicodeDecodeError:
-			self.text = val
+			self.text = val.decode("utf-8", "ignore")
 			print "Broken UTF8!"
 
 	value = property(getValue, setValue)
