@@ -25,9 +25,9 @@ class TitleProperties(Screen,ConfigListScreen):
 		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget name="config" position="10,50" size="540,276" scrollbarMode="showOnDemand" />
-		    <widget source="serviceinfo_headline" render="Label" position="20,350" size="520,20" font="Regular;20" />
-		    <widget source="serviceinfo" render="Label" position="20,374" size="520,66" font="Regular;16" />
+		    <widget name="config" position="10,50" size="540,300" scrollbarMode="showOnDemand" />
+		    <widget source="serviceinfo_headline" render="Label" position="20,360" size="520,20" font="Regular;20" />
+		    <widget source="serviceinfo" render="Label" position="20,382" size="520,66" font="Regular;16" />
 		</screen>"""
 
 	def __init__(self, session, parent, project, title_idx):
@@ -46,6 +46,11 @@ class TitleProperties(Screen,ConfigListScreen):
 		self.properties = project.titles[title_idx].properties
 		ConfigListScreen.__init__(self, [])
 		self.properties.crop = DVDTitle.ConfigFixedText("crop")
+		self.properties.autochapter.addNotifier(self.initConfigList)
+		self.properties.aspect.addNotifier(self.initConfigList)
+		for audiotrack in self.properties.audiotracks:
+			audiotrack.active.addNotifier(self.initConfigList)
+		
 		self.initConfigList()
 			
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -58,7 +63,7 @@ class TitleProperties(Screen,ConfigListScreen):
 		    "ok": self.ok,
 		}, -2)
 
-	def initConfigList(self):
+	def initConfigList(self, element=None):
 		self.properties.position = ConfigInteger(default = self.title_idx+1, limits = (1, len(self.project.titles)))
 		title = self.project.titles[self.title_idx]
 		self.list = []
@@ -78,17 +83,19 @@ class TitleProperties(Screen,ConfigListScreen):
 		else:
 			self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.crop))
 		
-		self["config"].setList(self.list)
-		
 		infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
 		self["info"] = StaticText(infotext)
 		
-		chapters_count = len(title.chaptermarks)
+		if len(title.chaptermarks) == 0:
+			self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.properties.autochapter))
 		infotext = _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel
-		if chapters_count:
+		chaptermarks = title.getChapterMarks()
+		chapters_count = len(chaptermarks)
+		if chapters_count >= 1:
 			infotext += ', ' + str(chapters_count+1) + ' ' + _("chapters") + ' ('
-			infotext += ' / '.join(title.getChapterMarks()) + ')'
+			infotext += ' / '.join(chaptermarks) + ')'
 		self["serviceinfo"].setText(infotext)
+		self["config"].setList(self.list)
 
 	def editTitle(self):
 		self.parent.editTitle()
@@ -96,16 +103,6 @@ class TitleProperties(Screen,ConfigListScreen):
 
 	def changedConfigList(self):
 		self.initConfigList()
-	
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		if type(self["config"].getCurrent()[1]) in [DVDTitle.ConfigActiveTrack, ConfigSelection]:
-			self.initConfigList()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		if type(self["config"].getCurrent()[1]) in [DVDTitle.ConfigActiveTrack, ConfigSelection]:
-			self.initConfigList()
 
 	def exit(self):
 		self.applySettings()

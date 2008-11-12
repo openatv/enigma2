@@ -188,10 +188,6 @@ class TitleList(Screen, HelpableScreen):
 			job_manager.in_background = False
 			self.session.openWithCallback(self.JobViewCB, JobView, job)
 		else:
-			autochapter = self.project.settings.autochapter.getValue()
-			if autochapter > 0:
-				for title in self.project.titles:
-					title.produceAutoChapter(autochapter)
 			job = Process.DVDJob(self.project)
 			job_manager.AddJob(job)
 			job_manager.in_background = False

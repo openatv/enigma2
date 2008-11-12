@@ -6,10 +6,6 @@ class ConfigFixedText(ConfigText):
 	def handleKey(self, key):
 		pass
 
-class ConfigActiveTrack(ConfigYesNo):
-	def __init__(self, default = True):
-		ConfigYesNo.__init__(self, default)
-
 class DVDTitle:
 	def __init__(self):
 		self.properties = ConfigSubsection()
@@ -20,6 +16,7 @@ class DVDTitle:
 		self.DVBchannel = _("Channel")
 		self.properties.aspect = ConfigSelection(choices = [("4:3", "4:3"), ("16:9", "16:9")])
 		self.properties.widescreen = ConfigSelection(choices = [("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
+		self.properties.autochapter = ConfigInteger(default = 0, limits = (0, 60))
 		self.properties.audiotracks = ConfigSubList()
 		self.cuesheet = [ ]
 		self.source = None
@@ -139,19 +136,22 @@ class DVDTitle:
 			self.estimatedDiskspace = usedsize
 			self.length = accumulated_in / 90000
 
-	def produceAutoChapter(self, minutes):
-		if len(self.chaptermarks) < 1:
-			chapterpts = self.cutlist[0]
-			while chapterpts < self.length*90000:
-				chapterpts += 90000 * 60 * minutes
-				self.chaptermarks.append(chapterpts)
-
 	def getChapterMarks(self):
-		timestamps = []
-		for p in self.chaptermarks:
+		timestamps = [ ]
+		chapters = [ ]
+		minutes = self.properties.autochapter.getValue()
+		if len(self.chaptermarks) < 1 and minutes > 0:
+			chapterpts = 0
+			while chapterpts < (self.length-60*minutes)*90000:
+				chapterpts += 90000 * 60 * minutes
+				chapters.append(chapterpts)
+		else:
+			chapters = self.chaptermarks
+		for p in chapters:
 			h = p / (90000 * 3600)
 			m = p % (90000 * 3600) / (90000 * 60)
 			s = p % (90000 * 60) / 90000
 			ms = (p % 90000) / 90
 			timestamps.append("%d:%02d:%02d.%03d" % (h, m, s, ms))
+		print "timestamps:", timestamps
 		return timestamps

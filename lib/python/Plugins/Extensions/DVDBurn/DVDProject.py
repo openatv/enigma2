@@ -32,6 +32,7 @@ class DVDProject:
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size = False, visible_width = 40)
 		self.settings.authormode = ConfigSelection(choices = [("menu_linked", _("Linked titles with a DVD menu")), ("just_linked", _("Direct playback of linked titles without menu")), ("menu_seperate", _("Seperate titles with a main menu")), ("data_ts", _("Dreambox format data DVD (HDTV compatible)"))])
+		self.settings.titlesetmode = ConfigSelection(choices = [("single", ("Simple titleset (compatibility for legacy players)")), ("multi", ("Complex (allows mixing audio tracks and aspects)"))], default="multi")
 		self.settings.output = ConfigSelection(choices = [("iso", _("Create DVD-ISO")), ("dvd", _("Burn DVD"))])
 		self.settings.isopath = ConfigText(fixed_size = False, visible_width = 40)
 		self.settings.dataformat = ConfigSelection(choices = [("iso9660_1", ("ISO9660 Level 1")), ("iso9660_4", ("ISO9660 version 2")), ("udf", ("UDF"))])			
@@ -46,7 +47,6 @@ class DVDProject:
 		self.settings.font_size = ConfigPixelvals()
 		self.settings.space = ConfigPixelvals()
 		self.settings.vmgm = ConfigFilename()
-		self.settings.autochapter = ConfigInteger(default = 0, limits = (0, 99))
 		self.filekeys = ["vmgm", "menubg", "menuaudio", "font_face", "isopath"]
 
 	def addService(self, service):
