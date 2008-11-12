@@ -599,7 +599,7 @@ class Menus:
 			menuoutputfilename = job.workspace+"/dvdmenu"+num+".mpg"
 			spumuxTask(job, spuxmlfilename, menubgmpgfilename, menuoutputfilename)
 		
-def CreateAuthoringXML_simple(job):
+def CreateAuthoringXML_singleset(job):
 	nr_titles = len(job.project.titles)
 	mode = job.project.settings.authormode.getValue()
 	authorxml = []
@@ -771,7 +771,10 @@ class DVDJob(Job):
 		CheckDiskspaceTask(self)
 		if self.project.settings.authormode.getValue().startswith("menu") or self.menupreview:
 			Menus(self)
-		CreateAuthoringXML_multiset(self)
+		if self.project.settings.titlesetmode.getValue() == "multi":
+			CreateAuthoringXML_multiset(self)
+		else:
+			CreateAuthoringXML_singleset(self)
 
 		DVDAuthorTask(self)
 		

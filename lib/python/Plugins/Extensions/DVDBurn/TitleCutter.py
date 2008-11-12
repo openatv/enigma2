@@ -20,9 +20,10 @@ class TitleCutter(CutListEditor):
 		audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
 		if n > 0:
-			from DVDTitle import ConfigFixedText, ConfigActiveTrack
+			from DVDTitle import ConfigFixedText
 			from TitleProperties import languageChoices
-			from Components.config import config, ConfigSubsection, ConfigSelection
+			from Components.config import config, ConfigSubsection, ConfigSubList, ConfigSelection, ConfigYesNo
+			self.t.properties.audiotracks = ConfigSubList()
 			for x in range(n):
 				i = audio.getTrackInfo(x)
 				language = i.getLanguage()
@@ -34,7 +35,7 @@ class TitleCutter(CutListEditor):
 					language="nolang"
 				print "[audiotrack] pid:", pid, "description:", description, "language:", language
 				self.t.properties.audiotracks.append(ConfigSubsection())
-				self.t.properties.audiotracks[-1].active = ConfigActiveTrack()
+				self.t.properties.audiotracks[-1].active = ConfigYesNo(default = True)
 				self.t.properties.audiotracks[-1].format = ConfigFixedText(description)
 				self.t.properties.audiotracks[-1].language = ConfigSelection(choices = languageChoices.choices, default=language)
 				self.t.properties.audiotracks[-1].pid = ConfigFixedText(pid)
