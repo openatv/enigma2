@@ -407,12 +407,17 @@ class NimSelection(Screen):
 					text = _("nothing connected")
 				elif nimConfig.configMode.value == "simple":
 					if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-						text = _("Sats") + ": " + nimmanager.getSatName(int(nimConfig.diseqcA.value))
+						text = _("Sats") + ": " 
+						if nimConfig.diseqcA.orbital_position != 3601:
+							text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
 						if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-							text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
+							if nimConfig.diseqcB.orbital_position != 3601:
+								text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
 						if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
-							text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
-							text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
+							if nimConfig.diseqcC.orbital_position != 3601:
+								text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
+							if nimConfig.diseqcD.orbital_position != 3601:
+								text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
 					elif nimConfig.diseqcMode.value == "positioner":
 						text = _("Positioner") + ":"
 						if nimConfig.positionerMode.value == "usals":

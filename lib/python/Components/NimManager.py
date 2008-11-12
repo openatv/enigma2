@@ -40,7 +40,7 @@ class SecConfigure:
 		self.configuredSatellites.add(orbpos)
 
 	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50):
-		if orbpos is None:
+		if orbpos is None or orbpos == 3601:
 			return
 		#simple defaults
 		sec.addLNB()
@@ -893,10 +893,10 @@ def InitNimManager(nimmgr):
 				if id != x:
 					choices.append((str(id), nimmgr.getNimDescription(id)))
 			nim.connectedTo = ConfigSelection(choices = choices)
-			nim.diseqcA = getConfigSatlist(192, nimmgr.satList)
-			nim.diseqcB = getConfigSatlist(130, nimmgr.satList)
-			nim.diseqcC = ConfigSatlist(list = nimmgr.satList)
-			nim.diseqcD = ConfigSatlist(list = nimmgr.satList)
+			nim.diseqcA = getConfigSatlist(192, [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcB = getConfigSatlist(130, [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcC = ConfigSatlist(list = [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcD = ConfigSatlist(list = [(3601, _('nothing connected'), 1)] + nimmgr.satList)
 			nim.positionerMode = ConfigSelection(
 				choices = [
 					("usals", _("USALS")),
