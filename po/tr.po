@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-10 22:36+0100\n"
+"POT-Creation-Date: 2008-11-12 17:42+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Zülfikar Veyisoğlu <zveyis@gmail.com>\n"
 "Language-Team: \n"
@@ -256,7 +256,8 @@ msgstr ""
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
-msgstr "Kayıt devam ediyor. Uydu Arayıcıyı başlatmadan önce kaydı durdurun."
+msgstr ""
+"Kayıt devam ediyor. Lütfen Uydu Arayıcıyı başlatmadan önce kaydı durdurun."
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -440,7 +441,7 @@ msgid "Audio Options..."
 msgstr "Ses Ayarları..."
 
 msgid "Authoring mode"
-msgstr ""
+msgstr "Yayınlama kipi"
 
 msgid "Auto"
 msgstr "Otomatik"
@@ -649,16 +650,16 @@ msgid "Close"
 msgstr "Kapat"
 
 msgid "Code rate high"
-msgstr ""
+msgstr "Yüksek kod oranı"
 
 msgid "Code rate low"
-msgstr ""
+msgstr "Düşük kod oranı"
 
 msgid "Coderate HP"
-msgstr ""
+msgstr "Yüksek güç (HP) kod oranı"
 
 msgid "Coderate LP"
-msgstr ""
+msgstr "Düşük güç (LP) kod oranı"
 
 msgid "Collection name"
 msgstr "Kolleksiyon adı"
@@ -740,7 +741,7 @@ msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "Dreambox .NFI imaj sunucusuna bağlanamıyor:"
 
 msgid "Could not load Medium! No disc inserted?"
-msgstr "DVD medyası yüklenemedi. DVD medyası takılı değil mi?"
+msgstr "DVD medyası yüklenemedi. DVD diski takılı değil mi?"
 
 msgid "Create DVD-ISO"
 msgstr "DVD-ISO oluştur"
@@ -835,7 +836,7 @@ msgid "Delete entry"
 msgstr "Seçimi sil"
 
 msgid "Delete failed!"
-msgstr "Silmeişlemi başarısız!"
+msgstr "Silme işlemi başarısız!"
 
 #, python-format
 msgid ""
@@ -929,7 +930,7 @@ msgid ""
 "This could take lots of time!"
 msgstr ""
 "Dosya sistemini kontrol etmek istediğinizden emin misiniz?\n"
-"Bu işlem çok uzun sürecektir!"
+"Bu işlem çok uzun sürebilir!"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -1068,6 +1069,9 @@ msgstr "Düzenle"
 
 msgid "Edit DNS"
 msgstr "DNS Düzenle"
+
+msgid "Edit Title"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr "Geçerli başlık için bölümleri düzenle"
@@ -1212,7 +1216,7 @@ msgid "Expert"
 msgstr "Uzman"
 
 msgid "Extended Networksetup Plugin..."
-msgstr "Geliştirilmiş Ağ Kurulum Eklentisi..."
+msgstr "Gelişmiş Ağ Kurulum Eklentisi..."
 
 msgid "Extended Setup..."
 msgstr "Gelişmiş Kurulum..."
@@ -1239,7 +1243,7 @@ msgid "Fast Forward speeds"
 msgstr "Hızlı sardırma (FF) hızları"
 
 msgid "Fast epoch"
-msgstr ""
+msgstr "Hızlı tur"
 
 msgid "Favourites"
 msgstr "Favoriler"
@@ -1287,7 +1291,7 @@ msgid "Format"
 msgstr "Biçimlendir"
 
 msgid "Frame repeat count during non-smooth winding"
-msgstr ""
+msgstr "Adım adım ilerletmede çerçeve tekrar sayısı "
 
 msgid "French"
 msgstr "Fransızca"
@@ -1355,10 +1359,10 @@ msgid "Greek"
 msgstr "Greek"
 
 msgid "Guard Interval"
-msgstr ""
+msgstr "Koruma Süresi"
 
 msgid "Guard interval mode"
-msgstr ""
+msgstr "Koruma süre kipi"
 
 msgid "Harddisk"
 msgstr "Sabitdisk"
@@ -1588,7 +1592,7 @@ msgid "Link:"
 msgstr "Link:"
 
 msgid "Linked titles with a DVD menu"
-msgstr ""
+msgstr "DVD Menüsü ile bağlı başlıklar"
 
 msgid "List of Storage Devices"
 msgstr "Depolama Aygıtları"
@@ -1612,7 +1616,7 @@ msgid "Lock:"
 msgstr "Kilitli:"
 
 msgid "Long Keypress"
-msgstr ""
+msgstr "Tuşa uzun basıldığında"
 
 msgid "Longitude"
 msgstr "Boylam"
@@ -1636,7 +1640,7 @@ msgid "Make this mark an 'out' point"
 msgstr "'dışında' noktası olarak işaretle"
 
 msgid "Make this mark just a mark"
-msgstr ""
+msgstr "Bu işareti sadece bir işaret olarak kullan"
 
 msgid "Manual Scan"
 msgstr "Elle arama"
@@ -2235,7 +2239,7 @@ msgid "Positioner storage"
 msgstr "Pozisyoner konumunu hafızaya al"
 
 msgid "Power threshold in mA"
-msgstr ""
+msgstr "Güç eşiği (mA)"
 
 msgid "Predefined transponder"
 msgstr "Önceden tanımlanmış transponder"
@@ -2644,8 +2648,14 @@ msgstr "Görüntü modunu seç"
 msgid "Selected source image"
 msgstr "Seçilen kaynak imaj"
 
+msgid "Send DiSEqC"
+msgstr "DiSEqC komutu gönder"
+
+msgid "Send DiSEqC only on satellite change"
+msgstr "DiSEqC komutunu yalnızca uydu değiştiğinde gönder"
+
 msgid "Seperate titles with a main menu"
-msgstr ""
+msgstr "Ana menü ile başlıkları ayır"
 
 msgid "Sequence repeat"
 msgstr "Sıralama tekrarı"
@@ -2694,6 +2704,9 @@ msgstr "Kanal bilgisi"
 
 msgid "Services"
 msgstr "Kanallar"
+
+msgid "Set Voltage and 22KHz"
+msgstr "Voltaj ve 22KHz ayarla"
 
 msgid "Set as default Interface"
 msgstr "Varsayılan arayüz olarak ayarla"
@@ -2867,7 +2880,7 @@ msgid "Stop"
 msgstr "Durdur"
 
 msgid "Stop Timeshift?"
-msgstr "Timeshift i durdur?"
+msgstr "Zaman bükmeyi (timeshift) durdur?"
 
 msgid "Stop current event and disable coming events"
 msgstr "Geçerli ve gelecek zamanlanmış eylemleri devre dışı bırak"
@@ -2906,7 +2919,7 @@ msgid "Sunday"
 msgstr "Pazar"
 
 msgid "Swap Services"
-msgstr ""
+msgstr "Ana <-> PiP yer değiştir"
 
 msgid "Swedish"
 msgstr "İsveççe"
@@ -3234,16 +3247,19 @@ msgid "Timer status:"
 msgstr "Zamanlayıcı durumu:"
 
 msgid "Timeshift"
-msgstr "Timeshift"
+msgstr "Zamanı bük (Timeshift)"
 
 msgid "Timeshift not possible!"
-msgstr "Timeshift kullanılamaz!"
+msgstr "Zaman bükme kullanılamaz!"
 
 msgid "Timezone"
 msgstr "Zaman dilimi"
 
 msgid "Title"
 msgstr "Başlık"
+
+msgid "Title properties"
+msgstr ""
 
 msgid "Title:"
 msgstr "Başlık:"
@@ -3396,7 +3412,7 @@ msgid "Use Interface"
 msgstr "Arayüzü Kullan"
 
 msgid "Use Power Measurement"
-msgstr "Enerji Ölçümünü Kullan"
+msgstr "Güç Ölçümünü Kullan"
 
 msgid "Use a gateway"
 msgstr "Ağ geçidi kullan"
@@ -3414,10 +3430,10 @@ msgstr "Ağ geçidi kullan"
 #.       better suited for translation to other languages may be "stepwise
 #.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
-msgstr ""
+msgstr "Adım adım ilerletmeyi bu hızlarda kullan"
 
 msgid "Use power measurement"
-msgstr "Eneji kullanımını ölç"
+msgstr "Güç kullanımını ölç"
 
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr "Ağınızı yapılandırmak için Ağ sihirbazını kullanın\n"
@@ -3907,7 +3923,7 @@ msgid "blacklist"
 msgstr "kara liste"
 
 msgid "by Exif"
-msgstr ""
+msgstr "Exif'ten al"
 
 msgid "change recording (duration)"
 msgstr "kaydı değiştir (süre)"
@@ -4063,7 +4079,7 @@ msgid "exit network interface list"
 msgstr "ağ arayüzleri listesinden çık"
 
 msgid "exit networkadapter setup menu"
-msgstr ""
+msgstr "ağ donanımı kurulum menüsünden çık"
 
 msgid "failed"
 msgstr "başarısız"
@@ -4182,7 +4198,7 @@ msgid "locked"
 msgstr "kilitli"
 
 msgid "loopthrough to"
-msgstr ""
+msgstr "üzerinden bağla"
 
 msgid "manual"
 msgstr "elle"
@@ -4224,7 +4240,7 @@ msgid "movie list"
 msgstr "film listesi"
 
 msgid "multinorm"
-msgstr ""
+msgstr "PAL/NTSC"
 
 msgid "never"
 msgstr "hiç"
@@ -4248,10 +4264,10 @@ msgid "no module found"
 msgstr "modül bulunamadı"
 
 msgid "no standby"
-msgstr ""
+msgstr "uyku moduna geçilmesin"
 
 msgid "no timeout"
-msgstr ""
+msgstr "zaman aşımı kullanılmasın"
 
 msgid "none"
 msgstr "yok"
@@ -4263,10 +4279,10 @@ msgid "nothing connected"
 msgstr "bağlı değil"
 
 msgid "of a DUAL layer medium used."
-msgstr ""
+msgstr "ÇİFT katmanlı medya kullanıldığında."
 
 msgid "of a SINGLE layer medium used."
-msgstr ""
+msgstr "TEK katmanlı medya kullanıldığında"
 
 msgid "off"
 msgstr "kapalı"
@@ -4501,7 +4517,7 @@ msgid "start cut here"
 msgstr "buradan kes"
 
 msgid "start timeshift"
-msgstr "timeshift'i başlat"
+msgstr "zaman bükmeyi başlat"
 
 msgid "stereo"
 msgstr "stereo"
@@ -4516,7 +4532,7 @@ msgid "stop recording"
 msgstr "kaydır durdur"
 
 msgid "stop timeshift"
-msgstr "timeshift'i durdur"
+msgstr "zaman bükmeyi durdur"
 
 msgid "swap PiP and main picture"
 msgstr "PiP ile ana ekranın yerlerini değiştir"
@@ -4673,6 +4689,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "DVD up key"
 #~ msgstr "DVD yukarı"
+
+#~ msgid "DiSEqC Mode"
+#~ msgstr "DiSEqC Modu"
 
 #~ msgid ""
 #~ "Do you really want to REMOVE\n"
