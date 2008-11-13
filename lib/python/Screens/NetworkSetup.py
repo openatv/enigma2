@@ -219,6 +219,10 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			"yellow": (self.remove, _("remove a nameserver entry")),
 			})
 		
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.ok,
+		}, -2)		
 		
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)

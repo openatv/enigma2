@@ -58,14 +58,6 @@ class SecConfigure:
 		sec.setRepeats(0)
 		sec.setFastDiSEqC(fastDiSEqC)
 		sec.setSeqRepeat(0)
-
-		if setVoltageTone:
-			sec.setVoltageMode(switchParam.HV)
-			sec.setToneMode(switchParam.HILO)
-		else:
-			sec.setVoltageMode(switchParam._14V)
-			sec.setToneMode(switchParam.OFF)
-
 		sec.setCommandOrder(0)
 
 		#user values
@@ -77,6 +69,12 @@ class SecConfigure:
 
 		if 0 <= diseqcmode < 3:
 			self.addSatellite(sec, orbpos)
+			if setVoltageTone:
+				sec.setVoltageMode(switchParam.HV)
+				sec.setToneMode(switchParam.HILO)
+			else:
+				sec.setVoltageMode(switchParam._14V)
+				sec.setToneMode(switchParam.OFF)
 		elif (diseqcmode == 3): # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
 				for slot in self.satposdepends[slotid]:
@@ -747,12 +745,16 @@ class NimManager:
 			if configMode == "simple":
 				dm = nim.diseqcMode.value
 				if dm in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-					list.append(self.satList[nim.diseqcA.index])
+					if nim.diseqcA.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcA.index-1])
 				if dm in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-					list.append(self.satList[nim.diseqcB.index])
+					if nim.diseqcB.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcB.index-1])
 				if dm == "diseqc_a_b_c_d":
-					list.append(self.satList[nim.diseqcC.index])
-					list.append(self.satList[nim.diseqcD.index])
+					if nim.diseqcC.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcC.index-1])
+					if nim.diseqcD.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcD.index-1])
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
