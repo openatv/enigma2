@@ -267,6 +267,8 @@ public:
 		MOTOR_COMMAND_RETRIES, // max transmit tries of rotor command when the rotor dont start turning (with power measurement)
 		MOTOR_RUNNING_TIMEOUT, // max motor running time before timeout
 		DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_SWITCH_CMDS, // delay after change voltage before transmit toneburst/diseqc
+		DELAY_AFTER_DISEQC_RESET_CMD,
+		DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD,
 		MAX_PARAMS
 	};
 private:
