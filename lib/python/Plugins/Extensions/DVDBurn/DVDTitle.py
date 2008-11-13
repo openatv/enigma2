@@ -136,7 +136,7 @@ class DVDTitle:
 			self.estimatedDiskspace = usedsize
 			self.length = accumulated_in / 90000
 
-	def getChapterMarks(self):
+	def getChapterMarks(self, template="$h:$m:$s.$t"):
 		timestamps = [ ]
 		chapters = [ ]
 		minutes = self.properties.autochapter.getValue()
@@ -148,10 +148,9 @@ class DVDTitle:
 		else:
 			chapters = self.chaptermarks
 		for p in chapters:
-			h = p / (90000 * 3600)
-			m = p % (90000 * 3600) / (90000 * 60)
-			s = p % (90000 * 60) / 90000
-			ms = (p % 90000) / 90
-			timestamps.append("%d:%02d:%02d.%03d" % (h, m, s, ms))
-		print "timestamps:", timestamps
+			timestring = template.replace("$h", str(p / (90000 * 3600)))
+			timestring = timestring.replace("$m", ("%02d" % (p % (90000 * 3600) / (90000 * 60))))
+			timestring = timestring.replace("$s", ("%02d" % (p % (90000 * 60) / 90000)))
+			timestring = timestring.replace("$t", ("%03d" % ((p % 90000) / 90)))
+			timestamps.append(timestring)
 		return timestamps
