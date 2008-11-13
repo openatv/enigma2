@@ -126,7 +126,7 @@ class DemuxTask(Task):
 			self.currentPID = str(int(line.rstrip()[-6:].rsplit('0x',1)[-1],16))
 
 	def haveNewFile(self, file):
-		print "[DemuxTask] produced file:", file
+		print "[DemuxTask] produced file:", file, self.currentPID
 		self.generated_files.append(file)
 		if self.currentPID in self.relevantAudioPIDs or file.endswith("m2v"):
 			self.mplex_streamfiles.append(file)
