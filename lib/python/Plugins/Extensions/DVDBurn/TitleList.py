@@ -41,7 +41,7 @@ class TitleList(Screen, HelpableScreen):
 		self["titleactions"] = HelpableActionMap(self, "DVDTitleList",
 			{
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
-				"titleProperties": (self.titleProperties, ("Properties of current title"), _("Title properties")),
+				"titleProperties": (self.titleProperties, _("Properties of current title"), _("Title properties")),
 				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
 				"settings": (self.settings, _("Collection settings"), _("Settings")),
 				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn DVD")),
@@ -85,9 +85,9 @@ class TitleList(Screen, HelpableScreen):
 		menu.append((_("DVD media toolbox"), self.toolbox))
 		menu.append((_("Preview menu"), self.previewMenu))
 		menu.append((_("Collection settings"), self.settings))
-		menu.append(("Reset and renumerate title names", self.resetTitles))
+		menu.append((_("Reset and renumerate title names"), self.resetTitles))
 		menu.append((_("Edit chapters of current title"), self.editTitle))
-		menu.append(("Properties of current title", self.titleProperties))
+		menu.append((_("Properties of current title"), self.titleProperties))
 		menu.append((_("Add a new title"), self.addTitle))
 		menu.append((_("Remove title"), self.removeCurrentTitle))
 		menu.append((_("Exit"), self.leave))

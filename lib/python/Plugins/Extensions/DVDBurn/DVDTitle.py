@@ -14,7 +14,7 @@ class DVDTitle:
 		self.DVBname = _("Title")
 		self.DVBdescr = _("Description")
 		self.DVBchannel = _("Channel")
-		self.properties.aspect = ConfigSelection(choices = [("4:3", "4:3"), ("16:9", "16:9")])
+		self.properties.aspect = ConfigSelection(choices = [("4:3", _("4:3")), ("16:9", _("16:9"))])
 		self.properties.widescreen = ConfigSelection(choices = [("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
 		self.properties.autochapter = ConfigInteger(default = 0, limits = (0, 60))
 		self.properties.audiotracks = ConfigSubList()
