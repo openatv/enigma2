@@ -26,19 +26,18 @@ class TitleCutter(CutListEditor):
 			self.t.properties.audiotracks = ConfigSubList()
 			for x in range(n):
 				i = audio.getTrackInfo(x)
-				language = i.getLanguage()
+				DVB_lang = i.getLanguage()
 				description = i.getDescription()
 				pid = str(i.getPID())
 				if description == "MPEG":
 					description = "MP2"
-				if not languageChoices.langdict.has_key(language):
-					language="nolang"
-				print "[audiotrack] pid:", pid, "description:", description, "language:", language
+				print "[audiotrack] pid:", pid, "description:", description, "language:", DVB_lang
 				self.t.properties.audiotracks.append(ConfigSubsection())
 				self.t.properties.audiotracks[-1].active = ConfigYesNo(default = True)
 				self.t.properties.audiotracks[-1].format = ConfigFixedText(description)
-				self.t.properties.audiotracks[-1].language = ConfigSelection(choices = languageChoices.choices, default=language)
+				self.t.properties.audiotracks[-1].language = ConfigSelection(choices = languageChoices.choices, default=languageChoices.getLanguage(DVB_lang))
 				self.t.properties.audiotracks[-1].pid = ConfigFixedText(pid)
+				self.t.properties.audiotracks[-1].DVB_lang = ConfigFixedText(DVB_lang)
 		sAspect = service.info().getInfo(iServiceInformation.sAspect)
 		if sAspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
 			aspect = "4:3"
