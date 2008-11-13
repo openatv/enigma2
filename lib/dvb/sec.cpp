@@ -637,11 +637,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							diseqc.data[2] = 0;
 							// diseqc reset
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_DISEQC_RESET_CMD]) );
 							diseqc.data[2] = 3;
 							// diseqc peripherial powersupply on
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 150) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD]) );
 						}
 
 						for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)

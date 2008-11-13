@@ -858,6 +858,14 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
 	config.sec.motor_command_retries = x
 
+	x = ConfigInteger(default=50, limits = (0, 9999))
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_RESET_CMD, configElement.value))
+	config.sec.delay_after_diseqc_reset_cmd = x
+
+	x = ConfigInteger(default=150, limits = (0, 9999))
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD, configElement.value))
+	config.sec.delay_after_diseqc_peripherial_poweron_cmd = x
+
 # TODO add support for satpos depending nims to advanced nim configuration
 # so a second/third/fourth cable from a motorized lnb can used behind a
 # diseqc 1.0 / diseqc 1.1 / toneburst switch
