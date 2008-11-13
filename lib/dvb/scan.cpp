@@ -758,7 +758,7 @@ void eDVBScan::channelDone()
 			SCAN_eDebug("name '%s', provider_name '%s'", sname, pname);
 			service->m_service_name = convertDVBUTF8(sname);
 			service->genSortName();
-			service->m_provider_name = pname;
+			service->m_provider_name = convertDVBUTF8(pname);
 		}
 
 		if (!(m_flags & scanOnlyFree) || !m_pmt_in_progress->second.scrambled) {
