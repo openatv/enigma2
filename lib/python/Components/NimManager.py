@@ -58,14 +58,6 @@ class SecConfigure:
 		sec.setRepeats(0)
 		sec.setFastDiSEqC(fastDiSEqC)
 		sec.setSeqRepeat(0)
-
-		if setVoltageTone:
-			sec.setVoltageMode(switchParam.HV)
-			sec.setToneMode(switchParam.HILO)
-		else:
-			sec.setVoltageMode(switchParam._14V)
-			sec.setToneMode(switchParam.OFF)
-
 		sec.setCommandOrder(0)
 
 		#user values
@@ -77,6 +69,12 @@ class SecConfigure:
 
 		if 0 <= diseqcmode < 3:
 			self.addSatellite(sec, orbpos)
+			if setVoltageTone:
+				sec.setVoltageMode(switchParam.HV)
+				sec.setToneMode(switchParam.HILO)
+			else:
+				sec.setVoltageMode(switchParam._14V)
+				sec.setToneMode(switchParam.OFF)
 		elif (diseqcmode == 3): # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
 				for slot in self.satposdepends[slotid]:
