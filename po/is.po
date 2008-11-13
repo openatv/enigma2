@@ -1,14 +1,13 @@
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Icelandic translation v.1.36\n"
+"Project-Id-Version: Icelandic translation v.1.41\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 17:06+0200\n"
-"PO-Revision-Date: 2008-04-01 21:39-0000\n"
-"Last-Translator: Baldur Sveinsson <baddi@oreind.is>\n"
+"POT-Creation-Date: 2008-11-13 14:23+0100\n"
+"PO-Revision-Date: 2008-11-13 09:24-0000\n"
+"Last-Translator: Baldur Sveinsson <baldur@oreind.is>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +17,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid "#000000"
 msgstr "#000000"
@@ -55,7 +54,7 @@ msgstr "%H:%M"
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "%d verk eru í vinnslu í bakgrunni!"
 
 #, python-format
 msgid "%d min"
@@ -87,17 +86,24 @@ msgid "(empty)"
 msgstr "(tómt)"
 
 msgid "(show optional DVD audio menu)"
+msgstr "(sýna viðbótar DVD hljóð valmynd)"
+
+msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "* Only available when entering hidden SSID or network key"
 msgstr ""
 
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr ".NFI Niðurhal tókst ekki:"
 
 msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
+msgstr ".NFI keyranlegt stýrikerfi af USB staut tilbúið."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
+".NFI skráin stóðst md5sum undirskrifta próf. Þú getur notað þetta stýrikerfi!"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 mappa"
@@ -257,7 +263,7 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr ""
+msgstr "Nauðsynlegt tól (%s) fannst ekki."
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -311,7 +317,7 @@ msgid "Action on long powerbutton press"
 msgstr "Hvað skal gera ef ýtt er lengi á power takka"
 
 msgid "Action:"
-msgstr ""
+msgstr "Aðgerð:"
 
 msgid "Activate Picture in Picture"
 msgstr "Virkja Mynd í Mynd"
@@ -320,25 +326,25 @@ msgid "Activate network settings"
 msgstr "Virkja netkerfis stillingar"
 
 msgid "Adapter settings"
-msgstr ""
+msgstr "Stilling tækis"
 
 msgid "Add"
 msgstr "Viðbót"
 
 msgid "Add Bookmark"
-msgstr ""
+msgstr "Bæta við bókamerki"
 
 msgid "Add a mark"
 msgstr "Bæta við merki"
 
 msgid "Add a new title"
-msgstr ""
+msgstr "Bæta við nýjum titli"
 
 msgid "Add timer"
 msgstr "Taka upp"
 
 msgid "Add title"
-msgstr ""
+msgstr "Bæta við titli"
 
 msgid "Add to bouquet"
 msgstr "Bæta við rásavönd"
@@ -379,7 +385,7 @@ msgid "All"
 msgstr "Allt"
 
 msgid "All Satellites"
-msgstr ""
+msgstr "Allir gervihnettir"
 
 msgid "All..."
 msgstr "Allt..."
@@ -397,15 +403,22 @@ msgid "An empty filename is illegal."
 msgstr "Ekkert skráarnafn er ógilt."
 
 msgid "An unknown error occured!"
-msgstr ""
+msgstr "Óþekkt villa varð!"
 
 msgid "Arabic"
 msgstr "Arabíska"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
+"Ertu viss um að þú viljir endurræsa netkortið?\n"
+"\n"
 
 msgid "Artist:"
 msgstr "Listmaður:"
@@ -426,13 +439,13 @@ msgid "Audio Options..."
 msgstr "Hljóð stillingar..."
 
 msgid "Authoring mode"
-msgstr ""
+msgstr "Höfunda hamur"
 
 msgid "Auto"
 msgstr "Sjálfvirkt"
 
 msgid "Auto chapter split every ? minutes (0=never)"
-msgstr ""
+msgstr "Skipta í kafla hverja ? mínútu (0=aldrei)"
 
 msgid "Auto scart switching"
 msgstr "Sjálfvirk skipting á scarti"
@@ -440,14 +453,11 @@ msgstr "Sjálfvirk skipting á scarti"
 msgid "Automatic"
 msgstr "Sjálfvirkt"
 
-msgid "Automatic SSID lookup"
-msgstr ""
-
 msgid "Automatic Scan"
 msgstr "Sjálfvirk leit"
 
 msgid "Available format variables"
-msgstr ""
+msgstr "Útfærslur tiltækra forma"
 
 msgid "B"
 msgstr "B"
@@ -465,10 +475,10 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "Back"
-msgstr ""
+msgstr "Til baka"
 
 msgid "Background"
-msgstr ""
+msgstr "Bakgrunnur"
 
 msgid "Backup"
 msgstr "Afrit"
@@ -507,16 +517,19 @@ msgid "Behavior when a movie reaches the end"
 msgstr "Aðgerð þegar mynd er búin"
 
 msgid "Bookmarks"
-msgstr ""
+msgstr "Bókamerki"
 
 msgid "Brightness"
 msgstr "Birta"
 
 msgid "Burn DVD"
+msgstr "Brenna DVD"
+
+msgid "Burn existing image to DVD"
 msgstr ""
 
 msgid "Burn to DVD..."
-msgstr ""
+msgstr "Brenna á DVD"
 
 msgid "Bus: "
 msgstr "Rás:"
@@ -529,7 +542,7 @@ msgstr ""
 "skjánum."
 
 msgid "C"
-msgstr ""
+msgstr "C"
 
 msgid "C-Band"
 msgstr "C-Band"
@@ -553,7 +566,7 @@ msgid "Cancel"
 msgstr "Hætta við"
 
 msgid "Cannot parse feed directory"
-msgstr ""
+msgstr "Get ekki skoðað fæði möppu"
 
 msgid "Capacity: "
 msgstr "Stærð:"
@@ -568,7 +581,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Skipta á milli rása flétta í rásastökki"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Breyta möppu"
 
 msgid "Change pin code"
 msgstr "Breyta aðgangskóða"
@@ -595,13 +608,13 @@ msgid "Channellist menu"
 msgstr "Valmynd rásalista"
 
 msgid "Chap."
-msgstr ""
+msgstr "Kafli"
 
 msgid "Chapter"
-msgstr ""
+msgstr "Kafli"
 
 msgid "Chapter:"
-msgstr ""
+msgstr "Kafli:"
 
 msgid "Check"
 msgstr "Athuga"
@@ -634,7 +647,7 @@ msgid "Clear log"
 msgstr "Tæma lista"
 
 msgid "Close"
-msgstr ""
+msgstr "Loka"
 
 msgid "Code rate high"
 msgstr "Gagna hraði, hár"
@@ -649,16 +662,16 @@ msgid "Coderate LP"
 msgstr "Gagnahraði LP"
 
 msgid "Collection name"
-msgstr ""
+msgstr "Nafn safns"
 
 msgid "Collection settings"
-msgstr ""
+msgstr "Stillingar safns"
 
 msgid "Color Format"
 msgstr "Lita kerfi"
 
 msgid "Command execution..."
-msgstr ""
+msgstr "Keyrsla skipunar..."
 
 msgid "Command order"
 msgstr "Röðun skipana"
@@ -688,7 +701,7 @@ msgid "Conflicting timer"
 msgstr "Tímastilling skarast"
 
 msgid "Connected to"
-msgstr ""
+msgstr "Tengd við"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Tengi við Fritz!Box!"
@@ -710,24 +723,27 @@ msgid "Constellation"
 msgstr "Constellation"
 
 msgid "Content does not fit on DVD!"
-msgstr ""
+msgstr "Innihald passar ekki á DVD!"
 
 msgid "Continue in background"
-msgstr ""
+msgstr "Halda áfram í bakgrunni"
 
 msgid "Continue playing"
-msgstr ""
+msgstr "Halda áfram að spila"
 
 msgid "Contrast"
 msgstr "Skerpa"
 
 msgid "Copying USB flasher boot image to stick..."
-msgstr ""
+msgstr "Afrita keyranlegt USB stýrikerfi yfir á staut..."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "Gat ekki tengt við Dreambox .NFI stýrikerfis vefþjón:"
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr "Gat ekki lesið disk! Er enginn diskur í drifi?"
+
+msgid "Create DVD-ISO"
 msgstr ""
 
 msgid "Create movie folder failed"
@@ -735,7 +751,7 @@ msgstr "Tókst ekki að búa til bíómyndamöppu"
 
 #, python-format
 msgid "Creating directory %s failed."
-msgstr ""
+msgstr "Tókst ekki að búa möppuna %s."
 
 msgid "Creating partition failed"
 msgstr "Tókst ekki að búa til diskhluta"
@@ -768,16 +784,16 @@ msgid "Cut"
 msgstr "Klippa"
 
 msgid "Cutlist editor..."
-msgstr "Klippingastjóri"
+msgstr "Klippingastjóri..."
 
 msgid "Czech"
 msgstr "Tékkneska"
 
 msgid "D"
-msgstr ""
+msgstr "D"
 
 msgid "DHCP"
-msgstr ""
+msgstr "DHCP"
 
 msgid "DVB-S"
 msgstr "DVB-S"
@@ -786,10 +802,10 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVD Player"
-msgstr ""
+msgstr "DVD spilari"
 
 msgid "DVD media toolbox"
-msgstr ""
+msgstr "DVD miðla tól"
 
 msgid "Danish"
 msgstr "Danska"
@@ -798,16 +814,16 @@ msgid "Date"
 msgstr "Dags"
 
 msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
+msgstr "Afþjappa keyranlegt USB stauts stýrikerfi..."
 
 msgid "Deep Standby"
 msgstr "Djúp biðstaða"
 
 msgid "Default services lists"
-msgstr ""
+msgstr "Sjálfgefinn rásalisti"
 
 msgid "Default settings"
-msgstr ""
+msgstr "Sjálfgefnar stillingar"
 
 msgid "Delay"
 msgstr "Seinkun"
@@ -826,12 +842,14 @@ msgid ""
 "Delete no more configured satellite\n"
 "%s?"
 msgstr ""
+"Ekki eyða fleiri innstilltum gervihnöttum\n"
+"%s?"
 
 msgid "Description"
 msgstr "Lýsing"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Endanleg mappa"
 
 msgid "Detected HDD:"
 msgstr "Fann harðan disk:"
@@ -848,9 +866,6 @@ msgstr "DiSEqC A/B"
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
-msgid "Mode"
-msgstr "Gerð"
-
 msgid "DiSEqC mode"
 msgstr "DiSEqC gerð"
 
@@ -858,11 +873,11 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC endurtekning"
 
 msgid "Direct playback of linked titles without menu"
-msgstr ""
+msgstr "Spila beint tengda titla án valmyndar"
 
 #, python-format
 msgid "Directory %s nonexistent."
-msgstr ""
+msgstr "Mappa %s ekki til."
 
 msgid "Disable"
 msgstr "Gera óvirkt"
@@ -874,7 +889,7 @@ msgid "Disable Subtitles"
 msgstr "Ekki undirtexta"
 
 msgid "Disable timer"
-msgstr ""
+msgstr "Slökkva á tímastillingu"
 
 msgid "Disabled"
 msgstr "Óvirkt"
@@ -906,6 +921,8 @@ msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \"%s\"?"
 msgstr ""
+"Viltu örugglega eyða EYÐA\n"
+"innskoti \"%s\"?"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -923,6 +940,8 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
+"Viltu örugglega hala niður\n"
+"innskotinu \"%s\"?"
 
 msgid "Do you really want to exit?"
 msgstr "Viltu virkilega hætta?"
@@ -936,11 +955,11 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr ""
+msgstr "Viltu örugglega eyða möppunni %s af diskinum?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr ""
+msgstr "Viltu örugglega eyða bókamerkinu %s?"
 
 msgid ""
 "Do you want to backup now?\n"
@@ -950,7 +969,7 @@ msgstr ""
 "Eftir að hafa ýtt á OK þá bíðið!"
 
 msgid "Do you want to burn this collection to DVD medium?"
-msgstr ""
+msgstr "Viltu brenna þessa skráar safn á DVD disk?"
 
 msgid "Do you want to do a service scan?"
 msgstr "Viltu leita að rásum?"
@@ -962,13 +981,13 @@ msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Viltu gera virkan foreldrastýrðan aðgang að dreamboxinu?"
 
 msgid "Do you want to install default sat lists?"
-msgstr ""
+msgstr "Viltu setja inn sjálfgefinn gervihnatta lista?"
 
 msgid "Do you want to play DVD in drive?"
-msgstr ""
+msgstr "Viltu spila DVD diskinn sem er í spilaranum?"
 
 msgid "Do you want to preview this DVD before burning?"
-msgstr ""
+msgstr "Viltu forskoða þennan DVD disk fyrir brennslu?"
 
 msgid "Do you want to restore your settings?"
 msgstr "Viltu setja inn stillingarnar þínar aftur?"
@@ -998,16 +1017,16 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Búinn - %d pakkar settir inn eða upp færðir með %d villum"
 
 msgid "Download"
-msgstr ""
+msgstr "Hlaða niður"
 
 msgid "Download .NFI-Files for USB-Flasher"
-msgstr ""
+msgstr "Hlaða niður .NFI skrár fyrir keyranlegt USB"
 
 msgid "Download Plugins"
 msgstr "Hala niður innskotum"
 
 msgid "Download of USB flasher boot image failed: "
-msgstr ""
+msgstr "Niðurhleðsla keyranlegs USB stýrikerfis tóks ekki:"
 
 msgid "Downloadable new plugins"
 msgstr "Niðurhalanleg ný innskot"
@@ -1019,13 +1038,13 @@ msgid "Downloading"
 msgstr "Hleð  niður"
 
 msgid "Downloading image description..."
-msgstr ""
+msgstr "Hleð niður lýsingu stýrikerfis..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Hala niður innskots upplýsingum. Vinsamlega bíðið..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "Dreambox gagna formaður DVD diskur (HDTV samhæfður)"
 
 msgid "Dutch"
 msgstr "Hollenska"
@@ -1043,26 +1062,32 @@ msgstr "VILLA - gat ekki opnað leit (%s)!"
 msgid "East"
 msgstr "Austur"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
+msgstr "Breyta DNS"
+
+msgid "Edit Title"
 msgstr ""
 
 msgid "Edit chapters of current title"
-msgstr ""
+msgstr "Breyta kafla núverandi titils"
 
 msgid "Edit services list"
 msgstr "Breyta rása lista"
 
 msgid "Edit settings"
-msgstr ""
+msgstr "Breyta stillingum"
 
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr ""
+msgstr "Breyta nafnaþjóns stillingum Dreamboxins.\n"
 
 msgid "Edit the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "Breyta stillingum netkorts í Dreamboxinu.\n"
 
 msgid "Edit title"
-msgstr ""
+msgstr "Breyta titili"
 
 msgid "Electronic Program Guide"
 msgstr "Rafrænn dagskrárstjóri (EPG)"
@@ -1080,19 +1105,22 @@ msgid "Enable parental control"
 msgstr "Virkja foreldra stýringu"
 
 msgid "Enable timer"
-msgstr ""
+msgstr "Virkja tímastillingu"
 
 msgid "Enabled"
 msgstr "Virkt"
 
 msgid "Encryption"
-msgstr ""
+msgstr "Kóðun"
 
 msgid "Encryption Key"
+msgstr "Kóðunar lykill"
+
+msgid "Encryption Keytype"
 msgstr ""
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "Gerð kóðunar"
 
 msgid "End"
 msgstr "Hætta"
@@ -1132,6 +1160,12 @@ msgstr "Hraðspólunar hraði áfram, fyrst"
 msgid "Enter Rewind at speed"
 msgstr "Hraðspólunar hraði til baka, fyrst"
 
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr ""
+
 msgid "Enter main menu..."
 msgstr "Fara í aðal valmynd..."
 
@@ -1142,13 +1176,15 @@ msgid "Error"
 msgstr "Villa"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "Villa við keyrslu innskots"
 
 #, python-format
 msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
+"Villa: %s\n"
+"Reyna aftur?"
 
 msgid "Eventview"
 msgstr "Skoða atriði"
@@ -1163,7 +1199,7 @@ msgid "Execution finished!!"
 msgstr "Keyrslu lokið!"
 
 msgid "Exit"
-msgstr ""
+msgstr "Hætta"
 
 msgid "Exit editor"
 msgstr "Hætta í breytingum"
@@ -1178,7 +1214,7 @@ msgid "Expert"
 msgstr "Sérfræði"
 
 msgid "Extended Networksetup Plugin..."
-msgstr ""
+msgstr "Innskot fyrir nánari stillingar netkerfis..."
 
 msgid "Extended Setup..."
 msgstr "Meiri stillingar..."
@@ -1193,7 +1229,7 @@ msgid "Factory reset"
 msgstr "Verksmiðju stilling"
 
 msgid "Failed"
-msgstr ""
+msgstr "Tókst ekki"
 
 msgid "Fast"
 msgstr "Hratt"
@@ -1220,6 +1256,12 @@ msgid "Finetune"
 msgstr "Fínstilla"
 
 msgid "Finished"
+msgstr "Búið"
+
+msgid "Finished configuring your network"
+msgstr ""
+
+msgid "Finished restarting your network"
 msgstr ""
 
 msgid "Finnish"
@@ -1228,21 +1270,23 @@ msgstr "Finnska"
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
+"Fyrst þarf að hala niður nýjustu uppfærslum til að búa til keyranlegan USB "
+"Staut. "
 
 msgid "Fix USB stick"
-msgstr ""
+msgstr "Laga USB staut"
 
 msgid "Flash"
-msgstr ""
+msgstr "Forritun"
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "Forritun tókt ekki"
 
 msgid "Font size"
-msgstr ""
+msgstr "Stafa stærð"
 
 msgid "Format"
-msgstr ""
+msgstr "Forma"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Fjöldi ramma við hraðspólun"
@@ -1327,6 +1371,9 @@ msgstr "Uppsetning harða disks"
 msgid "Harddisk standby after"
 msgstr "Harði diskur í biðstöðu eftir"
 
+msgid "Hidden network SSID"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Stigskipta upplýsingar"
 
@@ -1341,6 +1388,12 @@ msgstr "Ungverska"
 
 msgid "IP Address"
 msgstr "IP Netfang"
+
+msgid "ISO file is too large for this filesystem!"
+msgstr ""
+
+msgid "ISO path"
+msgstr ""
 
 msgid "Icelandic"
 msgstr "Íslenska"
@@ -1375,13 +1428,13 @@ msgstr ""
 "Ef stillingin er orðin eins og þér finnst best ýttu þá á OK."
 
 msgid "Image flash utility"
-msgstr ""
+msgstr "Tól fyrir forritun stýrikerfis"
 
 msgid "Image-Upgrade"
 msgstr "Uppfærsla stýrikerfi"
 
 msgid "In Progress"
-msgstr ""
+msgstr "Í vinnslu"
 
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
@@ -1425,13 +1478,13 @@ msgid "Installing Software..."
 msgstr "Set inn hugbúnað"
 
 msgid "Installing default sat lists... Please wait..."
-msgstr ""
+msgstr "Set inn sjálfgefna gervihnatta lista... vinsamlega bíðið..."
 
 msgid "Installing defaults... Please wait..."
-msgstr ""
+msgstr "Set inn sjálfgefnar stillingar... vinsamlega bíðið.."
 
 msgid "Installing package content... Please wait..."
-msgstr ""
+msgstr "Set inn innihald pakkans... vinsamlega bíðið..."
 
 msgid "Instant Record..."
 msgstr "Skyndi upptaka..."
@@ -1440,7 +1493,7 @@ msgid "Integrated Ethernet"
 msgstr "Innbyggt Netkort"
 
 msgid "Integrated Wireless"
-msgstr ""
+msgstr "Innbyggt þráðlaust"
 
 msgid "Intermediate"
 msgstr "millistig"
@@ -1453,7 +1506,7 @@ msgstr "Ógildur staður"
 
 #, python-format
 msgid "Invalid directory selected: %s"
-msgstr ""
+msgstr "Ógild mappa valin: %s"
 
 msgid "Inversion"
 msgstr "Umbreyting"
@@ -1465,7 +1518,7 @@ msgid "Italian"
 msgstr "Ítalska"
 
 msgid "Job View"
-msgstr ""
+msgstr "Skoða vinnslu"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -1481,7 +1534,7 @@ msgid "Keymap"
 msgstr "Lyklaborðsstilling"
 
 msgid "LAN Adapter"
-msgstr ""
+msgstr "Netkort"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1508,7 +1561,7 @@ msgid "Latitude"
 msgstr "Breiddargráða"
 
 msgid "Leave DVD Player?"
-msgstr ""
+msgstr "Hætta í DVD spilara?"
 
 msgid "Left"
 msgstr "Vinstri"
@@ -1530,10 +1583,10 @@ msgid "Limits on"
 msgstr "Mörk á"
 
 msgid "Link:"
-msgstr ""
+msgstr "Tengill:"
 
 msgid "Linked titles with a DVD menu"
-msgstr ""
+msgstr "Tengdir titlar við DVD valmynd"
 
 msgid "List of Storage Devices"
 msgstr "Listi minnis hluta"
@@ -1542,13 +1595,13 @@ msgid "Lithuanian"
 msgstr "Litháíska"
 
 msgid "Load"
-msgstr ""
+msgstr "Hleð"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Hlaða lengd myndar í myndalista"
 
 msgid "Local Network"
-msgstr ""
+msgstr "Nærnet"
 
 msgid "Location"
 msgstr "Staðsetning"
@@ -1602,10 +1655,10 @@ msgid "MediaPlayer"
 msgstr "Spilari"
 
 msgid "Medium is not a writeable DVD!"
-msgstr ""
+msgstr "Diskur er ekki skrifanlegur DVD diskur!"
 
 msgid "Medium is not empty!"
-msgstr ""
+msgstr "Diskur er ekki tómur!"
 
 msgid "Menu"
 msgstr "Valmynd"
@@ -1615,6 +1668,9 @@ msgstr "Skilaboð"
 
 msgid "Mkfs failed"
 msgstr "Mkfs tókst ekki"
+
+msgid "Mode"
+msgstr "Hamur"
 
 msgid "Model: "
 msgstr "Gerð:"
@@ -1668,7 +1724,7 @@ msgid "NEXT"
 msgstr "NÆST"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr ""
+msgstr "NFI forritun er lokið. Ýttu á gulan til að endurræsa!"
 
 msgid "NOW"
 msgstr "NÚNA"
@@ -1690,19 +1746,19 @@ msgid "Nameserver Setup"
 msgstr "Uppsetning nafnaþjóns"
 
 msgid "Nameserver settings"
-msgstr ""
+msgstr "Uppsetning nafnaþjóns"
 
 msgid "Netmask"
 msgstr "Netmaski"
 
 msgid "Network Configuration..."
-msgstr ""
+msgstr "Stilling nettengingar..."
 
 msgid "Network Mount"
 msgstr "Tengingar við netkerfi"
 
 msgid "Network SSID"
-msgstr ""
+msgstr "SSID nets"
 
 msgid "Network Setup"
 msgstr "Stilla netkerfi"
@@ -1714,19 +1770,19 @@ msgid "Network setup"
 msgstr "Stillingar netkerfis"
 
 msgid "Network test"
-msgstr ""
+msgstr "Prufa nettengingu"
 
 msgid "Network test..."
-msgstr ""
+msgstr "Prufa nettengingu..."
 
 msgid "Network..."
 msgstr "Netkerfi..."
 
 msgid "Network:"
-msgstr ""
+msgstr "Nettenging:"
 
 msgid "NetworkWizard"
-msgstr ""
+msgstr "Nettengi álfur"
 
 msgid "New"
 msgstr "Nýtt"
@@ -1744,7 +1800,7 @@ msgid "No"
 msgstr "Nei"
 
 msgid "No (supported) DVDROM found!"
-msgstr ""
+msgstr "Enginn (studdur) DVDROM fannst!"
 
 msgid "No 50 Hz, sorry. :("
 msgstr "Ekki 50 Hz, því miður. :("
@@ -1763,7 +1819,7 @@ msgstr ""
 "(Rann út á tíma við lestur PAT)"
 
 msgid "No details for this image file"
-msgstr ""
+msgstr "Engar upplýsingar um þetta stýrikerfi"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Engar upplýsingar um atriði fundust, tek upp endalaust."
@@ -1796,7 +1852,7 @@ msgstr ""
 "Stilltu móttakara áður er að þú ferð að leita að rásum."
 
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "Ekkert nothæfur USB stautur fannst"
 
 msgid ""
 "No valid service PIN found!\n"
@@ -1817,21 +1873,21 @@ msgstr ""
 "Ef þú svarar \"Nei\" þá er engin læsing virk."
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
 
 msgid ""
-"No working wireless interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable "
-"your local network interface."
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
 msgstr ""
 
 msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
+"No working wireless network interface found.\n"
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -1864,6 +1920,8 @@ msgid ""
 "Not enough diskspace. Please free up some diskspace and try again. (%d MB "
 "required, %d MB available)"
 msgstr ""
+"Ekki nóg diskpláss. Taktu til á diskinum og reyndu aftur. (%d MB þarf, %d MB "
+"tiltæk)"
 
 msgid ""
 "Nothing to scan!\n"
@@ -1880,6 +1938,9 @@ msgid ""
 "format and use as .NFI image flasher. Press OK after you've put the stick "
 "back in."
 msgstr ""
+"Tengdu núna USB stautinn (minnsta stærð er 64 MB) sem að þú vilt nota fyrir "
+"keyranlegar USB stýrikerfi. Ýttu á OK þegar þú ert búinn að setja hann í "
+"samband."
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
@@ -1900,7 +1961,7 @@ msgid "OSD Settings"
 msgstr "Stilling valmynda"
 
 msgid "OSD visibility"
-msgstr ""
+msgstr "Sýnileiki OSD"
 
 msgid "Off"
 msgstr "Af"
@@ -1915,7 +1976,7 @@ msgid "Online-Upgrade"
 msgstr "Uppfærsla frá neti"
 
 msgid "Only Free scan"
-msgstr ""
+msgstr "Bara fríar rásir"
 
 msgid "Orbital Position"
 msgstr "Staðsetnging gervihnattar"
@@ -1943,7 +2004,7 @@ msgid "Pan&Scan"
 msgstr "Pan&Scan"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Fyrri mappa"
 
 msgid "Parental control"
 msgstr "Foreldrastýring"
@@ -1958,7 +2019,7 @@ msgid "Parental control type"
 msgstr "Gerð foreldrastýringar"
 
 msgid "Partitioning USB stick..."
-msgstr ""
+msgstr "Bý til diskhluta á USB staut..."
 
 msgid "Pause movie at end"
 msgstr "Setja á pásu við enda myndar"
@@ -1971,7 +2032,7 @@ msgid "Pillarbox"
 msgstr "Pillarbox"
 
 msgid "Pilot"
-msgstr ""
+msgstr "Stjóri"
 
 msgid "Pin code needed"
 msgstr "Kóða vantar"
@@ -1980,7 +2041,7 @@ msgid "Play"
 msgstr "Spila"
 
 msgid "Play Audio-CD..."
-msgstr ""
+msgstr "Spila hljóð disk..."
 
 msgid "Play recorded movies..."
 msgstr "Spila uppteknar myndir..."
@@ -1995,19 +2056,19 @@ msgid "Please change recording endtime"
 msgstr "Sláðu inn lokatíma upptöku"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Vinsamlega athugaðu stillingar netkerfis!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "Vinsamlega veldu .NFI af strauma vefþjón til að hlaða niður"
 
 msgid "Please choose an extension..."
 msgstr "Vinsamlega veldu viðbót.."
 
 msgid "Please choose he package..."
-msgstr ""
+msgstr "Vinsamlega veldur pakka..."
 
 msgid "Please choose the default services lists you want to install."
-msgstr ""
+msgstr "Vinsamlega veldu sjálfgefinn rásalista sem að þú vilt nota."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ekki breyta gildum ef þú veist ekki hvað þú ert að gera!"
@@ -2025,7 +2086,7 @@ msgid "Please enter filename (empty = use current date)"
 msgstr "Sláðu inn skráarnafn (tómt = nota núverandi dag)"
 
 msgid "Please enter name of the new directory"
-msgstr ""
+msgstr "Sláðu inn nafn á nýju möppunni"
 
 msgid "Please enter the correct pin code"
 msgstr "Sláðu inn réttan kóða"
@@ -2040,15 +2101,17 @@ msgid ""
 "Please note that the previously selected media could not be accessed and "
 "therefore the default directory is being used instead."
 msgstr ""
+"Vinsamlega athugið að áður valinn diskur er ekki tiltækur núna og þá verður "
+"notuð sjálfgefin mappa í staðinn."
 
 msgid "Please press OK to continue."
-msgstr ""
+msgstr "Ýttu á OK til að halda áfram."
 
 msgid "Please press OK!"
 msgstr "Ýtið á OK!"
 
 msgid "Please select .NFI flash image file from medium"
-msgstr ""
+msgstr "Vinsamlega veldu .NFI stýrikerfi frá geymslu"
 
 msgid "Please select a playlist to delete..."
 msgstr "Veldu spilunarlista til að eyða..."
@@ -2066,7 +2129,7 @@ msgid "Please select keyword to filter..."
 msgstr "Veldu orð til að leita út..."
 
 msgid "Please select target directory or medium"
-msgstr ""
+msgstr "Vinsamlega veldu möppu eða geymslu"
 
 msgid "Please select the movie path..."
 msgstr "Veldu slóð að mynd..."
@@ -2093,8 +2156,22 @@ msgid ""
 "Please use the UP and DOWN keys to select your language. Afterwards press "
 "the OK button."
 msgstr ""
+"Vinsamlega notið UP og NIÐUR takka til að velja tungumál. Ýttu svo á OK til "
+"að nota."
+
+msgid "Please wait for activation of your network configuration..."
+msgstr ""
 
 msgid "Please wait for md5 signature verification..."
+msgstr "Vinsamlega bíðið eftir staðfestingu md5 staðfestingu..."
+
+msgid "Please wait while we configure your network..."
+msgstr ""
+
+msgid "Please wait while your network is restarting..."
+msgstr ""
+
+msgid "Please wait..."
 msgstr ""
 
 msgid "Please wait... Loading list..."
@@ -2155,13 +2232,13 @@ msgid "Preparing... Please wait"
 msgstr "Undirbý...vinsamlega bíðið"
 
 msgid "Press OK on your remote control to continue."
-msgstr ""
+msgstr "Ýttu á OK á fjarstýringunni til að halda áfram."
 
 msgid "Press OK to activate the settings."
 msgstr "Ýtið á OK til að virkja stillingar."
 
 msgid "Press OK to edit the settings."
-msgstr ""
+msgstr "Ýttu á OK til að breyta stillingum."
 
 msgid "Press OK to scan"
 msgstr "Ýtið á OK til að leita"
@@ -2173,10 +2250,10 @@ msgid "Prev"
 msgstr "Fyrri"
 
 msgid "Preview menu"
-msgstr ""
+msgstr "Forskoða valmynd"
 
 msgid "Primary DNS"
-msgstr ""
+msgstr "Aðal DNS"
 
 msgid "Protect services"
 msgstr "Læsa rásum"
@@ -2227,16 +2304,16 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Viltu hætta í undirrása hraðstökki?"
 
 msgid "Really reboot now?"
-msgstr ""
+msgstr "Viltu örugglega endurræsa núna?"
 
 msgid "Really restart now?"
-msgstr ""
+msgstr "Viltu örugglega endurræsa núna?"
 
 msgid "Really shutdown now?"
-msgstr ""
+msgstr "Viltu örugglega slökkva núna?"
 
 msgid "Reboot"
-msgstr ""
+msgstr "Endurræsi"
 
 msgid "Reception Settings"
 msgstr "Stilling móttöku"
@@ -2251,7 +2328,7 @@ msgid "Recording"
 msgstr "Upptaka"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
-msgstr ""
+msgstr "Upptaka (tökur) eru í gangi núna eða eru væntanlegar fljótlega!"
 
 msgid "Recordings always have priority"
 msgstr "Upptaka hefur alltaf forgang"
@@ -2266,10 +2343,10 @@ msgid "Refresh rate selection."
 msgstr "Hressingar tíðni val."
 
 msgid "Remounting stick partition..."
-msgstr ""
+msgstr "Endurtengi diskhluta stauts..."
 
 msgid "Remove Bookmark"
-msgstr ""
+msgstr "Taka út bókamerki"
 
 msgid "Remove Plugins"
 msgstr "Taka út Innskot"
@@ -2278,23 +2355,23 @@ msgid "Remove a mark"
 msgstr "Eyða merkingu"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "Taka út þegar valinn titil"
 
 msgid "Remove plugins"
 msgstr "Taka út innskot"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "Taka út skemmda .NFI skrá"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "Taka út skemmda .NFI skrá?"
 
 msgid "Remove title"
-msgstr ""
+msgstr "Taka út titil"
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
-msgstr ""
+msgstr "Tókst ekki að taka út möppuna %s. (kannski ekki tóm.)"
 
 msgid "Rename"
 msgstr "Endurnefna"
@@ -2315,7 +2392,7 @@ msgid "Reset"
 msgstr "Endursetja"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Upplausn"
 
 msgid "Restart"
 msgstr "Endurræsa"
@@ -2327,13 +2404,13 @@ msgid "Restart GUI now?"
 msgstr "Endurræsa gluggakerfi núna?"
 
 msgid "Restart network"
-msgstr ""
+msgstr "Endurræsi netkort"
 
 msgid "Restart test"
-msgstr ""
+msgstr "Prufa endurræsingu"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr ""
+msgstr "Endurræsa nettengingu og netkort.\n"
 
 msgid "Restore"
 msgstr "Setja inn"
@@ -2358,7 +2435,7 @@ msgid "Resuming playback"
 msgstr "Held áfram spilun"
 
 msgid "Return to file browser"
-msgstr ""
+msgstr "Fara til baka í skráarvafra"
 
 msgid "Return to movie list"
 msgstr "Til baka til mynda lista"
@@ -2412,13 +2489,13 @@ msgid "Satfinder"
 msgstr "Gervihnattaleit"
 
 msgid "Sats"
-msgstr ""
+msgstr "Gervihn."
 
 msgid "Saturday"
 msgstr "Laugardagur"
 
 msgid "Save"
-msgstr ""
+msgstr "Vista"
 
 msgid "Save Playlist"
 msgstr "Vista spilunarlista"
@@ -2451,7 +2528,7 @@ msgid "Scan SR6900"
 msgstr "Leita SR6900"
 
 msgid "Scan Wireless Networks"
-msgstr ""
+msgstr "Leita að þráðlausu neti"
 
 msgid "Scan additional SR"
 msgstr "Leita á fleiri SR"
@@ -2496,10 +2573,11 @@ msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
 msgstr ""
+"Leita að þráðlausum netkerfum og tengjast þeim með þráðlausa USB netkortinu\n"
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr ""
+msgstr "Leita sjálfgefna gervihnetti, raðað eftir hnöttum með tengdum mótor"
 
 msgid "Search east"
 msgstr "Leita austur"
@@ -2508,7 +2586,7 @@ msgid "Search west"
 msgstr "Leita vestur"
 
 msgid "Secondary DNS"
-msgstr ""
+msgstr "Vara DNS"
 
 msgid "Seek"
 msgstr "Leita"
@@ -2535,7 +2613,7 @@ msgid "Select channel to record from"
 msgstr "Veldu rás til að taka upp frá"
 
 msgid "Select image"
-msgstr ""
+msgstr "Veldu stýrikerfi"
 
 msgid "Select refresh rate"
 msgstr "Veldu hressingar tíðni."
@@ -2547,10 +2625,16 @@ msgid "Select video mode"
 msgstr "Veldu mynd stillingu"
 
 msgid "Selected source image"
+msgstr "Veldu grunn stýrikerfi"
+
+msgid "Send DiSEqC"
+msgstr ""
+
+msgid "Send DiSEqC only on satellite change"
 msgstr ""
 
 msgid "Seperate titles with a main menu"
-msgstr ""
+msgstr "Taka út titla af aðalvalmynd"
 
 msgid "Sequence repeat"
 msgstr "Endurtaka runu"
@@ -2600,7 +2684,13 @@ msgstr "Upplýsingar"
 msgid "Services"
 msgstr "Rásir"
 
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
 msgid "Set as default Interface"
+msgstr "Gera að sjálfgefnu netkorti"
+
+msgid "Set interface as default Interface"
 msgstr ""
 
 msgid "Set limits"
@@ -2616,10 +2706,10 @@ msgid "Setup Mode"
 msgstr "Uppsetninga hamur"
 
 msgid "Show Info"
-msgstr ""
+msgstr "Sýna upplýsingar"
 
 msgid "Show WLAN Status"
-msgstr ""
+msgstr "Sýna WLAN stöðu"
 
 msgid "Show blinking clock in display during recording"
 msgstr "Láta klukkuna blikka á skjá við upptöku"
@@ -2646,7 +2736,7 @@ msgid "Show the tv player..."
 msgstr "Sýna sjónvarpsspilara"
 
 msgid "Shows the state of your wireless LAN connection.\n"
-msgstr ""
+msgstr "Sýnir stöðu þráðlausrar nettenginar.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Slökkva á móttakara eftir"
@@ -2676,7 +2766,7 @@ msgid "Singlestep (GOP)"
 msgstr "Eitt skref (GOP)"
 
 msgid "Skin..."
-msgstr ""
+msgstr "Skinn..."
 
 msgid "Sleep Timer"
 msgstr "Tímastilling"
@@ -2748,7 +2838,7 @@ msgid "Start recording?"
 msgstr "Byrja upptöku?"
 
 msgid "Start test"
-msgstr ""
+msgstr "Byrja prófun"
 
 msgid "StartTime"
 msgstr "Byrjunartími"
@@ -2781,7 +2871,7 @@ msgid "Stop playing this movie?"
 msgstr "Stoppa spilun?"
 
 msgid "Stop test"
-msgstr ""
+msgstr "Stoppa prófun"
 
 msgid "Store position"
 msgstr "Vista staðsetningu"
@@ -2838,11 +2928,14 @@ msgstr ""
 "Email: oreind@oreind.is\n"
 "Vefur: http://www.oreind.is"
 
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr ""
+
 msgid "TV System"
 msgstr "Sjónvarps kerfi"
 
 msgid "Table of content for collection"
-msgstr ""
+msgstr "Efnisyfirlit yfir safn"
 
 msgid "Terrestrial"
 msgstr "Stafrænt í lofti"
@@ -2854,7 +2947,7 @@ msgid "Test mode"
 msgstr "Prufu hamur"
 
 msgid "Test the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "Prófa stillingar netkorts í Dreamboxinu.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Prófa skilaboðaskjóðu?"
@@ -2872,12 +2965,18 @@ msgid ""
 "and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
 "stick!"
 msgstr ""
+".NFI stýrikerfis stautur er nú tilbúinn til notkunar. Nú getur þú hlaðið "
+"niður .NFI stýrikerfi frá strauma vefþjón og vistað það á stautnum. Þá getur "
+"þú endurræst og með því að halda niður 'Niður' takka framaná móttakaranum þá "
+"getur þú valið stýrikerfi frá stautnum!"
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
+"DVD staðallinn er ekki með möguleika á H.264 (HDTV). Viltu búa til Dreambox "
+"gagna disk (sem ekki er hægt að venjulegum DVD spilara) í staðinn."
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Afritun mistókst. Veldu annan stað fyrir afritið."
@@ -2890,6 +2989,11 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"Eftirfarandi tæki fannst:\n"
+"\n"
+"%s\n"
+"\n"
+"Viltu skrifa USB keyrslu skrá á þennan staut?"
 
 msgid ""
 "The input port should be configured now.\n"
@@ -2900,30 +3004,37 @@ msgstr ""
 "Þú getur stillt skjáinn með því að nota prufumyndir. Viltu gera það núna?"
 
 msgid "The installation of the default services lists is finished."
-msgstr ""
+msgstr "Innsetning sjálfgefins rásalista er lokið."
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
+"Innsetning sjálfgefins rásalista er lokið. Þú getur nú haldið áfram að "
+"stilla Dreamboxið með því að ýta á OK takkann á fjarstýringunni."
 
 msgid ""
 "The md5sum validation failed, the file may be corrupted! Are you sure that "
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"Staðfesting md5sum tókst ekki, skráin gæti verið skemmd! Ertu viss um að þú "
+"viljir setja þetta stýrikerfi inn í minni? Það er ekki mælt með því að gera "
+"það!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
 msgstr ""
+"Staðfesting md5sum tókst ekki, það gæti vantað hluta á skrána eða þá að hún "
+"sé skemmd!"
 
 msgid "The package doesn't contain anything."
-msgstr ""
+msgstr "Þessi pakki inniheldur ekkert."
 
 #, python-format
 msgid "The path %s already exists."
-msgstr ""
+msgstr "Slóðin %s er þegar til."
 
 msgid "The pin code has been changed successfully."
 msgstr "Það tókst að breyta kóðanum."
@@ -2947,6 +3058,8 @@ msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"Þráðlausa netkortið er ekki tengt!\n"
+"Vinsamlega tengið það."
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
@@ -2956,10 +3069,10 @@ msgid "The wizard is finished now."
 msgstr "Álfurinn er búinn núna."
 
 msgid "There are no default services lists in your image."
-msgstr ""
+msgstr "Það er enginn sjálfgefinn rásalisti í þessu stýrikerfi."
 
 msgid "There are no default settings in your image."
-msgstr ""
+msgstr "Það er engar sjálfgefnar stillingar í þessu stýrikerfi."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -2970,26 +3083,32 @@ msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "Þessi .NFI skrá inniheldur ekki %s stýrikerfi í lagi!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"Þessi .NFI skrá er ekki með md5sum undirskrift og er ekki hægt að tryggja að "
+"hún virki. Viltu örugglega forrita hana inn í minni?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+"Þessi .NFI skrá er með gilda md5 undirskrift. Viltu halda áfram að forrita "
+"minni móttakarans með henni?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
 msgstr ""
+"Þessi DVD RW diskur er þegar formaður - endurformun mun eyða öllum gögnum af "
+"honum."
 
 #, python-format
 msgid "This Dreambox can't decode %s video streams!"
-msgstr ""
+msgstr "Þetta Dreambox getur ekki spilað %s mynd strauma!"
 
 msgid "This is step number 2."
 msgstr "Þetta er hluti númer 2"
@@ -3004,6 +3123,11 @@ msgid ""
 "- if you configured your Nameservers manually please verify your entries in "
 "the \"Nameserver\" Configuration"
 msgstr ""
+"Þessi prufun athugar stillingar nafnaþjóns.\n"
+"Ef þú færð \"óstaðfest\" skilaboð:\n"
+"- athugaðu DHCP þjónustu, tengingar og uppsetningu\n"
+"- ef að þú hefur sett upp nafnaþjón handvirkt athugaðu þá þínar nafnaþjóns "
+"stillingar."
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -3011,6 +3135,10 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
+"Þessi prufun athugar hvort að netkapallinn sé tengdur við netkortið þitt.\n"
+"Ef þú færð skilaboðin \"ótengt\":\n"
+"- athugaðu hvort að kapallinn sé tengur\n"
+"- athugaðu hvort að kapallinn sé skemmdur"
 
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
@@ -3018,6 +3146,10 @@ msgid ""
 "- no valid IP Address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
+"Þessi prufun athugar hvort að gild IP tala fannst fyrir þitt netkort.\n"
+"Ef þú færð skilaboðin \"óstaðfest\":\n"
+"- það fannst ekki gild IP tala\n"
+"- athugaðu DHCP uppsetningu, tengingar eða uppsetningu nets"
 
 msgid ""
 "This test checks whether your LAN Adapter is set up for automatic IP Address "
@@ -3029,9 +3161,17 @@ msgid ""
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
+"Þessi prufun athugar hvort að netkortið þitt sé sett upp fyrir sjálfvirka "
+"úthlutun á IP tölu með DHCP þjón.\n"
+"Ef þú færð skilaboðiin \"óvirkt\":\n"
+"- þá er netkortið stillt fyrir handvirka IP uppsetningu\n"
+"- athugaðu hvort að þú hafir sett inn réttar IP uppsetngingar í stillingum "
+"netkorts\n"
+"Ef þú færð skilaboðin \"virkt\":\n"
+"- athugaðu hvort að það sé DHCP þjónn sem úthlutar IP tölum á innra neti þínu"
 
 msgid "This test detects your configured LAN-Adapter."
-msgstr ""
+msgstr "Þessi prufun skynjar innstillt netkort."
 
 msgid "Three"
 msgstr "Þrír"
@@ -3073,6 +3213,8 @@ msgid ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
 msgstr ""
+"Tímastillingar ná yfir hvorn annan!\n"
+"Vinsamlega athugið það!"
 
 msgid "Timer sanity error"
 msgstr "Villa í tímastillingu"
@@ -3093,15 +3235,24 @@ msgid "Timezone"
 msgstr "Tímabelti"
 
 msgid "Title"
+msgstr "Titill"
+
+msgid "Title properties"
 msgstr ""
 
 msgid "Title:"
 msgstr "Titill:"
 
+msgid "Titleset mode"
+msgstr ""
+
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
 "and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
+"Til að vera viss um að þú viljir gera þetta þá átt þú að taka USB stautinn "
+"úr sambandi og tengja hann aftur þegar þú ert beðinn um það. Ýttu á OK þegar "
+"þú er búinn að taka hann úr sambandi."
 
 msgid "Today"
 msgstr "Í dag"
@@ -3116,7 +3267,7 @@ msgid "Toneburst A/B"
 msgstr "Tón stýring A/B"
 
 msgid "Track"
-msgstr ""
+msgstr "Spor"
 
 msgid "Translation"
 msgstr "Þýðing"
@@ -3214,7 +3365,7 @@ msgid "Unmount failed"
 msgstr "Aftenging tókst ekki"
 
 msgid "Update"
-msgstr ""
+msgstr "Uppfæra"
 
 msgid "Updates your receiver's software"
 msgstr "Uppfærir forrit móttakarans"
@@ -3238,7 +3389,7 @@ msgid "Use DHCP"
 msgstr "Nota DHCP"
 
 msgid "Use Interface"
-msgstr ""
+msgstr "Nota netkort"
 
 msgid "Use Power Measurement"
 msgstr "Nota afl mælingu"
@@ -3265,7 +3416,7 @@ msgid "Use power measurement"
 msgstr "Nota aflmælingu"
 
 msgid "Use the Networkwizard to configure your Network\n"
-msgstr ""
+msgstr "Nota netkerfis álf til að stilla inn netkerfið\n"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
@@ -3297,7 +3448,7 @@ msgid "VCR scart"
 msgstr "Vídeó scart"
 
 msgid "VMGM (intro trailer)"
-msgstr ""
+msgstr "VMGM (mynd sýnishorn)"
 
 msgid "Video Fine-Tuning"
 msgstr "Mynd fínstillingar"
@@ -3337,6 +3488,9 @@ msgstr "Skoða gagnvirkt Útvarp"
 msgid "View teletext..."
 msgstr "Skoða textavarp..."
 
+msgid "Virtual KeyBoard"
+msgstr ""
+
 msgid "Voltage mode"
 msgstr "Spennu stýring"
 
@@ -3347,22 +3501,25 @@ msgid "W"
 msgstr "W"
 
 msgid "WEP"
-msgstr ""
+msgstr "WEP"
 
 msgid "WPA"
+msgstr "WPA"
+
+msgid "WPA or WPA2"
 msgstr ""
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS á 4:3"
 
 msgid "Waiting"
-msgstr ""
+msgstr "Bíð"
 
 msgid "Waiting for USB stick to settle..."
-msgstr ""
+msgstr "Bíð eftir að USB tengist..."
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -3391,6 +3548,13 @@ msgid ""
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
+"Velkominn í klippinga stjórann.\n"
+"\n"
+"Farðu að byrjun á því sem að þú ætlar að klippa. Ýttu á OK og veldu 'byrja "
+"klippingu'.\n"
+"\n"
+"Farðu þá að enda þess og ýttu á OK, veldu 'enda klippingu'. Það er allt og "
+"sumt."
 
 msgid ""
 "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
@@ -3413,7 +3577,7 @@ msgstr ""
 "Ýttu á OK hnappinn á fjarstýringunni til að fara á næsta þrep."
 
 msgid "Welcome..."
-msgstr ""
+msgstr "Velkomin(n)..."
 
 msgid "West"
 msgstr "Vestur"
@@ -3428,19 +3592,19 @@ msgid "Wireless"
 msgstr "Þráðlaust"
 
 msgid "Wireless Network"
-msgstr ""
+msgstr "Þráðlaust netkerfi"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Villla við upptöku. Diskur fullur?\n"
 
 msgid "Write failed!"
-msgstr ""
+msgstr "Tókst ekki að skrifa!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "Búið að skrifa .NFI stýrikerfi í minni"
 
 msgid "Writing image file to NAND Flash"
-msgstr ""
+msgstr "Skrifa stýrikerfi í NAND Flash"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3450,6 +3614,9 @@ msgstr "Ár:"
 
 msgid "Yes"
 msgstr "Já"
+
+msgid "Yes, and delete this movie"
+msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Já, taka afrit að stilinunum!"
@@ -3479,24 +3646,29 @@ msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
 msgstr ""
+"Þú getur valið sjálfgefnar stillingar núna. Vinsamlega veldu stillignar sem "
+"að þú vilt setja inn."
 
 msgid "You can choose, what you want to install..."
-msgstr ""
+msgstr "Þú getur valið það sem að þú vilt setja inn..."
 
 msgid "You cannot delete this!"
 msgstr "Þú getur ekki eytt þessu!"
 
 msgid "You chose not to install any default services lists."
-msgstr ""
+msgstr "Þú valdir að setja ekki inn neinar sjálfgefnar stillingar."
 
 msgid ""
 "You chose not to install any default settings. You can however install the "
 "default settings later in the settings menu."
 msgstr ""
+"Þú valdir ekki að setja inn neinar sjálfgefnar stillingar. Þú getur "
+"hinsvegar valið að setja inn seinna þessar stillingar."
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
 msgstr ""
+"Þú valdir ekki að setja in neitt. Vinsamlega ýttu á OK til að ljúka álfi."
 
 msgid ""
 "You do not seem to have a harddisk in your Dreambox. So backing up to a "
@@ -3535,6 +3707,8 @@ msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
+"Þú hefur valið að búa til nýjan keyranlegan .NFI USB staut. Þetta veldur því "
+"að öllum gögnum af USB stautum verður eytt."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3573,6 +3747,7 @@ msgstr ""
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
+"Dreamboxið þitt mun endurræsa sig eftir að þú ýtir á OK á fjarstýringunni."
 
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Sjónvarpið þitt virkar á 50 Hz. Gott mál!"
@@ -3596,6 +3771,16 @@ msgid ""
 msgstr ""
 "Það þarf að uppfæra heila í framtölvu.\n"
 "Ýtið á OK til að byrja uppfærslu."
+
+msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Fara aftur á rás fyrir stillingu á mótorstýringu?"
@@ -3627,11 +3812,17 @@ msgstr "hætta við að breyta uppáhaldsl ista"
 msgid "about to start"
 msgstr "er að byrja"
 
+msgid "activate current configuration"
+msgstr ""
+
+msgid "add a nameserver entry"
+msgstr ""
+
 msgid "add alternatives"
 msgstr "bæta við valkosti"
 
 msgid "add bookmark"
-msgstr ""
+msgstr "bæta við bókamerki"
 
 msgid "add bouquet"
 msgstr "bæta rásavendi við"
@@ -3683,13 +3874,13 @@ msgstr ""
 "eftirfarandi afrit:\n"
 
 msgid "audio tracks"
-msgstr ""
+msgstr "hljóð rás"
 
 msgid "back"
 msgstr "til baka"
 
 msgid "background image"
-msgstr ""
+msgstr "bakgrunns mynd"
 
 msgid "better"
 msgstr "betra"
@@ -3707,10 +3898,10 @@ msgid "change recording (endtime)"
 msgstr "breyta upptöku (lokatíma)"
 
 msgid "chapters"
-msgstr ""
+msgstr "kaflar"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "veldu ákvörðunar möppu"
 
 msgid "circular left"
 msgstr "hringpólun vinstri"
@@ -3722,7 +3913,7 @@ msgid "clear playlist"
 msgstr "hreinsa spilunarlista"
 
 msgid "color"
-msgstr ""
+msgstr "litur"
 
 msgid "complex"
 msgstr "flókinn"
@@ -3731,10 +3922,10 @@ msgid "config menu"
 msgstr "stillinga valmynd"
 
 msgid "confirmed"
-msgstr ""
+msgstr "staðfest"
 
 msgid "connected"
-msgstr ""
+msgstr "tengt"
 
 msgid "continue"
 msgstr "halda áfram"
@@ -3743,13 +3934,13 @@ msgid "copy to bouquets"
 msgstr "afrita til rásavanda"
 
 msgid "create directory"
-msgstr ""
+msgstr "búa til möppu"
 
 msgid "daily"
 msgstr "daglega"
 
 msgid "day"
-msgstr ""
+msgstr "dagur"
 
 msgid "delete"
 msgstr "eyða"
@@ -3776,7 +3967,7 @@ msgid "disabled"
 msgstr "óvirkt"
 
 msgid "disconnected"
-msgstr ""
+msgstr "ótengt"
 
 msgid "do not change"
 msgstr "ekki breyta"
@@ -3823,14 +4014,17 @@ msgstr "enda klippingu hér"
 msgid "end favourites edit"
 msgstr "hætta að breyta uppáhalds lista"
 
-msgid "equal to"
+msgid "enigma2 and network"
 msgstr ""
+
+msgid "equal to"
+msgstr "jafnt og"
 
 msgid "exceeds dual layer medium!"
-msgstr ""
+msgstr "meira en tveggja laga diskur!"
 
 msgid "exit DVD player or return to file browser"
-msgstr ""
+msgstr "hætta í DVD spilara og fara til baka í skráarvafra"
 
 msgid "exit mediaplayer"
 msgstr "hætta í spilara"
@@ -3838,23 +4032,38 @@ msgstr "hætta í spilara"
 msgid "exit movielist"
 msgstr "loka myndalista"
 
-msgid "failed"
+msgid "exit nameserver configuration"
 msgstr ""
 
-msgid "filename"
+msgid "exit network adapter configuration"
 msgstr ""
+
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "exit network interface list"
+msgstr ""
+
+msgid "exit networkadapter setup menu"
+msgstr ""
+
+msgid "failed"
+msgstr "tókst ekki"
+
+msgid "filename"
+msgstr "skráarnafn"
 
 msgid "fine-tune your display"
 msgstr "fínstilla sjónvarpið"
 
 msgid "font face"
-msgstr ""
+msgstr "stafagerð"
 
 msgid "forward to the next chapter"
-msgstr ""
+msgstr "stökkva í næsta kafla"
 
 msgid "free"
-msgstr ""
+msgstr "laust"
 
 msgid "free diskspace"
 msgstr "laust diskpláss"
@@ -3866,7 +4075,7 @@ msgid "go to standby"
 msgstr "fara í biðstöðu"
 
 msgid "headline"
-msgstr ""
+msgstr "yfirskrift"
 
 msgid "hear radio..."
 msgstr "hlusta á útvarp...."
@@ -3881,7 +4090,7 @@ msgid "hide player"
 msgstr "fela spilara"
 
 msgid "highlighted button"
-msgstr ""
+msgstr "upplýstir hnappar"
 
 msgid "horizontal"
 msgstr "lárétt"
@@ -3910,10 +4119,10 @@ msgid "insert mark here"
 msgstr "setja merki hér"
 
 msgid "jump back to the previous title"
-msgstr ""
+msgstr "stökkva til baka í fyrri titil"
 
 msgid "jump forward to the next title"
-msgstr ""
+msgstr "stökkva áfram í næsta titil"
 
 msgid "jump to listbegin"
 msgstr "fara í byrjun listans"
@@ -3934,7 +4143,7 @@ msgid "left"
 msgstr "vinstri"
 
 msgid "length"
-msgstr ""
+msgstr "lengd"
 
 msgid "list style compact"
 msgstr "stíll lista lítill"
@@ -3955,7 +4164,7 @@ msgid "locked"
 msgstr "læst"
 
 msgid "loopthrough to"
-msgstr ""
+msgstr "tengt saman við"
 
 msgid "manual"
 msgstr "handvirkt"
@@ -3964,7 +4173,7 @@ msgid "menu"
 msgstr "valmynd"
 
 msgid "menulist"
-msgstr ""
+msgstr "valmynd"
 
 msgid "mins"
 msgstr "mín"
@@ -3976,10 +4185,22 @@ msgid "minutes"
 msgstr "mínútur"
 
 msgid "month"
-msgstr ""
+msgstr "mánuður"
 
 msgid "move PiP to main picture"
 msgstr "nota mynd glugga sem aðal mynd"
+
+msgid "move down to last entry"
+msgstr ""
+
+msgid "move down to next entry"
+msgstr ""
+
+msgid "move up to first entry"
+msgstr ""
+
+msgid "move up to previous entry"
+msgstr ""
 
 msgid "movie list"
 msgstr "myndalisti"
@@ -4024,10 +4245,10 @@ msgid "nothing connected"
 msgstr "ekkert tengt"
 
 msgid "of a DUAL layer medium used."
-msgstr ""
+msgstr "af tveggja laga DVD."
 
 msgid "of a SINGLE layer medium used."
-msgstr ""
+msgstr "af eins lags DVD disk."
 
 msgid "off"
 msgstr "af"
@@ -4036,13 +4257,13 @@ msgid "on"
 msgstr "á"
 
 msgid "on READ ONLY medium."
-msgstr ""
+msgstr "á READ ONLY disk."
 
 msgid "once"
 msgstr "einu sinni"
 
-msgid "only /etc/enigma2 directory"
-msgstr "bara /etc/enigma2 mappa"
+msgid "open nameserver configuration"
+msgstr ""
 
 msgid "open servicelist"
 msgstr "opna rása lista"
@@ -4052,6 +4273,9 @@ msgstr "opna rásalista (niður)"
 
 msgid "open servicelist(up)"
 msgstr "opna rásalista (upp)"
+
+msgid "open virtual keyboard input help"
+msgstr ""
 
 msgid "pass"
 msgstr "í lagi"
@@ -4081,13 +4305,16 @@ msgid "previous channel in history"
 msgstr "fyrri rás í sögu"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "endurræsi..."
 
 msgid "record"
 msgstr "taka upp"
 
 msgid "recording..."
 msgstr "tek upp...."
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "eyða fyrir aftan þetta"
@@ -4102,10 +4329,10 @@ msgid "remove before this position"
 msgstr "eyða fyrir framan þetta"
 
 msgid "remove bookmark"
-msgstr ""
+msgstr "eyða bókamerki"
 
 msgid "remove directory"
-msgstr ""
+msgstr "eyða möppu"
 
 msgid "remove entry"
 msgstr "taka út"
@@ -4117,19 +4344,19 @@ msgid "remove new found flag"
 msgstr "eyða merkingu um nýfundna rás"
 
 msgid "remove selected satellite"
-msgstr ""
+msgstr "eyða völdum gervihnetti"
 
 msgid "remove this mark"
 msgstr "taka út þetta merki"
 
 msgid "repeat playlist"
-msgstr ""
+msgstr "endurtaka spilunarlista"
 
 msgid "repeated"
 msgstr "endurtekinn"
 
 msgid "rewind to the previous chapter"
-msgstr ""
+msgstr "fara til baka á fyrri kafla"
 
 msgid "right"
 msgstr "hægri"
@@ -4157,12 +4384,18 @@ msgid "seconds"
 msgstr "sekúndur"
 
 msgid "select"
-msgstr ""
+msgstr "veldu"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "veldu .NFI stýrikerfis skrá"
 
 msgid "select image from server"
+msgstr "veldu stýrikerfi frá vefþjón"
+
+msgid "select interface"
+msgstr ""
+
+msgid "select menu entry"
 msgstr ""
 
 msgid "select movie"
@@ -4178,7 +4411,7 @@ msgid "setup pin"
 msgstr "kóði valmyndar"
 
 msgid "show DVD main menu"
-msgstr ""
+msgstr "sýna aðalvalmynd DVD "
 
 msgid "show EPG..."
 msgstr "sýna EPG"
@@ -4238,7 +4471,7 @@ msgid "sort by date"
 msgstr "raða eftir dagsetningu"
 
 msgid "spaces (top, between rows, left)"
-msgstr ""
+msgstr "bil (topp, milli dálka, vinstri)"
 
 msgid "standard"
 msgstr "venjulegt"
@@ -4271,7 +4504,7 @@ msgid "swap PiP and main picture"
 msgstr "skipta á PiP og aðal mynd"
 
 msgid "switch to bookmarks"
-msgstr ""
+msgstr "fara á bókamerki"
 
 msgid "switch to filelist"
 msgstr "skipta í skráarlista"
@@ -4280,10 +4513,10 @@ msgid "switch to playlist"
 msgstr "skipta í spilunar lista"
 
 msgid "switch to the next audio track"
-msgstr ""
+msgstr "skipta á næstu hljóð rás"
 
 msgid "switch to the next subtitle language"
-msgstr ""
+msgstr "skipta á næsta undirtexta"
 
 msgid "text"
 msgstr "texti"
@@ -4298,10 +4531,10 @@ msgid "toggle a cut mark at the current position"
 msgstr "setja merki á núverandi stað"
 
 msgid "toggle time, chapter, audio, subtitle info"
-msgstr ""
+msgstr "skipta á milli tíma, kafla, undirtexta upplýsingar"
 
 msgid "unconfirmed"
-msgstr ""
+msgstr "óstaðfest"
 
 msgid "unknown service"
 msgstr "óþekkt rás"
@@ -4337,7 +4570,7 @@ msgid "whitelist"
 msgstr "hvíti listi"
 
 msgid "year"
-msgstr ""
+msgstr "ár"
 
 msgid "yes"
 msgstr "já"
@@ -4445,6 +4678,9 @@ msgstr "stokkið"
 #~ msgid "Auto show inforbar"
 #~ msgstr "Sýna upplýsingar sjálfvirkt"
 
+#~ msgid "Automatic SSID lookup"
+#~ msgstr "Leita að SSID sjálfvirkt"
+
 #~ msgid "Cable provider"
 #~ msgstr "Kapal sendandi"
 
@@ -4465,6 +4701,9 @@ msgstr "stokkið"
 
 #~ msgid "Device Setup..."
 #~ msgstr "Uppsetning tækja..."
+
+#~ msgid "DiSEqC Mode"
+#~ msgstr "DiSEqC Gerð"
 
 #~ msgid "Disable subtitles"
 #~ msgstr "Taka af undirtexta"
@@ -4552,6 +4791,33 @@ msgstr "stokkið"
 
 #~ msgid "Network"
 #~ msgstr "Netkerfi"
+
+#~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Engin nothæf nettenging fannst.\n"
+#~ "Vinsamlega athugið hvort að netsnúra sé tengd og að stillingar netkerfis "
+#~ "séu réttar."
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "your local network interface."
+#~ msgstr ""
+#~ "Engin nothæf þráðlaus nettenging fannst.\n"
+#~ "Vinsamlega athugið hvort að það sé tengt þráðlaust netkort eða athugaðu "
+#~ "stillingar þínar."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Engin nothæf þráðlaus nettenging fannst.\n"
+#~ "Vinsamlega athugið hvort að það sé tengt þráðlaust USB netkort eða "
+#~ "athugaðu stillingar þínar."
 
 #~ msgid "Nothing connected"
 #~ msgstr "Ekkert tengt"
@@ -4726,6 +4992,9 @@ msgstr "stokkið"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "tengt frá tengi A"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "bara /etc/enigma2 mappa"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "spila næsta atriði á spilunarlista"
