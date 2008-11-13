@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 21:18+0100\n"
-"PO-Revision-Date: 2008-10-15 12:10+0100\n"
+"POT-Creation-Date: 2008-11-13 13:35+0100\n"
+"PO-Revision-Date: 2008-11-13 14:12+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -541,7 +541,7 @@ msgid "Burn DVD"
 msgstr "Brenne DVD"
 
 msgid "Burn existing image to DVD"
-msgstr ""
+msgstr "Vorhandenes Image auf DVD brennen"
 
 msgid "Burn to DVD..."
 msgstr "Auf DVD brennen..."
@@ -704,6 +704,9 @@ msgstr "Compact-Flash-Karte"
 msgid "Complete"
 msgstr "Komplett"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr "Komplex (erlaubt Mischen versch. Ton-u. Bildformate)"
+
 msgid "Configuration Mode"
 msgstr "Konfiguration"
 
@@ -757,7 +760,7 @@ msgid "Could not load Medium! No disc inserted?"
 msgstr "Konnte das Medium nicht laden! Keine DVD eingelegt?"
 
 msgid "Create DVD-ISO"
-msgstr ""
+msgstr "DVD-ISO erstellen"
 
 msgid "Create movie folder failed"
 msgstr "Erzeugen des Film-Verzeichnisses fehlgeschlagen"
@@ -1077,6 +1080,9 @@ msgstr "Ost"
 msgid "Edit DNS"
 msgstr "Bearbeite DNS"
 
+msgid "Edit Title"
+msgstr "Titel schneiden"
+
 msgid "Edit chapters of current title"
 msgstr "Kapitel des ausgewählten Titels schneiden"
 
@@ -1390,10 +1396,10 @@ msgid "IP Address"
 msgstr "IP-Adresse"
 
 msgid "ISO file is too large for this filesystem!"
-msgstr ""
+msgstr "Die ISO-Datei passt nicht auf das Dateisystem!"
 
 msgid "ISO path"
-msgstr ""
+msgstr "ISO-Ausgabepfad"
 
 msgid "Icelandic"
 msgstr "Isländisch"
@@ -1522,7 +1528,7 @@ msgid "Italian"
 msgstr "Italienisch"
 
 msgid "Job View"
-msgstr ""
+msgstr "Jobansicht"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -2266,6 +2272,9 @@ msgstr "Vorschau des DVD-Menüs"
 msgid "Primary DNS"
 msgstr "Primärer DNS"
 
+msgid "Properties of current title"
+msgstr "Eigenschaften des ausgewählten Titels"
+
 msgid "Protect services"
 msgstr "Kanäle schützen"
 
@@ -2403,6 +2412,9 @@ msgstr "Wiederholungen"
 
 msgid "Reset"
 msgstr "Zurücksetzen"
+
+msgid "Reset and renumerate title names"
+msgstr "Titelnamen zurücksetzen und neu nummerieren"
 
 msgid "Resolution"
 msgstr "Auflösung"
@@ -2765,6 +2777,9 @@ msgstr "Ähnliche Sendungen:"
 msgid "Simple"
 msgstr "Einfach"
 
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr "Schlicht (bessere Kompatibilität mit alten DVD-Playern)"
+
 msgid "Single"
 msgstr "Einzeln"
 
@@ -2938,7 +2953,7 @@ msgid "TRANSLATOR_INFO"
 msgstr ""
 
 msgid "TS file is too large for ISO9660 level 1!"
-msgstr ""
+msgstr "TS-Datei ist zu groß für ISO9660 level 1!"
 
 msgid "TV System"
 msgstr "Fernsehnorm"
@@ -3237,12 +3252,16 @@ msgstr "Zeitzone"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Title properties"
+msgstr "Titeleigensch."
+
 msgid "Title:"
 msgstr "Titel:"
 
-msgid ""
-"To make sure you intend to do this, please remove the target USB stick now "
-"and stick it back in upon prompt. Press OK when you have taken the stick out."
+msgid "Titleset mode"
+msgstr "Titleset"
+
+msgid "To make sure you intend to do this, please remove the target USB stick now and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
 
 msgid "Today"
@@ -3866,6 +3885,14 @@ msgstr ""
 "Sind Sie sicher, dass Sie die Sicherung zurückspielen wollen?\n"
 "Sicherung:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr "Format der Audiospur (%s)"
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr "Sprache der Audiospur (%s)"
+
 msgid "audio tracks"
 msgstr "Tonspuren"
 
@@ -3880,6 +3907,10 @@ msgstr "besser"
 
 msgid "blacklist"
 msgstr "Negativliste"
+
+#, python-format
+msgid "burn audio track (%s)"
+msgstr "Brenne die Audiospur (%s)"
 
 msgid "by Exif"
 msgstr ""
