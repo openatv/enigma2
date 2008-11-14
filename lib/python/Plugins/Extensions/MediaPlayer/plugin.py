@@ -21,6 +21,7 @@ from Components.Harddisk import harddiskmanager
 from Components.config import config
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_SKIN_IMAGE
 from settings import MediaPlayerSettings
+from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 import random
 
 class MyPlayList(PlayList):
@@ -96,6 +97,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self["repeat"] = MultiPixmap()
 
 		self.seek_target = None
+		hotplugNotifier.append(self.hotplugCB)
 
 		class MoviePlayerActionMap(NumberActionMap):
 			def __init__(self, player, contexts = [ ], actions = { }, prio=0):
@@ -171,7 +173,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.coverArtFileName = ""
 		self.isAudioCD = False
 		self.AudioCD_albuminfo = {}
-
+		self.cdAudioTrackFiles = []
 		self.applySettings()
 
 		self.playlistIOInternal = PlaylistIOInternal()
@@ -203,6 +205,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if config.mediaplayer.saveDirOnExit.getValue():
 			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
 			config.mediaplayer.defaultDir.save()
+		hotplugNotifier.remove(self.hotplugCB)
 		self.close()
 
 	def checkSkipShowHideLock(self):
@@ -445,6 +448,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def showMenu(self):
 		menu = []
+		if len(self.cdAudioTrackFiles):
+			menu.insert(0,(_("Play Audio-CD..."), "audiocd"))
 		if self.currList == "filelist":
 			if self.filelist.canDescent():
 				menu.append((_("add directory to playlist"), "copydir"))
@@ -462,9 +467,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		menu.append((_("load playlist"), "loadplaylist"));
 		menu.append((_("delete saved playlist"), "deleteplaylist"));
 		menu.append((_("Edit settings"), "settings"))
-		drivepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
-		if pathExists(drivepath):
-			menu.insert(0,(_("Play Audio-CD..."), "audiocd"))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
@@ -504,16 +506,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		elif choice[1] == "settings":
 			self.session.openWithCallback(self.applySettings, MediaPlayerSettings, self)
 		elif choice[1] == "audiocd":
-			from Components.Scanner import scanDevice
-			drivepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
-			self.cdAudioTrackFiles = []
-			res = scanDevice(drivepath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
-			if list:
-				(desc, scanner, files, session) = list[0]
-				for file in files:
-					if file.mimetype == "audio/x-cda":
-						self.cdAudioTrackFiles.append(file.path)
 			self.playAudioCD()
 
 	def playAudioCD(self):
@@ -867,7 +859,20 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		
 	def subtitleSelection(self):
 		from Screens.Subtitles import Subtitles
-		self.session.open(Subtitles)		
+		self.session.open(Subtitles)
+	
+	def hotplugCB(self, dev, media_state):
+		if dev == harddiskmanager.getCD():	
+			from Components.Scanner import scanDevice
+			devpath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+			self.cdAudioTrackFiles = []
+			res = scanDevice(devpath)
+			list = [ (r.description, r, res[r], self.session) for r in res ]
+			if list:
+				(desc, scanner, files, session) = list[0]
+				for file in files:
+					if file.mimetype == "audio/x-cda":
+						self.cdAudioTrackFiles.append(file.path)
 
 class MediaPlayerLCDScreen(Screen):
 	skin = """
