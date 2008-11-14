@@ -63,6 +63,7 @@ class Network:
 
 	def getDataForInterface(self, iface,callback):
 		#get ip out of ip addr, as avahi sometimes overrides it in ifconfig.
+		self.Console = Console()
 		cmd = "ip -o addr"
 		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
 
