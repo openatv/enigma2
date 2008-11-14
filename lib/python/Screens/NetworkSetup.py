@@ -88,7 +88,8 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		if len(self.adapters) == 1:
 			self.onFirstExecBegin.append(self.okbuttonClick)
 		self.onClose.append(self.cleanup)
-		
+
+
 	def updateList(self):
 		self.list = []
 		default_gw = None
@@ -174,6 +175,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
 		iNetwork.stopRestartConsole()
+		iNetwork.stopGetInterfacesConsole()
 
 	def restartLan(self):
 		iNetwork.restartNetwork(self.restartLanDataAvail)
@@ -425,10 +427,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 							if a['active']:
 								if a['essid'] == "":
 									a['essid'] = a['bssid']
-								self.nwlist.append( a['essid'])
+								self.nwlist.append((a['essid'],a['essid']))
 					self.nwlist.sort(key = lambda x: x[0])
 				except:
-					self.nwlist.append("No Networks found")
+					self.nwlist.append(("No Networks found",_("No Networks found")))
 
 			self.wsconfig = self.ws.loadConfig()
 			if self.essid is not None: # ssid from wlan scan
@@ -437,10 +439,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.default = self.wsconfig['ssid']
 				
 			if "hidden..." not in self.nwlist:
-				self.nwlist.append("hidden...")
+				self.nwlist.append(("hidden...",_("hidden network")))
 			if self.default not in self.nwlist:
-				self.nwlist.append(self.default)
-
+				self.nwlist.append((self.default,self.default))
 			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
 			config.plugins.wlan.hiddenessid = NoSave(ConfigText(default = self.wsconfig['hiddenessid'], visible_width = 50, fixed_size = False))
 
@@ -650,15 +651,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def cancel(self):
 		if self.oldInterfaceState is False:
-			iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
+			iNetwork.deactivateInterface(self.iface,self.cancelCB)
 		else:
 			self.close('cancel')
 
-	def deactivateInterfaceCB(self,data):
-		if data is not None:
-			if data is True:
-				iNetwork.getInterfaces(self.cancelCB)
-	
 	def cancelCB(self,data):			
 		if data is not None:
 			if data is True:

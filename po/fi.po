@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-28 11:20+0100\n"
+"POT-Creation-Date: 2008-11-14 07:24+0100\n"
 "PO-Revision-Date: 2008-10-27 19:01+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -84,6 +84,12 @@ msgstr "(tyhjä)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(näytä  DVD-äänen lisävalikko)"
+
+msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "* Only available when entering hidden SSID or network key"
+msgstr ""
 
 msgid ".NFI Download failed:"
 msgstr ".NFI lataus epäonnistui:"
@@ -405,6 +411,11 @@ msgid "Arabic"
 msgstr "Arabia"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -443,9 +454,6 @@ msgstr "Autom. SCARTin kytkentä"
 
 msgid "Automatic"
 msgstr "Automaattinen"
-
-msgid "Automatic SSID lookup"
-msgstr "Automaattinen SSID etsintä"
 
 msgid "Automatic Scan"
 msgstr "Automaattihaku"
@@ -518,6 +526,9 @@ msgstr "Kirkkaus"
 
 msgid "Burn DVD"
 msgstr "Polta DVD"
+
+msgid "Burn existing image to DVD"
+msgstr ""
 
 msgid "Burn to DVD..."
 msgstr "Polta DVD:lle..."
@@ -684,6 +695,9 @@ msgstr "CompactFlash-kortti"
 msgid "Complete"
 msgstr "Täysi"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr ""
+
 msgid "Configuration Mode"
 msgstr "Muokkaustila"
 
@@ -732,6 +746,9 @@ msgstr "NFI-ohjelmistopäivityksien palvelimelle ei saatu yhteyttä:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Levyä ei voitu ladata! Levy puuttuu?"
+
+msgid "Create DVD-ISO"
+msgstr ""
 
 msgid "Create movie folder failed"
 msgstr "Tallennehakemiston luonti epäonnistui"
@@ -853,9 +870,6 @@ msgstr "DiSEqC A/B"
 
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
-
-msgid "Mode"
-msgstr "Tila"
 
 msgid "DiSEqC mode"
 msgstr "DiSEqC-tila"
@@ -1063,8 +1077,14 @@ msgstr "VIRHE - haku epäonnistui (%s)!"
 msgid "East"
 msgstr "Itä"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "Muuta DNS"
+
+msgid "Edit Title"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr "Muokkaa kappaleita"
@@ -1111,6 +1131,9 @@ msgstr "Suojaus"
 msgid "Encryption Key"
 msgstr "Suojausavain"
 
+msgid "Encryption Keytype"
+msgstr ""
+
 msgid "Encryption Type"
 msgstr "Suojausjärjestelmä"
 
@@ -1146,6 +1169,12 @@ msgstr "Aloita kelaus eteenpäin nopeudella"
 
 msgid "Enter Rewind at speed"
 msgstr "Aloita kelaus taaksepäin nopeudella"
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr ""
 
 msgid "Enter main menu..."
 msgstr "Mene päävalikkoon..."
@@ -1240,6 +1269,12 @@ msgstr "Hienosäät."
 
 msgid "Finished"
 msgstr "Päättyi"
+
+msgid "Finished configuring your network"
+msgstr ""
+
+msgid "Finished restarting your network"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Suomi"
@@ -1349,6 +1384,9 @@ msgstr "Kiintolevyn asetukset"
 msgid "Harddisk standby after"
 msgstr "Kiintolevyn automaattinen sammutus"
 
+msgid "Hidden network SSID"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Hierarkia-tietoja"
 
@@ -1363,6 +1401,12 @@ msgstr "Unkari"
 
 msgid "IP Address"
 msgstr "IP-osoite"
+
+msgid "ISO file is too large for this filesystem!"
+msgstr ""
+
+msgid "ISO path"
+msgstr ""
 
 msgid "Icelandic"
 msgstr "Islanti"
@@ -1644,6 +1688,9 @@ msgstr "Viesti"
 msgid "Mkfs failed"
 msgstr "Tiedostojärjestelmän luonti epäonnistui"
 
+msgid "Mode"
+msgstr "Tila"
+
 msgid "Model: "
 msgstr "Malli: "
 
@@ -1856,28 +1903,22 @@ msgstr ""
 "Jos vastaat 'Ei', asetuksia ei suojata tunnusluvulla."
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Toimivaa verkkokorttia ei löydy.\n"
-"Tarkista, että olet kytkennyt verkkokaapelin ja lähiverkon asetukset ovat "
-"oikein."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
-msgstr ""
-"Toimivaa WLAN-sovitinta ei löytynyt.\n"
-"Tarkista, että olet kytkenyt yhteensopivan USB-WLAN-tikun ja verkkoasetukset "
-"ovat oikein."
 
 msgid "No, but restart from begin"
 msgstr "Ei, aloita alusta"
@@ -2149,8 +2190,20 @@ msgid ""
 "the OK button."
 msgstr "Valitse kieli ylös/alas näppäimillä ja paina OK-näppäintä."
 
+msgid "Please wait for activation of your network configuration..."
+msgstr ""
+
 msgid "Please wait for md5 signature verification..."
 msgstr "Odota md5-allekirjoituksen tarkistusta..."
+
+msgid "Please wait while we configure your network..."
+msgstr ""
+
+msgid "Please wait while your network is restarting..."
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Odota... Luetteloa ladataan..."
@@ -2232,6 +2285,9 @@ msgstr "Esikatsele valikkoa"
 
 msgid "Primary DNS"
 msgstr "Ensisijainen DNS"
+
+msgid "Properties of current title"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Suojaa kanavat"
@@ -2368,6 +2424,9 @@ msgstr "Toistokerrat"
 
 msgid "Reset"
 msgstr "Käynnistä CA-moduuli uudelleen"
+
+msgid "Reset and renumerate title names"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Tarkkuus"
@@ -2607,6 +2666,12 @@ msgstr "Valitse video-tila"
 msgid "Selected source image"
 msgstr "Valittu päivitys"
 
+msgid "Send DiSEqC"
+msgstr ""
+
+msgid "Send DiSEqC only on satellite change"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Erilliset otsikot päävalikon kanssa"
 
@@ -2660,8 +2725,14 @@ msgstr "Kanavatiedot"
 msgid "Services"
 msgstr "Kanavat"
 
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
 msgid "Set as default Interface"
 msgstr "Aseta oletukseksi"
+
+msgid "Set interface as default Interface"
+msgstr ""
 
 msgid "Set limits"
 msgstr "Aseta rajat"
@@ -2719,6 +2790,9 @@ msgstr "Samanlaiset lähetykset:"
 
 msgid "Simple"
 msgstr "Suppea"
+
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr ""
 
 msgid "Single"
 msgstr "Yksi"
@@ -2892,6 +2966,9 @@ msgstr "Muut asetukset"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
+msgstr ""
+
+msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
 msgid "TV System"
@@ -3215,8 +3292,14 @@ msgstr "Aikavyöhyke"
 msgid "Title"
 msgstr "Otsikko"
 
+msgid "Title properties"
+msgstr ""
+
 msgid "Title:"
 msgstr "Otsikko:"
+
+msgid "Titleset mode"
+msgstr ""
 
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
@@ -3478,6 +3561,9 @@ msgstr ""
 msgid "View teletext..."
 msgstr "Näytä teksti-tv..."
 
+msgid "Virtual KeyBoard"
+msgstr ""
+
 msgid "Voltage mode"
 msgstr "Jännitetila"
 
@@ -3491,6 +3577,9 @@ msgid "WEP"
 msgstr ""
 
 msgid "WPA"
+msgstr ""
+
+msgid "WPA or WPA2"
 msgstr ""
 
 msgid "WPA2"
@@ -3765,6 +3854,16 @@ msgstr ""
 "Etupaneelin suorittimen ohjelmisto on päivitettävä.\n"
 "Paina OK aloittaaksesi päivityksen."
 
+msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr ""
 "Vaihdetaanko takaisin kanavalle, jota katsottiin\n"
@@ -3798,6 +3897,12 @@ msgstr "Peruuta muutokset ja poistu"
 
 msgid "about to start"
 msgstr "alkaa juuri"
+
+msgid "activate current configuration"
+msgstr ""
+
+msgid "add a nameserver entry"
+msgstr ""
 
 msgid "add alternatives"
 msgstr "Vaihtoehtojen lisäys ja poisto"
@@ -3854,6 +3959,14 @@ msgstr ""
 "haluatko varmasti palauttaa\n"
 "seuraavan varmuuskopion:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr ""
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr ""
+
 msgid "audio tracks"
 msgstr "ääniraidat"
 
@@ -3870,6 +3983,10 @@ msgstr "parempi"
 
 msgid "blacklist"
 msgstr "kielletyt"
+
+#, python-format
+msgid "burn audio track (%s)"
+msgstr ""
 
 msgid "by Exif"
 msgstr "EXIF-tietojen mukaan"
@@ -4000,6 +4117,9 @@ msgstr "Lopeta leikkaus tähän"
 msgid "end favourites edit"
 msgstr "Tallenna muutokset ja poistu"
 
+msgid "enigma2 and network"
+msgstr ""
+
 msgid "equal to"
 msgstr "sama kuin"
 
@@ -4014,6 +4134,21 @@ msgstr "Poistu Mediatoistimesta"
 
 msgid "exit movielist"
 msgstr "poistu tallenneluettelosta"
+
+msgid "exit nameserver configuration"
+msgstr ""
+
+msgid "exit network adapter configuration"
+msgstr ""
+
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "exit network interface list"
+msgstr ""
+
+msgid "exit networkadapter setup menu"
+msgstr ""
 
 msgid "failed"
 msgstr "epäonnistui"
@@ -4156,6 +4291,18 @@ msgstr "kuukausi"
 msgid "move PiP to main picture"
 msgstr "Siirrä PiP pääkuvaan"
 
+msgid "move down to last entry"
+msgstr ""
+
+msgid "move down to next entry"
+msgstr ""
+
+msgid "move up to first entry"
+msgstr ""
+
+msgid "move up to previous entry"
+msgstr ""
+
 msgid "movie list"
 msgstr "tallenneluettelo"
 
@@ -4216,8 +4363,8 @@ msgstr "vain-luku levystä."
 msgid "once"
 msgstr "kerran"
 
-msgid "only /etc/enigma2 directory"
-msgstr "vain /etc/enigma2-hakemisto"
+msgid "open nameserver configuration"
+msgstr ""
 
 msgid "open servicelist"
 msgstr "Avaa kanavalista"
@@ -4227,6 +4374,9 @@ msgstr "Avaa kanavalista(alaspäin)"
 
 msgid "open servicelist(up)"
 msgstr "Avaa kanavalista(ylöspäin)"
+
+msgid "open virtual keyboard input help"
+msgstr ""
 
 msgid "pass"
 msgstr "hyväksytty"
@@ -4263,6 +4413,9 @@ msgstr "tallennus"
 
 msgid "recording..."
 msgstr "tallennetaan..."
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "Poista tämän kohdan jälkeen"
@@ -4339,6 +4492,12 @@ msgstr "valitse .NFI flash-tiedosto"
 
 msgid "select image from server"
 msgstr "valitse päivitys palvelimelta"
+
+msgid "select interface"
+msgstr ""
+
+msgid "select menu entry"
+msgstr ""
 
 msgid "select movie"
 msgstr "valitse tallenne"
@@ -4534,6 +4693,18 @@ msgstr "kanavanvaihto"
 msgid "zapped"
 msgstr "vaihdettu"
 
+#~ msgid "Automatic SSID lookup"
+#~ msgstr "Automaattinen SSID etsintä"
+
+#~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Toimivaa verkkokorttia ei löydy.\n"
+#~ "Tarkista, että olet kytkennyt verkkokaapelin ja lähiverkon asetukset ovat "
+#~ "oikein."
+
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN device or enable "
@@ -4542,3 +4713,15 @@ msgstr "vaihdettu"
 #~ "Toimivaa langatonta yhteyttä ei löydy.\n"
 #~ "Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen tai kytke "
 #~ "lähiverkko päälle."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Toimivaa WLAN-sovitinta ei löytynyt.\n"
+#~ "Tarkista, että olet kytkenyt yhteensopivan USB-WLAN-tikun ja "
+#~ "verkkoasetukset ovat oikein."
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "vain /etc/enigma2-hakemisto"
