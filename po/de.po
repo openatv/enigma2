@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-13 13:35+0100\n"
+"POT-Creation-Date: 2008-11-14 07:24+0100\n"
 "PO-Revision-Date: 2008-11-13 14:12+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -18,13 +18,6 @@ msgstr ""
 "X-Poedit-Language: German\n"
 "X-Poedit-Country: GERMANY\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 wird nach der Wiederherstellung neu starten"
 
 msgid " "
 msgstr ""
@@ -882,9 +875,6 @@ msgstr "DiSEqC A/B"
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
-msgid "Mode"
-msgstr "Modus"
-
 msgid "DiSEqC mode"
 msgstr "DiSEqC-Modus"
 
@@ -1077,6 +1067,9 @@ msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 msgid "East"
 msgstr "Ost"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "Bearbeite DNS"
 
@@ -1161,6 +1154,11 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
+#.       be interpreted as "Give speed as input". The intended meaning is
+#.       instead "Initial speed when starting winding", i.e. the speed at
+#.       which "winding mode" is entered when first pressing "rewind" or
+#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Anfängliche Vorlaufgeschwindigkeit eingeben"
 
@@ -1679,6 +1677,9 @@ msgstr "Nachricht"
 msgid "Mkfs failed"
 msgstr "Mkfs fehlgeschlagen"
 
+msgid "Mode"
+msgstr "Modus"
+
 msgid "Model: "
 msgstr "Modell:"
 
@@ -1905,12 +1906,9 @@ msgstr ""
 
 msgid ""
 "No working wireless network interface found.\n"
-"Please verify that you have attached a compatible WLAN device or enable your "
-"local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
-"Kein funktionierender WLAN Netzwerkadapter gefunden.\n"
-"Stellen Sie sicher, dass Sie ein kompatibles Gerät angeschlossen haben und "
-"das Ihr Netzwerk richtig konfiguriert ist."
 
 msgid "No, but restart from begin"
 msgstr "Nein, aber von Anfang an neu beginnen"
@@ -3261,7 +3259,9 @@ msgstr "Titel:"
 msgid "Titleset mode"
 msgstr "Titleset"
 
-msgid "To make sure you intend to do this, please remove the target USB stick now and stick it back in upon prompt. Press OK when you have taken the stick out."
+msgid ""
+"To make sure you intend to do this, please remove the target USB stick now "
+"and stick it back in upon prompt. Press OK when you have taken the stick out."
 msgstr ""
 
 msgid "Today"
@@ -3409,6 +3409,18 @@ msgstr "Verwende Stromaufnahmen-Messung"
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
 
+#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
+#.       than using ordinary "continuous" or "smooth" winding, a fast
+#.       sequence of stills is shown when winding at high speeds. This
+#.       makes it much easier too follow when almost each frame comes from
+#.       a new scene. The effect is achieved by repeating each shown frame
+#.       a couple of times. The settings control both at which speed this
+#.       winding mode sets in, and how many times each frame should be
+#.       repeated. This was previously called "Discontinuous playback"
+#.       which was incomprehensible. "Non-smooth winding" may be a better
+#.       term, but note that there is nothing irregular about it. Synonyms
+#.       better suited for translation to other languages may be "stepwise
+#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr ""
 
@@ -4616,6 +4628,13 @@ msgid "zapped"
 msgstr "umgeschaltet"
 
 #~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 wird nach der Wiederherstellung neu starten"
+
+#~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"
 #~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
 #~ "\n"
@@ -4677,6 +4696,15 @@ msgstr "umgeschaltet"
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nameserver-Einstellungen..."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ "Please verify that you have attached a compatible WLAN device or enable "
+#~ "your local network interface."
+#~ msgstr ""
+#~ "Kein funktionierender WLAN Netzwerkadapter gefunden.\n"
+#~ "Stellen Sie sicher, dass Sie ein kompatibles Gerät angeschlossen haben "
+#~ "und das Ihr Netzwerk richtig konfiguriert ist."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nein, Standard-Kanalliste verwenden."
