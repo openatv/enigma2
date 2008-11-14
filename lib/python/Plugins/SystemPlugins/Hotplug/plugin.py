@@ -8,6 +8,8 @@ DEVICEDB =  \
 	  "/devices/pci0000:00/0000:00:14.2/usb1/1-1/1-1:1.0/host0/target1:0:0/0:0:0:0": "SD Slot"
 	}
 
+hotplugNotifier = [ ]
+
 class Hotplug(Protocol):
 	def getUserfriendlyDeviceName(self, phys):
 		return DEVICEDB.get(phys, "USB Storage")
@@ -48,6 +50,12 @@ class Hotplug(Protocol):
 				harddiskmanager.addHotplugPartition(dev, self.getUserfriendlyDeviceName(physdevpath))
 			elif media_state == '0':
 				harddiskmanager.removeHotplugPartition(dev)
+		
+		for callback in hotplugNotifier:
+			try:
+				callback(dev, media_state)
+			except AttributeError:
+				hotplugNotifier.remove(callback)
 
 def autostart(reason, **kwargs):
 	if reason == 0:
