@@ -35,11 +35,12 @@ config.mediaplayer.defaultDir = ConfigDirectory()
 
 class DirectoryBrowser(Screen, HelpableScreen):
 	skin = """
-		<screen name="DirectoryBrowser" position="80,150" size="400,376" title="Directory browser" >
+		<screen name="DirectoryBrowser" position="160,62" size="450,376" title="Directory browser" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="250,0" size="140,40" alphatest="on" />		<widget source="key_red" render="Label" position="10,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="250,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="filelist" position="0,44" size="400,332" scrollbarMode="showOnDemand" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="300,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="10,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="300,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="filelist" position="0,44" size="440,322" scrollbarMode="showOnDemand" />
 		</screen>"""
 	def __init__(self, session, currDir):
 		from Components.Sources.StaticText import StaticText
@@ -47,14 +48,14 @@ class DirectoryBrowser(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Apply"))
+		self["key_green"] = StaticText(_("Use"))
 
 		self.filelist = FileList(currDir, matchingPattern="")
 		self["filelist"] = self.filelist
 
 		self["FilelistActions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
-				"green": self.apply,
+				"green": self.use,
 				"red": self.exit,
 				"ok": self.ok,
 				"cancel": self.exit
@@ -64,7 +65,7 @@ class DirectoryBrowser(Screen, HelpableScreen):
 		if self.filelist.canDescent():
 			self.filelist.descent()
 
-	def apply(self):
+	def use(self):
 		if self.filelist.canDescent() and len(self["filelist"].getFilename()) > len(self["filelist"].getCurrentDirectory()):
 			self.filelist.descent()
 		self.close(self["filelist"].getCurrentDirectory())
@@ -74,12 +75,12 @@ class DirectoryBrowser(Screen, HelpableScreen):
 
 class MediaPlayerSettings(Screen,ConfigListScreen):
 	skin = """
-		<screen name="MediaPlayerSettings" position="160,150" size="400,200" title="Edit settings">
+		<screen name="MediaPlayerSettings" position="160,150" size="450,200" title="Edit settings">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="250,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="300,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="10,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="250,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="config" position="10,44" size="380,146" />
+			<widget source="key_green" render="Label" position="300,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="config" position="10,44" size="430,146" />
 		</screen>"""
 
 	def __init__(self, session, parent):

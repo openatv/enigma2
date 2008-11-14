@@ -618,7 +618,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			try:
 				os_remove(self.delname)
 			except OSError,e:
-				self.session.open(MessageBox, _("Delete failed!, %s") %e, MessageBox.TYPE_ERROR)
+				print "delete failed:", e
+				self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 
 	def clear_playlist(self):
 		self.isAudioCD = False

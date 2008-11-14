@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 07:24+0100\n"
-"PO-Revision-Date: 2008-11-13 14:12+0100\n"
+"POT-Creation-Date: 2008-11-14 23:57+0100\n"
+"PO-Revision-Date: 2008-11-14 23:41+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,7 @@ msgid "(empty)"
 msgstr "(leer)"
 
 msgid "(show optional DVD audio menu)"
-msgstr ""
+msgstr "(DVD-Audiomenü zeigen falls vorh.)"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
@@ -948,9 +948,6 @@ msgid ""
 "the plugin \"%s\"?"
 msgstr ""
 
-msgid "Do you really want to exit?"
-msgstr "Wollen Sie wirklich beenden?"
-
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
@@ -1606,7 +1603,7 @@ msgid "Load"
 msgstr "Laden"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Anzeigen der Spielzeit in der Filmliste"
 
 msgid "Local Network"
 msgstr "Int. Netzwerk"
@@ -2020,7 +2017,7 @@ msgid "Pan&Scan"
 msgstr ""
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "übergeordnetes Verzeichnis"
 
 msgid "Parental control"
 msgstr "Jugendschutz"
@@ -3397,6 +3394,9 @@ msgstr "Upgrade"
 msgid "Upgrading Dreambox... Please wait"
 msgstr "Dreambox wird aktualisiert... Bitte warten"
 
+msgid "Use"
+msgstr "Benutzen"
+
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
@@ -3978,11 +3978,11 @@ msgstr "täglich"
 msgid "day"
 msgstr "Tag"
 
-msgid "delete"
-msgstr "Löschen"
-
 msgid "delete cut"
 msgstr "Schnitt löschen"
+
+msgid "delete file"
+msgstr "Datei löschen"
 
 msgid "delete playlist entry"
 msgstr "Wiedergabelisteneintrag löschen"
@@ -4397,8 +4397,14 @@ msgstr "Zum vorherigen Kapitel zurück"
 msgid "right"
 msgstr "rechts"
 
+msgid "save last directory on exit"
+msgstr "Anfangsverzeichnis beim Beenden merken"
+
 msgid "save playlist"
 msgstr "Wiedergabeliste speichern"
+
+msgid "save playlist on exit"
+msgstr "Wiedergabeliste beim Beenden speicher"
 
 msgid "scan done!"
 msgstr "Suche beendet!"
@@ -4517,6 +4523,9 @@ msgstr "Standby"
 
 msgid "start cut here"
 msgstr "Schnitt hier starten"
+
+msgid "start directory"
+msgstr "Anfangsverzeichnis"
 
 msgid "start timeshift"
 msgstr "Timeshift starten"
@@ -4679,6 +4688,9 @@ msgstr "umgeschaltet"
 #~ "Wollen Sie das Plugin mit\n"
 #~ "dem Namen \" wirklich herunterladen?"
 
+#~ msgid "Do you really want to exit?"
+#~ msgstr "Wollen Sie wirklich beenden?"
+
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktiviere WLAN Unterstützung"
 
@@ -4782,6 +4794,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "You have to wait for"
 #~ msgstr "Sie müssen warten"
+
+#~ msgid "delete"
+#~ msgstr "Löschen"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Wie Tuner A"
