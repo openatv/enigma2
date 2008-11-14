@@ -88,7 +88,8 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		if len(self.adapters) == 1:
 			self.onFirstExecBegin.append(self.okbuttonClick)
 		self.onClose.append(self.cleanup)
-		
+
+
 	def updateList(self):
 		self.list = []
 		default_gw = None
@@ -650,15 +651,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def cancel(self):
 		if self.oldInterfaceState is False:
-			iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
+			iNetwork.deactivateInterface(self.iface,self.cancelCB)
 		else:
 			self.close('cancel')
 
-	def deactivateInterfaceCB(self,data):
-		if data is not None:
-			if data is True:
-				iNetwork.getInterfaces(self.cancelCB)
-	
 	def cancelCB(self,data):			
 		if data is not None:
 			if data is True:
