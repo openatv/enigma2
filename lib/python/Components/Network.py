@@ -63,7 +63,8 @@ class Network:
 
 	def getDataForInterface(self, iface,callback):
 		#get ip out of ip addr, as avahi sometimes overrides it in ifconfig.
-		self.Console = Console()
+		if not self.Console:
+			self.Console = Console()
 		cmd = "ip -o addr"
 		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
 
@@ -213,15 +214,16 @@ class Network:
 		for ifacename, iface in ifaces.items():
 			if self.ifaces.has_key(ifacename):
 				self.ifaces[ifacename]["dhcp"] = iface["dhcp"]
-		if len(self.Console.appContainers) == 0:
-			# save configured interfacelist
-			self.configuredNetworkAdapters = self.configuredInterfaces
-			# load ns only once	
-			self.loadNameserverConfig()
-			print "read configured interfac:", ifaces
-			print "self.ifaces after loading:", self.ifaces
-			if callback is not None:
-				callback(True)
+		if self.Console:
+			if len(self.Console.appContainers) == 0:
+				# save configured interfacelist
+				self.configuredNetworkAdapters = self.configuredInterfaces
+				# load ns only once	
+				self.loadNameserverConfig()
+				print "read configured interfac:", ifaces
+				print "self.ifaces after loading:", self.ifaces
+				if callback is not None:
+					callback(True)
 
 	def loadNameserverConfig(self):
 		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
