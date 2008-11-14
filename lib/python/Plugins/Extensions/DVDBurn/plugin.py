@@ -12,5 +12,5 @@ def main_add(session, service, **kwargs):
 	dvdburn.selectedSource(service)
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name="DVD Burn", description=_("Burn to DVD..."), where = PluginDescriptor.WHERE_MOVIELIST, fnc=main_add), 
-		PluginDescriptor(name="DVD Burn", description=_("Burn to DVD..."), where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main) ]
+	return [PluginDescriptor(name="DVD Burn", description=_("Burn to DVD..."), where = PluginDescriptor.WHERE_MOVIELIST, fnc=main_add, icon="dvdburn.png"),
+		PluginDescriptor(name="DVD Burn", description=_("Burn to DVD..."), where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main, icon="dvdburn.png") ]
