@@ -426,10 +426,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 							if a['active']:
 								if a['essid'] == "":
 									a['essid'] = a['bssid']
-								self.nwlist.append( a['essid'])
+								self.nwlist.append((a['essid'],a['essid']))
 					self.nwlist.sort(key = lambda x: x[0])
 				except:
-					self.nwlist.append("No Networks found")
+					self.nwlist.append(("No Networks found",_("No Networks found")))
 
 			self.wsconfig = self.ws.loadConfig()
 			if self.essid is not None: # ssid from wlan scan
@@ -438,10 +438,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.default = self.wsconfig['ssid']
 				
 			if "hidden..." not in self.nwlist:
-				self.nwlist.append("hidden...")
+				self.nwlist.append(("hidden...",_("hidden network")))
 			if self.default not in self.nwlist:
-				self.nwlist.append(self.default)
-
+				self.nwlist.append((self.default,self.default))
 			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
 			config.plugins.wlan.hiddenessid = NoSave(ConfigText(default = self.wsconfig['hiddenessid'], visible_width = 50, fixed_size = False))
 
