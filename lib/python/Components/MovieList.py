@@ -103,7 +103,8 @@ class MovieList(GUIComponent):
 		txt = info.getName(serviceref)
 		service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 		description = info.getInfoString(serviceref, iServiceInformation.sDescription)
-		
+		tags = info.getInfoString(serviceref, iServiceInformation.sTags)
+
 		begin_string = ""
 		if begin > 0:
 			t = FuzzyTime(begin)
@@ -111,23 +112,33 @@ class MovieList(GUIComponent):
 		
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
 			res.append(MultiContentEntryText(pos=(0, 0), size=(width-182, 30), font = 0, flags = RT_HALIGN_LEFT, text=txt))
-			if service is not None:
-				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+			if self.tags:
+				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = tags))
+				if service is not None:
+					res.append(MultiContentEntryText(pos=(200, 50), size=(200, 20), font = 1, flags = RT_HALIGN_LEFT, text = service.getServiceName()))
+			else:
+				if service is not None:
+					res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
 			res.append(MultiContentEntryText(pos=(0, 30), size=(width, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
-			res.append(MultiContentEntryText(pos=(0, 50), size=(width-270, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
-			res.append(MultiContentEntryText(pos=(width-200, 50), size=(200, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+			res.append(MultiContentEntryText(pos=(0, 50), size=(200, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+			res.append(MultiContentEntryText(pos=(width-200, 50), size=(198, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION:
 			res.append(MultiContentEntryText(pos=(0, 0), size=(width-120, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-			if service is not None:
-				res.append(MultiContentEntryText(pos=(width-212, 20), size=(154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
 			res.append(MultiContentEntryText(pos=(0, 20), size=(width-212, 17), font=1, flags=RT_HALIGN_LEFT, text=description))
 			res.append(MultiContentEntryText(pos=(width-120, 6), size=(120, 20), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+			if service is not None:
+				res.append(MultiContentEntryText(pos=(width-212, 20), size=(154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
 			res.append(MultiContentEntryText(pos=(width-58, 20), size=(58, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT:
 			res.append(MultiContentEntryText(pos=(0, 0), size=(width-77, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-			if service is not None:
-				res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
-			res.append(MultiContentEntryText(pos=(0, 20), size=(width-200, 17), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+			if self.tags:
+				res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = tags))
+				if service is not None:
+					res.append(MultiContentEntryText(pos=(200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_LEFT, text = service.getServiceName()))
+			else:
+				if service is not None:
+					res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+			res.append(MultiContentEntryText(pos=(0, 20), size=(200, 17), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
 			res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		else:
 			assert(self.list_type == MovieList.LISTTYPE_MINIMAL)
@@ -212,6 +223,7 @@ class MovieList(GUIComponent):
 			if this_tags == ['']:
 				this_tags = []
 			this_tags = set(this_tags)
+			tags |= this_tags
 		
 			# filter_tags is either None (which means no filter at all), or 
 			# a set. In this case, all elements of filter_tags must be present,
@@ -219,7 +231,6 @@ class MovieList(GUIComponent):
 			if filter_tags is not None and not this_tags.issuperset(filter_tags):
 				continue
 		
-			tags |= this_tags
 			self.list.append((serviceref, info, begin, -1))
 		
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
@@ -243,8 +254,9 @@ class MovieList(GUIComponent):
 		for x in self.list:
 			if x[0] == serviceref:
 				self.instance.moveSelectionTo(count)
-				break
+				return True
 			count += 1
-
+		return False
+	
 	def moveDown(self):
 		self.instance.moveSelection(self.instance.moveDown)
