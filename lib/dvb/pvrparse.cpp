@@ -370,7 +370,8 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 				eDebug("Sequence header but no valid PTS value.");
 		}
 
-		if (pkt[3] == 0x09) /* MPEG4 AVC unit access delimiter */
+		if (pkt[3] == 0x09 &&   /* MPEG4 AVC unit access delimiter */
+			 (pkt[4] >> 5) == 0) /* and I-frame */
 		{
 			if (ptsvalid)
 			{
