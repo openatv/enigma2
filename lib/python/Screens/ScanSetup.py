@@ -394,8 +394,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
 					self.list.append(self.modulationEntry)
 					self.list.append(getConfigListEntry(_('Rolloff'), self.scan_sat.rolloff))
-					if self.scan_sat.modulation.value == "8psk":
-						self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
+					self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
 			elif self.scan_type.value == "single_satellite":
 				self.updateSatList()
 				print self.scan_satselection[index_to_scan]
