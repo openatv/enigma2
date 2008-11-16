@@ -985,9 +985,9 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 		unsigned char *ts = data + ts_offset;
 		int pid = ((ts[1] << 8) | ts[2]) & 0x1FFF;
 
-		if ((d[3] == 0) && (m_pid == pid))  /* picture start */
+		if ((d[3] == 0 || d[3] == 0x09 && d[-1] == 0 && (ts[1] & 0x40)) && (m_pid == pid))  /* picture start */
 		{
-			int picture_type = (d[5] >> 3) & 7;
+			int picture_type = (d[3]==0 ? (d[5] >> 3) & 7 : (d[4] >> 5) + 1);
 			d += 4;
 
 //			eDebug("%d-frame at %d, offset in TS packet: %d, pid=%04x", picture_type, offset, offset % 188, pid);
@@ -1413,10 +1413,13 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		start = current_offset;
 		size = max;
 	} else {
-		off_t tmp = align(m_source_span.rbegin()->second, blocksize);
-		if (current_offset == tmp) {
-			start = current_offset;
-			size = 0;
+		off_t tmp2, tmp = align(m_source_span.rbegin()->second, blocksize);
+		pts_t len;
+		getLength(len);
+		m_tstools.getOffset(tmp2, len, 1);
+		if (current_offset == tmp || current_offset == tmp2) {
+			start = tmp2;
+			size = max;
 		} else {
 			start = tmp - align(512*1024, blocksize);
 			size = align(512*1024, blocksize);
