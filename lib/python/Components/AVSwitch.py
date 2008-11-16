@@ -28,6 +28,21 @@ class AVSwitch:
 	def setSystem(self, value):
 		eAVSwitch.getInstance().setVideomode(value)
 
+	def getOutputAspect(self):
+		if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
+			return 1.333333333
+		elif valstr == "16_9": # auto ... 4:3 or 16:9
+			# TODO: here we must retrieve the current video aspect ratio...
+			# because the TV can run in 4:3 or in 16:9 mode.. (switched by wss or scart pin8)
+			# until we have done this we always return the scale value for 16:9!!
+			return 1.777777778
+		elif valstr in ("16_9_always", "16_9_letterbox"): # 16:9
+			return 1.777777778
+		elif valstr in ("16_10_letterbox", "16_10_panscan"): # 16:10
+			return 1.6
+		print "unknown output aspect!"
+		return 1.0000
+
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.value
 		if valstr == "4_3_letterbox":
