@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations
 from enigma import Misc_Options, setTunerTypePriorityOrder;
 from SystemInfo import SystemInfo
 import os
@@ -29,6 +29,9 @@ def InitUsageConfig():
 	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
+
+	config.usage.allowed_timeshift_paths = ConfigLocations(default = ["/media/hdd/"])
+	config.usage.timeshift_path = ConfigText(default = "/media/hdd")
 
 	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
