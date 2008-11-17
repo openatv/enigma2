@@ -1041,7 +1041,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 				int payload_start = 4;
 				if (ts[3] & 0x20) /* adaptation field present */
 					payload_start += ts[4] + 1; /* skip AF */
-				if (payload_start == (offset%184)) /* the 00 00 01 should be directly at the payload start, otherwise it's not a PES header */
+				if (payload_start == (offset%188)) /* the 00 00 01 should be directly at the payload start, otherwise it's not a PES header */
 				{
 					if (m_pid != pid)
 					{
