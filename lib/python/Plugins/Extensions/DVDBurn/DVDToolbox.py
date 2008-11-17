@@ -50,7 +50,7 @@ class DVDToolbox(Screen):
 		    "green": self.update,
 		    "yellow": self.format,
 		    #"blue": self.eject,
-		    "cancel": self.close,
+		    "cancel": self.exit,
 		    "pageUp": self.pageUp,
 		    "pageDown": self.pageDown
 		})
