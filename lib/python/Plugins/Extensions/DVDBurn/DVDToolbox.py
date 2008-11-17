@@ -9,6 +9,7 @@ from Components.Task import Task, Job, job_manager, Condition
 from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Console import Console
+from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
 class DVDToolbox(Screen):
 	skin = """
@@ -54,6 +55,7 @@ class DVDToolbox(Screen):
 		    "pageDown": self.pageDown
 		})
 		self.update()
+		hotplugNotifier.append(self.update)
 		
 	def pageUp(self):
 		self["details"].pageUp()
@@ -61,7 +63,7 @@ class DVDToolbox(Screen):
 	def pageDown(self):
 		self["details"].pageDown()
 
-	def update(self):
+	def update(self, dev="", media_state=""):
 		self["space_label"].text = _("Please wait... Loading list...")
 		self["info"].text = ""
 		self["details"].setText("")
@@ -141,6 +143,7 @@ class DVDToolbox(Screen):
 
 	def exit(self):
 		del self.Console
+		hotplugNotifier.remove(self.update)
 		self.close()
 
 class DVDformatJob(Job):

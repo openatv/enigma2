@@ -23,6 +23,8 @@ class SecParameterSetup(Screen, ConfigListScreen):
 
 		Screen.__init__(self, session)
 		list = [
+			("Delay after diseqc reset command", config.sec.delay_after_diseqc_reset_cmd),
+			("Delay after diseqc peripherial poweron command", config.sec.delay_after_diseqc_peripherial_poweron_cmd),
 			("Delay after continuous tone change", config.sec.delay_after_continuous_tone_change),
 			("Delay after last voltage change", config.sec.delay_after_final_voltage_change),
 			("Delay between diseqc commands", config.sec.delay_between_diseqc_repeats),

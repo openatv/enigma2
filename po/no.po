@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 17:06+0200\n"
+"POT-Creation-Date: 2008-11-14 07:24+0100\n"
 "PO-Revision-Date: 2008-06-12 14:34+0100\n"
 "Last-Translator: MMMMMM <theMMMMMM@gmail.com>\n"
 "Language-Team: none\n"
@@ -85,6 +85,12 @@ msgstr "(tom)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(vis alternativ DVD audio meny)"
+
+msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "* Only available when entering hidden SSID or network key"
+msgstr ""
 
 msgid ".NFI Download failed:"
 msgstr ""
@@ -401,6 +407,11 @@ msgid "Arabic"
 msgstr "Arabisk"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr "Er du sikker på at du vil restarte ditt nettverkskort?\n"
@@ -437,9 +448,6 @@ msgstr "Auto scart bytte"
 
 msgid "Automatic"
 msgstr "Automatisk"
-
-msgid "Automatic SSID lookup"
-msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Automatisk Søk"
@@ -511,6 +519,9 @@ msgid "Brightness"
 msgstr "Lysstyrke"
 
 msgid "Burn DVD"
+msgstr ""
+
+msgid "Burn existing image to DVD"
 msgstr ""
 
 msgid "Burn to DVD..."
@@ -674,6 +685,9 @@ msgstr "Compact flash kort"
 msgid "Complete"
 msgstr "Komplett"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr ""
+
 msgid "Configuration Mode"
 msgstr "Konfigurasjonsmodus"
 
@@ -724,6 +738,9 @@ msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+msgid "Create DVD-ISO"
 msgstr ""
 
 msgid "Create movie folder failed"
@@ -843,9 +860,6 @@ msgstr "DiSEqC A/B"
 
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
-
-msgid "DiSEqC Mode"
-msgstr "DiSEqC-Modus"
 
 msgid "DiSEqC mode"
 msgstr "DiSEqC-Modus"
@@ -1039,8 +1053,14 @@ msgstr "FEIL - kunne ikke søke (%s)!"
 msgid "East"
 msgstr "Øst"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "Endre DNS"
+
+msgid "Edit Title"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr ""
@@ -1087,6 +1107,9 @@ msgstr "Kryptering"
 msgid "Encryption Key"
 msgstr "Krypteringsnøkkel"
 
+msgid "Encryption Keytype"
+msgstr ""
+
 msgid "Encryption Type"
 msgstr "Krypteringstype"
 
@@ -1127,6 +1150,12 @@ msgstr "Inngangshastighet for spoling framover"
 
 msgid "Enter Rewind at speed"
 msgstr "Inngangshastighet for spoling bakover"
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr ""
 
 msgid "Enter main menu..."
 msgstr "Åpne hovedmenyen"
@@ -1217,6 +1246,12 @@ msgstr "Fininstilling."
 
 msgid "Finished"
 msgstr "Ferdig"
+
+msgid "Finished configuring your network"
+msgstr ""
+
+msgid "Finished restarting your network"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Finsk"
@@ -1323,6 +1358,9 @@ msgstr "Harddisk oppsett"
 msgid "Harddisk standby after"
 msgstr "Harddisk standby etter"
 
+msgid "Hidden network SSID"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Hierarkisk Informasjon"
 
@@ -1337,6 +1375,12 @@ msgstr "Ungarsk"
 
 msgid "IP Address"
 msgstr "IP-Adresse"
+
+msgid "ISO file is too large for this filesystem!"
+msgstr ""
+
+msgid "ISO path"
+msgstr ""
 
 msgid "Icelandic"
 msgstr "Islandsk"
@@ -1820,28 +1864,22 @@ msgstr ""
 "Sier du 'Nei' her vil setup beskyttelsen ikke være aktivert!"
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Ingen fungerende lokal nettverksadapter funnet.\n"
-"Vennligst verifiser at du har koblet til en nettverkskabel og at nettverket "
-"er konfigurert korrekt."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
-msgstr ""
-"Ingen fungerende trådløs adapter funnet.\n"
-"Vennligst verifiser at du har koblet til en kompatibel WLAN USB adapter og "
-"at nettverket er konfigurert korrekt."
 
 msgid "No, but restart from begin"
 msgstr "Nei, men start fra begynnelsen"
@@ -2103,7 +2141,19 @@ msgid ""
 "the OK button."
 msgstr ""
 
+msgid "Please wait for activation of your network configuration..."
+msgstr ""
+
 msgid "Please wait for md5 signature verification..."
+msgstr ""
+
+msgid "Please wait while we configure your network..."
+msgstr ""
+
+msgid "Please wait while your network is restarting..."
+msgstr ""
+
+msgid "Please wait..."
 msgstr ""
 
 msgid "Please wait... Loading list..."
@@ -2186,6 +2236,9 @@ msgstr ""
 
 msgid "Primary DNS"
 msgstr "Primær DNS"
+
+msgid "Properties of current title"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Beskytt kanaler"
@@ -2322,6 +2375,9 @@ msgstr "Gjentagelser"
 
 msgid "Reset"
 msgstr "Tilbakestill"
+
+msgid "Reset and renumerate title names"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Oppløsning"
@@ -2561,6 +2617,12 @@ msgstr "Velg videotype"
 msgid "Selected source image"
 msgstr ""
 
+msgid "Send DiSEqC"
+msgstr ""
+
+msgid "Send DiSEqC only on satellite change"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr ""
 
@@ -2612,7 +2674,13 @@ msgstr "Kanalinfo"
 msgid "Services"
 msgstr "Kanaler"
 
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
 msgid "Set as default Interface"
+msgstr ""
+
+msgid "Set interface as default Interface"
 msgstr ""
 
 msgid "Set limits"
@@ -2671,6 +2739,9 @@ msgstr "Samme utsendelser"
 
 msgid "Simple"
 msgstr "Enkel"
+
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr ""
 
 msgid "Single"
 msgstr "Singel"
@@ -2847,6 +2918,9 @@ msgstr ""
 "theMMMMMM@gmail.com\n"
 "\n"
 "Dere finner meg også på www.digsat.net"
+
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr ""
 
 msgid "TV System"
 msgstr "TV System"
@@ -3131,8 +3205,14 @@ msgstr "Tidssone"
 msgid "Title"
 msgstr "Tittel"
 
+msgid "Title properties"
+msgstr ""
+
 msgid "Title:"
 msgstr "Tittel:"
+
+msgid "Titleset mode"
+msgstr ""
 
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
@@ -3374,6 +3454,9 @@ msgstr "Vis Rass interaktiv..."
 msgid "View teletext..."
 msgstr "Vis teletext..."
 
+msgid "Virtual KeyBoard"
+msgstr ""
+
 msgid "Voltage mode"
 msgstr "Spenningsmodus"
 
@@ -3388,6 +3471,9 @@ msgstr "WEP"
 
 msgid "WPA"
 msgstr "WPA"
+
+msgid "WPA or WPA2"
+msgstr ""
 
 msgid "WPA2"
 msgstr "WPA2"
@@ -3487,6 +3573,9 @@ msgstr "År:"
 
 msgid "Yes"
 msgstr "Ja"
+
+msgid "Yes, and delete this movie"
+msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Ja, ta backup av mine innstillinger!"
@@ -3641,6 +3730,16 @@ msgstr ""
 "Din frontprosessor-firmware må oppgraderes.\n"
 "Trykk OK for å starte oppdatering."
 
+msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr "Zap tilbake til kanal før motoroppsett"
 
@@ -3670,6 +3769,12 @@ msgstr "avbryt favoritt editering"
 
 msgid "about to start"
 msgstr "starter snart"
+
+msgid "activate current configuration"
+msgstr ""
+
+msgid "add a nameserver entry"
+msgstr ""
 
 msgid "add alternatives"
 msgstr "legg til alternativer"
@@ -3726,6 +3831,14 @@ msgstr ""
 "Er du sikker på at du vil gjenopprette\n"
 "følgende backup:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr ""
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr ""
+
 msgid "audio tracks"
 msgstr ""
 
@@ -3740,6 +3853,10 @@ msgstr "bedre"
 
 msgid "blacklist"
 msgstr "svartlist"
+
+#, python-format
+msgid "burn audio track (%s)"
+msgstr ""
 
 msgid "by Exif"
 msgstr "av Exif"
@@ -3867,6 +3984,9 @@ msgstr "avslutt klipp her"
 msgid "end favourites edit"
 msgstr "avslutt favorittt editering"
 
+msgid "enigma2 and network"
+msgstr ""
+
 msgid "equal to"
 msgstr ""
 
@@ -3881,6 +4001,21 @@ msgstr "avslutt mediaspiller"
 
 msgid "exit movielist"
 msgstr "avslutt filmliste"
+
+msgid "exit nameserver configuration"
+msgstr ""
+
+msgid "exit network adapter configuration"
+msgstr ""
+
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "exit network interface list"
+msgstr ""
+
+msgid "exit networkadapter setup menu"
+msgstr ""
 
 msgid "failed"
 msgstr ""
@@ -4025,6 +4160,18 @@ msgstr ""
 msgid "move PiP to main picture"
 msgstr "flytt BiB til hovedbilde"
 
+msgid "move down to last entry"
+msgstr ""
+
+msgid "move down to next entry"
+msgstr ""
+
+msgid "move up to first entry"
+msgstr ""
+
+msgid "move up to previous entry"
+msgstr ""
+
 msgid "movie list"
 msgstr "filmliste"
 
@@ -4085,8 +4232,8 @@ msgstr ""
 msgid "once"
 msgstr "En gang"
 
-msgid "only /etc/enigma2 directory"
-msgstr "bare /etc/enigma2 mappen"
+msgid "open nameserver configuration"
+msgstr ""
 
 msgid "open servicelist"
 msgstr "Åpne kanalliste"
@@ -4096,6 +4243,9 @@ msgstr "Åpne kanalliste(ned)"
 
 msgid "open servicelist(up)"
 msgstr "Åpne kanalliste(opp)"
+
+msgid "open virtual keyboard input help"
+msgstr ""
 
 msgid "pass"
 msgstr "klart"
@@ -4132,6 +4282,9 @@ msgstr "spill inn"
 
 msgid "recording..."
 msgstr "spiller inn..."
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "fjern etter denne posisjon"
@@ -4207,6 +4360,12 @@ msgid "select .NFI flash file"
 msgstr ""
 
 msgid "select image from server"
+msgstr ""
+
+msgid "select interface"
+msgstr ""
+
+msgid "select menu entry"
 msgstr ""
 
 msgid "select movie"
@@ -4579,6 +4738,15 @@ msgstr "zapped"
 #~ msgstr "Nettverk"
 
 #~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Ingen fungerende lokal nettverksadapter funnet.\n"
+#~ "Vennligst verifiser at du har koblet til en nettverkskabel og at "
+#~ "nettverket er konfigurert korrekt."
+
+#~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
 #~ "enable your local network interface."
@@ -4586,6 +4754,15 @@ msgstr "zapped"
 #~ "Ingen fungerende trådløs grensesnitt funnet.\n"
 #~ "Vennligst verifiser at du har koblet til en kompatibel WLAN USB adapter "
 #~ "eller aktiver ditt lokal nettverks grensesnitt."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Ingen fungerende trådløs adapter funnet.\n"
+#~ "Vennligst verifiser at du har koblet til en kompatibel WLAN USB adapter "
+#~ "og at nettverket er konfigurert korrekt."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nei, la meg velge standard lister"
@@ -4848,6 +5025,9 @@ msgstr "zapped"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "loopthrough til socket A"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "bare /etc/enigma2 mappen"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "spill neste i spillelisten"

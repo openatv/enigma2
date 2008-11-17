@@ -85,23 +85,34 @@ class DemuxTask(Task):
 		title = job.project.titles[job.i]
 		self.global_preconditions.append(DiskspacePrecondition(title.estimatedDiskspace))
 		self.setTool("/usr/bin/projectx")
-		self.generated_files = [ ]
+		self.args += [inputfile, "-demux", "-out", self.job.workspace ]
 		self.end = 300
 		self.prog_state = 0
 		self.weighting = 1000
 		self.cutfile = self.job.workspace + "/cut_%d.Xcl" % (job.i+1)
 		self.cutlist = title.cutlist
-		self.args += [inputfile, "-demux", "-out", self.job.workspace ]
+		self.currentPID = None
+		self.relevantAudioPIDs = [ ]
+		self.getRelevantAudioPIDs(title)
+		self.generated_files = [ ]
+		self.mplex_streamfiles = [ ]
 		if len(self.cutlist) > 1:
 			self.args += [ "-cut", self.cutfile ]
 
 	def prepare(self):
 		self.writeCutfile()
 
+	def getRelevantAudioPIDs(self, title):
+		for audiotrack in title.properties.audiotracks:
+			if audiotrack.active.getValue():
+				self.relevantAudioPIDs.append(audiotrack.pid.getValue())
+
 	def processOutputLine(self, line):
 		line = line[:-1]
 		MSG_NEW_FILE = "---> new File: "
 		MSG_PROGRESS = "[PROGRESS] "
+		MSG_NEW_MP2 = "--> MPEG Audio (0x"
+		MSG_NEW_AC3 = "--> AC-3/DTS Audio on PID "
 
 		if line.startswith(MSG_NEW_FILE):
 			file = line[len(MSG_NEW_FILE):]
@@ -111,10 +122,14 @@ class DemuxTask(Task):
 		elif line.startswith(MSG_PROGRESS):
 			progress = line[len(MSG_PROGRESS):]
 			self.haveProgress(progress)
+		elif line.startswith(MSG_NEW_MP2) or line.startswith(MSG_NEW_AC3):
+			self.currentPID = str(int(line.rstrip()[-6:].rsplit('0x',1)[-1],16))
 
 	def haveNewFile(self, file):
-		print "PRODUCED FILE [%s]" % file
+		print "[DemuxTask] produced file:", file, self.currentPID
 		self.generated_files.append(file)
+		if self.currentPID in self.relevantAudioPIDs or file.endswith("m2v"):
+			self.mplex_streamfiles.append(file)
 
 	def haveProgress(self, progress):
 		#print "PROGRESS [%s]" % progress
@@ -131,7 +146,6 @@ class DemuxTask(Task):
 				if p > self.progress:
 					self.progress = p
 			except ValueError:
-				print "val error"
 				pass
 
 	def writeCutfile(self):
@@ -151,8 +165,8 @@ class DemuxTask(Task):
 	def cleanup(self, failed):
 		if failed:
 			import os
-			for f in self.generated_files:
-				os.remove(f)
+			for file in self.generated_files.itervalues():
+				os.remove(file)
 
 class MplexTaskPostcondition(Condition):
 	def check(self, task):
@@ -185,9 +199,9 @@ class MplexTask(Task):
 		# we don't want the ReturncodePostcondition in this case because for right now we're just gonna ignore the fact that mplex fails with a buffer underrun error on some streams (this always at the very end)
 
 	def prepare(self):
-		self.error = None			
+		self.error = None
 		if self.demux_task:
-			self.args += self.demux_task.generated_files
+			self.args += self.demux_task.mplex_streamfiles
 
 	def processOutputLine(self, line):
 		print "[MplexTask] ", line[:-1]
@@ -206,7 +220,7 @@ class RemoveESFiles(Task):
 
 	def prepare(self):
 		self.args += ["-f"]
-		self.args += self.demux_task.generated_files
+		self.args += self.demux_task.generated_files.values()
 		self.args += [self.demux_task.cutfile]
 
 class DVDAuthorTask(Task):
@@ -411,27 +425,6 @@ class PreviewTaskPostcondition(Condition):
 	def getErrorMessage(self, task):
 		return "Cancel"
 
-def formatTitle(template, title, track):
-	template = template.replace("$i", str(track))
-	template = template.replace("$t", title.name)
-	template = template.replace("$d", title.descr)
-	template = template.replace("$c", str(len(title.chaptermarks)+1))
-	template = template.replace("$A", str(title.audiotracks))
-	template = template.replace("$f", title.inputfile)
-	template = template.replace("$C", title.channel)
-	l = title.length
-	lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
-	template = template.replace("$l", lengthstring)
-	if title.timeCreate:
-		template = template.replace("$Y", str(title.timeCreate[0]))
-		template = template.replace("$M", str(title.timeCreate[1]))
-		template = template.replace("$D", str(title.timeCreate[2]))
-		timestring = "%d:%02d" % (title.timeCreate[3], title.timeCreate[4])
-		template = template.replace("$T", timestring)
-	else:
-		template = template.replace("$Y", "").replace("$M", "").replace("$D", "").replace("$T", "")
-	return template.decode("utf-8")
-
 class ImagingPostcondition(Condition):
 	def check(self, task):
 		return task.returncode == 0
@@ -518,14 +511,13 @@ class MenuImageTask(Task):
 				menu_end_title = nr_titles+1
 			menu_i = 0
 			for title_no in range( menu_start_title , menu_end_title ):
-				i = title_no-1
-				top = s_top + ( menu_i * rowheight )
 				menu_i += 1
-				title = self.job.project.titles[i]
-				titleText = formatTitle(s.titleformat.getValue(), title, title_no)
+				title = self.job.project.titles[title_no-1]
+				top = s_top + ( menu_i * rowheight )
+				titleText = title.formatDVDmenuText(s.titleformat.getValue(), title_no).decode("utf-8")
 				draw_bg.text((s_left,top), titleText, fill=self.Menus.color_button, font=fonts[1])
 				draw_high.text((s_left,top), titleText, fill=1, font=self.Menus.fonts[1])
-				subtitleText = formatTitle(s.subtitleformat.getValue(), title, title_no)
+				subtitleText = title.formatDVDmenuText(s.subtitleformat.getValue(), title_no).decode("utf-8")
 				draw_bg.text((s_left,top+36), subtitleText, fill=self.Menus.color_button, font=fonts[2])
 				bottom = top+rowheight
 				if bottom > self.Menus.imgheight:
@@ -607,7 +599,7 @@ class Menus:
 			menuoutputfilename = job.workspace+"/dvdmenu"+num+".mpg"
 			spumuxTask(job, spuxmlfilename, menubgmpgfilename, menuoutputfilename)
 		
-def CreateAuthoringXML(job):
+def CreateAuthoringXML_singleset(job):
 	nr_titles = len(job.project.titles)
 	mode = job.project.settings.authormode.getValue()
 	authorxml = []
@@ -649,9 +641,7 @@ def CreateAuthoringXML(job):
 		authorxml.append('   </menus>\n')
 	authorxml.append('   <titles>\n')
 	for i in range( nr_titles ):
-		#for audiotrack in job.project.titles[i].audiotracks:
-			#authorxml.append('    <audio lang="'+audiotrack[0][:2]+'" format="'+audiotrack[1]+'" />\n')
-		chapters = ','.join(["%d:%02d:%02d.%03d" % (p / (90000 * 3600), p % (90000 * 3600) / (90000 * 60), p % (90000 * 60) / 90000, (p % 90000) / 90) for p in job.project.titles[i].chaptermarks])
+		chapters = ','.join(job.project.titles[i].getChapterMarks())
 		title_no = i+1
 		title_filename = job.workspace + "/dvd_title_%d.mpg" % (title_no)
 		if job.menupreview:
@@ -671,6 +661,84 @@ def CreateAuthoringXML(job):
 
 	authorxml.append('   </titles>\n')
 	authorxml.append('  </titleset>\n')
+	authorxml.append(' </dvdauthor>\n')
+	f = open(job.workspace+"/dvdauthor.xml", "w")
+	for x in authorxml:
+		f.write(x)
+	f.close()
+
+def CreateAuthoringXML_multiset(job):
+	nr_titles = len(job.project.titles)
+	mode = job.project.settings.authormode.getValue()
+	authorxml = []
+	authorxml.append('<?xml version="1.0" encoding="utf-8"?>\n')
+	authorxml.append(' <dvdauthor dest="' + (job.workspace+"/dvd") + '" jumppad="yes">\n')
+	authorxml.append('  <vmgm>\n')
+	authorxml.append('   <menus>\n')
+	authorxml.append('    <video aspect="4:3"/>\n')
+	if mode.startswith("menu"):
+		for menu_count in range(1 , job.nr_menus+1):
+			authorxml.append('    <pgc>\n')
+			menu_start_title = (menu_count-1)*job.titles_per_menu + 1
+			menu_end_title = (menu_count)*job.titles_per_menu + 1
+			if menu_end_title > nr_titles:
+				menu_end_title = nr_titles+1
+			for i in range( menu_start_title , menu_end_title ):
+				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump titleset ' + str(i) +' title 1; </button>\n')
+			if menu_count > 1:
+				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
+			if menu_count < job.nr_menus:
+				authorxml.append('     <button name="button_next"> jump menu ' + str(menu_count+1) + '; </button>\n')
+			menuoutputfilename = job.workspace+"/dvdmenu"+str(menu_count)+".mpg"
+			authorxml.append('     <vob file="' + menuoutputfilename + '" pause="inf"/>\n')
+			authorxml.append('    </pgc>\n')
+	else:
+		authorxml.append('    <pgc>\n')
+		authorxml.append('     <vob file="' + job.project.settings.vmgm.getValue() + '" />\n' )
+		authorxml.append('     <post> jump titleset 1 title 1; </post>\n')
+		authorxml.append('    </pgc>\n')
+	authorxml.append('   </menus>\n')
+	authorxml.append('  </vmgm>\n')
+
+	for i in range( nr_titles ):
+		title = job.project.titles[i]
+		authorxml.append('  <titleset>\n')
+		authorxml.append('   <titles>\n')
+		for audiotrack in title.properties.audiotracks:
+			active = audiotrack.active.getValue()
+			if active:
+				format = audiotrack.format.getValue()
+				language = audiotrack.language.getValue()
+				audio_tag = '    <audio format="%s"' % format
+				if language != "nolang":
+					audio_tag += ' lang="%s"' % language
+				audio_tag += ' />\n'
+				authorxml.append(audio_tag)
+		aspect = title.properties.aspect.getValue()
+		video_tag = '    <video aspect="'+aspect+'"'
+		if title.properties.widescreen.getValue() == "4:3":
+			video_tag += ' widescreen="'+title.properties.widescreen.getValue()+'"'
+		video_tag += ' />\n'
+		authorxml.append(video_tag)
+		chapters = ','.join(title.getChapterMarks())
+		title_no = i+1
+		title_filename = job.workspace + "/dvd_title_%d.mpg" % (title_no)
+		if job.menupreview:
+			LinkTS(job, job.project.settings.vmgm.getValue(), title_filename)
+		else:
+			MakeFifoNode(job, title_no)
+		if mode.endswith("linked") and title_no < nr_titles:
+			post_tag = "jump titleset %d title 1;" % ( title_no+1 )
+		elif mode.startswith("menu"):
+			post_tag = "call vmgm menu 1;"
+		else:	post_tag = ""
+
+		authorxml.append('    <pgc>\n')
+		authorxml.append('     <vob file="' + title_filename + '" chapters="' + chapters + '" />\n')
+		authorxml.append('     <post> ' + post_tag + ' </post>\n')
+		authorxml.append('    </pgc>\n')
+		authorxml.append('   </titles>\n')
+		authorxml.append('  </titleset>\n')
 	authorxml.append(' </dvdauthor>\n')
 	f = open(job.workspace+"/dvdauthor.xml", "w")
 	for x in authorxml:
@@ -703,7 +771,10 @@ class DVDJob(Job):
 		CheckDiskspaceTask(self)
 		if self.project.settings.authormode.getValue().startswith("menu") or self.menupreview:
 			Menus(self)
-		CreateAuthoringXML(self)
+		if self.project.settings.titlesetmode.getValue() == "multi":
+			CreateAuthoringXML_multiset(self)
+		else:
+			CreateAuthoringXML_singleset(self)
 
 		DVDAuthorTask(self)
 		
@@ -713,14 +784,14 @@ class DVDJob(Job):
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 		else:
 			for self.i in range(nr_titles):
-				title = self.project.titles[self.i]
+				self.title = self.project.titles[self.i]
 				link_name =  self.workspace + "/source_title_%d.ts" % (self.i+1)
 				title_filename = self.workspace + "/dvd_title_%d.mpg" % (self.i+1)
-				LinkTS(self, title.inputfile, link_name)
+				LinkTS(self, self.title.inputfile, link_name)
 				demux = DemuxTask(self, link_name)
 				self.mplextask = MplexTask(self, outputfile=title_filename, demux_task=demux)
 				self.mplextask.end = self.estimateddvdsize
-				RemoveESFiles(self, demux)
+				#RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 			output = self.project.settings.output.getValue()

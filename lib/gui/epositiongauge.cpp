@@ -126,12 +126,16 @@ int ePositionGauge::event(int event, void *data, void *data2)
 					continue;
 				} else if (i->what == 1) /* out */
 					out = i++->where;
-				else /* mark */
+				else if (i->what == 2) /* mark */
 				{
 					int xm = scale(i->where);
 					painter.setForegroundColor(gRGB(0xFF8080));
 					painter.fill(eRect(xm - 2, 0, 4, s.height()));
 					i++;
+					continue;
+				} else /* other marker, like last position */
+				{
+					++i;
 					continue;
 				}
 			}

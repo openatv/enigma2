@@ -7,11 +7,21 @@ from Components.Console import Console
 class Network:
 	def __init__(self):
 		self.ifaces = {}
-		self.configuredInterfaces = []		
+		self.configuredInterfaces = []
+		self.configuredNetworkAdapters = []
+		self.NetworkState = 0
+		self.DnsState = 0
 		self.nameservers = []
 		self.ethtool_bin = "/usr/sbin/ethtool"
 		self.container = eConsoleAppContainer()
 		self.Console = Console()
+		self.LinkConsole = Console()
+		self.restartConsole = Console()
+		self.deactivateConsole = Console()
+		self.deactivateInterfaceConsole = Console()
+		self.activateConsole = Console()
+		self.resetNetworkConsole = Console()
+		self.DnsConsole = Console()
 		self.getInterfaces()
 
 	def getInterfaces(self, callback = None):
@@ -28,6 +38,11 @@ class Network:
 				self.getDataForInterface(device, callback)
 			except AttributeError:
 				pass
+		#print "self.ifaces:", self.ifaces
+		#self.writeNetworkConfig()
+		#print ord(' ')
+		#for line in result:
+		#	print ord(line[0])
 
 	# helper function
 	def regExpMatch(self, pattern, string):
@@ -46,66 +61,60 @@ class Network:
 			ip.append(int(x))
 		return ip
 
+	def getDataForInterface(self, iface,callback):
+		#get ip out of ip addr, as avahi sometimes overrides it in ifconfig.
+		if not self.Console:
+			self.Console = Console()
+		cmd = "ip -o addr"
+		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
+
 	def IPaddrFinished(self, result, retval, extra_args):
 		(iface, callback ) = extra_args
 		data = { 'up': False, 'dhcp': False, 'preup' : False, 'postdown' : False }
 		globalIPpattern = re_compile("scope global")
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
-		ipLinePattern = re_compile('inet ' + ipRegexp +'/')
+		netRegexp = '[0-9]{1,2}'
+		macRegexp = '[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}'
+		ipLinePattern = re_compile('inet ' + ipRegexp + '/')
 		ipPattern = re_compile(ipRegexp)
-
+		netmaskLinePattern = re_compile('/' + netRegexp)
+		netmaskPattern = re_compile(netRegexp)
+		bcastLinePattern = re_compile(' brd ' + ipRegexp)
+		upPattern = re_compile('UP')
+		macPattern = re_compile('[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}')
+		macLinePattern = re_compile('link/ether ' + macRegexp)
+		
 		for line in result.splitlines():
 			split = line.strip().split(' ',2)
+			if (split[1][:-1] == iface):
+				up = self.regExpMatch(upPattern, split[2])
+				mac = self.regExpMatch(macPattern, self.regExpMatch(macLinePattern, split[2]))
+				if up is not None:
+					data['up'] = True
+					if iface is not 'lo':
+						self.configuredInterfaces.append(iface)
+				if mac is not None:
+					data['mac'] = mac
 			if (split[1] == iface):
 				if re_search(globalIPpattern, split[2]):
 					ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, split[2]))
+					netmask = self.calc_netmask(self.regExpMatch(netmaskPattern, self.regExpMatch(netmaskLinePattern, split[2])))
+					bcast = self.regExpMatch(ipPattern, self.regExpMatch(bcastLinePattern, split[2]))
 					if ip is not None:
 						data['ip'] = self.convertIP(ip)
+					if netmask is not None:
+						data['netmask'] = self.convertIP(netmask)
+					if bcast is not None:
+						data['bcast'] = self.convertIP(bcast)
+						
 		if not data.has_key('ip'):
 			data['dhcp'] = True
 			data['ip'] = [0, 0, 0, 0]
 			data['netmask'] = [0, 0, 0, 0]
 			data['gateway'] = [0, 0, 0, 0]
 
-		cmd = "ifconfig " + iface
-		self.Console.ePopen(cmd, self.ifconfigFinished, [iface, data, callback])
-
-	def getDataForInterface(self, iface,callback):
-		#get ip out of ip addr, as avahi sometimes overrides it in ifconfig.
-		cmd = "ip -o addr"
-		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
-
-	def ifconfigFinished(self, result, retval, extra_args ):
-		(iface, data, callback ) = extra_args
-		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
-		ipLinePattern = re_compile('inet addr:' + ipRegexp)
-		netmaskLinePattern = re_compile('Mask:' + ipRegexp)
-		bcastLinePattern = re_compile('Bcast:' + ipRegexp)
-		ipPattern = re_compile(ipRegexp)
-		upPattern = re_compile('UP ')
-		macPattern = re_compile('[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[0-9]{2}')
-
-		for line in result.splitlines():
-			#ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, line))
-			netmask = self.regExpMatch(ipPattern, self.regExpMatch(netmaskLinePattern, line))
-			bcast = self.regExpMatch(ipPattern, self.regExpMatch(bcastLinePattern, line))
-			up = self.regExpMatch(upPattern, line)
-			mac = self.regExpMatch(macPattern, line)
-			#if ip is not None:
-			#       data['ip'] = self.convertIP(ip)
-			if netmask is not None:
-				data['netmask'] = self.convertIP(netmask)
-			if bcast is not None:
-				data['bcast'] = self.convertIP(bcast)
-			if up is not None:
-				data['up'] = True
-				if iface is not 'lo':
-					self.configuredInterfaces.append(iface)
-			if mac is not None:
-				data['mac'] = mac
-
 		cmd = "route -n | grep  " + iface
-		self.Console.ePopen(cmd,self.routeFinished,[iface,data,callback])
+		self.Console.ePopen(cmd,self.routeFinished, [iface, data, callback])
 
 	def routeFinished(self, result, retval, extra_args):
 		(iface, data, callback) = extra_args
@@ -119,16 +128,7 @@ class Network:
 				gateway = self.regExpMatch(ipPattern, line[16:31])
 				if gateway is not None:
 					data['gateway'] = self.convertIP(gateway)
-
-		for line in result.splitlines(): #get real netmask in case avahi has overridden ifconfig netmask
-			split = line.strip().split('   ')
-			if re_search(ipPattern, split[0]):
-				foundip = self.convertIP(split[0])
-				if (foundip[0] == data['ip'][0] and foundip[1] == data['ip'][1]):
-					if re_search(ipPattern, split[4]):
-						mask = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, split[4]))
-						if mask is not None:
-							data['netmask'] = self.convertIP(mask)
+					
 		self.ifaces[iface] = data
 		self.loadNetworkConfig(iface,callback)
 
@@ -214,13 +214,16 @@ class Network:
 		for ifacename, iface in ifaces.items():
 			if self.ifaces.has_key(ifacename):
 				self.ifaces[ifacename]["dhcp"] = iface["dhcp"]
-		if len(self.Console.appContainers) == 0:
-			# load ns only once
-			self.loadNameserverConfig()
-			print "read configured interfac:", ifaces
-			print "self.ifaces after loading:", self.ifaces
-			if callback is not None:
-				callback(True)
+		if self.Console:
+			if len(self.Console.appContainers) == 0:
+				# save configured interfacelist
+				self.configuredNetworkAdapters = self.configuredInterfaces
+				# load ns only once	
+				self.loadNameserverConfig()
+				print "read configured interfac:", ifaces
+				print "self.ifaces after loading:", self.ifaces
+				if callback is not None:
+					callback(True)
 
 	def loadNameserverConfig(self):
 		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
@@ -244,16 +247,39 @@ class Network:
 
 		print "nameservers:", self.nameservers
 
-	def deactivateNetworkConfig(self):
+	def deactivateNetworkConfig(self, callback = None):
+		self.deactivateConsole = Console()
+		self.commands = []
+		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
-			system("ip addr flush " + iface)
-		system("/etc/init.d/networking stop")
-		system("killall -9 udhcpc")
-		system("rm /var/run/udhcpc*")
+			cmd = "ip addr flush " + iface
+			self.commands.append(cmd)		
+		self.commands.append("/etc/init.d/networking stop")
+		self.commands.append("killall -9 udhcpc")
+		self.commands.append("rm /var/run/udhcpc*")
+		self.deactivateConsole.eBatch(self.commands, self.deactivateNetworkFinished, callback, debug=True)
+		
+	def deactivateNetworkFinished(self,extra_args):
+		callback = extra_args
+		if len(self.deactivateConsole.appContainers) == 0:
+			if callback is not None:
+				callback(True)
 
-	def activateNetworkConfig(self):
-		system("/etc/init.d/networking start")
-		self.getInterfaces()
+	def activateNetworkConfig(self, callback = None):
+		self.activateConsole = Console()
+		self.commands = []
+		self.commands.append("/etc/init.d/networking start")
+		self.commands.append("/etc/init.d/avahi-daemon start")
+		self.activateConsole.eBatch(self.commands, self.activateNetworkFinished, callback, debug=True)
+		
+	def activateNetworkFinished(self,extra_args):
+		callback = extra_args
+		if len(self.activateConsole.appContainers) == 0:
+			if callback is not None:
+				callback(True)
+
+	def getConfiguredAdapters(self):
+		return self.configuredNetworkAdapters
 
 	def getNumberOfAdapters(self):
 		return len(self.ifaces)
@@ -312,7 +338,24 @@ class Network:
 				if self.nameservers[i] == oldnameserver:
 					self.nameservers[i] = newnameserver
 
-	def writeDefaultNetworkConfig(self,mode='lan'):
+	def resetNetworkConfig(self, mode='lan', callback = None):
+		self.resetNetworkConsole = Console()
+		self.commands = []
+		self.commands.append("/etc/init.d/avahi-daemon stop")
+		for iface in self.ifaces.keys():
+			cmd = "ip addr flush " + iface
+			self.commands.append(cmd)		
+		self.commands.append("/etc/init.d/networking stop")
+		self.commands.append("killall -9 udhcpc")
+		self.commands.append("rm /var/run/udhcpc*")
+		self.resetNetworkConsole.eBatch(self.commands, self.resetNetworkFinishedCB, [mode, callback], debug=True)
+
+	def resetNetworkFinishedCB(self, extra_args):
+		(mode, callback) = extra_args
+		if len(self.resetNetworkConsole.appContainers) == 0:
+			self.writeDefaultNetworkConfig(mode, callback)
+
+	def writeDefaultNetworkConfig(self,mode='lan', callback = None):
 		fp = file('/etc/network/interfaces', 'w')
 		fp.write("# automatically generated by enigma 2\n# do NOT change manually!\n\n")
 		fp.write("auto lo\n")
@@ -329,50 +372,100 @@ class Network:
 		fp.write("\n")
 		fp.close()
 
-	def resetNetworkConfig(self,mode='lan'):
-		self.deactivateNetworkConfig()
-		self.writeDefaultNetworkConfig(mode)
+		self.resetNetworkConsole = Console()
+		self.commands = []
 		if mode == 'wlan':
-			system("ifconfig eth0 down")
-			system("ifconfig ath0 down")
-			system("ifconfig wlan0 up")
+			self.commands.append("ifconfig eth0 down")
+			self.commands.append("ifconfig ath0 down")
+			self.commands.append("ifconfig wlan0 up")
 		if mode == 'wlan-mpci':
-			system("ifconfig eth0 down")
-			system("ifconfig wlan0 down")
-			system("ifconfig ath0 up")		
+			self.commands.append("ifconfig eth0 down")
+			self.commands.append("ifconfig wlan0 down")
+			self.commands.append("ifconfig ath0 up")		
 		if mode == 'lan':			
-			system("ifconfig eth0 up")
-			system("ifconfig wlan0 down")
-			system("ifconfig ath0 down")
-		self.getInterfaces()	
+			self.commands.append("ifconfig eth0 up")
+			self.commands.append("ifconfig wlan0 down")
+			self.commands.append("ifconfig ath0 down")
+		self.commands.append("/etc/init.d/avahi-daemon start")	
+		self.resetNetworkConsole.eBatch(self.commands, self.resetNetworkFinished, [mode,callback], debug=True)	
 
-	def checkNetworkState(self):
-		 # www.dream-multimedia-tv.de, www.heise.de, www.google.de
-		return system("ping -c 1 82.149.226.170") == 0 or \
-			system("ping -c 1 193.99.144.85") == 0 or \
-			system("ping -c 1 209.85.135.103") == 0
+	def resetNetworkFinished(self,extra_args):
+		(mode, callback) = extra_args
+		if len(self.resetNetworkConsole.appContainers) == 0:
+			if callback is not None:
+				callback(True,mode)
 
-	def restartNetwork(self):
-		iNetwork.deactivateNetworkConfig()
-		iNetwork.activateNetworkConfig()
+	def checkNetworkState(self,statecallback):
+		# www.dream-multimedia-tv.de, www.heise.de, www.google.de
+		cmd1 = "ping -c 1 82.149.226.170"
+		cmd2 = "ping -c 1 193.99.144.85"
+		cmd3 = "ping -c 1 209.85.135.103"
+		self.PingConsole = Console()
+		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
+		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
+		self.PingConsole.ePopen(cmd3, self.checkNetworkStateFinished,statecallback)
+		
+	def checkNetworkStateFinished(self, result, retval,extra_args):
+		(statecallback) = extra_args
+		if self.PingConsole is not None:
+			if retval == 0:
+				self.PingConsole = None
+				statecallback(self.NetworkState)
+			else:
+				self.NetworkState += 1
+				if len(self.PingConsole.appContainers) == 0:
+					statecallback(self.NetworkState)
+		
+	def restartNetwork(self,callback = None):
+		self.restartConsole = Console()
+		self.commands = []
+		self.commands.append("/etc/init.d/avahi-daemon stop")
+		for iface in self.ifaces.keys():
+			cmd = "ip addr flush " + iface
+			self.commands.append(cmd)		
+		self.commands.append("/etc/init.d/networking stop")
+		self.commands.append("killall -9 udhcpc")
+		self.commands.append("rm /var/run/udhcpc*")
+		self.commands.append("/etc/init.d/networking start")
+		self.commands.append("/etc/init.d/avahi-daemon start")
+		self.restartConsole.eBatch(self.commands, self.restartNetworkFinished, callback, debug=True)
+	
+	def restartNetworkFinished(self,extra_args):
+		( callback ) = extra_args
+		if callback is not None:
+			callback(True)
 
 	def getLinkState(self,iface,callback):
-		self.dataAvail = callback
 		cmd = self.ethtool_bin + " " + iface
-		self.container.appClosed.append(self.cmdFinished)
-		self.container.dataAvail.append(callback)
-		self.container.execute(cmd)
+		self.LinkConsole = Console()
+		self.LinkConsole.ePopen(cmd, self.getLinkStateFinished,callback)
 
-	def cmdFinished(self,retval):
-		self.container.appClosed.remove(self.cmdFinished)
-		self.container.dataAvail.remove(self.dataAvail)
+	def getLinkStateFinished(self, result, retval,extra_args):
+		(callback) = extra_args
+		if self.LinkConsole is not None:
+			if len(self.LinkConsole.appContainers) == 0:
+				callback(result)
+			
+	def stopLinkStateConsole(self):
+		if self.LinkConsole is not None:
+			self.LinkConsole = None
 
-	def stopContainer(self):
-		self.container.kill()
-		
-	def ContainerRunning(self):
-		return self.container.running()
+	def stopDNSConsole(self):
+		if self.DnsConsole is not None:
+			self.DnsConsole = None
 
+	def stopRestartConsole(self):
+		if self.restartConsole is not None:
+			self.restartConsole = None
+			
+	def stopGetInterfacesConsole(self):
+		if self.Console is not None:
+			self.Console = None
+
+	def stopDeactivateInterfaceConsole(self):
+		if self.deactivateInterfaceConsole:
+			self.deactivateInterfaceConsole = None
+			
 	def checkforInterface(self,iface):
 		if self.getAdapterAttribute(iface, 'up') is True:
 			return True
@@ -384,13 +477,41 @@ class Network:
 			else:
 				return False
 
-	def checkDNSLookup(self):
-		return system("nslookup www.dream-multimedia-tv.de") == 0 or \
-			system("nslookup www.heise.de") == 0 or \
-			system("nslookup www.google.de")
+	def checkDNSLookup(self,statecallback):
+		cmd1 = "nslookup www.dream-multimedia-tv.de"
+		cmd2 = "nslookup www.heise.de"
+		cmd3 = "nslookup www.google.de"
+		self.DnsConsole = Console()
+		self.DnsConsole.ePopen(cmd1, self.checkDNSLookupFinished,statecallback)
+		self.DnsConsole.ePopen(cmd2, self.checkDNSLookupFinished,statecallback)
+		self.DnsConsole.ePopen(cmd3, self.checkDNSLookupFinished,statecallback)
+		
+	def checkDNSLookupFinished(self, result, retval,extra_args):
+		(statecallback) = extra_args
+		if self.DnsConsole is not None:
+			if retval == 0:
+				self.DnsConsole = None
+				statecallback(self.DnsState)
+			else:
+				self.DnsState += 1
+				if len(self.DnsConsole.appContainers) == 0:
+					statecallback(self.DnsState)
 
-	def deactivateInterface(self,iface):
-		system("ifconfig " + iface + " down")
+	def deactivateInterface(self,iface,callback = None):
+		self.deactivateInterfaceConsole = Console()
+		self.commands = []
+		cmd1 = "ip addr flush " + iface
+		cmd2 = "ifconfig " + iface + " down"
+		self.commands.append(cmd1)
+		self.commands.append(cmd2)
+		self.deactivateInterfaceConsole.eBatch(self.commands, self.deactivateInterfaceFinished, callback, debug=True)
+
+	def deactivateInterfaceFinished(self,extra_args):
+		callback = extra_args
+		if self.deactivateInterfaceConsole:
+			if len(self.deactivateInterfaceConsole.appContainers) == 0:
+				if callback is not None:
+					callback(True)
 
 	def detectWlanModule(self):
 		self.wlanmodule = None
@@ -411,6 +532,20 @@ class Network:
 				self.wlanmodule = 'zydas'
 		return self.wlanmodule
 	
+	def calc_netmask(self,nmask):
+		from struct import pack, unpack
+		from socket import inet_ntoa, inet_aton
+		mask = 1L<<31
+		xnet = (1L<<32)-1
+		cidr_range = range(0, 32)
+		cidr = long(nmask)
+		if cidr not in cidr_range:
+			print 'cidr invalid: %d' % cidr
+			return None
+		else:
+			nm = ((1L<<cidr)-1)<<(32-cidr)
+			netmask = str(inet_ntoa(pack('>L', nm)))
+			return netmask
 	
 iNetwork = Network()
 

@@ -1,3 +1,5 @@
+from Tools.HardwareInfo import HardwareInfo
+
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
 	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
 	ConfigSubDict, ConfigOnOff, ConfigDateTime
@@ -37,8 +39,8 @@ class SecConfigure:
 		sec.addSatellite(orbpos)
 		self.configuredSatellites.add(orbpos)
 
-	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50):
-		if orbpos is None:
+	def addLNBSimple(self, sec, slotid, diseqcmode, toneburstmode = diseqcParam.NO, diseqcpos = diseqcParam.SENDNO, orbpos = 0, longitude = 0, latitude = 0, loDirection = 0, laDirection = 0, turningSpeed = rotorParam.FAST, useInputPower=True, inputPowerDelta=50, fastDiSEqC = False, setVoltageTone = True):
+		if orbpos is None or orbpos == 3601:
 			return
 		#simple defaults
 		sec.addLNB()
@@ -54,10 +56,8 @@ class SecConfigure:
 		sec.setLNBThreshold(11700000)
 		sec.setLNBIncreasedVoltage(lnbParam.OFF)
 		sec.setRepeats(0)
-		sec.setFastDiSEqC(0)
+		sec.setFastDiSEqC(fastDiSEqC)
 		sec.setSeqRepeat(0)
-		sec.setVoltageMode(switchParam.HV)
-		sec.setToneMode(switchParam.HILO)
 		sec.setCommandOrder(0)
 
 		#user values
@@ -69,6 +69,12 @@ class SecConfigure:
 
 		if 0 <= diseqcmode < 3:
 			self.addSatellite(sec, orbpos)
+			if setVoltageTone:
+				sec.setVoltageMode(switchParam.HV)
+				sec.setToneMode(switchParam.HILO)
+			else:
+				sec.setVoltageMode(switchParam._14V)
+				sec.setToneMode(switchParam.OFF)
 		elif (diseqcmode == 3): # diseqc 1.2
 			if self.satposdepends.has_key(slotid):
 				for slot in self.satposdepends[slotid]:
@@ -153,6 +159,7 @@ class SecConfigure:
 		for slot in nim_slots:
 			x = slot.slot
 			nim = slot.config
+			hw = HardwareInfo()
 			if slot.isCompatible("DVB-S"):
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
 				if nim.configMode.value in [ "loopthrough", "satposdepends", "nothing" ]:
@@ -164,18 +171,25 @@ class SecConfigure:
 					elif nim.configMode.value == "simple":		#simple config
 						print "diseqcmode: ", nim.diseqcMode.value
 						if nim.diseqcMode.value == "single":			#single
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
+							if nim.simpleSingleSendDiSEqC.value:
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
+							else:
+								self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.NONE, diseqcpos = diseqcParam.SENDNO)
 						elif nim.diseqcMode.value == "toneburst_a_b":		#Toneburst A/B
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.A, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
 							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.B, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.SENDNO)
 						elif nim.diseqcMode.value == "diseqc_a_b":		#DiSEqC A/B
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
+							fastDiSEqC = nim.simpleDiSEqCOnlyOnSatChange.value
+							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.value
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
 						elif nim.diseqcMode.value == "diseqc_a_b_c_d":		#DiSEqC A/B/C/D
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA)
-							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB)
+							fastDiSEqC = nim.simpleDiSEqCOnlyOnSatChange.value
+							setVoltageTone = nim.simpleDiSEqCSetVoltageTone.value
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcA.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcB.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.AB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcC.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BA, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
+							self.addLNBSimple(sec, slotid = x, orbpos = nim.diseqcD.orbital_position, toneburstmode = diseqcParam.NO, diseqcmode = diseqcParam.V1_0, diseqcpos = diseqcParam.BB, fastDiSEqC = fastDiSEqC, setVoltageTone = setVoltageTone)
 						elif nim.diseqcMode.value == "positioner":		#Positioner
 							if nim.latitudeOrientation.value == "north":
 								laValue = rotorParam.NORTH
@@ -185,12 +199,11 @@ class SecConfigure:
 								loValue = rotorParam.EAST
 							else:
 								loValue = rotorParam.WEST
-							inputPowerDelta=50
+							inputPowerDelta=nim.powerThreshold.value
 							useInputPower=False
 							turning_speed=0
 							if nim.powerMeasurement.value:
 								useInputPower=True
-								inputPowerDelta=nim.powerThreshold.value
 								turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
 								if turn_speed_dict.has_key(nim.turningSpeed.value):
 									turning_speed = turn_speed_dict[nim.turningSpeed.value]
@@ -656,7 +669,7 @@ class NimManager:
 	
 	def canEqualTo(self, slotid):
 		type = self.getNimType(slotid)
-		if self.getNimConfig(slotid) == "DVB-S2":
+		if type == "DVB-S2":
 			type = "DVB-S"
 		nimList = self.getNimListOfType(type, slotid)
 		for nim in nimList[:]:
@@ -664,10 +677,10 @@ class NimManager:
 			if mode.configMode.value == "loopthrough" or mode.configMode.value == "satposdepends":
 				nimList.remove(nim)
 		return nimList
-	
+
 	def canDependOn(self, slotid):
 		type = self.getNimType(slotid)
-		if self.getNimConfig(slotid) == "DVB-S2":
+		if type == "DVB-S2":
 			type = "DVB-S"
 		nimList = self.getNimListOfType(type, slotid)
 		positionerList = []
@@ -680,6 +693,13 @@ class NimManager:
 					if lnb != 0:
 						nimHaveRotor = True
 						break
+				if not nimHaveRotor:
+					for sat in mode.advanced.sat.values():
+						lnb_num = int(sat.lnb.value)
+						diseqcmode = lnb_num and mode.advanced.lnb[lnb_num].diseqcMode.value or ""
+						if diseqcmode == "1_2":
+							nimHaveRotor = True
+							break
 			if nimHaveRotor:
 				alreadyConnected = False
 				for testnim in nimList:
@@ -725,12 +745,16 @@ class NimManager:
 			if configMode == "simple":
 				dm = nim.diseqcMode.value
 				if dm in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-					list.append(self.satList[nim.diseqcA.index])
+					if nim.diseqcA.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcA.index-1])
 				if dm in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-					list.append(self.satList[nim.diseqcB.index])
+					if nim.diseqcB.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcB.index-1])
 				if dm == "diseqc_a_b_c_d":
-					list.append(self.satList[nim.diseqcC.index])
-					list.append(self.satList[nim.diseqcD.index])
+					if nim.diseqcC.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcC.index-1])
+					if nim.diseqcD.orbital_position != 3601:
+						list.append(self.satList[nim.diseqcD.index-1])
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
@@ -834,6 +858,14 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.MOTOR_COMMAND_RETRIES, configElement.value))
 	config.sec.motor_command_retries = x
 
+	x = ConfigInteger(default=50, limits = (0, 9999))
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_RESET_CMD, configElement.value))
+	config.sec.delay_after_diseqc_reset_cmd = x
+
+	x = ConfigInteger(default=150, limits = (0, 9999))
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD, configElement.value))
+	config.sec.delay_after_diseqc_peripherial_poweron_cmd = x
+
 # TODO add support for satpos depending nims to advanced nim configuration
 # so a second/third/fourth cable from a motorized lnb can used behind a
 # diseqc 1.0 / diseqc 1.1 / toneburst switch
@@ -842,6 +874,7 @@ def InitSecParams():
 
 def InitNimManager(nimmgr):
 	InitSecParams()
+	hw = HardwareInfo()
 
 	config.Nims = ConfigSubList()
 	for x in range(len(nimmgr.nim_slots)):
@@ -883,10 +916,13 @@ def InitNimManager(nimmgr):
 				if id != x:
 					choices.append((str(id), nimmgr.getNimDescription(id)))
 			nim.connectedTo = ConfigSelection(choices = choices)
-			nim.diseqcA = getConfigSatlist(192, nimmgr.satList)
-			nim.diseqcB = getConfigSatlist(130, nimmgr.satList)
-			nim.diseqcC = ConfigSatlist(list = nimmgr.satList)
-			nim.diseqcD = ConfigSatlist(list = nimmgr.satList)
+			nim.simpleSingleSendDiSEqC = ConfigYesNo(default=False)
+			nim.simpleDiSEqCSetVoltageTone = ConfigYesNo(default=True)
+			nim.simpleDiSEqCOnlyOnSatChange = ConfigYesNo(default=False)
+			nim.diseqcA = getConfigSatlist(192, [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcB = getConfigSatlist(130, [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcC = ConfigSatlist(list = [(3601, _('nothing connected'), 1)] + nimmgr.satList)
+			nim.diseqcD = ConfigSatlist(list = [(3601, _('nothing connected'), 1)] + nimmgr.satList)
 			nim.positionerMode = ConfigSelection(
 				choices = [
 					("usals", _("USALS")),
@@ -897,7 +933,7 @@ def InitNimManager(nimmgr):
 			nim.latitude = ConfigFloat(default=[50,767], limits=[(0,359),(0,999)])
 			nim.latitudeOrientation = ConfigSelection(choices={"north": _("North"), "south": _("South")}, default="north")
 			nim.powerMeasurement = ConfigYesNo(default=True)
-			nim.powerThreshold = ConfigInteger(default=50, limits=(0, 100))
+			nim.powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 			nim.turningSpeed = ConfigSelection(choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch")) ], default = "fast")
 			btime = datetime(1970, 1, 1, 7, 0);
 			nim.fastTurningBegin = ConfigDateTime(default = mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 900)
@@ -972,7 +1008,7 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].latitude = ConfigFloat(default = [50,767], limits = [(0,359),(0,999)])
 				nim.advanced.lnb[x].latitudeOrientation = ConfigSelection(choices = [("north", _("North")), ("south", _("South"))], default = "north")
 				nim.advanced.lnb[x].powerMeasurement = ConfigYesNo(default=True)
-				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=50, limits=(0, 100))
+				nim.advanced.lnb[x].powerThreshold = ConfigInteger(default=hw.get_device_name() == "dm8000" and 15 or 50, limits=(0, 100))
 				nim.advanced.lnb[x].turningSpeed = ConfigSelection(choices = [("fast", _("Fast")), ("slow", _("Slow")), ("fast epoch", _("Fast epoch"))], default = "fast")
 				btime = datetime(1970, 1, 1, 7, 0);
 				nim.advanced.lnb[x].fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 600)

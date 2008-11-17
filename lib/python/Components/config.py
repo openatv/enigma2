@@ -34,6 +34,7 @@ class ConfigElement(object):
 		self.save_disabled = False
 		self.notifiers = []
 		self.enabled = True
+		self.callNotifiersOnSaveAndCancel = False
 
 	# you need to override this to do input validation
 	def setValue(self, value):
@@ -66,9 +67,13 @@ class ConfigElement(object):
 			self.saved_value = None
 		else:
 			self.saved_value = self.tostring(self.value)
+		if self.callNotifiersOnSaveAndCancel:
+			self.changed()
 
 	def cancel(self):
 		self.load()
+		if self.callNotifiersOnSaveAndCancel:
+			self.changed()
 
 	def isChanged(self):
 		sv = self.saved_value
@@ -513,6 +518,7 @@ class ConfigIP(ConfigSequence):
 		self.auto_jump = auto_jump
 
 	def handleKey(self, key):
+		
 		if key == KEY_LEFT:
 			if self.marked_block > 0:
 				self.marked_block -= 1
@@ -531,8 +537,14 @@ class ConfigIP(ConfigSequence):
 			self.marked_block = len(self.limits)-1
 			self.overwrite = True
 
-		if key in KEY_NUMBERS:
-			number = getKeyNumber(key)
+		if key in KEY_NUMBERS or key == KEY_ASCII:
+			if key == KEY_ASCII:
+				code = getPrevAsciiCode()
+				if code < 48 or code > 57:
+					return
+				number = code - 48
+			else:	
+				number = getKeyNumber(key)
 			oldvalue = self._value[self.marked_block]
 			
 			if self.overwrite:
@@ -770,12 +782,12 @@ class ConfigText(ConfigElement, NumericalTextInput):
 
 	def getValue(self):
 		return self.text.encode("utf-8")
-		
+
 	def setValue(self, val):
 		try:
 			self.text = val.decode("utf-8")
 		except UnicodeDecodeError:
-			self.text = val
+			self.text = val.decode("utf-8", "ignore")
 			print "Broken UTF8!"
 
 	value = property(getValue, setValue)

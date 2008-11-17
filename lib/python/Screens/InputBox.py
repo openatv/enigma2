@@ -8,12 +8,14 @@ from Tools.BoundFunction import boundFunction
 from time import time
 
 class InputBox(Screen):
-	def __init__(self, session, title = "", windowTitle = _("Input"), **kwargs):
+	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, **kwargs):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
 		self["input"] = Input(**kwargs)
 		self.onShown.append(boundFunction(self.setTitle, windowTitle))
+		if useableChars is not None:
+			self["input"].setUseableChars(useableChars)
 
 		self["actions"] = NumberActionMap(["WizardActions", "InputBoxActions", "InputAsciiActions", "KeyboardInputActions"], 
 		{

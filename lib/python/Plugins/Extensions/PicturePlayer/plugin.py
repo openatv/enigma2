@@ -155,7 +155,7 @@ class ThumbView(Screen):
 					if not createDir(cachedir):
 						cachefile = ""
 
-			ptr = loadPic(self.path + self.thumblist[self.thumbindex], 180, 160, self.aspect, int(config.pic.resize.value), int(config.pic.rotate.value),1, cachefile)
+			ptr = loadPic(self.path + self.thumblist[self.thumbindex], 180, 160, self.aspect, int(config.pic.resize.value), int(config.pic.rotate.value), 1, cachefile, 1)
 			if ptr != None:
 				self["thumb"+str(self.thumbindex)].show()
 				self["thumb"+str(self.thumbindex)].instance.setPixmap(ptr)
@@ -486,7 +486,7 @@ class picmain(Screen):
 					if not createDir(cachedir):
 						cachefile = ""
 
-			ptr = loadPic(self.filelist.getCurrentDirectory() + self.filelist.getFilename(), 180, 160, self.aspect, int(config.pic.resize.value), 0, 0, cachefile)
+			ptr = loadPic(self.filelist.getCurrentDirectory() + self.filelist.getFilename(), 180, 160, self.aspect, int(config.pic.resize.value), 0, 0, cachefile, 1)
 			if ptr != None:
 				self["thumbnail"].show()
 				self["thumbnail"].instance.setPixmap(ptr)
