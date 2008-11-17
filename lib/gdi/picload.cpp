@@ -254,34 +254,33 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 static unsigned char *png_load(const char *file, int *ox, int *oy)
 {
-	//static const png_color_16 my_background = {0, 0, 0, 0, 0};
-	png_structp png_ptr;
-	png_infop info_ptr;
+	static const png_color_16 my_background = {0, 0, 0, 0, 0};
+
 	png_uint_32 width, height;
 	unsigned int i;
 	int bit_depth, color_type, interlace_type;
-	int number_passes, pass;
-	png_byte * fbptr;
-	FILE * fh;
+	png_byte *fbptr;
+	FILE *fh;
 
-	if (!(fh = fopen(file, "rb"))) return NULL;
+	if (!(fh = fopen(file, "rb")))
+		return NULL;
 
-	png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+	png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 	if (png_ptr == NULL)
 		return NULL;
-	info_ptr = png_create_info_struct(png_ptr);
+	png_infop info_ptr = png_create_info_struct(png_ptr);
 	if (info_ptr == NULL)
 	{
 		png_destroy_read_struct(&png_ptr, (png_infopp)NULL, (png_infopp)NULL);
-		fclose(fh); 
+		fclose(fh);
 		return NULL;
 	}
 
 	if (setjmp(png_ptr->jmpbuf))
 	{
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
-		fclose(fh); 
-		return 0;
+		fclose(fh);
+		return NULL;
 	}
 
 	png_init_io(png_ptr, fh);
@@ -289,40 +288,44 @@ static unsigned char *png_load(const char *file, int *ox, int *oy)
 	png_read_info(png_ptr, info_ptr);
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
 
-	if ((color_type == PNG_COLOR_TYPE_PALETTE)||(color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)||(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)))
-		png_set_expand(png_ptr);
+	if (color_type == PNG_COLOR_TYPE_PALETTE)
+	{
+		png_set_palette_to_rgb(png_ptr);
+		png_set_background(png_ptr, (png_color_16 *)&my_background, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
+	}
+	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+	{
+		png_set_gray_to_rgb(png_ptr);
+		png_set_background(png_ptr, (png_color_16 *)&my_background, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
+	}
+	if (color_type & PNG_COLOR_MASK_ALPHA)
+		png_set_strip_alpha(png_ptr);
+
+	if (bit_depth < 8)
+		png_set_packing(png_ptr);
+
 	if (bit_depth == 16)
 		png_set_strip_16(png_ptr);
-	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
-		png_set_gray_to_rgb(png_ptr);
 
-	number_passes = png_set_interlace_handling(png_ptr);
+	int number_passes = png_set_interlace_handling(png_ptr);
 	png_read_update_info(png_ptr, info_ptr);
 
-	int bpp =  png_get_rowbytes(png_ptr, info_ptr)/width;
-	if ((bpp !=4) && (bpp !=3))
+	if (width * 3 != png_get_rowbytes(png_ptr, info_ptr))
 	{
-		eDebug("[PNG] Error processing");
-		return 0;
-	}
-
-	if (width * height > 1000000) // 1000x1000 or equiv.
-	{
-		eDebug("[png_load] image size is %d x %d, which is \"too large\".", (int)width, (int)height);
-		png_read_end(png_ptr, info_ptr);
+		eDebug("[Picload] Error processing");
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 		fclose(fh);
-		return 0;
+		return NULL;
 	}
 
-	unsigned char *pic_buffer = new unsigned char[width * height * bpp];
+	unsigned char *pic_buffer = new unsigned char[height * width * 3];
 	*ox=width;
 	*oy=height;
 
-	for(pass = 0; pass < number_passes; pass++)
+	for(int pass = 0; pass < number_passes; pass++)
 	{
 		fbptr = (png_byte *)pic_buffer;
-		for (i = 0; i < height; i++, fbptr += width * bpp)
+		for (i = 0; i < height; i++, fbptr += width * 3)
 			png_read_row(png_ptr, fbptr, NULL);
 	}
 	png_read_end(png_ptr, info_ptr);
