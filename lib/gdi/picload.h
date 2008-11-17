@@ -85,7 +85,7 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 
 	void gotMessage(const Message &message);
 	void thread();
-	int startThread(int what, const char *file, int x, int y);
+	int startThread(int what, const char *file, int x, int y, bool async=true);
 	void thread_finished();
 public:
 	void waitFinished();
@@ -94,8 +94,8 @@ public:
 	ePicLoad();
 	~ePicLoad();
 	
-	RESULT startDecode(const char *filename, int x=0, int y=0);
-	RESULT getThumbnail(const char *filename, int x=0, int y=0);
+	RESULT startDecode(const char *filename, int x=0, int y=0, bool async=true);
+	RESULT getThumbnail(const char *filename, int x=0, int y=0, bool async=true);
 	RESULT setPara(PyObject *val);
 	PyObject *getInfo(const char *filename);
 	SWIG_VOID(int) getData(ePtr<gPixmap> &SWIG_OUTPUT);
