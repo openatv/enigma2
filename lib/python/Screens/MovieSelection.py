@@ -29,6 +29,28 @@ config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
+config.movielist.first_tags = ConfigText(default="")
+config.movielist.second_tags = ConfigText(default="")
+
+
+def setPreferredTagEditor(te):
+	global preferredTagEditor
+	try:
+		if preferredTagEditor == None:
+			preferredTagEditor = te
+			print "Preferred tag editor changed to ", preferredTagEditor
+		else:
+			print "Preferred tag editor already set to ", preferredTagEditor
+			print "ignoring ", te
+	except:
+		preferredTagEditor = te
+		print "Preferred tag editor set to ", preferredTagEditor
+
+def getPreferredTagEditor():
+	global preferredTagEditor
+	return preferredTagEditor
+
+setPreferredTagEditor(None)
 
 class MovieContextMenu(Screen):
 	def __init__(self, session, csel, service):
@@ -71,10 +93,8 @@ class MovieContextMenu(Screen):
 
 	def sortBy(self, newType):
 		config.movielist.moviesort.value = newType
-		self.csel.selectedmovie = self.csel.getCurrent()
 		self.csel.setSortType(newType)
 		self.csel.reloadList()
-		self.csel.moveTo()
 		self.close()
 
 	def listType(self, newType):
@@ -123,7 +143,7 @@ class MovieContextMenu(Screen):
 			self.session.openWithCallback(self.close, MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 		else:
 			self.csel["list"].removeService(self.service)
- 			self.csel["freeDiskSpace"].update()
+			self.csel["freeDiskSpace"].update()
 			self.close()
 
 class SelectionEventInfo:
@@ -149,6 +169,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 		self.tags = [ ]
 		self.selected_tags = None
+		self.selected_tags_ele = None
 
 		self.movemode = False
 		self.bouquet_mark_edit = False
@@ -178,7 +199,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# Need list for init
 		SelectionEventInfo.__init__(self)
 
-		self["key_red"] = Button(_("All..."))
+		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
@@ -201,9 +222,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 				"red": (self.showAll, _("show all")),
-				"green": (self.showTagsFirst, _("show first tag")),
-				"yellow": (self.showTagsSecond, _("show second tag")),
-				"blue": (self.showTagsMenu, _("show tag menu")),
+				"green": (self.showTagsFirst, _("show first selected tag")),
+				"yellow": (self.showTagsSecond, _("show second selected tag")),
+				"blue": (self.showTagsSelect, _("show tag menu")),
 			})
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
@@ -246,11 +267,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self.updateDescription()
 
 	def updateHDDData(self):
- 		self.reloadList()
- 		if self.selectedmovie is not None:
-			self.moveTo()
+ 		self.reloadList(self.selectedmovie)
 		self["waitingtext"].visible = False
-		self.updateTags()
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
@@ -285,26 +303,29 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def updateTags(self):
 		# get a list of tags available in this list
 		self.tags = list(self["list"].tags)
-		
-		# by default, we do not display any filtering options
-		self.tag_first = ""
-		self.tag_second = ""
-		
-		# when tags are present, however, the first two are 
-		# directly mapped to the second, third ("green", "yellow") buttons
-		if len(self.tags) > 0:
-			self.tag_first = self.getTagDescription(self.tags[0])
-		
-		if len(self.tags) > 1:
-			self.tag_second = self.getTagDescription(self.tags[1])
-		
+
+		if not self.tags:
+			# by default, we do not display any filtering options
+			self.tag_first = ""
+			self.tag_second = ""
+		else:
+			tmp = config.movielist.first_tags.value
+			if tmp in self.tags:
+				self.tag_first = tmp
+			else:
+				self.tag_first = "<"+_("Tag 1")+">"
+			tmp = config.movielist.second_tags.value
+			if tmp in self.tags:
+				self.tag_second = tmp
+			else:
+				self.tag_second = "<"+_("Tag 2")+">"
 		self["key_green"].text = self.tag_first
 		self["key_yellow"].text = self.tag_second
 		
 		# the rest is presented in a list, available on the
 		# fourth ("blue") button
-		if len(self.tags) > 2:
-			self["key_blue"].text = _("Other...")
+		if self.tags:
+			self["key_blue"].text = _("Tags")+"..."
 		else:
 			self["key_blue"].text = ""
 
@@ -317,20 +338,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def setSortType(self, type):
 		self["list"].setSortType(type)
 
-	def reloadList(self):
+	def reloadList(self, sel = None, home = False):
 		if not pathExists(config.movielist.last_videodir.value):
 			path = resolveFilename(SCOPE_HDD)
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
 			self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
 			self["freeDiskSpace"].path = path
+		if sel is None:
+			sel = self.getCurrent()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		title = _("Recorded files...")
-		if self.selected_tags is not None:
-			title += " - " + ','.join(self.selected_tags)
 		if config.usage.setup_level.index >= 2: # expert+
 			title += "  " + config.movielist.last_videodir.value
+		if self.selected_tags is not None:
+			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
+ 		if not (sel and self["list"].moveTo(sel)):
+			if home:
+				self["list"].moveToIndex(0)
+		self.updateTags()
 		self["freeDiskSpace"].update()
 
 	def doPathSelect(self):
@@ -348,7 +375,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				config.movielist.last_videodir.save()
 				self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + res)
 				self["freeDiskSpace"].path = res
-				self.reloadList()
+				self.reloadList(home = True)
 			else:
 				self.session.open(
 					MessageBox,
@@ -358,35 +385,41 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 					)
 
 	def showAll(self):
+		self.selected_tags_ele = None
 		self.selected_tags = None
-		self.reloadList()
+		self.reloadList(home = True)
 
-	def showTagsN(self, n):
-		if len(self.tags) < n:
+	def showTagsN(self, tagele):
+		if not self.tags:
 			self.showTagWarning()
+		elif not tagele or self.selected_tags_ele == tagele or not tagele.value in self.tags:
+			self.showTagsMenu(tagele)
 		else:
-			print "select tag #%d, %s, %s" % (n, self.tags[n - 1], ','.join(self.tags))
-			self.selected_tags = set([self.tags[n - 1]])
-			self.reloadList()
+			self.selected_tags_ele = tagele
+			self.selected_tags = set([tagele.value])
+			self.reloadList(home = True)
 
 	def showTagsFirst(self):
-		self.showTagsN(1)
+		self.showTagsN(config.movielist.first_tags)
 
 	def showTagsSecond(self):
-		self.showTagsN(2)
+		self.showTagsN(config.movielist.second_tags)
+
+	def showTagsSelect(self):
+		self.showTagsN(None)
 
 	def tagChosen(self, tag):
 		if tag is not None:
 			self.selected_tags = set([tag[0]])
-			self.reloadList()
+			if self.selected_tags_ele:
+				self.selected_tags_ele.value = tag[0]
+				self.selected_tags_ele.save()
+			self.reloadList(home = True)
 
-	def showTagsMenu(self):
-		if len(self.tags) < 3:
-			self.showTagWarning()
-		else:
-			list = [(tag, self.getTagDescription(tag)) for tag in self.tags ]
-			self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select keyword to filter..."), list = list)
+	def showTagsMenu(self, tagele):
+		self.selected_tags_ele = tagele
+		list = [(tag, self.getTagDescription(tag)) for tag in self.tags ]
+		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list = list)
 
 	def showTagWarning(self):
-		# TODO
-		self.session.open(MessageBox, _("You need to define some keywords first!\nPress the menu-key to define keywords.\nDo you want to define keywords now?"), MessageBox.TYPE_ERROR)
+		self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
