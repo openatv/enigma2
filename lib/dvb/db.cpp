@@ -497,7 +497,7 @@ void eDVBDB::saveServicelist(const char *file)
 		{
 			if (sat.system == eDVBFrontendParametersSatellite::System::DVB_S2)
 			{
-				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
 					sat.frequency, sat.symbol_rate,
 					sat.polarisation, sat.fec,
 					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
@@ -505,11 +505,8 @@ void eDVBDB::saveServicelist(const char *file)
 					flags,
 					sat.system,
 					sat.modulation,
-					sat.rolloff);
-				if (sat.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK)
-					fprintf(f, ":%d\n", sat.pilot);
-				else
-					fprintf(f, "\n");
+					sat.rolloff,
+					sat.pilot);
 			}
 			else
 			{
