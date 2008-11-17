@@ -218,6 +218,7 @@ private:
 
 	int m_current_audio_stream;
 	int selectAudioStream(int n = -1);
+	RESULT setFastForward_internal(int ratio);
 	
 		/* timeshift */
 	ePtr<iDVBTSRecorder> m_record;

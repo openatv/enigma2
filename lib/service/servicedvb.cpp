@@ -1281,7 +1281,9 @@ RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 
 RESULT eDVBServicePlay::setSlowMotion(int ratio)
 {
+	assert(ratio); /* The API changed: instead of calling setSlowMotion(0), call play! */
 	eDebug("eDVBServicePlay::setSlowMotion(%d)", ratio);
+	setFastForward_internal(0);
 	if (m_decoder)
 		return m_decoder->setSlowMotion(ratio);
 	else
@@ -1291,6 +1293,12 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 RESULT eDVBServicePlay::setFastForward(int ratio)
 {
 	eDebug("eDVBServicePlay::setFastForward(%d)", ratio);
+	assert(ratio);
+	return setFastForward_internal(ratio);
+}
+
+RESULT eDVBServicePlay::setFastForward_internal(int ratio)
+{
 	int skipmode, ffratio;
 	
 	if (ratio > 8)
@@ -1323,7 +1331,12 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
 	if (!m_decoder)
 		return -1;
 
-	return m_decoder->setFastForward(ffratio);
+	if (ffratio == 0)
+		return 0;
+	else if (ffratio != 1)
+		return m_decoder->setFastForward(ffratio);
+	else
+		return m_decoder->setTrickmode();
 }
 
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
@@ -1352,10 +1365,10 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 RESULT eDVBServicePlay::pause()
 {
 	eDebug("eDVBServicePlay::pause");
-	if (!m_is_paused && m_decoder)
+	setFastForward_internal(0);
+	if (m_decoder)
 	{
-		m_is_paused = 1;
-		return m_decoder->freeze(0);
+		return m_decoder->pause();
 	} else
 		return -1;
 }
@@ -1363,10 +1376,10 @@ RESULT eDVBServicePlay::pause()
 RESULT eDVBServicePlay::unpause()
 {
 	eDebug("eDVBServicePlay::unpause");
-	if (m_is_paused && m_decoder)
+	setFastForward_internal(0);
+	if (m_decoder)
 	{
-		m_is_paused = 0;
-		return m_decoder->unfreeze();
+		return m_decoder->play();
 	} else
 		return -1;
 }
@@ -1448,9 +1461,8 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 
 RESULT eDVBServicePlay::setTrickmode(int trick)
 {
-	if (m_decoder)
-		m_decoder->setTrickmode(trick);
-	return 0;
+		/* currently unimplemented */
+	return -1;
 }
 
 RESULT eDVBServicePlay::isCurrentlySeekable()
@@ -1761,7 +1773,7 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 {
 	int ret = selectAudioStream(i);
 
-	if (m_decoder->start())
+	if (m_decoder->play())
 		return -5;
 
 	return ret;
@@ -2486,12 +2498,12 @@ void eDVBServicePlay::updateDecoder()
 		m_teletext_parser->start(program.textPid);
 
 		if (!m_is_primary)
-			m_decoder->setTrickmode(1);
+			m_decoder->setTrickmode();
 
 		if (m_is_paused)
-			m_decoder->preroll();
+			m_decoder->pause();
 		else
-			m_decoder->start();
+			m_decoder->play();
 
 		if (vpid > 0 && vpid < 0x2000)
 			;
