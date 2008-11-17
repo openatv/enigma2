@@ -1286,6 +1286,7 @@ RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 
 RESULT eDVBServicePlay::setSlowMotion(int ratio)
 {
+	eDebug("eDVBServicePlay::setSlowMotion(%d)", ratio);
 	if (m_decoder)
 		return m_decoder->setSlowMotion(ratio);
 	else
@@ -1294,6 +1295,7 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 
 RESULT eDVBServicePlay::setFastForward(int ratio)
 {
+	eDebug("eDVBServicePlay::setFastForward(%d)", ratio);
 	int skipmode, ffratio;
 	
 	if (ratio > 8)
@@ -1354,6 +1356,7 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 
 RESULT eDVBServicePlay::pause()
 {
+	eDebug("eDVBServicePlay::pause");
 	if (!m_is_paused && m_decoder)
 	{
 		m_is_paused = 1;
@@ -1364,6 +1367,7 @@ RESULT eDVBServicePlay::pause()
 
 RESULT eDVBServicePlay::unpause()
 {
+	eDebug("eDVBServicePlay::unpause");
 	if (m_is_paused && m_decoder)
 	{
 		m_is_paused = 0;
