@@ -8,6 +8,7 @@ from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from RecordTimer import AFTEREVENT
@@ -21,8 +22,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.timer = timer
 
-		self.entryStartDate = None
-		self.entryEndDate = None
+		self.entryDate = None
 		self.entryService = None
 
 		self["oktext"] = Label(_("OK"))
@@ -88,13 +88,13 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
 			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
+			self.timerentry_tags = self.timer.tags + []
+			self.timerentry_tagsset = ConfigSelection(choices = [len(self.timerentry_tags) == 0 and "None" or " ".join(self.timerentry_tags)])
 
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 
-			self.timerentry_startdate = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
+			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
-
-			self.timerentry_enddate = ConfigDateTime(default = self.timer.end, formatstring =  _("%d.%B %Y"), increment = 86400)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
 
 			default = self.timer.dirname or resolveFilename(SCOPE_HDD)
@@ -119,19 +119,6 @@ class TimerEntry(Screen, ConfigListScreen):
 				pass
 			self.timerentry_service_ref = self.timer.service_ref
 			self.timerentry_service = ConfigSelection([servicename])
-
-			self.timerentry_startdate.addNotifier(self.checkDate)
-			self.timerentry_enddate.addNotifier(self.checkDate)
-
-	def checkDate(self, configElement):
-		if configElement is self.timerentry_startdate:
-			if self.timerentry_enddate.value < self.timerentry_startdate.value:
-				self.timerentry_enddate.value = self.timerentry_startdate.value
-				self["config"].invalidate(self.entryEndDate)
-		if configElement is self.timerentry_enddate:
-			if (self.timerentry_enddate.value < self.timerentry_startdate.value):
-				self.timerentry_startdate.value = self.timerentry_enddate.value
-				self["config"].invalidate(self.entryStartDate)
 
 	def createSetup(self, widget):
 		self.list = []
@@ -165,33 +152,23 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Saturday"), self.timerentry_day[5]))
 				self.list.append(getConfigListEntry(_("Sunday"), self.timerentry_day[6]))
 
-			#self.list.append(getConfigListEntry("StartDate", self.timerentry_startdate))
-#		self.list.append(getConfigListEntry("Weekday", self.timerentry_weekday))
-
-		self.entryStartDate = getConfigListEntry(_("Start"), self.timerentry_startdate)
+		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
 		if self.timerentry_type.value == "once":
-			self.list.append(self.entryStartDate)
-			self.list.append(getConfigListEntry(" ", self.timerentry_starttime))
-		else:
-			self.list.append(getConfigListEntry(_("StartTime"), self.timerentry_starttime))
-
-		self.entryEndDate = getConfigListEntry(_("End"), self.timerentry_enddate)
-		if self.timerentry_type.value == "once":
-			if self.timerentry_justplay.value != "zap":
-				self.list.append(self.entryEndDate)
-				self.list.append(getConfigListEntry(" ", self.timerentry_endtime))
-		else:
-			if self.timerentry_justplay.value != "zap":
-				self.list.append(getConfigListEntry(_("EndTime"), self.timerentry_endtime))
-
+			self.list.append(self.entryDate)
+		self.list.append(getConfigListEntry(_("StartTime"), self.timerentry_starttime))
 		if self.timerentry_justplay.value != "zap":
-			if config.usage.setup_level.index >= 2: # expert+
-				self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname)
-				self.list.append(self.dirname)
-			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
-
+			self.list.append(getConfigListEntry(_("EndTime"), self.timerentry_endtime))
 		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service)
 		self.list.append(self.channelEntry)
+
+		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname)
+		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset)
+		if self.timerentry_justplay.value != "zap":
+			if config.usage.setup_level.index >= 2: # expert+
+				self.list.append(self.dirname)
+			if getPreferredTagEditor():
+				self.list.append(self.tagsSet)
+			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent))
 
 		self[widget].list = self.list
 		self[widget].l.setList(self.list)
@@ -206,14 +183,14 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.createSetup("config")
 
 	def keyLeft(self):
-		if self["config"].getCurrent() is self.channelEntry:
+		if self["config"].getCurrent() in [self.channelEntry, self.tagsSet]:
 			self.keySelect()
 		else:
 			ConfigListScreen.keyLeft(self)
 			self.newConfig()
 
 	def keyRight(self):
-		if self["config"].getCurrent() is self.channelEntry:
+		if self["config"].getCurrent() in [self.channelEntry, self.tagsSet]:
 			self.keySelect()
 		else:
 			ConfigListScreen.keyRight(self)
@@ -235,6 +212,12 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.timerentry_dirname.value,
 				minFree = 100 # We require at least 100MB free space
 			)
+		elif getPreferredTagEditor() and cur == self.tagsSet:
+			self.session.openWithCallback(
+				self.tagEditFinished,
+				getPreferredTagEditor(),
+				self.timerentry_tags
+			)
 		else:
 			self.keyGo()
 
@@ -249,24 +232,15 @@ class TimerEntry(Screen, ConfigListScreen):
 		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
 		return int(mktime(dt.timetuple()))
 
-	def buildRepeatedBegin(self, rep_time, start_time):
-		d = localtime(rep_time)
-		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, start_time[0], start_time[1])
-		return int(mktime(dt.timetuple()))
-
 	def getBeginEnd(self):
-		enddate = self.timerentry_enddate.value
+		date = self.timerentry_date.value
 		endtime = self.timerentry_endtime.value
-
-		startdate = self.timerentry_startdate.value
 		starttime = self.timerentry_starttime.value
 
-		begin = self.getTimestamp(startdate, starttime)
-		end = self.getTimestamp(enddate, endtime)
+		begin = self.getTimestamp(date, starttime)
+		end = self.getTimestamp(date, endtime)
 
-		# because of the dateChecks, startdate can't be < enddate.
-		# however, the endtime can be less than the starttime.
-		# in this case, add 1 day.
+		# if the endtime is less than the starttime, add 1 day.
 		if end < begin:
 			end += 86400
 		return begin, end
@@ -278,6 +252,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {"nothing": AFTEREVENT.NONE, "deepstandby": AFTEREVENT.DEEPSTANDBY, "standby": AFTEREVENT.STANDBY}[self.timerentry_afterevent.value]
 		self.timer.service_ref = self.timerentry_service_ref
+		self.timer.tags = self.timerentry_tags
 
 		self.timer.dirname = self.timerentry_dirname.value
 		config.movielist.last_timer_videodir.value = self.timer.dirname
@@ -351,6 +326,12 @@ class TimerEntry(Screen, ConfigListScreen):
 			if config.movielist.videodirs.value != self.timerentry_dirname.choices:
 				self.timerentry_dirname.setChoices(config.movielist.videodirs.value, default=res)
 			self.timerentry_dirname.value = res
+
+	def tagEditFinished(self, ret):
+		if ret is not None:
+			self.timerentry_tags = ret
+			self.timerentry_tagsset.setChoices([len(ret) == 0 and "None" or " ".join(ret)])
+			self["config"].invalidate(self.tagsSet)
 
 class TimerLog(Screen):
 	def __init__(self, session, timer):

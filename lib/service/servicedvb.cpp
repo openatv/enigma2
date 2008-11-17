@@ -31,8 +31,6 @@
 #error no byte order defined!
 #endif
 
-#define TSPATH "/media/hdd"
-
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBInformation);
@@ -1494,9 +1492,16 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 	{
 		if (!m_timeshift_enabled)
 		{
-				/* we need enough diskspace */
+			/* query config path */
+			std::string tspath;
+			if(ePythonConfigQuery::getConfigValue("config.usage.timeshift_path", tspath) == -1){
+				eDebug("could not query ts path from config");
+				return -4;
+			}
+			tspath.append("/");
+			/* we need enough diskspace */
 			struct statfs fs;
-			if (statfs(TSPATH "/.", &fs) < 0)
+			if (statfs(tspath.c_str(), &fs) < 0)
 			{
 				eDebug("statfs failed!");
 				return -2;
@@ -2114,12 +2119,23 @@ RESULT eDVBServicePlay::startTimeshift()
 	if (!m_record)
 		return -3;
 
-	char templ[]=TSPATH "/timeshift.XXXXXX";
+	std::string tspath;
+	if(ePythonConfigQuery::getConfigValue("config.usage.timeshift_path", tspath) == -1){ 
+		eDebug("could not query ts path");
+		return -5;
+	}
+	tspath.append("/timeshift.XXXXXX");
+	char* templ;
+	templ = new char[tspath.length() + 1];
+	strcpy(templ, tspath.c_str());
+
 	m_timeshift_fd = mkstemp(templ);
-	m_timeshift_file = templ;
-	
+	m_timeshift_file = std::string(templ);
+
 	eDebug("recording to %s", templ);
-	
+
+	delete [] templ;
+
 	if (m_timeshift_fd < 0)
 	{
 		m_record = 0;
