@@ -503,3 +503,32 @@ class MovieLocationBox(LocationBox):
 	def __init__(self, session, text, dir, minFree = None):
 		inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 		LocationBox.__init__(self, session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = inhibitDirs, minFree = minFree)
+
+class TimeshiftLocationBox(LocationBox):
+
+	skinName = "LocationBox" # XXX: though we could use a custom skin or inherit the hardcoded one we stick with the original :-)
+
+	def __init__(self, session):
+		inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
+		LocationBox.__init__(
+				self,
+				session,
+				text = _("Where to save temporary timeshift recordings?"),
+				currDir = config.usage.timeshift_path.value,
+				bookmarks = config.usage.allowed_timeshift_paths,
+				autoAdd = True,
+				editDir = True,
+				inhibitDirs = inhibitDirs,
+				minFree = 1024 # XXX: the same requirement is hardcoded in servicedvb.cpp
+		)
+
+	def cancel(self):
+		config.usage.timeshift_path.cancel()
+		LocationBox.cancel(self)
+
+	def selectConfirmed(self, ret):
+		if ret:
+			config.usage.timeshift_path.value = self.getPreferredFolder()
+			config.usage.timeshift_path.save()
+			LocationBox.selectConfirmed(self, ret)
+
