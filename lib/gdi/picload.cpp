@@ -569,19 +569,29 @@ ePicLoad::ePicLoad()
 	m_conf.thumbnailsize = 180;
 }
 
-ePicLoad::~ePicLoad()
+void ePicLoad::waitFinished()
 {
 	msg_thread.send(Message(Message::quit));
 	kill();
+}
 
+ePicLoad::~ePicLoad()
+{
+	if (threadrunning)
+		waitFinished();
 	if(m_filepara != NULL)
 		delete m_filepara;
 }
 
+void ePicLoad::thread_finished()
+{
+	threadrunning=false;
+}
 
 void ePicLoad::thread()
 {
 	hasStarted();
+	threadrunning=true;
 	nice(4);
 	runLoop();
 }
@@ -759,7 +769,6 @@ void ePicLoad::gotMessage(const Message &msg)
 			break;
 		case Message::decode_finished: // called from main thread
 			//eDebug("[Picload] decode finished... %s", m_filepara->file);
-			threadrunning=false;
 			if(m_filepara->callback)
 			{
 				PictureData(m_filepara->picinfo.c_str());
@@ -824,7 +833,6 @@ int ePicLoad::startThread(int what, const char *file, int x, int y)
 		return 1;
 	}
 	
-	threadrunning=true;
 	if(what==1)
 		msg_thread.send(Message(Message::decode_Pic));
 	else
@@ -841,33 +849,6 @@ RESULT ePicLoad::startDecode(const char *file, int x, int y)
 RESULT ePicLoad::getThumbnail(const char *file, int x, int y)
 {
 	return startThread(0, file, x, y);
-}
-
-RESULT ePicLoad::setPara(PyObject *val)
-{
-	if (!PyList_Check(val))
-		return 0;
-	if (PyList_Size(val) < 6)
-		return 0;
-
-	m_conf.max_x		= PyInt_AsLong( PyList_GET_ITEM(val, 0));
-	m_conf.max_y		= PyInt_AsLong( PyList_GET_ITEM(val, 1));
-	m_conf.aspect_ratio	= PyFloat_AsDouble( PyList_GET_ITEM(val, 2));
-	m_conf.usecache		= PyInt_AsLong( PyList_GET_ITEM(val, 3));
-	m_conf.resizetype	= PyInt_AsLong( PyList_GET_ITEM(val, 4));
-	const char *bg_str	= PyString_AsString( PyList_GET_ITEM(val, 5));
-	
-	if(bg_str[0] == '#' && strlen(bg_str)==9)
-	{
-		int bg = strtoul(bg_str+1, NULL, 16);
-		m_conf.background[0] = bg&0xFF;		//BB
-		m_conf.background[1] = (bg>>8)&0xFF;	//GG
-		m_conf.background[2] = (bg>>16)&0xFF;	//RR
-		m_conf.background[3] = bg>>24;		//AA
-	}
-	
-	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%02X%02X%02X%02X", m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background[3], m_conf.background[2], m_conf.background[1], m_conf.background[0]);
-	return 1;
 }
 
 PyObject *ePicLoad::getInfo(const char *filename)
@@ -935,6 +916,7 @@ PyObject *ePicLoad::getInfo(const char *filename)
 
 int ePicLoad::getData(ePtr<gPixmap> &result)
 {
+	result = 0;
 	if(m_filepara->pic_buffer == NULL) return 0;
 	
 	m_filepara->pic_buffer = conv24to32(m_filepara->pic_buffer, m_filepara->ox * m_filepara->oy);
@@ -1012,6 +994,73 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 	delete m_filepara;
 	m_filepara = NULL;
+
+	return 0;
+}
+
+RESULT ePicLoad::setPara(PyObject *val)
+{
+	if (!PyList_Check(val))
+		return 0;
+	if (PyList_Size(val) < 6)
+		return 0;
+
+	m_conf.max_x		= PyInt_AsLong( PyList_GET_ITEM(val, 0));
+	m_conf.max_y		= PyInt_AsLong( PyList_GET_ITEM(val, 1));
+	m_conf.aspect_ratio	= PyFloat_AsDouble( PyList_GET_ITEM(val, 2));
+	m_conf.usecache		= PyInt_AsLong( PyList_GET_ITEM(val, 3));
+	m_conf.resizetype	= PyInt_AsLong( PyList_GET_ITEM(val, 4));
+	const char *bg_str	= PyString_AsString( PyList_GET_ITEM(val, 5));
+	
+	if(bg_str[0] == '#' && strlen(bg_str)==9)
+	{
+		int bg = strtoul(bg_str+1, NULL, 16);
+		m_conf.background[0] = bg&0xFF;		//BB
+		m_conf.background[1] = (bg>>8)&0xFF;	//GG
+		m_conf.background[2] = (bg>>16)&0xFF;	//RR
+		m_conf.background[3] = bg>>24;		//AA
+	}
+	
+	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%02X%02X%02X%02X", m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background[3], m_conf.background[2], m_conf.background[1], m_conf.background[0]);
+	return 1;
+}
+
+//------------------------------------------------------------------------------------
+
+//for old plugins
+SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate, int background, std::string cachefile)
+{
+	result = 0;
+	eDebug("deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
+	ePicLoad mPL;
+
+	double  aspect_ratio;
+	switch(aspect)
+	{
+		case 1:		aspect_ratio = 1.778 / ((double)720/576); break; //16:9
+		case 2:		aspect_ratio = 1.600 / ((double)720/576); break; //16:10
+		case 3:		aspect_ratio = 1.250 / ((double)720/576); break; //5:4
+		default:	aspect_ratio = 1.333 / ((double)720/576); //4:3
+	}
+	
+	ePyObject list = PyList_New(6);
+	PyList_SET_ITEM(list, 0,  PyLong_FromLong(x));
+	PyList_SET_ITEM(list, 1,  PyLong_FromLong(y));
+	PyList_SET_ITEM(list, 2,  PyFloat_FromDouble(aspect_ratio));
+	PyList_SET_ITEM(list, 3,  PyLong_FromLong(0));
+	PyList_SET_ITEM(list, 4,  PyLong_FromLong(resize_mode));
+	if(background)
+		PyList_SET_ITEM(list, 5,  PyString_FromString("#ff000000"));
+	else
+		PyList_SET_ITEM(list, 5,  PyString_FromString("#00000000"));
+
+	mPL.setPara(list);
+
+	if(!mPL.startDecode(filename.c_str()))
+	{
+		mPL.waitFinished(); // this blocks until the thread is finished
+		mPL.getData(result);
+	}
 
 	return 0;
 }

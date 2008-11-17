@@ -86,7 +86,9 @@ class ePicLoad: public eMainloop, public eThread, public Object, public iObject
 	void gotMessage(const Message &message);
 	void thread();
 	int startThread(int what, const char *file, int x, int y);
+	void thread_finished();
 public:
+	void waitFinished();
 	PSignal1<void, const char*> PictureData;
 
 	ePicLoad();
@@ -98,5 +100,8 @@ public:
 	PyObject *getInfo(const char *filename);
 	SWIG_VOID(int) getData(ePtr<gPixmap> &SWIG_OUTPUT);
 };
+
+//for old plugins
+SWIG_VOID(int) loadPic(ePtr<gPixmap> &SWIG_OUTPUT, std::string filename, int x, int y, int aspect, int resize_mode=0, int rotate=0, int background=0, std::string cachefile="");
 
 #endif // __picload_h__
