@@ -1,9 +1,7 @@
-import string
 import NavigationInstance
 from time import localtime
-from Components.NimManager import nimmanager
 from ServiceReference import ServiceReference
-from enigma import iServiceInformation, eServiceCenter
+from enigma import iServiceInformation, eServiceCenter, eServiceReference
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
@@ -54,6 +52,7 @@ class TimerSanityCheck:
 		# index -1 for the new Timer, 0..n index of the existing timers
 		# count of running timers
 
+		serviceHandler = eServiceCenter.getInstance()
 		print "checkTimerlist"
 # create a list with all start and end times
 # split it into recurring and singleshot timers
@@ -149,9 +148,7 @@ class TimerSanityCheck:
 		fakeRecList = []
 		ConflictTimer = None
 		ConflictTunerType = None
-		ConflictSlot = None
 		newTimerTunerType = None
-		newTimerTunerSlot = None
 		cnt = 0
 		idx = 0
 		overlaplist = []
@@ -162,24 +159,45 @@ class TimerSanityCheck:
 			else:
 				timer = self.timerlist[event[2]]
 			if event[1] == self.bflag:
-				fakeRecService = NavigationInstance.instance.recordService(timer.service_ref)
-				fakeRecResult = fakeRecService.start(True)
-				feinfo = fakeRecService.frontendInfo().getFrontendData()
-				tunerType = feinfo.get("tuner_type")
-				tunerSlot = feinfo.get("tuner_number")
+				tunerType = [ ]
+				fakeRecService = NavigationInstance.instance.recordService(timer.service_ref, True)
+				if fakeRecService:
+					fakeRecResult = fakeRecService.start(True)
+				else:
+					fakeRecResult = -1
+				if not fakeRecResult: # tune okay
+					feinfo = fakeRecService.frontendInfo().getFrontendData()
+					tunerType.append(feinfo.get("tuner_type"))
+				else: # tune failed.. so we must go another way to get service type (DVB-S, DVB-T, DVB-C)
+
+					def getServiceType(ref): # helper function to get a service type of a service reference
+						serviceInfo = serviceHandler.info(ref)
+						serviceInfo = serviceInfo and serviceInfo.getInfoObject(ref, iServiceInformation.sTransponderData)
+						if serviceInfo:
+							return { "Satellite" : "DVB-S", "Cable" : "DVB-C", "Terrestrial" : "DVB-T"}[serviceInfo["type"]]
+
+					ref = timer.service_ref.ref
+					if ref.flags & eServiceReference.isGroup: # service group ?
+						serviceList = serviceHandler.list(ref) # get all alternative services
+						if serviceList:
+							for ref in serviceList.getContent("R"): # iterate over all group service references
+								type = getServiceType(ref)
+								if not type in tunerType: # just add single time
+									tunerType.append(type) 
+					else:
+						tunerType.append(getServiceType(ref))
+
 				if event[2] == -1: # new timer
 					newTimerTunerType = tunerType
-					newTimerTunerSlot = tunerSlot
-				overlaplist.append((fakeRecResult, timer, tunerType, tunerSlot))
+				overlaplist.append((fakeRecResult, timer, tunerType))
 				fakeRecList.append((timer, fakeRecService))
 				if fakeRecResult:
 					if ConflictTimer is None: # just take care of the first conflict
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
-						ConflictTunerSlot = tunerSlot
 			elif event[1] == self.eflag:
 				for fakeRec in fakeRecList:
-					if timer == fakeRec[0]:
+					if timer == fakeRec[0] and fakeRec[1]:
 						NavigationInstance.instance.stopRecordService(fakeRec[1])
 						fakeRecList.remove(fakeRec)
 				del fakeRec
@@ -211,7 +229,6 @@ class TimerSanityCheck:
 						if nt and kt:
 							ConflictTimer = self.newtimer
 							ConflictTunerType = newTimerTunerType
-							ConflictSlot = newTimerTunerSlot
 							break
 
 		self.simultimer = [ ConflictTimer ]
@@ -223,8 +240,11 @@ class TimerSanityCheck:
 				else:
 					continue
 				for entry in event[4]:
-					if not self.simultimer.count(entry[1]) and (entry[2] == ConflictTunerType or entry[3] == ConflictTunerSlot):
-						self.simultimer.append(entry[1])
+					if not entry[1] in self.simultimer:
+						for x in entry[2]:
+							if x in ConflictTunerType:
+								self.simultimer.append(entry[1])
+								break
 
 		if len(self.simultimer) < 2:
 			print "Bug: unknown Conflict!"

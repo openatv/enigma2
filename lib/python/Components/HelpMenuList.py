@@ -1,7 +1,6 @@
 from GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
-
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
 #getKeyPositions
 
@@ -13,6 +12,7 @@ class HelpMenuList(GUIComponent):
 		self.onSelChanged = [ ]
 		self.l = eListboxPythonMultiContent()
 		self.callback = callback
+		self.extendedHelp = False
 
 		l = [ ]
 		for (actionmap, context, actions) in list:
@@ -36,17 +36,26 @@ class HelpMenuList(GUIComponent):
 				if flags & 8: # for long keypresses, prepend l_ into the key name.
 					name = (name[0], "long")
 					
-				print "name:", name
-
 				entry.append( (actionmap, context, action, name ) )
-				entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 28, 0, 0, help) )
-
+					
+				if type(help).__name__== 'list':
+					self.extendedHelp = True
+					print "extendedHelpEntry found"
+					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 26, 0, 0, help[0]) )
+					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 28, 400, 20, 1, 0, help[1]) )
+				else:
+					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 28, 0, 0, help) )
+					
 				l.append(entry)
 
 		self.l.setList(l)
-
-		self.l.setFont(0, gFont("Regular", 24))
-		self.l.setItemHeight(38)
+		if self.extendedHelp is True:
+			self.l.setFont(0, gFont("Regular", 24))
+			self.l.setFont(1, gFont("Regular", 18))
+			self.l.setItemHeight(50)
+		else:
+			self.l.setFont(0, gFont("Regular", 24))
+			self.l.setItemHeight(38)
 
 	def ok(self):
 		# a list entry has a "private" tuple as first entry...

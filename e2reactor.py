@@ -36,7 +36,10 @@ class E2SharedPoll:
 		del self.dict[fd]
 	
 	def poll(self, timeout = None):
-		r = self.eApp.poll(timeout, self.dict)
+		try:
+			r = self.eApp.poll(timeout, self.dict)
+		except KeyboardInterrupt:
+			return None
 		return r
 
 poller = E2SharedPoll()

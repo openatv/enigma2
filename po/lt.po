@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-03 17:09+0100\n"
-"PO-Revision-Date: 2008-10-23 21:12+0200\n"
+"POT-Creation-Date: 2008-11-16 23:21+0100\n"
+"PO-Revision-Date: 2008-11-15 22:37+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -84,6 +84,12 @@ msgstr "(laisva)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(rodyti pasirenkamą DVD garso meniu)"
+
+msgid "* Only available if more than one interface is active."
+msgstr "* Pasiekiamas tiktai, jei daugiau kaip vienas interfeisas yra aktyvus."
+
+msgid "* Only available when entering hidden SSID or network key"
+msgstr "* Pasiekiamas tiktai, surinkus paslėptą SSID ar tinklo raktą"
 
 msgid ".NFI Download failed:"
 msgstr ".NFI parsisiuntimas klaidingas:"
@@ -403,6 +409,13 @@ msgid "Arabic"
 msgstr "Arabų"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+"Jūs esate įsitikinęs, kad jūs norite aktyvuoti šią tinklo konfigūraciją?\n"
+"\n"
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -441,9 +454,6 @@ msgstr "Automatinis skarto perjungimas"
 
 msgid "Automatic"
 msgstr "Automatinis"
-
-msgid "Automatic SSID lookup"
-msgstr "Automatinė SSID paieška"
 
 msgid "Automatic Scan"
 msgstr "Automatinė paieška"
@@ -518,7 +528,7 @@ msgid "Burn DVD"
 msgstr "Išdeginti DVD"
 
 msgid "Burn existing image to DVD"
-msgstr ""
+msgstr "Išdeginti esamą atvaizdą į DVD"
 
 msgid "Burn to DVD..."
 msgstr "Išdeginti į DVD..."
@@ -681,6 +691,9 @@ msgstr "Kompaktinė atmintinės kortelė"
 msgid "Complete"
 msgstr "Įvykdyta"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr "Kompleksas (leidžia sumaišyti garso takelius ir aspektus),"
+
 msgid "Configuration Mode"
 msgstr "Konfigūravimo būdas"
 
@@ -734,7 +747,7 @@ msgid "Could not load Medium! No disc inserted?"
 msgstr "Negalima užkrauti! Joks diskas neįdėtas?"
 
 msgid "Create DVD-ISO"
-msgstr ""
+msgstr "Sukurti DVD-ISO"
 
 msgid "Create movie folder failed"
 msgstr "Fimų aplanko sukurti nepavyko"
@@ -856,9 +869,6 @@ msgstr "DiSEqC A/B"
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
-msgid "DiSEqC Mode"
-msgstr "DiSEqC pasirinkimas"
-
 msgid "DiSEqC mode"
 msgstr "DiSEqC pasirinkimas"
 
@@ -935,9 +945,6 @@ msgid ""
 msgstr ""
 "Jūs iš tikrųjų norite parsisiųsti\n"
 "priedą \"%s \"?"
-
-msgid "Do you really want to exit?"
-msgstr "Jūs tikrai norite išeiti?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -1055,8 +1062,14 @@ msgstr "KLAIDA - nenuskanuota (%s)!"
 msgid "East"
 msgstr "Rytai"
 
+msgid "Edit"
+msgstr "Redaguoti"
+
 msgid "Edit DNS"
 msgstr "Redaguoti DNS"
+
+msgid "Edit Title"
+msgstr "Redaguoti pavadinimą"
 
 msgid "Edit chapters of current title"
 msgstr "Redaguokite dabartinio pavadinimo skyrius"
@@ -1103,6 +1116,9 @@ msgstr "Užšifravimas"
 msgid "Encryption Key"
 msgstr "Užšifravimo raktas"
 
+msgid "Encryption Keytype"
+msgstr "Rakto užšifravimo tipas"
+
 msgid "Encryption Type"
 msgstr "Užšifravimo būdas"
 
@@ -1143,6 +1159,12 @@ msgstr "Eiti į greitą persukimą"
 
 msgid "Enter Rewind at speed"
 msgstr "Eiti į greitą atsukimą "
+
+msgid "Enter WLAN network name/SSID:"
+msgstr "Įveskite WLAN tinklo pavadinimą/SSID:"
+
+msgid "Enter WLAN passphrase/key:"
+msgstr "Įveskite WLAN leidimo frazę/raktą:"
 
 msgid "Enter main menu..."
 msgstr "Eiti į pagrindinį meniu..."
@@ -1235,6 +1257,12 @@ msgstr "Tiksliau"
 
 msgid "Finished"
 msgstr "Baigtas"
+
+msgid "Finished configuring your network"
+msgstr "Baigtas jūsų tinklo konfigūravimas"
+
+msgid "Finished restarting your network"
+msgstr "Baigtas jūsų tinklo paleidimas iš naujo"
 
 msgid "Finnish"
 msgstr "Suomių"
@@ -1341,6 +1369,9 @@ msgstr "Kieto disko nustatymas"
 msgid "Harddisk standby after"
 msgstr "Kietas diskas išsijungs po"
 
+msgid "Hidden network SSID"
+msgstr "Paslėptas tinklo SSID"
+
 msgid "Hierarchy Information"
 msgstr "Hierarchijos informacija"
 
@@ -1357,10 +1388,10 @@ msgid "IP Address"
 msgstr "IP adresas"
 
 msgid "ISO file is too large for this filesystem!"
-msgstr ""
+msgstr "ISO failas yra per didelis šiai failų sistemai!"
 
 msgid "ISO path"
-msgstr ""
+msgstr "ISO kelias"
 
 msgid "Icelandic"
 msgstr "Islandų"
@@ -1461,7 +1492,7 @@ msgid "Instant Record..."
 msgstr "Greitas įrašas..."
 
 msgid "Integrated Ethernet"
-msgstr "Integruotas tinklas"
+msgstr "Integruotas tinklo adapteris"
 
 msgid "Integrated Wireless"
 msgstr "Integruotas belaidis tinklas"
@@ -1641,7 +1672,7 @@ msgid "Mkfs failed"
 msgstr "Mkfs nepavyko"
 
 msgid "Mode"
-msgstr "Būdas"
+msgstr "Pasirinkimas"
 
 msgid "Model: "
 msgstr "Modelis:"
@@ -1781,6 +1812,9 @@ msgstr "Nėra 50 Hz,gaila. :("
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kietas diskas nerastas arba neinicializuotas!"
 
+msgid "No Networks found"
+msgstr ""
+
 msgid "No backup needed"
 msgstr "Atsarginės kopijos nereikia"
 
@@ -1850,31 +1884,31 @@ msgstr ""
 "nebus įjungta!"
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Jokių dirbančių vietinių tinklo adapterių nerasta. \n"
-"prašome patikrinti, kad jūs prijungėte tinklo kabelį, ir jūsų Tinklas yra "
+"Joks veikiantis vietinio tinklo adapteris, nerastas.\n"
+"Prašome patikrinti, ar jūs prijungėte tinklo kabelį, ir ar jūsų tinklas yra "
 "sukonfigūruotas teisingai."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+"Joks veikiantis belaidžio tinklo adapteris nerastas.\n"
+"Prašome patikrinti, ar jūs pridėjote suderinamą WLAN prietaisą, ir ar jūsų "
+"tinklas yra sukonfigūruotas teisingai."
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-"Joks veikiantis belaidis tinklas nesurastas. \n"
-" Prašome patikrinti ar jūs pridėjote suderinamą WLAN prietaisą ar įjungėte "
-"jūsų vietinį tinklą."
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
-msgstr ""
-"Joks dirbantis belaidžio tinklo adapteris nerastas. \n"
-" Prašome patikrinti, ar jūs prijungėte suderinamą USB belaidžio tinklo "
-"įrenginį, ir ar jūsų Tinklas yra sukonfigūruotas teisingai."
+"Joks veikiantis belaidžio tinklo interfeisas nerastas.\n"
+"Prašome patikrinti, kad jūs pridėjote suderinamą WLAN prietaisą ar įjungėte "
+"jūsų vietinio tinklo interfeisą."
 
 msgid "No, but restart from begin"
 msgstr "Ne, paleisti nuo pradžių"
@@ -2146,8 +2180,20 @@ msgstr ""
 "Prašome naudoti AUKŠTYN IR ŽEMYN mygtukus, kad išsirinktumėte savo kalbą. Po "
 "to spauskite OK mygtuką."
 
+msgid "Please wait for activation of your network configuration..."
+msgstr "Prašome laukti jūsų tinklo konfigūracijos aktyvavimo..."
+
 msgid "Please wait for md5 signature verification..."
 msgstr "Prašome laukti md5 parašo patikrinimo..."
+
+msgid "Please wait while we configure your network..."
+msgstr "Prašome laukti kol konfigūruojamas jūsų tinklas..."
+
+msgid "Please wait while your network is restarting..."
+msgstr "Prašome laukti kol paleidžiamas iš naujo jūsų tinklas..."
+
+msgid "Please wait..."
+msgstr "Prašome laukti..."
 
 msgid "Please wait... Loading list..."
 msgstr "Prašome laukti... Užkraunamas sąrašas..."
@@ -2229,6 +2275,9 @@ msgstr "Peržiūros meniu"
 
 msgid "Primary DNS"
 msgstr "Pirminis DNS"
+
+msgid "Properties of current title"
+msgstr "Dabartinio pavadinimo ypatybės"
 
 msgid "Protect services"
 msgstr "Apsaugoti kanalus"
@@ -2365,6 +2414,9 @@ msgstr "Pakartojimai"
 
 msgid "Reset"
 msgstr "Perjungti"
+
+msgid "Reset and renumerate title names"
+msgstr "Perjungti ir pernumeruoti antraštės pavadinimus"
 
 msgid "Resolution"
 msgstr "Rezoliucija"
@@ -2606,6 +2658,12 @@ msgstr "Pasirinkite vaizdo būdą"
 msgid "Selected source image"
 msgstr "Išsirinktas šaltinio atvaizdas"
 
+msgid "Send DiSEqC"
+msgstr "Siųskite DiSEqC"
+
+msgid "Send DiSEqC only on satellite change"
+msgstr "Siųskite DiSEqC tik palydovo pakeitimui"
+
 msgid "Seperate titles with a main menu"
 msgstr "Pavadinimai su pagrindiniu meniu"
 
@@ -2657,8 +2715,14 @@ msgstr "Kanalo informacija"
 msgid "Services"
 msgstr "Kanalai"
 
+msgid "Set Voltage and 22KHz"
+msgstr "Nustatyti įtampą ir 22 KHZ"
+
 msgid "Set as default Interface"
 msgstr "Pasirinkti numatytą sąsają"
+
+msgid "Set interface as default Interface"
+msgstr "Nustatytas interfeisas kaip numatytas interfeisas"
 
 msgid "Set limits"
 msgstr "Nustatykite ribas"
@@ -2716,6 +2780,9 @@ msgstr "Kartojamos laidos:"
 
 msgid "Simple"
 msgstr "Paprastas"
+
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr "Paprastas pavadinimo nustatymas (suderinamas žaidėjams)"
 
 msgid "Single"
 msgstr "Vienintelis"
@@ -2890,7 +2957,7 @@ msgid "TRANSLATOR_INFO"
 msgstr "Audronis Grincevičius (ADGA) Pasvalys, Lietuva"
 
 msgid "TS file is too large for ISO9660 level 1!"
-msgstr ""
+msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
 
 msgid "TV System"
 msgstr "TV sistema"
@@ -3206,8 +3273,14 @@ msgstr "Laiko juosta"
 msgid "Title"
 msgstr "Antraštė"
 
+msgid "Title properties"
+msgstr "Ypatybės"
+
 msgid "Title:"
 msgstr "Pavadinimas:"
+
+msgid "Titleset mode"
+msgstr "Pavadinimo nustatymo būdas"
 
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
@@ -3305,6 +3378,9 @@ msgstr "USB"
 msgid "USB Stick"
 msgstr "USB raktelis"
 
+msgid "Ukrainian"
+msgstr ""
+
 msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
@@ -3348,6 +3424,9 @@ msgstr "Atnaujinama"
 
 msgid "Upgrading Dreambox... Please wait"
 msgstr "Atnaujinamas imtuvas... Prašome palaukti"
+
+msgid "Use"
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Naudoti DHCP"
@@ -3455,6 +3534,9 @@ msgstr "Žiūrėti Rass interaktyviai..."
 msgid "View teletext..."
 msgstr "Žiūrėti teletekstą..."
 
+msgid "Virtual KeyBoard"
+msgstr "Virtuali Klaviatūra"
+
 msgid "Voltage mode"
 msgstr "Įtampa"
 
@@ -3469,6 +3551,9 @@ msgstr "WEP"
 
 msgid "WPA"
 msgstr "WPA"
+
+msgid "WPA or WPA2"
+msgstr "WPA arba WPA2"
 
 msgid "WPA2"
 msgstr "WPA2"
@@ -3578,7 +3663,7 @@ msgid "Yes"
 msgstr "Taip"
 
 msgid "Yes, and delete this movie"
-msgstr ""
+msgstr "Taip, ir trinti šį filmą"
 
 msgid "Yes, backup my settings!"
 msgstr "Taip, padarykite atsarginę kopiją mano nustatymų!"
@@ -3737,6 +3822,20 @@ msgstr ""
 "Reikalingas priekinio procesoriaus atnaujinimas.\n"
 "Spauskite OK, kad pradėti atnaujinimą."
 
+msgid "Your network configuration has been activated."
+msgstr "Jūsų tinklo konfigūracija aktyvuota."
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+"Jūsų tinklo konfigūracija aktyvuota.\n"
+"Rastas antras sukonfigūruotas interfeisas.\n"
+"\n"
+"Jūs norite išjungti antrą tinklo interfeisą?"
+
 msgid "Zap back to service before positioner setup?"
 msgstr "Perjungti atgal į kanalą po pozicionieriaus nustatymo?"
 
@@ -3766,6 +3865,12 @@ msgstr "nutraukti mėgstamiausių redagavimą"
 
 msgid "about to start"
 msgstr "apie pradžią"
+
+msgid "activate current configuration"
+msgstr "aktyvuokite dabartinę konfigūraciją"
+
+msgid "add a nameserver entry"
+msgstr "pridėkite serverio pavadinimo įėjimą"
 
 msgid "add alternatives"
 msgstr "pridėti kitus"
@@ -3822,6 +3927,14 @@ msgstr ""
 "Jūs tikrai norite atkurti\n"
 "atsarginė kopija:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr "Garso takelio (%s) formatas"
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr "garso takelio (%s) kalba"
+
 msgid "audio tracks"
 msgstr "garso takeliai"
 
@@ -3836,6 +3949,10 @@ msgstr "geriau"
 
 msgid "blacklist"
 msgstr "juodas sąrašas"
+
+#, python-format
+msgid "burn audio track (%s)"
+msgstr "išdeginkite garso takelį (%s)"
 
 msgid "by Exif"
 msgstr "pagal Exif"
@@ -3891,11 +4008,11 @@ msgstr "kasdien"
 msgid "day"
 msgstr "diena"
 
-msgid "delete"
-msgstr "trinti"
-
 msgid "delete cut"
 msgstr "trinti iškirpimą"
+
+msgid "delete file"
+msgstr ""
 
 msgid "delete playlist entry"
 msgstr "trinti įrašą iš grojaraščio "
@@ -3963,6 +4080,9 @@ msgstr "kirpimo pabaiga čia"
 msgid "end favourites edit"
 msgstr "baigti mėgstamiausių redagavimą"
 
+msgid "enigma2 and network"
+msgstr "enigma2 ir tinklas"
+
 msgid "equal to"
 msgstr "lygus į"
 
@@ -3977,6 +4097,21 @@ msgstr "išjungti media grotuvą"
 
 msgid "exit movielist"
 msgstr "uždaryti filmų sąrašą"
+
+msgid "exit nameserver configuration"
+msgstr "išeiti iš serverio pavadinimo konfigūracijos"
+
+msgid "exit network adapter configuration"
+msgstr "išeiti iš tinklo adapterio konfigūracijos"
+
+msgid "exit network adapter setup menu"
+msgstr "išeiti iš tinklo adapterio nustatymų meniu"
+
+msgid "exit network interface list"
+msgstr "išeiti iš tinklo interfeiso sąrašo"
+
+msgid "exit networkadapter setup menu"
+msgstr "išeiti iš tinklo adapterio nustatymų meniu"
 
 msgid "failed"
 msgstr "klaidingas"
@@ -4013,6 +4148,9 @@ msgstr "Išgirsti radiją..."
 
 msgid "help..."
 msgstr "Pagalba..."
+
+msgid "hidden network"
+msgstr ""
 
 msgid "hide extended description"
 msgstr "slėpti išplėstą aprašymą"
@@ -4121,6 +4259,18 @@ msgstr "mėnuo"
 msgid "move PiP to main picture"
 msgstr "perkelti PiP į mano paveikslėlį"
 
+msgid "move down to last entry"
+msgstr "perkelti žemyn prie paskutinio įėjimo"
+
+msgid "move down to next entry"
+msgstr "perkelti žemyn prie kito įėjimo"
+
+msgid "move up to first entry"
+msgstr "perkelti aukštyn prie pirmo įėjimo"
+
+msgid "move up to previous entry"
+msgstr "perkelti aukštyn prie ankstesnio įėjimo"
+
 msgid "movie list"
 msgstr "filmų sąrašas"
 
@@ -4181,8 +4331,8 @@ msgstr "diskas TIK SKAITYMUI."
 msgid "once"
 msgstr "vieną kartą"
 
-msgid "only /etc/enigma2 directory"
-msgstr "tik /etc/enigma2 direktoriją"
+msgid "open nameserver configuration"
+msgstr "atidaryti serverio pavadinimo konfigūraciją"
 
 msgid "open servicelist"
 msgstr "Atidaryti kanalų sąrašą"
@@ -4192,6 +4342,9 @@ msgstr "Atidaryti kanalų sąrašą (žemyn)"
 
 msgid "open servicelist(up)"
 msgstr "Atidaryti kanalų sąrašą (aukštyn)"
+
+msgid "open virtual keyboard input help"
+msgstr "atidaryti virtualios klaviatūros įvesties pagalbą"
 
 msgid "pass"
 msgstr "perduoti"
@@ -4228,6 +4381,9 @@ msgstr "įrašas"
 
 msgid "recording..."
 msgstr "įrašoma..."
+
+msgid "remove a nameserver entry"
+msgstr "pašalinkite serverio pavadinimo įėjimą"
 
 msgid "remove after this position"
 msgstr "pašalinti po šios vietos"
@@ -4274,8 +4430,14 @@ msgstr "atsukti į ankstesnį skyrių"
 msgid "right"
 msgstr "dešinys"
 
+msgid "save last directory on exit"
+msgstr ""
+
 msgid "save playlist"
 msgstr "išsaugoti grojaraštį"
+
+msgid "save playlist on exit"
+msgstr ""
 
 msgid "scan done!"
 msgstr "skanavimas baigtas!"
@@ -4304,6 +4466,12 @@ msgstr "išsirinkite .NFI diegimo failą"
 
 msgid "select image from server"
 msgstr "išsirinkite atvaizdą iš serverio"
+
+msgid "select interface"
+msgstr "išsrinkite interfeisą"
+
+msgid "select menu entry"
+msgstr "išsirinkite meniu įėjimą"
 
 msgid "select movie"
 msgstr "pasirinkite filmą"
@@ -4388,6 +4556,9 @@ msgstr "išjungimas"
 
 msgid "start cut here"
 msgstr "pradėti iškirpimą čia"
+
+msgid "start directory"
+msgstr ""
 
 msgid "start timeshift"
 msgstr "Pradėti laiko perstumimą"
@@ -4541,6 +4712,9 @@ msgstr "įjungta"
 #~ "Jūs esate įsitikinęs, kad jūs norite įjungti savo vietinį tinklą? \n"
 #~ "\n"
 
+#~ msgid "Automatic SSID lookup"
+#~ msgstr "Automatinė SSID paieška"
+
 #~ msgid "Autowrite timer"
 #~ msgstr "Automatinis laikamačio perrašymas"
 
@@ -4619,6 +4793,9 @@ msgstr "įjungta"
 #~ "Jūs tikrai norite parsisiųsti\n"
 #~ "priedą \""
 
+#~ msgid "Do you really want to exit?"
+#~ msgstr "Jūs tikrai norite išeiti?"
+
 #~ msgid "Edit current title"
 #~ msgstr "Suredaguokite dabartinį pavadinimą"
 
@@ -4661,6 +4838,15 @@ msgstr "įjungta"
 #~ msgstr "Naujas DVD"
 
 #~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Jokių dirbančių vietinių tinklo adapterių nerasta. \n"
+#~ "prašome patikrinti, kad jūs prijungėte tinklo kabelį, ir jūsų Tinklas yra "
+#~ "sukonfigūruotas teisingai."
+
+#~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
 #~ "enable your local network interface."
@@ -4677,6 +4863,24 @@ msgstr "įjungta"
 #~ "Joks dirbantis belaidis įrenginys nesurastas \n"
 #~ " Prašome patikrinti, ar jūs pridėjote suderinamą WLAN įrenginį ir ar "
 #~ "įjungėte vietinio tinklo sąsają."
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "your local network interface."
+#~ msgstr ""
+#~ "Joks veikiantis belaidis tinklas nesurastas. \n"
+#~ " Prašome patikrinti ar jūs pridėjote suderinamą WLAN prietaisą ar "
+#~ "įjungėte jūsų vietinį tinklą."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Joks dirbantis belaidžio tinklo adapteris nerastas. \n"
+#~ " Prašome patikrinti, ar jūs prijungėte suderinamą USB belaidžio tinklo "
+#~ "įrenginį, ir ar jūsų Tinklas yra sukonfigūruotas teisingai."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Ne, leiskite man pasirinkti numatytuosius sąrašus"
@@ -4957,6 +5161,9 @@ msgstr "įjungta"
 #~ msgid "cancel"
 #~ msgstr "panaikinti"
 
+#~ msgid "delete"
+#~ msgstr "trinti"
+
 #~ msgid "equal to Socket A"
 #~ msgstr "lygus lizdui A"
 
@@ -4968,6 +5175,9 @@ msgstr "įjungta"
 
 #~ msgid "minutes and"
 #~ msgstr "minučių ir"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "tik /etc/enigma2 direktoriją"
 
 #~ msgid "scan done! %d services found!"
 #~ msgstr "Paieška atlikta! %d Kanalai surasti!"

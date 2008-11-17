@@ -65,6 +65,8 @@ static void addToLogbuffer(int level, const std::string &log)
 
 extern std::string getLogBuffer();
 
+#define INFOFILE "/maintainer.info"
+
 void bsodFatal()
 {
 	char logfile[128];
@@ -72,6 +74,39 @@ void bsodFatal()
 	FILE *f = fopen(logfile, "wb");
 	
 	std::string lines = getLogBuffer();
+	
+		/* find python-tracebacks, and extract "  File "-strings */
+	size_t start = 0;
+	
+	char crash_emailaddr[256] = CRASH_EMAILADDR;
+	char crash_component[256] = "enigma2";
+
+	while ((start = lines.find("\n  File \"", start)) != std::string::npos)
+	{
+		start += 9;
+		size_t end = lines.find("\"", start);
+		if (end == std::string::npos)
+			break;
+		end = lines.rfind("/", end);
+		if (end == std::string::npos)
+			break;
+		if (end - start >= (256 - strlen(INFOFILE)))
+			continue;
+		char filename[256];
+		snprintf(filename, 256, "%s%s", lines.substr(start, end - start).c_str(), INFOFILE);
+		FILE *cf = fopen(filename, "r");
+		if (cf)
+		{
+			fgets(crash_emailaddr, sizeof crash_emailaddr, cf);
+			if (*crash_emailaddr && crash_emailaddr[strlen(crash_emailaddr)-1] == '\n')
+				crash_emailaddr[strlen(crash_emailaddr)-1] = 0;
+
+			fgets(crash_component, sizeof crash_component, cf);
+			if (*crash_component && crash_component[strlen(crash_component)-1] == '\n')
+				crash_component[strlen(crash_component)-1] = 0;
+			fclose(cf);
+		}
+	}
 
 	if (f)
 	{
@@ -85,7 +120,7 @@ void bsodFatal()
 #ifdef ENIGMA2_CHECKOUT_ROOT
 		fprintf(f, "enigma2 checked out from " ENIGMA2_CHECKOUT_ROOT "\n");
 #endif
-		fprintf(f, "please email this file to " CRASH_EMAILADDR "\n");
+		fprintf(f, "please email this file to %s\n", crash_emailaddr);
 		std::string buffer = getLogBuffer();
 		fwrite(buffer.c_str(), buffer.size(), 1, f);
 		fclose(f);
@@ -134,14 +169,16 @@ void bsodFatal()
 		p.clear();
 	
 		eRect usable_area = eRect(100, 70, my_dc->size().width() - 150, 100);
+		
+		char text[512];
+		snprintf(text, 512, "We are really sorry. Your Dreambox encountered "
+			"a software problem, and needs to be restarted. "
+			"Please send the logfile created in /hdd/ to %s.\n"
+			"Your Dreambox restarts in 10 seconds!\n"
+			"Component: %s",
+			crash_emailaddr, crash_component);
 	
-		p.renderText(usable_area, 
-			"We are really sorry. Something happened "
-			"which should not have happened, and "
-			"resulted in a crash. If you want to help "
-			"us in improving this situation, please send "
-			"the logfile created in /hdd/ to " CRASH_EMAILADDR "."
-			"Your receiver restarts in 10 seconds !", gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
+		p.renderText(usable_area, text, gPainter::RT_WRAP|gPainter::RT_HALIGN_LEFT);
 	
 		usable_area = eRect(100, 170, my_dc->size().width() - 180, my_dc->size().height() - 20);
 	

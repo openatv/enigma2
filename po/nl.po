@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-03 17:09+0100\n"
+"POT-Creation-Date: 2008-11-14 07:24+0100\n"
 "PO-Revision-Date: 2008-10-26 01:38+0100\n"
 "Last-Translator: FeReNGi\n"
 "Language-Team: none <michel@weeren.net>\n"
@@ -89,6 +89,12 @@ msgstr "(leeg)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(optioneel DVD audio menu weergeven)"
+
+msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "* Only available when entering hidden SSID or network key"
+msgstr ""
 
 msgid ".NFI Download failed:"
 msgstr ".NFI Download mislukt:"
@@ -406,6 +412,11 @@ msgid "Arabic"
 msgstr "Arabisch"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -444,9 +455,6 @@ msgstr "Automatisch scart schakelen"
 
 msgid "Automatic"
 msgstr "Automatisch"
-
-msgid "Automatic SSID lookup"
-msgstr "Automatisch SSID zoeken"
 
 msgid "Automatic Scan"
 msgstr "Automatisch zoeken"
@@ -686,6 +694,9 @@ msgstr "Compact flash kaart"
 msgid "Complete"
 msgstr "Compleet"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr ""
+
 msgid "Configuration Mode"
 msgstr "Configuratie modus"
 
@@ -860,9 +871,6 @@ msgstr "DiSEqC A/B"
 
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
-
-msgid "DiSEqC Mode"
-msgstr "DiSEqC-modus"
 
 msgid "DiSEqC mode"
 msgstr "DiSEqC-modus"
@@ -1060,8 +1068,14 @@ msgstr "Fout - Zoeken mislukt (%s)!"
 msgid "East"
 msgstr "Oost"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "DNS wijzigen"
+
+msgid "Edit Title"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr "Wijzig hoofdstuk van de huidige titel"
@@ -1108,6 +1122,9 @@ msgstr "Encryptie"
 msgid "Encryption Key"
 msgstr "Encryptie sleutel"
 
+msgid "Encryption Keytype"
+msgstr ""
+
 msgid "Encryption Type"
 msgstr "Encryptie type"
 
@@ -1148,6 +1165,12 @@ msgstr "Snel vooruitspoelen op volgende snelheid"
 
 msgid "Enter Rewind at speed"
 msgstr "Snel terugspoelen op volgende snelheid"
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr ""
 
 msgid "Enter main menu..."
 msgstr "Ga naar hoofdmenu..."
@@ -1240,6 +1263,12 @@ msgstr "Fijn afst."
 
 msgid "Finished"
 msgstr "Voltooid"
+
+msgid "Finished configuring your network"
+msgstr ""
+
+msgid "Finished restarting your network"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Fins"
@@ -1345,6 +1374,9 @@ msgstr "Harde schijf instellingen"
 
 msgid "Harddisk standby after"
 msgstr "Harde schijf standby na"
+
+msgid "Hidden network SSID"
+msgstr ""
 
 msgid "Hierarchy Information"
 msgstr "Hiërarchie informatie"
@@ -1848,31 +1880,22 @@ msgstr ""
 "Indien u 'nee' kiest, blijft het menu onbeveiligd!"
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Geen werkende lokale netwerk adapter gevonden.\n"
-"Controleer of u de netwerk kabel goed verbonden hebt en uw netwerk "
-"instellingen correct zijn."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-"Geen werkende WiFi gevonden.\n"
-"Controleer of u een geschikte WiFi adapter geplaatst heeft of activeer de "
-"netwerk instellingen."
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
-msgstr ""
-"Geen werkende WiFi adapter gevonden.\n"
-"Controleer of u een geschikte USB WiFi adapter geplaatst heeft of controleer "
-"de netwerk instellingen."
 
 msgid "No, but restart from begin"
 msgstr "Nee, vanaf begin herstarten"
@@ -2145,8 +2168,20 @@ msgstr ""
 "Gebruik de omhoog/omlaag toeten om de gewenste taal te selecteren. Druk "
 "daarna op OK."
 
+msgid "Please wait for activation of your network configuration..."
+msgstr ""
+
 msgid "Please wait for md5 signature verification..."
 msgstr "Wacht op md5 controle verificatie..."
+
+msgid "Please wait while we configure your network..."
+msgstr ""
+
+msgid "Please wait while your network is restarting..."
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Ogenblik a.u.b. De lijst wordt geladen..."
@@ -2228,6 +2263,9 @@ msgstr "Voorbeeld menu"
 
 msgid "Primary DNS"
 msgstr "Primaire DNS"
+
+msgid "Properties of current title"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Beveilig zenders"
@@ -2364,6 +2402,9 @@ msgstr "Herhalingen"
 
 msgid "Reset"
 msgstr "Herladen"
+
+msgid "Reset and renumerate title names"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Resolutie"
@@ -2604,6 +2645,12 @@ msgstr "Selecteer video modus"
 msgid "Selected source image"
 msgstr "Selecteer bron bestand"
 
+msgid "Send DiSEqC"
+msgstr ""
+
+msgid "Send DiSEqC only on satellite change"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Zonder titels af met een hoofdmenu"
 
@@ -2655,8 +2702,14 @@ msgstr "Zender"
 msgid "Services"
 msgstr "Zenders"
 
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
 msgid "Set as default Interface"
 msgstr "Als standaard interface instellen"
+
+msgid "Set interface as default Interface"
+msgstr ""
 
 msgid "Set limits"
 msgstr "Limieten instellen"
@@ -2714,6 +2767,9 @@ msgstr "Gelijkwaardige uitzendingen:"
 
 msgid "Simple"
 msgstr "Eenvoudig"
+
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr ""
 
 msgid "Single"
 msgstr "Enkel"
@@ -3202,8 +3258,14 @@ msgstr "Tijdzone"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Title properties"
+msgstr ""
+
 msgid "Title:"
 msgstr "Titel:"
+
+msgid "Titleset mode"
+msgstr ""
 
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
@@ -3453,6 +3515,9 @@ msgstr "Rass Interactive weergeven"
 msgid "View teletext..."
 msgstr "Teletekst weergeven..."
 
+msgid "Virtual KeyBoard"
+msgstr ""
+
 msgid "Voltage mode"
 msgstr "Spanningsmodus"
 
@@ -3467,6 +3532,9 @@ msgstr "WEP"
 
 msgid "WPA"
 msgstr "WPA"
+
+msgid "WPA or WPA2"
+msgstr ""
 
 msgid "WPA2"
 msgstr "WPA2"
@@ -3734,6 +3802,16 @@ msgstr ""
 "De frontprocessor firmware moet vernieuwd worden.\n"
 "Druk op OK, om dit proces te starten."
 
+msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr "Wilt u terugkeren naar de vorige zender?"
 
@@ -3763,6 +3841,12 @@ msgstr "Favorieten bewerken afsluiten"
 
 msgid "about to start"
 msgstr "start direct"
+
+msgid "activate current configuration"
+msgstr ""
+
+msgid "add a nameserver entry"
+msgstr ""
 
 msgid "add alternatives"
 msgstr "Alternatieven toevoegen"
@@ -3819,6 +3903,14 @@ msgstr ""
 "weet u zeker dat u deze instellingen terug\n"
 "wilt zetten:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr ""
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr ""
+
 msgid "audio tracks"
 msgstr "audio sporen"
 
@@ -3833,6 +3925,10 @@ msgstr "beter"
 
 msgid "blacklist"
 msgstr "zwarte lijst"
+
+#, python-format
+msgid "burn audio track (%s)"
+msgstr ""
 
 msgid "by Exif"
 msgstr "door Exif"
@@ -3960,6 +4056,9 @@ msgstr "stop snijpunt hier"
 msgid "end favourites edit"
 msgstr "favorieten bewerken deactiveren "
 
+msgid "enigma2 and network"
+msgstr ""
+
 msgid "equal to"
 msgstr "gelijk aan"
 
@@ -3974,6 +4073,21 @@ msgstr "Mediaspeler afsluiten"
 
 msgid "exit movielist"
 msgstr "Opname menu afsluiten"
+
+msgid "exit nameserver configuration"
+msgstr ""
+
+msgid "exit network adapter configuration"
+msgstr ""
+
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "exit network interface list"
+msgstr ""
+
+msgid "exit networkadapter setup menu"
+msgstr ""
 
 msgid "failed"
 msgstr "mislukt"
@@ -4118,6 +4232,18 @@ msgstr "maand"
 msgid "move PiP to main picture"
 msgstr "PiP naar hoofdbeeld"
 
+msgid "move down to last entry"
+msgstr ""
+
+msgid "move down to next entry"
+msgstr ""
+
+msgid "move up to first entry"
+msgstr ""
+
+msgid "move up to previous entry"
+msgstr ""
+
 msgid "movie list"
 msgstr "Opname menu"
 
@@ -4178,8 +4304,8 @@ msgstr "op ALLEEN LEZEN medium."
 msgid "once"
 msgstr "éénmalig"
 
-msgid "only /etc/enigma2 directory"
-msgstr "alleen map /etc/enigma2"
+msgid "open nameserver configuration"
+msgstr ""
 
 msgid "open servicelist"
 msgstr "Open zenderlijst"
@@ -4189,6 +4315,9 @@ msgstr "Open zenderlijst (omlaag)"
 
 msgid "open servicelist(up)"
 msgstr "Open zenderlijst (omhoog)"
+
+msgid "open virtual keyboard input help"
+msgstr ""
 
 msgid "pass"
 msgstr "passage"
@@ -4225,6 +4354,9 @@ msgstr "opname"
 
 msgid "recording..."
 msgstr "opnemen..."
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "verwijder achter deze positie"
@@ -4301,6 +4433,12 @@ msgstr "selecteer .NFI flash bestand"
 
 msgid "select image from server"
 msgstr "selecteer image van server"
+
+msgid "select interface"
+msgstr ""
+
+msgid "select menu entry"
+msgstr ""
 
 msgid "select movie"
 msgstr "Selecteer opname"
@@ -4547,6 +4685,9 @@ msgstr "zapte"
 #~ msgid "August"
 #~ msgstr "Augustus"
 
+#~ msgid "Automatic SSID lookup"
+#~ msgstr "Automatisch SSID zoeken"
+
 #~ msgid "Behaviour of 'pause' when paused"
 #~ msgstr "Aktie bij 'pauzeren'"
 
@@ -4679,6 +4820,15 @@ msgstr "zapte"
 #~ msgstr "Nieuwe DVD"
 
 #~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Geen werkende lokale netwerk adapter gevonden.\n"
+#~ "Controleer of u de netwerk kabel goed verbonden hebt en uw netwerk "
+#~ "instellingen correct zijn."
+
+#~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN device or enable "
 #~ "you local network interface."
@@ -4686,6 +4836,24 @@ msgstr "zapte"
 #~ "Geen werkende WiFi adapter gevonden.\n"
 #~ "Controleer of u de WiFi module correct geplaatst heeft of schakel de "
 #~ "lokale netwerk adapter aan."
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "your local network interface."
+#~ msgstr ""
+#~ "Geen werkende WiFi gevonden.\n"
+#~ "Controleer of u een geschikte WiFi adapter geplaatst heeft of activeer de "
+#~ "netwerk instellingen."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Geen werkende WiFi adapter gevonden.\n"
+#~ "Controleer of u een geschikte USB WiFi adapter geplaatst heeft of "
+#~ "controleer de netwerk instellingen."
 
 #~ msgid "None (Softcam)"
 #~ msgstr "Geen (softcam)"
@@ -4840,6 +5008,9 @@ msgstr "zapte"
 
 #~ msgid "minutes and"
 #~ msgstr "minuten en"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "alleen map /etc/enigma2"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "Volgende afspelen"

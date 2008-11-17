@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 17:06+0200\n"
-"PO-Revision-Date: 2008-10-15 12:10+0100\n"
+"POT-Creation-Date: 2008-11-14 23:57+0100\n"
+"PO-Revision-Date: 2008-11-14 23:41+0100\n"
 "Last-Translator: Andreas Frisch <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,13 @@ msgid "(empty)"
 msgstr "(leer)"
 
 msgid "(show optional DVD audio menu)"
-msgstr ""
+msgstr "(DVD-Audiomenü zeigen falls vorh.)"
+
+msgid "* Only available if more than one interface is active."
+msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
+
+msgid "* Only available when entering hidden SSID or network key"
+msgstr "* Verfügbar für die Eingabe der Netzwerk SSID oder Passwortes"
 
 msgid ".NFI Download failed:"
 msgstr ""
@@ -313,7 +319,7 @@ msgid "Action on long powerbutton press"
 msgstr "Aktion beim langen Druck auf Power"
 
 msgid "Action:"
-msgstr ""
+msgstr "Aktion:"
 
 msgid "Activate Picture in Picture"
 msgstr "Bild in Bild aktivieren"
@@ -408,10 +414,17 @@ msgid "Arabic"
 msgstr "Arabisch"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+"Sind Sie sicher, das diese Netzwerkkonfiguration aktiviert werden soll?\n"
+"\n"
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
-"Sind Sie sicher, dass Sie die Netzwerk-Adapter neu starten wollen?\n"
+"Sind Sie sicher, dass Sie die Netzwerkadapter neu starten wollen?\n"
 "\n"
 
 msgid "Artist:"
@@ -446,9 +459,6 @@ msgstr "Automatische Scart-Umschaltung"
 
 msgid "Automatic"
 msgstr "Automatisch"
-
-msgid "Automatic SSID lookup"
-msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Automatische Suche"
@@ -523,6 +533,9 @@ msgstr "Helligkeit"
 msgid "Burn DVD"
 msgstr "Brenne DVD"
 
+msgid "Burn existing image to DVD"
+msgstr "Vorhandenes Image auf DVD brennen"
+
 msgid "Burn to DVD..."
 msgstr "Auf DVD brennen..."
 
@@ -574,7 +587,7 @@ msgid "Change bouquets in quickzap"
 msgstr "Bouquet wechseln beim Quickzap"
 
 msgid "Change dir."
-msgstr ""
+msgstr "Verzeichnis wechseln"
 
 msgid "Change pin code"
 msgstr "Pincode ändern"
@@ -684,6 +697,9 @@ msgstr "Compact-Flash-Karte"
 msgid "Complete"
 msgstr "Komplett"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr "Komplex (erlaubt Mischen versch. Ton-u. Bildformate)"
+
 msgid "Configuration Mode"
 msgstr "Konfiguration"
 
@@ -735,6 +751,9 @@ msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Konnte das Medium nicht laden! Keine DVD eingelegt?"
+
+msgid "Create DVD-ISO"
+msgstr "DVD-ISO erstellen"
 
 msgid "Create movie folder failed"
 msgstr "Erzeugen des Film-Verzeichnisses fehlgeschlagen"
@@ -839,7 +858,7 @@ msgid "Description"
 msgstr "Beschreibung"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "Zielverzeichniss"
 
 msgid "Detected HDD:"
 msgstr "Erkannte Festplatte:"
@@ -855,9 +874,6 @@ msgstr "DiSEqC A/B"
 
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
-
-msgid "DiSEqC Mode"
-msgstr "DiSEqC-Modus"
 
 msgid "DiSEqC mode"
 msgstr "DiSEqC-Modus"
@@ -882,7 +898,7 @@ msgid "Disable Subtitles"
 msgstr "Untertitel abschalten"
 
 msgid "Disable timer"
-msgstr ""
+msgstr "Timer deaktivieren"
 
 msgid "Disabled"
 msgstr "Ausgeschaltet"
@@ -931,9 +947,6 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
-
-msgid "Do you really want to exit?"
-msgstr "Wollen Sie wirklich beenden?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -1006,7 +1019,7 @@ msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Beendet - %d installierte oder aktualisierte Pakete mit %d Fehlern"
 
 msgid "Download"
-msgstr ""
+msgstr "Herunterladen"
 
 msgid "Download .NFI-Files for USB-Flasher"
 msgstr ""
@@ -1051,8 +1064,14 @@ msgstr "FEHLER - Suche fehlgeschlagen (%s)!"
 msgid "East"
 msgstr "Ost"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "Bearbeite DNS"
+
+msgid "Edit Title"
+msgstr "Titel schneiden"
 
 msgid "Edit chapters of current title"
 msgstr "Kapitel des ausgewählten Titels schneiden"
@@ -1088,7 +1107,7 @@ msgid "Enable parental control"
 msgstr "Jugendschutz anschalten"
 
 msgid "Enable timer"
-msgstr ""
+msgstr "Timer aktivieren"
 
 msgid "Enabled"
 msgstr "Eingeschaltet"
@@ -1098,6 +1117,9 @@ msgstr "Verschlüsselung"
 
 msgid "Encryption Key"
 msgstr "WLAN Sicherheitsschlüssel"
+
+msgid "Encryption Keytype"
+msgstr "Passwortverschlüsselungstyp"
 
 msgid "Encryption Type"
 msgstr "Verschlüssellungsart"
@@ -1139,6 +1161,12 @@ msgstr "Anfängliche Vorlaufgeschwindigkeit eingeben"
 
 msgid "Enter Rewind at speed"
 msgstr "Anfängliche Rücklaufgeschwindigkeit eingeben"
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr "WLAN Schlüssel/Passwort eingeben:"
 
 msgid "Enter main menu..."
 msgstr "Öffne Hauptmenü..."
@@ -1188,7 +1216,7 @@ msgid "Expert"
 msgstr "Experte"
 
 msgid "Extended Networksetup Plugin..."
-msgstr ""
+msgstr "Erweitertes Netzwerksetup Plugin..."
 
 msgid "Extended Setup..."
 msgstr "Erweiterte-Einstellungen..."
@@ -1231,6 +1259,12 @@ msgstr "Feineinst."
 
 msgid "Finished"
 msgstr "Beendet"
+
+msgid "Finished configuring your network"
+msgstr "Netzwerkkonfiguration abgeschlossen"
+
+msgid "Finished restarting your network"
+msgstr "Netzwerkneustart abgeschlossen"
 
 msgid "Finnish"
 msgstr "Finnisch"
@@ -1338,6 +1372,9 @@ msgstr "Festplatten-Einstellungen"
 msgid "Harddisk standby after"
 msgstr "Festplatten-Standby nach"
 
+msgid "Hidden network SSID"
+msgstr "Verstecke Netzwerk SSID"
+
 msgid "Hierarchy Information"
 msgstr "Hierarchieinformationen"
 
@@ -1352,6 +1389,12 @@ msgstr "Ungarisch"
 
 msgid "IP Address"
 msgstr "IP-Adresse"
+
+msgid "ISO file is too large for this filesystem!"
+msgstr "Die ISO-Datei passt nicht auf das Dateisystem!"
+
+msgid "ISO path"
+msgstr "ISO-Ausgabepfad"
 
 msgid "Icelandic"
 msgstr "Isländisch"
@@ -1455,7 +1498,7 @@ msgid "Integrated Ethernet"
 msgstr "Eingebaute Netzwerkschnittstelle"
 
 msgid "Integrated Wireless"
-msgstr ""
+msgstr "Integriertes WLAN"
 
 msgid "Intermediate"
 msgstr "Fortgeschritten"
@@ -1480,7 +1523,7 @@ msgid "Italian"
 msgstr "Italienisch"
 
 msgid "Job View"
-msgstr ""
+msgstr "Jobansicht"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
@@ -1496,7 +1539,7 @@ msgid "Keymap"
 msgstr "Tastenlayout"
 
 msgid "LAN Adapter"
-msgstr ""
+msgstr "Netzwerkadapter"
 
 msgid "LNB"
 msgstr "LNB"
@@ -1560,7 +1603,7 @@ msgid "Load"
 msgstr "Laden"
 
 msgid "Load Length of Movies in Movielist"
-msgstr ""
+msgstr "Anzeigen der Spielzeit in der Filmliste"
 
 msgid "Local Network"
 msgstr "Int. Netzwerk"
@@ -1744,7 +1787,7 @@ msgid "Network:"
 msgstr "Netzwerk:"
 
 msgid "NetworkWizard"
-msgstr ""
+msgstr "Netzwerkassistent"
 
 msgid "New"
 msgstr "Neu"
@@ -1841,21 +1884,27 @@ msgstr ""
 "Wenn Sie 'NEIN' wählen, bleibt der Einstellungen-Schutz deaktiviert!"
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
+"Kein funktionierender Netzwerkadapter gefunden.\n"
+"Stellen Sie sicher, dass Sie ein Netzwerkkabel angeschlossen haben und das "
+"Ihr Netzwerk richtig konfiguriert ist."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+"Kein funktionierende WLAN Netzwerkadapter gefunden.\n"
+"Stellen Sie sicher, dass Sie ein kompatibles Gerät angeschlossen haben oder "
+"aktivieren Sie den internen Netzwerkadapter."
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
-msgstr ""
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
 msgstr ""
 
 msgid "No, but restart from begin"
@@ -1968,7 +2017,7 @@ msgid "Pan&Scan"
 msgstr ""
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "übergeordnetes Verzeichnis"
 
 msgid "Parental control"
 msgstr "Jugendschutz"
@@ -2005,7 +2054,7 @@ msgid "Play"
 msgstr "Abspielen"
 
 msgid "Play Audio-CD..."
-msgstr ""
+msgstr "Audio-CD abspielen"
 
 msgid "Play recorded movies..."
 msgstr "Aufgenommene Filme abspielen..."
@@ -2020,7 +2069,7 @@ msgid "Please change recording endtime"
 msgstr "Bitte Aufnahmeendzeit ändern"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "Bitte überprüfen Sie ihre Netzwerkeinstellungen"
 
 msgid "Please choose .NFI image file from feed server to download"
 msgstr ""
@@ -2122,8 +2171,20 @@ msgstr ""
 "Bitte benutzen Sie die Hoch/Runter-Tasten, um Ihre Sprache auszuwählen. "
 "Danach drücken Sie bitte OK."
 
+msgid "Please wait for activation of your network configuration..."
+msgstr "Bitte warten während die Netzwerkkonfiguration aktiviert wird..."
+
 msgid "Please wait for md5 signature verification..."
 msgstr ""
+
+msgid "Please wait while we configure your network..."
+msgstr "Bitte warten während das Netzwerk konfiguriert wird..."
+
+msgid "Please wait while your network is restarting..."
+msgstr "Bitte warten während das Netzwerk neu startet..."
+
+msgid "Please wait..."
+msgstr "Bitte warten..."
 
 msgid "Please wait... Loading list..."
 msgstr "Bitte warten... Liste wird geladen..."
@@ -2205,6 +2266,9 @@ msgstr "Vorschau des DVD-Menüs"
 
 msgid "Primary DNS"
 msgstr "Primärer DNS"
+
+msgid "Properties of current title"
+msgstr "Eigenschaften des ausgewählten Titels"
 
 msgid "Protect services"
 msgstr "Kanäle schützen"
@@ -2297,7 +2361,7 @@ msgid "Remounting stick partition..."
 msgstr ""
 
 msgid "Remove Bookmark"
-msgstr ""
+msgstr "Bookmark entfernen"
 
 msgid "Remove Plugins"
 msgstr "Plugins entfernen"
@@ -2312,10 +2376,10 @@ msgid "Remove plugins"
 msgstr "Plugins entfernen"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "entferne defekte .NFI Datei?"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "entferne inkomplette .NFI Datei?"
 
 msgid "Remove title"
 msgstr "Titel entfernen"
@@ -2343,6 +2407,9 @@ msgstr "Wiederholungen"
 
 msgid "Reset"
 msgstr "Zurücksetzen"
+
+msgid "Reset and renumerate title names"
+msgstr "Titelnamen zurücksetzen und neu nummerieren"
 
 msgid "Resolution"
 msgstr "Auflösung"
@@ -2568,7 +2635,7 @@ msgid "Select channel to record from"
 msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 
 msgid "Select image"
-msgstr ""
+msgstr "Wähle Image"
 
 msgid "Select refresh rate"
 msgstr "Wähle Bildwiederholrate"
@@ -2580,7 +2647,13 @@ msgid "Select video mode"
 msgstr "Wähle Video-Modus"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "Wähle Quell-Image"
+
+msgid "Send DiSEqC"
+msgstr "DiSEqC senden"
+
+msgid "Send DiSEqC only on satellite change"
+msgstr "DiSEqC nur bei Sat-Wechsel senden"
 
 msgid "Seperate titles with a main menu"
 msgstr "Separate Titel mit Hauptmenü"
@@ -2633,8 +2706,14 @@ msgstr "Kanal-Infos"
 msgid "Services"
 msgstr "Kanäle"
 
+msgid "Set Voltage and 22KHz"
+msgstr "Spannung und 22KHz setzen"
+
 msgid "Set as default Interface"
-msgstr ""
+msgstr "Netzwerkadapter als Standard definieren"
+
+msgid "Set interface as default Interface"
+msgstr "Setze Netzwerkadapter als Standardd"
 
 msgid "Set limits"
 msgstr "Limits setzen"
@@ -2692,6 +2771,9 @@ msgstr "Ähnliche Sendungen:"
 
 msgid "Simple"
 msgstr "Einfach"
+
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr "Schlicht (bessere Kompatibilität mit alten DVD-Playern)"
 
 msgid "Single"
 msgstr "Einzeln"
@@ -2864,6 +2946,9 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
+
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr "TS-Datei ist zu groß für ISO9660 level 1!"
 
 msgid "TV System"
 msgstr "Fernsehnorm"
@@ -3138,6 +3223,8 @@ msgid ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
 msgstr ""
+"Timerüberlappung in der timers.xml entdeckt!\n"
+"Bitte überprüfen!"
 
 msgid "Timer sanity error"
 msgstr "Fehler bei Timerprüfung"
@@ -3160,8 +3247,14 @@ msgstr "Zeitzone"
 msgid "Title"
 msgstr "Titel"
 
+msgid "Title properties"
+msgstr "Titeleigensch."
+
 msgid "Title:"
 msgstr "Titel:"
+
+msgid "Titleset mode"
+msgstr "Titleset"
 
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
@@ -3184,10 +3277,10 @@ msgid "Track"
 msgstr "Spur"
 
 msgid "Translation"
-msgstr ""
+msgstr "Übersetzung:"
 
 msgid "Translation:"
-msgstr ""
+msgstr "Übersetzung:"
 
 msgid "Transmission Mode"
 msgstr "Übertragungsmodus"
@@ -3301,11 +3394,14 @@ msgstr "Upgrade"
 msgid "Upgrading Dreambox... Please wait"
 msgstr "Dreambox wird aktualisiert... Bitte warten"
 
+msgid "Use"
+msgstr "Benutzen"
+
 msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
 msgid "Use Interface"
-msgstr ""
+msgstr "Netwerkadapter aktivieren"
 
 msgid "Use Power Measurement"
 msgstr "Verwende Stromaufnahmen-Messung"
@@ -3332,7 +3428,7 @@ msgid "Use power measurement"
 msgstr "Stromaufnahme messen"
 
 msgid "Use the Networkwizard to configure your Network\n"
-msgstr ""
+msgstr "Nutzen sie den Netzwerkassistenten um Ihr Netzwerk zu konfigurieren\n"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
@@ -3407,6 +3503,9 @@ msgstr "Rass Interaktiv anzeigen..."
 msgid "View teletext..."
 msgstr "Videotext anzeigen..."
 
+msgid "Virtual KeyBoard"
+msgstr "Virtuelle Tastatur"
+
 msgid "Voltage mode"
 msgstr "Spannungs-Modus"
 
@@ -3417,19 +3516,22 @@ msgid "W"
 msgstr "W"
 
 msgid "WEP"
-msgstr ""
+msgstr "WEP"
 
 msgid "WPA"
-msgstr ""
+msgstr "WPA"
+
+msgid "WPA or WPA2"
+msgstr "WPA oder WPA2"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS bei 4:3"
 
 msgid "Waiting"
-msgstr ""
+msgstr "Warte"
 
 msgid "Waiting for USB stick to settle..."
 msgstr ""
@@ -3522,6 +3624,9 @@ msgstr "Jahr:"
 
 msgid "Yes"
 msgstr "Ja"
+
+msgid "Yes, and delete this movie"
+msgstr "Ja, diesen Film löschen"
 
 msgid "Yes, backup my settings!"
 msgstr "Ja, meine Einstellungen sichern!"
@@ -3617,7 +3722,7 @@ msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
-msgstr ""
+msgstr "Sie müssen %s warten!"
 
 msgid ""
 "You need a PC connected to your dreambox. If you need further instructions, "
@@ -3683,6 +3788,20 @@ msgstr ""
 "Ihre Frontprozessor-Firmware muss aktualisiert werden.\n"
 "Drücken Sie OK, um das Upgrade zu starten."
 
+msgid "Your network configuration has been activated."
+msgstr "Ihre Netzwerkkonfiguration wurde aktiviert."
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+"Ihre Netzwerkkonfiguration wurde aktiviert.\n"
+"Ein zweiter konfigurierter Netzwerkadapter wurde gefunden.\n"
+"\n"
+"Wollen Sie den zweiten Netzwerkadapter deaktivieren ?"
+
 msgid "Zap back to service before positioner setup?"
 msgstr ""
 "Zurückschalten zum Sender der vor dem\n"
@@ -3717,11 +3836,17 @@ msgstr "Favoriteneditor abbrechen"
 msgid "about to start"
 msgstr "startet gleich"
 
+msgid "activate current configuration"
+msgstr "Aktuelle Konfiguration aktivieren"
+
+msgid "add a nameserver entry"
+msgstr "DNS Servereintrag hinzufügen"
+
 msgid "add alternatives"
 msgstr "Alternativen hinzufügen"
 
 msgid "add bookmark"
-msgstr ""
+msgstr "Bookmark hinzufügen"
 
 msgid "add bouquet"
 msgstr "Bouquet einfügen"
@@ -3772,6 +3897,14 @@ msgstr ""
 "Sind Sie sicher, dass Sie die Sicherung zurückspielen wollen?\n"
 "Sicherung:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr "Format der Audiospur (%s)"
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr "Sprache der Audiospur (%s)"
+
 msgid "audio tracks"
 msgstr "Tonspuren"
 
@@ -3787,6 +3920,10 @@ msgstr "besser"
 msgid "blacklist"
 msgstr "Negativliste"
 
+#, python-format
+msgid "burn audio track (%s)"
+msgstr "Brenne die Audiospur (%s)"
+
 msgid "by Exif"
 msgstr ""
 
@@ -3800,7 +3937,7 @@ msgid "chapters"
 msgstr "Kapitel"
 
 msgid "choose destination directory"
-msgstr ""
+msgstr "Wähle Zielverzeichnis"
 
 msgid "circular left"
 msgstr "links-zirkulär"
@@ -3833,7 +3970,7 @@ msgid "copy to bouquets"
 msgstr "in Bouquets kopieren"
 
 msgid "create directory"
-msgstr ""
+msgstr "Verzeichnis erstellen"
 
 msgid "daily"
 msgstr "täglich"
@@ -3841,11 +3978,11 @@ msgstr "täglich"
 msgid "day"
 msgstr "Tag"
 
-msgid "delete"
-msgstr "Löschen"
-
 msgid "delete cut"
 msgstr "Schnitt löschen"
+
+msgid "delete file"
+msgstr "Datei löschen"
 
 msgid "delete playlist entry"
 msgstr "Wiedergabelisteneintrag löschen"
@@ -3913,6 +4050,9 @@ msgstr "Schnitt endet hier"
 msgid "end favourites edit"
 msgstr "Favoriteneditor beenden"
 
+msgid "enigma2 and network"
+msgstr "Enigma2 und Netzwerk"
+
 msgid "equal to"
 msgstr "Gleich wie"
 
@@ -3927,6 +4067,21 @@ msgstr "Mediaplayer beenden"
 
 msgid "exit movielist"
 msgstr "Verlasse Filmliste"
+
+msgid "exit nameserver configuration"
+msgstr "DNS Serverkonfiguration verlassen"
+
+msgid "exit network adapter configuration"
+msgstr "Netzwerkadapterkonfiguration verlassen"
+
+msgid "exit network adapter setup menu"
+msgstr "Netzwerkadaptermenu verlassen"
+
+msgid "exit network interface list"
+msgstr "Netzwerkadapterübersicht verlassen"
+
+msgid "exit networkadapter setup menu"
+msgstr ""
 
 msgid "failed"
 msgstr ""
@@ -4054,7 +4209,7 @@ msgid "menu"
 msgstr "Menü"
 
 msgid "menulist"
-msgstr ""
+msgstr "Menüliste"
 
 msgid "mins"
 msgstr "min"
@@ -4070,6 +4225,18 @@ msgstr "Monat"
 
 msgid "move PiP to main picture"
 msgstr "PiP tauschen und beenden"
+
+msgid "move down to last entry"
+msgstr "zum letzten Eintrag gehen"
+
+msgid "move down to next entry"
+msgstr "zum nächsten Eintrag gehen"
+
+msgid "move up to first entry"
+msgstr "zum ersten Eintrag gehen"
+
+msgid "move up to previous entry"
+msgstr "zum vorherigen Eintrag gehen"
 
 msgid "movie list"
 msgstr "Filmliste"
@@ -4131,8 +4298,8 @@ msgstr "auf dem nicht beschreibbaren Medium."
 msgid "once"
 msgstr "einmalig"
 
-msgid "only /etc/enigma2 directory"
-msgstr "nur Verzeichnis /etc/enigma2"
+msgid "open nameserver configuration"
+msgstr "DNS Server Konfiguration öffnen"
 
 msgid "open servicelist"
 msgstr "Kanalliste öffnen"
@@ -4142,6 +4309,9 @@ msgstr "Kanalliste öffnen(nach unten)"
 
 msgid "open servicelist(up)"
 msgstr "Kanalliste öffnen(nach oben)"
+
+msgid "open virtual keyboard input help"
+msgstr "Virtuelle Tastatureingabehilfe öffnen"
 
 msgid "pass"
 msgstr "Durchgang"
@@ -4171,13 +4341,16 @@ msgid "previous channel in history"
 msgstr "Vorheriger Kanal im Verlauf"
 
 msgid "rebooting..."
-msgstr ""
+msgstr "starte neu..."
 
 msgid "record"
 msgstr "Aufnehmen"
 
 msgid "recording..."
 msgstr "nimmt auf..."
+
+msgid "remove a nameserver entry"
+msgstr "DNS Servereintrag entfernen"
 
 msgid "remove after this position"
 msgstr "Nach dieser Position entfernen"
@@ -4192,10 +4365,10 @@ msgid "remove before this position"
 msgstr "Vor dieser Position entfernen"
 
 msgid "remove bookmark"
-msgstr ""
+msgstr "Bookmark entfernen"
 
 msgid "remove directory"
-msgstr ""
+msgstr "Verzeichnis entfernen"
 
 msgid "remove entry"
 msgstr "Eintrag entfernen"
@@ -4224,8 +4397,14 @@ msgstr "Zum vorherigen Kapitel zurück"
 msgid "right"
 msgstr "rechts"
 
+msgid "save last directory on exit"
+msgstr "Anfangsverzeichnis beim Beenden merken"
+
 msgid "save playlist"
 msgstr "Wiedergabeliste speichern"
+
+msgid "save playlist on exit"
+msgstr "Wiedergabeliste beim Beenden speicher"
 
 msgid "scan done!"
 msgstr "Suche beendet!"
@@ -4247,13 +4426,19 @@ msgid "seconds"
 msgstr "Sekunden"
 
 msgid "select"
-msgstr ""
+msgstr "wähle"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "Wähle eine .NFI Flashdatei"
 
 msgid "select image from server"
-msgstr ""
+msgstr "Wähle ein Image vom Server"
+
+msgid "select interface"
+msgstr "Wähle einen Netzwerkadapter"
+
+msgid "select menu entry"
+msgstr "Wähle einen Menüpunkt"
 
 msgid "select movie"
 msgstr "Wähle Film"
@@ -4338,6 +4523,9 @@ msgstr "Standby"
 
 msgid "start cut here"
 msgstr "Schnitt hier starten"
+
+msgid "start directory"
+msgstr "Anfangsverzeichnis"
 
 msgid "start timeshift"
 msgstr "Timeshift starten"
@@ -4500,8 +4688,14 @@ msgstr "umgeschaltet"
 #~ "Wollen Sie das Plugin mit\n"
 #~ "dem Namen \" wirklich herunterladen?"
 
+#~ msgid "Do you really want to exit?"
+#~ msgstr "Wollen Sie wirklich beenden?"
+
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktiviere WLAN Unterstützung"
+
+#~ msgid "Enter WLAN networ kname/SSID:"
+#~ msgstr "WLAN Netzwerkname/SSID eingeben:"
 
 #~ msgid "Games / Plugins"
 #~ msgstr "Spiele / Erweiterungen"
@@ -4514,6 +4708,15 @@ msgstr "umgeschaltet"
 
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nameserver-Einstellungen..."
+
+#~ msgid ""
+#~ "No working wireless network interface found.\n"
+#~ "Please verify that you have attached a compatible WLAN device or enable "
+#~ "your local network interface."
+#~ msgstr ""
+#~ "Kein funktionierender WLAN Netzwerkadapter gefunden.\n"
+#~ "Stellen Sie sicher, dass Sie ein kompatibles Gerät angeschlossen haben "
+#~ "und das Ihr Netzwerk richtig konfiguriert ist."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nein, Standard-Kanalliste verwenden."
@@ -4592,6 +4795,9 @@ msgstr "umgeschaltet"
 #~ msgid "You have to wait for"
 #~ msgstr "Sie müssen warten"
 
+#~ msgid "delete"
+#~ msgstr "Löschen"
+
 #~ msgid "equal to Socket A"
 #~ msgstr "Wie Tuner A"
 
@@ -4600,6 +4806,9 @@ msgstr "umgeschaltet"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Verbunden mit Tuner A"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "nur Verzeichnis /etc/enigma2"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "nächsten Wiedergabelisteneintrag abspielen"

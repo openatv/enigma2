@@ -184,7 +184,7 @@ public:
 	};
 	
 	RESULT connectChannelAdded(const Slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
-	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore);
+	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore, bool simulate=false);
 
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool simulate=false);
@@ -206,7 +206,7 @@ public:
 #ifdef SWIG
 public:
 #endif
-	int canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm);
+	int canAllocateFrontend(ePtr<iDVBFrontendParameters> &feparm, bool simulate=false);
 	bool canMeasureFrontendInputPower();
 	PSignal1<void,int> frontendUseMaskChanged;
 	SWIG_VOID(RESULT) allocateRawChannel(eUsePtr<iDVBChannel> &SWIG_OUTPUT, int slot_index);

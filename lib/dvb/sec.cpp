@@ -637,11 +637,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							diseqc.data[2] = 0;
 							// diseqc reset
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_DISEQC_RESET_CMD]) );
 							diseqc.data[2] = 3;
 							// diseqc peripherial powersupply on
 							sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 150) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_DISEQC_PERIPHERIAL_POWERON_CMD]) );
 						}
 
 						for (int seq_repeat = 0; seq_repeat < (di_param.m_seq_repeat?2:1); ++seq_repeat)
@@ -894,8 +894,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				csw = band;
 			}
 
-			if (sendDiSEqC)
-				sec_sequence.push_front( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
+//			if (sendDiSEqC)
+			sec_sequence.push_front( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
 
 			sec_fe->setData(eDVBFrontend::NEW_CSW, csw);
 			sec_fe->setData(eDVBFrontend::NEW_UCSW, ucsw);
@@ -923,8 +923,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 			}
 
-			if (sendDiSEqC)
-				sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+//			if (sendDiSEqC)
+			sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );
+			sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
 
 			frontend.setSecSequence(sec_sequence);
 

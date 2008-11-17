@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-28 11:20+0100\n"
+"POT-Creation-Date: 2008-11-14 07:24+0100\n"
 "PO-Revision-Date: 2008-10-24 10:04+0100\n"
 "Last-Translator:  <silelis@tlen.pl>\n"
 "Language-Team: none\n"
@@ -87,6 +87,12 @@ msgstr "(puste)"
 
 msgid "(show optional DVD audio menu)"
 msgstr "(pokaż opcjonalne menu ustawień DVD audio)"
+
+msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "* Only available when entering hidden SSID or network key"
+msgstr ""
 
 msgid ".NFI Download failed:"
 msgstr "Ładowanie pliku .NFI nie powiodło się:"
@@ -404,6 +410,11 @@ msgid "Arabic"
 msgstr "Arabski"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -442,9 +453,6 @@ msgstr "Auto przełączanie scart"
 
 msgid "Automatic"
 msgstr "Automatycznie"
-
-msgid "Automatic SSID lookup"
-msgstr "Automatyczne oddzukiwanie SSID"
 
 msgid "Automatic Scan"
 msgstr "Automatyczne skanowanie"
@@ -517,6 +525,9 @@ msgstr "Jasność"
 
 msgid "Burn DVD"
 msgstr "Wypal DVD"
+
+msgid "Burn existing image to DVD"
+msgstr ""
 
 msgid "Burn to DVD..."
 msgstr "Nagrywanie na DVD..."
@@ -679,6 +690,9 @@ msgstr "Karta Compact flash"
 msgid "Complete"
 msgstr "Zakończ"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr ""
+
 msgid "Configuration Mode"
 msgstr "Tryb konfiguracji"
 
@@ -730,6 +744,9 @@ msgstr "Połączenie z Dreambox .NFI Image Serwerem nie powiodło sie:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nie moge odczytać nosnika. Czy nośnik znajduje się w czytniku?"
+
+msgid "Create DVD-ISO"
+msgstr ""
 
 msgid "Create movie folder failed"
 msgstr "Tworzenie katalogu filmu nie powiodło się"
@@ -850,9 +867,6 @@ msgstr "DiSEqC A/B"
 
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
-
-msgid "DiSEqC Mode"
-msgstr "Tryb DiSEqC"
 
 msgid "DiSEqC mode"
 msgstr "Tryb DiSEqC"
@@ -1050,8 +1064,14 @@ msgstr "BŁĄD - skanowanie (%s) nie powiodło się!"
 msgid "East"
 msgstr "Wschód"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "Edytuj DNS"
+
+msgid "Edit Title"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr "Edycja rozdziału"
@@ -1098,6 +1118,9 @@ msgstr "Szyfrowanie"
 msgid "Encryption Key"
 msgstr "Klucz szyfrujący"
 
+msgid "Encryption Keytype"
+msgstr ""
+
 msgid "Encryption Type"
 msgstr "Typ szyfrowania"
 
@@ -1138,6 +1161,12 @@ msgstr "Przejdź do przodu bardzo szybko"
 
 msgid "Enter Rewind at speed"
 msgstr "Przejdź wstecz bardzo szybko"
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr ""
 
 msgid "Enter main menu..."
 msgstr "Wejdź do menu głównego..."
@@ -1230,6 +1259,12 @@ msgstr "Strojenie"
 
 msgid "Finished"
 msgstr "Skończone"
+
+msgid "Finished configuring your network"
+msgstr ""
+
+msgid "Finished restarting your network"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Fiński"
@@ -1339,6 +1374,9 @@ msgstr "Ustawienia dysku twardego"
 msgid "Harddisk standby after"
 msgstr "Tryb czuwania dysku twardego po"
 
+msgid "Hidden network SSID"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Informacja hierarchii"
 
@@ -1353,6 +1391,12 @@ msgstr "Węgierski"
 
 msgid "IP Address"
 msgstr "Adres IP"
+
+msgid "ISO file is too large for this filesystem!"
+msgstr ""
+
+msgid "ISO path"
+msgstr ""
 
 msgid "Icelandic"
 msgstr "Islandzki"
@@ -1835,31 +1879,22 @@ msgstr ""
 "Gdy wciśniesz NIE ochrona ustawień zostanie wyłączona!"
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Nie znaleziono działającej sieci.\n"
-"Sprawdź czy masz podłączony przewód sieciowy i czy Twoaj sieć jest "
-"skonfigurowana poprawnie."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-"Nie znaleziono działającego interfejsu WiFi.\n"
-"Proszę sprawdzić czy urzadzenie WLAN jest kompatybilne ze Dreambox'em oraz "
-"czy interfejs sieciowy jest włączony."
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
-msgstr ""
-"Nie znaleziono działającego adaptera sieci bezprzewodowej.\n"
-"Sprawdź kompatybilność Twojegp WLAN USB Stick oraz poprawność konfiguracji "
-"sieci."
 
 msgid "No, but restart from begin"
 msgstr "Nie, ale zrestartuj od początku"
@@ -2129,8 +2164,20 @@ msgstr ""
 "W celu wyboru języka użyj klawiszy GÓRA i DÓŁ. Nastepnie nacisnij przycisk "
 "OK."
 
+msgid "Please wait for activation of your network configuration..."
+msgstr ""
+
 msgid "Please wait for md5 signature verification..."
 msgstr "Suma kontrolna md5 jest sprawdzana. Proszę czekać..."
+
+msgid "Please wait while we configure your network..."
+msgstr ""
+
+msgid "Please wait while your network is restarting..."
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
 
 msgid "Please wait... Loading list..."
 msgstr "Proszę czekać... Ładowanie listy..."
@@ -2212,6 +2259,9 @@ msgstr "Podgląd menu"
 
 msgid "Primary DNS"
 msgstr "Pierwszy DNS"
+
+msgid "Properties of current title"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Ochrona serwisów"
@@ -2349,6 +2399,9 @@ msgstr "Powtarzaj"
 
 msgid "Reset"
 msgstr "Resetuj"
+
+msgid "Reset and renumerate title names"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Rozdzielczość"
@@ -2589,6 +2642,12 @@ msgstr "Wybierz tryb wideo"
 msgid "Selected source image"
 msgstr "Wybierz image źródłowy"
 
+msgid "Send DiSEqC"
+msgstr ""
+
+msgid "Send DiSEqC only on satellite change"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr "Rozdziel tytuły z wykozystaniem menu"
 
@@ -2640,8 +2699,14 @@ msgstr "Info o serwisie"
 msgid "Services"
 msgstr "Serwisy"
 
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
 msgid "Set as default Interface"
 msgstr "Ustaw jako domyslny interfejs"
+
+msgid "Set interface as default Interface"
+msgstr ""
 
 msgid "Set limits"
 msgstr "Ustaw limity"
@@ -2699,6 +2764,9 @@ msgstr "Podobne transmisje:"
 
 msgid "Simple"
 msgstr "Proste"
+
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr ""
 
 msgid "Single"
 msgstr "Jeden"
@@ -2874,6 +2942,9 @@ msgstr ""
 "This is Polish translation made by @zbigzbig20.:)/nImprovements and "
 "additional translations made by SileliS® :)\n"
 "Best Regards for DM box owners...  Sebastian :) ... Cheers"
+
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr ""
 
 msgid "TV System"
 msgstr "System TV"
@@ -3182,8 +3253,14 @@ msgstr "Strefa czasu"
 msgid "Title"
 msgstr "Tytuł"
 
+msgid "Title properties"
+msgstr ""
+
 msgid "Title:"
 msgstr "Tytuł:"
+
+msgid "Titleset mode"
+msgstr ""
 
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
@@ -3429,6 +3506,9 @@ msgstr "Pokaż interaktywne Rass..."
 msgid "View teletext..."
 msgstr "Pokaż teletext..."
 
+msgid "Virtual KeyBoard"
+msgstr ""
+
 msgid "Voltage mode"
 msgstr "Tryb napięcia"
 
@@ -3443,6 +3523,9 @@ msgstr "WEP"
 
 msgid "WPA"
 msgstr "WPA"
+
+msgid "WPA or WPA2"
+msgstr ""
 
 msgid "WPA2"
 msgstr "WPA2"
@@ -3708,6 +3791,16 @@ msgstr ""
 "Twój frontprocessor musi zostać zaktualizowany.\n"
 "Naciśnij OK aby rozpocząć aktualizacje."
 
+msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr "Przełączyć z powrotem na serwis przed ustawieniem pozycjonera?"
 
@@ -3737,6 +3830,12 @@ msgstr "przerwij edycje ulubionych"
 
 msgid "about to start"
 msgstr "jak rozpocząć"
+
+msgid "activate current configuration"
+msgstr ""
+
+msgid "add a nameserver entry"
+msgstr ""
 
 msgid "add alternatives"
 msgstr "dodaj wybrane"
@@ -3793,6 +3892,14 @@ msgstr ""
 "Jesteś pewien że chcesz przywrócić\n"
 "następującą kopie:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr ""
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr ""
+
 msgid "audio tracks"
 msgstr "ścieżki audio"
 
@@ -3807,6 +3914,10 @@ msgstr "lepszy"
 
 msgid "blacklist"
 msgstr "Czarna lista"
+
+#, python-format
+msgid "burn audio track (%s)"
+msgstr ""
 
 msgid "by Exif"
 msgstr "przez Exif"
@@ -3934,6 +4045,9 @@ msgstr "Zakończ cięcie tutaj"
 msgid "end favourites edit"
 msgstr "Koniec edycji ulubionych"
 
+msgid "enigma2 and network"
+msgstr ""
+
 msgid "equal to"
 msgstr "równy"
 
@@ -3948,6 +4062,21 @@ msgstr "Wyjdź z mediaplayera"
 
 msgid "exit movielist"
 msgstr "Wyjdź z listy filmów"
+
+msgid "exit nameserver configuration"
+msgstr ""
+
+msgid "exit network adapter configuration"
+msgstr ""
+
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "exit network interface list"
+msgstr ""
+
+msgid "exit networkadapter setup menu"
+msgstr ""
 
 msgid "failed"
 msgstr "zawiódł"
@@ -4092,6 +4221,18 @@ msgstr "miesiąc"
 msgid "move PiP to main picture"
 msgstr "przesuń PiP do głównego obrazu"
 
+msgid "move down to last entry"
+msgstr ""
+
+msgid "move down to next entry"
+msgstr ""
+
+msgid "move up to first entry"
+msgstr ""
+
+msgid "move up to previous entry"
+msgstr ""
+
 msgid "movie list"
 msgstr "lista filmów"
 
@@ -4152,8 +4293,8 @@ msgstr "nosnik tylko do odczytu."
 msgid "once"
 msgstr "Raz"
 
-msgid "only /etc/enigma2 directory"
-msgstr "Tylko katalog /etc/enigma2"
+msgid "open nameserver configuration"
+msgstr ""
 
 msgid "open servicelist"
 msgstr "Otwórz listę serwisów"
@@ -4163,6 +4304,9 @@ msgstr "Otwórz listę serwisów (dół)"
 
 msgid "open servicelist(up)"
 msgstr "Otwórz listę serwisów (góra)"
+
+msgid "open virtual keyboard input help"
+msgstr ""
 
 msgid "pass"
 msgstr "Hasło"
@@ -4199,6 +4343,9 @@ msgstr "Nagraj"
 
 msgid "recording..."
 msgstr "Nagrywanie..."
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "Usuń po tej pozycji"
@@ -4275,6 +4422,12 @@ msgstr "wybierz plik .NFI flash"
 
 msgid "select image from server"
 msgstr "wybierz plik z serwera"
+
+msgid "select interface"
+msgstr ""
+
+msgid "select menu entry"
+msgstr ""
 
 msgid "select movie"
 msgstr "wybierz film"
@@ -4505,6 +4658,9 @@ msgstr "Przełączony"
 #~ "Czy jesteś pewien, że chcesz włączyć sieć lokalną?\n"
 #~ "\n"
 
+#~ msgid "Automatic SSID lookup"
+#~ msgstr "Automatyczne oddzukiwanie SSID"
+
 #~ msgid "Burn"
 #~ msgstr "Wypal"
 
@@ -4620,6 +4776,15 @@ msgstr "Przełączony"
 #~ msgstr "Nowe DVD"
 
 #~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Nie znaleziono działającej sieci.\n"
+#~ "Sprawdź czy masz podłączony przewód sieciowy i czy Twoaj sieć jest "
+#~ "skonfigurowana poprawnie."
+
+#~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
 #~ "enable your local network interface."
@@ -4636,6 +4801,24 @@ msgstr "Przełączony"
 #~ "Nie znaleziono działąjącego interfejsu sieci bezprzewodowych.\n"
 #~ "Sprawdź cz podłączyłeś kompatybilne urządzenie WLAN oraz czy Twoja "
 #~ "urządzenie jest włączone."
+
+#~ msgid ""
+#~ "No working wireless interface found.\n"
+#~ " Please verify that you have attached a compatible WLAN device or enable "
+#~ "your local network interface."
+#~ msgstr ""
+#~ "Nie znaleziono działającego interfejsu WiFi.\n"
+#~ "Proszę sprawdzić czy urzadzenie WLAN jest kompatybilne ze Dreambox'em "
+#~ "oraz czy interfejs sieciowy jest włączony."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Nie znaleziono działającego adaptera sieci bezprzewodowej.\n"
+#~ "Sprawdź kompatybilność Twojegp WLAN USB Stick oraz poprawność "
+#~ "konfiguracji sieci."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nie, pozwól mi wybrać listę standardową"
@@ -4840,6 +5023,9 @@ msgstr "Przełączony"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Zapętl bezpośrednio do Gniazda A"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "Tylko katalog /etc/enigma2"
 
 #~ msgid ""
 #~ "scan done!\n"

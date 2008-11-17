@@ -151,7 +151,7 @@ RESULT eDVBService::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &
 	return eEPGCache::getInstance()->lookupEventTime(ref, start_time, ptr);
 }
 
-int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore)
+int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
 	ePtr<eDVBResourceManager> res_mgr;
 	if ( eDVBResourceManager::getInstance( res_mgr ) )
@@ -161,7 +161,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		eDVBChannelID chid, chid_ignore;
 		((const eServiceReferenceDVB&)ref).getChannelID(chid);
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
-		return res_mgr->canAllocateChannel(chid, chid_ignore);
+		return res_mgr->canAllocateChannel(chid, chid_ignore, simulate);
 	}
 	return 0;
 }
@@ -497,7 +497,7 @@ void eDVBDB::saveServicelist(const char *file)
 		{
 			if (sat.system == eDVBFrontendParametersSatellite::System::DVB_S2)
 			{
-				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
 					sat.frequency, sat.symbol_rate,
 					sat.polarisation, sat.fec,
 					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
@@ -505,11 +505,8 @@ void eDVBDB::saveServicelist(const char *file)
 					flags,
 					sat.system,
 					sat.modulation,
-					sat.rolloff);
-				if (sat.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK)
-					fprintf(f, ":%d\n", sat.pilot);
-				else
-					fprintf(f, "\n");
+					sat.rolloff,
+					sat.pilot);
 			}
 			else
 			{

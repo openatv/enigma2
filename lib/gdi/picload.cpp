@@ -10,6 +10,8 @@
 
 #include <epng.h>	// savePNG need it
 
+#define JDCT_DEFAULT JDCT_IFAST
+
 extern "C" {
 #include <jpeglib.h>
 #include <gif_lib.h>
@@ -163,6 +165,151 @@ static int jpeg_save(unsigned char *image_buffer, const char * filename, int qua
  	return 0;
 }
 
+/* Expanded data source object for memory buffer input */
+typedef struct
+{
+	struct jpeg_source_mgr pub;	/* public fields */
+	FILE *infile;			/* source stream */
+	JOCTET *buffer;		/* start of buffer */
+	boolean start_of_file;	/* have we gotten any data yet? */
+} mem_source_mgr;
+
+typedef mem_source_mgr *mem_src_ptr;
+
+static void init_source (j_decompress_ptr cinfo)
+{
+	mem_src_ptr src = (mem_src_ptr) cinfo->src;
+	src->start_of_file = TRUE;
+}
+
+static boolean fill_input_buffer (j_decompress_ptr cinfo)
+{
+	/* no-op */ (void)cinfo;
+	return TRUE;
+ }
+
+static void skip_input_data (j_decompress_ptr cinfo, long num_bytes)
+{
+	mem_src_ptr src = (mem_src_ptr) cinfo->src;
+	
+	if (num_bytes > 0)
+	{
+		src->pub.next_input_byte += (size_t) num_bytes;
+		src->pub.bytes_in_buffer -= (size_t) num_bytes;
+	}
+}
+
+static void term_source (j_decompress_ptr cinfo)
+{
+	/* no-op */ (void)cinfo;
+}
+
+static void jpeg_memory_src (j_decompress_ptr cinfo, unsigned char *inbfr, int len)
+{
+	mem_src_ptr src;
+	if (cinfo->src == NULL)
+	{
+		cinfo->src = (struct jpeg_source_mgr *)
+		(*cinfo->mem->alloc_small) ((j_common_ptr) cinfo, JPOOL_PERMANENT, (size_t)sizeof(mem_source_mgr));
+		src = (mem_src_ptr) cinfo->src;
+		src->buffer = (JOCTET *) inbfr;
+	}
+	src = (mem_src_ptr) cinfo->src;
+	src->pub.init_source = init_source;
+	src->pub.fill_input_buffer = fill_input_buffer;
+	src->pub.skip_input_data = skip_input_data;
+	src->pub.resync_to_restart = jpeg_resync_to_restart;	/* use default method */
+	src->pub.term_source = term_source;
+	src->infile = 0L;
+	src->pub.bytes_in_buffer = len;				/* sets to entire file len */
+	src->pub.next_input_byte = (JOCTET *)inbfr;		/* at start of buffer */
+}
+
+static int jpeg_load_thumb(const char *filename, int *x, int *y)
+{
+	struct jpeg_decompress_struct cinfo;
+	struct jpeg_decompress_struct *ciptr = &cinfo;
+	struct r_jpeg_error_mgr emgr;
+	FILE *fh;
+
+	if (!(fh = fopen(filename, "rb")))
+		return 0;
+
+	ciptr->err = jpeg_std_error(&emgr.pub);
+	emgr.pub.error_exit = jpeg_cb_error_exit;
+	if (setjmp(emgr.envbuffer) == 1)
+	{
+		jpeg_destroy_decompress(ciptr);
+		fclose(fh);
+		return 0;
+	}
+
+	jpeg_create_decompress(ciptr);
+	jpeg_stdio_src(ciptr, fh);
+
+	jpeg_save_markers (ciptr, JPEG_APP0 + 1, 0xffff);
+
+	jpeg_read_header(ciptr, TRUE);
+
+	struct jpeg_marker_struct *m = cinfo.marker_list;
+
+	unsigned char *thumb_buf = NULL;
+	size_t bufsize;
+	
+	if ( m )
+	{
+		unsigned char *p_data = m->data;
+		while ( p_data < m->data+m->data_length )
+		{
+			if ( p_data[0] == 0xFF && p_data[1] == 0xD8 )
+			{
+				bufsize = (size_t) m->data_length - (size_t) (p_data-m->data);
+				thumb_buf = new unsigned char[bufsize];
+				bufsize = 0;
+				do {
+					thumb_buf[bufsize++] = *p_data;
+				} while ( !(*p_data++ == 0xFF && *p_data == 0xD9) && p_data < m->data+m->data_length );
+				thumb_buf[bufsize++] = *p_data;
+			}
+			p_data++;
+		}
+	}
+
+	if ( thumb_buf != NULL )
+	{
+		jpeg_create_decompress(ciptr);
+		jpeg_memory_src(ciptr, thumb_buf, bufsize-2);
+		jpeg_read_header(ciptr, TRUE);
+	}
+	else
+		eDebug("no exif thumbnail found! loading actual image instead");
+
+	ciptr->out_color_space = JCS_RGB;
+	ciptr->scale_denom = 1;
+
+	jpeg_start_decompress(ciptr);
+	
+	*x=ciptr->output_width;
+	*y=ciptr->output_height;
+
+	if(ciptr->output_components == 3)
+	{
+		JSAMPLE *lb = (JSAMPLE *)(*ciptr->mem->alloc_small)((j_common_ptr) ciptr, JPOOL_PERMANENT, ciptr->output_width * ciptr->output_components);
+		pic_buffer = new unsigned char[ciptr->output_height * ciptr->output_width * ciptr->output_components];
+		unsigned char *bp = pic_buffer;
+
+		while (ciptr->output_scanline < ciptr->output_height)
+		{
+			jpeg_read_scanlines(ciptr, &lb, 1);
+			memcpy(bp, lb, ciptr->output_width * ciptr->output_components);
+			bp += ciptr->output_width * ciptr->output_components;
+		}
+	}
+	jpeg_finish_decompress(ciptr);
+	jpeg_destroy_decompress(ciptr);
+	fclose(fh);
+	return 1;
+}
 
 static int jpeg_load(const char *filename, int *x, int *y)
 {
@@ -410,7 +557,7 @@ static int png_load(const char *filename,  int *x, int *y)
 
 	if (width * height > 1000000) // 1000x1000 or equiv.
 	{
-		eDebug("[png_load] image size is %d x %d, which is \"too large\".", width, height);
+		eDebug("[png_load] image size is %d x %d, which is \"too large\".", (int)width, (int)height);
 		png_read_end(png_ptr, info_ptr);
 		png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 		fclose(fh);
@@ -632,7 +779,7 @@ static int pic_id(const char *name)
 	return F_NONE;
 }
 
-int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspect, int resize_mode, int rotate, int background, std::string cachefile)
+int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspect, int resize_mode, int rotate, int background, std::string cachefile, int thumbnail)
 {
 	result = 0;
 	int ox=0, oy=0, imx, imy;
@@ -650,7 +797,13 @@ int loadPic(ePtr<gPixmap> &result, std::string filename, int w, int h, int aspec
 		switch(pic_id(filename.c_str()))
 		{
 			case F_PNG:	png_load(filename.c_str(), &ox, &oy);break;
-			case F_JPEG:	jpeg_load(filename.c_str(), &ox, &oy);pic_buffer = conv24to32(pic_buffer, ox*oy, 1); break;
+			case F_JPEG:	{
+					if (thumbnail)
+						jpeg_load_thumb(filename.c_str(), &ox, &oy);
+					else
+						jpeg_load(filename.c_str(), &ox, &oy);
+					pic_buffer = conv24to32(pic_buffer, ox*oy, 1);
+					break; }
 			case F_BMP:	bmp_load(filename.c_str(), &ox, &oy);pic_buffer = conv24to32(pic_buffer, ox*oy, 1); break;
 			case F_GIF:	gif_load(filename.c_str(), &ox, &oy);pic_buffer = conv24to32(pic_buffer, ox*oy, 1); break;
 			default:

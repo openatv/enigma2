@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-10-23 17:06+0200\n"
+"POT-Creation-Date: 2008-11-14 07:24+0100\n"
 "PO-Revision-Date: 2008-09-28 18:09+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
@@ -85,6 +85,12 @@ msgid "(empty)"
 msgstr "(prázdné)"
 
 msgid "(show optional DVD audio menu)"
+msgstr ""
+
+msgid "* Only available if more than one interface is active."
+msgstr ""
+
+msgid "* Only available when entering hidden SSID or network key"
 msgstr ""
 
 msgid ".NFI Download failed:"
@@ -393,6 +399,11 @@ msgid "Arabic"
 msgstr "Arabsky"
 
 msgid ""
+"Are you sure you want to activate this network configuration?\n"
+"\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -431,9 +442,6 @@ msgstr "Automatické přepínání scartu"
 
 msgid "Automatic"
 msgstr "Automatické"
-
-msgid "Automatic SSID lookup"
-msgstr ""
 
 msgid "Automatic Scan"
 msgstr "Automatické prohledávání"
@@ -506,6 +514,9 @@ msgstr "Světlost"
 
 msgid "Burn DVD"
 msgstr "Vypálit DVD"
+
+msgid "Burn existing image to DVD"
+msgstr ""
 
 msgid "Burn to DVD..."
 msgstr ""
@@ -668,6 +679,9 @@ msgstr "Compact flash karta"
 msgid "Complete"
 msgstr "Kompletní"
 
+msgid "Complex (allows mixing audio tracks and aspects)"
+msgstr ""
+
 msgid "Configuration Mode"
 msgstr "Konfigurační mód"
 
@@ -718,6 +732,9 @@ msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+msgid "Create DVD-ISO"
 msgstr ""
 
 msgid "Create movie folder failed"
@@ -839,9 +856,6 @@ msgstr "DiSEqC A/B"
 
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
-
-msgid "DiSEqC Mode"
-msgstr "DiSEqC Mód"
 
 msgid "DiSEqC mode"
 msgstr "DiSEqC Mód"
@@ -1035,8 +1049,14 @@ msgstr "CHYBA - prohledávání selhalo (%s)!"
 msgid "East"
 msgstr "Východní"
 
+msgid "Edit"
+msgstr ""
+
 msgid "Edit DNS"
 msgstr "Upravit DNS"
+
+msgid "Edit Title"
+msgstr ""
 
 msgid "Edit chapters of current title"
 msgstr ""
@@ -1083,6 +1103,9 @@ msgstr "Šifrování"
 msgid "Encryption Key"
 msgstr "Šifrovací klíč"
 
+msgid "Encryption Keytype"
+msgstr ""
+
 msgid "Encryption Type"
 msgstr "Typ šifrování"
 
@@ -1123,6 +1146,12 @@ msgstr "Začít přetáčení vpřed na rychlosti"
 
 msgid "Enter Rewind at speed"
 msgstr "Začít přetáčení zpět na rychlosti"
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
+msgstr ""
 
 msgid "Enter main menu..."
 msgstr "Vstoupit do menu..."
@@ -1213,6 +1242,12 @@ msgstr "Doladit"
 
 msgid "Finished"
 msgstr "Dokončeno"
+
+msgid "Finished configuring your network"
+msgstr ""
+
+msgid "Finished restarting your network"
+msgstr ""
 
 msgid "Finnish"
 msgstr "Finsky"
@@ -1319,6 +1354,9 @@ msgstr "Nastavení hardisku"
 msgid "Harddisk standby after"
 msgstr "Uspat disk po"
 
+msgid "Hidden network SSID"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Hierarchické informace"
 
@@ -1333,6 +1371,12 @@ msgstr "Maďarsky"
 
 msgid "IP Address"
 msgstr "IP adresa"
+
+msgid "ISO file is too large for this filesystem!"
+msgstr ""
+
+msgid "ISO path"
+msgstr ""
 
 msgid "Icelandic"
 msgstr "Islandsky"
@@ -1814,26 +1858,22 @@ msgstr ""
 "Pokud 'Ne' tak ochrana nastavení zůstane vypnuta!"
 
 msgid ""
-"No working local networkadapter found.\n"
-"Please verify that you have attached a network cable and your Network is "
+"No working local network adapter found.\n"
+"Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Nebyla nalazená funkční síťová karta.\n"
-"Zkontrolujte prosím, zda máte připojen síťový kabel a správně nastavenou síť."
 
 msgid ""
-"No working wireless interface found.\n"
+"No working wireless network adapter found.\n"
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
+msgstr ""
+
+msgid ""
+"No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-
-msgid ""
-"No working wireless networkadapter found.\n"
-"Please verify that you have attached a compatible WLAN USB Stick and your "
-"Network is configured correctly."
-msgstr ""
-"Nebyla nalazená funkční síťová karta.\n"
-"Zkontrolujte prosím, zda máte připojen síťový kabel a správně nastavenou síť."
 
 msgid "No, but restart from begin"
 msgstr "Ne, jen restartovat"
@@ -2095,7 +2135,19 @@ msgid ""
 "the OK button."
 msgstr ""
 
+msgid "Please wait for activation of your network configuration..."
+msgstr ""
+
 msgid "Please wait for md5 signature verification..."
+msgstr ""
+
+msgid "Please wait while we configure your network..."
+msgstr ""
+
+msgid "Please wait while your network is restarting..."
+msgstr ""
+
+msgid "Please wait..."
 msgstr ""
 
 msgid "Please wait... Loading list..."
@@ -2178,6 +2230,9 @@ msgstr ""
 
 msgid "Primary DNS"
 msgstr "Primární DNS"
+
+msgid "Properties of current title"
+msgstr ""
 
 msgid "Protect services"
 msgstr "Ochránit služby"
@@ -2314,6 +2369,9 @@ msgstr "Opakovat"
 
 msgid "Reset"
 msgstr "Reset"
+
+msgid "Reset and renumerate title names"
+msgstr ""
 
 msgid "Resolution"
 msgstr "Rozlišení"
@@ -2553,6 +2611,12 @@ msgstr "Vyberte video mód"
 msgid "Selected source image"
 msgstr ""
 
+msgid "Send DiSEqC"
+msgstr ""
+
+msgid "Send DiSEqC only on satellite change"
+msgstr ""
+
 msgid "Seperate titles with a main menu"
 msgstr ""
 
@@ -2604,7 +2668,13 @@ msgstr "Informace o programu"
 msgid "Services"
 msgstr "Programy"
 
+msgid "Set Voltage and 22KHz"
+msgstr ""
+
 msgid "Set as default Interface"
+msgstr ""
+
+msgid "Set interface as default Interface"
 msgstr ""
 
 msgid "Set limits"
@@ -2663,6 +2733,9 @@ msgstr "Podobné vysílání:"
 
 msgid "Simple"
 msgstr "jednoduché"
+
+msgid "Simple titleset (compatibility for legacy players)"
+msgstr ""
 
 msgid "Single"
 msgstr "Jediný"
@@ -2841,6 +2914,9 @@ msgstr ""
 "ws79@centrum.cz\n"
 "\n"
 "ws79"
+
+msgid "TS file is too large for ISO9660 level 1!"
+msgstr ""
 
 msgid "TV System"
 msgstr "TV systém"
@@ -3123,8 +3199,14 @@ msgstr "Čas. pásmo"
 msgid "Title"
 msgstr "Titul"
 
+msgid "Title properties"
+msgstr ""
+
 msgid "Title:"
 msgstr "Název:"
+
+msgid "Titleset mode"
+msgstr ""
 
 msgid ""
 "To make sure you intend to do this, please remove the target USB stick now "
@@ -3369,6 +3451,9 @@ msgstr "Prohlíže Rass interaktivně..."
 msgid "View teletext..."
 msgstr "Zobrazit teletext..."
 
+msgid "Virtual KeyBoard"
+msgstr ""
+
 msgid "Voltage mode"
 msgstr "Mód napětí"
 
@@ -3383,6 +3468,9 @@ msgstr "WEP"
 
 msgid "WPA"
 msgstr "WPA"
+
+msgid "WPA or WPA2"
+msgstr ""
 
 msgid "WPA2"
 msgstr "WPA2"
@@ -3482,6 +3570,9 @@ msgstr "Rok:"
 
 msgid "Yes"
 msgstr "Ano"
+
+msgid "Yes, and delete this movie"
+msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Ano, zazálohuj mé nastavení!"
@@ -3636,6 +3727,16 @@ msgstr ""
 "Firmware vašeho frontprocesoru musí být aktualizován.\n"
 "Stiskněte OK pro aktualizaci."
 
+msgid "Your network configuration has been activated."
+msgstr ""
+
+msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+
 msgid "Zap back to service before positioner setup?"
 msgstr "Přepnout zpět na program před nastavováním positioneru?"
 
@@ -3665,6 +3766,12 @@ msgstr "přerušit úpravu oblíbených"
 
 msgid "about to start"
 msgstr "právě začne"
+
+msgid "activate current configuration"
+msgstr ""
+
+msgid "add a nameserver entry"
+msgstr ""
 
 msgid "add alternatives"
 msgstr "Přidat alternativy"
@@ -3721,6 +3828,14 @@ msgstr ""
 "jste si jistý, že chcete obnovit\n"
 "následující zálohu:\n"
 
+#, python-format
+msgid "audio track (%s) format"
+msgstr ""
+
+#, python-format
+msgid "audio track (%s) language"
+msgstr ""
+
 msgid "audio tracks"
 msgstr ""
 
@@ -3735,6 +3850,10 @@ msgstr "lepší"
 
 msgid "blacklist"
 msgstr "černá listina"
+
+#, python-format
+msgid "burn audio track (%s)"
+msgstr ""
 
 msgid "by Exif"
 msgstr "podle exif"
@@ -3862,6 +3981,9 @@ msgstr "ukončit střih zde"
 msgid "end favourites edit"
 msgstr "Ukončit úpravu oblíbené"
 
+msgid "enigma2 and network"
+msgstr ""
+
 msgid "equal to"
 msgstr ""
 
@@ -3876,6 +3998,21 @@ msgstr "ukončit přehrávač médií"
 
 msgid "exit movielist"
 msgstr "zavřít seznam filmů"
+
+msgid "exit nameserver configuration"
+msgstr ""
+
+msgid "exit network adapter configuration"
+msgstr ""
+
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "exit network interface list"
+msgstr ""
+
+msgid "exit networkadapter setup menu"
+msgstr ""
 
 msgid "failed"
 msgstr ""
@@ -4020,6 +4157,18 @@ msgstr ""
 msgid "move PiP to main picture"
 msgstr "přesunout PIP do halvního okna"
 
+msgid "move down to last entry"
+msgstr ""
+
+msgid "move down to next entry"
+msgstr ""
+
+msgid "move up to first entry"
+msgstr ""
+
+msgid "move up to previous entry"
+msgstr ""
+
 msgid "movie list"
 msgstr "seznam filmů"
 
@@ -4080,8 +4229,8 @@ msgstr ""
 msgid "once"
 msgstr "jednou"
 
-msgid "only /etc/enigma2 directory"
-msgstr "jedině adresář /etc/enigma2"
+msgid "open nameserver configuration"
+msgstr ""
 
 msgid "open servicelist"
 msgstr "otevřít seznam služeb"
@@ -4091,6 +4240,9 @@ msgstr "Zobrazit seznam služeb (dolu)"
 
 msgid "open servicelist(up)"
 msgstr "Zobrazit seznam služeb (nahoru)"
+
+msgid "open virtual keyboard input help"
+msgstr ""
 
 msgid "pass"
 msgstr "projít (pass)"
@@ -4127,6 +4279,9 @@ msgstr "nahrát"
 
 msgid "recording..."
 msgstr "nahrávání.."
+
+msgid "remove a nameserver entry"
+msgstr ""
 
 msgid "remove after this position"
 msgstr "odebrat po této pozici"
@@ -4202,6 +4357,12 @@ msgid "select .NFI flash file"
 msgstr ""
 
 msgid "select image from server"
+msgstr ""
+
+msgid "select interface"
+msgstr ""
+
+msgid "select menu entry"
 msgstr ""
 
 msgid "select movie"
@@ -4542,6 +4703,15 @@ msgstr "přepnutý"
 #~ msgstr "Nové DVD"
 
 #~ msgid ""
+#~ "No working local networkadapter found.\n"
+#~ "Please verify that you have attached a network cable and your Network is "
+#~ "configured correctly."
+#~ msgstr ""
+#~ "Nebyla nalazená funkční síťová karta.\n"
+#~ "Zkontrolujte prosím, zda máte připojen síťový kabel a správně nastavenou "
+#~ "síť."
+
+#~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
 #~ "enable your local network interface."
@@ -4549,6 +4719,15 @@ msgstr "přepnutý"
 #~ "Nebyl nalezen funkční adapter pro bezdrátovou síť.\n"
 #~ "Zkontrolujte prosím, zda máte připojen kompatibilní WLAN USB klíč nebo "
 #~ "povolte LAN síť."
+
+#~ msgid ""
+#~ "No working wireless networkadapter found.\n"
+#~ "Please verify that you have attached a compatible WLAN USB Stick and your "
+#~ "Network is configured correctly."
+#~ msgstr ""
+#~ "Nebyla nalazená funkční síťová karta.\n"
+#~ "Zkontrolujte prosím, zda máte připojen síťový kabel a správně nastavenou "
+#~ "síť."
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Ne, dovolte mi vybrat defaultní seznamy"
@@ -4748,6 +4927,9 @@ msgstr "přepnutý"
 
 #~ msgid "minutes and"
 #~ msgstr "minuty a"
+
+#~ msgid "only /etc/enigma2 directory"
+#~ msgstr "jedině adresář /etc/enigma2"
 
 #~ msgid "play next playlist entry"
 #~ msgstr "přehrát další položku v playlistu"

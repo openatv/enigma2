@@ -61,7 +61,7 @@ try:
 	from twisted.internet import reactor
 
 	def runReactor():
-		reactor.run()
+		reactor.run(installSignalHandlers=False)
 except ImportError:
 	print "twisted not available"
 	def runReactor():

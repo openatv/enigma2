@@ -836,6 +836,30 @@ int eTSMPEGDecoder::setState()
 		if (m_pcr)
 			m_pcr->stop();
 		m_pcr = 0;
+	}
+	if (m_changed & changeVideo)
+	{
+		if (m_video)
+		{
+			m_video->stop();
+			m_video = 0;
+			m_video_event_conn = 0;
+		}
+	}
+	if (m_changed & changeAudio)
+	{
+		if (m_audio)
+			m_audio->stop();
+		m_audio = 0;
+	}
+	if (m_changed & changeText)
+	{
+		if (m_text)
+			m_text->stop();
+		m_text = 0;
+	}
+	if (m_changed & changePCR)
+	{
 		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
 		{
 			m_pcr = new eDVBPCR(m_demux);
@@ -844,15 +868,18 @@ int eTSMPEGDecoder::setState()
 		}
 		m_changed &= ~changePCR;
 	}
+	if (m_changed & changeAudio)
+	{
+		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio)
+		{
+			m_audio = new eDVBAudio(m_demux, m_decoder);
+			if (m_audio->startPid(m_apid, m_atype))
+				res = -1;
+		}
+		m_changed &= ~changeAudio;
+	}
 	if (m_changed & changeVideo)
 	{
-		eDebug("VIDEO CHANGED (to %04x)", m_vpid);
-		if (m_video)
-		{
-			m_video->stop();
-			m_video = 0;
-			m_video_event_conn = 0;
-		}
 		if ((m_vpid >= 0) && (m_vpid < 0x1FFF))
 		{
 			m_video = new eDVBVideo(m_demux, m_decoder);
@@ -862,24 +889,8 @@ int eTSMPEGDecoder::setState()
 		}
 		m_changed &= ~changeVideo;
 	}
-	if (m_changed & changeAudio)
-	{
-		if (m_audio)
-			m_audio->stop();
-		m_audio = 0;
-		if ((m_apid >= 0) && (m_apid < 0x1FFF) && !noaudio)
-		{
-			m_audio = new eDVBAudio(m_demux, m_decoder);
-			if (m_audio->startPid(m_apid, m_atype))
-				res = -1;
-		}
-		m_changed &= ~changeAudio;
-	}
 	if (m_changed & changeText)
 	{
-		if (m_text)
-			m_text->stop();
-		m_text = 0;
 		if ((m_textpid >= 0) && (m_textpid < 0x1FFF) && !nott)
 		{
 			m_text = new eDVBTText(m_demux);
@@ -1069,6 +1080,7 @@ RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
 	m_is_ff = frames_to_skip != 0;
 
 	setState();
+	unfreeze(); // audio might be restarted and still in preroll (freezed) state.
 
 	if (m_video)
 		return m_video->setFastForward(frames_to_skip);
@@ -1081,6 +1093,7 @@ RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 	m_is_sm = repeat != 0;
 
 	setState();
+	unfreeze(); // audio might be restarted and still in preroll (freezed) state.
 
 	if (m_video)
 		return m_video->setSlowMotion(repeat);

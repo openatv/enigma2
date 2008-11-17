@@ -148,8 +148,9 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
 			self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
 		if authormode != "data_ts":
-			self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
-			self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.settings.autochapter))
+			self.list.append(getConfigListEntry(_("Titleset mode"), self.settings.titlesetmode))
+			if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
+				self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
 		else:
 			self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
 		
@@ -158,13 +159,13 @@ class ProjectSettings(Screen,ConfigListScreen):
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
 		key = self.keydict[self["config"].getCurrent()[1]]
-		if key == "authormode" or key == "output":
+		if key == "authormode" or key == "output" or key=="titlesetmode":
 			self.initConfigList()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		key = self.keydict[self["config"].getCurrent()[1]]
-		if key == "authormode" or key == "output":
+		if key == "authormode" or key == "output" or key=="titlesetmode":
 			self.initConfigList()
 
 	def exit(self):
