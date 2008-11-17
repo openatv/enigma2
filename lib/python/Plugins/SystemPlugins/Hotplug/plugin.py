@@ -53,7 +53,7 @@ class Hotplug(Protocol):
 		
 		for callback in hotplugNotifier:
 			try:
-				callback(dev, media_state)
+				callback(dev, action or media_state)
 			except AttributeError:
 				hotplugNotifier.remove(callback)
 
