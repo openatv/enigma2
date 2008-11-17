@@ -63,7 +63,7 @@ class DVDToolbox(Screen):
 	def pageDown(self):
 		self["details"].pageDown()
 
-	def update(self, dev="", media_state=""):
+	def update(self, dev="", action=""):
 		self["space_label"].text = _("Please wait... Loading list...")
 		self["info"].text = ""
 		self["details"].setText("")
