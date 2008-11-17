@@ -1031,10 +1031,20 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 			}
 		} else if ((d[3] & 0xF0) == 0xE0) /* video stream */
 		{
-			if (m_pid != pid)
+				/* verify that this is actually a PES header, not just some ES data */
+			if (ts[1] & 0x40) /* PUSI set */
 			{
-				eDebug("now locked to pid %04x", pid);
-				m_pid = pid;
+				int payload_start = 4;
+				if (ts[3] & 0x20) /* adaptation field present */
+					payload_start += ts[4] + 1; /* skip AF */
+				if (payload_start == (offset%184)) /* the 00 00 01 should be directly at the payload start, otherwise it's not a PES header */
+				{
+					if (m_pid != pid)
+					{
+						eDebug("now locked to pid %04x (%02x %02x %02x %02x)", pid, ts[0], ts[1], ts[2], ts[3]);
+						m_pid = pid;
+					}
+				}
 			}
 //			m_pid = 0x6e;
 			d += 4;
