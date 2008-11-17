@@ -165,7 +165,7 @@ class DemuxTask(Task):
 	def cleanup(self, failed):
 		if failed:
 			import os
-			for file in self.generated_files.itervalues():
+			for file in self.generated_files:
 				os.remove(file)
 
 class MplexTaskPostcondition(Condition):
@@ -220,7 +220,7 @@ class RemoveESFiles(Task):
 
 	def prepare(self):
 		self.args += ["-f"]
-		self.args += self.demux_task.generated_files.values()
+		self.args += self.demux_task.generated_files
 		self.args += [self.demux_task.cutfile]
 
 class DVDAuthorTask(Task):
@@ -794,7 +794,7 @@ class DVDJob(Job):
 				demux = DemuxTask(self, link_name)
 				self.mplextask = MplexTask(self, outputfile=title_filename, demux_task=demux)
 				self.mplextask.end = self.estimateddvdsize
-				#RemoveESFiles(self, demux)
+				RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 			output = self.project.settings.output.getValue()
