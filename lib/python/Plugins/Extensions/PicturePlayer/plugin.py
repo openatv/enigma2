@@ -15,7 +15,7 @@ from Components.ConfigList import ConfigList
 
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigEnableDisable, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
 
-def getAspectforPic():
+def getScale():
 	return AVSwitch().getFramebufferScale()
 
 config.pic = ConfigSubsection()
@@ -119,8 +119,9 @@ class picshow(Screen):
 			self.session.openWithCallback(self.callbackView, Pic_Full_View, self.filelist.getFileList(), self.filelist.getSelectionIndex(), self.filelist.getCurrentDirectory())
 
 	def setConf(self):
+		sc = getScale()
 		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
-		self.picload.setPara([self["thn"].instance.size().width(), self["thn"].instance.size().height(), getAspectforPic(), config.pic.cache.value, int(config.pic.resize.value), "#00000000"])
+		self.picload.setPara((self["thn"].instance.size().width(), self["thn"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), "#00000000"))
 		
 	def callbackView(self, val=0):
 		if val > 0:
@@ -311,10 +312,10 @@ class Pic_Thumb(Screen):
 		self.ThumbTimer.callback.append(self.showPic)
 
 	def setPicloadConf(self):
-		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), getAspectforPic(), config.pic.cache.value, int(config.pic.resize.value), self.color])
+		sc = getScale()
+		self.picload.setPara([self["thumb0"].instance.size().width(), self["thumb0"].instance.size().height(), sc[0], sc[1], config.pic.cache.value, int(config.pic.resize.value), self.color])
 		self.paintFrame()
-		
-		
+
 	def paintFrame(self):
 		#print "index=" + str(self.index)
 		if self.maxentry < self.index or self.index < 0:
@@ -468,7 +469,8 @@ class Pic_Full_View(Screen):
 			self.onLayoutFinish.append(self.setPicloadConf)
 
 	def setPicloadConf(self):
-		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), getAspectforPic(), 0, int(config.pic.resize.value), self.bgcolor])
+		sc = getScale()
+		self.picload.setPara([self["pic"].instance.size().width(), self["pic"].instance.size().height(), sc[0], sc[1], 0, int(config.pic.resize.value), self.bgcolor])
 		
 		self["play_icon"].hide()
 		if config.pic.infoline.value == False:

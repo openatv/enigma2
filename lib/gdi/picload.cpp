@@ -1011,16 +1011,16 @@ RESULT ePicLoad::setPara(PyObject *val)
 {
 	if (!PySequence_Check(val))
 		return 0;
-	if (PySequence_Size(val) < 6)
+	if (PySequence_Size(val) < 7)
 		return 0;
 	else {
 		ePyObject fast = PySequence_Fast(val, "");
 		m_conf.max_x		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 0));
 		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 1));
-		m_conf.aspect_ratio	= PyFloat_AsDouble( PySequence_Fast_GET_ITEM(val, 2));
-		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 3));
-		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 4));
-		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(val, 5));
+		m_conf.aspect_ratio	= (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 2)) / PyInt_AsLong(PySequence_Fast_GET_ITEM(val, 3));
+		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 4));
+		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 5));
+		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(val, 6));
 	
 		if(bg_str[0] == '#' && strlen(bg_str)==9)
 		{
@@ -1040,29 +1040,30 @@ RESULT ePicLoad::setPara(PyObject *val)
 //for old plugins
 SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate, int background, std::string cachefile)
 {
+	long asp1, asp2;
 	result = 0;
 	eDebug("deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
 	ePicLoad mPL;
 
-	double  aspect_ratio;
 	switch(aspect)
 	{
-		case 1:		aspect_ratio = 1.778 / ((double)720/576); break; //16:9
-		case 2:		aspect_ratio = 1.600 / ((double)720/576); break; //16:10
-		case 3:		aspect_ratio = 1.250 / ((double)720/576); break; //5:4
-		default:	aspect_ratio = 1.333 / ((double)720/576); //4:3
+		case 1:		asp1 = 16*576, asp2 = 9*720; break; //16:9
+		case 2:		asp1 = 16*576, asp2 = 10*720; break; //16:10
+		case 3:		asp1 = 5*576, asp2 = 4*720; break; //5:4
+		default:	asp1 = 4*576, asp2 = 3*720; break; //4:3
 	}
-	
-	ePyObject tuple = PyTuple_New(6);
+
+	ePyObject tuple = PyTuple_New(7);
 	PyTuple_SET_ITEM(tuple, 0,  PyLong_FromLong(x));
 	PyTuple_SET_ITEM(tuple, 1,  PyLong_FromLong(y));
-	PyTuple_SET_ITEM(tuple, 2,  PyFloat_FromDouble(aspect_ratio));
-	PyTuple_SET_ITEM(tuple, 3,  PyLong_FromLong(0));
-	PyTuple_SET_ITEM(tuple, 4,  PyLong_FromLong(resize_mode));
+	PyTuple_SET_ITEM(tuple, 2,  PyLong_FromLong(asp1));
+	PyTuple_SET_ITEM(tuple, 3,  PyLong_FromLong(asp2));
+	PyTuple_SET_ITEM(tuple, 4,  PyLong_FromLong(0));
+	PyTuple_SET_ITEM(tuple, 5,  PyLong_FromLong(resize_mode));
 	if(background)
-		PyTuple_SET_ITEM(tuple, 5,  PyString_FromString("#ff000000"));
+		PyTuple_SET_ITEM(tuple, 6,  PyString_FromString("#ff000000"));
 	else
-		PyTuple_SET_ITEM(tuple, 5,  PyString_FromString("#00000000"));
+		PyTuple_SET_ITEM(tuple, 6,  PyString_FromString("#00000000"));
 
 	mPL.setPara(tuple);
 
