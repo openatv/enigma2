@@ -790,9 +790,9 @@ void ePicLoad::gotMessage(const Message &msg)
 	}
 }
 
-int ePicLoad::startThread(int what, const char *file, int x, int y)
+int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 {
-	if(threadrunning && m_filepara != NULL)
+	if(async && threadrunning && m_filepara != NULL)
 	{
 		eDebug("[Picload] thread running");
 		m_filepara->callback = false;
@@ -836,22 +836,28 @@ int ePicLoad::startThread(int what, const char *file, int x, int y)
 		return 1;
 	}
 	
-	if(what==1)
-		msg_thread.send(Message(Message::decode_Pic));
+	if (async) {
+		if(what==1)
+			msg_thread.send(Message(Message::decode_Pic));
+		else
+			msg_thread.send(Message(Message::decode_Thumb));
+		run();
+	}
+	else if (what == 1)
+		decodePic();
 	else
-		msg_thread.send(Message(Message::decode_Thumb));
-	run();
+		decodeThumb();
 	return 0;
 }
 
-RESULT ePicLoad::startDecode(const char *file, int x, int y)
+RESULT ePicLoad::startDecode(const char *file, int x, int y, bool async)
 {
-	return startThread(1, file, x, y);
+	return startThread(1, file, x, y, async);
 }
 
-RESULT ePicLoad::getThumbnail(const char *file, int x, int y)
+RESULT ePicLoad::getThumbnail(const char *file, int x, int y, bool async)
 {
-	return startThread(0, file, x, y);
+	return startThread(0, file, x, y, async);
 }
 
 PyObject *ePicLoad::getInfo(const char *filename)
@@ -1003,28 +1009,29 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 
 RESULT ePicLoad::setPara(PyObject *val)
 {
-	if (!PyList_Check(val))
+	if (!PySequence_Check(val))
 		return 0;
-	if (PyList_Size(val) < 6)
+	if (PySequence_Size(val) < 6)
 		return 0;
-
-	m_conf.max_x		= PyInt_AsLong( PyList_GET_ITEM(val, 0));
-	m_conf.max_y		= PyInt_AsLong( PyList_GET_ITEM(val, 1));
-	m_conf.aspect_ratio	= PyFloat_AsDouble( PyList_GET_ITEM(val, 2));
-	m_conf.usecache		= PyInt_AsLong( PyList_GET_ITEM(val, 3));
-	m_conf.resizetype	= PyInt_AsLong( PyList_GET_ITEM(val, 4));
-	const char *bg_str	= PyString_AsString( PyList_GET_ITEM(val, 5));
+	else {
+		ePyObject fast = PySequence_Fast(val, "");
+		m_conf.max_x		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 0));
+		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 1));
+		m_conf.aspect_ratio	= PyFloat_AsDouble( PySequence_Fast_GET_ITEM(val, 2));
+		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 3));
+		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 4));
+		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(val, 5));
 	
-	if(bg_str[0] == '#' && strlen(bg_str)==9)
-	{
-		int bg = strtoul(bg_str+1, NULL, 16);
-		m_conf.background[0] = bg&0xFF;		//BB
-		m_conf.background[1] = (bg>>8)&0xFF;	//GG
-		m_conf.background[2] = (bg>>16)&0xFF;	//RR
-		m_conf.background[3] = bg>>24;		//AA
+		if(bg_str[0] == '#' && strlen(bg_str)==9)
+		{
+			int bg = strtoul(bg_str+1, NULL, 16);
+			m_conf.background[0] = bg&0xFF;		//BB
+			m_conf.background[1] = (bg>>8)&0xFF;	//GG
+			m_conf.background[2] = (bg>>16)&0xFF;	//RR
+			m_conf.background[3] = bg>>24;		//AA
+		}
+		eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%02X%02X%02X%02X", m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background[3], m_conf.background[2], m_conf.background[1], m_conf.background[0]);
 	}
-	
-	eDebug("[Picload] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%02X%02X%02X%02X", m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background[3], m_conf.background[2], m_conf.background[1], m_conf.background[0]);
 	return 1;
 }
 
@@ -1046,24 +1053,21 @@ SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y
 		default:	aspect_ratio = 1.333 / ((double)720/576); //4:3
 	}
 	
-	ePyObject list = PyList_New(6);
-	PyList_SET_ITEM(list, 0,  PyLong_FromLong(x));
-	PyList_SET_ITEM(list, 1,  PyLong_FromLong(y));
-	PyList_SET_ITEM(list, 2,  PyFloat_FromDouble(aspect_ratio));
-	PyList_SET_ITEM(list, 3,  PyLong_FromLong(0));
-	PyList_SET_ITEM(list, 4,  PyLong_FromLong(resize_mode));
+	ePyObject tuple = PyTuple_New(6);
+	PyTuple_SET_ITEM(tuple, 0,  PyLong_FromLong(x));
+	PyTuple_SET_ITEM(tuple, 1,  PyLong_FromLong(y));
+	PyTuple_SET_ITEM(tuple, 2,  PyFloat_FromDouble(aspect_ratio));
+	PyTuple_SET_ITEM(tuple, 3,  PyLong_FromLong(0));
+	PyTuple_SET_ITEM(tuple, 4,  PyLong_FromLong(resize_mode));
 	if(background)
-		PyList_SET_ITEM(list, 5,  PyString_FromString("#ff000000"));
+		PyTuple_SET_ITEM(tuple, 5,  PyString_FromString("#ff000000"));
 	else
-		PyList_SET_ITEM(list, 5,  PyString_FromString("#00000000"));
+		PyTuple_SET_ITEM(tuple, 5,  PyString_FromString("#00000000"));
 
-	mPL.setPara(list);
+	mPL.setPara(tuple);
 
-	if(!mPL.startDecode(filename.c_str()))
-	{
-		mPL.waitFinished(); // this blocks until the thread is finished
+	if(!mPL.startDecode(filename.c_str(), 0, 0, false))
 		mPL.getData(result);
-	}
 
 	return 0;
 }
