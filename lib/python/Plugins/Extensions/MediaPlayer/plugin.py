@@ -863,17 +863,22 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.session.open(Subtitles)
 	
 	def hotplugCB(self, dev, media_state):
-		if dev == harddiskmanager.getCD():	
-			from Components.Scanner import scanDevice
-			devpath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
-			self.cdAudioTrackFiles = []
-			res = scanDevice(devpath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
-			if list:
-				(desc, scanner, files, session) = list[0]
-				for file in files:
-					if file.mimetype == "audio/x-cda":
-						self.cdAudioTrackFiles.append(file.path)
+		if dev == harddiskmanager.getCD():
+			if media_state == "1":
+				from Components.Scanner import scanDevice
+				devpath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+				self.cdAudioTrackFiles = []
+				res = scanDevice(devpath)
+				list = [ (r.description, r, res[r], self.session) for r in res ]
+				if list:
+					(desc, scanner, files, session) = list[0]
+					for file in files:
+						if file.mimetype == "audio/x-cda":
+							self.cdAudioTrackFiles.append(file.path)
+			else:
+				self.cdAudioTrackFiles = []
+				if self.isAudioCD:
+					self.clear_playlist()
 
 class MediaPlayerLCDScreen(Screen):
 	skin = """
