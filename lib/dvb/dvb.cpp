@@ -974,7 +974,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 	}
 #endif
 
-#if 1 /* not yet */
+#if 1 /* This codepath is required on Broadcom-based Dreamboxes (DM800, DM8000) and strips away non-I-frames. */
 	if (!m_iframe_search)
 		return len;
 
@@ -1045,7 +1045,6 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 			d += 4;
 		} else
 			d += 4; /* ignore */
-
 	}
 
 	if (m_iframe_state == 1)
