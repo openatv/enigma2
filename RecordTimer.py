@@ -91,7 +91,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False, dirname = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False, dirname = None, tags = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers == True:
@@ -117,6 +117,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
 		self.autoincrease = False
+		self.tags = tags or []
 
 		self.log_entries = []
 		self.resetState()
@@ -192,6 +193,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				f.write(self.name + "\n")
 				f.write(self.description + "\n")
 				f.write(str(self.begin) + "\n")
+				f.write(' '.join(self.tags))
 				f.close()
 			except IOError:
 				self.log(4, "failed to write meta information")
@@ -368,10 +370,14 @@ def createTimer(xml):
 		location = xml.getAttribute("location").encode("utf-8")
 	else:
 		location = None
+	if xml.hasAttribute("tags") and xml.getAttribute("tags"):
+		tags = xml.getAttribute("tags").encode("utf-8").split(' ')
+	else:
+		tags = None
 
 	name = xml.getAttribute("name").encode("utf-8")
 	#filename = xml.getAttribute("filename").encode("utf-8")
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location)
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags)
 	entry.repeated = int(repeated)
 	
 	for l in elementsWithTag(xml.childNodes, "log"):
@@ -492,6 +498,8 @@ class RecordTimer(timer.Timer):
 				list.append(' eit="' + str(timer.eit) + '"')
 			if timer.dirname is not None:
 				list.append(' location="' + str(stringToXML(timer.dirname)) + '"')
+			if timer.tags is not None:
+				list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
 			list.append(' disabled="' + str(int(timer.disabled)) + '"')
 			list.append(' justplay="' + str(int(timer.justplay)) + '"')
 			list.append('>\n')

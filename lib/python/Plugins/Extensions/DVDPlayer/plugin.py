@@ -491,7 +491,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def askLeavePlayer(self):
 		choices = [(_("Continue playing"), "play"), (_("Exit"), "exit")]
 		if not self.physicalDVD:
-			choices.insert(1,(_("Return to file browser"), "browser"))			
+			choices.insert(1,(_("Return to file browser"), "browser"))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
 
 	def sendKey(self, key):
@@ -590,19 +590,16 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				print "cur_dlg", self.session.current_dialog
 
 	def exitCB(self, answer):
-		if answer is not None:
-			if answer[1] == "exit":
-				if self.service:
-					self.service = None
-				self.close()
-			if answer[1] == "browser":
+		if not answer or answer and answer[1] == "exit":
+			if self.service:
+				self.service = None
+			self.close()
+		if answer and answer[1] == "browser":
 				#TODO check here if a paused dvd playback is already running... then re-start it...
 				#else
-				if self.service:
-					self.service = None
-				self.showFileBrowser()
-			else:
-				pass
+			if self.service:
+				self.service = None
+			self.showFileBrowser()
 
 	def __onClose(self):
 		for i in (("/proc/stb/video/aspect", self.old_aspect), ("/proc/stb/video/policy", self.old_policy), ("/proc/stb/denc/0/wss", self.old_wss)):

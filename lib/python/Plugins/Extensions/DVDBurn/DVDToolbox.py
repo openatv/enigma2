@@ -50,7 +50,7 @@ class DVDToolbox(Screen):
 		    "green": self.update,
 		    "yellow": self.format,
 		    #"blue": self.eject,
-		    "cancel": self.close,
+		    "cancel": self.exit,
 		    "pageUp": self.pageUp,
 		    "pageDown": self.pageDown
 		})
@@ -89,7 +89,7 @@ class DVDToolbox(Screen):
 		for line in mediuminfo.splitlines():
 			if line.find("Mounted Media:") > -1:
 				mediatype = line.rsplit(',',1)[1][1:]
-				if mediatype.find("RW") > 0:
+				if mediatype.find("RW") > 0 or mediatype.find("RAM") > 0:
 					self.formattable = True
 				else:
 					self.formattable = False
@@ -186,7 +186,7 @@ class DVDformatTask(Task):
 		if line.startswith("- media is already formatted"):
 			self.error = self.ERROR_ALREADYFORMATTED
 			self.retryargs = [ "-force" ]
-		if line.startswith("- media is not blank"):
+		if line.startswith("- media is not blank") or line.startswith("  -format=full  to perform full (lengthy) reformat;"):
 			self.error = self.ERROR_ALREADYFORMATTED
 			self.retryargs = [ "-blank" ]
 		if line.startswith(":-( mounted media doesn't appear to be"):
