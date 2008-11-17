@@ -368,6 +368,9 @@ class CheckDiskspaceTask(Task):
 		self.global_preconditions.append(DiskspacePrecondition(diskSpaceNeeded))
 		self.weighting = 5
 
+	def abort(self):
+		self.finish(aborted = True)
+
 	def run(self, callback):
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
