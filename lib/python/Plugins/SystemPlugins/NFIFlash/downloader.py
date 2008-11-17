@@ -18,6 +18,7 @@ import urllib
 from twisted.web import client
 from twisted.internet import reactor, defer
 from twisted.python import failure
+from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
 class UserRequestedCancel(Exception):
 	pass
@@ -335,7 +336,7 @@ class NFIDownload(Screen):
 			self.download = self.nfo_download
 			self.downloading(True)
 			client.getPage(nfourl).addCallback(self.nfo_finished).addErrback(self.nfo_failed)
-			self["statusbar"].text = _("Downloading image description...")
+			self["statusbar"].text = ("Downloading image description...")
 
 	def nfo_failed(self, failure_instance):
 		print "[nfo_failed] " + str(failure_instance)
@@ -400,7 +401,7 @@ class NFIDownload(Screen):
 
 			pos = self.nfo.find("MD5:")
 			if pos > 0 and len(self.nfo) >= pos+5+32:					
-				self["statusbar"].text = _("Please wait for md5 signature verification...")
+				self["statusbar"].text = ("Please wait for md5 signature verification...")
 				cmd = "md5sum -c -"
 				md5 = self.nfo[pos+5:pos+5+32] + "  " + self.nfilocal
 				print cmd, md5
@@ -489,33 +490,22 @@ class NFIDownload(Screen):
 
 	def umount_finished(self, retval):
 		self.container.appClosed.remove(self.umount_finished)
-		self.session.openWithCallback(self.dmesg_clear, MessageBox, _("To make sure you intend to do this, please remove the target USB stick now and stick it back in upon prompt. Press OK when you have taken the stick out."), MessageBox.TYPE_INFO)
-
-	def dmesg_clear(self, answer):
 		self.container.appClosed.append(self.dmesg_cleared)
 		self.taskstring = ""
 		self.cmd = "dmesg -c"
 		print "executing " + self.cmd
 		self.container.execute(self.cmd)
 
-	def dmesg_cleared(self, retval):
+	def dmesg_cleared(self, answer):
 		self.container.appClosed.remove(self.dmesg_cleared)
-		self.session.openWithCallback(self.stick_back_in, MessageBox, (_("Now please insert the USB stick (minimum size is 64 MB) that you want to format and use as .NFI image flasher. Press OK after you've put the stick back in.")), MessageBox.TYPE_INFO)
+		self.msgbox = self.session.open(MessageBox, _("Please disconnect all USB devices from your Dreambox and (re-)attach the target USB stick (minimum size is 64 MB) now!"), MessageBox.TYPE_INFO)
+		hotplugNotifier.append(self.hotplugCB)
 
-	def stick_back_in(self, answer):
-		self["statusbar"].text = _("Waiting for USB stick to settle...")
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.waiting_for_stick)
-		self.delayCount = -1
-		self.delayTimer.start(1000)
-
-	def waiting_for_stick(self):
-		self.delayCount += 1
-		self["job_progressbar"].range = 6
-		self["job_progressbar"].value = self.delayCount
-		self["job_progresslabel"].text = "-%d s" % (6-self.delayCount)
-		if self.delayCount > 5:
-			self.delayTimer.stop()
+	def hotplugCB(self, dev, action):
+		print "[hotplugCB]", dev, action
+		if dev.startswith("sd") and action == "add":
+			self.msgbox.close()
+			hotplugNotifier.remove(self.hotplugCB)
 			self.container.appClosed.append(self.dmesg_scanned)
 			self.taskstring = ""
 			self.cmd = "dmesg"
@@ -539,8 +529,8 @@ class NFIDownload(Screen):
 			self.session.openWithCallback(self.fdisk_query, MessageBox, (_("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % self.devicetext), MessageBox.TYPE_YESNO)
 
 	def fdisk_query(self, answer):
-		if answer == True:
-			self["statusbar"].text = _("Partitioning USB stick...")
+		if answer == True and self.stickdevice:
+			self["statusbar"].text = ("Partitioning USB stick...")
 			self["job_progressbar"].range = 1000
 			self["job_progressbar"].value = 100
 			self["job_progresslabel"].text = "5.00%"
@@ -562,7 +552,7 @@ class NFIDownload(Screen):
 				self.tar_finished(0)
 				self["job_progressbar"].value = 700
 			else:
-				self["statusbar"].text = _("Decompressing USB stick flasher boot image...")
+				self["statusbar"].text = ("Decompressing USB stick flasher boot image...")
 				self.taskstring = ""
 				self.container.appClosed.append(self.tar_finished)
 				self.container.setCWD("/tmp")
@@ -588,7 +578,7 @@ class NFIDownload(Screen):
 			self.container.appClosed.remove(self.tar_finished)
 		if retval == 0:
 			self.imagefilename = "/tmp/nfiflash_" + self.box + ".img"
-			self["statusbar"].text = _("Copying USB flasher boot image to stick...")
+			self["statusbar"].text = ("Copying USB flasher boot image to stick...")
 			self.taskstring = ""
 			self.container.appClosed.append(self.dd_finished)
 			self.cmd = "dd if=%s of=%s" % (self.imagefilename,self.stickdevice+"/part1")
@@ -607,7 +597,7 @@ class NFIDownload(Screen):
 		if retval == 0:
 			self["job_progressbar"].value = 950
 			self["job_progresslabel"].text = "95.00%"
-			self["statusbar"].text = _("Remounting stick partition...")
+			self["statusbar"].text = ("Remounting stick partition...")
 			self.taskstring = ""
 			self.container.appClosed.append(self.mount_finished)
 			self.cmd = "mount %s /mnt/usb -o rw,sync" % (self.stickdevice+"/part1")
@@ -622,7 +612,7 @@ class NFIDownload(Screen):
 		if retval == 0:
 			self["job_progressbar"].value = 1000
 			self["job_progresslabel"].text = "100.00%"
-			self["statusbar"].text = _(".NFI Flasher bootable USB stick successfully created.")
+			self["statusbar"].text = (".NFI Flasher bootable USB stick successfully created.")
 			self.session.openWithCallback(self.remove_img, MessageBox, _("The .NFI Image flasher USB stick is now ready to use. Please download an .NFI image file from the feed server and save it on the stick. Then reboot and hold the 'Down' key on the front panel to boot the .NFI flasher from the stick!"), MessageBox.TYPE_INFO)
 			self["destlist"].changeDir("/mnt/usb")
 		else:
@@ -659,8 +649,8 @@ def filescan(**kwargs):
 		Scanner(mimetypes = ["application/x-dream-image"], 
 			paths_to_scan = 
 				[
-					ScanPath(path = "", with_subdirs = False), 
+					ScanPath(path = "", with_subdirs = False),
 				], 
 			name = "NFI", 
-			description = (_("Download .NFI-Files for USB-Flasher")+"..."), 
+			description = (_("Download .NFI-Files for USB-Flasher")+"..."),
 			openfnc = filescan_open, )
