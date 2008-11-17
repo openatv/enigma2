@@ -17,7 +17,7 @@ import re
 
 class writeNAND(Task):
 	def __init__(self,job,param,box):
-		Task.__init__(self,job, _("Writing image file to NAND Flash"))
+		Task.__init__(self,job, ("Writing image file to NAND Flash"))
 		self.setTool("/usr/lib/enigma2/python/Plugins/SystemPlugins/NFIFlash/mywritenand")
 		if box == "dm7025":
 			self.end = 256
@@ -26,7 +26,7 @@ class writeNAND(Task):
 		if box == "dm8000":
 			self.setTool("/usr/lib/enigma2/python/Plugins/SystemPlugins/NFIFlash/dm8000_writenand")
 		self.args += param
-		self.weighting = 1	
+		self.weighting = 1
 
 	def processOutput(self, data):
 		print "[writeNand] " + data
@@ -174,8 +174,8 @@ class NFIFlash(Screen):
 		print sign
 		if sign.find("NFI1" + self.box + "\0") == 0:
 			if self.md5sum != "":
-				self["statusbar"].text = _("Please wait for md5 signature verification...")
-				self.session.summary.setText(_("Please wait for md5 signature verification..."))
+				self["statusbar"].text = ("Please wait for md5 signature verification...")
+				self.session.summary.setText(("Please wait for md5 signature verification..."))
 				self.container = eConsoleAppContainer()
 				self.container.setCWD(self["filelist"].getCurrentDirectory())
 				self.container.appClosed.append(self.md5finished)
@@ -252,7 +252,7 @@ class NFIFlash(Screen):
 
 	def reboot(self):
 		if self.job.status == self.job.FINISHED:
-			self["statusbar"].text = _("rebooting...")
+			self["statusbar"].text = ("rebooting...")
 			TryQuitMainloop(self.session,2)
 			
 	def createSummary(self):
