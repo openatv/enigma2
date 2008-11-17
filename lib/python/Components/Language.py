@@ -35,6 +35,7 @@ class Language:
 		self.addLanguage(_("Spanish"), "es", "ES")
 		self.addLanguage(_("Swedish"), "sv", "SE")
 		self.addLanguage(_("Turkish"), "tr", "TR")
+		self.addLanguage(_("Ukrainian"), "uk", "UA")
 
 		self.callbacks = []
 

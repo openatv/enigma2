@@ -1014,22 +1014,19 @@ void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, e
 			break;
 		}
 		PutToDict(dict, "rolloff", tmp);
-		if (parm_u_qpsk_fec_inner > FEC_S2_QPSK_9_10)
+		switch(parm_inversion & 0x30)
 		{
-			switch(parm_inversion & 0x30)
-			{
-			case 0: // pilot off
-				tmp = "PILOT_OFF";
-				break;
-			case 0x10: // pilot on
-				tmp = "PILOT_ON";
-				break;
-			case 0x20: // pilot auto
-				tmp = "PILOT_AUTO";
-				break;
-			}
-			PutToDict(dict, "pilot", tmp);
+		case 0: // pilot off
+			tmp = "PILOT_OFF";
+			break;
+		case 0x10: // pilot on
+			tmp = "PILOT_ON";
+			break;
+		case 0x20: // pilot auto
+			tmp = "PILOT_AUTO";
+			break;
 		}
+		PutToDict(dict, "pilot", tmp);
 		tmp = "DVB-S2";
 	}
 	else
@@ -1310,7 +1307,7 @@ void eDVBFrontend::getTransponderData(ePyObject dest, bool original)
 				{
 					const FRONTENDPARAMETERS &parm = original || m_simulate ? this->parm : front;
 					const char *tmp = "INVERSION_AUTO";
-					switch(parm_inversion)
+					switch(parm_inversion & 3)
 					{
 						case INVERSION_ON:
 							tmp = "INVERSION_ON";
@@ -1916,10 +1913,10 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 					return -EINVAL;
 			}
 			parm_inversion |= (feparm.rolloff << 2); // Hack.. we use bit 2..3 of inversion param for rolloff
+			parm_inversion |= (feparm.pilot << 4); // Hack.. we use bit 4..5 of inversion param for pilot
 			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK) {
 				parm_u_qpsk_fec_inner = (fe_code_rate_t)((int)parm_u_qpsk_fec_inner+9);
 				// 8PSK fec driver values are decimal 9 bigger
-				parm_inversion |= (feparm.pilot << 4); // Hack.. we use bit 4..5 of inversion param for pilot
 			}
 		}
 #endif

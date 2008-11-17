@@ -31,8 +31,6 @@
 #error no byte order defined!
 #endif
 
-#define TSPATH "/media/hdd"
-
 class eStaticServiceDVBInformation: public iStaticServiceInformation
 {
 	DECLARE_REF(eStaticServiceDVBInformation);
@@ -174,17 +172,14 @@ void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &fe
 				case eDVBFrontendParametersSatellite::RollOff::alpha_0_20: tmp="0.20"; break;
 			}
 			PutToDict(dict, "roll off", tmp);
-			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK)
+			switch(feparm.pilot)
 			{
-				switch(feparm.pilot)
-				{
-					case eDVBFrontendParametersSatellite::Pilot::On: tmp="ON"; break;
-					case eDVBFrontendParametersSatellite::Pilot::Off: tmp="OFF"; break;
-					default:
-					case eDVBFrontendParametersSatellite::Pilot::Unknown: tmp="AUTO"; break;
-				}
-				PutToDict(dict, "pilot", tmp);
+				case eDVBFrontendParametersSatellite::Pilot::On: tmp="ON"; break;
+				case eDVBFrontendParametersSatellite::Pilot::Off: tmp="OFF"; break;
+				default:
+				case eDVBFrontendParametersSatellite::Pilot::Unknown: tmp="AUTO"; break;
 			}
+			PutToDict(dict, "pilot", tmp);
 			tmp="DVB-S2";
 			break;
 	}
@@ -1497,9 +1492,16 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 	{
 		if (!m_timeshift_enabled)
 		{
-				/* we need enough diskspace */
+			/* query config path */
+			std::string tspath;
+			if(ePythonConfigQuery::getConfigValue("config.usage.timeshift_path", tspath) == -1){
+				eDebug("could not query ts path from config");
+				return -4;
+			}
+			tspath.append("/");
+			/* we need enough diskspace */
 			struct statfs fs;
-			if (statfs(TSPATH "/.", &fs) < 0)
+			if (statfs(tspath.c_str(), &fs) < 0)
 			{
 				eDebug("statfs failed!");
 				return -2;
@@ -2117,12 +2119,23 @@ RESULT eDVBServicePlay::startTimeshift()
 	if (!m_record)
 		return -3;
 
-	char templ[]=TSPATH "/timeshift.XXXXXX";
+	std::string tspath;
+	if(ePythonConfigQuery::getConfigValue("config.usage.timeshift_path", tspath) == -1){ 
+		eDebug("could not query ts path");
+		return -5;
+	}
+	tspath.append("/timeshift.XXXXXX");
+	char* templ;
+	templ = new char[tspath.length() + 1];
+	strcpy(templ, tspath.c_str());
+
 	m_timeshift_fd = mkstemp(templ);
-	m_timeshift_file = templ;
-	
+	m_timeshift_file = std::string(templ);
+
 	eDebug("recording to %s", templ);
-	
+
+	delete [] templ;
+
 	if (m_timeshift_fd < 0)
 	{
 		m_record = 0;
