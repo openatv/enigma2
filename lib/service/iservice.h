@@ -392,6 +392,8 @@ class iPauseableService: public iObject
 	~iPausableService();
 #endif
 public:
+
+		/* this will set the *state* directly. So just call a SINGLE function of those at a time. */
 	virtual RESULT pause()=0;
 	virtual RESULT unpause()=0;
 
