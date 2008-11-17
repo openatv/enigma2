@@ -260,12 +260,9 @@ void eFilePushThread::stop()
 	// fixmee.. here we need a better solution to ensure
 	// that the thread context take notice of the signal
 	// even when no syscall is in progress
-	while(!sendSignal(SIGUSR1))
-	{
-		eDebug("send SIGUSR1 to thread context");
-		usleep(5000); // wait msek
-	}
-	kill();
+	eDebug("if enigma hangs here, the filepush thread is non-responsive. FIX THAT DAMN THREAD.");
+	sendSignal(SIGUSR1);
+	kill(0);
 }
 
 void eFilePushThread::pause()
