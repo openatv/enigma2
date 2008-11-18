@@ -141,6 +141,7 @@ typedef long time_t;
 %include <lib/service/service.h>
 
 // TODO: embed these...
+%immutable ePicLoad::PictureData;
 %immutable eButton::selected;
 %immutable eInput::changed;
 %immutable eComponentScan::statusChanged;

@@ -75,7 +75,6 @@ Cexif::Cexif()
 
 Cexif::~Cexif()
 {
-	//ClearExif();
 }
 
 void Cexif::ClearExif()
@@ -89,7 +88,7 @@ void Cexif::ClearExif()
 	}
 }
 
-bool Cexif::DecodeExif(const char *filename)
+bool Cexif::DecodeExif(const char *filename, int Thumb)
 {
 	FILE * hFile = fopen(filename, "r");
 	if(!hFile) return false;
@@ -98,6 +97,7 @@ bool Cexif::DecodeExif(const char *filename)
 	m_exifinfo = new EXIFINFO;
 	memset(m_exifinfo,0,sizeof(EXIFINFO));
 	freeinfo = true;
+	m_exifinfo->Thumnailstate = Thumb;
 
 	m_szLastError[0]='\0';
 	ExifImageWidth = MotorolaOrder = SectionsRead=0;
@@ -555,12 +555,16 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 		ProcessExifDir(SubdirStart, OffsetBase, ExifLength, m_exifinfo, LastExifRefdP);
         }
 
-	if (ThumbnailSize && ThumbnailOffset)
+	if (ThumbnailSize && ThumbnailOffset && m_exifinfo->Thumnailstate)
 	{
 		if (ThumbnailSize + ThumbnailOffset <= ExifLength)
 		{
-			m_exifinfo->ThumbnailPointer = OffsetBase + ThumbnailOffset;
-			m_exifinfo->ThumbnailSize = ThumbnailSize;
+			if(FILE *tf = fopen(THUMBNAILTMPFILE, "w"))
+			{
+				fwrite( OffsetBase + ThumbnailOffset, ThumbnailSize, 1, tf);
+				fclose(tf);
+				m_exifinfo->Thumnailstate = 2;
+			}
 		}
 	}
 

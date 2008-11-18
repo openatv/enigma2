@@ -59,6 +59,34 @@ class VideoHardware:
 
 	widescreen_modes = set(["720p", "1080i"])
 
+	def getOutputAspect(self):
+		ret = (16,9)
+		port = config.av.videoport.value
+		if port not in config.av.videomode:
+			print "current port not available in getOutputAspect!!! force 16:9"
+		else:
+			mode = config.av.videomode[port].value
+			force_widescreen = self.isWidescreenMode(port, mode)
+			is_widescreen = force_widescreen or config.av.aspect.value in ["16_9", "16_10"]
+			is_auto = config.av.aspect.value == "auto"
+			if is_widescreen:
+				if force_widescreen:
+					pass
+				else:
+					aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
+					if aspect == "16:10":
+						ret = (16,10)
+			elif is_auto:
+				try:
+					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
+					if aspect_str == "1": # 4:3
+						ret = (4,3)
+				except IOError:
+					pass
+			else:  # 4:3
+				ret = (4,3)
+		return ret
+
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
@@ -80,6 +108,7 @@ class VideoHardware:
 		config.av.tvsystem.notifiers = [ ]
 		config.av.wss.notifiers = [ ]
 		AVSwitch.setInput = self.AVSwitchSetInput
+		AVSwitch.getOutputAspect = self.getOutputAspect
 
 		config.av.aspect.addNotifier(self.updateAspect)
 		config.av.wss.addNotifier(self.updateAspect)

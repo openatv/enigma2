@@ -1,5 +1,5 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean
-from enigma import eAVSwitch
+from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
 
 class AVSwitch:
@@ -27,6 +27,27 @@ class AVSwitch:
 
 	def setSystem(self, value):
 		eAVSwitch.getInstance().setVideomode(value)
+
+	def getOutputAspect(self):
+		if valstr in ("4_3_letterbox", "4_3_panscan"): # 4:3
+			return (4,3)
+		elif valstr == "16_9": # auto ... 4:3 or 16:9
+			try:
+				aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
+				if aspect_str == "1": # 4:3
+					return (4,3)
+			except IOError:
+				pass
+		elif valstr in ("16_9_always", "16_9_letterbox"): # 16:9
+			pass
+		elif valstr in ("16_10_letterbox", "16_10_panscan"): # 16:10
+			return (16,10)
+		return (16,9)
+
+	def getFramebufferScale(self):
+		aspect = self.getOutputAspect()
+		fb_size = getDesktop(0).size()
+		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
 
 	def getAspectRatioSetting(self):
 		valstr = config.av.aspectratio.value
