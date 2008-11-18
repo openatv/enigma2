@@ -1312,7 +1312,6 @@ class InfoBarJobman:
 		self.session.openWithCallback(self.JobViewCB, JobView, job)
 	
 	def JobViewCB(self, in_background):
-		from Screens.TaskView import JobView
 		job_manager.in_background = in_background
 
 # depends on InfoBarExtensions

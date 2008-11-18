@@ -16,6 +16,7 @@ eSubtitleWidget::eSubtitleWidget(eWidget *parent)
 	setBackgroundColor(gRGB(0,0,0,255));
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
+	m_pango_page_ok = 0;
 	CONNECT(m_hide_subtitles_timer->timeout, eSubtitleWidget::clearPage);
 }
 
