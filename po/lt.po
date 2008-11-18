@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-16 23:21+0100\n"
-"PO-Revision-Date: 2008-11-15 22:37+0200\n"
+"POT-Creation-Date: 2008-11-18 13:25+0100\n"
+"PO-Revision-Date: 2008-11-17 14:56+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -386,9 +386,6 @@ msgstr "Visi"
 
 msgid "All Satellites"
 msgstr "Visi palydovai"
-
-msgid "All..."
-msgstr "Visi..."
 
 msgid "Alpha"
 msgstr "Permatoma"
@@ -1122,9 +1119,6 @@ msgstr "Rakto užšifravimo tipas"
 msgid "Encryption Type"
 msgstr "Užšifravimo būdas"
 
-msgid "End"
-msgstr "Pabaiga"
-
 msgid "End time"
 msgstr "Pabaigos laikas"
 
@@ -1813,7 +1807,7 @@ msgid "No HDD found or HDD not initialized!"
 msgstr "Kietas diskas nerastas arba neinicializuotas!"
 
 msgid "No Networks found"
-msgstr ""
+msgstr "Jokie Tinklai nesurasti"
 
 msgid "No backup needed"
 msgstr "Atsarginės kopijos nereikia"
@@ -1849,6 +1843,9 @@ msgstr "Nėra pozicionieriaus, kuris rastų priekinį kraštą."
 
 msgid "No satellite frontend found!!"
 msgstr "Nerastas palydovas!!"
+
+msgid "No tags are set on these movies."
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Nėra imtuvo, suderinto naudotis su diseqc pozicionieriumi!"
@@ -2001,9 +1998,6 @@ msgstr "Tik nekoduotus"
 msgid "Orbital Position"
 msgstr "Pozicija orbitoje"
 
-msgid "Other..."
-msgstr "Kitas..."
-
 msgid "PAL"
 msgstr "PAL"
 
@@ -2146,8 +2140,8 @@ msgstr "Prašome išsirinkti subkanalą dėl įrašymo..."
 msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
 
-msgid "Please select keyword to filter..."
-msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
+msgid "Please select tag to filter..."
+msgstr ""
 
 msgid "Please select target directory or medium"
 msgstr "Prašome išsirinkti direktoriją arba diską"
@@ -2862,9 +2856,6 @@ msgstr "Budėti"
 msgid "Standby / Restart"
 msgstr "Budėti / Perkrauti"
 
-msgid "Start"
-msgstr "Pradėti"
-
 msgid "Start from the beginning"
 msgstr "Pradžia nuo pradžios"
 
@@ -2964,6 +2955,15 @@ msgstr "TV sistema"
 
 msgid "Table of content for collection"
 msgstr "Turinio lentelė dėl kolekcijos"
+
+msgid "Tag 1"
+msgstr ""
+
+msgid "Tag 2"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
 
 msgid "Terrestrial"
 msgstr "Antžeminė"
@@ -3267,6 +3267,9 @@ msgstr "Laiko perst."
 msgid "Timeshift not possible!"
 msgstr "Laiko perstumimas negalimas!"
 
+msgid "Timeshift path..."
+msgstr ""
+
 msgid "Timezone"
 msgstr "Laiko juosta"
 
@@ -3379,7 +3382,7 @@ msgid "USB Stick"
 msgstr "USB raktelis"
 
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainiečių"
 
 msgid ""
 "Unable to complete filesystem check.\n"
@@ -3426,7 +3429,7 @@ msgid "Upgrading Dreambox... Please wait"
 msgstr "Atnaujinamas imtuvas... Prašome palaukti"
 
 msgid "Use"
-msgstr ""
+msgstr "Naudoti"
 
 msgid "Use DHCP"
 msgstr "Naudoti DHCP"
@@ -3635,6 +3638,9 @@ msgstr "Ką Jūs norite skanuoti?"
 msgid "Where do you want to backup your settings?"
 msgstr "Kur Jūs norite išsaugoti nustatymų atsarginę kopiją?"
 
+msgid "Where to save temporary timeshift recordings?"
+msgstr ""
+
 msgid "Wireless"
 msgstr "Belaidis "
 
@@ -3774,15 +3780,6 @@ msgstr ""
 "instrukcijos, prašome aplankyti tinklapį http://www.dm7025.de.\n"
 "Jūsų imtuvas turi būti sustabdytas. Po atnaujinimo nauja PĮ paprašys atkurti "
 "Jūsų nustatymus. "
-
-msgid ""
-"You need to define some keywords first!\n"
-"Press the menu-key to define keywords.\n"
-"Do you want to define keywords now?"
-msgstr ""
-"Jums iš pradžių reikia nustatyti keletą raktinių žodžių!\n"
-"Spauskite MENU-mygtuką nustatykite raktinius žodžius.\n"
-"Ar jūs norite nustatyti raktinius žodžius dabar?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -4012,7 +4009,7 @@ msgid "delete cut"
 msgstr "trinti iškirpimą"
 
 msgid "delete file"
-msgstr ""
+msgstr "trinti failą"
 
 msgid "delete playlist entry"
 msgstr "trinti įrašą iš grojaraščio "
@@ -4150,7 +4147,7 @@ msgid "help..."
 msgstr "Pagalba..."
 
 msgid "hidden network"
-msgstr ""
+msgstr "paslėptas tinklas"
 
 msgid "hide extended description"
 msgstr "slėpti išplėstą aprašymą"
@@ -4431,13 +4428,13 @@ msgid "right"
 msgstr "dešinys"
 
 msgid "save last directory on exit"
-msgstr ""
+msgstr "išsaugoti paskutinę direktoriją išeinant"
 
 msgid "save playlist"
 msgstr "išsaugoti grojaraštį"
 
 msgid "save playlist on exit"
-msgstr ""
+msgstr "išsaugoti grojaraštį išeinant"
 
 msgid "scan done!"
 msgstr "skanavimas baigtas!"
@@ -4503,11 +4500,11 @@ msgstr "rodyti užduočių detales"
 msgid "show extended description"
 msgstr "rodyti išplėstą informaciją"
 
-msgid "show first tag"
-msgstr "rodyti pirmą etiketę"
+msgid "show first selected tag"
+msgstr ""
 
-msgid "show second tag"
-msgstr "rodyti sekančią kortelę"
+msgid "show second selected tag"
+msgstr ""
 
 msgid "show shutdown menu"
 msgstr "išjungimo meniu"
@@ -4558,7 +4555,7 @@ msgid "start cut here"
 msgstr "pradėti iškirpimą čia"
 
 msgid "start directory"
-msgstr ""
+msgstr "pradėti direktoriją"
 
 msgid "start timeshift"
 msgstr "Pradėti laiko perstumimą"
@@ -4688,6 +4685,9 @@ msgstr "įjungta"
 #, fuzzy
 #~ msgid "Adress"
 #~ msgstr "IP adresas"
+
+#~ msgid "All..."
+#~ msgstr "Visi..."
 
 #~ msgid "Allow zapping via webif"
 #~ msgstr "Leisti jungti per webif"
@@ -4819,6 +4819,9 @@ msgstr "įjungta"
 #~ "Įjunkite vietinį tinklą savo imtuve.\n"
 #~ "\n"
 
+#~ msgid "End"
+#~ msgstr "Pabaiga"
+
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Išjunkite nustatymų vedlį ir konfigūruokite vėliau rankiniu būdu "
 
@@ -4885,6 +4888,9 @@ msgstr "įjungta"
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Ne, leiskite man pasirinkti numatytuosius sąrašus"
 
+#~ msgid "Other..."
+#~ msgstr "Kitas..."
+
 #~ msgid ""
 #~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
 #~ "Dreambox and press the OK button on your remote control to enable the "
@@ -4935,6 +4941,9 @@ msgstr "įjungta"
 
 #~ msgid "Please select below the wireless network you want to connect to."
 #~ msgstr "Prašome išsirinkti belaidį tinklą, prie kurio jūs norite jungtis."
+
+#~ msgid "Please select keyword to filter..."
+#~ msgstr "Prašome išsirinkti raktinį žodį dėl filtravimo..."
 
 #, fuzzy
 #~ msgid ""
@@ -4998,6 +5007,9 @@ msgstr "įjungta"
 
 #~ msgid "Show files from %s"
 #~ msgstr "Rodyti failus iš %s"
+
+#~ msgid "Start"
+#~ msgstr "Pradėti"
 
 #, fuzzy
 #~ msgid "Start Webinterface"
@@ -5107,6 +5119,15 @@ msgstr "įjungta"
 #~ msgid "You have to wait for"
 #~ msgstr "Jūs turite laukti"
 
+#~ msgid ""
+#~ "You need to define some keywords first!\n"
+#~ "Press the menu-key to define keywords.\n"
+#~ "Do you want to define keywords now?"
+#~ msgstr ""
+#~ "Jums iš pradžių reikia nustatyti keletą raktinių žodžių!\n"
+#~ "Spauskite MENU-mygtuką nustatykite raktinius žodžius.\n"
+#~ "Ar jūs norite nustatyti raktinius žodžius dabar?"
+
 #, fuzzy
 #~ msgid ""
 #~ "Your Dreambox is now ready to use.\n"
@@ -5193,3 +5214,9 @@ msgstr "įjungta"
 
 #~ msgid "seconds."
 #~ msgstr "sekundžių."
+
+#~ msgid "show first tag"
+#~ msgstr "rodyti pirmą etiketę"
+
+#~ msgid "show second tag"
+#~ msgstr "rodyti sekančią kortelę"
