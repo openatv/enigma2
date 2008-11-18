@@ -126,7 +126,6 @@ eMainloop::~eMainloop()
 void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
 	int fd = sn->getFD();
-	std::map<int, eSocketNotifier*>::iterator it(notifiers.find(fd));
 	if (m_inActivate && m_inActivate->ref.count == 1)
 	{
 		/*  when the current active SocketNotifier's refcount is one,
