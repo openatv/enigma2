@@ -982,7 +982,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 //	eDebug("filterRecordData, size=%d (mod 188=%d), first byte is %02x", len, len %188, data[0]);
 
 	unsigned char *d = data;
-	while ((d = (unsigned char*)memmem(d, data + len - d, "\x00\x00\x01", 3)))
+	while ((d + 3 < data + len) && (d = (unsigned char*)memmem(d, data + len - d, "\x00\x00\x01", 3)))
 	{
 		int offset = d - data;
 		int ts_offset = offset - offset % 188; /* offset to the start of TS packet */
