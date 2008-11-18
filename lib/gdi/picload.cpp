@@ -1015,12 +1015,12 @@ RESULT ePicLoad::setPara(PyObject *val)
 		return 0;
 	else {
 		ePyObject fast = PySequence_Fast(val, "");
-		m_conf.max_x		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 0));
-		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 1));
-		m_conf.aspect_ratio	= (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 2)) / PyInt_AsLong(PySequence_Fast_GET_ITEM(val, 3));
-		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 4));
-		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(val, 5));
-		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(val, 6));
+		m_conf.max_x		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 0));
+		m_conf.max_y		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 1));
+		m_conf.aspect_ratio	= (double)PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 2)) / PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 3));
+		m_conf.usecache		= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 4));
+		m_conf.resizetype	= PyInt_AsLong( PySequence_Fast_GET_ITEM(fast, 5));
+		const char *bg_str	= PyString_AsString( PySequence_Fast_GET_ITEM(fast, 6));
 	
 		if(bg_str[0] == '#' && strlen(bg_str)==9)
 		{
