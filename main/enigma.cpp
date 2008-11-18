@@ -248,7 +248,7 @@ int main(int argc, char **argv)
 	if (exit_code == 5) /* python crash */
 	{
 		eDebug("(exit code 5)");
-		bsodFatal();
+		bsodFatal(0);
 	}
 	
 	dsk.paint();
