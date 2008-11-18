@@ -3,6 +3,6 @@
 
 void bsodLogInit();
 void bsodCatchSignals();
-void bsodFatal();
+void bsodFatal(const char *component);
 
 #endif
