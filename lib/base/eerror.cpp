@@ -86,9 +86,11 @@ void eFatal(const char* fmt, ...)
 	va_start(ap, fmt);
 	vsnprintf(buf, 1024, fmt, ap);
 	va_end(ap);
-	singleLock s(DebugLock);
-	logOutput(lvlFatal, "FATAL: " + std::string(buf) + "\n");
-	fprintf(stderr, "FATAL: %s\n",buf );
+	{
+		singleLock s(DebugLock);
+		logOutput(lvlFatal, "FATAL: " + std::string(buf) + "\n");
+		fprintf(stderr, "FATAL: %s\n",buf );
+	}
 	bsodFatal();
 }
 
