@@ -5,7 +5,7 @@
 extern "C" void init_enigma();
 extern "C" void eBaseInit(void);
 extern "C" void eConsoleInit(void);
-extern void bsodFatal();
+extern void bsodFatal(const char *component);
 
 #define SKIP_PART2
 #include <lib/python/python.h>
@@ -44,7 +44,7 @@ ePyObject::operator PyObject*()
 		if (m_file)
 			eDebug("last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
-		bsodFatal();
+		bsodFatal("enigma2, refcnt");
 	}
 	return 0;
 }
@@ -57,7 +57,7 @@ void ePyObject::incref(const char *file, int line)
 		if (m_file)
 			eDebug("last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
-		bsodFatal();
+		bsodFatal("enigma2, refcnt");
 	}
 	if (m_erased || m_ob->ob_refcnt <= 0)
 	{
@@ -66,7 +66,7 @@ void ePyObject::incref(const char *file, int line)
 		if (m_file)
 			eDebug("last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
-		bsodFatal();
+		bsodFatal("enigma2, refcnt");
 	}
 	if (m_ob->ob_refcnt == 0x7FFFFFFF)
 	{
@@ -75,7 +75,7 @@ void ePyObject::incref(const char *file, int line)
 		if (m_file)
 			eDebug("last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
-		bsodFatal();
+		bsodFatal("enigma2, refcnt");
 	}
 	m_file = file;
 	m_line = line;
@@ -92,7 +92,7 @@ void ePyObject::decref(const char *file, int line)
 		if (m_file)
 			eDebug("last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
-		bsodFatal();
+		bsodFatal("enigma2, refcnt");
 	}
 	if (m_erased || m_ob->ob_refcnt <= 0)
 	{
@@ -101,7 +101,7 @@ void ePyObject::decref(const char *file, int line)
 		if (m_file)
 			eDebug("last modified in file %s line %d from %d to %d",
 				m_file, m_line, m_from, m_to);
-		bsodFatal();
+		bsodFatal("enigma2, refcnt");
 	}
 	m_file = file;
 	m_line = line;
@@ -207,7 +207,7 @@ int ePython::call(ePyObject pFunc, ePyObject pArgs)
 		 	eDebug("(PyObject_CallObject(%s,%s) failed)", PyString_AS_STRING(FuncStr), PyString_AS_STRING(ArgStr));
 			Py_DECREF(FuncStr);
 			Py_DECREF(ArgStr);
-		 	bsodFatal();
+		 	bsodFatal(0);
 		}
 	}
 	return res;
