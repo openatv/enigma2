@@ -452,6 +452,11 @@ class Pic_Full_View(Screen):
 					self.filelist.append(path + x[0][0])
 				else:
 					self.dirlistcount += 1
+			elif len(filelist[0]) == 2: #scanlist
+				if x[0][1] == False:
+					self.filelist.append(x[0][0])
+				else:
+					self.dirlistcount += 1
 			else: # thumbnaillist
 				self.filelist.append(x[T_FULL])
 
