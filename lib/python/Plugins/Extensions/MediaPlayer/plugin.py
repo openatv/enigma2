@@ -1,6 +1,6 @@
 from os import path as os_path, remove as os_remove, listdir as os_listdir
 from time import strftime
-from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, loadPic
+from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad
 from ServiceReference import ServiceReference
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
@@ -171,6 +171,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.currList = "filelist"
 
 		self.coverArtFileName = ""
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.paintCoverArtPixmapCB)
+
 		self.isAudioCD = False
 		self.AudioCD_albuminfo = {}
 		self.cdAudioTrackFiles = []
@@ -206,6 +209,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
 			config.mediaplayer.defaultDir.save()
 		hotplugNotifier.remove(self.hotplugCB)
+		del self.picload
 		self.close()
 
 	def checkSkipShowHideLock(self):
@@ -294,9 +298,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				new_coverArtFileName = path + filename
 		if self.coverArtFileName != new_coverArtFileName:
 			self.coverArtFileName = new_coverArtFileName
-			pixmap = loadPic(self.coverArtFileName, 116, 116, AVSwitch().getAspectRatioSetting()/2,1,0,0)
-			if pixmap is not None:
-				self["coverArt"].instance.setPixmap(pixmap.__deref__())
+			sc = AVSwitch().getFramebufferScale()
+			#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
+			self.picload.setPara((self["coverArt"].instance.size().width(), self["coverArt"].instance.size().height(), sc[0], sc[1], False, 1, "#ff000000"))
+			self.picload.startDecode(self.coverArtFileName)
+
+	def paintCoverArtPixmapCB(self, picInfo=None):
+		ptr = self.picload.getData()
+		if ptr != None:
+			self["coverArt"].instance.setPixmap(ptr.__deref__())
 
 	def leftDown(self):
 		self.lefttimer = True
