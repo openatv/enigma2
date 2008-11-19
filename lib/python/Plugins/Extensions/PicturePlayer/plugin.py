@@ -1,7 +1,7 @@
 from enigma import ePicLoad, eTimer, getDesktop
 
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, pathExists, fileExists, SCOPE_MEDIA
 from Plugins.Plugin import PluginDescriptor
 
 from Components.Pixmap import Pixmap, MovingPixmap
@@ -91,8 +91,9 @@ class picshow(Screen):
 		
 	def showThumb(self):
 		if not self.filelist.canDescent():
-			if self.picload.getThumbnail(self.filelist.getCurrentDirectory() + self.filelist.getFilename()) == 1:
-				self.ThumbTimer.start(500, True)
+			if self.filelist.getCurrentDirectory() and self.filelist.getFilename():
+				if self.picload.getThumbnail(self.filelist.getCurrentDirectory() + self.filelist.getFilename()) == 1:
+					self.ThumbTimer.start(500, True)
 
 	def selectionChanged(self):
 		if not self.filelist.canDescent():
