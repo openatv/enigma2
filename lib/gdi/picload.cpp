@@ -288,24 +288,12 @@ static unsigned char *png_load(const char *file, int *ox, int *oy)
 	png_read_info(png_ptr, info_ptr);
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, &interlace_type, NULL, NULL);
 
-	if (color_type == PNG_COLOR_TYPE_PALETTE)
-	{
-		png_set_palette_to_rgb(png_ptr);
-		png_set_background(png_ptr, (png_color_16 *)&my_background, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
-	}
-	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
-	{
-		png_set_gray_to_rgb(png_ptr);
-		png_set_background(png_ptr, (png_color_16 *)&my_background, PNG_BACKGROUND_GAMMA_SCREEN, 0, 1.0);
-	}
-	if (color_type & PNG_COLOR_MASK_ALPHA)
-		png_set_strip_alpha(png_ptr);
-
-	if (bit_depth < 8)
-		png_set_packing(png_ptr);
-
+	if ((color_type == PNG_COLOR_TYPE_PALETTE)||(color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)||(png_get_valid(png_ptr, info_ptr, PNG_INFO_tRNS)))
+		png_set_expand(png_ptr);
 	if (bit_depth == 16)
 		png_set_strip_16(png_ptr);
+	if (color_type == PNG_COLOR_TYPE_GRAY || color_type == PNG_COLOR_TYPE_GRAY_ALPHA)
+		png_set_gray_to_rgb(png_ptr);
 
 	int number_passes = png_set_interlace_handling(png_ptr);
 	png_read_update_info(png_ptr, info_ptr);
