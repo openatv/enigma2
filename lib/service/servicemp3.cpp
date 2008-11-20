@@ -16,6 +16,7 @@
 #include <sys/stat.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
+#include <errno.h>
 
 // eServiceFactoryMP3
 
@@ -944,6 +945,17 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			m_audioStreams.push_back(audio);
 		}
 
+		GValue *gv_image = gst_tag_list_get_value_index(tags, GST_TAG_IMAGE, 0);
+		if ( gv_image )
+		{
+			GstBuffer *buf_image;
+			buf_image = gst_value_get_buffer (gv_image);
+			int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
+			int ret = write(fd, GST_BUFFER_DATA(buf_image), GST_BUFFER_SIZE(buf_image));
+			close(fd);
+			m_event((iPlayableService*)this, evUser+13);
+		}
+
 		gst_tag_list_free(tags);
 		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
@@ -984,7 +996,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 	{
 		if ( gst_is_missing_plugin_message(msg) )
 		{
-			gchar *description = gst_missing_plugin_message_get_description(msg);			
+			gchar *description = gst_missing_plugin_message_get_description(msg);
 			if ( description )
 			{
 				m_error_message = "GStreamer plugin " + (std::string)description + " not available!\n";

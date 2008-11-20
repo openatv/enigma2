@@ -82,10 +82,10 @@ class MediaPixmap(Pixmap):
 	def showDefaultCover(self):
 		self.instance.setPixmap(self.noCoverPixmap)
 
-	#def destroy(self):
-		#Pixmap.destroy(self)
-		#print "mediapixmap ***********+ destroy"
-		
+	def embeddedCoverArt(self):
+		print "[embeddedCoverArt] found"
+		self.coverArtFileName = "/tmp/.id3coverart"
+		self.picload.startDecode(self.coverArtFileName)
 
 class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
 	ALLOW_SUSPEND = True
@@ -224,7 +224,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			{
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 				iPlayableService.evUser+11: self.__evDecodeError,
-				iPlayableService.evUser+12: self.__evPluginError
+				iPlayableService.evUser+12: self.__evPluginError,
+				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
 			})
 
 	def doNothing(self):
