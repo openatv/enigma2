@@ -403,7 +403,7 @@ class InfoBarEPG:
 		self.eventView = None
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventView": (self.openEventView, _("show EPG...")),
+				"showEventInfo": (self.openEventView, _("show EPG...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("show single service EPG...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
