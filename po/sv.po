@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 07:24+0100\n"
-"PO-Revision-Date: 2008-11-12 12:27+0100\n"
+"POT-Creation-Date: 2008-11-24 14:31+0100\n"
+"PO-Revision-Date: 2008-11-18 13:32+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -99,9 +99,6 @@ msgstr "* Enbart tillgänglig vid angiven dold SSID eller nätverksnyckel"
 
 msgid ".NFI Download failed:"
 msgstr ".NFI Nedladdning misslyckades:"
-
-msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ".NFI Flash bootbar USB stick skapad. "
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
@@ -390,9 +387,6 @@ msgstr "Alla"
 
 msgid "All Satellites"
 msgstr "Alla Satelliter"
-
-msgid "All..."
-msgstr "Alla..."
 
 msgid "Alpha"
 msgstr "Alpha"
@@ -696,7 +690,7 @@ msgid "Complete"
 msgstr "Komplett"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr ""
+msgstr "Komplex (tillåter mixning av ljudspår och aspekt)"
 
 msgid "Configuration Mode"
 msgstr "Konfigurationsläge"
@@ -740,9 +734,6 @@ msgstr "Fortsätt spela"
 
 msgid "Contrast"
 msgstr "Kontrast"
-
-msgid "Copying USB flasher boot image to stick..."
-msgstr "Kopiera USB flash boot image till stick..."
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "Kunde inte ansluta till Dreambox .NFI image feed Server:"
@@ -819,9 +810,6 @@ msgstr "Danska"
 
 msgid "Date"
 msgstr "Datum"
-
-msgid "Decompressing USB stick flasher boot image..."
-msgstr "Packar upp USB flash boot image..."
 
 msgid "Deep Standby"
 msgstr "Stäng av"
@@ -950,9 +938,6 @@ msgstr ""
 "Vill du verkligen ladda ner\n"
 "pluginet \"%s\"?"
 
-msgid "Do you really want to exit?"
-msgstr "Vill du verkligen avsluta?"
-
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
@@ -1044,9 +1029,6 @@ msgstr "Nerladdningsbara plugins"
 msgid "Downloading"
 msgstr "Laddar ner"
 
-msgid "Downloading image description..."
-msgstr "Ladda ner image beskrivning..."
-
 msgid "Downloading plugin information. Please wait..."
 msgstr "Hämtar plugin information. Var vänlig vänta..."
 
@@ -1076,7 +1058,7 @@ msgid "Edit DNS"
 msgstr "Ändra DNS"
 
 msgid "Edit Title"
-msgstr ""
+msgstr "Ändra titel"
 
 msgid "Edit chapters of current title"
 msgstr "Ändra kapitel i nuvarande titel"
@@ -1128,9 +1110,6 @@ msgstr "Krypterings Nyckelvariant"
 
 msgid "Encryption Type"
 msgstr "Krypteringstyp"
-
-msgid "End"
-msgstr "Slut"
 
 msgid "End time"
 msgstr "Sluttid"
@@ -1205,6 +1184,9 @@ msgstr "Exekverings pågår:"
 msgid "Execution finished!!"
 msgstr "Exekvering färdig!"
 
+msgid "Exif"
+msgstr ""
+
 msgid "Exit"
 msgstr "Avsluta"
 
@@ -1278,9 +1260,6 @@ msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr "Först måste vi ladda ner senaste bootmiljön för USB flasher."
 
-msgid "Fix USB stick"
-msgstr "Fix USB stick"
-
 msgid "Flash"
 msgstr "Flash"
 
@@ -1295,6 +1274,9 @@ msgstr "Format"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Bildupprepning vid hackig spolning"
+
+msgid "Frame size in full view"
+msgstr ""
 
 msgid "French"
 msgstr "Franska"
@@ -1813,6 +1795,9 @@ msgstr "Ingen 50 Hz, tyvärr. :("
 msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen hårddisk hittad eller initierad!"
 
+msgid "No Networks found"
+msgstr ""
+
 msgid "No backup needed"
 msgstr "Ingen backup behövs"
 
@@ -1844,6 +1829,9 @@ msgstr "Ingen motorkapabel frontend hittad."
 
 msgid "No satellite frontend found!!"
 msgstr "Ingen satellit frontend funnen!!"
+
+msgid "No tags are set on these movies."
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen tuner är konfigurerad för motor diseqc!"
@@ -1947,14 +1935,6 @@ msgid "Now Playing"
 msgstr "Spelas nu"
 
 msgid ""
-"Now please insert the USB stick (minimum size is 64 MB) that you want to "
-"format and use as .NFI image flasher. Press OK after you've put the stick "
-"back in."
-msgstr ""
-"Vänligen anslut nu USB stick (minsta storlek 64MB) som du vill formatera och "
-"använda som .NFI image flasher. Tryck OK efter du anslutit stickan i boxen. "
-
-msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -1993,9 +1973,6 @@ msgstr "Bara Fri sökning"
 msgid "Orbital Position"
 msgstr "Orbital position"
 
-msgid "Other..."
-msgstr "Annat..."
-
 msgid "PAL"
 msgstr "PAL"
 
@@ -2030,14 +2007,14 @@ msgstr "Föräldrakontroll installation"
 msgid "Parental control type"
 msgstr "Föräldrakontroll typ"
 
-msgid "Partitioning USB stick..."
-msgstr "Partitionera USB stick..."
-
 msgid "Pause movie at end"
 msgstr "Pausa filmen"
 
 msgid "PiPSetup"
 msgstr "BiB konfiguration"
+
+msgid "PicturePlayer"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -2081,6 +2058,11 @@ msgstr "Vänligen välj paket"
 
 msgid "Please choose the default services lists you want to install."
 msgstr "Vänligen välj vilken grundservicelista som du vill installera."
+
+msgid ""
+"Please disconnect all USB devices from your Dreambox and (re-)attach the "
+"target USB stick (minimum size is 64 MB) now!"
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Vänligen ändra inte om du inte vet vad du gör!"
@@ -2137,8 +2119,8 @@ msgstr "Vänligen välj en underkanal för inspelning..."
 msgid "Please select a subservice..."
 msgstr "Vänligen välj en underkanal..."
 
-msgid "Please select keyword to filter..."
-msgstr "Vänligen välj nyckelord för filter..."
+msgid "Please select tag to filter..."
+msgstr ""
 
 msgid "Please select target directory or medium"
 msgstr "Vänligen välj målbibliotek eller media"
@@ -2174,9 +2156,6 @@ msgstr ""
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Vänligen vänta för aktivering av din nätverkskonfiguration..."
-
-msgid "Please wait for md5 signature verification..."
-msgstr "Vänligen vänta för md5 signatur verifiering..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Vänligen vänta medans ditt nätverk konfigureras..."
@@ -2269,7 +2248,7 @@ msgid "Primary DNS"
 msgstr "Primär DNS"
 
 msgid "Properties of current title"
-msgstr ""
+msgstr "Egenskaper på nuvarande titel"
 
 msgid "Protect services"
 msgstr "Skydda kanaler"
@@ -2358,9 +2337,6 @@ msgstr "Uppdateringstakt"
 msgid "Refresh rate selection."
 msgstr "Uppdateringsfrekvens val."
 
-msgid "Remounting stick partition..."
-msgstr "Ommontera stcik partition..."
-
 msgid "Remove Bookmark"
 msgstr "Ta bort Bokmärke"
 
@@ -2408,7 +2384,7 @@ msgid "Reset"
 msgstr "Nollställ"
 
 msgid "Reset and renumerate title names"
-msgstr ""
+msgstr "Återställ och omnumrera titelnamnen"
 
 msgid "Resolution"
 msgstr "Upplösning"
@@ -2649,10 +2625,10 @@ msgid "Selected source image"
 msgstr "Välj käll image"
 
 msgid "Send DiSEqC"
-msgstr ""
+msgstr "Skicka DiSEqC"
 
 msgid "Send DiSEqC only on satellite change"
-msgstr ""
+msgstr "Skicka enbart DiSEqC vid ändrad satellit"
 
 msgid "Seperate titles with a main menu"
 msgstr "Separera titlar med en huvudmeny"
@@ -2706,7 +2682,7 @@ msgid "Services"
 msgstr "Kanaler"
 
 msgid "Set Voltage and 22KHz"
-msgstr ""
+msgstr "Ange Volt och 22KHz"
 
 msgid "Set as default Interface"
 msgstr "Använd som standard Interface"
@@ -2772,7 +2748,7 @@ msgid "Simple"
 msgstr "Enkel"
 
 msgid "Simple titleset (compatibility for legacy players)"
-msgstr ""
+msgstr "Enkelt titelset (kompabilitet för äldre spelare)"
 
 msgid "Single"
 msgstr "Singel"
@@ -2851,9 +2827,6 @@ msgstr "Viloläge"
 
 msgid "Standby / Restart"
 msgstr "Viloläge / Omstart"
-
-msgid "Start"
-msgstr "Start"
 
 msgid "Start from the beginning"
 msgstr "Spela upp från början"
@@ -2958,6 +2931,15 @@ msgstr "TV System"
 msgid "Table of content for collection"
 msgstr "Index över innehållet av samligen"
 
+msgid "Tag 1"
+msgstr ""
+
+msgid "Tag 2"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Marksänd"
 
@@ -2981,17 +2963,6 @@ msgstr ""
 "Tryck OK för att börja använda din Dreambox."
 
 msgid ""
-"The .NFI Image flasher USB stick is now ready to use. Please download an ."
-"NFI image file from the feed server and save it on the stick. Then reboot "
-"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
-"stick!"
-msgstr ""
-".NFI Image flasher USB stick är nu klar för att användas. Vänligen ladda "
-"ner .NFI image fil från feed server och spara på stickan. Efter det starta "
-"om och håll 'Ner' knappen på fronten intryckt för att starta .NFI flasher "
-"från stickan!"
-
-msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
@@ -2999,6 +2970,11 @@ msgstr ""
 "DVD standarden stödjer inte H.264 (HDTV) videoströmmar. Vill du skapa en "
 "Dreambox format data DVD (kommer ej kunnas spelas i vanlig DVD spelare) "
 "istället? "
+
+msgid ""
+"The USB stick is now bootable. Do you want to download the latest image from "
+"the feed server and save it on the stick?"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backupen misslyckades, välj en annan plats för din backup "
@@ -3207,6 +3183,9 @@ msgstr "Gränsvärde"
 msgid "Thu"
 msgstr "Tors"
 
+msgid "Thumbnails"
+msgstr ""
+
 msgid "Thursday"
 msgstr "Torsdag"
 
@@ -3256,6 +3235,9 @@ msgstr "Timeshift"
 msgid "Timeshift not possible!"
 msgstr "Timeshift inte möjligt!"
 
+msgid "Timeshift path..."
+msgstr ""
+
 msgid "Timezone"
 msgstr "Tidszon"
 
@@ -3263,21 +3245,22 @@ msgid "Title"
 msgstr "Titel"
 
 msgid "Title properties"
-msgstr ""
+msgstr "Titel egenskaper"
 
 msgid "Title:"
 msgstr "Title:"
 
 msgid "Titleset mode"
-msgstr ""
+msgstr "Titelset läge"
 
 msgid ""
-"To make sure you intend to do this, please remove the target USB stick now "
-"and stick it back in upon prompt. Press OK when you have taken the stick out."
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and plug in the bootable USB "
+"stick.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"För att säkerställa att du verkligen vill göra detta, vänligen ta ut mål USB "
-"stickan nu och sätt tillbaka den vid begäran. Tryck OK när du har tagit ut "
-"stickan."
 
 msgid "Today"
 msgstr "Idag"
@@ -3366,6 +3349,12 @@ msgstr "USB"
 msgid "USB Stick"
 msgstr "USB Minne"
 
+msgid "USB stick wizard"
+msgstr ""
+
+msgid "Ukrainian"
+msgstr ""
+
 msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
@@ -3409,6 +3398,9 @@ msgstr "Uppgradering"
 
 msgid "Upgrading Dreambox... Please wait"
 msgstr "Uppgraderar Dreambox... Vänligen vänta"
+
+msgid "Use"
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Använd DHCP"
@@ -3545,9 +3537,6 @@ msgstr "WSS på 4:3"
 msgid "Waiting"
 msgstr "Väntar"
 
-msgid "Waiting for USB stick to settle..."
-msgstr "Väntar på USB stick..."
-
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3614,6 +3603,9 @@ msgstr "Vad vill du söka efter?"
 msgid "Where do you want to backup your settings?"
 msgstr "Var vill du spara dina inställningar?"
 
+msgid "Where to save temporary timeshift recordings?"
+msgstr ""
+
 msgid "Wireless"
 msgstr "Trådlöst"
 
@@ -3628,9 +3620,6 @@ msgstr "Skrivning misslyckades!"
 
 msgid "Writing NFI image file to flash completed"
 msgstr "Skrivning av NFI image fil till flash klart"
-
-msgid "Writing image file to NAND Flash"
-msgstr "Skrivning av image fil till NAND flash"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3753,15 +3742,6 @@ msgstr ""
 "Din dreambox kommer nu att stoppas. När du har genomfört uppdateringen "
 "instruktioner från websidan, din nya mjukvara kommer att fråga dig om du "
 "vill återställa dina inställningar."
-
-msgid ""
-"You need to define some keywords first!\n"
-"Press the menu-key to define keywords.\n"
-"Do you want to define keywords now?"
-msgstr ""
-"Du måste ange några nyckelord först!\n"
-"Tryck Meny för att ange nyckelord.\n"
-"Vill du ange nyckelord nu?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -3909,11 +3889,11 @@ msgstr ""
 
 #, python-format
 msgid "audio track (%s) format"
-msgstr ""
+msgstr "ljudspår (%s) format"
 
 #, python-format
 msgid "audio track (%s) language"
-msgstr ""
+msgstr "ljudspår (%s) språk"
 
 msgid "audio tracks"
 msgstr "ljudspår"
@@ -3924,18 +3904,24 @@ msgstr "tillbaka"
 msgid "background image"
 msgstr "bakgrundsbild"
 
+msgid "backgroundcolor"
+msgstr ""
+
 msgid "better"
 msgstr "bättre"
+
+msgid "black"
+msgstr ""
 
 msgid "blacklist"
 msgstr "svartlista"
 
-#, python-format
-msgid "burn audio track (%s)"
+msgid "blue"
 msgstr ""
 
-msgid "by Exif"
-msgstr "av Exif"
+#, python-format
+msgid "burn audio track (%s)"
+msgstr "bränn ljudspår (%s)"
 
 msgid "change recording (duration)"
 msgstr "ändra inspelning (längd)"
@@ -3988,11 +3974,11 @@ msgstr "daglig"
 msgid "day"
 msgstr "dag"
 
-msgid "delete"
-msgstr "ta bort"
-
 msgid "delete cut"
 msgstr "ta bort klipp"
+
+msgid "delete file"
+msgstr ""
 
 msgid "delete playlist entry"
 msgstr "ta bort post i spellista"
@@ -4096,6 +4082,9 @@ msgstr "avsluta nätverkskort installationsmeny"
 msgid "failed"
 msgstr "misslyckades"
 
+msgid "fileformats (BMP, PNG, JPG, GIF)"
+msgstr ""
+
 msgid "filename"
 msgstr "filnamn"
 
@@ -4120,6 +4109,9 @@ msgstr "stäng av mottagaren"
 msgid "go to standby"
 msgstr "inta standby"
 
+msgid "green"
+msgstr ""
+
 msgid "headline"
 msgstr "rubrik"
 
@@ -4128,6 +4120,9 @@ msgstr "lyssna på radio..."
 
 msgid "help..."
 msgstr "hjälp..."
+
+msgid "hidden network"
+msgstr ""
 
 msgid "hide extended description"
 msgstr "dölj utökad beskrivning"
@@ -4269,9 +4264,6 @@ msgstr "nej"
 msgid "no HDD found"
 msgstr "ingen hårddisk hittad"
 
-msgid "no Picture found"
-msgstr "ingen bild hittad"
-
 msgid "no module found"
 msgstr "ingen modul hittad"
 
@@ -4350,14 +4342,14 @@ msgstr "föregående kanal"
 msgid "previous channel in history"
 msgstr "föregående kanal i historiken"
 
-msgid "rebooting..."
-msgstr "startar om..."
-
 msgid "record"
 msgstr "spela in"
 
 msgid "recording..."
 msgstr "spelar in..."
+
+msgid "red"
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr "ta bort en namnserver post"
@@ -4407,8 +4399,14 @@ msgstr "spola bakåt till föregående kapitel"
 msgid "right"
 msgstr "höger"
 
+msgid "save last directory on exit"
+msgstr ""
+
 msgid "save playlist"
 msgstr "spara spellista"
+
+msgid "save playlist on exit"
+msgstr ""
 
 msgid "scan done!"
 msgstr "sökning klar!"
@@ -4462,6 +4460,9 @@ msgstr "visa DVD huvudmeny"
 msgid "show EPG..."
 msgstr "visa EPG..."
 
+msgid "show Infoline"
+msgstr ""
+
 msgid "show all"
 msgstr "visa alla"
 
@@ -4474,11 +4475,11 @@ msgstr "visa programdetaljer"
 msgid "show extended description"
 msgstr "visa utökad beskrivning"
 
-msgid "show first tag"
-msgstr "visa första märkning"
+msgid "show first selected tag"
+msgstr ""
 
-msgid "show second tag"
-msgstr "visa andra märkning"
+msgid "show second selected tag"
+msgstr ""
 
 msgid "show shutdown menu"
 msgstr "visa avstängningsmeny"
@@ -4513,6 +4514,9 @@ msgstr "hoppa framåt"
 msgid "skip forward (enter time)"
 msgstr "hoppa framåt (ange tid)"
 
+msgid "slide picture in loop"
+msgstr ""
+
 msgid "sort by date"
 msgstr "sortera efter datum"
 
@@ -4527,6 +4531,9 @@ msgstr "viloläge"
 
 msgid "start cut here"
 msgstr "startklipp här"
+
+msgid "start directory"
+msgstr ""
 
 msgid "start timeshift"
 msgstr "starta timeshift"
@@ -4566,6 +4573,9 @@ msgstr "byt till nästa textningsspråk"
 
 msgid "text"
 msgstr "text"
+
+msgid "textcolor"
+msgstr ""
 
 msgid "this recording"
 msgstr "denna inspelning"
@@ -4618,6 +4628,9 @@ msgstr "vitlista"
 msgid "year"
 msgstr "år"
 
+msgid "yellow"
+msgstr ""
+
 msgid "yes"
 msgstr "ja"
 
@@ -4647,11 +4660,17 @@ msgstr "zapped"
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
+#~ msgid ".NFI Flasher bootable USB stick successfully created."
+#~ msgstr ".NFI Flash bootbar USB stick skapad. "
+
 #~ msgid "Abort"
 #~ msgstr "Avbryt"
 
 #~ msgid "Add title..."
 #~ msgstr "Lägg till titel..."
+
+#~ msgid "All..."
+#~ msgstr "Alla..."
 
 #~ msgid "An error has occured. (%s)"
 #~ msgstr "Ett fel har uppstått. (%s)"
@@ -4705,6 +4724,9 @@ msgstr "zapped"
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Anslut Internet till dit lokala LAN"
 
+#~ msgid "Copying USB flasher boot image to stick..."
+#~ msgstr "Kopiera USB flash boot image till stick..."
+
 #~ msgid "DVD ENTER key"
 #~ msgstr "DVD ENTER tangent"
 
@@ -4719,6 +4741,9 @@ msgstr "zapped"
 
 #~ msgid "DVD up key"
 #~ msgstr "DVD upp tangent"
+
+#~ msgid "Decompressing USB stick flasher boot image..."
+#~ msgstr "Packar upp USB flash boot image..."
 
 #~ msgid "Device Setup..."
 #~ msgstr "Nätverksinstallation..."
@@ -4740,6 +4765,12 @@ msgstr "zapped"
 #~ "Vill du verkligen ladda ner\n"
 #~ "pluginen \""
 
+#~ msgid "Do you really want to exit?"
+#~ msgstr "Vill du verkligen avsluta?"
+
+#~ msgid "Downloading image description..."
+#~ msgstr "Ladda ner image beskrivning..."
+
 #~ msgid "Edit current title"
 #~ msgstr "Ändra vald titel"
 
@@ -4759,8 +4790,14 @@ msgstr "zapped"
 #~ "Aktivera lokalt nätverk i din Dreambox.\n"
 #~ "\n"
 
+#~ msgid "End"
+#~ msgstr "Slut"
+
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Avsluta guide och konfigurera manuellt senare"
+
+#~ msgid "Fix USB stick"
+#~ msgstr "Fix USB stick"
 
 #~ msgid "Jump to video title 1 (play movie from start)"
 #~ msgstr "Hoppa till video titel 1 (spela film från start)"
@@ -4820,6 +4857,21 @@ msgstr "zapped"
 #~ msgstr "Nej, låt mig välja grundlista"
 
 #~ msgid ""
+#~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
+#~ "format and use as .NFI image flasher. Press OK after you've put the stick "
+#~ "back in."
+#~ msgstr ""
+#~ "Vänligen anslut nu USB stick (minsta storlek 64MB) som du vill formatera "
+#~ "och använda som .NFI image flasher. Tryck OK efter du anslutit stickan i "
+#~ "boxen. "
+
+#~ msgid "Other..."
+#~ msgstr "Annat..."
+
+#~ msgid "Partitioning USB stick..."
+#~ msgstr "Partitionera USB stick..."
+
+#~ msgid ""
 #~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
 #~ "Dreambox and press the OK button on your remote control to enable the "
 #~ "built in wireless network support"
@@ -4848,6 +4900,12 @@ msgstr "zapped"
 
 #~ msgid "Please select below the wireless network you want to connect to."
 #~ msgstr "Vänligen välj nedan vilket trådlöst nätverk du vill ansluta till."
+
+#~ msgid "Please select keyword to filter..."
+#~ msgstr "Vänligen välj nyckelord för filter..."
+
+#~ msgid "Please wait for md5 signature verification..."
+#~ msgstr "Vänligen vänta för md5 signatur verifiering..."
 
 #~ msgid ""
 #~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
@@ -4881,6 +4939,9 @@ msgstr "zapped"
 #~ msgstr ""
 #~ "Inspelning(ar) pågår eller ska snart påbörjas... verkligen stänga av nu?"
 
+#~ msgid "Remounting stick partition..."
+#~ msgstr "Ommontera stcik partition..."
+
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Omstart av din trådlösa adapter"
 
@@ -4892,6 +4953,9 @@ msgstr "zapped"
 
 #~ msgid "Show files from %s"
 #~ msgstr "Visa filer från %s"
+
+#~ msgid "Start"
+#~ msgstr "Start"
 
 #~ msgid "Step "
 #~ msgstr "Steg "
@@ -4933,6 +4997,29 @@ msgstr "zapped"
 #~ "Vänligen tryck OK för att börja använda din Dreambox."
 
 #~ msgid ""
+#~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
+#~ "NFI image file from the feed server and save it on the stick. Then reboot "
+#~ "and hold the 'Down' key on the front panel to boot the .NFI flasher from "
+#~ "the stick!"
+#~ msgstr ""
+#~ ".NFI Image flasher USB stick är nu klar för att användas. Vänligen ladda "
+#~ "ner .NFI image fil från feed server och spara på stickan. Efter det "
+#~ "starta om och håll 'Ner' knappen på fronten intryckt för att starta .NFI "
+#~ "flasher från stickan!"
+
+#~ msgid ""
+#~ "To make sure you intend to do this, please remove the target USB stick "
+#~ "now and stick it back in upon prompt. Press OK when you have taken the "
+#~ "stick out."
+#~ msgstr ""
+#~ "För att säkerställa att du verkligen vill göra detta, vänligen ta ut mål "
+#~ "USB stickan nu och sätt tillbaka den vid begäran. Tryck OK när du har "
+#~ "tagit ut stickan."
+
+#~ msgid "Waiting for USB stick to settle..."
+#~ msgstr "Väntar på USB stick..."
+
+#~ msgid ""
 #~ "Welcome.\n"
 #~ "\n"
 #~ "If you want to connect your Dreambox to the Internet, this wizard will "
@@ -4946,6 +5033,18 @@ msgstr "zapped"
 #~ "dig med grundinställningarna av nätverket i din Dreambox.\n"
 #~ "\n"
 #~ "Tryck OK på din fjärrkontroll för att gå till nästa steg."
+
+#~ msgid "Writing image file to NAND Flash"
+#~ msgstr "Skrivning av image fil till NAND flash"
+
+#~ msgid ""
+#~ "You need to define some keywords first!\n"
+#~ "Press the menu-key to define keywords.\n"
+#~ "Do you want to define keywords now?"
+#~ msgstr ""
+#~ "Du måste ange några nyckelord först!\n"
+#~ "Tryck Meny för att ange nyckelord.\n"
+#~ "Vill du ange nyckelord nu?"
 
 #~ msgid ""
 #~ "Your local LAN internet connection is not working!\n"
@@ -4982,6 +5081,12 @@ msgstr "zapped"
 #~ "Din trådlösa Internet anslutning fungerar inte!\n"
 #~ "Vänligen välj vad du vill göra."
 
+#~ msgid "by Exif"
+#~ msgstr "av Exif"
+
+#~ msgid "delete"
+#~ msgstr "ta bort"
+
 #~ msgid "equal to Socket A"
 #~ msgstr "likadant som Ingång A"
 
@@ -4991,5 +5096,17 @@ msgstr "zapped"
 #~ msgid "loopthrough to socket A"
 #~ msgstr "loopthrough till ingång A"
 
+#~ msgid "no Picture found"
+#~ msgstr "ingen bild hittad"
+
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "endast /etc/enigma2 bibliotek"
+
+#~ msgid "rebooting..."
+#~ msgstr "startar om..."
+
+#~ msgid "show first tag"
+#~ msgstr "visa första märkning"
+
+#~ msgid "show second tag"
+#~ msgstr "visa andra märkning"
