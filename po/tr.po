@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-18 13:25+0100\n"
+"POT-Creation-Date: 2008-11-24 14:31+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Zülfikar Veyisoğlu <zveyis@gmail.com>\n"
 "Language-Team: \n"
@@ -92,10 +92,6 @@ msgstr "* Yalnızca gizlenmiş SSID veya ağ anahtarı girildiğinde kullanılab
 
 msgid ".NFI Download failed:"
 msgstr ".NFI dosyası indirilirken hata oluştu:"
-
-msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ""
-"USB bellek için önyükleme yapabilir .NFI Flaşlayıcı başarıyla oluşturuldu."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
@@ -734,9 +730,6 @@ msgstr "Oynatmaya devam et"
 msgid "Contrast"
 msgstr "Kontrast"
 
-msgid "Copying USB flasher boot image to stick..."
-msgstr "Önyükleme yapabilir USB flaşlayıcı imajı belleğe kopyalanıyor..."
-
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "Dreambox .NFI imaj sunucusuna bağlanamıyor:"
 
@@ -812,10 +805,6 @@ msgstr "Danca"
 
 msgid "Date"
 msgstr "Tarih"
-
-msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
-"Sıkıştırılmış önyükleme yapabilir USB bellek flaşlayıcı çıkartılıyor..."
 
 msgid "Deep Standby"
 msgstr "Derin Uyku"
@@ -1036,9 +1025,6 @@ msgstr "İndirilebilir eklentiler"
 msgid "Downloading"
 msgstr "İndiriliyor"
 
-msgid "Downloading image description..."
-msgstr "İmaj açıklaması indiriliyor..."
-
 msgid "Downloading plugin information. Please wait..."
 msgstr "Eklenti bilgisi indiriliyor. Lütfen bekleyin..."
 
@@ -1194,6 +1180,9 @@ msgstr "Uygulama ilerliyor:"
 msgid "Execution finished!!"
 msgstr "Uygulama bitti!!"
 
+msgid "Exif"
+msgstr ""
+
 msgid "Exit"
 msgstr "Çıkış"
 
@@ -1269,9 +1258,6 @@ msgstr ""
 "Öncelikle en güncel önyükleme yapabilir USB flaşlayıcı ortamının indirilmesi "
 "gerekiyor."
 
-msgid "Fix USB stick"
-msgstr "USB belleği onar"
-
 msgid "Flash"
 msgstr "Flaşa yaz"
 
@@ -1286,6 +1272,9 @@ msgstr "Biçimlendir"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Adım adım ilerletmede çerçeve tekrar sayısı "
+
+msgid "Frame size in full view"
+msgstr ""
 
 msgid "French"
 msgstr "Fransızca"
@@ -1771,7 +1760,7 @@ msgid "Network setup"
 msgstr "Ağ kurulumu"
 
 msgid "Network test"
-msgstr "Ağ testi"
+msgstr "Ağ yapılandırmasını test et"
 
 msgid "Network test..."
 msgstr "Ağ testi..."
@@ -1847,7 +1836,7 @@ msgid "No satellite frontend found!!"
 msgstr "Uydu uç ekipmanı (frontend) bulunamadı!!"
 
 msgid "No tags are set on these movies."
-msgstr ""
+msgstr "Bu filmler için etiket tanımlanmamış"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "DiSEqC pozisyoner kullanımı için tuner ayarı yapılmamış."
@@ -1951,14 +1940,6 @@ msgid "Now Playing"
 msgstr "Oynatılıyor"
 
 msgid ""
-"Now please insert the USB stick (minimum size is 64 MB) that you want to "
-"format and use as .NFI image flasher. Press OK after you've put the stick "
-"back in."
-msgstr ""
-"Lütfen şimdi .NFI imajını yazmak üzere biçimlendirilmesi gereken USB bellek "
-"takın (en az 64MB kapasiteli). Hazırsanız kumandanızdan OK tuşuna basın."
-
-msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -2031,14 +2012,14 @@ msgstr "Ebeveyn kontrolü kurulumu"
 msgid "Parental control type"
 msgstr "Ebeveyn kontrolü tipi"
 
-msgid "Partitioning USB stick..."
-msgstr "USB bellek bölümlendiriliyor..."
-
 msgid "Pause movie at end"
 msgstr "Bittiğinde filmi duraklat"
 
 msgid "PiPSetup"
 msgstr "PiP Kurulumu"
+
+msgid "PicturePlayer"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -2082,6 +2063,13 @@ msgstr "Lütfen paket seçin..."
 
 msgid "Please choose the default services lists you want to install."
 msgstr "Lütfen yüklemek istediğiniz varsayılan kanal listesini seçin."
+
+msgid ""
+"Please disconnect all USB devices from your Dreambox and (re-)attach the "
+"target USB stick (minimum size is 64 MB) now!"
+msgstr ""
+"Lütfen tüm USB aygıtlarını Dreambox'ınızdan çıkarın ve işlem yapmak "
+"istediğiniz USB belleği (min. 64MB kapasiteli) tekrar takın!"
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Lütfen ne yaptığınızı bilmiyorsanız hiçbir değeri değiştirmeyin!"
@@ -2139,7 +2127,7 @@ msgid "Please select a subservice..."
 msgstr "Lütfen bir alt servis seçin..."
 
 msgid "Please select tag to filter..."
-msgstr ""
+msgstr "Lütfen filtreleme için etiket seçin ..."
 
 msgid "Please select target directory or medium"
 msgstr "Lütfen hedef klasörü veya medyayı seçin"
@@ -2174,9 +2162,6 @@ msgstr ""
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Ağ yapılandırmanızın aktifleştirmesi için lütfen bekleyin..."
-
-msgid "Please wait for md5 signature verification..."
-msgstr "md5 imza doğrulamasının yapılabilmesi için lütfen bekleyin..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Lütfen ağ yapılandırılırken bekleyin..."
@@ -2359,9 +2344,6 @@ msgstr "Yenileme Hızı"
 msgid "Refresh rate selection."
 msgstr "Tazeleme hızı seçimi."
 
-msgid "Remounting stick partition..."
-msgstr "USB bellek bölümlendirmesi (partition) yeniden yapılandırılıyor..."
-
 msgid "Remove Bookmark"
 msgstr "Yer imini Sil"
 
@@ -2526,7 +2508,7 @@ msgid "Scaling Mode"
 msgstr "Ölçeklendirme Kipi"
 
 msgid "Scan "
-msgstr "Ara"
+msgstr "Ara : "
 
 msgid "Scan QAM128"
 msgstr "QAM128'i ara"
@@ -2683,7 +2665,7 @@ msgid ""
 "(Timeout reading PMT)"
 msgstr ""
 "Kanal geçersiz!\n"
-"(PMT okumasında zaman aşımı oldu)"
+"(PMT okumasında zaman aşımı oluştu)"
 
 msgid ""
 "Service not found!\n"
@@ -2712,7 +2694,7 @@ msgid "Set Voltage and 22KHz"
 msgstr "Voltaj ve 22KHz ayarla"
 
 msgid "Set as default Interface"
-msgstr "Varsayılan arayüz olarak ayarla"
+msgstr "Varsayılan arayüz olarak ata"
 
 msgid "Set interface as default Interface"
 msgstr "Arayüzü varsayılan arayüz olarak ata"
@@ -2721,7 +2703,7 @@ msgid "Set limits"
 msgstr "Limitleri belirle"
 
 msgid "Settings"
-msgstr "Ayarları"
+msgstr "Ayarlar"
 
 msgid "Setup"
 msgstr "Kurulum"
@@ -2751,7 +2733,7 @@ msgid "Show positioner movement"
 msgstr "Pozisyoner haraketini göster"
 
 msgid "Show services beginning with"
-msgstr "Cihaz açılırken bu kanalla başla"
+msgstr "Kanalları harf sırasına göre göster"
 
 msgid "Show the radio player..."
 msgstr "Radyo oynatıcıyı göster..."
@@ -2815,7 +2797,7 @@ msgid "Slow Motion speeds"
 msgstr "Ağır Çekim hızları"
 
 msgid "Some plugins are not available:\n"
-msgstr "Eklentilerin bazıları kullanılamaz:\n"
+msgstr "Bazı eklentiler kullanılamaz:\n"
 
 msgid "Somewhere else"
 msgstr "Başka bir yere"
@@ -2831,7 +2813,7 @@ msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
-msgstr "A-Z ye Sırala"
+msgstr "A-Z ye"
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
@@ -2953,16 +2935,16 @@ msgid "TV System"
 msgstr "TV Sistemi"
 
 msgid "Table of content for collection"
-msgstr "Kolleksiyonun içerik listesi (TOC)"
+msgstr "Kolleksiyonun içerik listesi tablosu (TOC)"
 
 msgid "Tag 1"
-msgstr ""
+msgstr "Etiket 1"
 
 msgid "Tag 2"
-msgstr ""
+msgstr "Etiket 2"
 
 msgid "Tags"
-msgstr ""
+msgstr "Etiketler"
 
 msgid "Terrestrial"
 msgstr "Karasal"
@@ -2988,17 +2970,6 @@ msgstr ""
 "Dreambox'ınızı kullanmaya başlamak için OK tuşuna basın."
 
 msgid ""
-"The .NFI Image flasher USB stick is now ready to use. Please download an ."
-"NFI image file from the feed server and save it on the stick. Then reboot "
-"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
-"stick!"
-msgstr ""
-".NFI İmaj flaşlayıcı USB bellek kullanıma hazır. Lütfen .NFI imaj dosyasını "
-"sunucudan çekin ve belleğe kaydedin. Ardından önyüklemenin USB bellekten "
-"yapılabilmesi için cihazı yeniden açarken, ön panelde bulunan 'Down' tuşuna "
-"basılı tutun!"
-
-msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
@@ -3006,6 +2977,13 @@ msgstr ""
 "Standart DVD biçimi H.264 (HDTV) video biçimini desteklemez. Bunun yerine "
 "Dreambox'ın DVD biçiminde (standart DVD oynatıcılarda oynatamazsınız) "
 "oluşturmak ister misiniz?"
+
+msgid ""
+"The USB stick is now bootable. Do you want to download the latest image from "
+"the feed server and save it on the stick?"
+msgstr ""
+"USB bellek artık önyükleme yapabilir. Yayınlanan son imajı sunucudan "
+"indirmek ve usb belleğe kaydetmek istiyor musunuz?"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Yedek alınamadı. Lütfen başka bir yedekleme konumu seçin."
@@ -3215,6 +3193,9 @@ msgstr "Eşik"
 msgid "Thu"
 msgstr "Perş"
 
+msgid "Thumbnails"
+msgstr ""
+
 msgid "Thursday"
 msgstr "Perşembe"
 
@@ -3265,7 +3246,7 @@ msgid "Timeshift not possible!"
 msgstr "Zaman bükme kullanılamaz!"
 
 msgid "Timeshift path..."
-msgstr ""
+msgstr "Zaman bükücü yol adı..."
 
 msgid "Timezone"
 msgstr "Zaman dilimi"
@@ -3283,12 +3264,21 @@ msgid "Titleset mode"
 msgstr "Başlıkseti kipi"
 
 msgid ""
-"To make sure you intend to do this, please remove the target USB stick now "
-"and stick it back in upon prompt. Press OK when you have taken the stick out."
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and plug in the bootable USB "
+"stick.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Bunu yapmak istediğinizden eminseniz, lütfen hedef USB çubuğu yerinden "
-"çıkarın ve istenildiğinde tekrar takın. USB çubuğu çıkardıysanız lütfen OK "
-"tuşuna basın."
+"Lütfen Dreambox sistem yazılımını güncellemek için, aşağıdaki adımları takip "
+"edin:\n"
+"1) Dreambox'ınızı, arkasındaki kapama anahtarından kapayın ve önyükleme "
+"yapabilir USB belleği takın.\n"
+"2) Ön panelde yer alan AŞAĞI tuşuna basın ve cihazı tekrar açın. 10 saniye "
+"boyunca AŞAĞI tuşunu bırakmayın.\n"
+"3) Önyüklemenin yapılmasını bekleyin ve sihirbazın yapacağı yönlendirmeleri "
+"takip edin."
 
 msgid "Today"
 msgstr "Bugün"
@@ -3378,6 +3368,9 @@ msgstr "USB"
 
 msgid "USB Stick"
 msgstr "USB Bellek"
+
+msgid "USB stick wizard"
+msgstr "USB bellek sihirbazı"
 
 msgid "Ukrainian"
 msgstr "Ukraynaca"
@@ -3565,9 +3558,6 @@ msgstr "WSS 4:3"
 msgid "Waiting"
 msgstr "Bekleniyor"
 
-msgid "Waiting for USB stick to settle..."
-msgstr "USB çubuğun takılması bekleniyor..."
-
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3637,7 +3627,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Ayarlarınızın yedeğini nereye almak istiyorsunuz?"
 
 msgid "Where to save temporary timeshift recordings?"
-msgstr ""
+msgstr "Geçici zaman bükücü kayıtlarında kayıt nereye yapılsın?"
 
 msgid "Wireless"
 msgstr "Kablosuz"
@@ -3653,9 +3643,6 @@ msgstr "Yazma başarısız!"
 
 msgid "Writing NFI image file to flash completed"
 msgstr "NFI imajının flaşa yazımı tamamlandı"
-
-msgid "Writing image file to NAND Flash"
-msgstr "İmaj, NAND Flaşa yazılıyor"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3942,18 +3929,24 @@ msgstr "geri"
 msgid "background image"
 msgstr "arkaplan tesmi"
 
+msgid "backgroundcolor"
+msgstr ""
+
 msgid "better"
 msgstr "daha iyi"
+
+msgid "black"
+msgstr ""
 
 msgid "blacklist"
 msgstr "kara liste"
 
+msgid "blue"
+msgstr ""
+
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "(%s) ses izini yaz"
-
-msgid "by Exif"
-msgstr "Exif'ten al"
 
 msgid "change recording (duration)"
 msgstr "kaydı değiştir (süre)"
@@ -4114,6 +4107,9 @@ msgstr "ağ donanımı kurulum menüsünden çık"
 msgid "failed"
 msgstr "başarısız"
 
+msgid "fileformats (BMP, PNG, JPG, GIF)"
+msgstr ""
+
 msgid "filename"
 msgstr "dosyaadı"
 
@@ -4137,6 +4133,9 @@ msgstr "derin uyku kipine geç"
 
 msgid "go to standby"
 msgstr "uyku kipine geç"
+
+msgid "green"
+msgstr ""
 
 msgid "headline"
 msgstr "başlık"
@@ -4290,9 +4289,6 @@ msgstr "hayır"
 msgid "no HDD found"
 msgstr "HDD bulunamadı"
 
-msgid "no Picture found"
-msgstr "Resim/fotoğraf bulunamadı"
-
 msgid "no module found"
 msgstr "modül bulunamadı"
 
@@ -4371,14 +4367,14 @@ msgstr "önceki kanal"
 msgid "previous channel in history"
 msgstr "hafızadaki önceki kanal"
 
-msgid "rebooting..."
-msgstr "yeniden başlatılıyor..."
-
 msgid "record"
 msgstr "kayıt"
 
 msgid "recording..."
 msgstr "kaydediliyor..."
+
+msgid "red"
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr "isim sunucusu kaydı silin"
@@ -4489,6 +4485,9 @@ msgstr "DVD ana menüsünü göster"
 msgid "show EPG..."
 msgstr "EPG yi göster..."
 
+msgid "show Infoline"
+msgstr ""
+
 msgid "show all"
 msgstr "tümünü göster"
 
@@ -4502,10 +4501,10 @@ msgid "show extended description"
 msgstr "genişletilmiş açıklamayı göster"
 
 msgid "show first selected tag"
-msgstr ""
+msgstr "ilk seçili etiketi göster"
 
 msgid "show second selected tag"
-msgstr ""
+msgstr "ikinci seçili etiketi göster"
 
 msgid "show shutdown menu"
 msgstr "kapatma menüsünü göster"
@@ -4539,6 +4538,9 @@ msgstr "sonraki kanala atla"
 
 msgid "skip forward (enter time)"
 msgstr "sonraki kanala atla (zaman girin)"
+
+msgid "slide picture in loop"
+msgstr ""
 
 msgid "sort by date"
 msgstr "tarihe göre sırala"
@@ -4597,6 +4599,9 @@ msgstr "sonraki alt yazı dilini seç"
 msgid "text"
 msgstr "metin"
 
+msgid "textcolor"
+msgstr ""
+
 msgid "this recording"
 msgstr "bu kaydın"
 
@@ -4648,6 +4653,9 @@ msgstr "beyaz liste"
 msgid "year"
 msgstr "yıl"
 
+msgid "yellow"
+msgstr ""
+
 msgid "yes"
 msgstr "evet"
 
@@ -4676,6 +4684,10 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
+
+#~ msgid ".NFI Flasher bootable USB stick successfully created."
+#~ msgstr ""
+#~ "USB bellek için önyükleme yapabilir .NFI Flaşlayıcı başarıyla oluşturuldu."
 
 #~ msgid "All..."
 #~ msgstr "Tümü..."
@@ -4720,6 +4732,9 @@ msgstr "kanal değiştirildi"
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Internete yerel ağ donanımı ile bağlanın"
 
+#~ msgid "Copying USB flasher boot image to stick..."
+#~ msgstr "Önyükleme yapabilir USB flaşlayıcı imajı belleğe kopyalanıyor..."
+
 #~ msgid "DVD ENTER key"
 #~ msgstr "DVD ENTER tuşu"
 
@@ -4734,6 +4749,10 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "DVD up key"
 #~ msgstr "DVD yukarı"
+
+#~ msgid "Decompressing USB stick flasher boot image..."
+#~ msgstr ""
+#~ "Sıkıştırılmış önyükleme yapabilir USB bellek flaşlayıcı çıkartılıyor..."
 
 #~ msgid "DiSEqC Mode"
 #~ msgstr "DiSEqC Modu"
@@ -4754,6 +4773,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Do you really want to exit?"
 #~ msgstr "Çıkmak istediğinizden emin misiniz?"
+
+#~ msgid "Downloading image description..."
+#~ msgstr "İmaj açıklaması indiriliyor..."
 
 #~ msgid "Enable LAN"
 #~ msgstr "LAN'ı Aç"
@@ -4776,6 +4798,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Sihirbazdan çık ve ayarları daha sonra elle yap"
+
+#~ msgid "Fix USB stick"
+#~ msgstr "USB belleği onar"
 
 #~ msgid ""
 #~ "No working local networkadapter found.\n"
@@ -4825,8 +4850,20 @@ msgstr "kanal değiştirildi"
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Hayır, öntanımlı listeleri seçmeme izin ver"
 
+#~ msgid ""
+#~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
+#~ "format and use as .NFI image flasher. Press OK after you've put the stick "
+#~ "back in."
+#~ msgstr ""
+#~ "Lütfen şimdi .NFI imajını yazmak üzere biçimlendirilmesi gereken USB "
+#~ "bellek takın (en az 64MB kapasiteli). Hazırsanız kumandanızdan OK tuşuna "
+#~ "basın."
+
 #~ msgid "Other..."
 #~ msgstr "Diğer..."
+
+#~ msgid "Partitioning USB stick..."
+#~ msgstr "USB bellek bölümlendiriliyor..."
 
 #~ msgid ""
 #~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
@@ -4858,6 +4895,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Please select keyword to filter..."
 #~ msgstr "Lütfen filtre için anahtar kelime girin..."
+
+#~ msgid "Please wait for md5 signature verification..."
+#~ msgstr "md5 imza doğrulamasının yapılabilmesi için lütfen bekleyin..."
 
 #~ msgid ""
 #~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
@@ -4891,6 +4931,9 @@ msgstr "kanal değiştirildi"
 #~ "shutdown now?"
 #~ msgstr ""
 #~ "KAYIT işlemi devam ediyor. Cihazı kapatmak istediğinizden emin misiniz?"
+
+#~ msgid "Remounting stick partition..."
+#~ msgstr "USB bellek bölümlendirmesi (partition) yeniden yapılandırılıyor..."
 
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Kablosuz arabirimini yeniden başlat"
@@ -4946,6 +4989,29 @@ msgstr "kanal değiştirildi"
 #~ "Dreambox'ınızı kullanmak için OK tuşuna basın."
 
 #~ msgid ""
+#~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
+#~ "NFI image file from the feed server and save it on the stick. Then reboot "
+#~ "and hold the 'Down' key on the front panel to boot the .NFI flasher from "
+#~ "the stick!"
+#~ msgstr ""
+#~ ".NFI İmaj flaşlayıcı USB bellek kullanıma hazır. Lütfen .NFI imaj "
+#~ "dosyasını sunucudan çekin ve belleğe kaydedin. Ardından önyüklemenin USB "
+#~ "bellekten yapılabilmesi için cihazı yeniden açarken, ön panelde bulunan "
+#~ "'Down' tuşuna basılı tutun!"
+
+#~ msgid ""
+#~ "To make sure you intend to do this, please remove the target USB stick "
+#~ "now and stick it back in upon prompt. Press OK when you have taken the "
+#~ "stick out."
+#~ msgstr ""
+#~ "Bunu yapmak istediğinizden eminseniz, lütfen hedef USB çubuğu yerinden "
+#~ "çıkarın ve istenildiğinde tekrar takın. USB çubuğu çıkardıysanız lütfen "
+#~ "OK tuşuna basın."
+
+#~ msgid "Waiting for USB stick to settle..."
+#~ msgstr "USB çubuğun takılması bekleniyor..."
+
+#~ msgid ""
 #~ "Welcome.\n"
 #~ "\n"
 #~ "If you want to connect your Dreambox to the Internet, this wizard will "
@@ -4959,6 +5025,9 @@ msgstr "kanal değiştirildi"
 #~ "olacaktır.\n"
 #~ "\n"
 #~ "Kumandanızın OK tuşuna basarak sonraki adıma geçebilirsiniz."
+
+#~ msgid "Writing image file to NAND Flash"
+#~ msgstr "İmaj, NAND Flaşa yazılıyor"
 
 #~ msgid ""
 #~ "You need to define some keywords first!\n"
@@ -5006,6 +5075,9 @@ msgstr "kanal değiştirildi"
 #~ "Kablosuz internet bağlantınız çalışmıyor!\n"
 #~ "Lütfen sonraki adımda ne yapmak istediğinizi seçiniz."
 
+#~ msgid "by Exif"
+#~ msgstr "Exif'ten al"
+
 #~ msgid "delete"
 #~ msgstr "sil"
 
@@ -5018,8 +5090,14 @@ msgstr "kanal değiştirildi"
 #~ msgid "minutes and"
 #~ msgstr "dakika ve"
 
+#~ msgid "no Picture found"
+#~ msgstr "Resim/fotoğraf bulunamadı"
+
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "yalnızca /etc/enigma2 klasörü"
+
+#~ msgid "rebooting..."
+#~ msgstr "yeniden başlatılıyor..."
 
 #~ msgid "scan done! %d services found!"
 #~ msgstr "kanal araması tamamlandı! %d kanal bulundu!"
