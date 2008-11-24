@@ -1502,7 +1502,7 @@ RESULT eDVBChannel::setCIRouting(const eDVBCIRouting &routing)
 
 void eDVBChannel::SDTready(int result)
 {
-	ePyObject args = PyTuple_New(2);
+	ePyObject args = PyTuple_New(2), ret;
 	bool ok=false;
 	if (!result)
 	{
@@ -1521,7 +1521,9 @@ void eDVBChannel::SDTready(int result)
 		Py_INCREF(Py_None);
 		Py_INCREF(Py_None);
 	}
-	PyObject_CallObject(m_tsid_onid_callback, args);
+	ret = PyObject_CallObject(m_tsid_onid_callback, args);
+	if (ret)
+		Py_DECREF(ret);
 	Py_DECREF(args);
 	Py_DECREF(m_tsid_onid_callback);
 	m_tsid_onid_callback = ePyObject();
