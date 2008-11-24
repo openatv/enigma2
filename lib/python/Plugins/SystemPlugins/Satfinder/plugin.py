@@ -12,33 +12,8 @@ from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
+from Components.TuneTest import Tuner
 
-class Tuner:
-	def __init__(self, frontend):
-		self.frontend = frontend
-		
-	def tune(self, transponder):
-		if self.frontend:
-			print "tuning to transponder with data", transponder
-			parm = eDVBFrontendParametersSatellite()
-			parm.frequency = transponder[0] * 1000
-			parm.symbol_rate = transponder[1] * 1000
-			parm.polarisation = transponder[2]
-			parm.fec = transponder[3]
-			parm.inversion = transponder[4]
-			parm.orbital_position = transponder[5]
-			parm.system = transponder[6]
-			parm.modulation = transponder[7]
-			parm.rolloff = transponder[8]
-			parm.pilot = transponder[9]
-			feparm = eDVBFrontendParameters()
-			feparm.setDVBS(parm, True)
-			self.lastparm = feparm
-			self.frontend.tune(feparm)
-
-	def retune(self):
-		if self.frontend:
-			self.frontend.tune(self.lastparm)
 
 class Satfinder(ScanSetup):
 	def openFrontend(self):

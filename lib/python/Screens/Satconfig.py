@@ -384,18 +384,26 @@ class NimSelection(Screen):
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)
 		self.updateList()
+		
+		self.setResultClass()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.okbuttonClick ,
 			"cancel": self.close
 		}, -2)
+		
+	def setResultClass(self):
+		self.resultclass = NimSetup
 
 	def okbuttonClick(self):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
 		if nim is not None and not nim.empty:
-			self.session.openWithCallback(self.updateList, NimSetup, nim.slot)
+			self.session.openWithCallback(self.updateList, self.resultclass, nim.slot)
+			
+	def showNim(self, nim):
+		return True
 
 	def updateList(self):
 		self.list = [ ]
@@ -403,42 +411,44 @@ class NimSelection(Screen):
 			slotid = x.slot
 			nimConfig = nimmanager.getNimConfig(x.slot)
 			text = nimConfig.configMode.value
-			if x.isCompatible("DVB-S"):
-				if nimConfig.configMode.value in ["loopthrough", "equal", "satposdepends"]:
-					text = { "loopthrough": _("loopthrough to"),
-							 "equal": _("equal to"),
-							 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
-					text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
-				elif nimConfig.configMode.value == "nothing":
-					text = _("nothing connected")
-				elif nimConfig.configMode.value == "simple":
-					if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-						text = _("Sats") + ": " 
-						if nimConfig.diseqcA.orbital_position != 3601:
-							text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
-						if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-							if nimConfig.diseqcB.orbital_position != 3601:
-								text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
-						if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
-							if nimConfig.diseqcC.orbital_position != 3601:
-								text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
-							if nimConfig.diseqcD.orbital_position != 3601:
-								text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
-					elif nimConfig.diseqcMode.value == "positioner":
-						text = _("Positioner") + ":"
-						if nimConfig.positionerMode.value == "usals":
-							text += _("USALS")
-						elif nimConfig.positionerMode.value == "manual":
-							text += _("manual")
-					else:	
-						text = _("simple")
-				elif nimConfig.configMode.value == "advanced":
-					text = _("advanced")
-			elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
-				if nimConfig.configMode.value == "nothing":
-					text = _("nothing connected")
-				elif nimConfig.configMode.value == "enabled":
-					text = _("enabled")
-				
-			self.list.append((slotid, x.friendly_full_description, text, x))
+			if self.showNim(x):
+				if x.isCompatible("DVB-S"):
+					if nimConfig.configMode.value in ["loopthrough", "equal", "satposdepends"]:
+						text = { "loopthrough": _("loopthrough to"),
+								 "equal": _("equal to"),
+								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
+						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
+					elif nimConfig.configMode.value == "nothing":
+						text = _("nothing connected")
+					elif nimConfig.configMode.value == "simple":
+						if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+							text = _("Sats") + ": " 
+							if nimConfig.diseqcA.orbital_position != 3601:
+								text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
+							if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+								if nimConfig.diseqcB.orbital_position != 3601:
+									text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
+							if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
+								if nimConfig.diseqcC.orbital_position != 3601:
+									text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
+								if nimConfig.diseqcD.orbital_position != 3601:
+									text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
+						elif nimConfig.diseqcMode.value == "positioner":
+							text = _("Positioner") + ":"
+							if nimConfig.positionerMode.value == "usals":
+								text += _("USALS")
+							elif nimConfig.positionerMode.value == "manual":
+								text += _("manual")
+						else:	
+							text = _("simple")
+					elif nimConfig.configMode.value == "advanced":
+						text = _("advanced")
+				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
+					if nimConfig.configMode.value == "nothing":
+						text = _("nothing connected")
+					elif nimConfig.configMode.value == "enabled":
+						text = _("enabled")
+					
+				self.list.append((slotid, x.friendly_full_description, text, x))
+		self["nimlist"].setList(self.list)
 		self["nimlist"].updateList(self.list)
