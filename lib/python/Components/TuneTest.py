@@ -51,21 +51,32 @@ class TuneTest:
 		self.tuner = Tuner(self.frontend)
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateStatus)
+		
+	def gotTsidOnid(self, tsid, onid):
+		print "******** got tsid, onid:", tsid, onid
+		self.tsid = tsid
+		self.onid = onid
+		if tsid is not None and onid is not None:
+			self.pidStatus = self.INTERNAL_PID_STATUS_SUCCESSFUL
+		else:
+			self.pidStatus = self.INTERNAL_PID_STATUS_FAILED
+		self.timer.start(100, True)
 			
 	def updateStatus(self):
 		dict = {}
 		self.frontend.getFrontendStatus(dict)
-		print "status:", dict
-
 		stop = False
 		
+		print "status:", dict
 		if dict["tuner_state"] == "TUNING":
+			print "TUNING"
 			self.timer.start(100, True)
 			self.progressCallback((len(self.transponderlist), self.tuningtransponder, self.STATUS_TUNING, self.currTuned))
 		elif self.checkPIDs and self.pidStatus == self.INTERNAL_PID_STATUS_NOOP:
+			print "2nd choice"
 			if dict["tuner_state"] == "LOCKED":
 				print "acquiring TSID/ONID"
-				# TODO start getting TSID/ONID
+				self.raw_channel.requestTsidOnid(self.gotTsidOnid)
 				self.pidStatus = self.INTERNAL_PID_STATUS_WAITING
 			else:
 				self.pidStatus = self.INTERNAL_PID_STATUS_FAILED
@@ -80,9 +91,7 @@ class TuneTest:
 			elif dict["tuner_state"] == "LOCKED":
 				pidsFailed = False
 				if self.checkPIDs:
-					tsid = 0 # TODO read values
-					onid = 0 # TODO read values
-					if tsid != self.currTuned[8] or onid != self.currTuned[9]:
+					if self.tsid != self.currTuned[8] or self.onid != self.currTuned[9]:
 						self.failedTune.append([self.currTuned, self.oldTuned, "pids_failed"])
 						pidsFailes = True
 				elif not self.checkPIDs or (self.checkPids and not pidsFailed):  
@@ -98,8 +107,11 @@ class TuneTest:
 			if not stop:
 				self.tune()
 		if self.tuningtransponder < len(self.transponderlist) and not stop:
-			self.timer.start(100, True)
-			print "restart timer"
+			if self.pidStatus != self.INTERNAL_PID_STATUS_WAITING:
+				self.timer.start(100, True)
+				print "restart timer"
+			else:
+				print "not restarting timers (waiting for pids)"
 		else:
 			self.progressCallback((len(self.transponderlist), self.tuningtransponder, self.STATUS_DONE, self.currTuned))
 			print "finishedChecking"
