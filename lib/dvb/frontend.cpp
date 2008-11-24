@@ -728,7 +728,7 @@ int eDVBFrontend::readFrontendData(int type)
 				eDebug("FE_READ_SNR failed (%m)");
 			if (!strcmp(m_description, "BCM4501 (internal)"))
 			{
-				unsigned int SDS_SNRE = snr << 16;
+				float SDS_SNRE = snr << 16;
 				float snr_in_db;
 
 				if (parm_u_qpsk_fec_inner <= FEC_AUTO) // DVB-S1 / QPSK
@@ -748,7 +748,7 @@ int eDVBFrontend::readFrontendData(int type)
 					if (fval1 < 10.0)
 					{
 						fval2 = SNR_COEFF[0];
-						for (int i=0; i<6; ++i)
+						for (int i=1; i<6; ++i)
 						{
 							fval2 *= fval1;
 							fval2 += SNR_COEFF[i];
