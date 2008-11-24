@@ -482,17 +482,20 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			else:
 				menu.append((_("add files to playlist"), "copyfiles"))
 			menu.append((_("switch to playlist"), "playlist"))
-			menu.append((_("delete file"), "deletefile"))
+			if config.usage.setup_level.index >= 1: # intermediate+
+				menu.append((_("delete file"), "deletefile"))
 		else:
 			menu.append((_("switch to filelist"), "filelist"))
-			menu.append((_("shuffle playlist"), "shuffle"))
-			menu.append((_("Delete entry"), "deleteentry"))
 			menu.append((_("clear playlist"), "clear"))
+			menu.append((_("Delete entry"), "deleteentry"))
+			if config.usage.setup_level.index >= 1: # intermediate+
+				menu.append((_("shuffle playlist"), "shuffle"))
 		menu.append((_("hide player"), "hide"));
-		menu.append((_("save playlist"), "saveplaylist"));
 		menu.append((_("load playlist"), "loadplaylist"));
-		menu.append((_("delete saved playlist"), "deleteplaylist"));
-		menu.append((_("Edit settings"), "settings"))
+		if config.usage.setup_level.index >= 1: # intermediate+
+			menu.append((_("save playlist"), "saveplaylist"));
+			menu.append((_("delete saved playlist"), "deleteplaylist"));
+			menu.append((_("Edit settings"), "settings"))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):

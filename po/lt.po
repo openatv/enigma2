@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-18 13:25+0100\n"
-"PO-Revision-Date: 2008-11-17 14:56+0200\n"
+"POT-Creation-Date: 2008-11-24 14:31+0100\n"
+"PO-Revision-Date: 2008-11-18 23:49+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -93,9 +93,6 @@ msgstr "* Pasiekiamas tiktai, surinkus paslėptą SSID ar tinklo raktą"
 
 msgid ".NFI Download failed:"
 msgstr ".NFI parsisiuntimas klaidingas:"
-
-msgid ".NFI Flasher bootable USB stick successfully created."
-msgstr ".NFI diegėjo paleidimo USB raktelis sėkmingai sukurtas."
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
@@ -734,9 +731,6 @@ msgstr "Tęsti žiūrėjimą"
 msgid "Contrast"
 msgstr "Kontrastas"
 
-msgid "Copying USB flasher boot image to stick..."
-msgstr "Kopijuojamas USB diegėjo paleidimo atvaizdas į raktelį..."
-
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr "Negalima prisijungti prie Dreambox .NFI atvaizdo perdavimo serverio:"
 
@@ -812,9 +806,6 @@ msgstr "Danų"
 
 msgid "Date"
 msgstr "Duomenys"
-
-msgid "Decompressing USB stick flasher boot image..."
-msgstr "Dekompresuojamas USB raktelis, diegėjo paleidžiamasis atvaizdas..."
 
 msgid "Deep Standby"
 msgstr "Visiškai išjungti"
@@ -1034,9 +1025,6 @@ msgstr "Galimi įdiegti priedai"
 msgid "Downloading"
 msgstr "Parsisiunčiama"
 
-msgid "Downloading image description..."
-msgstr "Atvaizdo apibūdinimo parsisiuntimas..."
-
 msgid "Downloading plugin information. Please wait..."
 msgstr "Parsiunčiama informacija apie priedus. Prašome palaukti..."
 
@@ -1192,6 +1180,9 @@ msgstr "Vykdymo eiga:"
 msgid "Execution finished!!"
 msgstr "Vykdymas baigtas!!"
 
+msgid "Exif"
+msgstr ""
+
 msgid "Exit"
 msgstr "Išeiti"
 
@@ -1265,9 +1256,6 @@ msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr "Iš pradžių reikia parsisiųsti paskutinę aplinką USB atvaizdo diegėjui."
 
-msgid "Fix USB stick"
-msgstr "Taisyti USB"
-
 msgid "Flash"
 msgstr "Vidinė atmintis"
 
@@ -1282,6 +1270,9 @@ msgstr "Formatas"
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Rėmo pakartojimo skaičiavimas per nelygų vingiavimą"
+
+msgid "Frame size in full view"
+msgstr ""
 
 msgid "French"
 msgstr "Prancūzų"
@@ -1845,7 +1836,7 @@ msgid "No satellite frontend found!!"
 msgstr "Nerastas palydovas!!"
 
 msgid "No tags are set on these movies."
-msgstr ""
+msgstr "Jokios kortelės su užrašu nėra nustatytos šiems kino filmams"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Nėra imtuvo, suderinto naudotis su diseqc pozicionieriumi!"
@@ -1951,15 +1942,6 @@ msgid "Now Playing"
 msgstr "Dabar grojama"
 
 msgid ""
-"Now please insert the USB stick (minimum size is 64 MB) that you want to "
-"format and use as .NFI image flasher. Press OK after you've put the stick "
-"back in."
-msgstr ""
-"Dabar prašome įdėti USB raktelį (minimalus dydis yra 64 MB), kad "
-"suformatuoti ir naudoti kaip.NFI atvaizdo diegėją. Spauskite OK  po to, kai "
-"jūs įdėjote raktelį."
-
-msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -2032,14 +2014,14 @@ msgstr "Tėvų kontrolės nustatymai"
 msgid "Parental control type"
 msgstr "Tėvų kontrolės rūšis"
 
-msgid "Partitioning USB stick..."
-msgstr "Padalijamas USB raktelis..."
-
 msgid "Pause movie at end"
 msgstr "Filmo pauzė pabaigoje"
 
 msgid "PiPSetup"
 msgstr "PiP nustatymas"
+
+msgid "PicturePlayer"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -2084,6 +2066,11 @@ msgstr "Prašom išsirinkti, paketą..."
 msgid "Please choose the default services lists you want to install."
 msgstr ""
 "Prašome pasirinkti numatytuosius kanalų sąrašus, kuriuos jūs norite įdiegti."
+
+msgid ""
+"Please disconnect all USB devices from your Dreambox and (re-)attach the "
+"target USB stick (minimum size is 64 MB) now!"
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Prašome nekeisti reikšmių, jeigu Jūs nežinote ką darote! "
@@ -2141,7 +2128,7 @@ msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
 
 msgid "Please select tag to filter..."
-msgstr ""
+msgstr "Prašome išsirinkti kortelę filtravimui..."
 
 msgid "Please select target directory or medium"
 msgstr "Prašome išsirinkti direktoriją arba diską"
@@ -2176,9 +2163,6 @@ msgstr ""
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Prašome laukti jūsų tinklo konfigūracijos aktyvavimo..."
-
-msgid "Please wait for md5 signature verification..."
-msgstr "Prašome laukti md5 parašo patikrinimo..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Prašome laukti kol konfigūruojamas jūsų tinklas..."
@@ -2359,9 +2343,6 @@ msgstr "Atnaujinimo norma"
 
 msgid "Refresh rate selection."
 msgstr "Atnaujinkite normos pasirinkimą"
-
-msgid "Remounting stick partition..."
-msgstr "Perjungiamas raktelio padalinimas..."
 
 msgid "Remove Bookmark"
 msgstr "Pašalinti žymę"
@@ -2957,13 +2938,13 @@ msgid "Table of content for collection"
 msgstr "Turinio lentelė dėl kolekcijos"
 
 msgid "Tag 1"
-msgstr ""
+msgstr "Kortelė 1"
 
 msgid "Tag 2"
-msgstr ""
+msgstr "Kortelė 2"
 
 msgid "Tags"
-msgstr ""
+msgstr "Kortelės"
 
 msgid "Terrestrial"
 msgstr "Antžeminė"
@@ -2989,17 +2970,6 @@ msgstr ""
 "Prašome nuspauskite OK, kad pradėti naudotis imtuvu."
 
 msgid ""
-"The .NFI Image flasher USB stick is now ready to use. Please download an ."
-"NFI image file from the feed server and save it on the stick. Then reboot "
-"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
-"stick!"
-msgstr ""
-".NFI atvaizdo diegimo USB raktelis yra paruoštas naudoti. Prašome perkelti ."
-"NFI atvaizdo failą iš perdavimo serverio ir išsaugoti jį raktelyje. Tada "
-"perkraukite ir laikykite nuspaustą mygtuką 'Žemyn' ant priekinės imtuvo "
-"panėlės kad paleisti .NFI diegėją iš raktelio!"
-
-msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
@@ -3007,6 +2977,11 @@ msgstr ""
 "DVD standartas nepalaiko H.264 (HDTV) vaizdo srauto. Jūs norite sukurti "
 "Dreambox formato duomenų DVD (kuris nepasileis viena pozicija DVD "
 "grotuvuose), vietoj to?"
+
+msgid ""
+"The USB stick is now bootable. Do you want to download the latest image from "
+"the feed server and save it on the stick?"
+msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui. "
@@ -3218,6 +3193,9 @@ msgstr "Heterodinas"
 msgid "Thu"
 msgstr "Ket"
 
+msgid "Thumbnails"
+msgstr ""
+
 msgid "Thursday"
 msgstr "Ketvirtadienis"
 
@@ -3268,7 +3246,7 @@ msgid "Timeshift not possible!"
 msgstr "Laiko perstumimas negalimas!"
 
 msgid "Timeshift path..."
-msgstr ""
+msgstr "Laiko poslinkio kelias..."
 
 msgid "Timezone"
 msgstr "Laiko juosta"
@@ -3286,11 +3264,13 @@ msgid "Titleset mode"
 msgstr "Pavadinimo nustatymo būdas"
 
 msgid ""
-"To make sure you intend to do this, please remove the target USB stick now "
-"and stick it back in upon prompt. Press OK when you have taken the stick out."
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and plug in the bootable USB "
+"stick.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Jeigu jūs ketinate daryti tai, prašome pašalinti USB raktelį dabar. "
-"Spauskite OK, kai išimsite raktelįį."
 
 msgid "Today"
 msgstr "Šiandien"
@@ -3380,6 +3360,9 @@ msgstr "USB"
 
 msgid "USB Stick"
 msgstr "USB raktelis"
+
+msgid "USB stick wizard"
+msgstr ""
 
 msgid "Ukrainian"
 msgstr "Ukrainiečių"
@@ -3567,9 +3550,6 @@ msgstr "WSS į 4:3"
 msgid "Waiting"
 msgstr "Laukite"
 
-msgid "Waiting for USB stick to settle..."
-msgstr "Laukite kol USB raktelis susitvarkys..."
-
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3639,7 +3619,7 @@ msgid "Where do you want to backup your settings?"
 msgstr "Kur Jūs norite išsaugoti nustatymų atsarginę kopiją?"
 
 msgid "Where to save temporary timeshift recordings?"
-msgstr ""
+msgstr "Kur saugoti laikinus laiko poslinkio įrašus?"
 
 msgid "Wireless"
 msgstr "Belaidis "
@@ -3655,9 +3635,6 @@ msgstr "Įrašymas klaidingas!"
 
 msgid "Writing NFI image file to flash completed"
 msgstr "NFI atvaizdo failo įrašymas į vidinę atmintį užbaigtas"
-
-msgid "Writing image file to NAND Flash"
-msgstr "Atvaizdo failo į NAND fliašą įrašymas"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -3941,18 +3918,24 @@ msgstr "atgal"
 msgid "background image"
 msgstr "foninis atvaizdas"
 
+msgid "backgroundcolor"
+msgstr ""
+
 msgid "better"
 msgstr "geriau"
+
+msgid "black"
+msgstr ""
 
 msgid "blacklist"
 msgstr "juodas sąrašas"
 
+msgid "blue"
+msgstr ""
+
 #, python-format
 msgid "burn audio track (%s)"
 msgstr "išdeginkite garso takelį (%s)"
-
-msgid "by Exif"
-msgstr "pagal Exif"
 
 msgid "change recording (duration)"
 msgstr "pakeisti įrašymą (trukmę)"
@@ -4113,6 +4096,9 @@ msgstr "išeiti iš tinklo adapterio nustatymų meniu"
 msgid "failed"
 msgstr "klaidingas"
 
+msgid "fileformats (BMP, PNG, JPG, GIF)"
+msgstr ""
+
 msgid "filename"
 msgstr "failo pavadinimas"
 
@@ -4136,6 +4122,9 @@ msgstr "eiti į visišką išjungimą"
 
 msgid "go to standby"
 msgstr "eiti į išjungimą"
+
+msgid "green"
+msgstr ""
 
 msgid "headline"
 msgstr "antraštė"
@@ -4289,9 +4278,6 @@ msgstr "ne"
 msgid "no HDD found"
 msgstr "Kietas diskas nerastas"
 
-msgid "no Picture found"
-msgstr "Paveikslėlių nerasta"
-
 msgid "no module found"
 msgstr "modulis nerastas"
 
@@ -4370,14 +4356,14 @@ msgstr "Buvęs kanalas"
 msgid "previous channel in history"
 msgstr "Buvęs kanalas į istoriją"
 
-msgid "rebooting..."
-msgstr "perleidžiama..."
-
 msgid "record"
 msgstr "įrašas"
 
 msgid "recording..."
 msgstr "įrašoma..."
+
+msgid "red"
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr "pašalinkite serverio pavadinimo įėjimą"
@@ -4488,6 +4474,9 @@ msgstr "rodyti DVD pagrindinį meniu"
 msgid "show EPG..."
 msgstr "Rodyti EPG..."
 
+msgid "show Infoline"
+msgstr ""
+
 msgid "show all"
 msgstr "rodyti viską"
 
@@ -4501,10 +4490,10 @@ msgid "show extended description"
 msgstr "rodyti išplėstą informaciją"
 
 msgid "show first selected tag"
-msgstr ""
+msgstr "rodyti pirmą išsirinktą kortelę su užrašu"
 
 msgid "show second selected tag"
-msgstr ""
+msgstr "rodyti kitą išsirinktą kortelę su užrašu"
 
 msgid "show shutdown menu"
 msgstr "išjungimo meniu"
@@ -4538,6 +4527,9 @@ msgstr "Praleisti sukimą į priekį"
 
 msgid "skip forward (enter time)"
 msgstr "Praleisti pirmyn (įrašykite laiką)"
+
+msgid "slide picture in loop"
+msgstr ""
 
 msgid "sort by date"
 msgstr "rūšiuoti pagal datą"
@@ -4596,6 +4588,9 @@ msgstr "perjungti į kitą subtitrų kalbą"
 msgid "text"
 msgstr "tekstas"
 
+msgid "textcolor"
+msgstr ""
+
 msgid "this recording"
 msgstr "tai įrašyta"
 
@@ -4647,6 +4642,9 @@ msgstr "baltas sąrašas"
 msgid "year"
 msgstr "metai"
 
+msgid "yellow"
+msgstr ""
+
 msgid "yes"
 msgstr "taip"
 
@@ -4675,6 +4673,9 @@ msgstr "įjungta"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
+
+#~ msgid ".NFI Flasher bootable USB stick successfully created."
+#~ msgstr ".NFI diegėjo paleidimo USB raktelis sėkmingai sukurtas."
 
 #~ msgid "Abort"
 #~ msgstr "Nutraukti"
@@ -4752,6 +4753,9 @@ msgstr "įjungta"
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Prisijunkite prie interneto su vietiniu tinklu"
 
+#~ msgid "Copying USB flasher boot image to stick..."
+#~ msgstr "Kopijuojamas USB diegėjo paleidimo atvaizdas į raktelį..."
+
 #~ msgid "DVD ENTER key"
 #~ msgstr "DVD SURINKTI raktą"
 
@@ -4766,6 +4770,9 @@ msgstr "įjungta"
 
 #~ msgid "DVD up key"
 #~ msgstr "DVD aukštyn raktas"
+
+#~ msgid "Decompressing USB stick flasher boot image..."
+#~ msgstr "Dekompresuojamas USB raktelis, diegėjo paleidžiamasis atvaizdas..."
 
 #~ msgid "Default-Wizard"
 #~ msgstr "Numatytas vedlys"
@@ -4795,6 +4802,9 @@ msgstr "įjungta"
 
 #~ msgid "Do you really want to exit?"
 #~ msgstr "Jūs tikrai norite išeiti?"
+
+#~ msgid "Downloading image description..."
+#~ msgstr "Atvaizdo apibūdinimo parsisiuntimas..."
 
 #~ msgid "Edit current title"
 #~ msgstr "Suredaguokite dabartinį pavadinimą"
@@ -4827,6 +4837,9 @@ msgstr "įjungta"
 
 #~ msgid "Factoryreset"
 #~ msgstr "Gamykliniai nustatymai"
+
+#~ msgid "Fix USB stick"
+#~ msgstr "Taisyti USB"
 
 #~ msgid "Jump to video title 1 (play movie from start)"
 #~ msgstr "Šuolis į vaizdo pavadinimą 1 (rodo kino filmą nuo pradžios)"
@@ -4888,8 +4901,20 @@ msgstr "įjungta"
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Ne, leiskite man pasirinkti numatytuosius sąrašus"
 
+#~ msgid ""
+#~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
+#~ "format and use as .NFI image flasher. Press OK after you've put the stick "
+#~ "back in."
+#~ msgstr ""
+#~ "Dabar prašome įdėti USB raktelį (minimalus dydis yra 64 MB), kad "
+#~ "suformatuoti ir naudoti kaip.NFI atvaizdo diegėją. Spauskite OK  po to, "
+#~ "kai jūs įdėjote raktelį."
+
 #~ msgid "Other..."
 #~ msgstr "Kitas..."
+
+#~ msgid "Partitioning USB stick..."
+#~ msgstr "Padalijamas USB raktelis..."
 
 #~ msgid ""
 #~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
@@ -4959,6 +4984,9 @@ msgstr "įjungta"
 #~ "\n"
 #~ "Prašome spausti OK, kad tęsti."
 
+#~ msgid "Please wait for md5 signature verification..."
+#~ msgstr "Prašome laukti md5 parašo patikrinimo..."
+
 #, fuzzy
 #~ msgid "Port"
 #~ msgstr "Jungtis A"
@@ -4995,6 +5023,9 @@ msgstr "įjungta"
 #~ "shutdown now?"
 #~ msgstr ""
 #~ "Vyksta įrašymas arba netrukus prasidės... tikrai norite išjungti dabar?"
+
+#~ msgid "Remounting stick partition..."
+#~ msgstr "Perjungiamas raktelio padalinimas..."
 
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Paleiskite iš naujo savo belaidį įrenginį"
@@ -5078,6 +5109,25 @@ msgstr "įjungta"
 #~ "naudojimui.\n"
 #~ "Prašome nuspauskite OK, kad pradėti naudotis imtuvu."
 
+#~ msgid ""
+#~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
+#~ "NFI image file from the feed server and save it on the stick. Then reboot "
+#~ "and hold the 'Down' key on the front panel to boot the .NFI flasher from "
+#~ "the stick!"
+#~ msgstr ""
+#~ ".NFI atvaizdo diegimo USB raktelis yra paruoštas naudoti. Prašome "
+#~ "perkelti .NFI atvaizdo failą iš perdavimo serverio ir išsaugoti jį "
+#~ "raktelyje. Tada perkraukite ir laikykite nuspaustą mygtuką 'Žemyn' ant "
+#~ "priekinės imtuvo panėlės kad paleisti .NFI diegėją iš raktelio!"
+
+#~ msgid ""
+#~ "To make sure you intend to do this, please remove the target USB stick "
+#~ "now and stick it back in upon prompt. Press OK when you have taken the "
+#~ "stick out."
+#~ msgstr ""
+#~ "Jeigu jūs ketinate daryti tai, prašome pašalinti USB raktelį dabar. "
+#~ "Spauskite OK, kai išimsite raktelįį."
+
 #, fuzzy
 #~ msgid "Use Authorization"
 #~ msgstr "Poliarizacija"
@@ -5091,6 +5141,9 @@ msgstr "įjungta"
 
 #~ msgid "VCR Switch"
 #~ msgstr "VCR perjungėjas"
+
+#~ msgid "Waiting for USB stick to settle..."
+#~ msgstr "Laukite kol USB raktelis susitvarkys..."
 
 #, fuzzy
 #~ msgid ""
@@ -5111,6 +5164,9 @@ msgstr "įjungta"
 
 #~ msgid "When complete, press Key 0 to burn the collection!"
 #~ msgstr "Kai bus baigta, spauskite mygtuką 0, kad išdegintumėte kolekciją!"
+
+#~ msgid "Writing image file to NAND Flash"
+#~ msgstr "Atvaizdo failo į NAND fliašą įrašymas"
 
 #, fuzzy
 #~ msgid "You can choose, what you want to install.."
@@ -5179,6 +5235,9 @@ msgstr "įjungta"
 #~ "Jūsų belaidžio interneto prisijungimas neveikia!\n"
 #~ "Prašom pasirinkti tai, ką jūs norite padaryti paskui."
 
+#~ msgid "by Exif"
+#~ msgstr "pagal Exif"
+
 #~ msgid "cancel"
 #~ msgstr "panaikinti"
 
@@ -5197,8 +5256,14 @@ msgstr "įjungta"
 #~ msgid "minutes and"
 #~ msgstr "minučių ir"
 
+#~ msgid "no Picture found"
+#~ msgstr "Paveikslėlių nerasta"
+
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "tik /etc/enigma2 direktoriją"
+
+#~ msgid "rebooting..."
+#~ msgstr "perleidžiama..."
 
 #~ msgid "scan done! %d services found!"
 #~ msgstr "Paieška atlikta! %d Kanalai surasti!"
