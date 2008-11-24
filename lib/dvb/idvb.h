@@ -504,6 +504,7 @@ class iDVBChannel: public iObject
 public:
 		/* direct frontend access for raw channels and/or status inquiries. */
 	virtual SWIG_VOID(RESULT) getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT)=0;
+	virtual RESULT requestTsidOnid(SWIG_PYOBJECT(ePyObject) callback) { return -1; }
 #ifndef SWIG
 	enum
 	{
