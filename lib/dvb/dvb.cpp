@@ -1544,6 +1544,7 @@ RESULT eDVBChannel::requestTsidOnid(ePyObject callback)
 			}
 			else
 			{
+				Py_INCREF(callback);
 				m_tsid_onid_callback = callback;
 				return 0;
 			}
