@@ -4,6 +4,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/sec.h>
+#include <lib/dvb/specs.h>
 
 #include <errno.h>
 #include <sys/types.h>
@@ -1496,6 +1497,58 @@ RESULT eDVBChannel::getState(int &state)
 
 RESULT eDVBChannel::setCIRouting(const eDVBCIRouting &routing)
 {
+	return -1;
+}
+
+void eDVBChannel::SDTready(int result)
+{
+	ePyObject args = PyTuple_New(2);
+	bool ok=false;
+	if (!result)
+	{
+		for (std::vector<ServiceDescriptionSection*>::const_iterator i = m_SDT->getSections().begin(); i != m_SDT->getSections().end(); ++i)
+		{
+			ok = true;
+			PyTuple_SET_ITEM(args, 0, PyInt_FromLong((*i)->getTransportStreamId()));
+			PyTuple_SET_ITEM(args, 1, PyInt_FromLong((*i)->getOriginalNetworkId()));
+			break;
+		}
+	}
+	if (!ok)
+	{
+		PyTuple_SET_ITEM(args, 0, Py_None);
+		PyTuple_SET_ITEM(args, 1, Py_None);
+		Py_INCREF(Py_None);
+		Py_INCREF(Py_None);
+	}
+	PyObject_CallObject(m_tsid_onid_callback, args);
+	Py_DECREF(args);
+	Py_DECREF(m_tsid_onid_callback);
+	m_tsid_onid_callback = ePyObject();
+	m_tsid_onid_demux = 0;
+	m_SDT = 0;
+}
+
+RESULT eDVBChannel::requestTsidOnid(ePyObject callback)
+{
+	if (PyCallable_Check(callback))
+	{
+		if (!getDemux(m_tsid_onid_demux, 0))
+		{
+			m_SDT = new eTable<ServiceDescriptionSection>;
+			CONNECT(m_SDT->tableReady, eDVBChannel::SDTready);
+			if (m_SDT->start(m_tsid_onid_demux, eDVBSDTSpec()))
+			{
+				m_tsid_onid_demux = 0;
+				m_SDT = 0;
+			}
+			else
+			{
+				m_tsid_onid_callback = callback;
+				return 0;
+			}
+		}
+	}
 	return -1;
 }
 
