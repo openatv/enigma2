@@ -467,7 +467,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					/* type is borrowed */
 			} else
 				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
-				/* value is borrowed */
+			if (value)
+				Py_DECREF(value);
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))
@@ -622,7 +623,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	painter.clip(itemregion);
 	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip);
 
-	ePyObject items;
+	ePyObject items, buildfunc_ret;
 
 	if (m_list && cursorValid())
 	{
@@ -638,7 +639,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			if (PyCallable_Check(m_buildFunc))  // when we have a buildFunc then call it
 			{
 				if (PyTuple_Check(items))
-					items = PyObject_CallObject(m_buildFunc, items);
+					buildfunc_ret = items = PyObject_CallObject(m_buildFunc, items);
 				else
 					eDebug("items is no tuple");
 			}
@@ -983,8 +984,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
 error_out:
-	if (m_buildFunc && PyCallable_Check(m_buildFunc) && items)
-		Py_DECREF(items);
+	if (buildfunc_ret)
+		Py_DECREF(buildfunc_ret);
 
 	painter.clippop();
 }
@@ -1015,7 +1016,11 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 			{
 				ePyObject ret = PyObject_CallObject(m_selectableFunc, args);
 				if (ret)
-					return ret == Py_True;
+				{
+					bool retval = ret == Py_True;
+					Py_DECREF(ret);
+					return ret;
+				}
 				eDebug("call m_selectableFunc failed!!! assume not callable");
 			}
 			else

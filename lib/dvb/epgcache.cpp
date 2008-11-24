@@ -1672,7 +1672,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 	{
 		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, nowTime, service_name);
 		ePyObject result = PyObject_CallObject(convertFunc, convertFuncArgs);
-		if (result)
+		if (!result)
 		{
 			if (service_name)
 				Py_DECREF(service_name);
