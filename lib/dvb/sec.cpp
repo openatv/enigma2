@@ -388,6 +388,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			iDVBFrontend *sec_fe=&frontend;
 			eDVBRegisteredFrontend *linked_fe = 0;
 			eDVBSatelliteDiseqcParameters::t_diseqc_mode diseqc_mode = di_param.m_diseqc_mode;
+			eDVBSatelliteSwitchParameters::t_voltage_mode voltage_mode = sw_param.m_voltage_mode;
+			bool diseqc13V = voltage_mode == eDVBSatelliteSwitchParameters::HV_13;
+
+			if (diseqc13V)
+				voltage_mode = eDVBSatelliteSwitchParameters::HV;
 
 			frontend.getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satposDependPtr);
 
@@ -437,13 +442,13 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical))
 				band |= 2;
 
-			if ( sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::_14V
+			if ( voltage_mode == eDVBSatelliteSwitchParameters::_14V
 				|| ( sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical
-					&& sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
+					&& voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
 				voltage = VOLTAGE(13);
-			else if ( sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::_18V
+			else if ( voltage_mode == eDVBSatelliteSwitchParameters::_18V
 				|| ( !(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical)
-					&& sw_param.m_voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
+					&& voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
 				voltage = VOLTAGE(18);
 			if ( (sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::ON)
 				|| ( sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::HILO && (band&1) ) )
@@ -597,7 +602,9 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
 
-						if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
+						if (diseqc13V)
+							vlt = iDVBFrontend::voltage13;
+						else if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
 						{
 							if (rotor_param.m_inputpower_parameters.m_use)
 								vlt = VOLTAGE(18);  // in input power mode set 18V for measure input power
