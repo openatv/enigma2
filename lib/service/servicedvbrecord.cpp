@@ -363,23 +363,23 @@ RESULT eDVBServiceRecord::stream(ePtr<iStreamableService> &ptr)
 	return 0;
 }
 
+extern void PutToDict(ePyObject &dict, const char*key, ePyObject item);  // defined in dvb/frontend.cpp
+
 PyObject *eDVBServiceRecord::getStreamingData()
 {
 	eDVBServicePMTHandler::program program;
 	if (!m_tuned || m_service_handler.getProgramInfo(program))
 	{
-		Py_INCREF(Py_None);
-		return Py_None;
+		Py_RETURN_NONE;
 	}
 
-	PyObject *r = program.createPythonObject();
+	ePyObject r = program.createPythonObject();
 	ePtr<iDVBDemux> demux;
 	if (!m_service_handler.getDataDemux(demux))
 	{
 		uint8_t demux_id;
-		demux->getCADemuxID(demux_id);
-		
-		PyDict_SetItemString(r, "demux", PyInt_FromLong(demux_id));
+		if (!demux->getCADemuxID(demux_id))
+			PutToDict(r, "demux", PyInt_FromLong(demux_id));
 	}
 
 	return r;
