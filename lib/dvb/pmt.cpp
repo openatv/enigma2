@@ -1143,8 +1143,8 @@ void eDVBCAService::sendCAPMT()
 static PyObject *createTuple(int pid, const char *type)
 {
 	PyObject *r = PyTuple_New(2);
-	PyTuple_SetItem(r, 0, PyInt_FromLong(pid));
-	PyTuple_SetItem(r, 1, PyString_FromString(type));
+	PyTuple_SET_ITEM(r, 0, PyInt_FromLong(pid));
+	PyTuple_SET_ITEM(r, 1, PyString_FromString(type));
 	return r;
 }
 
@@ -1154,17 +1154,18 @@ static inline void PyList_AppendSteal(PyObject *list, PyObject *item)
 	Py_DECREF(item);
 }
 
+extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
+
 PyObject *eDVBServicePMTHandler::program::createPythonObject()
 {
-	PyObject *r = PyDict_New();
+	ePyObject r = PyDict_New();
+	ePyObject l = PyList_New(0);
 
-	PyObject *l = PyList_New(0);
-	
 	PyList_AppendSteal(l, createTuple(0, "pat"));
 
 	if (pmtPid != -1)
 		PyList_AppendSteal(l, createTuple(pmtPid, "pmt"));
-	
+
 	for (std::vector<eDVBServicePMTHandler::videoStream>::const_iterator
 			i(videoStreams.begin()); 
 			i != videoStreams.end(); ++i)
@@ -1184,7 +1185,8 @@ PyObject *eDVBServicePMTHandler::program::createPythonObject()
 
 	if (textPid != -1)
 		PyList_AppendSteal(l, createTuple(textPid, "text"));
-		
-	PyDict_SetItemString(r, "pids", l);
+
+	PutToDict(r, "pids", l);
+
 	return r;
 }

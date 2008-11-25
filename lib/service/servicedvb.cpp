@@ -109,7 +109,7 @@ static void PutToDict(ePyObject &dict, const char*key, long value)
 		eDebug("could not create PyObject for %s", key);
 }
 
-extern void PutToDict(ePyObject &dict, const char*key, const char *value);
+extern void PutToDict(ePyObject &dict, const char*key, const char *value); // defined in dvb/frontend.cpp
 
 void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm)
 {
@@ -2197,8 +2197,8 @@ PyObject *eDVBServicePlay::getCutList()
 	for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 	{
 		ePyObject tuple = PyTuple_New(2);
-		PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(i->where));
-		PyTuple_SetItem(tuple, 1, PyInt_FromLong(i->what));
+		PyTuple_SET_ITEM(tuple, 0, PyLong_FromLongLong(i->where));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(i->what));
 		PyList_Append(list, tuple);
 		Py_DECREF(tuple);
 	}
@@ -3020,23 +3020,23 @@ RESULT eDVBServicePlay::stream(ePtr<iStreamableService> &ptr)
 	return 0;
 }
 
+extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
+
 PyObject *eDVBServicePlay::getStreamingData()
 {
 	eDVBServicePMTHandler::program program;
 	if (m_service_handler.getProgramInfo(program))
 	{
-		Py_INCREF(Py_None);
-		return Py_None;
+		Py_RETURN_NONE;
 	}
 
-	PyObject *r = program.createPythonObject();
+	ePyObject r = program.createPythonObject();
 	ePtr<iDVBDemux> demux;
 	if (!m_service_handler.getDataDemux(demux))
 	{
 		uint8_t demux_id;
-		demux->getCADemuxID(demux_id);
-		
-		PyDict_SetItemString(r, "demux", PyInt_FromLong(demux_id));
+		if (!demux->getCADemuxID(demux_id))
+			PutToDict(r, "demux", PyInt_FromLong(demux_id));
 	}
 
 	return r;
