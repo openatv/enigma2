@@ -170,7 +170,7 @@ class eDVBSatelliteSwitchParameters
 #endif
 public:
 	enum t_22khz_signal {	HILO=0, ON=1, OFF=2	}; // 22 Khz
-	enum t_voltage_mode	{	HV=0, _14V=1, _18V=2, _0V=3 }; // 14/18 V
+	enum t_voltage_mode	{	HV=0, _14V=1, _18V=2, _0V=3, HV_13=4 }; // 14/18 V
 #ifndef SWIG
 	t_voltage_mode m_voltage_mode;
 	t_22khz_signal m_22khz_signal;
