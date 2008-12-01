@@ -19,20 +19,22 @@ class Harddisk:
 		s_minor = int(tmp[1])
 		for disc in listdir("/dev/discs"):
 			path = readlink('/dev/discs/'+disc)
-			devidex = '/dev'+path[2:]+'/'
-			disc = devidex+'disc'
+			devidex = '/dev/discs/'+disc+'/'
+			devidex2 = '/dev'+path[2:]+'/'
+			disc = devidex2+'disc'
 			ret = stat(disc).st_rdev
 			if s_major == major(ret) and s_minor == minor(ret):
 				self.devidex = devidex
-				print "new Harddisk",  device, self.devidex
+				self.devidex2 = devidex2
+				print "new Harddisk", device, '->', self.devidex, '->', self.devidex2
 				break
 
 	def __lt__(self, ob):
 		return self.device < ob.device
 
 	def bus(self):
-		ide_cf = self.device.find("hd") == 0 and self.devidex.find("host0") == -1 # 7025 specific
-		internal = self.device.find("hd") == 0 and self.devidex
+		ide_cf = self.device.find("hd") == 0 and self.devidex2.find("host0") == -1 # 7025 specific
+		internal = self.device.find("hd") == 0
 		if ide_cf:
 			ret = "External (CF)"
 		elif internal:
