@@ -47,6 +47,7 @@ class AFTEREVENT:
 	NONE = 0
 	STANDBY = 1
 	DEEPSTANDBY = 2
+	AUTO = 3
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
@@ -91,7 +92,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False, dirname = None, tags = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers == True:
@@ -361,7 +362,12 @@ def createTimer(xml):
 	disabled = long(xml.getAttribute("disabled") or "0")
 	justplay = long(xml.getAttribute("justplay") or "0")
 	afterevent = str(xml.getAttribute("afterevent") or "nothing")
-	afterevent = { "nothing": AFTEREVENT.NONE, "standby": AFTEREVENT.STANDBY, "deepstandby": AFTEREVENT.DEEPSTANDBY }[afterevent]
+	afterevent = {
+		"nothing": AFTEREVENT.NONE,
+		"standby": AFTEREVENT.STANDBY,
+		"deepstandby": AFTEREVENT.DEEPSTANDBY,
+		"auto": AFTEREVENT.AUTO
+		}[afterevent]
 	if xml.hasAttribute("eit") and xml.getAttribute("eit") != "None":
 		eit = long(xml.getAttribute("eit"))
 	else:
@@ -493,7 +499,12 @@ class RecordTimer(timer.Timer):
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
 			list.append(' name="' + str(stringToXML(timer.name)) + '"')
 			list.append(' description="' + str(stringToXML(timer.description)) + '"')
-			list.append(' afterevent="' + str(stringToXML({ AFTEREVENT.NONE: "nothing", AFTEREVENT.STANDBY: "standby", AFTEREVENT.DEEPSTANDBY: "deepstandby" }[timer.afterEvent])) + '"')
+			list.append(' afterevent="' + str(stringToXML({
+				AFTEREVENT.NONE: "nothing",
+				AFTEREVENT.STANDBY: "standby",
+				AFTEREVENT.DEEPSTANDBY: "deepstandby",
+				AFTEREVENT.AUTO: "auto"
+				}[timer.afterEvent])) + '"')
 			if timer.eit is not None:
 				list.append(' eit="' + str(timer.eit) + '"')
 			if timer.dirname is not None:
@@ -537,6 +548,18 @@ class RecordTimer(timer.Timer):
 				continue
 			return timer.begin
 		return -1
+
+	def isNextRecordAfterEventActionAuto(self):
+		now = time.time()
+		t = None
+		for timer in self.timer_list:
+			if timer.justplay or timer.begin < now:
+				continue
+			if t is None or t.begin == timer.begin:
+				t = timer
+				if t.afterEvent == AFTEREVENT.AUTO:
+					return True
+		return False
 
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)

@@ -46,7 +46,12 @@ class TimerEntry(Screen, ConfigListScreen):
 	def createConfig(self):
 			justplay = self.timer.justplay
 
-			afterevent = { AFTEREVENT.NONE: "nothing", AFTEREVENT.DEEPSTANDBY: "deepstandby", AFTEREVENT.STANDBY: "standby"}[self.timer.afterEvent]
+			afterevent = {
+				AFTEREVENT.NONE: "nothing",
+				AFTEREVENT.DEEPSTANDBY: "deepstandby",
+				AFTEREVENT.STANDBY: "standby",
+				AFTEREVENT.AUTO: "auto"
+				}[self.timer.afterEvent]
 
 			weekday_table = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 
@@ -84,7 +89,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				day[weekday] = 1
 
 			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
-			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby"))], default = afterevent)
+			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby")), ("auto", _("auto"))], default = afterevent)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
 			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
@@ -250,7 +255,12 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.description = self.timerentry_description.value
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
 		self.timer.resetRepeated()
-		self.timer.afterEvent = {"nothing": AFTEREVENT.NONE, "deepstandby": AFTEREVENT.DEEPSTANDBY, "standby": AFTEREVENT.STANDBY}[self.timerentry_afterevent.value]
+		self.timer.afterEvent = {
+			"nothing": AFTEREVENT.NONE,
+			"deepstandby": AFTEREVENT.DEEPSTANDBY,
+			"standby": AFTEREVENT.STANDBY,
+			"auto": AFTEREVENT.AUTO
+			}[self.timerentry_afterevent.value]
 		self.timer.service_ref = self.timerentry_service_ref
 		self.timer.tags = self.timerentry_tags
 
