@@ -489,7 +489,8 @@ class GraphMultiEPG(Screen):
 		if self.zapFunc and self["key_red"].getText() == "Zap":
 			self.closeRecursive = True
 			ref = self["list"].getCurrent()[1]
-			self.zapFunc(ref.ref)
+			if ref:
+				self.zapFunc(ref.ref)
 
 	def eventSelected(self):
 		self.infoKeyPressed()

@@ -21,6 +21,7 @@ EXTENSIONS = {
 		"bmp": "picture",
 		"ts": "movie",
 		"avi": "movie",
+		"divx": "movie",
 		"mpg": "movie",
 		"mpeg": "movie",
 		"mkv": "movie",

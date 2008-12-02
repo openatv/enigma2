@@ -11,7 +11,7 @@ import ServiceReference
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
-	def __init__(self):
+	def __init__(self, nextRecordTimerAfterEventActionAuto=False):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 		
@@ -33,7 +33,7 @@ class Navigation:
 			clearFPWasTimerWakeup()
 			if getFPWasTimerWakeup(): # sanity check to detect if the FP driver is working correct!
 				print "buggy fp driver detected!!! please update drivers.... ignore timer wakeup!"
-			elif len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+			elif nextRecordTimerAfterEventActionAuto and (len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360):
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 		self.SleepTimer = SleepTimer.SleepTimer()

@@ -42,13 +42,14 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-from Components.config import config, configfile, ConfigText
+from Components.config import config, configfile, ConfigText, ConfigYesNo
 InitFallbackFiles()
 
 profile("ReloadProfiles")
 eDVBDB.getInstance().reloadBouquets()
 
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
+config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 
 profile("Twisted")
 try:
@@ -415,7 +416,8 @@ def runScreenTest():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 	profile("Init:Session")
-	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = Navigation())
+	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.value)
+	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
 
@@ -464,8 +466,6 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	runReactor()
-	profile("configfile.save")
-	configfile.save()
 
 	profile("wakeup")
 	from time import time
@@ -473,24 +473,31 @@ def runScreenTest():
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
-		x for x in
-				[session.nav.RecordTimer.getNextRecordingTime(),
-				session.nav.RecordTimer.getNextZapTime(),
-				plugins.getNextWakeupTime()]
-		if x != -1
+		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
+					(session.nav.RecordTimer.getNextZapTime(), 1),
+					(plugins.getNextWakeupTime(), 2))
+		if x[0] != -1
 	]
 	wakeupList.sort()
+	recordTimerWakeupAuto = False
 	if len(wakeupList):
 		startTime = wakeupList.pop(0)
-		if (startTime - nowTime) < 330: # no time to switch box back on
+		if (startTime[0] - nowTime) < 330: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
-			wptime = startTime - 300
+			wptime = startTime[0] - 300
 		setFPWakeuptime(wptime)
+		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
+	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
+	config.misc.isNextRecordTimerAfterEventActionAuto.save()
+
 	profile("stopService")
 	session.nav.stopService()
 	profile("nav shutdown")
 	session.nav.shutdown()
+
+	profile("configfile.save")
+	configfile.save()
 
 	return 0
 

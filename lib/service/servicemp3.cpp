@@ -37,6 +37,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("wave");
 		extensions.push_back("mkv");
 		extensions.push_back("avi");
+		extensions.push_back("divx");
 		extensions.push_back("dat");
 		extensions.push_back("flac");
 		extensions.push_back("mp4");
@@ -207,7 +208,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		sourceinfo.containertype = ctMPEGTS;
 	else if ( strcasecmp(ext, ".mkv") == 0 )
 		sourceinfo.containertype = ctMKV;
-	else if ( strcasecmp(ext, ".avi") == 0 )
+	else if ( strcasecmp(ext, ".avi") == 0 || strcasecmp(ext, ".divx") == 0)
 		sourceinfo.containertype = ctAVI;
 	else if ( strcasecmp(ext, ".mp4") == 0 )
 		sourceinfo.containertype = ctMP4;
