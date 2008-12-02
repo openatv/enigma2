@@ -695,6 +695,12 @@ void eDVBFrontend::timeout()
 
 #define INRANGE(X,Y,Z) (((X<=Y) && (Y<=Z))||((Z<=Y) && (Y<=X)) ? 1 : 0)
 
+/* unsigned 32 bit division */
+static inline uint32_t fe_udiv(uint32_t a, uint32_t b)
+{
+	return (a + b / 2) / b;
+}
+
 int eDVBFrontend::readFrontendData(int type)
 {
 	switch(type)
@@ -781,7 +787,7 @@ int eDVBFrontend::readFrontendData(int type)
 					snr_in_db = fval1;
 				}
 #endif
-				return (int)(snr_in_db * 100.0);
+				return (int)(snr_in_db * 100);
 			}
 			else if (strstr(m_description, "Alps BSBE1 C01A") ||
 				!strcmp(m_description, "Alps -S(STV0288)"))
@@ -831,12 +837,30 @@ int eDVBFrontend::readFrontendData(int type)
 				!strcmp(m_description, "Philips -S") ||
 				!strcmp(m_description, "LG -S") )
 			{
-				float snr_in_db=(snr-39075)/1764.7;
-				return (int)(snr_in_db * 100.0);
+				return (int)((snr-39075)/17.647);
 			} else if (!strcmp(m_description, "Alps BSBE2"))
 			{
-				return (int)((snr >> 7) * 10.0);
-			} /* else
+				return (int)((snr >> 7) * 10);
+			} else if (!strcmp(m_description, "Philips CU1216Mk3"))
+			{
+				int mse = (~snr) & 0xFF;
+				switch (parm_u_qam_modulation) {
+				case QAM_16: return fe_udiv(1950000, (32 * mse) + 138) + 1000;
+				case QAM_32: return fe_udiv(2150000, (40 * mse) + 500) + 1350;
+				case QAM_64: return fe_udiv(2100000, (40 * mse) + 500) + 1250;
+				case QAM_128: return fe_udiv(1850000, (38 * mse) + 400) + 1380;
+				case QAM_256: return fe_udiv(1800000, (100 * mse) + 40) + 2030;
+				default: break;
+				}
+				return 0;
+			} else if (!strcmp(m_description, "Philips TU1216"))
+			{
+				snr = 0xFF - (snr & 0xFF);
+				if (snr != 0)
+					return (int)(-100 * (log10(snr) - log10(255)));
+				return 0;
+			}
+/* else
 				eDebug("no SNR dB calculation for frontendtype %s yet", m_description); */
 			return 0x12345678;
 		}
