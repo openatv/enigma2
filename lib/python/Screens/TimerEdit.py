@@ -199,9 +199,11 @@ class TimerEditList(Screen):
 			self.updateState()
 
 	def removeTimerQuestion(self):
-		if not self["timerlist"].getCurrent():
+		cur = self["timerlist"].getCurrent()
+		if not cur:
 			return
-		self.session.openWithCallback(self.removeTimer, MessageBox, _("Really delete this timer?"))
+
+		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name))
 
 	def removeTimer(self, result):
 		if not result:
