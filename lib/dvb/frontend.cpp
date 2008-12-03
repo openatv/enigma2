@@ -857,7 +857,7 @@ int eDVBFrontend::readFrontendData(int type)
 			{
 				snr = 0xFF - (snr & 0xFF);
 				if (snr != 0)
-					return (int)(-100 * (log10(snr) - log10(255)));
+					return 10 * (int)(-100 * (log10(snr) - log10(255)));
 				return 0;
 			}
 /* else
