@@ -93,13 +93,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		return event
 
 	def getCurrent(self):
-		if self.cur_service is None or self.cur_event is None:
+		if self.cur_service is None:
 			return ( None, None )
 		old_service = self.cur_service  #(service, service_name, events)
 		events = self.cur_service[2]
 		refstr = self.cur_service[0]
-		if not events or not len(events):
-			return ( None, None )
+		if self.cur_event is None or not events or not len(events):
+			return ( None, ServiceReference(refstr) )
 		event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
 		eventid = event[0]
 		service = ServiceReference(refstr)
