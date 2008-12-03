@@ -24,10 +24,10 @@ def test_timer(repeat = 0, timer_start = 3600, timer_length = 1000, sim_length =
 
 
 	# generate a timer to test
-	import xml.dom.minidom
+	import xml.etree.cElementTree
 	import RecordTimer
 
-	timer = RecordTimer.createTimer(xml.dom.minidom.parseString(
+	timer = RecordTimer.createTimer(xml.etree.cElementTree.fromstring(
 	"""
 		<timer 
 			begin="%d" 
@@ -41,7 +41,7 @@ def test_timer(repeat = 0, timer_start = 3600, timer_length = 1000, sim_length =
 			disabled="0" 
 			justplay="0">
 	</timer>""" % (at + timer_start, at + timer_start + timer_length, repeat)
-	).childNodes[0])
+	))
 
 	t.record(timer)
 
