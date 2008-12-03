@@ -11,6 +11,8 @@
 #define FP_IOCTL_SET_RTC         0x101
 #define FP_IOCTL_GET_RTC         0x102
 
+#define TIME_UPDATE_INTERVAL (30*60*1000)
+
 static time_t prev_time;
 
 void setRTC(time_t time)
@@ -143,7 +145,7 @@ eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;
 DEFINE_REF(eDVBLocalTimeHandler);
 
 eDVBLocalTimeHandler::eDVBLocalTimeHandler()
-	:m_time_ready(false)
+	:m_time_ready(false), m_updateNonTunedTimer(eTimer::create(eApp))
 {
 	if ( !instance )
 		instance=this;
@@ -164,6 +166,7 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 			/*emit*/ m_timeUpdated();
 		}
 	}
+	CONNECT(m_updateNonTunedTimer->timeout, eDVBLocalTimeHandler::updateNonTuned);
 }
 
 eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
@@ -209,6 +212,12 @@ void eDVBLocalTimeHandler::writeTimeOffsetData( const char* filename )
 				it->first.transport_stream_id.get(), it->first.original_network_id.get(), it->second );
 		fclose(f);
 	}
+}
+
+void eDVBLocalTimeHandler::updateNonTuned()
+{
+	updateTime(-1, 0, 0);
+	m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
 }
 
 void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int update_count )
@@ -397,7 +406,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 			int updateCount = it->second.tdt->getUpdateCount();
 			it->second.tdt = 0;
 			it->second.tdt = new TDT(chan, updateCount);
-			it->second.tdt->startTimer(60*60*1000);  // restart TDT for this transponder in 60min
+			it->second.tdt->startTimer(TIME_UPDATE_INTERVAL);  // restart TDT for this transponder in 30min
 		}
 	}
 }
@@ -430,12 +439,15 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 			{
 				case iDVBChannel::state_ok:
 					eDebug("[eDVBLocalTimerHandler] channel %p running", chan);
+					m_updateNonTunedTimer->stop();
 					it->second.tdt = new TDT(it->second.channel);
 					it->second.tdt->start();
 					break;
 				case iDVBChannel::state_release:
 					eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);
 					m_knownChannels.erase(it);
+					if (m_knownChannels.empty())
+						m_updateNonTunedTimer->start(TIME_UPDATE_INTERVAL, true);
 					break;
 				default: // ignore all other events
 					return;
