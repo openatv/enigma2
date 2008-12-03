@@ -32,11 +32,15 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions"],
 		{
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
+			"volumeUp": self.incrementStart,
+			"volumeDown": self.decrementStart,
+			"size+": self.incrementEnd,
+			"size-": self.decrementEnd
 		}, -2)
 
 		self.list = []
@@ -160,9 +164,14 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
 		if self.timerentry_type.value == "once":
 			self.list.append(self.entryDate)
-		self.list.append(getConfigListEntry(_("StartTime"), self.timerentry_starttime))
+		
+		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
+		self.list.append(self.entryStartTime)
 		if self.timerentry_justplay.value != "zap":
-			self.list.append(getConfigListEntry(_("EndTime"), self.timerentry_endtime))
+			self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
+			self.list.append(self.entryEndTime)
+		else:
+			self.entryEndTime = None
 		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service)
 		self.list.append(self.channelEntry)
 
@@ -318,6 +327,24 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.saveTimer()
 		self.close((True, self.timer))
+
+	def incrementStart(self):
+		self.timerentry_starttime.increment()
+		self["config"].invalidate(self.entryStartTime)
+
+	def decrementStart(self):
+		self.timerentry_starttime.decrement()
+		self["config"].invalidate(self.entryStartTime)
+
+	def incrementEnd(self):
+		if self.entryEndTime is not None:
+			self.timerentry_endtime.increment()
+			self["config"].invalidate(self.entryEndTime)
+
+	def decrementEnd(self):
+		if self.entryEndTime is not None:
+			self.timerentry_endtime.decrement()
+			self["config"].invalidate(self.entryEndTime)
 
 	def subserviceSelected(self, service):
 		if not service is None:

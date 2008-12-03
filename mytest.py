@@ -321,7 +321,6 @@ class Session:
 profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
-import xml.dom.minidom
 from GlobalActions import globalActionMap
 
 class PowerKey:
@@ -350,21 +349,16 @@ class PowerKey:
 			self.shutdown()
 		elif action == "show_menu":
 			print "Show shutdown Menu"
-			menu = mdom.childNodes[0]
-			for x in menu.childNodes:
-				if x.nodeType != xml.dom.minidom.Element.nodeType:
-				    continue
-				elif x.tagName == 'menu':
-					for y in x.childNodes:
-						if y.nodeType != xml.dom.minidom.Element.nodeType:
-							continue
-						elif y.tagName == 'id':
-							id = y.getAttribute("val")
-							if id and id == "shutdown":
-								self.session.infobar = self
-								menu_screen = self.session.openWithCallback(self.MenuClosed, MainMenu, x, x.childNodes)
-								menu_screen.setTitle(_("Standby / Restart"))
-								return
+			root = mdom.getroot()
+			for x in root.findall("menu"):
+				y = x.find("id")
+				if y is not None:
+					id = y.get("val")
+					if id and id == "shutdown":
+						self.session.infobar = self
+						menu_screen = self.session.openWithCallback(self.MenuClosed, MainMenu, x)
+						menu_screen.setTitle(_("Standby / Restart"))
+						return
 
 	def powerdown(self):
 		self.standbyblocked = 0

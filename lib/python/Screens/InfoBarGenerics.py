@@ -348,14 +348,14 @@ class InfoBarMenu:
 
 	def mainMenu(self):
 		print "loading mainmenu XML..."
-		menu = mdom.childNodes[0]
-		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
+		menu = mdom.getroot()
+		assert menu.tag == "menu", "root element in menu must be 'menu'!"
 
 		self.session.infobar = self
 		# so we can access the currently active infobar from screens opened from within the mainmenu
 		# at the moment used from the SubserviceSelection
 
-		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu, menu.childNodes)
+		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
