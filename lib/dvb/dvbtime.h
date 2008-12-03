@@ -54,6 +54,7 @@ class eDVBLocalTimeHandler: public Object
 		ePtr<eConnection> m_stateChangedConn;
 		int m_prevChannelState;
 	};
+	ePtr<eTimer> m_updateNonTunedTimer;
 	friend class TDT;
 	std::map<iDVBChannel*, channel_data> m_knownChannels;
 	std::map<eDVBChannelID,int> m_timeOffsetMap;
@@ -66,6 +67,7 @@ class eDVBLocalTimeHandler: public Object
 	void readTimeOffsetData(const char*);
 	void writeTimeOffsetData(const char*);
 	void updateTime(time_t tp_time, eDVBChannel*, int updateCount);
+	void updateNonTuned();
 	static eDVBLocalTimeHandler *instance;
 #ifdef SWIG
 	eDVBLocalTimeHandler();
