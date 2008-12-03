@@ -283,7 +283,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						eSecDebugNoSimulate("ret5 %d", ret);
 					}
 
-				if (ret && rotor && curRotorPos != -1 && (direct_connected || satpos_depends_ptr == -1) )  // direct conntected or loopthrough!
+				if (ret && rotor && curRotorPos != -1)
 					ret -= abs(curRotorPos-sat.orbital_position);
 
 				eSecDebugNoSimulate("ret6 %d", ret);
