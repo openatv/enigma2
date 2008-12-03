@@ -44,6 +44,7 @@ class MediaPixmap(Pixmap):
 
 	def applySkin(self, desktop, screen):
 		from Tools.LoadPixmap import LoadPixmap
+		noCoverFile = None
 		if self.skinAttributes is not None:
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "pixmap":
