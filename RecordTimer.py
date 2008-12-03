@@ -4,7 +4,7 @@ from Tools import Directories, Notifications
 
 from Components.config import config
 import timer
-import xml.dom.minidom
+import xml.etree.cElementTree
 
 from enigma import eEPGCache, getBestPlayableServiceReference, \
 	eServiceReference, iRecordableService, quitMainloop
@@ -17,7 +17,7 @@ import Screens.Standby
 
 from time import localtime
 
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
+from Tools.XMLTools import stringToXML
 from ServiceReference import ServiceReference
 
 # ok, for descriptions etc we have:
@@ -354,42 +354,45 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	record_service = property(lambda self: self.__record_service, setRecordService)
 
 def createTimer(xml):
-	begin = int(xml.getAttribute("begin"))
-	end = int(xml.getAttribute("end"))
-	serviceref = ServiceReference(xml.getAttribute("serviceref").encode("utf-8"))
-	description = xml.getAttribute("description").encode("utf-8")
-	repeated = xml.getAttribute("repeated").encode("utf-8")
-	disabled = long(xml.getAttribute("disabled") or "0")
-	justplay = long(xml.getAttribute("justplay") or "0")
-	afterevent = str(xml.getAttribute("afterevent") or "nothing")
+	begin = int(xml.get("begin"))
+	end = int(xml.get("end"))
+	serviceref = ServiceReference(xml.get("serviceref").encode("utf-8"))
+	description = xml.get("description").encode("utf-8")
+	repeated = xml.get("repeated").encode("utf-8")
+	disabled = long(xml.get("disabled") or "0")
+	justplay = long(xml.get("justplay") or "0")
+	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,
 		"standby": AFTEREVENT.STANDBY,
 		"deepstandby": AFTEREVENT.DEEPSTANDBY,
 		"auto": AFTEREVENT.AUTO
 		}[afterevent]
-	if xml.hasAttribute("eit") and xml.getAttribute("eit") != "None":
-		eit = long(xml.getAttribute("eit"))
+	eit = xml.get("eit")
+	if eit and eit != "None":
+		eit = long(eit);
 	else:
 		eit = None
-	if xml.hasAttribute("location") and xml.getAttribute("location") != "None":
-		location = xml.getAttribute("location").encode("utf-8")
+	location = xml.get("location")
+	if location and location != "None":
+		location = location.encode("utf-8")
 	else:
 		location = None
-	if xml.hasAttribute("tags") and xml.getAttribute("tags"):
-		tags = xml.getAttribute("tags").encode("utf-8").split(' ')
+	tags = xml.get("tags")
+	if tags and tags != "None":
+		tags = tags.encode("utf-8").split(' ')
 	else:
 		tags = None
 
-	name = xml.getAttribute("name").encode("utf-8")
-	#filename = xml.getAttribute("filename").encode("utf-8")
+	name = xml.get("name").encode("utf-8")
+	#filename = xml.get("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags)
 	entry.repeated = int(repeated)
 	
-	for l in elementsWithTag(xml.childNodes, "log"):
-		time = int(l.getAttribute("time"))
-		code = int(l.getAttribute("code"))
-		msg = mergeText(l.childNodes).strip().encode("utf-8")
+	for l in xml.findall("log"):
+		time = int(l.get("time"))
+		code = int(l.get("code"))
+		msg = l.text.strip().encode("utf-8")
 		entry.log_entries.append((time, code, msg))
 	
 	return entry
@@ -415,8 +418,8 @@ class RecordTimer(timer.Timer):
 	def loadTimer(self):
 		# TODO: PATH!
 		try:
-			doc = xml.dom.minidom.parse(self.Filename)
-		except xml.parsers.expat.ExpatError:
+			doc = xml.etree.cElementTree.parse(self.Filename)
+		except SyntaxError:
 			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox
 
@@ -426,15 +429,18 @@ class RecordTimer(timer.Timer):
 			try:
 				import os
 				os.rename(self.Filename, self.Filename + "_old")
-			except IOError:
+			except (IOError, OSError):
 				print "renaming broken timer failed"
 			return
+		except IOError:
+			print "timers.xml not found!"
+			return
 
-		root = doc.childNodes[0]
+		root = doc.getroot()
 
 		# put out a message when at least one timer overlaps
 		checkit = True
-		for timer in elementsWithTag(root.childNodes, "timer"):
+		for timer in root.findall("timer"):
 			newTimer = createTimer(timer)
 			if (self.record(newTimer, True, True) is not None) and (checkit == True):
 				from Tools.Notifications import AddPopup
@@ -443,45 +449,44 @@ class RecordTimer(timer.Timer):
 				checkit = False # at moment it is enough when the message is displayed one time
 
 	def saveTimer(self):
-		#doc = xml.dom.minidom.Document()
-		#root_element = doc.createElement('timers')
-		#doc.appendChild(root_element)
-		#root_element.appendChild(doc.createTextNode("\n"))
-		
+		#root_element = xml.etree.cElementTree.Element('timers')
+		#root_element.text = "\n"
+
 		#for timer in self.timer_list + self.processed_timers:
 			# some timers (instant records) don't want to be saved.
 			# skip them
 			#if timer.dontSave:
 				#continue
-			#t = doc.createTextNode("\t")
-			#root_element.appendChild(t)
-			#t = doc.createElement('timer')
-			#t.setAttribute("begin", str(int(timer.begin)))
-			#t.setAttribute("end", str(int(timer.end)))
-			#t.setAttribute("serviceref", str(timer.service_ref))
-			#t.setAttribute("repeated", str(timer.repeated))			
-			#t.setAttribute("name", timer.name)
-			#t.setAttribute("description", timer.description)
-			#t.setAttribute("eit", str(timer.eit))
-			
+			#t = xml.etree.cElementTree.SubElement(root_element, 'timers')
+			#t.set("begin", str(int(timer.begin)))
+			#t.set("end", str(int(timer.end)))
+			#t.set("serviceref", str(timer.service_ref))
+			#t.set("repeated", str(timer.repeated))			
+			#t.set("name", timer.name)
+			#t.set("description", timer.description)
+			#t.set("afterevent", str({
+			#	AFTEREVENT.NONE: "nothing",
+			#	AFTEREVENT.STANDBY: "standby",
+			#	AFTEREVENT.DEEPSTANDBY: "deepstandby",
+			#	AFTEREVENT.AUTO: "auto"}))
+			#if timer.eit is not None:
+			#	t.set("eit", str(timer.eit))
+			#if timer.dirname is not None:
+			#	t.set("location", str(timer.dirname))
+			#t.set("disabled", str(int(timer.disabled)))
+			#t.set("justplay", str(int(timer.justplay)))
+			#t.text = "\n"
+			#t.tail = "\n"
+
 			#for time, code, msg in timer.log_entries:
-				#t.appendChild(doc.createTextNode("\t\t"))
-				#l = doc.createElement('log')
-				#l.setAttribute("time", str(time))
-				#l.setAttribute("code", str(code))
-				#l.appendChild(doc.createTextNode(msg))
-				#t.appendChild(l)
-				#t.appendChild(doc.createTextNode("\n"))
+				#l = xml.etree.cElementTree.SubElement(t, 'log')
+				#l.set("time", str(time))
+				#l.set("code", str(code))
+				#l.text = str(msg)
+				#l.tail = "\n"
 
-			#root_element.appendChild(t)
-			#t = doc.createTextNode("\n")
-			#root_element.appendChild(t)
-
-
-		#file = open(self.Filename, "w")
-		#doc.writexml(file)
-		#file.write("\n")
-		#file.close()
+		#doc = xml.etree.cElementTree.ElementTree(root_element)
+		#doc.write(self.Filename)
 
 		list = []
 
