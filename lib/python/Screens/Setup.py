@@ -6,8 +6,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 
-import xml.dom.minidom
-from Tools import XMLTools
+import xml.etree.cElementTree
 
 # FIXME: use resolveFile!
 # read the setupmenu
@@ -17,7 +16,7 @@ try:
 except:
 	# if not found in the current path, we use the global datadir-path
 	setupfile = file('/usr/share/enigma2/setup.xml', 'r')
-setupdom = xml.dom.minidom.parseString(setupfile.read())
+setupdom = xml.etree.cElementTree.parse(setupfile)
 setupfile.close()
 
 class SetupSummary(Screen):
@@ -63,16 +62,12 @@ class Setup(ConfigListScreen, Screen):
 		self["config"].setList(list)
 
 	def refill(self, list):
-		xmldata = setupdom.childNodes[0]
-		entries = xmldata.childNodes
-		for x in entries:             #walk through the actual nodelist
-			if x.nodeType != xml.dom.minidom.Element.nodeType:
+		xmldata = setupdom.getroot()
+		for x in xmldata.findall("setup"):
+			if x.get("key") != self.setup:
 				continue
-			elif x.tagName == 'setup':
-				if x.getAttribute("key") != self.setup:
-					continue
-				self.addItems(list, x.childNodes);
-				self.setup_title = x.getAttribute("title").encode("UTF-8")
+			self.addItems(list, x);
+			self.setup_title = x.get("title", "").encode("UTF-8")
 
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
@@ -118,12 +113,10 @@ class Setup(ConfigListScreen, Screen):
 	def createSummary(self):
 		return SetupSummary
 
-	def addItems(self, list, childNode):
-		for x in childNode:
-			if x.nodeType != xml.dom.minidom.Element.nodeType:
-				continue
-			elif x.tagName == 'item':
-				item_level = int(x.getAttribute("level") or "0")
+	def addItems(self, list, parentNode):
+		for x in parentNode:
+			if x.tag == 'item':
+				item_level = int(x.get("level", 0))
 
 				if not self.levelChanged in config.usage.setup_level.notifiers:
 					config.usage.setup_level.notifiers.append(self.levelChanged)
@@ -132,12 +125,12 @@ class Setup(ConfigListScreen, Screen):
 				if item_level > config.usage.setup_level.index:
 					continue
 
-				requires = x.getAttribute("requires")
+				requires = x.get("requires")
 				if requires and not SystemInfo.get(requires, False):
 					continue;
 
-				item_text = _(x.getAttribute("text").encode("UTF-8") or "??")
-				b = eval(XMLTools.mergeText(x.childNodes));
+				item_text = _(x.get("text", "??").encode("UTF-8"))
+				b = eval(x.text or "");
 				if b == "":
 					continue
 				#add to configlist
@@ -148,8 +141,8 @@ class Setup(ConfigListScreen, Screen):
 					list.append( (item_text, item) )
 
 def getSetupTitle(id):
-	xmldata = setupdom.childNodes[0].childNodes
-	for x in XMLTools.elementsWithTag(xmldata, "setup"):
-		if x.getAttribute("key") == id:
-			return x.getAttribute("title").encode("UTF-8")
+	xmldata = setupdom.getroot()
+	for x in xmldata.findall("setup"):
+		if x.get("key") == id:
+			return x.get("title", "").encode("UTF-8")
 	raise "unknown setup id '%s'!" % repr(id)

@@ -604,6 +604,34 @@ class ConfigClock(ConfigSequence):
 		t = time.localtime(default)
 		ConfigSequence.__init__(self, seperator = ":", limits = [(0,23),(0,59)], default = [t.tm_hour, t.tm_min])
 
+	def increment(self):
+		# Check if Minutes maxed out
+		if self._value[1] == 59:
+			# Check if Hours not maxed out
+			if self._value[0] < 23:
+				# Increment Hour, reset Minutes to 0
+				self._value[0] += 1
+				self._value[1] = 0
+		else:
+			# Increment Minutes
+			self._value[1] += 1
+		# Trigger change
+		self.changed()
+
+	def decrement(self):
+		# Check if Minutes is minimum
+		if self._value[1] == 0:
+			# Check if Hour is greater than 0
+			if self._value[0] > 0:
+				# Decrement Hour, set Minutes to 59
+				self._value[0] -= 1
+				self._value[1] = 59
+		else:
+			# Decrement Minutes
+			self._value[1] -= 1
+		# Trigger change
+		self.changed()
+
 class ConfigInteger(ConfigSequence):
 	def __init__(self, default, limits = (0, 9999999999)):
 		ConfigSequence.__init__(self, seperator = ":", limits = [limits], default = default)
