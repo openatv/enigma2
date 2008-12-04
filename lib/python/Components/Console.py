@@ -8,7 +8,7 @@ class Console(object):
 		self.callbacks = {}
 		self.extra_args = {}
 
-	def ePopen(self, cmd, callback, extra_args=[]):
+	def ePopen(self, cmd, callback=None, extra_args=[]):
 		name = cmd
 		i = 0
 		while self.appContainers.has_key(name):
@@ -50,5 +50,6 @@ class Console(object):
 		extra_args = self.extra_args[name]
 		del self.appContainers[name]
 		del self.extra_args[name]
-		self.callbacks[name](data,retval,extra_args)
+		if self.callbacks[name]:
+			self.callbacks[name](data,retval,extra_args)
 		del self.callbacks[name]
