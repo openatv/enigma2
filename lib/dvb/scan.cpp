@@ -40,6 +40,8 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 	case 0:
 	case 0x1111:
 		return 0;
+	case 0x13E:  // workaround for 11258H and 11470V on hotbird with same ONID/TSID (0x13E/0x578)
+		return orbital_position != 130 || tsid != 0x578;
 	case 1:
 		return orbital_position == 192;
 	case 0x00B1:
