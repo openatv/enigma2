@@ -818,9 +818,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				text = self.getIdentifier(currref)
 				text = ">"+text
 				ext = text[-4:].lower()
+				audio_extensions = (".mp2", ".mp3", ".wav", ".ogg", "flac", "m4a")
 
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in [".mp2", ".mp3", ".wav", ".ogg", "flac"] and not self.isAudioCD:
+				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
@@ -847,7 +848,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
 				ext = text[-4:].lower()
-				if ext not in [".mp2", ".mp3", ".wav", ".ogg", "flac"] and not self.isAudioCD:
+				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
