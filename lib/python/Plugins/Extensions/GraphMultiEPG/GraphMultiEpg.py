@@ -93,13 +93,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		return event
 
 	def getCurrent(self):
-		if self.cur_service is None or self.cur_event is None:
+		if self.cur_service is None:
 			return ( None, None )
 		old_service = self.cur_service  #(service, service_name, events)
 		events = self.cur_service[2]
 		refstr = self.cur_service[0]
-		if not events or not len(events):
-			return ( None, None )
+		if self.cur_event is None or not events or not len(events):
+			return ( None, ServiceReference(refstr) )
 		event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
 		eventid = event[0]
 		service = ServiceReference(refstr)
@@ -204,7 +204,13 @@ class EPGList(HTMLComponent, GUIComponent):
 	def buildEntry(self, service, service_name, events):
 		r1=self.service_rect
 		r2=self.event_rect
-		res = [ None, MultiContentEntryText(pos = (r1.left(),r1.top()), size = (r1.width(), r1.height()), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = service_name, color = self.foreColorService, backcolor = self.backColorService) ]
+		res = [ None, MultiContentEntryText(
+						pos = (r1.left(),r1.top()),
+						size = (r1.width(), r1.height()),
+						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+						text = service_name,
+						color = self.foreColorService,
+						backcolor = self.backColorService) ]
 
 		if events:
 			start = self.time_base+self.offs*self.time_epoch*60
@@ -222,9 +228,16 @@ class EPGList(HTMLComponent, GUIComponent):
 			for ev in events:  #(event_id, event_title, begin_time, duration)
 				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service) > ((ev[3]/10)*8)
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
-				res.append(MultiContentEntryText(pos = (left+xpos, top), size = (ewidth, height), font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP, text = ev[1], color = foreColor, color_sel = foreColorSelected, backcolor = backColor, backcolor_sel = backColorSelected, border_width = 1, border_color = borderColor))
+				res.append(MultiContentEntryText(
+					pos = (left+xpos, top), size = (ewidth, height),
+					font = 1, flags = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP,
+					text = ev[1], color = foreColor, color_sel = foreColorSelected,
+					backcolor = backColor, backcolor_sel = backColorSelected, border_width = 1, border_color = borderColor))
 				if rec and ewidth > 23:
-					res.append(MultiContentEntryPixmapAlphaTest(pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21), png = self.clock_pixmap, backcolor = backColor, backcolor_sel = backColorSelected))
+					res.append(MultiContentEntryPixmapAlphaTest(
+						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
+						png = self.clock_pixmap, backcolor = backColor,
+						backcolor_sel = backColorSelected))
 		return res
 
 	def selEntry(self, dir, visible=True):
@@ -278,8 +291,13 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.time_base = int(stime)
 			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
 		test.insert(0, 'XRnITBD')
+		print "BEFORE:"
+		for x in test:
+			print x
 		epg_data = self.queryEPG(test)
-
+		print "EPG:"
+		for x in epg_data:
+			print x
 		self.list = [ ]
 		tmp_list = None
 		service = ""

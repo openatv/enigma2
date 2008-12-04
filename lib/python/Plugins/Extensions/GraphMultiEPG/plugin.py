@@ -69,6 +69,7 @@ def changeBouquetCB(direction, epg):
 		bouquet = bouquetSel.getCurrent()
 		services = getBouquetServices(bouquet)
 		if len(services):
+			global epg_bouquet
 			epg_bouquet = bouquet
 			epg.setServices(services)
 
