@@ -283,7 +283,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						eSecDebugNoSimulate("ret5 %d", ret);
 					}
 
-				if (ret && rotor && curRotorPos != -1 && (direct_connected || satpos_depends_ptr == -1) )  // direct conntected or loopthrough!
+				if (ret && rotor && curRotorPos != -1)
 					ret -= abs(curRotorPos-sat.orbital_position);
 
 				eSecDebugNoSimulate("ret6 %d", ret);
@@ -797,17 +797,22 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							bool turn_fast = need_turn_fast(rotor_param.m_inputpower_parameters.m_turning_speed);
 							eSecCommand::rotor cmd;
 							eSecCommand::pair compare;
-							compare.voltage = VOLTAGE(18);
+							if (turn_fast)
+								compare.voltage = VOLTAGE(18);
+							else
+								compare.voltage = VOLTAGE(13);
 							compare.steps = +3;
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, compare.voltage) );
 // measure idle power values
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER]) );  // wait 150msec after voltage change
-							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 1) );
-							compare.val = 1;
 							compare.steps = -2;
-							sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
+							if (turn_fast) {
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER]) );  // wait 150msec after voltage change
+								sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 1) );
+								compare.val = 1;
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_MEASURE_IDLE_WAS_NOT_OK_GOTO, compare) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(13)) );
+							}
 							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER]) );  // wait 150msec before measure
 							sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_IDLE_INPUTPOWER, 0) );
 							compare.val = 0;
