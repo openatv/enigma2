@@ -51,11 +51,11 @@ class DVDTitle:
 		self.length = info.getLength(service)
 
 	def initDVDmenuText(self, project, track):
-		self.properties.menutitle.setValue(self.formatDVDmenuText(project.settings.titleformat.getValue(), track))
-		self.properties.menusubtitle.setValue(self.formatDVDmenuText(project.settings.subtitleformat.getValue(), track))
+		s = project.menutemplate.settings
+		self.properties.menutitle.setValue(self.formatDVDmenuText(s.titleformat.getValue(), track))
+		self.properties.menusubtitle.setValue(self.formatDVDmenuText(s.subtitleformat.getValue(), track))
 
 	def formatDVDmenuText(self, template, track):
-		properties = self.properties
 		template = template.replace("$i", str(track))
 		template = template.replace("$t", self.DVBname)
 		template = template.replace("$d", self.DVBdescr)
@@ -76,7 +76,7 @@ class DVDTitle:
 				audiolist.append(trackstring)
 		audiostring = ', '.join(audiolist)
 		template = template.replace("$A", audiostring)
-		
+
 		if template.find("$l") >= 0:
 			l = self.length
 			lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
@@ -90,7 +90,7 @@ class DVDTitle:
 		else:
 			template = template.replace("$Y", "").replace("$M", "").replace("$D", "").replace("$T", "")
 		return template
-	
+
 	def produceFinalCuesheet(self):
 		CUT_TYPE_IN = 0
 		CUT_TYPE_OUT = 1

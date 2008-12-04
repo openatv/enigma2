@@ -26,7 +26,10 @@ class FileBrowser(Screen, HelpableScreen):
 		currDir = "/"
 		if self.scope == "project":
 			currDir = self.getDir()
-			pattern = "(?i)^.*\.(ddvdp\.xml)"		
+			pattern = "(?i)^.*\.(ddvdp\.xml)"
+		elif self.scope == "menutemplate":
+			currDir = self.getDir()
+			pattern = "(?i)^.*\.(ddvdm\.xml)"
 		if self.scope == "menubg":
 			currDir = self.getDir(settings.menubg)
 			pattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)"
@@ -137,16 +140,17 @@ class ProjectSettings(Screen,ConfigListScreen):
 		if output == "iso":
 			self.list.append(getConfigListEntry(_("ISO path"), self.settings.isopath))
 		if authormode.startswith("menu"):
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.settings.menubg))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.settings.titleformat))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.settings.subtitleformat))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("headline")+' '+_("color"), self.settings.color_headline))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("text")+' '+_("color"), self.settings.color_button))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("highlighted button")+' '+_("color"), self.settings.color_highlight))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("font face"), self.settings.font_face))
-			self.list.append(getConfigListEntry(_("Font size")+' ('+_("headline")+', '+_("Title")+', '+_("Subtitles")+')', self.settings.font_size))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("template file"), self.settings.menutemplate))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.project.menutemplate.settings.titleformat))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.project.menutemplate.settings.subtitleformat))
+			self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.project.menutemplate.settings.menubg))
+			#self.list.append(getConfigListEntry(_("Menu")+' '+_("headline")+' '+_("color"), self.settings.color_headline))
+			#self.list.append(getConfigListEntry(_("Menu")+' '+_("text")+' '+_("color"), self.settings.color_button))
+			#self.list.append(getConfigListEntry(_("Menu")+' '+_("highlighted button")+' '+_("color"), self.settings.color_highlight))
+			#self.list.append(getConfigListEntry(_("Menu")+' '+_("font face"), self.settings.font_face))
+			#self.list.append(getConfigListEntry(_("Font size")+' ('+_("headline")+', '+_("Title")+', '+_("Subtitles")+')', self.settings.font_size))
+			#self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
+			#self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
 		if authormode != "data_ts":
 			self.list.append(getConfigListEntry(_("Titleset mode"), self.settings.titlesetmode))
 			if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
@@ -198,8 +202,16 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self.session.open(MessageBox,text,type = MessageBox.TYPE_ERROR)
 
 	def FileBrowserClosed(self, path, scope):
+		if scope == "menutemplate":
+			if not self.project.menutemplate.loadTemplate(path):
+				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
+			else:
+				print "[ProjectSettings] menu template loaded"
+
 		if scope in self.project.filekeys:
 			self.settings.dict()[scope].setValue(path)
 		elif scope == "project":
 			if not self.project.loadProject(path):
 				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
+			else:
+				self.initConfigList()

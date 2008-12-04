@@ -8,10 +8,12 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.FileList import FileList
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from Components.Pixmap import Pixmap
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, ePicLoad
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry, ConfigInteger, ConfigSubsection, ConfigSelection
 from Components.ConfigList import ConfigListScreen
+from Components.AVSwitch import AVSwitch
 import DVDTitle
 
 class TitleProperties(Screen,ConfigListScreen):
@@ -23,9 +25,9 @@ class TitleProperties(Screen,ConfigListScreen):
 		    <widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget name="config" position="10,50" size="540,300" scrollbarMode="showOnDemand" />
-		    <widget source="serviceinfo_headline" render="Label" position="20,360" size="520,20" font="Regular;20" />
-		    <widget source="serviceinfo" render="Label" position="20,382" size="520,66" font="Regular;16" />
+		    <widget source="serviceinfo" render="Label" position="10,46" size="350,144" font="Regular;18" />
+		    <widget name="thumbnail" position="370,46" size="180,144" alphatest="on" />
+		    <widget name="config" position="10,206" size="540,228" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session, parent, project, title_idx):
@@ -37,8 +39,11 @@ class TitleProperties(Screen,ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_blue"] = StaticText(_("Edit Title"))
-		self["serviceinfo_headline"] = StaticText("DVB info:")
 		self["serviceinfo"] = StaticText()
+
+		self["thumbnail"] = Pixmap()
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.paintThumbPixmapCB)
 
 		self.properties = project.titles[title_idx].properties
 		ConfigListScreen.__init__(self, [])
@@ -47,8 +52,6 @@ class TitleProperties(Screen,ConfigListScreen):
 		self.properties.aspect.addNotifier(self.initConfigList)
 		for audiotrack in self.properties.audiotracks:
 			audiotrack.active.addNotifier(self.initConfigList)
-		
-		self.initConfigList()
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -58,6 +61,8 @@ class TitleProperties(Screen,ConfigListScreen):
 		    "cancel": self.cancel,
 		    "ok": self.ok,
 		}, -2)
+		
+		self.onShown.append(self.update)
 
 	def initConfigList(self, element=None):
 		try:
@@ -79,18 +84,15 @@ class TitleProperties(Screen,ConfigListScreen):
 				self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.widescreen))
 			else:
 				self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.crop))
-			
-			infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
-			self["info"] = StaticText(infotext)
-			
+
 			if len(title.chaptermarks) == 0:
 				self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.properties.autochapter))
-			infotext = _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel
+			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Begin time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx+1)
 			chaptermarks = title.getChapterMarks(template="$h:$m:$s")
 			chapters_count = len(chaptermarks)
 			if chapters_count >= 1:
-				infotext += ', ' + str(chapters_count+1) + ' ' + _("chapters") + ' ('
-				infotext += ' / '.join(chaptermarks) + ')'
+				infotext += '\n' + str(chapters_count+1) + ' ' + _("chapters") + ': '
+				infotext += ' / '.join(chaptermarks)
 			self["serviceinfo"].setText(infotext)
 			self["config"].setList(self.list)
 		except AttributeError:
@@ -98,7 +100,22 @@ class TitleProperties(Screen,ConfigListScreen):
 
 	def editTitle(self):
 		self.parent.editTitle()
+
+	def update(self):
+		print "[onShown]"
 		self.initConfigList()
+		self.loadThumb()
+
+	def loadThumb(self):
+		thumbfile = self.project.titles[self.title_idx].inputfile.rsplit('.',1)[0] + ".png"
+		sc = AVSwitch().getFramebufferScale()
+		self.picload.setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+		self.picload.startDecode(thumbfile)
+
+	def paintThumbPixmapCB(self, picInfo=None):
+		ptr = self.picload.getData()
+		if ptr != None:
+			self["thumbnail"].instance.setPixmap(ptr.__deref__())
 
 	def changedConfigList(self):
 		self.initConfigList()
