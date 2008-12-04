@@ -190,8 +190,8 @@ class TitleList(Screen, HelpableScreen):
 		self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"
 
 	def loadTemplate(self):
-		filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVDtemplate.ddvdp.xml"
-		if self.project.loadProject(filename):
+		filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
+		if self.project.load(filename):
 			self["error_label"].hide()
 			return True
 		else:

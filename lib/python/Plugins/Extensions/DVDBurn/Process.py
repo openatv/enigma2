@@ -455,13 +455,13 @@ class ImagePrepareTask(Task):
 		try:
 			from ImageFont import truetype
 			from Image import open as Image_open
-			s = self.job.project.settings
+			s = self.job.project.menutemplate.settings
+			(width, height) = s.dimensions.getValue()
 			self.Menus.im_bg_orig = Image_open(s.menubg.getValue())
-			if self.Menus.im_bg_orig.size != (self.Menus.imgwidth, self.Menus.imgheight):
-				self.Menus.im_bg_orig = self.Menus.im_bg_orig.resize((720, 576))	
-			self.Menus.fontsizes = s.font_size.getValue()
-			fontface = s.font_face.getValue()
-			self.Menus.fonts = [truetype(fontface, self.Menus.fontsizes[0]), truetype(fontface, self.Menus.fontsizes[1]), truetype(fontface, self.Menus.fontsizes[2])]
+			if self.Menus.im_bg_orig.size != (width, height):
+				self.Menus.im_bg_orig = self.Menus.im_bg_orig.resize((width, height))
+			self.Menus.fontsizes = [s.fontsize_headline.getValue(), s.fontsize_title.getValue(), s.fontsize_subtitle.getValue()]
+			self.Menus.fonts = [(truetype(s.fontface_headline.getValue(), self.Menus.fontsizes[0])), (truetype(s.fontface_title.getValue(), self.Menus.fontsizes[1])),(truetype(s.fontface_subtitle.getValue(), self.Menus.fontsizes[2]))]
 			Task.processFinished(self, 0)
 		except:
 			Task.processFinished(self, 1)
@@ -480,98 +480,158 @@ class MenuImageTask(Task):
 
 	def run(self, callback):
 		self.callback = callback
-		try:
-			import ImageDraw, Image, os
-			s = self.job.project.settings
-			fonts = self.Menus.fonts
-			im_bg = self.Menus.im_bg_orig.copy()
-			im_high = Image.new("P", (self.Menus.imgwidth, self.Menus.imgheight), 0)
-			im_high.putpalette(self.Menus.spu_palette)
-			draw_bg = ImageDraw.Draw(im_bg)
-			draw_high = ImageDraw.Draw(im_high)
-			if self.menu_count == 1:
-				headline = s.name.getValue().decode("utf-8")
-				textsize = draw_bg.textsize(headline, font=fonts[0])
-				if textsize[0] > self.Menus.imgwidth:
-					offset = (0 , 20)
-				else:
-					offset = (((self.Menus.imgwidth-textsize[0]) / 2) , 20)
-				draw_bg.text(offset, headline, fill=self.Menus.color_headline, font=fonts[0])
-			spuxml = """<?xml version="1.0" encoding="utf-8"?>
-		<subpictures>
-		<stream>
-		<spu 
-		highlight="%s"
-		transparent="%02x%02x%02x"
-		start="00:00:00.00"
-		force="yes" >""" % (self.highlightpngfilename, self.Menus.spu_palette[0], self.Menus.spu_palette[1], self.Menus.spu_palette[2])
-			s_top, s_rows, s_left = s.space.getValue()
-			rowheight = (self.Menus.fontsizes[1]+self.Menus.fontsizes[2]+s_rows)
-			menu_start_title = (self.menu_count-1)*self.job.titles_per_menu + 1
-			menu_end_title = (self.menu_count)*self.job.titles_per_menu + 1
-			nr_titles = len(self.job.project.titles)
-			if menu_end_title > nr_titles:
-				menu_end_title = nr_titles+1
-			menu_i = 0
-			for title_no in range( menu_start_title , menu_end_title ):
-				menu_i += 1
-				title = self.job.project.titles[title_no-1]
-				top = s_top + ( menu_i * rowheight )
-				titleText = title.formatDVDmenuText(s.titleformat.getValue(), title_no).decode("utf-8")
-				draw_bg.text((s_left,top), titleText, fill=self.Menus.color_button, font=fonts[1])
-				draw_high.text((s_left,top), titleText, fill=1, font=self.Menus.fonts[1])
-				subtitleText = title.formatDVDmenuText(s.subtitleformat.getValue(), title_no).decode("utf-8")
-				draw_bg.text((s_left,top+36), subtitleText, fill=self.Menus.color_button, font=fonts[2])
-				bottom = top+rowheight
-				if bottom > self.Menus.imgheight:
-					bottom = self.Menus.imgheight
-				spuxml += """
-		<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),s_left,self.Menus.imgwidth,top,bottom )
-			if self.menu_count < self.job.nr_menus:
-				next_page_text = ">>>"
-				textsize = draw_bg.textsize(next_page_text, font=fonts[1])
-				offset = ( self.Menus.imgwidth-textsize[0]-2*s_left, s_top + ( self.job.titles_per_menu * rowheight ) )
-				draw_bg.text(offset, next_page_text, fill=self.Menus.color_button, font=fonts[1])
-				draw_high.text(offset, next_page_text, fill=1, font=fonts[1])
-				spuxml += """
-		<button name="button_next" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
-			if self.menu_count > 1:
-				prev_page_text = "<<<"
-				textsize = draw_bg.textsize(prev_page_text, font=fonts[1])
-				offset = ( 2*s_left, s_top + ( self.job.titles_per_menu * rowheight ) )
-				draw_bg.text(offset, prev_page_text, fill=self.Menus.color_button, font=fonts[1])
-				draw_high.text(offset, prev_page_text, fill=1, font=fonts[1])
-				spuxml += """
-		<button name="button_prev" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (offset[0],offset[0]+textsize[0],offset[1],offset[1]+textsize[1])
-			del draw_bg
-			del draw_high
-			fd=open(self.menubgpngfilename,"w")
-			im_bg.save(fd,"PNG")
-			fd.close()
-			fd=open(self.highlightpngfilename,"w")
-			im_high.save(fd,"PNG")
-			fd.close()
+		#try:
+		import ImageDraw, Image, os
+		s = self.job.project.menutemplate.settings
+		s_top = s.margin_top.getValue()
+		s_bottom = s.margin_bottom.getValue()
+		s_left = s.margin_left.getValue()
+		s_right = s.margin_right.getValue()
+		s_rows = s.space_rows.getValue()
+		s_cols = s.space_cols.getValue()
+		nr_cols = s.cols.getValue()
+		nr_rows = s.rows.getValue()
+		thumb_size = s.thumb_size.getValue()
+		if thumb_size[0]:
+			from Image import open as Image_open
+		(s_width, s_height) = s.dimensions.getValue()
+		fonts = self.Menus.fonts
+		im_bg = self.Menus.im_bg_orig.copy()
+		im_high = Image.new("P", (s_width, s_height), 0)
+		im_high.putpalette(self.Menus.spu_palette)
+		draw_bg = ImageDraw.Draw(im_bg)
+		draw_high = ImageDraw.Draw(im_high)
+		if self.menu_count == 1:
+			headlineText = self.job.project.settings.name.getValue().decode("utf-8")
+			headlinePos = self.getPosition(s.offset_headline.getValue(), 0, 0, s_width, s_top, draw_bg.textsize(headlineText, font=fonts[0]))
+			draw_bg.text(headlinePos, headlineText, fill=self.Menus.color_headline, font=fonts[0])
+		spuxml = """<?xml version="1.0" encoding="utf-8"?>
+	<subpictures>
+	<stream>
+	<spu 
+	highlight="%s"
+	transparent="%02x%02x%02x"
+	start="00:00:00.00"
+	force="yes" >""" % (self.highlightpngfilename, self.Menus.spu_palette[0], self.Menus.spu_palette[1], self.Menus.spu_palette[2])
+		#rowheight = (self.Menus.fontsizes[1]+self.Menus.fontsizes[2]+thumb_size[1]+s_rows)
+		menu_start_title = (self.menu_count-1)*self.job.titles_per_menu + 1
+		menu_end_title = (self.menu_count)*self.job.titles_per_menu + 1
+		nr_titles = len(self.job.project.titles)
+		if menu_end_title > nr_titles:
+			menu_end_title = nr_titles+1
+		col = 1
+		row = 1
+		for title_no in range( menu_start_title , menu_end_title ):
+			title = self.job.project.titles[title_no-1]
+			col_width  = ( s_width  - s_left - s_right  ) / nr_cols
+			row_height = ( s_height - s_top  - s_bottom ) / nr_rows
+			left =   s_left + ( (col-1) * col_width ) + s_cols/2
+			right =    left + col_width - s_cols
+			top =     s_top + ( (row-1) * row_height) + s_rows/2
+			bottom =    top + row_height - s_rows
+			width = right - left
+			height = bottom - top
+
+			if bottom > s_height:
+				bottom = s_height
+			#draw_bg.rectangle((left, top, right, bottom), outline=(255,0,0))
+			im_cell_bg = Image.new("RGBA", (width, height),(0,0,0,0))
+			draw_cell_bg = ImageDraw.Draw(im_cell_bg)
+			im_cell_high = Image.new("P", (width, height), 0)
+			im_cell_high.putpalette(self.Menus.spu_palette)
+			draw_cell_high = ImageDraw.Draw(im_cell_high)
+
+			if thumb_size[0]:
+				thumbPos = self.getPosition(s.offset_thumb.getValue(), 0, 0, width, height, thumb_size)
+				box = (thumbPos[0], thumbPos[1], thumbPos[0]+thumb_size[0], thumbPos[1]+thumb_size[1])
+				try:
+					thumbIm = Image_open(title.inputfile.rsplit('.',1)[0] + ".png")
+					im_cell_bg.paste(thumbIm,thumbPos)
+				except:
+					draw_cell_bg.rectangle(box, fill=(64,127,127,127))
+				border = s.thumb_border.getValue()
+				if border:
+					draw_cell_high.rectangle(box, fill=1)
+					draw_cell_high.rectangle((box[0]+border, box[1]+border, box[2]-border, box[3]-border), fill=0)
+
+			titleText = title.formatDVDmenuText(s.titleformat.getValue(), title_no).decode("utf-8")
+			titlePos = self.getPosition(s.offset_title.getValue(), 0, 0, width, height, draw_bg.textsize(titleText, font=fonts[1]))
+
+			draw_cell_bg.text(titlePos, titleText, fill=self.Menus.color_button, font=fonts[1])
+			draw_cell_high.text(titlePos, titleText, fill=1, font=self.Menus.fonts[1])
+			
+			subtitleText = title.formatDVDmenuText(s.subtitleformat.getValue(), title_no).decode("utf-8")
+			subtitlePos = self.getPosition(s.offset_subtitle.getValue(), 0, 0, width, height, draw_cell_bg.textsize(subtitleText, font=fonts[2]))
+			draw_cell_bg.text(subtitlePos, subtitleText, fill=self.Menus.color_button, font=fonts[2])
+
+			del draw_cell_bg
+			del draw_cell_high
+			im_bg.paste(im_cell_bg,(left, top, right, bottom), mask=im_cell_bg)
+			im_high.paste(im_cell_high,(left, top, right, bottom))
+
 			spuxml += """
-		</spu>
-		</stream>
-		</subpictures>"""
-	
-			f = open(self.spuxmlfilename, "w")
-			f.write(spuxml)
-			f.close()
-			Task.processFinished(self, 0)
-		except:
-			Task.processFinished(self, 1)
+	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),left,right,top,bottom )
+			if col < nr_cols:
+				col += 1
+			else:
+				col = 1
+				row += 1
+
+		top = s_height - s_bottom - s_rows/2
+		if self.menu_count < self.job.nr_menus:
+			next_page_text = s.next_page_text.getValue().decode("utf-8")
+			textsize = draw_bg.textsize(next_page_text, font=fonts[1])
+			pos = ( s_width-textsize[0]-s_right, top )
+			draw_bg.text(pos, next_page_text, fill=self.Menus.color_button, font=fonts[1])
+			draw_high.text(pos, next_page_text, fill=1, font=fonts[1])
+			spuxml += """
+	<button name="button_next" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (pos[0],pos[0]+textsize[0],pos[1],pos[1]+textsize[1])
+		if self.menu_count > 1:
+			prev_page_text = s.prev_page_text.getValue().decode("utf-8")
+			textsize = draw_bg.textsize(prev_page_text, font=fonts[1])
+			pos = ( (s_left+s_cols/2), top )
+			draw_bg.text(pos, prev_page_text, fill=self.Menus.color_button, font=fonts[1])
+			draw_high.text(pos, prev_page_text, fill=1, font=fonts[1])
+			spuxml += """
+	<button name="button_prev" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (pos[0],pos[0]+textsize[0],pos[1],pos[1]+textsize[1])
+		del draw_bg
+		del draw_high
+		fd=open(self.menubgpngfilename,"w")
+		im_bg.save(fd,"PNG")
+		fd.close()
+		fd=open(self.highlightpngfilename,"w")
+		im_high.save(fd,"PNG")
+		fd.close()
+		spuxml += """
+	</spu>
+	</stream>
+	</subpictures>"""
+
+		f = open(self.spuxmlfilename, "w")
+		f.write(spuxml)
+		f.close()
+		Task.processFinished(self, 0)
+		#except:
+			#Task.processFinished(self, 1)
+			
+	def getPosition(self, offset, left, top, right, bottom, size):
+		pos = [left, top]
+		if offset[0] != -1:
+			pos[0] += offset[0]
+		else:
+			pos[0] += ( (right-left) - size[0] ) / 2
+		if offset[1] != -1:
+			pos[1] += offset[1]
+		else:
+			pos[1] += ( (bottom-top) - size[1] ) / 2
+		return tuple(pos)
 
 class Menus:
 	def __init__(self, job):
 		self.job = job
 		job.Menus = self
-		
-		s = self.job.project.settings
 
-		self.imgwidth = 720
-		self.imgheight = 576
+		s = self.job.project.menutemplate.settings
 
 		self.color_headline = tuple(s.color_headline.getValue())
 		self.color_button = tuple(s.color_button.getValue())
@@ -580,10 +640,9 @@ class Menus:
 
 		ImagePrepareTask(job)
 		nr_titles = len(job.project.titles)
-		if nr_titles < 6:
-			job.titles_per_menu = 5
-		else:
-			job.titles_per_menu = 4
+		
+		job.titles_per_menu = s.cols.getValue()*s.rows.getValue()
+
 		job.nr_menus = ((nr_titles+job.titles_per_menu-1)/job.titles_per_menu)
 
 		#a new menu_count every 4 titles (1,2,3,4->1 ; 5,6,7,8->2 etc.)
