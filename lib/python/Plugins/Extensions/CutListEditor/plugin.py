@@ -12,6 +12,7 @@ from Components.GUIComponent import GUIComponent
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService, RT_HALIGN_RIGHT
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
+from ServiceReference import ServiceReference
 import bisect
 
 def CutListEntry(where, what):
@@ -42,6 +43,7 @@ class CutListContextMenu(FixedMenu):
 	RET_DELETEMARK = 4
 	RET_REMOVEBEFORE = 5
 	RET_REMOVEAFTER = 6
+	RET_GRABFRAME = 7
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
@@ -75,6 +77,7 @@ class CutListContextMenu(FixedMenu):
 		else:
 			menu.append((_("remove this mark"), self.removeMark))
 
+		menu.append((("grab this frame as bitmap"), self.grabFrame))
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = "Menu"
 
@@ -99,6 +102,8 @@ class CutListContextMenu(FixedMenu):
 	def removeAfter(self):
 		self.close(self.RET_REMOVEAFTER)
 
+	def grabFrame(self):
+		self.close(self.RET_GRABFRAME)
 
 class CutList(GUIComponent):
 	def __init__(self, list):
@@ -390,6 +395,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			# add 'out' point
 			bisect.insort(self.cut_list, (self.context_position, 1))
 			self.uploadCuesheet()
+		elif result == CutListContextMenu.RET_GRABFRAME:
+			self.grabFrame()
 
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
@@ -398,6 +405,14 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.unPauseService()
 		else:
 			self.pauseService()
+
+	def grabFrame(self):
+		path = self.session.nav.getCurrentlyPlayingServiceReference().getPath()
+		from Components.Console import Console
+		grabConsole = Console()
+		cmd = 'grab -vblpr%d "%s"' % (180, path.rsplit('.',1)[0] + ".png")
+		grabConsole.ePopen(cmd)
+		self.playpauseService()
 
 def main(session, service, **kwargs):
 	session.open(CutListEditor, service)
