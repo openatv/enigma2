@@ -352,7 +352,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 						if file.mimetype == "video/x-dvd":
 							self.dvd_device = devicepath
 							print "physical dvd found:", self.dvd_device
-							self.physicalDVD = True			
+							self.physicalDVD = True
 
 		self.dvd_filelist = dvd_filelist
 		self.onFirstExecBegin.append(self.showFileBrowser)
@@ -387,9 +387,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def serviceStarted(self): #override InfoBarShowHide function
 		self.dvdScreen.show()
-		subs = self.getServiceInterface("subtitle")
-		if subs:
-			subs.enableSubtitles(self.dvdScreen.instance, None)
 
 	def doEofInternal(self, playing):
 		if self.in_menu:
@@ -588,6 +585,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				self.service = self.session.nav.getCurrentService()
 				print "self.service", self.service
 				print "cur_dlg", self.session.current_dialog
+				subs = self.getServiceInterface("subtitle")
+				if subs:
+					subs.enableSubtitles(self.dvdScreen.instance, None)
 
 	def exitCB(self, answer):
 		if answer is not None:
