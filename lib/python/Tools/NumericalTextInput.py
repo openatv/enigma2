@@ -3,12 +3,33 @@ from enigma import eTimer
 from Components.Language import language
 
 class NumericalTextInput:
-	def __init__(self, nextFunc=None, handleTimeout = True):
+	def __init__(self, nextFunc=None, handleTimeout = True, search = False):
 		self.mapping = []
 		self.lang = language.getLanguage()
 		self.useableChars=None
 		self.nextFunction=nextFunc
-		
+
+		if handleTimeout:
+			self.timer = eTimer()
+			self.timer.callback.append(self.timeout)
+		else:
+			self.timer = None
+		self.lastKey = -1
+		self.pos = -1
+
+		if search:
+			self.mapping.append (u"%_0") # 0
+			self.mapping.append (u" 1") # 1
+			self.mapping.append (u"abc2") # 2
+			self.mapping.append (u"def3") # 3
+			self.mapping.append (u"ghi4") # 4
+			self.mapping.append (u"jkl5") # 5
+			self.mapping.append (u"mno6") # 6
+			self.mapping.append (u"pqrs7") # 7
+			self.mapping.append (u"tuv8") # 8
+			self.mapping.append (u"wxyz9") # 9
+			return
+
 		if self.lang == 'de_DE':
 			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
 			self.mapping.append (u" 1") # 1
@@ -53,14 +74,6 @@ class NumericalTextInput:
 			self.mapping.append (u"pqrs7PQRS") # 7
 			self.mapping.append (u"tuv8TUV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
-
-		if handleTimeout:
-			self.timer = eTimer()
-			self.timer.callback.append(self.timeout)
-		else:
-			self.timer = None
-		self.lastKey = -1
-		self.pos = -1
 
 	def setUseableChars(self, useable):
 		self.useableChars = useable
