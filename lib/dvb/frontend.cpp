@@ -716,23 +716,15 @@ int eDVBFrontend::readFrontendData(int type)
 			return ber;
 		}
 		case signalQuality:
-		{
-			uint16_t snr=0;
-			if (!m_simulate)
-			{
-				if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
-					eDebug("FE_READ_SNR failed (%m)");
-			}
-			return snr;
-		}
 		case signalQualitydB: /* this will move into the driver */
 		{
+			int ret = 0x12345678;
 			uint16_t snr=0;
 			if (m_simulate)
 				return 0;
 			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
 				eDebug("FE_READ_SNR failed (%m)");
-			if (!strcmp(m_description, "BCM4501 (internal)"))
+			else if (!strcmp(m_description, "BCM4501 (internal)"))
 			{
 				float SDS_SNRE = snr << 16;
 				float snr_in_db;
@@ -787,15 +779,15 @@ int eDVBFrontend::readFrontendData(int type)
 					snr_in_db = fval1;
 				}
 #endif
-				return (int)(snr_in_db * 100);
+				ret = (int)(snr_in_db * 100);
 			}
 			else if (strstr(m_description, "Alps BSBE1 C01A") ||
 				!strcmp(m_description, "Alps -S(STV0288)"))
 			{
 				if (snr == 0)
-					return 0;
+					ret = 0;
 				else if (snr == 0xFFFF) // i think this should not happen
-					return 100*100;
+					ret = 100*100;
 				else
 				{
 					enum { REALVAL, REGVAL };
@@ -823,46 +815,59 @@ int eDVBFrontend::readFrontendData(int type)
 							else
 								Imin = i;
 						}
-						return (((regval - CN_lookup[Imin][REGVAL])
+						ret = (((regval - CN_lookup[Imin][REGVAL])
 								* (CN_lookup[Imax][REALVAL] - CN_lookup[Imin][REALVAL])
 								/ (CN_lookup[Imax][REGVAL] - CN_lookup[Imin][REGVAL]))
 								+ CN_lookup[Imin][REALVAL]) * 10;
 					}
-					return 100;
+					else
+						ret = 100;
 				}
-				return 0;
 			}
 			else if (!strcmp(m_description, "Alps BSBE1 702A") ||  // some frontends with STV0299
 				!strcmp(m_description, "Alps -S") ||
 				!strcmp(m_description, "Philips -S") ||
 				!strcmp(m_description, "LG -S") )
 			{
-				return (int)((snr-39075)/17.647);
+				ret = (int)((snr-39075)/17.647);
 			} else if (!strcmp(m_description, "Alps BSBE2"))
 			{
-				return (int)((snr >> 7) * 10);
+				ret = (int)((snr >> 7) * 10);
 			} else if (!strcmp(m_description, "Philips CU1216Mk3"))
 			{
 				int mse = (~snr) & 0xFF;
 				switch (parm_u_qam_modulation) {
-				case QAM_16: return fe_udiv(1950000, (32 * mse) + 138) + 1000;
-				case QAM_32: return fe_udiv(2150000, (40 * mse) + 500) + 1350;
-				case QAM_64: return fe_udiv(2100000, (40 * mse) + 500) + 1250;
-				case QAM_128: return fe_udiv(1850000, (38 * mse) + 400) + 1380;
-				case QAM_256: return fe_udiv(1800000, (100 * mse) + 40) + 2030;
+				case QAM_16: ret = fe_udiv(1950000, (32 * mse) + 138) + 1000; break;
+				case QAM_32: ret = fe_udiv(2150000, (40 * mse) + 500) + 1350; break;
+				case QAM_64: ret = fe_udiv(2100000, (40 * mse) + 500) + 1250; break;
+				case QAM_128: ret = fe_udiv(1850000, (38 * mse) + 400) + 1380; break;
+				case QAM_256: ret = fe_udiv(1800000, (100 * mse) + 40) + 2030; break;
 				default: break;
 				}
-				return 0;
 			} else if (!strcmp(m_description, "Philips TU1216"))
 			{
 				snr = 0xFF - (snr & 0xFF);
 				if (snr != 0)
-					return 10 * (int)(-100 * (log10(snr) - log10(255)));
-				return 0;
+					ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
+			}
+
+			if (type == signalQuality)
+			{
+				if (ret == 0x12345678) // no snr db calculation avail.. return untouched snr value..
+					return snr;
+				switch(m_type)
+				{
+					case feSatellite: // we assume a max of 17.5db here
+						return ret >= 1750 ? 65536 : ret * 65536 / 1750;
+					case feCable: // we assume a max of 42db here
+						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
+					case feTerrestrial: // we assume a max of 24db here
+						return ret >= 2400 ? 65536 : ret * 65536 / 2400;
+				}
 			}
 /* else
 				eDebug("no SNR dB calculation for frontendtype %s yet", m_description); */
-			return 0x12345678;
+			return ret;
 		}
 		case signalPower:
 		{
