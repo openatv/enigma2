@@ -3,30 +3,10 @@ from Screens.HelpMenu import HelpableScreen
 from Components.Label import Label
 from Components.FileList import FileList
 from Components.MediaPlayer import PlayList
-from Components.config import config, getConfigListEntry, ConfigSubsection, configfile, ConfigText, ConfigYesNo
+from Components.config import config, getConfigListEntry, ConfigSubsection, configfile, ConfigText, ConfigYesNo, ConfigDirectory
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 
-class ConfigDirectory(ConfigText):
-	def __init__(self, default="", visible_width=60):
-		ConfigText.__init__(self, default, fixed_size = True, visible_width = visible_width)
-	def handleKey(self, key):
-		pass
-	def getValue(self):
-		if self.text == "":
-			return None
-		else:
-			return ConfigText.getValue(self)
-	def setValue(self, val):
-		if val == None:
-			val = ""
-		ConfigText.setValue(self, val)
-	def getMulti(self, selected):
-		if self.text == "":
-			return ("mtext"[1-selected:], _("List of Storage Devices"), range(0))
-		else:
-			return ConfigText.getMulti(self, selected)
-		
 config.mediaplayer = ConfigSubsection()
 config.mediaplayer.repeat = ConfigYesNo(default=False)
 config.mediaplayer.savePlaylistOnExit = ConfigYesNo(default=True)
