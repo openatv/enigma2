@@ -1,44 +1,65 @@
-# -*- coding: iso-8859-1 -*-
+# -*- coding: utf-8 -*-
 from enigma import eTimer
 from Components.Language import language
 
 class NumericalTextInput:
-	def __init__(self, nextFunc=None, handleTimeout = True):
+	def __init__(self, nextFunc=None, handleTimeout = True, search = False):
 		self.mapping = []
 		self.lang = language.getLanguage()
 		self.useableChars=None
 		self.nextFunction=nextFunc
-		
+
+		if handleTimeout:
+			self.timer = eTimer()
+			self.timer.callback.append(self.timeout)
+		else:
+			self.timer = None
+		self.lastKey = -1
+		self.pos = -1
+
+		if search:
+			self.mapping.append (u"%_0") # 0
+			self.mapping.append (u" 1") # 1
+			self.mapping.append (u"abc2") # 2
+			self.mapping.append (u"def3") # 3
+			self.mapping.append (u"ghi4") # 4
+			self.mapping.append (u"jkl5") # 5
+			self.mapping.append (u"mno6") # 6
+			self.mapping.append (u"pqrs7") # 7
+			self.mapping.append (u"tuv8") # 8
+			self.mapping.append (u"wxyz9") # 9
+			return
+
 		if self.lang == 'de_DE':
 			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
 			self.mapping.append (u" 1") # 1
-			self.mapping.append (u"a‰bc2AƒBC") # 2
+			self.mapping.append (u"a√§bc2A√ÑBC") # 2
 			self.mapping.append (u"def3DEF") # 3
 			self.mapping.append (u"ghi4GHI") # 4
 			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnoˆ6MNO÷") # 6
-			self.mapping.append (u"pqrsﬂ7PQRSﬂ") # 7
-			self.mapping.append (u"tu¸v8TU‹V") # 8
+			self.mapping.append (u"mno√∂6MNO√ñ") # 6
+			self.mapping.append (u"pqrs√ü7PQRS√ü") # 7
+			self.mapping.append (u"tu√ºv8TU√úV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		elif self.lang == 'es_ES':
 			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
 			self.mapping.append (u" 1") # 1
-			self.mapping.append (u"abc·‡2ABC¡¿") # 2
-			self.mapping.append (u"deÈËf3DEF…»") # 3
-			self.mapping.append (u"ghiÌÏ4GHIÕÃ") # 4
+			self.mapping.append (u"abc√°√†2ABC√Å√Ä") # 2
+			self.mapping.append (u"de√©√®f3DEF√â√à") # 3
+			self.mapping.append (u"ghi√≠√¨4GHI√ç√å") # 4
 			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnÒoÛÚ6MN—O”“") # 6
+			self.mapping.append (u"mn√±o√≥√≤6MN√ëO√ì√í") # 6
 			self.mapping.append (u"pqrs7PQRS") # 7
-			self.mapping.append (u"tuv˙˘8TUV⁄Ÿ") # 8
+			self.mapping.append (u"tuv√∫√π8TUV√ö√ô") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		if self.lang in ['sv_SE', 'fi_FI']:
 			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
 			self.mapping.append (u" 1") # 1
-			self.mapping.append (u"abcÂ‰2ABC≈ƒ") # 2
-			self.mapping.append (u"defÈ3DEF…") # 3
+			self.mapping.append (u"abc√•√§2ABC√Ö√Ñ") # 2
+			self.mapping.append (u"def√©3DEF√â") # 3
 			self.mapping.append (u"ghi4GHI") # 4
 			self.mapping.append (u"jkl5JKL") # 5
-			self.mapping.append (u"mnoˆ6MNO÷") # 6
+			self.mapping.append (u"mno√∂6MNO√ñ") # 6
 			self.mapping.append (u"pqrs7PQRS") # 7
 			self.mapping.append (u"tuv8TUV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
@@ -53,14 +74,6 @@ class NumericalTextInput:
 			self.mapping.append (u"pqrs7PQRS") # 7
 			self.mapping.append (u"tuv8TUV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
-
-		if handleTimeout:
-			self.timer = eTimer()
-			self.timer.callback.append(self.timeout)
-		else:
-			self.timer = None
-		self.lastKey = -1
-		self.pos = -1
 
 	def setUseableChars(self, useable):
 		self.useableChars = useable

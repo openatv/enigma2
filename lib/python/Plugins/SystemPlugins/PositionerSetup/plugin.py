@@ -28,16 +28,13 @@ class PositionerSetup(Screen):
 			<widget name="blue" position="420,155" size="140,80" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
 			
 			<widget name="snr" text="SNR:" position="0,245" size="60,22" font="Regular;21" />
-			<widget name="agc" text="AGC:" position="0,270" size="60,22" font="Regular;21" />
-			<widget name="ber" text="BER:" position="0,295" size="60,22" font="Regular;21" />
+			<widget name="ber" text="BER:" position="0,270" size="60,22" font="Regular;21" />
 			<widget name="lock" text="Lock:" position="0,320" size="60,22" font="Regular;21" />
 			<widget name="snr_percentage" position="220,245" size="60,22" font="Regular;21" />
-			<widget name="agc_percentage" position="220,270" size="60,22" font="Regular;21" />
-			<widget name="ber_value" position="220,295" size="60,22" font="Regular;21" />
+			<widget name="ber_value" position="220,270" size="60,22" font="Regular;21" />
 			<widget name="lock_state" position="60,320" size="150,22" font="Regular;21" />
 			<widget name="snr_bar" position="60,245" size="150,22" />
-			<widget name="agc_bar" position="60,270" size="150,22" />
-			<widget name="ber_bar" position="60,295" size="150,22" />
+			<widget name="ber_bar" position="60,270" size="150,22" />
 
 			<widget name="frequency" text="Frequency:" position="300,245" size="120,22" font="Regular;21" />
 			<widget name="symbolrate" text="Symbolrate:" position="300,270" size="120,22" font="Regular;21" />
@@ -87,14 +84,11 @@ class PositionerSetup(Screen):
 		self.createSetup()
 		
 		self["snr"] = Label()
-		self["agc"] = Label()
 		self["ber"] = Label()
 		self["lock"] = Label()
 		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
-		self["agc_percentage"] = TunerInfo(TunerInfo.AGC_PERCENTAGE, statusDict = self.frontendStatus)
 		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
 		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict = self.frontendStatus)
-		self["agc_bar"] = TunerInfo(TunerInfo.AGC_BAR, statusDict = self.frontendStatus)
 		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict = self.frontendStatus)
 		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
 
@@ -330,10 +324,8 @@ class PositionerSetup(Screen):
 		if self.frontend:
 			self.frontend.getFrontendStatus(self.frontendStatus)
 		self["snr_percentage"].update()
-		self["agc_percentage"].update()
 		self["ber_value"].update()
 		self["snr_bar"].update()
-		self["agc_bar"].update()
 		self["ber_bar"].update()
 		self["lock_state"].update()
 		transponderdata = self.tuner.getTransponderData()

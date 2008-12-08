@@ -926,6 +926,31 @@ class ConfigNumber(ConfigText):
 		self.marked_pos = 0
 		self.offset = 0
 
+class ConfigSearchText(ConfigText):
+	def __init__(self, default = "", fixed_size = False, visible_width = False):
+		ConfigText.__init__(self, default = default, fixed_size = fixed_size, visible_width = visible_width)
+		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False, search = True)
+
+class ConfigDirectory(ConfigText):
+	def __init__(self, default="", visible_width=60):
+		ConfigText.__init__(self, default, fixed_size = True, visible_width = visible_width)
+	def handleKey(self, key):
+		pass
+	def getValue(self):
+		if self.text == "":
+			return None
+		else:
+			return ConfigText.getValue(self)
+	def setValue(self, val):
+		if val == None:
+			val = ""
+		ConfigText.setValue(self, val)
+	def getMulti(self, selected):
+		if self.text == "":
+			return ("mtext"[1-selected:], _("List of Storage Devices"), range(0))
+		else:
+			return ConfigText.getMulti(self, selected)
+
 # a slider.
 class ConfigSlider(ConfigElement):
 	def __init__(self, default = 0, increment = 1, limits = (0, 100)):
