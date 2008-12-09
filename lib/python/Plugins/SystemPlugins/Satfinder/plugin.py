@@ -39,46 +39,6 @@ class Tuner:
 			self.frontend.tune(self.lastparm)
 
 class Satfinder(ScanSetup):
-	skin = """
-		<screen position="90,100" size="520,400" title="Tune">
-			<widget name="config" position="20,10" size="460,210" scrollbarMode="showOnDemand" />
-			<widget name="introduction" position="20,360" zPosition="-10" size="350,30" font="Regular;23" />
-			<eLabel text="dB:" position="23,230" size="60,22" font="Regular;21" />
-			<eLabel text="SNR:" position="23,255" size="60,22" font="Regular;21" />
-			<eLabel text="AGC:" position="23,280" size="60,22" font="Regular;21" />
-			<eLabel text="BER:" position="23,305" size="60,22" font="Regular;21" />
-			<eLabel text="Lock:" position="23,330" size="60,22" font="Regular;21" />
-			<widget source="Frontend" render="Label" position="295,230" size="60,22" font="Regular;21" >
-				<convert type="FrontendInfo">SNRdB</convert>
-			</widget>
-			<widget source="Frontend" render="Label" position="295,255" size="60,22" font="Regular;21" >
-				<convert type="FrontendInfo">SNR</convert>
-			</widget>
-			<widget source="Frontend" render="Label" position="295,280" size="60,22" font="Regular;21" >
-				<convert type="FrontendInfo">AGC</convert>
-			</widget>
-			<widget source="Frontend" render="Label" position="295,305" size="60,22" font="Regular;21" >
-				<convert type="FrontendInfo">BER</convert>
-			</widget>
-			<widget source="Frontend" render="Progress" position="85,257" size="200,22" >
-				<convert type="FrontendInfo">SNR</convert>
-			</widget>
-			<widget source="Frontend" render="Progress" position="85,282" size="200,22" >
-				<convert type="FrontendInfo">AGC</convert>
-			</widget>
-			<widget source="Frontend" render="Progress" position="85,307" size="200,22" >
-				<convert type="FrontendInfo">BER</convert>
-			</widget>
-			<widget source="Frontend" render="Pixmap" pixmap="skin_default/buttons/key_green.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
-				<convert type="FrontendInfo">LOCK</convert>
-			<convert type="ConditionalShowHide" />
-			</widget>
-			<widget source="Frontend" render="Pixmap" pixmap="skin_default/buttons/key_red.png" position="295,330" zPosition="4" size="28,20" alphatest="on" >
-				<convert type="FrontendInfo">LOCK</convert>
-			<convert type="ConditionalShowHide">Invert</convert>
-			</widget>
-		</screen>"""
-
 	def openFrontend(self):
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
