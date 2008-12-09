@@ -26,19 +26,20 @@ class PositionerSetup(Screen):
 			<widget name="green" position="140,155" size="140,80" backgroundColor="green" halign="center" valign="center" font="Regular;21" />
 			<widget name="yellow" position="280,155" size="140,80" backgroundColor="yellow" halign="center" valign="center" font="Regular;21" />
 			<widget name="blue" position="420,155" size="140,80" backgroundColor="blue" halign="center" valign="center" font="Regular;21" />
-			
-			<widget name="snr" text="SNR:" position="0,245" size="60,22" font="Regular;21" />
-			<widget name="ber" text="BER:" position="0,270" size="60,22" font="Regular;21" />
-			<widget name="lock" text="Lock:" position="0,320" size="60,22" font="Regular;21" />
-			<widget name="snr_percentage" position="220,245" size="60,22" font="Regular;21" />
-			<widget name="ber_value" position="220,270" size="60,22" font="Regular;21" />
-			<widget name="lock_state" position="60,320" size="150,22" font="Regular;21" />
-			<widget name="snr_bar" position="60,245" size="150,22" />
-			<widget name="ber_bar" position="60,270" size="150,22" />
 
-			<widget name="frequency" text="Frequency:" position="300,245" size="120,22" font="Regular;21" />
-			<widget name="symbolrate" text="Symbolrate:" position="300,270" size="120,22" font="Regular;21" />
-			<widget name="fec" text="FEC:" position="300,295" size="120,22" font="Regular;21" />
+			<widget name="snr_db" position="60,245" size="150,22" halign="center" valign="center" font="Regular;21" />
+			<eLabel text="SNR:" position="0,270" size="60,22" font="Regular;21" />
+			<eLabel text="BER:" position="0,295" size="60,22" font="Regular;21" />
+			<eLabel text="Lock:" position="0,320" size="60,22" font="Regular;21" />
+			<widget name="snr_percentage" position="220,270" size="60,22" font="Regular;21" />
+			<widget name="ber_value" position="220,295" size="60,22" font="Regular;21" />
+			<widget name="lock_state" position="60,320" size="150,22" font="Regular;21" />
+			<widget name="snr_bar" position="60,270" size="150,22" />
+			<widget name="ber_bar" position="60,295" size="150,22" />
+
+			<eLabel text="Frequency:" position="300,245" size="120,22" font="Regular;21" />
+			<eLabel text="Symbolrate:" position="300,270" size="120,22" font="Regular;21" />
+			<eLabel text="FEC:" position="300,295" size="120,22" font="Regular;21" />
 			<widget name="frequency_value" position="420,245" size="120,22" font="Regular;21" />
 			<widget name="symbolrate_value" position="420,270" size="120,22" font="Regular;21" />
 			<widget name="fec_value" position="420,295" size="120,22" font="Regular;21" />
@@ -78,23 +79,17 @@ class PositionerSetup(Screen):
 		self["yellow"] = self.yellow
 		self.blue = Label("")
 		self["blue"] = self.blue
-		
+
 		self.list = []
 		self["list"] = ConfigList(self.list)
 		self.createSetup()
-		
-		self["snr"] = Label()
-		self["ber"] = Label()
-		self["lock"] = Label()
+
+		self["snr_db"] = TunerInfo(TunerInfo.SNR_DB, statusDict = self.frontendStatus)
 		self["snr_percentage"] = TunerInfo(TunerInfo.SNR_PERCENTAGE, statusDict = self.frontendStatus)
 		self["ber_value"] = TunerInfo(TunerInfo.BER_VALUE, statusDict = self.frontendStatus)
 		self["snr_bar"] = TunerInfo(TunerInfo.SNR_BAR, statusDict = self.frontendStatus)
 		self["ber_bar"] = TunerInfo(TunerInfo.BER_BAR, statusDict = self.frontendStatus)
 		self["lock_state"] = TunerInfo(TunerInfo.LOCK_STATE, statusDict = self.frontendStatus)
-
-		self["frequency"] = Label()
-		self["symbolrate"] = Label()
-		self["fec"] = Label()
 
 		self["frequency_value"] = Label("")
 		self["symbolrate_value"] = Label("")
@@ -323,6 +318,7 @@ class PositionerSetup(Screen):
 	def updateStatus(self):
 		if self.frontend:
 			self.frontend.getFrontendStatus(self.frontendStatus)
+		self["snr_db"].update()
 		self["snr_percentage"].update()
 		self["ber_value"].update()
 		self["snr_bar"].update()
