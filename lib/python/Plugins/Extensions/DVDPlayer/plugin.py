@@ -1,5 +1,5 @@
 from os import path as os_path, remove as os_remove, listdir as os_listdir, system
-from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys
+from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -109,10 +109,11 @@ class DVDSummary(Screen):
 		self["Title"].setText(title)
 
 class DVDOverlay(Screen):
-	skin = """<screen name="DVDOverlay" position="0,0" size="720,576" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />"""
 	def __init__(self, session, args = None):
+		desktop_size = getDesktop(0).size()
+		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" %(desktop_size.width(), desktop_size.height())
 		Screen.__init__(self, session)
-		
+
 class ChapterZap(Screen):
 	skin = """
 	<screen name="ChapterZap" position="235,255" size="250,60" title="Chapter" >
