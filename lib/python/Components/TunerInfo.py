@@ -10,13 +10,14 @@ class TunerInfo(GUIComponent):
 	BER = 2
 	LOCK = 3
 	SNR_PERCENTAGE = 0
-	AGC_PERCENTAGE = 1
-	BER_VALUE = 2
-	SNR_BAR = 3
-	AGC_BAR = 4
-	BER_BAR = 5
-	LOCK_STATE = 6
-	SYNC_STATE = 7
+	SNR_DB = 1
+	AGC_PERCENTAGE = 2
+	BER_VALUE = 3
+	SNR_BAR = 4
+	AGC_BAR = 5
+	BER_BAR = 6
+	LOCK_STATE = 7
+	SYNC_STATE = 8
 
 	def __init__(self, type, servicefkt = None, frontendfkt = None, statusDict = None):
 		GUIComponent.__init__(self)
@@ -47,7 +48,9 @@ class TunerInfo(GUIComponent):
 		return val*100/65535
 
 	def update(self):
-		if self.type == self.SNR_PERCENTAGE or self.type == self.SNR_BAR:
+		if self.type == self.SNR_DB:
+			value = self.getValue(self.SNR_DB)
+		elif self.type == self.SNR_PERCENTAGE or self.type == self.SNR_BAR:
 			value = self.getValue(self.SNR) * 100 / 65536
 		elif self.type == self.AGC_PERCENTAGE or self.type == self.AGC_BAR:
 			value = self.getValue(self.AGC) * 100 / 65536
@@ -55,8 +58,13 @@ class TunerInfo(GUIComponent):
 			value = self.getValue(self.BER)
 		elif self.type == self.LOCK_STATE:
 			value = self.getValue(self.LOCK)
-		
-		if self.type == self.SNR_PERCENTAGE or self.type == self.AGC_PERCENTAGE:
+
+		if self.type == self.SNR_DB:
+			if value != 0x12345678:
+				self.setText("%3.02f dB" % (value / 100.0))
+			else:
+				self.setText("")
+		elif self.type == self.SNR_PERCENTAGE or self.type == self.AGC_PERCENTAGE:
 			self.setText("%d%%" % (value))
 		elif self.type == self.BER_VALUE:
 			self.setText("%d" % (value))
@@ -72,7 +80,9 @@ class TunerInfo(GUIComponent):
 
 	def getValue(self, what):
 		if self.statusDict:
-			if what == self.SNR:
+			if what == self.SNR_DB:
+				return self.statusDict.get("tuner_signal_quality_db", 0x12345678)
+			elif what == self.SNR:
 				return self.statusDict.get("tuner_signal_quality", 0)
 			elif what == self.AGC:
 				return self.statusDict.get("tuner_signal_power", 0)
@@ -85,7 +95,9 @@ class TunerInfo(GUIComponent):
 			if service is not None:
 				feinfo = service.frontendInfo()
 				if feinfo is not None:
-					if what == self.SNR:
+					if what == self.SNR_DB:
+						return feinfo.getFrontendInfo(iFrontendInformation.signalQualitydB)
+					elif what == self.SNR:
 						return feinfo.getFrontendInfo(iFrontendInformation.signalQuality)
 					elif what == self.AGC:
 						return feinfo.getFrontendInfo(iFrontendInformation.signalPower)
@@ -96,7 +108,9 @@ class TunerInfo(GUIComponent):
 		elif self.frontendfkt:
 			frontend = self.frontendfkt()
 			if frontend:
-				if what == self.SNR:
+				if what == self.SNR_DB:
+					return frontend.readFrontendData(iFrontendInformation.signalQualitydB)
+				elif what == self.SNR:
 					return frontend.readFrontendData(iFrontendInformation.signalQuality)
 				elif what == self.AGC:
 					return frontend.readFrontendData(iFrontendInformation.signalPower)
