@@ -176,8 +176,11 @@ void eServiceDVD::gotMessage(int /*what*/)
 		}
 		case DDVD_SCREEN_UPDATE:
 			eDebug("DVD_SCREEN_UPDATE!");
-			if (m_subtitle_widget)
-				m_subtitle_widget->setPixmap(m_pixmap, eRect(ePoint(0, 0), m_pixmap->size()));
+			if (m_subtitle_widget) {
+				int x1,x2,y1,y2;
+				ddvd_get_last_blit_area(m_ddvdconfig, &x1, &x2, &y1, &y2);
+				m_subtitle_widget->setPixmap(m_pixmap, eRect(x1, y1, x2-x1, y2-y1));
+			}
 			break;
 		case DDVD_SHOWOSD_STATE_PLAY:
 		{
