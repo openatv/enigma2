@@ -780,6 +780,7 @@ int eDVBFrontend::readFrontendData(int type)
 				}
 #endif
 				ret = (int)(snr_in_db * 100);
+				ret -= 150; // -1.5db for latest bcm4501 firmware..
 			}
 			else if (strstr(m_description, "Alps BSBE1 C01A") ||
 				!strcmp(m_description, "Alps -S(STV0288)"))
@@ -857,8 +858,8 @@ int eDVBFrontend::readFrontendData(int type)
 					return snr;
 				switch(m_type)
 				{
-					case feSatellite: // we assume a max of 17.5db here
-						return ret >= 1750 ? 65536 : ret * 65536 / 1750;
+					case feSatellite: // we assume a max of 16.0db here
+						return ret >= 1600 ? 65536 : ret * 65536 / 1600;
 					case feCable: // we assume a max of 42db here
 						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
 					case feTerrestrial: // we assume a max of 24db here

@@ -187,7 +187,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	GstElement *source = 0;
 	GstElement *decoder = 0, *conv = 0, *flt = 0, *parser = 0, *sink = 0; /* for audio */
-	GstElement *audio = 0, *switch_audio = 0, *queue_audio = 0, *video = 0, *queue_video = 0, *videodemux = 0, *audiodemux = 0;
+	GstElement *audio = 0, *switch_audio = 0, *queue_audio = 0, *video = 0, *queue_video = 0, *videodemux = 0, *audiodemux = 0, *id3demux;
 	
 	m_state = stIdle;
 	eDebug("SERVICEMP3 construct!");
@@ -373,16 +373,19 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		{
 			case atMP3:
 			{
-				if ( !audiodemux )
+				id3demux = gst_element_factory_make("id3demux", "id3demux");
+				if ( !id3demux )
 				{
-					parser = gst_element_factory_make("mp3parse", "audioparse");
-					if (!parser)
-					{
-						m_error_message += "failed to create Gstreamer element mp3parse\n";
-						break;
-					}
+					m_error_message += "failed to create Gstreamer element id3demux\n";
+					break;
 				}
-				sink = gst_element_factory_make("dvbaudiosink", "audiosink");
+				parser = gst_element_factory_make("mp3parse", "audiosink");
+				if ( !parser )
+				{
+					m_error_message += "failed to create Gstreamer element mp3parse\n";
+					break;
+				}
+				sink = gst_element_factory_make("dvbaudiosink", "audiosink2");
 				if ( !sink )
 					m_error_message += "failed to create Gstreamer element dvbaudiosink\n";
 				else
@@ -532,17 +535,18 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 			else
 			{
 				gst_bin_add_many (GST_BIN (m_gst_pipeline), source, sink, NULL);
-				if ( parser )
+				if ( parser && id3demux )
 				{
-					gst_bin_add (GST_BIN (m_gst_pipeline), parser);
-					gst_element_link_many(source, parser, sink, NULL);
+					gst_bin_add_many (GST_BIN (m_gst_pipeline), parser, id3demux, NULL);
+					gst_element_link(source, id3demux);
+					g_signal_connect(id3demux, "pad-added", G_CALLBACK (gstCBpadAdded), this);
+					gst_element_link(parser, sink);
 				}
 				if ( audiodemux )
 				{
 					gst_bin_add (GST_BIN (m_gst_pipeline), audiodemux);
 					g_signal_connect(audiodemux, "pad-added", G_CALLBACK (gstCBpadAdded), this);
 					gst_element_link(source, audiodemux);
-					eDebug("linked source, audiodemux, sink");
 				}
 				audioStream audio;
 				audio.type = sourceinfo.audiotype;
@@ -1217,7 +1221,7 @@ void eServiceMP3::gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer use
 		else
 		{
 			GstElement *queue_audio = gst_bin_get_by_name(pipeline , "queue_audio");
-			if ( queue_audio)
+			if ( queue_audio )
 			{
 				gst_pad_link(pad, gst_element_get_static_pad(queue_audio, "sink"));
 				_this->m_audioStreams.push_back(audio);
