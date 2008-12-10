@@ -280,6 +280,7 @@ eServiceDVD::~eServiceDVD()
 	kill();
 	saveCuesheet();
 	ddvd_close(m_ddvdconfig);
+	disableSubtitles(0);
 }
 
 RESULT eServiceDVD::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
@@ -534,8 +535,7 @@ PyObject *eServiceDVD::getInfoObject(int w)
 
 RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) /*entry*/)
 {
-	if (m_subtitle_widget)
-		delete m_subtitle_widget;
+	delete m_subtitle_widget;
 
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size());
