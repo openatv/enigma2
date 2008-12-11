@@ -121,9 +121,9 @@ eServiceDVD::eServiceDVD(const char *filename):
 	{
 		rd = read(fd, tmp, 255);
 		if (rd > 6 && !strncmp(tmp, "bestfit", 7))
-			aspect = DDVD_JUSTSCALE;
+			policy = DDVD_JUSTSCALE;
 		else if (rd > 8 && !strncmp(tmp, "letterbox", 9))
-			aspect = DDVD_LETTERBOX;
+			policy = DDVD_LETTERBOX;
 		close(fd);
 	}
 
