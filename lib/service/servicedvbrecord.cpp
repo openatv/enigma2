@@ -363,7 +363,7 @@ RESULT eDVBServiceRecord::stream(ePtr<iStreamableService> &ptr)
 	return 0;
 }
 
-extern void PutToDict(ePyObject &dict, const char*key, ePyObject item);  // defined in dvb/frontend.cpp
+extern void PutToDict(ePyObject &dict, const char*key, long val);  // defined in dvb/frontend.cpp
 
 PyObject *eDVBServiceRecord::getStreamingData()
 {
@@ -379,7 +379,7 @@ PyObject *eDVBServiceRecord::getStreamingData()
 	{
 		uint8_t demux_id;
 		if (!demux->getCADemuxID(demux_id))
-			PutToDict(r, "demux", PyInt_FromLong(demux_id));
+			PutToDict(r, "demux", demux_id);
 	}
 
 	return r;
