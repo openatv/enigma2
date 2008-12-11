@@ -89,8 +89,8 @@ def InitUsageConfig():
 	config.seek.speeds_backward = ConfigSet(default=[8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_slowmotion = ConfigSet(default=[2, 4, 8], choices=[2, 4, 6, 8, 12, 16, 25])
 
-	config.seek.enter_forward = ConfigSelection(default = "2", choices = ["2"])
-	config.seek.enter_backward = ConfigSelection(default = "2", choices = ["2"])
+	config.seek.enter_forward = ConfigSelection(default = "2", choices = ["2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
+	config.seek.enter_backward = ConfigSelection(default = "1", choices = ["1", "2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
 	config.seek.stepwise_minspeed = ConfigSelection(default = "16", choices = ["Never", "2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
 	config.seek.stepwise_repeat = ConfigSelection(default = "3", choices = ["2", "3", "4", "5", "6"])
 
@@ -104,14 +104,14 @@ def InitUsageConfig():
 			configElement.value = [2]
 		updateChoices(config.seek.enter_forward, configElement.value)
 
-	config.seek.speeds_forward.addNotifier(updateEnterForward)
+	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback = False)
 
 	def updateEnterBackward(configElement):
 		if not configElement.value:
 			configElement.value = [2]
 		updateChoices(config.seek.enter_backward, configElement.value)
 
-	config.seek.speeds_backward.addNotifier(updateEnterBackward)
+	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
 
 def updateChoices(sel, choices):
 	if choices:
