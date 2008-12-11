@@ -718,6 +718,7 @@ int eDVBFrontend::readFrontendData(int type)
 		case signalQuality:
 		case signalQualitydB: /* this will move into the driver */
 		{
+			int sat_max = 1600; // for stv0288 / bsbe2
 			int ret = 0x12345678;
 			uint16_t snr=0;
 			if (m_simulate)
@@ -779,8 +780,8 @@ int eDVBFrontend::readFrontendData(int type)
 					snr_in_db = fval1;
 				}
 #endif
+				sat_max = 1750;
 				ret = (int)(snr_in_db * 100);
-				ret -= 150; // -1.5db for latest bcm4501 firmware..
 			}
 			else if (strstr(m_description, "Alps BSBE1 C01A") ||
 				!strcmp(m_description, "Alps -S(STV0288)"))
@@ -830,6 +831,7 @@ int eDVBFrontend::readFrontendData(int type)
 				!strcmp(m_description, "Philips -S") ||
 				!strcmp(m_description, "LG -S") )
 			{
+				sat_max = 1500;
 				ret = (int)((snr-39075)/17.647);
 			} else if (!strcmp(m_description, "Alps BSBE2"))
 			{
@@ -858,8 +860,8 @@ int eDVBFrontend::readFrontendData(int type)
 					return snr;
 				switch(m_type)
 				{
-					case feSatellite: // we assume a max of 16.0db here
-						return ret >= 1600 ? 65536 : ret * 65536 / 1600;
+					case feSatellite:
+						return ret >= sat_max ? 65536 : ret * 65536 / sat_max;
 					case feCable: // we assume a max of 42db here
 						return ret >= 4200 ? 65536 : ret * 65536 / 4200;
 					case feTerrestrial: // we assume a max of 24db here
