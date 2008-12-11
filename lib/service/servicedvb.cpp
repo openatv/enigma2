@@ -109,6 +109,7 @@ static void PutToDict(ePyObject &dict, const char*key, long value)
 		eDebug("could not create PyObject for %s", key);
 }
 
+extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
 extern void PutToDict(ePyObject &dict, const char*key, const char *value); // defined in dvb/frontend.cpp
 
 void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm)
@@ -2040,8 +2041,6 @@ PyObject *eDVBServiceBase::getTransponderData(bool original)
 					eDVBFrontendParametersSatellite osat;
 					if (!feparm->getDVBS(osat))
 					{
-						void PutToDict(ePyObject &, const char*, long);
-						void PutToDict(ePyObject &, const char*, const char*);
 						PutToDict(ret, "orbital_position", osat.orbital_position);
 						const char *tmp = "UNKNOWN";
 						switch(osat.polarisation)
@@ -3019,8 +3018,6 @@ RESULT eDVBServicePlay::stream(ePtr<iStreamableService> &ptr)
 	ptr = this;
 	return 0;
 }
-
-extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
 
 PyObject *eDVBServicePlay::getStreamingData()
 {
