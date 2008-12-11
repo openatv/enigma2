@@ -547,7 +547,7 @@ class TunerScreen(ScanSetup):
 				self.scan_sat.inversion.index,
 				satpos,
 				self.scan_sat.system.index,
-				self.scan_sat.modulation.index,
+				self.scan_sat.modulation.index == 1 and 2 or 1,
 				self.scan_sat.rolloff.index,
 				self.scan_sat.pilot.index)
 		elif tuning.type.value == "predefined_transponder":
@@ -562,7 +562,7 @@ class TunerScreen(ScanSetup):
 class RotorNimSelection(Screen):
 	skin = """
 		<screen position="140,165" size="400,130" title="select Slot">
-			<widget name="nimlist" position="20,10" size="360,75" />
+			<widget name="nimlist" position="20,10" size="360,100" />
 		</screen>"""
 
 	def __init__(self, session):
