@@ -1859,6 +1859,20 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 	res = m_sec->prepare(*this, parm, feparm, 1 << m_slotid, tunetimeout);
 	if (!res)
 	{
+#if HAVE_DVB_API_VERSION >= 3
+		eDebugNoSimulate("prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d system %d modulation %d pilot %d, rolloff %d",
+			feparm.system,
+			feparm.frequency,
+			feparm.polarisation,
+			feparm.symbol_rate,
+			feparm.inversion,
+			feparm.fec,
+			feparm.orbital_position,
+			feparm.system,
+			feparm.modulation,
+			feparm.pilot,
+			feparm.rolloff);
+#else
 		eDebugNoSimulate("prepare_sat System %d Freq %d Pol %d SR %d INV %d FEC %d orbpos %d",
 			feparm.system,
 			feparm.frequency,
@@ -1867,6 +1881,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 			feparm.inversion,
 			feparm.fec,
 			feparm.orbital_position);
+#endif
 		parm_u_qpsk_symbol_rate = feparm.symbol_rate;
 		switch (feparm.inversion)
 		{
