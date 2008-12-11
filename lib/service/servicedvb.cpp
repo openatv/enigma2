@@ -96,7 +96,7 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 	return false;
 }
 
-static void PutToDict(ePyObject &dict, const char*key, long value)
+static void PutToDictAsStr(ePyObject &dict, const char*key, long value)
 {
 	ePyObject item = PyString_FromFormat("%d", value);
 	if (item)
@@ -109,6 +109,7 @@ static void PutToDict(ePyObject &dict, const char*key, long value)
 		eDebug("could not create PyObject for %s", key);
 }
 
+extern void PutToDict(ePyObject &dict, const char*key, long value);  // defined in dvb/frontend.cpp
 extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
 extern void PutToDict(ePyObject &dict, const char*key, const char *value); // defined in dvb/frontend.cpp
 
@@ -116,9 +117,9 @@ void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &fe
 {
 	const char *tmp=0;
 	PutToDict(dict, "type", "Satellite");
-	PutToDict(dict, "frequency", feparm.frequency);
-	PutToDict(dict, "symbolrate", feparm.symbol_rate);
-	PutToDict(dict, "orbital position", feparm.orbital_position);
+	PutToDictAsStr(dict, "frequency", feparm.frequency);
+	PutToDictAsStr(dict, "symbolrate", feparm.symbol_rate);
+	PutToDictAsStr(dict, "orbital position", feparm.orbital_position);
 	switch (feparm.inversion)
 	{
 		case eDVBFrontendParametersSatellite::Inversion::On: tmp="ON"; break;
@@ -190,7 +191,7 @@ void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &fe
 void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial &feparm)
 {
 	PutToDict(dict, "type", "Terrestrial");
-	PutToDict(dict, "frequency", feparm.frequency);
+	PutToDictAsStr(dict, "frequency", feparm.frequency);
 	const char *tmp=0;
 	switch (feparm.bandwidth)
 	{
@@ -274,8 +275,8 @@ void PutCableDataToDict(ePyObject &dict, eDVBFrontendParametersCable &feparm)
 {
 	const char *tmp=0;
 	PutToDict(dict, "type", "Cable");
-	PutToDict(dict, "frequency", feparm.frequency);
-	PutToDict(dict, "symbolrate", feparm.symbol_rate);
+	PutToDictAsStr(dict, "frequency", feparm.frequency);
+	PutToDictAsStr(dict, "symbolrate", feparm.symbol_rate);
 	switch (feparm.modulation)
 	{
 	case eDVBFrontendParametersCable::Modulation::QAM16: tmp="QAM16"; break;
@@ -3033,7 +3034,7 @@ PyObject *eDVBServicePlay::getStreamingData()
 	{
 		uint8_t demux_id;
 		if (!demux->getCADemuxID(demux_id))
-			PutToDict(r, "demux", PyInt_FromLong(demux_id));
+			PutToDict(r, "demux", demux_id);
 	}
 
 	return r;
