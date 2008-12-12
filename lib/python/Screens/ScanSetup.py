@@ -487,9 +487,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				ttype = frontendData.get("tuner_type", "UNKNOWN")
 				if ttype == "DVB-S":
 					defaultSat["system"] = {"DVB-S": "dvb-s", "DVB-S2": "dvb-s2"}[frontendData.get("system", "DVB-S")]
-					defaultSat["frequency"] = int(frontendData.get("frequency", 0) / 1000)
+					defaultSat["frequency"] = frontendData.get("frequency", 0) / 1000
 					defaultSat["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData.get("inversion", "INVERSION_AUTO")]
-					defaultSat["symbolrate"] = int(frontendData.get("symbol_rate", 0) / 1000)
+					defaultSat["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
 					defaultSat["polarization"] = {"HORIZONTAL": "horizontal", "VERTICAL": "vertical", "CIRCULAR_LEFT": "circular_left", "CIRCULAR_RIGHT": "circular_right", "UNKNOWN": None}[frontendData.get("polarization", "HORIZONTAL")]
 
 					if frontendData.get("system", "DVB-S") == "DVB-S2":
@@ -504,8 +504,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					defaultSat["modulation"] = {"QPSK": "qpsk", "8PSK": "8psk"}[frontendData.get("modulation", "QPSK")]
 					defaultSat["orbpos"] = frontendData.get("orbital_position", 0)
 				elif ttype == "DVB-C":
-					defaultCab["frequency"] = int(frontendData.get("frequency", 0) / 1000)
-					defaultCab["symbolrate"] = int(frontendData.get("symbol_rate", 0) / 1000)
+					defaultCab["frequency"] = frontendData.get("frequency", 0) / 1000
+					defaultCab["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
 					defaultCab["inversion"] = {"INVERSION_OFF": "off", "INVERSION_ON": "on", "INVERSION_AUTO": "auto"}[frontendData.get("inversion", "INVERSION_AUTO")]
 					defaultCab["fec"] = {"FEC_AUTO": "auto", "FEC_1_2": "1_2", "FEC_2_3": "2_3", "FEC_3_4": "3_4", "FEC_5_6": "5_6", "FEC_7_8": "7_8", "FEC_8_9": "8_9", "FEC_NONE": "none"}[frontendData.get("fec_inner", "FEC_AUTO")]
 					defaultCab["modulation"] = {"QAM_AUTO": "auto", "QAM_16": "16qam", "QAM_32": "32qam", "QAM_64": "64qam", "QAM_128": "128qam", "QAM_256": "256qam"}[frontendData.get("modulation", "QAM_16")]
@@ -577,7 +577,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			self.scan_satselection = []
 			for slot in nimmanager.nim_slots:
 				if slot.isCompatible("DVB-S"):
-					self.scan_satselection.append(getConfigSatlist(int(defaultSat["orbpos"]), self.satList[slot.slot]))
+					self.scan_satselection.append(getConfigSatlist(defaultSat["orbpos"], self.satList[slot.slot]))
 				else:
 					self.scan_satselection.append(None)
 
@@ -621,9 +621,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		parm.polarisation = polarisation
 		parm.fec = self.fecmap[fec]
 		parm.inversion = inversion
-		parm.orbital_position = int(orbital_position)
-		parm.rolloff = int(rolloff)
-		parm.pilot = int(pilot)
+		parm.orbital_position = orbital_position
+		parm.rolloff = rolloff
+		parm.pilot = pilot
 		tlist.append(parm)
 
 	def addCabTransponder(self, tlist, frequency, symbol_rate, modulation, fec, inversion):
