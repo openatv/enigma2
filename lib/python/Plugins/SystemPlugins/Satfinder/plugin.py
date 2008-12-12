@@ -167,7 +167,7 @@ class Satfinder(ScanSetup):
 			l = len(tps)
 			if l > self.tuning_transponder.index:
 				transponder = tps[self.tuning_transponder.index]
-				returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000),
+				returnvalue = (transponder[1] / 1000, transponder[2] / 1000,
 					transponder[3], transponder[4], 2, satpos, transponder[5], transponder[6], transponder[8], transponder[9])
 				self.tune(returnvalue)
 
