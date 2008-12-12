@@ -512,8 +512,12 @@ class TunerScreen(ScanSetup):
 			tuning.sat.addNotifier(self.tuningSatChanged)
 			self.updateTransponders()
 		orb_pos = self.fe_data.get("orbital_position", None)
-		if orb_pos:
-			tuning.sat.value = str(orb_pos)
+		if orb_pos is not None:
+			for x in nimmanager.getRotorSatListForNim(self.feid):
+				opos = str(orb_pos)
+				if x[0] == orb_pos and tuning.sat.value != opos:
+					tuning.sat.value = opos
+			del self.fe_data["orbital_position"]
 		ScanSetup.createConfig(self, self.fe_data)
 
 	def tuningSatChanged(self, *parm):
