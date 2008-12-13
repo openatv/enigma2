@@ -140,7 +140,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	{
 		bool rotor=false;
 		eDVBSatelliteLNBParameters &lnb_param = m_lnbs[idx];
-		if ( lnb_param.slot_mask & slot_id ) // lnb for correct tuner?
+		if ( lnb_param.m_slot_mask & slot_id ) // lnb for correct tuner?
 		{
 			int ret = 0;
 			eDVBSatelliteDiseqcParameters &di_param = lnb_param.m_diseqc_parameters;
@@ -297,6 +297,9 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						ret=0;
 				}
 
+				if (ret && lnb_param.m_prio != -1)
+					ret = lnb_param.m_prio;
+
 				eSecDebugNoSimulate("ret %d, score old %d", ret, score);
 				if (ret > score)
 				{
@@ -309,7 +312,12 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 		}
 	}
 	if (score && satcount)
-		score -= (satcount-1);
+	{
+		if (score > (satcount-1))
+			score -= (satcount-1);
+		else
+			score = 1; // min score
+	}
 	if (score && direct_connected)
 		score += 5; // increase score for tuners with direct sat connection
 	eSecDebugNoSimulate("final score %d", score);
@@ -963,7 +971,8 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 	for (int i=0; i <= m_lnbidx; ++i)
 	{
 		m_lnbs[i].m_satellites.clear();
-		m_lnbs[i].slot_mask = 0;
+		m_lnbs[i].m_slot_mask = 0;
+		m_lnbs[i].m_prio = -1; // auto
 	}
 	m_lnbidx=-1;
 
@@ -1021,7 +1030,7 @@ RESULT eDVBSatelliteEquipmentControl::setLNBSlotMask(int slotmask)
 {
 	eSecDebug("eDVBSatelliteEquipmentControl::setLNBSlotMask(%d)", slotmask);
 	if ( currentLNBValid() )
-		m_lnbs[m_lnbidx].slot_mask = slotmask;
+		m_lnbs[m_lnbidx].m_slot_mask = slotmask;
 	else
 		return -ENOENT;
 	return 0;
@@ -1066,6 +1075,17 @@ RESULT eDVBSatelliteEquipmentControl::setLNBIncreasedVoltage(bool onoff)
 		return -ENOENT;
 	return 0;
 }
+
+RESULT eDVBSatelliteEquipmentControl::setLNBPrio(int prio)
+{
+	eSecDebug("eDVBSatelliteEquipmentControl::setLNBPrio(%d)", prio);
+	if ( currentLNBValid() )
+		m_lnbs[m_lnbidx].m_prio = prio;
+	else
+		return -ENOENT;
+	return 0;
+}
+
 
 /* DiSEqC Specific Parameters */
 RESULT eDVBSatelliteEquipmentControl::setDiSEqCMode(int diseqcmode)

@@ -381,6 +381,8 @@ class SecConfigure:
 
 				sec.setLNBSlotMask(tunermask)
 
+				sec.setLNBPrio(int(currLnb.prio.value))
+
 				# finally add the orbital positions
 				for y in lnbSat[x]:
 					self.addSatellite(sec, y)
@@ -1026,6 +1028,14 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 600)
 				etime = datetime(1970, 1, 1, 19, 0);
 				nim.advanced.lnb[x].fastTurningEnd = ConfigDateTime(default=mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 600)
+				prio_list = [ ("-1", _("Auto")) ]
+				for prio in range(65):
+					prio_list.append((str(prio), str(prio)))
+				for prio in range(14000,14065):
+					prio_list.append((str(prio), str(prio)))
+				for prio in range(19000,19065):
+					prio_list.append((str(prio), str(prio)))
+				nim.advanced.lnb[x].prio = ConfigSelection(default="-1", choices=prio_list)
 		elif slot.isCompatible("DVB-C"):
 			nim.configMode = ConfigSelection(
 				choices = {
