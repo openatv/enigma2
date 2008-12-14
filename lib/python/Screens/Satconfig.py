@@ -283,6 +283,7 @@ class NimSetup(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
 #			self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
 			self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
+			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
 
 	def fillAdvancedList(self):
 		self.list = [ ]

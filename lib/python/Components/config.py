@@ -31,8 +31,10 @@ class ConfigElement(object):
 
 		object.__init__(self)
 		self.saved_value = None
+		self.last_value = None
 		self.save_disabled = False
 		self.notifiers = []
+		self.notifiers_final = []
 		self.enabled = True
 		self.callNotifiersOnSaveAndCancel = False
 
@@ -85,10 +87,16 @@ class ConfigElement(object):
 		for x in self.notifiers:
 			x(self)
 			
-	def addNotifier(self, notifier, initial_call = True):
+	def changedFinal(self):
+		for x in self.notifiers_final:
+			x(self)
+			
+	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True):
 		assert callable(notifier), "notifiers must be callable"
-		self.notifiers.append(notifier)
-
+		if immediate_feedback:
+			self.notifiers.append(notifier)
+		else:
+			self.notifiers_final.append(notifier)
 		# CHECKME:
 		# do we want to call the notifier
 		#  - at all when adding it? (yes, though optional)
@@ -110,7 +118,9 @@ class ConfigElement(object):
 		pass
 
 	def onDeselect(self, session):
-		pass
+		if not self.last_value == self.value:
+			self.changedFinal()
+			self.last_value = self.value
 
 KEY_LEFT = 0
 KEY_RIGHT = 1
@@ -143,6 +153,7 @@ class ConfigSelection(ConfigElement):
 		ConfigElement.__init__(self)
 		self._value = None
 		self.setChoices(choices, default)
+		self.last_value = self._value
 
 	def setChoices(self, choices, default = None):
 		self.choices = []
@@ -262,7 +273,8 @@ class ConfigBoolean(ConfigElement):
 	def __init__(self, default = False, descriptions = {False: "false", True: "true"}):
 		ConfigElement.__init__(self)
 		self.descriptions = descriptions
-		self.value = self.default = default
+		self.value = self.last_value = self.default = default
+
 	def handleKey(self, key):
 		if key in [KEY_LEFT, KEY_RIGHT]:
 			self.value = not self.value
@@ -309,6 +321,11 @@ class ConfigBoolean(ConfigElement):
 		else:
 			self.value = False
 
+	def onDeselect(self, session):
+		if not self.last_value == self.value:
+			self.changedFinal()
+			self.last_value = self.value
+
 class ConfigYesNo(ConfigBoolean):
 	def __init__(self, default = False):
 		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("no"), True: _("yes")})
@@ -326,7 +343,7 @@ class ConfigDateTime(ConfigElement):
 		ConfigElement.__init__(self)
 		self.increment = increment
 		self.formatstring = formatstring
-		self.value = self.default = int(default)
+		self.value = self.last_value = self.default = int(default)
 
 	def handleKey(self, key):
 		if key == KEY_LEFT:
@@ -367,6 +384,7 @@ class ConfigSequence(ConfigElement):
 		
 		self.default = default
 		self.value = copy.copy(default)
+		self.last_value = copy.copy(default)
 		
 		self.endNotifier = []
 
@@ -506,6 +524,11 @@ class ConfigSequence(ConfigElement):
 
 	def fromstring(self, value):
 		return [int(x) for x in value.split(self.seperator)]
+
+	def onDeselect(self, session):
+		if not self.last_value == self._value:
+			self.changedFinal()
+			self.last_value = copy.copy(self._value)
 
 class ConfigIP(ConfigSequence):
 	def __init__(self, default, auto_jump = False):
@@ -685,7 +708,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.offset = 0
 		self.overwrite = fixed_size
 		self.help_window = None
-		self.value = self.default = default
+		self.value = self.last_value = self.default = default
 
 	def validateMarker(self):
 		if self.fixed_size:
@@ -851,6 +874,9 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		if self.help_window:
 			session.deleteDialog(self.help_window)
 			self.help_window = None
+		if not self.last_value == self.value:
+			self.changedFinal()
+			self.last_value = self.value
 
 	def getHTML(self, id):
 		return '<input type="text" name="' + id + '" value="' + self.value + '" /><br>\n'
@@ -925,6 +951,9 @@ class ConfigNumber(ConfigText):
 	def onDeselect(self, session):
 		self.marked_pos = 0
 		self.offset = 0
+		if not self.last_value == self.value:
+			self.changedFinal()
+			self.last_value = self.value
 
 class ConfigSearchText(ConfigText):
 	def __init__(self, default = "", fixed_size = False, visible_width = False):
@@ -955,7 +984,7 @@ class ConfigDirectory(ConfigText):
 class ConfigSlider(ConfigElement):
 	def __init__(self, default = 0, increment = 1, limits = (0, 100)):
 		ConfigElement.__init__(self)
-		self.value = self.default = default
+		self.value = self.last_value = self.default = default
 		self.min = limits[0]
 		self.max = limits[1]
 		self.increment = increment
@@ -1027,7 +1056,7 @@ class ConfigSet(ConfigElement):
 			default = []
 		self.pos = -1
 		default.sort()
-		self.default = default
+		self.last_value = self.default = default
 		self.value = default+[]
 
 	def toggleChoice(self, choice):
@@ -1036,6 +1065,7 @@ class ConfigSet(ConfigElement):
 		else:
 			self.value.append(choice)
 			self.value.sort()
+		self.changed()
 
 	def handleKey(self, key):
 		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
@@ -1082,7 +1112,9 @@ class ConfigSet(ConfigElement):
 
 	def onDeselect(self, session):
 		self.pos = -1
-		self.changed()
+		if not self.last_value == self.value:
+			self.changedFinal()
+			self.last_value = self.value+[]
 		
 	def tostring(self, value):
 		return str(value)
@@ -1099,6 +1131,7 @@ class ConfigLocations(ConfigElement):
 		self.locations = []
 		self.mountpoints = []
 		harddiskmanager.on_partition_list_change.append(self.mountpointsChanged)
+		self.value = default+[]
 
 	def setValue(self, value):
 		loc = [x[0] for x in self.locations if x[3]]

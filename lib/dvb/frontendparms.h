@@ -43,7 +43,6 @@ struct eDVBFrontendParametersSatellite
 			alpha_0_35, alpha_0_25, alpha_0_20
 		};
 	};
-	// only 8psk
 	struct Pilot {  
 		enum {
 			Off, On, Unknown

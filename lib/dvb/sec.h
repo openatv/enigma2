@@ -231,7 +231,7 @@ public:
 #ifndef SWIG
 	t_12V_relais_state m_12V_relais_state;	// 12V relais output on/off
 
-	__u8 slot_mask; // useable by slot ( 1 | 2 | 4...)
+	int m_slot_mask; // useable by slot ( 1 | 2 | 4...)
 
 	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
 				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
@@ -242,6 +242,8 @@ public:
 	std::map<int, eDVBSatelliteSwitchParameters> m_satellites;
 	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 	eDVBSatelliteRotorParameters m_rotor_parameters;
+
+	int m_prio; // to override automatic tuner management ... -1 is Auto
 #endif
 };
 
@@ -304,6 +306,7 @@ public:
 	RESULT setLNBLOFH(int lofh);
 	RESULT setLNBThreshold(int threshold);
 	RESULT setLNBIncreasedVoltage(bool onoff);
+	RESULT setLNBPrio(int prio);
 /* DiSEqC Specific Parameters */
 	RESULT setDiSEqCMode(int diseqcmode);
 	RESULT setToneburst(int toneburst);

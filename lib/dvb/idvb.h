@@ -404,15 +404,16 @@ class iDVBFrontendParameters: public iObject
 #endif
 public:
 	enum { flagOnlyFree = 1 };
-	virtual RESULT getSystem(int &SWIG_OUTPUT) const = 0;
-	virtual RESULT getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const = 0;
-	virtual RESULT getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const = 0;
-	virtual RESULT getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
-	
-	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT, bool exact) const = 0;
-	virtual RESULT getHash(unsigned long &SWIG_OUTPUT) const = 0;
-	virtual RESULT calcLockTimeout(unsigned int &) const = 0;
-	virtual RESULT getFlags(unsigned int &) const = 0;
+	virtual SWIG_VOID(RESULT) getSystem(int &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getFlags(unsigned int &SWIG_OUTPUT) const = 0;
+#ifndef SWIG
+	virtual SWIG_VOID(RESULT) calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const = 0;
+	virtual SWIG_VOID(RESULT) getHash(unsigned long &) const = 0;
+	virtual SWIG_VOID(RESULT) calcLockTimeout(unsigned int &) const = 0;
+#endif
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontendParameters>, iDVBFrontendParametersPtr);
 
