@@ -230,7 +230,7 @@ class TitleList(Screen, HelpableScreen):
 		res = [ ]
 		totalsize = 0
 		for title in self.project.titles:
-			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 10, 500, 50, 0, RT_HALIGN_LEFT, title.properties.menutitle.getValue())  ]
+			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 5, 500, 25, 0, RT_HALIGN_LEFT, title.properties.menutitle.getValue())  ]
 			res.append(a)
 			totalsize += title.estimatedDiskspace
 		self["titles"].list = res
