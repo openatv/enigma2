@@ -49,22 +49,54 @@ class PositionerSetup(Screen):
 		Screen.__init__(self, session)
 		self.feid = feid
 		self.oldref = None
-		
+
+		cur = { }
 		if not self.openFrontend():
 			self.oldref = session.nav.getCurrentlyPlayingServiceReference()
+			service = session.nav.getCurrentService()
+			feInfo = service and service.frontendInfo()
+			if feInfo:
+				cur = feInfo.getTransponderData(True)
+			del feInfo
+			del service
 			session.nav.stopService() # try to disable foreground service
 			if not self.openFrontend():
 				if session.pipshown: # try to disable pip
+					service = self.session.pip.pipservice
+					feInfo = service and service.frontendInfo()
+					if feInfo:
+						cur = feInfo.getTransponderData()
+					del feInfo
+					del service
 					session.pipshown = False
 					del session.pip
 					if not self.openFrontend():
 						self.frontend = None # in normal case this should not happen
-
+		
 		self.frontendStatus = { }
-
 		self.diseqc = Diseqc(self.frontend)
 		self.tuner = Tuner(self.frontend)
-		self.tuner.tune((0,0,0,0,0,0))
+
+		tp = ( cur.get("frequency", 0) / 1000,
+			cur.get("symbol_rate", 0) / 1000,
+			{ "HORIZONTAL" : 0, "VERTICAL" : 1,
+				"CIRCULAR_LEFT" : 2, "CIRCULAR_RIGHT" : 3 }[cur.get("polarization", "HORIZONTAL")],
+			{ "FEC_AUTO" : 0, "FEC_1_2" : 1, "FEC_2_3" : 2, "FEC_3_4" : 3,
+				"FEC_5_6" : 4, "FEC_7_8" : 5, "FEC_8_9" : 6, "FEC_3_5" : 7,
+				"FEC_4_5" : 8, "FEC_9_10" : 9, "FEC_NONE" : 15 }[cur.get("fec_inner", "FEC_AUTO")],
+			{ "INVERSION_OFF" : 0,
+				"INVERSION_ON" : 1,
+				"INVERSION_AUTO" : 2 }[cur.get("inversion", "INVERSION_AUTO")],
+			cur.get("orbital_position", 0),
+			{ "DVB-S" : 0, "DVB-S2" : 1 }[cur.get("system", "DVB-S")],
+			{ "QPSK" : 1, "8PSK" : 2 }[cur.get("modulation", "QPSK")],
+			{ "ROLLOFF_0_35" : 0, "ROLLOFF_0_25" : 1,
+				"ROLLOFF_0_20" : 2 }[cur.get("rolloff", "ROLLOFF_0_35")],
+			{ "PILOT_OFF" : 0, "PILOT_ON" : 1,
+				"PILOT_AUTO" : 2 }[cur.get("pilot", "PILOT_AUTO")]
+		)
+
+		self.tuner.tune(tp)
 		
 		self.createConfig()
 		
@@ -249,7 +281,12 @@ class PositionerSetup(Screen):
 		elif entry == "limits":
 			self.diseqccommand("limitOff")
 		elif entry == "tune":
-			self.session.openWithCallback(self.tune, TunerScreen, self.feid)
+			fe_data = { }
+			self.frontend.getFrontendData(fe_data)
+			self.frontend.getTransponderData(fe_data, True)
+			feparm = self.tuner.lastparm.getDVBS()
+			fe_data["orbital_position"] = feparm.orbital_position
+			self.session.openWithCallback(self.tune, TunerScreen, self.feid, fe_data)
 		elif entry == "goto0":
 			print "move to position 0"
 			self.diseqccommand("moveTo", 0)
@@ -272,6 +309,7 @@ class PositionerSetup(Screen):
 		elif entry == "storage":
 			print "store at position", int(self.positioner_storage.value)
 			self.diseqccommand("store", int(self.positioner_storage.value))
+			
 		elif entry == "limits":
 			self.diseqccommand("limitWest")
 
@@ -388,8 +426,10 @@ class Tuner:
 		parm.fec = transponder[3]
 		parm.inversion = transponder[4]
 		parm.orbital_position = transponder[5]
-		parm.system = 0  # FIXMEE !! HARDCODED DVB-S (add support for DVB-S2)
-		parm.modulation = 1 # FIXMEE !! HARDCODED QPSK
+		parm.system = transponder[6]
+		parm.modulation = transponder[7]
+		parm.rolloff = transponder[8]
+		parm.pilot = transponder[9]
 		feparm = eDVBFrontendParameters()
 		feparm.setDVBS(parm, True)
 		self.lastparm = feparm
@@ -415,8 +455,9 @@ class TunerScreen(ScanSetup):
 			<widget name="introduction" position="20,360" size="350,30" font="Regular;23" />
 		</screen>"""
 
-	def __init__(self, session, feid):
+	def __init__(self, session, feid, fe_data):
 		self.feid = feid
+		self.fe_data = fe_data
 		ScanSetup.__init__(self, session)
 		self["introduction"].setText("")
 
@@ -428,21 +469,35 @@ class TunerScreen(ScanSetup):
 		self.list.append(self.typeOfTuningEntry)
 		self.satEntry = getConfigListEntry(_('Satellite'), tuning.sat)
 		self.list.append(self.satEntry)
+		nim = nimmanager.nim_slots[self.feid]
+		self.systemEntry = None
+		
 		if tuning.type.value == "manual_transponder":
+			if nim.isCompatible("DVB-S2"):
+				self.systemEntry = getConfigListEntry(_('System'), self.scan_sat.system)
+				self.list.append(self.systemEntry)
+			else:
+				# downgrade to dvb-s, in case a -s2 config was active
+				self.scan_sat.system.value = "dvb-s"
 			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
 			self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
-			self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
+			if self.scan_sat.system.value == "dvb-s":
+				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
+			elif self.scan_sat.system.value == "dvb-s2":
+				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
+				self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
+				self.list.append(self.modulationEntry)
+				self.list.append(getConfigListEntry(_('Rolloff'), self.scan_sat.rolloff))
+				self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
 		elif tuning.type.value == "predefined_transponder":
 			self.list.append(getConfigListEntry(_("Transponder"), tuning.transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 	def newConfig(self):
-		if self["config"].getCurrent() == self.typeOfTuningEntry:
-			self.createSetup()
-		elif self["config"].getCurrent() == self.satEntry:
+		if self["config"].getCurrent() in (self.typeOfTuningEntry, self.satEntry, self.systemEntry):
 			self.createSetup()
 
 	def createConfig(self, foo):
@@ -456,8 +511,14 @@ class TunerScreen(ScanSetup):
 			tuning.sat = ConfigSatlist(list=nimmanager.getRotorSatListForNim(self.feid))
 			tuning.sat.addNotifier(self.tuningSatChanged)
 			self.updateTransponders()
-			TunerScreenConfigCreated = True
-		ScanSetup.createConfig(self, None)
+		orb_pos = self.fe_data.get("orbital_position", None)
+		if orb_pos is not None:
+			for x in nimmanager.getRotorSatListForNim(self.feid):
+				opos = str(orb_pos)
+				if x[0] == orb_pos and tuning.sat.value != opos:
+					tuning.sat.value = opos
+			del self.fe_data["orbital_position"]
+		ScanSetup.createConfig(self, self.fe_data)
 
 	def tuningSatChanged(self, *parm):
 		self.updateTransponders()
@@ -506,19 +567,38 @@ class TunerScreen(ScanSetup):
 			tuning.transponder = ConfigSelection(choices=tps)
 
 	def keyGo(self):
-		returnvalue = (0, 0, 0, 0, 0, 0)
+		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 		satpos = int(tuning.sat.value)
 		if tuning.type.value == "manual_transponder":
+			if self.scan_sat.system.value == "dvb-s2":
+				fec = self.scan_sat.fec_s2.value
+			else:
+				fec = self.scan_sat.fec.value
 			returnvalue = (
 				self.scan_sat.frequency.value,
 				self.scan_sat.symbolrate.value,
 				self.scan_sat.polarization.index,
-				self.scan_sat.fec.index,
+				{ "auto": 0,
+				   "1_2": 1,
+				   "2_3": 2,
+				   "3_4": 3,
+				   "5_6": 4,
+				   "7_8": 5,
+				   "8_9": 6,
+				   "3_5": 7,
+				   "4_5": 8,
+				   "9_10": 9,
+				   "none": 15 }[fec],
 				self.scan_sat.inversion.index,
-				satpos)
+				satpos,
+				self.scan_sat.system.index,
+				self.scan_sat.modulation.index == 1 and 2 or 1,
+				self.scan_sat.rolloff.index,
+				self.scan_sat.pilot.index)
 		elif tuning.type.value == "predefined_transponder":
 			transponder = nimmanager.getTransponders(satpos)[tuning.transponder.index]
-			returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, satpos)
+			returnvalue = (transponder[1] / 1000, transponder[2] / 1000,
+				transponder[3], transponder[4], 2, satpos, transponder[5], transponder[6], transponder[8], transponder[9])
 		self.close(returnvalue)
 
 	def keyCancel(self):
@@ -526,8 +606,8 @@ class TunerScreen(ScanSetup):
 
 class RotorNimSelection(Screen):
 	skin = """
-		<screen position="140,165" size="400,100" title="select Slot">
-			<widget name="nimlist" position="20,10" size="360,75" />
+		<screen position="140,165" size="400,130" title="select Slot">
+			<widget name="nimlist" position="20,10" size="360,100" />
 		</screen>"""
 
 	def __init__(self, session):

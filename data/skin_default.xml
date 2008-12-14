@@ -806,7 +806,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Invert</convert>
 		</widget>
 		<ePixmap pixmap="skin_default/div-h.png" position="10,152" zPosition="1" size="500,2" />
-		<widget name="config" position="10,165" size="500,240" scrollbarMode="showOnDemand" />
+		<widget name="config" position="10,165" size="500,225" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Scan setup -->
 	<screen name="ScanSetup" position="100,115" size="520,390" title="Service scan">

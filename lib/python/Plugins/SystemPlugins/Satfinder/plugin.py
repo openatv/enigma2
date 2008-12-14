@@ -27,13 +27,15 @@ class Tuner:
 			parm.fec = transponder[3]
 			parm.inversion = transponder[4]
 			parm.orbital_position = transponder[5]
-			parm.system = 0  # FIXMEE !! HARDCODED DVB-S (add support for DVB-S2)
-			parm.modulation = 1 # FIXMEE !! HARDCODED QPSK 
+			parm.system = transponder[6]
+			parm.modulation = transponder[7]
+			parm.rolloff = transponder[8]
+			parm.pilot = transponder[9]
 			feparm = eDVBFrontendParameters()
-			feparm.setDVBS(parm)
+			feparm.setDVBS(parm, True)
 			self.lastparm = feparm
 			self.frontend.tune(feparm)
-	
+
 	def retune(self):
 		if self.frontend:
 			self.frontend.tune(self.lastparm)
@@ -85,25 +87,44 @@ class Satfinder(ScanSetup):
 		self.satEntry = None
 		
 		self.list = []
+
 		self.typeOfTuningEntry = getConfigListEntry(_('Tune'), self.tuning_type)
 		self.list.append(self.typeOfTuningEntry)
 		self.satEntry = getConfigListEntry(_('Satellite'), self.tuning_sat)
 		self.list.append(self.satEntry)
+
+		nim = nimmanager.nim_slots[self.feid]
+
+		self.systemEntry = None
 		if self.tuning_type.value == "manual_transponder":
+			if nim.isCompatible("DVB-S2"):
+				self.systemEntry = getConfigListEntry(_('System'), self.scan_sat.system)
+				self.list.append(self.systemEntry)
+			else:
+				# downgrade to dvb-s, in case a -s2 config was active
+				self.scan_sat.system.value = "dvb-s"
 			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
 			self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
-			self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
+			if self.scan_sat.system.value == "dvb-s":
+				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
+			elif self.scan_sat.system.value == "dvb-s2":
+				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
+				self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
+				self.list.append(self.modulationEntry)
+				self.list.append(getConfigListEntry(_('Rolloff'), self.scan_sat.rolloff))
+				self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
 		elif self.tuning_transponder and self.tuning_type.value == "predefined_transponder":
 			self.list.append(getConfigListEntry(_("Transponder"), self.tuning_transponder))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
 	def newConfig(self):
-		if self["config"].getCurrent() == self.typeOfTuningEntry:
+		cur = self["config"].getCurrent()
+		if cur in (self.typeOfTuningEntry, self.systemEntry):
 			self.createSetup()
-		elif self["config"].getCurrent() == self.satEntry:
+		elif cur == self.satEntry:
 			self.updateSats()
 			self.createSetup()
 
@@ -112,20 +133,43 @@ class Satfinder(ScanSetup):
 		self.retune(config_element)
 
 	def retune(self, configElement):
-		returnvalue = (0, 0, 0, 0, 0, 0, 0)
-		satpos = self.tuning_sat.orbital_position
-		
-		if satpos is not None:
-			if self.tuning_type.value == "manual_transponder":
-				returnvalue = (self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.index, self.scan_sat.fec.index, self.scan_sat.inversion.index, satpos)
+		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+		satpos = int(self.tuning_sat.value)
+		if self.tuning_type.value == "manual_transponder":
+			if self.scan_sat.system.value == "dvb-s2":
+				fec = self.scan_sat.fec_s2.value
+			else:
+				fec = self.scan_sat.fec.value
+			returnvalue = (
+				self.scan_sat.frequency.value,
+				self.scan_sat.symbolrate.value,
+				self.scan_sat.polarization.index,
+				{ "auto": 0,
+				   "1_2": 1,
+				   "2_3": 2,
+				   "3_4": 3,
+				   "5_6": 4,
+				   "7_8": 5,
+				   "8_9": 6,
+				   "3_5": 7,
+				   "4_5": 8,
+				   "9_10": 9,
+				   "none": 15 }[fec],
+				self.scan_sat.inversion.index,
+				satpos,
+				self.scan_sat.system.index,
+				self.scan_sat.modulation.index == 1 and 2 or 1,
+				self.scan_sat.rolloff.index,
+				self.scan_sat.pilot.index)
+			self.tune(returnvalue)
+		elif self.tuning_type.value == "predefined_transponder":
+			tps = nimmanager.getTransponders(satpos)
+			l = len(tps)
+			if l > self.tuning_transponder.index:
+				transponder = tps[self.tuning_transponder.index]
+				returnvalue = (transponder[1] / 1000, transponder[2] / 1000,
+					transponder[3], transponder[4], 2, satpos, transponder[5], transponder[6], transponder[8], transponder[9])
 				self.tune(returnvalue)
-			elif self.tuning_type.value == "predefined_transponder":
-				tps = nimmanager.getTransponders(satpos)
-				l = len(tps)
-				if l > self.tuning_transponder.index:
-					transponder = nimmanager.getTransponders(satpos)[self.tuning_transponder.index]
-					returnvalue = (int(transponder[1] / 1000), int(transponder[2] / 1000), transponder[3], transponder[4], 2, satpos)
-					self.tune(returnvalue)
 
 	def createConfig(self, foo):
 		self.tuning_transponder = None
@@ -134,14 +178,13 @@ class Satfinder(ScanSetup):
 		ScanSetup.createConfig(self, None)
 		
 		self.updateSats()
-		
-		self.tuning_type.addNotifier(self.retune, initial_call = False)
-		self.tuning_sat.addNotifier(self.sat_changed, initial_call = False)
-		self.scan_sat.frequency.addNotifier(self.retune, initial_call = False)
-		self.scan_sat.inversion.addNotifier(self.retune, initial_call = False)
-		self.scan_sat.symbolrate.addNotifier(self.retune, initial_call = False)
-		self.scan_sat.polarization.addNotifier(self.retune, initial_call = False)
-		self.scan_sat.fec.addNotifier(self.retune, initial_call = False)
+
+		for x in (self.tuning_type, self.tuning_sat, self.scan_sat.frequency,
+			self.scan_sat.inversion, self.scan_sat.symbolrate,
+			self.scan_sat.polarization, self.scan_sat.fec, self.scan_sat.pilot,
+			self.scan_sat.fec_s2, self.scan_sat.fec, self.scan_sat.modulation,
+			self.scan_sat.rolloff, self.scan_sat.system):
+			x.addNotifier(self.retune, initial_call = False)
 
 	def updateSats(self):
 		orb_pos = self.tuning_sat.orbital_position
@@ -216,8 +259,8 @@ class Satfinder(ScanSetup):
 
 class SatNimSelection(Screen):
 	skin = """
-		<screen position="140,165" size="400,100" title="select Slot">
-			<widget name="nimlist" position="20,10" size="360,75" />
+		<screen position="140,165" size="400,130" title="select Slot">
+			<widget name="nimlist" position="20,10" size="360,100" />
 		</screen>"""
 		
 	def __init__(self, session):

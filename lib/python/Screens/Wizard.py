@@ -3,7 +3,8 @@ from Screen import Screen
 import string
 
 from Screens.HelpMenu import HelpableScreen
-from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_DELETE, KEY_BACKSPACE
+from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS
+
 from Components.Label import Label
 from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
@@ -215,8 +216,9 @@ class Wizard(Screen):
 		
 		self.disableKeys = False
 		
-		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions", "SetupActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions", "SetupActions", "InputAsciiActions"],
 		{
+			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.ok,
 			"back": self.back,
 			"left": self.left,
@@ -368,6 +370,10 @@ class Wizard(Screen):
 	def keyNumberGlobal(self, number):
 		if (self.wizard[self.currStep]["config"]["screen"] != None):
 			self.configInstance.keyNumberGlobal(number)
+
+	def keyGotAscii(self):
+		if (self.wizard[self.currStep]["config"]["screen"] != None):
+			self["config"].handleKey(KEY_ASCII)
 		
 	def left(self):
 		self.resetCounter()

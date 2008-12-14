@@ -1,5 +1,5 @@
 from os import path as os_path, remove as os_remove, listdir as os_listdir, system
-from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys
+from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -109,10 +109,11 @@ class DVDSummary(Screen):
 		self["Title"].setText(title)
 
 class DVDOverlay(Screen):
-	skin = """<screen name="DVDOverlay" position="0,0" size="720,576" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />"""
 	def __init__(self, session, args = None):
+		desktop_size = getDesktop(0).size()
+		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" %(desktop_size.width(), desktop_size.height())
 		Screen.__init__(self, session)
-		
+
 class ChapterZap(Screen):
 	skin = """
 	<screen name="ChapterZap" position="235,255" size="250,60" title="Chapter" >
@@ -352,7 +353,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 						if file.mimetype == "video/x-dvd":
 							self.dvd_device = devicepath
 							print "physical dvd found:", self.dvd_device
-							self.physicalDVD = True			
+							self.physicalDVD = True
 
 		self.dvd_filelist = dvd_filelist
 		self.onFirstExecBegin.append(self.showFileBrowser)
@@ -387,9 +388,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def serviceStarted(self): #override InfoBarShowHide function
 		self.dvdScreen.show()
-		subs = self.getServiceInterface("subtitle")
-		if subs:
-			subs.enableSubtitles(self.dvdScreen.instance, None)
 
 	def doEofInternal(self, playing):
 		if self.in_menu:
@@ -588,6 +586,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				self.service = self.session.nav.getCurrentService()
 				print "self.service", self.service
 				print "cur_dlg", self.session.current_dialog
+				subs = self.getServiceInterface("subtitle")
+				if subs:
+					subs.enableSubtitles(self.dvdScreen.instance, None)
 
 	def exitCB(self, answer):
 		if answer is not None:
