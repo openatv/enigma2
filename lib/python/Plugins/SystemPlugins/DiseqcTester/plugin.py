@@ -15,6 +15,8 @@ from Components.Sources.StaticText import StaticText
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, ConfigSelection
 
+import random
+
 # always use:
 # setResultType(type)
 # setResultParameter(parameter)
@@ -312,6 +314,13 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
+		elif self.test_type == self.TEST_TYPE_RANDOM:
+			self.randomkeys = self.indexlist.keys()
+			random.shuffle(self.randomkeys)
+			self.myindex = 0
+			self["overall_progress"].setRange(len(self.randomkeys))
+			self["overall_progress"].setValue(self.myindex)
+			return self.randomkeys[0]
 		
 	# after each index is finished, getNextIndex is called to get the next index to scan 
 	def getNextIndex(self):
@@ -326,11 +335,20 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 				return keys[self.myindex]
 			else:
 				return None
-	
+		elif self.test_type == self.TEST_TYPE_RANDOM:
+			self.myindex += 1
+			keys = self.randomkeys
+			
+			self["overall_progress"].setValue(self.myindex)
+			if self.myindex < len(keys):
+				return keys[self.myindex]
+			else:
+				return None
+				
 	# after each index is finished and the next index is returned by getNextIndex
 	# the algorithm checks, if we should continue scanning
 	def getContinueScanning(self):
-		if self.test_type == self.TEST_TYPE_QUICK:
+		if self.test_type == self.TEST_TYPE_QUICK or self.test_type == self.TEST_TYPE_RANDOM:
 			return (self.myindex < len(self.indexlist.keys()))
 		
 	def addResult(self, index, status, failedTune, successfullyTune):
@@ -435,7 +453,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self.createSetup()
 		
 	def createSetup(self):
-		self.testtype = ConfigSelection(choices={"quick": _("Quick")}, default = "quick")
+		self.testtype = ConfigSelection(choices={"quick": _("Quick"), "random": _("Random")}, default = "quick")
 		self.testtypeEntry = getConfigListEntry(_("Test Type"), self.testtype)
 		self.list.append(self.testtypeEntry)
 		
