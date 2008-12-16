@@ -1,1 +1,1 @@
-SUBDIRS = SoftwareUpdate FrontprocessorUpgrade PositionerSetup ConfigurationBackup Satfinder SkinSelector SatelliteEquipmentControl Videomode VideoTune Hotplug DefaultServicesScanner NFIFlash
+SUBDIRS = SoftwareUpdate FrontprocessorUpgrade PositionerSetup ConfigurationBackup Satfinder SkinSelector SatelliteEquipmentControl Videomode VideoTune Hotplug DefaultServicesScanner NFIFlash DiseqcTester
