@@ -1,20 +1,81 @@
 from Screens.Satconfig import NimSelection
 from Screens.Screen import Screen
+from Screens.TextBox import TextBox
 
 from Plugins.Plugin import PluginDescriptor
 
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import ActionMap, NumberActionMap
 from Components.NimManager import nimmanager
 from Components.ResourceManager import resourcemanager
 from Components.Sources.FrontendStatus import FrontendStatus
 from Components.TuneTest import TuneTest
+from Components.Sources.List import List
 from Components.Sources.Progress import Progress
 from Components.Sources.StaticText import StaticText
+from Components.ConfigList import ConfigListScreen
+from Components.config import getConfigListEntry, ConfigSelection
 
-class DiseqcTester(Screen, TuneTest):
+# always use:
+# setResultType(type)
+# setResultParameter(parameter)
+# getTextualResult()
+class ResultParser:
+	def __init__(self):
+		pass
+	
+	TYPE_BYORBPOS = 0
+	TYPE_BYINDEX = 1
+	TYPE_ALL = 2
+	def setResultType(self, type):
+		self.type = type
+		
+	def setResultParameter(self, parameter):
+		if self.type == self.TYPE_BYORBPOS:
+			self.orbpos = parameter
+		elif self.type == self.TYPE_BYINDEX:
+			self.index = parameter
+			
+	def getTextualResultForIndex(self, index):
+		text = ""
+		text += "%s:\n" % self.getTextualIndexRepresentation(index)
+		
+		failed, successful = self.results[index]["failed"], self.results[index]["successful"]
+		countfailed = len(failed)
+		countsuccessful = len(successful)
+		countall = countfailed + countsuccessful
+		percentfailed = round(countfailed / float(countall + 0.0001) * 100)
+		percentsuccessful = round(countsuccessful / float(countall + 0.0001) * 100)
+		text += "Tested %d transponders\n%d (%d %%) transponders succeeded\n%d (%d %%) transponders failed\n" % (countall, countsuccessful, percentsuccessful, countfailed, percentfailed)
+		reasons = {}
+		if countfailed > 0:
+			for transponder in failed:
+				reasons[transponder[2]] = reasons.get(transponder[2], [])
+				reasons[transponder[2]].append(transponder)
+				if transponder[2] == "pids_failed":
+					print transponder[2], "-", transponder[3]
+				
+			text += "The %d unsuccessful tuning attempts failed for the following reasons:\n" % countfailed
+			
+			for reason in reasons.keys():
+				text += "%s: %d transponders failed\n" % (reason, len(reasons[reason]))
+		return text
+
+	def getTextualResult(self):
+		text = ""
+		if self.type == self.TYPE_BYINDEX:
+			text += self.getTextualResultForIndex(self.index)
+		elif self.type == self.TYPE_BYORBPOS:
+			for index in self.results.keys():
+				if index[2] == self.orbpos:
+					text += self.getTextualResultForIndex(index)
+					text += "\n-----------------------------------------------------\n"
+				
+		return text
+
+class DiseqcTester(Screen, TuneTest, ResultParser):
 	skin = """
 		<screen position="90,100" size="520,400" title="DiSEqC Tester" >
-			<ePixmap pixmap="skin_default/icons/dish_scan.png" position="5,25" zPosition="0" size="119,110" transparent="1" alphatest="on" />
+		<!--ePixmap pixmap="skin_default/icons/dish_scan.png" position="5,25" zPosition="0" size="119,110" transparent="1" alphatest="on" />
 		<widget source="Frontend" render="Label" position="190,10" zPosition="2" size="260,20" font="Regular;19" halign="center" valign="center" transparent="1">
 			<convert type="FrontendInfo">SNRdB</convert>
 		</widget>
@@ -47,6 +108,17 @@ class DiseqcTester(Screen, TuneTest):
 		<widget source="Frontend" render="Pixmap" pixmap="skin_default/icons/lock_off.png" position="190,110" zPosition="1" size="38,31" alphatest="on">
 			<convert type="FrontendInfo">LOCK</convert>
 			<convert type="ConditionalShowHide">Invert</convert>
+		</widget-->
+		<widget source="progress_list" render="Listbox" position="0,0" size="510,150" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(pos = (10, 0), size = (330, 25), flags = RT_HALIGN_LEFT, text = 1), # index 1 is the index name,
+						MultiContentEntryText(pos = (330, 0), size = (150, 25), flags = RT_HALIGN_RIGHT, text = 2) # index 2 is the status,
+					],
+				 "fonts": [gFont("Regular", 20)],
+				 "itemHeight": 25
+				}
+			</convert>
 		</widget>
 		<eLabel name="overall_progress" text="Overall progress:" position="20,162" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="overall_progress" render="Progress" position="20,192" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
@@ -54,35 +126,93 @@ class DiseqcTester(Screen, TuneTest):
 		<widget source="sub_progress" render="Progress" position="20,252" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
 		
 		<eLabel name="" text="Failed:" position="20,282" size="140,22" font="Regular;21" halign="left" transparent="1" />
-		<widget source="failed_counter" render="Label" position="160,282" size="480,20" font="Regular;21" />
+		<widget source="failed_counter" render="Label" position="160,282" size="100,20" font="Regular;21" />
 		
 		<eLabel name="" text="Succeeded:" position="20,312" size="140,22" font="Regular;21" halign="left" transparent="1" />
-		<widget source="succeeded_counter" render="Label" position="160,312" size="480,20" font="Regular;21" />
+		<widget source="succeeded_counter" render="Label" position="160,312" size="100,20" font="Regular;21" />
+		
+		<eLabel name="" text="With errors:" position="20,342" size="140,22" font="Regular;21" halign="left" transparent="1" />
+		<widget source="witherrors_counter" render="Label" position="160,342" size="100,20" font="Regular;21" />
+		
+		<eLabel name="" text="Not tested:" position="20,372" size="140,22" font="Regular;21" halign="left" transparent="1" />
+		<widget source="untestable_counter" render="Label" position="160,372" size="100,20" font="Regular;21" />
+		
+		<widget source="CmdText" render="Label" position="300,282" size="180,200" font="Regular;21" />
 		</screen>"""
 		
 	TEST_TYPE_QUICK = 0
 	TEST_TYPE_RANDOM = 1
 	TEST_TYPE_COMPLETE = 2
-	def __init__(self, session, feid, test_type = TEST_TYPE_QUICK):
+	def __init__(self, session, feid, test_type = TEST_TYPE_QUICK, loopsfailed = 3, loopssuccessful = 1):
 		Screen.__init__(self, session)
 		self.feid = feid
 		self.test_type = test_type
+		self.loopsfailed = loopsfailed
+		self.loopssuccessful = loopssuccessful
 		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
-			"ok": self.keyGo,
+			"ok": self.select,
 			"cancel": self.keyCancel,
 		}, -2)
 		
-		TuneTest.__init__(self, feid, stopOnSuccess = True)
-		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
+		TuneTest.__init__(self, feid, stopOnSuccess = self.loopssuccessful, stopOnError = self.loopsfailed)
+		#self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
 		self["overall_progress"] = Progress()
 		self["sub_progress"] = Progress()
-		self["failed_counter"] = StaticText("10")
-		self["succeeded_counter"] = StaticText("10")
+		
+		self["failed_counter"] = StaticText("0")
+		self["succeeded_counter"] = StaticText("0")
+		self["witherrors_counter"] = StaticText("0")
+		self["untestable_counter"] = StaticText("0")
+		
+		self.list = []
+		self["progress_list"] = List(self.list)
+		self["progress_list"].onSelectionChanged.append(self.selectionChanged)
+		
+		self["CmdText"] = StaticText(_("Please wait while scanning is in progress..."))
 				
 		self.indexlist = {}
 		self.readTransponderList()
+		
+		self.running = False
+		
+		self.results = {}
+		self.resultsstatus = {}
+		
+		self.onLayoutFinish.append(self.go)
+		
+	def getProgressListComponent(self, index, status):
+		return (index, self.getTextualIndexRepresentation(index), status)
+	
+	def clearProgressList(self):
+		self.list = []
+		self["progress_list"].list = self.list
+	
+	def addProgressListItem(self, index):
+		if index in self.indexlist:
+			for entry in self.list:
+				if entry[0] == index:
+					self.changeProgressListStatus(index, "working")
+					return
+			self.list.append(self.getProgressListComponent(index, _("working")))
+			self["progress_list"].list = self.list
+			self["progress_list"].setIndex(len(self.list) - 1)
+
+	def changeProgressListStatus(self, index, status):
+		self.newlist = []
+		count = 0
+		indexpos = 0
+		for entry in self.list:
+			if entry[0] == index:
+				self.newlist.append(self.getProgressListComponent(index, status))
+				indexpos = count
+			else:
+				self.newlist.append(entry)
+			count += 1
+		self.list = self.newlist
+		self["progress_list"].list = self.list
+		self["progress_list"].setIndex(indexpos)
 
 	def readTransponderList(self):
 		for sat in nimmanager.getSatListForNim(self.feid):
@@ -92,11 +222,12 @@ class DiseqcTester(Screen, TuneTest):
 				self.analyseTransponder(mytransponder)
 
 	def getIndexForTransponder(self, transponder):
+		
 		if transponder[0] < 11700:
 			band = 1 # low
 		else:
 			band = 0 # high
-			
+		
 		polarisation = transponder[2]
 		
 		sat = transponder[5]
@@ -117,8 +248,7 @@ class DiseqcTester(Screen, TuneTest):
 		print "getTextualIndexRepresentation:", index
 		text = ""
 		
-		# TODO better sat representation
-		text += "%s, " % index[2] 
+		text += nimmanager.getSatDescription(index[2]) + ", "
 		
 		if index[0] == 1:
 			text += "Low Band, "
@@ -157,6 +287,7 @@ class DiseqcTester(Screen, TuneTest):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex = 0
 			keys = self.indexlist.keys()
+			keys.sort(key = lambda a: a[2]) # sort by orbpos
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
@@ -167,6 +298,7 @@ class DiseqcTester(Screen, TuneTest):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex += 1
 			keys = self.indexlist.keys()
+			keys.sort(key = lambda a: a[2]) # sort by orbpos
 			
 			self["overall_progress"].setValue(self.myindex)
 			if self.myindex < len(keys):
@@ -179,19 +311,135 @@ class DiseqcTester(Screen, TuneTest):
 	def getContinueScanning(self):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			return (self.myindex < len(self.indexlist.keys()))
+		
+	def addResult(self, index, status, failedTune, successfullyTune):
+		self.results[index] = self.results.get(index, {"failed": [], "successful": [], "status": None})
+		self.resultsstatus[status] = self.resultsstatus.get(status, [])
+		
+		self.results[index]["status"] = status
+		self.results[index]["failed"] = failedTune
+		self.results[index]["successful"] = successfullyTune
+		
+		self.resultsstatus[status].append(index)
 	
 	def finishedChecking(self):
 		print "finishedChecking"
 		TuneTest.finishedChecking(self)
+
+		if not self.results.has_key(self.currentlyTestedIndex):
+			self.results[self.currentlyTestedIndex] = {"failed": [], "successful": [], "status": None}
+		
+		if len(self.failedTune) > 0 and len(self.successfullyTune) > 0:
+			self.changeProgressListStatus(self.currentlyTestedIndex, "with errors")
+			self["witherrors_counter"].setText(str(int(self["witherrors_counter"].getText()) + 1))
+			self.addResult(self.currentlyTestedIndex, "with_errors", self.failedTune, self.successfullyTune)
+		elif len(self.failedTune) == 0 and len(self.successfullyTune) == 0:
+			self.changeProgressListStatus(self.currentlyTestedIndex, "not tested")
+			self["untestable_counter"].setText(str(int(self["untestable_counter"].getText()) + 1))
+			self.addResult(self.currentlyTestedIndex, "untestable", self.failedTune, self.successfullyTune)
+		elif len(self.failedTune) > 0:
+			self.changeProgressListStatus(self.currentlyTestedIndex, "failed")
+			self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
+			self.addResult(self.currentlyTestedIndex, "failed", self.failedTune, self.successfullyTune)
+		else:
+			self.changeProgressListStatus(self.currentlyTestedIndex, "successful")
+			self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
+			self.addResult(self.currentlyTestedIndex, "successful", self.failedTune, self.successfullyTune)
+			
+			
+		#self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
+		#self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
+		#if len(self.failedTune) == 0 and len(self.successfullyTune) == 0:
+			#self["untestable_counter"].setText(str(int(self["untestable_counter"].getText()) + 1))
+			
 		self.currentlyTestedIndex = self.getNextIndex()
+		self.addProgressListItem(self.currentlyTestedIndex)
+		
 		if self.fillTransponderList():
 			self.run(checkPIDs = True)
+		else:
+			self.running = False
+			self["progress_list"].setIndex(0)
+			print "results:", self.results
+			print "resultsstatus:", self.resultsstatus
 
-	def keyGo(self):
+	def go(self):
+		self.running = True
+		self["failed_counter"].setText("0")
+		self["succeeded_counter"].setText("0")
+		self["untestable_counter"].setText("0")
 		self.currentlyTestedIndex = self.getFirstIndex()
+		
+		self.clearProgressList()
+		self.addProgressListItem(self.currentlyTestedIndex)
+		
 		if self.fillTransponderList():
 			self.run(True)
 
+	def keyCancel(self):
+		self.close()
+		
+	def select(self):
+		print "selectedIndex:", self["progress_list"].getCurrent()[0]
+		if not self.running:
+			index = self["progress_list"].getCurrent()[0]
+			#self.setResultType(ResultParser.TYPE_BYORBPOS)
+			#self.setResultParameter(index[2])
+			self.setResultType(ResultParser.TYPE_BYINDEX)
+			self.setResultParameter(index)
+			self.session.open(TextBox, self.getTextualResult())
+	
+	def selectionChanged(self):
+		print "selection changed"
+		if len(self.list) > 0 and not self.running:
+			self["CmdText"].setText(_("Press OK to get further details for %s") % str(self["progress_list"].getCurrent()[1]))
+
+class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
+	skin = """<screen position="80,95" size="560,412" title="DiSEqC Tester Test Settings">
+		<widget name="config" position="10,10" size="540,402" scrollbarMode="showOnDemand" />
+	</screen>
+	"""
+	def __init__(self, session, feid):
+		Screen.__init__(self, session)
+		self.feid = feid
+		
+		self.list = []
+		ConfigListScreen.__init__(self, self.list)
+		
+		self["actions"] = ActionMap(["SetupActions"],
+		{
+			"cancel": self.keyCancel
+		}, -2)
+		
+		self.createSetup()
+		
+	def createSetup(self):
+		self.testtype = ConfigSelection(choices={"quick": _("Quick")}, default = "quick")
+		self.testtypeEntry = getConfigListEntry(_("Test Type"), self.testtype)
+		self.list.append(self.testtypeEntry)
+		
+		self.loopsfailed = ConfigSelection(choices={"-1": "Every known", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8"}, default = "3")
+		self.loopsfailedEntry = getConfigListEntry(_("Stop testing plane after # failed transponders"), self.loopsfailed)
+		self.list.append(self.loopsfailedEntry)
+		
+		self.loopssuccessful = ConfigSelection(choices={"-1": "Every known", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8"}, default = "1")
+		self.loopssuccessfulEntry = getConfigListEntry(_("Stop testing plane after # successful transponders"), self.loopssuccessful)
+		self.list.append(self.loopssuccessfulEntry)
+		
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+		
+	def keyOK(self):
+		print self.testtype.getValue()
+		testtype = DiseqcTester.TEST_TYPE_QUICK
+		if self.testtype.getValue() == "quick":
+			testtype = DiseqcTester.TEST_TYPE_QUICK
+		elif self.testtype.getValue() == "random":
+			testtype = DiseqcTester.TEST_TYPE_RANDOM
+		elif self.testtype.getValue() == "complete":
+			testtype = DiseqcTester.TEST_TYPE_COMPLETE
+		self.session.open(DiseqcTester, feid = self.feid, test_type = testtype, loopsfailed = int(self.loopsfailed.value), loopssuccessful = int(self.loopssuccessful.value))
+	
 	def keyCancel(self):
 		self.close()
 
@@ -215,7 +463,8 @@ class DiseqcTesterNimSelection(NimSelection):
 		NimSelection.__init__(self, session)
 
 	def setResultClass(self):
-		self.resultclass = DiseqcTester
+		#self.resultclass = DiseqcTester
+		self.resultclass = DiseqcTesterTestTypeSelection
 		
 	def showNim(self, nim):
 		nimConfig = nimmanager.getNimConfig(nim.slot)
@@ -224,7 +473,7 @@ class DiseqcTesterNimSelection(NimSelection):
 				return False
 			if nimConfig.configMode.value == "simple":
 				if nimConfig.diseqcMode.value == "positioner":
-					return False
+					return True
 			return True
 		return False
 

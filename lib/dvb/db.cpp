@@ -856,7 +856,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
-//					eDebug("\t\tattr: %s", at->name().c_str());
+					//eDebug("\t\tattr: %s", at->name().c_str());
 					at = *it;
 					name = at->name();
 					if (name == "modulation") dest = &modulation;
