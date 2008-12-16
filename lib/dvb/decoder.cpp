@@ -300,6 +300,7 @@ DEFINE_REF(eDVBVideo);
 
 eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 	:m_demux(demux), m_dev(dev), m_is_slow_motion(0), m_is_fast_forward(0), m_is_freezed(0)
+	,m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -556,23 +557,23 @@ void eDVBVideo::video_event(int)
 		{
 			struct iTSMPEGDecoder::videoEvent event;
 			event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
-			event.aspect = evt.u.size.aspect_ratio;
-			event.height = evt.u.size.h;
-			event.width = evt.u.size.w;
+			m_aspect = event.aspect = evt.u.size.aspect_ratio;
+			m_height = event.height = evt.u.size.h;
+			m_width = event.width = evt.u.size.w;
 			/* emit */ m_event(event);
 		}
 		else if (evt.type == VIDEO_EVENT_FRAME_RATE_CHANGED)
 		{
 			struct iTSMPEGDecoder::videoEvent event;
 			event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
-			event.framerate = evt.u.frame_rate;
+			m_framerate = event.framerate = evt.u.frame_rate;
 			/* emit */ m_event(event);
 		}
 		else if (evt.type == 16 /*VIDEO_EVENT_PROGRESSIVE_CHANGED*/)
 		{
 			struct iTSMPEGDecoder::videoEvent event;
 			event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
-			event.progressive = evt.u.frame_rate;
+			m_progressive = event.progressive = evt.u.frame_rate;
 			/* emit */ m_event(event);
 		}
 		else
@@ -587,6 +588,93 @@ RESULT eDVBVideo::connectEvent(const Slot1<void, struct iTSMPEGDecoder::videoEve
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;
+}
+
+static int readMpegProc(char *str, int decoder)
+{
+	int val = -1;
+	char tmp[64];
+	sprintf(tmp, "/proc/stb/vmpeg/%d/%s", decoder, str);
+	FILE *f = fopen(tmp, "r");
+	if (f)
+	{
+		fscanf(f, "%x", &val);
+		fclose(f);
+	}
+	return val;
+}
+
+static int readApiSize(int fd, int &xres, int &yres, int &aspect)
+{
+#if HAVE_DVB_API_VERSION >= 3
+	video_size_t size;
+	if (!::ioctl(fd, VIDEO_GET_SIZE, &size))
+	{
+		xres = size.w;
+		yres = size.h;
+		aspect = size.aspect_ratio;
+		return 0;
+	}
+//	eDebug("VIDEO_GET_SIZE failed (%m)");
+#endif
+	return -1;
+}
+
+static int readApiFrameRate(int fd, int &framerate)
+{
+#if HAVE_DVB_API_VERSION >= 3
+	unsigned int frate;
+	if (!::ioctl(fd, VIDEO_GET_FRAME_RATE, &frate))
+	{
+		framerate = frate;	
+		return 0;
+	}
+//	eDebug("VIDEO_GET_FRAME_RATE failed (%m)");
+#endif
+	return -1;
+}
+
+int eDVBVideo::getWidth()
+{
+	if (m_width == -1)
+		readApiSize(m_fd, m_width, m_height, m_aspect);
+	if (m_width == -1)
+		m_width = readMpegProc("xres", m_dev);
+	return m_width;
+}
+
+int eDVBVideo::getHeight()
+{
+	if (m_height == -1)
+		readApiSize(m_fd, m_width, m_height, m_aspect);
+	if (m_height == -1)
+		m_height = readMpegProc("yres", m_dev);
+	return m_height;
+}
+
+int eDVBVideo::getAspect()
+{
+	if (m_aspect == -1)
+		readApiSize(m_fd, m_width, m_height, m_aspect);
+	if (m_aspect == -1)
+		m_aspect = readMpegProc("aspect", m_dev);
+	return m_aspect;
+}
+
+int eDVBVideo::getProgressive()
+{
+	if (m_progressive == -1)
+		m_progressive = readMpegProc("progressive", m_dev);
+	return m_progressive;
+}
+
+int eDVBVideo::getFrameRate()
+{
+	if (m_framerate == -1)
+		readApiFrameRate(m_fd, m_framerate);
+	if (m_framerate == -1)
+		m_framerate = readMpegProc("framerate", m_dev);
+	return m_framerate;
 }
 
 DEFINE_REF(eDVBPCR);
@@ -1244,4 +1332,39 @@ RESULT eTSMPEGDecoder::connectVideoEvent(const Slot1<void, struct videoEvent> &e
 void eTSMPEGDecoder::video_event(struct videoEvent event)
 {
 	/* emit */ m_video_event(event);
+}
+
+int eTSMPEGDecoder::getVideoWidth()
+{
+	if (m_video)
+		return m_video->getWidth();
+	return -1;
+}
+
+int eTSMPEGDecoder::getVideoHeight()
+{
+	if (m_video)
+		return m_video->getHeight();
+	return -1;
+}
+
+int eTSMPEGDecoder::getVideoProgressive()
+{
+	if (m_video)
+		return m_video->getProgressive();
+	return -1;
+}
+
+int eTSMPEGDecoder::getVideoFrameRate()
+{
+	if (m_video)
+		return m_video->getFrameRate();
+	return -1;
+}
+
+int eTSMPEGDecoder::getVideoAspect()
+{
+	if (m_video)
+		return m_video->getAspect();
+	return -1;
 }

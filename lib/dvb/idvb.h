@@ -716,6 +716,12 @@ public:
 	};
 
 	virtual RESULT connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;
+
+	virtual int getVideoWidth() = 0;
+	virtual int getVideoHeight() = 0;
+	virtual int getVideoProgressive() = 0;
+	virtual int getVideoFrameRate() = 0;
+	virtual int getVideoAspect() = 0;
 };
 
 #endif //SWIG
