@@ -188,7 +188,8 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 	GstElement *source = 0;
 	GstElement *decoder = 0, *conv = 0, *flt = 0, *parser = 0, *sink = 0; /* for audio */
 	GstElement *audio = 0, *switch_audio = 0, *queue_audio = 0, *video = 0, *queue_video = 0, *videodemux = 0, *audiodemux = 0, *id3demux;
-	
+	m_aspect = m_width = m_height = m_framerate = m_progressive = -1;
+
 	m_state = stIdle;
 	eDebug("SERVICEMP3 construct!");
 	
@@ -819,6 +820,11 @@ int eServiceMP3::getInfo(int w)
 
 	switch (w)
 	{
+	case sVideoHeight: return m_height;
+	case sVideoWidth: return m_width;
+	case sFrameRate: return m_framerate;
+	case sProgressive: return m_progressive;
+	case sAspect: return m_aspect;
 	case sTitle:
 	case sArtist:
 	case sAlbum:
@@ -1147,28 +1153,28 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			}
 			else if (const GstStructure *msgstruct = gst_message_get_structure(msg))
 			{
-				const gchar *eventname;
-				if ( eventname = gst_structure_get_name(msgstruct) )
+				const gchar *eventname = gst_structure_get_name(msgstruct);
+				if ( eventname )
 				{
-					if (!strcmp(eventname, "eventSizeChanged"))
+					if (!strcmp(eventname, "eventSizeChanged") || !strcmp(eventname, "eventSizeAvail"))
 					{
-						gint aspect_ratio, width, height = 0;
-						gst_structure_get_int (msgstruct, "aspect_ratio", &aspect_ratio);
-						gst_structure_get_int (msgstruct, "width", &width);
-						gst_structure_get_int (msgstruct, "height", &height);
-						eDebug("****** decoder threw eventSizeChanged! aspect_ratio=%i, width=%i, height=%i", aspect_ratio, width, height);
+						gst_structure_get_int (msgstruct, "aspect_ratio", &m_aspect);
+						gst_structure_get_int (msgstruct, "width", &m_width);
+						gst_structure_get_int (msgstruct, "height", &m_height);
+						if (strstr(eventname, "Changed"))
+							m_event((iPlayableService*)this, evVideoSizeChanged);
 					}
-					if (!strcmp(eventname, "eventFrameRateChanged"))
+					else if (!strcmp(eventname, "eventFrameRateChanged") || !strcmp(eventname, "eventFrameRateAvail"))
 					{
-						gint frame_rate = 0;
-						gst_structure_get_int (msgstruct, "frame_rate", &frame_rate);
-						eDebug("****** decoder threw eventFrameRateChanged! frame_rate=%i", frame_rate);
+						gst_structure_get_int (msgstruct, "frame_rate", &m_framerate);
+						if (strstr(eventname, "Changed"))
+							m_event((iPlayableService*)this, evVideoFramerateChanged);
 					}
-					if (!strcmp(eventname, "eventProgressiveChanged"))
+					else if (!strcmp(eventname, "eventProgressiveChanged") || !strcmp(eventname, "eventProgressiveAvail"))
 					{
-						gint progressive = 0;
-						gst_structure_get_int (msgstruct, "progressive", &progressive);
-						eDebug("****** decoder threw eventProgressiveChanged! progressive=%i", progressive);
+						gst_structure_get_int (msgstruct, "progressive", &m_progressive);
+						if (strstr(eventname, "Changed"))
+							m_event((iPlayableService*)this, evVideoProgressiveChanged);
 					}
 				}
 			}
