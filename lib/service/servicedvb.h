@@ -282,7 +282,6 @@ private:
 
 	ePtr<eConnection> m_video_event_connection;
 	void video_event(struct iTSMPEGDecoder::videoEvent);
-	struct iTSMPEGDecoder::videoEvent m_videoEventData;
 };
 
 class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation

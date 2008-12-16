@@ -47,6 +47,7 @@ private:
 	ePtr<eSocketNotifier> m_sn;
 	void video_event(int what);
 	Signal1<void, struct iTSMPEGDecoder::videoEvent> m_event;
+	int m_width, m_height, m_framerate, m_aspect, m_progressive;
 public:
 	enum { MPEG2, MPEG4_H264 };
 	eDVBVideo(eDVBDemux *demux, int dev);
@@ -67,6 +68,11 @@ public:
 	int getPTS(pts_t &now);
 	virtual ~eDVBVideo();
 	RESULT connectEvent(const Slot1<void, struct iTSMPEGDecoder::videoEvent> &event, ePtr<eConnection> &conn);
+	int getWidth();
+	int getHeight();
+	int getProgressive();
+	int getFrameRate();
+	int getAspect();
 };
 
 class eDVBPCR: public iObject
@@ -164,6 +170,11 @@ public:
 		/* what 0=auto, 1=video, 2=audio. */
 	RESULT getPTS(int what, pts_t &pts);
 	RESULT connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection);
+	int getVideoWidth();
+	int getVideoHeight();
+	int getVideoProgressive();
+	int getVideoFrameRate();
+	int getVideoAspect();
 };
 
 #endif
