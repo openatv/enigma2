@@ -32,7 +32,7 @@ class Tuner:
 # 2) call run(<checkPIDs = True>)
 # 3) finishedChecking() is called, when the run is finished
 class TuneTest:
-	def __init__(self, feid, stopOnSuccess = False, stopOnError = False):
+	def __init__(self, feid, stopOnSuccess = -1, stopOnError = -1):
 		self.stopOnSuccess = stopOnSuccess
 		self.stopOnError = stopOnError
 		self.feid = feid
@@ -54,12 +54,14 @@ class TuneTest:
 		
 	def gotTsidOnid(self, tsid, onid):
 		print "******** got tsid, onid:", tsid, onid
-		self.tsid = tsid
-		self.onid = onid
 		if tsid is not None and onid is not None:
 			self.pidStatus = self.INTERNAL_PID_STATUS_SUCCESSFUL
+			self.tsid = tsid
+			self.onid = onid
 		else:
 			self.pidStatus = self.INTERNAL_PID_STATUS_FAILED
+			self.tsid = -1
+			self.onid = -1
 		self.timer.start(100, True)
 			
 	def updateStatus(self):
@@ -71,7 +73,7 @@ class TuneTest:
 		if dict["tuner_state"] == "TUNING":
 			print "TUNING"
 			self.timer.start(100, True)
-			self.progressCallback((len(self.transponderlist), self.tuningtransponder, self.STATUS_TUNING, self.currTuned))
+			self.progressCallback((self.getProgressLength(), self.tuningtransponder, self.STATUS_TUNING, self.currTuned))
 		elif self.checkPIDs and self.pidStatus == self.INTERNAL_PID_STATUS_NOOP:
 			print "2nd choice"
 			if dict["tuner_state"] == "LOCKED":
@@ -86,23 +88,28 @@ class TuneTest:
 			if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 				self.tuningtransponder = self.nextTransponder()
 				self.failedTune.append([self.currTuned, self.oldTuned, "tune_failed"])
-				if self.stopOnError == True:
+				if self.stopOnError != -1 and self.stopOnError <= len(self.failedTune):
 					stop = True
 			elif dict["tuner_state"] == "LOCKED":
 				pidsFailed = False
 				if self.checkPIDs:
-					if self.tsid != self.currTuned[8] or self.onid != self.currTuned[9]:
-						self.failedTune.append([self.currTuned, self.oldTuned, "pids_failed"])
-						pidsFailes = True
+					if self.currTuned is not None:
+						if self.tsid != self.currTuned[8] or self.onid != self.currTuned[9]:
+							self.failedTune.append([self.currTuned, self.oldTuned, "pids_failed", {"real": (self.tsid, self.onid), "expected": (self.currTuned[8], self.currTuned[9])}])
+							pidsFailed = True
+						else:
+							self.successfullyTune.append([self.currTuned, self.oldTuned])
+							if self.stopOnSuccess != -1 and self.stopOnSuccess <= len(self.successfullyTune):
+								stop = True
 				elif not self.checkPIDs or (self.checkPids and not pidsFailed):  
 					self.successfullyTune.append([self.currTuned, self.oldTuned])
-					if self.stopOnSuccess == True:
-						stop = True
+					if self.stopOnSuccess != -1 and self.stopOnSuccess <= len(self.successfullyTune):
+								stop = True
 				self.tuningtransponder = self.nextTransponder()
 			else:
 				print "************* tuner_state:", dict["tuner_state"]
 				
-			self.progressCallback((len(self.transponderlist), self.tuningtransponder, self.STATUS_NOOP, self.currTuned))
+			self.progressCallback((self.getProgressLength(), self.tuningtransponder, self.STATUS_NOOP, self.currTuned))
 			
 			if not stop:
 				self.tune()
@@ -113,7 +120,7 @@ class TuneTest:
 			else:
 				print "not restarting timers (waiting for pids)"
 		else:
-			self.progressCallback((len(self.transponderlist), self.tuningtransponder, self.STATUS_DONE, self.currTuned))
+			self.progressCallback((self.getProgressLength(), len(self.transponderlist), self.STATUS_DONE, self.currTuned))
 			print "finishedChecking"
 			self.finishedChecking()
 				
@@ -131,12 +138,17 @@ class TuneTest:
 		return index
 	
 	def nextTransponder(self):
+		print "getting next transponder", self.tuningtransponder
 		index = self.tuningtransponder + 1
 		if self.checkPIDs:
+			print "checkPIDs-loop"
 			# check for tsid != -1 and onid != -1 
-			while (index < len(self.transponderlist) and self.transponderlist[index][8] != -1 and self.transponderlist[index][9] != -1):
+			print "index:", index
+			print "len(self.transponderlist):", len(self.transponderlist)
+			while (index < len(self.transponderlist) and (self.transponderlist[index][8] == -1 or self.transponderlist[index][9] == -1)):
 			 	index += 1
 
+		print "next transponder index:", index
 		return index
 	
 	def finishedChecking(self):
@@ -180,7 +192,7 @@ class TuneTest:
 		self.successfullyTune = []
 		self.tuningtransponder = self.firstTransponder()
 		self.tune()
-		self.progressCallback((len(self.transponderlist), self.tuningtransponder, self.STATUS_START, self.currTuned))
+		self.progressCallback((self.getProgressLength(), self.tuningtransponder, self.STATUS_START, self.currTuned))
 		self.timer.start(100, True)
 	
 	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, <system>, <modulation>, <tsid>, <onid>)
@@ -190,6 +202,20 @@ class TuneTest:
 		
 	def clearTransponder(self):
 		self.transponderlist = []
+		
+	def getProgressLength(self):
+		count = 0
+		if self.stopOnError == -1:
+			count = len(self.transponderlist)
+		else:
+			if count < self.stopOnError:
+				count = self.stopOnError
+		if self.stopOnSuccess == -1:
+			count = len(self.transponderlist)
+		else:
+			if count < self.stopOnSuccess:
+				count = self.stopOnSuccess
+		return count
 		
 	STATUS_START = 0
 	STATUS_TUNING = 1
