@@ -557,7 +557,7 @@ void eDVBVideo::video_event(int)
 		{
 			struct iTSMPEGDecoder::videoEvent event;
 			event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
-			m_aspect = event.aspect = evt.u.size.aspect_ratio;
+			m_aspect = event.aspect = evt.u.size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
 			m_height = event.height = evt.u.size.h;
 			m_width = event.width = evt.u.size.w;
 			/* emit */ m_event(event);
@@ -612,7 +612,7 @@ static int readApiSize(int fd, int &xres, int &yres, int &aspect)
 	{
 		xres = size.w;
 		yres = size.h;
-		aspect = size.aspect_ratio;
+		aspect = size.aspect_ratio == 0 ? 2 : 3;  // convert dvb api to etsi
 		return 0;
 	}
 //	eDebug("VIDEO_GET_SIZE failed (%m)");
