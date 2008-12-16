@@ -58,6 +58,27 @@ class ResultParser:
 			
 			for reason in reasons.keys():
 				text += "%s: %d transponders failed\n" % (reason, len(reasons[reason]))
+			
+			for reason in reasons.keys():
+				text += "\n"
+				text += "%s previous planes:\n" % reason
+				for transponder in reasons[reason]:
+					if transponder[1] is not None:
+						text += self.getTextualIndexRepresentation(self.getIndexForTransponder(transponder[1]))
+					else:
+						text += "No transponder tuned"
+					text += " ==> " + self.getTextualIndexRepresentation(self.getIndexForTransponder(transponder[0]))
+					text += "\n"
+		if countsuccessful > 0:
+			text += "\n"
+			text += "Successfully tuned transponders' previous planes:\n" 
+			for transponder in successful:
+				if transponder[1] is not None:
+					text += self.getTextualIndexRepresentation(self.getIndexForTransponder(transponder[1]))
+				else:
+					text += "No transponder tuned"
+				text += " ==> " + self.getTextualIndexRepresentation(self.getIndexForTransponder(transponder[0]))
+				text += "\n"
 		return text
 
 	def getTextualResult(self):
