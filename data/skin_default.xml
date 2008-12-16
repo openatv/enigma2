@@ -940,6 +940,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Subtitle area -->
 	<screen name="SubtitleDisplay" position="0,0" size="720,576" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
+	<!-- TextBox -->
+	<screen name="TextBox" position="90,50" size="550,400" title="Message...">
+		<widget name="text" position="0,0" size="540,390" font="Regular;18" />
+		<!--widget source="text" render="Label" position="0,0" size="540,390" font="Regular;18" /-->
+	</screen>
 	<!-- Time & date input -->
 	<screen name="TimeDateInput" position="160,150" size="400,200" title="Time/Date Input">
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
