@@ -1026,114 +1026,155 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 #endif
 	switch (GST_MESSAGE_TYPE (msg))
 	{
-	case GST_MESSAGE_EOS:
-		m_event((iPlayableService*)this, evEOF);
-		break;
-	case GST_MESSAGE_ERROR:
-	{
-		gchar *debug;
-		GError *err;
-
-		gst_message_parse_error (msg, &err, &debug);
-		g_free (debug);
-		eWarning("Gstreamer error: %s (%i)", err->message, err->code );
-		if ( err->domain == GST_STREAM_ERROR && err->code == GST_STREAM_ERROR_DECODE )
+		case GST_MESSAGE_EOS:
+			m_event((iPlayableService*)this, evEOF);
+			break;
+		case GST_MESSAGE_ERROR:
 		{
-			if ( g_strrstr(sourceName, "videosink") )
-				m_event((iPlayableService*)this, evUser+11);
-		}
-		g_error_free(err);
-			/* TODO: signal error condition to user */
-		break;
-	}
-	case GST_MESSAGE_TAG:
-	{
-		GstTagList *tags, *result;
-		gst_message_parse_tag(msg, &tags);
-
-		result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_PREPEND);
-		if (result)
-		{
-			if (m_stream_tags)
-				gst_tag_list_free(m_stream_tags);
-			m_stream_tags = result;
-		}
-
-		gchar *g_audiocodec;
-		if ( gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_audiocodec) && m_audioStreams.size() == 0 )
-		{
-			GstPad* pad = gst_element_get_pad (GST_ELEMENT(source), "src");
-			GstCaps* caps = gst_pad_get_caps(pad);
-			GstStructure* str = gst_caps_get_structure(caps, 0);
-			if ( !str )
-				break;
-			audioStream audio;
-			audio.type = gstCheckAudioPad(str);
-			m_audioStreams.push_back(audio);
-		}
-
-		GValue *gv_image = gst_tag_list_get_value_index(tags, GST_TAG_IMAGE, 0);
-		if ( gv_image )
-		{
-			GstBuffer *buf_image;
-			buf_image = gst_value_get_buffer (gv_image);
-			int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
-			int ret = write(fd, GST_BUFFER_DATA(buf_image), GST_BUFFER_SIZE(buf_image));
-			close(fd);
-			m_event((iPlayableService*)this, evUser+13);
-		}
-
-		gst_tag_list_free(tags);
-		m_event((iPlayableService*)this, evUpdatedInfo);
-		break;
-	}
-	case GST_MESSAGE_ASYNC_DONE:
-	{
-		GstTagList *tags;
-		for (std::vector<audioStream>::iterator IterAudioStream(m_audioStreams.begin()); IterAudioStream != m_audioStreams.end(); ++IterAudioStream)
-		{
-			if ( IterAudioStream->pad )
+			gchar *debug;
+			GError *err;
+	
+			gst_message_parse_error (msg, &err, &debug);
+			g_free (debug);
+			eWarning("Gstreamer error: %s (%i)", err->message, err->code );
+			if ( err->domain == GST_STREAM_ERROR && err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND )
 			{
-				g_object_get(IterAudioStream->pad, "tags", &tags, NULL);
-				gchar *g_language;
-				if ( gst_is_tag_list(tags) && gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
+				if ( g_strrstr(sourceName, "videosink") )
+					m_event((iPlayableService*)this, evUser+11);
+			}
+			g_error_free(err);
+			break;
+		}
+		case GST_MESSAGE_INFO:
+		{
+			gchar *debug;
+			GError *inf;
+	
+			gst_message_parse_info (msg, &inf, &debug);
+			g_free (debug);
+			if ( inf->domain == GST_STREAM_ERROR && inf->code == GST_STREAM_ERROR_DECODE )
+			{
+				if ( g_strrstr(sourceName, "videosink") )
+					m_event((iPlayableService*)this, evUser+14);
+			}
+			g_error_free(inf);
+			break;
+		}
+		case GST_MESSAGE_TAG:
+		{
+			GstTagList *tags, *result;
+			gst_message_parse_tag(msg, &tags);
+	
+			result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_PREPEND);
+			if (result)
+			{
+				if (m_stream_tags)
+					gst_tag_list_free(m_stream_tags);
+				m_stream_tags = result;
+			}
+	
+			gchar *g_audiocodec;
+			if ( gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_audiocodec) && m_audioStreams.size() == 0 )
+			{
+				GstPad* pad = gst_element_get_pad (GST_ELEMENT(source), "src");
+				GstCaps* caps = gst_pad_get_caps(pad);
+				GstStructure* str = gst_caps_get_structure(caps, 0);
+				if ( !str )
+					break;
+				audioStream audio;
+				audio.type = gstCheckAudioPad(str);
+				m_audioStreams.push_back(audio);
+			}
+	
+			const GValue *gv_image = gst_tag_list_get_value_index(tags, GST_TAG_IMAGE, 0);
+			if ( gv_image )
+			{
+				GstBuffer *buf_image;
+				buf_image = gst_value_get_buffer (gv_image);
+				int fd = open("/tmp/.id3coverart", O_CREAT|O_WRONLY|O_TRUNC, 0644);
+				write(fd, GST_BUFFER_DATA(buf_image), GST_BUFFER_SIZE(buf_image));
+				close(fd);
+				m_event((iPlayableService*)this, evUser+13);
+			}
+	
+			gst_tag_list_free(tags);
+			m_event((iPlayableService*)this, evUpdatedInfo);
+			break;
+		}
+		case GST_MESSAGE_ASYNC_DONE:
+		{
+			GstTagList *tags;
+			for (std::vector<audioStream>::iterator IterAudioStream(m_audioStreams.begin()); IterAudioStream != m_audioStreams.end(); ++IterAudioStream)
+			{
+				if ( IterAudioStream->pad )
 				{
-					eDebug("found audio language %s",g_language);
-					IterAudioStream->language_code = std::string(g_language);
-					g_free (g_language);
+					g_object_get(IterAudioStream->pad, "tags", &tags, NULL);
+					gchar *g_language;
+					if ( tags && gst_is_tag_list(tags) && gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
+					{
+						eDebug("found audio language %s",g_language);
+						IterAudioStream->language_code = std::string(g_language);
+						g_free (g_language);
+					}
+				}
+			}
+			for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
+			{
+				if ( IterSubtitleStream->pad )
+				{
+					g_object_get(IterSubtitleStream->pad, "tags", &tags, NULL);
+					gchar *g_language;
+					if ( tags && gst_is_tag_list(tags) && gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
+					{
+						eDebug("found subtitle language %s",g_language);
+						IterSubtitleStream->language_code = std::string(g_language);
+						g_free (g_language);
+					}
 				}
 			}
 		}
-		for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
+		case GST_MESSAGE_ELEMENT:
 		{
-			if ( IterSubtitleStream->pad )
+			if ( gst_is_missing_plugin_message(msg) )
 			{
-				g_object_get(IterSubtitleStream->pad, "tags", &tags, NULL);
-				gchar *g_language;
-				if ( gst_is_tag_list(tags) && gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_language) )
+				gchar *description = gst_missing_plugin_message_get_description(msg);
+				if ( description )
 				{
-					eDebug("found subtitle language %s",g_language);
-					IterSubtitleStream->language_code = std::string(g_language);
-					g_free (g_language);
+					m_error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
+					g_free(description);
+					m_event((iPlayableService*)this, evUser+12);
+				}
+			}
+			else if (const GstStructure *msgstruct = gst_message_get_structure(msg))
+			{
+				const gchar *eventname;
+				if ( eventname = gst_structure_get_name(msgstruct) )
+				{
+					if (!strcmp(eventname, "eventSizeChanged"))
+					{
+						gint aspect_ratio, width, height = 0;
+						gst_structure_get_int (msgstruct, "aspect_ratio", &aspect_ratio);
+						gst_structure_get_int (msgstruct, "width", &width);
+						gst_structure_get_int (msgstruct, "height", &height);
+						eDebug("****** decoder threw eventSizeChanged! aspect_ratio=%i, width=%i, height=%i", aspect_ratio, width, height);
+					}
+					if (!strcmp(eventname, "eventFrameRateChanged"))
+					{
+						gint frame_rate = 0;
+						gst_structure_get_int (msgstruct, "frame_rate", &frame_rate);
+						eDebug("****** decoder threw eventFrameRateChanged! frame_rate=%i", frame_rate);
+					}
+					if (!strcmp(eventname, "eventProgressiveChanged"))
+					{
+						gint progressive = 0;
+						gst_structure_get_int (msgstruct, "progressive", &progressive);
+						eDebug("****** decoder threw eventProgressiveChanged! progressive=%i", progressive);
+					}
 				}
 			}
 		}
-	}
-        case GST_MESSAGE_ELEMENT:
-	{
-		if ( gst_is_missing_plugin_message(msg) )
-		{
-			gchar *description = gst_missing_plugin_message_get_description(msg);
-			if ( description )
-			{
-				m_error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
-				g_free(description);
-				m_event((iPlayableService*)this, evUser+12);
-			}
-		}
-	}
-	default:
-		break;
+		default:
+			break;
 	}
 	g_free (sourceName);
 }
