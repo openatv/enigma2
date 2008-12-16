@@ -180,6 +180,7 @@ private:
 	static void gstCBsubtitlePadEvent(GstPad *pad, GstEvent *event, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
+	gint m_aspect, m_width, m_height, m_framerate, m_progressive;
 };
 #endif
 
