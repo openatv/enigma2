@@ -524,7 +524,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			nim_list = []
 			# collect all nims which are *not* set to "nothing"
 			for n in nimmanager.nim_slots:
-				if n.config_mode != "nothing":
+				if not n.config_mode in ("loopthrough", "satposdepends", "nothing"):
 					nim_list.append((str(n.slot), n.friendly_full_description))
 
 			self.scan_nims = ConfigSelection(choices = nim_list)
