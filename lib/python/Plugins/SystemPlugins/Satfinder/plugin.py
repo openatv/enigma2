@@ -259,7 +259,13 @@ class SatNimSelection(Screen):
 		self.session.open(Satfinder, selection)
 
 def SatfinderMain(session, **kwargs):
-	nimList = nimmanager.getNimListOfType("DVB-S")
+	nims = nimmanager.getNimListOfType("DVB-S")
+
+	nimList = []
+	for x in nims:
+		if not nimmanager.getNimConfig(x).configMode.value in ("loopthrough", "satposdepends", "nothing"):
+			nimList.append(x)
+
 	if len(nimList) == 0:
 		session.open(MessageBox, _("No satellite frontend found!!"), MessageBox.TYPE_ERROR)
 	else:
