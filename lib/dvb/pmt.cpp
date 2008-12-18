@@ -50,10 +50,13 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 		{
 			eDebug("ok ... now we start!!");
 
-			if (m_pmt_pid == -1)
-				m_PAT.begin(eApp, eDVBPATSpec(), m_demux);
-			else
-				m_PMT.begin(eApp, eDVBPMTSpec(m_pmt_pid, m_reference.getServiceID().get()), m_demux);
+			if (!m_service || m_service->usePMT())
+			{
+				if (m_pmt_pid == -1)
+					m_PAT.begin(eApp, eDVBPATSpec(), m_demux);
+				else
+					m_PMT.begin(eApp, eDVBPMTSpec(m_pmt_pid, m_reference.getServiceID().get()), m_demux);
+			}
 
 			if ( m_service && !m_service->cacheEmpty() )
 				serviceEvent(eventNewProgramInfo);
