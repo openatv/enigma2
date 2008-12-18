@@ -402,11 +402,13 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self.addResult(self.currentlyTestedIndex, "untestable", self.failedTune, self.successfullyTune)
 		elif len(self.failedTune) > 0:
 			self.changeProgressListStatus(self.currentlyTestedIndex, "failed")
-			self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
+			#self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
+			self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + 1))
 			self.addResult(self.currentlyTestedIndex, "failed", self.failedTune, self.successfullyTune)
 		else:
 			self.changeProgressListStatus(self.currentlyTestedIndex, "successful")
-			self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
+			#self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
+			self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + 1))
 			self.addResult(self.currentlyTestedIndex, "successful", self.failedTune, self.successfullyTune)
 			
 			
