@@ -345,7 +345,39 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["overall_progress"].setRange(len(self.randomkeys))
 			self["overall_progress"].setValue(self.myindex)
 			return self.randomkeys[0]
-		
+		elif self.test_type == self.TEST_TYPE_COMPLETE:
+			keys = self.indexlist.keys()
+			print "keys:", keys
+			successorindex = {}
+			for index in keys:
+				successorindex[index] = []
+				for otherindex in keys:
+					if otherindex != index:
+						successorindex[index].append(otherindex)
+				random.shuffle(successorindex[index])
+			self.keylist = []
+			stop = False
+			currindex = None
+			while not stop:
+				if currindex is None or len(successorindex[currindex]) == 0:
+					oldindex = currindex
+					for index in successorindex.keys():
+						if len(successorindex[index]) > 0:
+							currindex = index
+							self.keylist.append(currindex)
+							break
+					if currindex == oldindex:
+						stop = True
+				else:
+					currindex = successorindex[currindex].pop()
+					self.keylist.append(currindex)
+			print "self.keylist:", self.keylist
+			self.myindex = 0
+			self["overall_progress"].setRange(len(self.keylist))
+			self["overall_progress"].setValue(self.myindex)
+			return self.keylist[0]
+
+					
 	# after each index is finished, getNextIndex is called to get the next index to scan 
 	def getNextIndex(self):
 		# TODO use other function to scan more randomly
@@ -368,20 +400,65 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 				return keys[self.myindex]
 			else:
 				return None
+		elif self.test_type == self.TEST_TYPE_COMPLETE:
+			self.myindex += 1
+			keys = self.keylist
+			
+			self["overall_progress"].setValue(self.myindex)
+			if self.myindex < len(keys):
+				return keys[self.myindex]
+			else:
+				return None
 				
 	# after each index is finished and the next index is returned by getNextIndex
 	# the algorithm checks, if we should continue scanning
 	def getContinueScanning(self):
 		if self.test_type == self.TEST_TYPE_QUICK or self.test_type == self.TEST_TYPE_RANDOM:
 			return (self.myindex < len(self.indexlist.keys()))
+		elif self.test_type == self.TEST_TYPE_COMPLETE:
+			return (self.myindex < len(self.keylist))
 		
 	def addResult(self, index, status, failedTune, successfullyTune):
-		self.results[index] = self.results.get(index, {"failed": [], "successful": [], "status": None})
+		self.results[index] = self.results.get(index, {"failed": [], "successful": [], "status": None, "internalstatus": None})
 		self.resultsstatus[status] = self.resultsstatus.get(status, [])
-		
-		self.results[index]["status"] = status
-		self.results[index]["failed"] = failedTune
-		self.results[index]["successful"] = successfullyTune
+
+		oldstatus = self.results[index]["internalstatus"]
+		if oldstatus is None:
+			self.results[index]["status"] = status
+		elif oldstatus == "successful":
+			if status == "failed":
+				self.results[index]["status"] = "with_errors"
+			elif status == "successful":
+				self.results[index]["status"] = oldstatus
+			elif status == "with_errors":
+				self.results[index]["status"] = "with_errors"
+			elif status == "not_tested":
+				self.results[index]["status"] = oldstatus
+		elif oldstatus == "failed":
+			if status == "failed":
+				self.results[index]["status"] = oldstatus
+			elif status == "successful":
+				self.results[index]["status"] = "with_errors"
+			elif status == "with_errors":
+				self.results[index]["status"] = "with_errors"
+			elif status == "not_tested":
+				self.results[index]["status"] = oldstatus
+		elif oldstatus == "with_errors":
+			if status == "failed":
+				self.results[index]["status"] = oldstatus
+			elif status == "successful":
+				self.results[index]["status"] = oldstatus
+			elif status == "with_errors":
+				self.results[index]["status"] = oldstatus
+			elif status == "not_tested":
+				self.results[index]["status"] = oldstatus
+		elif oldstatus == "not_tested":
+			self.results[index]["status"] = status
+			
+		if self.results[index]["status"] != "working":
+			self.results[index]["internalstatus"] = self.results[index]["status"] 
+		self.results[index]["failed"] = failedTune + self.results[index]["failed"]
+		self.results[index]["successful"] = successfullyTune + self.results[index]["successful"]
 		
 		self.resultsstatus[status].append(index)
 	
@@ -390,7 +467,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		TuneTest.finishedChecking(self)
 
 		if not self.results.has_key(self.currentlyTestedIndex):
-			self.results[self.currentlyTestedIndex] = {"failed": [], "successful": [], "status": None}
+			self.results[self.currentlyTestedIndex] = {"failed": [], "successful": [], "status": None, "internalstatus": None}
 		
 		if len(self.failedTune) > 0 and len(self.successfullyTune) > 0:
 			self.changeProgressListStatus(self.currentlyTestedIndex, "with errors")
@@ -486,7 +563,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self.createSetup()
 		
 	def createSetup(self):
-		self.testtype = ConfigSelection(choices={"quick": _("Quick"), "random": _("Random")}, default = "quick")
+		self.testtype = ConfigSelection(choices={"quick": _("Quick"), "random": _("Random"), "complete": _("Complete")}, default = "quick")
 		self.testtypeEntry = getConfigListEntry(_("Test Type"), self.testtype)
 		self.list.append(self.testtypeEntry)
 		
