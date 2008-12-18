@@ -1,6 +1,7 @@
 from Screens.Satconfig import NimSelection
 from Screens.Screen import Screen
 from Screens.TextBox import TextBox
+from Screens.MessageBox import MessageBox
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -13,7 +14,8 @@ from Components.Sources.List import List
 from Components.Sources.Progress import Progress
 from Components.Sources.StaticText import StaticText
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, ConfigSelection
+from Components.config import getConfigListEntry, ConfigSelection, ConfigYesNo
+from Components.Harddisk import harddiskmanager
 
 import random
 
@@ -37,7 +39,7 @@ class ResultParser:
 		elif self.type == self.TYPE_BYINDEX:
 			self.index = parameter
 			
-	def getTextualResultForIndex(self, index):
+	def getTextualResultForIndex(self, index, logfulltransponders = False):
 		text = ""
 		text += "%s:\n" % self.getTextualIndexRepresentation(index)
 		
@@ -71,6 +73,11 @@ class ResultParser:
 						text += "No transponder tuned"
 					text += " ==> " + self.getTextualIndexRepresentation(self.getIndexForTransponder(transponder[0]))
 					text += "\n"
+					if logfulltransponders:
+						text += str(transponder[1])
+						text += " ==> "
+						text += str(transponder[0])
+						text += "\n"
 		if countsuccessful > 0:
 			text += "\n"
 			text += "Successfully tuned transponders' previous planes:\n" 
@@ -92,6 +99,22 @@ class ResultParser:
 				if index[2] == self.orbpos:
 					text += self.getTextualResultForIndex(index)
 					text += "\n-----------------------------------------------------\n"
+		elif self.type == self.TYPE_ALL:
+			orderedResults = {}
+			for index in self.results.keys():
+				orbpos = index[2]
+				orderedResults[orbpos] = orderedResults.get(orbpos, [])
+				orderedResults[orbpos].append(index)
+			ordered_orbpos = orderedResults.keys()
+			ordered_orbpos.sort()
+			for orbpos in ordered_orbpos:
+				text += "\n*****************************************\n"
+				text += "Orbital position %s:" % str(orbpos)
+				text += "\n*****************************************\n"
+				for index in orderedResults[orbpos]:
+					text += self.getTextualResultForIndex(index, logfulltransponders = True)
+					text += "\n-----------------------------------------------------\n"
+			
 				
 		return text
 
@@ -166,12 +189,13 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	TEST_TYPE_QUICK = 0
 	TEST_TYPE_RANDOM = 1
 	TEST_TYPE_COMPLETE = 2
-	def __init__(self, session, feid, test_type = TEST_TYPE_QUICK, loopsfailed = 3, loopssuccessful = 1):
+	def __init__(self, session, feid, test_type = TEST_TYPE_QUICK, loopsfailed = 3, loopssuccessful = 1, log = False):
 		Screen.__init__(self, session)
 		self.feid = feid
 		self.test_type = test_type
 		self.loopsfailed = loopsfailed
 		self.loopssuccessful = loopssuccessful
+		self.log = log
 		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
@@ -401,6 +425,12 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["progress_list"].setIndex(0)
 			print "results:", self.results
 			print "resultsstatus:", self.resultsstatus
+			if self.log:
+				file = open("/media/hdd/diseqctester.log", "w")
+				self.setResultType(ResultParser.TYPE_ALL)
+				file.write(self.getTextualResult())
+				file.close()
+				self.session.open(MessageBox, text=_("The results have been written to %s.") % "/media/hdd/diseqctester.log", type = MessageBox.TYPE_INFO)
 
 	def go(self):
 		self.running = True
@@ -426,6 +456,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			#self.setResultParameter(index[2])
 			self.setResultType(ResultParser.TYPE_BYINDEX)
 			self.setResultParameter(index)
+			#self.setResultType(ResultParser.TYPE_ALL)
 			self.session.open(TextBox, self.getTextualResult())
 	
 	def selectionChanged(self):
@@ -465,6 +496,11 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self.loopssuccessfulEntry = getConfigListEntry(_("Stop testing plane after # successful transponders"), self.loopssuccessful)
 		self.list.append(self.loopssuccessfulEntry)
 		
+		self.log = ConfigYesNo(False)
+		if harddiskmanager.HDDCount() > 0:
+			self.logEntry = getConfigListEntry(_("Log results to harddisk"), self.log)
+			self.list.append(self.logEntry)
+					
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		
@@ -477,7 +513,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 			testtype = DiseqcTester.TEST_TYPE_RANDOM
 		elif self.testtype.getValue() == "complete":
 			testtype = DiseqcTester.TEST_TYPE_COMPLETE
-		self.session.open(DiseqcTester, feid = self.feid, test_type = testtype, loopsfailed = int(self.loopsfailed.value), loopssuccessful = int(self.loopssuccessful.value))
+		self.session.open(DiseqcTester, feid = self.feid, test_type = testtype, loopsfailed = int(self.loopsfailed.value), loopssuccessful = int(self.loopssuccessful.value), log = self.log.value)
 	
 	def keyCancel(self):
 		self.close()
