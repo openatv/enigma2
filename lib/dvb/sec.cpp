@@ -37,81 +37,11 @@ void eDVBSatelliteEquipmentControl::setParam(int param, int value)
 }
 
 eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends, eSmartPtrList<eDVBRegisteredFrontend> &avail_simulate_frontends)
-	:m_lnbidx(-1), m_curSat(m_lnbs[0].m_satellites.end()), m_avail_frontends(avail_frontends), m_avail_simulate_frontends(avail_simulate_frontends), m_rotorMoving(false)
+	:m_lnbidx(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)), m_curSat(m_lnbs[0].m_satellites.end()), m_avail_frontends(avail_frontends), m_avail_simulate_frontends(avail_simulate_frontends), m_rotorMoving(false)
 {
 	if (!instance)
 		instance = this;
-
 	clear();
-
-// ASTRA
-	addLNB();
-	setLNBSlotMask(3);
-	setLNBLOFL(9750000);
-	setLNBThreshold(11700000);
-	setLNBLOFH(10607000);
-	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
-	setToneburst(eDVBSatelliteDiseqcParameters::NO);
-	setRepeats(0);
-	setCommittedCommand(eDVBSatelliteDiseqcParameters::BB);
-	setCommandOrder(0); // committed, toneburst
-	setFastDiSEqC(true);
-	setSeqRepeat(false);
-	addSatellite(192);
-	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
-	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-
-// Hotbird
-	addLNB();
-	setLNBSlotMask(3);
-	setLNBLOFL(9750000);
-	setLNBThreshold(11700000);
-	setLNBLOFH(10600000);
-	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_0);
-	setToneburst(eDVBSatelliteDiseqcParameters::NO);
-	setRepeats(0);
-	setCommittedCommand(eDVBSatelliteDiseqcParameters::AB);
-	setCommandOrder(0); // committed, toneburst
-	setFastDiSEqC(true);
-	setSeqRepeat(false);
-	addSatellite(130);
-	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
-	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-
-// Rotor
-	addLNB();
-	setLNBSlotMask(3);
-	setLNBLOFL(9750000);
-	setLNBThreshold(11700000);
-	setLNBLOFH(10600000);
-	setDiSEqCMode(eDVBSatelliteDiseqcParameters::V1_2);
-	setToneburst(eDVBSatelliteDiseqcParameters::NO);
-	setRepeats(0);
-	setCommittedCommand(eDVBSatelliteDiseqcParameters::AA);
-	setCommandOrder(0); // committed, toneburst
-	setFastDiSEqC(true);
-	setSeqRepeat(false);
-	setLaDirection(eDVBSatelliteRotorParameters::NORTH);
-	setLoDirection(eDVBSatelliteRotorParameters::EAST);
-	setLatitude(51.017);
-	setLongitude(8.683);
-	setUseInputpower(true);
-	setInputpowerDelta(50);
-
-	addSatellite(235);
-	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
-	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-	setRotorPosNum(0);
-
-	addSatellite(284);
-	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
-	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-	setRotorPosNum(0);
-
-	addSatellite(420);
-	setVoltageMode(eDVBSatelliteSwitchParameters::HV);
-	setToneMode(eDVBSatelliteSwitchParameters::HILO);
-	setRotorPosNum(1); // stored pos 1
 }
 
 #define eSecDebugNoSimulate(x...) \
