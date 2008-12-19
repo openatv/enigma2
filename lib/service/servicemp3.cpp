@@ -776,13 +776,13 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		return -1;
 	if (m_state != stRunning)
 		return -1;
-	
+
 	GstFormat fmt = GST_FORMAT_TIME;
 	gint64 len;
 	
 	if (!gst_element_query_position(m_gst_pipeline, &fmt, &len))
 		return -1;
-	
+
 		/* len is in nanoseconds. we have 90 000 pts per second. */
 	pts = len / 11111;
 	return 0;
@@ -1424,14 +1424,17 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 void eServiceMP3::gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
 {
 	gint64 duration_ns = GST_BUFFER_DURATION(buffer);
-	const unsigned char *text = (unsigned char *)GST_BUFFER_DATA(buffer);
-	eDebug("gstCBsubtitleAvail: %s",text);
+	size_t len = GST_BUFFER_SIZE(buffer);
+	unsigned char tmp[len+1];
+	memcpy(tmp, GST_BUFFER_DATA(buffer), len);
+	tmp[len] = 0;
+	eDebug("gstCBsubtitleAvail: %s", tmp);
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	if ( _this->m_subtitle_widget )
 	{
 		ePangoSubtitlePage page;
 		gRGB rgbcol(0xD0,0xD0,0xD0);
-		page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)text));
+		page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)tmp));
 		page.m_timeout = duration_ns / 1000000;
 		(_this->m_subtitle_widget)->setPage(page);
 	}
