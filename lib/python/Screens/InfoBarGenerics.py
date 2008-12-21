@@ -1427,8 +1427,8 @@ class InfoBarInstantRecord:
 		except:
 			pass
 
-		begin = time()
-		end = time() + 3600 * 24 * 365 * 1 # 1 year
+		begin = int(time())
+		end = begin + 3600 * 24 * 365 * 1 # 1 year
 		name = "instant record"
 		description = ""
 		eventid = None
@@ -1534,7 +1534,7 @@ class InfoBarInstantRecord:
 			print "stopping recording after", int(value), "minutes."
 			if int(value) != 0:
 				self.recording[self.selectedEntry].autoincrease = False
-			self.recording[self.selectedEntry].end = time() + 60 * int(value)
+			self.recording[self.selectedEntry].end = int(time()) + 60 * int(value)
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def instantRecord(self):
