@@ -2,10 +2,12 @@
 
 import os
 
-name = raw_input("Plugin name: ")
-
+os.system("clear")
+internalname = raw_input("Internal plugin name (no whitespaces, plugin directory): ")
+name = raw_input("Visible plugin name: ")
 print
 
+os.system("clear")
 dirlist = []
 count = 0
 print "Plugin categories:"
@@ -31,7 +33,7 @@ def add_where_pluginmenu(name, fnc):
 
 wherelist = []
 wherelist.append(("WHERE_EXTENSIONSMENU", add_where_extensionsmenu))
-wherelist.append(("WHERE_PLUGINMENU", add_where_extensionsmenu))
+wherelist.append(("WHERE_PLUGINMENU", add_where_pluginmenu))
 
 targetlist = []
 
@@ -61,7 +63,38 @@ while not stop:
 			targetlist.remove(wherelist[int(target) - 1])
 
 
-file = open("plugin.py", "w")
+pluginpath = category + "/" +  internalname
+os.mkdir(pluginpath)
+
+makefile = open(category + "/Makefile.am", "r")
+lines = makefile.readlines()
+lines = ''.join(lines)
+lines = lines.strip()
+lines += " " + internalname
+makefile.close()
+
+makefile = open(category + "/Makefile.am", "w")
+makefile.write(lines)
+makefile.close()
+
+lines = []
+print "open"
+configure = open("../../../configure.ac", "r")
+while True:
+	line = configure.readline()
+	if not line:
+		break
+	lines.append(line)
+	if line.strip() == "lib/python/Plugins/" + category + "/Makefile":
+		lines.append("lib/python/Plugins/" + pluginpath + "/Makefile\n")
+configure.close()
+print "close"
+
+configure = open("../../../configure.ac", "w")
+configure.writelines(lines)
+configure.close()
+
+file = open(pluginpath + "/plugin.py", "w")
 
 importlist = []
 for where in targetlist:
