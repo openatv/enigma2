@@ -200,7 +200,7 @@ class TimerSanityCheck:
 					if timer == fakeRec[0] and fakeRec[1]:
 						NavigationInstance.instance.stopRecordService(fakeRec[1])
 						fakeRecList.remove(fakeRec)
-				del fakeRec
+				fakeRec = None
 				for entry in overlaplist:
 					if entry[1] == timer:
 						overlaplist.remove(entry)
