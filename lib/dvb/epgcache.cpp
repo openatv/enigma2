@@ -2047,6 +2047,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 	int querytype=-1;
 	bool needServiceEvent=false;
 	int maxmatches=0;
+	int must_get_service_name = 0;
+	bool must_get_service_reference = false;
 
 	if (PyTuple_Check(arg))
 	{
@@ -2065,6 +2067,16 @@ PyObject *eEPGCache::search(ePyObject arg)
 					case 'E':
 					case 'T':
 						needServiceEvent=true;
+						break;
+					case 'N':
+						must_get_service_name = 1;
+						break;
+					case 'n':
+						must_get_service_name = 2;
+						break;
+					case 'R':
+						must_get_service_reference = true;
+						break;
 					default:
 						break;
 					}
@@ -2159,9 +2171,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 							int title_len = data[5];
 							if ( querytype == 1 )
 							{
-								if (title_len > textlen)
-									continue;
-								else if (title_len < textlen)
+								if (title_len != textlen)
 									continue;
 								if ( casetype )
 								{
@@ -2303,44 +2313,40 @@ PyObject *eEPGCache::search(ePyObject arg)
 							}
 						}
 					// create service name
-						if (!service_name)
+						if (must_get_service_name && !service_name)
 						{
-							int must_get_service_name = strchr(argstring, 'N') ? 1 : strchr(argstring, 'n') ? 2 : 0;
-							if (must_get_service_name)
+							ePtr<iStaticServiceInformation> sptr;
+							eServiceCenterPtr service_center;
+							eServiceCenter::getPrivInstance(service_center);
+							if (service_center)
 							{
-								ePtr<iStaticServiceInformation> sptr;
-								eServiceCenterPtr service_center;
-								eServiceCenter::getPrivInstance(service_center);
-								if (service_center)
+								service_center->info(ref, sptr);
+								if (sptr)
 								{
-									service_center->info(ref, sptr);
-									if (sptr)
+									std::string name;
+									sptr->getName(ref, name);
+
+									if (must_get_service_name == 1)
 									{
-										std::string name;
-										sptr->getName(ref, name);
-
-										if (must_get_service_name == 1)
-										{
-											size_t pos;
-											// filter short name brakets
-											while((pos = name.find("\xc2\x86")) != std::string::npos)
-												name.erase(pos,2);
-											while((pos = name.find("\xc2\x87")) != std::string::npos)
-												name.erase(pos,2);
-										}
-										else
-											name = buildShortName(name);
-
-										if (name.length())
-											service_name = PyString_FromString(name.c_str());
+										size_t pos;
+										// filter short name brakets
+										while((pos = name.find("\xc2\x86")) != std::string::npos)
+											name.erase(pos,2);
+										while((pos = name.find("\xc2\x87")) != std::string::npos)
+											name.erase(pos,2);
 									}
+									else
+										name = buildShortName(name);
+
+									if (name.length())
+										service_name = PyString_FromString(name.c_str());
 								}
-								if (!service_name)
-									service_name = PyString_FromString("<n/a>");
 							}
+							if (!service_name)
+								service_name = PyString_FromString("<n/a>");
 						}
 					// create servicereference string
-						if (!service_reference && strchr(argstring,'R'))
+						if (must_get_service_reference && !service_reference)
 							service_reference = PyString_FromString(ref.toString().c_str());
 					// create list
 						if (!ret)
