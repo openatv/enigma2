@@ -2193,13 +2193,13 @@ PyObject *eEPGCache::search(ePyObject arg)
 //											eDebug("match 3 %s %s", str, s.c_str() );
 											break;
 										}
-										else if (!strncmp((const char*)data+6+idx, str, textlen) )
-										{
-											descr[++descridx] = it->first;
-//											std::string s((const char*)data+6, title_len);
-//											eDebug("match 4 %s %s", str, s.c_str() );
-											break;
-										}
+									}
+									else if (!strncmp((const char*)data+6+idx, str, textlen) )
+									{
+										descr[++descridx] = it->first;
+//										std::string s((const char*)data+6, title_len);
+//										eDebug("match 4 %s %s", str, s.c_str() );
+										break;
 									}
 									++idx;
 								}
