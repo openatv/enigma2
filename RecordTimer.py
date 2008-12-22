@@ -577,6 +577,7 @@ class RecordTimer(timer.Timer):
 				print "ignore timer conflict"
 		elif timersanitycheck.doubleCheck():
 			print "ignore double timer"
+			return None
 		entry.timeChanged()
 		print "[Timer] Record " + str(entry)
 		entry.Timer = self
@@ -584,15 +585,16 @@ class RecordTimer(timer.Timer):
 		if dosave:
 			self.saveTimer()
 		return None
-		
+
 	def isInTimer(self, eventid, begin, duration, service):
 		time_match = 0
 		chktime = None
 		chktimecmp = None
 		chktimecmp_end = None
 		end = begin + duration
+		refstr = str(service)
 		for x in self.timer_list:
-			check = x.service_ref.ref.toCompareString() == str(service)
+			check = x.service_ref.ref.toString() == refstr
 			if not check:
 				sref = x.service_ref.ref
 				parent_sid = sref.getUnsignedData(5)
@@ -604,7 +606,7 @@ class RecordTimer(timer.Timer):
 					sref.setUnsignedData(2, parent_tsid)
 					sref.setUnsignedData(5, 0)
 					sref.setUnsignedData(6, 0)
-					check = x.service_ref.ref.toCompareString() == str(service)
+					check = sref.toCompareString() == refstr
 					num = 0
 					if check:
 						check = False
@@ -620,9 +622,6 @@ class RecordTimer(timer.Timer):
 							check = True
 							break
 			if check:
-				#if x.eit is not None and x.repeated == 0:
-				#	if x.eit == eventid:
-				#		return duration
 				if x.repeated != 0:
 					if chktime is None:
 						chktime = localtime(begin)
@@ -645,6 +644,8 @@ class RecordTimer(timer.Timer):
 						diff = x.end - begin
 						if time_match < diff:
 							time_match = diff
+				if time_match:
+					break
 		return time_match
 
 	def removeEntry(self, entry):
@@ -663,6 +664,18 @@ class RecordTimer(timer.Timer):
 		print "state: ", entry.state
 		print "in processed: ", entry in self.processed_timers
 		print "in running: ", entry in self.timer_list
+		# autoincrease instanttimer if possible
+		if not entry.dontSave:
+			for x in self.timer_list:
+				if x.dontSave and x.autoincrease:
+					x.end = x.begin + (3600 * 24 * 356 * 1)
+					self.timeChanged(x)
+					timersanitycheck = TimerSanityCheck(self.timer_list,x)
+					if not timersanitycheck.check():
+						tsc_list = timersanitycheck.getSimulTimerList()
+						if len(tsc_list) > 1:
+							x.end = tsc_list[1].begin - 30
+							self.timeChanged(x)
 		# now the timer should be in the processed_timers list. remove it from there.
 		self.processed_timers.remove(entry)
 		self.saveTimer()

@@ -5,11 +5,13 @@ from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.EpgList import EPGList, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI
 from Components.ActionMap import ActionMap
+from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewSimple
+from Screens.MessageBox import MessageBox
 from TimeDateInput import TimeDateInput
 from enigma import eServiceReference
-from RecordTimer import RecordTimerEntry, parseEvent
+from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from ServiceReference import ServiceReference
 from time import localtime, time
@@ -17,6 +19,9 @@ from time import localtime, time
 mepg_config_initialized = False
 
 class EPGSelection(Screen):
+	ADD_TIMER = 0
+	REMOVE_TIMER = 1
+
 	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
@@ -58,6 +63,7 @@ class EPGSelection(Screen):
 			self.zapFunc = zapFunc
 
 		self["key_green"] = Button(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
 		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer)
 
 		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
@@ -179,14 +185,28 @@ class EPGSelection(Screen):
 		if self.type == EPG_TYPE_MULTI:
 			self["list"].updateMultiEPG(1)
 
+	def removeTimer(self, timer):
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self["key_green"].setText(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
+
 	def timerAdd(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
 		if event is None:
 			return
-		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
-		self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				break
+		else:
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
+			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def finishedAdd(self, answer):
 		print "finished add"
@@ -200,8 +220,12 @@ class EPGSelection(Screen):
 					self.session.nav.RecordTimer.record(entry)
 				else:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
 		else:
-			print "Timeredit aborted"		
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
+			print "Timeredit aborted"
 	
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -211,7 +235,7 @@ class EPGSelection(Screen):
 
 	def moveDown(self):
 		self["list"].moveDown()
-
+	
 	def applyButtonState(self, state):
 		if state == 0:
 			self["now_button"].hide()
@@ -249,6 +273,7 @@ class EPGSelection(Screen):
 				self["more_button_sel"].hide()
 
 	def onSelectionChanged(self):
+		cur = self["list"].getCurrent()
 		if self.type == EPG_TYPE_MULTI:
 			count = self["list"].getCurrentChangeCount()
 			if self.ask_time != -1:
@@ -261,7 +286,7 @@ class EPGSelection(Screen):
 				self.applyButtonState(1)
 			days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
 			datastr = ""
-			event = self["list"].getCurrent()[0]
+			event = cur[0]
 			if event is not None:
 				now = time()
 				beg = event.getBeginTime()
@@ -272,3 +297,23 @@ class EPGSelection(Screen):
 				else:
 					datestr = '%s %d.%d.'%(_("Today"), begTime[2], begTime[1])
 			self["date"].setText(datestr)
+		else:
+			event = cur[0]
+
+		if event is None:
+			return
+
+		serviceref = cur[1]
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if self.key_green_choice != self.REMOVE_TIMER:
+				if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+					self["key_green"].setText(_("Remove timer"))
+					self.key_green_choice = self.REMOVE_TIMER
+					break
+		else:
+			if self.key_green_choice != self.ADD_TIMER:
+				self["key_green"].setText(_("Add timer"))
+				self.key_green_choice = self.ADD_TIMER

@@ -214,18 +214,6 @@ class TimerEditList(Screen):
 			timer = cur
 			timer.afterEvent = AFTEREVENT.NONE
 			self.session.nav.RecordTimer.removeEntry(timer)
-			if not timer.dontSave:
-				for timer in self.session.nav.RecordTimer.timer_list:
-					if timer.dontSave and timer.autoincrease:
-						timer.end = timer.begin + (3600 * 24 * 356 * 1)
-						self.session.nav.RecordTimer.timeChanged(timer)
-						timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list,timer)
-						if not timersanitycheck.check():
-							tsc_list = timersanitycheck.getSimulTimerList()
-							if len(tsc_list) > 1:
-								timer.end = tsc_list[1].begin - 30
-								self.session.nav.RecordTimer.timeChanged(timer)
-
 			self.refill()
 			self.updateState()
 
@@ -261,6 +249,7 @@ class TimerEditList(Screen):
 		
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
+			
 		
 	def finishedEdit(self, answer):
 		print "finished edit"
@@ -335,6 +324,8 @@ class TimerSanityConflict(Screen):
 				self.list.append((_("Conflicting timer") + " " + str(count), x))
 				self.list2.append((timer[count], False))
 			count += 1
+		if count == 1:
+			self.list.append((_("Channel not in services list")))
 
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
