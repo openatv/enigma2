@@ -1651,7 +1651,7 @@ int eDVBServicePlay::getInfo(int w)
 			}
 		}
 		else
-			return aspect
+			return aspect;
 		break;
 	}
 	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
