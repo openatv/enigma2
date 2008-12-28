@@ -187,7 +187,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
-		rec=beginTime and (self.timer.isInTimer(eventId, begTime, duration, service))
+		rec=begTime and (self.timer.isInTimer(eventId, begTime, duration, service))
 		r1=self.service_rect
 		r2=self.progress_rect
 		r3=self.descr_rect
