@@ -179,7 +179,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 			if (m_subtitle_widget) {
 				int x1,x2,y1,y2;
 				ddvd_get_last_blit_area(m_ddvdconfig, &x1, &x2, &y1, &y2);
-				m_subtitle_widget->setPixmap(m_pixmap, eRect(x1, y1, x2-x1, y2-y1));
+				m_subtitle_widget->setPixmap(m_pixmap, eRect(x1, y1, (x2-x1)+1, (y2-y1)+1));
 			}
 			break;
 		case DDVD_SHOWOSD_STATE_PLAY:
@@ -234,6 +234,14 @@ void eServiceDVD::gotMessage(int /*what*/)
 			eDebug("DVD_SOF_REACHED!");
 			m_event(this, evSOF);
 			break;
+		case DDVD_SHOWOSD_ANGLE:
+		{
+			int current, num;
+			ddvd_get_angle_info(m_ddvdconfig, &current, &num);
+			eDebug("DVD_ANGLE_INFO: %d / %d", current, num);
+			m_event(this, evUser+13);
+			break;
+		}
 		case DDVD_SHOWOSD_TIME:
 		{
 			static struct ddvd_time last_info;
@@ -458,6 +466,7 @@ int eServiceDVD::getInfo(int w)
 		}
 		case sUser+6:
 		case sUser+7:
+		case sUser+8:
 			return resIsPyObject;
 		default:
 			return resNA;
@@ -525,6 +534,16 @@ PyObject *eServiceDVD::getInfoObject(int w)
 				PyTuple_SetItem(tuple, 0, PyInt_FromLong(spu_id+1));
 				PyTuple_SetItem(tuple, 1, PyString_FromString(spu_string));
 			}				
+			return tuple;
+		}
+		case sUser+8:
+		{
+			ePyObject tuple = PyTuple_New(2);
+			int current, num;
+			ddvd_get_angle_info(m_ddvdconfig, &current, &num);
+			PyTuple_SetItem(tuple, 0, PyInt_FromLong(current));
+			PyTuple_SetItem(tuple, 1, PyInt_FromLong(num));
+
 			return tuple;
 		}
 		default:
@@ -685,6 +704,9 @@ RESULT eServiceDVD::keyPressed(int key)
 		break;
 	case iServiceKeys::keyUser+7:
 		ddvd_send_key(m_ddvdconfig, DDVD_KEY_MENU);
+		break;
+	case iServiceKeys::keyUser+8:
+		ddvd_send_key(m_ddvdconfig, DDVD_KEY_ANGLE);
 		break;
 	default:
 		return -1;

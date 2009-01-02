@@ -7,6 +7,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
+from Components.Pixmap import Pixmap
 from Components.FileList import FileList
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
@@ -183,14 +184,17 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		<!-- Chapter info -->
 		<widget name="chapterLabel" position="230,96" size="360,22" font="Regular;20" foregroundColor="#c3c3c9" backgroundColor="#263c59" transparent="1" />
 		<!-- Audio track info -->
-		<ePixmap pixmap="skin_default/icons/icon_dolby.png" position="540,73" zPosition="1" size="26,16" alphatest="on"/>
-		<widget name="audioLabel" position="570,73" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
+		<ePixmap pixmap="skin_default/icons/icon_dolby.png" position="540,60" zPosition="1" size="26,16" alphatest="on"/>
+		<widget name="audioLabel" position="570,60" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
 		<!-- Subtitle track info -->
-		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icons/icon_txt.png" position="540,96" zPosition="1" size="26,16" alphatest="on" >
+		<widget source="session.CurrentService" render="Pixmap" pixmap="skin_default/icons/icon_txt.png" position="540,83" zPosition="1" size="26,16" alphatest="on" >
 			<convert type="ServiceInfo">HasTelext</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget name="subtitleLabel" position="570,96" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
+		<widget name="subtitleLabel" position="570,83" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
+		<!-- Angle info -->
+		<widget name="anglePix" pixmap="skin_default/icons/icon_view.png" position="540,106" size="26,16" alphatest="on" />
+		<widget name="angleLabel" position="570,106" size="130,22" font="Regular;18" backgroundColor="#263c59" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" />
 		<!-- Elapsed time -->
 		<widget source="session.CurrentService" render="Label" position="205,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1" >
 			<convert type="ServicePosition">Position,ShowHours</convert>
@@ -252,9 +256,13 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.session.nav.stopService()
 		self["audioLabel"] = Label("n/a")
 		self["subtitleLabel"] = Label("")
+		self["angleLabel"] = Label("")
 		self["chapterLabel"] = Label("")
+		self["anglePix"] = Pixmap()
+		self["anglePix"].hide()
 		self.last_audioTuple = None
 		self.last_subtitleTuple = None
+		self.last_angleTuple = None
 		self.totalChapters = 0
 		self.currentChapter = 0
 		self.totalTitles = 0
@@ -274,7 +282,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				iPlayableService.evUser+8: self.__chapterUpdated,
 				iPlayableService.evUser+9: self.__titleUpdated,
 				iPlayableService.evUser+11: self.__menuOpened,
-				iPlayableService.evUser+12: self.__menuClosed
+				iPlayableService.evUser+12: self.__menuClosed,
+				iPlayableService.evUser+13: self.__osdAngleInfoAvail
 			})
 
 		self["DVDPlayerDirectionActions"] = ActionMap(["DirectionActions"],
@@ -317,6 +326,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(show optional DVD audio menu)")),
 				"nextAudioTrack": (self.nextAudioTrack, _("switch to the next audio track")),
 				"nextSubtitleTrack": (self.nextSubtitleTrack, _("switch to the next subtitle language")),
+				"nextAngle": (self.nextAngle, _("switch to the next angle")),
 				"seekBeginning": self.seekBeginning,
 			}, -2)
 			
@@ -467,6 +477,22 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			if subtitleTuple != self.last_subtitleTuple and not self.in_menu:
 				self.doShow()
 		self.last_subtitleTuple = subtitleTuple
+	
+	def __osdAngleInfoAvail(self):
+		info = self.getServiceInterface("info")
+		angleTuple = info and info.getInfoObject(iServiceInformation.sUser+8)
+		print "AngleInfoAvail ", repr(angleTuple)
+		if angleTuple:
+			angleString = ""
+			if angleTuple[1] > 1:
+				angleString = "%d / %d" % (angleTuple[0],angleTuple[1])
+				self["anglePix"].show()
+			else:
+				self["anglePix"].hide()
+			self["angleLabel"].setText(angleString)
+			if angleTuple != self.last_angleTuple and not self.in_menu:
+				self.doShow()
+		self.last_angleTuple = angleTuple
 
 	def __chapterUpdated(self):
 		info = self.getServiceInterface("info")
@@ -521,6 +547,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def enterDVDMenu(self):
 		self.sendKey(iServiceKeys.keyUser+7)
+	
+	def nextAngle(self):
+		self.sendKey(iServiceKeys.keyUser+8)
 
 	def seekBeginning(self):
 		if self.service:
