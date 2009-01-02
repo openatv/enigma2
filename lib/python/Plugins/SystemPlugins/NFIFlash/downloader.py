@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Components.MenuList import MenuList
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -657,6 +658,9 @@ class NFIDownload(Screen):
 				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
 				self.backup_file = "backup/" + str(dt) + "_settings_backup.tar.gz"
 				self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + "/mnt/usb/" + self.backup_file + " /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"], finishedCallback = self.backup_finished, closeOnSuccess = True)
+		else:
+			self.backup_file = None
+			self.backup_finished()
 
 	def backup_finished(self):
 		wizardfd = open("/mnt/usb/wizard.nfo", "w")
