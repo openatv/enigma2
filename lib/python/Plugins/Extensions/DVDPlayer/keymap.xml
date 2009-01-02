@@ -11,7 +11,7 @@
 			<key id="KEY_AUDIO" mapto="dvdAudioMenu" flags="m" />
 			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="m" />
 			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />
-			<key id="KEY_VIDEO" mapto="seekBeginning" flags="l" />
+			<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PREVIOUS" mapto="prevChapter" flags="m" />
@@ -21,6 +21,7 @@
 			<key id="KEY_RADIO" mapto="dvdAudioMenu" flags="l" />
 			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="m" />
 			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />
+			<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
 		</device>
 		<!--device name="dreambox ir keyboard">
 			<key id="KEY_PAUSE" mapto="pause" flags="m" />
