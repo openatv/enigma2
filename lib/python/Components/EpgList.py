@@ -55,6 +55,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.clock_add_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_add.png'))
 		self.clock_pre_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_pre.png'))
 		self.clock_post_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_post.png'))
+		self.clock_prepost_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_prepost.png'))
 
 	def getEventFromId(self, service, eventid):
 		event = None
@@ -63,7 +64,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return event
 
 	def getCurrentChangeCount(self):
-		if self.type == EPG_TYPE_MULTI:
+		if self.type == EPG_TYPE_MULTI and self.l.getCurrentSelection() is not None:
 			return self.l.getCurrentSelection()[0]
 		return 0
 
@@ -95,11 +96,12 @@ class EPGList(HTMLComponent, GUIComponent):
 	def selectionChanged(self):
 		for x in self.onSelChanged:
 			if x is not None:
-				try:
-					x()
-				except: # FIXME!!!
-					print "FIXME in EPGList.selectionChanged"
-					pass
+				x()
+#				try:
+#					x()
+#				except: # FIXME!!!
+#					print "FIXME in EPGList.selectionChanged"
+#					pass
 
 	GUI_WIDGET = eListbox
 
@@ -139,18 +141,28 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.service_rect = Rect(width/20*7, 0, width/20*13, height)
 
 	def getClockPixmap(self, refstr, beginTime, duration, eventId):
+		pre_clock = 1
+		post_clock = 2
+		clock_type = 0
 		endTime = beginTime + duration
 		for x in self.timer.timer_list:
 			if x.service_ref.ref.toString() == refstr:
-				beg = x.begin
-				end = x.end
 				if x.eit == eventId:
 					return self.clock_pixmap
-				elif beginTime > beg and beginTime < end and endTime > end:
-					return self.clock_post_pixmap
+				beg = x.begin
+				end = x.end
+				if beginTime > beg and beginTime < end and endTime > end:
+					clock_type |= pre_clock
 				elif beginTime < beg and endTime > beg and endTime < end:
-					return self.clock_pre_pixmap
-		return self.clock_add_pixmap
+					clock_type |= post_clock
+		if clock_type == 0:
+			return self.clock_add_pixmap
+		elif clock_type == pre_clock:
+			return self.clock_pre_pixmap
+		elif clock_type == post_clock:
+			return self.clock_post_pixmap
+		else:
+			return self.clock_prepost_pixmap
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
 		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))

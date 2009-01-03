@@ -285,7 +285,7 @@ class EPGSelection(Screen):
 			else:
 				self.applyButtonState(1)
 			days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
-			datastr = ""
+			datestr = ""
 			event = cur[0]
 			if event is not None:
 				now = time()
@@ -306,14 +306,14 @@ class EPGSelection(Screen):
 		serviceref = cur[1]
 		eventid = event.getEventId()
 		refstr = serviceref.ref.toString()
-
+		isRecordEvent = False
 		for timer in self.session.nav.RecordTimer.timer_list:
-			if self.key_green_choice != self.REMOVE_TIMER:
-				if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-					self["key_green"].setText(_("Remove timer"))
-					self.key_green_choice = self.REMOVE_TIMER
-					break
-		else:
-			if self.key_green_choice != self.ADD_TIMER:
-				self["key_green"].setText(_("Add timer"))
-				self.key_green_choice = self.ADD_TIMER
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				isRecordEvent = True
+				break
+		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
+		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
