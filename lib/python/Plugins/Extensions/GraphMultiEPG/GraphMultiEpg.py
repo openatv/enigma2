@@ -155,11 +155,12 @@ class EPGList(HTMLComponent, GUIComponent):
 	def selectionChanged(self):
 		for x in self.onSelChanged:
 			if x is not None:
-				try:
-					x()
-				except: # FIXME!!!
-					print "FIXME in EPGList.selectionChanged"
-					pass
+				x()
+#				try:
+#					x()
+#				except: # FIXME!!!
+#					print "FIXME in EPGList.selectionChanged"
+#					pass
 
 	GUI_WIDGET = eListbox
 
@@ -291,13 +292,13 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.time_base = int(stime)
 			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
 		test.insert(0, 'XRnITBD')
-		print "BEFORE:"
-		for x in test:
-			print x
+#		print "BEFORE:"
+#		for x in test:
+#			print x
 		epg_data = self.queryEPG(test)
-		print "EPG:"
-		for x in epg_data:
-			print x
+#		print "EPG:"
+#		for x in epg_data:
+#			print x
 		self.list = [ ]
 		tmp_list = None
 		service = ""
@@ -535,7 +536,7 @@ class GraphMultiEPG(Screen):
 				else:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 		else:
-			print "Timeredit aborted"		
+			print "Timeredit aborted"
 	
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
