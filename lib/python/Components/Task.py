@@ -131,6 +131,7 @@ class Task(object):
 		self.task_progress_changed = None
 		self.output_line = ""
 		job.addTask(self)
+		self.container = None
 
 	def setCommandline(self, cmd, args):
 		self.cmd = cmd
@@ -211,7 +212,8 @@ class Task(object):
 		self.finish()
 
 	def abort(self):
-		self.container.kill()
+		if self.container:
+			self.container.kill()
 		self.finish(aborted = True)
 
 	def finish(self, aborted = False):
