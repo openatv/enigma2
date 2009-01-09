@@ -284,6 +284,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		x = self.l.getCurrentSelection()
 		return x and x[1]
 
+	def moveToService(self,serviceref):
+		for x in range(len(self.list)):
+			if self.list[x][1] == serviceref.toString():
+				self.instance.moveSelectionTo(x)
+				break
+			
 	def moveToEventId(self, eventId):
 		index = 0
 		for x in self.list:
