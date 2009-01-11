@@ -269,8 +269,9 @@ class TimerEditList(Screen):
 					self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
 			else:
 				print "Sanity check passed"
-				if not timersanitycheck.doubleCheck():
-					self.session.nav.RecordTimer.timeChanged(entry)
+#				if not timersanitycheck.doubleCheck():
+				self.session.nav.RecordTimer.timeChanged(entry)
+					
 			self.fillTimerList()
 			self.updateState()
 		else:
