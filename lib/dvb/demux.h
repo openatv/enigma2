@@ -101,7 +101,9 @@ public:
 	RESULT setBoundary(off_t max);
 	
 	RESULT stop();
-	
+
+	RESULT getCurrentPCR(pts_t &pcr);
+
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
 private:
 	RESULT startPID(int pid);
