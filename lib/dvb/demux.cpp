@@ -405,12 +405,14 @@ public:
 	void setTimingPID(int pid);
 	
 	void saveTimingInformation(const std::string &filename);
+	int getLastPTS(pts_t &pts);
 protected:
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
 private:
 	eMPEGStreamParserTS m_ts_parser;
 	eMPEGStreamInformation m_stream_info;
 	off_t m_current_offset;
+	pts_t m_last_pcr; /* very approximate.. */
 	int m_pid;
 };
 
@@ -428,6 +430,11 @@ void eDVBRecordFileThread::setTimingPID(int pid)
 void eDVBRecordFileThread::saveTimingInformation(const std::string &filename)
 {
 	m_stream_info.save(filename.c_str());
+}
+
+int eDVBRecordFileThread::getLastPTS(pts_t &pts)
+{
+	return m_ts_parser.getLastPTS(pts);
 }
 
 int eDVBRecordFileThread::filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining)
@@ -587,6 +594,18 @@ RESULT eDVBTSRecorder::stop()
 		m_thread->saveTimingInformation(m_target_filename + ".ap");
 	
 	return 0;
+}
+
+RESULT eDVBTSRecorder::getCurrentPCR(pts_t &pcr)
+{
+	if (!m_running)
+		return 0;
+	if (!m_thread)
+		return 0;
+		/* XXX: we need a lock here */
+
+			/* we don't filter PCR data, so just use the last received PTS, which is not accurate, but better than nothing */
+	return m_thread->getLastPTS(pcr);
 }
 
 RESULT eDVBTSRecorder::connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn)

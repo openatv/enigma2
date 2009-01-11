@@ -36,6 +36,8 @@ private:
 	friend class eServiceFactoryDVB;
 	eDVBServiceRecord(const eServiceReferenceDVB &ref);
 	
+	eDVBServiceEITHandler m_event_handler;
+	
 	eServiceReferenceDVB m_ref;
 	
 	ePtr<iDVBTSRecorder> m_record;
@@ -44,8 +46,11 @@ private:
 	int m_recording, m_tuned, m_error;
 	std::set<int> m_pids_active;
 	std::string m_filename;
+
+	std::map<int,pts_t> m_event_timestamps;
 	int m_target_fd;
 	int m_streaming;
+	int m_last_event_id;
 	
 	int doPrepare();
 	int doRecord();
@@ -56,6 +61,10 @@ private:
 	
 			/* recorder events */
 	void recordEvent(int event);
+
+			/* eit updates */
+	void gotNewEvent();
+	void saveCutlist();
 };
 
 #endif
