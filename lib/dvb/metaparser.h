@@ -18,7 +18,8 @@ public:
 	
 	eServiceReferenceDVB m_ref;
 	std::string m_name, m_description;
-	int m_time_create;
+	int m_time_create, m_length;
+	long long m_filesize;
 	
 	std::string m_tags;
 };
