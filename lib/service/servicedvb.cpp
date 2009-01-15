@@ -536,14 +536,25 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	
 	eDVBTSTools tstools;
 	
+	struct stat s;
+	stat(ref.path.c_str(), &s);
+
 	if (tstools.openFile(ref.path.c_str()))
 		return 0;
 
+			/* check if cached data is still valid */
+	if (m_parser.m_data_ok && (s.st_size == m_parser.m_filesize) && (m_parser.m_length))
+		return m_parser.m_length / 90000;
+
+			/* otherwise, re-calc length and update meta file */
 	pts_t len;
 	if (tstools.calcLen(len))
 		return 0;
 
-	return len / 90000;
+ 	m_parser.m_length = len;
+	m_parser.m_filesize = s.st_size;
+	m_parser.updateMeta(ref.path);
+	return m_parser.m_length / 90000;
 }
 
 int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w)

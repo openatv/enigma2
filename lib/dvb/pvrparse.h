@@ -55,6 +55,7 @@ public:
 	eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo);
 	void parseData(off_t offset, const void *data, unsigned int len);
 	void setPid(int pid);
+	int getLastPTS(pts_t &last_pts);
 private:
 	eMPEGStreamInformation &m_streaminfo;
 	unsigned char m_pkt[188];
@@ -64,6 +65,8 @@ private:
 	int m_pid;
 	int m_need_next_packet;
 	int m_skip;
+	int m_last_pts_valid;
+	pts_t m_last_pts;
 };
 
 #endif

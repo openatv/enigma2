@@ -15,8 +15,9 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.TimerEntry import TimerEntry
 from Screens.EpgSelection import EPGSelection
 from Screens.TimerEdit import TimerSanityConflict
+from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
-from RecordTimer import RecordTimerEntry, parseEvent
+from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, \
@@ -41,6 +42,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setSelectableFunc(self.isSelectable)
 		self.epgcache = eEPGCache.getInstance()
 		self.clock_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock.png'))
+		self.clock_add_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_add.png'))
+		self.clock_pre_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_pre.png'))
+		self.clock_post_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_post.png'))
+		self.clock_prepost_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_prepost.png'))
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None
@@ -92,6 +97,22 @@ class EPGList(HTMLComponent, GUIComponent):
 			event = self.epgcache.lookupEventId(service.ref, eventid)
 		return event
 
+	def moveToService(self,serviceref):
+		for x in range(len(self.list)):
+			if self.list[x][0] == serviceref.toString():
+				self.instance.moveSelectionTo(x)
+				break
+	
+	def getIndexFromService(self, serviceref):
+		for x in range(len(self.list)):
+			if self.list[x][0] == serviceref.toString():
+				return x
+		return 0
+		
+	def setCurrentIndex(self, index):
+		if self.instance is not None:
+			self.instance.moveSelectionTo(index)
+	
 	def getCurrent(self):
 		if self.cur_service is None:
 			return ( None, None )
@@ -227,7 +248,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			borderColor = self.borderColor
 
 			for ev in events:  #(event_id, event_title, begin_time, duration)
-				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service) > ((ev[3]/10)*8)
+				rec=ev[2] and self.timer.isInTimer(ev[0], ev[2], ev[3], service)
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(ev[2], ev[3], start, end, width)
 				res.append(MultiContentEntryText(
 					pos = (left+xpos, top), size = (ewidth, height),
@@ -237,7 +258,8 @@ class EPGList(HTMLComponent, GUIComponent):
 				if rec and ewidth > 23:
 					res.append(MultiContentEntryPixmapAlphaTest(
 						pos = (left+xpos+ewidth-22, top+height-22), size = (21, 21),
-						png = self.clock_pixmap, backcolor = backColor,
+						png = self.getClockPixmap(service, ev[2], ev[3], ev[0]),
+						backcolor = backColor,
 						backcolor_sel = backColorSelected))
 		return res
 
@@ -329,6 +351,30 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def resetOffset(self):
 		self.offs = 0
+	
+	def getClockPixmap(self, refstr, beginTime, duration, eventId):
+		pre_clock = 1
+		post_clock = 2
+		clock_type = 0
+		endTime = beginTime + duration
+		for x in self.timer.timer_list:
+			if x.service_ref.ref.toString() == refstr:
+				if x.eit == eventId:
+					return self.clock_pixmap
+				beg = x.begin
+				end = x.end
+				if beginTime > beg and beginTime < end and endTime > end:
+					clock_type |= pre_clock
+				elif beginTime < beg and endTime > beg and endTime < end:
+					clock_type |= post_clock
+		if clock_type == 0:
+			return self.clock_add_pixmap
+		elif clock_type == pre_clock:
+			return self.clock_pre_pixmap
+		elif clock_type == post_clock:
+			return self.clock_post_pixmap
+		else:
+			return self.clock_prepost_pixmap
 
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self):
@@ -356,6 +402,12 @@ config.misc.graph_mepg_prev_time=ConfigClock(default = time())
 config.misc.graph_mepg_prev_time_period=ConfigInteger(default=120, limits=(60,300))
 
 class GraphMultiEPG(Screen):
+	EMPTY = 0
+	ADD_TIMER = 1
+	REMOVE_TIMER = 2
+	
+	ZAP = 1
+
 	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
@@ -364,7 +416,9 @@ class GraphMultiEPG(Screen):
 		self.ask_time = now - tmp
 		self.closeRecursive = False
 		self["key_red"] = Button("")
-		self["key_green"] = Button(_("Add timer"))
+		self["key_green"] = Button("")
+		self.key_green_choice = self.EMPTY
+		self.key_red_choice = self.EMPTY
 		self["timeline_text"] = TimelineText()
 		self["Event"] = Event()
 		self.time_lines = [ ]
@@ -488,6 +542,7 @@ class GraphMultiEPG(Screen):
 	#just used in multipeg
 	def onCreate(self):
 		self["list"].fillMultiEPG(self.services, self.ask_time)
+		self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
 		self.moveTimeLines()
 
 	def eventViewCallback(self, setEvent, setService, val):
@@ -505,7 +560,7 @@ class GraphMultiEPG(Screen):
 			setEvent(cur[0])
 
 	def zapTo(self):
-		if self.zapFunc and self["key_red"].getText() == "Zap":
+		if self.zapFunc and self.key_red_choice == self.ZAP:
 			self.closeRecursive = True
 			ref = self["list"].getCurrent()[1]
 			if ref:
@@ -514,14 +569,28 @@ class GraphMultiEPG(Screen):
 	def eventSelected(self):
 		self.infoKeyPressed()
 
+	def removeTimer(self, timer):
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self["key_green"].setText(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
+	
 	def timerAdd(self):
 		cur = self["list"].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
 		if event is None:
 			return
-		newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
-		self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				break
+		else:
+			newEntry = RecordTimerEntry(serviceref, checkOldTimers = True, *parseEvent(event))
+			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def finishedAdd(self, answer):
 		print "finished add"
@@ -535,25 +604,63 @@ class GraphMultiEPG(Screen):
 					self.session.nav.RecordTimer.record(entry)
 				else:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
 		else:
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"
 	
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
 
 	def onSelectionChanged(self):
-		evt = self["list"].getCurrent()
-		self["Event"].newEvent(evt and evt[0])
-		if evt and evt[0]:
-			evt = evt[0]
-			now = time()
-			start = evt.getBeginTime()
-			end = start + evt.getDuration()
-			if now >= start and now <= end:
-				self["key_red"].setText("Zap")
-			else:
+		cur = self["list"].getCurrent()
+		if cur is None:
+			if self.key_green_choice != self.EMPTY:
+				self["key_green"].setText("")
+				self.key_green_choice = self.EMPTY
+			if self.key_red_choice != self.EMPTY:
 				self["key_red"].setText("")
-
+				self.key_red_choice = self.EMPTY
+			return
+		
+		event = cur[0]
+		self["Event"].newEvent(event)
+		
+		if cur[1] is None or cur[1].getServiceName() == "":
+			if self.key_green_choice != self.EMPTY:
+				self["key_green"].setText("")
+				self.key_green_choice = self.EMPTY
+			if self.key_red_choice != self.EMPTY:
+				self["key_red"].setText("")
+				self.key_red_choice = self.EMPTY
+			return
+		elif self.key_red_choice != self.ZAP:
+				self["key_red"].setText("Zap")
+				self.key_red_choice = self.ZAP
+			
+		if not event:
+			if self.key_green_choice != self.EMPTY:
+				self["key_green"].setText("")
+				self.key_green_choice = self.EMPTY
+			return
+		
+		serviceref = cur[1]
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+		isRecordEvent = False
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				isRecordEvent = True
+				break
+		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
+		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
+	
 	def moveTimeLines(self, force=False):
 		l = self["list"]
 		event_rect = l.getEventRect()
