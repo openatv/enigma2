@@ -17,6 +17,7 @@ to generate HTML."""
 		self.fonts = fonts
 		self.disable_callbacks = False
 		self.enableWrapAround = enableWrapAround
+		self.__style = "default" # style might be an optional string which can be used to define different visualisations in the skin
 
 	def setList(self, list):
 		self.__list = list
@@ -76,17 +77,21 @@ to generate HTML."""
 			self.index -= 1
 		self.setIndex(self.index)
 
+	@cached
+	def getStyle(self):
+		return self.__style
+
+	def setStyle(self, style):
+		self.__style = style
+		self.changed((self.CHANGED_SPECIFIC, "style"))
+
+	style = property(getStyle, setStyle)
+
 	def updateList(self, list):
 		"""Changes the list without changing the selection or emitting changed Events"""
 		assert len(list) == len(self.__list)
-		print "get old index"
 		old_index = self.index
-		print "disable callback"
 		self.disable_callbacks = True
-		print "set list"
 		self.list = list
-		print "set index"
 		self.index = old_index
-		print "reenable callbacks"
 		self.disable_callbacks = False
-		print "done"
