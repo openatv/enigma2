@@ -38,6 +38,8 @@ public:
 	virtual RESULT setBoundary(off_t max) = 0;
 	
 	virtual RESULT stop() = 0;
+
+	virtual RESULT getCurrentPCR(pts_t &pcr) = 0;
 	
 	enum {
 		eventWriteError,

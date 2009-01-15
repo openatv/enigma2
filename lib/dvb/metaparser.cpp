@@ -6,6 +6,8 @@ eDVBMetaParser::eDVBMetaParser()
 {
 	m_time_create = 0;
 	m_data_ok = 0;
+	m_length = 0;
+	m_filesize = 0;
 }
 
 int eDVBMetaParser::parseFile(const std::string &basename)
@@ -59,6 +61,12 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 		case 4:
 			m_tags = line;
 			break;
+		case 5:
+			m_length = atoi(line);  //movielength in pts
+			break;
+		case 6:
+			m_filesize = atoll(line);
+			break;
 		default:
 			break;
 		}
@@ -105,17 +113,19 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 			ref = eServiceReferenceDVB(line + 10);
 		if (!strncmp(line, "#DESCRIPTION: ", 14))
 			description = line + 14;
-
-		if ((line[0] == '/') && (ref.path == filename))
+		if ((line[0] == '/') && (ref.path.substr(ref.path.find_last_of('/')) == filename.substr(filename.find_last_of('/'))))
 		{
 //			eDebug("hit! ref %s descr %s", m_ref.toString().c_str(), m_name.c_str());
 			m_ref = ref;
 			m_name = description;
 			m_description = "";
 			m_time_create = 0;
-			
+			m_length = 0;
+			m_filesize = 0;
+						
 			m_data_ok = 1;
 			fclose(f);
+			updateMeta(filename.c_str());
 			return 0;
 		}
 	}
@@ -125,14 +135,17 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 
 int eDVBMetaParser::updateMeta(const std::string &tsname)
 {
-	if (!m_data_ok)	
+	/* write meta file only if we have valid data. Note that we might convert recordings.epl data to .meta, which is fine. */
+	if (!m_data_ok)
 		return -1;
 	std::string filename = tsname + ".meta";
+	eServiceReference ref = m_ref;
+	ref.path = "";
 
 	FILE *f = fopen(filename.c_str(), "w");
 	if (!f)
 		return -ENOENT;
-	fprintf(f, "%s\n%s\n%s\n%d\n%s\n", m_ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str());
+	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize );
 	fclose(f);
 	return 0;
 }
