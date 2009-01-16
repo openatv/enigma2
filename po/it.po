@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Italian Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-24 14:31+0100\n"
-"PO-Revision-Date: 2008-11-21 09:29+0100\n"
+"POT-Creation-Date: 2009-01-16 00:49+0100\n"
+"PO-Revision-Date: 2009-01-05 22:24+0100\n"
 "Last-Translator: Spaeleus <spaeleus@croci.org>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
 "MIME-Version: 1.0\n"
@@ -295,12 +295,6 @@ msgstr "Default AC3"
 msgid "AC3 downmix"
 msgstr "AC3 -> stereo (downmix)"
 
-msgid "AGC"
-msgstr "AGC"
-
-msgid "AGC:"
-msgstr "AGC:"
-
 msgid "About"
 msgstr "Info"
 
@@ -326,7 +320,7 @@ msgid "Add"
 msgstr "Aggiungere"
 
 msgid "Add Bookmark"
-msgstr "Agg. segnalibro"
+msgstr "Agg.Segnalibro"
 
 msgid "Add a mark"
 msgstr "Aggiungere contrassegno"
@@ -593,6 +587,9 @@ msgstr "Canale"
 msgid "Channel Selection"
 msgstr "Selezione Canale"
 
+msgid "Channel not in services list"
+msgstr "Canale non in elenco"
+
 msgid "Channel:"
 msgstr "Canale:"
 
@@ -624,7 +621,7 @@ msgid "Choose source"
 msgstr "Selezionare la sorgente"
 
 msgid "Choose target folder"
-msgstr "Cartella di destinazione"
+msgstr "Cartella destinazione"
 
 msgid "Choose your Skin"
 msgstr "Selezionare la Skin"
@@ -1261,9 +1258,6 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flash fallito!"
 
-msgid "Font size"
-msgstr "Dim. Carattere"
-
 msgid "Format"
 msgstr "Formattare"
 
@@ -1293,6 +1287,9 @@ msgstr "Ven"
 
 msgid "Friday"
 msgstr "Venerdì"
+
+msgid "Frisian"
+msgstr "Frisone"
 
 msgid "Fritz!Box FON IP address"
 msgstr "Indirizzo IP Fritz!Box FON"
@@ -1594,6 +1591,9 @@ msgstr "Destinazione"
 msgid "Lock:"
 msgstr "Lock:"
 
+msgid "Log results to harddisk"
+msgstr "Salvare log su harddisk"
+
 msgid "Long Keypress"
 msgstr "Lunga pressione tasto"
 
@@ -1650,6 +1650,9 @@ msgstr "Menu"
 
 msgid "Message"
 msgstr "Messaggio"
+
+msgid "Message..."
+msgstr "Messaggio..."
 
 msgid "Mkfs failed"
 msgstr "Mkfs fallito!"
@@ -2158,6 +2161,9 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr "Attendere: attivazione configurazione di rete in corso..."
 
+msgid "Please wait while scanning is in progress..."
+msgstr "Attendere: scansione in corso..."
+
 msgid "Please wait while we configure your network..."
 msgstr "Attendere: configurazione rete in corso..."
 
@@ -2233,6 +2239,10 @@ msgstr "OK -> Attivare la config."
 msgid "Press OK to edit the settings."
 msgstr "OK => per Configurare."
 
+#, python-format
+msgid "Press OK to get further details for %s"
+msgstr "Per maggiori dettagli su %s, premere OK."
+
 msgid "Press OK to scan"
 msgstr "Premere OK per la ricerca"
 
@@ -2247,6 +2257,9 @@ msgstr "Menu Anteprima"
 
 msgid "Primary DNS"
 msgstr "DNS Primario"
+
+msgid "Priority"
+msgstr "Priorità"
 
 msgid "Properties of current title"
 msgstr "Proprietà titolo corrente"
@@ -2265,6 +2278,9 @@ msgstr "Provider su cui cercare"
 
 msgid "Providers"
 msgstr "Provider"
+
+msgid "Quick"
+msgstr "Veloce"
 
 msgid "Quickzap"
 msgstr "Zapping veloce"
@@ -2287,14 +2303,14 @@ msgstr "Radio"
 msgid "Ram Disk"
 msgstr "Disco Ram"
 
+msgid "Random"
+msgstr "Casuale"
+
 msgid "Really close without saving settings?"
 msgstr "Chiudere senza salvare le modifiche?"
 
 msgid "Really delete done timers?"
 msgstr "Cancellare i timer conclusi?"
-
-msgid "Really delete this timer?"
-msgstr "Cancellare questo timer?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Uscire dallo zapping veloce sottoservizi?"
@@ -2339,7 +2355,7 @@ msgid "Refresh rate selection."
 msgstr "Selezione frequenza di aggiornamento."
 
 msgid "Remove Bookmark"
-msgstr "Rimuovere segnalibro"
+msgstr "Canc.Segnalibro"
 
 msgid "Remove Plugins"
 msgstr "Cancellare Plugin"
@@ -2358,6 +2374,9 @@ msgstr "Rimuovere il file .nfi corrotto?"
 
 msgid "Remove the incomplete .NFI file?"
 msgstr "Rimuovere il file .nfi incompleto?"
+
+msgid "Remove timer"
+msgstr "Canc. Timer"
 
 msgid "Remove title"
 msgstr "Canc. Titolo"
@@ -2873,6 +2892,12 @@ msgstr "Arrestare la riproduzione?"
 msgid "Stop test"
 msgstr "Arrestare il test"
 
+msgid "Stop testing plane after # failed transponders"
+msgstr "Arrestare il test dopo # transpondere falliti"
+
+msgid "Stop testing plane after # successful transponders"
+msgstr "Arrestare il test dopo # transponder controllati con successo"
+
 msgid "Store position"
 msgstr "Memorizzare posizione"
 
@@ -2923,9 +2948,9 @@ msgid "TRANSLATOR_INFO"
 msgstr ""
 "Traduzione italiana per\n"
 "enigma2 - Dreambox\n"
-"Dario Croci - WWW.LINSAT.NET\n"
+"Dario Croci - www.linsat.net\n"
 "Supporto: spaeleus@croci.org.\n"
-"- 21 novembre 2008 -"
+"- 05 gennaio 2009 -"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "File TS troppo grande per ISO9660 livello 1!"
@@ -2950,6 +2975,12 @@ msgstr "Terrestre"
 
 msgid "Terrestrial provider"
 msgstr "Provider terrestre"
+
+msgid "Test DiSEqC settings"
+msgstr "Test configurazione DiSEqC"
+
+msgid "Test Type"
+msgstr "Tipo Test"
 
 msgid "Test mode"
 msgstr "Modalità test"
@@ -3049,6 +3080,10 @@ msgstr "Il codice PIN inserito è errato!"
 
 msgid "The pin codes you entered are different."
 msgstr "I codici PIN inseriti sono diversi!"
+
+#, python-format
+msgid "The results have been written to %s."
+msgstr "Risultati salvati su %s."
 
 msgid "The sleep timer has been activated."
 msgstr "Timer di spegnimento attivato!"
@@ -3849,7 +3884,7 @@ msgid "add alternatives"
 msgstr "Aggiungere alternative"
 
 msgid "add bookmark"
-msgstr "Agg. segnalibro"
+msgstr "Agg.Segnalibro"
 
 msgid "add bouquet"
 msgstr "Aggiungere bouquet"
@@ -3911,6 +3946,9 @@ msgstr "Lingua traccia audio (%s)"
 msgid "audio tracks"
 msgstr "Tracce audio"
 
+msgid "auto"
+msgstr "Auto"
+
 msgid "back"
 msgstr "Indietro"
 
@@ -3956,9 +3994,6 @@ msgstr "Circolare a destra"
 
 msgid "clear playlist"
 msgstr "Cancellare playlist"
-
-msgid "color"
-msgstr "colore"
 
 msgid "complex"
 msgstr "Complesso"
@@ -4104,9 +4139,6 @@ msgstr "Nome file"
 msgid "fine-tune your display"
 msgstr "Regolazione fine schermo"
 
-msgid "font face"
-msgstr "Carattere"
-
 msgid "forward to the next chapter"
 msgstr "Passare al capitolo successivo"
 
@@ -4125,9 +4157,6 @@ msgstr "Standby"
 msgid "green"
 msgstr "Verde"
 
-msgid "headline"
-msgstr "Intest."
-
 msgid "hear radio..."
 msgstr "Radio"
 
@@ -4142,9 +4171,6 @@ msgstr "Nascondere descrizione estesa"
 
 msgid "hide player"
 msgstr "Nascondere il player"
-
-msgid "highlighted button"
-msgstr "Puls. evidenziato"
 
 msgid "horizontal"
 msgstr "Orizzontale"
@@ -4533,9 +4559,6 @@ msgstr "Scorrere immagini in loop"
 msgid "sort by date"
 msgstr "Ordine per data"
 
-msgid "spaces (top, between rows, left)"
-msgstr "Margini (alto, tra le righe, sinistro)"
-
 msgid "standard"
 msgstr "Standard"
 
@@ -4578,14 +4601,17 @@ msgstr "Passare alla lista file"
 msgid "switch to playlist"
 msgstr "Passare alla playlist"
 
+msgid "switch to the next angle"
+msgstr "Passare all'angolazione successiva"
+
 msgid "switch to the next audio track"
 msgstr "Passare alla traccia audio successiva"
 
 msgid "switch to the next subtitle language"
 msgstr "Passare alla lingua sottotitoli successiva"
 
-msgid "text"
-msgstr "Testo"
+msgid "template file"
+msgstr "File modello"
 
 msgid "textcolor"
 msgstr "Colore testo"
@@ -4638,6 +4664,9 @@ msgstr "Settimanale"
 msgid "whitelist"
 msgstr "Lista bianca"
 
+msgid "working"
+msgstr "Test in corso..."
+
 msgid "yellow"
 msgstr "Giallo"
 
@@ -4670,6 +4699,12 @@ msgstr "Zapped"
 #~ msgid ".NFI Flasher bootable USB stick successfully created."
 #~ msgstr "Creazione penna USB per Flasher .nfi terminata con successo"
 
+#~ msgid "AGC"
+#~ msgstr "AGC"
+
+#~ msgid "AGC:"
+#~ msgstr "AGC:"
+
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "Copia immagine di avvio Flasher USB in corso..."
 
@@ -4681,6 +4716,9 @@ msgstr "Zapped"
 
 #~ msgid "Fix USB stick"
 #~ msgstr "Conf. Penna"
+
+#~ msgid "Font size"
+#~ msgstr "Dim. Carattere"
 
 #~ msgid ""
 #~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
@@ -4697,6 +4735,9 @@ msgstr "Zapped"
 #~ msgid "Please wait for md5 signature verification..."
 #~ msgstr "Attendere la verifica della firma md5..."
 
+#~ msgid "Really delete this timer?"
+#~ msgstr "Cancellare questo timer?"
+
 #~ msgid "Remounting stick partition..."
 #~ msgstr "\"Remount\" partizione penna in corso..."
 
@@ -4706,6 +4747,9 @@ msgstr "Zapped"
 #~ "and hold the 'Down' key on the front panel to boot the .NFI flasher from "
 #~ "the stick!"
 #~ msgstr "La penna USB - Flasher Immagini .nfi è pronta per l'uso. Scaricare "
+
+#~ msgid "Title:"
+#~ msgstr "Titolo:"
 
 #~ msgid ""
 #~ "To make sure you intend to do this, please remove the target USB stick "
@@ -4724,8 +4768,29 @@ msgstr "Zapped"
 #~ msgid "by Exif"
 #~ msgstr "by Exif"
 
+#~ msgid "color"
+#~ msgstr "colore"
+
+#~ msgid "font face"
+#~ msgstr "Carattere"
+
+#~ msgid "headline"
+#~ msgstr "Intest."
+
+#~ msgid "highlighted button"
+#~ msgstr "Puls. evidenziato"
+
 #~ msgid "no Picture found"
 #~ msgstr "Nessuna immagine trovata!"
 
 #~ msgid "rebooting..."
 #~ msgstr "Riavvio in corso..."
+
+#~ msgid "spaces (top, between rows, left)"
+#~ msgstr "Margini (alto, tra le righe, sinistro)"
+
+#~ msgid "text"
+#~ msgstr "Testo"
+
+#~ msgid "year"
+#~ msgstr "Anno"
