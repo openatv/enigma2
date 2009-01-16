@@ -608,6 +608,30 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	}
 }
 
+static ePyObject lookupColor(ePyObject color, ePyObject data)
+{
+	if (color == Py_None)
+		return ePyObject();
+
+	if ((!color) && (!data))
+		return color;
+
+	unsigned int icolor = PyInt_AsLong(color);
+
+		/* check if we have the "magic" template color */
+	if ((icolor & 0xFF000000) == 0xFF000000)
+	{
+		int index = icolor & 0xFFFFFF;
+		eDebug("[eListboxPythonMultiContent] template color index: %d", index);
+		return PyTuple_GetItem(data, index);
+	}
+
+	if (color == Py_None)
+		return ePyObject();
+
+	return color;
+}
+
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
 	gRegion itemregion(eRect(offset, m_itemsize));
@@ -732,29 +756,17 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				if (size > 8)
-				{
-					pforeColor = PyTuple_GET_ITEM(item, 8);
-					if (pforeColor == Py_None)
-						pforeColor=ePyObject();
-				}
+					pforeColor = lookupColor(PyTuple_GET_ITEM(item, 8), data);
+
 				if (size > 9)
-				{
-					pforeColorSelected = PyTuple_GET_ITEM(item, 9);
-					if (pforeColorSelected == Py_None)
-						pforeColorSelected=ePyObject();
-				}
+					pforeColorSelected = lookupColor(PyTuple_GET_ITEM(item, 9), data);
+
 				if (size > 10)
-				{
-					pbackColor = PyTuple_GET_ITEM(item, 10);
-					if (pbackColor == Py_None)
-						pbackColor=ePyObject();
-				}
+					pbackColor = lookupColor(PyTuple_GET_ITEM(item, 10), data);
+
 				if (size > 11)
-				{
-					pbackColorSelected = PyTuple_GET_ITEM(item, 11);
-					if (pbackColorSelected == Py_None)
-						pbackColorSelected=ePyObject();
-				}
+					pbackColorSelected = lookupColor(PyTuple_GET_ITEM(item, 11), data);
+
 				if (size > 12)
 				{
 					pborderWidth = PyTuple_GET_ITEM(item, 12);
@@ -762,11 +774,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						pborderWidth=ePyObject();
 				}
 				if (size > 13)
-				{
-					pborderColor = PyTuple_GET_ITEM(item, 13);
-					if (pborderColor == Py_None)
-						pborderColor=ePyObject();
-				}
+					pborderColor = lookupColor(PyTuple_GET_ITEM(item, 13), data);
 
 				if (PyInt_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
 					pstring = PyTuple_GetItem(data, PyInt_AsLong(pstring));
@@ -949,17 +957,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				if (size > 6)
-				{
-					pbackColor = PyTuple_GET_ITEM(item, 6);
-					if (pbackColor == Py_None)
-						pbackColor=ePyObject();
-				}
+					pbackColor = lookupColor(PyTuple_GET_ITEM(item, 6), data);
+
 				if (size > 7)
-				{
-					pbackColorSelected = PyTuple_GET_ITEM(item, 7);
-					if (pbackColorSelected == Py_None)
-						pbackColorSelected=ePyObject();
-				}
+					pbackColorSelected = lookupColor(PyTuple_GET_ITEM(item, 7), data);
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
