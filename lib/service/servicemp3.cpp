@@ -284,9 +284,14 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		int ret = read(fd, tmp, 128*1024);
 		close(fd);
 		if ( ret == -1 ) // this is a "REAL" VCD
+		{
 			source = gst_element_factory_make ("vcdsrc", "vcd-source");
 			if (source)
+			{
 				g_object_set (G_OBJECT (source), "device", "/dev/cdroms/cdrom0", NULL);
+				eDebug("servicemp3: this is a 'REAL' video cd... we use vcdsrc !");
+			}
+		}
 	}
 	if ( !source && !sourceinfo.is_streaming )
 	{
@@ -491,7 +496,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 
 			if ( sourceinfo.containertype == ctVCD && gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"file-source") )
 			{
-				eDebug("this is a fake video cd... we use filesrc ! cdxaparse !");
+				eDebug("servicemp3: this is a fake video cd... we use filesrc ! cdxaparse !");
 				GstElement *cdxaparse = gst_element_factory_make("cdxaparse", "cdxaparse");
 				gst_bin_add(GST_BIN(m_gst_pipeline), cdxaparse);
 				gst_element_link(source, cdxaparse);
