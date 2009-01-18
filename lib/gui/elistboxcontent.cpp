@@ -523,7 +523,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
 			if (pbackColor)
 			{
-				int color = PyInt_AsLong(pbackColor);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColor);
 				painter.setBackgroundColor(gRGB(color));
 			} // transparent background?
 			// if we have a local background color set, use that. 
@@ -543,7 +543,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxSelected);
 			if (pbackColorSelected)
 			{
-				int color = PyInt_AsLong(pbackColorSelected);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColorSelected);
 				painter.setBackgroundColor(gRGB(color));
 			}
 			else if (local_style && local_style->m_background_color_selected_set)
@@ -560,7 +560,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxSelected);
 			if (pbackColorSelected)
 			{
-				int color = PyInt_AsLong(pbackColorSelected);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColorSelected);
 				painter.setBackgroundColor(gRGB(color));
 			}
 			else if (local_style && local_style->m_background_color_selected_set)
@@ -572,7 +572,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
 			if (pbackColor)
 			{
-				int color = PyInt_AsLong(pbackColor);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColor);
 				painter.setBackgroundColor(gRGB(color));
 			}/* if we have a local background color set, use that. */
 			else if (local_style && local_style->m_background_color_set)
@@ -588,7 +588,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColorSelected)
 		{
-			int color = PyInt_AsLong(pforeColorSelected);
+			unsigned int color = PyInt_AsUnsignedLongMask(pforeColorSelected);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -599,7 +599,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColor)
 		{
-			int color = PyInt_AsLong(pforeColor);
+			unsigned int color = PyInt_AsUnsignedLongMask(pforeColor);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -616,7 +616,7 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 	if ((!color) && (!data))
 		return color;
 
-	unsigned int icolor = PyInt_AsLong(color);
+	unsigned int icolor = PyInt_AsUnsignedLongMask(color);
 
 		/* check if we have the "magic" template color */
 	if ((icolor & 0xFF000000) == 0xFF000000)
@@ -813,7 +813,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					painter.clip(rect);
 					if (pborderColor)
 					{
-						int color = PyInt_AsLong(pborderColor);
+						unsigned int color = PyInt_AsUnsignedLongMask(pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
 
