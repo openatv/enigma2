@@ -258,20 +258,25 @@ class TimerEditList(Screen):
 			print "Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
+			success = False
 			if not timersanitycheck.check():
 				simulTimerList = timersanitycheck.getSimulTimerList()
-				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
-					simulTimerList[1].end = entry.begin - 30
-					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
-					self.session.nav.RecordTimer.timeChanged(entry)
-				else:
-					print "Sanity check failed"
-					self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+				if simulTimerList is not None:
+					for x in simulTimerList:
+						if x.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(x)
+					if not timersanitycheck.check():
+						simulTimerList = timersanitycheck.getSimulTimerList()
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+					else:
+						success = True
 			else:
+				succsess = True
+			if success:
 				print "Sanity check passed"
-#				if not timersanitycheck.doubleCheck():
 				self.session.nav.RecordTimer.timeChanged(entry)
-					
+			
 			self.fillTimerList()
 			self.updateState()
 		else:
@@ -283,11 +288,11 @@ class TimerEditList(Screen):
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
 			if simulTimerList is not None:
-				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
-					simulTimerList[1].end = entry.begin - 30
-					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
-					self.session.nav.RecordTimer.record(entry)
-				else:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.fillTimerList()
 			self.updateState()

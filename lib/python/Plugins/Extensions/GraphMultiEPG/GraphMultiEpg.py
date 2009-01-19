@@ -86,10 +86,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		return (event_list and len(event_list) and True) or False
 
 	def setEpoch(self, epoch):
-		if self.cur_event is not None and self.cur_service is not None:
-			self.offs = 0
-			self.time_epoch = epoch
-			self.fillMultiEPG(None) # refill
+#		if self.cur_event is not None and self.cur_service is not None:
+		self.offs = 0
+		self.time_epoch = epoch
+		self.fillMultiEPG(None) # refill
 
 	def getEventFromId(self, service, eventid):
 		event = None
@@ -98,16 +98,17 @@ class EPGList(HTMLComponent, GUIComponent):
 		return event
 
 	def moveToService(self,serviceref):
-		for x in range(len(self.list)):
-			if self.list[x][0] == serviceref.toString():
-				self.instance.moveSelectionTo(x)
-				break
+		if serviceref is not None:
+			for x in range(len(self.list)):
+				if self.list[x][0] == serviceref.toString():
+					self.instance.moveSelectionTo(x)
+					break
 	
 	def getIndexFromService(self, serviceref):
-		for x in range(len(self.list)):
-			if self.list[x][0] == serviceref.toString():
-				return x
-		return 0
+		if serviceref is not None:
+			for x in range(len(self.list)):
+				if self.list[x][0] == serviceref.toString():
+					return x
 		
 	def setCurrentIndex(self, index):
 		if self.instance is not None:
@@ -598,11 +599,11 @@ class GraphMultiEPG(Screen):
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
 			if simulTimerList is not None:
-				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
-					simulTimerList[1].end = entry.begin - 30
-					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
-					self.session.nav.RecordTimer.record(entry)
-				else:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
@@ -662,6 +663,7 @@ class GraphMultiEPG(Screen):
 			self.key_green_choice = self.ADD_TIMER
 	
 	def moveTimeLines(self, force=False):
+		self.updateTimelineTimer.start((60-(int(time())%60))*1000)	#keep syncronised
 		l = self["list"]
 		event_rect = l.getEventRect()
 		time_epoch = l.getTimeEpoch()
@@ -669,6 +671,7 @@ class GraphMultiEPG(Screen):
 		if event_rect is None or time_epoch is None or time_base is None:
 			return
 		time_steps = time_epoch > 180 and 60 or 30
+		
 		num_lines = time_epoch/time_steps
 		incWidth=event_rect.width()/num_lines
 		pos=event_rect.left()
@@ -696,8 +699,7 @@ class GraphMultiEPG(Screen):
 		now=time()
 		timeline_now = self["timeline_now"]
 		if now >= time_base and now < (time_base + time_epoch * 60):
-			bla = (event_rect.width() * 1000) / time_epoch
-			xpos = ((now/60) - (time_base/60)) * bla / 1000
+			xpos = int((((now - time_base) * event_rect.width()) / (time_epoch * 60))-(timeline_now.instance.size().width()/2))
 			old_pos = timeline_now.position
 			new_pos = (xpos+event_rect.left(), old_pos[1])
 			if old_pos != new_pos:
@@ -705,3 +707,6 @@ class GraphMultiEPG(Screen):
 			timeline_now.visible = True
 		else:
 			timeline_now.visible = False
+		# here no l.l.invalidate() is needed when the zPosition in the skin is correct!
+
+

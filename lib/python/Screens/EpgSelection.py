@@ -219,11 +219,11 @@ class EPGSelection(Screen):
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
 			if simulTimerList is not None:
-				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
-					simulTimerList[1].end = entry.begin - 30
-					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
-					self.session.nav.RecordTimer.record(entry)
-				else:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
