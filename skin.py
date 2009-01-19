@@ -151,7 +151,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 						"orBottomToTop": (guiObject.orVertical, True),
 						"orHorizontal": (guiObject.orHorizontal, False),
 						"orLeftToRight": (guiObject.orHorizontal, False),
-						"orRightToRight": (guiObject.orHorizontal, True),
+						"orRightToLeft": (guiObject.orHorizontal, True),
 					}[value])
 			except KeyError:
 				print "oprientation must be either orVertical or orHorizontal!"
