@@ -79,25 +79,16 @@ class PositionerSetup(Screen):
 
 		tp = ( cur.get("frequency", 0) / 1000,
 			cur.get("symbol_rate", 0) / 1000,
-			{ "HORIZONTAL" : 0, "VERTICAL" : 1,
-				"CIRCULAR_LEFT" : 2, "CIRCULAR_RIGHT" : 3 }[cur.get("polarization", "HORIZONTAL")],
-			{ "FEC_AUTO" : 0, "FEC_1_2" : 1, "FEC_2_3" : 2, "FEC_3_4" : 3,
-				"FEC_5_6" : 4, "FEC_7_8" : 5, "FEC_8_9" : 6, "FEC_3_5" : 7,
-				"FEC_4_5" : 8, "FEC_9_10" : 9, "FEC_NONE" : 15 }[cur.get("fec_inner", "FEC_AUTO")],
-			{ "INVERSION_OFF" : 0,
-				"INVERSION_ON" : 1,
-				"INVERSION_AUTO" : 2 }[cur.get("inversion", "INVERSION_AUTO")],
-			cur.get("orbital_position", 0),
-			{ "DVB-S" : 0, "DVB-S2" : 1 }[cur.get("system", "DVB-S")],
-			{ "QPSK" : 1, "8PSK" : 2 }[cur.get("modulation", "QPSK")],
-			{ "ROLLOFF_0_35" : 0, "ROLLOFF_0_25" : 1,
-				"ROLLOFF_0_20" : 2 }[cur.get("rolloff", "ROLLOFF_0_35")],
-			{ "PILOT_OFF" : 0, "PILOT_ON" : 1,
-				"PILOT_AUTO" : 2 }[cur.get("pilot", "PILOT_AUTO")]
-		)
+			cur.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal),
+			cur.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto),
+			cur.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown)
+			cur.get("orbital_position", 0)
+			cur.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
+			cur.get("modulation", eDVBFrontendParametersSatellite.Modulation_QPSK)
+			cur.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35)
+			cur.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown))
 
 		self.tuner.tune(tp)
-		
 		self.createConfig()
 		
 		self.isMoving = False
