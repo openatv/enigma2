@@ -87,6 +87,10 @@ class NimSetup(Screen, ConfigListScreen):
 		self.uncommittedDiseqcCommand = None
 		self.cableScanType = None
 		self.have_advanced = False
+		self.advancedUnicable = None
+		self.advancedType = None
+		self.advancedManufacturer = None
+		self.advancedSCR = None
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
@@ -190,6 +194,7 @@ class NimSetup(Screen, ConfigListScreen):
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, \
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
+			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, \
 			self.uncommittedDiseqcCommand, self.cableScanType)
 		for x in checkList:
 			if self["config"].getCurrent() == x:
@@ -216,19 +221,57 @@ class NimSetup(Screen, ConfigListScreen):
 		if isinstance(currLnb, ConfigNothing):
 			currLnb = None
 
-		self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
-		self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
-		if currLnb and currLnb.diseqcMode.value == "1_2":
-			if lnbnum < 33:
-				self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
-				self.list.append(self.advancedUsalsEntry)
-				if not Sat.usals.value:
-					self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
-
 		# LNBs
 		self.advancedLnbsEntry = getConfigListEntry(_("LNB"), Sat.lnb)
 		self.list.append(self.advancedLnbsEntry)
+
 		if currLnb:
+			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
+			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
+			self.list.append(self.advancedLof)
+			if currLnb.lof.value == "user_defined":
+				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
+				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
+#			self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
+			
+			if currLnb.lof.value == "unicable":
+				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration Mode"), currLnb.unicable)
+				self.list.append(self.advancedUnicable)
+				if currLnb.unicable.value == "unicable_user":
+					self.advancedSCR = getConfigListEntry(_("Channel"), currLnb.satcruser)
+					self.list.append(self.advancedSCR)
+					self.list.append(getConfigListEntry(_("Frequency"), currLnb.satcrvcouser[currLnb.satcruser.index]))
+					self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+					self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
+					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
+				elif currLnb.unicable.value == "unicable_matrix":
+					manufacturer_name = currLnb.unicableMatrixManufacturer.value
+					manufacturer = currLnb.unicableMatrix[manufacturer_name]
+					product_name = manufacturer.product.value
+					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableMatrixManufacturer)
+					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+					self.list.append(self.advancedManufacturer)
+					self.list.append(self.advancedType)
+					self.list.append(self.advancedSCR)
+					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index])) 
+				elif currLnb.unicable.value == "unicable_lnb":
+					manufacturer_name = currLnb.unicableLnbManufacturer.value
+					manufacturer = currLnb.unicableLnb[manufacturer_name]
+					product_name = manufacturer.product.value
+					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableLnbManufacturer)
+					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+					self.list.append(self.advancedManufacturer)
+					self.list.append(self.advancedType)
+					self.list.append(self.advancedSCR)
+					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index])) 
+			else:	#kein Unicable
+				self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
+				self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
+				self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
+
 			if lnbnum < 33:
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
@@ -275,15 +318,12 @@ class NimSetup(Screen, ConfigListScreen):
 						if currLnb.powerMeasurement.value:
 							currLnb.powerMeasurement.value = False
 							currLnb.powerMeasurement.save()
-			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
-			self.list.append(self.advancedLof)
-			if currLnb.lof.value == "user_defined":
-				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
-				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
-				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
-#			self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
-			self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
-			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
+					self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
+					self.list.append(self.advancedUsalsEntry)
+					if not Sat.usals.value:
+						self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
+
+	
 
 	def fillAdvancedList(self):
 		self.list = [ ]

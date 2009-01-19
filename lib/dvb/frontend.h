@@ -63,6 +63,7 @@ public:
 		FREQ_OFFSET,          // current frequency offset
 		CUR_VOLTAGE,          // current voltage
 		CUR_TONE,             // current continuous tone
+		SATCR,                // current SatCR
 		NUM_DATA_ENTRIES
 	};
 	Signal1<void,iDVBFrontend*> m_stateChanged;
@@ -142,6 +143,9 @@ public:
 	int closeFrontend(bool force=false);
 	const char *getDescription() const { return m_description; }
 	bool is_simulate() const { return m_simulate; }
+
+	RESULT turnOffSatCR(int satcr);
+	RESULT ScanSatCR();
 };
 
 #endif // SWIG
