@@ -1428,7 +1428,7 @@ class InfoBarInstantRecord:
 			pass
 
 		begin = int(time())
-		end = begin + 3600 * 24 * 365 * 1 # 1 year
+		end = begin + 3600	# dummy
 		name = "instant record"
 		description = ""
 		eventid = None
@@ -1450,18 +1450,9 @@ class InfoBarInstantRecord:
 		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = config.movielist.last_videodir.value)
 		recording.dontSave = True
 		recording.autoincrease = True
-
-		simulTimerList = self.session.nav.RecordTimer.record(recording)
-		if simulTimerList is not None:
-			print "timer conflict detected!"
-			if (len(simulTimerList) > 1):
-				print "tsc_list > 1"
-				recording.end = simulTimerList[1].begin - 30
-				self.session.nav.RecordTimer.record(recording)
-				print "new endtime applied"
-			else:
-				print "conflict with only one timer? ! ?"
-		self.recording.append(recording)
+		if recording.setAutoincreaseEnd():
+			self.session.nav.RecordTimer.record(recording)
+			self.recording.append(recording)
 
 	def isInstantRecordRunning(self):
 		print "self.recording:", self.recording

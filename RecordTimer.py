@@ -118,6 +118,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
 		self.autoincrease = False
+		self.autoincreasetime = 3600 * 24 # 1 day
 		self.tags = tags or []
 
 		self.log_entries = []
@@ -268,6 +269,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 				return True
 		elif next_state == self.StateEnded:
+			old_end = self.end
+			if self.setAutoincreaseEnd():
+				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
+				self.state -= 1
+				return True
 			self.log(12, "stop recording")
 			if not self.justplay:
 				NavigationInstance.instance.stopRecordService(self.record_service)
@@ -283,6 +289,29 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
 			return True
 
+	def setAutoincreaseEnd(self, entry = None):
+		if not self.autoincrease:
+			return False
+		if entry is None:
+			new_end =  int(time.time()) + self.autoincreasetime
+		else:
+			new_end = entry.begin -30
+
+		dummyentry = RecordTimerEntry(self.service_ref, self.begin, new_end, self.name, self.description, self.eit, disabled=True, justplay = self.justplay, afterEvent = self.afterEvent, dirname = self.dirname, tags = self.tags)
+		dummyentry.disabled = self.disabled
+		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.RecordTimer.timer_list, dummyentry)
+		if not timersanitycheck.check():
+			simulTimerList = timersanitycheck.getSimulTimerList()
+			new_end = simulTimerList[1].begin
+			del simulTimerList
+			new_end -= 30				# 30 Sekunden Prepare-Zeit lassen
+		del dummyentry
+		if new_end <= time.time():
+			return False
+		self.end = new_end
+		return True
+	
+	
 	def sendStandbyNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.Standby)
@@ -656,6 +685,7 @@ class RecordTimer(timer.Timer):
 
 		# abort timer.
 		# this sets the end time to current time, so timer will be stopped.
+		entry.autoincrease = False
 		entry.abort()
 		
 		if entry.state != entry.StateEnded:
@@ -667,15 +697,8 @@ class RecordTimer(timer.Timer):
 		# autoincrease instanttimer if possible
 		if not entry.dontSave:
 			for x in self.timer_list:
-				if x.dontSave and x.autoincrease:
-					x.end = x.begin + (3600 * 24 * 356 * 1)
+				if x.setAutoincreaseEnd():
 					self.timeChanged(x)
-					timersanitycheck = TimerSanityCheck(self.timer_list,x)
-					if not timersanitycheck.check():
-						tsc_list = timersanitycheck.getSimulTimerList()
-						if len(tsc_list) > 1:
-							x.end = tsc_list[1].begin - 30
-							self.timeChanged(x)
 		# now the timer should be in the processed_timers list. remove it from there.
 		self.processed_timers.remove(entry)
 		self.saveTimer()
