@@ -351,12 +351,15 @@ class HarddiskManager:
 	def addHotplugPartition(self, device, physdev = None):
 		if not physdev:
 			dev, part = self.splitDeviceName(device)
-			physdev = dev
 			try:
-				import os
-				physdev = os.readlink("/sys/block/" + dev + "/device")[6:]
-			except IOError:
-				print "couldn't determine blockdev physdev for device", dev
+				physdev = readlink("/sys/block/" + dev + "/device")[6:]
+			except OSError:
+				print "couldn't determine blockdev physdev for device", dev, "try", device, "now"
+				try:
+					physdev = readlink("/sys/block/" + device + "/device")[6:]
+				except OSError:
+					physdev = dev
+					print "couldn't determine blockdev physdev for device", device
 
 		# device is the device name, without /dev 
 		# physdev is the physical device path, which we (might) use to determine the userfriendly name
