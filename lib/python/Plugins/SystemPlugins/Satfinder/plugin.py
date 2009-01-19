@@ -14,7 +14,6 @@ from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 
-
 class Satfinder(ScanSetup):
 	def openFrontend(self):
 		res_mgr = eDVBResourceManager.getInstance()
