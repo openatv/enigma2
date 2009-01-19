@@ -99,7 +99,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				if ( sat.frequency > lnb_param.m_lof_threshold )
 					band |= 1;
-				if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical))
+				if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
 					band |= 2;
 
 				if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
@@ -373,7 +373,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			if ( sat.frequency > lnb_param.m_lof_threshold )
 				band |= 1;
-			if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical))
+			if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
 				band |= 2;
 
 			int lof = (band&1)?lnb_param.m_lof_hi:lnb_param.m_lof_lo;
@@ -390,11 +390,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				frontend.setData(eDVBFrontend::FREQ_OFFSET, sat.frequency - parm.FREQUENCY);
 
 				if ( voltage_mode == eDVBSatelliteSwitchParameters::_14V
-					|| ( sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical
+					|| ( sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical
 						&& voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
 					voltage = VOLTAGE(13);
 				else if ( voltage_mode == eDVBSatelliteSwitchParameters::_18V
-					|| ( !(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation::Vertical)
+					|| ( !(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical)
 						&& voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
 					voltage = VOLTAGE(18);
 				if ( (sw_param.m_22khz_signal == eDVBSatelliteSwitchParameters::ON)
@@ -936,12 +936,12 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 	eDebugNoSimulate("found no useable satellite configuration for %s freq %d%s %s on orbital position (%d)",
 		sat.system ? "DVB-S2" : "DVB-S",
 		sat.frequency,
-		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation::Horizontal ? "H" :
-			eDVBFrontendParametersSatellite::Polarisation::Vertical ? "V" :
-			eDVBFrontendParametersSatellite::Polarisation::CircularLeft ? "CL" : "CR",
-		sat.modulation == eDVBFrontendParametersSatellite::Modulation::Auto ? "AUTO" :
-			eDVBFrontendParametersSatellite::Modulation::QPSK ? "QPSK" :
-			eDVBFrontendParametersSatellite::Modulation::M8PSK ? "8PSK" : "QAM16",
+		sat.polarisation == eDVBFrontendParametersSatellite::Polarisation_Horizontal ? "H" :
+			eDVBFrontendParametersSatellite::Polarisation_Vertical ? "V" :
+			eDVBFrontendParametersSatellite::Polarisation_CircularLeft ? "CL" : "CR",
+		sat.modulation == eDVBFrontendParametersSatellite::Modulation_Auto ? "AUTO" :
+			eDVBFrontendParametersSatellite::Modulation_QPSK ? "QPSK" :
+			eDVBFrontendParametersSatellite::Modulation_8PSK ? "8PSK" : "QAM16",
 		sat.orbital_position );
 	return -1;
 }

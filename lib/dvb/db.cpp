@@ -327,10 +327,10 @@ void eDVBDB::loadServicelist(const char *file)
 				eDVBFrontendParametersSatellite sat;
 				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
 					flags=0,
-					system=eDVBFrontendParametersSatellite::System::DVB_S,
-					modulation=eDVBFrontendParametersSatellite::Modulation::QPSK,
-					rolloff=eDVBFrontendParametersSatellite::RollOff::alpha_0_35,
-					pilot=eDVBFrontendParametersSatellite::Pilot::Unknown;
+					system=eDVBFrontendParametersSatellite::System_DVB_S,
+					modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
+					rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
+					pilot=eDVBFrontendParametersSatellite::Pilot_Unknown;
 				if (version == 3)
 					sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff, &pilot);
 				else
@@ -368,9 +368,9 @@ void eDVBDB::loadServicelist(const char *file)
 			{
 				eDVBFrontendParametersCable cab;
 				int frequency, symbol_rate,
-					inversion=eDVBFrontendParametersCable::Inversion::Unknown,
-					modulation=eDVBFrontendParametersCable::Modulation::Auto,
-					fec_inner=eDVBFrontendParametersCable::FEC::fAuto,
+					inversion=eDVBFrontendParametersCable::Inversion_Unknown,
+					modulation=eDVBFrontendParametersCable::Modulation_Auto,
+					fec_inner=eDVBFrontendParametersCable::FEC_Auto,
 					flags=0;
 				sscanf(line+3, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags);
 				cab.frequency = frequency;
@@ -495,7 +495,7 @@ void eDVBDB::saveServicelist(const char *file)
 		ch.m_frontendParameters->getFlags(flags);
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
-			if (sat.system == eDVBFrontendParametersSatellite::System::DVB_S2)
+			if (sat.system == eDVBFrontendParametersSatellite::System_DVB_S2)
 			{
 				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
 					sat.frequency, sat.symbol_rate,
