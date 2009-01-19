@@ -252,9 +252,10 @@ class Partition:
 DEVICEDB =  \
 	{
 		# dm8000:
-		"devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": "Front USB Slot",
-		"devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": "Back, upper USB Slot",
-		"devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": "Back, lower USB Slot",
+		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": "Front USB Slot",
+		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": "Back, upper USB Slot",
+		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": "Back, lower USB Slot",
+		"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/host1/target1:0:0/1:0:0:0": "DVD Drive",
 	}
 
 class HarddiskManager:
@@ -352,14 +353,10 @@ class HarddiskManager:
 		if not physdev:
 			dev, part = self.splitDeviceName(device)
 			try:
-				physdev = readlink("/sys/block/" + dev + "/device")[6:]
+				physdev = readlink("/sys/block/" + dev + "/device")[5:]
 			except OSError:
-				print "couldn't determine blockdev physdev for device", dev, "try", device, "now"
-				try:
-					physdev = readlink("/sys/block/" + device + "/device")[6:]
-				except OSError:
-					physdev = dev
-					print "couldn't determine blockdev physdev for device", device
+				physdev = dev
+				print "couldn't determine blockdev physdev for device", device
 
 		# device is the device name, without /dev 
 		# physdev is the physical device path, which we (might) use to determine the userfriendly name
@@ -423,22 +420,21 @@ class HarddiskManager:
 		return [x for x in parts if not x.device or x.device in devs]
 
 	def splitDeviceName(self, devname):
-		dev = ""
-		part = ""
-		for i in devname:
-			if i in string.digits:
-				part += i
-			else:
-				dev += i
+		# this works for: sdaX, hdaX, sr0 (which is in fact dev="sr0", part=""). It doesn't work for other names like mtdblock3, but they are blacklisted anyway.
+		dev = devname[:3]
+		part = devname[3:]
+		for p in part:
+			if p not in string.digits:
+				return devname, 0
 		return dev, part and int(part) or 0
 
 	def getUserfriendlyDeviceName(self, dev, phys):
 		dev, part = self.splitDeviceName(dev)
 		description = "External Storage %s" % dev
 		try:
-			description = open("/sys/" + phys + "/model").read().strip()
+			description = open("/sys" + phys + "/model").read().strip()
 		except IOError, s:
-			print "couldn't read model (from /sys/" + phys + "/model): ", s
+			print "couldn't read model: ", s
 		for physdevprefix, pdescription in DEVICEDB.items():
 			if phys.startswith(physdevprefix):
 				description = pdescription

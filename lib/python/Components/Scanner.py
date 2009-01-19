@@ -135,7 +135,7 @@ def scanDevice(mountpoint):
 
 	from Components.Harddisk import harddiskmanager	
 	blockdev = mountpoint.rstrip("/").rsplit('/',1)[-1]
-	error, blacklisted, removable, is_cdrom, partitions = harddiskmanager.getBlockDevInfo(blockdev)
+	error, blacklisted, removable, is_cdrom, partitions, medium_found = harddiskmanager.getBlockDevInfo(blockdev)
 
 	# now scan the paths
 	for p in paths_to_scan:
