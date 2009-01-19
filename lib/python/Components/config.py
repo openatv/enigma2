@@ -183,9 +183,8 @@ class ConfigSelection(ConfigElement):
 			default = self.choices[0]
 
 		assert default in self.choices, "default must be in choice list, but " + repr(default) + " is not!"
-		for x in self.choices:
-			assert isinstance(x, str), "ConfigSelection choices must be strings"
-		
+#		for x in self.choices:
+#			assert isinstance(x, str), "ConfigSelection choices must be strings"
 		self.default = default
 
 		if self.value == None or not self.value in self.choices:
