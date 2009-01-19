@@ -1,7 +1,8 @@
 #include <lib/gui/eslider.h>
 
 eSlider::eSlider(eWidget *parent)
-	:eWidget(parent), m_have_border_color(false), m_start(0), m_orientation(orHorizontal), m_border_width(0)
+	:eWidget(parent), m_have_border_color(false), m_start(0)
+	,m_orientation(orHorizontal), m_direction(dirNormal), m_border_width(0)
 {
 }
 
@@ -70,8 +71,16 @@ int eSlider::event(int event, void *data, void *data2)
 
 		if (m_min < m_max)
 		{
-			num_pix = pixsize * (m_value - m_start) / (m_max - m_min);
-			start_pix = pixsize * m_start / (m_max - m_min);
+			if (m_direction == dirSwapped)
+			{
+				start_pix = pixsize * (m_start + (m_max - m_min) - m_value) / (m_max - m_min);
+				num_pix = pixsize * (m_start + (m_max - m_min)) / (m_max - m_min);
+			}
+			else // dirNormal
+			{
+				num_pix = pixsize * (m_value - m_start) / (m_max - m_min);
+				start_pix = pixsize * m_start / (m_max - m_min);
+			}
 		}
 		
 		if  (start_pix < 0)
@@ -116,6 +125,12 @@ void eSlider::setStartEnd(int start, int end)
 void eSlider::setOrientation(int orientation)
 {
 	m_orientation = orientation;
+	event(evtChangedSlider);
+}
+
+void eSlider::setDirection(int direction)
+{
+	m_direction = direction;
 	event(evtChangedSlider);
 }
 
