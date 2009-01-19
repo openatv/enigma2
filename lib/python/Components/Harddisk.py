@@ -2,6 +2,7 @@ from os import system, listdir, statvfs, popen, makedirs, readlink, stat, major,
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.CList import CList
 from SystemInfo import SystemInfo
+import string
 
 def tryOpen(filename):
 	try:
@@ -213,11 +214,12 @@ class Harddisk:
 		return self.getDeviceDir() + "disc"
 
 class Partition:
-	def __init__(self, mountpoint, description = "", force_mounted = False):
+	def __init__(self, mountpoint, device = None, description = "", force_mounted = False):
 		self.mountpoint = mountpoint
 		self.description = description
 		self.force_mounted = force_mounted
 		self.is_hotplug = force_mounted # so far; this might change.
+		self.device = device
 
 	def stat(self):
 		return statvfs(self.mountpoint)
@@ -246,6 +248,14 @@ class Partition:
 			if n.split(' ')[1] == self.mountpoint:
 				return True
 		return False
+
+DEVICEDB =  \
+	{
+		# dm8000:
+		"devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": "Front USB Slot",
+		"devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": "Back, upper USB Slot",
+		"devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": "Back, lower USB Slot",
+	}
 
 class HarddiskManager:
 	def __init__(self):
@@ -307,37 +317,63 @@ class HarddiskManager:
 				self.cd = blockdev
 		except IOError:
 			error = True
-		return error, blacklisted, removable, is_cdrom, partitions
+		# check for medium
+		medium_found = True
+		try:
+			open("/dev/" + blockdev).close()
+		except IOError, err:
+			if err.errno == 159: # no medium present
+				medium_found = False
+			
+		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def enumerateBlockDevices(self):
 		print "enumerating block devices..."
 		for blockdev in listdir("/sys/block"):
-			error, blacklisted, removable, is_cdrom, partitions = self.getBlockDevInfo(blockdev)
+			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(blockdev)
 			print "found block device '%s':" % blockdev, 
 			if error:
 				print "error querying properties"
 			elif blacklisted:
 				print "blacklisted"
+			elif not medium_found:
+				print "no medium"
 			else:
 				print "ok, removable=%s, cdrom=%s, partitions=%s, device=%s" % (removable, is_cdrom, partitions, blockdev)
-				self.addHotplugPartition(blockdev, blockdev)
+
+				self.addHotplugPartition(blockdev)
 				for part in partitions:
-					self.addHotplugPartition(part, part)
+					self.addHotplugPartition(part)
 
 	def getAutofsMountpoint(self, device):
 		return "/autofs/%s/" % (device)
 
-	def addHotplugPartition(self, device, description):
-		p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True)
+	def addHotplugPartition(self, device, physdev = None):
+		if not physdev:
+			dev, part = self.splitDeviceName(device)
+			physdev = dev
+			try:
+				import os
+				physdev = os.readlink("/sys/block/" + dev + "/device")[6:]
+			except IOError:
+				print "couldn't determine blockdev physdev for device", dev
+
+		# device is the device name, without /dev 
+		# physdev is the physical device path, which we (might) use to determine the userfriendly name
+		description = self.getUserfriendlyDeviceName(device, physdev)
+		
+		p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True, device = device)
 		self.partitions.append(p)
 		self.on_partition_list_change("add", p)
+
+		# see if this is a harddrive
 		l = len(device)
-		if l and device[l-1] not in ('0','1','2','3','4','5','6','7','8','9'):
-			error, blacklisted, removable, is_cdrom, partitions = self.getBlockDevInfo(device)
-			if not blacklisted and not removable and not is_cdrom:
+		if l and device[l-1] not in string.digits:
+			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
+			if not blacklisted and not removable and not is_cdrom and medium_found:
 				self.hdd.append(Harddisk(device))
 				self.hdd.sort()
-				SystemInfo["Harddisc"] = len(self.hdd) > 0
+				SystemInfo["Harddisk"] = len(self.hdd) > 0
 
 	def removeHotplugPartition(self, device):
 		mountpoint = self.getAutofsMountpoint(device)
@@ -346,13 +382,13 @@ class HarddiskManager:
 				self.partitions.remove(x)
 				self.on_partition_list_change("remove", x)
 		l = len(device)
-		if l and device[l-1] not in ('0','1','2','3','4','5','6','7','8','9'):
+		if l and device[l-1] not in string.digits:
 			idx = 0
 			for hdd in self.hdd:
 				if hdd.device == device:
 					del self.hdd[idx]
 					break
-			SystemInfo["Harddisc"] = len(self.hdd) > 0
+			SystemInfo["Harddisk"] = len(self.hdd) > 0
 
 	def HDDCount(self):
 		return len(self.hdd)
@@ -371,6 +407,42 @@ class HarddiskManager:
 		return self.cd
 
 	def getMountedPartitions(self, onlyhotplug = False):
-		return [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted()]
+		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted()]
+		devs = set([x.device for x in parts])
+		for devname in devs.copy():
+			if not devname:
+				continue
+			dev, part = self.splitDeviceName(devname)
+			if part and dev in devs: # if this is a partition and we still have the wholedisk, remove wholedisk
+				devs.remove(dev)
+
+		# return all devices which are not removed due to being a wholedisk when a partition exists
+		return [x for x in parts if not x.device or x.device in devs]
+
+	def splitDeviceName(self, devname):
+		dev = ""
+		part = ""
+		for i in devname:
+			if i in string.digits:
+				part += i
+			else:
+				dev += i
+		return dev, part and int(part) or 0
+
+	def getUserfriendlyDeviceName(self, dev, phys):
+		dev, part = self.splitDeviceName(dev)
+		description = "External Storage %s" % dev
+		try:
+			description = open("/sys/" + phys + "/model").read().strip()
+		except IOError, s:
+			print "couldn't read model (from /sys/" + phys + "/model): ", s
+		for physdevprefix, pdescription in DEVICEDB.items():
+			if phys.startswith(physdevprefix):
+				description = pdescription
+
+		# not wholedisk and not partition 1
+		if part and part != 1:
+			description += " (Partition %d)" % part
+		return description
 
 harddiskmanager = HarddiskManager()
