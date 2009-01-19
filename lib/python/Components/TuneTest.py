@@ -3,7 +3,7 @@ from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParameters, eDVB
 class Tuner:
 	def __init__(self, frontend):
 		self.frontend = frontend
-	
+
 	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, system, modulation)
 	#                    0         1             2         3       4         5       6        7
 	def tune(self, transponder):
@@ -16,16 +16,24 @@ class Tuner:
 			parm.fec = transponder[3]
 			parm.inversion = transponder[4]
 			parm.orbital_position = transponder[5]
-			parm.system = 0  # FIXMEE !! HARDCODED DVB-S (add support for DVB-S2)
-			parm.modulation = 1 # FIXMEE !! HARDCODED QPSK 
+			parm.system = transponder[6]
+			parm.modulation = transponder[7]
+			parm.rolloff = transponder[8]
+			parm.pilot = transponder[9]
 			feparm = eDVBFrontendParameters()
 			feparm.setDVBS(parm)
 			self.lastparm = feparm
 			self.frontend.tune(feparm)
-	
+
 	def retune(self):
 		if self.frontend:
 			self.frontend.tune(self.lastparm)
+
+	def getTransponderData(self):
+		ret = { }
+		if self.frontend:
+			self.frontend.getTransponderData(ret, True)
+		return ret
 
 # tunes a list of transponders and checks, if they lock and optionally checks the onid/tsid combination
 # 1) add transponders with addTransponder()

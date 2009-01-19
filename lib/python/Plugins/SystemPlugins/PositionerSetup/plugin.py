@@ -14,6 +14,7 @@ from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
 from Components.config import ConfigSatlist, ConfigNothing, ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, getConfigListEntry
+from Components.TuneTest import Tuner
 
 from time import sleep
 
@@ -81,11 +82,11 @@ class PositionerSetup(Screen):
 			cur.get("symbol_rate", 0) / 1000,
 			cur.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal),
 			cur.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto),
-			cur.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown)
-			cur.get("orbital_position", 0)
-			cur.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
-			cur.get("modulation", eDVBFrontendParametersSatellite.Modulation_QPSK)
-			cur.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35)
+			cur.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown),
+			cur.get("orbital_position", 0),
+			cur.get("system", eDVBFrontendParametersSatellite.System_DVB_S),
+			cur.get("modulation", eDVBFrontendParametersSatellite.Modulation_QPSK),
+			cur.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35),
 			cur.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown))
 
 		self.tuner.tune(tp)
@@ -403,39 +404,6 @@ class Diseqc:
 			if string == 'e03160': #positioner stop
 				sleep(0.05)
 				self.frontend.sendDiseqc(cmd) # send 2nd time
-
-class Tuner:
-	def __init__(self, frontend):
-		self.frontend = frontend
-
-	def tune(self, transponder):
-		print "tuning to transponder with data", transponder
-		parm = eDVBFrontendParametersSatellite()
-		parm.frequency = transponder[0] * 1000
-		parm.symbol_rate = transponder[1] * 1000
-		parm.polarisation = transponder[2]
-		parm.fec = transponder[3]
-		parm.inversion = transponder[4]
-		parm.orbital_position = transponder[5]
-		parm.system = transponder[6]
-		parm.modulation = transponder[7]
-		parm.rolloff = transponder[8]
-		parm.pilot = transponder[9]
-		feparm = eDVBFrontendParameters()
-		feparm.setDVBS(parm, True)
-		self.lastparm = feparm
-		if self.frontend:
-			self.frontend.tune(feparm)
-
-	def retune(self):
-		if self.frontend:
-			self.frontend.tune(self.lastparm)
-
-	def getTransponderData(self):
-		ret = { }
-		if self.frontend:
-			self.frontend.getTransponderData(ret, True)
-		return ret
 
 tuning = None
 
