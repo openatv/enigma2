@@ -245,6 +245,23 @@ public:
 
 	int m_prio; // to override automatic tuner management ... -1 is Auto
 #endif
+public:
+#define guard_offset_min -8000
+#define guard_offset_max 8000
+#define guard_offset_step 8000
+#define MAX_SATCR 8
+#define MAX_LNBNUM 32
+
+	int SatCR_idx;
+	unsigned int SatCRvco;
+	unsigned int UnicableTuningWord;
+	unsigned int UnicableConfigWord;
+	int old_frequency;
+	int old_polarisation;
+	int old_orbital_position;
+	int guard_offset_old;
+	int guard_offset;
+	int LNBNum;
 };
 
 class eDVBRegisteredFrontend;
@@ -307,6 +324,7 @@ public:
 	RESULT setLNBThreshold(int threshold);
 	RESULT setLNBIncreasedVoltage(bool onoff);
 	RESULT setLNBPrio(int prio);
+	RESULT setLNBNum(int LNBNum);
 /* DiSEqC Specific Parameters */
 	RESULT setDiSEqCMode(int diseqcmode);
 	RESULT setToneburst(int toneburst);
@@ -324,6 +342,12 @@ public:
 	RESULT setUseInputpower(bool onoff);
 	RESULT setInputpowerDelta(int delta);  // delta between running and stopped rotor
 	RESULT setRotorTurningSpeed(int speed);  // set turning speed..
+/* Unicable Specific Parameters */
+	RESULT setLNBSatCR(int SatCR_idx);
+	RESULT setLNBSatCRvco(int SatCRvco);
+//	RESULT checkGuardOffset(const eDVBFrontendParametersSatellite &sat);
+	RESULT getLNBSatCR();
+	RESULT getLNBSatCRvco();
 /* Satellite Specific Parameters */
 	RESULT addSatellite(int orbital_position);
 	RESULT setVoltageMode(int mode);

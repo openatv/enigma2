@@ -51,6 +51,8 @@ class SecConfigure:
 		elif self.linked.has_key(slotid):
 			for slot in self.linked[slotid]:
 				tunermask |= (1 << slot)
+		sec.setLNBSatCR(-1)
+		sec.setLNBNum(1)
 		sec.setLNBLOFL(9750000)
 		sec.setLNBLOFH(10600000)
 		sec.setLNBThreshold(11700000)
@@ -255,6 +257,9 @@ class SecConfigure:
 				currLnb = config.Nims[slotid].advanced.lnb[x]
 				sec.addLNB()
 
+				if x < 33:
+					sec.setLNBNum(x)
+
 				tunermask = 1 << slotid
 				if self.equal.has_key(slotid):
 					for slot in self.equal[slotid]:
@@ -263,10 +268,32 @@ class SecConfigure:
 					for slot in self.linked[slotid]:
 						tunermask |= (1 << slot)
 
+				if currLnb.lof.value != "unicable":
+					sec.setLNBSatCR(-1)
+
 				if currLnb.lof.value == "universal_lnb":
 					sec.setLNBLOFL(9750000)
 					sec.setLNBLOFH(10600000)
 					sec.setLNBThreshold(11700000)
+				elif currLnb.lof.value == "unicable":
+					sec.setLNBLOFL(9750000)
+					sec.setLNBLOFH(10600000)
+					sec.setLNBThreshold(11700000)
+					if currLnb.unicable.value == "unicable_user":
+						sec.setLNBSatCR(currLnb.satcruser.index)
+						sec.setLNBSatCRvco(currLnb.satcrvcouser[currLnb.satcruser.index].value*1000)
+					elif currLnb.unicable.value == "unicable_matrix":
+						manufacturer_name = currLnb.unicableMatrixManufacturer.value
+						manufacturer = currLnb.unicableMatrix[manufacturer_name]
+						product_name = manufacturer.product.value
+						sec.setLNBSatCR(manufacturer.scr[product_name].index)
+						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].value*1000)
+					elif currLnb.unicable.value == "unicable_lnb":
+						manufacturer_name = currLnb.unicableMatrixManufacturer.value
+						manufacturer = currLnb.unicableMatrix[manufacturer_name]
+						product_name = manufacturer.product.value
+						sec.setLNBSatCR(manufacturer.scr[product_name].index)
+						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].value*1000)
 				elif currLnb.lof.value == "c_band":
 					sec.setLNBLOFL(5150000)
 					sec.setLNBLOFH(5150000)
@@ -892,6 +919,129 @@ def InitNimManager(nimmgr):
 	for x in range(len(nimmgr.nim_slots)):
 		config.Nims.append(ConfigSubsection())
 
+	lnb_choices = {
+		"universal_lnb": _("Universal LNB"),
+		"unicable": _("Unicable"),
+		"c_band": _("C-Band"),
+		"user_defined": _("User defined")}
+	lnb_choices_default = "universal_lnb"
+
+	unicablelnbproducts = {
+		"Humax": {"150 SCR":["1210","1420","1680","2040"]},
+		"Inverto": {"IDLP-40UNIQD+S":["1680","1420","2040","1210"]},
+		"Kathrein": {"UAS481":["1400","1516","1632","1748"]},
+		"Kreiling": {"KR1440":["1680","1420","2040","1210"]},
+		"Radix": {"Unicable LNB":["1680","1420","2040","1210"]},
+		"Wisi": {"OC 05":["1210","1420","1680","2040"]}}
+	UnicableLnbManufacturers = unicablelnbproducts.keys()
+	UnicableLnbManufacturers.sort()
+
+	unicablematrixproducts = {
+		"Ankaro": {
+			"UCS 51440":["1400","1632","1284","1516"],
+			"UCS 51820":["1400","1632","1284","1516","1864","2096","1748","1980"],
+			"UCS 51840":["1400","1632","1284","1516","1864","2096","1748","1980"],
+			"UCS 52240":["1400","1632"],
+			"UCS 52420":["1400","1632","1284","1516"],
+			"UCS 52440":["1400","1632","1284","1516"],
+			"UCS 91440":["1400","1632","1284","1516"],
+			"UCS 91820":["1400","1632","1284","1516","1864","2096","1748","1980"],
+			"UCS 91840":["1400","1632","1284","1516","1864","2096","1748","1980"],
+			"UCS 92240":["1400","1632"],
+			"UCS 92420":["1400","1632","1284","1516"],
+			"UCS 92440":["1400","1632","1284","1516"]},
+		"DCT Delta": {
+			"SUM518":["1284","1400","1516","1632","1748","1864","1980","2096"],
+			"SUM918":["1284","1400","1516","1632","1748","1864","1980","2096"],
+			"SUM928":["1284","1400","1516","1632","1748","1864","1980","2096"]},
+		"Inverto": {
+			"IDLP-UST11O-CUO1O-8PP":["1076","1178","1280","1382","1484","1586","1688","1790"]},
+		"Kathrein": {
+			"EXR501":["1400","1516","1632","1748"],
+			"EXR551":["1400","1516","1632","1748"],
+			"EXR552":["1400","1516"]},
+		"ROTEK": {
+			"EKL2/1":["1400","1516"],
+			"EKL2/1E":["0","0","1632","1748"]},
+		"Smart": {
+			"DPA 51":["1284","1400","1516","1632","1748","1864","1980","2096"]},
+		"Technisat": {
+			"TechniRouter 5/1x8 G":["1284","1400","1516","1632","1748","1864","1980","2096"],
+			"TechniRouter 5/1x8 K":["1284","1400","1516","1632","1748","1864","1980","2096"],
+			"TechniRouter 5/2x4 G":["1284","1400","1516","1632"],
+			"TechniRouter 5/2x4 K":["1284","1400","1516","1632"]},
+		"Telstar": {
+			"SCR 5/1x8 G":["1284","1400","1516","1632","1748","1864","1980","2096"],
+			"SCR 5/1x8 K":["1284","1400","1516","1632","1748","1864","1980","2096"],
+			"SCR 5/2x4 G":["1284","1400","1516","1632"],
+			"SCR 5/2x4 K":["1284","1400","1516","1632"]}}
+	UnicableMatrixManufacturers = unicablematrixproducts.keys()
+	UnicableMatrixManufacturers.sort()
+
+	unicable_choices = {
+		"unicable_lnb": _("Unicable LNB"),
+		"unicable_matrix": _("Unicable Martix"),
+		"unicable_user": "Unicable "+_("User defined")}
+	unicable_choices_default = "unicable_lnb"
+
+	unicableLnb = ConfigSubDict()
+	for y in unicablelnbproducts:
+		products = unicablelnbproducts[y].keys()
+		products.sort()
+		unicableLnb[y] = ConfigSubsection()
+		unicableLnb[y].product = ConfigSelection(choices = products, default = products[0])
+		unicableLnb[y].scr = ConfigSubDict()
+		unicableLnb[y].vco = ConfigSubDict()
+		for z in products:
+			scrlist = []
+			vcolist = unicablelnbproducts[y][z]
+			unicableLnb[y].vco[z] = ConfigSubList()
+			for cnt in range(1,1+len(vcolist)):
+				scrlist.append(("%d" %cnt,"SCR %d" %cnt))
+				vcofreq = int(vcolist[cnt-1])
+				unicableLnb[y].vco[z].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
+			unicableLnb[y].scr[z] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
+	
+	unicableMatrix = ConfigSubDict()
+	
+	for y in unicablematrixproducts:
+		products = unicablematrixproducts[y].keys()
+		products.sort()
+		unicableMatrix[y] = ConfigSubsection()
+		unicableMatrix[y].product = ConfigSelection(choices = products, default = products[0])
+		unicableMatrix[y].scr = ConfigSubDict()
+		unicableMatrix[y].vco = ConfigSubDict()
+		for z in products:
+			scrlist = []
+			vcolist = unicablematrixproducts[y][z]
+			unicableMatrix[y].vco[z] = ConfigSubList()
+			for cnt in range(1,1+len(vcolist)):
+				vcofreq = int(vcolist[cnt-1])
+				if vcofreq == 0:
+					scrlist.append(("%d" %cnt,"SCR %d " %cnt +_("not used")))
+				else:
+					scrlist.append(("%d" %cnt,"SCR %d" %cnt))
+				unicableMatrix[y].vco[z].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
+			unicableMatrix[y].scr[z] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
+
+	satcrvcouser = ConfigSubList()
+	satcrvcouser.append(ConfigInteger(default=1284, limits = (0, 9999)))
+	satcrvcouser.append(ConfigInteger(default=1400, limits = (0, 9999)))
+	satcrvcouser.append(ConfigInteger(default=1516, limits = (0, 9999)))
+	satcrvcouser.append(ConfigInteger(default=1632, limits = (0, 9999)))
+	satcrvcouser.append(ConfigInteger(default=1748, limits = (0, 9999)))
+	satcrvcouser.append(ConfigInteger(default=1864, limits = (0, 9999)))
+	satcrvcouser.append(ConfigInteger(default=1980, limits = (0, 9999)))
+	satcrvcouser.append(ConfigInteger(default=2096, limits = (0, 9999)))
+	
+	prio_list = [ ("-1", _("Auto")) ]
+	for prio in range(65):
+		prio_list.append((str(prio), str(prio)))
+	for prio in range(14000,14065):
+		prio_list.append((str(prio), str(prio)))
+	for prio in range(19000,19065):
+		prio_list.append((str(prio), str(prio)))
+
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
@@ -990,12 +1140,36 @@ def InitNimManager(nimmgr):
 
 			nim.advanced.lnb = ConfigSubList()
 			nim.advanced.lnb.append(ConfigNothing())
+			
+
 			for x in range(1, 37):
 				nim.advanced.lnb.append(ConfigSubsection())
-				nim.advanced.lnb[x].lof = ConfigSelection(choices={"universal_lnb": _("Universal LNB"), "c_band": _("C-Band"), "user_defined": _("User defined")}, default="universal_lnb")
+				nim.advanced.lnb[x].lof = ConfigSelection(choices = lnb_choices, default = lnb_choices_default)
+
 				nim.advanced.lnb[x].lofl = ConfigInteger(default=9750, limits = (0, 99999))
 				nim.advanced.lnb[x].lofh = ConfigInteger(default=10600, limits = (0, 99999))
 				nim.advanced.lnb[x].threshold = ConfigInteger(default=11700, limits = (0, 99999))
+
+				nim.advanced.lnb[x].unicable = ConfigSelection(choices = unicable_choices, default = unicable_choices_default)
+
+				nim.advanced.lnb[x].unicableLnb = unicableLnb
+				nim.advanced.lnb[x].unicableLnbManufacturer = ConfigSelection(choices = UnicableLnbManufacturers, default = UnicableLnbManufacturers[0])
+				
+				nim.advanced.lnb[x].unicableMatrix = unicableMatrix
+				nim.advanced.lnb[x].unicableMatrixManufacturer = ConfigSelection(choices = UnicableMatrixManufacturers, default = UnicableMatrixManufacturers[0])
+				
+				nim.advanced.lnb[x].satcruser = ConfigSelection(choices=[
+					("1", "SatCR 1"),
+					("2", "SatCR 2"),
+					("3", "SatCR 3"),
+					("4", "SatCR 4"),
+					("5", "SatCR 5"),
+					("6", "SatCR 6"),
+					("7", "SatCR 7"),
+					("8", "SatCR 8")],
+					default="1")
+				nim.advanced.lnb[x].satcrvcouser = satcrvcouser
+
 #				nim.advanced.lnb[x].output_12v = ConfigSelection(choices = [("0V", _("0 V")), ("12V", _("12 V"))], default="0V")
 				nim.advanced.lnb[x].increased_voltage = ConfigYesNo(default=False)
 				nim.advanced.lnb[x].toneburst = ConfigSelection(choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))], default = "none")
@@ -1028,13 +1202,6 @@ def InitNimManager(nimmgr):
 				nim.advanced.lnb[x].fastTurningBegin = ConfigDateTime(default=mktime(btime.timetuple()), formatstring = _("%H:%M"), increment = 600)
 				etime = datetime(1970, 1, 1, 19, 0);
 				nim.advanced.lnb[x].fastTurningEnd = ConfigDateTime(default=mktime(etime.timetuple()), formatstring = _("%H:%M"), increment = 600)
-				prio_list = [ ("-1", _("Auto")) ]
-				for prio in range(65):
-					prio_list.append((str(prio), str(prio)))
-				for prio in range(14000,14065):
-					prio_list.append((str(prio), str(prio)))
-				for prio in range(19000,19065):
-					prio_list.append((str(prio), str(prio)))
 				nim.advanced.lnb[x].prio = ConfigSelection(default="-1", choices=prio_list)
 		elif slot.isCompatible("DVB-C"):
 			nim.configMode = ConfigSelection(

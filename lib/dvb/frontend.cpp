@@ -587,6 +587,10 @@ int eDVBFrontend::closeFrontend(bool force)
 	if (m_fd >= 0)
 	{
 		eDebugNoSimulate("close frontend %d", m_dvbid);
+		if (m_data[SATCR] != -1)
+		{
+			turnOffSatCR(m_data[SATCR]);
+		}
 		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
 		m_tuneTimer->stop();
@@ -2551,4 +2555,43 @@ arg_error:
 	PyErr_SetString(PyExc_StandardError,
 		"eDVBFrontend::setSlotInfo must get a tuple with first param slotid, second param slot description and third param enabled boolean");
 	return false;
+}
+
+RESULT eDVBFrontend::turnOffSatCR(int satcr)
+{
+	eSecCommandList sec_sequence;
+	// check if voltage is disabled
+	eSecCommand::pair compare;
+	compare.steps = +9;	//nothing to do
+	compare.voltage = iDVBFrontend::voltageOff;
+	sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50 ) );
+
+	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage18_5) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );
+
+	eDVBDiseqcCommand diseqc;
+	memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
+	diseqc.len = 5;
+	diseqc.data[0] = 0xE0;
+	diseqc.data[1] = 0x10;
+	diseqc.data[2] = 0x5A;
+	diseqc.data[3] = satcr << 5;
+	diseqc.data[4] = 0x00;
+
+	sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50+20+14*diseqc.len) );
+	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
+	setSecSequence(sec_sequence);
+	return 0;
+}
+
+RESULT eDVBFrontend::ScanSatCR()
+{
+	setFrontend();
+	usleep(20000);
+	setTone(iDVBFrontend::toneOff);
+	return 0;
 }
