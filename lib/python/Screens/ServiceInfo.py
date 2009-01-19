@@ -134,24 +134,24 @@ class ServiceInfo(Screen):
 				conv = { "type" 			: _("Transponder Type"),
 						 "system"			: _("System"),
 						 "modulation"		: _("Modulation"),
-						 "orbital position" : _("Orbital Position"),
+						 "orbital_position" : _("Orbital Position"),
 						 "frequency"		: _("Frequency"),
-						 "symbolrate"		: _("Symbolrate"),
+						 "symbol_rate"		: _("Symbolrate"),
 						 "bandwidth"		: _("Bandwidth"),
 						 "polarization"		: _("Polarization"),
 						 "inversion"		: _("Inversion"),
 						 "pilot"			: _("Pilot"),
-						 "roll off"			: _("Rolloff"),
-						 "fec inner"		: _("FEC"),
-						 "code rate lp"		: _("Coderate LP"),
-						 "code rate hp"		: _("Coderate HP"),
+						 "rolloff"			: _("Rolloff"),
+						 "fec_inner"		: _("FEC"),
+						 "code_rate_lp"		: _("Coderate LP"),
+						 "code_rate_hp"		: _("Coderate HP"),
 						 "constellation"	: _("Constellation"),
-						 "transmission mode": _("Transmission Mode"),
-						 "guard interval" 	: _("Guard Interval"),
-						 "hierarchy"		: _("Hierarchy Information") }
+						 "transmission_mode": _("Transmission Mode"),
+						 "guard_interval" 	: _("Guard Interval"),
+						 "hierarchy_information": _("Hierarchy Information") }
 				Labels = [ ]
 				for i in self.transponder_info.keys():
-					Labels.append( (conv[i], self.transponder_info[i], TYPE_TEXT) )
+					Labels.append( (conv[i], self.transponder_info[i], TYPE_VALUE_DEC) )
 				self.fillList(Labels)
 
 	def pids(self):
