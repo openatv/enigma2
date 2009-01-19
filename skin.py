@@ -145,9 +145,13 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 				}[value])
 		elif attrib == "orientation": # used by eSlider
 			try:
-				guiObject.setOrientation(
-					{ "orVertical": guiObject.orVertical,
-						"orHorizontal": guiObject.orHorizontal
+				guiObject.setOrientation(*
+					{ "orVertical": (guiObject.orVertical, False),
+						"orTopToBottom": (guiObject.olVertical, False),
+						"orBottomToTop": (guiObject.orVertical, True),
+						"orHorizontal": (guiObject.orHorizontal, False),
+						"orLeftToRight": (guiObject.orHorizontal, False),
+						"orRightToRight": (guiObject.orHorizontal, True),
 					}[value])
 			except KeyError:
 				print "oprientation must be either orVertical or orHorizontal!"
