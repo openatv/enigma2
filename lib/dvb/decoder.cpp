@@ -187,11 +187,15 @@ int eDVBAudio::startPid(int pid, int type)
 	case aAC3:
 		bypass = 0;
 		break;
-		/*
 	case aDTS:
 		bypass = 2;
 		break;
-		*/
+	case aAAC:
+		bypass = 8;
+		break;
+	case aAACHE:
+		bypass = 9;
+		break;
 	}
 
 	eDebugNoNewLine("AUDIO_SET_BYPASS - ");
@@ -334,6 +338,10 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 // not finally values i think.. !!
 #define VIDEO_STREAMTYPE_MPEG2 0
 #define VIDEO_STREAMTYPE_MPEG4_H264 1
+#define VIDEO_STREAMTYPE_VC1 3
+#define VIDEO_STREAMTYPE_MPEG4_Part2 4
+#define VIDEO_STREAMTYPE_VC1_SM 5
+#define VIDEO_STREAMTYPE_MPEG1 6
 
 #if HAVE_DVB_API_VERSION < 3
 int eDVBVideo::setPid(int pid)
@@ -395,13 +403,36 @@ int eDVBVideo::stopPid()
 #else
 int eDVBVideo::startPid(int pid, int type)
 {
+	int streamtype = VIDEO_STREAMTYPE_MPEG2;
+
 	if ((m_fd < 0) || (m_fd_demux < 0))
 		return -1;
 	dmx_pes_filter_params pes;
 
-	eDebugNoNewLine("VIDEO_SET_STREAMTYPE %d - ",type == MPEG4_H264 ? VIDEO_STREAMTYPE_MPEG4_H264 : VIDEO_STREAMTYPE_MPEG2);
-	if (::ioctl(m_fd, VIDEO_SET_STREAMTYPE,
-		type == MPEG4_H264 ? VIDEO_STREAMTYPE_MPEG4_H264 : VIDEO_STREAMTYPE_MPEG2) < 0)
+	switch(type)
+	{
+	default:
+	case MPEG2:
+		break;
+	case MPEG4_H264:
+		streamtype = VIDEO_STREAMTYPE_MPEG4_H264;
+		break;
+	case MPEG1:
+		streamtype = VIDEO_STREAMTYPE_MPEG1;
+		break;
+	case MPEG4_Part2:
+		streamtype = VIDEO_STREAMTYPE_MPEG4_Part2;
+		break;
+	case VC1:
+		streamtype = VIDEO_STREAMTYPE_VC1;
+		break;
+	case VC1_SM:
+		streamtype = VIDEO_STREAMTYPE_VC1_SM;
+		break;
+	}
+
+	eDebugNoNewLine("VIDEO_SET_STREAMTYPE %d - ", streamtype);
+	if (::ioctl(m_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
 		eDebug("failed (%m)");
 	else
 		eDebug("ok");

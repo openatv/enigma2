@@ -1600,6 +1600,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "AC3";
 	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAAC)
 		info.m_description = "AAC";
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAACHE)
+		info.m_description = "AAC-HE";
 	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
 		info.m_description = "DTS";
 	else
