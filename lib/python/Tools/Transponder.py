@@ -5,9 +5,6 @@ def ConvertToHumanReadable(tp):
 	type = tp.get("tuner_type", "None")
 	if type == "DVB-S":
 		ret["tuner_type"] = _("Satellite")
-		ret["frequency"] = tp["frequency"]
-		ret["symbol_rate"] = tp["symbol_rate"]
-		ret["orbital_position"] = tp["orbital_position"]
 		ret["inversion"] = {
 			eDVBFrontendParametersSatellite.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersSatellite.Inversion_On : _("On"),
@@ -48,8 +45,72 @@ def ConvertToHumanReadable(tp):
 				eDVBFrontendParametersSatellite.Pilot_Off : _("Off")}[tp["pilot"]]
 	elif type == "DVB-C":
 		ret["tuner_type"] = _("Cable")
+		ret["modulation"] = {
+			eDVBFrontendParametersCable.Modulation_Auto: _("Auto"),
+			eDVBFrontendParametersCable.Modulation_QAM16 : "QAM16",
+			eDVBFrontendParametersCable.Modulation_QAM32 : "QAM32",
+			eDVBFrontendParametersCable.Modulation_QAM64 : "QAM64",
+			eDVBFrontendParametersCable.Modulation_QAM128 : "QAM128",
+			eDVBFrontendParametersCable.Modulation_QAM256 : "QAM256"}[tp["modulation"]]
+		ret["inversion"] = {
+			eDVBFrontendParametersCable.Inversion_Unknown : _("Auto"),
+			eDVBFrontendParametersCable.Inversion_On : _("On"),
+			eDVBFrontendParametersCable.Inversion_Off : _("Off")}[tp["inversion"]]
+		ret["fec_inner"] = {
+			eDVBFrontendParametersCable.FEC_None : _("None"),
+			eDVBFrontendParametersCable.FEC_Auto : _("Auto"),
+			eDVBFrontendParametersCable.FEC_1_2 : "1/2",
+			eDVBFrontendParametersCable.FEC_2_3 : "2/3",
+			eDVBFrontendParametersCable.FEC_3_4 : "3/4",
+			eDVBFrontendParametersCable.FEC_5_6 : "5/6",
+			eDVBFrontendParametersCable.FEC_7_8 : "7/8",
+			eDVBFrontendParametersCable.FEC_8_9 : "8/9"}[tp["fec_inner"]]
 	elif type == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
+		ret["bandwidth"] = {
+			eDVBFrontendParametersTerrestrial.Bandwidth_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.Bandwidth_8MHz : "8 MHz",
+			eDVBFrontendParametersTerrestrial.Bandwidth_7MHz : "7 MHz",
+			eDVBFrontendParametersTerrestrial.Bandwidth_6MHz : "6 MHz"}[tp["bandwidth"]]
+		ret["code_rate_lp"] = {
+			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
+			eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
+			eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
+			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
+			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"}[tp["code_rate_lp"]]
+		ret["code_rate_hp"] = {
+			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
+			eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
+			eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
+			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
+			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"}[tp["code_rate_lp"]]
+		ret["constellation"] = {
+			eDVBFrontendParametersTerrestrial.Modulation_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
+			eDVBFrontendParametersTerrestrial.Modulation_QAM16 : "QAM16",
+			eDVBFrontendParametersTerrestrial.Modulation_QAM64 : "QAM64"}[tp["constellation"]]
+		ret["transmission_mode"] = {
+			eDVBFrontendParametersTerrestrial.TransmissionMode_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.TransmissionMode_2k : "2k",
+			eDVBFrontendParametersTerrestrial.TransmissionMode_8k : "8k"}[tp["transmission_mode"]]
+		ret["guard_interval"] = {
+			eDVBFrontendParametersTerrestrial.GuardInterval_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.GuardInterval_1_32 : "1/32",
+			eDVBFrontendParametersTerrestrial.GuardInterval_1_16 : "1/16",
+			eDVBFrontendParametersTerrestrial.GuardInterval_1_8 : "1/8",
+			eDVBFrontendParametersTerrestrial.GuardInterval_1_4 : "1/4"}[tp["guard_interval"]]
+		ret["hierarchy_information"] = {
+			eDVBFrontendParametersTerrestrial.Hierarchy_Auto : _("Auto"),
+			eDVBFrontendParametersTerrestrial.Hierarchy_None : _("None"),
+			eDVBFrontendParametersTerrestrial.Hierarchy_1 : "1",
+			eDVBFrontendParametersTerrestrial.Hierarchy_2 : "2",
+			eDVBFrontendParametersTerrestrial.Hierarchy_4 : "4"}[tp["hierarchy_information"]]
+		ret["inversion"] = {
+			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
+			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
+			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}[tp["inversion"]]
 	for x in tp.keys():
 		if not ret.has_key(x):
 			ret[x] = tp[x]
