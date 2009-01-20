@@ -85,7 +85,7 @@ def ConvertToHumanReadable(tp):
 			eDVBFrontendParametersTerrestrial.FEC_2_3 : "2/3",
 			eDVBFrontendParametersTerrestrial.FEC_3_4 : "3/4",
 			eDVBFrontendParametersTerrestrial.FEC_5_6 : "5/6",
-			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"}[tp["code_rate_lp"]]
+			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8"}[tp["code_rate_hp"]]
 		ret["constellation"] = {
 			eDVBFrontendParametersTerrestrial.Modulation_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
