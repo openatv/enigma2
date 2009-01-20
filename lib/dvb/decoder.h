@@ -13,7 +13,7 @@ private:
 	ePtr<eDVBDemux> m_demux;
 	int m_fd, m_fd_demux, m_dev, m_is_freezed;
 public:
-	enum { aMPEG, aAC3, aDTS, aAAC };
+	enum { aMPEG, aAC3, aDTS, aAAC, aAACHE };
 	eDVBAudio(eDVBDemux *demux, int dev);
 	enum { aMonoLeft, aStereo, aMonoRight };
 	void setChannel(int channel);
@@ -49,7 +49,7 @@ private:
 	Signal1<void, struct iTSMPEGDecoder::videoEvent> m_event;
 	int m_width, m_height, m_framerate, m_aspect, m_progressive;
 public:
-	enum { MPEG2, MPEG4_H264 };
+	enum { MPEG2, MPEG4_H264, MPEG1, MPEG4_Part2, VC1, VC1_SM };
 	eDVBVideo(eDVBDemux *demux, int dev);
 	void stop();
 #if HAVE_DVB_API_VERSION < 3
