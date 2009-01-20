@@ -102,7 +102,7 @@ extern void PutToDict(ePyObject &dict, const char*key, const char *value); // de
 
 void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm)
 {
-	PutToDict(dict, "type", "DVB-S");
+	PutToDict(dict, "tuner_type", "DVB-S");
 	PutToDict(dict, "frequency", feparm.frequency);
 	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
 	PutToDict(dict, "orbital_position", feparm.orbital_position);
@@ -120,7 +120,7 @@ void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &fe
 
 void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial &feparm)
 {
-	PutToDict(dict, "type", "DVB-T");
+	PutToDict(dict, "tuner_type", "DVB-T");
 	PutToDict(dict, "frequency", feparm.frequency);
 	PutToDict(dict, "bandwidth", feparm.bandwidth);
 	PutToDict(dict, "code_rate_lp", feparm.code_rate_LP);
@@ -134,7 +134,7 @@ void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial
 
 void PutCableDataToDict(ePyObject &dict, eDVBFrontendParametersCable &feparm)
 {
-	PutToDict(dict, "type", "DVB-C");
+	PutToDict(dict, "tuner_type", "DVB-C");
 	PutToDict(dict, "frequency", feparm.frequency);
 	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
 	PutToDict(dict, "modulation", feparm.modulation);

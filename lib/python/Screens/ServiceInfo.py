@@ -5,6 +5,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter
+from Tools.Transponder import ConvertToHumanReadable
 
 RT_HALIGN_LEFT = 0
 
@@ -131,7 +132,8 @@ class ServiceInfo(Screen):
 			self.fillList(Labels)
 		else:
 			if self.transponder_info:
-				conv = { "type" 			: _("Transponder Type"),
+				tp_info = ConvertToHumanReadable(self.transponder_info)
+				conv = { "tuner_type" 		: _("Transponder Type"),
 						 "system"			: _("System"),
 						 "modulation"		: _("Modulation"),
 						 "orbital_position" : _("Orbital Position"),
@@ -150,8 +152,8 @@ class ServiceInfo(Screen):
 						 "guard_interval" 	: _("Guard Interval"),
 						 "hierarchy_information": _("Hierarchy Information") }
 				Labels = [ ]
-				for i in self.transponder_info.keys():
-					Labels.append( (conv[i], self.transponder_info[i], TYPE_VALUE_DEC) )
+				for i in tp_info.keys():
+					Labels.append( (conv[i], tp_info[i], TYPE_VALUE_DEC) )
 				self.fillList(Labels)
 
 	def pids(self):
@@ -180,9 +182,10 @@ class ServiceInfo(Screen):
 		if self.type == TYPE_SERVICE_INFO:
 			self.showFrontendData(False)
 
-	def getFEData(self, frontendData):
-		if frontendData and len(frontendData):
-			if frontendData["tuner_type"] == "DVB-S":
+	def getFEData(self, frontendDataOrg):
+		if frontendDataOrg and len(frontendDataOrg):
+			frontendData = ConvertToHumanReadable(frontendDataOrg)
+			if frontendDataOrg["tuner_type"] == "DVB-S":
 				return (("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
 							("Type", frontendData["system"], TYPE_TEXT),
 							("Modulation", frontendData["modulation"], TYPE_TEXT),
@@ -194,7 +197,7 @@ class ServiceInfo(Screen):
 							("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
 							("Pilot", frontendData.get("pilot", None), TYPE_TEXT),
 							("Rolloff", frontendData.get("rolloff", None), TYPE_TEXT))
-			elif frontendData["tuner_type"] == "DVB-C":
+			elif frontendDataOrg["tuner_type"] == "DVB-C":
 				return (("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
 						("Type", frontendData["tuner_type"], TYPE_TEXT),
 						("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
@@ -202,7 +205,7 @@ class ServiceInfo(Screen):
 						("Modulation", frontendData["modulation"], TYPE_TEXT),
 						("Inversion", frontendData["inversion"], TYPE_TEXT),
 						("FEC inner", frontendData["fec_inner"], TYPE_TEXT))
-			elif frontendData["tuner_type"] == "DVB-T":
+			elif frontendDataOrg["tuner_type"] == "DVB-T":
 				return (("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
 						("Type", frontendData["tuner_type"], TYPE_TEXT),
 						("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
