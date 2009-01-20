@@ -147,7 +147,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 			try:
 				guiObject.setOrientation(*
 					{ "orVertical": (guiObject.orVertical, False),
-						"orTopToBottom": (guiObject.olVertical, False),
+						"orTopToBottom": (guiObject.orVertical, False),
 						"orBottomToTop": (guiObject.orVertical, True),
 						"orHorizontal": (guiObject.orHorizontal, False),
 						"orLeftToRight": (guiObject.orHorizontal, False),
