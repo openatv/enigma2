@@ -168,29 +168,29 @@ class Satfinder(ScanSetup):
 				else:
 					pol = "??"
 				if x[4] == 0:
-					fec = "FEC_AUTO"
+					fec = "FEC Auto"
 				elif x[4] == 1:
-					fec = "FEC_1_2"
+					fec = "FEC 1/2"
 				elif x[4] == 2:
-					fec = "FEC_2_3"
+					fec = "FEC 2/3"
 				elif x[4] == 3:
-					fec = "FEC_3_4"
+					fec = "FEC 3/4"
 				elif x[4] == 4:
-					fec = "FEC_5_6"
+					fec = "FEC 5/6"
 				elif x[4] == 5:
-					fec = "FEC_7_8"
+					fec = "FEC 7/8"
 				elif x[4] == 6:
-					fec = "FEC_8_9"
+					fec = "FEC 8/9"
 				elif x[4] == 7:
-					fec = "FEC_3_5"
+					fec = "FEC 3/5"
 				elif x[4] == 8:
-					fec = "FEC_4_5"
+					fec = "FEC 4/5"
 				elif x[4] == 9:
-					fec = "FEC_9_10"
+					fec = "FEC 9/10"
 				elif x[4] == 15:
-					fec = "FEC_None"
+					fec = "FEC None"
 				else:
-					fec = "FEC_Unknown"
+					fec = "FEC Unknown"
 				e = str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec
 				if default is None:
 					default = e
