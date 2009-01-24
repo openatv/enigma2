@@ -2176,7 +2176,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 								int offs = 6;
 								// skip DVB-Text Encoding!
 								if (data[6] == 0x10)
-									offs+=2;
+									offs+=3;
 								else if(data[6] > 0 && data[6] < 0x20)
 									offs+=1;
 								if ( casetype )
