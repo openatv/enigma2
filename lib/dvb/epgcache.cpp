@@ -2173,18 +2173,24 @@ PyObject *eEPGCache::search(ePyObject arg)
 							{
 								if (title_len != textlen)
 									continue;
+								int offs = 6;
+								// skip DVB-Text Encoding!
+								if (data[6] == 0x10)
+									offs+=2;
+								else if(data[6] > 0 && data[6] < 0x20)
+									offs+=1;
 								if ( casetype )
 								{
-									if ( !strncasecmp((const char*)data+6, str, title_len) )
+									if ( !strncasecmp((const char*)data+offs, str, title_len) )
 									{
-//										std::string s((const char*)data+6, title_len);
+//										std::string s((const char*)data+offs, title_len);
 //										eDebug("match1 %s %s", str, s.c_str() );
 										descr[++descridx] = it->first;
 									}
 								}
-								else if ( !strncmp((const char*)data+6, str, title_len) )
+								else if ( !strncmp((const char*)data+offs, str, title_len) )
 								{
-//									std::string s((const char*)data+6, title_len);
+//									std::string s((const char*)data+offs, title_len);
 //									eDebug("match2 %s %s", str, s.c_str() );
 									descr[++descridx] = it->first;
 								}
