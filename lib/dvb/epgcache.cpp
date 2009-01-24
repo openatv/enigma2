@@ -2171,14 +2171,20 @@ PyObject *eEPGCache::search(ePyObject arg)
 							int title_len = data[5];
 							if ( querytype == 1 )
 							{
-								if (title_len != textlen)
-									continue;
 								int offs = 6;
 								// skip DVB-Text Encoding!
 								if (data[6] == 0x10)
+								{
 									offs+=3;
+									textlen-=3;
+								}
 								else if(data[6] > 0 && data[6] < 0x20)
+								{
 									offs+=1;
+									textlen-=1;
+								}
+								if (title_len != textlen)
+									continue;
 								if ( casetype )
 								{
 									if ( !strncasecmp((const char*)data+offs, str, title_len) )
