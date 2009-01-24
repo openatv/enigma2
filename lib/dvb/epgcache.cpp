@@ -2176,12 +2176,12 @@ PyObject *eEPGCache::search(ePyObject arg)
 								if (data[6] == 0x10)
 								{
 									offs+=3;
-									textlen-=3;
+									title_len-=3;
 								}
 								else if(data[6] > 0 && data[6] < 0x20)
 								{
 									offs+=1;
-									textlen-=1;
+									title_len-=1;
 								}
 								if (title_len != textlen)
 									continue;
