@@ -1465,9 +1465,9 @@ class InfoBarInstantRecord:
 					if recording.setAutoincreaseEnd():
 						self.session.nav.RecordTimer.record(recording)
 						self.recording.append(recording)
-						self.session.open(MessageBox, _("Record time limited due to conflicting timer %s" % name_date), MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("Record time limited due to conflicting timer %s") % name_date, MessageBox.TYPE_INFO)
 					else:
-						self.session.open(MessageBox, _("Couldn't record due to conflicting timer %s" % name), MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("Couldn't record due to conflicting timer %s") % name, MessageBox.TYPE_INFO)
 					recording.autoincrease = False
 				else:
 					self.recording.append(recording)
