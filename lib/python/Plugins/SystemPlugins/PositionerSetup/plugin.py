@@ -14,6 +14,8 @@ from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
 from Components.config import ConfigSatlist, ConfigNothing, ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, getConfigListEntry
+from Components.TuneTest import Tuner
+from Tools.Transponder import ConvertToHumanReadable
 
 from time import sleep
 
@@ -79,25 +81,16 @@ class PositionerSetup(Screen):
 
 		tp = ( cur.get("frequency", 0) / 1000,
 			cur.get("symbol_rate", 0) / 1000,
-			{ "HORIZONTAL" : 0, "VERTICAL" : 1,
-				"CIRCULAR_LEFT" : 2, "CIRCULAR_RIGHT" : 3 }[cur.get("polarization", "HORIZONTAL")],
-			{ "FEC_AUTO" : 0, "FEC_1_2" : 1, "FEC_2_3" : 2, "FEC_3_4" : 3,
-				"FEC_5_6" : 4, "FEC_7_8" : 5, "FEC_8_9" : 6, "FEC_3_5" : 7,
-				"FEC_4_5" : 8, "FEC_9_10" : 9, "FEC_NONE" : 15 }[cur.get("fec_inner", "FEC_AUTO")],
-			{ "INVERSION_OFF" : 0,
-				"INVERSION_ON" : 1,
-				"INVERSION_AUTO" : 2 }[cur.get("inversion", "INVERSION_AUTO")],
+			cur.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal),
+			cur.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto),
+			cur.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown),
 			cur.get("orbital_position", 0),
-			{ "DVB-S" : 0, "DVB-S2" : 1 }[cur.get("system", "DVB-S")],
-			{ "QPSK" : 1, "8PSK" : 2 }[cur.get("modulation", "QPSK")],
-			{ "ROLLOFF_0_35" : 0, "ROLLOFF_0_25" : 1,
-				"ROLLOFF_0_20" : 2 }[cur.get("rolloff", "ROLLOFF_0_35")],
-			{ "PILOT_OFF" : 0, "PILOT_ON" : 1,
-				"PILOT_AUTO" : 2 }[cur.get("pilot", "PILOT_AUTO")]
-		)
+			cur.get("system", eDVBFrontendParametersSatellite.System_DVB_S),
+			cur.get("modulation", eDVBFrontendParametersSatellite.Modulation_QPSK),
+			cur.get("rolloff", eDVBFrontendParametersSatellite.RollOff_alpha_0_35),
+			cur.get("pilot", eDVBFrontendParametersSatellite.Pilot_Unknown))
 
 		self.tuner.tune(tp)
-		
 		self.createConfig()
 		
 		self.isMoving = False
@@ -362,7 +355,7 @@ class PositionerSetup(Screen):
 		self["snr_bar"].update()
 		self["ber_bar"].update()
 		self["lock_state"].update()
-		transponderdata = self.tuner.getTransponderData()
+		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData())
 		self["frequency_value"].setText(str(transponderdata.get("frequency")))
 		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate")))
 		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
@@ -413,39 +406,6 @@ class Diseqc:
 				sleep(0.05)
 				self.frontend.sendDiseqc(cmd) # send 2nd time
 
-class Tuner:
-	def __init__(self, frontend):
-		self.frontend = frontend
-
-	def tune(self, transponder):
-		print "tuning to transponder with data", transponder
-		parm = eDVBFrontendParametersSatellite()
-		parm.frequency = transponder[0] * 1000
-		parm.symbol_rate = transponder[1] * 1000
-		parm.polarisation = transponder[2]
-		parm.fec = transponder[3]
-		parm.inversion = transponder[4]
-		parm.orbital_position = transponder[5]
-		parm.system = transponder[6]
-		parm.modulation = transponder[7]
-		parm.rolloff = transponder[8]
-		parm.pilot = transponder[9]
-		feparm = eDVBFrontendParameters()
-		feparm.setDVBS(parm, True)
-		self.lastparm = feparm
-		if self.frontend:
-			self.frontend.tune(feparm)
-
-	def retune(self):
-		if self.frontend:
-			self.frontend.tune(self.lastparm)
-
-	def getTransponderData(self):
-		ret = { }
-		if self.frontend:
-			self.frontend.getTransponderData(ret, True)
-		return ret
-
 tuning = None
 
 class TunerScreen(ScanSetup):
@@ -478,14 +438,14 @@ class TunerScreen(ScanSetup):
 				self.list.append(self.systemEntry)
 			else:
 				# downgrade to dvb-s, in case a -s2 config was active
-				self.scan_sat.system.value = "dvb-s"
+				self.scan_sat.system.value = eDVBFrontendParametersSatellite.System_DVB_S
 			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
 			self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
-			if self.scan_sat.system.value == "dvb-s":
+			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
-			elif self.scan_sat.system.value == "dvb-s2":
+			elif self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
 				self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
 				self.list.append(self.modulationEntry)
@@ -540,29 +500,29 @@ class TunerScreen(ScanSetup):
 				else:
 					pol = "??"
 				if x[4] == 0:
-					fec = "FEC_AUTO"
+					fec = "FEC Auto"
 				elif x[4] == 1:
-					fec = "FEC_1_2"
+					fec = "FEC 1/2"
 				elif x[4] == 2:
-					fec = "FEC_2_3"
+					fec = "FEC 2/3"
 				elif x[4] == 3:
-					fec = "FEC_3_4"
+					fec = "FEC 3/4"
 				elif x[4] == 4:
-					fec = "FEC_5_6"
+					fec = "FEC 5/6"
 				elif x[4] == 5:
-					fec = "FEC_7_8"
+					fec = "FEC 7/8"
 				elif x[4] == 6:
-					fec = "FEC_8_9"
+					fec = "FEC 8/9"
 				elif x[4] == 7:
-					fec = "FEC_3_5"
+					fec = "FEC 3/5"
 				elif x[4] == 8:
-					fec = "FEC_4_5"
+					fec = "FEC 4/5"
 				elif x[4] == 9:
-					fec = "FEC_9_10"
+					fec = "FEC 9/10"
 				elif x[4] == 15:
-					fec = "FEC_None"
+					fec = "FEC None"
 				else:
-					fec = "FEC_Unknown"
+					fec = "FEC Unknown"
 				tps.append(str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec)
 			tuning.transponder = ConfigSelection(choices=tps)
 
@@ -570,31 +530,21 @@ class TunerScreen(ScanSetup):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 		satpos = int(tuning.sat.value)
 		if tuning.type.value == "manual_transponder":
-			if self.scan_sat.system.value == "dvb-s2":
+			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
 				fec = self.scan_sat.fec_s2.value
 			else:
 				fec = self.scan_sat.fec.value
 			returnvalue = (
 				self.scan_sat.frequency.value,
 				self.scan_sat.symbolrate.value,
-				self.scan_sat.polarization.index,
-				{ "auto": 0,
-				   "1_2": 1,
-				   "2_3": 2,
-				   "3_4": 3,
-				   "5_6": 4,
-				   "7_8": 5,
-				   "8_9": 6,
-				   "3_5": 7,
-				   "4_5": 8,
-				   "9_10": 9,
-				   "none": 15 }[fec],
-				self.scan_sat.inversion.index,
+				self.scan_sat.polarization.value,
+				fec,
+				self.scan_sat.inversion.value,
 				satpos,
-				self.scan_sat.system.index,
-				self.scan_sat.modulation.index == 1 and 2 or 1,
-				self.scan_sat.rolloff.index,
-				self.scan_sat.pilot.index)
+				self.scan_sat.system.value,
+				self.scan_sat.modulation.value,
+				self.scan_sat.rolloff.value,
+				self.scan_sat.pilot.value)
 		elif tuning.type.value == "predefined_transponder":
 			transponder = nimmanager.getTransponders(satpos)[tuning.transponder.index]
 			returnvalue = (transponder[1] / 1000, transponder[2] / 1000,

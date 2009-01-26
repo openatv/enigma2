@@ -12,42 +12,35 @@ struct eDVBFrontendParametersSatellite
 #ifndef SWIG
 	void set(const SatelliteDeliverySystemDescriptor  &);
 #endif
-	struct Polarisation {
-		enum {
-			Horizontal, Vertical, CircularLeft, CircularRight
-		};
+	enum {
+		Polarisation_Horizontal, Polarisation_Vertical, Polarisation_CircularLeft, Polarisation_CircularRight
 	};
-	struct Inversion {
-		enum {
-			Off, On, Unknown
-		};
+
+	enum {
+		Inversion_Off, Inversion_On, Inversion_Unknown
 	};
-	struct FEC {
-		enum {
-			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, f3_5, f4_5, f9_10, fNone=15
-		};
+
+	enum {
+		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_8_9, FEC_3_5, FEC_4_5, FEC_9_10, FEC_None=15
 	};
-	struct System {
-		enum {
-			DVB_S, DVB_S2
-		};
+
+	enum {
+		System_DVB_S, System_DVB_S2
 	};
-	struct Modulation {
-		enum {
-			Auto, QPSK, M8PSK, QAM_16
-		};
+
+	enum {
+		Modulation_Auto, Modulation_QPSK, Modulation_8PSK, Modulation_QAM16
 	};
+
 	// dvb-s2
-	struct RollOff {
-		enum {
-			alpha_0_35, alpha_0_25, alpha_0_20
-		};
+	enum {
+		RollOff_alpha_0_35, RollOff_alpha_0_25, RollOff_alpha_0_20
 	};
-	struct Pilot {  
-		enum {
-			Off, On, Unknown
-		};
+
+	enum {
+		Pilot_Off, Pilot_On, Pilot_Unknown
 	};
+
 	bool no_rotor_command_on_tune;
 	unsigned int frequency, symbol_rate;
 	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot;
@@ -59,21 +52,18 @@ struct eDVBFrontendParametersCable
 #ifndef SWIG
 	void set(const CableDeliverySystemDescriptor  &);
 #endif
-	struct Inversion {
-		enum {
-			Off, On, Unknown
-		};
+	enum {
+		Inversion_Off, Inversion_On, Inversion_Unknown
 	};
-	struct FEC {
-		enum {
-			fAuto, f1_2, f2_3, f3_4, f5_6, f7_8, f8_9, fNone=15
-		};
+
+	enum {
+		FEC_Auto, FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_8_9, FEC_None=15
 	};
-	struct Modulation {
-		enum {
-			Auto, QAM16, QAM32, QAM64, QAM128, QAM256
-		};
+
+	enum {
+		Modulation_Auto, Modulation_QAM16, Modulation_QAM32, Modulation_QAM64, Modulation_QAM128, Modulation_QAM256
 	};
+
 	unsigned int frequency, symbol_rate;
 	int modulation, inversion, fec_inner;
 };
@@ -84,42 +74,34 @@ struct eDVBFrontendParametersTerrestrial
 #ifndef SWIG
 	void set(const TerrestrialDeliverySystemDescriptor  &);
 #endif
-	struct Bandwidth {
-		enum {
-			Bw8MHz, Bw7MHz, Bw6MHz, /*Bw5MHz,*/ BwAuto
-		}; // Bw5Mhz nyi (compatibilty with enigma1)
+	enum {
+		Bandwidth_8MHz, Bandwidth_7MHz, Bandwidth_6MHz, /*Bandwidth_5MHz,*/ Bandwidth_Auto
+	}; // Bw5Mhz nyi (compatibilty with enigma1)
+
+	enum {
+		FEC_1_2, FEC_2_3, FEC_3_4, FEC_5_6, FEC_7_8, FEC_Auto
 	};
-	struct FEC {
-		enum {
-			f1_2, f2_3, f3_4, f5_6, f7_8, fAuto
-		};
+
+	enum {
+		TransmissionMode_2k, TransmissionMode_8k, /*TransmissionMode_4k,*/ TransmissionMode_Auto
+	}; // TM4k nyi (compatibility with enigma1)
+
+	enum {
+		GuardInterval_1_32, GuardInterval_1_16, GuardInterval_1_8, GuardInterval_1_4, GuardInterval_Auto
 	};
-	struct TransmissionMode {
-		enum {
-			TM2k, TM8k, /*TM4k,*/ TMAuto
-		}; // TM4k nyi (compatibility with enigma1)
+
+	enum {
+		Hierarchy_None, Hierarchy_1, Hierarchy_2, Hierarchy_4, Hierarchy_Auto
 	};
-	struct GuardInterval {
-		enum {
-			GI_1_32, GI_1_16, GI_1_8, GI_1_4, GI_Auto
-		};
+
+	enum {
+		Modulation_QPSK, Modulation_QAM16, Modulation_QAM64, Modulation_Auto
 	};
-	struct Hierarchy {
-		enum {
-			HNone, H1, H2, H4, HAuto
-		};
+
+	enum {
+		Inversion_Off, Inversion_On, Inversion_Unknown
 	};
-	struct Modulation {
-		enum {
-			QPSK, QAM16, QAM64, Auto
-		};
-	};
-	struct Inversion
-	{
-		enum {
-			Off, On, Unknown
-		};
-	};
+
 	unsigned int frequency;
 	int bandwidth;
 	int code_rate_HP, code_rate_LP;

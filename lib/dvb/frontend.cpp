@@ -1,4 +1,5 @@
 #include <lib/dvb/dvb.h>
+#include <lib/dvb/frontendparms.h>
 #include <lib/base/eerror.h>
 #include <lib/base/nconfig.h> // access to python config
 #include <errno.h>
@@ -148,10 +149,10 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 	symbol_rate  = descriptor.getSymbolRate() * 100;
 	polarisation = descriptor.getPolarization();
 	fec = descriptor.getFecInner();
-	if ( fec != FEC::fNone && fec > FEC::f9_10 )
-		fec = FEC::fAuto;
-	inversion = Inversion::Unknown;
-	pilot = Pilot::Unknown;
+	if ( fec != eDVBFrontendParametersSatellite::FEC_None && fec > eDVBFrontendParametersSatellite::FEC_9_10 )
+		fec = eDVBFrontendParametersSatellite::FEC_Auto;
+	inversion = eDVBFrontendParametersSatellite::Inversion_Unknown;
+	pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
 	orbital_position  = ((descriptor.getOrbitalPosition() >> 12) & 0xF) * 1000;
 	orbital_position += ((descriptor.getOrbitalPosition() >> 8) & 0xF) * 100;
 	orbital_position += ((descriptor.getOrbitalPosition() >> 4) & 0xF) * 10;
@@ -160,13 +161,13 @@ void eDVBFrontendParametersSatellite::set(const SatelliteDeliverySystemDescripto
 		orbital_position = 3600 - orbital_position;
 	system = descriptor.getModulationSystem();
 	modulation = descriptor.getModulation();
-	if (system == System::DVB_S && modulation == Modulation::M8PSK)
+	if (system == eDVBFrontendParametersSatellite::System_DVB_S && modulation == eDVBFrontendParametersSatellite::Modulation_8PSK)
 	{
 		eDebug("satellite_delivery_descriptor non valid modulation type.. force QPSK");
-		modulation=QPSK;
+		modulation=eDVBFrontendParametersSatellite::Modulation_QPSK;
 	}
 	rolloff = descriptor.getRollOff();
-	if (system == System::DVB_S2)
+	if (system == eDVBFrontendParametersSatellite::System_DVB_S2)
 	{
 		eDebug("SAT DVB-S2 freq %d, %s, pos %d, sr %d, fec %d, modulation %d, rolloff %d",
 			frequency,
@@ -192,11 +193,11 @@ void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descr
 	symbol_rate = descriptor.getSymbolRate() * 100;
 	fec_inner = descriptor.getFecInner();
 	if ( fec_inner == 0xF )
-		fec_inner = FEC::fNone;
+		fec_inner = eDVBFrontendParametersCable::FEC_None;
 	modulation = descriptor.getModulation();
 	if ( modulation > 0x5 )
-		modulation = Modulation::Auto;
-	inversion = Inversion::Unknown;
+		modulation = eDVBFrontendParametersCable::Modulation_Auto;
+	inversion = eDVBFrontendParametersCable::Inversion_Unknown;
 	eDebug("Cable freq %d, mod %d, sr %d, fec %d",
 		frequency,
 		modulation, symbol_rate, fec_inner);
@@ -207,24 +208,24 @@ void eDVBFrontendParametersTerrestrial::set(const TerrestrialDeliverySystemDescr
 	frequency = descriptor.getCentreFrequency() * 10;
 	bandwidth = descriptor.getBandwidth();
 	if ( bandwidth > 2 ) // 5Mhz forced to auto
-		bandwidth = Bandwidth::BwAuto;
+		bandwidth = eDVBFrontendParametersTerrestrial::Bandwidth_Auto;
 	code_rate_HP = descriptor.getCodeRateHpStream();
 	if (code_rate_HP > 4)
-		code_rate_HP = FEC::fAuto;
+		code_rate_HP = eDVBFrontendParametersTerrestrial::FEC_Auto;
 	code_rate_LP = descriptor.getCodeRateLpStream();
 	if (code_rate_LP > 4)
-		code_rate_LP = FEC::fAuto;
+		code_rate_LP = eDVBFrontendParametersTerrestrial::FEC_Auto;
 	transmission_mode = descriptor.getTransmissionMode();
 	if (transmission_mode > 1) // TM4k forced to auto
-		transmission_mode = TransmissionMode::TMAuto;
+		transmission_mode = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto;
 	guard_interval = descriptor.getGuardInterval();
 	if (guard_interval > 3)
-		guard_interval = GuardInterval::GI_Auto;
+		guard_interval = eDVBFrontendParametersTerrestrial::GuardInterval_Auto;
 	hierarchy = descriptor.getHierarchyInformation()&3;
 	modulation = descriptor.getConstellation();
 	if (modulation > 2)
-		modulation = Modulation::Auto;
-	inversion = Inversion::Unknown;
+		modulation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
+	inversion = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
 	eDebug("Terr freq %d, bw %d, cr_hp %d, cr_lp %d, tm_mode %d, guard %d, hierarchy %d, const %d",
 		frequency, bandwidth, code_rate_HP, code_rate_LP, transmission_mode,
 		guard_interval, hierarchy, modulation);
@@ -316,9 +317,9 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			diff = 1<<29;
 		else if (sat.polarisation != osat.polarisation)
 			diff = 1<<28;
-		else if (exact && sat.fec != osat.fec && sat.fec != eDVBFrontendParametersSatellite::FEC::fAuto && osat.fec != eDVBFrontendParametersSatellite::FEC::fAuto)
+		else if (exact && sat.fec != osat.fec && sat.fec != eDVBFrontendParametersSatellite::FEC_Auto && osat.fec != eDVBFrontendParametersSatellite::FEC_Auto)
 			diff = 1<<27;
-		else if (exact && sat.modulation != osat.modulation && sat.modulation != eDVBFrontendParametersSatellite::Modulation::Auto && osat.modulation != eDVBFrontendParametersSatellite::Modulation::Auto)
+		else if (exact && sat.modulation != osat.modulation && sat.modulation != eDVBFrontendParametersSatellite::Modulation_Auto && osat.modulation != eDVBFrontendParametersSatellite::Modulation_Auto)
 			diff = 1<<27;
 		else
 		{
@@ -333,10 +334,10 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			return -2;
 
 		if (exact && cable.modulation != ocable.modulation
-			&& cable.modulation != eDVBFrontendParametersCable::Modulation::Auto
-			&& ocable.modulation != eDVBFrontendParametersCable::Modulation::Auto)
+			&& cable.modulation != eDVBFrontendParametersCable::Modulation_Auto
+			&& ocable.modulation != eDVBFrontendParametersCable::Modulation_Auto)
 			diff = 1 << 29;
-		else if (exact && cable.fec_inner != ocable.fec_inner && cable.fec_inner != eDVBFrontendParametersCable::FEC::fAuto && ocable.fec_inner != eDVBFrontendParametersCable::FEC::fAuto)
+		else if (exact && cable.fec_inner != ocable.fec_inner && cable.fec_inner != eDVBFrontendParametersCable::FEC_Auto && ocable.fec_inner != eDVBFrontendParametersCable::FEC_Auto)
 			diff = 1 << 27;
 		else
 		{
@@ -350,32 +351,32 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			return -2;
 
 		if (exact && oterrestrial.bandwidth != terrestrial.bandwidth &&
-			oterrestrial.bandwidth != eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto &&
-			terrestrial.bandwidth != eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto)
+			oterrestrial.bandwidth != eDVBFrontendParametersTerrestrial::Bandwidth_Auto &&
+			terrestrial.bandwidth != eDVBFrontendParametersTerrestrial::Bandwidth_Auto)
 			diff = 1 << 30;
 		else if (exact && oterrestrial.modulation != terrestrial.modulation &&
-			oterrestrial.modulation != eDVBFrontendParametersTerrestrial::Modulation::Auto &&
-			terrestrial.modulation != eDVBFrontendParametersTerrestrial::Modulation::Auto)
+			oterrestrial.modulation != eDVBFrontendParametersTerrestrial::Modulation_Auto &&
+			terrestrial.modulation != eDVBFrontendParametersTerrestrial::Modulation_Auto)
 			diff = 1 << 30;
 		else if (exact && oterrestrial.transmission_mode != terrestrial.transmission_mode &&
-			oterrestrial.transmission_mode != eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto &&
-			terrestrial.transmission_mode != eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto)
+			oterrestrial.transmission_mode != eDVBFrontendParametersTerrestrial::TransmissionMode_Auto &&
+			terrestrial.transmission_mode != eDVBFrontendParametersTerrestrial::TransmissionMode_Auto)
 			diff = 1 << 30;
 		else if (exact && oterrestrial.guard_interval != terrestrial.guard_interval &&
-			oterrestrial.guard_interval != eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto &&
-			terrestrial.guard_interval != eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto)
+			oterrestrial.guard_interval != eDVBFrontendParametersTerrestrial::GuardInterval_Auto &&
+			terrestrial.guard_interval != eDVBFrontendParametersTerrestrial::GuardInterval_Auto)
 			diff = 1 << 30;
 		else if (exact && oterrestrial.hierarchy != terrestrial.hierarchy &&
-			oterrestrial.hierarchy != eDVBFrontendParametersTerrestrial::Hierarchy::HAuto &&
-			terrestrial.hierarchy != eDVBFrontendParametersTerrestrial::Hierarchy::HAuto)
+			oterrestrial.hierarchy != eDVBFrontendParametersTerrestrial::Hierarchy_Auto &&
+			terrestrial.hierarchy != eDVBFrontendParametersTerrestrial::Hierarchy_Auto)
 			diff = 1 << 30;
 		else if (exact && oterrestrial.code_rate_LP != terrestrial.code_rate_LP &&
-			oterrestrial.code_rate_LP != eDVBFrontendParametersTerrestrial::FEC::fAuto &&
-			terrestrial.code_rate_LP != eDVBFrontendParametersTerrestrial::FEC::fAuto)
+			oterrestrial.code_rate_LP != eDVBFrontendParametersTerrestrial::FEC_Auto &&
+			terrestrial.code_rate_LP != eDVBFrontendParametersTerrestrial::FEC_Auto)
 			diff = 1 << 30;
 		else if (exact && oterrestrial.code_rate_HP != terrestrial.code_rate_HP &&
-			oterrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC::fAuto &&
-			terrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC::fAuto)
+			oterrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto &&
+			terrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto)
 			diff = 1 << 30;
 		else
 			diff = abs(terrestrial.frequency - oterrestrial.frequency);
@@ -963,120 +964,79 @@ void PutToDict(ePyObject &dict, const char*key, const char *value)
 void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, eDVBFrontend *fe)
 {
 	long freq_offset=0;
-	const char *tmp=0;
+	long tmp=0;
 	fe->getData(eDVBFrontend::FREQ_OFFSET, freq_offset);
 	int frequency = parm_frequency + freq_offset;
 	PutToDict(dict, "frequency", frequency);
 	PutToDict(dict, "symbol_rate", parm_u_qpsk_symbol_rate);
 	switch(parm_u_qpsk_fec_inner)
 	{
-	case FEC_1_2:
-		tmp = "FEC_1_2";
-		break;
-	case FEC_2_3:
-		tmp = "FEC_2_3";
-		break;
-	case FEC_3_4:
-		tmp = "FEC_3_4";
-		break;
-	case FEC_5_6:
-		tmp = "FEC_5_6";
-		break;
-	case FEC_7_8:
-		tmp = "FEC_7_8";
-		break;
-	case FEC_NONE:
-		tmp = "FEC_NONE";
+	case FEC_1_2: tmp = eDVBFrontendParametersSatellite::FEC_1_2; break;
+	case FEC_2_3: tmp = eDVBFrontendParametersSatellite::FEC_2_3; break;
+	case FEC_3_4: tmp = eDVBFrontendParametersSatellite::FEC_3_4; break;
+	case FEC_5_6: tmp = eDVBFrontendParametersSatellite::FEC_5_6; break;
+	case FEC_7_8: tmp = eDVBFrontendParametersSatellite::FEC_7_8; break;
+	case FEC_NONE: tmp = eDVBFrontendParametersSatellite::FEC_None; break;
 	default:
-	case FEC_AUTO:
-		tmp = "FEC_AUTO";
-		break;
+	case FEC_AUTO: tmp = eDVBFrontendParametersSatellite::FEC_Auto; break;
 #if HAVE_DVB_API_VERSION >=3
-	case FEC_S2_8PSK_1_2:
-	case FEC_S2_QPSK_1_2:
-		tmp = "FEC_1_2";
-		break;
+	case FEC_S2_8PSK_1_2: 
+	case FEC_S2_QPSK_1_2: tmp = eDVBFrontendParametersSatellite::FEC_1_2; break;
 	case FEC_S2_8PSK_2_3:
-	case FEC_S2_QPSK_2_3:
-		tmp = "FEC_2_3";
-		break;
+	case FEC_S2_QPSK_2_3: tmp = eDVBFrontendParametersSatellite::FEC_2_3; break;
 	case FEC_S2_8PSK_3_4:
-	case FEC_S2_QPSK_3_4:
-		tmp = "FEC_3_4";
-		break;
+	case FEC_S2_QPSK_3_4: tmp = eDVBFrontendParametersSatellite::FEC_3_4; break;
 	case FEC_S2_8PSK_5_6:
-	case FEC_S2_QPSK_5_6:
-		tmp = "FEC_5_6";
-		break;
+	case FEC_S2_QPSK_5_6: tmp = eDVBFrontendParametersSatellite::FEC_5_6; break;
 	case FEC_S2_8PSK_7_8:
-	case FEC_S2_QPSK_7_8:
-		tmp = "FEC_7_8";
-		break;
+	case FEC_S2_QPSK_7_8: tmp = eDVBFrontendParametersSatellite::FEC_7_8; break;
 	case FEC_S2_8PSK_8_9:
-	case FEC_S2_QPSK_8_9:
-		tmp = "FEC_8_9";
-		break;
+	case FEC_S2_QPSK_8_9: tmp = eDVBFrontendParametersSatellite::FEC_8_9; break;
 	case FEC_S2_8PSK_3_5:
-	case FEC_S2_QPSK_3_5:
-		tmp = "FEC_3_5";
-		break;
+	case FEC_S2_QPSK_3_5: tmp = eDVBFrontendParametersSatellite::FEC_3_5; break;
 	case FEC_S2_8PSK_4_5:
-	case FEC_S2_QPSK_4_5:
-		tmp = "FEC_4_5";
-		break;
+	case FEC_S2_QPSK_4_5: tmp = eDVBFrontendParametersSatellite::FEC_4_5; break;
 	case FEC_S2_8PSK_9_10:
-	case FEC_S2_QPSK_9_10:
-		tmp = "FEC_9_10";
-		break;
+	case FEC_S2_QPSK_9_10: tmp = eDVBFrontendParametersSatellite::FEC_9_10; break;
 #endif
 	}
 	PutToDict(dict, "fec_inner", tmp);
 #if HAVE_DVB_API_VERSION >=3
 	PutToDict(dict, "modulation",
-		parm_u_qpsk_fec_inner > FEC_S2_QPSK_9_10 ? "8PSK": "QPSK" );
+		parm_u_qpsk_fec_inner > FEC_S2_QPSK_9_10 ?
+			eDVBFrontendParametersSatellite::Modulation_8PSK :
+			eDVBFrontendParametersSatellite::Modulation_QPSK );
 	if (parm_u_qpsk_fec_inner > FEC_AUTO)
 	{
 		switch(parm_inversion & 0xc)
 		{
 		default: // unknown rolloff
-		case 0: // 0.35
-			tmp = "ROLLOFF_0_35";
-			break;
-		case 4: // 0.25
-			tmp = "ROLLOFF_0_25";
-			break;
-		case 8: // 0.20
-			tmp = "ROLLOFF_0_20";
-			break;
+		case 0: tmp = eDVBFrontendParametersSatellite::RollOff_alpha_0_35; break;
+		case 4: tmp = eDVBFrontendParametersSatellite::RollOff_alpha_0_25; break;
+		case 8: tmp = eDVBFrontendParametersSatellite::RollOff_alpha_0_20; break;
 		}
 		PutToDict(dict, "rolloff", tmp);
 		switch(parm_inversion & 0x30)
 		{
-		case 0: // pilot off
-			tmp = "PILOT_OFF";
-			break;
-		case 0x10: // pilot on
-			tmp = "PILOT_ON";
-			break;
-		case 0x20: // pilot auto
-			tmp = "PILOT_AUTO";
-			break;
+		case 0: tmp = eDVBFrontendParametersSatellite::Pilot_Off; break;
+		case 0x10: tmp = eDVBFrontendParametersSatellite::Pilot_On; break;
+		case 0x20: tmp = eDVBFrontendParametersSatellite::Pilot_Unknown; break;
 		}
 		PutToDict(dict, "pilot", tmp);
-		tmp = "DVB-S2";
+		tmp = eDVBFrontendParametersSatellite::System_DVB_S2;
 	}
 	else
-		tmp = "DVB-S";
+		tmp = eDVBFrontendParametersSatellite::System_DVB_S;
 #else
-	PutToDict(dict, "modulation", "QPSK" );
-	tmp = "DVB-S";
+	PutToDict(dict, "modulation", eDVBFrontendParametersSatellite::Modulation_QPSK );
+	tmp = eDVBFrontendParametersSatellite::System_DVB_S;
 #endif
 	PutToDict(dict, "system", tmp);
 }
 
 void fillDictWithCableData(ePyObject dict, const FRONTENDPARAMETERS &parm)
 {
-	const char *tmp=0;
+	long tmp=0;
 #if HAVE_DVB_API_VERSION < 3
 	PutToDict(dict, "frequency", parm_frequency);
 #else
@@ -1085,196 +1045,102 @@ void fillDictWithCableData(ePyObject dict, const FRONTENDPARAMETERS &parm)
 	PutToDict(dict, "symbol_rate", parm_u_qam_symbol_rate);
 	switch(parm_u_qam_fec_inner)
 	{
-	case FEC_NONE:
-		tmp = "FEC_NONE";
-		break;
-	case FEC_1_2:
-		tmp = "FEC_1_2";
-		break;
-	case FEC_2_3:
-		tmp = "FEC_2_3";
-		break;
-	case FEC_3_4:
-		tmp = "FEC_3_4";
-		break;
-	case FEC_5_6:
-		tmp = "FEC_5_6";
-		break;
-	case FEC_7_8:
-		tmp = "FEC_7_8";
-		break;
+	case FEC_NONE: tmp = eDVBFrontendParametersCable::FEC_None; break;
+	case FEC_1_2: tmp = eDVBFrontendParametersCable::FEC_1_2; break;
+	case FEC_2_3: tmp = eDVBFrontendParametersCable::FEC_2_3; break;
+	case FEC_3_4: tmp = eDVBFrontendParametersCable::FEC_3_4; break;
+	case FEC_5_6: tmp = eDVBFrontendParametersCable::FEC_5_6; break;
+	case FEC_7_8: tmp = eDVBFrontendParametersCable::FEC_7_8; break;
 #if HAVE_DVB_API_VERSION >= 3
-	case FEC_8_9:
-		tmp = "FEC_8_9";
-		break;
+	case FEC_8_9: tmp = eDVBFrontendParametersCable::FEC_7_8; break;
 #endif
 	default:
-	case FEC_AUTO:
-		tmp = "FEC_AUTO";
-		break;
+	case FEC_AUTO: tmp = eDVBFrontendParametersCable::FEC_Auto; break;
 	}
 	PutToDict(dict, "fec_inner", tmp);
 	switch(parm_u_qam_modulation)
 	{
-	case QAM_16:
-		tmp = "QAM_16";
-		break;
-	case QAM_32:
-		tmp = "QAM_32";
-		break;
-	case QAM_64:
-		tmp = "QAM_64";
-		break;
-	case QAM_128:
-		tmp = "QAM_128";
-		break;
-	case QAM_256:
-		tmp = "QAM_256";
-		break;
+	case QAM_16: tmp = eDVBFrontendParametersCable::Modulation_QAM16; break;
+	case QAM_32: tmp = eDVBFrontendParametersCable::Modulation_QAM32; break;
+	case QAM_64: tmp = eDVBFrontendParametersCable::Modulation_QAM64; break;
+	case QAM_128: tmp = eDVBFrontendParametersCable::Modulation_QAM128; break;
+	case QAM_256: tmp = eDVBFrontendParametersCable::Modulation_QAM256; break;
 	default:
-	case QAM_AUTO:
-		tmp = "QAM_AUTO";
-		break;
+	case QAM_AUTO:   tmp = eDVBFrontendParametersCable::Modulation_Auto; break;
 	}
 	PutToDict(dict, "modulation", tmp);
 }
 
 void fillDictWithTerrestrialData(ePyObject dict, const FRONTENDPARAMETERS &parm)
 {
-	const char *tmp=0;
+	long tmp=0;
 	PutToDict(dict, "frequency", parm_frequency);
 	switch (parm_u_ofdm_bandwidth)
 	{
-	case BANDWIDTH_8_MHZ:
-		tmp = "BANDWIDTH_8_MHZ";
-		break;
-	case BANDWIDTH_7_MHZ:
-		tmp = "BANDWIDTH_7_MHZ";
-		break;
-	case BANDWIDTH_6_MHZ:
-		tmp = "BANDWIDTH_6_MHZ";
-		break;
+	case BANDWIDTH_8_MHZ: tmp = eDVBFrontendParametersTerrestrial::Bandwidth_8MHz; break;
+	case BANDWIDTH_7_MHZ: tmp = eDVBFrontendParametersTerrestrial::Bandwidth_7MHz; break;
+	case BANDWIDTH_6_MHZ: tmp = eDVBFrontendParametersTerrestrial::Bandwidth_6MHz; break;
 	default:
-	case BANDWIDTH_AUTO:
-		tmp = "BANDWIDTH_AUTO";
-		break;
+	case BANDWIDTH_AUTO: tmp = eDVBFrontendParametersTerrestrial::Bandwidth_Auto; break;
 	}
 	PutToDict(dict, "bandwidth", tmp);
 	switch (parm_u_ofdm_code_rate_LP)
 	{
-	case FEC_1_2:
-		tmp = "FEC_1_2";
-		break;
-	case FEC_2_3:
-		tmp = "FEC_2_3";
-		break;
-	case FEC_3_4:
-		tmp = "FEC_3_4";
-		break;
-	case FEC_5_6:
-		tmp = "FEC_5_6";
-		break;
-	case FEC_7_8:
-		tmp = "FEC_7_8";
-		break;
+	case FEC_1_2: tmp = eDVBFrontendParametersTerrestrial::FEC_1_2; break;
+	case FEC_2_3: tmp = eDVBFrontendParametersTerrestrial::FEC_2_3; break;
+	case FEC_3_4: tmp = eDVBFrontendParametersTerrestrial::FEC_3_4; break;
+	case FEC_5_6: tmp = eDVBFrontendParametersTerrestrial::FEC_5_6; break;
+	case FEC_7_8: tmp = eDVBFrontendParametersTerrestrial::FEC_7_8; break;
 	default:
-	case FEC_AUTO:
-		tmp = "FEC_AUTO";
-		break;
+	case FEC_AUTO: tmp = eDVBFrontendParametersTerrestrial::FEC_Auto; break;
 	}
 	PutToDict(dict, "code_rate_lp", tmp);
 	switch (parm_u_ofdm_code_rate_HP)
 	{
-	case FEC_1_2:
-		tmp = "FEC_1_2";
-		break;
-	case FEC_2_3:
-		tmp = "FEC_2_3";
-		break;
-	case FEC_3_4:
-		tmp = "FEC_3_4";
-		break;
-	case FEC_5_6:
-		tmp = "FEC_5_6";
-		break;
-	case FEC_7_8:
-		tmp = "FEC_7_8";
-		break;
+	case FEC_1_2: tmp = eDVBFrontendParametersTerrestrial::FEC_1_2; break;
+	case FEC_2_3: tmp = eDVBFrontendParametersTerrestrial::FEC_2_3; break;
+	case FEC_3_4: tmp = eDVBFrontendParametersTerrestrial::FEC_3_4; break;
+	case FEC_5_6: tmp = eDVBFrontendParametersTerrestrial::FEC_5_6; break;
+	case FEC_7_8: tmp = eDVBFrontendParametersTerrestrial::FEC_7_8; break;
 	default:
-	case FEC_AUTO:
-		tmp = "FEC_AUTO";
-		break;
+	case FEC_AUTO: tmp = eDVBFrontendParametersTerrestrial::FEC_Auto; break;
 	}
 	PutToDict(dict, "code_rate_hp", tmp);
 	switch (parm_u_ofdm_constellation)
 	{
-	case QPSK:
-		tmp = "QPSK";
-		break;
-	case QAM_16:
-		tmp = "QAM_16";
-		break;
-	case QAM_64:
-		tmp = "QAM_64";
-		break;
+	case QPSK: tmp = eDVBFrontendParametersTerrestrial::Modulation_QPSK; break;
+	case QAM_16: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM16; break;
+	case QAM_64: tmp = eDVBFrontendParametersTerrestrial::Modulation_QAM64; break;
 	default:
-	case QAM_AUTO:
-		tmp = "QAM_AUTO";
-		break;
+	case QAM_AUTO: tmp = eDVBFrontendParametersTerrestrial::Modulation_Auto; break;
 	}
 	PutToDict(dict, "constellation", tmp);
 	switch (parm_u_ofdm_transmission_mode)
 	{
-	case TRANSMISSION_MODE_2K:
-		tmp = "TRANSMISSION_MODE_2K";
-		break;
-	case TRANSMISSION_MODE_8K:
-		tmp = "TRANSMISSION_MODE_8K";
-		break;
+	case TRANSMISSION_MODE_2K: tmp = eDVBFrontendParametersTerrestrial::TransmissionMode_2k; break;
+	case TRANSMISSION_MODE_8K: tmp = eDVBFrontendParametersTerrestrial::TransmissionMode_8k; break;
 	default:
-	case TRANSMISSION_MODE_AUTO:
-		tmp = "TRANSMISSION_MODE_AUTO";
-		break;
+	case TRANSMISSION_MODE_AUTO: tmp = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto; break;
 	}
 	PutToDict(dict, "transmission_mode", tmp);
 	switch (parm_u_ofdm_guard_interval)
 	{
-		case GUARD_INTERVAL_1_32:
-			tmp = "GUARD_INTERVAL_1_32";
-			break;
-		case GUARD_INTERVAL_1_16:
-			tmp = "GUARD_INTERVAL_1_16";
-			break;
-		case GUARD_INTERVAL_1_8:
-			tmp = "GUARD_INTERVAL_1_8";
-			break;
-		case GUARD_INTERVAL_1_4:
-			tmp = "GUARD_INTERVAL_1_4";
-			break;
+		case GUARD_INTERVAL_1_32: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_32; break;
+		case GUARD_INTERVAL_1_16: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_16; break;
+		case GUARD_INTERVAL_1_8: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_8; break;
+		case GUARD_INTERVAL_1_4: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_1_4; break;
 		default:
-		case GUARD_INTERVAL_AUTO:
-			tmp = "GUARD_INTERVAL_AUTO";
-			break;
+		case GUARD_INTERVAL_AUTO: tmp = eDVBFrontendParametersTerrestrial::GuardInterval_Auto; break;
 	}
 	PutToDict(dict, "guard_interval", tmp);
 	switch (parm_u_ofdm_hierarchy_information)
 	{
-		case HIERARCHY_NONE:
-			tmp = "HIERARCHY_NONE";
-			break;
-		case HIERARCHY_1:
-			tmp = "HIERARCHY_1";
-			break;
-		case HIERARCHY_2:
-			tmp = "HIERARCHY_2";
-			break;
-		case HIERARCHY_4:
-			tmp = "HIERARCHY_4";
-			break;
+		case HIERARCHY_NONE: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_None; break;
+		case HIERARCHY_1: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_1; break;
+		case HIERARCHY_2: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_2; break;
+		case HIERARCHY_4: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_4; break;
 		default:
-		case HIERARCHY_AUTO:
-			tmp = "HIERARCHY_AUTO";
-			break;
+		case HIERARCHY_AUTO: tmp = eDVBFrontendParametersTerrestrial::Hierarchy_Auto; break;
 	}
 	PutToDict(dict, "hierarchy_information", tmp);
 }
@@ -1342,20 +1208,18 @@ void eDVBFrontend::getTransponderData(ePyObject dest, bool original)
 				}
 				{
 					const FRONTENDPARAMETERS &parm = original || m_simulate ? this->parm : front;
-					const char *tmp = "INVERSION_AUTO";
+					long tmp = eDVBFrontendParametersSatellite::Inversion_Unknown;
 					switch(parm_inversion & 3)
 					{
 						case INVERSION_ON:
-							tmp = "INVERSION_ON";
+							tmp = eDVBFrontendParametersSatellite::Inversion_On;
 							break;
 						case INVERSION_OFF:
-							tmp = "INVERSION_OFF";
-							break;
+							tmp = eDVBFrontendParametersSatellite::Inversion_Off;
 						default:
 							break;
 					}
-					if (tmp)
-						PutToDict(dest, "inversion", tmp);
+					PutToDict(dest, "inversion", tmp);
 
 					switch(m_type)
 					{
@@ -1889,41 +1753,41 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 		parm_u_qpsk_symbol_rate = feparm.symbol_rate;
 		switch (feparm.inversion)
 		{
-			case eDVBFrontendParametersSatellite::Inversion::On:
+			case eDVBFrontendParametersSatellite::Inversion_On:
 				parm_inversion = INVERSION_ON;
 				break;
-			case eDVBFrontendParametersSatellite::Inversion::Off:
+			case eDVBFrontendParametersSatellite::Inversion_Off:
 				parm_inversion = INVERSION_OFF;
 				break;
 			default:
-			case eDVBFrontendParametersSatellite::Inversion::Unknown:
+			case eDVBFrontendParametersSatellite::Inversion_Unknown:
 				parm_inversion = INVERSION_AUTO;
 				break;
 		}
-		if (feparm.system == eDVBFrontendParametersSatellite::System::DVB_S)
+		if (feparm.system == eDVBFrontendParametersSatellite::System_DVB_S)
 			switch (feparm.fec)
 			{
-				case eDVBFrontendParametersSatellite::FEC::fNone:
+				case eDVBFrontendParametersSatellite::FEC_None:
 					parm_u_qpsk_fec_inner = FEC_NONE;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f1_2:
+				case eDVBFrontendParametersSatellite::FEC_1_2:
 					parm_u_qpsk_fec_inner = FEC_1_2;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f2_3:
+				case eDVBFrontendParametersSatellite::FEC_2_3:
 					parm_u_qpsk_fec_inner = FEC_2_3;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f3_4:
+				case eDVBFrontendParametersSatellite::FEC_3_4:
 					parm_u_qpsk_fec_inner = FEC_3_4;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f5_6:
+				case eDVBFrontendParametersSatellite::FEC_5_6:
 					parm_u_qpsk_fec_inner = FEC_5_6;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f7_8:
+				case eDVBFrontendParametersSatellite::FEC_7_8:
 					parm_u_qpsk_fec_inner = FEC_7_8;
 					break;
 				default:
 					eDebugNoSimulate("no valid fec for DVB-S set.. assume auto");
-				case eDVBFrontendParametersSatellite::FEC::fAuto:
+				case eDVBFrontendParametersSatellite::FEC_Auto:
 					parm_u_qpsk_fec_inner = FEC_AUTO;
 					break;
 			}
@@ -1932,31 +1796,31 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 		{
 			switch (feparm.fec)
 			{
-				case eDVBFrontendParametersSatellite::FEC::f1_2:
+				case eDVBFrontendParametersSatellite::FEC_1_2:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_1_2;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f2_3:
+				case eDVBFrontendParametersSatellite::FEC_2_3:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_2_3;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f3_4:
+				case eDVBFrontendParametersSatellite::FEC_3_4:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_3_4;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f3_5:
+				case eDVBFrontendParametersSatellite::FEC_3_5:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_3_5;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f4_5:
+				case eDVBFrontendParametersSatellite::FEC_4_5:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_4_5;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f5_6:
+				case eDVBFrontendParametersSatellite::FEC_5_6:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_5_6;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f7_8:
+				case eDVBFrontendParametersSatellite::FEC_7_8:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_7_8;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f8_9:
+				case eDVBFrontendParametersSatellite::FEC_8_9:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_8_9;
 					break;
-				case eDVBFrontendParametersSatellite::FEC::f9_10:
+				case eDVBFrontendParametersSatellite::FEC_9_10:
 					parm_u_qpsk_fec_inner = FEC_S2_QPSK_9_10;
 					break;
 				default:
@@ -1965,7 +1829,7 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 			}
 			parm_inversion |= (feparm.rolloff << 2); // Hack.. we use bit 2..3 of inversion param for rolloff
 			parm_inversion |= (feparm.pilot << 4); // Hack.. we use bit 4..5 of inversion param for pilot
-			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation::M8PSK) {
+			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation_8PSK) {
 				parm_u_qpsk_fec_inner = (fe_code_rate_t)((int)parm_u_qpsk_fec_inner+9);
 				// 8PSK fec driver values are decimal 9 bigger
 			}
@@ -1992,66 +1856,66 @@ RESULT eDVBFrontend::prepare_cable(const eDVBFrontendParametersCable &feparm)
 	parm_u_qam_symbol_rate = feparm.symbol_rate;
 	switch (feparm.modulation)
 	{
-	case eDVBFrontendParametersCable::Modulation::QAM16:
+	case eDVBFrontendParametersCable::Modulation_QAM16:
 		parm_u_qam_modulation = QAM_16;
 		break;
-	case eDVBFrontendParametersCable::Modulation::QAM32:
+	case eDVBFrontendParametersCable::Modulation_QAM32:
 		parm_u_qam_modulation = QAM_32;
 		break;
-	case eDVBFrontendParametersCable::Modulation::QAM64:
+	case eDVBFrontendParametersCable::Modulation_QAM64:
 		parm_u_qam_modulation = QAM_64;
 		break;
-	case eDVBFrontendParametersCable::Modulation::QAM128:
+	case eDVBFrontendParametersCable::Modulation_QAM128:
 		parm_u_qam_modulation = QAM_128;
 		break;
-	case eDVBFrontendParametersCable::Modulation::QAM256:
+	case eDVBFrontendParametersCable::Modulation_QAM256:
 		parm_u_qam_modulation = QAM_256;
 		break;
 	default:
-	case eDVBFrontendParametersCable::Modulation::Auto:
+	case eDVBFrontendParametersCable::Modulation_Auto:
 		parm_u_qam_modulation = QAM_AUTO;
 		break;
 	}
 	switch (feparm.inversion)
 	{
-	case eDVBFrontendParametersCable::Inversion::On:
+	case eDVBFrontendParametersCable::Inversion_On:
 		parm_inversion = INVERSION_ON;
 		break;
-	case eDVBFrontendParametersCable::Inversion::Off:
+	case eDVBFrontendParametersCable::Inversion_Off:
 		parm_inversion = INVERSION_OFF;
 		break;
 	default:
-	case eDVBFrontendParametersCable::Inversion::Unknown:
+	case eDVBFrontendParametersCable::Inversion_Unknown:
 		parm_inversion = INVERSION_AUTO;
 		break;
 	}
 	switch (feparm.fec_inner)
 	{
-	case eDVBFrontendParametersCable::FEC::fNone:
+	case eDVBFrontendParametersCable::FEC_None:
 		parm_u_qam_fec_inner = FEC_NONE;
 		break;
-	case eDVBFrontendParametersCable::FEC::f1_2:
+	case eDVBFrontendParametersCable::FEC_1_2:
 		parm_u_qam_fec_inner = FEC_1_2;
 		break;
-	case eDVBFrontendParametersCable::FEC::f2_3:
+	case eDVBFrontendParametersCable::FEC_2_3:
 		parm_u_qam_fec_inner = FEC_2_3;
 		break;
-	case eDVBFrontendParametersCable::FEC::f3_4:
+	case eDVBFrontendParametersCable::FEC_3_4:
 		parm_u_qam_fec_inner = FEC_3_4;
 		break;
-	case eDVBFrontendParametersCable::FEC::f5_6:
+	case eDVBFrontendParametersCable::FEC_5_6:
 		parm_u_qam_fec_inner = FEC_5_6;
 		break;
-	case eDVBFrontendParametersCable::FEC::f7_8:
+	case eDVBFrontendParametersCable::FEC_7_8:
 		parm_u_qam_fec_inner = FEC_7_8;
 		break;
 #if HAVE_DVB_API_VERSION >= 3
-	case eDVBFrontendParametersCable::FEC::f8_9:
+	case eDVBFrontendParametersCable::FEC_8_9:
 		parm_u_qam_fec_inner = FEC_8_9;
 		break;
 #endif
 	default:
-	case eDVBFrontendParametersCable::FEC::fAuto:
+	case eDVBFrontendParametersCable::FEC_Auto:
 		parm_u_qam_fec_inner = FEC_AUTO;
 		break;
 	}
@@ -2070,141 +1934,141 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 
 	switch (feparm.bandwidth)
 	{
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz:
+	case eDVBFrontendParametersTerrestrial::Bandwidth_8MHz:
 		parm_u_ofdm_bandwidth = BANDWIDTH_8_MHZ;
 		break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz:
+	case eDVBFrontendParametersTerrestrial::Bandwidth_7MHz:
 		parm_u_ofdm_bandwidth = BANDWIDTH_7_MHZ;
 		break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz:
+	case eDVBFrontendParametersTerrestrial::Bandwidth_6MHz:
 		parm_u_ofdm_bandwidth = BANDWIDTH_6_MHZ;
 		break;
 	default:
-	case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto:
+	case eDVBFrontendParametersTerrestrial::Bandwidth_Auto:
 		parm_u_ofdm_bandwidth = BANDWIDTH_AUTO;
 		break;
 	}
 	switch (feparm.code_rate_LP)
 	{
-	case eDVBFrontendParametersTerrestrial::FEC::f1_2:
+	case eDVBFrontendParametersTerrestrial::FEC_1_2:
 		parm_u_ofdm_code_rate_LP = FEC_1_2;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f2_3:
+	case eDVBFrontendParametersTerrestrial::FEC_2_3:
 		parm_u_ofdm_code_rate_LP = FEC_2_3;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f3_4:
+	case eDVBFrontendParametersTerrestrial::FEC_3_4:
 		parm_u_ofdm_code_rate_LP = FEC_3_4;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f5_6:
+	case eDVBFrontendParametersTerrestrial::FEC_5_6:
 		parm_u_ofdm_code_rate_LP = FEC_5_6;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f7_8:
+	case eDVBFrontendParametersTerrestrial::FEC_7_8:
 		parm_u_ofdm_code_rate_LP = FEC_7_8;
 		break;
 	default:
-	case eDVBFrontendParametersTerrestrial::FEC::fAuto:
+	case eDVBFrontendParametersTerrestrial::FEC_Auto:
 		parm_u_ofdm_code_rate_LP = FEC_AUTO;
 		break;
 	}
 	switch (feparm.code_rate_HP)
 	{
-	case eDVBFrontendParametersTerrestrial::FEC::f1_2:
+	case eDVBFrontendParametersTerrestrial::FEC_1_2:
 		parm_u_ofdm_code_rate_HP = FEC_1_2;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f2_3:
+	case eDVBFrontendParametersTerrestrial::FEC_2_3:
 		parm_u_ofdm_code_rate_HP = FEC_2_3;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f3_4:
+	case eDVBFrontendParametersTerrestrial::FEC_3_4:
 		parm_u_ofdm_code_rate_HP = FEC_3_4;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f5_6:
+	case eDVBFrontendParametersTerrestrial::FEC_5_6:
 		parm_u_ofdm_code_rate_HP = FEC_5_6;
 		break;
-	case eDVBFrontendParametersTerrestrial::FEC::f7_8:
+	case eDVBFrontendParametersTerrestrial::FEC_7_8:
 		parm_u_ofdm_code_rate_HP = FEC_7_8;
 		break;
 	default:
-	case eDVBFrontendParametersTerrestrial::FEC::fAuto:
+	case eDVBFrontendParametersTerrestrial::FEC_Auto:
 		parm_u_ofdm_code_rate_HP = FEC_AUTO;
 		break;
 	}
 	switch (feparm.modulation)
 	{
-	case eDVBFrontendParametersTerrestrial::Modulation::QPSK:
+	case eDVBFrontendParametersTerrestrial::Modulation_QPSK:
 		parm_u_ofdm_constellation = QPSK;
 		break;
-	case eDVBFrontendParametersTerrestrial::Modulation::QAM16:
+	case eDVBFrontendParametersTerrestrial::Modulation_QAM16:
 		parm_u_ofdm_constellation = QAM_16;
 		break;
-	case eDVBFrontendParametersTerrestrial::Modulation::QAM64:
+	case eDVBFrontendParametersTerrestrial::Modulation_QAM64:
 		parm_u_ofdm_constellation = QAM_64;
 		break;
 	default:
-	case eDVBFrontendParametersTerrestrial::Modulation::Auto:
+	case eDVBFrontendParametersTerrestrial::Modulation_Auto:
 		parm_u_ofdm_constellation = QAM_AUTO;
 		break;
 	}
 	switch (feparm.transmission_mode)
 	{
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM2k:
+	case eDVBFrontendParametersTerrestrial::TransmissionMode_2k:
 		parm_u_ofdm_transmission_mode = TRANSMISSION_MODE_2K;
 		break;
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k:
+	case eDVBFrontendParametersTerrestrial::TransmissionMode_8k:
 		parm_u_ofdm_transmission_mode = TRANSMISSION_MODE_8K;
 		break;
 	default:
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto:
+	case eDVBFrontendParametersTerrestrial::TransmissionMode_Auto:
 		parm_u_ofdm_transmission_mode = TRANSMISSION_MODE_AUTO;
 		break;
 	}
 	switch (feparm.guard_interval)
 	{
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_32:
+		case eDVBFrontendParametersTerrestrial::GuardInterval_1_32:
 			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_32;
 			break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_16:
+		case eDVBFrontendParametersTerrestrial::GuardInterval_1_16:
 			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_16;
 			break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_8:
+		case eDVBFrontendParametersTerrestrial::GuardInterval_1_8:
 			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_8;
 			break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_4:
+		case eDVBFrontendParametersTerrestrial::GuardInterval_1_4:
 			parm_u_ofdm_guard_interval = GUARD_INTERVAL_1_4;
 			break;
 		default:
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto:
+		case eDVBFrontendParametersTerrestrial::GuardInterval_Auto:
 			parm_u_ofdm_guard_interval = GUARD_INTERVAL_AUTO;
 			break;
 	}
 	switch (feparm.hierarchy)
 	{
-		case eDVBFrontendParametersTerrestrial::Hierarchy::HNone:
+		case eDVBFrontendParametersTerrestrial::Hierarchy_None:
 			parm_u_ofdm_hierarchy_information = HIERARCHY_NONE;
 			break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H1:
+		case eDVBFrontendParametersTerrestrial::Hierarchy_1:
 			parm_u_ofdm_hierarchy_information = HIERARCHY_1;
 			break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H2:
+		case eDVBFrontendParametersTerrestrial::Hierarchy_2:
 			parm_u_ofdm_hierarchy_information = HIERARCHY_2;
 			break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H4:
+		case eDVBFrontendParametersTerrestrial::Hierarchy_4:
 			parm_u_ofdm_hierarchy_information = HIERARCHY_4;
 			break;
 		default:
-		case eDVBFrontendParametersTerrestrial::Hierarchy::HAuto:
+		case eDVBFrontendParametersTerrestrial::Hierarchy_Auto:
 			parm_u_ofdm_hierarchy_information = HIERARCHY_AUTO;
 			break;
 	}
 	switch (feparm.inversion)
 	{
-	case eDVBFrontendParametersTerrestrial::Inversion::On:
+	case eDVBFrontendParametersTerrestrial::Inversion_On:
 		parm_inversion = INVERSION_ON;
 		break;
-	case eDVBFrontendParametersTerrestrial::Inversion::Off:
+	case eDVBFrontendParametersTerrestrial::Inversion_Off:
 		parm_inversion = INVERSION_OFF;
 		break;
 	default:
-	case eDVBFrontendParametersTerrestrial::Inversion::Unknown:
+	case eDVBFrontendParametersTerrestrial::Inversion_Unknown:
 		parm_inversion = INVERSION_AUTO;
 		break;
 	}
@@ -2514,10 +2378,10 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 		eDVBFrontendParametersSatellite sat_parm;
 		int ret = feparm->getDVBS(sat_parm);
 		ASSERT(!ret);
-		if (sat_parm.system == eDVBFrontendParametersSatellite::System::DVB_S2 && !m_can_handle_dvbs2)
+		if (sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S2 && !m_can_handle_dvbs2)
 			return 0;
 		ret = m_sec->canTune(sat_parm, this, 1 << m_slotid);
-		if (ret > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System::DVB_S && m_can_handle_dvbs2)
+		if (ret > 1 && sat_parm.system == eDVBFrontendParametersSatellite::System_DVB_S && m_can_handle_dvbs2)
 			ret -= 1;
 		return ret;
 	}
