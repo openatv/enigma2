@@ -14,7 +14,6 @@ from Components.MenuList import MenuList
 from Components.config import ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 
-
 class Satfinder(ScanSetup):
 	def openFrontend(self):
 		res_mgr = eDVBResourceManager.getInstance()
@@ -77,14 +76,14 @@ class Satfinder(ScanSetup):
 				self.list.append(self.systemEntry)
 			else:
 				# downgrade to dvb-s, in case a -s2 config was active
-				self.scan_sat.system.value = "dvb-s"
+				self.scan_sat.system.value = eDVBFrontendParametersSatellite.System_DVB_S
 			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
 			self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
 			self.list.append(getConfigListEntry(_('Symbol Rate'), self.scan_sat.symbolrate))
 			self.list.append(getConfigListEntry(_("Polarity"), self.scan_sat.polarization))
-			if self.scan_sat.system.value == "dvb-s":
+			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
-			elif self.scan_sat.system.value == "dvb-s2":
+			elif self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
 				self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
 				self.list.append(self.modulationEntry)
@@ -111,31 +110,21 @@ class Satfinder(ScanSetup):
 		returnvalue = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 		satpos = int(self.tuning_sat.value)
 		if self.tuning_type.value == "manual_transponder":
-			if self.scan_sat.system.value == "dvb-s2":
+			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
 				fec = self.scan_sat.fec_s2.value
 			else:
 				fec = self.scan_sat.fec.value
 			returnvalue = (
 				self.scan_sat.frequency.value,
 				self.scan_sat.symbolrate.value,
-				self.scan_sat.polarization.index,
-				{ "auto": 0,
-				   "1_2": 1,
-				   "2_3": 2,
-				   "3_4": 3,
-				   "5_6": 4,
-				   "7_8": 5,
-				   "8_9": 6,
-				   "3_5": 7,
-				   "4_5": 8,
-				   "9_10": 9,
-				   "none": 15 }[fec],
-				self.scan_sat.inversion.index,
+				self.scan_sat.polarization.value,
+				fec,
+				self.scan_sat.inversion.value,
 				satpos,
-				self.scan_sat.system.index,
-				self.scan_sat.modulation.index == 1 and 2 or 1,
-				self.scan_sat.rolloff.index,
-				self.scan_sat.pilot.index)
+				self.scan_sat.system.value,
+				self.scan_sat.modulation.value,
+				self.scan_sat.rolloff.value,
+				self.scan_sat.pilot.value)
 			self.tune(returnvalue)
 		elif self.tuning_type.value == "predefined_transponder":
 			tps = nimmanager.getTransponders(satpos)
@@ -179,29 +168,29 @@ class Satfinder(ScanSetup):
 				else:
 					pol = "??"
 				if x[4] == 0:
-					fec = "FEC_AUTO"
+					fec = "FEC Auto"
 				elif x[4] == 1:
-					fec = "FEC_1_2"
+					fec = "FEC 1/2"
 				elif x[4] == 2:
-					fec = "FEC_2_3"
+					fec = "FEC 2/3"
 				elif x[4] == 3:
-					fec = "FEC_3_4"
+					fec = "FEC 3/4"
 				elif x[4] == 4:
-					fec = "FEC_5_6"
+					fec = "FEC 5/6"
 				elif x[4] == 5:
-					fec = "FEC_7_8"
+					fec = "FEC 7/8"
 				elif x[4] == 6:
-					fec = "FEC_8_9"
+					fec = "FEC 8/9"
 				elif x[4] == 7:
-					fec = "FEC_3_5"
+					fec = "FEC 3/5"
 				elif x[4] == 8:
-					fec = "FEC_4_5"
+					fec = "FEC 4/5"
 				elif x[4] == 9:
-					fec = "FEC_9_10"
+					fec = "FEC 9/10"
 				elif x[4] == 15:
-					fec = "FEC_None"
+					fec = "FEC None"
 				else:
-					fec = "FEC_Unknown"
+					fec = "FEC Unknown"
 				e = str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec
 				if default is None:
 					default = e

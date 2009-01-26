@@ -327,10 +327,10 @@ void eDVBDB::loadServicelist(const char *file)
 				eDVBFrontendParametersSatellite sat;
 				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
 					flags=0,
-					system=eDVBFrontendParametersSatellite::System::DVB_S,
-					modulation=eDVBFrontendParametersSatellite::Modulation::QPSK,
-					rolloff=eDVBFrontendParametersSatellite::RollOff::alpha_0_35,
-					pilot=eDVBFrontendParametersSatellite::Pilot::Unknown;
+					system=eDVBFrontendParametersSatellite::System_DVB_S,
+					modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
+					rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
+					pilot=eDVBFrontendParametersSatellite::Pilot_Unknown;
 				if (version == 3)
 					sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff, &pilot);
 				else
@@ -368,9 +368,9 @@ void eDVBDB::loadServicelist(const char *file)
 			{
 				eDVBFrontendParametersCable cab;
 				int frequency, symbol_rate,
-					inversion=eDVBFrontendParametersCable::Inversion::Unknown,
-					modulation=eDVBFrontendParametersCable::Modulation::Auto,
-					fec_inner=eDVBFrontendParametersCable::FEC::fAuto,
+					inversion=eDVBFrontendParametersCable::Inversion_Unknown,
+					modulation=eDVBFrontendParametersCable::Modulation_Auto,
+					fec_inner=eDVBFrontendParametersCable::FEC_Auto,
 					flags=0;
 				sscanf(line+3, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags);
 				cab.frequency = frequency;
@@ -495,7 +495,7 @@ void eDVBDB::saveServicelist(const char *file)
 		ch.m_frontendParameters->getFlags(flags);
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
-			if (sat.system == eDVBFrontendParametersSatellite::System::DVB_S2)
+			if (sat.system == eDVBFrontendParametersSatellite::System_DVB_S2)
 			{
 				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
 					sat.frequency, sat.symbol_rate,
@@ -842,15 +842,15 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 //				eDebug("\telement: %s", (*it)->name().c_str());
 				const AttributeList &tp_attributes = (*it)->getAttributeList();
 				AttributeConstIterator end = tp_attributes.end();
-				modulation = 1; // QPSK default
-				system = 0; // DVB-S default
+				modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
+				system = eDVBFrontendParametersSatellite::System_DVB_S;
 				freq = 0;
 				sr = 0;
 				pol = -1;
-				fec = 0; // AUTO default
-				inv = 2; // AUTO default
-				pilot = 2; // AUTO default
-				rolloff = 0; // alpha 0.35
+				fec = eDVBFrontendParametersSatellite::FEC_Auto;
+				inv = eDVBFrontendParametersSatellite::Inversion_Unknown;
+				pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
+				rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;
 				tsid = -1;
 				onid = -1;
 
@@ -981,8 +981,8 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 //				eDebug("\telement: %s", (*it)->name().c_str());
 				const AttributeList &tp_attributes = (*it)->getAttributeList();
 				AttributeConstIterator end = tp_attributes.end();
-				modulation = 3; // QAM64 default
-				fec = 0; // AUTO default
+				modulation = eDVBFrontendParametersCable::Modulation_QAM64;
+				fec = eDVBFrontendParametersCable::FEC_Auto;
 				freq = 0;
 				sr = 0;
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
@@ -1095,14 +1095,14 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 				const AttributeList &tp_attributes = (*it)->getAttributeList();
 				AttributeConstIterator end = tp_attributes.end();
 				freq = 0;
-				bw = 3; // AUTO
-				constellation = 1; // AUTO
-				crh = 5; // AUTO
-				crl = 5; // AUTO
-				guard = 4; // AUTO
-				transm = 2; // AUTO
-				hierarchy = 4; // AUTO
-				inv = 2; // AUTO
+				bw = eDVBFrontendParametersTerrestrial::Bandwidth_Auto;
+				constellation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
+				crh = eDVBFrontendParametersTerrestrial::FEC_Auto;
+				crl = eDVBFrontendParametersTerrestrial::FEC_Auto;
+				guard = eDVBFrontendParametersTerrestrial::GuardInterval_Auto;
+				transm = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto;
+				hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
+				inv = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
 //					eDebug("\t\tattr: %s", at->name().c_str());

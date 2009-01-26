@@ -16,6 +16,7 @@
 #include <dvbsi++/stream_identifier_descriptor.h>
 #include <dvbsi++/subtitling_descriptor.h>
 #include <dvbsi++/teletext_descriptor.h>
+#include <dvbsi++/video_stream_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
@@ -217,25 +218,49 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					audioStream audio;
 					audio.component_tag=video.component_tag=-1;
 					video.type = videoStream::vtMPEG2;
+					audio.type = audioStream::atMPEG;
 
 					switch ((*es)->getType())
 					{
 					case 0x1b: // AVC Video Stream (MPEG4 H264)
 						video.type = videoStream::vtMPEG4_H264;
+						isvideo = 1;
+						//break; fall through !!!
+					case 0x10: // MPEG 4 Part 2
+						if (!isvideo)
+						{
+							video.type = videoStream::vtMPEG4_Part2;
+							isvideo = 1;
+						}
+						//break; fall through !!!
 					case 0x01: // MPEG 1 video
+						if (!isvideo)
+							video.type = videoStream::vtMPEG1;
+						//break; fall through !!!
 					case 0x02: // MPEG 2 video
 						isvideo = 1;
 						//break; fall through !!!
 					case 0x03: // MPEG 1 audio
 					case 0x04: // MPEG 2 audio:
 						if (!isvideo)
+							isaudio = 1;
+						//break; fall through !!!
+					case 0x0f: // MPEG 2 AAC
+						if (!isvideo && !isaudio)
 						{
 							isaudio = 1;
-							audio.type = audioStream::atMPEG;
+							audio.type = audioStream::atAAC;
 						}
 						//break; fall through !!!
+					case 0x11: // MPEG 4 AAC
+						if (!isvideo && !isaudio)
+						{
+							isaudio = 1;
+							audio.type = audioStream::atAACHE;
+						}
 					case 0x06: // PES Private
 					case 0x81: // user private
+					case 0xEA: // TS_PSI_ST_SMPTE_VC1
 						for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 								desc != (*es)->getDescriptors()->end(); ++desc)
 						{
@@ -246,6 +271,17 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 								   check descriptors to get the exakt type. */
 								switch (tag)
 								{
+								case AUDIO_STREAM_DESCRIPTOR:
+									isaudio = 1;
+									break;
+								case VIDEO_STREAM_DESCRIPTOR:
+								{
+									isvideo = 1;
+									VideoStreamDescriptor *d = (VideoStreamDescriptor*)(*desc);
+									if (d->getMpeg1OnlyFlag())
+										video.type = videoStream::vtMPEG1;
+									break;
+								}
 								case SUBTITLING_DESCRIPTOR:
 								{
 									SubtitlingDescriptor *d = (SubtitlingDescriptor*)(*desc);
@@ -304,9 +340,14 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									isaudio = 1;
 									audio.type = audioStream::atDTS;
 									break;
+								case 0x2B: // TS_PSI_DT_MPEG2_AAC
+									isaudio = 1;
+									audio.type = audioStream::atAAC; // MPEG2-AAC
+									break;
+								case 0x1C: // TS_PSI_DT_MPEG4_Audio
 								case AAC_DESCRIPTOR:
 									isaudio = 1;
-									audio.type = audioStream::atAAC;
+									audio.type = audioStream::atAACHE; // MPEG4-AAC
 									break;
 								case AC3_DESCRIPTOR:
 									isaudio = 1;
@@ -315,7 +356,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 								case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
 								{
 										/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
-									if ((*desc)->getLength() != 4)
+									if ((*desc)->getLength() < 4)
 										break;
 									unsigned char descr[6];
 									(*desc)->writeToBuffer(descr);
@@ -326,11 +367,29 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 										isaudio = 1;
 										audio.type = audioStream::atAC3;
 										break;
+									case 0x56432d31:
+										if (descr[6] == 0x01) // subdescriptor tag
+										{
+											if (descr[7] >= 0x90) // profile_level
+												video.type = videoStream::vtVC1; // advanced profile
+											else
+												video.type = videoStream::vtVC1_SM; // simple main
+											isvideo = 1;
+										}
+										break;
 									default:
 										break;
 									}
 									break;
 								}
+								case 0x28: // TS_PSI_DT_AVC
+									isvideo = 1;
+									video.type = videoStream::vtMPEG4_H264;
+									break;
+								case 0x1B: // TS_PSI_DT_MPEG4_Video
+									isvideo = 1;
+									video.type = videoStream::vtMPEG4_Part2;
+									break;
 								default:
 									break;
 								}

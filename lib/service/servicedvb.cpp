@@ -96,219 +96,50 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 	return false;
 }
 
-static void PutToDictAsStr(ePyObject &dict, const char*key, long value)
-{
-	ePyObject item = PyString_FromFormat("%d", value);
-	if (item)
-	{
-		if (PyDict_SetItemString(dict, key, item))
-			eDebug("put %s to dict failed", key);
-		Py_DECREF(item);
-	}
-	else
-		eDebug("could not create PyObject for %s", key);
-}
-
 extern void PutToDict(ePyObject &dict, const char*key, long value);  // defined in dvb/frontend.cpp
 extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
 extern void PutToDict(ePyObject &dict, const char*key, const char *value); // defined in dvb/frontend.cpp
 
 void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm)
 {
-	const char *tmp=0;
-	PutToDict(dict, "type", "Satellite");
-	PutToDictAsStr(dict, "frequency", feparm.frequency);
-	PutToDictAsStr(dict, "symbolrate", feparm.symbol_rate);
-	PutToDictAsStr(dict, "orbital position", feparm.orbital_position);
-	switch (feparm.inversion)
+	PutToDict(dict, "tuner_type", "DVB-S");
+	PutToDict(dict, "frequency", feparm.frequency);
+	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
+	PutToDict(dict, "orbital_position", feparm.orbital_position);
+	PutToDict(dict, "inversion", feparm.inversion);
+	PutToDict(dict, "fec_inner", feparm.fec);
+	PutToDict(dict, "modulation", feparm.modulation);
+	PutToDict(dict, "polarization", feparm.polarisation);
+	if (feparm.system == eDVBFrontendParametersSatellite::System_DVB_S2)
 	{
-		case eDVBFrontendParametersSatellite::Inversion::On: tmp="ON"; break;
-		case eDVBFrontendParametersSatellite::Inversion::Off: tmp="OFF"; break;
-		default:
-		case eDVBFrontendParametersSatellite::Inversion::Unknown: tmp="AUTO"; break;
+		PutToDict(dict, "rolloff", feparm.rolloff);
+		PutToDict(dict, "pilot", feparm.pilot);
 	}
-	PutToDict(dict, "inversion", tmp);
-	switch (feparm.fec)
-	{
-		case eDVBFrontendParametersSatellite::FEC::fNone: tmp="NONE"; break;
-		case eDVBFrontendParametersSatellite::FEC::f1_2: tmp="1/2"; break;
-		case eDVBFrontendParametersSatellite::FEC::f2_3: tmp="2/3"; break;
-		case eDVBFrontendParametersSatellite::FEC::f3_4: tmp="3/4"; break;
-		case eDVBFrontendParametersSatellite::FEC::f5_6: tmp="5/6"; break;
-		case eDVBFrontendParametersSatellite::FEC::f7_8: tmp="7/8"; break;
-		case eDVBFrontendParametersSatellite::FEC::f3_5: tmp="3/5"; break;
-		case eDVBFrontendParametersSatellite::FEC::f4_5: tmp="4/5"; break;
-		case eDVBFrontendParametersSatellite::FEC::f8_9: tmp="8/9"; break;
-		case eDVBFrontendParametersSatellite::FEC::f9_10: tmp="9/10"; break;
-		default:
-		case eDVBFrontendParametersSatellite::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "fec inner", tmp);
-	switch (feparm.modulation)
-	{
-		case eDVBFrontendParametersSatellite::Modulation::Auto: tmp="AUTO"; break;
-		case eDVBFrontendParametersSatellite::Modulation::QPSK: tmp="QPSK"; break;
-		case eDVBFrontendParametersSatellite::Modulation::M8PSK: tmp="8PSK"; break;
-		case eDVBFrontendParametersSatellite::Modulation::QAM_16: tmp="QAM16"; break;
-	}
-	PutToDict(dict, "modulation", tmp);
-	switch(feparm.polarisation)
-	{
-		case eDVBFrontendParametersSatellite::Polarisation::Horizontal: tmp="HORIZONTAL"; break;
-		case eDVBFrontendParametersSatellite::Polarisation::Vertical: tmp="VERTICAL"; break;
-		case eDVBFrontendParametersSatellite::Polarisation::CircularLeft: tmp="CIRCULAR LEFT"; break;
-		default:
-		case eDVBFrontendParametersSatellite::Polarisation::CircularRight: tmp="CIRCULAR RIGHT"; break;
-	}
-	PutToDict(dict, "polarization", tmp);
-	switch(feparm.system)
-	{
-		default:
-		case eDVBFrontendParametersSatellite::System::DVB_S: tmp="DVB-S"; break;
-		case eDVBFrontendParametersSatellite::System::DVB_S2:
-			switch(feparm.rolloff)
-			{
-				default:
-				case eDVBFrontendParametersSatellite::RollOff::alpha_0_35: tmp="0.35"; break;
-				case eDVBFrontendParametersSatellite::RollOff::alpha_0_25: tmp="0.25"; break;
-				case eDVBFrontendParametersSatellite::RollOff::alpha_0_20: tmp="0.20"; break;
-			}
-			PutToDict(dict, "roll off", tmp);
-			switch(feparm.pilot)
-			{
-				case eDVBFrontendParametersSatellite::Pilot::On: tmp="ON"; break;
-				case eDVBFrontendParametersSatellite::Pilot::Off: tmp="OFF"; break;
-				default:
-				case eDVBFrontendParametersSatellite::Pilot::Unknown: tmp="AUTO"; break;
-			}
-			PutToDict(dict, "pilot", tmp);
-			tmp="DVB-S2";
-			break;
-	}
-	PutToDict(dict, "system", tmp);
+	PutToDict(dict, "system", feparm.system);
 }
 
 void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial &feparm)
 {
-	PutToDict(dict, "type", "Terrestrial");
-	PutToDictAsStr(dict, "frequency", feparm.frequency);
-	const char *tmp=0;
-	switch (feparm.bandwidth)
-	{
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz: tmp="8 MHz"; break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz: tmp="7 MHz"; break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz: tmp="6 MHz"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "bandwidth", tmp);
-	switch (feparm.code_rate_LP)
-	{
-	case eDVBFrontendParametersTerrestrial::FEC::f1_2: tmp="1/2"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f2_3: tmp="2/3"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f3_4: tmp="3/4"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f5_6: tmp="5/6"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f7_8: tmp="7/8"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "code rate lp", tmp);
-	switch (feparm.code_rate_HP)
-	{
-	case eDVBFrontendParametersTerrestrial::FEC::f1_2: tmp="1/2"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f2_3: tmp="2/3"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f3_4: tmp="3/4"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f5_6: tmp="5/6"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f7_8: tmp="7/8"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "code rate hp", tmp);
-	switch (feparm.modulation)
-	{
-	case eDVBFrontendParametersTerrestrial::Modulation::QPSK: tmp="QPSK"; break;
-	case eDVBFrontendParametersTerrestrial::Modulation::QAM16: tmp="QAM16"; break;
-	case eDVBFrontendParametersTerrestrial::Modulation::QAM64: tmp="QAM64"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::Modulation::Auto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "constellation", tmp);
-	switch (feparm.transmission_mode)
-	{
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM2k: tmp="2k"; break;
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k: tmp="8k"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "transmission mode", tmp);
-	switch (feparm.guard_interval)
-	{
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_32: tmp="1/32"; break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_16: tmp="1/16"; break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_8: tmp="1/8"; break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_4: tmp="1/4"; break;
-		default:
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "guard interval", tmp);
-	switch (feparm.hierarchy)
-	{
-		case eDVBFrontendParametersTerrestrial::Hierarchy::HNone: tmp="NONE"; break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H1: tmp="1"; break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H2: tmp="2"; break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H4: tmp="4"; break;
-		default:
-		case eDVBFrontendParametersTerrestrial::Hierarchy::HAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "hierarchy", tmp);
-	switch (feparm.inversion)
-	{
-		case eDVBFrontendParametersSatellite::Inversion::On: tmp="ON"; break;
-		case eDVBFrontendParametersSatellite::Inversion::Off: tmp="OFF"; break;
-		default:
-		case eDVBFrontendParametersSatellite::Inversion::Unknown: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "inversion", tmp);
+	PutToDict(dict, "tuner_type", "DVB-T");
+	PutToDict(dict, "frequency", feparm.frequency);
+	PutToDict(dict, "bandwidth", feparm.bandwidth);
+	PutToDict(dict, "code_rate_lp", feparm.code_rate_LP);
+	PutToDict(dict, "code_rate_hp", feparm.code_rate_HP);
+	PutToDict(dict, "constellation", feparm.modulation);
+	PutToDict(dict, "transmission_mode", feparm.transmission_mode);
+	PutToDict(dict, "guard_interval", feparm.guard_interval);
+	PutToDict(dict, "hierarchy_information", feparm.hierarchy);
+	PutToDict(dict, "inversion", feparm.inversion);
 }
 
 void PutCableDataToDict(ePyObject &dict, eDVBFrontendParametersCable &feparm)
 {
-	const char *tmp=0;
-	PutToDict(dict, "type", "Cable");
-	PutToDictAsStr(dict, "frequency", feparm.frequency);
-	PutToDictAsStr(dict, "symbolrate", feparm.symbol_rate);
-	switch (feparm.modulation)
-	{
-	case eDVBFrontendParametersCable::Modulation::QAM16: tmp="QAM16"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM32: tmp="QAM32"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM64: tmp="QAM64"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM128: tmp="QAM128"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM256: tmp="QAM256"; break;
-	default:
-	case eDVBFrontendParametersCable::Modulation::Auto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "modulation", tmp);
-	switch (feparm.inversion)
-	{
-	case eDVBFrontendParametersCable::Inversion::On: tmp="ON"; break;
-	case eDVBFrontendParametersCable::Inversion::Off: tmp="OFF"; break;
-	default:
-	case eDVBFrontendParametersCable::Inversion::Unknown: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "inversion", tmp);
-	switch (feparm.fec_inner)
-	{
-	case eDVBFrontendParametersCable::FEC::fNone: tmp="NONE"; break;
-	case eDVBFrontendParametersCable::FEC::f1_2: tmp="1/2"; break;
-	case eDVBFrontendParametersCable::FEC::f2_3: tmp="2/3"; break;
-	case eDVBFrontendParametersCable::FEC::f3_4: tmp="3/4"; break;
-	case eDVBFrontendParametersCable::FEC::f5_6: tmp="5/6"; break;
-	case eDVBFrontendParametersCable::FEC::f7_8: tmp="7/8"; break;
-	case eDVBFrontendParametersCable::FEC::f8_9: tmp="8/9"; break;
-	default:
-	case eDVBFrontendParametersCable::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "fec inner", tmp);
+	PutToDict(dict, "tuner_type", "DVB-C");
+	PutToDict(dict, "frequency", feparm.frequency);
+	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
+	PutToDict(dict, "modulation", feparm.modulation);
+	PutToDict(dict, "inversion", feparm.inversion);
+	PutToDict(dict, "fec_inner", feparm.fec_inner);
 }
 
 PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r, int what)
@@ -1769,6 +1600,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "AC3";
 	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAAC)
 		info.m_description = "AAC";
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAACHE)
+		info.m_description = "AAC-HE";
 	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
 		info.m_description = "DTS";
 	else
@@ -2028,16 +1861,7 @@ PyObject *eDVBServiceBase::getTransponderData(bool original)
 					if (!feparm->getDVBS(osat))
 					{
 						PutToDict(ret, "orbital_position", osat.orbital_position);
-						const char *tmp = "UNKNOWN";
-						switch(osat.polarisation)
-						{
-							case eDVBFrontendParametersSatellite::Polarisation::Horizontal: tmp="HORIZONTAL"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::Vertical: tmp="VERTICAL"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::CircularLeft: tmp="CIRCULAR_LEFT"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::CircularRight: tmp="CIRCULAR_RIGHT"; break;
-							default:break;
-						}
-						PutToDict(ret, "polarization", tmp);
+						PutToDict(ret, "polarization", osat.polarisation);
 					}
 				}
 			}
