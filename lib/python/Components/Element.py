@@ -16,6 +16,13 @@ def cached(f):
 		return cache[name][1]
 	return wrapper
 
+class ElementError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return self.message
+
 class Element(object):
 	CHANGED_DEFAULT = 0   # initial "pull" state
 	CHANGED_ALL = 1       # really everything changed
