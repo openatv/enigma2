@@ -408,7 +408,7 @@ class TimerSanityConflict(Screen):
 				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Enable"))
 				self.key_green_choice = self.ENABLE
-			elif self.timer[0].isRunning() and not timer[0].repeated and self.key_green_choice != self.EMPTY:
+			elif self.timer[0].isRunning() and not self.timer[0].repeated and self.key_green_choice != self.EMPTY:
 				self.removeAction("green")
 				self["key_green"].setText(" ")
 				self.key_green_choice = self.EMPTY
@@ -428,7 +428,7 @@ class TimerSanityConflict(Screen):
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Enable"))
 					self.key_blue_choice = self.ENABLE
-				elif self.timer[x].isRunning() and not timer[x].repeated and self.key_blue_choice != self.EMPTY:
+				elif self.timer[x].isRunning() and not self.timer[x].repeated and self.key_blue_choice != self.EMPTY:
 					self.removeAction("blue")
 					self["key_blue"].setText(" ")
 					self.key_blue_choice = self.EMPTY
