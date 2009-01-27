@@ -21,7 +21,9 @@ class Console(object):
 		self.appContainers[name] = eConsoleAppContainer()
 		self.appContainers[name].dataAvail.append(boundFunction(self.dataAvailCB,name))
 		self.appContainers[name].appClosed.append(boundFunction(self.finishedCB,name))
-		retval = self.appContainers[name].execute(cmd)
+		if isinstance(cmd, str): # until .execute supports a better api
+			cmd = [cmd]
+		retval = self.appContainers[name].execute(*cmd)
 		if retval:
 			self.finishedCB(name, retval)
 
