@@ -37,9 +37,9 @@ RESULT pNavigation::stopService()
 	return m_core->stopService();
 }
 
-RESULT pNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service)
+RESULT pNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate)
 {
-	return m_core->recordService(ref, service);
+	return m_core->recordService(ref, service, simulate);
 }
 
 RESULT pNavigation::stopRecordService(ePtr<iRecordableService> &service)
@@ -47,9 +47,9 @@ RESULT pNavigation::stopRecordService(ePtr<iRecordableService> &service)
 	return m_core->stopRecordService(service);
 }
 
-PyObject *pNavigation::getRecordings(void)
+PyObject *pNavigation::getRecordings(bool simulate)
 {
-	return m_core->getRecordings();
+	return m_core->getRecordings(simulate);
 }
 
 void pNavigation::navEvent(int event)
