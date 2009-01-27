@@ -65,7 +65,7 @@ def do_file(f, mode):
 					except:
 						pass
 				
-					raise "action enum must be simple."
+					raise Exception("action enum must be simple.")
 			
 				counter = 0
 			
@@ -82,7 +82,7 @@ def do_file(f, mode):
 					
 					if counter:
 						if t != ",":
-							raise "no comma"
+							raise Exception("no comma")
 						t = tokens.next()
 				
 					if firsthit:

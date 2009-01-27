@@ -35,7 +35,7 @@ class Canvas(Renderer):
 				self.instance.writeText(eRect(l[1], l[2], l[3], l[4]), gRGB(l[5]), gRGB(l[6]), l[7], l[8], l[9])
 			else:
 				print "drawlist entry:", l
-				raise "invalid drawlist entry"
+				raise RuntimeError("invalid drawlist entry")
 
 	def changed(self, what):
 		self.pull_updates()
