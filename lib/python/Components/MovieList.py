@@ -93,10 +93,7 @@ class MovieList(GUIComponent):
 		if len > 0:
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
-			if config.usage.load_length_of_movies_in_moviellist.value:
-				len = "?:??"
-			else:
-				len = "X:XX"
+			len = ""
 		
 		res = [ None ]
 		
