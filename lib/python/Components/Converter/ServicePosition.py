@@ -1,7 +1,7 @@
 from Converter import Converter
 from Poll import Poll
 from enigma import iPlayableService
-from Components.Element import cached
+from Components.Element import cached, ElementError
 
 class ServicePosition(Converter, Poll, object):
 	TYPE_LENGTH = 0
@@ -35,7 +35,7 @@ class ServicePosition(Converter, Poll, object):
 		elif type == "Gauge":
 			self.type = self.TYPE_GAUGE
 		else:
-			raise "type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours|NoSeconds}"
+			raise ElementError("type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours|NoSeconds}")
 
 		self.poll_enabled = self.type != self.TYPE_LENGTH
 

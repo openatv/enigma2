@@ -14,7 +14,7 @@ def LoadPixmap(path, desktop = None, cached = False):
 		alpha = loadPNG(path + "a.png")
 		ptr = loadJPG(path + "rgb.jpg", alpha)
 	else:
-		raise "neither .png nor .jpg, please fix file extension"
+		raise Exception("neither .png nor .jpg, please fix file extension")
 	if ptr and desktop:
 		desktop.makeCompatiblePixmap(ptr)
 

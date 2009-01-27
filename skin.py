@@ -274,7 +274,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				colorNames[name] = parseColor(color)
 				#print "Color:", name, color
 			else:
-				raise ("need color and name, got %s %s" % (name, color))
+				raise SkinError("need color and name, got %s %s" % (name, color))
 
 	for c in skin.findall("fonts"):
 		for font in c.findall("font"):
@@ -335,7 +335,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			try:
 				style.setColor(eWindowStyleSkinned.__dict__["col" + type], color)
 			except:
-				raise ("Unknown color %s" % (type))
+				raise SkinError("Unknown color %s" % (type))
 				#pass
 
 			#print "  color:", type, color

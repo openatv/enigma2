@@ -14,8 +14,6 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 from time import localtime, mktime
 from datetime import datetime
 
-from sets import Set
-
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
 	for x in satlist:
@@ -123,7 +121,7 @@ class SecConfigure:
 
 	def update(self):
 		sec = secClass.getInstance()
-		self.configuredSatellites = Set()
+		self.configuredSatellites = set()
 		sec.clear() ## this do unlinking NIMs too !!
 		print "sec config cleared"
 
@@ -442,7 +440,7 @@ class SecConfigure:
 
 	def __init__(self, nimmgr):
 		self.NimManager = nimmgr
-		self.configuredSatellites = Set()
+		self.configuredSatellites = set()
 		self.update()
 
 class NIM(object):
