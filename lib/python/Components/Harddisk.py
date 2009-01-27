@@ -2,7 +2,8 @@ from os import system, listdir, statvfs, popen, makedirs, readlink, stat, major,
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.CList import CList
 from SystemInfo import SystemInfo
-import string
+import string, time
+from Components.Console import Console
 
 def tryOpen(filename):
 	try:
@@ -18,6 +19,8 @@ class Harddisk:
 		tmp = procfile.readline().split(':')
 		s_major = int(tmp[0])
 		s_minor = int(tmp[1])
+		self.max_idle_time = 0
+		self.idle_running = False
 		for disc in listdir("/dev/discs"):
 			path = readlink('/dev/discs/'+disc)
 			devidex = '/dev/discs/'+disc+'/'
@@ -28,6 +31,7 @@ class Harddisk:
 				self.devidex = devidex
 				self.devidex2 = devidex2
 				print "new Harddisk", device, '->', self.devidex, '->', self.devidex2
+				self.startIdle()
 				break
 
 	def __lt__(self, ob):
@@ -212,6 +216,64 @@ class Harddisk:
 	
 	def getDeviceName(self):
 		return self.getDeviceDir() + "disc"
+
+	# the HDD idle poll daemon.
+	# as some harddrives have a buggy standby timer, we are doing this by hand here.
+	# first, we disable the hardware timer. then, we check every now and then if
+	# any access has been made to the disc. If there has been no access over a specifed time,
+	# we set the hdd into standby.
+	def readStats(self):
+		l = open("/sys/block/%s/stat" % self.device).read()
+		nr_read = int(l[:8].strip())
+		nr_write = int(l[4*9:4*9+8].strip())
+		return nr_read, nr_write
+
+	def startIdle(self):
+		self.last_access = time.time()
+		self.last_stat = 0
+		self.is_sleeping = False
+		from enigma import eTimer
+
+		# disable HDD standby timer
+		Console().ePopen(("hdparm", "hdparm", "-S0", (self.devidex + "disc")))
+		self.timer = eTimer()
+		self.timer.callback.append(self.runIdle)
+		self.idle_running = True
+		self.setIdleTime(self.max_idle_time) # kick the idle polling loop
+
+	def runIdle(self):
+		if not self.max_idle_time:
+			return
+		t = time.time()
+
+		idle_time = t - self.last_access
+
+		l = sum(self.readStats())
+
+		if l != self.last_stat: # access
+			self.last_stat = l
+			self.last_access = t
+			self.idle_time = 0
+			self.is_sleeping = False
+
+		#print "[IDLE]", idle_time, self.max_idle_time, self.is_sleeping
+		if idle_time >= self.max_idle_time and not self.is_sleeping:
+			self.setSleep()
+			self.is_sleeping = True
+
+	def setSleep(self):
+		Console().ePopen(("hdparm", "hdparm", "-y", (self.devidex + "disc")))
+
+	def setIdleTime(self, idle):
+		self.max_idle_time = idle
+		if self.idle_running:
+			if not idle:
+				self.timer.stop()
+			else:
+				self.timer.start(idle * 250, False)  # poll 4 times per period.
+
+	def isSleeping(self):
+		return self.is_sleeping
 
 class Partition:
 	def __init__(self, mountpoint, device = None, description = "", force_mounted = False):
