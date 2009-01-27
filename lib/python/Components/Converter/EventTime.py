@@ -1,7 +1,7 @@
 from Converter import Converter
 from Poll import Poll
 from time import time
-from Components.Element import cached
+from Components.Element import cached, ElementError
 
 class EventTime(Poll, Converter, object):
 	STARTTIME = 0
@@ -28,7 +28,7 @@ class EventTime(Poll, Converter, object):
 			self.poll_interval = 30*1000
 			self.poll_enabled = True
 		else:
-			raise str("'%s' is not <StartTime|EndTime|Remaining|Duration|Progress> for EventTime converter" % type)
+			raise ElementError("'%s' is not <StartTime|EndTime|Remaining|Duration|Progress> for EventTime converter" % type)
 
 	@cached
 	def getTime(self):

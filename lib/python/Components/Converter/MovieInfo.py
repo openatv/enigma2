@@ -1,5 +1,5 @@
 from Components.Converter.Converter import Converter
-from Components.Element import cached
+from Components.Element import cached, ElementError
 from enigma import iServiceInformation
 from ServiceReference import ServiceReference
 
@@ -16,7 +16,7 @@ class MovieInfo(Converter, object):
 		elif type == "RecordServiceName":
 			self.type = self.MOVIE_REC_SERVICE_NAME
 		else:
-			raise str("'%s' is not <ShortDescription|MetaDescription|RecordServiceName> for MovieInfo converter" % type)
+			raise ElementError("'%s' is not <ShortDescription|MetaDescription|RecordServiceName> for MovieInfo converter" % type)
 		Converter.__init__(self, type)
 
 	@cached
