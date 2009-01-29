@@ -19,6 +19,13 @@ except:
 setupdom = xml.etree.cElementTree.parse(setupfile)
 setupfile.close()
 
+class SetupError(Exception):
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return self.message
+
 class SetupSummary(Screen):
 	skin = """
 	<screen position="6,0" size="120,64">
@@ -145,4 +152,4 @@ def getSetupTitle(id):
 	for x in xmldata.findall("setup"):
 		if x.get("key") == id:
 			return x.get("title", "").encode("UTF-8")
-	raise "unknown setup id '%s'!" % repr(id)
+	raise SetupError("unknown setup id '%s'!" % repr(id))

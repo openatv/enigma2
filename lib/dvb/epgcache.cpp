@@ -2058,7 +2058,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 			ePyObject obj = PyTuple_GET_ITEM(arg,0);
 			if (PyString_Check(obj))
 			{
+#if PY_VERSION_HEX < 0x02060000
 				argcount = PyString_GET_SIZE(obj);
+#else
+				argcount = PyString_Size(obj);
+#endif
 				argstring = PyString_AS_STRING(obj);
 				for (int i=0; i < argcount; ++i)
 					switch(argstring[i])
@@ -2156,7 +2160,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 				{
 					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
 					const char *str = PyString_AS_STRING(obj);
+#if PY_VERSION_HEX < 0x02060000
 					int textlen = PyString_GET_SIZE(obj);
+#else
+					int textlen = PyString_Size(obj);
+#endif
 					if (querytype == 1)
 						eDebug("lookup for events with '%s' as title(%s)", str, casetype?"ignore case":"case sensitive");
 					else
@@ -2171,20 +2179,32 @@ PyObject *eEPGCache::search(ePyObject arg)
 							int title_len = data[5];
 							if ( querytype == 1 )
 							{
+								int offs = 6;
+								// skip DVB-Text Encoding!
+								if (data[6] == 0x10)
+								{
+									offs+=3;
+									title_len-=3;
+								}
+								else if(data[6] > 0 && data[6] < 0x20)
+								{
+									offs+=1;
+									title_len-=1;
+								}
 								if (title_len != textlen)
 									continue;
 								if ( casetype )
 								{
-									if ( !strncasecmp((const char*)data+6, str, title_len) )
+									if ( !strncasecmp((const char*)data+offs, str, title_len) )
 									{
-//										std::string s((const char*)data+6, title_len);
+//										std::string s((const char*)data+offs, title_len);
 //										eDebug("match1 %s %s", str, s.c_str() );
 										descr[++descridx] = it->first;
 									}
 								}
-								else if ( !strncmp((const char*)data+6, str, title_len) )
+								else if ( !strncmp((const char*)data+offs, str, title_len) )
 								{
-//									std::string s((const char*)data+6, title_len);
+//									std::string s((const char*)data+offs, title_len);
 //									eDebug("match2 %s %s", str, s.c_str() );
 									descr[++descridx] = it->first;
 								}

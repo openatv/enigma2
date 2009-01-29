@@ -72,7 +72,7 @@ RESULT eNavigation::stopService(void)
 	return 0;
 }
 
-RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service)
+RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate)
 {
 	assert(m_servicehandler);
 	RESULT res = m_servicehandler->record(ref, service);
@@ -81,9 +81,14 @@ RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 		service = 0;
 	else
 	{
-		ePtr<eConnection> conn;
-		service->connectEvent(slot(*this, &eNavigation::recordEvent), conn);
-		m_recordings[service]=conn;
+		if (simulate)
+			m_simulate_recordings.insert(service);
+		else
+		{
+			ePtr<eConnection> conn;
+			service->connectEvent(slot(*this, &eNavigation::recordEvent), conn);
+			m_recordings[service]=conn;
+		}
 	}
 	return res;
 }
@@ -91,26 +96,40 @@ RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 RESULT eNavigation::stopRecordService(ePtr<iRecordableService> &service)
 {
 	service->stop();
-	std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it =
-		m_recordings.find(service);
-	if (it != m_recordings.end())
+	std::set<ePtr<iRecordableService> >::iterator it =
+		m_simulate_recordings.find(service);
+	if (it != m_simulate_recordings.end())
 	{
-		m_recordings.erase(it);
-		/* send stop event */
-		m_record_event(service, iRecordableService::evEnd);
+		m_simulate_recordings.erase(it);
 		return 0;
+	}
+	else
+	{
+		std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it =
+			m_recordings.find(service);
+		if (it != m_recordings.end())
+		{
+			m_recordings.erase(it);
+			/* send stop event */
+			m_record_event(service, iRecordableService::evEnd);
+			return 0;
+		}
 	}
 
 	eDebug("try to stop non running recording!!");  // this should not happen
 	return -1;
 }
 
-PyObject *eNavigation::getRecordings(void)
+PyObject *eNavigation::getRecordings(bool simulate)
 {
-	ePyObject result = PyList_New(m_recordings.size());
+	ePyObject result = PyList_New(simulate ? m_simulate_recordings.size() : m_recordings.size());
 	int pos=0;
-	for (std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it(m_recordings.begin()); it != m_recordings.end(); ++it)
-		PyList_SET_ITEM(result, pos++, NEW_iRecordableServicePtr(it->first)); 
+	if (simulate)
+		for (std::set<ePtr<iRecordableService> >::iterator it(m_simulate_recordings.begin()); it != m_simulate_recordings.end(); ++it)
+			PyList_SET_ITEM(result, pos++, NEW_iRecordableServicePtr(*it));
+	else
+		for (std::map<ePtr<iRecordableService>, ePtr<eConnection> >::iterator it(m_recordings.begin()); it != m_recordings.end(); ++it)
+			PyList_SET_ITEM(result, pos++, NEW_iRecordableServicePtr(it->first)); 
 	return result;
 }
 

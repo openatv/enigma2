@@ -5,6 +5,7 @@
 #include <lib/service/iservice.h>
 #include <connection.h>
 #include <map>
+#include <set>
 
 class eNavigation: public iObject, public Object
 {
@@ -17,6 +18,8 @@ class eNavigation: public iObject, public Object
 	void serviceEvent(iPlayableService* service, int event);
 
 	std::map<ePtr<iRecordableService>, ePtr<eConnection>, std::less<iRecordableService*> > m_recordings;
+	std::set<ePtr<iRecordableService>, std::less<iRecordableService*> > m_simulate_recordings;
+
 	Signal2<void,ePtr<iRecordableService>,int> m_record_event;
 	void recordEvent(iRecordableService* service, int event);
 public:
@@ -28,9 +31,9 @@ public:
 	RESULT getCurrentService(ePtr<iPlayableService> &service);
 	RESULT stopService(void);
 	
-	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service);
+	RESULT recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate=false);
 	RESULT stopRecordService(ePtr<iRecordableService> &service);
-	PyObject *getRecordings(void);
+	PyObject *getRecordings(bool simulate=false);
 	
 	RESULT pause(int p);
 	eNavigation(iServiceHandler *serviceHandler);
