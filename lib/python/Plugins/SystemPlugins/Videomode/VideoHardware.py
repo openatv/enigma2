@@ -293,6 +293,7 @@ class VideoHardware:
 
 		is_widescreen = force_widescreen or config.av.aspect.value in ["16_9", "16_10"]
 		is_auto = config.av.aspect.value == "auto"
+		policy2 = "policy" # use main policy
 
 		if is_widescreen:
 			if force_widescreen:
@@ -300,6 +301,7 @@ class VideoHardware:
 			else:
 				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
 			policy = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}[config.av.policy_43.value]
+			policy2 = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"
 			policy = "bestfit"
@@ -312,10 +314,14 @@ class VideoHardware:
 		else:
 			wss = "auto"
 
-		print "-> setting aspect, policy, wss", aspect, policy, wss
+		print "-> setting aspect, policy, policy2, wss", aspect, policy, policy2, wss
 		open("/proc/stb/video/aspect", "w").write(aspect)
 		open("/proc/stb/video/policy", "w").write(policy)
 		open("/proc/stb/denc/0/wss", "w").write(wss)
+		try:
+			open("/proc/stb/video/policy2", "w").write(policy2)
+		except IOError:
+			pass
 		self.updateSlowblank()
 		self.updateFastblank()
 

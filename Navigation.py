@@ -87,7 +87,7 @@ class Navigation:
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
-			service = ref and self.pnav and self.pnav.recordService(ref)
+			service = ref and self.pnav and self.pnav.recordService(ref, simulate)
 			if service is None:
 				print "record returned non-zero"
 		return service
@@ -96,8 +96,8 @@ class Navigation:
 		ret = self.pnav and self.pnav.stopRecordService(service)
 		return ret
 
-	def getRecordings(self):
-		return self.pnav and self.pnav.getRecordings()
+	def getRecordings(self, simulate=False):
+		return self.pnav and self.pnav.getRecordings(simulate)
 
 	def getCurrentService(self):
 		if not self.currentlyPlayingService:

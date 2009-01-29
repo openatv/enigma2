@@ -1449,10 +1449,28 @@ class InfoBarInstantRecord:
 
 		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = config.movielist.last_videodir.value)
 		recording.dontSave = True
-		recording.autoincrease = True
-		if recording.setAutoincreaseEnd():
-			self.session.nav.RecordTimer.record(recording)
-			self.recording.append(recording)
+		
+		if event is None or limitEvent == False:
+			recording.autoincrease = True
+			if recording.setAutoincreaseEnd():
+				self.session.nav.RecordTimer.record(recording)
+				self.recording.append(recording)
+		else:
+				simulTimerList = self.session.nav.RecordTimer.record(recording)
+				if simulTimerList is not None:	# conflict with other recording
+					name = simulTimerList[1].name
+					name_date = name + strftime(" %c", localtime(simulTimerList[1].begin))
+					print "[TIMER] conflicts with", name_date
+					recording.autoincrease = True	# start with max available length, then increment
+					if recording.setAutoincreaseEnd():
+						self.session.nav.RecordTimer.record(recording)
+						self.recording.append(recording)
+						self.session.open(MessageBox, _("Record time limited due to conflicting timer %s") % name_date, MessageBox.TYPE_INFO)
+					else:
+						self.session.open(MessageBox, _("Couldn't record due to conflicting timer %s") % name, MessageBox.TYPE_INFO)
+					recording.autoincrease = False
+				else:
+					self.recording.append(recording)
 
 	def isInstantRecordRunning(self):
 		print "self.recording:", self.recording

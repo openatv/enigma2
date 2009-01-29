@@ -50,9 +50,10 @@ class PositionGauge(Renderer):
 		return self.__cutlist
 	
 	def setCutlist(self, cutlist):
-		self.__cutlist = cutlist
-		if self.instance is not None:
-			self.instance.setInOutList(cutlist)
+		if self.__cutlist != cutlist:
+			self.__cutlist = cutlist
+			if self.instance is not None:
+				self.instance.setInOutList(cutlist)
 
 	cutlist = property(getCutlist, setCutlist)
 

@@ -629,11 +629,12 @@ class ConfigClock(ConfigSequence):
 	def increment(self):
 		# Check if Minutes maxed out
 		if self._value[1] == 59:
-			# Check if Hours not maxed out
+			# Increment Hour, reset Minutes
 			if self._value[0] < 23:
-				# Increment Hour, reset Minutes to 0
 				self._value[0] += 1
-				self._value[1] = 0
+			else:
+				self._value[0] = 0
+			self._value[1] = 0
 		else:
 			# Increment Minutes
 			self._value[1] += 1
@@ -643,11 +644,12 @@ class ConfigClock(ConfigSequence):
 	def decrement(self):
 		# Check if Minutes is minimum
 		if self._value[1] == 0:
-			# Check if Hour is greater than 0
+			# Decrement Hour, set Minutes to 59
 			if self._value[0] > 0:
-				# Decrement Hour, set Minutes to 59
 				self._value[0] -= 1
-				self._value[1] = 59
+			else:
+				self._value[0] = 23
+			self._value[1] = 59
 		else:
 			# Decrement Minutes
 			self._value[1] -= 1

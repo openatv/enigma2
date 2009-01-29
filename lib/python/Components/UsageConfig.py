@@ -17,12 +17,12 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = True)
-	config.usage.hdd_standby = ConfigSelection(default = "120", choices = [
-		("0", _("no standby")), ("2", "10 " + _("seconds")), ("6", "30 " + _("seconds")),
-		("12", "1 " + _("minute")), ("24", "2 " + _("minutes")),
-		("60", "5 " + _("minutes")), ("120", "10 " + _("minutes")), ("240", "20 " + _("minutes")),
-		("241", "30 " + _("minutes")), ("242", "1 " + _("hour")), ("244", "2 " + _("hours")),
-		("248", "4 " + _("hours")) ])
+	config.usage.hdd_standby = ConfigSelection(default = "600", choices = [
+		("0", _("no standby")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
+		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
+		("300", "5 " + _("minutes")), ("600", "10 " + _("minutes")), ("1200", "20 " + _("minutes")),
+		("1800", "30 " + _("minutes")), ("3600", "1 " + _("hour")), ("7200", "2 " + _("hours")),
+		("14400", "4 " + _("hours")) ])
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
 
@@ -66,7 +66,7 @@ def InitUsageConfig():
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
-			os.system("hdparm -S%s %s" % (configElement.value, hdd[1].getDeviceName()))
+			hdd[1].setIdleTime(int(configElement.value))
 	config.usage.hdd_standby.addNotifier(setHDDStandby)
 
 	def set12VOutput(configElement):
