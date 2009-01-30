@@ -192,8 +192,8 @@ void eDVBFrontendParametersCable::set(const CableDeliverySystemDescriptor &descr
 	frequency = descriptor.getFrequency() / 10;
 	symbol_rate = descriptor.getSymbolRate() * 100;
 	fec_inner = descriptor.getFecInner();
-	if ( fec_inner == 0xF )
-		fec_inner = eDVBFrontendParametersCable::FEC_None;
+	if ( fec_inner != eDVBFrontendParametersCable::FEC_None && fec_inner > eDVBFrontendParametersCable::FEC_8_9 )
+		fec_inner = eDVBFrontendParametersCable::FEC_Auto;
 	modulation = descriptor.getModulation();
 	if ( modulation > 0x5 )
 		modulation = eDVBFrontendParametersCable::Modulation_Auto;
