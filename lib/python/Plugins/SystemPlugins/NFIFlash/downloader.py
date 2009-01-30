@@ -660,14 +660,15 @@ class NFIDownload(Screen):
 				self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + "/mnt/usb/" + self.backup_file + " /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"], finishedCallback = self.backup_finished, closeOnSuccess = True)
 		else:
 			self.backup_file = None
-			self.backup_finished()
+			self.backup_finished(skipped=True)
 
-	def backup_finished(self):
-		wizardfd = open("/mnt/usb/wizard.nfo", "w")
-		if wizardfd:
-			wizardfd.write("image: "+self["feedlist"].getNFIname()+'\n')
-			wizardfd.write("configuration: "+self.backup_file+'\n')
-			wizardfd.close()
+	def backup_finished(self, skipped=False):
+		if not skipped:
+			wizardfd = open("/mnt/usb/wizard.nfo", "w")
+			if wizardfd:
+				wizardfd.write("image: "+self["feedlist"].getNFIname()+'\n')
+				wizardfd.write("configuration: "+self.backup_file+'\n')
+				wizardfd.close()
 		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
 
 	def closeCB(self):
