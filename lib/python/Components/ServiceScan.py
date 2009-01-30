@@ -53,27 +53,27 @@ class ServiceScan:
 							network = sat_name
 						else:
 							network = ("%s %d.%d %s") % (sat_name, orb_pos / 10, orb_pos % 10, h)
-						tp_text = ("%s %s %d%c / %d / %s") %( { 0 : "DVB-S", 1 : "DVB-S2" }[tp.system],
-							{ 0 : "Auto", 1 : "QPSK", 2 : "M8PSK", 3 : "QAM16" }[tp.modulation],
+						tp_text = ("%s %s %d%c / %d / %s") %( { 0 : "DVB-S", 1 : "DVB-S2" }.get(tp.system, 0),
+							{ 0 : "Auto", 1 : "QPSK", 2 : "8PSK", 3 : "QAM16" }.get(tp.modulation, 0),
 							tp.frequency/1000,
-							{ 0 : 'H', 1 : 'V', 2 : 'L', 3 : 'R' }[tp.polarisation],
+							{ 0 : 'H', 1 : 'V', 2 : 'L', 3 : 'R' }.get(tp.polarisation, 0),
 							tp.symbol_rate/1000,
 							{ 0 : "AUTO", 1 : "1/2", 2 : "2/3", 3 : "3/4", 4 : "5/6",
 							 5 : "7/8", 6 : "8/9", 7 : "3/5", 8 : "4/5", 9 : "9/10",
-							 15 : "NONE" }[tp.fec] )
+							 15 : "NONE" }.get(tp.fec, 0))
 					elif tp_type == iDVBFrontend.feCable:
 						network = _("Cable")
 						tp = transponder.getDVBC()
-						tp_text = ("DVB-C %s %d / %d / %s") %( { 0 : "AUTO", 1 : "QAM16", 2 : "QAM32", 3 : "QAM64", 4 : "QAM128", 5 : "QAM256" }[tp.modulation],
+						tp_text = ("DVB-C %s %d / %d / %s") %( { 0 : "AUTO", 1 : "QAM16", 2 : "QAM32", 3 : "QAM64", 4 : "QAM128", 5 : "QAM256" }.get(tp.modulation, 0),
 							tp.frequency,
 							tp.symbol_rate/1000,
-							{ 0 : "AUTO", 1 : "1/2", 2 : "2/3", 3 : "3/4", 4 : "5/6", 5 : "7/8", 6 : "8/9", 15 : "NONE" }[tp.fec_inner] )
+							{ 0 : "AUTO", 1 : "1/2", 2 : "2/3", 3 : "3/4", 4 : "5/6", 5 : "7/8", 6 : "8/9", 15 : "NONE" }.get(tp.fec_inner, 0))
 					elif tp_type == iDVBFrontend.feTerrestrial:
 						network = _("Terrestrial")
 						tp = transponder.getDVBT()
-						tp_text = ("DVB-T %s %d %s") %( { 0 : "QPSK", 1 : "QAM16", 2 : "QAM64", 3 : "AUTO"}[tp.modulation],
+						tp_text = ("DVB-T %s %d %s") %( { 0 : "QPSK", 1 : "QAM16", 2 : "QAM64", 3 : "AUTO" }.get(tp.modulation, 3),
 							tp.frequency,
-							{ 0 : "Bw 8MHz", 1 : "Bw 7MHz", 2 : "Bw 6MHz", 3 : "Bw Auto" }[tp.bandwidth])
+							{ 0 : "Bw 8MHz", 1 : "Bw 7MHz", 2 : "Bw 6MHz", 3 : "Bw Auto" }.get(tp.bandwidth, 3))
 					else:
 						print "unknown transponder type in scanStatusChanged"
 				self.network.setText(network)
