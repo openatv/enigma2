@@ -97,7 +97,7 @@ class Harddisk:
 			line = procfile.readline()
 			if line == "":
 				break
-			if line.startswith(self.devidex):
+			if line.startswith(self.devidex) or line.startswith(self.devidex2):
 				parts = line.strip().split(" ")
 				try:
 					stat = statvfs(parts[1])
