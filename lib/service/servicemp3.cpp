@@ -1047,11 +1047,21 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 	
 			gst_message_parse_error (msg, &err, &debug);
 			g_free (debug);
-			eWarning("Gstreamer error: %s (%i)", err->message, err->code );
-			if ( err->domain == GST_STREAM_ERROR && err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND )
+			eWarning("Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName );
+			if ( err->domain == GST_STREAM_ERROR )
 			{
-				if ( g_strrstr(sourceName, "videosink") )
+				if ( err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND && g_strrstr(sourceName, "videosink") )
 					m_event((iPlayableService*)this, evUser+11);
+				else if ( err->code == GST_STREAM_ERROR_FAILED && g_strrstr(sourceName, "file-source") )
+				{
+					eWarning("error in tag parsing, linking mp3parse directly to file-sink, bypassing id3demux...");
+					GstElement *source = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"file-source");
+					GstElement *parser = gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"audiosink");
+					gst_element_set_state(m_gst_pipeline, GST_STATE_NULL);
+					gst_element_unlink(source, gst_bin_get_by_name(GST_BIN(m_gst_pipeline),"id3demux"));
+					gst_element_link(source, parser);
+					gst_element_set_state (m_gst_pipeline, GST_STATE_PLAYING);
+				}
 			}
 			g_error_free(err);
 			break;
