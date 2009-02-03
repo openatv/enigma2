@@ -130,7 +130,7 @@ class Harddisk:
 		cmd = "/bin/umount"
 
 		for line in procfile:
-			if line.startswith(self.devidex):
+			if line.startswith(self.devidex) or line.startswith(self.devidex2):
 				parts = line.split()
 				cmd = ' '.join([cmd, parts[1]])
 
