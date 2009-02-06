@@ -29,7 +29,7 @@ from Screens.TimeDateInput import TimeDateInput
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
-from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
+from Tools.Directories import SCOPE_HDD, resolveFilename, fileExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eEPGCache
@@ -1548,7 +1548,7 @@ class InfoBarInstantRecord:
 
 	def instantRecord(self):
 		dir = config.movielist.last_videodir.value
-		if not pathExists(dir):
+		if not fileExists(dir, 'w'):
 			dir = resolveFilename(SCOPE_HDD)
 		try:
 			stat = os_stat(dir)
