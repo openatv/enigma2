@@ -3,27 +3,15 @@ from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
 
 class AVSwitch:
-	INPUT = { "ENCODER": (0, 4), "SCART": (1, 3), "AUX": (2, 4) }
-
 	def setInput(self, input):
-		eAVSwitch.getInstance().setInput(self.INPUT[input][0])
-		if self.INPUT[input][1] == 4:
-			aspect = self.getAspectRatioSetting()
-			self.setAspectWSS(aspect)
-			self.setAspectSlowBlank(aspect)
-		else:
-			eAVSwitch.getInstance().setSlowblank(self.INPUT[input][1])
-		# FIXME why do we have to reset the colorformat? bug in avs-driver?
-		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
-		eAVSwitch.getInstance().setColorFormat(map[config.av.colorformat.value])
+		INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
+		eAVSwitch.getInstance().setInput(INPUT[input])
 
 	def setColorFormat(self, value):
 		eAVSwitch.getInstance().setColorFormat(value)
 
 	def setAspectRatio(self, value):
 		eAVSwitch.getInstance().setAspectRatio(value)
-		self.setAspectWSS(value)
-		self.setAspectSlowBlank(value)
 
 	def setSystem(self, value):
 		eAVSwitch.getInstance().setVideomode(value)
@@ -69,34 +57,11 @@ class AVSwitch:
 		return val
 
 	def setAspectWSS(self, aspect=None):
-		if aspect is None:
-			aspect = self.getAspectRatioSetting()
-		if aspect == 0 or aspect == 1: # letterbox or panscan
-			if not config.av.wss.value:
-				value = 0 # wss off
-			else:
-				value = 3 # 4:3_full_format
-		elif aspect == 2: # 16:9
-			if not config.av.wss.value:
-				value = 2 # auto(4:3_off)
-			else:
-				value = 1 # auto
-		elif aspect == 3 or aspect == 6: # always 16:9
-			value = 4 # 16:9_full_format
-		elif aspect == 4 or aspect == 5: # 16:10
-			value = 10 # 14:9_full_format
+		if not config.av.wss.value:
+			value = 2 # auto(4:3_off)
+		else:
+			value = 1 # auto
 		eAVSwitch.getInstance().setWSS(value)
-
-	def setAspectSlowBlank(self, aspect=None):
-		if aspect is None:
-			aspect = self.getAspectRatioSetting()
-		if aspect == 0 or aspect == 1: # letterbox or panscan
-			value = 2 # 12 V
-		elif aspect == 2: # 16:9
-			value = 4 # auto
-		elif aspect == 3 or aspect == 4 or aspect == 5 or aspect == 6: # always 16:9
-			value = 1 # 6V
-		eAVSwitch.getInstance().setSlowblank(value)
 
 def InitAVSwitch():
 	config.av = ConfigSubsection()
