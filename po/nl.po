@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-02 16:22+0100\n"
-"PO-Revision-Date: 2008-11-30 22:47+0100\n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2009-02-04 14:59+0100\n"
+"PO-Revision-Date: 2009-01-24 12:54+0100\n"
+"Last-Translator: Benny De Tandt <Benny.DeTandt@gmail.com>\n"
 "Language-Team: none <michel@weeren.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -321,7 +321,7 @@ msgid "Activate network settings"
 msgstr "Activeer netwerkinstellingen"
 
 msgid "Adapter settings"
-msgstr "Adapter instelllingen"
+msgstr "Adapter instellingen"
 
 msgid "Add"
 msgstr "Toevoegen"
@@ -374,7 +374,7 @@ msgstr ""
 "Raadpleeg de handleiding voor aanwijzigingen."
 
 msgid "Album"
-msgstr ""
+msgstr "Album"
 
 msgid "All"
 msgstr "Alles"
@@ -415,7 +415,7 @@ msgstr ""
 "\n"
 
 msgid "Artist"
-msgstr ""
+msgstr "Artiest"
 
 msgid "Ask before shutdown:"
 msgstr "Slaaptimer aktie bevestigen:"
@@ -596,7 +596,7 @@ msgid "Channel Selection"
 msgstr "Zenderkeuze"
 
 msgid "Channel not in services list"
-msgstr ""
+msgstr "Kanaal niet in zenderlijst"
 
 msgid "Channel:"
 msgstr "Zender:"
@@ -633,6 +633,12 @@ msgstr "Kies doelmap"
 
 msgid "Choose your Skin"
 msgstr "Kies een Skin"
+
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
+msgstr ""
 
 msgid "Cleanup"
 msgstr "Opruimen"
@@ -739,6 +745,10 @@ msgstr "Kan niet connecteren naar Dreambox .NFI Feed Server:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Kan medium niet laden! Geen disk in speler?"
+
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
 
 msgid "Create DVD-ISO"
 msgstr "DVD-ISO maken"
@@ -906,6 +916,9 @@ msgstr "16:9 materiaal weergeven als"
 
 msgid "Display 4:3 content as"
 msgstr "4:3 materiaal weergeven als"
+
+msgid "Display >16:9 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Display instellingen"
@@ -1296,7 +1309,7 @@ msgid "Friday"
 msgstr "Vrijdag"
 
 msgid "Frisian"
-msgstr ""
+msgstr "Fries"
 
 msgid "Fritz!Box FON IP address"
 msgstr "Fritz!Box FON IP adres"
@@ -1322,7 +1335,7 @@ msgid "Gateway"
 msgstr "Gateway"
 
 msgid "Genre"
-msgstr ""
+msgstr "Genre"
 
 msgid "German"
 msgstr "Duits"
@@ -1365,6 +1378,9 @@ msgstr "Hiërarchie informatie"
 
 msgid "Hierarchy mode"
 msgstr "Hiërarchie modus"
+
+msgid "Horizontal"
+msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
@@ -1598,7 +1614,7 @@ msgid "Lock:"
 msgstr "Lock:"
 
 msgid "Log results to harddisk"
-msgstr ""
+msgstr "Schrijf resultaten naar de harde schijf"
 
 msgid "Long Keypress"
 msgstr "Lange toetsdruk"
@@ -1633,6 +1649,9 @@ msgstr "Handmatig zoeken"
 msgid "Manual transponder"
 msgstr "Transponder handmatig"
 
+msgid "Manufacturer"
+msgstr ""
+
 msgid "Margin after record"
 msgstr "Marge na afloop opname (minuten)"
 
@@ -1658,7 +1677,7 @@ msgid "Message"
 msgstr "Bericht"
 
 msgid "Message..."
-msgstr ""
+msgstr "Boodschap..."
 
 msgid "Mkfs failed"
 msgstr "MakeFileSystem mislukt"
@@ -1816,7 +1835,7 @@ msgstr ""
 "(Timeout reading PAT)"
 
 msgid "No details for this image file"
-msgstr "Geen gedetailleerde gegevens voor dit bestand"
+msgstr "Geen details voor dit bestand:"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
@@ -2171,7 +2190,7 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Een ogenblikje geduld a.u.b. terwijl we uw netwerk activeren..."
 
 msgid "Please wait while scanning is in progress..."
-msgstr ""
+msgstr "Een ogenblikje geduld, zoeken is bezig..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Een ogenblikje geduld a.u.b. terwijl we uw netwerk configureren..."
@@ -2250,7 +2269,7 @@ msgstr "Druk op OK om te wijzigen."
 
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr ""
+msgstr "Druk op OK voor meer detail van: %s"
 
 msgid "Press OK to scan"
 msgstr "Druk OK om te zoeken."
@@ -2268,7 +2287,7 @@ msgid "Primary DNS"
 msgstr "Primaire DNS"
 
 msgid "Priority"
-msgstr ""
+msgstr "Prioriteit"
 
 msgid "Properties of current title"
 msgstr "Instellingen van huidige titel"
@@ -2289,7 +2308,7 @@ msgid "Providers"
 msgstr "Providers"
 
 msgid "Quick"
-msgstr ""
+msgstr "Snel"
 
 msgid "Quickzap"
 msgstr "Snelzap"
@@ -2313,7 +2332,7 @@ msgid "Ram Disk"
 msgstr "Ram Disk"
 
 msgid "Random"
-msgstr ""
+msgstr "Random"
 
 msgid "Really close without saving settings?"
 msgstr "Afsluiten zonder opslaan?"
@@ -2341,6 +2360,10 @@ msgstr "Ontvangstinstellingen"
 
 msgid "Record"
 msgstr "Opname"
+
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
 
 msgid "Recorded files..."
 msgstr "Opgenomen bestanden..."
@@ -2385,7 +2408,7 @@ msgid "Remove the incomplete .NFI file?"
 msgstr "Verwijder het onvolledige .NFI bestand?"
 
 msgid "Remove timer"
-msgstr ""
+msgstr "Verwijder timer"
 
 msgid "Remove title"
 msgstr "Titel verwijderen"
@@ -2901,10 +2924,10 @@ msgid "Stop test"
 msgstr "Stop test"
 
 msgid "Stop testing plane after # failed transponders"
-msgstr ""
+msgstr "Stop testen na # falende transponders"
 
 msgid "Stop testing plane after # successful transponders"
-msgstr ""
+msgstr "Stop testen na # succesvolle transponders"
 
 msgid "Store position"
 msgstr "Sla positie op"
@@ -2985,10 +3008,10 @@ msgid "Terrestrial provider"
 msgstr "Regio"
 
 msgid "Test DiSEqC settings"
-msgstr ""
+msgstr "Test DiSEqC instellingen"
 
 msgid "Test Type"
-msgstr ""
+msgstr "Test Type"
 
 msgid "Test mode"
 msgstr "Test modus"
@@ -3018,6 +3041,8 @@ msgid ""
 "The USB stick is now bootable. Do you want to download the latest image from "
 "the feed server and save it on the stick?"
 msgstr ""
+"De USB stick is opstartbaar. Wilt u de laatste image downloaden van de feed "
+"server en opslaan op de stick ?"
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backup is mislukt. Kies een andere backup locatie a.u.b."
@@ -3052,8 +3077,8 @@ msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
-"De installatie van de standaard zenderlijst is voltooid. U kunt nu Dreambox "
-"verder configureren door op OK te drukken."
+"De installatie van de standaard zenderlijst is voltooid. U kunt nu uw "
+"Dreambox verder configureren door op OK te drukken."
 
 msgid ""
 "The md5sum validation failed, the file may be corrupted! Are you sure that "
@@ -3088,7 +3113,7 @@ msgstr "De ingevoerde pincodes komen niet overeen."
 
 #, python-format
 msgid "The results have been written to %s."
-msgstr ""
+msgstr "De resultaten zijn bewaard op %s."
 
 msgid "The sleep timer has been activated."
 msgstr "De slaaptimer is geactiveerd."
@@ -3303,6 +3328,12 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"Om de Dreambox firmware te upgraden, volg de volgende stappen :\n"
+"1)Zet uw box af via de knop achteraan het toestel en plaats een opstartbare "
+"USB stick.\n"
+"2)Zet de box aan via dezelfde knop en druk op de DOWN toets gedurende 10 "
+"seconden.\n"
+"3)Wacht op het opstarten en volg de instructies van de wizard."
 
 msgid "Today"
 msgstr "Vandaag"
@@ -3383,6 +3414,9 @@ msgstr "Turks"
 msgid "Two"
 msgstr "Twee"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Zoekmodus"
 
@@ -3396,7 +3430,7 @@ msgid "USB Stick"
 msgstr "USB Stick"
 
 msgid "USB stick wizard"
-msgstr ""
+msgstr "USB stick wizard"
 
 msgid "Ukrainian"
 msgstr "Oekraïens"
@@ -3417,6 +3451,15 @@ msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC commando"
+
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Universeel LNB"
@@ -3516,6 +3559,9 @@ msgstr "VCR scart"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "Vertical"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Video fijn instellingen..."
@@ -3672,7 +3718,7 @@ msgid "YPbPr"
 msgstr "Component"
 
 msgid "Year"
-msgstr ""
+msgstr "Jaar"
 
 msgid "Yes"
 msgstr "Ja"
@@ -3946,7 +3992,7 @@ msgid "audio tracks"
 msgstr "audio sporen"
 
 msgid "auto"
-msgstr ""
+msgstr "auto"
 
 msgid "back"
 msgstr "Terug"
@@ -4317,6 +4363,9 @@ msgstr "geen"
 msgid "not locked"
 msgstr "Nee"
 
+msgid "not used"
+msgstr ""
+
 msgid "nothing connected"
 msgstr "niets aangesloten"
 
@@ -4420,7 +4469,7 @@ msgid "remove new found flag"
 msgstr "verwijder 'nieuw gevonden' vlag"
 
 msgid "remove selected satellite"
-msgstr "geselecteerde satelliet verwijderen"
+msgstr "Deze satelliet verwijderen"
 
 msgid "remove this mark"
 msgstr "verwijder dit merkteken"
@@ -4451,7 +4500,7 @@ msgstr "Zoeken voltooid."
 
 #, python-format
 msgid "scan in progress - %d%% done!"
-msgstr "Bezig met zoeken - %d%% voltooit."
+msgstr "Bezig met zoeken - %d%% voltooid."
 
 msgid "scan state"
 msgstr "status"
@@ -4600,6 +4649,9 @@ msgstr "Ga naar bestandenlijst"
 msgid "switch to playlist"
 msgstr "Ga naar afspeellijst"
 
+msgid "switch to the next angle"
+msgstr ""
+
 msgid "switch to the next audio track"
 msgstr "Volgend audio spoor"
 
@@ -4607,7 +4659,7 @@ msgid "switch to the next subtitle language"
 msgstr "Volgende ondertitel taal"
 
 msgid "template file"
-msgstr ""
+msgstr "template bestand"
 
 msgid "textcolor"
 msgstr "Tekstkleur"
@@ -4661,7 +4713,7 @@ msgid "whitelist"
 msgstr "witte lijst"
 
 msgid "working"
-msgstr ""
+msgstr "bezig"
 
 msgid "yellow"
 msgstr "geel"
@@ -4684,4 +4736,3 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zapte"
-

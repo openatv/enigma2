@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-16 00:47+0100\n"
-"PO-Revision-Date: 2009-01-03 14:13+0100\n"
+"POT-Creation-Date: 2009-02-04 14:59+0100\n"
+"PO-Revision-Date: 2009-01-28 12:36+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -594,7 +594,7 @@ msgid "Channel Selection"
 msgstr "Kanallista"
 
 msgid "Channel not in services list"
-msgstr ""
+msgstr "Kanal finns ej i servicelistan"
 
 msgid "Channel:"
 msgstr "Kanal:"
@@ -631,6 +631,12 @@ msgstr "Välj målkatalog"
 
 msgid "Choose your Skin"
 msgstr "Välj utseende"
+
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
+msgstr ""
 
 msgid "Cleanup"
 msgstr "Rensa"
@@ -737,6 +743,10 @@ msgstr "Kunde inte ansluta till Dreambox .NFI image feed Server:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Kunde inte ladda media! Ingen disk istoppad?"
+
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
 
 msgid "Create DVD-ISO"
 msgstr "Skapa DVD-ISO"
@@ -904,6 +914,9 @@ msgstr "Visa 16:9 sändning som"
 
 msgid "Display 4:3 content as"
 msgstr "Visa 4:3 sändning som"
+
+msgid "Display >16:9 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Display installation"
@@ -1294,7 +1307,7 @@ msgid "Friday"
 msgstr "Fredag"
 
 msgid "Frisian"
-msgstr ""
+msgstr "Frisiska"
 
 msgid "Fritz!Box FON IP address"
 msgstr "Fritz!Box FON IP adress"
@@ -1363,6 +1376,9 @@ msgstr "Hierarkisk information "
 
 msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
+
+msgid "Horizontal"
+msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
@@ -1594,7 +1610,7 @@ msgid "Lock:"
 msgstr "Lås:"
 
 msgid "Log results to harddisk"
-msgstr ""
+msgstr "Logga resultatet till hårddisk"
 
 msgid "Long Keypress"
 msgstr "Lång knapptryckning"
@@ -1629,6 +1645,9 @@ msgstr "Manuell sökning"
 msgid "Manual transponder"
 msgstr "Manuell transponder"
 
+msgid "Manufacturer"
+msgstr ""
+
 msgid "Margin after record"
 msgstr "Marginal efter inspelning (i minuter)"
 
@@ -1654,7 +1673,7 @@ msgid "Message"
 msgstr "Meddelande"
 
 msgid "Message..."
-msgstr ""
+msgstr "Meddelande..."
 
 msgid "Mkfs failed"
 msgstr "Mkfs misslyckades"
@@ -2163,7 +2182,7 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Vänligen vänta för aktivering av din nätverkskonfiguration..."
 
 msgid "Please wait while scanning is in progress..."
-msgstr ""
+msgstr "Vänligen vänta medans sökning pågår..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Vänligen vänta medans ditt nätverk konfigureras..."
@@ -2242,7 +2261,7 @@ msgstr "Tryck OK för att ändra inställningar."
 
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr ""
+msgstr "Tryck OK för att få utförligare information om %s"
 
 msgid "Press OK to scan"
 msgstr "Tryck OK för sökning"
@@ -2260,7 +2279,7 @@ msgid "Primary DNS"
 msgstr "Primär DNS"
 
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 msgid "Properties of current title"
 msgstr "Egenskaper på nuvarande titel"
@@ -2281,7 +2300,7 @@ msgid "Providers"
 msgstr "Leverantörer"
 
 msgid "Quick"
-msgstr ""
+msgstr "Snabb"
 
 msgid "Quickzap"
 msgstr "Snabbzap"
@@ -2305,7 +2324,7 @@ msgid "Ram Disk"
 msgstr "Ram Disk"
 
 msgid "Random"
-msgstr ""
+msgstr "Slumpmässig"
 
 msgid "Really close without saving settings?"
 msgstr "Verkligen stänga utan att spara inställningarna?"
@@ -2333,6 +2352,10 @@ msgstr "Mottagning inställningar"
 
 msgid "Record"
 msgstr "Spela in"
+
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
 
 msgid "Recorded files..."
 msgstr "Inspelade filer..."
@@ -2377,7 +2400,7 @@ msgid "Remove the incomplete .NFI file?"
 msgstr "Ta bort ofullständig .NFI fil?"
 
 msgid "Remove timer"
-msgstr ""
+msgstr "Ta bort timer"
 
 msgid "Remove title"
 msgstr "Ta bort titel"
@@ -2892,10 +2915,10 @@ msgid "Stop test"
 msgstr "Stoppa test"
 
 msgid "Stop testing plane after # failed transponders"
-msgstr ""
+msgstr "Sluta testa efter # misslyckade transponders"
 
 msgid "Stop testing plane after # successful transponders"
-msgstr ""
+msgstr "Sluta testa efter # lyckade transponders"
 
 msgid "Store position"
 msgstr "Lagra position"
@@ -2974,10 +2997,10 @@ msgid "Terrestrial provider"
 msgstr "Marksänd leverantör"
 
 msgid "Test DiSEqC settings"
-msgstr ""
+msgstr "Test DiSEqC inställningar"
 
 msgid "Test Type"
-msgstr ""
+msgstr "Test Typ"
 
 msgid "Test mode"
 msgstr "Testläge"
@@ -3079,7 +3102,7 @@ msgstr "PIN koderna du angav är olika."
 
 #, python-format
 msgid "The results have been written to %s."
-msgstr ""
+msgstr "Resultatet har skrivits till %s."
 
 msgid "The sleep timer has been activated."
 msgstr "Sovtimer har aktiverats."
@@ -3379,6 +3402,9 @@ msgstr "Turkiska"
 msgid "Two"
 msgstr "Två"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Typ av sökning"
 
@@ -3413,6 +3439,15 @@ msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
+
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Universal LNB"
@@ -3509,6 +3544,9 @@ msgstr "VCR Scart"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "Vertical"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Video fininställning"
@@ -3941,7 +3979,7 @@ msgid "audio tracks"
 msgstr "ljudspår"
 
 msgid "auto"
-msgstr ""
+msgstr "auto"
 
 msgid "back"
 msgstr "tillbaka"
@@ -4312,6 +4350,9 @@ msgstr "ingen"
 msgid "not locked"
 msgstr "inte låst"
 
+msgid "not used"
+msgstr ""
+
 msgid "nothing connected"
 msgstr "inget anslutet"
 
@@ -4596,7 +4637,7 @@ msgid "switch to playlist"
 msgstr "byt till spellista"
 
 msgid "switch to the next angle"
-msgstr ""
+msgstr "byt till nästa position"
 
 msgid "switch to the next audio track"
 msgstr "byt till nästa ljudspår"
@@ -4605,7 +4646,7 @@ msgid "switch to the next subtitle language"
 msgstr "byt till nästa textningsspråk"
 
 msgid "template file"
-msgstr ""
+msgstr "mallfil"
 
 msgid "textcolor"
 msgstr "textfärg"
@@ -4659,7 +4700,7 @@ msgid "whitelist"
 msgstr "vitlista"
 
 msgid "working"
-msgstr ""
+msgstr "arbetar"
 
 msgid "yellow"
 msgstr "gul"
