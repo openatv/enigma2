@@ -90,7 +90,6 @@ class VideoHardware:
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
-		self.standby = False
 		self.current_mode = None
 		self.current_port = None
 
@@ -107,7 +106,6 @@ class VideoHardware:
 		config.av.aspectratio.notifiers = [ ]
 		config.av.tvsystem.notifiers = [ ]
 		config.av.wss.notifiers = [ ]
-		AVSwitch.setInput = self.AVSwitchSetInput
 		AVSwitch.getOutputAspect = self.getOutputAspect
 
 		config.av.aspect.addNotifier(self.updateAspect)
@@ -119,12 +117,6 @@ class VideoHardware:
 #		self.timer = eTimer()
 #		self.timer.callback.append(self.readPreferredModes)
 #		self.timer.start(1000)
-
-		config.av.colorformat.addNotifier(self.updateFastblank) 
-
-	def AVSwitchSetInput(self, mode):
-		self.standby = mode == "SCART"
-		self.updateStandby()
 
 	def readAvailableModes(self):
 		try:
@@ -322,42 +314,6 @@ class VideoHardware:
 			open("/proc/stb/video/policy2", "w").write(policy2)
 		except IOError:
 			pass
-		self.updateSlowblank()
-		self.updateFastblank()
-
-	def updateSlowblank(self):
-		if self.standby:
-			from Components.SystemInfo import SystemInfo
-			if SystemInfo["ScartSwitch"]:
-				input = "scart"
-				sb = "vcr"
-			else:
-				input = "off"
-				sb = "0"
-		else:
-			input = "encoder"
-			sb = "auto"
-
-		open("/proc/stb/avs/0/sb", "w").write(sb)
-		open("/proc/stb/avs/0/input", "w").write(input)
-
-	def updateStandby(self):
-		self.updateSlowblank()
-		self.updateFastblank()
-
-	def updateFastblank(self, *args):
-		if self.standby:
-			from Components.SystemInfo import SystemInfo
-			if SystemInfo["ScartSwitch"]:
-				fb = "vcr"
-			else:
-				fb = "low"
-		else:
-			if self.current_port == "Scart" and config.av.colorformat.value == "rgb":
-				fb = "high"
-			else:
-				fb = "low"
-		open("/proc/stb/avs/0/fb", "w").write(fb)
 
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()
