@@ -141,7 +141,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if self.name:
 			filename += " - " + self.name
 
-		if self.dirname and not Directories.pathExists(self.dirname):
+		if self.dirname and not Directories.fileExists(self.dirname, 'w'):
 			self.dirnameHadToFallback = True
 			self.Filename = Directories.getRecordingFilename(filename, None)
 		else:
