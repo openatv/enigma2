@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-16 00:47+0100\n"
-"PO-Revision-Date: 2009-01-11 15:16+0100\n"
+"POT-Creation-Date: 2009-02-04 14:59+0100\n"
+"PO-Revision-Date: 2009-01-28 12:07+0100\n"
 "Last-Translator: Sebastian <zbigzbig2@op.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -555,7 +555,7 @@ msgid "Cancel"
 msgstr "Anuluj"
 
 msgid "Cannot parse feed directory"
-msgstr "Nie można odnaleść katalogu"
+msgstr "Nie można odnaleźć katalogu"
 
 msgid "Capacity: "
 msgstr "Pojemność:"
@@ -629,6 +629,12 @@ msgstr "Wybierz folder docelowy"
 msgid "Choose your Skin"
 msgstr "Wybierz Skina"
 
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
+msgstr ""
+
 msgid "Cleanup"
 msgstr "Czyść"
 
@@ -666,10 +672,10 @@ msgid "Command execution..."
 msgstr "Wykonywanie polecenia..."
 
 msgid "Command order"
-msgstr "Wydawanie poleceń"
+msgstr "Kolejność poleceń"
 
 msgid "Committed DiSEqC command"
-msgstr "Wypełnij polecenia DiSEqC"
+msgstr "Komenda DiSEqC Commited"
 
 msgid "Common Interface"
 msgstr "Moduł Dostępu"
@@ -734,6 +740,10 @@ msgstr "Połączenie z Dreambox .NFI Image Serwerem nie powiodło sie:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nie mogę odczytać nośnika. Czy nośnik znajduje się w czytniku?"
+
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
 
 msgid "Create DVD-ISO"
 msgstr "Stwórz DVD-ISO"
@@ -859,7 +869,7 @@ msgid "DiSEqC mode"
 msgstr "Tryb DiSEqC"
 
 msgid "DiSEqC repeats"
-msgstr "Odpowiedzi DiSEqC"
+msgstr "Ilość powtorzeń DiSEqC"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Bezpośrednie odtwarzanie podczepionych tytułów bez menu"
@@ -901,6 +911,9 @@ msgstr "Wyświetlaj zawartość 16:9 jako"
 
 msgid "Display 4:3 content as"
 msgstr "Wyświetlaj zawartość 4:3 jako"
+
+msgid "Display >16:9 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Ustawienia wyświtlania"
@@ -1363,6 +1376,9 @@ msgstr "Informacja hierarchii"
 msgid "Hierarchy mode"
 msgstr "Tryb hierarchii"
 
+msgid "Horizontal"
+msgstr ""
+
 msgid "How many minutes do you want to record?"
 msgstr "Ile minut ma trwać nagranie?"
 
@@ -1628,6 +1644,9 @@ msgstr "Ręczne skanowanie"
 
 msgid "Manual transponder"
 msgstr "Ręczny transponder"
+
+msgid "Manufacturer"
+msgstr ""
 
 msgid "Margin after record"
 msgstr "Margines po nagraniu (w min)"
@@ -2262,7 +2281,7 @@ msgid "Primary DNS"
 msgstr "Pierwszy DNS"
 
 msgid "Priority"
-msgstr "Priorytet"
+msgstr "Priorytet konwertera"
 
 msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
@@ -2335,6 +2354,10 @@ msgstr "Ustawienia powitania"
 
 msgid "Record"
 msgstr "Nagraj"
+
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
 
 msgid "Recorded files..."
 msgstr "Nagrane pliki..."
@@ -3383,6 +3406,9 @@ msgstr "Turecki"
 msgid "Two"
 msgstr "Dwa"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Typ skanowania"
 
@@ -3416,7 +3442,16 @@ msgstr ""
 "Błąd: "
 
 msgid "Uncommitted DiSEqC command"
-msgstr "Niewykonane polecenia DiSEqC"
+msgstr "Komenda DiSEqC Uncommited"
+
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Uniwersalny LNB"
@@ -3512,6 +3547,9 @@ msgstr "Przełącz VCR"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "Vertical"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Ustawienia czysości obrazu"
@@ -4313,6 +4351,9 @@ msgstr "Brak"
 msgid "not locked"
 msgstr "Nie zablokowany"
 
+msgid "not used"
+msgstr ""
+
 msgid "nothing connected"
 msgstr "nic nie połączono"
 
@@ -4597,7 +4638,7 @@ msgid "switch to playlist"
 msgstr "Przełącz na playliste"
 
 msgid "switch to the next angle"
-msgstr ""
+msgstr "przełącz do następnego rogu"
 
 msgid "switch to the next audio track"
 msgstr "przełącz na następna ścieżke audio"
