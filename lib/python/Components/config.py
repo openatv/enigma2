@@ -28,7 +28,6 @@ import os
 #
 class ConfigElement(object):
 	def __init__(self):
-
 		object.__init__(self)
 		self.saved_value = None
 		self.last_value = None
@@ -140,6 +139,104 @@ def getKeyNumber(key):
 	assert key in KEY_NUMBERS
 	return key - KEY_0
 
+class choicesList(object): # XXX: we might want a better name for this
+	LIST_TYPE_LIST = 1
+	LIST_TYPE_DICT = 2
+
+	def __init__(self, choices, type = None):
+		self.choices = choices
+		if type is None:
+			if isinstance(choices, list):
+				self.type = choicesList.LIST_TYPE_LIST
+			elif isinstance(choices, dict):
+				self.type = choicesList.LIST_TYPE_DICT
+			else:
+				assert False, "choices must be dict or list!"
+		else:
+			self.type = type
+
+	def __list__(self):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			ret = [isinstance(x, tuple) and x[0] or x for x in self.choices]
+		else:
+			ret = self.choices.keys()
+		return ret or [""]
+
+	def __iter__(self):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			ret = [isinstance(x, tuple) and x[0] or x for x in self.choices]
+		else:
+			ret = self.choices
+		return iter(ret or [""])
+
+	def __len__(self):
+		return len(self.choices) or 1
+
+	def __getitem__(self, index):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			ret = self.choices[index]
+			if isinstance(ret, tuple):
+				ret = ret[0]
+			return ret
+		return self.choices.keys()[index]
+
+	def index(self, value):
+		return self.__list__().index(value)
+
+	def __setitem__(self, index, value):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			if isinstance(self.choices[index], tuple):
+				self.choices[index] = (value, self.choices[index][1])
+			else:
+				self.choices[index] = value
+		else:
+			key = self.choices.keys()[index]
+			orig = self.choices[key]
+			del self.choices[key]
+			self.choices[value] = orig
+
+	def default(self):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			default = self.choices[0]
+			if isinstance(default, tuple):
+				default = default[0]
+		else:
+			default = self.choices.keys()[0]
+		return default
+
+class descriptionList(choicesList): # XXX: we might want a better name for this
+	def __list__(self):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			ret = [isinstance(x, tuple) and x[1] or x for x in self.choices]
+		else:
+			ret = self.choices.values()
+		return ret or [""]
+
+	def __iter__(self):
+		return iter(self.__list__())
+
+	def __getitem__(self, index):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			for x in self.choices:
+				if isinstance(x, tuple):
+					if x[0] is index:
+						return str(x[1])
+				elif x is index:
+					return str(x)
+			return str(index) # Fallback!
+		else:
+			return str(self.choices.get(index, ""))
+
+	def __setitem__(self, index, value):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			i = self.index(index)
+			if isinstance(self.choices[i], tuple):
+				self.choices[i] = (self.choices[i][0], value)
+			else:
+				self.choices[i] = value
+		else:
+			self.choices[index] = value
+
 #
 # ConfigSelection is a "one of.."-type.
 # it has the "choices", usually a list, which contains
@@ -151,51 +248,30 @@ def getKeyNumber(key):
 class ConfigSelection(ConfigElement):
 	def __init__(self, choices, default = None):
 		ConfigElement.__init__(self)
-		self._value = None
-		self.setChoices(choices, default)
-		self.last_value = self._value
 
-	def setChoices(self, choices, default = None):
-		self.choices = []
-		self.description = {}
-		
-		if isinstance(choices, list):
-			for x in choices:
-				if isinstance(x, tuple):
-					self.choices.append(x[0])
-					self.description[x[0]] = x[1]
-				else:
-					self.choices.append(x)
-					self.description[x] = x
-		elif isinstance(choices, dict):
-			for (key, val) in choices.items():
-				self.choices.append(key)
-				self.description[key] = val
-		else:
-			assert False, "ConfigSelection choices must be dict or list!"
-		
-		#assert len(self.choices), "you can't have an empty configselection"
-		if len(self.choices) == 0:
-			self.choices = [""]
-			self.description[""] = ""
+		# this is an exakt copy of def setChoices.. but we save the call overhead
+		self.choices = choicesList(choices)
 
 		if default is None:
-			default = self.choices[0]
+			default = self.choices.default()
 
-		assert default in self.choices, "default must be in choice list, but " + repr(default) + " is not!"
-#		for x in self.choices:
-#			assert isinstance(x, str), "ConfigSelection choices must be strings"
-		self.default = default
+		self.default = self._value = self.last_value = default
+		self.changed()
 
-		if self.value == None or not self.value in self.choices:
-			self.value = default
+	def setChoices(self, choices, default = None):
+		self.choices = choicesList(choices)
+
+		if default is None:
+			default = self.choices.default()
+
+		self.default = self._value = self.last_value = default
+		self.changed()
 
 	def setValue(self, value):
 		if value in self.choices:
 			self._value = value
 		else:
 			self._value = self.default
-		
 		self.changed()
 
 	def tostring(self, val):
@@ -206,9 +282,8 @@ class ConfigSelection(ConfigElement):
 
 	def setCurrentText(self, text):
 		i = self.choices.index(self.value)
-		del self.description[self.choices[i]]
 		self.choices[i] = text
-		self.description[text] = text
+		descriptionList(self.choices.choices, self.choices.type)[text] = text
 		self._value = text
 
 	value = property(getValue, setValue)
@@ -237,13 +312,13 @@ class ConfigSelection(ConfigElement):
 		self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
-		descr = self.description[self.value]
+		descr = descriptionList(self.choices.choices, self.choices.type)[self.value]
 		if len(descr):
 			return _(descr)
 		return descr
 
 	def getMulti(self, selected):
-		descr = self.description[self.value]
+		descr = descriptionList(self.choices.choices, self.choices.type)[self.value]
 		if len(descr):
 			return ("text", _(descr))
 		return ("text", descr)
@@ -252,11 +327,12 @@ class ConfigSelection(ConfigElement):
 	def getHTML(self, id):
 		res = ""
 		for v in self.choices:
+			descr = descriptionList(self.choices.choices, self.choices.type)[v]
 			if self.value == v:
 				checked = 'checked="checked" '
 			else:
 				checked = ''
-			res += '<input type="radio" name="' + id + '" ' + checked + 'value="' + v + '">' + self.description[v] + "</input></br>\n"
+			res += '<input type="radio" name="' + id + '" ' + checked + 'value="' + v + '">' + descr + "</input></br>\n"
 		return res;
 
 	def unsafeAssign(self, value):
@@ -1037,28 +1113,17 @@ class ConfigSatlist(ConfigSelection):
 class ConfigSet(ConfigElement):
 	def __init__(self, choices, default = []):
 		ConfigElement.__init__(self)
-		self.choices = []
-		self.description = {}
 		if isinstance(choices, list):
 			choices.sort()
-			for x in choices:
-				if isinstance(x, tuple):
-					self.choices.append(x[0])
-					self.description[x[0]] = str(x[1])
-				else:
-					self.choices.append(x)
-					self.description[x] = str(x)
+			self.choices = choicesList(choices, choicesList.LIST_TYPE_LIST)
 		else:
 			assert False, "ConfigSet choices must be a list!"
-		if len(self.choices) == 0:
-			self.choices = [""]
-			self.description[""] = ""
 		if default is None:
 			default = []
 		self.pos = -1
 		default.sort()
 		self.last_value = self.default = default
-		self.value = default+[]
+		self.value = default[:]
 
 	def toggleChoice(self, choice):
 		if choice in self.value:
@@ -1085,8 +1150,9 @@ class ConfigSet(ConfigElement):
 
 	def genString(self, lst):
 		res = ""
+		description = descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST)
 		for x in lst:
-			res += self.description[x]+" "
+			res += description[x]+" "
 		return res
 
 	def getText(self):
@@ -1096,7 +1162,8 @@ class ConfigSet(ConfigElement):
 		if not selected or self.pos == -1:
 			return ("text", self.genString(self.value))
 		else:
-			tmp = self.value+[]
+			description = descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST)
+			tmp = self.value[:]
 			ch = self.choices[self.pos]
 			mem = ch in self.value
 			if not mem:
@@ -1106,16 +1173,16 @@ class ConfigSet(ConfigElement):
 			val1 = self.genString(tmp[:ind])
 			val2 = " "+self.genString(tmp[ind+1:])
 			if mem:
-				chstr = " "+self.description[ch]+" "
+				chstr = " "+description[ch]+" "
 			else:
-				chstr = "("+self.description[ch]+")"
+				chstr = "("+description[ch]+")"
 			return ("mtext", val1+chstr+val2, range(len(val1),len(val1)+len(chstr)))
 
 	def onDeselect(self, session):
 		self.pos = -1
 		if not self.last_value == self.value:
 			self.changedFinal()
-			self.last_value = self.value+[]
+			self.last_value = self.value[:]
 		
 	def tostring(self, value):
 		return str(value)
