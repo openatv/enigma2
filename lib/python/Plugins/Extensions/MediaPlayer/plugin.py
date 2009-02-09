@@ -659,12 +659,16 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def copyDirectory(self, directory, recursive = True):
 		print "copyDirectory", directory
-		filelist = FileList(directory, useServiceRef = True, isTop = True)
+		if directory == '/':
+			print "refusing to operate on /"
+			return
+		filelist = FileList(directory, useServiceRef = True, showMountpoints = False, isTop = True)
 
 		for x in filelist.getFileList():
 			if x[0][1] == True: #isDir
 				if recursive:
-					self.copyDirectory(x[0][0])
+					if x[0][0] != directory:
+						self.copyDirectory(x[0][0])
 			elif filelist.getServiceRef() and filelist.getServiceRef().type == 4097:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
