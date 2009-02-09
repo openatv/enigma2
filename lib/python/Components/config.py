@@ -28,7 +28,6 @@ import os
 #
 class ConfigElement(object):
 	def __init__(self):
-
 		object.__init__(self)
 		self.saved_value = None
 		self.last_value = None
@@ -140,6 +139,107 @@ def getKeyNumber(key):
 	assert key in KEY_NUMBERS
 	return key - KEY_0
 
+class choicesList(object): # XXX: we might want a better name for this
+	LIST_TYPE_LIST = 1
+	LIST_TYPE_DICT = 2
+
+	def __init__(self, choices, type = None):
+		object.__init__(self)
+		self.choices = choices
+		if type is None:
+			if isinstance(choices, list):
+				self.type = choicesList.LIST_TYPE_LIST
+			elif isinstance(choices, dict):
+				self.type = choicesList.LIST_TYPE_DICT
+			else:
+				assert False, "choices must be dict or list!"
+		else:
+			self.type = type
+
+	def __list__(self):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			ret = [isinstance(x, tuple) and x[0] or x for x in self.choices]
+		else:
+			ret = self.choices.keys()
+		return ret or [""]
+
+	def __iter__(self):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			ret = [isinstance(x, tuple) and x[0] or x for x in self.choices]
+		else:
+			ret = self.choices
+		return iter(ret or [""])
+
+	def __len__(self):
+		return len(self.choices) or 1
+
+	def __getitem__(self, index):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			ret = self.choices[index]
+			if isinstance(ret, tuple):
+				ret = ret[0]
+			return ret
+		return self.choices.keys()[index]
+
+	def index(self, value):
+		return self.__list__().index(value)
+
+	def __setitem__(self, index, value):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			orig = self.choices[index]
+			if isinstance(orig, tuple):
+				self.choices[index] = (value, orig[1])
+			else:
+				self.choices[index] = value
+		else:
+			key = self.choices.keys()[index]
+			orig = self.choices[key]
+			del self.choices[key]
+			self.choices[value] = orig
+
+	def default(self):
+		if self.type is choicesList.LIST_TYPE_LIST:
+			default = self.choices[0]
+			if isinstance(default, tuple):
+				default = default[0]
+		else:
+			default = self.choices.keys()[0]
+		return default
+
+class descriptionList(choicesList): # XXX: we might want a better name for this
+	def __list__(self):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			ret = [isinstance(x, tuple) and x[1] or x for x in self.choices]
+		else:
+			ret = self.choices.values()
+		return ret or [""]
+
+	def __iter__(self):
+		return iter(self.__list__())
+
+	def __getitem__(self, index):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			for x in self.choices:
+				if isinstance(x, tuple):
+					if x[0] == index:
+						return str(x[1])
+				elif x == index:
+					return str(x)
+			return str(index) # Fallback!
+		else:
+			return str(self.choices.get(index, ""))
+
+	def __setitem__(self, index, value):
+		if self.type == choicesList.LIST_TYPE_LIST:
+			i = self.index(index)
+			orig = self.choices[i]
+			if isinstance(orig, tuple):
+				self.choices[i] = (orig[0], value)
+			else:
+				self.choices[i] = value
+		else:
+			self.choices[index] = value
+
 #
 # ConfigSelection is a "one of.."-type.
 # it has the "choices", usually a list, which contains
@@ -151,43 +251,21 @@ def getKeyNumber(key):
 class ConfigSelection(ConfigElement):
 	def __init__(self, choices, default = None):
 		ConfigElement.__init__(self)
-		self._value = None
-		self.setChoices(choices, default)
-		self.last_value = self._value
-
-	def setChoices(self, choices, default = None):
-		self.choices = []
-		self.description = {}
-		
-		if isinstance(choices, list):
-			for x in choices:
-				if isinstance(x, tuple):
-					self.choices.append(x[0])
-					self.description[x[0]] = x[1]
-				else:
-					self.choices.append(x)
-					self.description[x] = x
-		elif isinstance(choices, dict):
-			for (key, val) in choices.items():
-				self.choices.append(key)
-				self.description[key] = val
-		else:
-			assert False, "ConfigSelection choices must be dict or list!"
-		
-		#assert len(self.choices), "you can't have an empty configselection"
-		if len(self.choices) == 0:
-			self.choices = [""]
-			self.description[""] = ""
+		self.choices = choicesList(choices)
 
 		if default is None:
-			default = self.choices[0]
+			default = self.choices.default()
 
-		assert default in self.choices, "default must be in choice list, but " + repr(default) + " is not!"
-#		for x in self.choices:
-#			assert isinstance(x, str), "ConfigSelection choices must be strings"
-		self.default = default
+		self.default = self._value = self.last_value = default
+		self.changed()
 
-		if self.value == None or not self.value in self.choices:
+	def setChoices(self, choices, default = None):
+		self.choices = choicesList(choices)
+
+		if default is None:
+			default = self.choices.default()
+
+		if self.value not in self.choices:
 			self.value = default
 
 	def setValue(self, value):
@@ -195,7 +273,6 @@ class ConfigSelection(ConfigElement):
 			self._value = value
 		else:
 			self._value = self.default
-		
 		self.changed()
 
 	def tostring(self, val):
@@ -206,7 +283,6 @@ class ConfigSelection(ConfigElement):
 
 	def setCurrentText(self, text):
 		i = self.choices.index(self.value)
-		del self.description[self.choices[i]]
 		self.choices[i] = text
 		self.description[text] = text
 		self._value = text
@@ -230,7 +306,7 @@ class ConfigSelection(ConfigElement):
 			self.value = self.choices[0]
 		elif key == KEY_END:
 			self.value = self.choices[nchoices - 1]
-			
+
 	def selectNext(self):
 		nchoices = len(self.choices)
 		i = self.choices.index(self.value)
@@ -252,16 +328,19 @@ class ConfigSelection(ConfigElement):
 	def getHTML(self, id):
 		res = ""
 		for v in self.choices:
+			descr = self.description[v]
 			if self.value == v:
 				checked = 'checked="checked" '
 			else:
 				checked = ''
-			res += '<input type="radio" name="' + id + '" ' + checked + 'value="' + v + '">' + self.description[v] + "</input></br>\n"
+			res += '<input type="radio" name="' + id + '" ' + checked + 'value="' + v + '">' + descr + "</input></br>\n"
 		return res;
 
 	def unsafeAssign(self, value):
 		# setValue does check if value is in choices. This is safe enough.
 		self.value = value
+
+	description = property(lambda self: descriptionList(self.choices.choices, self.choices.type))
 
 # a binary decision.
 #
@@ -1037,28 +1116,17 @@ class ConfigSatlist(ConfigSelection):
 class ConfigSet(ConfigElement):
 	def __init__(self, choices, default = []):
 		ConfigElement.__init__(self)
-		self.choices = []
-		self.description = {}
 		if isinstance(choices, list):
 			choices.sort()
-			for x in choices:
-				if isinstance(x, tuple):
-					self.choices.append(x[0])
-					self.description[x[0]] = str(x[1])
-				else:
-					self.choices.append(x)
-					self.description[x] = str(x)
+			self.choices = choicesList(choices, choicesList.LIST_TYPE_LIST)
 		else:
 			assert False, "ConfigSet choices must be a list!"
-		if len(self.choices) == 0:
-			self.choices = [""]
-			self.description[""] = ""
 		if default is None:
 			default = []
 		self.pos = -1
 		default.sort()
 		self.last_value = self.default = default
-		self.value = default+[]
+		self.value = default[:]
 
 	def toggleChoice(self, choice):
 		if choice in self.value:
@@ -1096,7 +1164,7 @@ class ConfigSet(ConfigElement):
 		if not selected or self.pos == -1:
 			return ("text", self.genString(self.value))
 		else:
-			tmp = self.value+[]
+			tmp = self.value[:]
 			ch = self.choices[self.pos]
 			mem = ch in self.value
 			if not mem:
@@ -1115,13 +1183,15 @@ class ConfigSet(ConfigElement):
 		self.pos = -1
 		if not self.last_value == self.value:
 			self.changedFinal()
-			self.last_value = self.value+[]
+			self.last_value = self.value[:]
 		
 	def tostring(self, value):
 		return str(value)
 
 	def fromstring(self, val):
 		return eval(val)
+
+	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
 
 class ConfigLocations(ConfigElement):
 	def __init__(self, default = [], visible_width = False):
