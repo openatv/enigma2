@@ -1024,7 +1024,13 @@ class InfoBarPVRState:
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
-		self._mayShow()
+		
+		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
+		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY:
+			self.pvrStateDialog.hide()
+		else:
+			self._mayShow()
+			
 
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
