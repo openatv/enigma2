@@ -21,6 +21,7 @@ class Harddisk:
 		s_minor = int(tmp[1])
 		self.max_idle_time = 0
 		self.idle_running = False
+		self.timer = None
 		for disc in listdir("/dev/discs"):
 			path = readlink('/dev/discs/'+disc)
 			devidex = '/dev/discs/'+disc+'/'
@@ -36,6 +37,11 @@ class Harddisk:
 
 	def __lt__(self, ob):
 		return self.device < ob.device
+
+	def stop(self):
+		if self.timer:
+			self.timer.stop()
+			self.timer.callback.remove(self.runIdle)
 
 	def bus(self):
 		ide_cf = self.device.find("hd") == 0 and self.devidex2.find("host0") == -1 # 7025 specific
@@ -454,6 +460,7 @@ class HarddiskManager:
 			idx = 0
 			for hdd in self.hdd:
 				if hdd.device == device:
+					self.hdd[x].stop()
 					del self.hdd[idx]
 					break
 			SystemInfo["Harddisk"] = len(self.hdd) > 0
