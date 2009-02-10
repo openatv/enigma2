@@ -263,7 +263,7 @@ class Harddisk:
 			print "hdd was accessed since previous check!"
 			self.last_stat = l
 			self.last_access = t
-			self.idle_time = 0
+			idle_time = 0
 			self.is_sleeping = False
 		else:
 			print "hdd IDLE!"
