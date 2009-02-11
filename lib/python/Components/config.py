@@ -20,7 +20,7 @@ from time import localtime, strftime
 #   saved_value is a text representation of _value, stored in the config file
 #
 # and has (at least) the following methods:
-#   save()   stores _value into saved_value, 
+#   save()   stores _value into saved_value,
 #            (or stores 'None' if it should not be stored)
 #   load()   loads _value from saved_value, or loads
 #            the default if saved_value is 'None' (default)
@@ -63,7 +63,7 @@ class ConfigElement(object):
 
 	def getValue(self):
 		return self._value
-	
+
 	value = property(getValue, setValue)
 
 	# you need to override this if self.value is not a string
@@ -105,12 +105,12 @@ class ConfigElement(object):
 		if self.__notifiers:
 			for x in self.notifiers:
 				x(self)
-			
+
 	def changedFinal(self):
 		if self.__notifiers_final:
 			for x in self.notifiers_final:
 				x(self)
-			
+
 	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True):
 		assert callable(notifier), "notifiers must be callable"
 		if immediate_feedback:
@@ -311,10 +311,10 @@ class ConfigSelection(ConfigElement):
 		self._value = text
 
 	value = property(getValue, setValue)
-	
+
 	def getIndex(self):
 		return self.choices.index(self.value)
-	
+
 	index = property(getIndex)
 
 	# GUI
@@ -533,15 +533,15 @@ class ConfigSequence(ConfigElement):
 			self.marked_pos -= 1
 			self.validatePos()
 
-		if key == KEY_RIGHT:
+		elif key == KEY_RIGHT:
 			self.marked_pos += 1
 			self.validatePos()
 
-		if key == KEY_HOME:
+		elif key == KEY_HOME:
 			self.marked_pos = 0
 			self.validatePos()
 
-		if key == KEY_END:
+		elif key == KEY_END:
 			max_pos = 0
 			num = 0
 			for i in self._value:
@@ -550,7 +550,7 @@ class ConfigSequence(ConfigElement):
 			self.marked_pos = max_pos - 1
 			self.validatePos()
 
-		if key in KEY_NUMBERS or key == KEY_ASCII:
+		elif key in KEY_NUMBERS or key == KEY_ASCII:
 			if key == KEY_ASCII:
 				code = getPrevAsciiCode()
 				if code < 48 or code > 57:
@@ -559,10 +559,7 @@ class ConfigSequence(ConfigElement):
 			else:
 				number = getKeyNumber(key)
 
-			block_len = []
-			for x in self.limits:
-				block_len.append(len(str(x[1])))
-
+			block_len = [len(str(x[1])) for x in self.limits]
 			total_len = sum(block_len)
 
 			pos = 0
@@ -639,46 +636,43 @@ ip_limits = [(0,255),(0,255),(0,255),(0,255)]
 class ConfigIP(ConfigSequence):
 	def __init__(self, default, auto_jump = False):
 		ConfigSequence.__init__(self, seperator = ".", limits = ip_limits, default = default)
-		self.block_len = []
-		for x in self.limits:
-			self.block_len.append(len(str(x[1])))
+		self.block_len = [len(str(x[1])) for x in self.limits]
 		self.marked_block = 0
 		self.overwrite = True
 		self.auto_jump = auto_jump
 
 	def handleKey(self, key):
-		
 		if key == KEY_LEFT:
 			if self.marked_block > 0:
 				self.marked_block -= 1
 			self.overwrite = True
 
-		if key == KEY_RIGHT:
+		elif key == KEY_RIGHT:
 			if self.marked_block < len(self.limits)-1:
 				self.marked_block += 1
 			self.overwrite = True
 
-		if key == KEY_HOME:
+		elif key == KEY_HOME:
 			self.marked_block = 0
 			self.overwrite = True
 
-		if key == KEY_END:
+		elif key == KEY_END:
 			self.marked_block = len(self.limits)-1
 			self.overwrite = True
 
-		if key in KEY_NUMBERS or key == KEY_ASCII:
+		elif key in KEY_NUMBERS or key == KEY_ASCII:
 			if key == KEY_ASCII:
 				code = getPrevAsciiCode()
 				if code < 48 or code > 57:
 					return
 				number = code - 48
-			else:	
+			else:
 				number = getKeyNumber(key)
 			oldvalue = self._value[self.marked_block]
-			
+
 			if self.overwrite:
 				self._value[self.marked_block] = number
-				self.overwrite = False		
+				self.overwrite = False
 			else:
 				oldvalue *= 10
 				newvalue = oldvalue + number
@@ -699,7 +693,7 @@ class ConfigIP(ConfigSequence):
 		value = ""
 		block_strlen = []
 		for i in self._value:
-			block_strlen.append(len(str(i)))	
+			block_strlen.append(len(str(i)))
 			if value:
 				value += self.seperator
 			value += str(i)
@@ -707,7 +701,7 @@ class ConfigIP(ConfigSequence):
 		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
 		mBlock = range(leftPos, rightPos)
 		return (value, mBlock)
-	
+
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
 		if self.enabled:
@@ -768,7 +762,7 @@ integer_limits = (0, 9999999999)
 class ConfigInteger(ConfigSequence):
 	def __init__(self, default, limits = integer_limits):
 		ConfigSequence.__init__(self, seperator = ":", limits = [limits], default = default)
-	
+
 	# you need to override this to do input validation
 	def setValue(self, value):
 		self._value = [value]
@@ -810,7 +804,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	def __init__(self, default = "", fixed_size = True, visible_width = False):
 		ConfigElement.__init__(self)
 		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
-		
+
 		self.marked_pos = 0
 		self.allmarked = (default != "")
 		self.fixed_size = fixed_size
@@ -821,24 +815,25 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.value = self.last_value = self.default = default
 
 	def validateMarker(self):
+		textlen = len(self.text)
 		if self.fixed_size:
-			if self.marked_pos > len(self.text)-1:
-				self.marked_pos = len(self.text)-1
+			if self.marked_pos > textlen-1:
+				self.marked_pos = textlen-1
 		else:
-			if self.marked_pos > len(self.text):
-				self.marked_pos = len(self.text)
+			if self.marked_pos > textlen:
+				self.marked_pos = textlen
 		if self.marked_pos < 0:
 			self.marked_pos = 0
 		if self.visible_width:
 			if self.marked_pos < self.offset:
 				self.offset = self.marked_pos
 			if self.marked_pos >= self.offset + self.visible_width:
-				if self.marked_pos == len(self.text):
+				if self.marked_pos == textlen:
 					self.offset = self.marked_pos - self.visible_width
 				else:
 					self.offset = self.marked_pos - self.visible_width + 1
-			if self.offset > 0 and self.offset + self.visible_width > len(self.text):
-				self.offset = max(0, len(self.text) - self.visible_width)
+			if self.offset > 0 and self.offset + self.visible_width > textlen:
+				self.offset = max(0, len - self.visible_width)
 
 	def insertChar(self, ch, pos, owr):
 		if owr or self.overwrite:
@@ -1020,7 +1015,7 @@ class ConfigNumber(ConfigText):
 
 	def getValue(self):
 		return int(self.text)
-		
+
 	def setValue(self, val):
 		self.text = str(val)
 
@@ -1073,17 +1068,21 @@ class ConfigSearchText(ConfigText):
 class ConfigDirectory(ConfigText):
 	def __init__(self, default="", visible_width=60):
 		ConfigText.__init__(self, default, fixed_size = True, visible_width = visible_width)
+
 	def handleKey(self, key):
 		pass
+
 	def getValue(self):
 		if self.text == "":
 			return None
 		else:
 			return ConfigText.getValue(self)
+
 	def setValue(self, val):
 		if val == None:
 			val = ""
 		ConfigText.setValue(self, val)
+
 	def getMulti(self, selected):
 		if self.text == "":
 			return ("mtext"[1-selected:], _("List of Storage Devices"), range(0))
@@ -1140,7 +1139,7 @@ class ConfigSatlist(ConfigSelection):
 		if self.value == "":
 			return None
 		return int(self.value)
-	
+
 	orbital_position = property(getOrbitalPosition)
 
 class ConfigSet(ConfigElement):
@@ -1159,11 +1158,12 @@ class ConfigSet(ConfigElement):
 		self.value = default[:]
 
 	def toggleChoice(self, choice):
-		if choice in self.value:
-			self.value.remove(choice)
+		value = self.value
+		if choice in value:
+			value.remove(choice)
 		else:
-			self.value.append(choice)
-			self.value.sort()
+			value.append(choice)
+			value.sort()
 		self.changed()
 
 	def handleKey(self, key):
@@ -1171,13 +1171,15 @@ class ConfigSet(ConfigElement):
 			if self.pos != -1:
 				self.toggleChoice(self.choices[self.pos])
 		elif key == KEY_LEFT:
-			self.pos -= 1
-			if self.pos < -1:
-			    self.pos = len(self.choices)-1
+			if self.pos < 0:
+				self.pos = len(self.choices)-1
+			else:
+				self.pos -= 1
 		elif key == KEY_RIGHT:
-			self.pos += 1
-			if self.pos >= len(self.choices):
-			    self.pos = -1
+			if self.pos >= len(self.choices)-1:
+				self.pos = -1
+			else:
+				self.pos += 1
 		elif key in [KEY_HOME, KEY_END]:
 			self.pos = -1
 
@@ -1207,14 +1209,15 @@ class ConfigSet(ConfigElement):
 				chstr = " "+self.description[ch]+" "
 			else:
 				chstr = "("+self.description[ch]+")"
-			return ("mtext", val1+chstr+val2, range(len(val1),len(val1)+len(chstr)))
+			len_val1 = len(val1)
+			return ("mtext", val1+chstr+val2, range(len_val1, len_val1 + len(chstr)))
 
 	def onDeselect(self, session):
 		self.pos = -1
 		if not self.last_value == self.value:
 			self.changedFinal()
 			self.last_value = self.value[:]
-		
+
 	def tostring(self, value):
 		return str(value)
 
@@ -1232,22 +1235,25 @@ class ConfigLocations(ConfigElement):
 		self.locations = []
 		self.mountpoints = []
 		harddiskmanager.on_partition_list_change.append(self.mountpointsChanged)
-		self.value = default+[]
+		self.value = default[:]
 
 	def setValue(self, value):
-		loc = [x[0] for x in self.locations if x[3]]
+		locations = self.locations
+		loc = [x[0] for x in locations if x[3]]
 		add = [x for x in value if not x in loc]
 		diff = add + [x for x in loc if not x in value]
-		self.locations = [x for x in self.locations if not x[0] in diff] + [[x, self.getMountpoint(x), True, True] for x in add]
-		self.locations.sort(key = lambda x: x[0])
+		locations = [x for x in locations if not x[0] in diff] + [[x, self.getMountpoint(x), True, True] for x in add]
+		locations.sort(key = lambda x: x[0])
+		self.locations = locations
 		self.changed()
 
 	def getValue(self):
 		self.checkChangedMountpoints()
-		for x in self.locations:
+		locations = self.locations
+		for x in locations:
 			x[3] = x[2]
-		return [x[0] for x in self.locations if x[3]]
-	
+		return [x[0] for x in locations if x[3]]
+
 	value = property(getValue, setValue)
 
 	def tostring(self, value):
@@ -1262,24 +1268,27 @@ class ConfigLocations(ConfigElement):
 			tmp = self.default
 		else:
 			tmp = self.fromstring(sv)
-		self.locations = [[x, None, False, False] for x in tmp]
+		locations = [[x, None, False, False] for x in tmp]
 		self.refreshMountpoints()
-		for x in self.locations:
+		for x in locations:
 			if os_path.exists(x[0]):
 				x[1] = self.getMountpoint(x[0])
 				x[2] = True
+		self.locations = locations
 
 	def save(self):
-		if self.save_disabled or self.locations == []:
+		locations = self.locations
+		if self.save_disabled or not locations:
 			self.saved_value = None
 		else:
-			self.saved_value = self.tostring([x[0] for x in self.locations])
+			self.saved_value = self.tostring([x[0] for x in locations])
 
 	def isChanged(self):
 		sv = self.saved_value
-		if val is None and self.locations == []:
+		locations = self.locations
+		if val is None and not locations:
 			return False
-		return self.tostring([x[0] for x in self.locations]) != sv
+		return self.tostring([x[0] for x in locations]) != sv
 
 	def mountpointsChanged(self, action, dev):
 		print "Mounts changed: ", action, dev
@@ -1302,7 +1311,7 @@ class ConfigLocations(ConfigElement):
 		for x in self.locations:
 			if x[1] == mp:
 				x[2] = False
-		
+
 	def refreshMountpoints(self):
 		self.mountpoints = [p.mountpoint + "/" for p in harddiskmanager.getMountedPartitions() if p.mountpoint != "/"]
 		self.mountpoints.sort(key = lambda x: -len(x))
@@ -1310,12 +1319,13 @@ class ConfigLocations(ConfigElement):
 	def checkChangedMountpoints(self):
 		oldmounts = self.mountpoints
 		self.refreshMountpoints()
-		if oldmounts == self.mountpoints:
+		newmounts = self.mountpoints
+		if oldmounts == newmounts:
 			return
 		for x in oldmounts:
-			if not x in self.mountpoints:
+			if not x in newmounts:
 				self.removedMount(x)
-		for x in self.mountpoints:
+		for x in newmounts:
 			if not x in oldmounts:
 				self.addedMount(x)
 
@@ -1330,11 +1340,11 @@ class ConfigLocations(ConfigElement):
 		if key == KEY_LEFT:
 			self.pos -= 1
 			if self.pos < -1:
-			    self.pos = len(self.value)-1
+				self.pos = len(self.value)-1
 		elif key == KEY_RIGHT:
 			self.pos += 1
 			if self.pos >= len(self.value):
-			    self.pos = -1
+				self.pos = -1
 		elif key in [KEY_HOME, KEY_END]:
 			self.pos = -1
 
@@ -1371,7 +1381,7 @@ class ConfigLocations(ConfigElement):
 
 	def onDeselect(self, session):
 		self.pos = -1
-		
+
 # nothing.
 class ConfigNothing(ConfigSelection):
 	def __init__(self):
@@ -1409,7 +1419,7 @@ class ConfigSubList(list, object):
 	def save(self):
 		for x in self:
 			x.save()
-	
+
 	def load(self):
 		for x in self:
 			x.load()
@@ -1452,7 +1462,7 @@ class ConfigSubDict(dict, object):
 	def save(self):
 		for x in self.values():
 			x.save()
-	
+
 	def load(self):
 		for x in self.values():
 			x.load()
@@ -1489,7 +1499,7 @@ class ConfigSubDict(dict, object):
 # loading of added elements. this is why this class
 # is so complex.
 #
-# we need the 'content' because we overwrite 
+# we need the 'content' because we overwrite
 # __setattr__.
 # If you don't understand this, try adding
 # __setattr__ to a usual exisiting class and you will.
@@ -1498,7 +1508,7 @@ class ConfigSubsection(object):
 		self.__dict__["content"] = ConfigSubsectionContent()
 		self.content.items = { }
 		self.content.stored_values = { }
-	
+
 	def __setattr__(self, name, value):
 		if name == "saved_value":
 			return self.setSavedValue(value)
@@ -1558,7 +1568,7 @@ class Config(ConfigSubsection):
 
 	def pickle_this(self, prefix, topickle, result):
 		for (key, val) in topickle.items():
-			name = ''.join((prefix, '.', key))
+			name = '.'.join((prefix, key))
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)
 			elif isinstance(val, tuple):
@@ -1576,7 +1586,7 @@ class Config(ConfigSubsection):
 		for l in lines:
 			if not l or l[0] == '#':
 				continue
-			
+
 			n = l.find('=')
 			val = l[n+1:].strip()
 
@@ -1585,10 +1595,10 @@ class Config(ConfigSubsection):
 #				val = val[:val.find(' ')]
 
 			base = tree
-			
+
 			for n in names[:-1]:
 				base = base.setdefault(n, {})
-			
+
 			base[names[-1]] = val
 
 		# we inherit from ConfigSubsection, so ...
@@ -1617,19 +1627,20 @@ class ConfigFile:
 			config.loadFromFile(self.CONFIG_FILE)
 		except IOError, e:
 			print "unable to load config (%s), assuming defaults..." % str(e)
-	
+
 	def save(self):
 #		config.save()
 		config.saveToFile(self.CONFIG_FILE)
-	
+
 	def __resolveValue(self, pickles, cmap):
-		if cmap.has_key(pickles[0]):
+		key = pickles[0]
+		if cmap.has_key(key):
 			if len(pickles) > 1:
-				return self.__resolveValue(pickles[1:], cmap[pickles[0]].dict())
+				return self.__resolveValue(pickles[1:], cmap[key].dict())
 			else:
-				return str(cmap[pickles[0]].value)
+				return str(cmap[key].value)
 		return None
-	
+
 	def getResolvedKey(self, key):
 		names = key.split('.')
 		if len(names) > 1:
