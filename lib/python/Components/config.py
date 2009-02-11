@@ -178,14 +178,14 @@ class choicesList(object): # XXX: we might want a better name for this
 
 	def __list__(self):
 		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = [isinstance(x, tuple) and x[0] or x for x in self.choices]
+			ret = [not isinstance(x, tuple) and x or x[0] for x in self.choices]
 		else:
 			ret = self.choices.keys()
 		return ret or [""]
 
 	def __iter__(self):
 		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = [isinstance(x, tuple) and x[0] or x for x in self.choices]
+			ret = [not isinstance(x, tuple) and x or x[0] for x in self.choices]
 		else:
 			ret = self.choices
 		return iter(ret or [""])
@@ -232,7 +232,7 @@ class choicesList(object): # XXX: we might want a better name for this
 class descriptionList(choicesList): # XXX: we might want a better name for this
 	def __list__(self):
 		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = [isinstance(x, tuple) and x[1] or x for x in self.choices]
+			ret = [not isinstance(x, tuple) and x or x[1] for x in self.choices]
 		else:
 			ret = self.choices.values()
 		return ret or [""]
