@@ -3,17 +3,9 @@ from twisted.internet.protocol import Protocol, Factory
 from twisted.internet import reactor
 from Components.Harddisk import harddiskmanager
 
-DEVICEDB =  \
-	{ "/devices/pci0000:00/0000:00:14.2/usb1/1-1/1-1:1.0/host0/target0:0:0/0:0:0:0": "CF Slot",
-	  "/devices/pci0000:00/0000:00:14.2/usb1/1-1/1-1:1.0/host0/target1:0:0/0:0:0:0": "SD Slot"
-	}
-
 hotplugNotifier = [ ]
 
 class Hotplug(Protocol):
-	def getUserfriendlyDeviceName(self, phys):
-		return DEVICEDB.get(phys, "USB Storage")
-
 	def connectionMade(self):
 		self.received = ""
 
@@ -40,20 +32,19 @@ class Hotplug(Protocol):
 		dev = device.split('/')[-1]
 
 		if action is not None and action == "add":
-			print "Medium found in", self.getUserfriendlyDeviceName(dev)
-			harddiskmanager.addHotplugPartition(dev, self.getUserfriendlyDeviceName(physdevpath))
+			harddiskmanager.addHotplugPartition(dev, physdevpath)
 		elif action is not None and action == "remove":
 			harddiskmanager.removeHotplugPartition(dev)
 		elif media_state is not None:
 			if media_state == '1':
 				harddiskmanager.removeHotplugPartition(dev)
-				harddiskmanager.addHotplugPartition(dev, self.getUserfriendlyDeviceName(physdevpath))
+				harddiskmanager.addHotplugPartition(dev, physdevpath)
 			elif media_state == '0':
 				harddiskmanager.removeHotplugPartition(dev)
 		
 		for callback in hotplugNotifier:
 			try:
-				callback(dev, media_state)
+				callback(dev, action or media_state)
 			except AttributeError:
 				hotplugNotifier.remove(callback)
 

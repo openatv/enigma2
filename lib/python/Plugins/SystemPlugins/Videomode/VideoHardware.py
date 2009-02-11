@@ -59,10 +59,37 @@ class VideoHardware:
 
 	widescreen_modes = set(["720p", "1080i"])
 
+	def getOutputAspect(self):
+		ret = (16,9)
+		port = config.av.videoport.value
+		if port not in config.av.videomode:
+			print "current port not available in getOutputAspect!!! force 16:9"
+		else:
+			mode = config.av.videomode[port].value
+			force_widescreen = self.isWidescreenMode(port, mode)
+			is_widescreen = force_widescreen or config.av.aspect.value in ["16_9", "16_10"]
+			is_auto = config.av.aspect.value == "auto"
+			if is_widescreen:
+				if force_widescreen:
+					pass
+				else:
+					aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
+					if aspect == "16:10":
+						ret = (16,10)
+			elif is_auto:
+				try:
+					aspect_str = open("/proc/stb/vmpeg/0/aspect", "r").read()
+					if aspect_str == "1": # 4:3
+						ret = (4,3)
+				except IOError:
+					pass
+			else:  # 4:3
+				ret = (4,3)
+		return ret
+
 	def __init__(self):
 		self.last_modes_preferred =  [ ]
 		self.on_hotplug = CList()
-		self.standby = False
 		self.current_mode = None
 		self.current_port = None
 
@@ -79,7 +106,7 @@ class VideoHardware:
 		config.av.aspectratio.notifiers = [ ]
 		config.av.tvsystem.notifiers = [ ]
 		config.av.wss.notifiers = [ ]
-		AVSwitch.setInput = self.AVSwitchSetInput
+		AVSwitch.getOutputAspect = self.getOutputAspect
 
 		config.av.aspect.addNotifier(self.updateAspect)
 		config.av.wss.addNotifier(self.updateAspect)
@@ -90,12 +117,6 @@ class VideoHardware:
 #		self.timer = eTimer()
 #		self.timer.callback.append(self.readPreferredModes)
 #		self.timer.start(1000)
-
-		config.av.colorformat.addNotifier(self.updateFastblank) 
-
-	def AVSwitchSetInput(self, mode):
-		self.standby = mode == "SCART"
-		self.updateStandby()
 
 	def readAvailableModes(self):
 		try:
@@ -264,6 +285,7 @@ class VideoHardware:
 
 		is_widescreen = force_widescreen or config.av.aspect.value in ["16_9", "16_10"]
 		is_auto = config.av.aspect.value == "auto"
+		policy2 = "policy" # use main policy
 
 		if is_widescreen:
 			if force_widescreen:
@@ -271,6 +293,7 @@ class VideoHardware:
 			else:
 				aspect = {"16_9": "16:9", "16_10": "16:10"}[config.av.aspect.value]
 			policy = {"pillarbox": "panscan", "panscan": "letterbox", "nonlinear": "nonlinear", "scale": "bestfit"}[config.av.policy_43.value]
+			policy2 = {"letterbox": "letterbox", "panscan": "panscan", "scale": "bestfit"}[config.av.policy_169.value]
 		elif is_auto:
 			aspect = "any"
 			policy = "bestfit"
@@ -283,46 +306,14 @@ class VideoHardware:
 		else:
 			wss = "auto"
 
-		print "-> setting aspect, policy, wss", aspect, policy, wss
+		print "-> setting aspect, policy, policy2, wss", aspect, policy, policy2, wss
 		open("/proc/stb/video/aspect", "w").write(aspect)
 		open("/proc/stb/video/policy", "w").write(policy)
 		open("/proc/stb/denc/0/wss", "w").write(wss)
-		self.updateSlowblank()
-		self.updateFastblank()
-
-	def updateSlowblank(self):
-		if self.standby:
-			from Components.SystemInfo import SystemInfo
-			if SystemInfo["ScartSwitch"]:
-				input = "scart"
-				sb = "vcr"
-			else:
-				input = "off"
-				sb = "0"
-		else:
-			input = "encoder"
-			sb = "auto"
-
-		open("/proc/stb/avs/0/sb", "w").write(sb)
-		open("/proc/stb/avs/0/input", "w").write(input)
-
-	def updateStandby(self):
-		self.updateSlowblank()
-		self.updateFastblank()
-
-	def updateFastblank(self, *args):
-		if self.standby:
-			from Components.SystemInfo import SystemInfo
-			if SystemInfo["ScartSwitch"]:
-				fb = "vcr"
-			else:
-				fb = "low"
-		else:
-			if self.current_port == "Scart" and config.av.colorformat.value == "rgb":
-				fb = "high"
-			else:
-				fb = "low"
-		open("/proc/stb/avs/0/fb", "w").write(fb)
+		try:
+			open("/proc/stb/video/policy2", "w").write(policy2)
+		except IOError:
+			pass
 
 config.av.edid_override = ConfigYesNo(default = False)
 video_hw = VideoHardware()

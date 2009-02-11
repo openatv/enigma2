@@ -1,6 +1,6 @@
 from os import path as os_path, remove as os_remove, listdir as os_listdir
 from time import strftime
-from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, loadPic
+from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad
 from ServiceReference import ServiceReference
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
@@ -35,17 +35,58 @@ class MyPlayList(PlayList):
 		self.oldCurrPlaying = -1
 
 class MediaPixmap(Pixmap):
+	def __init__(self):
+		Pixmap.__init__(self)
+		self.coverArtFileName = ""
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.paintCoverArtPixmapCB)
+		self.coverFileNames = ["folder.png", "folder.jpg"]
+
 	def applySkin(self, desktop, screen):
-		self.default_pixmap = None
+		from Tools.LoadPixmap import LoadPixmap
+		noCoverFile = None
 		if self.skinAttributes is not None:
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "pixmap":
-					self.default_pixmap = value
+					noCoverFile = value
 					break
-		if self.default_pixmap is None:
-			self.default_pixmap = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/no_coverArt.png")
-		self.coverFileNames = ["folder.png", "folder.jpg"]
+		if noCoverFile is None:
+			noCoverFile = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/no_coverArt.png")
+		self.noCoverPixmap = LoadPixmap(noCoverFile)
 		return Pixmap.applySkin(self, desktop, screen)
+
+	def onShow(self):
+		Pixmap.onShow(self)
+		sc = AVSwitch().getFramebufferScale()
+		#0=Width 1=Height 2=Aspect 3=use_cache 4=resize_type 5=Background(#AARRGGBB)
+		self.picload.setPara((self.instance.size().width(), self.instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+
+	def paintCoverArtPixmapCB(self, picInfo=None):
+		ptr = self.picload.getData()
+		if ptr != None:
+			self.instance.setPixmap(ptr.__deref__())
+
+	def updateCoverArt(self, path):
+		while not path.endswith("/"):
+			path = path[:-1]
+		new_coverArtFileName = None
+		for filename in self.coverFileNames:
+			if fileExists(path + filename):
+				new_coverArtFileName = path + filename
+		if self.coverArtFileName != new_coverArtFileName:
+			self.coverArtFileName = new_coverArtFileName
+			if new_coverArtFileName:
+				self.picload.startDecode(self.coverArtFileName)
+			else:
+				self.showDefaultCover()
+
+	def showDefaultCover(self):
+		self.instance.setPixmap(self.noCoverPixmap)
+
+	def embeddedCoverArt(self):
+		print "[embeddedCoverArt] found"
+		self.coverArtFileName = "/tmp/.id3coverart"
+		self.picload.startDecode(self.coverArtFileName)
 
 class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, HelpableScreen):
 	ALLOW_SUSPEND = True
@@ -70,11 +111,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		# 'None' is magic to start at the list of mountpoints
 		defaultDir = config.mediaplayer.defaultDir.getValue()
-		self.filelist = FileList(defaultDir, matchingPattern = "(?i)^.*\.(mp2|mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|mkv|mp4|dat|flac)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
+		self.filelist = FileList(defaultDir, matchingPattern = "(?i)^.*\.(mp2|mp3|ogg|ts|wav|wave|m3u|pls|e2pls|mpg|vob|avi|divx|mkv|mp4|m4a|dat|flac)", useServiceRef = True, additionalExtensions = "4098:m3u 4098:e2pls 4098:pls")
 		self["filelist"] = self.filelist
 
 		self.playlist = MyPlayList()
-		#self.playlist = PlayList()
 		self.is_closing = False
 		self.delname = ""
 		self["playlist"] = self.playlist
@@ -83,15 +123,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		self["currenttext"] = Label("")
 
-		self["artisttext"] = Label(_("Artist:"))
+		self["artisttext"] = Label(_("Artist")+':')
 		self["artist"] = Label("")
-		self["titletext"] = Label(_("Title:"))
+		self["titletext"] = Label(_("Title")+':')
 		self["title"] = Label("")
-		self["albumtext"] = Label(_("Album:"))
+		self["albumtext"] = Label(_("Album")+':')
 		self["album"] = Label("")
-		self["yeartext"] = Label(_("Year:"))
+		self["yeartext"] = Label(_("Year")+':')
 		self["year"] = Label("")
-		self["genretext"] = Label(_("Genre:"))
+		self["genretext"] = Label(_("Genre")+':')
 		self["genre"] = Label("")
 		self["coverArt"] = MediaPixmap()
 		self["repeat"] = MultiPixmap()
@@ -169,8 +209,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.leftKeyTimer.callback.append(self.leftTimerFire)
 
 		self.currList = "filelist"
-
-		self.coverArtFileName = ""
 		self.isAudioCD = False
 		self.AudioCD_albuminfo = {}
 		self.cdAudioTrackFiles = []
@@ -187,7 +225,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			{
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 				iPlayableService.evUser+11: self.__evDecodeError,
-				iPlayableService.evUser+12: self.__evPluginError
+				iPlayableService.evUser+12: self.__evPluginError,
+				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
 			})
 
 	def doNothing(self):
@@ -206,6 +245,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
 			config.mediaplayer.defaultDir.save()
 		hotplugNotifier.remove(self.hotplugCB)
+		del self["coverArt"].picload
 		self.close()
 
 	def checkSkipShowHideLock(self):
@@ -284,19 +324,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if info != "" or clear:
 			if self[name].getText() != info:
 				self[name].setText(info)
-
-	def updateCoverArtPixmap(self, path):
-		while not path.endswith("/"):
-			path = path[:-1]
-		new_coverArtFileName = self["coverArt"].default_pixmap
-		for filename in self["coverArt"].coverFileNames:
-			if fileExists(path + filename):
-				new_coverArtFileName = path + filename
-		if self.coverArtFileName != new_coverArtFileName:
-			self.coverArtFileName = new_coverArtFileName
-			pixmap = loadPic(self.coverArtFileName, 116, 116, AVSwitch().getAspectRatioSetting()/2,1,0,0)
-			if pixmap is not None:
-				self["coverArt"].instance.setPixmap(pixmap.__deref__())
 
 	def leftDown(self):
 		self.lefttimer = True
@@ -456,17 +483,20 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			else:
 				menu.append((_("add files to playlist"), "copyfiles"))
 			menu.append((_("switch to playlist"), "playlist"))
-			menu.append((_("delete file"), "deletefile"))
+			if config.usage.setup_level.index >= 1: # intermediate+
+				menu.append((_("delete file"), "deletefile"))
 		else:
 			menu.append((_("switch to filelist"), "filelist"))
-			menu.append((_("shuffle playlist"), "shuffle"))
-			menu.append((_("Delete entry"), "deleteentry"))
 			menu.append((_("clear playlist"), "clear"))
+			menu.append((_("Delete entry"), "deleteentry"))
+			if config.usage.setup_level.index >= 1: # intermediate+
+				menu.append((_("shuffle playlist"), "shuffle"))
 		menu.append((_("hide player"), "hide"));
-		menu.append((_("save playlist"), "saveplaylist"));
 		menu.append((_("load playlist"), "loadplaylist"));
-		menu.append((_("delete saved playlist"), "deleteplaylist"));
-		menu.append((_("Edit settings"), "settings"))
+		if config.usage.setup_level.index >= 1: # intermediate+
+			menu.append((_("save playlist"), "saveplaylist"));
+			menu.append((_("delete saved playlist"), "deleteplaylist"));
+			menu.append((_("Edit settings"), "settings"))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
@@ -629,12 +659,16 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def copyDirectory(self, directory, recursive = True):
 		print "copyDirectory", directory
-		filelist = FileList(directory, useServiceRef = True, isTop = True)
+		if directory == '/':
+			print "refusing to operate on /"
+			return
+		filelist = FileList(directory, useServiceRef = True, showMountpoints = False, isTop = True)
 
 		for x in filelist.getFileList():
 			if x[0][1] == True: #isDir
 				if recursive:
-					self.copyDirectory(x[0][0])
+					if x[0][0] != directory:
+						self.copyDirectory(x[0][0])
 			elif filelist.getServiceRef() and filelist.getServiceRef().type == 4097:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
@@ -775,6 +809,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	
 	def playEntry(self):
 		if len(self.playlist.getServiceRefList()):
+			audio_extensions = (".mp2", ".mp3", ".wav", ".ogg", "flac", "m4a")
 			needsInfoUpdate = False
 			currref = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()]
 			if self.session.nav.getCurrentlyPlayingServiceReference() is None or currref != self.session.nav.getCurrentlyPlayingServiceReference():
@@ -790,7 +825,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				ext = text[-4:].lower()
 
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead 
-				if ext not in [".mp2", ".mp3", ".wav", ".ogg", "flac"] and not self.isAudioCD:
+				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
@@ -817,7 +852,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				currref = self.playlist.getServiceRefList()[idx]
 				text = currref.getPath()
 				ext = text[-4:].lower()
-				if ext not in [".mp2", ".mp3", ".wav", ".ogg", "flac"] and not self.isAudioCD:
+				if ext not in audio_extensions and not self.isAudioCD:
 					self.hide()
 				else:
 					needsInfoUpdate = True
@@ -825,11 +860,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 			self.unPauseService()
 			if needsInfoUpdate == True:
 				path = self.playlist.getServiceRefList()[self.playlist.getCurrentIndex()].getPath()
-				self.updateCoverArtPixmap(path)
+				self["coverArt"].updateCoverArt(path)
 			else:
-				pngname = self["coverArt"].default_pixmap
-				self.coverArtFileName = pngname
-				self["coverArt"].instance.setPixmapFromFile(self.coverArtFileName)
+				self["coverArt"].showDefaultCover()
 			self.readTitleInformation()
 
 	def updatedSeekState(self):
@@ -863,17 +896,22 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.session.open(Subtitles)
 	
 	def hotplugCB(self, dev, media_state):
-		if dev == harddiskmanager.getCD():	
-			from Components.Scanner import scanDevice
-			devpath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
-			self.cdAudioTrackFiles = []
-			res = scanDevice(devpath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
-			if list:
-				(desc, scanner, files, session) = list[0]
-				for file in files:
-					if file.mimetype == "audio/x-cda":
-						self.cdAudioTrackFiles.append(file.path)
+		if dev == harddiskmanager.getCD():
+			if media_state == "1":
+				from Components.Scanner import scanDevice
+				devpath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+				self.cdAudioTrackFiles = []
+				res = scanDevice(devpath)
+				list = [ (r.description, r, res[r], self.session) for r in res ]
+				if list:
+					(desc, scanner, files, session) = list[0]
+					for file in files:
+						if file.mimetype == "audio/x-cda":
+							self.cdAudioTrackFiles.append(file.path)
+			else:
+				self.cdAudioTrackFiles = []
+				if self.isAudioCD:
+					self.clear_playlist()
 
 class MediaPlayerLCDScreen(Screen):
 	skin = """

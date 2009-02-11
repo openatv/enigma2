@@ -404,15 +404,16 @@ class iDVBFrontendParameters: public iObject
 #endif
 public:
 	enum { flagOnlyFree = 1 };
-	virtual RESULT getSystem(int &SWIG_OUTPUT) const = 0;
-	virtual RESULT getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const = 0;
-	virtual RESULT getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const = 0;
-	virtual RESULT getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
-	
-	virtual RESULT calculateDifference(const iDVBFrontendParameters *parm, int &SWIG_OUTPUT, bool exact) const = 0;
-	virtual RESULT getHash(unsigned long &SWIG_OUTPUT) const = 0;
-	virtual RESULT calcLockTimeout(unsigned int &) const = 0;
-	virtual RESULT getFlags(unsigned int &) const = 0;
+	virtual SWIG_VOID(RESULT) getSystem(int &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const = 0;
+	virtual SWIG_VOID(RESULT) getFlags(unsigned int &SWIG_OUTPUT) const = 0;
+#ifndef SWIG
+	virtual SWIG_VOID(RESULT) calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const = 0;
+	virtual SWIG_VOID(RESULT) getHash(unsigned long &) const = 0;
+	virtual SWIG_VOID(RESULT) calcLockTimeout(unsigned int &) const = 0;
+#endif
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iDVBFrontendParameters>, iDVBFrontendParametersPtr);
 
@@ -504,6 +505,7 @@ class iDVBChannel: public iObject
 public:
 		/* direct frontend access for raw channels and/or status inquiries. */
 	virtual SWIG_VOID(RESULT) getFrontend(ePtr<iDVBFrontend> &SWIG_OUTPUT)=0;
+	virtual RESULT requestTsidOnid(SWIG_PYOBJECT(ePyObject) callback) { return -1; }
 #ifndef SWIG
 	enum
 	{
@@ -701,6 +703,12 @@ public:
 	};
 
 	virtual RESULT connectVideoEvent(const Slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;
+
+	virtual int getVideoWidth() = 0;
+	virtual int getVideoHeight() = 0;
+	virtual int getVideoProgressive() = 0;
+	virtual int getVideoFrameRate() = 0;
+	virtual int getVideoAspect() = 0;
 };
 
 #endif //SWIG

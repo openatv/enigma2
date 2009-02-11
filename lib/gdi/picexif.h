@@ -8,7 +8,7 @@
 
 #define MAX_COMMENT 1000
 #define MAX_SECTIONS 20
-
+#define THUMBNAILTMPFILE "/tmp/.thumbcache"
 
 typedef struct tag_ExifInfo {
 	char  Version        [5];
@@ -29,7 +29,7 @@ typedef struct tag_ExifInfo {
 	float ExposureTime;
 	float ExposureBias;
 	float Distance;
-	float CCDWidth;			//in milimeters
+	float CCDWidth;
 	float FocalplaneXRes;
 	float FocalplaneYRes;
 	float FocalplaneUnits;
@@ -40,9 +40,10 @@ typedef struct tag_ExifInfo {
 	int   ISOequivalent;
 	int   Process;
 	int   Orient;
-	unsigned char * ThumbnailPointer;
-	unsigned ThumbnailSize;
+	//unsigned char *ThumbnailPointer;
+	//unsigned ThumbnailSize;
 	bool  IsExif;
+	int Thumnailstate;
 } EXIFINFO;
 
 static const int BytesPerFormat[] = {0,1,1,2,4,8,1,1,2,4,8,4,8};
@@ -59,7 +60,7 @@ public:
 	char m_szLastError[256];
 	Cexif();
 	~Cexif();
-	bool DecodeExif(const char *filename);
+	bool DecodeExif(const char *filename, int Thumb=0);
 	void ClearExif();
 protected:
 	bool process_EXIF(unsigned char * CharBuf, unsigned int length);

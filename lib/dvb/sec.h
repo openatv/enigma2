@@ -170,7 +170,7 @@ class eDVBSatelliteSwitchParameters
 #endif
 public:
 	enum t_22khz_signal {	HILO=0, ON=1, OFF=2	}; // 22 Khz
-	enum t_voltage_mode	{	HV=0, _14V=1, _18V=2, _0V=3 }; // 14/18 V
+	enum t_voltage_mode	{	HV=0, _14V=1, _18V=2, _0V=3, HV_13=4 }; // 14/18 V
 #ifndef SWIG
 	t_voltage_mode m_voltage_mode;
 	t_22khz_signal m_22khz_signal;
@@ -231,7 +231,7 @@ public:
 #ifndef SWIG
 	t_12V_relais_state m_12V_relais_state;	// 12V relais output on/off
 
-	__u8 slot_mask; // useable by slot ( 1 | 2 | 4...)
+	int m_slot_mask; // useable by slot ( 1 | 2 | 4...)
 
 	unsigned int m_lof_hi,	// for 2 band universal lnb 10600 Mhz (high band offset frequency)
 				m_lof_lo,	// for 2 band universal lnb  9750 Mhz (low band offset frequency)
@@ -242,7 +242,26 @@ public:
 	std::map<int, eDVBSatelliteSwitchParameters> m_satellites;
 	eDVBSatelliteDiseqcParameters m_diseqc_parameters;
 	eDVBSatelliteRotorParameters m_rotor_parameters;
+
+	int m_prio; // to override automatic tuner management ... -1 is Auto
 #endif
+public:
+#define guard_offset_min -8000
+#define guard_offset_max 8000
+#define guard_offset_step 8000
+#define MAX_SATCR 8
+#define MAX_LNBNUM 32
+
+	int SatCR_idx;
+	unsigned int SatCRvco;
+	unsigned int UnicableTuningWord;
+	unsigned int UnicableConfigWord;
+	int old_frequency;
+	int old_polarisation;
+	int old_orbital_position;
+	int guard_offset_old;
+	int guard_offset;
+	int LNBNum;
 };
 
 class eDVBRegisteredFrontend;
@@ -304,6 +323,8 @@ public:
 	RESULT setLNBLOFH(int lofh);
 	RESULT setLNBThreshold(int threshold);
 	RESULT setLNBIncreasedVoltage(bool onoff);
+	RESULT setLNBPrio(int prio);
+	RESULT setLNBNum(int LNBNum);
 /* DiSEqC Specific Parameters */
 	RESULT setDiSEqCMode(int diseqcmode);
 	RESULT setToneburst(int toneburst);
@@ -321,6 +342,12 @@ public:
 	RESULT setUseInputpower(bool onoff);
 	RESULT setInputpowerDelta(int delta);  // delta between running and stopped rotor
 	RESULT setRotorTurningSpeed(int speed);  // set turning speed..
+/* Unicable Specific Parameters */
+	RESULT setLNBSatCR(int SatCR_idx);
+	RESULT setLNBSatCRvco(int SatCRvco);
+//	RESULT checkGuardOffset(const eDVBFrontendParametersSatellite &sat);
+	RESULT getLNBSatCR();
+	RESULT getLNBSatCRvco();
 /* Satellite Specific Parameters */
 	RESULT addSatellite(int orbital_position);
 	RESULT setVoltageMode(int mode);

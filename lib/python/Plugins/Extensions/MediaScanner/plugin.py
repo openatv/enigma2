@@ -17,6 +17,7 @@ def mountpoint_choosen(option):
 
 	from Screens.ChoiceBox import ChoiceBox
 
+	print "scanning", option
 	(description, mountpoint, session) = option
 	res = scanDevice(mountpoint)
 

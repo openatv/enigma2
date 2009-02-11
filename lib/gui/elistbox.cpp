@@ -279,7 +279,7 @@ void eListbox::updateScrollBar()
 			if ((pages*m_items_per_page) < entries)
 				++pages;
 			int start=(m_top*100)/(pages*m_items_per_page);
-			int vis=(m_items_per_page*100)/(pages*m_items_per_page);
+			int vis=(m_items_per_page*100+pages*m_items_per_page-1)/(pages*m_items_per_page);
 			if (vis < 3)
 				vis=3;
 			m_scrollbar->setStartEnd(start,start+vis);

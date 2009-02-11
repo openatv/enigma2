@@ -69,6 +69,7 @@ def changeBouquetCB(direction, epg):
 		bouquet = bouquetSel.getCurrent()
 		services = getBouquetServices(bouquet)
 		if len(services):
+			global epg_bouquet
 			epg_bouquet = bouquet
 			epg.setServices(services)
 
@@ -93,4 +94,5 @@ def main(session, servicelist, **kwargs):
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
 	descr = _("A graphical EPG for all services of an specific bouquet")
- 	return [ PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, fnc=main) ]
+ 	return [ PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, fnc=main),
+	  PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main) ]

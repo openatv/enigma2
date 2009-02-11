@@ -141,6 +141,7 @@ typedef long time_t;
 %include <lib/service/service.h>
 
 // TODO: embed these...
+%immutable ePicLoad::PictureData;
 %immutable eButton::selected;
 %immutable eInput::changed;
 %immutable eComponentScan::statusChanged;
@@ -287,7 +288,7 @@ PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, 
 PyObject *getBestPlayableServiceReference(const eServiceReference &bouquet_ref, const eServiceReference &ignore, bool simulate=false)
 {
 	eStaticServiceDVBBouquetInformation info;
-	if (info.isPlayable(bouquet_ref, ignore))
+	if (info.isPlayable(bouquet_ref, ignore, simulate))
 		return New_eServiceReference(info.getPlayableService());
 	Py_INCREF(Py_None);
 	return Py_None;

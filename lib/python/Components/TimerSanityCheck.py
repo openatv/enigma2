@@ -173,8 +173,7 @@ class TimerSanityCheck:
 					def getServiceType(ref): # helper function to get a service type of a service reference
 						serviceInfo = serviceHandler.info(ref)
 						serviceInfo = serviceInfo and serviceInfo.getInfoObject(ref, iServiceInformation.sTransponderData)
-						if serviceInfo:
-							return { "Satellite" : "DVB-S", "Cable" : "DVB-C", "Terrestrial" : "DVB-T"}[serviceInfo["type"]]
+						return serviceInfo and serviceInfo["tuner_type"] or ""
 
 					ref = timer.service_ref.ref
 					if ref.flags & eServiceReference.isGroup: # service group ?
@@ -200,7 +199,7 @@ class TimerSanityCheck:
 					if timer == fakeRec[0] and fakeRec[1]:
 						NavigationInstance.instance.stopRecordService(fakeRec[1])
 						fakeRecList.remove(fakeRec)
-				del fakeRec
+				fakeRec = None
 				for entry in overlaplist:
 					if entry[1] == timer:
 						overlaplist.remove(entry)

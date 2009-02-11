@@ -1,17 +1,21 @@
 from Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
+from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.TimerList import TimerList
 from enigma import eEPGCache, eTimer, eServiceReference
-from RecordTimer import RecordTimerEntry, parseEvent
+from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
 from time import localtime
 from Components.config import config
 
 class EventViewBase:
+	ADD_TIMER = 0
+	REMOVE_TIMER = 1
+	
 	def __init__(self, Event, Ref, callback=None, similarEPGCB=None):
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
@@ -28,6 +32,7 @@ class EventViewBase:
 			self.SimilarBroadcastTimer.callback.append(self.getSimilarEvents)
 		else:
 			self.SimilarBroadcastTimer = None
+		self.key_green_choice = self.ADD_TIMER
 		if self.isRecording:
 			self["key_green"] = Button("")
 		else:
@@ -59,8 +64,25 @@ class EventViewBase:
 		if self.cbFunc is not None:
 			self.cbFunc(self.setEvent, self.setService, +1)
 
+	def removeTimer(self, timer):
+		timer.afterEvent = AFTEREVENT.NONE
+		self.session.nav.RecordTimer.removeEntry(timer)
+		self["key_green"].setText(_("Add timer"))
+		self.key_green_choice = self.ADD_TIMER
+	
 	def timerAdd(self):
-		if not self.isRecording:
+		event = self.event
+		serviceref = self.currentService
+		if event is None:
+			return
+		eventid = event.getEventId()
+		refstr = serviceref.ref.toString()
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				cb_func = lambda ret : not ret or self.removeTimer(timer)
+				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
+				break
+		else:
 			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
@@ -70,13 +92,17 @@ class EventViewBase:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
 			if simulTimerList is not None:
-				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
-					simulTimerList[1].end = entry.begin - 30
-					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
-					self.session.nav.RecordTimer.record(entry)
-				else:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
 		else:
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
 			print "Timeredit aborted"		
 
 	def finishSanityCorrection(self, answer):
@@ -122,6 +148,22 @@ class EventViewBase:
 		self["key_red"].setText("")
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400,True)
+
+		serviceref = self.currentService
+		eventid = self.event.getEventId()
+		refstr = serviceref.ref.toString()
+		isRecordEvent = False
+		for timer in self.session.nav.RecordTimer.timer_list:
+			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
+				isRecordEvent = True
+				break
+		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
+			self["key_green"].setText(_("Remove timer"))
+			self.key_green_choice = self.REMOVE_TIMER
+		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
+			self["key_green"].setText(_("Add timer"))
+			self.key_green_choice = self.ADD_TIMER
+
 
 	def pageUp(self):
 		self["epg_description"].pageUp()

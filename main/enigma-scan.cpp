@@ -43,9 +43,9 @@ public:
 		
 		fesat.frequency = 11817000; // 12070000;
 		fesat.symbol_rate = 27500000;
-		fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation::Vertical;
-		fesat.fec = eDVBFrontendParametersSatellite::FEC::f3_4;
-		fesat.inversion = eDVBFrontendParametersSatellite::Inversion::Off;
+		fesat.polarisation = eDVBFrontendParametersSatellite::Polarisation_Vertical;
+		fesat.fec = eDVBFrontendParametersSatellite::FEC_3_4;
+		fesat.inversion = eDVBFrontendParametersSatellite::Inversion_Off;
 		fesat.orbital_position = 192;
 
 		eDVBFrontendParameters *fe = new eDVBFrontendParameters();

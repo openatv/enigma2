@@ -11,7 +11,7 @@ public:
 	void setStartEnd(int start, int end);
 	void setRange(int min, int max);
 	enum { orHorizontal, orVertical };
-	void setOrientation(int orientation);
+	void setOrientation(int orientation, int swapped = 0);
 	void setBorderWidth(int pixel);
 	void setBorderColor(const gRGB &color);
 	void setPixmap(gPixmap *pixmap);
@@ -24,7 +24,7 @@ private:
 		evtChangedSlider = evtUserWidget
 	};
 	bool m_have_border_color;
-	int m_min, m_max, m_value, m_start, m_orientation, m_border_width;
+	int m_min, m_max, m_value, m_start, m_orientation, m_orientation_swapped, m_border_width;
 	ePtr<gPixmap> m_pixmap;
 	
 	gRegion m_currently_filled;

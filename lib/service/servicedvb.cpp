@@ -96,217 +96,50 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 	return false;
 }
 
-static void PutToDict(ePyObject &dict, const char*key, long value)
-{
-	ePyObject item = PyString_FromFormat("%d", value);
-	if (item)
-	{
-		if (PyDict_SetItemString(dict, key, item))
-			eDebug("put %s to dict failed", key);
-		Py_DECREF(item);
-	}
-	else
-		eDebug("could not create PyObject for %s", key);
-}
-
-extern void PutToDict(ePyObject &dict, const char*key, const char *value);
+extern void PutToDict(ePyObject &dict, const char*key, long value);  // defined in dvb/frontend.cpp
+extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
+extern void PutToDict(ePyObject &dict, const char*key, const char *value); // defined in dvb/frontend.cpp
 
 void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm)
 {
-	const char *tmp=0;
-	PutToDict(dict, "type", "Satellite");
+	PutToDict(dict, "tuner_type", "DVB-S");
 	PutToDict(dict, "frequency", feparm.frequency);
-	PutToDict(dict, "symbolrate", feparm.symbol_rate);
-	PutToDict(dict, "orbital position", feparm.orbital_position);
-	switch (feparm.inversion)
+	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
+	PutToDict(dict, "orbital_position", feparm.orbital_position);
+	PutToDict(dict, "inversion", feparm.inversion);
+	PutToDict(dict, "fec_inner", feparm.fec);
+	PutToDict(dict, "modulation", feparm.modulation);
+	PutToDict(dict, "polarization", feparm.polarisation);
+	if (feparm.system == eDVBFrontendParametersSatellite::System_DVB_S2)
 	{
-		case eDVBFrontendParametersSatellite::Inversion::On: tmp="ON"; break;
-		case eDVBFrontendParametersSatellite::Inversion::Off: tmp="OFF"; break;
-		default:
-		case eDVBFrontendParametersSatellite::Inversion::Unknown: tmp="AUTO"; break;
+		PutToDict(dict, "rolloff", feparm.rolloff);
+		PutToDict(dict, "pilot", feparm.pilot);
 	}
-	PutToDict(dict, "inversion", tmp);
-	switch (feparm.fec)
-	{
-		case eDVBFrontendParametersSatellite::FEC::fNone: tmp="NONE"; break;
-		case eDVBFrontendParametersSatellite::FEC::f1_2: tmp="1/2"; break;
-		case eDVBFrontendParametersSatellite::FEC::f2_3: tmp="2/3"; break;
-		case eDVBFrontendParametersSatellite::FEC::f3_4: tmp="3/4"; break;
-		case eDVBFrontendParametersSatellite::FEC::f5_6: tmp="5/6"; break;
-		case eDVBFrontendParametersSatellite::FEC::f7_8: tmp="7/8"; break;
-		case eDVBFrontendParametersSatellite::FEC::f3_5: tmp="3/5"; break;
-		case eDVBFrontendParametersSatellite::FEC::f4_5: tmp="4/5"; break;
-		case eDVBFrontendParametersSatellite::FEC::f8_9: tmp="8/9"; break;
-		case eDVBFrontendParametersSatellite::FEC::f9_10: tmp="9/10"; break;
-		default:
-		case eDVBFrontendParametersSatellite::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "fec inner", tmp);
-	switch (feparm.modulation)
-	{
-		case eDVBFrontendParametersSatellite::Modulation::Auto: tmp="AUTO"; break;
-		case eDVBFrontendParametersSatellite::Modulation::QPSK: tmp="QPSK"; break;
-		case eDVBFrontendParametersSatellite::Modulation::M8PSK: tmp="8PSK"; break;
-		case eDVBFrontendParametersSatellite::Modulation::QAM_16: tmp="QAM16"; break;
-	}
-	PutToDict(dict, "modulation", tmp);
-	switch(feparm.polarisation)
-	{
-		case eDVBFrontendParametersSatellite::Polarisation::Horizontal: tmp="HORIZONTAL"; break;
-		case eDVBFrontendParametersSatellite::Polarisation::Vertical: tmp="VERTICAL"; break;
-		case eDVBFrontendParametersSatellite::Polarisation::CircularLeft: tmp="CIRCULAR LEFT"; break;
-		default:
-		case eDVBFrontendParametersSatellite::Polarisation::CircularRight: tmp="CIRCULAR RIGHT"; break;
-	}
-	PutToDict(dict, "polarization", tmp);
-	switch(feparm.system)
-	{
-		default:
-		case eDVBFrontendParametersSatellite::System::DVB_S: tmp="DVB-S"; break;
-		case eDVBFrontendParametersSatellite::System::DVB_S2:
-			switch(feparm.rolloff)
-			{
-				default:
-				case eDVBFrontendParametersSatellite::RollOff::alpha_0_35: tmp="0.35"; break;
-				case eDVBFrontendParametersSatellite::RollOff::alpha_0_25: tmp="0.25"; break;
-				case eDVBFrontendParametersSatellite::RollOff::alpha_0_20: tmp="0.20"; break;
-			}
-			PutToDict(dict, "roll off", tmp);
-			switch(feparm.pilot)
-			{
-				case eDVBFrontendParametersSatellite::Pilot::On: tmp="ON"; break;
-				case eDVBFrontendParametersSatellite::Pilot::Off: tmp="OFF"; break;
-				default:
-				case eDVBFrontendParametersSatellite::Pilot::Unknown: tmp="AUTO"; break;
-			}
-			PutToDict(dict, "pilot", tmp);
-			tmp="DVB-S2";
-			break;
-	}
-	PutToDict(dict, "system", tmp);
+	PutToDict(dict, "system", feparm.system);
 }
 
 void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial &feparm)
 {
-	PutToDict(dict, "type", "Terrestrial");
+	PutToDict(dict, "tuner_type", "DVB-T");
 	PutToDict(dict, "frequency", feparm.frequency);
-	const char *tmp=0;
-	switch (feparm.bandwidth)
-	{
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw8MHz: tmp="8 MHz"; break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw7MHz: tmp="7 MHz"; break;
-	case eDVBFrontendParametersTerrestrial::Bandwidth::Bw6MHz: tmp="6 MHz"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::Bandwidth::BwAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "bandwidth", tmp);
-	switch (feparm.code_rate_LP)
-	{
-	case eDVBFrontendParametersTerrestrial::FEC::f1_2: tmp="1/2"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f2_3: tmp="2/3"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f3_4: tmp="3/4"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f5_6: tmp="5/6"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f7_8: tmp="7/8"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "code rate lp", tmp);
-	switch (feparm.code_rate_HP)
-	{
-	case eDVBFrontendParametersTerrestrial::FEC::f1_2: tmp="1/2"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f2_3: tmp="2/3"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f3_4: tmp="3/4"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f5_6: tmp="5/6"; break;
-	case eDVBFrontendParametersTerrestrial::FEC::f7_8: tmp="7/8"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "code rate hp", tmp);
-	switch (feparm.modulation)
-	{
-	case eDVBFrontendParametersTerrestrial::Modulation::QPSK: tmp="QPSK"; break;
-	case eDVBFrontendParametersTerrestrial::Modulation::QAM16: tmp="QAM16"; break;
-	case eDVBFrontendParametersTerrestrial::Modulation::QAM64: tmp="QAM64"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::Modulation::Auto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "constellation", tmp);
-	switch (feparm.transmission_mode)
-	{
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM2k: tmp="2k"; break;
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TM8k: tmp="8k"; break;
-	default:
-	case eDVBFrontendParametersTerrestrial::TransmissionMode::TMAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "transmission mode", tmp);
-	switch (feparm.guard_interval)
-	{
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_32: tmp="1/32"; break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_16: tmp="1/16"; break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_8: tmp="1/8"; break;
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_1_4: tmp="1/4"; break;
-		default:
-		case eDVBFrontendParametersTerrestrial::GuardInterval::GI_Auto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "guard interval", tmp);
-	switch (feparm.hierarchy)
-	{
-		case eDVBFrontendParametersTerrestrial::Hierarchy::HNone: tmp="NONE"; break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H1: tmp="1"; break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H2: tmp="2"; break;
-		case eDVBFrontendParametersTerrestrial::Hierarchy::H4: tmp="4"; break;
-		default:
-		case eDVBFrontendParametersTerrestrial::Hierarchy::HAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "hierarchy", tmp);
-	switch (feparm.inversion)
-	{
-		case eDVBFrontendParametersSatellite::Inversion::On: tmp="ON"; break;
-		case eDVBFrontendParametersSatellite::Inversion::Off: tmp="OFF"; break;
-		default:
-		case eDVBFrontendParametersSatellite::Inversion::Unknown: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "inversion", tmp);
+	PutToDict(dict, "bandwidth", feparm.bandwidth);
+	PutToDict(dict, "code_rate_lp", feparm.code_rate_LP);
+	PutToDict(dict, "code_rate_hp", feparm.code_rate_HP);
+	PutToDict(dict, "constellation", feparm.modulation);
+	PutToDict(dict, "transmission_mode", feparm.transmission_mode);
+	PutToDict(dict, "guard_interval", feparm.guard_interval);
+	PutToDict(dict, "hierarchy_information", feparm.hierarchy);
+	PutToDict(dict, "inversion", feparm.inversion);
 }
 
 void PutCableDataToDict(ePyObject &dict, eDVBFrontendParametersCable &feparm)
 {
-	const char *tmp=0;
-	PutToDict(dict, "type", "Cable");
+	PutToDict(dict, "tuner_type", "DVB-C");
 	PutToDict(dict, "frequency", feparm.frequency);
-	PutToDict(dict, "symbolrate", feparm.symbol_rate);
-	switch (feparm.modulation)
-	{
-	case eDVBFrontendParametersCable::Modulation::QAM16: tmp="QAM16"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM32: tmp="QAM32"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM64: tmp="QAM64"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM128: tmp="QAM128"; break;
-	case eDVBFrontendParametersCable::Modulation::QAM256: tmp="QAM256"; break;
-	default:
-	case eDVBFrontendParametersCable::Modulation::Auto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "modulation", tmp);
-	switch (feparm.inversion)
-	{
-	case eDVBFrontendParametersCable::Inversion::On: tmp="ON"; break;
-	case eDVBFrontendParametersCable::Inversion::Off: tmp="OFF"; break;
-	default:
-	case eDVBFrontendParametersCable::Inversion::Unknown: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "inversion", tmp);
-	switch (feparm.fec_inner)
-	{
-	case eDVBFrontendParametersCable::FEC::fNone: tmp="NONE"; break;
-	case eDVBFrontendParametersCable::FEC::f1_2: tmp="1/2"; break;
-	case eDVBFrontendParametersCable::FEC::f2_3: tmp="2/3"; break;
-	case eDVBFrontendParametersCable::FEC::f3_4: tmp="3/4"; break;
-	case eDVBFrontendParametersCable::FEC::f5_6: tmp="5/6"; break;
-	case eDVBFrontendParametersCable::FEC::f7_8: tmp="7/8"; break;
-	case eDVBFrontendParametersCable::FEC::f8_9: tmp="8/9"; break;
-	default:
-	case eDVBFrontendParametersCable::FEC::fAuto: tmp="AUTO"; break;
-	}
-	PutToDict(dict, "fec inner", tmp);
+	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
+	PutToDict(dict, "modulation", feparm.modulation);
+	PutToDict(dict, "inversion", feparm.inversion);
+	PutToDict(dict, "fec_inner", feparm.fec_inner);
 }
 
 PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r, int what)
@@ -534,14 +367,25 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	
 	eDVBTSTools tstools;
 	
+	struct stat s;
+	stat(ref.path.c_str(), &s);
+
 	if (tstools.openFile(ref.path.c_str()))
 		return 0;
 
+			/* check if cached data is still valid */
+	if (m_parser.m_data_ok && (s.st_size == m_parser.m_filesize) && (m_parser.m_length))
+		return m_parser.m_length / 90000;
+
+			/* otherwise, re-calc length and update meta file */
 	pts_t len;
 	if (tstools.calcLen(len))
 		return 0;
 
-	return len / 90000;
+ 	m_parser.m_length = len;
+	m_parser.m_filesize = s.st_size;
+	m_parser.updateMeta(ref.path);
+	return m_parser.m_length / 90000;
 }
 
 int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w)
@@ -1042,7 +886,6 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
 	m_reference(ref), m_dvb_service(service), m_have_video_pid(0), m_is_paused(0)
 {
-	memset(&m_videoEventData, 0, sizeof(struct iTSMPEGDecoder::videoEvent));
 	m_is_primary = 1;
 	m_is_pvr = !m_reference.path.empty();
 	
@@ -1589,20 +1432,6 @@ RESULT eDVBServicePlay::getEvent(ePtr<eServiceEvent> &evt, int nownext)
 	return m_event_handler.getEvent(evt, nownext);
 }
 
-static int readMpegProc(char *str, int decoder)
-{
-	int val = -1;
-	char tmp[64];
-	sprintf(tmp, "/proc/stb/vmpeg/%d/%s", decoder, str);
-	FILE *f = fopen(tmp, "r");
-	if (f)
-	{
-		fscanf(f, "%x", &val);
-		fclose(f);
-	}
-	return val;
-}
-
 int eDVBServicePlay::getInfo(int w)
 {
 	eDVBServicePMTHandler::program program;
@@ -1619,44 +1448,30 @@ int eDVBServicePlay::getInfo(int w)
 
 	switch (w)
 	{
-#if HAVE_DVB_API_VERSION >= 3
 	case sVideoHeight:
-		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventSizeChanged)
-			return m_videoEventData.height;
-		else
-			return readMpegProc("yres", !m_is_primary);
+		if (m_decoder)
+			return m_decoder->getVideoHeight();
+		break;
 	case sVideoWidth:
-		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventSizeChanged)
-			return m_videoEventData.width;
-		else
-			return readMpegProc("xres", !m_is_primary);
+		if (m_decoder)
+			return m_decoder->getVideoWidth();
+		break;
 	case sFrameRate:
-		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventFrameRateChanged)
-			return m_videoEventData.framerate;
-		else
-			return readMpegProc("framerate", !m_is_primary);
+		if (m_decoder)
+			return m_decoder->getVideoFrameRate();
+		break;
 	case sProgressive:
-		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventProgressiveChanged)
-			return m_videoEventData.progressive;
-		return readMpegProc("progressive", !m_is_primary);
-#else
-#warning "FIXMEE implement sFrameRate, sProgressive, sVideoHeight, sVideoWidth for old DVB API"
-#endif
+		if (m_decoder)
+			return m_decoder->getVideoProgressive();
+		break;
 	case sAspect:
 	{
-		int val;
-#if HAVE_DVB_API_VERSION >= 3
-		if (m_videoEventData.type == iTSMPEGDecoder::videoEvent::eventSizeChanged)
-			return m_videoEventData.aspect == VIDEO_FORMAT_4_3 ? 1 : 3;
-		else if ((val=readMpegProc("aspect", !m_is_primary)) != -1)
-			return val;
-		else
-#else
-#warning "FIXMEE implement sAspect for old DVB API"
-#endif
+		int aspect = -1;
+		if (m_decoder)
+			aspect = m_decoder->getVideoAspect();
 		if (no_program_info)
-			return -1; 
-		else if (!program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
+			break;
+		else if (aspect == -1 && !program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
 		{
 			ePtr<eServiceEvent> evt;
 			if (!m_event_handler.getEvent(evt, 0))
@@ -1693,7 +1508,9 @@ int eDVBServicePlay::getInfo(int w)
 				}
 			}
 		}
-		return -1;
+		else
+			return aspect;
+		break;
 	}
 	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
 	case sVideoPID: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
@@ -1710,8 +1527,9 @@ int eDVBServicePlay::getInfo(int w)
 	case sServiceref: return resIsString;
 	case sDVBState: return m_tune_state;
 	default:
-		return -1;
+		break;
 	}
+	return -1;
 }
 
 std::string eDVBServicePlay::getInfoString(int w)
@@ -1798,6 +1616,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "AC3";
 	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAAC)
 		info.m_description = "AAC";
+	else if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atAACHE)
+		info.m_description = "AAC-HE";
 	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
 		info.m_description = "DTS";
 	else
@@ -2056,19 +1876,8 @@ PyObject *eDVBServiceBase::getTransponderData(bool original)
 					eDVBFrontendParametersSatellite osat;
 					if (!feparm->getDVBS(osat))
 					{
-						void PutToDict(ePyObject &, const char*, long);
-						void PutToDict(ePyObject &, const char*, const char*);
 						PutToDict(ret, "orbital_position", osat.orbital_position);
-						const char *tmp = "UNKNOWN";
-						switch(osat.polarisation)
-						{
-							case eDVBFrontendParametersSatellite::Polarisation::Horizontal: tmp="HORIZONTAL"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::Vertical: tmp="VERTICAL"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::CircularLeft: tmp="CIRCULAR_LEFT"; break;
-							case eDVBFrontendParametersSatellite::Polarisation::CircularRight: tmp="CIRCULAR_RIGHT"; break;
-							default:break;
-						}
-						PutToDict(ret, "polarization", tmp);
+						PutToDict(ret, "polarization", osat.polarisation);
 					}
 				}
 			}
@@ -2213,8 +2022,8 @@ PyObject *eDVBServicePlay::getCutList()
 	for (std::multiset<struct cueEntry>::iterator i(m_cue_entries.begin()); i != m_cue_entries.end(); ++i)
 	{
 		ePyObject tuple = PyTuple_New(2);
-		PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(i->where));
-		PyTuple_SetItem(tuple, 1, PyInt_FromLong(i->what));
+		PyTuple_SET_ITEM(tuple, 0, PyLong_FromLongLong(i->where));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(i->what));
 		PyList_Append(list, tuple);
 		Py_DECREF(tuple);
 	}
@@ -3014,7 +2823,6 @@ void eDVBServicePlay::setPCMDelay(int delay)
 
 void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)
 {
-	memcpy(&m_videoEventData, &event, sizeof(event));
 	switch(event.type) {
 		case iTSMPEGDecoder::videoEvent::eventSizeChanged:
 			m_event((iPlayableService*)this, evVideoSizeChanged);
@@ -3041,18 +2849,16 @@ PyObject *eDVBServicePlay::getStreamingData()
 	eDVBServicePMTHandler::program program;
 	if (m_service_handler.getProgramInfo(program))
 	{
-		Py_INCREF(Py_None);
-		return Py_None;
+		Py_RETURN_NONE;
 	}
 
-	PyObject *r = program.createPythonObject();
+	ePyObject r = program.createPythonObject();
 	ePtr<iDVBDemux> demux;
 	if (!m_service_handler.getDataDemux(demux))
 	{
 		uint8_t demux_id;
-		demux->getCADemuxID(demux_id);
-		
-		PyDict_SetItemString(r, "demux", PyInt_FromLong(demux_id));
+		if (!demux->getCADemuxID(demux_id))
+			PutToDict(r, "demux", demux_id);
 	}
 
 	return r;

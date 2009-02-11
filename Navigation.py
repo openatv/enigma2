@@ -11,7 +11,7 @@ import ServiceReference
 
 # TODO: remove pNavgation, eNavigation and rewrite this stuff in python.
 class Navigation:
-	def __init__(self):
+	def __init__(self, nextRecordTimerAfterEventActionAuto=False):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 		
@@ -33,7 +33,7 @@ class Navigation:
 			clearFPWasTimerWakeup()
 			if getFPWasTimerWakeup(): # sanity check to detect if the FP driver is working correct!
 				print "buggy fp driver detected!!! please update drivers.... ignore timer wakeup!"
-			elif len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
+			elif nextRecordTimerAfterEventActionAuto and (len(self.getRecordings()) or abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360):
 				if not Screens.Standby.inTryQuitMainloop: # not a shutdown messagebox is open
 					RecordTimer.RecordTimerEntry.TryQuitMainloop(False) # start shutdown handling
 		self.SleepTimer = SleepTimer.SleepTimer()
@@ -87,7 +87,7 @@ class Navigation:
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
-			service = ref and self.pnav and self.pnav.recordService(ref)
+			service = ref and self.pnav and self.pnav.recordService(ref, simulate)
 			if service is None:
 				print "record returned non-zero"
 		return service
@@ -96,8 +96,8 @@ class Navigation:
 		ret = self.pnav and self.pnav.stopRecordService(service)
 		return ret
 
-	def getRecordings(self):
-		return self.pnav and self.pnav.getRecordings()
+	def getRecordings(self, simulate=False):
+		return self.pnav and self.pnav.getRecordings(simulate)
 
 	def getCurrentService(self):
 		if not self.currentlyPlayingService:

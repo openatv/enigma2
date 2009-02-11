@@ -25,6 +25,7 @@ RESULT ePythonConfigQuery::getConfigValue(const char *key, std::string &value)
 			if (PyString_Check(pRet))
 			{
 				value.assign(PyString_AS_STRING(pRet));
+				Py_DECREF(pRet);
 				return 0;
 			}
 			Py_DECREF(pRet);

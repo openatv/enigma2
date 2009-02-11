@@ -10,6 +10,7 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 from Tools.LoadPixmap import LoadPixmap
 
 EXTENSIONS = {
+		"m4a": "music",
 		"mp2": "music",
 		"mp3": "music",
 		"wav": "music",
@@ -21,6 +22,7 @@ EXTENSIONS = {
 		"bmp": "picture",
 		"ts": "movie",
 		"avi": "movie",
+		"divx": "movie",
 		"mpg": "movie",
 		"mpeg": "movie",
 		"mkv": "movie",
@@ -117,8 +119,6 @@ class FileList(MenuList):
 	def changeDir(self, directory, select = None):
 		self.list = []
 
-		if directory and not os_path.isdir(directory):
-			directory = None
 		# if we are just entering from the list of mount points:
 		if self.current_directory is None:
 			if directory and self.showMountpoints:
@@ -134,6 +134,9 @@ class FileList(MenuList):
 				path = os_path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(FileEntryComponent(name = p.description, absolute = path, isDir = True))
+			files = [ ]
+			directories = [ ]
+		elif directory is None:
 			files = [ ]
 			directories = [ ]
 		elif self.useServiceRef:

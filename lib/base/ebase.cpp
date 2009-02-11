@@ -126,6 +126,17 @@ eMainloop::~eMainloop()
 void eMainloop::addSocketNotifier(eSocketNotifier *sn)
 {
 	int fd = sn->getFD();
+	if (m_inActivate && m_inActivate->ref.count == 1)
+	{
+		/*  when the current active SocketNotifier's refcount is one,
+			then no more external references are existing.
+			So it gets destroyed when the activate callback is finished (->AddRef() / ->Release() calls in processOneEvent).
+			But then the sn->stop() is called to late for the next Asserion.
+			Thus we call sn->stop() here (this implicitly calls eMainloop::removeSocketNotifier) and we don't get trouble
+			with the next Assertion.
+		*/
+		m_inActivate->stop();
+	}
 	ASSERT(notifiers.find(fd) == notifiers.end());
 	notifiers[fd]=sn;
 }
@@ -243,14 +254,15 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 				if (it != notifiers.end()
 					&& it->second->state == 1) // added and in poll
 				{
-					eSocketNotifier *sn = it->second;
-					int req = sn->getRequested();
+					m_inActivate = it->second;
+					int req = m_inActivate->getRequested();
 					if (pfd[i].revents & req) {
-						sn->AddRef();
-						sn->activate(pfd[i].revents & req);
-						sn->Release();
+						m_inActivate->AddRef();
+						m_inActivate->activate(pfd[i].revents & req);
+						m_inActivate->Release();
 					}
 					pfd[i].revents &= ~req;
+					m_inActivate = 0;
 				}
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
 					eDebug("poll: unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);

@@ -9,11 +9,9 @@ from Components.SystemInfo import SystemInfo
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 
-import xml.dom.minidom
+import xml.etree.cElementTree
 
 from Screens.Setup import Setup, getSetupTitle
-
-from Tools import XMLTools
 
 #		<item text="TV-Mode">self.setModeTV()</item>
 #		<item text="Radio-Mode">self.setModeRadio()</item>
@@ -22,9 +20,7 @@ from Tools import XMLTools
 
 
 # read the menu
-menufile = file(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
-mdom = xml.dom.minidom.parseString(menufile.read())
-menufile.close()
+mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
 class boundFunction:
 	def __init__(self, fnc, *args):
@@ -103,17 +99,17 @@ class Menu(Screen):
 		self.session.openWithCallback(self.menuClosed, Setup, dialog)
 
 	def addMenu(self, destList, node):
-		requires = node.getAttribute("requires")
+		requires = node.get("requires")
 		if requires and not SystemInfo.get(requires, False):
 			return
-		MenuTitle = _(node.getAttribute("text").encode("UTF-8") or "??")
-		entryID = node.getAttribute("entryID") or "undefined"
-		weight = node.getAttribute("weight") or 50
-		x = node.getAttribute("flushConfigOnClose")
+		MenuTitle = _(node.get("text", "??").encode("UTF-8"))
+		entryID = node.get("entryID", "undefined")
+		weight = node.get("weight", 50)
+		x = node.get("flushConfigOnClose")
 		if x:
-			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node, node.childNodes)
+			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node)
 		else:
-			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, node.childNodes)
+			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node)
 		#TODO add check if !empty(node.childNodes)
 		destList.append((MenuTitle, a, entryID, weight))
 
@@ -126,18 +122,16 @@ class Menu(Screen):
 			self.close(True)
 
 	def addItem(self, destList, node):
-		requires = node.getAttribute("requires")
+		requires = node.get("requires")
 		if requires and not SystemInfo.get(requires, False):
 			return
-		item_text = node.getAttribute("text").encode("UTF-8")
-		entryID = node.getAttribute("entryID") or "undefined"
-		weight = node.getAttribute("weight") or 50
-		for x in node.childNodes:
-			if x.nodeType != xml.dom.minidom.Element.nodeType:
-				continue
-			elif x.tagName == 'screen':
-				module = x.getAttribute("module") or None
-				screen = x.getAttribute("screen") or None
+		item_text = node.get("text", "").encode("UTF-8")
+		entryID = node.get("entryID", "undefined")
+		weight = node.get("weight", 50)
+		for x in node:
+			if x.tag == 'screen':
+				module = x.get("module")
+				screen = x.get("screen")
 
 				if screen is None:
 					screen = module
@@ -150,16 +144,16 @@ class Menu(Screen):
 
 				# check for arguments. they will be appended to the
 				# openDialog call
-				args = XMLTools.mergeText(x.childNodes)
+				args = x.text or ""
 				screen += ", " + args
 
 				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight))
 				return
-			elif x.tagName == 'code':
-				destList.append((_(item_text or "??"), boundFunction(self.execText, XMLTools.mergeText(x.childNodes)), entryID, weight))
+			elif x.tag == 'code':
+				destList.append((_(item_text or "??"), boundFunction(self.execText, x.text), entryID, weight))
 				return
-			elif x.tagName == 'setup':
-				id = x.getAttribute("id")
+			elif x.tag == 'setup':
+				id = x.get("id")
 				if item_text == "":
 					item_text = _(getSetupTitle(id)) + "..."
 				else:
@@ -169,26 +163,23 @@ class Menu(Screen):
 		destList.append((item_text, self.nothing, entryID, weight))
 
 
-	def __init__(self, session, parent, childNode):
+	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		
 		list = []
 		
 		menuID = None
-		for x in childNode:						#walk through the actual nodelist
-			if x.nodeType != xml.dom.minidom.Element.nodeType:
-			    continue
-			elif x.tagName == 'item':
-				item_level = int(x.getAttribute("level") or "0")
-				
+		for x in parent:						#walk through the actual nodelist
+			if x.tag == 'item':
+				item_level = int(x.get("level", 0))
 				if item_level <= config.usage.setup_level.index:
 					self.addItem(list, x)
 					count += 1
-			elif x.tagName == 'menu':
+			elif x.tag == 'menu':
 				self.addMenu(list, x)
 				count += 1
-			elif x.tagName == "id":
-				menuID = x.getAttribute("val")
+			elif x.tag == "id":
+				menuID = x.get("val")
 				count = 0
 
 			if menuID is not None:
@@ -237,10 +228,10 @@ class Menu(Screen):
 				"9": self.keyNumberGlobal
 			})
 
-		a = parent.getAttribute("title").encode("UTF-8") or None
+		a = parent.get("title", "").encode("UTF-8") or None
 		a = a and _(a)
 		if a is None:
-			a = _(parent.getAttribute("text").encode("UTF-8"))
+			a = _(parent.get("text", "").encode("UTF-8"))
 		self["title"] = StaticText(a)
 		self.menu_title = a
 

@@ -132,23 +132,6 @@ void eAVSwitch::setInput(int val)
 
 	write(fd, input[val], strlen(input[val]));
 	close(fd);
-	
-	if (val == 1)
-		setFastBlank(2);
-}
-
-void eAVSwitch::setFastBlank(int val)
-{
-	int fd;
-	const char *fb[] = {"low", "high", "vcr"};
-
-	if((fd = open("/proc/stb/avs/0/fb", O_WRONLY)) < 0) {
-		eDebug("cannot open /proc/stb/avs/0/fb");
-		return;
-	}
-
-	write(fd, fb[val], strlen(fb[0]));
-	close(fd);
 }
 
 void eAVSwitch::setColorFormat(int format)
@@ -281,19 +264,6 @@ void eAVSwitch::setWSS(int val) // 0 = auto, 1 = auto(4:3_off)
 	};
 	write(fd, wss[val], strlen(wss[val]));
 //	eDebug("set wss to %s", wss[val]);
-	close(fd);
-}
-
-void eAVSwitch::setSlowblank(int val)
-{
-	int fd;
-	if((fd = open("/proc/stb/avs/0/sb", O_WRONLY)) < 0) {
-		eDebug("cannot open /proc/stb/avs/0/sb");
-		return;
-	}
-	const char *sb[] = {"0", "6", "12", "vcr", "auto"};
-	write(fd, sb[val], strlen(sb[val]));
-//	eDebug("set slow blanking to %s", sb[val]);
 	close(fd);
 }
 

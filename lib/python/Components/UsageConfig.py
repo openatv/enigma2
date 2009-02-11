@@ -17,12 +17,12 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default = True)
-	config.usage.hdd_standby = ConfigSelection(default = "120", choices = [
-		("0", _("no standby")), ("2", "10 " + _("seconds")), ("6", "30 " + _("seconds")),
-		("12", "1 " + _("minute")), ("24", "2 " + _("minutes")),
-		("60", "5 " + _("minutes")), ("120", "10 " + _("minutes")), ("240", "20 " + _("minutes")),
-		("241", "30 " + _("minutes")), ("242", "1 " + _("hour")), ("244", "2 " + _("hours")),
-		("248", "4 " + _("hours")) ])
+	config.usage.hdd_standby = ConfigSelection(default = "600", choices = [
+		("0", _("no standby")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
+		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
+		("300", "5 " + _("minutes")), ("600", "10 " + _("minutes")), ("1200", "20 " + _("minutes")),
+		("1800", "30 " + _("minutes")), ("3600", "1 " + _("hour")), ("7200", "2 " + _("hours")),
+		("14400", "4 " + _("hours")) ])
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("do not change")), ("off", _("off")), ("on", _("on")) ])
 
@@ -66,7 +66,7 @@ def InitUsageConfig():
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
-			os.system("hdparm -S%s %s" % (configElement.value, hdd[1].getDeviceName()))
+			hdd[1].setIdleTime(int(configElement.value))
 	config.usage.hdd_standby.addNotifier(setHDDStandby)
 
 	def set12VOutput(configElement):
@@ -89,8 +89,8 @@ def InitUsageConfig():
 	config.seek.speeds_backward = ConfigSet(default=[8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_slowmotion = ConfigSet(default=[2, 4, 8], choices=[2, 4, 6, 8, 12, 16, 25])
 
-	config.seek.enter_forward = ConfigSelection(default = "2", choices = ["2"])
-	config.seek.enter_backward = ConfigSelection(default = "2", choices = ["2"])
+	config.seek.enter_forward = ConfigSelection(default = "2", choices = ["2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
+	config.seek.enter_backward = ConfigSelection(default = "1", choices = ["1", "2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
 	config.seek.stepwise_minspeed = ConfigSelection(default = "16", choices = ["Never", "2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
 	config.seek.stepwise_repeat = ConfigSelection(default = "3", choices = ["2", "3", "4", "5", "6"])
 
@@ -104,14 +104,14 @@ def InitUsageConfig():
 			configElement.value = [2]
 		updateChoices(config.seek.enter_forward, configElement.value)
 
-	config.seek.speeds_forward.addNotifier(updateEnterForward)
+	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback = False)
 
 	def updateEnterBackward(configElement):
 		if not configElement.value:
 			configElement.value = [2]
 		updateChoices(config.seek.enter_backward, configElement.value)
 
-	config.seek.speeds_backward.addNotifier(updateEnterBackward)
+	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
 
 def updateChoices(sel, choices):
 	if choices:

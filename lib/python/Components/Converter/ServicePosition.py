@@ -1,7 +1,7 @@
 from Converter import Converter
 from Poll import Poll
 from enigma import iPlayableService
-from Components.Element import cached
+from Components.Element import cached, ElementError
 
 class ServicePosition(Converter, Poll, object):
 	TYPE_LENGTH = 0
@@ -19,6 +19,7 @@ class ServicePosition(Converter, Poll, object):
 		self.negate = 'Negate' in args
 		self.detailed = 'Detailed' in args
 		self.showHours = 'ShowHours' in args
+		self.showNoSeconds = 'ShowNoSeconds' in args
 
 		if self.detailed:
 			self.poll_interval = 100
@@ -34,7 +35,7 @@ class ServicePosition(Converter, Poll, object):
 		elif type == "Gauge":
 			self.type = self.TYPE_GAUGE
 		else:
-			raise "type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours}"
+			raise ElementError("type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours|NoSeconds}")
 
 		self.poll_enabled = self.type != self.TYPE_LENGTH
 
@@ -94,9 +95,15 @@ class ServicePosition(Converter, Poll, object):
 
 			if not self.detailed:
 				if self.showHours:
-					return sign + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+					if self.showNoSeconds:
+						return sign + "%d:%02d" % (l/3600, l%3600/60)
+					else:
+						return sign + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
 				else:
-					return sign + "%d:%02d" % (l/60, l%60)
+					if self.showNoSeconds:
+						return sign + "%d" % (l/60)
+					else:
+						return sign + "%d:%02d" % (l/60, l%60)
 			else:
 				if self.showHours:
 					return sign + "%d:%02d:%02d:%03d" % ((l/3600/90000), (l/90000)%3600/60, (l/90000)%60, (l%90000)/90)

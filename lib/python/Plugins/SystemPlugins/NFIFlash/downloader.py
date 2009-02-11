@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Components.MenuList import MenuList
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -18,6 +19,7 @@ import urllib
 from twisted.web import client
 from twisted.internet import reactor, defer
 from twisted.python import failure
+from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
 class UserRequestedCancel(Exception):
 	pass
@@ -119,10 +121,10 @@ class NFIDownload(Screen):
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
 			
 			<widget source="label_top" render="Label" position="10,44" size="240,20" font="Regular;16" />
 			<widget name="feedlist" position="10,66" size="250,222" scrollbarMode="showOnDemand" />
@@ -169,6 +171,7 @@ class NFIDownload(Screen):
 		self.box = HardwareInfo().get_device_name()
 		self.feed_base = "http://www.dreamboxupdate.com/opendreambox/1.5/%s/images/" % self.box
 		self.nfi_filter = "" # "release" # only show NFIs containing this string, or all if ""
+		self.wizard_mode = False
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "EPGSelectActions"],
 		{
@@ -205,7 +208,7 @@ class NFIDownload(Screen):
 					self["key_yellow"].text = (_("Change dir."))
 				else:
 					self["key_yellow"].text = (_("Select image"))
-			self["key_blue"].text = (_("Fix USB stick"))
+			self["key_blue"].text = (_("USB stick wizard"))
 
 	def switchList(self,to_where=None):
 		if self.download or not self["feedlist"].isValid():
@@ -335,7 +338,7 @@ class NFIDownload(Screen):
 			self.download = self.nfo_download
 			self.downloading(True)
 			client.getPage(nfourl).addCallback(self.nfo_finished).addErrback(self.nfo_failed)
-			self["statusbar"].text = _("Downloading image description...")
+			self["statusbar"].text = ("Downloading image description...")
 
 	def nfo_failed(self, failure_instance):
 		print "[nfo_failed] " + str(failure_instance)
@@ -399,8 +402,8 @@ class NFIDownload(Screen):
 				print "couldn't save nfo file " + self.nfofilename
 
 			pos = self.nfo.find("MD5:")
-			if pos > 0 and len(self.nfo) >= pos+5+32:					
-				self["statusbar"].text = _("Please wait for md5 signature verification...")
+			if pos > 0 and len(self.nfo) >= pos+5+32:
+				self["statusbar"].text = ("Please wait for md5 signature verification...")
 				cmd = "md5sum -c -"
 				md5 = self.nfo[pos+5:pos+5+32] + "  " + self.nfilocal
 				print cmd, md5
@@ -415,6 +418,8 @@ class NFIDownload(Screen):
 		else:
 			self["statusbar"].text = "Download completed."
 			self.downloading(False)
+			if self.wizard_mode:
+				self.configBackup()
 
 	def md5ready(self, retval):
 		self.download_container.sendEOF()
@@ -423,9 +428,12 @@ class NFIDownload(Screen):
 		print "[md5finished]: " + str(retval)
 		self.download_container.appClosed.remove(self.md5finished)
 		if retval==0:
-			self["statusbar"].text = _(".NFI file passed md5sum signature check. You can safely flash this image!")
-			self.switchList(self.LIST_SOURCE)
 			self.downloading(False)
+			if self.wizard_mode:
+				self.configBackup()
+			else:
+				self["statusbar"].text = _(".NFI file passed md5sum signature check. You can safely flash this image!")
+				self.switchList(self.LIST_SOURCE)
 		else:
 			self.session.openWithCallback(self.nfi_remove, MessageBox, (_("The md5sum validation failed, the file may be downloaded incompletely or be corrupted!") + "\n" + _("Remove the broken .NFI file?")), MessageBox.TYPE_YESNO)
 
@@ -489,33 +497,22 @@ class NFIDownload(Screen):
 
 	def umount_finished(self, retval):
 		self.container.appClosed.remove(self.umount_finished)
-		self.session.openWithCallback(self.dmesg_clear, MessageBox, _("To make sure you intend to do this, please remove the target USB stick now and stick it back in upon prompt. Press OK when you have taken the stick out."), MessageBox.TYPE_INFO)
-
-	def dmesg_clear(self, answer):
 		self.container.appClosed.append(self.dmesg_cleared)
 		self.taskstring = ""
 		self.cmd = "dmesg -c"
 		print "executing " + self.cmd
 		self.container.execute(self.cmd)
 
-	def dmesg_cleared(self, retval):
+	def dmesg_cleared(self, answer):
 		self.container.appClosed.remove(self.dmesg_cleared)
-		self.session.openWithCallback(self.stick_back_in, MessageBox, (_("Now please insert the USB stick (minimum size is 64 MB) that you want to format and use as .NFI image flasher. Press OK after you've put the stick back in.")), MessageBox.TYPE_INFO)
+		self.msgbox = self.session.open(MessageBox, _("Please disconnect all USB devices from your Dreambox and (re-)attach the target USB stick (minimum size is 64 MB) now!"), MessageBox.TYPE_INFO)
+		hotplugNotifier.append(self.hotplugCB)
 
-	def stick_back_in(self, answer):
-		self["statusbar"].text = _("Waiting for USB stick to settle...")
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.waiting_for_stick)
-		self.delayCount = -1
-		self.delayTimer.start(1000)
-
-	def waiting_for_stick(self):
-		self.delayCount += 1
-		self["job_progressbar"].range = 6
-		self["job_progressbar"].value = self.delayCount
-		self["job_progresslabel"].text = "-%d s" % (6-self.delayCount)
-		if self.delayCount > 5:
-			self.delayTimer.stop()
+	def hotplugCB(self, dev, action):
+		print "[hotplugCB]", dev, action
+		if dev.startswith("sd") and action == "add":
+			self.msgbox.close()
+			hotplugNotifier.remove(self.hotplugCB)
 			self.container.appClosed.append(self.dmesg_scanned)
 			self.taskstring = ""
 			self.cmd = "dmesg"
@@ -539,8 +536,8 @@ class NFIDownload(Screen):
 			self.session.openWithCallback(self.fdisk_query, MessageBox, (_("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % self.devicetext), MessageBox.TYPE_YESNO)
 
 	def fdisk_query(self, answer):
-		if answer == True:
-			self["statusbar"].text = _("Partitioning USB stick...")
+		if answer == True and self.stickdevice:
+			self["statusbar"].text = ("Partitioning USB stick...")
 			self["job_progressbar"].range = 1000
 			self["job_progressbar"].value = 100
 			self["job_progresslabel"].text = "5.00%"
@@ -562,7 +559,7 @@ class NFIDownload(Screen):
 				self.tar_finished(0)
 				self["job_progressbar"].value = 700
 			else:
-				self["statusbar"].text = _("Decompressing USB stick flasher boot image...")
+				self["statusbar"].text = ("Decompressing USB stick flasher boot image...")
 				self.taskstring = ""
 				self.container.appClosed.append(self.tar_finished)
 				self.container.setCWD("/tmp")
@@ -588,7 +585,7 @@ class NFIDownload(Screen):
 			self.container.appClosed.remove(self.tar_finished)
 		if retval == 0:
 			self.imagefilename = "/tmp/nfiflash_" + self.box + ".img"
-			self["statusbar"].text = _("Copying USB flasher boot image to stick...")
+			self["statusbar"].text = ("Copying USB flasher boot image to stick...")
 			self.taskstring = ""
 			self.container.appClosed.append(self.dd_finished)
 			self.cmd = "dd if=%s of=%s" % (self.imagefilename,self.stickdevice+"/part1")
@@ -607,7 +604,7 @@ class NFIDownload(Screen):
 		if retval == 0:
 			self["job_progressbar"].value = 950
 			self["job_progresslabel"].text = "95.00%"
-			self["statusbar"].text = _("Remounting stick partition...")
+			self["statusbar"].text = ("Remounting stick partition...")
 			self.taskstring = ""
 			self.container.appClosed.append(self.mount_finished)
 			self.cmd = "mount %s /mnt/usb -o rw,sync" % (self.stickdevice+"/part1")
@@ -622,11 +619,12 @@ class NFIDownload(Screen):
 		if retval == 0:
 			self["job_progressbar"].value = 1000
 			self["job_progresslabel"].text = "100.00%"
-			self["statusbar"].text = _(".NFI Flasher bootable USB stick successfully created.")
-			self.session.openWithCallback(self.remove_img, MessageBox, _("The .NFI Image flasher USB stick is now ready to use. Please download an .NFI image file from the feed server and save it on the stick. Then reboot and hold the 'Down' key on the front panel to boot the .NFI flasher from the stick!"), MessageBox.TYPE_INFO)
+			self["statusbar"].text = (".NFI Flasher bootable USB stick successfully created.")
+			self.session.openWithCallback(self.flasherFinishedCB, MessageBox, _("The USB stick is now bootable. Do you want to download the latest image from the feed server and save it on the stick?"), type = MessageBox.TYPE_YESNO)
 			self["destlist"].changeDir("/mnt/usb")
 		else:
-			self.session.openWithCallback(self.remove_img, MessageBox, (self.cmd + " " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.flasherFinishedCB, MessageBox, (self.cmd + " " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
+			self.remove_img(True)
 
 	def remove_img(self, answer):
 		if fileExists("/tmp/nfiflasher_image.tar.bz2"):
@@ -635,6 +633,43 @@ class NFIDownload(Screen):
 			remove(self.imagefilename)
 		self.downloading(False)
 		self.switchList(self.LIST_SOURCE)
+
+	def flasherFinishedCB(self, answer):
+		if answer == True:
+			self.wizard_mode = True
+			self["feedlist"].moveSelection(0)
+			self["path_bottom"].text = str(self["destlist"].getCurrentDirectory())
+			self.nfo_download()
+			self.nfi_download()
+
+	def configBackup(self):
+		self.session.openWithCallback(self.runBackup, MessageBox, _("The wizard can backup your current settings. Do you want to do a backup now?"))
+
+	def runBackup(self, result=None):
+		from Tools.Directories import createDir, isMount, pathExists
+		from time import localtime
+		from datetime import date
+		from Screens.Console import Console
+		if result:
+			if isMount("/mnt/usb/"):
+				if (pathExists("/mnt/usb/backup") == False):
+					createDir("/mnt/usb/backup", True)
+				d = localtime()
+				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
+				self.backup_file = "backup/" + str(dt) + "_settings_backup.tar.gz"
+				self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + "/mnt/usb/" + self.backup_file + " /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"], finishedCallback = self.backup_finished, closeOnSuccess = True)
+		else:
+			self.backup_file = None
+			self.backup_finished(skipped=True)
+
+	def backup_finished(self, skipped=False):
+		if not skipped:
+			wizardfd = open("/mnt/usb/wizard.nfo", "w")
+			if wizardfd:
+				wizardfd.write("image: "+self["feedlist"].getNFIname()+'\n')
+				wizardfd.write("configuration: "+self.backup_file+'\n')
+				wizardfd.close()
+		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
 
 	def closeCB(self):
 		if self.download:
@@ -659,8 +694,8 @@ def filescan(**kwargs):
 		Scanner(mimetypes = ["application/x-dream-image"], 
 			paths_to_scan = 
 				[
-					ScanPath(path = "", with_subdirs = False), 
+					ScanPath(path = "", with_subdirs = False),
 				], 
 			name = "NFI", 
-			description = (_("Download .NFI-Files for USB-Flasher")+"..."), 
+			description = (_("Download .NFI-Files for USB-Flasher")+"..."),
 			openfnc = filescan_open, )

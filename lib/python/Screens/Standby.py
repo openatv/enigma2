@@ -2,6 +2,7 @@ from Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
+from Components.SystemInfo import SystemInfo
 from enigma import eDVBVolumecontrol
 
 inStandby = None
@@ -49,7 +50,10 @@ class Standby(Screen):
 		#stop actual played dvb-service
 		self.session.nav.stopService()
 		#set input to vcr scart
-		self.avswitch.setInput("SCART")
+		if SystemInfo["ScartSwitch"]:
+			self.avswitch.setInput("SCART")
+		else:
+			self.avswitch.setInput("AUX")
 		#set lcd brightness to standby value
 		config.lcd.standby.apply()
 		self.onShow.append(self.__onShow)

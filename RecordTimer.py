@@ -4,7 +4,7 @@ from Tools import Directories, Notifications
 
 from Components.config import config
 import timer
-import xml.dom.minidom
+import xml.etree.cElementTree
 
 from enigma import eEPGCache, getBestPlayableServiceReference, \
 	eServiceReference, iRecordableService, quitMainloop
@@ -17,7 +17,7 @@ import Screens.Standby
 
 from time import localtime
 
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
+from Tools.XMLTools import stringToXML
 from ServiceReference import ServiceReference
 
 # ok, for descriptions etc we have:
@@ -47,6 +47,7 @@ class AFTEREVENT:
 	NONE = 0
 	STANDBY = 1
 	DEEPSTANDBY = 2
+	AUTO = 3
 
 # please do not translate log messages
 class RecordTimerEntry(timer.TimerEntry, object):
@@ -91,7 +92,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			Notifications.AddNotification(Screens.Standby.TryQuitMainloop, 1, onSessionOpenCallback=RecordTimerEntry.stopTryQuitMainloop, default_yes = default_yes)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.NONE, checkOldTimers = False, dirname = None, tags = None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled = False, justplay = False, afterEvent = AFTEREVENT.AUTO, checkOldTimers = False, dirname = None, tags = None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers == True:
@@ -117,6 +118,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
 		self.autoincrease = False
+		self.autoincreasetime = 3600 * 24 # 1 day
 		self.tags = tags or []
 
 		self.log_entries = []
@@ -139,7 +141,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if self.name:
 			filename += " - " + self.name
 
-		if self.dirname and not Directories.pathExists(self.dirname):
+		if self.dirname and not Directories.fileExists(self.dirname, 'w'):
 			self.dirnameHadToFallback = True
 			self.Filename = Directories.getRecordingFilename(filename, None)
 		else:
@@ -267,6 +269,11 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 				return True
 		elif next_state == self.StateEnded:
+			old_end = self.end
+			if self.setAutoincreaseEnd():
+				self.log(12, "autoincrase recording %d minute(s)" % int((self.end - old_end)/60))
+				self.state -= 1
+				return True
 			self.log(12, "stop recording")
 			if not self.justplay:
 				NavigationInstance.instance.stopRecordService(self.record_service)
@@ -282,6 +289,29 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						Notifications.AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, _("A finished record timer wants to shut down\nyour Dreambox. Shutdown now?"), timeout = 20)
 			return True
 
+	def setAutoincreaseEnd(self, entry = None):
+		if not self.autoincrease:
+			return False
+		if entry is None:
+			new_end =  int(time.time()) + self.autoincreasetime
+		else:
+			new_end = entry.begin -30
+
+		dummyentry = RecordTimerEntry(self.service_ref, self.begin, new_end, self.name, self.description, self.eit, disabled=True, justplay = self.justplay, afterEvent = self.afterEvent, dirname = self.dirname, tags = self.tags)
+		dummyentry.disabled = self.disabled
+		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.RecordTimer.timer_list, dummyentry)
+		if not timersanitycheck.check():
+			simulTimerList = timersanitycheck.getSimulTimerList()
+			new_end = simulTimerList[1].begin
+			del simulTimerList
+			new_end -= 30				# 30 Sekunden Prepare-Zeit lassen
+		del dummyentry
+		if new_end <= time.time():
+			return False
+		self.end = new_end
+		return True
+	
+	
 	def sendStandbyNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.Standby)
@@ -353,37 +383,45 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	record_service = property(lambda self: self.__record_service, setRecordService)
 
 def createTimer(xml):
-	begin = int(xml.getAttribute("begin"))
-	end = int(xml.getAttribute("end"))
-	serviceref = ServiceReference(xml.getAttribute("serviceref").encode("utf-8"))
-	description = xml.getAttribute("description").encode("utf-8")
-	repeated = xml.getAttribute("repeated").encode("utf-8")
-	disabled = long(xml.getAttribute("disabled") or "0")
-	justplay = long(xml.getAttribute("justplay") or "0")
-	afterevent = str(xml.getAttribute("afterevent") or "nothing")
-	afterevent = { "nothing": AFTEREVENT.NONE, "standby": AFTEREVENT.STANDBY, "deepstandby": AFTEREVENT.DEEPSTANDBY }[afterevent]
-	if xml.hasAttribute("eit") and xml.getAttribute("eit") != "None":
-		eit = long(xml.getAttribute("eit"))
+	begin = int(xml.get("begin"))
+	end = int(xml.get("end"))
+	serviceref = ServiceReference(xml.get("serviceref").encode("utf-8"))
+	description = xml.get("description").encode("utf-8")
+	repeated = xml.get("repeated").encode("utf-8")
+	disabled = long(xml.get("disabled") or "0")
+	justplay = long(xml.get("justplay") or "0")
+	afterevent = str(xml.get("afterevent") or "nothing")
+	afterevent = {
+		"nothing": AFTEREVENT.NONE,
+		"standby": AFTEREVENT.STANDBY,
+		"deepstandby": AFTEREVENT.DEEPSTANDBY,
+		"auto": AFTEREVENT.AUTO
+		}[afterevent]
+	eit = xml.get("eit")
+	if eit and eit != "None":
+		eit = long(eit);
 	else:
 		eit = None
-	if xml.hasAttribute("location") and xml.getAttribute("location") != "None":
-		location = xml.getAttribute("location").encode("utf-8")
+	location = xml.get("location")
+	if location and location != "None":
+		location = location.encode("utf-8")
 	else:
 		location = None
-	if xml.hasAttribute("tags") and xml.getAttribute("tags"):
-		tags = xml.getAttribute("tags").encode("utf-8").split(' ')
+	tags = xml.get("tags")
+	if tags and tags != "None":
+		tags = tags.encode("utf-8").split(' ')
 	else:
 		tags = None
 
-	name = xml.getAttribute("name").encode("utf-8")
-	#filename = xml.getAttribute("filename").encode("utf-8")
+	name = xml.get("name").encode("utf-8")
+	#filename = xml.get("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname = location, tags = tags)
 	entry.repeated = int(repeated)
 	
-	for l in elementsWithTag(xml.childNodes, "log"):
-		time = int(l.getAttribute("time"))
-		code = int(l.getAttribute("code"))
-		msg = mergeText(l.childNodes).strip().encode("utf-8")
+	for l in xml.findall("log"):
+		time = int(l.get("time"))
+		code = int(l.get("code"))
+		msg = l.text.strip().encode("utf-8")
 		entry.log_entries.append((time, code, msg))
 	
 	return entry
@@ -409,8 +447,8 @@ class RecordTimer(timer.Timer):
 	def loadTimer(self):
 		# TODO: PATH!
 		try:
-			doc = xml.dom.minidom.parse(self.Filename)
-		except xml.parsers.expat.ExpatError:
+			doc = xml.etree.cElementTree.parse(self.Filename)
+		except SyntaxError:
 			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox
 
@@ -420,15 +458,18 @@ class RecordTimer(timer.Timer):
 			try:
 				import os
 				os.rename(self.Filename, self.Filename + "_old")
-			except IOError:
+			except (IOError, OSError):
 				print "renaming broken timer failed"
 			return
+		except IOError:
+			print "timers.xml not found!"
+			return
 
-		root = doc.childNodes[0]
+		root = doc.getroot()
 
 		# put out a message when at least one timer overlaps
 		checkit = True
-		for timer in elementsWithTag(root.childNodes, "timer"):
+		for timer in root.findall("timer"):
 			newTimer = createTimer(timer)
 			if (self.record(newTimer, True, True) is not None) and (checkit == True):
 				from Tools.Notifications import AddPopup
@@ -437,45 +478,44 @@ class RecordTimer(timer.Timer):
 				checkit = False # at moment it is enough when the message is displayed one time
 
 	def saveTimer(self):
-		#doc = xml.dom.minidom.Document()
-		#root_element = doc.createElement('timers')
-		#doc.appendChild(root_element)
-		#root_element.appendChild(doc.createTextNode("\n"))
-		
+		#root_element = xml.etree.cElementTree.Element('timers')
+		#root_element.text = "\n"
+
 		#for timer in self.timer_list + self.processed_timers:
 			# some timers (instant records) don't want to be saved.
 			# skip them
 			#if timer.dontSave:
 				#continue
-			#t = doc.createTextNode("\t")
-			#root_element.appendChild(t)
-			#t = doc.createElement('timer')
-			#t.setAttribute("begin", str(int(timer.begin)))
-			#t.setAttribute("end", str(int(timer.end)))
-			#t.setAttribute("serviceref", str(timer.service_ref))
-			#t.setAttribute("repeated", str(timer.repeated))			
-			#t.setAttribute("name", timer.name)
-			#t.setAttribute("description", timer.description)
-			#t.setAttribute("eit", str(timer.eit))
-			
+			#t = xml.etree.cElementTree.SubElement(root_element, 'timers')
+			#t.set("begin", str(int(timer.begin)))
+			#t.set("end", str(int(timer.end)))
+			#t.set("serviceref", str(timer.service_ref))
+			#t.set("repeated", str(timer.repeated))			
+			#t.set("name", timer.name)
+			#t.set("description", timer.description)
+			#t.set("afterevent", str({
+			#	AFTEREVENT.NONE: "nothing",
+			#	AFTEREVENT.STANDBY: "standby",
+			#	AFTEREVENT.DEEPSTANDBY: "deepstandby",
+			#	AFTEREVENT.AUTO: "auto"}))
+			#if timer.eit is not None:
+			#	t.set("eit", str(timer.eit))
+			#if timer.dirname is not None:
+			#	t.set("location", str(timer.dirname))
+			#t.set("disabled", str(int(timer.disabled)))
+			#t.set("justplay", str(int(timer.justplay)))
+			#t.text = "\n"
+			#t.tail = "\n"
+
 			#for time, code, msg in timer.log_entries:
-				#t.appendChild(doc.createTextNode("\t\t"))
-				#l = doc.createElement('log')
-				#l.setAttribute("time", str(time))
-				#l.setAttribute("code", str(code))
-				#l.appendChild(doc.createTextNode(msg))
-				#t.appendChild(l)
-				#t.appendChild(doc.createTextNode("\n"))
+				#l = xml.etree.cElementTree.SubElement(t, 'log')
+				#l.set("time", str(time))
+				#l.set("code", str(code))
+				#l.text = str(msg)
+				#l.tail = "\n"
 
-			#root_element.appendChild(t)
-			#t = doc.createTextNode("\n")
-			#root_element.appendChild(t)
-
-
-		#file = open(self.Filename, "w")
-		#doc.writexml(file)
-		#file.write("\n")
-		#file.close()
+		#doc = xml.etree.cElementTree.ElementTree(root_element)
+		#doc.write(self.Filename)
 
 		list = []
 
@@ -493,7 +533,12 @@ class RecordTimer(timer.Timer):
 			list.append(' repeated="' + str(int(timer.repeated)) + '"')
 			list.append(' name="' + str(stringToXML(timer.name)) + '"')
 			list.append(' description="' + str(stringToXML(timer.description)) + '"')
-			list.append(' afterevent="' + str(stringToXML({ AFTEREVENT.NONE: "nothing", AFTEREVENT.STANDBY: "standby", AFTEREVENT.DEEPSTANDBY: "deepstandby" }[timer.afterEvent])) + '"')
+			list.append(' afterevent="' + str(stringToXML({
+				AFTEREVENT.NONE: "nothing",
+				AFTEREVENT.STANDBY: "standby",
+				AFTEREVENT.DEEPSTANDBY: "deepstandby",
+				AFTEREVENT.AUTO: "auto"
+				}[timer.afterEvent])) + '"')
 			if timer.eit is not None:
 				list.append(' eit="' + str(timer.eit) + '"')
 			if timer.dirname is not None:
@@ -538,6 +583,18 @@ class RecordTimer(timer.Timer):
 			return timer.begin
 		return -1
 
+	def isNextRecordAfterEventActionAuto(self):
+		now = time.time()
+		t = None
+		for timer in self.timer_list:
+			if timer.justplay or timer.begin < now:
+				continue
+			if t is None or t.begin == timer.begin:
+				t = timer
+				if t.afterEvent == AFTEREVENT.AUTO:
+					return True
+		return False
+
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
 		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
 		if not timersanitycheck.check():
@@ -549,6 +606,7 @@ class RecordTimer(timer.Timer):
 				print "ignore timer conflict"
 		elif timersanitycheck.doubleCheck():
 			print "ignore double timer"
+			return None
 		entry.timeChanged()
 		print "[Timer] Record " + str(entry)
 		entry.Timer = self
@@ -556,15 +614,16 @@ class RecordTimer(timer.Timer):
 		if dosave:
 			self.saveTimer()
 		return None
-		
+
 	def isInTimer(self, eventid, begin, duration, service):
 		time_match = 0
 		chktime = None
 		chktimecmp = None
 		chktimecmp_end = None
 		end = begin + duration
+		refstr = str(service)
 		for x in self.timer_list:
-			check = x.service_ref.ref.toCompareString() == str(service)
+			check = x.service_ref.ref.toString() == refstr
 			if not check:
 				sref = x.service_ref.ref
 				parent_sid = sref.getUnsignedData(5)
@@ -576,7 +635,7 @@ class RecordTimer(timer.Timer):
 					sref.setUnsignedData(2, parent_tsid)
 					sref.setUnsignedData(5, 0)
 					sref.setUnsignedData(6, 0)
-					check = x.service_ref.ref.toCompareString() == str(service)
+					check = sref.toCompareString() == refstr
 					num = 0
 					if check:
 						check = False
@@ -592,9 +651,6 @@ class RecordTimer(timer.Timer):
 							check = True
 							break
 			if check:
-				#if x.eit is not None and x.repeated == 0:
-				#	if x.eit == eventid:
-				#		return duration
 				if x.repeated != 0:
 					if chktime is None:
 						chktime = localtime(begin)
@@ -617,6 +673,8 @@ class RecordTimer(timer.Timer):
 						diff = x.end - begin
 						if time_match < diff:
 							time_match = diff
+				if time_match:
+					break
 		return time_match
 
 	def removeEntry(self, entry):
@@ -627,6 +685,7 @@ class RecordTimer(timer.Timer):
 
 		# abort timer.
 		# this sets the end time to current time, so timer will be stopped.
+		entry.autoincrease = False
 		entry.abort()
 		
 		if entry.state != entry.StateEnded:
@@ -635,6 +694,11 @@ class RecordTimer(timer.Timer):
 		print "state: ", entry.state
 		print "in processed: ", entry in self.processed_timers
 		print "in running: ", entry in self.timer_list
+		# autoincrease instanttimer if possible
+		if not entry.dontSave:
+			for x in self.timer_list:
+				if x.setAutoincreaseEnd():
+					self.timeChanged(x)
 		# now the timer should be in the processed_timers list. remove it from there.
 		self.processed_timers.remove(entry)
 		self.saveTimer()

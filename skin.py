@@ -31,7 +31,7 @@ class SkinError(Exception):
 		self.message = message
 
 	def __str__(self):
-		return self.message
+		return "{%s}: %s" % (config.skin.primary_skin, self.message)
 
 dom_skins = [ ]
 
@@ -145,9 +145,13 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 				}[value])
 		elif attrib == "orientation": # used by eSlider
 			try:
-				guiObject.setOrientation(
-					{ "orVertical": guiObject.orVertical,
-						"orHorizontal": guiObject.orHorizontal
+				guiObject.setOrientation(*
+					{ "orVertical": (guiObject.orVertical, False),
+						"orTopToBottom": (guiObject.orVertical, False),
+						"orBottomToTop": (guiObject.orVertical, True),
+						"orHorizontal": (guiObject.orHorizontal, False),
+						"orLeftToRight": (guiObject.orHorizontal, False),
+						"orRightToLeft": (guiObject.orHorizontal, True),
 					}[value])
 			except KeyError:
 				print "oprientation must be either orVertical or orHorizontal!"
@@ -270,7 +274,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 				colorNames[name] = parseColor(color)
 				#print "Color:", name, color
 			else:
-				raise ("need color and name, got %s %s" % (name, color))
+				raise SkinError("need color and name, got %s %s" % (name, color))
 
 	for c in skin.findall("fonts"):
 		for font in c.findall("font"):
@@ -331,7 +335,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			try:
 				style.setColor(eWindowStyleSkinned.__dict__["col" + type], color)
 			except:
-				raise ("Unknown color %s" % (type))
+				raise SkinError("Unknown color %s" % (type))
 				#pass
 
 			#print "  color:", type, color

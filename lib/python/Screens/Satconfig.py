@@ -87,6 +87,10 @@ class NimSetup(Screen, ConfigListScreen):
 		self.uncommittedDiseqcCommand = None
 		self.cableScanType = None
 		self.have_advanced = False
+		self.advancedUnicable = None
+		self.advancedType = None
+		self.advancedManufacturer = None
+		self.advancedSCR = None
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
@@ -190,6 +194,7 @@ class NimSetup(Screen, ConfigListScreen):
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, \
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
+			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, \
 			self.uncommittedDiseqcCommand, self.cableScanType)
 		for x in checkList:
 			if self["config"].getCurrent() == x:
@@ -216,19 +221,57 @@ class NimSetup(Screen, ConfigListScreen):
 		if isinstance(currLnb, ConfigNothing):
 			currLnb = None
 
-		self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
-		self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
-		if currLnb and currLnb.diseqcMode.value == "1_2":
-			if lnbnum < 33:
-				self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
-				self.list.append(self.advancedUsalsEntry)
-				if not Sat.usals.value:
-					self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
-
 		# LNBs
 		self.advancedLnbsEntry = getConfigListEntry(_("LNB"), Sat.lnb)
 		self.list.append(self.advancedLnbsEntry)
+
 		if currLnb:
+			self.list.append(getConfigListEntry(_("Priority"), currLnb.prio))
+			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
+			self.list.append(self.advancedLof)
+			if currLnb.lof.value == "user_defined":
+				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
+				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
+#			self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
+			
+			if currLnb.lof.value == "unicable":
+				self.advancedUnicable = getConfigListEntry("Unicable "+_("Configuration Mode"), currLnb.unicable)
+				self.list.append(self.advancedUnicable)
+				if currLnb.unicable.value == "unicable_user":
+					self.advancedSCR = getConfigListEntry(_("Channel"), currLnb.satcruser)
+					self.list.append(self.advancedSCR)
+					self.list.append(getConfigListEntry(_("Frequency"), currLnb.satcrvcouser[currLnb.satcruser.index]))
+					self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
+					self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
+					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
+				elif currLnb.unicable.value == "unicable_matrix":
+					manufacturer_name = currLnb.unicableMatrixManufacturer.value
+					manufacturer = currLnb.unicableMatrix[manufacturer_name]
+					product_name = manufacturer.product.value
+					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableMatrixManufacturer)
+					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+					self.list.append(self.advancedManufacturer)
+					self.list.append(self.advancedType)
+					self.list.append(self.advancedSCR)
+					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index])) 
+				elif currLnb.unicable.value == "unicable_lnb":
+					manufacturer_name = currLnb.unicableLnbManufacturer.value
+					manufacturer = currLnb.unicableLnb[manufacturer_name]
+					product_name = manufacturer.product.value
+					self.advancedManufacturer = getConfigListEntry(_("Manufacturer"), currLnb.unicableLnbManufacturer)
+					self.advancedType = getConfigListEntry(_("Type"), manufacturer.product)
+					self.advancedSCR = getConfigListEntry(_("Channel"), manufacturer.scr[product_name])
+					self.list.append(self.advancedManufacturer)
+					self.list.append(self.advancedType)
+					self.list.append(self.advancedSCR)
+					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index])) 
+			else:	#kein Unicable
+				self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
+				self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
+				self.list.append(getConfigListEntry(_("Tone mode"), Sat.tonemode))
+
 			if lnbnum < 33:
 				self.advancedDiseqcMode = getConfigListEntry(_("DiSEqC mode"), currLnb.diseqcMode)
 				self.list.append(self.advancedDiseqcMode)
@@ -275,14 +318,12 @@ class NimSetup(Screen, ConfigListScreen):
 						if currLnb.powerMeasurement.value:
 							currLnb.powerMeasurement.value = False
 							currLnb.powerMeasurement.save()
-			self.advancedLof = getConfigListEntry(_("LOF"), currLnb.lof)
-			self.list.append(self.advancedLof)
-			if currLnb.lof.value == "user_defined":
-				self.list.append(getConfigListEntry(_("LOF/L"), currLnb.lofl))
-				self.list.append(getConfigListEntry(_("LOF/H"), currLnb.lofh))
-				self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold))
-#			self.list.append(getConfigListEntry(_("12V Output"), currLnb.output_12v))
-			self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))
+					self.advancedUsalsEntry = getConfigListEntry(_("Use usals for this sat"), Sat.usals)
+					self.list.append(self.advancedUsalsEntry)
+					if not Sat.usals.value:
+						self.list.append(getConfigListEntry(_("Stored position"), Sat.rotorposition))
+
+	
 
 	def fillAdvancedList(self):
 		self.list = [ ]
@@ -383,18 +424,26 @@ class NimSelection(Screen):
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)
 		self.updateList()
+		
+		self.setResultClass()
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
 			"ok": self.okbuttonClick ,
 			"cancel": self.close
 		}, -2)
+		
+	def setResultClass(self):
+		self.resultclass = NimSetup
 
 	def okbuttonClick(self):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
 		if nim is not None and not nim.empty:
-			self.session.openWithCallback(self.updateList, NimSetup, nim.slot)
+			self.session.openWithCallback(self.updateList, self.resultclass, nim.slot)
+			
+	def showNim(self, nim):
+		return True
 
 	def updateList(self):
 		self.list = [ ]
@@ -402,42 +451,44 @@ class NimSelection(Screen):
 			slotid = x.slot
 			nimConfig = nimmanager.getNimConfig(x.slot)
 			text = nimConfig.configMode.value
-			if x.isCompatible("DVB-S"):
-				if nimConfig.configMode.value in ["loopthrough", "equal", "satposdepends"]:
-					text = { "loopthrough": _("loopthrough to"),
-							 "equal": _("equal to"),
-							 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
-					text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
-				elif nimConfig.configMode.value == "nothing":
-					text = _("nothing connected")
-				elif nimConfig.configMode.value == "simple":
-					if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-						text = _("Sats") + ": " 
-						if nimConfig.diseqcA.orbital_position != 3601:
-							text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
-						if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
-							if nimConfig.diseqcB.orbital_position != 3601:
-								text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
-						if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
-							if nimConfig.diseqcC.orbital_position != 3601:
-								text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
-							if nimConfig.diseqcD.orbital_position != 3601:
-								text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
-					elif nimConfig.diseqcMode.value == "positioner":
-						text = _("Positioner") + ":"
-						if nimConfig.positionerMode.value == "usals":
-							text += _("USALS")
-						elif nimConfig.positionerMode.value == "manual":
-							text += _("manual")
-					else:	
-						text = _("simple")
-				elif nimConfig.configMode.value == "advanced":
-					text = _("advanced")
-			elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
-				if nimConfig.configMode.value == "nothing":
-					text = _("nothing connected")
-				elif nimConfig.configMode.value == "enabled":
-					text = _("enabled")
-				
-			self.list.append((slotid, x.friendly_full_description, text, x))
+			if self.showNim(x):
+				if x.isCompatible("DVB-S"):
+					if nimConfig.configMode.value in ["loopthrough", "equal", "satposdepends"]:
+						text = { "loopthrough": _("loopthrough to"),
+								 "equal": _("equal to"),
+								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
+						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
+					elif nimConfig.configMode.value == "nothing":
+						text = _("nothing connected")
+					elif nimConfig.configMode.value == "simple":
+						if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+							text = _("Sats") + ": " 
+							if nimConfig.diseqcA.orbital_position != 3601:
+								text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
+							if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+								if nimConfig.diseqcB.orbital_position != 3601:
+									text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
+							if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
+								if nimConfig.diseqcC.orbital_position != 3601:
+									text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
+								if nimConfig.diseqcD.orbital_position != 3601:
+									text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
+						elif nimConfig.diseqcMode.value == "positioner":
+							text = _("Positioner") + ":"
+							if nimConfig.positionerMode.value == "usals":
+								text += _("USALS")
+							elif nimConfig.positionerMode.value == "manual":
+								text += _("manual")
+						else:	
+							text = _("simple")
+					elif nimConfig.configMode.value == "advanced":
+						text = _("advanced")
+				elif x.isCompatible("DVB-T") or x.isCompatible("DVB-C"):
+					if nimConfig.configMode.value == "nothing":
+						text = _("nothing connected")
+					elif nimConfig.configMode.value == "enabled":
+						text = _("enabled")
+					
+				self.list.append((slotid, x.friendly_full_description, text, x))
+		self["nimlist"].setList(self.list)
 		self["nimlist"].updateList(self.list)
