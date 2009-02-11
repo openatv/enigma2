@@ -327,10 +327,10 @@ void eDVBDB::loadServicelist(const char *file)
 				eDVBFrontendParametersSatellite sat;
 				int frequency, symbol_rate, polarisation, fec, orbital_position, inversion,
 					flags=0,
-					system=eDVBFrontendParametersSatellite::System::DVB_S,
-					modulation=eDVBFrontendParametersSatellite::Modulation::QPSK,
-					rolloff=eDVBFrontendParametersSatellite::RollOff::alpha_0_35,
-					pilot=eDVBFrontendParametersSatellite::Pilot::Unknown;
+					system=eDVBFrontendParametersSatellite::System_DVB_S,
+					modulation=eDVBFrontendParametersSatellite::Modulation_QPSK,
+					rolloff=eDVBFrontendParametersSatellite::RollOff_alpha_0_35,
+					pilot=eDVBFrontendParametersSatellite::Pilot_Unknown;
 				if (version == 3)
 					sscanf(line+3, "%d:%d:%d:%d:%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &polarisation, &fec, &orbital_position, &inversion, &system, &modulation, &rolloff, &pilot);
 				else
@@ -368,9 +368,9 @@ void eDVBDB::loadServicelist(const char *file)
 			{
 				eDVBFrontendParametersCable cab;
 				int frequency, symbol_rate,
-					inversion=eDVBFrontendParametersCable::Inversion::Unknown,
-					modulation=eDVBFrontendParametersCable::Modulation::Auto,
-					fec_inner=eDVBFrontendParametersCable::FEC::fAuto,
+					inversion=eDVBFrontendParametersCable::Inversion_Unknown,
+					modulation=eDVBFrontendParametersCable::Modulation_Auto,
+					fec_inner=eDVBFrontendParametersCable::FEC_Auto,
 					flags=0;
 				sscanf(line+3, "%d:%d:%d:%d:%d:%d", &frequency, &symbol_rate, &inversion, &modulation, &fec_inner, &flags);
 				cab.frequency = frequency;
@@ -495,9 +495,9 @@ void eDVBDB::saveServicelist(const char *file)
 		ch.m_frontendParameters->getFlags(flags);
 		if (!ch.m_frontendParameters->getDVBS(sat))
 		{
-			if (sat.system == eDVBFrontendParametersSatellite::System::DVB_S2)
+			if (sat.system == eDVBFrontendParametersSatellite::System_DVB_S2)
 			{
-				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d",
+				fprintf(f, "\ts %d:%d:%d:%d:%d:%d:%d:%d:%d:%d:%d\n",
 					sat.frequency, sat.symbol_rate,
 					sat.polarisation, sat.fec,
 					sat.orbital_position > 1800 ? sat.orbital_position - 3600 : sat.orbital_position,
@@ -786,7 +786,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 		return Py_False;
 	}
 	int tmp, *dest = NULL,
-		modulation, system, freq, sr, pol, fec, inv, pilot, rolloff;
+		modulation, system, freq, sr, pol, fec, inv, pilot, rolloff, tsid, onid;
 	char *end_ptr;
 	const Attribute *at;
 	std::string name;
@@ -842,18 +842,21 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 //				eDebug("\telement: %s", (*it)->name().c_str());
 				const AttributeList &tp_attributes = (*it)->getAttributeList();
 				AttributeConstIterator end = tp_attributes.end();
-				modulation = 1; // QPSK default
-				system = 0; // DVB-S default
+				modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
+				system = eDVBFrontendParametersSatellite::System_DVB_S;
 				freq = 0;
 				sr = 0;
 				pol = -1;
-				fec = 0; // AUTO default
-				inv = 2; // AUTO default
-				pilot = 2; // AUTO default
-				rolloff = 0; // alpha 0.35
+				fec = eDVBFrontendParametersSatellite::FEC_Auto;
+				inv = eDVBFrontendParametersSatellite::Inversion_Unknown;
+				pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
+				rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;
+				tsid = -1;
+				onid = -1;
+
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
-//					eDebug("\t\tattr: %s", at->name().c_str());
+					//eDebug("\t\tattr: %s", at->name().c_str());
 					at = *it;
 					name = at->name();
 					if (name == "modulation") dest = &modulation;
@@ -865,6 +868,8 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					else if (name == "inversion") dest = &inv;
 					else if (name == "rolloff") dest = &rolloff;
 					else if (name == "pilot") dest = &pilot;
+					else if (name == "tsid") dest = &tsid;
+					else if (name == "onid") dest = &onid;
 					if (dest)
 					{
 						tmp = strtol(at->value().c_str(), &end_ptr, 10);
@@ -874,7 +879,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 				}
 				if (freq && sr && pol != -1)
 				{
-					tuple = PyTuple_New(10);
+					tuple = PyTuple_New(12);
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0));
 					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(freq));
 					PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(sr));
@@ -885,6 +890,8 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					PyTuple_SET_ITEM(tuple, 7, PyInt_FromLong(inv));
 					PyTuple_SET_ITEM(tuple, 8, PyInt_FromLong(rolloff));
 					PyTuple_SET_ITEM(tuple, 9, PyInt_FromLong(pilot));
+					PyTuple_SET_ITEM(tuple, 10, PyInt_FromLong(tsid));
+					PyTuple_SET_ITEM(tuple, 11, PyInt_FromLong(onid));
 					PyList_Append(tplist, tuple);
 					Py_DECREF(tuple);
 				}
@@ -974,8 +981,8 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 //				eDebug("\telement: %s", (*it)->name().c_str());
 				const AttributeList &tp_attributes = (*it)->getAttributeList();
 				AttributeConstIterator end = tp_attributes.end();
-				modulation = 3; // QAM64 default
-				fec = 0; // AUTO default
+				modulation = eDVBFrontendParametersCable::Modulation_QAM64;
+				fec = eDVBFrontendParametersCable::FEC_Auto;
 				freq = 0;
 				sr = 0;
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
@@ -1088,14 +1095,14 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 				const AttributeList &tp_attributes = (*it)->getAttributeList();
 				AttributeConstIterator end = tp_attributes.end();
 				freq = 0;
-				bw = 3; // AUTO
-				constellation = 1; // AUTO
-				crh = 5; // AUTO
-				crl = 5; // AUTO
-				guard = 4; // AUTO
-				transm = 2; // AUTO
-				hierarchy = 4; // AUTO
-				inv = 2; // AUTO
+				bw = eDVBFrontendParametersTerrestrial::Bandwidth_Auto;
+				constellation = eDVBFrontendParametersTerrestrial::Modulation_Auto;
+				crh = eDVBFrontendParametersTerrestrial::FEC_Auto;
+				crl = eDVBFrontendParametersTerrestrial::FEC_Auto;
+				guard = eDVBFrontendParametersTerrestrial::GuardInterval_Auto;
+				transm = eDVBFrontendParametersTerrestrial::TransmissionMode_Auto;
+				hierarchy = eDVBFrontendParametersTerrestrial::Hierarchy_Auto;
+				inv = eDVBFrontendParametersTerrestrial::Inversion_Unknown;
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
 //					eDebug("\t\tattr: %s", at->name().c_str());
@@ -1497,7 +1504,7 @@ int eDVBDBQueryBase::compareLessEqual(const eServiceReferenceDVB &a, const eServ
 {
 	ePtr<eDVBService> a_service, b_service;
 	int sortmode = m_query ? m_query->m_sort : eDVBChannelQuery::tName;
-	
+
 	if ((sortmode == eDVBChannelQuery::tName) || (sortmode == eDVBChannelQuery::tProvider))
 	{
 		if (a.name.empty() && m_db->getService(a, a_service))
@@ -1505,7 +1512,7 @@ int eDVBDBQueryBase::compareLessEqual(const eServiceReferenceDVB &a, const eServ
 		if (b.name.empty() && m_db->getService(b, b_service))
 			return 1;
 	}
-	
+
 	switch (sortmode)
 	{
 	case eDVBChannelQuery::tName:
@@ -1747,10 +1754,10 @@ static int decodeType(const std::string &type)
 RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::const_iterator begin, std::list<std::string>::const_iterator end)
 {
 	std::list<std::string>::const_iterator end_of_exp;
-	
+
 	if (begin == end)
 		return 0;
-	
+
 	if (*begin == "(")
 	{
 		end_of_exp = begin;
@@ -1759,36 +1766,36 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 				break;
 			else
 				++end_of_exp;
-	
+
 		if (end_of_exp == end)
 		{
 			eDebug("expression parse: end of expression while searching for closing brace");
 			return -1;
 		}
-		
+
 		++begin;
 		// begin..end_of_exp
 		int r = parseExpression(res, begin, end_of_exp);
 		if (r)
 			return r;
 		++end_of_exp;
-		
+
 			/* we had only one sub expression */
 		if (end_of_exp == end)
 		{
 //			eDebug("only one sub expression");
 			return 0;
 		}
-		
+
 			/* otherwise we have an operator here.. */
-		
+
 		ePtr<eDVBChannelQuery> r2 = res;
 		res = new eDVBChannelQuery();
 		res->m_sort = 0;
 		res->m_p1 = r2;
 		res->m_inverse = 0;
 		r2 = 0;
-		
+
 		if (*end_of_exp == "||")
 			res->m_type = eDVBChannelQuery::tOR;
 		else if (*end_of_exp == "&&")
@@ -1799,18 +1806,18 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 			res = 0;
 			return 1;
 		}
-		
+
 		++end_of_exp;
-		
+
 		return parseExpression(res->m_p2, end_of_exp, end);
 	}
-	
+
 	// "begin" <op> "end"
 	std::string type, op, val;
-	
+
 	res = new eDVBChannelQuery();
 	res->m_sort = 0;
-	
+
 	int cnt = 0;
 	while (begin != end)
 	{
@@ -1832,23 +1839,23 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 		++begin;
 		++cnt;
 	}
-	
+
 	if (cnt != 3)
 	{
 		eDebug("malformed query: missing stuff");
 		res = 0;
 		return 1;
 	}
-	
+
 	res->m_type = decodeType(type);
-	
+
 	if (res->m_type == -1)
 	{
 		eDebug("malformed query: invalid type %s", type.c_str());
 		res = 0;
 		return 1;
 	}
-	
+
 	if (op == "==")
 		res->m_inverse = 0;
 	else if (op == "!=")
@@ -1859,7 +1866,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 		res = 0;
 		return 1;
 	}
-	
+
 	res->m_string = val;
 
 	if (res->m_type == eDVBChannelQuery::tChannelID)
@@ -1879,7 +1886,7 @@ RESULT parseExpression(ePtr<eDVBChannelQuery> &res, std::list<std::string>::cons
 RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 {
 	std::list<std::string> tokens;
-	
+
 	std::string current_token;
 	std::string bouquet_name;
 
@@ -1891,34 +1898,34 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 	{
 		int c = (i < query.size()) ? query[i] : ' ';
 		++i;
-		
+
 		int issplit = !!strchr(splitchars, c);
 		int isaln = isalnum(c);
 		int iswhite = c == ' ';
 		int isquot = c == '\"';
-		
+
 		if (quotemode)
 		{
 			iswhite = issplit = 0;
 			isaln = lastalnum;
 		}
-		
+
 		if (issplit || iswhite || isquot || lastsplit || (lastalnum != isaln))
 		{
 			if (current_token.size())
 				tokens.push_back(current_token);
 			current_token.clear();
 		}
-		
+
 		if (!(iswhite || isquot))
 			current_token += c;
-		
+
 		if (isquot)
 			quotemode = !quotemode;
 		lastsplit = issplit;
 		lastalnum = isaln;
 	}
-	
+
 //	for (std::list<std::string>::const_iterator a(tokens.begin()); a != tokens.end(); ++a)
 //	{
 //		printf("%s\n", a->c_str());
@@ -1970,12 +1977,12 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 		res = 0;
 		return -1;
 	}
-	
+
 //	eDebug("sort by %d", sort);
-	
+
 		/* now we recursivly parse that. */
 	int r = parseExpression(res, tokens.begin(), tokens.end());
-	
+
 		/* we have an empty (but valid!) expression */
 	if (!r && !res)
 	{
@@ -1983,7 +1990,7 @@ RESULT eDVBChannelQuery::compile(ePtr<eDVBChannelQuery> &res, std::string query)
 		res->m_inverse = 0;
 		res->m_type = eDVBChannelQuery::tAny;
 	}
-	
+
 	if (res)
 	{
 		res->m_sort = sort;

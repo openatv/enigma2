@@ -67,7 +67,7 @@ extern std::string getLogBuffer();
 
 #define INFOFILE "/maintainer.info"
 
-void bsodFatal()
+void bsodFatal(const char *component)
 {
 	char logfile[128];
 	sprintf(logfile, "/media/hdd/enigma2_crash_%u.log", (unsigned int)time(0));
@@ -81,30 +81,35 @@ void bsodFatal()
 	char crash_emailaddr[256] = CRASH_EMAILADDR;
 	char crash_component[256] = "enigma2";
 
-	while ((start = lines.find("\n  File \"", start)) != std::string::npos)
+	if (component)
+		snprintf(crash_component, 256, component);
+	else
 	{
-		start += 9;
-		size_t end = lines.find("\"", start);
-		if (end == std::string::npos)
-			break;
-		end = lines.rfind("/", end);
-		if (end == std::string::npos)
-			break;
-		if (end - start >= (256 - strlen(INFOFILE)))
-			continue;
-		char filename[256];
-		snprintf(filename, 256, "%s%s", lines.substr(start, end - start).c_str(), INFOFILE);
-		FILE *cf = fopen(filename, "r");
-		if (cf)
+		while ((start = lines.find("\n  File \"", start)) != std::string::npos)
 		{
-			fgets(crash_emailaddr, sizeof crash_emailaddr, cf);
-			if (*crash_emailaddr && crash_emailaddr[strlen(crash_emailaddr)-1] == '\n')
-				crash_emailaddr[strlen(crash_emailaddr)-1] = 0;
+			start += 9;
+			size_t end = lines.find("\"", start);
+			if (end == std::string::npos)
+				break;
+			end = lines.rfind("/", end);
+			if (end == std::string::npos)
+				break;
+			if (end - start >= (256 - strlen(INFOFILE)))
+				continue;
+			char filename[256];
+			snprintf(filename, 256, "%s%s", lines.substr(start, end - start).c_str(), INFOFILE);
+			FILE *cf = fopen(filename, "r");
+			if (cf)
+			{
+				fgets(crash_emailaddr, sizeof crash_emailaddr, cf);
+				if (*crash_emailaddr && crash_emailaddr[strlen(crash_emailaddr)-1] == '\n')
+					crash_emailaddr[strlen(crash_emailaddr)-1] = 0;
 
-			fgets(crash_component, sizeof crash_component, cf);
-			if (*crash_component && crash_component[strlen(crash_component)-1] == '\n')
-				crash_component[strlen(crash_component)-1] = 0;
-			fclose(cf);
+				fgets(crash_component, sizeof crash_component, cf);
+				if (*crash_component && crash_component[strlen(crash_component)-1] == '\n')
+					crash_component[strlen(crash_component)-1] = 0;
+				fclose(cf);
+			}
 		}
 	}
 
@@ -242,7 +247,7 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 	oops(uc->uc_mcontext, signum == SIGSEGV || signum == SIGABRT);
 #endif
 	eDebug("-------");
-	bsodFatal();
+	bsodFatal("enigma2, signal");
 }
 
 void bsodCatchSignals()

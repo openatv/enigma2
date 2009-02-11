@@ -284,7 +284,7 @@ int eMPEGStreamInformation::getNextAccessPoint(pts_t &ts, const pts_t &start, in
 	return 0;
 }
 
-eMPEGStreamParserTS::eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo): m_streaminfo(streaminfo), m_pktptr(0), m_pid(-1), m_need_next_packet(0), m_skip(0)
+eMPEGStreamParserTS::eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo): m_streaminfo(streaminfo), m_pktptr(0), m_pid(-1), m_need_next_packet(0), m_skip(0), m_last_pts_valid(0)
 {
 }
 
@@ -331,6 +331,9 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 		pts |= ((unsigned long long)(pkt[12]&0xFF)) << 7;
 		pts |= ((unsigned long long)(pkt[13]&0xFE)) >> 1;
 		ptsvalid = 1;
+		
+		m_last_pts = pts;
+		m_last_pts_valid = 1;
 
 #if 0		
 		int sec = pts / 90000;
@@ -522,3 +525,15 @@ void eMPEGStreamParserTS::setPid(int _pid)
 	m_pktptr = 0;
 	m_pid = _pid;
 }
+
+int eMPEGStreamParserTS::getLastPTS(pts_t &last_pts)
+{
+	if (!m_last_pts_valid)
+	{
+		last_pts = 0;
+		return -1;
+	}
+	last_pts = m_last_pts;
+	return 0;
+}
+

@@ -1,6 +1,7 @@
 from Plugins.Extensions.CutListEditor.plugin import CutListEditor
 from Components.ServiceEventTracker import ServiceEventTracker
 from enigma import iPlayableService, iServiceInformation
+from Tools.Directories import fileExists
 
 class TitleCutter(CutListEditor):
 	def __init__(self, session, t):
@@ -46,7 +47,12 @@ class TitleCutter(CutListEditor):
 		self.t.properties.aspect.setValue(aspect)
 		self.t.VideoType = service.info().getInfo(iServiceInformation.sVideoType)
 
+	def checkAndGrabThumb(self):
+		if not fileExists(self.t.inputfile.rsplit('.',1)[0] + ".png"):
+			CutListEditor.grabFrame(self)
+
 	def exit(self):
+		self.checkAndGrabThumb()
 		self.session.nav.stopService()
 		self.close(self.cut_list[:])
 
@@ -56,4 +62,5 @@ class CutlistReader(TitleCutter):
 
 	def getPMTInfo(self):
 		TitleCutter.getPMTInfo(self)
+		TitleCutter.checkAndGrabThumb(self)
 		self.close(self.cut_list[:])

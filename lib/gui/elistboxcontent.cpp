@@ -467,7 +467,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					/* type is borrowed */
 			} else
 				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
-				/* value is borrowed */
+			if (value)
+				Py_DECREF(value);
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))
@@ -522,7 +523,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
 			if (pbackColor)
 			{
-				int color = PyInt_AsLong(pbackColor);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColor);
 				painter.setBackgroundColor(gRGB(color));
 			} // transparent background?
 			// if we have a local background color set, use that. 
@@ -542,7 +543,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxSelected);
 			if (pbackColorSelected)
 			{
-				int color = PyInt_AsLong(pbackColorSelected);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColorSelected);
 				painter.setBackgroundColor(gRGB(color));
 			}
 			else if (local_style && local_style->m_background_color_selected_set)
@@ -559,7 +560,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxSelected);
 			if (pbackColorSelected)
 			{
-				int color = PyInt_AsLong(pbackColorSelected);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColorSelected);
 				painter.setBackgroundColor(gRGB(color));
 			}
 			else if (local_style && local_style->m_background_color_selected_set)
@@ -571,7 +572,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 			style.setStyle(painter, eWindowStyle::styleListboxNormal);
 			if (pbackColor)
 			{
-				int color = PyInt_AsLong(pbackColor);
+				unsigned int color = PyInt_AsUnsignedLongMask(pbackColor);
 				painter.setBackgroundColor(gRGB(color));
 			}/* if we have a local background color set, use that. */
 			else if (local_style && local_style->m_background_color_set)
@@ -587,7 +588,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColorSelected)
 		{
-			int color = PyInt_AsLong(pforeColorSelected);
+			unsigned int color = PyInt_AsUnsignedLongMask(pforeColorSelected);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -598,13 +599,37 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColor)
 		{
-			int color = PyInt_AsLong(pforeColor);
+			unsigned int color = PyInt_AsUnsignedLongMask(pforeColor);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
 		else if (local_style && local_style->m_foreground_color_set)
 			painter.setForegroundColor(local_style->m_foreground_color);
 	}
+}
+
+static ePyObject lookupColor(ePyObject color, ePyObject data)
+{
+	if (color == Py_None)
+		return ePyObject();
+
+	if ((!color) && (!data))
+		return color;
+
+	unsigned int icolor = PyInt_AsUnsignedLongMask(color);
+
+		/* check if we have the "magic" template color */
+	if ((icolor & 0xFF000000) == 0xFF000000)
+	{
+		int index = icolor & 0xFFFFFF;
+		eDebug("[eListboxPythonMultiContent] template color index: %d", index);
+		return PyTuple_GetItem(data, index);
+	}
+
+	if (color == Py_None)
+		return ePyObject();
+
+	return color;
 }
 
 void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -622,7 +647,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	painter.clip(itemregion);
 	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip);
 
-	ePyObject items;
+	ePyObject items, buildfunc_ret;
 
 	if (m_list && cursorValid())
 	{
@@ -638,7 +663,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 			if (PyCallable_Check(m_buildFunc))  // when we have a buildFunc then call it
 			{
 				if (PyTuple_Check(items))
-					items = PyObject_CallObject(m_buildFunc, items);
+					buildfunc_ret = items = PyObject_CallObject(m_buildFunc, items);
 				else
 					eDebug("items is no tuple");
 			}
@@ -731,29 +756,17 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				if (size > 8)
-				{
-					pforeColor = PyTuple_GET_ITEM(item, 8);
-					if (pforeColor == Py_None)
-						pforeColor=ePyObject();
-				}
+					pforeColor = lookupColor(PyTuple_GET_ITEM(item, 8), data);
+
 				if (size > 9)
-				{
-					pforeColorSelected = PyTuple_GET_ITEM(item, 9);
-					if (pforeColorSelected == Py_None)
-						pforeColorSelected=ePyObject();
-				}
+					pforeColorSelected = lookupColor(PyTuple_GET_ITEM(item, 9), data);
+
 				if (size > 10)
-				{
-					pbackColor = PyTuple_GET_ITEM(item, 10);
-					if (pbackColor == Py_None)
-						pbackColor=ePyObject();
-				}
+					pbackColor = lookupColor(PyTuple_GET_ITEM(item, 10), data);
+
 				if (size > 11)
-				{
-					pbackColorSelected = PyTuple_GET_ITEM(item, 11);
-					if (pbackColorSelected == Py_None)
-						pbackColorSelected=ePyObject();
-				}
+					pbackColorSelected = lookupColor(PyTuple_GET_ITEM(item, 11), data);
+
 				if (size > 12)
 				{
 					pborderWidth = PyTuple_GET_ITEM(item, 12);
@@ -761,11 +774,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						pborderWidth=ePyObject();
 				}
 				if (size > 13)
-				{
-					pborderColor = PyTuple_GET_ITEM(item, 13);
-					if (pborderColor == Py_None)
-						pborderColor=ePyObject();
-				}
+					pborderColor = lookupColor(PyTuple_GET_ITEM(item, 13), data);
 
 				if (PyInt_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
 					pstring = PyTuple_GetItem(data, PyInt_AsLong(pstring));
@@ -804,7 +813,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					painter.clip(rect);
 					if (pborderColor)
 					{
-						int color = PyInt_AsLong(pborderColor);
+						unsigned int color = PyInt_AsUnsignedLongMask(pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
 
@@ -948,17 +957,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 
 				if (size > 6)
-				{
-					pbackColor = PyTuple_GET_ITEM(item, 6);
-					if (pbackColor == Py_None)
-						pbackColor=ePyObject();
-				}
+					pbackColor = lookupColor(PyTuple_GET_ITEM(item, 6), data);
+
 				if (size > 7)
-				{
-					pbackColorSelected = PyTuple_GET_ITEM(item, 7);
-					if (pbackColorSelected == Py_None)
-						pbackColorSelected=ePyObject();
-				}
+					pbackColorSelected = lookupColor(PyTuple_GET_ITEM(item, 7), data);
 
 				eRect rect(x, y, width, height);
 				painter.clip(rect);
@@ -983,8 +985,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
 error_out:
-	if (m_buildFunc && PyCallable_Check(m_buildFunc) && items)
-		Py_DECREF(items);
+	if (buildfunc_ret)
+		Py_DECREF(buildfunc_ret);
 
 	painter.clippop();
 }
@@ -1015,7 +1017,11 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 			{
 				ePyObject ret = PyObject_CallObject(m_selectableFunc, args);
 				if (ret)
-					return ret == Py_True;
+				{
+					bool retval = ret == Py_True;
+					Py_DECREF(ret);
+					return ret;
+				}
 				eDebug("call m_selectableFunc failed!!! assume not callable");
 			}
 			else

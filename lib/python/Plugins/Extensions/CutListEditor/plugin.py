@@ -12,10 +12,12 @@ from Components.GUIComponent import GUIComponent
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService, RT_HALIGN_RIGHT
 from Screens.FixedMenu import FixedMenu
 from Screens.HelpMenu import HelpableScreen
+from ServiceReference import ServiceReference
+from Components.Sources.List import List
+
 import bisect
 
 def CutListEntry(where, what):
-	res = [ (where, what) ]
 	w = where / 90
 	ms = w % 1000
 	s = (w / 1000) % 60
@@ -23,16 +25,17 @@ def CutListEntry(where, what):
 	h = w / 3600000
 	if what == 0:
 		type = "IN"
+		type_col = 0x004000
 	elif what == 1:
 		type = "OUT"
+		type_col = 0x400000
 	elif what == 2:
 		type = "MARK"
+		type_col = 0x000040
 	elif what == 3:
 		type = "LAST"
-	res.append(MultiContentEntryText(size=(400, 20), text = "%dh:%02dm:%02ds:%03d" % (h, m, s, ms)))
-	res.append(MultiContentEntryText(pos=(400,0), size=(130, 20), text = type, flags = RT_HALIGN_RIGHT))
-
-	return res
+		type_col = 0x000000
+	return ((where, what), "%dh:%02dm:%02ds:%03d" % (h, m, s, ms), type, type_col)
 
 class CutListContextMenu(FixedMenu):
 	RET_STARTCUT = 0
@@ -42,6 +45,7 @@ class CutListContextMenu(FixedMenu):
 	RET_DELETEMARK = 4
 	RET_REMOVEBEFORE = 5
 	RET_REMOVEAFTER = 6
+	RET_GRABFRAME = 7
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
@@ -75,6 +79,7 @@ class CutListContextMenu(FixedMenu):
 		else:
 			menu.append((_("remove this mark"), self.removeMark))
 
+		menu.append((("grab this frame as bitmap"), self.grabFrame))
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = "Menu"
 
@@ -99,50 +104,8 @@ class CutListContextMenu(FixedMenu):
 	def removeAfter(self):
 		self.close(self.RET_REMOVEAFTER)
 
-
-class CutList(GUIComponent):
-	def __init__(self, list):
-		GUIComponent.__init__(self)
-		self.l = eListboxPythonMultiContent()
-		self.setList(list)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.onSelectionChanged = [ ]
-
-	def getCurrent(self):
-		return self.l.getCurrentSelection()
-
-	def getCurrentIndex(self):
-		return self.l.getCurrentSelectionIndex()
-
-	GUI_WIDGET = eListbox
-
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
-		instance.setItemHeight(30)
-		instance.selectionChanged.get().append(self.selectionChanged)
-
-	def preWidgetRemove(self, instance):
-		instance.setContent(None)
-		instance.selectionChanged.get().remove(self.selectionChanged)
-
-	def selectionChanged(self):
-		for x in self.onSelectionChanged:
-			x()
-
-	def invalidateEntry(self, index):
-		self.l.invalidateEntry(index)
-
-	def setIndex(self, index, data):
-		self.list[index] = data
-		self.invalidateEntry(index)
-
-	def setList(self, list):
-		self.list = list
-		self.l.setList(self.list)
-
-	def setSelection(self, index):
-		if self.instance is not None:
-			self.instance.moveSelectionTo(index)
+	def grabFrame(self):
+		self.close(self.RET_GRABFRAME)
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
@@ -161,7 +124,17 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		</widget>
 		<eLabel position="62,98" size="179,274" backgroundColor="#505555" />
 		<eLabel position="64,100" size="175,270" backgroundColor="#000000" />
-		<widget name="Cutlist" position="64,100" zPosition="1" size="175,270" scrollbarMode="showOnDemand" transparent="1" />
+		<widget source="cutlist" position="64,100" zPosition="1" size="175,270" scrollbarMode="showOnDemand" transparent="1" render="Listbox" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(size=(125, 20), text = 1, backcolor = MultiContentTemplateColor(3)),
+						MultiContentEntryText(pos=(125,0), size=(50, 20), text = 2, flags = RT_HALIGN_RIGHT, backcolor = MultiContentTemplateColor(3))
+					],
+				 "fonts": [gFont("Regular", 18)],
+				 "itemHeight": 20
+				}
+			</convert>
+		</widget>
 		<widget name="Timeline" position="50,485" size="615,20" backgroundColor="#505555" pointer="skin_default/position_arrow.png:3,5" foregroundColor="black" />
 		<ePixmap pixmap="skin_default/icons/mp_buttons.png" position="305,515" size="109,13" alphatest="on" />
 	</screen>"""
@@ -186,8 +159,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.downloadCuesheet()
 
 		self["Timeline"] = ServicePositionGauge(self.session.nav)
-		self["Cutlist"] = CutList(self.getCutlist())
-		self["Cutlist"].onSelectionChanged.append(self.selectionChanged)
+		self["cutlist"] = List(self.getCutlist())
+		self["cutlist"].onSelectionChanged.append(self.selectionChanged)
 
 		self["Video"] = VideoWindow(decoder = 0)
 
@@ -229,20 +202,20 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	def setType(self, index, type):
 		if len(self.cut_list):
 			self.cut_list[index] = (self.cut_list[index][0], type)
-			self["Cutlist"].setIndex(index, CutListEntry(*self.cut_list[index]))
+			self["cutlist"].modifyEntry(index, CutListEntry(*self.cut_list[index]))
 
 	def setIn(self):
-		m = self["Cutlist"].getCurrentIndex()
+		m = self["cutlist"].getIndex()
 		self.setType(m, 0)
 		self.uploadCuesheet()
 
 	def setOut(self):
-		m = self["Cutlist"].getCurrentIndex()
+		m = self["cutlist"].getIndex()
 		self.setType(m, 1)
 		self.uploadCuesheet()
 
 	def setMark(self):
-		m = self["Cutlist"].getCurrentIndex()
+		m = self["cutlist"].getIndex()
 		self.setType(m, 2)
 		self.uploadCuesheet()
 
@@ -250,7 +223,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.toggleMark(onlyadd=True, tolerance=90000) # do not allow two marks in <1s
 
 	def __removeMark(self):
-		m = self["Cutlist"].getCurrent()
+		m = self["cutlist"].getCurrent()
 		m = m and m[0]
 		if m is not None:
 			self.removeMark(m)
@@ -265,7 +238,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		return r
 
 	def selectionChanged(self):
-		where = self["Cutlist"].getCurrent()
+		where = self["cutlist"].getCurrent()
 		if where is None:
 			print "no selection"
 			return
@@ -282,11 +255,11 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		# get the first changed entry, and select it
 		new_list = self.getCutlist()
-		self["Cutlist"].setList(new_list)
+		self["cutlist"].list = new_list
 
 		for i in range(min(len(new_list), len(self.last_cuts))):
 			if new_list[i] != self.last_cuts[i]:
-				self["Cutlist"].setSelection(i)
+				self["cutlist"].setIndex(i)
 				break
 		self.last_cuts = new_list
 
@@ -390,6 +363,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			# add 'out' point
 			bisect.insort(self.cut_list, (self.context_position, 1))
 			self.uploadCuesheet()
+		elif result == CutListContextMenu.RET_GRABFRAME:
+			self.grabFrame()
 
 	# we modify the "play" behavior a bit:
 	# if we press pause while being in slowmotion, we will pause (and not play)
@@ -398,6 +373,14 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.unPauseService()
 		else:
 			self.pauseService()
+
+	def grabFrame(self):
+		path = self.session.nav.getCurrentlyPlayingServiceReference().getPath()
+		from Components.Console import Console
+		grabConsole = Console()
+		cmd = 'grab -vblpr%d "%s"' % (180, path.rsplit('.',1)[0] + ".png")
+		grabConsole.ePopen(cmd)
+		self.playpauseService()
 
 def main(session, service, **kwargs):
 	session.open(CutListEditor, service)

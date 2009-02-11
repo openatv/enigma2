@@ -29,7 +29,7 @@ from Screens.TimeDateInput import TimeDateInput
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
-from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
+from Tools.Directories import SCOPE_HDD, resolveFilename, fileExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eEPGCache
@@ -348,14 +348,14 @@ class InfoBarMenu:
 
 	def mainMenu(self):
 		print "loading mainmenu XML..."
-		menu = mdom.childNodes[0]
-		assert menu.tagName == "menu", "root element in menu must be 'menu'!"
+		menu = mdom.getroot()
+		assert menu.tag == "menu", "root element in menu must be 'menu'!"
 
 		self.session.infobar = self
 		# so we can access the currently active infobar from screens opened from within the mainmenu
 		# at the moment used from the SubserviceSelection
 
-		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu, menu.childNodes)
+		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
 
 	def mainMenuClosed(self, *val):
 		self.session.infobar = None
@@ -403,7 +403,7 @@ class InfoBarEPG:
 		self.eventView = None
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",
 			{
-				"showEventView": (self.openEventView, _("show EPG...")),
+				"showEventInfo": (self.openEventView, _("show EPG...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("show single service EPG...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
@@ -1033,7 +1033,13 @@ class InfoBarPVRState:
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)
-		self._mayShow()
+		
+		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
+		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY:
+			self.pvrStateDialog.hide()
+		else:
+			self._mayShow()
+			
 
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
@@ -1321,7 +1327,6 @@ class InfoBarJobman:
 		self.session.openWithCallback(self.JobViewCB, JobView, job)
 	
 	def JobViewCB(self, in_background):
-		from Screens.TaskView import JobView
 		job_manager.in_background = in_background
 
 # depends on InfoBarExtensions
@@ -1437,8 +1442,8 @@ class InfoBarInstantRecord:
 		except:
 			pass
 
-		begin = time()
-		end = time() + 3600 * 24 * 365 * 1 # 1 year
+		begin = int(time())
+		end = begin + 3600	# dummy
 		name = "instant record"
 		description = ""
 		eventid = None
@@ -1459,19 +1464,28 @@ class InfoBarInstantRecord:
 
 		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = config.movielist.last_videodir.value)
 		recording.dontSave = True
-		recording.autoincrease = True
-
-		simulTimerList = self.session.nav.RecordTimer.record(recording)
-		if simulTimerList is not None:
-			print "timer conflict detected!"
-			if (len(simulTimerList) > 1):
-				print "tsc_list > 1"
-				recording.end = simulTimerList[1].begin - 30
+		
+		if event is None or limitEvent == False:
+			recording.autoincrease = True
+			if recording.setAutoincreaseEnd():
 				self.session.nav.RecordTimer.record(recording)
-				print "new endtime applied"
-			else:
-				print "conflict with only one timer? ! ?"
-		self.recording.append(recording)
+				self.recording.append(recording)
+		else:
+				simulTimerList = self.session.nav.RecordTimer.record(recording)
+				if simulTimerList is not None:	# conflict with other recording
+					name = simulTimerList[1].name
+					name_date = name + strftime(" %c", localtime(simulTimerList[1].begin))
+					print "[TIMER] conflicts with", name_date
+					recording.autoincrease = True	# start with max available length, then increment
+					if recording.setAutoincreaseEnd():
+						self.session.nav.RecordTimer.record(recording)
+						self.recording.append(recording)
+						self.session.open(MessageBox, _("Record time limited due to conflicting timer %s") % name_date, MessageBox.TYPE_INFO)
+					else:
+						self.session.open(MessageBox, _("Couldn't record due to conflicting timer %s") % name, MessageBox.TYPE_INFO)
+					recording.autoincrease = False
+				else:
+					self.recording.append(recording)
 
 	def isInstantRecordRunning(self):
 		print "self.recording:", self.recording
@@ -1544,12 +1558,12 @@ class InfoBarInstantRecord:
 			print "stopping recording after", int(value), "minutes."
 			if int(value) != 0:
 				self.recording[self.selectedEntry].autoincrease = False
-			self.recording[self.selectedEntry].end = time() + 60 * int(value)
+			self.recording[self.selectedEntry].end = int(time()) + 60 * int(value)
 			self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def instantRecord(self):
 		dir = config.movielist.last_videodir.value
-		if not pathExists(dir):
+		if not fileExists(dir, 'w'):
 			dir = resolveFilename(SCOPE_HDD)
 		try:
 			stat = os_stat(dir)
@@ -1561,21 +1575,21 @@ class InfoBarInstantRecord:
 		if self.isInstantRecordRunning():
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
 				title=_("A recording is currently running.\nWhat do you want to do?"), \
-				list=[(_("stop recording"), "stop"), \
-				(_("change recording (duration)"), "changeduration"), \
-				(_("change recording (endtime)"), "changeendtime"), \
-				(_("add recording (indefinitely)"), "indefinitely"), \
-				(_("add recording (stop after current event)"), "event"), \
+				list=[(_("add recording (stop after current event)"), "event"), \
 				(_("add recording (enter recording duration)"), "manualduration"), \
 				(_("add recording (enter recording endtime)"), "manualendtime"), \
+				(_("add recording (indefinitely)"), "indefinitely"), \
+				(_("change recording (duration)"), "changeduration"), \
+				(_("change recording (endtime)"), "changeendtime"), \
+				(_("stop recording"), "stop"), \
 				(_("do nothing"), "no")])
 		else:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
 				title=_("Start recording?"), \
-				list=[(_("add recording (indefinitely)"), "indefinitely"), \
-				(_("add recording (stop after current event)"), "event"), \
+				list=[(_("add recording (stop after current event)"), "event"), \
 				(_("add recording (enter recording duration)"), "manualduration"), \
 				(_("add recording (enter recording endtime)"), "manualendtime"), \
+				(_("add recording (indefinitely)"), "indefinitely"), \
 				(_("don't record"), "no")])
 
 from Tools.ISO639 import LanguageCodes

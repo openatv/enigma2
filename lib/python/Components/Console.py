@@ -8,7 +8,7 @@ class Console(object):
 		self.callbacks = {}
 		self.extra_args = {}
 
-	def ePopen(self, cmd, callback, extra_args=[]):
+	def ePopen(self, cmd, callback=None, extra_args=[]):
 		name = cmd
 		i = 0
 		while self.appContainers.has_key(name):
@@ -21,7 +21,9 @@ class Console(object):
 		self.appContainers[name] = eConsoleAppContainer()
 		self.appContainers[name].dataAvail.append(boundFunction(self.dataAvailCB,name))
 		self.appContainers[name].appClosed.append(boundFunction(self.finishedCB,name))
-		retval = self.appContainers[name].execute(cmd)
+		if isinstance(cmd, str): # until .execute supports a better api
+			cmd = [cmd]
+		retval = self.appContainers[name].execute(*cmd)
 		if retval:
 			self.finishedCB(name, retval)
 
@@ -50,5 +52,6 @@ class Console(object):
 		extra_args = self.extra_args[name]
 		del self.appContainers[name]
 		del self.extra_args[name]
-		self.callbacks[name](data,retval,extra_args)
+		if self.callbacks[name]:
+			self.callbacks[name](data,retval,extra_args)
 		del self.callbacks[name]

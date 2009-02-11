@@ -20,22 +20,22 @@ public:
 	{
 	}
 
-	RESULT getSystem(int &type) const;
-	RESULT getDVBS(eDVBFrontendParametersSatellite &) const;
-	RESULT getDVBC(eDVBFrontendParametersCable &) const;
-	RESULT getDVBT(eDVBFrontendParametersTerrestrial &) const;
+	SWIG_VOID(RESULT) getSystem(int &SWIG_OUTPUT) const;
+	SWIG_VOID(RESULT) getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const;
+	SWIG_VOID(RESULT) getDVBC(eDVBFrontendParametersCable &SWIG_OUTPUT) const;
+	SWIG_VOID(RESULT) getDVBT(eDVBFrontendParametersTerrestrial &SWIG_OUTPUT) const;
 
 	RESULT setDVBS(const eDVBFrontendParametersSatellite &p, bool no_rotor_command_on_tune=false);
 	RESULT setDVBC(const eDVBFrontendParametersCable &p);
 	RESULT setDVBT(const eDVBFrontendParametersTerrestrial &p);
-
+	SWIG_VOID(RESULT) getFlags(unsigned int &SWIG_NAMED_OUTPUT(flags)) const { flags = m_flags; return 0; }
+	RESULT setFlags(unsigned int flags) { m_flags = flags; return 0; }
+#ifndef SWIG
 	RESULT calculateDifference(const iDVBFrontendParameters *parm, int &, bool exact) const;
 
 	RESULT getHash(unsigned long &) const;
 	RESULT calcLockTimeout(unsigned int &) const;
-
-	RESULT getFlags(unsigned int &flags) const { flags = m_flags; return 0; }
-	RESULT setFlags(unsigned int flags) { m_flags = flags; return 0; }
+#endif
 };
 
 #ifndef SWIG
@@ -63,6 +63,7 @@ public:
 		FREQ_OFFSET,          // current frequency offset
 		CUR_VOLTAGE,          // current voltage
 		CUR_TONE,             // current continuous tone
+		SATCR,                // current SatCR
 		NUM_DATA_ENTRIES
 	};
 	Signal1<void,iDVBFrontend*> m_stateChanged;
@@ -142,6 +143,9 @@ public:
 	int closeFrontend(bool force=false);
 	const char *getDescription() const { return m_description; }
 	bool is_simulate() const { return m_simulate; }
+
+	RESULT turnOffSatCR(int satcr);
+	RESULT ScanSatCR();
 };
 
 #endif // SWIG

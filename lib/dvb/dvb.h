@@ -10,7 +10,10 @@
 #include <lib/dvb/demux.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/tstools.h>
+#include <lib/dvb/esection.h>
 #include <connection.h>
+
+#include <dvbsi++/service_description_section.h>
 
 class eDVBChannel;
 
@@ -259,6 +262,8 @@ public:
 	RESULT getCurrentPosition(iDVBDemux *decoding_demux, pts_t &pos, int mode);
 
 	int getUseCount() { return m_use_count; }
+
+	RESULT requestTsidOnid(ePyObject callback);
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
@@ -299,6 +304,12 @@ private:
 	oRefCount m_use_count;
 	void AddUse();
 	void ReleaseUse();
+
+		/* for tsid/onid read */
+	ePyObject m_tsid_onid_callback;
+	ePtr<iDVBDemux> m_tsid_onid_demux;
+	ePtr<eTable<ServiceDescriptionSection> > m_SDT;
+	void SDTready(int err);
 };
 #endif // SWIG
 

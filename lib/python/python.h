@@ -24,6 +24,7 @@ public:
 #ifdef PYTHON_REFCOUNT_DEBUG
 	inline ePyObject(PyObject *ob, const char *file, int line);
 #endif
+	inline ePyObject(PyVarObject *ob);
 	inline ePyObject(PyDictObject *ob);
 	inline ePyObject(PyTupleObject *ob);
 	inline ePyObject(PyListObject *ob);
@@ -32,11 +33,13 @@ public:
 	operator bool() { return !!m_ob; }
 	ePyObject &operator=(const ePyObject &);
 	ePyObject &operator=(PyObject *);
+	ePyObject &operator=(PyVarObject *ob) { return operator=((PyObject*)ob); }
 	ePyObject &operator=(PyDictObject *ob) { return operator=((PyObject*)ob); }
 	ePyObject &operator=(PyTupleObject *ob) { return operator=((PyObject*)ob); }
 	ePyObject &operator=(PyListObject *ob) { return operator=((PyObject*)ob); }
 	ePyObject &operator=(PyStringObject *ob) { return operator=((PyObject*)ob); }
 	operator PyObject*();
+	operator PyVarObject*() { return (PyVarObject*)operator PyVarObject*(); }
 	operator PyTupleObject*() { return (PyTupleObject*)operator PyObject*(); }
 	operator PyListObject*() { return (PyListObject*)operator PyObject*(); }
 	operator PyStringObject*() { return (PyStringObject*)operator PyObject*(); }
@@ -83,6 +86,14 @@ inline ePyObject::ePyObject(PyObject *ob, const char* file, int line)
 {
 }
 #endif
+
+inline ePyObject::ePyObject(PyVarObject *ob)
+	:m_ob((PyObject*)ob)
+#ifdef PYTHON_REFCOUNT_DEBUG
+	,m_file(0), m_line(0), m_from(0), m_to(0), m_erased(false)
+#endif
+{
+}
 
 inline ePyObject::ePyObject(PyDictObject *ob)
 	:m_ob((PyObject*)ob)

@@ -126,6 +126,9 @@ def resolveFilename(scope, base = "", path_prefix = None):
 def pathExists(path):
 	return os_path.exists(path)
 
+def isMount(path):
+	return os_path.ismount(path)
+
 def createDir(path, makeParents = False):
 	try:
 		if makeParents:

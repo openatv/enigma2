@@ -1672,7 +1672,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 	{
 		fillTuple(convertFuncArgs, argstring, argcount, service, ptr, nowTime, service_name);
 		ePyObject result = PyObject_CallObject(convertFunc, convertFuncArgs);
-		if (result)
+		if (!result)
 		{
 			if (service_name)
 				Py_DECREF(service_name);
@@ -2047,6 +2047,8 @@ PyObject *eEPGCache::search(ePyObject arg)
 	int querytype=-1;
 	bool needServiceEvent=false;
 	int maxmatches=0;
+	int must_get_service_name = 0;
+	bool must_get_service_reference = false;
 
 	if (PyTuple_Check(arg))
 	{
@@ -2056,7 +2058,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 			ePyObject obj = PyTuple_GET_ITEM(arg,0);
 			if (PyString_Check(obj))
 			{
+#if PY_VERSION_HEX < 0x02060000
 				argcount = PyString_GET_SIZE(obj);
+#else
+				argcount = PyString_Size(obj);
+#endif
 				argstring = PyString_AS_STRING(obj);
 				for (int i=0; i < argcount; ++i)
 					switch(argstring[i])
@@ -2065,6 +2071,16 @@ PyObject *eEPGCache::search(ePyObject arg)
 					case 'E':
 					case 'T':
 						needServiceEvent=true;
+						break;
+					case 'N':
+						must_get_service_name = 1;
+						break;
+					case 'n':
+						must_get_service_name = 2;
+						break;
+					case 'R':
+						must_get_service_reference = true;
+						break;
 					default:
 						break;
 					}
@@ -2144,7 +2160,11 @@ PyObject *eEPGCache::search(ePyObject arg)
 				{
 					int casetype = PyLong_AsLong(PyTuple_GET_ITEM(arg, 4));
 					const char *str = PyString_AS_STRING(obj);
+#if PY_VERSION_HEX < 0x02060000
 					int textlen = PyString_GET_SIZE(obj);
+#else
+					int textlen = PyString_Size(obj);
+#endif
 					if (querytype == 1)
 						eDebug("lookup for events with '%s' as title(%s)", str, casetype?"ignore case":"case sensitive");
 					else
@@ -2159,22 +2179,32 @@ PyObject *eEPGCache::search(ePyObject arg)
 							int title_len = data[5];
 							if ( querytype == 1 )
 							{
-								if (title_len > textlen)
-									continue;
-								else if (title_len < textlen)
+								int offs = 6;
+								// skip DVB-Text Encoding!
+								if (data[6] == 0x10)
+								{
+									offs+=3;
+									title_len-=3;
+								}
+								else if(data[6] > 0 && data[6] < 0x20)
+								{
+									offs+=1;
+									title_len-=1;
+								}
+								if (title_len != textlen)
 									continue;
 								if ( casetype )
 								{
-									if ( !strncasecmp((const char*)data+6, str, title_len) )
+									if ( !strncasecmp((const char*)data+offs, str, title_len) )
 									{
-//										std::string s((const char*)data+6, title_len);
+//										std::string s((const char*)data+offs, title_len);
 //										eDebug("match1 %s %s", str, s.c_str() );
 										descr[++descridx] = it->first;
 									}
 								}
-								else if ( !strncmp((const char*)data+6, str, title_len) )
+								else if ( !strncmp((const char*)data+offs, str, title_len) )
 								{
-//									std::string s((const char*)data+6, title_len);
+//									std::string s((const char*)data+offs, title_len);
 //									eDebug("match2 %s %s", str, s.c_str() );
 									descr[++descridx] = it->first;
 								}
@@ -2193,13 +2223,13 @@ PyObject *eEPGCache::search(ePyObject arg)
 //											eDebug("match 3 %s %s", str, s.c_str() );
 											break;
 										}
-										else if (!strncmp((const char*)data+6+idx, str, textlen) )
-										{
-											descr[++descridx] = it->first;
-//											std::string s((const char*)data+6, title_len);
-//											eDebug("match 4 %s %s", str, s.c_str() );
-											break;
-										}
+									}
+									else if (!strncmp((const char*)data+6+idx, str, textlen) )
+									{
+										descr[++descridx] = it->first;
+//										std::string s((const char*)data+6, title_len);
+//										eDebug("match 4 %s %s", str, s.c_str() );
+										break;
 									}
 									++idx;
 								}
@@ -2303,44 +2333,40 @@ PyObject *eEPGCache::search(ePyObject arg)
 							}
 						}
 					// create service name
-						if (!service_name)
+						if (must_get_service_name && !service_name)
 						{
-							int must_get_service_name = strchr(argstring, 'N') ? 1 : strchr(argstring, 'n') ? 2 : 0;
-							if (must_get_service_name)
+							ePtr<iStaticServiceInformation> sptr;
+							eServiceCenterPtr service_center;
+							eServiceCenter::getPrivInstance(service_center);
+							if (service_center)
 							{
-								ePtr<iStaticServiceInformation> sptr;
-								eServiceCenterPtr service_center;
-								eServiceCenter::getPrivInstance(service_center);
-								if (service_center)
+								service_center->info(ref, sptr);
+								if (sptr)
 								{
-									service_center->info(ref, sptr);
-									if (sptr)
+									std::string name;
+									sptr->getName(ref, name);
+
+									if (must_get_service_name == 1)
 									{
-										std::string name;
-										sptr->getName(ref, name);
-
-										if (must_get_service_name == 1)
-										{
-											size_t pos;
-											// filter short name brakets
-											while((pos = name.find("\xc2\x86")) != std::string::npos)
-												name.erase(pos,2);
-											while((pos = name.find("\xc2\x87")) != std::string::npos)
-												name.erase(pos,2);
-										}
-										else
-											name = buildShortName(name);
-
-										if (name.length())
-											service_name = PyString_FromString(name.c_str());
+										size_t pos;
+										// filter short name brakets
+										while((pos = name.find("\xc2\x86")) != std::string::npos)
+											name.erase(pos,2);
+										while((pos = name.find("\xc2\x87")) != std::string::npos)
+											name.erase(pos,2);
 									}
+									else
+										name = buildShortName(name);
+
+									if (name.length())
+										service_name = PyString_FromString(name.c_str());
 								}
-								if (!service_name)
-									service_name = PyString_FromString("<n/a>");
 							}
+							if (!service_name)
+								service_name = PyString_FromString("<n/a>");
 						}
 					// create servicereference string
-						if (!service_reference && strchr(argstring,'R'))
+						if (must_get_service_reference && !service_reference)
 							service_reference = PyString_FromString(ref.toString().c_str());
 					// create list
 						if (!ret)

@@ -32,11 +32,15 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.createConfig()
 
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "GlobalActions", "PiPSetupActions"],
 		{
 			"ok": self.keySelect,
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
+			"volumeUp": self.incrementStart,
+			"volumeDown": self.decrementStart,
+			"size+": self.incrementEnd,
+			"size-": self.decrementEnd
 		}, -2)
 
 		self.list = []
@@ -46,7 +50,12 @@ class TimerEntry(Screen, ConfigListScreen):
 	def createConfig(self):
 			justplay = self.timer.justplay
 
-			afterevent = { AFTEREVENT.NONE: "nothing", AFTEREVENT.DEEPSTANDBY: "deepstandby", AFTEREVENT.STANDBY: "standby"}[self.timer.afterEvent]
+			afterevent = {
+				AFTEREVENT.NONE: "nothing",
+				AFTEREVENT.DEEPSTANDBY: "deepstandby",
+				AFTEREVENT.STANDBY: "standby",
+				AFTEREVENT.AUTO: "auto"
+				}[self.timer.afterEvent]
 
 			weekday_table = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
 
@@ -84,7 +93,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				day[weekday] = 1
 
 			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
-			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby"))], default = afterevent)
+			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby")), ("auto", _("auto"))], default = afterevent)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
 			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
@@ -155,9 +164,14 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.entryDate = getConfigListEntry(_("Date"), self.timerentry_date)
 		if self.timerentry_type.value == "once":
 			self.list.append(self.entryDate)
-		self.list.append(getConfigListEntry(_("StartTime"), self.timerentry_starttime))
+		
+		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
+		self.list.append(self.entryStartTime)
 		if self.timerentry_justplay.value != "zap":
-			self.list.append(getConfigListEntry(_("EndTime"), self.timerentry_endtime))
+			self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
+			self.list.append(self.entryEndTime)
+		else:
+			self.entryEndTime = None
 		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service)
 		self.list.append(self.channelEntry)
 
@@ -250,7 +264,12 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.description = self.timerentry_description.value
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
 		self.timer.resetRepeated()
-		self.timer.afterEvent = {"nothing": AFTEREVENT.NONE, "deepstandby": AFTEREVENT.DEEPSTANDBY, "standby": AFTEREVENT.STANDBY}[self.timerentry_afterevent.value]
+		self.timer.afterEvent = {
+			"nothing": AFTEREVENT.NONE,
+			"deepstandby": AFTEREVENT.DEEPSTANDBY,
+			"standby": AFTEREVENT.STANDBY,
+			"auto": AFTEREVENT.AUTO
+			}[self.timerentry_afterevent.value]
 		self.timer.service_ref = self.timerentry_service_ref
 		self.timer.tags = self.timerentry_tags
 
@@ -308,6 +327,24 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.saveTimer()
 		self.close((True, self.timer))
+
+	def incrementStart(self):
+		self.timerentry_starttime.increment()
+		self["config"].invalidate(self.entryStartTime)
+
+	def decrementStart(self):
+		self.timerentry_starttime.decrement()
+		self["config"].invalidate(self.entryStartTime)
+
+	def incrementEnd(self):
+		if self.entryEndTime is not None:
+			self.timerentry_endtime.increment()
+			self["config"].invalidate(self.entryEndTime)
+
+	def decrementEnd(self):
+		if self.entryEndTime is not None:
+			self.timerentry_endtime.decrement()
+			self["config"].invalidate(self.entryEndTime)
 
 	def subserviceSelected(self, service):
 		if not service is None:

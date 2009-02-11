@@ -74,9 +74,22 @@ class TitleList(Screen, HelpableScreen):
 
 		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
 		self.updateTitleList()
-		
+
+	def checkBackgroundJobs(self):
+		for job in job_manager.getPendingJobs():
+			print "type(job):", type(job)
+			print "Process.DVDJob:", Process.DVDJob
+			if type(job) == Process.DVDJob:
+				self.backgroundJob = job
+				return
+		self.backgroundJob = None
+
 	def showMenu(self):
 		menu = []
+		self.checkBackgroundJobs()
+		if self.backgroundJob:
+			j = self.backgroundJob
+			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress/float(j.end))), self.showBackgroundJob))
 		if self.project.settings.output.getValue() == "dvd":
 			menu.append((_("Burn DVD"), self.burnProject))
 		elif self.project.settings.output.getValue() == "iso":
@@ -97,6 +110,11 @@ class TitleList(Screen, HelpableScreen):
 		if choice:
 			choice[1]()
 
+	def showBackgroundJob(self):
+		job_manager.in_background = False
+		self.session.openWithCallback(self.JobViewCB, JobView, self.backgroundJob)
+		self.backgroundJob = None
+	
 	def titleProperties(self):
 		if self.getCurrentTitle():
 			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
@@ -172,8 +190,8 @@ class TitleList(Screen, HelpableScreen):
 		self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"
 
 	def loadTemplate(self):
-		filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVDtemplate.ddvdp.xml"
-		if self.project.loadProject(filename):
+		filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
+		if self.project.load(filename):
 			self["error_label"].hide()
 			return True
 		else:
@@ -212,12 +230,12 @@ class TitleList(Screen, HelpableScreen):
 		res = [ ]
 		totalsize = 0
 		for title in self.project.titles:
-			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 10, 500, 50, 0, RT_HALIGN_LEFT, title.properties.menutitle.getValue())  ]
+			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 5, 500, 25, 0, RT_HALIGN_LEFT, title.properties.menutitle.getValue())  ]
 			res.append(a)
 			totalsize += title.estimatedDiskspace
 		self["titles"].list = res
 		self.updateSize(totalsize)
-		
+
 	def updateSize(self, totalsize):
 		size = int((totalsize/1024)/1024)
 		max_SL = 4370

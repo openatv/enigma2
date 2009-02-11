@@ -55,6 +55,7 @@ class Console(Screen):
 			str = self["text"].getText()
 			str += _("Execution finished!!");
 			self["text"].setText(str)
+			self["text"].lastPage()
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not retval and self.closeOnSuccess:

@@ -87,30 +87,48 @@ DEFINE_REF(eServiceDVD);
 eServiceDVD::eServiceDVD(const char *filename):
 	m_filename(filename),
 	m_ddvdconfig(ddvd_create()),
-	m_pixmap(new gPixmap(eSize(720, 576), 32)),
 	m_subtitle_widget(0),
 	m_state(stIdle),
 	m_current_trick(0),
 	m_pump(eApp, 1)
 {
+	int aspect = DDVD_16_9; 
+	int policy = DDVD_PAN_SCAN;
+
+	char tmp[255];
+	ssize_t rd;
+
 	m_sn = eSocketNotifier::create(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
-	std::string aspect;
 	eDebug("SERVICEDVD construct!");
 	// create handle
 	ddvd_set_dvd_path(m_ddvdconfig, filename);
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
 	ddvd_set_language(m_ddvdconfig, "de");
 
-	if (ePythonConfigQuery::getConfigValue("config.av.aspect", aspect) != 0)
-		aspect = "16_9";
-	if (aspect == "4_3_letterbox")
-		ddvd_set_video(m_ddvdconfig, DDVD_4_3_LETTERBOX, DDVD_PAL);
-	else if (aspect == "4_3_panscan")
-		ddvd_set_video(m_ddvdconfig, DDVD_4_3_PAN_SCAN, DDVD_PAL);
-	else
-		ddvd_set_video(m_ddvdconfig, DDVD_16_9, DDVD_PAL);
+	int fd = open("/proc/stb/video/aspect", O_RDONLY);
+	if (fd > -1)
+	{
+		rd = read(fd, tmp, 255);
+		if (rd > 2 && !strncmp(tmp, "4:3", 3))
+			aspect = DDVD_4_3;
+		else if (rd > 4 && !strncmp(tmp, "16:10", 5))
+			aspect = DDVD_16_10;
+		close(fd);
+	}
 
-	ddvd_set_lfb(m_ddvdconfig, (unsigned char *)m_pixmap->surface->data, 720, 576, 4, 720*4);
+ 	fd = open("/proc/stb/video/policy", O_RDONLY);
+	if (fd > -1)
+	{
+		rd = read(fd, tmp, 255);
+		if (rd > 6 && !strncmp(tmp, "bestfit", 7))
+			policy = DDVD_JUSTSCALE;
+		else if (rd > 8 && !strncmp(tmp, "letterbox", 9))
+			policy = DDVD_LETTERBOX;
+		close(fd);
+	}
+
+	ddvd_set_video(m_ddvdconfig, aspect, policy, DDVD_PAL /*unused*/);
+
 	CONNECT(m_sn->activated, eServiceDVD::gotMessage);
 	CONNECT(m_pump.recv_msg, eServiceDVD::gotThreadMessage);
 	strcpy(m_ddvd_titlestring,"");
@@ -158,8 +176,11 @@ void eServiceDVD::gotMessage(int /*what*/)
 		}
 		case DDVD_SCREEN_UPDATE:
 			eDebug("DVD_SCREEN_UPDATE!");
-			if (m_subtitle_widget)
-				m_subtitle_widget->setPixmap(m_pixmap, eRect(0, 0, 720, 576));
+			if (m_subtitle_widget) {
+				int x1,x2,y1,y2;
+				ddvd_get_last_blit_area(m_ddvdconfig, &x1, &x2, &y1, &y2);
+				m_subtitle_widget->setPixmap(m_pixmap, eRect(x1, y1, (x2-x1)+1, (y2-y1)+1));
+			}
 			break;
 		case DDVD_SHOWOSD_STATE_PLAY:
 		{
@@ -213,6 +234,14 @@ void eServiceDVD::gotMessage(int /*what*/)
 			eDebug("DVD_SOF_REACHED!");
 			m_event(this, evSOF);
 			break;
+		case DDVD_SHOWOSD_ANGLE:
+		{
+			int current, num;
+			ddvd_get_angle_info(m_ddvdconfig, &current, &num);
+			eDebug("DVD_ANGLE_INFO: %d / %d", current, num);
+			m_event(this, evUser+13);
+			break;
+		}
 		case DDVD_SHOWOSD_TIME:
 		{
 			static struct ddvd_time last_info;
@@ -259,6 +288,7 @@ eServiceDVD::~eServiceDVD()
 	kill();
 	saveCuesheet();
 	ddvd_close(m_ddvdconfig);
+	disableSubtitles(0);
 }
 
 RESULT eServiceDVD::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
@@ -272,7 +302,6 @@ RESULT eServiceDVD::start()
 	assert(m_state == stIdle);
 	m_state = stRunning;
 	eDebug("eServiceDVD starting");
-	run();
 // 	m_event(this, evStart);
 	return 0;
 }
@@ -437,6 +466,7 @@ int eServiceDVD::getInfo(int w)
 		}
 		case sUser+6:
 		case sUser+7:
+		case sUser+8:
 			return resIsPyObject;
 		default:
 			return resNA;
@@ -506,6 +536,16 @@ PyObject *eServiceDVD::getInfoObject(int w)
 			}				
 			return tuple;
 		}
+		case sUser+8:
+		{
+			ePyObject tuple = PyTuple_New(2);
+			int current, num;
+			ddvd_get_angle_info(m_ddvdconfig, &current, &num);
+			PyTuple_SetItem(tuple, 0, PyInt_FromLong(current));
+			PyTuple_SetItem(tuple, 1, PyInt_FromLong(num));
+
+			return tuple;
+		}
 		default:
 			eDebug("unhandled getInfoObject(%d)", w);
 	}
@@ -514,13 +554,23 @@ PyObject *eServiceDVD::getInfoObject(int w)
 
 RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) /*entry*/)
 {
-	if (m_subtitle_widget)
-		delete m_subtitle_widget;
+	delete m_subtitle_widget;
+
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size());
-	m_subtitle_widget->setPixmap(m_pixmap, eRect(0, 0, 720, 576));
+
+	eSize size = parent->size();
+
+	if (!m_pixmap)
+	{
+		m_pixmap = new gPixmap(size, 32);
+		ddvd_set_lfb(m_ddvdconfig, (unsigned char *)m_pixmap->surface->data, size.width(), size.height(), 4, size.width()*4);
+		run(); // start the thread
+	}
+
 	m_subtitle_widget->setZPosition(-1);
 	m_subtitle_widget->show();
+
 	return 0;
 }
 
@@ -654,6 +704,9 @@ RESULT eServiceDVD::keyPressed(int key)
 		break;
 	case iServiceKeys::keyUser+7:
 		ddvd_send_key(m_ddvdconfig, DDVD_KEY_MENU);
+		break;
+	case iServiceKeys::keyUser+8:
+		ddvd_send_key(m_ddvdconfig, DDVD_KEY_ANGLE);
 		break;
 	default:
 		return -1;

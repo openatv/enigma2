@@ -26,12 +26,10 @@ public:
 	static eAVSwitch *getInstance();
 	bool haveScartSwitch();
 	int getVCRSlowBlanking();
-	void setFastBlank(int val);
 	void setColorFormat(int format);
 	void setAspectRatio(int ratio);
 	void setVideomode(int mode);
 	void setInput(int val);
-	void setSlowblank(int val);
 	void setWSS(int val);
 	PSignal1<void, int> vcr_sb_notifier;
 };

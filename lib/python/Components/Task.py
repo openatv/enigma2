@@ -127,9 +127,11 @@ class Task(object):
 		self.cmd = None
 		self.cwd = "/tmp"
 		self.args = [ ]
+		self.cmdline = None
 		self.task_progress_changed = None
 		self.output_line = ""
 		job.addTask(self)
+		self.container = None
 
 	def setCommandline(self, cmd, args):
 		self.cmd = cmd
@@ -140,6 +142,9 @@ class Task(object):
 		self.args = [tool]
 		self.global_preconditions.append(ToolExistsPrecondition())
 		self.postconditions.append(ReturncodePostcondition())
+
+	def setCmdline(self, cmdline):
+		self.cmdline = cmdline
 
 	def checkPreconditions(self, immediate = False):
 		not_met = [ ]
@@ -166,13 +171,15 @@ class Task(object):
 		self.container.stdoutAvail.append(self.processStdout)
 		self.container.stderrAvail.append(self.processStderr)
 
-		assert self.cmd is not None
-		assert len(self.args) >= 1
-
 		if self.cwd is not None:
 			self.container.setCWD(self.cwd)
 
-		print "execute:", self.container.execute(self.cmd, *self.args), self.cmd, self.args
+		if not self.cmd and self.cmdline:
+			print "execute:", self.container.execute(self.cmdline), self.cmdline
+		else:
+			assert self.cmd is not None
+			assert len(self.args) >= 1
+			print "execute:", self.container.execute(self.cmd, *self.args), ' '.join(self.args)
 		if self.initial_input:
 			self.writeInput(self.initial_input)
 
@@ -205,7 +212,8 @@ class Task(object):
 		self.finish()
 
 	def abort(self):
-		self.container.kill()
+		if self.container:
+			self.container.kill()
 		self.finish(aborted = True)
 
 	def finish(self, aborted = False):

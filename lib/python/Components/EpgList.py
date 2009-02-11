@@ -52,6 +52,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 		self.clock_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock.png'))
+		self.clock_add_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_add.png'))
+		self.clock_pre_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_pre.png'))
+		self.clock_post_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_post.png'))
+		self.clock_prepost_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_prepost.png'))
 
 	def getEventFromId(self, service, eventid):
 		event = None
@@ -60,7 +64,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return event
 
 	def getCurrentChangeCount(self):
-		if self.type == EPG_TYPE_MULTI:
+		if self.type == EPG_TYPE_MULTI and self.l.getCurrentSelection() is not None:
 			return self.l.getCurrentSelection()[0]
 		return 0
 
@@ -92,11 +96,12 @@ class EPGList(HTMLComponent, GUIComponent):
 	def selectionChanged(self):
 		for x in self.onSelChanged:
 			if x is not None:
-				try:
-					x()
-				except: # FIXME!!!
-					print "FIXME in EPGList.selectionChanged"
-					pass
+				x()
+#				try:
+#					x()
+#				except: # FIXME!!!
+#					print "FIXME in EPGList.selectionChanged"
+#					pass
 
 	GUI_WIDGET = eListbox
 
@@ -135,8 +140,32 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.datetime_rect = Rect(width/20*2, 0, width/20*5-15, height)
 			self.service_rect = Rect(width/20*7, 0, width/20*13, height)
 
+	def getClockPixmap(self, refstr, beginTime, duration, eventId):
+		pre_clock = 1
+		post_clock = 2
+		clock_type = 0
+		endTime = beginTime + duration
+		for x in self.timer.timer_list:
+			if x.service_ref.ref.toString() == refstr:
+				if x.eit == eventId:
+					return self.clock_pixmap
+				beg = x.begin
+				end = x.end
+				if beginTime > beg and beginTime < end and endTime > end:
+					clock_type |= pre_clock
+				elif beginTime < beg and endTime > beg and endTime < end:
+					clock_type |= post_clock
+		if clock_type == 0:
+			return self.clock_add_pixmap
+		elif clock_type == pre_clock:
+			return self.clock_pre_pixmap
+		elif clock_type == post_clock:
+			return self.clock_post_pixmap
+		else:
+			return self.clock_prepost_pixmap
+
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
+		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.descr_rect
@@ -145,14 +174,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
 		if rec:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, self.clock_pixmap))
+			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic))
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service) > ((duration/10)*8)) 
+		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.service_rect
@@ -161,22 +191,24 @@ class EPGList(HTMLComponent, GUIComponent):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
 		if rec:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, self.clock_pixmap))
+			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic))
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
-		rec=begTime and (self.timer.isInTimer(eventId, begTime, duration, service) > ((duration/10)*8))
+		rec=begTime and (self.timer.isInTimer(eventId, begTime, duration, service))
 		r1=self.service_rect
 		r2=self.progress_rect
 		r3=self.descr_rect
 		r4=self.start_end_rect
 		res = [ None ] # no private data needed
 		if rec:
+			clock_pic = self.getClockPixmap(service, begTime, duration, eventId)
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width()-21, r1.height(), 0, RT_HALIGN_LEFT, service_name))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left()+r1.width()-16, r1.top(), 21, 21, self.clock_pixmap))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left()+r1.width()-16, r1.top(), 21, 21, clock_pic))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, service_name))
 		if begTime is not None:
@@ -252,6 +284,12 @@ class EPGList(HTMLComponent, GUIComponent):
 		x = self.l.getCurrentSelection()
 		return x and x[1]
 
+	def moveToService(self,serviceref):
+		for x in range(len(self.list)):
+			if self.list[x][1] == serviceref.toString():
+				self.instance.moveSelectionTo(x)
+				break
+			
 	def moveToEventId(self, eventId):
 		index = 0
 		for x in self.list:

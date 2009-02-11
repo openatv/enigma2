@@ -76,7 +76,7 @@ def append_when_current_valid(current, menu, args, level = 0):
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 		Screen.__init__(self, session)
-		#raise "we need a better summary screen here"
+		#raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
 

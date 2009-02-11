@@ -199,9 +199,11 @@ class TimerEditList(Screen):
 			self.updateState()
 
 	def removeTimerQuestion(self):
-		if not self["timerlist"].getCurrent():
+		cur = self["timerlist"].getCurrent()
+		if not cur:
 			return
-		self.session.openWithCallback(self.removeTimer, MessageBox, _("Really delete this timer?"))
+
+		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name))
 
 	def removeTimer(self, result):
 		if not result:
@@ -212,18 +214,6 @@ class TimerEditList(Screen):
 			timer = cur
 			timer.afterEvent = AFTEREVENT.NONE
 			self.session.nav.RecordTimer.removeEntry(timer)
-			if not timer.dontSave:
-				for timer in self.session.nav.RecordTimer.timer_list:
-					if timer.dontSave and timer.autoincrease:
-						timer.end = timer.begin + (3600 * 24 * 356 * 1)
-						self.session.nav.RecordTimer.timeChanged(timer)
-						timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list,timer)
-						if not timersanitycheck.check():
-							tsc_list = timersanitycheck.getSimulTimerList()
-							if len(tsc_list) > 1:
-								timer.end = tsc_list[1].begin - 30
-								self.session.nav.RecordTimer.timeChanged(timer)
-
 			self.refill()
 			self.updateState()
 
@@ -259,6 +249,7 @@ class TimerEditList(Screen):
 		
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
+			
 		
 	def finishedEdit(self, answer):
 		print "finished edit"
@@ -267,19 +258,25 @@ class TimerEditList(Screen):
 			print "Edited timer"
 			entry = answer[1]
 			timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
+			success = False
 			if not timersanitycheck.check():
 				simulTimerList = timersanitycheck.getSimulTimerList()
-				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
-					simulTimerList[1].end = entry.begin - 30
-					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
-					self.session.nav.RecordTimer.timeChanged(entry)
-				else:
-					print "Sanity check failed"
-					self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+				if simulTimerList is not None:
+					for x in simulTimerList:
+						if x.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(x)
+					if not timersanitycheck.check():
+						simulTimerList = timersanitycheck.getSimulTimerList()
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, timersanitycheck.getSimulTimerList())
+					else:
+						success = True
 			else:
+				succsess = True
+			if success:
 				print "Sanity check passed"
-				if not timersanitycheck.doubleCheck():
-					self.session.nav.RecordTimer.timeChanged(entry)
+				self.session.nav.RecordTimer.timeChanged(entry)
+			
 			self.fillTimerList()
 			self.updateState()
 		else:
@@ -291,11 +288,11 @@ class TimerEditList(Screen):
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
 			if simulTimerList is not None:
-				if (len(simulTimerList) == 2) and (simulTimerList[1].dontSave) and (simulTimerList[1].autoincrease):
-					simulTimerList[1].end = entry.begin - 30
-					self.session.nav.RecordTimer.timeChanged(simulTimerList[1])
-					self.session.nav.RecordTimer.record(entry)
-				else:
+				for x in simulTimerList:
+					if x.setAutoincreaseEnd(entry):
+						self.session.nav.RecordTimer.timeChanged(x)
+				simulTimerList = self.session.nav.RecordTimer.record(entry)
+				if simulTimerList is not None:
 					self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.fillTimerList()
 			self.updateState()
@@ -333,6 +330,8 @@ class TimerSanityConflict(Screen):
 				self.list.append((_("Conflicting timer") + " " + str(count), x))
 				self.list2.append((timer[count], False))
 			count += 1
+		if count == 1:
+			self.list.append((_("Channel not in services list")))
 
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
@@ -409,7 +408,7 @@ class TimerSanityConflict(Screen):
 				self["actions"].actions.update({"green":self.toggleTimer1})
 				self["key_green"].setText(_("Enable"))
 				self.key_green_choice = self.ENABLE
-			elif self.timer[0].isRunning() and not timer[0].repeated and self.key_green_choice != self.EMPTY:
+			elif self.timer[0].isRunning() and not self.timer[0].repeated and self.key_green_choice != self.EMPTY:
 				self.removeAction("green")
 				self["key_green"].setText(" ")
 				self.key_green_choice = self.EMPTY
@@ -429,7 +428,7 @@ class TimerSanityConflict(Screen):
 					self["actions"].actions.update({"blue":self.toggleTimer2})
 					self["key_blue"].setText(_("Enable"))
 					self.key_blue_choice = self.ENABLE
-				elif self.timer[x].isRunning() and not timer[x].repeated and self.key_blue_choice != self.EMPTY:
+				elif self.timer[x].isRunning() and not self.timer[x].repeated and self.key_blue_choice != self.EMPTY:
 					self.removeAction("blue")
 					self["key_blue"].setText(" ")
 					self.key_blue_choice = self.EMPTY

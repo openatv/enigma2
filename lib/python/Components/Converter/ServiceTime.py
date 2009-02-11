@@ -1,5 +1,5 @@
 from Converter import Converter
-from Components.Element import cached
+from Components.Element import cached, ElementError
 from enigma import iServiceInformation
 
 class ServiceTime(Converter, object):
@@ -16,7 +16,7 @@ class ServiceTime(Converter, object):
 		elif type == "Duration":
 			self.type = self.DURATION
 		else:
-			raise str("'%s' is not <StartTime|EndTime|Duration> for eEventTime converter" % type)
+			raise ElementError("'%s' is not <StartTime|EndTime|Duration> for eEventTime converter" % type)
 
 	@cached
 	def getTime(self):

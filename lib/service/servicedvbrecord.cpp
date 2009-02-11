@@ -3,11 +3,20 @@
 #include <lib/dvb/epgcache.h>
 #include <fcntl.h>
 
+	/* for cutlist */
+#include <byteswap.h>
+#include <netinet/in.h>
+
+#ifndef BYTE_ORDER
+#error no byte order defined!
+#endif
+
 DEFINE_REF(eDVBServiceRecord);
 
 eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref)
 {
 	CONNECT(m_service_handler.serviceEvent, eDVBServiceRecord::serviceEvent);
+	CONNECT(m_event_handler.m_eit_changed, eDVBServiceRecord::gotNewEvent);
 	m_state = stateIdle;
 	m_want_record = 0;
 	m_tuned = 0;
@@ -15,6 +24,7 @@ eDVBServiceRecord::eDVBServiceRecord(const eServiceReferenceDVB &ref): m_ref(ref
 	m_error = 0;
 	m_streaming = 0;
 	m_simulate = false;
+	m_last_event_id = -1;
 }
 
 void eDVBServiceRecord::serviceEvent(int event)
@@ -26,6 +36,22 @@ void eDVBServiceRecord::serviceEvent(int event)
 	{
 		eDebug("tuned..");
 		m_tuned = 1;
+
+			/* start feeding EIT updates */
+		ePtr<iDVBDemux> m_demux;
+		if (!m_service_handler.getDataDemux(m_demux))
+		{
+			eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_ref;
+			int sid = ref.getParentServiceID().get();
+			if (!sid)
+				sid = ref.getServiceID().get();
+			if ( ref.getParentTransportStreamID().get() &&
+				ref.getParentTransportStreamID() != ref.getTransportStreamID() )
+				m_event_handler.startOther(m_demux, sid);
+			else
+				m_event_handler.start(m_demux, sid);
+		}
+
 		if (m_state == stateRecording && m_want_record)
 			doRecord();
 		m_event((iRecordableService*)this, evTunedIn);
@@ -145,6 +171,9 @@ RESULT eDVBServiceRecord::stop()
 			::close(m_target_fd);
 			m_target_fd = -1;
 		}
+		
+		saveCutlist();
+		
 		m_state = statePrepared;
 	} else if (!m_simulate)
 		eDebug("(was not recording)");
@@ -363,23 +392,23 @@ RESULT eDVBServiceRecord::stream(ePtr<iStreamableService> &ptr)
 	return 0;
 }
 
+extern void PutToDict(ePyObject &dict, const char*key, long val);  // defined in dvb/frontend.cpp
+
 PyObject *eDVBServiceRecord::getStreamingData()
 {
 	eDVBServicePMTHandler::program program;
 	if (!m_tuned || m_service_handler.getProgramInfo(program))
 	{
-		Py_INCREF(Py_None);
-		return Py_None;
+		Py_RETURN_NONE;
 	}
 
-	PyObject *r = program.createPythonObject();
+	ePyObject r = program.createPythonObject();
 	ePtr<iDVBDemux> demux;
 	if (!m_service_handler.getDataDemux(demux))
 	{
 		uint8_t demux_id;
-		demux->getCADemuxID(demux_id);
-		
-		PyDict_SetItemString(r, "demux", PyInt_FromLong(demux_id));
+		if (!demux->getCADemuxID(demux_id))
+			PutToDict(r, "demux", demux_id);
 	}
 
 	return r;
@@ -397,4 +426,78 @@ void eDVBServiceRecord::recordEvent(int event)
 	default:
 		eDebug("unhandled record event %d", event);
 	}
+}
+
+void eDVBServiceRecord::gotNewEvent()
+{
+	ePtr<eServiceEvent> event_now;
+	m_event_handler.getEvent(event_now, 0);
+
+	if (!event_now)
+		return;
+
+	int event_id = event_now->getEventId();
+
+	pts_t p;
+	
+	if (m_record)
+	{
+		if (m_record->getCurrentPCR(p))
+			eDebug("getting PCR failed!");
+		else
+		{
+			static int i;
+			m_event_timestamps[/* event_id*/ ++i] = p;
+			eDebug("pcr of eit change: %llx", p);
+		}
+	}
+
+	if (event_id != m_last_event_id)
+		eDebug("[eDVBServiceRecord] now running: %s (%d seconds)", event_now->getEventName().c_str(), event_now->getDuration());
+	
+	m_last_event_id = event_id;
+}
+
+void eDVBServiceRecord::saveCutlist()
+{
+			/* XXX: dupe of eDVBServicePlay::saveCuesheet, refactor plz */
+	std::string filename = m_filename + ".cuts";
+
+	eDVBTSTools tstools;
+	
+	if (tstools.openFile(m_filename.c_str()))
+	{
+		eDebug("[eDVBServiceRecord] saving cutlist failed because tstools failed");
+		return;
+	}
+	
+	FILE *f = fopen(filename.c_str(), "wb");
+
+	if (f)
+	{
+		unsigned long long where;
+		int what;
+
+		for (std::map<int,pts_t>::iterator i(m_event_timestamps.begin()); i != m_event_timestamps.end(); ++i)
+		{
+			pts_t p = i->second;
+			off_t offset = 0; // fixme, we need to note down both
+			if (tstools.fixupPTS(offset, p))
+			{
+				eDebug("[eDVBServiceRecord] fixing up PTS failed, not saving");
+				continue;
+			}
+			eDebug("fixed up %llx to %llx (offset %llx)", i->second, p, offset);
+#if BYTE_ORDER == BIG_ENDIAN
+			where = p;
+#else
+			where = bswap_64(p);
+#endif
+			what = htonl(2); /* mark */
+			fwrite(&where, sizeof(where), 1, f);
+			fwrite(&what, sizeof(what), 1, f);
+		}
+		fclose(f);
+	}
+	
 }
