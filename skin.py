@@ -31,7 +31,7 @@ class SkinError(Exception):
 		self.message = message
 
 	def __str__(self):
-		return self.message
+		return "{%s}: %s" % (config.skin.primary_skin, self.message)
 
 dom_skins = [ ]
 
