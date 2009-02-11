@@ -198,12 +198,15 @@ class choicesList(object): # XXX: we might want a better name for this
 			self.choices[value] = orig
 
 	def default(self):
+		choices = self.choices
+		if not choices:
+			return ""
 		if self.type is choicesList.LIST_TYPE_LIST:
-			default = self.choices[0]
+			default = choices[0]
 			if isinstance(default, tuple):
 				default = default[0]
 		else:
-			default = self.choices.keys()[0]
+			default = choices.keys()[0]
 		return default
 
 class descriptionList(choicesList): # XXX: we might want a better name for this
