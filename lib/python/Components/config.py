@@ -41,14 +41,20 @@ class ConfigElement(object):
 			self.__notifiers = [ ]
 		return self.__notifiers
 
-	notifiers = property(getNotifiers)
+	def setNotifiers(self, val):
+		self.__notifiers = val
+
+	notifiers = property(getNotifiers, setNotifiers)
 
 	def getNotifiersFinal(self):
 		if self.__notifiers_final is None:
 			self.__notifiers_final = [ ]
 		return self.__notifiers_final
 
-	notifiers_final = property(getNotifiersFinal)
+	def setNotifiersFinal(self, val):
+		self.__notifiers_final = val
+
+	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
 
 	# you need to override this to do input validation
 	def setValue(self, value):
@@ -500,7 +506,7 @@ class ConfigSequence(ConfigElement):
 			num += 1
 
 		if self.marked_pos >= max_pos:
-			if endNotifier:
+			if self.endNotifier:
 				for x in self.endNotifier:
 					x(self)
 			self.marked_pos = max_pos - 1
@@ -518,8 +524,8 @@ class ConfigSequence(ConfigElement):
 			self.marked_pos = total_len - 1
 
 	def addEndNotifier(self, notifier):
-		if endNotifier is None:
-			endNotifier = []
+		if self.endNotifier is None:
+			self.endNotifier = []
 		self.endNotifier.append(notifier)
 
 	def handleKey(self, key):
