@@ -26,16 +26,29 @@ from time import localtime, strftime
 #            the default if saved_value is 'None' (default)
 #            or invalid.
 #
-class ConfigElement(object):
+class ConfigElement:
 	def __init__(self):
-		object.__init__(self)
 		self.saved_value = None
 		self.last_value = None
 		self.save_disabled = False
-		self.notifiers = []
-		self.notifiers_final = []
+		self.__notifiers = None
+		self.__notifiers_final = None
 		self.enabled = True
 		self.callNotifiersOnSaveAndCancel = False
+
+	def getNotifiers(self):
+		if self.__notifiers is None:
+			self.__notifiers = [ ]
+		return self.__notifiers
+
+	notifiers = property(getNotifiers)
+
+	def getNotifiersFinal(self):
+		if self.__notifiers_final is None:
+			self.__notifiers_final = [ ]
+		return self.__notifiers_final
+
+	notifiers_final = property(getNotifiersFinal)
 
 	# you need to override this to do input validation
 	def setValue(self, value):
@@ -83,12 +96,14 @@ class ConfigElement(object):
 		return self.tostring(self.value) != sv
 
 	def changed(self):
-		for x in self.notifiers:
-			x(self)
+		if self.__notifiers:
+			for x in self.notifiers:
+				x(self)
 			
 	def changedFinal(self):
-		for x in self.notifiers_final:
-			x(self)
+		if self.__notifiers_final:
+			for x in self.notifiers_final:
+				x(self)
 			
 	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True):
 		assert callable(notifier), "notifiers must be callable"
@@ -139,12 +154,11 @@ def getKeyNumber(key):
 	assert key in KEY_NUMBERS
 	return key - KEY_0
 
-class choicesList(object): # XXX: we might want a better name for this
+class choicesList: # XXX: we might want a better name for this
 	LIST_TYPE_LIST = 1
 	LIST_TYPE_DICT = 2
 
 	def __init__(self, choices, type = None):
-		object.__init__(self)
 		self.choices = choices
 		if type is None:
 			if isinstance(choices, list):
@@ -1368,8 +1382,7 @@ class ConfigNothing(ConfigSelection):
 # config.saved_value == {"foo": {"bar": "True"}, "foobar": "False"}
 #
 
-
-class ConfigSubsectionContent(object):
+class ConfigSubsectionContent:
 	pass
 
 # we store a backup of the loaded configuration
@@ -1382,9 +1395,8 @@ class ConfigSubsectionContent(object):
 # config.dipswitches.append(ConfigYesNo())
 # config.dipswitches.append(ConfigYesNo())
 # config.dipswitches.append(ConfigYesNo())
-class ConfigSubList(list, object):
+class ConfigSubList(list):
 	def __init__(self):
-		object.__init__(self)
 		list.__init__(self)
 		self.stored_values = {}
 
@@ -1426,9 +1438,8 @@ class ConfigSubList(list, object):
 # care must be taken that the 'key' has a proper
 # str() method, because it will be used in the config
 # file.
-class ConfigSubDict(dict, object):
+class ConfigSubDict(dict):
 	def __init__(self):
-		object.__init__(self)
 		dict.__init__(self)
 		self.stored_values = {}
 
@@ -1476,9 +1487,8 @@ class ConfigSubDict(dict, object):
 # __setattr__.
 # If you don't understand this, try adding
 # __setattr__ to a usual exisiting class and you will.
-class ConfigSubsection(object):
+class ConfigSubsection:
 	def __init__(self):
-		object.__init__(self)
 		self.__dict__["content"] = ConfigSubsectionContent()
 		self.content.items = { }
 		self.content.stored_values = { }
@@ -1487,8 +1497,9 @@ class ConfigSubsection(object):
 		if name == "saved_value":
 			return self.setSavedValue(value)
 		assert isinstance(value, (ConfigSubsection, ConfigElement, ConfigSubList, ConfigSubDict)), "ConfigSubsections can only store ConfigSubsections, ConfigSubLists, ConfigSubDicts or ConfigElements"
-		self.content.items[name] = value
-		x = self.content.stored_values.get(name, None)
+		content = self.content
+		content.items[name] = value
+		x = content.stored_values.get(name, None)
 		if x is not None:
 			#print "ok, now we have a new item,", name, "and have the following value for it:", x
 			value.saved_value = x
