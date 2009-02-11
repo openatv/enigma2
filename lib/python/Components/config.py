@@ -317,13 +317,13 @@ class ConfigSelection(ConfigElement):
 
 	def getText(self):
 		descr = self.description[self.value]
-		if len(descr):
+		if descr:
 			return _(descr)
 		return descr
 
 	def getMulti(self, selected):
 		descr = self.description[self.value]
-		if len(descr):
+		if descr:
 			return ("text", _(descr))
 		return ("text", descr)
 
@@ -367,13 +367,13 @@ class ConfigBoolean(ConfigElement):
 
 	def getText(self):
 		descr = self.descriptions[self.value]
-		if len(descr):
+		if descr:
 			return _(descr)
 		return descr
 
 	def getMulti(self, selected):
 		descr = self.descriptions[self.value]
-		if len(descr):
+		if descr:
 			return ("text", _(descr))
 		return ("text", descr)
 
@@ -577,7 +577,7 @@ class ConfigSequence(ConfigElement):
 		mPos = self.marked_pos
 		num = 0;
 		for i in self._value:
-			if len(value):	#fixme no heading separator possible
+			if value:	#fixme no heading separator possible
 				value += self.seperator
 				if mPos >= len(value) - 1:
 					mPos += 1
@@ -680,7 +680,7 @@ class ConfigIP(ConfigSequence):
 		block_strlen = []
 		for i in self._value:
 			block_strlen.append(len(str(i)))	
-			if len(value):
+			if value:
 				value += self.seperator
 			value += str(i)
 		leftPos = sum(block_strlen[:(self.marked_block)])+self.marked_block
@@ -1557,7 +1557,7 @@ class Config(ConfigSubsection):
 	def unpickle(self, lines):
 		tree = { }
 		for l in lines:
-			if not len(l) or l[0] == '#':
+			if not l or l[0] == '#':
 				continue
 			
 			n = l.find('=')
