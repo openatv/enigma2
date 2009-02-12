@@ -1305,7 +1305,10 @@ class InfoBarPlugins:
 		return list
 
 	def runPlugin(self, plugin):
-		plugin(session = self.session, servicelist = self.servicelist)
+		if isinstance(self, InfoBarChannelSelection):
+			plugin(session = self.session, servicelist = self.servicelist)
+		else:
+			plugin(session = self.session)
 
 from Components.Task import job_manager
 class InfoBarJobman:
