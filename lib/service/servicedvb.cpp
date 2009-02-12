@@ -370,12 +370,16 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	struct stat s;
 	stat(ref.path.c_str(), &s);
 
-	if (tstools.openFile(ref.path.c_str()))
+	if (tstools.openFile(ref.path.c_str(), 1))
 		return 0;
 
 			/* check if cached data is still valid */
 	if (m_parser.m_data_ok && (s.st_size == m_parser.m_filesize) && (m_parser.m_length))
 		return m_parser.m_length / 90000;
+
+			/* open again, this time with stream info */
+	if (tstools.openFile(ref.path.c_str()))
+		return 0;
 
 			/* otherwise, re-calc length and update meta file */
 	pts_t len;
