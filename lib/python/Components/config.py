@@ -1426,8 +1426,8 @@ class ConfigSubList(list, object):
 
 	def getSavedValue(self):
 		res = { }
-		for i in range(len(self)):
-			sv = self[i].saved_value
+		for i, val in enumerate(self):
+			sv = val.saved_value
 			if sv is not None:
 				res[str(i)] = sv
 		return res
@@ -1448,7 +1448,7 @@ class ConfigSubList(list, object):
 			item.load()
 
 	def dict(self):
-		return dict([(str(index), value) for index, value in self.enumerate()])
+		return dict([(str(index), value) for index, value in enumerate(self)])
 
 # same as ConfigSubList, just as a dictionary.
 # care must be taken that the 'key' has a proper
