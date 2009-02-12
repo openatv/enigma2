@@ -66,7 +66,7 @@ class TimerEntry:
 
 			day = []
 			flags = self.repeated
-			for x in range(0, 7):
+			for x in (0, 1, 2, 3, 4, 5, 6):
 				if (flags & 1 == 1):
 					day.append(0)
 					print "Day: " + str(x)

@@ -118,7 +118,7 @@ def updateChoices(sel, choices):
 		defval = None
 		val = int(sel.value)
 		if not val in choices:
-			tmp = choices+[]
+			tmp = choices[:]
 			tmp.reverse()
 			for x in tmp:
 				if x < val:
