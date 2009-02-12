@@ -4,7 +4,7 @@ class TemplatedMultiContent(StringList):
 	"""Turns a python tuple list into a multi-content list which can be used in a listbox renderer."""
 	def __init__(self, args):
 		StringList.__init__(self, args)
-		from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM
+		from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM, RT_WRAP
 		from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmap, MultiContentEntryPixmapAlphaTest, MultiContentTemplateColor
 		l = locals()
 		del l["self"] # cleanup locals a bit
