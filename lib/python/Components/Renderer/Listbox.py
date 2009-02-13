@@ -78,3 +78,7 @@ class Listbox(Renderer, object):
 
 	def changed(self, what):
 		self.content = self.source.content
+
+	def entry_changed(self, index):
+		if self.instance is not None:
+			self.instance.entryChanged(index)
