@@ -1,0 +1,100 @@
+<wizard>
+	<step id="restorequestion">
+		<condition>
+from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkConfigBackup
+self.backuppath = checkConfigBackup()
+self.condition = (self.backuppath is not None and config.misc.firstrun.value)
+		</condition>
+		<text value="Do you want to restore your settings?" />
+		<list>
+			<listentry caption="Yes, restore the settings now" step="restore" />
+			<listentry caption="No, just start my dreambox" step="end" />
+		</list>
+		<code>
+self.clearSelectedKeys()
+self.selectKey("OK")
+		</code>
+	</step>
+
+	<step id="welcome">
+		<text value="Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware." />
+		<list>
+			<listentry caption="OK, guide me through the upgrade process" step="backupquestion" />
+			<listentry caption="Exit the wizard" step="end" />
+		</list>
+	</step>
+
+	<step id="backupquestion">
+		<text value="The wizard can backup your current settings. Do you want to do a backup now?" />
+		<list>
+			<listentry caption="Yes, backup my settings!" step="backupwhere" />
+			<listentry caption="No backup needed" step="upgrade" />
+		</list>
+	</step>
+
+	<step id="backupwhere" nextstep="backup">
+		<text value="Where do you want to backup your settings?" />
+		<list type="dynamic" source="listDevices" evaluation="deviceSelectionMade" onselect="deviceSelectionMoved" />
+	</step>
+
+	<step id="backup" nextstep="backupresult">
+		<text value="You have chosen to backup your settings. Please press OK to start the backup now." />
+		<config screen="BackupScreen" module="Plugins.SystemPlugins.SoftwareManager.BackupRestore" type="ConfigList" />
+		<code pos="after" async="yes">
+self.currStep = self.getStepWithID('backupresult')
+self.afterAsyncCode()
+		</code>	
+	</step>
+		
+	<step id="backupresult" nextstep="upgrade">
+		<condition>
+from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkBackupFile
+self.backuppath = checkBackupFile()
+self.condition = (self.backuppath is True)
+		</condition>
+		<text value="Your backup succeeded. We will now continue to explain the further upgrade process." />
+	</step>
+
+	<step id="backupresult" nextstep="backupwhere">
+		<condition>
+from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkBackupFile
+self.backuppath = checkBackupFile()
+self.condition = (self.backuppath is False)
+		</condition>
+		<text value="The backup failed. Please choose a different backup location." />
+	</step>
+
+	<step id="restore" nextstep="backupresult">
+		<text value="You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now." />
+		<config screen="RestoreScreen" module="Plugins.SystemPlugins.SoftwareManager.BackupRestore" type="ConfigList" />
+	</step>
+		
+
+	<step id="upgradehow">
+		<text value="The wizard can backup your current settings. Do you want to do a backup now?" />
+		<list>
+			<listentry caption="Install a new image with your web browser" step="upgrade" />
+			<listentry caption="Install a new image with a USB stick" step="upgradeUSB" />
+		</list>
+	</step>
+		
+	<step id="upgrade">
+		<text value="You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\nYour dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings." />
+		<list>
+			<listentry caption="Yes, perform a shutdown now." step="shutdown" />
+			<listentry caption="No, do nothing." step="end" />
+		</list>
+	</step>
+
+	<step id="shutdown" nextstep="shutdown">
+		<code>
+from enigma import quitMainloop
+quitMainloop(1)
+		</code>
+		<text value="Your dreambox is shutting down. Please stand by..." />
+	</step>
+		
+	<step id="end">
+		<text value="The wizard is finished now." />
+	</step>
+</wizard>
