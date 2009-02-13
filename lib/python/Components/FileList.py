@@ -248,3 +248,189 @@ class FileList(MenuList):
 		self.refreshMountpoints()
 		if self.current_directory is None:
 			self.refresh()
+
+
+def MultiFileSelectEntryComponent(name, absolute = None, isDir = False, selected = False):
+	res = [ (absolute, isDir, selected, name) ]
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, 55, 1, 470, 20, 0, RT_HALIGN_LEFT, name))
+	if isDir:
+		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/directory.png"))
+	else:
+		extension = name.split('.')
+		extension = extension[-1].lower()
+		if EXTENSIONS.has_key(extension):
+			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "extensions/" + EXTENSIONS[extension] + ".png"))
+		else:
+			png = None
+	if png is not None:
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 30, 2, 20, 20, png))
+
+	if not name.startswith('<'):
+		if selected is False:
+			icon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_off.png"))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 0, 25, 25, icon))
+		else:
+			icon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_on.png"))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 0, 25, 25, icon))
+	
+	return res
+
+
+class MultiFileSelectList(FileList):
+	def __init__(self, preselectedFiles, directory, showMountpoints = False, matchingPattern = None, showDirectories = True, showFiles = True,  useServiceRef = False, inhibitDirs = False, inhibitMounts = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
+		self.selectedFiles = preselectedFiles
+		if self.selectedFiles is None:
+			self.selectedFiles = []
+		FileList.__init__(self, directory, showMountpoints = showMountpoints, matchingPattern = matchingPattern, showDirectories = showDirectories, showFiles = showFiles,  useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
+		self.changeDir(directory)			
+		self.l.setItemHeight(25)
+		self.l.setFont(0, gFont("Regular", 20))
+		self.onSelectionChanged = [ ]
+
+	def selectionChanged(self):
+		for f in self.onSelectionChanged:
+			f()
+
+	def changeSelectionState(self):
+		idx = self.l.getCurrentSelectionIndex()
+		count = 0
+		newList = []
+		for x in self.list:
+			if idx == count:
+				if x[0][3].startswith('<'):
+					newList.append(x)
+				else:
+					if x[0][1] is True:
+						realPathname = x[0][0]
+					else:
+						realPathname = self.current_directory + x[0][0]
+					if x[0][2] == True:
+						SelectState = False
+						for entry in self.selectedFiles:
+							if entry == realPathname:
+								self.selectedFiles.remove(entry)
+	
+					else:
+						SelectState = True
+						alreadyinList = False	
+						for entry in self.selectedFiles:
+							if entry == realPathname:
+								alreadyinList = True
+						if not alreadyinList:
+							self.selectedFiles.append(realPathname)
+					newList.append(MultiFileSelectEntryComponent(name = x[0][3], absolute = x[0][0], isDir = x[0][1], selected = SelectState ))
+			else:
+				newList.append(x)
+			
+			count += 1
+		
+		self.list = newList
+		self.l.setList(self.list)
+	
+	def getSelectedList(self):
+		return self.selectedFiles
+
+	def changeDir(self, directory, select = None):
+		self.list = []
+
+		# if we are just entering from the list of mount points:
+		if self.current_directory is None:
+			if directory and self.showMountpoints:
+				self.current_mountpoint = self.getMountpointLink(directory)
+			else:
+				self.current_mountpoint = None
+		self.current_directory = directory
+		directories = []
+		files = []
+
+		if directory is None and self.showMountpoints: # present available mountpoints
+			for p in harddiskmanager.getMountedPartitions():
+				path = os_path.join(p.mountpoint, "")
+				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
+					self.list.append(MultiFileSelectEntryComponent(name = p.description, absolute = path, isDir = True))
+			files = [ ]
+			directories = [ ]
+		elif directory is None:
+			files = [ ]
+			directories = [ ]
+		elif self.useServiceRef:
+			root = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + directory)
+			if self.additional_extensions:
+				root.setName(self.additional_extensions)
+			serviceHandler = eServiceCenter.getInstance()
+			list = serviceHandler.list(root)
+
+			while 1:
+				s = list.getNext()
+				if not s.valid():
+					del list
+					break
+				if s.flags & s.mustDescent:
+					directories.append(s.getPath())
+				else:
+					files.append(s)
+			directories.sort()
+			files.sort()
+		else:
+			if os_path.exists(directory):
+				files = listdir(directory)
+				files.sort()
+				tmpfiles = files[:]
+				for x in tmpfiles:
+					if os_path.isdir(directory + x):
+						directories.append(directory + x + "/")
+						files.remove(x)
+
+		if directory is not None and self.showDirectories and not self.isTop:
+			if directory == self.current_mountpoint and self.showMountpoints:
+				self.list.append(MultiFileSelectEntryComponent(name = "<" +_("List of Storage Devices") + ">", absolute = None, isDir = True))
+			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+				self.list.append(MultiFileSelectEntryComponent(name = "<" +_("Parent Directory") + ">", absolute = '/'.join(directory.split('/')[:-2]) + '/', isDir = True))
+
+		if self.showDirectories:
+			for x in directories:
+				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
+					name = x.split('/')[-2]
+					alreadySelected = False
+					for entry in self.selectedFiles:
+						if entry  == x:
+							alreadySelected = True					
+					if alreadySelected:		
+						self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x, isDir = True, selected = True))
+					else:
+						self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x, isDir = True, selected = False))
+						
+		if self.showFiles:
+			for x in files:
+				if self.useServiceRef:
+					path = x.getPath()
+					name = path.split('/')[-1]
+				else:
+					path = directory + x
+					name = x
+
+				if (self.matchingPattern is None) or re_compile(self.matchingPattern).search(path):
+					alreadySelected = False
+					for entry in self.selectedFiles:
+						if os_path.basename(entry)  == x:
+							alreadySelected = True	
+					if alreadySelected:
+						self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x , isDir = False, selected = True))
+					else:
+						self.list.append(MultiFileSelectEntryComponent(name = name, absolute = x , isDir = False, selected = False))
+
+		self.l.setList(self.list)
+
+		if select is not None:
+			i = 0
+			self.moveToIndex(0)
+			for x in self.list:
+				p = x[0][0]
+				
+				if isinstance(p, eServiceReference):
+					p = p.getPath()
+				
+				if p == select:
+					self.moveToIndex(i)
+				i += 1
+
