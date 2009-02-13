@@ -12,6 +12,8 @@
 class eMPEGStreamInformation
 {
 public:
+	eMPEGStreamInformation();
+	~eMPEGStreamInformation();
 		/* we order by off_t here, since the timestamp may */
 		/* wrap around. */
 		/* we only record sequence start's pts values here. */
@@ -23,7 +25,8 @@ public:
 		/* these are non-fixed up pts value (like m_access_points), just used to accelerate stuff. */
 	std::multimap<pts_t, off_t> m_pts_to_offset; 
 
-	int save(const char *filename);
+	int startSave(const char *filename);
+	int stopSave(void);
 	int load(const char *filename);
 	
 		/* recalculates timestampDeltas */
@@ -46,6 +49,23 @@ public:
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
 	
 	bool empty();
+	
+	typedef unsigned long long structure_data;
+		/* this is usually:
+			sc | (other_information << 8)
+			but is really specific to the used video encoder.
+		*/
+	void writeStructureEntry(off_t offset, structure_data data);
+
+		/* get a structure entry at given offset (or previous one, if no exact match was found).
+		   optionall, return next element. Offset will be returned. this allows you to easily 
+		   get previous and next structure elements. */
+	int getStructureEntry(off_t &offset, unsigned long long &data, int get_next);
+
+	std::string m_filename;
+	int m_structure_cache_valid;
+	unsigned long long m_structure_cache[1024];
+	FILE *m_structure_read, *m_structure_write;
 };
 
 	/* Now we define the parser's state: */
@@ -54,7 +74,7 @@ class eMPEGStreamParserTS
 public:
 	eMPEGStreamParserTS(eMPEGStreamInformation &streaminfo);
 	void parseData(off_t offset, const void *data, unsigned int len);
-	void setPid(int pid);
+	void setPid(int pid, int streamtype);
 	int getLastPTS(pts_t &last_pts);
 private:
 	eMPEGStreamInformation &m_streaminfo;
@@ -62,7 +82,7 @@ private:
 	int m_pktptr;
 	int processPacket(const unsigned char *pkt, off_t offset);
 	inline int wantPacket(const unsigned char *hdr) const;
-	int m_pid;
+	int m_pid, m_streamtype;
 	int m_need_next_packet;
 	int m_skip;
 	int m_last_pts_valid;

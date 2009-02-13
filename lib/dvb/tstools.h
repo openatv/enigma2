@@ -55,6 +55,8 @@ public:
 	int takeSample(off_t off, pts_t &p);
 	
 	int findPMT(int &pmt_pid, int &service_id);
+	
+	int findIFrame(off_t &offset, size_t &len, int direction);
 private:
 	int m_pid;
 	int m_maxrange;
