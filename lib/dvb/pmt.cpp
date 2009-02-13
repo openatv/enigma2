@@ -605,12 +605,15 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 	}
 }
 
-int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate)
+int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service)
 {
 	RESULT res=0;
 	m_reference = ref;
 	
 	m_use_decode_demux = use_decode_demux;
+
+		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
+	m_service = service;
 	
 		/* is this a normal (non PVR) channel? */
 	if (ref.path.empty())
