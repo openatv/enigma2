@@ -2189,7 +2189,7 @@ void eDVBServicePlay::switchToTimeshift()
 	r.path = m_timeshift_file;
 
 	m_cue = new eCueSheet();
-	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
+	m_service_handler_timeshift.tune(r, 1, m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
@@ -2205,7 +2205,7 @@ void eDVBServicePlay::updateDecoder()
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
 	eDVBServicePMTHandler::program program;
-	if (h.getProgramInfo(program) && m_service_handler.getProgramInfo(program))
+	if (h.getProgramInfo(program))
 		eDebug("getting program info failed.");
 	else
 	{
