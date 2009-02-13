@@ -343,6 +343,9 @@ class PowerKey:
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 
 	def powerlong(self):
+		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
+			return
+
 		self.standbyblocked = 1
 		action = config.usage.on_long_powerpress.value
 		if action == "shutdown":
