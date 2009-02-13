@@ -1183,7 +1183,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 		return -1;
 		
 	if (ffratio == 0)
-		return m_decoder->play();
+		; /* return m_decoder->play(); is done in caller*/
 	else if (ffratio != 1)
 		return m_decoder->setFastForward(ffratio);
 	else
