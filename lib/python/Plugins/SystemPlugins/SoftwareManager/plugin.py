@@ -79,7 +79,16 @@ class UpdatePluginMenu(Screen):
 					}
 				</convert>
 			</widget>
-			<widget name="description" position="280,10" size="230,300" font="Regular;19" halign="center" valign="center" />
+			<widget source="menu" render="Listbox" position="280,10" size="230,300" scrollbarMode="showNever" selectionDisabled="1">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (2, 2), size = (230, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 0 is the MenuText,
+						],
+					"fonts": [gFont("Regular", 20)],
+					"itemHeight": 230
+					}
+				</convert>
+			</widget>
 		</screen>"""
 		
 	def __init__(self, session, args = 0):
@@ -105,8 +114,6 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("ipkg-source",_("Choose upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext))
 
 		self["menu"] = List(self.list)
-		self["menu"].onSelectionChanged.append(self.selectionChanged)
-		self["description"] = Label()
 				
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
 		{
@@ -124,62 +131,38 @@ class UpdatePluginMenu(Screen):
 	def layoutFinished(self):
 		idx = 0
 		self["menu"].index = idx
-		self.loadDescription()
 		
 	def setWindowTitle(self):
 		self.setTitle(_("Software manager..."))
 		
-	def loadDescription(self):
-		if self["menu"].getCurrent()[0] == 'software-update':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'software-restore':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'ipkg-install':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'system-backup':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'system-restore':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'advanced':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'ipkg-source':
-			self["description"].setText(self["menu"].getCurrent()[2] )		
-		if self["menu"].getCurrent()[0] == 'ipkg-manager':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'advancedrestore':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'backuplocation':
-			self["description"].setText(self["menu"].getCurrent()[2] )
-		if self["menu"].getCurrent()[0] == 'backupfiles':
-			self["description"].setText(self["menu"].getCurrent()[2] )			
-
 	def go(self):
+		current = self["menu"].getCurrent()[0]
 		if self.menu == 0:
-			if (self["menu"].getCurrent()[0] == "software-restore"):
+			if (current == "software-restore"):
 				self.session.open(ImageWizard)
-			if (self["menu"].getCurrent()[0] == "software-update"):
+			elif (current == "software-update"):
 				self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("\nAfter pressing OK, please wait!"))
-			if (self["menu"].getCurrent()[0] == "advanced"):
+			elif (current == "advanced"):
 				self.session.open(UpdatePluginMenu, 1)
-			if (self["menu"].getCurrent()[0] == "system-backup"):
+			elif (current == "system-backup"):
 				self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
-			if (self["menu"].getCurrent()[0] == "system-restore"):
+			elif (current == "system-restore"):
 				if os_path.exists(self.fullbackupfilename):
 					self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your Enigma2 backup?\nEnigma2 will restart after the restore"))
 				else:	
 					self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO)
 		if self.menu == 1:
-			if (self["menu"].getCurrent()[0] == "ipkg-manager"):
+			if (current == "ipkg-manager"):
 				self.session.open(PacketManager, self.skin_path)
-			if (self["menu"].getCurrent()[0] == "ipkg-source"):
+			elif (current == "ipkg-source"):
 				self.session.open(IPKGSource)
-			if (self["menu"].getCurrent()[0] == "ipkg-install"):
+			elif (current == "ipkg-install"):
 				try:
 					from Plugins.Extensions.MediaScanner.plugin import main
 					main(self.session)
 				except:
 					self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO)
-			if (self["menu"].getCurrent()[0] == "backuplocation"):
+			elif (current == "backuplocation"):
 				parts = [ (r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
 				for x in parts:
 					if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
@@ -189,17 +172,13 @@ class UpdatePluginMenu(Screen):
 						parts.remove(x)					
 				if len(parts):
 					self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title = _("Please select medium to use as backup location"), list = parts)
-			if (self["menu"].getCurrent()[0] == "backupfiles"):
+			elif (current == "backupfiles"):
 				self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
-			if (self["menu"].getCurrent()[0] == "advancedrestore"):
+			elif (current == "advancedrestore"):
 				self.session.open(RestoreMenu, self.skin_path)			
-
-	def selectionChanged(self):
-		self.loadDescription()
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
-		self.loadDescription()
 
 	def backuplocation_choosen(self, option):
 		if option is not None:
@@ -208,20 +187,19 @@ class UpdatePluginMenu(Screen):
 		config.plugins.configurationbackup.save()
 		config.save()
 		self.createBackupfolders()
-		self.loadDescription()
 	
 	def runUpgrade(self, result):
 		if result:
-			self.session.openWithCallback(self.runFinished,UpdatePlugin, self.skin_path)
+			self.session.open(UpdatePlugin, self.skin_path)
 
-	def runFinished(self):
+	"""def runFinished(self):
 		self.session.openWithCallback(self.reboot, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 		
 	def reboot(self, result):
 		if result is None:
 			return
 		if result:
-			quitMainloop(3)
+			quitMainloop(3)"""
 
 	def createBackupfolders(self):
 		print "Creating backup folder if not already there..."
