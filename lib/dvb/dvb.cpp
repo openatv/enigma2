@@ -974,7 +974,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 	}
 #endif
 
-#if 1 /* This codepath is required on Broadcom-based Dreamboxes (DM800, DM8000) and strips away non-I-frames. */
+#if 0
 	if (!m_iframe_search)
 		return len;
 
@@ -1272,6 +1272,21 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
 
 	current_offset += align(m_skipmode_m, blocksize);
+	
+	if (m_skipmode_m)
+	{
+		eDebug("we are at %llx, and we try to find the iframe here:", current_offset);
+		size_t iframe_len;
+		off_t iframe_start = current_offset;
+		
+		if (m_tstools.findIFrame(iframe_start, iframe_len, (m_skipmode_m < 0) ? -1 : +1))
+			eDebug("failed");
+		else
+		{
+			current_offset = align(iframe_start, blocksize);
+			max = align(iframe_len, blocksize);
+		}
+	}
 
 	while (!m_cue->m_seek_requests.empty())
 	{
@@ -1348,6 +1363,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			eDebug("get offset for pts=%lld failed!", pts);
 			continue;
 		}
+		
+		size_t iframe_len;
+			/* try to align to iframe */
+		m_tstools.findIFrame(offset, iframe_len, pts < 0 ? -1 : 1);
 
 		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
 		current_offset = align(offset, blocksize); /* in case tstools return non-aligned offset */
@@ -1417,30 +1436,23 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 	}
 
-	if (m_source_span.empty()) {
-		if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
-		{
-			eDebug("reached SOF");
-			m_skipmode_m = 0;
-			m_pvr_thread->sendEvent(eFilePushThread::evtUser);
-		}
-		start = current_offset;
-		size = max;
-	} else {
-		off_t tmp2, tmp = align(m_source_span.rbegin()->second, blocksize);
-		pts_t len;
-		getLength(len);
-		m_tstools.getOffset(tmp2, len, 1);
-		if (current_offset == tmp || current_offset == tmp2) {
-			start = tmp2;
-			size = max;
-		} else {
-			start = tmp - align(512*1024, blocksize);
-			size = align(512*1024, blocksize);
-		}
+	if ((current_offset < -m_skipmode_m) && (m_skipmode_m < 0))
+	{
+		eDebug("reached SOF");
+		m_skipmode_m = 0;
+		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
 	}
 
-	eDebug("END OF CUESHEET. (%08llx, %d)", start, size);
+	if (m_source_span.empty())
+	{
+		start = current_offset;
+		size = max;
+		eDebug("NO CUESHEET. (%08llx, %d)", start, size);
+	} else
+	{
+		start = current_offset;
+		size = 0;
+	}
 	return;
 }
 

@@ -19,8 +19,11 @@ class StringList(Converter):
 	def selectionChanged(self, index):
 		self.source.selectionChanged(index)
 		# update all non-master targets
+		print "changed selection in listbox!"
 		for x in self.downstream_elements:
+			print "downstream element", x
 			if x is not self.master:
+				print "is not master, so update to index", index
 				x.index = index
 
 	@cached
@@ -43,3 +46,6 @@ class StringList(Converter):
 			self.master.index = index
 
 	index = property(getIndex, setIndex)
+
+	def entry_changed(self, index):
+		self.downstream_elements.entry_changed(index)

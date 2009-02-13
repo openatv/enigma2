@@ -370,12 +370,16 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	struct stat s;
 	stat(ref.path.c_str(), &s);
 
-	if (tstools.openFile(ref.path.c_str()))
+	if (tstools.openFile(ref.path.c_str(), 1))
 		return 0;
 
 			/* check if cached data is still valid */
 	if (m_parser.m_data_ok && (s.st_size == m_parser.m_filesize) && (m_parser.m_length))
 		return m_parser.m_length / 90000;
+
+			/* open again, this time with stream info */
+	if (tstools.openFile(ref.path.c_str()))
+		return 0;
 
 			/* otherwise, re-calc length and update meta file */
 	pts_t len;
@@ -502,6 +506,7 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 
 	res.push_back(m_ref.path + ".meta");
 	res.push_back(m_ref.path + ".ap");
+	res.push_back(m_ref.path + ".sc");
 	res.push_back(m_ref.path + ".cuts");
 	std::string tmp = m_ref.path;
 	tmp.erase(m_ref.path.length()-3);
@@ -1001,7 +1006,10 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		break;
 	case eDVBServicePMTHandler::eventEOF:
 		if ((!m_is_paused) && (m_skipmode >= 0))
+		{
+			eDebug("timeshift EOF, so let's go live");
 			switchToLive();
+		}
 		break;
 	}
 }
@@ -1173,9 +1181,9 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 	
 	if (!m_decoder)
 		return -1;
-
+		
 	if (ffratio == 0)
-		return 0;
+		return m_decoder->play();
 	else if (ffratio != 1)
 		return m_decoder->setFastForward(ffratio);
 	else
@@ -1211,6 +1219,7 @@ RESULT eDVBServicePlay::pause()
 	setFastForward_internal(0);
 	if (m_decoder)
 	{
+		m_is_paused = 1;
 		return m_decoder->pause();
 	} else
 		return -1;
@@ -1222,6 +1231,7 @@ RESULT eDVBServicePlay::unpause()
 	setFastForward_internal(0);
 	if (m_decoder)
 	{
+		m_is_paused = 0;
 		return m_decoder->play();
 	} else
 		return -1;
@@ -2135,6 +2145,8 @@ void eDVBServicePlay::switchToLive()
 {
 	if (!m_timeshift_active)
 		return;
+	
+	eDebug("SwitchToLive");
 	
 	m_cue = 0;
 	m_decoder = 0;

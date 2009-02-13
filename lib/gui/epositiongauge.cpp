@@ -144,7 +144,7 @@ int ePositionGauge::event(int event, void *data, void *data2)
 			{
 				painter.setForegroundColor(gRGB(m_foreground_color));
 				int xi = scale(in), xo = scale(out);
-				painter.fill(eRect(xi, 10, xo-xi, s.height()-14));
+				painter.fill(eRect(xi, (s.height()-4) / 2, xo-xi, 4));
 			}
 			
 			in = m_length;

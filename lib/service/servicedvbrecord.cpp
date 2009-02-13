@@ -270,7 +270,7 @@ int eDVBServiceRecord::doRecord()
 			if (program.pmtPid != -1)
 				pids_to_record.insert(program.pmtPid); // PMT
 
-			int timing_pid = -1;
+			int timing_pid = -1, timing_pid_type = -1;
 
 			eDebugNoNewLine("RECORD: have %d video stream(s)", program.videoStreams.size());
 			if (!program.videoStreams.empty())
@@ -283,7 +283,10 @@ int eDVBServiceRecord::doRecord()
 					pids_to_record.insert(i->pid);
 					
 					if (timing_pid == -1)
+					{
 						timing_pid = i->pid;
+						timing_pid_type = i->type;
+					}
 					
 					if (i != program.videoStreams.begin())
 							eDebugNoNewLine(", ");
@@ -302,7 +305,10 @@ int eDVBServiceRecord::doRecord()
 					pids_to_record.insert(i->pid);
 	
 					if (timing_pid == -1)
+					{
 						timing_pid = i->pid;
+						timing_pid_type = -1;
+					}
 				
 					if (i != program.audioStreams.begin())
 						eDebugNoNewLine(", ");
@@ -358,7 +364,7 @@ int eDVBServiceRecord::doRecord()
 			}
 
 			if (timing_pid != -1)
-				m_record->setTimingPID(timing_pid);
+				m_record->setTimingPID(timing_pid, timing_pid_type);
 
 			m_pids_active = pids_to_record;
 

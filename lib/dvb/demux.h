@@ -94,7 +94,7 @@ public:
 	RESULT addPID(int pid);
 	RESULT removePID(int pid);
 	
-	RESULT setTimingPID(int pid);
+	RESULT setTimingPID(int pid, int type);
 	
 	RESULT setTargetFD(int fd);
 	RESULT setTargetFilename(const char *filename);
