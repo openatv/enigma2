@@ -54,7 +54,7 @@ class Ipkg(Screen):
 			self.slider.setValue(len(self.cmdList))
 				
 			self.package.setText("")
-			self.status.setText(_("Done - Installed or upgraded %d packages with %d errors") % (self.packages, self.error))
+			self.status.setText(_("Done - Installed, upgraded or removed %d packages with %d errors") % (self.packages, self.error))
 			return False
 		else:
 			cmd = self.cmdList[self.runningCmd]
@@ -89,6 +89,10 @@ class Ipkg(Screen):
 		elif event == IpkgComponent.EVENT_INSTALL:
 			self.package.setText(param)
 			self.status.setText(_("Installing"))
+			self.packages += 1
+		elif event == IpkgComponent.EVENT_REMOVE:
+			self.package.setText(param)
+			self.status.setText(_("Removing"))
 			self.packages += 1
 		elif event == IpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
