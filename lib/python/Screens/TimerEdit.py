@@ -273,7 +273,7 @@ class TimerEditList(Screen):
 					else:
 						success = True
 			else:
-				succsess = True
+				success = True
 			if success:
 				print "Sanity check passed"
 				self.session.nav.RecordTimer.timeChanged(entry)
