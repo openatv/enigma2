@@ -45,9 +45,6 @@ def scan(session):
 		for x in parts:
 			if not access(x[1], F_OK|R_OK):
 				parts.remove(x)	
-		for x in parts: # first run sometimes skips an entry
-			if not access(x[1], F_OK|R_OK):
-				parts.remove(x)
 		session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
 
 def main(session, **kwargs):
