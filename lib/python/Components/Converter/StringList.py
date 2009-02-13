@@ -43,3 +43,6 @@ class StringList(Converter):
 			self.master.index = index
 
 	index = property(getIndex, setIndex)
+
+	def entry_changed(self, index):
+		self.downstream_elements.entry_changed(index)
