@@ -355,7 +355,7 @@ class PositionerSetup(Screen):
 		self["snr_bar"].update()
 		self["ber_bar"].update()
 		self["lock_state"].update()
-		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData())
+		transponderdata = ConvertToHumanReadable(self.tuner.getTransponderData(), "DVB-S")
 		self["frequency_value"].setText(str(transponderdata.get("frequency")))
 		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate")))
 		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
