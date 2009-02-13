@@ -52,13 +52,13 @@ class PluginDescriptor:
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, internal = False):
 		self.name = name
 		self.internal = internal
-		if type(where) is list:
+		if isinstance(where, list):
 			self.where = where
 		else:
 			self.where = [ where ]
 		self.description = description
 
-		if type(icon) is str or icon is None:
+		if icon is None or isinstance(icon, str):
 			self.iconstr = icon
 			self.icon = None
 		else:
@@ -69,8 +69,8 @@ class PluginDescriptor:
 		self.__call__ = fnc
 
 	def updateIcon(self, path):
-		if type(self.iconstr) is str:
-			self.icon = LoadPixmap(path + "/" + self.iconstr)
+		if isinstance(self.iconstr, str):
+			self.icon = LoadPixmap('/'.join((path, self.iconstr)))
 		else:
 			self.icon = None
 

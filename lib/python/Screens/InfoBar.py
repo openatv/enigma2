@@ -159,15 +159,19 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def handleLeave(self, how):
 		self.is_closing = True
 		if how == "ask":
-			list = []
-			list.append((_("Yes"), "quit"))
-			if config.usage.setup_level.index >= 2: # expert+
-				list.append((_("Yes, returning to movie list"), "movielist"))
-			if config.usage.setup_level.index >= 2: # expert+
-				list.append((_("Yes, and delete this movie"), "quitanddelete"))
-			list.append((_("No"), "continue"))
-			if config.usage.setup_level.index >= 2: # expert+
-				list.append((_("No, but restart from begin"), "restart"))
+			if config.usage.setup_level.index < 2: # -expert
+				list = (
+					(_("Yes"), "quit"),
+					(_("No"), "continue")
+				)
+			else:
+				list = (
+					(_("Yes"), "quit"),
+					(_("Yes, returning to movie list"), "movielist"),
+					(_("Yes, and delete this movie"), "quitanddelete"),
+					(_("No"), "continue"),
+					(_("No, but restart from begin"), "restart")
+				)
 
 			from Screens.ChoiceBox import ChoiceBox
 			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
@@ -184,26 +188,26 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayerConfirmed(self, answer):
 		answer = answer and answer[1]
 
-		if answer in ["quitanddelete", "quitanddeleteconfirmed"]:
+		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			from enigma import eServiceCenter
 			serviceHandler = eServiceCenter.getInstance()
 			info = serviceHandler.info(ref)
 			name = info and info.getName(ref) or _("this recording")
 
-		if answer == "quitanddelete":
-			from Screens.MessageBox import MessageBox
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete %s?") % name)
-			return
-
-		if answer == "quitanddeleteconfirmed":
-			offline = serviceHandler.offlineOperations(ref)
-			if offline.deleteFromDisk(0):
+			if answer == "quitanddelete":
 				from Screens.MessageBox import MessageBox
-				self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
+				self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete %s?") % name)
 				return
 
-		if answer in ["quit", "quitanddeleteconfirmed"]:
+			elif answer == "quitanddeleteconfirmed":
+				offline = serviceHandler.offlineOperations(ref)
+				if offline.deleteFromDisk(0):
+					from Screens.MessageBox import MessageBox
+					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
+					return
+
+		if answer in ("quit", "quitanddeleteconfirmed"):
 			config.movielist.last_videodir.cancel()
 			self.close()
 		elif answer == "movielist":

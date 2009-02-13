@@ -363,7 +363,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		elif event == iRecordableService.evStart:
 			text = _("A record has been started:\n%s") % self.name
 			if self.dirnameHadToFallback:
-				text = '\n'.join([text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")])
+				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 
 			# maybe this should be configurable?
 			Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
@@ -657,7 +657,7 @@ class RecordTimer(timer.Timer):
 						chktimecmp = chktime.tm_wday * 1440 + chktime.tm_hour * 60 + chktime.tm_min
 						chktimecmp_end = chktimecmp + (duration / 60)
 					time = localtime(x.begin)
-					for y in range(7):
+					for y in (0, 1, 2, 3, 4, 5, 6):
 						if x.repeated & (2 ** y):
 							timecmp = y * 1440 + time.tm_hour * 60 + time.tm_min
 							if timecmp <= chktimecmp < (timecmp + ((x.end - x.begin) / 60)):

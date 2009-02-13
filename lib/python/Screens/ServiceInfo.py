@@ -25,7 +25,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 25, 0, RT_HALIGN_LEFT, a))
 	print "b:", b
-	if type(b) is not str:
+	if not isinstance(b, str):
 		if valueType == TYPE_VALUE_HEX:
 			b = ("0x%0" + str(param) + "x") % to_unsigned(b)
 		elif valueType == TYPE_VALUE_DEC:
