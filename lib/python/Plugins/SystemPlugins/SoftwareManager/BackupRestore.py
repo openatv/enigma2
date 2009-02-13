@@ -110,7 +110,6 @@ class BackupSelection(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skin_path = plugin_path
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Save"))
 		self["key_yellow"] = Label()
