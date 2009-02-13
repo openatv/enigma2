@@ -961,14 +961,15 @@ void PutToDict(ePyObject &dict, const char*key, const char *value)
 		eDebug("could not create PyObject for %s", key);
 }
 
-void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, eDVBFrontend *fe)
+void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &parm, long freq_offset, int orb_pos, int polarization)
 {
-	long freq_offset=0;
 	long tmp=0;
-	fe->getData(eDVBFrontend::FREQ_OFFSET, freq_offset);
 	int frequency = parm_frequency + freq_offset;
 	PutToDict(dict, "frequency", frequency);
 	PutToDict(dict, "symbol_rate", parm_u_qpsk_symbol_rate);
+	PutToDict(dict, "orbital_position", orb_pos);
+	PutToDict(dict, "polarization", polarization);
+
 	switch(parm_u_qpsk_fec_inner)
 	{
 	case FEC_1_2: tmp = eDVBFrontendParametersSatellite::FEC_1_2; break;
@@ -1224,7 +1225,7 @@ void eDVBFrontend::getTransponderData(ePyObject dest, bool original)
 					switch(m_type)
 					{
 						case feSatellite:
-							fillDictWithSatelliteData(dest, original?parm:front, this);
+							fillDictWithSatelliteData(dest, original?parm:front, m_data[FREQ_OFFSET], m_cur_orbpos, m_cur_pol);
 							break;
 						case feCable:
 							fillDictWithCableData(dest, original?parm:front);
@@ -1750,6 +1751,8 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 			feparm.fec,
 			feparm.orbital_position);
 #endif
+		m_cur_pol = feparm.polarisation;
+		m_cur_orbpos = feparm.orbital_position;
 		parm_u_qpsk_symbol_rate = feparm.symbol_rate;
 		switch (feparm.inversion)
 		{

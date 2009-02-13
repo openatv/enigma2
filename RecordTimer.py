@@ -192,8 +192,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			try:
 				f = open(self.Filename + ".ts.meta", "w")
 				f.write(rec_ref.toString() + "\n")
-				f.write(self.name + "\n")
-				f.write(self.description + "\n")
+				f.write(self.name.replace("\n", "") + "\n")
+				f.write(self.description.replace("\n", "") + "\n")
 				f.write(str(self.begin) + "\n")
 				f.write(' '.join(self.tags))
 				f.close()
