@@ -1855,20 +1855,7 @@ PyObject *eDVBServiceBase::getTransponderData(bool original)
 		{
 			ePtr<iDVBFrontend> fe;
 			if(!channel->getFrontend(fe))
-			{
 				fe->getTransponderData(ret, original);
-				ePtr<iDVBFrontendParameters> feparm;
-				channel->getCurrentFrontendParameters(feparm);
-				if (feparm)
-				{
-					eDVBFrontendParametersSatellite osat;
-					if (!feparm->getDVBS(osat))
-					{
-						PutToDict(ret, "orbital_position", osat.orbital_position);
-						PutToDict(ret, "polarization", osat.polarisation);
-					}
-				}
-			}
 		}
 	}
 	else
