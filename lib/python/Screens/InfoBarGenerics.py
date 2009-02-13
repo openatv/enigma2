@@ -1011,11 +1011,12 @@ class InfoBarSeek:
 from Screens.PVRState import PVRState, TimeshiftState
 
 class InfoBarPVRState:
-	def __init__(self, screen=PVRState):
+	def __init__(self, screen=PVRState, force_show = False):
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
 		self.onShow.append(self._mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
+		self.force_show = force_show
 
 	def _mayShow(self):
 		if self.execing and self.seekstate != self.SEEK_STATE_PLAY:
@@ -1026,7 +1027,7 @@ class InfoBarPVRState:
 		self.pvrStateDialog["state"].setText(playstateString)
 		
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
-		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY:
+		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:
 			self.pvrStateDialog.hide()
 		else:
 			self._mayShow()
@@ -1034,7 +1035,7 @@ class InfoBarPVRState:
 
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
-		InfoBarPVRState.__init__(self, screen=TimeshiftState)
+		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show = True)
 
 	def _mayShow(self):
 		if self.execing and self.timeshift_enabled and self.seekstate != self.SEEK_STATE_PLAY:
