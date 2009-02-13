@@ -172,7 +172,7 @@ def getRecordingFilename(basename, dirname = None):
 		filename += c
 
 	if dirname is not None:
-		filename = ''.join([dirname, filename])
+		filename = ''.join((dirname, filename))
 
 	i = 0
 	while True:

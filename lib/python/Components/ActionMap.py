@@ -56,7 +56,7 @@ class ActionMap:
 
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
-		numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		numbers = ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9")
 		if (action in numbers and self.actions.has_key(action)):
 			res = self.actions[action](int(action))
 			if res is not None:
@@ -83,7 +83,7 @@ class HelpableActionMap(ActionMap):
 		adict = { }
 		for (action, funchelp) in actions.iteritems():
 			# check if this is a tuple
-			if type(funchelp) is type(()):
+			if isinstance(funchelp, tuple):
 				alist.append((action, funchelp[1]))
 				adict[action] = funchelp[0]
 			else:

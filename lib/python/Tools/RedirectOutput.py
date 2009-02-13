@@ -3,7 +3,7 @@ from enigma import ePythonOutput
 
 class EnigmaOutput:
 	def write(self, data):
-		if type(data) is unicode:
+		if isinstance(data, unicode):
 			data = data.encode("UTF-8")
 		ePythonOutput(data)
 
