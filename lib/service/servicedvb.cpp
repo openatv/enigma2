@@ -2205,7 +2205,7 @@ void eDVBServicePlay::updateDecoder()
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
 	eDVBServicePMTHandler::program program;
-	if (h.getProgramInfo(program))
+	if (h.getProgramInfo(program) && m_service_handler.getProgramInfo(program))
 		eDebug("getting program info failed.");
 	else
 	{
@@ -2318,10 +2318,9 @@ void eDVBServicePlay::updateDecoder()
 
 		m_teletext_parser->start(program.textPid);
 
-		if (!m_is_primary)
+/*		if (!m_is_primary)
 			m_decoder->setTrickmode();
-
-		if (m_is_paused)
+		else */ if (m_is_paused)
 			m_decoder->pause();
 		else
 			m_decoder->play();
@@ -2346,7 +2345,7 @@ void eDVBServicePlay::updateDecoder()
 			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
 			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
-	}	
+	}
 	m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 }
 
