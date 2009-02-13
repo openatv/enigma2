@@ -7,7 +7,7 @@ from Tools.KeyBindings import queryKeyBinding, getKeyDescription
 # [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]
 
 class HelpMenuList(GUIComponent):
-	def __init__(self, list, callback):
+	def __init__(self, helplist, callback):
 		GUIComponent.__init__(self)
 		self.onSelChanged = [ ]
 		self.l = eListboxPythonMultiContent()
@@ -15,7 +15,7 @@ class HelpMenuList(GUIComponent):
 		self.extendedHelp = False
 
 		l = [ ]
-		for (actionmap, context, actions) in list:
+		for (actionmap, context, actions) in helplist:
 			for (action, help) in actions:
 				entry = [ ]
 
