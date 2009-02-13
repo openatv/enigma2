@@ -84,6 +84,8 @@ private:
 	char m_sec_filename[128];
 #endif
 	FRONTENDPARAMETERS parm;
+	int m_cur_orbpos; // only valid when this is a DVB-S tuner
+	int m_cur_pol; // only valid when this is a DVB-S tuner
 	int m_state;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	ePtr<eSocketNotifier> m_sn;
