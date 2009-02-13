@@ -295,7 +295,6 @@ eDVBAudio::~eDVBAudio()
 DEFINE_REF(eDVBVideo);
 
 eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
-<<<<<<< HEAD:lib/dvb/decoder.cpp
 	: m_demux(demux), m_dev(dev),
 	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1)
 {
