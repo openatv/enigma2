@@ -25,7 +25,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if timer.repeated:
 			flags = timer.repeated
 			count = 0
-			for x in range(0, 7):
+			for x in (0, 1, 2, 3, 4, 5, 6):
 					if (flags & 1 == 1):
 						if (count != 0):
 							repeatedtext += ", "

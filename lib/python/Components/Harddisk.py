@@ -2,7 +2,7 @@ from os import system, listdir, statvfs, popen, makedirs, readlink, stat, major,
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.CList import CList
 from SystemInfo import SystemInfo
-import string, time
+import time
 from Components.Console import Console
 
 def tryOpen(filename):
@@ -442,7 +442,7 @@ class HarddiskManager:
 
 		# see if this is a harddrive
 		l = len(device)
-		if l and device[l-1] not in string.digits:
+		if l and not device[l-1].isdigit():
 			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
 			if not blacklisted and not removable and not is_cdrom and medium_found:
 				self.hdd.append(Harddisk(device))
@@ -456,7 +456,7 @@ class HarddiskManager:
 				self.partitions.remove(x)
 				self.on_partition_list_change("remove", x)
 		l = len(device)
-		if l and device[l-1] not in string.digits:
+		if l and not device[l-1].isdigit():
 			idx = 0
 			for hdd in self.hdd:
 				if hdd.device == device:
@@ -499,7 +499,7 @@ class HarddiskManager:
 		dev = devname[:3]
 		part = devname[3:]
 		for p in part:
-			if p not in string.digits:
+			if not p.isdigit():
 				return devname, 0
 		return dev, part and int(part) or 0
 

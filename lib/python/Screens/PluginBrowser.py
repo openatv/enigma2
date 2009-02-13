@@ -106,17 +106,18 @@ class PluginDownloadBrowser(Screen):
 		if sel is None:
 			return
 
-		if type(sel[0]) is str: # category
-			if sel[0] in self.expanded:
-				self.expanded.remove(sel[0])
+		sel = sel[0]
+		if isinstance(sel, str): # category
+			if sel in self.expanded:
+				self.expanded.remove(sel)
 			else:
-				self.expanded.append(sel[0])
+				self.expanded.append(sel)
 			self.updateList()
 		else:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"%s\"?") % sel[0].name)
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download\nthe plugin \"%s\"?") % sel.name)
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"%s\"?") % sel[0].name)
+				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"%s\"?") % sel.name)
 
 	def runInstall(self, val):
 		if val:

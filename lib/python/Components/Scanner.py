@@ -2,41 +2,29 @@ from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
 from os import path as os_path, walk as os_walk
-from string import lower
-from mimetypes import guess_type
+from mimetypes import guess_type, add_type
 
-def getExtension(file):
-	p = file.rfind('.')
-	if p == -1:
-		ext = ""
-	else:   
-		ext = file[p+1:]
-
-	return lower(ext)
+add_type("application/x-debian-package", ".ipk")
+add_type("application/ogg", ".ogg")
+add_type("audio/x-flac", ".flac")
+add_type("application/x-dream-package", ".dmpkg")
+add_type("application/x-dream-image", ".nfi")
+add_type("video/MP2T", ".ts")
+add_type("video/x-dvd-iso", ".iso")
 
 def getType(file):
 	(type, _) = guess_type(file)
 	if type is None:
-		# Detect some mimetypes unknown to dm7025
-		# TODO: do mimetypes.add_type once should be better
-		ext = getExtension(file)
-		if ext == "ipk":
-			return "application/x-debian-package"
-		elif ext == "ogg":
-			return "application/ogg"
-		elif ext == "flac":
-			return "audio/x-flac"
-		elif ext == "dmpkg":
-			return "application/x-dream-package"
-		elif ext == "nfi":
-			return "application/x-dream-image"
-		elif ext == "ts":
-			return "video/MP2T"
-		elif ext == "iso":
-			return "video/x-dvd-iso"
-		elif file[-12:].lower() == "video_ts.ifo":
+		# Detect some unknown types
+		if file[-12:].lower() == "video_ts.ifo":
 			return "video/x-dvd"
-		elif ext == "dat" and file[-11:-6].lower() == "avseq":
+
+		p = file.rfind('.')
+		if p == -1:
+			return None
+		ext = file[p+1:].lower()
+
+		if ext == "dat" and file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"
 	return type
 

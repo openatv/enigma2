@@ -41,8 +41,7 @@ class DVDProject:
 		return title
 
 	def saveProject(self, path):
-		import xml.dom.minidom
-		from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
+		from Tools.XMLTools import stringToXML
 		list = []
 		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
 		list.append('<DreamDVDBurnerProject>\n')

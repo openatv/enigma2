@@ -63,7 +63,7 @@ class PluginComponent:
 							continue
 
 						# allow single entry not to be a list
-						if type(plugins) is not list:
+						if not isinstance(plugins, list):
 							plugins = [ plugins ]
 
 						for p in plugins:
@@ -91,7 +91,7 @@ class PluginComponent:
 	def getPlugins(self, where):
 		"""Get list of plugins in a specific category"""
 
-		if type(where) is not list:
+		if not isinstance(where, list):
 			where = [ where ]
 		res = [ ]
 

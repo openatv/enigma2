@@ -37,7 +37,7 @@ class TimerSanityCheck:
 					if timer.begin == self.newtimer.begin:
 						getUnsignedDataRef1 = timer.service_ref.ref.getUnsignedData
 						getUnsignedDataRef2 = self.newtimer.service_ref.ref.getUnsignedData
-						for x in range(1,5):
+						for x in (1, 2, 3, 4):
 							if getUnsignedDataRef1(x) != getUnsignedDataRef2(x):
 								break;
 						else:
