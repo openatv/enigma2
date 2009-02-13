@@ -519,4 +519,18 @@ class HarddiskManager:
 			description += " (Partition %d)" % part
 		return description
 
+	def addMountedPartition(self, device, desc):
+		already_mounted = False
+		for x in self.partitions[:]:
+			if x.mountpoint == device:
+				already_mounted = True
+		if not already_mounted:
+			self.partitions.append(Partition(mountpoint = device, description = desc))
+		
+	def removeMountedPartition(self, mountpoint):
+		for x in self.partitions[:]:
+			if x.mountpoint == mountpoint:
+				self.partitions.remove(x)
+				self.on_partition_list_change("remove", x)
+
 harddiskmanager = HarddiskManager()
