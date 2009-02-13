@@ -326,7 +326,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def selectConfirmed(self, ret):
 		if ret:
-			ret = ''.join([self.getPreferredFolder(), self.filename])
+			ret = ''.join((self.getPreferredFolder(), self.filename))
 			if self.realBookmarks:
 				if self.autoAdd and not ret in self.bookmarks:
 					self.bookmarks.append(self.getPreferredFolder())
@@ -390,23 +390,28 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		# Write Combination of Folder & Filename when Folder is valid
 		currFolder = self.getPreferredFolder()
 		if currFolder is not None:
-			self["target"].setText(''.join([currFolder, self.filename]))
+			self["target"].setText(''.join((currFolder, self.filename)))
 		# Display a Warning otherwise
 		else:
 			self["target"].setText(_("Invalid Location"))
 
 	def showMenu(self):
 		if not self.userMode and self.realBookmarks:
-			menu = []
 			if self.currList == "filelist":
-				menu.append((_("switch to bookmarks"), self.switchToBookList))
-				menu.append((_("add bookmark"), self.addRemoveBookmark))
+				menu = [
+					(_("switch to bookmarks"), self.switchToBookList),
+					(_("add bookmark"), self.addRemoveBookmark)
+				]
 				if self.editDir:
-					menu.append((_("create directory"), self.createDir))
-					menu.append((_("remove directory"), self.removeDir))
+					menu.extend((
+						(_("create directory"), self.createDir),
+						(_("remove directory"), self.removeDir)
+					))
 			else:
-				menu.append((_("switch to filelist"), self.switchToFileList))
-				menu.append((_("remove bookmark"), self.addRemoveBookmark))
+				menu = (
+					(_("switch to filelist"), self.switchToFileList)
+					(_("remove bookmark"), self.addRemoveBookmark)
+				)
 
 			self.session.openWithCallback(
 				self.menuCallback,

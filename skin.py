@@ -14,8 +14,6 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCO
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
-from Tools.XMLTools import mergeText
-
 colorNames = dict()
 
 def dump(x, i=0):
@@ -474,13 +472,12 @@ def readSkin(screen, skin, names, desktop):
 				ctype = converter.get('type')
 				assert ctype, "'convert'-tag needs a 'type'-attribute"
 				#print "Converter:", ctype
-				#parms = mergeText(converter.childNodes).strip()
 				try:
 					parms = converter.text.strip()
 				except:
 					parms = ""
-				#print "Params:", ctype
-				converter_class = my_import('.'.join(["Components", "Converter", ctype])).__dict__.get(ctype)
+				#print "Params:", parms
+				converter_class = my_import('.'.join(("Components", "Converter", ctype))).__dict__.get(ctype)
 
 				c = None
 
@@ -497,7 +494,7 @@ def readSkin(screen, skin, names, desktop):
 
 				source = c
 
-			renderer_class = my_import('.'.join(["Components", "Renderer", wrender])).__dict__.get(wrender)
+			renderer_class = my_import('.'.join(("Components", "Renderer", wrender))).__dict__.get(wrender)
 
 			renderer = renderer_class() # instantiate renderer
 

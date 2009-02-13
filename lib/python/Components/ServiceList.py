@@ -5,8 +5,6 @@ from skin import parseColor, parseFont
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
 from Tools.LoadPixmap import LoadPixmap
 
-from string import upper
-
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 
 class ServiceList(HTMLComponent, GUIComponent):
@@ -113,7 +111,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		# TODO fill with life
 		print "Next char: "
 		index = self.l.getNextBeginningWithChar(char)
-		indexup = self.l.getNextBeginningWithChar(upper(char))
+		indexup = self.l.getNextBeginningWithChar(char.upper())
 		if indexup != 0:
 			if (index > indexup or index == 0):
 				index = indexup

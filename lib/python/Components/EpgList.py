@@ -35,7 +35,7 @@ class Rect:
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None, timer = None):
-		self.days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
+		self.days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 		self.timer = timer
 		self.onSelChanged = [ ]
 		if selChangedCB is not None:
@@ -43,6 +43,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.type=type
 		self.l = eListboxPythonMultiContent()
+		self.l.setFont(0, gFont("Regular", 22))
+		self.l.setFont(1, gFont("Regular", 16))
 		if type == EPG_TYPE_SINGLE:
 			self.l.setBuildFunc(self.buildSingleEntry)
 		elif type == EPG_TYPE_MULTI:
@@ -116,8 +118,6 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def recalcEntrySize(self):
 		esize = self.l.getItemSize()
-		self.l.setFont(0, gFont("Regular", 22))
-		self.l.setFont(1, gFont("Regular", 16))
 		width = esize.width()
 		height = esize.height()
 		if self.type == EPG_TYPE_SINGLE:
@@ -169,14 +169,18 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.descr_rect
-		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
+		res = [
+			None, # no private data needed
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
+		]
 		if rec:
 			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
+			res.extend((
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic),
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName)
+			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
 		return res
@@ -186,14 +190,18 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.service_rect
-		res = [ None ]  # no private data needed
 		t = localtime(beginTime)
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4])))
+		res = [
+			None,  # no private data needed
+			(eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_RIGHT, self.days[t[6]]),
+			(eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
+		]
 		if rec:
 			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name))
+			res.extend((
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic),
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name)
+			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name))
 		return res
@@ -207,8 +215,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		res = [ None ] # no private data needed
 		if rec:
 			clock_pic = self.getClockPixmap(service, begTime, duration, eventId)
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width()-21, r1.height(), 0, RT_HALIGN_LEFT, service_name))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left()+r1.width()-16, r1.top(), 21, 21, clock_pic))
+			res.extend((
+				(eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width()-21, r1.height(), 0, RT_HALIGN_LEFT, service_name),
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left()+r1.width()-16, r1.top(), 21, 21, clock_pic)
+			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, service_name))
 		if begTime is not None:
@@ -217,12 +227,16 @@ class EPGList(HTMLComponent, GUIComponent):
 				end = localtime(begTime+duration)
 #				print "begin", begin
 #				print "end", end
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r4.left(), r4.top(), r4.width(), r4.height(), 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])));
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_TEXT, r4.left(), r4.top(), r4.width(), r4.height(), 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, "%02d.%02d - %02d.%02d"%(begin[3],begin[4],end[3],end[4])),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName)
+				))
 			else:
 				percent = (nowTime - begTime) * 100 / duration
-				res.append((eListboxPythonMultiContent.TYPE_PROGRESS, r2.left(), r2.top(), r2.width(), r2.height(), percent));
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName))
+				res.extend((
+					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.left(), r2.top(), r2.width(), r2.height(), percent),
+					(eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName)
+				))
 		return res
 
 	def queryEPG(self, list, buildFunc=None):
@@ -234,16 +248,16 @@ class EPGList(HTMLComponent, GUIComponent):
 		return [ ]
 
 	def fillMultiEPG(self, services, stime=-1):
-		t = time()
+		#t = time()
 		test = [ (service.ref.toString(), 0, stime) for service in services ]
 		test.insert(0, 'X0RIBDTCn')
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
-		print time() - t
+		#print time() - t
 		self.selectionChanged()
 
 	def updateMultiEPG(self, direction):
-		t = time()
+		#t = time()
 		test = [ x[3] and (x[1], direction, x[3]) or (x[1], direction, 0) for x in self.list ]
 		test.insert(0, 'XRIBDTCn')
 		tmp = self.queryEPG(test)
@@ -255,40 +269,40 @@ class EPGList(HTMLComponent, GUIComponent):
 					self.list[cnt]=(changecount, x[0], x[1], x[2], x[3], x[4], x[5], x[6])
 			cnt+=1
 		self.l.setList(self.list)
-		print time() - t
+		#print time() - t
 		self.selectionChanged()
 
 	def fillSingleEPG(self, service):
-		t = time()
+		#t = time()
 		test = [ 'RIBDT', (service.ref.toString(), 0, -1, -1) ]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
-		print time() - t
+		#print time() - t
 		self.selectionChanged()
 
 	def sortSingleEPG(self, type):
-		if len(self.list):
+		list = self.list
+		if list:
+			event_id = self.getSelectedEventId()
 			if type == 1:
-				event_id = self.getSelectedEventId()
-				self.list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
-				self.l.setList(self.list)
-				self.moveToEventId(event_id)
+				list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
 			else:
 				assert(type == 0)
-				event_id = self.getSelectedEventId()
-				self.list.sort(key=lambda x: x[2])
-				self.l.setList(self.list)
-				self.moveToEventId(event_id)
+				list.sort(key=lambda x: x[2])
+			self.moveToEventId(event_id)
 
 	def getSelectedEventId(self):
 		x = self.l.getCurrentSelection()
 		return x and x[1]
 
 	def moveToService(self,serviceref):
-		for x in range(len(self.list)):
-			if self.list[x][1] == serviceref.toString():
-				self.instance.moveSelectionTo(x)
+		index = 0
+		refstr = serviceref.toString()
+		for x in self.list:
+			if x[1] == refstr:
+				self.instance.moveSelectionTo(index)
 				break
+			index += 1
 			
 	def moveToEventId(self, eventId):
 		index = 0

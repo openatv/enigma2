@@ -38,7 +38,7 @@ class HelpMenuList(GUIComponent):
 					
 				entry.append( (actionmap, context, action, name ) )
 					
-				if type(help).__name__== 'list':
+				if isinstance(help, list):
 					self.extendedHelp = True
 					print "extendedHelpEntry found"
 					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 26, 0, 0, help[0]) )
