@@ -1,8 +1,9 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial
 
-def ConvertToHumanReadable(tp):
+def ConvertToHumanReadable(tp, type = None):
 	ret = { }
-	type = tp.get("tuner_type", "None")
+	if type is None:
+		type = tp.get("tuner_type", "None")
 	if type == "DVB-S":
 		ret["tuner_type"] = _("Satellite")
 		ret["inversion"] = {
@@ -111,6 +112,8 @@ def ConvertToHumanReadable(tp):
 			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}[tp["inversion"]]
+	else:
+		print "ConvertToHumanReadable: no or unknown type in tpdata dict!"
 	for x in tp.keys():
 		if not ret.has_key(x):
 			ret[x] = tp[x]
