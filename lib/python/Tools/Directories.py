@@ -167,7 +167,7 @@ def getRecordingFilename(basename, dirname = None):
 	basename = basename.replace('\xc2\x86', '').replace('\xc2\x87', '')
 	
 	for c in basename:
-		if c in non_allowed_characters:
+		if c in non_allowed_characters or ord(c) < 32:
 			c = "_"
 		filename += c
 
