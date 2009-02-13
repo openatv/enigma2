@@ -2,8 +2,8 @@ from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigSubList
 
 class ConfigColor(ConfigSequence):
-	def __init__(self):
-		ConfigSequence.__init__(self, seperator = "#", limits = [(0,255),(0,255),(0,255)])
+	def __init__(self, default = [128,128,128]):
+		ConfigSequence.__init__(self, seperator = "#", limits = [(0,255),(0,255),(0,255)], default = default)
 
 class ConfigFilename(ConfigText):
 	def __init__(self):
