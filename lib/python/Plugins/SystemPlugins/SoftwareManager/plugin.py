@@ -231,13 +231,20 @@ class IPKGSource(Screen):
 	def __init__(self, session, args = None):
 		Screen.__init__(self, session)
 		self.session = session
-		
-		fp = file('/etc/ipkg/official-feed.conf', 'r')
-		sources = fp.readlines()
-		fp.close()
-		
-		self["text"] = Input(sources[0], maxSize=False, type=Input.TEXT)
-				
+
+		#FIXMEEEE add handling for more than one feed conf file!
+		text = ""
+		try:
+			fp = file('/etc/ipkg/official-feed.conf', 'r')
+			sources = fp.readlines()
+			if sources:
+				text = sources[0]
+			fp.close()
+		except IOError:
+			pass
+
+		self["text"] = Input(text, maxSize=False, type=Input.TEXT)
+
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions"], 
 		{
 			"ok": self.go,
@@ -261,9 +268,11 @@ class IPKGSource(Screen):
 		}, -1)
 		
 	def go(self):
-		fp = file('/etc/ipkg/official-feed.conf', 'w')
-		fp.write(self["text"].getText())
-		fp.close()
+		text = self["text"].getText()
+		if text:
+			fp = file('/etc/ipkg/official-feed.conf', 'w')
+			fp.write()
+			fp.close()
 		self.close()
 		
 	def keyLeft(self):
@@ -287,7 +296,6 @@ class IPKGSource(Screen):
 	def keyNumberGlobal(self, number):
 		print "pressed", number
 		self["text"].number(number)
-
 
 class PacketList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
