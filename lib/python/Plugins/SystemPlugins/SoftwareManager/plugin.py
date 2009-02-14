@@ -342,7 +342,7 @@ class PacketManager(Screen):
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
 		self.onClose.append(self.cleanup)
-		
+
 	def cleanup(self):
 		self.ipkg.stop()
 		if self.Console is not None:
@@ -448,6 +448,8 @@ class PacketManager(Screen):
 			for x in result.splitlines():
 				split = x.split(' - ')
 				self.packetlist.append([split[0].strip(), split[1].strip(),split[2].strip()])
+		if not self.Console:
+			self.Console = Console()
 		cmd = "ipkg list_installed"
 		self.Console.ePopen(cmd, self.IpkgListInstalled_Finished)
 
