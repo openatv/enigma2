@@ -289,6 +289,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			else:
 				assert(type == 0)
 				list.sort(key=lambda x: x[2])
+			self.l.invalidate()
 			self.moveToEventId(event_id)
 
 	def getSelectedEventId(self):
