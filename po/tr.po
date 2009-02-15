@@ -2,15 +2,76 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Turkish Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-16 00:54+0100\n"
-"PO-Revision-Date: 2009-01-05 12:39+0200\n"
-"Last-Translator: Zülfikar Veyisoğlu <zveyis@gmail.com>\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
+"PO-Revision-Date: 2009-02-08 09:39+0200\n"
+"Last-Translator: Zülfikar VEYİSOĞLU <zveyis@gmail.com>\n"
 "Language-Team: http://www.turkeyforum.com/satforum <zveyis@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr " "
@@ -354,8 +415,14 @@ msgstr ""
 msgid "Advanced"
 msgstr "Gelişmiş"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
 msgstr "Gelişmiş Görüntü Kurulumu"
+
+msgid "Advanced restore"
+msgstr ""
 
 msgid "After event"
 msgstr "Eylem bittikten sonra"
@@ -389,6 +456,9 @@ msgstr "Alternatifli kanallarda tuner önceliği"
 msgid "An empty filename is illegal."
 msgstr "Boş dosya adı geçersiz."
 
+msgid "An error occured!"
+msgstr ""
+
 msgid "An unknown error occured!"
 msgstr "Bilinmeyen bir hata oluştu!"
 
@@ -408,6 +478,16 @@ msgid ""
 msgstr ""
 "Ağ arayüzlerini yeniden başlatmak istiyor musunuz?\n"
 "\n"
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
+msgstr ""
 
 msgid "Artist"
 msgstr "Sanatçı"
@@ -478,8 +558,23 @@ msgstr "Yedeğin yükleneceği hedef konum"
 msgid "Backup Mode"
 msgstr "Yedeklenecek klasör"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Yedekleme tamamlandı. OK tuşuna basarak sonucu görebilirsiniz."
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Bant"
@@ -556,7 +651,7 @@ msgid "Cannot parse feed directory"
 msgstr "Besleme (feed) ayrıştırılamadı"
 
 msgid "Capacity: "
-msgstr "Kapasite"
+msgstr "Kapasite: "
 
 msgid "Card"
 msgstr "Kart"
@@ -615,6 +710,12 @@ msgstr "Dosya sistemi kontrol ediliyor..."
 msgid "Choose Tuner"
 msgstr "Tuner Seç"
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Buket Seç"
 
@@ -624,8 +725,17 @@ msgstr "Kaynak seç"
 msgid "Choose target folder"
 msgstr "Hedef klasörü seç"
 
+msgid "Choose upgrade source"
+msgstr ""
+
 msgid "Choose your Skin"
 msgstr "Arayüzünüzü Seçin"
+
+msgid "Circular left"
+msgstr "Dairesel sola"
+
+msgid "Circular right"
+msgstr "Dairesel sağa"
 
 msgid "Cleanup"
 msgstr "Temizle"
@@ -733,6 +843,10 @@ msgstr "Dreambox .NFI imaj sunucusuna bağlanamıyor:"
 msgid "Could not load Medium! No disc inserted?"
 msgstr "DVD medyası yüklenemedi. DVD diski takılı değil mi?"
 
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
+msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt yapılamaz"
+
 msgid "Create DVD-ISO"
 msgstr "DVD-ISO oluştur"
 
@@ -835,6 +949,9 @@ msgstr ""
 msgid "Description"
 msgstr "Açıklama"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Destination directory"
 msgstr "Hedef Klasör"
 
@@ -899,6 +1016,9 @@ msgstr "16:9 içeriği şu şekilde göster"
 
 msgid "Display 4:3 content as"
 msgstr "4:3 içeriği şu şekilde göster"
+
+msgid "Display >16:9 content as"
+msgstr ">16:9 içeriği şu şekilde göster"
 
 msgid "Display Setup"
 msgstr "OLED Ekran Ayarları"
@@ -967,11 +1087,20 @@ msgstr "Ebeveyn kontrolü özelliğini etkinleştirmek ister misiniz?"
 msgid "Do you want to install default sat lists?"
 msgstr "Varsayılan kanal listesini yüklemek ister misiniz?"
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr "DVD'yi oynatmak istiyor musunuz?"
 
 msgid "Do you want to preview this DVD before burning?"
 msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"
@@ -979,12 +1108,18 @@ msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"
 msgid "Do you want to resume this playback?"
 msgstr "Oynatmaya kaldığınız yerden devam etmek istiyor musunuz?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Dreambox'ı güncellemek istiyor musunuz?\n"
 "Lütfen OK'a bastıktan sonra bekleyin!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Cihaz kullanımını anlatan öğreticiyi görmek ister misiniz?"
@@ -999,6 +1134,10 @@ msgstr "Tamamlandı - %d paket yüklendi veya güncellendi"
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Tamamlandı - %d paket yüklendi veya güncellendi %d pakette hata oluştu"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr "İndir"
@@ -1362,6 +1501,9 @@ msgstr "Hiyerarşi Bilgisi"
 msgid "Hierarchy mode"
 msgstr "Hiyerarşi kipi"
 
+msgid "Horizontal"
+msgstr "Yatay (H)"
+
 msgid "How many minutes do you want to record?"
 msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
 
@@ -1457,6 +1599,15 @@ msgstr "Sabitdisk sıfırlanıyor..."
 msgid "Input"
 msgstr "Giriş"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr "Kuruluyor"
 
@@ -1499,6 +1650,9 @@ msgstr "Tersine çevir"
 
 msgid "Invert display"
 msgstr "Ekranı ters çevir"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "İtalyanca"
@@ -1545,6 +1699,9 @@ msgstr "Son hız"
 
 msgid "Latitude"
 msgstr "Enlem"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr "DVD Oynatıcıyı Kapat?"
@@ -1625,11 +1782,17 @@ msgstr "'dışında' noktası olarak işaretle"
 msgid "Make this mark just a mark"
 msgstr "Bu işareti sadece bir işaret olarak kullan"
 
+msgid "Manage your receiver's software"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Elle arama"
 
 msgid "Manual transponder"
 msgstr "Transponder bilgilerini elle gir"
+
+msgid "Manufacturer"
+msgstr "Üretici"
 
 msgid "Margin after record"
 msgstr "Kayıt sonrasında marj süresi ekle"
@@ -1964,10 +2127,10 @@ msgid "OSD visibility"
 msgstr "OSD görülebilirliği"
 
 msgid "Off"
-msgstr "Kapalı"
+msgstr "Kapat"
 
 msgid "On"
-msgstr "Açık"
+msgstr "Aç"
 
 msgid "One"
 msgstr "Bir"
@@ -1992,6 +2155,9 @@ msgstr "Paket listesi güncelleniyor"
 
 msgid "Packet management"
 msgstr "Paket yönetimi"
+
+msgid "Packet manager"
+msgstr ""
 
 msgid "Page"
 msgstr "Sayfa"
@@ -2126,6 +2292,9 @@ msgstr "Lütfen kaydetmek istediğiniz alt servisi seçin..."
 
 msgid "Please select a subservice..."
 msgstr "Lütfen bir alt servis seçin..."
+
+msgid "Please select medium to use as backup location"
+msgstr ""
 
 msgid "Please select tag to filter..."
 msgstr "Lütfen filtreleme için etiket seçin ..."
@@ -2336,6 +2505,10 @@ msgstr "Ekipman Ayarları"
 msgid "Record"
 msgstr "Kayıt"
 
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırlandırılmış"
+
 msgid "Recorded files..."
 msgstr "Kaydedilmiş dosyalar..."
 
@@ -2357,6 +2530,9 @@ msgstr "Tazeleme Hızı"
 msgid "Refresh rate selection."
 msgstr "Tazeleme hızı seçimi."
 
+msgid "Reload"
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Yer imini sil"
 
@@ -2368,6 +2544,9 @@ msgstr "İşaret Kaldır"
 
 msgid "Remove currently selected title"
 msgstr "Seçilen geçerli başlığı sil"
+
+msgid "Remove finished."
+msgstr ""
 
 msgid "Remove plugins"
 msgstr "Eklentileri kaldır"
@@ -2383,6 +2562,9 @@ msgstr "Zamanl. kaldır"
 
 msgid "Remove title"
 msgstr "Başlığı sil"
+
+msgid "Removing"
+msgstr ""
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2433,6 +2615,18 @@ msgstr "Ağ bağlantısını ve ağ arayüzlerini yeniden başlatın.\n"
 
 msgid "Restore"
 msgstr "Geri yükle"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2613,6 +2807,9 @@ msgstr "İkincil DNS"
 msgid "Seek"
 msgstr "Ara"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "HDD Seç"
 
@@ -2633,6 +2830,12 @@ msgstr "Kullanmak istediğiniz ses izini seçin"
 
 msgid "Select channel to record from"
 msgstr "Kaydın yapılacağı kanalı seçin"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr "İmajı seçin"
@@ -2812,11 +3015,29 @@ msgstr "Yavaş"
 msgid "Slow Motion speeds"
 msgstr "Ağır çekim hızları"
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Bazı eklentiler kullanılamaz:\n"
 
 msgid "Somewhere else"
 msgstr "Başka bir yere"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2826,6 +3047,17 @@ msgstr ""
 "Yedek almak istediğiniz hedef bulunamadı\n"
 "\n"
 "Lütfen başka bir tane seçin."
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -3262,7 +3494,7 @@ msgstr ""
 "Lütfen tekrar kontrol edin!"
 
 msgid "Timer sanity error"
-msgstr "Zamanlayıcı mantık hatası"
+msgstr "Zamanlayıcı hatası"
 
 msgid "Timer selection"
 msgstr "Zamanlayıcı seçimi"
@@ -3385,6 +3617,9 @@ msgstr "Türkçe"
 msgid "Two"
 msgstr "İki"
 
+msgid "Type"
+msgstr "Tip"
+
 msgid "Type of scan"
 msgstr "Tarama tipi"
 
@@ -3418,6 +3653,15 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Bağımsız DiSEqC tekrarı"
 
+msgid "Unicable"
+msgstr "Unicable"
+
+msgid "Unicable LNB"
+msgstr "Unicable LNB"
+
+msgid "Unicable Martix"
+msgstr "Unicable Matris"
+
 msgid "Universal LNB"
 msgstr "Üniversal LNB"
 
@@ -3436,6 +3680,9 @@ msgstr "Güncelleme tamamlandı. Sonucu burada görebilirsiniz:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
 "Güncelleniyor... Lütfen bekleyin... Bu işlem birkaç dakika sürebilir..."
+
+msgid "Upgrade finished."
+msgstr ""
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr ""
@@ -3516,6 +3763,9 @@ msgstr "VCR scart"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (tanıtım filmi)"
+
+msgid "Vertical"
+msgstr "Düşey (V)"
 
 msgid "Video Fine-Tuning"
 msgstr "Görüntü İnce Ayarı"
@@ -3651,6 +3901,15 @@ msgstr "Batı"
 msgid "What do you want to scan?"
 msgstr "Neleri aramak istiyorsunuz?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Ayarlarınızın yedeğini nereye almak istiyorsunuz?"
 
@@ -3771,12 +4030,22 @@ msgstr ""
 "için lüften OK tuşuna basın."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
 "Önyükleme yapabilir .NFI flaşlayıcı USB bellek oluşturmayı seçtiniz. Bu "
 "işlem USB belleğin yeniden bölümlendirmesini gerektirdiğinden içeriğindeki "
 "tüm veriler silinecektir."
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
@@ -4323,6 +4592,9 @@ msgstr "yok"
 msgid "not locked"
 msgstr "kilitlenmedi"
 
+msgid "not used"
+msgstr "kullanılmıyor"
+
 msgid "nothing connected"
 msgstr "bağlı değil"
 
@@ -4607,7 +4879,7 @@ msgid "switch to playlist"
 msgstr "oynatma listesine geç"
 
 msgid "switch to the next angle"
-msgstr ""
+msgstr "sonraki açıyı seç"
 
 msgid "switch to the next audio track"
 msgstr "sonraki ses izini seç"
@@ -5062,6 +5334,9 @@ msgstr "kanal değiştirildi"
 #~ "Bunu yapmak istediğinizden eminseniz, lütfen hedef USB çubuğu yerinden "
 #~ "çıkarın ve istenildiğinde tekrar takın. USB çubuğu çıkardıysanız lütfen "
 #~ "OK tuşuna basın."
+
+#~ msgid "Unicable Matrix"
+#~ msgstr "Unicable Matris"
 
 #~ msgid "Waiting for USB stick to settle..."
 #~ msgstr "USB çubuğun takılması bekleniyor..."
