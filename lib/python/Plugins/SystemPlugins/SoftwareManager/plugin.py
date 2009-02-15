@@ -16,6 +16,7 @@ from Components.config import config,getConfigListEntry, ConfigSubsection, Confi
 from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
+from Components.PluginComponent import plugins
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont
@@ -324,8 +325,8 @@ class PacketManager(Screen):
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"], 
 		{
 			"ok": self.go,
-			"back": self.close,
-			"red": self.close,
+			"back": self.exit,
+			"red": self.exit,
 			"green": self.reload,
 		}, -1)
 		
@@ -350,7 +351,15 @@ class PacketManager(Screen):
 		self.ipkg.addCallback(self.ipkgCallback)
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
-		self.onClose.append(self.cleanup)
+		#self.onClose.append(self.cleanup)
+
+	def exit(self):
+		self.ipkg.stop()
+		if self.Console is not None:
+			if len(self.Console.appContainers):
+				for name in self.Console.appContainers.keys():
+					self.Console.kill(name)
+		self.close()
 
 	def cleanup(self):
 		self.ipkg.stop()
