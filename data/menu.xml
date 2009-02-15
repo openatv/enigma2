@@ -82,20 +82,17 @@ self.session.open(DefaultWizard, silent = False)
 </code>
 			</item>
 			<item level="0" text="Factory reset" entryID="factory_reset">
-<code>
-from Screens.MessageBox import MessageBox
+				<code>
+from Screens.FactoryReset import FactoryReset
 def msgClosed(ret):
 	if ret:
 		from os import system, _exit
 		system("rm -R /etc/enigma2")
 		system("cp -R /usr/share/enigma2/defaults /etc/enigma2")
 		_exit(0)
-
-self.session.openWithCallback(msgClosed, MessageBox, _("When you do a factory reset, you will lose ALL your configuration data\n"
-	"(including bouquets, services, satellite data ...)\n"
-	"After completion of factory reset, your receiver will restart automatically!\n\n"
-	"Really do a factory reset?"), MessageBox.TYPE_YESNO)
-</code></item>
+self.session.openWithCallback(msgClosed, FactoryReset)
+</code>
+			</item>
 			<!--<item text="Parental Control"><setup id="parental" /></item>-->
 			<!--<item text="Expert -disabled-"><setup id="expert" /></item>-->
 		</menu>
