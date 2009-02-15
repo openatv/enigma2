@@ -18,7 +18,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.SelectionList import SelectionList
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
-from enigma import eTimer,  loadPNG, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont
 from cPickle import dump, load
 
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
@@ -32,7 +32,6 @@ from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScr
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=['/etc/enigma2/', '/etc/network/interfaces', '/etc/wpa_supplicant.conf'])
-
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -415,7 +414,7 @@ class PacketManager(Screen):
 			if cur:
 				entry = cur[0]
 				item = self['list'].l.getCurrentSelectionIndex()
-				self.list[item] = PacketEntryComponent([entry[0], entry[1], entry[2], 'installable'])
+				self.list[item] = self.buildEntryComponent(entry[0], entry[1], entry[2], 'installable')
 				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installable']
 				self['list'].l.setList(self.list)
 				write_cache(self.cache_file, self.cachelist)
@@ -437,7 +436,7 @@ class PacketManager(Screen):
 			if cur:
 				entry = [0]
 				item = self['list'].l.getCurrentSelectionIndex()
-				self.list[item] = PacketEntryComponent([entry[0], entry[1], entry[2], 'installed'])
+				self.list[item] = self.buildEntryComponent(entry[0], entry[1], entry[2], 'installed')
 				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installed']
 				self['list'].l.setList(self.list)
 				write_cache(self.cache_file, self.cachelist)
@@ -483,17 +482,23 @@ class PacketManager(Screen):
 		res.append(MultiContentEntryText(pos=(5, 26), size=(440, 20), font=1, text=entry[2]))
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(445, 2), size=(48, 48), png = entry[4]))
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 50), size=(510, 2), png = entry[5]))
-		
 		return res
 
+	def buildEntryComponent(self, name, version, description, state):
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+		if state == 'installed':
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
+			return(self.PacketEntryComponent([name, version, description, state, installedpng, divpng]))
+		elif state == 'upgradeable':
+			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgradeable.png"))
+			return(self.PacketEntryComponent([name, version, description, state, upgradeablepng, divpng]))
+		else:
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+			return(self.PacketEntryComponent([name, version, description, state, installablepng, divpng]))
 
 	def buildPacketList(self):
 		self.list = []
 		self.cachelist = []
-		installedpng = loadPNG(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
-		upgradeablepng = loadPNG(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgradeable.png"))
-		installablepng = loadPNG(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
-		divpng = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 
 		if self.cache_ttl > 0 and self.vc != 0:
 			print 'Loading packagelist cache from ',self.cache_file
@@ -501,12 +506,7 @@ class PacketManager(Screen):
 				self.cachelist = load_cache(self.cache_file)
 				if len(self.cachelist) > 0:
 					for x in self.cachelist:
-						if x[3] == 'installed':
-							self.list.append(self.PacketEntryComponent([x[0], x[1], x[2], x[3],installedpng,divpng]))
-						elif x[3] == 'upgradeable':
-							self.list.append(self.PacketEntryComponent([x[0], x[1], x[2], x[3],upgradeablepng,divpng]))
-						else:
-							self.list.append(self.PacketEntryComponent([x[0], x[1], x[2], x[3],installablepng,divpng]))
+						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], x[3]))
 					self['list'].l.setList(self.list)
 					self["list"].instance.show()
 					self.status.hide()
@@ -520,19 +520,21 @@ class PacketManager(Screen):
 				if self.installed_packetlist.has_key(x[0].strip()):
 					if self.installed_packetlist[x[0].strip()] == x[1].strip():
 						status = "installed"
-						self.list.append(self.PacketEntryComponent([x[0].strip(), x[1].strip(), x[2].strip(), status,installedpng,divpng]))
+						self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
 					else:
 						status = "upgradeable"
-						self.list.append(self.PacketEntryComponent([x[0].strip(), x[1].strip(), x[2].strip(), status,upgradeablepng,divpng]))
+						self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
 				else:
 					status = "installable"
-					self.list.append(self.PacketEntryComponent([x[0].strip(), x[1].strip(), x[2].strip(), status,installablepng,divpng]))
+					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
 				self.cachelist.append([x[0].strip(), x[1].strip(), x[2].strip(), status])	
 			write_cache(self.cache_file, self.cachelist)
 			self['list'].l.setList(self.list)
 			self["list"].instance.show()
 			self.status.hide()
 
+	def reloadPluginlist(self):
+		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 class UpdatePlugin(Screen):
 	skin = """
