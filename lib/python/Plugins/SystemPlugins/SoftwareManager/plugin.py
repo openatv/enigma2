@@ -418,6 +418,7 @@ class PacketManager(Screen):
 				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installable']
 				self['list'].l.setList(self.list)
 				write_cache(self.cache_file, self.cachelist)
+				self.reloadPluginlist()
 		if result:
 			quitMainloop(3)
 
@@ -434,12 +435,13 @@ class PacketManager(Screen):
 		if result is False:
 			cur = self['list'].l.getCurrentSelection()
 			if cur:
-				entry = [0]
+				entry = cur[0]
 				item = self['list'].l.getCurrentSelectionIndex()
 				self.list[item] = self.buildEntryComponent(entry[0], entry[1], entry[2], 'installed')
 				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installed']
 				self['list'].l.setList(self.list)
 				write_cache(self.cache_file, self.cachelist)
+				self.reloadPluginlist()
 		if result:
 			quitMainloop(3)
 
