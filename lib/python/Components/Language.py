@@ -26,6 +26,7 @@ class Language:
 		self.addLanguage(_("Greek"), "el", "GR")
 		self.addLanguage(_("Hungarian"), "hu", "HU")
 		self.addLanguage(_("Lithuanian"), "lt", "LT")
+		self.addLanguage(_("Latvian"), "lv", "LV")
 		self.addLanguage(_("Icelandic"), "is", "IS")
 		self.addLanguage(_("Italian"), "it", "IT")
 		self.addLanguage(_("Norwegian"), "no", "NO")
