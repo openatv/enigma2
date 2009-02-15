@@ -136,46 +136,48 @@ class UpdatePluginMenu(Screen):
 		self.setTitle(_("Software manager..."))
 		
 	def go(self):
-		current = self["menu"].getCurrent()[0]
-		if self.menu == 0:
-			if (current == "software-restore"):
-				self.session.open(ImageWizard)
-			elif (current == "software-update"):
-				self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("\nAfter pressing OK, please wait!"))
-			elif (current == "advanced"):
-				self.session.open(UpdatePluginMenu, 1)
-			elif (current == "system-backup"):
-				self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
-			elif (current == "system-restore"):
-				if os_path.exists(self.fullbackupfilename):
-					self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your Enigma2 backup?\nEnigma2 will restart after the restore"))
-				else:	
-					self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO)
-		if self.menu == 1:
-			if (current == "ipkg-manager"):
-				self.session.open(PacketManager, self.skin_path)
-			elif (current == "ipkg-source"):
-				self.session.open(IPKGSource)
-			elif (current == "ipkg-install"):
-				try:
-					from Plugins.Extensions.MediaScanner.plugin import main
-					main(self.session)
-				except:
-					self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO)
-			elif (current == "backuplocation"):
-				parts = [ (r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-				for x in parts:
-					if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
-						parts.remove(x)
-				for x in parts:
-					if x[1].startswith('/autofs/'):
-						parts.remove(x)					
-				if len(parts):
-					self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title = _("Please select medium to use as backup location"), list = parts)
-			elif (current == "backupfiles"):
-				self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
-			elif (current == "advancedrestore"):
-				self.session.open(RestoreMenu, self.skin_path)			
+		current = self["menu"].getCurrent()
+		if current:
+			current = current[0]
+			if self.menu == 0:
+				if (current == "software-restore"):
+					self.session.open(ImageWizard)
+				elif (current == "software-update"):
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("\nAfter pressing OK, please wait!"))
+				elif (current == "advanced"):
+					self.session.open(UpdatePluginMenu, 1)
+				elif (current == "system-backup"):
+					self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+				elif (current == "system-restore"):
+					if os_path.exists(self.fullbackupfilename):
+						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your Enigma2 backup?\nEnigma2 will restart after the restore"))
+					else:	
+						self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO)
+			elif self.menu == 1:
+				if (current == "ipkg-manager"):
+					self.session.open(PacketManager, self.skin_path)
+				elif (current == "ipkg-source"):
+					self.session.open(IPKGSource)
+				elif (current == "ipkg-install"):
+					try:
+						from Plugins.Extensions.MediaScanner.plugin import main
+						main(self.session)
+					except:
+						self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO)
+				elif (current == "backuplocation"):
+					parts = [ (r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
+					for x in parts:
+						if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
+							parts.remove(x)
+					for x in parts:
+						if x[1].startswith('/autofs/'):
+							parts.remove(x)
+					if len(parts):
+						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title = _("Please select medium to use as backup location"), list = parts)
+				elif (current == "backupfiles"):
+					self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
+				elif (current == "advancedrestore"):
+					self.session.open(RestoreMenu, self.skin_path)
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
@@ -381,20 +383,22 @@ class PacketManager(Screen):
 			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 
 	def go(self, returnValue = None):
-		returnValue = self['list'].l.getCurrentSelection()[0]
-		self.cmdList = []
-		if returnValue[3] == 'installed':
-			self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": returnValue[0] }))
-			if len(self.cmdList):
-				self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n" + returnValue[0] + "\n" + self.oktext))
-		elif returnValue[3] == 'upgradeable':
-			self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": returnValue[0] }))
-			if len(self.cmdList):
-				self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to upgrade the package:\n" + returnValue[0] + "\n" + self.oktext))
-		else:
-			self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": returnValue[0] }))
-			if len(self.cmdList):
-				self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n" + returnValue[0] + "\n" + self.oktext))
+		cur = self['list'].l.getCurrentSelection()
+		if cur:
+			returnValue = cur[0]
+			self.cmdList = []
+			if returnValue[3] == 'installed':
+				self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": returnValue[0] }))
+				if len(self.cmdList):
+					self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n" + returnValue[0] + "\n" + self.oktext))
+			elif returnValue[3] == 'upgradeable':
+				self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": returnValue[0] }))
+				if len(self.cmdList):
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to upgrade the package:\n" + returnValue[0] + "\n" + self.oktext))
+			else:
+				self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": returnValue[0] }))
+				if len(self.cmdList):
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n" + returnValue[0] + "\n" + self.oktext))
 
 	def runRemove(self, result):
 		if result:
@@ -407,12 +411,14 @@ class PacketManager(Screen):
 		if result is None:
 			return
 		if result is False:
-			entry = self['list'].l.getCurrentSelection()[0]
-			item = self['list'].l.getCurrentSelectionIndex()
-			self.list[item] = PacketEntryComponent([entry[0], entry[1], entry[2], 'installable'])
-			self.cachelist[item] = [entry[0], entry[1], entry[2], 'installable']
-			self['list'].l.setList(self.list)
-			write_cache(self.cache_file, self.cachelist)
+			cur = self['list'].l.getCurrentSelection()
+			if cur:
+				entry = cur[0]
+				item = self['list'].l.getCurrentSelectionIndex()
+				self.list[item] = PacketEntryComponent([entry[0], entry[1], entry[2], 'installable'])
+				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installable']
+				self['list'].l.setList(self.list)
+				write_cache(self.cache_file, self.cachelist)
 		if result:
 			quitMainloop(3)
 
@@ -427,12 +433,14 @@ class PacketManager(Screen):
 		if result is None:
 			return
 		if result is False:
-			entry = self['list'].l.getCurrentSelection()[0]
-			item = self['list'].l.getCurrentSelectionIndex()
-			self.list[item] = PacketEntryComponent([entry[0], entry[1], entry[2], 'installed'])
-			self.cachelist[item] = [entry[0], entry[1], entry[2], 'installed']
-			self['list'].l.setList(self.list)
-			write_cache(self.cache_file, self.cachelist)
+			cur = self['list'].l.getCurrentSelection()
+			if cur:
+				entry = [0]
+				item = self['list'].l.getCurrentSelectionIndex()
+				self.list[item] = PacketEntryComponent([entry[0], entry[1], entry[2], 'installed'])
+				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installed']
+				self['list'].l.setList(self.list)
+				write_cache(self.cache_file, self.cachelist)
 		if result:
 			quitMainloop(3)
 
