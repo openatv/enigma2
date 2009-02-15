@@ -5,19 +5,10 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
-from enigma import eListboxPythonMultiContent, gFont, loadPNG, RT_HALIGN_CENTER, RT_VALIGN_CENTER
+from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 from Screen import Screen
 from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
-
-key_backspace = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_backspace.png"))
-key_bg = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_bg.png"))
-key_clr = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_clr.png"))
-key_esc = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_esc.png"))
-key_ok = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_ok.png"))
-key_sel = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_sel.png"))
-key_shift = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_shift.png"))
-key_shift_sel = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_shift_sel.png"))
-key_space = loadPNG(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_space.png"))
+from Tools.LoadPixmap import LoadPixmap
 
 class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
@@ -26,6 +17,16 @@ class VirtualKeyBoardList(MenuList):
 		self.l.setItemHeight(45)
 
 def VirtualKeyBoardEntryComponent(keys, selectedKey,shiftMode=False):
+	key_backspace = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_backspace.png"))
+	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_bg.png"))
+	key_clr = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_clr.png"))
+	key_esc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_esc.png"))
+	key_ok = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_ok.png"))
+	key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_sel.png"))
+	key_shift = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_shift.png"))
+	key_shift_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_shift_sel.png"))
+	key_space = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_space.png"))
+	
 	res = [ (keys) ]
 	
 	x = 0
@@ -116,6 +117,7 @@ class VirtualKeyBoard(Screen):
 				[u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"É", u"*"],
 				[u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"Ö", u"Ä", u"'"],
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
+
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"Å", u"OK"]]
 		else:
 			self.keys_list = [
