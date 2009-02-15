@@ -409,7 +409,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 					))
 			else:
 				menu = (
-					(_("switch to filelist"), self.switchToFileList)
+					(_("switch to filelist"), self.switchToFileList),
 					(_("remove bookmark"), self.addRemoveBookmark)
 				)
 
