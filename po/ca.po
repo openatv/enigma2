@@ -1,14 +1,14 @@
 # translation of ca.po to
 # Copyright (C) 2006 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
-# 
+#
 # Automatically generated, 2006.
 # Oriol Pellicer i Sabrià <oriol@elsud.org>, 2006, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 07:24+0100\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -20,6 +20,67 @@ msgstr ""
 "X-Poedit-Country: CATALONIA\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 "X-Generator: KBabel 1.11.4\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr ""
@@ -100,9 +161,6 @@ msgid "* Only available when entering hidden SSID or network key"
 msgstr ""
 
 msgid ".NFI Download failed:"
-msgstr ""
-
-msgid ".NFI Flasher bootable USB stick successfully created."
 msgstr ""
 
 msgid ""
@@ -308,12 +366,6 @@ msgstr "AC3 per defecte"
 msgid "AC3 downmix"
 msgstr ""
 
-msgid "AGC"
-msgstr ""
-
-msgid "AGC:"
-msgstr "AGC:"
-
 msgid "About"
 msgstr "Quant a"
 
@@ -369,7 +421,13 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avançat"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
+msgstr ""
+
+msgid "Advanced restore"
 msgstr ""
 
 msgid "After event"
@@ -391,9 +449,6 @@ msgstr "Tot"
 msgid "All Satellites"
 msgstr ""
 
-msgid "All..."
-msgstr "Tot..."
-
 msgid "Alpha"
 msgstr "Alpha"
 
@@ -404,6 +459,9 @@ msgid "Alternative services tuner priority"
 msgstr ""
 
 msgid "An empty filename is illegal."
+msgstr ""
+
+msgid "An error occured!"
 msgstr ""
 
 msgid "An unknown error occured!"
@@ -420,6 +478,16 @@ msgstr ""
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
 msgstr ""
 
 msgid "Artist"
@@ -491,8 +559,23 @@ msgstr "Localització del backup"
 msgid "Backup Mode"
 msgstr "Mode del backup"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Backup realitzat. Prem OK per a veure els resultats."
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Banda"
@@ -602,6 +685,9 @@ msgstr "Canal"
 msgid "Channel Selection"
 msgstr "Selecció de canal"
 
+msgid "Channel not in services list"
+msgstr ""
+
 msgid "Channel:"
 msgstr "Canal:"
 
@@ -626,6 +712,12 @@ msgstr ""
 msgid "Choose Tuner"
 msgstr "Escull sintonitzador"
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Escollir llista"
 
@@ -635,7 +727,16 @@ msgstr "Escull origen"
 msgid "Choose target folder"
 msgstr ""
 
+msgid "Choose upgrade source"
+msgstr ""
+
 msgid "Choose your Skin"
+msgstr ""
+
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
 msgstr ""
 
 msgid "Cleanup"
@@ -738,13 +839,14 @@ msgstr ""
 msgid "Contrast"
 msgstr "Contrast"
 
-msgid "Copying USB flasher boot image to stick..."
-msgstr ""
-
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -817,9 +919,6 @@ msgstr "Danès"
 msgid "Date"
 msgstr "Data"
 
-msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
-
 msgid "Deep Standby"
 msgstr "Apagat complet"
 
@@ -849,6 +948,9 @@ msgstr ""
 
 msgid "Description"
 msgstr "Descripció"
+
+msgid "Deselect"
+msgstr ""
 
 msgid "Destination directory"
 msgstr ""
@@ -915,6 +1017,9 @@ msgstr ""
 msgid "Display 4:3 content as"
 msgstr ""
 
+msgid "Display >16:9 content as"
+msgstr ""
+
 msgid "Display Setup"
 msgstr "Configurar Display"
 
@@ -938,9 +1043,6 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
-
-msgid "Do you really want to exit?"
-msgstr "Segur que vols sortir?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -979,10 +1081,19 @@ msgstr "Vols habilitar el control parental?"
 msgid "Do you want to install default sat lists?"
 msgstr ""
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr ""
 
 msgid "Do you want to preview this DVD before burning?"
+msgstr ""
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -991,12 +1102,18 @@ msgstr "Vols restaurar la configuració?"
 msgid "Do you want to resume this playback?"
 msgstr "Vols continuar on ho havies deixat?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Vols actualitzar la Dreambox?\n"
 "Després de prémer OK, espera!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vols veure un manual?"
@@ -1011,6 +1128,10 @@ msgstr "Fet. %d paquets instal·lats o actualitzats"
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Fet. %d paquets instal·lats o actualitzats amb %d errors"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr ""
@@ -1032,9 +1153,6 @@ msgstr "Plugins descarregables"
 
 msgid "Downloading"
 msgstr "Descarregant"
-
-msgid "Downloading image description..."
-msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Descarregant informació del plugin. Espera..."
@@ -1118,9 +1236,6 @@ msgstr ""
 msgid "Encryption Type"
 msgstr ""
 
-msgid "End"
-msgstr "Fi"
-
 msgid "End time"
 msgstr "Hora final"
 
@@ -1191,6 +1306,9 @@ msgstr "Progrés d'execució:"
 
 msgid "Execution finished!!"
 msgstr "Ha finalitzat l'execució"
+
+msgid "Exif"
+msgstr ""
 
 msgid "Exit"
 msgstr ""
@@ -1266,22 +1384,19 @@ msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
 
-msgid "Fix USB stick"
-msgstr ""
-
 msgid "Flash"
 msgstr ""
 
 msgid "Flashing failed"
 msgstr ""
 
-msgid "Font size"
-msgstr ""
-
 msgid "Format"
 msgstr ""
 
 msgid "Frame repeat count during non-smooth winding"
+msgstr ""
+
+msgid "Frame size in full view"
 msgstr ""
 
 msgid "French"
@@ -1305,6 +1420,9 @@ msgstr "Div"
 
 msgid "Friday"
 msgstr "Divendres"
+
+msgid "Frisian"
+msgstr ""
 
 msgid "Fritz!Box FON IP address"
 msgstr "Adreça IP de Fritz!Box FON"
@@ -1373,6 +1491,9 @@ msgstr "Informació jeràrquica"
 
 msgid "Hierarchy mode"
 msgstr "Mode jeràrquic"
+
+msgid "Horizontal"
+msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Quants minuts vols gravar?"
@@ -1458,6 +1579,15 @@ msgstr "Inicialitzant disc dur..."
 msgid "Input"
 msgstr "Entrada"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr "Instal·lant"
 
@@ -1500,6 +1630,9 @@ msgstr "Inversió"
 
 msgid "Invert display"
 msgstr "Invertir display"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "Italià"
@@ -1546,6 +1679,9 @@ msgstr ""
 
 msgid "Latitude"
 msgstr "Latitud"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr ""
@@ -1596,6 +1732,9 @@ msgstr ""
 msgid "Lock:"
 msgstr ""
 
+msgid "Log results to harddisk"
+msgstr ""
+
 #, fuzzy
 msgid "Long Keypress"
 msgstr "Prémer tecla llarg"
@@ -1624,11 +1763,17 @@ msgstr "Fer que aquesta marca sigui un punt 'out'"
 msgid "Make this mark just a mark"
 msgstr "Fer que aquesta marca sigui només una marca"
 
+msgid "Manage your receiver's software"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Recerca manual"
 
 msgid "Manual transponder"
 msgstr "Transponedor manual"
+
+msgid "Manufacturer"
+msgstr ""
 
 msgid "Margin after record"
 msgstr "Marge després de gravar"
@@ -1653,6 +1798,9 @@ msgstr "Menú"
 
 msgid "Message"
 msgstr "Missatge"
+
+msgid "Message..."
+msgstr ""
 
 msgid "Mkfs failed"
 msgstr "Ha fallat el mkfs"
@@ -1796,6 +1944,9 @@ msgstr ""
 msgid "No HDD found or HDD not initialized!"
 msgstr "No hi ha disc dur o no està inicialitzat!"
 
+msgid "No Networks found"
+msgstr ""
+
 msgid "No backup needed"
 msgstr "No cal backup"
 
@@ -1828,6 +1979,9 @@ msgstr "No s'ha trobat cap motor."
 
 msgid "No satellite frontend found!!"
 msgstr "No s'ha trobat cap sintonitzador de satèŀlit!!"
+
+msgid "No tags are set on these movies."
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
@@ -1921,12 +2075,6 @@ msgid "Now Playing"
 msgstr "Reproduint"
 
 msgid ""
-"Now please insert the USB stick (minimum size is 64 MB) that you want to "
-"format and use as .NFI image flasher. Press OK after you've put the stick "
-"back in."
-msgstr ""
-
-msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -1962,9 +2110,6 @@ msgstr ""
 msgid "Orbital Position"
 msgstr "Posició orbital"
 
-msgid "Other..."
-msgstr "Altres..."
-
 msgid "PAL"
 msgstr "PAL"
 
@@ -1977,6 +2122,9 @@ msgstr "Actualització de la llista de paquets"
 
 msgid "Packet management"
 msgstr "Gestió de paquets"
+
+msgid "Packet manager"
+msgstr ""
 
 msgid "Page"
 msgstr "Pàgina"
@@ -2000,14 +2148,14 @@ msgstr "Configuració control parental"
 msgid "Parental control type"
 msgstr "Tipus de control parental"
 
-msgid "Partitioning USB stick..."
-msgstr ""
-
 msgid "Pause movie at end"
 msgstr ""
 
 msgid "PiPSetup"
 msgstr "Configuració PiP"
+
+msgid "PicturePlayer"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -2050,6 +2198,11 @@ msgid "Please choose he package..."
 msgstr ""
 
 msgid "Please choose the default services lists you want to install."
+msgstr ""
+
+msgid ""
+"Please disconnect all USB devices from your Dreambox and (re-)attach the "
+"target USB stick (minimum size is 64 MB) now!"
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -2105,8 +2258,11 @@ msgstr "Sisplau selecciona un subservei a gravar..."
 msgid "Please select a subservice..."
 msgstr "Sisplau selecciona un subservei..."
 
-msgid "Please select keyword to filter..."
-msgstr "Sisplau selecciona la paraula a filtrar..."
+msgid "Please select medium to use as backup location"
+msgstr ""
+
+msgid "Please select tag to filter..."
+msgstr ""
 
 msgid "Please select target directory or medium"
 msgstr ""
@@ -2140,7 +2296,7 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
-msgid "Please wait for md5 signature verification..."
+msgid "Please wait while scanning is in progress..."
 msgstr ""
 
 msgid "Please wait while we configure your network..."
@@ -2218,6 +2374,10 @@ msgstr "Prem OK per a activar la configuració."
 msgid "Press OK to edit the settings."
 msgstr ""
 
+#, python-format
+msgid "Press OK to get further details for %s"
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr "Prem OK per a buscar"
 
@@ -2231,6 +2391,9 @@ msgid "Preview menu"
 msgstr ""
 
 msgid "Primary DNS"
+msgstr ""
+
+msgid "Priority"
 msgstr ""
 
 msgid "Properties of current title"
@@ -2250,6 +2413,9 @@ msgstr "Proveïdor a escanejar"
 
 msgid "Providers"
 msgstr "Proveïdors"
+
+msgid "Quick"
+msgstr ""
 
 msgid "Quickzap"
 msgstr "Zappeig ràpid"
@@ -2272,14 +2438,14 @@ msgstr ""
 msgid "Ram Disk"
 msgstr "Disc en RAM"
 
+msgid "Random"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "Sortir sense guardar els canvis?"
 
 msgid "Really delete done timers?"
 msgstr "Vols esborrar les programacions ja finalitzades?"
-
-msgid "Really delete this timer?"
-msgstr "Esborrar aquesta programació?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Sortir del zappeig ràpid dels subserveis?"
@@ -2302,6 +2468,10 @@ msgstr "Configuració de recepció"
 msgid "Record"
 msgstr "Gravar"
 
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
+
 msgid "Recorded files..."
 msgstr "Arxius gravats..."
 
@@ -2323,7 +2493,7 @@ msgstr ""
 msgid "Refresh rate selection."
 msgstr ""
 
-msgid "Remounting stick partition..."
+msgid "Reload"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -2338,6 +2508,9 @@ msgstr "Esborrar una marca"
 msgid "Remove currently selected title"
 msgstr "Esborra el títol seleccionat"
 
+msgid "Remove finished."
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Esborrar plugins"
 
@@ -2347,8 +2520,14 @@ msgstr ""
 msgid "Remove the incomplete .NFI file?"
 msgstr ""
 
+msgid "Remove timer"
+msgstr ""
+
 msgid "Remove title"
 msgstr "Esborra títol"
+
+msgid "Removing"
+msgstr ""
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2398,6 +2577,18 @@ msgstr ""
 
 msgid "Restore"
 msgstr "Restaurar"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2574,6 +2765,9 @@ msgstr ""
 msgid "Seek"
 msgstr "Posicionar"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Seleccionar disc dur"
 
@@ -2594,6 +2788,12 @@ msgstr "Seleccionar pista d'àudio"
 
 msgid "Select channel to record from"
 msgstr "Selecciona el canal a gravar"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr ""
@@ -2773,12 +2973,30 @@ msgstr "Lent"
 msgid "Slow Motion speeds"
 msgstr ""
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 #, fuzzy
 msgid "Some plugins are not available:\n"
 msgstr "Alguns plugins no estan disponibles:\n"
 
 msgid "Somewhere else"
 msgstr "A algun altre lloc"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2788,6 +3006,17 @@ msgstr ""
 "El destí del backup no existeix\n"
 "\n"
 "Sisplau, escull-ne un altre."
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -2814,9 +3043,6 @@ msgstr "Repòs"
 
 msgid "Standby / Restart"
 msgstr "Repòs / Reiniciar"
-
-msgid "Start"
-msgstr "Iniciar"
 
 msgid "Start from the beginning"
 msgstr ""
@@ -2858,6 +3084,12 @@ msgid "Stop playing this movie?"
 msgstr "Aturar la reproducció de la pel·lícula?"
 
 msgid "Stop test"
+msgstr ""
+
+msgid "Stop testing plane after # failed transponders"
+msgstr ""
+
+msgid "Stop testing plane after # successful transponders"
 msgstr ""
 
 msgid "Store position"
@@ -2918,11 +3150,26 @@ msgstr "Sistema de TV"
 msgid "Table of content for collection"
 msgstr ""
 
+msgid "Tag 1"
+msgstr ""
+
+msgid "Tag 2"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Terrestre"
 
 msgid "Terrestrial provider"
 msgstr "Proveïdor terrestre"
+
+msgid "Test DiSEqC settings"
+msgstr ""
+
+msgid "Test Type"
+msgstr ""
 
 msgid "Test mode"
 msgstr "Mode test"
@@ -2942,16 +3189,14 @@ msgstr ""
 "Sisplau, prem OK per a començar a fer-la servir."
 
 msgid ""
-"The .NFI Image flasher USB stick is now ready to use. Please download an ."
-"NFI image file from the feed server and save it on the stick. Then reboot "
-"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
-"stick!"
-msgstr ""
-
-msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
+msgstr ""
+
+msgid ""
+"The USB stick is now bootable. Do you want to download the latest image from "
+"the feed server and save it on the stick?"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
@@ -3006,6 +3251,10 @@ msgstr "El pin és incorrecte"
 
 msgid "The pin codes you entered are different."
 msgstr "Els pins entrats són diferents"
+
+#, python-format
+msgid "The results have been written to %s."
+msgstr ""
 
 msgid "The sleep timer has been activated."
 msgstr "S'ha activat la programació d'aturada."
@@ -3115,6 +3364,9 @@ msgstr "Llindar"
 msgid "Thu"
 msgstr "Dij"
 
+msgid "Thumbnails"
+msgstr ""
+
 msgid "Thursday"
 msgstr "Dijous"
 
@@ -3162,6 +3414,9 @@ msgstr "Pausa"
 msgid "Timeshift not possible!"
 msgstr "No és possible la pausa!"
 
+msgid "Timeshift path..."
+msgstr ""
+
 msgid "Timezone"
 msgstr "Zona horària"
 
@@ -3175,8 +3430,12 @@ msgid "Titleset mode"
 msgstr ""
 
 msgid ""
-"To make sure you intend to do this, please remove the target USB stick now "
-"and stick it back in upon prompt. Press OK when you have taken the stick out."
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and plug in the bootable USB "
+"stick.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
 msgid "Today"
@@ -3259,6 +3518,9 @@ msgstr "Turc"
 msgid "Two"
 msgstr "Dos"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Tipus de recerca"
 
@@ -3270,6 +3532,12 @@ msgstr "USB"
 
 msgid "USB Stick"
 msgstr "Memòria USB"
+
+msgid "USB stick wizard"
+msgstr ""
+
+msgid "Ukrainian"
+msgstr ""
 
 msgid ""
 "Unable to complete filesystem check.\n"
@@ -3283,6 +3551,15 @@ msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Comanda DiSEqC no enviada"
+
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "LNB universal"
@@ -3302,6 +3579,9 @@ msgstr "Actualització acabada. Resultat:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Actualitzant... espera... Pot trigar uns quants minuts..."
 
+msgid "Upgrade finished."
+msgstr ""
+
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "S'ha acabat l'actualització. Vols tornar a arrancar la Dreambox?"
 
@@ -3310,6 +3590,9 @@ msgstr "Actualitzant"
 
 msgid "Upgrading Dreambox... Please wait"
 msgstr "Actualitzant la Dreambox... Sisplau espera"
+
+msgid "Use"
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Utilitzar DHCP"
@@ -3378,6 +3661,9 @@ msgstr "Euroconnector VCR"
 msgid "VMGM (intro trailer)"
 msgstr ""
 
+msgid "Vertical"
+msgstr ""
+
 msgid "Video Fine-Tuning"
 msgstr ""
 
@@ -3442,9 +3728,6 @@ msgstr "WSS en 4:3"
 msgid "Waiting"
 msgstr ""
 
-msgid "Waiting for USB stick to settle..."
-msgstr ""
-
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3500,8 +3783,20 @@ msgstr "Oest"
 msgid "What do you want to scan?"
 msgstr "Què vols buscar?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "On vols guardar el backup de la configuració?"
+
+msgid "Where to save temporary timeshift recordings?"
+msgstr ""
 
 msgid "Wireless"
 msgstr ""
@@ -3516,9 +3811,6 @@ msgid "Write failed!"
 msgstr ""
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
-
-msgid "Writing image file to NAND Flash"
 msgstr ""
 
 msgid "YPbPr"
@@ -3613,8 +3905,18 @@ msgstr ""
 "Has escollit fer un backup al disc dur. Prem OK per a començar el backup ara."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
 msgstr ""
 
 #, python-format
@@ -3633,15 +3935,6 @@ msgstr ""
 "Ara s'apagarà la dreambox. Després d'haver fer l'actualització segons les "
 "instruccions de la web,  el nou firmware et demanarà actualitzar la "
 "configuració."
-
-msgid ""
-"You need to define some keywords first!\n"
-"Press the menu-key to define keywords.\n"
-"Do you want to define keywords now?"
-msgstr ""
-"Prèviament has de definir paraules clau\n"
-"(per a fer-ho prem el botó del menú).\n"
-"Vols definir-les ara?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -3793,24 +4086,33 @@ msgstr ""
 msgid "audio tracks"
 msgstr ""
 
+msgid "auto"
+msgstr ""
+
 msgid "back"
 msgstr "enrere"
 
 msgid "background image"
 msgstr ""
 
+msgid "backgroundcolor"
+msgstr ""
+
 msgid "better"
 msgstr "millorat"
+
+msgid "black"
+msgstr ""
 
 msgid "blacklist"
 msgstr "llista negra"
 
+msgid "blue"
+msgstr ""
+
 #, python-format
 msgid "burn audio track (%s)"
 msgstr ""
-
-msgid "by Exif"
-msgstr "per Exif"
 
 msgid "change recording (duration)"
 msgstr "canviar la gravació (durada)"
@@ -3832,9 +4134,6 @@ msgstr "circular dreta"
 
 msgid "clear playlist"
 msgstr "netejar la llista"
-
-msgid "color"
-msgstr ""
 
 msgid "complex"
 msgstr "complexe"
@@ -3863,11 +4162,11 @@ msgstr "diàriament"
 msgid "day"
 msgstr ""
 
-msgid "delete"
-msgstr "esborrar"
-
 msgid "delete cut"
 msgstr "esborrar tall"
+
+msgid "delete file"
+msgstr ""
 
 msgid "delete playlist entry"
 msgstr "esborrar entrada de la llista"
@@ -3971,13 +4270,13 @@ msgstr ""
 msgid "failed"
 msgstr ""
 
+msgid "fileformats (BMP, PNG, JPG, GIF)"
+msgstr ""
+
 msgid "filename"
 msgstr ""
 
 msgid "fine-tune your display"
-msgstr ""
-
-msgid "font face"
 msgstr ""
 
 msgid "forward to the next chapter"
@@ -3995,7 +4294,7 @@ msgstr "aturar completament"
 msgid "go to standby"
 msgstr "posar en repòs"
 
-msgid "headline"
+msgid "green"
 msgstr ""
 
 msgid "hear radio..."
@@ -4004,14 +4303,14 @@ msgstr "escoltar la ràdio..."
 msgid "help..."
 msgstr "ajuda..."
 
+msgid "hidden network"
+msgstr ""
+
 msgid "hide extended description"
 msgstr ""
 
 msgid "hide player"
 msgstr "amagar reproductor"
-
-msgid "highlighted button"
-msgstr ""
 
 msgid "horizontal"
 msgstr "horitzontal"
@@ -4145,9 +4444,6 @@ msgstr "no"
 msgid "no HDD found"
 msgstr "no hi ha disc dur"
 
-msgid "no Picture found"
-msgstr "no s'han trobat imatges"
-
 msgid "no module found"
 msgstr "no hi ha el mòdul"
 
@@ -4164,6 +4460,9 @@ msgstr "cap"
 
 msgid "not locked"
 msgstr "desbloquejat"
+
+msgid "not used"
+msgstr ""
 
 msgid "nothing connected"
 msgstr "res connectat"
@@ -4228,14 +4527,14 @@ msgstr "canal anterior"
 msgid "previous channel in history"
 msgstr "canal anterior en l'històric"
 
-msgid "rebooting..."
-msgstr ""
-
 msgid "record"
 msgstr "gravar"
 
 msgid "recording..."
 msgstr "gravant..."
+
+msgid "red"
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr ""
@@ -4285,8 +4584,14 @@ msgstr ""
 msgid "right"
 msgstr "dreta"
 
+msgid "save last directory on exit"
+msgstr ""
+
 msgid "save playlist"
 msgstr "grava llista"
+
+msgid "save playlist on exit"
+msgstr ""
 
 msgid "scan done!"
 msgstr ""
@@ -4340,6 +4645,9 @@ msgstr ""
 msgid "show EPG..."
 msgstr "mostrar EPG..."
 
+msgid "show Infoline"
+msgstr ""
+
 msgid "show all"
 msgstr ""
 
@@ -4352,10 +4660,10 @@ msgstr "mostrar detalls del programa"
 msgid "show extended description"
 msgstr ""
 
-msgid "show first tag"
+msgid "show first selected tag"
 msgstr ""
 
-msgid "show second tag"
+msgid "show second selected tag"
 msgstr ""
 
 msgid "show shutdown menu"
@@ -4391,10 +4699,10 @@ msgstr "saltar endavant"
 msgid "skip forward (enter time)"
 msgstr "saltar endavant (introduint el temps)"
 
-msgid "sort by date"
+msgid "slide picture in loop"
 msgstr ""
 
-msgid "spaces (top, between rows, left)"
+msgid "sort by date"
 msgstr ""
 
 msgid "standard"
@@ -4405,6 +4713,9 @@ msgstr "en repòs"
 
 msgid "start cut here"
 msgstr "començar tall aquí"
+
+msgid "start directory"
+msgstr ""
 
 msgid "start timeshift"
 msgstr "activar pausa"
@@ -4436,14 +4747,20 @@ msgstr "canviar a la llista de fitxers"
 msgid "switch to playlist"
 msgstr "canviar a la llista"
 
+msgid "switch to the next angle"
+msgstr ""
+
 msgid "switch to the next audio track"
 msgstr ""
 
 msgid "switch to the next subtitle language"
 msgstr ""
 
-msgid "text"
-msgstr "text"
+msgid "template file"
+msgstr ""
+
+msgid "textcolor"
+msgstr ""
 
 msgid "this recording"
 msgstr "aquesta gravació"
@@ -4493,6 +4810,12 @@ msgstr "setmanalment"
 msgid "whitelist"
 msgstr "llista blanca"
 
+msgid "working"
+msgstr ""
+
+msgid "yellow"
+msgstr ""
+
 msgid "yes"
 msgstr "si"
 
@@ -4531,8 +4854,14 @@ msgstr "zappejat"
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
+#~ msgid "AGC:"
+#~ msgstr "AGC:"
+
 #~ msgid "Add title..."
 #~ msgstr "Afegir títol..."
+
+#~ msgid "All..."
+#~ msgstr "Tot..."
 
 #~ msgid "Burn"
 #~ msgstr "Gravar"
@@ -4560,6 +4889,9 @@ msgstr "zappejat"
 #~ "Segur que vols descarregar\n"
 #~ "el plugin \""
 
+#~ msgid "Do you really want to exit?"
+#~ msgstr "Segur que vols sortir?"
+
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Vols veure un manual d'edició?"
 
@@ -4568,6 +4900,9 @@ msgstr "zappejat"
 
 #~ msgid "Edit title..."
 #~ msgstr "Editar títol..."
+
+#~ msgid "End"
+#~ msgstr "Fi"
 
 #~ msgid "Games / Plugins"
 #~ msgstr "Jocs / plugins"
@@ -4580,6 +4915,15 @@ msgstr "zappejat"
 
 #~ msgid "New DVD"
 #~ msgstr "Nou DVD"
+
+#~ msgid "Other..."
+#~ msgstr "Altres..."
+
+#~ msgid "Please select keyword to filter..."
+#~ msgstr "Sisplau selecciona la paraula a filtrar..."
+
+#~ msgid "Really delete this timer?"
+#~ msgstr "Esborrar aquesta programació?"
 
 #, fuzzy
 #~ msgid ""
@@ -4611,6 +4955,9 @@ msgstr "zappejat"
 #~ msgid "Save..."
 #~ msgstr "Gravar..."
 
+#~ msgid "Start"
+#~ msgstr "Iniciar"
+
 #~ msgid "Startwizard"
 #~ msgstr "Assistent d'inici"
 
@@ -4632,6 +4979,21 @@ msgstr "zappejat"
 #~ msgid "You have to wait for"
 #~ msgstr "Has d'esperar"
 
+#~ msgid ""
+#~ "You need to define some keywords first!\n"
+#~ "Press the menu-key to define keywords.\n"
+#~ "Do you want to define keywords now?"
+#~ msgstr ""
+#~ "Prèviament has de definir paraules clau\n"
+#~ "(per a fer-ho prem el botó del menú).\n"
+#~ "Vols definir-les ara?"
+
+#~ msgid "by Exif"
+#~ msgstr "per Exif"
+
+#~ msgid "delete"
+#~ msgstr "esborrar"
+
 #~ msgid "equal to Socket A"
 #~ msgstr "igual al Socket A"
 
@@ -4643,6 +5005,9 @@ msgstr "zappejat"
 
 #~ msgid "minutes and"
 #~ msgstr "minuts i"
+
+#~ msgid "no Picture found"
+#~ msgstr "no s'han trobat imatges"
 
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "només el directori /etc/enigma2"
@@ -4689,3 +5054,6 @@ msgstr "zappejat"
 
 #~ msgid "skip forward (self defined)"
 #~ msgstr "saltar endavant (definir)"
+
+#~ msgid "text"
+#~ msgstr "text"
