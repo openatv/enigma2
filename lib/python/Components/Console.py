@@ -55,3 +55,8 @@ class Console(object):
 		if self.callbacks[name]:
 			self.callbacks[name](data,retval,extra_args)
 		del self.callbacks[name]
+
+	def kill(self,name):
+		if self.appContainers.has_key(name):
+			print "[Console] killing: ",self.appContainers[name]
+			self.appContainers[name].kill()
