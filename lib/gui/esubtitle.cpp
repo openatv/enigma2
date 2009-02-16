@@ -114,15 +114,6 @@ void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed)
 	invalidate(changed);
 }
 
-std::string eSubtitleWidget::replace_all(const std::string &in, const std::string &entity, const std::string &symbol)
-{
-	std::string out = in;
-	std::string::size_type loc = 0;
-	while (( loc = out.find(entity, loc)) != std::string::npos )
-	out.replace(loc, entity.length(), symbol);
-	return out;
-}
-
 int eSubtitleWidget::event(int event, void *data, void *data2)
 {
 	switch (event)
