@@ -299,18 +299,23 @@ class IPKGSource(Screen):
 		print "pressed", number
 		self["text"].number(number)
 
-class PacketList(MenuList):
-	def __init__(self, list, enableWrapAround=True):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 22))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(52)
 
 class PacketManager(Screen):
 	skin = """
 		<screen position="90,80" size="530,420" title="IPKG upgrade..." >
-			<widget name="list" position="5,10" size="520,365" zPosition="1" scrollbarMode="showOnDemand" />
-			<widget name="status" position="30,160" size="530,40" zPosition="4" font="Regular;22" halign="left" transparent="1" />
+			<widget source="list" render="Listbox" position="5,10" size="520,365" scrollbarMode="showOnDemand">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (5, 1), size = (440, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (5, 26), size = (440, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
+							MultiContentEntryPixmapAlphaTest(pos = (445, 2), size = (48, 48), png = 4), # index 4 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (5, 50), size = (510, 2), png = 5), # index 4 is the div pixmap
+						],
+					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
+					"itemHeight": 52
+					}
+				</convert>
+			</widget>
 			<ePixmap pixmap="skin_default/buttons/red.png" position="10,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
 			<widget name="closetext" position="20,390" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="160,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
@@ -331,11 +336,10 @@ class PacketManager(Screen):
 		}, -1)
 		
 		self.list = []
-		self["list"] = PacketList(self.list)
-		self.status = Label()
+		self.statuslist = []
+		self["list"] = List(self.list)
 		self["closetext"] = Label(_("Close"))
 		self["reloadtext"] = Label(_("Reload"))
-		self["status"] = self.status				
 
 		self.list_updating = True
 		self.packetlist = []
@@ -351,7 +355,6 @@ class PacketManager(Screen):
 		self.ipkg.addCallback(self.ipkgCallback)
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
-		#self.onClose.append(self.cleanup)
 
 	def exit(self):
 		self.ipkg.stop()
@@ -360,11 +363,6 @@ class PacketManager(Screen):
 				for name in self.Console.appContainers.keys():
 					self.Console.kill(name)
 		self.close()
-
-	def cleanup(self):
-		self.ipkg.stop()
-		if self.Console is not None:
-			del self.Console
 
 	def reload(self):
 		if (os_path.exists(self.cache_file) == True):
@@ -375,10 +373,21 @@ class PacketManager(Screen):
 	def setWindowTitle(self):
 		self.setTitle(_("Packet manager"))
 
+	def setStatus(self,status = None):
+		if status:
+			self.statuslist = []
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+			if status == 'update':
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'',statuspng, divpng ))
+				self['list'].setList(self.statuslist)	
+			elif status == 'error':
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
+				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'',statuspng, divpng ))
+				self['list'].setList(self.statuslist)				
+
 	def rebuildList(self):
-		self["list"].instance.hide()
-		self.status.setText(_("Package list update"))
-		self.status.show()
+		self.setStatus('update')
 		self.inv_cache = 0
 		self.vc = valid_cache(self.cache_file, self.cache_ttl)
 		if self.cache_ttl > 0 and self.vc != 0:
@@ -391,22 +400,23 @@ class PacketManager(Screen):
 			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 
 	def go(self, returnValue = None):
-		cur = self['list'].l.getCurrentSelection()
+		cur = self["list"].getCurrent()
 		if cur:
-			returnValue = cur[0]
+			status = cur[3]
+			package = cur[0]
 			self.cmdList = []
-			if returnValue[3] == 'installed':
-				self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": returnValue[0] }))
+			if status == 'installed':
+				self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": package }))
 				if len(self.cmdList):
-					self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n" + returnValue[0] + "\n" + self.oktext))
-			elif returnValue[3] == 'upgradeable':
-				self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": returnValue[0] }))
+					self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n" + package + "\n" + self.oktext))
+			elif status == 'upgradeable':
+				self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": package }))
 				if len(self.cmdList):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to upgrade the package:\n" + returnValue[0] + "\n" + self.oktext))
-			else:
-				self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": returnValue[0] }))
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to upgrade the package:\n" + package + "\n" + self.oktext))
+			elif status == "installable":
+				self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": package }))
 				if len(self.cmdList):
-					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n" + returnValue[0] + "\n" + self.oktext))
+					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n" + package + "\n" + self.oktext))
 
 	def runRemove(self, result):
 		if result:
@@ -419,13 +429,12 @@ class PacketManager(Screen):
 		if result is None:
 			return
 		if result is False:
-			cur = self['list'].l.getCurrentSelection()
+			cur = self["list"].getCurrent()
 			if cur:
-				entry = cur[0]
-				item = self['list'].l.getCurrentSelectionIndex()
-				self.list[item] = self.buildEntryComponent(entry[0], entry[1], entry[2], 'installable')
-				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installable']
-				self['list'].l.setList(self.list)
+				item = self['list'].getIndex()
+				self.list[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], 'installable')
+				self.cachelist[item] = [cur[0], cur[1], cur[2], 'installable']
+				self['list'].setList(self.list)
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
@@ -442,13 +451,12 @@ class PacketManager(Screen):
 		if result is None:
 			return
 		if result is False:
-			cur = self['list'].l.getCurrentSelection()
+			cur = self["list"].getCurrent()
 			if cur:
-				entry = cur[0]
-				item = self['list'].l.getCurrentSelectionIndex()
-				self.list[item] = self.buildEntryComponent(entry[0], entry[1], entry[2], 'installed')
-				self.cachelist[item] = [entry[0], entry[1], entry[2], 'installed']
-				self['list'].l.setList(self.list)
+				item = self['list'].getIndex()
+				self.list[item] = self.buildEntryComponent(cur[0], cur[1], cur[2], 'installed')
+				self.cachelist[item] = [cur[0], cur[1], cur[2], 'installed']
+				self['list'].setList(self.list)
 				write_cache(self.cache_file, self.cachelist)
 				self.reloadPluginlist()
 		if result:
@@ -457,7 +465,7 @@ class PacketManager(Screen):
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
 			self.list_updating = False
-			self.status.setText(_("An error occured!"))
+			self.setStatus('error')
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.list_updating:
 				self.list_updating = False
@@ -473,7 +481,8 @@ class PacketManager(Screen):
 			self.packetlist = []
 			for x in result.splitlines():
 				split = x.split(' - ')
-				self.packetlist.append([split[0].strip(), split[1].strip(),split[2].strip()])
+				if not (split[0].strip().endswith('-dbg') or split[0].strip().endswith('-dev')):
+					self.packetlist.append([split[0].strip(), split[1].strip(),split[2].strip()])
 		if not self.Console:
 			self.Console = Console()
 		cmd = "ipkg list_installed"
@@ -484,28 +493,21 @@ class PacketManager(Screen):
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				split = x.split(' - ')
-				self.installed_packetlist[split[0].strip()] = split[1].strip()
+				if not (split[0].strip().endswith('-dbg') or split[0].strip().endswith('-dev')):
+					self.installed_packetlist[split[0].strip()] = split[1].strip()
 		self.buildPacketList()
-
-	def PacketEntryComponent(self,entry):
-		res = [ entry ]
-		res.append(MultiContentEntryText(pos=(5, 1), size=(440, 28), font=0, text= entry[0]))
-		res.append(MultiContentEntryText(pos=(5, 26), size=(440, 20), font=1, text=entry[2]))
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(445, 2), size=(48, 48), png = entry[4]))
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(5, 50), size=(510, 2), png = entry[5]))
-		return res
 
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
-			return(self.PacketEntryComponent([name, version, description, state, installedpng, divpng]))
+			return((name, version, description, state, installedpng, divpng))	
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return(self.PacketEntryComponent([name, version, description, state, upgradeablepng, divpng]))
+			return((name, version, description, state, upgradeablepng, divpng))	
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
-			return(self.PacketEntryComponent([name, version, description, state, installablepng, divpng]))
+			return((name, version, description, state, installablepng, divpng))
 
 	def buildPacketList(self):
 		self.list = []
@@ -518,9 +520,7 @@ class PacketManager(Screen):
 				if len(self.cachelist) > 0:
 					for x in self.cachelist:
 						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], x[3]))
-					self['list'].l.setList(self.list)
-					self["list"].instance.show()
-					self.status.hide()
+					self['list'].setList(self.list)
 			except:
 				self.inv_cache = 1
 
@@ -538,11 +538,10 @@ class PacketManager(Screen):
 				else:
 					status = "installable"
 					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
-				self.cachelist.append([x[0].strip(), x[1].strip(), x[2].strip(), status])	
+				if not (x[0].strip().endswith('-dbg') or x[0].strip().endswith('-dev')):
+					self.cachelist.append([x[0].strip(), x[1].strip(), x[2].strip(), status])	
 			write_cache(self.cache_file, self.cachelist)
-			self['list'].l.setList(self.list)
-			self["list"].instance.show()
-			self.status.hide()
+			self['list'].setList(self.list)
 
 	def reloadPluginlist(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
@@ -730,8 +729,10 @@ def startSetup(menuid):
 def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
-	return [
+	list = [
 		PluginDescriptor(name=_("Software manager"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup), 
-		#PluginDescriptor(name=_("Software manager"), description=_("Manage your receiver's software"), icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)
 	]
+	if config.usage.setup_level.index >= 2: # expert+	
+		list.append(PluginDescriptor(name=_("Software manager"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=UpgradeMain))	
+	return list
