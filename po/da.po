@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-26 14:56+0100\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
 "PO-Revision-Date: 2008-11-26 14:22+0100\n"
 "Last-Translator: Ingmar Jørgensen <dreambox@ingmar.dk>\n"
 "Language-Team: jazzydane <dreambox@ingmar.dk>\n"
@@ -13,6 +13,67 @@ msgstr ""
 "X-Poedit-Language: Danish\n"
 "X-Poedit-Country: DENMARK\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr " "
@@ -296,12 +357,6 @@ msgstr "AC3 Standard"
 msgid "AC3 downmix"
 msgstr "AC3 Nedmix"
 
-msgid "AGC"
-msgstr "AGC"
-
-msgid "AGC:"
-msgstr "AGC:"
-
 msgid "About"
 msgstr "Info"
 
@@ -361,8 +416,14 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avanceret"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
 msgstr "Avanceret Video Instilling"
+
+msgid "Advanced restore"
+msgstr ""
 
 msgid "After event"
 msgstr "Efter film"
@@ -395,6 +456,9 @@ msgstr "Alternativ kanal tuner prioritet"
 msgid "An empty filename is illegal."
 msgstr "Et tomt filnavn er ugyldigt."
 
+msgid "An error occured!"
+msgstr ""
+
 msgid "An unknown error occured!"
 msgstr "Der opstod en ukendt fejl!"
 
@@ -414,6 +478,16 @@ msgid ""
 msgstr ""
 "Er du sikker på at du vil genstarte dine interfaces?\n"
 "\n"
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
+msgstr ""
 
 msgid "Artist"
 msgstr "Kunstner"
@@ -484,8 +558,23 @@ msgstr "Kopi Lokation"
 msgid "Backup Mode"
 msgstr "Kopi Type"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Kopien er færdig. Tryk OK for at se resultat."
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Bånd"
@@ -594,6 +683,9 @@ msgstr "Kanal Info..."
 msgid "Channel Selection"
 msgstr "Kanal Vælger"
 
+msgid "Channel not in services list"
+msgstr ""
+
 msgid "Channel:"
 msgstr "Kanal:"
 
@@ -618,6 +710,12 @@ msgstr "Undersøge Filsystem..."
 msgid "Choose Tuner"
 msgstr "Vælg Tuner"
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Vælg pakke"
 
@@ -627,8 +725,17 @@ msgstr "Vælg kilde"
 msgid "Choose target folder"
 msgstr "Vælg folder du vil bruge"
 
+msgid "Choose upgrade source"
+msgstr ""
+
 msgid "Choose your Skin"
 msgstr "Vælg dit Skin"
+
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
+msgstr ""
 
 msgid "Cleanup"
 msgstr "Oprydning"
@@ -736,6 +843,10 @@ msgstr "Kunne ikke forbinde til Dreambox .NFI image feed serveren:"
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Kunne ikke indlæse media! Ingen disk isat?"
 
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
+
 msgid "Create DVD-ISO"
 msgstr "Opret DVD-ISO"
 
@@ -838,6 +949,9 @@ msgstr ""
 msgid "Description"
 msgstr "Beskrivelse"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Destination directory"
 msgstr "Destinations mappe"
 
@@ -902,6 +1016,9 @@ msgstr "Vis 16:9 indhold som"
 
 msgid "Display 4:3 content as"
 msgstr "Vis 4:3 indhold som"
+
+msgid "Display >16:9 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Display Indstillinger"
@@ -970,11 +1087,20 @@ msgstr "Vil du aktivere forældre kontrol muligheden på DreamBoxen?"
 msgid "Do you want to install default sat lists?"
 msgstr "Vil du installere standard satellit lister?"
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr "Vil du afspille DVD i drevet?"
 
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Vil du gennemse denne DVD inden brænding?"
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Vil du genskabe dine indstillinger?"
@@ -982,12 +1108,18 @@ msgstr "Vil du genskabe dine indstillinger?"
 msgid "Do you want to resume this playback?"
 msgstr "Vil du genoptage denne afspilning?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Vil du opdatere din Dreambox?\n"
 "Efter tryk på OK, vent venligst!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vil du se en oversigt?"
@@ -1002,6 +1134,10 @@ msgstr "Færdig - Installerede og opgraderede %d pakker"
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Færdig - Installerede og opgraderede %d pakker med %d fejl"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr "Download"
@@ -1261,9 +1397,6 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flash mislykkedes"
 
-msgid "Font size"
-msgstr "Skrift størrelse"
-
 msgid "Format"
 msgstr "Formatere"
 
@@ -1365,6 +1498,9 @@ msgstr "Hiraki Information"
 msgid "Hierarchy mode"
 msgstr "Hieraki type"
 
+msgid "Horizontal"
+msgstr ""
+
 msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du optage?"
 
@@ -1456,6 +1592,15 @@ msgstr "Initialiserer Harddisk..."
 msgid "Input"
 msgstr "Indgang"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr "Installerer"
 
@@ -1498,6 +1643,9 @@ msgstr "Invertere"
 
 msgid "Invert display"
 msgstr "Inverter display"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "Italiensk"
@@ -1544,6 +1692,9 @@ msgstr "Sidste hastighed"
 
 msgid "Latitude"
 msgstr "Breddegrad"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr "Forlade DVD Afspiller?"
@@ -1594,6 +1745,9 @@ msgstr "Lokation"
 msgid "Lock:"
 msgstr "Lås:"
 
+msgid "Log results to harddisk"
+msgstr ""
+
 msgid "Long Keypress"
 msgstr "Langt Tastetryk"
 
@@ -1621,11 +1775,17 @@ msgstr "Lave dette mærke til 'ud' point"
 msgid "Make this mark just a mark"
 msgstr "Lave dette mærke til kun et mærke"
 
+msgid "Manage your receiver's software"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Manuel Søgning"
 
 msgid "Manual transponder"
 msgstr "Manuel transponder"
+
+msgid "Manufacturer"
+msgstr ""
 
 msgid "Margin after record"
 msgstr "Margin efter optagelse"
@@ -1650,6 +1810,9 @@ msgstr "Menu"
 
 msgid "Message"
 msgstr "Besked"
+
+msgid "Message..."
+msgstr ""
 
 msgid "Mkfs failed"
 msgstr "Mkfs fejlede"
@@ -1986,6 +2149,9 @@ msgstr "Pakke liste opdatering"
 msgid "Packet management"
 msgstr "Pakke kontrol"
 
+msgid "Packet manager"
+msgstr ""
+
 msgid "Page"
 msgstr "Side"
 
@@ -2122,6 +2288,9 @@ msgstr "Vælg en underkanal til at optagelse..."
 msgid "Please select a subservice..."
 msgstr "Vælg venligst en underkanal..."
 
+msgid "Please select medium to use as backup location"
+msgstr ""
+
 msgid "Please select tag to filter..."
 msgstr "Vælg venligst tag til filtrering..."
 
@@ -2158,6 +2327,9 @@ msgstr ""
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Vent venligt på aktivering af din netværks opsætning..."
+
+msgid "Please wait while scanning is in progress..."
+msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Vent venligts, mens vi opsætter dit netværk..."
@@ -2234,6 +2406,10 @@ msgstr "Tryk OK for at aktivere indstillinger."
 msgid "Press OK to edit the settings."
 msgstr "Tryk på OK for at redigere indstillinger."
 
+#, python-format
+msgid "Press OK to get further details for %s"
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr "Tryk OK for at søge"
 
@@ -2248,6 +2424,9 @@ msgstr "Gennemsyns menu"
 
 msgid "Primary DNS"
 msgstr "Primær DNS"
+
+msgid "Priority"
+msgstr ""
 
 msgid "Properties of current title"
 msgstr "Egenskaber for den aktuelle titel"
@@ -2266,6 +2445,9 @@ msgstr "Udbyder til søgning"
 
 msgid "Providers"
 msgstr "Udbydere"
+
+msgid "Quick"
+msgstr ""
 
 msgid "Quickzap"
 msgstr "Hurtigskift"
@@ -2288,14 +2470,14 @@ msgstr "Radio"
 msgid "Ram Disk"
 msgstr "Ram Disk"
 
+msgid "Random"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "Vil du virkelig lukke uden at gemme indstillinger?"
 
 msgid "Really delete done timers?"
 msgstr "Slette udførte timere?"
-
-msgid "Really delete this timer?"
-msgstr "Vil du virkelig slette denne timer?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Vil du afslutte underkanals hurtigskift?"
@@ -2318,6 +2500,10 @@ msgstr "Modtage Indstillinger"
 msgid "Record"
 msgstr "Optage"
 
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
+
 msgid "Recorded files..."
 msgstr "Optagede filer..."
 
@@ -2339,6 +2525,9 @@ msgstr "Opdaterings  Rate"
 msgid "Refresh rate selection."
 msgstr "Opdaterings Rate vælger."
 
+msgid "Reload"
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Fjern bogmærke"
 
@@ -2351,6 +2540,9 @@ msgstr "Fjerne et mærke"
 msgid "Remove currently selected title"
 msgstr "Fjerne nuværende valgte titel"
 
+msgid "Remove finished."
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Fjerne plugins"
 
@@ -2360,8 +2552,14 @@ msgstr "Fjern den ødelagte .NFI fil?"
 msgid "Remove the incomplete .NFI file?"
 msgstr "Fjern den ukomplette .NFI fil?"
 
+msgid "Remove timer"
+msgstr ""
+
 msgid "Remove title"
 msgstr "Fjerne titel"
+
+msgid "Removing"
+msgstr ""
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2411,6 +2609,18 @@ msgstr "Genstart din netværk opkobling og interfaces.\n"
 
 msgid "Restore"
 msgstr "Gendanne"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2589,6 +2799,9 @@ msgstr "Sekundær DNS"
 msgid "Seek"
 msgstr "Søg"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Vælg Filsystem"
 
@@ -2609,6 +2822,12 @@ msgstr "Vælg lyd spor"
 
 msgid "Select channel to record from"
 msgstr "Vælg optagekanal"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr "Vælg image"
@@ -2788,11 +3007,29 @@ msgstr "Langsom"
 msgid "Slow Motion speeds"
 msgstr "Langsom bevægelse hastigheder"
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Nogle plugins er ikke tilstede:\n"
 
 msgid "Somewhere else"
 msgstr "Andet steds"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2802,6 +3039,17 @@ msgstr ""
 "Desværre, din backup destination eksisterer ikke\n"
 "\n"
 "Vælg venligst en anden."
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -2870,6 +3118,12 @@ msgstr "Stoppe afspilning af denne film?"
 
 msgid "Stop test"
 msgstr "Stoppe test"
+
+msgid "Stop testing plane after # failed transponders"
+msgstr ""
+
+msgid "Stop testing plane after # successful transponders"
+msgstr ""
 
 msgid "Store position"
 msgstr "Gemme Position"
@@ -2950,6 +3204,12 @@ msgstr "DVB T"
 
 msgid "Terrestrial provider"
 msgstr "DVB T udbyder"
+
+msgid "Test DiSEqC settings"
+msgstr ""
+
+msgid "Test Type"
+msgstr ""
 
 msgid "Test mode"
 msgstr "Test type"
@@ -3050,6 +3310,10 @@ msgstr "Din indtastede pin kode er forkert."
 
 msgid "The pin codes you entered are different."
 msgstr "De indtastede pin koder er forskellige."
+
+#, python-format
+msgid "The results have been written to %s."
+msgstr ""
 
 msgid "The sleep timer has been activated."
 msgstr "Sleep timeren er blevet aktiveret."
@@ -3347,6 +3611,9 @@ msgstr "Tyrkisk"
 msgid "Two"
 msgstr "To"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Søge type"
 
@@ -3382,6 +3649,15 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Ukommiteret DiSEqC kommando"
 
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
+
 msgid "Universal LNB"
 msgstr "Universal LNB"
 
@@ -3399,6 +3675,9 @@ msgstr "Opdatering er udført. Her er resultatet:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Opdaterer... Vent venligst...  Dette kan tage adskillige minutter..."
+
+msgid "Upgrade finished."
+msgstr ""
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Opgradering færdig. Vil du Genstarte din DreamBox?"
@@ -3477,6 +3756,9 @@ msgstr "Scart / Video"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid "Vertical"
+msgstr ""
 
 msgid "Video Fine-Tuning"
 msgstr "Video Fin-Justering..."
@@ -3609,6 +3891,15 @@ msgstr "Vest"
 msgid "What do you want to scan?"
 msgstr "Hvad vil du søge?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du lave en kopi af dine indstillinger?"
 
@@ -3727,11 +4018,21 @@ msgstr ""
 "backup nu."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
 "Du har valgt at oprette ny .NFI flash bootbar USB stick. Dette vil "
 "repartitionere USB sticken og derfor vil alle data på den blive slettet."
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3905,6 +4206,9 @@ msgstr "lydspor (%s) sprog"
 msgid "audio tracks"
 msgstr "lyd spor"
 
+msgid "auto"
+msgstr ""
+
 msgid "back"
 msgstr "Tilbage"
 
@@ -3950,9 +4254,6 @@ msgstr "Højre-cirkulær"
 
 msgid "clear playlist"
 msgstr "Slet spilleliste"
-
-msgid "color"
-msgstr "farve"
 
 msgid "complex"
 msgstr "Komplex"
@@ -4098,9 +4399,6 @@ msgstr "fil navn"
 msgid "fine-tune your display"
 msgstr "Fin-Juster dit Display"
 
-msgid "font face"
-msgstr "skrift udseende"
-
 msgid "forward to the next chapter"
 msgstr "Frem til næste kapitel"
 
@@ -4119,9 +4417,6 @@ msgstr "Gå til Standby"
 msgid "green"
 msgstr "grøn"
 
-msgid "headline"
-msgstr "overskrift"
-
 msgid "hear radio..."
 msgstr "Høre radio..."
 
@@ -4136,9 +4431,6 @@ msgstr "Skjule udvidet beskrivelse"
 
 msgid "hide player"
 msgstr "Skjul afspiller"
-
-msgid "highlighted button"
-msgstr "fremhævede knap"
 
 msgid "horizontal"
 msgstr "Horisontal"
@@ -4285,6 +4577,9 @@ msgstr "Ingen"
 
 msgid "not locked"
 msgstr "Ikke låst"
+
+msgid "not used"
+msgstr ""
 
 msgid "nothing connected"
 msgstr "Intet tilsluttet"
@@ -4527,9 +4822,6 @@ msgstr "vis billeder i sløjfe"
 msgid "sort by date"
 msgstr "Sorter på Dato"
 
-msgid "spaces (top, between rows, left)"
-msgstr "luft (top, mellem rækker, venstre)"
-
 msgid "standard"
 msgstr "Normal"
 
@@ -4572,14 +4864,17 @@ msgstr "Skift til filliste"
 msgid "switch to playlist"
 msgstr "Skift til spilleliste"
 
+msgid "switch to the next angle"
+msgstr ""
+
 msgid "switch to the next audio track"
 msgstr "Skift til næste lyd spor"
 
 msgid "switch to the next subtitle language"
 msgstr "Skift til næste undertekst sprog"
 
-msgid "text"
-msgstr "Tekst"
+msgid "template file"
+msgstr ""
 
 msgid "textcolor"
 msgstr "tekstfarve"
@@ -4632,6 +4927,9 @@ msgstr "Ugentlig"
 msgid "whitelist"
 msgstr "Hvidliste"
 
+msgid "working"
+msgstr ""
+
 msgid "yellow"
 msgstr "gul"
 
@@ -4666,6 +4964,12 @@ msgstr "Zappet"
 
 #~ msgid ".NFI Flasher bootable USB stick successfully created."
 #~ msgstr ".NFI flash bootbar USB stick blev oprettet."
+
+#~ msgid "AGC"
+#~ msgstr "AGC"
+
+#~ msgid "AGC:"
+#~ msgstr "AGC:"
 
 #~ msgid "AV-Setup"
 #~ msgstr "AV-Indstilling"
@@ -4833,6 +5137,9 @@ msgstr "Zappet"
 #~ msgid "Fix USB stick"
 #~ msgstr "Klargør USB stick"
 
+#~ msgid "Font size"
+#~ msgstr "Skrift størrelse"
+
 #~ msgid "Hello!"
 #~ msgstr "Goddag!"
 
@@ -4979,6 +5286,9 @@ msgstr "Zappet"
 
 #~ msgid "Rate"
 #~ msgstr "Billedfrekvens"
+
+#~ msgid "Really delete this timer?"
+#~ msgstr "Vil du virkelig slette denne timer?"
 
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really reboot "
@@ -5203,14 +5513,26 @@ msgstr "Zappet"
 #~ msgid "by Exif"
 #~ msgstr "Via Exif"
 
+#~ msgid "color"
+#~ msgstr "farve"
+
 #~ msgid "delete"
 #~ msgstr "Slet"
 
 #~ msgid "equal to Socket A"
 #~ msgstr "Som Tuner A"
 
+#~ msgid "font face"
+#~ msgstr "skrift udseende"
+
 #~ msgid "full /etc directory"
 #~ msgstr "full /etc direktorie"
+
+#~ msgid "headline"
+#~ msgstr "overskrift"
+
+#~ msgid "highlighted button"
+#~ msgstr "fremhævede knap"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Forbundet til Tuner A"
@@ -5241,6 +5563,12 @@ msgstr "Zappet"
 
 #~ msgid "skip forward (self defined)"
 #~ msgstr "Skip frem (bruger defineret)"
+
+#~ msgid "spaces (top, between rows, left)"
+#~ msgstr "luft (top, mellem rækker, venstre)"
+
+#~ msgid "text"
+#~ msgstr "Tekst"
 
 #~ msgid "welcome"
 #~ msgstr "Velkommen"

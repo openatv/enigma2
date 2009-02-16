@@ -10,7 +10,7 @@ from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleM
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, fileExists
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_SKIN_IMAGE, SCOPE_FONTS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG, fileExists
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -33,9 +33,9 @@ class SkinError(Exception):
 
 dom_skins = [ ]
 
-def loadSkin(name):
+def loadSkin(name, scope = SCOPE_SKIN):
 	# read the skin
-	filename = resolveFilename(SCOPE_SKIN, name)
+	filename = resolveFilename(scope, name)
 	mpath = path.dirname(filename) + "/"
 	dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
 
@@ -54,6 +54,11 @@ config.skin = ConfigSubsection()
 config.skin.primary_skin = ConfigText(default = "skin.xml")
 
 profile("LoadSkin")
+try:
+	loadSkin('skin_user.xml', SCOPE_CONFIG)
+except (SkinError, IOError, AssertionError), err:
+	print "not loading user skin: ", err
+
 try:
 	loadSkin(config.skin.primary_skin.value)
 except (SkinError, IOError, AssertionError), err:

@@ -368,12 +368,6 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 		<widget name="long_key" position="320,520" size="350,50" font="Regular;25" halign="right" foregroundColor="yellow" />
 	</screen>
-	<!-- Image Wizard -->
-	<screen name="ImageWizard" position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder">
-		<widget name="text" position="50,100" size="440,250" font="Regular;22" />
-		<widget name="list" position="50,350" zPosition="1" size="440,200" />
-		<widget name="config" position="50,350" zPosition="1" size="440,200" transparent="1" scrollbarMode="showOnDemand" />
-	</screen>
 	<!-- Inputbox -->
 	<screen name="InputBox" position="80,250" size="550,90" title="Input">
 		<widget name="text" position="10,20" size="550,25" font="Regular;23" />

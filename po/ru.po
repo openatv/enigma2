@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 07:24+0100\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
 "PO-Revision-Date: 2007-06-14 10:15+0300\n"
 "Last-Translator: enigma® <enigma.ua@gmail.com>\n"
 "Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
@@ -13,6 +13,67 @@ msgstr ""
 "X-Poedit-Language: Русский\n"
 "X-Poedit-Country: RUSSIA\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr ""
@@ -93,9 +154,6 @@ msgid "* Only available when entering hidden SSID or network key"
 msgstr ""
 
 msgid ".NFI Download failed:"
-msgstr ""
-
-msgid ".NFI Flasher bootable USB stick successfully created."
 msgstr ""
 
 msgid ""
@@ -284,12 +342,6 @@ msgstr "AC3 по умолчанию"
 msgid "AC3 downmix"
 msgstr ""
 
-msgid "AGC"
-msgstr ""
-
-msgid "AGC:"
-msgstr "AGC:"
-
 msgid "About"
 msgstr "Информация"
 
@@ -345,7 +397,13 @@ msgstr ""
 msgid "Advanced"
 msgstr "Расширенный"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
+msgstr ""
+
+msgid "Advanced restore"
 msgstr ""
 
 msgid "After event"
@@ -367,9 +425,6 @@ msgstr "Все"
 msgid "All Satellites"
 msgstr ""
 
-msgid "All..."
-msgstr ""
-
 msgid "Alpha"
 msgstr "Прозрачность"
 
@@ -380,6 +435,9 @@ msgid "Alternative services tuner priority"
 msgstr ""
 
 msgid "An empty filename is illegal."
+msgstr ""
+
+msgid "An error occured!"
 msgstr ""
 
 msgid "An unknown error occured!"
@@ -396,6 +454,16 @@ msgstr ""
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
 msgstr ""
 
 msgid "Artist"
@@ -467,8 +535,23 @@ msgstr "Место сохранения"
 msgid "Backup Mode"
 msgstr "Режим сохранения"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Сохранено. Пожалуйста, нажмите OK для просмотра результата"
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Диапазон"
@@ -577,6 +660,9 @@ msgstr "Канал"
 msgid "Channel Selection"
 msgstr "Выбор канала"
 
+msgid "Channel not in services list"
+msgstr ""
+
 msgid "Channel:"
 msgstr "Канал:"
 
@@ -601,6 +687,12 @@ msgstr ""
 msgid "Choose Tuner"
 msgstr ""
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Выберите пакет пользователя"
 
@@ -610,7 +702,16 @@ msgstr "Выберите иточник"
 msgid "Choose target folder"
 msgstr ""
 
+msgid "Choose upgrade source"
+msgstr ""
+
 msgid "Choose your Skin"
+msgstr ""
+
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
 msgstr ""
 
 msgid "Cleanup"
@@ -710,13 +811,14 @@ msgstr ""
 msgid "Contrast"
 msgstr "Контрастность"
 
-msgid "Copying USB flasher boot image to stick..."
-msgstr ""
-
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -789,9 +891,6 @@ msgstr "Датский"
 msgid "Date"
 msgstr "Дата"
 
-msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
-
 msgid "Deep Standby"
 msgstr "Полное выключение"
 
@@ -821,6 +920,9 @@ msgstr ""
 
 msgid "Description"
 msgstr "Описание"
+
+msgid "Deselect"
+msgstr ""
 
 msgid "Destination directory"
 msgstr ""
@@ -884,6 +986,9 @@ msgstr ""
 msgid "Display 4:3 content as"
 msgstr ""
 
+msgid "Display >16:9 content as"
+msgstr ""
+
 msgid "Display Setup"
 msgstr ""
 
@@ -906,9 +1011,6 @@ msgstr "Вы действительно хотите удалить %s?"
 msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
-msgstr ""
-
-msgid "Do you really want to exit?"
 msgstr ""
 
 msgid ""
@@ -948,10 +1050,19 @@ msgstr "Вы желаете установить родительский кон
 msgid "Do you want to install default sat lists?"
 msgstr ""
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr ""
 
 msgid "Do you want to preview this DVD before burning?"
+msgstr ""
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -960,12 +1071,18 @@ msgstr "Вы хотите восстановить Ваши установки?"
 msgid "Do you want to resume this playback?"
 msgstr "Вы хотите продолжить воспроизведение?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Вы хотите обновить ПО Dreambox?\n"
 "После нажатия OK, пожалуйста, ждите!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Вы хотите посмотреть описание?"
@@ -980,6 +1097,10 @@ msgstr "Выполнено - Установлено или обновлено %d
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Выполнено - Установлено или обновлено %d пакетов с %d ошибками"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr ""
@@ -1001,9 +1122,6 @@ msgstr "Доступные плагины"
 
 msgid "Downloading"
 msgstr "Загрузка"
-
-msgid "Downloading image description..."
-msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Идет загрузка информации о плагинах. Ждите..."
@@ -1087,9 +1205,6 @@ msgstr ""
 msgid "Encryption Type"
 msgstr ""
 
-msgid "End"
-msgstr "Конец"
-
 msgid "End time"
 msgstr ""
 
@@ -1154,6 +1269,9 @@ msgstr "Процесс выполнения:"
 
 msgid "Execution finished!!"
 msgstr "Выполнение закончено!"
+
+msgid "Exif"
+msgstr ""
 
 msgid "Exit"
 msgstr ""
@@ -1228,22 +1346,19 @@ msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
 
-msgid "Fix USB stick"
-msgstr ""
-
 msgid "Flash"
 msgstr ""
 
 msgid "Flashing failed"
 msgstr ""
 
-msgid "Font size"
-msgstr ""
-
 msgid "Format"
 msgstr ""
 
 msgid "Frame repeat count during non-smooth winding"
+msgstr ""
+
+msgid "Frame size in full view"
 msgstr ""
 
 msgid "French"
@@ -1266,6 +1381,9 @@ msgstr "Пт"
 
 msgid "Friday"
 msgstr "Пятница"
+
+msgid "Frisian"
+msgstr ""
 
 msgid "Fritz!Box FON IP address"
 msgstr ""
@@ -1332,6 +1450,9 @@ msgstr ""
 
 msgid "Hierarchy mode"
 msgstr "Hierarchy mode"
+
+msgid "Horizontal"
+msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Сколько минут вы хотите производить запись?"
@@ -1414,6 +1535,15 @@ msgstr "Инициализация жесткого диска..."
 msgid "Input"
 msgstr "Вход"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr ""
 
@@ -1456,6 +1586,9 @@ msgstr "Инверсия"
 
 msgid "Invert display"
 msgstr "Инверсия экрана"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "Итальянский"
@@ -1502,6 +1635,9 @@ msgstr ""
 
 msgid "Latitude"
 msgstr "Широта"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr ""
@@ -1552,6 +1688,9 @@ msgstr ""
 msgid "Lock:"
 msgstr ""
 
+msgid "Log results to harddisk"
+msgstr ""
+
 msgid "Long Keypress"
 msgstr ""
 
@@ -1579,11 +1718,17 @@ msgstr ""
 msgid "Make this mark just a mark"
 msgstr ""
 
+msgid "Manage your receiver's software"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Ручной поиск"
 
 msgid "Manual transponder"
 msgstr "Manual transponder"
+
+msgid "Manufacturer"
+msgstr ""
 
 msgid "Margin after record"
 msgstr "Объединить после записи"
@@ -1608,6 +1753,9 @@ msgstr "Меню"
 
 msgid "Message"
 msgstr "Сообщение"
+
+msgid "Message..."
+msgstr ""
 
 msgid "Mkfs failed"
 msgstr ""
@@ -1753,6 +1901,9 @@ msgstr ""
 "HDD не найден или \n"
 "не установлен."
 
+msgid "No Networks found"
+msgstr ""
+
 msgid "No backup needed"
 msgstr "Резервное копирование не требуется"
 
@@ -1781,6 +1932,9 @@ msgid "No positioner capable frontend found."
 msgstr "Нет позиционера способного найти передний край."
 
 msgid "No satellite frontend found!!"
+msgstr ""
+
+msgid "No tags are set on these movies."
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -1874,12 +2028,6 @@ msgid "Now Playing"
 msgstr "Воспроизводится "
 
 msgid ""
-"Now please insert the USB stick (minimum size is 64 MB) that you want to "
-"format and use as .NFI image flasher. Press OK after you've put the stick "
-"back in."
-msgstr ""
-
-msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -1915,9 +2063,6 @@ msgstr ""
 msgid "Orbital Position"
 msgstr ""
 
-msgid "Other..."
-msgstr ""
-
 msgid "PAL"
 msgstr ""
 
@@ -1929,6 +2074,9 @@ msgstr "Обновление списка пакетов"
 
 msgid "Packet management"
 msgstr "Управление пакетами"
+
+msgid "Packet manager"
+msgstr ""
 
 msgid "Page"
 msgstr ""
@@ -1952,14 +2100,14 @@ msgstr "Установки родительского контроля"
 msgid "Parental control type"
 msgstr "Тип родительского контроля"
 
-msgid "Partitioning USB stick..."
-msgstr ""
-
 msgid "Pause movie at end"
 msgstr ""
 
 msgid "PiPSetup"
 msgstr "PiP установка"
+
+msgid "PicturePlayer"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -2002,6 +2150,11 @@ msgid "Please choose he package..."
 msgstr ""
 
 msgid "Please choose the default services lists you want to install."
+msgstr ""
+
+msgid ""
+"Please disconnect all USB devices from your Dreambox and (re-)attach the "
+"target USB stick (minimum size is 64 MB) now!"
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -2057,7 +2210,10 @@ msgstr "Пожалуйста, выберите подсервис для зап�
 msgid "Please select a subservice..."
 msgstr "Пожалуйста, выберите подсервис..."
 
-msgid "Please select keyword to filter..."
+msgid "Please select medium to use as backup location"
+msgstr ""
+
+msgid "Please select tag to filter..."
 msgstr ""
 
 msgid "Please select target directory or medium"
@@ -2092,7 +2248,7 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
-msgid "Please wait for md5 signature verification..."
+msgid "Please wait while scanning is in progress..."
 msgstr ""
 
 msgid "Please wait while we configure your network..."
@@ -2170,6 +2326,10 @@ msgstr "Нажмите OK для активации установок"
 msgid "Press OK to edit the settings."
 msgstr ""
 
+#, python-format
+msgid "Press OK to get further details for %s"
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr "Нажмите OK для поиска."
 
@@ -2183,6 +2343,9 @@ msgid "Preview menu"
 msgstr ""
 
 msgid "Primary DNS"
+msgstr ""
+
+msgid "Priority"
 msgstr ""
 
 msgid "Properties of current title"
@@ -2202,6 +2365,9 @@ msgstr ""
 
 msgid "Providers"
 msgstr "Провайдеры"
+
+msgid "Quick"
+msgstr ""
 
 msgid "Quickzap"
 msgstr "Quickzap"
@@ -2224,14 +2390,14 @@ msgstr ""
 msgid "Ram Disk"
 msgstr ""
 
+msgid "Random"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "Действительно закрыть без сохранения настроек ?"
 
 msgid "Really delete done timers?"
 msgstr "Действительно удалить выполненные таймеры?"
-
-msgid "Really delete this timer?"
-msgstr "Действительно удалить данный таймер?"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Действительно выйти из подсервиса quickzap?"
@@ -2254,6 +2420,10 @@ msgstr ""
 msgid "Record"
 msgstr "Записать"
 
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
+
 msgid "Recorded files..."
 msgstr ""
 
@@ -2275,7 +2445,7 @@ msgstr ""
 msgid "Refresh rate selection."
 msgstr ""
 
-msgid "Remounting stick partition..."
+msgid "Reload"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -2290,6 +2460,9 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr ""
 
+msgid "Remove finished."
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Удаление плагинов "
 
@@ -2299,7 +2472,13 @@ msgstr ""
 msgid "Remove the incomplete .NFI file?"
 msgstr ""
 
+msgid "Remove timer"
+msgstr ""
+
 msgid "Remove title"
+msgstr ""
+
+msgid "Removing"
 msgstr ""
 
 #, python-format
@@ -2350,6 +2529,18 @@ msgstr ""
 
 msgid "Restore"
 msgstr "Восстановить"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2527,6 +2718,9 @@ msgstr ""
 msgid "Seek"
 msgstr "Искать"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Выбрать HDD"
 
@@ -2547,6 +2741,12 @@ msgstr "Выбрать аудиотрек"
 
 msgid "Select channel to record from"
 msgstr "Выбрать канал для записи"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr ""
@@ -2720,11 +2920,29 @@ msgstr ""
 msgid "Slow Motion speeds"
 msgstr ""
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr ""
 
 msgid "Somewhere else"
 msgstr "где-нибудь еще"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2734,6 +2952,17 @@ msgstr ""
 "Указанное место сохнанения не существует.\n"
 "\n"
 "Пожалуйста, выберите другое!"
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -2760,9 +2989,6 @@ msgstr "Выключение"
 
 msgid "Standby / Restart"
 msgstr "Выключение"
-
-msgid "Start"
-msgstr "Старт"
 
 msgid "Start from the beginning"
 msgstr ""
@@ -2804,6 +3030,12 @@ msgid "Stop playing this movie?"
 msgstr "Остановить воспроизведение?"
 
 msgid "Stop test"
+msgstr ""
+
+msgid "Stop testing plane after # failed transponders"
+msgstr ""
+
+msgid "Stop testing plane after # successful transponders"
 msgstr ""
 
 msgid "Store position"
@@ -2864,11 +3096,26 @@ msgstr "TV система"
 msgid "Table of content for collection"
 msgstr ""
 
+msgid "Tag 1"
+msgstr ""
+
+msgid "Tag 2"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Наземный"
 
 msgid "Terrestrial provider"
 msgstr "Наземный провайдер"
+
+msgid "Test DiSEqC settings"
+msgstr ""
+
+msgid "Test Type"
+msgstr ""
 
 msgid "Test mode"
 msgstr "Режим теста"
@@ -2887,16 +3134,14 @@ msgstr ""
 "Пожалуйста, нажмите OK для начала работы Вашего Dreambox."
 
 msgid ""
-"The .NFI Image flasher USB stick is now ready to use. Please download an ."
-"NFI image file from the feed server and save it on the stick. Then reboot "
-"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
-"stick!"
-msgstr ""
-
-msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
+msgstr ""
+
+msgid ""
+"The USB stick is now bootable. Do you want to download the latest image from "
+"the feed server and save it on the stick?"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
@@ -2951,6 +3196,10 @@ msgstr "Введенный PIN код не верный"
 
 msgid "The pin codes you entered are different."
 msgstr "Введенный PIN код отличается."
+
+#, python-format
+msgid "The results have been written to %s."
+msgstr ""
 
 msgid "The sleep timer has been activated."
 msgstr ""
@@ -3059,6 +3308,9 @@ msgstr "Гетеродин"
 msgid "Thu"
 msgstr "Чт"
 
+msgid "Thumbnails"
+msgstr ""
+
 msgid "Thursday"
 msgstr "Четверг"
 
@@ -3106,21 +3358,28 @@ msgstr "Таймшифт"
 msgid "Timeshift not possible!"
 msgstr "Сдвиг времени не возможен!"
 
+msgid "Timeshift path..."
+msgstr ""
+
 msgid "Timezone"
 msgstr "Часовой пояс"
 
-msgid "Title properties"
-msgstr ""
-
 msgid "Title"
 msgstr "Название"
+
+msgid "Title properties"
+msgstr ""
 
 msgid "Titleset mode"
 msgstr ""
 
 msgid ""
-"To make sure you intend to do this, please remove the target USB stick now "
-"and stick it back in upon prompt. Press OK when you have taken the stick out."
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and plug in the bootable USB "
+"stick.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
 msgid "Today"
@@ -3198,6 +3457,9 @@ msgstr "Турецкий"
 msgid "Two"
 msgstr "Два"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Тип сканирования"
 
@@ -3209,6 +3471,12 @@ msgstr "USB"
 
 msgid "USB Stick"
 msgstr "USB флешь"
+
+msgid "USB stick wizard"
+msgstr ""
+
+msgid "Ukrainian"
+msgstr ""
 
 msgid ""
 "Unable to complete filesystem check.\n"
@@ -3222,6 +3490,15 @@ msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Команда переключения DoSEqC"
+
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "универсальный-LNB"
@@ -3241,6 +3518,9 @@ msgstr "Обновление завершено.Результат:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Обновление... Пожалуйста ждите... Это может занять несколько минут... "
 
+msgid "Upgrade finished."
+msgstr ""
+
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr ""
 
@@ -3248,6 +3528,9 @@ msgid "Upgrading"
 msgstr ""
 
 msgid "Upgrading Dreambox... Please wait"
+msgstr ""
+
+msgid "Use"
 msgstr ""
 
 msgid "Use DHCP"
@@ -3317,6 +3600,9 @@ msgstr "Видеомагнитофон"
 msgid "VMGM (intro trailer)"
 msgstr ""
 
+msgid "Vertical"
+msgstr ""
+
 msgid "Video Fine-Tuning"
 msgstr ""
 
@@ -3380,9 +3666,6 @@ msgstr "WSS on 4:3"
 msgid "Waiting"
 msgstr ""
 
-msgid "Waiting for USB stick to settle..."
-msgstr ""
-
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3436,8 +3719,20 @@ msgstr "Запад"
 msgid "What do you want to scan?"
 msgstr "Что Вы хотите найти?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Где вы хотите сохранить установки?"
+
+msgid "Where to save temporary timeshift recordings?"
+msgstr ""
 
 msgid "Wireless"
 msgstr ""
@@ -3452,9 +3747,6 @@ msgid "Write failed!"
 msgstr ""
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
-
-msgid "Writing image file to NAND Flash"
 msgstr ""
 
 msgid "YPbPr"
@@ -3549,8 +3841,18 @@ msgstr ""
 "сохранения."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
 msgstr ""
 
 #, python-format
@@ -3569,12 +3871,6 @@ msgstr ""
 "dm7025.de.\n"
 "Ваш Dreambox должен быть остановлен. После выполнения Вами инструкций по "
 "обновлению с сайта, новое ПО запросит восстановление Ваших установок. "
-
-msgid ""
-"You need to define some keywords first!\n"
-"Press the menu-key to define keywords.\n"
-"Do you want to define keywords now?"
-msgstr ""
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -3723,23 +4019,32 @@ msgstr ""
 msgid "audio tracks"
 msgstr ""
 
+msgid "auto"
+msgstr ""
+
 msgid "back"
 msgstr "назад"
 
 msgid "background image"
 msgstr ""
 
+msgid "backgroundcolor"
+msgstr ""
+
 msgid "better"
+msgstr ""
+
+msgid "black"
 msgstr ""
 
 msgid "blacklist"
 msgstr ""
 
-#, python-format
-msgid "burn audio track (%s)"
+msgid "blue"
 msgstr ""
 
-msgid "by Exif"
+#, python-format
+msgid "burn audio track (%s)"
 msgstr ""
 
 msgid "change recording (duration)"
@@ -3762,9 +4067,6 @@ msgstr "круговой правый"
 
 msgid "clear playlist"
 msgstr "очистить список воспроизведения"
-
-msgid "color"
-msgstr ""
 
 msgid "complex"
 msgstr ""
@@ -3793,10 +4095,10 @@ msgstr "ежедневно"
 msgid "day"
 msgstr ""
 
-msgid "delete"
-msgstr "Удалить"
-
 msgid "delete cut"
+msgstr ""
+
+msgid "delete file"
 msgstr ""
 
 msgid "delete playlist entry"
@@ -3901,13 +4203,13 @@ msgstr ""
 msgid "failed"
 msgstr ""
 
+msgid "fileformats (BMP, PNG, JPG, GIF)"
+msgstr ""
+
 msgid "filename"
 msgstr ""
 
 msgid "fine-tune your display"
-msgstr ""
-
-msgid "font face"
 msgstr ""
 
 msgid "forward to the next chapter"
@@ -3925,7 +4227,7 @@ msgstr "полностью выключить"
 msgid "go to standby"
 msgstr ""
 
-msgid "headline"
+msgid "green"
 msgstr ""
 
 msgid "hear radio..."
@@ -3934,14 +4236,14 @@ msgstr "Слушать радио"
 msgid "help..."
 msgstr "помощь..."
 
+msgid "hidden network"
+msgstr ""
+
 msgid "hide extended description"
 msgstr ""
 
 msgid "hide player"
 msgstr "скрыть проигрыватель"
-
-msgid "highlighted button"
-msgstr ""
 
 msgid "horizontal"
 msgstr "горизонтальный"
@@ -4072,9 +4374,6 @@ msgstr "нет"
 msgid "no HDD found"
 msgstr "не найден HDD"
 
-msgid "no Picture found"
-msgstr "Изображение не найдено"
-
 msgid "no module found"
 msgstr "не найден модуль"
 
@@ -4088,6 +4387,9 @@ msgid "none"
 msgstr "никакой"
 
 msgid "not locked"
+msgstr ""
+
+msgid "not used"
 msgstr ""
 
 msgid "nothing connected"
@@ -4153,14 +4455,14 @@ msgstr "Предыдущий канал"
 msgid "previous channel in history"
 msgstr "Предыдущий канал в истории"
 
-msgid "rebooting..."
-msgstr ""
-
 msgid "record"
 msgstr "записать"
 
 msgid "recording..."
 msgstr "запись..."
+
+msgid "red"
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr ""
@@ -4210,7 +4512,13 @@ msgstr ""
 msgid "right"
 msgstr "правый"
 
+msgid "save last directory on exit"
+msgstr ""
+
 msgid "save playlist"
+msgstr ""
+
+msgid "save playlist on exit"
 msgstr ""
 
 msgid "scan done!"
@@ -4265,6 +4573,9 @@ msgstr ""
 msgid "show EPG..."
 msgstr "Показать EPG..."
 
+msgid "show Infoline"
+msgstr ""
+
 msgid "show all"
 msgstr ""
 
@@ -4277,10 +4588,10 @@ msgstr "оказать детали событий"
 msgid "show extended description"
 msgstr ""
 
-msgid "show first tag"
+msgid "show first selected tag"
 msgstr ""
 
-msgid "show second tag"
+msgid "show second selected tag"
 msgstr ""
 
 msgid "show shutdown menu"
@@ -4316,10 +4627,10 @@ msgstr "Перемотка вперед"
 msgid "skip forward (enter time)"
 msgstr ""
 
-msgid "sort by date"
+msgid "slide picture in loop"
 msgstr ""
 
-msgid "spaces (top, between rows, left)"
+msgid "sort by date"
 msgstr ""
 
 msgid "standard"
@@ -4329,6 +4640,9 @@ msgid "standby"
 msgstr ""
 
 msgid "start cut here"
+msgstr ""
+
+msgid "start directory"
 msgstr ""
 
 msgid "start timeshift"
@@ -4361,14 +4675,20 @@ msgstr "переключить на список файлов"
 msgid "switch to playlist"
 msgstr "переключить на список восизведения"
 
+msgid "switch to the next angle"
+msgstr ""
+
 msgid "switch to the next audio track"
 msgstr ""
 
 msgid "switch to the next subtitle language"
 msgstr ""
 
-msgid "text"
-msgstr "текст"
+msgid "template file"
+msgstr ""
+
+msgid "textcolor"
+msgstr ""
 
 msgid "this recording"
 msgstr "это записано"
@@ -4418,6 +4738,12 @@ msgstr "Еженедельно"
 msgid "whitelist"
 msgstr ""
 
+msgid "working"
+msgstr ""
+
+msgid "yellow"
+msgstr ""
+
 msgid "yes"
 msgstr "да"
 
@@ -4445,6 +4771,9 @@ msgstr ""
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
+#~ msgid "AGC:"
+#~ msgstr "AGC:"
+
 #~ msgid "Add files to playlist"
 #~ msgstr "Добавить файлы к списку воспроизведения"
 
@@ -4462,14 +4791,23 @@ msgstr ""
 #~ "Вы действительно хотите скачать\n"
 #~ "плагин \""
 
+#~ msgid "End"
+#~ msgstr "Конец"
+
 #~ msgid "Games / Plugins"
 #~ msgstr "Игры / Плагины"
 
 #~ msgid "Movie Menu"
 #~ msgstr "Меню видеопрограмм"
 
+#~ msgid "Really delete this timer?"
+#~ msgstr "Действительно удалить данный таймер?"
+
 #~ msgid "Replace current playlist"
 #~ msgstr "Переместить текущий список воспроизведения"
+
+#~ msgid "Start"
+#~ msgstr "Старт"
 
 #~ msgid "Startwizard"
 #~ msgstr "Мастер настройки"
@@ -4492,8 +4830,14 @@ msgstr ""
 #~ msgid "You selected a playlist"
 #~ msgstr "Вы выбрали список воспроизведения"
 
+#~ msgid "delete"
+#~ msgstr "Удалить"
+
 #~ msgid "full /etc directory"
 #~ msgstr "всю папку /etc"
+
+#~ msgid "no Picture found"
+#~ msgstr "Изображение не найдено"
 
 #~ msgid ""
 #~ "scan done!\n"
@@ -4522,3 +4866,6 @@ msgstr ""
 #~ msgstr ""
 #~ "идет поиск- %d %% выполнено!\n"
 #~ "%d сервисов найдено!"
+
+#~ msgid "text"
+#~ msgstr "текст"

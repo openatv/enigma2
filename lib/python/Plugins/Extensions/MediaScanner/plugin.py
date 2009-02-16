@@ -42,6 +42,9 @@ def scan(session):
 
 	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
 	if len(parts):
+		for x in parts:
+			if not access(x[1], F_OK|R_OK):
+				parts.remove(x)	
 		session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please Select Medium to be Scanned"), list = parts)
 
 def main(session, **kwargs):

@@ -52,6 +52,8 @@ class IpkgComponent:
 				self.runCmd("list")
 		elif cmd == self.CMD_INSTALL:
 			self.runCmd("install " + args['package'])
+		elif cmd == self.CMD_REMOVE:
+			self.runCmd("remove " + args['package'])
 		self.setCurrentCommand(cmd)
 	
 	def cmdFinished(self, retval):
@@ -90,6 +92,8 @@ class IpkgComponent:
 				self.callCallbacks(self.EVENT_UPGRADE, data.split('    ', 1)[1].split(' ')[0])
 			elif data.find('Installing') == 0:
 				self.callCallbacks(self.EVENT_INSTALL, data.split(' ', 1)[1].split(' ')[0])
+			elif data.find('Removing') == 0:
+				self.callCallbacks(self.EVENT_REMOVE, data.split(' ', 1)[1].split(' ')[1])
 			elif data.find('Configuring') == 0:
 				self.callCallbacks(self.EVENT_CONFIGURING, data.split(' ', 1)[1].split(' ')[0])
 			elif data.find('An error occurred') == 0:

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-16 00:47+0100\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
 "PO-Revision-Date: 2009-01-03 11:39+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -12,6 +12,67 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Finnish\n"
 "X-Poedit-Country: FINLAND\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr ""
@@ -358,8 +419,14 @@ msgstr ""
 msgid "Advanced"
 msgstr "Laajennetut"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
 msgstr "Laajennetut video-asetukset"
+
+msgid "Advanced restore"
+msgstr ""
 
 msgid "After event"
 msgstr "Ajastuksen jälkeen"
@@ -392,6 +459,9 @@ msgstr "Virittimien prioriteetti"
 msgid "An empty filename is illegal."
 msgstr "Tyhjä nimi ei ole sallittu"
 
+msgid "An error occured!"
+msgstr ""
+
 msgid "An unknown error occured!"
 msgstr "Tuntematon virhe!"
 
@@ -411,6 +481,16 @@ msgid ""
 msgstr ""
 "Haluatko käynnistää verkkosovittimet uudelleen?\n"
 "\n"
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
+msgstr ""
 
 msgid "Artist"
 msgstr "Esittäjä"
@@ -481,8 +561,23 @@ msgstr "Mihin tallennetaan"
 msgid "Backup Mode"
 msgstr "Mitä tallennetaan"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Varmuuskopio valmis. Paina OK nähdäksesi tulokset."
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Taajuusalue"
@@ -618,6 +713,12 @@ msgstr "Tarkistetaan tiedostojärjestelmää"
 msgid "Choose Tuner"
 msgstr "Valitse viritin"
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Valitse suosikkilista"
 
@@ -627,8 +728,17 @@ msgstr "Valitse lähde"
 msgid "Choose target folder"
 msgstr "Valitse kohdehakemisto"
 
+msgid "Choose upgrade source"
+msgstr ""
+
 msgid "Choose your Skin"
 msgstr "Valitse teema"
+
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
+msgstr ""
 
 msgid "Cleanup"
 msgstr "Poista vanhat"
@@ -737,6 +847,10 @@ msgstr "NFI-ohjelmistopäivityksien palvelimelle ei saatu yhteyttä:"
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Levyä ei voitu ladata! Levy puuttuu?"
 
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
+
 msgid "Create DVD-ISO"
 msgstr ""
 
@@ -840,6 +954,9 @@ msgstr ""
 msgid "Description"
 msgstr "Kuvaus"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Destination directory"
 msgstr "Kohdehakemisto"
 
@@ -901,6 +1018,9 @@ msgstr "Näytä 16:9 sisältö"
 
 msgid "Display 4:3 content as"
 msgstr "Näytä 4:3 sisältö"
+
+msgid "Display >16:9 content as"
+msgstr ""
 
 msgid "Display Setup"
 msgstr "Etupaneelin näyttö..."
@@ -980,11 +1100,20 @@ msgstr ""
 msgid "Do you want to install default sat lists?"
 msgstr "Haluatko asentaa oletusarvoiset satelliittilistat?"
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr "Haluatko toistaa asemassa olevan DVD:n?"
 
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Haluatko esikatsella tämän DVD:n ennen polttoa?"
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Haluatko palauttaa asetukset?"
@@ -994,12 +1123,18 @@ msgstr ""
 "Jatketaanko kohdasta,\n"
 "johon katselu viimeksi jäi?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Haluatko päivittää Dreamboxin?\n"
 "Paina OK ja odota!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Haluatko katsoa opasohjelman?"
@@ -1014,6 +1149,10 @@ msgstr "Valmis - asennettu tai päivitetty %d lisäosaa"
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Valmis - asennettu tai päivitetty %d lisäosaa, %d virhettä"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr "Lataa"
@@ -1373,6 +1512,9 @@ msgstr "Hierarkia-tietoja"
 msgid "Hierarchy mode"
 msgstr "Hierarkia-tila"
 
+msgid "Horizontal"
+msgstr ""
+
 msgid "How many minutes do you want to record?"
 msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
@@ -1470,6 +1612,15 @@ msgstr "Alustetaan kiintolevyä..."
 msgid "Input"
 msgstr "Valitse"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr "Asennetaan"
 
@@ -1512,6 +1663,9 @@ msgstr "Inversio"
 
 msgid "Invert display"
 msgstr "Käänteinen tekstin ja taustan väritys"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "Italia"
@@ -1558,6 +1712,9 @@ msgstr "Aikaisempi nopeus"
 
 msgid "Latitude"
 msgstr "Leveysaste"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr "Poistu DVD-soittimesta?"
@@ -1638,11 +1795,17 @@ msgstr "Tee tästä merkistä lopetuspiste"
 msgid "Make this mark just a mark"
 msgstr "Tee tästä tavallinen merkki"
 
+msgid "Manage your receiver's software"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Manuaalihaku"
 
 msgid "Manual transponder"
 msgstr "Manuaalinen lähetin"
+
+msgid "Manufacturer"
+msgstr ""
 
 msgid "Margin after record"
 msgstr "Lisäaika tallenteen loppuun (minuuttia)"
@@ -2018,6 +2181,9 @@ msgstr "Pakettilistan päivitys"
 msgid "Packet management"
 msgstr "Pakettienhallinta"
 
+msgid "Packet manager"
+msgstr ""
+
 msgid "Page"
 msgstr "Sivu"
 
@@ -2151,6 +2317,9 @@ msgstr "Valitse tallennettava alipalvelu..."
 
 msgid "Please select a subservice..."
 msgstr "Valitse alipalvelu..."
+
+msgid "Please select medium to use as backup location"
+msgstr ""
 
 msgid "Please select tag to filter..."
 msgstr ""
@@ -2360,6 +2529,10 @@ msgstr "Vastaanotinasetukset"
 msgid "Record"
 msgstr "Tallenna"
 
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
+
 msgid "Recorded files..."
 msgstr "Tallenteet..."
 
@@ -2381,6 +2554,9 @@ msgstr "Virkistystaajuus"
 msgid "Refresh rate selection."
 msgstr "Virkistystaajuuden valinta."
 
+msgid "Reload"
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Poista kirjanmerkki"
 
@@ -2392,6 +2568,9 @@ msgstr "Poista merkki"
 
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
+
+msgid "Remove finished."
+msgstr ""
 
 msgid "Remove plugins"
 msgstr "Poista lisäosia"
@@ -2407,6 +2586,9 @@ msgstr ""
 
 msgid "Remove title"
 msgstr "Poista otsikko"
+
+msgid "Removing"
+msgstr ""
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2456,6 +2638,18 @@ msgstr "Käynnistä verkkokortti ja yhteys uudelleen.\n"
 
 msgid "Restore"
 msgstr "Palauta"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2635,6 +2829,9 @@ msgstr "Toissijainen DNS"
 msgid "Seek"
 msgstr "Etsi"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Valitse kiintolevy"
 
@@ -2655,6 +2852,12 @@ msgstr "Valitse ääniraita"
 
 msgid "Select channel to record from"
 msgstr "Valitse tallennettava kanava"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr "Valitse päivitys"
@@ -2836,11 +3039,29 @@ msgstr "Hidas"
 msgid "Slow Motion speeds"
 msgstr "Hidastusnopeudet"
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Seuraavat lisäosat eivät ole saatavilla:\n"
 
 msgid "Somewhere else"
 msgstr "Jossakin muualla"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2850,6 +3071,17 @@ msgstr ""
 "Varmuuskopioinnin kohdetta ei löytynyt\n"
 "\n"
 "Valitse uusi kohde."
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -3408,6 +3640,9 @@ msgstr "Turkki"
 msgid "Two"
 msgstr "Kaksi"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Hakutapa"
 
@@ -3443,6 +3678,15 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC-käsky"
 
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
+
 msgid "Universal LNB"
 msgstr "Universaali LNB"
 
@@ -3460,6 +3704,9 @@ msgstr "Päivitys valmis. Tulos:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Päivitetään... Odota... Tämä voi kestää muutaman minuutin..."
+
+msgid "Upgrade finished."
+msgstr ""
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Päivitys valmis. Haluatko käynnistää Dreamboxin uudelleen?"
@@ -3553,6 +3800,9 @@ msgid "VCR scart"
 msgstr "SCART-läpivienti"
 
 msgid "VMGM (intro trailer)"
+msgstr ""
+
+msgid "Vertical"
 msgstr ""
 
 msgid "Video Fine-Tuning"
@@ -3700,6 +3950,15 @@ msgstr "Länsi"
 msgid "What do you want to scan?"
 msgstr "Kanavahaun lisäasetukset:"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Minne haluat varmuuskopioida asetukset?"
 
@@ -3816,11 +4075,21 @@ msgstr ""
 "varmistuksen nyt."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
 "Olet valinnut .NFI-päivitysohjelman asennuksen USB-muistille. Tämä toiminto "
 "osioi USB-muistin ja tuhoaa siltä kaikki tiedostot."
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
@@ -4369,6 +4638,9 @@ msgstr "ei mitään"
 
 msgid "not locked"
 msgstr "ei lukittu"
+
+msgid "not used"
+msgstr ""
 
 msgid "nothing connected"
 msgstr "ei kytketty"

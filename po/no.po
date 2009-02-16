@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-14 07:24+0100\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
 "PO-Revision-Date: 2008-06-12 14:34+0100\n"
 "Last-Translator: MMMMMM <theMMMMMM@gmail.com>\n"
 "Language-Team: none\n"
@@ -13,6 +13,67 @@ msgstr ""
 "X-Poedit-Language: Norwegian\n"
 "X-Poedit-Country: NORWAY\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr " "
@@ -93,9 +154,6 @@ msgid "* Only available when entering hidden SSID or network key"
 msgstr ""
 
 msgid ".NFI Download failed:"
-msgstr ""
-
-msgid ".NFI Flasher bootable USB stick successfully created."
 msgstr ""
 
 msgid ""
@@ -298,12 +356,6 @@ msgstr "AC3 som standard"
 msgid "AC3 downmix"
 msgstr "AC3 nedmix"
 
-msgid "AGC"
-msgstr "AGC"
-
-msgid "AGC:"
-msgstr "AGC:"
-
 msgid "About"
 msgstr "Om"
 
@@ -363,8 +415,14 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avansert"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
 msgstr "Avansert Video Oppsett"
+
+msgid "Advanced restore"
+msgstr ""
 
 msgid "After event"
 msgstr "Etter program"
@@ -385,9 +443,6 @@ msgstr "Alle"
 msgid "All Satellites"
 msgstr ""
 
-msgid "All..."
-msgstr "Alle..."
-
 msgid "Alpha"
 msgstr "Alpha"
 
@@ -399,6 +454,9 @@ msgstr "Alternativ tuner prioritet for kanaler"
 
 msgid "An empty filename is illegal."
 msgstr "Et tomt filnavn er ikke tillatt"
+
+msgid "An error occured!"
+msgstr ""
 
 msgid "An unknown error occured!"
 msgstr ""
@@ -415,6 +473,16 @@ msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr "Er du sikker på at du vil restarte ditt nettverkskort?\n"
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
+msgstr ""
 
 msgid "Artist"
 msgstr "Artist"
@@ -485,8 +553,23 @@ msgstr "Backup Lokasjon"
 msgid "Backup Mode"
 msgstr "Backup Modus"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Backup er ferdig. Vennligst trykk OK for å se resultatet"
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Bånd"
@@ -595,6 +678,9 @@ msgstr "Kanal"
 msgid "Channel Selection"
 msgstr "Kanalliste"
 
+msgid "Channel not in services list"
+msgstr ""
+
 msgid "Channel:"
 msgstr "Kanal:"
 
@@ -619,6 +705,12 @@ msgstr "Undersøker Filsystem"
 msgid "Choose Tuner"
 msgstr "Velg Tuner"
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Velg bouquet"
 
@@ -628,8 +720,17 @@ msgstr "Velg kilde"
 msgid "Choose target folder"
 msgstr "Velg folder du vil bruke"
 
+msgid "Choose upgrade source"
+msgstr ""
+
 msgid "Choose your Skin"
 msgstr "Velg ditt Skin"
+
+msgid "Circular left"
+msgstr ""
+
+msgid "Circular right"
+msgstr ""
 
 msgid "Cleanup"
 msgstr "Opprydning"
@@ -731,13 +832,14 @@ msgstr "Fortsett avspilling"
 msgid "Contrast"
 msgstr "Kontrast"
 
-msgid "Copying USB flasher boot image to stick..."
-msgstr ""
-
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -810,9 +912,6 @@ msgstr "Dansk"
 msgid "Date"
 msgstr "Dato"
 
-msgid "Decompressing USB stick flasher boot image..."
-msgstr ""
-
 msgid "Deep Standby"
 msgstr "Dyp Standby"
 
@@ -842,6 +941,9 @@ msgstr "Slette satellit %s, som ikke er i bruk lenger?"
 
 msgid "Description"
 msgstr "Beskrivelse"
+
+msgid "Deselect"
+msgstr ""
 
 msgid "Destination directory"
 msgstr ""
@@ -908,6 +1010,9 @@ msgstr "Vis 16:9 innhold som"
 msgid "Display 4:3 content as"
 msgstr "Vis 4:3 innhold som"
 
+msgid "Display >16:9 content as"
+msgstr ""
+
 msgid "Display Setup"
 msgstr "Display Oppsett"
 
@@ -933,9 +1038,6 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
-
-msgid "Do you really want to exit?"
-msgstr "Vil du virkelig avslutte"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -974,10 +1076,19 @@ msgstr "Vil du aktivere foreldrekontroll på dreamboxen din?"
 msgid "Do you want to install default sat lists?"
 msgstr ""
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr "Vil du spille DVD i spilleren?"
 
 msgid "Do you want to preview this DVD before burning?"
+msgstr ""
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
 msgstr ""
 
 msgid "Do you want to restore your settings?"
@@ -986,12 +1097,18 @@ msgstr "Vil du hente inn dine innstillinger?"
 msgid "Do you want to resume this playback?"
 msgstr "Vil du gjenoppta avspillingen ?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Vil du oppdatere din Dreambox?\n"
 "Etter å ha trykt OK, vennligst vent!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vil du se en veiledning?"
@@ -1006,6 +1123,10 @@ msgstr "Ferdig - Installerte eller oppgraderte %d pakker"
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Ferdig - Installerte eller oppgraderte %d pakker med %d feil"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr ""
@@ -1027,9 +1148,6 @@ msgstr "Nedlastbare plugins"
 
 msgid "Downloading"
 msgstr "Laster ned"
-
-msgid "Downloading image description..."
-msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Laster ned plugin informasjon. Vennligst vent..."
@@ -1113,9 +1231,6 @@ msgstr ""
 msgid "Encryption Type"
 msgstr "Krypteringstype"
 
-msgid "End"
-msgstr "Slutt"
-
 msgid "End time"
 msgstr "Slutt tid"
 
@@ -1186,6 +1301,9 @@ msgstr "Progresjon av utførelsen:"
 
 msgid "Execution finished!!"
 msgstr "Utførelse ferdig!"
+
+msgid "Exif"
+msgstr ""
 
 msgid "Exit"
 msgstr "Avslutt"
@@ -1260,16 +1378,10 @@ msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
 
-msgid "Fix USB stick"
-msgstr ""
-
 msgid "Flash"
 msgstr ""
 
 msgid "Flashing failed"
-msgstr ""
-
-msgid "Font size"
 msgstr ""
 
 msgid "Format"
@@ -1277,6 +1389,9 @@ msgstr ""
 
 msgid "Frame repeat count during non-smooth winding"
 msgstr "Billedgjentagelse ved hakkete spoling"
+
+msgid "Frame size in full view"
+msgstr ""
 
 msgid "French"
 msgstr "Fransk"
@@ -1298,6 +1413,9 @@ msgstr "Fre"
 
 msgid "Friday"
 msgstr "Fredag"
+
+msgid "Frisian"
+msgstr ""
 
 msgid "Fritz!Box FON IP address"
 msgstr "Fritz!Box FON IP adresse"
@@ -1366,6 +1484,9 @@ msgstr "Hierarkisk Informasjon"
 
 msgid "Hierarchy mode"
 msgstr "Hierarkisk modus"
+
+msgid "Horizontal"
+msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du ta opp?"
@@ -1460,6 +1581,15 @@ msgstr "Initialiserer Harddisk..."
 msgid "Input"
 msgstr "Input"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr "Installerer"
 
@@ -1502,6 +1632,9 @@ msgstr "Inversion"
 
 msgid "Invert display"
 msgstr "Inverter display"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "Italiensk"
@@ -1548,6 +1681,9 @@ msgstr "Siste hastighet"
 
 msgid "Latitude"
 msgstr "Breddegrad"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr "Avslutt DVD Spiller?"
@@ -1598,6 +1734,9 @@ msgstr "Plassering"
 msgid "Lock:"
 msgstr "Lås:"
 
+msgid "Log results to harddisk"
+msgstr ""
+
 msgid "Long Keypress"
 msgstr "Langt Tastetrykk"
 
@@ -1625,11 +1764,17 @@ msgstr "Gjør denne markør til et 'ut' punkt"
 msgid "Make this mark just a mark"
 msgstr "Gjør denne markør til bare en markør"
 
+msgid "Manage your receiver's software"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Manuelt Søk"
 
 msgid "Manual transponder"
 msgstr "Manuell transponder"
+
+msgid "Manufacturer"
+msgstr ""
 
 msgid "Margin after record"
 msgstr "Margin etter opptak"
@@ -1654,6 +1799,9 @@ msgstr "Meny"
 
 msgid "Message"
 msgstr "Melding"
+
+msgid "Message..."
+msgstr ""
 
 msgid "Mkfs failed"
 msgstr "Mkfs feilet"
@@ -1799,6 +1947,9 @@ msgstr ""
 "Ingen harddisk funnet eller\n"
 "Harddisk ikke initialisert."
 
+msgid "No Networks found"
+msgstr ""
+
 msgid "No backup needed"
 msgstr "Ingen backup nødvendig"
 
@@ -1831,6 +1982,9 @@ msgstr "Ingen brukbar Motor frontend funnet."
 
 msgid "No satellite frontend found!!"
 msgstr "Ingen satellit frontend funnet!!"
+
+msgid "No tags are set on these movies."
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ingen Tuner er konfigurert til bruk av diseqc Motor!"
@@ -1923,12 +2077,6 @@ msgid "Now Playing"
 msgstr "Nå avspilles"
 
 msgid ""
-"Now please insert the USB stick (minimum size is 64 MB) that you want to "
-"format and use as .NFI image flasher. Press OK after you've put the stick "
-"back in."
-msgstr ""
-
-msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
@@ -1967,9 +2115,6 @@ msgstr ""
 msgid "Orbital Position"
 msgstr "Orbital Posisjon"
 
-msgid "Other..."
-msgstr "Annet..."
-
 msgid "PAL"
 msgstr "PAL"
 
@@ -1981,6 +2126,9 @@ msgstr "Pakkeliste oppdatering"
 
 msgid "Packet management"
 msgstr "Pakkeforvaltning"
+
+msgid "Packet manager"
+msgstr ""
 
 msgid "Page"
 msgstr "Side"
@@ -2004,14 +2152,14 @@ msgstr "Foreldrekontroll oppsett"
 msgid "Parental control type"
 msgstr "Foreldrekontroll type"
 
-msgid "Partitioning USB stick..."
-msgstr ""
-
 msgid "Pause movie at end"
 msgstr "Pause filem ved slutt"
 
 msgid "PiPSetup"
 msgstr "BiB Oppsett"
+
+msgid "PicturePlayer"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
@@ -2055,6 +2203,11 @@ msgstr "Vennligst velg pakke.."
 
 msgid "Please choose the default services lists you want to install."
 msgstr "Vennligst velg standard tjeneste liste du vil installere."
+
+msgid ""
+"Please disconnect all USB devices from your Dreambox and (re-)attach the "
+"target USB stick (minimum size is 64 MB) now!"
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Vennligst ikke endre verdier, hvis du ikke vet hva du gjør!"
@@ -2109,8 +2262,11 @@ msgstr "Vennligst velg en underkanal for innspilling"
 msgid "Please select a subservice..."
 msgstr "Vennligst velg en underkanal"
 
-msgid "Please select keyword to filter..."
-msgstr "Vennligst velg nøkkelord for filter"
+msgid "Please select medium to use as backup location"
+msgstr ""
+
+msgid "Please select tag to filter..."
+msgstr ""
 
 msgid "Please select target directory or medium"
 msgstr ""
@@ -2144,7 +2300,7 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
-msgid "Please wait for md5 signature verification..."
+msgid "Please wait while scanning is in progress..."
 msgstr ""
 
 msgid "Please wait while we configure your network..."
@@ -2222,6 +2378,10 @@ msgstr "Trykk OK for å aktivere instillingene"
 msgid "Press OK to edit the settings."
 msgstr ""
 
+#, python-format
+msgid "Press OK to get further details for %s"
+msgstr ""
+
 msgid "Press OK to scan"
 msgstr "Trykk OK for å søke."
 
@@ -2236,6 +2396,9 @@ msgstr ""
 
 msgid "Primary DNS"
 msgstr "Primær DNS"
+
+msgid "Priority"
+msgstr ""
 
 msgid "Properties of current title"
 msgstr ""
@@ -2254,6 +2417,9 @@ msgstr "Tilbyder til søking"
 
 msgid "Providers"
 msgstr "Tilbydere"
+
+msgid "Quick"
+msgstr ""
 
 msgid "Quickzap"
 msgstr "Quickzap"
@@ -2276,14 +2442,14 @@ msgstr "Radio"
 msgid "Ram Disk"
 msgstr "Ram Disk"
 
+msgid "Random"
+msgstr ""
+
 msgid "Really close without saving settings?"
 msgstr "Vil du virkelig lukke uten å lagre"
 
 msgid "Really delete done timers?"
 msgstr "Vil du virkelig slette ferdige timere?"
-
-msgid "Really delete this timer?"
-msgstr "Vil du virkelig slette denne timer"
 
 msgid "Really exit the subservices quickzap?"
 msgstr "Vil du virkelig avslutte hurtigzap i underkanaler"
@@ -2306,6 +2472,10 @@ msgstr "Mottakings Innstillinger"
 msgid "Record"
 msgstr "Spille inn"
 
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr ""
+
 msgid "Recorded files..."
 msgstr "Innspilte filer"
 
@@ -2327,7 +2497,7 @@ msgstr "Gjennoppfrisknings Rate"
 msgid "Refresh rate selection."
 msgstr "Valg av Oppfriskningsrate"
 
-msgid "Remounting stick partition..."
+msgid "Reload"
 msgstr ""
 
 msgid "Remove Bookmark"
@@ -2342,6 +2512,9 @@ msgstr "Fjern en markør"
 msgid "Remove currently selected title"
 msgstr ""
 
+msgid "Remove finished."
+msgstr ""
+
 msgid "Remove plugins"
 msgstr "Fjern plugins"
 
@@ -2351,7 +2524,13 @@ msgstr ""
 msgid "Remove the incomplete .NFI file?"
 msgstr ""
 
+msgid "Remove timer"
+msgstr ""
+
 msgid "Remove title"
+msgstr ""
+
+msgid "Removing"
 msgstr ""
 
 #, python-format
@@ -2402,6 +2581,18 @@ msgstr "Restart dine nettverksadapter og grensesnitt.\n"
 
 msgid "Restore"
 msgstr "Gjenopprett"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2581,6 +2772,9 @@ msgstr "Sekundær DNS"
 msgid "Seek"
 msgstr "Søk"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Velg harddisk"
 
@@ -2601,6 +2795,12 @@ msgstr "Velg lydspor"
 
 msgid "Select channel to record from"
 msgstr "Velg kanal å ta opp fra"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr ""
@@ -2780,11 +2980,29 @@ msgstr "Langsom"
 msgid "Slow Motion speeds"
 msgstr "Hastigheter for slow motion"
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Noen plugins er ikke tilgjengelige:\n"
 
 msgid "Somewhere else"
 msgstr "En annen plass"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2794,6 +3012,17 @@ msgstr ""
 "Desverre, din backup destination eksisterer ikke\n"
 "\n"
 "Venligst velg en annen."
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -2820,9 +3049,6 @@ msgstr "Standby"
 
 msgid "Standby / Restart"
 msgstr "Standby / Start om"
-
-msgid "Start"
-msgstr "Start"
 
 msgid "Start from the beginning"
 msgstr "Start fra begynnelsen"
@@ -2865,6 +3091,12 @@ msgstr "Stoppe avspilling av denne filmen?"
 
 msgid "Stop test"
 msgstr "Stopp test"
+
+msgid "Stop testing plane after # failed transponders"
+msgstr ""
+
+msgid "Stop testing plane after # successful transponders"
+msgstr ""
 
 msgid "Store position"
 msgstr "Lagret posisjon"
@@ -2928,11 +3160,26 @@ msgstr "TV System"
 msgid "Table of content for collection"
 msgstr ""
 
+msgid "Tag 1"
+msgstr ""
+
+msgid "Tag 2"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Terrestrial"
 
 msgid "Terrestrial provider"
 msgstr "Terrestrial tilbyder"
+
+msgid "Test DiSEqC settings"
+msgstr ""
+
+msgid "Test Type"
+msgstr ""
 
 msgid "Test mode"
 msgstr "Testmodus"
@@ -2951,16 +3198,14 @@ msgstr ""
 "Vennligst trykk OK å begynne å bruke den."
 
 msgid ""
-"The .NFI Image flasher USB stick is now ready to use. Please download an ."
-"NFI image file from the feed server and save it on the stick. Then reboot "
-"and hold the 'Down' key on the front panel to boot the .NFI flasher from the "
-"stick!"
-msgstr ""
-
-msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
+msgstr ""
+
+msgid ""
+"The USB stick is now bootable. Do you want to download the latest image from "
+"the feed server and save it on the stick?"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
@@ -3020,6 +3265,10 @@ msgstr "Pin koden du la inn var feil"
 
 msgid "The pin codes you entered are different."
 msgstr "Pin kodene du skrev inn er ikke like"
+
+#, python-format
+msgid "The results have been written to %s."
+msgstr ""
 
 msgid "The sleep timer has been activated."
 msgstr "Sleep timeren har blitt aktivert"
@@ -3152,6 +3401,9 @@ msgstr "Grense"
 msgid "Thu"
 msgstr "Tor"
 
+msgid "Thumbnails"
+msgstr ""
+
 msgid "Thursday"
 msgstr "Torsdag"
 
@@ -3199,21 +3451,28 @@ msgstr "Timeshift"
 msgid "Timeshift not possible!"
 msgstr "Timeshift er ikke mulig!"
 
+msgid "Timeshift path..."
+msgstr ""
+
 msgid "Timezone"
 msgstr "Tidssone"
 
-msgid "Title properties"
-msgstr ""
-
 msgid "Title"
 msgstr "Tittel"
+
+msgid "Title properties"
+msgstr ""
 
 msgid "Titleset mode"
 msgstr ""
 
 msgid ""
-"To make sure you intend to do this, please remove the target USB stick now "
-"and stick it back in upon prompt. Press OK when you have taken the stick out."
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and plug in the bootable USB "
+"stick.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
 msgid "Today"
@@ -3291,6 +3550,9 @@ msgstr "Tyrkisk"
 msgid "Two"
 msgstr "To"
 
+msgid "Type"
+msgstr ""
+
 msgid "Type of scan"
 msgstr "Søketype"
 
@@ -3302,6 +3564,12 @@ msgstr "USB"
 
 msgid "USB Stick"
 msgstr "USB Stick"
+
+msgid "USB stick wizard"
+msgstr ""
+
+msgid "Ukrainian"
+msgstr ""
 
 msgid ""
 "Unable to complete filesystem check.\n"
@@ -3319,6 +3587,15 @@ msgstr ""
 
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
+
+msgid "Unicable"
+msgstr ""
+
+msgid "Unicable LNB"
+msgstr ""
+
+msgid "Unicable Martix"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Universal LNB"
@@ -3338,6 +3615,9 @@ msgstr "Oppdatering avsluttet. Her er resultatet:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Oppdaterer...Vennligst vent..Dette kan ta noen minutter "
 
+msgid "Upgrade finished."
+msgstr ""
+
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Oppgradering er ferdig. Vil du restarte din Dreambox?"
 
@@ -3346,6 +3626,9 @@ msgstr "Oppgraderer"
 
 msgid "Upgrading Dreambox... Please wait"
 msgstr "Oppgraderer Dreambox... Vennligst vent"
+
+msgid "Use"
+msgstr ""
 
 msgid "Use DHCP"
 msgstr "Motta IP-adresse (DHCP)"
@@ -3410,6 +3693,9 @@ msgid "VCR scart"
 msgstr "VCR scart"
 
 msgid "VMGM (intro trailer)"
+msgstr ""
+
+msgid "Vertical"
 msgstr ""
 
 msgid "Video Fine-Tuning"
@@ -3481,9 +3767,6 @@ msgstr "WSS på 4:3"
 msgid "Waiting"
 msgstr "Venter"
 
-msgid "Waiting for USB stick to settle..."
-msgstr ""
-
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
 "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
@@ -3541,8 +3824,20 @@ msgstr "Vest"
 msgid "What do you want to scan?"
 msgstr "Hva vil du søke etter?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du lagre backup av dine innstillinger?"
+
+msgid "Where to save temporary timeshift recordings?"
+msgstr ""
 
 msgid "Wireless"
 msgstr "Trådløs"
@@ -3557,9 +3852,6 @@ msgid "Write failed!"
 msgstr ""
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
-
-msgid "Writing image file to NAND Flash"
 msgstr ""
 
 msgid "YPbPr"
@@ -3658,8 +3950,18 @@ msgstr ""
 "Du har valgt å ta backup av din HDD. Vennligst trykk OK, for å ta backup nå."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
 msgstr ""
 
 #, python-format
@@ -3678,15 +3980,6 @@ msgstr ""
 "Din Dreambox vil nå bli stoppet. Etter du har gjennomførtoppdaterings- "
 "instruksjonene fra websiden, vil din nye firmware spørre deg om å legg inn "
 "igjen innstillingene."
-
-msgid ""
-"You need to define some keywords first!\n"
-"Press the menu-key to define keywords.\n"
-"Do you want to define keywords now?"
-msgstr ""
-"Du må definere noen nøkkelord først!\n"
-"Trykk på meny for å definere nøkkelord.\n"
-"Vil du definere nøkkelord nå?"
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -3839,24 +4132,33 @@ msgstr ""
 msgid "audio tracks"
 msgstr ""
 
+msgid "auto"
+msgstr ""
+
 msgid "back"
 msgstr "Tilbake"
 
 msgid "background image"
 msgstr ""
 
+msgid "backgroundcolor"
+msgstr ""
+
 msgid "better"
 msgstr "bedre"
+
+msgid "black"
+msgstr ""
 
 msgid "blacklist"
 msgstr "svartlist"
 
+msgid "blue"
+msgstr ""
+
 #, python-format
 msgid "burn audio track (%s)"
 msgstr ""
-
-msgid "by Exif"
-msgstr "av Exif"
 
 msgid "change recording (duration)"
 msgstr "endre innspilling (lengde)"
@@ -3878,9 +4180,6 @@ msgstr "Sirkulær høyre"
 
 msgid "clear playlist"
 msgstr "tøm spilliste"
-
-msgid "color"
-msgstr ""
 
 msgid "complex"
 msgstr "kompleks"
@@ -3909,11 +4208,11 @@ msgstr "Daglig"
 msgid "day"
 msgstr ""
 
-msgid "delete"
-msgstr "slett"
-
 msgid "delete cut"
 msgstr "slett klipp"
+
+msgid "delete file"
+msgstr ""
 
 msgid "delete playlist entry"
 msgstr "slett post i spillliste"
@@ -4017,14 +4316,14 @@ msgstr ""
 msgid "failed"
 msgstr ""
 
+msgid "fileformats (BMP, PNG, JPG, GIF)"
+msgstr ""
+
 msgid "filename"
 msgstr ""
 
 msgid "fine-tune your display"
 msgstr "fininnstill din skjerm"
-
-msgid "font face"
-msgstr ""
 
 msgid "forward to the next chapter"
 msgstr "framover til neste kapittel"
@@ -4041,7 +4340,7 @@ msgstr "gå til dyp standby"
 msgid "go to standby"
 msgstr "gå til standby"
 
-msgid "headline"
+msgid "green"
 msgstr ""
 
 msgid "hear radio..."
@@ -4050,14 +4349,14 @@ msgstr "Høre radio..."
 msgid "help..."
 msgstr "Hjelp..."
 
+msgid "hidden network"
+msgstr ""
+
 msgid "hide extended description"
 msgstr "skjul utvidet beskrivelse"
 
 msgid "hide player"
 msgstr "skjul spiller"
-
-msgid "highlighted button"
-msgstr ""
 
 msgid "horizontal"
 msgstr "Horisontal"
@@ -4190,9 +4489,6 @@ msgstr "Nei"
 msgid "no HDD found"
 msgstr "Ingen harddisk funnet"
 
-msgid "no Picture found"
-msgstr "Intet Bilde funnet"
-
 msgid "no module found"
 msgstr "Ingen modul funnet"
 
@@ -4207,6 +4503,9 @@ msgstr "Ingen"
 
 msgid "not locked"
 msgstr "Ikke låst"
+
+msgid "not used"
+msgstr ""
 
 msgid "nothing connected"
 msgstr "Ingenting tilkoblet"
@@ -4271,14 +4570,14 @@ msgstr "Forrige kanal"
 msgid "previous channel in history"
 msgstr "Forrige kanal i historikken"
 
-msgid "rebooting..."
-msgstr ""
-
 msgid "record"
 msgstr "spill inn"
 
 msgid "recording..."
 msgstr "spiller inn..."
+
+msgid "red"
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr ""
@@ -4328,8 +4627,14 @@ msgstr "spol tilbake til forrige kapittel"
 msgid "right"
 msgstr "høyre"
 
+msgid "save last directory on exit"
+msgstr ""
+
 msgid "save playlist"
 msgstr "lagre spilliste"
+
+msgid "save playlist on exit"
+msgstr ""
 
 msgid "scan done!"
 msgstr "Søk avsluttet"
@@ -4383,6 +4688,9 @@ msgstr "vis DVD hovedmeny"
 msgid "show EPG..."
 msgstr "Vis EPG..."
 
+msgid "show Infoline"
+msgstr ""
+
 msgid "show all"
 msgstr "vis alle"
 
@@ -4395,11 +4703,11 @@ msgstr "vis sendingdetaljer"
 msgid "show extended description"
 msgstr "vis utvidet beskrivelse"
 
-msgid "show first tag"
-msgstr "vis første tag"
+msgid "show first selected tag"
+msgstr ""
 
-msgid "show second tag"
-msgstr "vis andre tag"
+msgid "show second selected tag"
+msgstr ""
 
 msgid "show shutdown menu"
 msgstr "vis shutdown meny"
@@ -4434,11 +4742,11 @@ msgstr "hopp framover"
 msgid "skip forward (enter time)"
 msgstr "hopp framover (skriv inn tid)"
 
+msgid "slide picture in loop"
+msgstr ""
+
 msgid "sort by date"
 msgstr "sorter på dato"
-
-msgid "spaces (top, between rows, left)"
-msgstr ""
 
 msgid "standard"
 msgstr "standard"
@@ -4448,6 +4756,9 @@ msgstr "standby"
 
 msgid "start cut here"
 msgstr "start klipp her"
+
+msgid "start directory"
+msgstr ""
 
 msgid "start timeshift"
 msgstr "start timeshift"
@@ -4479,14 +4790,20 @@ msgstr "bytt til filliste"
 msgid "switch to playlist"
 msgstr "bytt til spilliste"
 
+msgid "switch to the next angle"
+msgstr ""
+
 msgid "switch to the next audio track"
 msgstr "bytt til neste lydspor"
 
 msgid "switch to the next subtitle language"
 msgstr "bytt til neste tekstspråk"
 
-msgid "text"
-msgstr "Tekst"
+msgid "template file"
+msgstr ""
+
+msgid "textcolor"
+msgstr ""
 
 msgid "this recording"
 msgstr "denne innspillingen"
@@ -4536,6 +4853,12 @@ msgstr "Ukentlig"
 msgid "whitelist"
 msgstr "hvitliste"
 
+msgid "working"
+msgstr ""
+
+msgid "yellow"
+msgstr ""
+
 msgid "yes"
 msgstr "Ja"
 
@@ -4571,8 +4894,17 @@ msgstr "zapped"
 #~ msgid "12V Output"
 #~ msgstr "12V Utgang"
 
+#~ msgid "AGC"
+#~ msgstr "AGC"
+
+#~ msgid "AGC:"
+#~ msgstr "AGC:"
+
 #~ msgid "Add Timer"
 #~ msgstr "Legg til timer."
+
+#~ msgid "All..."
+#~ msgstr "Alle..."
 
 #~ msgid "Apply satellite"
 #~ msgstr "Lagre satellit"
@@ -4666,6 +4998,9 @@ msgstr "zapped"
 #~ "Vil du virkelig laste ned denne\n"
 #~ "plugin \""
 
+#~ msgid "Do you really want to exit?"
+#~ msgstr "Vil du virkelig avslutte"
+
 #~ msgid ""
 #~ "Do you want to stop the current\n"
 #~ "(instant) recording?"
@@ -4685,6 +5020,9 @@ msgstr "zapped"
 #~ msgstr ""
 #~ "Aktiver det lokale nettverket på din Dreambox.\n"
 #~ "\n"
+
+#~ msgid "End"
+#~ msgstr "Slutt"
 
 #~ msgid "Equal to Socket A"
 #~ msgstr "Likt Socket A"
@@ -4764,6 +5102,9 @@ msgstr "zapped"
 #~ msgid "Nothing connected"
 #~ msgstr "Ikke noe tilkoblet"
 
+#~ msgid "Other..."
+#~ msgstr "Annet..."
+
 #~ msgid "Parental Control"
 #~ msgstr "Foreldrekontroll"
 
@@ -4799,6 +5140,9 @@ msgstr "zapped"
 #~ msgid "Please select below the wireless network you want to connect to."
 #~ msgstr "Vennligst velg nedenfor det trådløse nettverket du vil koble til."
 
+#~ msgid "Please select keyword to filter..."
+#~ msgstr "Vennligst velg nøkkelord for filter"
+
 #~ msgid "Positioner mode"
 #~ msgstr "Rotormodus"
 
@@ -4815,6 +5159,9 @@ msgstr "zapped"
 #~ "støttet.\n"
 #~ "Koble ditt WLAN USB adapter til Dreamboxen før du trykker OK.\n"
 #~ "\n"
+
+#~ msgid "Really delete this timer?"
+#~ msgstr "Vil du virkelig slette denne timer"
 
 #~ msgid "Record Splitsize"
 #~ msgstr "Split-størrelse for opptak"
@@ -4863,6 +5210,9 @@ msgstr "zapped"
 
 #~ msgid "Socket "
 #~ msgstr "Sokkel "
+
+#~ msgid "Start"
+#~ msgstr "Start"
 
 #~ msgid "Startwizard"
 #~ msgstr "Startguide"
@@ -4965,6 +5315,15 @@ msgstr "zapped"
 #~ msgstr "Ja, søk nå."
 
 #~ msgid ""
+#~ "You need to define some keywords first!\n"
+#~ "Press the menu-key to define keywords.\n"
+#~ "Do you want to define keywords now?"
+#~ msgstr ""
+#~ "Du må definere noen nøkkelord først!\n"
+#~ "Trykk på meny for å definere nøkkelord.\n"
+#~ "Vil du definere nøkkelord nå?"
+
+#~ msgid ""
 #~ "Your local LAN internet connection is not working!\n"
 #~ "Please choose what you want to do next."
 #~ msgstr ""
@@ -5002,8 +5361,14 @@ msgstr "zapped"
 #~ msgid "add bouquet..."
 #~ msgstr "Legg til bouquet..."
 
+#~ msgid "by Exif"
+#~ msgstr "av Exif"
+
 #~ msgid "copy to favourites"
 #~ msgstr "Kopier til favoritter"
+
+#~ msgid "delete"
+#~ msgstr "slett"
 
 #~ msgid "empty/unknown"
 #~ msgstr "Tom/ukjent"
@@ -5019,6 +5384,9 @@ msgstr "zapped"
 
 #~ msgid "loopthrough to socket A"
 #~ msgstr "loopthrough til socket A"
+
+#~ msgid "no Picture found"
+#~ msgstr "Intet Bilde funnet"
 
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "bare /etc/enigma2 mappen"
@@ -5069,6 +5437,12 @@ msgstr "zapped"
 #~ msgid "select Slot"
 #~ msgstr "Velg Slot"
 
+#~ msgid "show first tag"
+#~ msgstr "vis første tag"
+
+#~ msgid "show second tag"
+#~ msgstr "vis andre tag"
+
 #~ msgid "skip backward (self defined)"
 #~ msgstr "hopp bakover (egendefinert)"
 
@@ -5077,3 +5451,6 @@ msgstr "zapped"
 
 #~ msgid "stop after current event"
 #~ msgstr "Stopp etter nåværende sending"
+
+#~ msgid "text"
+#~ msgstr "Tekst"

@@ -5,7 +5,7 @@ GETTEXT=xgettext
 #MSGFMT = ./msgfmt.py
 MSGFMT = msgfmt
 
-LANGS := ar ca cs da de el en es fi fr fy hr hu is it lt nl no pl pt ru sv tr uk
+LANGS := ar ca cs da de el en es fi fr fy hr hu is it lt lv nl no pl pt ru sv tr uk
 LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
 LANGMO := $(foreach LANG, $(LANGS),$(LANG).mo)
 
@@ -30,6 +30,8 @@ enigma2.pot:
 
 	./xml2po.py	../data/ >> enigma2.pot
 	./xml2po.py	../lib/python/Plugins/SystemPlugins/Videomode/ >> enigma2.pot
+	./xml2po.py	../lib/python/Plugins/SystemPlugins/SoftwareManager/ >> enigma2.pot
+	cat enigma2_rel25.pot | tail -n +19 >> enigma2.pot
 	msguniq -o enigma2uniq.pot enigma2.pot
 	$(RM) enigma2.pot
 	mv enigma2uniq.pot enigma2.pot
