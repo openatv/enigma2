@@ -1385,7 +1385,7 @@ class ConfigLocations(ConfigElement):
 # nothing.
 class ConfigNothing(ConfigSelection):
 	def __init__(self):
-		ConfigSelection.__init__(self, choices = [""])
+		ConfigSelection.__init__(self, choices = [("","")])
 
 # until here, 'saved_value' always had to be a *string*.
 # now, in ConfigSubsection, and only there, saved_value
