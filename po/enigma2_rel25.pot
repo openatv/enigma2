@@ -9,13 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-15 23:27+0100\n"
+"POT-Creation-Date: 2009-02-16 09:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:202
+msgid ""
+"\n"
+"Enigma2 will restart after the restore"
+msgstr ""
 
 #: ../lib/python/Components/NimManager.py:951
 #: ../lib/python/Components/NimManager.py:953
@@ -3841,6 +3847,16 @@ msgstr ""
 #: ../lib/python/Components/NimManager.py:944
 #: ../lib/python/Components/NimManager.py:1019
 msgid "West"
+msgstr ""
+
+#: ../lib/python/Screens/FactoryReset.py:5
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
 msgstr ""
 
 #: ../lib/python/Screens/LocationBox.py:516
