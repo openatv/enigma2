@@ -40,6 +40,11 @@ to generate HTML."""
 		if self.disable_callbacks:
 			return
 
+		# update all non-master targets
+		for x in self.downstream_elements:
+			if x is not self.master:
+				x.index = index
+
 		for x in self.onSelectionChanged:
 			x()
 

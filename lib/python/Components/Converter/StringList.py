@@ -18,10 +18,17 @@ class StringList(Converter):
 
 	def selectionChanged(self, index):
 		self.source.selectionChanged(index)
+
+	def setIndex(self, index):
 		# update all non-master targets
 		for x in self.downstream_elements:
 			if x is not self.master:
 				x.index = index
+
+	def getIndex(self, index):
+		return None
+	
+	index = property(getIndex, setIndex)
 
 	@cached
 	def getCurrent(self):
