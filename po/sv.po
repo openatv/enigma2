@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-04 14:59+0100\n"
-"PO-Revision-Date: 2009-01-28 12:36+0100\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
+"PO-Revision-Date: 2009-02-06 07:42+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,6 +18,67 @@ msgstr ""
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-Country: SWEDEN\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr " "
@@ -360,8 +421,14 @@ msgstr ""
 msgid "Advanced"
 msgstr "Avancerat"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
 msgstr "Avancerad videoinställning"
+
+msgid "Advanced restore"
+msgstr ""
 
 msgid "After event"
 msgstr "Efter program"
@@ -394,6 +461,9 @@ msgstr "Alternativ tunerprioritering"
 msgid "An empty filename is illegal."
 msgstr "Ett tomt filnamn är inte tillåtet."
 
+msgid "An error occured!"
+msgstr ""
+
 msgid "An unknown error occured!"
 msgstr "Ett okänt fel uppstod!"
 
@@ -413,6 +483,16 @@ msgid ""
 msgstr ""
 "Är du säker på att du vill starta om dina nätverkskort?\n"
 "\n"
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
+msgstr ""
 
 msgid "Artist"
 msgstr "Artist"
@@ -483,8 +563,23 @@ msgstr "Backupplacering"
 msgid "Backup Mode"
 msgstr "Backupläge"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Backup klar. Vänligen tryck OK för resultat."
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Band"
@@ -620,6 +715,12 @@ msgstr "Kontrollerar filsystem..."
 msgid "Choose Tuner"
 msgstr "Välj tuner"
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Välj favoritlista"
 
@@ -629,14 +730,17 @@ msgstr "Välj källa"
 msgid "Choose target folder"
 msgstr "Välj målkatalog"
 
+msgid "Choose upgrade source"
+msgstr ""
+
 msgid "Choose your Skin"
 msgstr "Välj utseende"
 
 msgid "Circular left"
-msgstr ""
+msgstr "Cirkulär vänster"
 
 msgid "Circular right"
-msgstr ""
+msgstr "Cirkulär höger"
 
 msgid "Cleanup"
 msgstr "Rensa"
@@ -746,7 +850,7 @@ msgstr "Kunde inte ladda media! Ingen disk istoppad?"
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
-msgstr ""
+msgstr "Kunde inte spela in på grund av timerkonflikt med %s"
 
 msgid "Create DVD-ISO"
 msgstr "Skapa DVD-ISO"
@@ -850,6 +954,9 @@ msgstr ""
 msgid "Description"
 msgstr "Beskrivning"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Destination directory"
 msgstr "Målbibliotek"
 
@@ -916,7 +1023,7 @@ msgid "Display 4:3 content as"
 msgstr "Visa 4:3 sändning som"
 
 msgid "Display >16:9 content as"
-msgstr ""
+msgstr "Visa >16:9 innehåll som"
 
 msgid "Display Setup"
 msgstr "Display installation"
@@ -985,11 +1092,20 @@ msgstr "Vill du aktivera föräldrakontroll på din Dreambox?"
 msgid "Do you want to install default sat lists?"
 msgstr "Vill du installera grundsatellitlista?"
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr "Vill du spela upp DVD i spelaren?"
 
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Vill du förhandsvisa denna DVD innan bränning?"
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Vill du återställa dina inställningar?"
@@ -997,12 +1113,18 @@ msgstr "Vill du återställa dina inställningar?"
 msgid "Do you want to resume this playback?"
 msgstr "Vill du återuppta uppspelningen?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Vill du uppdatera din Dreambox?\n"
 "Tryck OK och vänligen vänta!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Vill du se en guide?"
@@ -1017,6 +1139,10 @@ msgstr "Klar - Installerat eller uppgraderat %d paket"
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Klar - Installerat eller uppgraderat %d paket med %d fel"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr "Nedladdning"
@@ -1333,7 +1459,7 @@ msgid "Gateway"
 msgstr "Gateway"
 
 msgid "Genre"
-msgstr "Genre"
+msgstr ""
 
 msgid "German"
 msgstr "Tyska"
@@ -1378,7 +1504,7 @@ msgid "Hierarchy mode"
 msgstr "Hierarkiskt läge"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "horisontal"
 
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
@@ -1471,6 +1597,15 @@ msgstr "Initierar hårddisk..."
 msgid "Input"
 msgstr "Ingång"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr "Installera"
 
@@ -1513,6 +1648,9 @@ msgstr "Inversion"
 
 msgid "Invert display"
 msgstr "Invertera LCD"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "Italienska"
@@ -1559,6 +1697,9 @@ msgstr "Föregående hastighet"
 
 msgid "Latitude"
 msgstr "Latitud"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr "Avsluta DVD Spelare?"
@@ -1639,6 +1780,9 @@ msgstr "Gör denna markör till 'ut' punkt"
 msgid "Make this mark just a mark"
 msgstr "Behåll denna markör som vanlig markör"
 
+msgid "Manage your receiver's software"
+msgstr ""
+
 msgid "Manual Scan"
 msgstr "Manuell sökning"
 
@@ -1646,7 +1790,7 @@ msgid "Manual transponder"
 msgstr "Manuell transponder"
 
 msgid "Manufacturer"
-msgstr ""
+msgstr "Tillverkare"
 
 msgid "Margin after record"
 msgstr "Marginal efter inspelning (i minuter)"
@@ -2007,6 +2151,9 @@ msgstr "Paketlista uppdatering"
 msgid "Packet management"
 msgstr "Pakethantering"
 
+msgid "Packet manager"
+msgstr ""
+
 msgid "Page"
 msgstr "Sida"
 
@@ -2142,6 +2289,9 @@ msgstr "Vänligen välj en underkanal för inspelning..."
 
 msgid "Please select a subservice..."
 msgstr "Vänligen välj en underkanal..."
+
+msgid "Please select medium to use as backup location"
+msgstr ""
 
 msgid "Please select tag to filter..."
 msgstr "Vänligen välj märkning för filtrering..."
@@ -2355,7 +2505,7 @@ msgstr "Spela in"
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
-msgstr ""
+msgstr "Inspelningstid begränsad på grund av timerkonflikt med %s"
 
 msgid "Recorded files..."
 msgstr "Inspelade filer..."
@@ -2378,6 +2528,9 @@ msgstr "Uppdateringstakt"
 msgid "Refresh rate selection."
 msgstr "Uppdateringsfrekvens val."
 
+msgid "Reload"
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Ta bort Bokmärke"
 
@@ -2389,6 +2542,9 @@ msgstr "Ta bort en markör"
 
 msgid "Remove currently selected title"
 msgstr "Ta bort vald titel"
+
+msgid "Remove finished."
+msgstr ""
 
 msgid "Remove plugins"
 msgstr "Ta bort plugins"
@@ -2404,6 +2560,9 @@ msgstr "Ta bort timer"
 
 msgid "Remove title"
 msgstr "Ta bort titel"
+
+msgid "Removing"
+msgstr ""
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2453,6 +2612,18 @@ msgstr "Omstart av din nätverksanslutning och adaptrar.\n"
 
 msgid "Restore"
 msgstr "Återställ"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2632,6 +2803,9 @@ msgstr "Sekondär DNS"
 msgid "Seek"
 msgstr "Sök"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Välj hårddisk"
 
@@ -2652,6 +2826,12 @@ msgstr "Välj ljudspår"
 
 msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr "Välj image"
@@ -2831,11 +3011,29 @@ msgstr "Sakta"
 msgid "Slow Motion speeds"
 msgstr "Hastigheter för slow motion"
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Några plugins är inte tillgängliga:\n"
 
 msgid "Somewhere else"
 msgstr "Någon annanstans"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2845,6 +3043,17 @@ msgstr ""
 "Ledsen, din backup destination finns inte\n"
 "\n"
 "Vänligen ange annan."
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -3403,7 +3612,7 @@ msgid "Two"
 msgstr "Två"
 
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 msgid "Type of scan"
 msgstr "Typ av sökning"
@@ -3441,13 +3650,13 @@ msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
 
 msgid "Unicable"
-msgstr ""
+msgstr "Unicable"
 
 msgid "Unicable LNB"
-msgstr ""
+msgstr "Unicable LNB"
 
 msgid "Unicable Martix"
-msgstr ""
+msgstr "Unicable Martix"
 
 msgid "Universal LNB"
 msgstr "Universal LNB"
@@ -3466,6 +3675,9 @@ msgstr "Uppdatering utförd. Här är resultatet:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Uppdaterar... Vänlig vänta... Detta tar några minuter...."
+
+msgid "Upgrade finished."
+msgstr ""
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Uppgradering klar. Vill du starta om din Dreambox?"
@@ -3546,7 +3758,7 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikal"
 
 msgid "Video Fine-Tuning"
 msgstr "Video fininställning"
@@ -3680,6 +3892,15 @@ msgstr "Väst"
 msgid "What do you want to scan?"
 msgstr "Vad vill du söka efter?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Var vill du spara dina inställningar?"
 
@@ -3705,7 +3926,7 @@ msgid "YPbPr"
 msgstr "YPbPr"
 
 msgid "Year"
-msgstr "År"
+msgstr ""
 
 msgid "Yes"
 msgstr "Ja"
@@ -3800,11 +4021,21 @@ msgstr ""
 "backupen."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
 "Du har valt att skapa en ny .NFI flash startbar USB stick. Detta kommer "
 "repartitionera USB stickan och efter det kommer all data på den vara borta."
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
@@ -4351,7 +4582,7 @@ msgid "not locked"
 msgstr "inte låst"
 
 msgid "not used"
-msgstr ""
+msgstr "ej använd"
 
 msgid "nothing connected"
 msgstr "inget anslutet"
@@ -4749,6 +4980,12 @@ msgstr "zapped"
 #~ msgid "Add title..."
 #~ msgstr "Lägg till titel..."
 
+#~ msgid "Album:"
+#~ msgstr "Album:"
+
+#~ msgid "All keys"
+#~ msgstr "All nycklar"
+
 #~ msgid "All..."
 #~ msgstr "Alla..."
 
@@ -4770,6 +5007,9 @@ msgstr "zapped"
 #~ msgstr ""
 #~ "Är du säker på att du vill aktivera lokalt nätverk?\n"
 #~ "\n"
+
+#~ msgid "Artist:"
+#~ msgstr "Artist:"
 
 #~ msgid "Automatic SSID lookup"
 #~ msgstr "Automatisk SSID sökning"
@@ -4876,11 +5116,17 @@ msgstr "zapped"
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Avsluta guide och konfigurera manuellt senare"
 
+#~ msgid "Filename and path"
+#~ msgstr "Filnamn och sökväg"
+
 #~ msgid "Fix USB stick"
 #~ msgstr "Fix USB stick"
 
 #~ msgid "Font size"
 #~ msgstr "Font storlek"
+
+#~ msgid "Genre:"
+#~ msgstr "Genre:"
 
 #~ msgid "Jump to video title 1 (play movie from start)"
 #~ msgstr "Hoppa till video titel 1 (spela film från start)"
@@ -5037,6 +5283,12 @@ msgstr "zapped"
 #~ msgid "Save..."
 #~ msgstr "Spara..."
 
+#~ msgid "Search"
+#~ msgstr "Sök"
+
+#~ msgid "Search for"
+#~ msgstr "Sök efter"
+
 #~ msgid "Show files from %s"
 #~ msgstr "Visa filer från %s"
 
@@ -5093,6 +5345,9 @@ msgstr "zapped"
 #~ "starta om och håll 'Ner' knappen på fronten intryckt för att starta .NFI "
 #~ "flasher från stickan!"
 
+#~ msgid "Title:"
+#~ msgstr "Titel:"
+
 #~ msgid ""
 #~ "To make sure you intend to do this, please remove the target USB stick "
 #~ "now and stick it back in upon prompt. Press OK when you have taken the "
@@ -5122,6 +5377,9 @@ msgstr "zapped"
 
 #~ msgid "Writing image file to NAND Flash"
 #~ msgstr "Skrivning av image fil till NAND flash"
+
+#~ msgid "Year:"
+#~ msgstr "År:"
 
 #~ msgid ""
 #~ "You need to define some keywords first!\n"
@@ -5191,6 +5449,9 @@ msgstr "zapped"
 #~ msgid "highlighted button"
 #~ msgstr "Vald knapp"
 
+#~ msgid "in..."
+#~ msgstr "i..."
+
 #~ msgid "loopthrough to socket A"
 #~ msgstr "loopthrough till ingång A"
 
@@ -5214,3 +5475,6 @@ msgstr "zapped"
 
 #~ msgid "text"
 #~ msgstr "text"
+
+#~ msgid "year"
+#~ msgstr "år"

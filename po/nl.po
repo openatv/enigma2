@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-04 14:59+0100\n"
+"POT-Creation-Date: 2009-02-16 00:04+0100\n"
 "PO-Revision-Date: 2009-01-24 12:54+0100\n"
 "Last-Translator: Benny De Tandt <Benny.DeTandt@gmail.com>\n"
 "Language-Team: none <michel@weeren.net>\n"
@@ -17,6 +17,67 @@ msgstr ""
 "X-Poedit-Language: Nederlands\n"
 "X-Poedit-Country: NEDERLAND\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
 
 msgid " "
 msgstr " "
@@ -360,8 +421,14 @@ msgstr ""
 msgid "Advanced"
 msgstr "Expert"
 
+msgid "Advanced Options"
+msgstr ""
+
 msgid "Advanced Video Setup"
 msgstr "Geavanceerde video instellingen"
+
+msgid "Advanced restore"
+msgstr ""
 
 msgid "After event"
 msgstr "Na opname"
@@ -394,6 +461,9 @@ msgstr "Alternatieve tuner prioriteit"
 msgid "An empty filename is illegal."
 msgstr "Een lege bestandsnaam is ongeldig"
 
+msgid "An error occured!"
+msgstr ""
+
 msgid "An unknown error occured!"
 msgstr "Een onbekende fout is gebeurd!"
 
@@ -413,6 +483,16 @@ msgid ""
 msgstr ""
 "Weet u zeker dat u de netwerkverbinding wilt herstarten?\n"
 "\n"
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
+msgstr ""
 
 msgid "Artist"
 msgstr "Artiest"
@@ -483,8 +563,23 @@ msgstr "Backup locatie"
 msgid "Backup Mode"
 msgstr "Backup modus"
 
+msgid "Backup done."
+msgstr ""
+
+msgid "Backup failed."
+msgstr ""
+
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Backup is voltooid. Druk op OK om de resultaten te zien."
+
+msgid "Backup running"
+msgstr ""
+
+msgid "Backup running..."
+msgstr ""
+
+msgid "Backup system settings"
+msgstr ""
 
 msgid "Band"
 msgstr "Band"
@@ -622,6 +717,12 @@ msgstr "Controleert bestandssysteem..."
 msgid "Choose Tuner"
 msgstr "Selecteer een tuner"
 
+msgid "Choose backup files"
+msgstr ""
+
+msgid "Choose backup location"
+msgstr ""
+
 msgid "Choose bouquet"
 msgstr "Kies boeket"
 
@@ -630,6 +731,9 @@ msgstr "Bron kiezen"
 
 msgid "Choose target folder"
 msgstr "Kies doelmap"
+
+msgid "Choose upgrade source"
+msgstr ""
 
 msgid "Choose your Skin"
 msgstr "Kies een Skin"
@@ -852,6 +956,9 @@ msgstr ""
 msgid "Description"
 msgstr "Omschrijving"
 
+msgid "Deselect"
+msgstr ""
+
 msgid "Destination directory"
 msgstr "Doel map"
 
@@ -987,11 +1094,20 @@ msgstr "Wilt u het kinderslot van uw dreambox activeren?"
 msgid "Do you want to install default sat lists?"
 msgstr "Wilt u de standaard satellietlijst installeren?"
 
+msgid "Do you want to install the package:\n"
+msgstr ""
+
 msgid "Do you want to play DVD in drive?"
 msgstr "Wilt u de DVD in de speler afspelen?"
 
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Wilt u de DVD bekijken alvorens te schrijven?"
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr ""
+
+msgid "Do you want to remove the package:\n"
+msgstr ""
 
 msgid "Do you want to restore your settings?"
 msgstr "Wilt u uw instelingen nu terugzetten?"
@@ -999,12 +1115,18 @@ msgstr "Wilt u uw instelingen nu terugzetten?"
 msgid "Do you want to resume this playback?"
 msgstr "Wilt u het afspelen vervolgen?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr ""
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Wilt u de Dreambox software vernieuwen?\n"
 "Druk op OK en een ogenblik geduld!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr ""
 
 msgid "Do you want to view a tutorial?"
 msgstr "Wilt u een voorbeeld zien?"
@@ -1019,6 +1141,10 @@ msgstr "Klaar - %d paket(ten) geïnstalleerd of vervangen"
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr "Klaar - %d paket(ten) geïnstalleerd of vervangen. %d fout(en)"
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr ""
 
 msgid "Download"
 msgstr "Downloaden"
@@ -1475,6 +1601,15 @@ msgstr "Formatteren harde schijf..."
 msgid "Input"
 msgstr "Invoer"
 
+msgid "Install a new image with a USB stick"
+msgstr ""
+
+msgid "Install a new image with your web browser"
+msgstr ""
+
+msgid "Install local IPKG"
+msgstr ""
+
 msgid "Installing"
 msgstr "Installeert"
 
@@ -1517,6 +1652,9 @@ msgstr "Inversie"
 
 msgid "Invert display"
 msgstr "Inverteer display"
+
+msgid "Ipkg"
+msgstr ""
 
 msgid "Italian"
 msgstr "Italiaans"
@@ -1563,6 +1701,9 @@ msgstr "Laatste snelheid"
 
 msgid "Latitude"
 msgstr "Breedtegraad"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr "DVD speler afsluiten?"
@@ -1642,6 +1783,9 @@ msgstr "Markeer dit als 'uit' punt"
 
 msgid "Make this mark just a mark"
 msgstr "Universele markering"
+
+msgid "Manage your receiver's software"
+msgstr ""
 
 msgid "Manual Scan"
 msgstr "Handmatig zoeken"
@@ -2014,6 +2158,9 @@ msgstr "Pakketlijst vernieuwen"
 msgid "Packet management"
 msgstr "Pakket beheer"
 
+msgid "Packet manager"
+msgstr ""
+
 msgid "Page"
 msgstr "Pagina"
 
@@ -2151,6 +2298,9 @@ msgstr "Selecteer een subzender voor opname a.u.b..."
 
 msgid "Please select a subservice..."
 msgstr "Selecteer een subzender..."
+
+msgid "Please select medium to use as backup location"
+msgstr ""
 
 msgid "Please select tag to filter..."
 msgstr "Selecteer markering om te filteren..."
@@ -2386,6 +2536,9 @@ msgstr "Ververs ratio"
 msgid "Refresh rate selection."
 msgstr "Herhalingsfrequentie selectie"
 
+msgid "Reload"
+msgstr ""
+
 msgid "Remove Bookmark"
 msgstr "Markeerpunt verwijderen"
 
@@ -2397,6 +2550,9 @@ msgstr "Verwijder een markeerpunt"
 
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
+
+msgid "Remove finished."
+msgstr ""
 
 msgid "Remove plugins"
 msgstr "Verwijderen"
@@ -2412,6 +2568,9 @@ msgstr "Verwijder timer"
 
 msgid "Remove title"
 msgstr "Titel verwijderen"
+
+msgid "Removing"
+msgstr ""
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2461,6 +2620,18 @@ msgstr "Herstart het netwerk en alle adapters.\n"
 
 msgid "Restore"
 msgstr "Herstellen"
+
+msgid "Restore backups..."
+msgstr ""
+
+msgid "Restore running"
+msgstr ""
+
+msgid "Restore running..."
+msgstr ""
+
+msgid "Restore system settings"
+msgstr ""
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2641,6 +2812,9 @@ msgstr "Secondaire DNS"
 msgid "Seek"
 msgstr "Zoeken"
 
+msgid "Select"
+msgstr ""
+
 msgid "Select HDD"
 msgstr "Kies harde schijf"
 
@@ -2661,6 +2835,12 @@ msgstr "Kies audiospoor"
 
 msgid "Select channel to record from"
 msgstr "Selecteer een zender voor opname"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr ""
+
+msgid "Select files/folders to backup..."
+msgstr ""
 
 msgid "Select image"
 msgstr "Selecteer bestand"
@@ -2840,11 +3020,29 @@ msgstr "Langzaam"
 msgid "Slow Motion speeds"
 msgstr "Stap snelheid"
 
+msgid "Software manager"
+msgstr ""
+
+msgid "Software manager..."
+msgstr ""
+
+msgid "Software restore"
+msgstr ""
+
+msgid "Software update"
+msgstr ""
+
 msgid "Some plugins are not available:\n"
 msgstr "Applicaties die niet beschikbaar zijn:\n"
 
 msgid "Somewhere else"
 msgstr "Ergens anders"
+
+msgid "Sorry MediaScanner is not installed!"
+msgstr ""
+
+msgid "Sorry no backups found!"
+msgstr ""
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -2854,6 +3052,17 @@ msgstr ""
 "Sorry uw backup lokatie is ongeldig\n"
 "\n"
 "Kies een andere lokatie a.u.b..."
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
+msgstr ""
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -3481,6 +3690,9 @@ msgstr ""
 "Software update is bezig. Een ogenblik geduld a.u.b. Dit kan enkele minuten "
 "duren."
 
+msgid "Upgrade finished."
+msgstr ""
+
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Software update gereed. Uw Dreambox herstarten?"
 
@@ -3693,6 +3905,15 @@ msgstr "West"
 msgid "What do you want to scan?"
 msgstr "Wat wilt u zoeken?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+
 msgid "Where do you want to backup your settings?"
 msgstr "Waar wilt u de instellingen opslaan?"
 
@@ -3813,11 +4034,21 @@ msgstr ""
 "om de backup te starten."
 
 msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+
+msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
 "U heeft gekozen om een nieuwe .NFI flasher opstart USB stick aan te maken. "
 "Alle data op de USB stick gaat onherroepelijk verloren."
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"

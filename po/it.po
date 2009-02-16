@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Italian Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-16 00:49+0100\n"
-"PO-Revision-Date: 2009-01-05 22:24+0100\n"
+"POT-Creation-Date: 2009-02-16 00:05+0100\n"
+"PO-Revision-Date: 2009-02-15 18:29+0100\n"
 "Last-Translator: Spaeleus <spaeleus@croci.org>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,92 @@ msgstr ""
 "X-Poedit-Language: Italian\n"
 "X-Poedit-Country: ITALY\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
+
+msgid ""
+"\n"
+"Advanced options and settings."
+msgstr ""
+"\n"
+"Opzioni e configurazione avanzate."
+
+msgid ""
+"\n"
+"After pressing OK, please wait!"
+msgstr ""
+"\n"
+"Dopo aver premuto OK, attendere!"
+
+msgid ""
+"\n"
+"Backup your Dreambox settings."
+msgstr ""
+"\n"
+"Backup configurazione Dreambox."
+
+msgid ""
+"\n"
+"Edit the upgrade source address."
+msgstr ""
+"\n"
+"Modificare indirizzo sorgenti aggiornamento."
+
+msgid ""
+"\n"
+"Online update of your Dreambox software."
+msgstr ""
+"\n"
+"Aggiornamento online software Dreambox."
+
+msgid ""
+"\n"
+"Press OK on your remote control to continue."
+msgstr ""
+"\n"
+"Premere OK per continuare."
+
+msgid ""
+"\n"
+"Restore your Dreambox settings."
+msgstr ""
+"\n"
+"Ripristinare configurazione Dreambox."
+
+msgid ""
+"\n"
+"Restore your Dreambox with a new firmware."
+msgstr ""
+"\n"
+"Ripristinare il Dreambox con un nuovo firmware."
+
+msgid ""
+"\n"
+"Restore your backups by date."
+msgstr ""
+"\n"
+"Ripristinare i backup per data."
+
+msgid ""
+"\n"
+"Scan for local packages and install them."
+msgstr ""
+"\n"
+"Ricercare pacchetti locali e installarli."
+
+msgid ""
+"\n"
+"Select your backup device.\n"
+"Current device: "
+msgstr ""
+"\n"
+"Selezionare il supporto per il backup.\n"
+"Supporto corrente:"
+
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
+"\n"
+"Visualizzare, installare e rimuovere pacchetti installati o disponibili."
 
 msgid " "
 msgstr " "
@@ -317,13 +403,13 @@ msgid "Adapter settings"
 msgstr "Conf. Interfaccia"
 
 msgid "Add"
-msgstr "Aggiungere"
+msgstr "Agg."
 
 msgid "Add Bookmark"
-msgstr "Agg.Segnalibro"
+msgstr "Agg. Contrass."
 
 msgid "Add a mark"
-msgstr "Aggiungere contrassegno"
+msgstr "Agg. contr."
 
 msgid "Add a new title"
 msgstr "Aggiungere un nuovo titolo"
@@ -352,10 +438,16 @@ msgstr ""
 "numerici per accedere alle altre schermate."
 
 msgid "Advanced"
-msgstr "Avanzato"
+msgstr ""
+
+msgid "Advanced Options"
+msgstr "Opzioni avanzate"
 
 msgid "Advanced Video Setup"
 msgstr "Configurazione avanzata video"
+
+msgid "Advanced restore"
+msgstr "Ripristino avanzato"
 
 msgid "After event"
 msgstr "Dopo l'evento"
@@ -388,6 +480,9 @@ msgstr "Priorità Tuner"
 msgid "An empty filename is illegal."
 msgstr "Nome di file vuoto: non consentito!"
 
+msgid "An error occured!"
+msgstr "Si è verificato un errore!"
+
 msgid "An unknown error occured!"
 msgstr "Si è verificato un errore sconosciuto!"
 
@@ -407,6 +502,20 @@ msgid ""
 msgstr ""
 "Riavviare la rete?\n"
 "\n"
+
+msgid ""
+"Are you sure you want to restore\n"
+"following backup:\n"
+msgstr ""
+"Ripristinare\n"
+"questo backup?\n"
+
+msgid ""
+"Are you sure you want to restore your Enigma2 backup?\n"
+"Enigma2 will restart after the restore"
+msgstr ""
+"Ripristinare il backup di Enigma2?\n"
+"Enigma2 sarà riavviato dopo il ripristino."
 
 msgid "Artist"
 msgstr "Artista"
@@ -472,13 +581,28 @@ msgid "Backup"
 msgstr "Backup"
 
 msgid "Backup Location"
-msgstr "Destinazione backup"
+msgstr ""
 
 msgid "Backup Mode"
-msgstr "Modalità Backup"
+msgstr ""
+
+msgid "Backup done."
+msgstr "Backup eseguito."
+
+msgid "Backup failed."
+msgstr "Backup fallito!"
 
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Backup terminato! Premere OK per visualizzare l'esito."
+
+msgid "Backup running"
+msgstr "Backup in corso."
+
+msgid "Backup running..."
+msgstr "Backup in corso..."
+
+msgid "Backup system settings"
+msgstr "Backup conf. sistema"
 
 msgid "Band"
 msgstr "Banda"
@@ -505,7 +629,7 @@ msgid "Behavior when a movie reaches the end"
 msgstr "Su riproduzione terminata"
 
 msgid "Bookmarks"
-msgstr "Segnalibri"
+msgstr "Contrassegni"
 
 msgid "Brightness"
 msgstr "Luminosità"
@@ -549,7 +673,7 @@ msgid "Call monitoring"
 msgstr "Controllo chiamata"
 
 msgid "Cancel"
-msgstr "Annulla"
+msgstr "Annull."
 
 msgid "Cannot parse feed directory"
 msgstr "Analisi cartella feed impossibile!"
@@ -614,17 +738,32 @@ msgstr "Verifica Filesystem in corso..."
 msgid "Choose Tuner"
 msgstr "Selezionare il Tuner"
 
+msgid "Choose backup files"
+msgstr "Scegliere file di backup"
+
+msgid "Choose backup location"
+msgstr "Destinazione backup"
+
 msgid "Choose bouquet"
 msgstr "Selezionare il bouquet"
 
 msgid "Choose source"
-msgstr "Selezionare la sorgente"
+msgstr ""
 
 msgid "Choose target folder"
 msgstr "Cartella destinazione"
 
+msgid "Choose upgrade source"
+msgstr "Origine aggiornamento"
+
 msgid "Choose your Skin"
 msgstr "Selezionare la Skin"
+
+msgid "Circular left"
+msgstr "Circolare a sinistra"
+
+msgid "Circular right"
+msgstr "Circolare a destra"
 
 msgid "Cleanup"
 msgstr "El. conclusi"
@@ -732,6 +871,10 @@ msgstr "Collegamento a server Immagini .nfi Dreambox impossibile:"
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Impossibile caricare supporto! Nessun disco Inserito?"
 
+#, python-format
+msgid "Couldn't record due to conflicting timer %s"
+msgstr "Registrazione impossibile! Timer %s in conflitto!"
+
 msgid "Create DVD-ISO"
 msgstr "Creare DVD-ISO"
 
@@ -815,7 +958,7 @@ msgid "Delay"
 msgstr "Ritardo"
 
 msgid "Delete"
-msgstr "Cancellare"
+msgstr "Canc."
 
 msgid "Delete entry"
 msgstr "Cancellare voce"
@@ -833,6 +976,9 @@ msgstr ""
 
 msgid "Description"
 msgstr "Descrizione"
+
+msgid "Deselect"
+msgstr "Deselezionare"
 
 msgid "Destination directory"
 msgstr "Cartella destinazione"
@@ -899,6 +1045,9 @@ msgstr "Mostrare contenuti in 16:9 come"
 msgid "Display 4:3 content as"
 msgstr "Mostrare contenuti in 4:3 come"
 
+msgid "Display >16:9 content as"
+msgstr "Mostrare contenuti > di 16:9 come"
+
 msgid "Display Setup"
 msgstr "Configurazione Display"
 
@@ -942,14 +1091,12 @@ msgstr "Cancellare la cartella %s dal disco?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr "Cancellare il segnalibro per %s?"
+msgstr "Cancellare il contrassegno per %s?"
 
 msgid ""
 "Do you want to backup now?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"Effettuare il backup ora?\n"
-"Premere OK e attendere!"
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Masterizzare la raccolta su supporto DVD?"
@@ -966,11 +1113,20 @@ msgstr "Attivare la funzione Controllo Parentale?"
 msgid "Do you want to install default sat lists?"
 msgstr "Installare liste canali predefinite?"
 
+msgid "Do you want to install the package:\n"
+msgstr "Installare il pacchetto:\n"
+
 msgid "Do you want to play DVD in drive?"
 msgstr "Riprodurre il DVD inserito?"
 
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Visualizzare anteprima DVD prima di masterizzare?"
+
+msgid "Do you want to reboot your Dreambox?"
+msgstr "Riavviare il DreamBox?"
+
+msgid "Do you want to remove the package:\n"
+msgstr "Rimuovere il pacchetto?\n"
 
 msgid "Do you want to restore your settings?"
 msgstr "Ripristinare la configurazione?"
@@ -978,12 +1134,18 @@ msgstr "Ripristinare la configurazione?"
 msgid "Do you want to resume this playback?"
 msgstr "Riprendere la riproduzione?"
 
+msgid "Do you want to update your Dreambox?"
+msgstr "Aggiornare il DreamBox?"
+
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
 "Aggiornare il DreamBox?\n"
 "Premere OK e attendere!"
+
+msgid "Do you want to upgrade the package:\n"
+msgstr "Aggiornare il pacchetto:\n"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Visualizzare una guida?"
@@ -997,7 +1159,11 @@ msgstr "Fatto! Installati o aggiornati %d pacchetti"
 
 #, python-format
 msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "Fatto! Installati o aggiornati  %d pacchetti con %d errori"
+msgstr ""
+
+#, python-format
+msgid "Done - Installed, upgraded or removed %d packages with %d errors"
+msgstr "Fatto! Installati, aggiornati o rimossi %d pacchetti con %d errori"
 
 msgid "Download"
 msgstr "Download"
@@ -1359,6 +1525,9 @@ msgstr "Informazioni gerarchia"
 msgid "Hierarchy mode"
 msgstr "Modalità gerarchica"
 
+msgid "Horizontal"
+msgstr "Orizzontale"
+
 msgid "How many minutes do you want to record?"
 msgstr "Per quanti minuti registrare?"
 
@@ -1453,6 +1622,15 @@ msgstr "Formattazione harddisk in corso..."
 msgid "Input"
 msgstr "Input"
 
+msgid "Install a new image with a USB stick"
+msgstr "Installare nuova immagine tramite penna USB"
+
+msgid "Install a new image with your web browser"
+msgstr "Installare nuova immagine tramite web browser"
+
+msgid "Install local IPKG"
+msgstr "Installare IPKG locale"
+
 msgid "Installing"
 msgstr "Installazione in corso"
 
@@ -1495,6 +1673,9 @@ msgstr "Inversione"
 
 msgid "Invert display"
 msgstr "Display invertito"
+
+msgid "Ipkg"
+msgstr "Ipkg"
 
 msgid "Italian"
 msgstr "Italiano"
@@ -1541,6 +1722,9 @@ msgstr "Ultima velocità"
 
 msgid "Latitude"
 msgstr "Latitudine"
+
+msgid "Latvian"
+msgstr ""
 
 msgid "Leave DVD Player?"
 msgstr "Uscire dal Player DVD?"
@@ -1621,11 +1805,17 @@ msgstr "Contrassegna come punto 'OUT'"
 msgid "Make this mark just a mark"
 msgstr "Contrassegnare solamente"
 
+msgid "Manage your receiver's software"
+msgstr "Gestire il software del ricevitore"
+
 msgid "Manual Scan"
 msgstr "Ricerca manuale"
 
 msgid "Manual transponder"
 msgstr "Transponder manuale"
+
+msgid "Manufacturer"
+msgstr "Costruttore"
 
 msgid "Margin after record"
 msgstr "Margine fine registrazione (minuti)"
@@ -1946,7 +2136,7 @@ msgstr ""
 "tra le due sfumature più chiare. Alla fine premere OK."
 
 msgid "OK"
-msgstr "OK"
+msgstr "Ok"
 
 msgid "OK, guide me through the upgrade process"
 msgstr "Visualizzare una guida sul processo di aggiornamento"
@@ -1986,6 +2176,9 @@ msgstr "Aggiornamento lista pacchetti"
 
 msgid "Packet management"
 msgstr "Gestione pacchetti"
+
+msgid "Packet manager"
+msgstr "Gestore pacchetti"
 
 msgid "Page"
 msgstr "Pagina"
@@ -2070,7 +2263,8 @@ msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr ""
-"Non modificare alcun valore se non si è sicuri di quello che si sta facendo!"
+"Non modificare alcun parametro se non si è sicuri di quello che si sta "
+"facendo!"
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Inserire un nome per il nuovo bouquet"
@@ -2123,6 +2317,9 @@ msgstr "Selezionare un sottoservizio da registrare"
 
 msgid "Please select a subservice..."
 msgstr "Selezionare un sottoservizio"
+
+msgid "Please select medium to use as backup location"
+msgstr "Selezionare il supporto su cui effettuare il backup"
 
 msgid "Please select tag to filter..."
 msgstr "Selezionare una etichetta come filtro"
@@ -2333,6 +2530,10 @@ msgstr "Configurazione ricezione"
 msgid "Record"
 msgstr "Registrare"
 
+#, python-format
+msgid "Record time limited due to conflicting timer %s"
+msgstr "Tempo di registrazione limitato: Timer %s in conflitto!"
+
 msgid "Recorded files..."
 msgstr "Registrazioni..."
 
@@ -2354,17 +2555,23 @@ msgstr "Frequenza di aggiornamento"
 msgid "Refresh rate selection."
 msgstr "Selezione frequenza di aggiornamento."
 
+msgid "Reload"
+msgstr "Ricaricare"
+
 msgid "Remove Bookmark"
-msgstr "Canc.Segnalibro"
+msgstr "Canc. Contrass."
 
 msgid "Remove Plugins"
 msgstr "Cancellare Plugin"
 
 msgid "Remove a mark"
-msgstr "Cancellare contrassegno"
+msgstr "Canc. contr."
 
 msgid "Remove currently selected title"
 msgstr "Cancellare il titolo selezionato"
+
+msgid "Remove finished."
+msgstr "Rimozione terminata!"
 
 msgid "Remove plugins"
 msgstr "Cancellare plugin"
@@ -2380,6 +2587,9 @@ msgstr "Canc. Timer"
 
 msgid "Remove title"
 msgstr "Canc. Titolo"
+
+msgid "Removing"
+msgstr "Rimozione in corso..."
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2429,6 +2639,18 @@ msgstr "Riavviare le connessioni di rete e le relative interfacce.\n"
 
 msgid "Restore"
 msgstr "Ripristino"
+
+msgid "Restore backups..."
+msgstr "Ripristino backup..."
+
+msgid "Restore running"
+msgstr "Ripristino in corso"
+
+msgid "Restore running..."
+msgstr "Ripristino in corso..."
+
+msgid "Restore system settings"
+msgstr "Ripristino conf. sistema"
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2610,6 +2832,9 @@ msgstr "DNS Secondario"
 msgid "Seek"
 msgstr "Ricerca"
 
+msgid "Select"
+msgstr "Selezionare"
+
 msgid "Select HDD"
 msgstr "Selezionare HDD"
 
@@ -2630,6 +2855,12 @@ msgstr "Selezionare una traccia audio"
 
 msgid "Select channel to record from"
 msgstr "Selezionare il canale di registrazione"
+
+msgid "Select files for backup. Currently selected:\n"
+msgstr "Selezionare file per il backup. Selezionati per ora:\n"
+
+msgid "Select files/folders to backup..."
+msgstr "Selezionare file/cartelle per il backup..."
 
 msgid "Select image"
 msgstr "Selezionare un'immagine"
@@ -2809,16 +3040,47 @@ msgstr "Lento"
 msgid "Slow Motion speeds"
 msgstr "Velocità rallenty"
 
+msgid "Software manager"
+msgstr "Software manager"
+
+msgid "Software manager..."
+msgstr "Software manager"
+
+msgid "Software restore"
+msgstr "Ripristino software"
+
+msgid "Software update"
+msgstr "Aggiornamento Software"
+
 msgid "Some plugins are not available:\n"
 msgstr "Alcuni plugins non sono disponibili:\n"
 
 msgid "Somewhere else"
 msgstr "Altrove"
 
+msgid "Sorry MediaScanner is not installed!"
+msgstr "MediaScanner non installato!"
+
+msgid "Sorry no backups found!"
+msgstr "Nessun backup trovato!"
+
 msgid ""
 "Sorry your Backup destination does not exist\n"
 "\n"
 "Please choose an other one."
+msgstr ""
+
+msgid ""
+"Sorry your backup destination is not writeable.\n"
+"Please choose an other one."
+msgstr ""
+"Destinazione backup non aggiornabile!\n"
+"Sceglierne un'altra!"
+
+msgid ""
+"Sorry, your backup destination is not writeable.\n"
+"\n"
+"Please choose another one."
 msgstr ""
 "La destinazione scelta per il backup non esiste!\n"
 "\n"
@@ -2946,11 +3208,11 @@ msgstr "Sistema"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Traduzione italiana per\n"
+"Traduzione italiana\n"
 "enigma2 - Dreambox\n"
 "Dario Croci - www.linsat.net\n"
 "Supporto: spaeleus@croci.org.\n"
-"- 05 gennaio 2009 -"
+"- 15 febbraio 2009 -"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "File TS troppo grande per ISO9660 livello 1!"
@@ -3383,6 +3645,9 @@ msgstr "Turco"
 msgid "Two"
 msgstr "Due"
 
+msgid "Type"
+msgstr "Tipo"
+
 msgid "Type of scan"
 msgstr "Tipo ricerca"
 
@@ -3418,6 +3683,15 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Comando DiSEqC 'Uncommitted'"
 
+msgid "Unicable"
+msgstr "Unicable"
+
+msgid "Unicable LNB"
+msgstr "LNB Unicable"
+
+msgid "Unicable Martix"
+msgstr "Matrice Unicable"
+
 msgid "Universal LNB"
 msgstr "LNB Universale"
 
@@ -3428,7 +3702,7 @@ msgid "Update"
 msgstr "Aggiornare"
 
 msgid "Updates your receiver's software"
-msgstr "Aggiornare il software del ricevitore"
+msgstr ""
 
 msgid "Updating finished. Here is the result:"
 msgstr "Aggiornamento terminato. Esito:"
@@ -3436,8 +3710,11 @@ msgstr "Aggiornamento terminato. Esito:"
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aggiornamento in corso. Attendere. Saranno necessari alcuni minuti."
 
+msgid "Upgrade finished."
+msgstr "Aggiornamento terminato!"
+
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Aggiornamento terminato. Riavviare il DreamBox ora?"
+msgstr ""
 
 msgid "Upgrading"
 msgstr "Aggiornamento in corso"
@@ -3514,6 +3791,9 @@ msgstr "VCR scart"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Introduzione)"
+
+msgid "Vertical"
+msgstr "Verticale"
 
 msgid "Video Fine-Tuning"
 msgstr "Regolazione fine Video"
@@ -3650,6 +3930,21 @@ msgstr "Ovest"
 msgid "What do you want to scan?"
 msgstr "Cosa cercare?"
 
+msgid ""
+"When you do a factory reset, you will lose ALL your configuration data\n"
+"(including bouquets, services, satellite data ...)\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
+"\n"
+"Really do a factory reset?"
+msgstr ""
+"Con il ripristino alla configurazione di fabbrica,\n"
+"tutte le configurazioni personalizzate\n"
+"(compresi bouquet, canali, dati satelliti ...) saranno perdute.\n"
+"Dopo il reset il ricevitore sarà automaticamente riavviato!\n"
+"\n"
+"Eseguire il reset?"
+
 msgid "Where do you want to backup your settings?"
 msgstr "Dove salvare il backup configurazione?"
 
@@ -3762,7 +4057,13 @@ msgid ""
 "You have chosen to backup to your harddisk. Please press OK to start the "
 "backup now."
 msgstr ""
-"Si  scelto di effettuare un backup su harddisk. Premere OK per iniziare ora."
+
+msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+"Si  scelto di effettuare un backup configurazione. Premere OK per iniziare "
+"ora."
 
 msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
@@ -3771,6 +4072,12 @@ msgstr ""
 "La creazione di una nuova penna USB avviabile come Flasher .nfi richiede la "
 "riscrittura delle partizioni. Tutti i dati presenti sulla penna saranno "
 "cancellati!"
+
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
+"Si  scelto di ripristinare la configurazione. Premere OK per iniziare ora"
 
 #, python-format
 msgid "You have to wait %s!"
@@ -3884,7 +4191,7 @@ msgid "add alternatives"
 msgstr "Aggiungere alternative"
 
 msgid "add bookmark"
-msgstr "Agg.Segnalibro"
+msgstr "Agg. Contrass."
 
 msgid "add bouquet"
 msgstr "Aggiungere bouquet"
@@ -3932,8 +4239,6 @@ msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
-"Ripristinare\n"
-"questo backup?\n"
 
 #, python-format
 msgid "audio track (%s) format"
@@ -4313,10 +4618,13 @@ msgid "no timeout"
 msgstr "Nessun timeout"
 
 msgid "none"
-msgstr "nessuno"
+msgstr "Nessuno"
 
 msgid "not locked"
 msgstr "Non bloccato"
+
+msgid "not used"
+msgstr "Non in uso"
 
 msgid "nothing connected"
 msgstr "Non collegato"
@@ -4406,7 +4714,7 @@ msgid "remove before this position"
 msgstr "Cancellare prima di questa pos."
 
 msgid "remove bookmark"
-msgstr "Cancellare contrassegno"
+msgstr "Canc. Contrass."
 
 msgid "remove directory"
 msgstr "Cancellare cartella"
@@ -4593,7 +4901,7 @@ msgid "swap PiP and main picture"
 msgstr "Scambiare PiP e schermo principale"
 
 msgid "switch to bookmarks"
-msgstr "Passare ai segnalibri"
+msgstr "Passare ai Contrassegni"
 
 msgid "switch to filelist"
 msgstr "Passare alla lista file"
@@ -4689,12 +4997,15 @@ msgstr "Zap"
 msgid "zapped"
 msgstr "Zapped"
 
+#~ msgid "\n"
+#~ msgstr "\n"
+
 #~ msgid ""
 #~ "\n"
-#~ "Enigma2 will restart after the restore"
+#~ "System will restart after the restore!"
 #~ msgstr ""
 #~ "\n"
-#~ "Enigma2 sarà riavviato dopo il ripristino"
+#~ "Il Sistema sarà riavviato dopo il ripristino!"
 
 #~ msgid ".NFI Flasher bootable USB stick successfully created."
 #~ msgstr "Creazione penna USB per Flasher .nfi terminata con successo"

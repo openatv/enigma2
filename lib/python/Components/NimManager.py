@@ -287,8 +287,8 @@ class SecConfigure:
 						sec.setLNBSatCR(manufacturer.scr[product_name].index)
 						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].value*1000)
 					elif currLnb.unicable.value == "unicable_lnb":
-						manufacturer_name = currLnb.unicableMatrixManufacturer.value
-						manufacturer = currLnb.unicableMatrix[manufacturer_name]
+						manufacturer_name = currLnb.unicableLnbManufacturer.value
+						manufacturer = currLnb.unicableLnb[manufacturer_name]
 						product_name = manufacturer.product.value
 						sec.setLNBSatCR(manufacturer.scr[product_name].index)
 						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].value*1000)
