@@ -19,7 +19,7 @@ from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop
 from cPickle import dump, load
 
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
@@ -82,7 +82,7 @@ class UpdatePluginMenu(Screen):
 			<widget source="menu" render="Listbox" position="280,10" size="230,300" scrollbarMode="showNever" selectionDisabled="1">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-							MultiContentEntryText(pos = (2, 2), size = (230, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 0 is the MenuText,
+							MultiContentEntryText(pos = (2, 2), size = (230, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
 						],
 					"fonts": [gFont("Regular", 20)],
 					"itemHeight": 230
@@ -157,7 +157,8 @@ class UpdatePluginMenu(Screen):
 				if (current == "ipkg-manager"):
 					self.session.open(PacketManager, self.skin_path)
 				elif (current == "ipkg-source"):
-					self.session.open(IPKGSource)
+					self.session.open(IPKGMenu, self.skin_path)
+					#self.session.open(IPKGSource)
 				elif (current == "ipkg-install"):
 					try:
 						from Plugins.Extensions.MediaScanner.plugin import main
@@ -223,34 +224,123 @@ class UpdatePluginMenu(Screen):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore = True)
 
+class IPKGMenu(Screen):
+	skin = """
+		<screen name="IPKGMenu" position="135,144" size="450,320" title="Select IPKG source......" >
+			<widget name="filelist" position="10,10" size="430,240" scrollbarMode="showOnDemand" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="10,280" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="closetext" position="20,290" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="160,280" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="edittext" position="170,290" size="300,21" zPosition="10" font="Regular;21" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session, plugin_path):
+		Screen.__init__(self, session)
+		self.skin_path = plugin_path
+		
+		self["closetext"] = Label(_("Close"))
+		self["edittext"] = Label(_("Edit"))
+
+		self.sel = []
+		self.val = []
+		self.entry = False
+		self.exe = False
+		
+		self.path = ""
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.KeyOk,
+			"cancel": self.keyCancel
+		}, -1)
+
+		self["shortcuts"] = ActionMap(["ShortcutActions"],
+		{
+			"red": self.keyCancel,
+			"green": self.KeyOk,
+		})
+		self.flist = []
+		self["filelist"] = MenuList(self.flist)
+		self.fill_list()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setWindowTitle()
+
+	def setWindowTitle(self):
+		self.setTitle(_("Select IPKG source to edit..."))
+
+
+	def fill_list(self):
+		self.flist = []
+		self.path = '/etc/ipkg/'
+		if (os_path.exists(self.path) == False):
+			self.entry = False
+			return
+		for file in listdir(self.path):
+			if (file.endswith(".conf")):
+				if file != 'arch.conf':
+					self.flist.append((file))
+					self.entry = True
+					self["filelist"].l.setList(self.flist)
+
+	def KeyOk(self):
+		if (self.exe == False) and (self.entry == True):
+			self.sel = self["filelist"].getCurrent()
+			self.val = self.path + self.sel
+			self.session.open(IPKGSource, self.val)
+
+	def keyCancel(self):
+		self.close()
+
+	def Exit(self):
+		self.close()
+
 
 class IPKGSource(Screen):
 	skin = """
-		<screen position="100,100" size="550,60" title="IPKG source" >
-			<widget name="text" position="0,0" size="550,25" font="Regular;20" backgroundColor="background" foregroundColor="#cccccc" />
+		<screen name="IPKGSource" position="100,100" size="550,80" title="IPKG source" >
+			<widget name="text" position="10,10" size="530,25" font="Regular;20" backgroundColor="background" foregroundColor="#cccccc" />
+			<ePixmap pixmap="skin_default/buttons/red.png" position="10,40" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="closetext" position="20,50" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="160,40" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="edittext" position="170,50" size="300,21" zPosition="10" font="Regular;21" transparent="1" />
 		</screen>"""
 		
-	def __init__(self, session, args = None):
+	def __init__(self, session, configfile = None):
 		Screen.__init__(self, session)
 		self.session = session
-
-		#FIXMEEEE add handling for more than one feed conf file!
+		self.configfile = configfile
 		text = ""
-		try:
-			fp = file('/etc/ipkg/official-feed.conf', 'r')
-			sources = fp.readlines()
-			if sources:
-				text = sources[0]
-			fp.close()
-		except IOError:
-			pass
+		if self.configfile:
+			try:
+				fp = file(configfile, 'r')
+				sources = fp.readlines()
+				if sources:
+					text = sources[0]
+				fp.close()
+			except IOError:
+				pass
 
-		self["text"] = Input(text, maxSize=False, type=Input.TEXT)
+		desk = getDesktop(0)
+		x= int(desk.size().width())
+		y= int(desk.size().height())
+		#print "[IPKGSource] mainscreen: current desktop size: %dx%d" % (x,y)
 
-		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions"], 
+		self["closetext"] = Label(_("Cancel"))
+		self["edittext"] = Label(_("Save"))
+		
+		if (y>=720):
+			self["text"] = Input(text, maxSize=False, type=Input.TEXT)
+		else:
+			self["text"] = Input(text, maxSize=False, visible_width = 55, type=Input.TEXT)
+			
+		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"], 
 		{
 			"ok": self.go,
 			"back": self.close,
+			"red": self.close,
+			"green": self.go,
 			"left": self.keyLeft,
 			"right": self.keyRight,
 			"home": self.keyHome,
@@ -268,12 +358,22 @@ class IPKGSource(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
+
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setWindowTitle()
+		self["text"].right()
+
+	def setWindowTitle(self):
+		self.setTitle(_("Edit IPKG source URL..."))
 		
 	def go(self):
 		text = self["text"].getText()
 		if text:
-			fp = file('/etc/ipkg/official-feed.conf', 'w')
-			fp.write()
+			fp = file(self.configfile, 'w')
+			fp.write(text)
+			fp.write("\n")
 			fp.close()
 		self.close()
 		
