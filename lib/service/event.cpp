@@ -88,7 +88,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 					lang = cc;  // use first found language
 				if (cc == lang)
 				{
-					m_event_name = convertDVBUTF8(sed->getEventName(), table, tsidonid);
+					m_event_name = convertDVBUTF8(replace_all(replace_all(sed->getEventName(), "\n", " "), "\t", " "), table, tsidonid);
 					m_short_description = convertDVBUTF8(sed->getText(), table, tsidonid);
 					retval=1;
 				}
