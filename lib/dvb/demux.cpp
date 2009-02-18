@@ -5,6 +5,13 @@
 #include <unistd.h>
 #include <signal.h>
 
+// #define FUZZING 1
+
+#if FUZZING
+		/* change every 1:FUZZING_PROPABILITY byte */
+#define FUZZING_PROPABILITY 100
+#endif
+
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
 
@@ -178,6 +185,14 @@ void eDVBSectionReader::data(int)
 	__u8 data[4096]; // max. section size
 	int r;
 	r = ::read(fd, data, 4096);
+#if FUZZING
+	int j;
+	for (j = 0; j < r; ++j)
+	{
+		if (!(rand()%FUZZING_PROPABILITY))
+			data[j] ^= rand();
+	}
+#endif	
 	if(r < 0)
 	{
 		eWarning("ERROR reading section - %m\n");
@@ -243,11 +258,13 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 #else
 	sct.flags   = DMX_IMMEDIATE_START;
 #endif
+#if !FUZZING
 	if (mask.flags & eDVBSectionFilterMask::rfCRC)
 	{
 		sct.flags |= DMX_CHECK_CRC;
 		checkcrc = 1;
 	} else
+#endif
 		checkcrc = 0;
 	
 	memcpy(sct.filter.filter, mask.data, DMX_FILTER_SIZE);
