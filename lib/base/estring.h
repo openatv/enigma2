@@ -18,6 +18,7 @@ int isUTF8(const std::string &string);
 
 std::string removeDVBChars(const std::string &s);
 void makeUpper(std::string &s);
+std::string replace_all(const std::string &in, const std::string &entity, const std::string &symbol);
 
 inline std::string convertDVBUTF8(const std::string &string, int table=0, int tsidonid=0) // with default ISO8859-1/Latin1
 {

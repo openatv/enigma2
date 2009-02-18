@@ -1201,15 +1201,17 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 			if ((unsigned int)sat.orbital_position != orbpos)
 				remove=false;
 		}
-		if ( remove && chid.dvbnamespace != eNs )
+		if ( remove && chid.dvbnamespace != eNs ) // namespace given?
 		{
-			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == (int)0xFFFF0000)
+			if ( system == iDVBFrontend::feCable && chid.dvbnamespace.get() == (int)0xFFFF0000 )
 				;
-			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == (int)0xEEEE0000)
+			else if ( system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == (int)0xEEEE0000 )
 				;
 			else if ( chid.dvbnamespace != ch.dvbnamespace )
 				remove=false;
 		}
+		else if ( system == iDVBFrontend::feCable || system == iDVBFrontend::feTerrestrial )
+			remove=false;
 		if ( remove && chid.original_network_id != eOnid && chid.original_network_id != ch.original_network_id )
 			remove=false;
 		if ( remove && chid.transport_stream_id != eTsid && chid.transport_stream_id != ch.transport_stream_id )
