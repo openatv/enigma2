@@ -6,12 +6,15 @@ They don't have a private header.
 
 == .meta FILES ==
 
-.meta files have currently 4 lines:
+.meta files have currently up to 7 lines:
 
 <service reference>
 <name>
 <description>
 <recording time>
+[<tags>]
+[<length>]
+[<filesize>]
 
 The service reference contains the Service-ID of the recorded service. With
 that ID, you can find the PMT and the elementary streams.
@@ -19,6 +22,12 @@ that ID, you can find the PMT and the elementary streams.
 As a backup method, just find the first available PMT and use that.
 
 Strings are always UTF-8 encoded.
+
+tags is a space-delimited list of tags assigned to this movie.
+
+length is the length of the recording, in PTS-units (1/90000s). filesize was
+the filesize at the time the length was calculated, so you can validate if
+this is still up-to-date or must be recalculated.
 
 == .ap FILES ==
 
@@ -43,7 +52,6 @@ Type is:
 0 - 'in' point
 1 - 'out' point
 2 - mark
-3 - last (resumepoint)
 
 If the first 'out'-point is not preceeded by an 'in'-point, there is an 
 implicit 'in' point at zero.
