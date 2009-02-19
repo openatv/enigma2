@@ -511,7 +511,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		
 	def askLeavePlayer(self):
 		choices = [(_("Exit"), "exit"), (_("Continue playing"), "play")]
-		if not self.physicalDVD:
+		if True or not self.physicalDVD:
 			choices.insert(1,(_("Return to file browser"), "browser"))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
 
