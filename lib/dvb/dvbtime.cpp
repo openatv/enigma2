@@ -145,7 +145,7 @@ eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;
 DEFINE_REF(eDVBLocalTimeHandler);
 
 eDVBLocalTimeHandler::eDVBLocalTimeHandler()
-	:m_time_ready(false), m_updateNonTunedTimer(eTimer::create(eApp))
+	:m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false)
 {
 	if ( !instance )
 		instance=this;

@@ -779,6 +779,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (PyInt_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
 					pstring = PyTuple_GetItem(data, PyInt_AsLong(pstring));
 
+							/* don't do anything if we have 'None' as string */
+				if (pstring == Py_None)
+					continue;
+
 				const char *string = (PyString_Check(pstring)) ? PyString_AsString(pstring) : "<not-a-string>";
 				int x = PyInt_AsLong(px) + offset.x();
 				int y = PyInt_AsLong(py) + offset.y();
@@ -944,6 +948,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if (PyInt_Check(ppixmap) && data) /* if the pixemap is in fact a number, it refers to the 'data' list. */
 					ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+
+							/* don't do anything if we have 'None' as pixmap */
+				if (ppixmap == Py_None)
+					continue;
 
 				int x = PyInt_AsLong(px) + offset.x();
 				int y = PyInt_AsLong(py) + offset.y();
