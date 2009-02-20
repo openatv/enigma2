@@ -271,7 +271,8 @@ class eDVBSatelliteEquipmentControl: public iDVBSatelliteEquipmentControl
 	DECLARE_REF(eDVBSatelliteEquipmentControl);
 public:
 	enum {
-		DELAY_AFTER_CONT_TONE=0,  // delay after continuous tone change
+		DELAY_AFTER_CONT_TONE_DISABLE_BEFORE_DISEQC=0,  // delay after continuous tone disable before diseqc command
+		DELAY_AFTER_FINAL_CONT_TONE_CHANGE, // delay after continuous tone change before tune
 		DELAY_AFTER_FINAL_VOLTAGE_CHANGE, // delay after voltage change at end of complete sequence
 		DELAY_BETWEEN_DISEQC_REPEATS, // delay between repeated diseqc commands
 		DELAY_AFTER_LAST_DISEQC_CMD, // delay after last diseqc command

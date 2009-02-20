@@ -279,6 +279,7 @@ class ConfigSelection(ConfigElement):
 		if default is None:
 			default = self.choices.default()
 
+		self._descr = None
 		self.default = self._value = self.last_value = default
 		self.changed()
 
@@ -296,6 +297,7 @@ class ConfigSelection(ConfigElement):
 			self._value = value
 		else:
 			self._value = self.default
+		self._descr = None
 		self.changed()
 
 	def tostring(self, val):
@@ -307,7 +309,7 @@ class ConfigSelection(ConfigElement):
 	def setCurrentText(self, text):
 		i = self.choices.index(self.value)
 		self.choices[i] = text
-		self.description[text] = text
+		self._descr = self.description[text] = text
 		self._value = text
 
 	value = property(getValue, setValue)
@@ -336,13 +338,18 @@ class ConfigSelection(ConfigElement):
 		self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
-		descr = self.description[self.value]
+		if self._descr is not None:
+			return self._descr
+		descr = self._descr = self.description[self.value]
 		if descr:
 			return _(descr)
 		return descr
 
 	def getMulti(self, selected):
-		descr = self.description[self.value]
+		if self._descr is not None:
+			descr = self._descr
+		else:
+			descr = self._descr = self.description[self.value]
 		if descr:
 			return ("text", _(descr))
 		return ("text", descr)
