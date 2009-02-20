@@ -264,7 +264,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	def readTransponderList(self):
 		for sat in nimmanager.getSatListForNim(self.feid):
 			for transponder in nimmanager.getTransponders(sat[0]):
-				print transponder
+				#print transponder
 				mytransponder = (transponder[1] / 1000, transponder[2] / 1000, transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11])
 				self.analyseTransponder(mytransponder)
 
