@@ -563,7 +563,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						compare.tone = iDVBFrontend::toneOff;
 						sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 						sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
-						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
+						sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE_DISABLE_BEFORE_DISEQC]) );
 
 						if (diseqc13V)
 							vlt = iDVBFrontend::voltage13;
@@ -705,7 +705,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							compare.tone = iDVBFrontend::toneOff;
 							sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 							sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
-							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
+							sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE_DISABLE_BEFORE_DISEQC]) );
 
 							compare.voltage = iDVBFrontend::voltageOff;
 							compare.steps = +4;
@@ -839,7 +839,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 								compare.tone = tone;
 								sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
-								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_FINAL_CONT_TONE_CHANGE]) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 	
 								cmd.direction=1;  // check for running rotor
@@ -884,7 +884,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				compare.tone = tone;
 				sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_CONT_TONE]) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_FINAL_CONT_TONE_CHANGE]) );
 			}
 
 			sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_SWITCHPARMS) );
