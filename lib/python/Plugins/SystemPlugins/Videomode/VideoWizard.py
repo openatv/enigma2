@@ -13,8 +13,8 @@ config.misc.showtestcard = ConfigBoolean(default = False)
 class VideoWizardSummary(WizardSummary):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="text" position="6,4" size="120,42" font="Regular;14" transparent="1" />
-		<widget source="parent.list" render="Label" position="6,25" size="120,21" font="Regular;16">
+		<widget name="text" position="6,4" size="120,40" font="Regular;12" transparent="1" />
+		<widget source="parent.list" render="Label" position="6,40" size="120,21" font="Regular;14">
 			<convert type="StringListSelection" />
 		</widget>
 		<!--widget name="pic" pixmap="%s" position="6,22" zPosition="10" size="64,64" transparent="1" alphatest="on"/-->

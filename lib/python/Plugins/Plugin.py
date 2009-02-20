@@ -49,6 +49,9 @@ class PluginDescriptor:
 	# or return a function which is called with session and the interface name for extended setup of this interface
 	WHERE_EVENTINFO = 11
 
+	# reason (True: Networkconfig read finished, False: Networkconfig reload initiated )
+	WHERE_NETWORKCONFIG_READ = 12
+
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, internal = False):
 		self.name = name
 		self.internal = internal

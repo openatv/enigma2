@@ -475,6 +475,11 @@ class Wizard(Screen):
 			self.currStep += 1
 			self.updateValues()
 		else:
+			if self.wizard[self.currStep].has_key("displaytext"):
+				displaytext = self.wizard[self.currStep]["displaytext"]
+				print "set LCD text"
+				for x in self.lcdCallbacks:
+					x(displaytext)
 			if len(self.stepHistory) == 0 or self.stepHistory[-1] != self.currStep:
 				self.stepHistory.append(self.currStep)
 			print "wizard step:", self.wizard[self.currStep]
