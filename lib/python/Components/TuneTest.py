@@ -4,8 +4,8 @@ class Tuner:
 	def __init__(self, frontend):
 		self.frontend = frontend
 
-	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, system, modulation)
-	#                    0         1             2         3       4         5       6        7
+	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, system, modulation, rolloff, pilot, tsid, onid)
+	#                    0         1             2         3       4         5       6        7          8       9      10    11
 	def tune(self, transponder):
 		if self.frontend:
 			print "tuning to transponder with data", transponder
@@ -102,8 +102,8 @@ class TuneTest:
 				pidsFailed = False
 				if self.checkPIDs:
 					if self.currTuned is not None:
-						if self.tsid != self.currTuned[8] or self.onid != self.currTuned[9]:
-							self.failedTune.append([self.currTuned, self.oldTuned, "pids_failed", {"real": (self.tsid, self.onid), "expected": (self.currTuned[8], self.currTuned[9])}])
+						if self.tsid != self.currTuned[10] or self.onid != self.currTuned[11]:
+							self.failedTune.append([self.currTuned, self.oldTuned, "pids_failed", {"real": (self.tsid, self.onid), "expected": (self.currTuned[10], self.currTuned[11])}])
 							pidsFailed = True
 						else:
 							self.successfullyTune.append([self.currTuned, self.oldTuned])
@@ -203,8 +203,8 @@ class TuneTest:
 		self.progressCallback((self.getProgressLength(), self.tuningtransponder, self.STATUS_START, self.currTuned))
 		self.timer.start(100, True)
 	
-	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, <system>, <modulation>, <tsid>, <onid>)
-	#                    0         1             2         3       4         5       6        7              8      9
+	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, <system>, <modulation>, <rolloff>, <pilot>, <tsid>, <onid>)
+	#                    0         1             2         3       4         5       6        7              8         9        10       11
 	def addTransponder(self, transponder):
 		self.transponderlist.append(transponder)
 		
