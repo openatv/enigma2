@@ -71,6 +71,7 @@ struct subtitle_page
 	int page_id;
 	time_t page_time_out;
 	int page_version_number;
+	int state;
 	int pcs_size;
 	subtitle_page_region *page_regions;
 	
