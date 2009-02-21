@@ -345,6 +345,8 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			}
 		}
 
+		page->state = page_state;
+
 		//eDebug("page updated: old: %d, new: %d", page->page_version_number, page_version_number);
 			// when acquisition point or mode change: remove all displayed pages.
 		if ((page_state == 1) || (page_state == 2))
@@ -804,7 +806,8 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 	subtitle_page *page = m_pages;
 	while(page)
 	{
-		subtitle_redraw(page->page_id);
+		if (page->state != 0)
+			subtitle_redraw(page->page_id);
 		page = page->next;
 	}
 #else
