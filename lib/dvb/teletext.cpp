@@ -521,13 +521,13 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 
 	if (m_X28_0_valid)
 	{
-		nat_subset = NationalOptionSubsetsLookup[(m_X28_t1 >> 7) & 0xF];
+		nat_subset = NationalOptionSubsetsLookup[(m_X28_t1 >> 7) & 0x7F];
 		nat_subset_2 = NationalOptionSubsetsLookup[((m_X28_t1 >> 14) & 0xF) | ((m_X28_t2 & 7) << 4)];
 //		eDebug("X/28/0 nat_subset %d, nat_subset2 %d", nat_subset, nat_subset_2);
 	}
 	else if (m_M29_0_valid)
 	{
-		nat_subset = NationalOptionSubsetsLookup[(m_M29_t1 >> 7) & 0xF];
+		nat_subset = NationalOptionSubsetsLookup[(m_M29_t1 >> 7) & 0x7F];
 		nat_subset_2 = NationalOptionSubsetsLookup[((m_M29_t1 >> 14) & 0xF) | ((m_M29_t2 & 7) << 4)];
 //		eDebug("M/29/0 nat_subset %d, nat_subset2 %d", nat_subset, nat_subset_2);
 	}
