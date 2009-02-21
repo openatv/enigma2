@@ -406,8 +406,8 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			int designation_code = decode_hamming_84(data++);
 			if (designation_code == 0) // 29/0
 			{
-				m_M29_t1 = decode_hamming_2418(data++);
-				m_M29_t2 = decode_hamming_2418(data++);
+				m_M29_t1 = decode_hamming_2418(data);
+				m_M29_t2 = decode_hamming_2418(data+3);
 				if ((m_M29_t1 & 0xF) == 0) // format1
 					m_M29_0_valid = 1;
 				else
@@ -422,8 +422,8 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			if (Y == 28 && designation_code == 0)   // 28/0
 			{
 #if 1
-				m_X28_t1 = decode_hamming_2418(data++);
-				m_X28_t2 = decode_hamming_2418(data++);
+				m_X28_t1 = decode_hamming_2418(data);
+				m_X28_t2 = decode_hamming_2418(data+3);
 				if ((m_X28_t1 & 0xF) == 0) // format1
 					m_X28_0_valid = 1;
 				else
@@ -435,6 +435,15 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 						int tripletX = decode_hamming_2418(data+i);
 						if (tripletX >= 0)
 						{
+							if (i == 0)
+							{
+								if ((m_X28_t1 & 0xF) == 0) // format1
+									m_X28_0_valid = 1;
+								m_X28_t1 = tripletX;
+							}
+							else if (i == 1)
+								m_X28_t2 = tripletX;
+
 							char *c = get_bits(tripletX, 18);
 							int x=0;
 							for (; x < 18; ++x)
@@ -510,24 +519,24 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 		nat_subset = nat_subset_2,
 		second_G0_set = 0;
 
-		if (m_X28_0_valid)
-		{
-			nat_subset = NationalOptionSubsetsLookup[((m_X28_t1 >> 14) & 0xF) | ((m_X28_t2 & 7) << 4)];
-			nat_subset_2 = NationalOptionSubsetsLookup[(m_X28_t1 >> 7) & 0xF];
-//			eDebug("override nat subset with X28/0... nat_subset2 is %d", nat_subset_2);
-		}
-		else if (m_M29_0_valid)
-		{
-			nat_subset = NationalOptionSubsetsLookup[((m_M29_t1 >> 14) & 0xF) | ((m_M29_t2 & 7) << 4)];
-			nat_subset_2 = NationalOptionSubsetsLookup[(m_M29_t1 >> 7) & 0xF];
-//			eDebug("override nat subset with M29/0... nat_subset2 is %d", nat_subset_2);
-		}
-
-	/*eDebug("nat_opts = %d, nat_subset = %d, C121314 = %d%d%d",
-		nat_opts, nat_subset,
-		(m_C & (1<<12))?1:0,
-		(m_C & (1<<13))?1:0,
-		(m_C & (1<<14))?1:0);*/
+	if (m_X28_0_valid)
+	{
+		nat_subset = NationalOptionSubsetsLookup[(m_X28_t1 >> 7) & 0xF];
+		nat_subset_2 = NationalOptionSubsetsLookup[((m_X28_t1 >> 14) & 0xF) | ((m_X28_t2 & 7) << 4)];
+//		eDebug("X/28/0 nat_subset %d, nat_subset2 %d", nat_subset, nat_subset_2);
+	}
+	else if (m_M29_0_valid)
+	{
+		nat_subset = NationalOptionSubsetsLookup[(m_M29_t1 >> 7) & 0xF];
+		nat_subset_2 = NationalOptionSubsetsLookup[((m_M29_t1 >> 14) & 0xF) | ((m_M29_t2 & 7) << 4)];
+//		eDebug("M/29/0 nat_subset %d, nat_subset2 %d", nat_subset, nat_subset_2);
+	}
+/*	else
+		eDebug("nat_opts = %d, nat_subset = %d, C121314 = %d%d%d",
+			nat_opts, nat_subset,
+			(m_C & (1<<12))?1:0,
+			(m_C & (1<<13))?1:0,
+			(m_C & (1<<14))?1:0);*/
 
 //	eDebug("handle subtitle line: %d len", len);
 	for (int i=0; i<len; ++i)
