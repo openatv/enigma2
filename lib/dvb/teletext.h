@@ -50,7 +50,9 @@ private:
 	eDVBTeletextSubtitlePage m_subtitle_page;
 	
 	int m_C, m_Y, m_pid, m_page_M, m_page_X, m_page_open, m_double_height, m_box_open;
-	
+	int m_X28_0_valid, m_X28_t1, m_X28_t2;
+	int m_M29_0_valid, m_M29_t1, m_M29_t2;
+
 	void handlePageStart();
 	void handleLine(unsigned char *line, int len);
 	void handlePageEnd(int have_pts, const pts_t &pts);
