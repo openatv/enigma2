@@ -27,7 +27,7 @@ to generate HTML."""
 
 	def entry_changed(self, index):
 		if not self.disable_callbacks:
-			self.downstream_elements.entry_changed(self, index)
+			self.downstream_elements.entry_changed(index)
 
 	def modifyEntry(self, index, data):
 		self.__list[index] = data
