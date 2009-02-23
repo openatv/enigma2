@@ -1,8 +1,9 @@
 #include <lib/base/buffer.h>
 #include <lib/base/eerror.h>
-#include <stdio.h>
+#include <cerrno>
+#include <cstdio>
+#include <cstring>
 #include <unistd.h>
-#include <errno.h>
 
 void eIOBuffer::removeblock()
 {

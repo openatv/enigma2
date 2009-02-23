@@ -385,13 +385,13 @@ public:
 	
 	virtual RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm)=0;
 	
-	virtual RESULT addService(const eServiceReferenceDVB &service, eDVBService *service)=0;
+	virtual RESULT addService(const eServiceReferenceDVB &reference, eDVBService *service)=0;
 	virtual RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service)=0;
 	virtual RESULT flush()=0;
 
 	virtual RESULT getBouquet(const eServiceReference &ref,  eBouquet* &bouquet)=0;
 
-	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source)=0;
+	virtual RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q, const eServiceReference &source)=0;
 };
 
 #endif  // SWIG
