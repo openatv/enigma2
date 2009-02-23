@@ -51,11 +51,11 @@ public:
 
 	RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm);
 	
-	RESULT addService(const eServiceReferenceDVB &service, eDVBService *service);
+	RESULT addService(const eServiceReferenceDVB &referenc, eDVBService *service);
 	RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service);
 	RESULT flush();
 
-	RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *query, const eServiceReference &source);
+	RESULT startQuery(ePtr<iDVBChannelListQuery> &query, eDVBChannelQuery *q, const eServiceReference &source);
 
 	RESULT getBouquet(const eServiceReference &ref, eBouquet* &bouquet);
 //////

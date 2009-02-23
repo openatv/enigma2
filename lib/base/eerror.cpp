@@ -1,8 +1,9 @@
 #include <lib/base/eerror.h>
 #include <lib/base/elock.h>
-#include <stdarg.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdarg>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <unistd.h>
 
 #include <string>

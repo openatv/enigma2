@@ -1,6 +1,7 @@
+#include <algorithm>
+#include <cctype>
+#include <climits>
 #include <string>
-#include <ctype.h>
-#include <limits.h>
 #include <lib/base/eerror.h>
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>

@@ -73,7 +73,7 @@ public:
 	void paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected);
 	int currentCursorSelectable();
 	void setList(SWIG_PYOBJECT(ePyObject) list);
-	void setFont(int fnt, gFont *fnt);
+	void setFont(int fnt, gFont *font);
 	void setBuildFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setSelectableFunc(SWIG_PYOBJECT(ePyObject) func);
 	void setItemHeight(int height);

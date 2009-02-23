@@ -1,3 +1,4 @@
+#include <cstring>
 #include <lib/driver/misc_options.h>
 
 #include <unistd.h>
