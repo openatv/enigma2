@@ -838,6 +838,7 @@ int eServiceMP3::getInfo(int w)
 	case sGenre:
 	case sVideoType:
 	case sTimeCreate:
+	case sUser+10:
 	case sUser+12:
 		return resIsString;
 	case sCurrentTitle:
@@ -885,6 +886,9 @@ std::string eServiceMP3::getInfoString(int w)
 		break;
 	case sGenre:
 		tag = GST_TAG_GENRE;
+		break;
+	case sUser+10:
+		tag = GST_TAG_AUDIO_CODEC;
 		break;
 	case sVideoType:
 		tag = GST_TAG_VIDEO_CODEC;
@@ -1025,7 +1029,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 	source = GST_MESSAGE_SRC(msg);
 	sourceName = gst_object_get_name(source);
-#if 0
+#if 1
 	if (gst_message_get_structure(msg))
 	{
 		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
@@ -1050,8 +1054,13 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			eWarning("Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName );
 			if ( err->domain == GST_STREAM_ERROR )
 			{
-				if ( err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND && g_strrstr(sourceName, "videosink") )
-					m_event((iPlayableService*)this, evUser+11);
+				if ( err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND )
+				{
+					if ( g_strrstr(sourceName, "videosink") )
+						m_event((iPlayableService*)this, evUser+11);
+					else if ( g_strrstr(sourceName, "audiosink") )
+						m_event((iPlayableService*)this, evUser+10);
+				}
 				else if ( err->code == GST_STREAM_ERROR_FAILED && g_strrstr(sourceName, "file-source") )
 				{
 					eWarning("error in tag parsing, linking mp3parse directly to file-sink, bypassing id3demux...");

@@ -224,7 +224,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
-				iPlayableService.evUser+11: self.__evDecodeError,
+				iPlayableService.evUser+10: self.__evAudioDecodeError,
+				iPlayableService.evUser+11: self.__evVideoDecodeError,
 				iPlayableService.evUser+12: self.__evPluginError,
 				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt
 			})
@@ -268,11 +269,17 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		print "[__evUpdatedInfo] title %d of %d (%s)" % (currenttitle, totaltitles, sTitle)
 		self.readTitleInformation()
 
-	def __evDecodeError(self):
+	def __evAudioDecodeError(self):
+		currPlay = self.session.nav.getCurrentService()
+		sAudioType = currPlay.info().getInfoString(iServiceInformation.sUser+10)
+		print "[__evAudioDecodeError] audio-codec %s can't be decoded by hardware" % (sAudioType)
+		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sAudioType, type = MessageBox.TYPE_INFO,timeout = 20 )
+
+	def __evVideoDecodeError(self):
 		currPlay = self.session.nav.getCurrentService()
 		sVideoType = currPlay.info().getInfoString(iServiceInformation.sVideoType)
-		print "[__evDecodeError] video-codec %s can't be decoded by hardware" % (sVideoType)
-		self.session.open(MessageBox, _("This Dreambox can't decode %s video streams!") % sVideoType, type = MessageBox.TYPE_INFO,timeout = 20 )
+		print "[__evVideoDecodeError] video-codec %s can't be decoded by hardware" % (sVideoType)
+		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sVideoType, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evPluginError(self):
 		currPlay = self.session.nav.getCurrentService()
