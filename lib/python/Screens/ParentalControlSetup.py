@@ -215,9 +215,7 @@ class ParentalControlEditor(Screen):
 		if result is not None:
 			print "result:", result
 			self.currentLetter = result[1]
-			self.list = []
-			for x in self.servicesList[result[1]]:
-				self.list.append(ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionLevel(x[0]) != -1))
+			self.list = [ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionLevel(x[0]) != -1) for x in self.servicesList[result[1]]]
 			self.servicelist.setList(self.list)
 		else:
 			parentalControl.save()

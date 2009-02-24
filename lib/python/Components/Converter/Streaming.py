@@ -9,9 +9,6 @@ from Components.Element import cached
 # 	"+d:[p:t[,p:t...]]" with d=demux nr, p: pid, t: type
 
 class Streaming(Converter):
-	def __init__(self, type):
-		Converter.__init__(self, type)
-
 	@cached
 	def getText(self):
 		service = self.source.service

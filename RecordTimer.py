@@ -63,7 +63,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if event == iRecordableService.evEnd:
 			print "RecordTimer.staticGotRecordEvent(iRecordableService.evEnd)"
 			recordings = NavigationInstance.instance.getRecordings()
-			if not len(recordings): # no more recordings exist
+			if not recordings: # no more recordings exist
 				rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
 				if rec_time > 0 and (rec_time - time.time()) < 360:
 					print "another recording starts in", rec_time - time.time(), "seconds... do not shutdown yet"

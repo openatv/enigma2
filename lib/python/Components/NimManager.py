@@ -112,7 +112,7 @@ class SecConfigure:
 		
 	def getRoot(self, slotid, connto):
 		visited = []
-		while (self.NimManager.getNimConfig(connto).configMode.value in ["satposdepends", "equal", "loopthrough"]):
+		while (self.NimManager.getNimConfig(connto).configMode.value in ("satposdepends", "equal", "loopthrough")):
 			connto = int(self.NimManager.getNimConfig(connto).connectedTo.value)
 			if connto in visited: # prevent endless loop
 				return slotid
@@ -168,7 +168,7 @@ class SecConfigure:
 			hw = HardwareInfo()
 			if slot.isCompatible("DVB-S"):
 				print "slot: " + str(x) + " configmode: " + str(nim.configMode.value)
-				if nim.configMode.value in [ "loopthrough", "satposdepends", "nothing" ]:
+				if nim.configMode.value in ( "loopthrough", "satposdepends", "nothing" ):
 					pass
 				else:
 					sec.setSlotNotLinked(x)
@@ -447,7 +447,7 @@ class NIM(object):
 	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None):
 		self.slot = slot
 
-		if type not in ["DVB-S", "DVB-C", "DVB-T", "DVB-S2", None]:
+		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", None):
 			print "warning: unknown NIM type %s, not using." % type
 			type = None
 
@@ -458,20 +458,20 @@ class NIM(object):
 
 	def isCompatible(self, what):
 		compatible = {
-				None: [None],
-				"DVB-S": ["DVB-S", None],
-				"DVB-C": ["DVB-C", None],
-				"DVB-T": ["DVB-T", None],
-				"DVB-S2": ["DVB-S", "DVB-S2", None]
+				None: (None,),
+				"DVB-S": ("DVB-S", None),
+				"DVB-C": ("DVB-C", None),
+				"DVB-T": ("DVB-T", None),
+				"DVB-S2": ("DVB-S", "DVB-S2", None)
 			}
 		return what in compatible[self.type]
 	
 	def connectableTo(self):
 		connectable = {
-				"DVB-S": ["DVB-S", "DVB-S2"],
-				"DVB-C": ["DVB-C"],
-				"DVB-T": ["DVB-T"],
-				"DVB-S2": ["DVB-S", "DVB-S2"]
+				"DVB-S": ("DVB-S", "DVB-S2"),
+				"DVB-C": ("DVB-C",),
+				"DVB-T": ("DVB-T",),
+				"DVB-S2": ("DVB-S", "DVB-S2")
 			}
 		return connectable[self.type]
 
@@ -781,10 +781,10 @@ class NimManager:
 
 			if configMode == "simple":
 				dm = nim.diseqcMode.value
-				if dm in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcA.orbital_position != 3601:
 						list.append(self.satList[nim.diseqcA.index-1])
-				if dm in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+				if dm in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcB.orbital_position != 3601:
 						list.append(self.satList[nim.diseqcB.index-1])
 				if dm == "diseqc_a_b_c_d":

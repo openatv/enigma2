@@ -68,7 +68,7 @@ class EPGSelection(Screen):
 		self["key_green"] = Button(_("Add timer"))
 		self.key_green_choice = self.ADD_TIMER
 		self.key_red_choice = self.EMPTY
-		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer)
+		self["list"] = EPGList(type = self.type, selChangedCB = self.onSelectionChanged, timer = session.nav.RecordTimer)
 
 		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
 			{

@@ -64,18 +64,17 @@ class Language:
 			self.activateLanguage(self.langlist[index])
 
 	def getLanguageList(self):
-		list = []
-		for x in self.langlist:
-			list.append((x, self.lang[x]))
-		return list
+		return [ (x, self.lang[x]) for x in self.langlist ]
 
 	def getActiveLanguage(self):
 		return self.activeLanguage
 	
 	def getActiveLanguageIndex(self):
-		for count in range(len(self.langlist)):
-			if self.langlist[count] == self.activeLanguage:
-				return count
+		idx = 0
+		for x in self.langlist:
+			if x == self.activeLanguage:
+				return idx
+			idx += 1
 		return None			
 
 	def getLanguage(self):

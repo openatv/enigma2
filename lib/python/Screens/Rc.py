@@ -81,4 +81,3 @@ class Rc:
 		for selectPic in self.selectpics:
 			for pic in selectPic[1]:
 				self[pic].hide()
-	

@@ -121,7 +121,7 @@ class MMIDialog(Screen):
 		elif self.tag == "WAIT":
 			self.handler.stopMMI(self.slotid)
 			self.closeMmi()
-		elif self.tag in [ "MENU", "LIST" ]:
+		elif self.tag in ( "MENU", "LIST" ):
 			print "cancel list"
 			self.handler.answerMenu(self.slotid, 0)
 			self.showWait()

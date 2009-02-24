@@ -17,8 +17,6 @@ class HelpMenuList(GUIComponent):
 		l = [ ]
 		for (actionmap, context, actions) in helplist:
 			for (action, help) in actions:
-				entry = [ ]
-
 				buttons = queryKeyBinding(context, action)
 
 				# do not display entries which are not accessible from keys
@@ -36,13 +34,15 @@ class HelpMenuList(GUIComponent):
 				if flags & 8: # for long keypresses, prepend l_ into the key name.
 					name = (name[0], "long")
 					
-				entry.append( (actionmap, context, action, name ) )
-					
+				entry = [ (actionmap, context, action, name ) ]
+
 				if isinstance(help, list):
 					self.extendedHelp = True
 					print "extendedHelpEntry found"
-					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 26, 0, 0, help[0]) )
-					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 28, 400, 20, 1, 0, help[1]) )
+					entry.extend((
+						(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 26, 0, 0, help[0]),
+						(eListboxPythonMultiContent.TYPE_TEXT, 0, 28, 400, 20, 1, 0, help[1])
+					))
 				else:
 					entry.append( (eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 400, 28, 0, 0, help) )
 					
