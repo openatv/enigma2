@@ -604,10 +604,7 @@ class WizardManager:
 		self.wizards.append((wizard, precondition, priority))
 	
 	def getWizards(self):
-		list = []
-		for x in self.wizards:
-			if x[1] == 1: # precondition
-				list.append((x[2], x[0]))
-		return list
+		# x[1] is precondition
+		return [(x[2], x[0]) for x in self.wizards if x[1] == 1]
 
 wizardManager = WizardManager()

@@ -96,9 +96,9 @@ class PluginComponent:
 		res = [ ]
 
 		for x in where:
-			for p in self.plugins.get(x, [ ]):
-				res.append(p)
-		return res
+			res.extend(self.plugins.get(x, [ ]))
+
+		return  res
 
 	def getPluginsForMenu(self, menuid):
 		res = [ ]

@@ -67,7 +67,7 @@ class VideoHardware:
 		else:
 			mode = config.av.videomode[port].value
 			force_widescreen = self.isWidescreenMode(port, mode)
-			is_widescreen = force_widescreen or config.av.aspect.value in ["16_9", "16_10"]
+			is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
 			is_auto = config.av.aspect.value == "auto"
 			if is_widescreen:
 				if force_widescreen:
@@ -283,7 +283,7 @@ class VideoHardware:
 
 		force_widescreen = self.isWidescreenMode(port, mode)
 
-		is_widescreen = force_widescreen or config.av.aspect.value in ["16_9", "16_10"]
+		is_widescreen = force_widescreen or config.av.aspect.value in ("16_9", "16_10")
 		is_auto = config.av.aspect.value == "auto"
 		policy2 = "policy" # use main policy
 

@@ -256,7 +256,7 @@ class Session:
 			self.execEnd(last=False)
 
 	def popCurrent(self):
-		if len(self.dialog_stack):
+		if self.dialog_stack:
 			(self.current_dialog, do_show) = self.dialog_stack.pop()
 			self.execBegin(first=False, do_show=do_show)
 		else:
@@ -275,7 +275,7 @@ class Session:
 		return dlg
 
 	def open(self, screen, *arguments, **kwargs):
-		if len(self.dialog_stack) and not self.in_exec:
+		if self.dialog_stack and not self.in_exec:
 			raise RuntimeError("modal open are allowed only from a screen which is modal!")
 			# ...unless it's the very first screen.
 
@@ -417,10 +417,7 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
-	screensToRun = [ ]
-
-	for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD):
-		screensToRun.append(p.__call__)
+	screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
 
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
@@ -444,7 +441,7 @@ def runScreenTest():
 
 		screen = screensToRun[0][1]
 
-		if len(screensToRun):
+		if screensToRun:
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen)
 		else:
 			session.open(screen)
@@ -476,8 +473,8 @@ def runScreenTest():
 	]
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
-	if len(wakeupList):
-		startTime = wakeupList.pop(0)
+	if wakeupList:
+		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 330: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:

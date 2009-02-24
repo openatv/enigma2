@@ -9,10 +9,17 @@ from Components.ServiceEventTracker import InfoBarBase
 
 from enigma import eTimer
 
-class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, InfoBarAudioSelection, Screen):
+class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
+		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
+		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, \
+		InfoBarAudioSelection, Screen):
+
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)
-		for x in [InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, InfoBarTimeshiftState, InfoBarSubtitleSupport, InfoBarExtensions, InfoBarAudioSelection]:
+		for x in InfoBarBase, InfoBarShowHide, InfoBarMenu, \
+				InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
+				InfoBarTimeshiftState, InfoBarSubtitleSupport, \
+				InfoBarExtensions, InfoBarAudioSelection:
 			x.__init__(self)
 
 		self.restoreService = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -97,12 +104,15 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarInst
 	def showSelection(self):
 		self.updateSubservices()
 		tlist = []
-		if self.n is not None:
-			for x in range(self.n):
-				i = self.subservices.getSubservice(x)
-				tlist.append((i.getName(), x))
+		n = self.n or 0
+		if n:
+			idx = 0
+			while idx < n:
+				i = self.subservices.getSubservice(idx)
+				tlist.append((i.getName(), idx))
+				idx += 1
 
-		keys = [ "", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * self.n
+		keys = [ "", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 		self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = self.currentlyPlayingSubservice, keys = keys)
 	
 	def subserviceSelected(self, service):

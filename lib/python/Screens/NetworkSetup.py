@@ -28,8 +28,10 @@ class InterfaceList(MenuList):
 		self.l.setItemHeight(30)
 
 def InterfaceEntryComponent(index,name,default,active ):
-	res = [ (index) ]
-	res.append(MultiContentEntryText(pos=(80, 5), size=(430, 25), font=0, text=name))
+	res = [
+		(index),
+		MultiContentEntryText(pos=(80, 5), size=(430, 25), font=0, text=name)
+	]
 	num_configured_if = len(iNetwork.getConfiguredAdapters())
 	if num_configured_if >= 2:
 		if default is True:
@@ -62,7 +64,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
 		
-		if len(self.adapters) == 0:
+		if not self.adapters:
 			self.onFirstExecBegin.append(self.NetworkFallback)
 			
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
@@ -232,17 +234,16 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def createConfig(self):
 		self.nameservers = iNetwork.getNameserverList()
-		self.nameserverEntries = []
-		
-		for nameserver in self.nameservers:
-			self.nameserverEntries.append(NoSave(ConfigIP(default=nameserver)))
+		self.nameserverEntries = [ NoSave(ConfigIP(default=nameserver)) for nameserver in self.nameservers]
 
 	def createSetup(self):
 		self.list = []
-		
-		for i in range(len(self.nameserverEntries)):
-			self.list.append(getConfigListEntry(_("Nameserver %d") % (i + 1), self.nameserverEntries[i]))
-		
+
+		i = 1
+		for x in self.nameserverEntries:
+			self.list.append(getConfigListEntry(_("Nameserver %d") % (i), x))
+			i += 1
+
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 

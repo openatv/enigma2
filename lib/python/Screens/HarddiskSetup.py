@@ -39,7 +39,7 @@ class HarddiskSetup(Screen):
 		Screen.__init__(self, session)
 		self.hdd = hdd
 
-		if type not in [self.HARDDISK_INITIALIZE, self.HARDDISK_CHECK]:
+		if type not in (self.HARDDISK_INITIALIZE, self.HARDDISK_CHECK):
 			self.type = self.HARDDISK_INITIALIZE
 		else:
 			self.type = type

@@ -308,5 +308,3 @@ class RestoreScreen(Screen, ConfigListScreen):
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
 		self.doRestore()
-		
-	

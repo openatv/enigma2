@@ -30,10 +30,11 @@ class Subtitles(Screen, ConfigListScreen):
 		self.__selected_subtitle = None
 
 	def fillList(self):
-		del self.list[:]
-		print "self.list", self.list
+		list = self.list
+		del list[:]
+		print "self.list", list
 		if self.subtitlesEnabled():
-			self.list.append(getConfigListEntry(_("Disable Subtitles"), ConfigNothing(), None))
+			list.append(getConfigListEntry(_("Disable Subtitles"), ConfigNothing(), None))
 			sel = self.infobar.selected_subtitle
 		else:
 			sel = None
@@ -44,29 +45,29 @@ class Subtitles(Screen, ConfigListScreen):
 				text = _("Enable")
 			if x[0] == 0:
 				if LanguageCodes.has_key(x[4]):
-					self.list.append(getConfigListEntry(text+" DVB "+LanguageCodes[x[4]][0], ConfigNothing(), x))
+					list.append(getConfigListEntry(text+" DVB "+LanguageCodes[x[4]][0], ConfigNothing(), x))
 				else:
-					self.list.append(getConfigListEntry(text+" DVB "+x[4], ConfigNothing(), x))
+					list.append(getConfigListEntry(text+" DVB "+x[4], ConfigNothing(), x))
 			elif x[0] == 1:
 				if x[4] == 'und': #undefined
-					self.list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2]), ConfigNothing(), x))
+					list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2]), ConfigNothing(), x))
 				else:
 					if LanguageCodes.has_key(x[4]):
-						self.list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2])+" "+LanguageCodes[x[4]][0], ConfigNothing(), x))
+						list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2])+" "+LanguageCodes[x[4]][0], ConfigNothing(), x))
 					else:
-						self.list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2])+" "+x[4], ConfigNothing(), x))
+						list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2])+" "+x[4], ConfigNothing(), x))
 			elif x[0] == 2:
-				types = [" UTF-8 text "," SSA / AAS "," .SRT file "]
+				types = (" UTF-8 text "," SSA / AAS "," .SRT file ")
 				if x[4] == 'und': #undefined
-					self.list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d" % x[1], ConfigNothing(), x))
+					list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d" % x[1], ConfigNothing(), x))
 				else:
 					if LanguageCodes.has_key(x[4]):
-						self.list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles") + ' ' + LanguageCodes[x[4]][0], ConfigNothing(), x))
+						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles") + ' ' + LanguageCodes[x[4]][0], ConfigNothing(), x))
 					else:
-						self.list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d " % x[1] +x[4], ConfigNothing(), x))
+						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d " % x[1] +x[4], ConfigNothing(), x))
 #		return _("Disable subtitles")
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
+		self["config"].list = list
+		self["config"].l.setList(list)
 
 	def __updatedInfo(self):
 		self.fillList()
@@ -95,7 +96,7 @@ class Subtitles(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 
 	def ok(self):
-		if len(self.list):
+		if self.list:
 			cur = self["config"].getCurrent()
 			self.enableSubtitle(cur[2])
 		self.close(1)

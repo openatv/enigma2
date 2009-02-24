@@ -95,7 +95,7 @@ class ChannelContextMenu(Screen):
 		inBouquet = csel.getMutableList() is not None
 		haveBouquets = config.usage.multibouquet.value
 
-		if not (len(current_sel_path) or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
+		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory|eServiceReference.isMarker)):
 			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level = 2)
 		if csel.bouquet_mark_edit == OFF and not csel.movemode:
 			if not inBouquetRootList:
@@ -558,7 +558,7 @@ class ChannelSelectionEdit:
 		del self.servicePath[:] # remove all elements
 		self.servicePath += self.savedPath # add saved elements
 		del self.savedPath
-		self.setRoot(self.servicePath[len(self.servicePath)-1])
+		self.setRoot(self.servicePath[-1])
 
 	def clearMarks(self):
 		self.servicelist.clearMarks()
@@ -781,13 +781,13 @@ class ChannelSelectionBase(Screen):
 
 	def getServiceName(self, ref):
 		str = self.removeModeStr(ServiceReference(ref).getServiceName())
-		if not len(str):
+		if not str:
 			pathstr = ref.getPath()
-			if pathstr.find('FROM PROVIDERS') != -1:
+			if 'FROM PROVIDERS' in pathstr:
 				return _("Provider")
-			if pathstr.find('FROM SATELLITES') != -1:
+			if 'FROM SATELLITES' in pathstr:
 				return _("Satellites")
-			if pathstr.find(') ORDER BY name') != -1:
+			if ') ORDER BY name' in pathstr:
 				return _("All")
 		return str
 
@@ -831,9 +831,8 @@ class ChannelSelectionBase(Screen):
 
 	def pathUp(self, justSet=False):
 		prev = self.servicePath.pop()
-		length = len(self.servicePath)
-		if length:
-			current = self.servicePath[length-1]
+		if self.servicePath:
+			current = self.servicePath[-1]
 			self.setRoot(current, justSet)
 			if not justSet:
 				self.setCurrentSelection(prev)
@@ -961,7 +960,7 @@ class ChannelSelectionBase(Screen):
 				self.enterPath(ref)
 
 	def inBouquet(self):
-		if len(self.servicePath) > 0 and self.servicePath[0] == self.bouquet_root:
+		if self.servicePath and self.servicePath[0] == self.bouquet_root:
 			return True
 		return False
 
@@ -1235,8 +1234,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		del self.servicePath[:]
 		self.servicePath += path
 		self.saveRoot()
-		plen = len(path)
-		root = path[plen-1]
+		root = path[-1]
 		cur_root = self.getRoot()
 		if cur_root and cur_root != root:
 			self.setRoot(root)
@@ -1249,7 +1247,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		for i in self.servicePath:
 			path += i.toString()
 			path += ';'
-		if len(path) and path != self.lastroot.value:
+		if path and path != self.lastroot.value:
 			self.lastroot.value = path
 			self.lastroot.save()
 
@@ -1259,7 +1257,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		tmp = re.findall(self.lastroot.value)
 		cnt = 0
 		for i in tmp:
-			self.servicePath.append(eServiceReference(i[:len(i)-1]))
+			self.servicePath.append(eServiceReference(i[:-1]))
 			cnt += 1
 		if cnt:
 			path = self.servicePath.pop()
@@ -1269,7 +1267,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.saveRoot()
 
 	def preEnterPath(self, refstr):
-		if len(self.servicePath) and self.servicePath[0] != eServiceReference(refstr):
+		if self.servicePath and self.servicePath[0] != eServiceReference(refstr):
 			pathstr = self.lastroot.value
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()
@@ -1289,16 +1287,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastservice.save()
 
 	def setCurrentServicePath(self, path):
-		hlen = len(self.history)
-		if hlen > 0:
+		if self.history:
 			self.history[self.history_pos] = path
 		else:
 			self.history.append(path)
 		self.setHistoryPath()
 
 	def getCurrentServicePath(self):
-		hlen = len(self.history)
-		if hlen > 0:
+		if self.history:
 			return self.history[self.history_pos]
 		return None
 
@@ -1411,7 +1407,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		for i in self.servicePathRadio:
 			path += i.toString()
 			path += ';'
-		if len(path) and path != config.radio.lastroot.value:
+		if path and path != config.radio.lastroot.value:
 			config.radio.lastroot.value = path
 			config.radio.lastroot.save()
 
@@ -1421,7 +1417,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		tmp = re.findall(config.radio.lastroot.value)
 		cnt = 0
 		for i in tmp:
-			self.servicePathRadio.append(eServiceReference(i[:len(i)-1]))
+			self.servicePathRadio.append(eServiceReference(i[:-1]))
 			cnt += 1
 		if cnt:
 			path = self.servicePathRadio.pop()
@@ -1431,7 +1427,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			self.saveRoot()
 
 	def preEnterPath(self, refstr):
-		if len(self.servicePathRadio) and self.servicePathRadio[0] != eServiceReference(refstr):
+		if self.servicePathRadio and self.servicePathRadio[0] != eServiceReference(refstr):
 			pathstr = config.radio.lastroot.value
 			if pathstr is not None and pathstr.find(refstr) == 0:
 				self.restoreRoot()

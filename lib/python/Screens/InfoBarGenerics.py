@@ -369,25 +369,27 @@ class InfoBarSimpleEventView:
 			})
 
 	def openEventView(self):
-		self.epglist = [ ]
+		epglist = [ ]
+		self.epglist = epglist
 		service = self.session.nav.getCurrentService()
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		info = service.info()
 		ptr=info.getEvent(0)
 		if ptr:
-			self.epglist.append(ptr)
+			epglist.append(ptr)
 		ptr=info.getEvent(1)
 		if ptr:
-			self.epglist.append(ptr)
-		if len(self.epglist) > 0:
-			self.session.open(EventViewSimple, self.epglist[0], ServiceReference(ref), self.eventViewCallback)
+			epglist.append(ptr)
+		if epglist:
+			self.session.open(EventViewSimple, epglist[0], ServiceReference(ref), self.eventViewCallback)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
-		if len(self.epglist) > 1:
-			tmp = self.epglist[0]
-			self.epglist[0]=self.epglist[1]
-			self.epglist[1]=tmp
-			setEvent(self.epglist[0])
+		epglist = self.epglist
+		if len(epglist) > 1:
+			tmp = epglist[0]
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
+			setEvent(epglist[0])
 
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
@@ -440,7 +442,7 @@ class InfoBarEPG:
 
 	def openBouquetEPG(self, bouquet, withCallback=True):
 		services = self.getBouquetServices(bouquet)
-		if len(services):
+		if services:
 			self.epg_bouquet = bouquet
 			if withCallback:
 				self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, services, self.zapToService, None, self.changeBouquetCB))
@@ -455,7 +457,7 @@ class InfoBarEPG:
 				self.bouquetSel.up()
 			bouquet = self.bouquetSel.getCurrent()
 			services = self.getBouquetServices(bouquet)
-			if len(services):
+			if services:
 				self.epg_bouquet = bouquet
 				epg.setServices(services)
 
@@ -642,9 +644,9 @@ class InfoBarSeek:
 					return 1
 				elif action[:8] == "seekdef:":
 					key = int(action[8:])
-					time = [-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
+					time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
 						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
-						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value][key-1]
+						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
 					self.screen.doSeekRelative(time * 90000)
 					return 1					
 				else:
@@ -772,7 +774,7 @@ class InfoBarSeek:
 			return False
 
 		if not self.isSeekable():
-			if state not in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
+			if state not in (self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE):
 				state = self.SEEK_STATE_PLAY
 
 		pauseable = service.pause()
@@ -885,30 +887,31 @@ class InfoBarSeek:
 			self.setSeekState(self.makeStateSlowMotion(speed))
 
 	def seekBack(self):
-		if self.seekstate == self.SEEK_STATE_PLAY:
+		seekstate = self.seekstate
+		if seekstate == self.SEEK_STATE_PLAY:
 			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
-		elif self.seekstate == self.SEEK_STATE_EOF:
+		elif seekstate == self.SEEK_STATE_EOF:
 			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 			self.doSeekRelative(-6)
-		elif self.seekstate == self.SEEK_STATE_PAUSE:
+		elif seekstate == self.SEEK_STATE_PAUSE:
 			self.doSeekRelative(-3)
-		elif self.isStateForward(self.seekstate):
-			speed = self.seekstate[1]
-			if self.seekstate[2]:
-				speed /= self.seekstate[2]
+		elif self.isStateForward(seekstate):
+			speed = seekstate[1]
+			if seekstate[2]:
+				speed /= seekstate[2]
 			speed = self.getLower(speed, config.seek.speeds_forward.value)
 			if speed:
 				self.setSeekState(self.makeStateForward(speed))
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
-		elif self.isStateBackward(self.seekstate):
-			speed = -self.seekstate[1]
-			if self.seekstate[2]:
-				speed /= self.seekstate[2]
+		elif self.isStateBackward(seekstate):
+			speed = -seekstate[1]
+			if seekstate[2]:
+				speed /= seekstate[2]
 			speed = self.getHigher(speed, config.seek.speeds_backward.value) or config.seek.speeds_backward.value[-1]
 			self.setSeekState(self.makeStateBackward(speed))
-		elif self.isStateSlowMotion(self.seekstate):
-			speed = self.getHigher(self.seekstate[2], config.seek.speeds_slowmotion.value)
+		elif self.isStateSlowMotion(seekstate):
+			speed = self.getHigher(seekstate[2], config.seek.speeds_slowmotion.value)
 			if speed:
 				self.setSeekState(self.makeStateSlowMotion(speed))
 			else:
@@ -994,7 +997,7 @@ class InfoBarSeek:
 		self.eofState = 0
 		if not self.seekstate == self.SEEK_STATE_PAUSE:
 			self.setSeekState(self.SEEK_STATE_EOF)
-		if eofstate == -1 or not seekstate in [self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE]:
+		if eofstate == -1 or not seekstate in (self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE):
 			seekable = self.getSeek()
 			if seekable is not None:
 				seekable.seekTo(-1)
@@ -1480,7 +1483,7 @@ class InfoBarInstantRecord:
 
 	def isInstantRecordRunning(self):
 		print "self.recording:", self.recording
-		if len(self.recording) > 0:
+		if self.recording:
 			for x in self.recording:
 				if x.isRunning():
 					return True
@@ -1631,13 +1634,13 @@ class InfoBarAudioSelection:
 					break
 
 			if SystemInfo["CanDownmixAC3"]:
-				tlist = [(_("AC3 downmix") + " - " +[_("Off"), _("On")][config.av.downmix_ac3.value and 1 or 0], "CALLFUNC", self.changeAC3Downmix),
-					([_("Left"), _("Stereo"), _("Right")][self.audioChannel.getCurrentChannel()], "mode"),
+				tlist = [(_("AC3 downmix") + " - " +(_("Off"), _("On"))[config.av.downmix_ac3.value and 1 or 0], "CALLFUNC", self.changeAC3Downmix),
+					((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode"),
 					("--", "")] + tlist
 				keys = [ "red", "green", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
 				selection += 3
 			else:
-				tlist = [([_("Left"), _("Stereo"), _("Right")][self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
+				tlist = [((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
 				keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
 				selection += 2
 			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection, keys = keys)
@@ -1649,7 +1652,7 @@ class InfoBarAudioSelection:
 		list = choicelist.list
 		t = list[0][1]
 		list[0][1]=(t[0], t[1], t[2], t[3], t[4], t[5], t[6],
-			_("AC3 downmix") + " - " +[_("On"), _("Off")][config.av.downmix_ac3.value and 1 or 0])
+			_("AC3 downmix") + " - " + (_("On"), _("Off"))[config.av.downmix_ac3.value and 1 or 0])
 		choicelist.setList(list)
 		if config.av.downmix_ac3.value:
 			config.av.downmix_ac3.value = False
@@ -2080,9 +2083,6 @@ class InfoBarSummary(Screen):
 #			<convert type="ServiceName">Reference</convert>
 #		</widget>
 
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
-
 class InfoBarSummarySupport:
 	def __init__(self):
 		pass
@@ -2107,9 +2107,6 @@ class InfoBarMoviePlayerSummary(Screen):
 			<convert type="ServicePosition">Position</convert>
 		</widget>
 	</screen>"""
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session)
 
 class InfoBarMoviePlayerSummarySupport:
 	def __init__(self):
@@ -2211,7 +2208,7 @@ class InfoBarServiceErrorPopupSupport:
 		else:
 			self.last_error = error
 
-		errors = {
+		error = {
 			eDVBServicePMTHandler.eventNoResources: _("No free tuner!"),
 			eDVBServicePMTHandler.eventTuneFailed: _("Tune failed!"),
 			eDVBServicePMTHandler.eventNoPAT: _("No data on transponder!\n(Timeout reading PAT)"),
@@ -2222,9 +2219,7 @@ class InfoBarServiceErrorPopupSupport:
 			eDVBServicePMTHandler.eventSOF: None,
 			eDVBServicePMTHandler.eventEOF: None,
 			eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
-		}
-
-		error = errors.get(error) #this returns None when the key not exist in the dict
+		}.get(error) #this returns None when the key not exist in the dict
 
 		if error is not None:
 			Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")

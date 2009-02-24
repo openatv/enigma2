@@ -154,7 +154,7 @@ class LanguageChoices():
 			if len(key) == 2:
 				self.langdict[key] = val[0]
 		for key, val in self.langdict.iteritems():
-			if key not in [syslang, 'en']:
+			if key not in (syslang, 'en'):
 				self.langdict[key] = val
 				self.choices.append((key, val))
 		self.choices.sort()
@@ -164,8 +164,7 @@ class LanguageChoices():
 
 	def getLanguage(self, DVB_lang):
 		DVB_lang = DVB_lang.lower()
-		stripwords = ["stereo", "audio", "description", "2ch", "dolby digital"]
-		for word in stripwords:
+		for word in ("stereo", "audio", "description", "2ch", "dolby digital"):
 			DVB_lang = DVB_lang.replace(word,"").strip()
 		for key, val in LanguageCodes.iteritems():
 			if DVB_lang.find(key.lower()) == 0:

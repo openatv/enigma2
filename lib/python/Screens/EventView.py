@@ -20,7 +20,7 @@ class EventViewBase:
 		self.similarEPGCB = similarEPGCB
 		self.cbFunc = callback
 		self.currentService=Ref
-		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and len(Ref.ref.getPath())
+		self.isRecording = (not Ref.ref.flags & eServiceReference.isGroup) and Ref.ref.getPath()
 		self.event = Event
 		self["epg_description"] = ScrollLabel()
 		self["datetime"] = Label()
@@ -134,12 +134,12 @@ class EventViewBase:
 		text = event.getEventName()
 		short = event.getShortDescription()
 		ext = event.getExtendedDescription()
-		if len(short) > 0 and short != text:
-			text = text + '\n\n' + short
-		if len(ext) > 0:
-			if len(text) > 0:
-				text = text + '\n\n'
-			text = text + ext
+		if short and short != text:
+			text += '\n\n' + short
+		if ext:
+			if text:
+				text += '\n\n'
+			text += ext
 
 		self.setTitle(event.getEventName())
 		self["epg_description"].setText(text)
@@ -189,7 +189,7 @@ class EventViewBase:
 			self["key_red"].setText(_("Similar"))
 
 	def openSimilarList(self):
-		if self.similarEPGCB is not None and len(self["key_red"].getText()):
+		if self.similarEPGCB is not None and self["key_red"].getText():
 			id = self.event and self.event.getEventId()
 			refstr = str(self.currentService)
 			if id is not None:
