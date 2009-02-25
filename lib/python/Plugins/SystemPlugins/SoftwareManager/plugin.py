@@ -815,7 +815,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False), 
 				], 
 			name = "Ipkg", 
-			description = "Install software updates...", 
+			description = _("Install software updates..."), 
 			openfnc = filescan_open, )
 
 def UpgradeMain(session, **kwargs):
