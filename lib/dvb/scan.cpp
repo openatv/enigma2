@@ -740,11 +740,20 @@ void eDVBScan::channelDone()
 				}
 				case iDVBFrontend::feTerrestrial:
 				{
+					ePtr<iDVBFrontend> fe;
 					eDVBFrontendParametersTerrestrial parm;
 					m_ch_current->getDVBT(parm);
 					snprintf(sname, 255, "%d SID 0x%02x",
 						parm.frequency/1000,
 						m_pmt_in_progress->first);
+					if (!m_channel->getFrontend(fe))
+					{
+						ePyObject tp_dict = PyDict_New();
+						fe->getTransponderData(tp_dict, false);
+						m_corrected_frequencys[m_chid_current] =
+							PyInt_AsLong(PyDict_GetItemString(tp_dict, "frequency"));
+						Py_DECREF(tp_dict);
+					}
 					break;
 				}
 				case iDVBFrontend::feCable:
@@ -765,7 +774,8 @@ void eDVBScan::channelDone()
 
 		if (!(m_flags & scanOnlyFree) || !m_pmt_in_progress->second.scrambled) {
 			SCAN_eDebug("add not scrambled!");
-			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i = m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
+			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i =
+				m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
 			if (i.second)
 			{
 				m_last_service = i.first;
@@ -922,6 +932,24 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 	for (std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> >::const_iterator 
 			ch(m_new_channels.begin()); ch != m_new_channels.end(); ++ch)
 	{
+		int system;
+		ch->second->getSystem(system);
+		if (system == iDVBFrontend::feTerrestrial)
+		{
+			std::map<eDVBChannelID, unsigned int>::iterator it = m_corrected_frequencys.find(ch->first);
+			if (it != m_corrected_frequencys.end())
+			{
+				eDVBFrontendParameters *p = (eDVBFrontendParameters*)&(*ch->second);
+				eDVBFrontendParametersTerrestrial parm;
+				p->getDVBT(parm);
+				eDebug("corrected freq for tsid %04x, onid %04x, ns %08x is %d, old was %d",
+					ch->first.transport_stream_id.get(), ch->first.original_network_id.get(),
+					ch->first.dvbnamespace.get(), it->second, parm.frequency);
+				parm.frequency = it->second;
+				p->setDVBT(parm);
+				m_corrected_frequencys.erase(it);
+			}
+		}
 		if (m_flags & scanOnlyFree)
 		{
 			eDVBFrontendParameters *ptr = (eDVBFrontendParameters*)&(*ch->second);
@@ -1036,7 +1064,8 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				}
 			}
 
-			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i = m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
+			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i =
+				m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
 
 			if (i.second)
 			{
