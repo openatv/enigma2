@@ -1026,11 +1026,6 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 
 					fts += 188;
 				}
-						/* force payload only */
-				ts[3] &= ~0x30;
-				ts[3] |=  0x10;
-
-//				memset(ts + 4, 0xFF, (offset % 188) - 4);
 
 				m_iframe_state = 1;
 			}
