@@ -317,11 +317,24 @@ class ChannelSelectionEPG:
 
 	def showEPGList(self):
 		ref=self.getCurrentSelection()
-		ptr=eEPGCache.getInstance()
-		if ptr.startTimeQuery(ref) != -1:
-			self.session.open(EPGSelection, ref)
-		else:
-			print 'no epg for service', ref.toString()
+		if ref:
+			self.savedService = ref
+			self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB=self.changeServiceCB)
+
+	def SingleServiceEPGClosed(self, ret=False):
+		self.setCurrentSelection(self.savedService)
+
+	def changeServiceCB(self, direction, epg):
+		beg = self.getCurrentSelection()
+		while True:
+			if direction > 0:
+				self.moveDown()
+			else:
+				self.moveUp()
+			cur = self.getCurrentSelection()
+			if cur == beg or not (cur.flags & eServiceReference.isMarker):
+				break
+		epg.setService(ServiceReference(self.getCurrentSelection()))
 
 class ChannelSelectionEdit:
 	def __init__(self):
