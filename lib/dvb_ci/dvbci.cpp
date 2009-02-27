@@ -898,6 +898,23 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 	return 0;
 }
 
+PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
+{
+	eDVBCISlot *slot = getSlot(slotid);
+	if (!slot)
+	{
+		char tmp[255];
+		snprintf(tmp, 255, "eDVBCIInterfaces::readCICaIds try to get CAIds for CI Slot %d... but just %d slots are available", slotid, m_slots.size());
+		PyErr_SetString(PyExc_StandardError, tmp);
+		return 0;
+	}
+	int idx=0;
+	ePyObject list = PyList_New(slot->possible_caids.size());
+	for (caidSet::iterator it = slot->possible_caids.begin(); it != slot->possible_caids.end(); ++it)
+		PyList_SET_ITEM(list, idx++, PyLong_FromLong(*it));
+	return list;
+}
+
 int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
 	int res=0;
