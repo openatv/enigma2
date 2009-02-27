@@ -153,6 +153,7 @@ public:
 	int getNumOfSlots() { return m_slots.size(); }
 	PyObject *getDescrambleRules(int slotid);
 	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject) );
+	PyObject *readCICaIds(int slotid);
 };
 
 #endif
