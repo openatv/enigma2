@@ -25,12 +25,14 @@ class EPGSelection(Screen):
 	
 	ZAP = 1
 
-	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None):
+	def __init__(self, session, service, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
+		self.serviceChangeCB = serviceChangeCB
 		self.ask_time = -1 #now
 		self["key_red"] = Button("")
 		self.closeRecursive = False
+		self.saved_title = None
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self["key_yellow"] = Button()
@@ -81,19 +83,22 @@ class EPGSelection(Screen):
 				"red": self.zapTo,
 				"input_date_time": self.enterDateTime,
 				"nextBouquet": self.nextBouquet,
-				"prevBouquet": self.prevBouquet
+				"prevBouquet": self.prevBouquet,
 			})
 		self["actions"].csel = self
-
 		self.onLayoutFinish.append(self.onCreate)
 
 	def nextBouquet(self):
-		if self.bouquetChangeCB:
+		if self.serviceChangeCB:
+			self.serviceChangeCB(1, self)
+		elif self.bouquetChangeCB:
 			self.bouquetChangeCB(1, self)
 
 	def prevBouquet(self):
 		if self.bouquetChangeCB:
 			self.bouquetChangeCB(-1, self)
+		elif self.serviceChangeCB:
+			self.serviceChangeCB(-1, self)
 
 	def enterDateTime(self):
 		if self.type == EPG_TYPE_MULTI:
@@ -129,6 +134,10 @@ class EPGSelection(Screen):
 		self.services = services
 		self.onCreate()
 
+	def setService(self, service):
+		self.currentService = service
+		self.onCreate()
+
 	#just used in multipeg
 	def onCreate(self):
 		l = self["list"]
@@ -137,7 +146,12 @@ class EPGSelection(Screen):
 			l.fillMultiEPG(self.services, self.ask_time)
 			l.moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
 		elif self.type == EPG_TYPE_SINGLE:
-			l.fillSingleEPG(self.currentService)
+			service = self.currentService
+			if self.saved_title is None:
+				self.saved_title = self.instance.getTitle()
+			title = self.saved_title + ' - ' + service.getServiceName()
+			self.instance.setTitle(title)
+			l.fillSingleEPG(service)
 		else:
 			l.fillSimilarList(self.currentService, self.eventid)
 
