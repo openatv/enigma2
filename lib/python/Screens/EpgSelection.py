@@ -82,22 +82,28 @@ class EPGSelection(Screen):
 				"info": self.infoKeyPressed,
 				"red": self.zapTo,
 				"input_date_time": self.enterDateTime,
-				"nextBouquet": self.nextBouquet,
-				"prevBouquet": self.prevBouquet,
+				"nextBouquet": self.nextBouquet, # just used in multi epg yet
+				"prevBouquet": self.prevBouquet, # just used in multi epg yet
+				"nextService": self.nextService, # just used in single epg yet
+				"prevService": self.prevService, # just used in single epg yet
 			})
 		self["actions"].csel = self
 		self.onLayoutFinish.append(self.onCreate)
 
 	def nextBouquet(self):
-		if self.serviceChangeCB:
-			self.serviceChangeCB(1, self)
-		elif self.bouquetChangeCB:
+		if self.bouquetChangeCB:
 			self.bouquetChangeCB(1, self)
 
 	def prevBouquet(self):
 		if self.bouquetChangeCB:
 			self.bouquetChangeCB(-1, self)
-		elif self.serviceChangeCB:
+
+	def nextService(self):
+		if self.serviceChangeCB:
+			self.serviceChangeCB(1, self)
+
+	def prevService(self):
+		if self.serviceChangeCB:
 			self.serviceChangeCB(-1, self)
 
 	def enterDateTime(self):
