@@ -25,7 +25,7 @@ def PlaylistEntryComponent(serviceref, state):
 	text = serviceref.getName()
 	if text is "":
 		text = path.split(serviceref.getPath().split('/')[-1])[1]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 0, 470, 32, 0, RT_VALIGN_CENTER, text))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT,25, 1, 470, 22, 0, RT_VALIGN_CENTER, text))
 	png = None
 	if state == STATE_PLAY:
 		png = PlayIcon
@@ -39,7 +39,7 @@ def PlaylistEntryComponent(serviceref, state):
 		png = ForwardIcon
 
 	if png is not None:
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 0, 16, 16, png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 5, 3, 16, 16, png))
 
 	return res
 
@@ -47,7 +47,7 @@ class PlayList(MenuList):
 	def __init__(self, enableWrapAround = False):
 		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 18))
-		self.l.setItemHeight(22)
+		self.l.setItemHeight(23)
 		self.currPlaying = -1
 		self.oldCurrPlaying = -1
 		self.serviceHandler = eServiceCenter.getInstance()
