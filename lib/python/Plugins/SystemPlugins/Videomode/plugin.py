@@ -52,8 +52,9 @@ class VideoSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		level = config.usage.setup_level.index
 
-		self.list = [ ]
-		self.list.append(getConfigListEntry(_("Video Output"), config.av.videoport))
+		self.list = [
+			getConfigListEntry(_("Video Output"), config.av.videoport)
+		]
 
 		# if we have modes for this port:
 		if config.av.videoport.value in config.av.videomode:
@@ -76,9 +77,11 @@ class VideoSetup(Screen, ConfigListScreen):
 		if not force_wide:
 			self.list.append(getConfigListEntry(_("Aspect Ratio"), config.av.aspect))
 
-		if force_wide or config.av.aspect.value in ["16_9", "16_10"]:
-			self.list.append(getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43))
-			self.list.append(getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169))
+		if force_wide or config.av.aspect.value in ("16_9", "16_10"):
+			self.list.extend((
+				getConfigListEntry(_("Display 4:3 content as"), config.av.policy_43),
+				getConfigListEntry(_("Display >16:9 content as"), config.av.policy_169)
+			))
 		elif config.av.aspect.value == "4_3":
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169))
 

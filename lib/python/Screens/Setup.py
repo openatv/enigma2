@@ -21,10 +21,10 @@ setupfile.close()
 
 class SetupError(Exception):
     def __init__(self, message):
-        self.message = message
+        self.msg = message
 
     def __str__(self):
-        return self.message
+        return self.msg
 
 class SetupSummary(Screen):
 	skin = """
@@ -35,11 +35,10 @@ class SetupSummary(Screen):
 	</screen>"""
 
 	def __init__(self, session, parent):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, parent = parent)
 		self["SetupTitle"] = Label(_(parent.setup_title))
 		self["SetupEntry"] = Label("")
 		self["SetupValue"] = Label("")
-		self.parent = parent
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
 		

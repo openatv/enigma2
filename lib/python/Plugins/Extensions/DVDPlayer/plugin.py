@@ -723,7 +723,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "DVD",
-			description = "Play DVD",
+			description = _("Play DVD"),
 			openfnc = filescan_open,
 		)]		
 

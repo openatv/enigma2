@@ -44,8 +44,8 @@ class Harddisk:
 			self.timer.callback.remove(self.runIdle)
 
 	def bus(self):
-		ide_cf = self.device.find("hd") == 0 and self.devidex2.find("host0") == -1 # 7025 specific
-		internal = self.device.find("hd") == 0
+		ide_cf = self.device[:2] == "hd" and "host0" not in self.devidex2 # 7025 specific
+		internal = self.device[:2] == "hd"
 		if ide_cf:
 			ret = "External (CF)"
 		elif internal:
@@ -73,14 +73,14 @@ class Harddisk:
 		return "%d.%03d GB" % (cap/1024, cap%1024)
 
 	def model(self):
-		if self.device.find("hd") == 0:
+		if self.device[:2] == "hd":
 			procfile = tryOpen("/proc/ide/"+self.device+"/model")
 			if procfile == "":
 				return ""
 			line = procfile.readline()
 			procfile.close()
 			return line.strip()
-		elif self.device.find("sd") == 0:
+		elif self.device[:2] == "sd":
 			procfile = tryOpen("/sys/block/"+self.device+"/device/vendor")
 			if procfile == "":
 				return ""
@@ -358,8 +358,7 @@ class HarddiskManager:
 					("/", _("Internal Flash"))
 				]
 		
-		for x in p:
-			self.partitions.append(Partition(mountpoint = x[0], description = x[1]))
+		self.partitions.extend([ Partition(mountpoint = x[0], description = x[1]) for x in p ])
 
 	def getBlockDevInfo(self, blockdev):
 		devpath = "/sys/block/" + blockdev
@@ -371,14 +370,14 @@ class HarddiskManager:
 		try:
 			removable = bool(int(open(devpath + "/removable").read()))
 			dev = int(open(devpath + "/dev").read().split(':')[0])
-			if dev in [7, 31]: # loop, mtdblock
+			if dev in (7, 31): # loop, mtdblock
 				blacklisted = True
 			if blockdev[0:2] == 'sr':
 				is_cdrom = True
 			if blockdev[0:2] == 'hd':
 				try:
 					media = open("/proc/ide/%s/media" % blockdev).read()
-					if media.find("cdrom") != -1:
+					if "cdrom" in media:
 						is_cdrom = True
 				except IOError:
 					error = True

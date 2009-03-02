@@ -13,25 +13,15 @@ class ServiceInfo(Converter, object):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
-		self.type = {
-				"HasTelext": self.HAS_TELETEXT,
-				"IsMultichannel": self.IS_MULTICHANNEL,
-				"IsCrypted": self.IS_CRYPTED,
-				"IsWidescreen": self.IS_WIDESCREEN,
-				"SubservicesAvailable": self.SUBSERVICES_AVAILABLE,
-				"VideoWidth": self.XRES,
-				"VideoHeight": self.YRES,
+		self.type, self.interesting_events = {
+				"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
+				"IsMultichannel": (self.IS_MULTICHANNEL, (iPlayableService.evUpdatedInfo,)),
+				"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
+				"IsWidescreen": (self.IS_WIDESCREEN, (iPlayableService.evVideoSizeChanged,)),
+				"SubservicesAvailable": (self.SUBSERVICES_AVAILABLE, (iPlayableService.evUpdatedEventInfo,)),
+				"VideoWidth": (self.XRES, (iPlayableService.evVideoSizeChanged,)),
+				"VideoHeight": (self.YRES, (iPlayableService.evVideoSizeChanged,)),
 			}[type]
-
-		self.interesting_events = {
-				self.HAS_TELETEXT: [iPlayableService.evUpdatedInfo],
-				self.IS_MULTICHANNEL: [iPlayableService.evUpdatedInfo],
-				self.IS_CRYPTED: [iPlayableService.evUpdatedInfo],
-				self.IS_WIDESCREEN: [iPlayableService.evVideoSizeChanged],
-				self.SUBSERVICES_AVAILABLE: [iPlayableService.evUpdatedEventInfo],
-				self.XRES: [iPlayableService.evVideoSizeChanged],
-				self.YRES: [iPlayableService.evVideoSizeChanged],
-			}[self.type]
 
 	def getServiceInfoString(self, info, what):
 		v = info.getInfo(what)
@@ -56,16 +46,18 @@ class ServiceInfo(Converter, object):
 			audio = service.audioTracks()
 			if audio:
 				n = audio.getNumberOfTracks()
-				for x in range(n):
-					i = audio.getTrackInfo(x)
+				idx = 0
+				while idx < n:
+					i = audio.getTrackInfo(idx)
 					description = i.getDescription();
-					if description.find("AC3") != -1 or description.find("DTS") != -1:
+					if "AC3" in description or "DTS" in description:
 						return True
+					idx += 1
 			return False
 		elif self.type == self.IS_CRYPTED:
 			return info.getInfo(iServiceInformation.sIsCrypted) == 1
 		elif self.type == self.IS_WIDESCREEN:
-			return info.getInfo(iServiceInformation.sAspect) in [3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
+			return info.getInfo(iServiceInformation.sAspect) in (3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10)
 		elif self.type == self.SUBSERVICES_AVAILABLE:
 			subservices = service.subServices()
 			return subservices and subservices.getNumberOfSubservices() > 0

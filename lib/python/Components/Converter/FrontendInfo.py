@@ -29,7 +29,7 @@ class FrontendInfo(Converter, object):
 
 	@cached
 	def getText(self):
-		assert self.type not in [self.LOCK, self.SLOT_NUMBER], "the text output of FrontendInfo cannot be used for lock info"
+		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "the text output of FrontendInfo cannot be used for lock info"
 		percent = None
 		if self.type == self.BER: # as count
 			count = self.source.ber
@@ -54,7 +54,7 @@ class FrontendInfo(Converter, object):
 
 	@cached
 	def getBool(self):
-		assert self.type in [self.LOCK, self.BER], "the boolean output of FrontendInfo can only be used for lock or BER info"
+		assert self.type in (self.LOCK, self.BER), "the boolean output of FrontendInfo can only be used for lock or BER info"
 		if self.type == self.LOCK:
 			lock = self.source.lock
 			if lock is None:

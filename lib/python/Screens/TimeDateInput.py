@@ -42,9 +42,10 @@ class TimeDateInput(Screen, ConfigListScreen):
 		self.timeinput_time = conf_time
 
 	def createSetup(self, configlist):
-		self.list = []
-		self.list.append(getConfigListEntry(_("Date"), self.timeinput_date))
-		self.list.append(getConfigListEntry(_("Time"), self.timeinput_time))
+		self.list = [
+			getConfigListEntry(_("Date"), self.timeinput_date),
+			getConfigListEntry(_("Time"), self.timeinput_time)
+		]
 		configlist.list = self.list
 		configlist.l.setList(self.list)
 

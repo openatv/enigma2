@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-16 00:05+0100\n"
-"PO-Revision-Date: 2008-11-25 00:26+0200\n"
+"POT-Creation-Date: 2009-02-26 14:15+0100\n"
+"PO-Revision-Date: 2009-02-16 19:53+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -17,62 +17,94 @@ msgid ""
 "\n"
 "Advanced options and settings."
 msgstr ""
+"\n"
+"Išplėstiniai pasirinkimai ir nustatymai."
 
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
+"\n"
+"Paspaudus OK, prašome laukti!"
 
 msgid ""
 "\n"
 "Backup your Dreambox settings."
 msgstr ""
+"\n"
+"Jūsų Dreambox nustatymų atsarginė kopija."
 
 msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
+"\n"
+"Redaguoti atnaujinimo šaltinio adresus."
+
+msgid ""
+"\n"
+"Enigma2 will restart after the restore"
+msgstr ""
+"\n"
+"Enigma2 iš naujo pasileis po atkūrimo"
 
 msgid ""
 "\n"
 "Online update of your Dreambox software."
 msgstr ""
+"\n"
+"Internetinis jūsų Dreambox programinės įrangos atnaujinimas."
 
 msgid ""
 "\n"
 "Press OK on your remote control to continue."
 msgstr ""
+"\n"
+"Spauskite OK ant jūsų distancinio valdymo pulto, kad tęsti."
 
 msgid ""
 "\n"
 "Restore your Dreambox settings."
 msgstr ""
+"\n"
+"Atkurti jūsų Dreambox nustatymus."
 
 msgid ""
 "\n"
 "Restore your Dreambox with a new firmware."
 msgstr ""
+"\n"
+"Atkurti jūsų Dreambox su nauja programine įranga."
 
 msgid ""
 "\n"
 "Restore your backups by date."
 msgstr ""
+"\n"
+"Atkurti jūsų atsarginę kopiją pagal datą."
 
 msgid ""
 "\n"
 "Scan for local packages and install them."
 msgstr ""
+"\n"
+"Skanuoti vietinius paketus ir įdiegti juos."
 
 msgid ""
 "\n"
 "Select your backup device.\n"
 "Current device: "
 msgstr ""
+"\n"
+"Išsirinkite jūsų atsarginės kopijos įrenginį.\n"
+"Dabartinis įrenginys: "
 
 msgid ""
 "\n"
 "View, install and remove available or installed packages."
 msgstr ""
+"\n"
+"Peržiūrėkite, įdiekite ir pašalinkite esamus arba įdiegtus paketus."
 
 msgid " "
 msgstr " "
@@ -147,10 +179,10 @@ msgid "(show optional DVD audio menu)"
 msgstr "(rodyti pasirenkamą DVD garso meniu)"
 
 msgid "* Only available if more than one interface is active."
-msgstr "* Pasiekiamas tiktai, jei daugiau kaip vienas interfeisas yra aktyvus."
+msgstr "* Pasiekiama tiktai, jei daugiau kaip viena sąsaja yra aktyvi."
 
 msgid "* Only available when entering hidden SSID or network key"
-msgstr "* Pasiekiamas tiktai, surinkus paslėptą SSID ar tinklo raktą"
+msgstr "* Pasiekiama tiktai, surinkus paslėptą SSID ar tinklo raktą"
 
 msgid ".NFI Download failed:"
 msgstr ".NFI parsisiuntimas klaidingas:"
@@ -418,13 +450,13 @@ msgid "Advanced"
 msgstr "Išplėstinis"
 
 msgid "Advanced Options"
-msgstr ""
+msgstr "Išplėstiniai nustatymai"
 
 msgid "Advanced Video Setup"
 msgstr "Išplėstiniai vaizdo nustatymai"
 
 msgid "Advanced restore"
-msgstr ""
+msgstr "Išplėstinis atkūrimas"
 
 msgid "After event"
 msgstr "Po įvykio"
@@ -457,9 +489,6 @@ msgstr "Kitų kanalų imtuvo pirmenybė"
 msgid "An empty filename is illegal."
 msgstr "Tuščias failo pavadinimas negalimas"
 
-msgid "An error occured!"
-msgstr ""
-
 msgid "An unknown error occured!"
 msgstr "Įvyko nežinoma klaida!"
 
@@ -484,11 +513,15 @@ msgid ""
 "Are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"Ar jūs tikrai, norite atkurti\n"
+"atsarginę kopiją:\n"
 
 msgid ""
 "Are you sure you want to restore your Enigma2 backup?\n"
 "Enigma2 will restart after the restore"
 msgstr ""
+"Jūs esate įsitikinęs, kad norite atkurti savo Enigma2 atsarginę kopiją?\n"
+"Enigma2 iš naujo pasileis po atkūrimo"
 
 msgid "Artist"
 msgstr "Atlikėjas"
@@ -560,22 +593,22 @@ msgid "Backup Mode"
 msgstr "Išsaugojimo būdas"
 
 msgid "Backup done."
-msgstr ""
+msgstr "Atsarginė kopija padaryta."
 
 msgid "Backup failed."
-msgstr ""
+msgstr "Atsarginė kopija nepadaryta."
 
 msgid "Backup is done. Please press OK to see the result."
 msgstr "Išsaugota. Prašome paspausti OK rezultato peržiūrai."
 
 msgid "Backup running"
-msgstr ""
+msgstr "Vykdoma atsarginė kopija "
 
 msgid "Backup running..."
-msgstr ""
+msgstr "Vykdoma atsarginė kopija..."
 
 msgid "Backup system settings"
-msgstr ""
+msgstr "Sisteminių nustatymų atsarginė kopija"
 
 msgid "Band"
 msgstr "Juosta"
@@ -667,16 +700,16 @@ msgid "Change dir."
 msgstr "Pakeisti dir."
 
 msgid "Change pin code"
-msgstr "Pakeisti PIN kodą"
+msgstr "Pakeisti pin kodą"
 
 msgid "Change service pin"
-msgstr "Pakeisti kanalo PIN"
+msgstr "Pakeisti kanalo pin"
 
 msgid "Change service pins"
 msgstr "Pakeisti kanalo pins"
 
 msgid "Change setup pin"
-msgstr "Pakeisti nustatymų PIN"
+msgstr "Pakeisti nustatymų pin"
 
 msgid "Channel"
 msgstr "Kanalas"
@@ -685,13 +718,13 @@ msgid "Channel Selection"
 msgstr "Kanalo pasirinkimas"
 
 msgid "Channel not in services list"
-msgstr ""
+msgstr "Kanalo nėra kanalų sąraše"
 
 msgid "Channel:"
 msgstr "Kanalas:"
 
 msgid "Channellist menu"
-msgstr "Kanalų meniu sąrašas"
+msgstr "Kanalų sąrašo meniu"
 
 msgid "Chap."
 msgstr "Skyr."
@@ -712,10 +745,10 @@ msgid "Choose Tuner"
 msgstr "Išsirinkite imtuvą"
 
 msgid "Choose backup files"
-msgstr ""
+msgstr "Išsirinkite atsarginės kopijos failus"
 
 msgid "Choose backup location"
-msgstr ""
+msgstr "Išsirinkite atsarginės kopijos vietą"
 
 msgid "Choose bouquet"
 msgstr "Išsirinkite paketą"
@@ -727,16 +760,16 @@ msgid "Choose target folder"
 msgstr "Išsirinkite aplanką"
 
 msgid "Choose upgrade source"
-msgstr ""
+msgstr "Išsirinkite atnaujinimo šaltinį "
 
 msgid "Choose your Skin"
 msgstr "Išsirinkite savo temą"
 
 msgid "Circular left"
-msgstr ""
+msgstr "Apskritiminė kairė"
 
 msgid "Circular right"
-msgstr ""
+msgstr "Apskritiminė dešinė"
 
 msgid "Cleanup"
 msgstr "Išvalyti"
@@ -846,10 +879,10 @@ msgstr "Negalima užkrauti! Joks diskas neįdėtas?"
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
-msgstr ""
+msgstr "Neįrašyta dėl prieštaringo laikmačio %s"
 
 msgid "Create DVD-ISO"
-msgstr "Sukurti DVD-ISO"
+msgstr "Kurti DVD-ISO"
 
 msgid "Create movie folder failed"
 msgstr "Fimų aplanko sukurti nepavyko"
@@ -951,7 +984,7 @@ msgid "Description"
 msgstr "Aprašymas"
 
 msgid "Deselect"
-msgstr ""
+msgstr "Nepasirinkti"
 
 msgid "Destination directory"
 msgstr "Direktorijos vieta"
@@ -1019,7 +1052,7 @@ msgid "Display 4:3 content as"
 msgstr "Rodyti kaip 4:3 "
 
 msgid "Display >16:9 content as"
-msgstr ""
+msgstr "Monitorius> 16:9 turinys kaip"
 
 msgid "Display Setup"
 msgstr "Monitoriaus nustatymas"
@@ -1089,7 +1122,7 @@ msgid "Do you want to install default sat lists?"
 msgstr "Jūs norite įdiegti numatytus palydovų sąrašus?"
 
 msgid "Do you want to install the package:\n"
-msgstr ""
+msgstr "Ar jūs norite įdiegti package:\n"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Jūs norite paleisti DVD?"
@@ -1098,10 +1131,10 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr "Jūs norite peržiūrėti šį DVD prieš išdeginimą?"
 
 msgid "Do you want to reboot your Dreambox?"
-msgstr ""
+msgstr "Ar jūs norite paleisti iš naujo Dreambox?"
 
 msgid "Do you want to remove the package:\n"
-msgstr ""
+msgstr "Ar jūs norite pašalinti paketą:\n"
 
 msgid "Do you want to restore your settings?"
 msgstr "Jūs norite atkurti nustatymus?"
@@ -1110,7 +1143,7 @@ msgid "Do you want to resume this playback?"
 msgstr "Jūs norite tęsti šį atkūrimą?"
 
 msgid "Do you want to update your Dreambox?"
-msgstr ""
+msgstr "Ar jūs norite atnaujinti savo Dreambox?"
 
 msgid ""
 "Do you want to update your Dreambox?\n"
@@ -1120,7 +1153,7 @@ msgstr ""
 "Spauskite OK ir palaukite!"
 
 msgid "Do you want to upgrade the package:\n"
-msgstr ""
+msgstr "Ar jūs norite atnaujinti paketą:\n"
 
 msgid "Do you want to view a tutorial?"
 msgstr "Ar norite peržiūrėti aprašymą?"
@@ -1138,7 +1171,7 @@ msgstr "Baigta - Įdiegta arba atnaujinta %d paketų su %d klaidomis"
 
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr ""
+msgstr "Baigta - Įdiegti, patobulinti ar pašalinti %d paketai su %d klaidomis"
 
 msgid "Download"
 msgstr "Parsisiuntimas"
@@ -1188,6 +1221,9 @@ msgstr "Redaguoti"
 
 msgid "Edit DNS"
 msgstr "Redaguoti DNS"
+
+msgid "Edit IPKG source URL..."
+msgstr ""
 
 msgid "Edit Title"
 msgstr "Redaguoti pavadinimą"
@@ -1429,7 +1465,7 @@ msgid "Friday"
 msgstr "Penktadienis"
 
 msgid "Frisian"
-msgstr ""
+msgstr "Frizų"
 
 msgid "Fritz!Box FON IP address"
 msgstr "Fritz!Box FON IP adresas"
@@ -1500,7 +1536,7 @@ msgid "Hierarchy mode"
 msgstr "Hierarchijos režimas"
 
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontalus"
 
 msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite daryti įrašą?"
@@ -1598,12 +1634,18 @@ msgid "Input"
 msgstr "Įėjimas"
 
 msgid "Install a new image with a USB stick"
-msgstr ""
+msgstr "Įdiekite naują atvaizdą su USB įrenginiu"
 
 msgid "Install a new image with your web browser"
-msgstr ""
+msgstr "Įdiekite naują atvaizdą su internetine naršykle"
 
 msgid "Install local IPKG"
+msgstr "Įdiegti vietinį IPKG"
+
+msgid "Install settings, skins, software..."
+msgstr ""
+
+msgid "Install software updates..."
 msgstr ""
 
 msgid "Installing"
@@ -1650,7 +1692,7 @@ msgid "Invert display"
 msgstr "Monitoriaus pervertimas"
 
 msgid "Ipkg"
-msgstr ""
+msgstr "Ipkg"
 
 msgid "Italian"
 msgstr "Italų"
@@ -1699,13 +1741,16 @@ msgid "Latitude"
 msgstr "Platuma"
 
 msgid "Latvian"
-msgstr ""
+msgstr "Latvių"
 
 msgid "Leave DVD Player?"
 msgstr "Išeiti iš DVD grotuvo?"
 
 msgid "Left"
 msgstr "Kairė"
+
+msgid "Lets you view/edit files in your Dreambox"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -1751,7 +1796,7 @@ msgid "Lock:"
 msgstr "Lock:"
 
 msgid "Log results to harddisk"
-msgstr ""
+msgstr "Log rezultatus į kietą diską"
 
 msgid "Long Keypress"
 msgstr "Ilgas mygtuko spaudimas"
@@ -1781,7 +1826,7 @@ msgid "Make this mark just a mark"
 msgstr "Padarykite šį žymeklį kaip žymekliu"
 
 msgid "Manage your receiver's software"
-msgstr ""
+msgstr "Valdykite savo imtuvo programinę įrangą"
 
 msgid "Manual Scan"
 msgstr "Rankinė paieška"
@@ -1790,7 +1835,7 @@ msgid "Manual transponder"
 msgstr "Rankinis transponderis"
 
 msgid "Manufacturer"
-msgstr ""
+msgstr "Gamintojas"
 
 msgid "Margin after record"
 msgstr "Sujungti po įrašymo"
@@ -1817,7 +1862,7 @@ msgid "Message"
 msgstr "Pranešimas"
 
 msgid "Message..."
-msgstr ""
+msgstr "Pranešimas..."
 
 msgid "Mkfs failed"
 msgstr "Mkfs nepavyko"
@@ -1979,6 +2024,9 @@ msgstr ""
 msgid "No details for this image file"
 msgstr "Nėra informacijos apie šį atvaizdą"
 
+msgid "No displayable files on this medium found!"
+msgstr ""
+
 msgid "No event info found, recording indefinitely."
 msgstr "Informacija apie įvykius nerasta, tęsiamas įrašymas."
 
@@ -2060,9 +2108,9 @@ msgid ""
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
-"Joks veikiantis belaidžio tinklo interfeisas nerastas.\n"
-"Prašome patikrinti, kad jūs pridėjote suderinamą WLAN prietaisą ar įjungėte "
-"jūsų vietinio tinklo interfeisą."
+"Jokia veikianti belaidžio tinklo sąsaja nerasta.\n"
+"Prašome patikrinti, ar jūs pridėjote suderinamą WLAN prietaisą ar įjungėte "
+"jūsų vietinio tinklo sąsają."
 
 msgid "No, but restart from begin"
 msgstr "Ne, paleisti nuo pradžių"
@@ -2159,7 +2207,7 @@ msgid "Packet management"
 msgstr "Paketų valdymas"
 
 msgid "Packet manager"
-msgstr ""
+msgstr "Paketų valdymas"
 
 msgid "Page"
 msgstr "Puslapis"
@@ -2207,6 +2255,12 @@ msgstr "Leisti"
 
 msgid "Play Audio-CD..."
 msgstr "Paleisti Garso-CD..."
+
+msgid "Play DVD"
+msgstr ""
+
+msgid "Play Music..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Leisti įrašytus filmus..."
@@ -2300,6 +2354,7 @@ msgstr "Prašome išsirinkti subkanalą..."
 
 msgid "Please select medium to use as backup location"
 msgstr ""
+"Prašome išsirinkti media, kurią naudosite kaip vietą atsarginei kopijai"
 
 msgid "Please select tag to filter..."
 msgstr "Prašome išsirinkti kortelę filtravimui..."
@@ -2339,7 +2394,7 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Prašome laukti jūsų tinklo konfigūracijos aktyvavimo..."
 
 msgid "Please wait while scanning is in progress..."
-msgstr ""
+msgstr "Prašome laukti kol vyksta skanavimas ..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Prašome laukti kol konfigūruojamas jūsų tinklas..."
@@ -2418,7 +2473,7 @@ msgstr "Spauskite OK ir redaguokite nustatymus."
 
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr ""
+msgstr "Spauskite OK, kad gauti tolimesnes detales dėl %s"
 
 msgid "Press OK to scan"
 msgstr "Spauskite OK paieškai."
@@ -2436,7 +2491,7 @@ msgid "Primary DNS"
 msgstr "Pirminis DNS"
 
 msgid "Priority"
-msgstr ""
+msgstr "Pirmenybė"
 
 msgid "Properties of current title"
 msgstr "Dabartinio pavadinimo ypatybės"
@@ -2456,8 +2511,11 @@ msgstr "Tiekėjas, kurį norite skanuoti"
 msgid "Providers"
 msgstr "Tiekėjai"
 
-msgid "Quick"
+msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
+
+msgid "Quick"
+msgstr "Greitas"
 
 msgid "Quickzap"
 msgstr "Greitas perjungimas"
@@ -2481,7 +2539,7 @@ msgid "Ram Disk"
 msgstr "Ram Diskas"
 
 msgid "Random"
-msgstr ""
+msgstr "Atsitiktinis"
 
 msgid "Really close without saving settings?"
 msgstr "Tikrai uždaryti be nustatymų išsaugojimo ?"
@@ -2512,7 +2570,7 @@ msgstr "Įrašyti"
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
-msgstr ""
+msgstr "Įrašymo laikas apribotas dėl prieštaringo laikmačio %s"
 
 msgid "Recorded files..."
 msgstr "Įrašyti failai..."
@@ -2536,7 +2594,7 @@ msgid "Refresh rate selection."
 msgstr "Atnaujinkite normos pasirinkimą"
 
 msgid "Reload"
-msgstr ""
+msgstr "Užkrauti"
 
 msgid "Remove Bookmark"
 msgstr "Pašalinti žymę"
@@ -2551,7 +2609,7 @@ msgid "Remove currently selected title"
 msgstr "Pašalinkite dabartinį pasirinktą pavadinimą"
 
 msgid "Remove finished."
-msgstr ""
+msgstr "Pašalinimas baigtas."
 
 msgid "Remove plugins"
 msgstr "Pašalinti priedus"
@@ -2563,13 +2621,13 @@ msgid "Remove the incomplete .NFI file?"
 msgstr "Pašalinti neužbaigtą .NFI failą?"
 
 msgid "Remove timer"
-msgstr ""
+msgstr "Pašalinti laikmatį"
 
 msgid "Remove title"
 msgstr "Pašalinti "
 
 msgid "Removing"
-msgstr ""
+msgstr "Pašalinama"
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
@@ -2621,16 +2679,16 @@ msgid "Restore"
 msgstr "Atkurti"
 
 msgid "Restore backups..."
-msgstr ""
+msgstr "Atkurti atsargines kopijas..."
 
 msgid "Restore running"
-msgstr ""
+msgstr "Vykdomas atkūrimas"
 
 msgid "Restore running..."
-msgstr ""
+msgstr "Vykdomas atkūrimas..."
 
 msgid "Restore system settings"
-msgstr ""
+msgstr "Atkurti sisteminius nustatymus"
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2724,6 +2782,9 @@ msgstr "Skalės režimas"
 msgid "Scan "
 msgstr "Skanuoti"
 
+msgid "Scan Files..."
+msgstr ""
+
 msgid "Scan QAM128"
 msgstr "Skanuoti QAM128"
 
@@ -2813,46 +2874,52 @@ msgid "Seek"
 msgstr "Ieškoti"
 
 msgid "Select"
-msgstr ""
+msgstr "Pasirinkti"
 
 msgid "Select HDD"
-msgstr "Pasirinkite kietą diską"
+msgstr "Išsirinkite kietą diską"
+
+msgid "Select IPKG source to edit..."
+msgstr ""
 
 msgid "Select Location"
-msgstr "Pasirinkite vietą"
+msgstr "Išsirinkite vietą"
 
 msgid "Select Network Adapter"
-msgstr "Pasirinkite tinklo adapterį"
+msgstr "Išsirinkite tinklo adapterį"
 
 msgid "Select a movie"
-msgstr "Pasirinkite filmą"
+msgstr "Išsirinkite filmą"
 
 msgid "Select audio mode"
-msgstr "Pasirinkite garsą"
+msgstr "Išsirinkite garsą"
 
 msgid "Select audio track"
-msgstr "Pasirinkite garso takelį"
+msgstr "Išsirinkite garso takelį"
 
 msgid "Select channel to record from"
-msgstr "Pasirinkite kanalą įrašymui"
+msgstr "Išsirinkite kanalą įrašymui"
 
 msgid "Select files for backup. Currently selected:\n"
-msgstr ""
+msgstr "Išsirinkite failus atsarginei kopijai. Dabar pasirinkta:\n"
 
 msgid "Select files/folders to backup..."
-msgstr ""
+msgstr "Išsirinkite failus/aplankus atsarginei kopijai..."
 
 msgid "Select image"
 msgstr "Išsirinkite atvaizdą"
 
 msgid "Select refresh rate"
-msgstr "Pasirinkite atnujinimo normą"
+msgstr "Išsirinkite atnaujinimo normą"
 
 msgid "Select video input"
-msgstr "Pasirinkite vaizdo įėjimą"
+msgstr "Išsirinkite vaizdo įėjimą"
+
+msgid "Select video input with up/down buttons"
+msgstr ""
 
 msgid "Select video mode"
-msgstr "Pasirinkite vaizdo būdą"
+msgstr "Išsirinkite vaizdo būdą"
 
 msgid "Selected source image"
 msgstr "Išsirinktas šaltinio atvaizdas"
@@ -2921,7 +2988,7 @@ msgid "Set as default Interface"
 msgstr "Pasirinkti numatytą sąsają"
 
 msgid "Set interface as default Interface"
-msgstr "Nustatytas interfeisas kaip numatytas interfeisas"
+msgstr "Nustatyta sąsaja, kaip numatyta sąsaja"
 
 msgid "Set limits"
 msgstr "Nustatykite ribas"
@@ -3021,16 +3088,16 @@ msgid "Slow Motion speeds"
 msgstr "Palėtinto judėjimo greitis"
 
 msgid "Software manager"
-msgstr ""
+msgstr "Programinės įrangos valdymas"
 
 msgid "Software manager..."
-msgstr ""
+msgstr "Programinės įrangos valdymas..."
 
 msgid "Software restore"
-msgstr ""
+msgstr "Programinės įrangos atkūrimas"
 
 msgid "Software update"
-msgstr ""
+msgstr "Programinės įrangos atnaujinimas"
 
 msgid "Some plugins are not available:\n"
 msgstr "Kai kurių priedų nėra:\n"
@@ -3039,10 +3106,10 @@ msgid "Somewhere else"
 msgstr "Dar kur nors"
 
 msgid "Sorry MediaScanner is not installed!"
-msgstr ""
+msgstr "Gaila, MediaScanner nėra įdiegtas!"
 
 msgid "Sorry no backups found!"
-msgstr ""
+msgstr "Gaila, atsarginių kopijų nerasta!"
 
 msgid ""
 "Sorry your Backup destination does not exist\n"
@@ -3051,18 +3118,23 @@ msgid ""
 msgstr ""
 "Atsiprašome, bet nurodytos atsarginės kopijos čia nėra.\n"
 "\n"
-"Pasirinkite prašome kitą!"
+"Prašome išsirinkti kitą!"
 
 msgid ""
 "Sorry your backup destination is not writeable.\n"
 "Please choose an other one."
 msgstr ""
+"Gaila, jūsų atsarginės kopijos pasirinkimas nėra tinkamas rašymui.\n"
+"Prašome pasirinkti kitą."
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
 "Please choose another one."
 msgstr ""
+"Gaila, jūsų atsarginės kopijos pasirinkimas nėra tinkamas rašymui.\n"
+"\n"
+"Prašome pasirinkti kitą."
 
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
@@ -3133,10 +3205,10 @@ msgid "Stop test"
 msgstr "Stabdyti testavimą"
 
 msgid "Stop testing plane after # failed transponders"
-msgstr ""
+msgstr "Stabdykite bandymą po to kai # klaidingi transponderiai"
 
 msgid "Stop testing plane after # successful transponders"
-msgstr ""
+msgstr "Stabdykite bandymą po to kai # sėkmingi transponderiai"
 
 msgid "Store position"
 msgstr "Išsaugoti padėtį"
@@ -3212,10 +3284,10 @@ msgid "Terrestrial provider"
 msgstr "Antžeminis tiekėjas"
 
 msgid "Test DiSEqC settings"
-msgstr ""
+msgstr "Bandyti DiSEqC nustatymus"
 
 msgid "Test Type"
-msgstr ""
+msgstr "Bandymo tipas"
 
 msgid "Test mode"
 msgstr "Testuoti"
@@ -3251,7 +3323,7 @@ msgstr ""
 "atvaizdą iš perdavimo serverio ir išsaugoti tai prietaise?"
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui. "
+msgstr "Išsaugoti nepavyko. Išsirinkite kitą vietą išsaugojimui. "
 
 #, python-format
 msgid ""
@@ -3266,6 +3338,9 @@ msgstr ""
 "%s\n"
 "\n"
 "Jūs norite įrašyti USB diegėją į šį raktelį?"
+
+msgid "The following files were found..."
+msgstr ""
 
 msgid ""
 "The input port should be configured now.\n"
@@ -3320,7 +3395,7 @@ msgstr "Surinkti PIN kodai skiriasi."
 
 #, python-format
 msgid "The results have been written to %s."
-msgstr ""
+msgstr "Rezultatai buvo įrašyti į %s."
 
 msgid "The sleep timer has been activated."
 msgstr "Budėjimo laikmatis jau aktyvuotas."
@@ -3360,6 +3435,9 @@ msgstr ""
 "Gali trukti laisvos vietos pasirinktame skaidinyje.\n"
 "Ar norite tęsti?"
 
+msgid "There was an error downloading the packetlist. Please try again."
+msgstr ""
+
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
 msgstr "Šis .NFI failas neturi galiojančio %s atvaizdo!"
@@ -3384,6 +3462,10 @@ msgid ""
 msgstr ""
 "Šis DVD RW diskas jau yra suformatuotas - formatavimas iš naujo, ištrins "
 "visą disko turinį."
+
+#, python-format
+msgid "This Dreambox can't decode %s streams!"
+msgstr ""
 
 #, python-format
 msgid "This Dreambox can't decode %s video streams!"
@@ -3590,6 +3672,9 @@ msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
 "Pabandykite surasti Transponderius kabeliniuose tinkluose.. prašome laukti..."
 
+msgid "Trying to download a new packetlist. Please wait..."
+msgstr ""
+
 msgid "Tue"
 msgstr "Ant"
 
@@ -3624,7 +3709,7 @@ msgid "Two"
 msgstr "Du"
 
 msgid "Type"
-msgstr ""
+msgstr "Tipas"
 
 msgid "Type of scan"
 msgstr "Skanavimo būdas"
@@ -3662,13 +3747,13 @@ msgid "Uncommitted DiSEqC command"
 msgstr "Perjungimo komanda DiSEqC"
 
 msgid "Unicable"
-msgstr ""
+msgstr "Unicable"
 
 msgid "Unicable LNB"
-msgstr ""
+msgstr "Unicable LNB"
 
 msgid "Unicable Martix"
-msgstr ""
+msgstr "Unicable Martix"
 
 msgid "Universal LNB"
 msgstr "Universali LNB"
@@ -3689,7 +3774,7 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Atnaujinama... Prašome palaukti... tai gali trukti keletą minučių..."
 
 msgid "Upgrade finished."
-msgstr ""
+msgstr "Atnaujinimas baigtas."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Atnaujinimas baigtas. Ar jūs norite perjungti imtuvą?"
@@ -3771,7 +3856,7 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (įvadas)"
 
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikalus"
 
 msgid "Video Fine-Tuning"
 msgstr "Tikslus vaizdo suderinimas"
@@ -3806,8 +3891,17 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Vaizdo būdo pasirinkimas."
 
+msgid "View Movies..."
+msgstr ""
+
+msgid "View Photos..."
+msgstr ""
+
 msgid "View Rass interactive..."
 msgstr "Žiūrėti Rass interaktyviai..."
+
+msgid "View Video CD..."
+msgstr ""
 
 msgid "View teletext..."
 msgstr "Žiūrėti teletekstą..."
@@ -3874,7 +3968,7 @@ msgstr ""
 "Ieškokite pradžios, kurią jūs norite iškirpti. Spauskite OK, išsirinkite ' "
 "iškirpimo pradžią'.\n"
 "\n"
-"Tada ieškokite pabaigos, spauskite OK, pasirinkite 'iškirpimo pabaigą'. Štai "
+"Tada ieškokite pabaigos, spauskite OK, Išsirinkite 'iškirpimo pabaigą'. Štai "
 "ir viskas."
 
 msgid ""
@@ -3915,6 +4009,13 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
+"Jeigu jūs atkursite gamyklinius nustatymus, jūs prarasite VISUS savo "
+"konfigūracijos duomenis\n"
+"(įskaitant paketus, kanalus, palydovinius duomenis...) \n"
+"Po to, kai bus atkurti gamykliniai nustatymai imtuvas pasileis iš naujo "
+"automatiškai!\n"
+"\n"
+"Iš tikrųjų norite atkurti?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kur Jūs norite išsaugoti nustatymų atsarginę kopiją?"
@@ -4040,6 +4141,8 @@ msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
 "now."
 msgstr ""
+"Jūs nusprendėte padaryti savo nustatymų atsarginę kopiją. Prašome spausti "
+"OK, kad pradėtumėte atsarginės kopijos darymą."
 
 msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
@@ -4052,6 +4155,8 @@ msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
 msgstr ""
+"Jūs nusprendėte atkurti savo nustatymus. Enigma2 iš naujo pasileis po "
+"atkūrimo. Prašome spausti OK, kad pradėtumėte atkūrimą dabar."
 
 #, python-format
 msgid "You have to wait %s!"
@@ -4090,6 +4195,11 @@ msgid ""
 "process."
 msgstr "Atsarginė kopija sukurta. Dabar mes tęsime atnaujinimą. "
 
+msgid ""
+"Your collection exceeds the size of a single layer medium, you will need a "
+"blank dual layer DVD!"
+msgstr ""
+
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Jūsų imtuvas išsijungia. Būkite šalia..."
 
@@ -4117,9 +4227,9 @@ msgid ""
 "Do you want to disable the second network interface?"
 msgstr ""
 "Jūsų tinklo konfigūracija aktyvuota.\n"
-"Rastas antras sukonfigūruotas interfeisas.\n"
+"Rasta antra sukonfigūruota sąsaja.\n"
 "\n"
-"Jūs norite išjungti antrą tinklo interfeisą?"
+"Jūs norite išjungti antrą tinklo sąsają?"
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Perjungti atgal į kanalą po pozicionieriaus nustatymo?"
@@ -4182,7 +4292,7 @@ msgid "add recording (enter recording duration)"
 msgstr "pridėti įrašą (įrašykite įrašo ilgį)"
 
 msgid "add recording (enter recording endtime)"
-msgstr "pridėti įrašymą (įrašykite įrašymo pabaigos laiką) "
+msgstr "pridėti įrašą (įrašykite įrašymo pabaigos laiką) "
 
 msgid "add recording (indefinitely)"
 msgstr "pridėti įrašą (identišką)"
@@ -4224,7 +4334,7 @@ msgid "audio tracks"
 msgstr "garso takeliai"
 
 msgid "auto"
-msgstr ""
+msgstr "auto"
 
 msgid "back"
 msgstr "atgal"
@@ -4261,7 +4371,7 @@ msgid "chapters"
 msgstr "skyriai"
 
 msgid "choose destination directory"
-msgstr "pasirinkite direktoriją"
+msgstr "Išsirinkite direktoriją"
 
 msgid "circular left"
 msgstr "apskritiminė kairė"
@@ -4399,7 +4509,7 @@ msgid "exit network adapter setup menu"
 msgstr "išeiti iš tinklo adapterio nustatymų meniu"
 
 msgid "exit network interface list"
-msgstr "išeiti iš tinklo interfeiso sąrašo"
+msgstr "išeiti iš tinklo sąsajos sąrašo"
 
 msgid "exit networkadapter setup menu"
 msgstr "išeiti iš tinklo adapterio nustatymų meniu"
@@ -4596,7 +4706,7 @@ msgid "not locked"
 msgstr "neužrakintas"
 
 msgid "not used"
-msgstr ""
+msgstr "nenaudojama"
 
 msgid "nothing connected"
 msgstr "niekas nepajungta"
@@ -4756,16 +4866,16 @@ msgid "select image from server"
 msgstr "išsirinkite atvaizdą iš serverio"
 
 msgid "select interface"
-msgstr "išsrinkite interfeisą"
+msgstr "išsrinkite sąsają"
 
 msgid "select menu entry"
 msgstr "išsirinkite meniu įėjimą"
 
 msgid "select movie"
-msgstr "pasirinkite filmą"
+msgstr "išsirinkite filmą"
 
 msgid "select the movie path"
-msgstr "pasirinkite filmo kelią"
+msgstr "išsirinkite filmo kelią"
 
 msgid "service pin"
 msgstr "kanalo PIN"
@@ -4882,7 +4992,7 @@ msgid "switch to playlist"
 msgstr "perjungti į grojaraštį"
 
 msgid "switch to the next angle"
-msgstr ""
+msgstr "perjunkite į kitą kampą"
 
 msgid "switch to the next audio track"
 msgstr "perjungti į kitą garso takelį"
@@ -4891,7 +5001,7 @@ msgid "switch to the next subtitle language"
 msgstr "perjungti į kitą subtitrų kalbą"
 
 msgid "template file"
-msgstr ""
+msgstr "šablono failas"
 
 msgid "textcolor"
 msgstr "teksto spalva"
@@ -4945,7 +5055,7 @@ msgid "whitelist"
 msgstr "baltas sąrašas"
 
 msgid "working"
-msgstr ""
+msgstr "dirba"
 
 msgid "yellow"
 msgstr "geltonas"
@@ -4971,10 +5081,10 @@ msgstr "įjungta"
 
 #~ msgid ""
 #~ "\n"
-#~ "Enigma2 will restart after the restore"
+#~ "System will restart after the restore!"
 #~ msgstr ""
 #~ "\n"
-#~ "Enigma2 iš naujo pasileis po atkūrimo"
+#~ "Sistema po atkūrimo pasileis iš naujo!"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
@@ -5006,6 +5116,9 @@ msgstr "įjungta"
 
 #~ msgid "An error has occured. (%s)"
 #~ msgstr "Įvyko klaida. (%s)"
+
+#~ msgid "An error occured!"
+#~ msgstr "Įvyko klaida!"
 
 #~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"

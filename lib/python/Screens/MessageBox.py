@@ -43,7 +43,7 @@ class MessageBox(Screen):
 			else:
 				self.list = [ (_("no"), 1), (_("yes"), 0) ]
 		
-		if len(self.list):
+		if self.list:
 			self["selectedChoice"].setText(self.list[0][0])
 		self["list"] = MenuList(self.list)
 
@@ -134,7 +134,7 @@ class MessageBox(Screen):
 		if self.close_on_any_key:
 			self.close(True)
 		self["list"].instance.moveSelection(direction)
-		if len(self.list):
+		if self.list:
 			self["selectedChoice"].setText(self["list"].getCurrent()[0])
 		self.stopTimer()
 

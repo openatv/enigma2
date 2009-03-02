@@ -38,6 +38,11 @@ enum data_source
 	TUNER_A, TUNER_B, TUNER_C, TUNER_D, CI_A, CI_B, CI_C, CI_D
 };
 
+typedef std::pair<std::string, uint32_t> providerPair;
+typedef std::set<providerPair> providerSet;
+typedef std::set<uint16_t> caidSet;
+typedef std::set<eServiceReference> serviceSet;
+
 class eDVBCISlot: public iObject, public Object
 {
 	friend class eDVBCIInterfaces;
@@ -51,14 +56,16 @@ class eDVBCISlot: public iObject, public Object
 	eDVBCICAManagerSession *ca_manager;
 	eDVBCIMMISession *mmi_session;
 	std::priority_queue<queueData> sendqueue;
-	std::set<uint16_t> possible_caids;
-	std::set<eServiceReference> possible_services;
-	std::set<std::string> possible_providers;
+	caidSet possible_caids;
+	serviceSet possible_services;
+	providerSet possible_providers;
 	int use_count;
 	eDVBCISlot *linked_next; // needed for linked CI handling
 	data_source current_source;
 	int current_tuner;
+	bool user_mapped;
 	void data(int);
+	bool first_plugged;
 public:
 	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
 	eDVBCISlot(eMainloop *context, int nr);
@@ -146,6 +153,7 @@ public:
 	int getNumOfSlots() { return m_slots.size(); }
 	PyObject *getDescrambleRules(int slotid);
 	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject) );
+	PyObject *readCICaIds(int slotid);
 };
 
 #endif

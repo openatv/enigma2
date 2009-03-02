@@ -96,8 +96,6 @@ def filescan_open(list, session, **kwargs):
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
-	from mimetypes import add_type
-	add_type("application/x-dream-package", "dmpkg")
 	return \
 		Scanner(mimetypes = ["application/x-dream-package"], 
 			paths_to_scan = 
@@ -106,7 +104,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False), 
 				], 
 			name = "Dream-Package", 
-			description = "Install settings, skins, software...", 
+			description = _("Install settings, skins, software..."), 
 			openfnc = filescan_open, )
 
 print "add dreampackage scanner plugin"

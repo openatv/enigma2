@@ -23,16 +23,16 @@ def mountpoint_choosen(option):
 
 	list = [ (r.description, r, res[r], session) for r in res ]
 
-	if list == [ ]:
+	if not list:
 		from Screens.MessageBox import MessageBox
 		if access(mountpoint, F_OK|R_OK):
-			session.open(MessageBox, "No displayable files on this medium found!", MessageBox.TYPE_ERROR)
+			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_ERROR)
 		else:
 			print "ignore", mountpoint, "because its not accessible"
 		return
 
 	session.openWithCallback(execute, ChoiceBox, 
-		title = "The following files were found...",
+		title = _("The following files were found..."),
 		list = list)
 
 def scan(session):
@@ -41,7 +41,7 @@ def scan(session):
 	from Components.Harddisk import harddiskmanager
 
 	parts = [ (r.description, r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-	if len(parts):
+	if parts:
 		for x in parts:
 			if not access(x[1], F_OK|R_OK):
 				parts.remove(x)	
@@ -91,7 +91,7 @@ def autostart(reason, **kwargs):
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name="MediaScanner", description="Scan Files...", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
+		PluginDescriptor(name="MediaScanner", description=_("Scan Files..."), where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
 #		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
 		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = sessionstart),
  		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = autostart)

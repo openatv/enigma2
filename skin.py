@@ -26,10 +26,10 @@ def dump(x, i=0):
 
 class SkinError(Exception):
 	def __init__(self, message):
-		self.message = message
+		self.msg = message
 
 	def __str__(self):
-		return "{%s}: %s" % (config.skin.primary_skin, self.message)
+		return "{%s}: %s" % (config.skin.primary_skin, self.msg)
 
 dom_skins = [ ]
 
@@ -98,7 +98,7 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 		attrib = a[0]
 		value = a[1]
 
-		if attrib in ["pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap"]:
+		if attrib in ("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap"):
 			value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 
 		if attrib not in ignore:
@@ -131,7 +131,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 			guiObject.setFont(parseFont(value, scale))
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
-		elif attrib in ["pixmap", "backgroundPixmap", "selectionPixmap"]:
+		elif attrib in ("pixmap", "backgroundPixmap", "selectionPixmap"):
 			ptr = loadPixmap(value, desktop) # this should already have been filename-resolved.
 			if attrib == "pixmap":
 				guiObject.setPixmap(ptr)

@@ -991,7 +991,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Movie",
-			description = "View Movies...",
+			description = _("View Movies..."),
 			openfnc = filescan_open,
 		),
 		Scanner(mimetypes = ["video/x-vcd"],
@@ -1001,7 +1001,7 @@ def filescan(**kwargs):
 					ScanPath(path = "MPEGAV", with_subdirs = False),
 				],
 			name = "Video CD",
-			description = "View Video CD...",
+			description = _("View Video CD..."),
 			openfnc = filescan_open,
 		),
 		Scanner(mimetypes = ["audio/mpeg", "audio/x-wav", "application/ogg", "audio/x-flac"],
@@ -1010,7 +1010,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Music",
-			description = "Play Music...",
+			description = _("Play Music..."),
 			openfnc = filescan_open,
 		)]
 	try:
@@ -1022,7 +1022,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Audio-CD",
-			description = "Play Audio-CD...",
+			description = _("Play Audio-CD..."),
 			openfnc = audioCD_open,
 		))
 		return mediatypes
