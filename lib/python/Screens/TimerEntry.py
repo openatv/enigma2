@@ -57,12 +57,12 @@ class TimerEntry(Screen, ConfigListScreen):
 				AFTEREVENT.AUTO: "auto"
 				}[self.timer.afterEvent]
 
-			weekday_table = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
+			weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
 			# calculate default values
 			day = []
 			weekday = 0
-			for x in range(0,7):
+			for x in (0, 1, 2, 3, 4, 5, 6):
 				day.append(0)
 			if self.timer.repeated: # repeated
 				type = "repeated"
@@ -74,7 +74,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					flags = self.timer.repeated
 					repeated = "user"
 					count = 0
-					for x in range(0, 7):
+					for x in (0, 1, 2, 3, 4, 5, 6):
 						if flags == 1: # weekly
 							print "Set to weekday " + str(x)
 							weekday = x
@@ -98,7 +98,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
 			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
 			self.timerentry_tags = self.timer.tags[:]
-			self.timerentry_tagsset = ConfigSelection(choices = [len(self.timerentry_tags) == 0 and "None" or " ".join(self.timerentry_tags)])
+			self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
 
@@ -117,7 +117,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
 			self.timerentry_day = ConfigSubList()
-			for x in range(0,7):
+			for x in (0, 1, 2, 3, 4, 5, 6):
 				self.timerentry_day.append(ConfigYesNo(default = day[x]))
 
 			# FIXME some service-chooser needed here
@@ -197,14 +197,14 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.createSetup("config")
 
 	def keyLeft(self):
-		if self["config"].getCurrent() in [self.channelEntry, self.tagsSet]:
+		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
 			self.keySelect()
 		else:
 			ConfigListScreen.keyLeft(self)
 			self.newConfig()
 
 	def keyRight(self):
-		if self["config"].getCurrent() in [self.channelEntry, self.tagsSet]:
+		if self["config"].getCurrent() in (self.channelEntry, self.tagsSet):
 			self.keySelect()
 		else:
 			ConfigListScreen.keyRight(self)
@@ -236,7 +236,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.keyGo()
 
 	def finishedChannelSelection(self, *args):
-		if len(args):
+		if args:
 			self.timerentry_service_ref = ServiceReference(args[0])
 			self.timerentry_service.setCurrentText(self.timerentry_service_ref.getServiceName())
 			self["config"].invalidate(self.channelEntry)
@@ -281,18 +281,18 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timer.begin, self.timer.end = self.getBeginEnd()
 		if self.timerentry_type.value == "repeated":
 			if self.timerentry_repeated.value == "daily":
-				for x in range(0,7):
+				for x in (0, 1, 2, 3, 4, 5, 6):
 					self.timer.setRepeated(x)
 
 			if self.timerentry_repeated.value == "weekly":
 				self.timer.setRepeated(self.timerentry_weekday.index)
 
 			if self.timerentry_repeated.value == "weekdays":
-				for x in range(0,5):
+				for x in (0, 1, 2, 3, 4):
 					self.timer.setRepeated(x)
 
 			if self.timerentry_repeated.value == "user":
-				for x in range(0,7):
+				for x in (0, 1, 2, 3, 4, 5, 6):
 					if self.timerentry_day[x].value:
 						self.timer.setRepeated(x)
 
@@ -367,7 +367,7 @@ class TimerEntry(Screen, ConfigListScreen):
 	def tagEditFinished(self, ret):
 		if ret is not None:
 			self.timerentry_tags = ret
-			self.timerentry_tagsset.setChoices([len(ret) == 0 and "None" or " ".join(ret)])
+			self.timerentry_tagsset.setChoices([not ret and "None" or " ".join(ret)])
 			self["config"].invalidate(self.tagsSet)
 
 class TimerLog(Screen):
@@ -410,9 +410,7 @@ class TimerLog(Screen):
 		self.updateText()
 
 	def fillLogList(self):
-		self.list = [ ]
-		for x in self.log_entries:
-			self.list.append((str(strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x))
+		self.list = [(str(strftime("%Y-%m-%d %H-%M", localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
 
 	def clearLog(self):
 		self.log_entries = []
@@ -444,7 +442,7 @@ class TimerLog(Screen):
 		self.updateText()
 
 	def updateText(self):
-		if len(self.list) > 0:
+		if self.list:
 			self["logentry"].setText(str(self["loglist"].getCurrent()[1][2]))
 		else:
 			self["logentry"].setText("")

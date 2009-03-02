@@ -23,7 +23,7 @@ class RdsDecoder(PerServiceBase, Source, object):
 	decoder = property(getDecoder)
 
 	def gotEvent(self, what):
-		if what in [iPlayableService.evStart, iPlayableService.evEnd]:
+		if what in (iPlayableService.evStart, iPlayableService.evEnd):
 			self.changed((self.CHANGED_CLEAR,))
 		else:
 			self.changed((self.CHANGED_SPECIFIC, what))

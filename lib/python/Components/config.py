@@ -385,7 +385,7 @@ class ConfigBoolean(ConfigElement):
 		self.value = self.last_value = self.default = default
 
 	def handleKey(self, key):
-		if key in [KEY_LEFT, KEY_RIGHT]:
+		if key in (KEY_LEFT, KEY_RIGHT):
 			self.value = not self.value
 		elif key == KEY_HOME:
 			self.value = False
@@ -1187,7 +1187,7 @@ class ConfigSet(ConfigElement):
 				self.pos = -1
 			else:
 				self.pos += 1
-		elif key in [KEY_HOME, KEY_END]:
+		elif key in (KEY_HOME, KEY_END):
 			self.pos = -1
 
 	def genString(self, lst):
@@ -1352,7 +1352,7 @@ class ConfigLocations(ConfigElement):
 			self.pos += 1
 			if self.pos >= len(self.value):
 				self.pos = -1
-		elif key in [KEY_HOME, KEY_END]:
+		elif key in (KEY_HOME, KEY_END):
 			self.pos = -1
 
 	def getText(self):

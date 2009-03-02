@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-02-16 00:05+0100\n"
-"PO-Revision-Date: 2009-02-08 13:44+0100\n"
+"POT-Creation-Date: 2009-02-26 14:15+0100\n"
+"PO-Revision-Date: 2009-02-13 18:45+0100\n"
 "Last-Translator: Sebastian <zbigzbig2@op.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -35,6 +35,13 @@ msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
+
+msgid ""
+"\n"
+"Enigma2 will restart after the restore"
+msgstr ""
+"\n"
+"Enigma2 zostanie zrestartowana po przywróceniu"
 
 msgid ""
 "\n"
@@ -458,9 +465,6 @@ msgstr "Alternatywny priorytet usług tunera"
 msgid "An empty filename is illegal."
 msgstr "Pusta nazwa pliku jest nieldozwolona."
 
-msgid "An error occured!"
-msgstr ""
-
 msgid "An unknown error occured!"
 msgstr "Wystąpił nieznany błąd!"
 
@@ -734,10 +738,10 @@ msgid "Choose your Skin"
 msgstr "Wybierz Skina"
 
 msgid "Circular left"
-msgstr "Okólnik lewo"
+msgstr "Kołój w lewo"
 
 msgid "Circular right"
-msgstr "Okólnik prawo"
+msgstr "Kołój w prawo"
 
 msgid "Cleanup"
 msgstr "Czyść"
@@ -1023,7 +1027,7 @@ msgid "Display >16:9 content as"
 msgstr "Wyświetlaj zawartość >16:9 jako"
 
 msgid "Display Setup"
-msgstr "Ustawienia wyświtlania"
+msgstr "Ustawienia wyświetlacza"
 
 #, python-format
 msgid ""
@@ -1189,6 +1193,9 @@ msgstr "Edytuj"
 
 msgid "Edit DNS"
 msgstr "Edytuj DNS"
+
+msgid "Edit IPKG source URL..."
+msgstr ""
 
 msgid "Edit Title"
 msgstr "Edytuj Tytuł"
@@ -1606,6 +1613,12 @@ msgstr ""
 msgid "Install local IPKG"
 msgstr ""
 
+msgid "Install settings, skins, software..."
+msgstr ""
+
+msgid "Install software updates..."
+msgstr ""
+
 msgid "Installing"
 msgstr "Instalowanie"
 
@@ -1706,6 +1719,9 @@ msgstr "Zamknąć odtwarzacz DVD?"
 
 msgid "Left"
 msgstr "Lewo"
+
+msgid "Lets you view/edit files in your Dreambox"
+msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -1939,7 +1955,7 @@ msgid "NetworkWizard"
 msgstr "Kreator sieci"
 
 msgid "New"
-msgstr "Nowy"
+msgstr "Nowe"
 
 msgid "New pin"
 msgstr "Nowy pin"
@@ -1977,6 +1993,9 @@ msgstr ""
 
 msgid "No details for this image file"
 msgstr "Brak opisu dla tego image'a"
+
+msgid "No displayable files on this medium found!"
+msgstr ""
 
 msgid "No event info found, recording indefinitely."
 msgstr "Nie znaleziono informacji o wydarzeniu, nagrywanie nieokreślone."
@@ -2203,6 +2222,12 @@ msgstr "Odtwarzaj"
 
 msgid "Play Audio-CD..."
 msgstr "Odtwarzanie CD-Audio..."
+
+msgid "Play DVD"
+msgstr ""
+
+msgid "Play Music..."
+msgstr ""
 
 msgid "Play recorded movies..."
 msgstr "Odtwarzanie nagranego filmu..."
@@ -2451,6 +2476,9 @@ msgstr "Provider do skanowania"
 msgid "Providers"
 msgstr "Providerzy"
 
+msgid "Python frontend for /tmp/mmi.socket"
+msgstr ""
+
 msgid "Quick"
 msgstr "Szybko"
 
@@ -2664,7 +2692,7 @@ msgid "Right"
 msgstr "Prawo"
 
 msgid "Rolloff"
-msgstr "Wyłącz rolowanie"
+msgstr "Rolloff"
 
 msgid "Rotor turning speed"
 msgstr "Prędkość obrotu rotora"
@@ -2719,6 +2747,9 @@ msgstr "Tryb skalowania"
 
 msgid "Scan "
 msgstr "Skanuj"
+
+msgid "Scan Files..."
+msgstr ""
 
 msgid "Scan QAM128"
 msgstr "Skanuj QAM128"
@@ -2813,6 +2844,9 @@ msgstr ""
 msgid "Select HDD"
 msgstr "Wybierz HDD"
 
+msgid "Select IPKG source to edit..."
+msgstr ""
+
 msgid "Select Location"
 msgstr "Wybierz lokalizację"
 
@@ -2845,6 +2879,9 @@ msgstr "Wybierz prędkość odświeżania"
 
 msgid "Select video input"
 msgstr "Wybierz wejście Wideo"
+
+msgid "Select video input with up/down buttons"
+msgstr ""
 
 msgid "Select video mode"
 msgstr "Wybierz tryb wideo"
@@ -3264,6 +3301,9 @@ msgstr ""
 "\n"
 "Czy chesz zapisać USB flash'er na tym napedzie?"
 
+msgid "The following files were found..."
+msgstr ""
+
 msgid ""
 "The input port should be configured now.\n"
 "You can now configure the screen by displaying some test pictures. Do you "
@@ -3356,6 +3396,9 @@ msgstr ""
 "Nie ma wystarczająco miejsca na wybranej partycji.\n"
 "Czy kontynuować?"
 
+msgid "There was an error downloading the packetlist. Please try again."
+msgstr ""
+
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
 msgstr "Plik .NFI nie posiada prawidłowego %s image'a!"
@@ -3381,6 +3424,10 @@ msgid ""
 msgstr ""
 "Nosnik DVD RW zawiera dane- jego sformatowanie spowoduje utrate danych na "
 "nosniku."
+
+#, python-format
+msgid "This Dreambox can't decode %s streams!"
+msgstr ""
 
 #, python-format
 msgid "This Dreambox can't decode %s video streams!"
@@ -3582,6 +3629,9 @@ msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
 "Spróbuj odnaleźć używane transpondery w sieci kablowej... Proszę czekać..."
 
+msgid "Trying to download a new packetlist. Please wait..."
+msgstr ""
+
 msgid "Tue"
 msgstr "Wto"
 
@@ -3764,7 +3814,7 @@ msgid "Vertical"
 msgstr "Pionowo [V]"
 
 msgid "Video Fine-Tuning"
-msgstr "Konfiguracja obrazu..."
+msgstr "Korekcja obrazu..."
 
 msgid "Video Fine-Tuning Wizard"
 msgstr "Kreator czystości obrazu "
@@ -3796,8 +3846,17 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Wybór trybu wideo"
 
+msgid "View Movies..."
+msgstr ""
+
+msgid "View Photos..."
+msgstr ""
+
 msgid "View Rass interactive..."
 msgstr "Pokaż interaktywne Rass..."
+
+msgid "View Video CD..."
+msgstr ""
 
 msgid "View teletext..."
 msgstr "Pokaż teletext..."
@@ -4077,6 +4136,11 @@ msgstr ""
 "Twoja kopia zapasowa została zrobiona. Będziemy kontynuować wyjaśnianie "
 "procesu aktualizacji."
 
+msgid ""
+"Your collection exceeds the size of a single layer medium, you will need a "
+"blank dual layer DVD!"
+msgstr ""
+
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Twój Dreambox jest wyłączany. Prosze czekać..."
 
@@ -4160,7 +4224,7 @@ msgid "add file to playlist"
 msgstr "dodaj plik do playlisty"
 
 msgid "add files to playlist"
-msgstr "dodaj pliki do playlisty"
+msgstr "Dodaj pliki do playlisty"
 
 msgid "add marker"
 msgstr "Dodaj zaznaczenie"
@@ -4251,10 +4315,10 @@ msgid "choose destination directory"
 msgstr "wybierz folder docelowy"
 
 msgid "circular left"
-msgstr "Okólnik lewo"
+msgstr "Kołój w lewo"
 
 msgid "circular right"
-msgstr "Okólnik prawo"
+msgstr "Kołój w prawo"
 
 msgid "clear playlist"
 msgstr "Wyczyść playlistę"
@@ -4955,13 +5019,6 @@ msgstr "Przełącz"
 
 msgid "zapped"
 msgstr "Przełączony"
-
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 zostanie zrestartowana po przywróceniu"
 
 #, fuzzy
 #~ msgid "\"?"

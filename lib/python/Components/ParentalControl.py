@@ -33,7 +33,7 @@ def InitParentalControl():
 
 	config.ParentalControl.servicepin = ConfigSubList()
 
-	for i in range(3):
+	for i in (0, 1, 2):
 		config.ParentalControl.servicepin.append(ConfigPIN(default = -1))
 		#config.ParentalControl.servicepin.append(configElement("config.ParentalControl.servicepin.level" + str(i), configSequence, "0000", configSequenceArg().get("PINCODE", (4, ""))))
 
@@ -117,10 +117,7 @@ class ParentalControl:
 			return -1
 	
 	def getPinList(self):
-		pinList = []
-		for x in config.ParentalControl.servicepin:
-			pinList.append(x.value)
-		return pinList
+		return [ x.value for x in config.ParentalControl.servicepin ]
 	
 	def servicePinEntered(self, service, result):
 #		levelNeeded = 0

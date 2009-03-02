@@ -8,8 +8,10 @@ from Tools.LoadPixmap import LoadPixmap
 lockPicture = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock.png"))
 
 def ParentalControlEntryComponent(service, name, locked = True):
-	res = [ (service, name, locked) ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 300, 50, 0, RT_HALIGN_LEFT, name))
+	res = [
+		(service, name, locked),
+		(eListboxPythonMultiContent.TYPE_TEXT, 80, 5, 300, 50, 0, RT_HALIGN_LEFT, name)
+	]
 	if locked:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 32, 32, lockPicture))
 	return res

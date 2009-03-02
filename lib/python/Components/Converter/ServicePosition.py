@@ -35,7 +35,7 @@ class ServicePosition(Converter, Poll, object):
 		elif type == "Gauge":
 			self.type = self.TYPE_GAUGE
 		else:
-			raise ElementError("type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours|NoSeconds}")
+			raise ElementError("type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours|ShowNoSeconds} for ServicePosition converter")
 
 		self.poll_enabled = self.type != self.TYPE_LENGTH
 
@@ -128,8 +128,8 @@ class ServicePosition(Converter, Poll, object):
 	value = property(getValue)
 
 	def changed(self, what):
-		cutlist_refresh = what[0] != self.CHANGED_SPECIFIC or what[1] in [iPlayableService.evCuesheetChanged]
-		time_refresh = what[0] == self.CHANGED_POLL or what[0] == self.CHANGED_SPECIFIC and what[1] in [iPlayableService.evCuesheetChanged]
+		cutlist_refresh = what[0] != self.CHANGED_SPECIFIC or what[1] in (iPlayableService.evCuesheetChanged,)
+		time_refresh = what[0] == self.CHANGED_POLL or what[0] == self.CHANGED_SPECIFIC and what[1] in (iPlayableService.evCuesheetChanged,)
 
 		if cutlist_refresh:
 			if self.type == self.TYPE_GAUGE:

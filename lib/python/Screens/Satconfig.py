@@ -21,7 +21,7 @@ class NimSetup(Screen, ConfigListScreen):
 		else:
 			list.append(getConfigListEntry(_("Port A"), nim.diseqcA))
 
-		if mode in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+		if mode in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 			list.append(getConfigListEntry(_("Port B"), nim.diseqcB))
 			if mode == "diseqc_a_b_c_d":
 				list.append(getConfigListEntry(_("Port C"), nim.diseqcC))
@@ -99,7 +99,7 @@ class NimSetup(Screen, ConfigListScreen):
 			if self.nimConfig.configMode.value == "simple":			#simple setup
 				self.diseqcModeEntry = getConfigListEntry(_("Mode"), self.nimConfig.diseqcMode)
 				self.list.append(self.diseqcModeEntry)
-				if self.nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+				if self.nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					self.createSimpleSetup(self.list, self.nimConfig.diseqcMode.value)
 				if self.nimConfig.diseqcMode.value == "positioner":
 					self.createPositionerSetup(self.list)
@@ -204,7 +204,7 @@ class NimSetup(Screen, ConfigListScreen):
 		if self.have_advanced and self.nim.config_mode == "advanced":
 			self.fillAdvancedList()
 		for x in self.list:
-			if x in [self.turnFastEpochBegin, self.turnFastEpochEnd]:
+			if x in (self.turnFastEpochBegin, self.turnFastEpochEnd):
 				# workaround for storing only hour*3600+min*60 value in configfile
 				# not really needed.. just for cosmetics..
 				tm = localtime(x[1].value)
@@ -453,7 +453,7 @@ class NimSelection(Screen):
 			text = nimConfig.configMode.value
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
-					if nimConfig.configMode.value in ["loopthrough", "equal", "satposdepends"]:
+					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
 						text = { "loopthrough": _("loopthrough to"),
 								 "equal": _("equal to"),
 								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
@@ -461,11 +461,11 @@ class NimSelection(Screen):
 					elif nimConfig.configMode.value == "nothing":
 						text = _("nothing connected")
 					elif nimConfig.configMode.value == "simple":
-						if nimConfig.diseqcMode.value in ["single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 							text = _("Sats") + ": " 
 							if nimConfig.diseqcA.orbital_position != 3601:
 								text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
-							if nimConfig.diseqcMode.value in ["toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"]:
+							if nimConfig.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 								if nimConfig.diseqcB.orbital_position != 3601:
 									text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
 							if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":

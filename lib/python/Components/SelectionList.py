@@ -6,8 +6,10 @@ from Tools.LoadPixmap import LoadPixmap
 selectionpng = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/selectioncross.png"))
 
 def SelectionEntryComponent(description, value, index, selected):
-	res = [ (description, value, index, selected) ]
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 30, 3, 500, 30, 0, RT_HALIGN_LEFT, description))
+	res = [
+		(description, value, index, selected),
+		(eListboxPythonMultiContent.TYPE_TEXT, 30, 3, 500, 30, 0, RT_HALIGN_LEFT, description)
+	]
 	if selected:
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 30, 30, selectionpng))
 	return res
@@ -23,13 +25,11 @@ class SelectionList(MenuList):
 		self.setList(self.list)
 
 	def toggleSelection(self):
-		item = self.list[self.getSelectedIndex()][0]
-		self.list[self.getSelectedIndex()] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
+		idx = self.getSelectedIndex()
+		item = self.list[idx][0]
+		self.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
 		self.setList(self.list)
 
 	def getSelectionsList(self):
-		list = []
-		for item in self.list:
-			if item[0][3]:
-				list.append((item[0][0], item[0][1], item[0][2]))
-		return list
+		return [ (item[0][0], item[0][1], item[0][2]) for item in self.list if item[0][3] ]
+

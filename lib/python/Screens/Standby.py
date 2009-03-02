@@ -87,9 +87,6 @@ class StandbySummary(Screen):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, parent):
-		Screen.__init__(self, session)
-
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox
 from time import time
@@ -100,7 +97,7 @@ inTryQuitMainloop = False
 class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=1, timeout=-1, default_yes = True):
 		self.retval=retvalue
-		recordings = len(session.nav.getRecordings())
+		recordings = session.nav.getRecordings()
 		jobs = len(job_manager.getPendingJobs())
 		self.connected = False
 		reason = ""
@@ -137,7 +134,7 @@ class TryQuitMainloop(MessageBox):
 	def getRecordEvent(self, recservice, event):
 		if event == iRecordableService.evEnd:
 			recordings = self.session.nav.getRecordings()
-			if not len(recordings): # no more recordings exist
+			if not recordings: # no more recordings exist
 				rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 				if rec_time > 0 and (rec_time - time()) < 360:
 					self.initTimeout(360) # wait for next starting timer
