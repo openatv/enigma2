@@ -1614,8 +1614,9 @@ class Config(ConfigSubsection):
 			self.setSavedValue(tree["config"])
 
 	def saveToFile(self, filename):
+		text = self.pickle()
 		f = open(filename, "w")
-		f.write(self.pickle())
+		f.write(text)
 		f.close()
 
 	def loadFromFile(self, filename):
