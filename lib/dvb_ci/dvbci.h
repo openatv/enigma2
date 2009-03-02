@@ -65,6 +65,7 @@ class eDVBCISlot: public iObject, public Object
 	int current_tuner;
 	bool user_mapped;
 	void data(int);
+	bool first_plugged;
 public:
 	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
 	eDVBCISlot(eMainloop *context, int nr);
@@ -152,6 +153,7 @@ public:
 	int getNumOfSlots() { return m_slots.size(); }
 	PyObject *getDescrambleRules(int slotid);
 	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject) );
+	PyObject *readCICaIds(int slotid);
 };
 
 #endif

@@ -391,6 +391,32 @@ class InfoBarSimpleEventView:
 			epglist[1] = tmp
 			setEvent(epglist[0])
 
+class SimpleServicelist:
+	def __init__(self, services):
+		self.services = services
+		self.length = len(services)
+		self.current = 0
+
+	def selectService(self, service):
+		self.current = 0
+		while self.services[self.current].ref != service:
+			self.current += 1
+
+	def nextService(self):
+		if self.current+1 < self.length:
+			self.current += 1
+		else:
+			self.current = 0
+
+	def prevService(self):
+		if self.current-1 > -1:
+			self.current -= 1
+		else:
+			self.current = self.length - 1
+
+	def currentService(self):
+		return self.services[self.current]
+
 class InfoBarEPG:
 	""" EPG - Opens an EPG list when the showEPGList action fires """
 	def __init__(self):
@@ -487,9 +513,28 @@ class InfoBarEPG:
 		elif cnt == 1:
 			self.openBouquetEPG(bouquets[0][1], withCallback)
 
+	def changeServiceCB(self, direction, epg):
+		if self.serviceSel:
+			if direction > 0:
+				self.serviceSel.nextService()
+			else:
+				self.serviceSel.prevService()
+			epg.setService(self.serviceSel.currentService())
+
+	def SingleServiceEPGClosed(self, ret=False):
+		self.serviceSel = None
+
 	def openSingleServiceEPG(self):
 		ref=self.session.nav.getCurrentlyPlayingServiceReference()
-		self.session.open(EPGSelection, ref)
+		if ref:
+			if self.servicelist.getMutableList() is not None: # bouquet in channellist
+				current_path = self.servicelist.getRoot()
+				services = self.getBouquetServices(current_path)
+				self.serviceSel = SimpleServicelist(services)
+				self.serviceSel.selectService(ref)
+				self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB = self.changeServiceCB)
+			else:
+				self.session.open(EPGSelection, ref)
 
 	def showEventInfoPlugins(self):
 		list = [(p.name, boundFunction(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO)]
