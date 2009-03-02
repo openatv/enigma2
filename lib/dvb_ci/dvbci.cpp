@@ -18,7 +18,7 @@
 
 #include <dvbsi++/ca_program_map_section.h>
 
-#undef CIDEBUG
+//#define CIDEBUG 1
 
 #ifdef CIDEBUG
 	#define eDebugCI(x...) eDebug(x)
@@ -268,23 +268,34 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		eDVBCISlot *tmp = it->cislot;
 		eDVBServicePMTHandler *pmthandler = it->pmthandler;
 		eDVBServicePMTHandler::program p;
+		bool first_plugged_cis_exist = false;
 
 		pmthandler->getServiceReference(ref);
 		pmthandler->getService(service);
 
 		eDebugCI("recheck %p %s", pmthandler, ref.toString().c_str());
+		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
+			if (ci_it->first_plugged && ci_it->getCAManager())
+			{
+				eDebug("Slot %d first plugged", ci_it->getSlotID());
+				ci_it->first_plugged = false;
+				first_plugged_cis_exist = true;
+			}
 
 		// check if this pmt handler has already assigned CI(s) .. and this CI(s) are already running
-		while(tmp)
+		if (!first_plugged_cis_exist)
 		{
-			if (!tmp->running_services.empty())
-				break;
-			tmp=tmp->linked_next;
-		}
-		if (tmp) // we dont like to change tsmux for running services
-		{
-			eDebugCI("already assigned and running CI!\n");
-			continue;
+			while(tmp)
+			{
+				if (!tmp->running_services.empty())
+					break;
+				tmp=tmp->linked_next;
+			}
+			if (tmp) // we dont like to change tsmux for running services
+			{
+				eDebugCI("already assigned and running CI!\n");
+				continue;
+			}
 		}
 
 		if (!pmthandler->getProgramInfo(p))
@@ -887,6 +898,23 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 	return 0;
 }
 
+PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
+{
+	eDVBCISlot *slot = getSlot(slotid);
+	if (!slot)
+	{
+		char tmp[255];
+		snprintf(tmp, 255, "eDVBCIInterfaces::readCICaIds try to get CAIds for CI Slot %d... but just %d slots are available", slotid, m_slots.size());
+		PyErr_SetString(PyExc_StandardError, tmp);
+		return 0;
+	}
+	int idx=0;
+	ePyObject list = PyList_New(slot->possible_caids.size());
+	for (caidSet::iterator it = slot->possible_caids.begin(); it != slot->possible_caids.end(); ++it)
+		PyList_SET_ITEM(list, idx++, PyLong_FromLong(*it));
+	return list;
+}
+
 int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
 	int res=0;
@@ -912,6 +940,7 @@ int eDVBCISlot::send(const unsigned char *data, size_t len)
 
 void eDVBCISlot::data(int what)
 {
+	eDebugCI("CISlot %d what %d\n", getSlotID(), what);
 	if(what == eSocketNotifier::Priority) {
 		if(state != stateRemoved) {
 			state = stateRemoved;
@@ -981,6 +1010,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	use_count = 0;
 	linked_next = 0;
 	user_mapped = false;
+	first_plugged = true;
 	
 	slotid = nr;
 
@@ -992,7 +1022,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 	fd = ::open(filename, O_RDWR | O_NONBLOCK);
 
-	eDebug("CI Slot %d has fd %d", getSlotID(), fd);
+	eDebugCI("CI Slot %d has fd %d", getSlotID(), fd);
 	state = stateInvalid;
 
 	if (fd >= 0)
@@ -1007,6 +1037,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 eDVBCISlot::~eDVBCISlot()
 {
+	eDVBCISession::deleteSessions(this);
 }
 
 void eDVBCISlot::setAppManager( eDVBCIApplicationManagerSession *session )
