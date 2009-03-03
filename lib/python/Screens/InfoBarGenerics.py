@@ -668,11 +668,6 @@ class InfoBarSeek:
 				iPlayableService.evEOF: self.__evEOF,
 				iPlayableService.evSOF: self.__evSOF,
 			})
-		self.eofState = 0
-		self.eofTimer = eTimer()
-		self.eofTimer.timeout.get().append(self.doEof)
-		self.eofInhibitTimer = eTimer()
-		self.eofInhibitTimer.timeout.get().append(self.inhibitEof)
 
 		self.minSpeedBackward = useSeekBackHack and 16 or 0
 
@@ -808,9 +803,6 @@ class InfoBarSeek:
 	def __serviceStarted(self):
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.__seekableStatusChanged()
-		if self.eofState != 0:
-			self.eofTimer.stop()
-		self.eofState = 0
 
 	def setSeekState(self, state):
 		service = self.session.nav.getCurrentService()
@@ -872,16 +864,6 @@ class InfoBarSeek:
 		seekable = self.getSeek()
 		if seekable is None:
 			return
-		prevstate = self.seekstate
-		if self.eofState == 1:
-			self.eofState = 2
-			self.inhibitEof()
-		if self.seekstate == self.SEEK_STATE_EOF:
-			if prevstate == self.SEEK_STATE_PAUSE:
-				self.setSeekState(self.SEEK_STATE_PAUSE)
-			else:
-				self.setSeekState(self.SEEK_STATE_PLAY)
-		self.eofInhibitTimer.start(200, True)
 		seekable.seekTo(pts)
 
 	def doSeekRelative(self, pts):
@@ -889,15 +871,12 @@ class InfoBarSeek:
 		if seekable is None:
 			return
 		prevstate = self.seekstate
-		if self.eofState == 1:
-			self.eofState = 2
-			self.inhibitEof()
+
 		if self.seekstate == self.SEEK_STATE_EOF:
 			if prevstate == self.SEEK_STATE_PAUSE:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
-		self.eofInhibitTimer.start(200, True)
 		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
 		if abs(pts) > 100 and config.usage.show_infobar_on_skip.value:
 			self.showAfterSeek()
@@ -1009,44 +988,19 @@ class InfoBarSeek:
 		return False
 		
 	def __evEOF(self):
-		if self.eofState == 0 and self.seekstate != self.SEEK_STATE_EOF:
-			self.eofState = 1
-			time = self.calcRemainingTime()
-			if not time:
-				time = 3000   # Failed to calc, use default
-			elif time == 0:
-				time = 300    # Passed end, shortest wait
-			elif time > 15000:
-				self.eofState = -2  # Too long, block eof
-				time = 15000
-			else:
-				time += 1000  # Add margin
-			self.eofTimer.start(time, True)
-
-	def inhibitEof(self):
-		if self.eofState >= 1:
-			self.eofState = -self.eofState
-			self.eofTimer.stop()
-			self.doEof()
-
-	def doEof(self):
 		if self.seekstate == self.SEEK_STATE_EOF:
 			return
-		if self.eofState == -2 or self.isStateBackward(self.seekstate):
-			self.eofState = 0
-			return
 
-		# if we are seeking, we try to end up ~1s before the end, and pause there.
-		eofstate = self.eofState
+		# if we are seeking forward, we try to end up ~1s before the end, and pause there.
 		seekstate = self.seekstate
-		self.eofState = 0
-		if not self.seekstate == self.SEEK_STATE_PAUSE:
+		if self.seekstate != self.SEEK_STATE_PAUSE:
 			self.setSeekState(self.SEEK_STATE_EOF)
-		if eofstate == -1 or not seekstate in (self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE):
+
+		if seekstate not in (self.SEEK_STATE_PLAY, self.SEEK_STATE_PAUSE): # if we are seeking
 			seekable = self.getSeek()
 			if seekable is not None:
 				seekable.seekTo(-1)
-		if eofstate == 1 and seekstate == self.SEEK_STATE_PLAY:
+		if seekstate == self.SEEK_STATE_PLAY: # regular EOF
 			self.doEofInternal(True)
 		else:
 			self.doEofInternal(False)
