@@ -332,6 +332,20 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 						eDebug("'%s' is in service list of slot %d... so use it", ref.toString().c_str(), ci_it->getSlotID());
 						useThis = true;
 					}
+					else // check parent
+					{
+						eServiceReferenceDVB parent_ref = ref.getParentServiceReference();
+						if (parent_ref)
+						{
+							it = ci_it->possible_services.find(ref);
+							if (it != ci_it->possible_services.end())
+							{
+								eDebug("parent '%s' of '%s' is in service list of slot %d... so use it",
+									parent_ref.toString().c_str(), ref.toString().c_str(), ci_it->getSlotID());
+								useThis = true;
+							}
+						}
+					}
 				}
 				if (!useThis && !ci_it->possible_providers.empty())
 				{
@@ -354,6 +368,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 				}
 				if (!useThis && !ci_it->possible_caids.empty())
 				{
+					mask |= 4;
 					for (CAID_LIST::iterator ca(caids.begin()); ca != caids.end(); ++ca)
 					{
 						caidSet::iterator it = ci_it->possible_caids.find(*ca);
