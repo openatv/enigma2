@@ -45,9 +45,14 @@ AC_CHECK_LIB(jpeg, jpeg_set_defaults, HAVE_JPEG="yes", HAVE_JPEG="no")
 JPEG_LIBS="-ljpeg"
 AC_SUBST(JPEG_LIBS)
 
-AC_CHECK_LIB(ungif, DGifOpenFileName, HAVE_LIBUNGIF="yes", HAVE_LIBUNGIF="no")
-LIBUNGIF_LIBS="-lungif"
-AC_SUBST(LIBUNGIF_LIBS)
+AC_SUBST(LIBUNGIF_LIBS,"")
+AC_CHECK_HEADERS(gif_lib.h,
+	AC_CHECK_LIB(ungif,DGifOpen,
+	[AC_DEFINE(HAVE_LIBUNGIF,1,[Define if you have libgif/libungif including devel headers])
+		LIBUNGIF_LIBS="-lungif"],
+		[AC_CHECK_LIB(gif,DGifOpen,
+			[AC_DEFINE(HAVE_LIUNBGIF,1)
+			LIBUNGIF_LIBS="-lgif"])]))
 
 TUXBOX_APPS_LIB_PKGCONFIG(XML2,libxml-2.0)
 
