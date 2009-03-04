@@ -50,6 +50,11 @@ eDVBDB.getInstance().reloadBouquets()
 
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
+config.misc.useTransponderTime = ConfigYesNo(default=True)
+
+def useTransponderTimeChanged(configElement):
+	enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(configElement.value)
+config.misc.useTransponderTime.addNotifier(useTransponderTimeChanged)
 
 profile("Twisted")
 try:
