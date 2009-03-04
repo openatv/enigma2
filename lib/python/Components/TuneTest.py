@@ -140,7 +140,7 @@ class TuneTest:
 			# check for tsid != -1 and onid != -1 
 			print "index:", index
 			print "len(self.transponderlist):", len(self.transponderlist)
-			while (index < len(self.transponderlist) and (self.transponderlist[index][8] == -1 or self.transponderlist[index][9] == -1)):
+			while (index < len(self.transponderlist) and (self.transponderlist[index][10] == -1 or self.transponderlist[index][11] == -1)):
 			 	index += 1
 		print "FirstTransponder final index:", index
 		return index
@@ -153,7 +153,7 @@ class TuneTest:
 			# check for tsid != -1 and onid != -1 
 			print "index:", index
 			print "len(self.transponderlist):", len(self.transponderlist)
-			while (index < len(self.transponderlist) and (self.transponderlist[index][8] == -1 or self.transponderlist[index][9] == -1)):
+			while (index < len(self.transponderlist) and (self.transponderlist[index][10] == -1 or self.transponderlist[index][11] == -1)):
 			 	index += 1
 
 		print "next transponder index:", index
