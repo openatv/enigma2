@@ -1525,7 +1525,7 @@ class InfoBarInstantRecord:
 		print "after:\n", self.recording
 
 	def setEndtime(self, entry):
-		if entry is not None:
+		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
 			self.endtime=ConfigClock(default = self.recording[self.selectedEntry].end)
 			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
@@ -1542,7 +1542,7 @@ class InfoBarInstantRecord:
 				self.session.nav.RecordTimer.timeChanged(self.recording[self.selectedEntry])
 
 	def changeDuration(self, entry):
-		if entry is not None:
+		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
 			self.session.openWithCallback(self.inputCallback, InputBox, title=_("How many minutes do you want to record?"), text="5", maxSize=False, type=Input.NUMBER)
 
