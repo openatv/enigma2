@@ -78,6 +78,14 @@ class ResultParser:
 						text += " ==> "
 						text += str(transponder[0])
 						text += "\n"
+					if reason == "pids_failed":
+						text += "(tsid, onid): "
+						text += str(transponder[3]['real'])
+						text += "(read from sat) != "
+						text += str(transponder[3]['expected'])
+						text += "(read from file)"
+						text += "\n"
+					text += "\n"
 		if countsuccessful > 0:
 			text += "\n"
 			text += "Successfully tuned transponders' previous planes:\n" 
