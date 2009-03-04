@@ -321,11 +321,11 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		switch (sourceinfo.containertype)
 		{
 			case ctMPEGTS:
-				demux_type = "flutsdemux";
+				demux_type = "mpegtsdemux";
 				break;
 			case ctMPEGPS:
 			case ctVCD:
-				demux_type = "flupsdemux";
+				demux_type = "mpegpsdemux";
 				break;
 			case ctMKV:
 				demux_type = "matroskademux";
