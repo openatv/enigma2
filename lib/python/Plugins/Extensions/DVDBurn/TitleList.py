@@ -44,7 +44,7 @@ class TitleList(Screen, HelpableScreen):
 				"titleProperties": (self.titleProperties, _("Properties of current title"), _("Title properties")),
 				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
 				"settings": (self.settings, _("Collection settings"), _("Settings")),
-				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn DVD")),
+				"burnProject": (self.askBurnProject, _("Burn DVD"), _("Burn DVD")),
 			})
 
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
@@ -94,7 +94,8 @@ class TitleList(Screen, HelpableScreen):
 		menu.append((_("DVD media toolbox"), self.toolbox))
 		menu.append((_("Preview menu"), self.previewMenu))
 		if self.project.settings.output.getValue() == "dvd":
-			menu.append((_("Burn DVD"), self.burnProject))
+			if len(self["titles"].list):
+				menu.append((_("Burn DVD"), self.burnProject))
 		elif self.project.settings.output.getValue() == "iso":
 			menu.append((_("Create DVD-ISO"), self.burnProject))
 		menu.append((_("Burn existing image to DVD"), self.selectImage))
@@ -196,7 +197,13 @@ class TitleList(Screen, HelpableScreen):
 			self["error_label"].show()
 			return False
 
-	def burnProject(self):
+	def askBurnProject(self):
+		if len(self["titles"].list):
+			self.session.openWithCallback(self.burnProject,MessageBox,text = _("Do you want to burn this collection to DVD medium?"), type = MessageBox.TYPE_YESNO)
+
+	def burnProject(self, answer=True):
+		if not answer:
+			return
 		if self.project.settings.authormode.getValue() == "data_ts":
 			job = Process.DVDdataJob(self.project)
 			job_manager.AddJob(job)
@@ -208,7 +215,7 @@ class TitleList(Screen, HelpableScreen):
 			job_manager.in_background = False
 			self.session.openWithCallback(self.JobViewCB, JobView, job)
 
-	def burnISO(self, path, scope):
+	def burnISO(self, path, scope, configRef):
 		if path:
 			job = Process.DVDisoJob(self.project, path)
 			job_manager.AddJob(job)
