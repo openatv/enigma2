@@ -93,7 +93,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
 
-	currentIndex = property(moveToIndex, getCurrentIndex)
+	currentIndex = property(getCurrentIndex, moveToIndex)
 	currentSelection = property(getCurrent)
 
 	def moveDown(self):
