@@ -103,7 +103,10 @@ eServiceDVD::eServiceDVD(const char *filename):
 	// create handle
 	ddvd_set_dvd_path(m_ddvdconfig, filename);
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
-	ddvd_set_language(m_ddvdconfig, "de");
+
+	std::string ddvd_language;
+	if (!ePythonConfigQuery::getConfigValue("config.osd.language", ddvd_language))
+		ddvd_set_language(m_ddvdconfig, (ddvd_language.substr(0,2)).c_str());
 
 	int fd = open("/proc/stb/video/aspect", O_RDONLY);
 	if (fd > -1)
