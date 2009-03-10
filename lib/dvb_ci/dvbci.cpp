@@ -921,13 +921,18 @@ PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
 		char tmp[255];
 		snprintf(tmp, 255, "eDVBCIInterfaces::readCICaIds try to get CAIds for CI Slot %d... but just %d slots are available", slotid, m_slots.size());
 		PyErr_SetString(PyExc_StandardError, tmp);
-		return 0;
 	}
-	int idx=0;
-	ePyObject list = PyList_New(slot->possible_caids.size());
-	for (caidSet::iterator it = slot->possible_caids.begin(); it != slot->possible_caids.end(); ++it)
-		PyList_SET_ITEM(list, idx++, PyLong_FromLong(*it));
-	return list;
+	else
+	{
+		int idx=0;
+		eDVBCICAManagerSession *ca_manager = slot->getCAManager();
+		const std::vector<uint16_t> &ci_caids = ca_manager->getCAIDs();
+		ePyObject list = PyList_New(ci_caids.size());
+		for (std::vector<uint16_t>::const_iterator it = ci_caids.begin(); it != ci_caids.end(); ++it)
+			PyList_SET_ITEM(list, idx++, PyLong_FromLong(*it));
+		return list;
+	}
+	return 0;
 }
 
 int eDVBCISlot::send(const unsigned char *data, size_t len)
