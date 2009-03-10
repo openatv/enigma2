@@ -926,10 +926,13 @@ PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
 	{
 		int idx=0;
 		eDVBCICAManagerSession *ca_manager = slot->getCAManager();
-		const std::vector<uint16_t> &ci_caids = ca_manager->getCAIDs();
-		ePyObject list = PyList_New(ci_caids.size());
-		for (std::vector<uint16_t>::const_iterator it = ci_caids.begin(); it != ci_caids.end(); ++it)
-			PyList_SET_ITEM(list, idx++, PyLong_FromLong(*it));
+		const std::vector<uint16_t> *ci_caids = ca_manager ? &ca_manager->getCAIDs() : 0;
+		ePyObject list = PyList_New(ci_caids ? ci_caids->size() : 0);
+		if (ci_caids)
+		{
+			for (std::vector<uint16_t>::const_iterator it = ci_caids->begin(); it != ci_caids->end(); ++it)
+				PyList_SET_ITEM(list, idx++, PyLong_FromLong(*it));
+		}
 		return list;
 	}
 	return 0;
