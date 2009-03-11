@@ -466,8 +466,8 @@ def runScreenTest():
 	runReactor()
 
 	profile("wakeup")
-	from time import time
-	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime
+	from time import time, strftime, localtime
+	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
@@ -479,11 +479,16 @@ def runScreenTest():
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
 	if wakeupList:
+		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 330: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			wptime = startTime[0] - 300
+		if not config.misc.useTransponderTime.value:
+			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+			setRTCtime(nowTime)
+		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto

@@ -23,6 +23,16 @@ def setFPWakeuptime(wutime):
 		except IOError:
 			print "setFPWakeupTime failed!"
 
+def setRTCtime(wutime):
+	try:
+		open("/proc/stb/fp/rtc", "w").write(str(wutime))
+	except IOError:
+		try:
+			fp = open("/dev/dbox/fp0")
+			ioctl(fp.fileno(), 0x101, pack('L', wutime)) # set wake up
+		except IOError:
+			print "setRTCtime failed!"
+
 def getFPWakeuptime():
 	ret = 0
 	try:
