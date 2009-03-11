@@ -2267,8 +2267,18 @@ void eDVBServicePlay::updateDecoder()
 				}
 			}
 		}
-		m_decoder->setAC3Delay(ac3_delay == -1 ? 0 : ac3_delay);
-		m_decoder->setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
+
+		std::string config_delay;
+		int config_delay_int = 0;
+		if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
+			config_delay_int = atoi(config_delay.c_str());
+		m_decoder->setAC3Delay(ac3_delay == -1 ? config_delay_int : ac3_delay + config_delay_int);
+
+		if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
+			config_delay_int = atoi(config_delay.c_str());
+		else
+			config_delay_int = 0;
+		m_decoder->setPCMDelay(pcm_delay == -1 ? config_delay_int : pcm_delay + config_delay_int);
 
 		m_decoder->setVideoPID(vpid, vpidtype);
 		selectAudioStream();
