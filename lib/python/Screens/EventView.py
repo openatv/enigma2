@@ -71,6 +71,8 @@ class EventViewBase:
 		self.key_green_choice = self.ADD_TIMER
 	
 	def timerAdd(self):
+		if self.isRecording:
+			return
 		event = self.event
 		serviceref = self.currentService
 		if event is None:
