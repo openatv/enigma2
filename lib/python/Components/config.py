@@ -1029,6 +1029,13 @@ class ConfigNumber(ConfigText):
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
+	def isChanged(self):
+		sv = self.saved_value
+		strv = self.tostring(self.value)
+		if sv is None and strv == self.default:
+			return False
+		return strv != sv
+
 	def conform(self):
 		pos = len(self.text) - self.marked_pos
 		self.text = self.text.lstrip("0")
