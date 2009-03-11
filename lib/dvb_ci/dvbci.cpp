@@ -897,14 +897,14 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 	{
 		--size;
 		ePyObject caid = PyList_GET_ITEM(caid_list, size);
-		if (!PyInt_Check(caid))
+		if (!PyLong_Check(caid))
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules entry in caid list is not a long it is '%s'!!", PyObject_TypeStr(caid));
 			PyErr_SetString(PyExc_StandardError, buf);
 			return -1;
 		}
-		int tmpcaid = PyInt_AsLong(caid);
+		int tmpcaid = PyLong_AsLong(caid);
 		if (tmpcaid > 0 && tmpcaid < 0x10000)
 			slot->possible_caids.insert(tmpcaid);
 		else
