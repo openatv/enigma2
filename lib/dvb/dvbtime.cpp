@@ -20,7 +20,7 @@ void setRTC(time_t time)
 	FILE *f = fopen("/proc/stb/fp/rtc", "w");
 	if (f)
 	{
-		if (fprintf(f, "%u", time))
+		if (fprintf(f, "%u", (unsigned int)time))
 			prev_time = time;
 		else
 			eDebug("write /proc/stb/fp/rtc failed (%m)");
@@ -47,8 +47,11 @@ time_t getRTC()
 	if (f)
 	{
 		// sanity check to detect corrupt atmel firmware
-		if (fscanf(f, "%u", &rtc_time) != 1)
+		unsigned int tmp;
+		if (fscanf(f, "%u", &tmp) != 1)
 			eDebug("read /proc/stb/fp/rtc failed (%m)");
+		else
+			rtc_time=tmp;
 		fclose(f);
 	}
 	else
