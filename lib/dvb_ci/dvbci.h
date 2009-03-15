@@ -94,6 +94,7 @@ public:
 	void removeService(uint16_t program_number=0xFFFF);
 	int getNumOfServices() { return running_services.size(); }
 	int setSource(data_source source);
+	int setClockRate(int);
 };
 
 struct CIPmtHandler
@@ -146,6 +147,7 @@ public:
 	int getMMIState(int slot);
 	int sendCAPMT(int slot);
 	int setInputSource(int tunerno, data_source source);
+	int setCIClockRate(int slot, int rate);
 #ifdef SWIG
 public:
 #endif

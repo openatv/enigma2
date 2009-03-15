@@ -12,11 +12,21 @@ from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
 MAX_NUM_CI = 4
 
+def setCIBitrate(configElement):
+	if configElement.value == "no":
+		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal)
+	else:
+		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
+
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	for slot in range(MAX_NUM_CI):
 		config.ci.append(ConfigSubsection())
 		config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices = [("auto", _("Auto")), ("no", _("No")), ("yes", _("Yes"))], default = "auto")
+		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
+			config.ci[slot].canHandleHighBitrates = ConfigSelection(choices = [("no", _("No")), ("yes", _("Yes"))], default = "no")
+			config.ci[slot].canHandleHighBitrates.slotid = slot
+			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
 
 class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler = eDVBCI_UI.getInstance(), wait_text = _("wait for ci...") ):
@@ -226,7 +236,13 @@ class CiMessageHandler:
 		self.ci = { }
 		self.dlgs = { }
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
-		SystemInfo["CommonInterface"]= eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
+		SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots() > 0
+		try:
+			file = open("/proc/stb/tsmux/ci0_tsclk", "r")
+			file.close()
+			SystemInfo["CommonInterfaceSupportsHighBitrates"] = True
+		except:
+			SystemInfo["CommonInterfaceSupportsHighBitrates"] = False
 
 	def setSession(self, session):
 		self.session = session
@@ -285,7 +301,7 @@ class CiSelection(Screen):
 
 	def selectionChanged(self):
 		cur_idx = self["entries"].getCurrentIndex()
-		self["text"].setText(_("Slot %d")%((cur_idx / 4)+1))
+		self["text"].setText(_("Slot %d")%((cur_idx / 5)+1))
 
 	def keyConfigEntry(self, key):
 		try:
@@ -315,6 +331,7 @@ class CiSelection(Screen):
 			self.list.append( (appname, ConfigNothing(), 2, slot) )
 
 		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
+		self.list.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].canHandleHighBitrates))
 
 	def updateState(self, slot):
 		state = eDVBCI_UI.getInstance().getState(slot)

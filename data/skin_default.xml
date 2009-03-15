@@ -172,9 +172,9 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="bottom" position="10,230" size="430,25" font="Regular;23" />
 	</screen>
 	<!-- Common interface - selection -->
-	<screen name="CiSelection" position="140,226" size="440,160" title="Common Interface">
+	<screen name="CiSelection" position="140,226" size="440,185" title="Common Interface">
 		<widget name="text" position="10,10" size="430,25" font="Regular;23" />
-		<widget name="entries" position="10,55" size="420,100" scrollbarMode="showOnDemand" />
+		<widget name="entries" position="10,55" size="420,125" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Console -->
 	<screen name="Console" position="90,95" size="560,430" title="Command execution...">
