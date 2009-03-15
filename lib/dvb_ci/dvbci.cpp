@@ -938,6 +938,14 @@ PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
 	return 0;
 }
 
+int eDVBCIInterfaces::setCIClockRate(int slotid, int rate)
+{
+	eDVBCISlot *slot = getSlot(slotid);
+	if (slot)
+		return slot->setClockRate(rate);
+	return -1;
+}
+
 int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
 	int res=0;
@@ -1321,6 +1329,23 @@ int eDVBCISlot::setSource(data_source source)
 	}
 	eDebug("CI Slot %d setSource(%d)", getSlotID(), (int)source);
 	return 0;
+}
+
+int eDVBCISlot::setClockRate(int rate)
+{
+	char buf[64];
+	snprintf(buf, 64, "/proc/stb/tsmux/ci%d_tsclk", slotid);
+	FILE *ci = fopen(buf, "wb");
+	if (ci)
+	{
+		if (rate)
+			fprintf(ci, "high");
+		else
+			fprintf(ci, "normal");
+		fclose(ci);
+		return 0;
+	}
+	return -1;
 }
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");
