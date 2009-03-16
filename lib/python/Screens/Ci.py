@@ -331,7 +331,8 @@ class CiSelection(Screen):
 			self.list.append( (appname, ConfigNothing(), 2, slot) )
 
 		self.list.append(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices))
-		self.list.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].canHandleHighBitrates))
+		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
+			self.list.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].canHandleHighBitrates))
 
 	def updateState(self, slot):
 		state = eDVBCI_UI.getInstance().getState(slot)
