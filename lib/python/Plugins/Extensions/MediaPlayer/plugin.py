@@ -148,7 +148,6 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				self.player.show()
 				return NumberActionMap.action(self, contexts, action)
 
-
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions", 
 			{
 				"ok": (self.ok, _("add file to playlist")),
@@ -386,7 +385,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.updateCurrentInfo()
 
 	def showAfterSeek(self):
-		self.show()
+		pass
 
 	def showAfterCuesheetOperation(self):
 		self.show()
