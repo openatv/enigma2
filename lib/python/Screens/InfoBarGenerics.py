@@ -541,7 +541,7 @@ class InfoBarEPG:
 
 		if list:
 			list.append((_("show single service EPG..."), self.openSingleServiceEPG))
-			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list)
+			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
 			
@@ -1277,7 +1277,7 @@ class InfoBarExtensions:
 		list.extend([(x[0](), x) for x in extensionsList])
 
 		keys += [""] * len(extensionsList)
-		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list, keys = keys)
+		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list = list, keys = keys, skin_name = "ExtensionsList")
 
 	def extensionCallback(self, answer):
 		if answer is not None:
@@ -1295,7 +1295,9 @@ class InfoBarPlugins:
 		return name
 
 	def getPluginList(self):
-		return [((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU)]
+		list = [((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EXTENSIONSMENU)]
+		list.sort(key = lambda e: e[2]) # sort by name
+		return list
 
 	def runPlugin(self, plugin):
 		if isinstance(self, InfoBarChannelSelection):
@@ -1642,7 +1644,7 @@ class InfoBarAudioSelection:
 				tlist = [((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
 				keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
 				selection += 2
-			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection, keys = keys)
+			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection, keys = keys, skin_name = "AudioTrackSelection")
 		else:
 			del self.audioTracks
 
@@ -1666,7 +1668,7 @@ class InfoBarAudioSelection:
 					keys = ["red", "green", "yellow"]
 					selection = self.audioChannel.getCurrentChannel()
 					tlist = ((_("left"), 0), (_("stereo"), 1), (_("right"), 2))
-					self.session.openWithCallback(self.modeSelected, ChoiceBox, title=_("Select audio mode"), list = tlist, selection = selection, keys = keys)
+					self.session.openWithCallback(self.modeSelected, ChoiceBox, title=_("Select audio mode"), list = tlist, selection = selection, keys = keys, skin_name ="AudioModeSelection")
 			else:
 				del self.audioChannel
 				if self.session.nav.getCurrentService().audioTracks().getNumberOfTracks() > audio[1]:
@@ -1767,7 +1769,7 @@ class InfoBarSubserviceSelection:
 				keys = ["red", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] + [""] * n
 				selection += 2
 
-			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection, keys = keys)
+			self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice..."), list = tlist, selection = selection, keys = keys, skin_name = "SubserviceSelection")
 
 	def subserviceSelected(self, service):
 		del self.bouquets
