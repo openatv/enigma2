@@ -915,7 +915,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Subservice selection -->
 	<screen name="SubserviceSelection" position="210,163" size="300,255" title="Subservices">
-		<widget name="subservices" position="20,10" size="260,230" scrollbarMode="showOnDemand" />
+		<widget name="list" position="20,10" size="260,230" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Subservice quickzap -->
 	<screen name="SubservicesQuickzap" position="124,470" size="512,200" title="Subservices" backgroundColor="transparent" flags="wfNoBorder">
