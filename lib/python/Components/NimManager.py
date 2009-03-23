@@ -856,7 +856,7 @@ def InitSecParams():
 	config.sec.delay_after_last_diseqc_command = x
 
 	x = ConfigInteger(default=50, limits = (0, 9999))
-	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value), initial_call = False)
+	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_TONEBURST, configElement.value))
 	config.sec.delay_after_toneburst = x
 
 	x = ConfigInteger(default=20, limits = (0, 9999))
