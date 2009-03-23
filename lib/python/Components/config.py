@@ -281,7 +281,6 @@ class ConfigSelection(ConfigElement):
 
 		self._descr = None
 		self.default = self._value = self.last_value = default
-		self.changed()
 
 	def setChoices(self, choices, default = None):
 		self.choices = choicesList(choices)
