@@ -230,9 +230,8 @@ class Harddisk:
 	# we set the hdd into standby.
 	def readStats(self):
 		l = open("/sys/block/%s/stat" % self.device).read()
-		nr_read = int(l[:8].strip())
-		nr_write = int(l[4*9:4*9+8].strip())
-		return nr_read, nr_write
+		(nr_read, _, _, _, nr_write) = l.split()[:5]
+		return int(nr_read), int(nr_write)
 
 	def startIdle(self):
 		self.last_access = time.time()
