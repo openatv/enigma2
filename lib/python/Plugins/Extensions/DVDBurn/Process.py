@@ -372,11 +372,11 @@ class CheckDiskspaceTask(Task):
 		self.finish(aborted = True)
 
 	def run(self, callback):
+		self.callback = callback
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if len(failed_preconditions):
 			callback(self, failed_preconditions)
 			return
-		self.callback = callback
 		Task.processFinished(self, 0)
 
 class PreviewTask(Task):
