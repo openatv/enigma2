@@ -455,11 +455,10 @@ class HarddiskManager:
 				self.on_partition_list_change("remove", x)
 		l = len(device)
 		if l and not device[l-1].isdigit():
-			idx = 0
 			for hdd in self.hdd:
 				if hdd.device == device:
-					self.hdd[x].stop()
-					del self.hdd[idx]
+					hdd.stop()
+					self.hdd.remove(hdd)
 					break
 			SystemInfo["Harddisk"] = len(self.hdd) > 0
 
