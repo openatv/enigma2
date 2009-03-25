@@ -400,10 +400,14 @@ class SimpleServicelist:
 	def selectService(self, service):
 		if not self.length:
 			self.current = -1
+			return False
 		else:
 			self.current = 0
 			while self.services[self.current].ref != service:
 				self.current += 1
+				if self.current >= self.length:
+					return False
+		return True
 
 	def nextService(self):
 		if not self.length:
@@ -422,7 +426,7 @@ class SimpleServicelist:
 			self.current = self.length - 1
 
 	def currentService(self):
-		if not self.length:
+		if not self.length or self.current >= self.length:
 			return None
 		return self.services[self.current]
 
@@ -540,8 +544,10 @@ class InfoBarEPG:
 				current_path = self.servicelist.getRoot()
 				services = self.getBouquetServices(current_path)
 				self.serviceSel = SimpleServicelist(services)
-				self.serviceSel.selectService(ref)
-				self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB = self.changeServiceCB)
+				if self.serviceSel.selectService(ref):
+					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref, serviceChangeCB = self.changeServiceCB)
+				else:
+					self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
 			else:
 				self.session.open(EPGSelection, ref)
 
@@ -553,7 +559,7 @@ class InfoBarEPG:
 			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
-			
+
 	def runPlugin(self, plugin):
 		plugin(session = self.session, servicelist = self.servicelist)
 		
