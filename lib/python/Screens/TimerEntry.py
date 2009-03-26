@@ -310,9 +310,9 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timer.eit is not None:
 			event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
-			if event is not None:
+			if event:
 				n = event.getNumOfLinkageServices()
-				if n > 0:
+				if n > 1:
 					tlist = []
 					ref = self.session.nav.getCurrentlyPlayingServiceReference()
 					parent = self.timer.service_ref.ref
@@ -324,7 +324,9 @@ class TimerEntry(Screen, ConfigListScreen):
 						tlist.append((i.getName(), i))
 					self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice to record..."), list = tlist, selection = selection)
 					return
-
+				elif n > 0:
+					parent = self.timer.service_ref.ref
+					self.timer.service_ref = ServiceReference(event.getLinkageService(parent, 0))
 		self.saveTimer()
 		self.close((True, self.timer))
 
