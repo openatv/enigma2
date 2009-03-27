@@ -60,6 +60,44 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	bool simulate = ((eDVBFrontend*)fe)->is_simulate();
 	bool direct_connected = m_not_linked_slot_mask & slot_id;
 	int score=0, satcount=0;
+	long linked_prev_ptr=-1, linked_next_ptr=-1, linked_csw=-1, linked_ucsw=-1, linked_toneburst=-1,
+		satpos_depends_ptr=-1, rotor_pos=-1;
+	bool linked_in_use = false;
+
+	eSecDebugNoSimulate("direct_connected %d", !!direct_connected);
+
+	fe->getData(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr);
+	fe->getData(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr);
+	fe->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satpos_depends_ptr);
+
+	// first we search the linkage base frontend and check if any tuner in prev direction is used
+	while (linked_prev_ptr != -1)
+	{
+		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
+		if (linked_fe->m_inuse)
+			linked_in_use = true;
+		fe = linked_fe->m_frontend;
+		linked_fe->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, (long&)linked_prev_ptr);
+	}
+
+	fe->getData(eDVBFrontend::ROTOR_POS, rotor_pos);
+
+	// now check also the linked tuners  is in use
+	while (!linked_in_use && linked_next_ptr != -1)
+	{
+		eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_next_ptr;
+		if (linked_fe->m_inuse)
+			linked_in_use = true;
+		linked_fe->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, (long&)linked_next_ptr);
+	}
+
+	// when a linked in use tuner is found we get the tuner data...
+	if (linked_in_use)
+	{
+		fe->getData(eDVBFrontend::CSW, linked_csw);
+		fe->getData(eDVBFrontend::UCSW, linked_ucsw);
+		fe->getData(eDVBFrontend::TONEBURST, linked_toneburst);
+	}
 
 	if (highest_score_lnb)
 		*highest_score_lnb = -1;
@@ -85,17 +123,12 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 			{
 				bool diseqc=false;
 				long band=0,
-					linked_prev_ptr=-1,
-					linked_next_ptr=-1,
 					satpos_depends_ptr=-1,
 					csw = di_param.m_committed_cmd,
 					ucsw = di_param.m_uncommitted_cmd,
-					toneburst = di_param.m_toneburst_param,
-					curRotorPos;
+					toneburst = di_param.m_toneburst_param;
 
 				eSecDebugNoSimulate("sat %d found", sat.orbital_position);
-				fe->getData(eDVBFrontend::LINKED_PREV_PTR, linked_prev_ptr);
-				fe->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satpos_depends_ptr);
 
 				if ( sat.frequency > lnb_param.m_lof_threshold )
 					band |= 1;
@@ -124,99 +157,64 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				eSecDebugNoSimulate("ret1 %d", ret);
 
-				if (direct_connected)  // frontend with direct connection?
+				if (linked_in_use)
 				{
-					long ocsw = -1,
-						oucsw = -1,
-						oToneburst = -1;
-					eSecDebugNoSimulate("direct");
-					fe->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
-					fe->getData(eDVBFrontend::LINKED_NEXT_PTR, linked_next_ptr);
-					fe->getData(eDVBFrontend::CSW, ocsw);
-					fe->getData(eDVBFrontend::UCSW, oucsw);
-					fe->getData(eDVBFrontend::TONEBURST, oToneburst);
-					while (ret && linked_prev_ptr != -1)  // check for linked tuners..
+					// compare tuner data
+					if ( (csw != linked_csw) ||
+						( diseqc && (ucsw != linked_ucsw || toneburst != linked_toneburst) ) ||
+						( rotor && rotor_pos != sat.orbital_position ) )
 					{
-						eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
-						if (linked_fe->m_inuse)
-						{
-							if ( (csw != ocsw) ||
-								( diseqc && (ucsw != oucsw || toneburst != oToneburst) ) ||
-								( rotor && curRotorPos != sat.orbital_position ) )
-							{
-								ret=0;
-							}
-						}
-						linked_fe->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, (long&)linked_prev_ptr);
+						ret=0;
 					}
 					eSecDebugNoSimulate("ret2 %d", ret);
-					while (ret && linked_next_ptr != -1)  // check for linked tuners..
+					if (ret) // special case when this tuner is linked to a satpos dependent tuner
 					{
-						eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_next_ptr;
-						if (linked_fe->m_inuse)
+						long satpos_depends_ptr=-1;
+						fe->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satpos_depends_ptr);
+						if (satpos_depends_ptr != -1)
 						{
-							if ( (csw != ocsw) ||
-								( diseqc && (ucsw != oucsw || toneburst != oToneburst) ) ||
-								( rotor && curRotorPos != sat.orbital_position ) )
+							eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
+							long satpos_depends_rotor_pos;
+							satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, satpos_depends_rotor_pos);
+							if (satpos_depends_rotor_pos == -1 /* we dont know the rotor position yet */
+								|| satpos_depends_rotor_pos != sat.orbital_position ) // not the same orbital position?
 							{
-								ret=0;
+								ret = 0;
 							}
 						}
-						linked_fe->m_frontend->getData(eDVBFrontend::LINKED_NEXT_PTR, (long&)linked_next_ptr);
 					}
 					eSecDebugNoSimulate("ret3 %d", ret);
 				}
-				else // linked frontend..
+				else if (satpos_depends_ptr != -1)
 				{
-					long ocsw = -1,
-						oucsw = -1,
-						oToneburst = -1;
-					while (linked_prev_ptr != -1)
+					eSecDebugNoSimulate("satpos depends");
+					eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
+					if (direct_connected) // current fe is direct connected.. (can turn the rotor)
 					{
-						eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*) linked_prev_ptr;
-						linked_fe->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, (long&)linked_prev_ptr);
-						if (linked_prev_ptr == -1)
+						if (satpos_depends_to_fe->m_inuse) // if the dependent frontend is in use?
 						{
-							iDVBFrontend *sec_fe = linked_fe->m_frontend;
-							sec_fe->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
-							if (linked_fe->m_inuse)
-							{
-								sec_fe->getData(eDVBFrontend::CSW, ocsw);
-								sec_fe->getData(eDVBFrontend::UCSW, oucsw);
-								sec_fe->getData(eDVBFrontend::TONEBURST, oToneburst);
-								eSecDebug("(%ld != %ld) || \n(%d && (%ld != %ld || %ld != %ld) ) ||\n( %d && %ld != %d ) )",
-									csw, ocsw, diseqc, ucsw, oucsw, toneburst, oToneburst, rotor, curRotorPos, sat.orbital_position);
-								if ( (csw != ocsw) ||
-									( diseqc && (ucsw != oucsw || toneburst != oToneburst) ) ||
-									( rotor && curRotorPos != sat.orbital_position ) )
-								{
-									ret=0;
-								}
-							}
+							if (rotor_pos != sat.orbital_position) // new orbital position not equal to current orbital pos?
+								ret=0;
+						}
+					}
+					else // current fe is dependent of another tuner ... (so this fe can't turn the rotor!)
+					{
+						// get current orb pos of the tuner with rotor connection
+						long satpos_depends_rotor_pos;
+						satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, satpos_depends_rotor_pos);
+						if (satpos_depends_rotor_pos == -1 /* we dont know the rotor position yet */
+							|| satpos_depends_rotor_pos != sat.orbital_position ) // not the same orbital position?
+						{
+							ret = 0;
 						}
 					}
 					eSecDebugNoSimulate("ret4 %d", ret);
 				}
 
-				if (ret)
-					if (satpos_depends_ptr != -1)
-					{
-						eSecDebugNoSimulate("satpos depends");
-						eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
-						if ( satpos_depends_to_fe->m_inuse )
-						{
-							if (!direct_connected)
-								satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
-							if (!rotor || curRotorPos != sat.orbital_position)
-								ret=0;
-						}
-						eSecDebugNoSimulate("ret5 %d", ret);
-					}
+				if (ret && rotor && rotor_pos != -1)
+					ret -= abs(rotor_pos-sat.orbital_position);
 
-				if (ret && rotor && curRotorPos != -1)
-					ret -= abs(curRotorPos-sat.orbital_position);
-
-				eSecDebugNoSimulate("ret6 %d", ret);
+				eSecDebugNoSimulate("ret5 %d", ret);
 
 				if (ret)
 				{
