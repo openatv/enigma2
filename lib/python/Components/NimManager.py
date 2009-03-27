@@ -321,9 +321,9 @@ class SecConfigure:
 				elif dm == "1_2":
 					sec.setDiSEqCMode(diseqcParam.V1_2)
 
-				if self.satposdepends.has_key(slotid):
-					for slot in self.satposdepends[slotid]:
-						tunermask |= (1 << slot)
+					if self.satposdepends.has_key(slotid):
+						for slot in self.satposdepends[slotid]:
+							tunermask |= (1 << slot)
 
 				if dm != "none":
 					if currLnb.toneburst.value == "none":
