@@ -312,7 +312,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			eDVBSatelliteSwitchParameters &sw_param = sit->second;
 			bool doSetFrontend = true;
 			bool doSetVoltageToneFrontend = true;
-			bool forceStaticMode = true;
 			bool forceChanged = false;
 			bool needDiSEqCReset = false;
 			long band=0,
@@ -920,12 +919,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, tunetimeout) );
 				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
 			}
-				
-			if (forceStaticMode)
-			{
-				sec_sequence.push_front( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
-			}
+
+			sec_sequence.push_front( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );
+			sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 500) );
+			sec_sequence.push_back( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeDynamic) );
+
 			frontend.setSecSequence(sec_sequence);
 
 			return 0;
