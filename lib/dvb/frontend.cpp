@@ -858,6 +858,8 @@ int eDVBFrontend::readFrontendData(int type)
 				if (snr != 0)
 					ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
 			}
+			else if (!strcmp(m_description, "BCM4506"))
+				ret = (snr * 100) >> 8;
 
 			if (type == signalQuality)
 			{

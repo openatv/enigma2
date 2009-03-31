@@ -21,7 +21,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, width, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.name))
 
 		repeatedtext = ""
-		days = [ _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") ]
+		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 		if timer.repeated:
 			flags = timer.repeated
 			count = 0
@@ -93,7 +93,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	def getCurrentIndex(self):
 		return self.instance.getCurrentIndex()
 
-	currentIndex = property(moveToIndex, getCurrentIndex)
+	currentIndex = property(getCurrentIndex, moveToIndex)
 	currentSelection = property(getCurrent)
 
 	def moveDown(self):

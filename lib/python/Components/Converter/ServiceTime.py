@@ -16,7 +16,7 @@ class ServiceTime(Converter, object):
 		elif type == "Duration":
 			self.type = self.DURATION
 		else:
-			raise ElementError("'%s' is not <StartTime|EndTime|Duration> for eEventTime converter" % type)
+			raise ElementError("'%s' is not <StartTime|EndTime|Duration> for ServiceTime converter" % type)
 
 	@cached
 	def getTime(self):

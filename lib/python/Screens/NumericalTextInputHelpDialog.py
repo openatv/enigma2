@@ -4,7 +4,7 @@ from Components.Label import Label
 class NumericalTextInputHelpDialog(Screen):
 	def __init__(self, session, textinput):
 		Screen.__init__(self, session)
-		for x in range(1, 10):
+		for x in (1, 2, 3, 4, 5, 6, 7, 8, 9):
 			self["key%d" % x] = Label(text=textinput.mapping[x].encode("utf-8"))
 		self.last_marked = 0
 

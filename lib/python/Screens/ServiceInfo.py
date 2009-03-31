@@ -19,11 +19,6 @@ def to_unsigned(x):
 	return x & 0xFFFFFFFF
 
 def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
-	res = [ ]
-
-	#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 25, 0, RT_HALIGN_LEFT, a))
 	print "b:", b
 	if not isinstance(b, str):
 		if valueType == TYPE_VALUE_HEX:
@@ -34,10 +29,13 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 			b = ("0x%0" + str(param) + "x (%dd)") % (to_unsigned(b), b)
 		else:
 			b = str(b)
-	
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, 220, 0, 350, 25, 0, RT_HALIGN_LEFT, b))
 
-	return res
+	return [
+		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
+		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 30, 0, RT_HALIGN_LEFT, ""),
+		(eListboxPythonMultiContent.TYPE_TEXT, 0, 0, 200, 25, 0, RT_HALIGN_LEFT, a),
+		(eListboxPythonMultiContent.TYPE_TEXT, 220, 0, 350, 25, 0, RT_HALIGN_LEFT, b)
+	]
 
 class ServiceInfoList(HTMLComponent, GUIComponent):
 	def __init__(self, source):
@@ -151,9 +149,7 @@ class ServiceInfo(Screen):
 						 "transmission_mode": _("Transmission Mode"),
 						 "guard_interval" 	: _("Guard Interval"),
 						 "hierarchy_information": _("Hierarchy Information") }
-				Labels = [ ]
-				for i in tp_info.keys():
-					Labels.append( (conv[i], tp_info[i], TYPE_VALUE_DEC) )
+				Labels = [(conv[i], tp_info[i], TYPE_VALUE_DEC) for i in tp_info.keys()]
 				self.fillList(Labels)
 
 	def pids(self):
@@ -186,7 +182,7 @@ class ServiceInfo(Screen):
 		if frontendDataOrg and len(frontendDataOrg):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
 			if frontendDataOrg["tuner_type"] == "DVB-S":
-				return (("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+				return (("NIM", ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
 							("Type", frontendData["system"], TYPE_TEXT),
 							("Modulation", frontendData["modulation"], TYPE_TEXT),
 							("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
@@ -198,7 +194,7 @@ class ServiceInfo(Screen):
 							("Pilot", frontendData.get("pilot", None), TYPE_TEXT),
 							("Rolloff", frontendData.get("rolloff", None), TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-C":
-				return (("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+				return (("NIM", ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
 						("Type", frontendData["tuner_type"], TYPE_TEXT),
 						("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
 						("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
@@ -206,7 +202,7 @@ class ServiceInfo(Screen):
 						("Inversion", frontendData["inversion"], TYPE_TEXT),
 						("FEC inner", frontendData["fec_inner"], TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-T":
-				return (("NIM", ['A', 'B', 'C', 'D'][frontendData["tuner_number"]], TYPE_TEXT),
+				return (("NIM", ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
 						("Type", frontendData["tuner_type"], TYPE_TEXT),
 						("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
 						("Inversion", frontendData["inversion"], TYPE_TEXT),

@@ -5,8 +5,12 @@ from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title = "", list = [], keys = None, selection = 0):
+	def __init__(self, session, title = "", list = [], keys = None, selection = 0, skin_name = []):
 		Screen.__init__(self, session)
+
+		if isinstance(skin_name, str):
+			skin_name = [skin_name]
+		self.skinName = skin_name + ["ChoiceBox"] 
 
 		self["text"] = Label(title)
 		self.list = []

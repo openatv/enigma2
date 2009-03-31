@@ -61,9 +61,6 @@ class MenuSummary(Screen):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent)
-
 class Menu(Screen):
 
 	ALLOW_SUSPEND = True
@@ -118,7 +115,7 @@ class Menu(Screen):
 		self.menuClosed(*res)
 
 	def menuClosed(self, *res):
-		if len(res) and res[0]:
+		if res and res[0]:
 			self.close(True)
 
 	def addItem(self, destList, node):

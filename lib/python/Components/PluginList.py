@@ -7,40 +7,38 @@ from enigma import eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 
 def PluginEntryComponent(plugin):
-	res = [ plugin ]
-	
-	res.append(MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=plugin.name))
-	res.append(MultiContentEntryText(pos=(120, 26), size=(320, 17), font=1, text=plugin.description))
-
 	if plugin.icon is None:
 		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/plugin.png"))
 	else:
 		png = plugin.icon
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(100, 40), png = png))
-	
-	return res
+
+	return [
+		plugin,
+		MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=plugin.name),
+		MultiContentEntryText(pos=(120, 26), size=(320, 17), font=1, text=plugin.description),
+		MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(100, 40), png = png)
+	]
 
 def PluginCategoryComponent(name, png):
-	res = [ name ]
-	
-	res.append(MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=name))
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(100, 50), png = png))
-	
-	return res
+	return [
+		name,
+		MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=name),
+		MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(100, 50), png = png)
+	]
 
 def PluginDownloadComponent(plugin, name):
-	res = [ plugin ]
-	
-	res.append(MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=name))
-	res.append(MultiContentEntryText(pos=(120, 26), size=(320, 17), font=1, text=plugin.description))
-
 	if plugin.icon is None:
 		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/plugin.png"))
 	else:
 		png = plugin.icon
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(100, 50), png = png))
+
+	return [
+		plugin,
+		MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=name),
+		MultiContentEntryText(pos=(120, 26), size=(320, 17), font=1, text=plugin.description),
+		MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(100, 50), png = png)
+	]
 	
-	return res
 
 class PluginList(MenuList):
 	def __init__(self, list, enableWrapAround=False):

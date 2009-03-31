@@ -148,8 +148,8 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				InfoBarPlugins:
 			x.__init__(self)
 
-		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.session.nav.playService(service)
+		self.lastservice = session.nav.getCurrentlyPlayingServiceReference()
+		session.nav.playService(service)
 		self.returning = False
 		self.onClose.append(self.__onClose)
 

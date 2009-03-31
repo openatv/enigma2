@@ -51,11 +51,9 @@ class PluginBrowser(Screen):
 		plugin(session=self.session)
 		
 	def updateList(self):
-		self.list = [ ]
 		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
-		for plugin in self.pluginlist:
-			self.list.append(PluginEntryComponent(plugin))
-		
+		self.list = [PluginEntryComponent(plugin) for plugin in self.pluginlist]
+
 		self["list"].l.setList(self.list)
 
 	def delete(self):
@@ -187,7 +185,7 @@ class PluginDownloadBrowser(Screen):
 						self.pluginlist.append(plugin)
 	
 	def updateList(self):
-		self.list = []
+		list = []
 		expandableIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expandable-plugins.png"))
 		expandedIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/expanded-plugins.png"))
 		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/verticalline-plugins.png"))
@@ -204,10 +202,10 @@ class PluginDownloadBrowser(Screen):
 			
 		for x in self.plugins.keys():
 			if x in self.expanded:
-				self.list.append(PluginCategoryComponent(x, expandedIcon))
-				for plugin in self.plugins[x]:
-					self.list.append(PluginDownloadComponent(plugin[0], plugin[1]))
+				list.append(PluginCategoryComponent(x, expandedIcon))
+				list.extend([PluginDownloadComponent(plugin[0], plugin[1]) for plugin in self.plugins[x]])
 			else:
-				self.list.append(PluginCategoryComponent(x, expandableIcon))
-		self["list"].l.setList(self.list)
+				list.append(PluginCategoryComponent(x, expandableIcon))
+		self.list = list
+		self["list"].l.setList(list)
 

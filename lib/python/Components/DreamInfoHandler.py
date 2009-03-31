@@ -31,7 +31,7 @@ class InfoHandler(xml.sax.ContentHandler):
 	def startElement(self, name, attrs):
 		#print name, ":", attrs.items()
 		self.elements.append(name)
-		if name in ["hardware", "bcastsystem", "satellite", "tag"]:
+		if name in ("hardware", "bcastsystem", "satellite", "tag"):
 			if not attrs.has_key("type"):
 					self.printError(str(name) + " tag with no type attribute")
 			if self.elements[-3] == "default":

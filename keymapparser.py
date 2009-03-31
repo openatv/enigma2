@@ -8,10 +8,10 @@ from Tools.KeyBindings import addKeyBinding
 
 class KeymapError(Exception):
     def __init__(self, message):
-        self.message = message
+        self.msg = message
 
     def __str__(self):
-        return self.message
+        return self.msg
 
 def parseKeys(context, filename, actionmap, device, keys):
 	for x in keys.findall("key"):

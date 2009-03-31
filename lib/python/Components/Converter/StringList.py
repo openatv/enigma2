@@ -55,4 +55,5 @@ class StringList(Converter):
 	index = property(getIndex, setIndex)
 
 	def entry_changed(self, index):
-		self.downstream_elements.entry_changed(index)
+		if self.content:
+			self.content.invalidateEntry(index)

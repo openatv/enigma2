@@ -171,14 +171,11 @@ class TimerEditList(Screen):
 			self.key_blue_choice = self.EMPTY
 
 	def fillTimerList(self):
-		del self.list[:]
-		
-		for timer in self.session.nav.RecordTimer.timer_list:
-			self.list.append((timer, False))
-		
-		for timer in self.session.nav.RecordTimer.processed_timers:
-			self.list.append((timer, True))
-		self.list.sort(cmp = lambda x, y: x[0].begin < y[0].begin)
+		list = self.list
+		del list[:]
+		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
+		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
+		list.sort(cmp = lambda x, y: x[0].begin < y[0].begin)
 
 	def showLog(self):
 		cur=self["timerlist"].getCurrent()

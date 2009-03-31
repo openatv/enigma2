@@ -29,13 +29,13 @@ class HelpMenu(Screen, Rc):
 		#arrow = self["arrowup"]
 		print "selection:", selection
 
-		if selection and len(selection) > 1 and selection[1] == "SHIFT":
-			self.selectKey("SHIFT")
-
-		if selection and len(selection) > 1 and selection[1] == "long":
-			self["long_key"].setText(_("Long Keypress"))
-		else:
-			self["long_key"].setText("")
+		longText = ""
+		if selection and len(selection) > 1:
+			if selection[1] == "SHIFT":
+				self.selectKey("SHIFT")
+			elif selection[1] == "long":
+				longText = _("Long Keypress")
+		self["long_key"].setText(longText)
 
 		self.selectKey(selection[0])
 		#if selection is None:
@@ -55,6 +55,6 @@ class HelpableScreen:
 		self.session.openWithCallback(self.callHelpAction, HelpMenu, self.helpList)
 
 	def callHelpAction(self, *args):
-		if len(args):
+		if args:
 			(actionmap, context, action) = args
 			actionmap.action(context, action)

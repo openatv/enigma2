@@ -163,11 +163,11 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		})
 
 		# Run some functions when shown
-		self.onShown.extend([
+		self.onShown.extend((
 			boundFunction(self.setTitle, windowTitle),
 			self.updateTarget,
 			self.showHideRename,
-		])
+		))
 
 		self.onLayoutFinish.append(self.switchToFileListOnStart)
  
@@ -241,7 +241,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			)
 
 	def createDirCallback(self, res):
-		if res is not None and len(res):
+		if res:
 			path = os.path.join(self["filelist"].current_directory, res)
 			if not pathExists(path):
 				if not createDir(path):
@@ -454,7 +454,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 	def selectByStart(self):
 		# Don't do anything on initial call
-		if not len(self.quickselect):
+		if not self.quickselect:
 			return
 
 		# Don't select if no dir
@@ -503,16 +503,12 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		return str(type(self)) + "(" + self.text + ")"
 
 class MovieLocationBox(LocationBox):
-	skinName = "LocationBox"
-
 	def __init__(self, session, text, dir, minFree = None):
 		inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 		LocationBox.__init__(self, session, text = text, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = True, editDir = True, inhibitDirs = inhibitDirs, minFree = minFree)
+		self.skinName = "LocationBox"
 
 class TimeshiftLocationBox(LocationBox):
-
-	skinName = "LocationBox" # XXX: though we could use a custom skin or inherit the hardcoded one we stick with the original :-)
-
 	def __init__(self, session):
 		inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 		LocationBox.__init__(
@@ -524,8 +520,9 @@ class TimeshiftLocationBox(LocationBox):
 				autoAdd = True,
 				editDir = True,
 				inhibitDirs = inhibitDirs,
-				minFree = 1024 # XXX: the same requirement is hardcoded in servicedvb.cpp
+				minFree = 1024 # the same requirement is hardcoded in servicedvb.cpp
 		)
+		self.skinName = "LocationBox"
 
 	def cancel(self):
 		config.usage.timeshift_path.cancel()

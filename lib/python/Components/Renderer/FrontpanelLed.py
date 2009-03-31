@@ -2,9 +2,6 @@ from Components.Element import Element
 
 # this is not a GUI renderer.
 class FrontpanelLed(Element):
-	def __init__(self):
-		Element.__init__(self)
-
 	def changed(self, *args, **kwargs):
 		if self.source.value or 1:
 			pattern = 0x55555555

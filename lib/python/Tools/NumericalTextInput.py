@@ -52,7 +52,7 @@ class NumericalTextInput:
 			self.mapping.append (u"pqrs7PQRS") # 7
 			self.mapping.append (u"tuvúù8TUVÚÙ") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
-		if self.lang in ['sv_SE', 'fi_FI']:
+		if self.lang in ('sv_SE', 'fi_FI'):
 			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
 			self.mapping.append (u" 1") # 1
 			self.mapping.append (u"abcåä2ABCÅÄ") # 2

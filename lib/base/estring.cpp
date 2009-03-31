@@ -1,6 +1,7 @@
+#include <algorithm>
+#include <cctype>
+#include <climits>
 #include <string>
-#include <ctype.h>
-#include <limits.h>
 #include <lib/base/eerror.h>
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>
@@ -632,4 +633,13 @@ std::string removeDVBChars(const std::string &s)
 void makeUpper(std::string &s)
 {
 	std::transform(s.begin(), s.end(), s.begin(), (int(*)(int)) toupper);
+}
+
+std::string replace_all(const std::string &in, const std::string &entity, const std::string &symbol)
+{
+	std::string out = in;
+	std::string::size_type loc = 0;
+	while (( loc = out.find(entity, loc)) != std::string::npos )
+	out.replace(loc, entity.length(), symbol);
+	return out;
 }

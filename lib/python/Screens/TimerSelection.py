@@ -22,4 +22,3 @@ class TimerSelection(Screen):
 	
 	def selected(self):
 		self.close(self["timerlist"].getCurrentIndex())
-	

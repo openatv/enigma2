@@ -20,7 +20,7 @@ void setRTC(time_t time)
 	FILE *f = fopen("/proc/stb/fp/rtc", "w");
 	if (f)
 	{
-		if (fprintf(f, "%u", time))
+		if (fprintf(f, "%u", (unsigned int)time))
 			prev_time = time;
 		else
 			eDebug("write /proc/stb/fp/rtc failed (%m)");
@@ -47,8 +47,11 @@ time_t getRTC()
 	if (f)
 	{
 		// sanity check to detect corrupt atmel firmware
-		if (fscanf(f, "%u", &rtc_time) != 1)
+		unsigned int tmp;
+		if (fscanf(f, "%u", &tmp) != 1)
 			eDebug("read /proc/stb/fp/rtc failed (%m)");
+		else
+			rtc_time=tmp;
 		fclose(f);
 	}
 	else
@@ -145,7 +148,7 @@ eDVBLocalTimeHandler *eDVBLocalTimeHandler::instance;
 DEFINE_REF(eDVBLocalTimeHandler);
 
 eDVBLocalTimeHandler::eDVBLocalTimeHandler()
-	:m_time_ready(false), m_updateNonTunedTimer(eTimer::create(eApp))
+	:m_use_dvb_time(false), m_updateNonTunedTimer(eTimer::create(eApp)), m_time_ready(false)
 {
 	if ( !instance )
 		instance=this;
@@ -211,6 +214,33 @@ void eDVBLocalTimeHandler::writeTimeOffsetData( const char* filename )
 				it->first.dvbnamespace.get(),
 				it->first.transport_stream_id.get(), it->first.original_network_id.get(), it->second );
 		fclose(f);
+	}
+}
+
+void eDVBLocalTimeHandler::setUseDVBTime(bool b)
+{
+	if (m_use_dvb_time != b) {
+		if (m_use_dvb_time) {
+			eDebug("[eDVBLocalTimeHandler] disable sync local time with transponder time!");
+			std::map<iDVBChannel*, channel_data>::iterator it =
+				m_knownChannels.begin();
+			for (; it != m_knownChannels.end(); ++it) {
+				if (it->second.m_prevChannelState == iDVBChannel::state_ok)
+					it->second.tdt = 0;
+			}
+		}
+		else {
+			eDebug("[eDVBLocalTimeHandler] enable sync local time with transponder time!");
+			std::map<iDVBChannel*, channel_data>::iterator it =
+				m_knownChannels.begin();
+			for (; it != m_knownChannels.end(); ++it) {
+				if (it->second.m_prevChannelState == iDVBChannel::state_ok) {
+					it->second.tdt = new TDT(it->second.channel);
+					it->second.tdt->start();
+				}
+			}
+		}
+		m_use_dvb_time = b;
 	}
 }
 
@@ -440,8 +470,10 @@ void eDVBLocalTimeHandler::DVBChannelStateChanged(iDVBChannel *chan)
 				case iDVBChannel::state_ok:
 					eDebug("[eDVBLocalTimerHandler] channel %p running", chan);
 					m_updateNonTunedTimer->stop();
-					it->second.tdt = new TDT(it->second.channel);
-					it->second.tdt->start();
+					if (m_use_dvb_time) {
+						it->second.tdt = new TDT(it->second.channel);
+						it->second.tdt->start();
+					}
 					break;
 				case iDVBChannel::state_release:
 					eDebug("[eDVBLocalTimerHandler] remove channel %p", chan);

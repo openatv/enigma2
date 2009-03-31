@@ -14,6 +14,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
 from Components.Harddisk import harddiskmanager
+from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
 import servicedvd # load c++ part of dvd player plugin
 
@@ -345,28 +346,15 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			})
 
 		self.onClose.append(self.__onClose)
-		self.physicalDVD = False
-		self.dvd_device = None
+		hotplugNotifier.append(self.hotplugCB)
+		
 		if dvd_device:
-				self.dvd_device = dvd_device
-				self.physicalDVD = True
+			self.physicalDVD = True
 		else:
-			devicepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
-			if pathExists(devicepath):
-				from Components.Scanner import scanDevice
-				res = scanDevice(devicepath)
-				list = [ (r.description, r, res[r], self.session) for r in res ]
-				if list:
-					(desc, scanner, files, session) = list[0]
-					for file in files:
-						print file
-						if file.mimetype == "video/x-dvd":
-							self.dvd_device = devicepath
-							print "physical dvd found:", self.dvd_device
-							self.physicalDVD = True
+			self.scanHotplug()
 
 		self.dvd_filelist = dvd_filelist
-		self.onFirstExecBegin.append(self.showFileBrowser)
+		self.onFirstExecBegin.append(self.opened)
 		self.service = None
 		self.in_menu = False
 
@@ -511,8 +499,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		
 	def askLeavePlayer(self):
 		choices = [(_("Exit"), "exit"), (_("Continue playing"), "play")]
-		if not self.physicalDVD:
+		if True or not self.physicalDVD:
 			choices.insert(1,(_("Return to file browser"), "browser"))
+		if self.physicalDVD and not self.session.nav.getCurrentlyPlayingServiceReference().toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
+			choices.insert(0,(_("Play DVD"), "playPhysical" ))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
 
 	def sendKey(self, key):
@@ -581,23 +571,22 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def keyCancel(self):
 		self.askLeavePlayer()
 
-	def showFileBrowser(self):
-		if self.physicalDVD and len(self.dvd_filelist) == 0:
-			if self.dvd_device == harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()):
-				self.session.openWithCallback(self.DVDdriveCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
-			else:
-				self.DVDdriveCB(True)
-		elif len(self.dvd_filelist) == 1:
+	def opened(self):
+		if len(self.dvd_filelist) == 1:
+			# opened via autoplay
 			self.FileBrowserClosed(self.dvd_filelist[0])
+		elif self.physicalDVD:
+			# opened from menu with dvd in drive
+			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
 		else:
+			# opened from menu without dvd in drive
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, self.dvd_filelist)
-	
-	def DVDdriveCB(self, answer):
+
+	def playPhysicalCB(self, answer):
 		if answer == True:
-			self.FileBrowserClosed(self.dvd_device)
+			self.FileBrowserClosed(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 		else:
 			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
-			self.physicalDVD = False
 
 	def FileBrowserClosed(self, val):
 		curref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -627,13 +616,18 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				#else
 				if self.service:
 					self.service = None
-				self.showFileBrowser()
+				self.session.openWithCallback(self.FileBrowserClosed, FileBrowser)
+			if answer[1] == "playPhysical":
+				if self.service:
+					self.service = None
+				self.playPhysicalCB(True)
 			else:
 				pass
 
 	def __onClose(self):
 		self.restore_infobar_seek_config()
 		self.session.nav.playService(self.oldService)
+		hotplugNotifier.remove(self.hotplugCB)
 
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print "playLastCB", answer, self.resume_point
@@ -659,6 +653,30 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def calcRemainingTime(self):
 		return 0
+
+	def hotplugCB(self, dev, media_state):
+		print "[hotplugCB]", dev, media_state
+		if dev == harddiskmanager.getCD():
+			if media_state == "1":
+				self.scanHotplug()
+			else:
+				self.physicalDVD = False
+
+	def scanHotplug(self):
+		devicepath = harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())
+		if pathExists(devicepath):
+			from Components.Scanner import scanDevice
+			res = scanDevice(devicepath)
+			list = [ (r.description, r, res[r], self.session) for r in res ]
+			if list:
+				(desc, scanner, files, session) = list[0]
+				for file in files:
+					print file
+					if file.mimetype == "video/x-dvd":
+						print "physical dvd found:", devicepath
+						self.physicalDVD = True
+						return
+		self.physicalDVD = False
 
 def main(session, **kwargs):
 	session.open(DVDPlayer)
@@ -705,7 +723,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "DVD",
-			description = "Play DVD",
+			description = _("Play DVD"),
 			openfnc = filescan_open,
 		)]		
 

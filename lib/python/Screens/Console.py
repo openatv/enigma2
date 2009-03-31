@@ -11,7 +11,6 @@ class Console(Screen):
 		</screen>"""
 		
 	def __init__(self, session, title = "Console", cmdlist = None, finishedCallback = None, closeOnSuccess = False):
-		self.skin = Console.skin
 		Screen.__init__(self, session)
 
 		self.finishedCallback = finishedCallback

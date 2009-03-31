@@ -52,11 +52,8 @@ class Timezones:
 			e_tzset()
 		
 	def getTimezoneList(self):
-		list = []
-		for x in self.timezones:
-			list.append(str(x[0]))
-		return list
-	
+		return [ str(x[0]) for x in self.timezones ]
+
 	def getDefaultTimezone(self):
 		# TODO return something more useful - depending on country-settings?
 		t = "(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Vienna"

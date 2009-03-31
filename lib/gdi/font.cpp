@@ -510,7 +510,12 @@ int eTextPara::renderString(const char *string, int rflags)
 	
 	if (!current_font)
 		return -1;
-		
+
+	if (!current_face)
+		eFatal("eTextPara::renderString: no current_face");
+	if (!current_face->size)
+		eFatal("eTextPara::renderString: no current_face->size");
+
 	if (cursor.y()==-1)
 	{
 		cursor=ePoint(area.x(), area.y()+(current_face->size->metrics.ascender>>6));

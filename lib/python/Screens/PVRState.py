@@ -8,5 +8,5 @@ class PVRState(Screen):
 		self["state"] = Label(text="")
 
 class TimeshiftState(PVRState):
-	def __init__(self, session):
-		PVRState.__init__(self, session)
+	pass
+
