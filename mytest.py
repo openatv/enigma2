@@ -50,6 +50,11 @@ eDVBDB.getInstance().reloadBouquets()
 
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
+config.misc.useTransponderTime = ConfigYesNo(default=True)
+
+def useTransponderTimeChanged(configElement):
+	enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(configElement.value)
+config.misc.useTransponderTime.addNotifier(useTransponderTimeChanged)
 
 profile("Twisted")
 try:
@@ -256,7 +261,7 @@ class Session:
 			self.execEnd(last=False)
 
 	def popCurrent(self):
-		if len(self.dialog_stack):
+		if self.dialog_stack:
 			(self.current_dialog, do_show) = self.dialog_stack.pop()
 			self.execBegin(first=False, do_show=do_show)
 		else:
@@ -275,7 +280,7 @@ class Session:
 		return dlg
 
 	def open(self, screen, *arguments, **kwargs):
-		if len(self.dialog_stack) and not self.in_exec:
+		if self.dialog_stack and not self.in_exec:
 			raise RuntimeError("modal open are allowed only from a screen which is modal!")
 			# ...unless it's the very first screen.
 
@@ -371,7 +376,7 @@ class PowerKey:
 			self.standby()
 
 	def standby(self):
-		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
+		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
 			self.session.open(Screens.Standby.Standby)
 
 profile("Scart")
@@ -417,10 +422,7 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
-	screensToRun = [ ]
-
-	for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD):
-		screensToRun.append(p.__call__)
+	screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
 
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
@@ -444,7 +446,7 @@ def runScreenTest():
 
 		screen = screensToRun[0][1]
 
-		if len(screensToRun):
+		if screensToRun:
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen)
 		else:
 			session.open(screen)
@@ -464,8 +466,8 @@ def runScreenTest():
 	runReactor()
 
 	profile("wakeup")
-	from time import time
-	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime
+	from time import time, strftime, localtime
+	from Tools.DreamboxHardware import setFPWakeuptime, getFPWakeuptime, setRTCtime
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
@@ -476,12 +478,17 @@ def runScreenTest():
 	]
 	wakeupList.sort()
 	recordTimerWakeupAuto = False
-	if len(wakeupList):
-		startTime = wakeupList.pop(0)
+	if wakeupList:
+		from time import strftime
+		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 330: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds
 		else:
 			wptime = startTime[0] - 300
+		if not config.misc.useTransponderTime.value:
+			print "dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+			setRTCtime(nowTime)
+		print "set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
 	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto

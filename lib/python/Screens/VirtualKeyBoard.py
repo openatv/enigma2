@@ -54,8 +54,10 @@ def VirtualKeyBoardEntryComponent(keys, selectedKey,shiftMode=False):
 		#	res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_right))
 		
 		else:
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_bg))
-			res.append(MultiContentEntryText(pos=(x, 0), size=(45, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER))
+			res.extend((
+				MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_bg),
+				MultiContentEntryText(pos=(x, 0), size=(45, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER)
+			))
 		
 		if selectedKey == count:
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_sel))
@@ -104,7 +106,7 @@ class VirtualKeyBoard(Screen):
 				[u">", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u";", u":", u"_", u"CLEAR"],
 				[u"SHIFT", u"SPACE", u"?", u"\\", u"À", u"É", u"È",  u"Í", u"Ì", u"Ñ", u"Ò", u"OK"]]
 				
-		elif self.lang in ['sv_SE', 'fi_FI']:
+		elif self.lang in ('sv_SE', 'fi_FI'):
 			self.keys_list = [
 				[u"EXIT", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"BACKSPACE"],
 				[u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"é", u"+"],

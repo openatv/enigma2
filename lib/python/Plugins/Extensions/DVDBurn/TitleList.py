@@ -44,7 +44,7 @@ class TitleList(Screen, HelpableScreen):
 				"titleProperties": (self.titleProperties, _("Properties of current title"), _("Title properties")),
 				"removeCurrentTitle": (self.removeCurrentTitle, _("Remove currently selected title"), _("Remove title")),
 				"settings": (self.settings, _("Collection settings"), _("Settings")),
-				"burnProject": (self.burnProject, _("Burn DVD"), _("Burn DVD")),
+				"burnProject": (self.askBurnProject, _("Burn DVD"), _("Burn DVD")),
 			})
 
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
@@ -57,9 +57,9 @@ class TitleList(Screen, HelpableScreen):
 				"cancel": self.leave
 			})
 
-		self["key_red"] = StaticText(_("Remove title"))
+		self["key_red"] = StaticText()
 		self["key_green"] = StaticText(_("Add title"))
-		self["key_yellow"] = StaticText(_("Title properties"))
+		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText(_("Settings"))
 
 		self["title_label"] = StaticText()
@@ -74,6 +74,7 @@ class TitleList(Screen, HelpableScreen):
 
 		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
 		self.updateTitleList()
+		self.previous_size = 0
 
 	def checkBackgroundJobs(self):
 		for job in job_manager.getPendingJobs():
@@ -90,19 +91,16 @@ class TitleList(Screen, HelpableScreen):
 		if self.backgroundJob:
 			j = self.backgroundJob
 			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress/float(j.end))), self.showBackgroundJob))
+		menu.append((_("DVD media toolbox"), self.toolbox))
+		menu.append((_("Preview menu"), self.previewMenu))
 		if self.project.settings.output.getValue() == "dvd":
-			menu.append((_("Burn DVD"), self.burnProject))
+			if len(self["titles"].list):
+				menu.append((_("Burn DVD"), self.burnProject))
 		elif self.project.settings.output.getValue() == "iso":
 			menu.append((_("Create DVD-ISO"), self.burnProject))
 		menu.append((_("Burn existing image to DVD"), self.selectImage))
-		menu.append((_("DVD media toolbox"), self.toolbox))
-		menu.append((_("Preview menu"), self.previewMenu))
-		menu.append((_("Collection settings"), self.settings))
-		menu.append((_("Reset and renumerate title names"), self.resetTitles))
 		menu.append((_("Edit chapters of current title"), self.editTitle))
-		menu.append((_("Properties of current title"), self.titleProperties))
-		menu.append((_("Add a new title"), self.addTitle))
-		menu.append((_("Remove title"), self.removeCurrentTitle))
+		menu.append((_("Reset and renumerate title names"), self.resetTitles))
 		menu.append((_("Exit"), self.leave))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
@@ -199,7 +197,13 @@ class TitleList(Screen, HelpableScreen):
 			self["error_label"].show()
 			return False
 
-	def burnProject(self):
+	def askBurnProject(self):
+		if len(self["titles"].list):
+			self.session.openWithCallback(self.burnProject,MessageBox,text = _("Do you want to burn this collection to DVD medium?"), type = MessageBox.TYPE_YESNO)
+
+	def burnProject(self, answer=True):
+		if not answer:
+			return
 		if self.project.settings.authormode.getValue() == "data_ts":
 			job = Process.DVDdataJob(self.project)
 			job_manager.AddJob(job)
@@ -211,7 +215,7 @@ class TitleList(Screen, HelpableScreen):
 			job_manager.in_background = False
 			self.session.openWithCallback(self.JobViewCB, JobView, job)
 
-	def burnISO(self, path, scope):
+	def burnISO(self, path, scope, configRef):
 		if path:
 			job = Process.DVDisoJob(self.project, path)
 			job_manager.AddJob(job)
@@ -235,6 +239,12 @@ class TitleList(Screen, HelpableScreen):
 			totalsize += title.estimatedDiskspace
 		self["titles"].list = res
 		self.updateSize(totalsize)
+		if len(res):
+			self["key_red"].text = _("Remove title")
+			self["key_yellow"].text = _("Title properties")
+		else:
+			self["key_red"].text = ""
+			self["key_yellow"].text = ""
 
 	def updateSize(self, totalsize):
 		size = int((totalsize/1024)/1024)
@@ -244,14 +254,19 @@ class TitleList(Screen, HelpableScreen):
 			percent = 100 * size / float(max_DL)
 			self["space_label"].text = "%d MB - " % size + _("exceeds dual layer medium!") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
+			if self.previous_size < max_DL:
+				self.session.open(MessageBox,text = _("exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
 		elif size > max_SL:
 			percent = 100 * size / float(max_DL)
 			self["space_label"].text = "%d MB  " % size + _("of a DUAL layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
+			if self.previous_size < max_SL:
+				self.session.open(MessageBox,text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), type = MessageBox.TYPE_INFO)
 		elif size < max_SL:
 			percent = 100 * size / float(max_SL)
 			self["space_label"].text = "%d MB " % size + _("of a SINGLE layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
+		self.previous_size = size
 
 	def getCurrentTitle(self):
 		t = self["titles"].getCurrent()

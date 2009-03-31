@@ -839,7 +839,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 			PyDict_SetItem(tp_dict, sat_pos, tplist);
 			for (ElementConstIterator it(sat_elements.begin()); it != sat_elements.end(); ++it)
 			{
-//				eDebug("\telement: %s", (*it)->name().c_str());
+				//eDebug("\telement: %s", (*it)->name().c_str());
 				const AttributeList &tp_attributes = (*it)->getAttributeList();
 				AttributeConstIterator end = tp_attributes.end();
 				modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
@@ -856,8 +856,8 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 
 				for (AttributeConstIterator it(tp_attributes.begin()); it != end; ++it)
 				{
-					//eDebug("\t\tattr: %s", at->name().c_str());
 					at = *it;
+					//eDebug("\t\tattr: %s", at->name().c_str());
 					name = at->name();
 					if (name == "modulation") dest = &modulation;
 					else if (name == "system") dest = &system;
@@ -872,6 +872,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					else if (name == "onid") dest = &onid;
 					if (dest)
 					{
+						//eDebug("\t\t\tvalue: %s", at->value().c_str());
 						tmp = strtol(at->value().c_str(), &end_ptr, 10);
 						if (!*end_ptr)
 							*dest = tmp;
@@ -1201,15 +1202,17 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 			if ((unsigned int)sat.orbital_position != orbpos)
 				remove=false;
 		}
-		if ( remove && chid.dvbnamespace != eNs )
+		if ( remove && chid.dvbnamespace != eNs ) // namespace given?
 		{
-			if (system == iDVBFrontend::feCable && chid.dvbnamespace.get() == (int)0xFFFF0000)
+			if ( system == iDVBFrontend::feCable && chid.dvbnamespace.get() == (int)0xFFFF0000 )
 				;
-			else if (system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == (int)0xEEEE0000)
+			else if ( system == iDVBFrontend::feTerrestrial && chid.dvbnamespace.get() == (int)0xEEEE0000 )
 				;
 			else if ( chid.dvbnamespace != ch.dvbnamespace )
 				remove=false;
 		}
+		else if ( system == iDVBFrontend::feCable || system == iDVBFrontend::feTerrestrial )
+			remove=false;
 		if ( remove && chid.original_network_id != eOnid && chid.original_network_id != ch.original_network_id )
 			remove=false;
 		if ( remove && chid.transport_stream_id != eTsid && chid.transport_stream_id != ch.transport_stream_id )

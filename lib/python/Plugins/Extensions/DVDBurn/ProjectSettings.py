@@ -18,11 +18,12 @@ class FileBrowser(Screen, HelpableScreen):
 	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
 		<widget name="filelist" position="0,0" size="520,376" scrollbarMode="showOnDemand" />
 	</screen>"""
-	def __init__(self, session, scope, settings):
+	def __init__(self, session, scope, configRef):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.scope = scope
 		pattern = ""
+		self.configRef = configRef
 		currDir = "/"
 		if self.scope == "project":
 			currDir = self.getDir()
@@ -31,19 +32,19 @@ class FileBrowser(Screen, HelpableScreen):
 			currDir = self.getDir()
 			pattern = "(?i)^.*\.(ddvdm\.xml)"
 		if self.scope == "menubg":
-			currDir = self.getDir(settings.menubg)
+			currDir = self.getDir(configRef.getValue())
 			pattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp)"
 		elif self.scope == "menuaudio":
-			currDir = self.getDir(settings.menuaudio)
+			currDir = self.getDir(configRef.getValue())
 			pattern = "(?i)^.*\.(mp2|m2a|ac3)"
 		elif self.scope == "vmgm":
-			currDir = self.getDir(settings.vmgm)
+			currDir = self.getDir(configRef.getValue())
 			pattern = "(?i)^.*\.(mpg|mpeg)"
 		elif self.scope == "font_face":
-			currDir = self.getDir(settings.font_face, resolveFilename(SCOPE_FONTS))
+			currDir = self.getDir(configRef.getValue(), resolveFilename(SCOPE_FONTS))
 			pattern = "(?i)^.*\.(ttf)"
 		elif self.scope == "isopath":
-			currDir = settings.isopath.getValue()
+			currDir = configRef.getValue()
 		elif self.scope == "image":
 			currDir = resolveFilename(SCOPE_HDD)
 			pattern = "(?i)^.*\.(iso)"
@@ -57,11 +58,9 @@ class FileBrowser(Screen, HelpableScreen):
 				"cancel": self.exit
 			})
 
-	def getDir(self, key=None, defaultDir=None):
-		if key:
-			settingDir = key.getValue()
-			if len(settingDir) > 1:
-				return (settingDir.rstrip("/").rsplit("/",1))[0]
+	def getDir(self, currentVal=None, defaultDir=None):
+		if currentVal:
+			return (currentVal.rstrip("/").rsplit("/",1))[0]
 		return defaultDir or (resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
 
 	def ok(self):
@@ -70,15 +69,15 @@ class FileBrowser(Screen, HelpableScreen):
 			if self.scope == "image":
 				path = self["filelist"].getCurrentDirectory() or ""
 				if fileExists(path+"VIDEO_TS"):
-					self.close(path,self.scope)
+					self.close(path,self.scope,self.configRef)
 		else:
 			ret = self["filelist"].getCurrentDirectory() + '/' + self["filelist"].getFilename()
-			self.close(ret,self.scope)
+			self.close(ret,self.scope,self.configRef)
 
 	def exit(self):
 		if self.scope == "isopath":
-			self.close(self["filelist"].getCurrentDirectory(),self.scope)
-		self.close(None,False)
+			self.close(self["filelist"].getCurrentDirectory(),self.scope,self.configRef)
+		self.close(None,False,None)
 
 class ProjectSettings(Screen,ConfigListScreen):
 	skin = """
@@ -102,18 +101,21 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Load"))
-		self["key_blue"] = StaticText(_("Save"))
+		if config.usage.setup_level.index >= 2: # expert+
+			self["key_blue"] = StaticText(_("Save"))
+		else:
+			self["key_blue"] = StaticText()
 		
-		infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("Year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
+		if config.usage.setup_level.index >= 2: # expert+
+			infotext = _("Available format variables") + ":\n$i=" + _("Track") + ", $t=" + _("Title") + ", $d=" + _("Description") + ", $l=" + _("length") + ", $c=" + _("chapters") + ",\n" + _("Record") + " $T=" + _("Begin time") + ", $Y=" + _("Year") + ", $M=" + _("month") + ", $D=" + _("day") + ",\n$A=" + _("audio tracks") + ", $C=" + _("Channel") + ", $f=" + _("filename")
+		else:
+			infotext = ""
 		self["info"] = StaticText(infotext)
 
+		self.keydict = {}
 		self.settings = project.settings
 		ConfigListScreen.__init__(self, [])
 		self.initConfigList()
-			
-		self.keydict = {}
-		for key, val in self.settings.dict().iteritems():
-			self.keydict[val] = key
 		
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -141,9 +143,10 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry(_("ISO path"), self.settings.isopath))
 		if authormode.startswith("menu"):
 			self.list.append(getConfigListEntry(_("Menu")+' '+_("template file"), self.settings.menutemplate))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.project.menutemplate.settings.titleformat))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.project.menutemplate.settings.subtitleformat))
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.project.menutemplate.settings.menubg))
+			if config.usage.setup_level.index >= 2: # expert+
+				self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.project.menutemplate.settings.titleformat))
+				self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.project.menutemplate.settings.subtitleformat))
+				self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.project.menutemplate.settings.menubg))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("headline")+' '+_("color"), self.settings.color_headline))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("text")+' '+_("color"), self.settings.color_button))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("highlighted button")+' '+_("color"), self.settings.color_highlight))
@@ -151,14 +154,20 @@ class ProjectSettings(Screen,ConfigListScreen):
 			#self.list.append(getConfigListEntry(_("Font size")+' ('+_("headline")+', '+_("Title")+', '+_("Subtitles")+')', self.settings.font_size))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("spaces (top, between rows, left)"), self.settings.space))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("Audio"), self.settings.menuaudio))
-		if authormode != "data_ts":
-			self.list.append(getConfigListEntry(_("Titleset mode"), self.settings.titlesetmode))
-			if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
-				self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
-		else:
-			self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
+		if config.usage.setup_level.index >= 2: # expert+
+			if authormode != "data_ts":
+				self.list.append(getConfigListEntry(_("Titleset mode"), self.settings.titlesetmode))
+				if self.settings.titlesetmode.getValue() == "single" or authormode == "just_linked":
+					self.list.append(getConfigListEntry(_("VMGM (intro trailer)"), self.settings.vmgm))
+			else:
+				self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
 		
 		self["config"].setList(self.list)
+		self.keydict = {}
+		for key, val in self.settings.dict().iteritems():
+			self.keydict[val] = key
+		for key, val in self.project.menutemplate.settings.dict().iteritems():
+			self.keydict[val] = key
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -182,8 +191,9 @@ class ProjectSettings(Screen,ConfigListScreen):
 		
 	def ok(self):
 		key = self.keydict[self["config"].getCurrent()[1]]
-		if key in self.project.filekeys:
-			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self.settings)
+		from DVDProject import ConfigFilename
+		if type(self["config"].getCurrent()[1]) == ConfigFilename:
+			self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, key, self["config"].getCurrent()[1])
 
 	def cancel(self):
 		self.close(False)
@@ -192,26 +202,30 @@ class ProjectSettings(Screen,ConfigListScreen):
 		self.session.openWithCallback(self.FileBrowserClosed, FileBrowser, "project", self.settings)
 
 	def saveProject(self):
-		self.applySettings()
-		ret = self.project.saveProject(resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
-		if ret.startswith:
-			text = _("Save")+' '+_('OK')+':\n'+ret
-			self.session.open(MessageBox,text,type = MessageBox.TYPE_INFO)
-		else:
-			text = _("Save")+' '+_('Error')
-			self.session.open(MessageBox,text,type = MessageBox.TYPE_ERROR)
+		if config.usage.setup_level.index >= 2: # expert+
+			self.applySettings()
+			ret = self.project.saveProject(resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
+			if ret.startswith:
+				text = _("Save")+' '+_('OK')+':\n'+ret
+				self.session.open(MessageBox,text,type = MessageBox.TYPE_INFO)
+			else:
+				text = _("Save")+' '+_('Error')
+				self.session.open(MessageBox,text,type = MessageBox.TYPE_ERROR)
 
-	def FileBrowserClosed(self, path, scope):
+	def FileBrowserClosed(self, path, scope, configRef):
 		if scope == "menutemplate":
-			if not self.project.menutemplate.loadTemplate(path):
-				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
-			else:
+			if self.project.menutemplate.loadTemplate(path):
 				print "[ProjectSettings] menu template loaded"
-
-		if scope in self.project.filekeys:
-			self.settings.dict()[scope].setValue(path)
-		elif scope == "project":
-			if not self.project.loadProject(path):
-				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
-			else:
+				configRef.setValue(path)
 				self.initConfigList()
+			else:
+				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
+		elif scope == "project":
+			if self.project.loadProject(path):
+				configRef.setValue(path)
+				self.initConfigList()
+			else:
+				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
+		elif scope:
+			configRef.setValue(path)
+			self.initConfigList()

@@ -297,6 +297,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		return x and x[1]
 
 	def moveToService(self,serviceref):
+		if not serviceref:
+			return
 		index = 0
 		refstr = serviceref.toString()
 		for x in self.list:
@@ -306,6 +308,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			index += 1
 			
 	def moveToEventId(self, eventId):
+		if not eventId:
+			return
 		index = 0
 		for x in self.list:
 			if x[1] == eventId:

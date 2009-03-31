@@ -78,6 +78,14 @@ class ResultParser:
 						text += " ==> "
 						text += str(transponder[0])
 						text += "\n"
+					if reason == "pids_failed":
+						text += "(tsid, onid): "
+						text += str(transponder[3]['real'])
+						text += "(read from sat) != "
+						text += str(transponder[3]['expected'])
+						text += "(read from file)"
+						text += "\n"
+					text += "\n"
 		if countsuccessful > 0:
 			text += "\n"
 			text += "Successfully tuned transponders' previous planes:\n" 
@@ -265,7 +273,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		for sat in nimmanager.getSatListForNim(self.feid):
 			for transponder in nimmanager.getTransponders(sat[0]):
 				#print transponder
-				mytransponder = (transponder[1] / 1000, transponder[2] / 1000, transponder[3], transponder[4], transponder[5], sat[0], None, None, transponder[10], transponder[11])
+				mytransponder = (transponder[1] / 1000, transponder[2] / 1000, transponder[3], transponder[4], transponder[7], sat[0], transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11])
 				self.analyseTransponder(mytransponder)
 
 	def getIndexForTransponder(self, transponder):
@@ -623,7 +631,7 @@ class DiseqcTesterNimSelection(NimSelection):
 	def showNim(self, nim):
 		nimConfig = nimmanager.getNimConfig(nim.slot)
 		if nim.isCompatible("DVB-S"):
-			if nimConfig.configMode.value in ["loopthrough", "equal", "satposdepends", "nothing"]:
+			if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends", "nothing"):
 				return False
 			if nimConfig.configMode.value == "simple":
 				if nimConfig.diseqcMode.value == "positioner":

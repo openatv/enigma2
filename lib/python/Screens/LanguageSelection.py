@@ -76,21 +76,22 @@ class LanguageSelection(Screen):
 		print "ok"
 
 	def updateList(self):
-		first_time = len(self.list) == 0
+		first_time = not self.list
 
-		self.list = []
-		if len(language.getLanguageList()) == 0: # no language available => display only english
-			self.list.append(LanguageEntryComponent("en", _cached("en_EN"), "en_EN"))
+		languageList = language.getLanguageList()
+		if not languageList: # no language available => display only english
+			list = [ LanguageEntryComponent("en", _cached("en_EN"), "en_EN") ]
 		else:
-			for x in language.getLanguageList():
-				self.list.append(LanguageEntryComponent(file = x[1][2].lower(), name = _cached("%s_%s" % x[1][1:3]), index = x[0]))
-		#self.list.sort(key=lambda x: x[1][7])
+			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = _cached("%s_%s" % x[1][1:3]), index = x[0]) for x in languageList]
+		self.list = list
+
+		#list.sort(key=lambda x: x[1][7])
 
 		print "updateList"
 		if first_time:
-			self["languages"].list = self.list
+			self["languages"].list = list
 		else:
-			self["languages"].updateList(self.list)
+			self["languages"].updateList(list)
 		print "done"
 
 	def changed(self):

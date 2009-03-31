@@ -71,5 +71,10 @@ int eDVBCI_UI::getMMIState(int slot)
 	return eDVBCIInterfaces::getInstance()->getMMIState(slot);
 }
 
+int eDVBCI_UI::setClockRate(int slot, int rate)
+{
+	return eDVBCIInterfaces::getInstance()->setCIClockRate(slot, rate);
+}
+
 //FIXME: correct "run/startlevel"
 eAutoInitP0<eDVBCI_UI> init_dvbciui(eAutoInitNumbers::rc, "DVB-CI UI");

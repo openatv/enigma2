@@ -1,4 +1,5 @@
-from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean
+from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
+	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigNumber
 from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
 
@@ -110,6 +111,8 @@ def InitAVSwitch():
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
 	config.av.defaultac3 = ConfigYesNo(default = False)
+	config.av.generalAC3delay = ConfigNumber(default = 0)
+	config.av.generalPCMdelay = ConfigNumber(default = 0)
 	config.av.vcrswitch = ConfigEnableDisable(default = False)
 
 	iAVSwitch = AVSwitch()

@@ -135,8 +135,7 @@ class TimerSanityCheck:
 							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
 		else:
 			offset_0 = 345600 # the Epoch begins on Thursday
-			weeks = 2 # test two weeks to take care of Sunday-Monday transitions
-			for cnt in range(weeks):
+			for cnt in (0, 1): # test two weeks to take care of Sunday-Monday transitions
 				for event in self.rep_eventlist:
 					if event[1] == -1: # -1 is the identifier of the changed timer
 						event_begin = self.newtimer.begin

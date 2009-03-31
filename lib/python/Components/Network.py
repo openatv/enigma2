@@ -3,6 +3,8 @@ from re import compile as re_compile, search as re_search
 from socket import *
 from enigma import eConsoleAppContainer
 from Components.Console import Console
+from Components.PluginComponent import plugins
+from Plugins.Plugin import PluginDescriptor
 
 class Network:
 	def __init__(self):
@@ -22,6 +24,7 @@ class Network:
 		self.activateConsole = Console()
 		self.resetNetworkConsole = Console()
 		self.DnsConsole = Console()
+		self.config_ready = None
 		self.getInterfaces()
 
 	def getInterfaces(self, callback = None):
@@ -222,6 +225,8 @@ class Network:
 				self.loadNameserverConfig()
 				print "read configured interfac:", ifaces
 				print "self.ifaces after loading:", self.ifaces
+				self.config_ready = True
+				self.msgPlugins()
 				if callback is not None:
 					callback(True)
 
@@ -418,6 +423,8 @@ class Network:
 		
 	def restartNetwork(self,callback = None):
 		self.restartConsole = Console()
+		self.config_ready = False
+		self.msgPlugins()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
@@ -448,24 +455,34 @@ class Network:
 			
 	def stopLinkStateConsole(self):
 		if self.LinkConsole is not None:
-			self.LinkConsole = None
-
+			if len(self.LinkConsole.appContainers):
+				for name in self.LinkConsole.appContainers.keys():
+					self.LinkConsole.kill(name)
+					
 	def stopDNSConsole(self):
 		if self.DnsConsole is not None:
-			self.DnsConsole = None
-
+			if len(self.DnsConsole.appContainers):
+				for name in self.DnsConsole.appContainers.keys():
+					self.DnsConsole.kill(name)
+					
 	def stopRestartConsole(self):
 		if self.restartConsole is not None:
-			self.restartConsole = None
-			
+			if len(self.restartConsole.appContainers):
+				for name in self.restartConsole.appContainers.keys():
+					self.restartConsole.kill(name)
+					
 	def stopGetInterfacesConsole(self):
 		if self.Console is not None:
-			self.Console = None
-
+			if len(self.Console.appContainers):
+				for name in self.Console.appContainers.keys():
+					self.Console.kill(name)
+					
 	def stopDeactivateInterfaceConsole(self):
-		if self.deactivateInterfaceConsole:
-			self.deactivateInterfaceConsole = None
-			
+		if self.deactivateInterfaceConsole is not None:
+			if len(self.deactivateInterfaceConsole.appContainers):
+				for name in self.deactivateInterfaceConsole.appContainers.keys():
+					self.deactivateInterfaceConsole.kill(name)
+					
 	def checkforInterface(self,iface):
 		if self.getAdapterAttribute(iface, 'up') is True:
 			return True
@@ -546,6 +563,11 @@ class Network:
 			nm = ((1L<<cidr)-1)<<(32-cidr)
 			netmask = str(inet_ntoa(pack('>L', nm)))
 			return netmask
+	
+	def msgPlugins(self):
+		if self.config_ready is not None:
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKCONFIG_READ):
+				p(reason=self.config_ready)
 	
 iNetwork = Network()
 

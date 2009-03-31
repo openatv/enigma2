@@ -475,6 +475,11 @@ class Wizard(Screen):
 			self.currStep += 1
 			self.updateValues()
 		else:
+			if self.wizard[self.currStep].has_key("displaytext"):
+				displaytext = self.wizard[self.currStep]["displaytext"]
+				print "set LCD text"
+				for x in self.lcdCallbacks:
+					x(displaytext)
 			if len(self.stepHistory) == 0 or self.stepHistory[-1] != self.currStep:
 				self.stepHistory.append(self.currStep)
 			print "wizard step:", self.wizard[self.currStep]
@@ -599,10 +604,7 @@ class WizardManager:
 		self.wizards.append((wizard, precondition, priority))
 	
 	def getWizards(self):
-		list = []
-		for x in self.wizards:
-			if x[1] == 1: # precondition
-				list.append((x[2], x[0]))
-		return list
+		# x[1] is precondition
+		return [(x[2], x[0]) for x in self.wizards if x[1] == 1]
 
 wizardManager = WizardManager()

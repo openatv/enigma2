@@ -18,6 +18,14 @@
 
 #include <dvbsi++/ca_program_map_section.h>
 
+//#define CIDEBUG 1
+
+#ifdef CIDEBUG
+	#define eDebugCI(x...) eDebug(x)
+#else
+	#define eDebugCI(x...)
+#endif
+
 eDVBCIInterfaces *eDVBCIInterfaces::instance = 0;
 
 eDVBCIInterfaces::eDVBCIInterfaces()
@@ -100,9 +108,6 @@ int eDVBCIInterfaces::reset(int slotid)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-
-	eDVBCISession::deleteSessions(slot);
-	ciRemoved(slot);
 
 	return slot->reset();
 }
@@ -195,11 +200,13 @@ int eDVBCIInterfaces::cancelEnq(int slotid)
 
 void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 {
+	eDebug("CI Slot %d: removed... usecount %d", slot->getSlotID(), slot->use_count);
 	for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
 		it != m_pmt_handlers.end(); ++it)
 	{
 		eServiceReferenceDVB ref;
 		it->pmthandler->getServiceReference(ref);
+		eDebugCI("check %s cislot %p %d\n", ref.toString().c_str(), it->cislot, it->cislot?it->cislot->getSlotID() : -1);
 		slot->removeService(ref.getServiceID().get());
 		if (slot->use_count && !--slot->use_count)
 		{
@@ -209,9 +216,13 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 				setInputSource(slot->current_tuner, slot->current_source);
 
 			if (it->cislot == slot) // remove the base slot
+			{
 				it->cislot = slot->linked_next;
+				eDebugCI("base removed.. so slot is now %p", it->cislot);
+			}
 			else
 			{
+				eDebugCI("not base removed.. %d", it->cislot->getSlotID());
 				eDVBCISlot *tmp = it->cislot;
 				while(tmp->linked_next != slot)
 					tmp = tmp->linked_next;
@@ -222,8 +233,10 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 					tmp->linked_next = 0;
 			}
 			slot->linked_next=0;
+			slot->user_mapped=false;
 		}
 	}
+	recheckPMTHandlers();
 }
 
 static bool canDescrambleMultipleServices(int slotid)
@@ -245,22 +258,50 @@ static bool canDescrambleMultipleServices(int slotid)
 
 void eDVBCIInterfaces::recheckPMTHandlers()
 {
-//	eDebug("recheckPMTHAndlers()");
+	eDebugCI("recheckPMTHAndlers()");
 	for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
 		it != m_pmt_handlers.end(); ++it)
 	{
 		CAID_LIST caids;
 		ePtr<eDVBService> service;
 		eServiceReferenceDVB ref;
+		eDVBCISlot *tmp = it->cislot;
 		eDVBServicePMTHandler *pmthandler = it->pmthandler;
 		eDVBServicePMTHandler::program p;
+		bool first_plugged_cis_exist = false;
 
 		pmthandler->getServiceReference(ref);
 		pmthandler->getService(service);
+
+		eDebugCI("recheck %p %s", pmthandler, ref.toString().c_str());
+		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
+			if (ci_it->first_plugged && ci_it->getCAManager())
+			{
+				eDebug("Slot %d first plugged", ci_it->getSlotID());
+				ci_it->first_plugged = false;
+				first_plugged_cis_exist = true;
+			}
+
+		// check if this pmt handler has already assigned CI(s) .. and this CI(s) are already running
+		if (!first_plugged_cis_exist)
+		{
+			while(tmp)
+			{
+				if (!tmp->running_services.empty())
+					break;
+				tmp=tmp->linked_next;
+			}
+			if (tmp) // we dont like to change tsmux for running services
+			{
+				eDebugCI("already assigned and running CI!\n");
+				continue;
+			}
+		}
+
 		if (!pmthandler->getProgramInfo(p))
 		{
 			int cnt=0;
-			for (std::set<uint16_t>::reverse_iterator x(p.caids.rbegin()); x != p.caids.rend(); ++x, ++cnt)
+			for (caidSet::reverse_iterator x(p.caids.rbegin()); x != p.caids.rend(); ++x, ++cnt)
 				caids.push_front(*x);
 			if (service && cnt)
 				service->m_ca = caids;
@@ -274,50 +315,67 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 
 		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
 		{
+			eDebugCI("check Slot %d", ci_it->getSlotID());
 			bool useThis=false;
+			bool user_mapped=true;
 			eDVBCICAManagerSession *ca_manager = ci_it->getCAManager();
+
 			if (ca_manager)
 			{
 				int mask=0;
 				if (!ci_it->possible_services.empty())
 				{
 					mask |= 1;
-					std::set<eServiceReference>::iterator it = ci_it->possible_services.find(ref);
+					serviceSet::iterator it = ci_it->possible_services.find(ref);
 					if (it != ci_it->possible_services.end())
 					{
 						eDebug("'%s' is in service list of slot %d... so use it", ref.toString().c_str(), ci_it->getSlotID());
 						useThis = true;
 					}
+					else // check parent
+					{
+						eServiceReferenceDVB parent_ref = ref.getParentServiceReference();
+						if (parent_ref)
+						{
+							it = ci_it->possible_services.find(ref);
+							if (it != ci_it->possible_services.end())
+							{
+								eDebug("parent '%s' of '%s' is in service list of slot %d... so use it",
+									parent_ref.toString().c_str(), ref.toString().c_str(), ci_it->getSlotID());
+								useThis = true;
+							}
+						}
+					}
 				}
 				if (!useThis && !ci_it->possible_providers.empty())
 				{
-					bool parent=false;
+					eDVBNamespace ns = ref.getDVBNamespace();
 					mask |= 2;
 					if (!service) // subservice?
 					{
 						eServiceReferenceDVB parent_ref = ref.getParentServiceReference();
 						eDVBDB::getInstance()->getService(parent_ref, service);
-						parent=true;
 					}
 					if (service)
 					{
-						std::set<std::string>::iterator it = ci_it->possible_providers.find(service->m_provider_name);
+						providerSet::iterator it = ci_it->possible_providers.find(providerPair(service->m_provider_name, ns.get()));
 						if (it != ci_it->possible_providers.end())
 						{
-							eDebug("'%s' is in provider list of slot %d... so use it", service->m_provider_name.c_str(), ci_it->getSlotID());
+							eDebug("'%s/%08x' is in provider list of slot %d... so use it", service->m_provider_name.c_str(), ns.get(), ci_it->getSlotID());
 							useThis = true;
 						}
 					}
 				}
 				if (!useThis && !ci_it->possible_caids.empty())
 				{
+					mask |= 4;
 					for (CAID_LIST::iterator ca(caids.begin()); ca != caids.end(); ++ca)
 					{
-						std::set<uint16_t>::iterator it = ci_it->possible_caids.find(*ca);
+						caidSet::iterator it = ci_it->possible_caids.find(*ca);
 						if (it != ci_it->possible_caids.end())
 						{
 							eDebug("caid '%04x' is in caid list of slot %d... so use it", *ca, ci_it->getSlotID());
-							useThis=true;
+							useThis = true;
 							break;
 						}
 					}
@@ -332,7 +390,8 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 						if ( z != ci_caids.end() && *z == *ca )
 						{
 							eDebug("The CI in Slot %d has said it can handle caid %04x... so use it", ci_it->getSlotID(), *z);
-							useThis=true;
+							useThis = true;
+							user_mapped = false;
 							break;
 						}
 					}
@@ -341,47 +400,74 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 
 			if (useThis)
 			{
+				// check if this CI is already assigned to this pmthandler
+				eDVBCISlot *tmp = it->cislot;
+				while(tmp)
+				{
+					if (tmp == ci_it)
+						break;
+					tmp=tmp->linked_next;
+				}
+				if (tmp) // ignore already assigned cislots...
+				{
+					eDebugCI("already assigned!");
+					continue;
+				}
+				eDebugCI("current slot %d usecount %d", ci_it->getSlotID(), ci_it->use_count);
 				if (ci_it->use_count)  // check if this CI can descramble more than one service
 				{
+					bool found = false;
 					useThis = false;
 					PMTHandlerList::iterator tmp = m_pmt_handlers.begin();
-					while (tmp != m_pmt_handlers.end())
+					while (!found && tmp != m_pmt_handlers.end())
 					{
-						if ( tmp->cislot == ci_it && it != tmp )
+						eDebugCI(".");
+						eDVBCISlot *tmp_cislot = tmp->cislot;
+						while (!found && tmp_cislot)
 						{
+							eDebugCI("..");
 							eServiceReferenceDVB ref2;
 							tmp->pmthandler->getServiceReference(ref2);
-							eDVBChannelID s1, s2;
-							if (ref != ref2)
+							if ( tmp_cislot == ci_it && it->pmthandler != tmp->pmthandler )
 							{
-								ref.getChannelID(s1);
-								ref2.getChannelID(s2);
+								eDebugCI("check pmthandler %s for same service/tp", ref2.toString().c_str());
+								eDVBChannelID s1, s2;
+								if (ref != ref2)
+								{
+									eDebugCI("different services!");
+									ref.getChannelID(s1);
+									ref2.getChannelID(s2);
+								}
+								if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(tmp_cislot->getSlotID())))
+								{
+									found = true;
+									eDebugCI("found!");
+									eDVBCISlot *tmpci = it->cislot = tmp->cislot;
+									while(tmpci)
+									{
+										++tmpci->use_count;
+										eDebug("(2)CISlot %d, usecount now %d", tmpci->getSlotID(), tmpci->use_count);
+										tmpci=tmpci->linked_next;
+									}
+								}
 							}
-							if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(ci_it->getSlotID())))
-							{
-								useThis = true;
-								break;
-							}
+							tmp_cislot=tmp_cislot->linked_next;
 						}
+						eDebugCI("...");
 						++tmp;
 					}
 				}
+
 				if (useThis)
 				{
-					// check if this CI is already assigned to this pmthandler
-					eDVBCISlot *tmp = it->cislot;
-					while(tmp)
+					if (ci_it->user_mapped)  // we dont like to link user mapped CIs
 					{
-						if (tmp == ci_it)
-							break;
-						tmp=tmp->linked_next;
+						eDebugCI("user mapped CI already in use... dont link!");
+						continue;
 					}
 
-					if (tmp) // ignore already assigned cislots...
-						continue;
-
 					++ci_it->use_count;
-//					eDebug("usecount now %d", ci_it->use_count);
+					eDebug("(1)CISlot %d, usecount now %d", ci_it->getSlotID(), ci_it->use_count);
 
 					data_source ci_source=CI_A;
 					switch(ci_it->getSlotID())
@@ -432,7 +518,14 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 						ci_it->linked_next->setSource(ci_source);
 					}
 					it->cislot = ci_it;
+					eDebugCI("assigned!");
 					gotPMT(pmthandler);
+				}
+
+				if (it->cislot && user_mapped) // CI assigned to this pmthandler in this run.. and user mapped? then we break here.. we dont like to link other CIs to user mapped CIs
+				{
+					eDebugCI("user mapped CI assigned... dont link CIs!");
+					break;
 				}
 			}
 		}
@@ -520,9 +613,10 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 					else
 						tmp->linked_next = 0;
 				}
-				slot->linked_next=0;
+				slot->linked_next = 0;
+				slot->user_mapped = false;
 			}
-//			eDebug("use_count is now %d", slot->use_count);
+			eDebug("(3) slot %d usecount is now %d", slot->getSlotID(), slot->use_count);
 			slot = next;
 		}
 		// check if another service is waiting for the CI
@@ -539,7 +633,9 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 		eDVBCISlot *tmp = it->cislot;
 		while(tmp)
 		{
-			tmp->sendCAPMT(pmthandler);
+			eDebugCI("check slot %d %d %d", tmp->getSlotID(), tmp->running_services.empty(), canDescrambleMultipleServices(tmp->getSlotID()));
+			if (tmp->running_services.empty() || canDescrambleMultipleServices(tmp->getSlotID()))
+				tmp->sendCAPMT(pmthandler);
 			tmp = tmp->linked_next;
 		}
 	}
@@ -551,7 +647,7 @@ int eDVBCIInterfaces::getMMIState(int slotid)
 
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
-	
+
 	return slot->getMMIState();
 }
 
@@ -659,25 +755,28 @@ PyObject *eDVBCIInterfaces::getDescrambleRules(int slotid)
 	ePyObject caid_list = PyList_New(caids);
 	ePyObject service_list = PyList_New(services);
 	ePyObject provider_list = PyList_New(providers);
-	std::set<uint16_t>::iterator caid_it(slot->possible_caids.begin());
+	caidSet::iterator caid_it(slot->possible_caids.begin());
 	while(caids)
 	{
 		--caids;
-		PyTuple_SET_ITEM(caid_list, caids, PyLong_FromLong(*caid_it));
+		PyList_SET_ITEM(caid_list, caids, PyLong_FromLong(*caid_it));
 		++caid_it;
 	}
-	std::set<eServiceReference>::iterator ref_it(slot->possible_services.begin());
+	serviceSet::iterator ref_it(slot->possible_services.begin());
 	while(services)
 	{
 		--services;
-		PyTuple_SET_ITEM(service_list, services, PyString_FromString(ref_it->toString().c_str()));
+		PyList_SET_ITEM(service_list, services, PyString_FromString(ref_it->toString().c_str()));
 		++ref_it;
 	}
-	std::set<std::string>::iterator provider_it(slot->possible_providers.begin());
+	providerSet::iterator provider_it(slot->possible_providers.begin());
 	while(providers)
 	{
+		ePyObject tuple = PyTuple_New(2);
+		PyTuple_SET_ITEM(tuple, 0, PyString_FromString(provider_it->first.c_str()));
+		PyTuple_SET_ITEM(tuple, 1, PyLong_FromUnsignedLong(provider_it->second));
 		--providers;
-		PyTuple_SET_ITEM(provider_list, providers, PyString_FromString(provider_it->c_str()));
+		PyList_SET_ITEM(provider_list, providers, tuple);
 		++provider_it;
 	}
 	PyTuple_SET_ITEM(tuple, 0, service_list);
@@ -712,7 +811,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 	{
 		const char *errstr = "eDVBCIInterfaces::setDescrambleRules not enough entrys in argument tuple!!\n"
 			"first argument should be a pythonlist with possible services\n"
-			"second argument should be a pythonlist with possible providers\n"
+			"second argument should be a pythonlist with possible providers/dvbnamespace tuples\n"
 			"third argument should be a pythonlist with possible caids";
 		PyErr_SetString(PyExc_StandardError, errstr);
 		return -1;
@@ -757,39 +856,94 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 	while(size)
 	{
 		--size;
-		ePyObject str = PyList_GET_ITEM(provider_list, size);
-		if (!PyString_Check(str))
+		ePyObject tuple = PyList_GET_ITEM(provider_list, size);
+		if (!PyTuple_Check(tuple))
 		{
 			char buf[255];
-			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules entry in provider list is not a string it is '%s'!!", PyObject_TypeStr(str));
+			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules entry in provider list is not a tuple it is '%s'!!", PyObject_TypeStr(tuple));
 			PyErr_SetString(PyExc_StandardError, buf);
 			return -1;
 		}
-		char *tmpstr = PyString_AS_STRING(str);
+		if (PyTuple_Size(tuple) != 2)
+		{
+			char buf[255];
+			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules provider tuple has %d instead of 2 entries!!", PyTuple_Size(tuple));
+			PyErr_SetString(PyExc_StandardError, buf);
+			return -1;
+		}
+		if (!PyString_Check(PyTuple_GET_ITEM(tuple, 0)))
+		{
+			char buf[255];
+			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules 1st entry in provider tuple is not a string it is '%s'", PyObject_TypeStr(PyTuple_GET_ITEM(tuple, 0)));
+			PyErr_SetString(PyExc_StandardError, buf);
+			return -1;
+		}
+		if (!PyLong_Check(PyTuple_GET_ITEM(tuple, 1)))
+		{
+			char buf[255];
+			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules 2nd entry in provider tuple is not a long it is '%s'", PyObject_TypeStr(PyTuple_GET_ITEM(tuple, 1)));
+			PyErr_SetString(PyExc_StandardError, buf);
+			return -1;
+		}
+		char *tmpstr = PyString_AS_STRING(PyTuple_GET_ITEM(tuple, 0));
+		uint32_t orbpos = PyLong_AsUnsignedLong(PyTuple_GET_ITEM(tuple, 1));
 		if (strlen(tmpstr))
-			slot->possible_providers.insert(tmpstr);
+			slot->possible_providers.insert(std::pair<std::string, uint32_t>(tmpstr, orbpos));
 		else
-			eDebug("eDVBCIInterfaces::setDescrambleRules ignore invalid entry in provider name list!!");
+			eDebug("eDVBCIInterfaces::setDescrambleRules ignore invalid entry in provider tuple (string is empty)!!");
 	};
 	size = PyList_Size(caid_list);
 	while(size)
 	{
 		--size;
 		ePyObject caid = PyList_GET_ITEM(caid_list, size);
-		if (!PyInt_Check(caid))
+		if (!PyLong_Check(caid))
 		{
 			char buf[255];
 			snprintf(buf, 255, "eDVBCIInterfaces::setDescrambleRules entry in caid list is not a long it is '%s'!!", PyObject_TypeStr(caid));
 			PyErr_SetString(PyExc_StandardError, buf);
 			return -1;
 		}
-		int tmpcaid = PyInt_AsLong(caid);
+		int tmpcaid = PyLong_AsLong(caid);
 		if (tmpcaid > 0 && tmpcaid < 0x10000)
 			slot->possible_caids.insert(tmpcaid);
 		else
 			eDebug("eDVBCIInterfaces::setDescrambleRules %d is not a valid caid... ignore!!", tmpcaid);
 	};
 	return 0;
+}
+
+PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
+{
+	eDVBCISlot *slot = getSlot(slotid);
+	if (!slot)
+	{
+		char tmp[255];
+		snprintf(tmp, 255, "eDVBCIInterfaces::readCICaIds try to get CAIds for CI Slot %d... but just %d slots are available", slotid, m_slots.size());
+		PyErr_SetString(PyExc_StandardError, tmp);
+	}
+	else
+	{
+		int idx=0;
+		eDVBCICAManagerSession *ca_manager = slot->getCAManager();
+		const std::vector<uint16_t> *ci_caids = ca_manager ? &ca_manager->getCAIDs() : 0;
+		ePyObject list = PyList_New(ci_caids ? ci_caids->size() : 0);
+		if (ci_caids)
+		{
+			for (std::vector<uint16_t>::const_iterator it = ci_caids->begin(); it != ci_caids->end(); ++it)
+				PyList_SET_ITEM(list, idx++, PyLong_FromLong(*it));
+		}
+		return list;
+	}
+	return 0;
+}
+
+int eDVBCIInterfaces::setCIClockRate(int slotid, int rate)
+{
+	eDVBCISlot *slot = getSlot(slotid);
+	if (slot)
+		return slot->setClockRate(rate);
+	return -1;
 }
 
 int eDVBCISlot::send(const unsigned char *data, size_t len)
@@ -817,17 +971,17 @@ int eDVBCISlot::send(const unsigned char *data, size_t len)
 
 void eDVBCISlot::data(int what)
 {
+	eDebugCI("CISlot %d what %d\n", getSlotID(), what);
 	if(what == eSocketNotifier::Priority) {
 		if(state != stateRemoved) {
 			state = stateRemoved;
-			eDebug("ci removed");
 			while(sendqueue.size())
 			{
 				delete [] sendqueue.top().data;
 				sendqueue.pop();
 			}
-			eDVBCIInterfaces::getInstance()->ciRemoved(this);
 			eDVBCISession::deleteSessions(this);
+			eDVBCIInterfaces::getInstance()->ciRemoved(this);
 			notifier->setRequested(eSocketNotifier::Read);
 			eDVBCI_UI::getInstance()->setState(getSlotID(),0);
 		}
@@ -838,7 +992,7 @@ void eDVBCISlot::data(int what)
 		reset();
 
 	if(state != stateInserted) {
-		eDebug("ci inserted");
+		eDebug("ci inserted in slot %d", getSlotID());
 		state = stateInserted;
 		eDVBCI_UI::getInstance()->setState(getSlotID(),1);
 		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority);
@@ -886,14 +1040,20 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	ca_manager = 0;
 	use_count = 0;
 	linked_next = 0;
+	user_mapped = false;
+	first_plugged = true;
 	
 	slotid = nr;
 
 	sprintf(filename, "/dev/ci%d", nr);
 
+//	possible_caids.insert(0x1702);
+//	possible_providers.insert(providerPair("PREMIERE", 0xC00000));
+//	possible_services.insert(eServiceReference("1:0:1:2A:4:85:C00000:0:0:0:"));
+
 	fd = ::open(filename, O_RDWR | O_NONBLOCK);
 
-	eDebug("eDVBCISlot has fd %d", fd);
+	eDebugCI("CI Slot %d has fd %d", getSlotID(), fd);
 	state = stateInvalid;
 
 	if (fd >= 0)
@@ -908,6 +1068,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 
 eDVBCISlot::~eDVBCISlot()
 {
+	eDVBCISession::deleteSessions(this);
 }
 
 void eDVBCISlot::setAppManager( eDVBCIApplicationManagerSession *session )
@@ -932,7 +1093,7 @@ int eDVBCISlot::getSlotID()
 
 int eDVBCISlot::reset()
 {
-	eDebug("edvbcislot: reset requested");
+	eDebug("CI Slot %d: reset requested", getSlotID());
 
 	if (state == stateInvalid)
 	{
@@ -955,7 +1116,7 @@ int eDVBCISlot::reset()
 
 int eDVBCISlot::startMMI()
 {
-	eDebug("edvbcislot: startMMI()");
+	eDebug("CI Slot %d: startMMI()", getSlotID());
 	
 	if(application_manager)
 		application_manager->startMMI();
@@ -965,7 +1126,7 @@ int eDVBCISlot::startMMI()
 
 int eDVBCISlot::stopMMI()
 {
-	eDebug("edvbcislot: stopMMI()");
+	eDebug("CI Slot %d: stopMMI()", getSlotID());
 
 	if(mmi_session)
 		mmi_session->stopMMI();
@@ -975,7 +1136,7 @@ int eDVBCISlot::stopMMI()
 
 int eDVBCISlot::answerText(int answer)
 {
-	eDebug("edvbcislot: answerText(%d)", answer);
+	eDebug("CI Slot %d: answerText(%d)", getSlotID(), answer);
 
 	if(mmi_session)
 		mmi_session->answerText(answer);
@@ -993,7 +1154,7 @@ int eDVBCISlot::getMMIState()
 
 int eDVBCISlot::answerEnq(char *value)
 {
-	eDebug("edvbcislot: answerENQ(%s)", value);
+	eDebug("CI Slot %d: answerENQ(%s)", getSlotID(), value);
 
 	if(mmi_session)
 		mmi_session->answerEnq(value);
@@ -1003,7 +1164,7 @@ int eDVBCISlot::answerEnq(char *value)
 
 int eDVBCISlot::cancelEnq()
 {
-	eDebug("edvbcislot: cancelENQ");
+	eDebug("CI Slot %d: cancelENQ", getSlotID());
 
 	if(mmi_session)
 		mmi_session->cancelEnq();
@@ -1146,7 +1307,7 @@ int eDVBCISlot::setSource(data_source source)
 				fprintf(ci, "D");
 				break;
 			default:
-				eDebug("setSource %d failed!!!\n", (int)source);
+				eDebug("CI Slot %d: setSource %d failed!!!\n", getSlotID(), (int)source);
 				break;
 		}
 		fclose(ci);
@@ -1161,13 +1322,30 @@ int eDVBCISlot::setSource(data_source source)
 			return 0;
 		}
 		if (source != TUNER_A && source != TUNER_B)
-			eDebug("setSource %d failed!!!\n", (int)source);
+			eDebug("CI Slot %d: setSource %d failed!!!\n", getSlotID(), (int)source);
 		else
 			fprintf(ci, "%s", source==TUNER_A ? "A" : "B");  // configure CI data source (TunerA, TunerB)
 		fclose(ci);
 	}
-	eDebug("eDVBCISlot->setSource(%d)", (int)source);
+	eDebug("CI Slot %d setSource(%d)", getSlotID(), (int)source);
 	return 0;
+}
+
+int eDVBCISlot::setClockRate(int rate)
+{
+	char buf[64];
+	snprintf(buf, 64, "/proc/stb/tsmux/ci%d_tsclk", slotid);
+	FILE *ci = fopen(buf, "wb");
+	if (ci)
+	{
+		if (rate)
+			fprintf(ci, "high");
+		else
+			fprintf(ci, "normal");
+		fclose(ci);
+		return 0;
+	}
+	return -1;
 }
 
 eAutoInitP0<eDVBCIInterfaces> init_eDVBCIInterfaces(eAutoInitNumbers::dvb, "CI Slots");

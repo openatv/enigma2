@@ -172,9 +172,9 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="bottom" position="10,230" size="430,25" font="Regular;23" />
 	</screen>
 	<!-- Common interface - selection -->
-	<screen name="CiSelection" position="140,226" size="440,160" title="Common Interface">
+	<screen name="CiSelection" position="140,226" size="440,185" title="Common Interface">
 		<widget name="text" position="10,10" size="430,25" font="Regular;23" />
-		<widget name="entries" position="10,55" size="420,100" scrollbarMode="showOnDemand" />
+		<widget name="entries" position="10,55" size="420,125" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Console -->
 	<screen name="Console" position="90,95" size="560,430" title="Command execution...">
@@ -448,7 +448,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="PositionGauge" position="15,138" size="396,10" pointer="skin_default/position_pointer.png:540,0" seek_pointer="skin_default/position_pointer.png:540,0" transparent="1" />
 		<widget name="repeat" pixmaps="skin_default/icons/repeat_off.png,skin_default/icons/repeat_on.png" position="416,135" size="22,15" transparent="1" alphatest="on"/>
 		<widget name="filelist" position="15,163" size="550,138" scrollbarMode="showOnDemand" />
-		<widget name="playlist" position="15,314" size="550,154" scrollbarMode="showOnDemand" selectionDisabled="1" />
+		<widget name="playlist" position="15,322" size="550,138" scrollbarMode="showOnDemand" selectionDisabled="1" />
 		<widget name="currenttext" position="0,0" size="0,0" />
 		<widget name="titletext" position="0,0" size="0,0" />
 	</screen>
@@ -912,10 +912,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 		<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
-	</screen>
-	<!-- Subservice selection -->
-	<screen name="SubserviceSelection" position="210,163" size="300,255" title="Subservices">
-		<widget name="subservices" position="20,10" size="260,230" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Subservice quickzap -->
 	<screen name="SubservicesQuickzap" position="124,470" size="512,200" title="Subservices" backgroundColor="transparent" flags="wfNoBorder">

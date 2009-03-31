@@ -586,7 +586,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "Pictures", 
-			description = "View Photos...",
+			description = _("View Photos..."),
 			openfnc = filescan_open,
 		)
 

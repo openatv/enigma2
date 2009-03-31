@@ -72,19 +72,19 @@ class TitleProperties(Screen,ConfigListScreen):
 			self.list.append(getConfigListEntry("DVD " + _("Track"), self.properties.position))
 			self.list.append(getConfigListEntry("DVD " + _("Title"), self.properties.menutitle))
 			self.list.append(getConfigListEntry("DVD " + _("Description"), self.properties.menusubtitle))
-			for audiotrack in self.properties.audiotracks:
-				DVB_aud = audiotrack.DVB_lang.getValue() or audiotrack.pid.getValue()
-				self.list.append(getConfigListEntry(_("burn audio track (%s)") % DVB_aud, audiotrack.active))
-				if audiotrack.active.getValue():
-					self.list.append(getConfigListEntry(_("audio track (%s) format") % DVB_aud, audiotrack.format))
-					self.list.append(getConfigListEntry(_("audio track (%s) language") % DVB_aud, audiotrack.language))
-					
-			self.list.append(getConfigListEntry("DVD " + _("Aspect Ratio"), self.properties.aspect))
-			if self.properties.aspect.getValue() == "16:9":
-				self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.widescreen))
-			else:
-				self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.crop))
-
+			if config.usage.setup_level.index >= 2: # expert+
+				for audiotrack in self.properties.audiotracks:
+					DVB_aud = audiotrack.DVB_lang.getValue() or audiotrack.pid.getValue()
+					self.list.append(getConfigListEntry(_("burn audio track (%s)") % DVB_aud, audiotrack.active))
+					if audiotrack.active.getValue():
+						self.list.append(getConfigListEntry(_("audio track (%s) format") % DVB_aud, audiotrack.format))
+						self.list.append(getConfigListEntry(_("audio track (%s) language") % DVB_aud, audiotrack.language))
+						
+				self.list.append(getConfigListEntry("DVD " + _("Aspect Ratio"), self.properties.aspect))
+				if self.properties.aspect.getValue() == "16:9":
+					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.widescreen))
+				else:
+					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.crop))
 			if len(title.chaptermarks) == 0:
 				self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.properties.autochapter))
 			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Begin time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx+1)
@@ -154,7 +154,7 @@ class LanguageChoices():
 			if len(key) == 2:
 				self.langdict[key] = val[0]
 		for key, val in self.langdict.iteritems():
-			if key not in [syslang, 'en']:
+			if key not in (syslang, 'en'):
 				self.langdict[key] = val
 				self.choices.append((key, val))
 		self.choices.sort()
@@ -164,8 +164,7 @@ class LanguageChoices():
 
 	def getLanguage(self, DVB_lang):
 		DVB_lang = DVB_lang.lower()
-		stripwords = ["stereo", "audio", "description", "2ch", "dolby digital"]
-		for word in stripwords:
+		for word in ("stereo", "audio", "description", "2ch", "dolby digital"):
 			DVB_lang = DVB_lang.replace(word,"").strip()
 		for key, val in LanguageCodes.iteritems():
 			if DVB_lang.find(key.lower()) == 0:

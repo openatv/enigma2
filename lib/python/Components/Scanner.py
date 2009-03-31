@@ -114,12 +114,9 @@ def scanDevice(mountpoint):
 
 	# ...then remove with_subdir=False when same path exists
 	# with with_subdirs=True
-	for p in set(paths_to_scan):
+	for p in paths_to_scan:
 		if p.with_subdirs == True and ScanPath(path=p.path) in paths_to_scan:
 			paths_to_scan.remove(ScanPath(path=p.path))
-
-	# convert to list
-	paths_to_scan = list(paths_to_scan)
 
 	from Components.Harddisk import harddiskmanager	
 	blockdev = mountpoint.rstrip("/").rsplit('/',1)[-1]

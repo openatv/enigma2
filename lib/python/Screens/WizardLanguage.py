@@ -31,7 +31,3 @@ class WizardLanguage(Wizard):
 		self.updateText(firstset = True)
 		self.updateValues()
 		self.updateLanguageDescription()
-		
-
-		
-		

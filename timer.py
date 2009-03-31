@@ -222,7 +222,7 @@ class Timer:
 		min = int(time()) + self.MaxWaitTime
 		
 		# calculate next activation point
-		if len(self.timer_list):
+		if self.timer_list:
 			w = self.timer_list[0].getNextActivation()
 			if w < min:
 				min = w
@@ -278,5 +278,5 @@ class Timer:
 		t = int(time()) + 1
 		
 		# we keep on processing the first entry until it goes into the future.
-		while len(self.timer_list) and self.timer_list[0].getNextActivation() < t:
+		while self.timer_list and self.timer_list[0].getNextActivation() < t:
 			self.doActivate(self.timer_list[0])

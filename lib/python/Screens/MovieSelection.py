@@ -65,20 +65,20 @@ class MovieContextMenu(Screen):
 			})
 
 		menu = [(_("delete..."), self.delete)]
-		
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-			menu.append((p.description, boundFunction(self.execPlugin, p)))
-		
+		menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+
 		if config.movielist.moviesort.value == MovieList.SORT_ALPHANUMERIC:
 			menu.append((_("sort by date"), boundFunction(self.sortBy, MovieList.SORT_RECORDED)))
 		else:
 			menu.append((_("alphabetic sort"), boundFunction(self.sortBy, MovieList.SORT_ALPHANUMERIC)))
 		
-		menu.append((_("list style default"), boundFunction(self.listType, MovieList.LISTTYPE_ORIGINAL)))
-		menu.append((_("list style compact with description"), boundFunction(self.listType, MovieList.LISTTYPE_COMPACT_DESCRIPTION)))
-		menu.append((_("list style compact"), boundFunction(self.listType, MovieList.LISTTYPE_COMPACT)))
-		menu.append((_("list style single line"), boundFunction(self.listType, MovieList.LISTTYPE_MINIMAL)))
-		
+		menu.extend((
+			(_("list style default"), boundFunction(self.listType, MovieList.LISTTYPE_ORIGINAL)),
+			(_("list style compact with description"), boundFunction(self.listType, MovieList.LISTTYPE_COMPACT_DESCRIPTION)),
+			(_("list style compact"), boundFunction(self.listType, MovieList.LISTTYPE_COMPACT)),
+			(_("list style single line"), boundFunction(self.listType, MovieList.LISTTYPE_MINIMAL))
+		))
+
 		if config.movielist.description.value == MovieList.SHOW_DESCRIPTION:
 			menu.append((_("hide extended description"), boundFunction(self.showDescription, MovieList.HIDE_DESCRIPTION)))
 		else:

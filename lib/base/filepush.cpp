@@ -189,9 +189,13 @@ void eFilePushThread::thread()
 			if (m_send_pvr_commit && !already_empty)
 			{
 				eDebug("sending PVR commit");
+				
+				struct pollfd pfd[1] = {m_fd_dest, POLLHUP};
+				poll(pfd, 1, 10000);
+				sleep(5); /* HACK to allow ES buffer to drain */
 				already_empty = 1;
-				if (::ioctl(m_fd_dest, PVR_COMMIT) < 0 && errno == EINTR)
-					continue;
+//				if (::ioctl(m_fd_dest, PVR_COMMIT) < 0 && errno == EINTR)
+//					continue;
 				eDebug("commit done");
 						/* well check again */
 				continue;

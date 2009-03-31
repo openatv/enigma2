@@ -22,6 +22,6 @@ def autostart(reason, **kwargs):
 		socketHandler = SocketMMIMessageHandler()
 
 def Plugins(**kwargs):
-	return [ PluginDescriptor(name = "SocketMMI", description = "Python frontend for /tmp/mmi.socket", where = PluginDescriptor.WHERE_MENU, fnc = menu),
+	return [ PluginDescriptor(name = "SocketMMI", description = _("Python frontend for /tmp/mmi.socket"), where = PluginDescriptor.WHERE_MENU, fnc = menu),
 		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = sessionstart),
  		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = autostart) ]

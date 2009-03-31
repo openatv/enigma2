@@ -54,6 +54,7 @@ class eDVBLocalTimeHandler: public Object
 		ePtr<eConnection> m_stateChangedConn;
 		int m_prevChannelState;
 	};
+	bool m_use_dvb_time;
 	ePtr<eTimer> m_updateNonTunedTimer;
 	friend class TDT;
 	std::map<iDVBChannel*, channel_data> m_knownChannels;
@@ -78,6 +79,8 @@ public:
 	eDVBLocalTimeHandler();
 	~eDVBLocalTimeHandler();
 #endif
+	bool getUseDVBTime() { return m_use_dvb_time; }
+	void setUseDVBTime(bool b);
 	PSignal0<void> m_timeUpdated;
 	bool ready() const { return m_time_ready; }
 	static eDVBLocalTimeHandler *getInstance() { return instance; }

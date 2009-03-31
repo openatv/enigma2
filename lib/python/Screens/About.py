@@ -25,7 +25,7 @@ class About(Screen):
 		self["FPVersion"] = StaticText(fp_version)
 
 		nims = nimmanager.nimList()
-		for count in range(4):
+		for count in (0, 1, 2, 3):
 			if count < len(nims):
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
@@ -33,7 +33,7 @@ class About(Screen):
 
 		self["HDDHeader"] = StaticText(_("Detected HDD:"))
 		hddlist = harddiskmanager.HDDList()
-		hdd = len(hddlist) > 0 and hddlist[0][1] or None
+		hdd = hddlist and hddlist[0][1] or None
 		if hdd is not None and hdd.model() != "":
 			self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
 		else:

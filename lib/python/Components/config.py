@@ -279,8 +279,8 @@ class ConfigSelection(ConfigElement):
 		if default is None:
 			default = self.choices.default()
 
+		self._descr = None
 		self.default = self._value = self.last_value = default
-		self.changed()
 
 	def setChoices(self, choices, default = None):
 		self.choices = choicesList(choices)
@@ -296,6 +296,7 @@ class ConfigSelection(ConfigElement):
 			self._value = value
 		else:
 			self._value = self.default
+		self._descr = None
 		self.changed()
 
 	def tostring(self, val):
@@ -307,7 +308,7 @@ class ConfigSelection(ConfigElement):
 	def setCurrentText(self, text):
 		i = self.choices.index(self.value)
 		self.choices[i] = text
-		self.description[text] = text
+		self._descr = self.description[text] = text
 		self._value = text
 
 	value = property(getValue, setValue)
@@ -336,13 +337,18 @@ class ConfigSelection(ConfigElement):
 		self.value = self.choices[(i + 1) % nchoices]
 
 	def getText(self):
-		descr = self.description[self.value]
+		if self._descr is not None:
+			return self._descr
+		descr = self._descr = self.description[self.value]
 		if descr:
 			return _(descr)
 		return descr
 
 	def getMulti(self, selected):
-		descr = self.description[self.value]
+		if self._descr is not None:
+			descr = self._descr
+		else:
+			descr = self._descr = self.description[self.value]
 		if descr:
 			return ("text", _(descr))
 		return ("text", descr)
@@ -378,7 +384,7 @@ class ConfigBoolean(ConfigElement):
 		self.value = self.last_value = self.default = default
 
 	def handleKey(self, key):
-		if key in [KEY_LEFT, KEY_RIGHT]:
+		if key in (KEY_LEFT, KEY_RIGHT):
 			self.value = not self.value
 		elif key == KEY_HOME:
 			self.value = False
@@ -1022,6 +1028,13 @@ class ConfigNumber(ConfigText):
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
+	def isChanged(self):
+		sv = self.saved_value
+		strv = self.tostring(self.value)
+		if sv is None and strv == self.default:
+			return False
+		return strv != sv
+
 	def conform(self):
 		pos = len(self.text) - self.marked_pos
 		self.text = self.text.lstrip("0")
@@ -1180,7 +1193,7 @@ class ConfigSet(ConfigElement):
 				self.pos = -1
 			else:
 				self.pos += 1
-		elif key in [KEY_HOME, KEY_END]:
+		elif key in (KEY_HOME, KEY_END):
 			self.pos = -1
 
 	def genString(self, lst):
@@ -1345,7 +1358,7 @@ class ConfigLocations(ConfigElement):
 			self.pos += 1
 			if self.pos >= len(self.value):
 				self.pos = -1
-		elif key in [KEY_HOME, KEY_END]:
+		elif key in (KEY_HOME, KEY_END):
 			self.pos = -1
 
 	def getText(self):
@@ -1607,8 +1620,9 @@ class Config(ConfigSubsection):
 			self.setSavedValue(tree["config"])
 
 	def saveToFile(self, filename):
+		text = self.pickle()
 		f = open(filename, "w")
-		f.write(self.pickle())
+		f.write(text)
 		f.close()
 
 	def loadFromFile(self, filename):
