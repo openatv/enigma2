@@ -39,7 +39,7 @@
 DEFINE_REF(eDVBAudio);
 
 eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
-	:m_demux(demux), m_dev(dev), m_is_freezed(0)
+	:m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -198,7 +198,7 @@ int eDVBAudio::startPid(int pid, int type)
 		break;
 	}
 
-	eDebugNoNewLine("AUDIO_SET_BYPASS - ");
+	eDebugNoNewLine("AUDIO_SET_BYPASS(%d) - ", bypass);
 	if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
 		eDebug("failed (%m)");
 	else
@@ -244,28 +244,20 @@ void eDVBAudio::flush()
 
 void eDVBAudio::freeze()
 {
-	if (!m_is_freezed)
-	{
-		eDebugNoNewLine("AUDIO_PAUSE - ");
-		if (::ioctl(m_fd, AUDIO_PAUSE) < 0)
-			eDebug("failed (%m)");
-		else
-			eDebug("ok");
-		m_is_freezed=1;
-	}
+	eDebugNoNewLine("AUDIO_PAUSE - ");
+	if (::ioctl(m_fd, AUDIO_PAUSE) < 0)
+		eDebug("failed (%m)");
+	else
+		eDebug("ok");
 }
 
 void eDVBAudio::unfreeze()
 {
-	if (m_is_freezed)
-	{
-		eDebugNoNewLine("AUDIO_CONTINUE - ");
-		if (::ioctl(m_fd, AUDIO_CONTINUE) < 0)
-			eDebug("failed (%m)");
-		else
-			eDebug("ok");
-		m_is_freezed=0;
-	}
+	eDebugNoNewLine("AUDIO_CONTINUE - ");
+	if (::ioctl(m_fd, AUDIO_CONTINUE) < 0)
+		eDebug("failed (%m)");
+	else
+		eDebug("ok");
 }
 
 void eDVBAudio::setChannel(int channel)
@@ -303,8 +295,8 @@ eDVBAudio::~eDVBAudio()
 DEFINE_REF(eDVBVideo);
 
 eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
-	:m_demux(demux), m_dev(dev), m_is_slow_motion(0), m_is_fast_forward(0), m_is_freezed(0)
-	,m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1)
+	: m_demux(demux), m_dev(dev),
+	m_width(-1), m_height(-1), m_framerate(-1), m_aspect(-1), m_progressive(-1)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -493,34 +485,25 @@ void eDVBVideo::flush()
 
 void eDVBVideo::freeze()
 {
-	if (!m_is_freezed)
-	{
-		eDebugNoNewLine("VIDEO_FREEZE - ");
-		if (::ioctl(m_fd, VIDEO_FREEZE) < 0)
-			eDebug("failed (%m)");
-		else
-			eDebug("ok");
-		m_is_freezed=1;
-	}
+	eDebugNoNewLine("VIDEO_FREEZE - ");
+	if (::ioctl(m_fd, VIDEO_FREEZE) < 0)
+		eDebug("failed (%m)");
+	else
+		eDebug("ok");
 }
 
 void eDVBVideo::unfreeze()
 {
-	if (m_is_freezed)
-	{
-		eDebugNoNewLine("VIDEO_CONTINUE - ");
-		if (::ioctl(m_fd, VIDEO_CONTINUE) < 0)
-			eDebug("failed (%m)");
-		else
-			eDebug("ok");
-		m_is_freezed=0;
-	}
+	eDebugNoNewLine("VIDEO_CONTINUE - ");
+	if (::ioctl(m_fd, VIDEO_CONTINUE) < 0)
+		eDebug("failed (%m)");
+	else
+		eDebug("ok");
 }
 
 int eDVBVideo::setSlowMotion(int repeat)
 {
-	eDebugNoNewLine("VIDEO_SLOWMOTION - ");
-	m_is_slow_motion = repeat;
+	eDebugNoNewLine("VIDEO_SLOWMOTION(%d) - ", repeat);
 	int ret = ::ioctl(m_fd, VIDEO_SLOWMOTION, repeat);
 	if (ret < 0)
 		eDebug("failed(%m)");
@@ -531,8 +514,7 @@ int eDVBVideo::setSlowMotion(int repeat)
 
 int eDVBVideo::setFastForward(int skip)
 {
-	eDebugNoNewLine("VIDEO_FAST_FORWARD - ");
-	m_is_fast_forward = skip;
+	eDebugNoNewLine("VIDEO_FAST_FORWARD(%d) - ", skip);
 	int ret = ::ioctl(m_fd, VIDEO_FAST_FORWARD, skip);
 	if (ret < 0)
 		eDebug("failed(%m)");
@@ -559,11 +541,6 @@ int eDVBVideo::getPTS(pts_t &now)
 
 eDVBVideo::~eDVBVideo()
 {
-	if (m_is_slow_motion)
-		setSlowMotion(0);
-	if (m_is_fast_forward)
-		setFastForward(0);
-	unfreeze();
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -869,14 +846,17 @@ int eTSMPEGDecoder::setState()
 {
 	int res = 0;
 
-	int noaudio = m_is_sm || m_is_ff || m_is_trickmode;
+	int noaudio = (m_state != statePlay) && (m_state != statePause);
 	int nott = noaudio; /* actually same conditions */
 
 	if ((noaudio && m_audio) || (!m_audio && !noaudio))
-		m_changed |= changeAudio;
+		m_changed |= changeAudio | changeState;
 
 	if ((nott && m_text) || (!m_text && !nott))
-		m_changed |= changeText;
+		m_changed |= changeText | changeState;
+
+	const char *decoder_states[] = {"stop", "pause", "play", "decoderfastforward", "trickmode", "slowmotion"};
+	eDebug("decoder state: %s, vpid=%d, apid=%d", decoder_states[m_state], m_vpid, m_apid);
 
 	bool changed = !!m_changed;
 #if HAVE_DVB_API_VERSION < 3
@@ -1019,6 +999,39 @@ int eTSMPEGDecoder::setState()
 		m_changed &= ~changeText;
 	}
 #endif
+
+	if (m_changed & changeState)
+	{
+					/* play, slowmotion, fast-forward */
+		int state_table[6][4] = 
+			{
+				/* [stateStop] =                 */ {0, 0, 0},
+				/* [statePause] =                */ {0, 0, 0},
+				/* [statePlay] =                 */ {1, 0, 0},
+				/* [stateDecoderFastForward] =   */ {1, 0, m_ff_sm_ratio},
+				/* [stateHighspeedFastForward] = */ {1, 0, 1},
+				/* [stateSlowMotion] =           */ {1, m_ff_sm_ratio, 0}
+			};
+		int *s = state_table[m_state];
+		if (m_video)
+		{
+			m_video->setSlowMotion(s[1]);
+			m_video->setFastForward(s[2]);
+			if (s[0])
+				m_video->unfreeze();
+			else
+				m_video->freeze();
+		}
+		if (m_audio)
+		{
+			if (s[0])
+				m_audio->unfreeze();
+			else
+				m_audio->freeze();
+		}
+		m_changed &= ~changeState;
+	}
+
 	if (changed && !m_video && m_audio && m_radio_pic.length())
 		showSinglePic(m_radio_pic.c_str());
 
@@ -1061,11 +1074,13 @@ RESULT eTSMPEGDecoder::setAC3Delay(int delay)
 }
 
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
-	:m_demux(demux), m_changed(0), m_decoder(decoder), m_video_clip_fd(-1), m_showSinglePicTimer(eTimer::create(eApp))
+	: m_demux(demux), 
+		m_vpid(-1), m_vtype(-1), m_apid(-1), m_atype(-1), m_pcrpid(-1), m_textpid(-1),
+		m_changed(0), m_decoder(decoder), m_video_clip_fd(-1), m_showSinglePicTimer(eTimer::create(eApp))
 {
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event_conn);
 	CONNECT(m_showSinglePicTimer->timeout, eTSMPEGDecoder::finishShowSinglePic);
-	m_is_ff = m_is_sm = m_is_trickmode = 0;
+	m_state = stateStop;
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
@@ -1147,82 +1162,61 @@ RESULT eTSMPEGDecoder::setSyncMaster(int who)
 	return -1;
 }
 
-RESULT eTSMPEGDecoder::start()
-{
-	RESULT r;
-	r = setState();
-	if (r)
-		return r;
-	return unfreeze();
-}
-
-	/* preroll is start in freezed mode. */
-RESULT eTSMPEGDecoder::preroll()
+RESULT eTSMPEGDecoder::set()
 {
 	return setState();
 }
 
-RESULT eTSMPEGDecoder::freeze(int cont)
+RESULT eTSMPEGDecoder::play()
 {
-	if (m_video)
-		m_video->freeze();
-
-	if (m_audio)
-		m_audio->freeze();
-
-	return 0;
+	if (m_state == statePlay)
+		return 0;
+	m_state = statePlay;
+	m_changed |= changeState;
+	return setState();
 }
 
-RESULT eTSMPEGDecoder::unfreeze()
+RESULT eTSMPEGDecoder::pause()
 {
-	if (m_video)
-		m_video->unfreeze();
-
-	if (m_audio)
-		m_audio->unfreeze();
-
-	return 0;
-}
-
-RESULT eTSMPEGDecoder::setSinglePictureMode(int when)
-{
-	return -1;
-}
-
-RESULT eTSMPEGDecoder::setPictureSkipMode(int what)
-{
-	return -1;
+	if (m_state == statePause)
+		return 0;
+	m_state = statePause;
+	m_changed |= changeState;
+	return setState();
 }
 
 RESULT eTSMPEGDecoder::setFastForward(int frames_to_skip)
 {
-	m_is_ff = frames_to_skip != 0;
+	if ((m_state == stateDecoderFastForward) && (m_ff_sm_ratio == frames_to_skip))
+		return 0;
 
-	setState();
-	unfreeze(); // audio might be restarted and still in preroll (freezed) state.
+	m_state = stateDecoderFastForward;
+	m_ff_sm_ratio = frames_to_skip;
+	m_changed |= changeState;
+	return setState();
 
-	if (m_video)
-		return m_video->setFastForward(frames_to_skip);
-	else
-	 	return -1;
+//		return m_video->setFastForward(frames_to_skip);
 }
 
 RESULT eTSMPEGDecoder::setSlowMotion(int repeat)
 {
-	m_is_sm = repeat != 0;
+	if ((m_state == stateSlowMotion) && (m_ff_sm_ratio == repeat))
+		return 0;
 
-	setState();
-	unfreeze(); // audio might be restarted and still in preroll (freezed) state.
-
-	if (m_video)
-		return m_video->setSlowMotion(repeat);
-	else
-		return -1;
+	m_state = stateSlowMotion;
+	m_ff_sm_ratio = repeat;
+	m_changed |= changeState;
+	return setState();
 }
 
-RESULT eTSMPEGDecoder::setZoom(int what)
+RESULT eTSMPEGDecoder::setTrickmode()
 {
-	return -1;
+	if (m_state == stateTrickmode)
+		return 0;
+
+	m_state = stateTrickmode;
+	m_changed |= changeState;
+	return setState();
 }
 
 RESULT eTSMPEGDecoder::flush()
@@ -1244,13 +1238,6 @@ void eTSMPEGDecoder::demux_event(int event)
 	default:
 		break;
 	}
-}
-
-RESULT eTSMPEGDecoder::setTrickmode(int what)
-{
-	m_is_trickmode = what;
-	setState();
-	return 0;
 }
 
 RESULT eTSMPEGDecoder::getPTS(int what, pts_t &pts)

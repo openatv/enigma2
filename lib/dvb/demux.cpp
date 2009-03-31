@@ -5,6 +5,13 @@
 #include <unistd.h>
 #include <signal.h>
 
+// #define FUZZING 1
+
+#if FUZZING
+		/* change every 1:FUZZING_PROPABILITY byte */
+#define FUZZING_PROPABILITY 100
+#endif
+
 #if HAVE_DVB_API_VERSION < 3
 #include <ost/dmx.h>
 
@@ -178,6 +185,14 @@ void eDVBSectionReader::data(int)
 	__u8 data[4096]; // max. section size
 	int r;
 	r = ::read(fd, data, 4096);
+#if FUZZING
+	int j;
+	for (j = 0; j < r; ++j)
+	{
+		if (!(rand()%FUZZING_PROPABILITY))
+			data[j] ^= rand();
+	}
+#endif	
 	if(r < 0)
 	{
 		eWarning("ERROR reading section - %m\n");
@@ -243,11 +258,13 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 #else
 	sct.flags   = DMX_IMMEDIATE_START;
 #endif
+#if !FUZZING
 	if (mask.flags & eDVBSectionFilterMask::rfCRC)
 	{
 		sct.flags |= DMX_CHECK_CRC;
 		checkcrc = 1;
 	} else
+#endif
 		checkcrc = 0;
 	
 	memcpy(sct.filter.filter, mask.data, DMX_FILTER_SIZE);
@@ -402,9 +419,10 @@ class eDVBRecordFileThread: public eFilePushThread
 {
 public:
 	eDVBRecordFileThread();
-	void setTimingPID(int pid);
+	void setTimingPID(int pid, int type);
 	
-	void saveTimingInformation(const std::string &filename);
+	void startSaveMetaInformation(const std::string &filename);
+	void stopSaveMetaInformation();
 	int getLastPTS(pts_t &pts);
 protected:
 	int filterRecordData(const unsigned char *data, int len, size_t &current_span_remaining);
@@ -422,14 +440,19 @@ eDVBRecordFileThread::eDVBRecordFileThread()
 	m_current_offset = 0;
 }
 
-void eDVBRecordFileThread::setTimingPID(int pid)
+void eDVBRecordFileThread::setTimingPID(int pid, int type)
 {
-	m_ts_parser.setPid(pid);
+	m_ts_parser.setPid(pid, type);
 }
 
-void eDVBRecordFileThread::saveTimingInformation(const std::string &filename)
+void eDVBRecordFileThread::startSaveMetaInformation(const std::string &filename)
 {
-	m_stream_info.save(filename.c_str());
+	m_stream_info.startSave(filename.c_str());
+}
+
+void eDVBRecordFileThread::stopSaveMetaInformation()
+{
+	m_stream_info.stopSave();
 }
 
 int eDVBRecordFileThread::getLastPTS(pts_t &pts)
@@ -520,6 +543,9 @@ RESULT eDVBTSRecorder::start()
 	::ioctl(m_source_fd, DMX_START);
 	
 #endif
+
+	if (m_target_filename != "")
+		m_thread->startSaveMetaInformation(m_target_filename);
 	
 	m_thread->start(m_source_fd, m_target_fd);
 	m_running = 1;
@@ -553,11 +579,11 @@ RESULT eDVBTSRecorder::removePID(int pid)
 	return 0;
 }
 
-RESULT eDVBTSRecorder::setTimingPID(int pid)
+RESULT eDVBTSRecorder::setTimingPID(int pid, int type)
 {
 	if (m_running)
 		return -1;
-	m_thread->setTimingPID(pid);
+	m_thread->setTimingPID(pid, type);
 	return 0;
 }
 
@@ -590,8 +616,7 @@ RESULT eDVBTSRecorder::stop()
 	close(m_source_fd);
 	m_source_fd = -1;
 	
-	if (m_target_filename != "")
-		m_thread->saveTimingInformation(m_target_filename + ".ap");
+	m_thread->stopSaveMetaInformation();
 	
 	return 0;
 }

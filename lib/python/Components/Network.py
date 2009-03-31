@@ -206,7 +206,7 @@ class Network:
 					ifaces[currif]["gateway"] = map(int, split[1].split('.'))
 					if self.ifaces[currif].has_key("gateway"):
 						if self.ifaces[currif]["gateway"] != ifaces[currif]["gateway"] and ifaces[currif]["dhcp"] == False:
-							self.ifaces[currif]["gateway"] = map(int, split[1].split('.'))					
+							self.ifaces[currif]["gateway"] = map(int, split[1].split('.'))
 				if (split[0] == "pre-up"):
 					if self.ifaces[currif].has_key("preup"):
 						self.ifaces[currif]["preup"] = i
