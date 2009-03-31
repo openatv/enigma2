@@ -30,7 +30,7 @@ public:
 	virtual RESULT addPID(int pid) = 0;
 	virtual RESULT removePID(int pid) = 0;
 	
-	virtual RESULT setTimingPID(int pid) = 0;
+	virtual RESULT setTimingPID(int pid, int type) = 0;
 	
 	virtual RESULT setTargetFD(int fd) = 0;
 		/* for saving additional meta data. */

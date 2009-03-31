@@ -32,7 +32,10 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	closeFile();
 	
 	if (!nostreaminfo)
-		m_streaminfo.load((std::string(filename) + ".ap").c_str());
+	{
+		eDebug("loading streaminfo for %s", filename);
+		m_streaminfo.load(filename);
+	}
 	
 	if (!m_streaminfo.empty())
 		m_use_streaminfo = 1;
@@ -209,11 +212,14 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 	}
 }
 
-int eDVBTSTools::getOffset(off_t &offset, pts_t &pts)
+int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 {
 	if (m_use_streaminfo)
 	{
-		offset = m_streaminfo.getAccessPoint(pts);
+		if (pts >= m_pts_end && marg > 0 && m_end_valid)
+			offset = m_offset_end;
+		else
+			offset = m_streaminfo.getAccessPoint(pts, marg);
 		return 0;
 	} else
 	{
@@ -558,4 +564,69 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 	}
 	
 	return -1;
+}
+
+int eDVBTSTools::findIFrame(off_t &_offset, size_t &len, int direction)
+{
+	off_t offset = _offset;
+//	eDebug("trying to find iFrame at %llx", offset);
+
+	if (!m_use_streaminfo)
+	{
+		eDebug("can't get next iframe without streaminfo");
+		return -1;
+	}
+
+				/* let's find the iframe before the given offset */
+	unsigned long long data;
+	while (1)
+	{
+		if (m_streaminfo.getStructureEntry(offset, data, (direction == 0) ? 1 : 0))
+		{
+			eDebug("getting structure info for origin offset failed.");
+			return -1;
+		}
+		if (offset == 0x7fffffffffffffffLL) /* eof */
+		{
+			eDebug("reached eof");
+			return -1;
+		}
+			/* data is usually the start code in the lower 8 bit, and the next byte <<8. we extract the picture type from there */
+			/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
+		int is_start = (data & 0xE0FF) == 0x0009; /* H.264 NAL unit access delimiter with I-frame*/
+		is_start |= (data & 0x3800FF) == 0x080000; /* MPEG2 picture start code with I-frame */
+//		eDebug("%08llx@%llx -> %d", data, offset, is_start);
+		if (is_start)
+			break;
+
+		if (direction == -1)
+			--offset; /* move to previous entry */
+		else if (direction == +1)
+			direction = 0;
+	}
+			/* let's find the next frame after the given offset */
+	off_t start = offset;
+
+	do {
+		if (m_streaminfo.getStructureEntry(offset, data, 1))
+		{
+			eDebug("get next failed");
+			return -1;
+		}
+		if (offset == 0x7fffffffffffffffLL) /* eof */
+		{
+			eDebug("reached eof (while looking for end of iframe)");
+			return -1;
+		}
+//		eDebug("%08llx@%llx", data, offset);
+	} while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00)); /* next frame */
+
+			/* align to TS pkt start */
+	start = start - (start % 188);
+	offset = offset - (offset % 188);
+
+	len = offset - start;
+	_offset = start;
+//	eDebug("result: offset=%llx, len: %ld", offset, (int)len);
+	return 0;
 }

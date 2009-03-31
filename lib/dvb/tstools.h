@@ -40,7 +40,7 @@ public:
 	int fixupPTS(const off_t &offset, pts_t &pts);
 	
 		/* get (approximate) offset corresponding to PTS */
-	int getOffset(off_t &offset, pts_t &pts);
+	int getOffset(off_t &offset, pts_t &pts, int marg=0);
 	
 	int getNextAccessPoint(pts_t &ts, const pts_t &start, int direction);
 	
@@ -55,6 +55,8 @@ public:
 	int takeSample(off_t off, pts_t &p);
 	
 	int findPMT(int &pmt_pid, int &service_id);
+	
+	int findIFrame(off_t &offset, size_t &len, int direction);
 private:
 	int m_pid;
 	int m_maxrange;

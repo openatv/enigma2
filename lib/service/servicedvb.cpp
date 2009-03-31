@@ -506,6 +506,7 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 
 	res.push_back(m_ref.path + ".meta");
 	res.push_back(m_ref.path + ".ap");
+	res.push_back(m_ref.path + ".sc");
 	res.push_back(m_ref.path + ".cuts");
 	std::string tmp = m_ref.path;
 	tmp.erase(m_ref.path.length()-3);
@@ -1006,7 +1007,10 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 		break;
 	case eDVBServicePMTHandler::eventEOF:
 		if ((!m_is_paused) && (m_skipmode >= 0))
+		{
+			eDebug("timeshift EOF, so let's go live");
 			switchToLive();
+		}
 		break;
 	}
 }
@@ -1129,6 +1133,9 @@ RESULT eDVBServicePlay::pause(ePtr<iPauseableService> &ptr)
 
 RESULT eDVBServicePlay::setSlowMotion(int ratio)
 {
+	assert(ratio); /* The API changed: instead of calling setSlowMotion(0), call play! */
+	eDebug("eDVBServicePlay::setSlowMotion(%d)", ratio);
+	setFastForward_internal(0);
 	if (m_decoder)
 		return m_decoder->setSlowMotion(ratio);
 	else
@@ -1136,6 +1143,13 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 }
 
 RESULT eDVBServicePlay::setFastForward(int ratio)
+{
+	eDebug("eDVBServicePlay::setFastForward(%d)", ratio);
+	assert(ratio);
+	return setFastForward_internal(ratio);
+}
+
+RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 {
 	int skipmode, ffratio;
 	
@@ -1168,8 +1182,13 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
 	
 	if (!m_decoder)
 		return -1;
-
-	return m_decoder->setFastForward(ffratio);
+		
+	if (ffratio == 0)
+		; /* return m_decoder->play(); is done in caller*/
+	else if (ffratio != 1)
+		return m_decoder->setFastForward(ffratio);
+	else
+		return m_decoder->setTrickmode();
 }
 
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
@@ -1197,20 +1216,24 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 
 RESULT eDVBServicePlay::pause()
 {
-	if (!m_is_paused && m_decoder)
+	eDebug("eDVBServicePlay::pause");
+	setFastForward_internal(0);
+	if (m_decoder)
 	{
 		m_is_paused = 1;
-		return m_decoder->freeze(0);
+		return m_decoder->pause();
 	} else
 		return -1;
 }
 
 RESULT eDVBServicePlay::unpause()
 {
-	if (m_is_paused && m_decoder)
+	eDebug("eDVBServicePlay::unpause");
+	setFastForward_internal(0);
+	if (m_decoder)
 	{
 		m_is_paused = 0;
-		return m_decoder->unfreeze();
+		return m_decoder->play();
 	} else
 		return -1;
 }
@@ -1292,9 +1315,8 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 
 RESULT eDVBServicePlay::setTrickmode(int trick)
 {
-	if (m_decoder)
-		m_decoder->setTrickmode(trick);
-	return 0;
+		/* currently unimplemented */
+	return -1;
 }
 
 RESULT eDVBServicePlay::isCurrentlySeekable()
@@ -1580,7 +1602,7 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 {
 	int ret = selectAudioStream(i);
 
-	if (m_decoder->start())
+	if (m_decoder->play())
 		return -5;
 
 	return ret;
@@ -2112,6 +2134,8 @@ void eDVBServicePlay::switchToLive()
 	if (!m_timeshift_active)
 		return;
 	
+	eDebug("SwitchToLive");
+	
 	m_cue = 0;
 	m_decoder = 0;
 	m_decode_demux = 0;
@@ -2153,7 +2177,7 @@ void eDVBServicePlay::switchToTimeshift()
 	r.path = m_timeshift_file;
 
 	m_cue = new eCueSheet();
-	m_service_handler_timeshift.tune(r, 1, m_cue); /* use the decoder demux for everything */
+	m_service_handler_timeshift.tune(r, 1, m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
@@ -2292,13 +2316,12 @@ void eDVBServicePlay::updateDecoder()
 
 		m_teletext_parser->start(program.textPid);
 
-		if (!m_is_primary)
-			m_decoder->setTrickmode(1);
-
-		if (m_is_paused)
-			m_decoder->preroll();
+/*		if (!m_is_primary)
+			m_decoder->setTrickmode();
+		else */ if (m_is_paused)
+			m_decoder->pause();
 		else
-			m_decoder->start();
+			m_decoder->play();
 
 		if (vpid > 0 && vpid < 0x2000)
 			;
@@ -2320,7 +2343,7 @@ void eDVBServicePlay::updateDecoder()
 			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
 			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
-	}	
+	}
 	m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 }
 

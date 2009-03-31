@@ -974,7 +974,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 	}
 #endif
 
-#if 1 /* not yet */
+#if 0
 	if (!m_iframe_search)
 		return len;
 
@@ -990,9 +990,9 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 		unsigned char *ts = data + ts_offset;
 		int pid = ((ts[1] << 8) | ts[2]) & 0x1FFF;
 
-		if ((d[3] == 0) && (m_pid == pid))  /* picture start */
+		if ((d[3] == 0 || d[3] == 0x09 && d[-1] == 0 && (ts[1] & 0x40)) && (m_pid == pid))  /* picture start */
 		{
-			int picture_type = (d[5] >> 3) & 7;
+			int picture_type = (d[3]==0 ? (d[5] >> 3) & 7 : (d[4] >> 5) + 1);
 			d += 4;
 
 //			eDebug("%d-frame at %d, offset in TS packet: %d, pid=%04x", picture_type, offset, offset % 188, pid);
@@ -1031,16 +1031,25 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 			}
 		} else if ((d[3] & 0xF0) == 0xE0) /* video stream */
 		{
-			if (m_pid != pid)
+				/* verify that this is actually a PES header, not just some ES data */
+			if (ts[1] & 0x40) /* PUSI set */
 			{
-				eDebug("now locked to pid %04x", pid);
-				m_pid = pid;
+				int payload_start = 4;
+				if (ts[3] & 0x20) /* adaptation field present */
+					payload_start += ts[4] + 1; /* skip AF */
+				if (payload_start == (offset%188)) /* the 00 00 01 should be directly at the payload start, otherwise it's not a PES header */
+				{
+					if (m_pid != pid)
+					{
+						eDebug("now locked to pid %04x (%02x %02x %02x %02x)", pid, ts[0], ts[1], ts[2], ts[3]);
+						m_pid = pid;
+					}
+				}
 			}
 //			m_pid = 0x6e;
 			d += 4;
 		} else
 			d += 4; /* ignore */
-
 	}
 
 	if (m_iframe_state == 1)
@@ -1195,7 +1204,7 @@ void eDVBChannel::cueSheetEvent(int event)
 		{
 			off_t offset_in, offset_out;
 			pts_t pts_in = i->first, pts_out = i->second;
-			if (m_tstools.getOffset(offset_in, pts_in) || m_tstools.getOffset(offset_out, pts_out))
+			if (m_tstools.getOffset(offset_in, pts_in, -1) || m_tstools.getOffset(offset_out, pts_out, 1))
 			{
 				eDebug("span translation failed.\n");
 				continue;
@@ -1258,6 +1267,21 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
 
 	current_offset += align(m_skipmode_m, blocksize);
+	
+	if (m_skipmode_m)
+	{
+		eDebug("we are at %llx, and we try to find the iframe here:", current_offset);
+		size_t iframe_len;
+		off_t iframe_start = current_offset;
+		
+		if (m_tstools.findIFrame(iframe_start, iframe_len, (m_skipmode_m < 0) ? -1 : +1))
+			eDebug("failed");
+		else
+		{
+			current_offset = align(iframe_start, blocksize);
+			max = align(iframe_len, blocksize);
+		}
+	}
 
 	while (!m_cue->m_seek_requests.empty())
 	{
@@ -1323,17 +1347,21 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				eDebug("AP relative seeking failed!");
 			} else
 			{
-				eDebug("next ap is %llx\n", pts);
 				pts = nextap;
+				eDebug("next ap is %llx\n", pts);
 			}
 		}
 
 		off_t offset = 0;
-		if (m_tstools.getOffset(offset, pts))
+		if (m_tstools.getOffset(offset, pts, -1))
 		{
 			eDebug("get offset for pts=%lld failed!", pts);
 			continue;
 		}
+		
+		size_t iframe_len;
+			/* try to align to iframe */
+		m_tstools.findIFrame(offset, iframe_len, pts < 0 ? -1 : 1);
 
 		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
 		current_offset = align(offset, blocksize); /* in case tstools return non-aligned offset */
@@ -1410,10 +1438,16 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		m_pvr_thread->sendEvent(eFilePushThread::evtUser);
 	}
 
-	start = current_offset;
-	size = max;
-
-	eDebug("END OF CUESHEET. (%08llx, %d)", start, size);
+	if (m_source_span.empty())
+	{
+		start = current_offset;
+		size = max;
+		eDebug("NO CUESHEET. (%08llx, %d)", start, size);
+	} else
+	{
+		start = current_offset;
+		size = 0;
+	}
 	return;
 }
 

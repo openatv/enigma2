@@ -125,10 +125,12 @@ private:
 		changeVideo = 1, 
 		changeAudio = 2, 
 		changePCR   = 4,
-		changeText  = 8
+		changeText  = 8,
+		changeState = 16,
 	};
 	int m_changed, m_decoder;
-	int m_is_ff, m_is_sm, m_is_trickmode;
+	int m_state;
+	int m_ff_sm_ratio;
 	int setState();
 	ePtr<eConnection> m_demux_event_conn;
 	ePtr<eConnection> m_video_event_conn;
@@ -154,17 +156,33 @@ public:
 	RESULT setSyncPCR(int pcrpid);
 	RESULT setTextPID(int textpid);
 	RESULT setSyncMaster(int who);
-	RESULT start();
-	RESULT preroll();
-	RESULT freeze(int cont);
-	RESULT unfreeze();
-	RESULT setSinglePictureMode(int when);
-	RESULT setPictureSkipMode(int what);
-	RESULT setFastForward(int frames_to_skip);
-	RESULT setSlowMotion(int repeat);
-	RESULT setZoom(int what);
+	
+		/*
+		The following states exist:
+		
+		 - stop: data source closed, no playback
+		 - pause: data source active, decoder paused
+		 - play: data source active, decoder consuming
+		 - decoder fast forward: data source linear, decoder drops frames
+		 - trickmode, highspeed reverse: data source fast forwards / reverses, decoder just displays frames as fast as it can
+		 - slow motion: decoder displays frames multiple times
+		*/
+	enum {
+		stateStop,
+		statePause,
+		statePlay,
+		stateDecoderFastForward,
+		stateTrickmode,
+		stateSlowMotion
+	};
+	RESULT set(); /* just apply settings, keep state */
+	RESULT play(); /* -> play */
+	RESULT pause(); /* -> pause */
+	RESULT setFastForward(int frames_to_skip); /* -> decoder fast forward */
+	RESULT setSlowMotion(int repeat); /* -> slow motion **/
+	RESULT setTrickmode(); /* -> highspeed fast forward */
+
 	RESULT flush();
-	RESULT setTrickmode(int what);
 	RESULT showSinglePic(const char *filename);
 	RESULT setRadioPic(const std::string &filename);
 		/* what 0=auto, 1=video, 2=audio. */
