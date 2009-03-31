@@ -31,7 +31,8 @@ SCOPE_PLAYLIST = 11
 SCOPE_CURRENT_SKIN = 12
 SCOPE_DEFAULTDIR = 13
 SCOPE_DEFAULTPARTITION = 14
-SCOPE_DEFAULTPARTITIONMOUNTDIR = 14
+SCOPE_DEFAULTPARTITIONMOUNTDIR = 15
+SCOPE_METADIR = 16
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -42,7 +43,7 @@ defaultPaths = {
 		SCOPE_FONTS: ("/usr/share/fonts/", PATH_DONTCREATE),
 		SCOPE_CONFIG: ("/etc/enigma2/", PATH_CREATE),
 		SCOPE_PLUGINS: ("/usr/lib/enigma2/python/Plugins/", PATH_CREATE),
-    
+
 		SCOPE_LANGUAGE: ("/usr/share/enigma2/po/", PATH_DONTCREATE),
 
 		SCOPE_SKIN: ("/usr/share/enigma2/", PATH_DONTCREATE),
@@ -56,6 +57,7 @@ defaultPaths = {
 		SCOPE_DEFAULTDIR: ("/usr/share/enigma2/defaults/", PATH_CREATE),
 		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock/6", PATH_DONTCREATE),
 		SCOPE_DEFAULTPARTITIONMOUNTDIR: ("/usr/share/enigma2/dealer", PATH_CREATE),
+		SCOPE_METADIR: ("/usr/share/enigma2/meta", PATH_CREATE),
 	}
 
 FILE_COPY = 0 # copy files from fallback dir to the basedir
