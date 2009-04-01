@@ -26,7 +26,8 @@ EXTENSIONS = {
 		"mpg": "movie",
 		"mpeg": "movie",
 		"mkv": "movie",
-		"mp4": "movie"
+		"mp4": "movie",
+		"mov": "movie"
 	}
 
 def FileEntryComponent(name, absolute = None, isDir = False):

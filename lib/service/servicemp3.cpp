@@ -40,6 +40,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("dat");
 		extensions.push_back("flac");
 		extensions.push_back("mp4");
+		extensions.push_back("mov");
 		extensions.push_back("m4a");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
@@ -223,7 +224,7 @@ eServiceMP3::eServiceMP3(const char *filename): m_filename(filename), m_pump(eAp
 		sourceinfo.containertype = ctAVI;
 		sourceinfo.is_video = TRUE;
 	}
-	else if ( strcasecmp(ext, ".mp4") == 0 )
+	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0)
 	{
 		sourceinfo.containertype = ctMP4;
 		sourceinfo.is_video = TRUE;
