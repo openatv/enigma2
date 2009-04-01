@@ -3,7 +3,7 @@ from Components.Element import Element
 # this is not a GUI renderer.
 class FrontpanelLed(Element):
 	def changed(self, *args, **kwargs):
-		if self.source.value or 1:
+		if self.source.value:
 			pattern = 0x55555555
 			pattern_4bit = 0x84fc8c04
 			speed = 20
