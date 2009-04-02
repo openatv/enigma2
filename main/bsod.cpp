@@ -92,6 +92,11 @@ void bsodFatal(const char *component)
 			if (end == std::string::npos)
 				break;
 			end = lines.rfind("/", end);
+				/* skip a potential prefix to the path */
+			int path_prefix = lines.find("/image/", start);
+			if (path_prefix != std::string::npos && ((path_prefix + 6) < end))
+				start = path_prefix + 6;
+
 			if (end == std::string::npos)
 				break;
 			if (end - start >= (256 - strlen(INFOFILE)))
