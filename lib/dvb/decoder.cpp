@@ -1290,15 +1290,18 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				unsigned char seq_end[] = { 0x00, 0x00, 0x01, 0xB7 };
 				unsigned char iframe[s.st_size];
 				unsigned char stuffing[8192];
+				int streamtype = VIDEO_STREAMTYPE_MPEG2;
 				memset(stuffing, 0, 8192);
 				read(f, iframe, s.st_size);
 				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
 					eDebug("VIDEO_SELECT_SOURCE MEMORY failed (%m)");
+				if (ioctl(m_video_clip_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
+					eDebug("VIDEO_SET_STREAMTYPE failed(%m)");
 				if (ioctl(m_video_clip_fd, VIDEO_PLAY) < 0)
 					eDebug("VIDEO_PLAY failed (%m)");
-				if (::ioctl(m_video_clip_fd, VIDEO_CONTINUE) < 0)
+				if (ioctl(m_video_clip_fd, VIDEO_CONTINUE) < 0)
 					eDebug("video: VIDEO_CONTINUE: %m");
-				if (::ioctl(m_video_clip_fd, VIDEO_CLEAR_BUFFER) < 0)
+				if (ioctl(m_video_clip_fd, VIDEO_CLEAR_BUFFER) < 0)
 					eDebug("video: VIDEO_CLEAR_BUFFER: %m");
 				while(pos <= (s.st_size-4) && !(seq_end_avail = (!iframe[pos] && !iframe[pos+1] && iframe[pos+2] == 1 && iframe[pos+3] == 0xB7)))
 					++pos;
