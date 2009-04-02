@@ -19,7 +19,7 @@ from datetime import date
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=['/etc/enigma2/', '/etc/network/interfaces', '/etc/wpa_supplicant.conf'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=['/etc/enigma2/', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -100,12 +100,12 @@ class BackupSelection(Screen):
 	skin = """
 	<screen position="135,125" size="450,310" title="Select files/folders to backup...">
 		<widget name="checkList" position="10,10" size="430,250" transparent="1" scrollbarMode="showOnDemand" />
-		<ePixmap position="0,265" zPosition="1" size="135,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,265" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />	
-		<ePixmap position="135,265" zPosition="1" size="135,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<widget name="key_green" position="135,265" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<ePixmap position="270,265" zPosition="1" size="135,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<widget name="key_yellow" position="270,265" zPosition="2" size="135,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="0,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<widget name="key_red" position="0,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="140,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<widget name="key_green" position="140,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="280,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<widget name="key_yellow" position="280,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -187,11 +187,13 @@ class BackupSelection(Screen):
 class RestoreMenu(Screen):
 	skin = """
 		<screen position="135,144" size="450,300" title="Restore backups..." >
-		<widget name="filelist" position="10,10" size="430,240" scrollbarMode="showOnDemand" />
-		<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />		
-		<widget name="canceltext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
-		<widget name="restore" position="230,255" size="100,40" pixmap="~/yellow.png" transparent="1" alphatest="on" />
-		<widget name="restoretext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
+		<widget name="filelist" position="10,10" size="430,230" scrollbarMode="showOnDemand" />
+		<ePixmap position="0,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+		<widget name="canceltext" position="0,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="140,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+		<widget name="restoretext" position="140,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<ePixmap position="280,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
+		<widget name="deletetext" position="280,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session, plugin_path):
@@ -200,8 +202,7 @@ class RestoreMenu(Screen):
 		
 		self["canceltext"] = Label(_("Cancel"))
 		self["restoretext"] = Label(_("Restore"))
-		self["restore"] = Pixmap()
-		self["cancel"] = Pixmap()
+		self["deletetext"] = Label(_("Delete"))
 
 		self.sel = []
 		self.val = []
@@ -219,7 +220,8 @@ class RestoreMenu(Screen):
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
 		{
 			"red": self.keyCancel,
-			"yellow": self.KeyOk,
+			"green": self.KeyOk,
+			"yellow": self.deleteFile,
 		})
 		self.flist = []
 		self["filelist"] = MenuList(self.flist)
@@ -247,7 +249,7 @@ class RestoreMenu(Screen):
 	def KeyOk(self):
 		if (self.exe == False) and (self.entry == True):
 			self.sel = self["filelist"].getCurrent()
-			self.val = self.path + self.sel
+			self.val = self.path + "/" + self.sel
 			self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore\nfollowing backup:\n" + self.sel + "\nSystem will restart after the restore!"))
 
 	def keyCancel(self):
@@ -258,8 +260,20 @@ class RestoreMenu(Screen):
 			self.exe = True
 			self.session.open(Console, title = _("Restore running"), cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
 
-	def Exit(self):
-		self.close()
+	def deleteFile(self):
+		if (self.exe == False) and (self.entry == True):
+			self.sel = self["filelist"].getCurrent()
+			self.val = self.path + "/" + self.sel
+			self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nfollowing backup:\n" + self.sel ))
+
+	def startDelete(self, ret = False):
+		if (ret == True):
+			self.exe = True
+			print "removing:",self.val
+			if (path.exists(self.val) == True):
+				remove(self.val)
+			self.exe = False
+			self.fill_list()
 
 class RestoreScreen(Screen, ConfigListScreen):
 	skin = """

@@ -1,5 +1,6 @@
+# -*- coding: iso-8859-1 -*-
 import xml.sax
-from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
+from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, SCOPE_METADIR, copyfile, copytree
 from Components.NimManager import nimmanager
 from Components.Ipkg import IpkgComponent
 from Components.config import config, configfile
@@ -14,7 +15,7 @@ class InfoHandlerParseError(Exception):
 		return repr(self.value)
 
 class InfoHandler(xml.sax.ContentHandler):
-	def __init__(self, prerequisiteMet, directory):
+	def __init__(self, prerequisiteMet, directory, language = None):
 		self.attributes = {}
 		self.directory = directory
 		self.list = []
@@ -23,18 +24,21 @@ class InfoHandler(xml.sax.ContentHandler):
 		self.elements = []
 		self.validFileTypes = ["skin", "config", "services", "favourites", "package"]
 		self.prerequisitesMet = prerequisiteMet
+		self.data = ""
+		self.languagedata = ""
+		self.language = language
 		
 	def printError(self, error):
 		print "Error in defaults xml files:", error
 		raise InfoHandlerParseError, error
-    
+
 	def startElement(self, name, attrs):
 		#print name, ":", attrs.items()
 		self.elements.append(name)
-		if name in ("hardware", "bcastsystem", "satellite", "tag"):
+		if name in ("hardware", "bcastsystem", "satellite", "tag", "flag"):
 			if not attrs.has_key("type"):
 					self.printError(str(name) + " tag with no type attribute")
-			if self.elements[-3] == "default":
+			if self.elements[-3] in ("default", "package"):
 				prerequisites = self.globalprerequisites
 			else:
 				prerequisites = self.prerequisites
@@ -45,6 +49,8 @@ class InfoHandler(xml.sax.ContentHandler):
 			if attrs.has_key("type"):
 				if attrs["type"] == "directories":
 					self.attributes["filestype"] = "directories"
+				elif attrs["type"] == "package":
+					self.attributes["filestype"] = "package"
 				# TODO add a compressed archive type
 		if name == "file":
 			self.prerequisites = {}
@@ -62,6 +68,21 @@ class InfoHandler(xml.sax.ContentHandler):
 					else:
 						self.filetype = type
 						self.fileattrs = attrs
+
+		if name == "package":
+			if attrs.has_key("details"):
+				self.attributes["details"] = str(attrs["details"])
+			if attrs.has_key("name"):
+				self.attributes["name"] = str(attrs["name"].encode("utf-8"))
+			if attrs.has_key("packagename"):
+				self.attributes["packagename"] = str(attrs["packagename"].encode("utf-8"))
+			if attrs.has_key("shortdescription"):
+				self.attributes["shortdescription"] = str(attrs["shortdescription"].encode("utf-8"))
+
+		if name == "screenshot":
+			if attrs.has_key("src"):
+				self.attributes["screenshot"] = str(attrs["src"])
+
 	def endElement(self, name):
 		#print "end", name
 		#print "self.elements:", self.elements
@@ -78,17 +99,32 @@ class InfoHandler(xml.sax.ContentHandler):
 				else:
 					directory = self.directory
 				self.attributes[self.filetype].append({ "name": str(self.fileattrs["name"]), "directory": directory })
-    
-		if name == "default":
+
+		if name in ( "default", "package" ):
 			self.list.append({"attributes": self.attributes, 'prerequisites': self.globalprerequisites})
 			self.attributes = {}
 			self.globalprerequisites = {}
-    
+
 	def characters(self, data):
 		if self.elements[-1] == "author":
 			self.attributes["author"] = str(data)
 		if self.elements[-1] == "name":
 			self.attributes["name"] = str(data)
+		if self.elements[-1] == "packagename":
+			self.attributes["packagename"] = str(data.encode("utf-8"))
+		if self.elements[-1] == "shortdescription":
+			self.attributes["shortdescription"] = str(data.encode("utf-8"))
+		if self.elements[-1] == "description":
+			self.data += data.strip()
+			self.attributes["description"] = str(self.data.encode("utf-8"))
+		if self.language is not None:
+			if self.elements[-1] == ("name_" + str(self.language)):
+				self.attributes["name"] = str(data.encode("utf-8"))
+			if self.elements[-1] == ("shortdescription_" + str(self.language)):
+				self.attributes["shortdescription"] = str(data.encode("utf-8"))
+			if self.elements[-1] == ("description_" + str(self.language)):
+				self.languagedata += data.strip()
+				self.attributes["description"] = str(self.languagedata.encode("utf-8"))
 		#print "characters", data
 		
 class DreamInfoHandler:
@@ -97,11 +133,13 @@ class DreamInfoHandler:
 	STATUS_ERROR = 2
 	STATUS_INIT = 4
 	
-	def __init__(self, statusCallback, blocking = False, neededTag = None):
+	def __init__(self, statusCallback, blocking = False, neededTag = None, neededFlag = None, language = None):
 		self.hardware_info = HardwareInfo()
 		self.directory = "/"
 		
 		self.neededTag = neededTag
+		self.neededFlag = neededFlag
+		self.language = language
 		
 		# caution: blocking should only be used, if further execution in enigma2 depends on the outcome of
 		# the installer!
@@ -117,7 +155,9 @@ class DreamInfoHandler:
 		self.setStatus(self.STATUS_INIT)
 				
 		self.packageslist = []
-			
+		self.packagesIndexlist = []
+		self.packageDetails = []
+
 	def readInfo(self, directory, file):
 		print "Reading .info file", file
 		handler = InfoHandler(self.prerequisiteMet, directory)
@@ -128,7 +168,29 @@ class DreamInfoHandler:
 		except InfoHandlerParseError:
 			print "file", file, "ignored due to errors in the file"
 		print handler.list
-        
+
+	def readIndex(self, directory, file):
+		print "Reading .xml meta index file", file
+		handler = InfoHandler(self.prerequisiteMet, directory, self.language)
+		try:
+			xml.sax.parse(file, handler)
+			for entry in handler.list:
+				self.packagesIndexlist.append((entry,file))
+		except InfoHandlerParseError:
+			print "file", file, "ignored due to errors in the file"
+		#print handler.list
+
+	def readDetails(self, directory, file):
+		print "Reading .xml meta details file", file
+		handler = InfoHandler(self.prerequisiteMet, directory, self.language)
+		try:
+			xml.sax.parse(file, handler)
+			for entry in handler.list:
+				self.packageDetails.append((entry,file))
+		except InfoHandlerParseError:
+			print "file", file, "ignored due to errors in the file"
+		#print handler.list
+
 	# prerequisites = True: give only packages matching the prerequisites
 	def fillPackagesList(self, prerequisites = True):
 		self.packageslist = []
@@ -147,6 +209,32 @@ class DreamInfoHandler:
 				if not self.prerequisiteMet(package[0]["prerequisites"]):
 					self.packageslist.remove(package)
 		return self.packageslist
+
+	# prerequisites = True: give only packages matching the prerequisites
+	def fillPackagesIndexList(self, prerequisites = True):
+		self.packagesIndexlist = []
+		if self.language is not None:
+			indexfile = 'index_' + self.language + '.xml'
+		else:
+			indexfile = 'index.xml'
+		if not isinstance(self.directory, list):
+			self.directory = [self.directory]
+		self.readIndex(self.directory[0] + "/", self.directory[0] + "/" + indexfile)
+
+		if prerequisites:
+			for package in self.packagesIndexlist[:]:
+				if not self.prerequisiteMet(package[0]["prerequisites"]):
+					self.packagesIndexlist.remove(package)
+		return self.packagesIndexlist
+
+	# prerequisites = True: give only packages matching the prerequisites
+	def fillPackageDetails(self, details = None):
+		self.packageDetails = []
+		detailsfile = details
+		if not isinstance(self.directory, list):
+			self.directory = [self.directory]
+		self.readDetails(self.directory[0] + "/", self.directory[0] + "/" + detailsfile)
+		return self.packageDetails
 			
 	def prerequisiteMet(self, prerequisites):
 		# TODO: we need to implement a hardware detection here...
@@ -155,12 +243,24 @@ class DreamInfoHandler:
 		if self.neededTag is None:
 			if prerequisites.has_key("tag"):
 				return False
+		elif self.neededTag == 'ALL_TAGS':
+				return True
 		else:
 			if prerequisites.has_key("tag"):
 				if not self.neededTag in prerequisites["tag"]:
 					return False
 			else:
 				return False
+
+		if self.neededFlag is None:
+			if prerequisites.has_key("flag"):
+				return False
+		else:
+			if prerequisites.has_key("flag"):
+				if not self.neededFlag in prerequisites["flag"]:
+					return False
+			else:
+				return True # No flag found, assuming all flags valid
 				
 		if prerequisites.has_key("satellite"):
 			for sat in prerequisites["satellite"]:
