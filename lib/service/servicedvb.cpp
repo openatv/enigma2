@@ -2316,13 +2316,6 @@ void eDVBServicePlay::updateDecoder()
 
 		m_teletext_parser->start(program.textPid);
 
-/*		if (!m_is_primary)
-			m_decoder->setTrickmode();
-		else */ if (m_is_paused)
-			m_decoder->pause();
-		else
-			m_decoder->play();
-
 		if (vpid > 0 && vpid < 0x2000)
 			;
 		else
@@ -2331,6 +2324,13 @@ void eDVBServicePlay::updateDecoder()
 			if (!ePythonConfigQuery::getConfigValue("config.misc.radiopic", radio_pic))
 				m_decoder->setRadioPic(radio_pic);
 		}
+
+/*		if (!m_is_primary)
+			m_decoder->setTrickmode();
+		else */ if (m_is_paused)
+			m_decoder->pause();
+		else
+			m_decoder->play();
 
 		m_decoder->setAudioChannel(achannel);
 
