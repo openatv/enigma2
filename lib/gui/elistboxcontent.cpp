@@ -182,7 +182,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	{
 		if (local_style->m_background && cursorValid)
 			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
-		else
+		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
 
@@ -319,7 +319,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 	{
 		if (local_style->m_background && cursorValid)
 			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
-		else
+		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
 
@@ -533,6 +533,8 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 				painter.blit(local_style->m_background, offset, eRect(), 0);
 			return;
 		}
+		else if (local_style->m_transparent_background)
+			return;
 	}
 	painter.clear();
 }
@@ -556,6 +558,8 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 				painter.blit(local_style->m_background, offset, eRect(), 0);
 			return;
 		}
+		else if (local_style->m_transparent_background)
+			return;
 	}
 	painter.clear();
 }
@@ -1002,7 +1006,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		}
 	}
 
-	if (selected && (!local_style || !local_style->m_selection))
+	if (selected && !sel_clip.valid() && (!local_style || !local_style->m_selection))
 		style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 
 error_out:
@@ -1041,7 +1045,7 @@ int eListboxPythonMultiContent::currentCursorSelectable()
 				{
 					bool retval = ret == Py_True;
 					Py_DECREF(ret);
-					return ret;
+					return retval;
 				}
 				eDebug("call m_selectableFunc failed!!! assume not callable");
 			}
