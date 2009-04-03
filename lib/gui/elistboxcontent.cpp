@@ -558,8 +558,6 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 				painter.blit(local_style->m_background, offset, eRect(), 0);
 			return;
 		}
-		else if (local_style->m_transparent_background)
-			return;
 	}
 	painter.clear();
 }
