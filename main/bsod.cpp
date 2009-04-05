@@ -93,7 +93,7 @@ void bsodFatal(const char *component)
 				break;
 			end = lines.rfind("/", end);
 				/* skip a potential prefix to the path */
-			int path_prefix = lines.find("/image/", start);
+			unsigned int path_prefix = lines.find("/image/", start);
 			if (path_prefix != std::string::npos && ((path_prefix + 6) < end))
 				start = path_prefix + 6;
 
