@@ -566,19 +566,24 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 	return -1;
 }
 
-int eDVBTSTools::findIFrame(off_t &_offset, size_t &len, int direction)
+int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int frame_types)
 {
 	off_t offset = _offset;
+	int nr_frames = 0;
 //	eDebug("trying to find iFrame at %llx", offset);
 
 	if (!m_use_streaminfo)
 	{
-		eDebug("can't get next iframe without streaminfo");
+//		eDebug("can't get next iframe without streaminfo");
 		return -1;
 	}
 
 				/* let's find the iframe before the given offset */
 	unsigned long long data;
+	
+	if (direction < 0)
+		offset--;
+
 	while (1)
 	{
 		if (m_streaminfo.getStructureEntry(offset, data, (direction == 0) ? 1 : 0))
@@ -593,9 +598,20 @@ int eDVBTSTools::findIFrame(off_t &_offset, size_t &len, int direction)
 		}
 			/* data is usually the start code in the lower 8 bit, and the next byte <<8. we extract the picture type from there */
 			/* we know that we aren't recording startcode 0x09 for mpeg2, so this is safe */
+			/* TODO: check frame_types */
 		int is_start = (data & 0xE0FF) == 0x0009; /* H.264 NAL unit access delimiter with I-frame*/
 		is_start |= (data & 0x3800FF) == 0x080000; /* MPEG2 picture start code with I-frame */
-//		eDebug("%08llx@%llx -> %d", data, offset, is_start);
+		
+		int is_frame = ((data & 0xFF) == 0x0009) || ((data & 0xFF) == 0x00); /* H.264 UAD or MPEG2 start code */
+		
+		if (is_frame)
+		{
+			if (direction < 0)
+				--nr_frames;
+			else
+				++nr_frames;
+		}
+//		eDebug("%08llx@%llx -> %d, %d", data, offset, is_start, nr_frames);
 		if (is_start)
 			break;
 
@@ -618,15 +634,56 @@ int eDVBTSTools::findIFrame(off_t &_offset, size_t &len, int direction)
 			eDebug("reached eof (while looking for end of iframe)");
 			return -1;
 		}
-//		eDebug("%08llx@%llx", data, offset);
+//		eDebug("%08llx@%llx (next)", data, offset);
 	} while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00)); /* next frame */
 
 			/* align to TS pkt start */
-	start = start - (start % 188);
-	offset = offset - (offset % 188);
+//	start = start - (start % 188);
+//	offset = offset - (offset % 188);
 
 	len = offset - start;
 	_offset = start;
+	direction = nr_frames;
 //	eDebug("result: offset=%llx, len: %ld", offset, (int)len);
+	return 0;
+}
+
+int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int frame_types)
+{
+	int nr_frames = 0;
+//	eDebug("trying to move %d frames at %llx", distance, offset);
+	
+	frame_types = frametypeI; /* TODO: intelligent "allow IP frames when not crossing an I-Frame */
+
+	int direction = distance > 0 ? 0 : -1;
+	distance = abs(distance);
+	
+	off_t new_offset = offset;
+	size_t new_len = len;
+	
+	while (distance > 0)
+	{
+		int dir = direction;
+		if (findFrame(new_offset, new_len, dir, frame_types))
+		{
+//			eDebug("findFrame failed!\n");
+			return -1;
+		}
+		
+		distance -= abs(dir);
+		
+//		eDebug("we moved %d, %d to go frames (now at %llx)", dir, distance, new_offset);
+
+		if (distance >= 0)
+		{
+			offset = new_offset;
+			len = new_len;
+			nr_frames += abs(dir);
+		}
+	}
+
+	distance = (direction < 0) ? -nr_frames : nr_frames;
+//	eDebug("in total, we moved %d frames", nr_frames);
+
 	return 0;
 }
