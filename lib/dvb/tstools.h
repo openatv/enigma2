@@ -56,7 +56,22 @@ public:
 	
 	int findPMT(int &pmt_pid, int &service_id);
 	
-	int findIFrame(off_t &offset, size_t &len, int direction);
+	enum { 
+		frametypeI = 1, 
+		frametypeP = 2, 
+		frametypeB = 4, 
+		frametypeAll = frametypeI | frametypeP | frametypeB
+	};
+	/** findFrame: finds a specific frame at a given position
+	
+	findFrame will look for the specified frame type starting at the given position, moving forward
+	(when direction is >0) or backward (when direction is <0). (direction=0 is a special case and also moves
+	forward, but starts with the last frame.)
+	
+	return values are the new offset, the length of the found frame (both unaligned), and the (signed) 
+	number of frames skipped. */
+	int findFrame(off_t &offset, size_t &len, int &direction, int frame_types = frametypeI);
+	int findNextPicture(off_t &offset, size_t &len, int &distance, int frame_types = frametypeAll);
 private:
 	int m_pid;
 	int m_maxrange;
