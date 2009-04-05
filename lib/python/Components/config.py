@@ -287,6 +287,7 @@ class ConfigSelection(ConfigElement):
 
 		if default is None:
 			default = self.choices.default()
+		self.default = default
 
 		if self.value not in self.choices:
 			self.value = default
