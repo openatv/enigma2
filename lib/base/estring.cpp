@@ -151,7 +151,15 @@ static unsigned long c885916[96]={
 0x00E0, 0x00E1, 0x00E2, 0x0103, 0x00E4, 0x0107, 0x00E6, 0x00E7, 0x00E8, 0x00E9, 0x00EA, 0x00EB, 0x00EC, 0x00ED, 0x00EE, 0x00EF,
 0x0111, 0x0144, 0x00F2, 0x00F3, 0x00F4, 0x0151, 0x00F6, 0x015B, 0x0171, 0x00F9, 0x00FA, 0x00FB, 0x00FC, 0x0119, 0x021B, 0x00FF};
 
-// Two Char Mapping ( many polish services and UPC Direct/HBO services)
+static unsigned long iso6397[96]={
+0x00A0, 0x00A1, 0x00A2, 0x00A3, 0x0000, 0x00A5, 0x0000, 0x00A7, 0x00A4, 0x2018, 0x201C, 0x00AB, 0x2190, 0x2191, 0x2192, 0x2193,
+0x00B0, 0x00B1, 0x00B2, 0x00B3, 0x00D7, 0x00B5, 0x00B6, 0x00B7, 0x00F7, 0x2019, 0x201D, 0x00BB, 0x00BC, 0x00BD, 0x00BE, 0x00BF,
+0x0000, 0xE002, 0xE003, 0xE004, 0xE005, 0xE006, 0xE007, 0xE008, 0xE009, 0xE00C, 0xE00A, 0xE00B, 0x0000, 0xE00D, 0xE00E, 0xE00F,
+0x2014, 0x00B9, 0x00AE, 0x00A9, 0x2122, 0x266A, 0x00AC, 0x00A6, 0x0000, 0x0000, 0x0000, 0x0000, 0x215B, 0x215C, 0x215D, 0x215E,
+0x2126, 0x00C6, 0x00D0, 0x00AA, 0x0126, 0x0000, 0x0132, 0x013F, 0x0141, 0x00D8, 0x0152, 0x00BA, 0x00DE, 0x0166, 0x014A, 0x0149,
+0x0138, 0x00E6, 0x0111, 0x00F0, 0x0127, 0x0131, 0x0133, 0x0140, 0x0142, 0x00F8, 0x0153, 0x00DF, 0x00FE, 0x0167, 0x014B, 0x00AD};
+
+// Two Char Mapping (aka ISO6397) ( many polish services and UPC Direct/HBO services)
 // get from http://mitglied.lycos.de/buran/charsets/videotex-suppl.html
 static inline unsigned int doVideoTexSuppl(int c1, int c2)
 {
@@ -170,6 +178,7 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 		case 0xC2: // acute
 			switch (c2)
 			{
+				case 0x20: return 180;
 				case 0x61: return 225;				case 0x41: return 193;
 				case 0x65: return 233;				case 0x45: return 201;
 				case 0x69: return 237;				case 0x49: return 205;
@@ -211,9 +220,19 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 				case 0x75: return 361;				case 0x55: return 360;
 				default: return 0;
 			}
+		case 0xC5: // macron
+			switch (c2)
+			{
+				case 0x20: return 175;
+				case 0x41: return 256;				case 0x61: return 257;
+				case 0x45: return 274;				case 0x65: return 275;
+				case 0x49: return 298;				case 0x69: return 299;
+				case 0x4f: return 332;				case 0x6f: return 333;
+			}
 		case 0xC6: // breve
 			switch (c2)
 			{
+				case 0x20: return 728;
 				case 0x61: return 259;				case 0x41: return 258;
 				case 0x67: return 287;				case 0x47: return 286;
 				case 0x75: return 365;				case 0x55: return 364;
@@ -222,16 +241,18 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 		case 0xC7: // dot above
 			switch (c2)
 			{
+				case 0x20: return 729;
 				case 0x63: return 267;				case 0x43: return 266;
 				case 0x65: return 279;				case 0x45: return 278;
 				case 0x67: return 289;				case 0x47: return 288;
-				case 0x49: return 304;				case 0x7a: return 380;
-				case 0x5a: return 379;
+				case 0x5a: return 379;				case 0x49: return 304;
+				case 0x7a: return 380;
 				default: return 0;
 			}
 		case 0xC8: // diaeresis
 			switch (c2)
 			{
+				case 0x20: return 168;
 				case 0x61: return 228;				case 0x41: return 196;
 				case 0x65: return 235;				case 0x45: return 203;
 				case 0x69: return 239;				case 0x49: return 207;
@@ -243,6 +264,7 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 		case 0xCA: // ring above
 			switch (c2)
 			{
+				case 0x20: return 730;
 				case 0x61: return 229;				case 0x41: return 197;
 				case 0x75: return 367;				case 0x55: return 366;
 				default: return 0;
@@ -263,6 +285,7 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 		case 0xCD: // double acute accent
 			switch (c2)
 			{
+				case 0x20: return 733;
 				case 0x6f: return 337;				case 0x4f: return 336;
 				case 0x75: return 369;				case 0x55: return 368;
 				default: return 0;
@@ -270,6 +293,7 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 		case 0xCE: // ogonek
 			switch (c2)
 			{
+				case 0x20: return 731;
 				case 0x61: return 261;				case 0x41: return 260;
 				case 0x65: return 281;				case 0x45: return 280;
 				case 0x69: return 303;				case 0x49: return 302;
@@ -279,6 +303,7 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 		case 0xCF: // caron
 			switch (c2)
 			{
+				case 0x20: return 711;
 				case 0x63: return 269;				case 0x43: return 268;
 				case 0x64: return 271;				case 0x44: return 270;
 				case 0x65: return 283;				case 0x45: return 282;
@@ -333,6 +358,8 @@ static inline unsigned int recode(unsigned char d, int cp)
 		return c885915[d-0xA0];
 	case 16:// 8859-16 -> unicode mapping
 		return c885916[d-0xA0];
+	case 64:// iso6397
+		return iso6397[d-0xA0];
 	default:
 		return d;
 	}
@@ -400,15 +427,15 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	bool useTwoCharMapping =
 		tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid);
 
+	if (useTwoCharMapping)
+		table = 64;
+
 	unsigned char res[2048];
 	while (i < len)
 	{
 		unsigned long code=0;
-
-		if ( useTwoCharMapping && i+1 < len &&
-			(code=doVideoTexSuppl(data[i], data[i+1])) )
+		if ( useTwoCharMapping && i+1 < len && (code=doVideoTexSuppl(data[i], data[i+1])) )
 			i+=2;
-
 		if (!code)
 			code=recode(data[i++], table);
 		if (!code)
@@ -604,14 +631,14 @@ int isUTF8(const std::string &string)
 std::string removeDVBChars(const std::string &s)
 {
 	std::string res;
-	
+
 	int len = s.length();
-	
+
 	for(int i = 0; i < len; i++)
 	{
 		unsigned char c1 = s[i];
 		unsigned int c;
-		
+
 			/* UTF8? decode (but only simple) */
 		if((c1 > 0x80) && (i < len-1))
 		{
