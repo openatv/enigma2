@@ -10,7 +10,7 @@ pNavigation::pNavigation()
 	ePtr<iServiceHandler> service_center;
 	eServiceCenter::getInstance(service_center);
 
-	assert(service_center);
+	ASSERT(service_center);
 	m_core = new eNavigation(service_center);
 	
 	m_core->connectEvent(slot(*this, &pNavigation::navEvent), m_nav_event_connection);

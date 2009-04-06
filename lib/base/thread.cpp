@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <unistd.h>
-#include <assert.h>
 #include <lib/base/eerror.h>
 
 void eThread::thread_completed(void *ptr)
@@ -14,7 +13,7 @@ void eThread::thread_completed(void *ptr)
 	if (!p->m_state.value())
 	{
 		p->m_state.up();
-		assert(p->m_state.value() == 1);
+		ASSERT(p->m_state.value() == 1);
 	}
 
 	p->thread_finished();
@@ -43,8 +42,8 @@ int eThread::runAsync(int prio, int policy)
 		return -1;
 	
 	eDebug("after: %d", m_state.value());
-	assert(m_state.value() == 1); /* sync postconditions */
-	assert(!m_alive);
+	ASSERT(m_state.value() == 1); /* sync postconditions */
+	ASSERT(!m_alive);
 	m_state.down();
 	
 	m_alive = 1;
@@ -91,7 +90,7 @@ int eThread::sync(void)
 	int res;
 	m_state.down(); /* this might block */
 	res = m_alive;
-	assert(m_state.value() == 0);
+	ASSERT(m_state.value() == 0);
 	m_state.up();
 	return res; /* 0: thread is guaranteed not to run. 1: state unknown. */
 }
@@ -121,6 +120,6 @@ void eThread::kill(bool sendcancel)
 
 void eThread::hasStarted()
 {
-	assert(!m_state.value());
+	ASSERT(!m_state.value());
 	m_state.up();
 }

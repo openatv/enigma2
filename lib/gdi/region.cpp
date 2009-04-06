@@ -42,7 +42,7 @@ int gRegion::do_coalesce(int prevStart, unsigned int curStart)
 {
 		// Figure out how many rectangles are in the band.
 	unsigned int numRects = curStart - prevStart;
-	assert(numRects == rects.size() - curStart);
+	ASSERT(numRects == rects.size() - curStart);
 	if (!numRects)
 		return curStart;
 	std::vector<eRect>::iterator prevBox = rects.begin() + prevStart;
@@ -84,11 +84,11 @@ void gRegion::appendNonO(std::vector<eRect>::const_iterator r,
 			std::vector<eRect>::const_iterator rEnd, int y1, int y2)
 {
 	int newRects = rEnd - r;
-	assert(y1 < y2);
-	assert(newRects != 0);
+	ASSERT(y1 < y2);
+	ASSERT(newRects != 0);
 	rects.reserve(rects.size() + newRects);
 	do {
-		assert(r->x1 < r->x2);
+		ASSERT(r->x1 < r->x2);
 		rects.push_back(eRect(r->x1, y1, r->x2 - r->x1, y2 - y1));
 		r++;
 	} while (r != rEnd);
@@ -104,8 +104,8 @@ void gRegion::intersectO(
 {
 	int x1, x2;
 
-	assert(y1 < y2);
-	assert(r1 != r1End && r2 != r2End);
+	ASSERT(y1 < y2);
+	ASSERT(r1 != r1End && r2 != r2End);
 
 	do {
 		x1 = max(r1->x1, r2->x1);
@@ -131,8 +131,8 @@ void gRegion::subtractO(
 	int x1;
 	x1 = r1->x1;
 		
-	assert(y1<y2);
-	assert(r1 != r1End && r2 != r2End);
+	ASSERT(y1<y2);
+	ASSERT(r1 != r1End && r2 != r2End);
 	
 	do {
 		if (r2->x2 <= x1)
@@ -146,7 +146,7 @@ void gRegion::subtractO(
 			} else
 				++r2;
 		} else if (r2->x1 < r1->x2) {
-			assert(x1<r2->x1);
+			ASSERT(x1<r2->x1);
 			rects.push_back(eRect(x1, y1, r2->x1 - x1, y2 - y1));
 			x1 = r2->x2;
 			if (x1 >= r1->x2) {
@@ -166,7 +166,7 @@ void gRegion::subtractO(
 	} while ((r1 != r1End) && (r2 != r2End));
 	while (r1 != r1End)
 	{
-		assert(x1<r1->x2);
+		ASSERT(x1<r1->x2);
 		rects.push_back(eRect(x1, y1, r1->x2 - x1, y2 - y1));
 		++r1;
 		if (r1 != r1End)
@@ -199,8 +199,8 @@ void gRegion::mergeO(
 {
 	int x1, x2;
 	
-	assert(y1 < y2);
-	assert(r1 != r1End && r2 != r2End);
+	ASSERT(y1 < y2);
+	ASSERT(r1 != r1End && r2 != r2End);
 	
 	if (r1->x1 < r2->x1)
 	{
@@ -244,8 +244,8 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 	
 	int newSize  = reg1.rects.size();
 	int numRects = reg2.rects.size();
-	assert(r1 != r1End);
-	assert(r2 != r2End);
+	ASSERT(r1 != r1End);
+	ASSERT(r2 != r2End);
 	
 	if (numRects > newSize)
 		newSize = numRects;
@@ -256,8 +256,8 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 	int ybot = min(r1->y1, r2->y1);
 	prevBand = 0;
 	do {
-		assert(r1 != r1End);
-		assert(r2 != r2End);
+		ASSERT(r1 != r1End);
+		ASSERT(r2 != r2End);
 		FindBand(r1, r1BandEnd, r1End, r1y1);
 		FindBand(r2, r2BandEnd, r2End, r2y1);
 		if (r1y1 < r2y1) {
@@ -299,7 +299,7 @@ void gRegion::regionOp(const gRegion &reg1, const gRegion &reg2, int opcode, int
 				mergeO(r1, r1BandEnd, r2, r2BandEnd, ytop, ybot, overlap);
 				break;
 			default:
-				assert(0);
+				ASSERT(0);
 				break;
 			}
 			coalesce(prevBand, curBand);

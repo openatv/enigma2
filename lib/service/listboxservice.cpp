@@ -67,7 +67,7 @@ void eListboxServiceContent::setRoot(const eServiceReference &root, bool justSet
 		m_lst=0;
 		return;
 	}
-	assert(m_service_center);
+	ASSERT(m_service_center);
 	
 	if (m_service_center->list(m_root, m_lst))
 		eDebug("no list available!");

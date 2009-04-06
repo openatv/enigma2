@@ -1374,7 +1374,7 @@ RESULT eDVBDB::addChannelToList(const eDVBChannelID &id, iDVBFrontendParameters 
 {
 	channel ch;
 	std::map<eDVBChannelID, channel>::iterator it = m_channels.find(id);
-	assert(feparm);
+	ASSERT(feparm);
 	ch.m_frontendParameters = feparm;
 	if (it != m_channels.end())
 		it->second = ch;

@@ -137,7 +137,7 @@ RESULT eDVBScan::nextChannel()
 RESULT eDVBScan::startFilter()
 {
 	bool startSDT=true;
-	assert(m_demux);
+	ASSERT(m_demux);
 
 			/* only start required filters filter */
 
@@ -163,7 +163,7 @@ RESULT eDVBScan::startFilter()
 		{
 			std::vector<ProgramAssociationSection*>::const_iterator i =
 				m_PAT->getSections().begin();
-			assert(i != m_PAT->getSections().end());
+			ASSERT(i != m_PAT->getSections().end());
 			tsid = (*i)->getTableIdExtension(); // in PAT this is the transport stream id
 			m_pat_tsid = eTransportStreamID(tsid);
 			for (; i != m_PAT->getSections().end(); ++i)

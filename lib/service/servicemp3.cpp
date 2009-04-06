@@ -621,7 +621,7 @@ RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event,
 
 RESULT eServiceMP3::start()
 {
-	assert(m_state == stIdle);
+	ASSERT(m_state == stIdle);
 	
 	m_state = stRunning;
 	if (m_gst_pipeline)
@@ -635,7 +635,7 @@ RESULT eServiceMP3::start()
 
 RESULT eServiceMP3::stop()
 {
-	assert(m_state != stIdle);
+	ASSERT(m_state != stIdle);
 	if (m_state == stStopped)
 		return -1;
 	eDebug("MP3: %s stop\n", m_filename.c_str());
