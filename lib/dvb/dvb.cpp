@@ -1069,7 +1069,7 @@ eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *fronte
 
 	m_pvr_thread = 0;
 
-	m_skipmode_n = m_skipmode_m = 0;
+	m_skipmode_n = m_skipmode_m = m_skipmode_frames = 0;
 
 	if (m_frontend)
 		m_frontend->get().connectStateChange(slot(*this, &eDVBChannel::frontendStateChanged), m_conn_frontendStateChanged);
@@ -1170,6 +1170,8 @@ void eDVBChannel::cueSheetEvent(int event)
 						/* i agree that this might look a bit like black magic. */
 				m_skipmode_n = 512*1024; /* must be 1 iframe at least. */
 				m_skipmode_m = bitrate / 8 / 90000 * m_cue->m_skipmode_ratio / 8;
+				m_skipmode_frames = m_cue->m_skipmode_ratio / 90000;
+				m_skipmode_frames_remainder = 0;
 
 				if (m_cue->m_skipmode_ratio < 0)
 					m_skipmode_m -= m_skipmode_n;
@@ -1179,12 +1181,12 @@ void eDVBChannel::cueSheetEvent(int event)
 				if (abs(m_skipmode_m) < abs(m_skipmode_n))
 				{
 					eWarning("something is wrong with this calculation");
-					m_skipmode_n = m_skipmode_m = 0;
+					m_skipmode_frames = m_skipmode_n = m_skipmode_m = 0;
 				}
 			} else
 			{
 				eDebug("skipmode ratio is 0, normal play");
-				m_skipmode_n = m_skipmode_m = 0;
+				m_skipmode_frames = m_skipmode_n = m_skipmode_m = 0;
 			}
 		}
 		m_pvr_thread->setIFrameSearch(m_skipmode_n != 0);
@@ -1233,6 +1235,23 @@ static inline long long align(long long x, int align)
 	return x;
 }
 
+	/* align toward zero */
+static inline long long align_with_len(long long x, int align, size_t &len)
+{
+	int sign = x < 0;
+
+	if (sign)
+		x = -x;
+
+	x -= x % align;
+	len += x % align;
+
+	if (sign)
+		x = -x;
+
+	return x;
+}
+
 	/* remember, this gets called from another thread. */
 void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size)
 {
@@ -1260,26 +1279,53 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 
 	if (m_skipmode_n)
 	{
-		eDebug("skipmode %d:%d", m_skipmode_m, m_skipmode_n);
+		eDebug("skipmode %d:%d (x%d)", m_skipmode_m, m_skipmode_n, m_skipmode_frames);
 		max = align(m_skipmode_n, blocksize);
 	}
 
 	eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
-
-	current_offset += align(m_skipmode_m, blocksize);
 	
+	int frame_skip_success = 0;
+
 	if (m_skipmode_m)
 	{
-		eDebug("we are at %llx, and we try to find the iframe here:", current_offset);
+		int frames_to_skip = m_skipmode_frames + m_skipmode_frames_remainder;
+		eDebug("we are at %llx, and we try to skip %d+%d frames from here", current_offset, m_skipmode_frames, m_skipmode_frames_remainder);
 		size_t iframe_len;
 		off_t iframe_start = current_offset;
-		
-		if (m_tstools.findIFrame(iframe_start, iframe_len, (m_skipmode_m < 0) ? -1 : +1))
-			eDebug("failed");
-		else
+		int frames_skipped = frames_to_skip;
+		if (!m_tstools.findNextPicture(iframe_start, iframe_len, frames_skipped))
 		{
-			current_offset = align(iframe_start, blocksize);
-			max = align(iframe_len, blocksize);
+			m_skipmode_frames_remainder = frames_to_skip - frames_skipped;
+			eDebug("successfully skipped %d (out of %d, rem now %d) frames.", frames_skipped, frames_to_skip, m_skipmode_frames_remainder);
+			current_offset = align_with_len(iframe_start, blocksize, iframe_len);
+			max = align(iframe_len + 187, blocksize);
+			frame_skip_success = 1;
+		} else
+		{
+			m_skipmode_frames_remainder = 0;
+			eDebug("frame skipping failed, reverting to byte-skipping");
+		}
+	}
+	
+	if (!frame_skip_success)
+	{
+		current_offset += align(m_skipmode_m, blocksize);
+		
+		if (m_skipmode_m)
+		{
+			eDebug("we are at %llx, and we try to find the iframe here:", current_offset);
+			size_t iframe_len;
+			off_t iframe_start = current_offset;
+			
+			int direction = (m_skipmode_m < 0) ? -1 : +1;
+			if (m_tstools.findFrame(iframe_start, iframe_len, direction))
+				eDebug("failed");
+			else
+			{
+				current_offset = align_with_len(iframe_start, blocksize, iframe_len);
+				max = align(iframe_len, blocksize);
+			}
 		}
 	}
 
@@ -1361,9 +1407,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		
 		size_t iframe_len;
 			/* try to align to iframe */
-		m_tstools.findIFrame(offset, iframe_len, pts < 0 ? -1 : 1);
+		int direction = pts < 0 ? -1 : 1;
+		m_tstools.findFrame(offset, iframe_len, direction);
 
-		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
+		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx (skipped additional %d frames due to iframe re-align)", relative, pts, offset, direction);
 		current_offset = align(offset, blocksize); /* in case tstools return non-aligned offset */
 	}
 
