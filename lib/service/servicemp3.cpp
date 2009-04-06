@@ -696,6 +696,9 @@ void eServiceMP3::seekTimeoutCB()
 		// iPausableService
 RESULT eServiceMP3::pause()
 {
+	if (m_state != stRunning)
+		return;
+	
 	if (!m_gst_pipeline)
 		return -1;
 	GstStateChangeReturn res = gst_element_set_state(m_gst_pipeline, GST_STATE_PAUSED);
@@ -710,6 +713,9 @@ RESULT eServiceMP3::pause()
 
 RESULT eServiceMP3::unpause()
 {
+	if (m_state != stRunning)
+		return;
+
 	if (!m_gst_pipeline)
 		return -1;
 
