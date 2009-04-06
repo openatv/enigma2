@@ -302,7 +302,7 @@ int eListbox::event(int event, void *data, void *data2)
 		
 		if (!m_content)
 			return eWidget::event(event, data, data2);
-		assert(m_content);
+		ASSERT(m_content);
 		
 		getStyle(style);
 		

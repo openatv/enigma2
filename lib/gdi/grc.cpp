@@ -609,7 +609,7 @@ void gDC::exec(gOpcode *o)
 	{
 		ePtr<eTextPara> para = new eTextPara(o->parm.renderText->area);
 		int flags = o->parm.renderText->flags;
-		assert(m_current_font);
+		ASSERT(m_current_font);
 		para->setFont(m_current_font);
 		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0);
 		if (o->parm.renderText->text)

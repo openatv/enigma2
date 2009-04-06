@@ -1828,7 +1828,7 @@ void eCueSheet::clear()
 
 void eCueSheet::addSourceSpan(const pts_t &begin, const pts_t &end)
 {
-	assert(begin < end);
+	ASSERT(begin < end);
 	m_lock.WrLock();
 	m_spans.push_back(std::pair<pts_t, pts_t>(begin, end));
 	m_lock.Unlock();

@@ -175,8 +175,8 @@ RESULT eServiceXine::start()
 	if (m_state == stError)
 		return -1;
 
-	assert(m_state == stIdle);
-	assert(stream);
+	ASSERT(m_state == stIdle);
+	ASSERT(stream);
 	
 	if (!xine_open(stream, m_filename.c_str()))
 	{
@@ -201,8 +201,8 @@ RESULT eServiceXine::stop()
 	if (m_state == stError)
 		return -1;
 
-	assert(m_state != stIdle);
-	assert(stream);
+	ASSERT(m_state != stIdle);
+	ASSERT(stream);
 	if (m_state == stStopped)
 		return -1;
 	printf("Xine: %s stop\n", m_filename.c_str());
@@ -259,7 +259,7 @@ RESULT eServiceXine::getLength(pts_t &pts)
 	pts = -1;
 	if (m_state == stError)
 		return 1;
-	assert(stream);
+	ASSERT(stream);
 	
 	int pos_stream, pos_time, length_time;
 	
@@ -293,7 +293,7 @@ RESULT eServiceXine::getPlayPosition(pts_t &pts)
 	pts = -1;
 	if (m_state == stError)
 		return 1;
-	assert(stream);
+	ASSERT(stream);
 	
 	int pos_stream, pos_time, length_time;
 	

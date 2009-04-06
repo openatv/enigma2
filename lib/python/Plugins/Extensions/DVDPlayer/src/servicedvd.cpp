@@ -302,7 +302,7 @@ RESULT eServiceDVD::connectEvent(const Slot2<void,iPlayableService*,int> &event,
 
 RESULT eServiceDVD::start()
 {
-	assert(m_state == stIdle);
+	ASSERT(m_state == stIdle);
 	m_state = stRunning;
 	eDebug("eServiceDVD starting");
 // 	m_event(this, evStart);
@@ -311,7 +311,7 @@ RESULT eServiceDVD::start()
 
 RESULT eServiceDVD::stop()
 {
-	assert(m_state != stIdle);
+	ASSERT(m_state != stIdle);
 	if (m_state == stStopped)
 		return -1;
 	eDebug("DVD: stop %s", m_filename.c_str());

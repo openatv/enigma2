@@ -88,7 +88,7 @@ void eWidget::invalidate(const gRegion &region)
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		assert(root);
+		ASSERT(root);
 		if (root->m_layer != -1)
 			target_layer = root->m_layer;
 		abspos += root->position();
@@ -122,7 +122,7 @@ void eWidget::show()
 					probably somebody already erased the root, but tries some
 					operations on a child window. 
 									ignore them for now. */
-			/* assert(root); */
+			/* ASSERT(root); */
 			return;
 		}
 		if (root->m_layer != -1)
@@ -162,7 +162,7 @@ void eWidget::hide()
 			return;
 		abspos += root->position();
 	}
-	assert(root->m_desktop);
+	ASSERT(root->m_desktop);
 
 	gRegion abs = m_visible_with_childs;
 	abs.moveBy(abspos);
@@ -218,7 +218,7 @@ ePoint eWidget::getAbsolutePosition()
 	while (root && !root->m_desktop)
 	{
 		root = root->m_parent;
-		assert(root);
+		ASSERT(root);
 		abspos += root->position();
 	}
 
@@ -303,7 +303,7 @@ void eWidget::recalcClipRegionsWhenVisible()
 			break;
 		}
 		t = t->m_parent;
-		assert(t);
+		ASSERT(t);
 	} while(1);
 }
 

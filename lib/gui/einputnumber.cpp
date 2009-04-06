@@ -105,7 +105,7 @@ int eInputContentNumber::haveKey(int code, int overwrite)
 		
 		m_cursor++;
 		
-		assert(m_cursor <= m_len);
+		ASSERT(m_cursor <= m_len);
  
 		if (m_input)
 			m_input->invalidate();

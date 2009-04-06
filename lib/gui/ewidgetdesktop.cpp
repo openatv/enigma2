@@ -7,7 +7,7 @@ extern void dumpRegion(const gRegion &region);
 
 void eWidgetDesktop::addRootWidget(eWidget *root)
 {
-	assert(!root->m_desktop);
+	ASSERT(!root->m_desktop);
 	
 	int invert_sense = 0;
 		/* buffered mode paints back-to-front, while immediate mode is front-to-back. */
@@ -374,7 +374,7 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 	ePtr<gPixmap> target_pixmap;
 	m_screen.m_dc->getPixmap(target_pixmap);
 	
-	assert(target_pixmap);
+	ASSERT(target_pixmap);
 	
 	if (target_pixmap->surface && target_pixmap->surface->bpp > 8)
 		return;
@@ -462,7 +462,7 @@ void eWidgetDesktop::redrawComposition(int notified)
 	if (m_comp_mode != cmBuffered)
 		return;
 	
-	assert(m_screen.m_dc);
+	ASSERT(m_screen.m_dc);
 	
 	gPainter p(m_screen.m_dc);
 	p.resetClip(eRect(ePoint(0, 0), m_screen.m_screen_size));

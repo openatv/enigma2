@@ -26,7 +26,7 @@ RESULT eNavigation::playService(const eServiceReference &service)
 {
 	stopService();
 	
-	assert(m_servicehandler);
+	ASSERT(m_servicehandler);
 	RESULT res = m_servicehandler->play(service, m_runningService);
 	if (m_runningService)
 	{
@@ -74,7 +74,7 @@ RESULT eNavigation::stopService(void)
 
 RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate)
 {
-	assert(m_servicehandler);
+	ASSERT(m_servicehandler);
 	RESULT res = m_servicehandler->record(ref, service);
 	eDebug("record: %d", res);
 	if (res)
@@ -148,7 +148,7 @@ RESULT eNavigation::pause(int dop)
 
 eNavigation::eNavigation(iServiceHandler *serviceHandler)
 {
-	assert(serviceHandler);
+	ASSERT(serviceHandler);
 	m_servicehandler = serviceHandler;
 }
 
