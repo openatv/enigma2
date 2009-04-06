@@ -291,7 +291,7 @@ private:
 	
 	void cueSheetEvent(int event);
 	ePtr<eConnection> m_conn_cueSheetEvent;
-	int m_skipmode_m, m_skipmode_n;
+	int m_skipmode_m, m_skipmode_n, m_skipmode_frames, m_skipmode_frames_remainder;
 	
 	std::list<std::pair<off_t, off_t> > m_source_span;
 	void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size);
