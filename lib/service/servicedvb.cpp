@@ -1184,7 +1184,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 		return -1;
 		
 	if (ffratio == 0)
-		return 0; /* return m_decoder->play(); is done in caller*/
+		; /* return m_decoder->play(); is done in caller*/
 	else if (ffratio != 1)
 		return m_decoder->setFastForward(ffratio);
 	else
@@ -1684,8 +1684,6 @@ int eDVBServicePlay::selectAudioStream(int i)
 		eDebug("set audio pid failed");
 		return -4;
 	}
-	
-	m_decoder->set();
 
 		/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
 	if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
