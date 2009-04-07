@@ -1602,7 +1602,7 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 {
 	int ret = selectAudioStream(i);
 
-	if (m_decoder->play())
+	if (m_decoder->set())
 		return -5;
 
 	return ret;
