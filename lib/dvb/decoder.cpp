@@ -1170,9 +1170,15 @@ RESULT eTSMPEGDecoder::set()
 RESULT eTSMPEGDecoder::play()
 {
 	if (m_state == statePlay)
-		return 0;
-	m_state = statePlay;
-	m_changed |= changeState;
+	{
+		if (!m_changed)
+			return 0;
+	}
+	else
+	{
+		m_state = statePlay;
+		m_changed |= changeState;
+	}
 	return setState();
 }
 
