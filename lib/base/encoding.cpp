@@ -28,7 +28,10 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 			if ( line[0] == '#' )
 				continue;
 			int tsid, onid, encoding;
-			if ( sscanf( line, "%s ISO8859-%d", countrycode, &encoding ) == 2 )
+			if ( (sscanf( line, "0x%x 0x%x ISO8859-%d", &tsid, &onid, &encoding ) == 3 )
+					||(sscanf( line, "%d %d ISO8859-%d", &tsid, &onid, &encoding ) == 3 ) )
+				m_TransponderDefaultMapping[(tsid<<16)|onid]=encoding;
+			else if ( sscanf( line, "%s ISO8859-%d", countrycode, &encoding ) == 2 )
 			{
 				m_CountryCodeDefaultMapping[countrycode]=encoding;
 				countrycode[0]=toupper(countrycode[0]);
@@ -36,9 +39,17 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 				countrycode[2]=toupper(countrycode[2]);
 				m_CountryCodeDefaultMapping[countrycode]=encoding;
 			}
-			else if ( (sscanf( line, "0x%x 0x%x ISO8859-%d", &tsid, &onid, &encoding ) == 3 )
-					||(sscanf( line, "%d %d ISO8859-%d", &tsid, &onid, &encoding ) == 3 ) )
-				m_TransponderDefaultMapping[(tsid<<16)|onid]=encoding;
+			else if ( (sscanf( line, "0x%x 0x%x ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 )
+					||(sscanf( line, "%d %d ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 ) )
+				m_TransponderDefaultMapping[(tsid<<16)|onid]=64;
+			else if ( sscanf( line, "%s ISO%d", countrycode, &encoding ) == 2 && encoding == 6397 )
+			{
+				m_CountryCodeDefaultMapping[countrycode]=64;
+				countrycode[0]=toupper(countrycode[0]);
+				countrycode[1]=toupper(countrycode[1]);
+				countrycode[2]=toupper(countrycode[2]);
+				m_CountryCodeDefaultMapping[countrycode]=64;
+			}
 			else if ( (sscanf( line, "0x%x 0x%x", &tsid, &onid ) == 2 )
 					||(sscanf( line, "%d %d", &tsid, &onid ) == 2 ) )
 				m_TransponderUseTwoCharMapping.insert((tsid<<16)|onid);
