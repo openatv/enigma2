@@ -157,6 +157,8 @@ class VirtualKeyBoard(Screen):
 			}, -2)
 		
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
+	
+		self.max_key=47+len(self.keys_list[4])
 
 	def buildVirtualKeyBoard(self, selectedKey=0):
 		list = []
@@ -251,7 +253,7 @@ class VirtualKeyBoard(Screen):
 		elif self.selectedKey == 35:
 			self.selectedKey = 47
 		elif self.selectedKey == 47:
-			self.selectedKey = 59
+			self.selectedKey = self.max_key
 		
 		self.showActiveKey()
 
@@ -266,7 +268,7 @@ class VirtualKeyBoard(Screen):
 			self.selectedKey = 24
 		elif self.selectedKey == 48:
 			self.selectedKey = 36
-		elif self.selectedKey == 60:
+		elif self.selectedKey > self.max_key:
 			self.selectedKey = 48
 		
 		self.showActiveKey()
@@ -274,16 +276,20 @@ class VirtualKeyBoard(Screen):
 	def up(self):
 		self.selectedKey -= 12
 		
-		if self.selectedKey < 0:
-			self.selectedKey += 60
+		if (self.selectedKey < 0) and (self.selectedKey > (self.max_key-60)):
+			self.selectedKey += 48
+		elif self.selectedKey < 0:
+			self.selectedKey += 60	
 		
 		self.showActiveKey()
 
 	def down(self):
 		self.selectedKey += 12
 		
-		if self.selectedKey > 59:
+		if (self.selectedKey > self.max_key) and (self.selectedKey > 59):
 			self.selectedKey -= 60
+		elif self.selectedKey > self.max_key:
+			self.selectedKey -= 48
 		
 		self.showActiveKey()
 
