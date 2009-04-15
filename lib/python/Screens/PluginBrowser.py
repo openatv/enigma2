@@ -202,7 +202,7 @@ class PluginDownloadBrowser(Screen):
 		
 		self.plugins = {}
 		for x in self.pluginlist:
-			split = x[3].split('-')
+			split = x[3].split('-', 1)
 			if len(split) < 2:
 				continue
 			if not self.plugins.has_key(split[0]):
