@@ -14,7 +14,6 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
 from Components.Harddisk import harddiskmanager
-from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
 import servicedvd # load c++ part of dvd player plugin
 
@@ -346,6 +345,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			})
 
 		self.onClose.append(self.__onClose)
+
+		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 		hotplugNotifier.append(self.hotplugCB)
 		
 		if dvd_device:
@@ -627,6 +628,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def __onClose(self):
 		self.restore_infobar_seek_config()
 		self.session.nav.playService(self.oldService)
+		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 		hotplugNotifier.remove(self.hotplugCB)
 
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
