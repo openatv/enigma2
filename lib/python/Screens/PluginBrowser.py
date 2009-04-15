@@ -12,6 +12,7 @@ from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 
+from time import time
 
 class PluginBrowser(Screen):
 	def __init__(self, session):
@@ -65,7 +66,8 @@ class PluginBrowser(Screen):
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
 	REMOVE = 1
-	
+	lastDownloadDate = None
+
 	def __init__(self, session, type):
 		Screen.__init__(self, session)
 		
@@ -130,14 +132,22 @@ class PluginDownloadBrowser(Screen):
 		elif self.type == self.REMOVE:
 			self.setTitle(_("Remove plugins"))
 
+	def startIpkgListInstalled(self):
+		self.container.execute("ipkg list_installed enigma2-plugin-*")
+
 	def startRun(self):
 		self["list"].instance.hide()
 		if self.type == self.DOWNLOAD:
-			self.container.execute("ipkg update")
+			if not PluginDownloadBrowser.lastDownloadDate or (time() - PluginDownloadBrowser.lastDownloadDate) > 3600:
+				# Only update from internet once per hour
+				self.container.execute("ipkg update")
+				PluginDownloadBrowser.lastDownloadDate = time()
+			else:
+				self.startIpkgListInstalled()
 		elif self.type == self.REMOVE:
 			self.run = 1
-			self.container.execute("ipkg list_installed enigma2-plugin-*")
-		
+			self.startIpkgListInstalled()
+
 	def installFinished(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.container.appClosed.remove(self.runFinished)
@@ -149,7 +159,7 @@ class PluginDownloadBrowser(Screen):
 		if self.run == 0:
 			self.run = 1
 			if self.type == self.DOWNLOAD:
-				self.container.execute("ipkg list_installed enigma2-plugin-*")
+				self.startIpkgListInstalled()
 		elif self.run == 1 and self.type == self.DOWNLOAD:
 			self.run = 2
 			self.container.execute("ipkg list enigma2-plugin-*")
