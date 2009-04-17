@@ -1716,10 +1716,15 @@ int eDVBServicePlay::selectAudioStream(int i)
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, apid);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 		}
-		else
+		else if (apidtype == eDVBAudio::aAC3)
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
+		}
+		else
+		{
+			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 		}
 	}
 
