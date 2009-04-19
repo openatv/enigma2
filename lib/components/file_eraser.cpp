@@ -52,7 +52,7 @@ void eBackgroundFileEraser::erase(const char *filename)
 	if (filename)
 	{
 		char buf[255];
-		snprintf(buf, 255, "%s.$$$", filename);
+		snprintf(buf, 255, "%s.del", filename);
 		if (rename(filename, buf)<0)
 			;/*perror("rename file failed !!!");*/
 		else

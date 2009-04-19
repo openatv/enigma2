@@ -448,7 +448,7 @@ int eDVBFrontend::PriorityOrder=0;
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 	:m_simulate(simulate), m_enabled(false), m_type(-1), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
-	, m_timeout(0), m_tuneTimer(0)
+	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
 #endif
@@ -477,7 +477,7 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 
 int eDVBFrontend::openFrontend()
 {
-	if (m_sn)
+	if (m_state != stateClosed)
 		return -1;  // already opened
 
 	m_state=stateIdle;
@@ -1349,7 +1349,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				state = sec_fe->m_state;
 			}
 			// sec_fe is closed... we must reopen it here..
-			if (state == eDVBFrontend::stateClosed)
+			if (state == stateClosed)
 			{
 				regFE = prev;
 				prev->inc_use();
