@@ -2441,11 +2441,16 @@ void eDVBServicePlay::cutlistToCuesheet()
 		
 	std::multiset<cueEntry>::iterator i(m_cue_entries.begin());
 	
+	int have_any_span = 0;
+	
 	while (1)
 	{
 		if (i == m_cue_entries.end())
+		{
+			if (!have_any_span)
+				break;
 			out = length;
-		else {
+		} else {
 			if (i->what == 0) /* in */
 			{
 				in = i++->where;
@@ -2469,7 +2474,10 @@ void eDVBServicePlay::cutlistToCuesheet()
 			out = length;
 		
 		if (in < out)
+		{
+			have_any_span = 1;
 			m_cue->addSourceSpan(in, out);
+		}
 		
 		in = length;
 		
