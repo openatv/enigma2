@@ -383,9 +383,9 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 		case 0x10:
 		{
-//			eDebug("(0x10)text encoded in ISO-8859-%d",n);
 			int n=(data[++i]<<8);
 			n |= (data[++i]);
+//			eDebug("(0x10)text encoded in ISO-8859-%d",n);
 			++i;
 			switch(n)
 			{
@@ -427,8 +427,10 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	bool useTwoCharMapping =
 		tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid);
 
-	if (useTwoCharMapping)
-		table = 64;
+	if (useTwoCharMapping) {
+		if (table == 5)
+			table = 64;
+	}
 
 	unsigned char res[2048];
 	while (i < len)

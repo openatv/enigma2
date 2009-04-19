@@ -1184,7 +1184,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 		return -1;
 		
 	if (ffratio == 0)
-		return 0; /* return m_decoder->play(); is done in caller*/
+		; /* return m_decoder->play(); is done in caller*/
 	else if (ffratio != 1)
 		return m_decoder->setFastForward(ffratio);
 	else
@@ -1602,7 +1602,7 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 {
 	int ret = selectAudioStream(i);
 
-	if (m_decoder->play())
+	if (m_decoder->set())
 		return -5;
 
 	return ret;
@@ -1684,8 +1684,6 @@ int eDVBServicePlay::selectAudioStream(int i)
 		eDebug("set audio pid failed");
 		return -4;
 	}
-	
-	m_decoder->set();
 
 		/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
 	if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
@@ -1718,10 +1716,15 @@ int eDVBServicePlay::selectAudioStream(int i)
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, apid);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 		}
-		else
+		else if (apidtype == eDVBAudio::aAC3)
 		{
 			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
 			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, apid);
+		}
+		else
+		{
+			m_dvb_service->setCacheEntry(eDVBService::cAPID, -1);
+			m_dvb_service->setCacheEntry(eDVBService::cAC3PID, -1);
 		}
 	}
 

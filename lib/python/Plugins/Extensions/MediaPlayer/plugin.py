@@ -21,7 +21,6 @@ from Components.Harddisk import harddiskmanager
 from Components.config import config
 from Tools.Directories import fileExists, pathExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_SKIN_IMAGE
 from settings import MediaPlayerSettings
-from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 import random
 
 class MyPlayList(PlayList):
@@ -137,6 +136,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self["repeat"] = MultiPixmap()
 
 		self.seek_target = None
+
+		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 		hotplugNotifier.append(self.hotplugCB)
 
 		class MoviePlayerActionMap(NumberActionMap):
@@ -244,6 +245,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if config.mediaplayer.saveDirOnExit.getValue():
 			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
 			config.mediaplayer.defaultDir.save()
+		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 		hotplugNotifier.remove(self.hotplugCB)
 		del self["coverArt"].picload
 		self.close()
