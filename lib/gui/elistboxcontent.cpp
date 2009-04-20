@@ -909,6 +909,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				if ((filled < 0) && data) /* if the string is in a negative number, it refers to the 'data' list. */
 					filled = PyInt_AsLong(PyTuple_GetItem(data, -filled));
+					
+							/* don't do anything if percent out of range */
+				if ((filled < 0) || (filled > 100))
+					continue;
 
 				int bwidth = pborderWidth ? PyInt_AsLong(pborderWidth) : 2;
 
