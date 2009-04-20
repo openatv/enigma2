@@ -5,7 +5,7 @@ class TemplatedMultiContent(StringList):
 	def __init__(self, args):
 		StringList.__init__(self, args)
 		from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM, RT_WRAP
-		from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmap, MultiContentEntryPixmapAlphaTest, MultiContentTemplateColor
+		from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmap, MultiContentEntryPixmapAlphaTest, MultiContentTemplateColor, MultiContentEntryProgress
 		l = locals()
 		del l["self"] # cleanup locals a bit
 		del l["args"]
@@ -37,7 +37,7 @@ class TemplatedMultiContent(StringList):
 		if what[0] == self.CHANGED_SPECIFIC and what[1] == "style":
 			self.setTemplate()
 			return
-			
+
 		if self.source:
 			self.content.setList(self.source.list)
 			self.setTemplate()
@@ -50,7 +50,7 @@ class TemplatedMultiContent(StringList):
 			if style == self.active_style:
 				return # style did not change
 
-			# if skin defined "templates", that means that it defines multiple styles in a dict. template should still be a default 
+			# if skin defined "templates", that means that it defines multiple styles in a dict. template should still be a default
 			templates = self.template.get("templates")
 			template = self.template.get("template")
 
