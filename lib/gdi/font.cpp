@@ -511,17 +511,6 @@ int eTextPara::renderString(const char *string, int rflags)
 	if (!current_font)
 		return -1;
 
-	if (!current_face)
-		eFatal("eTextPara::renderString: no current_face");
-	if (!current_face->size)
-		eFatal("eTextPara::renderString: no current_face->size");
-
-	if (cursor.y()==-1)
-	{
-		cursor=ePoint(area.x(), area.y()+(current_face->size->metrics.ascender>>6));
-		left=cursor.x();
-	}
-		
 #ifdef HAVE_FREETYPE2
 	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
  				    current_font->scaler.face_id,
@@ -544,7 +533,18 @@ int eTextPara::renderString(const char *string, int rflags)
 		cache_current_font=&current_font->font.font;
 	}
 #endif
-	
+
+	if (!current_face)
+		eFatal("eTextPara::renderString: no current_face");
+	if (!current_face->size)
+		eFatal("eTextPara::renderString: no current_face->size");
+
+	if (cursor.y()==-1)
+	{
+		cursor=ePoint(area.x(), area.y()+(current_face->size->metrics.ascender>>6));
+		left=cursor.x();
+	}
+
 	std::vector<unsigned long> uc_string, uc_visual;
 	if (string)
 		uc_string.reserve(strlen(string));
