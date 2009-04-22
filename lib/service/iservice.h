@@ -848,7 +848,7 @@ public:
 	virtual RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)=0;
 #endif
 	virtual SWIG_VOID(RESULT) getError(int &SWIG_OUTPUT)=0;
-	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1)=0;
+	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1, const char *name=0, const char *descr=0, const char *tags=0)=0;
 	virtual RESULT prepareStreaming()=0;
 	virtual RESULT start(bool simulate=false)=0;
 	virtual RESULT stop()=0;
