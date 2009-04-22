@@ -1,6 +1,7 @@
 #include <lib/service/servicedvbrecord.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/dvb/metaparser.h>
 #include <fcntl.h>
 
 	/* for cutlist */
@@ -83,7 +84,7 @@ void eDVBServiceRecord::serviceEvent(int event)
 	}
 }
 
-RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id)
+RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags)
 {
 	m_filename = filename;
 	m_streaming = 0;
@@ -133,11 +134,25 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				}
 			}
 			eEPGCache::getInstance()->Unlock();
+			
+		}
+		if (ret)
+			return ret;
+		else
+		{
+			eDVBMetaParser meta;
+			meta.m_time_create = begTime;
+			meta.m_ref = m_ref;
+			meta.m_data_ok = 1;
+			if (name)
+				meta.m_name = name;
+			if (descr)
+				meta.m_description = descr;
+			ret = meta.updateMeta(filename) ? -255 : 0;
 		}
 		return ret;
 	}
-	else
-		return -1;
+	return -1;
 }
 
 RESULT eDVBServiceRecord::prepareStreaming()

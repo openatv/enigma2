@@ -18,7 +18,7 @@ class eDVBServiceRecord: public eDVBServiceBase,
 	DECLARE_REF(eDVBServiceRecord);
 public:
 	RESULT connectEvent(const Slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
-	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id);
+	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags);
 	RESULT prepareStreaming();
 	RESULT start(bool simulate=false);
 	RESULT stop();
@@ -41,7 +41,7 @@ private:
 	eServiceReferenceDVB m_ref;
 	
 	ePtr<iDVBTSRecorder> m_record;
-	ePtr<eConnection>	m_con_record_event;
+	ePtr<eConnection> m_con_record_event;
 	
 	int m_recording, m_tuned, m_error;
 	std::set<int> m_pids_active;
