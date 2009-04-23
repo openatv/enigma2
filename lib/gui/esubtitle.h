@@ -18,8 +18,7 @@ struct ePangoSubtitlePageElement
 
 struct ePangoSubtitlePage
 {
-	pts_t m_pts;
-	int m_have_pts;
+	pts_t show_pts;
 	int m_timeout; /* in milliseconds */
 	std::vector<ePangoSubtitlePageElement> m_elements;
 	void clear() { m_elements.clear(); }

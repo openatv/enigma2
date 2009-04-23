@@ -264,23 +264,23 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def __evUpdatedInfo(self):
 		currPlay = self.session.nav.getCurrentService()
-		currenttitle = currPlay.info().getInfo(iServiceInformation.sCurrentTitle)
-		totaltitles = currPlay.info().getInfo(iServiceInformation.sTotalTitles)
-		sTitle = currPlay.info().getInfoString(iServiceInformation.sTitle)
-		print "[__evUpdatedInfo] title %d of %d (%s)" % (currenttitle, totaltitles, sTitle)
+		sTagTrackNumber = currPlay.info().getInfo(iServiceInformation.sTagTrackNumber)
+		sTagTrackCount = currPlay.info().getInfo(iServiceInformation.sTagTrackCount)
+		sTagTitle = currPlay.info().getInfoString(iServiceInformation.sTagTitle)
+		print "[__evUpdatedInfo] title %d of %d (%s)" % (sTagTrackNumber, sTagTrackCount, sTagTitle)
 		self.readTitleInformation()
 
 	def __evAudioDecodeError(self):
 		currPlay = self.session.nav.getCurrentService()
-		sAudioType = currPlay.info().getInfoString(iServiceInformation.sUser+10)
-		print "[__evAudioDecodeError] audio-codec %s can't be decoded by hardware" % (sAudioType)
-		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sAudioType, type = MessageBox.TYPE_INFO,timeout = 20 )
+		sTagAudioCodec = currPlay.info().getInfoString(iServiceInformation.sTagAudioCodec)
+		print "[__evAudioDecodeError] audio-codec %s can't be decoded by hardware" % (sTagAudioCodec)
+		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sTagAudioCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evVideoDecodeError(self):
 		currPlay = self.session.nav.getCurrentService()
-		sVideoType = currPlay.info().getInfoString(iServiceInformation.sVideoType)
-		print "[__evVideoDecodeError] video-codec %s can't be decoded by hardware" % (sVideoType)
-		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sVideoType, type = MessageBox.TYPE_INFO,timeout = 20 )
+		sTagVideoCodec = currPlay.info().getInfoString(iServiceInformation.sTagVideoCodec)
+		print "[__evVideoDecodeError] video-codec %s can't be decoded by hardware" % (sTagVideoCodec)
+		self.session.open(MessageBox, _("This Dreambox can't decode %s streams!") % sTagVideoCodec, type = MessageBox.TYPE_INFO,timeout = 20 )
 
 	def __evPluginError(self):
 		currPlay = self.session.nav.getCurrentService()
@@ -295,11 +295,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 	def readTitleInformation(self):
 		currPlay = self.session.nav.getCurrentService()
 		if currPlay is not None:
-			sTitle = currPlay.info().getInfoString(iServiceInformation.sTitle)
-			sAlbum = currPlay.info().getInfoString(iServiceInformation.sAlbum)
-			sGenre = currPlay.info().getInfoString(iServiceInformation.sGenre)
-			sArtist = currPlay.info().getInfoString(iServiceInformation.sArtist)
-			sYear = currPlay.info().getInfoString(iServiceInformation.sTimeCreate)
+			sTitle = currPlay.info().getInfoString(iServiceInformation.sTagTitle)
+			sAlbum = currPlay.info().getInfoString(iServiceInformation.sTagAlbum)
+			sGenre = currPlay.info().getInfoString(iServiceInformation.sTagGenre)
+			sArtist = currPlay.info().getInfoString(iServiceInformation.sTagArtist)
+			sYear = currPlay.info().getInfoString(iServiceInformation.sTagDate)
 
 			if sTitle == "":
 				if not self.isAudioCD:
