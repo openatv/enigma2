@@ -8,6 +8,8 @@
 #include <lib/dvb/subtitle.h>
 #include <lib/dvb/teletext.h>
 #include <gst/gst.h>
+/* for subtitles */
+#include <lib/gui/esubtitle.h>
 
 class eStaticServiceMP3Info;
 
@@ -97,6 +99,7 @@ public:
 	RESULT getName(std::string &name);
 	int getInfo(int w);
 	std::string getInfoString(int w);
+	PyObject *getInfoObject(int w);
 
 		// iAudioTrackSelection	
 	int getNumberOfTracks();
@@ -119,6 +122,7 @@ public:
 		GstPad* pad;
 		audiotype_t type;
 		std::string language_code; /* iso-639, if available. */
+		std::string codec; /* clear text codec description */
 		audioStream()
 			:pad(0), type(atUnknown)
 		{
@@ -157,14 +161,15 @@ private:
 	void seekTimeoutCB();
 	friend class eServiceFactoryMP3;
 	std::string m_filename;
-	eServiceMP3(const char *filename);
+	std::string m_title;
+	eServiceMP3(const char *filename, const char *title);
 	Signal2<void,iPlayableService*,int> m_event;
 	enum
 	{
 		stIdle, stRunning, stStopped,
 	};
 	int m_state;
-	GstElement *m_gst_pipeline;
+	GstElement *m_gst_playbin;
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
 	std::string m_error_message;
@@ -176,11 +181,17 @@ private:
 	static void gstCBfilterPadAdded(GstElement *filter, GstPad *pad, gpointer user_data); /* for id3demux */
 	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data); /* for decodebin */
 	static void gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *l, gpointer data);
-	static void gstCBsubtitleAvail(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data);
+	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	static void gstCBsubtitlePadEvent(GstPad *pad, GstEvent *event, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
+
+	std::list<ePangoSubtitlePage> m_subtitle_pages;
+	ePtr<eTimer> m_subtitle_sync_timer;
+	void pushSubtitles();
+
 	gint m_aspect, m_width, m_height, m_framerate, m_progressive;
+	RESULT trickSeek(gdouble ratio);
 };
 #endif
 
