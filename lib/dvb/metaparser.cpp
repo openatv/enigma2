@@ -67,6 +67,9 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 		case 6:
 			m_filesize = atoll(line);
 			break;
+		case 7:
+			m_service_data = line;
+			break;
 		default:
 			break;
 		}
@@ -145,7 +148,7 @@ int eDVBMetaParser::updateMeta(const std::string &tsname)
 	FILE *f = fopen(filename.c_str(), "w");
 	if (!f)
 		return -ENOENT;
-	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize );
+	fprintf(f, "%s\n%s\n%s\n%d\n%s\n%d\n%lld\n%s\n", ref.toString().c_str(), m_name.c_str(), m_description.c_str(), m_time_create, m_tags.c_str(), m_length, m_filesize, m_service_data.c_str() );
 	fclose(f);
 	return 0;
 }
