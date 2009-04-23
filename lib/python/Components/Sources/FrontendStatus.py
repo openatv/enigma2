@@ -46,7 +46,7 @@ class FrontendStatus(Source):
 		if suspended:
 			self.poll_timer.stop()
 		else:
-			self.poll_timer.start(self.update_interval)
+			self.updateFrontendStatus()
 
 	def destroy(self):
 		self.poll_timer.callback.remove(self.updateFrontendStatus)
