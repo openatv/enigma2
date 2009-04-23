@@ -1558,10 +1558,34 @@ int eDVBServicePlay::getInfo(int w)
 		break;
 	}
 	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
-	case sVideoPID: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
+	case sVideoPID:
+		if (m_dvb_service)
+		{
+			int vpid = m_dvb_service->getCacheEntry(eDVBService::cVPID);
+			if (vpid != -1)
+				return vpid;
+		}
+		if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
 	case sVideoType: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
-	case sAudioPID: if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
-	case sPCRPID: if (no_program_info) return -1; return program.pcrPid;
+	case sAudioPID:
+		if (m_dvb_service)
+		{
+			int apid = m_dvb_service->getCacheEntry(eDVBService::cAPID);
+			if (apid != -1)
+				return apid;
+			apid = m_dvb_service->getCacheEntry(eDVBService::cAC3PID);
+			if (apid != -1)
+				return apid;
+		}
+		if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
+	case sPCRPID:
+		if (m_dvb_service)
+		{
+			int pcrpid = m_dvb_service->getCacheEntry(eDVBService::cPCRPID);
+			if (pcrpid != -1)
+				return pcrpid;
+		}
+		if (no_program_info) return -1; return program.pcrPid;
 	case sPMTPID: if (no_program_info) return -1; return program.pmtPid;
 	case sTXTPID: if (no_program_info) return -1; return program.textPid;
 	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
