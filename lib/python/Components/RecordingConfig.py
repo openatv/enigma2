@@ -7,3 +7,4 @@ def InitRecordingConfig():
 	config.recording.margin_before = ConfigNumber(default=0)
 	config.recording.margin_after = ConfigNumber(default=0)
 	config.recording.debug = ConfigYesNo(default = False)
+	config.recording.ascii_filenames = ConfigYesNo(default = False)

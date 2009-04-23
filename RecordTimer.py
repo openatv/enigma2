@@ -1,6 +1,6 @@
 import time
 #from time import datetime
-from Tools import Directories, Notifications
+from Tools import Directories, Notifications, ASCIItranslit
 
 from Components.config import config
 import timer
@@ -140,6 +140,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		filename = begin_date + " - " + service_name
 		if self.name:
 			filename += " - " + self.name
+
+		if config.recording.ascii_filenames.value:
+			filename = ASCIItranslit.legacyEncode(filename)
 
 		if self.dirname and not Directories.fileExists(self.dirname, 'w'):
 			self.dirnameHadToFallback = True
