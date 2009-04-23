@@ -265,6 +265,42 @@ void eDVBDB::reloadServicelist()
 	loadServicelist(CONFIGDIR"/enigma2/lamedb");
 }
 
+void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
+{
+	while ((!str.empty()) && str[1]==':') // new: p:, f:, c:%02d...
+	{
+		size_t c=str.find(',');
+		char p=str[0];
+		std::string v;
+		if (c == std::string::npos)
+		{
+			v=str.substr(2);
+			str="";
+		} else
+		{
+			v=str.substr(2, c-2);
+			str=str.substr(c+1);
+		}
+//		eDebug("%c ... %s", p, v.c_str());
+		if (p == 'p')
+			s->m_provider_name=v;
+		else if (p == 'f')
+		{
+			sscanf(v.c_str(), "%x", &s->m_flags);
+		} else if (p == 'c')
+		{
+			int cid, val;
+			sscanf(v.c_str(), "%02d%x", &cid, &val);
+			s->setCacheEntry((eDVBService::cacheID)cid,val);
+		} else if (p == 'C')
+		{
+			int val;
+			sscanf(v.c_str(), "%04x", &val);
+			s->m_ca.push_front((uint16_t)val);
+		}
+	}
+}
+
 	/* THIS CODE IS BAD. it should be replaced by somethine better. */
 void eDVBDB::loadServicelist(const char *file)
 {
@@ -425,44 +461,10 @@ void eDVBDB::loadServicelist(const char *file)
 		fgets(line, 256, f);
 		if (strlen(line))
 			line[strlen(line)-1]=0;
-		std::string str=line;
-
-		if (str[1]!=':')	// old ... (only service_provider)
-		{
+		if (line[1]!=':')	// old ... (only service_provider)
 			s->m_provider_name=line;
-		} else
-			while ((!str.empty()) && str[1]==':') // new: p:, f:, c:%02d...
-			{
-				size_t c=str.find(',');
-				char p=str[0];
-				std::string v;
-				if (c == std::string::npos)
-				{
-					v=str.substr(2);
-					str="";
-				} else
-				{
-					v=str.substr(2, c-2);
-					str=str.substr(c+1);
-				}
-//				eDebug("%c ... %s", p, v.c_str());
-				if (p == 'p')
-					s->m_provider_name=v;
-				else if (p == 'f')
-				{
-					sscanf(v.c_str(), "%x", &s->m_flags);
-				} else if (p == 'c')
-				{
-					int cid, val;
-					sscanf(v.c_str(), "%02d%x", &cid, &val);
-					s->setCacheEntry((eDVBService::cacheID)cid,val);
-				} else if (p == 'C')
-				{
-					int val;
-					sscanf(v.c_str(), "%04x", &val);
-					s->m_ca.push_front((uint16_t)val);
-				}
-			}
+		else
+			parseServiceData(s, line);
 		addService(ref, s);
 	}
 
