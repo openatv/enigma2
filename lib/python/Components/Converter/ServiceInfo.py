@@ -10,6 +10,15 @@ class ServiceInfo(Converter, object):
 	SUBSERVICES_AVAILABLE = 4
 	XRES = 5
 	YRES = 6
+	APID = 7
+	VPID = 8
+	PCRPID = 9
+	PMTPID = 10
+	TXTPID = 11
+	TSID = 12
+	ONID = 13
+	SID = 14
+	
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -21,6 +30,14 @@ class ServiceInfo(Converter, object):
 				"SubservicesAvailable": (self.SUBSERVICES_AVAILABLE, (iPlayableService.evUpdatedEventInfo,)),
 				"VideoWidth": (self.XRES, (iPlayableService.evVideoSizeChanged,)),
 				"VideoHeight": (self.YRES, (iPlayableService.evVideoSizeChanged,)),
+				"AudioPid": (self.APID, (iPlayableService.evUpdatedInfo,)),
+				"VideoPid": (self.VPID, (iPlayableService.evUpdatedInfo,)),
+				"PcrPid": (self.PCRPID, (iPlayableService.evUpdatedInfo,)),
+				"PmtPid": (self.PMTPID, (iPlayableService.evUpdatedInfo,)),
+				"TxtPid": (self.TXTPID, (iPlayableService.evUpdatedInfo,)),
+				"TsId": (self.TSID, (iPlayableService.evUpdatedInfo,)),
+				"OnId": (self.ONID, (iPlayableService.evUpdatedInfo,)),
+				"Sid": (self.SID, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what):
@@ -73,8 +90,24 @@ class ServiceInfo(Converter, object):
 
 		if self.type == self.XRES:
 			return self.getServiceInfoString(info, iServiceInformation.sVideoWidth)
-		if self.type == self.YRES:
+		elif self.type == self.YRES:
 			return self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
+		elif self.type == self.APID:
+			return self.getServiceInfoString(info, iServiceInformation.sAudioPID)
+		elif self.type == self.VPID:
+			return self.getServiceInfoString(info, iServiceInformation.sVideoPID)
+		elif self.type == self.PCRPID:
+			return self.getServiceInfoString(info, iServiceInformation.sPCRPID)
+		elif self.type == self.PMTPID:
+			return self.getServiceInfoString(info, iServiceInformation.sPMTPID)
+		elif self.type == self.TXTPID:
+			return self.getServiceInfoString(info, iServiceInformation.sTXTPID)
+		elif self.type == self.TSID:
+			return self.getServiceInfoString(info, iServiceInformation.sTSID)
+		elif self.type == self.ONID:
+			return self.getServiceInfoString(info, iServiceInformation.sONID)
+		elif self.type == self.SID:
+			return self.getServiceInfoString(info, iServiceInformation.sSID)											
 		return ""
 
 	text = property(getText)
