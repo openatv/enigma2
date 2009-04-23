@@ -70,6 +70,7 @@ public:
 	void saveServicelist();
 	void saveServicelist(const char *file);
 	void reloadBouquets();
+	void parseServiceData(ePtr<eDVBService> s, std::string str);
 };
 
 #ifndef SWIG

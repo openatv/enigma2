@@ -9,19 +9,14 @@ class eDVBMetaParser
 public:
 	eDVBMetaParser();
 	int parseFile(const std::string &basename);
-	
 	int parseMeta(const std::string &filename);
 	int parseRecordings(const std::string &filename);
 	int updateMeta(const std::string &basename);
-	
-	int m_data_ok;
-	
+
 	eServiceReferenceDVB m_ref;
-	std::string m_name, m_description;
-	int m_time_create, m_length;
+	int m_data_ok, m_time_create, m_length;
+	std::string m_name, m_description, m_tags, m_service_data;
 	long long m_filesize;
-	
-	std::string m_tags;
 };
 
 #endif

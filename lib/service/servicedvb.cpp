@@ -860,30 +860,41 @@ RESULT eServiceFactoryDVB::offlineOperations(const eServiceReference &ref, ePtr<
 
 RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServiceReference &ref)
 {
+	if (!ref.path.empty()) // playback
+	{
+		eDVBMetaParser parser;
+		int ret=parser.parseFile(ref.path);
+		service = new eDVBService;
+		if (!ret)
+			eDVBDB::getInstance()->parseServiceData(service, parser.m_service_data);
+	}
+	else
+	{
 			// TODO: handle the listing itself
-	// if (ref.... == -1) .. return "... bouquets ...";
-	// could be also done in another serviceFactory (with seperate ID) to seperate actual services and lists
+		// if (ref.... == -1) .. return "... bouquets ...";
+		// could be also done in another serviceFactory (with seperate ID) to seperate actual services and lists
 			// TODO: cache
-	ePtr<iDVBChannelList> db;
-	ePtr<eDVBResourceManager> res;
+		ePtr<iDVBChannelList> db;
+		ePtr<eDVBResourceManager> res;
 	
-	int err;
-	if ((err = eDVBResourceManager::getInstance(res)) != 0)
-	{
-		eDebug("no resource manager");
-		return err;
-	}
-	if ((err = res->getChannelList(db)) != 0)
-	{
-		eDebug("no channel list");
-		return err;
-	}
+		int err;
+		if ((err = eDVBResourceManager::getInstance(res)) != 0)
+		{
+			eDebug("no resource manager");
+			return err;
+		}
+		if ((err = res->getChannelList(db)) != 0)
+		{
+			eDebug("no channel list");
+			return err;
+		}
 	
 		/* we are sure to have a ..DVB reference as the info() call was forwarded here according to it's ID. */
-	if ((err = db->getService((eServiceReferenceDVB&)ref, service)) != 0)
-	{
-		eDebug("getService failed!");
-		return err;
+		if ((err = db->getService((eServiceReferenceDVB&)ref, service)) != 0)
+		{
+			eDebug("getService failed!");
+			return err;
+		}
 	}
 
 	return 0;
@@ -916,6 +927,29 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 
 eDVBServicePlay::~eDVBServicePlay()
 {
+	if (m_is_pvr)
+	{
+		eDVBMetaParser meta;
+		int ret=meta.parseFile(m_reference.path);
+		if (!ret)
+		{
+			char tmp[255];
+			meta.m_service_data="";
+			sprintf(tmp, "f:%x", m_dvb_service->m_flags);
+			meta.m_service_data += tmp;
+			// cached pids
+			for (int x=0; x < eDVBService::cacheMax; ++x)
+			{
+				int entry = m_dvb_service->getCacheEntry((eDVBService::cacheID)x);
+				if (entry != -1)
+				{
+					sprintf(tmp, ",c:%02d%04x", x, entry);
+					meta.m_service_data += tmp;
+				}
+			}
+			meta.updateMeta(m_reference.path);
+		}
+	}
 	delete m_subtitle_widget;
 }
 
@@ -1028,7 +1062,7 @@ RESULT eDVBServicePlay::start()
 
 	m_first_program_info = 1;
 	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
-	r = m_service_handler.tune(service, m_is_pvr, m_cue);
+	r = m_service_handler.tune(service, m_is_pvr, m_cue, false, m_dvb_service);
 
 		/* inject EIT if there is a stored one */
 	if (m_is_pvr)
@@ -1425,7 +1459,7 @@ RESULT eDVBServicePlay::getName(std::string &name)
 		ePtr<iStaticServiceInformation> i = new eStaticServiceDVBPVRInformation(m_reference);
 		return i->getName(m_reference, name);
 	}
-	if (m_dvb_service)
+	else if (m_dvb_service)
 	{
 		m_dvb_service->getName(m_reference, name);
 		if (name.empty())
@@ -1524,10 +1558,34 @@ int eDVBServicePlay::getInfo(int w)
 		break;
 	}
 	case sIsCrypted: if (no_program_info) return -1; return program.isCrypted();
-	case sVideoPID: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
+	case sVideoPID:
+		if (m_dvb_service)
+		{
+			int vpid = m_dvb_service->getCacheEntry(eDVBService::cVPID);
+			if (vpid != -1)
+				return vpid;
+		}
+		if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].pid;
 	case sVideoType: if (no_program_info) return -1; if (program.videoStreams.empty()) return -1; return program.videoStreams[0].type;
-	case sAudioPID: if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
-	case sPCRPID: if (no_program_info) return -1; return program.pcrPid;
+	case sAudioPID:
+		if (m_dvb_service)
+		{
+			int apid = m_dvb_service->getCacheEntry(eDVBService::cAPID);
+			if (apid != -1)
+				return apid;
+			apid = m_dvb_service->getCacheEntry(eDVBService::cAC3PID);
+			if (apid != -1)
+				return apid;
+		}
+		if (no_program_info) return -1; if (program.audioStreams.empty()) return -1; return program.audioStreams[0].pid;
+	case sPCRPID:
+		if (m_dvb_service)
+		{
+			int pcrpid = m_dvb_service->getCacheEntry(eDVBService::cPCRPID);
+			if (pcrpid != -1)
+				return pcrpid;
+		}
+		if (no_program_info) return -1; return program.pcrPid;
 	case sPMTPID: if (no_program_info) return -1; return program.pmtPid;
 	case sTXTPID: if (no_program_info) return -1; return program.textPid;
 	case sSID: return ((const eServiceReferenceDVB&)m_reference).getServiceID().get();
@@ -1708,7 +1766,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 				    anything in the best case, or destroy the default setting in
 				    case the real default is not yet available.)
 			*/
-	if (m_dvb_service && !m_is_pvr && ((i != -1)
+	if (m_dvb_service && ((i != -1)
 		|| ((m_dvb_service->getCacheEntry(eDVBService::cAPID) == -1) && (m_dvb_service->getCacheEntry(eDVBService::cAC3PID)==-1))))
 	{
 		if (apidtype == eDVBAudio::aMPEG)
@@ -2271,7 +2329,7 @@ void eDVBServicePlay::updateDecoder()
 			ac3_delay = m_dvb_service->getCacheEntry(eDVBService::cAC3DELAY);
 			pcm_delay = m_dvb_service->getCacheEntry(eDVBService::cPCMDELAY);
 		}
-		else // subservice or recording
+		else // subservice
 		{
 			eServiceReferenceDVB ref;
 			m_service_handler.getServiceReference(ref);
@@ -2340,7 +2398,7 @@ void eDVBServicePlay::updateDecoder()
 		m_decoder->setAudioChannel(achannel);
 
 		/* don't worry about non-existing services, nor pvr services */
-		if (m_dvb_service && !m_is_pvr)
+		if (m_dvb_service)
 		{
 				/* (audio pid will be set in selectAudioTrack */
 			m_dvb_service->setCacheEntry(eDVBService::cVPID, vpid);

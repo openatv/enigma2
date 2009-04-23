@@ -184,24 +184,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id)
+			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags))
 			if prep_res:
-				self.log(2, "'prepare' failed: error %d" % prep_res)
-				NavigationInstance.instance.stopRecordService(self.record_service)
-				self.record_service = None
-				return False
-
-			self.log(3, "prepare ok, writing meta information to %s" % self.Filename)
-			try:
-				f = open(self.Filename + ".ts.meta", "w")
-				f.write(rec_ref.toString() + "\n")
-				f.write(self.name.replace("\n", "") + "\n")
-				f.write(self.description.replace("\n", "") + "\n")
-				f.write(str(self.begin) + "\n")
-				f.write(' '.join(self.tags))
-				f.close()
-			except IOError:
-				self.log(4, "failed to write meta information")
+				if prep_rest == 255:
+					self.log(4, "failed to write meta information")
+				else:
+					self.log(2, "'prepare' failed: error %d" % prep_res)
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 				return False
