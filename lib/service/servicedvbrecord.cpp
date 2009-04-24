@@ -132,6 +132,8 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 				meta.m_name = name;
 			if (descr)
 				meta.m_description = descr;
+			if (tags)
+				meta.m_tags = tags;
 			ret = meta.updateMeta(filename) ? -255 : 0;
 			if (!ret)
 			{
