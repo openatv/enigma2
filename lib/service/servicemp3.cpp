@@ -354,7 +354,7 @@ RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event,
 
 RESULT eServiceMP3::start()
 {
-	assert(m_state == stIdle);
+	ASSERT(m_state == stIdle);
 	
 	m_state = stRunning;
 	if (m_gst_playbin)
@@ -368,7 +368,7 @@ RESULT eServiceMP3::start()
 
 RESULT eServiceMP3::stop()
 {
-	assert(m_state != stIdle);
+	ASSERT(m_state != stIdle);
 	if (m_state == stStopped)
 		return -1;
 	eDebug("eServiceMP3::stop %s", m_filename.c_str());
@@ -427,7 +427,7 @@ void eServiceMP3::seekTimeoutCB()
 		// iPausableService
 RESULT eServiceMP3::pause()
 {
-	if (!m_gst_playbin)
+	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 	GstStateChangeReturn res = gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
 	if (res == GST_STATE_CHANGE_ASYNC)
@@ -441,7 +441,7 @@ RESULT eServiceMP3::pause()
 
 RESULT eServiceMP3::unpause()
 {
-	if (!m_gst_playbin)
+	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
 	GstStateChangeReturn res;
