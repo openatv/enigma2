@@ -90,6 +90,8 @@ int eThread::sync(void)
 	int res;
 	m_state.down(); /* this might block */
 	res = m_alive;
+	if (m_state.value() != 0)
+		eFatal("eThread::sync: m_state.value() == %d", m_state.value());
 	ASSERT(m_state.value() == 0);
 	m_state.up();
 	return res; /* 0: thread is guaranteed not to run. 1: state unknown. */
