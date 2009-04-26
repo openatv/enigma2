@@ -161,9 +161,15 @@ class Harddisk:
 		return (res >> 8)
 
 	def mount(self):
-		cmd = "/bin/mount -t ext3 " + self.devidex + "part1"
-		res = system(cmd)
-		return (res >> 8)
+		res = -1
+		#we don't know which type of devicename is used in fstab, try both
+		for device in [self.devidex, self.devidex2]:
+			cmd = "/bin/mount -t ext3 " + device + "part1"
+			res = system(cmd)
+			res >>= 8
+			if not res:
+				break
+		return res
 
 	def createMovieFolder(self):
 		try:
