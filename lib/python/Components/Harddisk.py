@@ -156,7 +156,7 @@ class Harddisk:
 		cmd = "/sbin/mkfs.ext3 "
 		if self.diskSize() > 4 * 1024:
 			cmd += "-T largefile "
-		cmd += "-m0 " + self.devidex + "part1"
+		cmd += "-m0 -O dir_index " + self.devidex + "part1"
 		res = system(cmd)
 		return (res >> 8)
 
