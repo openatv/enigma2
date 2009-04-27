@@ -56,7 +56,7 @@ public:
 	
 #ifndef SWIG
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }
-	T* &ptrref() { assert(!ptr); return ptr; }
+	T* &ptrref() { ASSERT(!ptr); return ptr; }
 #endif
 	T* operator->() const { ptrAssert(ptr); return ptr; }
 	operator T*() const { return this->ptr; }
@@ -135,7 +135,7 @@ public:
 	
 #ifndef SWIG
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); ptr->AddUse(); return ptr; }
-	T* &ptrref() { assert(!ptr); return ptr; }
+	T* &ptrref() { ASSERT(!ptr); return ptr; }
 #endif
 	T* operator->() const { ptrAssert(ptr); return ptr; }
 	operator T*() const { return this->ptr; }

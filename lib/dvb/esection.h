@@ -189,7 +189,7 @@ public:
 		next=0;
 		first=0;
 		
-		assert(current->ready);
+		ASSERT(current->ready);
 			
 		/*emit*/ tableReady(0);
 		

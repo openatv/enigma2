@@ -160,22 +160,22 @@ public:
 
 	const eRect& getGlyphBBox(int num) const
 	{
-		assert(num >= 0);
-		assert(num < (int)glyphs.size());
+		ASSERT(num >= 0);
+		ASSERT(num < (int)glyphs.size());
 		return glyphs[num].bbox;
 	}
 	
 	void setGlyphFlag(int g, int f)
 	{
-		assert(g >= 0);
-		assert(g < (int)glyphs.size());
+		ASSERT(g >= 0);
+		ASSERT(g < (int)glyphs.size());
 		glyphs[g].flags |= f;
 	}
 
 	void clearGlyphFlag(int g, int f)
 	{
-		assert(g >= 0);
-		assert(g < (int)glyphs.size());
+		ASSERT(g >= 0);
+		ASSERT(g < (int)glyphs.size());
 		glyphs[g].flags |= f;
 	}
 };
