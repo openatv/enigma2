@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-26 17:08+0100\n"
-"PO-Revision-Date: 2009-03-08 18:26+0100\n"
+"POT-Creation-Date: 2009-04-28 01:32+0200\n"
+"PO-Revision-Date: 2009-04-08 11:43+0100\n"
 "Last-Translator: Sebastian <zbigzbig2@op.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -504,6 +504,11 @@ msgstr ""
 "\n"
 
 msgid ""
+"Are you sure you want to delete\n"
+"following backup:\n"
+msgstr ""
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -541,6 +546,9 @@ msgstr "Dźwięk"
 
 msgid "Audio Options..."
 msgstr "Opcje Dźwięku..."
+
+msgid "Author: "
+msgstr ""
 
 msgid "Authoring mode"
 msgstr "Tryb autoringu"
@@ -674,7 +682,7 @@ msgid "Cable"
 msgstr "Kablówka"
 
 msgid "Cache Thumbnails"
-msgstr "Przechowuj miniatury."
+msgstr "Przechowuj miniatury"
 
 msgid "Call monitoring"
 msgstr "Monitor rozmów"
@@ -818,6 +826,12 @@ msgid "Common Interface"
 msgstr "Moduł Dostępu"
 
 msgid "Common Interface Assignment"
+msgstr "Zadania Modułu CI"
+
+msgid "CommonInterface"
+msgstr ""
+
+msgid "Communication"
 msgstr ""
 
 msgid "Compact Flash"
@@ -833,7 +847,7 @@ msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Kompleksowe (pozwala mixować ścieżki audio i aspekty)"
 
 msgid "Config"
-msgstr ""
+msgstr "Config"
 
 msgid "Configuration Mode"
 msgstr "Tryb konfiguracji"
@@ -961,6 +975,9 @@ msgstr "Data"
 msgid "Deep Standby"
 msgstr "Głębokie Czuwanie"
 
+msgid "Default Settings"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Standardowa lista serwisów"
 
@@ -971,7 +988,7 @@ msgid "Delay"
 msgstr "Opóźnienie"
 
 msgid "Delete"
-msgstr "Skasuj"
+msgstr "Usuń"
 
 msgid "Delete entry"
 msgstr "Skasuj wpis"
@@ -995,6 +1012,9 @@ msgstr "Odznacz"
 
 msgid "Destination directory"
 msgstr "Katalog docelowy"
+
+msgid "Details"
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Wykryto Hdd:"
@@ -1059,18 +1079,21 @@ msgid "Display 4:3 content as"
 msgstr "Wyświetlaj zawartość 4:3 jako"
 
 msgid "Display >16:9 content as"
-msgstr "Wyświetlaj zawartość >16:9 jako"
+msgstr "Wyświetlaj zawartość 16:9 jako"
 
 msgid "Display Setup"
-msgstr "Ustawienia wyświetlacza"
+msgstr "Ustawienia OLED"
+
+msgid "Display and Userinterface"
+msgstr ""
 
 #, python-format
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \"%s\"?"
 msgstr ""
-"Czy naprawde chcesz USUNĄĆ\n"
-"tę \"%s\" wtyczkę?"
+"Czy chcesz USUNĄĆ\n"
+"plugina \"%s\"?"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -1088,8 +1111,8 @@ msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
-"Czy naprawdę chcesz zciągnąć\n"
-"tę  \"%s\" wtyczkę?"
+"Czy chcesz ściągnąć\n"
+"plugina \"%s\" ?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -1115,6 +1138,9 @@ msgstr ""
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Czy chcesz nagrać tę kolekcje na nosniku DVD?"
+
+msgid "Do you want to continue installing or removing selected plugins?\n"
+msgstr ""
 
 msgid "Do you want to do a service scan?"
 msgstr "Czy chcesz przeprowadzić skanowanie serwisów?"
@@ -1193,7 +1219,7 @@ msgid "Download of USB flasher boot image failed: "
 msgstr "Ładowanie image'a z USB flasher'a nie powiodło się:"
 
 msgid "Downloadable new plugins"
-msgstr "Do pobrania nowe pluginy"
+msgstr "Nowe pluginy do pobrania"
 
 msgid "Downloadable plugins"
 msgstr "Pluginy do pobrania"
@@ -1202,7 +1228,7 @@ msgid "Downloading"
 msgstr "Pobieranie..."
 
 msgid "Downloading plugin information. Please wait..."
-msgstr "Pobieranie informacji o pluginie. Proszę czekać..."
+msgstr "Pobieranie informacji o pluginach. Proszę czekać..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Format danych DVD (kompatybilny z HDTV)"
@@ -1348,7 +1374,7 @@ msgstr ""
 "Ponowić?"
 
 msgid "Eventview"
-msgstr "Widok zdarzenia"
+msgstr "Widok wydarzenia"
 
 msgid "Everything is fine"
 msgstr "Wszystko jest OK"
@@ -1411,7 +1437,7 @@ msgid "Favourites"
 msgstr "Ulubione"
 
 msgid "Filesystem Check..."
-msgstr "Sprawdzanie systemu plików..."
+msgstr "Sprawdź system plików..."
 
 msgid "Filesystem contains uncorrectable errors"
 msgstr "System plików zawiera błędy, których nie dało się naprawić"
@@ -1500,16 +1526,16 @@ msgid "Gateway"
 msgstr "Brama"
 
 msgid "General AC3 Delay"
-msgstr ""
+msgstr "Główne opóźnienie AC3"
 
 msgid "General AC3 delay"
-msgstr ""
+msgstr "Główne opóźnienie AC3"
 
 msgid "General PCM Delay"
-msgstr ""
+msgstr "Główne opóźnienie PCM"
 
 msgid "General PCM delay"
-msgstr ""
+msgstr "Główne opóźnienie PCM"
 
 msgid "Genre"
 msgstr "Gatunek"
@@ -1557,10 +1583,10 @@ msgid "Hierarchy mode"
 msgstr "Tryb hierarchii"
 
 msgid "High bitrate support"
-msgstr ""
+msgstr "Obsługa wysokiego Bitrate"
 
 msgid "Horizontal"
-msgstr "Poziomo [H]"
+msgstr "Pozioma [H]"
 
 msgid "How many minutes do you want to record?"
 msgstr "Ile minut ma trwać nagranie?"
@@ -1637,7 +1663,7 @@ msgid "Infobar timeout"
 msgstr "Czas wyświetlania paska info"
 
 msgid "Information"
-msgstr "Informacja"
+msgstr "Informacje"
 
 msgid "Init"
 msgstr "Init"
@@ -1652,7 +1678,10 @@ msgid "Initializing Harddisk..."
 msgstr "Inicjalizowanie Hdd..."
 
 msgid "Input"
-msgstr "Wejście"
+msgstr "Info"
+
+msgid "Install"
+msgstr ""
 
 msgid "Install a new image with a USB stick"
 msgstr "Instaluj nowe image z pamięci USB"
@@ -1663,11 +1692,22 @@ msgstr "Instaluj nowe image z przeglądarki www"
 msgid "Install local IPKG"
 msgstr "Instaluj lokalny IPKG"
 
+msgid "Install or remove finished."
+msgstr ""
+
 msgid "Install settings, skins, software..."
 msgstr "Instaluj ustawienia, skiny, soft..."
 
 msgid "Install software updates..."
 msgstr "Instaluj aktualizacje oprogramowania..."
+
+msgid ""
+"Install/\n"
+"Remove"
+msgstr ""
+
+msgid "Installation finished."
+msgstr ""
 
 msgid "Installing"
 msgstr "Instalowanie"
@@ -1710,7 +1750,7 @@ msgid "Inversion"
 msgstr "Inversja"
 
 msgid "Invert display"
-msgstr "Odwrócone wyświetlanie"
+msgstr "Odwróć wyświetlanie"
 
 msgid "Ipkg"
 msgstr "Ipkg"
@@ -1782,6 +1822,9 @@ msgstr "Limit wschodni"
 
 msgid "Limit west"
 msgstr "Limit zachodni"
+
+msgid "Limited character set for recording filenames"
+msgstr ""
 
 msgid "Limits off"
 msgstr "Limity wyłaczonyy"
@@ -1927,6 +1970,9 @@ msgstr "Menu listy filmów"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multimedia"
+msgstr ""
+
 msgid "Multiple service support"
 msgstr "Wielokrotny support serwisu"
 
@@ -1970,6 +2016,9 @@ msgstr "Ustawienia nameserver"
 
 msgid "Netmask"
 msgstr "Maska sieci"
+
+msgid "Network"
+msgstr ""
 
 msgid "Network Configuration..."
 msgstr "Konfiguracja sieci..."
@@ -2040,6 +2089,9 @@ msgid ""
 msgstr ""
 "Brak danych na transponderze!\n"
 "(Koniec czasu czytania PAT)"
+
+msgid "No description available."
+msgstr ""
 
 msgid "No details for this image file"
 msgstr "Brak opisu dla tego image'a"
@@ -2217,6 +2269,9 @@ msgstr "PAL"
 msgid "PIDs"
 msgstr "Pidy"
 
+msgid "Package details for: "
+msgstr ""
+
 msgid "Package list update"
 msgstr "Paczka listy aktualizacji"
 
@@ -2234,7 +2289,7 @@ msgid "Pan&Scan"
 msgstr "Pan&Scan"
 
 msgid "Parent Directory"
-msgstr "Katakog nadrzedny"
+msgstr "Katalog nadrzędny"
 
 msgid "Parental control"
 msgstr "Kontrola rodzicielska"
@@ -2426,6 +2481,9 @@ msgstr "Proszę czekać... Ładowanie listy..."
 msgid "Plugin browser"
 msgstr "Przeglądarka pluginów"
 
+msgid "Plugin manager"
+msgstr ""
+
 msgid "Plugins"
 msgstr "Pluginy"
 
@@ -2596,6 +2654,9 @@ msgstr "Nagrywanie"
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Nagrywanie(a) jest w toku lub rozbpocznie się za kilka sekund!"
 
+msgid "Recordings"
+msgstr ""
+
 msgid "Recordings always have priority"
 msgstr "Nagrywanie zawsze ma priorytet"
 
@@ -2610,6 +2671,9 @@ msgstr "Wybór prędkości odświeżania"
 
 msgid "Reload"
 msgstr "Przeładuj"
+
+msgid "Remove"
+msgstr ""
 
 msgid "Remove Bookmark"
 msgstr "Usuń zakładkę"
@@ -2783,6 +2847,9 @@ msgstr "Miernik sygnału"
 msgid "Sats"
 msgstr "Satelity"
 
+msgid "Satteliteequipment"
+msgstr ""
+
 msgid "Saturday"
 msgstr "Sobota"
 
@@ -2881,6 +2948,9 @@ msgstr "Szukaj na wschód"
 
 msgid "Search west"
 msgstr "Szukaj na zachód"
+
+msgid "Searching for new installed or removed packages. Please wait..."
+msgstr ""
 
 msgid "Secondary DNS"
 msgstr "Drugi DNS"
@@ -3083,8 +3153,11 @@ msgstr "Pojedyńczy krok (GOP)"
 msgid "Skin..."
 msgstr "Skiny..."
 
+msgid "Skins"
+msgstr ""
+
 msgid "Sleep Timer"
-msgstr "Wyłącznik czasowy"
+msgstr "Wyłącznik Czasowy"
 
 msgid "Sleep timer action:"
 msgstr "Akcja wyłącznika czasowego:"
@@ -3101,6 +3174,9 @@ msgstr "Wolno"
 
 msgid "Slow Motion speeds"
 msgstr "Odtwarzanie w zwolnionym tempie"
+
+msgid "Software"
+msgstr ""
 
 msgid "Software manager"
 msgstr "Menadżer oprogramowania"
@@ -3141,6 +3217,9 @@ msgid ""
 msgstr ""
 "Twoje miejsce na kopię zapasową jest niezapisywalne.\n"
 "Wybierz inne miejsce."
+
+msgid "Sorry, no Details available!"
+msgstr ""
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -3184,7 +3263,7 @@ msgid "Start recording?"
 msgstr "Rozpocząć nagrywanie?"
 
 msgid "Start test"
-msgstr "Zacznij test"
+msgstr "Testuj"
 
 msgid "StartTime"
 msgstr "Czas rozpoczęcia"
@@ -3311,7 +3390,7 @@ msgid "Test mode"
 msgstr "Tryb testowy"
 
 msgid "Test the network configuration of your Dreambox.\n"
-msgstr "Test configuracji sieci Dreambox.\n"
+msgstr "Test konfiguracji sieci Dreambox.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Informacja testowa?"
@@ -3618,13 +3697,13 @@ msgid "Timezone"
 msgstr "Strefa czasu"
 
 msgid "Title"
-msgstr "Tytuł"
+msgstr "Tytuł utworu"
 
 msgid "Title properties"
 msgstr "Właściwości tytułu"
 
 msgid "Titleset mode"
-msgstr "Tryb tytułu"
+msgstr "Tryb ustawienia tytułu"
 
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
@@ -3860,13 +3939,13 @@ msgid "User defined"
 msgstr "Zdefiniowany przez użytkownika"
 
 msgid "VCR scart"
-msgstr "Przełącz VCR"
+msgstr "VCR Scart"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
 msgid "Vertical"
-msgstr "Pionowo [V]"
+msgstr "Pionowa [V]"
 
 msgid "Video Fine-Tuning"
 msgstr "Korekcja obrazu..."
@@ -3901,6 +3980,9 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Wybór trybu wideo"
 
+msgid "View"
+msgstr ""
+
 msgid "View Movies..."
 msgstr "Wyświetl Filmy..."
 
@@ -3912,6 +3994,42 @@ msgstr "Pokaż interaktywne Rass..."
 
 msgid "View Video CD..."
 msgstr "Wyświetl Video CD..."
+
+msgid "View list of available CommonInterface extensions"
+msgstr ""
+
+msgid "View list of available Display and Userinterface extensions."
+msgstr ""
+
+msgid "View list of available EPG extensions."
+msgstr ""
+
+msgid "View list of available Satteliteequipment extensions."
+msgstr ""
+
+msgid "View list of available communication extensions."
+msgstr ""
+
+msgid "View list of available default settings"
+msgstr ""
+
+msgid "View list of available multimedia extensions."
+msgstr ""
+
+msgid "View list of available networking extensions"
+msgstr ""
+
+msgid "View list of available recording extensions"
+msgstr ""
+
+msgid "View list of available skins"
+msgstr ""
+
+msgid "View list of available software extensions"
+msgstr ""
+
+msgid "View list of available system extensions"
+msgstr ""
 
 msgid "View teletext..."
 msgstr "Pokaż teletext..."
@@ -4238,10 +4356,10 @@ msgstr ""
 "Czy chcesz wyłączyć drugi interfejs sieciowy?"
 
 msgid "Zap back to service before positioner setup?"
-msgstr "Przełączyć z powrotem na serwis przed ustawieniem pozycjonera?"
+msgstr "Przełączyć spowrotem na serwis przed ustawieniem pozycjonera?"
 
 msgid "Zap back to service before satfinder?"
-msgstr "Przełączyć z powrotem na serwis przed miernikiem sygnału?"
+msgstr "Przełączyć spowrotem na serwis przed miernikiem sygnału?"
 
 msgid "[alternative edit]"
 msgstr "[edycja wybranych]"
@@ -4256,10 +4374,10 @@ msgid "[move mode]"
 msgstr "[tryb przesuwania]"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr ""
+msgstr "Gui do wyznaczenia serwisów/providerów dla Modułów CI"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr ""
+msgstr "Gui do wyznaczenia serwisów/providerów/caids dla Modułów CI"
 
 msgid "abort alternatives edit"
 msgstr "przerwij edycje wybranych"
@@ -4271,19 +4389,19 @@ msgid "abort favourites edit"
 msgstr "przerwij edycje ulubionych"
 
 msgid "about to start"
-msgstr "jak rozpocząć"
+msgstr "Jak rozpocząć"
 
 msgid "activate current configuration"
-msgstr "akrywuj aktualną konfigurację"
+msgstr "Aktywuj aktualną konfigurację"
 
 msgid "add Provider"
-msgstr ""
+msgstr "Dodaj Providera"
 
 msgid "add Service"
-msgstr ""
+msgstr "Dodaj Serwis"
 
 msgid "add a nameserver entry"
-msgstr "dodaj wpis nameservera"
+msgstr "Dodaj wpis nameservera"
 
 msgid "add alternatives"
 msgstr "Dodaj wybrane kanały"
@@ -4298,7 +4416,7 @@ msgid "add directory to playlist"
 msgstr "Dodaj katalog do playlisty "
 
 msgid "add file to playlist"
-msgstr "dodaj plik do playlisty"
+msgstr "Dodaj plik do playlisty"
 
 msgid "add files to playlist"
 msgstr "Dodaj pliki do playlisty"
@@ -4322,10 +4440,10 @@ msgid "add service to bouquet"
 msgstr "Dodaj serwis do bukietu"
 
 msgid "add service to favourites"
-msgstr "dodaj serwis do ulubionych"
+msgstr "Dodaj serwis do ulubionych"
 
 msgid "add to parental protection"
-msgstr "dodaj do kontroli rodzicielskiej"
+msgstr "Dodaj do kontroli rodzicielskiej"
 
 msgid "advanced"
 msgstr "Zaawansowana"
@@ -4341,49 +4459,49 @@ msgstr ""
 "następującą kopie:\n"
 
 msgid "assigned CAIds"
-msgstr ""
+msgstr "Wyznaczone CAIds"
 
 msgid "assigned Services/Provider"
-msgstr ""
+msgstr "Wyznaczone Serwisy/Providerzy"
 
 #, python-format
 msgid "audio track (%s) format"
-msgstr "format ścieżki audio (%s)"
+msgstr "Format ścieżki audio (%s)"
 
 #, python-format
 msgid "audio track (%s) language"
-msgstr "język ścieżki audio (%s)"
+msgstr "Język ścieżki audio (%s)"
 
 msgid "audio tracks"
-msgstr "ścieżki audio"
+msgstr "Ścieżki audio"
 
 msgid "auto"
-msgstr "auto"
+msgstr "Auto"
 
 msgid "back"
 msgstr "Wróć"
 
 msgid "background image"
-msgstr "obraz tła"
+msgstr "Obrazek tła"
 
 msgid "backgroundcolor"
-msgstr "kolor tła"
+msgstr "Kolor tła"
 
 msgid "better"
-msgstr "lepszy"
+msgstr "Lepszy"
 
 msgid "black"
-msgstr "czarny"
+msgstr "Czarny"
 
 msgid "blacklist"
 msgstr "Czarna lista"
 
 msgid "blue"
-msgstr "niebieski"
+msgstr "Niebieski"
 
 #, python-format
 msgid "burn audio track (%s)"
-msgstr "nagraj ścieżkę audio (%s)"
+msgstr "Nagraj ścieżkę audio (%s)"
 
 msgid "change recording (duration)"
 msgstr "Zmień czas trwania nagrania"
@@ -4392,10 +4510,10 @@ msgid "change recording (endtime)"
 msgstr "Zmień koniec czasu nagrania"
 
 msgid "chapters"
-msgstr "rozdziały"
+msgstr "Rozdziały"
 
 msgid "choose destination directory"
-msgstr "wybierz folder docelowy"
+msgstr "Wybierz folder docelowy"
 
 msgid "circular left"
 msgstr "Kołój w lewo"
@@ -4431,16 +4549,16 @@ msgid "daily"
 msgstr "Codziennie"
 
 msgid "day"
-msgstr "dzień"
+msgstr "Dzień"
 
 msgid "delete"
-msgstr "Usuń"
+msgstr ""
 
 msgid "delete cut"
 msgstr "Usuń wycięte"
 
 msgid "delete file"
-msgstr "usuń plik"
+msgstr "Usuń plik"
 
 msgid "delete playlist entry"
 msgstr "Usuń wpis playlisty"
@@ -4509,46 +4627,46 @@ msgid "end favourites edit"
 msgstr "Koniec edycji ulubionych"
 
 msgid "enigma2 and network"
-msgstr "enigma2 i sieć"
+msgstr "Enigma2 i sieć"
 
 msgid "equal to"
-msgstr "równy"
+msgstr "Równy"
 
 msgid "exceeds dual layer medium!"
-msgstr "przekroczona pojemność nosnika dual layer!"
+msgstr "Przekroczona pojemność nosnika dual layer!"
 
 msgid "exit DVD player or return to file browser"
 msgstr "Wyjdź z odtwarzacza DVD lub powróć do przeglądarki plików"
 
 msgid "exit mediaplayer"
-msgstr "Wyjdź z mediaplayera"
+msgstr "Wyjdź z odtwarzacza"
 
 msgid "exit movielist"
 msgstr "Wyjdź z listy filmów"
 
 msgid "exit nameserver configuration"
-msgstr "wyjdź z konfiguracji nameservera"
+msgstr "Wyjdź z konfiguracji nameservera"
 
 msgid "exit network adapter configuration"
-msgstr "wyjdź z konfiguracji adaptera sieciowego"
+msgstr "Wyjdź z konfiguracji adaptera sieciowego"
 
 msgid "exit network adapter setup menu"
-msgstr "wyjdź z menu konfiguracji adaptera sieciowego"
+msgstr "Wyjdź z menu konfiguracji adaptera sieciowego"
 
 msgid "exit network interface list"
-msgstr "wyjdź z listy interfejsu sieciowego"
+msgstr "Wyjdź z listy interfejsu sieciowego"
 
 msgid "exit networkadapter setup menu"
-msgstr "wyjdź z menu konfiguracji adaptera sieciowego"
+msgstr "Wyjdź z menu konfiguracji adaptera sieciowego"
 
 msgid "failed"
-msgstr "zawiódł"
+msgstr "Zawiódł"
 
 msgid "fileformats (BMP, PNG, JPG, GIF)"
-msgstr "formaty plików (BMP, PNG, JPG, GIF)"
+msgstr "Formaty plików (BMP, PNG, JPG, GIF)"
 
 msgid "filename"
-msgstr "nazwa pliku"
+msgstr "Nazwa pliku"
 
 msgid "fine-tune your display"
 msgstr "czysto ustaw swój ekran"
@@ -4557,7 +4675,7 @@ msgid "forward to the next chapter"
 msgstr "Przeskocz do nastepnego rozdziału"
 
 msgid "free"
-msgstr "wolne"
+msgstr "Wolne"
 
 msgid "free diskspace"
 msgstr "Wolna przestrzeń dyskowa"
@@ -4569,7 +4687,7 @@ msgid "go to standby"
 msgstr "Przejdź do stanu czuwania"
 
 msgid "green"
-msgstr "zielony"
+msgstr "Zielony"
 
 msgid "hear radio..."
 msgstr "Słuchaj radia..."
@@ -4610,7 +4728,7 @@ msgid "init module"
 msgstr "Moduł init"
 
 msgid "init modules"
-msgstr ""
+msgstr "Inicjuj moduły"
 
 msgid "insert mark here"
 msgstr "Wstaw znacznik tutaj"
@@ -4661,16 +4779,16 @@ msgid "locked"
 msgstr "zablokowany"
 
 msgid "loopthrough to"
-msgstr "Za pomocą pętki do"
+msgstr "Za pomocą pętli do"
 
 msgid "manual"
 msgstr "Ręcznie"
 
 msgid "menu"
-msgstr "menu"
+msgstr "Menu"
 
 msgid "menulist"
-msgstr "lista menu"
+msgstr "Lista menu"
 
 msgid "mins"
 msgstr "min's"
@@ -4682,13 +4800,13 @@ msgid "minutes"
 msgstr "Minutach"
 
 msgid "month"
-msgstr "miesiąc"
+msgstr "Miesiąc"
 
 msgid "move PiP to main picture"
 msgstr "Przesuń PiP do głównego obrazu"
 
 msgid "move down to last entry"
-msgstr "przesuń na dół do ostatniego wpisu"
+msgstr "Przesuń na dół do ostatniego wpisu"
 
 msgid "move down to next entry"
 msgstr "przesuń na dól do następnego wpisu"
@@ -4718,16 +4836,16 @@ msgid "no"
 msgstr "Nie"
 
 msgid "no CAId selected"
-msgstr ""
+msgstr "Brak wybranego CAId"
 
 msgid "no CI slots found"
-msgstr ""
+msgstr "Nie znaleziono slotu CI"
 
 msgid "no HDD found"
 msgstr "Nie znaleziono HDD"
 
 msgid "no module"
-msgstr ""
+msgstr "Brak modułu"
 
 msgid "no module found"
 msgstr "Nie znaleziono modułu"
@@ -4769,7 +4887,7 @@ msgid "once"
 msgstr "Raz"
 
 msgid "open nameserver configuration"
-msgstr "otwórz konfigurację nameserwera"
+msgstr "Otwórz konfigurację nameserwera"
 
 msgid "open servicelist"
 msgstr "Otwórz listę serwisów"
@@ -4862,26 +4980,26 @@ msgid "repeated"
 msgstr "Powtarzaj"
 
 msgid "rewind to the previous chapter"
-msgstr "przewiń do poprzedniego rozdziału"
+msgstr "Przewiń do poprzedniego rozdziału"
 
 msgid "right"
 msgstr "Prawo"
 
 msgid "save last directory on exit"
-msgstr "zapisz ostatni katalog przy wyjściu"
+msgstr "Zapisz ostatni katalog przy wyjściu"
 
 msgid "save playlist"
 msgstr "Zapisz playlistę"
 
 msgid "save playlist on exit"
-msgstr "zapisz playlistę przy wyjściu"
+msgstr "Zapisz playlistę przy wyjściu"
 
 msgid "scan done!"
 msgstr "Skanowanie zakończone!"
 
 #, python-format
 msgid "scan in progress - %d%% done!"
-msgstr "skanowanie w toku - %d%% skończone!"
+msgstr "Skanowanie w toku - %d%% skończone!"
 
 msgid "scan state"
 msgstr "Status skanowania"
@@ -4896,28 +5014,28 @@ msgid "seconds"
 msgstr "Sekundy"
 
 msgid "select"
-msgstr "wybierz"
+msgstr "Wybierz"
 
 msgid "select .NFI flash file"
-msgstr "wybierz plik .NFI flash"
+msgstr "Wybierz plik .NFI flash"
 
 msgid "select CAId"
-msgstr ""
+msgstr "Wybierz CAId"
 
 msgid "select image from server"
-msgstr "wybierz plik z serwera"
+msgstr "Wybierz plik z serwera"
 
 msgid "select interface"
-msgstr "wybierz interfejs"
+msgstr "Wybierz interfejs"
 
 msgid "select menu entry"
-msgstr "wybierz wpis menu"
+msgstr "Wybierz wpis menu"
 
 msgid "select movie"
-msgstr "wybierz film"
+msgstr "Wybierz film"
 
 msgid "select the movie path"
-msgstr "wybierz ścieżkę filmu"
+msgstr "Wybierz ścieżkę filmu"
 
 msgid "service pin"
 msgstr "Pin serwisu"
@@ -4932,7 +5050,7 @@ msgid "show EPG..."
 msgstr "Pokaż EPG..."
 
 msgid "show Infoline"
-msgstr "pokaż Linię Info"
+msgstr "Pokaż pasek Info"
 
 msgid "show all"
 msgstr "pokaż wszystkie"
@@ -4986,7 +5104,7 @@ msgid "skip forward (enter time)"
 msgstr "Skocz naprzód (wpisz czas)"
 
 msgid "slide picture in loop"
-msgstr "zapętlony pokaz slajdów"
+msgstr "Zapętlony pokaz slajdów"
 
 msgid "sort by date"
 msgstr "sortuj poprzez datę"
@@ -5001,7 +5119,7 @@ msgid "start cut here"
 msgstr "Rozpocznij cięcie tutaj"
 
 msgid "start directory"
-msgstr "katalog początkowy"
+msgstr "Katalog początkowy"
 
 msgid "start timeshift"
 msgstr "Rozpocznij timeshift"
@@ -5043,10 +5161,10 @@ msgid "switch to the next subtitle language"
 msgstr "przełącz na nastepną sćieżkę napisów"
 
 msgid "template file"
-msgstr "plik szablonu"
+msgstr "Plik szablonu"
 
 msgid "textcolor"
-msgstr "kolor tekstu"
+msgstr "Kolor tekstu"
 
 msgid "this recording"
 msgstr "To nagranie"
@@ -5062,6 +5180,9 @@ msgstr "czas odtwarzania, rozdział, audio, informacja o napisach"
 
 msgid "unconfirmed"
 msgstr "Niepotwierdzony"
+
+msgid "unknown"
+msgstr ""
 
 msgid "unknown service"
 msgstr "Nieznany serwis"
@@ -5121,6 +5242,9 @@ msgstr "Przełącz"
 msgid "zapped"
 msgstr "Przełączony"
 
+#~ msgid " Day(s) "
+#~ msgstr " Dzień(i) "
+
 #, fuzzy
 #~ msgid "\"?"
 #~ msgstr "\"?"
@@ -5149,6 +5273,9 @@ msgstr "Przełączony"
 #~ msgid "An error has occured. (%s)"
 #~ msgstr "Pojawił się błąd. (%s)"
 
+#~ msgid "April"
+#~ msgstr "Kwiecień"
+
 #~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"
 #~ "Connect your Wlan USB Stick to your Dreambox and press OK.\n"
@@ -5168,6 +5295,9 @@ msgstr "Przełączony"
 #~ msgid "Artist:"
 #~ msgstr "Artysta:"
 
+#~ msgid "August"
+#~ msgstr "Sierpień"
+
 #~ msgid "Automatic SSID lookup"
 #~ msgstr "Automatyczne oddzukiwanie SSID"
 
@@ -5176,6 +5306,9 @@ msgstr "Przełączony"
 
 #~ msgid "Burn To DVD..."
 #~ msgstr "Wypalanie DVD..."
+
+#~ msgid "Calendar"
+#~ msgstr "Kalendarz"
 
 #~ msgid "Choose Location"
 #~ msgstr "Sprawdzanie Lokalizacji"
@@ -5218,6 +5351,9 @@ msgstr "Przełączony"
 
 #~ msgid "DVD up key"
 #~ msgstr "DVD przycisk góra"
+
+#~ msgid "December"
+#~ msgstr "Grudzień"
 
 #~ msgid "Decompressing USB stick flasher boot image..."
 #~ msgstr "Dekompresja USB flasher image'a..."
@@ -5285,6 +5421,9 @@ msgstr "Przełączony"
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Zamknij kreator i skonfiguruj ręcznie w późniejszym czasie"
 
+#~ msgid "February"
+#~ msgstr "Luty"
+
 #~ msgid "Fix USB stick"
 #~ msgstr "Napraw pamięć USB"
 
@@ -5297,11 +5436,32 @@ msgstr "Przełączony"
 #~ msgid "Genre:"
 #~ msgstr "Gatunek:"
 
+#~ msgid "January"
+#~ msgstr "Styczeń"
+
+#~ msgid "July"
+#~ msgstr "Lipiec"
+
 #~ msgid "Jump to video title 1 (play movie from start)"
 #~ msgstr "Skocz do tytułu 1  (odtważaj film od początku)"
 
+#~ msgid "June"
+#~ msgstr "Czerwiec"
+
+#~ msgid "Keyboard..."
+#~ msgstr "Klawiatura..."
+
 #~ msgid "Load saved project from disk"
 #~ msgstr "Odczytaj projekt z dysku"
+
+#~ msgid "March"
+#~ msgstr "Marzec"
+
+#~ msgid "May"
+#~ msgstr "Maj"
+
+#~ msgid "Month"
+#~ msgstr "Miesiąc"
 
 #~ msgid "Movie Menu"
 #~ msgstr "Menu filmu"
@@ -5360,6 +5520,9 @@ msgstr "Przełączony"
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nie, pozwól mi wybrać listę standardową"
 
+#~ msgid "November"
+#~ msgstr "Listopad"
+
 #~ msgid ""
 #~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
 #~ "format and use as .NFI image flasher. Press OK after you've put the stick "
@@ -5368,6 +5531,9 @@ msgstr "Przełączony"
 #~ "Proszę włożyć nosnik USB (minimalny rozmiar 64MB) który chcesz "
 #~ "sformatować i używać jako .NFI image flasher. Po podłączeniu napędu "
 #~ "nacisnij przycisk OK."
+
+#~ msgid "October"
+#~ msgstr "Październik"
 
 #~ msgid "Other..."
 #~ msgstr "Inne..."
@@ -5460,6 +5626,9 @@ msgstr "Przełączony"
 #~ msgid "Save..."
 #~ msgstr "Zapisywanie..."
 
+#~ msgid "September"
+#~ msgstr "Wrzesień"
+
 #~ msgid "Set collection name"
 #~ msgstr "Ustaw nazwe kolekcji"
 
@@ -5468,6 +5637,9 @@ msgstr "Przełączony"
 
 #~ msgid "Show files from %s"
 #~ msgstr "Pokaż pliki od %s"
+
+#~ msgid "Sort by Name"
+#~ msgstr "Sortuj po Nazwie"
 
 #~ msgid "Start"
 #~ msgstr "Rozpocznij"
@@ -5533,6 +5705,9 @@ msgstr "Przełączony"
 #~ msgstr ""
 #~ "Aby się upewnić, że tego oczekiwałeś, usuń docelowy napęd USB i podłącz "
 #~ "go ponownie po zgłoszeniu takiej konieczności."
+
+#~ msgid "Type:"
+#~ msgstr "Typ:"
 
 #~ msgid ""
 #~ "Unable to initialize harddisk.\n"
@@ -5646,6 +5821,9 @@ msgstr "Przełączony"
 
 #~ msgid "no Picture found"
 #~ msgstr "Nie znaleziono obrazka"
+
+#~ msgid "ok"
+#~ msgstr "OK"
 
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "Tylko katalog /etc/enigma2"
