@@ -45,6 +45,7 @@ int eThread::runAsync(int prio, int policy)
 	ASSERT(m_state.value() == 1); /* sync postconditions */
 	ASSERT(!m_alive);
 	m_state.down();
+	ASSERT(m_state.value() == 0);
 	
 	m_alive = 1;
 
@@ -88,10 +89,11 @@ eThread::~eThread()
 int eThread::sync(void)
 {
 	int res;
+	int debug_val_before = m_state.value();
 	m_state.down(); /* this might block */
 	res = m_alive;
 	if (m_state.value() != 0)
-		eFatal("eThread::sync: m_state.value() == %d", m_state.value());
+		eFatal("eThread::sync: m_state.value() == %d - was %d before", m_state.value(), debug_val_before);
 	ASSERT(m_state.value() == 0);
 	m_state.up();
 	return res; /* 0: thread is guaranteed not to run. 1: state unknown. */
