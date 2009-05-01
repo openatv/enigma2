@@ -6,6 +6,8 @@ from Components.Label import Label
 from Components.EpgList import EPGList, EPG_TYPE_SINGLE, EPG_TYPE_SIMILAR, EPG_TYPE_MULTI
 from Components.ActionMap import ActionMap
 from Components.TimerSanityCheck import TimerSanityCheck
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.Event import Event
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.EventView import EventViewSimple
 from Screens.MessageBox import MessageBox
@@ -33,6 +35,8 @@ class EPGSelection(Screen):
 		self["key_red"] = Button("")
 		self.closeRecursive = False
 		self.saved_title = None
+		self["Service"] = ServiceEvent()
+		self["Event"] = Event()
 		if isinstance(service, str) and eventid != None:
 			self.type = EPG_TYPE_SIMILAR
 			self["key_yellow"] = Button()
@@ -153,6 +157,7 @@ class EPGSelection(Screen):
 			l.moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
 		elif self.type == EPG_TYPE_SINGLE:
 			service = self.currentService
+			self["Service"].newService(service.ref)
 			if self.saved_title is None:
 				self.saved_title = self.instance.getTitle()
 			title = self.saved_title + ' - ' + service.getServiceName()
@@ -306,6 +311,7 @@ class EPGSelection(Screen):
 				self.key_red_choice = self.EMPTY
 			return
 		event = cur[0]
+		self["Event"].newEvent(event)
 		if self.type == EPG_TYPE_MULTI:
 			count = self["list"].getCurrentChangeCount()
 			if self.ask_time != -1:
@@ -328,8 +334,12 @@ class EPGSelection(Screen):
 				else:
 					datestr = '%s %d.%d.'%(_("Today"), begTime[2], begTime[1])
 			self["date"].setText(datestr)
+			if cur[1] is None:
+				self["Service"].newService(None)
+			else:
+				self["Service"].newService(cur[1].ref)
 
-		if cur[1] is None  or cur[1].getServiceName() == "":
+		if cur[1] is None or cur[1].getServiceName() == "":
 			if self.key_green_choice != self.EMPTY:
 				self["key_green"].setText("")
 				self.key_green_choice = self.EMPTY
