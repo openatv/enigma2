@@ -502,8 +502,10 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		choices = [(_("Exit"), "exit"), (_("Continue playing"), "play")]
 		if True or not self.physicalDVD:
 			choices.insert(1,(_("Return to file browser"), "browser"))
-		if self.physicalDVD and not self.session.nav.getCurrentlyPlayingServiceReference().toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
-			choices.insert(0,(_("Play DVD"), "playPhysical" ))
+		if self.physicalDVD:
+			cur = self.session.nav.getCurrentlyPlayingServiceReference()
+			if cur and not cur.toString().endswith(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD())):
+			    choices.insert(0,(_("Play DVD"), "playPhysical" ))
 		self.session.openWithCallback(self.exitCB, ChoiceBox, title=_("Leave DVD Player?"), list = choices)
 
 	def sendKey(self, key):
