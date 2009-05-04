@@ -441,6 +441,7 @@ RESULT eServiceMP3::pause()
 
 RESULT eServiceMP3::unpause()
 {
+	m_subtitle_pages.clear();
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
