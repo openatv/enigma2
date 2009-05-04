@@ -204,38 +204,31 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 	for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
 		it != m_pmt_handlers.end(); ++it)
 	{
-		eServiceReferenceDVB ref;
-		it->pmthandler->getServiceReference(ref);
-		eDebugCI("check %s cislot %p %d\n", ref.toString().c_str(), it->cislot, it->cislot?it->cislot->getSlotID() : -1);
-		slot->removeService(ref.getServiceID().get());
-		if (slot->use_count && !--slot->use_count)
+		if (it->cislot == slot) // remove the base slot
+			it->cislot = slot->linked_next;
+		else if (it->cislot)
 		{
-			if (slot->linked_next)
-				slot->linked_next->setSource(slot->current_source);
-			else // last CI in chain
-				setInputSource(slot->current_tuner, slot->current_source);
-
-			if (it->cislot == slot) // remove the base slot
+			eDVBCISlot *prevSlot = it->cislot, *hSlot = it->cislot->linked_next;
+			while (hSlot)
 			{
-				it->cislot = slot->linked_next;
-				eDebugCI("base removed.. so slot is now %p", it->cislot);
+				if (hSlot == slot) {
+					prevSlot->linked_next = slot->linked_next;
+					break;
+				}
+				prevSlot = hSlot;
+				hSlot = hSlot->linked_next;
 			}
-			else
-			{
-				eDebugCI("not base removed.. %d", it->cislot->getSlotID());
-				eDVBCISlot *tmp = it->cislot;
-				while(tmp->linked_next != slot)
-					tmp = tmp->linked_next;
-				ASSERT(tmp);
-				if (slot->linked_next)
-					tmp->linked_next = slot->linked_next;
-				else
-					tmp->linked_next = 0;
-			}
-			slot->linked_next=0;
-			slot->user_mapped=false;
 		}
 	}
+	if (slot->linked_next)
+		slot->linked_next->setSource(slot->current_source);
+	else // last CI in chain
+		setInputSource(slot->current_tuner, slot->current_source);
+	slot->linked_next = 0;
+	slot->use_count=0;
+	slot->plugged=true;
+	slot->user_mapped=false;
+	slot->removeService(0xFFFF);
 	recheckPMTHandlers();
 }
 
@@ -268,22 +261,22 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		eDVBCISlot *tmp = it->cislot;
 		eDVBServicePMTHandler *pmthandler = it->pmthandler;
 		eDVBServicePMTHandler::program p;
-		bool first_plugged_cis_exist = false;
+		bool plugged_cis_exist = false;
 
 		pmthandler->getServiceReference(ref);
 		pmthandler->getService(service);
 
 		eDebugCI("recheck %p %s", pmthandler, ref.toString().c_str());
 		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
-			if (ci_it->first_plugged && ci_it->getCAManager())
+			if (ci_it->plugged && ci_it->getCAManager())
 			{
-				eDebug("Slot %d first plugged", ci_it->getSlotID());
-				ci_it->first_plugged = false;
-				first_plugged_cis_exist = true;
+				eDebug("Slot %d plugged", ci_it->getSlotID());
+				ci_it->plugged = false;
+				plugged_cis_exist = true;
 			}
 
 		// check if this pmt handler has already assigned CI(s) .. and this CI(s) are already running
-		if (!first_plugged_cis_exist)
+		if (!plugged_cis_exist)
 		{
 			while(tmp)
 			{
@@ -1041,7 +1034,7 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
 	use_count = 0;
 	linked_next = 0;
 	user_mapped = false;
-	first_plugged = true;
+	plugged = true;
 	
 	slotid = nr;
 

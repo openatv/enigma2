@@ -65,7 +65,7 @@ class eDVBCISlot: public iObject, public Object
 	int current_tuner;
 	bool user_mapped;
 	void data(int);
-	bool first_plugged;
+	bool plugged;
 public:
 	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
 	eDVBCISlot(eMainloop *context, int nr);
