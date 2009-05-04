@@ -203,8 +203,7 @@ int eDVBAudio::startPid(int pid, int type)
 		eDebug("failed (%m)");
 	else
 		eDebug("ok");
-	freeze();
-
+	freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
 	eDebugNoNewLine("AUDIO_PLAY - ");
 	if (::ioctl(m_fd, AUDIO_PLAY) < 0)
 		eDebug("failed (%m)");
@@ -285,7 +284,7 @@ int eDVBAudio::getPTS(pts_t &now)
 
 eDVBAudio::~eDVBAudio()
 {
-	unfreeze();
+	unfreeze();  // why unfreeze here... but not unfreeze video in ~eDVBVideo ?!?
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -448,7 +447,7 @@ int eDVBVideo::startPid(int pid, int type)
 		return -errno;
 	}
 	eDebug("ok");
-	freeze();
+	freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
 	eDebugNoNewLine("VIDEO_PLAY - ");
 	if (::ioctl(m_fd, VIDEO_PLAY) < 0)
 		eDebug("failed (%m)");
@@ -1093,7 +1092,7 @@ eTSMPEGDecoder::~eTSMPEGDecoder()
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
 {
-	if (m_vpid != vpid)
+	if ((m_vpid != vpid) || (m_vtype != type))
 	{
 		m_changed |= changeVideo;
 		m_vpid = vpid;
@@ -1174,7 +1173,9 @@ RESULT eTSMPEGDecoder::play()
 		if (!m_changed)
 			return 0;
 	}
-	else
+//	else  
+/* commented out because the changeState is needed to unfreeze decoders in decoder::setState... needed by normal pmt changes
+tmbinc please recheck this! */
 	{
 		m_state = statePlay;
 		m_changed |= changeState;
