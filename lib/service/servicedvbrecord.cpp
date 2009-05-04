@@ -389,7 +389,7 @@ int eDVBServiceRecord::doRecord()
 			std::set_difference(
 					m_pids_active.begin(), m_pids_active.end(),
 					pids_to_record.begin(), pids_to_record.end(), 
-					std::inserter(new_pids, new_pids.begin())
+					std::inserter(obsolete_pids, obsolete_pids.begin())
 					);
 			
 			for (std::set<int>::iterator i(new_pids.begin()); i != new_pids.end(); ++i)
