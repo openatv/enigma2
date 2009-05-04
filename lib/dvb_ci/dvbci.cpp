@@ -200,36 +200,39 @@ int eDVBCIInterfaces::cancelEnq(int slotid)
 
 void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 {
-	eDebug("CI Slot %d: removed... usecount %d", slot->getSlotID(), slot->use_count);
-	for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
-		it != m_pmt_handlers.end(); ++it)
+	if (slot->use_count)
 	{
-		if (it->cislot == slot) // remove the base slot
-			it->cislot = slot->linked_next;
-		else if (it->cislot)
+		eDebug("CI Slot %d: removed... usecount %d", slot->getSlotID(), slot->use_count);
+		for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
+			it != m_pmt_handlers.end(); ++it)
 		{
-			eDVBCISlot *prevSlot = it->cislot, *hSlot = it->cislot->linked_next;
-			while (hSlot)
+			if (it->cislot == slot) // remove the base slot
+				it->cislot = slot->linked_next;
+			else if (it->cislot)
 			{
-				if (hSlot == slot) {
-					prevSlot->linked_next = slot->linked_next;
-					break;
+				eDVBCISlot *prevSlot = it->cislot, *hSlot = it->cislot->linked_next;
+				while (hSlot)
+				{
+					if (hSlot == slot) {
+						prevSlot->linked_next = slot->linked_next;
+						break;
+					}
+					prevSlot = hSlot;
+					hSlot = hSlot->linked_next;
 				}
-				prevSlot = hSlot;
-				hSlot = hSlot->linked_next;
 			}
 		}
+		if (slot->linked_next)
+			slot->linked_next->setSource(slot->current_source);
+		else // last CI in chain
+			setInputSource(slot->current_tuner, slot->current_source);
+		slot->linked_next = 0;
+		slot->use_count=0;
+		slot->plugged=true;
+		slot->user_mapped=false;
+		slot->removeService(0xFFFF);
+		recheckPMTHandlers();
 	}
-	if (slot->linked_next)
-		slot->linked_next->setSource(slot->current_source);
-	else // last CI in chain
-		setInputSource(slot->current_tuner, slot->current_source);
-	slot->linked_next = 0;
-	slot->use_count=0;
-	slot->plugged=true;
-	slot->user_mapped=false;
-	slot->removeService(0xFFFF);
-	recheckPMTHandlers();
 }
 
 static bool canDescrambleMultipleServices(int slotid)
