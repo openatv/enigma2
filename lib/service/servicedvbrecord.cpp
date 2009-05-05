@@ -503,6 +503,8 @@ void eDVBServiceRecord::gotNewEvent()
 		eDebug("[eDVBServiceRecord] now running: %s (%d seconds)", event_now->getEventName().c_str(), event_now->getDuration());
 	
 	m_last_event_id = event_id;
+
+	m_event((iRecordableService*)this, evNewEventInfo);
 }
 
 void eDVBServiceRecord::saveCutlist()
@@ -547,4 +549,30 @@ void eDVBServiceRecord::saveCutlist()
 		fclose(f);
 	}
 	
+}
+
+RESULT eDVBServiceRecord::subServices(ePtr<iSubserviceList> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
+int eDVBServiceRecord::getNumberOfSubservices()
+{
+	ePtr<eServiceEvent> evt;
+	if (!m_event_handler.getEvent(evt, 0))
+		return evt->getNumOfLinkageServices();
+	return 0;
+}
+
+RESULT eDVBServiceRecord::getSubservice(eServiceReference &sub, unsigned int n)
+{
+	ePtr<eServiceEvent> evt;
+	if (!m_event_handler.getEvent(evt, 0))
+	{
+		if (!evt->getLinkageService(sub, m_ref, n))
+			return 0;
+	}
+	sub.type=eServiceReference::idInvalid;
+	return -1;
 }
