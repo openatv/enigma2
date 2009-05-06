@@ -61,10 +61,10 @@
 					<item level="0" text="Filesystem Check..." entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 				</menu>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
-				<!--<item text="Keyboard"><setup id="keyboard" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
 				<item requires="Display"><setup level="1" id="lcd" /></item>
 				<item level="0" text="Network..." entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
+				<item text="Keyboard"><setup id="keyboard" /></item>
 				<!--<menu level="1" text="Network..." entryID="network_setup">
 					<id val="network" />
 					<item level="1" text="Device Setup..." entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
