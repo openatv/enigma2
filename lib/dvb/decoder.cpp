@@ -814,7 +814,7 @@ int eDVBTText::startPid(int pid)
 		return -errno;
 	}
 	eDebug("ok");
-	eDebugNoNewLine("DEMUX_START - pcr - ");
+	eDebugNoNewLine("DEMUX_START - ttx - ");
 	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
 		eDebug("failed(%m)");
