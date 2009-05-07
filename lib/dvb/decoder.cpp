@@ -12,8 +12,10 @@
 #define dmxPesFilterParams dmx_pes_filter_params
 #define DMX_PES_VIDEO0 DMX_PES_VIDEO
 #define DMX_PES_AUDIO0 DMX_PES_AUDIO
+#define DMX_PES_PCR0 DMX_PES_PCR
 #define DMX_PES_VIDEO1 DMX_PES_VIDEO
 #define DMX_PES_AUDIO1 DMX_PES_AUDIO
+#define DMX_PES_PCR1 DMX_PES_PCR
 #include <ost/dmx.h>
 #include <ost/video.h>
 #include <ost/audio.h>
@@ -686,7 +688,7 @@ int eDVBVideo::getFrameRate()
 
 DEFINE_REF(eDVBPCR);
 
-eDVBPCR::eDVBPCR(eDVBDemux *demux): m_demux(demux)
+eDVBPCR::eDVBPCR(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -745,7 +747,7 @@ int eDVBPCR::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_PCR;
+	pes.pes_type = m_dev ? DMX_PES_PCR1 : DMX_PES_PCR0; /* FIXME */
 	pes.flags    = 0;
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - pcr - ", pid);
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
@@ -782,7 +784,8 @@ eDVBPCR::~eDVBPCR()
 
 DEFINE_REF(eDVBTText);
 
-eDVBTText::eDVBTText(eDVBDemux *demux): m_demux(demux)
+eDVBTText::eDVBTText(eDVBDemux *demux, int dev)
+    :m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -804,7 +807,7 @@ int eDVBTText::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_TELETEXT;
+	pes.pes_type = m_dev ? DMX_PES_TELETEXT1 : DMX_PES_TELETEXT0; // FIXME
 	pes.flags    = 0;
 
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - ttx - ", pid);
@@ -960,7 +963,7 @@ int eTSMPEGDecoder::setState()
 	{
 		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
 		{
-			m_pcr = new eDVBPCR(m_demux);
+			m_pcr = new eDVBPCR(m_demux, m_decoder);
 			if (m_pcr->startPid(m_pcrpid))
 				res = -1;
 		}
@@ -991,7 +994,7 @@ int eTSMPEGDecoder::setState()
 	{
 		if ((m_textpid >= 0) && (m_textpid < 0x1FFF) && !nott)
 		{
-			m_text = new eDVBTText(m_demux);
+			m_text = new eDVBTText(m_demux, m_decoder);
 			if (m_text->startPid(m_textpid))
 				res = -1;
 		}

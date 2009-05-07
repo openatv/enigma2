@@ -2370,7 +2370,7 @@ void eDVBServicePlay::updateDecoder()
 		m_decoder->setVideoPID(vpid, vpidtype);
 		selectAudioStream();
 
-		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
+		if (!(m_is_pvr || m_timeshift_active /*|| !m_is_primary*/))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
