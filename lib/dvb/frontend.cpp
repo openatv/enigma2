@@ -379,7 +379,7 @@ RESULT eDVBFrontendParameters::calculateDifference(const iDVBFrontendParameters 
 			terrestrial.code_rate_HP != eDVBFrontendParametersTerrestrial::FEC_Auto)
 			diff = 1 << 30;
 		else
-			diff = abs(terrestrial.frequency - oterrestrial.frequency);
+			diff = abs(terrestrial.frequency - oterrestrial.frequency) / 1000;
 		return 0;
 	default:
 		return -1;
@@ -403,7 +403,7 @@ RESULT eDVBFrontendParameters::getHash(unsigned long &hash) const
 		return 0;
 	case iDVBFrontend::feTerrestrial:
 		hash = 0xEEEE0000;
-		hash |= (terrestrial.frequency/1000)&0xFFFF;
+		hash |= (terrestrial.frequency/1000000)&0xFFFF;
 		return 0;
 	default:
 		return -1;
