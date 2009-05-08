@@ -1737,7 +1737,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	m_current_audio_pid = apid;
 
-	if (m_decoder->setAudioPID(apid, apidtype))
+	if (m_is_primary && m_decoder->setAudioPID(apid, apidtype))
 	{
 		eDebug("set audio pid failed");
 		return -4;
@@ -2307,6 +2307,9 @@ void eDVBServicePlay::updateDecoder()
 			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
 			if (m_decoder)
 				m_decoder->connectVideoEvent(slot(*this, &eDVBServicePlay::video_event), m_video_event_connection);
+		}
+		if (m_decode_demux && m_is_primary)
+		{
 			m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
 			m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 			m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
@@ -2370,14 +2373,16 @@ void eDVBServicePlay::updateDecoder()
 		m_decoder->setVideoPID(vpid, vpidtype);
 		selectAudioStream();
 
-		if (!(m_is_pvr || m_timeshift_active /*|| !m_is_primary*/))
+		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);
 
-		m_decoder->setTextPID(tpid);
-
-		m_teletext_parser->start(program.textPid);
+		if (m_is_primary)
+		{
+			m_decoder->setTextPID(tpid);
+			m_teletext_parser->start(program.textPid);
+		}
 
 		if (vpid > 0 && vpid < 0x2000)
 			;
