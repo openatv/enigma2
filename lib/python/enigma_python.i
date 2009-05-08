@@ -262,7 +262,10 @@ RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
 
 	res = 0;
 	result = 0;
-	if (SWIG_Python_ConvertPtr(obj, (void **)&res, SWIGTYPE_p_ePtrTgPixmap_t, SWIG_POINTER_EXCEPTION | 0))
+#ifndef SWIGTYPE_p_ePtrT_gPixmap_t
+#define SWIGTYPE_p_ePtrT_gPixmap_t SWIGTYPE_p_ePtrTgPixmap_t
+#endif
+	if (SWIG_Python_ConvertPtr(obj, (void **)&res, SWIGTYPE_p_ePtrT_gPixmap_t, SWIG_POINTER_EXCEPTION | 0))
 		return -1;
 	if (!res)
 		return -1;
@@ -277,7 +280,10 @@ PyObject *New_eServiceReference(const eServiceReference &ref)
 PyObject *New_iRecordableServicePtr(const ePtr<iRecordableService> &ptr)
 {
     ePtr<iRecordableService> *result = new ePtr<iRecordableService>(ptr);
-    return SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_ePtrTiRecordableService_t, 1);
+#ifndef SWIGTYPE_p_ePtrT_iRecordableService_t
+#define SWIGTYPE_p_ePtrT_iRecordableService_t SWIGTYPE_p_ePtrTiRecordableService_t
+#endif
+    return SWIG_NewPointerObj((void*)(result), SWIGTYPE_p_ePtrT_iRecordableService_t, 1);
 }
 %}
 
