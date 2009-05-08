@@ -57,11 +57,10 @@ public:
 #ifndef SWIG
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }
 	T* &ptrref() { ASSERT(!ptr); return ptr; }
+	operator bool() const { return !!this->ptr; }
 #endif
 	T* operator->() const { ptrAssert(ptr); return ptr; }
 	operator T*() const { return this->ptr; }
-	
-	operator bool() const { return !!this->ptr; }
 };
 
 

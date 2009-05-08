@@ -138,6 +138,10 @@ public:
 		data[3]=data3;
 		data[4]=data4;
 	}
+	operator bool() const
+	{
+		return valid();
+	}
 #endif
 	eServiceReference(int type, int flags, const std::string &path)
 		: type(type), flags(flags), path(path)
@@ -169,10 +173,6 @@ public:
 		if (r)
 			return r < 0;
 		return path < c.path;
-	}
-	operator bool() const
-	{
-		return valid();
 	}
 	
 	int valid() const
