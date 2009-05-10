@@ -12,8 +12,10 @@
 #define dmxPesFilterParams dmx_pes_filter_params
 #define DMX_PES_VIDEO0 DMX_PES_VIDEO
 #define DMX_PES_AUDIO0 DMX_PES_AUDIO
+#define DMX_PES_PCR0 DMX_PES_PCR
 #define DMX_PES_VIDEO1 DMX_PES_VIDEO
 #define DMX_PES_AUDIO1 DMX_PES_AUDIO
+#define DMX_PES_PCR1 DMX_PES_PCR
 #include <ost/dmx.h>
 #include <ost/video.h>
 #include <ost/audio.h>
@@ -203,8 +205,7 @@ int eDVBAudio::startPid(int pid, int type)
 		eDebug("failed (%m)");
 	else
 		eDebug("ok");
-	freeze();
-
+	freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
 	eDebugNoNewLine("AUDIO_PLAY - ");
 	if (::ioctl(m_fd, AUDIO_PLAY) < 0)
 		eDebug("failed (%m)");
@@ -285,7 +286,7 @@ int eDVBAudio::getPTS(pts_t &now)
 
 eDVBAudio::~eDVBAudio()
 {
-	unfreeze();
+	unfreeze();  // why unfreeze here... but not unfreeze video in ~eDVBVideo ?!?
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -448,7 +449,7 @@ int eDVBVideo::startPid(int pid, int type)
 		return -errno;
 	}
 	eDebug("ok");
-	freeze();
+	freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
 	eDebugNoNewLine("VIDEO_PLAY - ");
 	if (::ioctl(m_fd, VIDEO_PLAY) < 0)
 		eDebug("failed (%m)");
@@ -687,7 +688,7 @@ int eDVBVideo::getFrameRate()
 
 DEFINE_REF(eDVBPCR);
 
-eDVBPCR::eDVBPCR(eDVBDemux *demux): m_demux(demux)
+eDVBPCR::eDVBPCR(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -746,7 +747,7 @@ int eDVBPCR::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_PCR;
+	pes.pes_type = m_dev ? DMX_PES_PCR1 : DMX_PES_PCR0; /* FIXME */
 	pes.flags    = 0;
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - pcr - ", pid);
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
@@ -783,7 +784,8 @@ eDVBPCR::~eDVBPCR()
 
 DEFINE_REF(eDVBTText);
 
-eDVBTText::eDVBTText(eDVBDemux *demux): m_demux(demux)
+eDVBTText::eDVBTText(eDVBDemux *demux, int dev)
+    :m_demux(demux), m_dev(dev)
 {
 	char filename[128];
 #if HAVE_DVB_API_VERSION < 3
@@ -805,7 +807,7 @@ int eDVBTText::startPid(int pid)
 	pes.pid      = pid;
 	pes.input    = DMX_IN_FRONTEND;
 	pes.output   = DMX_OUT_DECODER;
-	pes.pes_type = DMX_PES_TELETEXT;
+	pes.pes_type = m_dev ? DMX_PES_TELETEXT1 : DMX_PES_TELETEXT0; // FIXME
 	pes.flags    = 0;
 
 	eDebugNoNewLine("DMX_SET_PES_FILTER(0x%02x) - ttx - ", pid);
@@ -815,7 +817,7 @@ int eDVBTText::startPid(int pid)
 		return -errno;
 	}
 	eDebug("ok");
-	eDebugNoNewLine("DEMUX_START - pcr - ");
+	eDebugNoNewLine("DEMUX_START - ttx - ");
 	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
 		eDebug("failed(%m)");
@@ -961,7 +963,7 @@ int eTSMPEGDecoder::setState()
 	{
 		if ((m_pcrpid >= 0) && (m_pcrpid < 0x1FFF))
 		{
-			m_pcr = new eDVBPCR(m_demux);
+			m_pcr = new eDVBPCR(m_demux, m_decoder);
 			if (m_pcr->startPid(m_pcrpid))
 				res = -1;
 		}
@@ -992,7 +994,7 @@ int eTSMPEGDecoder::setState()
 	{
 		if ((m_textpid >= 0) && (m_textpid < 0x1FFF) && !nott)
 		{
-			m_text = new eDVBTText(m_demux);
+			m_text = new eDVBTText(m_demux, m_decoder);
 			if (m_text->startPid(m_textpid))
 				res = -1;
 		}
@@ -1093,7 +1095,7 @@ eTSMPEGDecoder::~eTSMPEGDecoder()
 
 RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
 {
-	if (m_vpid != vpid)
+	if ((m_vpid != vpid) || (m_vtype != type))
 	{
 		m_changed |= changeVideo;
 		m_vpid = vpid;
@@ -1174,7 +1176,9 @@ RESULT eTSMPEGDecoder::play()
 		if (!m_changed)
 			return 0;
 	}
-	else
+//	else  
+/* commented out because the changeState is needed to unfreeze decoders in decoder::setState... needed by normal pmt changes
+tmbinc please recheck this! */
 	{
 		m_state = statePlay;
 		m_changed |= changeState;

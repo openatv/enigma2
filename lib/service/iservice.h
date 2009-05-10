@@ -138,6 +138,10 @@ public:
 		data[3]=data3;
 		data[4]=data4;
 	}
+	operator bool() const
+	{
+		return valid();
+	}
 #endif
 	eServiceReference(int type, int flags, const std::string &path)
 		: type(type), flags(flags), path(path)
@@ -169,10 +173,6 @@ public:
 		if (r)
 			return r < 0;
 		return path < c.path;
-	}
-	operator bool() const
-	{
-		return valid();
 	}
 	
 	int valid() const
@@ -867,7 +867,8 @@ public:
 		evRecordStopped,
 		evNewProgramInfo,
 		evRecordFailed,
-		evRecordWriteError
+		evRecordWriteError,
+		evNewEventInfo
 	};
 	enum {
 		NoError=0,
@@ -899,6 +900,7 @@ public:
 	virtual RESULT stop()=0;
 	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) stream(ePtr<iStreamableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iRecordableService>, iRecordableServicePtr);
 
