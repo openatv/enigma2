@@ -441,6 +441,7 @@ RESULT eServiceMP3::pause()
 
 RESULT eServiceMP3::unpause()
 {
+	m_subtitle_pages.clear();
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
@@ -476,6 +477,8 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 
 RESULT eServiceMP3::seekTo(pts_t to)
 {
+	m_subtitle_pages.clear();
+
 	if (!m_gst_playbin)
 		return -1;
 
@@ -1277,7 +1280,7 @@ void eServiceMP3::pushSubtitles()
 	GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin),"subtitle_sink");
 	GstClock *clock;
 	clock = gst_element_get_clock (appsink);
-	do
+	while ( !m_subtitle_pages.empty() )
 	{
 		page = m_subtitle_pages.front();
 
@@ -1296,7 +1299,7 @@ void eServiceMP3::pushSubtitles()
 			m_subtitle_widget->setPage(page);
 			m_subtitle_pages.pop_front();
 		}
-	} while ( !m_subtitle_pages.empty() );
+	} ;
 
 	gst_object_unref (clock);
 }
@@ -1330,6 +1333,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	g_object_get (G_OBJECT (m_gst_playbin), "current-text", &text_pid, NULL);
 
 	eDebug ("eServiceMP3::switched to subtitle stream %i", text_pid);
+	m_subtitle_pages.clear();
 
 	return 0;
 
@@ -1342,6 +1346,7 @@ error_out:
 RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 {
 	eDebug("eServiceMP3::disableSubtitles");
+	m_subtitle_pages.clear();
 	delete m_subtitle_widget;
 	m_subtitle_widget = 0;
 	return 0;

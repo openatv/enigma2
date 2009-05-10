@@ -80,9 +80,9 @@ class eDVBPCR: public iObject
 	DECLARE_REF(eDVBPCR);
 private:
 	ePtr<eDVBDemux> m_demux;
-	int m_fd_demux;
+	int m_fd_demux, m_dev;
 public:
-	eDVBPCR(eDVBDemux *demux);
+	eDVBPCR(eDVBDemux *demux, int dev);
 #if HAVE_DVB_API_VERSION < 3
 	int setPid(int pid);
 	int startPid();
@@ -98,9 +98,9 @@ class eDVBTText: public iObject
 	DECLARE_REF(eDVBTText);
 private:
 	ePtr<eDVBDemux> m_demux;
-	int m_fd_demux;
+	int m_fd_demux, m_dev;
 public:
-	eDVBTText(eDVBDemux *demux);
+	eDVBTText(eDVBDemux *demux, int dev);
 	int startPid(int pid);
 	void stop();
 	virtual ~eDVBTText();

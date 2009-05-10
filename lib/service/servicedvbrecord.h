@@ -13,6 +13,7 @@
 class eDVBServiceRecord: public eDVBServiceBase,
 	public iRecordableService, 
 	public iStreamableService,
+	public iSubserviceList,
 	public Object
 {
 	DECLARE_REF(eDVBServiceRecord);
@@ -25,10 +26,14 @@ public:
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	RESULT getError(int &error) { error = m_error; return 0; }
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
+	RESULT subServices(ePtr<iSubserviceList> &ptr);
 
 		/* streamable service */
 	PyObject *getStreamingData();
 
+		// iSubserviceList
+	int getNumberOfSubservices();
+	RESULT getSubservice(eServiceReference &subservice, unsigned int n);
 private:
 	enum { stateIdle, statePrepared, stateRecording };
 	bool m_simulate;
