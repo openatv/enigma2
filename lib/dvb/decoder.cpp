@@ -1002,7 +1002,7 @@ int eTSMPEGDecoder::setState()
 	}
 #endif
 
-	if (m_changed & changeState)
+	if (m_changed & (changeState|changeVideo|changeAudio))
 	{
 					/* play, slowmotion, fast-forward */
 		int state_table[6][4] = 
@@ -1015,7 +1015,7 @@ int eTSMPEGDecoder::setState()
 				/* [stateSlowMotion] =           */ {1, m_ff_sm_ratio, 0}
 			};
 		int *s = state_table[m_state];
-		if (m_video)
+		if (m_changed & (changeState|changeVideo) && m_video)
 		{
 			m_video->setSlowMotion(s[1]);
 			m_video->setFastForward(s[2]);
@@ -1024,7 +1024,7 @@ int eTSMPEGDecoder::setState()
 			else
 				m_video->freeze();
 		}
-		if (m_audio)
+		if (m_changed & (changeState|changeAudio) && m_audio)
 		{
 			if (s[0])
 				m_audio->unfreeze();
