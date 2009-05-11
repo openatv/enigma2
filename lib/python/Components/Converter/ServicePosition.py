@@ -21,11 +21,6 @@ class ServicePosition(Converter, Poll, object):
 		self.showHours = 'ShowHours' in args
 		self.showNoSeconds = 'ShowNoSeconds' in args
 
-		if self.detailed:
-			self.poll_interval = 100
-		else:
-			self.poll_interval = 500
-
 		if type == "Length":
 			self.type = self.TYPE_LENGTH
 		elif type == "Position":
@@ -37,7 +32,14 @@ class ServicePosition(Converter, Poll, object):
 		else:
 			raise ElementError("type must be {Length|Position|Remaining|Gauge} with optional arguments {Negate|Detailed|ShowHours|ShowNoSeconds} for ServicePosition converter")
 
-		self.poll_enabled = self.type != self.TYPE_LENGTH
+		if self.detailed:
+			self.poll_interval = 100
+		elif self.type == self.TYPE_LENGTH:
+			self.poll_interval = 2000
+		else:
+			self.poll_interval = 500
+
+		self.poll_enabled = True
 
 	def getSeek(self):
 		s = self.source.service
