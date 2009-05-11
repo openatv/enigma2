@@ -1631,12 +1631,20 @@ class InfoBarAudioSelection:
 
 			idx = 0
 			while idx < n:
+				cnt = 0
 				i = audio.getTrackInfo(idx)
-				language = i.getLanguage()
+				languages = i.getLanguage().split('/')
 				description = i.getDescription()
+				language = ""
 
-				if LanguageCodes.has_key(language):
-					language = LanguageCodes[language][0]
+				for lang in languages:
+					if cnt:
+						language += ' / '
+					if LanguageCodes.has_key(lang):
+						language += LanguageCodes[lang][0]
+					else:
+						language += lang
+					cnt += 1
 
 				if len(description):
 					description += " (" + language + ")"
