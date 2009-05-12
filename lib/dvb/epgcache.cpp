@@ -1370,15 +1370,10 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			break;
 		case 0xD0 ... 0xDF:
 		case 0xE0 ... 0xEF:
-		{
-			__u8 *d=0;
-			memcpy(&d, &data, sizeof(__u8*));
-			d[0] &= ~0x80;
 			reader=m_ViasatReader;
 			source=VIASAT;
 			map=3;
 			break;
-		}
 		default:
 			eDebug("[EPGC] unknown table_id !!!");
 			return;
