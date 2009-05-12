@@ -159,9 +159,9 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		int prevChannelState;
 		__u8 state, isRunning, haveData;
 		ePtr<eDVBChannel> channel;
-		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn;
-		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader;
-		tidMap seenSections[3], calcedSections[3];
+		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn, m_ViasatConn;
+		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader, m_ViasatReader;
+		tidMap seenSections[4], calcedSections[4];
 #ifdef ENABLE_PRIVATE_EPG
 		ePtr<eTimer> startPrivateTimer;
 		int m_PrevVersion;
@@ -198,6 +198,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void storeTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data);
 #endif
 		void readData(const __u8 *data);
+		void readDataViasat(const __u8 *data);
 		void startChannel();
 		void startEPG();
 		bool finishEPG();
@@ -210,6 +211,7 @@ public:
 #ifdef ENABLE_MHW_EPG
 	,MHW=8
 #endif
+	,VIASAT=16
 	};
 	struct Message
 	{
