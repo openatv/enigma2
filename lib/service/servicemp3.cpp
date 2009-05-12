@@ -702,7 +702,7 @@ int eServiceMP3::getInfo(int w)
 
 std::string eServiceMP3::getInfoString(int w)
 {
-	if ( !m_stream_tags )
+	if ( !m_stream_tags && w < sUser && w > 26 )
 		return "";
 	gchar *tag = 0;
 	switch (w)
@@ -800,7 +800,6 @@ std::string eServiceMP3::getInfoString(int w)
 	case sTagChannelMode:
 		tag = "channel-mode";
 		break;
-
 	case sUser+12:
 		return m_error_message;
 	default:
@@ -1128,6 +1127,7 @@ eDebug("AUDIO STRUCT=%s", g_type);
 				g_free (g_lang);
 // 				g_free (g_type);
 			}
+			m_event((iPlayableService*)this, evUpdatedEventInfo);
 		}
 		case GST_MESSAGE_ELEMENT:
 		{
