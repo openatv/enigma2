@@ -18,8 +18,8 @@ from os import system, path as os_path
 
 class CIselectMainMenu(Screen):
 	skin = """
-		<screen position="205,150" size="310,270"  title="CI Assignment" >
-			<widget name="CiList" position="10,10" size="290,200" scrollbarMode="showOnDemand" />
+		<screen position="180,150" size="350,270"  title="CI assignment" >
+			<widget name="CiList" position="10,10" size="330,200" scrollbarMode="showOnDemand" />
 			<ePixmap position="10,210" size="290,2" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/red.png" position="10,220" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="160,220" size="140,40" alphatest="on" />
@@ -54,7 +54,7 @@ class CIselectMainMenu(Screen):
 			for slot in range(NUM_CI):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state == 0:
-					appname = _("Slot %d") %(slot+1) + " - " + _("no module")
+					appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
 				elif state == 1:	
 					appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
 				elif state == 2:
@@ -67,6 +67,10 @@ class CIselectMainMenu(Screen):
 		menuList.list = self.list
 		menuList.l.setList(self.list)
 		self["CiList"] = menuList
+		self.onShown.append(self.setWindowTitle)
+
+	def setWindowTitle(self):
+		self.setTitle(_("CI assignment"))
 
 	def greenPressed(self):
 		cur = self["CiList"].getCurrent()
@@ -100,7 +104,7 @@ class CIselectMainMenu(Screen):
 
 class CIconfigMenu(Screen):
 	skin = """
-		<screen position="60,80" size="595,436" title="CI Assignment" >
+		<screen position="60,80" size="595,436" title="CI assignment" >
 			<widget name="CAidList.desc" position="10,10" size="575,22" font="Regular;20" />
 			<widget name="CAidList" position="10,40" size="575,45" font="Regular;20" />
 			<widget name="ServiceList.desc" position="10,90" size="575,22" font="Regular;20" />
@@ -121,7 +125,7 @@ class CIconfigMenu(Screen):
 		Screen.__init__(self, session)
 		self.ci_slot=ci_slot
 		self.filename="/etc/enigma2/ci"+str(self.ci_slot)+".xml"
-		
+
 		self["key_red"] = StaticText(_("delete"))
 		self["key_green"] = StaticText(_("add Service"))
 		self["key_yellow"] = StaticText(_("add Provider"))
@@ -138,7 +142,7 @@ class CIconfigMenu(Screen):
 				"ok": self.okPressed,
 				"cancel": self.cancel
 			}, -1)
-			
+
 		print "[CI_Wizzard_Config] Configuring CI Slots : %d  " % self.ci_slot
 
 		i=0
@@ -163,6 +167,10 @@ class CIconfigMenu(Screen):
 		# if config mode !=advanced autoselect any caid
 		if config.usage.setup_level.index <= 1: # advanced
 			self.selectedcaid=self.caidlist
+		self.onShown.append(self.setWindowTitle)
+
+	def setWindowTitle(self):
+		self.setTitle(_("CI assignment"))
 
 	def redPressed(self):
 		self.delete()
@@ -197,7 +205,7 @@ class CIconfigMenu(Screen):
 			service_name = service_ref.getServiceName()
 			if find_in_list(self.servicelist, service_name, 0)==False:
 				split_ref=service_ref.ref.toString().split(":")
-				if split_ref[0] == "1":			#== dvb service und nicht muell von None
+				if split_ref[0] == "1":#== dvb service und nicht muell von None
 					self.servicelist.append( (service_name , ConfigNothing(), 0, service_ref.ref.toString()) )
 					self["ServiceList"].l.setList(self.servicelist)
 
@@ -301,7 +309,7 @@ class CIconfigMenu(Screen):
 
 class easyCIconfigMenu(CIconfigMenu):
 	skin = """
-		<screen position="80,80" size="470,420" title="CI Assignment" >
+		<screen position="80,80" size="470,420" title="CI assignment" >
 			<widget name="ServiceList.desc" position="10,10" size="420,22" font="Regular;20" />
 			<widget name="ServiceList" position="10,40" size="450,340" scrollbarMode="showOnDemand" />
 			<ePixmap position="10,360" size="450,2" pixmap="skin_default/div-h.png" transparent="1" alphatest="on" />
@@ -317,7 +325,7 @@ class easyCIconfigMenu(CIconfigMenu):
 		ci=ci_slot
 		CIconfigMenu.__init__(self, session, ci_slot)
 		self.skin = easyCIconfigMenu.skin
-	
+
 		self["actions"] = ActionMap(["ColorActions","SetupActions"],
 		{
 			"green": self.greenPressed,
@@ -327,7 +335,7 @@ class easyCIconfigMenu(CIconfigMenu):
 			"ok": self.okPressed,
 			"cancel": self.cancel
 		}, -1)
-	
+
 	def bluePressed(self):
 		print "do nothing"
 
@@ -341,7 +349,7 @@ class CAidSelect(Screen):
 			<widget source="key_red" render="Label" position="10,240" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 			<widget source="key_green" render="Label" position="160,240" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		</screen>"""
-	
+
 	def __init__(self, session, list, selected_caids):
 		self.skin = CAidSelect.skin
 		Screen.__init__(self, session)
@@ -365,6 +373,10 @@ class CAidSelect(Screen):
 			"green": self.greenPressed,
 			"red": self.cancel
 		}, -1)
+		self.onShown.append(self.setWindowTitle)
+
+	def setWindowTitle(self):
+		self.setTitle(_("select CAId's"))
 
 	def greenPressed(self):
 		list = self.list.getSelectionsList()
@@ -411,6 +423,7 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def __onExecCallback(self):
 		self.showSatellites()
+		self.setTitle(_("Select provider to add..."))
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
@@ -516,6 +529,7 @@ class myChannelSelection(ChannelSelectionBase):
 
 	def __onExecCallback(self):
 		self.setModeTv()
+		self.setTitle(_("Select service to add..."))
 
 	def doNothing(self):
 		print "nothing to do..."
