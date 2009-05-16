@@ -17,6 +17,12 @@
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
 
+#ifndef GST_SEEK_FLAG_SKIP
+#warning Compiling for legacy gstreamer, things will break
+#define GST_SEEK_FLAG_SKIP 0
+#define GST_TAG_HOMEPAGE ""
+#endif
+
 // eServiceFactoryMP3
 
 eServiceFactoryMP3::eServiceFactoryMP3()
@@ -603,7 +609,7 @@ RESULT eServiceMP3::getName(std::string &name)
 
 int eServiceMP3::getInfo(int w)
 {
-	gchar *tag = 0;
+	const gchar *tag = 0;
 
 	switch (w)
 	{
@@ -704,7 +710,7 @@ std::string eServiceMP3::getInfoString(int w)
 {
 	if ( !m_stream_tags )
 		return "";
-	gchar *tag = 0;
+	const gchar *tag = 0;
 	switch (w)
 	{
 	case sTagTitle:
@@ -820,7 +826,7 @@ std::string eServiceMP3::getInfoString(int w)
 
 PyObject *eServiceMP3::getInfoObject(int w)
 {
-	gchar *tag = 0;
+	const gchar *tag = 0;
 	bool isBuffer = false;
 	switch (w)
 	{
