@@ -303,6 +303,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					eDebug("[eEPGCache] couldnt initialize schedule other reader!!");
 					return;
 				}
+
+				res = demux->createSectionReader( this, data.m_ViasatReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize viasat reader!!");
+					return;
+				}
 #ifdef ENABLE_PRIVATE_EPG
 				res = demux->createSectionReader( this, data.m_PrivateReader );
 				if ( res )
@@ -1115,7 +1122,7 @@ bool eEPGCache::channel_data::finishEPG()
 		eDebug("[EPGC] stop caching events(%ld)", ::time(0));
 		zapTimer->start(UPDATE_INTERVAL, 1);
 		eDebug("[EPGC] next update in %i min", UPDATE_INTERVAL / 60000);
-		for (int i=0; i < 3; ++i)
+		for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
 		{
 			seenSections[i].clear();
 			calcedSections[i].clear();
@@ -1135,7 +1142,7 @@ void eEPGCache::channel_data::startEPG()
 	eDebug("[EPGC] start caching events(%ld)", ::time(0));
 	state=0;
 	haveData=0;
-	for (int i=0; i < 3; ++i)
+	for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
 	{
 		seenSections[i].clear();
 		calcedSections[i].clear();
@@ -1186,6 +1193,14 @@ void eEPGCache::channel_data::startEPG()
 	m_ScheduleOtherReader->start(mask);
 	isRunning |= SCHEDULE_OTHER;
 
+	mask.pid = 0x39;
+
+	mask.data[0] = 0x40;
+	mask.mask[0] = 0x40;
+	m_ViasatReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataViasat), m_ViasatConn);
+	m_ViasatReader->start(mask);
+	isRunning |= VIASAT;
+
 	abortTimer->start(7000,true);
 }
 
@@ -1209,10 +1224,17 @@ void eEPGCache::channel_data::abortNonAvail()
 		}
 		if ( !(haveData&SCHEDULE_OTHER) && (isRunning&SCHEDULE_OTHER) )
 		{
-			eDebug("[EPGC] abort non avail schedule_other reading");
+			eDebug("[EPGC] abort non avail schedule other reading");
 			isRunning &= ~SCHEDULE_OTHER;
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
+		}
+		if ( !(haveData&VIASAT) && (isRunning&VIASAT) )
+		{
+			eDebug("[EPGC] abort non avail viasat reading");
+			isRunning &= ~VIASAT;
+			m_ViasatReader->stop();
+			m_ViasatConn=0;
 		}
 #ifdef ENABLE_MHW_EPG
 		if ( !(haveData&MHW) && (isRunning&MHW) )
@@ -1225,12 +1247,14 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_MHWConn2=0;
 		}
 #endif
-		if ( isRunning )
+		if ( isRunning & VIASAT )
+			abortTimer->start(300000, true);
+		else if ( isRunning )
 			abortTimer->start(90000, true);
 		else
 		{
 			++state;
-			for (int i=0; i < 3; ++i)
+			for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
 			{
 				seenSections[i].clear();
 				calcedSections[i].clear();
@@ -1259,7 +1283,7 @@ void eEPGCache::channel_data::startChannel()
 
 void eEPGCache::channel_data::abortEPG()
 {
-	for (int i=0; i < 3; ++i)
+	for (unsigned int i=0; i < sizeof(seenSections)/sizeof(tidMap); ++i)
 	{
 		seenSections[i].clear();
 		calcedSections[i].clear();
@@ -1287,6 +1311,12 @@ void eEPGCache::channel_data::abortEPG()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
+		if (isRunning & VIASAT)
+		{
+			isRunning &= ~VIASAT;
+			m_ViasatReader->stop();
+			m_ViasatConn=0;
+		}
 #ifdef ENABLE_MHW_EPG
 		if (isRunning & MHW)
 		{
@@ -1305,6 +1335,15 @@ void eEPGCache::channel_data::abortEPG()
 		m_PrivateConn=0;
 #endif
 	pthread_mutex_unlock(&channel_active);
+}
+
+
+void eEPGCache::channel_data::readDataViasat( const __u8 *data)
+{
+	__u8 *d=0;
+	memcpy(&d, &data, sizeof(__u8*));
+	d[0] |= 0x80;
+	readData(data);
 }
 
 void eEPGCache::channel_data::readData( const __u8 *data)
@@ -1329,6 +1368,12 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			source=SCHEDULE_OTHER;
 			map=2;
 			break;
+		case 0xD0 ... 0xDF:
+		case 0xE0 ... 0xEF:
+			reader=m_ViasatReader;
+			source=VIASAT;
+			map=3;
+			break;
 		default:
 			eDebug("[EPGC] unknown table_id !!!");
 			return;
@@ -1351,6 +1396,10 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 			case SCHEDULE_OTHER:
 				m_ScheduleOtherConn=0;
 				eDebugNoNewLine("schedule other");
+				break;
+			case VIASAT:
+				m_ViasatConn=0;
+				eDebugNoNewLine("viasat");
 				break;
 			default: eDebugNoNewLine("unknown");break;
 		}
@@ -2983,7 +3032,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 
 	if ( state > 1 || // aborted
 		// have si data.. so we dont read mhw data
-		(haveData & (SCHEDULE|SCHEDULE_OTHER)) )
+		(haveData & (SCHEDULE|SCHEDULE_OTHER|VIASAT)) )
 	{
 		eDebug("[EPGC] mhw aborted %d", state);
 	}
@@ -3149,7 +3198,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 
 	if ( state > 1 || // aborted
 		// have si data.. so we dont read mhw data
-		(haveData & (eEPGCache::SCHEDULE|eEPGCache::SCHEDULE_OTHER)) )
+		(haveData & (SCHEDULE|SCHEDULE_OTHER|VIASAT)) )
 	{
 		eDebug("[EPGC] mhw2 aborted %d", state);
 	}

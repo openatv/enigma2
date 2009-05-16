@@ -649,7 +649,7 @@ class RecordTimer(timer.Timer):
 						chktimecmp_end = chktimecmp + (duration / 60)
 					time = localtime(x.begin)
 					for y in (0, 1, 2, 3, 4, 5, 6):
-						if x.repeated & (2 ** y):
+						if x.repeated & (2 ** y) and (x.begin <= begin or begin <= x.begin <= end):
 							timecmp = y * 1440 + time.tm_hour * 60 + time.tm_min
 							if timecmp <= chktimecmp < (timecmp + ((x.end - x.begin) / 60)):
 								time_match = ((timecmp + ((x.end - x.begin) / 60)) - chktimecmp) * 60
