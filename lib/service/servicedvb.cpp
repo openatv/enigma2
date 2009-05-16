@@ -2209,6 +2209,7 @@ void eDVBServicePlay::switchToLive()
 	m_new_subtitle_page_connection = 0;
 	m_rds_decoder_event_connection = 0;
 	m_video_event_connection = 0;
+	m_is_paused = m_skipmode = 0; /* not supported in live mode */
 
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
