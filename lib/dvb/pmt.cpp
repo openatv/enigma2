@@ -399,10 +399,16 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 								case ISO_639_LANGUAGE_DESCRIPTOR:
 									if (!isvideo)
 									{
+										int cnt=0;
 										const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
 											/* use last language code */
-										for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i)
-											audio.language_code = (*i)->getIso639LanguageCode();
+										for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i, ++cnt)
+										{
+											if (cnt == 0)
+												audio.language_code = (*i)->getIso639LanguageCode();
+											else
+												audio.language_code += "/" + (*i)->getIso639LanguageCode();
+										}
 									}
 									break;
 								case STREAM_IDENTIFIER_DESCRIPTOR:
