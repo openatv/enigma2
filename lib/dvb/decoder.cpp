@@ -1175,10 +1175,7 @@ RESULT eTSMPEGDecoder::play()
 	{
 		if (!m_changed)
 			return 0;
-	}
-//	else  
-/* commented out because the changeState is needed to unfreeze decoders in decoder::setState... needed by normal pmt changes
-tmbinc please recheck this! */
+	} else  
 	{
 		m_state = statePlay;
 		m_changed |= changeState;
