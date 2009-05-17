@@ -79,7 +79,7 @@ class CutListContextMenu(FixedMenu):
 		else:
 			menu.append((_("remove this mark"), self.removeMark))
 
-		menu.append((("grab this frame as bitmap"), self.grabFrame))
+		menu.append((_("grab this frame as bitmap"), self.grabFrame))
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = "Menu"
 
