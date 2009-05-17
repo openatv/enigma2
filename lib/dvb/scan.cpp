@@ -46,6 +46,8 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 		return orbital_position == 192;
 	case 0x00B1:
 		return tsid != 0x00B0;
+	case 0x00eb:
+		return tsid != 0x4321;
 	case 0x0002:
 		return abs(orbital_position-282) < 6;
 	default:
