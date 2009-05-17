@@ -197,12 +197,12 @@
 			<key id="KEY_AUDIO" mapto="audioSelection" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_YELLOW" mapto="audioSelection" flags="m" />
+			<key id="KEY_YELLOW" mapto="audioSelection" flags="b" />
 		</device>
 	</map>
 
 	<map context="InfobarSubserviceSelectionActions">
-		<key id="KEY_GREEN" mapto="subserviceSelection" flags="m" />
+		<key id="KEY_GREEN" mapto="subserviceSelection" flags="b" />
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
@@ -265,8 +265,8 @@
 
 	<map context="InfobarSeekActions">
 		<device name="dreambox remote control (native)">
-			<key id="KEY_YELLOW" mapto="pauseService" flags="m" />
-			<key id="KEY_GREEN" mapto="unPauseService" flags="m" />
+			<key id="KEY_YELLOW" mapto="pauseService" flags="b" />
+			<key id="KEY_GREEN" mapto="unPauseService" flags="b" />
 			<key id="KEY_RED" mapto="seekBack" flags="b" />
 			<key id="KEY_BLUE" mapto="seekFwd" flags="b" />
 			<key id="KEY_RED" mapto="seekBackManual" flags="l" />
