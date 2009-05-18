@@ -59,7 +59,7 @@ private:
 	pthread_t the_thread;
 
 	static void *wrapper(void *ptr);
-	int m_alive;
+	int m_alive, m_started;
 	static void thread_completed(void *p);
 
 	eSemaphore m_state;
