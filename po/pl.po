@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-04-28 01:32+0200\n"
+"POT-Creation-Date: 2009-05-18 23:40+0200\n"
 "PO-Revision-Date: 2009-04-08 11:43+0100\n"
 "Last-Translator: Sebastian <zbigzbig2@op.pl>\n"
 "Language-Team: none\n"
@@ -63,7 +63,7 @@ msgid ""
 "Press OK on your remote control to continue."
 msgstr ""
 "\n"
-"Wciśnij OK aby kontynułować."
+"Wciśnij OK aby kontynuować."
 
 msgid ""
 "\n"
@@ -507,6 +507,8 @@ msgid ""
 "Are you sure you want to delete\n"
 "following backup:\n"
 msgstr ""
+"Jesteś pewien że chcesz usunąć\n"
+"tą kopię zapasową:\n"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -548,7 +550,7 @@ msgid "Audio Options..."
 msgstr "Opcje Dźwięku..."
 
 msgid "Author: "
-msgstr ""
+msgstr "Autor: "
 
 msgid "Authoring mode"
 msgstr "Tryb autoringu"
@@ -674,6 +676,9 @@ msgstr "Pasmo C"
 
 msgid "CF Drive"
 msgstr "Karta CF"
+
+msgid "CI assignment"
+msgstr ""
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -829,10 +834,10 @@ msgid "Common Interface Assignment"
 msgstr "Zadania Modułu CI"
 
 msgid "CommonInterface"
-msgstr ""
+msgstr "Moduł CI"
 
 msgid "Communication"
-msgstr ""
+msgstr "Komunikacja"
 
 msgid "Compact Flash"
 msgstr "Compact Flash"
@@ -976,7 +981,7 @@ msgid "Deep Standby"
 msgstr "Głębokie Czuwanie"
 
 msgid "Default Settings"
-msgstr ""
+msgstr "Ustawienia Domyślne"
 
 msgid "Default services lists"
 msgstr "Standardowa lista serwisów"
@@ -1014,7 +1019,7 @@ msgid "Destination directory"
 msgstr "Katalog docelowy"
 
 msgid "Details"
-msgstr ""
+msgstr "Szczegóły"
 
 msgid "Detected HDD:"
 msgstr "Wykryto Hdd:"
@@ -1085,7 +1090,7 @@ msgid "Display Setup"
 msgstr "Ustawienia OLED"
 
 msgid "Display and Userinterface"
-msgstr ""
+msgstr "Wyświetlanie i Interfejs użytkownika"
 
 #, python-format
 msgid ""
@@ -1140,7 +1145,7 @@ msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Czy chcesz nagrać tę kolekcje na nosniku DVD?"
 
 msgid "Do you want to continue installing or removing selected plugins?\n"
-msgstr ""
+msgstr "Kontynuować instalowane lub kasowanie wybranych pluginów?\n"
 
 msgid "Do you want to do a service scan?"
 msgstr "Czy chcesz przeprowadzić skanowanie serwisów?"
@@ -1681,7 +1686,7 @@ msgid "Input"
 msgstr "Info"
 
 msgid "Install"
-msgstr ""
+msgstr "Instalacja"
 
 msgid "Install a new image with a USB stick"
 msgstr "Instaluj nowe image z pamięci USB"
@@ -1693,7 +1698,7 @@ msgid "Install local IPKG"
 msgstr "Instaluj lokalny IPKG"
 
 msgid "Install or remove finished."
-msgstr ""
+msgstr "Instalacja lub kasowanie zakończone."
 
 msgid "Install settings, skins, software..."
 msgstr "Instaluj ustawienia, skiny, soft..."
@@ -1705,9 +1710,11 @@ msgid ""
 "Install/\n"
 "Remove"
 msgstr ""
+"Instalacja/\n"
+"Kasowanie"
 
 msgid "Installation finished."
-msgstr ""
+msgstr "Instalacja zakończona."
 
 msgid "Installing"
 msgstr "Instalowanie"
@@ -1764,6 +1771,9 @@ msgstr "Podgląd zajęć"
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Po prostu skaluj"
+
+msgid "Keyboard"
+msgstr ""
 
 msgid "Keyboard Map"
 msgstr "Mapa klawiatury"
@@ -1824,7 +1834,7 @@ msgid "Limit west"
 msgstr "Limit zachodni"
 
 msgid "Limited character set for recording filenames"
-msgstr ""
+msgstr "Limit znaków w nazwie nagrania"
 
 msgid "Limits off"
 msgstr "Limity wyłaczonyy"
@@ -1971,7 +1981,7 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 msgid "Multimedia"
-msgstr ""
+msgstr "Multimedia"
 
 msgid "Multiple service support"
 msgstr "Wielokrotny support serwisu"
@@ -2018,7 +2028,7 @@ msgid "Netmask"
 msgstr "Maska sieci"
 
 msgid "Network"
-msgstr ""
+msgstr "Sieć"
 
 msgid "Network Configuration..."
 msgstr "Konfiguracja sieci..."
@@ -2091,7 +2101,7 @@ msgstr ""
 "(Koniec czasu czytania PAT)"
 
 msgid "No description available."
-msgstr ""
+msgstr "Brak dostępnego opisu."
 
 msgid "No details for this image file"
 msgstr "Brak opisu dla tego image'a"
@@ -2270,7 +2280,7 @@ msgid "PIDs"
 msgstr "Pidy"
 
 msgid "Package details for: "
-msgstr ""
+msgstr "Szczegóły paczki dla: "
 
 msgid "Package list update"
 msgstr "Paczka listy aktualizacji"
@@ -2482,7 +2492,7 @@ msgid "Plugin browser"
 msgstr "Przeglądarka pluginów"
 
 msgid "Plugin manager"
-msgstr ""
+msgstr "Menadżer Pluginów"
 
 msgid "Plugins"
 msgstr "Pluginy"
@@ -2655,7 +2665,7 @@ msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Nagrywanie(a) jest w toku lub rozbpocznie się za kilka sekund!"
 
 msgid "Recordings"
-msgstr ""
+msgstr "Nagrania"
 
 msgid "Recordings always have priority"
 msgstr "Nagrywanie zawsze ma priorytet"
@@ -2673,7 +2683,7 @@ msgid "Reload"
 msgstr "Przeładuj"
 
 msgid "Remove"
-msgstr ""
+msgstr "Skasuj"
 
 msgid "Remove Bookmark"
 msgstr "Usuń zakładkę"
@@ -2827,7 +2837,7 @@ msgid "SNR:"
 msgstr "SNR:"
 
 msgid "Sat"
-msgstr "Sat"
+msgstr "Sob"
 
 msgid "Sat / Dish Setup"
 msgstr "Ustawienia anteny"
@@ -2848,7 +2858,7 @@ msgid "Sats"
 msgstr "Satelity"
 
 msgid "Satteliteequipment"
-msgstr ""
+msgstr "Wyposażenie satelity"
 
 msgid "Saturday"
 msgstr "Sobota"
@@ -2950,7 +2960,7 @@ msgid "Search west"
 msgstr "Szukaj na zachód"
 
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr ""
+msgstr "Szukanie nowo zainstalowanych lub usuniętych paczek. Proszę czekać..."
 
 msgid "Secondary DNS"
 msgstr "Drugi DNS"
@@ -2994,8 +3004,14 @@ msgstr "Wybierz pliki/katalogi dla kopii zapasowej..."
 msgid "Select image"
 msgstr "Wybierz image"
 
+msgid "Select provider to add..."
+msgstr ""
+
 msgid "Select refresh rate"
 msgstr "Wybierz prędkość odświeżania"
+
+msgid "Select service to add..."
+msgstr ""
 
 msgid "Select video input"
 msgstr "Wybierz wejście Wideo"
@@ -3154,7 +3170,7 @@ msgid "Skin..."
 msgstr "Skiny..."
 
 msgid "Skins"
-msgstr ""
+msgstr "Skiny"
 
 msgid "Sleep Timer"
 msgstr "Wyłącznik Czasowy"
@@ -3176,7 +3192,7 @@ msgid "Slow Motion speeds"
 msgstr "Odtwarzanie w zwolnionym tempie"
 
 msgid "Software"
-msgstr ""
+msgstr "Oprogramowanie"
 
 msgid "Software manager"
 msgstr "Menadżer oprogramowania"
@@ -3219,7 +3235,7 @@ msgstr ""
 "Wybierz inne miejsce."
 
 msgid "Sorry, no Details available!"
-msgstr ""
+msgstr "Przepraszam, brak dostępnych szczegółów!"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
@@ -3981,7 +3997,7 @@ msgid "Video mode selection."
 msgstr "Wybór trybu wideo"
 
 msgid "View"
-msgstr ""
+msgstr "Wyświetl"
 
 msgid "View Movies..."
 msgstr "Wyświetl Filmy..."
@@ -3996,40 +4012,41 @@ msgid "View Video CD..."
 msgstr "Wyświetl Video CD..."
 
 msgid "View list of available CommonInterface extensions"
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń Modułu CI"
 
 msgid "View list of available Display and Userinterface extensions."
 msgstr ""
+"Pokaż listę dostępnych rozszerzeń Wyświetlania i Interfejsu użytkownika"
 
 msgid "View list of available EPG extensions."
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń EPG"
 
 msgid "View list of available Satteliteequipment extensions."
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń Wyposażenia satelity"
 
 msgid "View list of available communication extensions."
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń Komunikacji"
 
 msgid "View list of available default settings"
-msgstr ""
+msgstr "Pokaż listę dostępnych ustawień domyślnych"
 
 msgid "View list of available multimedia extensions."
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń multimedialnych"
 
 msgid "View list of available networking extensions"
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń sieci"
 
 msgid "View list of available recording extensions"
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń nagrywania"
 
 msgid "View list of available skins"
-msgstr ""
+msgstr "Pokaż listę dostępnych skinów"
 
 msgid "View list of available software extensions"
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń oprogramowania"
 
 msgid "View list of available system extensions"
-msgstr ""
+msgstr "Pokaż listę dostępnych rozszerzeń systemu"
 
 msgid "View teletext..."
 msgstr "Pokaż teletext..."
@@ -4552,7 +4569,7 @@ msgid "day"
 msgstr "Dzień"
 
 msgid "delete"
-msgstr ""
+msgstr "Usuń"
 
 msgid "delete cut"
 msgstr "Usuń wycięte"
@@ -4685,6 +4702,9 @@ msgstr "Przejdź do głębokiego czuwania"
 
 msgid "go to standby"
 msgstr "Przejdź do stanu czuwania"
+
+msgid "grab this frame as bitmap"
+msgstr ""
 
 msgid "green"
 msgstr "Zielony"
@@ -4843,9 +4863,6 @@ msgstr "Nie znaleziono slotu CI"
 
 msgid "no HDD found"
 msgstr "Nie znaleziono HDD"
-
-msgid "no module"
-msgstr "Brak modułu"
 
 msgid "no module found"
 msgstr "Nie znaleziono modułu"
@@ -5022,6 +5039,9 @@ msgstr "Wybierz plik .NFI flash"
 msgid "select CAId"
 msgstr "Wybierz CAId"
 
+msgid "select CAId's"
+msgstr ""
+
 msgid "select image from server"
 msgstr "Wybierz plik z serwera"
 
@@ -5182,7 +5202,7 @@ msgid "unconfirmed"
 msgstr "Niepotwierdzony"
 
 msgid "unknown"
-msgstr ""
+msgstr "nieznane"
 
 msgid "unknown service"
 msgstr "Nieznany serwis"
@@ -5821,6 +5841,9 @@ msgstr "Przełączony"
 
 #~ msgid "no Picture found"
 #~ msgstr "Nie znaleziono obrazka"
+
+#~ msgid "no module"
+#~ msgstr "Brak modułu"
 
 #~ msgid "ok"
 #~ msgstr "OK"
