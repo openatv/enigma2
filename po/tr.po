@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Turkish Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-03-26 17:08+0100\n"
-"PO-Revision-Date: 2009-03-03 11:16+0200\n"
-"Last-Translator: Zülfikar VEYİSOĞLU <zveyis@gmail.com>\n"
-"Language-Team: http://www.turkeyforum.com/satforum <zveyis@gmail.com>\n"
+"POT-Creation-Date: 2009-05-18 23:40+0200\n"
+"PO-Revision-Date: 2009-04-28 19:49+0200\n"
+"Last-Translator: Zülfikar VEYİSOĞLU <z.veyisoglu@hobiagaci.com>\n"
+"Language-Team: http://hobiagaci.com <z.veyisoglu@hobiagaci.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
-"OK'a bastıktan sonra lütfen bekleyin!"
+"Lütfen OK'a bastıktan sonra bekleyin!"
 
 msgid ""
 "\n"
@@ -73,7 +73,7 @@ msgid ""
 "Restore your Dreambox with a new firmware."
 msgstr ""
 "\n"
-"Dreambox'ınızı yeni sistem yazılımıyla birlikte geri yükleyin."
+"Dreambox yeni bellenimini, sistem yedeğinizle birlikte geri yükleyin."
 
 msgid ""
 "\n"
@@ -189,7 +189,7 @@ msgstr ".NFI dosyası indirilirken hata oluştu:"
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
-".NFI dosyası için yapılan md5sum imza doğrulaması onaylandı. Bu imajı "
+".NFI dosyası için yapılan md5sum imza doğrulaması onaylandı. Bu bellenimi "
 "güvenle kullanabilirsiniz!"
 
 msgid "/usr/share/enigma2 directory"
@@ -308,7 +308,7 @@ msgid ""
 "Dreambox to standby. Do that now?"
 msgstr ""
 "Bitmiş olan bir kayıt zamanlayıcısı Dreambox'ı\n"
-"uyku kipine almak istiyor. Şimdi alınsın mı?"
+"hazırda bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
@@ -357,7 +357,7 @@ msgid ""
 "Dreambox to standby. Do that now?"
 msgstr ""
 "Zamanlanmış bir görev Dreambox'ı\n"
-"uyku kipine almak istiyor. Şimdi alınsın mı?"
+"hazırda bekletme kipine almak istiyor. Şimdi alınsın mı?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
@@ -374,7 +374,7 @@ msgstr ""
 "TV fonksiyonu devre dışı bırakılıp tekrar denensin mi?\n"
 
 msgid "A/V Settings"
-msgstr "Ses/Görüntü Ayarları"
+msgstr "Ses/Görüntü ayarları"
 
 msgid "AA"
 msgstr "AA"
@@ -386,7 +386,7 @@ msgid "AC3 default"
 msgstr "AC3 varsayılan"
 
 msgid "AC3 downmix"
-msgstr "AC3 downmix"
+msgstr "AC3 izi steryo ver"
 
 msgid "About"
 msgstr "Hakkında"
@@ -502,6 +502,13 @@ msgstr ""
 "\n"
 
 msgid ""
+"Are you sure you want to delete\n"
+"following backup:\n"
+msgstr ""
+"Aşağıdaki belirtilen yedeği\n"
+"silmek istiyor musunuz?:\n"
+
+msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
@@ -540,6 +547,9 @@ msgstr "Ses"
 msgid "Audio Options..."
 msgstr "Ses Ayarları..."
 
+msgid "Author: "
+msgstr ""
+
 msgid "Authoring mode"
 msgstr "Yayınlama kipi"
 
@@ -556,7 +566,7 @@ msgid "Automatic"
 msgstr "Otomatik"
 
 msgid "Automatic Scan"
-msgstr "Otomatik Arama"
+msgstr "Otomatik arama"
 
 msgid "Available format variables"
 msgstr "Kullanılabilir biçim (format) değişkenleri"
@@ -607,7 +617,7 @@ msgid "Backup running..."
 msgstr "Yedekleme çalışıyor..."
 
 msgid "Backup system settings"
-msgstr "Sistem ayarını yedekle"
+msgstr "Sistem ayarlarını yedekle"
 
 msgid "Band"
 msgstr "Bant"
@@ -664,6 +674,9 @@ msgstr "C-Band"
 
 msgid "CF Drive"
 msgstr "CF Sürücüsü"
+
+msgid "CI assignment"
+msgstr ""
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -723,7 +736,7 @@ msgid "Channel:"
 msgstr "Kanal:"
 
 msgid "Channellist menu"
-msgstr "Kanal Listesi menüsü"
+msgstr "Kanal listesi menüsü"
 
 msgid "Chap."
 msgstr "Bölüm"
@@ -744,7 +757,7 @@ msgid "Choose Tuner"
 msgstr "Tuner Seç"
 
 msgid "Choose backup files"
-msgstr "Yedekleme dosyası seç"
+msgstr "Yedeklenecek dosyaları seç"
 
 msgid "Choose backup location"
 msgstr "Yedekleme konumu seç"
@@ -759,7 +772,7 @@ msgid "Choose target folder"
 msgstr "Hedef klasörü seç"
 
 msgid "Choose upgrade source"
-msgstr "Güncelleme kaynağı..."
+msgstr "Güncelleme sunucusu ayarları"
 
 msgid "Choose your Skin"
 msgstr "Arayüzünüzü Seçin"
@@ -816,7 +829,13 @@ msgid "Common Interface"
 msgstr "Ortak Arayüz"
 
 msgid "Common Interface Assignment"
-msgstr ""
+msgstr "Ortak Arayüz Ataması"
+
+msgid "CommonInterface"
+msgstr "Ortak arayüz"
+
+msgid "Communication"
+msgstr "İletişim"
 
 msgid "Compact Flash"
 msgstr "Compact Flash"
@@ -831,10 +850,10 @@ msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Kompleks (karışık ses izlerine ve açılara izin verir)"
 
 msgid "Config"
-msgstr ""
+msgstr "Ayarlar"
 
 msgid "Configuration Mode"
-msgstr "Konfigürasyon kipi"
+msgstr "Yapılandırma tipi"
 
 msgid "Configuring"
 msgstr "Ayarlanıyor"
@@ -877,7 +896,7 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr "Dreambox .NFI imaj sunucusuna bağlanamıyor:"
+msgstr "Dreambox .NFI bellenim sunucusuna bağlanamıyor:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "DVD medyası yüklenemedi. DVD diski takılı değil mi?"
@@ -957,7 +976,10 @@ msgid "Date"
 msgstr "Tarih"
 
 msgid "Deep Standby"
-msgstr "Derin Uyku"
+msgstr "Kapat"
+
+msgid "Default Settings"
+msgstr ""
 
 msgid "Default services lists"
 msgstr "Varsayılan kanal listesi"
@@ -994,6 +1016,9 @@ msgstr "Seçimi kaldır"
 msgid "Destination directory"
 msgstr "Hedef Klasör"
 
+msgid "Details"
+msgstr "Detaylar"
+
 msgid "Detected HDD:"
 msgstr "Tanınan HDD:"
 
@@ -1010,7 +1035,7 @@ msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
 msgid "DiSEqC mode"
-msgstr "DiSEqC kipi"
+msgstr "DiSEqC tipi"
 
 msgid "DiSEqC repeats"
 msgstr "DiSEqC tekrarı"
@@ -1060,7 +1085,10 @@ msgid "Display >16:9 content as"
 msgstr ">16:9 içeriği şu şekilde göster"
 
 msgid "Display Setup"
-msgstr "OLED Ekran Ayarları"
+msgstr "OLED ekran ayarları"
+
+msgid "Display and Userinterface"
+msgstr "Görünüm ve kullanıcı arayüzü"
 
 #, python-format
 msgid ""
@@ -1113,6 +1141,9 @@ msgstr ""
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Bu koleksiyonu DVD medyasına yazmak istiyor musunuz?"
+
+msgid "Do you want to continue installing or removing selected plugins?\n"
+msgstr "Seçtiğiniz eklentiyi yüklemek veya kaldırmak istiyor musunuz?\n"
 
 msgid "Do you want to do a service scan?"
 msgstr "Kanal araması yapmak ister misiniz?"
@@ -1191,7 +1222,7 @@ msgstr "Eklenti İndir"
 
 msgid "Download of USB flasher boot image failed: "
 msgstr ""
-"Önyükleme yapabilir USB flaşlayıcı imaj dosyası indirilirken hata oluştu:"
+"Önyükleme yapabilir USB flaşlayıcı bellenim dosyası indirilirken hata oluştu:"
 
 msgid "Downloadable new plugins"
 msgstr "İndirilebilir yeni eklentiler"
@@ -1501,16 +1532,16 @@ msgid "Gateway"
 msgstr "Ağ geçidi"
 
 msgid "General AC3 Delay"
-msgstr ""
+msgstr "Genel AC3 gecikmesi"
 
 msgid "General AC3 delay"
-msgstr ""
+msgstr "Genel AC3 gecikmesi"
 
 msgid "General PCM Delay"
-msgstr ""
+msgstr "Genel PCM gecikmesi"
 
 msgid "General PCM delay"
-msgstr ""
+msgstr "Genel PCM gecikmesi"
 
 msgid "Genre"
 msgstr "Tür"
@@ -1546,7 +1577,7 @@ msgid "Harddisk setup"
 msgstr "Sabitdisk kurulumu"
 
 msgid "Harddisk standby after"
-msgstr "Kullanılmadığında sabit diski uyku kipine geçir"
+msgstr "Kullanılmadığında sabit diski bekleme kipine geçir"
 
 msgid "Hidden network SSID"
 msgstr "Gizlenmiş ağ SSID"
@@ -1558,7 +1589,7 @@ msgid "Hierarchy mode"
 msgstr "Hiyerarşi kipi"
 
 msgid "High bitrate support"
-msgstr ""
+msgstr "Yüksek bit oranı desteği"
 
 msgid "Horizontal"
 msgstr "Yatay (H)"
@@ -1614,10 +1645,10 @@ msgstr ""
 "Sonuçtan memnunsanız, OK tuşuna basın."
 
 msgid "Image flash utility"
-msgstr "İmaj flaş aracı"
+msgstr "Bellenim flaşlama aracı"
 
 msgid "Image-Upgrade"
-msgstr "İmaj Güncelle"
+msgstr "Bellenim Güncelle"
 
 msgid "In Progress"
 msgstr "İlerliyor"
@@ -1658,20 +1689,34 @@ msgstr "Sabitdisk sıfırlanıyor..."
 msgid "Input"
 msgstr "Giriş"
 
+msgid "Install"
+msgstr "Yükle"
+
 msgid "Install a new image with a USB stick"
-msgstr "Yeni imajı USB bellekten yükle"
+msgstr "Yeni bellenimi USB bellekten yükle"
 
 msgid "Install a new image with your web browser"
-msgstr "Yeni imajı internet gezgin (ie,firefox vb.) programıyla yükle"
+msgstr "Yeni bellenimi internet gezgin (ie,firefox vb.) programıyla yükle"
 
 msgid "Install local IPKG"
 msgstr "Çevrimdışı IPKG yükle"
+
+msgid "Install or remove finished."
+msgstr "Yükleme veya kaldırma tamamlandı."
 
 msgid "Install settings, skins, software..."
 msgstr "Yapılandırma ayarı, arayüz, yazılım yükleyin..."
 
 msgid "Install software updates..."
 msgstr "Yazılım güncellemelerini yükle..."
+
+msgid ""
+"Install/\n"
+"Remove"
+msgstr ""
+
+msgid "Installation finished."
+msgstr ""
 
 msgid "Installing"
 msgstr "Kuruluyor"
@@ -1729,6 +1774,9 @@ msgstr "Görev Göster"
 msgid "Just Scale"
 msgstr "Just Scale"
 
+msgid "Keyboard"
+msgstr ""
+
 msgid "Keyboard Map"
 msgstr "Klavye dizilimi"
 
@@ -1757,7 +1805,7 @@ msgid "Language selection"
 msgstr "Dil seçimi"
 
 msgid "Language..."
-msgstr "Dil Ayarları..."
+msgstr "Dil ayarları"
 
 msgid "Last speed"
 msgstr "Son hız"
@@ -1786,6 +1834,9 @@ msgstr "Doğu limiti"
 
 msgid "Limit west"
 msgstr "Batı limiti"
+
+msgid "Limited character set for recording filenames"
+msgstr "Kayıt işleminde dosya adı karakter setini sınırla"
 
 msgid "Limits off"
 msgstr "Limitler kapalı"
@@ -1931,6 +1982,9 @@ msgstr "Film Listesi Menüsü"
 msgid "Multi EPG"
 msgstr "Çoklu EPG"
 
+msgid "Multimedia"
+msgstr "Çoklu ortam"
+
 msgid "Multiple service support"
 msgstr "Çoklu kanal desteği"
 
@@ -1941,14 +1995,14 @@ msgid "Mute"
 msgstr "Sessiz"
 
 msgid "N/A"
-msgstr "Kullanılamaz (N/A)"
+msgstr "Kullanılamaz"
 
 msgid "NEXT"
 msgstr "SONRA"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
-"NFI imaj flaş yazma işlemi tamamlandı. Sarı tuşa basarak yeniden başlatın!"
+"NFI bellenim flaşlaması tamamlandı. Sarı tuşa basarak yeniden başlatın!"
 
 msgid "NOW"
 msgstr "ŞİMDİ"
@@ -1975,6 +2029,9 @@ msgstr "İsim sunucusu (DNS) ayarları"
 msgid "Netmask"
 msgstr "Alt ağ maskesi"
 
+msgid "Network"
+msgstr "Ağ"
+
 msgid "Network Configuration..."
 msgstr "Ağ Yapılandırması..."
 
@@ -2000,7 +2057,7 @@ msgid "Network test..."
 msgstr "Ağ testi..."
 
 msgid "Network..."
-msgstr "Ağ Ayarları..."
+msgstr "Ağ ayarları"
 
 msgid "Network:"
 msgstr "Ağ:"
@@ -2045,8 +2102,11 @@ msgstr ""
 "Transponder'da yayın yok!\n"
 "(PAT okunurken zaman aşımı oluştu)"
 
+msgid "No description available."
+msgstr "Açıklayıcı bilgi yok."
+
 msgid "No details for this image file"
-msgstr "Bu imaj dosyası için detay bilgisi yok"
+msgstr "Bu bellenim dosyasının detay bilgisi yok"
 
 msgid "No displayable files on this medium found!"
 msgstr "Bu medyada gösterilecek dosya bulunamadı!"
@@ -2195,13 +2255,13 @@ msgid "OSD Settings"
 msgstr "OSD Ayarları"
 
 msgid "OSD visibility"
-msgstr "OSD görülebilirliği"
+msgstr "OSD görünürlüğü"
 
 msgid "Off"
-msgstr "Kapat"
+msgstr "Kapalı"
 
 msgid "On"
-msgstr "Aç"
+msgstr "Açık"
 
 msgid "One"
 msgstr "Bir"
@@ -2213,13 +2273,16 @@ msgid "Only Free scan"
 msgstr "Yalnızca şifresiz"
 
 msgid "Orbital Position"
-msgstr "Yörüngesel (orbital) Pozisyon"
+msgstr "Uydu yörüngesi"
 
 msgid "PAL"
 msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PID"
+
+msgid "Package details for: "
+msgstr "Belirtilen paketin detayları:"
 
 msgid "Package list update"
 msgstr "Paket listesi güncelleniyor"
@@ -2299,7 +2362,7 @@ msgid "Please check your network settings!"
 msgstr "Lütfen ağ ayarlarını kontrol edin!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr "Lütfen sunucudan çekmek istediğiniz .NFI imajını seçin"
+msgstr "Lütfen sunucudan çekmek istediğiniz .NFI bellenim dosyasını seçin"
 
 msgid "Please choose an extension..."
 msgstr "Lütfen kullanmak istediğiniz eklentiyi seçin..."
@@ -2356,7 +2419,7 @@ msgid "Please press OK!"
 msgstr "Lütfen OK'a basın!"
 
 msgid "Please select .NFI flash image file from medium"
-msgstr "Lütfen medyadan .NFI imajını seçin"
+msgstr "Lütfen medyadan .NFI bellenim dosyasını seçin"
 
 msgid "Please select a playlist to delete..."
 msgstr "Seçili oynatma listesini sil..."
@@ -2427,6 +2490,9 @@ msgstr "Lütfen bekleyin... Liste yükleniyor..."
 
 msgid "Plugin browser"
 msgstr "Eklenti listesi"
+
+msgid "Plugin manager"
+msgstr "Eklenti yönetimi"
 
 msgid "Plugins"
 msgstr "Eklentiler"
@@ -2598,6 +2664,9 @@ msgstr "Kaydediliyor"
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Kayıt işlemi devam ediyor veya birkaç saniye içinde başlayacak!"
 
+msgid "Recordings"
+msgstr "Kayıt"
+
 msgid "Recordings always have priority"
 msgstr "Kayıt işlemine öncelik ver"
 
@@ -2605,13 +2674,16 @@ msgid "Reenter new pin"
 msgstr "Yeni şifreyi tekrar girin"
 
 msgid "Refresh Rate"
-msgstr "Tazeleme Hızı"
+msgstr "Tazeleme hızı"
 
 msgid "Refresh rate selection."
 msgstr "Tazeleme hızı seçimi."
 
 msgid "Reload"
 msgstr "Yenile"
+
+msgid "Remove"
+msgstr "Kaldır"
 
 msgid "Remove Bookmark"
 msgstr "Yer imini sil"
@@ -2706,7 +2778,7 @@ msgid "Restore running..."
 msgstr "Geri yükleme çalışıyor..."
 
 msgid "Restore system settings"
-msgstr "Sistem ayarını geri yükle"
+msgstr "Sistem ayarlarını geri yükle"
 
 msgid ""
 "Restoring the settings is done. Please press OK to activate the restored "
@@ -2785,6 +2857,9 @@ msgstr "Uydu arayıcı"
 msgid "Sats"
 msgstr "Uydular"
 
+msgid "Satteliteequipment"
+msgstr "Uydu ekipmanı"
+
 msgid "Saturday"
 msgstr "Cumartesi"
 
@@ -2795,7 +2870,7 @@ msgid "Save Playlist"
 msgstr "Oynatma listesini kaydet"
 
 msgid "Scaling Mode"
-msgstr "Ölçeklendirme Kipi"
+msgstr "Ölçeklendirme kipi"
 
 msgid "Scan "
 msgstr "Ara : "
@@ -2884,6 +2959,9 @@ msgstr "Doğu'yu ara"
 msgid "Search west"
 msgstr "Batı'yı ara"
 
+msgid "Searching for new installed or removed packages. Please wait..."
+msgstr ""
+
 msgid "Secondary DNS"
 msgstr "İkincil DNS"
 
@@ -2924,10 +3002,16 @@ msgid "Select files/folders to backup..."
 msgstr "Yedekleme için dosya/klasör seçin..."
 
 msgid "Select image"
-msgstr "İmajı seçin"
+msgstr "Bellenim seçin"
+
+msgid "Select provider to add..."
+msgstr ""
 
 msgid "Select refresh rate"
 msgstr "Tazeleme hızı seçin"
+
+msgid "Select service to add..."
+msgstr ""
 
 msgid "Select video input"
 msgstr "Görüntü girişini seç"
@@ -2939,7 +3023,7 @@ msgid "Select video mode"
 msgstr "Görüntü kipini seç"
 
 msgid "Selected source image"
-msgstr "Seçilen kaynak imaj"
+msgstr "Seçilen kaynak bellenim"
 
 msgid "Send DiSEqC"
 msgstr "DiSEqC komutu gönder"
@@ -2960,7 +3044,7 @@ msgid "Service Scan"
 msgstr "Kanal Arama"
 
 msgid "Service Searching"
-msgstr "Uydu Yapılandırma"
+msgstr "Uydu yapılandırma"
 
 msgid "Service has been added to the favourites."
 msgstr "Kanal favorilere eklendi."
@@ -3017,7 +3101,7 @@ msgid "Setup"
 msgstr "Kurulum"
 
 msgid "Setup Mode"
-msgstr "Kurulum Kipi"
+msgstr "Kullanıcı tecrübesi"
 
 msgid "Show Info"
 msgstr "Bilgiyi Göster"
@@ -3026,7 +3110,7 @@ msgid "Show WLAN Status"
 msgstr "WLAN Durumunu Göster"
 
 msgid "Show blinking clock in display during recording"
-msgstr "OLED kayıt esnasında yanıp sönsün"
+msgstr "OLED, kayıt esnasında yanıp sönsün"
 
 msgid "Show infobar on channel change"
 msgstr "Kanal değiştirildiğinde bilgi çubuğunu göster"
@@ -3083,10 +3167,13 @@ msgid "Singlestep (GOP)"
 msgstr "Tekadım (GOP)"
 
 msgid "Skin..."
-msgstr "Arayüz..."
+msgstr "Arayüz"
+
+msgid "Skins"
+msgstr "Arayüzler"
 
 msgid "Sleep Timer"
-msgstr "Uyku Zamanlayıcı"
+msgstr "Uyku zamanlayıcı"
 
 msgid "Sleep timer action:"
 msgstr "Uyku zamanlayıcı eylemi:"
@@ -3104,14 +3191,17 @@ msgstr "Yavaş"
 msgid "Slow Motion speeds"
 msgstr "Ağır çekim hızları"
 
+msgid "Software"
+msgstr "Yazılım"
+
 msgid "Software manager"
 msgstr "Yazılım yönetimi"
 
 msgid "Software manager..."
-msgstr "Yazılım yönetimi..."
+msgstr "Yazılım yönetimi"
 
 msgid "Software restore"
-msgstr "Yazılım geri yükle"
+msgstr "Yedekle -> Bellenim güncelle"
 
 msgid "Software update"
 msgstr "Yazılım güncelle"
@@ -3144,6 +3234,9 @@ msgstr ""
 "Üzgünüm seçtiğiniz yedekleme hedefinde yazma hakkı yok.\n"
 "Lütfen başka bir hedef seçin."
 
+msgid "Sorry, no Details available!"
+msgstr "Üzgünüm, detay bilgisi yok!"
+
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
@@ -3174,10 +3267,10 @@ msgid "Spanish"
 msgstr "İspanyolca"
 
 msgid "Standby"
-msgstr "Uyku kipi"
+msgstr "Hazırda beklet"
 
 msgid "Standby / Restart"
-msgstr "Kapatma Menüsü"
+msgstr "Kapatma menüsü"
 
 msgid "Start from the beginning"
 msgstr "En baştan başla"
@@ -3243,7 +3336,7 @@ msgid "Subtitle selection"
 msgstr "Altyazı seçimi"
 
 msgid "Subtitles"
-msgstr "Altyazılar"
+msgstr "Altyazı"
 
 msgid "Sun"
 msgstr "Pazar"
@@ -3336,7 +3429,7 @@ msgid ""
 "The USB stick is now bootable. Do you want to download the latest image from "
 "the feed server and save it on the stick?"
 msgstr ""
-"USB bellek artık önyükleme yapabilir. Yayınlanan son imajı sunucudan "
+"USB bellek artık önyükleme yapabilir. Yayınlanan son bellenimi sunucudan "
 "indirmek ve usb belleğe kaydetmek istiyor musunuz?"
 
 msgid "The backup failed. Please choose a different backup location."
@@ -3383,8 +3476,9 @@ msgid ""
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
-"md5sum imza doğrulama başarısız, dosya bozuk olabilir! Bu imajı flaş belleğe "
-"yazmak istediğinizden emin misiniz? Onaylamanız halinde risk size aittir!"
+"md5sum imza doğrulama başarısız, dosya bozuk olabilir! Bu bellenimi flaş "
+"belleğe yazmak istediğinizden emin misiniz? Onaylamanız halinde risk size "
+"aittir!"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
@@ -3438,10 +3532,10 @@ msgid "The wizard is finished now."
 msgstr "Sihirbaz tamamlandı."
 
 msgid "There are no default services lists in your image."
-msgstr "Kurulu imajda kayıtlı, varsayılan kanal listesi yok."
+msgstr "Kurulu bellenimde kayıtlı, varsayılan kanal listesi yok."
 
 msgid "There are no default settings in your image."
-msgstr "Kurulu imajda kayıtlı varsayılan ayar yok."
+msgstr "Kurulu bellenimde kayıtlı varsayılan ayar yok."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3455,21 +3549,21 @@ msgstr "Paket listesi indirilirken hata oluştu. Lütfen tekrar deneyin."
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ".NFI dosyası geçeli bir %s imajı içermiyor!"
+msgstr ".NFI dosyası geçerli bir %s bellenimi içermiyor!"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
 ".NFI dosyası md5sum imzasına sahip değil ve çalışacağı garanti edilemiyor. "
-"Bu imajı flaş belleğe yazmak istediğinizden emin misiniz?"
+"Bu bellenimi flaş belleğe yazmak istediğinizden emin misiniz?"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
-".NFI dosyası md5sum imzası doğrulandı. Bu imajı, flaş belleğe programlamaya "
-"devam etmek istiyor musunuz?"
+".NFI dosyası md5sum imzası doğrulandı. Bu bellenimi, flaş belleğe "
+"programlamaya devam etmek istiyor musunuz?"
 
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
@@ -3579,7 +3673,7 @@ msgid "Timer Edit"
 msgstr "Zamanlayıcı Düzenle"
 
 msgid "Timer Editor"
-msgstr "Zamanlayıcı Görevleri"
+msgstr "Zamanlanmış Görevler"
 
 msgid "Timer Type"
 msgstr "Zamanlayıcı Tipi"
@@ -3635,7 +3729,7 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-"Lütfen Dreambox sistem yazılımını güncellemek için, aşağıdaki adımları takip "
+"Lütfen Dreambox bellenimini güncellemek için, aşağıdaki adımları takip "
 "edin:\n"
 "1) Dreambox'ınızı, arkasındaki kapama anahtarından kapayın ve önyükleme "
 "yapabilir USB belleği takın.\n"
@@ -3675,7 +3769,7 @@ msgid "Transponder"
 msgstr "Transponder"
 
 msgid "Transponder Type"
-msgstr "Transponder Tipi"
+msgstr "Transponder tipi"
 
 msgid "Tries left:"
 msgstr "Denendi:"
@@ -3875,13 +3969,13 @@ msgid "Vertical"
 msgstr "Düşey (V)"
 
 msgid "Video Fine-Tuning"
-msgstr "Görüntü İnce Ayarı"
+msgstr "Görüntü ince ayarı"
 
 msgid "Video Fine-Tuning Wizard"
 msgstr "Görüntü İnce Ayar Sihirbazı"
 
 msgid "Video Output"
-msgstr "Görüntü Çıkışı"
+msgstr "Görüntü çıkışı"
 
 msgid "Video Setup"
 msgstr "Görüntü Kurulumu"
@@ -3907,6 +4001,9 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Görüntü kipi seçimi."
 
+msgid "View"
+msgstr "İncele"
+
 msgid "View Movies..."
 msgstr "Film izle..."
 
@@ -3918,6 +4015,42 @@ msgstr "Etkileşimli Rass'ı (Radio acoustic sounding system) göster"
 
 msgid "View Video CD..."
 msgstr "Video CD izle..."
+
+msgid "View list of available CommonInterface extensions"
+msgstr "Ortak arayüz eklentileri listesine bak"
+
+msgid "View list of available Display and Userinterface extensions."
+msgstr "Görünüm ve kullanıcı arayüzü eklentileri listesine bak"
+
+msgid "View list of available EPG extensions."
+msgstr "EPG eklentileri listesine bak"
+
+msgid "View list of available Satteliteequipment extensions."
+msgstr "Uydu ekipmanı eklentileri listesine bak"
+
+msgid "View list of available communication extensions."
+msgstr "İletişim eklentileri listesine bak"
+
+msgid "View list of available default settings"
+msgstr "Varsayılan ayarlar eklentileri listesine bak"
+
+msgid "View list of available multimedia extensions."
+msgstr "Çoklu ortam eklentileri listesine bak"
+
+msgid "View list of available networking extensions"
+msgstr "Ağ eklentileri listesine bak"
+
+msgid "View list of available recording extensions"
+msgstr "Kayıt eklentileri listesine bak"
+
+msgid "View list of available skins"
+msgstr "Arayüz eklentileri listesine bak"
+
+msgid "View list of available software extensions"
+msgstr "Yazılım eklentileri listesine bak"
+
+msgid "View list of available system extensions"
+msgstr "Sistem eklentileri listesine bak"
 
 msgid "View teletext..."
 msgstr "Teleteksi aç..."
@@ -3992,9 +4125,9 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Imaj güncelleme sihirbazına hoş geldiniz. Bu sihirbaz, Dreambox'ınıza "
-"yazılım güncelleme esnasında, geçerli ayarlarınızın yedeğini almanıza imkan "
-"sağlayacak ve kısa açıklamalarla yazılımınızı nasıl güncelleyeceğizi "
+"Bellenim güncelleme sihirbazına hoş geldiniz. Bu sihirbaz, Dreambox bellenim "
+"güncellemesi esnasında, geçerli ayarlarınızın yedeğini almanıza imkan "
+"sağlayacak ve kısa açıklamalarla bellenimi nasıl güncelleyeceğinizi "
 "anlatacaktır."
 
 msgid ""
@@ -4052,7 +4185,7 @@ msgid "Write failed!"
 msgstr "Yazma başarısız!"
 
 msgid "Writing NFI image file to flash completed"
-msgstr "NFI imajının flaşa yazımı tamamlandı"
+msgstr "NFI bellenimin flaşa yazımı tamamlandı"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -4082,7 +4215,7 @@ msgid "Yes, perform a shutdown now."
 msgstr "Evet, cihazı şimdi kapat."
 
 msgid "Yes, restore the settings now"
-msgstr "Evet, ayarları geri yükle"
+msgstr "Evet, ayarlarımı geri yükle"
 
 msgid "Yes, returning to movie list"
 msgstr "Evet, film listesine dön"
@@ -4186,12 +4319,12 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Dreambox'ınızın PC bağlantısına ihtiyacı var. Eğer daha fazla açıklamaya "
-"ihtiyacınız varsa, lütfen http://www.dream-multimedia-tv.de/ adresini "
-"ziyaret edin.\n"
+"Dreambox'ınızın PC bağlantısına ihtiyacı var. Daha fazla açıklamaya "
+"ihtiyacınız varsa, lütfen http://www.dream-multimedia-tv.de adresini ziyaret "
+"edin.\n"
 "Dreambox'ınız şimdi kapatılıyor. Web sitesinde belirtilen güncelleme "
-"talimatlarını yerine getirdikten sonra yeni sistem yazılımı, ayarlarınızı "
-"geri yüklemek isteyip istemediğiniz sorusunu soracaktır."
+"talimatlarını yerine getirdikten sonra yeni bellenim, ayarlarınızı geri "
+"yüklemek isteyip istemediğiniz sorusunu soracaktır."
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -4234,7 +4367,7 @@ msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
-"Frontprocessor aygıt yazılımının güncellenmesi gerekiyor.\n"
+"Frontprocessor belleniminin güncellenmesi gerekiyor.\n"
 "Güncellemeye başlamak için OK tuşuna basın."
 
 msgid "Your network configuration has been activated."
@@ -4273,10 +4406,10 @@ msgid "[move mode]"
 msgstr "[taşıma kipi]"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr ""
+msgstr "ortak arayüz modüllerine kanal/yayıncı atama arayüzü"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr ""
+msgstr "ortak arayüz modüllerine kanal/yayıncı/caid atama arayüzü"
 
 msgid "abort alternatives edit"
 msgstr "alternatif düzenlemekten vazgeç"
@@ -4294,10 +4427,10 @@ msgid "activate current configuration"
 msgstr "geçerli yapılandırmayı etkinleştir"
 
 msgid "add Provider"
-msgstr ""
+msgstr "Yayıncı ekle"
 
 msgid "add Service"
-msgstr ""
+msgstr "Kanal ekle"
 
 msgid "add a nameserver entry"
 msgstr "isim sunucu kaydı ekle"
@@ -4358,10 +4491,10 @@ msgstr ""
 "istediğinizden emin misiniz?:\n"
 
 msgid "assigned CAIds"
-msgstr ""
+msgstr "Atanmış CAId'ler"
 
 msgid "assigned Services/Provider"
-msgstr ""
+msgstr "Atanmış Kanal/Yayıncılar"
 
 #, python-format
 msgid "audio track (%s) format"
@@ -4580,10 +4713,13 @@ msgid "free diskspace"
 msgstr "boş disk alanı"
 
 msgid "go to deep standby"
-msgstr "derin uyku kipine geç"
+msgstr "kapat"
 
 msgid "go to standby"
-msgstr "uyku kipine geç"
+msgstr "hazırda beklet"
+
+msgid "grab this frame as bitmap"
+msgstr ""
 
 msgid "green"
 msgstr "yeşil"
@@ -4627,7 +4763,7 @@ msgid "init module"
 msgstr "modülü başlat"
 
 msgid "init modules"
-msgstr ""
+msgstr "modülleri başlat"
 
 msgid "insert mark here"
 msgstr "buraya işaret koy"
@@ -4735,22 +4871,19 @@ msgid "no"
 msgstr "hayır"
 
 msgid "no CAId selected"
-msgstr ""
+msgstr "CAId seçilmedi"
 
 msgid "no CI slots found"
-msgstr ""
+msgstr "CI yuvası bulunamadı"
 
 msgid "no HDD found"
 msgstr "HDD bulunamadı"
-
-msgid "no module"
-msgstr ""
 
 msgid "no module found"
 msgstr "modül bulunamadı"
 
 msgid "no standby"
-msgstr "uyku kipine geçilmesin"
+msgstr "hazırda bekletme!"
 
 msgid "no timeout"
 msgstr "zaman aşımı kullanılmasın"
@@ -4919,10 +5052,13 @@ msgid "select .NFI flash file"
 msgstr ".NFI flaş dosyası seçin"
 
 msgid "select CAId"
+msgstr "CAId seç"
+
+msgid "select CAId's"
 msgstr ""
 
 msgid "select image from server"
-msgstr "imajı sunucudan seç"
+msgstr "bellenimi sunucudan seç"
 
 msgid "select interface"
 msgstr "arayüzü seçin"
@@ -5012,7 +5148,7 @@ msgid "standard"
 msgstr "standart"
 
 msgid "standby"
-msgstr "uyku kipi"
+msgstr "hazırda beklet"
 
 msgid "start cut here"
 msgstr "buradan kes"
@@ -5079,6 +5215,9 @@ msgstr "zaman, bölüm, ses, altyazı bilgisini aç/kapa"
 
 msgid "unconfirmed"
 msgstr "doğrulanamadı"
+
+msgid "unknown"
+msgstr "bilinmiyor"
 
 msgid "unknown service"
 msgstr "bilinmeyen kanal"
@@ -5291,6 +5430,9 @@ msgstr "kanal değiştirildi"
 #~ msgid "Genre:"
 #~ msgstr "Tür:"
 
+#~ msgid "Is this videomode ok?"
+#~ msgstr "Bu video kipini onaylıyor musunuz?"
+
 #~ msgid ""
 #~ "No working local networkadapter found.\n"
 #~ "Please verify that you have attached a network cable and your Network is "
@@ -5351,6 +5493,9 @@ msgstr "kanal değiştirildi"
 #~ msgid "Other..."
 #~ msgstr "Diğer..."
 
+#~ msgid "PacketManager"
+#~ msgstr "Paket yönetimi"
+
 #~ msgid "Partitioning USB stick..."
 #~ msgstr "USB bellek bölümlendiriliyor..."
 
@@ -5387,6 +5532,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Please wait for md5 signature verification..."
 #~ msgstr "md5 imza doğrulamasının yapılabilmesi için lütfen bekleyin..."
+
+#~ msgid "Plugin Download/Remove"
+#~ msgstr "Eklenti İndir/Kaldır"
 
 #~ msgid ""
 #~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
@@ -5435,6 +5583,12 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Search for"
 #~ msgstr "için Ara"
+
+#~ msgid "Software Update..."
+#~ msgstr "Yazılım Güncelle"
+
+#~ msgid "Softwaremanager..."
+#~ msgstr "Yazılım yönetimi"
 
 #~ msgid "Start"
 #~ msgstr "Başlama zamanı"
@@ -5611,6 +5765,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "no Picture found"
 #~ msgstr "Resim/fotoğraf bulunamadı"
+
+#~ msgid "no module"
+#~ msgstr "modül yok"
 
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "yalnızca /etc/enigma2 klasörü"
