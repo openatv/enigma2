@@ -1,0 +1,27 @@
+<default>
+	<prerequisites>
+		<tag type="Display" />
+		<tag type="System" />                    
+	</prerequisites>
+	<info language="en">
+		<author>Dream Multimedia</author>
+		<name>VideoTune</name>
+		<packagename>enigma2-plugin-systemplugins-videotune</packagename>
+		<shortdescription>VideoTune helps fine-tuning your tv display.</shortdescription>
+		<description>The VideoTune helps fine-tuning your tv display.\nYou can control brightness and contrast of your tv.</description>
+		<screenshot src="http://www.dreamboxupdate.com/preview/videotune.jpg" />
+		<screenshot src="screenshot_videotune.jpg" />
+	</info>
+	<info language="de">
+		<author>Dream Multimedia</author>
+		<name>VideoTune</name>
+		<packagename>enigma2-plugin-systemplugins-videotune</packagename>
+		<shortdescription>VideoTune hilf beim fein-einstellen des Fernsehers.</shortdescription> 
+		<description>VideoTune hilf beim fein-einstellen des Fernsehers.\nSie können Kontrast und Helligkeit fein-einstellen.
+		</description>
+		<screenshot src="http://www.dreamboxupdate.com/preview/videotune.jpg" />
+	</info>
+	<files type="package"> <!-- without versionnumber, without .ipkg-suffix -->
+		<file type="package" name="enigma2-plugin-systemplugins-videotune" />
+	</files>
+</default>
