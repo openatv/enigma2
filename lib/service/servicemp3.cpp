@@ -1044,7 +1044,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			GstTagList *tags, *result;
 			gst_message_parse_tag(msg, &tags);
 	
-			result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_PREPEND);
+			result = gst_tag_list_merge(m_stream_tags, tags, GST_TAG_MERGE_REPLACE);
 			if (result)
 			{
 				if (m_stream_tags)
