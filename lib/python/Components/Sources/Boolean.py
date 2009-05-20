@@ -10,10 +10,11 @@ from enigma import eTimer
 # screen could use your expression, please put your calculation
 # into a seperate Source, providing a "boolean"-property.
 class Boolean(Source, object):
-	def __init__(self, fixed = False, function = None, poll = 0):
+	def __init__(self, fixed = False, function = None, destroy = None, poll = 0):
 		Source.__init__(self)
 		self.function = function
 		self.fixed = fixed
+		self.post_destroy = destroy
 		if poll > 0:
 			self.poll_timer = eTimer()
 			self.poll_timer.callback.append(self.poll)
@@ -41,4 +42,7 @@ class Boolean(Source, object):
 	def destroy(self):
 		if self.poll_timer:
 			self.poll_timer.callback.remove(self.poll)
+		if self.post_destroy is not None:
+			self.fixed = self.post_destroy
+			self.poll()
 		Source.destroy(self)
