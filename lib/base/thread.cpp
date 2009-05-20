@@ -9,12 +9,9 @@ void eThread::thread_completed(void *ptr)
 	eThread *p = (eThread*) ptr;
 	p->m_alive = 0;
 
-		/* recover state */
-	if (!p->m_state.value())
-	{
-		p->m_state.up();
-		ASSERT(p->m_state.value() == 1);
-	}
+		/* recover state in case thread was cancelled before calling hasStarted */
+	if (!p->m_started)
+		p->hasStarted();
 
 	p->thread_finished();
 }
@@ -48,6 +45,7 @@ int eThread::runAsync(int prio, int policy)
 	ASSERT(m_state.value() == 0);
 	
 	m_alive = 1;
+	m_started = 0;
 
 		/* start thread. */
 	pthread_attr_t attr;
@@ -125,5 +123,6 @@ void eThread::kill(bool sendcancel)
 void eThread::hasStarted()
 {
 	ASSERT(!m_state.value());
+	m_started = 1;
 	m_state.up();
 }
