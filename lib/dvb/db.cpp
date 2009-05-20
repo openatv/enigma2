@@ -872,6 +872,7 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 					else if (name == "pilot") dest = &pilot;
 					else if (name == "tsid") dest = &tsid;
 					else if (name == "onid") dest = &onid;
+					else continue;
 					if (dest)
 					{
 						//eDebug("\t\t\tvalue: %s", at->value().c_str());
@@ -998,6 +999,7 @@ PyObject *eDVBDB::readCables(ePyObject cab_list, ePyObject tp_dict)
 					else if (name == "frequency") dest = &freq;
 					else if (name == "symbol_rate") dest = &sr;
 					else if (name == "fec_inner") dest = &fec;
+					else continue;
 					if (dest)
 					{
 						tmp = strtol(at->value().c_str(), &end_ptr, 10);
@@ -1121,6 +1123,7 @@ PyObject *eDVBDB::readTerrestrials(ePyObject ter_list, ePyObject tp_dict)
 					else if (name == "transmission_mode") dest = &transm;
 					else if (name == "hierarchy_information") dest = &hierarchy;
 					else if (name == "inversion") dest = &inv;
+					else continue;
 					if (dest)
 					{
 						tmp = strtol(at->value().c_str(), &end_ptr, 10);
