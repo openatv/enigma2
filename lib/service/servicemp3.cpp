@@ -997,7 +997,50 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		eDebug("eServiceMP3::gst_message from %s: %s (without structure)", sourceName, GST_MESSAGE_TYPE_NAME(msg));
 #endif
 	if ( GST_MESSAGE_TYPE (msg) == GST_MESSAGE_STATE_CHANGED )
-		return;
+	{
+		// only the pipeline message
+		if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
+			return;
+
+		GstState old_state, new_state;
+		gst_message_parse_state_changed(msg, &old_state, &new_state, NULL);
+	
+		if(old_state == new_state)
+			return;
+
+		eDebug("eServiceMP3::state transition %s -> %s", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
+
+		GstStateChange transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
+
+		switch(transition)
+		{
+			case GST_STATE_CHANGE_NULL_TO_READY:
+			{
+			}
+				break;
+			case GST_STATE_CHANGE_READY_TO_PAUSED:
+			{
+
+			}	break;
+			case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
+			{
+
+			}	break;
+			case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
+			{
+	
+			}	break;
+			case GST_STATE_CHANGE_PAUSED_TO_READY:
+			{
+
+			}	break;
+			case GST_STATE_CHANGE_READY_TO_NULL:
+			{
+
+			}	break;
+		}
+	}
+
 	switch (GST_MESSAGE_TYPE (msg))
 	{
 		case GST_MESSAGE_EOS:
@@ -1283,20 +1326,21 @@ void eServiceMP3::pushSubtitles()
 	ePangoSubtitlePage page;
 	GstClockTime base_time;
 	pts_t running_pts;
-	GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin),"subtitle_sink");
+	GstElement *syncsink;
+	g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &syncsink, NULL);
 	GstClock *clock;
-	clock = gst_element_get_clock (appsink);
+	clock = gst_element_get_clock (syncsink);
 	while ( !m_subtitle_pages.empty() )
 	{
 		page = m_subtitle_pages.front();
 
-		base_time = gst_element_get_base_time (appsink);
-		running_pts = ( gst_clock_get_time (clock) - base_time ) / 11111L;
+		base_time = gst_element_get_base_time (syncsink);
+		running_pts = gst_clock_get_time (clock) / 11111L;
 		gint64 diff_ms = ( page.show_pts - running_pts ) / 90;
-// 		eDebug("eServiceMP3::pushSubtitles show_pts = %lld  running_pts = %lld  diff = %lld", page.show_pts, running_pts, diff_ms);
+//		eDebug("eServiceMP3::pushSubtitles show_pts = %lld  running_pts = %lld  diff = %lld", page.show_pts, running_pts, diff_ms);
 		if ( diff_ms > 20 )
 		{
-// 			eDebug("m_subtitle_sync_timer->start(%lld,1)", diff_ms);
+//			eDebug("m_subtitle_sync_timer->start(%lld,1)", diff_ms);
 			m_subtitle_sync_timer->start(diff_ms, 1);
 			break;
 		}
