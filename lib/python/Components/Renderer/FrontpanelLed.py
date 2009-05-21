@@ -2,17 +2,19 @@ from Components.Element import Element
 
 # this is not a GUI renderer.
 class FrontpanelLed(Element):
-	def __init__(self, which = 0, pattern_on = (20, 0x55555555, 0x84fc8c04), pattern_off = (20, 0, 0xffffffff)):
+	def __init__(self, which = 0, patterns = [(20, 0, 0xffffffff),(20, 0x55555555, 0x84fc8c04)], boolean = True):
 		self.which = which
-		self.pattern_on = pattern_on
-		self.pattern_off = pattern_off
+		self.boolean = boolean
+		self.patterns = patterns
 		Element.__init__(self)
 
 	def changed(self, *args, **kwargs):
-		if self.source.boolean:
-			(speed, pattern, pattern_4bit) = self.pattern_on
+		if self.boolean:
+			val = self.source.boolean and 0 or 1
 		else:
-			(speed, pattern, pattern_4bit) = self.pattern_off
+			val = self.source.value
+	
+		(speed, pattern, pattern_4bit) = self.patterns[val]
 
 		try:
 			open("/proc/stb/fp/led%d_pattern" % self.which, "w").write("%08x" % pattern)
