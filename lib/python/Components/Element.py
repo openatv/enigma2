@@ -30,9 +30,12 @@ class Element(object):
 	CHANGED_SPECIFIC = 3  # second tuple will specify what exactly changed
 	CHANGED_POLL = 4      # a timer expired
 
+	SINGLE_SOURCE = True
+
 	def __init__(self):
 		self.downstream_elements = CList()
 		self.master = None
+		self.sources = [ ]
 		self.source = None
 		self.__suspended = True
 		self.cache = None
@@ -43,7 +46,9 @@ class Element(object):
 			self.master = downstream
 	
 	def connectUpstream(self, upstream):
-		assert self.source is None
+		assert not self.SINGLE_SOURCE or self.source is None
+		self.sources.append(upstream)
+		# self.source always refers to the last recent source added.
 		self.source = upstream
 		self.changed((self.CHANGED_DEFAULT,))
 	
@@ -58,10 +63,14 @@ class Element(object):
 		assert len(self.downstream_elements) == 0, "there are still downstream elements left"
 
 		# Sources don't have a source themselves. don't do anything here.
-		if self.source is not None:
-			self.source.disconnectDownstream(self)
+		for s in self.sources:
+			s.disconnectDownstream(self)
+
+		if self.source:
 			# sources are owned by the Screen, so don't destroy them here.
 			self.destroy()
+		self.source = None
+		self.sources = [ ]
 
 	def disconnectDownstream(self, downstream):
 		self.downstream_elements.remove(downstream)
@@ -77,10 +86,6 @@ class Element(object):
 		self.downstream_elements.changed(*args, **kwargs)
 		self.cache = None
 
-	def reconnectUpstream(self, new_upstream):
-		assert self.source is not None
-		self.source = new_upstream
-
 	def setSuspend(self, suspended):
 		changed = self.__suspended != suspended
 		if not self.__suspended and suspended:
@@ -89,8 +94,9 @@ class Element(object):
 			self.doSuspend(0)
 			
 		self.__suspended = suspended
-		if self.source is not None and changed:
-			self.source.checkSuspend()
+		if changed:
+			for s in self.sources:
+				s.checkSuspend()
 	
 	suspended = property(lambda self: self.__suspended, setSuspend)
 	
