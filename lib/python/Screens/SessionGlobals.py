@@ -5,7 +5,9 @@ from Components.Sources.FrontendStatus import FrontendStatus
 from Components.Sources.FrontendInfo import FrontendInfo
 from Components.Sources.Source import Source
 from Components.Sources.TunerInfo import TunerInfo
+from Components.Sources.Boolean import Boolean
 from Components.Sources.RecordState import RecordState
+from Components.Converter.Combine import Combine
 from Components.Renderer.FrontpanelLed import FrontpanelLed
 
 class SessionGlobals(Screen):
@@ -19,4 +21,21 @@ class SessionGlobals(Screen):
 		self["VideoPicture"] = Source()
 		self["TunerInfo"] = TunerInfo()
 		self["RecordState"] = RecordState(session)
-		FrontpanelLed().connect(self["RecordState"])
+		self["Standby"] = Boolean(fixed = False)
+		combine = Combine(func = lambda s: {(False, False): 0, (False, True): 1, (True, False): 2, (True, True): 3}[(s[0].boolean, s[1].boolean)])
+		combine.connect(self["Standby"])
+		combine.connect(self["RecordState"])
+
+		#                      |  two leds  | single led |
+		# recordstate  standby   red green   
+		#    false      false    off   on     off
+		#    true       false    blnk  on     blnk
+		#    false      true      on   off    off
+		#    true       true     blnk  off    blnk
+		
+		PATTERN_ON     = (20, 0xffffffff, 0)
+		PATTERN_OFF    = (20, 0, 0xffffffff)
+		PATTERN_BLINK  = (20, 0x55555555, 0x84fc8c04)
+
+		FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]).connect(combine)
+		FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]).connect(combine)
