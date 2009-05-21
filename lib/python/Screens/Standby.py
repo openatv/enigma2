@@ -70,10 +70,12 @@ class Standby(Screen):
 	def __onShow(self):
 		global inStandby
 		inStandby = self
+		self.session.screen["Standby"].boolean = True
 
 	def __onHide(self):
 		global inStandby
 		inStandby = None
+		self.session.screen["Standby"].boolean = False
 
 class StandbySummary(Screen):
 	skin = """
