@@ -177,12 +177,7 @@ private:
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
-	static void gstCBpadAdded(GstElement *decodebin, GstPad *pad, gpointer data); /* for mpegdemux */
-	static void gstCBfilterPadAdded(GstElement *filter, GstPad *pad, gpointer user_data); /* for id3demux */
-	static void gstCBnewPad(GstElement *decodebin, GstPad *pad, gboolean last, gpointer data); /* for decodebin */
-	static void gstCBunknownType(GstElement *decodebin, GstPad *pad, GstCaps *l, gpointer data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
-	static void gstCBsubtitlePadEvent(GstPad *pad, GstEvent *event, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
 
