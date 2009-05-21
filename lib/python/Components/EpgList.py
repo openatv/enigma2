@@ -163,9 +163,17 @@ class EPGList(HTMLComponent, GUIComponent):
 			return self.clock_post_pixmap
 		else:
 			return self.clock_prepost_pixmap
+		
+	def getPixmapForEntry(self, service, eventId, beginTime, duration):
+		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
+		if rec:
+			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
+		else:
+			clock_pic = None
+		return (clock_pic, rec)
 
 	def buildSingleEntry(self, service, eventId, beginTime, duration, EventName):
-		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
+		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.descr_rect
@@ -176,7 +184,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if rec:
-			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName)
@@ -186,7 +193,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
-		rec=beginTime and (self.timer.isInTimer(eventId, beginTime, duration, service))
+		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.weekday_rect
 		r2=self.datetime_rect
 		r3=self.service_rect
@@ -197,7 +204,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.left(), r2.top(), r2.width(), r1.height(), 0, RT_HALIGN_RIGHT, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if rec:
-			clock_pic = self.getClockPixmap(service, beginTime, duration, eventId)
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r3.left(), r3.top(), 21, 21, clock_pic),
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.left() + 25, r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name)
@@ -207,14 +213,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
-		rec=begTime and (self.timer.isInTimer(eventId, begTime, duration, service))
+		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.service_rect
 		r2=self.progress_rect
 		r3=self.descr_rect
 		r4=self.start_end_rect
 		res = [ None ] # no private data needed
 		if rec:
-			clock_pic = self.getClockPixmap(service, begTime, duration, eventId)
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width()-21, r1.height(), 0, RT_HALIGN_LEFT, service_name),
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, r1.left()+r1.width()-16, r1.top(), 21, 21, clock_pic)
