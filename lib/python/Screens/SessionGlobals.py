@@ -37,5 +37,5 @@ class SessionGlobals(Screen):
 		PATTERN_OFF    = (20, 0, 0xffffffff)
 		PATTERN_BLINK  = (20, 0x55555555, 0x84fc8c04)
 
-		FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]).connect(combine)
-		FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]).connect(combine)
+		FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]).connect(combine)
+		FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]).connect(combine)
