@@ -98,7 +98,7 @@
 			<item text="Brightness">config.osd.bright</item>
 			<item text="Contrast">config.osd.contrast</item>
 		</setup>
-		<setup key="lcd" title="Display Setup">
+		<setup key="lcd" title="Display Setup" requires="FrontpanelDisplay">
 			<item level="0" text="Brightness">config.lcd.bright</item>
 			<item level="0" text="Contrast">config.lcd.contrast</item>
 			<item level="0" text="Standby">config.lcd.standby</item>
