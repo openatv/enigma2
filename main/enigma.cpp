@@ -213,7 +213,7 @@ int main(int argc, char **argv)
 		ePtr<gPixmap> wait[MAX_SPINNER];
 		for (i=0; i<MAX_SPINNER; ++i)
 		{
-			char filename[strlen(DATADIR) + 20];
+			char filename[strlen(DATADIR) + 41];
 			sprintf(filename, DATADIR "/enigma2/skin_default/spinner/wait%d.png", i + 1);
 			loadPNG(wait[i], filename);
 			
