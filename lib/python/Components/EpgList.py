@@ -212,7 +212,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, service_name))
 		return res
 
-	def buildMultiEntry(self, changecount, service, eventId, begTime, duration, EventName, nowTime, service_name):
+	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
 		(clock_pic, rec) = self.getPixmapForEntry(service, eventId, beginTime, duration)
 		r1=self.service_rect
 		r2=self.progress_rect
@@ -226,10 +226,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.left(), r1.top(), r1.width(), r1.height(), 0, RT_HALIGN_LEFT, service_name))
-		if begTime is not None:
-			if nowTime < begTime:
-				begin = localtime(begTime)
-				end = localtime(begTime+duration)
+		if beginTime is not None:
+			if nowTime < beginTime:
+				begin = localtime(beginTime)
+				end = localtime(beginTime+duration)
 #				print "begin", begin
 #				print "end", end
 				res.extend((
@@ -237,7 +237,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName)
 				))
 			else:
-				percent = (nowTime - begTime) * 100 / duration
+				percent = (nowTime - beginTime) * 100 / duration
 				res.extend((
 					(eListboxPythonMultiContent.TYPE_PROGRESS, r2.left(), r2.top(), r2.width(), r2.height(), percent),
 					(eListboxPythonMultiContent.TYPE_TEXT, r3.left(), r3.top(), r3.width(), r3.height(), 0, RT_HALIGN_LEFT, EventName)
