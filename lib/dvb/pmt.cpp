@@ -258,8 +258,26 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							isaudio = 1;
 							audio.type = audioStream::atAACHE;
 						}
+					case 0x80: // user private ... but blueray LPCM
+						if (!isvideo && !isaudio)
+						{
+							isaudio = 1;
+							audio.type = audioStream::atLPCM;
+						}
+					case 0x81: // user private ... but blueray AC3
+						if (!isvideo && !isaudio)
+						{
+							isaudio = 1;
+							audio.type = audioStream::atAC3;
+						}
+					case 0x82: // Blueray DTS (dvb user private...)
+					case 0xA2: // Blueray secondary DTS
+						if (!isvideo && !isaudio)
+						{
+							isaudio = 1;
+							audio.type = audioStream::atDTS;
+						}
 					case 0x06: // PES Private
-					case 0x81: // user private
 					case 0xEA: // TS_PSI_ST_SMPTE_VC1
 						for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 								desc != (*es)->getDescriptors()->end(); ++desc)
@@ -363,11 +381,19 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
 									switch (format_identifier)
 									{
-									case 0x41432d33:
+									case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
+										isaudio = 1;
+										audio.type = audioStream::atDTS;
+										break;
+									case 0x41432d33: // == 'AC-3'
 										isaudio = 1;
 										audio.type = audioStream::atAC3;
 										break;
-									case 0x56432d31:
+									case 0x42535344: // == 'BSSD' (LPCM)
+										isaudio = 1;
+										audio.type = audioStream::atLPCM;
+										break;
+									case 0x56432d31: // == 'VC-1'
 										if (descr[6] == 0x01) // subdescriptor tag
 										{
 											if (descr[7] >= 0x90) // profile_level
