@@ -142,7 +142,7 @@ public:
 	struct audioStream
 	{
 		int pid;
-		enum { atMPEG, atAC3, atDTS, atAAC, atAACHE };
+		enum { atMPEG, atAC3, atDTS, atAAC, atAACHE, atLPCM };
 		int type; // mpeg2, ac3, dts, ...
 		
 		int component_tag;
