@@ -8,10 +8,15 @@
 struct ePangoSubtitlePageElement
 {
 	gRGB m_color;
+	bool m_have_color;
 	std::string m_pango_line;
 	eRect m_area;
 	ePangoSubtitlePageElement(const gRGB &color, const std::string &text)
-		: m_color(color), m_pango_line(text)
+		: m_color(color), m_pango_line(text), m_have_color(true)
+	{
+	}
+	ePangoSubtitlePageElement(const std::string &text)
+		: m_pango_line(text), m_have_color(false)
 	{
 	}
 };
@@ -37,11 +42,22 @@ public:
 	void setPage(const eDVBSubtitlePage &p);
 	void setPage(const ePangoSubtitlePage &p);
 	void clearPage();
-
 	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed);
+
+	typedef enum { Subtitle_TTX, Subtitle_Regular, Subtitle_Bold, Subtitle_Italic, Subtitle_MAX } subfont_t;
+	struct eSubtitleStyle
+	{
+		subfont_t face;
+		int have_foreground_color, have_shadow_color;
+		gRGB foreground_color, shadow_color;
+		ePoint shadow_offset;
+		ePtr<gFont> font;
+	};
+
+	static void setFontStyle(subfont_t face, gFont *font, int autoColor, const gRGB &col, const gRGB &shadowCol, const ePoint &shadowOffset);
+
 protected:
 	int event(int event, void *data=0, void *data2=0);
-
 private:
 	int m_page_ok;
 	eDVBTeletextSubtitlePage m_page;
@@ -55,6 +71,8 @@ private:
 	ePtr<eTimer> m_hide_subtitles_timer;
 
 	gRegion m_visible_region;
+
+	static eSubtitleStyle subtitleStyles[Subtitle_MAX];
 
 	ePtr<gPixmap> m_pixmap;  // pixmap to paint on next evtPaint
 };

@@ -6,7 +6,6 @@ from os import path
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
 	addFont, gRGB, eWindowStyleSkinned
-
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.Converter.Converter import Converter
 from Components.Sources.Source import Source, ObsoleteSource
@@ -298,6 +297,28 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			addFont(resolved_font, name, scale, is_replacement)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 
+	for c in skin.findall("subtitles"):
+		from enigma import eWidget, eSubtitleWidget
+		scale = ((1,1),(1,1))
+		for substyle in c.findall("sub"):
+			get_attr = substyle.attrib.get
+			font = parseFont(get_attr("font"), scale)
+			col = get_attr("foregroundColor")
+			if col:
+				foregroundColor = parseColor(col)
+				haveColor = 1
+			else:
+				foregroundColor = gRGB(0xFFFFFF)
+				haveColor = 0
+			col = get_attr("shadowColor")
+			if col:
+				shadowColor = parseColor(col)
+			else:
+				shadowColor = gRGB(0)
+			shadowOffset = parsePosition(get_attr("shadowOffset"), scale)
+			face = eval("eSubtitleWidget.%s" % get_attr("name"))
+			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, shadowColor, shadowOffset)
+
 	for windowstyle in skin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
 		id = windowstyle.attrib.get("id")
@@ -333,12 +354,12 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 
 		for color in windowstyle.findall("color"):
 			get_attr = color.attrib.get
-			type = get_attr("name")
+			colorType = get_attr("name")
 			color = parseColor(get_attr("color"))
 			try:
-				style.setColor(eWindowStyleSkinned.__dict__["col" + type], color)
+				style.setColor(eWindowStyleSkinned.__dict__["col" + colorType], color)
 			except:
-				raise SkinError("Unknown color %s" % (type))
+				raise SkinError("Unknown color %s" % (colorType))
 				#pass
 
 			#print "  color:", type, color
@@ -528,15 +549,15 @@ def readSkin(screen, skin, names, desktop):
 
 			#print "Found code:"
 			#print codeText
-			type = widget.attrib.get('type')
+			widgetType = widget.attrib.get('type')
 
 			code = compile(codeText, "skin applet", "exec")
 
-			if type == "onLayoutFinish":
+			if widgetType == "onLayoutFinish":
 				screen.onLayoutFinish.append(code)
 				#print "onLayoutFinish = ", codeText
 			else:
-				raise SkinError("applet type '%s' unknown!" % type)
+				raise SkinError("applet type '%s' unknown!" % widgetType)
 				#print "applet type '%s' unknown!" % type
 
 			continue
