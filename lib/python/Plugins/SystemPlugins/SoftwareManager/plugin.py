@@ -650,32 +650,32 @@ class PacketManager(Screen):
 
 
 class PluginManager(Screen, DreamInfoHandler):
+
+	lastDownloadDate = None
+
 	skin = """
 		<screen position="80,90" size="560,420" title="Plugin manager..." >
 			<widget source="list" render="Listbox" position="5,10" size="550,365" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 				{"templates":
-					{"default": [
+					{"default": (52,[
 							MultiContentEntryText(pos = (30, 1), size = (500, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (30, 26), size = (500, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (500, 2), size = (48, 48), png = 5), # index 5 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (480, 2), size = (48, 48), png = 5), # index 5 is the status pixmap
 							MultiContentEntryPixmapAlphaTest(pos = (0, 50), size = (550, 2), png = 6), # index 6 is the div pixmap
 							MultiContentEntryPixmapAlphaTest(pos = (0, 10), size = (25, 25), png = 7), # index 7 is the selected pixmap
-						],
-					"category": [
-							MultiContentEntryText(pos = (30, 1), size = (500, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (30, 26), size = (500, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (500, 2), size = (48, 48), png = 5), # index 5 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 50), size = (550, 2), png = 6), # index 6 is the div pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 10), size = (25, 25), png = 7), # index 7 is the selected pixmap
-						]
+						]),
+					"category": (42,[
+							MultiContentEntryText(pos = (30, 0), size = (500, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (30, 26), size = (500, 14), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 2 is the description
+							MultiContentEntryPixmapAlphaTest(pos = (0, 40), size = (550, 2), png = 3), # index 6 is the div pixmap
+						])
 					},
 					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
 					"itemHeight": 52
 				}
 				</convert>
 			</widget>
-
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
 			<widget name="closetext" position="0,380" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
@@ -696,11 +696,8 @@ class PluginManager(Screen, DreamInfoHandler):
 			self.ImageVersion = 'Experimental'
 		else:
 			self.ImageVersion = 'Stable'
-		lang = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
-		if lang == "en":
-			self.language = None
-		else:
-			self.language = lang
+		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
+
 		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion, language = self.language)
 		self.directory = resolveFilename(SCOPE_METADIR)
 
@@ -741,6 +738,7 @@ class PluginManager(Screen, DreamInfoHandler):
 		self["selecttext"].hide()
 		self["viewtext"].hide()
 		self.currList = ""
+		self.currentSelectedTag = None
 
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
@@ -751,6 +749,8 @@ class PluginManager(Screen, DreamInfoHandler):
 	def exit(self):
 		if self.currList == "packages":
 			self.currList = "category"
+			self.currentSelectedTag = None
+			self["list"].style = "category"
 			self['list'].setList(self.categoryList)
 		else:
 			self.ipkg.stop()
@@ -816,7 +816,6 @@ class PluginManager(Screen, DreamInfoHandler):
 				self["viewtext"].setText(_("View"))
 				self["viewtext"].show()
 
-
 	def changeSelectionState(self):
 		current = self["list"].getCurrent()
 		if current:
@@ -844,29 +843,44 @@ class PluginManager(Screen, DreamInfoHandler):
 					else:
 						newList.append(x)
 					count += 1
-
+				old_index = self["list"].index
 				self.list = newList
-				self['list'].updateList(self.list)
+				self["list"].disable_callbacks = True
+				self["list"].list = self.list
+				self["list"].disable_callbacks = False
+				self["list"].setList(self.list)
+				self["list"].setIndex(old_index)
+				self["list"].updateList(self.list)
 				self.selectionChanged()
 
 	def rebuildList(self):
 		self.setState('update')
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		if not PluginManager.lastDownloadDate or (time() - PluginManager.lastDownloadDate) > 3600:
+			# Only update from internet once per hour
+			PluginManager.lastDownloadDate = time()
+			print "last update time > 1h"
+			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		else:
+			print "last update time < 1h"
+			self.startInstallMetaPackage()
 
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
 			self.list_updating = False
 			self.setState('error')
 		elif event == IpkgComponent.EVENT_DONE:
-			if self.list_updating:
-				self.list_updating = False
-				if not self.Console:
-					self.Console = Console()
-				cmd = "ipkg list" ###  ipkg install enigma2-plugins-meta
-				self.Console.ePopen(cmd, self.IpkgList_Finished)
+			self.startInstallMetaPackage()
 		pass
 
-	def IpkgList_Finished(self, result, retval, extra_args = None):
+	def startInstallMetaPackage(self):
+		if self.list_updating:
+			self.list_updating = False
+			if not self.Console:
+				self.Console = Console()
+			cmd = "ipkg list" ###  will change into "ipkg install enigma2-plugins-meta"
+			self.Console.ePopen(cmd, self.InstallMetaPackage_Finished)
+
+	def InstallMetaPackage_Finished(self, result, retval, extra_args = None):
 		if len(result):
 			self.fillPackagesIndexList()
 		if not self.Console:
@@ -882,15 +896,20 @@ class PluginManager(Screen, DreamInfoHandler):
 				split = x.split(' - ')
 				if not any(split[0].strip().endswith(x) for x in self.unwanted_extensions):
 					self.installed_packetlist[split[0].strip()] = split[1].strip()
-		self.buildCategoryList()
+		if self.currentSelectedTag is None:
+			self.buildCategoryList()
+		else:
+			self.buildPacketList(self.currentSelectedTag)
 
 	def go(self, returnValue = None):
 		current = self["list"].getCurrent()
 		if current:
 			if self.currList == "category":
-				selectedTag = current[4]
+				selectedTag = current[2]
 				self.buildPacketList(selectedTag)
 			elif self.currList == "packages":
+				#self.installPlugins()
+				#uncomment the above line and comment the bottom lines to have install functionality on OK
 				if current[8] is not '':
 					detailsfile = self.directory[0] + "/" + current[1]
 					if (os_path.exists(detailsfile) == True):
@@ -902,8 +921,10 @@ class PluginManager(Screen, DreamInfoHandler):
 			if not self.Console:
 				self.Console = Console()
 			self.setState('sync')
-			cmd = "ipkg list_installed"
-			self.Console.ePopen(cmd, self.IpkgListInstalled_Finished)
+			PluginManager.lastDownloadDate = time()
+			self.selectedFiles = []
+			cmd = "ipkg update"
+			self.Console.ePopen(cmd, self.InstallMetaPackage_Finished)
 
 	def buildEntryComponent(self, name, details, description, packagename, state, selected = False):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
@@ -922,6 +943,7 @@ class PluginManager(Screen, DreamInfoHandler):
 	def buildPacketList(self, categorytag = None):
 		if categorytag is not None:
 			self.currList = "packages"
+			self.currentSelectedTag = categorytag
 			#print self.packagesIndexlist
 			self.packetlist = []
 			for package in self.packagesIndexlist[:]:
@@ -934,10 +956,9 @@ class PluginManager(Screen, DreamInfoHandler):
 							attributes = package[0]["attributes"]
 							#print "attributes---->",attributes
 							self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
-
 			self.list = []
+			#print "self.packetlist---->",self.packetlist
 			for x in self.packetlist:
-				print x
 				status = ""
 				if self.installed_packetlist.has_key(x[3].strip()):
 					status = "installed"
@@ -945,13 +966,12 @@ class PluginManager(Screen, DreamInfoHandler):
 				else:
 					status = "installable"
 					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), x[3].strip(), status, selected = False))
-
 			if len(self.list):
 				self.list.sort(key=lambda x: x[0])
 			self["list"].style = "default"
 			self['list'].setList(self.list)
+			self["list"].updateList(self.list)
 			self.selectionChanged()
-
 
 	def buildCategoryList(self):
 		self.currList = "category"
@@ -971,36 +991,38 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.categoryList.sort(key=lambda x: x[0])
 		self["list"].style = "category"
 		self['list'].setList(self.categoryList)
+		self["list"].updateList(self.categoryList)
 		self.selectionChanged()
 
 	def buildCategoryComponent(self, tag = None):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 		if tag is not None:
 			if tag == 'System':
-				return(( _("System"), '', _("View list of available system extensions" ),'', tag, None, divpng, None, '' ))
+				return(( _("System"), _("View list of available system extensions" ), tag, divpng ))
 			elif tag == 'Skin':
-				return(( _("Skins"), '', _("View list of available skins" ),'', tag, None, divpng, None, '' ))
+				return(( _("Skins"), _("View list of available skins" ), tag, divpng ))
 			elif tag == 'Recording':
-				return(( _("Recordings"), '', _("View list of available recording extensions" ),'', tag, None, divpng, None, '' ))
+				return(( _("Recordings"), _("View list of available recording extensions" ), tag, divpng ))
 			elif tag == 'Network':
-				return(( _("Network"), '', _("View list of available networking extensions" ),'', tag, None, divpng, None, '' ))
+				return(( _("Network"), _("View list of available networking extensions" ), tag, divpng ))
 			elif tag == 'CI':
-				return(( _("CommonInterface"), '', _("View list of available CommonInterface extensions" ),'', tag, None, divpng, None, '' ))
+				return(( _("CommonInterface"), _("View list of available CommonInterface extensions" ), tag, divpng ))
 			elif tag == 'Default':
-				return(( _("Default Settings"), '', _("View list of available default settings" ),'', tag, None, divpng, None, '' ))
+				return(( _("Default Settings"), _("View list of available default settings" ), tag, divpng ))
 			elif tag == 'SAT':
-				return(( _("Satteliteequipment"), '', _("View list of available Satteliteequipment extensions." ),'', tag, None, divpng, None, '' ))
+				return(( _("Satteliteequipment"), _("View list of available Satteliteequipment extensions." ), tag, divpng ))
 			elif tag == 'Software':
-				return(( _("Software"), '', _("View list of available software extensions" ),'', tag, None, divpng, None, '' ))
+				return(( _("Software"), _("View list of available software extensions" ), tag, divpng ))
 			elif tag == 'Multimedia':
-				return(( _("Multimedia"), '', _("View list of available multimedia extensions." ),'', tag, None, divpng, None, '' ))
+				return(( _("Multimedia"), _("View list of available multimedia extensions." ), tag, divpng ))
 			elif tag == 'Display':
-				return(( _("Display and Userinterface"), '', _("View list of available Display and Userinterface extensions." ),'', tag, None, divpng, None, '' ))
+				return(( _("Display and Userinterface"), _("View list of available Display and Userinterface extensions." ), tag, divpng ))
 			elif tag == 'EPG':
-				return(( _("Electronic Program Guide"), '', _("View list of available EPG extensions." ),'', tag, None, divpng, None, '' ))
+				return(( _("Electronic Program Guide"), _("View list of available EPG extensions." ), tag, divpng ))
 			elif tag == 'Communication':
-				return(( _("Communication"), '', _("View list of available communication extensions." ),'', tag, None, divpng, None, '' ))
-
+				return(( _("Communication"), _("View list of available communication extensions." ), tag, divpng ))
+			else: # dynamically generate non existent tags
+				return(( str(tag), _("View list of available ") + str(tag) + _(" extensions." ), tag, divpng ))
 
 	def installPlugins(self):
 		self.cmdList = []
@@ -1009,6 +1031,7 @@ class PluginManager(Screen, DreamInfoHandler):
 				#print "processing Plugin-->",plugin
 				detailsfile = self.directory[0] + "/" + plugin[0]
 				if (os_path.exists(detailsfile) == True):
+					#print "plugin[1]-->",plugin[1]
 					self.fillPackageDetails(plugin[0])
 					self.package = self.packageDetails[0]
 					if self.package[0].has_key("attributes"):
@@ -1036,6 +1059,7 @@ class PluginManager(Screen, DreamInfoHandler):
 			current = self["list"].getCurrent()
 			if current:
 				if current[8] is not '':
+					#print "current[4]-->",current[4]
 					detailsfile = self.directory[0] + "/" + current[1]
 					if (os_path.exists(detailsfile) == True):
 						self.fillPackageDetails(current[1])
@@ -1061,7 +1085,6 @@ class PluginManager(Screen, DreamInfoHandler):
 						else:
 							#print "adding package: ",current[0]
 							self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": current[3] }))
-
 		if len(self.cmdList):
 			print self.cmdList
 			self.session.openWithCallback(self.runExecute, MessageBox, _("Do you want to continue installing or removing selected plugins?\n") + self.oktext)
@@ -1102,11 +1125,9 @@ class PluginDetails(Screen, DreamInfoHandler):
 	def __init__(self, session, plugin_path, packagedata = None):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
-		lang = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
-		if lang == "en":
-			self.language = None
-		else:
-			self.language = lang
+		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
+		self.attributes = None
+		self.translatedAttributes = None
 		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, language = self.language)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		if packagedata:
@@ -1142,9 +1163,10 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self["divpic"].hide()
 
 		self.package = self.packageDetails[0]
-		#print "PACKAGE-------im DETAILS",self.package
 		if self.package[0].has_key("attributes"):
 			self.attributes = self.package[0]["attributes"]
+		if self.package[0].has_key("translation"):
+			self.translatedAttributes = self.package[0]["translation"]
 
 		self.cmdList = []
 		self.oktext = _("\nAfter pressing OK, please wait!")
@@ -1169,19 +1191,32 @@ class PluginDetails(Screen, DreamInfoHandler):
 		pass
 
 	def setInfos(self):
-		if self.attributes.has_key("name"):
+		if self.translatedAttributes.has_key("name"):
+			self.pluginname = self.translatedAttributes["name"]
+		elif self.attributes.has_key("name"):
 			self.pluginname = self.attributes["name"]
 		else:
 			self.pluginname = _("unknown")
-		if self.attributes.has_key("author"):
+
+		if self.translatedAttributes.has_key("author"):
+			self.author = self.translatedAttributes["author"]
+		elif self.attributes.has_key("author"):
 			self.author = self.attributes["author"]
 		else:
 			self.author = _("unknown")
-		if self.attributes.has_key("description"):
+
+		if self.translatedAttributes.has_key("description"):
+			self.description = self.translatedAttributes["description"]
+		elif self.attributes.has_key("description"):
 			self.description = self.attributes["description"]
 		else:
-			self.author = _("No description available.")
-		self.loadThumbnail(self.attributes)
+			self.description = _("No description available.")
+
+		if self.translatedAttributes.has_key("screenshot"):
+			self.loadThumbnail(self.translatedAttributes)
+		else:
+			self.loadThumbnail(self.attributes)
+
 		self["author"].setText(_("Author: ") + self.author)
 		self["detailtext"].setText(self.description.strip())
 		if self.pluginstate == 'installable':
