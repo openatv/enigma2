@@ -332,7 +332,7 @@
 
 	<map context="InfobarTimeshiftActions">
 		<device name="dreambox remote control (native)">
-			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="m" />
+			<key id="KEY_YELLOW" mapto="timeshiftStart" flags="b" />
 			<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
@@ -351,7 +351,7 @@
 	<map context="InfobarTimeshiftActivateActions">
 		<device name="dreambox remote control (native)">
 			<key id="KEY_RED" mapto="timeshiftActivateEnd" flags="b" />
-			<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="m" />
+			<key id="KEY_YELLOW" mapto="timeshiftActivateEndAndPause" flags="b" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_PREVIOUSSONG" mapto="timeshiftActivateEnd" flags="m" />
@@ -412,7 +412,7 @@
 		</device>
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_0" mapto="toggleMark" flags="m" />
-			<key id="KEY_YELLOW" mapto="toggleMark" flags="m" />
+			<key id="KEY_YELLOW" mapto="toggleMark" flags="b" />
 		</device>
 		<device name="dreambox ir keyboard">
 			<key id="KEY_TAB" mapto="toggleMark" flags="m" />
