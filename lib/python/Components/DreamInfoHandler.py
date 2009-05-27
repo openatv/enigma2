@@ -7,6 +7,7 @@ from Components.config import config, configfile
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eConsoleAppContainer, eDVBDB
 import os
+from re import compile as re_compile, search as re_search, IGNORECASE
 
 class InfoHandlerParseError(Exception):
 	def __init__(self, value):
@@ -25,9 +26,10 @@ class InfoHandler(xml.sax.ContentHandler):
 		self.validFileTypes = ["skin", "config", "services", "favourites", "package"]
 		self.prerequisitesMet = prerequisiteMet
 		self.data = ""
-		self.languagedata = ""
 		self.language = language
-		
+		self.translatedPackageInfos = {}
+		self.foundTranslation = None
+
 	def printError(self, error):
 		print "Error in defaults xml files:", error
 		raise InfoHandlerParseError, error
@@ -35,6 +37,7 @@ class InfoHandler(xml.sax.ContentHandler):
 	def startElement(self, name, attrs):
 		#print name, ":", attrs.items()
 		self.elements.append(name)
+
 		if name in ("hardware", "bcastsystem", "satellite", "tag", "flag"):
 			if not attrs.has_key("type"):
 					self.printError(str(name) + " tag with no type attribute")
@@ -45,6 +48,21 @@ class InfoHandler(xml.sax.ContentHandler):
 			if not prerequisites.has_key(name):
 				prerequisites[name] = []
 			prerequisites[name].append(str(attrs["type"]))
+
+		if name == "info":
+			if not attrs.has_key("language"):
+					self.printError(str(name) + " tag with no language attribute")
+			else:
+				if attrs["language"] == 'en': # read default translations
+					self.foundTranslation = False
+					self.data = ""
+				elif attrs["language"] == self.language:
+					self.foundTranslation = True
+					self.data = ""
+				else:
+					self.foundTranslation = None
+					self.data = ""
+
 		if name == "files":
 			if attrs.has_key("type"):
 				if attrs["type"] == "directories":
@@ -52,6 +70,7 @@ class InfoHandler(xml.sax.ContentHandler):
 				elif attrs["type"] == "package":
 					self.attributes["filestype"] = "package"
 				# TODO add a compressed archive type
+
 		if name == "file":
 			self.prerequisites = {}
 			if not attrs.has_key("type"):
@@ -81,10 +100,13 @@ class InfoHandler(xml.sax.ContentHandler):
 
 		if name == "screenshot":
 			if attrs.has_key("src"):
-				self.attributes["screenshot"] = str(attrs["src"])
+				if self.foundTranslation is False:
+					self.attributes["screenshot"] = str(attrs["src"])
+				elif self.foundTranslation is True:
+					self.translatedPackageInfos["screenshot"] = str(attrs["src"])
 
 	def endElement(self, name):
-		#print "end", name
+		#print "endElement", name
 		#print "self.elements:", self.elements
 		self.elements.pop()
 		if name == "file":
@@ -101,7 +123,7 @@ class InfoHandler(xml.sax.ContentHandler):
 				self.attributes[self.filetype].append({ "name": str(self.fileattrs["name"]), "directory": directory })
 
 		if name in ( "default", "package" ):
-			self.list.append({"attributes": self.attributes, 'prerequisites': self.globalprerequisites})
+			self.list.append({"attributes": self.attributes, 'prerequisites': self.globalprerequisites ,"translation": self.translatedPackageInfos})
 			self.attributes = {}
 			self.globalprerequisites = {}
 
@@ -110,50 +132,60 @@ class InfoHandler(xml.sax.ContentHandler):
 			self.attributes["author"] = str(data)
 		if self.elements[-1] == "name":
 			self.attributes["name"] = str(data)
-		if self.elements[-1] == "packagename":
-			self.attributes["packagename"] = str(data.encode("utf-8"))
-		if self.elements[-1] == "shortdescription":
-			self.attributes["shortdescription"] = str(data.encode("utf-8"))
-		if self.elements[-1] == "description":
-			self.data += data.strip()
-			self.attributes["description"] = str(self.data.encode("utf-8"))
-		if self.language is not None:
-			if self.elements[-1] == ("name_" + str(self.language)):
-				self.attributes["name"] = str(data.encode("utf-8"))
-			if self.elements[-1] == ("shortdescription_" + str(self.language)):
+		if self.foundTranslation is False:
+			if self.elements[-1] == "author":
+				self.attributes["author"] = str(data)
+			if self.elements[-1] == "name":
+				self.attributes["name"] = str(data)
+			if self.elements[-1] == "packagename":
+				self.attributes["packagename"] = str(data.encode("utf-8"))
+			if self.elements[-1] == "shortdescription":
 				self.attributes["shortdescription"] = str(data.encode("utf-8"))
-			if self.elements[-1] == ("description_" + str(self.language)):
-				self.languagedata += data.strip()
-				self.attributes["description"] = str(self.languagedata.encode("utf-8"))
+			if self.elements[-1] == "description":
+				self.data += data.strip()
+				self.attributes["description"] = str(self.data.encode("utf-8"))
+		elif self.foundTranslation is True:
+			if self.elements[-1] == "author":
+				self.translatedPackageInfos["author"] = str(data)
+			if self.elements[-1] == "name":
+				self.translatedPackageInfos["name"] = str(data)
+			if self.elements[-1] == "description":
+				self.data += data.strip()
+				self.translatedPackageInfos["description"] = str(self.data.encode("utf-8"))
+			if self.elements[-1] == "name":
+				self.translatedPackageInfos["name"] = str(data.encode("utf-8"))
+			if self.elements[-1] == "shortdescription":
+				self.translatedPackageInfos["shortdescription"] = str(data.encode("utf-8"))
 		#print "characters", data
-		
+
+
 class DreamInfoHandler:
 	STATUS_WORKING = 0
 	STATUS_DONE = 1
 	STATUS_ERROR = 2
 	STATUS_INIT = 4
-	
+
 	def __init__(self, statusCallback, blocking = False, neededTag = None, neededFlag = None, language = None):
 		self.hardware_info = HardwareInfo()
 		self.directory = "/"
-		
+
 		self.neededTag = neededTag
 		self.neededFlag = neededFlag
 		self.language = language
-		
+
 		# caution: blocking should only be used, if further execution in enigma2 depends on the outcome of
 		# the installer!
 		self.blocking = blocking
-		
+
 		self.currentlyInstallingMetaIndex = None
-		
+
 		self.console = eConsoleAppContainer()
 		self.console.appClosed.append(self.installNext)
 		self.reloadFavourites = False
-		
+
 		self.statusCallback = statusCallback
 		self.setStatus(self.STATUS_INIT)
-				
+
 		self.packageslist = []
 		self.packagesIndexlist = []
 		self.packageDetails = []
@@ -167,7 +199,7 @@ class DreamInfoHandler:
 				self.packageslist.append((entry,file)) 
 		except InfoHandlerParseError:
 			print "file", file, "ignored due to errors in the file"
-		print handler.list
+		#print handler.list
 
 	def readIndex(self, directory, file):
 		print "Reading .xml meta index file", file
@@ -181,6 +213,7 @@ class DreamInfoHandler:
 		#print handler.list
 
 	def readDetails(self, directory, file):
+		self.packageDetails = []
 		print "Reading .xml meta details file", file
 		handler = InfoHandler(self.prerequisiteMet, directory, self.language)
 		try:
@@ -191,19 +224,20 @@ class DreamInfoHandler:
 			print "file", file, "ignored due to errors in the file"
 		#print handler.list
 
+
 	# prerequisites = True: give only packages matching the prerequisites
 	def fillPackagesList(self, prerequisites = True):
 		self.packageslist = []
 		packages = []
 		if not isinstance(self.directory, list):
 			self.directory = [self.directory]
-		
+
 		for directory in self.directory:
 			packages += crawlDirectory(directory, ".*\.info$")
 
 		for package in packages:
 			self.readInfo(package[0] + "/", package[0] + "/" + package[1])
-			
+
 		if prerequisites:
 			for package in self.packageslist[:]:
 				if not self.prerequisiteMet(package[0]["prerequisites"]):
@@ -213,13 +247,26 @@ class DreamInfoHandler:
 	# prerequisites = True: give only packages matching the prerequisites
 	def fillPackagesIndexList(self, prerequisites = True):
 		self.packagesIndexlist = []
-		if self.language is not None:
-			indexfile = 'index_' + self.language + '.xml'
-		else:
-			indexfile = 'index.xml'
+		indexfileList = []
+
 		if not isinstance(self.directory, list):
 			self.directory = [self.directory]
-		self.readIndex(self.directory[0] + "/", self.directory[0] + "/" + indexfile)
+
+		for indexfile in os.listdir(self.directory[0]):
+			if indexfile.startswith("index"):
+				if os.path.splitext(indexfile)[0][-3:-2] is not "_": #we first catch all non translated indexfiles
+					indexfileList.append(os.path.splitext(indexfile)[0])
+
+		if len(indexfileList):
+			for file in indexfileList:
+				neededFile = self.directory[0] + "/" + file
+				if self.language is not None:
+					if os.path.exists(neededFile + '_' + self.language + '.xml' ):
+						#print "translated index file found",neededFile + '_' + self.language + '.xml'
+						self.readIndex(self.directory[0] + "/", neededFile + '_' + self.language + '.xml')
+					else:
+						#print "reading original index file"
+						self.readIndex(self.directory[0] + "/", neededFile + '.xml')
 
 		if prerequisites:
 			for package in self.packagesIndexlist[:]:
