@@ -22,6 +22,9 @@ class SessionGlobals(Screen):
 		self["TunerInfo"] = TunerInfo()
 		self["RecordState"] = RecordState(session)
 		self["Standby"] = Boolean(fixed = False)
+		
+		from Components.SystemInfo import SystemInfo
+		
 		combine = Combine(func = lambda s: {(False, False): 0, (False, True): 1, (True, False): 2, (True, True): 3}[(s[0].boolean, s[1].boolean)])
 		combine.connect(self["Standby"])
 		combine.connect(self["RecordState"])
@@ -33,9 +36,14 @@ class SessionGlobals(Screen):
 		#    false      true      on   off    off
 		#    true       true     blnk  off    blnk
 		
-		PATTERN_ON     = (20, 0xffffffff, 0)
-		PATTERN_OFF    = (20, 0, 0xffffffff)
+		PATTERN_ON     = (20, 0xffffffff, 0xffffffff)
+		PATTERN_OFF    = (20, 0, 0)
 		PATTERN_BLINK  = (20, 0x55555555, 0x84fc8c04)
 
-		FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]).connect(combine)
-		FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]).connect(combine)
+		nr_leds = SystemInfo.get("NumFrontpanelLEDs", 0)
+
+		if nr_leds == 1:
+			FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_OFF, PATTERN_BLINK]).connect(combine)
+		elif nr_leds == 2:
+			FrontpanelLed(which = 0, boolean = False, patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]).connect(combine)
+			FrontpanelLed(which = 1, boolean = False, patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]).connect(combine)

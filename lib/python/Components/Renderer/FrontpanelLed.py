@@ -22,7 +22,8 @@ class FrontpanelLed(Element):
 			pass
 		if self.which == 0:
 			try:
-				open("/proc/stb/fp/led_pattern", "w").write("%08x" % pattern_4bit)
+				open("/proc/stb/fp/led_set_pattern", "w").write("%08x" % pattern_4bit)
+				open("/proc/stb/fp/led_set_speed", "w").write("%d" % speed)
 			except IOError:
 				pass
 			try:
