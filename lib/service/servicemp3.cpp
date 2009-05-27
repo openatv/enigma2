@@ -1134,6 +1134,8 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				GstPad* pad = 0;
 				g_signal_emit_by_name (m_gst_playbin, "get-audio-pad", i, &pad);
 				GstCaps* caps = gst_pad_get_negotiated_caps(pad);
+				if (!caps)
+					continue;
 				GstStructure* str = gst_caps_get_structure(caps, 0);
 gchar *g_type;
 g_type = gst_structure_get_name(str);
