@@ -10,6 +10,8 @@
 		....
  	*/	
 
+eSubtitleWidget::eSubtitleStyle eSubtitleWidget::subtitleStyles[Subtitle_MAX];
+
 eSubtitleWidget::eSubtitleWidget(eWidget *parent)
 	: eWidget(parent), m_hide_subtitles_timer(eTimer::create(eApp))
 {
@@ -131,42 +133,42 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		else if (m_page_ok)
 		{
 			int elements = m_page.m_elements.size();
-			ePtr<gFont> font = new gFont("Regular", 38);
-			painter.setFont(font);
+			painter.setFont(subtitleStyles[Subtitle_TTX].font);
 			for (int i=0; i<elements; ++i)
 			{
 				eDVBTeletextSubtitlePageElement &element = m_page.m_elements[i];
 				eRect &area = element.m_area;
 				eRect shadow = area;
-				shadow.moveBy(3,3);
-				painter.setForegroundColor(gRGB(0,0,0));
+				shadow.moveBy(subtitleStyles[Subtitle_TTX].shadow_offset);
+				painter.setForegroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
 				painter.renderText(shadow, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
-				painter.setForegroundColor(element.m_color);
+				if ( !subtitleStyles[Subtitle_TTX].have_foreground_color )
+					painter.setForegroundColor(element.m_color);
+				else
+					painter.setForegroundColor(subtitleStyles[Subtitle_TTX].foreground_color);
 				painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 			}
 		}
 		else if (m_pango_page_ok)
 		{
 			int elements = m_pango_page.m_elements.size();
-			ePtr<gFont> font = new gFont("Regular", 38);
+			subfont_t face;
+
 			for (int i=0; i<elements; ++i)
 			{
+				face = Subtitle_Regular;
 				ePangoSubtitlePageElement &element = m_pango_page.m_elements[i];
-				std::string text = element.m_pango_line;				
+				std::string text = element.m_pango_line;
 				std::string::size_type loc = text.find("<", 0 );
 				if ( loc != std::string::npos )
 				{
 					switch (char(text.at(1)))
 					{
 					case 'i':
-						eDebug("found italic");
-						font = new gFont("LCD", 40);
+						face = Subtitle_Italic;
 						break;
 					case 'b':
-						eDebug("found bold");
-						font = new gFont("Replacement", 40);
-						break;
-					default:
+						face = Subtitle_Bold;
 						break;
 					}
 					text = text.substr(3, text.length()-7);
@@ -174,13 +176,16 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&apos;", "'");
 				text = replace_all(text, "&quot;", "\"");
 				text = replace_all(text, "&amp;", "&");
-				painter.setFont(font);		
+				painter.setFont(subtitleStyles[face].font);
 				eRect &area = element.m_area;
 				eRect shadow = area;
-				shadow.moveBy(3,3);
-				painter.setForegroundColor(gRGB(0,0,0));
+				shadow.moveBy(subtitleStyles[face].shadow_offset);
+				painter.setForegroundColor(subtitleStyles[face].shadow_color);
 				painter.renderText(shadow, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
-				painter.setForegroundColor(element.m_color);
+				if ( !subtitleStyles[face].have_foreground_color && element.m_have_color )
+					painter.setForegroundColor(element.m_color);
+				else
+					painter.setForegroundColor(subtitleStyles[face].foreground_color);
 				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 			}
 		}
@@ -195,3 +200,13 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		return eWidget::event(event, data, data2);
 	}
 }
+
+void eSubtitleWidget::setFontStyle(subfont_t face, gFont *font, int haveColor, const gRGB &col, const gRGB &shadowCol, const ePoint &shadowOffset)
+{
+	subtitleStyles[face].font = font;
+	subtitleStyles[face].have_foreground_color = haveColor;
+	subtitleStyles[face].foreground_color = col;
+	subtitleStyles[face].shadow_color = shadowCol;
+	subtitleStyles[face].shadow_offset = shadowOffset;
+}
+

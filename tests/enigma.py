@@ -96,6 +96,7 @@ eWindowStyleSkinned = None
 eButton = None
 eListboxPythonStringContent = None
 eListbox = None
+eSubtitleWidget = None
 
 class eEPGCache:
 	@classmethod

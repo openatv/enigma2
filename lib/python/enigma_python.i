@@ -69,6 +69,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/python/connections.h>
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
+#include <lib/gui/esubtitle.h>
 #include <lib/service/listboxservice.h>
 #include <lib/nav/pcore.h>
 #include <lib/actions/action.h>
@@ -183,6 +184,7 @@ typedef long time_t;
 %include <lib/gui/ewindowstyleskinned.h>
 %include <lib/gui/ewidgetanimation.h>
 %include <lib/gui/evideo.h>
+%include <lib/gui/esubtitle.h>
 %include <lib/service/listboxservice.h>
 %include <lib/nav/pcore.h>
 %include <lib/actions/action.h>
