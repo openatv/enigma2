@@ -316,7 +316,7 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			else:
 				shadowColor = gRGB(0)
 			shadowOffset = parsePosition(get_attr("shadowOffset"), scale)
-			face = eval("eSubtitleWidget.%s" % get_attr("name"))
+			face = eSubtitleWidget.__dict__[get_attr("name")]
 			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, shadowColor, shadowOffset)
 
 	for windowstyle in skin.findall("windowstyle"):
