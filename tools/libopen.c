@@ -195,6 +195,49 @@ int socket(int domain, int type, int protocol)
 	return fd;
 }
 
+int socketpair(int d, int type, int protocol, int sv[2])
+{
+	typedef int (*FUNC_PTR) (int d, int type, int protocol, int sv[2]);
+	static FUNC_PTR libc_socketpair;
+	int ret=-1;
+	if (!libc_socketpair)
+	{
+		void *handle;
+		char *error;
+		handle = dlopen("/lib/libc.so.6", RTLD_LAZY);
+		if (!handle)
+		{
+			fputs(dlerror(), stderr);
+			exit(1);
+		}
+		libc_socketpair = (FUNC_PTR) dlsym(handle, "socketpair");
+		if ((error = dlerror()) != NULL) {
+			fprintf(stderr, "%s\n", error);
+			exit(1);
+		}
+	}
+	ret = libc_socketpair(d, type, protocol, sv);
+	if (!ret)
+	{
+		int fd_flags = fcntl(sv[0], F_GETFD, 0);
+		if (fd_flags >= 0)
+		{
+			fd_flags |= FD_CLOEXEC;
+			fcntl(sv[0], F_SETFD, fd_flags);
+		}
+		fd_flags = fcntl(sv[1], F_GETFD, 0);
+		if (fd_flags >= 0)
+		{
+			fd_flags |= FD_CLOEXEC;
+			fcntl(sv[1], F_SETFD, fd_flags);
+		}
+#ifdef DEBUG
+		fprintf(stdout, "socketpair fd %d %d\n", sv[0], sv[1]);
+#endif
+	}
+	return ret;
+}
+
 int pipe(int modus[2])
 {
 	typedef int (*FUNC_PTR) (int modus[2]);
