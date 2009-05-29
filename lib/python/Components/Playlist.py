@@ -1,7 +1,8 @@
 from ServiceReference import ServiceReference
+from enigma import eServiceReference
 import os
 
-class PlaylistIO:	
+class PlaylistIO:
 	def __init__(self):
 		self.list = []
 	
@@ -15,6 +16,8 @@ class PlaylistIO:
 	ERROR = 3
 	UNSUPPORTED_FILES_IN_PLAYLIST = 4
 	
+	REMOTE_PROTOS = ["http", "https", "udp", "rtsp", "rtp", "mmp"]
+	
 	def save(self, filename = None):
 		return self.ERROR
 		
@@ -23,12 +26,22 @@ class PlaylistIO:
 		
 	def addService(self, service):
 		self.list.append(service)
-		
-		
+
+	def getRef(self, filename, entry):
+		if entry[0] == "/":
+			path = entry
+		else:
+			path = os.path.dirname(filename) + "/" + entry
+			for proto in self.REMOTE_PROTOS:
+				if entry.startswith(proto):
+					path = entry
+		ref = eServiceReference(4097, 0, path)
+		return ServiceReference(ref)
+
 class PlaylistIOInternal(PlaylistIO):
 	def __init__(self):
 		PlaylistIO.__init__(self)
-	
+
 	def open(self, filename):
 		self.clear()
 		try:
@@ -73,14 +86,7 @@ class PlaylistIOM3U(PlaylistIO):
 					self.displayname = extinf[1]
 				# TODO: use e2 facilities to create a service ref from file
 			elif entry[0] != "#":
-				remote_protos = ["http", "https", "udp", "rtsp", "rtp", "mmp"]
-				if entry[0] == "/":
-					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry)
-				else:
-					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + entry)
-					for proto in remote_protos:
-						if entry.startswith(proto):
-							sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry.replace(':',"%3a"))
+				sref = PlaylistIO.getRef(self, filename, entry)
 				if self.displayname:
 					sref.ref.setName(self.displayname)
 					self.displayname = None
@@ -110,11 +116,8 @@ class PlaylistIOPLS(PlaylistIO):
 				if entry[0:4] == "File":
 					pos = entry.find('=') + 1
 					newentry = entry[pos:]
-					# TODO: use e2 facilities to create a service ref from file
-					if newentry[0] == "/":
-						self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + newentry))
-					else:
-						self.addService(ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + newentry))
+					sref = PlaylistIO.getRef(self, filename, newentry)
+					self.addService(sref)
 		else:
 			playlist = PlaylistIOM3U()
 			return playlist.open(filename)
