@@ -429,7 +429,25 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
-	if (m_demux.size() < 5)
+	if (m_demux.size() == 3) // dm800 / 500hd
+	{
+		for (; i != m_demux.end(); ++i, ++n)
+		{
+			if (!i->m_inuse)
+			{
+				if (!unused)
+					unused = i;
+			}
+			else if (i->m_adapter == fe->m_adapter &&
+			    i->m_demux->getSource() == fe->m_frontend->getDVBID())
+			{
+				demux = new eDVBAllocatedDemux(i);
+				return 0;
+			}
+		}
+	
+	}
+	else if (m_demux.size() < 5) // ATI
 	{
 		/* FIXME: hardware demux policy */
 		if (!(cap & iDVBChannel::capDecode))
