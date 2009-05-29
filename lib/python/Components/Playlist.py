@@ -73,12 +73,14 @@ class PlaylistIOM3U(PlaylistIO):
 					self.displayname = extinf[1]
 				# TODO: use e2 facilities to create a service ref from file
 			elif entry[0] != "#":
+				remote_protos = ["http", "https", "udp", "rtsp", "rtp", "mmp"]
 				if entry[0] == "/":
 					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry)
-				elif entry.startswith("http"):
-					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry.replace(':',"%3a"))
 				else:
 					sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + os.path.dirname(filename) + "/" + entry)
+					for proto in remote_protos:
+						if entry.startswith(proto):
+							sref = ServiceReference("4097:0:0:0:0:0:0:0:0:0:" + entry.replace(':',"%3a"))
 				if self.displayname:
 					sref.ref.setName(self.displayname)
 					self.displayname = None
