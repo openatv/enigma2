@@ -250,7 +250,7 @@ eServiceMP3::eServiceMP3(const char *filename, const char *title): m_filename(fi
 		sourceinfo.containertype = ctVCD;
 		sourceinfo.is_video = TRUE;
 	}
-	if ( (strncmp(filename, "http://", 7)) == 0 || (strncmp(filename, "udp://", 6)) == 0 || (strncmp(filename, "rtsp://", 7)) == 0 )
+	if ( (strncmp(filename, "http://", 7)) == 0 || (strncmp(filename, "udp://", 6)) == 0 || (strncmp(filename, "rtp://", 6)) == 0  || (strncmp(filename, "https://", 8)) == 0 || (strncmp(filename, "mms://", 6)) == 0 || (strncmp(filename, "rtsp://", 7)) == 0 )
 		sourceinfo.is_streaming = TRUE;
 
 	gchar *uri;
