@@ -863,7 +863,7 @@ int eTSMPEGDecoder::setState()
 	const char *decoder_states[] = {"stop", "pause", "play", "decoderfastforward", "trickmode", "slowmotion"};
 	eDebug("decoder state: %s, vpid=%d, apid=%d", decoder_states[m_state], m_vpid, m_apid);
 
-	bool changed = m_changed;
+	int changed = m_changed;
 #if HAVE_DVB_API_VERSION < 3
 	bool checkAVSync = m_changed & (changeAudio|changeVideo|changePCR);
 	if (m_changed & changeAudio && m_audio)
