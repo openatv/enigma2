@@ -438,8 +438,8 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				if (!unused)
 					unused = i;
 			}
-			else if (i->m_adapter == fe->m_adapter &&
-			    i->m_demux->getSource() == fe->m_frontend->getDVBID())
+			else if (!fe || (i->m_adapter == fe->m_adapter &&
+			    i->m_demux->getSource() == fe->m_frontend->getDVBID()))
 			{
 				demux = new eDVBAllocatedDemux(i);
 				return 0;
