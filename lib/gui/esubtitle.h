@@ -12,11 +12,11 @@ struct ePangoSubtitlePageElement
 	std::string m_pango_line;
 	eRect m_area;
 	ePangoSubtitlePageElement(const gRGB &color, const std::string &text)
-		: m_color(color), m_pango_line(text), m_have_color(true)
+		: m_color(color), m_have_color(true), m_pango_line(text)
 	{
 	}
 	ePangoSubtitlePageElement(const std::string &text)
-		: m_pango_line(text), m_have_color(false)
+		: m_have_color(false), m_pango_line(text)
 	{
 	}
 };
