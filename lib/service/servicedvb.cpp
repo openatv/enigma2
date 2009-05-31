@@ -1223,6 +1223,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 		return m_decoder->setFastForward(ffratio);
 	else
 		return m_decoder->setTrickmode();
+	return 0;
 }
 
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
