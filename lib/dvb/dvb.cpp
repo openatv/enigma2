@@ -438,14 +438,24 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				if (!unused)
 					unused = i;
 			}
-			else if (!fe || (i->m_adapter == fe->m_adapter &&
-			    i->m_demux->getSource() == fe->m_frontend->getDVBID()))
+			else
 			{
-				demux = new eDVBAllocatedDemux(i);
-				return 0;
+				if (fe)
+				{
+					if (i->m_adapter == fe->m_adapter && 
+					    i->m_demux->getSource() == fe->m_frontend->getDVBID())
+					{
+						demux = new eDVBAllocatedDemux(i);
+						return 0;
+					}
+				}
+				else if (i->m_demux->getSource() == -1) // PVR
+				{
+					demux = new eDVBAllocatedDemux(i);
+					return 0;
+				}
 			}
 		}
-	
 	}
 	else if (m_demux.size() < 5) // ATI
 	{
