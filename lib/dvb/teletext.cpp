@@ -482,6 +482,7 @@ void eDVBTeletextParser::handlePageStart()
 		m_subtitle_page.clear();
 		m_modifications.clear();
 		m_X28_0_valid = 0;
+		m_new_subtitle_page(m_subtitle_page);
 //		eDebug("erase page!");
 	}
 //	else
