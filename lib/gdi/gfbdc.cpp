@@ -131,6 +131,7 @@ void gFBDC::exec(gOpcode *o)
 
 		++t;
 
+		fb->blit();
 		fb->waitVSync();
 		break;
 	}
@@ -188,7 +189,7 @@ void gFBDC::setResolution(int xres, int yres)
 	surface.data = fb->lfb;
 	surface.offset = 0;
 
-	surface.data_phys = 50*1024*1024; // FIXME
+	surface.data_phys = fb->getPhysAddr();
 
 	int fb_size = surface.stride * surface.y;
 
