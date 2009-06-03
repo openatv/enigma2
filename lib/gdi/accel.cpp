@@ -9,7 +9,7 @@
 #include <lib/gdi/gpixmap.h>
 
 gAccel *gAccel::instance;
-// #define BCM_ACCEL
+#define BCM_ACCEL
 
 #ifdef ATI_ACCEL
 extern int ati_accel_init(void);
@@ -50,7 +50,7 @@ gAccel::gAccel()
 	ati_accel_init();
 #endif
 #ifdef BCM_ACCEL	
-	bcm_accel_init();
+	m_bcm_accel_state = bcm_accel_init();
 #endif
 }
 
@@ -95,12 +95,15 @@ int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect
 	return 0;
 #endif
 #ifdef BCM_ACCEL
-	bcm_accel_blit(
-		src->data_phys, src->x, src->y, src->stride,
-		dst->data_phys, dst->x, dst->y, dst->stride, 
-		area.left(), area.top(), area.width(), area.height(),
-		p.x(), p.y(), p.width(), p.height());
-	return 0;
+	if (!m_bcm_accel_state)
+	{
+		bcm_accel_blit(
+			src->data_phys, src->x, src->y, src->stride,
+			dst->data_phys, dst->x, dst->y, dst->stride, 
+			area.left(), area.top(), area.width(), area.height(),
+			p.x(), p.y(), p.width(), p.height());
+		return 0;
+	}
 #endif
 	return -1;
 }
