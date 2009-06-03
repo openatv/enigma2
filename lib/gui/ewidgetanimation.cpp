@@ -51,4 +51,5 @@ void eWidgetAnimation::startMoveAnimation(ePoint start, ePoint end, int length)
 	m_move_start = start;
 	m_move_end = end;
 	m_active = 1;
+	m_widget->move(m_move_start);
 }
