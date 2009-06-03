@@ -145,6 +145,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 				  "off": 0,
 				  "blend": 2,
 				}[value])
+		elif attrib == "scale":
+			guiObject.setScale(1)
 		elif attrib == "orientation": # used by eSlider
 			try:
 				guiObject.setOrientation(*
