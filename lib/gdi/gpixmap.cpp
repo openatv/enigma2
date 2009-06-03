@@ -256,24 +256,66 @@ static void blit_8i_to_32_ab(__u32 *dst, __u8 *src, __u32 *pal, int width)
 	}
 }
 
+#define FIX 0x10000
 
-void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag)
+void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, int flag)
 {
+//	eDebug("blit: -> %d.%d %d:%d -> %d.%d %d:%d, flags=%d",
+//		_pos.x(), _pos.y(), _pos.width(), _pos.height(),
+//		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
+//		flag);
+	eRect pos = _pos;
+	
+//	eDebug("source size: %d %d", src.size().width(), src.size().height());
+	
+	if (!(flag & blitScale)) /* pos' size is valid only when scaling */
+		pos = eRect(pos.topLeft(), src.size());
+	else if (pos.size() == src.size()) /* no scaling required */
+		flag &= ~blitScale;
+
+	int scale_x = FIX, scale_y = FIX;
+	
+	if (flag & blitScale)
+	{
+		ASSERT(src.size().width());
+		ASSERT(src.size().height());
+		scale_x = pos.size().width() * FIX / src.size().width();
+		scale_y = pos.size().height() * FIX / src.size().height();
+	}
+	
+//	eDebug("SCALE %x %x", scale_x, scale_y);
+
 	for (unsigned int i=0; i<clip.rects.size(); ++i)
 	{
-		eRect area=eRect(pos, src.size());
+//		eDebug("clip rect: %d %d %d %d", clip.rects[i].x(), clip.rects[i].y(), clip.rects[i].width(), clip.rects[i].height());
+		eRect area = pos; /* pos is the virtual (pre-clipping) area on the dest, which can be larger/smaller than src if scaling is enabled */
 		area&=clip.rects[i];
 		area&=eRect(ePoint(0, 0), size());
 
 		if ((area.width()<0) || (area.height()<0))
 			continue;
 
-		eRect srcarea=area;
+		eRect srcarea = area;
 		srcarea.moveBy(-pos.x(), -pos.y());
 
+//		eDebug("srcarea before scale: %d %d %d %d",
+//			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
+		
+		if (flag & blitScale)
+			srcarea = eRect(srcarea.x() * FIX / scale_x, srcarea.y() * FIX / scale_y, srcarea.width() * FIX / scale_x, srcarea.height() * FIX / scale_y);
+
+//		eDebug("srcarea after scale: %d %d %d %d",
+//			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
+
 		if ((surface->data_phys && src.surface->data_phys) && (gAccel::getInstance()))
-			if (!gAccel::getInstance()->blit(surface, src.surface, area.topLeft(), srcarea, flag))
+			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag))
 				continue;
+
+		if (flag & blitScale)
+		{
+			eWarning("unimplemented: scale on non-accel surfaces");
+			continue;
+		}
 
 		if ((surface->bpp == 8) && (src.surface->bpp==8))
 		{
@@ -399,6 +441,8 @@ void gPixmap::blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flag
 			eWarning("cannot blit %dbpp from %dbpp", surface->bpp, src.surface->bpp);
 	}
 }
+
+#undef FIX
 
 void gPixmap::mergePalette(const gPixmap &target)
 {
