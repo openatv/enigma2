@@ -119,7 +119,11 @@ void *gRC::thread()
 				break;
 			else if (o.opcode==gOpcode::notify)
 				need_notify = 1;
-			else if(o.dc)
+			else if (o.opcode==gOpcode::setCompositing)
+			{
+				m_compositing = o.parm.setCompositing;
+				m_compositing->Release();
+			} else if(o.dc)
 			{
 				o.dc->exec(&o);
 				// o.dc is a gDC* filled with grabref... so we must release it here
@@ -377,6 +381,13 @@ void gPainter::clear()
 
 void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 {
+	blitScale(pixmap, eRect(pos, eSize()), clip, flags, 0);
+}
+
+void gPainter::blitScale(gPixmap *pixmap, const eRect &position, const eRect &clip, int flags, int aflags)
+{
+	flags |= aflags;
+
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
@@ -388,12 +399,11 @@ void gPainter::blit(gPixmap *pixmap, ePoint pos, const eRect &clip, int flags)
 	pixmap->AddRef();
 	o.parm.blit  = new gOpcode::para::pblit;
 	o.parm.blit->pixmap = pixmap;
-	o.parm.blit->position = pos;
 	o.parm.blit->clip = clip;
-	o.parm.blit->flags=flags;
+	o.parm.blit->flags = flags;
+	o.parm.blit->position = position;
 	m_rc->submit(o);
 }
-
 
 void gPainter::setPalette(gRGB *colors, int start, int len)
 {
@@ -549,6 +559,16 @@ void gPainter::notify()
 	m_rc->submit(o);
 }
 
+void gPainter::setCompositing(gCompositingData *comp)
+{
+	gOpcode o;
+	o.opcode = gOpcode::setCompositing;
+	o.dc = 0;
+	o.parm.setCompositing = comp;
+	comp->AddRef(); /* will be freed in ::thread */
+	m_rc->submit(o);
+}
+
 void gPainter::end()
 {
 	if ( m_dc->islocked() )
@@ -677,7 +697,7 @@ void gDC::exec(gOpcode *o)
 		gRegion clip;
 				// this code should be checked again but i'm too tired now
 		
-		o->parm.blit->position += m_current_offset;
+		o->parm.blit->position.moveBy(m_current_offset);
 		
 		if (o->parm.blit->clip.valid())
 		{
@@ -777,7 +797,7 @@ void gDC::enableSpinner()
 	ASSERT(m_spinner_saved);
 	
 		/* save the background to restore it later. We need to negative position because we want to blit from the middle of the screen. */
-	m_spinner_saved->blit(*m_pixmap, -m_spinner_pos.topLeft(), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0);
+	m_spinner_saved->blit(*m_pixmap, eRect(-m_spinner_pos.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0);
 	
 	incrementSpinner();
 }
@@ -787,7 +807,7 @@ void gDC::disableSpinner()
 	ASSERT(m_spinner_saved);
 
 		/* restore background */
-	m_pixmap->blit(*m_spinner_saved, m_spinner_pos.topLeft(), gRegion(m_spinner_pos), 0);
+	m_pixmap->blit(*m_spinner_saved, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0);
 }
 
 void gDC::incrementSpinner()
@@ -811,12 +831,12 @@ void gDC::incrementSpinner()
 	}
 #endif
 
-	m_spinner_temp->blit(*m_spinner_saved, ePoint(0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()));
+	m_spinner_temp->blit(*m_spinner_saved, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()));
 
 	if (m_spinner_pic[m_spinner_i])
-		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], ePoint(0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), gPixmap::blitAlphaTest);
+		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), gPixmap::blitAlphaTest);
 
-	m_pixmap->blit(*m_spinner_temp, m_spinner_pos.topLeft(), gRegion(m_spinner_pos), 0);
+	m_pixmap->blit(*m_spinner_temp, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0);
 	m_spinner_i++;
 	m_spinner_i %= m_spinner_num;
 }
