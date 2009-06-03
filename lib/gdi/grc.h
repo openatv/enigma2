@@ -22,6 +22,7 @@
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
 #include <lib/gdi/gfont.h>
+#include <lib/gdi/compositing.h>
 
 class eTextPara;
 
@@ -60,7 +61,9 @@ struct gOpcode
 		
 		enableSpinner, disableSpinner, incrementSpinner,
 		
-		shutdown
+		shutdown,
+		
+		setCompositing,
 	} opcode;
 
 	gDC *dc;
@@ -102,8 +105,8 @@ struct gOpcode
 		struct pblit
 		{
 			gPixmap *pixmap;
-			ePoint position;
 			int flags;
+			eRect position;
 			eRect clip;
 		} *blit;
 
@@ -137,6 +140,8 @@ struct gOpcode
 			ePoint value;
 			int rel;
 		} *setOffset;
+		
+		gCompositingData *setCompositing;
 	} parm;
 };
 
@@ -168,6 +173,8 @@ class gRC: public iObject, public Object
 	
 	void enableSpinner();
 	void disableSpinner();
+	
+	ePtr<gCompositingData> m_compositing;
 
 public:
 	gRC();
@@ -230,10 +237,12 @@ public:
 	enum
 	{
 		BT_ALPHATEST = 1,
-		BT_ALPHABLEND = 2
+		BT_ALPHABLEND = 2,
+		BT_SCALE = 4 /* will be automatically set by blitScale */
 	};
 
-	void blit(gPixmap *pixmap, ePoint pos, const eRect &what=eRect(), int flags=0);
+	void blit(gPixmap *pixmap, ePoint pos, const eRect &clip=eRect(), int flags=0);
+	void blitScale(gPixmap *pixmap, const eRect &pos, const eRect &clip=eRect(), int flags=0, int aflags = BT_SCALE);
 
 	void setPalette(gRGB *colors, int start=0, int len=256);
 	void setPalette(gPixmap *source);
@@ -252,6 +261,7 @@ public:
 	void waitVSync();
 	void flip();
 	void notify();
+	void setCompositing(gCompositingData *comp);
 };
 
 class gDC: public iObject
