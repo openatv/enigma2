@@ -14,7 +14,7 @@ public:
 	
 	void setAccelMemorySpace(void *addr, int phys_addr, int size);
 	
-	int blit(gSurface *dst, const gSurface *src, const ePoint &p, const eRect &area, int flags);
+	int blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect &area, int flags);
 	int fill(gSurface *dst, const eRect &area, unsigned long col);
 	
 	int accelAlloc(void *&addr, int &phys_addr, int size);
