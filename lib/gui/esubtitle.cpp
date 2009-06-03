@@ -113,6 +113,9 @@ void eSubtitleWidget::clearPage()
 void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed)
 {
 	m_pixmap = pixmap;
+	
+	changed.scale(size().width(), pixmap->size().width(), size().height(), pixmap->size().height());
+	
 	invalidate(changed);
 }
 
@@ -129,7 +132,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		eWidget::event(event, data, data2);
 
 		if (m_pixmap)
-			painter.blit(m_pixmap, ePoint(0,0));
+			painter.blitScale(m_pixmap, eRect(ePoint(0, 0), size()));
 		else if (m_page_ok)
 		{
 			int elements = m_page.m_elements.size();
@@ -192,7 +195,12 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		else if (m_dvb_page_ok)
 		{
 			for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
-				painter.blit(it->m_pixmap, it->m_position);
+			{
+					/* dvb subtitles are living in their 720x576 cage... i think. check this for HD. */
+				eRect r = eRect(it->m_position, it->m_pixmap->size());
+				r.scale(size().width(), 720, size().height(), 576);
+				painter.blitScale(it->m_pixmap, r);
+			}
 		}
 		return 0;
 	}

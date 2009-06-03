@@ -562,11 +562,11 @@ RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) /*
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size());
 
-	eSize size = parent->size();
+	eSize size = eSize(720, 576);
 
 	if (!m_pixmap)
 	{
-		m_pixmap = new gPixmap(size, 32);
+		m_pixmap = new gPixmap(size, 32, 1); /* allocate accel surface (if possible) */
 		ddvd_set_lfb(m_ddvdconfig, (unsigned char *)m_pixmap->surface->data, size.width(), size.height(), 4, size.width()*4);
 		run(); // start the thread
 	}
