@@ -742,6 +742,19 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamableService>, iStreamableServicePtr);
 
+SWIG_IGNORE(iStreamedService);
+class iStreamedService: public iObject
+{
+#ifdef SWIG
+	iStreamedService();
+	~iStreamedService();
+#endif
+public:
+	virtual PyObject *getBufferCharge()=0;
+	virtual int setBufferSize(int size)=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iStreamedService>, iStreamedServicePtr);
+
 class iServiceKeys_ENUMS
 {
 #ifdef SWIG
@@ -812,6 +825,8 @@ public:
 		evVideoFramerateChanged,
 		evVideoProgressiveChanged,
 
+		evBuffering,
+
 		evStopped,
 
 		evUser = 0x100
@@ -847,6 +862,7 @@ public:
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) rdsDecoder(ePtr<iRdsDecoder> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) stream(ePtr<iStreamableService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) streamed(ePtr<iStreamedService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) keys(ePtr<iServiceKeys> &SWIG_OUTPUT)=0;
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iPlayableService>, iPlayableServicePtr);
