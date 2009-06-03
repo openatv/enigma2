@@ -3,7 +3,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-	:eWidget(parent), m_alphatest(false)
+	:eWidget(parent), m_alphatest(false), m_scale(false)
 {
 }
 
@@ -11,6 +11,15 @@ void ePixmap::setAlphatest(int alphatest)
 {
 	m_alphatest = alphatest;
 	setTransparent(alphatest);
+}
+
+void ePixmap::setScale(int scale)
+{
+	if (m_scale != scale)
+	{
+		m_scale = scale;
+		invalidate();
+	}
 }
 
 void ePixmap::setPixmap(gPixmap *pixmap)
@@ -76,7 +85,10 @@ int ePixmap::event(int event, void *data, void *data2)
 				flags = gPainter::BT_ALPHATEST;
 			else if (m_alphatest == 2)
 				flags = gPainter::BT_ALPHABLEND;
-			painter.blit(m_pixmap, ePoint(0, 0), eRect(), flags);
+			if (m_scale)
+				painter.blitScale(m_pixmap, eRect(ePoint(0, 0), size()), eRect(), flags);
+			else
+				painter.blit(m_pixmap, ePoint(0, 0), eRect(), flags);
 		}
 
 		return 0;
