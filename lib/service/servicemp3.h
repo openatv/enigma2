@@ -50,7 +50,7 @@ typedef enum { stPlainText, stSSA, stSRT } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService, 
-	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public iSubtitleOutput, public Object
+	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public iSubtitleOutput, public iStreamedService, public Object
 {
 	DECLARE_REF(eServiceMP3);
 public:
@@ -78,8 +78,8 @@ public:
 	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = 0; return -1; }
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
-	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
 	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
+	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
 
 		// iPausableService
 	RESULT pause();
@@ -117,6 +117,11 @@ public:
 	PyObject *getSubtitleList();
 	PyObject *getCachedSubtitle();
 
+		// iStreamedService
+	RESULT streamed(ePtr<iStreamedService> &ptr);
+	PyObject *getBufferCharge();
+	int setBufferSize(int size);
+
 	struct audioStream
 	{
 		GstPad* pad;
@@ -149,6 +154,17 @@ public:
 		{
 		}
 	};
+	struct bufferInfo
+	{
+		int bufferPercent;
+		int avgInRate;
+		int avgOutRate;
+		long long bufferingLeft;
+		bufferInfo()
+			:bufferPercent(0), avgInRate(0), avgOutRate(0), bufferingLeft(-1)
+		{
+		}
+	};
 private:
 	int m_currentAudioStream;
 	int m_currentSubtitleStream;
@@ -162,6 +178,8 @@ private:
 	friend class eServiceFactoryMP3;
 	std::string m_filename;
 	std::string m_title;
+	int m_buffer_size;
+	bufferInfo m_bufferInfo;
 	eServiceMP3(const char *filename, const char *title);
 	Signal2<void,iPlayableService*,int> m_event;
 	enum
