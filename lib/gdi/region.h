@@ -94,6 +94,8 @@ public:
 	bool valid() const { return extends.valid(); }
 	
 	static gRegion invalidRegion() { return gRegion(eRect::invalidRect()); }
+	
+	void scale(int x_n, int x_d, int y_n, int y_d);
 };
 
 #endif

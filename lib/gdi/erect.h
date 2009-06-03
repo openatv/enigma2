@@ -119,6 +119,14 @@ public:
 	static eRect emptyRect() { return eRect(0, 0, 0, 0); }
 	static eRect invalidRect() { return eRect(); }
 	
+	inline void scale(int x_n, int x_d, int y_n, int y_d) 
+	{
+		x1 *= x_n; x1 /= x_d; 
+		x2 *= x_n; x2 /= x_d; 
+		y1 *= y_n; y1 /= y_d; 
+		y2 *= y_n; y2 /= y_d; 
+	}
+	
 private:
 	int x1;
 	int y1;
