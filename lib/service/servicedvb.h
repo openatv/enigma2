@@ -114,13 +114,14 @@ public:
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr);
 	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
+	RESULT streamed(ePtr<iStreamedService> &ptr) { ptr = 0; return -1; }
 
 		// iPauseableService
 	RESULT pause();
 	RESULT unpause();
 	RESULT setSlowMotion(int ratio);
 	RESULT setFastForward(int ratio);
-    	
+
 		// iSeekableService
 	RESULT getLength(pts_t &len);
 	RESULT seekTo(pts_t to);
@@ -182,6 +183,7 @@ public:
 		// iStreamableService
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	PyObject *getStreamingData();
+
 private:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;

@@ -28,7 +28,7 @@ public:
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 
-		/* streamable service */
+		// iStreamableService
 	PyObject *getStreamingData();
 
 		// iSubserviceList
