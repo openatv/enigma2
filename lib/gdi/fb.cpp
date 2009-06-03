@@ -62,6 +62,7 @@ fbClass::fbClass(const char *fb)
 	}
 
 	available=fix.smem_len;
+	m_phys_mem = fix.smem_start;
 	eDebug("%dk video mem", available/1024);
 	lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fd, 0);
 	if (!lfb)
