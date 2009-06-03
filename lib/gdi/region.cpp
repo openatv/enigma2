@@ -426,3 +426,10 @@ void gRegion::moveBy(ePoint offset)
 		rects[i].moveBy(offset);
 }
 
+void gRegion::scale(int x_n, int x_d, int y_n, int y_d)
+{
+	int i;
+	for (i=0; i<rects.size(); ++i)
+		rects[i].scale(x_n, x_d, y_n, y_d);
+}
+
