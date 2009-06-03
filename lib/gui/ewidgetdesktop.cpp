@@ -145,6 +145,9 @@ void eWidgetDesktop::recalcClipRegions(eWidget *root)
 				createBufferForWidget(root, 0);
 
 			comp = root->m_comp_buffer[i]; /* it might have changed. */
+			
+			if (!comp) 
+				continue;  /* WAIT, don't we need to invalidate,whatever */
 
 					/* CHECKME: don't we need to recalculate everything? after all, our buffer has changed and is likely to be cleared */
 		 	gRegion visible_before = root->m_visible_with_childs;
