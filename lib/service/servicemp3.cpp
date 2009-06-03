@@ -996,56 +996,49 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 	else
 		eDebug("eServiceMP3::gst_message from %s: %s (without structure)", sourceName, GST_MESSAGE_TYPE_NAME(msg));
 #endif
-	if ( GST_MESSAGE_TYPE (msg) == GST_MESSAGE_STATE_CHANGED )
-	{
-		// only the pipeline message
-		if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
-			return;
-
-		GstState old_state, new_state;
-		gst_message_parse_state_changed(msg, &old_state, &new_state, NULL);
-	
-		if(old_state == new_state)
-			return;
-
-		eDebug("eServiceMP3::state transition %s -> %s", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
-
-		GstStateChange transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
-
-		switch(transition)
-		{
-			case GST_STATE_CHANGE_NULL_TO_READY:
-			{
-			}
-				break;
-			case GST_STATE_CHANGE_READY_TO_PAUSED:
-			{
-
-			}	break;
-			case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
-			{
-
-			}	break;
-			case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
-			{
-	
-			}	break;
-			case GST_STATE_CHANGE_PAUSED_TO_READY:
-			{
-
-			}	break;
-			case GST_STATE_CHANGE_READY_TO_NULL:
-			{
-
-			}	break;
-		}
-	}
-
 	switch (GST_MESSAGE_TYPE (msg))
 	{
 		case GST_MESSAGE_EOS:
 			m_event((iPlayableService*)this, evEOF);
 			break;
+		case GST_MESSAGE_STATE_CHANGED:
+		{
+			if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
+			return;
+
+			GstState old_state, new_state;
+			gst_message_parse_state_changed(msg, &old_state, &new_state, NULL);
+		
+			if(old_state == new_state)
+				return;
+	
+			eDebug("eServiceMP3::state transition %s -> %s", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
+	
+			GstStateChange transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
+	
+			switch(transition)
+			{
+				case GST_STATE_CHANGE_NULL_TO_READY:
+				{
+				}	break;
+				case GST_STATE_CHANGE_READY_TO_PAUSED:
+				{
+				}	break;
+				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
+				{
+				}	break;
+				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
+				{
+				}	break;
+				case GST_STATE_CHANGE_PAUSED_TO_READY:
+				{
+				}	break;
+				case GST_STATE_CHANGE_READY_TO_NULL:
+				{
+				}	break;
+			}
+			break;
+		}
 		case GST_MESSAGE_ERROR:
 		{
 			gchar *debug;
@@ -1106,7 +1099,6 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				eDebug("eServiceMP3::/tmp/.id3coverart %d bytes written ", ret);
 				m_event((iPlayableService*)this, evUser+13);
 			}
-	
 			gst_tag_list_free(tags);
 			m_event((iPlayableService*)this, evUpdatedInfo);
 			break;
@@ -1148,6 +1140,7 @@ eDebug("AUDIO STRUCT=%s", g_type);
 				{
 					gst_tag_list_get_string(tags, GST_TAG_AUDIO_CODEC, &g_codec);
 					gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang);
+					gst_tag_list_free(tags);
 				}
 				audio.language_code = std::string(g_lang);
 				audio.codec = std::string(g_codec);
@@ -1155,6 +1148,7 @@ eDebug("AUDIO STRUCT=%s", g_type);
 				m_audioStreams.push_back(audio);
 				g_free (g_lang);
 				g_free (g_codec);
+				gst_caps_unref(caps);
 			}
 
 			for (i = 0; i < n_text; i++)
@@ -1217,6 +1211,7 @@ eDebug("AUDIO STRUCT=%s", g_type);
 						if (strstr(eventname, "Changed"))
 							m_event((iPlayableService*)this, evVideoProgressiveChanged);
 					}
+					g_free(eventname);
 				}
 			}
 		}
@@ -1351,9 +1346,9 @@ void eServiceMP3::pushSubtitles()
 			m_subtitle_widget->setPage(page);
 			m_subtitle_pages.pop_front();
 		}
-	} ;
-
+	}
 	gst_object_unref (clock);
+	gst_object_unref (syncsink);
 }
 
 RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
@@ -1406,7 +1401,6 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 
 PyObject *eServiceMP3::getCachedSubtitle()
 {
-	eDebug("eServiceMP3::getCachedSubtitle");
 	Py_RETURN_NONE;
 }
 
