@@ -116,7 +116,8 @@ public:
 	enum
 	{
 		blitAlphaTest=1,
-		blitAlphaBlend=2
+		blitAlphaBlend=2,
+		blitScale=4
 	};
 
 	gPixmap(gSurface *surface);
@@ -139,7 +140,7 @@ private:
 	void fill(const gRegion &clip, const gColor &color);
 	void fill(const gRegion &clip, const gRGB &color);
 	
-	void blit(const gPixmap &src, ePoint pos, const gRegion &clip, int flags=0);
+	void blit(const gPixmap &src, const eRect &pos, const gRegion &clip, int flags=0);
 	
 	void mergePalette(const gPixmap &target);
 	void line(const gRegion &clip, ePoint start, ePoint end, gColor color);
