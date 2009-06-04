@@ -82,8 +82,32 @@ eDVBResourceManager::eDVBResourceManager()
 		num_adapter++;
 	}
 
-	eDebug("found %d adapter, %d frontends(%d sim) and %d demux",
-		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size());
+	int fd = open("/proc/stb/info/model", O_RDONLY);
+	char tmp[255];
+	int rd = fd >= 0 ? read(fd, tmp, 255) : 0;
+	if (fd >= 0)
+		close(fd);
+
+	if (!strncmp(tmp, "dm7025\n", rd))
+		m_boxtype = DM7025;
+	else if (!strncmp(tmp, "dm8000\n", rd))
+		m_boxtype = DM8000;
+	else if (!strncmp(tmp, "dm800\n", rd))
+		m_boxtype = DM800;
+	else if (!strncmp(tmp, "dm500hd\n", rd))
+		m_boxtype = DM500HD;
+	else {
+		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
+		if (m_demux.size() == 3)
+			m_boxtype = DM800;
+		else if (m_demux.size() < 5)
+			m_boxtype = DM7025;
+		else
+			m_boxtype = DM8000;
+	}
+
+	eDebug("found %d adapter, %d frontends(%d sim) and %d demux, boxtype %d",
+		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
 
 	eDVBCAService::registerChannelCallback(this);
 
@@ -429,7 +453,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
-	if (m_demux.size() == 3) // dm800 / 500hd
+	if (m_boxtype == DM800 || m_boxtype == DM500HD) // dm800 / 500hd
 	{
 		for (; i != m_demux.end(); ++i, ++n)
 		{
@@ -457,7 +481,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
-	else if (m_demux.size() < 5) // ATI
+	else if (m_boxtype == DM7025) // ATI
 	{
 		/* FIXME: hardware demux policy */
 		if (!(cap & iDVBChannel::capDecode))
@@ -484,7 +508,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
-	else // we asume dm8000
+	else if (m_boxtype == DM8000)
 	{
 		for (; i != m_demux.end(); ++i, ++n)
 		{
