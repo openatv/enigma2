@@ -356,8 +356,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.dirnameHadToFallback:
 				text = '\n'.join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 
-			# maybe this should be configurable?
-			Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
+			if config.usage.show_message_when_recording_starts.value:
+				Notifications.AddPopup(text = text, type = MessageBox.TYPE_INFO, timeout = 3)
 
 	# we have record_service as property to automatically subscribe to record service events
 	def setRecordService(self, service):
