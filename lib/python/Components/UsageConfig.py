@@ -58,6 +58,9 @@ def InitUsageConfig():
 		("5", "DVB-T/-S/-C") ])
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
+
+	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
+
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
 	
 	def TunerTypePriorityOrderChanged(configElement):
