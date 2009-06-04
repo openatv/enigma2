@@ -50,17 +50,16 @@ class InfoHandler(xml.sax.ContentHandler):
 			prerequisites[name].append(str(attrs["type"]))
 
 		if name == "info":
+			self.foundTranslation = None
+			self.data = ""
 			if not attrs.has_key("language"):
-					self.printError(str(name) + " tag with no language attribute")
+					print "info tag with no language attribute"
 			else:
 				if attrs["language"] == 'en': # read default translations
 					self.foundTranslation = False
 					self.data = ""
 				elif attrs["language"] == self.language:
 					self.foundTranslation = True
-					self.data = ""
-				else:
-					self.foundTranslation = None
 					self.data = ""
 
 		if name == "files":
