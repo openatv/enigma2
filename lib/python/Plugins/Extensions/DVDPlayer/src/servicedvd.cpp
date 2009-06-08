@@ -182,7 +182,19 @@ void eServiceDVD::gotMessage(int /*what*/)
 			if (m_subtitle_widget) {
 				int x1,x2,y1,y2;
 				ddvd_get_last_blit_area(m_ddvdconfig, &x1, &x2, &y1, &y2);
-				m_subtitle_widget->setPixmap(m_pixmap, eRect(x1, y1, (x2-x1)+1, (y2-y1)+1));
+				
+				int x_offset = 0, y_offset = 0, width = 720, height = 576;
+
+#ifdef DDVD_SUPPORTS_GET_BLIT_DESTINATION
+				ddvd_get_blit_destination(m_ddvdconfig, &x_offset, &y_offset, &width, &height);
+				eDebug("values got from ddvd: %d %d %d %d", x_offset, y_offset, width, height);
+				width -= x_offset * 2;
+				height -= y_offset * 2;
+#endif
+				eRect dest(x_offset, y_offset, width, height);
+
+				if (dest.width() && dest.height())
+					m_subtitle_widget->setPixmap(m_pixmap, eRect(x1, y1, (x2-x1)+1, (y2-y1)+1), dest);
 			}
 			break;
 		case DDVD_SHOWOSD_STATE_PLAY:
@@ -567,7 +579,12 @@ RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) /*
 	if (!m_pixmap)
 	{
 		m_pixmap = new gPixmap(size, 32, 1); /* allocate accel surface (if possible) */
+#ifdef DDVD_SUPPORTS_GET_BLIT_DESTINATION
+		ddvd_set_lfb_ex(m_ddvdconfig, (unsigned char *)m_pixmap->surface->data, size.width(), size.height(), 4, size.width()*4, 1);
+#else
 		ddvd_set_lfb(m_ddvdconfig, (unsigned char *)m_pixmap->surface->data, size.width(), size.height(), 4, size.width()*4);
+#warning please update libdreamdvd for fast scaling
+#endif
 		run(); // start the thread
 	}
 
