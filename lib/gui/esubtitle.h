@@ -42,7 +42,7 @@ public:
 	void setPage(const eDVBSubtitlePage &p);
 	void setPage(const ePangoSubtitlePage &p);
 	void clearPage();
-	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed);
+	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest = eRect(0, 0, 720, 576));
 
 	typedef enum { Subtitle_TTX, Subtitle_Regular, Subtitle_Bold, Subtitle_Italic, Subtitle_MAX } subfont_t;
 	struct eSubtitleStyle
@@ -75,6 +75,7 @@ private:
 	static eSubtitleStyle subtitleStyles[Subtitle_MAX];
 
 	ePtr<gPixmap> m_pixmap;  // pixmap to paint on next evtPaint
+	eRect m_pixmap_dest;
 };
 
 #endif

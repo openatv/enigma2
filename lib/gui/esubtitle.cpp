@@ -110,9 +110,10 @@ void eSubtitleWidget::clearPage()
 	m_visible_region.rects.clear();
 }
 
-void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed)
+void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect pixmap_dest)
 {
 	m_pixmap = pixmap;
+	m_pixmap_dest = pixmap_dest;
 	
 	changed.scale(size().width(), pixmap->size().width(), size().height(), pixmap->size().height());
 	
@@ -132,8 +133,11 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		eWidget::event(event, data, data2);
 
 		if (m_pixmap)
-			painter.blitScale(m_pixmap, eRect(ePoint(0, 0), size()));
-		else if (m_page_ok)
+		{
+			eRect r = m_pixmap_dest;
+			r.scale(size().width(), 720, size().height(), 576);
+			painter.blitScale(m_pixmap, r);
+		} else if (m_page_ok)
 		{
 			int elements = m_page.m_elements.size();
 			painter.setFont(subtitleStyles[Subtitle_TTX].font);
