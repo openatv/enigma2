@@ -332,6 +332,10 @@ void eWidgetDesktop::paint()
 	if (m_comp_mode == cmBuffered)
 	{
 //		redrawComposition(0);
+	} else
+	{
+		gPainter painter(m_screen.m_dc);
+		painter.flush();
 	}
 }
 

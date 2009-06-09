@@ -569,7 +569,7 @@ void gPainter::setCompositing(gCompositingData *comp)
 	m_rc->submit(o);
 }
 
-void gPainter::end()
+void gPainter::flush()
 {
 	if ( m_dc->islocked() )
 		return;
@@ -577,6 +577,12 @@ void gPainter::end()
 	o.opcode = gOpcode::flush;
 	o.dc = m_dc.grabRef();
 	m_rc->submit(o);
+}
+
+void gPainter::end()
+{
+	if ( m_dc->islocked() )
+		return;
 }
 
 gDC::gDC()
