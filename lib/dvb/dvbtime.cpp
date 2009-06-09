@@ -67,7 +67,7 @@ time_t getRTC()
 	return rtc_time != prev_time ? rtc_time : 0;
 }
 
-time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5)
+time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5, __u16 *hash)
 {
 	tm t;
 	t.tm_sec=fromBCD(t5);
@@ -86,6 +86,11 @@ time_t parseDVBtime(__u8 t1, __u8 t2, __u8 t3, __u8 t4, __u8 t5)
 
 	t.tm_isdst =  0;
 	t.tm_gmtoff = 0;
+
+	if (hash) {
+		*hash = t.tm_hour * 60 + t.tm_min;
+		*hash |= t.tm_mday << 11;
+	}
 
 	return timegm(&t);
 }
