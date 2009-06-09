@@ -479,7 +479,12 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	int eit_event_size;
 	int duration;
 
-	time_t TM = parseDVBtime( eit_event->start_time_1, eit_event->start_time_2,	eit_event->start_time_3, eit_event->start_time_4, eit_event->start_time_5);
+	time_t TM = parseDVBtime(
+			eit_event->start_time_1,
+			eit_event->start_time_2,
+			eit_event->start_time_3,
+			eit_event->start_time_4,
+			eit_event->start_time_5);
 	time_t now = ::time(0);
 
 	if ( TM != 3599 && TM > -1)
@@ -494,6 +499,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 
 	while (ptr<len)
 	{
+		__u16 event_hash;
 		eit_event_size = HILO(eit_event->descriptors_loop_length)+EIT_LOOP_SIZE;
 
 		duration = fromBCD(eit_event->duration_1)*3600+fromBCD(eit_event->duration_2)*60+fromBCD(eit_event->duration_3);
@@ -502,7 +508,8 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			eit_event->start_time_2,
 			eit_event->start_time_3,
 			eit_event->start_time_4,
-			eit_event->start_time_5);
+			eit_event->start_time_5,
+			&event_hash);
 
 		if ( TM == 3599 )
 			goto next;
@@ -513,15 +520,23 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 		if ( now <= (TM+duration) || TM == 3599 /*NVOD Service*/ )  // old events should not be cached
 		{
 			__u16 event_id = HILO(eit_event->event_id);
-//			eDebug("event_id is %d sid is %04x", event_id, service.sid);
-
 			eventData *evt = 0;
 			int ev_erase_count = 0;
 			int tm_erase_count = 0;
 
+			if (event_id == 0) {
+				// hack for some polsat services on 13.0E..... but this also replaces other valid event_ids with value 0..
+				// but we dont care about it...
+				event_id = event_hash;
+				eit_event->event_id_hi = event_hash >> 8;
+				eit_event->event_id_lo = event_hash & 0xFF;
+			}
+
 			// search in eventmap
 			eventMap::iterator ev_it =
 				servicemap.first.find(event_id);
+
+//			eDebug("event_id is %d sid is %04x", event_id, service.sid);
 
 			// entry with this event_id is already exist ?
 			if ( ev_it != servicemap.first.end() )
