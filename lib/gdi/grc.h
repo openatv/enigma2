@@ -262,6 +262,8 @@ public:
 	void flip();
 	void notify();
 	void setCompositing(gCompositingData *comp);
+	
+	void flush();
 };
 
 class gDC: public iObject
