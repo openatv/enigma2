@@ -156,6 +156,7 @@ class Satfinder(ScanSetup):
 			transponderlist = nimmanager.getTransponders(orb_pos)
 			list = []
 			default = None
+			index = 0
 			for x in transponderlist:
 				if x[3] == 0:
 					pol = "H"
@@ -193,8 +194,9 @@ class Satfinder(ScanSetup):
 					fec = "FEC Unknown"
 				e = str(x[1]) + "," + str(x[2]) + "," + pol + "," + fec
 				if default is None:
-					default = e
-				list.append(e)
+					default = str(index)
+				list.append((str(index), e))
+				index += 1
 			self.tuning_transponder = ConfigSelection(choices = list, default = default)
 			self.tuning_transponder.addNotifier(self.retune, initial_call = False)
 
