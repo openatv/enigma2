@@ -51,7 +51,7 @@ DEFINE_REF(eServiceFactoryDVD)
 RESULT eServiceFactoryDVD::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 		// check resources...
-	ptr = new eServiceDVD(ref.path.c_str());
+	ptr = new eServiceDVD(ref);
 	return 0;
 }
 
@@ -84,8 +84,8 @@ RESULT eServiceFactoryDVD::offlineOperations(const eServiceReference &, ePtr<iSe
 
 DEFINE_REF(eServiceDVD);
 
-eServiceDVD::eServiceDVD(const char *filename):
-	m_filename(filename),
+eServiceDVD::eServiceDVD(eServiceReference ref):
+	m_ref(ref),
 	m_ddvdconfig(ddvd_create()),
 	m_subtitle_widget(0),
 	m_state(stIdle),
@@ -101,7 +101,7 @@ eServiceDVD::eServiceDVD(const char *filename):
 	m_sn = eSocketNotifier::create(eApp, ddvd_get_messagepipe_fd(m_ddvdconfig), eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
 	eDebug("SERVICEDVD construct!");
 	// create handle
-	ddvd_set_dvd_path(m_ddvdconfig, filename);
+	ddvd_set_dvd_path(m_ddvdconfig, ref.path.c_str());
 	ddvd_set_ac3thru(m_ddvdconfig, 0);
 
 	std::string ddvd_language;
@@ -326,7 +326,7 @@ RESULT eServiceDVD::stop()
 	ASSERT(m_state != stIdle);
 	if (m_state == stStopped)
 		return -1;
-	eDebug("DVD: stop %s", m_filename.c_str());
+	eDebug("DVD: stop %s", m_ref.path.c_str());
 	m_state = stStopped;
 	ddvd_send_key(m_ddvdconfig, DDVD_KEY_EXIT);
 
@@ -440,7 +440,7 @@ RESULT eServiceDVD::getName(std::string &name)
 	if ( m_ddvd_titlestring[0] != '\0' )
 		name = m_ddvd_titlestring;
 	else
-		name = m_filename;
+		name = m_ref.path;
 	return 0;
 }
 
@@ -493,7 +493,7 @@ std::string eServiceDVD::getInfoString(int w)
 	switch(w)
 	{
 		case sServiceref:
-			break;
+			return m_ref.toString();
 		default:
 			eDebug("unhandled getInfoString(%d)", w);
 	}
@@ -769,7 +769,7 @@ void eServiceDVD::loadCuesheet()
 	if ( m_ddvd_titlestring[0] != '\0' )
 		snprintf(filename, 128, "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
 	else
-		snprintf(filename, 128, "%s/dvd.cuts", m_filename.c_str());
+		snprintf(filename, 128, "%s/dvd.cuts", m_ref.path.c_str());
 
 	eDebug("eServiceDVD::loadCuesheet() filename=%s",filename);
 
@@ -840,7 +840,7 @@ void eServiceDVD::saveCuesheet()
 	if ( m_ddvd_titlestring[0] != '\0' )
 		snprintf(filename, 128, "/home/root/dvd-%s.cuts", m_ddvd_titlestring);
 	else
-		snprintf(filename, 128, "%s/dvd.cuts", m_filename.c_str());
+		snprintf(filename, 128, "%s/dvd.cuts", m_ref.path.c_str());
 	
 	FILE *f = fopen(filename, "wb");
 

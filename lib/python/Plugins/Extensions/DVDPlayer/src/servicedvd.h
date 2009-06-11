@@ -92,7 +92,7 @@ public:
 		// iServiceKeys
 	RESULT keyPressed(int key);
 private:
-	eServiceDVD(const char *filename);
+	eServiceDVD(eServiceReference ref);
 
 	void gotMessage(int); // message from dvdlib
 	void gotThreadMessage(const int &); // message from dvd thread
@@ -101,7 +101,7 @@ private:
 	void thread();
 	void thread_finished();
 
-	std::string m_filename;
+	eServiceReference m_ref;
 
 	Signal2<void,iPlayableService*,int> m_event;
 
