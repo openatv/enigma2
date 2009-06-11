@@ -577,7 +577,7 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 		{
 			if (!sameServiceExist)
 			{
-				if (slot->getNumOfServices() > 1)
+//				if (slot->getNumOfServices() > 1)
 				{
 					eDebug("[eDVBCIInterfaces] remove last pmt handler for service %s send empty capmt",
 						service_to_remove.toString().c_str());
