@@ -3,6 +3,7 @@
 
 #include "object.h"
 #include <stdio.h>
+#include <string.h>
 #include <lib/python/swig.h>
 
 inline void ptrAssert(void *p) { if (!p) *(unsigned long*)0=0; }
@@ -12,6 +13,18 @@ class ePtr
 {
 protected:
 	T *ptr;
+	char m_ptrStr[sizeof(void*)*2+1];
+	void updatePtrStr()
+	{
+		if (ptr) {
+			if (sizeof(void*) > 4)
+				sprintf(m_ptrStr, "%llx", (unsigned long long)ptr);
+			else
+				sprintf(m_ptrStr, "%lx", (unsigned long)ptr);
+		}
+		else
+			strcpy(m_ptrStr, "NIL");
+	}
 public:
 	T &operator*() { return *ptr; }
 	ePtr(): ptr(0)
@@ -21,12 +34,13 @@ public:
 	{
 		if (c)
 			c->AddRef();
+		updatePtrStr();
 	}
-	ePtr(const ePtr &c)
+	ePtr(const ePtr &c): ptr(c.ptr)
 	{
-		ptr=c.ptr;
 		if (ptr)
 			ptr->AddRef();
+		updatePtrStr();
 	}
 	ePtr &operator=(T *c)
 	{
@@ -35,9 +49,9 @@ public:
 		if (ptr)
 			ptr->Release();
 		ptr=c;
+		updatePtrStr();
 		return *this;
 	}
-	
 	ePtr &operator=(ePtr<T> &c)
 	{
 		if (c.ptr)
@@ -45,15 +59,18 @@ public:
 		if (ptr)
 			ptr->Release();
 		ptr=c.ptr;
+		updatePtrStr();
 		return *this;
 	}
-	
 	~ePtr()
 	{
 		if (ptr)
 			ptr->Release();
 	}
-	
+	char *getPtrString()
+	{
+		return m_ptrStr;
+	}
 #ifndef SWIG
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); return ptr; }
 	T* &ptrref() { ASSERT(!ptr); return ptr; }
@@ -106,7 +123,6 @@ public:
 		ptr=c;
 		return *this;
 	}
-	
 	eUsePtr &operator=(eUsePtr<T> &c)
 	{
 		if (c.ptr)
@@ -122,7 +138,6 @@ public:
 		ptr=c.ptr;
 		return *this;
 	}
-	
 	~eUsePtr()
 	{
 		if (ptr)
@@ -131,7 +146,6 @@ public:
 			ptr->Release();
 		}
 	}
-	
 #ifndef SWIG
 	T* grabRef() { if (!ptr) return 0; ptr->AddRef(); ptr->AddUse(); return ptr; }
 	T* &ptrref() { ASSERT(!ptr); return ptr; }
@@ -168,24 +182,18 @@ public:
 	eMutablePtr(): ePtr<T>(0)
 	{
 	}
-	
 	eMutablePtr(T *c): ePtr<T>(c)
 	{
 	}
-
 	eMutablePtr(const eMutablePtr &c): ePtr<T>(c)
 	{
 	}
-	
 	eMutablePtr &operator=(T *c)
 	{
 		ePtr<T>::operator=(c);
 		return *this;
 	}
-	
-	
 	ePtrHelper<T> operator->() { ptrAssert(ptr); return ePtrHelper<T>(ptr); }
-
 			/* for const objects, we don't need the helper, as they can't */
 			/* be changed outside the program flow. at least this is */
 			/* what the compiler assumes, so in case you're using const */
