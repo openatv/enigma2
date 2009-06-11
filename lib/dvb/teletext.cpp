@@ -287,7 +287,7 @@ void eDVBTeletextParser::processPESPacket(__u8 *pkt, int len)
 			if ((serial_mode || M == m_page_M) && m_page_open)
 			{
 				eDebug("Page End %d %lld", !have_pts, pts);
-				handlePageEnd(have_pts, pts);
+				handlePageEnd(!have_pts, pts);
 				m_page_open = 0;
 			}
 
