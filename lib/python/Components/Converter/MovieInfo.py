@@ -7,6 +7,7 @@ class MovieInfo(Converter, object):
 	MOVIE_SHORT_DESCRIPTION = 0 # meta description when available.. when not .eit short description
 	MOVIE_META_DESCRIPTION = 1 # just meta description when available
 	MOVIE_REC_SERVICE_NAME = 2 # name of recording service
+	MOVIE_REC_FILESIZE = 3 # filesize of recording
 
 	def __init__(self, type):
 		if type == "ShortDescription":
@@ -15,8 +16,10 @@ class MovieInfo(Converter, object):
 			self.type = self.MOVIE_META_DESCRIPTION
 		elif type == "RecordServiceName":
 			self.type = self.MOVIE_REC_SERVICE_NAME
+		elif type == "FileSize":
+			self.type = self.MOVIE_REC_FILESIZE
 		else:
-			raise ElementError("'%s' is not <ShortDescription|MetaDescription|RecordServiceName> for MovieInfo converter" % type)
+			raise ElementError("'%s' is not <ShortDescription|MetaDescription|RecordServiceName|FileSize> for MovieInfo converter" % type)
 		Converter.__init__(self, type)
 
 	@cached
@@ -37,6 +40,8 @@ class MovieInfo(Converter, object):
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:
 				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
 				return ServiceReference(rec_ref_str).getServiceName()
+			elif self.type == self.MOVIE_REC_FILESIZE:
+				return "%d MB" % (info.getInfo(service, iServiceInformation.sFileSize) / (1024*1024))
 		return ""
 
 	text = property(getText)
