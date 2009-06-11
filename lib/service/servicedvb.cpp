@@ -2825,6 +2825,11 @@ void eDVBServicePlay::checkSubtitleTiming()
 
 		eDebug("%lld %lld", pos, show_time);
 		int diff = show_time - pos;
+		if (type == TELETEXT && !page.m_have_pts)
+		{
+			eDebug("ttx subtitle page without pts... immediate show");
+			diff = 0;
+		}
 		if (diff < 0)
 		{
 			eDebug("[late (%d ms)]", -diff / 90);
@@ -2832,14 +2837,9 @@ void eDVBServicePlay::checkSubtitleTiming()
 		}
 		if (abs(diff) > 1800000)
 		{
-			eDebug("skip [invalid]");
-			if (type == TELETEXT)
-				m_subtitle_pages.pop_front();
-			else
-				m_dvb_subtitle_pages.pop_front();
-			continue;
+			eDebug("[invalid]... immediate show!");
+			diff = 0;
 		}
-	
 		if ((diff/90)<20)
 		{
 			if (type == TELETEXT)
