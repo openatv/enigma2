@@ -901,7 +901,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		
 	def subtitleSelection(self):
 		from Screens.Subtitles import Subtitles
-		self.session.open(Subtitles)
+		self.session.open(Subtitles, self)
 	
 	def hotplugCB(self, dev, media_state):
 		if dev == harddiskmanager.getCD():
