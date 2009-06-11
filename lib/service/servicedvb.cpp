@@ -2826,18 +2826,22 @@ void eDVBServicePlay::checkSubtitleTiming()
 			m_decoder->getPTS(0, pos);
 
 		eDebug("%lld %lld", pos, show_time);
-		int diff =  show_time - pos;
+		int diff = show_time - pos;
+		if (type == TELETEXT && !page.m_have_pts)
+		{
+			eDebug("ttx subtitle page without pts... immediate show");
+			diff = 0;
+		}
 		if (diff < 0)
 		{
 			eDebug("[late (%d ms)]", -diff / 90);
 			diff = 0;
 		}
-//		if (diff > 900000)
-//		{
-//			eDebug("[invalid]");
-//			diff = 0;
-//		}
-	
+		if (abs(diff) > 1800000)
+		{
+			eDebug("[invalid]... immediate show!");
+			diff = 0;
+		}
 		if ((diff/90)<20)
 		{
 			if (type == TELETEXT)

@@ -2181,19 +2181,19 @@ class InfoBarSubtitleSupport(object):
 		self.__selected_subtitle = None
 
 	def __serviceStopped(self):
-		self.subtitle_window.hide()
-		self.__subtitles_enabled = False
 		self.cached_subtitle_checked = False
+		if self.__subtitles_enabled:
+			self.subtitle_window.hide()
+			self.__subtitles_enabled = False
+			self.__selected_subtitle = None
 
 	def __updatedInfo(self):
 		if not self.cached_subtitle_checked:
-			subtitle = self.getCurrentServiceSubtitle()
 			self.cached_subtitle_checked = True
-			self.__selected_subtitle = subtitle and subtitle.getCachedSubtitle()
+			subtitle = self.getCurrentServiceSubtitle()
+			self.setSelectedSubtitle(subtitle and subtitle.getCachedSubtitle())
 			if self.__selected_subtitle:
-				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
-				self.subtitle_window.show()
-				self.__subtitles_enabled = True
+				self.setSubtitlesEnable(True)
 
 	def getCurrentServiceSubtitle(self):
 		service = self.session.nav.getCurrentService()
@@ -2201,14 +2201,16 @@ class InfoBarSubtitleSupport(object):
 
 	def setSubtitlesEnable(self, enable=True):
 		subtitle = self.getCurrentServiceSubtitle()
-		if enable and self.__selected_subtitle is not None:
-			if subtitle and not self.__subtitles_enabled:
-				subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
-				self.subtitle_window.show()
-				self.__subtitles_enabled = True
+		if enable:
+			if self.__selected_subtitle:
+				if subtitle and not self.__subtitles_enabled:
+					subtitle.enableSubtitles(self.subtitle_window.instance, self.selected_subtitle)
+					self.subtitle_window.show()
+					self.__subtitles_enabled = True
 		else:
 			if subtitle:
 				subtitle.disableSubtitles(self.subtitle_window.instance)
+			self.__selected_subtitle = False
 			self.__subtitles_enabled = False
 			self.subtitle_window.hide()
 
