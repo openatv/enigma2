@@ -286,6 +286,7 @@ public:
 		sDescription,
 		sServiceref,
 		sTimeCreate, 		/* unix time or string */
+		sFileSize,
 
 		sCAIDs,
 		sVideoType, 		/* MPEG2 MPEG4 */
