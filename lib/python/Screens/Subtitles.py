@@ -84,10 +84,8 @@ class Subtitles(Screen, ConfigListScreen):
 		if self.infobar.selected_subtitle != subtitles:
 			self.infobar.subtitles_enabled = False
 			self.infobar.selected_subtitle = subtitles
-			self.infobar.subtitles_enabled = True
-
-	def disableSubtitles(self):
-		self.infobar.subtitles_enabled = False
+			if subtitles:
+				self.infobar.subtitles_enabled = True
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
