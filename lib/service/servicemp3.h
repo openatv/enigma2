@@ -176,11 +176,10 @@ private:
 	ePtr<eTimer> m_seekTimeout;
 	void seekTimeoutCB();
 	friend class eServiceFactoryMP3;
-	std::string m_filename;
-	std::string m_title;
+	eServiceReference m_ref;
 	int m_buffer_size;
 	bufferInfo m_bufferInfo;
-	eServiceMP3(const char *filename, const char *title);
+	eServiceMP3(eServiceReference ref);
 	Signal2<void,iPlayableService*,int> m_event;
 	enum
 	{

@@ -69,7 +69,7 @@ DEFINE_REF(eServiceFactoryMP3)
 RESULT eServiceFactoryMP3::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
 		// check resources...
-	ptr = new eServiceMP3(ref.path.c_str(),ref.getName().c_str());
+	ptr = new eServiceMP3(ref);
 	return 0;
 }
 
@@ -187,7 +187,8 @@ int eStaticServiceMP3Info::getLength(const eServiceReference &ref)
 
 // eServiceMP3
 
-eServiceMP3::eServiceMP3(const char *filename, const char *title): m_filename(filename), m_title(title), m_pump(eApp, 1)
+eServiceMP3::eServiceMP3(eServiceReference ref)
+	:m_ref(ref), m_pump(eApp, 1)
 {
 	m_seekTimeout = eTimer::create(eApp);
 	m_subtitle_sync_timer = eTimer::create(eApp);
@@ -204,7 +205,8 @@ eServiceMP3::eServiceMP3(const char *filename, const char *title): m_filename(fi
 
 	m_state = stIdle;
 	eDebug("eServiceMP3::construct!");
-	
+
+	const char *filename = m_ref.path.c_str();
 	const char *ext = strrchr(filename, '.');
 	if (!ext)
 		ext = filename;
@@ -379,7 +381,7 @@ RESULT eServiceMP3::stop()
 	ASSERT(m_state != stIdle);
 	if (m_state == stStopped)
 		return -1;
-	eDebug("eServiceMP3::stop %s", m_filename.c_str());
+	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
 	return 0;
@@ -596,15 +598,16 @@ RESULT eServiceMP3::info(ePtr<iServiceInformation>&i)
 
 RESULT eServiceMP3::getName(std::string &name)
 {
-	if (m_title.empty())
+	std::string title = m_ref.getName();
+	if (title.empty())
 	{
-		name = m_filename;
+		name = m_ref.path;
 		size_t n = name.rfind('/');
 		if (n != std::string::npos)
 			name = name.substr(n + 1);
 	}
 	else
-		name = m_title;
+		name = title;
 	return 0;
 }
 
@@ -615,6 +618,7 @@ int eServiceMP3::getInfo(int w)
 
 	switch (w)
 	{
+	case sServiceref: return m_ref;
 	case sVideoHeight: return m_height;
 	case sVideoWidth: return m_width;
 	case sFrameRate: return m_framerate;
