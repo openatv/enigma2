@@ -482,7 +482,6 @@ void eDVBTeletextParser::handlePageStart()
 		m_subtitle_page.clear();
 		m_modifications.clear();
 		m_X28_0_valid = 0;
-		m_new_subtitle_page(m_subtitle_page);
 //		eDebug("erase page!");
 	}
 //	else
@@ -686,11 +685,10 @@ void eDVBTeletextParser::addSubtitleString(int color, std::string string)
 void eDVBTeletextParser::sendSubtitlePage()
 {
 //	eDebug("subtitle page:");
-	bool empty=true;
-	if (empty)
-		for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
-			if (!m_subtitle_page.m_elements[i].m_text.empty())
-				empty=false;
-	if (!empty)
+	bool send=m_C & (1<<4);
+	for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
+		if (!m_subtitle_page.m_elements[i].m_text.empty())
+			send=true;
+	if (send)
 		m_new_subtitle_page(m_subtitle_page);
 }
