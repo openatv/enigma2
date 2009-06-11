@@ -2824,17 +2824,21 @@ void eDVBServicePlay::checkSubtitleTiming()
 			m_decoder->getPTS(0, pos);
 
 		eDebug("%lld %lld", pos, show_time);
-		int diff =  show_time - pos;
+		int diff = show_time - pos;
 		if (diff < 0)
 		{
 			eDebug("[late (%d ms)]", -diff / 90);
 			diff = 0;
 		}
-//		if (diff > 900000)
-//		{
-//			eDebug("[invalid]");
-//			diff = 0;
-//		}
+		if (abs(diff) > 1800000)
+		{
+			eDebug("skip [invalid]");
+			if (type == TELETEXT)
+				m_subtitle_pages.pop_front();
+			else
+				m_dvb_subtitle_pages.pop_front();
+			continue;
+		}
 	
 		if ((diff/90)<20)
 		{
