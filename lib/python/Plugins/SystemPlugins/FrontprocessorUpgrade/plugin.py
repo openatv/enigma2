@@ -47,11 +47,41 @@ class FPUpgrade(Screen):
 	def ok(self):
 		self.close(4)
 
+class SystemMessage(Screen):
+	skin = """
+		<screen position="150,200" size="450,200" title="System Message" >
+			<widget source="text" position="0,0" size="450,200" font="Regular;20" halign="center" valign="center" render="Label" />
+			<ePixmap pixmap="skin_default/icons/input_error.png" position="5,5" size="53,53" alphatest="on" />
+		</screen>"""
+	def __init__(self, session, message):
+		from Components.Sources.StaticText import StaticText
+
+		Screen.__init__(self, session)
+
+		self["text"] = StaticText(message)
+
+		self["actions"] = ActionMap(["OkCancelActions"],
+		{
+			"cancel": self.ok,
+		})
+
+	def ok(self):
+		self.close()
+
 def Plugins(**kwargs):
 	from Tools.DreamboxHardware import getFPVersion
+	from Screens.MessageBox import MessageBox
+
 	version = getFPVersion()
 	newversion = getUpgradeVersion() or 0
+	list = []
 	if version is not None and version < newversion:
-		return PluginDescriptor(name="FP Upgrade", where = PluginDescriptor.WHERE_WIZARD, fnc=(8, FPUpgrade))
-	else:
-		return [ ]
+		list.append(PluginDescriptor(name="FP Upgrade", where = PluginDescriptor.WHERE_WIZARD, fnc=(8, FPUpgrade)))
+
+	try:
+		msg = open("/proc/stb/message").read()
+		list.append(PluginDescriptor(name="System Message Check", where = PluginDescriptor.WHERE_WIZARD, fnc=(9, SystemMessage, msg)))
+	except:
+		pass
+
+	return list
