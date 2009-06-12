@@ -445,11 +445,12 @@ def runScreenTest():
 			return
 
 		screen = screensToRun[0][1]
+		args = screensToRun[0][2:]
 
 		if screensToRun:
-			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen)
+			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen, *args)
 		else:
-			session.open(screen)
+			session.open(screen, *args)
 
 	runNextScreen(session, screensToRun)
 
