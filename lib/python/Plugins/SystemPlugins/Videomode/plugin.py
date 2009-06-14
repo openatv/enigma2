@@ -139,7 +139,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		if (port, mode, rate) != self.last_good:
 			self.hw.setMode(port, mode, rate)
 			from Screens.MessageBox import MessageBox
-			self.session.openWithCallback(self.confirm, MessageBox, "Is this videomode ok?", MessageBox.TYPE_YESNO, timeout = 20, default = False)
+			self.session.openWithCallback(self.confirm, MessageBox, _("Is this videomode ok?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
 		else:
 			self.keySave()
 
