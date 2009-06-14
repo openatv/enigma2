@@ -13,9 +13,11 @@
 #define DMX_PES_VIDEO0 DMX_PES_VIDEO
 #define DMX_PES_AUDIO0 DMX_PES_AUDIO
 #define DMX_PES_PCR0 DMX_PES_PCR
+#define DMX_PES_TELETEXT0 DMX_PES_TELETEXT
 #define DMX_PES_VIDEO1 DMX_PES_VIDEO
 #define DMX_PES_AUDIO1 DMX_PES_AUDIO
 #define DMX_PES_PCR1 DMX_PES_PCR
+#define DMX_PES_TELETEXT1 DMX_PES_TELETEXT
 #include <ost/dmx.h>
 #include <ost/video.h>
 #include <ost/audio.h>
@@ -901,7 +903,7 @@ int eTSMPEGDecoder::setState()
 	}
 	if (m_changed & changePCR)
 	{
-		m_pcr = new eDVBPCR(m_demux);
+		m_pcr = new eDVBPCR(m_demux, m_decoder);
 		if (m_pcr->setPid(m_pcrpid))
 			res = -1;
 	}
