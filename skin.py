@@ -70,9 +70,27 @@ profile("LoadSkinDefault")
 loadSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
-def parsePosition(str, scale):
+def evalPos(pos, wsize, ssize, scale):
+	if pos == "center":
+		pos = (ssize - wsize) / 2
+	else:
+		pos = int(pos) * scale[0] / scale[1]
+	return int(pos)
+
+def parsePosition(str, scale, desktop = None, size = None):
 	x, y = str.split(',')
-	return ePoint(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1])
+	
+	wsize = 1, 1
+	ssize = 1, 1
+	if desktop is not None:
+		ssize = desktop.size().width(), desktop.size().height()
+	if size is not None:
+		wsize = size.width(), size.height()
+
+	x = evalPos(x, wsize[0], ssize[0], scale[0])
+	y = evalPos(y, wsize[1], ssize[1], scale[1])
+
+	return ePoint(x, y)
 
 def parseSize(str, scale):
 	x, y = str.split(',')
@@ -119,7 +137,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 	# and set attributes
 	try:
 		if attrib == 'position':
-			guiObject.move(parsePosition(value, scale))
+			guiObject.move(parsePosition(value, scale, desktop, guiObject.csize()))
 		elif attrib == 'size':
 			guiObject.resize(parseSize(value, scale))
 		elif attrib == 'title':
