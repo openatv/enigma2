@@ -336,6 +336,7 @@ public:
 	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore) { return 1; }
 	int getInfo(const eServiceReference &ref, int w);
 	std::string getInfoString(const eServiceReference &ref,int w);
+	PyObject *getInfoObject(const eServiceReference &r, int what);
 };
 
 DEFINE_REF(eStaticServiceDVBPVRInformation);
@@ -424,6 +425,17 @@ std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReferen
 		return m_parser.m_tags;
 	default:
 		return "";
+	}
+}
+
+PyObject *eStaticServiceDVBPVRInformation::getInfoObject(const eServiceReference &r, int what)
+{
+	switch (what)
+	{
+	case iServiceInformation::sFileSize:
+		return PyLong_FromLongLong(m_parser.m_filesize);
+	default:
+		Py_RETURN_NONE;
 	}
 }
 
