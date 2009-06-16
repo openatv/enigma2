@@ -192,7 +192,7 @@ void eFilePushThread::thread()
 				
 				struct pollfd pfd;
 				pfd.fd = m_fd_dest;
-				pfd.events = POLLPRI;
+				pfd.events = POLLIN;
 				poll(&pfd, 1, 10000);
 				sleep(5); /* HACK to allow ES buffer to drain */
 				already_empty = 1;
