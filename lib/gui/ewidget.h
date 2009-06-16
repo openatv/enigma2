@@ -22,6 +22,7 @@ public:
 	
 	ePoint position() const { return m_position; }
 	eSize size() const { return m_size; }
+	eSize csize() const { return m_client_size; }
 
 	void invalidate(const gRegion &region = gRegion::invalidRegion());
 	
@@ -68,7 +69,7 @@ private:
 
 	ePtrList<eWidget> m_childs;
 	ePoint m_position;
-	eSize m_size;
+	eSize m_size, m_client_size;
 		/* will be accounted when there's a client offset */
 	eSize m_client_offset;
 	eWidget *m_parent;

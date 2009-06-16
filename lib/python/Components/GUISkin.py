@@ -85,6 +85,9 @@ class GUISkin:
 		if not self.instance:
 			from enigma import eWindow
 			self.instance = eWindow(self.desktop, z)
+
+		# we need to make sure that certain attributes come last
+		self.skinAttributes.sort(key=lambda a: {"position": 1}.get(a[0], 0))
 		self.title = title
 		applyAllAttributes(self.instance, self.desktop, self.skinAttributes, self.scale)
 		self.createGUIScreen(self.instance, self.desktop)
