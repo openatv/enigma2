@@ -1135,9 +1135,9 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				if (!caps)
 					continue;
 				GstStructure* str = gst_caps_get_structure(caps, 0);
-gchar *g_type;
-g_type = gst_structure_get_name(str);
-eDebug("AUDIO STRUCT=%s", g_type);
+				gchar *g_type;
+				g_type = gst_structure_get_name(str);
+				eDebug("AUDIO STRUCT=%s", g_type);
 				audio.type = gstCheckAudioPad(str);
 				g_codec = g_strdup(g_type);
 				g_lang = g_strdup_printf ("und");
