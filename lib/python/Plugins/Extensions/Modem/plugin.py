@@ -18,7 +18,7 @@ def getTelephone():
 				return line
 	return ""
 
-def setTelephone(tel):
+def setOptions(tel, user):
 	f = open("/etc/ppp/options", "r+")
 	if f:
 		lines = f.readlines()
@@ -29,6 +29,8 @@ def setTelephone(tel):
 				p = line.find(' ', p+1)
 				line = line[:p+1]
 				f.write(line+tel+'"\n')
+			elif line.find('user') == 0:
+				f.write('user '+user+'\n')
 			else:
 				f.write(line)
 
@@ -133,7 +135,7 @@ class ModemSetup(Screen):
 			"7": self.keyNumber,
 			"8": self.keyNumber,
 			"9": self.keyNumber
-		}, 0)
+		}, -1)
 
 		self["ListActions"] = ActionMap(["ListboxDisableActions"],
 		{
@@ -172,7 +174,7 @@ class ModemSetup(Screen):
 		conn.dataAvail.remove(self.dataAvail)
 		if not connected:
 			conn.sendCtrlC()
-		setTelephone(self.phone.getText())
+		setOptions(self.phone.getText(), self.username.getText())
 		setSecretString(self.username.getText() + ' * ' + self.password.getText())
 
 	def stateLoop(self):
@@ -188,7 +190,7 @@ class ModemSetup(Screen):
 			system("route del default")
 			system("modprobe ppp_async");
 			self.stateTimer.start(1000,False)
-			setTelephone(self.phone.getText())
+			setOptions(self.phone.getText(), self.username.getText())
 			setSecretString(self.username.getText() + ' * ' + self.password.getText())
 			ret = conn.execute("pppd", "pppd", "-d", "-detach")
 			if ret:
