@@ -913,13 +913,14 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.timeout()
 			self.overwrite = not self.overwrite
 		elif key == KEY_ASCII:
-  			self.timeout()
-  			newChar = unichr(getPrevAsciiCode())
-			if self.allmarked:
-				self.deleteAllChars()
-				self.allmarked = False
-			self.insertChar(newChar, self.marked_pos, False)
-			self.marked_pos += 1
+			self.timeout()
+			newChar = unichr(getPrevAsciiCode())
+			if not self.useableChars or newChar in self.useableChars:
+				if self.allmarked:
+					self.deleteAllChars()
+					self.allmarked = False
+				self.insertChar(newChar, self.marked_pos, False)
+				self.marked_pos += 1
 		elif key in KEY_NUMBERS:
 			owr = self.lastKey == getKeyNumber(key)
 			newChar = self.getKey(getKeyNumber(key))
