@@ -54,6 +54,7 @@ void eWidget::resize(eSize size)
 		   only once. */
 	eSize old_size = m_size;
 	eSize old_offset = m_client_offset;
+	m_client_size = size;
 	m_client_offset = eSize(0, 0);
 	event(evtWillChangeSize, &size, &m_client_offset);
 	if (old_size == m_size)
