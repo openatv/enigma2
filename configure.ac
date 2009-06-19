@@ -143,6 +143,7 @@ lib/python/Plugins/Extensions/PicturePlayer/data/Makefile
 lib/python/Plugins/Extensions/GraphMultiEPG/Makefile
 lib/python/Plugins/Extensions/SocketMMI/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
+lib/python/Plugins/Extensions/Modem/Makefile
 lib/python/Tools/Makefile
 lib/service/Makefile
 lib/components/Makefile
