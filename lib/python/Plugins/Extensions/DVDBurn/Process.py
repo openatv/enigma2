@@ -166,7 +166,10 @@ class DemuxTask(Task):
 		if failed:
 			import os
 			for file in self.generated_files:
-				os.remove(file)
+				try:
+					os.remove(file)
+				except OSError:
+					pass
 
 class MplexTaskPostcondition(Condition):
 	def check(self, task):
