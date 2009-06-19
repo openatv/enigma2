@@ -62,7 +62,9 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 	for (std::list<eDVBSubtitleRegion>::iterator it(m_dvb_page.m_regions.begin()); it != m_dvb_page.m_regions.end(); ++it)
 	{
 		eDebug("add %d %d %d %d", it->m_position.x(), it->m_position.y(), it->m_pixmap->size().width(), it->m_pixmap->size().height());
-		m_visible_region.rects.push_back(eRect(it->m_position, it->m_pixmap->size()));
+		eRect r = eRect(it->m_position, it->m_pixmap->size());
+		r.scale(size().width(), 720, size().height(), 576);
+		m_visible_region.rects.push_back(r);
 	}
 	m_dvb_page_ok = 1;
 	m_hide_subtitles_timer->start(7500, true);
