@@ -81,7 +81,7 @@ void eDVBSubtitleParser::subtitle_process_line(subtitle_page *page, int object_i
 				}
 //				//eDebug("inserting %d bytes (into region %d)", len, region->region_id);
 //				eDebug("put data to region_buffer %p", &(*region->region_buffer));
-				memcpy((__u8*)region->region_buffer->surface->data + region->region_width * y + x, data, len);
+				memcpy((__u8*)region->region_buffer->surface->data + region->region_buffer->surface->stride * y + x, data, len);
 			}
 			object = object->next;
 		}
@@ -490,7 +490,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		region->region_height |= *segment++;
 		processed_length += 2;
 
-		region->region_buffer = new gPixmap(eSize(region->region_width, region->region_height), 8);
+		region->region_buffer = new gPixmap(eSize(region->region_width, region->region_height), 8, 1);
 		//eDebug("new region_buffer %p", &(*region->region_buffer));
 
 		int region_level_of_compatibility, region_depth;
