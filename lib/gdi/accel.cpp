@@ -28,10 +28,11 @@ extern void ati_accel_fill(
 extern int bcm_accel_init(void);
 extern void bcm_accel_close(void);
 extern void bcm_accel_blit(
-		int src_addr, int src_width, int src_height, int src_stride,
+		int src_addr, int src_width, int src_height, int src_stride, int src_format,
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
 		int src_x, int src_y, int width, int height,
-		int dst_x, int dst_y, int dwidth, int dheight);
+		int dst_x, int dst_y, int dwidth, int dheight,
+		int pal_addr);
 extern void bcm_accel_fill(
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
 		int x, int y, int width, int height,
@@ -97,11 +98,31 @@ int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect
 #ifdef BCM_ACCEL
 	if (!m_bcm_accel_state)
 	{
+		if (flags & (gPixmap::blitAlphaTest|gPixmap::blitAlphaBlend)) /* unsupported flags */
+			return -1;
+		unsigned long pal_addr = 0;
+		int src_format = 0;
+		if (src->bpp == 32)
+			src_format = 0;
+		else if ((src->bpp == 8) && src->clut.data)
+		{
+			src_format = 1;
+			/* sync pal */
+			int i;
+			pal_addr = src->stride * src->y;
+			unsigned long *pal = (unsigned long*)(((unsigned char*)src->data) + pal_addr);
+			pal_addr += src->data_phys;
+			for (i = 0; i < 256; ++i)
+				*pal++ = src->clut.data[i].argb() ^ 0xFF000000;
+		} else
+			return -1; /* unsupported source format */
+
 		bcm_accel_blit(
-			src->data_phys, src->x, src->y, src->stride,
+			src->data_phys, src->x, src->y, src->stride, src_format,
 			dst->data_phys, dst->x, dst->y, dst->stride, 
 			area.left(), area.top(), area.width(), area.height(),
-			p.x(), p.y(), p.width(), p.height());
+			p.x(), p.y(), p.width(), p.height(),
+			pal_addr);
 		return 0;
 	}
 #endif
