@@ -151,7 +151,7 @@ inline eRect::eRect( int left, int top, int width, int height )
 }
 
 inline bool eRect::empty() const
-{ return x1 == x2 || y1 == y2; }
+{ return x1 >= x2 || y1 >= y2; }
 
 inline bool eRect::valid() const
 { return x1 <= x2 && y1 <= y2; }
