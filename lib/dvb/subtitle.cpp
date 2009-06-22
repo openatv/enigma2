@@ -491,6 +491,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		processed_length += 2;
 
 		region->region_buffer = new gPixmap(eSize(region->region_width, region->region_height), 8, 1);
+		memset(region->region_buffer->surface->data, 0, region->region_height * region->region_buffer->surface->stride);
 		//eDebug("new region_buffer %p", &(*region->region_buffer));
 
 		int region_level_of_compatibility, region_depth;
