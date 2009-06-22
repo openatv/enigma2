@@ -60,10 +60,11 @@ static int exec_list(void)
 }
 
 void bcm_accel_blit(
-		int src_addr, int src_width, int src_height, int src_stride,
+		int src_addr, int src_width, int src_height, int src_stride, int src_format,
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
 		int src_x, int src_y, int width, int height,
-		int dst_x, int dst_y, int dwidth, int dheight)
+		int dst_x, int dst_y, int dwidth, int dheight,
+		int pal_addr)
 {
 	C(0x43); // reset source
 	C(0x53); // reset dest
@@ -75,7 +76,18 @@ void bcm_accel_blit(
 	P(0x1, src_stride);  // set source pitch
 	P(0x2, src_width); // source width
 	P(0x3, src_height); // height
-	P(0x4, 0x7e48888); // format: ARGB 8888
+	switch (src_format)
+	{
+	case 0:
+		P(0x4, 0x7e48888); // format: ARGB 8888
+		break;
+	case 1:
+		P(0x4, 0x12e40008); // indexed 8bit
+		P(0x78, 256);
+		P(0x79, pal_addr);
+		P(0x7a, 0x7e48888);
+		break;
+	}
 
 	C(0x5); // set source surface (based on last parameters)
 
