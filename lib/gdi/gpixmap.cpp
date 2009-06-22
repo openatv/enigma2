@@ -98,8 +98,12 @@ gSurface::gSurface(eSize size, int _bpp, int accel)
 		stride += 63;
 		stride &=~63;
 		
+		int pal_size = 0;
+		if (bpp == 8)
+			pal_size = 256 * 4;
+		
 		if (gAccel::getInstance())
-			eDebug("accel memory: %d", gAccel::getInstance()->accelAlloc(data, data_phys, y * stride));
+			eDebug("accel memory: %d", gAccel::getInstance()->accelAlloc(data, data_phys, y * stride + pal_size));
 		else
 			eDebug("no accel available");
 	}
@@ -143,7 +147,7 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 	for (i=0; i<region.rects.size(); ++i)
 	{
 		const eRect &area = region.rects[i];
-		if ((area.height()<=0) || (area.width()<=0))
+		if (area.empty())
 			continue;
 
 		if (surface->bpp == 8)
@@ -159,8 +163,8 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 			else
 				col=0x10101*color;
 			
-			col^=0xFF000000;			
-
+			col^=0xFF000000;
+			
 			if (surface->data_phys && gAccel::getInstance())
 				if (!gAccel::getInstance()->fill(surface,  area, col))
 					continue;
@@ -183,7 +187,7 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 	for (i=0; i<region.rects.size(); ++i)
 	{
 		const eRect &area = region.rects[i];
-		if ((area.height()<=0) || (area.width()<=0))
+		if (area.empty())
 			continue;
 
 		if (surface->bpp == 32)
@@ -292,7 +296,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 		area&=clip.rects[i];
 		area&=eRect(ePoint(0, 0), size());
 
-		if ((area.width()<0) || (area.height()<0))
+		if (area.empty())
 			continue;
 
 		eRect srcarea = area;
