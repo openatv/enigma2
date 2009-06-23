@@ -395,8 +395,12 @@ class PreviewTask(Task):
 		if self.job.menupreview:
 			self.previewProject()
 		else:
-			from Tools import Notifications
-			Notifications.AddNotificationWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False)
+			import Screens.Standby
+			if Screens.Standby.inStandby:
+				self.previewCB(False)
+			else:
+				from Tools import Notifications
+				Notifications.AddNotificationWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False)
 
 	def abort(self):
 		self.finish(aborted = True)
