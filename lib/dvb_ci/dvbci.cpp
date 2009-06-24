@@ -605,6 +605,8 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 					else
 						tmp->linked_next = 0;
 				}
+				else // removed old base slot.. update ptr
+					base_slot = slot->linked_next;
 				slot->linked_next = 0;
 				slot->user_mapped = false;
 			}
