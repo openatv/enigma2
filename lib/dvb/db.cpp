@@ -172,10 +172,10 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 	switch (query.m_type)
 	{
 	case eDVBChannelQuery::tName:
-		res = m_service_name_sort.find(query.m_string) != std::string::npos;
+		res = m_service_name_sort == query.m_string;
 		break;
 	case eDVBChannelQuery::tProvider:
-		res = m_provider_name.find(query.m_string) != std::string::npos;
+		res = m_provider_name == query.m_string;
 		break;
 	case eDVBChannelQuery::tType:
 		res = ref.getServiceType() == query.m_int;
