@@ -493,8 +493,7 @@ void eDVBServiceRecord::gotNewEvent()
 			eDebug("getting PCR failed!");
 		else
 		{
-			static int i;
-			m_event_timestamps[/* event_id*/ ++i] = p;
+			m_event_timestamps[event_id] = p;
 			eDebug("pcr of eit change: %llx", p);
 		}
 	}
