@@ -38,7 +38,7 @@ class SessionGlobals(Screen):
 		
 		PATTERN_ON     = (20, 0xffffffff, 0xffffffff)
 		PATTERN_OFF    = (20, 0, 0)
-		PATTERN_BLINK  = (20, 0x55555555, 0x84fc8c04)
+		PATTERN_BLINK  = (20, 0x55555555, 0xa7fccf7a)
 
 		nr_leds = SystemInfo.get("NumFrontpanelLEDs", 0)
 
