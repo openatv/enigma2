@@ -49,7 +49,7 @@ int iListboxContent::currentCursorSelectable()
 
 DEFINE_REF(eListboxPythonStringContent);
 
-eListboxPythonStringContent::eListboxPythonStringContent(): m_itemheight(25)
+eListboxPythonStringContent::eListboxPythonStringContent(): m_itemheight(25), m_cursor(0)
 {
 }
 
@@ -81,7 +81,7 @@ int eListboxPythonStringContent::cursorMove(int count)
 
 int eListboxPythonStringContent::cursorValid()
 {
-	return m_cursor < size();
+	return ((unsigned int)m_cursor) < size();
 }
 
 int eListboxPythonStringContent::cursorSet(int n)
