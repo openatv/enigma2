@@ -46,7 +46,7 @@ class SecConfigure:
 		if self.equal.has_key(slotid):
 			for slot in self.equal[slotid]:
 				tunermask |= (1 << slot)
-		elif self.linked.has_key(slotid):
+		if self.linked.has_key(slotid):
 			for slot in self.linked[slotid]:
 				tunermask |= (1 << slot)
 		sec.setLNBSatCR(-1)
@@ -262,7 +262,7 @@ class SecConfigure:
 				if self.equal.has_key(slotid):
 					for slot in self.equal[slotid]:
 						tunermask |= (1 << slot)
-				elif self.linked.has_key(slotid):
+				if self.linked.has_key(slotid):
 					for slot in self.linked[slotid]:
 						tunermask |= (1 << slot)
 
