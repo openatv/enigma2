@@ -330,6 +330,7 @@ void gPainter::renderPara(eTextPara *para, ePoint offset)
 {
 	if ( m_dc->islocked() )
 		return;
+	ASSERT(para);
 	gOpcode o;
 	o.opcode=gOpcode::renderPara;
 	o.dc = m_dc.grabRef();
@@ -409,6 +410,7 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 {
 	if ( m_dc->islocked() )
 		return;
+	ASSERT(colors);
 	gOpcode o;
 	o.opcode=gOpcode::setPalette;
 	o.dc = m_dc.grabRef();
@@ -434,6 +436,7 @@ void gPainter::mergePalette(gPixmap *target)
 {
 	if ( m_dc->islocked() )
 		return;
+	ASSERT(target);
 	gOpcode o;
 	o.opcode = gOpcode::mergePalette;
 	o.dc = m_dc.grabRef();
