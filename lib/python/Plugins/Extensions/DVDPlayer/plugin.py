@@ -349,6 +349,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 		hotplugNotifier.append(self.hotplugCB)
 		
+		self.autoplay = dvd_device or dvd_filelist
+
 		if dvd_device:
 			self.physicalDVD = True
 		else:
@@ -575,9 +577,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.askLeavePlayer()
 
 	def opened(self):
-		if len(self.dvd_filelist) == 1:
+		if self.autoplay and self.dvd_filelist:
 			# opened via autoplay
 			self.FileBrowserClosed(self.dvd_filelist[0])
+		elif self.autoplay and self.physicalDVD:
+			self.playPhysicalCB(True)
 		elif self.physicalDVD:
 			# opened from menu with dvd in drive
 			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
