@@ -520,8 +520,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			nim_list = []
 			# collect all nims which are *not* set to "nothing"
 			for n in nimmanager.nim_slots:
-				if not n.config_mode in ("loopthrough", "satposdepends", "nothing"):
-					nim_list.append((str(n.slot), n.friendly_full_description))
+				if n.config_mode == "nothing":
+					continue
+				if n.config_mode in ("loopthrough", "satposdepends"):
+					root_id = nimmanager.sec.getRoot(n.slot_id, int(n.config.connectedTo.value))
+					if n.type == nimmanager.nim_slots[root_id].type: # check if connected from a DVB-S to DVB-S2 Nim or vice versa
+						continue
+				nim_list.append((str(n.slot), n.friendly_full_description))
 
 			self.scan_nims = ConfigSelection(choices = nim_list)
 
