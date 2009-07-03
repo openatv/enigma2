@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-18 23:40+0200\n"
-"PO-Revision-Date: 2009-05-01 12:46+0200\n"
+"POT-Creation-Date: 2009-07-03 17:10+0200\n"
+"PO-Revision-Date: 2009-05-19 21:48+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -108,6 +108,9 @@ msgstr ""
 
 msgid " "
 msgstr " "
+
+msgid " extensions."
+msgstr ""
 
 msgid "#000000"
 msgstr "#000000"
@@ -389,6 +392,9 @@ msgstr "AC3 numatytas"
 msgid "AC3 downmix"
 msgstr "AC3 žemyn miksuotas"
 
+msgid "Abort"
+msgstr "Nutraukti"
+
 msgid "About"
 msgstr "Apie"
 
@@ -426,7 +432,7 @@ msgid "Add timer"
 msgstr "Laikmatis"
 
 msgid "Add title"
-msgstr "Pridėti"
+msgstr "Pavadinimas"
 
 msgid "Add to bouquet"
 msgstr "Pridėti į paketą"
@@ -450,13 +456,13 @@ msgid "Advanced"
 msgstr "Išplėstinis"
 
 msgid "Advanced Options"
-msgstr "Papildomi nustatymai"
+msgstr "Išplėstiniai nustatymai"
 
 msgid "Advanced Video Setup"
 msgstr "Išplėstiniai vaizdo nustatymai"
 
 msgid "Advanced restore"
-msgstr "Papildomas atkūrimas"
+msgstr "Išplėstinis atkūrimas"
 
 msgid "After event"
 msgstr "Po įvykio"
@@ -570,7 +576,7 @@ msgid "Automatic Scan"
 msgstr "Automatinė paieška"
 
 msgid "Available format variables"
-msgstr "Galimi kintami formatai"
+msgstr "Galimi formatai"
 
 msgid "B"
 msgstr "B"
@@ -677,7 +683,7 @@ msgid "CF Drive"
 msgstr "CF kortelė"
 
 msgid "CI assignment"
-msgstr ""
+msgstr "CI nustatymas"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -758,10 +764,10 @@ msgid "Choose Tuner"
 msgstr "Išsirinkite imtuvą"
 
 msgid "Choose backup files"
-msgstr "Pasirinkite atsarginės kopijos failus"
+msgstr "Išsirinkite atsarginės kopijos failus"
 
 msgid "Choose backup location"
-msgstr "Pasirinkite atsarginės kopijos vietą"
+msgstr "Išsirinkite atsarginės kopijos vietą"
 
 msgid "Choose bouquet"
 msgstr "Išsirinkite paketą"
@@ -773,7 +779,7 @@ msgid "Choose target folder"
 msgstr "Išsirinkite aplanką"
 
 msgid "Choose upgrade source"
-msgstr "Pasirinkite atnaujinimo šaltinį"
+msgstr "Išsirinkite atnaujinimo šaltinį"
 
 msgid "Choose your Skin"
 msgstr "Išsirinkite savo temą"
@@ -862,11 +868,17 @@ msgstr "Konfigūruojama"
 msgid "Conflicting timer"
 msgstr "Laikmačio nesuderinamumas"
 
+msgid "Connect"
+msgstr ""
+
 msgid "Connected to"
 msgstr "Prijungtas prie"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Prisijungta prie Fritz!Box!"
+
+msgid "Connected!"
+msgstr ""
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Jungiamės prie Fritz!Box..."
@@ -1041,6 +1053,9 @@ msgstr "DiSEqC būdas"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC pakartojimai"
 
+msgid "Dialing:"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Tiesioginis atkūrimas sujungtų pavadinimų be meniu"
 
@@ -1062,6 +1077,9 @@ msgstr "Išjungti laikmatį"
 
 msgid "Disabled"
 msgstr "Išjungtas"
+
+msgid "Disconnect"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1341,6 +1359,7 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1529,13 +1548,13 @@ msgid "Gateway"
 msgstr "Šliuzas"
 
 msgid "General AC3 Delay"
-msgstr "Bendras AC3 Užlaikymas"
+msgstr "Bendras AC3 užlaikymas"
 
 msgid "General AC3 delay"
 msgstr "Bendras AC3 užlaikymas"
 
 msgid "General PCM Delay"
-msgstr "Bendras PCM Užlaikymas"
+msgstr "Bendras PCM užlaikymas"
 
 msgid "General PCM delay"
 msgstr "Bendras PCM užlaikymas"
@@ -1763,6 +1782,9 @@ msgstr "Monitoriaus pervertimas"
 msgid "Ipkg"
 msgstr "Ipkg"
 
+msgid "Is this videomode ok?"
+msgstr ""
+
 msgid "Italian"
 msgstr "Italų"
 
@@ -1774,7 +1796,7 @@ msgid "Just Scale"
 msgstr "Tik skalė"
 
 msgid "Keyboard"
-msgstr ""
+msgstr "Klaviatūra"
 
 msgid "Keyboard Map"
 msgstr "Klaviatūros išdėstymas"
@@ -2045,7 +2067,7 @@ msgid "Network Setup"
 msgstr "Tinklo nustatymas"
 
 msgid "Network scan"
-msgstr "Tinklo paieška"
+msgstr "Tinklo skanavimas"
 
 msgid "Network setup"
 msgstr "Tinklo nustatymas"
@@ -2294,7 +2316,7 @@ msgid "Packet management"
 msgstr "Paketų valdymas"
 
 msgid "Packet manager"
-msgstr "Paketo valdymas"
+msgstr "Paketo valdytojas"
 
 msgid "Page"
 msgstr "Puslapis"
@@ -2318,8 +2340,14 @@ msgstr "Tėvų kontrolės nustatymai"
 msgid "Parental control type"
 msgstr "Tėvų kontrolės rūšis"
 
+msgid "Password"
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "Filmo pauzė pabaigoje"
+
+msgid "Phone number"
+msgstr ""
 
 msgid "PiPSetup"
 msgstr "PiP nustatymas"
@@ -2440,7 +2468,7 @@ msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
 
 msgid "Please select medium to use as backup location"
-msgstr "Prašome pasirinkti tai, kaip atsarginės kopijos vietą"
+msgstr "Prašome išsirinkti tai, kaip atsarginės kopijos vietą"
 
 msgid "Please select tag to filter..."
 msgstr "Prašome išsirinkti kortelę filtravimui..."
@@ -2495,13 +2523,13 @@ msgid "Please wait... Loading list..."
 msgstr "Prašome laukti... Užkraunamas sąrašas..."
 
 msgid "Plugin browser"
-msgstr "Priedų naršyklė"
+msgstr "Papildomų programų naršyklė"
 
 msgid "Plugin manager"
 msgstr "Papildomų programų valdymas"
 
 msgid "Plugins"
-msgstr "Priedai"
+msgstr "Papildomos programos"
 
 msgid "Polarity"
 msgstr "Poliariškumas"
@@ -2640,13 +2668,13 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Tikrai išeiti iš subkanalų greito perjungimo?"
 
 msgid "Really reboot now?"
-msgstr "Iš tikrųjų perjungti dabar?"
+msgstr "Tikrai perjungti dabar?"
 
 msgid "Really restart now?"
-msgstr "Iš tikrųjų paleisti iš naujo dabar?"
+msgstr "Tikrai paleisti iš naujo dabar?"
 
 msgid "Really shutdown now?"
-msgstr "Iš tikrųjų išjungti dabar?"
+msgstr "Tikrai išjungti dabar?"
 
 msgid "Reboot"
 msgstr "Paleisti iš naujo"
@@ -2655,11 +2683,11 @@ msgid "Reception Settings"
 msgstr "Priėmimo nustatymai"
 
 msgid "Record"
-msgstr "Įrašyti"
+msgstr "Įrašas"
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
-msgstr "Įrašymo laikas apribotas dėl prieštaringo laikmačio %s"
+msgstr "Įrašo laikas apribotas dėl prieštaringo laikmačio %s"
 
 msgid "Recorded files..."
 msgstr "Įrašyti failai..."
@@ -2707,7 +2735,7 @@ msgid "Remove finished."
 msgstr "Pašalinimas baigtas."
 
 msgid "Remove plugins"
-msgstr "Pašalinti priedus"
+msgstr "Pašalinti papildomas programas"
 
 msgid "Remove the broken .NFI file?"
 msgstr "Pašalinti brokuotą .NFI failą?"
@@ -2716,7 +2744,7 @@ msgid "Remove the incomplete .NFI file?"
 msgstr "Pašalinti neužbaigtą .NFI failą?"
 
 msgid "Remove timer"
-msgstr "Pašalinkite laikmatį"
+msgstr "Pašalinti laikmatį"
 
 msgid "Remove title"
 msgstr "Pašalinti "
@@ -2975,31 +3003,31 @@ msgid "Seek"
 msgstr "Ieškoti"
 
 msgid "Select"
-msgstr "Pasirinkite"
+msgstr "Išsirinkite"
 
 msgid "Select HDD"
-msgstr "Pasirinkite kietą diską"
+msgstr "Išsirinkite kietą diską"
 
 msgid "Select IPKG source to edit..."
 msgstr "Išsirinkite IPKG šaltinį redagavimui..."
 
 msgid "Select Location"
-msgstr "Pasirinkite vietą"
+msgstr "Išsirinkite vietą"
 
 msgid "Select Network Adapter"
-msgstr "Pasirinkite tinklo adapterį"
+msgstr "Išsirinkite tinklo adapterį"
 
 msgid "Select a movie"
-msgstr "Pasirinkite filmą"
+msgstr "Išsirinkite filmą"
 
 msgid "Select audio mode"
-msgstr "Pasirinkite garsą"
+msgstr "Išsirinkite garsą"
 
 msgid "Select audio track"
-msgstr "Pasirinkite garso takelį"
+msgstr "Išsirinkite garso takelį"
 
 msgid "Select channel to record from"
-msgstr "Pasirinkite kanalą įrašymui"
+msgstr "Išsirinkite kanalą įrašymui"
 
 msgid "Select files for backup. Currently selected:\n"
 msgstr "Išsirinkite failus atsarginei kopijai. Dabar išsirinkta:\n"
@@ -3008,28 +3036,28 @@ msgid "Select files/folders to backup..."
 msgstr "Išsirinkite failus/aplankus dėl atsarginės kopijos..."
 
 msgid "Select image"
-msgstr "Pasirinkite atvaizdą"
+msgstr "Išsirinkite atvaizdą"
 
 msgid "Select provider to add..."
-msgstr ""
+msgstr "Išsirinkite tiekėją, kurį norite pridėti..."
 
 msgid "Select refresh rate"
-msgstr "Pasirinkite atnujinimo normą"
+msgstr "Išsirinkite atnujinimo normą"
 
 msgid "Select service to add..."
-msgstr ""
+msgstr "Išsirinkite kanalą, kurį norite pridėti..."
 
 msgid "Select video input"
-msgstr "Pasirinkite vaizdo įėjimą"
+msgstr "Išsirinkite vaizdo įėjimą"
 
 msgid "Select video input with up/down buttons"
-msgstr "Pasirinkite vaizdo įėjimą su mygtukais aukštyn/žemyn"
+msgstr "Išsirinkite vaizdo įėjimą su mygtukais aukštyn/žemyn"
 
 msgid "Select video mode"
-msgstr "Pasirinkite vaizdo būdą"
+msgstr "Išsirinkite vaizdo būdą"
 
 msgid "Selected source image"
-msgstr "Pasirinktas atvaizdo šaltinis"
+msgstr "Išsirinktas atvaizdo šaltinis"
 
 msgid "Send DiSEqC"
 msgstr "Siųskite DiSEqC"
@@ -3095,7 +3123,7 @@ msgid "Set as default Interface"
 msgstr "Pasirinkti numatytą sąsają"
 
 msgid "Set interface as default Interface"
-msgstr "Nustatykite sąsają kaip numatytą sąsają"
+msgstr "Nustatykite sąsają, kaip numatytą sąsają"
 
 msgid "Set limits"
 msgstr "Nustatykite ribas"
@@ -3111,6 +3139,9 @@ msgstr "Valdymo būdas"
 
 msgid "Show Info"
 msgstr "Rodyti informaciją"
+
+msgid "Show Message when Recording starts"
+msgstr ""
 
 msgid "Show WLAN Status"
 msgstr "Rodyti belaidžio tinklo būseną"
@@ -3917,6 +3948,7 @@ msgstr "Naudoti įtampos matavimą"
 msgid "Use a gateway"
 msgstr "Naudoti šliuzą"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -3965,6 +3997,9 @@ msgstr "Naudojamas kanalo skanavimo būdas"
 
 msgid "User defined"
 msgstr "Vartotojo pasirinktas"
+
+msgid "Username"
+msgstr ""
 
 msgid "VCR scart"
 msgstr "Vaizdo grotuvas"
@@ -4023,6 +4058,9 @@ msgstr "Žiūrėti Rass interaktyviai..."
 msgid "View Video CD..."
 msgstr "Žiūrėti vaizdo CD..."
 
+msgid "View list of available "
+msgstr ""
+
 msgid "View list of available CommonInterface extensions"
 msgstr "Peržiūrėti sąrašą galimam Įstatomų modulių papildymui"
 
@@ -4060,7 +4098,7 @@ msgid "View list of available system extensions"
 msgstr "Peržiūrėti sąrašą galimam sistemos papildymui."
 
 msgid "View teletext..."
-msgstr "Žiūrėti teletekstą..."
+msgstr "Peržiūrėti teletekstą..."
 
 msgid "Virtual KeyBoard"
 msgstr "Virtuali Klaviatūra"
@@ -4571,7 +4609,7 @@ msgid "connected"
 msgstr "prisijungta"
 
 msgid "continue"
-msgstr "Tęsti"
+msgstr "tęsti"
 
 msgid "copy to bouquets"
 msgstr "kopijuoti į paketus"
@@ -4727,10 +4765,10 @@ msgid "green"
 msgstr "žalias"
 
 msgid "hear radio..."
-msgstr "Išgirsti radiją..."
+msgstr "klausytis radijo..."
 
 msgid "help..."
-msgstr "Pagalba..."
+msgstr "pagalba..."
 
 msgid "hidden network"
 msgstr "paslėptas tinklas"
@@ -4762,10 +4800,10 @@ msgstr ""
 "%s skambučiai %s!"
 
 msgid "init module"
-msgstr "aptikti modulį"
+msgstr "aptinkamas modulis"
 
 msgid "init modules"
-msgstr "init moduliai"
+msgstr "aptinkami moduliai"
 
 msgid "insert mark here"
 msgstr "įterpkite žymeklį čia"
@@ -4864,10 +4902,10 @@ msgid "never"
 msgstr "niekada"
 
 msgid "next channel"
-msgstr "Kitas kanalas"
+msgstr "kitas kanalas"
 
 msgid "next channel in history"
-msgstr "Kitas kanalas į istoriją"
+msgstr "kitas kanalas į istoriją"
 
 msgid "no"
 msgstr "ne"
@@ -4879,7 +4917,7 @@ msgid "no CI slots found"
 msgstr "jokie CI skaitytuvai nesurasti"
 
 msgid "no HDD found"
-msgstr "Kietas diskas nerastas"
+msgstr "kietas diskas nerastas"
 
 msgid "no module found"
 msgstr "modulis nerastas"
@@ -4924,13 +4962,13 @@ msgid "open nameserver configuration"
 msgstr "atidaryti serverio pavadinimo konfigūraciją"
 
 msgid "open servicelist"
-msgstr "Atidaryti kanalų sąrašą"
+msgstr "atidaryti kanalų sąrašą"
 
 msgid "open servicelist(down)"
-msgstr "Atidaryti kanalų sąrašą (žemyn)"
+msgstr "atidaryti kanalų sąrašą (žemyn)"
 
 msgid "open servicelist(up)"
-msgstr "Atidaryti kanalų sąrašą (aukštyn)"
+msgstr "atidaryti kanalų sąrašą (aukštyn)"
 
 msgid "open virtual keyboard input help"
 msgstr "atidaryti virtualios klaviatūros įvesties pagalbą"
@@ -4939,7 +4977,7 @@ msgid "pass"
 msgstr "perduoti"
 
 msgid "pause"
-msgstr "Pauzė"
+msgstr "pauzė"
 
 msgid "play entry"
 msgstr "leisti įrašą"
@@ -4954,13 +4992,13 @@ msgid "please press OK when ready"
 msgstr "prašome paspausti OK, kai būsite pasiruošę"
 
 msgid "please wait, loading picture..."
-msgstr "Laukite...užkraunamas paveikslėlis"
+msgstr "laukite...užkraunamas paveikslėlis"
 
 msgid "previous channel"
-msgstr "Buvęs kanalas"
+msgstr "buvęs kanalas"
 
 msgid "previous channel in history"
-msgstr "Buvęs kanalas į istoriją"
+msgstr "buvęs kanalas į istoriją"
 
 msgid "record"
 msgstr "įrašas"
@@ -5045,7 +5083,7 @@ msgid "second cable of motorized LNB"
 msgstr "antras kabelis nuo poliarizuotos LNB"
 
 msgid "seconds"
-msgstr "Sekundžių"
+msgstr "sekundžių"
 
 msgid "select"
 msgstr "pasirinkti"
@@ -5057,7 +5095,7 @@ msgid "select CAId"
 msgstr "išsirinkite CAId"
 
 msgid "select CAId's"
-msgstr ""
+msgstr "išsirinkite CAId's"
 
 msgid "select image from server"
 msgstr "išsirinkite atvaizdą iš serverio"
@@ -5084,7 +5122,7 @@ msgid "show DVD main menu"
 msgstr "rodyti DVD pagrindinį meniu"
 
 msgid "show EPG..."
-msgstr "Rodyti EPG..."
+msgstr "rodyti EPG..."
 
 msgid "show Infoline"
 msgstr "rodyti informacijos eilutę"
@@ -5111,7 +5149,7 @@ msgid "show shutdown menu"
 msgstr "išjungimo meniu"
 
 msgid "show single service EPG..."
-msgstr "Rodyti vieno kanalo EPG..."
+msgstr "rodyti vieno kanalo EPG..."
 
 msgid "show tag menu"
 msgstr "rodyti etiketės meniu"
@@ -5129,16 +5167,16 @@ msgid "simple"
 msgstr "paprastas"
 
 msgid "skip backward"
-msgstr "Praleisti sukimą atgal"
+msgstr "praleisti sukimą atgal"
 
 msgid "skip backward (enter time)"
-msgstr "Praleisti atgal (įrašykite laiką)"
+msgstr "praleisti atgal (įrašykite laiką)"
 
 msgid "skip forward"
-msgstr "Praleisti sukimą į priekį"
+msgstr "praleisti sukimą į priekį"
 
 msgid "skip forward (enter time)"
-msgstr "Praleisti pirmyn (įrašykite laiką)"
+msgstr "praleisti pirmyn (įrašykite laiką)"
 
 msgid "slide picture in loop"
 msgstr "skaidrės paveikslėlis kontūre"
@@ -5159,7 +5197,7 @@ msgid "start directory"
 msgstr "pradėti direktoriją"
 
 msgid "start timeshift"
-msgstr "Pradėti laiko perstumimą"
+msgstr "pradėti laiko perstumimą"
 
 msgid "stereo"
 msgstr "stereo"
@@ -5210,7 +5248,7 @@ msgid "this service is protected by a parental control pin"
 msgstr "šis kanalas apsaugotas tėvų kontrolės PIN kodu"
 
 msgid "toggle a cut mark at the current position"
-msgstr "Iškirpti žymeklį dabartinėje pozicijoje"
+msgstr "iškirpti žymeklį dabartinėje pozicijoje"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "laikas, skyrius, garsas, subtitrų informacija"
@@ -5228,16 +5266,16 @@ msgid "until restart"
 msgstr "iki pradžios iš naujo"
 
 msgid "user defined"
-msgstr "Vartotojo pasirinkta"
+msgstr "vartotojo nustatytas"
 
 msgid "vertical"
 msgstr "vertikali"
 
 msgid "view extensions..."
-msgstr "Žiūrėti papildymus"
+msgstr "žiūrėti papildymus"
 
 msgid "view recordings..."
-msgstr "Žiūrėti įrašus..."
+msgstr "žiūrėti įrašus..."
 
 msgid "wait for ci..."
 msgstr "laukite atsakymo iš CI..."
@@ -5274,7 +5312,7 @@ msgstr ""
 "dėl tolimesnės pagalbos prieš perkraunant imtuvą."
 
 msgid "zap"
-msgstr "Jungti"
+msgstr "jungti"
 
 msgid "zapped"
 msgstr "įjungta"
@@ -5334,9 +5372,6 @@ msgstr "įjungta"
 
 #~ msgid "AGC:"
 #~ msgstr "AGC:"
-
-#~ msgid "Abort"
-#~ msgstr "Nutraukti"
 
 #~ msgid "Add title..."
 #~ msgstr "Pridėkite pavadinimą..."
