@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 v2.6 Italian Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-18 23:40+0200\n"
-"PO-Revision-Date: 2009-04-05 17:19+0100\n"
+"POT-Creation-Date: 2009-07-03 17:10+0200\n"
+"PO-Revision-Date: 2009-05-31 17:08+0100\n"
 "Last-Translator: Spaeleus <spaeleus@croci.org>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
 "MIME-Version: 1.0\n"
@@ -111,6 +111,9 @@ msgstr ""
 
 msgid " "
 msgstr " "
+
+msgid " extensions."
+msgstr "Estensioni"
 
 msgid "#000000"
 msgstr "#000000"
@@ -311,14 +314,14 @@ msgid ""
 "Dreambox to standby. Do that now?"
 msgstr ""
 "Il termine di una registrazione programmata prevede\n"
-"di porre il DreamBox in standby. Eseguire?"
+"di porre il DreamBox in standby. Farlo ora?"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
 "Il termine di una registrazione programmata prevede\n"
-"di spegnere il DreamBox. Eseguire?"
+"di spegnere il DreamBox. Farlo ora?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Un EPG grafico per tutti i canali di uno specifico bouquet"
@@ -361,14 +364,14 @@ msgid ""
 "Dreambox to standby. Do that now?"
 msgstr ""
 "Un timer di spegnimento prevede di\n"
-"porre in standby il DreamBox. Eseguire?"
+"porre in standby il DreamBox. Farlo ora?"
 
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
 "Un timer di spegnimento prevede\n"
-"l'arresto del DreamBox. Eseguire?"
+"l'arresto del DreamBox. Farlo ora?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -391,6 +394,9 @@ msgstr "Default AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 -> stereo (downmix)"
+
+msgid "Abort"
+msgstr ""
 
 msgid "About"
 msgstr "Info"
@@ -680,7 +686,7 @@ msgid "CF Drive"
 msgstr "Drive CF"
 
 msgid "CI assignment"
-msgstr ""
+msgstr "Assegnazione CI"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -788,7 +794,7 @@ msgid "Circular right"
 msgstr "Circolare a destra"
 
 msgid "Cleanup"
-msgstr "El. conclusi"
+msgstr "Ripulire"
 
 msgid "Clear before scan"
 msgstr "Cancellare prima di cercare"
@@ -865,11 +871,17 @@ msgstr "Configurazione in corso"
 msgid "Conflicting timer"
 msgstr "Timer in conflitto!"
 
+msgid "Connect"
+msgstr ""
+
 msgid "Connected to"
 msgstr "Connesso a:"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Connesso alla Fritz!Box!"
+
+msgid "Connected!"
+msgstr ""
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Connessione Fritz!Box in corso..."
@@ -1044,6 +1056,9 @@ msgstr "Modalità DiSEqC"
 msgid "DiSEqC repeats"
 msgstr "Ripetizioni DiSEqC"
 
+msgid "Dialing:"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Riproduzione diretta dei titoli collegati, senza menu"
 
@@ -1065,6 +1080,9 @@ msgstr "Disabilitare timer"
 
 msgid "Disabled"
 msgstr "Disabilitato"
+
+msgid "Disconnect"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1344,6 +1362,7 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1766,6 +1785,9 @@ msgstr "Display invertito"
 msgid "Ipkg"
 msgstr "Ipkg"
 
+msgid "Is this videomode ok?"
+msgstr ""
+
 msgid "Italian"
 msgstr "Italiano"
 
@@ -1777,7 +1799,7 @@ msgid "Just Scale"
 msgstr "Scalare solamente"
 
 msgid "Keyboard"
-msgstr ""
+msgstr "Tastiera"
 
 msgid "Keyboard Map"
 msgstr "Mappa tastiera"
@@ -1838,7 +1860,7 @@ msgid "Limit west"
 msgstr "Limite ovest"
 
 msgid "Limited character set for recording filenames"
-msgstr ""
+msgstr "Set di caratteri limitato per i nomi dei file registrazioni"
 
 msgid "Limits off"
 msgstr "Limiti Off"
@@ -2316,8 +2338,14 @@ msgstr "Configurazione Controllo parentale"
 msgid "Parental control type"
 msgstr "Tipo Controllo parentale"
 
+msgid "Password"
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "A termine riproduzione, mettere in pausa"
+
+msgid "Phone number"
+msgstr ""
 
 msgid "PiPSetup"
 msgstr "Configurazione PiP"
@@ -2433,10 +2461,10 @@ msgid "Please select a playlist..."
 msgstr "Selezionare una playlist..."
 
 msgid "Please select a subservice to record..."
-msgstr "Selezionare un sottoservizio da registrare..."
+msgstr "Selezionare un sottocanale da registrare..."
 
 msgid "Please select a subservice..."
-msgstr "Selezionare un sottoservizio..."
+msgstr "Selezionare un sottocanale..."
 
 msgid "Please select medium to use as backup location"
 msgstr "Selezionare il supporto su cui effettuare il backup"
@@ -2636,7 +2664,7 @@ msgid "Really delete done timers?"
 msgstr "Cancellare i timer conclusi?"
 
 msgid "Really exit the subservices quickzap?"
-msgstr "Uscire dallo zapping veloce sottoservizi?"
+msgstr "Uscire dallo zapping veloce sottocanali?"
 
 msgid "Really reboot now?"
 msgstr "Riavviare ora?"
@@ -3010,13 +3038,13 @@ msgid "Select image"
 msgstr "Selezionare un'immagine"
 
 msgid "Select provider to add..."
-msgstr ""
+msgstr "Selezionare il provider da aggiungere..."
 
 msgid "Select refresh rate"
 msgstr "Selezionare la frequenza di aggiornamento"
 
 msgid "Select service to add..."
-msgstr ""
+msgstr "Selezionare il canale da aggiungere..."
 
 msgid "Select video input"
 msgstr "Selezionare l'ingresso video"
@@ -3110,6 +3138,9 @@ msgstr "Modalità configurazione"
 
 msgid "Show Info"
 msgstr "Informazioni"
+
+msgid "Show Message when Recording starts"
+msgstr ""
 
 msgid "Show WLAN Status"
 msgstr "Mostrare stato WLAN"
@@ -3290,7 +3321,7 @@ msgid "StartTime"
 msgstr "Ora avvio"
 
 msgid "Starting on"
-msgstr "Avvio alle"
+msgstr "Avvio il"
 
 msgid "Step east"
 msgstr "Passo a Est"
@@ -3332,10 +3363,10 @@ msgid "Stored position"
 msgstr "Posizione memorizzata"
 
 msgid "Subservice list..."
-msgstr "Elenco sottoservizi..."
+msgstr "Elenco sottocanali..."
 
 msgid "Subservices"
-msgstr "Sottoservizi"
+msgstr "Sottocanali"
 
 msgid "Subtitle selection"
 msgstr "Selezione sottotitoli"
@@ -3356,10 +3387,10 @@ msgid "Swedish"
 msgstr "Svedese"
 
 msgid "Switch to next subservice"
-msgstr "Sottoservizio seguente"
+msgstr "Sottocanale seguente"
 
 msgid "Switch to previous subservice"
-msgstr "Sottoservizio precedente"
+msgstr "Sottocanale precedente"
 
 msgid "Symbol Rate"
 msgstr "Symbol Rate"
@@ -3377,7 +3408,7 @@ msgstr ""
 "enigma2 - Dreambox\n"
 "Dario Croci - www.linsat.net\n"
 "Supporto: spaeleus@croci.org.\n"
-"- 05 aprile 2009 -"
+"- 31 maggio 2009 -"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "File TS troppo grande per ISO9660 livello 1!"
@@ -3467,7 +3498,7 @@ msgid ""
 msgstr ""
 "L'ingresso video deve essere configurato.\n"
 "Per configurare lo schermo possono essere utilizzate alcune immagini di "
-"test. Eseguire?"
+"test. Farlo ora?"
 
 msgid "The installation of the default services lists is finished."
 msgstr "L'installazione dei canali predefiniti è terminata."
@@ -3534,7 +3565,7 @@ msgstr ""
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"Il wizard permette di effettuare un backup della configurazione. Eseguire?"
+"Il wizard permette di effettuare un backup della configurazione. Farlo ora?"
 
 msgid "The wizard is finished now."
 msgstr "Wizard terminato!"
@@ -3583,11 +3614,11 @@ msgstr ""
 
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
-msgstr "Impossibile decodificare stream video %s!"
+msgstr "Impossibile decodificare stream %s con questo Dreambox!"
 
 #, python-format
 msgid "This Dreambox can't decode %s video streams!"
-msgstr "Impossibile decodificare lo stream video %s!"
+msgstr "Impossibile decodificare stream video %s con questo Dreambox!"
 
 msgid "This is step number 2."
 msgstr "Passo numero 2."
@@ -3916,6 +3947,7 @@ msgstr "Usare misurazione di potenza"
 msgid "Use a gateway"
 msgstr "Usare un gateway"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -3964,6 +3996,9 @@ msgstr "Tipo ricerca canali in uso"
 
 msgid "User defined"
 msgstr "Definito dall'utente"
+
+msgid "Username"
+msgstr ""
 
 msgid "VCR scart"
 msgstr "Scart VCR"
@@ -4021,6 +4056,9 @@ msgstr "Rass interattivi..."
 
 msgid "View Video CD..."
 msgstr "Riprodurre CD video..."
+
+msgid "View list of available "
+msgstr "Visualizzare elenco disponibilità."
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Elenco estensioni CommonInterface disponibili."
@@ -4108,7 +4146,7 @@ msgid "Wednesday"
 msgstr "Mercoledì"
 
 msgid "Weekday"
-msgstr "Giorno feriale"
+msgstr "Giorno della settimana"
 
 msgid ""
 "Welcome to the Cutlist editor.\n"
@@ -4713,13 +4751,13 @@ msgid "free diskspace"
 msgstr "di spazio libero su disco"
 
 msgid "go to deep standby"
-msgstr "Spegnimento (Deep Standby)"
+msgstr "Spegnimento (Deep standby)"
 
 msgid "go to standby"
 msgstr "Standby"
 
 msgid "grab this frame as bitmap"
-msgstr ""
+msgstr "\"Grab\" dell'mmagine come bitmap"
 
 msgid "green"
 msgstr "Verde"
@@ -5055,7 +5093,7 @@ msgid "select CAId"
 msgstr "Selezionare CAId"
 
 msgid "select CAId's"
-msgstr ""
+msgstr "Selezionare CAId's"
 
 msgid "select image from server"
 msgstr "Selezionare immagine dal server"
@@ -5275,7 +5313,7 @@ msgid "zap"
 msgstr "Zap"
 
 msgid "zapped"
-msgstr "Zapped"
+msgstr "Zap eseguito"
 
 #~ msgid ""
 #~ "\n"
@@ -5283,6 +5321,3 @@ msgstr "Zapped"
 #~ msgstr ""
 #~ "\n"
 #~ "Dopo il ripristino, il sistema verrà riavviato!"
-
-#~ msgid "no module"
-#~ msgstr "Nessun modulo"
