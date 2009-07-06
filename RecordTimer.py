@@ -186,7 +186,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 			prep_res=self.record_service.prepare(self.Filename + ".ts", self.begin, self.end, event_id, self.name.replace("\n", ""), self.description.replace("\n", ""), ' '.join(self.tags))
 			if prep_res:
-				if prep_res == 255:
+				if prep_res == -255:
 					self.log(4, "failed to write meta information")
 				else:
 					self.log(2, "'prepare' failed: error %d" % prep_res)
