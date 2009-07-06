@@ -1529,7 +1529,7 @@ int eDVBServicePlay::getInfo(int w)
 		int aspect = -1;
 		if (m_decoder)
 			aspect = m_decoder->getVideoAspect();
-		if (no_program_info)
+		if (aspect == -1 && no_program_info)
 			break;
 		else if (aspect == -1 && !program.videoStreams.empty() && program.videoStreams[0].component_tag != -1)
 		{
