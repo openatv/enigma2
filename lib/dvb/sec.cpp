@@ -148,7 +148,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					if ( di_param.m_diseqc_mode == eDVBSatelliteDiseqcParameters::V1_2 )  // ROTOR
 						rotor = true;
 
-					ret=10000;
+					ret = 10000;
 				}
 				else
 				{
@@ -165,8 +165,10 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						( diseqc && (ucsw != linked_ucsw || toneburst != linked_toneburst) ) ||
 						( rotor && rotor_pos != sat.orbital_position ) )
 					{
-						ret=0;
+						ret = 0;
 					}
+					else
+						ret += 15;
 					eSecDebugNoSimulate("ret2 %d", ret);
 					if (ret) // special case when this tuner is linked to a satpos dependent tuner
 					{
@@ -193,7 +195,9 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						if (satpos_depends_to_fe->m_inuse) // if the dependent frontend is in use?
 						{
 							if (!rotor || rotor_pos != sat.orbital_position) // new orbital position not equal to current orbital pos?
-								ret=0;
+								ret = 0;
+							else
+								ret += 10;
 						}
 					}
 					else // current fe is dependent of another tuner ... (so this fe can't turn the rotor!)
@@ -220,7 +224,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 						lnb_param.m_lof_hi : lnb_param.m_lof_lo;
 					int tuner_freq = abs(sat.frequency - lof);
 					if (tuner_freq < 900000 || tuner_freq > 2200000)
-						ret=0;
+						ret = 0;
 				}
 
 				if (ret && lnb_param.m_prio != -1)
