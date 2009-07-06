@@ -176,6 +176,9 @@ def getRecordingFilename(basename, dirname = None):
 	if dirname is not None:
 		filename = ''.join((dirname, filename))
 
+	if len(filename) > 240:
+		filename = filename[:240]
+
 	i = 0
 	while True:
 		path = resolveFilename(SCOPE_HDD, filename)
