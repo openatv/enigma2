@@ -176,8 +176,10 @@ def getRecordingFilename(basename, dirname = None):
 	if dirname is not None:
 		filename = ''.join((dirname, filename))
 
-	if len(filename) > 240:
-		filename = filename[:240]
+	while len(filename) > 240:
+		filename = filename.decode('UTF-8')
+		filename = filename[:-1]
+		filename = filename.encode('UTF-8')
 
 	i = 0
 	while True:
