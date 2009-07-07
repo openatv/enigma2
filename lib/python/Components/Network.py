@@ -27,6 +27,16 @@ class Network:
 		self.config_ready = None
 		self.getInterfaces()
 
+	def onRemoteRootFS(self):
+		fp = file('/proc/mounts', 'r')
+		mounts = fp.readlines()
+		fp.close()
+		for line in mounts:
+			parts = line.strip().split(' ')
+			if parts[1] == '/' and (parts[2] == 'nfs' or parts[2] == 'smbfs'):
+				return True
+		return False
+
 	def getInterfaces(self, callback = None):
 		devicesPattern = re_compile('[a-z]+[0-9]+')
 		self.configuredInterfaces = []
@@ -253,6 +263,10 @@ class Network:
 		print "nameservers:", self.nameservers
 
 	def deactivateNetworkConfig(self, callback = None):
+		if self.onRemoteRootFS():
+			if callback is not None:
+				callback(True)
+			return
 		self.deactivateConsole = Console()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
@@ -271,6 +285,10 @@ class Network:
 				callback(True)
 
 	def activateNetworkConfig(self, callback = None):
+		if self.onRemoteRootFS():
+			if callback is not None:
+				callback(True)
+			return
 		self.activateConsole = Console()
 		self.commands = []
 		self.commands.append("/etc/init.d/networking start")
@@ -344,6 +362,10 @@ class Network:
 					self.nameservers[i] = newnameserver
 
 	def resetNetworkConfig(self, mode='lan', callback = None):
+		if self.onRemoteRootFS():
+			if callback is not None:
+				callback(True)
+			return
 		self.resetNetworkConsole = Console()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
@@ -422,6 +444,10 @@ class Network:
 					statecallback(self.NetworkState)
 		
 	def restartNetwork(self,callback = None):
+		if self.onRemoteRootFS():
+			if callback is not None:
+				callback(True)
+			return
 		self.restartConsole = Console()
 		self.config_ready = False
 		self.msgPlugins()
@@ -515,6 +541,10 @@ class Network:
 					statecallback(self.DnsState)
 
 	def deactivateInterface(self,iface,callback = None):
+		if self.onRemoteRootFS():
+			if callback is not None:
+				callback(True)
+			return
 		self.deactivateInterfaceConsole = Console()
 		self.commands = []
 		cmd1 = "ip addr flush " + iface
