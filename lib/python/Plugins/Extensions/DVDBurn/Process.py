@@ -679,7 +679,7 @@ def CreateAuthoringXML_singleset(job):
 	authorxml.append('<?xml version="1.0" encoding="utf-8"?>\n')
 	authorxml.append(' <dvdauthor dest="' + (job.workspace+"/dvd") + '">\n')
 	authorxml.append('  <vmgm>\n')
-	authorxml.append('   <menus>\n')
+	authorxml.append('   <menus lang="' + job.project.menutemplate.settings.menulang.getValue() + '">\n')
 	authorxml.append('    <pgc>\n')
 	authorxml.append('     <vob file="' + job.project.settings.vmgm.getValue() + '" />\n', )
 	if mode.startswith("menu"):
@@ -691,7 +691,7 @@ def CreateAuthoringXML_singleset(job):
 	authorxml.append('  </vmgm>\n')
 	authorxml.append('  <titleset>\n')
 	if mode.startswith("menu"):
-		authorxml.append('   <menus>\n')
+		authorxml.append('   <menus lang="' + job.project.menutemplate.settings.menulang.getValue() + '">\n')
 		authorxml.append('    <video aspect="4:3"/>\n')
 		for menu_count in range(1 , job.nr_menus+1):
 			if menu_count == 1:
@@ -747,11 +747,14 @@ def CreateAuthoringXML_multiset(job):
 	authorxml.append('<?xml version="1.0" encoding="utf-8"?>\n')
 	authorxml.append(' <dvdauthor dest="' + (job.workspace+"/dvd") + '" jumppad="yes">\n')
 	authorxml.append('  <vmgm>\n')
-	authorxml.append('   <menus>\n')
+	authorxml.append('   <menus lang="' + job.project.menutemplate.settings.menulang.getValue() + '">\n')
 	authorxml.append('    <video aspect="4:3"/>\n')
 	if mode.startswith("menu"):
 		for menu_count in range(1 , job.nr_menus+1):
-			authorxml.append('    <pgc>\n')
+			if menu_count == 1:
+				authorxml.append('    <pgc>\n')
+			else:
+				authorxml.append('    <pgc>\n')
 			menu_start_title = (menu_count-1)*job.titles_per_menu + 1
 			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
@@ -776,6 +779,13 @@ def CreateAuthoringXML_multiset(job):
 	for i in range( nr_titles ):
 		title = job.project.titles[i]
 		authorxml.append('  <titleset>\n')
+		authorxml.append('   <menus lang="' + job.project.menutemplate.settings.menulang.getValue() + '">\n')
+		authorxml.append('    <pgc entry="root">\n')
+		authorxml.append('     <pre>\n')
+		authorxml.append('      jump vmgm menu entry title;\n')
+		authorxml.append('     </pre>\n')
+		authorxml.append('    </pgc>\n')
+		authorxml.append('   </menus>\n')
 		authorxml.append('   <titles>\n')
 		for audiotrack in title.properties.audiotracks:
 			active = audiotrack.active.getValue()

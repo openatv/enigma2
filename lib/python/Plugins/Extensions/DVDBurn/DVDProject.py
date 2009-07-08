@@ -113,7 +113,7 @@ class DVDProject:
 			  if project.nodeType == xml.dom.minidom.Element.nodeType:
 			    if project.tagName == 'settings':
 				i = 0
-				if project.attributes.length < len(self.settings.dict()):
+				if project.attributes.length < len(self.settings.dict())-1:
 					self.error = "project attributes missing"
 					raise AttributeError
 				while i < project.attributes.length:
@@ -175,6 +175,8 @@ class MenuTemplate(DVDProject):
 		self.settings.thumb_size = ConfigSequence(seperator = ',', default = [200,158], limits = [(0,576),(-1,720)])
 		self.settings.thumb_border = ConfigInteger(default = 2, limits = (0, 20))
 		self.filekeys = ["menubg", "menuaudio", "fontface_headline", "fontface_title", "fontface_subtitle"]
+		from TitleProperties import languageChoices
+		self.settings.menulang = ConfigSelection(choices = languageChoices.choices, default=languageChoices.choices[1][0])
 
 	def loadTemplate(self, filename):
 		ret = DVDProject.loadProject(self, filename)
