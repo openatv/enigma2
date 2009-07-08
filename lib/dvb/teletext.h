@@ -13,8 +13,11 @@ struct eDVBTeletextSubtitlePageElement
 	gRGB m_color;
 	std::string m_text;
 	eRect m_area;
-	eDVBTeletextSubtitlePageElement(const gRGB &color, const std::string &text)
-		: m_color(color), m_text(text)
+
+	int m_source_line;
+
+	eDVBTeletextSubtitlePageElement(const gRGB &color, const std::string &text, int source_line)
+		: m_color(color), m_text(text), m_source_line(source_line)
 	{
 	}
 };
@@ -26,6 +29,7 @@ struct eDVBTeletextSubtitlePage
 	int m_timeout; /* in pts */
 	std::vector<eDVBTeletextSubtitlePageElement> m_elements;
 	
+	void clearLine(int line) { for (unsigned int i = 0; i < m_elements.size(); ) if (m_elements[i].m_source_line == line) m_elements.erase(m_elements.begin() + i); else ++i; }
 	void clear() { m_elements.clear(); }
 };
 
@@ -59,8 +63,9 @@ private:
 	
 	std::string m_subtitle_text;
 	int m_subtitle_color;
+	int m_current_source_line;
 	
-	void addSubtitleString(int color, std::string string);
+	void addSubtitleString(int color, std::string string, int source_line);
 	
 	void sendSubtitlePage();
 	
