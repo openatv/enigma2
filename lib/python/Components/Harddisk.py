@@ -6,11 +6,7 @@ import time
 from Components.Console import Console
 
 def readFile(filename):
-	try:
-		file = open(filename)
-	except IOError:
-		return ""
-
+	file = open(filename)
 	data = file.read().strip()
 	file.close()
 	return data
