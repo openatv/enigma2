@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <unistd.h>
 #include <fcntl.h>
 #include <lib/base/rawfile.h>

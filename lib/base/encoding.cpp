@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <cstdlib>
 #include <lib/base/encoding.h>
 #include <lib/base/eerror.h>
