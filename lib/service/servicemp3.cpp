@@ -567,14 +567,16 @@ RESULT eServiceMP3::seekRelative(int direction, pts_t to)
 
 RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 {
+	GstFormat fmt = GST_FORMAT_TIME;
+	gint64 pos;
+	GstElement *sink;
+	pts = 0;
+
 	if (!m_gst_playbin)
 		return -1;
 	if (m_state != stRunning)
 		return -1;
 
-	GstFormat fmt = GST_FORMAT_TIME;
-	gint64 pos;
-	GstElement *sink;
 	g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
 
 	if (!sink)
@@ -584,15 +586,20 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		return -1;
 
 	gchar *name = gst_element_get_name(sink);
+	gboolean use_get_decoder_time = strstr(name, "dvbaudiosink") || strstr(name, "dvbvideosink");
+	g_free(name);
 
-	if (strstr(name, "dvbaudiosink") || strstr(name, "dvbvideosink"))
+	if (use_get_decoder_time)
 		g_signal_emit_by_name(sink, "get-decoder-time", &pos);
-	else if (!gst_element_query_position(m_gst_playbin, &fmt, &pos))
-		return -1;
 
 	gst_object_unref(sink);
 
-		/* pos is in nanoseconds. we have 90 000 pts per second. */
+	if (!use_get_decoder_time && !gst_element_query_position(m_gst_playbin, &fmt, &pos)) {
+		eDebug("gst_element_query_position failed in getPlayPosition");
+		return -1;
+	}
+
+	/* pos is in nanoseconds. we have 90 000 pts per second. */
 	pts = pos / 11111;
 	return 0;
 }
@@ -1028,13 +1035,13 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		case GST_MESSAGE_STATE_CHANGED:
 		{
 			if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
-			return;
+				break;
 
 			GstState old_state, new_state;
 			gst_message_parse_state_changed(msg, &old_state, &new_state, NULL);
 		
 			if(old_state == new_state)
-				return;
+				break;
 	
 			eDebug("eServiceMP3::state transition %s -> %s", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
 	
@@ -1077,12 +1084,12 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		{
 			gchar *debug;
 			GError *err;
-	
 			gst_message_parse_error (msg, &err, &debug);
 			g_free (debug);
 			eWarning("Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName );
 			if ( err->domain == GST_STREAM_ERROR )
 			{
+				eDebug("err->code %d", err->code);
 				if ( err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND )
 				{
 					if ( g_strrstr(sourceName, "videosink") )
@@ -1139,6 +1146,9 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		}
 		case GST_MESSAGE_ASYNC_DONE:
 		{
+			if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
+				break;
+
 			GstTagList *tags;
 			gint i, active_idx, n_video = 0, n_audio = 0, n_text = 0;
 
@@ -1245,7 +1255,6 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 						if (strstr(eventname, "Changed"))
 							m_event((iPlayableService*)this, evVideoProgressiveChanged);
 					}
-					g_free(eventname);
 				}
 			}
 			break;
@@ -1278,12 +1287,12 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 
 	if ( gst_structure_has_name (structure, "audio/mpeg"))
 	{
-    		gint mpegversion, layer = -1;
+		gint mpegversion, layer = -1;
 		if (!gst_structure_get_int (structure, "mpegversion", &mpegversion))
 			return atUnknown;
 
 		switch (mpegversion) {
-      			case 1:
+			case 1:
 				{
 					gst_structure_get_int (structure, "layer", &layer);
 					if ( layer == 3 )
@@ -1366,7 +1375,7 @@ void eServiceMP3::pullSubtitle()
 				unsigned char line[len+1];
 				memcpy(line, GST_BUFFER_DATA(buffer), len);
 				line[len] = 0;
-		 		eDebug("got new subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
+				eDebug("got new subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
 				ePangoSubtitlePage page;
 				gRGB rgbcol(0xD0,0xD0,0xD0);
 				page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
