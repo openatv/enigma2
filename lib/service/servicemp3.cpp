@@ -198,6 +198,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_currentSubtitleStream = 0;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 0;
+	m_subs_to_pull = 0;
 	m_buffer_size = 1*1024*1024;
 	CONNECT(m_seekTimeout->timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
@@ -301,7 +302,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-appsink");
 	else
 	{
-		g_object_set (G_OBJECT (subsink), "emit-signals", TRUE, NULL);
 		g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 	}
@@ -488,8 +488,6 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 
 RESULT eServiceMP3::seekTo(pts_t to)
 {
-	m_subtitle_pages.clear();
-
 	if (!m_gst_playbin)
 		return -1;
 
@@ -502,6 +500,11 @@ RESULT eServiceMP3::seekTo(pts_t to)
 		eDebug("eServiceMP3::seekTo failed");
 		return -1;
 	}
+
+	m_subtitle_pages.clear();
+	eSingleLocker l(m_subs_to_pull_lock);
+	m_subs_to_pull = 0;
+
 	return 0;
 }
 
@@ -570,13 +573,27 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 		return -1;
 
 	GstFormat fmt = GST_FORMAT_TIME;
-	gint64 len;
-	
-	if (!gst_element_query_position(m_gst_playbin, &fmt, &len))
+	gint64 pos;
+	GstElement *sink;
+	g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
+
+	if (!sink)
+		g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
+
+	if (!sink)
 		return -1;
 
-		/* len is in nanoseconds. we have 90 000 pts per second. */
-	pts = len / 11111;
+	gchar *name = gst_element_get_name(sink);
+
+	if (strstr(name, "dvbaudiosink") || strstr(name, "dvbvideosink"))
+		g_signal_emit_by_name(sink, "get-decoder-time", &pos);
+	else if (!gst_element_query_position(m_gst_playbin, &fmt, &pos))
+		return -1;
+
+	gst_object_unref(sink);
+
+		/* pos is in nanoseconds. we have 90 000 pts per second. */
+	pts = pos / 11111;
 	return 0;
 }
 
@@ -1030,6 +1047,16 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
+					GstElement *sink;
+					g_object_get (G_OBJECT (m_gst_playbin), "text-sink", &sink, NULL);
+					if (sink)
+					{
+						g_object_set (G_OBJECT (sink), "max-buffers", 2, NULL);
+						g_object_set (G_OBJECT (sink), "sync", FALSE, NULL);
+						g_object_set (G_OBJECT (sink), "async", FALSE, NULL);
+						g_object_set (G_OBJECT (sink), "emit-signals", TRUE, NULL);
+						gst_object_unref(sink);
+					}
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
@@ -1284,7 +1311,7 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 	return atUnknown;
 }
 
-void eServiceMP3::gstPoll(const int&)
+void eServiceMP3::gstPoll(const int &msg)
 {
 		/* ok, we have a serious problem here. gstBusSyncHandler sends 
 		   us the wakup signal, but likely before it was posted.
@@ -1292,15 +1319,19 @@ void eServiceMP3::gstPoll(const int&)
 		   
 		   I need to understand the API a bit more to make this work 
 		   proplerly. */
-	usleep(1);
-	
-	GstBus *bus = gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin));
-	GstMessage *message;
-	while ((message = gst_bus_pop (bus)))
+	if (msg == 1)
 	{
-		gstBusCall(bus, message);
-		gst_message_unref (message);
+		GstBus *bus = gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin));
+		GstMessage *message;
+		usleep(1);
+		while ((message = gst_bus_pop (bus)))
+		{
+			gstBusCall(bus, message);
+			gst_message_unref (message);
+		}
 	}
+	else
+		pullSubtitle();
 }
 
 eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::service+1, "eServiceFactoryMP3");
@@ -1308,62 +1339,96 @@ eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::servi
 void eServiceMP3::gstCBsubtitleAvail(GstElement *appsink, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	GstBuffer *buffer;
-	g_signal_emit_by_name (appsink, "pull-buffer", &buffer);
-	if (buffer)
+	eSingleLocker l(_this->m_subs_to_pull_lock);
+	++_this->m_subs_to_pull;
+	_this->m_pump.send(2);
+}
+
+void eServiceMP3::pullSubtitle()
+{
+	GstElement *sink;
+	g_object_get (G_OBJECT (m_gst_playbin), "text-sink", &sink, NULL);
+	if (sink)
 	{
-		GstFormat fmt = GST_FORMAT_TIME;
-		gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
-		gint64 duration_ns = GST_BUFFER_DURATION(buffer);
-		size_t len = GST_BUFFER_SIZE(buffer);
-		unsigned char line[len+1];
-		memcpy(line, GST_BUFFER_DATA(buffer), len);
-		line[len] = 0;
-// 		eDebug("got new subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
-		if ( _this->m_subtitle_widget )
+		while (m_subs_to_pull && m_subtitle_pages.size() < 2)
 		{
-			ePangoSubtitlePage page;
-			gRGB rgbcol(0xD0,0xD0,0xD0);
-			page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
-			page.show_pts = buf_pos / 11111L;
-			page.m_timeout = duration_ns / 1000000;
-			_this->m_subtitle_pages.push_back(page);
-			_this->pushSubtitles();
+			GstBuffer *buffer;
+			{
+				eSingleLocker l(m_subs_to_pull_lock);
+				--m_subs_to_pull;
+			}
+			g_signal_emit_by_name (sink, "pull-buffer", &buffer);
+			if (buffer)
+			{
+				gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
+				gint64 duration_ns = GST_BUFFER_DURATION(buffer);
+				size_t len = GST_BUFFER_SIZE(buffer);
+				unsigned char line[len+1];
+				memcpy(line, GST_BUFFER_DATA(buffer), len);
+				line[len] = 0;
+		 		eDebug("got new subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
+				ePangoSubtitlePage page;
+				gRGB rgbcol(0xD0,0xD0,0xD0);
+				page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
+				page.show_pts = buf_pos / 11111L;
+				page.m_timeout = duration_ns / 1000000;
+				m_subtitle_pages.push_back(page);
+				pushSubtitles();
+				gst_buffer_unref(buffer);
+			}
 		}
+		gst_object_unref(sink);
 	}
+	else
+		eDebug("no subtitle sink!");
 }
 
 void eServiceMP3::pushSubtitles()
 {
 	ePangoSubtitlePage page;
-	GstClockTime base_time;
 	pts_t running_pts;
-	GstElement *syncsink;
-	g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &syncsink, NULL);
-	GstClock *clock;
-	clock = gst_element_get_clock (syncsink);
 	while ( !m_subtitle_pages.empty() )
 	{
+		getPlayPosition(running_pts);
 		page = m_subtitle_pages.front();
-
-		base_time = gst_element_get_base_time (syncsink);
-		running_pts = gst_clock_get_time (clock) / 11111L;
 		gint64 diff_ms = ( page.show_pts - running_pts ) / 90;
-//		eDebug("eServiceMP3::pushSubtitles show_pts = %lld  running_pts = %lld  diff = %lld", page.show_pts, running_pts, diff_ms);
-		if ( diff_ms > 20 )
+		eDebug("eServiceMP3::pushSubtitles show_pts = %lld  running_pts = %lld  diff = %lld", page.show_pts, running_pts, diff_ms);
+		if (diff_ms < -100)
 		{
-//			eDebug("m_subtitle_sync_timer->start(%lld,1)", diff_ms);
-			m_subtitle_sync_timer->start(diff_ms, 1);
+			GstFormat fmt = GST_FORMAT_TIME;
+			gint64 now;
+			if (gst_element_query_position(m_gst_playbin, &fmt, &now) != -1)
+			{
+				now /= 11111;
+				diff_ms = abs((now - running_pts) / 90);
+				eDebug("diff < -100ms check decoder/pipeline diff: decoder: %lld, pipeline: %lld, diff: %lld", running_pts, now, diff_ms);
+				if (diff_ms > 100000)
+				{
+					eDebug("high decoder/pipeline difference.. assume decoder has now started yet.. check again in 1sec");
+					m_subtitle_sync_timer->start(1000, true);
+					break;
+				}
+			}
+			else
+				eDebug("query position for decoder/pipeline check failed!");
+			eDebug("subtitle to late... drop");
+			m_subtitle_pages.pop_front();
+		}
+		else if ( diff_ms > 20 )
+		{
+//			eDebug("start recheck timer");
+			m_subtitle_sync_timer->start(diff_ms > 1000 ? 1000 : diff_ms, true);
 			break;
 		}
-		else
+		else // immediate show
 		{
-			m_subtitle_widget->setPage(page);
+			if (m_subtitle_widget)
+				m_subtitle_widget->setPage(page);
 			m_subtitle_pages.pop_front();
 		}
 	}
-	gst_object_unref (clock);
-	gst_object_unref (syncsink);
+	if (m_subtitle_pages.empty())
+		pullSubtitle();
 }
 
 RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
@@ -1386,16 +1451,23 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		goto error_out;
 	type = PyInt_AsLong(entry);
 
-	g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
- 	m_currentSubtitleStream = pid;
+	if (m_currentSubtitleStream != pid)
+	{
+		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
+		m_currentSubtitleStream = pid;
+		eSingleLocker l(m_subs_to_pull_lock);
+		m_subs_to_pull = 0;
+		m_subtitle_pages.clear();
+	}
 
+	m_subtitle_widget = 0;
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size()); /* full size */
 
 	g_object_get (G_OBJECT (m_gst_playbin), "current-text", &text_pid, NULL);
 
 	eDebug ("eServiceMP3::switched to subtitle stream %i", text_pid);
-	m_subtitle_pages.clear();
+
 
 	return 0;
 
