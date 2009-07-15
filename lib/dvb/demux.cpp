@@ -35,6 +35,13 @@
 #define HAVE_ADD_PID
 
 #ifdef HAVE_ADD_PID
+
+#if HAVE_DVB_API_VERSION > 3
+#ifndef DMX_ADD_PID
+#define DMX_ADD_PID		_IOW('o', 51, __u16)
+#define DMX_REMOVE_PID		_IOW('o', 52, __u16)
+#endif
+#else
 #define DMX_ADD_PID              _IO('o', 51)
 #define DMX_REMOVE_PID           _IO('o', 52)
 
@@ -42,6 +49,7 @@ typedef enum {
 	DMX_TAP_TS = 0,
 	DMX_TAP_PES = DMX_PES_OTHER, /* for backward binary compat. */
 } dmx_tap_type_t;
+#endif
 
 #endif
 
@@ -493,11 +501,16 @@ eDVBTSRecorder::~eDVBTSRecorder()
 
 RESULT eDVBTSRecorder::start()
 {
+	std::map<int,int>::iterator i(m_pids.begin());
+
 	if (m_running)
 		return -1;
 	
 	if (m_target_fd == -1)
 		return -2;
+
+	if (i == m_pids.end())
+		return -3;
 
 	char filename[128];
 #ifndef HAVE_ADD_PID
@@ -527,10 +540,16 @@ RESULT eDVBTSRecorder::start()
 	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 1024*1024);
 
 	dmx_pes_filter_params flt;
+#if HAVE_DVB_API_VERSION > 3
+	flt.pes_type = DMX_PES_OTHER;
+	flt.output  = DMX_OUT_TSDEMUX_TAP;
+#else
 	flt.pes_type = (dmx_pes_type_t)DMX_TAP_TS;
-	flt.pid     = (__u16)-1;
-	flt.input   = DMX_IN_FRONTEND;
 	flt.output  = DMX_OUT_TAP;
+#endif
+	flt.pid     = i->first;
+	++i;
+	flt.input   = DMX_IN_FRONTEND;
 	flt.flags   = 0;
 	int res = ::ioctl(m_source_fd, DMX_SET_PES_FILTER, &flt);
 	if (res)
@@ -549,10 +568,12 @@ RESULT eDVBTSRecorder::start()
 	
 	m_thread->start(m_source_fd, m_target_fd);
 	m_running = 1;
-	
-	for (std::map<int,int>::iterator i(m_pids.begin()); i != m_pids.end(); ++i)
+
+	while (i != m_pids.end()) {
 		startPID(i->first);
-	
+		++i;
+	}
+
 	return 0;
 }
 
@@ -675,7 +696,12 @@ RESULT eDVBTSRecorder::startPID(int pid)
 	m_pids[pid] = fd;
 #else
 	while(true) {
+#if HAVE_DVB_API_VERSION > 3
+		__u16 p = pid;
+		if (::ioctl(m_source_fd, DMX_ADD_PID, &p) < 0) {
+#else
 		if (::ioctl(m_source_fd, DMX_ADD_PID, pid) < 0) {
+#endif
 			perror("DMX_ADD_PID");
 			if (errno == EAGAIN || errno == EINTR) {
 				eDebug("retry!");
@@ -698,7 +724,12 @@ void eDVBTSRecorder::stopPID(int pid)
 	if (m_pids[pid] != -1)
 	{
 		while(true) {
+#if HAVE_DVB_API_VERSION > 3
+			__u16 p = pid;
+			if (::ioctl(m_source_fd, DMX_REMOVE_PID, &p) < 0) {
+#else
 			if (::ioctl(m_source_fd, DMX_REMOVE_PID, pid) < 0) {
+#endif
 				perror("DMX_REMOVE_PID");
 				if (errno == EAGAIN || errno == EINTR) {
 					eDebug("retry!");
