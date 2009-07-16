@@ -494,7 +494,7 @@ class NFIDownload(Screen):
 			self.taskstring = ""
 			self.container.appClosed.append(self.fdisk_finished)
 			self.container.execute("fdisk " + self.stickdevice + "/disc")
-			self.container.write("d\nn\np\n1\n\n\nt\n6\nw\n")
+			self.container.write("d\n4\nd\n3\nd\n2\nd\nn\np\n1\n\n\nt\n6\nw\n")
 			self.delayTimer = eTimer()
 			self.delayTimer.callback.append(self.progress_increment)
 			self.delayTimer.start(105, False)

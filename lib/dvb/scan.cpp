@@ -5,6 +5,7 @@
 #include <dvbsi++/terrestrial_delivery_system_descriptor.h>
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/ca_identifier_descriptor.h>
+#include <dvbsi++/registration_descriptor.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/esection.h>
 #include <lib/dvb/scan.h>
@@ -292,32 +293,36 @@ void eDVBScan::PMTready(int err)
 			ElementaryStreamInfoConstIterator es;
 			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 			{
-				int isaudio = 0, isvideo = 0, is_scrambled = 0;
+				int isaudio = 0, isvideo = 0, is_scrambled = 0, forced_audio = 0, forced_video = 0;
 				switch ((*es)->getType())
 				{
-				case 0xEA: // TS_PSI_ST_SMPTE_VC1
 				case 0x1b: // AVC Video Stream (MPEG4 H264)
 				case 0x10: // MPEG 4 Part 2
 				case 0x01: // MPEG 1 video
 				case 0x02: // MPEG 2 video
 					isvideo = 1;
+					forced_video = 1;
 					//break; fall through !!!
 				case 0x03: // MPEG 1 audio
 				case 0x04: // MPEG 2 audio
 				case 0x0f: // MPEG 2 AAC
 				case 0x11: // MPEG 4 AAC
-					if (!isvideo)
+					if (!isvideo) 
+					{
+						forced_audio = 1;
 						isaudio = 1;
+					}
 				case 0x06: // PES Private
 				case 0x81: // user private
+				case 0xEA: // TS_PSI_ST_SMPTE_VC1
 					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 							desc != (*es)->getDescriptors()->end(); ++desc)
 					{
 						uint8_t tag = (*desc)->getTag();
-						if (!isaudio && !isvideo)
+						/* PES private can contain AC-3, DTS or lots of other stuff.
+						   check descriptors to get the exakt type. */
+						if (!forced_video && !forced_audio)
 						{
-							/* PES private can contain AC-3, DTS or lots of other stuff.
-							   check descriptors to get the exakt type. */
 							switch (tag)
 							{
 							case 0x1C: // TS_PSI_DT_MPEG4_Audio
@@ -335,16 +340,11 @@ void eDVBScan::PMTready(int err)
 								break;
 							case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
 							{
-								/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
-								if ((*desc)->getLength() < 4)
-									break;
-								unsigned char descr[6];
-								(*desc)->writeToBuffer(descr);
-								int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
-								switch (format_identifier)
+								RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
+								switch (d->getFormatIdentifier())
 								{
-								case 0x41432d33: // == 'AC-3'
 								case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
+								case 0x41432d33: // == 'AC-3'
 								case 0x42535344: // == 'BSSD' (LPCM)
 									isaudio = 1;
 									break;
@@ -362,12 +362,13 @@ void eDVBScan::PMTready(int err)
 						if (tag == CA_DESCRIPTOR)
 							is_scrambled = 1;
 					}
+				default:
 					break;
 				}
-				if (isaudio)
-					have_audio = true;
-				else if (isvideo)
+				if (isvideo)
 					have_video = true;
+				else if (isaudio)
+					have_audio = true;
 				else
 					continue;
 				if (is_scrambled)
