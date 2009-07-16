@@ -17,6 +17,7 @@
 #include <dvbsi++/subtitling_descriptor.h>
 #include <dvbsi++/teletext_descriptor.h>
 #include <dvbsi++/video_stream_descriptor.h>
+#include <dvbsi++/registration_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
 	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
@@ -209,11 +210,11 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			{
 				const ProgramMapSection &pmt = **i;
 				program.pcrPid = pmt.getPcrPid();
-			
+
 				ElementaryStreamInfoConstIterator es;
 				for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 				{
-					int isaudio = 0, isvideo = 0;
+					int isaudio = 0, isvideo = 0, issubtitle = 0, forced_video = 0, forced_audio = 0;
 					videoStream video;
 					audioStream audio;
 					audio.component_tag=video.component_tag=-1;
@@ -239,17 +240,21 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						//break; fall through !!!
 					case 0x02: // MPEG 2 video
 						isvideo = 1;
+						forced_video = 1;
 						//break; fall through !!!
 					case 0x03: // MPEG 1 audio
 					case 0x04: // MPEG 2 audio:
-						if (!isvideo)
+						if (!isvideo) {
 							isaudio = 1;
+							forced_audio = 1;
+						}
 						//break; fall through !!!
 					case 0x0f: // MPEG 2 AAC
 						if (!isvideo && !isaudio)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atAAC;
+							forced_audio = 1;
 						}
 						//break; fall through !!!
 					case 0x11: // MPEG 4 AAC
@@ -257,6 +262,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atAACHE;
+							forced_audio = 1;
 						}
 					case 0x80: // user private ... but blueray LPCM
 						if (!isvideo && !isaudio)
@@ -280,13 +286,12 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					case 0x06: // PES Private
 					case 0xEA: // TS_PSI_ST_SMPTE_VC1
 						for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
-								desc != (*es)->getDescriptors()->end(); ++desc)
+							desc != (*es)->getDescriptors()->end(); ++desc)
 						{
 							uint8_t tag = (*desc)->getTag();
-							if (!isaudio && !isvideo)
+							/* check descriptors to get the exakt stream type. */
+							if (!forced_video && !forced_audio)
 							{
-								/* PES private can contain AC-3, DTS or lots of other stuff.
-								   check descriptors to get the exakt type. */
 								switch (tag)
 								{
 								case AUDIO_STREAM_DESCRIPTOR:
@@ -325,6 +330,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 										s.language_code = (*it)->getIso639LanguageCode();
 //										eDebug("add dvb subtitle %s PID %04x, type %d, composition page %d, ancillary_page %d",
 //											s.language_code.c_str(), s.pid, s.subtitling_type, s.composition_page_id, s.ancillary_page_id);
+										issubtitle=1;
 										program.subtitleStreams.push_back(s);
 									}
 									break;
@@ -349,6 +355,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 //												eDebug("add teletext subtitle %s PID %04x, page number %d, magazine number %d",
 //													s.language_code.c_str(), s.pid, s.teletext_page_number, s.teletext_magazine_number);
 												program.subtitleStreams.push_back(s);
+												issubtitle=1;
+											default:
 												break;
 											}
 										}
@@ -373,13 +381,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									break;
 								case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
 								{
-										/* libdvbsi++ doesn't yet support this descriptor type, so work around. */
-									if ((*desc)->getLength() < 4)
-										break;
-									unsigned char descr[6];
-									(*desc)->writeToBuffer(descr);
-									int format_identifier = (descr[2] << 24) | (descr[3] << 16) | (descr[4] << 8) | (descr[5]);
-									switch (format_identifier)
+									RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
+									switch (d->getFormatIdentifier())
 									{
 									case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
 										isaudio = 1;
@@ -394,15 +397,17 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 										audio.type = audioStream::atLPCM;
 										break;
 									case 0x56432d31: // == 'VC-1'
-										if (descr[6] == 0x01) // subdescriptor tag
+									{
+										const AdditionalIdentificationInfoVector *vec = d->getAdditionalIdentificationInfo();
+										if (vec->size() > 1 && (*vec)[1] == 0x01) // subdescriptor tag
 										{
-											if (descr[7] >= 0x90) // profile_level
+											if ((*vec)[2] >= 0x90) // profile_level
 												video.type = videoStream::vtVC1; // advanced profile
 											else
 												video.type = videoStream::vtVC1_SM; // simple main
 											isvideo = 1;
 										}
-										break;
+									}
 									default:
 										break;
 									}
@@ -422,39 +427,57 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							}
 							switch (tag)
 							{
-								case ISO_639_LANGUAGE_DESCRIPTOR:
-									if (!isvideo)
-									{
-										int cnt=0;
-										const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
-											/* use last language code */
-										for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i, ++cnt)
-										{
-											if (cnt == 0)
-												audio.language_code = (*i)->getIso639LanguageCode();
-											else
-												audio.language_code += "/" + (*i)->getIso639LanguageCode();
-										}
-									}
-									break;
-								case STREAM_IDENTIFIER_DESCRIPTOR:
-									audio.component_tag =
-										video.component_tag =
-											((StreamIdentifierDescriptor*)*desc)->getComponentTag();
-									break;
-								case CA_DESCRIPTOR:
+							case ISO_639_LANGUAGE_DESCRIPTOR:
+								if (!isvideo)
 								{
-									CaDescriptor *descr = (CaDescriptor*)(*desc);
-									program.caids.insert(descr->getCaSystemId());
-									break;
+									int cnt=0;
+									const Iso639LanguageList *languages = ((Iso639LanguageDescriptor*)*desc)->getIso639Languages();
+										/* use last language code */
+									for (Iso639LanguageConstIterator i(languages->begin()); i != languages->end(); ++i, ++cnt)
+									{
+										if (cnt == 0)
+											audio.language_code = (*i)->getIso639LanguageCode();
+										else
+											audio.language_code += "/" + (*i)->getIso639LanguageCode();
+									}
 								}
-								default:
-									break;
+								break;
+							case STREAM_IDENTIFIER_DESCRIPTOR:
+								audio.component_tag =
+									video.component_tag =
+										((StreamIdentifierDescriptor*)*desc)->getComponentTag();
+								break;
+							case CA_DESCRIPTOR:
+							{
+								CaDescriptor *descr = (CaDescriptor*)(*desc);
+								program.caids.insert(descr->getCaSystemId());
+								break;
+							}
+							default:
+								break;
 							}
 						}
+					default:
 						break;
 					}
-					if (isaudio)
+					if (issubtitle && (isaudio || isvideo))
+						eDebug("ambiguous streamtype for PID %04x detected.. forced as subtitle!", (*es)->getPid());
+					else if (isaudio && isvideo)
+						eDebug("ambiguous streamtype for PID %04x detected.. forced as video!", (*es)->getPid());
+					if (issubtitle)
+						continue;
+					else if (isvideo)
+					{
+						video.pid = (*es)->getPid();
+						if ( !program.videoStreams.empty() && video.pid == cached_vpid )
+						{
+							program.videoStreams.push_back(program.videoStreams[0]);
+							program.videoStreams[0] = video;
+						}
+						else
+							program.videoStreams.push_back(video);
+					}
+					else if (isaudio)
 					{
 						audio.pid = (*es)->getPid();
 
@@ -467,17 +490,6 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							first_ac3 = program.audioStreams.size();
 
 						program.audioStreams.push_back(audio);
-					}
-					else if (isvideo)
-					{
-						video.pid = (*es)->getPid();
-						if ( !program.videoStreams.empty() && video.pid == cached_vpid )
-						{
-							program.videoStreams.push_back(program.videoStreams[0]);
-							program.videoStreams[0] = video;
-						}
-						else
-							program.videoStreams.push_back(video);
 					}
 					else
 						continue;
@@ -493,7 +505,6 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				}
 			}
 			ret = 0;
-
 
 			/* finally some fixup: if our default audio stream is an MPEG audio stream, 
 			   and we have 'defaultac3' set, use the first available ac3 stream instead.

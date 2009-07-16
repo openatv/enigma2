@@ -175,7 +175,10 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 		res = m_service_name_sort == query.m_string;
 		break;
 	case eDVBChannelQuery::tProvider:
-		res = m_provider_name == query.m_string;
+		if (query.m_string == "Unknown" && m_provider_name.empty())
+			res = 1;
+		else
+			res = m_provider_name == query.m_string;
 		break;
 	case eDVBChannelQuery::tType:
 		res = ref.getServiceType() == query.m_int;

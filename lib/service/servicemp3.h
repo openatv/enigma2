@@ -201,6 +201,9 @@ private:
 	std::list<ePangoSubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 	void pushSubtitles();
+	void pullSubtitle();
+	int m_subs_to_pull;
+	eSingleLock m_subs_to_pull_lock;
 
 	gint m_aspect, m_width, m_height, m_framerate, m_progressive;
 	RESULT trickSeek(gdouble ratio);
