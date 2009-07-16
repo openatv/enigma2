@@ -188,6 +188,7 @@ void eServiceDVD::gotMessage(int /*what*/)
 #ifdef DDVD_SUPPORTS_GET_BLIT_DESTINATION
 				ddvd_get_blit_destination(m_ddvdconfig, &x_offset, &y_offset, &width, &height);
 				eDebug("values got from ddvd: %d %d %d %d", x_offset, y_offset, width, height);
+				y_offset = -y_offset;
 				width -= x_offset * 2;
 				height -= y_offset * 2;
 #endif
