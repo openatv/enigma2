@@ -115,8 +115,12 @@ void eSubtitleWidget::clearPage()
 void eSubtitleWidget::setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect pixmap_dest)
 {
 	m_pixmap = pixmap;
-	m_pixmap_dest = pixmap_dest;
+	m_pixmap_dest = pixmap_dest; /* this is in a virtual 720x576 cage */
 	
+		/* incoming "changed" regions are relative to the physical pixmap area, so they have to be scaled to the virtual pixmap area, then to the screen */
+	changed.scale(m_pixmap_dest.width(), 720, m_pixmap_dest.height(), 576);
+	changed.moveBy(ePoint(m_pixmap_dest.x(), m_pixmap_dest.y()));
+
 	changed.scale(size().width(), pixmap->size().width(), size().height(), pixmap->size().height());
 	
 	invalidate(changed);
