@@ -92,8 +92,9 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 	m_current_trick(0),
 	m_pump(eApp, 1)
 {
-	int aspect = DDVD_16_9; 
+	int aspect = DDVD_16_9;
 	int policy = DDVD_PAN_SCAN;
+	int policy2 = DDVD_PAN_SCAN;
 
 	char tmp[255];
 	ssize_t rd;
@@ -130,7 +131,22 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 		close(fd);
 	}
 
+#ifdef DDVD_SUPPORTS_16_10_SCALING
+ 	fd = open("/proc/stb/video/policy2", O_RDONLY);
+	if (fd > -1)
+	{
+		rd = read(fd, tmp, 255);
+		if (rd > 6 && !strncmp(tmp, "bestfit", 7))
+			policy2 = DDVD_JUSTSCALE;
+		else if (rd > 8 && !strncmp(tmp, "letterbox", 9))
+			policy2 = DDVD_LETTERBOX;
+		close(fd);
+	}
+	ddvd_set_video_ex(m_ddvdconfig, aspect, policy, policy2, DDVD_PAL /*unused*/);
+#else
 	ddvd_set_video(m_ddvdconfig, aspect, policy, DDVD_PAL /*unused*/);
+#warning please update libdreamdvd for 16:10 scaling support!
+#endif
 
 	CONNECT(m_sn->activated, eServiceDVD::gotMessage);
 	CONNECT(m_pump.recv_msg, eServiceDVD::gotThreadMessage);
