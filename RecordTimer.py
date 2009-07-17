@@ -207,7 +207,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def activate(self):
 		next_state = self.state + 1
 		self.log(5, "activating state %d" % next_state)
-		
+
 		if next_state == self.StatePrepared:
 			if self.tryPrepare():
 				self.log(6, "prepare ok, waiting for begin")
@@ -215,17 +215,23 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.next_activation = self.begin
 				self.backoff = 0
 				return True
-			
+
 			self.log(7, "prepare failed")
 			if self.first_try_prepare:
 				self.first_try_prepare = False
-				if not config.recording.asktozap.value:
-					self.log(8, "asking user to zap away")
-					Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
-				else: # zap without asking
-					self.log(9, "zap without asking")
-					Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
-					self.failureCB(True)
+				cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+				if cur_ref and not cur_ref.getPath():
+					if not config.recording.asktozap.value:
+						self.log(8, "asking user to zap away")
+						Notifications.AddNotificationWithCallback(self.failureCB, MessageBox, _("A timer failed to record!\nDisable TV and try again?\n"), timeout=20)
+					else: # zap without asking
+						self.log(9, "zap without asking")
+						Notifications.AddNotification(MessageBox, _("In order to record a timer, the TV was switched to the recording service!\n"), type=MessageBox.TYPE_INFO, timeout=20)
+						self.failureCB(True)
+				elif cur_ref:
+					self.log(8, "currently running service is not a live service.. so stop it makes no sense")
+				else:
+					self.log(8, "currently no service running... so we dont need to stop it")
 
 			self.do_backoff()
 			# retry
