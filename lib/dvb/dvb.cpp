@@ -1124,6 +1124,7 @@ eDVBChannel::eDVBChannel(eDVBResourceManager *mgr, eDVBAllocatedFrontend *fronte
 	m_frontend = frontend;
 
 	m_pvr_thread = 0;
+	m_pvr_fd_dst = -1;
 
 	m_skipmode_n = m_skipmode_m = m_skipmode_frames = 0;
 
@@ -1750,16 +1751,19 @@ RESULT eDVBChannel::playFile(const char *file)
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
 
-		/* (this codepath needs to be improved anyway.) */
-#if HAVE_DVB_API_VERSION < 3
-	m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
-#else
-	m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
-#endif
 	if (m_pvr_fd_dst < 0)
 	{
-		eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
-		return -ENODEV;
+		/* (this codepath needs to be improved anyway.) */
+#if HAVE_DVB_API_VERSION < 3
+		m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
+#else
+		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
+#endif
+		if (m_pvr_fd_dst < 0)
+		{
+			eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
+			return -ENODEV;
+		}
 	}
 
 	m_pvr_thread = new eDVBChannelFilePush();
@@ -1771,6 +1775,8 @@ RESULT eDVBChannel::playFile(const char *file)
 	{
 		delete m_pvr_thread;
 		m_pvr_thread = 0;
+		::close(m_pvr_fd_dst);
+		m_pvr_fd_dst = -1;
 		eDebug("can't open PVR file %s (%m)", file);
 		return -ENOENT;
 	}
@@ -1787,10 +1793,11 @@ void eDVBChannel::stopFile()
 	if (m_pvr_thread)
 	{
 		m_pvr_thread->stop();
-		::close(m_pvr_fd_dst);
 		delete m_pvr_thread;
 		m_pvr_thread = 0;
 	}
+	if (m_pvr_fd_dst >= 0)
+		::close(m_pvr_fd_dst);
 }
 
 void eDVBChannel::setCueSheet(eCueSheet *cuesheet)
