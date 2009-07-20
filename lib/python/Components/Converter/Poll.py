@@ -25,9 +25,12 @@ class Poll(object):
 		self.changed((self.CHANGED_POLL,))
 
 	def doSuspend(self, suspended):
-		self.enabled = not suspended
-		if not suspended:
-			self.poll()
+		if self.__enabled:
+			if suspended:
+				self.__poll_timer.stop()
+			else:
+				self.poll()
+				self.poll_enabled = True
 
 	def destroy(self):
 		self.__poll_timer.callback.remove(self.poll)
