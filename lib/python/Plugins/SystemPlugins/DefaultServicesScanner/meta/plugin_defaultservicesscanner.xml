@@ -1,0 +1,28 @@
+<default>
+	  <prerequisites>
+                    <tag type="SAT" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Dream Multimedia</author>
+                    <name>DefaultServicesScanner</name>
+                    <packagename>enigma2-plugin-systemplugins-defaultservicesscanner</packagename>
+                    <shortdescription>Scans default lamedbs sorted by satellite with a connected dish positioner.</shortdescription>
+                    <description>With the DefaultServicesScanner extension you can scan default lamedbs sorted by satellite with a connected dish positioner.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/defaultservicescanner.jpg" />
+          </info>
+          <info language="de">
+                    <author>Dream Multimedia</author>
+                    <name>DefaultServicesScanner</name>
+                    <packagename>enigma2-plugin-systemplugins-defaultservicesscanner</packagename>
+                    <shortdescription>Standard Sendersuche nach Satellit mit einem Rotor.</shortdescription>
+                    <description>Mit der DefaultServicesScanner Erweiterung können Sie eine standard Sendersuche nach Satellit mit einem angeschlossenen Rotor durchführen.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/defaultservicescanner.jpg" />
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-defaultservicesscanner" />
+	  </files>
+
+</default>

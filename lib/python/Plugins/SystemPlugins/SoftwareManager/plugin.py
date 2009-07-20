@@ -326,7 +326,6 @@ class IPKGSource(Screen):
 		desk = getDesktop(0)
 		x= int(desk.size().width())
 		y= int(desk.size().height())
-		#print "[IPKGSource] mainscreen: current desktop size: %dx%d" % (x,y)
 
 		self["closetext"] = Label(_("Cancel"))
 		self["edittext"] = Label(_("Save"))
@@ -397,7 +396,6 @@ class IPKGSource(Screen):
 		self["text"].deleteBackward()
 	
 	def keyNumberGlobal(self, number):
-		print "pressed", number
 		self["text"].number(number)
 
 
@@ -480,11 +478,11 @@ class PacketManager(Screen):
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)	
 			elif status == 'error':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)				
 
@@ -654,21 +652,20 @@ class PluginManager(Screen, DreamInfoHandler):
 	lastDownloadDate = None
 
 	skin = """
-		<screen position="80,90" size="560,420" title="Plugin manager..." >
-			<widget source="list" render="Listbox" position="5,10" size="550,365" scrollbarMode="showOnDemand">
+		<screen position="80,80" size="560,440" title="Plugin manager..." >
+			<widget source="list" render="Listbox" position="5,5" size="550,360" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 				{"templates":
-					{"default": (52,[
-							MultiContentEntryText(pos = (30, 1), size = (500, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (30, 26), size = (500, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (480, 2), size = (48, 48), png = 5), # index 5 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 50), size = (550, 2), png = 6), # index 6 is the div pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 10), size = (25, 25), png = 7), # index 7 is the selected pixmap
+					{"default": (51,[
+							MultiContentEntryText(pos = (30, 1), size = (470, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (30, 25), size = (470, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
+							MultiContentEntryPixmapAlphaTest(pos = (475, 0), size = (48, 48), png = 5), # index 5 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (550, 2), png = 6), # index 6 is the div pixmap
 						]),
-					"category": (42,[
-							MultiContentEntryText(pos = (30, 0), size = (500, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (30, 26), size = (500, 14), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (0, 40), size = (550, 2), png = 3), # index 6 is the div pixmap
+					"category": (40,[
+							MultiContentEntryText(pos = (30, 0), size = (500, 23), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (30, 24), size = (500, 14), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the description
+							MultiContentEntryPixmapAlphaTest(pos = (0, 38), size = (550, 2), png = 3), # index 3 is the div pixmap
 						])
 					},
 					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
@@ -676,15 +673,15 @@ class PluginManager(Screen, DreamInfoHandler):
 				}
 				</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="0,380" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="installtext" position="140,380" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="selecttext" position="280,380" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="viewtext" position="420,380" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="closetext" position="0,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="installtext" position="140,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="viewtext" position="280,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="bluetext" position="420,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<widget name="status" position="10,410" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session, plugin_path, args = None):
@@ -701,14 +698,15 @@ class PluginManager(Screen, DreamInfoHandler):
 		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion, language = self.language)
 		self.directory = resolveFilename(SCOPE_METADIR)
 
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions" ],
 		{
-			"ok": self.go,
+			"ok": self.handleCurrent,
 			"back": self.exit,
 			"red": self.exit,
-			"green": self.installPlugins,
-			"yellow": self.changeSelectionState,
-			"blue": self.go,
+			"green": self.handleCurrent,
+			"yellow": self.handleSelected,
+			"showEventInfo": self.handleSelected,
+			"displayHelp": self.handleHelp,
 		}, -1)
 
 		self.list = []
@@ -718,12 +716,15 @@ class PluginManager(Screen, DreamInfoHandler):
 		self["list"] = List(self.list)
 		self["closetext"] = Label(_("Close"))
 		self["installtext"] = Label()
-		self["selecttext"] = Label()
 		self["viewtext"] = Label()
+		self["bluetext"] = Label()
+		self["status"] = Label()
 
 		self.list_updating = True
 		self.packetlist = []
 		self.installed_packetlist = {}
+		self.available_packetlist = []
+		self.available_updates = 0
 		self.Console = Console()
 		self.cmdList = []
 		self.oktext = _("\nAfter pressing OK, please wait!")
@@ -735,10 +736,12 @@ class PluginManager(Screen, DreamInfoHandler):
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 
 		self["installtext"].hide()
-		self["selecttext"].hide()
+		self["bluetext"].hide()
 		self["viewtext"].hide()
+		self["status"].hide()
 		self.currList = ""
 		self.currentSelectedTag = None
+		self.currentSelectedIndex = None
 
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
@@ -752,40 +755,54 @@ class PluginManager(Screen, DreamInfoHandler):
 			self.currentSelectedTag = None
 			self["list"].style = "category"
 			self['list'].setList(self.categoryList)
+			self["list"].setIndex(self.currentSelectedIndex)
+			self["list"].updateList(self.categoryList)
+			self.selectionChanged()
 		else:
 			self.ipkg.stop()
 			if self.Console is not None:
 				if len(self.Console.appContainers):
 					for name in self.Console.appContainers.keys():
 						self.Console.kill(name)
-			self.close()
+			if len(self.cmdList) and len(self.selectedFiles):
+				self.session.openWithCallback(self.runInstall, PluginManagerInfo, self.skin_path, self.cmdList)
+			elif not len(self.cmdList) and self.available_updates > 0:
+				self.cmdList = []
+				self.cmdList.append((IpkgComponent.CMD_UPGRADE, { "test_only": False }))
+				self.session.openWithCallback(self.runInstall, PluginManagerInfo, self.skin_path, self.cmdList)
+			else:
+				self.close()
 
-	def reload(self):
-		if (os_path.exists(self.cache_file) == True):
-			remove(self.cache_file)
-			self.list_updating = True
-			self.rebuildList()
+	def handleHelp(self):
+		if self.currList != "status":
+			self.session.open(PluginManagerHelp, self.skin_path)
+
+	def runInstall(self, result):
+		if result:
+			self.session.openWithCallback(self.runExecuteFinished, Ipkg, cmdList = self.cmdList)
+		else:
+			self.close()
 
 	def setState(self,status = None):
 		if status:
 			self.currList = "status"
 			self.statuslist = []
 			self["installtext"].hide()
-			self["selecttext"].hide()
+			self["bluetext"].hide()
 			self["viewtext"].hide()
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'', '', statuspng, divpng, None, '' ))
 				self["list"].style = "default"
 				self['list'].setList(self.statuslist)
 			elif status == 'sync':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Searching for new installed or removed packages. Please wait..." ),'', '', statuspng, divpng, None, '' ))
 				self["list"].style = "default"
 				self['list'].setList(self.statuslist)
 			elif status == 'error':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'', '', statuspng, divpng, None, '' ))
 				self["list"].style = "default"
 				self['list'].setList(self.statuslist)
@@ -795,63 +812,49 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def selectionChanged(self):
 		current = self["list"].getCurrent()
+		self["status"].hide()
 		if current:
 			if self.currList == "packages":
 				self["closetext"].setText(_("Back"))
-				self["closetext"].show()
-				self["installtext"].setText(_("Install/\nRemove"))
+				if current[4] == 'installed':
+					self["installtext"].setText(_("Remove"))
+				elif current[4] == 'installable':
+					self["installtext"].setText(_("Install"))
+				elif current[4] == 'remove':
+					self["installtext"].setText(_("Undo\nRemove"))
+				elif current[4] == 'install':
+					self["installtext"].setText(_("Undo\nInstall"))
 				self["installtext"].show()
-				self["viewtext"].setText(_("Details"))
+				self["viewtext"].setText(_("View details"))
 				self["viewtext"].show()
-				if current[8] == False:
-					self["selecttext"].setText(_("Select"))
-				else:
-					self["selecttext"].setText(_("Deselect"))
-				self["selecttext"].show()
+				self["bluetext"].hide()
+				if len(self.selectedFiles) == 0 and self.available_updates is not 0:
+					self["status"].setText(_("There are at least ") + str(self.available_updates) + _(" updates available."))
+					self["status"].show()
+				elif len(self.selectedFiles) is not 0:
+					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
+					self["status"].show()
 			elif self.currList == "category":
 				self["closetext"].setText(_("Close"))
-				self["closetext"].show()
 				self["installtext"].hide()
-				self["selecttext"].hide()
-				self["viewtext"].setText(_("View"))
-				self["viewtext"].show()
+				self["bluetext"].hide()
+				if len(self.selectedFiles) == 0 and self.available_updates is not 0:
+					self["status"].setText(_("There are at least ") + str(self.available_updates) + _(" updates available."))
+					self["status"].show()
+					self["viewtext"].setText(_("Update"))
+					self["viewtext"].show()
+				elif len(self.selectedFiles) is not 0:
+					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
+					self["status"].show()
+					self["viewtext"].setText(_("Process"))
+					self["viewtext"].show()
+			self["closetext"].show()
 
-	def changeSelectionState(self):
-		current = self["list"].getCurrent()
-		if current:
-			if current[8] is not '':
-				idx = self["list"].getIndex()
-				count = 0
-				newList = []
-				for x in self.list:
-					detailsFile = x[1]
-					if idx == count:
-						if x[8] == True:
-							SelectState = False
-							for entry in self.selectedFiles:
-								if entry[0] == detailsFile:
-									self.selectedFiles.remove(entry)
-						else:
-							SelectState = True
-							alreadyinList = False
-							for entry in self.selectedFiles:
-								if entry[0] == detailsFile:
-									alreadyinList = True
-							if not alreadyinList:
-								self.selectedFiles.append((detailsFile,x[4],x[3]))
-						newList.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), x[3].strip(), x[4].strip(), selected = SelectState))
-					else:
-						newList.append(x)
-					count += 1
-				old_index = self["list"].index
-				self.list = newList
-				self["list"].disable_callbacks = True
-				self["list"].list = self.list
-				self["list"].disable_callbacks = False
-				self["list"].setList(self.list)
-				self["list"].setIndex(old_index)
-				self["list"].updateList(self.list)
-				self.selectionChanged()
+	def getSelectionState(self, detailsFile):
+		for entry in self.selectedFiles:
+			if entry[0] == detailsFile:
+				return True
+		return False
 
 	def rebuildList(self):
 		self.setState('update')
@@ -862,22 +865,38 @@ class PluginManager(Screen, DreamInfoHandler):
 			self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
 		else:
 			print "last update time < 1h"
-			self.startInstallMetaPackage()
+			self.startIpkgList()
 
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
 			self.list_updating = False
 			self.setState('error')
 		elif event == IpkgComponent.EVENT_DONE:
-			self.startInstallMetaPackage()
+			self.startIpkgList()
 		pass
+
+	def startIpkgList(self):
+		if self.list_updating:
+			if not self.Console:
+				self.Console = Console()
+			cmd = "ipkg list"
+			self.Console.ePopen(cmd, self.IpkgList_Finished)
+
+	def IpkgList_Finished(self, result, retval, extra_args = None):
+		if len(result):
+			self.available_packetlist = []
+			for x in result.splitlines():
+				split = x.split(' - ')
+				if not any(split[0].strip().endswith(x) for x in self.unwanted_extensions):
+					self.available_packetlist.append([split[0].strip(), split[1].strip(), split[2].strip()])
+		self.startInstallMetaPackage()
 
 	def startInstallMetaPackage(self):
 		if self.list_updating:
 			self.list_updating = False
 			if not self.Console:
 				self.Console = Console()
-			cmd = "ipkg list" ###  will change into "ipkg install enigma2-plugins-meta"
+			cmd = "ipkg install enigma2-meta" #dummy,will change probably"
 			self.Console.ePopen(cmd, self.InstallMetaPackage_Finished)
 
 	def InstallMetaPackage_Finished(self, result, retval, extra_args = None):
@@ -896,26 +915,71 @@ class PluginManager(Screen, DreamInfoHandler):
 				split = x.split(' - ')
 				if not any(split[0].strip().endswith(x) for x in self.unwanted_extensions):
 					self.installed_packetlist[split[0].strip()] = split[1].strip()
+		self.countUpdates()
 		if self.currentSelectedTag is None:
 			self.buildCategoryList()
 		else:
 			self.buildPacketList(self.currentSelectedTag)
 
-	def go(self, returnValue = None):
+	def countUpdates(self):
+		self.available_updates = 0
+		for package in self.packagesIndexlist[:]:
+			attributes = package[0]["attributes"]
+			packagename = attributes["packagename"]
+			for x in self.available_packetlist:
+				if x[0].strip() == packagename:
+					if self.installed_packetlist.has_key(packagename):
+						if self.installed_packetlist[packagename] != x[1].strip():
+							self.available_updates +=1
+
+	def handleCurrent(self):
 		current = self["list"].getCurrent()
 		if current:
 			if self.currList == "category":
+				self.currentSelectedIndex = self["list"].index
 				selectedTag = current[2]
 				self.buildPacketList(selectedTag)
 			elif self.currList == "packages":
-				#self.installPlugins()
-				#uncomment the above line and comment the bottom lines to have install functionality on OK
-				if current[8] is not '':
+				if current[7] is not '':
+					idx = self["list"].getIndex()
+					detailsFile = self.list[idx][1]
+					if self.list[idx][7] == True:
+						for entry in self.selectedFiles:
+							if entry[0] == detailsFile:
+								self.selectedFiles.remove(entry)
+					else:
+						alreadyinList = False
+						for entry in self.selectedFiles:
+							if entry[0] == detailsFile:
+								alreadyinList = True
+						if not alreadyinList:
+							self.selectedFiles.append((detailsFile,current[4],current[3]))
+					if current[4] == 'installed':
+						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'remove', True)
+					elif current[4] == 'installable':
+						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'install', True)
+					elif current[4] == 'remove':
+						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'installed', False)
+					elif current[4] == 'install':
+						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'installable',False)
+					self["list"].setList(self.list)
+					self["list"].setIndex(idx)
+					self["list"].updateList(self.list)
+					self.selectionChanged()
+
+	def handleSelected(self):
+		current = self["list"].getCurrent()
+		if current:
+			if self.currList == "packages":
+				if current[7] is not '':
 					detailsfile = self.directory[0] + "/" + current[1]
 					if (os_path.exists(detailsfile) == True):
 						self.session.openWithCallback(self.detailsClosed, PluginDetails, self.skin_path, current)
 					else:
 						self.session.open(MessageBox, _("Sorry, no Details available!"), MessageBox.TYPE_INFO)
+			elif self.currList == "category":
+				self.installPlugins()
+
 	def detailsClosed(self, result):
 		if result:
 			if not self.Console:
@@ -928,44 +992,52 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def buildEntryComponent(self, name, details, description, packagename, state, selected = False):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
-		if selected is False:
-			selectedicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_off.png"))
-		else:
-			selectedicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_on.png"))
-
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, details, description, packagename, state, installedpng, divpng, selectedicon, selected))
-		else:
+			return((name, details, description, packagename, state, installedpng, divpng, selected))
+		elif state == 'installable':
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
-			return((name, details, description, packagename, state, installablepng, divpng, selectedicon, selected))
+			return((name, details, description, packagename, state, installablepng, divpng, selected))
+		elif state == 'remove':
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
+			return((name, details, description, packagename, state, removepng, divpng, selected))
+		elif state == 'install':
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/install.png"))
+			return((name, details, description, packagename, state, installpng, divpng, selected))
 
 	def buildPacketList(self, categorytag = None):
 		if categorytag is not None:
 			self.currList = "packages"
 			self.currentSelectedTag = categorytag
-			#print self.packagesIndexlist
 			self.packetlist = []
 			for package in self.packagesIndexlist[:]:
-				#print "package--->",package
 				prerequisites = package[0]["prerequisites"]
-				#print "prerequisite",prerequisites
 				if prerequisites.has_key("tag"):
 					for foundtag in prerequisites["tag"]:
 						if categorytag == foundtag:
 							attributes = package[0]["attributes"]
-							#print "attributes---->",attributes
-							self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
+							if attributes.has_key("packagetype"):
+								if attributes["packagetype"] == "internal":
+									continue
+								self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
+							else:
+								self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
 			self.list = []
-			#print "self.packetlist---->",self.packetlist
 			for x in self.packetlist:
 				status = ""
+				selectState = self.getSelectionState(x[1].strip())
 				if self.installed_packetlist.has_key(x[3].strip()):
-					status = "installed"
-					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), x[3].strip(), status, selected = False))
+					if selectState == True:
+						status = "remove"
+					else:
+						status = "installed"
+					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), x[3].strip(), status, selected = selectState))
 				else:
-					status = "installable"
-					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), x[3].strip(), status, selected = False))
+					if selectState == True:
+						status = "install"
+					else:
+						status = "installable"
+					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), x[3].strip(), status, selected = selectState))
 			if len(self.list):
 				self.list.sort(key=lambda x: x[0])
 			self["list"].style = "default"
@@ -975,16 +1047,13 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def buildCategoryList(self):
 		self.currList = "category"
-		#print self.packagesIndexlist
 		self.categories = []
 		self.categoryList = []
 		for package in self.packagesIndexlist[:]:
-			#print "package--->",package
 			prerequisites = package[0]["prerequisites"]
-			#print "prerequisite",prerequisites
 			if prerequisites.has_key("tag"):
 				for foundtag in prerequisites["tag"]:
-					#print "found tag----",foundtag
+					attributes = package[0]["attributes"]
 					if foundtag not in self.categories:
 						self.categories.append(foundtag)
 						self.categoryList.append(self.buildCategoryComponent(foundtag))
@@ -1026,12 +1095,12 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def installPlugins(self):
 		self.cmdList = []
+		if self.available_updates > 0:
+			self.cmdList.append((IpkgComponent.CMD_UPGRADE, { "test_only": False }))
 		if self.selectedFiles and len(self.selectedFiles):
 			for plugin in self.selectedFiles:
-				#print "processing Plugin-->",plugin
 				detailsfile = self.directory[0] + "/" + plugin[0]
 				if (os_path.exists(detailsfile) == True):
-					#print "plugin[1]-->",plugin[1]
 					self.fillPackageDetails(plugin[0])
 					self.package = self.packageDetails[0]
 					if self.package[0].has_key("attributes"):
@@ -1041,53 +1110,22 @@ class PluginManager(Screen, DreamInfoHandler):
 					if plugin[1] == 'installed':
 						if self.packagefiles:
 							for package in self.packagefiles[:]:
-								#print "removing package: ",package["name"]
 								self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": package["name"] }))
+						else:
+							self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": plugin[2] }))
 					else:
 						if self.packagefiles:
 							for package in self.packagefiles[:]:
-								#print "adding package: ",package["name"]
 								self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": package["name"] }))
+						else:
+							self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": plugin[2] }))
 				else:
 					if plugin[1] == 'installed':
-						#print "removing package: ",plugin[2]
 						self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": plugin[2] }))
 					else:
-						#print "adding package: ",plugin[2]
 						self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": plugin[2] }))
-		else:
-			current = self["list"].getCurrent()
-			if current:
-				if current[8] is not '':
-					#print "current[4]-->",current[4]
-					detailsfile = self.directory[0] + "/" + current[1]
-					if (os_path.exists(detailsfile) == True):
-						self.fillPackageDetails(current[1])
-						self.package = self.packageDetails[0]
-						if self.package[0].has_key("attributes"):
-							self.attributes = self.package[0]["attributes"]
-						if self.attributes.has_key("package"):
-							self.packagefiles = self.attributes["package"]
-						if current[4] == 'installed':
-							if self.packagefiles:
-								for package in self.packagefiles[:]:
-									#print "removing package: ",package["name"]
-									self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": package["name"] }))
-						else:
-							if self.packagefiles:
-								for package in self.packagefiles[:]:
-									#print "adding package: ",package["name"]
-									self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": package["name"] }))
-					else:
-						if current[4] == 'installed':
-							#print "removing package: ",current[0]
-							self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": current[3] }))
-						else:
-							#print "adding package: ",current[0]
-							self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": current[3] }))
 		if len(self.cmdList):
-			print self.cmdList
-			self.session.openWithCallback(self.runExecute, MessageBox, _("Do you want to continue installing or removing selected plugins?\n") + self.oktext)
+			self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.skin_path, self.cmdList)
 
 	def runExecute(self, result):
 		if result:
@@ -1107,6 +1145,172 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def reloadPluginlist(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
+
+class PluginManagerInfo(Screen):
+	skin = """
+		<screen position="80,80" size="560,450" title="Plugin manager job information..." >
+			<widget name="status" position="5,5" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,35" zPosition="10" size="550,2" transparent="1" alphatest="on" />
+			<widget source="list" render="Listbox" position="5,45" size="550,360" scrollbarMode="showOnDemand" selectionDisabled="1">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (50, 1), size = (150, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (50, 25), size = (540, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
+							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (550, 2), png = 3), # index 3 is the div pixmap
+						],
+					"fonts": [gFont("Regular", 22),gFont("Regular", 18)],
+					"itemHeight": 52
+					}
+				</convert>
+			</widget>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,410" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="closetext" position="0,410" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,410" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="continuetext" position="140,410" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		</screen>"""
+
+	def __init__(self, session, plugin_path, cmdlist = None):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skin_path = plugin_path
+		self.cmdlist = cmdlist
+
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		{
+			"ok": self.process,
+			"back": self.exit,
+			"red": self.exit,
+			"green": self.process,
+		}, -1)
+
+		self.list = []
+		self["list"] = List(self.list)
+		self["closetext"] = Label(_("Cancel"))
+		self["continuetext"] = Label(_("Continue"))
+		self["status"] = Label(_("Following tasks will be done after you press continue."))
+
+		self.onShown.append(self.setWindowTitle)
+		self.onLayoutFinish.append(self.rebuildList)
+
+	def setWindowTitle(self):
+		self.setTitle(_("Plugin manager process information..."))
+
+	def rebuildList(self):
+		self.list = []
+		if self.cmdlist is not None:
+			for entry in self.cmdlist:
+				cmd = entry[0]
+				if cmd == 0:
+					action = 'install'
+				elif cmd == 2:
+					action = 'remove'
+				else:
+					action = 'upgrade'
+
+				args = entry[1]
+				if cmd == 0:
+					info = args['package']
+				elif cmd == 2:
+					info = args['package']
+				else:
+					info = _("Dreambox software because updates are available.")
+
+				self.list.append(self.buildEntryComponent(action,info))
+			self['list'].setList(self.list)
+			self['list'].updateList(self.list)
+
+	def buildEntryComponent(self, action,info):
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+		upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
+		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/install.png"))
+		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
+		if action == 'install':
+			return(( _('Installing'), info, installpng, divpng))
+		elif action == 'remove':
+			return(( _('Remove'), info, removepng, divpng))
+		else:
+			return(( _('Upgrade'), info, upgradepng, divpng))
+
+	def exit(self):
+		self.close(False)
+
+	def process(self):
+		self.close(True)
+
+
+class PluginManagerHelp(Screen):
+	skin = """
+		<screen position="80,80" size="560,450" title="Plugin manager help..." >
+			<widget name="status" position="5,5" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,35" zPosition="10" size="550,2" transparent="1" alphatest="on" />
+			<widget source="list" render="Listbox" position="5,45" size="550,360" scrollbarMode="showOnDemand" selectionDisabled="1">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (50, 1), size = (540, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (50, 25), size = (540, 24), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
+							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
+							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (550, 2), png = 3), # index 3 is the div pixmap
+						],
+					"fonts": [gFont("Regular", 22),gFont("Regular", 18)],
+					"itemHeight": 52
+					}
+				</convert>
+			</widget>
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,410" zPosition="2" size="140,40" transparent="1" alphatest="on" />
+			<widget name="closetext" position="0,410" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		</screen>"""
+
+	def __init__(self, session, plugin_path):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skin_path = plugin_path
+
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
+		{
+			"back": self.exit,
+			"red": self.exit,
+		}, -1)
+
+		self.list = []
+		self["list"] = List(self.list)
+		self["closetext"] = Label(_("Close"))
+		self["status"] = Label(_("Here is a small overview of the available icon states."))
+
+		self.onShown.append(self.setWindowTitle)
+		self.onLayoutFinish.append(self.rebuildList)
+
+	def setWindowTitle(self):
+		self.setTitle(_("Plugin manager help..."))
+
+	def rebuildList(self):
+		self.list = []
+		self.list.append(self.buildEntryComponent('install'))
+		self.list.append(self.buildEntryComponent('installable'))
+		self.list.append(self.buildEntryComponent('installed'))
+		self.list.append(self.buildEntryComponent('remove'))
+		self['list'].setList(self.list)
+		self['list'].updateList(self.list)
+
+	def buildEntryComponent(self, state):
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
+		installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
+		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/install.png"))
+
+		if state == 'installed':
+			return(( _('This plugin is installed.'), _('You can remove this plugin.'), installedpng, divpng))
+		elif state == 'installable':
+			return(( _('This plugin is not installed.'), _('You can install this plugin.'), installablepng, divpng))
+		elif state == 'install':
+			return(( _('This plugin will be installed.'), _('You can cancel the installation.'), installpng, divpng))
+		elif state == 'remove':
+			return(( _('This plugin will be removed.'), _('You can cancel the removal.'), removepng, divpng))
+
+	def exit(self):
+		self.close()
 
 
 class PluginDetails(Screen, DreamInfoHandler):
@@ -1267,14 +1471,12 @@ class PluginDetails(Screen, DreamInfoHandler):
 		if self.pluginstate == 'installed':
 			if self.packagefiles:
 				for package in self.packagefiles[:]:
-					#print "removing packagefile: ",package["name"]
 					self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": package["name"] }))
 					if len(self.cmdList):
 						self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n") + self.pluginname + "\n" + self.oktext)
 		else:
 			if self.packagefiles:
 				for package in self.packagefiles[:]:
-					#print "adding packagefile: ",package["name"]
 					self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": package["name"] }))
 					if len(self.cmdList):
 						self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + self.pluginname + "\n" + self.oktext)

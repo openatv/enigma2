@@ -1,0 +1,32 @@
+<default>
+	  <prerequisites>
+                    <hardware type="dm8000" />
+                    <tag type="CI" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Dream Multimedia</author>
+                    <name>CommonInterfaceAssignment</name>
+                    <packagename>enigma2-plugin-systemplugins-commoninterfaceassignment</packagename>
+                    <shortdescription>Assigning providers/services/caids to a dedicated CI module</shortdescription>
+                    <description>With the CommonInterfaceAssignment extension it is possible to use different CI modules
+                    in your Dreambox and assign to each of them dedicated providers/services or caids.\n
+                    So it is then possible to watch a scrambled service while recording another one.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/ciassignment.jpg" />
+          </info>
+          <info language="de">
+                    <author>Dream Multimedia</author>
+                    <name>CommonInterfaceAssignment</name>
+                    <packagename>enigma2-plugin-systemplugins-commoninterfaceassignment</packagename>
+                    <shortdescription>Zuweisen von Providern/Services/CAIDs an ein CI Modul</shortdescription>
+                    <description>Mit der CommonInterfaceAssignment Erweiterung ist es möglich jedem CI Modul bestimmte Provider/Services/CAIDs zuzuweisen.\n
+                    So ist es möglich mit einem CI einen Sender aufzunehmen\n
+                    und mit einem anderen einen Sender zu schauen.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/ciassignment.jpg" />
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-commoninterfaceassignment" />
+	  </files>
+</default>

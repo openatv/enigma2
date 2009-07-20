@@ -1,0 +1,30 @@
+<default>
+	  <prerequisites>
+                    <tag type="SAT" />
+                    <tag type="Software" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Dream Multimedia</author>
+                    <name>Satfinder</name>
+                    <packagename>enigma2-plugin-systemplugins-satfinder</packagename>
+                    <shortdescription>Satfinder helps you to align your dish.</shortdescription>
+                    <description>The Satfinder extension helps you to align your dish.\
+                    It shows you informations about signal rate and errors.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/satfinder.jpg" />
+          </info>
+          <info language="de">
+                    <author>Dream Multimedia</author>
+                    <name>Satfinder</name>
+                    <packagename>enigma2-plugin-systemplugins-satfinder</packagename>
+                    <shortdescription>Satfinder unterstützt Sie beim ausrichten ihrer Satellitenanlage.</shortdescription>
+                    <description>Die Satfinder-Erweiterung unterstützt Sie beim Ausrichten ihrer Satellitenanlage.\n
+                    Es zeigt Ihnen Daten wie Signalstärke und Fehlerrate an.
+                    </description>
+                    <screenshot src="http://www.dreamboxupdate.com/preview/satfinder.jpg" />
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-satfinder" />
+	</files>
+
+</default>

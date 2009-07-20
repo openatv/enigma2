@@ -131,7 +131,6 @@ lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
-lib/python/Plugins/Extensions/FileManager/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile
 lib/python/Plugins/Extensions/MediaScanner/Makefile
 lib/python/Plugins/Extensions/MediaPlayer/Makefile
@@ -154,3 +153,4 @@ enigma2.pc
 ])
 
 #lib/python/Plugins/Extensions/SimpleRSS/Makefile
+#lib/python/Plugins/Extensions/FileManager/Makefile
