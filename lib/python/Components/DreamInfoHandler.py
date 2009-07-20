@@ -94,6 +94,8 @@ class InfoHandler(xml.sax.ContentHandler):
 				self.attributes["name"] = str(attrs["name"].encode("utf-8"))
 			if attrs.has_key("packagename"):
 				self.attributes["packagename"] = str(attrs["packagename"].encode("utf-8"))
+			if attrs.has_key("packagetype"):
+				self.attributes["packagetype"] = str(attrs["packagetype"].encode("utf-8"))
 			if attrs.has_key("shortdescription"):
 				self.attributes["shortdescription"] = str(attrs["shortdescription"].encode("utf-8"))
 

@@ -1,0 +1,24 @@
+<default>
+	  <prerequisites>
+                    <tag type="Multimedia" />
+                    <tag type="System" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Dream Multimedia</author>
+                    <name>MediaScanner</name>
+                    <packagename>enigma2-plugin-extensions-mediascanner</packagename>
+                    <shortdescription>MediaScanner scans devices for playable media files.</shortdescription>
+                    <description>MediaScanner scans devices for playable media files and displays a menu with possible actions like viewing pictures or playing movies.</description>
+          </info>
+          <info language="de">
+                    <author>Dream Multimedia</author>
+                    <name>MediaScanner</name>
+                    <packagename>enigma2-plugin-extensions-mediascanner</packagename>
+                    <shortdescription>MediaScanner durchsucht Geräte nach Mediendateien.</shortdescription>
+                    <description>MediaScanner durchsucht Geräte nach Mediendateien  und bietet Ihnen die dazu passenden Aktionen an wie z.B. Bilder betrachten oder Videos abspielen.
+                    </description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-extensions-mediascanner" />
+	  </files>
+</default>
