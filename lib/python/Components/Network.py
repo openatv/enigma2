@@ -46,7 +46,7 @@ class Network:
 		for line in result:
 			try:
 				device = devicesPattern.search(line).group()
-				if device == 'wifi0':
+				if device in ('wifi0', 'wmaster0'):
 					continue
 				self.getDataForInterface(device, callback)
 			except AttributeError:
