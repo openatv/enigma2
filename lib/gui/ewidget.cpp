@@ -337,7 +337,7 @@ int eWidget::event(int event, void *data, void *data2)
 		} else
 		{
 			eWidget *w = this;
-					while (w && !w->m_have_background_color)
+			while (w && !w->m_have_background_color)
 				w = w->m_parent;
 
 			if (w)
