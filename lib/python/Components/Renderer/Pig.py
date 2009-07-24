@@ -2,7 +2,7 @@
 ## P(icture)i(n)g(raphics) renderer
 ##
 from Renderer import Renderer
-from enigma import eVideoWidget, eSize, ePoint
+from enigma import eVideoWidget, eSize, ePoint, getDesktop
 
 class Pig(Renderer):
 	def __init__(self):
@@ -12,7 +12,9 @@ class Pig(Renderer):
 	GUI_WIDGET = eVideoWidget
 
 	def postWidgetCreate(self, instance):
+		desk = getDesktop(0)
 		instance.setDecoder(0)
+		instance.setFBSize(desk.size())
 
 	def applySkin(self, desktop, parent):
 		ret = Renderer.applySkin(self, desktop, parent)
@@ -20,10 +22,6 @@ class Pig(Renderer):
 			self.Position = self.instance.position() # fixme, scaling!
 			self.Size = self.instance.size()
 		return ret
-
-	def preWidgetRemove(self, instance):
-		instance.resize(eSize(720,576))
-		instance.move(ePoint(0,0))
 
 	def onShow(self):
 		if self.instance:
