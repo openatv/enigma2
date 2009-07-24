@@ -1188,10 +1188,11 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 		uint16_t program_number = ref.getServiceID().get();
 		std::map<uint16_t, uint8_t>::iterator it =
 			running_services.find(program_number);
+		bool sendEmpty = caids.size() == 1 && caids[0] == 0xFFFF;
 
 		if ( it != running_services.end() &&
 			(pmt_version == it->second) &&
-			!(caids.size() == 1 && caids[0] == 0xFFFF) )
+			!sendEmpty )
 		{
 			eDebug("[eDVBCISlot] dont send self capmt version twice");
 			return -1;
@@ -1216,7 +1217,7 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 				capmt.append(*i++);
 			}
 			capmt.writeToBuffer(raw_data);
-#if 1
+
 // begin calc capmt length
 			int wp=0;
 			int hlen;
@@ -1237,18 +1238,21 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 				hlen = 4;
 			}
 // end calc capmt length
-//			eDebug("ca_manager %p dump capmt:", ca_manager);
-//			for(int i=0;i<wp;i++)
-//				eDebugNoNewLine("%02x ", raw_data[i]);
-//			eDebug("");
-#endif
-			if (caids.size() == 1 && caids[0] == 0xFFFF)
+
+			if (sendEmpty)
 			{
 //				eDebugNoNewLine("SEND EMPTY CAPMT.. old version is %02x", raw_data[hlen+3]);
+				if (sendEmpty && running_services.size() == 1)  // check if this is the capmt for the last running service
+					raw_data[hlen] = 0x03; // send only instead of update... because of strange effects with alphacrypt
 				raw_data[hlen+3] &= ~0x3E;
 				raw_data[hlen+3] |= ((pmt_version+1) & 0x1F) << 1;
 //				eDebug(" new version is %02x", raw_data[hlen+3]);
 			}
+
+//			eDebug("ca_manager %p dump capmt:", ca_manager);
+//			for(int i=0;i<wp;i++)
+//				eDebugNoNewLine("%02x ", raw_data[i]);
+//			eDebug("");
 
 			//dont need tag and lenfield
 			ca_manager->sendCAPMT(raw_data + hlen, wp - hlen);
