@@ -243,17 +243,17 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int obj
 		bitstream_init(&bit, data, 4);
 		for ( int i=0; i < 4; ++i )
 			bitstream_get(&bit);
-		break;
+		return 2 + 1;
 	case 0x21:  // ignore 2 -> 8bit map table
 		bitstream_init(&bit, data, 8);
 		for ( int i=0; i < 4; ++i )
 			bitstream_get(&bit);
-		break;
+		return 4 + 1;
 	case 0x22:  // ignore 4 -> 8bit map table
 		bitstream_init(&bit, data, 8);
 		for ( int i=0; i < 16; ++i )
 			bitstream_get(&bit);
-		break;
+		return 16 + 1;
 	case 0xF0:
 		subtitle_process_line(page, object_id, *linenr, line, *linep);
 /*		{
