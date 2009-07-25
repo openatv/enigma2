@@ -245,6 +245,9 @@ int main(int argc, char **argv)
 //	python.execute("mytest", "__main__");
 	python.execFile("/usr/lib/enigma2/python/mytest.py");
 
+	extern void setFullsize(); // definend in lib/gui/evideo.cpp
+	setFullsize();
+
 	if (exit_code == 5) /* python crash */
 	{
 		eDebug("(exit code 5)");
