@@ -427,7 +427,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			++i;
 			break;
 		default:
-//			eDebug("no encoding in dvb string given.. use default table");
+//			eDebug("no encoding in dvb string given.. use default table %d", table);
 			break;
 	}
 
@@ -440,7 +440,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		table = 0;
 	}
 
-	eDebug("used table is now %d, twoChar %d", table, useTwoCharMapping);
+//	eDebug("tsid %04x, onid %04x, used table is now %d, twoChar %d", tsidonid >> 16, tsidonid & 0xFFFF, table, useTwoCharMapping);
 
 	unsigned char res[2048];
 	while (i < len)
