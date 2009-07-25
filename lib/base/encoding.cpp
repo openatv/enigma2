@@ -42,14 +42,14 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 			}
 			else if ( (sscanf( line, "0x%x 0x%x ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 )
 					||(sscanf( line, "%d %d ISO%d", &tsid, &onid, &encoding ) == 3 && encoding == 6397 ) )
-				m_TransponderDefaultMapping[(tsid<<16)|onid]=64;
+				m_TransponderDefaultMapping[(tsid<<16)|onid]=0;
 			else if ( sscanf( line, "%s ISO%d", countrycode, &encoding ) == 2 && encoding == 6397 )
 			{
-				m_CountryCodeDefaultMapping[countrycode]=64;
+				m_CountryCodeDefaultMapping[countrycode]=0;
 				countrycode[0]=toupper(countrycode[0]);
 				countrycode[1]=toupper(countrycode[1]);
 				countrycode[2]=toupper(countrycode[2]);
-				m_CountryCodeDefaultMapping[countrycode]=64;
+				m_CountryCodeDefaultMapping[countrycode]=0;
 			}
 			else if ( (sscanf( line, "0x%x 0x%x", &tsid, &onid ) == 2 )
 					||(sscanf( line, "%d %d", &tsid, &onid ) == 2 ) )
@@ -83,5 +83,5 @@ int eDVBTextEncodingHandler::getCountryCodeDefaultMapping( const std::string &co
 		m_CountryCodeDefaultMapping.find(country_code);
 	if ( it != m_CountryCodeDefaultMapping.end() )
 		return it->second;
-	return 0;  // ISO8859-1 / Latin1
+	return 0;  // Latin1/ISO6397
 }
