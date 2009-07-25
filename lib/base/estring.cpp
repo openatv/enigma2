@@ -152,11 +152,11 @@ static unsigned long c885916[96]={
 0x0111, 0x0144, 0x00F2, 0x00F3, 0x00F4, 0x0151, 0x00F6, 0x015B, 0x0171, 0x00F9, 0x00FA, 0x00FB, 0x00FC, 0x0119, 0x021B, 0x00FF};
 
 static unsigned long iso6397[96]={
-0x00A0, 0x00A1, 0x00A2, 0x00A3, 0x0000, 0x00A5, 0x0000, 0x00A7, 0x00A4, 0x2018, 0x201C, 0x00AB, 0x2190, 0x2191, 0x2192, 0x2193,
+0x00A0, 0x00A1, 0x00A2, 0x00A3, 0x20AC, 0x00A5, 0x0000, 0x00A7, 0x00A4, 0x2018, 0x201C, 0x00AB, 0x2190, 0x2191, 0x2192, 0x2193,
 0x00B0, 0x00B1, 0x00B2, 0x00B3, 0x00D7, 0x00B5, 0x00B6, 0x00B7, 0x00F7, 0x2019, 0x201D, 0x00BB, 0x00BC, 0x00BD, 0x00BE, 0x00BF,
 0x0000, 0xE002, 0xE003, 0xE004, 0xE005, 0xE006, 0xE007, 0xE008, 0xE009, 0xE00C, 0xE00A, 0xE00B, 0x0000, 0xE00D, 0xE00E, 0xE00F,
-0x2014, 0x00B9, 0x00AE, 0x00A9, 0x2122, 0x266A, 0x00AC, 0x00A6, 0x0000, 0x0000, 0x0000, 0x0000, 0x215B, 0x215C, 0x215D, 0x215E,
-0x2126, 0x00C6, 0x00D0, 0x00AA, 0x0126, 0x0000, 0x0132, 0x013F, 0x0141, 0x00D8, 0x0152, 0x00BA, 0x00DE, 0x0166, 0x014A, 0x0149,
+0x2015, 0x00B9, 0x00AE, 0x00A9, 0x2122, 0x266A, 0x00AC, 0x00A6, 0x0000, 0x0000, 0x0000, 0x0000, 0x215B, 0x215C, 0x215D, 0x215E,
+0x2126, 0x00C6, 0x0110, 0x00AA, 0x0126, 0x0000, 0x0132, 0x013F, 0x0141, 0x00D8, 0x0152, 0x00BA, 0x00DE, 0x0166, 0x014A, 0x0149,
 0x0138, 0x00E6, 0x0111, 0x00F0, 0x0127, 0x0131, 0x0133, 0x0140, 0x0142, 0x00F8, 0x0153, 0x00DF, 0x00FE, 0x0167, 0x014B, 0x00AD};
 
 // Two Char Mapping (aka ISO6397) ( many polish services and UPC Direct/HBO services)
@@ -325,7 +325,8 @@ static inline unsigned int recode(unsigned char d, int cp)
 		return d;
 	switch (cp)
 	{
-	case 0:		// Latin1 <-> unicode mapping
+	case 0:		// Latin1/ISO6397 <-> unicode mapping
+		return iso6397[d-0xA0];
 	case 1:		// 8859-1 <-> unicode mapping
 		return d;
 	case 2:		// 8859-2 -> unicode mapping
@@ -358,8 +359,6 @@ static inline unsigned int recode(unsigned char d, int cp)
 		return c885915[d-0xA0];
 	case 16:// 8859-16 -> unicode mapping
 		return c885916[d-0xA0];
-	case 64:// iso6397
-		return iso6397[d-0xA0];
 	default:
 		return d;
 	}
@@ -372,6 +371,10 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	int i=0, t=0;
 
+	// table given two this function is default 0... but when a default table for a country code is set in encoding.conf
+	// then here this table is given
+
+	// when a tsid/onid is avail the table can be overriden in encoding.conf based on tsid/onid combinations
 	if ( tsidonid )
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
 
@@ -400,7 +403,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		}
 		case 0x11: //  Basic Multilingual Plane of ISO/IEC 10646-1 enc  (UTF-16... Unicode)
 			table = 65;
-			tsidonid = 0;
+//			eDebug("(0x11)text encoded in ISO-10646-1 (UTF-16)");
 			++i;
 			break;
 		case 0x12:
@@ -423,15 +426,21 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			eDebug("reserved %d", data[0]);
 			++i;
 			break;
+		default:
+//			eDebug("no encoding in dvb string given.. use default table");
+			break;
 	}
 
-	bool useTwoCharMapping =
-		tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid);
+	bool useTwoCharMapping = (!table) || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
+	// two char byte mapping is default enabled for table 0 (ISO6397) (described in ETSI EN300468)
+	// or it can be enabled for tsid/onid combinations in our encoding.conf
 
-	if (useTwoCharMapping) {
-		if (table == 5)
-			table = 64;
+	if (useTwoCharMapping && table == 5) { // i hope this dont break other transponders which realy use ISO8859-5 and two char byte mapping...
+//		eDebug("Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6397");
+		table = 0;
 	}
+
+	eDebug("used table is now %d, twoChar %d", table, useTwoCharMapping);
 
 	unsigned char res[2048];
 	while (i < len)
@@ -536,8 +545,8 @@ std::string convertUTF8DVB(const std::string &string, int table)
 						case 11:
 							coding_table = c885911;
 							break;
-/*				case 12:   // reserved.. for indian use
-						coding_table = c885912;
+/*						case 12:   // reserved.. for indian use
+							coding_table = c885912;
 						break;*/
 						case 13:
 							coding_table = c885913;
