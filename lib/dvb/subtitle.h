@@ -118,6 +118,7 @@ class eDVBSubtitleParser
 	pts_t m_show_time;
 	Signal1<void,const eDVBSubtitlePage&> m_new_subtitle_page;
 	int m_composition_page_id, m_ancillary_page_id;
+	bool m_seen_eod;
 public:
 	eDVBSubtitleParser(iDVBDemux *demux);
 	virtual ~eDVBSubtitleParser();

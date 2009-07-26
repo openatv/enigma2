@@ -747,6 +747,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	{
 		//eDebug("end of display set segment");
 		subtitle_redraw_all();
+		m_seen_eod = true;
 	}
 	case 0xFF: // stuffing
 		break;
@@ -786,6 +787,8 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 			return;
 		}
 
+		m_seen_eod = false;
+
 		while (len && *pkt == 0x0F)
 		{
 			int l = subtitle_process_segment(pkt);
@@ -794,11 +797,15 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 			pkt += l;
 			len -= l;
 		}
+
 		if (len && *pkt != 0xFF)
 			eDebug("strange data at the end");
+
+		if (!m_seen_eod)
+			subtitle_redraw_all();
 	}
 	else
-		eDebug("\ndvb subtitle packet without PTS.. ignore!!");
+		eDebug("");
 }
 
 void eDVBSubtitleParser::subtitle_redraw_all()
@@ -972,7 +979,8 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 			{
 				case subtitle_region::bpp2:
 //					eDebug("2BPP");
-					entries = clut->entries_2bit;
+					if (clut)
+						entries = clut->entries_2bit;
 					memset(palette, 0, 4*sizeof(gRGB));
 					palette[0].a = 0xFF;
 					palette[2].r = palette[2].g = palette[2].b = 0xFF;
@@ -980,7 +988,8 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 				case subtitle_region::bpp4:
 //					eDebug("4BPP");
-					entries = clut->entries_4bit;
+					if (clut)
+						entries = clut->entries_4bit;
 					memset(palette, 0, 16*sizeof(gRGB));
 					for (int i=0; i < 16; ++i)
 					{
@@ -1008,8 +1017,9 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 				case subtitle_region::bpp8:
 //					eDebug("8BPP");
-					entries = clut->entries_8bit;
-					memset(palette, 0, 16*sizeof(gRGB));
+					if (clut)
+						entries = clut->entries_8bit;
+					memset(palette, 0, 256*sizeof(gRGB));
 					for (int i=0; i < 256; ++i)
 					{
 						switch (i & 17)
@@ -1072,7 +1082,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 			}
 
-			if (clut)
+			if (entries)
 			{
 				for (int i=0; i<clut_size; ++i)
 				{
