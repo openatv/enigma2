@@ -460,11 +460,16 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					default:
 						break;
 					}
-					if (issubtitle && (isaudio || isvideo))
+					if (program.textPid != -1 && (isaudio || isvideo)) 
+					{
+						eDebug("ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());					
+						continue; // continue with next PID
+					}
+					else if (issubtitle && (isaudio || isvideo))
 						eDebug("ambiguous streamtype for PID %04x detected.. forced as subtitle!", (*es)->getPid());
 					else if (isaudio && isvideo)
 						eDebug("ambiguous streamtype for PID %04x detected.. forced as video!", (*es)->getPid());
-					if (issubtitle)
+					if (issubtitle) // continue with next PID
 						continue;
 					else if (isvideo)
 					{
