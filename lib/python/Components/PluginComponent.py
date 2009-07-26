@@ -121,7 +121,7 @@ class PluginComponent:
 		wakeup = -1
 		for p in self.pluginList:
 			current = p.getWakeupTime()
-			if current > -1 and wakeup < current:
+			if current > -1 and (wakeup > current or wakeup == -1):
 				wakeup = current
 		return int(wakeup)
 
