@@ -181,8 +181,23 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 			res = m_provider_name == query.m_string;
 		break;
 	case eDVBChannelQuery::tType:
-		res = ref.getServiceType() == query.m_int;
+	{
+		int service_type = ref.getServiceType();
+		if (query.m_int == 1) // TV Service
+		{
+			// Hack for dish network
+			int onid = ref.getOriginalNetworkID().get();
+			if (onid >= 0x1001 && onid <= 0x100b)
+			{
+				static int dish_tv_types[] = { 128, 133, 137, 140, 144, 145, 150, 154, 160, 163, 164, 165, 166, 167, 168, 173, 174 };
+				static size_t dish_tv_num_types = sizeof(dish_tv_types) / sizeof(int);
+				if (std::binary_search(dish_tv_types, dish_tv_types + dish_tv_num_types, service_type))
+					return true;
+			}
+		}
+		res = service_type == query.m_int;
 		break;
+	}
 	case eDVBChannelQuery::tBouquet:
 		res = 0;
 		break;
