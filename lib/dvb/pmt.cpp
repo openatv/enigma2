@@ -214,7 +214,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				ElementaryStreamInfoConstIterator es;
 				for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 				{
-					int isaudio = 0, isvideo = 0, issubtitle = 0, forced_video = 0, forced_audio = 0;
+					int isaudio = 0, isvideo = 0, issubtitle = 0, forced_video = 0, forced_audio = 0, isteletext = 0;
 					videoStream video;
 					audioStream audio;
 					audio.component_tag=video.component_tag=-1;
@@ -342,6 +342,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 										s.subtitling_type = 0x01; // EBU TELETEXT SUBTITLES
 										s.pid = program.textPid = (*es)->getPid();
 										TeletextDescriptor *d = (TeletextDescriptor*)(*desc);
+										isteletext = 1;
 										const VbiTeletextList *list = d->getVbiTeletexts();
 										for (VbiTeletextConstIterator it(list->begin()); it != list->end(); ++it)
 										{
@@ -460,7 +461,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					default:
 						break;
 					}
-					if (program.textPid != -1 && (isaudio || isvideo)) 
+					if (isteletext != -1 && (isaudio || isvideo)) 
 					{
 						eDebug("ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());					
 						continue; // continue with next PID
