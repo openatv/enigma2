@@ -54,42 +54,32 @@ static int extract_pts(pts_t &pts, __u8 *pkt)
 		return -1;
 }
 
-void eDVBSubtitleParser::subtitle_process_line(subtitle_page *page, int object_id, int line, __u8 *data, int len)
+void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, __u8 *data, int len)
 {
-	subtitle_region *region = page->regions;
-//	eDebug("line for %d:%d", page->page_id, object_id);
-	while (region)
+	int x = object->object_horizontal_position;
+	int y = object->object_vertical_position + line;
+	if (x + len > region->width)
 	{
-		subtitle_region_object *object = region->region_objects;
-		while (object)
-		{
-			if (object->object_id == object_id)
-			{
-				int x = object->object_horizontal_position;
-				int y = object->object_vertical_position + line;
-				if (x + len > region->region_width)
-				{
-					//eDebug("[SUB] !!!! XCLIP %d + %d > %d", x, len, region->region_width);
-					len = region->region_width - x;
-				}
-				if (len < 0)
-					break;
-				if (y >= region->region_height)
-				{
-					//eDebug("[SUB] !!!! YCLIP %d >= %d", y, region->region_height);
-					break;
-				}
-//				//eDebug("inserting %d bytes (into region %d)", len, region->region_id);
-//				eDebug("put data to region_buffer %p", &(*region->region_buffer));
-				memcpy((__u8*)region->region_buffer->surface->data + region->region_buffer->surface->stride * y + x, data, len);
-			}
-			object = object->next;
-		}
-		region = region->next;
+//		eDebug("[SUB] !!!! XCLIP %d + %d > %d", x, len, region->width);
+		len = region->width - x;
 	}
+	if (len < 0)
+		return;
+	if (y >= region->height)
+	{
+//		eDebug("[SUB] !!!! YCLIP %d >= %d", y, region->height);
+		return;
+	}
+//	eDebug("inserting %d bytes (into region %d)", len, region->region_id);
+//	eDebug("put data to buffer %p", &(*region->buffer));
+	memcpy((__u8*)region->buffer->surface->data + region->buffer->surface->stride * y + x, data, len);
 }
 
-int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data)
+static int map_2_to_4_bit_table[4];
+static int map_2_to_8_bit_table[4];
+static int map_4_to_8_bit_table[16];
+
+int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, subtitle_region_object *object, int *linenr, int *linep, __u8 *data)
 {
 	int data_type = *data++;
 	static __u8 line[720];
@@ -99,6 +89,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int obj
 	switch (data_type)
 	{
 	case 0x10: // 2bit pixel data
+//		eDebug("2bit pixel data!");
 		bitstream_init(&bit, data, 2);
 		while (1)
 		{
@@ -147,9 +138,13 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int obj
 					col = bitstream_get(&bit);
 				}
 			}
+			uint8_t c = region->depth == subtitle_region::bpp4 ?
+				map_2_to_4_bit_table[col] :
+				region->depth == subtitle_region::bpp8 ?
+				map_2_to_8_bit_table[col] : col;
 			while (len && ((*linep) < 720))
 			{
-				line[(*linep)++] = col;
+				line[(*linep)++] = c;
 				len--;
 			}
 		}
@@ -157,6 +152,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int obj
 			bitstream_get(&bit);
 		return bit.consumed + 1;
 	case 0x11: // 4bit pixel data
+//		eDebug("4bit pixel data!");
 		bitstream_init(&bit, data, 4);
 		while (1)
 		{
@@ -199,9 +195,11 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int obj
 					col  = bitstream_get(&bit);
 				}
 			}
+			uint8_t c = region->depth == subtitle_region::bpp8 ?
+				map_4_to_8_bit_table[col] : col;
 			while (len && ((*linep) < 720))
 			{
-				line[(*linep)++] = col;
+				line[(*linep)++] = c;
 				len--;
 			}
 		}
@@ -209,6 +207,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int obj
 			bitstream_get(&bit);
 		return bit.consumed + 1;
 	case 0x12: // 8bit pixel data
+//		eDebug("8bit pixel data!");
 		bitstream_init(&bit, data, 8);
 		while(1)
 		{
@@ -239,32 +238,45 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_page *page, int obj
 			}
 		}
 		return bit.consumed + 1;
-	case 0x20:  // ignore 2 -> 4bit map table
+	case 0x20:
+//		eDebugNoNewLine("2 -> 4 bit table: ");
 		bitstream_init(&bit, data, 4);
 		for ( int i=0; i < 4; ++i )
-			bitstream_get(&bit);
-		return 2 + 1;
-	case 0x21:  // ignore 2 -> 8bit map table
+		{
+			map_2_to_4_bit_table[i] = bitstream_get(&bit);
+//			eDebugNoNewLine("%d ", map_2_to_4_bit_table[i]);
+		}
+		eDebug("");
+		return bit.consumed + 1;
+	case 0x21:
+//		eDebugNoNewLine("2 -> 8 bit table: ");
 		bitstream_init(&bit, data, 8);
 		for ( int i=0; i < 4; ++i )
-			bitstream_get(&bit);
-		return 4 + 1;
-	case 0x22:  // ignore 4 -> 8bit map table
+		{
+			map_2_to_8_bit_table[i] = bitstream_get(&bit);
+//			eDebugNoNewLine("%d ", map_2_to_8_bit_table[i]);
+		}
+		return bit.consumed + 1;
+	case 0x22:
+//		eDebug("4 -> 8 bit table!");
 		bitstream_init(&bit, data, 8);
 		for ( int i=0; i < 16; ++i )
-			bitstream_get(&bit);
-		return 16 + 1;
+		{
+			map_4_to_8_bit_table[i] = bitstream_get(&bit);
+//			eDebugNoNewLine("%d ", map_4_to_8_bit_table[i]);
+		}
+		return bit.consumed + 1;
 	case 0xF0:
-		subtitle_process_line(page, object_id, *linenr, line, *linep);
+		subtitle_process_line(region, object, *linenr, line, *linep);
 /*		{
 			int i;
 			for (i=0; i<720; ++i)
-				//eDebugNoNewLine("%d ", line[i]);
-			//eDebug("");
+				eDebugNoNewLine("%d ", line[i]);
+			eDebug("");
 		} */
 		(*linenr)+=2; // interlaced
 		*linep = 0;
-//		//eDebug("[SUB] EOL");
+//		eDebug("[SUB] EOL");
 		return 1;
 	default:
 		eDebug("subtitle_process_pixel_data: invalid data_type %02x", data_type);
@@ -290,9 +302,9 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		return segment_length + 6;
 	if (page_id != m_composition_page_id && page_id != m_ancillary_page_id)
 		return segment_length + 6;
-	//eDebug("have %d bytes of segment data", segment_length);
+//	eDebug("have %d bytes of segment data", segment_length);
 
-	//eDebug("page_id %d, segtype %02x", page_id, segment_type);
+//	eDebug("page_id %d, segtype %02x", page_id, segment_type);
 
 	subtitle_page *page, **ppage;
 
@@ -315,17 +327,17 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		int page_time_out = *segment++; processed_length++;
 		int page_version_number = *segment >> 4;
 		int page_state = (*segment >> 2) & 0x3;
-		//eDebug("pcs with %d bytes data (%d:%d:%d)", segment_length, page_id, page_version_number, page_state);
+//		eDebug("pcs with %d bytes data (%d:%d:%d)", segment_length, page_id, page_version_number, page_state);
 		segment++;
 		processed_length++;
 
-		//eDebug("page time out: %d", page_time_out);
-		//eDebug("page_version_number: %d" ,page_version_number);
-		//eDebug("page_state: %d", page_state);
+//		eDebug("page time out: %d", page_time_out);
+//		eDebug("page_version_number: %d" ,page_version_number);
+//		eDebug("page_state: %d", page_state);
 
 		if (!page)
 		{
-			//eDebug("page not found");
+//			eDebug("page not found");
 			page = new subtitle_page;
 			page->page_regions = 0;
 			page->regions = 0;
@@ -347,27 +359,27 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		page->state = page_state;
 
-		//eDebug("page updated: old: %d, new: %d", page->page_version_number, page_version_number);
+//		eDebug("page updated: old: %d, new: %d", page->page_version_number, page_version_number);
 			// when acquisition point or mode change: remove all displayed pages.
 		if ((page_state == 1) || (page_state == 2))
 		{
 			while (page->page_regions)
 			{
 				subtitle_page_region *p = page->page_regions->next;
-				//eDebug("delete page_region %d", page->page_regions->region_id);
+//				eDebug("delete page_region %d", page->page_regions->region_id);
 				delete page->page_regions;
 				page->page_regions = p;
 			}
 			while (page->regions)
 			{
 				subtitle_region *p = page->regions->next;
-				//eDebug("delete region %d", page->regions->region_id);
-				while(page->regions->region_objects)
+//				eDebug("delete region %d", page->regions->region_id);
+				while(page->regions->objects)
 				{
-					//eDebug("delete region object");
-					subtitle_region_object *ob = page->regions->region_objects->next;
-					delete page->regions->region_objects;
-					page->regions->region_objects = ob;
+//					eDebug("delete region object");
+					subtitle_region_object *ob = page->regions->objects->next;
+					delete page->regions->objects;
+					page->regions->objects = ob;
 				}
 				delete page->regions;
 				page->regions = p;
@@ -375,7 +387,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		}
 
-		//eDebug("new page.. (%d)", page_state);
+//		eDebug("new page.. (%d)", page_state);
 
 		page->page_time_out = page_time_out;
 
@@ -383,7 +395,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		subtitle_page_region **r = &page->page_regions;
 
-		//eDebug("%d  / %d data left", processed_length, segment_length);
+//		eDebug("%d  / %d data left", processed_length, segment_length);
 
 			// go to last entry
 		while (*r)
@@ -391,7 +403,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		if (processed_length == segment_length && !page->page_regions)
 		{
-			//eDebug("no regions in page.. clear screen!!");
+//			eDebug("no regions in page.. clear screen!!");
 			subtitle_redraw(page->page_id);
 		}
 
@@ -416,7 +428,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			pr->region_vertical_address |= *segment++;
 			processed_length += 2;
 
-			//eDebug("appended active region");
+//			eDebug("appended active region");
 		}
 
 		if (processed_length != segment_length)
@@ -426,7 +438,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	case 0x11: // region composition segment
 	{
 		int region_id = *segment++; processed_length++;
-		int region_version_number = *segment >> 4;
+		int version_number = *segment >> 4;
 		int region_fill_flag = (*segment >> 3) & 1;
 		segment++; processed_length++;
 
@@ -452,53 +464,54 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		if (!region)
 		{
-			//eDebug("create region !!!!!!!!!!");
+//			eDebug("create region !!!!!!!!!!");
 			*pregion = region = new subtitle_region;
 			region->next = 0;
 			region->committed = false;
 		}
-		else if (region->region_version_number != region_version_number)
+		else if (region->version_number != version_number)
 		{
-			subtitle_region_object *objects = region->region_objects;
-			//eDebug("unequal version %p %p", objects, objects?objects->next:objects);
+			subtitle_region_object *objects = region->objects;
+//			eDebug("unequal version %p %p", objects, objects?objects->next:objects);
 			while (objects)
 			{
 				subtitle_region_object *n = objects->next;
 				delete objects;
 				objects = n;
 			}
-			if (region->region_buffer)
+			if (region->buffer)
 			{
-				//eDebug("no more need of region_buffer %p", &(*region->region_buffer));
-				region->region_buffer=0;
+//				eDebug("no more need of buffer %p", &(*region->buffer));
+				region->buffer=0;
 			}
 			region->committed = false;
 		}
 		else
 			break;
 
-		//eDebug("region %d:%d update", page_id, region_id);
+//		eDebug("region %d:%d update", page_id, region_id);
 
 		region->region_id = region_id;
-		region->region_version_number = region_version_number;
+		region->version_number = version_number;
 
-		region->region_width  = *segment++ << 8;
-		region->region_width |= *segment++;
+		region->width  = *segment++ << 8;
+		region->width |= *segment++;
 		processed_length += 2;
 
-		region->region_height  = *segment++ << 8;
-		region->region_height |= *segment++;
+		region->height  = *segment++ << 8;
+		region->height |= *segment++;
 		processed_length += 2;
 
-		region->region_buffer = new gPixmap(eSize(region->region_width, region->region_height), 8, 1);
-		memset(region->region_buffer->surface->data, 0, region->region_height * region->region_buffer->surface->stride);
-		//eDebug("new region_buffer %p", &(*region->region_buffer));
+		region->buffer = new gPixmap(eSize(region->width, region->height), 8, 1);
+		memset(region->buffer->surface->data, 0, region->height * region->buffer->surface->stride);
+//		eDebug("new buffer %p", &(*region->buffer));
 
-		int region_level_of_compatibility, region_depth;
+		int region_level_of_compatibility, depth;
 
 		region_level_of_compatibility = (*segment >> 5) & 7;
-		region_depth = (*segment++ >> 2) & 7;
-		region->region_depth = (subtitle_region::depth) region_depth;
+		depth = (*segment++ >> 2) & 7;
+
+		region->depth = (subtitle_region::tDepth) depth;
 		processed_length++;
 
 		int CLUT_id = *segment++; processed_length++;
@@ -519,21 +532,21 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 		if (region_fill_flag)
 		{
-			//eDebug("region fill region_buffer %p", &(*region->region_buffer));
-			if (region_depth == 1)
-				memset(region->region_buffer->surface->data, region_2bit_pixel_code, region->region_height * region->region_width);
-			else if (region_depth == 2)
-				memset(region->region_buffer->surface->data, region_4bit_pixel_code, region->region_height * region->region_width);
-			else if (region_depth == 3)
-				memset(region->region_buffer->surface->data, region_8bit_pixel_code, region->region_height * region->region_width);
+//			eDebug("region fill buffer %p", &(*region->buffer));
+			if (depth == 1)
+				memset(region->buffer->surface->data, region_2bit_pixel_code, region->height * region->width);
+			else if (depth == 2)
+				memset(region->buffer->surface->data, region_4bit_pixel_code, region->height * region->width);
+			else if (depth == 3)
+				memset(region->buffer->surface->data, region_8bit_pixel_code, region->height * region->width);
 			else
 				eDebug("!!!! invalid depth");
 		}
 
-		//eDebug("region %02x, version %d, %dx%d", region->region_id, region->region_version_number, region->region_width, region->region_height);
+//		eDebug("region %02x, version %d, %dx%d", region->region_id, region->version_number, region->width, region->height);
 
-		region->region_objects = 0;
-		subtitle_region_object **pobject = &region->region_objects;
+		region->objects = 0;
+		subtitle_region_object **pobject = &region->objects;
 
 		while (processed_length < segment_length)
 		{
@@ -579,13 +592,13 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		if (!page)
 			break;
 
-		//eDebug("CLUT: %02x", *segment);
+//		eDebug("CLUT: %02x", *segment);
 		CLUT_id = *segment++;
 
 		CLUT_version_number = *segment++ >> 4;
 		processed_length += 2;
 
-		//eDebug("page %d, CLUT %02x, version %d", page->page_id, CLUT_id, CLUT_version_number);
+//		eDebug("page %d, CLUT %02x, version %d", page->page_id, CLUT_id, CLUT_version_number);
 
 		clut = page->cluts; pclut = &page->cluts;
 
@@ -612,7 +625,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		memset(clut->entries_4bit, 0, sizeof(clut->entries_4bit));
 		memset(clut->entries_8bit, 0, sizeof(clut->entries_8bit));
 
-		//eDebug("new clut");
+//		eDebug("new Clut!");
 		while (processed_length < segment_length)
 		{
 			int CLUT_entry_id, entry_CLUT_flag, full_range;
@@ -625,6 +638,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 			if (full_range)
 			{
+//				eDebugNoNewLine("f");
 				v_Y  = *segment++;
 				v_Cr = *segment++;
 				v_Cb = *segment++;
@@ -632,6 +646,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 				processed_length += 4;
 			} else
 			{
+//				eDebugNoNewLine(" ");
 				v_Y   = *segment & 0xFC;
 				v_Cr  = (*segment++ & 3) << 6;
 				v_Cr |= (*segment & 0xC0) >> 2;
@@ -642,6 +657,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 			if (entry_CLUT_flag & 1) // 8bit
 			{
+//				eDebugNoNewLine("8b");
 				ASSERT(CLUT_entry_id < 256);
 				clut->entries_8bit[CLUT_entry_id].Y = v_Y;
 				clut->entries_8bit[CLUT_entry_id].Cr = v_Cr;
@@ -651,6 +667,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			}
 			if (entry_CLUT_flag & 2) // 4bit
 			{
+//				eDebugNoNewLine("4b");
 				ASSERT(CLUT_entry_id < 16);
 				clut->entries_4bit[CLUT_entry_id].Y = v_Y;
 				clut->entries_4bit[CLUT_entry_id].Cr = v_Cr;
@@ -660,6 +677,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			}
 			if (entry_CLUT_flag & 4) // 2bit
 			{
+//				eDebugNoNewLine("2b");
 				ASSERT(CLUT_entry_id < 4);
 				clut->entries_2bit[CLUT_entry_id].Y = v_Y;
 				clut->entries_2bit[CLUT_entry_id].Cr = v_Cr;
@@ -667,7 +685,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 				clut->entries_2bit[CLUT_entry_id].T = v_T;
 				clut->entries_2bit[CLUT_entry_id].valid = 1;
 			}
-			//eDebug("  %04x %02x %02x %02x %02x", CLUT_entry_id, v_Y, v_Cb, v_Cr, v_T);
+//			eDebug(" %04x %02x %02x %02x %02x", CLUT_entry_id, v_Y, v_Cb, v_Cr, v_T);
 		}
 		break;
 	}
@@ -684,68 +702,131 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 		non_modifying_color_flag = (*segment++ >> 1) & 1;
 		processed_length++;
 
-		//eDebug("object id %04x, version %d, object_coding_method %d (page_id %d)", object_id, object_version_number, object_coding_method, page_id);
-
-		if (object_coding_method == 0)
+//		eDebug("object id %04x, version %d, object_coding_method %d (page_id %d)", object_id, object_version_number, object_coding_method, page_id);
+		subtitle_region *region = page->regions;
+//		eDebug("line for %d:%d", page->page_id, object_id);
+		while (region)
 		{
-			int top_field_data_blocklength, bottom_field_data_blocklength;
-			int i, line, linep;
-
-			top_field_data_blocklength  = *segment++ << 8;
-			top_field_data_blocklength |= *segment++;
-
-			bottom_field_data_blocklength  = *segment++ << 8;
-			bottom_field_data_blocklength |= *segment++;
-			eDebug("%d / %d bytes", top_field_data_blocklength, bottom_field_data_blocklength);
-			processed_length += 4;
-
-			i = 0;
-			line = 0;
-			linep = 0;
-			while (i < top_field_data_blocklength)
+			subtitle_region_object *object = region->objects;
+			while (object)
 			{
-				int len;
-				len = subtitle_process_pixel_data(page, object_id, &line, &linep, segment);
-				if (len < 0)
-					return -1;
-				segment += len;
-				processed_length += len;
-				i += len;
-			}
-
-			line = 1;
-			linep = 0;
-
-			if (bottom_field_data_blocklength)
-			{
-				i = 0;
-				while (i < bottom_field_data_blocklength)
+				if (object->object_id == object_id)
 				{
-					int len;
-					len = subtitle_process_pixel_data(page, object_id, &line, &linep, segment);
-					if (len < 0)
-						return -1;
-					segment += len;
-					processed_length += len;
-					i += len;
-				}
-			}
-			else if (top_field_data_blocklength)
-				eDebug("!!!! unimplemented: no bottom field! (%d : %d)", top_field_data_blocklength, bottom_field_data_blocklength);
+					if (object_coding_method == 0)
+					{
+						int top_field_data_blocklength, bottom_field_data_blocklength;
+						int i=1, line, linep;
 
-			if ((top_field_data_blocklength + bottom_field_data_blocklength) & 1)
+						top_field_data_blocklength  = *segment++ << 8;
+						top_field_data_blocklength |= *segment++;
+
+						bottom_field_data_blocklength  = *segment++ << 8;
+						bottom_field_data_blocklength |= *segment++;
+//						eDebug("%d / %d bytes", top_field_data_blocklength, bottom_field_data_blocklength);
+						processed_length += 4;
+
+						// its working on cyfra channels.. but hmm in EN300743 the default table is 0, 7, 8, 15
+						map_2_to_4_bit_table[0] = 0;
+						map_2_to_4_bit_table[1] = 8;
+						map_2_to_4_bit_table[2] = 7;
+						map_2_to_4_bit_table[3] = 15;
+
+						// this map is realy untested...
+						map_2_to_8_bit_table[0] = 0;
+						map_2_to_8_bit_table[1] = 0x88;
+						map_2_to_8_bit_table[2] = 0x77;
+						map_2_to_8_bit_table[3] = 0xff;
+
+						map_4_to_8_bit_table[0] = 0;
+						for (; i < 16; ++i)
+							map_4_to_8_bit_table[i] = i * 0x11;
+
+						i = 0;
+						line = 0;
+						linep = 0;
+						while (i < top_field_data_blocklength)
+						{
+							int len;
+							len = subtitle_process_pixel_data(region, object, &line, &linep, segment);
+							if (len < 0)
+								return -1;
+							segment += len;
+							processed_length += len;
+							i += len;
+						}
+
+						line = 1;
+						linep = 0;
+
+						if (bottom_field_data_blocklength)
+						{
+							i = 0;
+							while (i < bottom_field_data_blocklength)
+							{
+								int len;
+								len = subtitle_process_pixel_data(region, object, &line, &linep, segment);
+								if (len < 0)
+									return -1;
+								segment += len;
+									processed_length += len;
+								i += len;
+							}
+						}
+						else if (top_field_data_blocklength)
+							eDebug("!!!! unimplemented: no bottom field! (%d : %d)", top_field_data_blocklength, bottom_field_data_blocklength);
+
+						if ((top_field_data_blocklength + bottom_field_data_blocklength) & 1)
+						{
+							segment++; processed_length++;
+						}
+					}
+					else if (object_coding_method == 1)
+						eDebug("---- object_coding_method 1 unsupported!");
+				}
+				object = object->next;
+			}
+			region = region->next;
+		}
+		break;
+	}
+	case 0x14: // display definition segment
+	{
+		if (segment_length > 4)
+		{
+			int dds_version_number = segment[0] >> 4;
+			int display_window_flag = (segment[0] >> 3) & 1;
+			int display_width = (segment[1] << 8) | (segment[2]);
+			int display_height = (segment[3] << 8) | (segment[4]);
+//			eDebug("version %d, window_flag %d, display_width %d, display_height %d",
+//				dds_version_number, display_window_flag, display_width, display_height);
+			processed_length += 5;
+			m_display_size = eSize(display_width+1, display_height+1);
+			if (display_window_flag)
 			{
-				segment++; processed_length++;
+				if (segment_length > 12)
+				{
+					int display_window_horizontal_position_min = (segment[4] << 8) | segment[5];
+					int display_window_horizontal_position_max = (segment[6] << 8) | segment[7];
+					int display_window_vertical_position_min = (segment[8] << 8) | segment[9];
+					int display_window_vertical_position_max = (segment[10] << 8) | segment[11];
+					eDebug("NYI hpos min %d, hpos max %d, vpos min %d, vpos max %d",
+						display_window_horizontal_position_min,
+						display_window_horizontal_position_max,
+						display_window_vertical_position_min,
+						display_window_vertical_position_max);
+					processed_length += 8;
+				}
+				else
+					eDebug("display window flag set but display definition segment to short %d!", segment_length);
 			}
 		}
-		else if (object_coding_method == 1)
-			eDebug("---- object_coding_method 1 unsupported!");
-
+		else
+			eDebug("display definition segment to short %d!", segment_length);
 		break;
 	}
 	case 0x80: // end of display set segment
 	{
-		//eDebug("end of display set segment");
+//		eDebug("end of display set segment");
 		subtitle_redraw_all();
 		m_seen_eod = true;
 	}
@@ -760,10 +841,10 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 
 void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 {
-	eDebugNoNewLine("subtitle_process_pes");
+//	eDebugNoNewLine("subtitle_process_pes");
 	if (!extract_pts(m_show_time, pkt))
 	{
-		eDebug(" %lld", m_show_time);
+//		eDebug(" %lld", m_show_time);
 		pkt += 6; len -= 6;
 		// skip PES header
 		pkt++; len--;
@@ -775,7 +856,7 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 
 		if (*pkt != 0x20)
 		{
-			//eDebug("data identifier is 0x%02x, but not 0x20", *pkt);
+//			eDebug("data identifier is 0x%02x, but not 0x20", *pkt);
 			return;
 		}
 		pkt++; len--; // data identifier
@@ -783,7 +864,7 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 
 		if (len <= 0)
 		{
-			//eDebug("no data left (%d)", len);
+//			eDebug("no data left (%d)", len);
 			return;
 		}
 
@@ -804,8 +885,8 @@ void eDVBSubtitleParser::subtitle_process_pes(__u8 *pkt, int len)
 		if (!m_seen_eod)
 			subtitle_redraw_all();
 	}
-	else
-		eDebug("");
+//	else
+//		eDebug("");
 }
 
 void eDVBSubtitleParser::subtitle_redraw_all()
@@ -844,9 +925,9 @@ void eDVBSubtitleParser::subtitle_redraw_all()
 		subtitle_region *region = page->regions;
 		while (region)
 		{
-			eDebug("  region_id %04x, version %d, %dx%d", region->region_id, region->region_version_number, region->region_width, region->region_height);
+			eDebug("  region_id %04x, version %d, %dx%d", region->region_id, region->version_number, region->width, region->height);
 
-			subtitle_region_object *object = region->region_objects;
+			subtitle_region_object *object = region->objects;
 			while (object)
 			{
 				eDebug("  object %02x, type %d, %d:%d", object->object_id, object->object_type, object->object_horizontal_position, object->object_vertical_position);
@@ -875,17 +956,17 @@ void eDVBSubtitleParser::subtitle_reset()
 		{
 			subtitle_region *region = page->regions;
 
-			while (region->region_objects)
+			while (region->objects)
 			{
-				subtitle_region_object *obj = region->region_objects;
-				region->region_objects = obj->next;
+				subtitle_region_object *obj = region->objects;
+				region->objects = obj->next;
 				delete obj;
 			}
 
-			if (region->region_buffer)
+			if (region->buffer)
 			{
-//				eDebug("no more need of region_buffer 2 %p", &(*region->region_buffer));
-				region->region_buffer=0;
+//				eDebug("no more need of buffer 2 %p", &(*region->buffer));
+				region->buffer=0;
 			}
 
 			page->regions = region->next;
@@ -919,11 +1000,11 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 	}
 	if (!page)
 	{
-		//eDebug("page not found");
+//		eDebug("page not found");
 		return;
 	}
 
-	//eDebug("iterating regions..");
+//	eDebug("iterating regions..");
 		/* iterate all regions in this pcs */
 	subtitle_page_region *region = page->page_regions;
 
@@ -951,8 +1032,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 
 			if ((x0 < 0) || (y0 < 0))
 			{
-//				eDebug("x0 %d, y0 %d",
-//					x0, y0);
+//				eDebug("x0 %d, y0 %d", x0, y0);
 				continue;
 			}
 
@@ -960,33 +1040,37 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 			subtitle_clut *clut = page->cluts;
 			while (clut)
 			{
-			//eDebug("have %d, want %d", clut->clut_id, main_clut_id);
+//				eDebug("have %d, want %d", clut->clut_id, main_clut_id);
 				if (clut->clut_id == reg->clut_id)
 					break;
 				clut = clut->next;
 			}
 
-			int clut_size = reg->region_buffer->surface->clut.colors = reg->region_depth == subtitle_region::bpp2 ?
-				4 : reg->region_depth == subtitle_region::bpp4 ? 16 : 256;
+			int clut_size = reg->buffer->surface->clut.colors = reg->depth == subtitle_region::bpp2 ?
+				4 : reg->depth == subtitle_region::bpp4 ? 16 : 256;
 
-			reg->region_buffer->surface->clut.data = new gRGB[clut_size];
-//			eDebug("create clut data for region_buffer %p", &(*reg->region_buffer));
+			reg->buffer->surface->clut.data = new gRGB[clut_size];
+//			eDebug("create clut data for buffer %p", &(*reg->buffer));
 
-			gRGB *palette = reg->region_buffer->surface->clut.data;
+			gRGB *palette = reg->buffer->surface->clut.data;
+
+//			if (!clut)
+//				eDebug("no CLUT.. use default");
 
 			subtitle_clut_entry *entries=0;
-			switch(reg->region_depth)
+			switch(reg->depth)
 			{
 				case subtitle_region::bpp2:
 //					eDebug("2BPP");
 					if (clut)
 						entries = clut->entries_2bit;
-					memset(palette, 0, 4*sizeof(gRGB));
+					memset(palette, 0, 4 * sizeof(gRGB));
+					// this table is tested on cyfra .. but in EN300743 the table palette[2] and palette[1] is swapped.. i dont understand this ;)
 					palette[0].a = 0xFF;
 					palette[2].r = palette[2].g = palette[2].b = 0xFF;
 					palette[3].r = palette[3].g = palette[3].b = 0x80;
 					break;
-				case subtitle_region::bpp4:
+				case subtitle_region::bpp4: // tested on cyfra... but the map is another in EN300743... dont understand this...
 //					eDebug("4BPP");
 					if (clut)
 						entries = clut->entries_4bit;
@@ -995,27 +1079,27 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					{
 						if (!i)
 							palette[i].a = 0xFF;
-						else if (i & 1)
+						else if (i & 8)
 						{
-							if (i & 8)
+							if (i & 1)
 								palette[i].r = 0x80;
-							if (i & 4)
-								palette[i].g = 0x80;
 							if (i & 2)
+								palette[i].g = 0x80;
+							if (i & 4)
 								palette[i].b = 0x80;
 						}
 						else
 						{
-							if (i & 8)
+							if (i & 1)
 								palette[i].r = 0xFF;
-							if (i & 4)
-								palette[i].g = 0xFF;
 							if (i & 2)
+								palette[i].g = 0xFF;
+							if (i & 4)
 								palette[i].b = 0xFF;
 						}
 					}
 					break;
-				case subtitle_region::bpp8:
+				case subtitle_region::bpp8:  // completely untested.. i never seen 8bit DVB subtitles
 //					eDebug("8BPP");
 					if (clut)
 						entries = clut->entries_8bit;
@@ -1082,62 +1166,62 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 			}
 
-			if (entries)
+			for (int i=0; i<clut_size; ++i)
 			{
-				for (int i=0; i<clut_size; ++i)
+				if (entries && entries[i].valid)
 				{
-					if (entries[i].valid)
+					int y = entries[i].Y,
+						cr = entries[i].Cr,
+						cb = entries[i].Cb;
+					if (y > 0)
 					{
-						int y = entries[i].Y,
-							cr = entries[i].Cr,
-							cb = entries[i].Cb;
-						if (y > 0)
-						{
-							y -= 16;
-							cr -= 128;
-							cb -= 128;
-							palette[i].r = MAX(MIN(((298 * y            + 460 * cr) / 256), 255), 0);
-							palette[i].g = MAX(MIN(((298 * y -  55 * cb - 137 * cr) / 256), 255), 0);
-							palette[i].b = MAX(MIN(((298 * y + 543 * cb           ) / 256), 255), 0);
-							palette[i].a = (entries[i].T) & 0xFF;
-//							eDebug("override clut entry %d RGBA %02x%02x%02x%02x", i,
-//								palette[i].r, palette[i].g, palette[i].b, palette[i].a);
-						}
-						else
-						{
-//							eDebug("mist %d", i);
-							palette[i].r = 0;
-							palette[i].g = 0;
-							palette[i].b = 0;
-							palette[i].a = 0xFF;
-						}
+						y -= 16;
+						cr -= 128;
+						cb -= 128;
+						palette[i].r = MAX(MIN(((298 * y            + 460 * cr) / 256), 255), 0);
+						palette[i].g = MAX(MIN(((298 * y -  55 * cb - 137 * cr) / 256), 255), 0);
+						palette[i].b = MAX(MIN(((298 * y + 543 * cb           ) / 256), 255), 0);
+						palette[i].a = (entries[i].T) & 0xFF;
+//						eDebug("override clut entry %d RGBA %02x%02x%02x%02x", i,
+//							palette[i].r, palette[i].g, palette[i].b, palette[i].a);
+					}
+					else
+					{
+//						eDebug("mist %d: y %d cr %d cb %d", i, y, cr, cb);
+						palette[i].r = 0;
+						palette[i].g = 0;
+						palette[i].b = 0;
+						palette[i].a = 0xFF;
 					}
 				}
+//				eDebug("%d:%c %02x %02x %02x %02x",
+//					i, entries && entries[i].valid ? 'O': 'D', palette[i].r, palette[i].g, palette[i].b, palette[i].a);
 			}
 
-//			eDebug("commit region_buffer %p", &(*reg->region_buffer));
+//			eDebug("commit buffer %p", &(*reg->buffer));
 			eDVBSubtitleRegion Region;
-			Region.m_pixmap = reg->region_buffer;
+			Region.m_pixmap = reg->buffer;
 			Region.m_position.setX(x0);
 			Region.m_position.setY(y0);
 			Page.m_regions.push_back(Region);
 			reg->committed = true;
 		}
-		else
-			eDebug("region not found");
+//		else
+//			eDebug("region not found");
 	}
+	Page.m_display_size = m_display_size;
 	m_new_subtitle_page(Page);
 	Page.m_regions.clear();
 //	eDebug("page timeout is %d", page->page_time_out);
 //	Page.m_show_time += (page->page_time_out * 90000);
 //	m_new_subtitle_page(Page);
-	//eDebug("schon gut.");
+//	eDebug("schon gut.");
 }
 
 DEFINE_REF(eDVBSubtitleParser);
 
 eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
-	:m_pages(0)
+	:m_pages(0), m_display_size(720,576)
 {
 	setStreamID(0xBD);
 
