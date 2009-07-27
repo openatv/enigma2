@@ -658,7 +658,6 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			if (entry_CLUT_flag & 1) // 8bit
 			{
 //				eDebugNoNewLine("8b");
-				ASSERT(CLUT_entry_id < 256);
 				clut->entries_8bit[CLUT_entry_id].Y = v_Y;
 				clut->entries_8bit[CLUT_entry_id].Cr = v_Cr;
 				clut->entries_8bit[CLUT_entry_id].Cb = v_Cb;
@@ -668,22 +667,30 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 			if (entry_CLUT_flag & 2) // 4bit
 			{
 //				eDebugNoNewLine("4b");
-				ASSERT(CLUT_entry_id < 16);
-				clut->entries_4bit[CLUT_entry_id].Y = v_Y;
-				clut->entries_4bit[CLUT_entry_id].Cr = v_Cr;
-				clut->entries_4bit[CLUT_entry_id].Cb = v_Cb;
-				clut->entries_4bit[CLUT_entry_id].T = v_T;
-				clut->entries_4bit[CLUT_entry_id].valid = 1;
+				if (CLUT_entry_id < 16)
+				{
+					clut->entries_4bit[CLUT_entry_id].Y = v_Y;
+					clut->entries_4bit[CLUT_entry_id].Cr = v_Cr;
+					clut->entries_4bit[CLUT_entry_id].Cb = v_Cb;
+					clut->entries_4bit[CLUT_entry_id].T = v_T;
+					clut->entries_4bit[CLUT_entry_id].valid = 1;
+				}
+				else
+					eDebug("CLUT entry marked as 4 bit with id %d (>15)", CLUT_entry_id);
 			}
 			if (entry_CLUT_flag & 4) // 2bit
 			{
 //				eDebugNoNewLine("2b");
-				ASSERT(CLUT_entry_id < 4);
-				clut->entries_2bit[CLUT_entry_id].Y = v_Y;
-				clut->entries_2bit[CLUT_entry_id].Cr = v_Cr;
-				clut->entries_2bit[CLUT_entry_id].Cb = v_Cb;
-				clut->entries_2bit[CLUT_entry_id].T = v_T;
-				clut->entries_2bit[CLUT_entry_id].valid = 1;
+				if (CLUT_entry_id < 4)
+				{
+					clut->entries_2bit[CLUT_entry_id].Y = v_Y;
+					clut->entries_2bit[CLUT_entry_id].Cr = v_Cr;
+					clut->entries_2bit[CLUT_entry_id].Cb = v_Cb;
+					clut->entries_2bit[CLUT_entry_id].T = v_T;
+					clut->entries_2bit[CLUT_entry_id].valid = 1;
+				}
+				else
+					eDebug("CLUT entry marked as 2 bit with id %d (>3)", CLUT_entry_id);
 			}
 //			eDebug(" %04x %02x %02x %02x %02x", CLUT_entry_id, v_Y, v_Cb, v_Cr, v_T);
 		}
