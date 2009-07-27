@@ -37,10 +37,10 @@ struct subtitle_region_object
 	int object_id;
 	int object_type;
 	int object_provider_flag;
-	
+
 	int object_horizontal_position;
 	int object_vertical_position;
-	
+
 		// not supported right now...
 	int foreground_pixel_value;
 	int background_pixel_value;
@@ -51,18 +51,18 @@ struct subtitle_region_object
 struct subtitle_region
 {
 	int region_id;
-	int region_version_number;
-	int region_height, region_width;
-	enum depth { bpp2=1, bpp4=2, bpp8=3 } region_depth;
-	
-	ePtr<gPixmap> region_buffer;
-	
+	int version_number;
+	int height, width;
+	enum tDepth { bpp2=1, bpp4=2, bpp8=3 } depth;
+
+	ePtr<gPixmap> buffer;
+
 	int clut_id;
-	
-	subtitle_region_object *region_objects;
-	
+
+	subtitle_region_object *objects;
+
 	subtitle_region *next;
-	
+
 	bool committed;
 };
 
@@ -74,7 +74,7 @@ struct subtitle_page
 	int state;
 	int pcs_size;
 	subtitle_page_region *page_regions;
-	
+
 	subtitle_region *regions;
 
 	subtitle_clut *cluts;
@@ -106,6 +106,7 @@ struct eDVBSubtitlePage
 {
 	std::list<eDVBSubtitleRegion> m_regions;
 	pts_t m_show_time;
+	eSize m_display_size;
 };
 
 class eDVBSubtitleParser
@@ -119,6 +120,7 @@ class eDVBSubtitleParser
 	Signal1<void,const eDVBSubtitlePage&> m_new_subtitle_page;
 	int m_composition_page_id, m_ancillary_page_id;
 	bool m_seen_eod;
+	eSize m_display_size;
 public:
 	eDVBSubtitleParser(iDVBDemux *demux);
 	virtual ~eDVBSubtitleParser();
@@ -126,8 +128,8 @@ public:
 	int stop();
 	void connectNewPage(const Slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection);
 private:
-	void subtitle_process_line(subtitle_page *page, int object_id, int line, __u8 *data, int len);
-	int subtitle_process_pixel_data(subtitle_page *page, int object_id, int *linenr, int *linep, __u8 *data);
+	void subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, __u8 *data, int len);
+	int subtitle_process_pixel_data(subtitle_region *region, subtitle_region_object *object, int *linenr, int *linep, __u8 *data);
 	int subtitle_process_segment(__u8 *segment);
 	void subtitle_process_pes(__u8 *buffer, int len);
 	void subtitle_redraw_all();
