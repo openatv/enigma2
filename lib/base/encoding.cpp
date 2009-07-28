@@ -83,5 +83,5 @@ int eDVBTextEncodingHandler::getCountryCodeDefaultMapping( const std::string &co
 		m_CountryCodeDefaultMapping.find(country_code);
 	if ( it != m_CountryCodeDefaultMapping.end() )
 		return it->second;
-	return 0;  // Latin1/ISO6397
+	return 1;  // ISO8859-1 / Latin1
 }
