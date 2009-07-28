@@ -325,7 +325,7 @@ static inline unsigned int recode(unsigned char d, int cp)
 		return d;
 	switch (cp)
 	{
-	case 0:		// Latin1/ISO6397 <-> unicode mapping
+	case 0:		// ISO6397
 		return iso6397[d-0xA0];
 	case 1:		// 8859-1 <-> unicode mapping
 		return d;
@@ -371,10 +371,6 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 
 	int i=0, t=0;
 
-	// table given two this function is default 0... but when a default table for a country code is set in encoding.conf
-	// then here this table is given
-
-	// when a tsid/onid is avail the table can be overriden in encoding.conf based on tsid/onid combinations
 	if ( tsidonid )
 		encodingHandler.getTransponderDefaultMapping(tsidonid, table);
 
@@ -403,7 +399,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 		}
 		case 0x11: //  Basic Multilingual Plane of ISO/IEC 10646-1 enc  (UTF-16... Unicode)
 			table = 65;
-//			eDebug("(0x11)text encoded in ISO-10646-1 (UTF-16)");
+			tsidonid = 0;
 			++i;
 			break;
 		case 0x12:
@@ -426,21 +422,14 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			eDebug("reserved %d", data[0]);
 			++i;
 			break;
-		default:
-//			eDebug("no encoding in dvb string given.. use default table %d", table);
-			break;
 	}
 
-	bool useTwoCharMapping = (!table) || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
-	// two char byte mapping is default enabled for table 0 (ISO6397) (described in ETSI EN300468)
-	// or it can be enabled for tsid/onid combinations in our encoding.conf
+	bool useTwoCharMapping = !table || tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid);
 
 	if (useTwoCharMapping && table == 5) { // i hope this dont break other transponders which realy use ISO8859-5 and two char byte mapping...
 //		eDebug("Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6397");
 		table = 0;
 	}
-
-//	eDebug("tsid %04x, onid %04x, used table is now %d, twoChar %d", tsidonid >> 16, tsidonid & 0xFFFF, table, useTwoCharMapping);
 
 	unsigned char res[2048];
 	while (i < len)
