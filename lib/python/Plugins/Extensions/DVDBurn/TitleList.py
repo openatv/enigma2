@@ -245,21 +245,24 @@ class TitleList(Screen, HelpableScreen):
 			self["key_yellow"].text = ""
 
 	def updateSize(self):
-		size = self.project.size
-		if size > self.project.MAX_DL:
-			percent = 100 * size / float(self.project.MAX_DL)
+		size = self.project.size/(1024*1024)
+		MAX_DL = self.project.MAX_DL-100
+		MAX_SL = self.project.MAX_SL-100
+		print "updateSize:", size, "MAX_DL:", MAX_DL, "MAX_SL:", MAX_SL
+		if size > MAX_DL:
+			percent = 100 * size / float(MAX_DL)
 			self["space_label"].text = "%d MB - " % size + _("exceeds dual layer medium!") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
-			if self.previous_size < self.project.MAX_DL:
+			if self.previous_size < MAX_DL:
 				self.session.open(MessageBox,text = _("exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
-		elif size > self.project.MAX_SL:
-			percent = 100 * size / float(self.project.MAX_DL)
+		elif size > MAX_SL:
+			percent = 100 * size / float(MAX_DL)
 			self["space_label"].text = "%d MB  " % size + _("of a DUAL layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
-			if self.previous_size < self.project.MAX_SL:
+			if self.previous_size < MAX_SL:
 				self.session.open(MessageBox,text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), type = MessageBox.TYPE_INFO)
-		elif size < self.project.MAX_SL:
-			percent = 100 * size / float(self.project.MAX_SL)
+		elif size < MAX_SL:
+			percent = 100 * size / float(MAX_SL)
 			self["space_label"].text = "%d MB " % size + _("of a SINGLE layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
 		self.previous_size = size
