@@ -262,3 +262,14 @@ def copytree(src, dst, symlinks=False):
 			utime(dst, (st.st_atime, st.st_mtime))
 	except:
 		print "copy stats for", src, "failed!"
+
+def getSize(path, pattern=".*"):
+	path_size = 0
+	if os_path.isdir(path):
+		files = crawlDirectory(path, pattern)
+		for file in files:
+			filepath = os_path.join(file[0], file[1])
+			path_size += os_path.getsize(filepath)
+	elif os_path.isfile(path):
+		path_size = os_path.getsize(path)
+	return path_size
