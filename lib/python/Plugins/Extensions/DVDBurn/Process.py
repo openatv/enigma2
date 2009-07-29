@@ -315,9 +315,9 @@ class BurnTask(Task):
 		elif line.startswith(":-["):
 			if line.find("ASC=30h") != -1:
 				self.error = self.ERROR_NOTWRITEABLE
-			if line.find("ASC=24h") != -1:
+			elif line.find("ASC=24h") != -1:
 				self.error = self.ERROR_LOAD
-			if line.find("SK=5h/ASC=A8h/ACQ=04h") != -1:
+			elif line.find("SK=5h/ASC=A8h/ACQ=04h") != -1:
 				self.error = self.ERROR_MINUSRWBUG
 			else:
 				self.error = self.ERROR_UNKNOWN
@@ -883,6 +883,8 @@ class DVDJob(Job):
 				self.name = _("Burn DVD")
 				tool = "/bin/growisofs"
 				burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
+				if self.project.size/(1024*1024) > self.project.MAX_SL:
+					burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 			elif output == "iso":
 				self.name = _("Create DVD-ISO")
 				tool = "/usr/bin/mkisofs"
@@ -921,6 +923,8 @@ class DVDdataJob(Job):
 		if output == "dvd":
 			self.name = _("Burn DVD")
 			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
+			if self.project.size/(1024*1024) > self.project.MAX_SL:
+				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 		elif output == "iso":
 			tool = "/usr/bin/mkisofs"
 			self.name = _("Create DVD-ISO")
@@ -941,13 +945,18 @@ class DVDisoJob(Job):
 		Job.__init__(self, _("Burn DVD"))
 		self.project = project
 		self.menupreview = False
+		from Tools.Directories import getSize
 		if imagepath.endswith(".iso"):
 			PreviewTask(self, imagepath)
 			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD() + '='+imagepath, "-dvd-compat" ]
+			if getSize(imagepath)/(1024*1024) > self.project.MAX_SL:
+				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 		else:
 			PreviewTask(self, imagepath + "/VIDEO_TS/")
 			volName = self.project.settings.name.getValue()
 			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
+			if getSize(imagepath)/(1024*1024) > self.project.MAX_SL:
+				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, imagepath ]
 		tool = "/bin/growisofs"
 		BurnTask(self, burnargs, tool)
