@@ -18,8 +18,8 @@ class ConfigFilename(ConfigText):
 		return ("mtext"[1-selected:], filename, mark)
 	
 class DVDProject:
-	MAX_SL = 4370
-	MAX_DL = 7950
+	MAX_SL = 4480
+	MAX_DL = 8150
 	def __init__(self):
 		self.titles = [ ]
 		self.target = None
