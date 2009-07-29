@@ -232,13 +232,11 @@ class TitleList(Screen, HelpableScreen):
 		
 	def updateTitleList(self):
 		res = [ ]
-		totalsize = 0
 		for title in self.project.titles:
 			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 5, 500, 25, 0, RT_HALIGN_LEFT, title.properties.menutitle.getValue())  ]
 			res.append(a)
-			totalsize += title.estimatedDiskspace
 		self["titles"].list = res
-		self.updateSize(totalsize)
+		self.updateSize()
 		if len(res):
 			self["key_red"].text = _("Remove title")
 			self["key_yellow"].text = _("Title properties")
@@ -246,24 +244,22 @@ class TitleList(Screen, HelpableScreen):
 			self["key_red"].text = ""
 			self["key_yellow"].text = ""
 
-	def updateSize(self, totalsize):
-		size = int((totalsize/1024)/1024)
-		max_SL = 4370
-		max_DL = 7950
-		if size > max_DL:
-			percent = 100 * size / float(max_DL)
+	def updateSize(self):
+		size = self.project.size
+		if size > self.project.MAX_DL:
+			percent = 100 * size / float(self.project.MAX_DL)
 			self["space_label"].text = "%d MB - " % size + _("exceeds dual layer medium!") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
-			if self.previous_size < max_DL:
+			if self.previous_size < self.project.MAX_DL:
 				self.session.open(MessageBox,text = _("exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
-		elif size > max_SL:
-			percent = 100 * size / float(max_DL)
+		elif size > self.project.MAX_SL:
+			percent = 100 * size / float(self.project.MAX_DL)
 			self["space_label"].text = "%d MB  " % size + _("of a DUAL layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
-			if self.previous_size < max_SL:
+			if self.previous_size < self.project.MAX_SL:
 				self.session.open(MessageBox,text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), type = MessageBox.TYPE_INFO)
-		elif size < max_SL:
-			percent = 100 * size / float(max_SL)
+		elif size < self.project.MAX_SL:
+			percent = 100 * size / float(self.project.MAX_SL)
 			self["space_label"].text = "%d MB " % size + _("of a SINGLE layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
 			self["space_bar"].value = int(percent)
 		self.previous_size = size
