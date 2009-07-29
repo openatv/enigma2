@@ -1,0 +1,26 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Dream Multimedia</author>
+                    <name>CrashlogAutoSubmit</name>
+                    <packagename>enigma2-plugin-systemplugins-crashlogautosubmit</packagename>
+                    <shortdescription>Automatically send crashlogs to Dream Multimedia</shortdescription>
+                    <description>With the CrashlogAutoSubmit extension it is possible to automatically send crashlogs
+		    found on your Harddrive to Dream Multimedia
+                    </description>
+          </info>
+          <info language="de">
+                    <author>Dream Multimedia</author>
+                    <name>CrashlogAutoSubmit</name>
+                    <packagename>enigma2-plugin-systemplugins-crashlogautosubmit</packagename>
+                    <shortdescription>Automatisches versenden von Crashlogs an Dream Multimedia</shortdescription>
+                    <description>Mit dem CrashlogAutoSubmit Plugin ist es möglich auf Ihrer Festplatte
+		    gefundene Crashlogs automatisch  an Dream Multimedia zu versenden.
+                    </description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-crashlogautosubmit" />
+	  </files>
+</default>

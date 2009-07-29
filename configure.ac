@@ -127,6 +127,7 @@ lib/python/Plugins/SystemPlugins/Videomode/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
+lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/Makefile
