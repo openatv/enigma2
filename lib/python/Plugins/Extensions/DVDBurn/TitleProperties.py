@@ -91,7 +91,7 @@ class TitleProperties(Screen,ConfigListScreen):
 			chaptermarks = title.getChapterMarks(template="$h:$m:$s")
 			chapters_count = len(chaptermarks)
 			if chapters_count >= 1:
-				infotext += '\n' + str(chapters_count+1) + ' ' + _("chapters") + ': '
+				infotext += str(chapters_count+1) + ' ' + _("chapters") + ': '
 				infotext += ' / '.join(chaptermarks)
 			self["serviceinfo"].setText(infotext)
 			self["config"].setList(self.list)

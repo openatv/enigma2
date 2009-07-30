@@ -18,6 +18,8 @@ class ConfigFilename(ConfigText):
 		return ("mtext"[1-selected:], filename, mark)
 	
 class DVDProject:
+	MAX_SL = 4480
+	MAX_DL = 8150
 	def __init__(self):
 		self.titles = [ ]
 		self.target = None
@@ -139,6 +141,14 @@ class DVDProject:
 			self.error += (" in project '%s'") % (filename)
 			return False
 		return True
+
+	def getSize(self):
+		totalsize = 0
+		for title in self.titles:
+			totalsize += title.estimatedDiskspace
+		return totalsize
+
+	size = property(getSize)
 
 class MenuTemplate(DVDProject):
 	def __init__(self):
