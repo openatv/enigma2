@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-18 23:40+0200\n"
+"POT-Creation-Date: 2009-07-30 12:08+0200\n"
 "PO-Revision-Date: 2009-04-27 19:27+0100\n"
 "Last-Translator: \n"
 "Language-Team:  <Benny.DeTandt@gmail.com>\n"
@@ -45,13 +45,6 @@ msgid ""
 msgstr ""
 "\n"
 "Bewerk het upgrade bron adres."
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 zal herstarten na het terugzetten."
 
 msgid ""
 "\n"
@@ -113,6 +106,15 @@ msgstr ""
 
 msgid " "
 msgstr " "
+
+msgid " extensions."
+msgstr ""
+
+msgid " packages selected."
+msgstr ""
+
+msgid " updates available."
+msgstr ""
 
 msgid "#000000"
 msgstr "#000000"
@@ -396,6 +398,9 @@ msgstr "Standaard AC3"
 msgid "AC3 downmix"
 msgstr "AC3 downmix"
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr "Uw Dreambox"
 
@@ -490,6 +495,9 @@ msgstr "Alternative radio modus"
 
 msgid "Alternative services tuner priority"
 msgstr "Alternatieve tuner prioriteit"
+
+msgid "Always ask before sending"
+msgstr ""
 
 msgid "An empty filename is illegal."
 msgstr "Een lege bestandsnaam is ongeldig."
@@ -863,17 +871,26 @@ msgstr "Configuratie"
 msgid "Configuration Mode"
 msgstr "Configuratie modus"
 
+msgid "Configuration for the CrashlogAutoSubmitter"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Configureren"
 
 msgid "Conflicting timer"
 msgstr "Timer conflict!"
 
+msgid "Connect"
+msgstr ""
+
 msgid "Connected to"
 msgstr "Verbonden met"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Verbonden met Fritz!Box!"
+
+msgid "Connected!"
+msgstr ""
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Verbinden met Fritz!Box..."
@@ -894,6 +911,9 @@ msgstr "Constellatie"
 msgid "Content does not fit on DVD!"
 msgstr "De inhoud past niet op deze DVD!"
 
+msgid "Continue"
+msgstr ""
+
 msgid "Continue in background"
 msgstr "Verder in de achtergrond"
 
@@ -912,6 +932,17 @@ msgstr "Kan medium niet laden! Geen disk in speler?"
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Kan niet opnemen vanwege conflicterende timer %s"
+
+msgid "CrashlogAutoSubmit"
+msgstr ""
+
+msgid "CrashlogAutoSubmitConfiguration"
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
+msgstr ""
 
 msgid "Create DVD-ISO"
 msgstr "DVD-ISO maken"
@@ -1001,6 +1032,9 @@ msgstr "Vertraging"
 msgid "Delete"
 msgstr "Verwijderen"
 
+msgid "Delete crashlogs"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "Verwijder invoer"
 
@@ -1024,9 +1058,6 @@ msgstr "Deselecteer"
 msgid "Destination directory"
 msgstr "Doel map"
 
-msgid "Details"
-msgstr "Details"
-
 msgid "Detected HDD:"
 msgstr "Gedetecteerde harde schijf:"
 
@@ -1048,6 +1079,9 @@ msgstr "DiSEqC-modus"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC herhaling"
 
+msgid "Dialing:"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Direct afspelen van titels zonder menu"
 
@@ -1064,11 +1098,17 @@ msgstr "Picture In Picture uitschakelen"
 msgid "Disable Subtitles"
 msgstr "Ondertitels uit"
 
+msgid "Disable crashlog reporting"
+msgstr ""
+
 msgid "Disable timer"
 msgstr "Timer uitschakelen"
 
 msgid "Disabled"
 msgstr "Gedeactiveerd"
+
+msgid "Disconnect"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1150,11 +1190,6 @@ msgstr ""
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Wilt u deze verzameling op een DVD medium schrijven?"
 
-msgid "Do you want to continue installing or removing selected plugins?\n"
-msgstr ""
-"Wilt u doorgaan met het installeren of verwijderen van de geselecteerde "
-"applicaties?\n"
-
 msgid "Do you want to do a service scan?"
 msgstr "Wilt u nu zenders zoeken?"
 
@@ -1204,6 +1239,9 @@ msgstr "Wilt u een upgrade van het volgende pakket:\n"
 msgid "Do you want to view a tutorial?"
 msgstr "Wilt u een voorbeeld zien?"
 
+msgid "Don't ask, just send"
+msgstr ""
+
 msgid "Don't stop current event but disable coming events"
 msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
 
@@ -1246,6 +1284,9 @@ msgstr "Ophalen informatie. Een ogenblik a.u.b..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox formaat data DVD (HDTV compatibel)"
+
+msgid "Dreambox software because updates are available."
+msgstr ""
 
 msgid "Dutch"
 msgstr "Nederlands"
@@ -1481,6 +1522,9 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flashen mislukt"
 
+msgid "Following tasks will be done after you press continue."
+msgstr ""
+
 msgid "Format"
 msgstr "Formaat"
 
@@ -1585,6 +1629,9 @@ msgstr "Harde schijf instellingen"
 msgid "Harddisk standby after"
 msgstr "Harde schijf standby na"
 
+msgid "Here is a small overview of the available icon states."
+msgstr ""
+
 msgid "Hidden network SSID"
 msgstr "Verborgen netwerk SSID"
 
@@ -1602,6 +1649,9 @@ msgstr "Horizontaal"
 
 msgid "How many minutes do you want to record?"
 msgstr "Hoeveel minuten wilt u opnemen?"
+
+msgid "How to handle found crashlogs:"
+msgstr ""
 
 msgid "Hungarian"
 msgstr "Hongaars"
@@ -1714,13 +1764,6 @@ msgstr "Installeer instellingen, skins, software..."
 msgid "Install software updates..."
 msgstr "Installeer software updates..."
 
-msgid ""
-"Install/\n"
-"Remove"
-msgstr ""
-"Installeer/ \n"
-"Verwijder"
-
 msgid "Installation finished."
 msgstr "Installatie mislukt."
 
@@ -1769,6 +1812,9 @@ msgstr "Inverteer display"
 
 msgid "Ipkg"
 msgstr "Ipkg"
+
+msgid "Is this videomode ok?"
+msgstr ""
 
 msgid "Italian"
 msgstr "Italiaans"
@@ -2210,6 +2256,9 @@ msgstr "Nee, uitsluitend Dreambox starten"
 msgid "No, scan later manually"
 msgstr "Nee, later handmatig zoeken."
 
+msgid "No, send them never."
+msgstr ""
+
 msgid "None"
 msgstr "geen"
 
@@ -2321,8 +2370,14 @@ msgstr "Kinderslot instellingen"
 msgid "Parental control type"
 msgstr "Kinderslot type"
 
+msgid "Password"
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "Pauzeer afspelen aan het einde"
+
+msgid "Phone number"
+msgstr ""
 
 msgid "PiPSetup"
 msgstr "PiP Instellingen"
@@ -2504,6 +2559,12 @@ msgstr "Applicatie browser"
 msgid "Plugin manager"
 msgstr "Pakket beheer"
 
+msgid "Plugin manager help..."
+msgstr ""
+
+msgid "Plugin manager process information..."
+msgstr ""
+
 msgid "Plugins"
 msgstr "Applicaties"
 
@@ -2585,6 +2646,9 @@ msgstr "Primaire DNS"
 
 msgid "Priority"
 msgstr "Prioriteit"
+
+msgid "Process"
+msgstr ""
 
 msgid "Properties of current title"
 msgstr "Instellingen van huidige titel"
@@ -2734,6 +2798,9 @@ msgstr "Verwijderen van map %s mislukt (map niet leeg?)."
 
 msgid "Rename"
 msgstr "Hernoemen"
+
+msgid "Rename crashlogs"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Herhaling"
@@ -3047,6 +3114,9 @@ msgstr "Zonder titels af met een hoofdmenu"
 msgid "Sequence repeat"
 msgstr "Herhaal sequence"
 
+msgid "Serbian"
+msgstr ""
+
 msgid "Service"
 msgstr "Stream informatie"
 
@@ -3115,6 +3185,9 @@ msgstr "Menu modus"
 
 msgid "Show Info"
 msgstr "Info weergeven"
+
+msgid "Show Message when Recording starts"
+msgstr ""
 
 msgid "Show WLAN Status"
 msgstr "WLAN status weergeven"
@@ -3194,6 +3267,9 @@ msgstr "Diavoorstelling interval (sec.)"
 #, python-format
 msgid "Slot %d"
 msgstr "Slot %d"
+
+msgid "Slovene"
+msgstr ""
 
 msgid "Slow"
 msgstr "Langzaam"
@@ -3541,6 +3617,9 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "De wizard is nu gereed."
 
+msgid "There are at least "
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Er is geen standaard zenderlijst in uw firmware gevonden."
 
@@ -3597,6 +3676,18 @@ msgstr "Dit is stap nummer 2."
 
 msgid "This is unsupported at the moment."
 msgstr "Dit wordt nog niet ondersteund op dit ogenblik."
+
+msgid "This plugin is installed."
+msgstr ""
+
+msgid "This plugin is not installed."
+msgstr ""
+
+msgid "This plugin will be installed."
+msgstr ""
+
+msgid "This plugin will be removed."
+msgstr ""
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3867,6 +3958,16 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC commando"
 
+msgid ""
+"Undo\n"
+"Install"
+msgstr ""
+
+msgid ""
+"Undo\n"
+"Remove"
+msgstr ""
+
 msgid "Unicable"
 msgstr "Unicable"
 
@@ -3895,6 +3996,9 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
 "Software update is bezig. Een ogenblik geduld a.u.b. Dit kan enkele minuten "
 "duren..."
+
+msgid "Upgrade"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Upgrade voltooid."
@@ -3972,6 +4076,9 @@ msgstr "Gebruikte zoekmethode"
 msgid "User defined"
 msgstr "Door u ingesteld"
 
+msgid "Username"
+msgstr ""
+
 msgid "VCR scart"
 msgstr "VCR scart"
 
@@ -4012,9 +4119,6 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Video modus selectie"
 
-msgid "View"
-msgstr "Bekijken"
-
 msgid "View Movies..."
 msgstr "Bekijk opname..."
 
@@ -4026,6 +4130,12 @@ msgstr "Rass Interactive weergeven"
 
 msgid "View Video CD..."
 msgstr "Bekijk Video CD..."
+
+msgid "View details"
+msgstr ""
+
+msgid "View list of available "
+msgstr ""
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Bekijk de lijst met beschikbare CommonInterface extensies"
@@ -4160,6 +4270,9 @@ msgstr "West"
 msgid "What do you want to scan?"
 msgstr "Wat wilt u zoeken?"
 
+msgid "What to do with sent crashlogs:"
+msgstr ""
+
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -4209,6 +4322,9 @@ msgstr "Ja"
 msgid "Yes, and delete this movie"
 msgstr "Ja en verwijder dit bestand"
 
+msgid "Yes, and don't ask again."
+msgstr ""
+
 msgid "Yes, backup my settings!"
 msgstr "Ja, mijn instellingen opslaan!"
 
@@ -4233,6 +4349,12 @@ msgstr "Ja, terug naar de opname lijst"
 msgid "Yes, view the tutorial"
 msgstr "Ja, de handleiding weergeven"
 
+msgid "You can cancel the installation."
+msgstr ""
+
+msgid "You can cancel the removal."
+msgstr ""
+
 msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
@@ -4242,6 +4364,12 @@ msgstr ""
 
 msgid "You can choose, what you want to install..."
 msgstr "U kunt hier kiezen wat u wenst te installeren."
+
+msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can remove this plugin."
+msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "U kunt dit niet wissen!"
@@ -5283,8 +5411,33 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapte"
 
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 zal herstarten na het terugzetten."
+
 #~ msgid "An error occured!"
 #~ msgstr "Er is een fout opgetreden!"
+
+#~ msgid "Details"
+#~ msgstr "Details"
+
+#~ msgid "Do you want to continue installing or removing selected plugins?\n"
+#~ msgstr ""
+#~ "Wilt u doorgaan met het installeren of verwijderen van de geselecteerde "
+#~ "applicaties?\n"
+
+#~ msgid ""
+#~ "Install/\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Installeer/ \n"
+#~ "Verwijder"
+
+#~ msgid "View"
+#~ msgstr "Bekijken"
 
 #~ msgid "no module"
 #~ msgstr "geen module"

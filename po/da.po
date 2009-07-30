@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-03 17:10+0200\n"
+"POT-Creation-Date: 2009-07-30 12:08+0200\n"
 "PO-Revision-Date: 2009-05-26 19:33+0100\n"
 "Last-Translator: Ingmar Jørgensen <dreambox@ingmar.dk>\n"
 "Language-Team: jazzydane <dreambox@ingmar.dk>\n"
@@ -41,13 +41,6 @@ msgid ""
 msgstr ""
 "\n"
 "Rediger kildeadressen til opgradering."
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 vil genstarte efter gendannelse"
 
 msgid ""
 "\n"
@@ -111,6 +104,12 @@ msgid " "
 msgstr " "
 
 msgid " extensions."
+msgstr ""
+
+msgid " packages selected."
+msgstr ""
+
+msgid " updates available."
 msgstr ""
 
 msgid "#000000"
@@ -491,6 +490,9 @@ msgstr "Alternativ radio type"
 msgid "Alternative services tuner priority"
 msgstr "Alternativ kanal tuner prioritet"
 
+msgid "Always ask before sending"
+msgstr ""
+
 msgid "An empty filename is illegal."
 msgstr "Et tomt filnavn er ugyldigt."
 
@@ -861,6 +863,9 @@ msgstr "Indtilling"
 msgid "Configuration Mode"
 msgstr "Konfigurations Type"
 
+msgid "Configuration for the CrashlogAutoSubmitter"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Konfigurerer"
 
@@ -898,6 +903,9 @@ msgstr "Konstellation"
 msgid "Content does not fit on DVD!"
 msgstr "Indholdet kan ikke være på DVD'en!"
 
+msgid "Continue"
+msgstr ""
+
 msgid "Continue in background"
 msgstr "Fortsæt i baggrunden"
 
@@ -916,6 +924,17 @@ msgstr "Kunne ikke indlæse media! Ingen disk isat?"
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Kan ikke optage på grund af konfliktende timere %s"
+
+msgid "CrashlogAutoSubmit"
+msgstr ""
+
+msgid "CrashlogAutoSubmitConfiguration"
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
+msgstr ""
 
 msgid "Create DVD-ISO"
 msgstr "Opret DVD-ISO"
@@ -1005,6 +1024,9 @@ msgstr "Forsinkelse"
 msgid "Delete"
 msgstr "Slet"
 
+msgid "Delete crashlogs"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "Slet indgang"
 
@@ -1027,9 +1049,6 @@ msgstr "Fravælg"
 
 msgid "Destination directory"
 msgstr "Destinations mappe"
-
-msgid "Details"
-msgstr "Detaljer"
 
 msgid "Detected HDD:"
 msgstr "HDD fundet:"
@@ -1070,6 +1089,9 @@ msgstr "Afbryd Billed i Billed"
 
 msgid "Disable Subtitles"
 msgstr "Stoppe undertekster"
+
+msgid "Disable crashlog reporting"
+msgstr ""
 
 msgid "Disable timer"
 msgstr "Afbryd timer"
@@ -1160,9 +1182,6 @@ msgstr ""
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Vil du brænde denne kollektion til DVD media?"
 
-msgid "Do you want to continue installing or removing selected plugins?\n"
-msgstr "Vil du fortsætte med at installere eller fjerne valgte plugins?\n"
-
 msgid "Do you want to do a service scan?"
 msgstr "Vil du lave en kanal søgning?"
 
@@ -1212,6 +1231,9 @@ msgstr "Vil du opgradere pakken:\n"
 msgid "Do you want to view a tutorial?"
 msgstr "Vil du se en oversigt?"
 
+msgid "Don't ask, just send"
+msgstr ""
+
 msgid "Don't stop current event but disable coming events"
 msgstr "Stop ikke nuværende program men slå kommende programmer fra"
 
@@ -1253,6 +1275,9 @@ msgstr "Henter plugin informationer. Vent venligst..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox format data DVD (HDTV kompatibel)"
+
+msgid "Dreambox software because updates are available."
+msgstr ""
 
 msgid "Dutch"
 msgstr "Hollandsk"
@@ -1357,7 +1382,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1489,6 +1513,9 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flash mislykkedes"
 
+msgid "Following tasks will be done after you press continue."
+msgstr ""
+
 msgid "Format"
 msgstr "Formatere"
 
@@ -1593,6 +1620,9 @@ msgstr "Harddisk opsætning"
 msgid "Harddisk standby after"
 msgstr "Harddisk slumre efter:"
 
+msgid "Here is a small overview of the available icon states."
+msgstr ""
+
 msgid "Hidden network SSID"
 msgstr "Skjult netværks SSID"
 
@@ -1610,6 +1640,9 @@ msgstr "Horisontal"
 
 msgid "How many minutes do you want to record?"
 msgstr "Hvor mange minutter vil du optage?"
+
+msgid "How to handle found crashlogs:"
+msgstr ""
 
 msgid "Hungarian"
 msgstr "Ungarsk"
@@ -1719,13 +1752,6 @@ msgstr "Installer opsætning, grafisk tema, software..."
 
 msgid "Install software updates..."
 msgstr "Installer software opdateringer..."
-
-msgid ""
-"Install/\n"
-"Remove"
-msgstr ""
-"Installer/\n"
-"Fjern"
 
 msgid "Installation finished."
 msgstr "Installation afsluttet"
@@ -2220,6 +2246,9 @@ msgstr "Nej, bare start min Dreambox"
 msgid "No, scan later manually"
 msgstr "Nej, søg senere manuelt"
 
+msgid "No, send them never."
+msgstr ""
+
 msgid "None"
 msgstr "Ingen"
 
@@ -2517,6 +2546,12 @@ msgstr "Plugin menu"
 msgid "Plugin manager"
 msgstr "Plugin styring"
 
+msgid "Plugin manager help..."
+msgstr ""
+
+msgid "Plugin manager process information..."
+msgstr ""
+
 msgid "Plugins"
 msgstr "Plugins"
 
@@ -2598,6 +2633,9 @@ msgstr "Primær DNS"
 
 msgid "Priority"
 msgstr "Prioritet"
+
+msgid "Process"
+msgstr ""
 
 msgid "Properties of current title"
 msgstr "Egenskaber for den aktuelle titel"
@@ -2747,6 +2785,9 @@ msgstr "Fjernelsen af mappen %s mislykkedes. (Måske ikke tom.)"
 
 msgid "Rename"
 msgstr "Omdøb"
+
+msgid "Rename crashlogs"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Gentag"
@@ -3057,6 +3098,9 @@ msgstr "Adskil titler med en hoved menu"
 msgid "Sequence repeat"
 msgstr "Sekvens gentagelse"
 
+msgid "Serbian"
+msgstr ""
+
 msgid "Service"
 msgstr "Kanal info"
 
@@ -3207,6 +3251,9 @@ msgstr "Slideshow Interval (sek.)"
 #, python-format
 msgid "Slot %d"
 msgstr "Slot %d"
+
+msgid "Slovene"
+msgstr ""
 
 msgid "Slow"
 msgstr "Langsom"
@@ -3561,6 +3608,9 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "Brugen af hjælpen er færdig nu."
 
+msgid "There are at least "
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Der er ingen standard kanallister i dit Image."
 
@@ -3615,6 +3665,18 @@ msgstr "Dette er skridt nummer 2."
 
 msgid "This is unsupported at the moment."
 msgstr "Denne funktion er ikke understøttet."
+
+msgid "This plugin is installed."
+msgstr ""
+
+msgid "This plugin is not installed."
+msgstr ""
+
+msgid "This plugin will be installed."
+msgstr ""
+
+msgid "This plugin will be removed."
+msgstr ""
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3880,6 +3942,16 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Ukommiteret DiSEqC kommando"
 
+msgid ""
+"Undo\n"
+"Install"
+msgstr ""
+
+msgid ""
+"Undo\n"
+"Remove"
+msgstr ""
+
 msgid "Unicable"
 msgstr "Unikabel"
 
@@ -3906,6 +3978,9 @@ msgstr "Opdatering er udført. Her er resultatet:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Opdaterer... Vent venligst...  Dette kan tage adskillige minutter..."
+
+msgid "Upgrade"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Opgradering afsluttet"
@@ -3934,7 +4009,6 @@ msgstr "Brug strømmåling"
 msgid "Use a gateway"
 msgstr "Brug af Router"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -4028,9 +4102,6 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Video type vælger."
 
-msgid "View"
-msgstr "Vis"
-
 msgid "View Movies..."
 msgstr "Vis film..."
 
@@ -4042,6 +4113,9 @@ msgstr "Se Rass interaktiv..."
 
 msgid "View Video CD..."
 msgstr "Vis video CD"
+
+msgid "View details"
+msgstr ""
 
 msgid "View list of available "
 msgstr ""
@@ -4178,6 +4252,9 @@ msgstr "Vest"
 msgid "What do you want to scan?"
 msgstr "Hvad vil du søge?"
 
+msgid "What to do with sent crashlogs:"
+msgstr ""
+
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -4225,6 +4302,9 @@ msgstr "Ja"
 msgid "Yes, and delete this movie"
 msgstr "Ja, og slet denne film"
 
+msgid "Yes, and don't ask again."
+msgstr ""
+
 msgid "Yes, backup my settings!"
 msgstr "Ja, start kopiering af mine indstillinger!"
 
@@ -4249,6 +4329,12 @@ msgstr "Ja, gå til filmliste"
 msgid "Yes, view the tutorial"
 msgstr "Ja, vis mig en oversigt"
 
+msgid "You can cancel the installation."
+msgstr ""
+
+msgid "You can cancel the removal."
+msgstr ""
+
 msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
@@ -4258,6 +4344,12 @@ msgstr ""
 
 msgid "You can choose, what you want to install..."
 msgstr "Du kan vælge, hvad du vil installere..."
+
+msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can remove this plugin."
+msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "Dette kan ikke slettes!"
@@ -5298,6 +5390,13 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zappet"
 
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 vil genstarte efter gendannelse"
+
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
@@ -5410,6 +5509,9 @@ msgstr "zappet"
 #~ msgid "Default-Wizard"
 #~ msgstr "Default-Guide"
 
+#~ msgid "Details"
+#~ msgstr "Detaljer"
+
 #~ msgid "Device Setup..."
 #~ msgstr "Netværks Opsætning..."
 
@@ -5438,6 +5540,9 @@ msgstr "zappet"
 
 #~ msgid "Do you really want to exit?"
 #~ msgstr "Ønsker du virkelig at afslutte?"
+
+#~ msgid "Do you want to continue installing or removing selected plugins?\n"
+#~ msgstr "Vil du fortsætte med at installere eller fjerne valgte plugins?\n"
 
 #~ msgid "Downloading image description..."
 #~ msgstr "Downloader image beskrivelse..."
@@ -5481,6 +5586,13 @@ msgstr "zappet"
 
 #~ msgid "Hello!"
 #~ msgstr "Goddag!"
+
+#~ msgid ""
+#~ "Install/\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Installer/\n"
+#~ "Fjern"
 
 #~ msgid "Installing defaults... Please wait.."
 #~ msgstr "Installerer standard... Vent venligst..."
@@ -5780,6 +5892,9 @@ msgstr "zappet"
 
 #~ msgid "Videosize:"
 #~ msgstr "Billedformat:"
+
+#~ msgid "View"
+#~ msgstr "Vis"
 
 #~ msgid "Waiting for USB stick to settle..."
 #~ msgstr "Venter på USB sticken..."

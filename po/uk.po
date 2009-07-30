@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-18 23:40+0200\n"
+"POT-Creation-Date: 2009-07-30 12:08+0200\n"
 "PO-Revision-Date: 2008-09-28 14:03+0200\n"
 "Last-Translator: stepan_kv <stepan_kv@mail.ru>\n"
 "Language-Team: http://sat-ukraine.info/\n"
@@ -38,13 +38,6 @@ msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 буде перезавантажена після відновлення"
 
 msgid ""
 "\n"
@@ -88,6 +81,15 @@ msgid ""
 msgstr ""
 
 msgid " "
+msgstr ""
+
+msgid " extensions."
+msgstr ""
+
+msgid " packages selected."
+msgstr ""
+
+msgid " updates available."
 msgstr ""
 
 msgid "#000000"
@@ -364,6 +366,9 @@ msgstr "AC3 за замовчуванням"
 msgid "AC3 downmix"
 msgstr ""
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr "Інформація"
 
@@ -459,6 +464,9 @@ msgstr "Альтернативний радіо режим"
 
 msgid "Alternative services tuner priority"
 msgstr "Альтернативний приорітет налаштування сервісів"
+
+msgid "Always ask before sending"
+msgstr ""
 
 msgid "An empty filename is illegal."
 msgstr "Пусте ім'я файлу є недопустимим."
@@ -822,17 +830,26 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Режим конфігурації"
 
+msgid "Configuration for the CrashlogAutoSubmitter"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Конфігурування"
 
 msgid "Conflicting timer"
 msgstr "Конфлікт таймера"
 
+msgid "Connect"
+msgstr ""
+
 msgid "Connected to"
 msgstr "Під'єднано до"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Під'єднано до  Fritz!Box!"
+
+msgid "Connected!"
+msgstr ""
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Під'єднання до  Fritz!Box..."
@@ -853,6 +870,9 @@ msgstr "Сукупність"
 msgid "Content does not fit on DVD!"
 msgstr "Інформація не поміститься на DVD!!"
 
+msgid "Continue"
+msgstr ""
+
 msgid "Continue in background"
 msgstr ""
 
@@ -870,6 +890,17 @@ msgstr "Неможливо визначити носій! DVD диск вста�
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
+
+msgid "CrashlogAutoSubmit"
+msgstr ""
+
+msgid "CrashlogAutoSubmitConfiguration"
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -960,6 +991,9 @@ msgstr "Затримка"
 msgid "Delete"
 msgstr "Видалити"
 
+msgid "Delete crashlogs"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "Відмінити завдання"
 
@@ -983,9 +1017,6 @@ msgstr ""
 msgid "Destination directory"
 msgstr ""
 
-msgid "Details"
-msgstr ""
-
 msgid "Detected HDD:"
 msgstr "Виявлено HDD:"
 
@@ -1007,6 +1038,9 @@ msgstr "DiSEqC режим"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC повторювання"
 
+msgid "Dialing:"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Пряме програвання звязаних епізодів без меню"
 
@@ -1023,11 +1057,17 @@ msgstr "Вимкнути PiP"
 msgid "Disable Subtitles"
 msgstr "Вимкнути субтитри"
 
+msgid "Disable crashlog reporting"
+msgstr ""
+
 msgid "Disable timer"
 msgstr "Відмінити таймер"
 
 msgid "Disabled"
 msgstr "Вимкнуто"
+
+msgid "Disconnect"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1105,9 +1145,6 @@ msgstr ""
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Ви хочете записати цей проект на DVD диск?"
 
-msgid "Do you want to continue installing or removing selected plugins?\n"
-msgstr ""
-
 msgid "Do you want to do a service scan?"
 msgstr "Хочете виконати пошук каналів?"
 
@@ -1157,6 +1194,9 @@ msgstr ""
 msgid "Do you want to view a tutorial?"
 msgstr "Ви хочете переглянути інструкцію?"
 
+msgid "Don't ask, just send"
+msgstr ""
+
 msgid "Don't stop current event but disable coming events"
 msgstr "Не зупиняйте поточне завдання, але відмініть слідуючі"
 
@@ -1198,6 +1238,9 @@ msgstr "Завантаження інформації про додатки. З�
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "DVD дані в Dreambox-формат (HDTV-сумісний)"
+
+msgid "Dreambox software because updates are available."
+msgstr ""
 
 msgid "Dutch"
 msgstr "Данська"
@@ -1433,6 +1476,9 @@ msgstr ""
 msgid "Flashing failed"
 msgstr ""
 
+msgid "Following tasks will be done after you press continue."
+msgstr ""
+
 msgid "Format"
 msgstr "Форматування"
 
@@ -1538,6 +1584,9 @@ msgstr "Налаштування HDD"
 msgid "Harddisk standby after"
 msgstr "Режим очікування HDD після"
 
+msgid "Here is a small overview of the available icon states."
+msgstr ""
+
 msgid "Hidden network SSID"
 msgstr ""
 
@@ -1555,6 +1604,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Скільки хвилин Ви хочете записати?"
+
+msgid "How to handle found crashlogs:"
+msgstr ""
 
 msgid "Hungarian"
 msgstr "Угорська"
@@ -1667,11 +1719,6 @@ msgstr ""
 msgid "Install software updates..."
 msgstr ""
 
-msgid ""
-"Install/\n"
-"Remove"
-msgstr ""
-
 msgid "Installation finished."
 msgstr ""
 
@@ -1719,6 +1766,9 @@ msgid "Invert display"
 msgstr "Інверсія LCD"
 
 msgid "Ipkg"
+msgstr ""
+
+msgid "Is this videomode ok?"
 msgstr ""
 
 msgid "Italian"
@@ -2156,6 +2206,9 @@ msgstr "Ні, тільки ввімкнути мого Dreambox'a"
 msgid "No, scan later manually"
 msgstr "Ні, сканувати вручну пізніше"
 
+msgid "No, send them never."
+msgstr ""
+
 msgid "None"
 msgstr "Нічого"
 
@@ -2267,8 +2320,14 @@ msgstr "Встановлення батьківського контролю"
 msgid "Parental control type"
 msgstr "Тип батьківського контролю"
 
+msgid "Password"
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "Затримати фільм в кінці"
+
+msgid "Phone number"
+msgstr ""
 
 msgid "PiPSetup"
 msgstr "Налаштування PiP"
@@ -2447,6 +2506,12 @@ msgstr "Список додатків"
 msgid "Plugin manager"
 msgstr ""
 
+msgid "Plugin manager help..."
+msgstr ""
+
+msgid "Plugin manager process information..."
+msgstr ""
+
 msgid "Plugins"
 msgstr "Додатки"
 
@@ -2527,6 +2592,9 @@ msgid "Primary DNS"
 msgstr "Первинний DNS"
 
 msgid "Priority"
+msgstr ""
+
+msgid "Process"
 msgstr ""
 
 msgid "Properties of current title"
@@ -2677,6 +2745,9 @@ msgstr "Видалення директорії %s невдале. (Можлив
 
 msgid "Rename"
 msgstr "Перейменувати"
+
+msgid "Rename crashlogs"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Повторити"
@@ -2990,6 +3061,9 @@ msgstr "Окремі заголовки з головного меню"
 msgid "Sequence repeat"
 msgstr "Повторення послідовності"
 
+msgid "Serbian"
+msgstr ""
+
 msgid "Service"
 msgstr "Інформація каналу"
 
@@ -3058,6 +3132,9 @@ msgstr "Режим Налаштування"
 
 msgid "Show Info"
 msgstr "Показати інформацію"
+
+msgid "Show Message when Recording starts"
+msgstr ""
 
 msgid "Show WLAN Status"
 msgstr "Показати WLAN статус"
@@ -3137,6 +3214,9 @@ msgstr "Інтервал слайдшоу (в сек.)"
 #, python-format
 msgid "Slot %d"
 msgstr "Слот %d"
+
+msgid "Slovene"
+msgstr ""
 
 msgid "Slow"
 msgstr "Повільно"
@@ -3463,6 +3543,9 @@ msgstr "Майстер може зберегти Ваші налаштуванн
 msgid "The wizard is finished now."
 msgstr "Майстер завершив роботу."
 
+msgid "There are at least "
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Цей імідж не містить стандартного списку каналів."
 
@@ -3513,6 +3596,18 @@ msgstr "Це крок номер 2."
 
 msgid "This is unsupported at the moment."
 msgstr "Це не підтримується на даний час."
+
+msgid "This plugin is installed."
+msgstr ""
+
+msgid "This plugin is not installed."
+msgstr ""
+
+msgid "This plugin will be installed."
+msgstr ""
+
+msgid "This plugin will be removed."
+msgstr ""
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3776,6 +3871,16 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Нейтральна DiSEqC команда"
 
+msgid ""
+"Undo\n"
+"Install"
+msgstr ""
+
+msgid ""
+"Undo\n"
+"Remove"
+msgstr ""
+
 msgid "Unicable"
 msgstr ""
 
@@ -3802,6 +3907,9 @@ msgstr "Оновлення завершено. Ось результат:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Йде оновлення... Прохання зачекати... Це займе декілька хвилин..."
+
+msgid "Upgrade"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr ""
@@ -3879,6 +3987,9 @@ msgstr "Тип пошуку каналів"
 msgid "User defined"
 msgstr "Визначені користувачем"
 
+msgid "Username"
+msgstr ""
+
 msgid "VCR scart"
 msgstr "VCR скарт"
 
@@ -3921,9 +4032,6 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Вибір Відео режиму"
 
-msgid "View"
-msgstr ""
-
 msgid "View Movies..."
 msgstr ""
 
@@ -3934,6 +4042,12 @@ msgid "View Rass interactive..."
 msgstr "Показати інтерактивний Rass..."
 
 msgid "View Video CD..."
+msgstr ""
+
+msgid "View details"
+msgstr ""
+
+msgid "View list of available "
 msgstr ""
 
 msgid "View list of available CommonInterface extensions"
@@ -4062,6 +4176,9 @@ msgstr "Захід"
 msgid "What do you want to scan?"
 msgstr "Що хочете сканувати?"
 
+msgid "What to do with sent crashlogs:"
+msgstr ""
+
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -4104,6 +4221,9 @@ msgstr "Так"
 msgid "Yes, and delete this movie"
 msgstr ""
 
+msgid "Yes, and don't ask again."
+msgstr ""
+
 msgid "Yes, backup my settings!"
 msgstr "Так, зробити копію моїх налаштувань!"
 
@@ -4128,6 +4248,12 @@ msgstr "Так, але повернутись до списку фільмів"
 msgid "Yes, view the tutorial"
 msgstr "Так, показати інструкцію"
 
+msgid "You can cancel the installation."
+msgstr ""
+
+msgid "You can cancel the removal."
+msgstr ""
+
 msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
@@ -4137,6 +4263,12 @@ msgstr ""
 
 msgid "You can choose, what you want to install..."
 msgstr "Ви можете вибрати, що хочете встановити..."
+
+msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can remove this plugin."
+msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "Ви не можете це видалити!"
@@ -5165,6 +5297,13 @@ msgstr "переключити"
 
 msgid "zapped"
 msgstr "Переключений"
+
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 буде перезавантажена після відновлення"
 
 #~ msgid "AGC:"
 #~ msgstr "AGC:"

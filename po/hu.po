@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-18 23:40+0200\n"
+"POT-Creation-Date: 2009-07-30 12:08+0200\n"
 "PO-Revision-Date: 2008-11-26 15:36+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -36,13 +36,6 @@ msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"A visszaállítás után az Enigma2 újraindul"
 
 msgid ""
 "\n"
@@ -87,6 +80,15 @@ msgstr ""
 
 msgid " "
 msgstr " "
+
+msgid " extensions."
+msgstr ""
+
+msgid " packages selected."
+msgstr ""
+
+msgid " updates available."
+msgstr ""
 
 msgid "#000000"
 msgstr "#000000"
@@ -368,6 +370,9 @@ msgstr "AC3 elsődlegesen"
 msgid "AC3 downmix"
 msgstr "AC3 lekeverés"
 
+msgid "Abort"
+msgstr ""
+
 msgid "About"
 msgstr "Infó"
 
@@ -464,6 +469,9 @@ msgstr "Alternatív rádió mód"
 
 msgid "Alternative services tuner priority"
 msgstr "Tuner alternatív szolgáltatások "
+
+msgid "Always ask before sending"
+msgstr ""
 
 msgid "An empty filename is illegal."
 msgstr "Egy üres fájl érvénytelen."
@@ -827,17 +835,26 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Konfigurációs mód"
 
+msgid "Configuration for the CrashlogAutoSubmitter"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Beállítás"
 
 msgid "Conflicting timer"
 msgstr "Konfliktus időzítő"
 
+msgid "Connect"
+msgstr ""
+
 msgid "Connected to"
 msgstr "Csatlakoztatva"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Fritz!Box!-hoz csatlakoztatva"
+
+msgid "Connected!"
+msgstr ""
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Csatlakozás a Fritz!Box!-hoz..."
@@ -858,6 +875,9 @@ msgstr "Együttállás"
 msgid "Content does not fit on DVD!"
 msgstr "A tartalom nem fér fel a DVD-re!"
 
+msgid "Continue"
+msgstr ""
+
 msgid "Continue in background"
 msgstr "Folytatás a háttérben"
 
@@ -875,6 +895,17 @@ msgstr "Nem lehet betölteni a médiumot! Van bennt lemez?"
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
+
+msgid "CrashlogAutoSubmit"
+msgstr ""
+
+msgid "CrashlogAutoSubmitConfiguration"
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
 msgstr ""
 
 msgid "Create DVD-ISO"
@@ -965,6 +996,9 @@ msgstr "Késleltetés"
 msgid "Delete"
 msgstr "Törlés"
 
+msgid "Delete crashlogs"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "Adat törlése"
 
@@ -988,9 +1022,6 @@ msgstr ""
 msgid "Destination directory"
 msgstr "Célkönyvtár"
 
-msgid "Details"
-msgstr ""
-
 msgid "Detected HDD:"
 msgstr "Beépített merevlemez:"
 
@@ -1012,6 +1043,9 @@ msgstr "DiSEqC mód"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC ismétlések"
 
+msgid "Dialing:"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Linkelt címek menü nélküli közvetlen lejátszása"
 
@@ -1028,11 +1062,17 @@ msgstr "PiP kikapcsolása"
 msgid "Disable Subtitles"
 msgstr "Feliratok letiltása"
 
+msgid "Disable crashlog reporting"
+msgstr ""
+
 msgid "Disable timer"
 msgstr "Időzítés tiltása"
 
 msgid "Disabled"
 msgstr "Letiltva"
+
+msgid "Disconnect"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1114,9 +1154,6 @@ msgstr ""
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Fel akarja írni ezt a gyűjteményt a DVD lemezre?"
 
-msgid "Do you want to continue installing or removing selected plugins?\n"
-msgstr ""
-
 msgid "Do you want to do a service scan?"
 msgstr "Akar most egy csatornakeresést csinálni?"
 
@@ -1166,6 +1203,9 @@ msgstr ""
 msgid "Do you want to view a tutorial?"
 msgstr "Meg szeretne nézni egy ismertetőt?"
 
+msgid "Don't ask, just send"
+msgstr ""
+
 msgid "Don't stop current event but disable coming events"
 msgstr "Ne állítsa le a futó eseményt, de kapcsolja le a következőt"
 
@@ -1207,6 +1247,9 @@ msgstr "Plugin információk letöltése. Kérem várjon..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox formátumú adat DVD (HDTV kompatibilis)"
+
+msgid "Dreambox software because updates are available."
+msgstr ""
 
 msgid "Dutch"
 msgstr "Holland"
@@ -1443,6 +1486,9 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flashelés sikertelen"
 
+msgid "Following tasks will be done after you press continue."
+msgstr ""
+
 msgid "Format"
 msgstr "Formázás"
 
@@ -1547,6 +1593,9 @@ msgstr "HDD beállítások"
 msgid "Harddisk standby after"
 msgstr "HDD leállítás a megadott idö után"
 
+msgid "Here is a small overview of the available icon states."
+msgstr ""
+
 msgid "Hidden network SSID"
 msgstr ""
 
@@ -1564,6 +1613,9 @@ msgstr ""
 
 msgid "How many minutes do you want to record?"
 msgstr "Hány percet szeretne rögzíteni?"
+
+msgid "How to handle found crashlogs:"
+msgstr ""
 
 msgid "Hungarian"
 msgstr "Magyar"
@@ -1677,11 +1729,6 @@ msgstr ""
 msgid "Install software updates..."
 msgstr ""
 
-msgid ""
-"Install/\n"
-"Remove"
-msgstr ""
-
 msgid "Installation finished."
 msgstr ""
 
@@ -1729,6 +1776,9 @@ msgid "Invert display"
 msgstr "Kijelző invertálása"
 
 msgid "Ipkg"
+msgstr ""
+
+msgid "Is this videomode ok?"
 msgstr ""
 
 msgid "Italian"
@@ -2163,6 +2213,9 @@ msgstr "Nem, csak indítsa el a DreamBox-ot."
 msgid "No, scan later manually"
 msgstr "Nem, mad késöbb kézzel lekeresem."
 
+msgid "No, send them never."
+msgstr ""
+
 msgid "None"
 msgstr "Nincs"
 
@@ -2274,8 +2327,14 @@ msgstr "Gyermekzár beállítások"
 msgid "Parental control type"
 msgstr "Gyermekzár típusa"
 
+msgid "Password"
+msgstr ""
+
 msgid "Pause movie at end"
 msgstr "Film megállítása a végén"
+
+msgid "Phone number"
+msgstr ""
 
 msgid "PiPSetup"
 msgstr "PIP beállítások"
@@ -2457,6 +2516,12 @@ msgstr "Telepített Pluginek"
 msgid "Plugin manager"
 msgstr ""
 
+msgid "Plugin manager help..."
+msgstr ""
+
+msgid "Plugin manager process information..."
+msgstr ""
+
 msgid "Plugins"
 msgstr "Pluginek"
 
@@ -2537,6 +2602,9 @@ msgid "Primary DNS"
 msgstr "Elsődleges DNS"
 
 msgid "Priority"
+msgstr ""
+
+msgid "Process"
 msgstr ""
 
 msgid "Properties of current title"
@@ -2687,6 +2755,9 @@ msgstr "%s könyvtárak eltávolítása sikertelen. (Lehet nem üres.)"
 
 msgid "Rename"
 msgstr "Átnevezés"
+
+msgid "Rename crashlogs"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Ismétlés"
@@ -2998,6 +3069,9 @@ msgstr "Címek elválasztása egy főmenüvel"
 msgid "Sequence repeat"
 msgstr "Szekvencia ismétlés"
 
+msgid "Serbian"
+msgstr ""
+
 msgid "Service"
 msgstr "Csatorna infó..."
 
@@ -3066,6 +3140,9 @@ msgstr "Beállítási mód"
 
 msgid "Show Info"
 msgstr "Info mutatása"
+
+msgid "Show Message when Recording starts"
+msgstr ""
 
 msgid "Show WLAN Status"
 msgstr "WLAN állapot mutatása"
@@ -3145,6 +3222,9 @@ msgstr "Slideshow intervallum (mp.)"
 #, python-format
 msgid "Slot %d"
 msgstr "%d nyílás"
+
+msgid "Slovene"
+msgstr ""
 
 msgid "Slow"
 msgstr "Lassú"
@@ -3489,6 +3569,9 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "A varázsló befejezte feladatát."
 
+msgid "There are at least "
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Az image nem tartalmaz semmilyen csatornalistát."
 
@@ -3543,6 +3626,18 @@ msgstr "Ez a 2. lépés."
 
 msgid "This is unsupported at the moment."
 msgstr "Ez jelenleg még nem támogatott."
+
+msgid "This plugin is installed."
+msgstr ""
+
+msgid "This plugin is not installed."
+msgstr ""
+
+msgid "This plugin will be installed."
+msgstr ""
+
+msgid "This plugin will be removed."
+msgstr ""
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3805,6 +3900,16 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Nem elkötelezett DiSEqC parancs"
 
+msgid ""
+"Undo\n"
+"Install"
+msgstr ""
+
+msgid ""
+"Undo\n"
+"Remove"
+msgstr ""
+
 msgid "Unicable"
 msgstr ""
 
@@ -3831,6 +3936,9 @@ msgstr "Frissítés befejezve. Itt az eredmény:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Frissítés... Kérem várjon... Ez akár pár percig is eltarthat..."
+
+msgid "Upgrade"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr ""
@@ -3907,6 +4015,9 @@ msgstr "Használt szolgáltatás keresési típusa"
 msgid "User defined"
 msgstr "Felh. által megadva"
 
+msgid "Username"
+msgstr ""
+
 msgid "VCR scart"
 msgstr "VCR scart"
 
@@ -3948,9 +4059,6 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Video mód kiválasztás"
 
-msgid "View"
-msgstr ""
-
 msgid "View Movies..."
 msgstr ""
 
@@ -3961,6 +4069,12 @@ msgid "View Rass interactive..."
 msgstr "Rass interaktív szolgáltatás használata..."
 
 msgid "View Video CD..."
+msgstr ""
+
+msgid "View details"
+msgstr ""
+
+msgid "View list of available "
 msgstr ""
 
 msgid "View list of available CommonInterface extensions"
@@ -4098,6 +4212,9 @@ msgstr "Nyugat"
 msgid "What do you want to scan?"
 msgstr "Mit szeretne lekeresni?"
 
+msgid "What to do with sent crashlogs:"
+msgstr ""
+
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -4140,6 +4257,9 @@ msgstr "Igen"
 msgid "Yes, and delete this movie"
 msgstr ""
 
+msgid "Yes, and don't ask again."
+msgstr ""
+
 msgid "Yes, backup my settings!"
 msgstr "Igen, mentse el a beállításaim!"
 
@@ -4164,6 +4284,12 @@ msgstr "Igen, térjen vissza a filmlistához"
 msgid "Yes, view the tutorial"
 msgstr "Igen, mutassa a leírást"
 
+msgid "You can cancel the installation."
+msgstr ""
+
+msgid "You can cancel the removal."
+msgstr ""
+
 msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
@@ -4173,6 +4299,12 @@ msgstr ""
 
 msgid "You can choose, what you want to install..."
 msgstr "Itt kiválaszhatja mit szeretne telepíteni..."
+
+msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can remove this plugin."
+msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "Ez nem törölheti le!"
@@ -5205,6 +5337,13 @@ msgstr "átkapcsolás"
 
 msgid "zapped"
 msgstr "zap-elt"
+
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "A visszaállítás után az Enigma2 újraindul"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
