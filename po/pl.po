@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-07-03 17:10+0200\n"
+"POT-Creation-Date: 2009-07-30 12:08+0200\n"
 "PO-Revision-Date: 2009-05-19 13:18+0100\n"
 "Last-Translator: Sebastian <zbigzbig2@op.pl>\n"
 "Language-Team: none\n"
@@ -43,13 +43,6 @@ msgid ""
 msgstr ""
 "\n"
 "Edytuj adres aktualizacji."
-
-msgid ""
-"\n"
-"Enigma2 will restart after the restore"
-msgstr ""
-"\n"
-"Enigma2 zostanie zrestartowana po przywróceniu"
 
 msgid ""
 "\n"
@@ -113,6 +106,12 @@ msgid " "
 msgstr " "
 
 msgid " extensions."
+msgstr ""
+
+msgid " packages selected."
+msgstr ""
+
+msgid " updates available."
 msgstr ""
 
 msgid "#000000"
@@ -493,6 +492,9 @@ msgstr "Alternatywny tryb radiowy"
 msgid "Alternative services tuner priority"
 msgstr "Alternatywny priorytet usług tunera"
 
+msgid "Always ask before sending"
+msgstr ""
+
 msgid "An empty filename is illegal."
 msgstr "Pusta nazwa pliku jest nieldozwolona."
 
@@ -863,6 +865,9 @@ msgstr "Config"
 msgid "Configuration Mode"
 msgstr "Tryb konfiguracji"
 
+msgid "Configuration for the CrashlogAutoSubmitter"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Konfigurowanie"
 
@@ -900,6 +905,9 @@ msgstr "Konstelacja"
 msgid "Content does not fit on DVD!"
 msgstr "Zawartość nie pasuje do DVD!"
 
+msgid "Continue"
+msgstr ""
+
 msgid "Continue in background"
 msgstr "Kontynuuj w tle"
 
@@ -918,6 +926,17 @@ msgstr "Nie mogę odczytać nośnika. Czy nośnik znajduje się w czytniku?"
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Nie można nagrać z powodu konfliktu timera %s"
+
+msgid "CrashlogAutoSubmit"
+msgstr ""
+
+msgid "CrashlogAutoSubmitConfiguration"
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
+msgstr ""
 
 msgid "Create DVD-ISO"
 msgstr "Stwórz DVD-ISO"
@@ -1007,6 +1026,9 @@ msgstr "Opóźnienie"
 msgid "Delete"
 msgstr "Usuń"
 
+msgid "Delete crashlogs"
+msgstr ""
+
 msgid "Delete entry"
 msgstr "Skasuj wpis"
 
@@ -1029,9 +1051,6 @@ msgstr "Odznacz"
 
 msgid "Destination directory"
 msgstr "Katalog docelowy"
-
-msgid "Details"
-msgstr "Szczegóły"
 
 msgid "Detected HDD:"
 msgstr "Wykryto Hdd:"
@@ -1072,6 +1091,9 @@ msgstr "Wyłącz PiP"
 
 msgid "Disable Subtitles"
 msgstr "Wyłącz napisy"
+
+msgid "Disable crashlog reporting"
+msgstr ""
 
 msgid "Disable timer"
 msgstr "Wyłącz timer"
@@ -1162,9 +1184,6 @@ msgstr ""
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Czy chcesz nagrać tę kolekcje na nosniku DVD?"
 
-msgid "Do you want to continue installing or removing selected plugins?\n"
-msgstr "Kontynuować instalowane lub kasowanie wybranych pluginów?\n"
-
 msgid "Do you want to do a service scan?"
 msgstr "Czy chcesz przeprowadzić skanowanie serwisów?"
 
@@ -1214,6 +1233,9 @@ msgstr "Chcesz zaktualizować paczkę:\n"
 msgid "Do you want to view a tutorial?"
 msgstr "Czy chcesz zobaczyć wprowadzenie?"
 
+msgid "Don't ask, just send"
+msgstr ""
+
 msgid "Don't stop current event but disable coming events"
 msgstr "Nie zatrzymuj aktualnego wydarzenia ale wyłącz nadchodzące"
 
@@ -1255,6 +1277,9 @@ msgstr "Pobieranie informacji o pluginach. Proszę czekać..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Format danych DVD (kompatybilny z HDTV)"
+
+msgid "Dreambox software because updates are available."
+msgstr ""
 
 msgid "Dutch"
 msgstr "Holenderski"
@@ -1359,7 +1384,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1493,6 +1517,9 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flash'owanie nie powiodło się"
 
+msgid "Following tasks will be done after you press continue."
+msgstr ""
+
 msgid "Format"
 msgstr "Format"
 
@@ -1597,6 +1624,9 @@ msgstr "Ustawienia dysku twardego"
 msgid "Harddisk standby after"
 msgstr "Tryb czuwania dysku twardego po"
 
+msgid "Here is a small overview of the available icon states."
+msgstr ""
+
 msgid "Hidden network SSID"
 msgstr "Ukryty sieciowy SSID"
 
@@ -1614,6 +1644,9 @@ msgstr "Pozioma [H]"
 
 msgid "How many minutes do you want to record?"
 msgstr "Ile minut ma trwać nagranie?"
+
+msgid "How to handle found crashlogs:"
+msgstr ""
 
 msgid "Hungarian"
 msgstr "Węgierski"
@@ -1724,13 +1757,6 @@ msgstr "Instaluj ustawienia, skiny, soft..."
 
 msgid "Install software updates..."
 msgstr "Instaluj aktualizacje oprogramowania..."
-
-msgid ""
-"Install/\n"
-"Remove"
-msgstr ""
-"Instalacja/\n"
-"Kasowanie"
 
 msgid "Installation finished."
 msgstr "Instalacja zakończona."
@@ -2225,6 +2251,9 @@ msgstr "Nie, tylko włącz Dreamboxa"
 msgid "No, scan later manually"
 msgstr "Nie, skanuj ręcznie później"
 
+msgid "No, send them never."
+msgstr ""
+
 msgid "None"
 msgstr "Brak"
 
@@ -2522,6 +2551,12 @@ msgstr "Przeglądarka pluginów"
 msgid "Plugin manager"
 msgstr "Menadżer Pluginów"
 
+msgid "Plugin manager help..."
+msgstr ""
+
+msgid "Plugin manager process information..."
+msgstr ""
+
 msgid "Plugins"
 msgstr "Pluginy"
 
@@ -2603,6 +2638,9 @@ msgstr "Pierwszy DNS"
 
 msgid "Priority"
 msgstr "Priorytet konwertera"
+
+msgid "Process"
+msgstr ""
 
 msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
@@ -2753,6 +2791,9 @@ msgstr ""
 
 msgid "Rename"
 msgstr "Zmień nazwę"
+
+msgid "Rename crashlogs"
+msgstr ""
 
 msgid "Repeat"
 msgstr "Powtórz"
@@ -3065,6 +3106,9 @@ msgstr "Rozdziel tytuły z wykozystaniem menu"
 msgid "Sequence repeat"
 msgstr "Powtórka sekwencji"
 
+msgid "Serbian"
+msgstr ""
+
 msgid "Service"
 msgstr "Informacje o serwisie..."
 
@@ -3215,6 +3259,9 @@ msgstr "Odstępy w pokazie slajdów (w sec)"
 #, python-format
 msgid "Slot %d"
 msgstr "Slot %d"
+
+msgid "Slovene"
+msgstr ""
 
 msgid "Slow"
 msgstr "Wolno"
@@ -3564,6 +3611,9 @@ msgstr ""
 msgid "The wizard is finished now."
 msgstr "Kreator zakończony."
 
+msgid "There are at least "
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Ten image nie posiada standardowej listy  serwisów."
 
@@ -3619,6 +3669,18 @@ msgstr "To jest krok numer 2."
 
 msgid "This is unsupported at the moment."
 msgstr "Opcja jest nieobsługiwana w tym momencie."
+
+msgid "This plugin is installed."
+msgstr ""
+
+msgid "This plugin is not installed."
+msgstr ""
+
+msgid "This plugin will be installed."
+msgstr ""
+
+msgid "This plugin will be removed."
+msgstr ""
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3884,6 +3946,16 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Komenda DiSEqC Uncommited"
 
+msgid ""
+"Undo\n"
+"Install"
+msgstr ""
+
+msgid ""
+"Undo\n"
+"Remove"
+msgstr ""
+
 msgid "Unicable"
 msgstr "Unicable"
 
@@ -3910,6 +3982,9 @@ msgstr "Aktualizacja skończona. Oto rezultat:"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aktualizowanie... Proszę czekać... To może potrwać kilka minut..."
+
+msgid "Upgrade"
+msgstr ""
 
 msgid "Upgrade finished."
 msgstr "Aktualizacja zakończona."
@@ -3938,7 +4013,6 @@ msgstr "Użyj Pomiaru Mocy"
 msgid "Use a gateway"
 msgstr "Użyj bramy"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -4031,9 +4105,6 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Wybór trybu wideo"
 
-msgid "View"
-msgstr "Wyświetl"
-
 msgid "View Movies..."
 msgstr "Wyświetl Filmy..."
 
@@ -4045,6 +4116,9 @@ msgstr "Pokaż interaktywne Rass..."
 
 msgid "View Video CD..."
 msgstr "Wyświetl Video CD..."
+
+msgid "View details"
+msgstr ""
 
 msgid "View list of available "
 msgstr ""
@@ -4184,6 +4258,9 @@ msgstr "Zachód"
 msgid "What do you want to scan?"
 msgstr "Co chcesz skanować?"
 
+msgid "What to do with sent crashlogs:"
+msgstr ""
+
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
@@ -4231,6 +4308,9 @@ msgstr "Tak"
 msgid "Yes, and delete this movie"
 msgstr "Tak, usuń ten film"
 
+msgid "Yes, and don't ask again."
+msgstr ""
+
 msgid "Yes, backup my settings!"
 msgstr "Tak, zrób kopie moich ustawień!"
 
@@ -4255,6 +4335,12 @@ msgstr "Tak, powróć do listy filmów"
 msgid "Yes, view the tutorial"
 msgstr "Tak, pokaż podręcznik"
 
+msgid "You can cancel the installation."
+msgstr ""
+
+msgid "You can cancel the removal."
+msgstr ""
+
 msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
@@ -4264,6 +4350,12 @@ msgstr ""
 
 msgid "You can choose, what you want to install..."
 msgstr "Proszę wybrać komponenty do zainstalowania..."
+
+msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can remove this plugin."
+msgstr ""
 
 msgid "You cannot delete this!"
 msgstr "Tego nie można usunąć!"
@@ -5300,6 +5392,13 @@ msgstr "Przełącz"
 msgid "zapped"
 msgstr "Przełączony"
 
+#~ msgid ""
+#~ "\n"
+#~ "Enigma2 will restart after the restore"
+#~ msgstr ""
+#~ "\n"
+#~ "Enigma2 zostanie zrestartowana po przywróceniu"
+
 #~ msgid " Day(s) "
 #~ msgstr " Dzień(i) "
 
@@ -5413,6 +5512,9 @@ msgstr "Przełączony"
 #~ msgid "Decompressing USB stick flasher boot image..."
 #~ msgstr "Dekompresja USB flasher image'a..."
 
+#~ msgid "Details"
+#~ msgstr "Szczegóły"
+
 #~ msgid "Device Setup..."
 #~ msgstr "Ustawienia urządzenia:"
 
@@ -5438,6 +5540,9 @@ msgstr "Przełączony"
 
 #~ msgid "Do you want to burn this project to DVD medium?"
 #~ msgstr "Czy chcesz zapisac projekt na nośnik DVD"
+
+#~ msgid "Do you want to continue installing or removing selected plugins?\n"
+#~ msgstr "Kontynuować instalowane lub kasowanie wybranych pluginów?\n"
 
 #~ msgid "Do you want to preview this project before burning?"
 #~ msgstr "Czy chcesz obejrzec projekt przed nagraniem?"
@@ -5493,6 +5598,13 @@ msgstr "Przełączony"
 
 #~ msgid "Genre:"
 #~ msgstr "Gatunek:"
+
+#~ msgid ""
+#~ "Install/\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Instalacja/\n"
+#~ "Kasowanie"
 
 #~ msgid "January"
 #~ msgstr "Styczeń"
@@ -5802,6 +5914,9 @@ msgstr "Przełączony"
 
 #~ msgid "VCR Switch"
 #~ msgstr "Automatycznie przełącz VCR"
+
+#~ msgid "View"
+#~ msgstr "Wyświetl"
 
 #~ msgid "Waiting for USB stick to settle..."
 #~ msgstr "Oczekuję na osadzenie nośnika USB..."
