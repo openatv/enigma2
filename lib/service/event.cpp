@@ -154,7 +154,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 						dvb_ref.setOriginalNetworkID(ld->getOriginalNetworkId());
 						dvb_ref.setServiceID(ld->getServiceId());
 						const PrivateDataByteVector *privateData = ld->getPrivateDataBytes();
-						dvb_ref.name = convertDVBUTF8((const unsigned char*)&((*privateData)[0]), privateData->size(), 0, tsidonid);
+						dvb_ref.name = convertDVBUTF8((const unsigned char*)&((*privateData)[0]), privateData->size(), 1, tsidonid);
 						m_linkage_services.push_back(ref);
 					}
 					break;
