@@ -717,7 +717,7 @@ LANG_TEXT = {
 	"el_GR": "Grško",
 	"hu_HU": "Madžarsko",
 	"lt_LT": "Litvansko",
-	"sl_SI": "Slovenian",
+	"sl_SI": "Slovensko",
 	"hr_HR": "Hrvaško",
 	"en_EN": "Angleško",
 	"es_ES": "Špansko",
