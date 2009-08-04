@@ -166,7 +166,7 @@ class ChapterZap(Screen):
 		self.Timer.start(3000, True)
 
 class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport):
-#	ALLOW_SUSPEND = True
+	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 	ENABLE_RESUME_SUPPORT = True
 	
 	skin = """
