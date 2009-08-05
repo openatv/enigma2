@@ -7,6 +7,7 @@ from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.config import config, ConfigBoolean, configfile
 
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.HardwareInfo import HardwareInfo
 
 config.misc.showtestcard = ConfigBoolean(default = False)
 
@@ -75,11 +76,15 @@ class VideoWizard(WizardLanguage, Rc):
 		configfile.save()
 	
 	def listInputChannels(self):
+		hw_type = HardwareInfo().get_device_name()
 		list = []
 
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
-				list.append((port,port))
+				descr = port
+				if descr == 'DVI' and hw_type == 'dm500hd':
+					descr = 'HDMI'
+				list.append((descr,port))
 		list.sort(key = lambda x: x[0])
 		print "listInputChannels:", list
 		return list

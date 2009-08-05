@@ -2,6 +2,7 @@ from enigma import eTimer
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 
 from Tools.CList import CList
+from Tools.HardwareInfo import HardwareInfo
 
 # The "VideoHardware" is the interface to /proc/stb/video.
 # It generates hotplug events, and gives you the list of 
@@ -228,20 +229,27 @@ class VideoHardware:
 		return res
 
 	def createConfig(self, *args):
-		# create list of output ports
-		portlist = self.getPortList()
+		hw_type = HardwareInfo().get_device_name()
+		lst = []
 
-		# create list of available modes
-		config.av.videoport = ConfigSelection(choices = [(port, _(port)) for port in portlist])
 		config.av.videomode = ConfigSubDict()
 		config.av.videorate = ConfigSubDict()
 
+		# create list of output ports
+		portlist = self.getPortList()
 		for port in portlist:
+			descr = port
+			if descr == 'DVI' and hw_type == 'dm500hd':
+				descr = 'HDMI'
+			lst.append((port, descr))
+
+			# create list of available modes
 			modes = self.getModeList(port)
 			if len(modes):
 				config.av.videomode[port] = ConfigSelection(choices = [mode for (mode, rates) in modes])
 			for (mode, rates) in modes:
 				config.av.videorate[mode] = ConfigSelection(choices = rates)
+		config.av.videoport = ConfigSelection(choices = lst)
 
 	def setConfiguredMode(self):
 		port = config.av.videoport.value
