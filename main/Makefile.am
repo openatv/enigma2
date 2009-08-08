@@ -23,6 +23,7 @@ version.h: # ../CVS/Entries ../CVS/Root
 	> version.h
 	if [ -f ../CVS/Tag ]; then echo "#define ENIGMA2_CHECKOUT_TAG \"`cat ../CVS/Tag`\"" >> version.h; fi
 	if [ -f ../CVS/Root ]; then echo "#define ENIGMA2_CHECKOUT_ROOT \"`cat ../CVS/Root`\"" >> version.h; fi
+	if [ -d .svn ]; then echo "#define ENIGMA2_CHECKOUT_TAG \"D`svn info | grep 'Last Changed Date:' | sed -e 's/[^:]*: \(....\)-\(..\)-\(..\) \(..\):\(..\):\(..\).*+.*$$/\1.\2.\3.\4.\5.\6/'`\"" >> version.h; fi
 
 enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/actions/libenigma_actions.a \
