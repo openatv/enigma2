@@ -71,7 +71,8 @@ void eDVBTSTools::setSearchRange(int maxrange)
 int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 {
 	if (m_use_streaminfo)
-		return m_streaminfo.getPTS(offset, pts);
+		if (!m_streaminfo.getPTS(offset, pts))
+			return 0;
 	
 	if (!m_file.valid())
 		return -1;
@@ -144,9 +145,9 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			payload = packet + 4;
 
 		
-		if (m_pid >= 0)
+/*		if (m_pid >= 0)
 			if (pid != m_pid)
-				continue;
+				continue; */
 		if (!pusi)
 			continue;
 		
@@ -186,7 +187,8 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 {
 	if (m_use_streaminfo)
 	{
-		return m_streaminfo.fixupPTS(offset, now);
+		if (!m_streaminfo.fixupPTS(offset, now))
+			return 0;
 	} else
 	{
 			/* for the simple case, we assume one epoch, with up to one wrap around in the middle. */
