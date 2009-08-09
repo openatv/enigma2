@@ -920,7 +920,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_is_primary = 1;
 	m_is_pvr = !m_reference.path.empty();
 	
-	m_timeshift_enabled = m_timeshift_active = 0;
+	m_timeshift_enabled = m_timeshift_active = 0, m_timeshift_changed = 0;
 	m_skipmode = 0;
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
@@ -2229,6 +2229,7 @@ void eDVBServicePlay::switchToLive()
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
 	m_timeshift_active = 0;
+	m_timeshift_changed = 1;
 
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 
@@ -2251,6 +2252,7 @@ void eDVBServicePlay::switchToTimeshift()
 	m_video_event_connection = 0;
 
 	m_timeshift_active = 1;
+	m_timeshift_changed = 1;
 
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
@@ -2318,27 +2320,41 @@ void eDVBServicePlay::updateDecoder()
 	if (!m_decoder)
 	{
 		h.getDecodeDemux(m_decode_demux);
+		if (m_timeshift_changed)
+			m_decoder = 0;
 		if (m_decode_demux)
 		{
 			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
 			if (m_decoder)
 				m_decoder->connectVideoEvent(slot(*this, &eDVBServicePlay::video_event), m_video_event_connection);
+			if (m_is_primary)
+			{
+				ePyObject subs;
+				if (m_timeshift_changed)
+					subs = getCachedSubtitle();
+				m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
+				m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
+				m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
+				m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
+				if (subs)
+				{
+					int type = PyInt_AsLong(PyTuple_GET_ITEM(subs, 0)),
+					    pid = PyInt_AsLong(PyTuple_GET_ITEM(subs, 1)),
+					    comp_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 2)), // ttx page
+					    anc_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 3)); // ttx magazine
+					if (type == 0) // dvb
+						m_subtitle_parser->start(pid, comp_page, anc_page);
+					else if (type == 1) // ttx
+						m_teletext_parser->setPageAndMagazine(comp_page, anc_page);
+					Py_DECREF(subs);
+				}
+			}
 		}
-		if (m_decode_demux && m_is_primary)
-		{
-			m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
-			m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
-			m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
-			m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
-		} else
-		{
-			m_teletext_parser = 0;
-			m_subtitle_parser = 0;
-		}
-
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
 	}
+
+	m_timeshift_changed = 0;
 
 	if (m_decoder)
 	{
@@ -2703,7 +2719,7 @@ PyObject *eDVBServicePlay::getCachedSubtitle()
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(1)); // type teletext
 				else
 					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(0)); // type dvb
-				PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong((data&0xFFFF0000)>>16)); // pid
+				PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(pid)); // pid
 				PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong((data&0xFF00)>>8)); // composition_page / page
 				PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(data&0xFF)); // ancillary_page / magazine
 				return tuple;
