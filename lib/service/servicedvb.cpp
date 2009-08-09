@@ -2329,23 +2329,24 @@ void eDVBServicePlay::updateDecoder()
 				m_decoder->connectVideoEvent(slot(*this, &eDVBServicePlay::video_event), m_video_event_connection);
 			if (m_is_primary)
 			{
-				ePyObject subs;
-				if (m_timeshift_changed)
-					subs = getCachedSubtitle();
 				m_teletext_parser = new eDVBTeletextParser(m_decode_demux);
 				m_teletext_parser->connectNewPage(slot(*this, &eDVBServicePlay::newSubtitlePage), m_new_subtitle_page_connection);
 				m_subtitle_parser = new eDVBSubtitleParser(m_decode_demux);
 				m_subtitle_parser->connectNewPage(slot(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
-				if (subs)
+				if (m_timeshift_changed)
 				{
-					int type = PyInt_AsLong(PyTuple_GET_ITEM(subs, 0)),
-					    pid = PyInt_AsLong(PyTuple_GET_ITEM(subs, 1)),
-					    comp_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 2)), // ttx page
-					    anc_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 3)); // ttx magazine
-					if (type == 0) // dvb
-						m_subtitle_parser->start(pid, comp_page, anc_page);
-					else if (type == 1) // ttx
-						m_teletext_parser->setPageAndMagazine(comp_page, anc_page);
+					ePyObject subs = getCachedSubtitle();
+					if (subs != Py_None)
+					{
+						int type = PyInt_AsLong(PyTuple_GET_ITEM(subs, 0)),
+						    pid = PyInt_AsLong(PyTuple_GET_ITEM(subs, 1)),
+						    comp_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 2)), // ttx page
+						    anc_page = PyInt_AsLong(PyTuple_GET_ITEM(subs, 3)); // ttx magazine
+						if (type == 0) // dvb
+							m_subtitle_parser->start(pid, comp_page, anc_page);
+						else if (type == 1) // ttx
+							m_teletext_parser->setPageAndMagazine(comp_page, anc_page);
+					}
 					Py_DECREF(subs);
 				}
 			}
