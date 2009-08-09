@@ -400,9 +400,9 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 									case 0x56432d31: // == 'VC-1'
 									{
 										const AdditionalIdentificationInfoVector *vec = d->getAdditionalIdentificationInfo();
-										if (vec->size() > 1 && (*vec)[1] == 0x01) // subdescriptor tag
+										if (vec->size() > 1 && (*vec)[0] == 0x01) // subdescriptor tag
 										{
-											if ((*vec)[2] >= 0x90) // profile_level
+											if ((*vec)[1] >= 0x90) // profile_level
 												video.type = videoStream::vtVC1; // advanced profile
 											else
 												video.type = videoStream::vtVC1_SM; // simple main
