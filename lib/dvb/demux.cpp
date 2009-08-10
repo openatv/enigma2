@@ -602,8 +602,6 @@ RESULT eDVBTSRecorder::removePID(int pid)
 
 RESULT eDVBTSRecorder::setTimingPID(int pid, int type)
 {
-	if (m_running)
-		return -1;
 	m_thread->setTimingPID(pid, type);
 	return 0;
 }
