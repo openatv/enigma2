@@ -184,7 +184,7 @@ class PluginDownloadBrowser(Screen):
 			self.remainingdata = ""
 
 		for x in lines:
-			plugin = x.split(" - ")
+			plugin = x.split(" - ", 2)
 			if len(plugin) == 3:
 				if self.run == 1 and self.type == self.DOWNLOAD:
 					self.installedplugins.append(plugin[0])
