@@ -466,6 +466,7 @@ public:
 	
 	RESULT deleteFromDisk(int simulate);
 	RESULT getListOfFilenames(std::list<std::string> &);
+	RESULT reindex();
 };
 
 DEFINE_REF(eDVBPVRServiceOfflineOperations);
@@ -525,6 +526,42 @@ RESULT eDVBPVRServiceOfflineOperations::getListOfFilenames(std::list<std::string
 	std::string tmp = m_ref.path;
 	tmp.erase(m_ref.path.length()-3);
 	res.push_back(tmp + ".eit");
+	return 0;
+}
+
+RESULT eDVBPVRServiceOfflineOperations::reindex()
+{
+	const char *filename = m_ref.path.c_str();
+	eDebug("reindexing %s...", filename);
+
+	eMPEGStreamInformation info;
+	eMPEGStreamParserTS parser(info);
+	
+	info.startSave(filename);
+	
+	eRawFile f;
+	
+	int err = f.open(m_ref.path.c_str(), 0);
+	if (err < 0)
+		return -1;
+	
+	off_t length = f.length();
+	unsigned char buffer[188*256*4];
+	while (1)
+	{
+		off_t offset = f.lseek(0, SEEK_CUR);
+		eDebug("at %08llx / %08llx (%d %%)", offset, length, (int)(offset * 100 / length));
+		int r = f.read(buffer, sizeof(buffer));
+		if (!r)
+			break;
+		if (r < 0)
+			return r;
+		parser.parseData(offset, buffer, r);
+	}
+	
+	info.stopSave();
+	f.close();
+	
 	return 0;
 }
 
@@ -2354,6 +2391,7 @@ void eDVBServicePlay::updateDecoder()
 		}
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
+		m_decoder->play(); /* pids will be set later. */
 	}
 
 	m_timeshift_changed = 0;
