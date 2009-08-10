@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 21:43+0200\n"
-"PO-Revision-Date: 2009-05-19 13:18+0100\n"
+"POT-Creation-Date: 2009-08-10 09:03+0200\n"
+"PO-Revision-Date: 2009-08-10 00:32+0100\n"
 "Last-Translator: Sebastian <zbigzbig2@op.pl>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -97,11 +97,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -114,10 +109,10 @@ msgid " extensions."
 msgstr ""
 
 msgid " packages selected."
-msgstr ""
+msgstr "Wybrane paczki"
 
 msgid " updates available."
-msgstr ""
+msgstr "Dostępne aktualizacje"
 
 msgid "#000000"
 msgstr "#000000"
@@ -498,7 +493,7 @@ msgid "Alternative services tuner priority"
 msgstr "Alternatywny priorytet usług tunera"
 
 msgid "Always ask before sending"
-msgstr ""
+msgstr "Zawsze pytaj przed wysłaniem"
 
 msgid "An empty filename is illegal."
 msgstr "Pusta nazwa pliku jest nieldozwolona."
@@ -870,9 +865,6 @@ msgstr "Config"
 msgid "Configuration Mode"
 msgstr "Tryb konfiguracji"
 
-msgid "Configuration for the CrashlogAutoSubmitter"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Konfigurowanie"
 
@@ -880,7 +872,7 @@ msgid "Conflicting timer"
 msgstr "Konflikt timera"
 
 msgid "Connect"
-msgstr ""
+msgstr "Połącz"
 
 msgid "Connected to"
 msgstr "Podłączony do"
@@ -889,7 +881,7 @@ msgid "Connected to Fritz!Box!"
 msgstr "Połączono z  Fritz!Box!"
 
 msgid "Connected!"
-msgstr ""
+msgstr "Połączony!"
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Łączenie z  Fritz!Box..."
@@ -911,7 +903,7 @@ msgid "Content does not fit on DVD!"
 msgstr "Zawartość nie pasuje do DVD!"
 
 msgid "Continue"
-msgstr ""
+msgstr "Kontynuuj"
 
 msgid "Continue in background"
 msgstr "Kontynuuj w tle"
@@ -932,16 +924,24 @@ msgstr "Nie mogę odczytać nośnika. Czy nośnik znajduje się w czytniku?"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Nie można nagrać z powodu konfliktu timera %s"
 
-msgid "CrashlogAutoSubmit"
+msgid "Crashlog settings"
 msgstr ""
 
-msgid "CrashlogAutoSubmitConfiguration"
+msgid "CrashlogAutoSubmit"
+msgstr "CrashlogAutoSubmit"
+
+msgid "CrashlogAutoSubmit settings"
+msgstr ""
+
+msgid "CrashlogAutoSubmit settings..."
 msgstr ""
 
 msgid ""
 "Crashlogs found!\n"
 "Send them to Dream Multimedia ?"
 msgstr ""
+"Znaleziono crashlogi!\n"
+"Wysłać je do Dream Multimedia ?"
 
 msgid "Create DVD-ISO"
 msgstr "Stwórz DVD-ISO"
@@ -1013,6 +1013,12 @@ msgstr "Duński"
 msgid "Date"
 msgstr "Data"
 
+msgid "Decide what should be done when crashlogs are found."
+msgstr ""
+
+msgid "Decide what should happen to the crashlogs after submission."
+msgstr ""
+
 msgid "Deep Standby"
 msgstr "Głębokie Czuwanie"
 
@@ -1032,7 +1038,7 @@ msgid "Delete"
 msgstr "Usuń"
 
 msgid "Delete crashlogs"
-msgstr ""
+msgstr "Usuń crashlogi"
 
 msgid "Delete entry"
 msgstr "Skasuj wpis"
@@ -1079,7 +1085,7 @@ msgid "DiSEqC repeats"
 msgstr "Ilość powtorzeń DiSEqC"
 
 msgid "Dialing:"
-msgstr ""
+msgstr "Wybieranie:"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Bezpośrednie odtwarzanie podczepionych tytułów bez menu"
@@ -1098,7 +1104,7 @@ msgid "Disable Subtitles"
 msgstr "Wyłącz napisy"
 
 msgid "Disable crashlog reporting"
-msgstr ""
+msgstr "Wyłącz raportowanie o crashlogach"
 
 msgid "Disable timer"
 msgstr "Wyłącz timer"
@@ -1107,7 +1113,7 @@ msgid "Disabled"
 msgstr "Wyłączone"
 
 msgid "Disconnect"
-msgstr ""
+msgstr "Rozłącz"
 
 #, python-format
 msgid ""
@@ -1222,6 +1228,11 @@ msgstr "Czy chcesz przywrócić swoje ustawienia?"
 msgid "Do you want to resume this playback?"
 msgstr "Czy chcesz wznowić odtwarzanie?"
 
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+
 msgid "Do you want to update your Dreambox?"
 msgstr "Chcesz zaktualizować Dreamboxa?"
 
@@ -1239,7 +1250,7 @@ msgid "Do you want to view a tutorial?"
 msgstr "Czy chcesz zobaczyć wprowadzenie?"
 
 msgid "Don't ask, just send"
-msgstr ""
+msgstr "Nie pytaj tylko wyślij"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Nie zatrzymuj aktualnego wydarzenia ale wyłącz nadchodzące"
@@ -1284,7 +1295,7 @@ msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Format danych DVD (kompatybilny z HDTV)"
 
 msgid "Dreambox software because updates are available."
-msgstr ""
+msgstr "Oprogramowanie dreamboxa ponieważ aktualizacje są dostępne"
 
 msgid "Dutch"
 msgstr "Holenderski"
@@ -1412,6 +1423,9 @@ msgstr "Wejdź do menu głównego..."
 msgid "Enter the service pin"
 msgstr "Wpisz Pin serwisu"
 
+msgid "Enter your email address so that we can contact you if needed."
+msgstr ""
+
 msgid "Error"
 msgstr "Błąd"
 
@@ -1523,7 +1537,7 @@ msgid "Flashing failed"
 msgstr "Flash'owanie nie powiodło się"
 
 msgid "Following tasks will be done after you press continue."
-msgstr ""
+msgstr "Poniższe zadania zostaną wykonane po kontunuacji"
 
 msgid "Format"
 msgstr "Format"
@@ -1615,10 +1629,10 @@ msgid "Greek"
 msgstr "Grecki"
 
 msgid "Guard Interval"
-msgstr "Odstęp strażnika"
+msgstr "Ochrona odstępu"
 
 msgid "Guard interval mode"
-msgstr "Tryb odstepu strażnika"
+msgstr "Ochronny tryb odstępu"
 
 msgid "Harddisk"
 msgstr "Dysk twardy..."
@@ -1630,7 +1644,7 @@ msgid "Harddisk standby after"
 msgstr "Tryb czuwania dysku twardego po"
 
 msgid "Here is a small overview of the available icon states."
-msgstr ""
+msgstr "Przegląd dostępnych stanów ikon"
 
 msgid "Hidden network SSID"
 msgstr "Ukryty sieciowy SSID"
@@ -1650,7 +1664,7 @@ msgstr "Pozioma [H]"
 msgid "How many minutes do you want to record?"
 msgstr "Ile minut ma trwać nagranie?"
 
-msgid "How to handle found crashlogs:"
+msgid "How to handle found crashlogs?"
 msgstr ""
 
 msgid "Hungarian"
@@ -1711,6 +1725,9 @@ msgstr "W toku"
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "Aby nagrywać z timera, TV został włączony na nagrywany serwis!\n"
+
+msgid "Include your email and name (optional) in the mail?"
+msgstr ""
 
 msgid "Increased voltage"
 msgstr "Zwiększone napięcie"
@@ -2253,10 +2270,13 @@ msgstr "Nie, nie rób nic."
 msgid "No, just start my dreambox"
 msgstr "Nie, tylko włącz Dreamboxa"
 
+msgid "No, not now"
+msgstr ""
+
 msgid "No, scan later manually"
 msgstr "Nie, skanuj ręcznie później"
 
-msgid "No, send them never."
+msgid "No, send them never"
 msgstr ""
 
 msgid "None"
@@ -2326,6 +2346,9 @@ msgstr "Online - Aktualizacja"
 msgid "Only Free scan"
 msgstr "Skanuj tylko FTA"
 
+msgid "Optionally enter your name if you want to."
+msgstr ""
+
 msgid "Orbital Position"
 msgstr "Pozycja orbitalna"
 
@@ -2370,13 +2393,13 @@ msgid "Parental control type"
 msgstr "Typ kontroli rodzicielskiej"
 
 msgid "Password"
-msgstr ""
+msgstr "Hasło"
 
 msgid "Pause movie at end"
 msgstr "Zatrzymaj film na końcu"
 
 msgid "Phone number"
-msgstr ""
+msgstr "Numer telefonu"
 
 msgid "PiPSetup"
 msgstr "Ustawienia PiP"
@@ -2463,6 +2486,12 @@ msgstr "Wpisz poprawny kod pin"
 
 msgid "Please enter the old pin code"
 msgstr "Wpisz stary kod pin"
+
+msgid "Please enter your email address here:"
+msgstr ""
+
+msgid "Please enter your name here (optional):"
+msgstr ""
 
 msgid "Please follow the instructions on the TV"
 msgstr "Podążaj za instrukcjami na TV"
@@ -2557,10 +2586,10 @@ msgid "Plugin manager"
 msgstr "Menadżer Pluginów"
 
 msgid "Plugin manager help..."
-msgstr ""
+msgstr "Pomoc menadżera pluginów..."
 
 msgid "Plugin manager process information..."
-msgstr ""
+msgstr "Informacja o procesach menadżera pluginów..."
 
 msgid "Plugins"
 msgstr "Pluginy"
@@ -2645,7 +2674,7 @@ msgid "Priority"
 msgstr "Priorytet konwertera"
 
 msgid "Process"
-msgstr ""
+msgstr "Procesy..."
 
 msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
@@ -2798,7 +2827,7 @@ msgid "Rename"
 msgstr "Zmień nazwę"
 
 msgid "Rename crashlogs"
-msgstr ""
+msgstr "Zmień nazwę crashlogów"
 
 msgid "Repeat"
 msgstr "Powtórz"
@@ -3112,7 +3141,7 @@ msgid "Sequence repeat"
 msgstr "Powtórka sekwencji"
 
 msgid "Serbian"
-msgstr ""
+msgstr "Serbski"
 
 msgid "Service"
 msgstr "Informacje o serwisie..."
@@ -3620,7 +3649,7 @@ msgid "The wizard is finished now."
 msgstr "Kreator zakończony."
 
 msgid "There are at least "
-msgstr ""
+msgstr "Nareszcie są"
 
 msgid "There are no default services lists in your image."
 msgstr "Ten image nie posiada standardowej listy  serwisów."
@@ -3679,16 +3708,16 @@ msgid "This is unsupported at the moment."
 msgstr "Opcja jest nieobsługiwana w tym momencie."
 
 msgid "This plugin is installed."
-msgstr ""
+msgstr "Plugin zainstalowany"
 
 msgid "This plugin is not installed."
-msgstr ""
+msgstr "Plugin nie zainstalowany"
 
 msgid "This plugin will be installed."
-msgstr ""
+msgstr "Plugin będzie zainstalowany"
 
 msgid "This plugin will be removed."
-msgstr ""
+msgstr "Plugin będzie usunięty"
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3958,11 +3987,15 @@ msgid ""
 "Undo\n"
 "Install"
 msgstr ""
+"Cofnij\n"
+"Instaluj"
 
 msgid ""
 "Undo\n"
 "Remove"
 msgstr ""
+"Cofnij\n"
+"Usuń"
 
 msgid "Unicable"
 msgstr "Unicable"
@@ -3992,7 +4025,7 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aktualizowanie... Proszę czekać... To może potrwać kilka minut..."
 
 msgid "Upgrade"
-msgstr ""
+msgstr "Aktualizuj"
 
 msgid "Upgrade finished."
 msgstr "Aktualizacja zakończona."
@@ -4069,7 +4102,7 @@ msgid "User defined"
 msgstr "Zdefiniowany przez użytkownika"
 
 msgid "Username"
-msgstr ""
+msgstr "Nazwa użytkownika"
 
 msgid "VCR scart"
 msgstr "VCR Scart"
@@ -4126,10 +4159,10 @@ msgid "View Video CD..."
 msgstr "Wyświetl Video CD..."
 
 msgid "View details"
-msgstr ""
+msgstr "Pokaż szczegóły"
 
 msgid "View list of available "
-msgstr ""
+msgstr "Pokaż listę dostępnych"
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Pokaż listę dostępnych rozszerzeń Modułu CI"
@@ -4266,7 +4299,7 @@ msgstr "Zachód"
 msgid "What do you want to scan?"
 msgstr "Co chcesz skanować?"
 
-msgid "What to do with sent crashlogs:"
+msgid "What to do with submitted crashlogs?"
 msgstr ""
 
 msgid ""
@@ -4316,7 +4349,7 @@ msgstr "Tak"
 msgid "Yes, and delete this movie"
 msgstr "Tak, usuń ten film"
 
-msgid "Yes, and don't ask again."
+msgid "Yes, and don't ask again"
 msgstr ""
 
 msgid "Yes, backup my settings!"
@@ -4344,10 +4377,10 @@ msgid "Yes, view the tutorial"
 msgstr "Tak, pokaż podręcznik"
 
 msgid "You can cancel the installation."
-msgstr ""
+msgstr "Możesz odwołać instalację"
 
 msgid "You can cancel the removal."
-msgstr ""
+msgstr "Możesz odwołać kasowanie"
 
 msgid ""
 "You can choose some default settings now. Please select the settings you "
@@ -4360,10 +4393,10 @@ msgid "You can choose, what you want to install..."
 msgstr "Proszę wybrać komponenty do zainstalowania..."
 
 msgid "You can install this plugin."
-msgstr ""
+msgstr "Możesz zainstalować ten plugin"
 
 msgid "You can remove this plugin."
-msgstr ""
+msgstr "Możesz skasować ten plugin"
 
 msgid "You cannot delete this!"
 msgstr "Tego nie można usunąć!"
@@ -4489,12 +4522,18 @@ msgstr ""
 "Twój Dreambox jest niewłaściwie połączony do internetu. Sprawdź to i spróbuj "
 "ponownie."
 
+msgid "Your email address:"
+msgstr ""
+
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Twój frontprocessor musi zostać zaktualizowany.\n"
 "Naciśnij OK aby rozpocząć aktualizacje."
+
+msgid "Your name (optional):"
+msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "Twoja konfiguracja sieci została aktywowana."
@@ -5475,6 +5514,9 @@ msgstr "Przełączony"
 #~ msgid "Choose Location"
 #~ msgstr "Sprawdzanie Lokalizacji"
 
+#~ msgid "Configuration for the CrashlogAutoSubmitter"
+#~ msgstr "Konfiguracja dla CrashlogAutoSubmitter"
+
 #~ msgid "Configure your internal LAN"
 #~ msgstr "Skonfiguruj wewnętrzną sieć LAN"
 
@@ -5498,6 +5540,9 @@ msgstr "Przełączony"
 
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "Kopiowanie USB flasher image'a na nosnik..."
+
+#~ msgid "CrashlogAutoSubmitConfiguration"
+#~ msgstr "CrashlogAutoSubmit Konfiguracja"
 
 #~ msgid "DVD ENTER key"
 #~ msgstr "DVD przycisk ENTER"
@@ -5607,6 +5652,9 @@ msgstr "Przełączony"
 #~ msgid "Genre:"
 #~ msgstr "Gatunek:"
 
+#~ msgid "How to handle found crashlogs:"
+#~ msgstr "Jak wykorzystać znalezione crashlogi:"
+
 #~ msgid ""
 #~ "Install/\n"
 #~ "Remove"
@@ -5715,6 +5763,9 @@ msgstr "Przełączony"
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nie, pozwól mi wybrać listę standardową"
+
+#~ msgid "No, send them never."
+#~ msgstr "Nie, nigdy nie wysyłaj"
 
 #~ msgid "November"
 #~ msgstr "Listopad"
@@ -5840,6 +5891,9 @@ msgstr "Przełączony"
 #~ msgid "Show files from %s"
 #~ msgstr "Pokaż pliki od %s"
 
+#~ msgid "Slovene"
+#~ msgstr "Słoweński"
+
 #~ msgid "Sort by Name"
 #~ msgstr "Sortuj po Nazwie"
 
@@ -5947,6 +6001,9 @@ msgstr "Przełączony"
 #~ "\n"
 #~ "Aby przejść do nastepnego kroku nacisnij przycisk OK pilota. "
 
+#~ msgid "What to do with sent crashlogs:"
+#~ msgstr "Co zrobić z wysłanymi crashlogami:"
+
 #~ msgid "When complete, press Key 0 to burn the collection!"
 #~ msgstr "Kiedy skończysz, w celu nagrania kolekcji nacisnij klawisz 0!"
 
@@ -5955,6 +6012,9 @@ msgstr "Przełączony"
 
 #~ msgid "Year:"
 #~ msgstr "Rok:"
+
+#~ msgid "Yes, and don't ask again."
+#~ msgstr "Tak, i nie pytaj ponownie."
 
 #~ msgid ""
 #~ "You need to define some keywords first!\n"
