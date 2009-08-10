@@ -2350,6 +2350,7 @@ void eDVBServicePlay::updateDecoder()
 					Py_DECREF(subs);
 				}
 			}
+			m_decoder->play(); /* pids will be set later */
 		}
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
@@ -2426,13 +2427,7 @@ void eDVBServicePlay::updateDecoder()
 				m_decoder->setRadioPic(radio_pic);
 		}
 
-/*		if (!m_is_primary)
-			m_decoder->setTrickmode();
-		else */ if (m_is_paused)
-			m_decoder->pause();
-		else
-			m_decoder->play();
-
+		m_decoder->set();
 		m_decoder->setAudioChannel(achannel);
 
 		/* don't worry about non-existing services, nor pvr services */
