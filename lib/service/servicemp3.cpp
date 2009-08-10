@@ -101,6 +101,7 @@ public:
 	
 	RESULT deleteFromDisk(int simulate);
 	RESULT getListOfFilenames(std::list<std::string> &);
+	RESULT reindex();
 };
 
 DEFINE_REF(eMP3ServiceOfflineOperations);
@@ -141,6 +142,11 @@ RESULT eMP3ServiceOfflineOperations::getListOfFilenames(std::list<std::string> &
 	res.clear();
 	res.push_back(m_ref.path);
 	return 0;
+}
+
+RESULT eMP3ServiceOfflineOperations::reindex()
+{
+	return -1;
 }
 
 

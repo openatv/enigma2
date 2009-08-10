@@ -719,6 +719,9 @@ public:
 
 		/* for transferring a service... */
 	virtual SWIG_VOID(RESULT) getListOfFilenames(std::list<std::string> &SWIG_OUTPUT)=0;
+	
+		/* a blocking call to reindex a file */
+	virtual int reindex() = 0;
 
 		// TODO: additional stuff, like a conversion interface?
 };
