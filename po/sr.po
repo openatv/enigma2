@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma 2 SRPSKI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 21:59+0200\n"
-"PO-Revision-Date: 2009-08-02 21:35+0100\n"
+"POT-Creation-Date: 2009-08-10 09:03+0200\n"
+"PO-Revision-Date: 2009-08-08 20:46+0100\n"
 "Last-Translator: maja <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
 "MIME-Version: 1.0\n"
@@ -863,9 +863,6 @@ msgstr "Konfig"
 msgid "Configuration Mode"
 msgstr "Način konfiguracije"
 
-msgid "Configuration for the CrashlogAutoSubmitter"
-msgstr "Konfiguracija auto-slanja zapisa o rušenju"
-
 msgid "Configuring"
 msgstr "Konfigurišem"
 
@@ -925,11 +922,17 @@ msgstr "Ne može se ubaciti medij.Disk nije ubačen?"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Snimanje nije moguće zbog konflikta tajmera %s"
 
+msgid "Crashlog settings"
+msgstr ""
+
 msgid "CrashlogAutoSubmit"
 msgstr "Auto-slanje zapisa o rušenju"
 
-msgid "CrashlogAutoSubmitConfiguration"
-msgstr "Konfiguracija auto-slanja zapisa o rušenju"
+msgid "CrashlogAutoSubmit settings"
+msgstr ""
+
+msgid "CrashlogAutoSubmit settings..."
+msgstr ""
 
 msgid ""
 "Crashlogs found!\n"
@@ -1007,6 +1010,12 @@ msgstr "Danski"
 
 msgid "Date"
 msgstr "Datum"
+
+msgid "Decide what should be done when crashlogs are found."
+msgstr ""
+
+msgid "Decide what should happen to the crashlogs after submission."
+msgstr ""
 
 msgid "Deep Standby"
 msgstr "Isključi drimbox"
@@ -1217,6 +1226,11 @@ msgstr "Želite li vratiti vaše postavke iz sigurnosne kopije?"
 msgid "Do you want to resume this playback?"
 msgstr "Želite li nastaviti snimak?"
 
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+
 msgid "Do you want to update your Dreambox?"
 msgstr "Da li želite da ažurirate vaš drimbox?"
 
@@ -1406,6 +1420,9 @@ msgstr "Uđi u glavni meni"
 
 msgid "Enter the service pin"
 msgstr "Unesite pin za usluge"
+
+msgid "Enter your email address so that we can contact you if needed."
+msgstr ""
 
 msgid "Error"
 msgstr "Greška"
@@ -1643,8 +1660,8 @@ msgstr "Horizontalno"
 msgid "How many minutes do you want to record?"
 msgstr "Koliko minuta želite snimati ?"
 
-msgid "How to handle found crashlogs:"
-msgstr "Kako rukovati sa nađenim zapisima o rušenju:"
+msgid "How to handle found crashlogs?"
+msgstr ""
 
 msgid "Hungarian"
 msgstr "Mađarski"
@@ -1704,6 +1721,9 @@ msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
 "Da bi počelo snimanje po tajmeru,TV je prebačen na kanal za snimanje!\n"
+
+msgid "Include your email and name (optional) in the mail?"
+msgstr ""
 
 msgid "Increased voltage"
 msgstr "Povećani napon"
@@ -2245,11 +2265,14 @@ msgstr "Ne, ništa ne čini "
 msgid "No, just start my dreambox"
 msgstr "Ne, samo pokreni moj drimbox"
 
+msgid "No, not now"
+msgstr ""
+
 msgid "No, scan later manually"
 msgstr "Ne, skeniraj ručno kasnije"
 
-msgid "No, send them never."
-msgstr "Ne, nikada ne šalji"
+msgid "No, send them never"
+msgstr ""
 
 msgid "None"
 msgstr "Nijedan"
@@ -2317,6 +2340,9 @@ msgstr "Online-nadogradnja"
 
 msgid "Only Free scan"
 msgstr "Samo slobodno traženje"
+
+msgid "Optionally enter your name if you want to."
+msgstr ""
 
 msgid "Orbital Position"
 msgstr "Orbitalna pozicija"
@@ -2456,6 +2482,12 @@ msgstr "Molim unesite ispravan pin kod"
 
 msgid "Please enter the old pin code"
 msgstr "Molim unesite stari pin kod"
+
+msgid "Please enter your email address here:"
+msgstr ""
+
+msgid "Please enter your name here (optional):"
+msgstr ""
 
 msgid "Please follow the instructions on the TV"
 msgstr "Molim,pratite uputstva na TV-u"
@@ -3259,7 +3291,7 @@ msgid "Slot %d"
 msgstr "Otvor %d"
 
 msgid "Slovakian"
-msgstr ""
+msgstr "Slovački"
 
 msgid "Slovenian"
 msgstr "Slovenski"
@@ -4264,8 +4296,8 @@ msgstr "Zapad"
 msgid "What do you want to scan?"
 msgstr "Šta želite skenirati?"
 
-msgid "What to do with sent crashlogs:"
-msgstr "Šta uraditi sa poslatim zapisom o rušenju"
+msgid "What to do with submitted crashlogs?"
+msgstr ""
 
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
@@ -4315,8 +4347,8 @@ msgstr "Da"
 msgid "Yes, and delete this movie"
 msgstr "Da i izbrišite ovaj film"
 
-msgid "Yes, and don't ask again."
-msgstr "Da, i ne pitaj ponovo"
+msgid "Yes, and don't ask again"
+msgstr ""
 
 msgid "Yes, backup my settings!"
 msgstr "Da, napravi sigurnosnu kopiju mojih postavki."
@@ -4495,12 +4527,18 @@ msgstr ""
 "Vaš drimbox nije ispravno spojen na internet. Molim proverite i pokušajte "
 "ponovo."
 
+msgid "Your email address:"
+msgstr ""
+
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Vaš softver frontprocesora mora biti nadograđen.\n"
 "Pritisnite OK za početak nadogradnje."
+
+msgid "Your name (optional):"
+msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "Vaša mrežna konfiguracija je aktivirana."
@@ -4991,7 +5029,7 @@ msgid "never"
 msgstr "nikad"
 
 msgid "next channel"
-msgstr "sjedeći kanal"
+msgstr "sledeći kanal"
 
 msgid "next channel in history"
 msgstr "sledeći kanal u istoriji"
@@ -5408,10 +5446,10 @@ msgstr "prebačen"
 
 #~ msgid ""
 #~ "\n"
-#~ "Enigma2 will restart after the restore"
+#~ "System will restart after the restore!"
 #~ msgstr ""
 #~ "\n"
-#~ "Enigma2 će ponovo startovati posle vraćanja sigurnosne kopije"
+#~ "Sistem će ponovo startovati posle vraćanja sigurnosne kopije"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
@@ -5490,6 +5528,12 @@ msgstr "prebačen"
 #~ msgid "Classic"
 #~ msgstr "Klasi?na "
 
+#~ msgid "Configuration for the CrashlogAutoSubmitter"
+#~ msgstr "Konfiguracija auto-slanja zapisa o rušenju"
+
+#~ msgid "CrashlogAutoSubmitConfiguration"
+#~ msgstr "Konfiguracija auto-slanja zapisa o rušenju"
+
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Podesivo vrijeme preskoka za 1/3 ključa"
 
@@ -5546,6 +5590,9 @@ msgstr "prebačen"
 #~ msgid "Hide error windows"
 #~ msgstr "Sakrij prozor greA!ke"
 
+#~ msgid "How to handle found crashlogs:"
+#~ msgstr "Kako rukovati sa nađenim zapisima o rušenju:"
+
 #~ msgid ""
 #~ "Install/\n"
 #~ "Remove"
@@ -5582,6 +5629,9 @@ msgstr "prebačen"
 
 #~ msgid "New DVD"
 #~ msgstr "Novi DVD"
+
+#~ msgid "No, send them never."
+#~ msgstr "Ne, nikada ne šalji"
 
 #~ msgid "Nothing connected"
 #~ msgstr "NiA!ta nije priklju?eno"
@@ -5738,6 +5788,12 @@ msgstr "prebačen"
 
 #~ msgid "Visualize positioner movement"
 #~ msgstr "Vizualni pokreti pozicionera"
+
+#~ msgid "What to do with sent crashlogs:"
+#~ msgstr "Šta uraditi sa poslatim zapisom o rušenju"
+
+#~ msgid "Yes, and don't ask again."
+#~ msgstr "Da, i ne pitaj ponovo"
 
 #~ msgid ""
 #~ "You need to define some keywords first!\n"
