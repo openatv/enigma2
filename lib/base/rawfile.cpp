@@ -227,3 +227,8 @@ int eRawFile::openFileUncached(int nr)
 	}
 	return ::open(filename.c_str(), O_RDONLY | O_LARGEFILE);
 }
+
+off_t eRawFile::length()
+{
+	return m_totallength;
+}
