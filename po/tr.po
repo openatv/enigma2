@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Turkish Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 21:43+0200\n"
-"PO-Revision-Date: 2009-06-08 22:38+0200\n"
+"POT-Creation-Date: 2009-08-10 11:55+0200\n"
+"PO-Revision-Date: 2009-07-29 20:29+0200\n"
 "Last-Translator: Zülfikar VEYİSOĞLU <z.veyisoglu@hobiagaci.com>\n"
 "Language-Team: http://hobiagaci.com <z.veyisoglu@hobiagaci.com>\n"
 "MIME-Version: 1.0\n"
@@ -93,11 +93,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -107,7 +102,7 @@ msgid " "
 msgstr " "
 
 msgid " extensions."
-msgstr ""
+msgstr " eklentileri."
 
 msgid " packages selected."
 msgstr ""
@@ -396,7 +391,7 @@ msgid "AC3 downmix"
 msgstr "AC3 izi steryo ver"
 
 msgid "Abort"
-msgstr ""
+msgstr "Vazgeç"
 
 msgid "About"
 msgstr "Hakkında"
@@ -868,9 +863,6 @@ msgstr "Ayarlar"
 msgid "Configuration Mode"
 msgstr "Yapılandırma tipi"
 
-msgid "Configuration for the CrashlogAutoSubmitter"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Ayarlanıyor"
 
@@ -878,7 +870,7 @@ msgid "Conflicting timer"
 msgstr "Zamanlama çakışması"
 
 msgid "Connect"
-msgstr ""
+msgstr "Bağlan"
 
 msgid "Connected to"
 msgstr "Bağlanılıyor"
@@ -887,7 +879,7 @@ msgid "Connected to Fritz!Box!"
 msgstr "Fritz!Box! a bağlanıldı!"
 
 msgid "Connected!"
-msgstr ""
+msgstr "Bağlandı!"
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Fritz!Box'a bağlanılıyor..."
@@ -930,10 +922,16 @@ msgstr "DVD medyası yüklenemedi. DVD diski takılı değil mi?"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt yapılamaz"
 
+msgid "Crashlog settings"
+msgstr ""
+
 msgid "CrashlogAutoSubmit"
 msgstr ""
 
-msgid "CrashlogAutoSubmitConfiguration"
+msgid "CrashlogAutoSubmit settings"
+msgstr ""
+
+msgid "CrashlogAutoSubmit settings..."
 msgstr ""
 
 msgid ""
@@ -1011,6 +1009,12 @@ msgstr "Danca"
 msgid "Date"
 msgstr "Tarih"
 
+msgid "Decide what should be done when crashlogs are found."
+msgstr ""
+
+msgid "Decide what should happen to the crashlogs after submission."
+msgstr ""
+
 msgid "Deep Standby"
 msgstr "Kapat"
 
@@ -1077,7 +1081,7 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC tekrarı"
 
 msgid "Dialing:"
-msgstr ""
+msgstr "Aranıyor:"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Linklenmiş başlıkları menü olmadan hemen oynat."
@@ -1105,7 +1109,7 @@ msgid "Disabled"
 msgstr "Devre dışı"
 
 msgid "Disconnect"
-msgstr ""
+msgstr "Bağlı değil"
 
 #, python-format
 msgid ""
@@ -1220,6 +1224,11 @@ msgstr "Ayarlarınızı geri yüklemek istiyor musunuz?"
 msgid "Do you want to resume this playback?"
 msgstr "Oynatmaya kaldığınız yerden devam etmek istiyor musunuz?"
 
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+
 msgid "Do you want to update your Dreambox?"
 msgstr "Dreambox'ı güncellemek istiyor musunuz?"
 
@@ -1270,7 +1279,7 @@ msgstr ""
 "Önyükleme yapabilir USB flaşlayıcı bellenim dosyası indirilirken hata oluştu:"
 
 msgid "Downloadable new plugins"
-msgstr "İndirilebilir yeni eklentiler"
+msgstr "İndirilebilir eklentiler"
 
 msgid "Downloadable plugins"
 msgstr "İndirilebilir eklentiler"
@@ -1390,6 +1399,7 @@ msgstr ""
 "\n"
 "Â© 2006 - Stephan Reichholf"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1412,6 +1422,9 @@ msgstr "Ana menüyü göster..."
 
 msgid "Enter the service pin"
 msgstr "Kanal şifresini girin"
+
+msgid "Enter your email address so that we can contact you if needed."
+msgstr ""
 
 msgid "Error"
 msgstr "Hata"
@@ -1651,7 +1664,7 @@ msgstr "Yatay (H)"
 msgid "How many minutes do you want to record?"
 msgstr "Kaç dakikalık kayıt başlatmak istiyorsunuz?"
 
-msgid "How to handle found crashlogs:"
+msgid "How to handle found crashlogs?"
 msgstr ""
 
 msgid "Hungarian"
@@ -1715,6 +1728,9 @@ msgid ""
 msgstr ""
 "Zamanlanmış kayıt görevi başlatıldı, TV fonksiyonundan kayıt fonksiyonuna "
 "geçildi!\n"
+
+msgid "Include your email and name (optional) in the mail?"
+msgstr ""
 
 msgid "Increased voltage"
 msgstr "Arttırılmış voltaj"
@@ -2257,10 +2273,13 @@ msgstr "Hayır, birşey yapma"
 msgid "No, just start my dreambox"
 msgstr "Hayır, Dreambox'ımı şimdi başlat"
 
+msgid "No, not now"
+msgstr ""
+
 msgid "No, scan later manually"
 msgstr "Hayır, taramayı daha sonra elle yapacağım"
 
-msgid "No, send them never."
+msgid "No, send them never"
 msgstr ""
 
 msgid "None"
@@ -2330,6 +2349,9 @@ msgstr "Çevrimiçi Güncelle"
 msgid "Only Free scan"
 msgstr "Yalnızca şifresiz"
 
+msgid "Optionally enter your name if you want to."
+msgstr ""
+
 msgid "Orbital Position"
 msgstr "Uydu yörüngesi"
 
@@ -2374,13 +2396,13 @@ msgid "Parental control type"
 msgstr "Ebeveyn kontrolü tipi"
 
 msgid "Password"
-msgstr ""
+msgstr "Parola"
 
 msgid "Pause movie at end"
 msgstr "Bittiğinde filmi duraklat"
 
 msgid "Phone number"
-msgstr ""
+msgstr "Telefon numarası"
 
 msgid "PiPSetup"
 msgstr "PiP Kurulumu"
@@ -2467,6 +2489,12 @@ msgstr "Lütfen doğru şifreyi girin"
 
 msgid "Please enter the old pin code"
 msgstr "Lütfen eski şifreyi girin"
+
+msgid "Please enter your email address here:"
+msgstr ""
+
+msgid "Please enter your name here (optional):"
+msgstr ""
 
 msgid "Please follow the instructions on the TV"
 msgstr "Lütfen Televizyonunuzdaki yönlendirmeleri takip edin."
@@ -3295,7 +3323,7 @@ msgid "Software update"
 msgstr "Yazılım güncelle"
 
 msgid "Some plugins are not available:\n"
-msgstr "Bazı eklentiler kullanılamaz:\n"
+msgstr "Bazı eklentiler kullanılabilir değil:\n"
 
 msgid "Somewhere else"
 msgstr "Başka bir yere"
@@ -4026,6 +4054,7 @@ msgstr "Güç Ölçümünü Kullan"
 msgid "Use a gateway"
 msgstr "Ağ geçidi kullan"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -4076,7 +4105,7 @@ msgid "User defined"
 msgstr "Kullanıcı tanımlı"
 
 msgid "Username"
-msgstr ""
+msgstr "Kullanıcı adı"
 
 msgid "VCR scart"
 msgstr "VCR scart"
@@ -4136,43 +4165,43 @@ msgid "View details"
 msgstr ""
 
 msgid "View list of available "
-msgstr ""
+msgstr "Kullanılabilir "
 
 msgid "View list of available CommonInterface extensions"
-msgstr "Ortak arayüz eklentileri listesine bak"
+msgstr "Ortak arayüz eklentileri"
 
 msgid "View list of available Display and Userinterface extensions."
-msgstr "Görünüm ve kullanıcı arayüzü eklentileri listesine bak"
+msgstr "Görünüm ve kullanıcı arayüzü eklentileri"
 
 msgid "View list of available EPG extensions."
-msgstr "EPG eklentileri listesine bak"
+msgstr "EPG eklentileri"
 
 msgid "View list of available Satteliteequipment extensions."
-msgstr "Uydu ekipmanı eklentileri listesine bak"
+msgstr "Uydu ekipmanı eklentileri"
 
 msgid "View list of available communication extensions."
-msgstr "İletişim eklentileri listesine bak"
+msgstr "İletişim eklentileri"
 
 msgid "View list of available default settings"
-msgstr "Varsayılan ayarlar eklentileri listesine bak"
+msgstr "Varsayılan ayarlar eklentileri"
 
 msgid "View list of available multimedia extensions."
-msgstr "Çoklu ortam eklentileri listesine bak"
+msgstr "Çoklu ortam eklentileri"
 
 msgid "View list of available networking extensions"
-msgstr "Ağ eklentileri listesine bak"
+msgstr "Ağ eklentileri"
 
 msgid "View list of available recording extensions"
-msgstr "Kayıt eklentileri listesine bak"
+msgstr "Kaydetme eklentileri"
 
 msgid "View list of available skins"
-msgstr "Arayüz eklentileri listesine bak"
+msgstr "Arayüzler"
 
 msgid "View list of available software extensions"
-msgstr "Yazılım eklentileri listesine bak"
+msgstr "Yazılım eklentileri"
 
 msgid "View list of available system extensions"
-msgstr "Sistem eklentileri listesine bak"
+msgstr "Sistem eklentileri"
 
 msgid "View teletext..."
 msgstr "Teleteksi aç..."
@@ -4272,7 +4301,7 @@ msgstr "Batı"
 msgid "What do you want to scan?"
 msgstr "Neleri aramak istiyorsunuz?"
 
-msgid "What to do with sent crashlogs:"
+msgid "What to do with submitted crashlogs?"
 msgstr ""
 
 msgid ""
@@ -4324,7 +4353,7 @@ msgstr "Evet"
 msgid "Yes, and delete this movie"
 msgstr "Evet, ve bu filmi sil"
 
-msgid "Yes, and don't ask again."
+msgid "Yes, and don't ask again"
 msgstr ""
 
 msgid "Yes, backup my settings!"
@@ -4503,12 +4532,18 @@ msgid ""
 msgstr ""
 "Dreambox'ınız internete bağlı değil. Kontrol ettikten sonra tekrar deneyin."
 
+msgid "Your email address:"
+msgstr ""
+
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Frontprocessor belleniminin güncellenmesi gerekiyor.\n"
 "Güncellemeye başlamak için OK tuşuna basın."
+
+msgid "Your name (optional):"
+msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "Ağ yapılandırmanız etkinleştirildi."
@@ -5589,6 +5624,9 @@ msgstr "kanal değiştirildi"
 #~ msgstr ""
 #~ "Yükle/\n"
 #~ "Kaldır"
+
+#~ msgid "No new plugins found"
+#~ msgstr "Yeni eklenti bulunamadı"
 
 #~ msgid ""
 #~ "No working local networkadapter found.\n"

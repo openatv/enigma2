@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 21:43+0200\n"
-"PO-Revision-Date: 2009-05-19 21:48+0200\n"
+"POT-Creation-Date: 2009-08-10 11:55+0200\n"
+"PO-Revision-Date: 2009-07-30 20:30+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -94,13 +94,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"System will restart after the restore!"
-msgstr ""
-"\n"
-"Sistema po atkūrimo pasileis iš naujo!"
-
-msgid ""
-"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -110,13 +103,13 @@ msgid " "
 msgstr " "
 
 msgid " extensions."
-msgstr ""
+msgstr " išplėtimai."
 
 msgid " packages selected."
-msgstr ""
+msgstr " paketai išsirinkti."
 
 msgid " updates available."
-msgstr ""
+msgstr " pasiekiamas atnaujinimas."
 
 msgid "#000000"
 msgstr "#000000"
@@ -499,7 +492,7 @@ msgid "Alternative services tuner priority"
 msgstr "Kitų kanalų imtuvo pirmenybė"
 
 msgid "Always ask before sending"
-msgstr ""
+msgstr "Visada klauskite prieš siuntimą"
 
 msgid "An empty filename is illegal."
 msgstr "Tuščias failo pavadinimas negalimas"
@@ -871,9 +864,6 @@ msgstr "Konfigūravimas"
 msgid "Configuration Mode"
 msgstr "Konfigūravimo būdas"
 
-msgid "Configuration for the CrashlogAutoSubmitter"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Konfigūruojama"
 
@@ -881,16 +871,16 @@ msgid "Conflicting timer"
 msgstr "Laikmačio nesuderinamumas"
 
 msgid "Connect"
-msgstr ""
+msgstr "Jungtis"
 
 msgid "Connected to"
-msgstr "Prijungtas prie"
+msgstr "Prisijungta prie"
 
 msgid "Connected to Fritz!Box!"
 msgstr "Prisijungta prie Fritz!Box!"
 
 msgid "Connected!"
-msgstr ""
+msgstr "Prisijungta!"
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Jungiamės prie Fritz!Box..."
@@ -912,7 +902,7 @@ msgid "Content does not fit on DVD!"
 msgstr "Turinys netinka dėl DVD!"
 
 msgid "Continue"
-msgstr ""
+msgstr "Tęsti"
 
 msgid "Continue in background"
 msgstr "Tęsti fone"
@@ -933,16 +923,24 @@ msgstr "Negalima užkrauti! Joks diskas neįdėtas?"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Neįrašyta dėl prieštaringo laikmačio %s"
 
-msgid "CrashlogAutoSubmit"
+msgid "Crashlog settings"
 msgstr ""
 
-msgid "CrashlogAutoSubmitConfiguration"
+msgid "CrashlogAutoSubmit"
+msgstr "CrashlogAutoSubmit"
+
+msgid "CrashlogAutoSubmit settings"
+msgstr ""
+
+msgid "CrashlogAutoSubmit settings..."
 msgstr ""
 
 msgid ""
 "Crashlogs found!\n"
 "Send them to Dream Multimedia ?"
 msgstr ""
+"Crashlogs surastas!\n"
+"Siųsti į Dream Multimediją?"
 
 msgid "Create DVD-ISO"
 msgstr "Sukurti DVD-ISO"
@@ -1014,6 +1012,12 @@ msgstr "Danų"
 msgid "Date"
 msgstr "Data"
 
+msgid "Decide what should be done when crashlogs are found."
+msgstr ""
+
+msgid "Decide what should happen to the crashlogs after submission."
+msgstr ""
+
 msgid "Deep Standby"
 msgstr "Visiškai išjungti"
 
@@ -1033,7 +1037,7 @@ msgid "Delete"
 msgstr "Pašalinti"
 
 msgid "Delete crashlogs"
-msgstr ""
+msgstr "Pašalinkite crashlogs"
 
 msgid "Delete entry"
 msgstr "Pašalinti "
@@ -1080,7 +1084,7 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC pakartojimai"
 
 msgid "Dialing:"
-msgstr ""
+msgstr "Telefono numerio surinkimas:"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Tiesioginis atkūrimas sujungtų pavadinimų be meniu"
@@ -1099,7 +1103,7 @@ msgid "Disable Subtitles"
 msgstr "Išjungti subtitrus"
 
 msgid "Disable crashlog reporting"
-msgstr ""
+msgstr "Išjungti crashlog pranešimą"
 
 msgid "Disable timer"
 msgstr "Išjungti laikmatį"
@@ -1108,7 +1112,7 @@ msgid "Disabled"
 msgstr "Išjungtas"
 
 msgid "Disconnect"
-msgstr ""
+msgstr "Atsijungti"
 
 #, python-format
 msgid ""
@@ -1144,7 +1148,7 @@ msgid ""
 "the plugin \"%s\"?"
 msgstr ""
 "Jūs iš tikrųjų norite į PAŠALINTI\n"
-"priedą \"%s \"?"
+"papildomą programą \"%s \"?"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -1163,7 +1167,7 @@ msgid ""
 "the plugin \"%s\"?"
 msgstr ""
 "Jūs iš tikrųjų norite parsisiųsti\n"
-"priedą \"%s \"?"
+"papildomą programą \"%s \"?"
 
 msgid ""
 "Do you really want to initialize the harddisk?\n"
@@ -1203,7 +1207,7 @@ msgid "Do you want to install default sat lists?"
 msgstr "Jūs norite įdiegti numatytus palydovų sąrašus?"
 
 msgid "Do you want to install the package:\n"
-msgstr "Jūs norite įdiegti package:\n"
+msgstr "Jūs norite įdiegti paketą:\n"
 
 msgid "Do you want to play DVD in drive?"
 msgstr "Jūs norite paleisti DVD?"
@@ -1223,6 +1227,11 @@ msgstr "Jūs norite atkurti nustatymus?"
 msgid "Do you want to resume this playback?"
 msgstr "Jūs norite tęsti šį atkūrimą?"
 
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+
 msgid "Do you want to update your Dreambox?"
 msgstr "Jūs norite atnaujinti savo Dreambox?"
 
@@ -1240,7 +1249,7 @@ msgid "Do you want to view a tutorial?"
 msgstr "Ar norite peržiūrėti aprašymą?"
 
 msgid "Don't ask, just send"
-msgstr ""
+msgstr "Neklauskite, tik nusiųskite"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Nestabdyti dabartinės užduoties, o išjungti sekančią užduotį"
@@ -1264,28 +1273,29 @@ msgid "Download .NFI-Files for USB-Flasher"
 msgstr "Parsisiunčiami .NFI failai į USB diegėją"
 
 msgid "Download Plugins"
-msgstr "Parsisiųsti priedus"
+msgstr "Parsisiųsti"
 
 msgid "Download of USB flasher boot image failed: "
 msgstr "USB diegėjo atvaizdo parsisiuntimas klaidingas:"
 
 msgid "Downloadable new plugins"
-msgstr "Galimi įdiegti nauji priedai"
+msgstr "Galimos įdiegti naujos papildomos programos"
 
 msgid "Downloadable plugins"
-msgstr "Galimi įdiegti priedai"
+msgstr "Galimos įdiegti papildomos programos"
 
 msgid "Downloading"
 msgstr "Parsisiunčiama"
 
 msgid "Downloading plugin information. Please wait..."
-msgstr "Parsiunčiama informacija apie priedus. Prašome palaukti..."
+msgstr ""
+"Parsiunčiama informacija apie papildomas programas. Prašome palaukti..."
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox formatuoja DVD duomenis (suderinama su HDTV)"
 
 msgid "Dreambox software because updates are available."
-msgstr ""
+msgstr "Dreambox programinė įranga todėl,  kad atnaujinimas yra pasiekiamas."
 
 msgid "Dutch"
 msgstr "Olandų"
@@ -1390,6 +1400,7 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1413,11 +1424,14 @@ msgstr "Eiti į pagrindinį meniu..."
 msgid "Enter the service pin"
 msgstr "Įrašykite kanalo PIN"
 
+msgid "Enter your email address so that we can contact you if needed."
+msgstr ""
+
 msgid "Error"
 msgstr "Klaida"
 
 msgid "Error executing plugin"
-msgstr "Klaida paleidžiant priedą"
+msgstr "Klaida paleidžiant papildomą programą"
 
 #, python-format
 msgid ""
@@ -1458,7 +1472,7 @@ msgid "Expert"
 msgstr "Išplėstinis"
 
 msgid "Extended Networksetup Plugin..."
-msgstr "Išplėstas tinklo nustatymų priedas..."
+msgstr "Išplėsta tinklo nustatymų papildoma programa..."
 
 msgid "Extended Setup..."
 msgstr "Išplėstiniai nustatymai..."
@@ -1522,7 +1536,7 @@ msgid "Flashing failed"
 msgstr "Diegimas klaidingas"
 
 msgid "Following tasks will be done after you press continue."
-msgstr ""
+msgstr "Kitos užduotys bus padarytos po to, kai jūs paspausite tęsti."
 
 msgid "Format"
 msgstr "Formatas"
@@ -1599,7 +1613,7 @@ msgid "German"
 msgstr "Vokiečių"
 
 msgid "Getting plugin information. Please wait..."
-msgstr "Gaunama informacija apie priedus. Prašome palaukti..."
+msgstr "Gaunama informacija apie papildomas programas. Prašome palaukti..."
 
 msgid "Goto 0"
 msgstr "Eiti į 0"
@@ -1629,7 +1643,7 @@ msgid "Harddisk standby after"
 msgstr "Kietas diskas išsijungs po"
 
 msgid "Here is a small overview of the available icon states."
-msgstr ""
+msgstr "Yra maža pasiekiamų piktogramų apžvalga."
 
 msgid "Hidden network SSID"
 msgstr "Paslėptas tinklo SSID"
@@ -1649,7 +1663,7 @@ msgstr "Horizontalus"
 msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite daryti įrašą?"
 
-msgid "How to handle found crashlogs:"
+msgid "How to handle found crashlogs?"
 msgstr ""
 
 msgid "Hungarian"
@@ -1713,6 +1727,9 @@ msgid ""
 msgstr ""
 "Pradėjus rašyti pagal pasirinktą laikmatį, TV bus perjungtas į įrašomą "
 "kanalą!\n"
+
+msgid "Include your email and name (optional) in the mail?"
+msgstr ""
 
 msgid "Increased voltage"
 msgstr "Padidinta įtampa"
@@ -1815,7 +1832,7 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Is this videomode ok?"
-msgstr ""
+msgstr "Šis video būdas geras?"
 
 msgid "Italian"
 msgstr "Italų"
@@ -2259,10 +2276,13 @@ msgstr "Ne, nereikia"
 msgid "No, just start my dreambox"
 msgstr "Ne, įjungti mano imtuvą"
 
+msgid "No, not now"
+msgstr ""
+
 msgid "No, scan later manually"
 msgstr "Ne, skanuoti vėliau rankiniu būdu"
 
-msgid "No, send them never."
+msgid "No, send them never"
 msgstr ""
 
 msgid "None"
@@ -2332,6 +2352,9 @@ msgstr "Tiesioginis atnaujinimas"
 msgid "Only Free scan"
 msgstr "Tik nekoduotus"
 
+msgid "Optionally enter your name if you want to."
+msgstr ""
+
 msgid "Orbital Position"
 msgstr "Pozicija orbitoje"
 
@@ -2376,13 +2399,13 @@ msgid "Parental control type"
 msgstr "Tėvų kontrolės rūšis"
 
 msgid "Password"
-msgstr ""
+msgstr "Slaptažodis"
 
 msgid "Pause movie at end"
 msgstr "Filmo pauzė pabaigoje"
 
 msgid "Phone number"
-msgstr ""
+msgstr "Telefono numeris"
 
 msgid "PiPSetup"
 msgstr "PiP nustatymas"
@@ -2470,6 +2493,12 @@ msgstr "Prašome įrašyti teisingą PIN kodą"
 
 msgid "Please enter the old pin code"
 msgstr "Prašome įrašyti seną PIN kodą"
+
+msgid "Please enter your email address here:"
+msgstr ""
+
+msgid "Please enter your name here (optional):"
+msgstr ""
 
 msgid "Please follow the instructions on the TV"
 msgstr "Prašome sekti instrukcijas televizoriuje"
@@ -2564,10 +2593,10 @@ msgid "Plugin manager"
 msgstr "Papildomų programų valdymas"
 
 msgid "Plugin manager help..."
-msgstr ""
+msgstr "Papildomų programų valdymo pagalba..."
 
 msgid "Plugin manager process information..."
-msgstr ""
+msgstr "Papildomų programų valdymo proceso informacija..."
 
 msgid "Plugins"
 msgstr "Papildomos programos"
@@ -2652,7 +2681,7 @@ msgid "Priority"
 msgstr "Pirmenybė"
 
 msgid "Process"
-msgstr ""
+msgstr "Procesas"
 
 msgid "Properties of current title"
 msgstr "Dabartinio pavadinimo ypatybės"
@@ -2767,7 +2796,7 @@ msgid "Remove Bookmark"
 msgstr "Pašalinti žymę"
 
 msgid "Remove Plugins"
-msgstr "Pašalinti priedus"
+msgstr "Pašalinti"
 
 msgid "Remove a mark"
 msgstr "Pašalinti žymeklį"
@@ -2804,7 +2833,7 @@ msgid "Rename"
 msgstr "Pervardinti"
 
 msgid "Rename crashlogs"
-msgstr ""
+msgstr "Pervardinkite crashlogs"
 
 msgid "Repeat"
 msgstr "Pakartoti"
@@ -3119,7 +3148,7 @@ msgid "Sequence repeat"
 msgstr "Sekos pakartojimas"
 
 msgid "Serbian"
-msgstr ""
+msgstr "Serbų"
 
 msgid "Service"
 msgstr "Apie kanalą"
@@ -3191,7 +3220,7 @@ msgid "Show Info"
 msgstr "Rodyti informaciją"
 
 msgid "Show Message when Recording starts"
-msgstr ""
+msgstr "Rodyti žinutę, kai prasideda įrašymas"
 
 msgid "Show WLAN Status"
 msgstr "Rodyti belaidžio tinklo būseną"
@@ -3613,7 +3642,7 @@ msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Belaidžio tinklo priedas neįdiegtas!\n"
+"Belaidžio tinklo programa neįdiegta!\n"
 "Prašome įdiegti tai."
 
 msgid ""
@@ -3626,7 +3655,7 @@ msgid "The wizard is finished now."
 msgstr "Nustatymų vedlys baigė darbą."
 
 msgid "There are at least "
-msgstr ""
+msgstr "Bent jau yra"
 
 msgid "There are no default services lists in your image."
 msgstr "Nėra jokių numatytųjų kanalų sąrašų jūsų atvaizde."
@@ -3685,16 +3714,16 @@ msgid "This is unsupported at the moment."
 msgstr "Šiuo metu tai nepalaikoma."
 
 msgid "This plugin is installed."
-msgstr ""
+msgstr "Ši papildoma programa yra įdiegta."
 
 msgid "This plugin is not installed."
-msgstr ""
+msgstr "Ši papildoma programa nėra įdiegta."
 
 msgid "This plugin will be installed."
-msgstr ""
+msgstr "Ši papildoma programa bus įdiegta."
 
 msgid "This plugin will be removed."
-msgstr ""
+msgstr "Ši papildoma programa jau pašalinta."
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3881,7 +3910,7 @@ msgid "Transponder Type"
 msgstr "Transponderio tipas"
 
 msgid "Tries left:"
-msgstr "Bandymas kairėn:"
+msgstr "Bandymo kartų:"
 
 msgid "Try to find used Transponders in cable network.. please wait..."
 msgstr ""
@@ -3969,11 +3998,15 @@ msgid ""
 "Undo\n"
 "Install"
 msgstr ""
+"Undo\n"
+"Įdiegti"
 
 msgid ""
 "Undo\n"
 "Remove"
 msgstr ""
+"Undo\n"
+"Pašalinti"
 
 msgid "Unicable"
 msgstr "Unicable"
@@ -4003,7 +4036,7 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Atnaujinama... Prašome palaukti... tai gali trukti keletą minučių..."
 
 msgid "Upgrade"
-msgstr ""
+msgstr "Atnaujinti"
 
 msgid "Upgrade finished."
 msgstr "Atnaujinimas baigtas."
@@ -4032,6 +4065,7 @@ msgstr "Naudoti įtampos matavimą"
 msgid "Use a gateway"
 msgstr "Naudoti šliuzą"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -4082,7 +4116,7 @@ msgid "User defined"
 msgstr "Vartotojo pasirinktas"
 
 msgid "Username"
-msgstr ""
+msgstr "Vartotojas"
 
 msgid "VCR scart"
 msgstr "Vaizdo grotuvas"
@@ -4139,10 +4173,10 @@ msgid "View Video CD..."
 msgstr "Žiūrėti vaizdo CD..."
 
 msgid "View details"
-msgstr ""
+msgstr "Smulkiau"
 
 msgid "View list of available "
-msgstr ""
+msgstr "Peržiūrėti sąrašą pasiekiamų"
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Peržiūrėti sąrašą galimam Įstatomų modulių papildymui"
@@ -4278,7 +4312,7 @@ msgstr "Vakarai"
 msgid "What do you want to scan?"
 msgstr "Ką Jūs norite skanuoti?"
 
-msgid "What to do with sent crashlogs:"
+msgid "What to do with submitted crashlogs?"
 msgstr ""
 
 msgid ""
@@ -4330,7 +4364,7 @@ msgstr "Taip"
 msgid "Yes, and delete this movie"
 msgstr "Taip, ir trinti šį filmą"
 
-msgid "Yes, and don't ask again."
+msgid "Yes, and don't ask again"
 msgstr ""
 
 msgid "Yes, backup my settings!"
@@ -4358,10 +4392,10 @@ msgid "Yes, view the tutorial"
 msgstr "Taip, žiūrėti instrukciją"
 
 msgid "You can cancel the installation."
-msgstr ""
+msgstr "Jūs galite panaikinti įdiegimą."
 
 msgid "You can cancel the removal."
-msgstr ""
+msgstr "Jūs galite panaikinti pašalinimą."
 
 msgid ""
 "You can choose some default settings now. Please select the settings you "
@@ -4374,10 +4408,10 @@ msgid "You can choose, what you want to install..."
 msgstr "Jūs galite išsirinkti, ką jūs norite įdiegti..."
 
 msgid "You can install this plugin."
-msgstr ""
+msgstr "Jūs galite įdiegti šią papildomą programą."
 
 msgid "You can remove this plugin."
-msgstr ""
+msgstr "Jūs galite pašalinti šią papildomą programą."
 
 msgid "You cannot delete this!"
 msgstr "Jūs negalite to ištrinti!"
@@ -4507,12 +4541,18 @@ msgstr ""
 "Jūsų imtuvas neteisingai prijungtas prie interneto. Prašome patikrinti tai "
 "ir bandyti dar kartą."
 
+msgid "Your email address:"
+msgstr ""
+
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Reikalingas priekinio procesoriaus atnaujinimas.\n"
 "Spauskite OK, kad pradėti atnaujinimą."
+
+msgid "Your name (optional):"
+msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "Jūsų tinklo konfigūracija aktyvuota."
@@ -5430,6 +5470,13 @@ msgstr "įjungta"
 
 #~ msgid ""
 #~ "\n"
+#~ "System will restart after the restore!"
+#~ msgstr ""
+#~ "\n"
+#~ "Sistema po atkūrimo pasileis iš naujo!"
+
+#~ msgid ""
+#~ "\n"
 #~ "View, install and remove available or installed package."
 #~ msgstr ""
 #~ "\n"
@@ -5588,6 +5635,9 @@ msgstr "įjungta"
 #~ msgid "Common interface selection"
 #~ msgstr "Įstatomo modulio pasirinkimas"
 
+#~ msgid "Configuration for the CrashlogAutoSubmitter"
+#~ msgstr "Konfigūracija CrashlogAutoSubmitter"
+
 #, fuzzy
 #~ msgid "Configuration for the Webinterface"
 #~ msgstr "Konfigūravimo būdas"
@@ -5618,6 +5668,9 @@ msgstr "įjungta"
 
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "Kopijuojamas USB diegėjo paleidimo atvaizdas į raktelį..."
+
+#~ msgid "CrashlogAutoSubmitConfiguration"
+#~ msgstr "CrashlogAutoSubmit konfigūracija"
 
 #~ msgid "Current sleep timer disabled"
 #~ msgstr "Einamasis budėjimo laikmatis išjungtas"
@@ -5850,6 +5903,9 @@ msgstr "įjungta"
 #~ msgid "Hide error message: Tune failed!"
 #~ msgstr "Slėpti klaidingą žinutę: Suderinimas nepavyko!"
 
+#~ msgid "How to handle found crashlogs:"
+#~ msgstr "Kaip pasielgti suradus crashlogs:"
+
 #~ msgid "IPKG"
 #~ msgstr "IPKG"
 
@@ -6000,6 +6056,9 @@ msgstr "įjungta"
 
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Ne, leiskite man pasirinkti numatytuosius sąrašus"
+
+#~ msgid "No, send them never."
+#~ msgstr "Ne, nesiųskite jų niekada."
 
 #~ msgid ""
 #~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
@@ -6303,6 +6362,9 @@ msgstr "įjungta"
 #~ msgid "Slide picture in loop"
 #~ msgstr "Skaidrės paveikslėlis kontūre"
 
+#~ msgid "Slovene"
+#~ msgstr "Slovėnų"
+
 #~ msgid "SocketMMI"
 #~ msgstr "Lizdas MMI"
 
@@ -6521,11 +6583,17 @@ msgstr "įjungta"
 #~ "Spauskite OK mygtuką ant jūsų distancinio valdymo pulto, kad pereiti į "
 #~ "kitą žingsnį."
 
+#~ msgid "What to do with sent crashlogs:"
+#~ msgstr "Ką padaryti su nusiųstu crashlogs:"
+
 #~ msgid "When complete, press Key 0 to burn the collection!"
 #~ msgstr "Kai bus baigta, spauskite mygtuką 0, kad išdegintumėte kolekciją!"
 
 #~ msgid "Writing image file to NAND Flash"
 #~ msgstr "Atvaizdo failo į NAND fliašą įrašymas"
+
+#~ msgid "Yes, and don't ask again."
+#~ msgstr "Taip, ir neklausti vėl."
 
 #, fuzzy
 #~ msgid "You can choose, what you want to install.."
