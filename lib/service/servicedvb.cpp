@@ -1758,21 +1758,26 @@ int eDVBServicePlay::selectAudioStream(int i)
 		return -4;
 	}
 
+	int rdsPid = apid;
+
 		/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
 	if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
-		if (!m_rds_decoder)
+	{
+		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
+		if (different_pid)
+			rdsPid = program.audioStreams[stream].rdsPid;
+		if (!m_rds_decoder || m_rds_decoder->getPid() != rdsPid)
 		{
+			m_rds_decoder = 0;
 			ePtr<iDVBDemux> data_demux;
 			if (!h.getDataDemux(data_demux))
 			{
-				m_rds_decoder = new eDVBRdsDecoder(data_demux);
+				m_rds_decoder = new eDVBRdsDecoder(data_demux, different_pid);
 				m_rds_decoder->connectEvent(slot(*this, &eDVBServicePlay::rdsDecoderEvent), m_rds_decoder_event_connection);
+				m_rds_decoder->start(rdsPid);
 			}
 		}
-
-		/* if we decided that we need one, update the pid */
-	if (m_rds_decoder)
-		m_rds_decoder->start(apid);
+	}
 
 			/* store new pid as default only when:
 				a.) we have an entry in the service db for the current service,
