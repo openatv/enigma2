@@ -18,9 +18,11 @@ class eDVBRdsDecoder: public iObject, public ePESParser, public Object
 	unsigned char rass_picture_mask[5];  // 40 bits... (10 * 4 pictures)
 	void addToPictureMask(int id);
 	void removeFromPictureMask(int id);
+	int m_type;
+	int m_pid;
 public:
 	enum { RadioTextChanged, RtpTextChanged, RassInteractivePicMaskChanged, RecvRassSlidePic };
-	eDVBRdsDecoder(iDVBDemux *demux);
+	eDVBRdsDecoder(iDVBDemux *demux, int type);
 	~eDVBRdsDecoder();
 	int start(int pid);
 	void connectEvent(const Slot1<void, int> &slot, ePtr<eConnection> &connection);
@@ -29,10 +31,11 @@ public:
 	ePyObject getRassPictureMask();
 	std::string getRassPicture(int page, int subpage);
 	std::string getRassSlideshowPicture() { return "/tmp/RassLast.mvi"; }
+	int getPid() { return m_pid; }
 private:
 	void abortNonAvail();
 	void processPESPacket(__u8 *pkt, int len);
-	inline void gotAncillaryData(__u8 *data, int len);
+	void gotAncillaryData(const __u8 *data, int len);
 	void process_qdar(unsigned char*);
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;

@@ -5,9 +5,9 @@
 
 DEFINE_REF(eDVBRdsDecoder);
 
-eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux)
+eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
 	:msgPtr(0), bsflag(0), qdar_pos(0), t_ptr(0), qdarmvi_show(0), state(0)
-	,m_abortTimer(eTimer::create(eApp))
+	,m_type(type), m_pid(-1), m_abortTimer(eTimer::create(eApp))
 {
 	setStreamID(0xC0, 0xC0);
 
@@ -16,8 +16,10 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux)
 
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("failed to create PES reader!");
-	else
+	else if (type == 0)
 		m_pes_reader->connectRead(slot(*this, &eDVBRdsDecoder::processData), m_read_connection);
+	else
+		m_pes_reader->connectRead(slot(*this, &eDVBRdsDecoder::gotAncillaryData), m_read_connection);
 	CONNECT(m_abortTimer->timeout, eDVBRdsDecoder::abortNonAvail);
 }
 
@@ -196,7 +198,7 @@ void eDVBRdsDecoder::processPESPacket(__u8 *data, int len)
 			m_abortTimer->stop();
 			int ancillary_len = 1 + data[offs - 1];
 			offs -= ancillary_len;
-			gotAncillaryData(data+offs, ancillary_len);
+			gotAncillaryData(data+offs, ancillary_len-1);
 		}
 	}
 }
@@ -310,13 +312,19 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 	}
 }
 
-inline void eDVBRdsDecoder::gotAncillaryData(__u8 *buf, int len)
+void eDVBRdsDecoder::gotAncillaryData(const __u8 *buf, int len)
 {
-	int cnt=buf[--len];
-	while ( cnt-- > 0 )
+	if (len <= 0)
+		return;
+	int pos = m_type ? 0 : len-1;
+	while ( len )
 	{
-		unsigned char c = buf[--len];
-	
+		unsigned char c = buf[pos];
+
+		pos += m_type ? 1 : -1;
+
+		--len;
+
 		if (bsflag == 1) // byte stuffing
 		{
 			bsflag=2;
@@ -638,8 +646,9 @@ std::string eDVBRdsDecoder::getRassPicture(int page, int subpage)
 int eDVBRdsDecoder::start(int pid)
 {
 	int ret = -1;
-	if (m_pes_reader && !(ret = m_pes_reader->start(pid)))
+	if (m_pes_reader && !(ret = m_pes_reader->start(pid)) && m_type == 0)
 		m_abortTimer->startLongTimer(20);
+	m_pid = pid;
 	return ret;
 }
 
