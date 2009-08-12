@@ -105,7 +105,7 @@ private:
 	void feEvent(int);
 	void timeout();
 	void tuneLoop();  // called by m_tuneTimer
-	void setFrontend();
+	void setFrontend(bool recvEvents=true);
 	bool setSecSequencePos(int steps);
 	static int PriorityOrder;
 public:
