@@ -2141,7 +2141,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			goto tune_error;
 
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 1) );
 		break;
 	}
 	case feTerrestrial:
@@ -2166,7 +2166,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 1) );
 
 		break;
 	}
