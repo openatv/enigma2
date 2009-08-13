@@ -9,6 +9,7 @@ from Components.Sources.Progress import Progress
 from Components.Label import Label
 from Components.FileList import FileList
 from Components.MultiContent import MultiContentEntryText
+from Components.ScrollLabel import ScrollLabel
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 from enigma import eConsoleAppContainer, eListbox, gFont, eListboxPythonMultiContent, \
@@ -61,6 +62,34 @@ class Feedlist(MenuList):
 	def moveSelection(self,idx=0):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(idx)
+
+class NFOViewer(Screen):
+	skin = """
+		<screen name="NFOViewer" position="110,115" size="540,400" title="Changelog viewer" >
+			<widget name="changelog" position="10,10" size="520,380" font="Regular;16" />
+		</screen>"""
+
+	def __init__(self, session, nfo):
+		Screen.__init__(self, session)
+		self["changelog"] = ScrollLabel(nfo)
+
+		self["ViewerActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
+			{
+				"green": self.exit,
+				"red": self.exit,
+				"ok": self.exit,
+				"cancel": self.exit,
+				"down": self.pageDown,
+				"up": self.pageUp			
+			})
+	def pageUp(self):
+		self["changelog"].pageUp()
+
+	def pageDown(self):
+		self["changelog"].pageDown()
+			
+	def exit(self):
+		self.close(False)
 
 class NFIDownload(Screen):
 	LIST_SOURCE = 1
@@ -230,6 +259,8 @@ class NFIDownload(Screen):
 			self["destlist"].pageDown()
 
 	def ok(self):
+		if self.focus is self.LIST_SOURCE and self.nfo:
+			self.session.open(NFOViewer, self.nfo)
 		if self.download:
 			return
 		if self.focus is self.LIST_DEST:
@@ -249,7 +280,7 @@ class NFIDownload(Screen):
 	def feed_finished(self, feedhtml):
 		print "[feed_finished] " + str(feedhtml)
 		self.downloading(False)
-		fileresultmask = re.compile("<a href=[\'\"](?P<url>.*?)[\'\"]>(?P<name>.*?.nfi)</a>", re.DOTALL)
+		fileresultmask = re.compile("<a class=[\'\"]nfi[\'\"] href=[\'\"](?P<url>.*?)[\'\"]>(?P<name>.*?.nfi)</a>", re.DOTALL)
 		searchresults = fileresultmask.finditer(feedhtml)
 		fileresultlist = []
 		if searchresults:
@@ -308,7 +339,7 @@ class NFIDownload(Screen):
 		else:	
 			self.nfofilename = ""
 			self["infolabel"].text = _("No details for this image file")
-		self["statusbar"].text = ""
+		self["statusbar"].text = _("Press OK to view full changelog")
 
 	def nfi_download(self):
 		if self["destlist"].getCurrentDirectory() is None:
