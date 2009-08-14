@@ -184,6 +184,8 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 
 	int first_ac3 = -1;
 	program.defaultAudioStream = 0;
+	int rdsPid = -1;
+	audioStream *prev_audio = 0;
 
 	if ( m_service && !m_service->cacheEmpty() )
 	{
@@ -215,13 +217,15 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 				{
 					int isaudio = 0, isvideo = 0, issubtitle = 0, forced_video = 0, forced_audio = 0, isteletext = 0;
+					int streamtype = (*es)->getType();
 					videoStream video;
 					audioStream audio;
 					audio.component_tag=video.component_tag=-1;
 					video.type = videoStream::vtMPEG2;
 					audio.type = audioStream::atMPEG;
+					audio.rdsPid = -1;
 
-					switch ((*es)->getType())
+					switch (streamtype)
 					{
 					case 0x1b: // AVC Video Stream (MPEG4 H264)
 						video.type = videoStream::vtMPEG4_H264;
@@ -285,11 +289,14 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 						}
 					case 0x06: // PES Private
 					case 0xEA: // TS_PSI_ST_SMPTE_VC1
+					{
+						int num_descriptors = 0;
 						for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 							desc != (*es)->getDescriptors()->end(); ++desc)
 						{
 							uint8_t tag = (*desc)->getTag();
 							/* check descriptors to get the exakt stream type. */
+							++num_descriptors;
 							if (!forced_video && !forced_audio)
 							{
 								switch (tag)
@@ -458,6 +465,13 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 								break;
 							}
 						}
+						if (!num_descriptors && streamtype == 0x06 && prev_audio)
+						{
+							prev_audio->rdsPid = (*es)->getPid();
+							eDebug("Rds PID %04x detected ? ! ?", prev_audio->rdsPid);
+						}
+						prev_audio = 0;
+					}
 					default:
 						break;
 					}
@@ -496,6 +510,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							first_ac3 = program.audioStreams.size();
 
 						program.audioStreams.push_back(audio);
+						prev_audio = &program.audioStreams.back();
 					}
 					else
 						continue;
@@ -548,6 +563,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			audioStream s;
 			s.type = audioStream::atAC3;
 			s.pid = cached_apid_ac3;
+			s.rdsPid = -1;
 			program.audioStreams.push_back(s);
 			++cnt;
 		}
@@ -556,6 +572,7 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			audioStream s;
 			s.type = audioStream::atMPEG;
 			s.pid = cached_apid_mpeg;
+			s.rdsPid = -1;
 			program.audioStreams.push_back(s);
 			++cnt;
 		}

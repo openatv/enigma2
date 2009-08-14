@@ -754,6 +754,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 						}
 						if(lnb_param.SatCR_idx == -1)
 						{
+							int mrt = m_params[MOTOR_RUNNING_TIMEOUT]; // in seconds!
 							if ( rotor_param.m_inputpower_parameters.m_use )
 							{ // use measure rotor input power to detect rotor state
 								bool turn_fast = need_turn_fast(rotor_param.m_inputpower_parameters.m_turning_speed);
@@ -800,7 +801,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );
 								if (turn_fast)
 									sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, VOLTAGE(18)) );
-								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*20) );  // 2 minutes running timeout
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, mrt*20) );  // mrt is in seconds... our SLEEP time is 50ms.. so * 20
 	// rotor running loop
 								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50) );  // wait 50msec
 								sec_sequence.push_back( eSecCommand(eSecCommand::MEASURE_RUNNING_INPUTPOWER) );
@@ -815,6 +816,17 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							}
 							else
 							{  // use normal turning mode
+								if (curRotorPos != -1)
+								{		
+									mrt = abs(curRotorPos - sat.orbital_position);
+									if (mrt > 1800)
+										mrt = 3600 - mrt;
+									if (mrt % 10)
+										mrt += 10; // round a little bit
+									mrt *= 2000;  // (we assume a very slow rotor with just 0.5 degree per second here)
+									mrt /= 10000;
+									mrt += 3; // a little bit overhead
+								}
 								doSetVoltageToneFrontend=false;
 								doSetFrontend=false;
 								eSecCommand::rotor cmd;
@@ -828,37 +840,40 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 								sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_MOVING) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-	
+								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 1000) ); // sleep one second before change voltage or tone
+
 								compare.voltage = voltage;
 								compare.steps = +3;
 								sec_sequence.push_back( eSecCommand(eSecCommand::IF_VOLTAGE_GOTO, compare) ); // correct final voltage?
 								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 2000) );  // wait 2 second before set high voltage
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, voltage) );
-	
+
 								compare.tone = tone;
 								sec_sequence.push_back( eSecCommand(eSecCommand::IF_TONE_GOTO, compare) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, tone) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_FINAL_CONT_TONE_CHANGE]) );
-								sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 0) );
 	
 								cmd.direction=1;  // check for running rotor
 								cmd.deltaA=0;
-								cmd.steps=+3;
+								cmd.steps = +3;
 								cmd.okcount=0;
-								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, m_params[MOTOR_RUNNING_TIMEOUT]*4) );  // 2 minutes running timeout
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_TIMEOUT, mrt*4) );  // mrt is in seconds... our SLEEP time is 250ms.. so * 4
 								sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );  // 250msec delay
 								sec_sequence.push_back( eSecCommand(eSecCommand::IF_TUNER_LOCKED_GOTO, cmd ) );
-								sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +3 ) ); 
+								sec_sequence.push_back( eSecCommand(eSecCommand::IF_TIMEOUT_GOTO, +5 ) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -3) );  // goto loop start
 								sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_ROTORPARAMS) );
 								sec_sequence.push_back( eSecCommand(eSecCommand::SET_ROTOR_STOPPED) );
-								sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +3) );
-								sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
-								sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -4) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, +4) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, tunetimeout) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 1) );
+								sec_sequence.push_back( eSecCommand(eSecCommand::GOTO, -5) );
 							}
+							eDebug("set rotor timeout to %d seconds", mrt);
+							sec_fe->setData(eDVBFrontend::NEW_ROTOR_CMD, RotorCmd);
+							sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
 						}
-						sec_fe->setData(eDVBFrontend::NEW_ROTOR_CMD, RotorCmd);
-						sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
 					}
 				}
 			}
@@ -919,7 +934,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			if (doSetFrontend)
 			{
 				sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, tunetimeout) );
-				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+				sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 1) );
 			}
 
 			sec_sequence.push_front( eSecCommand(eSecCommand::SET_POWER_LIMITING_MODE, eSecCommand::modeStatic) );

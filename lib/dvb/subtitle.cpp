@@ -82,7 +82,7 @@ static int map_4_to_8_bit_table[16];
 int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, subtitle_region_object *object, int *linenr, int *linep, __u8 *data)
 {
 	int data_type = *data++;
-	static __u8 line[720];
+	static __u8 line[1920];
 
 	bitstream bit;
 	bit.size=0;
@@ -142,7 +142,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 				map_2_to_4_bit_table[col] :
 				region->depth == subtitle_region::bpp8 ?
 				map_2_to_8_bit_table[col] : col;
-			while (len && ((*linep) < 720))
+			while (len && ((*linep) < m_display_size.width()))
 			{
 				line[(*linep)++] = c;
 				len--;
@@ -197,7 +197,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 			}
 			uint8_t c = region->depth == subtitle_region::bpp8 ?
 				map_4_to_8_bit_table[col] : col;
-			while (len && ((*linep) < 720))
+			while (len && ((*linep) < m_display_size.width()))
 			{
 				line[(*linep)++] = c;
 				len--;
@@ -231,7 +231,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 				} else
 					break;
 			}
-			while (len && ((*linep) < 720))
+			while (len && ((*linep) < m_display_size.width()))
 			{
 				line[(*linep)++] = col;
 				len--;
@@ -270,7 +270,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 		subtitle_process_line(region, object, *linenr, line, *linep);
 /*		{
 			int i;
-			for (i=0; i<720; ++i)
+			for (i=0; i<m_display_size.width(); ++i)
 				eDebugNoNewLine("%d ", line[i]);
 			eDebug("");
 		} */
