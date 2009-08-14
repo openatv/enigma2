@@ -652,12 +652,6 @@ void eDVBFrontend::feEvent(int w)
 		if (res && (errno == EAGAIN))
 			break;
 
-		if (res)
-		{
-			eWarning("FE_GET_EVENT failed! %m");
-			return;
-		}
-
 		if (w < 0)
 			continue;
 
@@ -1432,14 +1426,18 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				sec_fe->sendToneburst(m_sec_sequence.current()++->toneburst);
 				break;
 			case eSecCommand::SET_FRONTEND:
-				eDebugNoSimulate("[SEC] setFrontend");
-				setFrontend();
-				++m_sec_sequence.current();
+			{
+				int enableEvents = (m_sec_sequence.current()++)->val;
+				eDebugNoSimulate("[SEC] setFrontend %d", enableEvents);
+				setFrontend(enableEvents);
 				break;
+			}
 			case eSecCommand::START_TUNE_TIMEOUT:
 			{
+				int tuneTimeout = m_sec_sequence.current()->timeout;
+				eDebugNoSimulate("[SEC] startTuneTimeout %d", tuneTimeout);
 				if (!m_simulate)
-					m_timeout->start(m_sec_sequence.current()->timeout, 1);
+					m_timeout->start(tuneTimeout, 1);
 				++m_sec_sequence.current();
 				break;
 			}
@@ -1497,23 +1495,27 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				int signal = 0;
 				int isLocked = readFrontendData(locked);
 				m_idleInputpower[0] = m_idleInputpower[1] = 0;
-				if (isLocked && ((abs((signal = readFrontendData(signalQualitydB)) - cmd.lastSignal) < 50) || !cmd.lastSignal))
+				--m_timeoutCount;
+				if (!m_timeoutCount && m_retryCount > 0)
+					--m_retryCount;
+				if (isLocked && ((abs((signal = readFrontendData(signalQualitydB)) - cmd.lastSignal) < 40) || !cmd.lastSignal))
 				{
 					if (cmd.lastSignal)
 						eDebugNoSimulate("[SEC] locked step %d ok (%d %d)", cmd.okcount, signal, cmd.lastSignal);
 					else
 					{
 						eDebugNoSimulate("[SEC] locked step %d ok", cmd.okcount);
-						cmd.lastSignal = signal;
+						if (!cmd.okcount)
+							cmd.lastSignal = signal;
 					}
 					++cmd.okcount;
 					if (cmd.okcount > 4)
 					{
-						eDebugNoSimulate("ok > 4 .. goto %d\n",cmd.steps);
+						eDebugNoSimulate("ok > 4 .. goto %d\n", cmd.steps);
 						setSecSequencePos(cmd.steps);
 						m_state = stateLock;
 						m_stateChanged(this);
-						feEvent(-1);
+						feEvent(-1); // flush events
 						m_sn->start();
 						break;
 					}
@@ -1524,9 +1526,6 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 						eDebugNoSimulate("[SEC] rotor locked step %d failed (oldSignal %d, curSignal %d)", cmd.okcount, signal, cmd.lastSignal);
 					else
 						eDebugNoSimulate("[SEC] rotor locked step %d failed (not locked)", cmd.okcount);
-					--m_timeoutCount;
-					if (!m_timeoutCount && m_retryCount > 0)
-						--m_retryCount;
 					cmd.okcount=0;
 					cmd.lastSignal=0;
 				}
@@ -1558,6 +1557,9 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				}
 				int idleInputpower = m_idleInputpower[ (sec_fe_data[CUR_VOLTAGE]&1) ? 0 : 1];
 				const char *txt = cmd.direction ? "running" : "stopped";
+				--m_timeoutCount;
+				if (!m_timeoutCount && m_retryCount > 0)
+					--m_retryCount;
 				eDebugNoSimulate("[SEC] waiting for rotor %s %d, idle %d, delta %d",
 					txt,
 					m_runningInputpower,
@@ -1578,9 +1580,6 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				else
 				{
 					eDebugNoSimulate("[SEC] rotor not %s... reset counter.. increase timeout", txt);
-					--m_timeoutCount;
-					if (!m_timeoutCount && m_retryCount > 0)
-						--m_retryCount;
 					cmd.okcount=0;
 				}
 				++m_sec_sequence.current();
@@ -1696,13 +1695,14 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 		tuneLoop();
 }
 
-void eDVBFrontend::setFrontend()
+void eDVBFrontend::setFrontend(bool recvEvents)
 {
 	if (!m_simulate)
 	{
 		eDebug("setting frontend %d", m_dvbid);
-		m_sn->start();
-		feEvent(-1);
+		if (recvEvents)
+			m_sn->start();
+		feEvent(-1); // flush events
 		if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
 		{
 			perror("FE_SET_FRONTEND failed");
@@ -2141,7 +2141,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			goto tune_error;
 
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 1) );
 		break;
 	}
 	case feTerrestrial:
@@ -2166,7 +2166,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
-		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND) );
+		m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_FRONTEND, 1) );
 
 		break;
 	}

@@ -12,6 +12,7 @@ from enigma import ePoint
 
 import os
 from twisted.mail import smtp, relaymanager
+import MimeWriter, mimetools, StringIO
 
 config.plugins.crashlogautosubmit = ConfigSubsection()
 config.plugins.crashlogautosubmit.sendmail = ConfigSelection(default = "send", choices = [
@@ -219,13 +220,28 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 
 def mxServerFound(mxServer,session):
 	print "[CrashlogAutoSubmit] - mxServerFound -->", mxServer
-	attachments = []
 	crashLogFilelist = []
+	message = StringIO.StringIO()
+	writer = MimeWriter.MimeWriter(message)
 	mailFrom = "enigma2@crashlog.dream-multimedia-tv.de"
 	mailTo = "enigma2@crashlog.dream-multimedia-tv.de"
 	subject = "Automatically generated crashlogmail"
-	mailtext = "\nHello\n\nHere are some crashlogs i found for you.\n"
-	mailfooter = "\n\nThis is an automatically generated email from the CrashlogAutoSubmit plugin.\n\n\nHave a nice day.\n"
+	# Define the main body headers.
+	writer.addheader('To', "dream-multimedia-crashlogs <enigma2@crashlog.dream-multimedia-tv.de>")
+	writer.addheader('From', "CrashlogAutoSubmitter <enigma2@crashlog.dream-multimedia-tv.de>")
+	writer.addheader('Subject', str(subject))
+	writer.addheader('Date', smtp.rfc822date())
+	if config.plugins.crashlogautosubmit.attachemail.value is True:
+		if  str(config.plugins.crashlogautosubmit.email.value) != "myemail@home.com":
+			writer.addheader('Reply-To', str(str(config.plugins.crashlogautosubmit.email.value)))
+	writer.addheader('MIME-Version', '1.0')
+	writer.startmultipartbody('mixed')
+	# start with a text/plain part
+	part = writer.nextpart()
+	body = part.startbody('text/plain')
+	part.flushheaders()
+	# Define the message body
+	body_text1 = "\nHello\n\nHere are some crashlogs i found for you.\n"
 	if  str(config.plugins.crashlogautosubmit.email.value) == "myemail@home.com":
 		user_email = ""
 	else:
@@ -234,11 +250,9 @@ def mxServerFound(mxServer,session):
 		user_name = ""
 	else:
 		user_name = "\n\nOptional supplied name: " + str(config.plugins.crashlogautosubmit.name.value)
-	headers = { 'from': 'CrashlogAutoSubmitter <enigma2@crashlog.dream-multimedia-tv.de>', 'to': 'dream-multimedia-crashlogs <enigma2@crashlog.dream-multimedia-tv.de>', 'subject' : str(subject) }
-	mailData = mailtext + user_email + user_name + mailfooter
-	if config.plugins.crashlogautosubmit.attachemail.value is True:
-		if  str(config.plugins.crashlogautosubmit.email.value) != "myemail@home.com":
-			headers["reply-to"] = str(config.plugins.crashlogautosubmit.email.value)
+	body_text2 = "\n\nThis is an automatically generated email from the CrashlogAutoSubmit plugin.\n\n\nHave a nice day.\n"
+	body_text = body_text1 + user_email + user_name + body_text2
+	body.write(body_text)
 
 	list = (
 		(_("Yes"), "send"),
@@ -263,16 +277,17 @@ def mxServerFound(mxServer,session):
 
 	def send_mail():
 		print "[CrashlogAutoSubmit] - send_mail"
-		attachments = []
 		if len(crashLogFilelist):
 			for crashlog in crashLogFilelist:
 				filename = str(os.path.basename(crashlog))
-				mimetype = "text/plain"
-				f = open (crashlog, 'r')
-				attachment = str(f.read())
-				f.close()
-				attachments.append ((filename,mimetype,attachment))
-		sending = smtp.sendEmail(str(mxServer), mailFrom, mailTo, str(mailData), headers, attachments)
+				subpart = writer.nextpart()
+				subpart.addheader("Content-Transfer-Encoding", 'base64')
+				subpart.addheader("Content-Disposition",'attachment; filename="%s"' % filename)
+				subpart.addheader('Content-Description', 'Enigma2 crashlog')
+				body = subpart.startbody("%s; name=%s" % ('application/octet-stream', filename))
+				mimetools.encode(open(crashlog, 'rb'), body, 'base64')
+		writer.lastpart()
+		sending = smtp.sendmail(str(mxServer), mailFrom, mailTo, message.getvalue())
 		sending.addCallback(handleSuccess).addErrback(handleError)
 
 	def handleAnswer(answer):
@@ -296,7 +311,6 @@ def mxServerFound(mxServer,session):
 		elif answer == "send_not":
 			print "[CrashlogAutoSubmit] - not sending crashlogs for this time."
 
-
 	for crashlog in os.listdir('/media/hdd'):
 		if crashlog.startswith("enigma2_crash_") and crashlog.endswith(".log"):
 			print "[CrashlogAutoSubmit] - found crashlog: ",os.path.basename(crashlog)
@@ -313,14 +327,10 @@ def mxServerFound(mxServer,session):
 
 def getMailExchange(host):
 	print "[CrashlogAutoSubmit] - getMailExchange"
+	return relaymanager.MXCalculator().getMX(host).addCallback(_gotMXRecord)
 
-	def handleMXError(error):
-		print "[CrashlogAutoSubmit] - DNS-Error, sending aborted -->", error.getErrorMessage()
-
-	def cbMX(mxRecord):
-		return str(mxRecord.name)
-
-	return relaymanager.MXCalculator().getMX(host).addCallback(cbMX).addErrback(handleMXError)
+def _gotMXRecord(mxRecord):
+	return str(mxRecord.name)
 
 
 def startMailer(session):
@@ -328,8 +338,15 @@ def startMailer(session):
 		print "[CrashlogAutoSubmit] - not starting CrashlogAutoSubmit"
 		return False
 
+	def gotMXServer(mxServer):
+		print "[CrashlogAutoSubmit] gotMXServer: ",mxServer
+		mxServerFound(mxServer,session)
+
+	def handleMXError(error):
+		print "[CrashlogAutoSubmit] - MX resolve ERROR:", error.getErrorMessage()
+
 	if not config.misc.firstrun.value:
-		getMailExchange('crashlog.dream-multimedia-tv.de').addCallback(mxServerFound,session)
+		getMailExchange('crashlog.dream-multimedia-tv.de').addCallback(gotMXServer).addErrback(handleMXError)
 
 
 def callCrashMailer(result,session):
