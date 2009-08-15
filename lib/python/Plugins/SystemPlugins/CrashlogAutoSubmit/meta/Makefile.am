@@ -1,3 +1,3 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/meta/
+installdir = $(pkglibdir)/python/Plugins/meta/
 
 install_DATA = plugin_crashlogautosubmit.xml

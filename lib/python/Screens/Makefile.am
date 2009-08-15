@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Screens
+installdir = $(pkglibdir)/python/Screens
 
 install_PYTHON = \
 	ChannelSelection.py ClockDisplay.py ConfigMenu.py InfoBar.py Menu.py    \

@@ -52,6 +52,6 @@ clean-local:
 
 install-data-am: default
 	for lang in $(LANGS); do \
-		mkdir -p $(DESTDIR)$(DATADIR)/enigma2/po/$$lang/LC_MESSAGES; \
-		cp $$lang.mo $(DESTDIR)$(DATADIR)/enigma2/po/$$lang/LC_MESSAGES/$(DOMAIN).mo; \
+		mkdir -p $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
+		cp $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/$(DOMAIN).mo; \
 	done

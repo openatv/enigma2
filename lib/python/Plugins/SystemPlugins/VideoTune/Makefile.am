@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/SystemPlugins/VideoTune
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/VideoTune
 
 install_PYTHON =	\
 	__init__.py \

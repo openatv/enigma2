@@ -1,6 +1,6 @@
 SUBDIRS = src
 
-installdir = $(LIBDIR)/enigma2/python/Plugins/Extensions/SocketMMI
+installdir = $(pkglibdir)/python/Plugins/Extensions/SocketMMI
 
 install_PYTHON = \
 	src/socketmmi.so \

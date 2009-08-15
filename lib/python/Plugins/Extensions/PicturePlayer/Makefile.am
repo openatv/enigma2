@@ -1,6 +1,6 @@
 SUBDIRS = data
 
-installdir = $(LIBDIR)/enigma2/python/Plugins/Extensions/PicturePlayer
+installdir = $(pkglibdir)/python/Plugins/Extensions/PicturePlayer
 
 install_PYTHON =	\
 	__init__.py \

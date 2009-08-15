@@ -1,8 +1,4 @@
-AUTOMAKE_OPTIONS = gnu
-
-# SUBDIRS = packages
-
-installdir = $(DATADIR)/enigma2/defaults/Dream
+installdir = $(pkgdatadir)/defaults/Dream
 
 install_DATA = \
 	*.info \

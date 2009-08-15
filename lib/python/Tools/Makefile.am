@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Tools
+installdir = $(pkglibdir)/python/Tools
 
 install_PYTHON = \
 	FuzzyDate.py XMLTools.py Directories.py NumericalTextInput.py \

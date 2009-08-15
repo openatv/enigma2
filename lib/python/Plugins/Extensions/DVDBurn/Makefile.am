@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/Extensions/DVDBurn
+installdir = $(pkglibdir)/python/Plugins/Extensions/DVDBurn
 
 install_PYTHON =	\
 	__init__.py \

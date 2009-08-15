@@ -1,6 +1,4 @@
-AUTOMAKE_OPTIONS = gnu
-
-installdir = $(DATADIR)/enigma2/countries
+installdir = $(pkgdatadir)/countries
 
 install_DATA = \
 	*.png
