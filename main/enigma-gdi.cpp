@@ -54,7 +54,6 @@ int main()
 	init.setRunlevel(eAutoInitNumbers::main);
 	ePtr<gFBDC> my_dc;
 	gFBDC::getInstance(my_dc);
-#if 1
 
 	gPainter p(my_dc);
 	
