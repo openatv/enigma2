@@ -114,60 +114,19 @@ TUXBOX_APPS_DIRECTORY_ONE(configdir,CONFIGDIR,sysconfdir,/etc,,
 TUXBOX_APPS_DIRECTORY_ONE(datadir,DATADIR,datadir,/share,,
 	[--with-datadir=PATH     ],[where to find data])
 
-TUXBOX_APPS_DIRECTORY_ONE(localedir,LOCALEDIR,datadir,/share,/locale,
-	[--with-localedir=PATH ],[where to find locales])
-
 TUXBOX_APPS_DIRECTORY_ONE(fontdir,FONTDIR,datadir,/share,/fonts,
 	[--with-fontdir=PATH     ],[where to find the fonts])
 
-TUXBOX_APPS_DIRECTORY_ONE(gamesdir,GAMESDIR,localstatedir,/var,/tuxbox/games,
-	[--with-gamesdir=PATH    ],[where games data is stored])
-
 TUXBOX_APPS_DIRECTORY_ONE(libdir,LIBDIR,libdir,/lib,,
 	[--with-libdir=PATH      ],[where to find the internal libs])
-
-TUXBOX_APPS_DIRECTORY_ONE(plugindir,PLUGINDIR,libdir,/lib,/tuxbox/plugins,
-	[--with-plugindir=PATH   ],[where to find the plugins])
-
-TUXBOX_APPS_DIRECTORY_ONE(tuxboxdatadir,TUXBOXDATADIR,datadir,/share,,
-	[--with-tuxboxdatadir=PATH],[where to find tuxbox data])
-
-TUXBOX_APPS_DIRECTORY_ONE(zoneinfodir,ZONEINFODIR,datadir,/share,/zoneinfo,
-	[--with-zoneinfodir=PATH ],[where to find zoneinfo db])
 ])
 
 dnl automake <= 1.6 needs this specifications
 AC_SUBST(CONFIGDIR)
 AC_SUBST(DATADIR)
-AC_SUBST(ZONEINFODIR)
 AC_SUBST(FONTDIR)
-AC_SUBST(GAMESDIR)
 AC_SUBST(LIBDIR)
-AC_SUBST(LOCALEDIR)
-AC_SUBST(PLUGINDIR)
-AC_SUBST(TUXBOXDATADIR)
 dnl end workaround
-
-AC_DEFUN([TUXBOX_APPS_ENDIAN],[
-AC_CHECK_HEADERS(endian.h)
-AC_C_BIGENDIAN
-])
-
-AC_DEFUN([TUXBOX_APPS_DRIVER],[
-#AC_ARG_WITH(driver,
-#	[  --with-driver=PATH      path for driver sources [[NONE]]],
-#	[DRIVER="$withval"],[DRIVER=""])
-#
-#if test -d "$DRIVER/include"; then
-#	AC_DEFINE(HAVE_DBOX2_DRIVER,1,[Define to 1 if you have the dbox2 driver sources])
-#else
-#	AC_MSG_ERROR([can't find driver sources])
-#fi
-
-#AC_SUBST(DRIVER)
-
-#CPPFLAGS="$CPPFLAGS -I$DRIVER/include"
-])
 
 AC_DEFUN([TUXBOX_APPS_DVB],[
 AC_ARG_WITH(dvbincludes,
