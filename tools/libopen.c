@@ -45,6 +45,7 @@ int open64(const char *pathname, int flags, ...)
 	return fd;
 }
 
+#if _FILE_OFFSET_BITS != 64
 int open(const char *pathname, int flags, ...)
 {
 	typedef int (*FUNC_PTR) (const char* pathname, int flags, ...);
@@ -81,6 +82,7 @@ int open(const char *pathname, int flags, ...)
 	}
 	return fd;
 }
+#endif
 
 FILE *fopen64(const char *pathname, const char *mode)
 {
@@ -120,6 +122,7 @@ FILE *fopen64(const char *pathname, const char *mode)
 	return f;
 }
 
+#if _FILE_OFFSET_BITS != 64
 FILE *fopen(const char *pathname, const char *mode)
 {
 	typedef FILE *(*FUNC_PTR) (const char* pathname, const char *mode);
@@ -157,6 +160,7 @@ FILE *fopen(const char *pathname, const char *mode)
 	}
 	return f;
 }
+#endif
 
 int socket(int domain, int type, int protocol)
 {
