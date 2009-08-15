@@ -8,4 +8,4 @@ install_PYTHON =	\
 	videowizard.xml \
 	*.png
 
-install_DATA = LICENSE
+dist_install_DATA = LICENSE

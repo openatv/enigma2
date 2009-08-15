@@ -4,4 +4,4 @@ install_PYTHON =	\
 	__init__.py \
 	plugin.py
 
-install_DATA = keymap.xml
+dist_install_DATA = keymap.xml

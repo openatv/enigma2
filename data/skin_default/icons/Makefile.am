@@ -1,4 +1,4 @@
 installdir = $(pkgdatadir)/skin_default/icons
 
-install_DATA = \
+dist_install_DATA = \
 	*.png

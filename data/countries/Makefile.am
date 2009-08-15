@@ -1,4 +1,4 @@
 installdir = $(pkgdatadir)/countries
 
-install_DATA = \
+dist_install_DATA = \
 	*.png
