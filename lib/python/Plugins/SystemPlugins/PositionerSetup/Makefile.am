@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/SystemPlugins/PositionerSetup
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/PositionerSetup
 
 install_PYTHON =	\
 	__init__.py \

@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/SystemPlugins/CrashlogAutoSubmit
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/CrashlogAutoSubmit
 
 install_PYTHON =	\
 	__init__.py \

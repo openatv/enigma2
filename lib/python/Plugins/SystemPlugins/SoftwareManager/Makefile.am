@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/SystemPlugins/SoftwareManager
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/SoftwareManager
 
 install_PYTHON =	\
 	__init__.py \

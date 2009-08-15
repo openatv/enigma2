@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins
+installdir = $(pkglibdir)/python/Plugins
 
 SUBDIRS = Extensions SystemPlugins DemoPlugins
 

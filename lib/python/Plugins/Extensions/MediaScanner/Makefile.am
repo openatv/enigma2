@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/Extensions/MediaScanner
+installdir = $(pkglibdir)/python/Plugins/Extensions/MediaScanner
 
 install_PYTHON =	\
 	__init__.py \

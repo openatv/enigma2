@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Components/Converter
+installdir = $(pkglibdir)/python/Components/Converter
 
 install_PYTHON = \
 	__init__.py ClockToText.py Converter.py EventName.py StaticText.py EventTime.py \

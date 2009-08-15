@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Components
+installdir = $(pkglibdir)/python/Components
 
 SUBDIRS = Sources Converter Renderer
 

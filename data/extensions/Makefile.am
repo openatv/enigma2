@@ -1,6 +1,4 @@
-AUTOMAKE_OPTIONS = gnu
-
-installdir = $(DATADIR)/enigma2/extensions
+installdir = $(pkgdatadir)/extensions
 
 install_DATA = \
 	*.png
