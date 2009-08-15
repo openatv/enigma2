@@ -2,5 +2,5 @@ SUBDIRS = menu icons buttons spinner
 
 installdir = $(pkgdatadir)/skin_default
 
-install_DATA = \
+dist_install_DATA = \
 	*.png

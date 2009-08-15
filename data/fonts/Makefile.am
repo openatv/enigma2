@@ -1,4 +1,4 @@
 installdir = $(FONTDIR)
 
-install_DATA = \
+dist_install_DATA = \
 	*.ttf

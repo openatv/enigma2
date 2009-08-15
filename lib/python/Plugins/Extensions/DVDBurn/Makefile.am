@@ -5,5 +5,5 @@ install_PYTHON =	\
 	plugin.py \
 	DVDProject.py DVDTitle.py TitleCutter.py TitleList.py TitleProperties.py Process.py ProjectSettings.py DVDToolbox.py
 
-install_DATA = *.xml *.jpg *.mpg *.mp2 *.png
+dist_install_DATA = *.xml *.jpg *.mpg *.mp2 *.png
 

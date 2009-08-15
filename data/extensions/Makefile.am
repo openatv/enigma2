@@ -1,4 +1,4 @@
 installdir = $(pkgdatadir)/extensions
 
-install_DATA = \
+dist_install_DATA = \
 	*.png

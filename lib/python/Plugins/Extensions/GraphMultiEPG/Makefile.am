@@ -5,6 +5,6 @@ install_PYTHON =	\
 	plugin.py \
 	GraphMultiEpg.py
 
-install_DATA = LICENSE
+dist_install_DATA = LICENSE
 
  

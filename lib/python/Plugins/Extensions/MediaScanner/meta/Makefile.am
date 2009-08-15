@@ -1,3 +1,3 @@
 installdir = $(pkglibdir)/python/Plugins/meta/
 
-install_DATA = plugin_mediascanner.xml
+dist_install_DATA = plugin_mediascanner.xml

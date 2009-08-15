@@ -1,4 +1,4 @@
 installdir = $(pkgdatadir)/skin_default/buttons
 
-install_DATA = \
+dist_install_DATA = \
 	*.png
