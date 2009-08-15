@@ -6,10 +6,23 @@
 
 #ifndef SWIG
 
+/* Test for gcc >= maj.min, as per __GNUC_PREREQ in glibc */
+#if defined (__GNUC__) && defined (__GNUC_MINOR__)
+#define __GNUC_PREREQ(maj, min) \
+	  ((__GNUC__ << 16) + __GNUC_MINOR__ >= ((maj) << 16) + (min))
+#else
+#define __GNUC_PREREQ(maj, min)  0
+#endif
+
 #include <vector>
 #include <list>
+#if 0 && __GNUC_PREREQ(4,3)
+#include <unordered_map>
+#include <unordered_set>
+#else
 #include <ext/hash_map>
 #include <ext/hash_set>
+#endif
 
 #include <errno.h>
 
@@ -92,7 +105,14 @@ struct hash_uniqueEPGKey
 };
 
 #define tidMap std::set<__u32>
-#if defined(__GNUC__) && ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ == 4 )  // check if gcc version >= 3.1
+#if 0 && __GNUC_PREREQ(4,3)
+	#define eventCache std::unordered_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal>
+	#ifdef ENABLE_PRIVATE_EPG
+		#define contentTimeMap std::unordered_map<time_t, std::pair<time_t, __u16> >
+		#define contentMap std::unordered_map<int, contentTimeMap >
+		#define contentMaps std::unordered_map<uniqueEPGKey, contentMap, hash_uniqueEPGKey, uniqueEPGKey::equal >
+	#endif
+#elif __GNUC_PREREQ(3,1)
 	#define eventCache __gnu_cxx::hash_map<uniqueEPGKey, std::pair<eventMap, timeMap>, hash_uniqueEPGKey, uniqueEPGKey::equal>
 	#ifdef ENABLE_PRIVATE_EPG
 		#define contentTimeMap __gnu_cxx::hash_map<time_t, std::pair<time_t, __u16> >
