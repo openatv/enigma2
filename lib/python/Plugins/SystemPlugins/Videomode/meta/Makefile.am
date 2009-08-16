@@ -1,3 +1,3 @@
-installdir = $(pkglibdir)/python/Plugins/meta/
+installdir = $(pkgdatadir)/meta/enigma2/
 
 dist_install_DATA = plugin_videomode.xml *.jpg

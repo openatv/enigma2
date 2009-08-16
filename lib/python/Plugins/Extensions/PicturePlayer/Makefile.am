@@ -1,4 +1,4 @@
-SUBDIRS = data
+SUBDIRS = data meta
 
 installdir = $(pkglibdir)/python/Plugins/Extensions/PicturePlayer
 

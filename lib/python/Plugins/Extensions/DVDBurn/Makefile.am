@@ -1,5 +1,7 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/DVDBurn
 
+SUBDIRS = meta
+
 install_PYTHON =	\
 	__init__.py \
 	plugin.py \
