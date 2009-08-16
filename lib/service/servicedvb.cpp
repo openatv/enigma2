@@ -97,50 +97,9 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 }
 
 extern void PutToDict(ePyObject &dict, const char*key, long value);  // defined in dvb/frontend.cpp
-extern void PutToDict(ePyObject &dict, const char*key, ePyObject item); // defined in dvb/frontend.cpp
-extern void PutToDict(ePyObject &dict, const char*key, const char *value); // defined in dvb/frontend.cpp
-
-void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm)
-{
-	PutToDict(dict, "tuner_type", "DVB-S");
-	PutToDict(dict, "frequency", feparm.frequency);
-	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
-	PutToDict(dict, "orbital_position", feparm.orbital_position);
-	PutToDict(dict, "inversion", feparm.inversion);
-	PutToDict(dict, "fec_inner", feparm.fec);
-	PutToDict(dict, "modulation", feparm.modulation);
-	PutToDict(dict, "polarization", feparm.polarisation);
-	if (feparm.system == eDVBFrontendParametersSatellite::System_DVB_S2)
-	{
-		PutToDict(dict, "rolloff", feparm.rolloff);
-		PutToDict(dict, "pilot", feparm.pilot);
-	}
-	PutToDict(dict, "system", feparm.system);
-}
-
-void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial &feparm)
-{
-	PutToDict(dict, "tuner_type", "DVB-T");
-	PutToDict(dict, "frequency", feparm.frequency);
-	PutToDict(dict, "bandwidth", feparm.bandwidth);
-	PutToDict(dict, "code_rate_lp", feparm.code_rate_LP);
-	PutToDict(dict, "code_rate_hp", feparm.code_rate_HP);
-	PutToDict(dict, "constellation", feparm.modulation);
-	PutToDict(dict, "transmission_mode", feparm.transmission_mode);
-	PutToDict(dict, "guard_interval", feparm.guard_interval);
-	PutToDict(dict, "hierarchy_information", feparm.hierarchy);
-	PutToDict(dict, "inversion", feparm.inversion);
-}
-
-void PutCableDataToDict(ePyObject &dict, eDVBFrontendParametersCable &feparm)
-{
-	PutToDict(dict, "tuner_type", "DVB-C");
-	PutToDict(dict, "frequency", feparm.frequency);
-	PutToDict(dict, "symbol_rate", feparm.symbol_rate);
-	PutToDict(dict, "modulation", feparm.modulation);
-	PutToDict(dict, "inversion", feparm.inversion);
-	PutToDict(dict, "fec_inner", feparm.fec_inner);
-}
+extern void PutSatelliteDataToDict(ePyObject &dict, eDVBFrontendParametersSatellite &feparm); // defined in dvb/frontend.cpp
+extern void PutTerrestrialDataToDict(ePyObject &dict, eDVBFrontendParametersTerrestrial &feparm); // defined in dvb/frontend.cpp
+extern void PutCableDataToDict(ePyObject &dict, eDVBFrontendParametersCable &feparm); // defined in dvb/frontend.cpp
 
 PyObject *eStaticServiceDVBInformation::getInfoObject(const eServiceReference &r, int what)
 {
