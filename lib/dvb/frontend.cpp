@@ -737,7 +737,7 @@ int eDVBFrontend::readFrontendData(int type)
 				float SDS_SNRE = snr << 16;
 				float snr_in_db;
 
-				if (parm_u_qpsk_fec_inner <= FEC_AUTO) // DVB-S1 / QPSK
+				if (oparm.sat.system == eDVBFrontendParametersSatellite::System_DVB_S) // DVB-S1 / QPSK
 				{
 					static float SNR_COEFF[6] = {
 						100.0 / 4194304.0,
@@ -1845,7 +1845,6 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 		if (recvEvents)
 			m_sn->start();
 		feEvent(-1); // flush events
-		if (ioctl(m_fd, FE_SET_FRONTEND, &parm) == -1)
 #if HAVE_DVB_API_VERSION >= 5
 		if (m_type == iDVBFrontend::feSatellite)
 		{
@@ -1881,12 +1880,12 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 			cmdseq.props = p;
 			p[0].cmd = DTV_CLEAR;
 			p[1].cmd = DTV_DELIVERY_SYSTEM,	p[1].u.data = system;
-			p[2].cmd = DTV_FREQUENCY,	p[1].u.data = parm_frequency;
+			p[2].cmd = DTV_FREQUENCY,	p[2].u.data = parm_frequency;
 			p[3].cmd = DTV_MODULATION,	p[3].u.data = modulation;
 			p[4].cmd = DTV_SYMBOL_RATE,	p[4].u.data = parm_u_qpsk_symbol_rate;
 			p[5].cmd = DTV_INNER_FEC,	p[5].u.data = parm_u_qpsk_fec_inner;
 			p[6].cmd = DTV_INVERSION,	p[6].u.data = parm_inversion;
-			if (system = SYS_DVBS2)
+			if (system == SYS_DVBS2)
 			{
 				p[7].cmd = DTV_ROLLOFF,		p[7].u.data = rolloff;
 				p[8].cmd = DTV_PILOT,		p[8].u.data = pilot;
