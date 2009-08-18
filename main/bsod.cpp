@@ -4,6 +4,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/base/smartptr.h>
+#include <lib/base/nconfig.h>
 #include <lib/gdi/grc.h>
 #include <lib/gdi/gfbdc.h>
 #ifdef WITH_SDL
@@ -15,7 +16,7 @@
 /************************************************/
 
 #define CRASH_EMAILADDR "crashlog@dream-multimedia-tv.de"
-
+#define STDBUFFER_SIZE 512
 #define RINGBUFFER_SIZE 16384
 static char ringbuffer[RINGBUFFER_SIZE];
 static int ringbuffer_head;
@@ -62,7 +63,88 @@ static void addToLogbuffer(int level, const std::string &log)
 	addToLogbuffer(log.c_str(), log.size());
 }
 
+static std::string getConfigFileValue(const char *entry)
+{
+	std::string configfile = "/etc/enigma2/settings";
+	std::string configvalue;
+	if (entry)
+	{
+		ePythonConfigQuery::getConfigValue(entry, configvalue);
+		if (configvalue != "") //we get at least the default value if python is still alive
+		{
+			return configvalue;
+		}
+		else // get Value from enigma2 settings file
+		{
+			FILE *f = fopen(configfile.c_str(), "r");
+			if (!f)
+			{
+				return "Error";
+			}
+			while (1)
+			{
+				char line[1024];
+				if (!fgets(line, 1024, f))
+					break;
+				if (!strncmp(line, entry, strlen(entry) ))
+				{
+					if (strlen(line) && line[strlen(line)-1] == '\r')
+						line[strlen(line)-1] = 0;
+					if (strlen(line) && line[strlen(line)-1] == '\n')
+						line[strlen(line)-1] = 0;
+					std::string tmp = line;
+					int posEqual = tmp.find("=", 0);
+					configvalue = tmp.substr(posEqual+1);
+				}
+			}
+			fclose(f);
+			return configvalue;
+		}
+	}
+}
 
+static std::string getFileContent(const char *file)
+{
+	std::string filecontent;
+
+	if (file)
+	{
+		FILE *f = fopen(file, "r");
+		if (!f)
+		{
+			return "Error";
+		}
+		while (1)
+		{
+			char line[1024];
+			if (!fgets(line, 1024, f))
+				break;
+			filecontent += line;
+		}
+		fclose(f);
+	}
+	return filecontent;
+}
+
+static std::string execCommand(char* cmd) {
+	FILE* pipe = popen(cmd, "r");
+	if (!pipe)
+		return "Error";
+	char buffer[STDBUFFER_SIZE];
+	std::string result = "";
+	while(!feof(pipe))
+	{
+		if(!fgets(buffer,STDBUFFER_SIZE, pipe))
+			break;
+		result += buffer;
+	}
+	pclose(pipe);
+	return result;
+}
+
+extern std::string execCommand();
+extern std::string getConfigFileValue();
+extern std::string getFileContent();
 extern std::string getLogBuffer();
 
 #define INFOFILE "/maintainer.info"
@@ -121,23 +203,125 @@ void bsodFatal(const char *component)
 	if (f)
 	{
 		time_t t = time(0);
-		fprintf(f, "enigma2 crashed on %s", ctime(&t));
+		char crashtime[STDBUFFER_SIZE];
+		sprintf(crashtime, "%s",ctime(&t));
+		if (strlen(crashtime) && crashtime[strlen(crashtime)-1] == '\n')
+				crashtime[strlen(crashtime)-1] = 0;
+		fprintf(f, "<?xml version=\"1.0\" encoding=\"iso-8859-1\" ?>\n<opendreambox>\n");
+		fprintf(f, "\t<enigma2>\n");
+		fprintf(f, "\t\t<crashdate>%s</crashdate>\n", crashtime);
 #ifdef ENIGMA2_CHECKOUT_TAG
-		fprintf(f, "enigma2 CVS TAG: " ENIGMA2_CHECKOUT_TAG "\n");
+		fprintf(f, "\t\t<checkouttag>" ENIGMA2_CHECKOUT_TAG "</checkouttag>\n");
 #else
-		fprintf(f, "enigma2 compiled on " __DATE__ "\n");
+		fprintf(f, "\t\t<compiledate>" __DATE__ "</compiledate>\n");
 #endif
 #ifdef ENIGMA2_CHECKOUT_ROOT
-		fprintf(f, "enigma2 checked out from " ENIGMA2_CHECKOUT_ROOT "\n");
+		fprintf(f, "\t\t<checkoutroot>" ENIGMA2_CHECKOUT_ROOT "</checkoutroot>\n");
 #endif
-		fprintf(f, "please email this file to %s\n", crash_emailaddr);
+		fprintf(f, "\t\t<contactemail>%s</contactemail>\n", crash_emailaddr);
+		fprintf(f, "\t\t<!-- Please email this crashlog to above address -->\n");
+		fprintf(f, "\t</enigma2>\n");
+
+		fprintf(f, "\t<image>\n");
+		std::string model = getFileContent("/proc/stb/info/model");
+		if (model != "Error")
+		{
+			char modelname[STDBUFFER_SIZE];
+			sprintf(modelname, "%s",model.c_str());
+			if (strlen(modelname) && modelname[strlen(modelname)-1] == '\n')
+				modelname[strlen(modelname)-1] = 0;
+			fprintf(f, "\t\t<dreamboxmodel>%s</dreamboxmodel>\n", modelname);
+		}
+		std::string kernel = getFileContent("/proc/cmdline");
+		if (kernel != "Error")
+		{
+			char kernelcmd[STDBUFFER_SIZE];
+			sprintf(kernelcmd, "%s",kernel.c_str());
+			if (strlen(kernelcmd) && kernelcmd[strlen(kernelcmd)-1] == '\n')
+				kernelcmd[strlen(kernelcmd)-1] = 0;
+			fprintf(f, "\t\t<kernelcmdline>%s</kernelcmdline>\n", kernelcmd);
+		}
+		std::string sendAnonCrashlog = getConfigFileValue("config.plugins.crashlogautosubmit.sendAnonCrashlog");
+		if (sendAnonCrashlog == "False" || sendAnonCrashlog == "false" || sendAnonCrashlog == "") // defaults to false, so "" is also ok.
+		{
+			std::string ca = getFileContent("/proc/stb/info/ca");
+			if (ca != "Error")
+			{
+				char dreamboxca[STDBUFFER_SIZE];
+				sprintf(dreamboxca, "%s",ca.c_str());
+				if (strlen(dreamboxca) && dreamboxca[strlen(dreamboxca)-1] == '\n')
+					dreamboxca[strlen(dreamboxca)-1] = 0;
+				fprintf(f, "\t\t<dreamboxca>\n\t\t<![CDATA[\n%s\n\t\t]]>\n\t\t</dreamboxca>\n", dreamboxca);
+			}
+			std::string settings = getFileContent("/etc/enigma2/settings");
+			if (settings != "Error")
+			{
+				fprintf(f, "\t\t<enigma2settings>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2settings>\n", settings.c_str());
+			}
+		}
+		std::string addNetwork = getConfigFileValue("config.plugins.crashlogautosubmit.addNetwork");
+		if (addNetwork == "True" || addNetwork == "true")
+		{
+			std::string nwinterfaces = getFileContent("/etc/network/interfaces");
+			if (nwinterfaces != "Error")
+			{
+				fprintf(f, "\t\t<networkinterfaces>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</networkinterfaces>\n", nwinterfaces.c_str());
+			}
+			std::string dns = getFileContent("/etc/resolv.conf");
+			if (dns != "Error")
+			{
+				fprintf(f, "\t\t<dns>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</dns>\n", dns.c_str());
+			}
+			std::string defaultgw = getFileContent("/etc/default_gw");
+			if (defaultgw != "Error")
+			{
+				char gateway[STDBUFFER_SIZE];
+				sprintf(gateway, "%s",defaultgw.c_str());
+				if (strlen(gateway) && gateway[strlen(gateway)-1] == '\n')
+					gateway[strlen(gateway)-1] = 0;
+				fprintf(f, "\t\t<defaultgateway>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</defaultgateway>\n", gateway);
+			}
+		}
+		std::string addWlan = getConfigFileValue("config.plugins.crashlogautosubmit.addWlan");
+		if (addWlan == "True" || addWlan == "true")
+		{
+			std::string wpasupplicant = getFileContent("/etc/wpa_supplicant.conf");
+			if (wpasupplicant != "Error")
+			{
+				fprintf(f, "\t\t<wpasupplicant>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</wpasupplicant>\n", wpasupplicant.c_str());
+			}
+		}
+		std::string imageversion = getFileContent("/etc/image-version");
+		if (imageversion != "Error")
+		{
+			fprintf(f, "\t\t<imageversion>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</imageversion>\n", imageversion.c_str());
+		}
+		std::string imageissue = getFileContent("/etc/issue.net");
+		if (imageissue != "Error")
+		{
+			fprintf(f, "\t\t<imageissue>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</imageissue>\n", imageissue.c_str());
+		}
+		fprintf(f, "\t</image>\n");
+
+		fprintf(f, "\t<software>\n");
+		std::string installedplugins = execCommand("ipkg list_installed | grep enigma2");
+		fprintf(f, "\t\t<enigma2software>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2software>\n", installedplugins.c_str());
+		std::string dreambox = execCommand("ipkg list_installed | grep dream");
+		fprintf(f, "\t\t<dreamboxsoftware>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</dreamboxsoftware>\n", dreambox.c_str());
+		std::string gstreamer = execCommand("ipkg list_installed | grep gst");
+		fprintf(f, "\t\t<gstreamersoftware>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</gstreamersoftware>\n", gstreamer.c_str());
+		fprintf(f, "\t</software>\n");
+
+		fprintf(f, "\t<crashlogs>\n");
 		std::string buffer = getLogBuffer();
-		fwrite(buffer.c_str(), buffer.size(), 1, f);
+		fprintf(f, "\t\t<enigma2crashlog>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2crashlog>\n", buffer.c_str());
+		std::string pythonmd5 = execCommand("find /usr/lib/enigma2/python/ -name \"*.py\" | xargs md5sum");
+		fprintf(f, "\t\t<pythonMD5sum>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</pythonMD5sum>\n", pythonmd5.c_str());
+		fprintf(f, "\t</crashlogs>\n");
+
+		fprintf(f, "\n</opendreambox>\n");
 		fclose(f);
 		
-		char cmd[256];
-		sprintf(cmd, "find /usr/lib/enigma2/python/ -name \"*.py\" | xargs md5sum >> %s", logfile);
-		system(cmd);
 	}
 	
 #ifdef WITH_SDL
@@ -247,7 +431,7 @@ void oops(const mcontext_t &context, int dumpcode)
 void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 {
 	ucontext_t *uc = (ucontext_t*)ctx;
-	eDebug("KILLED BY signal %d", signum);
+
 #ifndef NO_OOPS_SUPPORT
 	oops(uc->uc_mcontext, signum == SIGSEGV || signum == SIGABRT);
 #endif
