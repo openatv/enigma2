@@ -38,24 +38,27 @@ contentHandler = parseXML(attrlist)
 parser.setContentHandler(contentHandler)
 if not no_comments:
 	parser.setProperty(property_lexical_handler, contentHandler)
-dir = os.listdir(sys.argv[1])
-for x in dir:
-	if (str(x[-4:]) == ".xml"):
-		parser.parse(sys.argv[1] + str(x))
 
-#parser.parse(sys.argv[1])
+for arg in sys.argv[1:]:
+	if os.path.isdir(arg):
+		for file in os.listdir(arg):
+			if (file.endswith(".xml")):
+				parser.parse(os.path.join(arg, file))
+	else:
+		parser.parse(arg)
 
-attrlist = list(attrlist)
-attrlist.sort(key=lambda a: a[0])
+	attrlist = list(attrlist)
+	attrlist.sort(key=lambda a: a[0])
 
-for (k,c) in attrlist:
-	print
-	print '#: ' + sys.argv[1]
-	string.replace(k, "\\n", "\"\n\"")
-	if c:
-		for l in c.split('\n'):
-			print "#. ", l
-	if str(k) != "":
-		print 'msgid "' + str(k) + '"'
-		print 'msgstr ""'
+	for (k,c) in attrlist:
+		print
+		print '#: ' + arg
+		string.replace(k, "\\n", "\"\n\"")
+		if c:
+			for l in c.split('\n'):
+				print "#. ", l
+		if str(k) != "":
+			print 'msgid "' + str(k) + '"'
+			print 'msgstr ""'
 
+	attrlist = set()
