@@ -1,4 +1,7 @@
 installdir = $(FONTDIR)
 
 dist_install_DATA = \
-	*.ttf
+	ae_AlMateen.ttf \
+	lcd.ttf \
+	md_khmurabi_10.ttf \
+	nmsbd.ttf

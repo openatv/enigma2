@@ -3,9 +3,25 @@ installdir = $(pkglibdir)/python/Plugins/Extensions/DVDBurn
 SUBDIRS = meta
 
 install_PYTHON =	\
+	DVDProject.py \
+	DVDTitle.py \
+	DVDToolbox.py \
 	__init__.py \
 	plugin.py \
-	DVDProject.py DVDTitle.py TitleCutter.py TitleList.py TitleProperties.py Process.py ProjectSettings.py DVDToolbox.py
+	Process.py \
+	ProjectSettings.py \
+	TitleCutter.py \
+	TitleList.py \
+	TitleProperties.py
 
-dist_install_DATA = *.xml *.jpg *.mpg *.mp2 *.png
-
+dist_install_DATA = \
+	DreamboxDVD.ddvdp.xml \
+	dreamdvd_boat.jpg \
+	dreamdvd_clouds.jpg \
+	dvdburn.png \
+	keymap.xml \
+	silence.mp2 \
+	Text_menu_boat.ddvdm.xml \
+	Thumbs_menu_clouds.ddvdm.xml \
+	vmgmblank.mpg \
+	vmgmdream.mpg
