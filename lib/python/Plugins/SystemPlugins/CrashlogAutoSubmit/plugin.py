@@ -22,7 +22,9 @@ config.plugins.crashlogautosubmit.sendlog = ConfigSelection(default = "rename", 
 config.plugins.crashlogautosubmit.attachemail = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.email = ConfigText(default = "myemail@home.com", fixed_size = False)
 config.plugins.crashlogautosubmit.name = ConfigText(default = "Dreambox User", fixed_size = False)
-
+config.plugins.crashlogautosubmit.sendAnonCrashlog = ConfigYesNo(default = False)
+config.plugins.crashlogautosubmit.addNetwork = ConfigYesNo(default = False)
+config.plugins.crashlogautosubmit.addWlan = ConfigYesNo(default = False)
 
 class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 
@@ -50,6 +52,9 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 		self.addEmailEntry = None
 		self.EmailEntry = None
 		self.NameEntry = None
+		self.AnonCrashlogEntry = None
+		self.NetworkEntry = None
+		self.WlanEntry = None
 		self.msgCrashlogMailer = False
 
 		self["shortcuts"] = ActionMap(["ShortcutActions", "SetupActions" ],
@@ -117,6 +122,10 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 		self.addEmailEntry = getConfigListEntry(_("Include your email and name (optional) in the mail?"), config.plugins.crashlogautosubmit.attachemail)
 		self.EmailEntry = getConfigListEntry(_("Your email address:"), config.plugins.crashlogautosubmit.email)
 		self.NameEntry = getConfigListEntry(_("Your name (optional):"), config.plugins.crashlogautosubmit.name)
+		self.AnonCrashlogEntry = getConfigListEntry(_("Anonymize crashlog?"), config.plugins.crashlogautosubmit.sendAnonCrashlog)
+		self.NetworkEntry = getConfigListEntry(_("Add network configuration?"), config.plugins.crashlogautosubmit.addNetwork)
+		self.WlanEntry = getConfigListEntry(_("Add WLAN configuration?"), config.plugins.crashlogautosubmit.addWlan)
+
 		self.list.append( self.MailEntry )
 		if config.plugins.crashlogautosubmit.sendmail.value is not "send_never":
 			self.list.append( self.LogEntry )
@@ -124,6 +133,9 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 			if config.plugins.crashlogautosubmit.attachemail.value is True:
 				self.list.append( self.EmailEntry )
 				self.list.append( self.NameEntry )
+			self.list.append( self.AnonCrashlogEntry )
+			self.list.append( self.NetworkEntry )
+			self.list.append( self.WlanEntry )
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -164,6 +176,15 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 			self["status"].setText(_("Optionally enter your name if you want to."))
 			self.enableVKeyIcon()
 			self.showKeypad()
+		elif current == self.AnonCrashlogEntry:
+			self["status"].setText(_("Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."))
+			self.disableVKeyIcon()
+		elif current == self.NetworkEntry:
+			self["status"].setText(_("Adds network configuration if enabled."))
+			self.disableVKeyIcon()
+		elif current == self.WlanEntry:
+			self["status"].setText(_("Adds wlan configuration if enabled."))
+			self.disableVKeyIcon()
 
 	def enableVKeyIcon(self):
 		self["VKeyButton"].show()
