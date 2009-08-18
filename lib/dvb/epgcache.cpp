@@ -2668,7 +2668,7 @@ void eEPGCache::privateSectionRead(const uniqueEPGKey &current_service, const __
 			}
 		}
 	}
-	ASSERT(pdescr <= &descriptors[65])
+	ASSERT(pdescr <= &descriptors[65]);
 	__u8 event[4098];
 	eit_event_struct *ev_struct = (eit_event_struct*) event;
 	ev_struct->running_status = 0;
