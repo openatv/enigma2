@@ -1,3 +1,5 @@
+SUBDIRS = lowlevel
+
 INCLUDES = \
 	-I$(top_srcdir)/include
 
