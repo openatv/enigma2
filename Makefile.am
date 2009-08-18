@@ -1,4 +1,4 @@
-SUBDIRS = lib main data po tools
+SUBDIRS = include lib main data po tools
 
 installdir = $(pkglibdir)/python
 

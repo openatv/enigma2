@@ -96,11 +96,13 @@ data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
 data/skin_default/buttons/Makefile
 data/skin_default/spinner/Makefile
+include/Makefile
 lib/Makefile
 lib/actions/Makefile
 lib/base/Makefile
 lib/driver/Makefile
 lib/dvb/Makefile
+lib/dvb/lowlevel/Makefile
 lib/dvb_ci/Makefile
 lib/gdi/Makefile
 lib/gui/Makefile
