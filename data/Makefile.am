@@ -1,4 +1,17 @@
 SUBDIRS = countries fonts defaults extensions skin_default
 
 dist_pkgdata_DATA = \
-	*.xml *.png encoding.conf radio.mvi
+	defaultsatlists.xml \
+	defaultwizard.xml \
+	dreampackagewizard.xml \
+	encoding.conf \
+	keymap.xml \
+	menu.xml \
+	prev.png \
+	radio.mvi \
+	rcpositions.xml \
+	setup.xml \
+	skin_default.xml \
+	skin.xml \
+	startwizard.xml \
+	tutorialwizard.xml

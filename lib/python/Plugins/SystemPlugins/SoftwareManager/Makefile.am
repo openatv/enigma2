@@ -6,9 +6,16 @@ install_PYTHON =	\
 	__init__.py \
 	plugin.py \
 	BackupRestore.py \
-	ImageWizard.py \
-	imagewizard.xml \
-	*.png 
+	ImageWizard.py
 
-dist_install_DATA = LICENSE
- 
+dist_install_DATA = \
+	imagewizard.xml \
+	installable.png \
+	installed.png \
+	install.png \
+	LICENSE \
+	noprev.png \
+	remove.png \
+	update.png \
+	upgradeable.png \
+	upgrade.png
