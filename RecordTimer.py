@@ -190,6 +190,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.log(4, "failed to write meta information")
 				else:
 					self.log(2, "'prepare' failed: error %d" % prep_res)
+
+				# we must calc nur start time before stopRecordService call because in Screens/Standby.py TryQuitMainloop tries to get
+				# the next start time in evEnd event handler...
+				self.do_backoff()
+				self.start_prepare = time.time() + self.backoff
+
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
 				return False
@@ -232,10 +238,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.log(8, "currently running service is not a live service.. so stop it makes no sense")
 				else:
 					self.log(8, "currently no service running... so we dont need to stop it")
-
-			self.do_backoff()
-			# retry
-			self.start_prepare = time.time() + self.backoff
 			return False
 		elif next_state == self.StateRunning:
 			# if this timer has been cancelled, just go to "end" state.
@@ -575,9 +577,11 @@ class RecordTimer(timer.Timer):
 	def getNextRecordingTime(self):
 		now = time.time()
 		for timer in self.timer_list:
-			if timer.justplay or timer.begin < now:
+			print "timer", timer
+			next_act = timer.getNextActivation()
+			if timer.justplay or next_act < now:
 				continue
-			return timer.begin
+			return next_act
 		return -1
 
 	def isNextRecordAfterEventActionAuto(self):
