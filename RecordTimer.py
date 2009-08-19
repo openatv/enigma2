@@ -577,7 +577,6 @@ class RecordTimer(timer.Timer):
 	def getNextRecordingTime(self):
 		now = time.time()
 		for timer in self.timer_list:
-			print "timer", timer
 			next_act = timer.getNextActivation()
 			if timer.justplay or next_act < now:
 				continue
