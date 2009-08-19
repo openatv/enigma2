@@ -1,3 +1,5 @@
 installdir = $(pkgdatadir)/meta/enigma2/
 
 dist_install_DATA = plugin_diseqctester.xml
+
+EXTRA_DIST = diseqctester.jpg
