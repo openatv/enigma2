@@ -1,3 +1,5 @@
 installdir = $(pkgdatadir)/meta/enigma2/
 
 dist_install_DATA = plugin_satelliteequipmentcontrol.xml
+
+EXTRA_DIST = satcontrol.jpg
