@@ -51,8 +51,10 @@ class ResultParser:
 		percentsuccessful = round(countsuccessful / float(countall + 0.0001) * 100)
 		text += "Tested %d transponders\n%d (%d %%) transponders succeeded\n%d (%d %%) transponders failed\n" % (countall, countsuccessful, percentsuccessful, countfailed, percentfailed)
 		reasons = {}
+		completelist = []
 		if countfailed > 0:
 			for transponder in failed:
+				completelist.append({"transponder": transponder[0], "fedata": transponder[-1]})
 				reasons[transponder[2]] = reasons.get(transponder[2], [])
 				reasons[transponder[2]].append(transponder)
 				if transponder[2] == "pids_failed":
@@ -90,12 +92,18 @@ class ResultParser:
 			text += "\n"
 			text += "Successfully tuned transponders' previous planes:\n" 
 			for transponder in successful:
+				completelist.append({"transponder": transponder[0], "fedata": transponder[-1]})
 				if transponder[1] is not None:
 					text += self.getTextualIndexRepresentation(self.getIndexForTransponder(transponder[1]))
 				else:
 					text += "No transponder tuned"
 				text += " ==> " + self.getTextualIndexRepresentation(self.getIndexForTransponder(transponder[0]))
 				text += "\n"
+		
+		text += "------------------------------------------------\n"
+		text += "complete transponderlist:\n"
+		for entry in completelist:
+			text += str(entry["transponder"]) + " -- " + str(entry["fedata"]) + "\n"
 		return text
 
 	def getTextualResult(self):
