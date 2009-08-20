@@ -245,6 +245,8 @@ class Timer:
 		self.addTimerEntry(timer)
 	
 	def doActivate(self, w):
+		self.timer_list.remove(w)
+
 		# when activating a timer which has already passed,
 		# simply abort the timer. don't run trough all the stages.
 		if w.shouldSkip():
@@ -255,8 +257,6 @@ class Timer:
 			# the timer entry itself will fix up the delay then.
 			if w.activate():
 				w.state += 1
-
-		self.timer_list.remove(w)
 
 		# did this timer reached the last state?
 		if w.state < TimerEntry.StateEnded:
