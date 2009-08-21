@@ -2811,6 +2811,7 @@ void eEPGCache::channel_data::timeMHW2DVB( int minutes, u_char *return_time)
 void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time)
 // For date plus time of day
 {
+	char tz_saved[1024];
 	// Remove offset in mhw time.
 	__u8 local_hours = hours;
 	if ( hours >= 16 )
@@ -2823,6 +2824,8 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 	time_t dt = ::time(0);
 
 	char *old_tz = getenv( "TZ" );
+	if (old_tz)
+		strcpy(tz_saved, old_tz);
 	putenv("TZ=CET-1CEST,M3.5.0/2,M10.5.0/3");
 	tzset();
 
@@ -2845,7 +2848,7 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 	if ( old_tz == NULL )
 		unsetenv( "TZ" );
 	else
-		putenv( old_tz );
+		setenv("TZ", tz_saved, 1);
 	tzset();
 
 	// Calculate MJD according to annex in ETSI EN 300 468
