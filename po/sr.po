@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma 2 SRPSKI\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-10 09:03+0200\n"
-"PO-Revision-Date: 2009-08-08 20:46+0100\n"
+"POT-Creation-Date: 2009-08-21 08:48+0200\n"
+"PO-Revision-Date: 2009-08-16 19:22+0100\n"
 "Last-Translator: maja <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
 "MIME-Version: 1.0\n"
@@ -93,6 +93,13 @@ msgstr ""
 
 msgid ""
 "\n"
+"System will restart after the restore!"
+msgstr ""
+"\n"
+"Sistem će ponovo startovati posle vraćanja sigurnosne kopije"
+
+msgid ""
+"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -153,7 +160,7 @@ msgstr "%d min"
 
 #, python-format
 msgid "%d services found!"
-msgstr "%d usluga pronađeno!"
+msgstr "%d kanala pronađeno!"
 
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -318,7 +325,7 @@ msgstr ""
 "Drimbox sada. Isključiti sada?"
 
 msgid "A graphical EPG for all services of an specific bouquet"
-msgstr "Grafički EPG za sve usluge od specifičnog buketa"
+msgstr "Grafički EPG za sve kanale od specifičnog buketa"
 
 #, python-format
 msgid ""
@@ -419,11 +426,17 @@ msgstr "Dodaj"
 msgid "Add Bookmark"
 msgstr "Dodaj obeležje"
 
+msgid "Add WLAN configuration?"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Dodaj oznaku"
 
 msgid "Add a new title"
 msgstr "Dodaj novi titl"
+
+msgid "Add network configuration?"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Dodaj tajmer"
@@ -436,6 +449,17 @@ msgstr "Dodaj u buket"
 
 msgid "Add to favourites"
 msgstr "Dodaj u favorite"
+
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+
+msgid "Adds network configuration if enabled."
+msgstr ""
+
+msgid "Adds wlan configuration if enabled."
+msgstr ""
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -467,7 +491,7 @@ msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
 msgstr ""
-"Nakon što čarobnjak završi,treba da zaštitite pojedine usluge. Pogledajte u "
+"Nakon što čarobnjak završi,treba da zaštitite pojedine kanale. Pogledajte u "
 "drimbox uputstva kako da to uradite."
 
 msgid "Album"
@@ -496,6 +520,9 @@ msgstr "Prazno ime datoteke je nelegalno."
 
 msgid "An unknown error occured!"
 msgstr "Nepoznata greška se desila"
+
+msgid "Anonymize crashlog?"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arapski"
@@ -723,10 +750,10 @@ msgid "Change pin code"
 msgstr "Promeni pin kod"
 
 msgid "Change service pin"
-msgstr "Promeni pin usluge"
+msgstr "Promeni pin kanala"
 
 msgid "Change service pins"
-msgstr "Promeni pinove usluga"
+msgstr "Promeni pinove kanala"
 
 msgid "Change setup pin"
 msgstr "Promeni pin postavki"
@@ -1024,7 +1051,7 @@ msgid "Default Settings"
 msgstr "Standardne postavke"
 
 msgid "Default services lists"
-msgstr "Standardna lista servisa"
+msgstr "Standardna lista kanala"
 
 msgid "Default settings"
 msgstr "Standardne postavke"
@@ -1194,10 +1221,10 @@ msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Da li želite da narežete ovu kolekciju na DVD medij?"
 
 msgid "Do you want to do a service scan?"
-msgstr "Želite li napraviti skeniranje usluga?"
+msgstr "Želite li napraviti skeniranje kanala?"
 
 msgid "Do you want to do another manual service scan?"
-msgstr "Želite li sada započeti drugu ručnu pretragu usluga?"
+msgstr "Želite li sada započeti drugu ručnu pretragu kanala?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Želite li uključiti roditeljsku kontrolu na vašem drimboxu?"
@@ -1327,7 +1354,7 @@ msgid "Edit chapters of current title"
 msgstr "Urediti poglavlja sadašnjeg naslova"
 
 msgid "Edit services list"
-msgstr "Urediti listu usluga"
+msgstr "Urediti listu kanala"
 
 msgid "Edit settings"
 msgstr "Urediti postavke"
@@ -1419,7 +1446,7 @@ msgid "Enter main menu..."
 msgstr "Uđi u glavni meni"
 
 msgid "Enter the service pin"
-msgstr "Unesite pin za usluge"
+msgstr "Unesite pin za kanale"
 
 msgid "Enter your email address so that we can contact you if needed."
 msgstr ""
@@ -1886,9 +1913,6 @@ msgstr "Napustiti DVD plejer"
 msgid "Left"
 msgstr "Levo"
 
-msgid "Lets you view/edit files in your Dreambox"
-msgstr "Omogućava vam videti/urediti datoteke vašeg drimboxa"
-
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
@@ -2050,7 +2074,7 @@ msgid "Multimedia"
 msgstr "Multimedija"
 
 msgid "Multiple service support"
-msgstr "Podrška za višestruke usluge"
+msgstr "Podrška za višestruke kanale"
 
 msgid "Multisat"
 msgstr "Multisat"
@@ -2206,7 +2230,7 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Nijedan tjuner nije uključen!\n"
-"Molim podesite postavke tjunera pre nego počnete pretraživanje usluga."
+"Molim podesite postavke tjunera pre nego počnete pretraživanje kanala."
 
 msgid "No useable USB stick found"
 msgstr "Nije pronađen upotrbljiv USB stik"
@@ -2216,9 +2240,9 @@ msgid ""
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
-"Ispravan PIN za usluge nije pronađen!\n"
+"Ispravan PIN za kanale nije pronađen!\n"
 "Želite li sada promeniti servis PIN ?\n"
-"Ukoliko kažete 'Ne' ovde,usluge ostaju nezaštićene."
+"Ukoliko kažete 'Ne' ovde,kanali ostaju nezaštićeni."
 
 msgid ""
 "No valid setup PIN found!\n"
@@ -2300,7 +2324,7 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Ništa za skeniranje!\n"
-"Molim podesite postavke tjunera pre početka skeniranja servisa."
+"Molim podesite postavke tjunera pre početka skeniranja kanala."
 
 msgid "Now Playing"
 msgstr "Trenutno pokrenuto"
@@ -2379,7 +2403,7 @@ msgid "Parental control"
 msgstr "Roditeljska zaštita"
 
 msgid "Parental control services Editor"
-msgstr "Urđivač usluga za roditeljsku zaštitu"
+msgstr "Urđivač kanala za roditeljsku zaštitu"
 
 msgid "Parental control setup"
 msgstr "Postavke roditeljske zaštite"
@@ -2450,7 +2474,7 @@ msgid "Please choose he package..."
 msgstr "Molim izaberite programski paket"
 
 msgid "Please choose the default services lists you want to install."
-msgstr "Molim izaberite standardnu listu servisa za instalaciju"
+msgstr "Molim izaberite standardnu listu kanala za instalaciju"
 
 msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
@@ -2657,6 +2681,9 @@ msgstr "Pritisnite OK za skeniranje"
 msgid "Press OK to start the scan"
 msgstr "Pritisnite OK za početak skeniranja"
 
+msgid "Press OK to view full changelog"
+msgstr ""
+
 msgid "Prev"
 msgstr "Pred"
 
@@ -2676,7 +2703,7 @@ msgid "Properties of current title"
 msgstr "Svojstva tekućeg naslova"
 
 msgid "Protect services"
-msgstr "Zaštiti usluge"
+msgstr "Zaštiti kanal"
 
 msgid "Protect setup"
 msgstr "Zaštitite postavke"
@@ -3146,43 +3173,43 @@ msgid "Service Scan"
 msgstr "Pretraživanje usluge"
 
 msgid "Service Searching"
-msgstr "Traženje usluga"
+msgstr "Traženje kanala"
 
 msgid "Service has been added to the favourites."
-msgstr "Usluga je dodata u listu favorita."
+msgstr "Kanal je dodat u listu favorita."
 
 msgid "Service has been added to the selected bouquet."
-msgstr "Usluga je dodata u odabrani buket."
+msgstr "Kanal je dodat u odabrani buket."
 
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
-"Neispravna usluga!\n"
+"Neispravan kanal!\n"
 "(Isteklo čitanje PMT)"
 
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
-"Usluga nije pronađena!\n"
+"Kanal nije pronađen!\n"
 "(SID nije pronađen u PAT)"
 
 msgid "Service scan"
-msgstr "Pretraga usluga"
+msgstr "Pretraga kanala"
 
 msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
-"Usluga nije dostupna!\n"
+"Kanal nije dostupan!\n"
 "Proverite konfiguraciju tjunera"
 
 msgid "Serviceinfo"
-msgstr "Info usluge"
+msgstr "Info kanala"
 
 msgid "Services"
-msgstr "Usluge"
+msgstr "Kanali"
 
 msgid "Set Voltage and 22KHz"
 msgstr "Podesi napon i 22Khz"
@@ -3230,7 +3257,7 @@ msgid "Show positioner movement"
 msgstr "Prikaži kretanje motora"
 
 msgid "Show services beginning with"
-msgstr "Prikaži usluge koje počinju sa"
+msgstr "Prikaži kanale koje počinju sa"
 
 msgid "Show the radio player..."
 msgstr "Prikaži radio plejer ..."
@@ -3456,7 +3483,7 @@ msgid "Sunday"
 msgstr "Nedelja"
 
 msgid "Swap Services"
-msgstr "Zameni usluge"
+msgstr "Zameni kanale"
 
 msgid "Swedish"
 msgstr "Švedski"
@@ -3573,7 +3600,7 @@ msgstr ""
 "sada da učinite? "
 
 msgid "The installation of the default services lists is finished."
-msgstr "Instalacija osnovne liste servisa je završena."
+msgstr "Instalacija osnovne liste kanala je završena."
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
@@ -3647,7 +3674,7 @@ msgid "There are at least "
 msgstr "Postoji najmanje"
 
 msgid "There are no default services lists in your image."
-msgstr "Nema osnovne servis liste u vašem imidžu."
+msgstr "Nema osnovne liste kanala u vašem imidžu."
 
 msgid "There are no default settings in your image."
 msgstr "Nema osnovnih postavki u vašem imidžu."
@@ -4095,7 +4122,7 @@ msgid "Use wizard to set up basic features"
 msgstr "Koristite čarobnjaka za postavljanje osnovnih postavki"
 
 msgid "Used service scan type"
-msgstr "Tip skeniranja korišćenih usluga"
+msgstr "Tip skeniranja korišćenih kanala"
 
 msgid "User defined"
 msgstr "Definisano od korisnika"
@@ -4309,7 +4336,7 @@ msgid ""
 msgstr ""
 "Kad radite resetovanje na fabričke vrednosti,izgubićete sve konfiguracijske "
 "podatke\n"
-"(uključujući bukete,servise,podatke o satelitima...)\n"
+"(uključujući bukete,kanale,podatke o satelitima...)\n"
 "Posle kompletnog resetovanja,vaš risiver će automatski restartovati!\n"
 "\n"
 "Stvarno uraditi reset na fabričke vrednosti?"
@@ -4400,7 +4427,7 @@ msgid "You cannot delete this!"
 msgstr "Ne možete ovo obrisati!"
 
 msgid "You chose not to install any default services lists."
-msgstr "Izabrali ste da ne instalirate osnovnu listu servisa."
+msgstr "Izabrali ste da ne instalirate osnovnu listu kanala."
 
 msgid ""
 "You chose not to install any default settings. You can however install the "
@@ -4555,10 +4582,10 @@ msgstr ""
 "Da li želite da onemogućite drugi mrežni interfejs?"
 
 msgid "Zap back to service before positioner setup?"
-msgstr "Prebaciti natrag na zadnju uslugu pre postavki motora?"
+msgstr "Prebaciti natrag na zadnju kanal pre postavki motora?"
 
 msgid "Zap back to service before satfinder?"
-msgstr "Prebaciti natrag na uslugu pre sat. tražitelja?"
+msgstr "Prebaciti natrag na kanal pre sat. tražitelja?"
 
 msgid "[alternative edit]"
 msgstr "[uređivanje alternative]"
@@ -4573,10 +4600,10 @@ msgid "[move mode]"
 msgstr "[način premeštanja]"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "Gui da dodeli servise/provajdere modulima opšteg interfejsa"
+msgstr "Gui da dodeli kanale/provajdere modulima opšteg interfejsa"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "Gui da dodeli servise/provajdere/kaide modulima opšteg interfejsa"
+msgstr "Gui da dodeli kanale/provajdere/kaide modulima opšteg interfejsa"
 
 msgid "abort alternatives edit"
 msgstr "odustani od uređivanja alternative"
@@ -4597,7 +4624,7 @@ msgid "add Provider"
 msgstr "Dodaj provajdera"
 
 msgid "add Service"
-msgstr "Dodaj servis"
+msgstr "Dodaj kanal"
 
 msgid "add a nameserver entry"
 msgstr "Dodaj nejmserver"
@@ -4636,10 +4663,10 @@ msgid "add recording (stop after current event)"
 msgstr "Dodaj snimanje (zaustavi posle trenutnog događaja)"
 
 msgid "add service to bouquet"
-msgstr "Dodaj uslugu u buket "
+msgstr "Dodaj kanala u buket "
 
 msgid "add service to favourites"
-msgstr "Dodaj uslugu u favorite"
+msgstr "Dodaj kanal u favorite"
 
 msgid "add to parental protection"
 msgstr "Dodaj u roditeljsku zaštitu"
@@ -4661,7 +4688,7 @@ msgid "assigned CAIds"
 msgstr "Dodeljeni CAIdi"
 
 msgid "assigned Services/Provider"
-msgstr "Dodeljeni servisi/provajderi"
+msgstr "Dodeljeni kanali/provajderi"
 
 #, python-format
 msgid "audio track (%s) format"
@@ -5089,13 +5116,13 @@ msgid "open nameserver configuration"
 msgstr "Otvori konfiguraciju nejmservera "
 
 msgid "open servicelist"
-msgstr "otvori listu usluga"
+msgstr "otvori listu kanala"
 
 msgid "open servicelist(down)"
-msgstr "otvori listu usluga (dole)"
+msgstr "otvori listu kanala (dole)"
 
 msgid "open servicelist(up)"
-msgstr "otvori listu usluga (gore)"
+msgstr "otvori listu kanala (gore)"
 
 msgid "open virtual keyboard input help"
 msgstr "Otvori pomoć za virtuelnu tastaturu"
@@ -5240,7 +5267,7 @@ msgid "select the movie path"
 msgstr "Izaberite putanju filma"
 
 msgid "service pin"
-msgstr "pin usluge"
+msgstr "pin kanala"
 
 msgid "setup pin"
 msgstr "pin postavke"
@@ -5276,7 +5303,7 @@ msgid "show shutdown menu"
 msgstr "prikaži meni isključivanja"
 
 msgid "show single service EPG..."
-msgstr "prikaži jednostruku EPG uslugu"
+msgstr "prikaži jednostruki EPG kanala"
 
 msgid "show tag menu"
 msgstr "prikaži citat menia"
@@ -5372,7 +5399,7 @@ msgid "this recording"
 msgstr "ovo snimanje"
 
 msgid "this service is protected by a parental control pin"
-msgstr "usluga je zaštićena s pin kodom roditeljske kontrole"
+msgstr "kanal je zaštićena s pin kodom roditeljske kontrole"
 
 msgid "toggle a cut mark at the current position"
 msgstr "Prebaci tačku za rezanje na trenutno označenu poziciju"
@@ -5387,7 +5414,7 @@ msgid "unknown"
 msgstr "Nepoznato"
 
 msgid "unknown service"
-msgstr "Nepoznata usluga"
+msgstr "Nepoznat kanal"
 
 msgid "until restart"
 msgstr "do restarta"
@@ -5443,13 +5470,6 @@ msgstr "prebacivanje"
 
 msgid "zapped"
 msgstr "prebačen"
-
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "Sistem će ponovo startovati posle vraćanja sigurnosne kopije"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
@@ -5611,6 +5631,9 @@ msgstr "prebačen"
 
 #~ msgid "Language"
 #~ msgstr "Jezici "
+
+#~ msgid "Lets you view/edit files in your Dreambox"
+#~ msgstr "Omogućava vam videti/urediti datoteke vašeg drimboxa"
 
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "PoveA3i s Utorom A"
