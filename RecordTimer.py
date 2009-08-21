@@ -14,7 +14,7 @@ import xml.etree.cElementTree
 import NavigationInstance
 from ServiceReference import ServiceReference
 
-from time import localtime, strftime, localtime, ctime, time
+from time import localtime, strftime, ctime, time
 from bisect import insort
 
 # ok, for descriptions etc we have:
