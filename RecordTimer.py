@@ -20,6 +20,8 @@ from time import localtime
 from Tools.XMLTools import stringToXML
 from ServiceReference import ServiceReference
 
+from bisect import insort
+
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
 # name               (title)
