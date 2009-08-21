@@ -445,7 +445,7 @@ class RecordTimer(timer.Timer):
 		# when activating a timer which has already passed,
 		# simply abort the timer. don't run trough all the stages.
 		if w.shouldSkip():
-			w.state = TimerEntry.StateEnded
+			w.state = RecordTimerEntry.StateEnded
 		else:
 			# when active returns true, this means "accepted".
 			# otherwise, the current state is kept.
@@ -456,14 +456,14 @@ class RecordTimer(timer.Timer):
 		self.timer_list.remove(w)
 
 		# did this timer reached the last state?
-		if w.state < TimerEntry.StateEnded:
+		if w.state < RecordTimerEntry.StateEnded:
 			# no, sort it into active list
 			insort(self.timer_list, w)
 		else:
 			# yes. Process repeated, and re-add.
 			if w.repeated:
 				w.processRepeated()
-				w.state = TimerEntry.StateWaiting
+				w.state = RecordTimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
 				insort(self.processed_timers, w)
