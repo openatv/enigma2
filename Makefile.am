@@ -13,3 +13,6 @@ install-exec-hook:
 	for lang in $(LANGS); do \
 		$(PYTHON) $(srcdir)/tools/genmetaindex.py $$lang $(DESTDIR)$(pkgdatadir)/meta/enigma2/plugin_*.xml > $(DESTDIR)$(pkgdatadir)/meta/enigma2/index_$$lang.xml; \
 	done
+
+uninstall-hook:
+	$(RM) $(DESTDIR)$(pkgdatadir)/meta/enigma2/index_*.xml
