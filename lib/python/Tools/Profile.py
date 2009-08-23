@@ -9,6 +9,7 @@ profile_start = time.time()
 
 profile_data = {}
 total_time = 1
+profile_file = None
 
 try:
 	profile_old = open(resolveFilename(SCOPE_CONFIG, "profile"), "r").readlines()
@@ -22,7 +23,10 @@ try:
 except:
 	print "no profile data available"
 
-profile_file = open(resolveFilename(SCOPE_CONFIG, "profile"), "w")
+try:
+	profile_file = open(resolveFilename(SCOPE_CONFIG, "profile"), "w")
+except IOError:
+	print "WARNING: couldn't open profile file!"
 
 def profile(id):
 	now = time.time() - profile_start
