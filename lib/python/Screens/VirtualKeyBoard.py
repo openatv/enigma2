@@ -195,12 +195,18 @@ class VirtualKeyBoard(Screen):
 		
 		selectedKey = self.selectedKey
 
+		text = None
+
 		for x in list:
 			if selectedKey < 12:
-				text = x[selectedKey]
+				if selectedKey < len(x):
+					text = x[selectedKey]
 				break
 			else:
 				selectedKey -= 12
+
+		if text is None:
+			return
 
 		text = text.encode("utf-8")
 
