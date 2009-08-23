@@ -218,7 +218,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				# because another recording at the same time on another service can try to record the same event
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
 				# here than calculateFilename is happy
-				open(self.Filename + ".ts", "w").close() 
+				if not self.justplay:
+					open(self.Filename + ".ts", "w").close() 
 				# fine. it worked, resources are allocated.
 				self.next_activation = self.begin
 				self.backoff = 0
