@@ -23,7 +23,6 @@ class PluginBrowser(Screen):
 		
 		self.list = []
 		self["list"] = PluginList(self.list)
-		self.updateList()
 		
 		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
 		{
@@ -32,7 +31,8 @@ class PluginBrowser(Screen):
 			"red": self.delete,
 			"green": self.download
 		})
-		self.onExecBegin.append(self.checkWarnings)
+		self.onFirstExecBegin.append(self.checkWarnings)
+		self.onShown.append(self.updateList)
 	
 	def checkWarnings(self):
 		if len(plugins.warnings):
@@ -48,20 +48,23 @@ class PluginBrowser(Screen):
 	
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
-		
 		plugin(session=self.session)
 		
 	def updateList(self):
 		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
 		self.list = [PluginEntryComponent(plugin) for plugin in self.pluginlist]
-
 		self["list"].l.setList(self.list)
 
 	def delete(self):
-		self.session.openWithCallback(self.updateList, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
 	
 	def download(self):
-		self.session.openWithCallback(self.updateList, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD)
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD)
+
+	def PluginDownloadBrowserClosed(self):
+		self.updateList()
+		self.checkWarnings()
+
 
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
@@ -190,7 +193,8 @@ class PluginDownloadBrowser(Screen):
 			plugin = x.split(" - ", 2)
 			if len(plugin) == 3:
 				if self.run == 1 and self.type == self.DOWNLOAD:
-					self.installedplugins.append(plugin[0])
+					if plugin[0] not in self.installedplugins:
+						self.installedplugins.append(plugin[0])
 				else:
 					if plugin[0] not in self.installedplugins:
 						plugin.append(plugin[0][15:])
