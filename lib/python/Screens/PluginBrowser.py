@@ -135,6 +135,9 @@ class PluginDownloadBrowser(Screen):
 	def startIpkgListInstalled(self):
 		self.container.execute("ipkg list_installed enigma2-plugin-*")
 
+	def startIpkgListAvailable(self):
+		self.container.execute("ipkg list enigma2-plugin-*")
+
 	def startRun(self):
 		self["list"].instance.hide()
 		if self.type == self.DOWNLOAD:
@@ -143,7 +146,7 @@ class PluginDownloadBrowser(Screen):
 				self.container.execute("ipkg update")
 				PluginDownloadBrowser.lastDownloadDate = time()
 			else:
-				self.startIpkgListInstalled()
+				self.startIpkgListAvailable()
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startIpkgListInstalled()
@@ -162,7 +165,7 @@ class PluginDownloadBrowser(Screen):
 				self.startIpkgListInstalled()
 		elif self.run == 1 and self.type == self.DOWNLOAD:
 			self.run = 2
-			self.container.execute("ipkg list enigma2-plugin-*")
+			self.startIpkgListAvailable()
 		else:
 			if len(self.pluginlist) > 0:
 				self.updateList()
