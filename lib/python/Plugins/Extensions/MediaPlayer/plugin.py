@@ -212,7 +212,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		self.isAudioCD = False
 		self.AudioCD_albuminfo = {}
 		self.cdAudioTrackFiles = []
-		self.applySettings()
+		self.onShown.append(self.applySettings)
 
 		self.playlistIOInternal = PlaylistIOInternal()
 		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
