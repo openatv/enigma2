@@ -42,13 +42,13 @@ class ServiceInfo(Converter, object):
 				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
 			}[type]
 
-	def getServiceInfoString(self, info, what, convert = lambda x: x):
+	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
 		v = info.getInfo(what)
 		if v == -1:
 			return "N/A"
 		if v == -2:
 			return info.getInfoString(what)
-		return "%d" % convert(v)
+		return convert(v)
 
 	@cached
 	def getBoolean(self):
@@ -111,7 +111,7 @@ class ServiceInfo(Converter, object):
 		elif self.type == self.SID:
 			return self.getServiceInfoString(info, iServiceInformation.sSID)
 		elif self.type == self.FRAMERATE:
-			return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: (x+500)/1000)
+			return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: "%d fps" % ((x+500)/1000))
 		return ""
 
 	text = property(getText)
