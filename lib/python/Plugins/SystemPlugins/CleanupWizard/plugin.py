@@ -10,7 +10,7 @@ print "[CleanupWizard] freeSpaceAvailable-->",freeSpace
 
 if freeSpace is None:
 	internalMemoryExceeded = 0
-elif int(freeSpace) <= 12048:
+elif int(freeSpace) <= 2048:
 	internalMemoryExceeded = 1
 else:
 	internalMemoryExceeded = 0
