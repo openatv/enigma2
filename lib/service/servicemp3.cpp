@@ -1095,7 +1095,6 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			eWarning("Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName );
 			if ( err->domain == GST_STREAM_ERROR )
 			{
-				eDebug("err->code %d", err->code);
 				if ( err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND )
 				{
 					if ( g_strrstr(sourceName, "videosink") )
@@ -1163,6 +1162,9 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			g_object_get (m_gst_playbin, "n-text", &n_text, NULL);
 
 			eDebug("eServiceMP3::async-done - %d video, %d audio, %d subtitle", n_video, n_audio, n_text);
+
+			if ( n_video + n_audio <= 0 )
+				stop();
 
 			active_idx = 0;
 
