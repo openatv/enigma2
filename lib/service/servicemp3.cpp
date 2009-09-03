@@ -497,6 +497,8 @@ RESULT eServiceMP3::seekTo(pts_t to)
 	if (!m_gst_playbin)
 		return -1;
 
+	eSingleLocker l(m_subs_to_pull_lock); // this is needed to dont handle incomming subtitles during seek!
+
 		/* convert pts to nanoseconds */
 	gint64 time_nanoseconds = to * 11111LL;
 	if (!gst_element_seek (m_gst_playbin, 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH,
@@ -508,7 +510,6 @@ RESULT eServiceMP3::seekTo(pts_t to)
 	}
 
 	m_subtitle_pages.clear();
-	eSingleLocker l(m_subs_to_pull_lock);
 	m_subs_to_pull = 0;
 
 	return 0;
