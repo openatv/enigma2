@@ -119,7 +119,7 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 			value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 
 		if attrib not in ignore:
-			skinAttributes.append((attrib, value))
+			skinAttributes.append((attrib, value.encode("utf-8")))
 
 def loadPixmap(path, desktop):
 	cached = False
