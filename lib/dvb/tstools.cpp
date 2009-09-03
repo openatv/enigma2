@@ -662,7 +662,8 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 	
 	off_t new_offset = offset;
 	size_t new_len = len;
-	
+	int first = 1;
+
 	while (distance > 0)
 	{
 		int dir = direction;
@@ -676,8 +677,9 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 		
 //		eDebug("we moved %d, %d to go frames (now at %llx)", dir, distance, new_offset);
 
-		if (distance >= 0)
+		if (distance >= 0 || first)
 		{
+			first = 0;
 			offset = new_offset;
 			len = new_len;
 			nr_frames += abs(dir);

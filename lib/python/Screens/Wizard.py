@@ -1,6 +1,7 @@
 from Screen import Screen
 
 from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
 from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS
 
 from Components.Label import Label
@@ -84,6 +85,8 @@ class Wizard(Screen):
 				else:
 					timeoutstep = ''
 				self.wizard[self.lastStep] = {"id": id, "condition": "", "text": "", "timeout": timeout, "timeoutaction": timeoutaction, "timeoutstep": timeoutstep, "list": [], "config": {"screen": None, "args": None, "type": "" }, "code": "", "codeafter": "", "code_async": "", "codeafter_async": "", "nextstep": nextstep}
+				if attrs.has_key('laststep'):
+					self.wizard[self.lastStep]["laststep"] = str(attrs.get('laststep'))
 			elif (name == "text"):
 				self.wizard[self.lastStep]["text"] = str(attrs.get('value')).replace("\\n", "\n")
 			elif (name == "displaytext"):
@@ -162,6 +165,8 @@ class Wizard(Screen):
 	
 	def __init__(self, session, showSteps = True, showStepSlider = True, showList = True, showConfig = True):
 		Screen.__init__(self, session)
+		
+		self.isLastWizard = False # can be used to skip a "goodbye"-screen in a wizard
 
 		self.stepHistory = []
 
@@ -284,12 +289,19 @@ class Wizard(Screen):
 		if len(self.stepHistory) > 1:
 			self.currStep = self.stepHistory[-2]
 			self.stepHistory = self.stepHistory[:-2]
+		else:
+			self.session.openWithCallback(self.exitWizardQuestion, MessageBox, (_("Are you sure you want to exit this wizard?") ) )
 		if self.currStep < 1:
 			self.currStep = 1
 		print "currStep:", self.currStep
 		print "new stepHistory:", self.stepHistory
 		self.updateValues()
 		print "after updateValues stepHistory:", self.stepHistory
+		
+	def exitWizardQuestion(self, ret = False):
+		if (ret):
+			self.markDone()
+			self.close()
 		
 	def markDone(self):
 		pass
@@ -472,8 +484,14 @@ class Wizard(Screen):
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
 		if not self.condition:
-			self.currStep += 1
-			self.updateValues()
+			print "keys*******************:", self.wizard[self.currStep].keys()
+			if self.wizard[self.currStep].has_key("laststep"): # exit wizard, if condition of laststep doesn't hold
+				self.markDone()
+				self.close()
+				return
+			else:
+				self.currStep += 1
+				self.updateValues()
 		else:
 			if self.wizard[self.currStep].has_key("displaytext"):
 				displaytext = self.wizard[self.currStep]["displaytext"]
@@ -605,6 +623,10 @@ class WizardManager:
 	
 	def getWizards(self):
 		# x[1] is precondition
+		for wizard in self.wizards:
+			wizard[0].isLastWizard = False
+		if len(self.wizards) > 0:
+			self.wizards[-1][0].isLastWizard = True
 		return [(x[2], x[0]) for x in self.wizards if x[1] == 1]
 
 wizardManager = WizardManager()
