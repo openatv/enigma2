@@ -637,8 +637,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="number" position="145,15" size="80,25" halign="right" font="Regular;23" />
 	</screen>
 	<!-- Numerical help dialog -->
-	<screen name="NumericalTextInputHelpDialog" position="170,420" zPosition="2" size="394,94" backgroundColor="#202020" flags="wfNoBorder">
-		<eLabel position="0,0" size="392,92" backgroundColor="#c0c0c0" zPosition="-1" />
+	<screen name="NumericalTextInputHelpDialog" position="190,400" zPosition="2" size="394,124" backgroundColor="#202020" flags="wfNoBorder">
+		<eLabel position="0,0" size="392,122" backgroundColor="#c0c0c0" zPosition="-1" />
 		<widget name="key1" position="2,2" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key2" position="132,2" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key3" position="262,2" size="130,30" font="Console;16" halign="center" valign="center" />
@@ -648,6 +648,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="key7" position="2,62" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key8" position="132,62" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key9" position="262,62" size="130,30" font="Console;16" halign="center" valign="center" />
+		<widget name="help1" position="2,92" size="130,30" font="Console;16" halign="center" valign="center" />
+		<widget name="key0" position="132,92" size="130,30" font="Console;12" halign="center" valign="center" />
+		<widget name="help2" position="262,92" size="130,30" font="Console;16" halign="center" valign="center" />
 	</screen>
 	<!-- Parental control - change pin -->
 	<screen name="ParentalControlChangePin" position="100,200" size="520,160" title="Change pin code">
@@ -967,7 +970,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="timerlist" position="0,60" size="560,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timer entry -->
-	<screen name="TimerEntry" position="90,95" size="560,430" title="Timer entry">
+	<screen name="TimerEntry" position="90,95" size="560,440" title="Timer entry">
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
