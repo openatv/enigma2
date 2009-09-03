@@ -1603,21 +1603,21 @@ class InfoBarInstantRecord:
 		if self.isInstantRecordRunning():
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
 				title=_("A recording is currently running.\nWhat do you want to do?"), \
-				list=((_("add recording (stop after current event)"), "event"), \
+				list=((_("stop recording"), "stop"), \
+				(_("add recording (stop after current event)"), "event"), \
+				(_("add recording (indefinitely)"), "indefinitely"), \
 				(_("add recording (enter recording duration)"), "manualduration"), \
 				(_("add recording (enter recording endtime)"), "manualendtime"), \
-				(_("add recording (indefinitely)"), "indefinitely"), \
 				(_("change recording (duration)"), "changeduration"), \
 				(_("change recording (endtime)"), "changeendtime"), \
-				(_("stop recording"), "stop"), \
 				(_("do nothing"), "no")))
 		else:
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, \
 				title=_("Start recording?"), \
 				list=((_("add recording (stop after current event)"), "event"), \
+				(_("add recording (indefinitely)"), "indefinitely"), \
 				(_("add recording (enter recording duration)"), "manualduration"), \
 				(_("add recording (enter recording endtime)"), "manualendtime"), \
-				(_("add recording (indefinitely)"), "indefinitely"), \
 				(_("don't record"), "no")))
 
 from Tools.ISO639 import LanguageCodes
