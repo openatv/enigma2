@@ -14,7 +14,6 @@ for file in sys.argv[2:]:
 	package = Element("package")
 	package.set("details", os.path.basename(file))
 	
-	
 	# we need all prerequisuited
 	package.append(p.find("prerequisites"))
 	
@@ -25,12 +24,13 @@ for file in sys.argv[2:]:
 			info = i
 	assert info
 	
-	
 	for i in info[:]:
 		if i.tag not in ["name", "packagename", "shortdescription"]:
 			info.remove(i)
 
-	package.append(info)
+	for i in info[:]:
+		package.set(str(i.tag), str(i.text))
+
 	root.append(package)
 
 def indent(elem, level=0):
