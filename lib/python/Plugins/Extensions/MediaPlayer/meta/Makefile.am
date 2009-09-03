@@ -1,4 +1,4 @@
-installdir = $(pkgdatadir)/meta/enigma2/
+installdir = $(datadir)/meta/
 
 dist_install_DATA = plugin_mediaplayer.xml
 
