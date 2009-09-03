@@ -88,6 +88,7 @@ class MessageBox(Screen):
 	def stopTimer(self):
 		if self.timerRunning:
 			del self.timer
+			self.onExecBegin.remove(self.startTimer)
 			self.setTitle(self.origTitle)
 			self.timerRunning = False
 

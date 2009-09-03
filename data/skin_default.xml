@@ -350,8 +350,10 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="model" position="20,10" size="380,25" font="Regular;23" />
 		<widget name="capacity" position="20,40" size="380,25" font="Regular;23" />
 		<widget name="bus" position="20,70" size="380,25" font="Regular;23" />
-		<widget name="initialize" pixmap="skin_default/buttons/red.png" position="140,110" size="140,40" alphatest="on" />
-		<widget name="initializetext" position="140,110" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" transparent="1" />
+		<ePixmap pixmap="skin_default/buttons/button_red.png" position="120,110" zPosition="10" size="15,16" transparent="1" alphatest="on" />
+		<widget name="initializetext" position="140,110" size="140,40" zPosition="10" font="Regular;20" transparent="1" />
+		<!--widget name="initialize" pixmap="skin_default/buttons/red.png" position="140,110" size="140,40" alphatest="on" />
+		<widget name="initializetext" position="140,110" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" transparent="1" /-->
 	</screen>
 	<!-- Harddisk wait -->
 	<screen name="HarddiskWait" position="100,150" size="540,60">
@@ -566,7 +568,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/buttons/button_red.png" position="410,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
 		<widget name="ButtonBluetext" position="60,325" size="300,21" zPosition="10" font="Regular;21" transparent="1" />
 		<widget name="ButtonBlue" pixmap="skin_default/buttons/button_blue.png" position="30,325" zPosition="10" size="15,16" transparent="1" alphatest="on" />
-		<widget name="introduction" position="140,360" size="300,21" zPosition="10" font="Regular;21" halign="center" transparent="1" />
+		<widget name="introduction" position="30,360" size="500,21" zPosition="10" font="Regular;21" halign="center" transparent="1" />
 	</screen>
 	<!-- Network adapter test Black = "#000000" Grey = "#8c8c93" Green = "#1cff1c" Red = #f23d21-->
 	<screen name="NetworkAdapterTest" position="70,100" size="570,400" title="Network test..." >
@@ -635,8 +637,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="number" position="145,15" size="80,25" halign="right" font="Regular;23" />
 	</screen>
 	<!-- Numerical help dialog -->
-	<screen name="NumericalTextInputHelpDialog" position="170,420" zPosition="2" size="394,94" backgroundColor="#202020" flags="wfNoBorder">
-		<eLabel position="0,0" size="392,92" backgroundColor="#c0c0c0" zPosition="-1" />
+	<screen name="NumericalTextInputHelpDialog" position="190,400" zPosition="2" size="394,124" backgroundColor="#202020" flags="wfNoBorder">
+		<eLabel position="0,0" size="392,122" backgroundColor="#c0c0c0" zPosition="-1" />
 		<widget name="key1" position="2,2" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key2" position="132,2" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key3" position="262,2" size="130,30" font="Console;16" halign="center" valign="center" />
@@ -646,6 +648,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="key7" position="2,62" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key8" position="132,62" size="130,30" font="Console;16" halign="center" valign="center" />
 		<widget name="key9" position="262,62" size="130,30" font="Console;16" halign="center" valign="center" />
+		<widget name="help1" position="2,92" size="130,30" font="Console;16" halign="center" valign="center" />
+		<widget name="key0" position="132,92" size="130,30" font="Console;12" halign="center" valign="center" />
+		<widget name="help2" position="262,92" size="130,30" font="Console;16" halign="center" valign="center" />
 	</screen>
 	<!-- Parental control - change pin -->
 	<screen name="ParentalControlChangePin" position="100,200" size="520,160" title="Change pin code">
@@ -965,7 +970,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="timerlist" position="0,60" size="560,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timer entry -->
-	<screen name="TimerEntry" position="90,95" size="560,430" title="Timer entry">
+	<screen name="TimerEntry" position="90,95" size="560,440" title="Timer entry">
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
