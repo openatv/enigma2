@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 v2.6 Italian Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 21:43+0200\n"
-"PO-Revision-Date: 2009-05-31 17:08+0100\n"
+"POT-Creation-Date: 2009-09-03 15:08+0200\n"
+"PO-Revision-Date: 2009-09-01 12:45+0100\n"
 "Last-Translator: Spaeleus <spaeleus@croci.org>\n"
 "Language-Team: WWW.LINSAT.NET <spaeleus@croci.org>\n"
 "MIME-Version: 1.0\n"
@@ -97,13 +97,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"System will restart after the restore!"
-msgstr ""
-"\n"
-"Dopo il ripristino, il sistema verrà riavviato!"
-
-msgid ""
-"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -116,10 +109,10 @@ msgid " extensions."
 msgstr "Estensioni"
 
 msgid " packages selected."
-msgstr ""
+msgstr " pacchetti selezionati."
 
 msgid " updates available."
-msgstr ""
+msgstr " aggiornamenti disponibili."
 
 msgid "#000000"
 msgstr "#000000"
@@ -402,7 +395,7 @@ msgid "AC3 downmix"
 msgstr "AC3 -> stereo (downmix)"
 
 msgid "Abort"
-msgstr ""
+msgstr "Annullare"
 
 msgid "About"
 msgstr "Info"
@@ -431,11 +424,17 @@ msgstr "Agg."
 msgid "Add Bookmark"
 msgstr "Agg. contrass."
 
+msgid "Add WLAN configuration?"
+msgstr "Includere la configurazione WLAN?"
+
 msgid "Add a mark"
 msgstr "Agg. contr."
 
 msgid "Add a new title"
 msgstr "Aggiungere nuovo titolo"
+
+msgid "Add network configuration?"
+msgstr "Includere la configurazione di rete?"
 
 msgid "Add timer"
 msgstr "Agg. timer"
@@ -448,6 +447,19 @@ msgstr "Aggiungere al bouquet"
 
 msgid "Add to favourites"
 msgstr "Aggiungere a preferiti"
+
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+"Se abilitate, informazioni come Modello, Numero di Serie, rev., ecc. "
+"verranno incluse."
+
+msgid "Adds network configuration if enabled."
+msgstr "Se abilitata, la configurazione di rete sarà inclusa."
+
+msgid "Adds wlan configuration if enabled."
+msgstr "Se abilitata, la configurazione WLAN sarà inclusa."
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -502,13 +514,16 @@ msgid "Alternative services tuner priority"
 msgstr "Priorità tuner"
 
 msgid "Always ask before sending"
-msgstr ""
+msgstr "Chiedere sempre prima di inoltrare"
 
 msgid "An empty filename is illegal."
 msgstr "Nome di file vuoto: non consentito!"
 
 msgid "An unknown error occured!"
 msgstr "Si è verificato un errore sconosciuto!"
+
+msgid "Anonymize crashlog?"
+msgstr "Rendere anonimi i crashlog"
 
 msgid "Arabic"
 msgstr "Arabo"
@@ -805,6 +820,9 @@ msgstr "Circolare a destra"
 msgid "Cleanup"
 msgstr "Ripulire"
 
+msgid "Cleanup Wizard"
+msgstr "Pulizia guidata"
+
 msgid "Clear before scan"
 msgstr "Cancellare prima di cercare"
 
@@ -874,9 +892,6 @@ msgstr "Configurazione"
 msgid "Configuration Mode"
 msgstr "Modalità config."
 
-msgid "Configuration for the CrashlogAutoSubmitter"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Configurazione in corso"
 
@@ -884,7 +899,7 @@ msgid "Conflicting timer"
 msgstr "Timer in conflitto!"
 
 msgid "Connect"
-msgstr ""
+msgstr "Connettere"
 
 msgid "Connected to"
 msgstr "Connesso a:"
@@ -893,7 +908,7 @@ msgid "Connected to Fritz!Box!"
 msgstr "Connesso alla Fritz!Box!"
 
 msgid "Connected!"
-msgstr ""
+msgstr "Connesso!"
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Connessione Fritz!Box in corso..."
@@ -915,13 +930,13 @@ msgid "Content does not fit on DVD!"
 msgstr "I contenuti superano la capacità del DVD!"
 
 msgid "Continue"
-msgstr ""
+msgstr "Continuare"
 
 msgid "Continue in background"
 msgstr "Proseguire in background"
 
 msgid "Continue playing"
-msgstr "Riproduzione continua"
+msgstr "Continuare la riproduzione"
 
 msgid "Contrast"
 msgstr "Contrasto"
@@ -936,16 +951,24 @@ msgstr "Impossibile caricare supporto! Disco non inserito?"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Impossibile registrare, timer %s in conflitto!"
 
-msgid "CrashlogAutoSubmit"
-msgstr ""
+msgid "Crashlog settings"
+msgstr "Configurazione crashlog"
 
-msgid "CrashlogAutoSubmitConfiguration"
-msgstr ""
+msgid "CrashlogAutoSubmit"
+msgstr "CrashlogAutoSubmit"
+
+msgid "CrashlogAutoSubmit settings"
+msgstr "Configurazione CrashlogAutoSubmit"
+
+msgid "CrashlogAutoSubmit settings..."
+msgstr "Configurazione CrashlogAutoSubmit..."
 
 msgid ""
 "Crashlogs found!\n"
 "Send them to Dream Multimedia ?"
 msgstr ""
+"Rilevati crashlog!\n"
+"Inoltrarli a Dream Multimedia?"
 
 msgid "Create DVD-ISO"
 msgstr "Creare DVD-ISO"
@@ -1017,6 +1040,12 @@ msgstr "Danese"
 msgid "Date"
 msgstr "Data"
 
+msgid "Decide what should be done when crashlogs are found."
+msgstr "Scegliere cosa fare quando vengono rilevati crashlog."
+
+msgid "Decide what should happen to the crashlogs after submission."
+msgstr "Scegliere cosa fare dei crashlog dopo l'inoltro."
+
 msgid "Deep Standby"
 msgstr "Spegnimento (Deep-Standby)"
 
@@ -1036,7 +1065,7 @@ msgid "Delete"
 msgstr "Canc."
 
 msgid "Delete crashlogs"
-msgstr ""
+msgstr "Cancellare i crashlog"
 
 msgid "Delete entry"
 msgstr "Rimuovere la voce"
@@ -1083,7 +1112,7 @@ msgid "DiSEqC repeats"
 msgstr "Ripetizioni DiSEqC"
 
 msgid "Dialing:"
-msgstr ""
+msgstr "Composizione:"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Riproduzione diretta dei titoli collegati, senza menu"
@@ -1102,7 +1131,7 @@ msgid "Disable Subtitles"
 msgstr "Disabilitare sottotitoli"
 
 msgid "Disable crashlog reporting"
-msgstr ""
+msgstr "Disabilitare report automatico crashlog"
 
 msgid "Disable timer"
 msgstr "Disabilitare timer"
@@ -1111,7 +1140,7 @@ msgid "Disabled"
 msgstr "Disabilitato"
 
 msgid "Disconnect"
-msgstr ""
+msgstr "Disconnettere"
 
 #, python-format
 msgid ""
@@ -1226,6 +1255,13 @@ msgstr "Ripristinare la configurazione?"
 msgid "Do you want to resume this playback?"
 msgstr "Riprendere la riproduzione?"
 
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+"Includere i propri dati (nome e indirizzo email) in modo da poter essere "
+"contattati, se necessario?"
+
 msgid "Do you want to update your Dreambox?"
 msgstr "Aggiornare il DreamBox?"
 
@@ -1243,7 +1279,7 @@ msgid "Do you want to view a tutorial?"
 msgstr "Visualizzare una guida?"
 
 msgid "Don't ask, just send"
-msgstr ""
+msgstr "Inviare senza chiedere conferma"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Non interrompere l'evento corrente ma annullare i futuri"
@@ -1288,7 +1324,7 @@ msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Formato DVD: dati Dreambox (compatibile HDTV)"
 
 msgid "Dreambox software because updates are available."
-msgstr ""
+msgstr "il software del Dreambox perchè sono disponibili aggiornamenti."
 
 msgid "Dutch"
 msgstr "Olandese"
@@ -1394,6 +1430,7 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1416,6 +1453,11 @@ msgstr "Menu principale..."
 
 msgid "Enter the service pin"
 msgstr "Inserire il codice PIN canale"
+
+msgid "Enter your email address so that we can contact you if needed."
+msgstr ""
+"Inserendo nome e indirizzo email sarà possibile essere contattati, se "
+"necessario."
 
 msgid "Error"
 msgstr "Errore"
@@ -1451,6 +1493,9 @@ msgstr "Uscire"
 
 msgid "Exit editor"
 msgstr "Uscire dall'editor"
+
+msgid "Exit the cleanup wizard"
+msgstr "Uscire dalla pulizia guidata"
 
 msgid "Exit the wizard"
 msgstr "Uscire dal wizard"
@@ -1527,7 +1572,7 @@ msgid "Flashing failed"
 msgstr "Flash fallito!"
 
 msgid "Following tasks will be done after you press continue."
-msgstr ""
+msgstr "I processi seguenti saranno eseguiti premendo \"Continuare\"."
 
 msgid "Format"
 msgstr "Formattare"
@@ -1634,7 +1679,7 @@ msgid "Harddisk standby after"
 msgstr "Standby harddisk dopo"
 
 msgid "Here is a small overview of the available icon states."
-msgstr ""
+msgstr "Ecco una piccola anteprima delle icone di stato disponibili."
 
 msgid "Hidden network SSID"
 msgstr "SSID di rete nascosto"
@@ -1654,8 +1699,8 @@ msgstr "Orizzontale"
 msgid "How many minutes do you want to record?"
 msgstr "Durata registrazione (minuti):"
 
-msgid "How to handle found crashlogs:"
-msgstr ""
+msgid "How to handle found crashlogs?"
+msgstr "Come gestire i crashlog rilevati?"
 
 msgid "Hungarian"
 msgstr "Ungherese"
@@ -1717,6 +1762,9 @@ msgid ""
 msgstr ""
 "In seguito a registr. programmata: la TV è stata sintonizzata sul canale da "
 "registrare!\n"
+
+msgid "Include your email and name (optional) in the mail?"
+msgstr "Includere nome e indirizzo email (facoltativi) nella mail?"
 
 msgid "Increased voltage"
 msgstr "Voltaggio aumentato"
@@ -1819,7 +1867,7 @@ msgid "Ipkg"
 msgstr "Ipkg"
 
 msgid "Is this videomode ok?"
-msgstr ""
+msgstr "La modalità video è corretta?"
 
 msgid "Italian"
 msgstr "Italiano"
@@ -1878,9 +1926,6 @@ msgstr "Uscire dal Player DVD?"
 
 msgid "Left"
 msgstr "Sinistro"
-
-msgid "Lets you view/edit files in your Dreambox"
-msgstr "Vedere/Modificare file sul Dreambox"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -2258,11 +2303,14 @@ msgstr "No, non fare nulla."
 msgid "No, just start my dreambox"
 msgstr "No, riavviare il DreamBox"
 
+msgid "No, not now"
+msgstr "No, non inoltrare ora."
+
 msgid "No, scan later manually"
 msgstr "No, ricerca manuale successiva"
 
-msgid "No, send them never."
-msgstr ""
+msgid "No, send them never"
+msgstr "No, mai inoltrare."
 
 msgid "None"
 msgstr "Nessuno"
@@ -2310,6 +2358,12 @@ msgstr "Ok"
 msgid "OK, guide me through the upgrade process"
 msgstr "Visualizzare una guida sul processo di aggiornamento"
 
+msgid "OK, remove another extensions"
+msgstr "Ok, rimuovere un'altra estensione"
+
+msgid "OK, remove some extensions"
+msgstr "Ok, rimuovere alcune estensioni"
+
 msgid "OSD Settings"
 msgstr "Configurazione OSD"
 
@@ -2331,6 +2385,9 @@ msgstr "Aggiornamento online"
 msgid "Only Free scan"
 msgstr "Solo canali in chiaro"
 
+msgid "Optionally enter your name if you want to."
+msgstr "E' possibile (ma facoltativo) indicare il proprio nome."
+
 msgid "Orbital Position"
 msgstr "Posizione orbitale"
 
@@ -2345,6 +2402,12 @@ msgstr "Dettagli pacchetto per: "
 
 msgid "Package list update"
 msgstr "Aggiornamento elenco pacchetti"
+
+msgid "Package removal failed.\n"
+msgstr "La rimozione del pacchetto è fallita!\n"
+
+msgid "Package removed successfully.\n"
+msgstr "Rimozione pacchetto eseguita correttamente.\n"
 
 msgid "Packet management"
 msgstr "Gestione pacchetti"
@@ -2375,13 +2438,13 @@ msgid "Parental control type"
 msgstr "Tipo Controllo parentale"
 
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 msgid "Pause movie at end"
 msgstr "A termine riproduzione, mettere in pausa"
 
 msgid "Phone number"
-msgstr ""
+msgstr "Numero telefonico"
 
 msgid "PiPSetup"
 msgstr "Configurazione PiP"
@@ -2471,6 +2534,12 @@ msgstr "Inserire il codice PIN corretto"
 msgid "Please enter the old pin code"
 msgstr "Inserire il vecchio codice PIN"
 
+msgid "Please enter your email address here:"
+msgstr "Inserire il proprio indirizzo email:"
+
+msgid "Please enter your name here (optional):"
+msgstr "Indicare il proprio nome (facoltativo):"
+
 msgid "Please follow the instructions on the TV"
 msgstr "Seguire le istruzioni mostrate sullo schermo."
 
@@ -2501,6 +2570,12 @@ msgstr "Selezionare un sottocanale da registrare..."
 
 msgid "Please select a subservice..."
 msgstr "Selezionare un sottocanale..."
+
+msgid "Please select an extension to remove."
+msgstr "Selezionare un'estensione da rimuovere."
+
+msgid "Please select an option below."
+msgstr "Selezionare una delle opzioni seguenti."
 
 msgid "Please select medium to use as backup location"
 msgstr "Selezionare il supporto su cui effettuare il backup"
@@ -2542,8 +2617,14 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr "Attivazione configurazione di rete in corso. Attendere..."
 
+msgid "Please wait while removing selected package..."
+msgstr "Rimozione del pacchetto selezionato in corso. Attendere..."
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Scansione in corso. Attendere..."
+
+msgid "Please wait while searching for removable packages..."
+msgstr "Ricerca dei pacchetti rimovibili in corso. Attendere..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Configurazione rete in corso. Attendere..."
@@ -2564,10 +2645,10 @@ msgid "Plugin manager"
 msgstr "Gestore plugin"
 
 msgid "Plugin manager help..."
-msgstr ""
+msgstr "Aiuto gestore plugin..."
 
 msgid "Plugin manager process information..."
-msgstr ""
+msgstr "Informazioni processi gestore plugin..."
 
 msgid "Plugins"
 msgstr "Plugin"
@@ -2639,6 +2720,9 @@ msgstr "OK -> ricercare"
 msgid "Press OK to start the scan"
 msgstr "OK -> iniziare la ricerca"
 
+msgid "Press OK to view full changelog"
+msgstr "OK -> Vista completa changelog"
+
 msgid "Prev"
 msgstr "Prec."
 
@@ -2652,7 +2736,7 @@ msgid "Priority"
 msgstr "Priorità"
 
 msgid "Process"
-msgstr ""
+msgstr "Processo"
 
 msgid "Properties of current title"
 msgstr "Proprietà titolo corrente"
@@ -2721,7 +2805,7 @@ msgid "Really shutdown now?"
 msgstr "Spegnere ora?"
 
 msgid "Reboot"
-msgstr "Riavvio"
+msgstr "Riavviare"
 
 msgid "Reception Settings"
 msgstr "Configurazione ricezione"
@@ -2775,6 +2859,9 @@ msgstr "Rim. contr."
 msgid "Remove currently selected title"
 msgstr "Rimuovere il titolo selezionato"
 
+msgid "Remove failed."
+msgstr "Rimozione fallita!"
+
 msgid "Remove finished."
 msgstr "Rimozione terminata!"
 
@@ -2793,6 +2880,9 @@ msgstr "Rim. timer"
 msgid "Remove title"
 msgstr "Rim. titolo"
 
+msgid "Removed successfully."
+msgstr "Rimosso correttamente."
+
 msgid "Removing"
 msgstr "Rimozione in corso..."
 
@@ -2804,7 +2894,7 @@ msgid "Rename"
 msgstr "Rinominare"
 
 msgid "Rename crashlogs"
-msgstr ""
+msgstr "Rinominare i crashlog"
 
 msgid "Repeat"
 msgstr "Ripetere"
@@ -2828,7 +2918,7 @@ msgid "Resolution"
 msgstr "Risoluzione"
 
 msgid "Restart"
-msgstr "Riavvio"
+msgstr "Riavviare"
 
 msgid "Restart GUI"
 msgstr "Riavviare la GUI (Enigma2)"
@@ -2846,7 +2936,7 @@ msgid "Restart your network connection and interfaces.\n"
 msgstr "Riavviare connessioni di rete e relative interfacce.\n"
 
 msgid "Restore"
-msgstr "Ripristino"
+msgstr "Ripristinare"
 
 msgid "Restore backups..."
 msgstr "Ripristino backup..."
@@ -3085,6 +3175,9 @@ msgstr "Selezionare file/cartelle per il backup..."
 msgid "Select image"
 msgstr "Selezionare un'immagine"
 
+msgid "Select package"
+msgstr "Selezionare un pacchetto"
+
 msgid "Select provider to add..."
 msgstr "Selezionare il provider da aggiungere..."
 
@@ -3119,7 +3212,7 @@ msgid "Sequence repeat"
 msgstr "Ripetizione sequenza"
 
 msgid "Serbian"
-msgstr ""
+msgstr "Serbo"
 
 msgid "Service"
 msgstr "Canale"
@@ -3191,7 +3284,7 @@ msgid "Show Info"
 msgstr "Informazioni"
 
 msgid "Show Message when Recording starts"
-msgstr ""
+msgstr "Mostrare messaggio su avvio registrazione"
 
 msgid "Show WLAN Status"
 msgstr "Mostrare stato WLAN"
@@ -3273,10 +3366,10 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 msgid "Slovakian"
-msgstr ""
+msgstr "Slovacco"
 
 msgid "Slovenian"
-msgstr ""
+msgstr "Sloveno"
 
 msgid "Slow"
 msgstr "Lento"
@@ -3465,7 +3558,7 @@ msgstr ""
 "enigma2 - Dreambox\n"
 "Dario Croci - www.linsat.net\n"
 "Supporto: spaeleus@croci.org.\n"
-"- 31 maggio 2009 -"
+"- 1 settembre 2009 -"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "File TS troppo grande per ISO9660 livello 1!"
@@ -3586,6 +3679,9 @@ msgstr ""
 msgid "The package doesn't contain anything."
 msgstr "Il pacchetto non contiene nulla"
 
+msgid "The package:"
+msgstr "Il pacchetto:"
+
 #, python-format
 msgid "The path %s already exists."
 msgstr "Percorso %s già esistente."
@@ -3625,16 +3721,19 @@ msgstr ""
 "Il wizard permette di effettuare un backup della configurazione. Farlo ora?"
 
 msgid "The wizard is finished now."
-msgstr "Wizard terminato!"
+msgstr "Il wizard è terminato!"
 
 msgid "There are at least "
-msgstr ""
+msgstr "Sono presenti almeno "
 
 msgid "There are no default services lists in your image."
 msgstr "L'immagine non dispone di alcuna elenco canali predefinito!"
 
 msgid "There are no default settings in your image."
 msgstr "L'immagine non dispone di alcuna configurazione predefinita!"
+
+msgid "There are now "
+msgstr "Ora"
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3645,6 +3744,9 @@ msgstr ""
 
 msgid "There was an error downloading the packetlist. Please try again."
 msgstr "Errore download elenco pacchetti! Riprovare."
+
+msgid "There was an error. The package:"
+msgstr "Si è verificato un errore! Il pacchetto:"
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
@@ -3687,16 +3789,16 @@ msgid "This is unsupported at the moment."
 msgstr "Funzione non ancora supportata."
 
 msgid "This plugin is installed."
-msgstr ""
+msgstr "Questo plugin è installato."
 
 msgid "This plugin is not installed."
-msgstr ""
+msgstr "Questo plugin non è installato."
 
 msgid "This plugin will be installed."
-msgstr ""
+msgstr "Questo plugin verrà installato."
 
 msgid "This plugin will be removed."
-msgstr ""
+msgstr "Questo plugin verrà rimosso."
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3943,7 +4045,7 @@ msgid "USB Stick"
 msgstr "Penna USB"
 
 msgid "USB stick wizard"
-msgstr "Configurazione guidata penna USB"
+msgstr "Wizard penna USB"
 
 msgid "Ukrainian"
 msgstr "Ucraino"
@@ -3969,11 +4071,15 @@ msgid ""
 "Undo\n"
 "Install"
 msgstr ""
+"Annullare\n"
+"Installare"
 
 msgid ""
 "Undo\n"
 "Remove"
 msgstr ""
+"Annullare\n"
+"Rimuovere"
 
 msgid "Unicable"
 msgstr "Unicable"
@@ -4003,7 +4109,7 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aggiornamento in corso. Saranno necessari alcuni minuti: attendere..."
 
 msgid "Upgrade"
-msgstr ""
+msgstr "Aggiornamento"
 
 msgid "Upgrade finished."
 msgstr "Aggiornamento terminato!"
@@ -4032,6 +4138,7 @@ msgstr "Usare misurazione di potenza"
 msgid "Use a gateway"
 msgstr "Usare un gateway"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -4082,7 +4189,7 @@ msgid "User defined"
 msgstr "Definito dall'utente"
 
 msgid "Username"
-msgstr ""
+msgstr "Nome User"
 
 msgid "VCR scart"
 msgstr "Scart VCR"
@@ -4139,13 +4246,13 @@ msgid "View Video CD..."
 msgstr "Riprodurre CD video..."
 
 msgid "View details"
-msgstr ""
+msgstr "Dettagli..."
 
 msgid "View list of available "
 msgstr "Visualizzare elenco disponibilità."
 
 msgid "View list of available CommonInterface extensions"
-msgstr "Elenco estensioni CommonInterface disponibili."
+msgstr "Elenco estensioni Common Interface disponibili."
 
 msgid "View list of available Display and Userinterface extensions."
 msgstr "Elenco estensioni display e interfaccia utente disponibili."
@@ -4259,6 +4366,22 @@ msgstr ""
 "sulla procedura."
 
 msgid ""
+"Welcome to the cleanup wizard.\n"
+"\n"
+"We have detected that your available internal memory has dropped below 2MB.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be "
+"cleaned up.\n"
+"You can use this wizard to remove some extensions.\n"
+msgstr ""
+"Benvenuto al wizard di romozione guidata.\n"
+"\n"
+"La memoria interna disponibile è inferiore ai 2 MB.\n"
+"Per assicurare stabilità al Dreambox, è necessario aumentare la quantità di "
+"memoria libera.\n"
+"A tale scopo è possibile utilizzare la rimozione guidata per rimuovere "
+"alcune estensioni.\n"
+
+msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
@@ -4279,8 +4402,8 @@ msgstr "Ovest"
 msgid "What do you want to scan?"
 msgstr "Cosa si intende cercare?"
 
-msgid "What to do with sent crashlogs:"
-msgstr ""
+msgid "What to do with submitted crashlogs?"
+msgstr "Cosa fare con i crashlog inoltrati?"
 
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
@@ -4330,8 +4453,8 @@ msgstr "Sì"
 msgid "Yes, and delete this movie"
 msgstr "Sì, e cancellare questa registrazione"
 
-msgid "Yes, and don't ask again."
-msgstr ""
+msgid "Yes, and don't ask again"
+msgstr "Sì. La richiesta non sarà ripetuta."
 
 msgid "Yes, backup my settings!"
 msgstr "Sì, eseguire backup configurazione!"
@@ -4358,10 +4481,10 @@ msgid "Yes, view the tutorial"
 msgstr "Sì, visualizzare la guida"
 
 msgid "You can cancel the installation."
-msgstr ""
+msgstr "E' possibile annullare l'installazione."
 
 msgid "You can cancel the removal."
-msgstr ""
+msgstr "E' possibile annullare la rimozione"
 
 msgid ""
 "You can choose some default settings now. Please select the settings you "
@@ -4374,10 +4497,10 @@ msgid "You can choose, what you want to install..."
 msgstr "Selezionare ciò che si desidera installare..."
 
 msgid "You can install this plugin."
-msgstr ""
+msgstr "E' possibile installare questo plugin."
 
 msgid "You can remove this plugin."
-msgstr ""
+msgstr "E' possibile rimuovere questo plugin."
 
 msgid "You cannot delete this!"
 msgstr "Impossibile cancellare!"
@@ -4501,12 +4624,18 @@ msgstr ""
 "Il DreamBox non risulta connesso ad internet correttamente. Verificare e "
 "riprovare."
 
+msgid "Your email address:"
+msgstr "Indirizzo email:"
+
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Il firmware del frontprocessor deve essere aggiornato.\n"
 "OK -> iniziare l'aggiornamento."
+
+msgid "Your name (optional):"
+msgstr "Nome (facoltativo):"
 
 msgid "Your network configuration has been activated."
 msgstr "Configurazione di rete attivata correttamente."
@@ -4650,6 +4779,9 @@ msgstr "Tracce audio"
 msgid "auto"
 msgstr "Auto"
 
+msgid "available"
+msgstr "sono disponibili."
+
 msgid "back"
 msgstr "Indietro"
 
@@ -4713,6 +4845,9 @@ msgstr "Continuare"
 
 msgid "copy to bouquets"
 msgstr "Copiare nei bouquet"
+
+msgid "could not be removed"
+msgstr "non può essere rimosso"
 
 msgid "create directory"
 msgstr "Creare cartella"
@@ -5109,6 +5244,9 @@ msgstr "Registrazione..."
 msgid "red"
 msgstr "Rosso"
 
+msgid "reindex..."
+msgstr ""
+
 msgid "remove a nameserver entry"
 msgstr "Rimuovere voce nameserver"
 
@@ -5386,6 +5524,9 @@ msgstr "Attendere per mmi..."
 msgid "waiting"
 msgstr "In attesa"
 
+msgid "was removed successfully"
+msgstr "è stato rimosso con successo"
+
 msgid "weekly"
 msgstr "Settimanale"
 
@@ -5419,23 +5560,16 @@ msgstr "Zap eseguito"
 
 #~ msgid ""
 #~ "\n"
-#~ "Enigma2 will restart after the restore"
+#~ "System will restart after the restore!"
 #~ msgstr ""
 #~ "\n"
-#~ "Dopo il ripristino, enigma2 verrà riavviato!"
+#~ "Dopo il ripristino, il sistema verrà riavviato!"
 
-#~ msgid "Details"
-#~ msgstr "Dettagli"
+#~ msgid "Configuration for the CrashlogAutoSubmitter"
+#~ msgstr "Configurazione del plugin CrashlogAutoSubmitter"
 
-#~ msgid "Do you want to continue installing or removing selected plugins?\n"
-#~ msgstr "Proseguire con l'installazione/rimozione dei plugin selezionati?\n"
+#~ msgid "CrashlogAutoSubmitConfiguration"
+#~ msgstr "Configurazione CrashlogAutoSubmit"
 
-#~ msgid ""
-#~ "Install/\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Installare/\n"
-#~ "Rimuovere"
-
-#~ msgid "View"
-#~ msgstr "Elenchi"
+#~ msgid "Lets you view/edit files in your Dreambox"
+#~ msgstr "Vedere/Modificare file sul Dreambox"
