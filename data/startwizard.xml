@@ -160,7 +160,10 @@ config.ParentalControl.setuppin.save()
 
 			<text value="After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that." />
 		</step>
-		<step id="end">
+		<step id="end" laststep="true">
+			<condition>
+self.condition = self.isLastWizard
+			</condition>
 			<text value="Thank you for using the wizard. Your box is now ready to use.\nPlease press OK to start using your Dreambox." />
 		</step>
 </wizard>

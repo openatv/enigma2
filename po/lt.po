@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-10 11:55+0200\n"
-"PO-Revision-Date: 2009-07-30 20:30+0200\n"
+"POT-Creation-Date: 2009-09-03 15:08+0200\n"
+"PO-Revision-Date: 2009-08-10 18:43+0200\n"
 "Last-Translator: Audronis, Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "MIME-Version: 1.0\n"
@@ -421,11 +421,17 @@ msgstr "Pridėti"
 msgid "Add Bookmark"
 msgstr "Pridėti žymę"
 
+msgid "Add WLAN configuration?"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Pridėti žymeklį"
 
 msgid "Add a new title"
 msgstr "Pridėkite naują pavadinimą"
+
+msgid "Add network configuration?"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Laikmatis"
@@ -438,6 +444,17 @@ msgstr "Pridėti į paketą"
 
 msgid "Add to favourites"
 msgstr "Pridėti į mėgstamiausius"
+
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+
+msgid "Adds network configuration if enabled."
+msgstr ""
+
+msgid "Adds wlan configuration if enabled."
+msgstr ""
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -499,6 +516,9 @@ msgstr "Tuščias failo pavadinimas negalimas"
 
 msgid "An unknown error occured!"
 msgstr "Įvyko nežinoma klaida!"
+
+msgid "Anonymize crashlog?"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabų"
@@ -795,6 +815,9 @@ msgstr "Apskritiminė dešinė"
 msgid "Cleanup"
 msgstr "Išvalyti"
 
+msgid "Cleanup Wizard"
+msgstr ""
+
 msgid "Clear before scan"
 msgstr "Išvalyti prieš skanavimą"
 
@@ -924,16 +947,16 @@ msgid "Couldn't record due to conflicting timer %s"
 msgstr "Neįrašyta dėl prieštaringo laikmačio %s"
 
 msgid "Crashlog settings"
-msgstr ""
+msgstr "Crashlog nustatymai"
 
 msgid "CrashlogAutoSubmit"
 msgstr "CrashlogAutoSubmit"
 
 msgid "CrashlogAutoSubmit settings"
-msgstr ""
+msgstr "CrashlogAutoSubmit nustatymai"
 
 msgid "CrashlogAutoSubmit settings..."
-msgstr ""
+msgstr "CrashlogAutoSubmit nustatymai..."
 
 msgid ""
 "Crashlogs found!\n"
@@ -1013,10 +1036,10 @@ msgid "Date"
 msgstr "Data"
 
 msgid "Decide what should be done when crashlogs are found."
-msgstr ""
+msgstr "Nuspręskite, kas turi būti daroma, kai crashlogs yra surasti."
 
 msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
+msgstr "Nuspręskite, kas turi įvykti po crashlogs pateikimo."
 
 msgid "Deep Standby"
 msgstr "Visiškai išjungti"
@@ -1231,6 +1254,8 @@ msgid ""
 "Do you want to submit your email address and name so that we can contact you "
 "if needed?"
 msgstr ""
+"Jūs norite pateikti savo elektroninio pašto adresą ir vardą, kad mes "
+"galėtume susisiekti su jumis jei reikia?"
 
 msgid "Do you want to update your Dreambox?"
 msgstr "Jūs norite atnaujinti savo Dreambox?"
@@ -1426,6 +1451,8 @@ msgstr "Įrašykite kanalo PIN"
 
 msgid "Enter your email address so that we can contact you if needed."
 msgstr ""
+"Įrašykite savo elektroninio pašto adresą, kad mes galėtume susisiekti su "
+"jumis jei reikia."
 
 msgid "Error"
 msgstr "Klaida"
@@ -1461,6 +1488,9 @@ msgstr "Išeiti"
 
 msgid "Exit editor"
 msgstr "Išeiti iš redaktoriaus"
+
+msgid "Exit the cleanup wizard"
+msgstr ""
 
 msgid "Exit the wizard"
 msgstr "Išeiti iš nustatymų vedlio"
@@ -1664,7 +1694,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite daryti įrašą?"
 
 msgid "How to handle found crashlogs?"
-msgstr ""
+msgstr "Kaip pasielgti kai surastas crashlogs?"
 
 msgid "Hungarian"
 msgstr "Vengrų"
@@ -1730,6 +1760,7 @@ msgstr ""
 
 msgid "Include your email and name (optional) in the mail?"
 msgstr ""
+"Įskaitant savo elektroninį paštą ir vardą (laisvai pasirenkamas) pašte?"
 
 msgid "Increased voltage"
 msgstr "Padidinta įtampa"
@@ -1891,9 +1922,6 @@ msgstr "Išeiti iš DVD grotuvo?"
 
 msgid "Left"
 msgstr "Kairė"
-
-msgid "Lets you view/edit files in your Dreambox"
-msgstr "Leidžia jums žiūrėti/redaguoti failus jūsų Dreambox'e"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
@@ -2277,13 +2305,13 @@ msgid "No, just start my dreambox"
 msgstr "Ne, įjungti mano imtuvą"
 
 msgid "No, not now"
-msgstr ""
+msgstr "Ne, ne dabar"
 
 msgid "No, scan later manually"
 msgstr "Ne, skanuoti vėliau rankiniu būdu"
 
 msgid "No, send them never"
-msgstr ""
+msgstr "Ne, nesiųsti jų niekada"
 
 msgid "None"
 msgstr "Joks"
@@ -2331,6 +2359,12 @@ msgstr "Gerai"
 msgid "OK, guide me through the upgrade process"
 msgstr "Gerai, informuoti mane apie atnaujinimo eigą"
 
+msgid "OK, remove another extensions"
+msgstr ""
+
+msgid "OK, remove some extensions"
+msgstr ""
+
 msgid "OSD Settings"
 msgstr "OSD nustatymai"
 
@@ -2353,7 +2387,7 @@ msgid "Only Free scan"
 msgstr "Tik nekoduotus"
 
 msgid "Optionally enter your name if you want to."
-msgstr ""
+msgstr "Pasirinktinai įrašykite savo vardą, jei jūs norite."
 
 msgid "Orbital Position"
 msgstr "Pozicija orbitoje"
@@ -2369,6 +2403,12 @@ msgstr "Paketo detalės: "
 
 msgid "Package list update"
 msgstr "Paketo sąrašo atnaujinimas"
+
+msgid "Package removal failed.\n"
+msgstr ""
+
+msgid "Package removed successfully.\n"
+msgstr ""
 
 msgid "Packet management"
 msgstr "Paketų valdymas"
@@ -2495,10 +2535,10 @@ msgid "Please enter the old pin code"
 msgstr "Prašome įrašyti seną PIN kodą"
 
 msgid "Please enter your email address here:"
-msgstr ""
+msgstr "Prašome įrašyti į savo elektroninio pašto adresą čia:"
 
 msgid "Please enter your name here (optional):"
-msgstr ""
+msgstr "Prašome įrašyti savo vardą, čia (laisvai pasirenkamą):"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Prašome sekti instrukcijas televizoriuje"
@@ -2530,6 +2570,12 @@ msgstr "Prašome išsirinkti subkanalą dėl įrašymo..."
 
 msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
+
+msgid "Please select an extension to remove."
+msgstr ""
+
+msgid "Please select an option below."
+msgstr ""
 
 msgid "Please select medium to use as backup location"
 msgstr "Prašome išsirinkti tai, kaip atsarginės kopijos vietą"
@@ -2571,8 +2617,14 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr "Prašome laukti jūsų tinklo konfigūracijos aktyvavimo..."
 
+msgid "Please wait while removing selected package..."
+msgstr ""
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Prašome laukti kol vyksta skanavimas..."
+
+msgid "Please wait while searching for removable packages..."
+msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Prašome laukti kol konfigūruojamas jūsų tinklas..."
@@ -2667,6 +2719,9 @@ msgstr "Spauskite OK paieškai."
 
 msgid "Press OK to start the scan"
 msgstr "Spauskite OK norėdami pradėti paiešką."
+
+msgid "Press OK to view full changelog"
+msgstr ""
 
 msgid "Prev"
 msgstr "Buvęs"
@@ -2804,6 +2859,9 @@ msgstr "Pašalinti žymeklį"
 msgid "Remove currently selected title"
 msgstr "Pašalinkite dabartinį pasirinktą pavadinimą"
 
+msgid "Remove failed."
+msgstr ""
+
 msgid "Remove finished."
 msgstr "Pašalinimas baigtas."
 
@@ -2821,6 +2879,9 @@ msgstr "Pašalinti laikmatį"
 
 msgid "Remove title"
 msgstr "Pašalinti "
+
+msgid "Removed successfully."
+msgstr ""
 
 msgid "Removing"
 msgstr "Pašalinimas"
@@ -3114,6 +3175,9 @@ msgstr "Išsirinkite failus/aplankus dėl atsarginės kopijos..."
 msgid "Select image"
 msgstr "Išsirinkite atvaizdą"
 
+msgid "Select package"
+msgstr ""
+
 msgid "Select provider to add..."
 msgstr "Išsirinkite tiekėją, kurį norite pridėti..."
 
@@ -3302,10 +3366,10 @@ msgid "Slot %d"
 msgstr "Modulis %d"
 
 msgid "Slovakian"
-msgstr ""
+msgstr "Slovakų"
 
 msgid "Slovenian"
-msgstr ""
+msgstr "Slovėnų"
 
 msgid "Slow"
 msgstr "Lėtas"
@@ -3612,6 +3676,9 @@ msgstr ""
 msgid "The package doesn't contain anything."
 msgstr "Paketas neturi savyje nieko."
 
+msgid "The package:"
+msgstr ""
+
 #, python-format
 msgid "The path %s already exists."
 msgstr "Kelias %s jau egzistuoja."
@@ -3663,6 +3730,9 @@ msgstr "Nėra jokių numatytųjų kanalų sąrašų jūsų atvaizde."
 msgid "There are no default settings in your image."
 msgstr "Nėra jokių numatytųjų nustatymų jūsų atvaizde."
 
+msgid "There are now "
+msgstr ""
+
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -3673,6 +3743,9 @@ msgstr ""
 msgid "There was an error downloading the packetlist. Please try again."
 msgstr ""
 "Įvyko klaida, parsisiunčiant paketo sąrašą. Prašome pabandyti dar kartą."
+
+msgid "There was an error. The package:"
+msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
@@ -4292,6 +4365,21 @@ msgstr ""
 "nustatymus ir trumpai patars kaip tai atlikti."
 
 msgid ""
+"Welcome to the cleanup wizard.\n"
+"\n"
+"We have detected that your available internal memory has dropped below 2MB.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be "
+"cleaned up.\n"
+"You can use this wizard to remove some extensions.\n"
+msgstr ""
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your Dreambox.\n"
@@ -4313,7 +4401,7 @@ msgid "What do you want to scan?"
 msgstr "Ką Jūs norite skanuoti?"
 
 msgid "What to do with submitted crashlogs?"
-msgstr ""
+msgstr "Ką daryti su pateiktu crashlogs?"
 
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
@@ -4365,7 +4453,7 @@ msgid "Yes, and delete this movie"
 msgstr "Taip, ir trinti šį filmą"
 
 msgid "Yes, and don't ask again"
-msgstr ""
+msgstr "Taip, ir daugiau neklausti"
 
 msgid "Yes, backup my settings!"
 msgstr "Taip, padarykite atsarginę kopiją mano nustatymų!"
@@ -4542,7 +4630,7 @@ msgstr ""
 "ir bandyti dar kartą."
 
 msgid "Your email address:"
-msgstr ""
+msgstr "Jūsų elektroninio pašto adresas:"
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
@@ -4552,7 +4640,7 @@ msgstr ""
 "Spauskite OK, kad pradėti atnaujinimą."
 
 msgid "Your name (optional):"
-msgstr ""
+msgstr "Jūsų (laisvai pasirenkamas) vardas:"
 
 msgid "Your network configuration has been activated."
 msgstr "Jūsų tinklo konfigūracija aktyvuota."
@@ -4691,6 +4779,9 @@ msgstr "garso takeliai"
 msgid "auto"
 msgstr "auto"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "atgal"
 
@@ -4754,6 +4845,9 @@ msgstr "tęsti"
 
 msgid "copy to bouquets"
 msgstr "kopijuoti į paketus"
+
+msgid "could not be removed"
+msgstr ""
 
 msgid "create directory"
 msgstr "kurti direktoriją"
@@ -5150,6 +5244,9 @@ msgstr "įrašoma..."
 msgid "red"
 msgstr "raudonas"
 
+msgid "reindex..."
+msgstr ""
+
 msgid "remove a nameserver entry"
 msgstr "pašalinkite serverio pavadinimo įėjimą"
 
@@ -5426,6 +5523,9 @@ msgstr "laukite atsakymo iš mmi..."
 
 msgid "waiting"
 msgstr "laukimas"
+
+msgid "was removed successfully"
+msgstr ""
 
 msgid "weekly"
 msgstr "kas savaitę"
@@ -5957,6 +6057,9 @@ msgstr "įjungta"
 
 #~ msgid "Lets you view current RSS entries"
 #~ msgstr "Leidžia jums žiūrėti einamuosius RSS įvykius"
+
+#~ msgid "Lets you view/edit files in your Dreambox"
+#~ msgstr "Leidžia jums žiūrėti/redaguoti failus jūsų Dreambox'e"
 
 #~ msgid "List of configured interfaces"
 #~ msgstr "Sukonfigūruotų interfeisų sąrašas"

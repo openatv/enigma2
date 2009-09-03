@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 21:43+0200\n"
-"PO-Revision-Date: 2009-05-06 21:55+0200\n"
+"POT-Creation-Date: 2009-09-03 15:08+0200\n"
+"PO-Revision-Date: 2009-08-29 20:23+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -95,11 +95,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -109,13 +104,13 @@ msgid " "
 msgstr " "
 
 msgid " extensions."
-msgstr ""
+msgstr "laajennusta."
 
 msgid " packages selected."
-msgstr ""
+msgstr "pakettia valittu."
 
 msgid " updates available."
-msgstr ""
+msgstr "päivitystä tarjolla."
 
 msgid "#000000"
 msgstr ""
@@ -399,7 +394,7 @@ msgid "AC3 downmix"
 msgstr "AC3 muunnos stereoksi"
 
 msgid "Abort"
-msgstr ""
+msgstr "Keskeytä"
 
 msgid "About"
 msgstr "Tietoja"
@@ -428,11 +423,17 @@ msgstr "Lisää"
 msgid "Add Bookmark"
 msgstr "Kirjanmerkki"
 
+msgid "Add WLAN configuration?"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Lisää merkki"
 
 msgid "Add a new title"
 msgstr "Lisää uusi tallenne"
+
+msgid "Add network configuration?"
+msgstr ""
 
 msgid "Add timer"
 msgstr "Lisää ajastus"
@@ -445,6 +446,17 @@ msgstr "Lisää suosikkilistalle"
 
 msgid "Add to favourites"
 msgstr "Lisää suosikkilistalle"
+
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+
+msgid "Adds network configuration if enabled."
+msgstr ""
+
+msgid "Adds wlan configuration if enabled."
+msgstr ""
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -500,13 +512,16 @@ msgid "Alternative services tuner priority"
 msgstr "Virittimien prioriteetti"
 
 msgid "Always ask before sending"
-msgstr ""
+msgstr "Kysy aina ennen lähettämistä"
 
 msgid "An empty filename is illegal."
 msgstr "Tyhjä nimi ei ole sallittu"
 
 msgid "An unknown error occured!"
 msgstr "Tuntematon virhe!"
+
+msgid "Anonymize crashlog?"
+msgstr ""
 
 msgid "Arabic"
 msgstr "Arabia"
@@ -693,7 +708,7 @@ msgid "CF Drive"
 msgstr "CompactFlash-kortti"
 
 msgid "CI assignment"
-msgstr ""
+msgstr "CI-määritys"
 
 msgid "CVBS"
 msgstr "Komposiitti (CVBS)"
@@ -803,6 +818,9 @@ msgstr "Kiertopol. oikea"
 msgid "Cleanup"
 msgstr "Poista vanhat"
 
+msgid "Cleanup Wizard"
+msgstr ""
+
 #  Ohjatun asennuksen (Startup Wizard) kutosruudun valintateksti
 #  Tekstin pitää ilmeisesti olla melko lyhyt, koska käyttäjän
 #  valittavaksi annetut vaihtoehdot lyhentävät tilaa toisesta
@@ -876,9 +894,6 @@ msgstr "Asetukset"
 msgid "Configuration Mode"
 msgstr "Toimintatila"
 
-msgid "Configuration for the CrashlogAutoSubmitter"
-msgstr ""
-
 msgid "Configuring"
 msgstr "Muokataan"
 
@@ -935,10 +950,16 @@ msgstr "Levyä ei voitu ladata! Levy puuttuu?"
 msgid "Couldn't record due to conflicting timer %s"
 msgstr "Ajastusristiriidan takia ei voitu tallentaa %s"
 
+msgid "Crashlog settings"
+msgstr ""
+
 msgid "CrashlogAutoSubmit"
 msgstr ""
 
-msgid "CrashlogAutoSubmitConfiguration"
+msgid "CrashlogAutoSubmit settings"
+msgstr ""
+
+msgid "CrashlogAutoSubmit settings..."
 msgstr ""
 
 msgid ""
@@ -1017,6 +1038,12 @@ msgstr "Tanska"
 msgid "Date"
 msgstr "Päiväys"
 
+msgid "Decide what should be done when crashlogs are found."
+msgstr ""
+
+msgid "Decide what should happen to the crashlogs after submission."
+msgstr ""
+
 msgid "Deep Standby"
 msgstr "Virransäästötila"
 
@@ -1062,10 +1089,10 @@ msgid "Destination directory"
 msgstr "Kohdehakemisto"
 
 msgid "Detected HDD:"
-msgstr "Asennettu kiintolevy:"
+msgstr "Kiintolevy:"
 
 msgid "Detected NIMs:"
-msgstr "Asennetut virittimet:"
+msgstr "Virittimet:"
 
 msgid "DiSEqC"
 msgstr "DiSEqC"
@@ -1236,6 +1263,11 @@ msgstr ""
 "Jatketaanko kohdasta,\n"
 "johon katselu viimeksi jäi?"
 
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+
 msgid "Do you want to update your Dreambox?"
 msgstr "Haluatko päivittää Dreamboxisi?"
 
@@ -1253,7 +1285,7 @@ msgid "Do you want to view a tutorial?"
 msgstr "Haluatko katsoa opasohjelman?"
 
 msgid "Don't ask, just send"
-msgstr ""
+msgstr "Lähetä ilman kysymystä"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Älä pysäytä tallennusta, mutta estä tulevat ajastukset"
@@ -1323,7 +1355,7 @@ msgid "Edit DNS"
 msgstr "Muuta DNS"
 
 msgid "Edit IPKG source URL..."
-msgstr "Muokkaa IPKG lähdeosoitetta..."
+msgstr "Muokkaa IPKG-lähdeosoitetta..."
 
 msgid "Edit Title"
 msgstr "Editoi"
@@ -1401,6 +1433,7 @@ msgid ""
 "© 2006 - Stephan Reichholf"
 msgstr ""
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
 #.       be interpreted as "Give speed as input". The intended meaning is
 #.       instead "Initial speed when starting winding", i.e. the speed at
@@ -1416,13 +1449,16 @@ msgid "Enter WLAN network name/SSID:"
 msgstr "Syötä WLAN-verkon nimi/SSID:"
 
 msgid "Enter WLAN passphrase/key:"
-msgstr ""
+msgstr "Syötä WLAN-salasana/koodi:"
 
 msgid "Enter main menu..."
 msgstr "Mene päävalikkoon..."
 
 msgid "Enter the service pin"
 msgstr "Syötä kanavan tunnusluku"
+
+msgid "Enter your email address so that we can contact you if needed."
+msgstr ""
 
 msgid "Error"
 msgstr "Virhe"
@@ -1448,7 +1484,7 @@ msgid "Execution Progress:"
 msgstr "Tehtävän edistyminen:"
 
 msgid "Execution finished!!"
-msgstr "Tehtävä suoritettu!"
+msgstr "Tehtävä suoritettu, paina OK"
 
 msgid "Exif"
 msgstr ""
@@ -1458,6 +1494,9 @@ msgstr "Poistu"
 
 msgid "Exit editor"
 msgstr "Poistu editorista"
+
+msgid "Exit the cleanup wizard"
+msgstr ""
 
 #  Tämä on imagewizard.xml:stä löytyvä valintateksti
 msgid "Exit the wizard"
@@ -1536,7 +1575,7 @@ msgid "Flashing failed"
 msgstr "Päivitys epäonnistui"
 
 msgid "Following tasks will be done after you press continue."
-msgstr ""
+msgstr "Seuraavat tehtävät suoritetaan kun valitset jatka."
 
 msgid "Format"
 msgstr "Alusta"
@@ -1618,7 +1657,7 @@ msgid "Getting plugin information. Please wait..."
 msgstr "Haetaan tietoja lisäosista. Odota..."
 
 msgid "Goto 0"
-msgstr "Goto 0"
+msgstr "Mene 0"
 
 msgid "Goto position"
 msgstr "Mene sijaintiin"
@@ -1648,7 +1687,7 @@ msgid "Here is a small overview of the available icon states."
 msgstr ""
 
 msgid "Hidden network SSID"
-msgstr ""
+msgstr "Piilotettu verkko-SSID"
 
 msgid "Hierarchy Information"
 msgstr "Hierarkia-tietoja"
@@ -1665,7 +1704,7 @@ msgstr "Horisontaali"
 msgid "How many minutes do you want to record?"
 msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
-msgid "How to handle found crashlogs:"
+msgid "How to handle found crashlogs?"
 msgstr ""
 
 msgid "Hungarian"
@@ -1730,6 +1769,9 @@ msgid ""
 msgstr ""
 "Pakotettu kanavanvaihto. Ajastettu tallennus\n"
 "käynnistyi juuri ja tarvitsi tätä viritintä.\n"
+
+msgid "Include your email and name (optional) in the mail?"
+msgstr ""
 
 msgid "Increased voltage"
 msgstr "Korotettu LNB-jännite"
@@ -1833,7 +1875,7 @@ msgid "Ipkg"
 msgstr ""
 
 msgid "Is this videomode ok?"
-msgstr ""
+msgstr "Onko tämä video-tila ok?"
 
 msgid "Italian"
 msgstr "Italia"
@@ -1846,7 +1888,7 @@ msgid "Just Scale"
 msgstr "Aina kokoruutu"
 
 msgid "Keyboard"
-msgstr ""
+msgstr "Näppäimistö"
 
 msgid "Keyboard Map"
 msgstr "Näppäinasettelu"
@@ -1893,9 +1935,6 @@ msgstr "Poistutaanko DVD-soittimesta?"
 msgid "Left"
 msgstr "Vasen"
 
-msgid "Lets you view/edit files in your Dreambox"
-msgstr "Katsele/muokkaa Dreamboxin tiedostoja"
-
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr ""
@@ -1907,7 +1946,7 @@ msgid "Limit west"
 msgstr "Raja länteen"
 
 msgid "Limited character set for recording filenames"
-msgstr "Rajoitettu merkkiluettelo tallenteille"
+msgstr "Rajoitettu merkistö tallenteiden nimissä"
 
 msgid "Limits off"
 msgstr "Rajat pois"
@@ -2183,7 +2222,7 @@ msgid "No details for this image file"
 msgstr "Ei tietoja tästä päivityksestä"
 
 msgid "No displayable files on this medium found!"
-msgstr ""
+msgstr "Näytettäviä tiedostoja ei löytynyt!"
 
 msgid "No event info found, recording indefinitely."
 msgstr ""
@@ -2211,7 +2250,7 @@ msgid "No satellite frontend found!!"
 msgstr "Dreamboxissasi ei ole satelliittiviritintä."
 
 msgid "No tags are set on these movies."
-msgstr ""
+msgstr "Näissä tallenteissa ei ole avainsanoja."
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
@@ -2282,11 +2321,14 @@ msgstr "Ei, älä tee mitään."
 msgid "No, just start my dreambox"
 msgstr "Ei, käynnistä vain Dreambox"
 
+msgid "No, not now"
+msgstr ""
+
 #  Ohjatun asennuksen (Startup Wizard) kutosruudun valintateksti
 msgid "No, scan later manually"
 msgstr "Ei, kanavat haetaan myöhemmin manuaalisesti"
 
-msgid "No, send them never."
+msgid "No, send them never"
 msgstr ""
 
 msgid "None"
@@ -2337,6 +2379,12 @@ msgstr "OK"
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, opasta minua päivityksessä"
 
+msgid "OK, remove another extensions"
+msgstr ""
+
+msgid "OK, remove some extensions"
+msgstr ""
+
 msgid "OSD Settings"
 msgstr "Kuvaruutunäytön asetukset"
 
@@ -2358,6 +2406,9 @@ msgstr "Online-päivitys"
 msgid "Only Free scan"
 msgstr "Hae vain salaamattomat"
 
+msgid "Optionally enter your name if you want to."
+msgstr ""
+
 msgid "Orbital Position"
 msgstr "Sijainti"
 
@@ -2372,6 +2423,12 @@ msgstr "Ohjelmapaketin tiedot:"
 
 msgid "Package list update"
 msgstr "Ohjelmapakettilistan päivitys"
+
+msgid "Package removal failed.\n"
+msgstr ""
+
+msgid "Package removed successfully.\n"
+msgstr ""
 
 msgid "Packet management"
 msgstr "Ohjelmapakettien hallinta"
@@ -2402,7 +2459,7 @@ msgid "Parental control type"
 msgstr "Lapsilukon tyyppi"
 
 msgid "Password"
-msgstr ""
+msgstr "Salasana"
 
 msgid "Pause movie at end"
 msgstr "Pysähdy tallenteen loppuun"
@@ -2494,6 +2551,12 @@ msgstr "Syötä oikea tunnusluku"
 msgid "Please enter the old pin code"
 msgstr "Syötä vanha tunnusluku"
 
+msgid "Please enter your email address here:"
+msgstr ""
+
+msgid "Please enter your name here (optional):"
+msgstr ""
+
 msgid "Please follow the instructions on the TV"
 msgstr "Seuraa ruudulla näkyviä ohjeita"
 
@@ -2525,11 +2588,17 @@ msgstr "Valitse tallennettava alipalvelu..."
 msgid "Please select a subservice..."
 msgstr "Valitse alipalvelu..."
 
+msgid "Please select an extension to remove."
+msgstr ""
+
+msgid "Please select an option below."
+msgstr ""
+
 msgid "Please select medium to use as backup location"
 msgstr "Valitse tallennuspaikka varmuuskopiolle"
 
 msgid "Please select tag to filter..."
-msgstr "Valitse suodatettava merkki..."
+msgstr "Valitse suodatettava avainsana..."
 
 msgid "Please select target directory or medium"
 msgstr "Valitse kohdehakemisto tai levy"
@@ -2564,8 +2633,14 @@ msgstr "Valitse kieli ylös/alas näppäimillä ja paina OK-näppäintä."
 msgid "Please wait for activation of your network configuration..."
 msgstr "Odota, verkon määritykset aktivoidaan..."
 
+msgid "Please wait while removing selected package..."
+msgstr ""
+
 msgid "Please wait while scanning is in progress..."
 msgstr "Odota, haku on käynnissä..."
+
+msgid "Please wait while searching for removable packages..."
+msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Odota, verkkoa määritetään..."
@@ -2660,6 +2735,9 @@ msgstr "Aloita haku painamalla OK"
 
 msgid "Press OK to start the scan"
 msgstr "Aloita haku painamalla OK"
+
+msgid "Press OK to view full changelog"
+msgstr ""
 
 msgid "Prev"
 msgstr "Edellinen"
@@ -2797,6 +2875,9 @@ msgstr "Poista merkki"
 msgid "Remove currently selected title"
 msgstr "Poista valittu otsikko"
 
+msgid "Remove failed."
+msgstr ""
+
 msgid "Remove finished."
 msgstr "Poista suoritetut."
 
@@ -2815,6 +2896,9 @@ msgstr "Poista ajastus"
 msgid "Remove title"
 msgstr "Poista"
 
+msgid "Removed successfully."
+msgstr ""
+
 msgid "Removing"
 msgstr "Poistetaan"
 
@@ -2826,7 +2910,7 @@ msgid "Rename"
 msgstr "Muuta nimi"
 
 msgid "Rename crashlogs"
-msgstr ""
+msgstr "Muuta lokien tiedostonimet"
 
 msgid "Repeat"
 msgstr "Toista"
@@ -2844,7 +2928,7 @@ msgid "Reset"
 msgstr "Käynnistä CA-moduuli uudelleen"
 
 msgid "Reset and renumerate title names"
-msgstr ""
+msgstr "Nollaa ja uudelleenjärjestä otsikot"
 
 msgid "Resolution"
 msgstr "Tarkkuus"
@@ -3107,14 +3191,17 @@ msgstr "Valitse kopioitavat tiedostot/kansiot..."
 msgid "Select image"
 msgstr "Valitse päivitys"
 
-msgid "Select provider to add..."
+msgid "Select package"
 msgstr ""
+
+msgid "Select provider to add..."
+msgstr "Valitse lisättävä palveluntarjoaja..."
 
 msgid "Select refresh rate"
 msgstr "Valitse virkistystaajuus"
 
 msgid "Select service to add..."
-msgstr ""
+msgstr "Valitse lisättävä kanava..."
 
 msgid "Select video input"
 msgstr "Valitse video-sisäänmeno"
@@ -3215,7 +3302,7 @@ msgid "Show Info"
 msgstr "Näytä tiedot"
 
 msgid "Show Message when Recording starts"
-msgstr ""
+msgstr "Näytä viesti kun tallennus alkaa"
 
 msgid "Show WLAN Status"
 msgstr "Näytä WLAN:in tila"
@@ -3497,13 +3584,13 @@ msgid "Table of content for collection"
 msgstr "Kokoelman hakemisto"
 
 msgid "Tag 1"
-msgstr ""
+msgstr "Avainsana 1"
 
 msgid "Tag 2"
-msgstr ""
+msgstr "Avainsana 2"
 
 msgid "Tags"
-msgstr ""
+msgstr "Avainsanat"
 
 msgid "Terrestrial"
 msgstr "Antennivastaanotto (DVB-T)"
@@ -3616,6 +3703,9 @@ msgstr ""
 msgid "The package doesn't contain anything."
 msgstr "Paketti ei sisällä mitään."
 
+msgid "The package:"
+msgstr ""
+
 #, python-format
 msgid "The path %s already exists."
 msgstr "Polku %s on jo olemassa."
@@ -3658,13 +3748,16 @@ msgid "The wizard is finished now."
 msgstr "Velho on lopettanut. Paina OK."
 
 msgid "There are at least "
-msgstr ""
+msgstr "Saatavilla ainakin"
 
 msgid "There are no default services lists in your image."
 msgstr "Oletuskanavalistoja ei löydy. Paina OK."
 
 msgid "There are no default settings in your image."
 msgstr "Oletusarvoja ei löydy. Paina OK."
+
+msgid "There are now "
+msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3675,6 +3768,9 @@ msgstr ""
 
 msgid "There was an error downloading the packetlist. Please try again."
 msgstr "Virhe ladattaessa IPKG-ohjelmapakettiluetteloa. Yritä uudestaan."
+
+msgid "There was an error. The package:"
+msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
@@ -3716,16 +3812,16 @@ msgid "This is unsupported at the moment."
 msgstr "Tätä ei tällä hetkellä tueta."
 
 msgid "This plugin is installed."
-msgstr ""
+msgstr "Tämä lisäosa on asennettu."
 
 msgid "This plugin is not installed."
-msgstr ""
+msgstr "Tätä lisäosaa ei ole asennettu."
 
 msgid "This plugin will be installed."
-msgstr ""
+msgstr "Tämä lisäosa asennetaan."
 
 msgid "This plugin will be removed."
-msgstr ""
+msgstr "Tämä lisäosa poistetaan."
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3992,11 +4088,15 @@ msgid ""
 "Undo\n"
 "Install"
 msgstr ""
+"Kumoa\n"
+"Asenna"
 
 msgid ""
 "Undo\n"
 "Remove"
 msgstr ""
+"Kumoa\n"
+"Poista"
 
 msgid "Unicable"
 msgstr ""
@@ -4026,7 +4126,7 @@ msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Päivitetään... Odota... Tämä voi kestää muutaman minuutin..."
 
 msgid "Upgrade"
-msgstr ""
+msgstr "Päivitä"
 
 msgid "Upgrade finished."
 msgstr "Päivitys suoritettu."
@@ -4055,6 +4155,7 @@ msgstr "Käytä virran mittausta"
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
 
+#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
 #.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
 #.       than using ordinary "continuous" or "smooth" winding, a fast
 #.       sequence of stills is shown when winding at high speeds. This
@@ -4121,7 +4222,7 @@ msgid "User defined"
 msgstr "Käyttäjän määrittelemä"
 
 msgid "Username"
-msgstr ""
+msgstr "Käyttäjänimi"
 
 #  Päävalikon VCR-SCART-toiminnon nimi
 msgid "VCR scart"
@@ -4179,7 +4280,7 @@ msgid "View Video CD..."
 msgstr "Katso Video-CD..."
 
 msgid "View details"
-msgstr ""
+msgstr "Yksityiskohdat"
 
 msgid "View list of available "
 msgstr ""
@@ -4297,6 +4398,21 @@ msgstr ""
 "päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa "
 "päivityksen jälkeen."
 
+msgid ""
+"Welcome to the cleanup wizard.\n"
+"\n"
+"We have detected that your available internal memory has dropped below 2MB.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be "
+"cleaned up.\n"
+"You can use this wizard to remove some extensions.\n"
+msgstr ""
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
 #  Ohjatun alkuasennuksen (Start Wizard) aloitusruutu. Teksti on
 #  sovitettu melko tarkasti tilaansa, joten muutoksia ei ole syytä
 #  tehdä testaamatta niitä ensin käytännössä. Tekstiin on lisätty
@@ -4329,7 +4445,7 @@ msgstr "Länsi"
 msgid "What do you want to scan?"
 msgstr "Kanavahaun lisäasetukset:"
 
-msgid "What to do with sent crashlogs:"
+msgid "What to do with submitted crashlogs?"
 msgstr ""
 
 msgid ""
@@ -4374,7 +4490,7 @@ msgstr "Kyllä"
 msgid "Yes, and delete this movie"
 msgstr "Kyllä ja poista tämä tallenne"
 
-msgid "Yes, and don't ask again."
+msgid "Yes, and don't ask again"
 msgstr ""
 
 msgid "Yes, backup my settings!"
@@ -4402,10 +4518,10 @@ msgid "Yes, view the tutorial"
 msgstr "Kyllä, katso opasohjelma"
 
 msgid "You can cancel the installation."
-msgstr ""
+msgstr "Voi keskeyttää asennuksen."
 
 msgid "You can cancel the removal."
-msgstr ""
+msgstr "Voit keskeyttää poiston."
 
 msgid ""
 "You can choose some default settings now. Please select the settings you "
@@ -4416,10 +4532,10 @@ msgid "You can choose, what you want to install..."
 msgstr "Voit valita, mitä haluat asentaa..."
 
 msgid "You can install this plugin."
-msgstr ""
+msgstr "Voit asentaa tämän lisäosan."
 
 msgid "You can remove this plugin."
-msgstr ""
+msgstr "Voit poistaa tämän lisäosan."
 
 msgid "You cannot delete this!"
 msgstr "Et voi poistaa tätä!"
@@ -4541,12 +4657,18 @@ msgstr ""
 "Yhteyttä Internetiin ei kyetty muodostamaan. Tarkista verkkoasetukset ja "
 "yritä uudelleen."
 
+msgid "Your email address:"
+msgstr ""
+
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 "Etupaneelin suorittimen ohjelmisto on päivitettävä.\n"
 "Paina OK aloittaaksesi päivityksen."
+
+msgid "Your name (optional):"
+msgstr ""
 
 msgid "Your network configuration has been activated."
 msgstr "Verkkoasetukset on aktivoitu."
@@ -4689,6 +4811,9 @@ msgstr "ääniraidat"
 msgid "auto"
 msgstr ""
 
+msgid "available"
+msgstr ""
+
 #  Tämä teksti näytetään monessa valikossa EXIT-napin
 #  kaltaisena poistumistoimintona.
 msgid "back"
@@ -4754,6 +4879,9 @@ msgstr "jatka"
 
 msgid "copy to bouquets"
 msgstr "kopioi suosikkilistalle"
+
+msgid "could not be removed"
+msgstr ""
 
 msgid "create directory"
 msgstr "luo hakemisto"
@@ -5062,7 +5190,7 @@ msgid "no HDD found"
 msgstr "kiintolevyä ei löydy"
 
 msgid "no module found"
-msgstr "(Portissa ei ole CA-moduulia)"
+msgstr "(ei CA-moduulia)"
 
 msgid "no standby"
 msgstr "ei valmiustilaa"
@@ -5150,6 +5278,9 @@ msgstr "tallennetaan..."
 
 msgid "red"
 msgstr "punainen"
+
+msgid "reindex..."
+msgstr ""
 
 msgid "remove a nameserver entry"
 msgstr "poista nimipalvelin"
@@ -5282,10 +5413,10 @@ msgid "show extended description"
 msgstr "Näytä laajennettu ohjelmakuvaus"
 
 msgid "show first selected tag"
-msgstr ""
+msgstr "näytä ensimmäinen avainsana"
 
 msgid "show second selected tag"
-msgstr ""
+msgstr "näytä toinen avainsana"
 
 msgid "show shutdown menu"
 msgstr "Näytä sammutusvalikko"
@@ -5428,6 +5559,9 @@ msgstr "odotetaan mmi:tä..."
 msgid "waiting"
 msgstr "odottaa"
 
+msgid "was removed successfully"
+msgstr ""
+
 msgid "weekly"
 msgstr "joka viikko"
 
@@ -5460,25 +5594,14 @@ msgstr "kanavanvaihto"
 msgid "zapped"
 msgstr "vaihdettu"
 
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2 käynnistyy uudelleen palautuksen jälkeen"
+#~ msgid "Configuration for the CrashlogAutoSubmitter"
+#~ msgstr "Lokitiedostojen automaattilähetyksen määritys"
 
-#~ msgid "Details"
-#~ msgstr "Tiedot"
+#~ msgid "How to handle found crashlogs:"
+#~ msgstr "Mitä lokitiedostoille tehdään:"
 
-#~ msgid ""
-#~ "Install/\n"
-#~ "Remove"
-#~ msgstr ""
-#~ "Asenna/\n"
-#~ "Poista"
+#~ msgid "Lets you view/edit files in your Dreambox"
+#~ msgstr "Katsele/muokkaa Dreamboxin tiedostoja"
 
-#~ msgid "View"
-#~ msgstr "Näytä"
-
-#~ msgid "no module"
-#~ msgstr "ei moduulia"
+#~ msgid "No, send them never."
+#~ msgstr "Älä lähetä koskaan."
