@@ -1,6 +1,7 @@
 from Screen import Screen
 
 from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
 from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS
 
 from Components.Label import Label
@@ -284,12 +285,19 @@ class Wizard(Screen):
 		if len(self.stepHistory) > 1:
 			self.currStep = self.stepHistory[-2]
 			self.stepHistory = self.stepHistory[:-2]
+		else:
+			self.session.openWithCallback(self.exitWizardQuestion, MessageBox, (_("Are you sure you want to exit this wizard?") ) )
 		if self.currStep < 1:
 			self.currStep = 1
 		print "currStep:", self.currStep
 		print "new stepHistory:", self.stepHistory
 		self.updateValues()
 		print "after updateValues stepHistory:", self.stepHistory
+		
+	def exitWizardQuestion(self, ret = False):
+		if (ret):
+			self.markDone()
+			self.close()
 		
 	def markDone(self):
 		pass
