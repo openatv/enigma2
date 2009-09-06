@@ -824,7 +824,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1] == 'dns':
 			self["description"].setText(_("Edit the Nameserver configuration of your Dreambox.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
-			self["description"].setText(_("Scan your network for wireless Access Points and connect to them using your WLAN USB Stick\n" ) + self.oktext )
+			self["description"].setText(_("Scan your network for wireless Access Points and connect to them using your selected wireless device.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'wlanstatus':
 			self["description"].setText(_("Shows the state of your wireless LAN connection.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'lanrestart':
