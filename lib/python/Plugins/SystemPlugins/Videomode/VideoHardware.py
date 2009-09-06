@@ -241,6 +241,8 @@ class VideoHardware:
 			descr = port
 			if descr == 'DVI' and hw_type == 'dm500hd':
 				descr = 'HDMI'
+			elif descr == 'DVI-PC' and hw_type == 'dm500hd':
+				descr = 'HDMI-PC'
 			lst.append((port, descr))
 
 			# create list of available modes
