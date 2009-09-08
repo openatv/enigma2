@@ -255,8 +255,8 @@ class DreamInfoHandler:
 
 		for indexfile in os.listdir(self.directory[0]):
 			if indexfile.startswith("index"):
-				if os.path.splitext(indexfile)[0][-3:-2] is not "_": #we first catch all non translated indexfiles
-					indexfileList.append(os.path.splitext(indexfile)[0])
+				if indexfile.endswith("_en.xml"): #we first catch all english indexfiles
+					indexfileList.append(os.path.splitext(indexfile)[0][:-3])
 
 		if len(indexfileList):
 			for file in indexfileList:
@@ -267,7 +267,7 @@ class DreamInfoHandler:
 						self.readIndex(self.directory[0] + "/", neededFile + '_' + self.language + '.xml')
 					else:
 						#print "reading original index file"
-						self.readIndex(self.directory[0] + "/", neededFile + '.xml')
+						self.readIndex(self.directory[0] + "/", neededFile + '_en.xml')
 
 		if prerequisites:
 			for package in self.packagesIndexlist[:]:
