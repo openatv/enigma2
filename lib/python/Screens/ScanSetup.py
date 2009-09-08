@@ -883,6 +883,10 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 					need_scan = True
 					print x, "not in ", known_networks
 					known_networks.append(x)
+					
+			# don't offer to scan nims if nothing is connected
+			if not nimmanager.somethingConnected(nim.slot):
+				need_scan = False				
 
 			if need_scan:
 				nims_to_scan.append(nim)
