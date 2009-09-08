@@ -759,6 +759,22 @@ class NimManager:
 
 	def getSatList(self):
 		return self.satList
+	
+	# returns True if something is configured to be connected to this nim
+	# if slotid == -1, returns if something is connected to ANY nim
+	def somethingConnected(self, slotid = -1):
+		if (slotid == -1):
+			connected = False
+			for id in range(self.getSlotCount()):
+				if self.somethingConnected(id):
+					connected = True
+			return connected
+		else:
+			nim = config.Nims[slotid]
+			configMode = nim.configMode.value
+		
+			if self.nim_slots[slotid].isCompatible("DVB-S") or self.nim_slots[slotid].isCompatible("DVB-T") or self.nim_slots[slotid].isCompatible("DVB-C"):
+				return not (configMode == "nothing")		
 
 	def getSatListForNim(self, slotid):
 		list = []

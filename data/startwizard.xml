@@ -73,7 +73,8 @@ self.selectKey("RIGHT")
 		<step id="satlistsquestion">
 			<text value="Do you want to install default sat lists?" />
 			<condition>
-self.condition = config.misc.startwizard.doservicescan.value
+from Components.NimManager import nimmanager
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
 			</condition>
 			<code>
 self.hideRc()
@@ -87,7 +88,8 @@ self.hideRc()
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<condition>
-self.condition = config.misc.startwizard.doservicescan.value
+from Components.NimManager import nimmanager
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
 			</condition>
 			<code>
 self.hideRc()
@@ -100,21 +102,24 @@ self.hideRc()
 		</step>
 		<step id="scan" nextstep="finisheddefaultsatlists">
 			<condition>
-self.condition = config.misc.startwizard.doservicescan.value
+from Components.NimManager import nimmanager
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
 			</condition>			
 			<text value="What do you want to scan?" />
 			<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
 		</step>
 		<step id="manualscan">
 			<condition>
-self.condition = config.misc.startwizard.doservicescan.value
+from Components.NimManager import nimmanager
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
 			</condition>
 			<text value="What do you want to scan?" />
 			<config screen="ScanSetup" module="ScanSetup" type="ConfigList" />
 		</step>
 		<step id="nextscan">
 			<condition>
-self.condition = config.misc.startwizard.doservicescan.value
+from Components.NimManager import nimmanager
+self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
 			</condition>
 			<text value="Do you want to do another manual service scan?" />
 			<list>
