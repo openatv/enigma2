@@ -43,9 +43,9 @@ self.selectKey("OK")
 		<code pos="after" async="yes">
 self.currStep = self.getStepWithID('backupresult')
 self.afterAsyncCode()
-		</code>	
+		</code>
 	</step>
-		
+
 	<step id="backupresult" nextstep="upgrade">
 		<condition>
 from Plugins.SystemPlugins.SoftwareManager.ImageWizard import checkBackupFile
@@ -68,7 +68,6 @@ self.condition = (self.backuppath is False)
 		<text value="You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now." />
 		<config screen="RestoreScreen" module="Plugins.SystemPlugins.SoftwareManager.BackupRestore" type="ConfigList" />
 	</step>
-		
 
 	<step id="upgradehow">
 		<text value="The wizard can backup your current settings. Do you want to do a backup now?" />
@@ -77,7 +76,7 @@ self.condition = (self.backuppath is False)
 			<listentry caption="Install a new image with a USB stick" step="upgradeUSB" />
 		</list>
 	</step>
-		
+
 	<step id="upgrade">
 		<text value="You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\nYour dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings." />
 		<list>
@@ -93,8 +92,11 @@ quitMainloop(1)
 		</code>
 		<text value="Your dreambox is shutting down. Please stand by..." />
 	</step>
-		
-	<step id="end">
+
+	<step id="end" laststep="true">
+		<condition>
+self.condition = self.isLastWizard
+		</condition>
 		<text value="The wizard is finished now." />
 	</step>
 </wizard>
