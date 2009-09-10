@@ -976,7 +976,8 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
 	{
 		long tmp;
-		if (!strcmp(it->m_frontend->getDescription(), "BCM4501 (internal)") && !it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp) && tmp != -1)
+		char c;
+		if (sscanf(it->m_frontend->getDescription(), "BCM450%c (internal)", &c) == 1 && !it->m_frontend->getData(eDVBFrontend::LINKED_PREV_PTR, tmp) && tmp != -1)
 		{
 			FILE *f=fopen("/proc/stb/tsmux/lnb_b_input", "w");
 			if (!f || fwrite("B", 1, 1, f) != 1)
@@ -1385,8 +1386,8 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 	if (tu1 != tu2)
 	{
 		eDVBRegisteredFrontend *p1=NULL, *p2=NULL;
-
-		for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin()); it != m_avail_frontends.end(); ++it)
+		eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_frontends.begin());
+		for (; it != m_avail_frontends.end(); ++it)
 		{
 			if (it->m_frontend->getSlotID() == tu1)
 				p1 = *it;
@@ -1395,9 +1396,10 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 		}
 		if (p1 && p2)
 		{
+			char c;
 			p1->m_frontend->setData(eDVBFrontend::LINKED_PREV_PTR, (long)p2);
 			p2->m_frontend->setData(eDVBFrontend::LINKED_NEXT_PTR, (long)p1);
-			if (!strcmp(p1->m_frontend->getDescription(), p2->m_frontend->getDescription()) && !strcmp(p1->m_frontend->getDescription(), "BCM4501 (internal)"))
+			if (!strcmp(p1->m_frontend->getDescription(), p2->m_frontend->getDescription()) && sscanf(p1->m_frontend->getDescription(), "BCM450%c (internal)", &c) == 1)
 			{
 				FILE *f=fopen("/proc/stb/tsmux/lnb_b_input", "w");
 				if (!f || fwrite("A", 1, 1, f) != 1)
@@ -1411,7 +1413,8 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 		}
 
 		p1=p2=NULL;
-		for (eSmartPtrList<eDVBRegisteredFrontend>::iterator it(m_avail_simulate_frontends.begin()); it != m_avail_simulate_frontends.end(); ++it)
+		it=m_avail_simulate_frontends.begin();
+		for (; it != m_avail_simulate_frontends.end(); ++it)
 		{
 			if (it->m_frontend->getSlotID() == tu1)
 				p1 = *it;
