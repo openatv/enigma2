@@ -9,6 +9,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from enigma import ePoint
+from Tools import Notifications
 
 import os
 from twisted.mail import smtp, relaymanager
@@ -339,7 +340,7 @@ def mxServerFound(mxServer,session):
 
 	if len(crashLogFilelist):
 		if config.plugins.crashlogautosubmit.sendmail.value == "send":
-			session.openWithCallback(handleAnswer, ChoiceBox, title=_("Crashlogs found!\nSend them to Dream Multimedia ?"), list = list)
+			Notifications.AddNotificationWithCallback(handleAnswer, ChoiceBox, title=_("Crashlogs found!\nSend them to Dream Multimedia?"), list = list)
 		elif config.plugins.crashlogautosubmit.sendmail.value == "send_always":
 			send_mail()
 	else:
