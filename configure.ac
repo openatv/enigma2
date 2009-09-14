@@ -135,6 +135,7 @@ lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
 lib/python/Plugins/SystemPlugins/SoftwareUpdate/Makefile
 lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
+lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
