@@ -69,14 +69,6 @@
 		<font filename="ae_AlMateen.ttf" name="Replacement" scale="90" replacement="1" />
 		<font filename="tuxtxt.ttf" name="Console" scale="100" />
 	</fonts>
-	<!-- Subtitle effects -->
-	<subtitles>
-		<sub name="Subtitle_TTX" font="Regular;30" shadowColor="#40101010" shadowOffset="3,3" />
-		<sub name="Subtitle_Regular" font="Regular;30" foregroundColor="#DCDCDC" shadowColor="#40101010" shadowOffset="3,3" />
-		<sub name="Subtitle_Bold" font="Replacement;30" foregroundColor="#DCDCDC" shadowColor="#40101010" shadowOffset="3,3" />
-		<sub name="Subtitle_Italic" font="Regular;30" foregroundColor="#DCAAAA" shadowColor="#40101010" shadowOffset="3,3" />
-		<!-- omitting foregroundColor attribute will enable auto-assignment of color -->
-	</subtitles>
 	<!-- Main infobar -->
 	<screen name="InfoBar" flags="wfNoBorder" position="0,380" size="720,160" title="InfoBar" backgroundColor="transparent">
 		<!-- Background -->

@@ -19,11 +19,12 @@ class About:
 					#0120 2005 11 29 01 16
 					#0123 4567 89 01 23 45
 					version = splitted[1]
-					year = version[4:8]
-					month = version[8:10]
-					day = version[10:12]
+					year = version[-13:-9]
+					month = version[-9:-7]
+					day = version[-7:-5]
+					name = version[1:-13]
 
-					return '-'.join(("dev", year, month, day))
+					return '-'.join(([name, year, month, day]))
 			file.close()
 		except IOError:
 			pass

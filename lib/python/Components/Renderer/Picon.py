@@ -3,16 +3,18 @@
 ##
 from Renderer import Renderer
 from enigma import ePixmap
-from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import pathExists, fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 
 class Picon(Renderer):
-	searchPaths = ('/usr/share/enigma2/%s/',
-				'/media/cf/%s/',
-				'/media/usb/%s/')
+	searchPaths = ('/usr/share/enigma2/picon/',
+				'/picon/',
+				'/media/cf/picon/',
+				'/media/usb/picon/')
 
 	def __init__(self):
 		Renderer.__init__(self)
-		self.path = "picon"
+		if pathExists('/media/hdd/picon'):
+			self.searchPaths = self.searchPaths + ('/media/hdd/picon/',)
 		self.nameCache = { }
 		self.pngname = ""
 
@@ -40,6 +42,12 @@ class Picon(Renderer):
 				pngname = self.nameCache.get(sname, "")
 				if pngname == "":
 					pngname = self.findPicon(sname)
+					if pngname == "":
+						fields = sname.split('_')
+						if len(fields) > 2 and fields[2] != '2':
+							#fallback to 1 for tv services with nonstandard servicetypes
+							fields[2] = '1'
+							pngname = self.findPicon('_'.join(fields))
 					if pngname != "":
 						self.nameCache[sname] = pngname
 			if pngname == "": # no picon for service found
@@ -59,7 +67,8 @@ class Picon(Renderer):
 
 	def findPicon(self, serviceName):
 		for path in self.searchPaths:
-			pngname = (path % self.path) + serviceName + ".png"
-			if fileExists(pngname):
-				return pngname
+			if pathExists(path):
+				pngname = path + serviceName + ".png"
+				if fileExists(pngname):
+					return pngname
 		return ""

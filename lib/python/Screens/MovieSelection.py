@@ -24,7 +24,7 @@ from enigma import eServiceReference, eServiceCenter, eTimer, eSize
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
-config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_ORIGINAL)
+config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_COMPACT)
 config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))

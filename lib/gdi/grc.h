@@ -170,6 +170,8 @@ class gRC: public iObject, public Object
 
 	ePtr<gDC> m_spinner_dc;
 	int m_spinner_enabled;
+
+	int m_spinneronoff;
 	
 	void enableSpinner();
 	void disableSpinner();
@@ -185,6 +187,7 @@ public:
 	Signal0<void> notify;
 	
 	void setSpinnerDC(gDC *dc) { m_spinner_dc = dc; }
+	void setSpinnerOnOff(int onoff) { m_spinneronoff = onoff; }
 	
 	static gRC *getInstance();
 };

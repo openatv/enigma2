@@ -2,7 +2,6 @@
 #include <lib/base/filepush.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
-#include <lib/dvb/pmt.h>
 #include <lib/dvb/sec.h>
 #include <lib/dvb/specs.h>
 
@@ -108,8 +107,6 @@ eDVBResourceManager::eDVBResourceManager()
 
 	eDebug("found %d adapter, %d frontends(%d sim) and %d demux, boxtype %d",
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
-
-	eDVBCAService::registerChannelCallback(this);
 
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
@@ -1030,7 +1027,6 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 	}
 #endif
 
-#if 0
 	if (!m_iframe_search)
 		return len;
 
@@ -1112,9 +1108,6 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 		return len;
 	else
 		return 0; /* we need find an iframe first */
-#else
-	return len;
-#endif
 }
 
 DEFINE_REF(eDVBChannel);
@@ -1175,8 +1168,16 @@ void eDVBChannel::frontendStateChanged(iDVBFrontend*fe)
 		}
 	} else if (state == iDVBFrontend::stateFailed)
 	{
-		eDebug("OURSTATE: failed");
 		ourstate = state_failed;
+			/* on managed channels, we do a retry */
+		if (m_current_frontend_parameters)
+		{
+			eDebug("OURSTATE: failed, retune");
+			m_frontend->get().tune(*m_current_frontend_parameters);
+		} else
+		{ /* nothing we can do */
+			eDebug("OURSTATE: failed, fatal");
+		}
 	} else
 		eFatal("state unknown");
 

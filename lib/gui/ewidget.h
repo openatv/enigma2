@@ -32,9 +32,14 @@ public:
 		   widget. eWindow overrides this, for example. */
 	virtual eWidget *child() { return this; }
 
+	eWidget *getParent() { return m_parent; }
+
 	void show();
 	void hide();
-	
+
+	void raise();
+	void lower();
+
 	void destruct();
 	
 	SWIG_VOID(int) getStyle(ePtr<eWindowStyle> &SWIG_NAMED_OUTPUT(style)) { if (!m_style) return 1; style = m_style; return 0; }
@@ -49,7 +54,9 @@ public:
 		/* untested code */
 	int isVisible() { return (m_vis & wVisShow) && ((!m_parent) || m_parent->isVisible()); }
 		/* ... */
-		
+
+	int isLowered() { return (m_lowered > 0); }
+
 	int isTransparent() { return m_vis & wVisTransparent; }
 	
 	ePoint getAbsolutePosition();
@@ -88,6 +95,7 @@ private:
 	eWidget *m_current_focus, *m_focus_owner;
 	
 	int m_z_position;
+	int m_lowered;
 	int m_notify_child_on_position_change;
 protected:
 	void mayKillFocus();

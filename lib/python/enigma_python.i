@@ -50,6 +50,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/gdi/font.h>
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/gfbdc.h>
+#include <lib/gdi/grc.h>
 #include <lib/gui/ewidget.h>
 #include <lib/gui/elabel.h>
 #include <lib/gui/einput.h>
@@ -85,8 +86,10 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/cahandler.h>
 #include <lib/components/scan.h>
 #include <lib/components/file_eraser.h>
+#include <lib/components/tuxtxtapp.h>
 #include <lib/driver/avswitch.h>
 #include <lib/driver/rfmod.h>
 #include <lib/driver/misc_options.h>
@@ -156,6 +159,15 @@ typedef long time_t;
 %immutable eAVSwitch::vcr_sb_notifier;
 %immutable ePythonMessagePump::recv_msg;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
+%immutable iCryptoInfo::clientname;
+%immutable iCryptoInfo::clientinfo;
+%immutable iCryptoInfo::verboseinfo;
+%immutable iCryptoInfo::usedcaid;
+%immutable iCryptoInfo::decodetime;
+%immutable iCryptoInfo::usedcardid;
+%immutable eTuxtxtApp::appClosed;
+%immutable eTuxtxtApp::dataAvail;
+%immutable eTuxtxtApp::dataSent;
 %include <lib/base/message.h>
 %include <lib/base/nconfig.h>
 %include <lib/driver/rc.h>
@@ -199,8 +211,10 @@ typedef long time_t;
 %include <lib/dvb/dvb.h>
 %include <lib/dvb/frontend.h>
 %include <lib/dvb/pmt.h>
+%include <lib/dvb/cahandler.h>
 %include <lib/components/scan.h>
 %include <lib/components/file_eraser.h>
+%include <lib/components/tuxtxtapp.h>
 %include <lib/driver/avswitch.h>
 %include <lib/driver/rfmod.h>
 %include <lib/driver/misc_options.h>
@@ -311,6 +325,32 @@ void setTunerTypePriorityOrder(int order)
 }
 %}
 
+void setPreferredTuner(int);
+%{
+void setPreferredTuner(int index)
+{
+	eDVBFrontend::setPreferredFrontend(index);
+}
+%}
+
+void setSpinnerOnOff(int);
+%{
+void setSpinnerOnOff(int onoff)
+{
+	gRC *rc = gRC::getInstance();
+	if (rc) rc->setSpinnerOnOff(onoff);
+}
+%}
+
+void setEnableTtCachingOnOff(int);
+%{
+void setEnableTtCachingOnOff(int onoff)
+{
+	eTuxtxtApp *tt = eTuxtxtApp::getInstance();
+	if (tt) tt->setEnableTtCachingOnOff(onoff);
+}
+%}
+
 /************** temp *****************/
 
 	/* need a better place for this, i agree. */
@@ -319,12 +359,12 @@ extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 extern int getPrevAsciiCode();
-extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
+extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags);
 extern const char *getEnigmaVersionString();
 extern void dump_malloc_stats(void);
 %}
 
-extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement);
+extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags);
 extern int getPrevAsciiCode();
 extern void runMainloop();
 extern void quitMainloop(int exit_code);

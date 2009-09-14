@@ -1,12 +1,14 @@
 from Screen import Screen
 
-from enigma import eConsoleAppContainer
+from enigma import eConsoleAppContainer, eDVBDB
 
 from Components.ActionMap import ActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.Label import Label
+from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
@@ -17,7 +19,9 @@ from time import time
 class PluginBrowser(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
+		self.firsttime = True
+
 		self["red"] = Label(_("Remove Plugins"))
 		self["green"] = Label(_("Download Plugins"))
 		
@@ -59,7 +63,8 @@ class PluginBrowser(Screen):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
 	
 	def download(self):
-		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD)
+		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
+		self.firsttime = False
 
 	def PluginDownloadBrowserClosed(self):
 		self.updateList()
@@ -71,10 +76,11 @@ class PluginDownloadBrowser(Screen):
 	REMOVE = 1
 	lastDownloadDate = None
 
-	def __init__(self, session, type):
+	def __init__(self, session, type = 0, needupdate = True):
 		Screen.__init__(self, session)
 		
 		self.type = type
+		self.needupdate = needupdate
 		
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
@@ -87,6 +93,8 @@ class PluginDownloadBrowser(Screen):
 		self.pluginlist = []
 		self.expanded = []
 		self.installedplugins = []
+		self.plugins_changed = False
+		self.reload_settings = False
 		
 		if self.type == self.DOWNLOAD:
 			self["text"] = Label(_("Downloading plugin information. Please wait..."))
@@ -100,7 +108,7 @@ class PluginDownloadBrowser(Screen):
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.go,
-			"back": self.close,
+			"back": self.requestClose,
 		})
 		
 	def go(self):
@@ -122,12 +130,52 @@ class PluginDownloadBrowser(Screen):
 			elif self.type == self.REMOVE:
 				self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to REMOVE\nthe plugin \"%s\"?") % sel.name)
 
+	def requestClose(self):
+		if self.plugins_changed:
+			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+		if self.reload_settings:
+			self["text"].setText(_("Reloading bouquets and services..."))
+			eDVBDB.getInstance().reloadBouquets()
+			eDVBDB.getInstance().reloadServicelist()
+		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+		self.container.appClosed.remove(self.runFinished)
+		self.container.dataAvail.remove(self.dataAvail)
+		self.close()
+
+	def installDestinationCallback(self, result):
+		if result is not None:
+			self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + result[1]], closeOnSuccess = True)
+
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
+				if self["list"].l.getCurrentSelection()[0].name[0:7] == "picons-":
+					partitions = harddiskmanager.getMountedPartitions()
+					partitiondict = {}
+					for partition in partitions:
+						partitiondict[partition.mountpoint] = partition
+
+					supported_filesystems = ['ext3', 'ext2', 'reiser', 'reiser4']
+					list = []
+					mountpoint = '/media/cf'
+					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
+						list.append((partitiondict[mountpoint].description, '-d cf', partitiondict[mountpoint]))
+					mountpoint = '/media/usb'
+					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
+						list.append((partitiondict[mountpoint].description, '-d usb', partitiondict[mountpoint]))
+					mountpoint = '/media/hdd'
+					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
+						list.append((partitiondict[mountpoint].description, '-d hdd', partitiondict[mountpoint]))
+					mountpoint = '/'
+					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].free() > 10 * 1024 * 1024:
+						list.append((partitiondict[mountpoint].description, '', partitiondict[mountpoint]))
+
+					if len(list):
+						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list = list)
+					return
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
@@ -144,21 +192,28 @@ class PluginDownloadBrowser(Screen):
 	def startRun(self):
 		self["list"].instance.hide()
 		if self.type == self.DOWNLOAD:
-			if not PluginDownloadBrowser.lastDownloadDate or (time() - PluginDownloadBrowser.lastDownloadDate) > 3600:
+			if self.needupdate and not PluginDownloadBrowser.lastDownloadDate or (time() - PluginDownloadBrowser.lastDownloadDate) > 3600:
 				# Only update from internet once per hour
 				self.container.execute("ipkg update")
 				PluginDownloadBrowser.lastDownloadDate = time()
 			else:
+				self.run = 1
 				self.startIpkgListAvailable()
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startIpkgListInstalled()
 
 	def installFinished(self):
-		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
-		self.container.appClosed.remove(self.runFinished)
-		self.container.dataAvail.remove(self.dataAvail)
-		self.close()
+		for plugin in self.pluginlist:
+			if plugin[3] == self["list"].l.getCurrentSelection()[0].name:
+				self.pluginlist.remove(plugin)
+				break
+		self.plugins_changed = True
+		if self["list"].l.getCurrentSelection()[0].name[0:9] == "settings-":
+			self.reload_settings = True
+		self.expanded = []
+		self.updateList()
+		self["list"].moveToIndex(0)
 
 	def runFinished(self, retval):
 		self.remainingdata = ""

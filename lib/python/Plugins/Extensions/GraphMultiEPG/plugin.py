@@ -73,12 +73,12 @@ def changeBouquetCB(direction, epg):
 			epg_bouquet = bouquet
 			epg.setServices(services)
 
-def main(session, servicelist, **kwargs):
+def main(session, servicelist = None, **kwargs):
 	global Session
 	Session = session
 	global Servicelist
 	Servicelist = servicelist
-	bouquets = Servicelist.getBouquetList()
+	bouquets = Servicelist and Servicelist.getBouquetList()
 	if bouquets is None:
 		cnt = 0
 	else:

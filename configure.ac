@@ -8,6 +8,13 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_RANLIB
 
+AC_ARG_WITH(boxtype,
+	[  --with-boxtype=NAME box type [[none,dm7025,dm800...]]],
+	[BOXTYPE="$withval"],[BOXTYPE="dm800"])
+
+AC_SUBST(BOXTYPE)
+AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
+
 AC_ARG_WITH(libsdl,
 	AC_HELP_STRING([--with-libsdl], [use sdl, yes or no]),
 	[[withsdl=$withval]],
@@ -78,6 +85,16 @@ CPPFLAGS="$CPPFLAGS "'-I$(top_srcdir)'
 CPPFLAGS="$CPPFLAGS -D_REENTRANT $PYTHON_CPPFLAGS $MD5SUM_CFLAGS $FREETYPE_CFLAGS $FRIBIDI_CFLAGS $ID3TAG_CFLAGS $MAD_CFLAGS $PLUGINS_CFLAGS $PNG_CFLAGS $SDL_CFLAGS $SIGC_CFLAGS $XMLTREE_CFLAGS $DVBSI_CFLAGS $GSTREAMER_CFLAGS $GSTREAMERPBUTILS_CFLAGS $LIBXINE_CFLAGS $LIBUNGIF_CFLAGS"
 #CPPFLAGS="$CPPFLAGS -DMEMLEAK_CHECK"
 CXXFLAGS="$CXXFLAGS -fno-rtti -fno-exceptions -Wall"
+
+#if test "$GCC" = "yes"
+#then
+#        gccmajor=`$CC -dumpversion | head -n 1 | awk '{print $NF;}' | cut -d. -f1`
+#        if test "$gccmajor" -gt "3"
+#        then
+#                CXXFLAGS="$CXXFLAGS -fvisibility=hidden -fvisibility-inlines-hidden -fno-threadsafe-statics"
+#        fi
+#fi
+
 LDFLAGS="$LDFLAGS -pthread $PYTHON_LDFLAGS $SDL_LDFLAGS $GSTREAMER_LDFLAGS $GSTREAMERPBUTILS_LDFLAGS $LIBXINE_LDFLAGS $LIBUNGIF_LDFLAGS"
 #LDFLAGS="-rdynamic $LDFLAGS"
 
@@ -108,6 +125,7 @@ lib/gdi/Makefile
 lib/gui/Makefile
 lib/mmi/Makefile
 lib/nav/Makefile
+lib/network/Makefile
 lib/python/Makefile
 lib/python/Components/Makefile
 lib/python/Components/Converter/Makefile
@@ -115,6 +133,8 @@ lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile
 lib/python/Screens/Makefile
 lib/python/Plugins/Makefile
+lib/python/Plugins/SystemPlugins/SoftwareUpdate/Makefile
+lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile
 lib/python/Plugins/Extensions/CutListEditor/Makefile

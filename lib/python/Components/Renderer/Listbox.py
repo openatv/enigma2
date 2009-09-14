@@ -17,7 +17,7 @@ class Listbox(Renderer, object):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__content = None
-		self.__wrap_around = False
+		self.__wrap_around = True
 		self.__selection_enabled = True
 
 	GUI_WIDGET = eListbox

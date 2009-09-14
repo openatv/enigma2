@@ -40,7 +40,8 @@ class Standby(Screen):
 
 		self["actions"] = ActionMap( [ "StandbyActions" ],
 		{
-			"power": self.Power
+			"power": self.Power,
+			"discrete_on": self.Power
 		}, -1)
 
 		#mute adc

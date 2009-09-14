@@ -84,6 +84,10 @@ public:
 		markedBackground,
 		markedBackgroundSelected,
 		serviceNotAvail,
+		eventForeground,
+		eventForegroundSelected,
+		eventborderForeground,
+		eventborderForegroundSelected,
 		colorElements
 	};
 	
@@ -95,6 +99,7 @@ protected:
 	int cursorValid();
 	int cursorSet(int n);
 	int cursorGet();
+	int currentCursorSelectable();
 
 	void cursorSave();
 	void cursorRestore();

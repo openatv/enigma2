@@ -23,7 +23,7 @@ class HarddiskWait(Screen):
 		self.hdd = hdd
 		self.timer = eTimer()
 		if type == HarddiskSetup.HARDDISK_INITIALIZE:
-			text = _("Initializing Harddisk...")
+			text = _("Initializing storage device...")
 			self.timer.callback.append(self.doInit)
 		else:
 			text = _("Checking Filesystem...")
@@ -70,7 +70,7 @@ class HarddiskSetup(Screen):
 		print "Result: " + str(result)
 		if (result != 0):
 			if self.type == self.HARDDISK_INITIALIZE:
-				message = _("Unable to initialize harddisk.\nError: ")
+				message = _("Unable to initialize device.\nError: ")
 			else:
 				message = _("Unable to complete filesystem check.\nError: ")
 			self.session.open(MessageBox, message + str(self.hdd.errorList[0 - result]), MessageBox.TYPE_ERROR)
@@ -79,7 +79,7 @@ class HarddiskSetup(Screen):
 
 	def hddQuestion(self):
 		if self.type == self.HARDDISK_INITIALIZE:
-			message = _("Do you really want to initialize the harddisk?\nAll data on the disk will be lost!")
+			message = _("Do you really want to initialize the device?\nAll data on the disk will be lost!")
 		else:
 			message = _("Do you really want to check the filesystem?\nThis could take lots of time!")
 		self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
@@ -97,7 +97,7 @@ class HarddiskSelection(Screen):
 		
 		if harddiskmanager.HDDCount() == 0:
 			tlist = []
-			tlist.append((_("no HDD found"), 0))
+			tlist.append((_("no storage devices found"), 0))
 			self["hddlist"] = MenuList(tlist)
 		else:			
 			self["hddlist"] = MenuList(harddiskmanager.HDDList())

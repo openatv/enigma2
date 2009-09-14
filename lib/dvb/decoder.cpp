@@ -1,6 +1,7 @@
 #include <lib/base/ebase.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/decoder.h>
+#include <lib/components/tuxtxtapp.h>
 #if HAVE_DVB_API_VERSION < 3 
 #define audioStatus audio_status
 #define videoStatus video_status
@@ -961,7 +962,11 @@ int eTSMPEGDecoder::setState()
 	if (m_changed & changeText)
 	{
 		if (m_text)
+		{
 			m_text->stop();
+			if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+				eTuxtxtApp::getInstance()->stopCaching();
+		}
 		m_text = 0;
 	}
 	if (m_changed & changePCR)
@@ -1002,7 +1007,17 @@ int eTSMPEGDecoder::setState()
 			m_text = new eDVBTText(m_demux, m_decoder);
 			if (m_text->startPid(m_textpid))
 				res = -1;
+
+			if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+			{
+				uint8_t demux = 0;
+				m_demux->getCADemuxID(demux);
+				eTuxtxtApp::getInstance()->startCaching(m_textpid, demux);
+			}
 		}
+		else if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+			eTuxtxtApp::getInstance()->resetPid();
+
 		m_changed &= ~changeText;
 	}
 #endif
@@ -1045,8 +1060,8 @@ int eTSMPEGDecoder::setState()
 	return res;
 }
 
-int eTSMPEGDecoder::m_pcm_delay=-1,
-	eTSMPEGDecoder::m_ac3_delay=-1;
+int eTSMPEGDecoder::m_pcm_delay=0,
+	eTSMPEGDecoder::m_ac3_delay=0;
 
 RESULT eTSMPEGDecoder::setPCMDelay(int delay)
 {
@@ -1088,10 +1103,16 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event_conn);
 	CONNECT(m_showSinglePicTimer->timeout, eTSMPEGDecoder::finishShowSinglePic);
 	m_state = stateStop;
+	
+	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+		eTuxtxtApp::getInstance()->initCache();
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
 {
+	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
+		eTuxtxtApp::getInstance()->freeCache();
+
 	finishShowSinglePic();
 	m_vpid = m_apid = m_pcrpid = m_textpid = pidNone;
 	m_changed = -1;

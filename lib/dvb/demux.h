@@ -24,6 +24,7 @@ public:
 	RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader, int primary);
 	RESULT getSTC(pts_t &pts, int num);
 	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
+	RESULT getCAAdapterID(uint8_t &id) { id = adapter; return 0; }
 	RESULT flush();
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
 	

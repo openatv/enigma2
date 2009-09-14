@@ -127,38 +127,51 @@ class CableTransponderSearchSupport:
 		self.cable_search_session.close(True)
 
 	def getCableTransponderData(self, str):
-		data = str.split()
-		if len(data):
-			if data[0] == 'OK':
-				print str
-				parm = eDVBFrontendParametersCable()
-				qam = { "QAM16" : parm.Modulation_QAM16,
-					"QAM32" : parm.Modulation_QAM32,
-					"QAM64" : parm.Modulation_QAM64,
-					"QAM128" : parm.Modulation_QAM128,
-					"QAM256" : parm.Modulation_QAM256 }
-				inv = { "INVERSION_OFF" : parm.Inversion_Off,
-					"INVERSION_ON" : parm.Inversion_On }
-				fec = { "FEC_AUTO" : parm.FEC_Auto,
-					"FEC_1_2" : parm.FEC_1_2,
-					"FEC_2_3" : parm.FEC_2_3,
-					"FEC_3_4" : parm.FEC_3_4,
-					"FEC_5_6": parm.FEC_5_6,
-					"FEC_7_8" : parm.FEC_7_8,
-					"FEC_8_9" : parm.FEC_8_9,
-					"FEC_NONE" : parm.FEC_None }
-				parm.frequency = int(data[1])
-				parm.symbol_rate = int(data[2])
-				parm.fec_inner = fec[data[3]]
-				parm.modulation = qam[data[4]]
-				parm.inversion = inv[data[5]]
-				self.__tlist.append(parm)
-		tmpstr = _("Try to find used Transponders in cable network.. please wait...")
-		tmpstr += "\n\n"
-		tmpstr += data[1]
-		tmpstr += " kHz "
-		tmpstr += data[0]
-		self.cable_search_session["text"].setText(tmpstr)
+		#prepend any remaining data from the previous call
+		str = self.remainingdata + str
+		#split in lines
+		lines = str.split('\n')
+		#'str' should end with '\n', so when splitting, the last line should be empty. If this is not the case, we received an incomplete line
+		if len(lines[-1]):
+			#remember this data for next time
+			self.remainingdata = lines[-1]
+			lines = lines[0:-1]
+		else:
+			self.remainingdata = ""
+
+		for line in lines:
+			data = line.split()
+			if len(data):
+				if data[0] == 'OK':
+					print str
+					parm = eDVBFrontendParametersCable()
+					qam = { "QAM16" : parm.Modulation_QAM16,
+						"QAM32" : parm.Modulation_QAM32,
+						"QAM64" : parm.Modulation_QAM64,
+						"QAM128" : parm.Modulation_QAM128,
+						"QAM256" : parm.Modulation_QAM256 }
+					inv = { "INVERSION_OFF" : parm.Inversion_Off,
+						"INVERSION_ON" : parm.Inversion_On }
+					fec = { "FEC_AUTO" : parm.FEC_Auto,
+						"FEC_1_2" : parm.FEC_1_2,
+						"FEC_2_3" : parm.FEC_2_3,
+						"FEC_3_4" : parm.FEC_3_4,
+						"FEC_5_6": parm.FEC_5_6,
+						"FEC_7_8" : parm.FEC_7_8,
+						"FEC_8_9" : parm.FEC_8_9,
+						"FEC_NONE" : parm.FEC_None }
+					parm.frequency = int(data[1])
+					parm.symbol_rate = int(data[2])
+					parm.fec_inner = fec[data[3]]
+					parm.modulation = qam[data[4]]
+					parm.inversion = inv[data[5]]
+					self.__tlist.append(parm)
+				tmpstr = _("Try to find used Transponders in cable network.. please wait...")
+				tmpstr += "\n\n"
+				tmpstr += data[1]
+				tmpstr += " kHz "
+				tmpstr += data[0]
+				self.cable_search_session["text"].setText(tmpstr)
 
 	def startCableTransponderSearch(self, nim_idx):
 		if not self.tryGetRawFrontend(nim_idx):
@@ -171,6 +184,7 @@ class CableTransponderSearchSupport:
 					self.cableTransponderSearchFinished()
 					return
 		self.__tlist = [ ]
+		self.remainingdata = ""
 		self.cable_search_container = eConsoleAppContainer()
 		self.cable_search_container.appClosed.append(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.append(self.getCableTransponderData)
@@ -273,6 +287,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.updateSatList()
 		self.service = session.nav.getCurrentService()
 		self.feinfo = None
+		self.networkid = 0
 		frontendData = None
 		if self.service is not None:
 			self.feinfo = self.service.frontendInfo()
@@ -383,6 +398,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.list.append(getConfigListEntry(_("Symbol Rate"), self.scan_cab.symbolrate))
 				self.list.append(getConfigListEntry(_("Modulation"), self.scan_cab.modulation))
 				self.list.append(getConfigListEntry(_("FEC"), self.scan_cab.fec))
+			if config.Nims[index_to_scan].cable.scan_networkid.value:
+				self.networkid = config.Nims[index_to_scan].cable.scan_networkid.value
+				self.scan_networkScan.value = True
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.value == "single_transponder":
 				self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
@@ -809,7 +827,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 			x[1].save()
 
 		if startScan:
-			self.startScan(tlist, flags, index_to_scan)
+			self.startScan(tlist, flags, index_to_scan, self.networkid)
 		else:
 			self.flags = flags
 			self.feid = index_to_scan
@@ -820,15 +838,15 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.tlist = tlist
 
 	def cableTransponderSearchFinished(self):
-		self.startScan(self.tlist, self.flags, self.feid)
+		self.startScan(self.tlist, self.flags, self.feid, self.networkid)
 
-	def startScan(self, tlist, flags, feid):
+	def startScan(self, tlist, flags, feid, networkid = 0):
 		if len(tlist):
 			# flags |= eComponentScan.scanSearchBAT
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
+				self.session.openWithCallback(self.finished_cb, ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 			else:
-				self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
+				self.session.open(ServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 		else:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
@@ -930,6 +948,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				flags = 0
 				nim = nimmanager.nim_slots[n.nim_index]
 				networks = set(self.getNetworksForNim(nim))
+				networkid = 0
 
 				# don't scan anything twice
 				networks.discard(self.known_networks)
@@ -944,6 +963,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 						getInitialCableTransponderList(tlist, nim.slot)
 					else:
 						action = SEARCH_CABLE_TRANSPONDERS
+						networkid = config.Nims[nim.slot].cable.scan_networkid.value
 				elif nim.isCompatible("DVB-T"):
 					getInitialTerrestrialTransponderList(tlist, nimmanager.getTerrestrialDescription(nim.slot))
 				else:
@@ -962,6 +982,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				elif action == SEARCH_CABLE_TRANSPONDERS:
 					self.flags = flags
 					self.feid = nim.slot
+					self.networkid = networkid
 					self.startCableTransponderSearch(nim.slot)
 					return
 				else:
@@ -986,7 +1007,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def setCableTransponderSearchResult(self, tlist):
-		self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags})
+		self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags, "networkid": self.networkid})
 
 	def cableTransponderSearchFinished(self):
 		self.buildTransponderList()

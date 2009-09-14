@@ -90,6 +90,7 @@ class eDVBScan: public Object, public iObject
 	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt);
 	
 	int m_flags;
+	int m_networkid;
 	bool m_usePAT;
 	bool m_scan_debug;
 public:
@@ -102,7 +103,7 @@ public:
 		scanDontRemoveUnscanned = 16,
 		clearToScanOnFirstNIT = 32, scanOnlyFree = 64 };
 
-	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags);
+	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags, int networkid = 0);
 
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);

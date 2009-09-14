@@ -103,7 +103,7 @@ int main()
 
 	ePtr<gFont> fnt = new gFont("Regular", 70);
 	p.setFont(fnt);
-	p.renderText(eRect(100, 100, 500, 200), "Hello welt!");
+	p.renderText(eRect(100, 100, 500, 200), "Hello World!");
 	
 	sleep(1);
 	return 0;

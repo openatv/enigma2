@@ -16,6 +16,17 @@ void eSlider::setPixmap(gPixmap *pixmap)
 	event(evtChangedSlider);
 }
 
+void eSlider::setBackgroundPixmap(ePtr<gPixmap> &pixmap)
+{
+	setBackgroundPixmap(pixmap.operator->());
+}
+
+void eSlider::setBackgroundPixmap(gPixmap *pixmap)
+{
+	m_backgroundpixmap = pixmap;
+	invalidate();
+}
+
 void eSlider::setBorderWidth(int pixel)
 {
 	m_border_width=pixel;
@@ -45,7 +56,12 @@ int eSlider::event(int event, void *data, void *data2)
 		gPainter &painter = *(gPainter*)data2;
 
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
-		
+
+		if (m_backgroundpixmap)
+		{
+			painter.blit(m_backgroundpixmap, ePoint(0, 0), eRect(), isTransparent() ? gPainter::BT_ALPHATEST : 0);
+		}
+
 		if (!m_pixmap)
 			painter.fill(m_currently_filled);
 		else

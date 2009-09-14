@@ -381,8 +381,9 @@ int eListboxServiceContent::cursorMove(int count)
 			}
 			++m_cursor_number;
 			--count;
+		}
 	}
-	} else if (count < 0)
+	else if (count < 0)
 	{
 		while (count && m_cursor != m_list.begin())
 		{
@@ -415,6 +416,17 @@ int eListboxServiceContent::cursorSet(int n)
 int eListboxServiceContent::cursorGet()
 {
 	return m_cursor_number;
+}
+
+int eListboxServiceContent::currentCursorSelectable()
+{
+	if (cursorValid())
+	{
+		/* don't allow markers to be selected, unless we're in edit mode (because we want to provide some method to the user to remove a marker) */
+		if (m_cursor->flags & eServiceReference::isMarker && m_marked.empty()) return 0;
+		return 1;
+	}
+	return 0;
 }
 
 void eListboxServiceContent::cursorSave()
@@ -556,7 +568,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 				case celServiceNumber:
 				{
-					if (m_cursor->flags & eServiceReference::isMarker)
+					if (m_cursor->flags & eServiceReference::isMarker && !(m_cursor->flags & eServiceReference::isNumberedMarker))
 						continue;
 					char bla[10];
 				/* how we can do this better? :) */
@@ -566,7 +578,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						while(tmp != m_list.begin())
 						{
 							--tmp;
-							if (tmp->flags & eServiceReference::isMarker)
+							if (tmp->flags & eServiceReference::isMarker && !(tmp->flags & eServiceReference::isNumberedMarker))
 								++markers_before;
 						}
 					}
@@ -589,7 +601,14 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						std::string name = evt->getEventName();
 						if (!name.length())
 							continue;
-						text = '(' + evt->getEventName() + ')';
+						text = evt->getEventName();
+						if (!selected && m_color_set[eventForeground])
+							painter.setForegroundColor(m_color[eventForeground]);
+						else if (selected && m_color_set[eventForegroundSelected])
+							painter.setForegroundColor(m_color[eventForegroundSelected]);
+						else
+							painter.setForegroundColor(gRGB(0xe7b53f));
+						
 					}
 					else
 						continue;
@@ -604,14 +623,16 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				para->setFont(m_element_font[e]);
 				para->renderString(text.c_str());
 
+#define PB_BorderWidth 2
+#define PB_Width 50
+#define PB_Height 6
 				if (e == celServiceName)
 				{
 					eRect bbox = para->getBoundBox();
-					int name_width = bbox.width()+8;
-					m_element_position[celServiceInfo].setLeft(area.left()+name_width);
-					m_element_position[celServiceInfo].setTop(area.top());
-					m_element_position[celServiceInfo].setWidth(area.width()-name_width);
-					m_element_position[celServiceInfo].setHeight(area.height());
+					int name_width = bbox.width() + 8;
+					m_element_position[celServiceInfo] = area;
+					m_element_position[celServiceInfo].setLeft(area.left() + name_width);
+					m_element_position[celServiceInfo].setRight(m_itemsize.width() - PB_Width - 2*PB_BorderWidth - 4);
 				}
 
 				if (flags & gPainter::RT_HALIGN_RIGHT)
@@ -629,6 +650,32 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				}
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
+				if (e == celServiceInfo)
+				{
+					// show a event progressbar for this service at the right end the screen
+					ePtr<eServiceEvent> evt;
+					if ( isPlayable && service_info && !service_info->getEvent(*m_cursor, evt) )
+					{
+						time_t now = time(0);
+						int evt_done = PB_Width * (now - evt->getBeginTime()) / evt->getDuration();
+						int pb_xpos = offset.x() + m_itemsize.width() - PB_Width - 2*PB_BorderWidth;
+						int pb_ypos = offset.y() + (m_itemsize.height() - PB_Height - 2*PB_BorderWidth) / 2;
+
+						// the progress data...
+						painter.fill(eRect(pb_xpos + PB_BorderWidth, pb_ypos + PB_BorderWidth, evt_done,          PB_Height));
+						// the progressbar border
+						if (!selected && m_color_set[eventborderForeground])
+							painter.setForegroundColor(m_color[eventborderForeground]);
+						else if (selected && m_color_set[eventborderForegroundSelected])
+							painter.setForegroundColor(m_color[eventborderForegroundSelected]);
+						else
+							painter.setForegroundColor(gRGB(0xdfdfdf));
+						painter.fill(eRect(pb_xpos, pb_ypos,                              PB_Width + 2 * PB_BorderWidth,  PB_BorderWidth));
+						painter.fill(eRect(pb_xpos, pb_ypos + PB_BorderWidth + PB_Height, PB_Width + 2 * PB_BorderWidth,  PB_BorderWidth));
+						painter.fill(eRect(pb_xpos,                             pb_ypos + PB_BorderWidth, PB_BorderWidth,  PB_Height));
+						painter.fill(eRect(pb_xpos + PB_BorderWidth + PB_Width, pb_ypos + PB_BorderWidth, PB_BorderWidth,  PB_Height));
+					}
+				}
 			}
 			else if (e == celServiceTypePixmap || e == celFolderPixmap || e == celMarkerPixmap)
 			{

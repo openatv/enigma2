@@ -475,7 +475,7 @@ void eDVBServiceRecord::recordEvent(int event)
 	}
 }
 
-void eDVBServiceRecord::gotNewEvent()
+void eDVBServiceRecord::gotNewEvent(int /*error*/)
 {
 	ePtr<eServiceEvent> event_now;
 	m_event_handler.getEvent(event_now, 0);

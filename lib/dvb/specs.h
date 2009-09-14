@@ -38,7 +38,7 @@ public:
 	{
 		m_spec.pid     = ServiceDescriptionSection::PID;
 		m_spec.tid     = ServiceDescriptionSection::TID;
-		m_spec.timeout = 20000; // ServiceDescriptionSection::TIMEOUT;
+		m_spec.timeout = 45000; // ServiceDescriptionSection::TIMEOUT;
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
@@ -70,7 +70,7 @@ struct eDVBNITSpec
 {
 	eDVBTableSpec m_spec;
 public:
-	eDVBNITSpec()
+	eDVBNITSpec(int networkid = 0)
 	{
 		m_spec.pid     = NetworkInformationSection::PID;
 		m_spec.tid     = NetworkInformationSection::TID;
@@ -78,6 +78,14 @@ public:
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
+		if (networkid)
+		{
+			m_spec.flags |= eDVBTableSpec::tfHaveTIDMask;
+			m_spec.tid_mask = 0xFE; /* not only 'actual', check 'other' as well (as we're looking for a non-standard network id) */
+			m_spec.flags |= eDVBTableSpec::tfHaveTIDExt | eDVBTableSpec::tfHaveTIDExtMask;
+			m_spec.tidext = networkid;
+			m_spec.tidext_mask = 0xFFFF;
+		}
 	}
 	operator eDVBTableSpec &()
 	{

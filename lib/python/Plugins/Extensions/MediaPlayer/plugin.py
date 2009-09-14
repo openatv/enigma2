@@ -478,8 +478,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 				self.copyFile()
 
 		if self.currList == "playlist":
-			selection = self["playlist"].getSelection()
-			self.changeEntry(self.playlist.getSelectionIndex())
+			if self.playlist.getCurrentIndex() == self.playlist.getSelectionIndex():
+				self.hide()
+			else:
+				self.changeEntry(self.playlist.getSelectionIndex())
 
 	def showMenu(self):
 		menu = []

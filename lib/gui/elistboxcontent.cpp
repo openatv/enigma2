@@ -137,10 +137,10 @@ void eListboxPythonStringContent::setSize(const eSize &size)
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Regular", 20);
+	ePtr<gFont> fnt;
 	painter.clip(eRect(offset, m_itemsize));
 	style.setStyle(painter, selected ? eWindowStyle::styleListboxSelected : eWindowStyle::styleListboxNormal);
-
+	bool validitem = (m_list && cursorValid());
 	eListboxStyle *local_style = 0;
 	bool cursorValid = this->cursorValid();
 
@@ -150,6 +150,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	if (local_style)
 	{
+		fnt = local_style->m_font;
 		if (selected)
 		{
 			/* if we have a local background color set, use that. */
@@ -169,24 +170,29 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				painter.setForegroundColor(local_style->m_foreground_color);
 		}
 	}
+	if (!fnt) fnt = new gFont("Regular", 20);
 
 	/* if we have no transparent background */
 	if (!local_style || !local_style->m_transparent_background)
 	{
 			/* blit background picture, if available (otherwise, clear only) */
 		if (local_style && local_style->m_background && cursorValid)
-			painter.blit(local_style->m_background, offset, eRect(), 0);
+		{
+			if (validitem) painter.blit(local_style->m_background, offset, eRect(), 0);
+		}
 		else
 			painter.clear();
 	} else
 	{
 		if (local_style->m_background && cursorValid)
-			painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+		{
+			if (validitem) painter.blit(local_style->m_background, offset, eRect(), gPainter::BT_ALPHATEST);
+		}
 		else if (selected && !local_style->m_selection)
 			painter.clear();
 	}
 
-	if (m_list && cursorValid)
+	if (validitem)
 	{
 		int gray = 0;
 		ePyObject item = PyList_GET_ITEM(m_list, m_cursor); // borrowed reference!
@@ -211,10 +217,33 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		} else
 		{
 			const char *string = PyString_Check(item) ? PyString_AsString(item) : "<not-a-string>";
-			ePoint text_offset = offset + (selected ? ePoint(2, 2) : ePoint(1, 1));
+			ePoint text_offset = offset;
 			if (gray)
 				painter.setForegroundColor(gRGB(0x808080));
-			painter.renderText(eRect(text_offset, m_itemsize), string);
+
+			int flags = 0;
+			if (local_style)
+			{
+				text_offset += local_style->m_text_offset;
+
+				if (local_style->m_valign == eListboxStyle::alignTop)
+					flags |= gPainter::RT_VALIGN_TOP;
+				else if (local_style->m_valign == eListboxStyle::alignCenter)
+					flags |= gPainter::RT_VALIGN_CENTER;
+				else if (local_style->m_valign == eListboxStyle::alignBottom)
+					flags |= gPainter::RT_VALIGN_BOTTOM;
+
+				if (local_style->m_halign == eListboxStyle::alignLeft)
+					flags |= gPainter::RT_HALIGN_LEFT;
+				else if (local_style->m_halign == eListboxStyle::alignCenter)
+					flags |= gPainter::RT_HALIGN_CENTER;
+				else if (local_style->m_halign == eListboxStyle::alignRight)
+					flags |= gPainter::RT_HALIGN_RIGHT;
+				else if (local_style->m_halign == eListboxStyle::alignBlock)
+					flags |= gPainter::RT_HALIGN_BLOCK;
+			}
+
+			painter.renderText(eRect(text_offset, m_itemsize), string, flags);
 		}
 
 		if (selected && (!local_style || !local_style->m_selection))
@@ -272,8 +301,8 @@ void eListboxPythonStringContent::invalidate()
 
 void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
 {
-	ePtr<gFont> fnt = new gFont("Regular", 20);
-	ePtr<gFont> fnt2 = new gFont("Regular", 16);
+	ePtr<gFont> fnt;
+	ePtr<gFont> fnt2;
 	eRect itemrect(offset, m_itemsize);
 	eListboxStyle *local_style = 0;
 	bool cursorValid = this->cursorValid();
@@ -287,6 +316,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 	if (local_style)
 	{
+		fnt = local_style->m_font;
 		if (selected)
 		{
 			/* if we have a local background color set, use that. */
@@ -305,6 +335,16 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			if (local_style->m_foreground_color_set)
 				painter.setForegroundColor(local_style->m_foreground_color);
 		}
+	}
+
+	if (fnt)
+	{
+		fnt2 = new gFont(fnt->family, fnt->pointSize - fnt->pointSize/5);
+	}
+	else
+	{
+		fnt = new gFont("Regular", 20);
+		fnt2 = new gFont("Regular", 16);
 	}
 
 	if (!local_style || !local_style->m_transparent_background)
@@ -346,9 +386,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			text = PyTuple_GET_ITEM(item, 0);
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
-			eSize item_left = eSize(m_seperation, m_itemsize.height());
-			eSize item_right = eSize(m_itemsize.width() - m_seperation, m_itemsize.height());
-			painter.renderText(eRect(offset, item_left), string, gPainter::RT_HALIGN_LEFT);
+			painter.renderText(eRect(offset, m_itemsize), string, gPainter::RT_HALIGN_LEFT);
 			Py_XDECREF(text);
 
 				/* when we have no label, align value to the left. (FIXME:
@@ -386,10 +424,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *value = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
 						painter.setFont(fnt2);
-						if (value_alignment_left)
-							painter.renderText(eRect(offset, item_right), value, gPainter::RT_HALIGN_LEFT);
-						else
-							painter.renderText(eRect(offset + eSize(m_seperation, 0), item_right), value, gPainter::RT_HALIGN_RIGHT);
+						painter.renderText(eRect(offset, m_itemsize), value, value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT);
 
 							/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
@@ -402,8 +437,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int size = (pvalue && PyInt_Check(psize)) ? PyInt_AsLong(psize) : 100;
 
 							/* calc. slider length */
-						int width = item_right.width() * value / size;
-						int height = item_right.height();
+						int width = (m_itemsize.width() - m_seperation) * value / size;
+						int height = m_itemsize.height();
 
 
 							/* draw slider */
@@ -416,8 +451,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					{
 						ePyObject pvalue = PyTuple_GET_ITEM(value, 1);
 						const char *text = (pvalue && PyString_Check(pvalue)) ? PyString_AsString(pvalue) : "<not-a-string>";
-						int xoffs = value_alignment_left ? 0 : m_seperation;
-						ePtr<eTextPara> para = new eTextPara(eRect(offset + eSize(xoffs, 0), item_right));
+						ePtr<eTextPara> para = new eTextPara(eRect(offset, m_itemsize));
 						para->setFont(fnt2);
 						para->renderString(text, 0);
 						para->realign(value_alignment_left ? eTextPara::dirLeft : eTextPara::dirRight);

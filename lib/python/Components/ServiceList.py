@@ -62,6 +62,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
 				elif attrib == "foregroundColorServiceNotAvail":
 					self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+				elif attrib == "foregroundColorEvent":
+					self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
+				elif attrib == "foregroundColorEventSelected":
+					self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
+				elif attrib == "foregroundColorEventborder":
+					self.l.setColor(eListboxServiceContent.eventborderForeground, parseColor(value))
+				elif attrib == "foregroundColorEventborderSelected":
+					self.l.setColor(eListboxServiceContent.eventborderForegroundSelected, parseColor(value))
 				elif attrib == "serviceItemHeight":
 					self.ItemHeight = int(value)
 				elif attrib == "serviceNameFont":
@@ -213,17 +221,13 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setMode(self, mode):
 		self.mode = mode
+		self.l.setItemHeight(self.ItemHeight)
+		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
+		self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
+		self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		if mode == self.MODE_NORMAL:
-			self.l.setItemHeight(self.ItemHeight)
-			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
-			self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 			self.l.setElementPosition(self.l.celServiceName, eRect(0, 0, self.instance.size().width(), self.ItemHeight))
-			self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		else:
-			self.l.setItemHeight(self.ItemHeight)
-			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
 			self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 			self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, 50, self.ItemHeight))
-			self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 			self.l.setElementPosition(self.l.celServiceName, eRect(60, 0, self.instance.size().width()-60, self.ItemHeight))
-			self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)

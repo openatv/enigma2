@@ -84,7 +84,7 @@ void eComponentScan::addInitial(const eDVBFrontendParametersTerrestrial &p)
 }
 
 
-int eComponentScan::start(int feid, int flags)
+int eComponentScan::start(int feid, int flags, int networkid)
 {
 	if (m_initial.empty())
 		return -2;
@@ -146,7 +146,7 @@ int eComponentScan::start(int feid, int flags)
 			}
 		}
 	}
-	m_scan->start(m_initial, flags);
+	m_scan->start(m_initial, flags, networkid);
 
 	return 0;
 }

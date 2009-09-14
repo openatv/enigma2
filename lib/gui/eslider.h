@@ -16,6 +16,8 @@ public:
 	void setBorderColor(const gRGB &color);
 	void setPixmap(gPixmap *pixmap);
 	void setPixmap(ePtr<gPixmap> &pixmap);
+	void setBackgroundPixmap(gPixmap *pixmap);
+	void setBackgroundPixmap(ePtr<gPixmap> &pixmap);
 protected:
 	int event(int event, void *data=0, void *data2=0);
 private:
@@ -25,7 +27,7 @@ private:
 	};
 	bool m_have_border_color;
 	int m_min, m_max, m_value, m_start, m_orientation, m_orientation_swapped, m_border_width;
-	ePtr<gPixmap> m_pixmap;
+	ePtr<gPixmap> m_pixmap, m_backgroundpixmap;
 	
 	gRegion m_currently_filled;
 	gRGB m_border_color;

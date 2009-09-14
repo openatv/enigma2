@@ -43,6 +43,9 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/nav/libenigma_nav.a \
 	$(top_builddir)/lib/service/libenigma_service.a
 
+#PLi change:
+enigma2_LDADD_WHOLE += $(top_builddir)/lib/network/libenigma_network.a
+
 enigma2_LDADD = \
 	@FREETYPE_LIBS@ \
 	@ID3TAG_LIBS@ \
@@ -58,7 +61,7 @@ enigma2_LDADD = \
 	@LIBUNGIF_LIBS@ \
 	@XML2_LIBS@ \
 	@XMLCCWRAP_LIBS@ \
-	-ldl -lpthread -lcrypt -lresolv -lrt
+	-ldl -lpthread -lcrypt -lresolv -lrt -ltuxtxt32bpp
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 #	@rm -f enigma2$(EXEEXT)

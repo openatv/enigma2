@@ -30,6 +30,8 @@ def parseEvent(ev, description = True):
 	if description:
 		name = ev.getEventName()
 		description = ev.getShortDescription()
+		if description == "":
+			description = ev.getExtendedDescription()
 	else:
 		name = ""
 		description = ""
@@ -173,6 +175,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					self.description = evt.getShortDescription()
+					if self.description == "":
+						description = evt.getExtendedDescription()
 					event_id = evt.getEventId()
 				else:
 					event_id = -1
@@ -477,6 +481,8 @@ class RecordTimer(timer.Timer):
 	
 	def loadTimer(self):
 		# TODO: PATH!
+		if not Directories.fileExists(self.Filename):
+			return
 		try:
 			doc = xml.etree.cElementTree.parse(self.Filename)
 		except SyntaxError:

@@ -14,4 +14,6 @@ dist_pkgdata_DATA = \
 	skin_default.xml \
 	skin.xml \
 	startwizard.xml \
-	tutorialwizard.xml
+	tutorialwizard.xml \
+	freesat.t1 \
+	freesat.t2

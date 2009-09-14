@@ -313,9 +313,9 @@ const char *getEnigmaVersionString()
 #ifdef ENIGMA2_CHECKOUT_TAG
 		ENIGMA2_CHECKOUT_TAG
 #else
-		"HEAD"
+		"PLi"
 #endif
-			"-" __DATE__;
+			" - " __DATE__;
 }
 #include <malloc.h>
 
