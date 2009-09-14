@@ -8,6 +8,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
+#include <lib/dvb/cahandler.h>
 #include <lib/python/python.h>
 #include <dvbsi++/program_map_section.h>
 #include <dvbsi++/program_association_section.h>
@@ -18,54 +19,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-class eDVBCAService;
 class eDVBScan;
-
-struct channel_data: public Object
-{
-	ePtr<eDVBChannel> m_channel;
-	ePtr<eConnection> m_stateChangedConn;
-	int m_prevChannelState;
-	int m_dataDemux;
-};
-
-// TODO .. put all static stuff into a 'eDVBCAServiceHandler class'
-
-typedef std::map<eServiceReferenceDVB, eDVBCAService*> CAServiceMap;
-typedef std::map<iDVBChannel*, channel_data*> ChannelMap;
-
-class eDVBCAService: public Object
-{
-	eIOBuffer m_buffer;
-	ePtr<eSocketNotifier> m_sn;
-	eServiceReferenceDVB m_service;
-	uint8_t m_used_demux[32];
-	unsigned int m_prev_build_hash;
-
-	int m_sock, m_clilen; 
-	struct sockaddr_un m_servaddr;
-	unsigned int m_sendstate;
-	unsigned char m_capmt[2048];
-	ePtr<eTimer> m_retryTimer;
-	void sendCAPMT();
-	void Connect();
-	void socketCB(int what);
-
-	static void DVBChannelAdded(eDVBChannel*);
-	static void DVBChannelStateChanged(iDVBChannel*);
-	static CAServiceMap exist;
-	static ChannelMap exist_channels;
-	static ePtr<eConnection> m_chanAddedConn;
-	static channel_data *getChannelData(eDVBChannelID &chid);
-
-	eDVBCAService();
-	~eDVBCAService();
-public:
-	static void registerChannelCallback(eDVBResourceManager *res_mgr);
-	static RESULT register_service( const eServiceReferenceDVB &ref, int demux_nums[2], eDVBCAService *&caservice );
-	static RESULT unregister_service( const eServiceReferenceDVB &ref, int demux_nums[2], eTable<ProgramMapSection> *ptr );
-	void buildCAPMT(eTable<ProgramMapSection> *ptr);
-};
 
 #endif
 

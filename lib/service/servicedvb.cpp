@@ -915,7 +915,9 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 {
 	m_is_primary = 1;
 	m_is_pvr = !m_reference.path.empty();
-	
+
+	m_timeshift_fd = -1;
+
 	m_timeshift_enabled = m_timeshift_active = 0, m_timeshift_changed = 0;
 	m_skipmode = 0;
 	
@@ -931,8 +933,10 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_tune_state = -1;
 
 	m_subtitle_sync_timer = eTimer::create(eApp);
+	m_nownext_timer = eTimer::create(eApp);
 
 	CONNECT(m_subtitle_sync_timer->timeout, eDVBServicePlay::checkSubtitleTiming);
+	CONNECT(m_nownext_timer->timeout, eDVBServicePlay::updateEpgCacheNowNext);
 }
 
 eDVBServicePlay::~eDVBServicePlay()
@@ -963,7 +967,7 @@ eDVBServicePlay::~eDVBServicePlay()
 	delete m_subtitle_widget;
 }
 
-void eDVBServicePlay::gotNewEvent()
+void eDVBServicePlay::gotNewEvent(int error)
 {
 #if 0
 		// debug only
@@ -976,7 +980,51 @@ void eDVBServicePlay::gotNewEvent()
 	if (m_event_next)
 		eDebug("next running: %s (%d seconds :)", m_event_next->m_event_name.c_str(), m_event_next->m_duration);
 #endif
-	m_event((iPlayableService*)this, evUpdatedEventInfo);
+	if (!error)
+	{
+		m_event((iPlayableService*)this, evUpdatedEventInfo);
+	}
+	else
+	{
+		/* our eit reader has stopped, we have to take care of our own event updates */
+		updateEpgCacheNowNext();
+	}
+}
+
+void eDVBServicePlay::updateEpgCacheNowNext()
+{
+	/* our EIT reader is not running, fill now/next with info from the epg cache */
+	ePtr<eServiceEvent> next = 0;
+	ePtr<eServiceEvent> ptr = 0;
+	eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_reference;
+	if (eEPGCache::getInstance() && eEPGCache::getInstance()->lookupEventTime(ref, -1, ptr) >= 0)
+	{
+		ePtr<eServiceEvent> current = 0;
+		m_event_handler.getEvent(current, 0);
+		if (!current || !ptr || current->getEventId() != ptr->getEventId())
+		{
+			m_event_handler.inject(ptr, 0);
+			time_t next_time = ptr->getBeginTime() + ptr->getDuration();
+			if (eEPGCache::getInstance()->lookupEventTime(ref, next_time, ptr) >= 0)
+			{
+				next = ptr;
+				m_event_handler.inject(ptr, 1);
+			}
+		}
+	}
+
+	int refreshtime = 60;
+	if (!next)
+	{
+		m_event_handler.getEvent(next, 1);
+	}
+	if (next)
+	{
+		time_t now = eDVBLocalTimeHandler::getInstance()->nowTime();
+		refreshtime = (int)(next->getBeginTime() - now) + 3;
+		if (refreshtime <= 0 || refreshtime > 60) refreshtime = 60;
+	}
+	m_nownext_timer->startLongTimer(refreshtime);
 }
 
 void eDVBServicePlay::serviceEvent(int event)
@@ -994,6 +1042,25 @@ void eDVBServicePlay::serviceEvent(int event)
 			int sid = ref.getParentServiceID().get();
 			if (!sid)
 				sid = ref.getServiceID().get();
+
+			/* fill now/next with info from the epg cache, will be replaced by EIT when it arrives */
+			ePtr<eServiceEvent> ptr = 0;
+			if (eEPGCache::getInstance() && eEPGCache::getInstance()->lookupEventTime(ref, -1, ptr) >= 0)
+			{
+				if (ptr)
+				{
+					m_event_handler.inject(ptr, 0);
+					time_t next_time = ptr->getBeginTime() + ptr->getDuration();
+					if (eEPGCache::getInstance()->lookupEventTime(ref, next_time, ptr) >= 0)
+					{
+						if (ptr)
+						{
+							m_event_handler.inject(ptr, 1);
+						}
+					}
+				}
+			}
+
 			if ( ref.getParentTransportStreamID().get() &&
 				ref.getParentTransportStreamID() != ref.getTransportStreamID() )
 				m_event_handler.startOther(m_demux, sid);
@@ -2065,8 +2132,12 @@ RESULT eDVBServicePlay::stopTimeshift()
 	
 	m_record->stop();
 	m_record = 0;
-	
-	close(m_timeshift_fd);
+
+	if (m_timeshift_fd >= 0)
+	{
+		close(m_timeshift_fd);
+		m_timeshift_fd = -1;
+	}
 	eDebug("remove timeshift file");
 	eBackgroundFileEraser::getInstance()->erase(m_timeshift_file.c_str());
 	
@@ -2417,7 +2488,7 @@ void eDVBServicePlay::updateDecoder()
 		if (m_is_primary)
 		{
 			m_decoder->setTextPID(tpid);
-			m_teletext_parser->start(program.textPid);
+			if (m_teletext_parser) m_teletext_parser->start(program.textPid);
 		}
 
 		if (vpid > 0 && vpid < 0x2000)

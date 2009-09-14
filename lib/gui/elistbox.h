@@ -62,7 +62,6 @@ struct eListboxStyle
 	int m_transparent_background;
 	gRGB m_background_color, m_background_color_selected, m_foreground_color, m_foreground_color_selected;
 	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set;
-
 		/*
 			{m_transparent_background m_background_color_set m_background}
 			{0 0 0} use global background color
@@ -71,6 +70,19 @@ struct eListboxStyle
 			{1 x 0} use transparent background
 			{1 x p} use transparent background picture
 		*/
+
+	enum
+	{
+		alignLeft,
+		alignTop=alignLeft,
+		alignCenter,
+		alignRight,
+		alignBottom=alignRight,
+		alignBlock
+	};
+	int m_valign, m_halign;
+	ePtr<gFont> m_font;
+	ePoint m_text_offset;
 };
 #endif
 
@@ -86,7 +98,8 @@ public:
 	enum {
 		showOnDemand,
 		showAlways,
-		showNever
+		showNever,
+		showLeft
 	};
 	void setScrollbarMode(int mode);
 	void setWrapAround(bool);
@@ -127,6 +140,12 @@ public:
 	void setForegroundColorSelected(gRGB &col);
 	void setBackgroundPicture(ePtr<gPixmap> &pixmap);
 	void setSelectionPicture(ePtr<gPixmap> &pixmap);
+	void setSliderPicture(ePtr<gPixmap> &pm);
+	void setScrollbarBackgroundPicture(ePtr<gPixmap> &pm);
+	void setFont(gFont *font);
+	void setVAlign(int align);
+	void setHAlign(int align);
+	void setTextOffset(const ePoint &textoffset);
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
@@ -158,6 +177,7 @@ private:
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;
 	eListboxStyle m_style;
+	ePtr<gPixmap> m_scrollbarpixmap, m_scrollbarbackgroundpixmap;
 #endif
 };
 

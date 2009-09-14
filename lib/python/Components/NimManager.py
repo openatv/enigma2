@@ -565,6 +565,7 @@ class NimManager:
 		if self.hasNimType("DVB-S"):
 			print "Reading satellites.xml"
 			db.readSatellites(self.satList, self.satellites, self.transponders)
+			self.satList.sort()
 #			print "SATLIST", self.satList
 #			print "SATS", self.satellites
 #			print "TRANSPONDERS", self.transponders
@@ -1256,6 +1257,7 @@ def InitNimManager(nimmgr):
 				list.append((str(n), x[0]))
 				n += 1
 			nim.cable = ConfigSubsection()
+			nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 9999))
 			possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
 			if n:
 				possible_scan_types.append(("provider", _("Provider")))

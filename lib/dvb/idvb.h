@@ -626,6 +626,7 @@ public:
 	virtual RESULT getMPEGDecoder(ePtr<iTSMPEGDecoder> &reader, int primary=1)=0;
 	virtual RESULT getSTC(pts_t &pts, int num=0)=0;
 	virtual RESULT getCADemuxID(uint8_t &id)=0;
+	virtual RESULT getCAAdapterID(uint8_t &id)=0;
 	virtual RESULT flush()=0;
 };
 

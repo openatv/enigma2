@@ -29,7 +29,7 @@ eRFmod::eRFmod()
 
 eRFmod::~eRFmod()
 {
-	if(fd > 0)
+	if(fd >= 0)
 		close(fd);
 }
 

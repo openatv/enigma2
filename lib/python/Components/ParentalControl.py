@@ -1,10 +1,11 @@
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger, ConfigNumber
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 from Tools import Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
+import time
 
 def InitParentalControl():
 	config.ParentalControl = ConfigSubsection()
@@ -13,6 +14,7 @@ def InitParentalControl():
 	config.ParentalControl.storeservicepin = ConfigSelection(default = "never", choices = [("never", _("never")), ("5_minutes", _("5 minutes")), ("30_minutes", _("30 minutes")), ("60_minutes", _("60 minutes")), ("restart", _("until restart"))])
 	config.ParentalControl.servicepinactive = ConfigYesNo(default = False)
 	config.ParentalControl.setuppinactive = ConfigYesNo(default = False)
+	config.ParentalControl.servicepintimeout = ConfigNumber(default = 60)
 	config.ParentalControl.type = ConfigSelection(default = "blacklist", choices = [("whitelist", _("whitelist")), ("blacklist", _("blacklist"))])
 	config.ParentalControl.setuppin = ConfigPIN(default = -1)
 	
@@ -41,6 +43,7 @@ class ParentalControl:
 	def __init__(self):
 		self.open()
 		self.serviceLevel = {}
+		self.timePinValidated = 0
 		
 	def addWhitelistService(self, service):
 		self.whitelist.append(service)
@@ -61,6 +64,12 @@ class ParentalControl:
 		if self.serviceLevel.has_key(service):
 			self.serviceLevel.remove(service)
 
+	def isPinTimeoutActive(self):
+		return (self.timePinValidated + 60*config.ParentalControl.servicepintimeout.value > time.mktime(time.gmtime()))
+	
+	def resetPinTimeout(self):
+		self.timePinValidated = 0
+	
 	def isServicePlayable(self, ref, callback):
 		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
 			return True
@@ -71,6 +80,8 @@ class ParentalControl:
 		#print "checking parental control for service:", ref.toString()
 		service = ref.toCompareString()
 		if (config.ParentalControl.type.value == "whitelist" and service not in self.whitelist) or (config.ParentalControl.type.value == "blacklist" and service in self.blacklist):
+			if self.isPinTimeoutActive():
+				return True
 			self.callback = callback
 			#print "service:", ServiceReference(service).getServiceName()
 			levelNeeded = 0
@@ -82,6 +93,10 @@ class ParentalControl:
 		else:
 			return True
 		
+	def disableParental(self, session):
+		self.callback = None
+		session.openWithCallback(boundFunction(self.servicePinEntered, None), PinInput, pinList = [config.ParentalControl.servicepin[0].value], triesEntry = config.ParentalControl.retries.servicepin, title = _("Disable parental lock"), windowTitle = _("Parental control"))
+
 	def protectService(self, service):
 		#print "protect"
 		#print "config.ParentalControl.type.value:", config.ParentalControl.type.value
@@ -132,7 +147,9 @@ class ParentalControl:
 		#if pin is not None and int(pin) in pinList:
 		if result is not None and result:
 			#print "pin ok, playing service"
-			self.callback(ref = service)
+			self.timePinValidated = time.mktime(time.gmtime())
+			if self.callback is not None:
+				self.callback(ref = service)
 		else:
 			if result is not None:
 				Notifications.AddNotification(MessageBox,  _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)

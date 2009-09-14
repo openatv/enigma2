@@ -556,6 +556,7 @@ RESULT eDVBTSRecorder::start()
 	{
 		eDebug("DMX_SET_PES_FILTER: %m");
 		::close(m_source_fd);
+		m_source_fd = -1;
 		return -3;
 	}
 	
@@ -631,9 +632,12 @@ RESULT eDVBTSRecorder::stop()
 	if (!m_running)
 		return -1;
 	m_thread->stop();
-	
-	close(m_source_fd);
-	m_source_fd = -1;
+
+	if (m_source_fd >= 0)
+	{
+		close(m_source_fd);
+		m_source_fd = -1;
+	}
 	
 	m_thread->stopSaveMetaInformation();
 	

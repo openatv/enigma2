@@ -46,7 +46,7 @@ class DirectoryBrowser(Screen, HelpableScreen):
 			self.filelist.descent()
 
 	def use(self):
-		if self.filelist.canDescent() and self["filelist"].getFilename() and len(self["filelist"].getFilename()) > len(self["filelist"].getCurrentDirectory()):
+		if self.filelist.canDescent() and self["filelist"].getFilename() and self["filelist"].getCurrentDirectory() and len(self["filelist"].getFilename()) > len(self["filelist"].getCurrentDirectory()):
 			self.filelist.descent()
 		self.close(self["filelist"].getCurrentDirectory())
 

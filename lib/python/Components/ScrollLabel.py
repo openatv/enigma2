@@ -123,11 +123,18 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 				self.updateScrollbar()
 
 	def lastPage(self):
-		i=1
-		while i < self.pages:
-			self.pageDown()
-			i += 1 
-			self.updateScrollbar()
+		if self.pages is not None:
+			i = 1
+			while i < self.pages:
+				self.pageDown()
+				i += 1
+
+	def isAtLastPage(self):
+		if self.total is not None:
+			curPos = self.long_text.position()
+			return self.total - self.pageHeight < abs( curPos.y() - self.pageHeight )
+		else:
+			return True
 
 	def produceHTML(self):
 		return self.getText()

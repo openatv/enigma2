@@ -100,14 +100,16 @@ void eDVBServicePMTHandler::PMTready(int error)
 			if(!m_ca_servicePtr)
 			{
 				int demuxes[2] = {0,0};
-				uint8_t tmp;
-				m_demux->getCADemuxID(tmp);
-				demuxes[0]=tmp;
+				uint8_t demuxid;
+				uint8_t adapterid;
+				m_demux->getCADemuxID(demuxid);
+				m_demux->getCAAdapterID(adapterid);
+				demuxes[0]=demuxid;
 				if (m_decode_demux_num != 0xFF)
 					demuxes[1]=m_decode_demux_num;
 				else
 					demuxes[1]=demuxes[0];
-				eDVBCAService::register_service(m_reference, demuxes, m_ca_servicePtr);
+				eDVBCAHandler::getInstance()->registerService(m_reference, adapterid, demuxes, m_ca_servicePtr);
 				eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 			}
 			eDVBCIInterfaces::getInstance()->gotPMT(this);
@@ -116,7 +118,7 @@ void eDVBServicePMTHandler::PMTready(int error)
 		{
 			ePtr<eTable<ProgramMapSection> > ptr;
 			if (!m_PMT.getCurrent(ptr))
-				m_ca_servicePtr->buildCAPMT(ptr);
+				eDVBCAHandler::getInstance()->handlePMT(m_reference, ptr);
 			else
 				eDebug("eDVBServicePMTHandler cannot call buildCAPMT");
 		}
@@ -527,18 +529,23 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			}
 			ret = 0;
 
-			/* finally some fixup: if our default audio stream is an MPEG audio stream, 
-			   and we have 'defaultac3' set, use the first available ac3 stream instead.
-			   (note: if an ac3 audio stream was selected before, this will be also stored
-			   in 'fisrt_ac3', so we don't need to worry. */
-			bool defaultac3 = false;
-			std::string default_ac3;
 
-			if (!ePythonConfigQuery::getConfigValue("config.av.defaultac3", default_ac3))
-				defaultac3 = default_ac3 == "True";
+			/* PG: use the defaultac3 setting only when the user didn't specifically select a non-AC3 track before */
+			if (cached_apid_mpeg == -1)
+			{
+				/* finally some fixup: if our default audio stream is an MPEG audio stream, 
+					and we have 'defaultac3' set, use the first available ac3 stream instead.
+					(note: if an ac3 audio stream was selected before, this will be also stored
+					in 'fisrt_ac3', so we don't need to worry. */
+				bool defaultac3 = false;
+				std::string default_ac3;
 
-			if (defaultac3 && (first_ac3 != -1))
-				program.defaultAudioStream = first_ac3;
+				if (!ePythonConfigQuery::getConfigValue("config.av.defaultac3", default_ac3))
+					defaultac3 = default_ac3 == "True";
+
+				if (defaultac3 && (first_ac3 != -1))
+					program.defaultAudioStream = first_ac3;
+			}
 
 			m_cached_program = program;
 			m_have_cached_program = true;
@@ -744,9 +751,14 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 
 			if (ref.path.empty())
 			{
-				m_dvb_scan = 0;
-				m_dvb_scan = new eDVBScan(m_channel, true, false);
-				m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
+				std::string disable_background_scan;
+				if (ePythonConfigQuery::getConfigValue("config.misc.disable_background_scan", disable_background_scan) < 0
+					|| disable_background_scan != "True")
+				{
+					m_dvb_scan = 0;
+					m_dvb_scan = new eDVBScan(m_channel, true, false);
+					m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
+				}
 			}
 		} else
 		{
@@ -774,16 +786,18 @@ void eDVBServicePMTHandler::free()
 	if (m_ca_servicePtr)
 	{
 		int demuxes[2] = {0,0};
-		uint8_t tmp;
-		m_demux->getCADemuxID(tmp);
-		demuxes[0]=tmp;
+		uint8_t demuxid;
+		uint8_t adapterid;
+		m_demux->getCADemuxID(demuxid);
+		m_demux->getCAAdapterID(adapterid);
+		demuxes[0]=demuxid;
 		if (m_decode_demux_num != 0xFF)
 			demuxes[1]=m_decode_demux_num;
 		else
 			demuxes[1]=demuxes[0];
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
-		eDVBCAService::unregister_service(m_reference, demuxes, ptr);
+		eDVBCAHandler::getInstance()->unregisterService(m_reference, adapterid, demuxes, ptr);
 		m_ca_servicePtr = 0;
 	}
 
@@ -802,473 +816,6 @@ void eDVBServicePMTHandler::free()
 	m_channel = 0;
 	m_pvr_channel = 0;
 	m_demux = 0;
-}
-
-CAServiceMap eDVBCAService::exist;
-ChannelMap eDVBCAService::exist_channels;
-ePtr<eConnection> eDVBCAService::m_chanAddedConn;
-
-eDVBCAService::eDVBCAService()
-	:m_buffer(512), m_prev_build_hash(0), m_sendstate(0), m_retryTimer(eTimer::create(eApp))
-{
-	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
-	CONNECT(m_retryTimer->timeout, eDVBCAService::sendCAPMT);
-	Connect();
-}
-
-eDVBCAService::~eDVBCAService()
-{
-	eDebug("[eDVBCAService] free service %s", m_service.toString().c_str());
-	::close(m_sock);
-}
-
-// begin static methods
-RESULT eDVBCAService::register_service( const eServiceReferenceDVB &ref, int demux_nums[2], eDVBCAService *&caservice )
-{
-	CAServiceMap::iterator it = exist.find(ref);
-	if ( it != exist.end() )
-		caservice = it->second;
-	else
-	{
-		caservice = (exist[ref]=new eDVBCAService());
-		caservice->m_service = ref;
-		eDebug("[eDVBCAService] new service %s", ref.toString().c_str() );
-	}
-
-	int loops = demux_nums[0] != demux_nums[1] ? 2 : 1;
-	for (int i=0; i < loops; ++i)
-	{
-// search free demux entry
-		int iter=0, max_demux_slots = sizeof(caservice->m_used_demux);
-
-		while ( iter < max_demux_slots && caservice->m_used_demux[iter] != 0xFF )
-			++iter;
-
-		if ( iter < max_demux_slots )
-		{
-			caservice->m_used_demux[iter] = demux_nums[i] & 0xFF;
-			eDebug("[eDVBCAService] add demux %d to slot %d service %s", caservice->m_used_demux[iter], iter, ref.toString().c_str());
-		}
-		else
-		{
-			eDebug("[eDVBCAService] no more demux slots free for service %s!!", ref.toString().c_str());
-			return -1;
-		}
-	}
-	return 0;
-}
-
-RESULT eDVBCAService::unregister_service( const eServiceReferenceDVB &ref, int demux_nums[2], eTable<ProgramMapSection> *ptr )
-{
-	CAServiceMap::iterator it = exist.find(ref);
-	if ( it == exist.end() )
-	{
-		eDebug("[eDVBCAService] try to unregister non registered %s", ref.toString().c_str());
-		return -1;
-	}
-	else
-	{
-		eDVBCAService *caservice = it->second;
-		int loops = demux_nums[0] != demux_nums[1] ? 2 : 1;
-		for (int i=0; i < loops; ++i)
-		{
-			bool freed = false;
-			int iter = 0,
-				used_demux_slots = 0,
-				max_demux_slots = sizeof(caservice->m_used_demux)/sizeof(int);
-			while ( iter < max_demux_slots )
-			{
-				if ( caservice->m_used_demux[iter] != 0xFF )
-				{
-					if ( !freed && caservice->m_used_demux[iter] == demux_nums[i] )
-					{
-						eDebug("[eDVBCAService] free slot %d demux %d for service %s", iter, caservice->m_used_demux[iter], caservice->m_service.toString().c_str() );
-						caservice->m_used_demux[iter] = 0xFF;
-						freed=true;
-					}
-					else
-						++used_demux_slots;
-				}
-				++iter;
-			}
-			if (!freed)
-				eDebug("[eDVBCAService] couldn't free demux slot for demux %d", demux_nums[i]);
-			if (i || loops == 1)
-			{
-				if (!used_demux_slots)  // no more used.. so we remove it
-				{
-					delete it->second;
-					exist.erase(it);
-				}
-				else
-				{
-					if (ptr)
-						it->second->buildCAPMT(ptr);
-					else
-						eDebug("[eDVBCAService] can not send updated demux info");
-				}
-			}
-		}
-	}
-	return 0;
-}
-
-void eDVBCAService::registerChannelCallback(eDVBResourceManager *res_mgr)
-{
-	res_mgr->connectChannelAdded(slot(&DVBChannelAdded), m_chanAddedConn);
-}
-
-void eDVBCAService::DVBChannelAdded(eDVBChannel *chan)
-{
-	if ( chan )
-	{
-		eDebug("[eDVBCAService] new channel %p!", chan);
-		channel_data *data = new channel_data();
-		data->m_channel = chan;
-		data->m_prevChannelState = -1;
-		data->m_dataDemux = -1;
-		exist_channels[chan] = data;
-		chan->connectStateChange(slot(&DVBChannelStateChanged), data->m_stateChangedConn);
-	}
-}
-
-void eDVBCAService::DVBChannelStateChanged(iDVBChannel *chan)
-{
-	ChannelMap::iterator it =
-		exist_channels.find(chan);
-	if ( it != exist_channels.end() )
-	{
-		int state=0;
-		chan->getState(state);
-		if ( it->second->m_prevChannelState != state )
-		{
-			switch (state)
-			{
-				case iDVBChannel::state_ok:
-				{
-					eDebug("[eDVBCAService] channel %p running", chan);
-					break;
-				}
-				case iDVBChannel::state_release:
-				{
-					eDebug("[eDVBCAService] remove channel %p", chan);
-					unsigned char msg[8] = { 0x9f,0x80,0x3f,0x04,0x83,0x02,0x00,0x00 };
-					msg[7] = it->second->m_dataDemux & 0xFF;
-					int sock, clilen;
-					struct sockaddr_un servaddr;
-					memset(&servaddr, 0, sizeof(struct sockaddr_un));
-					servaddr.sun_family = AF_UNIX;
-					strcpy(servaddr.sun_path, "/tmp/camd.socket");
-					clilen = sizeof(servaddr.sun_family) + strlen(servaddr.sun_path);
-					sock = socket(PF_UNIX, SOCK_STREAM, 0);
-					if (sock > -1)
-					{
-						connect(sock, (struct sockaddr *) &servaddr, clilen);
-						fcntl(sock, F_SETFL, O_NONBLOCK);
-						int val=1;
-						setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &val, 4);
-						if (write(sock, msg, 8) != 8)
-							eDebug("[eDVBCAService] write leave transponder failed!!");
-						close(sock);
-					}
-					exist_channels.erase(it);
-					delete it->second;
-					it->second=0;
-					break;
-				}
-				default: // ignore all other events
-					return;
-			}
-			if (it->second)
-				it->second->m_prevChannelState = state;
-		}
-	}
-}
-
-channel_data *eDVBCAService::getChannelData(eDVBChannelID &chid)
-{
-	for (ChannelMap::iterator it(exist_channels.begin()); it != exist_channels.end(); ++it)
-	{
-		if (chid == it->second->m_channel->getChannelID())
-			return it->second;
-	}
-	return 0;
-}
-// end static methods
-
-#define CA_REPLY_DEBUG
-#define MAX_LENGTH_BYTES 4
-#define MIN_LENGTH_BYTES 1
-
-void eDVBCAService::socketCB(int what)
-{
-	if (what & (eSocketNotifier::Read | eSocketNotifier::Priority))
-	{
-		char msgbuffer[4096];
-		ssize_t length = read(m_sock, msgbuffer, sizeof(msgbuffer));
-		if (length == -1)
-		{
-			if (errno != EAGAIN && errno != EINTR && errno != EBUSY)
-			{
-				eDebug("[eSocketMMIHandler] read (%m)");
-				what |= eSocketNotifier::Error;
-			}
-		} else if (length == 0)
-		{
-			what |= eSocketNotifier::Hungup;
-		} else
-		{
-			int len = length;
-			unsigned char *data = (unsigned char*)msgbuffer;
-			int clear = 1;
-	// If a new message starts, then the previous message
-	// should already have been processed. Otherwise the
-	// previous message was incomplete and should therefore
-	// be deleted.
-			if ((len >= 1) && ((data[0] & 0xFF) != 0x9f))
-				clear = 0;
-			if ((len >= 2) && ((data[1] & 0x80) != 0x80))
-				clear = 0;
-			if ((len >= 3) && ((data[2] & 0x80) != 0x00))
-				clear = 0;
-			if (clear)
-			{
-				m_buffer.clear();
-#ifdef CA_REPLY_DEBUG
-				eDebug("clear buffer");
-#endif
-			}
-#ifdef CA_REPLY_DEBUG
-			eDebug("Put to buffer:");
-			for (int i=0; i < len; ++i)
-				eDebugNoNewLine("%02x ", data[i]);
-			eDebug("\n--------");
-#endif
-			m_buffer.write( data, len );
-
-			while ( m_buffer.size() >= (3 + MIN_LENGTH_BYTES) )
-			{
-				unsigned char tmp[3+MAX_LENGTH_BYTES];
-				m_buffer.peek(tmp, 3+MIN_LENGTH_BYTES);
-				if (((tmp[0] & 0xFF) != 0x9f) || ((tmp[1] & 0x80) != 0x80) || ((tmp[2] & 0x80) != 0x00))
-				{
-					m_buffer.skip(1);
-#ifdef CA_REPLY_DEBUG
-					eDebug("skip %02x", tmp[0]);
-#endif
-					continue;
-				}
-				if (tmp[3] & 0x80)
-				{
-					int peekLength = (tmp[3] & 0x7f) + 4;
-					if (m_buffer.size() < peekLength)
-						continue;
-					m_buffer.peek(tmp, peekLength);
-				}
-				int size=0;
-				int LengthBytes=eDVBCISession::parseLengthField(tmp+3, size);
-				int messageLength = 3+LengthBytes+size;
-				if ( m_buffer.size() >= messageLength )
-				{
-					unsigned char dest[messageLength];
-					m_buffer.read(dest, messageLength);
-#ifdef CA_REPLY_DEBUG
-					eDebug("dump ca reply:");
-					for (int i=0; i < messageLength; ++i)
-						eDebugNoNewLine("%02x ", dest[i]);
-					eDebug("\n--------");
-#endif
-//					/*emit*/ mmi_progress(0, dest, (const void*)(dest+3+LengthBytes), messageLength-3-LengthBytes);
-				}
-			}
-		}
-	}
-	if (what & eSocketNotifier::Hungup) {
-		/*eDebug("[eDVBCAService] connection closed")*/;
-		m_sendstate=1;
-		sendCAPMT();
-	}
-	if (what & eSocketNotifier::Error)
-		eDebug("[eDVBCAService] connection error");
-}
-
-void eDVBCAService::Connect()
-{
-	m_sn=0;
-	memset(&m_servaddr, 0, sizeof(struct sockaddr_un));
-	m_servaddr.sun_family = AF_UNIX;
-	strcpy(m_servaddr.sun_path, "/tmp/camd.socket");
-	m_clilen = sizeof(m_servaddr.sun_family) + strlen(m_servaddr.sun_path);
-	m_sock = socket(PF_UNIX, SOCK_STREAM, 0);
-	if (m_sock != -1)
-	{
-		if (!connect(m_sock, (struct sockaddr *) &m_servaddr, m_clilen))
-		{
-			int val=1;
-			fcntl(m_sock, F_SETFL, O_NONBLOCK);
-			setsockopt(m_sock, SOL_SOCKET, SO_REUSEADDR, &val, 4);
-			m_sn = eSocketNotifier::create(eApp, m_sock,
-				eSocketNotifier::Read|eSocketNotifier::Priority|eSocketNotifier::Error|eSocketNotifier::Hungup);
-			CONNECT(m_sn->activated, eDVBCAService::socketCB);
-			
-		}
-//		else
-//			eDebug("[eDVBCAService] connect failed %m");
-	}
-	else
-		eDebug("[eDVBCAService] create socket failed %m");
-}
-
-void eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
-{
-	if (!ptr)
-		return;
-
-	eDVBTableSpec table_spec;
-	ptr->getSpec(table_spec);
-
-	int pmtpid = table_spec.pid,
-		pmt_version = table_spec.version;
-
-	uint8_t demux_mask = 0;
-	int data_demux = -1;
-
-	int iter=0, max_demux_slots = sizeof(m_used_demux);
-	while ( iter < max_demux_slots )
-	{
-		if ( m_used_demux[iter] != 0xFF )
-		{
-			if ( m_used_demux[iter] > data_demux )
-				data_demux = m_used_demux[iter];
-			demux_mask |= (1 << m_used_demux[iter]);
-		}
-		++iter;
-	}
-
-	if ( data_demux == -1 )
-	{
-		eDebug("[eDVBCAService] no data demux found for service %s", m_service.toString().c_str() );
-		return;
-	}
-
-	eDebug("demux %d mask %02x prevhash %08x", data_demux, demux_mask, m_prev_build_hash);
-
-	unsigned int build_hash = ( pmtpid << 16);
-	build_hash |= (demux_mask << 8);
-	build_hash |= (pmt_version&0xFF);
-
-	if ( build_hash == m_prev_build_hash )
-	{
-		eDebug("[eDVBCAService] don't build/send the same CA PMT twice");
-		return;
-	}
-
-	std::vector<ProgramMapSection*>::const_iterator i=ptr->getSections().begin();
-	if ( i != ptr->getSections().end() )
-	{
-		CaProgramMapSection capmt(*i++, m_prev_build_hash ? 0x05 /*update*/ : 0x03 /*only*/, 0x01 );
-
-		while( i != ptr->getSections().end() )
-		{
-//			eDebug("append");
-			capmt.append(*i++);
-		}
-
-		// add our private descriptors to capmt
-		uint8_t tmp[10];
-
-		tmp[0]=0x84;  // pmt pid
-		tmp[1]=0x02;
-		tmp[2]=pmtpid>>8;
-		tmp[3]=pmtpid&0xFF;
-		capmt.injectDescriptor(tmp, false);
-
-		tmp[0] = 0x82; // demux
-		tmp[1] = 0x02;
-		tmp[2] = demux_mask;	// descramble bitmask
-		tmp[3] = data_demux&0xFF; // read section data from demux number
-		capmt.injectDescriptor(tmp, false);
-
-		tmp[0] = 0x81; // dvbnamespace
-		tmp[1] = 0x08;
-		tmp[2] = m_service.getDVBNamespace().get()>>24;
-		tmp[3]=(m_service.getDVBNamespace().get()>>16)&0xFF;
-		tmp[4]=(m_service.getDVBNamespace().get()>>8)&0xFF;
-		tmp[5]=m_service.getDVBNamespace().get()&0xFF;
-		tmp[6]=m_service.getTransportStreamID().get()>>8;
-		tmp[7]=m_service.getTransportStreamID().get()&0xFF;
-		tmp[8]=m_service.getOriginalNetworkID().get()>>8;
-		tmp[9]=m_service.getOriginalNetworkID().get()&0xFF;
-		capmt.injectDescriptor(tmp, false);
-
-		capmt.writeToBuffer(m_capmt);
-	}
-
-	m_prev_build_hash = build_hash;
-
-	if ( m_sendstate != 0xFFFFFFFF )
-		m_sendstate=0;
-	sendCAPMT();
-}
-
-void eDVBCAService::sendCAPMT()
-{
-	if ( m_sendstate && m_sendstate != 0xFFFFFFFF ) // broken pipe retry
-	{
-		::close(m_sock);
-		Connect();
-	}
-
-	int wp=0;
-	if ( m_capmt[3] & 0x80 )
-	{
-		int i=0;
-		int lenbytes = m_capmt[3] & ~0x80;
-		while(i < lenbytes)
-			wp = (wp << 8) | m_capmt[4 + i++];
-		wp+=4;
-		wp+=lenbytes;
-	}
-	else
-	{
-		wp = m_capmt[3];
-		wp+=4;
-	}
-
-	if ( write(m_sock, m_capmt, wp) == wp )
-	{
-		m_sendstate=0xFFFFFFFF;
-		eDebug("[eDVBCAService] send %d bytes",wp);
-		eDVBChannelID chid;
-		m_service.getChannelID(chid);
-		channel_data *data = getChannelData(chid);
-		if (data)
-		{
-			int lenbytes = m_capmt[3] & 0x80 ? m_capmt[3] & ~0x80 : 0;
-			data->m_dataDemux = m_capmt[24+lenbytes];
-		}
-#if 1
-		for(int i=0;i<wp;i++)
-			eDebugNoNewLine("%02x ", m_capmt[i]);
-		eDebug("");
-#endif
-	}
-	else
-	{
-		switch(m_sendstate)
-		{
-			case 0xFFFFFFFF:
-				++m_sendstate;
-				m_retryTimer->start(0,true);
-//				eDebug("[eDVBCAService] send failed .. immediate retry");
-				break;
-			default:
-				m_retryTimer->start(5000,true);
-//				eDebug("[eDVBCAService] send failed .. retry in 5 sec");
-				break;
-		}
-		++m_sendstate;
-	}
 }
 
 static PyObject *createTuple(int pid, const char *type)

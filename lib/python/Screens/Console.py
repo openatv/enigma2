@@ -51,10 +51,12 @@ class Console(Screen):
 			if self.container.execute(self.cmdlist[self.run]): #start of container application failed...
 				self.runFinished(-1) # so we must call runFinished manual
 		else:
+			lastpage = self["text"].isAtLastPage()
 			str = self["text"].getText()
 			str += _("Execution finished!!");
 			self["text"].setText(str)
-			self["text"].lastPage()
+			if lastpage:
+				self["text"].lastPage()
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not retval and self.closeOnSuccess:
@@ -67,4 +69,7 @@ class Console(Screen):
 			self.container.dataAvail.remove(self.dataAvail)
 
 	def dataAvail(self, str):
+		lastpage = self["text"].isAtLastPage()
 		self["text"].setText(self["text"].getText() + str)
+		if lastpage:
+			self["text"].lastPage()

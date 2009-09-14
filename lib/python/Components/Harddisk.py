@@ -1,5 +1,5 @@
 from os import system, listdir, statvfs, popen, makedirs, stat, major, minor, path, access
-from Tools.Directories import SCOPE_HDD, resolveFilename
+from Tools.Directories import SCOPE_HDD, resolveFilename, pathExists
 from Tools.CList import CList
 from SystemInfo import SystemInfo
 import time
@@ -209,10 +209,11 @@ class Harddisk:
 		return (res >> 8)
 
 	def createMovieFolder(self):
-		try:
-			makedirs(resolveFilename(SCOPE_HDD))
-		except OSError:
-			return -1
+		if not pathExists(resolveFilename(SCOPE_HDD)):
+			try:
+				makedirs(resolveFilename(SCOPE_HDD))
+			except OSError:
+				return -1
 		return 0
 
 	def fsck(self):
@@ -391,6 +392,17 @@ class Partition:
 				return True
 		return False
 
+	def filesystem(self):
+		try:
+			procfile = open("/proc/mounts")
+		except IOError:
+			return ''
+		for n in procfile.readlines():
+			fields = n.split(' ')
+			if fields[1] == self.mountpoint:
+				return fields[2]
+		return ''
+
 DEVICEDB =  \
 	{"dm8000":
 		{
@@ -435,6 +447,9 @@ class HarddiskManager:
 					("/media/cf", _("Compact Flash")),
 					("/media/mmc1", _("MMC Card")),
 					("/media/net", _("Network Mount")),
+					("/media/net1", _("Network Mount") + " 1"),
+					("/media/net2", _("Network Mount") + " 2"),
+					("/media/net3", _("Network Mount") + " 3"),
 					("/media/ram", _("Ram Disk")),
 					("/media/usb", _("USB Stick")),
 					("/", _("Internal Flash"))
@@ -525,7 +540,7 @@ class HarddiskManager:
 		l = len(device)
 		if l and not device[l-1].isdigit():
 			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
-			if not blacklisted and not removable and not is_cdrom and medium_found:
+			if not blacklisted and not is_cdrom and medium_found:
 				self.hdd.append(Harddisk(device))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = len(self.hdd) > 0

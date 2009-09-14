@@ -81,11 +81,11 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		print "runScan"
 		self.keyGo()
 
-	def startScan(self, tlist, flags, feid):
+	def startScan(self, tlist, flags, feid, networkid = 0):
 		print "startScan"
 		if len(tlist):
 			# flags |= eComponentScan.scanSearchBAT
-			self.session.openWithCallback(self.scanFinished, DefaultServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags}])
+			self.session.openWithCallback(self.scanFinished, DefaultServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 		else:
 			self.session.openWithCallback(self.scanFinished, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 

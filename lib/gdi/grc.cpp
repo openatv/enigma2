@@ -33,6 +33,7 @@ gRC::gRC(): rp(0), wp(0)
 		eDebug("RC thread created successfully");
 #endif
 	m_spinner_enabled = 0;
+	m_spinneronoff = 1;
 }
 
 DEFINE_REF(gRC);
@@ -203,12 +204,15 @@ void gRC::enableSpinner()
 		return;
 	}
 
-	gOpcode o;
-	o.opcode = m_spinner_enabled ? gOpcode::incrementSpinner : gOpcode::enableSpinner;
-	m_spinner_dc->exec(&o);
+	if (m_spinneronoff)
+	{
+		gOpcode o;
+		o.opcode = m_spinner_enabled ? gOpcode::incrementSpinner : gOpcode::enableSpinner;
+		m_spinner_dc->exec(&o);
+		o.opcode = gOpcode::flush;
+		m_spinner_dc->exec(&o);
+	}
 	m_spinner_enabled = 1;
-	o.opcode = gOpcode::flush;
-	m_spinner_dc->exec(&o);
 }
 
 void gRC::disableSpinner()
@@ -614,7 +618,7 @@ void gDC::exec(gOpcode *o)
 		break;
 	case gOpcode::setForegroundColor:
 		m_foreground_color = o->parm.setColor->color;
-		m_background_color_rgb = getRGB(m_foreground_color);
+		m_foreground_color_rgb = getRGB(m_foreground_color);
 		delete o->parm.setColor;
 		break;
 	case gOpcode::setBackgroundColorRGB:

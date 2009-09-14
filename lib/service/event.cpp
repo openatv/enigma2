@@ -82,7 +82,8 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 			case SHORT_EVENT_DESCRIPTOR:
 			{
 				const ShortEventDescriptor *sed = (ShortEventDescriptor*)*desc;
-				const std::string &cc = sed->getIso639LanguageCode();
+				std::string cc = sed->getIso639LanguageCode();
+				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
 				if (lang.empty())
 					lang = cc;  // use first found language
@@ -97,12 +98,25 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 			case EXTENDED_EVENT_DESCRIPTOR:
 			{
 				const ExtendedEventDescriptor *eed = (ExtendedEventDescriptor*)*desc;
-				const std::string &cc = eed->getIso639LanguageCode();
+				std::string cc = eed->getIso639LanguageCode();
+				std::transform(cc.begin(), cc.end(), cc.begin(), tolower);
 				int table=encodingHandler.getCountryCodeDefaultMapping(cc);
 				if (lang.empty())
 					lang = cc;  // use first found language
 				if (cc == lang)
 				{
+					/*
+					 * Bit of a hack, some providers put the event description partly in the short descriptor,
+					 * and the remainder in extended event descriptors.
+					 * In that case, we cannot really treat short/extended description as separate descriptions.
+					 * Unfortunately we cannot recognise this, but we'll use the length of the short description
+					 * to guess whether we should concatenate both descriptions (without any spaces)
+					 */
+					if (m_extended_description.empty() && m_short_description.size() >= 180)
+					{
+						m_extended_description = m_short_description;
+						m_short_description = "";
+					}
 					m_extended_description += convertDVBUTF8(eed->getText(), table, tsidonid);
 					retval=1;
 				}
@@ -136,6 +150,7 @@ bool eServiceEvent::loadLanguage(Event *evt, std::string lang, int tsidonid)
 					data.m_componentType = cp->getComponentType();
 					data.m_componentTag = cp->getComponentTag();
 					data.m_iso639LanguageCode = cp->getIso639LanguageCode();
+					std::transform(data.m_iso639LanguageCode.begin(), data.m_iso639LanguageCode.end(), data.m_iso639LanguageCode.begin(), tolower);
 					int table=encodingHandler.getCountryCodeDefaultMapping(data.m_iso639LanguageCode);
 					data.m_text = convertDVBUTF8(cp->getText(),table,tsidonid);
 					m_component_data.push_back(data);

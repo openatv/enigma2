@@ -5,12 +5,47 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
+from Components.PluginComponent import plugins
+from Components.MenuList import MenuList
 from Components.TimerList import TimerList
 from enigma import eEPGCache, eTimer, eServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
+from Plugins.Plugin import PluginDescriptor
+from Tools.BoundFunction import boundFunction
 from time import localtime
 from Components.config import config
+
+class EventViewContextMenu(Screen):
+	def __init__(self, session, service, event):
+		Screen.__init__(self, session)
+		self.event = event
+		self.service = service
+		self.eventname = event.getEventName()
+
+		self["actions"] = ActionMap(["OkCancelActions"],
+			{
+				"ok": self.okbuttonClick,
+				"cancel": self.cancelClick
+			})
+
+		menu = []
+
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
+			#only list service or event specific eventinfo plugins here, no servelist plugins
+			if 'servicelist' not in p.__call__.func_code.co_varnames:
+				menu.append((p.name, boundFunction(self.runPlugin, p)))
+
+		self["menu"] = MenuList(menu)
+
+	def okbuttonClick(self):
+		self["menu"].getCurrent() and self["menu"].getCurrent()[1]()
+
+	def cancelClick(self):
+		self.close(False)
+
+	def runPlugin(self, plugin):
+		plugin(session=self.session, service=self.service, event=self.event, eventName=self.eventname)
 
 class EventViewBase:
 	ADD_TIMER = 0
@@ -48,7 +83,8 @@ class EventViewBase:
 				"prevEvent": self.prevEvent,
 				"nextEvent": self.nextEvent,
 				"timerAdd": self.timerAdd,
-				"openSimilarList": self.openSimilarList
+				"openSimilarList": self.openSimilarList,
+				"contextMenu": self.doContext,
 			})
 		self.onShown.append(self.onCreate)
 
@@ -196,6 +232,10 @@ class EventViewBase:
 			refstr = str(self.currentService)
 			if id is not None:
 				self.similarEPGCB(id, refstr)
+
+	def doContext(self):
+		if self.event is not None:
+			self.session.open(EventViewContextMenu, self.currentService, self.event)
 
 class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):

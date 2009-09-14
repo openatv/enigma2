@@ -5,6 +5,7 @@ from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Tools.Directories import fileExists
 
 import xml.etree.cElementTree
 
@@ -74,6 +75,7 @@ class Setup(ConfigListScreen, Screen):
 				continue
 			self.addItems(list, x);
 			self.setup_title = x.get("title", "").encode("UTF-8")
+			self.seperation = int(x.get('separation', '0'))
 
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
@@ -121,6 +123,8 @@ class Setup(ConfigListScreen, Screen):
 
 	def addItems(self, list, parentNode):
 		for x in parentNode:
+			if not x.tag:
+				continue
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 

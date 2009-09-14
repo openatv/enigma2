@@ -5,6 +5,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/encoding.h>
 #include <lib/base/estring.h>
+#include "freesatv2.h"
 
 std::string buildShortName( const std::string &str )
 {
@@ -150,6 +151,8 @@ static unsigned long c885916[96]={
 0x0110, 0x0143, 0x00D2, 0x00D3, 0x00D4, 0x0150, 0x00D6, 0x015A, 0x0170, 0x00D9, 0x00DA, 0x00DB, 0x00DC, 0x0118, 0x021A, 0x00DF,
 0x00E0, 0x00E1, 0x00E2, 0x0103, 0x00E4, 0x0107, 0x00E6, 0x00E7, 0x00E8, 0x00E9, 0x00EA, 0x00EB, 0x00EC, 0x00ED, 0x00EE, 0x00EF,
 0x0111, 0x0144, 0x00F2, 0x00F3, 0x00F4, 0x0151, 0x00F6, 0x015B, 0x0171, 0x00F9, 0x00FA, 0x00FB, 0x00FC, 0x0119, 0x021B, 0x00FF};
+
+static freesatHuffmanDecoder huffmanDecoder;
 
 static unsigned long iso6397[96]={
 0x00A0, 0x00A1, 0x00A2, 0x00A3, 0x20AC, 0x00A5, 0x0000, 0x00A7, 0x00A4, 0x2018, 0x201C, 0x00AB, 0x2190, 0x2191, 0x2192, 0x2193,
@@ -416,9 +419,24 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			break;
 		case 0x15: // UTF-8 encoding of ISO/IEC 10646-1
 			return std::string((char*)data+1, len-1);
+		case 0x1F:
+			{
+				// Attempt to decode Freesat Huffman encoded string
+				unsigned char *temp = (unsigned char *) huffmanDecoder.decode(data, len);
+				if (temp)
+				{
+					int newlen = strlen((char*) temp);
+					std::string decoded_string = convertDVBUTF8(temp, newlen, table, tsidonid);
+					free(temp);
+					return decoded_string;
+				}
+			}
+			i++;
+			eDebug("failed to decode bbc freesat huffman");
+			break;
 		case 0x0:
 		case 0xC ... 0xF:
-		case 0x16 ... 0x1F:
+		case 0x16 ... 0x1E:
 			eDebug("reserved %d", data[0]);
 			++i;
 			break;

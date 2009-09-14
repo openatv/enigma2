@@ -1,23 +1,27 @@
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations
-from enigma import Misc_Options, setTunerTypePriorityOrder;
+from enigma import Misc_Options, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
+from Components.NimManager import nimmanager
+from Components.Harddisk import harddiskmanager
 from SystemInfo import SystemInfo
 import os
 
 def InitUsageConfig():
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = False)
-	config.usage.multibouquet = ConfigYesNo(default = False)
+	config.usage.multibouquet = ConfigYesNo(default = True)
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
-	config.usage.e1like_radio_mode = ConfigYesNo(default = False)
+	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [
 		("0", _("no timeout")), ("1", "1 " + _("second")), ("2", "2 " + _("seconds")), ("3", "3 " + _("seconds")),
 		("4", "4 " + _("seconds")), ("5", "5 " + _("seconds")), ("6", "6 " + _("seconds")), ("7", "7 " + _("seconds")),
 		("8", "8 " + _("seconds")), ("9", "9 " + _("seconds")), ("10", "10 " + _("seconds"))])
 	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
 	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
-	config.usage.show_infobar_on_event_change = ConfigYesNo(default = True)
-	config.usage.hdd_standby = ConfigSelection(default = "600", choices = [
+	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
+	config.usage.show_spinner = ConfigYesNo(default = True)
+	config.usage.enable_tt_caching = ConfigYesNo(default = True)
+	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [
 		("0", _("no standby")), ("10", "10 " + _("seconds")), ("30", "30 " + _("seconds")),
 		("60", "1 " + _("minute")), ("120", "2 " + _("minutes")),
 		("300", "5 " + _("minutes")), ("600", "10 " + _("minutes")), ("1200", "20 " + _("minutes")),
@@ -57,15 +61,36 @@ def InitUsageConfig():
 		("4", "DVB-T/-C/-S"),
 		("5", "DVB-T/-S/-C") ])
 
+	nims = []
+	nims.append(("-1", _("auto")))
+	for x in nimmanager.nim_slots:
+		nims.append((str(x.slot), x.getSlotName()))
+	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
+	config.misc.disable_background_scan = ConfigYesNo(default = False)
+
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
 	
+	def SpinnerOnOffChanged(configElement):
+		setSpinnerOnOff(int(configElement.value))
+	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
+
+	def EnableTtCachingChanged(configElement):
+		setEnableTtCachingOnOff(int(configElement.value))
+	config.usage.enable_tt_caching.addNotifier(EnableTtCachingChanged)
+
 	def TunerTypePriorityOrderChanged(configElement):
 		setTunerTypePriorityOrder(int(configElement.value))
 	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged)
+
+	def PreferredTunerChanged(configElement):
+		setPreferredTuner(int(configElement.value))
+	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
+
+	config.usage.hide_zap_errors = ConfigYesNo(default = False)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():

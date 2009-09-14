@@ -40,7 +40,8 @@ public:
 		hasSortKey=16,		// has a sort key in data[3]. not having a sort key implies 0.
 		sort1=32,					// sort key is 1 instead of 0
 		isMarker=64,			// Marker
-		isGroup=128			// is a group of services
+		isGroup=128,			// is a group of services
+		isNumberedMarker=256 //use together with isMarker, to force the marker to be numbered
 	};
 	int flags; // flags will NOT be compared.
 

@@ -219,7 +219,7 @@ RESULT eDVBScan::startFilter()
 		if (m_ready_all & readyNIT)
 		{
 			m_NIT = new eTable<NetworkInformationSection>(m_scan_debug);
-			if (m_NIT->start(m_demux, eDVBNITSpec()))
+			if (m_NIT->start(m_demux, eDVBNITSpec(m_networkid)))
 				return -1;
 			CONNECT(m_NIT->tableReady, eDVBScan::NITready);
 		}
@@ -830,9 +830,10 @@ void eDVBScan::channelDone()
 	nextChannel();
 }
 
-void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags)
+void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags, int networkid)
 {
 	m_flags = flags;
+	m_networkid = networkid;
 	m_ch_toScan.clear();
 	m_ch_scanned.clear();
 	m_ch_unavailable.clear();
@@ -1059,7 +1060,31 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 				case SERVICE_DESCRIPTOR:
 				{
 					ServiceDescriptor &d = (ServiceDescriptor&)**desc;
-					ref.setServiceType(d.getServiceType());
+					int servicetype = d.getServiceType();
+
+					/* NA scanning hack */
+					switch (servicetype)
+					{
+					/* DISH/BEV servicetypes: */
+					case 128:
+					case 133:
+					case 137:
+					case 144:
+					case 145:
+					case 150:
+					case 154:
+					case 160:
+					case 163:
+					case 164:
+					case 166:
+					case 167:
+					case 168:
+						servicetype = 1;
+						break;
+					}
+					/* */
+
+					ref.setServiceType(servicetype);
 					service->m_service_name = convertDVBUTF8(d.getServiceName());
 					service->genSortName();
 

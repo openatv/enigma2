@@ -68,7 +68,7 @@ private:
 	void recordEvent(int event);
 
 			/* eit updates */
-	void gotNewEvent();
+	void gotNewEvent(int error);
 	void saveCutlist();
 };
 

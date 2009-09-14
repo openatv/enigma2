@@ -94,8 +94,12 @@ int eRawFile::close()
 		return 0;
 	} else
 	{
-		int ret = ::close(m_fd);
-		m_fd = -1;
+		int ret = 0;
+		if (m_fd >= 0)
+		{
+			ret = ::close(m_fd);
+			m_fd = -1;
+		}
 		return ret;
 	}
 }

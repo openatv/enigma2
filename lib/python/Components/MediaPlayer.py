@@ -59,7 +59,7 @@ class PlayList(MenuList):
 		self.oldCurrPlaying = -1
 
 	def getSelection(self):
-		return self.l.getCurrentSelection()[0]
+		return self.l.getCurrentSelection() and self.l.getCurrentSelection()[0]
 
 	def addFile(self, serviceref):
 		self.list.append(PlaylistEntryComponent(serviceref, STATE_NONE))

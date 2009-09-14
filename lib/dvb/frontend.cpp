@@ -452,6 +452,7 @@ RESULT eDVBFrontendParameters::calcLockTimeout(unsigned int &timeout) const
 DEFINE_REF(eDVBFrontend);
 
 int eDVBFrontend::PriorityOrder=0;
+int eDVBFrontend::PreferredFrontendIndex = -1;
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 	:m_simulate(simulate), m_enabled(false), m_type(-1), m_dvbid(fe), m_slotid(fe)
@@ -696,6 +697,7 @@ void eDVBFrontend::timeout()
 	if (m_state == stateTuning)
 	{
 		m_state = stateFailed;
+		m_data[CSW] = m_data[UCSW] = m_data[TONEBURST] = -1; // reset diseqc
 		m_stateChanged(this);
 	}
 }
@@ -861,7 +863,13 @@ int eDVBFrontend::readFrontendData(int type)
 					ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
 			}
 			else if (strstr(m_description, "BCM4506") || strstr(m_description, "BCM4505"))
+			{
 				ret = (snr * 100) >> 8;
+			}
+			else if (!strcmp(m_description, "Genpix"))
+			{
+				ret = (int)((snr << 1) / 5);
+			}
 
 			if (type == signalQuality)
 			{

@@ -29,7 +29,7 @@ void eDVBServiceEITHandler::EITready(int error)
 		}
 	}
 
-	m_eit_changed();
+	m_eit_changed(error);
 }
 
 void eDVBServiceEITHandler::inject(ePtr<eServiceEvent> &event, int nownext)
@@ -38,7 +38,7 @@ void eDVBServiceEITHandler::inject(ePtr<eServiceEvent> &event, int nownext)
 		m_event_next = event;
 	else
 		m_event_now = event;
-	m_eit_changed();
+	m_eit_changed(0);
 }
 
 eDVBServiceEITHandler::eDVBServiceEITHandler()

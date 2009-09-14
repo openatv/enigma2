@@ -332,6 +332,22 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					return;
 				}
 #endif
+#if ENABLE_FREESAT
+				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize FreeSat schedule other reader!!");
+					return;
+				}
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+				res = demux->createSectionReader( this, data.m_NagraGuideReader );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize NagraGuide reader!!");
+					return;
+				}
+#endif
 				messages.send(Message(Message::startChannel, chan));
 				// -> gotMessage -> changedService
 			}
@@ -389,7 +405,7 @@ bool eEPGCache::FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t T
 #ifdef ENABLE_PRIVATE_EPG
 			&& tmp->second->type != PRIVATE 
 #endif
-#ifdef ENABLE_MHW
+#ifdef ENABLE_MHW_EPG
 			&& tmp->second->type != MHW
 #endif
 			)
@@ -470,10 +486,17 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	// Cablecom HACK .. tsid / onid in eit data are incorrect.. so we use
 	// it from running channel (just for current transport stream eit data)
 	bool use_transponder_chid = source == SCHEDULE || (source == NOWNEXT && data[0] == 0x4E);
-	eDVBChannelID chid = channel->channel->getChannelID();
-	uniqueEPGKey service( HILO(eit->service_id),
-		use_transponder_chid ? chid.original_network_id.get() : HILO(eit->original_network_id),
-		use_transponder_chid ? chid.transport_stream_id.get() : HILO(eit->transport_stream_id));
+
+	int onid = HILO(eit->original_network_id);
+	int tsid  = HILO(eit->transport_stream_id);
+	if (use_transponder_chid && channel)
+	{
+		eDVBChannelID chid = channel->channel->getChannelID();
+
+		onid = chid.original_network_id.get();
+		tsid = chid.transport_stream_id.get();
+	}
+	uniqueEPGKey service( HILO(eit->service_id), onid, tsid);
 
 	eit_event_struct* eit_event = (eit_event_struct*) (data+ptr);
 	int eit_event_size;
@@ -487,7 +510,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 			eit_event->start_time_5);
 	time_t now = ::time(0);
 
-	if ( TM != 3599 && TM > -1)
+	if ( TM != 3599 && TM > -1 && channel)
 		channel->haveData |= source;
 
 	singleLock s(cache_lock);
@@ -1142,11 +1165,17 @@ bool eEPGCache::channel_data::finishEPG()
 			seenSections[i].clear();
 			calcedSections[i].clear();
 		}
+#ifdef ENABLE_MHW_EPG
+		cleanupMHW();
+#endif
+#ifdef ENABLE_FREESAT
+		cleanupFreeSat();
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+		cleanupNagraGuide();
+#endif
 		singleLock l(cache->cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = ::time(0);
-#ifdef ENABLE_MHW_EPG
-		cleanup();
-#endif
 		return true;
 	}
 	return false;
@@ -1162,6 +1191,15 @@ void eEPGCache::channel_data::startEPG()
 		seenSections[i].clear();
 		calcedSections[i].clear();
 	}
+#ifdef ENABLE_MHW_EPG
+		cleanupMHW();
+#endif
+#ifdef ENABLE_FREESAT
+		cleanupFreeSat();
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+		cleanupNagraGuide();
+#endif
 
 	eDVBSectionFilterMask mask;
 	memset(&mask, 0, sizeof(mask));
@@ -1187,7 +1225,25 @@ void eEPGCache::channel_data::startEPG()
 	mask.data[1] = 0;
 	mask.mask[1] = 0;
 #endif
+#ifdef ENABLE_FREESAT
+	mask.pid = 3842;
+	mask.flags = eDVBSectionFilterMask::rfCRC;
+	mask.data[0] = 0x60;
+	mask.mask[0] = 0xF0;
+	m_FreeSatScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readFreeSatScheduleOtherData), m_FreeSatScheduleOtherConn);
+	m_FreeSatScheduleOtherReader->start(mask);
+	isRunning |= FREESAT_SCHEDULE_OTHER;
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+	mask.pid = 228;
+	mask.flags = eDVBSectionFilterMask::rfCRC;
 
+	mask.data[0] = 0;
+	mask.mask[0] = 0;
+	m_NagraGuideNextReader->connectRead(slot(*this, &eEPGCache::channel_data::readNagraGuideData), m_NagraGuideConn);
+	m_NagraGuideNextReader->start(mask);
+	isRunning |= NAGRAGUIDE;
+#endif
 	mask.pid = 0x12;
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
@@ -1244,6 +1300,16 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
+#ifdef ENABLE_FREESAT
+		if ( !(haveData&FREESAT_SCHEDULE_OTHER) && (isRunning&FREESAT_SCHEDULE_OTHER) )
+		{
+			eDebug("[EPGC] abort non avail FreeSat schedule_other reading");
+			isRunning &= ~FREESAT_SCHEDULE_OTHER;
+			m_FreeSatScheduleOtherReader->stop();
+			m_FreeSatScheduleOtherConn=0;
+			cleanupFreeSat();
+		}
+#endif
 		if ( !(haveData&VIASAT) && (isRunning&VIASAT) )
 		{
 			eDebug("[EPGC] abort non avail viasat reading");
@@ -1262,6 +1328,15 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_MHWConn2=0;
 		}
 #endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+		if ( !(haveData&NAGRAGUIDE) && (isRunning&NAGRAGUIDE) )
+		{
+			eDebug("[EPGC] abort non avail NagraGuide reading");
+			isRunning &= ~NAGRAGUIDE;
+			m_NagraGuideReader->stop();
+			m_NagraGuideConn=0;
+		}
+#endif
 		if ( isRunning & VIASAT )
 			abortTimer->start(300000, true);
 		else if ( isRunning )
@@ -1274,6 +1349,15 @@ void eEPGCache::channel_data::abortNonAvail()
 				seenSections[i].clear();
 				calcedSections[i].clear();
 			}
+#ifdef ENABLE_MHW_EPG
+			cleanupMHW();
+#endif
+#ifdef ENABLE_FREESAT
+			cleanupFreeSat();
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+			cleanupNagraGuide();
+#endif
 		}
 	}
 	++state;
@@ -1303,6 +1387,15 @@ void eEPGCache::channel_data::abortEPG()
 		seenSections[i].clear();
 		calcedSections[i].clear();
 	}
+#ifdef ENABLE_MHW_EPG
+	cleanupMHW();
+#endif
+#ifdef ENABLE_FREESAT
+	cleanupFreeSat();
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+	cleanupNagraGuide();
+#endif
 	abortTimer->stop();
 	zapTimer->stop();
 	if (isRunning)
@@ -1326,6 +1419,14 @@ void eEPGCache::channel_data::abortEPG()
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
 		}
+#ifdef ENABLE_FREESAT
+		if (isRunning & FREESAT_SCHEDULE_OTHER)
+		{
+			isRunning &= ~FREESAT_SCHEDULE_OTHER;
+			m_FreeSatScheduleOtherReader->stop();
+			m_FreeSatScheduleOtherConn=0;
+		}
+#endif
 		if (isRunning & VIASAT)
 		{
 			isRunning &= ~VIASAT;
@@ -1340,6 +1441,14 @@ void eEPGCache::channel_data::abortEPG()
 			m_MHWConn=0;
 			m_MHWReader2->stop();
 			m_MHWConn2=0;
+		}
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+		if (isRunning & NAGRAGUIDE)
+		{
+			isRunning &= ~NAGRAGUIDE;
+			m_NagraGuideReader->stop();
+			m_NagraGuideConn=0;
 		}
 #endif
 	}
@@ -1456,6 +1565,125 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 		}
 	}
 }
+
+#if ENABLE_FREESAT
+
+freesatEITSubtableStatus::freesatEITSubtableStatus(u_char version, __u8 maxSection) : version(version)
+{
+	initMap(maxSection);
+}
+
+void freesatEITSubtableStatus::initMap(__u8 maxSection)
+{
+	int i, maxSectionIdx = maxSection / 8;
+	for (i = 0; i < 32; i++)
+	{
+		sectionMap[i] = (i <= maxSectionIdx ? 0x0100 : 0x0000 );
+	}
+}
+
+bool freesatEITSubtableStatus::isSectionPresent(__u8 sectionNo)
+{
+	__u8 sectionIdx = sectionNo / 8;
+	__u8 bitOffset = sectionNo % 8;
+	
+	return ((sectionMap[sectionIdx] & (1 << bitOffset)) != 0);
+}
+
+bool freesatEITSubtableStatus::isCompleted()
+{
+	__u32 i = 0;
+	__u8 calc;
+
+	while ( i < 32 )
+	{
+		calc = sectionMap[i] >> 8;
+		if (! calc) return true; // Last segment passed
+		if (calc ^ ( sectionMap[i] & 0xFF ) ) // Segment not fully found
+			return false;
+		i++;
+	}
+	return true; // All segments ok
+}
+
+void freesatEITSubtableStatus::seen(__u8 sectionNo, __u8 maxSegmentSection)
+{
+	__u8 sectionIdx = sectionNo / 8;
+	__u8 bitOffset = sectionNo % 8;
+	__u8 maxBitOffset = maxSegmentSection % 8;
+
+	sectionMap[sectionIdx] &= 0x00FF; // Clear calc map
+	sectionMap[sectionIdx] |= ((0x01FF << maxBitOffset) & 0xFF00); // Set calc map
+	sectionMap[sectionIdx] |= (1 << bitOffset); // Set seen map
+}
+
+bool freesatEITSubtableStatus::isVersionChanged(u_char testVersion)
+{
+	return version != testVersion;
+}
+
+void freesatEITSubtableStatus::updateVersion(u_char newVersion, __u8 maxSection)
+{
+	version = newVersion;
+	initMap(maxSection);
+}
+
+void eEPGCache::channel_data::cleanupFreeSat()
+{
+	m_FreeSatSubTableStatus.clear();
+	m_FreesatTablesToComplete = 0;
+}
+
+void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
+{
+	eit_t *eit = (eit_t*) data;
+	__u32 subtableNo = data[0] << 24; // Table ID
+	subtableNo |= data[3] << 16; // Service ID Hi
+	subtableNo |= data[4] << 8; // Service ID Lo
+
+	// Check for sub-table version in map
+	std::map<__u32, freesatEITSubtableStatus> &freeSatSubTableStatus = this->m_FreeSatSubTableStatus;
+	std::map<__u32, freesatEITSubtableStatus>::iterator itmap = freeSatSubTableStatus.find(subtableNo);
+
+	freesatEITSubtableStatus *fsstatus;
+	if ( itmap == freeSatSubTableStatus.end() )
+	{
+		// New sub table. Store version.
+		eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
+		fsstatus = new freesatEITSubtableStatus(eit->version_number, eit->last_section_number);
+		m_FreesatTablesToComplete++;
+		freeSatSubTableStatus.insert(std::pair<__u32,freesatEITSubtableStatus>(subtableNo, *fsstatus));
+	}
+	else
+	{
+		fsstatus = &itmap->second;
+		// Existing subtable. Check version. Should check current / next as well? Seems to always be current for Freesat
+		if ( fsstatus->isVersionChanged(eit->version_number) )
+		{
+			eDebug("[EPGC] FS subtable (%x) version changed (%d) now/next (%d)", subtableNo, eit->version_number, eit->current_next_indicator);
+			m_FreesatTablesToComplete++;
+			fsstatus->updateVersion(eit->version_number, eit->last_section_number);
+		}
+		else
+		{
+			if ( fsstatus->isSectionPresent(eit->section_number) )
+			{
+//				eDebug("[EPGC] DUP FS sub/sec/ver (%x/%d/%d)", subtableNo, eit->section_number, eit->version_number);
+				return;
+			}
+		}
+	}
+
+//	eDebug("[EPGC] New FS sub/sec/ls/lss/ver (%x/%d/%d/%d/%d)", subtableNo, eit->section_number, eit->last_section_number, eit->segment_last_section_number, eit->version_number);
+	fsstatus->seen(eit->section_number, eit->segment_last_section_number);
+	if (fsstatus->isCompleted())
+	{
+		m_FreesatTablesToComplete--;
+		eDebug("[EPGC] Subtable %x complete %d left", subtableNo, m_FreesatTablesToComplete); 
+	}
+	cache->sectionRead(data, FREESAT_SCHEDULE_OTHER, this);
+}
+#endif
 
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result, int direction)
 // if t == -1 we search the current event...
@@ -2074,6 +2302,243 @@ void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData 
 	}
 }
 
+static void fill_eit_start(eit_event_struct *evt, time_t t)
+{
+    tm *time = gmtime(&t);
+
+    int l = 0;
+    int month = time->tm_mon + 1;
+    if (month == 1 || month == 2)
+        l = 1;
+    int mjd = 14956 + time->tm_mday + (int)((time->tm_year - l) * 365.25) + (int)((month + 1 + l*12) * 30.6001);
+    evt->start_time_1 = mjd >> 8;
+    evt->start_time_2 = mjd & 0xFF;
+
+    evt->start_time_3 = toBCD(time->tm_hour);
+    evt->start_time_4 = toBCD(time->tm_min);
+    evt->start_time_5 = toBCD(time->tm_sec);
+
+}
+
+static void fill_eit_duration(eit_event_struct *evt, int time)
+{
+    //time is given in second
+    //convert to hour, minutes, seconds
+    evt->duration_1 = toBCD(time / 3600);
+    evt->duration_2 = toBCD((time % 3600) / 60);
+    evt->duration_3 = toBCD((time % 3600) % 60);
+}
+
+static inline __u8 HI(int x) { return (__u8) ((x >> 8) & 0xFF); }
+static inline __u8 LO(int x) { return (__u8) (x & 0xFF); }
+#define SET_HILO(x, val) {x##_hi = ((val) >> 8); x##_lo = (val) & 0xff; }
+// convert from set of strings to DVB format (EIT)
+static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start, 
+	long duration, const char* title, const char* short_summary, 
+	const char* long_description, char event_type)
+{
+	if (!title)
+		return 0;
+	static const int EIT_LENGTH = 4108;
+	__u8 *data = new __u8[EIT_LENGTH];
+
+	eit_t *packet = (eit_t *) data;
+	packet->table_id = 0x50;
+	packet->section_syntax_indicator = 1;
+
+	eDVBChannelID chid;
+	serviceRef.getChannelID(chid);
+
+	SET_HILO(packet->service_id, serviceRef.getServiceID().get());
+	packet->version_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
+	packet->current_next_indicator = 0;
+	packet->section_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
+	packet->last_section_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
+	
+	SET_HILO(packet->transport_stream_id, chid.transport_stream_id.get());
+	SET_HILO(packet->original_network_id, chid.original_network_id.get());
+	packet->segment_last_section_number = 0; // eEPGCache::sectionRead() will dig this for the moment
+	packet->segment_last_table_id = 0x50;
+
+	eit_event_t *evt_struct = (eit_event_t*) (data + EIT_SIZE);
+
+	__u16 eventId = start & 0xFFFF;
+	SET_HILO(evt_struct->event_id, eventId);
+
+	//6 bytes start time, 3 bytes duration
+	fill_eit_start(evt_struct, start);
+	fill_eit_duration(evt_struct, duration);
+	
+	evt_struct->running_status = 0;
+	evt_struct->free_CA_mode = 0;
+
+	//no support for different code pages, only DVB's latin1 character set
+	//TODO: convert text to correct character set (data is probably passed in as UTF-8)
+	__u8 *x = (__u8 *) evt_struct;
+	x += EIT_LOOP_SIZE;
+	int nameLength = strnlen(title, 248);
+	int descLength = short_summary ? strnlen(short_summary, 248 - nameLength) : 0;
+	
+	eit_short_event_descriptor_struct *short_evt = (eit_short_event_descriptor_struct*) x;
+	short_evt->descriptor_tag = SHORT_EVENT_DESCRIPTOR;
+	short_evt->descriptor_length = EIT_SHORT_EVENT_DESCRIPTOR_SIZE + nameLength + descLength + 1 - 2; //+1 for length of short description, -2 for tag and length 
+	short_evt->language_code_1 = 'e';
+	short_evt->language_code_2 = 'n';
+	short_evt->language_code_3 = 'g';
+	short_evt->event_name_length = nameLength;
+	x = (__u8 *) short_evt;
+	x += EIT_SHORT_EVENT_DESCRIPTOR_SIZE;
+	memcpy(x, title, nameLength);
+	x += nameLength;
+	*x = descLength;
+	x += 1;
+	if (descLength) //not sure if memcpy can handle length of zero....
+	{
+		memcpy(x, short_summary, descLength);
+		x += descLength;
+	}
+
+	//Content type
+	if (event_type != 0)
+	{
+		x[0] = 0x54;
+		x[1] = 2;
+		x[2] = event_type;
+		x[3] = 0;
+		x += 4;
+	}
+
+	//Long description
+	int currentLoopLength = x - (__u8*)short_evt;
+	int overheadPerDescriptor = 8; //increase if codepages are added!!!
+	int MAX_LEN = 256 - overheadPerDescriptor; 
+
+	int textLength = long_description ? strnlen(long_description, EIT_LENGTH) : 0;//EIT_LENGTH is a bit too much, but it's only here as a reasonable end point
+	int lastDescriptorNumber = (textLength + MAX_LEN-1) / MAX_LEN - 1;
+	int remainingTextLength = textLength - lastDescriptorNumber * MAX_LEN;
+
+	//if long description is too long, just try to fill as many descriptors as possible
+	while ( (lastDescriptorNumber+1) * 256 + currentLoopLength > EIT_LENGTH - EIT_LOOP_SIZE)
+	{
+		lastDescriptorNumber--;
+		remainingTextLength = MAX_LEN;
+	}
+
+	for (int descrIndex = 0; descrIndex <= lastDescriptorNumber; ++descrIndex)
+	{
+		eit_extended_descriptor_struct *ext_evt = (eit_extended_descriptor_struct*) x;
+		ext_evt->descriptor_tag = EIT_EXTENDED_EVENT_DESCRIPOR;
+		//descriptor header length is 6, including the 2 tag and length bytes
+		//so the length field must be: stringlength + 1 (2 4-bits numbers) + 3 (lang code) + 2 bytes for item info length field and text length field
+		int currentTextLength = descrIndex < lastDescriptorNumber ? MAX_LEN : remainingTextLength;
+		ext_evt->descriptor_length = 6 + currentTextLength;
+
+		ext_evt->descriptor_number = descrIndex;
+		ext_evt->last_descriptor_number = lastDescriptorNumber;
+		ext_evt->iso_639_2_language_code_1 = 'e';
+		ext_evt->iso_639_2_language_code_2 = 'n';
+		ext_evt->iso_639_2_language_code_3 = 'g';
+
+		x[6] = 0; //item information (car, year, director, etc. Unsupported for now)
+		x[7] = currentTextLength; //length of description string (part in this message)
+		memcpy(x + 8, &long_description[descrIndex*MAX_LEN], currentTextLength);
+
+		x += 2 + ext_evt->descriptor_length; 
+	}
+
+	//TODO: add age and more 
+	int desc_loop_length = x - ((__u8*)evt_struct + EIT_LOOP_SIZE);
+	SET_HILO(evt_struct->descriptors_loop_length, desc_loop_length);
+
+	int packet_length = (x - data) - 3; //should add 1 for crc....
+	SET_HILO(packet->section_length, packet_length);
+	return data;
+}
+#undef SET_HILO
+
+static const char* getStringFromPython(ePyObject obj)
+{
+	char *result = 0;
+	if (PyString_Check(obj))
+	{
+		result = PyString_AS_STRING(obj);
+	}
+	return result;
+}
+//here we get a python tuple of tuples ;)
+// consider it an array of objects with the following data
+// 1. start time (long)
+// 2. duration (int)
+// 3. event title (string)
+// 4. short description (string)
+// 5. extended description (string)
+// 6. event type (byte)
+void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
+{
+	if (!PyString_Check(serviceReference))
+	{
+		eDebug("[EPG:import] serviceReference does not pass PyString_Check, aborting");
+		return;
+	}
+
+	char *refstr = PyString_AS_STRING(serviceReference);
+	if (!refstr)
+	{
+		eDebug("[EPG:import] serviceReference string is 0, aborting");
+		return;
+	}
+	eServiceReferenceDVB ref(refstr);
+	if (!ref.valid())
+	{
+		std::string s("[EPG:import] invalid reference: ");
+		s += refstr;
+		s += ", aborting";
+		eDebug(s.c_str());
+		return;
+	}
+	if (!PyTuple_Check(list))
+	{
+		eDebug("[EPG:import] argument 'list' does not pas PyTuple_Check, aborting");
+		return;
+	}
+
+	int numberOfEvents = PyTuple_Size(list);
+	if (numberOfEvents < 1)
+	{
+		eDebug("[EPG:import] numberOfEvents less than 1, aborting");
+		return;
+	}
+	
+	for (int i = 0; i < numberOfEvents;  ++i)
+	{
+		ePyObject singleEvent = PyTuple_GET_ITEM(list, i);
+		if (!PyTuple_Check(singleEvent))
+		{
+			eDebug("[EPG:import] eventdata tuple does not pass PyTuple_Check, aborting");
+			return;
+		}
+		int tupleSize = PyTuple_Size(singleEvent);
+		if (tupleSize < 5)
+		{
+			eDebug("[EPG:import] eventdata tuple does not contain enough fields, aborting");
+			return;
+		}
+		
+		long start = PyLong_AsLong(PyTuple_GET_ITEM(singleEvent, 0));
+		long duration = PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 1));
+		const char *title = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 2));
+		const char *short_summary = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 3));
+		const char *long_description = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 4));
+		char event_type = (char) PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 5));
+
+		__u8* data = createEventData(ref, start, duration, title, short_summary, long_description, event_type);
+		if (data)
+			sectionRead(data, EPG_IMPORT, 0);
+		delete [] data;
+	}
+}
+
+
 // here we get a python tuple
 // the first entry in the tuple is a python string to specify the format of the returned tuples (in a list)
 //   I = Event Id
@@ -2240,62 +2705,116 @@ PyObject *eEPGCache::search(ePyObject arg)
 						__u8 *data = it->second.second;
 						if ( data[0] == 0x4D ) // short event descriptor
 						{
-							int title_len = data[5];
-							if ( querytype == 1 )
+							if (data[6] >= 0x20)
 							{
-								int offs = 6;
-								// skip DVB-Text Encoding!
-								if (data[6] == 0x10)
+								int title_len = data[5];
+								if ( querytype == 1 )
 								{
-									offs+=3;
-									title_len-=3;
-								}
-								else if(data[6] > 0 && data[6] < 0x20)
-								{
-									offs+=1;
-									title_len-=1;
-								}
-								if (title_len != textlen)
-									continue;
-								if ( casetype )
-								{
-									if ( !strncasecmp((const char*)data+offs, str, title_len) )
+									int offs = 6;
+									// skip DVB-Text Encoding!
+									if (data[6] == 0x10)
 									{
-//										std::string s((const char*)data+offs, title_len);
-//										eDebug("match1 %s %s", str, s.c_str() );
+										offs+=3;
+										title_len-=3;
+									}
+									else if(data[6] > 0 && data[6] < 0x20)
+									{
+										offs+=1;
+										title_len-=1;
+									}
+									if (title_len != textlen)
+										continue;
+									if ( casetype )
+									{
+										if ( !strncasecmp((const char*)data+offs, str, title_len) )
+										{
+	//										std::string s((const char*)data+offs, title_len);
+	//										eDebug("match1 %s %s", str, s.c_str() );
+											descr[++descridx] = it->first;
+										}
+									}
+									else if ( !strncmp((const char*)data+offs, str, title_len) )
+									{
+	//									std::string s((const char*)data+offs, title_len);
+	//									eDebug("match2 %s %s", str, s.c_str() );
 										descr[++descridx] = it->first;
 									}
 								}
-								else if ( !strncmp((const char*)data+offs, str, title_len) )
+								else
 								{
-//									std::string s((const char*)data+offs, title_len);
-//									eDebug("match2 %s %s", str, s.c_str() );
-									descr[++descridx] = it->first;
+									int idx=0;
+									while((title_len-idx) >= textlen)
+									{
+										if (casetype)
+										{
+											if (!strncasecmp((const char*)data+6+idx, str, textlen) )
+											{
+												descr[++descridx] = it->first;
+	//											std::string s((const char*)data+6, title_len);
+	//											eDebug("match 3 %s %s", str, s.c_str() );
+												break;
+											}
+										}
+										else if (!strncmp((const char*)data+6+idx, str, textlen) )
+										{
+											descr[++descridx] = it->first;
+	//										std::string s((const char*)data+6, title_len);
+	//										eDebug("match 4 %s %s", str, s.c_str() );
+											break;
+										}
+										++idx;
+									}
 								}
 							}
 							else
 							{
-								int idx=0;
-								while((title_len-idx) >= textlen)
+								std::string title = convertDVBUTF8(&data[6], data[5], 0x40, 0);
+								int title_len = title.length();
+								const char *titleptr = title.c_str();
+								if ( querytype == 1 )
 								{
-									if (casetype)
+									if (title_len != textlen)
+										continue;
+									if ( casetype )
 									{
-										if (!strncasecmp((const char*)data+6+idx, str, textlen) )
+										if ( !strncasecmp(titleptr, str, title_len) )
 										{
+	//										std::string s((const char*)data+6, title_len);
+	//										eDebug("match1 %s %s", str, s.c_str() );
 											descr[++descridx] = it->first;
-//											std::string s((const char*)data+6, title_len);
-//											eDebug("match 3 %s %s", str, s.c_str() );
-											break;
 										}
 									}
-									else if (!strncmp((const char*)data+6+idx, str, textlen) )
+									else if ( !strncmp(titleptr, str, title_len) )
 									{
+	//									std::string s((const char*)data+6, title_len);
+	//									eDebug("match2 %s %s", str, s.c_str() );
 										descr[++descridx] = it->first;
-//										std::string s((const char*)data+6, title_len);
-//										eDebug("match 4 %s %s", str, s.c_str() );
-										break;
 									}
-									++idx;
+								}
+								else
+								{
+									int idx=0;
+									while((title_len-idx) >= textlen)
+									{
+										if (casetype)
+										{
+											if (!strncasecmp(titleptr+idx, str, textlen) )
+											{
+												descr[++descridx] = it->first;
+	//											std::string s((const char*)data+6, title_len);
+	//											eDebug("match 3 %s %s", str, s.c_str() );
+												break;
+											}
+										}
+										else if (!strncmp(titleptr+idx, str, textlen) )
+										{
+											descr[++descridx] = it->first;
+	//										std::string s((const char*)data+6, title_len);
+	//										eDebug("match 4 %s %s", str, s.c_str() );
+											break;
+										}
+										++idx;
+									}
 								}
 							}
 						}
@@ -2770,8 +3289,9 @@ void eEPGCache::channel_data::readPrivateData( const __u8 *data)
 #endif // ENABLE_PRIVATE_EPG
 
 #ifdef ENABLE_MHW_EPG
-void eEPGCache::channel_data::cleanup()
+void eEPGCache::channel_data::cleanupMHW()
 {
+	m_MHWTimeoutTimer->stop();
 	m_channels.clear();
 	m_themes.clear();
 	m_titles.clear();
@@ -2864,7 +3384,7 @@ void eEPGCache::channel_data::timeMHW2DVB( u_char day, u_char hours, u_char minu
 	timeMHW2DVB( recdate.tm_hour, minutes, return_time+2 );
 }
 
-void eEPGCache::channel_data::storeTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data)
+void eEPGCache::channel_data::storeMHWTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data)
 // data is borrowed from calling proc to save memory space.
 {
 	__u8 name[34];
@@ -3010,7 +3530,7 @@ void eEPGCache::channel_data::storeTitle(std::map<__u32, mhw_title_t>::iterator 
 	cache->sectionRead( data, MHW, this );
 }
 
-void eEPGCache::channel_data::startTimeout(int msec)
+void eEPGCache::channel_data::startMHWTimeout(int msec)
 {
 	m_MHWTimeoutTimer->start(msec,true);
 	m_MHWTimeoutet=false;
@@ -3103,15 +3623,17 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		eDebug("[EPGC] mhw %d themes found", m_themes.size());
 		// Themes table has been read, start reading the titles table.
 		startMHWReader(0xD2, 0x90);
-		startTimeout(4000);
+		startMHWTimeout(4000);
 		return;
 	}
 	else if (m_MHWFilterMask.pid == 0xD2 && m_MHWFilterMask.data[0] == 0x90)
 	// Titles table
 	{
 		mhw_title_t *title = (mhw_title_t*) data;
+		__u8 name[24];
+		std::string prog_title = (char *) delimitName( title->title, name, 23 );
 
-		if ( title->channel_id == 0xFF )	// Separator
+		if ( title->channel_id == 0xFF || prog_title.substr(0,7) == "BIENTOT" )	// Separator or BIENTOT record
 			return;	// Continue reading of the current table.
 		else
 		{
@@ -3123,7 +3645,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 
 			if ( m_titles.find( title_id ) == m_titles.end() )
 			{
-				startTimeout(4000);
+				startMHWTimeout(4000);
 				title->mhw2_mjd_hi = 0;
 				title->mhw2_mjd_lo = 0;
 				title->mhw2_duration_hi = 0;
@@ -3134,7 +3656,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 					m_program_ids.insert(std::pair<__u32,__u32>(program_id,title_id));
 				return;	// Continue reading of the current table.
 			}
-			else if (!checkTimeout())
+			else if (!checkMHWTimeout())
 				return;
 		}
 		if ( !m_program_ids.empty())
@@ -3145,7 +3667,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 			eDebug("[EPGC] mhw %d titles(%d with summary) found",
 				m_titles.size(),
 				m_program_ids.size());
-			startTimeout(4000);
+			startMHWTimeout(4000);
 			return;
 		}
 	}
@@ -3168,7 +3690,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 		if ( itProgid == m_program_ids.end() )
 		{ /*	This part is to prevent to looping forever if some summaries are not received yet.
 			There is a timeout of 4 sec. after the last successfully read summary. */
-			if (!m_program_ids.empty() && !checkTimeout())
+			if (!m_program_ids.empty() && !checkMHWTimeout())
 				return;	// Continue reading of the current table.
 		}
 		else
@@ -3183,8 +3705,8 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 			std::map<__u32, mhw_title_t>::iterator itTitle( m_titles.find( itProgid->second ) );
 			if ( itTitle != m_titles.end() )
 			{
-				startTimeout(4000);
-				storeTitle( itTitle, the_text, data );
+				startMHWTimeout(4000);
+				storeMHWTitle( itTitle, the_text, data );
 				m_titles.erase( itTitle );
 			}
 			m_program_ids.erase( itProgid );
@@ -3198,7 +3720,7 @@ void eEPGCache::channel_data::readMHWData(const __u8 *data)
 	// Summaries have been read, titles that have summaries have been stored.
 	// Now store titles that do not have summaries.
 	for (std::map<__u32, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
-		storeTitle( itTitle, "", data );
+		storeMHWTitle( itTitle, "", data );
 	isRunning &= ~MHW;
 	m_MHWConn=0;
 	if ( m_MHWReader )
@@ -3308,7 +3830,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			}
 			if( !valid )
 			{
-				if (checkTimeout())
+				if (checkMHWTimeout())
 					goto start_summary;
 				return;
 			}
@@ -3345,7 +3867,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			std::map<__u32, mhw_title_t>::iterator it = m_titles.find( title_id );
 			if ( it == m_titles.end() )
 			{
-				startTimeout(5000);
+				startMHWTimeout(5000);
 				m_titles[ title_id ] = title;
 				if (summary_id != 0xFFFF)
 				{
@@ -3365,7 +3887,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			}
 			else
 			{
-				if ( !checkTimeout() )
+				if ( !checkMHWTimeout() )
 					continue;	// Continue reading of the current table.
 				finish=true;
 				break;
@@ -3380,7 +3902,7 @@ start_summary:
 				// Titles table has been read, there are summaries to read.
 				// Start reading summaries, store corresponding titles on the fly.
 				startMHWReader2(0x236, 0x96);
-				startTimeout(15000);
+				startMHWTimeout(15000);
 				return;
 			}
 		}
@@ -3390,7 +3912,7 @@ start_summary:
 	else if (m_MHWFilterMask2.pid == 0x236 && m_MHWFilterMask2.data[0] == 0x96)
 	// Summaries table
 	{
-		if (!checkTimeout())
+		if (!checkMHWTimeout())
 		{
 			int len, loop, pos, lenline;
 			bool valid;
@@ -3455,7 +3977,7 @@ start_summary:
 				}
 				else
 				{
-					startTimeout(15000);
+					startMHWTimeout(15000);
 					std::string the_text = (char *) (data + pos + 1);
 
 					while( itProgId != m_program_ids.end() && itProgId->first == summary_id )
@@ -3464,7 +3986,7 @@ start_summary:
 						std::map<__u32, mhw_title_t>::iterator itTitle( m_titles.find( itProgId->second ) );
 						if ( itTitle != m_titles.end() )
 						{
-							storeTitle( itTitle, the_text, data );
+							storeMHWTitle( itTitle, the_text, data );
 							m_titles.erase( itTitle );
 						}
 						m_program_ids.erase( itProgId++ );
@@ -3496,7 +4018,7 @@ start_summary:
 			// Summaries have been read, titles that have summaries have been stored.
 			// Now store titles that do not have summaries.
 			for (std::map<__u32, mhw_title_t>::iterator itTitle(m_titles.begin()); itTitle != m_titles.end(); itTitle++)
-				storeTitle( itTitle, "", data );
+				storeMHWTitle( itTitle, "", data );
 			eDebug("[EPGC] mhw2 finished(%ld) %d summaries not found",
 				::time(0),
 				m_program_ids.size());
@@ -3509,5 +4031,107 @@ abort:
 		m_MHWReader2->stop();
 	if (haveData)
 		finishEPG();
+}
+#endif
+
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+void eEPGCache::channel_data::cleanupNagraGuide()
+{
+	m_NagraGuidePrograms.erase();
+	m_NagraGuideDescriptions.erase();
+	nagraGuideDescriptionsReady = false;
+	nagraGuideProgramsReady = false;
+	firstNagraGuideProgramSection = -1;
+}
+
+void eEPGCache::channel_data::storeNagraGuideTitle(nagra_guide_program &program)
+{
+}
+
+void eEPGCache::channel_data::readNagraGuideData(const __u8 *data)
+{
+	int size = (((data[1] & 0xf) << 8) | data[2]) + 3;
+
+	switch (data[0])
+	{
+	case 0xbf:
+		{
+			if (nagraGuideDescriptionsReady) break;
+			int offset = 0;
+			nagraguide_description_t *description = (nagraguide_description_t*)data;
+			int len = HILO(description->section_length) - 1;
+			if (size != len + 4)
+			{
+				return;
+			}
+			offset += sizeof(*description);
+			std::string descr;
+			descr.append((char*)&data[offset], HILO(description->description_length));
+			if (m_NagraGuideDescriptions[HILO(description->description_id)].size())
+			{
+				nagraGuideDescriptionsReady = true;
+				break;
+			}
+			m_NagraGuideDescriptions[HILO(description->description_id)] = descr;
+		}
+		break;
+	case 0xc0:
+		{
+			nagraguide_t *nagraguide = (nagraguide_t*)data;
+			int offset = 0;
+			int len = HILO(nagraguide->section_length) - 1;
+			if (size != len + 4)
+			{
+				return;
+			}
+			if (firstNagraGuideProgramSection < 0)
+			{
+				firstNagraGuideProgramSection = nagraguide->section_number;
+			}
+			else
+			{
+				if (nagraguide->section_number == firstNagraGuideProgramSection)
+				{
+					nagraGuideProgramsReady = true;
+					break;
+				}
+			}
+			offset += sizeof(*nagraguide);
+			nagraguide_program_header_t *header;
+			while (offset + sizeof(nagraguide_program_header_t) < len)
+			{
+				header = (nagraguide_program_header_t*)&data[offset];
+				nagra_guide_program program;
+				program.onid = 0; /* TODO */
+				program.sid = HILO(nagraguide->service_id);
+				program.start = HILO(header->start);
+				program.duration = HILO(header->duration);
+				program.name.append((char*)&data[offset + sizeof(*header)], header->namelength);
+				program.description = 0;
+				offset += sizeof(*header);
+				offset += header->namelength;
+				if (offset + sizeof(nagraguide_program_footer_t) <= len)
+				{
+					nagraguide_program_footer_t *footer;
+					footer = (nagraguide_program_footer_t*)&data[offset];
+					if (footer->id1 == 0 && footer->id2 == 0 && footer->zero1 == 0 && footer->zero2 == 0)
+					{
+						program.description = HILO(footer->id);
+						offset += sizeof(*footer);
+					}
+				}
+				m_NagraGuidePrograms.push_back(program);
+			}
+		}
+		break;
+	default:
+		eDebug("[EPGC] NagraGuide: unknown table_id (%x) !!!", (int)data[0]);
+		return;
+	}
+
+	if (nagraGuideDescriptionsReady && nagraGuideProgramsReady)
+	{
+		/* TODO */
+	}
 }
 #endif

@@ -10,6 +10,7 @@ eWidget::eWidget(eWidget *parent): m_animation(this), m_parent(parent ? parent->
 	m_desktop = 0;
 	m_have_background_color = 0;
 	m_z_position = 0;
+	m_lowered = 0;
 	m_client_offset = eSize(0, 0);
 	if (m_parent)
 		m_vis = wVisShow;
@@ -170,6 +171,19 @@ void eWidget::hide()
 
 	root->m_desktop->recalcClipRegions(root);
 	root->m_desktop->invalidate(abs);
+}
+
+void eWidget::raise()
+{
+	if (m_lowered <= 0) return;
+	m_lowered--;
+	setZPosition(m_z_position + 1);
+}
+
+void eWidget::lower()
+{
+	m_lowered++;
+	setZPosition(m_z_position - 1);
 }
 
 void eWidget::destruct()

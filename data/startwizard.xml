@@ -130,8 +130,8 @@ self.condition = config.misc.startwizard.doservicescan.value and nimmanager.some
 		<step id="finisheddefaultsatlists">
 			<text value="Do you want to enable the parental control feature on your dreambox?" />
 			<list>
-				<listentry caption="Yes" step="parentalsetup" />
 				<listentry caption="No" step="end" />
+				<listentry caption="Yes" step="parentalsetup" />
 			</list>
 			<code pos="after">
 if self["list"].index == 0:

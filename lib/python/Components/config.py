@@ -945,7 +945,11 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		self.changed()
 
 	def getValue(self):
-		return self.text.encode("utf-8")
+		try:
+			return self.text.encode("utf-8")
+		except UnicodeDecodeError:
+			print "Broken UTF8!"
+			return self.text
 
 	def setValue(self, val):
 		try:

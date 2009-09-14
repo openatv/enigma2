@@ -12,7 +12,6 @@
 #include FT_FREETYPE_H
 #ifdef HAVE_FREETYPE2
 #define FTC_Image_Cache_New(a,b)	FTC_ImageCache_New(a,b)
-#define FTC_Image_Cache_Lookup(a,b,c,d)	FTC_ImageCache_Lookup(a,b,c,d,NULL)
 #define FTC_SBit_Cache_New(a,b)		FTC_SBitCache_New(a,b)
 #define FTC_SBit_Cache_Lookup(a,b,c,d)	FTC_SBitCache_Lookup(a,b,c,d,NULL)
 #endif
@@ -108,23 +107,31 @@ FT_Error fontRenderClass::FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface)
 	return 0;
 }																																																																
 
-FTC_FaceID fontRenderClass::getFaceID(const std::string &face)
+int fontRenderClass::getFaceProperties(const std::string &face, FTC_FaceID &id, int &renderflags)
 {
 	for (fontListEntry *f=font; f; f=f->next)
 	{
 		if (f->face == face)
-			return (FTC_FaceID)f;
+		{
+			id = (FTC_FaceID)f;
+			renderflags = f->renderflags;
+			return 0;
+		}
 	}
-	return 0;
+	return -1;
 }
 
+#ifdef HAVE_FREETYPE2
+FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit)
+#else
 FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit)
+#endif
 {
 	FT_Error res=FTC_SBit_Cache_Lookup(sbitsCache, font, glyph_index, sbit);
 	return res;
 }
 
-std::string fontRenderClass::AddFont(const std::string &filename, const std::string &name, int scale)
+std::string fontRenderClass::AddFont(const std::string &filename, const std::string &name, int scale, int renderflags)
 {
 	eDebugNoNewLine("[FONT] adding font %s...", filename.c_str());
 	fflush(stdout);
@@ -140,6 +147,7 @@ std::string fontRenderClass::AddFont(const std::string &filename, const std::str
 
 	n->filename=filename;
 	n->face=name;
+	n->renderflags=renderflags;
 	FT_Done_Face(face);
 
 	n->next=font;
@@ -215,9 +223,14 @@ float fontRenderClass::getLineHeight(const gFont& font)
 		eDebug("FTC_Manager_Lookup_Size failed!");
 		return 0;
 	}
-	int linegap=current_face->size->metrics.height-(current_face->size->metrics.ascender+current_face->size->metrics.descender);
-	float height=(current_face->size->metrics.ascender+current_face->size->metrics.descender+linegap)/64.0;
-	return height;
+	int height = current_face->size->metrics.height;
+	if (!height)
+	{
+		/* some fonts don't have height filled in. Estimate it based on the bbox dimensions. */
+		/* Usually, 'height' is less than the complete boundingbox height, so we use only yMax, to avoid getting a much too large line spacing */
+		height = FT_MulFix(current_face->bbox.yMax, current_face->size->metrics.y_scale);
+	}
+	return (height>>6);
 }
 
 fontRenderClass::~fontRenderClass()
@@ -236,33 +249,34 @@ fontRenderClass::~fontRenderClass()
 
 int fontRenderClass::getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth)
 {
-	FTC_FaceID id=getFaceID(face);
-	if (!id)
+	FTC_FaceID id;
+	int renderflags;
+	if (getFaceProperties(face, id, renderflags) < 0)
 	{
 		font = 0;
 		return -1;
 	}
-	font = new Font(this, id, size * ((fontListEntry*)id)->scale / 100, tabwidth);
+	font = new Font(this, id, size * ((fontListEntry*)id)->scale / 100, tabwidth, renderflags);
 	return 0;
 }
 
-void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement)
+void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags)
 {
-	fontRenderClass::getInstance()->AddFont(filename, alias, scale_factor);
+	fontRenderClass::getInstance()->AddFont(filename, alias, scale_factor, renderflags);
 	if (is_replacement)
 		eTextPara::setReplacementFont(alias);
 }
 
 DEFINE_REF(Font);
 
-Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): tabwidth(tw)
+Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw, int renderflags): tabwidth(tw)
 {
 	renderer=render;
 #ifdef HAVE_FREETYPE2
 	font.face_id = faceid;
 	font.width = isize;
 	font.height = isize;
-	font.flags = FT_LOAD_DEFAULT;
+	font.flags = renderflags;
 	scaler.face_id = faceid;
 	scaler.width = isize;
 	scaler.height = isize;
@@ -279,7 +293,11 @@ Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw): tabwi
 //	font.image_type |= ftc_image_flag_autohinted;
 }
 
+#ifdef HAVE_FREETYPE2
+FT_Error Font::getGlyphBitmap(FT_UInt glyph_index, FTC_SBit *sbit)
+#else
 FT_Error Font::getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit)
+#endif
 {
 	return renderer->getGlyphBitmap(&font, glyph_index, sbit);
 }
@@ -289,7 +307,6 @@ Font::~Font()
 }
 
 DEFINE_REF(eTextPara);
-
 int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags)
 {
 	FTC_SBit glyph;
@@ -300,10 +317,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 
 	nx+=glyph->xadvance;
 
-	if (
-			(rflags&RS_WRAP) && 
-			(nx >= area.right())
-		)
+	if ((rflags & RS_WRAP) && (nx >= area.right()))
 	{
 		int cnt = 0;
 		glyphString::reverse_iterator i(glyphs.rbegin());
@@ -408,13 +422,11 @@ void eTextPara::calc_bbox()
 			continue;
 		if ( i->bbox.left() < boundBox.left() )
 			boundBox.setLeft( i->bbox.left() );
-		if ( i->bbox.top() < boundBox.top() )
-			boundBox.setTop( i->bbox.top() );
 		if ( i->bbox.right() > boundBox.right() )
 			boundBox.setRight( i->bbox.right() );
-		if ( i->bbox.bottom() > boundBox.bottom() )
-			boundBox.setBottom( i->bbox.bottom() );
 	}
+	boundBox.setTop(area.y());
+	boundBox.setBottom(area.y() + totalheight);
 //	eDebug("boundBox left = %i, top = %i, right = %i, bottom = %i", boundBox.left(), boundBox.top(), boundBox.right(), boundBox.bottom() );
 }
 
@@ -423,12 +435,19 @@ void eTextPara::newLine(int flags)
 	if (maximum.width()<cursor.x())
 		maximum.setWidth(cursor.x());
 	cursor.setX(left);
-	previous=0;
-	int linegap=current_face->size->metrics.height-(current_face->size->metrics.ascender+current_face->size->metrics.descender);
-	cursor+=ePoint(0, (current_face->size->metrics.ascender+current_face->size->metrics.descender+linegap)>>6);
+	int height = current_face->size->metrics.height;
+	if (!height)
+	{
+		/* some fonts don't have height filled in. Estimate it based on the bbox dimensions. */
+		/* Usually, 'height' is less than the complete boundingbox height, so we use only yMax, to avoid getting a much too large line spacing */
+		height = FT_MulFix(current_face->bbox.yMax, current_face->size->metrics.y_scale);
+	}
+	height >>= 6;
+	cursor+=ePoint(0, height);
 	if (maximum.height()<cursor.y())
 		maximum.setHeight(cursor.y());
 	previous=0;
+	totalheight += height;
 }
 
 eTextPara::~eTextPara()
@@ -511,6 +530,35 @@ int eTextPara::renderString(const char *string, int rflags)
 	if (!current_font)
 		return -1;
 
+	if (!current_face)
+		eFatal("eTextPara::renderString: no current_face");
+	if (!current_face->size)
+		eFatal("eTextPara::renderString: no current_face->size");
+
+	if (cursor.y()==-1)
+	{
+		int height = current_face->size->metrics.height;
+		int ascender = current_face->size->metrics.ascender;
+		if (!height || !ascender)
+		{
+			int ymax = FT_MulFix(current_face->bbox.yMax, current_face->size->metrics.y_scale);
+			if (!height)
+			{
+				/* some fonts don't have height filled in. Estimate it based on the bbox dimensions. */
+				/* For the first line we calculate the full boundingbox height, this gives the best result when centering vertically */
+				height = ymax - FT_MulFix(current_face->bbox.yMin, current_face->size->metrics.y_scale);
+			}
+			if (!ascender)
+			{
+				/* some fonts don't have ascender filled in. Estimate it based on the bbox dimensions. */
+				ascender = ymax;
+			}
+		}
+		totalheight = height >> 6;
+		cursor=ePoint(area.x(), area.y()+(ascender>>6));
+		left=cursor.x();
+	}
+
 #ifdef HAVE_FREETYPE2
 	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
  				    current_font->scaler.face_id,
@@ -533,17 +581,6 @@ int eTextPara::renderString(const char *string, int rflags)
 		cache_current_font=&current_font->font.font;
 	}
 #endif
-
-	if (!current_face)
-		eFatal("eTextPara::renderString: no current_face");
-	if (!current_face->size)
-		eFatal("eTextPara::renderString: no current_face->size");
-
-	if (cursor.y()==-1)
-	{
-		cursor=ePoint(area.x(), area.y()+(current_face->size->metrics.ascender>>6));
-		left=cursor.x();
-	}
 
 	std::vector<unsigned long> uc_string, uc_visual;
 	if (string)
@@ -792,8 +829,9 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 		return;
 	}
 	
-	gRegion area(eRect(0, 0, surface->x, surface->y));
-	gRegion clip = dc.getClip() & area;
+	gRegion sarea(eRect(0, 0, surface->x, surface->y));
+	gRegion clip = dc.getClip() & sarea;
+	clip &= eRect(area.left() + offset.x(), area.top() + offset.y(), area.width(), area.height()+(current_face->size->metrics.ascender>>6));
 
 	int buffer_stride=surface->stride;
 	
@@ -979,6 +1017,7 @@ void eTextPara::clear()
 	replacement_font = 0;
 
 	glyphs.clear();
+	totalheight = 0;
 }
 
 eAutoInitP0<fontRenderClass> init_fontRenderClass(eAutoInitNumbers::graphic-1, "Font Render Class");

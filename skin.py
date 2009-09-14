@@ -35,8 +35,9 @@ dom_skins = [ ]
 def loadSkin(name, scope = SCOPE_SKIN):
 	# read the skin
 	filename = resolveFilename(scope, name)
-	mpath = path.dirname(filename) + "/"
-	dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
+	if fileExists(filename):
+		mpath = path.dirname(filename) + "/"
+		dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
 
 # we do our best to always select the "right" value
 # skins are loaded in order of priority: skin with
@@ -50,7 +51,7 @@ def loadSkin(name, scope = SCOPE_SKIN):
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-config.skin.primary_skin = ConfigText(default = "skin.xml")
+config.skin.primary_skin = ConfigText(default = "Black.Stone.E2/skin.xml")
 
 profile("LoadSkin")
 try:
@@ -70,31 +71,60 @@ profile("LoadSkinDefault")
 loadSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
-def evalPos(pos, wsize, ssize, scale):
-	if pos == "center":
-		pos = (ssize - wsize) / 2
+def parseCoordinate(str, e, size = 0):
+	if str == "center":
+		val = (e - size)/2
+	elif str[0] is 'e':
+		val = e
+		if len(str) > 2:
+			val = val + int(str[1:len(str)])
+	elif str[0] is 'c':
+		val = e/2
+		if len(str) > 2:
+			val = val + int(str[1:len(str)])
 	else:
-		pos = int(pos) * scale[0] / scale[1]
-	return int(pos)
+		val = int(str)
+	if val < 0:
+		val = 0
+	return val
 
-def parsePosition(str, scale, desktop = None, size = None):
+def getParentSize(object, desktop):
+	size = eSize()
+	if object:
+		parent = object.getParent()
+		# For some widgets (e.g. ScrollLabel) the skin attributes are applied to
+		# a child widget, instead of to the widget itself. In that case, the parent
+		# we have here is not the real parent, but it is the main widget.
+		# We have to go one level higher to get the actual parent.
+		# We can detect this because the 'parent' will not have a size yet
+		# (the main widget's size will be calculated internally, as soon as the child
+		# widget has parsed the skin attributes)
+		if parent and parent.size().isEmpty():
+			parent = parent.getParent()
+		if parent:
+			size = parent.size()
+		elif desktop:
+			#widget has no parent, use desktop size instead for relative coordinates
+			size = desktop.size()
+	return size
+
+def parsePosition(str, scale, object = None, desktop = None, size = None):
 	x, y = str.split(',')
-	
-	wsize = 1, 1
-	ssize = 1, 1
-	if desktop is not None:
-		ssize = desktop.size().width(), desktop.size().height()
-	if size is not None:
-		wsize = size.width(), size.height()
+	parentsize = eSize()
+	if object and (x[0] in ['c', 'e'] or y[0] in ['c', 'e']):
+		parentsize = getParentSize(object, desktop)
+	xval = parseCoordinate(x, parentsize.width(), size and size.width())
+	yval = parseCoordinate(y, parentsize.height(), size and size.height())
+	return ePoint(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
 
-	x = evalPos(x, wsize[0], ssize[0], scale[0])
-	y = evalPos(y, wsize[1], ssize[1], scale[1])
-
-	return ePoint(x, y)
-
-def parseSize(str, scale):
+def parseSize(str, scale, object = None, desktop = None):
 	x, y = str.split(',')
-	return eSize(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1])
+	parentsize = eSize()
+	if object and (x[0] in ['c', 'e'] or y[0] in ['c', 'e']):
+		parentsize = getParentSize(object, desktop)
+	xval = parseCoordinate(x, parentsize.width())
+	yval = parseCoordinate(y, parentsize.height())
+	return eSize(xval * scale[0][0] / scale[0][1], yval * scale[1][0] / scale[1][1])
 
 def parseFont(str, scale):
 	name, size = str.split(';')
@@ -115,11 +145,21 @@ def collectAttributes(skinAttributes, node, skin_path_prefix=None, ignore=[]):
 		attrib = a[0]
 		value = a[1]
 
-		if attrib in ("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap"):
+		if attrib in ("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"):
 			value = resolveFilename(SCOPE_SKIN_IMAGE, value, path_prefix=skin_path_prefix)
 
 		if attrib not in ignore:
-			skinAttributes.append((attrib, value.encode("utf-8")))
+			# Bit of a hack this, really. When a window has a flag (e.g. wfNoBorder)
+			# it needs to be set at least before the size is set, in order for the
+			# window dimensions to be calculated correctly in all situations.
+			# If wfNoBorder is applied after the size has been set, the window will fail to clear the title area.
+			# Similar situation for a scrollbar in a listbox; when the scrollbar setting is applied after
+			# the size, a scrollbar will not be shown until the selection moves for the first time
+			if attrib == 'size':
+				skinAttributes.append((attrib, value.encode("utf-8")))
+			else:
+				skinAttributes.insert(0, (attrib, value.encode("utf-8")))
+
 
 def loadPixmap(path, desktop):
 	cached = False
@@ -137,18 +177,18 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 	# and set attributes
 	try:
 		if attrib == 'position':
-			guiObject.move(parsePosition(value, scale, desktop, guiObject.csize()))
+			guiObject.move(parsePosition(value, scale, guiObject, desktop, guiObject.csize()))
 		elif attrib == 'size':
-			guiObject.resize(parseSize(value, scale))
+			guiObject.resize(parseSize(value, scale, guiObject, desktop))
 		elif attrib == 'title':
-			guiObject.setTitle(_(value))
+			guiObject.setTitle(_(value.encode('UTF-8')))
 		elif attrib == 'text':
-			guiObject.setText(_(value))
+			guiObject.setText(_(value.encode('UTF-8')))
 		elif attrib == 'font':
 			guiObject.setFont(parseFont(value, scale))
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
-		elif attrib in ("pixmap", "backgroundPixmap", "selectionPixmap"):
+		elif attrib in ("pixmap", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"):
 			ptr = loadPixmap(value, desktop) # this should already have been filename-resolved.
 			if attrib == "pixmap":
 				guiObject.setPixmap(ptr)
@@ -156,6 +196,10 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 				guiObject.setBackgroundPicture(ptr)
 			elif attrib == "selectionPixmap":
 				guiObject.setSelectionPicture(ptr)
+			elif attrib == "sliderPixmap":
+				guiObject.setSliderPicture(ptr)
+			elif attrib == "scrollbarbackgroundPixmap":
+				guiObject.setScrollbarBackgroundPicture(ptr)
 			# guiObject.setPixmapFromFile(value)
 		elif attrib == "alphatest": # used by ePixmap
 			guiObject.setAlphatest(
@@ -196,6 +240,9 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 					}[value])
 			except KeyError:
 				print "halign must be either left, center, right or block!"
+		elif attrib == "textOffset":
+			x, y = value.split(',')
+			guiObject.setTextOffset(ePoint(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1]))
 		elif attrib == "flags":
 			flags = value.split(',')
 			for f in flags:
@@ -226,10 +273,13 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 			guiObject.setScrollbarMode(
 				{ "showOnDemand": guiObject.showOnDemand,
 					"showAlways": guiObject.showAlways,
-					"showNever": guiObject.showNever
+					"showNever": guiObject.showNever,
+					"showLeft": guiObject.showLeft
 				}[value])
 		elif attrib == "enableWrapAround":
 			guiObject.setWrapAround(True)
+		elif attrib == "itemHeight":
+			guiObject.setItemHeight(int(value))
 		elif attrib == "pointer" or attrib == "seek_pointer":
 			(name, pos) = value.split(':')
 			pos = parsePosition(pos, scale)
@@ -309,12 +359,17 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			else:
 				scale = 100
 			is_replacement = get_attr("replacement") and True or False
+			render = get_attr("render")
+			if render:
+				render = int(render)
+			else:
+				render = 0
 			resolved_font = resolveFilename(SCOPE_FONTS, filename, path_prefix=path_prefix)
 			if not fileExists(resolved_font): #when font is not available look at current skin path
 				skin_path = resolveFilename(SCOPE_CURRENT_SKIN, filename)
 				if fileExists(skin_path):
 					resolved_font = skin_path
-			addFont(resolved_font, name, scale, is_replacement)
+			addFont(resolved_font, name, scale, is_replacement, render)
 			#print "Font: ", resolved_font, name, scale, is_replacement
 
 	for c in skin.findall("subtitles"):
@@ -557,6 +612,9 @@ def readSkin(screen, skin, names, desktop):
 	# now walk additional objects
 	for widget in myscreen.getchildren():
 		w_tag = widget.tag
+
+		if not w_tag:
+			continue
 
 		if w_tag == "widget":
 			continue

@@ -4,7 +4,7 @@ from GUIComponent import GUIComponent
 from enigma import eListboxPythonStringContent, eListbox
 
 class MenuList(HTMLComponent, GUIComponent):
-	def __init__(self, list, enableWrapAround=False, content=eListboxPythonStringContent):
+	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):
 		GUIComponent.__init__(self)
 		self.list = list
 		self.l = content()

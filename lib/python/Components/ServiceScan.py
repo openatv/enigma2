@@ -125,6 +125,9 @@ class ServiceScan:
 		self.frontendInfo.frontend_source = lambda : self.scan.getFrontend()
 		self.feid = self.scanList[self.run]["feid"]
 		self.flags = self.scanList[self.run]["flags"]
+		self.networkid = 0
+		if self.scanList[self.run].has_key("networkid"):
+			self.networkid = self.scanList[self.run]["networkid"]
 		self.state = self.Idle
 		self.scanStatusChanged()
 		
@@ -143,7 +146,7 @@ class ServiceScan:
 		self.scan.newService.get().append(self.newService)
 		self.servicelist.clear()
 		self.state = self.Running
-		err = self.scan.start(self.feid, self.flags)
+		err = self.scan.start(self.feid, self.flags, self.networkid)
 		self.frontendInfo.updateFrontendData()
 		if err:
 			self.state = self.Error

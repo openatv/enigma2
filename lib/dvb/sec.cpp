@@ -131,10 +131,22 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				eSecDebugNoSimulate("sat %d found", sat.orbital_position);
 
-				if ( sat.frequency > lnb_param.m_lof_threshold )
-					band |= 1;
-				if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
-					band |= 2;
+				/* Dishpro bandstacking HACK */
+				if (lnb_param.m_lof_threshold == 1000)
+				{
+					if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
+					{
+						band |= 1;
+					}
+					band |= 2; /* voltage always 18V for Dishpro */
+				}
+				else
+				{
+					if ( sat.frequency > lnb_param.m_lof_threshold )
+						band |= 1;
+					if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
+						band |= 2;
+				}
 
 				if (di_param.m_diseqc_mode >= eDVBSatelliteDiseqcParameters::V1_0)
 				{
@@ -250,6 +262,11 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 	}
 	if (score && direct_connected)
 		score += 5; // increase score for tuners with direct sat connection
+	if (score && eDVBFrontend::getPreferredFrontend() >= 0 && slot_id == (1 << eDVBFrontend::getPreferredFrontend()))
+	{
+		/* make 'sure' we always prefer this frontend */
+		score += 100000;
+	}
 	eSecDebugNoSimulate("final score %d", score);
 	return score;
 }
@@ -370,10 +387,22 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			if (lastcsw == lastucsw && lastToneburst == lastucsw && lastucsw == -1)
 				needDiSEqCReset = true;
 
-			if ( sat.frequency > lnb_param.m_lof_threshold )
-				band |= 1;
-			if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
-				band |= 2;
+			/* Dishpro bandstacking HACK */
+			if (lnb_param.m_lof_threshold == 1000)
+			{
+				if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
+				{
+					band |= 1;
+				}
+				band |= 2; /* voltage always 18V for Dishpro */
+			}
+			else
+			{
+				if ( sat.frequency > lnb_param.m_lof_threshold )
+					band |= 1;
+				if (!(sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical))
+					band |= 2;
+			}
 
 			int lof = (band&1)?lnb_param.m_lof_hi:lnb_param.m_lof_lo;
 
@@ -388,7 +417,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 				parm.FREQUENCY = (local - (local % 125)) + ((local % 125)>62 ? 125 : 0);
 				frontend.setData(eDVBFrontend::FREQ_OFFSET, sat.frequency - parm.FREQUENCY);
 
-				if ( voltage_mode == eDVBSatelliteSwitchParameters::_14V
+				/* Dishpro bandstacking HACK */
+				if (lnb_param.m_lof_threshold == 1000)
+					voltage = VOLTAGE(18);
+				else if ( voltage_mode == eDVBSatelliteSwitchParameters::_14V
 					|| ( sat.polarisation & eDVBFrontendParametersSatellite::Polarisation_Vertical
 						&& voltage_mode == eDVBSatelliteSwitchParameters::HV )  )
 					voltage = VOLTAGE(13);

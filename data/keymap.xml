@@ -227,6 +227,7 @@
 		<key id="KEY_POWER" mapto="power_long" flags="l" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
 		<key id="KEY_POWER" mapto="power_up" flags="b" />
+		<key id="KEY_KP0" mapto="discrete_off" flags="m" />
 		<device name="dreambox front panel">
 			<key id="KEY_POWER" mapto="deepstandby" flags="l" />
 		</device>
@@ -486,7 +487,8 @@
 		<key id="KEY_RIGHT" mapto="nextEvent" flags="mr" />
 		<key id="KEY_RED" mapto="openSimilarList" flags="m" />
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
-		<key id="KEY_INFO" mapto="cancel" flags="m" />
+		<key id="KEY_INFO" mapto="contextMenu" flags="m" />
+		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
 	</map>
 	
 	<map context="EventViewEPGActions">
@@ -560,6 +562,7 @@
 	</map>
 	<map context="StandbyActions">
 		<key id="KEY_POWER" mapto="power" flags="m" />
+		<key id="KEY_KP1" mapto="discrete_on" flags="m" />
 	</map>
 	
 	<map context="SleepTimerEditorActions">

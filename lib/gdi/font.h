@@ -41,6 +41,7 @@ class fontRenderClass
 	{
 		std::string filename, face;
 		int scale; // 100 is 1:1
+		int renderflags;
 		fontListEntry *next;
 		~fontListEntry();
 	} *font;
@@ -50,8 +51,12 @@ class fontRenderClass
 	FTC_Image_Cache	imageCache;					/* the glyph image cache					 */
 	FTC_SBit_Cache	 sbitsCache;				/* the glyph small bitmaps cache	 */
 
-	FTC_FaceID getFaceID(const std::string &face);
+	int getFaceProperties(const std::string &face, FTC_FaceID &id, int &renderflags);
+#ifdef HAVE_FREETYPE2
+	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit);
+#else
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit);
+#endif
 	static fontRenderClass *instance;
 #else
 	fontRenderClass();
@@ -61,7 +66,7 @@ public:
 	float getLineHeight(const gFont& font);
 	static fontRenderClass *getInstance();
 #ifndef SWIG
-	std::string AddFont(const std::string &filename, const std::string &name, int scale);
+	std::string AddFont(const std::string &filename, const std::string &name, int scale, int renderflags = 0);
 	FT_Error FTC_Face_Requester(FTC_FaceID	face_id, FT_Face* aface);
 	int getFont(ePtr<Font> &font, const std::string &face, int size, int tabwidth=-1);
 	fontRenderClass();
@@ -88,7 +93,11 @@ struct pGlyph
 {
 	int x, y, w;
 	ePtr<Font> font;
+#ifdef HAVE_FREETYPE2
+	FT_UInt glyph_index;
+#else
 	FT_ULong glyph_index;
+#endif
 	int flags;
 	eRect bbox;
 };
@@ -113,6 +122,7 @@ class eTextPara: public iObject
 	eSize maximum;
 	int left;
 	glyphString glyphs;
+	int totalheight;
 
 	int appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags);
 	void newLine(int flags);
@@ -123,7 +133,7 @@ class eTextPara: public iObject
 public:
 	eTextPara(eRect area, ePoint start=ePoint(-1, -1))
 		: current_font(0), replacement_font(0), current_face(0), replacement_face(0),
-			area(area), cursor(start), maximum(0, 0), left(start.x()), bboxValid(0)
+		area(area), cursor(start), maximum(0, 0), left(start.x()), totalheight(0), bboxValid(0)
 	{
 	}
 	virtual ~eTextPara();
@@ -189,13 +199,17 @@ public:
 #endif
 	FTC_Image_Desc font;
 	fontRenderClass *renderer;
+#ifdef HAVE_FREETYPE2
+	FT_Error getGlyphBitmap(FT_UInt glyph_index, FTC_SBit *sbit);
+#else
 	FT_Error getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit);
+#endif
 	FT_Face face;
 	FT_Size size;
 	
 	int tabwidth;
 	int height;
-	Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tabwidth);
+	Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tabwidth, int renderflags);
 	virtual ~Font();
 };
 

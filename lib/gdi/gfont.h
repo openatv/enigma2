@@ -24,7 +24,7 @@ public:
 	 * \param pointSize the size of the font in PIXELS.
 	 */
 	gFont(const std::string &family, int pointSize):
-			family(family), pointSize(pointSize)
+		family(family), pointSize(pointSize)
 	{
 	}
 	

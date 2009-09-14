@@ -28,6 +28,7 @@ class Navigation:
 		self.record_event = [ ]
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingService = None
+		self.currentlyPlayingServicePath = None
 		self.RecordTimer = RecordTimer.RecordTimer()
 		if getFPWasTimerWakeup():
 			clearFPWasTimerWakeup()
@@ -50,12 +51,13 @@ class Navigation:
 		for x in self.record_event:
 			x(rec_service, event)
 
-	def playService(self, ref, checkParentalControl = True):
+	def playService(self, ref, path = None, checkParentalControl = True):
 		oldref = self.currentlyPlayingServiceReference
 		if ref and oldref and ref == oldref:
 			print "ignore request to play already running service"
 			return 0
 		print "playing", ref and ref.toString()
+		self.currentlyPlayingServicePath = None
 		if ref is None:
 			self.stopService()
 			return 0
@@ -71,6 +73,7 @@ class Navigation:
 				playref = ref
 			if self.pnav and not self.pnav.playService(playref):
 				self.currentlyPlayingServiceReference = playref
+				self.currentlyPlayingServicePath = path
 				return 0
 		else:
 			self.stopService()
@@ -79,6 +82,9 @@ class Navigation:
 	def getCurrentlyPlayingServiceReference(self):
 		return self.currentlyPlayingServiceReference
 	
+	def getCurrentlyPlayingServicePath(self):
+		return self.currentlyPlayingServicePath
+
 	def recordService(self, ref, simulate=False):
 		service = None
 		print "recording service: %s" % (str(ref))

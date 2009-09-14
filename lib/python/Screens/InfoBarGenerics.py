@@ -272,13 +272,11 @@ class InfoBarChannelSelection:
 		self.servicelist.setModeTv()
 		if zap:
 			self.servicelist.zap()
-		self.session.execDialog(self.servicelist)
 
 	def showRadioChannelList(self, zap=False):
 		self.servicelist.setModeRadio()
 		if zap:
 			self.servicelist.zap()
-		self.session.execDialog(self.servicelist)
 
 	def firstRun(self):
 		self.onShown.remove(self.firstRun)
@@ -1371,10 +1369,12 @@ class InfoBarSleepTimer:
 class InfoBarPiP:
 	def __init__(self):
 		self.session.pipshown = False
+		self.zappip = False
 		if SystemInfo.get("NumVideoDecoders", 1) > 1:
 			self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 			self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 			self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
+			self.addExtension((self.getZapFocusName, self.zapFocusToggle, self.pipShown), "red")
 
 	def pipShown(self):
 		return self.session.pipshown
@@ -1394,34 +1394,59 @@ class InfoBarPiP:
 	def getMoveName(self):
 		return _("Move Picture in Picture")
 
+	def getZapFocusName(self):
+		if self.zappip:
+			return _("Set zap focus to main screen")
+		else:
+			return _("Set zap focus to Picture in Picture")
+
+	def zapFocusToggle(self):
+		self.zappip = not self.zappip
+		if self.zappip:
+			self.servicelist.setZapFocus(self.session.pip)
+			if self.session.pip.getCurrentlyPlayingServicePath() is not None:
+				self.servicelist.setCurrentServicePath(self.session.pip.getCurrentlyPlayingServicePath())
+		else:
+			self.servicelist.setZapFocus(self.session.nav)
+			if self.session.nav.getCurrentlyPlayingServicePath():
+				self.servicelist.setCurrentServicePath(self.session.nav.getCurrentlyPlayingServicePath())
+
 	def showPiP(self):
 		if self.session.pipshown:
-			del self.session.pip
+			if self.zappip:
+				self.zappip = False
+				self.servicelist.setZapFocus(self.session.nav)
+				self.servicelist.setCurrentServicePath(self.session.nav.getCurrentlyPlayingServicePath())
 			self.session.pipshown = False
+			del self.session.pip
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
 			newservice = self.session.nav.getCurrentlyPlayingServiceReference()
-			if self.session.pip.playService(newservice):
+			if self.session.pip.playService(newservice, self.servicelist.getCurrentServicePath()):
 				self.session.pipshown = True
-				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
-				self.session.pipshown = False
 				del self.session.pip
-			self.session.nav.playService(newservice)
 
 	def swapPiP(self):
-		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		if self.session.pip.servicePath:
-			servicepath = self.servicelist.getCurrentServicePath()
-			ref=servicepath[len(servicepath)-1]
-			pipref=self.session.pip.getCurrentService()
-			self.session.pip.playService(swapservice)
-			self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
-			if pipref.toString() != ref.toString(): # is a subservice ?
-				self.session.nav.stopService() # stop portal
-				self.session.nav.playService(pipref) # start subservice
-			self.session.pip.servicePath=servicepath
+		navservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		pipservice = self.session.pip.getCurrentlyPlayingServiceReference()
+		if navservice.toString() != pipservice.toString():
+			if self.zappip:
+				navservicepath = self.session.nav.getCurrentlyPlayingServicePath()
+				pipservicepath = self.servicelist.getCurrentServicePath()
+			else:
+				pipservicepath = self.session.pip.getCurrentlyPlayingServicePath()
+				navservicepath = self.servicelist.getCurrentServicePath()
+			self.session.nav.stopService() # stop portal
+			self.session.nav.playService(pipservice, pipservicepath)
+			self.session.pip.playService(navservice, navservicepath)
+			if self.zappip:
+				newservicepath = navservicepath
+			else:
+				newservicepath = pipservicepath
+			if newservicepath is not None:
+				self.servicelist.setCurrentServicePath(newservicepath)
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)
@@ -1597,7 +1622,7 @@ class InfoBarInstantRecord:
 			stat = os_stat(dir)
 		except:
 			# XXX: this message is a little odd as we might be recording to a remote device
-			self.session.open(MessageBox, _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Missing ") + dir + "\n" + _("No HDD found or HDD not initialized!"), MessageBox.TYPE_ERROR)
 			return
 
 		if self.isInstantRecordRunning():
@@ -1740,8 +1765,12 @@ class InfoBarSubserviceSelection:
 			{
 				iPlayableService.evUpdatedEventInfo: self.checkSubservicesAvail
 			})
+		self.onClose.append(self.__removeNotifications)
 
 		self.bsel = None
+
+	def __removeNotifications(self):
+		self.session.nav.event.remove(self.checkSubservicesAvail)
 
 	def checkSubservicesAvail(self):
 		service = self.session.nav.getCurrentService()
@@ -2242,29 +2271,30 @@ class InfoBarServiceErrorPopupSupport:
 		Notifications.RemovePopup(id = "ZapError")
 
 	def __tuneFailed(self):
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
-		error = info and info.getInfo(iServiceInformation.sDVBState)
+		if not config.usage.hide_zap_errors.value:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			error = info and info.getInfo(iServiceInformation.sDVBState)
 
-		if error == self.last_error:
-			error = None
-		else:
-			self.last_error = error
+			if error == self.last_error:
+				error = None
+			else:
+				self.last_error = error
 
-		error = {
-			eDVBServicePMTHandler.eventNoResources: _("No free tuner!"),
-			eDVBServicePMTHandler.eventTuneFailed: _("Tune failed!"),
-			eDVBServicePMTHandler.eventNoPAT: _("No data on transponder!\n(Timeout reading PAT)"),
-			eDVBServicePMTHandler.eventNoPATEntry: _("Service not found!\n(SID not found in PAT)"),
-			eDVBServicePMTHandler.eventNoPMT: _("Service invalid!\n(Timeout reading PMT)"),
-			eDVBServicePMTHandler.eventNewProgramInfo: None,
-			eDVBServicePMTHandler.eventTuned: None,
-			eDVBServicePMTHandler.eventSOF: None,
-			eDVBServicePMTHandler.eventEOF: None,
-			eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
-		}.get(error) #this returns None when the key not exist in the dict
+			error = {
+				eDVBServicePMTHandler.eventNoResources: _("No free tuner!"),
+				eDVBServicePMTHandler.eventTuneFailed: _("Tune failed!"),
+				eDVBServicePMTHandler.eventNoPAT: _("No data on transponder!\n(Timeout reading PAT)"),
+				eDVBServicePMTHandler.eventNoPATEntry: _("Service not found!\n(SID not found in PAT)"),
+				eDVBServicePMTHandler.eventNoPMT: _("Service invalid!\n(Timeout reading PMT)"),
+				eDVBServicePMTHandler.eventNewProgramInfo: None,
+				eDVBServicePMTHandler.eventTuned: None,
+				eDVBServicePMTHandler.eventSOF: None,
+				eDVBServicePMTHandler.eventEOF: None,
+				eDVBServicePMTHandler.eventMisconfiguration: _("Service unavailable!\nCheck tuner configuration!"),
+			}.get(error) #this returns None when the key not exist in the dict
 
-		if error is not None:
-			Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
-		else:
-			Notifications.RemovePopup(id = "ZapError")
+			if error is not None:
+				Notifications.AddPopup(text = error, type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapError")
+			else:
+				Notifications.RemovePopup(id = "ZapError")

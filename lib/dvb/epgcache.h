@@ -2,7 +2,9 @@
 #define __epgcache_h_
 
 #define ENABLE_PRIVATE_EPG 1
-//#define ENABLE_MHW_EPG 1
+#define ENABLE_MHW_EPG 1
+#define ENABLE_FREESAT 1
+//#define ENABLE_NAGRAGUIDE_PUBLIC 1
 
 #ifndef SWIG
 
@@ -166,6 +168,25 @@ public:
 };
 #endif
 
+#ifdef ENABLE_FREESAT
+#include <bitset>
+class freesatEITSubtableStatus
+{
+private:
+	u_char version;
+	__u16 sectionMap[32];
+	void initMap(__u8 maxSection);
+
+public:
+	freesatEITSubtableStatus(u_char version, __u8 maxSection);
+	bool isSectionPresent(__u8 sectionNo);
+	void seen(__u8 sectionNo, __u8 maxSegmentSection);
+	bool isVersionChanged(u_char testVersion);
+	void updateVersion(u_char newVersion, __u8 maxSection);
+	bool isCompleted();
+};
+#endif
+
 class eEPGCache: public eMainloop, private eThread, public Object
 {
 #ifndef SWIG
@@ -177,11 +198,20 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		eEPGCache *cache;
 		ePtr<eTimer> abortTimer, zapTimer;
 		int prevChannelState;
-		__u8 state, isRunning, haveData;
+		__u8 state;
+		unsigned int isRunning, haveData;
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn, m_ViasatConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader, m_ViasatReader;
 		tidMap seenSections[4], calcedSections[4];
+#ifdef ENABLE_FREESAT
+		ePtr<eConnection> m_FreeSatScheduleOtherConn;
+		ePtr<iDVBSectionReader> m_FreeSatScheduleOtherReader;
+		std::map<__u32, freesatEITSubtableStatus> m_FreeSatSubTableStatus;
+		__u32 m_FreesatTablesToComplete;
+		void readFreeSatScheduleOtherData(const __u8 *data);
+		void cleanupFreeSat();
+#endif
 #ifdef ENABLE_PRIVATE_EPG
 		ePtr<eTimer> startPrivateTimer;
 		int m_PrevVersion;
@@ -208,14 +238,33 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void readMHWData2(const __u8 *data);
 		void startMHWReader(__u16 pid, __u8 tid);
 		void startMHWReader2(__u16 pid, __u8 tid, int ext=-1);
-		void startTimeout(int msek);
-		bool checkTimeout() { return m_MHWTimeoutet; }
-		void cleanup();
+		void startMHWTimeout(int msek);
+		bool checkMHWTimeout() { return m_MHWTimeoutet; }
+		void cleanupMHW();
 		__u8 *delimitName( __u8 *in, __u8 *out, int len_in );
 		void timeMHW2DVB( u_char hours, u_char minutes, u_char *return_time);
 		void timeMHW2DVB( int minutes, u_char *return_time);
 		void timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time);
-		void storeTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data);
+		void storeMHWTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data);
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+		struct nagra_guide_program
+		{
+			int onid;
+			int sid;
+			int start;
+			int duration;
+			std::string name;
+			int description;
+		};
+		std::vector<nagra_guide_program> m_NagraGuidePrograms;
+		std::map<int, std::string> m_NagraGuideDescriptions;
+		ePtr<eConnection> m_NagraGuideConn;
+		ePtr<iDVBSectionReader> m_NagraGuideReader;
+		bool nagraGuideDescriptionsReady, nagraGuideProgramsReady;
+		void cleanupNagraGuide();
+		void storeNagraGuideTitle(nagra_guide_program &program);
+		void readNagraGuideData(const __u8 *data);
 #endif
 		void readData(const __u8 *data);
 		void readDataViasat(const __u8 *data);
@@ -231,7 +280,16 @@ public:
 #ifdef ENABLE_MHW_EPG
 	,MHW=8
 #endif
-	,VIASAT=16
+#ifdef ENABLE_FREESAT
+	,FREESAT_NOWNEXT=16
+	,FREESAT_SCHEDULE=32
+	,FREESAT_SCHEDULE_OTHER=64
+#endif
+#ifdef ENABLE_NAGRAGUIDE_PUBLIC
+	,NAGRAGUIDE=128
+#endif
+	,VIASAT=256
+	,EPG_IMPORT=0x80000000
 	};
 	struct Message
 	{
@@ -364,6 +422,8 @@ public:
 	SWIG_VOID(RESULT) lookupEventId(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &SWIG_OUTPUT);
 	SWIG_VOID(RESULT) lookupEventTime(const eServiceReference &service, time_t, ePtr<eServiceEvent> &SWIG_OUTPUT, int direction=0);
 	SWIG_VOID(RESULT) getNextTimeEntry(ePtr<eServiceEvent> &SWIG_OUTPUT);
+	
+	void importEvent(SWIG_PYOBJECT(ePyObject) serviceReference, SWIG_PYOBJECT(ePyObject) list);
 };
 
 #ifndef SWIG

@@ -167,6 +167,8 @@ class Menu(Screen):
 		
 		menuID = None
 		for x in parent:						#walk through the actual nodelist
+			if not x.tag:
+				continue
 			if x.tag == 'item':
 				item_level = int(x.get("level", 0))
 				if item_level <= config.usage.setup_level.index:

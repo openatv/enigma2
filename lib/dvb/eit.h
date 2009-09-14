@@ -24,7 +24,7 @@ public:
 	
 	RESULT getEvent(ePtr<eServiceEvent> &event, int nownext);
 	
-	PSignal0<void> m_eit_changed;
+	PSignal1<void, int> m_eit_changed;
 };
 
 #endif

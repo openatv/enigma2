@@ -203,7 +203,7 @@ private:
 	eDVBServicePlay(const eServiceReference &ref, eDVBService *service);
 	
 		/* events */
-	void gotNewEvent();
+	void gotNewEvent(int error);
 	
 	void serviceEvent(int event);
 	void serviceEventTimeshift(int event);
@@ -277,6 +277,9 @@ private:
 
 	ePtr<eTimer> m_subtitle_sync_timer;
 	void checkSubtitleTiming();
+
+	ePtr<eTimer> m_nownext_timer;
+	void updateEpgCacheNowNext();
 
 		/* radiotext */
 	ePtr<eDVBRdsDecoder> m_rds_decoder;

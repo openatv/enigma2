@@ -6,10 +6,10 @@ from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 
 class ConfigList(HTMLComponent, GUIComponent, object):
-	def __init__(self, list, session = None):
+	def __init__(self, list, session = None, seperation = 200):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		self.l.setSeperation(200)
+		self.l.setSeperation(seperation)
 		self.timer = eTimer()
 		self.list = list
 		self.onSelectionChanged = [ ]
@@ -128,7 +128,11 @@ class ConfigListScreen:
 			"0": self.keyNumberGlobal
 		}, -1) # to prevent left/right overriding the listbox
 		
-		self["config"] = ConfigList(list, session = session)
+		if hasattr(self, "seperation") and self.seperation:
+			self["config"] = ConfigList(list, session = session, seperation = self.seperation)
+		else:
+			self["config"] = ConfigList(list, session = session)
+
 		if on_change is not None:
 			self.__changed = on_change
 		else:
