@@ -3,7 +3,7 @@ installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 SUBDIRS = SoftwareManager FrontprocessorUpgrade PositionerSetup Satfinder \
 	SkinSelector SatelliteEquipmentControl Videomode VideoTune Hotplug \
 	DefaultServicesScanner NFIFlash DiseqcTester CommonInterfaceAssignment \
-	SoftwareUpdate ConfigurationBackup \
+	SoftwareUpdate ConfigurationBackup FastScan \
 	CrashlogAutoSubmit CleanupWizard
 
 install_PYTHON =	\
