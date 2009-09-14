@@ -87,6 +87,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/cahandler.h>
+#include <lib/dvb/fastscan.h>
 #include <lib/components/scan.h>
 #include <lib/components/file_eraser.h>
 #include <lib/components/tuxtxtapp.h>
@@ -150,6 +151,8 @@ typedef long time_t;
 %immutable eInput::changed;
 %immutable eComponentScan::statusChanged;
 %immutable eComponentScan::newService;
+%immutable eFastScan::scanProgress;
+%immutable eFastScan::scanCompleted;
 %immutable pNavigation::m_event;
 %immutable pNavigation::m_record_event;
 %immutable eListbox::selectionChanged;
@@ -212,6 +215,7 @@ typedef long time_t;
 %include <lib/dvb/frontend.h>
 %include <lib/dvb/pmt.h>
 %include <lib/dvb/cahandler.h>
+%include <lib/dvb/fastscan.h>
 %include <lib/components/scan.h>
 %include <lib/components/file_eraser.h>
 %include <lib/components/tuxtxtapp.h>
