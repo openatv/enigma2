@@ -17,8 +17,9 @@ class eCableScan: public Object, public iObject
 	eUsePtr<iDVBChannel> m_channel;
 	ePtr<iDVBDemux> m_demux;
 	bool originalNumbering;
-	int initialFrequency;
-	int initialSymbolRate;
+	unsigned int initialFrequency;
+	unsigned int initialSymbolRate;
+	int initialModulation;
 	std::string providerName, bouquetFilename;
 	int networkId;
 	std::map<std::string, int> providerNames;
@@ -47,7 +48,7 @@ class eCableScan: public Object, public iObject
 #endif /* no SWIG */
 
 public:
-	eCableScan(int networkid, int frequency, int symbolrate, bool originalnumbering = false);
+	eCableScan(int networkid, unsigned int frequency, unsigned int symbolrate, int modulation, bool originalnumbering = false);
 	~eCableScan();
 
 	void start(int frontendid = 0);

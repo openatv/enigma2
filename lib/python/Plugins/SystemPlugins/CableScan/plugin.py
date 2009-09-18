@@ -11,23 +11,24 @@ from Components.ConfigList import ConfigListScreen
 from Components.ProgressBar import ProgressBar
 from Components.Pixmap import Pixmap
 
-from enigma import eCableScan
+from enigma import eCableScan, eDVBFrontendParametersCable
 
 class CableScan:
-	def __init__(self, text, progressbar, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, keepNumbers):
+	def __init__(self, text, progressbar, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, scanModulation, keepNumbers):
 		self.text = text;
 		self.progressbar = progressbar;
 		self.scanTuner = scanTuner
 		self.scanNetwork = scanNetwork
 		self.scanFrequency = scanFrequency
 		self.scanSymbolRate = scanSymbolRate
+		self.scanModulation = scanModulation
 		self.keepNumbers = keepNumbers;
 		self.done = False
 
 	def execBegin(self):
 		self.text.setText(_('Scanning...'))
 		self.progressbar.setValue(0)
-		self.scan = eCableScan(self.scanNetwork, self.scanFrequency, self.scanSymbolRate, self.keepNumbers)
+		self.scan = eCableScan(self.scanNetwork, self.scanFrequency, self.scanSymbolRate, self.scanModulation, self.keepNumbers)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
 		self.scan.scanProgress.get().append(self.scanProgress)
 		self.scan.start(self.scanTuner)
@@ -61,12 +62,13 @@ class CableScanStatus(Screen):
 		<widget name="scan_progress" position="10,155" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 	</screen>"""
 
-	def __init__(self, session, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, keepNumbers):
+	def __init__(self, session, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, scanModulation, keepNumbers):
 		Screen.__init__(self, session)
 		self.scanTuner = scanTuner
 		self.scanNetwork = scanNetwork
 		self.scanFrequency = scanFrequency
 		self.scanSymbolRate = scanSymbolRate
+		self.scanModulation = scanModulation
 		self.keepNumbers = keepNumbers
 
 		self["frontend"] = Pixmap()
@@ -85,7 +87,7 @@ class CableScanStatus(Screen):
 		self.onFirstExecBegin.append(self.doServiceScan)
 
 	def doServiceScan(self):
-		self["scan"] = CableScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.scanNetwork, self.scanFrequency, self.scanSymbolRate, self.keepNumbers)
+		self["scan"] = CableScan(self["scan_state"], self["scan_progress"], self.scanTuner, self.scanNetwork, self.scanFrequency, self.scanSymbolRate, self.scanModulation, self.keepNumbers)
 
 	def restoreService(self):
 		if self.prevservice:
@@ -105,6 +107,14 @@ config.plugins.CableScan.keepnumbering = ConfigYesNo(default = False)
 config.plugins.CableScan.frequency = ConfigInteger(default = 323, limits = (1, 999))
 config.plugins.CableScan.symbolrate = ConfigInteger(default = 6875, limits = (1, 9999))
 config.plugins.CableScan.networkid = ConfigInteger(default = 0, limits = (0, 9999))
+config.plugins.CableScan.modulation = ConfigSelection(
+	choices =
+		[(eDVBFrontendParametersCable.Modulation_QAM16, "QAM16"),
+		(eDVBFrontendParametersCable.Modulation_QAM32, "QAM32"),
+		(eDVBFrontendParametersCable.Modulation_QAM64, "QAM64"),
+		(eDVBFrontendParametersCable.Modulation_QAM128, "QAM128"),
+		(eDVBFrontendParametersCable.Modulation_QAM256, "QAM256")],
+	default = eDVBFrontendParametersCable.Modulation_QAM64)
 
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """
@@ -130,11 +140,11 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.scan_nims = ConfigSelection(choices = nim_list)
 
 		self.list = []
-		self.tunerEntry = getConfigListEntry(_("Tuner"), self.scan_nims)
-		self.list.append(self.tunerEntry)
+		self.list.append(getConfigListEntry(_("Tuner"), self.scan_nims))
 
 		self.list.append(getConfigListEntry(_('Frequency'), config.plugins.CableScan.frequency))
 		self.list.append(getConfigListEntry(_('Symbol Rate'), config.plugins.CableScan.symbolrate))
+		self.list.append(getConfigListEntry(_('Modulation'), config.plugins.CableScan.modulation))
 		self.list.append(getConfigListEntry(_('Network ID'), config.plugins.CableScan.networkid))
 		self.list.append(getConfigListEntry(_("Use official channel numbering"), config.plugins.CableScan.keepnumbering))
 
@@ -153,7 +163,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, keepNumbers = config.plugins.CableScan.keepnumbering.value)
+		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, scanModulation = config.plugins.CableScan.modulation.value, keepNumbers = config.plugins.CableScan.keepnumbering.value)
 
 	def keyCancel(self):
 		self.close()

@@ -16,11 +16,12 @@
 
 DEFINE_REF(eCableScan);
 
-eCableScan::eCableScan(int networkid, int frequency, int symbolrate, bool originalnumbering)
+eCableScan::eCableScan(int networkid, unsigned int frequency, unsigned int symbolrate, int modulation, bool originalnumbering)
 {
 	networkId = networkid;
 	initialFrequency = frequency;
 	initialSymbolRate = symbolrate;
+	initialModulation = modulation;
 	originalNumbering = originalnumbering;
 }
 
@@ -50,7 +51,7 @@ void eCableScan::start(int frontendid)
 	cable.fec_inner = eDVBFrontendParametersCable::FEC_Auto;
 	cable.inversion = eDVBFrontendParametersCable::Inversion_Unknown;
 	cable.symbol_rate = initialSymbolRate;
-	cable.modulation = eDVBFrontendParametersCable::Modulation_QAM64;
+	cable.modulation = initialModulation;
 
 	eDVBFrontendParameters parm;
 	parm.setDVBC(cable);
