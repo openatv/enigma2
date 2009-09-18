@@ -254,7 +254,7 @@ class CiMessageHandler:
 			if slot in self.dlgs:
 				self.dlgs[slot].ciStateChanged()
 			elif eDVBCI_UI.getInstance().availableMMI(slot) == 1:
-				if self.session:
+				if self.session and not config.usage.hide_ci_messages.value:
 					self.dlgs[slot] = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, 3)
 
 	def dlgClosed(self, slot):
