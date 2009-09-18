@@ -1824,7 +1824,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 	int rdsPid = apid;
 
 		/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
-	if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
+	if (!(m_is_pvr || m_timeshift_active || !m_is_primary || m_have_video_pid))
 	{
 		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
 		if (different_pid)
@@ -2389,6 +2389,8 @@ void eDVBServicePlay::updateDecoder()
 		tpid = program.textPid;
 	}
 
+	m_have_video_pid = 0;
+
 	if (!m_decoder)
 	{
 		h.getDecodeDemux(m_decode_demux);
@@ -2478,6 +2480,7 @@ void eDVBServicePlay::updateDecoder()
 		m_decoder->setPCMDelay(pcm_delay == -1 ? config_delay_int : pcm_delay + config_delay_int);
 
 		m_decoder->setVideoPID(vpid, vpidtype);
+		m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 		selectAudioStream();
 
 		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
@@ -2513,7 +2516,6 @@ void eDVBServicePlay::updateDecoder()
 			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
 	}
-	m_have_video_pid = (vpid > 0 && vpid < 0x2000);
 }
 
 void eDVBServicePlay::loadCuesheet()
