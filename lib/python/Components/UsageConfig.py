@@ -91,6 +91,7 @@ def InitUsageConfig():
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 
 	config.usage.hide_zap_errors = ConfigYesNo(default = False)
+	config.usage.hide_ci_messages = ConfigYesNo(default = False)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
