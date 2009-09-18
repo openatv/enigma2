@@ -198,7 +198,7 @@ class PluginDownloadBrowser(Screen):
 				PluginDownloadBrowser.lastDownloadDate = time()
 			else:
 				self.run = 1
-				self.startIpkgListAvailable()
+				self.startIpkgListInstalled()
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startIpkgListInstalled()
