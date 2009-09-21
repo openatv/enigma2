@@ -1494,7 +1494,7 @@ class ConfigSubDict(dict, object):
 		self.stored_values = dict(values)
 		for (key, val) in self.items():
 			if str(key) in self.stored_values:
-				val = self.stored_values[str(key)]
+				val.saved_value = self.stored_values[str(key)]
 
 	saved_value = property(getSavedValue, setSavedValue)
 
