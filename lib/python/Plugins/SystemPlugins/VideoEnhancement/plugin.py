@@ -95,15 +95,15 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldSaturation = config.pep.saturation.value
 		self.oldHue = config.pep.hue.value
 		self.oldBrightness = config.pep.brightness.value
+		self.oldBlock_noise = config.pep.block_noise_reduction.value
+		self.oldMosquito_noise = config.pep.mosquito_noise_reduction.value
+		self.oldDigital_contour = config.pep.digital_contour_removal.value
 		if self.hw_type == 'dm8000':
 			self.oldSplit = config.pep.split.value
 			self.oldSharpness = config.pep.sharpness.value
 			self.oldAuto_flesh = config.pep.auto_flesh.value
 			self.oldGreen_boost = config.pep.green_boost.value
 			self.oldBlue_boost = config.pep.blue_boost.value
-			self.oldBlock_noise = config.pep.block_noise_reduction.value
-			self.oldMosquito_noise = config.pep.mosquito_noise_reduction.value
-			self.oldDigital_contour = config.pep.digital_contour_removal.value
 			self.oldDynamic_contrast = config.pep.dynamic_contrast.value
 
 	def createSetup(self):
@@ -111,6 +111,9 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.saturationEntry = getConfigListEntry(_("Saturation"), config.pep.saturation)
 		self.hueEntry = getConfigListEntry(_("Hue"), config.pep.hue)
 		self.brightnessEntry = getConfigListEntry(_("Brightness"), config.pep.brightness)
+		self.block_noise_reductionEntry = getConfigListEntry(_("Block noise reduction"), config.pep.block_noise_reduction)
+		self.mosquito_noise_reductionEntry = getConfigListEntry(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction)
+		self.digital_contour_removalEntry = getConfigListEntry(_("Digital contour removal"), config.pep.digital_contour_removal)
 
 		self.list = [
 			self.contrastEntry
@@ -121,15 +124,19 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			self.hueEntry,
 			self.brightnessEntry
 		))
-		if self.hw_type == 'dm8000':
+		if self.hw_type == 'dm800':
+			self.list.extend((
+				self.block_noise_reductionEntry,
+				self.mosquito_noise_reductionEntry,
+				self.digital_contour_removalEntry
+			))
+
+		elif self.hw_type == 'dm8000':
 			self.splitEntry = getConfigListEntry(_("Split preview mode"), config.pep.split)
 			self.sharpnessEntry = getConfigListEntry(_("Sharpness"), config.pep.sharpness)
 			self.auto_fleshEntry = getConfigListEntry(_("Auto flesh"), config.pep.auto_flesh)
 			self.green_boostEntry = getConfigListEntry(_("Green boost"), config.pep.green_boost)
 			self.blue_boostEntry = getConfigListEntry(_("Blue boost"), config.pep.blue_boost)
-			self.block_noise_reductionEntry = getConfigListEntry(_("Block noise reduction"), config.pep.block_noise_reduction)
-			self.mosquito_noise_reductionEntry = getConfigListEntry(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction)
-			self.digital_contour_removalEntry = getConfigListEntry(_("Digital contour removal"), config.pep.digital_contour_removal)
 			self.dynamic_contrastEntry = getConfigListEntry(_("Dynamic contrast"), config.pep.dynamic_contrast)
 
 			self.xtdlist = [
@@ -242,6 +249,12 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.hue.setValue(self.oldHue)
 			if self.brightnessEntry is not None:
 				config.pep.brightness.setValue(self.oldBrightness)
+			if self.block_noise_reductionEntry is not None:
+				config.pep.block_noise_reduction.setValue(self.oldBlock_noise)
+			if self.mosquito_noise_reductionEntry is not None:
+				config.pep.mosquito_noise_reduction.setValue(self.oldMosquito_noise)
+			if self.digital_contour_removalEntry is not None:
+				config.pep.digital_contour_removal.setValue(self.oldDigital_contour)
 
 			if self.hw_type == 'dm8000':
 				if self.splitEntry is not None:
@@ -254,12 +267,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 					config.pep.green_boost.setValue(self.oldGreen_boost)
 				if self.blue_boostEntry is not None:
 					config.pep.blue_boost.setValue(self.oldBlue_boost)
-				if self.block_noise_reductionEntry is not None:
-					config.pep.block_noise_reduction.setValue(self.oldBlock_noise)
-				if self.mosquito_noise_reductionEntry is not None:
-					config.pep.mosquito_noise_reduction.setValue(self.oldMosquito_noise)
-				if self.digital_contour_removalEntry is not None:
-					config.pep.digital_contour_removal.setValue(self.oldDigital_contour)
 				if self.dynamic_contrastEntry is not None:
 					config.pep.dynamic_contrast.setValue(self.oldDynamic_contrast)
 			self.keySave()
@@ -279,6 +286,12 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.hue.setValue(128)
 			if self.brightnessEntry is not None:
 				config.pep.brightness.setValue(128)
+			if self.block_noise_reductionEntry is not None:
+				config.pep.block_noise_reduction.setValue(0)
+			if self.mosquito_noise_reductionEntry is not None:
+				config.pep.mosquito_noise_reduction.setValue(0)
+			if self.digital_contour_removalEntry is not None:
+				config.pep.digital_contour_removal.setValue(0)
 
 			if self.hw_type == 'dm8000':
 				if self.splitEntry is not None:
@@ -291,12 +304,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 					config.pep.green_boost.setValue(0)
 				if self.blue_boostEntry is not None:
 					config.pep.blue_boost.setValue(0)
-				if self.block_noise_reductionEntry is not None:
-					config.pep.block_noise_reduction.setValue(0)
-				if self.mosquito_noise_reductionEntry is not None:
-					config.pep.mosquito_noise_reduction.setValue(0)
-				if self.digital_contour_removalEntry is not None:
-					config.pep.digital_contour_removal.setValue(0)
 				if self.dynamic_contrastEntry is not None:
 					config.pep.dynamic_contrast.setValue(0)
 			self.keySave()

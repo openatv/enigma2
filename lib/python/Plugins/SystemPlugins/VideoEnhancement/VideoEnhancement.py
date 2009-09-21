@@ -74,6 +74,48 @@ class VideoEnhancement:
 		config.pep.brightness = ConfigSlider(default=128, limits=(0,256))
 		config.pep.brightness.addNotifier(setBrightness)
 
+		def setBlock_noise_reduction(config):
+			myval = int(config.value)
+			try:
+				print "--> setting block_noise_reduction to: %0.8X" % myval
+				open("/proc/stb/vmpeg/0/pep_block_noise_reduction", "w").write("%0.8X" % myval)
+			except IOError:
+				print "couldn't write pep_block_noise_reduction."
+
+			if VideoEnhancement.firstRun is False:
+				self.setConfiguredValues()
+
+		config.pep.block_noise_reduction = ConfigSlider(default=0, limits=(0,5))
+		config.pep.block_noise_reduction.addNotifier(setBlock_noise_reduction)
+
+		def setMosquito_noise_reduction(config):
+			myval = int(config.value)
+			try:
+				print "--> setting mosquito_noise_reduction to: %0.8X" % myval
+				open("/proc/stb/vmpeg/0/pep_mosquito_noise_reduction", "w").write("%0.8X" % myval)
+			except IOError:
+				print "couldn't write pep_mosquito_noise_reduction."
+
+			if VideoEnhancement.firstRun is False:
+				self.setConfiguredValues()
+
+		config.pep.mosquito_noise_reduction = ConfigSlider(default=0, limits=(0,5))
+		config.pep.mosquito_noise_reduction.addNotifier(setMosquito_noise_reduction)
+
+		def setDigital_contour_removal(config):
+			myval = int(config.value)
+			try:
+				print "--> setting digital_contour_removal to: %0.8X" % myval
+				open("/proc/stb/vmpeg/0/pep_digital_contour_removal", "w").write("%0.8X" % myval)
+			except IOError:
+				print "couldn't write pep_digital_contour_removal."
+
+			if VideoEnhancement.firstRun is False:
+				self.setConfiguredValues()
+
+		config.pep.digital_contour_removal = ConfigSlider(default=0, limits=(0,5))
+		config.pep.digital_contour_removal.addNotifier(setDigital_contour_removal)
+
 		if hw_type == 'dm8000':
 			def setSplitMode(config):
 				try:
@@ -147,48 +189,6 @@ class VideoEnhancement:
 
 			config.pep.blue_boost = ConfigSlider(default=0, limits=(0,4))
 			config.pep.blue_boost.addNotifier(setBlueboost)
-
-			def setBlock_noise_reduction(config):
-				myval = int(config.value)
-				try:
-					print "--> setting block_noise_reduction to: %0.8X" % myval
-					open("/proc/stb/vmpeg/0/pep_block_noise_reduction", "w").write("%0.8X" % myval)
-				except IOError:
-					print "couldn't write pep_block_noise_reduction."
-
-				if VideoEnhancement.firstRun is False:
-					self.setConfiguredValues()
-
-			config.pep.block_noise_reduction = ConfigSlider(default=0, limits=(0,5))
-			config.pep.block_noise_reduction.addNotifier(setBlock_noise_reduction)
-
-			def setMosquito_noise_reduction(config):
-				myval = int(config.value)
-				try:
-					print "--> setting mosquito_noise_reduction to: %0.8X" % myval
-					open("/proc/stb/vmpeg/0/pep_mosquito_noise_reduction", "w").write("%0.8X" % myval)
-				except IOError:
-					print "couldn't write pep_mosquito_noise_reduction."
-
-				if VideoEnhancement.firstRun is False:
-					self.setConfiguredValues()
-
-			config.pep.mosquito_noise_reduction = ConfigSlider(default=0, limits=(0,5))
-			config.pep.mosquito_noise_reduction.addNotifier(setMosquito_noise_reduction)
-
-			def setDigital_contour_removal(config):
-				myval = int(config.value)
-				try:
-					print "--> setting digital_contour_removal to: %0.8X" % myval
-					open("/proc/stb/vmpeg/0/pep_digital_contour_removal", "w").write("%0.8X" % myval)
-				except IOError:
-					print "couldn't write pep_digital_contour_removal."
-
-				if VideoEnhancement.firstRun is False:
-					self.setConfiguredValues()
-
-			config.pep.digital_contour_removal = ConfigSlider(default=0, limits=(0,5))
-			config.pep.digital_contour_removal.addNotifier(setDigital_contour_removal)
 
 			def setDynamic_contrast(config):
 				myval = int(config.value)
