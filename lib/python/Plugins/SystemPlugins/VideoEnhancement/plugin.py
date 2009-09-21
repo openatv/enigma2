@@ -323,7 +323,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 class VideoEnhancementPreview(Screen, ConfigListScreen):
 
 	skin = """
-		<screen name="VideoEnhancementSetup" position="90,430" size="560,110" title="VideoEnhancementSetup">
+		<screen name="VideoEnhancementPreview" position="90,430" size="560,110" title="VideoEnhancementPreview">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -352,6 +352,10 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		self["key_green"] = Button(_("OK"))
 
 		self.createSetup()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Video enhancement preview"))
 
 	def createSetup(self):
 		self.list = [ ]
