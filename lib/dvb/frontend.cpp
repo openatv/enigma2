@@ -666,15 +666,28 @@ void eDVBFrontend::feEvent(int w)
 #if HAVE_DVB_API_VERSION < 3
 		if (event.type == FE_COMPLETION_EV)
 #else
-		eDebug("(%d)fe event: status %x, inversion %s", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off");
+		eDebug("(%d)fe event: status %x, inversion %s, m_tuning %d", m_dvbid, event.status, (event.parameters.inversion == INVERSION_ON) ? "on" : "off", m_tuning);
 		if (event.status & FE_HAS_LOCK)
 #endif
 		{
 			state = stateLock;
 		} else
 		{
-			if (m_tuning)
+			if (m_tuning) {
 				state = stateTuning;
+#if HAVE_DVB_API_VERSION >= 3
+				if (event.status & FE_TIMEDOUT) {
+					eDebug("FE_TIMEDOUT! ..abort");
+					m_tuneTimer->stop();
+					timeout();
+					return;
+				}
+				++m_tuning;
+#else
+				m_tuneTimer->stop();
+				timeout();
+#endif
+			}
 			else
 			{
 				eDebug("stateLostLock");
@@ -2387,9 +2400,9 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 	if (!m_simulate)
 	{
 		m_tuneTimer->start(0,true);
+		m_tuning = 1;
 		if (m_state != stateTuning)
 		{
-			m_tuning = 1;
 			m_state = stateTuning;
 			m_stateChanged(this);
 		}
