@@ -1061,22 +1061,30 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 
 RESULT eDVBServicePlay::start()
 {
-	int r;
+	eServiceReferenceDVB service = (eServiceReferenceDVB&)m_reference;
+
 		/* in pvr mode, we only want to use one demux. in tv mode, we're using 
 		   two (one for decoding, one for data source), as we must be prepared
 		   to start recording from the data demux. */
 	if (m_is_pvr)
+	{
+		eDVBMetaParser meta;
+		if (!meta.parseFile(m_reference.path))
+		{
+			service = meta.m_ref;
+			service.path = m_reference.path;
+		}
 		m_cue = new eCueSheet();
+	}
 	else
 		m_event(this, evStart);
 
 	m_first_program_info = 1;
-	eServiceReferenceDVB &service = (eServiceReferenceDVB&)m_reference;
-	r = m_service_handler.tune(service, m_is_pvr, m_cue, false, m_dvb_service);
+	m_service_handler.tune(service, m_is_pvr, m_cue, false, m_dvb_service);
 
-		/* inject EIT if there is a stored one */
 	if (m_is_pvr)
 	{
+		/* inject EIT if there is a stored one */
 		std::string filename = service.path;
 		filename.erase(filename.length()-2, 2);
 		filename+="eit";
@@ -1087,10 +1095,6 @@ RESULT eDVBServicePlay::start()
 			m_event_handler.inject(event, 0);
 			m_event_handler.inject(empty, 1);
 		}
-	}
-
-	if (m_is_pvr)
-	{
 		loadCuesheet();
 		m_event(this, evStart);
 	}
