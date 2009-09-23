@@ -186,7 +186,6 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 
 	int first_ac3 = -1;
 	program.defaultAudioStream = 0;
-	int rdsPid = -1;
 	audioStream *prev_audio = 0;
 
 	if ( m_service && !m_service->cacheEmpty() )
@@ -705,10 +704,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
 	} else if (!simulate) // no simulation of playback services
 	{
-		eDVBMetaParser parser;
-
-		int ret=parser.parseFile(ref.path);
-		if (ret || !parser.m_ref.getServiceID().get() /* incorrect sid in meta file or recordings.epl*/ )
+		if (!ref.getServiceID().get() /* incorrect sid in meta file or recordings.epl*/ )
 		{
 			eWarning("no .meta file found, trying to find PMT pid");
 			eDVBTSTools tstools;
@@ -724,9 +720,7 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 					m_pmt_pid = pmt_pid;
 				}
 			}
-		} else
-			m_reference = parser.m_ref;
-		
+		}
 		eDebug("alloc PVR");
 			/* allocate PVR */
 		res = m_resourceManager->allocatePVRChannel(m_pvr_channel);

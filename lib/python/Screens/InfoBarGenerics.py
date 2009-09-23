@@ -1368,13 +1368,20 @@ class InfoBarSleepTimer:
 # depends on InfoBarExtensions
 class InfoBarPiP:
 	def __init__(self):
-		self.session.pipshown = False
+		try:
+			self.session.pipshown
+		except:
+			self.session.pipshown = False
 		self.zappip = False
 		if SystemInfo.get("NumVideoDecoders", 1) > 1:
-			self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
-			self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
-			self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
-			self.addExtension((self.getZapFocusName, self.zapFocusToggle, self.pipShown), "red")
+			if (self.allowPiP):
+				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
+				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
+				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
+				self.addExtension((self.getZapFocusName, self.zapFocusToggle, self.pipShown), "red")
+			else:
+				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
+				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 
 	def pipShown(self):
 		return self.session.pipshown
