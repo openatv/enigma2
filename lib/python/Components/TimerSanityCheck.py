@@ -36,6 +36,12 @@ class TimerSanityCheck:
 					return True
 				else:
 					if timer.begin == self.newtimer.begin:
+						fl1 = timer.service_ref.ref.flags & eServiceReference.isGroup
+						fl2 = self.newtimer.service_ref.ref.flags & eServiceReference.isGroup
+						if fl1 != fl2:
+							return False
+						if fl1: #is group
+							return timer.service_ref.ref.getPath() == self.newtimer.service_ref.ref.getPath()
 						getUnsignedDataRef1 = timer.service_ref.ref.getUnsignedData
 						getUnsignedDataRef2 = self.newtimer.service_ref.ref.getUnsignedData
 						for x in (1, 2, 3, 4):
