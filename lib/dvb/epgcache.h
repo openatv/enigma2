@@ -4,7 +4,6 @@
 #define ENABLE_PRIVATE_EPG 1
 #define ENABLE_MHW_EPG 1
 #define ENABLE_FREESAT 1
-//#define ENABLE_NAGRAGUIDE_PUBLIC 1
 
 #ifndef SWIG
 
@@ -247,25 +246,6 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		void timeMHW2DVB( u_char day, u_char hours, u_char minutes, u_char *return_time);
 		void storeMHWTitle(std::map<__u32, mhw_title_t>::iterator itTitle, std::string sumText, const __u8 *data);
 #endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-		struct nagra_guide_program
-		{
-			int onid;
-			int sid;
-			int start;
-			int duration;
-			std::string name;
-			int description;
-		};
-		std::vector<nagra_guide_program> m_NagraGuidePrograms;
-		std::map<int, std::string> m_NagraGuideDescriptions;
-		ePtr<eConnection> m_NagraGuideConn;
-		ePtr<iDVBSectionReader> m_NagraGuideReader;
-		bool nagraGuideDescriptionsReady, nagraGuideProgramsReady;
-		void cleanupNagraGuide();
-		void storeNagraGuideTitle(nagra_guide_program &program);
-		void readNagraGuideData(const __u8 *data);
-#endif
 		void readData(const __u8 *data);
 		void readDataViasat(const __u8 *data);
 		void startChannel();
@@ -276,21 +256,6 @@ class eEPGCache: public eMainloop, private eThread, public Object
 	};
 	bool FixOverlapping(std::pair<eventMap,timeMap> &servicemap, time_t TM, int duration, const timeMap::iterator &tm_it, const uniqueEPGKey &service);
 public:
-	enum {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4
-#ifdef ENABLE_MHW_EPG
-	,MHW=8
-#endif
-#ifdef ENABLE_FREESAT
-	,FREESAT_NOWNEXT=16
-	,FREESAT_SCHEDULE=32
-	,FREESAT_SCHEDULE_OTHER=64
-#endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-	,NAGRAGUIDE=128
-#endif
-	,VIASAT=256
-	,EPG_IMPORT=0x80000000
-	};
 	struct Message
 	{
 		enum
@@ -332,6 +297,8 @@ private:
 	ePtr<eTimer> cleanTimer;
 	std::map<iDVBChannel*, channel_data*> m_knownChannels;
 	ePtr<eConnection> m_chanAddedConn;
+
+	unsigned int enabledSources;
 
 	eventCache eventDB;
 	updateMap channelLastUpdated;
@@ -422,7 +389,22 @@ public:
 	SWIG_VOID(RESULT) lookupEventId(const eServiceReference &service, int event_id, ePtr<eServiceEvent> &SWIG_OUTPUT);
 	SWIG_VOID(RESULT) lookupEventTime(const eServiceReference &service, time_t, ePtr<eServiceEvent> &SWIG_OUTPUT, int direction=0);
 	SWIG_VOID(RESULT) getNextTimeEntry(ePtr<eServiceEvent> &SWIG_OUTPUT);
-	
+
+	enum {PRIVATE=0, NOWNEXT=1, SCHEDULE=2, SCHEDULE_OTHER=4
+#ifdef ENABLE_MHW_EPG
+	,MHW=8
+#endif
+#ifdef ENABLE_FREESAT
+	,FREESAT_NOWNEXT=16
+	,FREESAT_SCHEDULE=32
+	,FREESAT_SCHEDULE_OTHER=64
+#endif
+	,VIASAT=256
+	,EPG_IMPORT=0x80000000
+	};
+	void setEpgSources(unsigned int mask);
+	unsigned int getEpgSources();
+
 	void importEvent(SWIG_PYOBJECT(ePyObject) serviceReference, SWIG_PYOBJECT(ePyObject) list);
 };
 
