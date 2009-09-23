@@ -93,6 +93,24 @@ def InitUsageConfig():
 	config.usage.hide_zap_errors = ConfigYesNo(default = False)
 	config.usage.hide_ci_messages = ConfigYesNo(default = False)
 
+	config.epg = ConfigSubsection()
+	config.epg.mhw = ConfigYesNo(default = True)
+	config.epg.freesat = ConfigYesNo(default = True)
+	config.epg.viasat = ConfigYesNo(default = True)
+	def EpgSettingsChanged(configElement):
+		from enigma import eEPGCache
+		mask = 0xffffffff
+		if not config.epg.mhw.value:
+			mask &= ~eEPGCache.MHW
+		if not config.epg.freesat.value:
+			mask &= ~(eEPGCache.FREESAT_NOWNEXT | eEPGCache.FREESAT_SCHEDULE | eEPGCache.FREESAT_SCHEDULE_OTHER);
+		if not config.epg.viasat.value:
+			mask &= ~eEPGCache.VIASAT
+		eEPGCache.getInstance().setEpgSources(mask)
+	config.epg.mhw.addNotifier(EpgSettingsChanged)
+	config.epg.freesat.addNotifier(EpgSettingsChanged)
+	config.epg.viasat.addNotifier(EpgSettingsChanged)
+
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(configElement.value))

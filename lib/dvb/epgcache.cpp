@@ -16,6 +16,7 @@
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/db.h>
 #include <lib/python/python.h>
+#include <lib/base/nconfig.h>
 #include <dvbsi++/descriptor_tag.h>
 
 int eventData::CacheSize=0;
@@ -217,6 +218,8 @@ eEPGCache::eEPGCache()
 {
 	eDebug("[EPGC] Initialized EPGCache");
 
+	enabledSources = 0;
+
 	CONNECT(messages.recv_msg, eEPGCache::gotMessage);
 	CONNECT(eDVBLocalTimeHandler::getInstance()->m_timeUpdated, eEPGCache::timeUpdated);
 	CONNECT(cleanTimer->timeout, eEPGCache::cleanLoop);
@@ -337,14 +340,6 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				if ( res )
 				{
 					eDebug("[eEPGCache] couldnt initialize FreeSat schedule other reader!!");
-					return;
-				}
-#endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-				res = demux->createSectionReader( this, data.m_NagraGuideReader );
-				if ( res )
-				{
-					eDebug("[eEPGCache] couldnt initialize NagraGuide reader!!");
 					return;
 				}
 #endif
@@ -1171,9 +1166,6 @@ bool eEPGCache::channel_data::finishEPG()
 #ifdef ENABLE_FREESAT
 		cleanupFreeSat();
 #endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-		cleanupNagraGuide();
-#endif
 		singleLock l(cache->cache_lock);
 		cache->channelLastUpdated[channel->getChannelID()] = ::time(0);
 		return true;
@@ -1197,80 +1189,85 @@ void eEPGCache::channel_data::startEPG()
 #ifdef ENABLE_FREESAT
 		cleanupFreeSat();
 #endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-		cleanupNagraGuide();
-#endif
 
 	eDVBSectionFilterMask mask;
 	memset(&mask, 0, sizeof(mask));
 
 #ifdef ENABLE_MHW_EPG
-	mask.pid = 0xD3;
-	mask.data[0] = 0x91;
-	mask.mask[0] = 0xFF;
-	m_MHWReader->connectRead(slot(*this, &eEPGCache::channel_data::readMHWData), m_MHWConn);
-	m_MHWReader->start(mask);
-	isRunning |= MHW;
-	memcpy(&m_MHWFilterMask, &mask, sizeof(eDVBSectionFilterMask));
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::MHW)
+	{
+		mask.pid = 0xD3;
+		mask.data[0] = 0x91;
+		mask.mask[0] = 0xFF;
+		m_MHWReader->connectRead(slot(*this, &eEPGCache::channel_data::readMHWData), m_MHWConn);
+		m_MHWReader->start(mask);
+		isRunning |= MHW;
+		memcpy(&m_MHWFilterMask, &mask, sizeof(eDVBSectionFilterMask));
 
-	mask.pid = 0x231;
-	mask.data[0] = 0xC8;
-	mask.mask[0] = 0xFF;
-	mask.data[1] = 0;
-	mask.mask[1] = 0xFF;
-	m_MHWReader2->connectRead(slot(*this, &eEPGCache::channel_data::readMHWData2), m_MHWConn2);
-	m_MHWReader2->start(mask);
-	isRunning |= MHW;
-	memcpy(&m_MHWFilterMask2, &mask, sizeof(eDVBSectionFilterMask));
-	mask.data[1] = 0;
-	mask.mask[1] = 0;
+		mask.pid = 0x231;
+		mask.data[0] = 0xC8;
+		mask.mask[0] = 0xFF;
+		mask.data[1] = 0;
+		mask.mask[1] = 0xFF;
+		m_MHWReader2->connectRead(slot(*this, &eEPGCache::channel_data::readMHWData2), m_MHWConn2);
+		m_MHWReader2->start(mask);
+		isRunning |= MHW;
+		memcpy(&m_MHWFilterMask2, &mask, sizeof(eDVBSectionFilterMask));
+		mask.data[1] = 0;
+		mask.mask[1] = 0;
+	}
 #endif
 #ifdef ENABLE_FREESAT
-	mask.pid = 3842;
-	mask.flags = eDVBSectionFilterMask::rfCRC;
-	mask.data[0] = 0x60;
-	mask.mask[0] = 0xF0;
-	m_FreeSatScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readFreeSatScheduleOtherData), m_FreeSatScheduleOtherConn);
-	m_FreeSatScheduleOtherReader->start(mask);
-	isRunning |= FREESAT_SCHEDULE_OTHER;
-#endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-	mask.pid = 228;
-	mask.flags = eDVBSectionFilterMask::rfCRC;
-
-	mask.data[0] = 0;
-	mask.mask[0] = 0;
-	m_NagraGuideNextReader->connectRead(slot(*this, &eEPGCache::channel_data::readNagraGuideData), m_NagraGuideConn);
-	m_NagraGuideNextReader->start(mask);
-	isRunning |= NAGRAGUIDE;
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::FREESAT_SCHEDULE_OTHER)
+	{
+		mask.pid = 3842;
+		mask.flags = eDVBSectionFilterMask::rfCRC;
+		mask.data[0] = 0x60;
+		mask.mask[0] = 0xF0;
+		m_FreeSatScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readFreeSatScheduleOtherData), m_FreeSatScheduleOtherConn);
+		m_FreeSatScheduleOtherReader->start(mask);
+		isRunning |= FREESAT_SCHEDULE_OTHER;
+	}
 #endif
 	mask.pid = 0x12;
 	mask.flags = eDVBSectionFilterMask::rfCRC;
 
-	mask.data[0] = 0x4E;
-	mask.mask[0] = 0xFE;
-	m_NowNextReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_NowNextConn);
-	m_NowNextReader->start(mask);
-	isRunning |= NOWNEXT;
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::NOWNEXT)
+	{
+		mask.data[0] = 0x4E;
+		mask.mask[0] = 0xFE;
+		m_NowNextReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_NowNextConn);
+		m_NowNextReader->start(mask);
+		isRunning |= NOWNEXT;
+	}
 
-	mask.data[0] = 0x50;
-	mask.mask[0] = 0xF0;
-	m_ScheduleReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleConn);
-	m_ScheduleReader->start(mask);
-	isRunning |= SCHEDULE;
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::SCHEDULE)
+	{
+		mask.data[0] = 0x50;
+		mask.mask[0] = 0xF0;
+		m_ScheduleReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleConn);
+		m_ScheduleReader->start(mask);
+		isRunning |= SCHEDULE;
+	}
 
-	mask.data[0] = 0x60;
-	m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleOtherConn);
-	m_ScheduleOtherReader->start(mask);
-	isRunning |= SCHEDULE_OTHER;
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::SCHEDULE_OTHER)
+	{
+		mask.data[0] = 0x60;
+		m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleOtherConn);
+		m_ScheduleOtherReader->start(mask);
+		isRunning |= SCHEDULE_OTHER;
+	}
 
-	mask.pid = 0x39;
+	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::VIASAT)
+	{
+		mask.pid = 0x39;
 
-	mask.data[0] = 0x40;
-	mask.mask[0] = 0x40;
-	m_ViasatReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataViasat), m_ViasatConn);
-	m_ViasatReader->start(mask);
-	isRunning |= VIASAT;
+		mask.data[0] = 0x40;
+		mask.mask[0] = 0x40;
+		m_ViasatReader->connectRead(slot(*this, &eEPGCache::channel_data::readDataViasat), m_ViasatConn);
+		m_ViasatReader->start(mask);
+		isRunning |= VIASAT;
+	}
 
 	abortTimer->start(7000,true);
 }
@@ -1328,15 +1325,6 @@ void eEPGCache::channel_data::abortNonAvail()
 			m_MHWConn2=0;
 		}
 #endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-		if ( !(haveData&NAGRAGUIDE) && (isRunning&NAGRAGUIDE) )
-		{
-			eDebug("[EPGC] abort non avail NagraGuide reading");
-			isRunning &= ~NAGRAGUIDE;
-			m_NagraGuideReader->stop();
-			m_NagraGuideConn=0;
-		}
-#endif
 		if ( isRunning & VIASAT )
 			abortTimer->start(300000, true);
 		else if ( isRunning )
@@ -1354,9 +1342,6 @@ void eEPGCache::channel_data::abortNonAvail()
 #endif
 #ifdef ENABLE_FREESAT
 			cleanupFreeSat();
-#endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-			cleanupNagraGuide();
 #endif
 		}
 	}
@@ -1392,9 +1377,6 @@ void eEPGCache::channel_data::abortEPG()
 #endif
 #ifdef ENABLE_FREESAT
 	cleanupFreeSat();
-#endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-	cleanupNagraGuide();
 #endif
 	abortTimer->stop();
 	zapTimer->stop();
@@ -1441,14 +1423,6 @@ void eEPGCache::channel_data::abortEPG()
 			m_MHWConn=0;
 			m_MHWReader2->stop();
 			m_MHWConn2=0;
-		}
-#endif
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-		if (isRunning & NAGRAGUIDE)
-		{
-			isRunning &= ~NAGRAGUIDE;
-			m_NagraGuideReader->stop();
-			m_NagraGuideConn=0;
 		}
 #endif
 	}
@@ -2455,6 +2429,17 @@ static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start,
 	return data;
 }
 #undef SET_HILO
+
+
+void eEPGCache::setEpgSources(unsigned int mask)
+{
+	enabledSources = mask;
+}
+
+unsigned int eEPGCache::getEpgSources()
+{
+	return enabledSources;
+}
 
 static const char* getStringFromPython(ePyObject obj)
 {
@@ -4031,107 +4016,5 @@ abort:
 		m_MHWReader2->stop();
 	if (haveData)
 		finishEPG();
-}
-#endif
-
-#ifdef ENABLE_NAGRAGUIDE_PUBLIC
-void eEPGCache::channel_data::cleanupNagraGuide()
-{
-	m_NagraGuidePrograms.erase();
-	m_NagraGuideDescriptions.erase();
-	nagraGuideDescriptionsReady = false;
-	nagraGuideProgramsReady = false;
-	firstNagraGuideProgramSection = -1;
-}
-
-void eEPGCache::channel_data::storeNagraGuideTitle(nagra_guide_program &program)
-{
-}
-
-void eEPGCache::channel_data::readNagraGuideData(const __u8 *data)
-{
-	int size = (((data[1] & 0xf) << 8) | data[2]) + 3;
-
-	switch (data[0])
-	{
-	case 0xbf:
-		{
-			if (nagraGuideDescriptionsReady) break;
-			int offset = 0;
-			nagraguide_description_t *description = (nagraguide_description_t*)data;
-			int len = HILO(description->section_length) - 1;
-			if (size != len + 4)
-			{
-				return;
-			}
-			offset += sizeof(*description);
-			std::string descr;
-			descr.append((char*)&data[offset], HILO(description->description_length));
-			if (m_NagraGuideDescriptions[HILO(description->description_id)].size())
-			{
-				nagraGuideDescriptionsReady = true;
-				break;
-			}
-			m_NagraGuideDescriptions[HILO(description->description_id)] = descr;
-		}
-		break;
-	case 0xc0:
-		{
-			nagraguide_t *nagraguide = (nagraguide_t*)data;
-			int offset = 0;
-			int len = HILO(nagraguide->section_length) - 1;
-			if (size != len + 4)
-			{
-				return;
-			}
-			if (firstNagraGuideProgramSection < 0)
-			{
-				firstNagraGuideProgramSection = nagraguide->section_number;
-			}
-			else
-			{
-				if (nagraguide->section_number == firstNagraGuideProgramSection)
-				{
-					nagraGuideProgramsReady = true;
-					break;
-				}
-			}
-			offset += sizeof(*nagraguide);
-			nagraguide_program_header_t *header;
-			while (offset + sizeof(nagraguide_program_header_t) < len)
-			{
-				header = (nagraguide_program_header_t*)&data[offset];
-				nagra_guide_program program;
-				program.onid = 0; /* TODO */
-				program.sid = HILO(nagraguide->service_id);
-				program.start = HILO(header->start);
-				program.duration = HILO(header->duration);
-				program.name.append((char*)&data[offset + sizeof(*header)], header->namelength);
-				program.description = 0;
-				offset += sizeof(*header);
-				offset += header->namelength;
-				if (offset + sizeof(nagraguide_program_footer_t) <= len)
-				{
-					nagraguide_program_footer_t *footer;
-					footer = (nagraguide_program_footer_t*)&data[offset];
-					if (footer->id1 == 0 && footer->id2 == 0 && footer->zero1 == 0 && footer->zero2 == 0)
-					{
-						program.description = HILO(footer->id);
-						offset += sizeof(*footer);
-					}
-				}
-				m_NagraGuidePrograms.push_back(program);
-			}
-		}
-		break;
-	default:
-		eDebug("[EPGC] NagraGuide: unknown table_id (%x) !!!", (int)data[0]);
-		return;
-	}
-
-	if (nagraGuideDescriptionsReady && nagraGuideProgramsReady)
-	{
-		/* TODO */
-	}
 }
 #endif
