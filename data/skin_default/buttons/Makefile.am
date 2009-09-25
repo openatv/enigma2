@@ -29,6 +29,7 @@ dist_install_DATA = \
 	key_menu.png \
 	key_red.png \
 	key_yellow.png \
+	key_text.png \
 	red-big.png \
 	red.png \
 	yellow.png
