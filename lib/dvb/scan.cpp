@@ -706,9 +706,12 @@ void eDVBScan::channelDone()
 		   here, and not before.
 		*/
 
+	int type;
+	if (m_ch_current->getSystem(type))
+		type = -1;
+
 	for (m_pmt_in_progress = m_pmts_to_read.begin(); m_pmt_in_progress != m_pmts_to_read.end();)
 	{
-		int type;
 		eServiceReferenceDVB ref;
 		ePtr<eDVBService> service = new eDVBService;
 
@@ -734,7 +737,7 @@ void eDVBScan::channelDone()
 		ref.setServiceID(m_pmt_in_progress->first);
 		ref.setServiceType(m_pmt_in_progress->second.serviceType);
 
-		if (!m_ch_current->getSystem(type))
+		if (type != -1)
 		{
 			char sname[255];
 			char pname[255];
@@ -762,20 +765,11 @@ void eDVBScan::channelDone()
 				}
 				case iDVBFrontend::feTerrestrial:
 				{
-					ePtr<iDVBFrontend> fe;
 					eDVBFrontendParametersTerrestrial parm;
 					m_ch_current->getDVBT(parm);
 					snprintf(sname, 255, "%d SID 0x%02x",
 						parm.frequency/1000,
 						m_pmt_in_progress->first);
-					if (!m_channel->getFrontend(fe))
-					{
-						ePyObject tp_dict = PyDict_New();
-						fe->getTransponderData(tp_dict, false);
-						m_corrected_frequencys[m_chid_current] =
-							PyInt_AsLong(PyDict_GetItemString(tp_dict, "frequency"));
-						Py_DECREF(tp_dict);
-					}
 					break;
 				}
 				case iDVBFrontend::feCable:
@@ -812,10 +806,36 @@ void eDVBScan::channelDone()
 	if (!m_chid_current)
 		eWarning("SCAN: the current channel's ID was not corrected - not adding channel.");
 	else
+	{
 		addKnownGoodChannel(m_chid_current, m_ch_current);
-	
+		if (m_chid_current)
+		{
+			switch(type)
+			{
+				case iDVBFrontend::feSatellite:
+				case iDVBFrontend::feTerrestrial:
+				case iDVBFrontend::feCable:
+				{
+					ePtr<iDVBFrontend> fe;
+					if (!m_channel->getFrontend(fe))
+					{
+						ePyObject tp_dict = PyDict_New();
+						fe->getTransponderData(tp_dict, false);
+//						eDebug("add tuner data for tsid %04x, onid %04x, ns %08x",
+//							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
+//							m_chid_current.dvbnamespace.get());
+						m_tuner_data.insert(std::pair<eDVBChannelID, ePyObjectWrapper>(m_chid_current, tp_dict));
+						Py_DECREF(tp_dict);
+					}
+				}
+				default:
+					break;
+			}
+		}
+	}
+
 	m_ch_scanned.push_back(m_ch_current);
-	
+
 	for (std::list<ePtr<iDVBFrontendParameters> >::iterator i(m_ch_toScan.begin()); i != m_ch_toScan.end();)
 	{
 		if (sameChannel(*i, m_ch_current))
@@ -837,6 +857,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 	m_ch_scanned.clear();
 	m_ch_unavailable.clear();
 	m_new_channels.clear();
+	m_tuner_data.clear();
 	m_new_services.clear();
 	m_last_service = m_new_services.end();
 
@@ -956,27 +977,34 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 	{
 		int system;
 		ch->second->getSystem(system);
-		if (system == iDVBFrontend::feTerrestrial)
+		std::map<eDVBChannelID, ePyObjectWrapper>::iterator it = m_tuner_data.find(ch->first);
+
+		switch(system)
 		{
-			std::map<eDVBChannelID, unsigned int>::iterator it = m_corrected_frequencys.find(ch->first);
-			if (it != m_corrected_frequencys.end())
+			case iDVBFrontend::feTerrestrial:
 			{
 				eDVBFrontendParameters *p = (eDVBFrontendParameters*)&(*ch->second);
 				eDVBFrontendParametersTerrestrial parm;
+				int freq = PyInt_AsLong(PyDict_GetItemString(it->second, "frequency"));
 				p->getDVBT(parm);
-				eDebug("corrected freq for tsid %04x, onid %04x, ns %08x is %d, old was %d",
-					ch->first.transport_stream_id.get(), ch->first.original_network_id.get(),
-					ch->first.dvbnamespace.get(), it->second, parm.frequency);
-				parm.frequency = it->second;
+//				eDebug("corrected freq for tsid %04x, onid %04x, ns %08x is %d, old was %d",
+//					ch->first.transport_stream_id.get(), ch->first.original_network_id.get(),
+//					ch->first.dvbnamespace.get(), freq, parm.frequency);
+				parm.frequency = freq;
 				p->setDVBT(parm);
-				m_corrected_frequencys.erase(it);
+				break;
 			}
+			case iDVBFrontend::feSatellite: // no update of any transponder parameter yet
+			case iDVBFrontend::feCable:
+				break;
 		}
+
 		if (m_flags & scanOnlyFree)
 		{
 			eDVBFrontendParameters *ptr = (eDVBFrontendParameters*)&(*ch->second);
 			ptr->setFlags(iDVBFrontendParameters::flagOnlyFree);
 		}
+
 		db->addChannelToList(ch->first, ch->second);
 	}
 
