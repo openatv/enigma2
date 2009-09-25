@@ -65,28 +65,26 @@ class Standby(Screen):
 			self.avswitch.setInput("AUX")
 		#set lcd brightness to standby value
 		config.lcd.standby.apply()
-		self.onShow.append(self.__onShow)
-		self.onHide.append(self.__onHide)
+		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
+		global inStandby
+		inStandby = None
 		if self.prev_running_service:
 			self.session.nav.playService(self.prev_running_service)
 		elif self.paused_service:
 			self.paused_service.unPauseService()
+		self.session.screen["Standby"].boolean = False
 
-	def createSummary(self):
-		return StandbySummary
-
-	def __onShow(self):
+	def __onFirstExecBegin(self):
 		global inStandby
 		inStandby = self
 		self.session.screen["Standby"].boolean = True
+		config.misc.standbyCounter.value += 1
 
-	def __onHide(self):
-		global inStandby
-		inStandby = None
-		self.session.screen["Standby"].boolean = False
+	def createSummary(self):
+		return StandbySummary
 
 class StandbySummary(Screen):
 	skin = """
