@@ -2,8 +2,7 @@ from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigBoolean
 from Components.ActionMap import ActionMap
-from Components.Button import Button
-from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.ChoiceBox import ChoiceBox
@@ -22,14 +21,13 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="key_yellow" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		<widget name="key_blue" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		<widget name="config" position="5,50" size="550,340" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="skin_default/div-h.png" position="0,390" zPosition="1" size="560,2" />
-		<widget name="introduction" position="5,400" size="550,25" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-
+		<widget source="introduction" render="Label" position="5,400" size="550,25" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session, hw):
@@ -71,11 +69,11 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				"blue": self.keyBlue,
 			}, -2)
 
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("OK"))
-		self["key_yellow"] = Button(_("Last config"))
-		self["key_blue"] = Button(_("Default"))
-		self["introduction"] = Label()
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText(_("Last config"))
+		self["key_blue"] = StaticText(_("Default"))
+		self["introduction"] = StaticText()
 
 		self.createSetup()
 		self.rememberOldSettings()
@@ -98,7 +96,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldBlock_noise = config.pep.block_noise_reduction.value
 		self.oldMosquito_noise = config.pep.mosquito_noise_reduction.value
 		self.oldDigital_contour = config.pep.digital_contour_removal.value
-		if self.hw_type == 'dm8000':
+		if self.hw_type in ('dm8000', 'dm500hd'):
 			self.oldSplit = config.pep.split.value
 			self.oldSharpness = config.pep.sharpness.value
 			self.oldAuto_flesh = config.pep.auto_flesh.value
@@ -131,7 +129,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.digital_contour_removalEntry
 			))
 
-		elif self.hw_type == 'dm8000':
+		elif self.hw_type in ( 'dm8000', 'dm500hd' ):
 			self.splitEntry = getConfigListEntry(_("Split preview mode"), config.pep.split)
 			self.sharpnessEntry = getConfigListEntry(_("Sharpness"), config.pep.sharpness)
 			self.auto_fleshEntry = getConfigListEntry(_("Auto flesh"), config.pep.auto_flesh)
@@ -190,12 +188,14 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				current,
 				self.splitEntry
 			]
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value)
+			maxvalue = current[1].max
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue)
 		else:
 			self.previewlist = [
 				current
 			]
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist)
+			maxvalue = current[1].max
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = None, maxValue = maxvalue)
 
 	def keyRight(self):
 		current = self["config"].getCurrent()
@@ -207,12 +207,14 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				current,
 				self.splitEntry
 			]
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value )
+			maxvalue = current[1].max
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue )
 		else:
 			self.previewlist = [
 				current
 			]
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist)
+			maxvalue = current[1].max
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = None, maxValue = maxvalue)
 
 	def confirm(self, confirmed):
 		if not confirmed:
@@ -256,7 +258,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(self.oldDigital_contour)
 
-			if self.hw_type == 'dm8000':
+			if self.hw_type in ( 'dm8000', 'dm500hd' ):
 				if self.splitEntry is not None:
 					config.pep.split.setValue('off')
 				if self.sharpnessEntry is not None:
@@ -293,7 +295,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(0)
 
-			if self.hw_type == 'dm8000':
+			if self.hw_type in ( 'dm8000', 'dm500hd' ):
 				if self.splitEntry is not None:
 					config.pep.split.setValue('off')
 				if self.sharpnessEntry is not None:
@@ -315,6 +317,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -330,20 +333,25 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 class VideoEnhancementPreview(Screen, ConfigListScreen):
 
 	skin = """
-		<screen name="VideoEnhancementPreview" position="90,430" size="560,110" title="VideoEnhancementPreview">
+		<screen name="VideoEnhancementPreview" position="center,360" size="560,170" title="VideoEnhancementPreview">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget name="key_red" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="key_green" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="config" position="5,50" size="550,60" scrollbarMode="showOnDemand" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="config" position="5,50" size="550,80" scrollbarMode="showOnDemand" />
+		<ePixmap pixmap="skin_default/div-h.png" position="0,130" zPosition="1" size="560,2" />
+		<widget source="introduction" render="Label" position="0,140" size="550,25" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 	</screen>"""
 
-	def __init__(self, session, configEntry = None, oldSplitMode = None):
+	def __init__(self, session, configEntry = None, oldSplitMode = None, maxValue = None):
 		Screen.__init__(self, session)
 
 		self.onChangedEntry = [ ]
 		self.setup_title = "Videoenhancement"
 		self.oldSplitMode = oldSplitMode
+		self.maxValue = maxValue
+		self.configStepsEntry = None
+		self.isStepSlider = None
 
 		self.list = [ ]
 		self.configEntry = configEntry
@@ -355,8 +363,9 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 				"save": self.keySave,
 			}, -2)
 
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("OK"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["introduction"] = StaticText()
 
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -366,19 +375,41 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = [ ]
+		if self.maxValue == 256:
+			self.configStepsEntry = getConfigListEntry(_("Change step size"), config.pep.configsteps)
+
 		if self.configEntry is not None:
 			self.list = self.configEntry
+		if self.maxValue == 256:
+			self.list.append(self.configStepsEntry)
+
 		self["config"].list = self.list
 		self["config"].l.setSeperation(300)
 		self["config"].l.setList(self.list)
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		self["introduction"].setText(_("Current value: ") + self.getCurrentValue())
+		try:
+			max_avail=self["config"].getCurrent()[1].max
+			if max_avail == 256:
+				self.isStepSlider = True
+			else:
+				self.isStepSlider = False
+		except AttributeError:
+			print "no max value"
 
 	def keyLeft(self):
+		if self.isStepSlider is True:
+			self["config"].getCurrent()[1].increment = config.pep.configsteps.value
 		ConfigListScreen.keyLeft(self)
-		self.createSetup()
 
 	def keyRight(self):
+		if self.isStepSlider is True:
+			self["config"].getCurrent()[1].increment = config.pep.configsteps.value
 		ConfigListScreen.keyRight(self)
-		self.createSetup()
 
 	def keySave(self):
 		if self.oldSplitMode is not None:
@@ -404,6 +435,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()
+		self.selectionChanged()
 
 	def getCurrentEntry(self):
 		return self["config"].getCurrent()[0]
@@ -431,7 +463,7 @@ def Plugins(**kwargs):
 	list = []
 	if config.usage.setup_level.index >= 2: # expert+
 		hw_type = HardwareInfo().get_device_name()
-		if hw_type == 'dm8000' or hw_type == 'dm800':
+		if hw_type in ( 'dm8000', 'dm800', 'dm500hd' ):
 			if (os.path.exists("/proc/stb/vmpeg/0/pep_apply") == True):
 				list.append(PluginDescriptor(name=_("Videoenhancement Setup"), description=_("Advanced Video Enhancement Setup"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup))
 	return list
