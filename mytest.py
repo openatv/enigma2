@@ -42,7 +42,7 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-from Components.config import config, configfile, ConfigText, ConfigYesNo
+from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
 InitFallbackFiles()
 
 profile("ReloadProfiles")
@@ -51,6 +51,20 @@ eDVBDB.getInstance().reloadBouquets()
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.useTransponderTime = ConfigYesNo(default=True)
+config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
+config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
+
+#demo code for use of standby enter leave callbacks
+#def leaveStandby():
+#	print "!!!!!!!!!!!!!!!!!leave standby"
+
+#def standbyCountChanged(configElement):
+#	print "!!!!!!!!!!!!!!!!!enter standby num", configElement.value
+#	from Screens.Standby import inStandby
+#	inStandby.onClose.append(leaveStandby)
+
+#config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
+####################################################
 
 def useTransponderTimeChanged(configElement):
 	enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(configElement.value)
@@ -414,6 +428,8 @@ profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
 def runScreenTest():
+	config.misc.startCounter.value += 1
+
 	profile("readPluginList")
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
@@ -466,6 +482,8 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 	runReactor()
+
+	config.misc.startCounter.save()
 
 	profile("wakeup")
 	from time import time, strftime, localtime
