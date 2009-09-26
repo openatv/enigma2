@@ -109,12 +109,12 @@ config.plugins.CableScan.symbolrate = ConfigInteger(default = 6875, limits = (1,
 config.plugins.CableScan.networkid = ConfigInteger(default = 0, limits = (0, 9999))
 config.plugins.CableScan.modulation = ConfigSelection(
 	choices =
-		[(eDVBFrontendParametersCable.Modulation_QAM16, "QAM16"),
-		(eDVBFrontendParametersCable.Modulation_QAM32, "QAM32"),
-		(eDVBFrontendParametersCable.Modulation_QAM64, "QAM64"),
-		(eDVBFrontendParametersCable.Modulation_QAM128, "QAM128"),
-		(eDVBFrontendParametersCable.Modulation_QAM256, "QAM256")],
-	default = eDVBFrontendParametersCable.Modulation_QAM64)
+		[(str(eDVBFrontendParametersCable.Modulation_QAM16), "QAM16"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM32), "QAM32"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM64), "QAM64"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM128), "QAM128"),
+		(str(eDVBFrontendParametersCable.Modulation_QAM256), "QAM256")],
+	default = str(eDVBFrontendParametersCable.Modulation_QAM64))
 
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """
@@ -163,7 +163,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, scanModulation = config.plugins.CableScan.modulation.value, keepNumbers = config.plugins.CableScan.keepnumbering.value)
+		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, scanModulation = int(config.plugins.CableScan.modulation.value), keepNumbers = config.plugins.CableScan.keepnumbering.value)
 
 	def keyCancel(self):
 		self.close()
