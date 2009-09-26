@@ -155,6 +155,41 @@ inline void ePyObject::decref()
 	Py_DECREF(m_ob);
 }
 
+class ePyObjectWrapper
+{
+	ePyObject m_obj;
+public:
+	ePyObjectWrapper(const ePyObjectWrapper &wrapper)
+		:m_obj(wrapper.m_obj)
+	{
+		Py_INCREF(m_obj);
+	}
+	ePyObjectWrapper(const ePyObject &obj)
+		:m_obj(obj)
+	{
+		Py_INCREF(m_obj);
+	}
+	~ePyObjectWrapper()
+	{
+		Py_DECREF(m_obj);
+	}
+	ePyObjectWrapper &operator=(const ePyObjectWrapper &wrapper)
+	{
+		Py_DECREF(m_obj);
+		m_obj = wrapper.m_obj;
+		Py_INCREF(m_obj);
+		return *this;
+	}
+	operator PyObject*()
+	{
+		return m_obj;
+	}
+	operator ePyObject()
+	{
+		return m_obj;
+	}
+};
+
 #endif // ! PYTHON_REFCOUNT_DEBUG
 
 #endif  // !SWIG && !SKIP_PART1
@@ -390,5 +425,4 @@ private:
 
 #endif // SWIG
 #endif // SKIP_PART2
-
 #endif // __lib_python_python_class_h

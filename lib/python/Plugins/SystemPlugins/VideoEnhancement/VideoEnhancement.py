@@ -1,5 +1,5 @@
 from enigma import eTimer
-from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection,ConfigYesNo
+from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigYesNo, NoSave
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
 import os
@@ -17,6 +17,8 @@ class VideoEnhancement:
 	def createConfig(self, *args):
 		hw_type = HardwareInfo().get_device_name()
 		config.pep = ConfigSubsection()
+
+		config.pep.configsteps = NoSave(ConfigSelection(choices=[1, 5, 10, 25], default = 1))
 
 		def setContrast(config):
 			myval = int(config.value*256)
@@ -116,7 +118,7 @@ class VideoEnhancement:
 		config.pep.digital_contour_removal = ConfigSlider(default=0, limits=(0,5))
 		config.pep.digital_contour_removal.addNotifier(setDigital_contour_removal)
 
-		if hw_type == 'dm8000':
+		if hw_type in ( 'dm8000', 'dm500hd' ):
 			def setSplitMode(config):
 				try:
 					print "--> setting splitmode to:",str(config.value)
@@ -217,7 +219,7 @@ class VideoEnhancement:
 
 if config.usage.setup_level.index >= 2: # expert+
 	hw_type = HardwareInfo().get_device_name()
-	if hw_type == 'dm8000' or hw_type == 'dm800':
+	if hw_type in ( 'dm8000', 'dm800', 'dm500hd' ):
 		video_enhancement = VideoEnhancement()
 		if video_enhancement.firstRun == True:
 			video_enhancement.setConfiguredValues()
