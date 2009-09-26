@@ -51,9 +51,9 @@ class eDVBScan: public Object, public iObject
 	int m_channel_state;
 	int m_ready, m_ready_all;
 
-	std::map<eDVBChannelID, unsigned int> m_corrected_frequencys;  // yet just used for DVB-T
-
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
+	std::map<eDVBChannelID, ePyObjectWrapper> m_tuner_data; // data read from tuner for every new channel
+
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_new_services;
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator m_last_service;
 
