@@ -1,17 +1,12 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigBoolean
+from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
-from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from enigma import ePoint
-from Tools import Notifications
-from Tools.HardwareInfo import HardwareInfo
-from VideoEnhancement import video_enhancement
-import os
+import VideoEnhancement
+from os import path as os_path
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 
@@ -30,35 +25,15 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		<widget source="introduction" render="Label" position="5,400" size="550,25" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 	</screen>"""
 
-	def __init__(self, session, hw):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 
 		self.session = session
-		self.hw = hw
 		self.onChangedEntry = [ ]
 		self.setup_title = "Videoenhancement"
 
-		self.contrastEntry = None
-		self.saturationEntry = None
-		self.hueEntry = None
-		self.brightnessEntry = None
-		self.splitEntry = None
-		self.sharpnessEntry = None
-		self.auto_fleshEntry = None
-		self.green_boostEntry = None
-		self.blue_boostEntry = None
-		self.block_noise_reductionEntry = None
-		self.mosquito_noise_reductionEntry = None
-		self.digital_contour_removalEntry = None
-		self.dynamic_contrastEntry = None
-
-		# handle hotplug by re-creating setup
-		self.onShow.append(self.startHotplug)
-		self.onHide.append(self.stopHotplug)
-
 		self.list = [ ]
 		self.xtdlist = [ ]
-		self.hw_type = HardwareInfo().get_device_name()
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -82,12 +57,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def layoutFinished(self):
 		self.setTitle(_("Video enhancement setup"))
 
-	def startHotplug(self):
-		self.hw.on_hotplug.append(self.createSetup)
-
-	def stopHotplug(self):
-		self.hw.on_hotplug.remove(self.createSetup)
-
 	def rememberOldSettings(self):
 		self.oldContrast = config.pep.contrast.value
 		self.oldSaturation = config.pep.saturation.value
@@ -96,73 +65,42 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldBlock_noise = config.pep.block_noise_reduction.value
 		self.oldMosquito_noise = config.pep.mosquito_noise_reduction.value
 		self.oldDigital_contour = config.pep.digital_contour_removal.value
-		if self.hw_type in ('dm8000', 'dm500hd'):
-			self.oldSplit = config.pep.split.value
-			self.oldSharpness = config.pep.sharpness.value
-			self.oldAuto_flesh = config.pep.auto_flesh.value
-			self.oldGreen_boost = config.pep.green_boost.value
-			self.oldBlue_boost = config.pep.blue_boost.value
-			self.oldDynamic_contrast = config.pep.dynamic_contrast.value
+		self.oldScaler_sharpness = config.pep.scaler_sharpness.value
+		self.oldSplit = config.pep.split.value
+		self.oldSharpness = config.pep.sharpness.value
+		self.oldAuto_flesh = config.pep.auto_flesh.value
+		self.oldGreen_boost = config.pep.green_boost.value
+		self.oldBlue_boost = config.pep.blue_boost.value
+		self.oldDynamic_contrast = config.pep.dynamic_contrast.value
+
+	def addToConfigList(self, description, configEntry, add_to_xtdlist=False):
+		if isinstance(configEntry, ConfigNothing):
+			return None
+		entry = getConfigListEntry(description, configEntry)
+		self.list.append(entry);
+		if add_to_xtdlist:
+			self.xtdlist.append(entry)
+		return entry
 
 	def createSetup(self):
-		self.contrastEntry = getConfigListEntry(_("Contrast"), config.pep.contrast)
-		self.saturationEntry = getConfigListEntry(_("Saturation"), config.pep.saturation)
-		self.hueEntry = getConfigListEntry(_("Hue"), config.pep.hue)
-		self.brightnessEntry = getConfigListEntry(_("Brightness"), config.pep.brightness)
-		self.block_noise_reductionEntry = getConfigListEntry(_("Block noise reduction"), config.pep.block_noise_reduction)
-		self.mosquito_noise_reductionEntry = getConfigListEntry(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction)
-		self.digital_contour_removalEntry = getConfigListEntry(_("Digital contour removal"), config.pep.digital_contour_removal)
-
-		self.list = [
-			self.contrastEntry
-		]
-
-		self.list.extend((
-			self.saturationEntry,
-			self.hueEntry,
-			self.brightnessEntry
-		))
-		if self.hw_type == 'dm800':
-			self.list.extend((
-				self.block_noise_reductionEntry,
-				self.mosquito_noise_reductionEntry,
-				self.digital_contour_removalEntry
-			))
-
-		elif self.hw_type in ( 'dm8000', 'dm500hd' ):
-			self.splitEntry = getConfigListEntry(_("Split preview mode"), config.pep.split)
-			self.sharpnessEntry = getConfigListEntry(_("Sharpness"), config.pep.sharpness)
-			self.auto_fleshEntry = getConfigListEntry(_("Auto flesh"), config.pep.auto_flesh)
-			self.green_boostEntry = getConfigListEntry(_("Green boost"), config.pep.green_boost)
-			self.blue_boostEntry = getConfigListEntry(_("Blue boost"), config.pep.blue_boost)
-			self.dynamic_contrastEntry = getConfigListEntry(_("Dynamic contrast"), config.pep.dynamic_contrast)
-
-			self.xtdlist = [
-				self.splitEntry
-			]
-
-			self.xtdlist.extend((
-				self.sharpnessEntry,
-				self.auto_fleshEntry,
-				self.green_boostEntry,
-				self.blue_boostEntry,
-				self.block_noise_reductionEntry,
-				self.mosquito_noise_reductionEntry,
-				self.digital_contour_removalEntry,
-				self.dynamic_contrastEntry
-			))
-
-			self.list.extend((
-				self.splitEntry,
-				self.sharpnessEntry,
-				self.auto_fleshEntry,
-				self.green_boostEntry,
-				self.blue_boostEntry,
-				self.block_noise_reductionEntry,
-				self.mosquito_noise_reductionEntry,
-				self.digital_contour_removalEntry,
-				self.dynamic_contrastEntry
-			))
+		self.list = []
+		self.xtdlist = []
+		addToConfigList = self.addToConfigList
+		self.contrastEntry = addToConfigList(_("Contrast"), config.pep.contrast)
+		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation)
+		self.hueEntry = addToConfigList(_("Hue"), config.pep.hue)
+		self.brightnessEntry = addToConfigList(_("Brightness"), config.pep.brightness)
+		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.pep.scaler_sharpness)
+		self.splitEntry = addToConfigList(_("Split preview mode"), config.pep.split, True)
+		add_to_xtdlist = self.splitEntry is not None
+		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, add_to_xtdlist)
+		self.auto_fleshEntry = addToConfigList(_("Auto flesh"), config.pep.auto_flesh, add_to_xtdlist)
+		self.green_boostEntry = addToConfigList(_("Green boost"), config.pep.green_boost, add_to_xtdlist)
+		self.blue_boostEntry = addToConfigList(_("Blue boost"), config.pep.blue_boost, add_to_xtdlist)
+		self.dynamic_contrastEntry = addToConfigList(_("Dynamic contrast"), config.pep.dynamic_contrast, add_to_xtdlist)
+		self.block_noise_reductionEntry = addToConfigList(_("Block noise reduction"), config.pep.block_noise_reduction, add_to_xtdlist)
+		self.mosquito_noise_reductionEntry = addToConfigList(_("Mosquito noise reduction"), config.pep.mosquito_noise_reduction, add_to_xtdlist)
+		self.digital_contour_removalEntry = addToConfigList(_("Digital contour removal"), config.pep.digital_contour_removal, add_to_xtdlist)
 
 		self["config"].list = self.list
 		self["config"].l.setSeperation(300)
@@ -182,7 +120,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		current = self["config"].getCurrent()
 		if current == self.splitEntry:
 			ConfigListScreen.keyLeft(self)
-			self.createSetup()
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
 				current,
@@ -201,7 +138,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		current = self["config"].getCurrent()
 		if current == self.splitEntry:
 			ConfigListScreen.keyRight(self)
-			self.createSetup()
 		elif current != self.splitEntry and current in self.xtdlist:
 			self.previewlist = [
 				current,
@@ -257,20 +193,20 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.mosquito_noise_reduction.setValue(self.oldMosquito_noise)
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(self.oldDigital_contour)
-
-			if self.hw_type in ( 'dm8000', 'dm500hd' ):
-				if self.splitEntry is not None:
-					config.pep.split.setValue('off')
-				if self.sharpnessEntry is not None:
-					config.pep.sharpness.setValue(self.oldSharpness)
-				if self.auto_fleshEntry is not None:
-					config.pep.auto_flesh.setValue(self.oldAuto_flesh)
-				if self.green_boostEntry is not None:
-					config.pep.green_boost.setValue(self.oldGreen_boost)
-				if self.blue_boostEntry is not None:
-					config.pep.blue_boost.setValue(self.oldBlue_boost)
-				if self.dynamic_contrastEntry is not None:
-					config.pep.dynamic_contrast.setValue(self.oldDynamic_contrast)
+			if self.scaler_sharpnessEntry is not None:
+				config.pep.scaler_sharpness.setValue(self.oldScaler_sharpness)
+			if self.splitEntry is not None:
+				config.pep.split.setValue('off')
+			if self.sharpnessEntry is not None:
+				config.pep.sharpness.setValue(self.oldSharpness)
+			if self.auto_fleshEntry is not None:
+				config.pep.auto_flesh.setValue(self.oldAuto_flesh)
+			if self.green_boostEntry is not None:
+				config.pep.green_boost.setValue(self.oldGreen_boost)
+			if self.blue_boostEntry is not None:
+				config.pep.blue_boost.setValue(self.oldBlue_boost)
+			if self.dynamic_contrastEntry is not None:
+				config.pep.dynamic_contrast.setValue(self.oldDynamic_contrast)
 			self.keySave()
 
 	def keyYellow(self):
@@ -294,20 +230,20 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.mosquito_noise_reduction.setValue(0)
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(0)
-
-			if self.hw_type in ( 'dm8000', 'dm500hd' ):
-				if self.splitEntry is not None:
-					config.pep.split.setValue('off')
-				if self.sharpnessEntry is not None:
-					config.pep.sharpness.setValue(0)
-				if self.auto_fleshEntry is not None:
-					config.pep.auto_flesh.setValue(0)
-				if self.green_boostEntry is not None:
-					config.pep.green_boost.setValue(0)
-				if self.blue_boostEntry is not None:
-					config.pep.blue_boost.setValue(0)
-				if self.dynamic_contrastEntry is not None:
-					config.pep.dynamic_contrast.setValue(0)
+			if self.scaler_sharpnessEntry is not None:
+				config.pep.scaler_sharpness.setValue(13)
+			if self.splitEntry is not None:
+				config.pep.split.setValue('off')
+			if self.sharpnessEntry is not None:
+				config.pep.sharpness.setValue(0)
+			if self.auto_fleshEntry is not None:
+				config.pep.auto_flesh.setValue(0)
+			if self.green_boostEntry is not None:
+				config.pep.green_boost.setValue(0)
+			if self.blue_boostEntry is not None:
+				config.pep.blue_boost.setValue(0)
+			if self.dynamic_contrastEntry is not None:
+				config.pep.dynamic_contrast.setValue(0)
 			self.keySave()
 
 	def keyBlue(self):
@@ -447,23 +383,16 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
-
 def videoEnhancementSetupMain(session, **kwargs):
-	session.open(VideoEnhancementSetup, video_enhancement)
-
+	session.open(VideoEnhancementSetup)
 
 def startSetup(menuid):
 	if menuid != "system":
 		return [ ]
-
 	return [(_("Video enhancement settings") , videoEnhancementSetupMain, "videoenhancement_setup", 41)]
-
 
 def Plugins(**kwargs):
 	list = []
-	if config.usage.setup_level.index >= 2: # expert+
-		hw_type = HardwareInfo().get_device_name()
-		if hw_type in ( 'dm8000', 'dm800', 'dm500hd' ):
-			if (os.path.exists("/proc/stb/vmpeg/0/pep_apply") == True):
-				list.append(PluginDescriptor(name=_("Videoenhancement Setup"), description=_("Advanced Video Enhancement Setup"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup))
+	if config.usage.setup_level.index >= 2 and os_path.exists("/proc/stb/vmpeg/0/pep_apply"):
+		list.append(PluginDescriptor(name=_("Videoenhancement Setup"), description=_("Advanced Video Enhancement Setup"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup))
 	return list
