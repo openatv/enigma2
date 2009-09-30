@@ -23,7 +23,7 @@ config.plugins.crashlogautosubmit.sendlog = ConfigSelection(default = "rename", 
 config.plugins.crashlogautosubmit.attachemail = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.email = ConfigText(default = "myemail@home.com", fixed_size = False)
 config.plugins.crashlogautosubmit.name = ConfigText(default = "Dreambox User", fixed_size = False)
-config.plugins.crashlogautosubmit.sendAnonCrashlog = ConfigYesNo(default = False)
+config.plugins.crashlogautosubmit.sendAnonCrashlog = ConfigYesNo(default = True)
 config.plugins.crashlogautosubmit.addNetwork = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.addWlan = ConfigYesNo(default = False)
 
