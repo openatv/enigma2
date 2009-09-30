@@ -63,6 +63,7 @@ class CryptoInfo(Converter, object):
 
 		self.type = options[type]
 		self.active = False
+		self.visible = True
 		self.textvalue = ""
 
 		if self.type == self.SOFTCAM:
@@ -82,6 +83,8 @@ class CryptoInfo(Converter, object):
 
 	@cached
 	def getBoolean(self):
+		if not self.visible:
+			return False
 		service = self.source.service
 		info = service and service.info()
 		if not info:
@@ -99,7 +102,7 @@ class CryptoInfo(Converter, object):
 
 	@cached
 	def getText(self):
-		return self.textvalue
+		return self.visible and self.textvalue
 
 	text = property(getText)
 
