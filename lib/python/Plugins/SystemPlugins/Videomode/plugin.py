@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigBoolean
+from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigNothing, ConfigSlider
 
 from VideoHardware import video_hw
 
@@ -105,6 +105,9 @@ class VideoSetup(Screen, ConfigListScreen):
 
 		if SystemInfo["CanChangeOsdAlpha"]:
 			self.list.append(getConfigListEntry(_("OSD visibility"), config.av.osd_alpha))
+
+		if not isinstance(config.av.scaler_sharpness, ConfigNothing):
+			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
