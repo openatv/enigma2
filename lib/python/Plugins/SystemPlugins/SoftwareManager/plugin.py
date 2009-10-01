@@ -7,7 +7,7 @@ from Screens.Ipkg import Ipkg
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Input import Input
 from Components.Ipkg import IpkgComponent
-from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
@@ -74,9 +74,11 @@ def load_cache(cache_file):
 
 class UpdatePluginMenu(Screen):
 	skin = """
-		<screen name="UpdatePluginMenu" position="80,130" size="560,330" title="Softwaremanager..." >
-			<ePixmap pixmap="skin_default/border_menu_300.png" position="5,10" zPosition="1" size="300,300" transparent="1" alphatest="on" />
-			<widget source="menu" render="Listbox" position="10,20" size="290,260" scrollbarMode="showOnDemand">
+		<screen name="UpdatePluginMenu" position="center,center" size="560,400" title="Software manager" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<ePixmap pixmap="skin_default/border_menu_300.png" position="5,50" zPosition="1" size="300,300" transparent="1" alphatest="on" />
+			<widget source="menu" render="Listbox" position="10,60" size="290,260" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
 							MultiContentEntryText(pos = (2, 2), size = (290, 22), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
@@ -86,7 +88,7 @@ class UpdatePluginMenu(Screen):
 					}
 				</convert>
 			</widget>
-			<widget source="menu" render="Listbox" position="310,10" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
+			<widget source="menu" render="Listbox" position="310,50" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
 				<convert type="TemplatedMultiContent">
 					{"template": [
 							MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
@@ -111,7 +113,7 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext))
-			self.list.append(("ipkg-install", _("Install local IPKG"),  _("\nScan for local packages and install them." ) + self.oktext))
+			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local packages and install them." ) + self.oktext))
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(("advanced", _("Advanced Options"), _("\nAdvanced options and settings." ) + self.oktext))
 		elif self.menu == 1:
@@ -123,7 +125,8 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("ipkg-source",_("Choose upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext))
 
 		self["menu"] = List(self.list)
-				
+		self["key_red"] = StaticText(_("Close"))
+
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"],
 		{
 			"ok": self.go,
@@ -136,14 +139,14 @@ class UpdatePluginMenu(Screen):
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 		self.onShown.append(self.setWindowTitle)
-		
+
 	def layoutFinished(self):
 		idx = 0
 		self["menu"].index = idx
-		
+
 	def setWindowTitle(self):
-		self.setTitle(_("Software manager..."))
-		
+		self.setTitle(_("Software manager"))
+
 	def go(self):
 		current = self["menu"].getCurrent()
 		if current:
@@ -160,7 +163,7 @@ class UpdatePluginMenu(Screen):
 				elif (current == "system-restore"):
 					if os_path.exists(self.fullbackupfilename):
 						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your Enigma2 backup?\nEnigma2 will restart after the restore"))
-					else:	
+					else:
 						self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO)
 				elif (current == "ipkg-install"):
 					try:
@@ -200,7 +203,7 @@ class UpdatePluginMenu(Screen):
 		config.plugins.configurationbackup.save()
 		config.save()
 		self.createBackupfolders()
-	
+
 	def runUpgrade(self, result):
 		if result:
 			self.session.open(UpdatePlugin, self.skin_path)
@@ -227,20 +230,20 @@ class UpdatePluginMenu(Screen):
 
 class IPKGMenu(Screen):
 	skin = """
-		<screen name="IPKGMenu" position="135,144" size="450,320" title="Select IPKG source......" >
-			<widget name="filelist" position="10,10" size="430,240" scrollbarMode="showOnDemand" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="10,280" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="20,290" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="160,280" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="edittext" position="170,290" size="300,21" zPosition="10" font="Regular;21" transparent="1" />
+		<screen name="IPKGMenu" position="center,center" size="560,400" title="Select upgrade source to edit." >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="filelist" position="5,50" size="550,340" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session, plugin_path):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
 		
-		self["closetext"] = Label(_("Close"))
-		self["edittext"] = Label(_("Edit"))
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Edit"))
 
 		self.sel = []
 		self.val = []
@@ -269,8 +272,7 @@ class IPKGMenu(Screen):
 		self.setWindowTitle()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Select IPKG source to edit..."))
-
+		self.setTitle(_("Select upgrade source to edit."))
 
 	def fill_list(self):
 		self.flist = []
@@ -300,14 +302,14 @@ class IPKGMenu(Screen):
 
 class IPKGSource(Screen):
 	skin = """
-		<screen name="IPKGSource" position="100,100" size="550,80" title="IPKG source" >
-			<widget name="text" position="10,10" size="530,25" font="Regular;20" backgroundColor="background" foregroundColor="#cccccc" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="10,40" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="20,50" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="160,40" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="edittext" position="170,50" size="300,21" zPosition="10" font="Regular;21" transparent="1" />
+		<screen name="IPKGSource" position="center,center" size="560,80" title="Edit upgrade source url." >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="text" position="5,50" size="550,25" font="Regular;20" backgroundColor="background" foregroundColor="#cccccc" />
 		</screen>"""
-		
+
 	def __init__(self, session, configfile = None):
 		Screen.__init__(self, session)
 		self.session = session
@@ -327,14 +329,14 @@ class IPKGSource(Screen):
 		x= int(desk.size().width())
 		y= int(desk.size().height())
 
-		self["closetext"] = Label(_("Cancel"))
-		self["edittext"] = Label(_("Save"))
-		
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+
 		if (y>=720):
 			self["text"] = Input(text, maxSize=False, type=Input.TEXT)
 		else:
 			self["text"] = Input(text, maxSize=False, visible_width = 55, type=Input.TEXT)
-			
+
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "TextEntryActions", "KeyboardInputActions","ShortcutActions"], 
 		{
 			"ok": self.go,
@@ -366,8 +368,8 @@ class IPKGSource(Screen):
 		self["text"].right()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Edit IPKG source URL..."))
-		
+		self.setTitle(_("Edit upgrade source url."))
+
 	def go(self):
 		text = self["text"].getText()
 		if text:
@@ -376,7 +378,7 @@ class IPKGSource(Screen):
 			fp.write("\n")
 			fp.close()
 		self.close()
-		
+
 	def keyLeft(self):
 		self["text"].left()
 	
@@ -401,8 +403,12 @@ class IPKGSource(Screen):
 
 class PacketManager(Screen):
 	skin = """
-		<screen position="90,80" size="530,420" title="IPKG upgrade..." >
-			<widget source="list" render="Listbox" position="5,10" size="520,365" scrollbarMode="showOnDemand">
+		<screen name="PacketManager" position="center,center" size="530,420" title="Packet manager" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="list" render="Listbox" position="5,50" size="520,365" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 					{"template": [
 							MultiContentEntryText(pos = (5, 1), size = (440, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
@@ -415,10 +421,6 @@ class PacketManager(Screen):
 					}
 				</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="10,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="20,390" size="140,21" zPosition="10" font="Regular;21" transparent="1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="160,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="reloadtext" position="170,390" size="300,21" zPosition="10" font="Regular;21" transparent="1" />
 		</screen>"""
 		
 	def __init__(self, session, plugin_path, args = None):
@@ -437,8 +439,8 @@ class PacketManager(Screen):
 		self.list = []
 		self.statuslist = []
 		self["list"] = List(self.list)
-		self["closetext"] = Label(_("Close"))
-		self["reloadtext"] = Label(_("Reload"))
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Reload"))
 
 		self.list_updating = True
 		self.packetlist = []
@@ -639,7 +641,7 @@ class PacketManager(Screen):
 					status = "installable"
 					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
 				if not any(x[0].strip().endswith(x) for x in self.unwanted_extensions):
-					self.cachelist.append([x[0].strip(), x[1].strip(), x[2].strip(), status])	
+					self.cachelist.append([x[0].strip(), x[1].strip(), x[2].strip(), status])
 			write_cache(self.cache_file, self.cachelist)
 			self['list'].setList(self.list)
 
@@ -652,8 +654,16 @@ class PluginManager(Screen, DreamInfoHandler):
 	lastDownloadDate = None
 
 	skin = """
-		<screen position="80,80" size="560,440" title="Plugin manager..." >
-			<widget source="list" render="Listbox" position="5,5" size="550,360" scrollbarMode="showOnDemand">
+		<screen name="PluginManager" position="center,center" size="560,440" title="Plugin manager" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="list" render="Listbox" position="5,50" size="550,360" scrollbarMode="showOnDemand">
 				<convert type="TemplatedMultiContent">
 				{"templates":
 					{"default": (51,[
@@ -663,25 +673,17 @@ class PluginManager(Screen, DreamInfoHandler):
 							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (550, 2), png = 6), # index 6 is the div pixmap
 						]),
 					"category": (40,[
-							MultiContentEntryText(pos = (30, 0), size = (500, 23), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (30, 24), size = (500, 14), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the description
+							MultiContentEntryText(pos = (30, 0), size = (500, 22), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (30, 22), size = (500, 16), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the description
 							MultiContentEntryPixmapAlphaTest(pos = (0, 38), size = (550, 2), png = 3), # index 3 is the div pixmap
 						])
 					},
-					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
+					"fonts": [gFont("Regular", 22),gFont("Regular", 16)],
 					"itemHeight": 52
 				}
 				</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="0,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="installtext" position="140,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="viewtext" position="280,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,370" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="bluetext" position="420,370" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="status" position="10,410" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<widget source="status" render="Label" position="5,410" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session, plugin_path, args = None):
@@ -714,11 +716,11 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.selectedFiles = []
 		self.categoryList = []
 		self["list"] = List(self.list)
-		self["closetext"] = Label(_("Close"))
-		self["installtext"] = Label()
-		self["viewtext"] = Label()
-		self["bluetext"] = Label()
-		self["status"] = Label()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText("")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
+		self["status"] = StaticText("")
 
 		self.list_updating = True
 		self.packetlist = []
@@ -735,10 +737,6 @@ class PluginManager(Screen, DreamInfoHandler):
 		if not self.selectionChanged in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 
-		self["installtext"].hide()
-		self["bluetext"].hide()
-		self["viewtext"].hide()
-		self["status"].hide()
 		self.currList = ""
 		self.currentSelectedTag = None
 		self.currentSelectedIndex = None
@@ -764,12 +762,9 @@ class PluginManager(Screen, DreamInfoHandler):
 				if len(self.Console.appContainers):
 					for name in self.Console.appContainers.keys():
 						self.Console.kill(name)
-			if len(self.cmdList) and len(self.selectedFiles):
-				self.session.openWithCallback(self.runInstall, PluginManagerInfo, self.skin_path, self.cmdList)
-			elif not len(self.cmdList) and self.available_updates > 0:
-				self.cmdList = []
-				self.cmdList.append((IpkgComponent.CMD_UPGRADE, { "test_only": False }))
-				self.session.openWithCallback(self.runInstall, PluginManagerInfo, self.skin_path, self.cmdList)
+			self.prepareInstall()
+			if len(self.cmdList):
+				self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.skin_path, self.cmdList)
 			else:
 				self.close()
 
@@ -777,19 +772,13 @@ class PluginManager(Screen, DreamInfoHandler):
 		if self.currList != "status":
 			self.session.open(PluginManagerHelp, self.skin_path)
 
-	def runInstall(self, result):
-		if result:
-			self.session.openWithCallback(self.runExecuteFinished, Ipkg, cmdList = self.cmdList)
-		else:
-			self.close()
-
 	def setState(self,status = None):
 		if status:
 			self.currList = "status"
 			self.statuslist = []
-			self["installtext"].hide()
-			self["bluetext"].hide()
-			self["viewtext"].hide()
+			self["key_green"].setText("")
+			self["key_blue"].setText("")
+			self["key_yellow"].setText("")
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
@@ -812,43 +801,39 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def selectionChanged(self):
 		current = self["list"].getCurrent()
-		self["status"].hide()
+		self["status"].setText("")
 		if current:
 			if self.currList == "packages":
-				self["closetext"].setText(_("Back"))
+				self["key_red"].setText(_("Back"))
 				if current[4] == 'installed':
-					self["installtext"].setText(_("Remove"))
+					self["key_green"].setText(_("Remove"))
 				elif current[4] == 'installable':
-					self["installtext"].setText(_("Install"))
+					self["key_green"].setText(_("Install"))
 				elif current[4] == 'remove':
-					self["installtext"].setText(_("Undo\nRemove"))
+					self["key_green"].setText(_("Undo\nRemove"))
 				elif current[4] == 'install':
-					self["installtext"].setText(_("Undo\nInstall"))
-				self["installtext"].show()
-				self["viewtext"].setText(_("View details"))
-				self["viewtext"].show()
-				self["bluetext"].hide()
+					self["key_green"].setText(_("Undo\nInstall"))
+				self["key_yellow"].setText(_("View details"))
+				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and self.available_updates is not 0:
 					self["status"].setText(_("There are at least ") + str(self.available_updates) + _(" updates available."))
-					self["status"].show()
 				elif len(self.selectedFiles) is not 0:
 					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
-					self["status"].show()
+				else:
+					self["status"].setText(_("There is nothing to be done."))
 			elif self.currList == "category":
-				self["closetext"].setText(_("Close"))
-				self["installtext"].hide()
-				self["bluetext"].hide()
+				self["key_red"].setText(_("Close"))
+				self["key_green"].setText("")
+				self["key_yellow"].setText("")
+				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and self.available_updates is not 0:
 					self["status"].setText(_("There are at least ") + str(self.available_updates) + _(" updates available."))
-					self["status"].show()
-					self["viewtext"].setText(_("Update"))
-					self["viewtext"].show()
+					self["key_yellow"].setText(_("Update"))
 				elif len(self.selectedFiles) is not 0:
 					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
-					self["status"].show()
-					self["viewtext"].setText(_("Process"))
-					self["viewtext"].show()
-			self["closetext"].show()
+					self["key_yellow"].setText(_("Process"))
+				else:
+					self["status"].setText(_("There is nothing to be done."))
 
 	def getSelectionState(self, detailsFile):
 		for entry in self.selectedFiles:
@@ -978,7 +963,9 @@ class PluginManager(Screen, DreamInfoHandler):
 					else:
 						self.session.open(MessageBox, _("Sorry, no Details available!"), MessageBox.TYPE_INFO)
 			elif self.currList == "category":
-				self.installPlugins()
+				self.prepareInstall()
+				if len(self.cmdList):
+					self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.skin_path, self.cmdList)
 
 	def detailsClosed(self, result):
 		if result:
@@ -1093,7 +1080,7 @@ class PluginManager(Screen, DreamInfoHandler):
 			else: # dynamically generate non existent tags
 				return(( str(tag), _("View list of available ") + str(tag) + _(" extensions." ), tag, divpng ))
 
-	def installPlugins(self):
+	def prepareInstall(self):
 		self.cmdList = []
 		if self.available_updates > 0:
 			self.cmdList.append((IpkgComponent.CMD_UPGRADE, { "test_only": False }))
@@ -1124,12 +1111,12 @@ class PluginManager(Screen, DreamInfoHandler):
 						self.cmdList.append((IpkgComponent.CMD_REMOVE, { "package": plugin[2] }))
 					else:
 						self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": plugin[2] }))
-		if len(self.cmdList):
-			self.session.openWithCallback(self.runExecute, PluginManagerInfo, self.skin_path, self.cmdList)
 
 	def runExecute(self, result):
 		if result:
 			self.session.openWithCallback(self.runExecuteFinished, Ipkg, cmdList = self.cmdList)
+		else:
+			self.close()
 
 	def runExecuteFinished(self):
 		self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
@@ -1149,10 +1136,12 @@ class PluginManager(Screen, DreamInfoHandler):
 
 class PluginManagerInfo(Screen):
 	skin = """
-		<screen position="80,80" size="560,450" title="Plugin manager job information..." >
-			<widget name="status" position="5,5" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,35" zPosition="10" size="550,2" transparent="1" alphatest="on" />
-			<widget source="list" render="Listbox" position="5,45" size="550,360" scrollbarMode="showOnDemand" selectionDisabled="1">
+		<screen name="PluginManagerInfo" position="center,center" size="560,440" title="Plugin manager activity information" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="list" render="Listbox" position="5,50" size="550,350" scrollbarMode="showOnDemand" selectionDisabled="1">
 				<convert type="TemplatedMultiContent">
 					{"template": [
 							MultiContentEntryText(pos = (50, 1), size = (150, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
@@ -1165,10 +1154,8 @@ class PluginManagerInfo(Screen):
 					}
 				</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,410" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="0,410" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,410" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="continuetext" position="140,410" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,410" zPosition="10" size="560,2" transparent="1" alphatest="on" />
+			<widget source="status" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session, plugin_path, cmdlist = None):
@@ -1187,20 +1174,22 @@ class PluginManagerInfo(Screen):
 
 		self.list = []
 		self["list"] = List(self.list)
-		self["closetext"] = Label(_("Cancel"))
-		self["continuetext"] = Label(_("Continue"))
-		self["status"] = Label(_("Following tasks will be done after you press continue."))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Continue"))
+		self["status"] = StaticText(_("Following tasks will be done after you press continue!"))
 
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Plugin manager process information..."))
+		self.setTitle(_("Plugin manager activity information"))
 
 	def rebuildList(self):
 		self.list = []
 		if self.cmdlist is not None:
 			for entry in self.cmdlist:
+				action = ""
+				info = ""
 				cmd = entry[0]
 				if cmd == 0:
 					action = 'install'
@@ -1208,7 +1197,6 @@ class PluginManagerInfo(Screen):
 					action = 'remove'
 				else:
 					action = 'upgrade'
-
 				args = entry[1]
 				if cmd == 0:
 					info = args['package']
@@ -1229,9 +1217,9 @@ class PluginManagerInfo(Screen):
 		if action == 'install':
 			return(( _('Installing'), info, installpng, divpng))
 		elif action == 'remove':
-			return(( _('Remove'), info, removepng, divpng))
+			return(( _('Removeing'), info, removepng, divpng))
 		else:
-			return(( _('Upgrade'), info, upgradepng, divpng))
+			return(( _('Upgradeing'), info, upgradepng, divpng))
 
 	def exit(self):
 		self.close(False)
@@ -1242,10 +1230,10 @@ class PluginManagerInfo(Screen):
 
 class PluginManagerHelp(Screen):
 	skin = """
-		<screen position="80,80" size="560,450" title="Plugin manager help..." >
-			<widget name="status" position="5,5" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,35" zPosition="10" size="550,2" transparent="1" alphatest="on" />
-			<widget source="list" render="Listbox" position="5,45" size="550,360" scrollbarMode="showOnDemand" selectionDisabled="1">
+		<screen name="PluginManagerHelp" position="center,center" size="560,440" title="Plugin manager help" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="list" render="Listbox" position="5,50" size="550,350" scrollbarMode="showOnDemand" selectionDisabled="1">
 				<convert type="TemplatedMultiContent">
 					{"template": [
 							MultiContentEntryText(pos = (50, 1), size = (540, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
@@ -1258,8 +1246,8 @@ class PluginManagerHelp(Screen):
 					}
 				</convert>
 			</widget>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,410" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="0,410" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,410" zPosition="10" size="550,2" transparent="1" alphatest="on" />
+			<widget source="status" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
 	def __init__(self, session, plugin_path):
@@ -1275,14 +1263,14 @@ class PluginManagerHelp(Screen):
 
 		self.list = []
 		self["list"] = List(self.list)
-		self["closetext"] = Label(_("Close"))
-		self["status"] = Label(_("Here is a small overview of the available icon states."))
+		self["key_red"] = StaticText(_("Close"))
+		self["status"] = StaticText(_("A small overview of the available icon states and actions."))
 
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Plugin manager help..."))
+		self.setTitle(_("Plugin manager help"))
 
 	def rebuildList(self):
 		self.list = []
@@ -1315,16 +1303,16 @@ class PluginManagerHelp(Screen):
 
 class PluginDetails(Screen, DreamInfoHandler):
 	skin = """
-		<screen name="PluginDetails" position="60,90" size="600,420" title="PluginDetails..." >
-			<widget name="author" position="10,10" size="500,25" zPosition="10" font="Regular;21" transparent="1" />
-			<widget name="statuspic" position="550,0" size="48,48" alphatest="on"/>
-			<widget name="divpic" position="0,40" size="600,2" alphatest="on"/>
-			<widget name="detailtext" position="10,50" size="270,330" zPosition="10" font="Regular;21" transparent="1" halign="left" valign="top"/>
-			<widget name="screenshot" position="290,50" size="300,330" alphatest="on"/>
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="0,380" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,380" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="statetext" position="140,380" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<screen name="PluginDetails" position="center,center" size="600,440" title="Plugin details" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="author" render="Label" position="10,50" size="500,25" zPosition="10" font="Regular;21" transparent="1" />
+			<widget name="statuspic" position="550,40" size="48,48" alphatest="on"/>
+			<widget name="divpic" position="0,80" size="600,2" alphatest="on"/>
+			<widget name="detailtext" position="10,90" size="270,330" zPosition="10" font="Regular;21" transparent="1" halign="left" valign="top"/>
+			<widget name="screenshot" position="290,90" size="300,330" alphatest="on"/>
 		</screen>"""
 	def __init__(self, session, plugin_path, packagedata = None):
 		Screen.__init__(self, session)
@@ -1355,13 +1343,14 @@ class PluginDetails(Screen, DreamInfoHandler):
 			"right": self.pageDown,
 		}, -1)
 
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText("")
+		self["author"] = StaticText()
 		self["statuspic"] = Pixmap()
 		self["divpic"] = Pixmap()
 		self["screenshot"] = Pixmap()
-		self["closetext"] = Label(_("Close"))
-		self["statetext"] = Label()
 		self["detailtext"] = ScrollLabel()
-		self["author"] = Label()
+
 		self["statuspic"].hide()
 		self["screenshot"].hide()
 		self["divpic"].hide()
@@ -1424,9 +1413,9 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self["author"].setText(_("Author: ") + self.author)
 		self["detailtext"].setText(self.description.strip())
 		if self.pluginstate == 'installable':
-			self["statetext"].setText(_("Install"))
+			self["key_green"].setText(_("Install"))
 		else:
-			self["statetext"].setText(_("Remove"))
+			self["key_green"].setText(_("Remove"))
 
 	def loadThumbnail(self, entry):
 		thumbnailUrl = None
@@ -1521,55 +1510,54 @@ class PluginDetails(Screen, DreamInfoHandler):
 
 class UpdatePlugin(Screen):
 	skin = """
-		<screen position="100,100" size="550,200" title="Software Update..." >
+		<screen name="UpdatePlugin" position="center,center" size="550,200" title="Software update" >
 			<widget name="activityslider" position="0,0" size="550,5"  />
-			<widget name="slider" position="0,100" size="550,30"  />
-			<widget name="package" position="10,30" size="540,20" font="Regular;18"/>
-			<widget name="status" position="10,60" size="540,45" font="Regular;18"/>
+			<widget name="slider" position="0,150" size="550,30"  />
+			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="status" render="Label" position="10,60" size="540,45" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
-		
+
 	def __init__(self, session, args = None):
-		self.skin = UpdatePlugin.skin
 		Screen.__init__(self, session)
-		
+
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
-		
+
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
-		self.status = Label(_("Upgrading Dreambox... Please wait"))
+		self.status = StaticText(_("Upgrading Dreambox... Please wait"))
 		self["status"] = self.status
-		self.package = Label()
+		self.package = StaticText()
 		self["package"] = self.package
-		
+
 		self.packages = 0
 		self.error = 0
-		
+
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
 		self.activityTimer.start(100, False)
-				
+
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
-		
+
 		self.updating = True
 		self.package.setText(_("Package list update"))
 		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-			
+
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.exit,
 			"back": self.exit
 		}, -1)
-		
+
 	def doActivityTimer(self):
 		self.activity += 1
 		if self.activity == 100:
 			self.activity = 0
 		self.activityslider.setValue(self.activity)
-		
+
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
@@ -1627,7 +1615,7 @@ class UpdatePlugin(Screen):
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Dreambox?"))
 			else:
 				self.close()
-			
+
 	def exitAnswer(self, result):
 		if result is not None and result:
 			quitMainloop(2)
@@ -1636,17 +1624,17 @@ class UpdatePlugin(Screen):
 
 class IpkgInstaller(Screen):
 	skin = """
-		<screen position="100,100" size="550,400" title="..." >
-			<widget name="red" halign="center" valign="center" position="0,0" size="140,60" backgroundColor="red" font="Regular;21" />
-			<widget name="green" halign="center" valign="center" position="140,0" text="Install selected" size="140,60" backgroundColor="green" font="Regular;21" />
-			<widget name="yellow" halign="center" valign="center" position="280,0" size="140,60" backgroundColor="yellow" font="Regular;21" />
-			<widget name="blue" halign="center" valign="center" position="420,0" size="140,60" backgroundColor="blue" font="Regular;21" />
-			<widget name="list" position="0,60" size="550,360" />
-		</screen>
-		"""
+		<screen name="IpkgInstaller" position="center,center" size="550,450" title="Install extensions" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="list" position="5,50" size="540,360" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,410" zPosition="10" size="560,2" transparent="1" alphatest="on" />
+			<widget source="introduction" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		</screen>"""
 	
 	def __init__(self, session, list):
-		self.skin = IpkgInstaller.skin
 		Screen.__init__(self, session)
 
 		self.list = SelectionList()
@@ -1654,24 +1642,25 @@ class IpkgInstaller(Screen):
 		for listindex in range(len(list)):
 			self.list.addSelection(list[listindex], list[listindex], listindex, True)
 
-		self["red"] = Label()
-		self["green"] = Label()
-		self["yellow"] = Label()
-		self["blue"] = Label()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Install"))
+		self["introduction"] = StaticText(_("Press OK to toggle the selection."))
 		
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
 			"ok": self.list.toggleSelection, 
-			"cancel": self.close, 
+			"cancel": self.close,
+			"red": self.close,
 			"green": self.install
 		}, -1)
-		
+
 	def install(self):
 		list = self.list.getSelectionsList()
 		cmdList = []
 		for item in list:
 			cmdList.append((IpkgComponent.CMD_INSTALL, { "package": item[1] }))
 		self.session.open(Ipkg, cmdList = cmdList)
+
 
 def filescan_open(list, session, **kwargs):
 	filelist = [x.path for x in list]
@@ -1687,7 +1676,7 @@ def filescan(**kwargs):
 					ScanPath(path = "", with_subdirs = False), 
 				], 
 			name = "Ipkg", 
-			description = _("Install software updates..."),
+			description = _("Install extensions."),
 			openfnc = filescan_open, )
 
 
@@ -1707,6 +1696,6 @@ def Plugins(path, **kwargs):
 		PluginDescriptor(name=_("Software manager"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup), 
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)
 	]
-	if config.usage.setup_level.index >= 2: # expert+	
-		list.append(PluginDescriptor(name=_("Software manager"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=UpgradeMain))	
+	if config.usage.setup_level.index >= 2: # expert+
+		list.append(PluginDescriptor(name=_("Software manager"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=UpgradeMain))
 	return list
