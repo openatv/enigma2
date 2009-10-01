@@ -133,23 +133,6 @@ class VideoEnhancement:
 		else:
 			config.pep.digital_contour_removal = NoSave(ConfigNothing())
 
-		if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
-			def setScaler_sharpness(config):
-				myval = int(config.value)
-				try:
-					print "--> setting scaler_sharpness to: %0.8X" % myval
-					open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)
-				except IOError:
-					print "couldn't write pep_scaler_sharpness"
-
-				if not VideoEnhancement.firstRun:
-					self.setConfiguredValues()
-
-			config.pep.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
-			config.pep.scaler_sharpness.addNotifier(setScaler_sharpness)
-		else:
-			config.pep.scaler_sharpness = NoSave(ConfigNothing())
-
 		if os_path.exists("/proc/stb/vmpeg/0/pep_split"):
 			def setSplitMode(config):
 				try:

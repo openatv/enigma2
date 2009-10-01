@@ -65,7 +65,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldBlock_noise = config.pep.block_noise_reduction.value
 		self.oldMosquito_noise = config.pep.mosquito_noise_reduction.value
 		self.oldDigital_contour = config.pep.digital_contour_removal.value
-		self.oldScaler_sharpness = config.pep.scaler_sharpness.value
+		self.oldScaler_sharpness = config.av.scaler_sharpness.value
 		self.oldSplit = config.pep.split.value
 		self.oldSharpness = config.pep.sharpness.value
 		self.oldAuto_flesh = config.pep.auto_flesh.value
@@ -90,7 +90,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation)
 		self.hueEntry = addToConfigList(_("Hue"), config.pep.hue)
 		self.brightnessEntry = addToConfigList(_("Brightness"), config.pep.brightness)
-		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.pep.scaler_sharpness)
+		self.scaler_sharpnessEntry = addToConfigList(_("Scaler sharpness"), config.av.scaler_sharpness)
 		self.splitEntry = addToConfigList(_("Split preview mode"), config.pep.split, True)
 		add_to_xtdlist = self.splitEntry is not None
 		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, add_to_xtdlist)
@@ -194,7 +194,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(self.oldDigital_contour)
 			if self.scaler_sharpnessEntry is not None:
-				config.pep.scaler_sharpness.setValue(self.oldScaler_sharpness)
+				config.av.scaler_sharpness.setValue(self.oldScaler_sharpness)
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
 			if self.sharpnessEntry is not None:
@@ -231,7 +231,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.digital_contour_removalEntry is not None:
 				config.pep.digital_contour_removal.setValue(0)
 			if self.scaler_sharpnessEntry is not None:
-				config.pep.scaler_sharpness.setValue(13)
+				config.av.scaler_sharpness.setValue(13)
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
 			if self.sharpnessEntry is not None:
