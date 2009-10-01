@@ -51,7 +51,7 @@ def loadSkin(name, scope = SCOPE_SKIN):
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-config.skin.primary_skin = ConfigText(default = "Black.Stone.E2/skin.xml")
+config.skin.primary_skin = ConfigText(default = "skin.xml")
 
 profile("LoadSkin")
 try:
