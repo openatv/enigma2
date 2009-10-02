@@ -6,35 +6,29 @@ from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config
-
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path, walk
 
 class SkinSelector(Screen):
 	# for i18n:
 	# _("Choose your Skin")
-	skin = """
-		<screen position="75,138" size="600,320" title="Choose your Skin" >
-			<widget name="SkinList" position="10,10" size="275,300" scrollbarMode="showOnDemand" />
-			<widget name="Preview" position="305,45" size="280,210" alphatest="on"/>
-		</screen>
-		"""
-
 	skinlist = []
 	root = "/usr/share/enigma2/"
 
 	def __init__(self, session, args = None):
 
-		self.skin = SkinSelector.skin
 		Screen.__init__(self, session)
 
 		self.skinlist = []
 		self.previewPath = ""
-
 		path.walk(self.root, self.find, "")
 
+		self["key_red"] = StaticText(_("Close"))
+		self["introduction"] = StaticText(_("Press OK to activate the selected skin."))
 		self.skinlist.sort()
 		self["SkinList"] = MenuList(self.skinlist)
 		self["Preview"] = Pixmap()
@@ -43,13 +37,14 @@ class SkinSelector(Screen):
 		{
 			"ok": self.ok,
 			"back": self.close,
+			"red": self.close,
 			"up": self.up,
 			"down": self.down,
 			"left": self.left,
 			"right": self.right,
 			"info": self.info,
 		}, -1)
-		
+
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -82,7 +77,7 @@ class SkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("Enigma2 Skinselector v0.5 BETA\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox,_("Enigma2 Skinselector\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):
@@ -114,8 +109,7 @@ class SkinSelector(Screen):
 			pngpath = self.root+self["SkinList"].getCurrent()+"/prev.png"
 
 		if not path.exists(pngpath):
-			# FIXME: don't use hardcoded path
-			pngpath = "/usr/lib/enigma2/python/Plugins/SystemPlugins/SkinSelector/noprev.png"
+			pngpath = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SkinSelector/noprev.png")
 
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath
@@ -131,7 +125,7 @@ def SkinSelMain(session, **kwargs):
 
 def SkinSelSetup(menuid, **kwargs):
 	if menuid == "system":
-		return [(_("Skin..."), SkinSelMain, "skin_selector", None)]
+		return [(_("Skin"), SkinSelMain, "skin_selector", None)]
 	else:
 		return []
 
