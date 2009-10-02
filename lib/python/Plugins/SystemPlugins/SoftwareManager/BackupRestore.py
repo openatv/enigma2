@@ -309,10 +309,14 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.setTitle(_("Restore is running..."))
 
 	def doRestore(self):
-		if self.finished_cb:
-			self.session.openWithCallback(self.finished_cb, Console, title = _("Restore is running..."), cmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"])
+		if path.exists("/proc/stb/vmpeg/0/dst_width"):
+			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width", "killall -9 enigma2"]
 		else:
-			self.session.open(Console, title = _("Restore is running..."), cmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"])
+			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"]
+		if self.finished_cb:
+			self.session.openWithCallback(self.finished_cb, Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
+		else:
+			self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
 
 	def backupFinishedCB(self,retval = None):
 		self.close(True)

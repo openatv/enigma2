@@ -164,13 +164,13 @@ class UpdatePluginMenu(Screen):
 					if os_path.exists(self.fullbackupfilename):
 						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your Enigma2 backup?\nEnigma2 will restart after the restore"))
 					else:
-						self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 				elif (current == "ipkg-install"):
 					try:
 						from Plugins.Extensions.MediaScanner.plugin import main
 						main(self.session)
 					except:
-						self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
 				elif (current == "advanced"):
 					self.session.open(UpdatePluginMenu, 1)
 			elif self.menu == 1:
@@ -215,13 +215,13 @@ class UpdatePluginMenu(Screen):
 			if (os_path.exists(self.backuppath) == False):
 				makedirs(self.backuppath)
 		except OSError:
-			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\n\nPlease choose another one."), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\n\nPlease choose another one."), MessageBox.TYPE_INFO, timeout = 10)
 
 	def backupDone(self,retval = None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
 
 	def startRestore(self, ret = False):
 		if (ret == True):
@@ -961,7 +961,7 @@ class PluginManager(Screen, DreamInfoHandler):
 					if (os_path.exists(detailsfile) == True):
 						self.session.openWithCallback(self.detailsClosed, PluginDetails, self.skin_path, current)
 					else:
-						self.session.open(MessageBox, _("Sorry, no Details available!"), MessageBox.TYPE_INFO)
+						self.session.open(MessageBox, _("Sorry, no Details available!"), MessageBox.TYPE_INFO, timeout = 10)
 			elif self.currList == "category":
 				self.prepareInstall()
 				if len(self.cmdList):
