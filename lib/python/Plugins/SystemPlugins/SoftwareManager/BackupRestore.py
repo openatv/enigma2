@@ -4,6 +4,7 @@ from Screens.Console import Console
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.config import getConfigListEntry, configfile, ConfigSelection, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
@@ -34,7 +35,7 @@ def getBackupFilename():
 
 class BackupScreen(Screen, ConfigListScreen):
 	skin = """
-		<screen position="135,144" size="350,310" title="Backup running..." >
+		<screen position="135,144" size="350,310" title="Backup is running" >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 		
@@ -62,7 +63,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		self.setWindowTitle()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Backup running..."))
+		self.setTitle(_("Backup is running..."))
 
 	def doBackup(self):
 		try:
@@ -76,14 +77,14 @@ class BackupScreen(Screen, ConfigListScreen):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename,self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup running"), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB,closeOnSuccess = True)
+				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup is running..."), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB,closeOnSuccess = True)
 			else:
-				self.session.open(Console, title = _("Backup running"), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
+				self.session.open(Console, title = _("Backup is running..."), cmdlist = ["tar -czvf " + self.fullbackupfilename + " " + self.backupdirs],finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
 		except OSError:
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry your backup destination is not writeable.\nPlease choose an other one."), MessageBox.TYPE_INFO)
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry your backup destination is not writeable.\nPlease choose an other one."), MessageBox.TYPE_INFO, timeout = 10 )
 			else:
-				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry your backup destination is not writeable.\nPlease choose an other one."), MessageBox.TYPE_INFO)
+				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry your backup destination is not writeable.\nPlease choose an other one."), MessageBox.TYPE_INFO, timeout = 10 )
 
 	def backupFinishedCB(self,retval = None):
 		self.close(True)
@@ -98,21 +99,21 @@ class BackupScreen(Screen, ConfigListScreen):
 
 class BackupSelection(Screen):
 	skin = """
-	<screen position="135,125" size="450,310" title="Select files/folders to backup...">
-		<widget name="checkList" position="10,10" size="430,250" transparent="1" scrollbarMode="showOnDemand" />
-		<ePixmap position="0,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<widget name="key_red" position="0,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<ePixmap position="140,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<widget name="key_green" position="140,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<ePixmap position="280,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<widget name="key_yellow" position="280,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-	</screen>"""
+		<screen name="BackupSelection" position="center,center" size="560,400" title="Select files/folders to backup">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="checkList" position="5,50" size="550,250" transparent="1" scrollbarMode="showOnDemand" />
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("Save"))
-		self["key_yellow"] = Label()
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_yellow"] = StaticText()
 		
 		self.selectedFiles = config.plugins.configurationbackup.backupdirs.value
 		defaultDir = '/'
@@ -143,7 +144,7 @@ class BackupSelection(Screen):
 		self.selectionChanged()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Select files/folders to backup..."))
+		self.setTitle(_("Select files/folders to backup"))
 
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
@@ -186,23 +187,23 @@ class BackupSelection(Screen):
 
 class RestoreMenu(Screen):
 	skin = """
-		<screen position="135,144" size="450,300" title="Restore backups..." >
-		<widget name="filelist" position="10,10" size="430,230" scrollbarMode="showOnDemand" />
-		<ePixmap position="0,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
-		<widget name="canceltext" position="0,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<ePixmap position="140,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
-		<widget name="restoretext" position="140,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		<ePixmap position="280,265" zPosition="1" size="140,40" pixmap="skin_default/buttons/yellow.png" transparent="1" alphatest="on" />
-		<widget name="deletetext" position="280,265" zPosition="2" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+		<screen name="RestoreMenu" position="center,center" size="560,400" title="Restore backups" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget name="filelist" position="5,50" size="550,230" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session, plugin_path):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
 		
-		self["canceltext"] = Label(_("Cancel"))
-		self["restoretext"] = Label(_("Restore"))
-		self["deletetext"] = Label(_("Delete"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Restore"))
+		self["key_yellow"] = StaticText(_("Delete"))
 
 		self.sel = []
 		self.val = []
@@ -232,7 +233,7 @@ class RestoreMenu(Screen):
 		self.setWindowTitle()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Restore backups..."))
+		self.setTitle(_("Restore backups"))
 
 
 	def fill_list(self):
@@ -277,7 +278,7 @@ class RestoreMenu(Screen):
 
 class RestoreScreen(Screen, ConfigListScreen):
 	skin = """
-		<screen position="135,144" size="350,310" title="Restore running..." >
+		<screen position="135,144" size="350,310" title="Restore is running..." >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 		
@@ -285,7 +286,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		self.session = session
 		self.runRestore = runRestore
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions"], 
+		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
 			"ok": self.close,
 			"back": self.close,
@@ -305,13 +306,17 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.setWindowTitle()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Restore running..."))
+		self.setTitle(_("Restore is running..."))
 
 	def doRestore(self):
-		if self.finished_cb:
-			self.session.openWithCallback(self.finished_cb, Console, title = _("Restore running"), cmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"])
+		if path.exists("/proc/stb/vmpeg/0/dst_width"):
+			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width", "killall -9 enigma2"]
 		else:
-			self.session.open(Console, title = _("Restore running"), cmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"])
+			restorecmdlist = ["tar -xzvf " + self.fullbackupfilename + " -C /", "killall -9 enigma2"]
+		if self.finished_cb:
+			self.session.openWithCallback(self.finished_cb, Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
+		else:
+			self.session.open(Console, title = _("Restore is running..."), cmdlist = restorecmdlist)
 
 	def backupFinishedCB(self,retval = None):
 		self.close(True)
