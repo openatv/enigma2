@@ -242,7 +242,7 @@ void bsodFatal(const char *component)
 			fprintf(f, "\t\t<kernelcmdline>%s</kernelcmdline>\n", kernelcmd);
 		}
 		std::string sendAnonCrashlog = getConfigFileValue("config.plugins.crashlogautosubmit.sendAnonCrashlog");
-		if (sendAnonCrashlog == "False" || sendAnonCrashlog == "false" || sendAnonCrashlog == "") // defaults to false, so "" is also ok.
+		if (sendAnonCrashlog == "False" || sendAnonCrashlog == "false") // defaults to true... default anonymized crashlogs
 		{
 			std::string ca = getFileContent("/proc/stb/info/ca");
 			if (ca != "Error")

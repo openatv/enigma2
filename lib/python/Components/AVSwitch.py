@@ -1,7 +1,8 @@
 from config import config, ConfigSlider, ConfigSelection, ConfigYesNo, \
-	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigNumber
+	ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigNumber, ConfigNothing, NoSave
 from enigma import eAVSwitch, getDesktop
 from SystemInfo import SystemInfo
+from os import path as os_path
 
 class AVSwitch:
 	def setInput(self, input):
@@ -166,3 +167,19 @@ def InitAVSwitch():
 	if can_osd_alpha:
 		config.av.osd_alpha = ConfigSlider(default=255, limits=(0,255))
 		config.av.osd_alpha.addNotifier(setAlpha)
+
+	if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
+		def setScaler_sharpness(config):
+			myval = int(config.value)
+			try:
+				print "--> setting scaler_sharpness to: %0.8X" % myval
+				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)
+				open("/proc/stb/vmpeg/0/pep_apply", "w").write("1")
+			except IOError:
+				print "couldn't write pep_scaler_sharpness"
+
+		config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
+		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
+	else:
+		config.av.scaler_sharpness = NoSave(ConfigNothing())
+
