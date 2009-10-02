@@ -882,9 +882,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="list" position="00,45" size="560,364" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Skin Selector -->
-	<screen name="SkinSelector" position="60,138" size="600,320" title="Choose your Skin">
-		<widget name="SkinList" position="10,10" size="275,300" scrollbarMode="showOnDemand" />
-		<widget name="Preview" position="305,45" size="280,210" alphatest="on" />
+	<screen name="SkinSelector" position="center,center" size="600,400" title="Choose your Skin">
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" zPosition="1" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="2" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<ePixmap pixmap="skin_default/border_menu_300.png" position="5,50" zPosition="1" size="300,300" transparent="1" alphatest="on" />
+		<widget name="SkinList" position="10,60" size="290,260" scrollbarMode="showOnDemand" />
+		<widget name="Preview" position="310,50" size="280,210" alphatest="on"/>
+		<ePixmap pixmap="skin_default/div-h.png" position="20,360" zPosition="1" size="600,2" />
+		<widget source="introduction" render="Label" position="0,370" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 	</screen>
 	<!-- Sleeptimer edit -->
 	<screen name="SleepTimerEdit" position="110,215" size="500,200" title="Sleep Timer">
