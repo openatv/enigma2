@@ -25,7 +25,8 @@ class HelpMenu(Screen, Rc):
 	def SelectionChanged(self):
 		self.clearSelectedKeys()
 		selection = self["list"].getCurrent()
-		selection = selection[3]
+		if selection:
+			selection = selection[3]
 		#arrow = self["arrowup"]
 		print "selection:", selection
 
