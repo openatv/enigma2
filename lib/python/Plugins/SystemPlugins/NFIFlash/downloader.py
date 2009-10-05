@@ -54,7 +54,7 @@ class Feedlist(MenuList):
 
 	def isValid(self):
 		l = self.l.getCurrentSelection()
-		if l[0] == 0:
+		if not l or l[0] == 0:
 			return False
 		else:
 			return True
