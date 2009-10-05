@@ -238,6 +238,26 @@ class VideoEnhancement:
 		else:
 			config.pep.dynamic_contrast = NoSave(ConfigNothing())
 
+		try:
+			x = config.av.scaler_sharpness.value
+		except KeyError:
+			if os_path.exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
+				def setScaler_sharpness(config):
+					myval = int(config.value)
+					try:
+						print "--> setting scaler_sharpness to: %0.8X" % myval
+						open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)
+					except IOError:
+						print "couldn't write pep_scaler_sharpness."
+
+					if not VideoEnhancement.firstRun:
+						self.setConfiguredValues()
+
+				config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
+				config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
+			else:
+				config.av.scaler_sharpness = NoSave(ConfigNothing())
+
 		if VideoEnhancement.firstRun:
 			self.setConfiguredValues()
 
