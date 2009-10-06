@@ -105,8 +105,9 @@ class VideoWizard(WizardLanguage, Rc):
 		modeList = self.hw.getModeList(self.selection)
 		print "modeList:", modeList
 		self.port = port
-		ratesList = self.listRates(modeList[0][0])
-		self.hw.setMode(port = port, mode = modeList[0][0], rate = ratesList[0][0])
+		if (len(modeList) > 0):
+			ratesList = self.listRates(modeList[0][0])
+			self.hw.setMode(port = port, mode = modeList[0][0], rate = ratesList[0][0])
 		
 	def listModes(self):
 		list = []
