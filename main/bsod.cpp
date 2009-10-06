@@ -74,7 +74,7 @@ static std::string getConfigFileValue(const char *entry)
 		{
 			return configvalue;
 		}
-		else // get Value from enigma2 settings file
+		else // get value from enigma2 settings file
 		{
 			FILE *f = fopen(configfile.c_str(), "r");
 			if (!f)
@@ -119,7 +119,21 @@ static std::string getFileContent(const char *file)
 			char line[1024];
 			if (!fgets(line, 1024, f))
 				break;
-			filecontent += line;
+			std::string tmp = line;
+			std::string password;
+			int pwdpos = tmp.find(".password=", 0);
+			if( pwdpos != std::string::npos)
+			{
+				filecontent += tmp.substr(0,pwdpos +10);
+				for ( int pos = pwdpos +10; pos < tmp.length()-1; ++pos )
+				{
+					filecontent += "X";
+				}
+				filecontent += "\n";
+			}
+			else {
+				filecontent += line;
+			}
 		}
 		fclose(f);
 	}
@@ -242,7 +256,7 @@ void bsodFatal(const char *component)
 			fprintf(f, "\t\t<kernelcmdline>%s</kernelcmdline>\n", kernelcmd);
 		}
 		std::string sendAnonCrashlog = getConfigFileValue("config.plugins.crashlogautosubmit.sendAnonCrashlog");
-		if (sendAnonCrashlog == "False" || sendAnonCrashlog == "false" || sendAnonCrashlog == "") // defaults to false, so "" is also ok.
+		if (sendAnonCrashlog == "False" || sendAnonCrashlog == "false") // defaults to true... default anonymized crashlogs
 		{
 			std::string ca = getFileContent("/proc/stb/info/ca");
 			if (ca != "Error")
