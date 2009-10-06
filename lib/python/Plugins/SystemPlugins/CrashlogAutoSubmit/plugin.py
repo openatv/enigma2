@@ -2,7 +2,7 @@ from Plugins.Plugin import PluginDescriptor
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigSelection, ConfigYesNo,ConfigText
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
-from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -23,7 +23,7 @@ config.plugins.crashlogautosubmit.sendlog = ConfigSelection(default = "rename", 
 config.plugins.crashlogautosubmit.attachemail = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.email = ConfigText(default = "myemail@home.com", fixed_size = False)
 config.plugins.crashlogautosubmit.name = ConfigText(default = "Dreambox User", fixed_size = False)
-config.plugins.crashlogautosubmit.sendAnonCrashlog = ConfigYesNo(default = False)
+config.plugins.crashlogautosubmit.sendAnonCrashlog = ConfigYesNo(default = True)
 config.plugins.crashlogautosubmit.addNetwork = ConfigYesNo(default = False)
 config.plugins.crashlogautosubmit.addWlan = ConfigYesNo(default = False)
 
@@ -32,17 +32,16 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 	oldMailEntryValue = config.plugins.crashlogautosubmit.sendmail.value
 
 	skin = """
-		<screen name="CrashlogAutoSubmitConfiguration" position="80,80" size="560,400" title="CrashlogAutoSubmit settings..." >
-			<widget name="config" zPosition="2" position="5,5" size="550,360" scrollbarMode="showOnDemand" transparent="1" />
-			<ePixmap pixmap="skin_default/div-h.png" position="0,300" zPosition="10" size="560,2" transparent="1" alphatest="on" />
-			<widget name="status" position="10,300" zPosition="10" size="540,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,360" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="closetext" position="0,360" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,360" zPosition="2" size="140,40" transparent="1" alphatest="on" />
-			<widget name="installtext" position="140,360" zPosition="10" size="140,40" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-			<widget name="VKeyButton" pixmap="skin_default/buttons/button_yellow.png" position="285,370" zPosition="2" size="15,16" transparent="1" alphatest="on" />
-			<widget name="VKeyIcon" pixmap="skin_default/vkey_icon.png" position="300,355" zPosition="10" size="60,48" transparent="1" alphatest="on" />
-			<widget name="HelpWindow" position="175,250" zPosition="1" size="1,1" transparent="1" />
+		<screen name="CrashlogAutoSubmitConfiguration" position="center,center" size="560,440" title="CrashlogAutoSubmit settings" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="config" zPosition="2" position="5,50" size="550,300" scrollbarMode="showOnDemand" transparent="1" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,390" zPosition="10" size="560,2" transparent="1" alphatest="on" />
+			<widget source="status" render="Label" position="10,400" size="540,40" zPosition="10" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1"/>
+			<widget name="VKeyIcon" pixmap="skin_default/buttons/key_text.png" position="10,420" zPosition="10" size="35,25" transparent="1" alphatest="on" />
+			<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="160,325" zPosition="1" size="1,1" transparent="1" alphatest="on" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -66,23 +65,21 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 			"green": self.keySave,
 		}, -2)
 
-		self["VirtualKB"] = ActionMap(["ColorActions" ],
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions" ],
 		{
-			"yellow": self.KeyYellow,
+			"showVirtualKeyboard": self.KeyText,
 		}, -1)
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list,session = self.session)
 		self.createSetup()
 
-		self["VKeyButton"] = Pixmap()
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Save"))
+		self["status"] = StaticText()
 		self["VKeyIcon"] = Pixmap()
-		self["closetext"] = Label(_("Close"))
-		self["installtext"] = Label(_("Save"))
-		self["HelpWindow"] = Label()
-		self["status"] = Label()
+		self["HelpWindow"] = Pixmap()
 
-		self["VKeyButton"].hide()
 		self["VKeyIcon"].hide()
 		self["VirtualKB"].setEnabled(False)
 		self.onShown.append(self.setWindowTitle)
@@ -100,7 +97,7 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 		self.newConfig()
 
-	def KeyYellow(self):
+	def KeyText(self):
 			if self["config"].getCurrent() == self.EmailEntry:
 				self.session.openWithCallback(self.EmailCallback, VirtualKeyBoard, title = (_("Please enter your email address here:")), text = config.plugins.crashlogautosubmit.email.value)
 			if self["config"].getCurrent() == self.NameEntry:
@@ -188,7 +185,6 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 			self.disableVKeyIcon()
 
 	def enableVKeyIcon(self):
-		self["VKeyButton"].show()
 		self["VKeyIcon"].show()
 		self["VirtualKB"].setEnabled(True)
 
@@ -201,7 +197,6 @@ class CrashlogAutoSubmitConfiguration(Screen, ConfigListScreen):
 				current[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
 
 	def disableVKeyIcon(self):
-		self["VKeyButton"].hide()
 		self["VKeyIcon"].hide()
 		self["VirtualKB"].setEnabled(False)
 

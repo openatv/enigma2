@@ -241,7 +241,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		for x in self.playlist.list:
 			self.playlistIOInternal.addService(ServiceReference(x[0]))
 		if self.savePlaylistOnExit:
-			self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
+			try:
+				self.playlistIOInternal.save(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
+			except IOError:
+				print "couldn't save playlist.e2pls"
 		if config.mediaplayer.saveDirOnExit.getValue():
 			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
 			config.mediaplayer.defaultDir.save()
