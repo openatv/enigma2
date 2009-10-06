@@ -1,7 +1,7 @@
 <skin>
 	<!-- Screwed Stone II skin (skin_default.xml) /Nemesis -->
 	<!-- About screen -->
-	<screen name="About" position="150,130" size="420,350" title="About">
+	<screen name="About" position="center,center" size="420,350" title="About">
 		<widget source="EnigmaVersion" render="Label" position="10,10" size="380,20" font="Regular;20" />
 		<widget source="ImageVersion" render="Label" position="10,40" size="380,20" font="Regular;20" />
 		<widget source="FPVersion" render="Label" position="10,70" size="380,20" font="Regular;20" />
@@ -46,6 +46,7 @@
 		<widget name="VKeyIcon" pixmap="skin_default/buttons/key_text.png" position="10,380" zPosition="10" size="35,25" transparent="1" alphatest="on" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="160,315" zPosition="1" size="1,1" transparent="1" alphatest="on" />
 	</screen>
+
 	<screen name="AdapterSetupConfiguration" position="center,center" size="560,400" title="Network Configuration..." >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -59,19 +60,19 @@
 		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 	</screen>
 	<!-- Audio selection -->
-	<screen name="AudioSelection" position="210,203" size="300,170" title="Audio">
+	<screen name="AudioSelection" position="center,center" size="300,170" title="Audio">
 		<widget name="tracks" position="20,10" size="260,150" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Bouquet selector -->
-	<screen name="BouquetSelector" position="210,160" size="300,240" title="Choose bouquet">
+	<screen name="BouquetSelector" position="center,center" size="300,240" title="Choose bouquet">
 		<widget name="menu" position="10,10" size="290,225" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Channel context menu -->
-	<screen name="ChannelContextMenu" position="210,163" size="300,255" title="Channellist menu">
+	<screen name="ChannelContextMenu" position="center,center" size="300,255" title="Channellist menu">
 		<widget name="menu" position="10,10" size="290,230" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Channel selection - TV -->
-	<screen name="ChannelSelection" position="90,95" size="560,430" title="Channel Selection">
+	<screen name="ChannelSelection" position="center,center" size="560,430" title="Channel Selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -108,7 +109,7 @@
 		</widget>
 	</screen>
 	<!-- Channel selection - Radio -->
-	<screen name="ChannelSelectionRadio" position="85,95" size="560,298" title="Channel Selection">
+	<screen name="ChannelSelectionRadio" position="center,center" size="560,298" title="Channel Selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -120,7 +121,7 @@
 		<widget name="list" position="0,45" size="560,252" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Choice box -->
-	<screen name="ChoiceBox" position="150,100" size="550,400" title="Input">
+	<screen name="ChoiceBox" position="center,center" size="550,400" title="Input">
 		<widget name="text" position="10,10" size="550,25" font="Regular;20" />
 		<widget name="list" position="0,30" size="550,335" scrollbarMode="showOnDemand" />
 		<applet type="onLayoutFinish">
@@ -165,19 +166,19 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget source="parent.summary_list" render="Label" position="6,0" size="126,64" font="Regular;11" />
 	</screen>	
 	<!-- Common interface -->
-	<screen name="MMIDialog" position="135,153" size="450,270">
+	<screen name="MMIDialog" position="center,center" size="450,270">
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
 		<widget name="subtitle" position="10,35" size="430,25" font="Regular;23" />
 		<widget name="entries" position="10,70" size="430,150" scrollbarMode="showOnDemand" />
 		<widget name="bottom" position="10,230" size="430,25" font="Regular;23" />
 	</screen>
 	<!-- Common interface - selection -->
-	<screen name="CiSelection" position="140,226" size="440,185" title="Common Interface">
+	<screen name="CiSelection" position="center,center" size="440,185" title="Common Interface">
 		<widget name="text" position="10,10" size="430,25" font="Regular;23" />
 		<widget name="entries" position="10,55" size="420,125" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Console -->
-	<screen name="Console" position="90,95" size="560,430" title="Command execution...">
+	<screen name="Console" position="center,center" size="560,430" title="Command execution...">
 		<widget name="text" position="10,10" size="540,420" font="Console;14" />
 	</screen>
 	<!-- Clock display -->
@@ -187,7 +188,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="theClock" position="10,60" size="280,50" />
 	</screen>
 	<!-- Config OSD -->
-	<screen name="configOSD" position="130,113" size="460,350" title="OSD Settings">
+	<screen name="configOSD" position="center,center" size="460,350" title="OSD Settings">
 		<widget name="okbutton" position="20,270" size="205,40" />
 		<widget name="txt_alpha" position="20,20" size="110,20" />
 		<widget name="sld_alpha" position="150,20" size="290,20" />
@@ -251,7 +252,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="Dishpixmap" pixmap="skin_default/icons/dish.png" position="0,0" size="130,160" alphatest="off" />
 	</screen>
 	<!-- EPG Selection - Single -->
-	<screen name="EPGSelection" position="90,95" size="560,430" title="EPG Selection">
+	<screen name="EPGSelection" position="center,center" size="560,430" title="EPG Selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -263,7 +264,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="list" position="0,40" size="560,375" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- EPG Selection - Multi -->
-	<screen name="EPGSelectionMulti" position="90,95" size="560,430" title="EPG Selection">
+	<screen name="EPGSelectionMulti" position="center,center" size="560,430" title="EPG Selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -283,7 +284,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="list" position="11,75" size="540,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Eventview -->
-	<screen name="EventView" position="90,95" size="560,430" title="Eventview">
+	<screen name="EventView" position="center,center" size="560,430" title="Eventview">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -298,7 +299,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="channel" position="240,395" size="305,25" font="Regular;22" halign="right" />
 	</screen>
 	<!-- Graphical Multi EPG -->
-	<screen name="GraphMultiEPG" position="90,95" size="560,435" title="Electronic Program Guide">
+	<screen name="GraphMultiEPG" position="center,center" size="560,435" title="Electronic Program Guide">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -342,11 +343,11 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		</widget>
 	</screen>
 	<!-- Harddisk selection -->
-	<screen name="HarddiskSelection" position="100,150" size="540,285" title="Select HDD">
+	<screen name="HarddiskSelection" position="center,center" size="540,285" title="Select HDD">
 		<widget name="hddlist" position="10,10" size="520,275" />
 	</screen>
 	<!-- Harddisk setup -->
-	<screen name="HarddiskSetup" position="140,200" size="420,160" title="Harddisk">
+	<screen name="HarddiskSetup" position="center,center" size="420,160" title="Harddisk">
 		<widget name="model" position="20,10" size="380,25" font="Regular;23" />
 		<widget name="capacity" position="20,40" size="380,25" font="Regular;23" />
 		<widget name="bus" position="20,70" size="380,25" font="Regular;23" />
@@ -356,7 +357,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="initializetext" position="140,110" size="140,40" zPosition="1" font="Regular;20" halign="center" valign="center" transparent="1" /-->
 	</screen>
 	<!-- Harddisk wait -->
-	<screen name="HarddiskWait" position="100,150" size="540,60">
+	<screen name="HarddiskWait" position="center,center" size="540,60">
 		<widget name="wait" position="20,10" size="500,25" font="Regular;23" />
 	</screen>
 	<!-- Help menu -->
@@ -371,19 +372,19 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="long_key" position="320,520" size="350,50" font="Regular;25" halign="right" foregroundColor="yellow" />
 	</screen>
 	<!-- Inputbox -->
-	<screen name="InputBox" position="80,250" size="550,90" title="Input">
+	<screen name="InputBox" position="center,center" size="550,90" title="Input">
 		<widget name="text" position="10,20" size="550,25" font="Regular;23" />
 		<widget name="input" position="10,55" size="550,25" font="Regular;20" />
 	</screen>
 	<!-- IPKG -->
-	<screen name="Ipkg" position="100,100" size="550,200" title="Installing Software...">
+	<screen name="Ipkg" position="center,center" size="550,200" title="Installing Software...">
 		<widget name="activityslider" position="0,0" size="550,5" pixmap="skin_default/progress_small.png" />
 		<widget name="package" position="10,30" size="550,20" font="Regular;18" />
 		<widget name="status" position="10,60" size="550,45" font="Regular;18" />
 		<widget name="slider" position="10,100" size="530,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
 	</screen>
 	<!-- Language selection -->
-	<screen name="LanguageSelection" position="170,143" size="380,300" title="Language selection">
+	<screen name="LanguageSelection" position="center,center" size="380,300" title="Language selection">
 		<widget source="languages" render="Listbox" position="0,0" size="380,300" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -417,7 +418,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 	</screen>
 	<!-- Location Box -->
-	<screen name="LocationBox" position="100,75" size="540,460" >
+	<screen name="LocationBox" position="center,center" size="540,460" >
 		<widget name="text" position="0,2" size="540,22" font="Regular;22" />
 		<widget name="target" position="0,23" size="540,22" valign="center" font="Regular;22" />
 		<widget name="filelist" position="0,55" zPosition="1" size="540,210" scrollbarMode="showOnDemand" selectionDisabled="1" />
@@ -455,14 +456,14 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 		<widget name="titletext" position="0,0" size="0,0" />
 	</screen>
 	<!-- Menu screens -->
-	<screen name="Menu" position="170,150" size="380,285" title="Main menu">
+	<screen name="Menu" position="center,center" size="380,285" title="Main menu">
 		<widget source="title" render="Label" position="10,10" size="360,35" font="Regular;23" />
 		<widget source="menu" render="Listbox" position="10,55" size="360,225" scrollbarMode="showOnDemand">
 			<convert type="StringList" />
 		</widget>
 	</screen>
 	<!-- Messagebox -->
-	<screen name="MessageBox" position="60,245" size="600,10" title="Message">
+	<screen name="MessageBox" position="center,center" size="600,10" title="Message">
 		<widget name="text" position="65,8" size="520,0" font="Regular;22" />
 		<widget name="ErrorPixmap" pixmap="skin_default/icons/input_error.png" position="5,5" size="53,53" alphatest="on" />
 		<widget name="QuestionPixmap" pixmap="skin_default/icons/input_question.png" position="5,5" size="53,53" alphatest="on" />
@@ -509,15 +510,15 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="parent.selectedChoice" render="Label" position="6,50" size="120,14" font="Regular;14" halign="center" valign="center" />
 	</screen>
 	<!-- Minute input -->
-	<screen name="MinuteInput" position="200,140" size="280,60" title="Seek">
+	<screen name="MinuteInput" position="center,center" size="280,60" title="Seek">
 		<widget name="minutes" position="80,15" size="160,25" halign="right" font="Regular;23" />
 	</screen>
 	<!-- Movie context menu -->
-	<screen name="MovieContextMenu" position="150,160" size="400,260" title="Movielist menu">
+	<screen name="MovieContextMenu" position="center,center" size="400,260" title="Movielist menu">
 		<widget name="menu" position="10,10" size="390,250" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Movieselection -->
-	<screen name="MovieSelection" position="90,83" size="560,445" title="Select a movie">
+	<screen name="MovieSelection" position="center,center" size="560,445" title="Select a movie">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -612,11 +613,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="InfoText" position="15,55" size="541,290" zPosition="25" font="Regular;21" />
 	</screen>
 	<!-- Network setup -->
-	<screen name="NetworkSetup" position="130,140" size="460,330" title="Network Setup">
+	<screen name="NetworkSetup" position="center,center" size="460,330" title="Network Setup">
 		<widget name="menu" position="10,10" size="440,310" />
 	</screen>
 	<!-- Nim selection -->
-	<screen name="NimSelection" position="160,123" size="400,330" title="Choose Tuner">
+	<screen name="NimSelection" position="center,center" size="400,330" title="Choose Tuner">
 		<widget source="nimlist" render="Listbox" position="0,0" size="380,300" scrollbarMode="showOnDemand">
 			<convert type="TemplatedMultiContent">
 				{"template": [
@@ -630,11 +631,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 	</screen>
 	<!-- Nim setup -->
-	<screen name="NimSetup" position="80,95" size="560,412" title="Reception Settings">
+	<screen name="NimSetup" position="center,center" size="560,412" title="Reception Settings">
 		<widget name="config" position="10,10" size="540,402" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Numberzap -->
-	<screen name="NumberZap" position="235,255" size="250,60" title="Channel">
+	<screen name="NumberZap" position="center,center" size="250,60" title="Channel">
 		<widget name="channel" position="35,15" size="110,25" font="Regular;23" />
 		<widget name="number" position="145,15" size="80,25" halign="right" font="Regular;23" />
 	</screen>
@@ -655,15 +656,15 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="help2" position="262,92" size="130,30" font="Console;16" halign="center" valign="center" />
 	</screen>
 	<!-- Parental control - change pin -->
-	<screen name="ParentalControlChangePin" position="100,200" size="520,160" title="Change pin code">
-		<widget name="config" position="10,10" size="510,350" scrollbarMode="showOnDemand" />
+	<screen name="ParentalControlChangePin" position="center,center" size="520,160" title="Change pin code">
+		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Parental control - editor -->
-	<screen name="ParentalControlEditor" position="100,100" size="520,400" title="Parental control services Editor">
+	<screen name="ParentalControlEditor" position="center,center" size="520,400" title="Parental control services Editor">
 		<widget name="servicelist" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Parental control - setup -->
-	<screen name="ParentalControlSetup" position="100,100" size="520,400" title="Parental control setup">
+	<screen name="ParentalControlSetup" position="center,center" size="520,400" title="Parental control setup">
 		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Picture in picture -->
@@ -671,18 +672,18 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="video" position="0,0" size="240,192" backgroundColor="transparent" />
 	</screen>
 	<!-- Pin input -->
-	<screen name="PinInput" position="110,205" size="500,170" title="Pin code needed">
+	<screen name="PinInput" position="center,center" size="500,170" title="Pin code needed">
 		<widget name="service" position="10,10" size="480,25" font="Regular;20" />
 		<widget name="text" position="10,40" size="480,25" font="Regular;20" halign="center" />
 		<widget name="tries" position="10,70" size="480,25" font="Regular;20" halign="center" />
 		<widget name="input" position="10,110" size="480,40" font="Regular;50" halign="center" />
 	</screen>
 	<!-- Picture in picture setup -->
-	<screen name="PiPSetup" position="70,400" size="600,150" backgroundColor="transparent" flags="wfNoBorder" title="PiPSetup">
+	<screen name="PiPSetup" position="center,center" size="600,150" backgroundColor="transparent" flags="wfNoBorder" title="PiPSetup">
 		<widget name="text" position="0,0" size="600,150" font="Regular;23" />
 	</screen>
 	<!-- Plugin browser -->
-	<screen name="PluginBrowser" position="160,95" size="400,405" title="Plugin browser">
+	<screen name="PluginBrowser" position="center,center" size="400,405" title="Plugin browser">
 		<ePixmap pixmap="skin_default/buttons/red-big.png" position="0,0" size="200,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green-big.png" position="200,0" size="200,40" alphatest="on" />
 		<widget name="red" position="0,0" zPosition="1" size="200,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
@@ -690,7 +691,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="list" position="0,45" size="400,355" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Plugin downloads -->
-	<screen name="PluginDownloadBrowser" position="90,100" size="560,420" title="Downloadable plugins">
+	<screen name="PluginDownloadBrowser" position="center,center" size="560,420" title="Downloadable plugins">
 		<widget name="text" position="0,0" zPosition="1" size="560,430" font="Regular;20" halign="center" valign="center" />
 		<widget name="list" position="10,10" zPosition="2" size="540,405" scrollbarMode="showOnDemand" />
 	</screen>
@@ -777,7 +778,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="RassLogo" pixmap="skin_default/icons/rass_logo.png" position="50,445" size="50,21" />
 	</screen>
 	<!-- Satfinder -->
-	<screen name="Satfinder" position="90,100" size="520,400" title="Satfinder">
+	<screen name="Satfinder" position="center,center" size="520,400" title="Satfinder">
 		<widget name="introduction" position="0,0" size="0,0" font="Regular;23" />
 		<ePixmap pixmap="skin_default/icons/dish_scan.png" position="5,25" zPosition="0" size="119,110" transparent="1" alphatest="on" />
 		<widget source="Frontend" render="Label" position="190,10" zPosition="2" size="260,20" font="Regular;19" halign="center" valign="center" transparent="1">
@@ -810,12 +811,12 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,165" size="500,225" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Scan setup -->
-	<screen name="ScanSetup" position="100,115" size="520,390" title="Service scan">
+	<screen name="ScanSetup" position="center,center" size="520,390" title="Service scan">
 		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
 		<widget name="introduction" position="10,365" size="500,25" font="Regular;20" halign="center" />
 	</screen>
 	<!-- Scan simple -->
-	<screen name="ScanSimple" position="150,130" size="420,350" title="Service scan">
+	<screen name="ScanSimple" position="center,center" size="420,350" title="Service scan">
 		<widget name="header" position="10,10" size="400,25" font="Regular;23" />
 		<widget name="config" position="10,55" size="400,250" scrollbarMode="showOnDemand" />
 		<widget name="footer" position="10,310" size="400,20" font="Regular;20" halign="center" />
@@ -823,7 +824,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	<!-- Scart -->
 	<screen name="Scart" position="0,0" size="720,576" backgroundColor="transparent" />
 	<!-- Service info -->
-	<screen name="ServiceInfo" position="90,95" size="560,430" title="Serviceinfo">
+	<screen name="ServiceInfo" position="center,center" size="560,430" title="Serviceinfo">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -835,7 +836,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="infolist" position="20,45" size="560,380" selectionDisabled="1" />
 	</screen>
 	<!-- Service scan -->
-	<screen name="ServiceScan" position="150,115" size="420,390" title="Service Scan">
+	<screen name="ServiceScan" position="center,center" size="420,390" title="Service Scan">
 		<widget source="FrontendInfo" render="Pixmap" pixmap="skin_default/icons/scan-s.png" position="5,5" size="64,64" transparent="1" alphatest="on">
 			<convert type="FrontendInfo">TYPE</convert>
 			<convert type="ValueRange">0,0</convert>
@@ -859,7 +860,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="servicelist" position="10,135" size="400,265" selectionDisabled="1" />
 	</screen>
 	<!-- Setup -->
-	<screen name="Setup" position="90,95" size="560,430" title="Setup">
+	<screen name="Setup" position="center,center" size="560,430" title="Setup">
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -870,7 +871,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,95" size="540,325" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Simple channelselection -->
-	<screen name="SimpleChannelSelection" position="90,95" size="560,430" title="Channel Selection">
+	<screen name="SimpleChannelSelection" position="center,center" size="560,430" title="Channel Selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -892,7 +893,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="introduction" render="Label" position="0,370" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 	</screen>
 	<!-- Sleeptimer edit -->
-	<screen name="SleepTimerEdit" position="110,215" size="500,200" title="Sleep Timer">
+	<screen name="SleepTimerEdit" position="center,center" size="500,200" title="Sleep Timer">
 		<widget name="current_status" position="40,40" size="400,30" valign="center" font="Regular;20" />
 		<widget name="red" pixmap="skin_default/buttons/button_red.png" position="10,88" size="12,12" alphatest="on" />
 		<widget name="green" pixmap="skin_default/buttons/button_green.png" position="10,128" size="12,12" alphatest="on" />
@@ -926,7 +927,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 	</screen>
 	<!-- Subservice quickzap -->
-	<screen name="SubservicesQuickzap" position="124,470" size="512,200" title="Subservices" backgroundColor="transparent" flags="wfNoBorder">
+	<screen name="SubservicesQuickzap" position="center,center" size="512,200" title="Subservices" backgroundColor="transparent" flags="wfNoBorder">
 		<widget source="session.RecordState" render="Pixmap" pixmap="skin_default/icons/record.png" position="450,0" zPosition="2" size="14,14" alphatest="on" >
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
@@ -937,18 +938,18 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 	</screen>
 	<!-- Subtitle selection -->
-	<screen name="Subtitles" position="170,150" size="380,285" title="Subtitle selection">
+	<screen name="Subtitles" position="center,center" size="380,285" title="Subtitle selection">
 		<widget name="config" position="10,10" zPosition="1" size="360,275" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Subtitle area -->
 	<screen name="SubtitleDisplay" position="0,0" size="720,576" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
 	<!-- TextBox -->
-	<screen name="TextBox" position="90,50" size="550,400" title="Message...">
+	<screen name="TextBox" position="center,center" size="550,400" title="Message...">
 		<widget name="text" position="0,0" size="540,390" font="Regular;18" />
 		<!--widget source="text" render="Label" position="0,0" size="540,390" font="Regular;18" /-->
 	</screen>
 	<!-- Time & date input -->
-	<screen name="TimeDateInput" position="160,150" size="400,200" title="Time/Date Input">
+	<screen name="TimeDateInput" position="center,center" size="400,200" title="Time/Date Input">
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="10,0" size="140,40" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/buttons/green.png" position="250,0" size="140,40" alphatest="on" />
 		<widget name="canceltext" position="10,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" transparent="1" />
@@ -956,7 +957,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,40" size="380,150" />
 	</screen>
 	<!-- Timer edit -->
-	<screen name="TimerEdit" position="70,100" size="590,335" title="Timer Edit">
+	<screen name="TimerEdit" position="center,center" size="590,335" title="Timer Edit">
 		<widget name="description" position="10,10" size="580,40" font="Regular;25" />
 		<widget name="lbegin" position="405,102" size="103,30" font="Regular;25" foregroundColor="red" />
 		<widget name="lend" position="405,158" size="103,30" font="Regular;25" foregroundColor="green" />
@@ -965,7 +966,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="apply" position="10,240" size="250,35" />
 	</screen>
 	<!-- Timer edit list -->
-	<screen name="TimerEditList" position="90,95" size="560,430" title="Timer Editor">
+	<screen name="TimerEditList" position="center,center" size="560,430" title="Timer Editor">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -977,7 +978,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="timerlist" position="0,60" size="560,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timer entry -->
-	<screen name="TimerEntry" position="90,95" size="560,440" title="Timer entry">
+	<screen name="TimerEntry" position="center,center" size="560,440" title="Timer entry">
 		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<widget name="ok" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -987,7 +988,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,45" size="540,385" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timer log -->
-	<screen name="TimerLog" position="90,95" size="560,430" title="Timer log">
+	<screen name="TimerLog" position="center,center" size="560,430" title="Timer log">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -1000,7 +1001,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="logentry" position="0,300" size="560,130" font="Regular;20" />
 	</screen>
 	<!-- Timer sanity conflict -->
-	<screen name="TimerSanityConflict" position="90,95" size="560,430" title="Timer sanity error">
+	<screen name="TimerSanityConflict" position="center,center" size="560,430" title="Timer sanity error">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="0,120" zPosition="0" size="140,40" transparent="1" alphatest="on" />
@@ -1014,7 +1015,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="list" position="0,260" size="560,144" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timer Selection -->
-	<screen name="TimerSelection" position="90,95" size="560,430" title="Timer selection">
+	<screen name="TimerSelection" position="center,center" size="560,430" title="Timer selection">
 		<widget name="timerlist" position="0,45" size="560,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Timeshift state -->
@@ -1025,7 +1026,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 	</screen>
 	<!-- Translator Info -->
-	<screen name="TranslationInfo" position="150,130" size="420,350" title="Translation">
+	<screen name="TranslationInfo" position="center,center" size="420,350" title="Translation">
 		<eLabel position="10,20" size="380,23" font="Regular;23" text="Translation:" />
 		<widget source="TranslatorName" render="Label" position="10,55" size="380,20" font="Regular;20" />
 		<widget source="TranslationInfo" render="Label" position="10,100" size="380,250" font="Regular;20" />
@@ -1124,7 +1125,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-	<screen name="JobView" position="84,122" size="520,350" title="Job View">
+	<screen name="JobView" position="center,center" size="520,350" title="Job View">
 		<widget source="job_name" render="Label" position="20,12" size="480,60" font="Regular;28" />
 		<widget source="job_task" render="Label" position="20,90" size="480,50" font="Regular;23" />
 		<widget source="job_progress" render="Progress" position="20,162" size="480,36" borderWidth="2" backgroundColor="#254f7497" />
@@ -1160,7 +1161,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
-	<screen name="VirtualKeyBoard" position="80,150" size="560,350" zPosition="99" title="Virtual KeyBoard">
+	<screen name="VirtualKeyBoard" position="center,center" size="560,350" zPosition="99" title="Virtual KeyBoard">
 		<ePixmap pixmap="skin_default/vkey_text.png" position="9,35" zPosition="-4" size="542,52" alphatest="on" />
 		<widget name="header" position="10,10" size="500,20" font="Regular;20" transparent="1" noWrap="1" />
 		<widget name="text" position="12,35" size="536,46" font="Regular;46" transparent="1" noWrap="1" halign="right" />
