@@ -10,28 +10,27 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
-from Components.Label import Label
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 class TitleList(Screen, HelpableScreen):
 	skin = """
-		<screen position="90,83" size="560,445" title="DVD Tool" >
-		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		    <widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget source="title_label" render="Label" position="10,48" size="540,38" font="Regular;18" />
-		    <widget name="error_label" position="10,48" size="540,395" zPosition="3" font="Regular;20" />
-		    <widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="540,312">
-			<convert type="StaticMultiList" />
-		    </widget>
-		    <widget source="space_bar" render="Progress" position="10,410" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
-		    <widget source="space_label" render="Label" position="40,414" size="480,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
+		<screen name="TitleList" position="center,center" size="560,445" title="DVD Tool" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="title_label" render="Label" position="10,48" size="540,38" font="Regular;18" transparent="1" />
+			<widget source="error_label" render="Label" position="10,48" size="540,395" zPosition="3" font="Regular;20" transparent="1" />
+			<widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="540,312" zPosition="3" transparent="1" >
+				<convert type="StaticMultiList" />
+			</widget>
+			<widget source="space_bar" render="Progress" position="10,410" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
+			<widget source="space_label" render="Label" position="40,414" size="480,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
 		</screen>"""
 
 	def __init__(self, session, project = None):
@@ -63,7 +62,7 @@ class TitleList(Screen, HelpableScreen):
 		self["key_blue"] = StaticText(_("Settings"))
 
 		self["title_label"] = StaticText()
-		self["error_label"] = Label("")
+		self["error_label"] = StaticText()
 		self["space_label"] = StaticText()
 		self["space_bar"] = Progress()
 
@@ -75,6 +74,10 @@ class TitleList(Screen, HelpableScreen):
 		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
 		self.updateTitleList()
 		self.previous_size = 0
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("DVD Titlelist"))
 
 	def checkBackgroundJobs(self):
 		for job in job_manager.getPendingJobs():
@@ -128,18 +131,43 @@ class TitleList(Screen, HelpableScreen):
 
 	def addTitle(self):
 		from Screens.MovieSelection import MovieSelection
-		from Components.Button import Button
 		from Components.ActionMap import HelpableActionMap
-		class MovieSelectionNoMenu(MovieSelection):
+		class DVDMovieSelection(MovieSelection):
+			skin = """<screen name="DVDMovieSelection" position="center,center" size="560,445" title="Select a movie">
+				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+				<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+				<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+				<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+				<widget name="waitingtext" position="0,45" size="560,395" zPosition="4" font="Regular;22" halign="center" valign="center" />
+				<widget name="list" position="5,40" size="550,375" zPosition="2" scrollbarMode="showOnDemand" />
+				<widget name="DescriptionBorder" pixmap="skin_default/border_eventinfo.png" position="0,316" zPosition="1" size="560,103" transparent="1" alphatest="on" />
+				<widget source="Service" render="Label" position="5,318" zPosition="1" size="480,35" font="Regular;17" foregroundColor="#cccccc">
+					<convert type="MovieInfo">ShortDescription</convert>
+				</widget>
+				<widget source="Service" render="Label" position="495,318" zPosition="1" size="60,22" font="Regular;17" halign="right">
+					<convert type="ServiceTime">Duration</convert>
+					<convert type="ClockToText">AsLength</convert>
+				</widget>
+				<widget source="Service" render="Label" position="380,337" zPosition="2" size="175,22" font="Regular;17" halign="right">
+					<convert type="MovieInfo">RecordServiceName</convert>
+				</widget>
+				<widget source="Service" render="Label" position="5,357" zPosition="1" size="550,58" font="Regular;19">
+					<convert type="EventName">ExtendedDescription</convert>
+				</widget>
+				<widget name="freeDiskSpace" position="10,425" size="540,20" font="Regular;19" valign="center" halign="right" />
+			</screen>"""
 			def __init__(self, session):
 				MovieSelection.__init__(self, session)
-				self.skinName = "MovieSelection"
-				self["key_red"] = Button(_("Edit title"))
-				self["key_green"] = Button(_("Add"))
+				self["key_red"] = StaticText(_("Close"))
+				self["key_green"] = StaticText(_("Add"))
+				self["key_yellow"] = StaticText(_("Edit title"))
 				self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 				{
-					"red": (self.movieSelected, _("Add a new title")),
-					"green": (self.insertWithoutEdit, ("insert without cutlist editor"))
+					"red": (self.close, _("Close title selection")),
+					"green": (self.insertWithoutEdit, ("insert without cutlist editor")),
+					"yellow": (self.movieSelected, _("Add a new title"))
 				})
 			def updateTags(self):
 				pass
@@ -155,7 +183,7 @@ class TitleList(Screen, HelpableScreen):
 				if current is not None:
 					current.edit = True
 					self.close(current)
-		self.session.openWithCallback(self.selectedSource, MovieSelectionNoMenu)
+		self.session.openWithCallback(self.selectedSource, DVDMovieSelection)
 
 	def selectedSource(self, source):
 		if source is None:
@@ -190,11 +218,10 @@ class TitleList(Screen, HelpableScreen):
 	def loadTemplate(self):
 		filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
 		if self.project.load(filename):
-			self["error_label"].hide()
+			self["error_label"].setText("")
 			return True
 		else:
-			self["error_label"].text = self.project.error
-			self["error_label"].show()
+			self["error_label"].setText(self.project.error)
 			return False
 
 	def askBurnProject(self):
