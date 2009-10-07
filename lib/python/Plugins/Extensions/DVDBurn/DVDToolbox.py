@@ -13,15 +13,13 @@ from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 
 class DVDToolbox(Screen):
 	skin = """
-		<screen position="90,83" size="560,445" title="DVD media toolbox" >
+		<screen name="DVDToolbox" position="center,center"  size="560,445" title="DVD media toolbox" >
 		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		    <ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		    <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
 		    <widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 		    <widget source="info" render="Label" position="20,60" size="520,100" font="Regular;20" />
 		    <widget name="details" position="20,200" size="520,200" font="Regular;16" />
 		    <widget source="space_bar" render="Progress" position="10,410" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
@@ -34,7 +32,6 @@ class DVDToolbox(Screen):
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("Update"))
 		self["key_yellow"] = StaticText()
-		self["key_blue"] = StaticText()
 		
 		self["space_label"] = StaticText()
 		self["space_bar"] = Progress()
@@ -49,14 +46,17 @@ class DVDToolbox(Screen):
 		    "red": self.exit,
 		    "green": self.update,
 		    "yellow": self.format,
-		    #"blue": self.eject,
 		    "cancel": self.exit,
 		    "pageUp": self.pageUp,
 		    "pageDown": self.pageDown
 		})
 		self.update()
 		hotplugNotifier.append(self.update)
-		
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("DVD media toolbox"))
+
 	def pageUp(self):
 		self["details"].pageUp()
 

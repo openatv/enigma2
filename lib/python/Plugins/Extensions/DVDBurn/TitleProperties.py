@@ -18,16 +18,16 @@ import DVDTitle
 
 class TitleProperties(Screen,ConfigListScreen):
 	skin = """
-		<screen position="90,83" size="560,445" title="Properties of current title" >
-		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		    <widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget source="serviceinfo" render="Label" position="10,46" size="350,144" font="Regular;18" />
-		    <widget name="thumbnail" position="370,46" size="180,144" alphatest="on" />
-		    <widget name="config" position="10,206" size="540,228" scrollbarMode="showOnDemand" />
+		<screen name="TitleProperties" position="center,center" size="560,445" title="Properties of current title" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="serviceinfo" render="Label" position="10,46" size="350,144" font="Regular;18" />
+			<widget name="thumbnail" position="370,46" size="180,144" alphatest="on" />
+			<widget name="config" position="10,206" size="540,228" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session, parent, project, title_idx):
@@ -63,6 +63,10 @@ class TitleProperties(Screen,ConfigListScreen):
 		}, -2)
 		
 		self.onShown.append(self.update)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Properties of current title"))
 
 	def initConfigList(self, element=None):
 		try:
