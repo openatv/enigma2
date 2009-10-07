@@ -653,11 +653,11 @@ class NFIDownload(Screen):
 		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
 
 	def closeCB(self):
-		if self.download:
+		try:
 			self.download.stop()
 			#self.nfi_failed(None, "Cancelled by user request")
 			self.downloading(False)
-		else:
+		except AttributeError:
 			self.close()
 
 def main(session, **kwargs):

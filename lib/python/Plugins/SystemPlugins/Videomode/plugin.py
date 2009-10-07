@@ -3,16 +3,17 @@ from Plugins.Plugin import PluginDescriptor
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigNothing, ConfigSlider
+from Components.Sources.StaticText import StaticText
 
 from VideoHardware import video_hw
 
 config.misc.videowizardenabled = ConfigBoolean(default = True)
 
 class VideoSetup(Screen, ConfigListScreen):
+
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
-		self.skinName = "Setup"
-		self.setup_title = "Videomode Setup"
+		self.setup_title = _("A/V Settings")
 		self.hw = hw
 		self.onChangedEntry = [ ]
 
@@ -30,18 +31,15 @@ class VideoSetup(Screen, ConfigListScreen):
 				"save": self.apply,
 			}, -2)
 
-		from Components.Label import Label
-		self["title"] = Label(_("A/V Settings"))
-
-		self["oktext"] = Label(_("OK"))
-		self["canceltext"] = Label(_("Cancel"))
-
-		from Components.Pixmap import Pixmap
-		self["ok"] = Pixmap()
-		self["cancel"] = Pixmap()
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
 		self.createSetup()
 		self.grabLastGoodMode()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
 
 	def startHotplug(self):
 		self.hw.on_hotplug.append(self.createSetup)
@@ -231,4 +229,4 @@ def Plugins(**kwargs):
 	]
 	if config.misc.videowizardenabled.value:
 		list.append(PluginDescriptor(name=_("Video Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=(0, VideoWizard)))
- 	return list
+	return list

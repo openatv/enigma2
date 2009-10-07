@@ -15,9 +15,14 @@ from Components.ConfigList import ConfigListScreen
 
 class FileBrowser(Screen, HelpableScreen):
 	skin = """
-	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
-		<widget name="filelist" position="0,0" size="520,376" scrollbarMode="showOnDemand" />
-	</screen>"""
+		<screen name="FileBrowser" position="center,center" size="520,430" title="DVD File Browser" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget name="filelist" position="5,50" size="510,380" scrollbarMode="showOnDemand" />
+		</screen>"""
+
 	def __init__(self, session, scope, configRef):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
@@ -58,6 +63,13 @@ class FileBrowser(Screen, HelpableScreen):
 				"cancel": self.exit
 			})
 
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("DVD File Browser"))
+
 	def getDir(self, currentVal=None, defaultDir=None):
 		if currentVal:
 			return (currentVal.rstrip("/").rsplit("/",1))[0]
@@ -81,17 +93,18 @@ class FileBrowser(Screen, HelpableScreen):
 
 class ProjectSettings(Screen,ConfigListScreen):
 	skin = """
-		<screen position="90,83" size="560,445" title="Collection settings" >
-		    <ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		    <ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		    <widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		    <widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		    <widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-		    <widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-		    <widget name="config" position="10,50" size="540,276" scrollbarMode="showOnDemand" />
-		    <widget source="info" render="Label" position="20,350" size="520,90" font="Regular;16" />
+		<screen name="ProjectSettings" position="center,center" size="560,440" title="Collection settings" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget name="config" position="5,50" size="550,276" scrollbarMode="showOnDemand" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
+			<widget source="info" render="Label" position="10,360" size="550,80" font="Regular;18" halign="center" valign="center" />
 		</screen>"""
 
 	def __init__(self, session, project = None):
@@ -126,6 +139,10 @@ class ProjectSettings(Screen,ConfigListScreen):
 		    "cancel": self.cancel,
 		    "ok": self.ok,
 		}, -2)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Collection settings"))
 
 	def changedConfigList(self):
 		key = self.keydict[self["config"].getCurrent()[1]]
