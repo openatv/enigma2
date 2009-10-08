@@ -205,6 +205,8 @@ private:
 	int m_subs_to_pull;
 	eSingleLock m_subs_to_pull_lock;
 
+	RESULT seekToImpl(pts_t to);
+
 	gint m_aspect, m_width, m_height, m_framerate, m_progressive;
 	RESULT trickSeek(gdouble ratio);
 };
