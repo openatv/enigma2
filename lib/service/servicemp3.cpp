@@ -17,12 +17,6 @@
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
 
-#ifndef GST_SEEK_FLAG_SKIP
-#warning Compiling for legacy gstreamer, things will break
-#define GST_SEEK_FLAG_SKIP 0
-#define GST_TAG_HOMEPAGE ""
-#endif
-
 // eServiceFactoryMP3
 
 eServiceFactoryMP3::eServiceFactoryMP3()
@@ -446,24 +440,19 @@ RESULT eServiceMP3::pause()
 {
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
-	GstStateChangeReturn res = gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
-	if (res == GST_STATE_CHANGE_ASYNC)
-	{
-		pts_t ppos;
-		getPlayPosition(ppos);
-		seekTo(ppos);
-	}
+
+	gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+
 	return 0;
 }
 
 RESULT eServiceMP3::unpause()
 {
-	m_subtitle_pages.clear();
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
-	GstStateChangeReturn res;
-	res = gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+	gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+
 	return 0;
 }
 
@@ -478,9 +467,10 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 {
 	if (!m_gst_playbin)
 		return -1;
+
 	if (m_state != stRunning)
 		return -1;
-	
+
 	GstFormat fmt = GST_FORMAT_TIME;
 	gint64 len;
 	
@@ -492,13 +482,8 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 	return 0;
 }
 
-RESULT eServiceMP3::seekTo(pts_t to)
+RESULT eServiceMP3::seekToImpl(pts_t to)
 {
-	if (!m_gst_playbin)
-		return -1;
-
-	eSingleLocker l(m_subs_to_pull_lock); // this is needed to dont handle incomming subtitles during seek!
-
 		/* convert pts to nanoseconds */
 	gint64 time_nanoseconds = to * 11111LL;
 	if (!gst_element_seek (m_gst_playbin, 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH,
@@ -509,11 +494,25 @@ RESULT eServiceMP3::seekTo(pts_t to)
 		return -1;
 	}
 
-	m_subtitle_pages.clear();
-	m_subs_to_pull = 0;
-
 	return 0;
 }
+
+RESULT eServiceMP3::seekTo(pts_t to)
+{
+	RESULT ret = -1;
+
+	if (m_gst_playbin) {
+		eSingleLocker l(m_subs_to_pull_lock); // this is needed to dont handle incomming subtitles during seek!
+		if (!(ret = seekToImpl(to)))
+		{
+			m_subtitle_pages.clear();
+			m_subs_to_pull = 0;
+		}
+	}
+
+	return ret;
+}
+
 
 RESULT eServiceMP3::trickSeek(gdouble ratio)
 {
@@ -1374,8 +1373,8 @@ void eServiceMP3::pullSubtitle()
 			{
 				eSingleLocker l(m_subs_to_pull_lock);
 				--m_subs_to_pull;
+				g_signal_emit_by_name (sink, "pull-buffer", &buffer);
 			}
-			g_signal_emit_by_name (sink, "pull-buffer", &buffer);
 			if (buffer)
 			{
 				gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
@@ -1471,9 +1470,9 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 
 	if (m_currentSubtitleStream != pid)
 	{
+		eSingleLocker l(m_subs_to_pull_lock);
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
 		m_currentSubtitleStream = pid;
-		eSingleLocker l(m_subs_to_pull_lock);
 		m_subs_to_pull = 0;
 		m_subtitle_pages.clear();
 	}
@@ -1485,7 +1484,6 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	g_object_get (G_OBJECT (m_gst_playbin), "current-text", &text_pid, NULL);
 
 	eDebug ("eServiceMP3::switched to subtitle stream %i", text_pid);
-
 
 	return 0;
 
