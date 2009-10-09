@@ -3,6 +3,7 @@ LANG_TEXT = {
 "en_EN": {
 	"tr_TR": "Turkish",
 	"fr_FR": "French",
+	"et_EE": "Estonian",
 	"fi_FI": "Finnish",
 	"pt_PT": "Portuguese",
 	"fy_x-FY": "Frisian",
@@ -35,6 +36,7 @@ LANG_TEXT = {
 "de_DE": {
 	"tr_TR": "Türkisch",
 	"fr_FR": "Französisch",
+	"et_EE": "Estonian",
 	"fi_FI": "Finnisch",
 	"pt_PT": "portugiesisch",
 	"fy_x-FY": "Friesisch",
@@ -67,6 +69,7 @@ LANG_TEXT = {
 "ar_AE": {
 	"tr_TR": "Turkish",
 	"fr_FR": "French",
+	"et_EE": "Estonian",
 	"fi_FI": "Finnish",
 	"pt_PT": "Portuguese",
 	"fy_x-FY": "Frisian",
@@ -99,6 +102,7 @@ LANG_TEXT = {
 "ca_AD": {
 	"tr_TR": "Turc",
 	"fr_FR": "Francès",
+	"et_EE": "Estonian",
 	"fi_FI": "Finlandès",
 	"pt_PT": "Portuguès",
 	"fy_x-FY": "Frisian",
@@ -131,6 +135,7 @@ LANG_TEXT = {
 "hr_HR": {
 	"tr_TR": "Turski",
 	"fr_FR": "Francuski",
+	"et_EE": "Estonian",
 	"fi_FI": "Finski",
 	"pt_PT": "Portugalski",
 	"fy_x-FY": "Frisian",
@@ -163,6 +168,7 @@ LANG_TEXT = {
 "cs_CZ": {
 	"tr_TR": "Turecky",
 	"fr_FR": "Francouzsky",
+	"et_EE": "Estonian",
 	"fi_FI": "Finsky",
 	"pt_PT": "Portugalsky",
 	"fy_x-FY": "Frisian",
@@ -195,6 +201,7 @@ LANG_TEXT = {
 "da_DK": {
 	"tr_TR": "Tyrkisk",
 	"fr_FR": "Fransk",
+	"et_EE": "Estonian",
 	"fi_FI": "Finsk",
 	"pt_PT": "Portugisisk",
 	"fy_x-FY": "Frisisk",
@@ -227,6 +234,7 @@ LANG_TEXT = {
 "nl_NL": {
 	"tr_TR": "Turks",
 	"fr_FR": "Frans",
+	"et_EE": "Estonian",
 	"fi_FI": "Fins",
 	"pt_PT": "Portugees",
 	"fy_x-FY": "Fries",
@@ -256,9 +264,43 @@ LANG_TEXT = {
 	"T1": "Gebruik de omhoog/omlaag toeten om de gewenste taal te selecteren. Druk daarna op OK.",
 	"T2": "Taalkeuze",
 },
+"et_EE": {
+	"tr_TR": "Türgi",
+	"fr_FR": "Prantsuse",
+	"et_EE": "Eesti",
+	"fi_FI": "Soome",
+	"pt_PT": "Portugali",
+	"fy_x-FY": "Friisi",
+	"it_IT": "Itaalia",
+	"no_NO": "Norra",
+	"nl_NL": "Hollandi",
+	"lv_LV": "Läti",
+	"el_GR": "Kreeka",
+	"hu_HU": "Ungari",
+	"lt_LT": "Leedu",
+	"sl_SI": "Sloveenia",
+	"hr_HR": "Horvaatia",
+	"en_EN": "Inglise",
+	"es_ES": "Hispaania",
+	"ca_AD": "Kataloonia",
+	"ru_RU": "Vene",
+	"is_IS": "Islandi",
+	"da_DK": "Taani",
+	"cs_CZ": "Tšehhi",
+	"sk_SK": "Slovaki",
+	"de_DE": "Saksa",
+	"sr_YU": "Serbia",
+	"ar_AE": "Araabia",
+	"uk_UA": "Ukraina",
+	"sv_SE": "Rootsi",
+	"pl_PL": "Poola",
+	"T1": "Vali keel üles/alla klahvidega ja vajuta OK-klahvi.",
+	"T2": "Keele valik",
+},
 "fi_FI": {
 	"tr_TR": "Turkki",
 	"fr_FR": "Ranska",
+	"et_EE": "Viro",
 	"fi_FI": "Suomi",
 	"pt_PT": "Portugali",
 	"fy_x-FY": "Friisi",
@@ -291,6 +333,7 @@ LANG_TEXT = {
 "fr_FR": {
 	"tr_TR": "Turke",
 	"fr_FR": "Français",
+	"et_EE": "Estonian",
 	"fi_FI": "Finlandais",
 	"pt_PT": "Portugais",
 	"fy_x-FY": "Frisian",
@@ -323,6 +366,7 @@ LANG_TEXT = {
 "el_GR": {
 	"tr_TR": "Τούρκικα",
 	"fr_FR": "Γαλλικά",
+	"et_EE": "Estonian",
 	"fi_FI": "Φιλλανδικά",
 	"pt_PT": "Πορτογαλλικά",
 	"fy_x-FY": "Frisian",
@@ -355,6 +399,7 @@ LANG_TEXT = {
 "hu_HU": {
 	"tr_TR": "Török",
 	"fr_FR": "Francia",
+	"et_EE": "Estonian",
 	"fi_FI": "Finn",
 	"pt_PT": "Portugál",
 	"fy_x-FY": "Frisian",
@@ -387,6 +432,7 @@ LANG_TEXT = {
 "lt_LT": {
 	"tr_TR": "Turkų",
 	"fr_FR": "Prancūzų",
+	"et_EE": "Estonian",
 	"fi_FI": "Suomių",
 	"pt_PT": "Portugalų",
 	"fy_x-FY": "Frizų",
@@ -419,6 +465,7 @@ LANG_TEXT = {
 "lv_LV": {
 	"tr_TR": "Turku",
 	"fr_FR": "Franču",
+	"et_EE": "Estonian",
 	"fi_FI": "Somu",
 	"pt_PT": "Portugāļu",
 	"fy_x-FY": "Frīzu",
@@ -451,6 +498,7 @@ LANG_TEXT = {
 "is_IS": {
 	"tr_TR": "Tyrkneska",
 	"fr_FR": "Franska",
+	"et_EE": "Estonian",
 	"fi_FI": "Finnska",
 	"pt_PT": "Portúgalska",
 	"fy_x-FY": "Frisian",
@@ -483,6 +531,7 @@ LANG_TEXT = {
 "it_IT": {
 	"tr_TR": "Turco",
 	"fr_FR": "Francese",
+	"et_EE": "Estonian",
 	"fi_FI": "Finlandese",
 	"pt_PT": "Portoghese",
 	"fy_x-FY": "Frisone",
@@ -515,6 +564,7 @@ LANG_TEXT = {
 "no_NO": {
 	"tr_TR": "Tyrkisk",
 	"fr_FR": "Fransk",
+	"et_EE": "Estonian",
 	"fi_FI": "Finsk",
 	"pt_PT": "Portugisisk",
 	"fy_x-FY": "Frisian",
@@ -547,6 +597,7 @@ LANG_TEXT = {
 "pl_PL": {
 	"tr_TR": "Turecki",
 	"fr_FR": "Francuski",
+	"et_EE": "Estonian",
 	"fi_FI": "Fiński",
 	"pt_PT": "Portugalski",
 	"fy_x-FY": "Fryzyjski",
@@ -579,6 +630,7 @@ LANG_TEXT = {
 "pt_PT": {
 	"tr_TR": "Turco",
 	"fr_FR": "Francês",
+	"et_EE": "Estonian",
 	"fi_FI": "Finlandês",
 	"pt_PT": "Português",
 	"fy_x-FY": "Frisian",
@@ -611,6 +663,7 @@ LANG_TEXT = {
 "ru_RU": {
 	"tr_TR": "Турецкий",
 	"fr_FR": "Французский",
+	"et_EE": "Estonian",
 	"fi_FI": "Финский",
 	"pt_PT": "Португальский",
 	"fy_x-FY": "Фризский",
@@ -643,6 +696,7 @@ LANG_TEXT = {
 "sr_YU": {
 	"tr_TR": "Turski",
 	"fr_FR": "Francuski",
+	"et_EE": "Estonian",
 	"fi_FI": "Finski",
 	"pt_PT": "Portugalski",
 	"fy_x-FY": "Frizijski",
@@ -675,6 +729,7 @@ LANG_TEXT = {
 "sk_SK": {
 	"tr_TR": "Turečtina",
 	"fr_FR": "Francúzština",
+	"et_EE": "Estonian",
 	"fi_FI": "Fínčina",
 	"pt_PT": "Portugalčina",
 	"fy_x-FY": "Frízština",
@@ -707,6 +762,7 @@ LANG_TEXT = {
 "sl_SI": {
 	"tr_TR": "Turško",
 	"fr_FR": "Francosko",
+	"et_EE": "Estonian",
 	"fi_FI": "Finsko",
 	"pt_PT": "Portugalsko",
 	"fy_x-FY": "Frisian",
@@ -739,6 +795,7 @@ LANG_TEXT = {
 "es_ES": {
 	"tr_TR": "Turco",
 	"fr_FR": "Francés",
+	"et_EE": "Estonian",
 	"fi_FI": "Finlandés",
 	"pt_PT": "Portugués",
 	"fy_x-FY": "Frisón",
@@ -771,6 +828,7 @@ LANG_TEXT = {
 "sv_SE": {
 	"tr_TR": "Turkiska",
 	"fr_FR": "Franska",
+	"et_EE": "Estonian",
 	"fi_FI": "Finska",
 	"pt_PT": "Portugisiska",
 	"fy_x-FY": "Frisiska",
@@ -803,6 +861,7 @@ LANG_TEXT = {
 "tr_TR": {
 	"tr_TR": "Türkçe",
 	"fr_FR": "Fransızca",
+	"et_EE": "Estonian",
 	"fi_FI": "Fince",
 	"pt_PT": "Portekizce",
 	"fy_x-FY": "Frizyece",
@@ -835,6 +894,7 @@ LANG_TEXT = {
 "uk_UA": {
 	"tr_TR": "Турецька",
 	"fr_FR": "Французька",
+	"et_EE": "Estonian",
 	"fi_FI": "Фінська",
 	"pt_PT": "Португальська",
 	"fy_x-FY": "Frisian",
@@ -867,6 +927,7 @@ LANG_TEXT = {
 "fy_x-FY": {
 	"tr_TR": "Turks",
 	"fr_FR": "Frans",
+	"et_EE": "Estonian",
 	"fi_FI": "Finsk",
 	"pt_PT": "Portugeesk",
 	"fy_x-FY": "Frysk ",

@@ -8,6 +8,7 @@ dist_install_DATA = \
 	dk.png \
 	en.png \
 	es.png \
+	ee.png \
 	fi.png \
 	fr.png \
 	gr.png \
