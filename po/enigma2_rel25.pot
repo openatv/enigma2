@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-04 21:55+0200\n"
+"POT-Creation-Date: 2009-10-09 13:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "%H:%M"
 msgstr ""
 
-#: ../lib/python/Screens/Standby.py:128
+#: ../lib/python/Screens/Standby.py:130
 #, python-format
 msgid "%d jobs are running in the background!"
 msgstr ""
@@ -86,12 +86,12 @@ msgstr ""
 msgid "* Only available when entering hidden SSID or network key"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:385
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:388
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:416
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:419
 msgid ".NFI Download failed:"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:434
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:465
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
@@ -196,13 +196,13 @@ msgid ""
 "Do you want to keep your version?"
 msgstr ""
 
-#: ../RecordTimer.py:277
+#: ../RecordTimer.py:282
 msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
 
-#: ../RecordTimer.py:283
+#: ../RecordTimer.py:288
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
@@ -212,7 +212,7 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr ""
 
-#: ../RecordTimer.py:358
+#: ../RecordTimer.py:363
 #, python-format
 msgid ""
 "A record has been started:\n"
@@ -254,7 +254,7 @@ msgid ""
 "your Dreambox. Shutdown now?"
 msgstr ""
 
-#: ../RecordTimer.py:223
+#: ../RecordTimer.py:232
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
@@ -314,6 +314,10 @@ msgstr ""
 msgid "Add Bookmark"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:127
+msgid "Add WLAN configuration?"
+msgstr ""
+
 #: ../lib/python/Plugins/Extensions/CutListEditor/plugin.py:204
 msgid "Add a mark"
 msgstr ""
@@ -321,6 +325,10 @@ msgstr ""
 #: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:43
 #: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:141
 msgid "Add a new title"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:126
+msgid "Add network configuration?"
 msgstr ""
 
 #: ../lib/python/Screens/EpgSelection.py:74
@@ -347,6 +355,20 @@ msgstr ""
 
 #: ../lib/python/Screens/InfoBarGenerics.py:1717
 msgid "Add to favourites"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:180
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:183
+msgid "Adds network configuration if enabled."
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:186
+msgid "Adds wlan configuration if enabled."
 msgstr ""
 
 #: ../lib/python/Plugins/SystemPlugins/VideoTune/VideoFinetune.py:205
@@ -385,6 +407,10 @@ msgstr ""
 msgid "All Satellites"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:19
+msgid "Always ask before sending"
+msgstr ""
+
 #: ../lib/python/Screens/LocationBox.py:384
 msgid "An empty filename is illegal."
 msgstr ""
@@ -395,6 +421,10 @@ msgstr ""
 msgid "An unknown error occured!"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:125
+msgid "Anonymize crashlog?"
+msgstr ""
+
 #: ../lib/python/Components/Language.py:18
 msgid "Arabic"
 msgstr ""
@@ -403,6 +433,10 @@ msgstr ""
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
+msgstr ""
+
+#: ../lib/python/Screens/Wizard.py:291
+msgid "Are you sure you want to exit this wizard?"
 msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:788
@@ -609,12 +643,12 @@ msgstr ""
 #: ../lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/plugin.py:366
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:72
 #: ../lib/python/Plugins/SystemPlugins/ConfigurationBackup/plugin.py:160
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:197
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:226
 #: ../lib/python/Plugins/SystemPlugins/Videomode/plugin.py:37 ../data/
 msgid "Cancel"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:323
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:354
 msgid "Cannot parse feed directory"
 msgstr ""
 
@@ -630,8 +664,8 @@ msgstr ""
 msgid "Catalan"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:207
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:243
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:236
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:272
 msgid "Change dir."
 msgstr ""
 
@@ -723,6 +757,7 @@ msgstr ""
 #: ../lib/python/Screens/NetworkSetup.py:1048
 #: ../lib/python/Screens/NetworkSetup.py:1308
 #: ../lib/python/Screens/TaskView.py:47
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:79
 msgid "Close"
 msgstr ""
 
@@ -773,7 +808,7 @@ msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:515
 #: ../lib/python/Screens/ScanSetup.py:516
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:573
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:581
 msgid "Complete"
 msgstr ""
 
@@ -845,7 +880,7 @@ msgstr ""
 msgid "Contrast"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:295
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:326
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
@@ -856,6 +891,28 @@ msgstr ""
 #: ../lib/python/Screens/InfoBarGenerics.py:1429
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:398
+msgid "Crashlog settings"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:403
+msgid "CrashlogAutoSubmit"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:403
+msgid "CrashlogAutoSubmit settings"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:92
+msgid "CrashlogAutoSubmit settings..."
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:342
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
 msgstr ""
 
 #: ../lib/python/Plugins/Extensions/DVDBurn/DVDProject.py:30
@@ -936,6 +993,14 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:163
+msgid "Decide what should be done when crashlogs are found."
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:166
+msgid "Decide what should happen to the crashlogs after submission."
+msgstr ""
+
 #: ../lib/python/Screens/SleepTimerEdit.py:78 ../data/
 msgid "Deep Standby"
 msgstr ""
@@ -943,6 +1008,10 @@ msgstr ""
 #: ../lib/python/Screens/NetworkSetup.py:206
 #: ../lib/python/Screens/TimerEdit.py:131
 msgid "Delete"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:21
+msgid "Delete crashlogs"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:386
@@ -971,7 +1040,7 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:241
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:270
 msgid "Destination directory"
 msgstr ""
 
@@ -1026,6 +1095,10 @@ msgstr ""
 msgid "Disable Subtitles"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:19
+msgid "Disable crashlog reporting"
+msgstr ""
+
 #: ../lib/python/Screens/SleepTimerEdit.py:75
 msgid "Disable timer"
 msgstr ""
@@ -1058,7 +1131,7 @@ msgstr ""
 msgid "Display >16:9 content as"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:121
+#: ../lib/python/Screens/PluginBrowser.py:123
 #, python-format
 msgid ""
 "Do you really want to REMOVE\n"
@@ -1082,7 +1155,7 @@ msgstr ""
 msgid "Do you really want to delete %s?"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:119
+#: ../lib/python/Screens/PluginBrowser.py:121
 #, python-format
 msgid ""
 "Do you really want to download\n"
@@ -1128,6 +1201,12 @@ msgstr ""
 msgid "Do you want to resume this playback?"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:169
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:37
 #: ../lib/python/Plugins/SystemPlugins/OldSoftwareUpdate/plugin.py:136
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:53
@@ -1135,6 +1214,10 @@ msgstr ""
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:19
+msgid "Don't ask, just send"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEdit.py:101
@@ -1151,12 +1234,12 @@ msgstr ""
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:205
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:334
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:234
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:365
 msgid "Download"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:695
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:726
 #: ../lib/python/Plugins/SystemPlugins/NFIFlash/plugin.py:16
 msgid "Download .NFI-Files for USB-Flasher"
 msgstr ""
@@ -1165,11 +1248,11 @@ msgstr ""
 msgid "Download Plugins"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:474
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:505
 msgid "Download of USB flasher boot image failed: "
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:132
+#: ../lib/python/Screens/PluginBrowser.py:134
 msgid "Downloadable new plugins"
 msgstr ""
 
@@ -1178,7 +1261,7 @@ msgstr ""
 msgid "Downloading"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:91
+#: ../lib/python/Screens/PluginBrowser.py:92
 msgid "Downloading plugin information. Please wait..."
 msgstr ""
 
@@ -1293,7 +1376,6 @@ msgid "EndTime"
 msgstr ""
 
 #: ../lib/python/Components/Language.py:16
-#: ../lib/python/Components/SetupDevices.py:15
 msgid "English"
 msgstr ""
 
@@ -1323,6 +1405,10 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:172
+msgid "Enter your email address so that we can contact you if needed."
+msgstr ""
+
 #: ../lib/python/Components/Task.py:284
 #: ../lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:213
 #: ../lib/python/Plugins/SystemPlugins/SoftwareUpdate/plugin.py:337
@@ -1338,6 +1424,10 @@ msgstr ""
 msgid ""
 "Error: %s\n"
 "Retry?"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:24
+msgid "Estonian"
 msgstr ""
 
 #: ../lib/python/Components/Harddisk.py:182
@@ -1359,7 +1449,7 @@ msgstr ""
 #: ../lib/python/Plugins/Extensions/DVDBurn/DVDToolbox.py:34
 #: ../lib/python/Plugins/Extensions/DVDBurn/TitleList.py:104
 #: ../lib/python/Plugins/Extensions/DVDPlayer/plugin.py:504
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:203
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:232
 msgid "Exit"
 msgstr ""
 
@@ -1427,11 +1517,11 @@ msgstr ""
 msgid "Finished restarting your network"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:24
+#: ../lib/python/Components/Language.py:25
 msgid "Finnish"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:453
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:484
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
@@ -1453,7 +1543,7 @@ msgstr ""
 msgid "Frame size in full view"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:25
+#: ../lib/python/Components/Language.py:26
 msgid "French"
 msgstr ""
 
@@ -1490,7 +1580,7 @@ msgstr ""
 msgid "Friday"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:43
+#: ../lib/python/Components/Language.py:44
 msgid "Frisian"
 msgstr ""
 
@@ -1527,11 +1617,10 @@ msgid "Genre"
 msgstr ""
 
 #: ../lib/python/Components/Language.py:17
-#: ../lib/python/Components/SetupDevices.py:15
 msgid "German"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:93
+#: ../lib/python/Screens/PluginBrowser.py:94
 msgid "Getting plugin information. Please wait..."
 msgstr ""
 
@@ -1548,7 +1637,7 @@ msgstr ""
 msgid "Graphical Multi EPG"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:26
+#: ../lib/python/Components/Language.py:27
 msgid "Greek"
 msgstr ""
 
@@ -1590,7 +1679,11 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:27
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:120
+msgid "How to handle found crashlogs?"
+msgstr ""
+
+#: ../lib/python/Components/Language.py:28
 msgid "Hungarian"
 msgstr ""
 
@@ -1608,7 +1701,7 @@ msgstr ""
 msgid "ISO path"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:30
+#: ../lib/python/Components/Language.py:31
 msgid "Icelandic"
 msgstr ""
 
@@ -1643,9 +1736,13 @@ msgstr ""
 msgid "In Progress"
 msgstr ""
 
-#: ../RecordTimer.py:226
+#: ../RecordTimer.py:235
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:122
+msgid "Include your email and name (optional) in the mail?"
 msgstr ""
 
 #: ../lib/python/Screens/Satconfig.py:285
@@ -1715,7 +1812,7 @@ msgstr ""
 msgid "Is this videomode ok?"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:31
+#: ../lib/python/Components/Language.py:32
 msgid "Italian"
 msgstr ""
 
@@ -1745,7 +1842,7 @@ msgstr ""
 msgid "LOF/L"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:97
+#: ../lib/python/Components/Language.py:98
 #: ../lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:150 ../data/
 msgid "Language selection"
 msgstr ""
@@ -1759,7 +1856,7 @@ msgstr ""
 msgid "Latitude"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:29
+#: ../lib/python/Components/Language.py:30
 msgid "Latvian"
 msgstr ""
 
@@ -1801,12 +1898,12 @@ msgstr ""
 msgid "Linked titles with a DVD menu"
 msgstr ""
 
-#: ../lib/python/Components/config.py:951
 #: ../lib/python/Components/FileList.py:173
+#: ../lib/python/Components/config.py:951
 msgid "List of Storage Devices"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:28
+#: ../lib/python/Components/Language.py:29
 msgid "Lithuanian"
 msgstr ""
 
@@ -1822,7 +1919,7 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:587
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:595
 msgid "Log results to harddisk"
 msgstr ""
 
@@ -2051,8 +2148,8 @@ msgid ""
 "(Timeout reading PAT)"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:344
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:359
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:375
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:390
 #: ../lib/python/Plugins/SystemPlugins/NFIFlash/flasher.py:155
 msgid "No details for this image file"
 msgstr ""
@@ -2092,7 +2189,7 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:533
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:564
 msgid "No useable USB stick found"
 msgstr ""
 
@@ -2135,6 +2232,14 @@ msgstr ""
 msgid "No, but restart from begin"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:281
+msgid "No, not now"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:282
+msgid "No, send them never"
+msgstr ""
+
 #: ../lib/python/Screens/ScanSetup.py:564
 #: ../lib/python/Screens/ScanSetup.py:607
 #: ../lib/python/Screens/ScanSetup.py:652
@@ -2157,7 +2262,7 @@ msgstr ""
 msgid "North"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:32
+#: ../lib/python/Components/Language.py:33
 msgid "Norwegian"
 msgstr ""
 
@@ -2228,6 +2333,10 @@ msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:399
 msgid "Only Free scan"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:176
+msgid "Optionally enter your name if you want to."
 msgstr ""
 
 #: ../lib/python/Screens/ServiceInfo.py:139
@@ -2330,11 +2439,11 @@ msgstr ""
 msgid "Please change recording endtime"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:295
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:326
 msgid "Please check your network settings!"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:237
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:266
 msgid "Please choose .NFI image file from feed server to download"
 msgstr ""
 
@@ -2347,7 +2456,7 @@ msgstr ""
 msgid "Please choose he package..."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:507
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:538
 msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
@@ -2385,7 +2494,15 @@ msgstr ""
 msgid "Please enter the old pin code"
 msgstr ""
 
-#: ../RecordTimer.py:360
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:104
+msgid "Please enter your email address here:"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:106
+msgid "Please enter your name here (optional):"
+msgstr ""
+
+#: ../RecordTimer.py:365
 msgid ""
 "Please note that the previously selected media could not be accessed and "
 "therefore the default directory is being used instead."
@@ -2426,7 +2543,7 @@ msgstr ""
 msgid "Please select tag to filter..."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:227
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:256
 msgid "Please select target directory or medium"
 msgstr ""
 
@@ -2441,7 +2558,7 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 
-#: ../lib/python/Components/Language.py:96
+#: ../lib/python/Components/Language.py:97
 msgid ""
 "Please use the UP and DOWN keys to select your language. Afterwards press "
 "the OK button."
@@ -2451,7 +2568,7 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:227
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:235
 msgid "Please wait while scanning is in progress..."
 msgstr ""
 
@@ -2485,7 +2602,7 @@ msgstr ""
 msgid "Polarization"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:33
+#: ../lib/python/Components/Language.py:34
 msgid "Polish"
 msgstr ""
 
@@ -2505,7 +2622,7 @@ msgstr ""
 msgid "Port D"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:34
+#: ../lib/python/Components/Language.py:35
 msgid "Portuguese"
 msgstr ""
 
@@ -2560,7 +2677,7 @@ msgstr ""
 msgid "Press OK to edit the settings."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:551
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:559
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr ""
@@ -2571,6 +2688,10 @@ msgstr ""
 
 #: ../lib/python/Screens/ScanSetup.py:300
 msgid "Press OK to start the scan"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:391
+msgid "Press OK to view full changelog"
 msgstr ""
 
 #: ../lib/python/Screens/EpgSelection.py:59
@@ -2612,7 +2733,7 @@ msgstr ""
 msgid "Providers"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:573
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:581
 msgid "Quick"
 msgstr ""
 
@@ -2634,11 +2755,12 @@ msgstr ""
 msgid "Ram Disk"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:573
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:581
 msgid "Random"
 msgstr ""
 
 #: ../lib/python/Components/ConfigList.py:196
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:225
 msgid "Really close without saving settings?"
 msgstr ""
 
@@ -2650,15 +2772,15 @@ msgstr ""
 msgid "Really exit the subservices quickzap?"
 msgstr ""
 
-#: ../lib/python/Screens/Standby.py:133
+#: ../lib/python/Screens/Standby.py:135
 msgid "Really reboot now?"
 msgstr ""
 
-#: ../lib/python/Screens/Standby.py:137
+#: ../lib/python/Screens/Standby.py:139
 msgid "Really restart now?"
 msgstr ""
 
-#: ../lib/python/Screens/Standby.py:131
+#: ../lib/python/Screens/Standby.py:133
 msgid "Really shutdown now?"
 msgstr ""
 
@@ -2683,7 +2805,7 @@ msgstr ""
 msgid "Recording"
 msgstr ""
 
-#: ../lib/python/Screens/Standby.py:122
+#: ../lib/python/Screens/Standby.py:124
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
@@ -2712,15 +2834,15 @@ msgstr ""
 msgid "Remove currently selected title"
 msgstr ""
 
-#: ../lib/python/Screens/PluginBrowser.py:134
+#: ../lib/python/Screens/PluginBrowser.py:136
 msgid "Remove plugins"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:437
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:468
 msgid "Remove the broken .NFI file?"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:385
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:416
 msgid "Remove the incomplete .NFI file?"
 msgstr ""
 
@@ -2745,6 +2867,10 @@ msgstr ""
 
 #: ../lib/python/Screens/LocationBox.py:92
 msgid "Rename"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:21
+msgid "Rename crashlogs"
 msgstr ""
 
 #: ../lib/python/Screens/TimerEntry.py:138
@@ -2843,7 +2969,7 @@ msgstr ""
 msgid "Running"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:35
+#: ../lib/python/Components/Language.py:36
 msgid "Russian"
 msgstr ""
 
@@ -2899,6 +3025,7 @@ msgstr ""
 #: ../lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:213
 #: ../lib/python/Plugins/Extensions/MediaPlayer/settings.py:70
 #: ../lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/plugin.py:367
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:80
 msgid "Save"
 msgstr ""
 
@@ -3038,8 +3165,8 @@ msgstr ""
 msgid "Select channel to record from"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:209
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:233
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:238
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:262
 msgid "Select image"
 msgstr ""
 
@@ -3051,7 +3178,7 @@ msgstr ""
 msgid "Select service to add..."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:231
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:260
 msgid "Selected source image"
 msgstr ""
 
@@ -3071,7 +3198,7 @@ msgstr ""
 msgid "Sequence repeat"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:36
+#: ../lib/python/Components/Language.py:37
 msgid "Serbian"
 msgstr ""
 
@@ -3231,11 +3358,11 @@ msgstr ""
 msgid "Slot %d"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:37
+#: ../lib/python/Components/Language.py:38
 msgid "Slovakian"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:38
+#: ../lib/python/Components/Language.py:39
 msgid "Slovenian"
 msgstr ""
 
@@ -3268,7 +3395,7 @@ msgstr ""
 msgid "South"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:39
+#: ../lib/python/Components/Language.py:40
 msgid "Spanish"
 msgstr ""
 
@@ -3340,11 +3467,11 @@ msgstr ""
 msgid "Stop test"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:578
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:586
 msgid "Stop testing plane after # failed transponders"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:582
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:590
 msgid "Stop testing plane after # successful transponders"
 msgstr ""
 
@@ -3386,7 +3513,7 @@ msgstr ""
 msgid "Swap Services"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:40
+#: ../lib/python/Components/Language.py:41
 msgid "Swedish"
 msgstr ""
 
@@ -3453,11 +3580,11 @@ msgstr ""
 msgid "Terrestrial provider"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:648
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:656
 msgid "Test DiSEqC settings"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:574
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:582
 msgid "Test Type"
 msgstr ""
 
@@ -3476,13 +3603,13 @@ msgid ""
 "players) instead?"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:622
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:653
 msgid ""
 "The USB stick is now bootable. Do you want to download the latest image from "
 "the feed server and save it on the stick?"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:535
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:566
 #, python-format
 msgid ""
 "The following device was found:\n"
@@ -3509,7 +3636,7 @@ msgid ""
 "risk!"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:437
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:468
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
@@ -3534,7 +3661,7 @@ msgstr ""
 msgid "The pin codes you entered are different."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:519
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:527
 #, python-format
 msgid "The results have been written to %s."
 msgstr ""
@@ -3547,7 +3674,7 @@ msgstr ""
 msgid "The sleep timer has been disabled."
 msgstr ""
 
-#: ../RecordTimer.py:449
+#: ../RecordTimer.py:483
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
@@ -3560,7 +3687,7 @@ msgid ""
 "Please install it."
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:645 ../data/
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:676 ../data/
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
@@ -3672,7 +3799,7 @@ msgstr ""
 msgid "Timer Type"
 msgstr ""
 
-#: ../RecordTimer.py:471
+#: ../RecordTimer.py:505
 msgid ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
@@ -3706,7 +3833,7 @@ msgstr ""
 msgid "Titleset mode"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:667
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:698
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
 "1) Turn off your box with the rear power switch and plug in the bootable USB "
@@ -3807,7 +3934,7 @@ msgstr ""
 msgid "Tuner status"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:41
+#: ../lib/python/Components/Language.py:42
 msgid "Turkish"
 msgstr ""
 
@@ -3831,11 +3958,11 @@ msgstr ""
 msgid "USB Stick"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:210
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:239
 msgid "USB stick wizard"
 msgstr ""
 
-#: ../lib/python/Components/Language.py:42
+#: ../lib/python/Components/Language.py:43
 msgid "Ukrainian"
 msgstr ""
 
@@ -4040,6 +4167,10 @@ msgstr ""
 msgid "West"
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:121
+msgid "What to do with submitted crashlogs?"
+msgstr ""
+
 #: ../lib/python/Screens/FactoryReset.py:5
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
@@ -4062,7 +4193,7 @@ msgstr ""
 msgid "Wireless Network"
 msgstr ""
 
-#: ../RecordTimer.py:353
+#: ../RecordTimer.py:358
 msgid "Write error while recording. Disk full?\n"
 msgstr ""
 
@@ -4084,13 +4215,18 @@ msgid "Year"
 msgstr ""
 
 #: ../lib/python/Screens/Ci.py:25 ../lib/python/Screens/Ci.py:27
-#: ../lib/python/Screens/InfoBar.py:162 ../data/
-#: ../lib/python/Plugins/SystemPlugins/Videomode/
+#: ../lib/python/Screens/InfoBar.py:162
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:279
+#: ../data/ ../lib/python/Plugins/SystemPlugins/Videomode/
 msgid "Yes"
 msgstr ""
 
 #: ../lib/python/Screens/InfoBar.py:166
 msgid "Yes, and delete this movie"
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:280
+msgid "Yes, and don't ask again"
 msgstr ""
 
 #: ../lib/python/Screens/InfoBar.py:164
@@ -4103,7 +4239,7 @@ msgstr ""
 msgid "You cannot delete this!"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:452
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:483
 msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
@@ -4130,10 +4266,18 @@ msgid ""
 "try again."
 msgstr ""
 
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:123
+msgid "Your email address:"
+msgstr ""
+
 #: ../lib/python/Plugins/SystemPlugins/FrontprocessorUpgrade/plugin.py:34
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
+msgstr ""
+
+#: ../lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:124
+msgid "Your name (optional):"
 msgstr ""
 
 #: ../lib/python/Screens/NetworkSetup.py:631
@@ -4364,7 +4508,7 @@ msgstr ""
 msgid "chapters"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:228
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:257
 msgid "choose destination directory"
 msgstr ""
 
@@ -4576,10 +4720,10 @@ msgstr ""
 msgid "exit networkadapter setup menu"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:573
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:597
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:613
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:625
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:604
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:628
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:644
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:656
 #: ../lib/python/Plugins/SystemPlugins/NFIFlash/flasher.py:246
 msgid "failed"
 msgstr ""
@@ -4889,8 +5033,8 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:583
 #: ../lib/python/Screens/ScanSetup.py:590
 #: ../lib/python/Screens/ScanSetup.py:613
-#: ../lib/python/Components/config.py:318
 #: ../lib/python/Components/UsageConfig.py:27
+#: ../lib/python/Components/config.py:318
 msgid "off"
 msgstr ""
 
@@ -4898,8 +5042,8 @@ msgstr ""
 #: ../lib/python/Screens/ScanSetup.py:584
 #: ../lib/python/Screens/ScanSetup.py:591
 #: ../lib/python/Screens/ScanSetup.py:614
-#: ../lib/python/Components/config.py:318
 #: ../lib/python/Components/UsageConfig.py:27
+#: ../lib/python/Components/config.py:318
 msgid "on"
 msgstr ""
 
@@ -5107,7 +5251,7 @@ msgstr ""
 msgid "select CAId's"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:238
+#: ../lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py:267
 msgid "select image from server"
 msgstr ""
 
@@ -5383,7 +5527,7 @@ msgstr ""
 msgid "whitelist"
 msgstr ""
 
-#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:252
+#: ../lib/python/Plugins/SystemPlugins/DiseqcTester/plugin.py:260
 msgid "working"
 msgstr ""
 
@@ -5708,11 +5852,6 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr ""
 
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 #: ../data/
 msgid "Enter Fast Forward at speed"
 msgstr ""
@@ -5807,6 +5946,10 @@ msgstr ""
 
 #: ../data/
 msgid "Job View"
+msgstr ""
+
+#: ../data/
+msgid "Keyboard"
 msgstr ""
 
 #: ../data/
@@ -6217,18 +6360,6 @@ msgstr ""
 msgid "USB"
 msgstr ""
 
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 #: ../data/
 msgid "Use non-smooth winding at speeds above"
 msgstr ""
