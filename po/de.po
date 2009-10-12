@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-09 13:06+0200\n"
-"PO-Revision-Date: 2009-09-03 14:50+0100\n"
+"POT-Creation-Date: 2009-10-12 12:40+0200\n"
+"PO-Revision-Date: 2009-10-12 12:38+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,13 @@ msgstr ""
 "\n"
 "Wählen Sie Ihr Sicherungs-Laufwerk.\n"
 "Aktuelles Laufwerk: "
+
+msgid ""
+"\n"
+"System will restart after the restore!"
+msgstr ""
+"\n"
+"Das System wird nach der Wiederherstellung neu starten!"
 
 msgid ""
 "\n"
@@ -991,6 +998,11 @@ msgstr ""
 
 msgid ""
 "Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
 "Send them to Dream Multimedia?"
 msgstr ""
 
@@ -1481,12 +1493,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Anfängliche Vorlaufgeschwindigkeit eingeben"
 
@@ -4250,19 +4256,6 @@ msgstr "Verwende Stromaufnahmen-Messung"
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr ""
 
@@ -4290,6 +4283,9 @@ msgstr ""
 
 msgid "Use this video enhancement settings?"
 msgstr ""
+
+msgid "Use time of currently running service"
+msgstr "Benutze Zeit vom aktuell laufenden Programm"
 
 msgid "Use usals for this sat"
 msgstr "USALS für diesen Sat benutzen"
@@ -5699,13 +5695,6 @@ msgstr "umgeschaltet"
 #~ msgstr ""
 #~ "\n"
 #~ "Enigma2 wird nach der Wiederherstellung neu starten"
-
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "Das System wird nach der Wiederherstellung neu starten!"
 
 #~ msgid "AGC:"
 #~ msgstr "AGC:"
