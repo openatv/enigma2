@@ -893,16 +893,16 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="introduction" render="Label" position="0,370" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 	</screen>
 	<!-- Sleeptimer edit -->
-	<screen name="SleepTimerEdit" position="center,center" size="500,200" title="Sleep Timer">
+	<screen name="SleepTimerEdit" position="center,center" size="500,240" title="Sleep Timer">
 		<widget name="current_status" position="40,40" size="400,30" valign="center" font="Regular;20" />
 		<widget name="red" pixmap="skin_default/buttons/button_red.png" position="10,88" size="12,12" alphatest="on" />
 		<widget name="green" pixmap="skin_default/buttons/button_green.png" position="10,128" size="12,12" alphatest="on" />
 		<widget name="yellow" pixmap="skin_default/buttons/button_yellow.png" position="10,168" size="12,12" alphatest="on" />
-		<widget name="blue" pixmap="skin_default/buttons/button_blue.png" position="10,168" size="12,12" alphatest="on" />
+		<widget name="blue" pixmap="skin_default/buttons/button_blue.png" position="10,208" size="12,12" alphatest="on" />
 		<widget name="red_text" position="40,80" size="400,30" valign="center" font="Regular;20" />
 		<widget name="green_text" position="40,120" size="400,30" valign="center" font="Regular;20" />
 		<widget name="yellow_text" position="40,160" size="400,30" valign="center" font="Regular;20" />
-		<widget name="blue_text" position="40,200" size="400,30" valign="center" font="Regular;20" />
+		<widget name="blue_text" position="40,200" size="450,30" valign="center" font="Regular;20" />
 		<widget name="pretext" position="15,10" size="235,25" font="Regular;19" />
 		<widget name="input" position="260,10" size="40,25" font="Regular;19" />
 		<widget name="aftertext" position="305,10" size="100,25" font="Regular;19" />
