@@ -57,12 +57,12 @@ class FileBrowser(Screen, HelpableScreen):
 		self.filelist = FileList(currDir, matchingPattern=pattern)
 		self["filelist"] = self.filelist
 
-		self["FilelistActions"] = ActionMap(["OkCancelActions"],
+		self["FilelistActions"] = ActionMap(["SetupActions"],
 			{
+				"save": self.ok,
 				"ok": self.ok,
 				"cancel": self.exit
 			})
-
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self.onLayoutFinish.append(self.layoutFinished)

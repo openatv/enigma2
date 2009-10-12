@@ -1170,6 +1170,14 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="text" position="12,35" size="536,46" font="Regular;46" transparent="1" noWrap="1" halign="right" />
 		<widget name="list" position="10,100" size="540,225" selectionDisabled="1" transparent="1" />
 	</screen>
+	<!-- FileBrowser -->
+	<screen name="FileBrowser" position="center,center" size="520,430" title="DVD File Browser" >
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
+	</screen>
 	<!-- VideoSetup (VideoMode Plugin) -->
 	<screen name="VideoSetup" position="center,center" size="560,430" title="VideoSetup">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />

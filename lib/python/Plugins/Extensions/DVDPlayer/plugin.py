@@ -7,6 +7,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.FileList import FileList
 from Components.MenuList import MenuList
@@ -20,12 +21,12 @@ import servicedvd # load c++ part of dvd player plugin
 lastpath = ""
 
 class FileBrowser(Screen):
-	skin = """
-	<screen name="FileBrowser" position="100,100" size="520,376" title="DVD File Browser" >
-		<widget name="filelist" position="0,0" size="520,376" scrollbarMode="showOnDemand" />
-	</screen>"""
+
 	def __init__(self, session, dvd_filelist = [ ]):
 		Screen.__init__(self, session)
+
+		# for the skin: first try FileBrowser_DVDPlayer, then FileBrowser, this allows individual skinning
+		self.skinName = ["FileBrowser_DVDPlayer", "FileBrowser" ]
 
 		self.dvd_filelist = dvd_filelist
 		if len(dvd_filelist):	
@@ -42,11 +43,18 @@ class FileBrowser(Screen):
 			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso)", useServiceRef = True)
 			self["filelist"] = self.filelist
 
-		self["FilelistActions"] = ActionMap(["OkCancelActions"],
+		self["FilelistActions"] = ActionMap(["SetupActions"],
 			{
+				"save": self.ok,
 				"ok": self.ok,
 				"cancel": self.exit
 			})
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("DVD File Browser"))
 
 	def ok(self):
 		if len(self.dvd_filelist):
