@@ -109,7 +109,7 @@
 		</widget>
 	</screen>
 	<!-- Channel selection - Radio -->
-	<screen name="ChannelSelectionRadio" position="center,center" size="560,298" title="Channel Selection">
+	<screen name="ChannelSelectionRadio" position="center,95" size="560,298" title="Channel Selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -700,7 +700,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" backgroundColor="transpBlack" foregroundColor="white" />
 	</screen>
 	<!-- Radio infobar -->
-	<screen name="RadioInfoBar" position="85,408" size="560,120" zPosition="-1" title="Radio">
+	<screen name="RadioInfoBar" position="center,408" size="560,120" zPosition="-1" title="Radio">
 		<widget source="session.CurrentService" render="Label" position="5,1" size="325,26" font="Regular;20" noWrap="1" transparent="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
