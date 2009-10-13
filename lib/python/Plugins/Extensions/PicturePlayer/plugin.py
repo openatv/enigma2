@@ -145,34 +145,32 @@ class picshow(Screen):
 #------------------------------------------------------------------------------------------
 
 class Pic_Setup(Screen, ConfigListScreen):
-	skin = """
-		<screen name="Pic_Setup" position="center,center" size="550,350" title="Settings" >
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget name="config" position="5,50" size="540,300" />
-		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
+		self.skinName = ["PicturePlayerSetup", "Setup" ]
+		self.setup_title = _("Settings")
+		self.onChangedEntry = [ ]
 		self.session = session
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		self["actions"] = ActionMap(["SetupActions"],
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"ok": self.keySave,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self.setTitle(_("Settings"))
+		self.setTitle(self.setup_title)
 
 	def createSetup(self):
 		self.list = []
@@ -192,6 +190,21 @@ class Pic_Setup(Screen, ConfigListScreen):
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
 
 #---------------------------------------------------------------------------
 
