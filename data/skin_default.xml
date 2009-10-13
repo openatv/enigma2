@@ -655,17 +655,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="key0" position="132,92" size="130,30" font="Console;12" halign="center" valign="center" />
 		<widget name="help2" position="262,92" size="130,30" font="Console;16" halign="center" valign="center" />
 	</screen>
-	<!-- Parental control - change pin -->
-	<screen name="ParentalControlChangePin" position="center,center" size="520,160" title="Change pin code">
-		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
-	</screen>
 	<!-- Parental control - editor -->
 	<screen name="ParentalControlEditor" position="center,center" size="520,400" title="Parental control services Editor">
 		<widget name="servicelist" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
-	</screen>
-	<!-- Parental control - setup -->
-	<screen name="ParentalControlSetup" position="center,center" size="520,400" title="Parental control setup">
-		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Picture in picture -->
 	<screen name="PictureInPicture" position="400,60" zPosition="-1" size="240,192" flags="wfNoBorder">
