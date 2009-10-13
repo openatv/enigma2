@@ -1,11 +1,13 @@
 from GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList
+from Sources.StaticText import StaticText
 
 class GUISkin:
 	__module__ = __name__
 
 	def __init__(self):
+		self["Title"] = StaticText()
 		self.onLayoutFinish = [ ]
 		self.summaries = CList()
 		self.instance = None
@@ -63,8 +65,13 @@ class GUISkin:
 
 	def setTitle(self, title):
 		self.instance.setTitle(title)
-		self.title = title
+		self["Title"].text = title
 		self.summaries.setTitle(title)
+
+	def getTitle(self):
+		return self["Title"].text
+
+	title = property(getTitle, setTitle)
 
 	def setDesktop(self, desktop):
 		self.desktop = desktop
@@ -88,6 +95,6 @@ class GUISkin:
 
 		# we need to make sure that certain attributes come last
 		self.skinAttributes.sort(key=lambda a: {"position": 1}.get(a[0], 0))
-		self.title = title
+		self["Title"].text = title
 		applyAllAttributes(self.instance, self.desktop, self.skinAttributes, self.scale)
 		self.createGUIScreen(self.instance, self.desktop)
