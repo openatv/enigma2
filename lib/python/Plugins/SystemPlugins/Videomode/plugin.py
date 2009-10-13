@@ -13,6 +13,8 @@ class VideoSetup(Screen, ConfigListScreen):
 
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
+		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
+		self.skinName = ["VideoSetup", "Setup" ]
 		self.setup_title = _("A/V Settings")
 		self.hw = hw
 		self.onChangedEntry = [ ]
