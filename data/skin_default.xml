@@ -861,14 +861,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Setup -->
 	<screen name="Setup" position="center,center" size="560,430" title="Setup">
-		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<widget name="ok" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="canceltext" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="oktext" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="title" position="10,45" size="280,35" font="Regular;23" />
-		<widget name="config" position="10,95" size="540,325" scrollbarMode="showOnDemand" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="config" position="5,50" size="550,325" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Simple channelselection -->
 	<screen name="SimpleChannelSelection" position="center,center" size="560,430" title="Channel Selection">
@@ -1107,9 +1104,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- LCD screen (setup) -->
 	<screen name="SetupSummary" position="0,0" size="132,64">
-		<widget name="SetupTitle" position="6,0" size="120,16" font="Regular;12" />
-		<widget name="SetupEntry" position="6,16" size="120,32" font="Regular;12" />
-		<widget name="SetupValue" position="6,48" size="120,16" font="Regular;12" />
+		<widget source="SetupTitle" render="Label" position="6,0" size="120,16" font="Regular;12" />
+		<widget source="SetupEntry" render="Label" position="6,16" size="120,32" font="Regular;12" />
+		<widget source="SetupValue" render="Label" position="6,48" size="120,16" font="Regular;12" />
 	</screen>
 	<!-- LCD screen (misc) -->
 	<screen name="SimpleSummary" position="0,0" size="132,64">
