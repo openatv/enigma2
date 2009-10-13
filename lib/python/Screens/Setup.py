@@ -3,8 +3,7 @@ from Components.ActionMap import NumberActionMap
 from Components.config import config, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
-from Components.Label import Label
-from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
 
 import xml.etree.cElementTree
 
@@ -27,26 +26,21 @@ class SetupError(Exception):
         return self.msg
 
 class SetupSummary(Screen):
-	skin = """
-	<screen position="6,0" size="120,64">
-		<widget name="SetupTitle" position="6,0" size="120,16" font="Regular;12" />
-		<widget name="SetupEntry" position="6,16" size="120,32" font="Regular;12" />
-		<widget name="SetupValue" position="6,48" size="120,16" font="Regular;12" />
-	</screen>"""
 
 	def __init__(self, session, parent):
+
 		Screen.__init__(self, session, parent = parent)
-		self["SetupTitle"] = Label(_(parent.setup_title))
-		self["SetupEntry"] = Label("")
-		self["SetupValue"] = Label("")
+		self["SetupTitle"] = StaticText(_(parent.setup_title))
+		self["SetupEntry"] = StaticText("")
+		self["SetupValue"] = StaticText("")
 		self.onShow.append(self.addWatcher)
 		self.onHide.append(self.removeWatcher)
-		
+
 	def addWatcher(self):
 		self.parent.onChangedEntry.append(self.selectionChanged)
 		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
-	
+
 	def removeWatcher(self):
 		self.parent.onChangedEntry.remove(self.selectionChanged)
 		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
@@ -77,7 +71,6 @@ class Setup(ConfigListScreen, Screen):
 
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
-
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup" ]
 
@@ -88,13 +81,9 @@ class Setup(ConfigListScreen, Screen):
 		self.refill(list)
 
 		#check for list.entries > 0 else self.close
-		self["title"] = Label(_(self.setup_title))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
-		self["oktext"] = Label(_("OK"))
-		self["canceltext"] = Label(_("Cancel"))
-		self["ok"] = Pixmap()
-		self["cancel"] = Pixmap()
-		
 		self["actions"] = NumberActionMap(["SetupActions"], 
 			{
 				"cancel": self.keyCancel,
@@ -104,6 +93,10 @@ class Setup(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
 
 		self.changedEntry()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_(self.setup_title))
 
 	# for summary:
 	def changedEntry(self):
