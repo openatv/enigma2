@@ -1139,7 +1139,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- LCD screen (misc) -->
 	<screen name="SimpleSummary" position="0,0" size="132,64">
-		<widget name="Title" position="6,0" size="120,64" font="Regular;16" halign="center" valign="center" />
+		<widget source="parent.Title" render="Label" position="6,0" size="120,64" font="Regular;16" halign="center" valign="center" />
 	</screen>
 	<!-- LCD screen (standby) -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
