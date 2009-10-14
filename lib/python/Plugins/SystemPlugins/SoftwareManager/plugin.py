@@ -1217,9 +1217,9 @@ class PluginManagerInfo(Screen):
 		if action == 'install':
 			return(( _('Installing'), info, installpng, divpng))
 		elif action == 'remove':
-			return(( _('Removeing'), info, removepng, divpng))
+			return(( _('Removing'), info, removepng, divpng))
 		else:
-			return(( _('Upgradeing'), info, upgradepng, divpng))
+			return(( _('Upgrading'), info, upgradepng, divpng))
 
 	def exit(self):
 		self.close(False)
