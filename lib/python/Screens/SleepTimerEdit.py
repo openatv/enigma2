@@ -5,7 +5,9 @@ from Components.Input import Input
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
+from enigma import eEPGCache
 from SleepTimer import SleepTimer
+from time import time
 
 config.SleepTimer.defaulttime = ConfigInteger(default = 30)
 
@@ -37,7 +39,6 @@ class SleepTimerEdit(Screen):
 		self.status = True
 		self.updateColors()
 		
-		
 		self["pretext"] = Label(_("Shutdown Dreambox after"))
 		self["aftertext"] = Label(_("minutes"))
 		
@@ -65,7 +66,8 @@ class SleepTimerEdit(Screen):
 			"deleteBackward": self.deleteBackward,
 			"disableTimer": self.disableTimer,
 			"toggleAction": self.toggleAction,
-			"toggleAsk": self.toggleAsk
+			"toggleAsk": self.toggleAsk,
+			"useServiceTime": self.useServiceTime
 		}, -1)
 
 	def updateColors(self):
@@ -83,7 +85,7 @@ class SleepTimerEdit(Screen):
 			self["yellow_text"].setText(_("Ask before shutdown:") + " " + _("yes"))
 		else:
 			self["yellow_text"].setText(_("Ask before shutdown:") + " " + _("no"))
-		self["blue_text"].setText(_("Settings"))
+		self["blue_text"].setText(_("Use time of currently running service"))
 
 	def cancel(self):
 		config.SleepTimer.ask.cancel()
@@ -94,6 +96,7 @@ class SleepTimerEdit(Screen):
 		if self.status:
 			time = int(self["input"].getText())
 			config.SleepTimer.defaulttime.setValue(time)
+			config.SleepTimer.defaulttime.save()
 			self.session.nav.SleepTimer.setSleepTime(time)
 			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
 		else:
@@ -111,16 +114,16 @@ class SleepTimerEdit(Screen):
 
 	def selectHome(self):
 		self["input"].home()
-	
+
 	def selectEnd(self):
 		self["input"].end()
-	
+
 	def deleteForward(self):
 		self["input"].delete()
-	
+
 	def deleteBackward(self):
 		self["input"].deleteBackward()
-	
+
 	def disableTimer(self):
 		self.status = not self.status
 		self.updateColors()
@@ -135,3 +138,31 @@ class SleepTimerEdit(Screen):
 	def toggleAsk(self):
 		config.SleepTimer.ask.value = not config.SleepTimer.ask.value
 		self.updateColors()
+		
+	def useServiceTime(self):
+		remaining = None
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if ref:
+			path = ref.getPath()
+			if path: # Movie
+				service = self.session.nav.getCurrentService()
+				seek = service and service.seek()
+				if seek:
+					length = seek.getLength()
+					position = seek.getPlayPosition()
+					if length and position:
+						remaining = length[1] - position[1]
+						if remaining > 0:
+							remaining = remaining / 90000
+			else: # DVB
+				epg = eEPGCache.getInstance()
+				event = epg.lookupEventTime(ref, -1, 0)
+				if event:
+					now = int(time())
+					start = event.getBeginTime()
+					duration = event.getDuration()
+					end = start + duration
+					remaining = end - now
+		if remaining:
+			config.SleepTimer.defaulttime.value = (remaining / 60) + 2
+			self["input"].setText(str((remaining / 60) + 2))

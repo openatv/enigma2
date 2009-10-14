@@ -33,7 +33,7 @@ enigma2.pot:
 	./xml2po.py	../lib/python/Plugins/SystemPlugins/SoftwareManager/ >> enigma2.pot
 	./xml2po.py	../lib/python/Plugins/SystemPlugins/CleanupWizard/ >> enigma2.pot
 	cat enigma2_rel25.pot | tail -n +19 >> enigma2.pot
-	msguniq -o enigma2uniq.pot enigma2.pot
+	msguniq --no-location -o enigma2uniq.pot enigma2.pot
 	$(RM) enigma2.pot
 	mv enigma2uniq.pot enigma2.pot
 

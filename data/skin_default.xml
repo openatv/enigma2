@@ -129,7 +129,7 @@
 		</widget>
 	</screen>
 	<!-- Channel selection - Radio -->
-	<screen name="ChannelSelectionRadio" position="center,center" size="560,298" title="Channel Selection">
+	<screen name="ChannelSelectionRadio" position="center,95" size="560,298" title="Channel Selection">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -679,17 +679,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="key0" position="132,92" size="130,30" font="Console;12" halign="center" valign="center" />
 		<widget name="help2" position="262,92" size="130,30" font="Console;16" halign="center" valign="center" />
 	</screen>
-	<!-- Parental control - change pin -->
-	<screen name="ParentalControlChangePin" position="center,center" size="520,160" title="Change pin code">
-		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
-	</screen>
 	<!-- Parental control - editor -->
 	<screen name="ParentalControlEditor" position="center,center" size="520,400" title="Parental control services Editor">
 		<widget name="servicelist" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
-	</screen>
-	<!-- Parental control - setup -->
-	<screen name="ParentalControlSetup" position="center,center" size="520,400" title="Parental control setup">
-		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Picture in picture -->
 	<screen name="PictureInPicture" position="400,60" zPosition="-1" size="240,192" flags="wfNoBorder">
@@ -724,7 +716,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="state" position="0,0" size="150,30" font="Regular;25" halign="center" backgroundColor="transpBlack" foregroundColor="white" />
 	</screen>
 	<!-- Radio infobar -->
-	<screen name="RadioInfoBar" position="85,408" size="560,120" zPosition="-1" title="Radio">
+	<screen name="RadioInfoBar" position="center,408" size="560,120" zPosition="-1" title="Radio">
 		<widget source="session.CurrentService" render="Label" position="5,1" size="325,26" font="Regular;20" noWrap="1" transparent="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -885,14 +877,11 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Setup -->
 	<screen name="Setup" position="center,center" size="560,430" title="Setup">
-		<widget name="cancel" pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<widget name="ok" pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-		<widget name="canceltext" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget name="oktext" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="title" position="10,45" size="280,35" font="Regular;23" />
-		<widget name="config" position="10,95" size="540,325" scrollbarMode="showOnDemand" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="config" position="5,50" size="550,325" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Simple channelselection -->
 	<screen name="SimpleChannelSelection" position="center,center" size="560,430" title="Channel Selection">
@@ -917,16 +906,16 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="introduction" render="Label" position="0,370" size="560,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 	</screen>
 	<!-- Sleeptimer edit -->
-	<screen name="SleepTimerEdit" position="center,center" size="500,200" title="Sleep Timer">
+	<screen name="SleepTimerEdit" position="center,center" size="500,240" title="Sleep Timer">
 		<widget name="current_status" position="40,40" size="400,30" valign="center" font="Regular;20" />
 		<widget name="red" pixmap="skin_default/buttons/button_red.png" position="10,88" size="12,12" alphatest="on" />
 		<widget name="green" pixmap="skin_default/buttons/button_green.png" position="10,128" size="12,12" alphatest="on" />
 		<widget name="yellow" pixmap="skin_default/buttons/button_yellow.png" position="10,168" size="12,12" alphatest="on" />
-		<widget name="blue" pixmap="skin_default/buttons/button_blue.png" position="10,168" size="12,12" alphatest="on" />
+		<widget name="blue" pixmap="skin_default/buttons/button_blue.png" position="10,208" size="12,12" alphatest="on" />
 		<widget name="red_text" position="40,80" size="400,30" valign="center" font="Regular;20" />
 		<widget name="green_text" position="40,120" size="400,30" valign="center" font="Regular;20" />
 		<widget name="yellow_text" position="40,160" size="400,30" valign="center" font="Regular;20" />
-		<widget name="blue_text" position="40,200" size="400,30" valign="center" font="Regular;20" />
+		<widget name="blue_text" position="40,200" size="450,30" valign="center" font="Regular;20" />
 		<widget name="pretext" position="15,10" size="235,25" font="Regular;19" />
 		<widget name="input" position="260,10" size="40,25" font="Regular;19" />
 		<widget name="aftertext" position="305,10" size="100,25" font="Regular;19" />
@@ -1144,9 +1133,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- LCD screen (setup) -->
 	<screen name="SetupSummary" position="0,0" size="132,64">
-		<widget name="SetupTitle" position="6,0" size="120,16" font="Regular;12" />
-		<widget name="SetupEntry" position="6,16" size="120,32" font="Regular;12" />
-		<widget name="SetupValue" position="6,48" size="120,16" font="Regular;12" />
+		<widget source="SetupTitle" render="Label" position="6,0" size="120,16" font="Regular;12" />
+		<widget source="SetupEntry" render="Label" position="6,16" size="120,32" font="Regular;12" />
+		<widget source="SetupValue" render="Label" position="6,48" size="120,16" font="Regular;12" />
 	</screen>
 	<!-- LCD screen (misc) -->
 	<screen name="SimpleSummary" position="0,0" size="132,64">
@@ -1207,12 +1196,12 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="text" position="12,35" size="536,46" font="Regular;46" transparent="1" noWrap="1" halign="right" />
 		<widget name="list" position="10,100" size="540,225" selectionDisabled="1" transparent="1" />
 	</screen>
-	<!-- VideoSetup (VideoMode Plugin) -->
-	<screen name="VideoSetup" position="center,center" size="560,430" title="VideoSetup">
+	<!-- FileBrowser -->
+	<screen name="FileBrowser" position="center,center" size="520,430" title="DVD File Browser" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="config" position="5,50" size="550,325" scrollbarMode="showOnDemand" />
+		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
 	</screen>
 </skin>

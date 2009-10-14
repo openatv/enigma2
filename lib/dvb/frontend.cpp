@@ -806,7 +806,7 @@ int eDVBFrontend::readFrontendData(int type)
 				ret = (int)(snr_in_db * 100);
 			}
 			else if (strstr(m_description, "Alps BSBE1 C01A") ||
-				!strcmp(m_description, "Alps -S(STV0288)"))
+				strstr(m_description, "Alps -S(STV0288)"))
 			{
 				if (snr == 0)
 					ret = 0;
