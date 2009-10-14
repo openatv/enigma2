@@ -7,10 +7,10 @@ class SimpleSummary(Screen):
 		<widget source="global.CurrentTime" render="Label" position="56,46" size="82,18" font="Regular;16">
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
-		<widget name="Title" position="6,4" size="120,42" font="Regular;18" />
+		<widget source="parent.Title" render="Label" position="6,4" size="120,42" font="Regular;18" />
 	</screen>"""
 	def __init__(self, session, parent):
-		from Components.Label import Label
+
 		Screen.__init__(self, session, parent = parent)
 
 		names = parent.skinName
@@ -23,7 +23,3 @@ class SimpleSummary(Screen):
 		# if parent has a "skin_summary" defined, use that as default
 		self.skin = parent.__dict__.get("skin_summary", self.skin)
 
-		self["Title"] = Label(parent.title or "")
-
-	def setTitle(self, title):
-		self["Title"].setText(title)
