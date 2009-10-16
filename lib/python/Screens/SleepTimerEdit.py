@@ -97,6 +97,7 @@ class SleepTimerEdit(Screen):
 			time = int(self["input"].getText())
 			config.SleepTimer.defaulttime.setValue(time)
 			config.SleepTimer.defaulttime.save()
+			config.SleepTimer.action.save()
 			self.session.nav.SleepTimer.setSleepTime(time)
 			self.session.openWithCallback(self.close, MessageBox, _("The sleep timer has been activated."), MessageBox.TYPE_INFO)
 		else:
