@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-09 13:06+0200\n"
-"PO-Revision-Date: 2009-08-02 15:48+0100\n"
+"POT-Creation-Date: 2009-10-16 14:37+0200\n"
+"PO-Revision-Date: 2009-10-16 11:57+0100\n"
 "Last-Translator: Laco Filo <filowood@post.mbc.sk>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgid ""
 "Edit the upgrade source address."
 msgstr ""
 "\n"
-"Upraviť zdroj aktualizácií."
+"Upraviť adresu zdroja aktualizácií."
 
 msgid ""
 "\n"
@@ -108,13 +108,13 @@ msgid " "
 msgstr ""
 
 msgid " extensions."
-msgstr " rozšírenia,"
+msgstr " rozšírenia."
 
 msgid " packages selected."
-msgstr " balíčkov zvolených,"
+msgstr " balíčkov zvolených."
 
 msgid " updates available."
-msgstr " aktualizácie sú k dispozícii."
+msgstr " aktualizácie k dispozícii."
 
 msgid "#000000"
 msgstr "#000000"
@@ -371,7 +371,7 @@ msgstr ""
 "Vypnúť teraz?"
 
 msgid "A small overview of the available icon states and actions."
-msgstr ""
+msgstr "Tu je malý prehľad dostupných ikon štátov a činností."
 
 msgid ""
 "A timer failed to record!\n"
@@ -426,7 +426,7 @@ msgid "Add Bookmark"
 msgstr "Pridať záložku"
 
 msgid "Add WLAN configuration?"
-msgstr ""
+msgstr "Pridať nastavenie WLAN?"
 
 msgid "Add a mark"
 msgstr "Pridať značku"
@@ -435,7 +435,7 @@ msgid "Add a new title"
 msgstr "Pridať nový titul"
 
 msgid "Add network configuration?"
-msgstr ""
+msgstr "Pridať nastavenie siete?"
 
 msgid "Add timer"
 msgstr "Pridať časovač"
@@ -453,12 +453,14 @@ msgid ""
 "Adds enigma2 settings and dreambox model informations like SN, rev... if "
 "enabled."
 msgstr ""
+"Ak je zapnuté, pridá nastavenia enigma2 a informácie o dreamboxe (výr. "
+"číslo, revízia, ...)."
 
 msgid "Adds network configuration if enabled."
-msgstr ""
+msgstr "Pridá nastavenie siete, ak bolo aktivované."
 
 msgid "Adds wlan configuration if enabled."
-msgstr ""
+msgstr "Ak je zapnuté, pridá konfiguráciu WLAN."
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -478,7 +480,7 @@ msgid "Advanced Options"
 msgstr "Rozšírené voľby"
 
 msgid "Advanced Video Enhancement Setup"
-msgstr ""
+msgstr "Rozšírené nastavenie obrazu"
 
 msgid "Advanced Video Setup"
 msgstr "Rozšírené nastavenie obrazu"
@@ -524,7 +526,7 @@ msgid "An unknown error occured!"
 msgstr "Objavila sa neznáma chyba!"
 
 msgid "Anonymize crashlog?"
-msgstr ""
+msgstr "Anonymizovať správy o zrútení?"
 
 msgid "Arabic"
 msgstr "Arabčina"
@@ -544,7 +546,7 @@ msgstr ""
 "túto zálohu:\n"
 
 msgid "Are you sure you want to exit this wizard?"
-msgstr ""
+msgstr "Naozaj chcete ukončiť tohto spirevodcu?"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -652,7 +654,7 @@ msgid "Backup is done. Please press OK to see the result."
 msgstr "Zálohovanie skončilo, Po stlačení tlačidla OK sa zobrazia výsledky."
 
 msgid "Backup is running..."
-msgstr ""
+msgstr "Zálohovanie beží..."
 
 msgid "Backup system settings"
 msgstr "Záloha nastavení systému"
@@ -685,7 +687,7 @@ msgid "Block noise reduction"
 msgstr ""
 
 msgid "Blue boost"
-msgstr ""
+msgstr "Zosilniť modrú"
 
 msgid "Bookmarks"
 msgstr "Záložky"
@@ -768,7 +770,7 @@ msgid "Change setup pin"
 msgstr "Zmeniť nastavovací PIN"
 
 msgid "Change step size"
-msgstr ""
+msgstr "Zmeniť veľkosť kroku"
 
 msgid "Channel"
 msgstr "Stanica"
@@ -834,13 +836,13 @@ msgid "Cleanup"
 msgstr "Vyčistiť"
 
 msgid "Cleanup Wizard"
-msgstr ""
+msgstr "Sprievodca vyčistením"
 
 msgid "Cleanup Wizard settings"
-msgstr ""
+msgstr "Nastavenia sprievodcu vyčistením"
 
 msgid "CleanupWizard"
-msgstr ""
+msgstr "Sprievodca vyčistením"
 
 msgid "Clear before scan"
 msgstr "Vymazať pred skenovaním"
@@ -852,7 +854,7 @@ msgid "Close"
 msgstr "Zatvoriť"
 
 msgid "Close title selection"
-msgstr ""
+msgstr "Zatvoriť výber titulkov"
 
 msgid "Code rate high"
 msgstr "Vysoká kódová rýchlosť"
@@ -974,21 +976,30 @@ msgid "Couldn't record due to conflicting timer %s"
 msgstr "Nedalo sa nahrávať - prekrýva sa časovanie %s"
 
 msgid "Crashlog settings"
-msgstr ""
+msgstr "Nastavenia správ o zrútení"
 
 msgid "CrashlogAutoSubmit"
 msgstr "Autom. posielanie správ o zrútení"
 
 msgid "CrashlogAutoSubmit settings"
-msgstr ""
+msgstr "Nastavenia autom. posielania správ o zrútení"
 
 msgid "CrashlogAutoSubmit settings..."
+msgstr "Nastavenia autom. posielania správ o zrútení"
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
 msgstr ""
+"Nájdené záznamy o zrútení!\n"
+"Poslať ich do Dream Multimedia?"
 
 msgid ""
 "Crashlogs found!\n"
 "Send them to Dream Multimedia?"
 msgstr ""
+"Nájdené správy o zrútení!\n"
+"Poslať ich do Dream Multimedia?"
 
 msgid "Create DVD-ISO"
 msgstr "Vytvoriť disk DVD-ISO"
@@ -1013,7 +1024,7 @@ msgid "Current settings:"
 msgstr "Aktuálne nastavenia:"
 
 msgid "Current value: "
-msgstr ""
+msgstr "Aktuálna hodnota:"
 
 msgid "Current version:"
 msgstr "Aktuálna verzia:"
@@ -1052,13 +1063,13 @@ msgid "DVB-S2"
 msgstr "DVB-S2"
 
 msgid "DVD File Browser"
-msgstr ""
+msgstr "Prehliadač súborov DVD"
 
 msgid "DVD Player"
 msgstr "Prehrávač DVD"
 
 msgid "DVD Titlelist"
-msgstr ""
+msgstr "Zoznam titulov DVD"
 
 msgid "DVD media toolbox"
 msgstr "Nástroje pre DVD"
@@ -1070,19 +1081,19 @@ msgid "Date"
 msgstr "Dátum"
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr ""
+msgstr "Rozhodnite, či zapnúť alebo vypnúť sprievodcu vyčistením."
 
 msgid "Decide what should be done when crashlogs are found."
-msgstr ""
+msgstr "Rozhodnite, čo urobiť, ak sa nájdu správy o zrútení."
 
 msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
+msgstr "Rozhodnite, čo urobiť so správami o zrútení po ich odoslaní."
 
 msgid "Deep Standby"
 msgstr "Vypnúť"
 
 msgid "Default"
-msgstr ""
+msgstr "Predvolené"
 
 msgid "Default Settings"
 msgstr "Predvolené nastavenia"
@@ -1146,11 +1157,14 @@ msgstr "Režim DiSEqC"
 msgid "DiSEqC repeats"
 msgstr "Opakovania DiSEqC"
 
+msgid "DiSEqC-Tester settings"
+msgstr ""
+
 msgid "Dialing:"
 msgstr "Vytáčam:"
 
 msgid "Digital contour removal"
-msgstr ""
+msgstr "Odstránenie digitálnych obrysov"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Priame prehrávanie prepojených titulov bez menu"
@@ -1158,6 +1172,9 @@ msgstr "Priame prehrávanie prepojených titulov bez menu"
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr "Adresár %s neexistuje."
+
+msgid "Directory browser"
+msgstr ""
 
 msgid "Disable"
 msgstr "Vypnúť"
@@ -1297,6 +1314,8 @@ msgid ""
 "Do you want to submit your email address and name so that we can contact you "
 "if needed?"
 msgstr ""
+"Chcete poslať svojju e-mailovú adresu a meno, aby sme vás mohli kontaktovať, "
+"ak treba?"
 
 msgid "Do you want to update your Dreambox?"
 msgstr "Chcete aktualizovať Dreambox?"
@@ -1369,7 +1388,7 @@ msgid "Dutch"
 msgstr "Holandčina"
 
 msgid "Dynamic contrast"
-msgstr ""
+msgstr "Dynamický kontrast"
 
 msgid "E"
 msgstr "V"
@@ -1412,7 +1431,7 @@ msgid "Edit title"
 msgstr "Upraviť titul"
 
 msgid "Edit upgrade source url."
-msgstr ""
+msgstr "Upraviť URL zdroja aktualizácieUpraviť zdroj aktualizácií."
 
 msgid "Electronic Program Guide"
 msgstr "Elektronický programový sprievodca"
@@ -1424,7 +1443,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Zapnúť 5 V pre aktívnu anténu"
 
 msgid "Enable Cleanup Wizard?"
-msgstr ""
+msgstr "Zapnúť sprievodcu vyčistením?"
 
 msgid "Enable multiple bouquets"
 msgstr "Zapnúť viacnásobné bukety"
@@ -1467,6 +1486,12 @@ msgid ""
 "\n"
 "© 2006 - Stephan Reichholf"
 msgstr ""
+"Volič vzhľadu Enigma2\n"
+"\n"
+"Ak máte akékoľvek problémy, obráťte sa na\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
 
 msgid ""
 "Enigma2 Skinselector v0.5 BETA\n"
@@ -1509,6 +1534,7 @@ msgstr "Zadajte PIN stanice"
 
 msgid "Enter your email address so that we can contact you if needed."
 msgstr ""
+"Zadajte svoju e-mailovú adresu, aby sme vás mohli kontaktovať, ak treba."
 
 msgid "Error"
 msgstr "Chyba"
@@ -1525,7 +1551,7 @@ msgstr ""
 "Zopakovať?"
 
 msgid "Estonian"
-msgstr ""
+msgstr "Estónčina"
 
 msgid "Eventview"
 msgstr "Prehľad programov"
@@ -1549,7 +1575,7 @@ msgid "Exit editor"
 msgstr "Ukončiť editor"
 
 msgid "Exit the cleanup wizard"
-msgstr ""
+msgstr "Ukončiť sprievodcu vyčistením"
 
 msgid "Exit the wizard"
 msgstr "Ukončiť pomocníka"
@@ -1626,7 +1652,7 @@ msgid "Flashing failed"
 msgstr "Flešovanie zlyhalo"
 
 msgid "Following tasks will be done after you press continue!"
-msgstr ""
+msgstr "Keď stlačíte pokračovať, vykonajú sa tieto úlohy."
 
 msgid "Format"
 msgstr "Formát"
@@ -1718,7 +1744,7 @@ msgid "Greek"
 msgstr "Gréčtina"
 
 msgid "Green boost"
-msgstr ""
+msgstr "Zosilniť zelenú"
 
 msgid "Guard Interval"
 msgstr "Ochranný interval"
@@ -1754,10 +1780,10 @@ msgid "How many minutes do you want to record?"
 msgstr "Koľko minút chcete nahrávať?"
 
 msgid "How to handle found crashlogs?"
-msgstr ""
+msgstr "Ako spracovať nájdené správy o zrútení?"
 
 msgid "Hue"
-msgstr ""
+msgstr "Odtieň"
 
 msgid "Hungarian"
 msgstr "Maďarčina"
@@ -1820,7 +1846,7 @@ msgstr ""
 "Aby sa mohol nahrať načasovaný program, preplo sa na nahrávanú stanicu!\n"
 
 msgid "Include your email and name (optional) in the mail?"
-msgstr ""
+msgstr "Vložiť do mailu vašu e-mailovú adresu a meno (voliteľne)?"
 
 msgid "Increased voltage"
 msgstr "Zvýšené napätie"
@@ -1829,7 +1855,7 @@ msgid "Index"
 msgstr "Index"
 
 msgid "Info"
-msgstr ""
+msgstr "Informačná lišta"
 
 msgid "InfoBar"
 msgstr "Informačná lišta"
@@ -1865,10 +1891,10 @@ msgid "Install a new image with your web browser"
 msgstr "Inštalovať nový image cez webový prehliadač"
 
 msgid "Install extensions."
-msgstr ""
+msgstr "Inštalovať rozšírenia."
 
 msgid "Install local extension"
-msgstr ""
+msgstr "Inštalovať miestne rozšírenie"
 
 msgid "Install or remove finished."
 msgstr "Inštalácia alebo odstránenie skončené."
@@ -1972,7 +1998,7 @@ msgid "Language..."
 msgstr "Jazyk..."
 
 msgid "Last config"
-msgstr ""
+msgstr "Posledný config"
 
 msgid "Last speed"
 msgstr "Posledná rýchlosť"
@@ -2368,13 +2394,13 @@ msgid "No, just start my dreambox"
 msgstr "Nie, len zapnúť Dreambox."
 
 msgid "No, not now"
-msgstr ""
+msgstr "Nie, teraz nie"
 
 msgid "No, scan later manually"
 msgstr "Nie, vyhľadať neskôr ručne"
 
 msgid "No, send them never"
-msgstr ""
+msgstr "Nie, nikdy neposlať."
 
 msgid "None"
 msgstr "Žiadne"
@@ -2422,10 +2448,10 @@ msgid "OK, guide me through the upgrade process"
 msgstr "OK, poveď ma procesom aktualizácie."
 
 msgid "OK, remove another extensions"
-msgstr ""
+msgstr "OK, odstrániť iné rozšírenia"
 
 msgid "OK, remove some extensions"
-msgstr ""
+msgstr "OK, odstrániť niektoré rozšírenia"
 
 msgid "OSD Settings"
 msgstr "Nastavenia OSD"
@@ -2449,7 +2475,7 @@ msgid "Only Free scan"
 msgstr "Vyhľadať len FTA"
 
 msgid "Optionally enter your name if you want to."
-msgstr ""
+msgstr "Prípadne zadajte meno, ak chcete."
 
 msgid "Orbital Position"
 msgstr "Orbitálna pozícia"
@@ -2467,10 +2493,10 @@ msgid "Package list update"
 msgstr "Aktualizovať zoznam balíčkov"
 
 msgid "Package removal failed.\n"
-msgstr ""
+msgstr "Odstránenie balíčka zlyhalo.\n"
 
 msgid "Package removed successfully.\n"
-msgstr ""
+msgstr "Balíček bol odstránený.\n"
 
 msgid "Packet management"
 msgstr "Správa balíčkov"
@@ -2596,10 +2622,10 @@ msgid "Please enter the old pin code"
 msgstr "Zadajte starý kód PIN"
 
 msgid "Please enter your email address here:"
-msgstr ""
+msgstr "Sem zadajte svoju e-mailovú adresu:"
 
 msgid "Please enter your name here (optional):"
-msgstr ""
+msgstr "Sem zadajte svoje meno (voliteľne):"
 
 msgid "Please follow the instructions on the TV"
 msgstr "Riaďte sa pokynmi na televíznej obrazovke"
@@ -2633,10 +2659,10 @@ msgid "Please select a subservice..."
 msgstr "Zvoľte podkanál..."
 
 msgid "Please select an extension to remove."
-msgstr ""
+msgstr "Zvoľte rozšírenie, ktoré sa má odstrániť."
 
 msgid "Please select an option below."
-msgstr ""
+msgstr "Zvoľte možnosť."
 
 msgid "Please select medium to use as backup location"
 msgstr "Zvoľte médium, ktoré sa použije ako umiestnenie zálohy"
@@ -2677,13 +2703,13 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Vyčkajte na aktivovanie nastavenia siete..."
 
 msgid "Please wait while removing selected package..."
-msgstr ""
+msgstr "Čakajte, kým sa odstraňuje zvolený balíček..."
 
 msgid "Please wait while scanning is in progress..."
 msgstr "Čakajte, kým prebieha vyhľadávanie..."
 
 msgid "Please wait while searching for removable packages..."
-msgstr ""
+msgstr "Čakajte, kým sa hľadajú odstrániteľné balíčky..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Čakajte, kým sa nastavuje sieť..."
@@ -2704,10 +2730,10 @@ msgid "Plugin manager"
 msgstr "Správca modulov"
 
 msgid "Plugin manager activity information"
-msgstr ""
+msgstr "Informácie o činnosti správcu modulov..."
 
 msgid "Plugin manager help"
-msgstr ""
+msgstr "Pomocník správcu modulov"
 
 msgid "Plugins"
 msgstr "Moduly"
@@ -2764,7 +2790,7 @@ msgid "Press OK on your remote control to continue."
 msgstr "Ak chcete pokračovať, stlačte tlačidlo OK na diaľkovom ovládači."
 
 msgid "Press OK to activate the selected skin."
-msgstr ""
+msgstr "Stlačením OK zapnete zvolený vzuhľad."
 
 msgid "Press OK to activate the settings."
 msgstr "Stlačte OK pre aktivovanie nastavení."
@@ -2780,22 +2806,22 @@ msgid "Press OK to scan"
 msgstr "Pre vyhľadávanie stlačte OK."
 
 msgid "Press OK to select a Provider."
-msgstr ""
+msgstr "Stlačením OK zvolíte poskytovateľa."
 
 msgid "Press OK to select/deselect a CAId."
-msgstr ""
+msgstr "Stlačením OK tvoľte alebo zrušte CAId."
 
 msgid "Press OK to start the scan"
 msgstr "Stlačením tlačidla OK spustíte vyhľadávanie"
 
 msgid "Press OK to toggle the selection."
-msgstr ""
+msgstr "Stlačte OK pre prepnutie výberu."
 
 msgid "Press OK to view full changelog"
-msgstr ""
+msgstr "Stlačením OK si prezriete celú správu o zmenách."
 
 msgid "Press yellow to set this interface as default interface."
-msgstr ""
+msgstr "Stlačením žletého tlačidla nastavíte toto rozhranie ako predvolené."
 
 msgid "Prev"
 msgstr "Predch."
@@ -2934,7 +2960,7 @@ msgid "Remove currently selected title"
 msgstr "Odstrániť aktuálne zvolený titul"
 
 msgid "Remove failed."
-msgstr ""
+msgstr "Odstraňovanie zlyhalo."
 
 msgid "Remove finished."
 msgstr "Odstraňovanie skončené"
@@ -2955,10 +2981,7 @@ msgid "Remove title"
 msgstr "Odstrániť titul"
 
 msgid "Removed successfully."
-msgstr ""
-
-msgid "Removeing"
-msgstr ""
+msgstr "Odstránené."
 
 msgid "Removing"
 msgstr "Odstraňujem"
@@ -2992,10 +3015,10 @@ msgid "Reset and renumerate title names"
 msgstr "Resetovať a prečíslovať názvy titulov"
 
 msgid "Reset video enhancement settings to system defaults?"
-msgstr ""
+msgstr "Vrátiť rozšírené nastavenia obrazu na systémové predvolené hodnoty?"
 
 msgid "Reset video enhancement settings to your last configuration?"
-msgstr ""
+msgstr "Vrátiť rozšírené nastavenia obrazu na poslednú konfiguráciu?"
 
 msgid "Resolution"
 msgstr "Rozlíšenie"
@@ -3022,10 +3045,10 @@ msgid "Restore"
 msgstr "Obnoviť"
 
 msgid "Restore backups"
-msgstr ""
+msgstr "Obnoviť zálohy"
 
 msgid "Restore is running..."
-msgstr ""
+msgstr "Prebieha obnova..."
 
 msgid "Restore running"
 msgstr "Prebieha obnova"
@@ -3114,7 +3137,7 @@ msgid "Satteliteequipment"
 msgstr "Satelitné zariadenie"
 
 msgid "Saturation"
-msgstr ""
+msgstr "Sýtosť"
 
 msgid "Saturday"
 msgstr "Sobota"
@@ -3204,13 +3227,15 @@ msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "WLAN USB Stick\n"
 msgstr ""
-"Vyhľadať v sieti bezdôrové prístupové body a pripojiť ich pomocou USB kľúča "
-"WLAN\n"
+"Vyhľadať v sieti bezdrôtové prístupové body a pripojiť ich cez WLAN USB "
+"kľúč\n"
 
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
+"Vyhľadať v sieti bezdrôtové prístupové body a pripojiť ich zvoleným "
+"bezdrôtovýmn zariadením\n"
 
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -3260,13 +3285,13 @@ msgid "Select files for backup. Currently selected:\n"
 msgstr "Zvoľte súbory na zálohovanie. Aktuálne zvolené:\n"
 
 msgid "Select files/folders to backup"
-msgstr ""
+msgstr "Zvoľte súbory a adresáre na zálohovanie"
 
 msgid "Select image"
 msgstr "Zvoľte image"
 
 msgid "Select package"
-msgstr ""
+msgstr "Zvoľte balíček"
 
 msgid "Select provider to add..."
 msgstr "Zvoľte poskytovateľa, ktorého chcete pridať..."
@@ -3278,7 +3303,7 @@ msgid "Select service to add..."
 msgstr "Zvoľte stanicu, ktorú chcete pridať..."
 
 msgid "Select upgrade source to edit."
-msgstr ""
+msgstr "Zvoľte zdroj aktualizácie na upravenie"
 
 msgid "Select video input"
 msgstr "Zvoľte vstup obrazu"
@@ -3359,7 +3384,7 @@ msgid "Set as default Interface"
 msgstr "Nastaviť ako predvolené rozhranie"
 
 msgid "Set available internal memory threshold for the warning."
-msgstr ""
+msgstr "Nastaviť prah dostupnej internej pamäte pre varovanie."
 
 msgid "Set interface as default Interface"
 msgstr "Nastaviť rozhranie ako predvolené"
@@ -3377,7 +3402,7 @@ msgid "Setup Mode"
 msgstr "Režim nastavení"
 
 msgid "Sharpness"
-msgstr ""
+msgstr "Ostrosť"
 
 msgid "Show Info"
 msgstr "Zobraziť informácie"
@@ -3446,7 +3471,7 @@ msgid "Singlestep (GOP)"
 msgstr "Jeden krok (GOP)"
 
 msgid "Skin"
-msgstr ""
+msgstr "Vzhľad"
 
 msgid "Skin..."
 msgstr "Vzhľad..."
@@ -3468,7 +3493,7 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 msgid "Slovakian"
-msgstr ""
+msgstr "Slovenčina"
 
 msgid "Slovenian"
 msgstr "Slovinčina"
@@ -3553,7 +3578,7 @@ msgid "Spanish"
 msgstr "Španielčina"
 
 msgid "Split preview mode"
-msgstr ""
+msgstr "Režim rozdelenia náhľadu"
 
 msgid "Standby"
 msgstr "Pohotovostný režim"
@@ -3778,7 +3803,7 @@ msgid "The package doesn't contain anything."
 msgstr "Balíček neobsahuje vôbec nič."
 
 msgid "The package:"
-msgstr ""
+msgstr "Balíček:"
 
 #, python-format
 msgid "The path %s already exists."
@@ -3830,10 +3855,10 @@ msgid "There are no default settings in your image."
 msgstr "V tomto image nie sú predvolené nastavenia."
 
 msgid "There are now "
-msgstr ""
+msgstr "Teraz sú"
 
 msgid "There is nothing to be done."
-msgstr ""
+msgstr "Nie je nič na vykonanie."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3846,7 +3871,7 @@ msgid "There was an error downloading the packetlist. Please try again."
 msgstr "Chyba pri sťahovaní zoznamu paketov. Zopakujte."
 
 msgid "There was an error. The package:"
-msgstr ""
+msgstr "Vyskytla sa chyba. Balíček:"
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
@@ -4210,9 +4235,6 @@ msgstr "Aktualizácia je skončená."
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Aktualizácia je skončená. Chcete reštartovať Dreambox?"
 
-msgid "Upgradeing"
-msgstr ""
-
 msgid "Upgrading"
 msgstr "Aktualizujem"
 
@@ -4273,6 +4295,9 @@ msgstr ""
 "tlačidlo OK."
 
 msgid "Use this video enhancement settings?"
+msgstr "Použiť toto rozšírené nastavenie obrazu?"
+
+msgid "Use time of currently running service"
 msgstr ""
 
 msgid "Use usals for this sat"
@@ -4315,13 +4340,13 @@ msgid "Video Wizard"
 msgstr "Pomocník k obrazu"
 
 msgid "Video enhancement preview"
-msgstr ""
+msgstr "Náhľad rozšíreného nastavenia obrazu"
 
 msgid "Video enhancement settings"
-msgstr ""
+msgstr "Rozšírené nastavenia obrazu"
 
 msgid "Video enhancement setup"
-msgstr ""
+msgstr "Rozšírené nastavenie obrazu"
 
 msgid ""
 "Video input selection\n"
@@ -4341,11 +4366,8 @@ msgstr ""
 msgid "Video mode selection."
 msgstr "Voľba režimu obrazu"
 
-msgid "VideoSetup"
-msgstr ""
-
 msgid "Videoenhancement Setup"
-msgstr ""
+msgstr "Rozšírené nastavenia obrazu"
 
 msgid "View Movies..."
 msgstr "Zobraziť filmy..."
@@ -4436,7 +4458,7 @@ msgid "Waiting"
 msgstr "Čakám"
 
 msgid "Warn if free space drops below (kB):"
-msgstr ""
+msgstr "Varovať, ak voľné miesto poklesne pod (kB):"
 
 msgid ""
 "We will now test if your TV can also display this resolution at 50hz. If "
@@ -4516,7 +4538,7 @@ msgid "What do you want to scan?"
 msgstr "Čo chcete vyhľadať?"
 
 msgid "What to do with submitted crashlogs?"
-msgstr ""
+msgstr "Čo urobiť s odoslanými správami o zrútení?"
 
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
@@ -4567,7 +4589,7 @@ msgid "Yes, and delete this movie"
 msgstr "Áno, a zmazať tento film"
 
 msgid "Yes, and don't ask again"
-msgstr ""
+msgstr "Áno, a nepýtať sa znova"
 
 msgid "Yes, backup my settings!"
 msgstr "Áno, zálohovať nastavenia!"
@@ -4743,7 +4765,7 @@ msgstr ""
 "Dreambox nie je správne pripojený do internetu. Skontrolujte a skúste znova."
 
 msgid "Your email address:"
-msgstr ""
+msgstr "Vaša e-mailová adresa:"
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
@@ -4753,7 +4775,7 @@ msgstr ""
 "Stlačením tlačidla OK spustíte aktualizáciu."
 
 msgid "Your name (optional):"
-msgstr ""
+msgstr "Vaše meno (voliteľne):"
 
 msgid "Your network configuration has been activated."
 msgstr "Nastavenie siete bolo aktivované."
@@ -4876,13 +4898,13 @@ msgid "assigned CAIds"
 msgstr "priradené CAIdy"
 
 msgid "assigned CAIds:"
-msgstr ""
+msgstr "priradené CAIdy"
 
 msgid "assigned Services/Provider"
 msgstr "priradené služby a poskytovatelia"
 
 msgid "assigned Services/Provider:"
-msgstr ""
+msgstr "priradené služby a poskytovatelia"
 
 #, python-format
 msgid "audio track (%s) format"
@@ -4899,7 +4921,7 @@ msgid "auto"
 msgstr "auto"
 
 msgid "available"
-msgstr ""
+msgstr "dostupné."
 
 msgid "back"
 msgstr "späť"
@@ -4966,7 +4988,7 @@ msgid "copy to bouquets"
 msgstr "skopírovať do buketov"
 
 msgid "could not be removed"
-msgstr ""
+msgstr "nedá sa odstrániť"
 
 msgid "create directory"
 msgstr "vytvoriť adresár"
@@ -5274,7 +5296,7 @@ msgid "no HDD found"
 msgstr "nenájdený pevný disk"
 
 msgid "no Services/Providers selected"
-msgstr ""
+msgstr "žiadne služby a poskytovatelia nie sú zvolené"
 
 msgid "no module found"
 msgstr "Nenájdený modul"
@@ -5644,7 +5666,7 @@ msgid "waiting"
 msgstr "čakám"
 
 msgid "was removed successfully"
-msgstr ""
+msgstr "bolo úspešne odstránené"
 
 msgid "weekly"
 msgstr "týždenne"
@@ -5679,16 +5701,13 @@ msgstr "prepnuté"
 
 #~ msgid ""
 #~ "\n"
-#~ "Enigma2 will restart after the restore"
+#~ "System will restart after the restore!"
 #~ msgstr ""
 #~ "\n"
-#~ "Enigma2 sa po obnovení reštartuje"
+#~ "Systém sa po obnovení reštartuje!"
 
 #~ msgid "Backup running"
 #~ msgstr "Zálohovanie beží"
-
-#~ msgid "Backup running..."
-#~ msgstr "Zálohovanie beží..."
 
 #~ msgid "Configuration for the CrashlogAutoSubmitter"
 #~ msgstr "Nastavenie autom. posielania správ o zrútení"
@@ -5696,31 +5715,12 @@ msgstr "prepnuté"
 #~ msgid "CrashlogAutoSubmitConfiguration"
 #~ msgstr "Nastavenie autom. posielania správ o zrútení"
 
-#~ msgid ""
-#~ "Crashlogs found!\n"
-#~ "Send them to Dream Multimedia ?"
-#~ msgstr ""
-#~ "Nájdené záznamy o zrútení!\n"
-#~ "Poslať ich do Dream Multimedia?"
-
 #~ msgid "Do you want to continue installing or removing selected plugins?\n"
 #~ msgstr ""
 #~ "Chcete pokračovať v inštalovaní alebo odstraňovaní zvolených modulov?\n"
 
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Upraviť URL zdroja IPKG..."
-
-#~ msgid "Following tasks will be done after you press continue."
-#~ msgstr "Keď stlačíte pokračovať, vykonajú sa tieto úlohy."
-
-#~ msgid "Here is a small overview of the available icon states."
-#~ msgstr "Tu je malý prehľad dostupných ikon štátov."
-
-#~ msgid "How to handle found crashlogs:"
-#~ msgstr "Ako spracovať nájdené správy o zrútení:"
-
-#~ msgid "Install local IPKG"
-#~ msgstr "Inštalovať miestny súbor .IPK"
 
 #~ msgid "Install software updates..."
 #~ msgstr "Inštalovať aktualizácie softvéru..."
@@ -5735,26 +5735,8 @@ msgstr "prepnuté"
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Umožní prezerať a upravovať súbory v Dreamboxe."
 
-#~ msgid "No, send them never."
-#~ msgstr "Nie, nikdy neposlať."
-
-#~ msgid "Plugin manager help..."
-#~ msgstr "Pomocník správcu modulov"
-
-#~ msgid "Plugin manager process information..."
-#~ msgstr "Informácie správcu modulov..."
-
-#~ msgid "Restore backups..."
-#~ msgstr "Obnoviť zálohy..."
-
-#~ msgid "Restore running..."
-#~ msgstr "Prebieha obnova..."
-
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "Zvoľte zdroj IPKG na upravenie"
-
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "Zvoľte súbory a adresáre na zálohovanie..."
+#~ msgid "Removeing"
+#~ msgstr "Odstraňujem"
 
 #~ msgid "Software manager..."
 #~ msgstr "Správca softvéru..."
@@ -5762,11 +5744,11 @@ msgstr "prepnuté"
 #~ msgid "Upgrade"
 #~ msgstr "Aktualizácia"
 
+#~ msgid "Upgradeing"
+#~ msgstr "Aktualizujem"
+
+#~ msgid "VideoSetup"
+#~ msgstr "Nastavenie obrazu"
+
 #~ msgid "View"
 #~ msgstr "Zobraziť"
-
-#~ msgid "What to do with sent crashlogs:"
-#~ msgstr "Čo urobiť s odoslanými správami o zrútení:"
-
-#~ msgid "Yes, and don't ask again."
-#~ msgstr "Áno, a nepýtať sa znova."
