@@ -528,7 +528,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		eServiceReference ref = *m_cursor;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || ref.flags & eServiceReference::isMarker);
 
-		if (!marked && isPlayable && service_info && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
+		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 		{
 			if (m_color_set[serviceNotAvail])
 				painter.setForegroundColor(m_color[serviceNotAvail]);
