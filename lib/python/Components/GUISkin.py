@@ -64,7 +64,8 @@ class GUISkin:
 		self.summaries.remove(summary)
 
 	def setTitle(self, title):
-		self.instance.setTitle(title)
+		if self.instance:
+			self.instance.setTitle(title)
 		self["Title"].text = title
 		self.summaries.setTitle(title)
 
@@ -78,23 +79,34 @@ class GUISkin:
 
 	def applySkin(self):
 		z = 0
-		title = ""
 		baseres = (720, 576) # FIXME: a skin might have set another resolution, which should be the base res
+		idx = 0
+		skin_title_idx = -1
+		title = self.title
 		for (key, value) in self.skinAttributes:
 			if key == "zPosition":
 				z = int(value)
 			elif key == "title":
-				title = value
+				skin_title_idx = idx
+				if title:
+					self.skinAttributes[skin_title_idx] = ("title", title)
+				else:
+					self["Title"].text = value
+					self.summaries.setTitle(value)
 			elif key == "baseResolution":
 				baseres = tuple([int(x) for x in value.split(',')])
+			idx += 1
 		self.scale = ((baseres[0], baseres[0]), (baseres[1], baseres[1]))
 
 		if not self.instance:
 			from enigma import eWindow
 			self.instance = eWindow(self.desktop, z)
 
+		if skin_title_idx == -1 and title:
+			self.skinAttributes.append(("title", title))
+
 		# we need to make sure that certain attributes come last
 		self.skinAttributes.sort(key=lambda a: {"position": 1}.get(a[0], 0))
-		self["Title"].text = title
+
 		applyAllAttributes(self.instance, self.desktop, self.skinAttributes, self.scale)
 		self.createGUIScreen(self.instance, self.desktop)
