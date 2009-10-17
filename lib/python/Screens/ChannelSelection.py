@@ -526,7 +526,7 @@ class ChannelSelectionEdit:
 		self.mutableList = self.getMutableList()
 		# add all services from the current list to internal marked set in listboxservicecontent
 		self.clearMarks() # this clears the internal marked set in the listboxservicecontent
-		self.saved_title = self.instance.getTitle()
+		self.saved_title = self.getTitle()
 		pos = self.saved_title.find(')')
 		new_title = self.saved_title[:pos+1]
 		if type == EDIT_ALTERNATIVES:
@@ -626,7 +626,7 @@ class ChannelSelectionEdit:
 			self.mutableList = self.getMutableList()
 			self.movemode = True
 			self.pathChangeDisabled = True # no path change allowed in movemode
-			self.saved_title = self.instance.getTitle()
+			self.saved_title = self.getTitle()
 			new_title = self.saved_title
 			pos = self.saved_title.find(')')
 			new_title = self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]
@@ -761,7 +761,7 @@ class ChannelSelectionBase(Screen):
 		self.mode = MODE_TV
 		self.servicePath = self.servicePathTV
 		self.recallBouquetMode()
-		title = self.instance.getTitle()
+		title = self.getTitle()
 		pos = title.find(" (")
 		if pos != -1:
 			title = title[:pos]
@@ -772,7 +772,7 @@ class ChannelSelectionBase(Screen):
 		self.mode = MODE_RADIO
 		self.servicePath = self.servicePathRadio
 		self.recallBouquetMode()
-		title = self.instance.getTitle()
+		title = self.getTitle()
 		pos = title.find(" (")
 		if pos != -1:
 			title = title[:pos]
@@ -814,7 +814,7 @@ class ChannelSelectionBase(Screen):
 		return str
 
 	def buildTitleString(self):
-		titleStr = self.instance.getTitle()
+		titleStr = self.getTitle()
 		pos = titleStr.find(']')
 		if pos == -1:
 			pos = titleStr.find(')')
@@ -1492,9 +1492,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
-		self.title = title
-		self.onShown.append(self.__onExecCallback)
-
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.close,
@@ -1502,9 +1499,10 @@ class SimpleChannelSelection(ChannelSelectionBase):
 				"keyRadio": self.setModeRadio,
 				"keyTV": self.setModeTv,
 			})
+		self.title = title
+		self.onLayoutFinish.append(self.layoutFinished)
 
-	def __onExecCallback(self):
-		self.setTitle(self.title)
+	def layoutFinished(self):
 		self.setModeTv()
 
 	def channelSelected(self): # just return selected service
