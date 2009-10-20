@@ -952,11 +952,17 @@ int eServiceMP3::getCurrentTrack()
 
 RESULT eServiceMP3::selectTrack(unsigned int i)
 {
-	int ret = selectAudioStream(i);
-	/* flush */
 	pts_t ppos;
 	getPlayPosition(ppos);
-	seekTo(ppos);
+	ppos -= 90000;
+	if (ppos < 0)
+		ppos = 0;
+
+	int ret = selectAudioStream(i);
+	if (!ret) {
+		/* flush */
+		seekTo(ppos);
+	}
 
 	return ret;
 }
