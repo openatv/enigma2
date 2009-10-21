@@ -510,12 +510,6 @@ class myChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
 		self.onShown.append(self.__onExecCallback)
-		service = self.session.nav.getCurrentService()
-		if service:
-			info = service.info()
-			if info:
-				refstr = info.getInfoString(iServiceInformation.sServiceref)
-				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions", "ChannelSelectBaseActions"],
 			{
