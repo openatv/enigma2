@@ -604,7 +604,7 @@ int eDVBFrontend::closeFrontend(bool force)
 		setVoltage(iDVBFrontend::voltageOff);
 		m_tuneTimer->stop();
 		if (m_sec && !m_simulate)
-			m_sec->setRotorMoving(false);
+			m_sec->setRotorMoving(m_slotid, false);
 		if (!::close(m_fd))
 			m_fd=-1;
 		else
@@ -1694,12 +1694,12 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				break;
 			case eSecCommand::SET_ROTOR_MOVING:
 				if (!m_simulate)
-					m_sec->setRotorMoving(true);
+					m_sec->setRotorMoving(m_slotid, true);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::SET_ROTOR_STOPPED:
 				if (!m_simulate)
-					m_sec->setRotorMoving(false);
+					m_sec->setRotorMoving(m_slotid, false);
 				++m_sec_sequence.current();
 				break;
 			case eSecCommand::IF_INPUTPOWER_DELTA_GOTO:
@@ -2344,7 +2344,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			goto tune_error;
 		}
 		if (!m_simulate)
-			m_sec->setRotorMoving(false);
+			m_sec->setRotorMoving(m_slotid, false);
 		res=prepare_sat(feparm, timeout);
 		if (res)
 			goto tune_error;
