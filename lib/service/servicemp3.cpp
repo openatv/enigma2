@@ -302,7 +302,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-appsink");
 	else
 	{
-		g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
+		m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 	}
 
@@ -340,10 +340,23 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 
 eServiceMP3::~eServiceMP3()
 {
+	// disconnect subtitle callback
+	GstElement *sink;
+	g_object_get (G_OBJECT (m_gst_playbin), "text-sink", &sink, NULL);
+	if (sink)
+	{
+		g_signal_handler_disconnect (sink, m_subs_to_pull_handler_id);
+		gst_object_unref(sink);
+	}
+
 	delete m_subtitle_widget;
+
+	// disconnect sync handler callback
+	gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin)), NULL, NULL);
+
 	if (m_state == stRunning)
 		stop();
-	
+
 	if (m_stream_tags)
 		gst_tag_list_free(m_stream_tags);
 	
