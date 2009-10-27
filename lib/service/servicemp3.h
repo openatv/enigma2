@@ -204,6 +204,7 @@ private:
 	void pullSubtitle();
 	int m_subs_to_pull;
 	eSingleLock m_subs_to_pull_lock;
+	gulong m_subs_to_pull_handler_id;
 
 	RESULT seekToImpl(pts_t to);
 

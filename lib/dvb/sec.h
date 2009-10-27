@@ -298,7 +298,7 @@ private:
 	int m_lnbidx; // current index for set parameters
 	std::map<int, eDVBSatelliteSwitchParameters>::iterator m_curSat;
 	eSmartPtrList<eDVBRegisteredFrontend> &m_avail_frontends, &m_avail_simulate_frontends;
-	bool m_rotorMoving;
+	int m_rotorMoving;
 	int m_not_linked_slot_mask;
 	bool m_canMeasureInputPower;
 #endif
@@ -359,7 +359,7 @@ public:
 	RESULT setTunerDepends(int from, int to);
 	void setSlotNotLinked(int tuner_no);
 
-	void setRotorMoving(bool); // called from the frontend's
+	void setRotorMoving(int, bool); // called from the frontend's
 	bool isRotorMoving();
 	bool canMeasureInputPower() { return m_canMeasureInputPower; }
 };
