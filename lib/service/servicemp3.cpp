@@ -522,11 +522,11 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		return seekRelative(0, 0);
 
 	GstEvent *s_event;
-	GstSeekFlags flags;
+	int flags;
 	flags = GST_SEEK_FLAG_NONE;
-	flags |= GstSeekFlags (GST_SEEK_FLAG_FLUSH);
+	flags |= GST_SEEK_FLAG_FLUSH;
 // 	flags |= GstSeekFlags (GST_SEEK_FLAG_ACCURATE);
-	flags |= GstSeekFlags (GST_SEEK_FLAG_KEY_UNIT);
+	flags |= GST_SEEK_FLAG_KEY_UNIT;
 // 	flags |= GstSeekFlags (GST_SEEK_FLAG_SEGMENT);
 // 	flags |= GstSeekFlags (GST_SEEK_FLAG_SKIP);
 
@@ -537,13 +537,13 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 
 	if ( ratio >= 0 )
 	{
-		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, flags, GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, len);
+		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, (GstSeekFlags)flags, GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, len);
 
 		eDebug("eServiceMP3::trickSeek with rate %lf to %" GST_TIME_FORMAT " ", ratio, GST_TIME_ARGS (pos));
 	}
 	else
 	{
-		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, GST_SEEK_FLAG_SKIP|GST_SEEK_FLAG_FLUSH, GST_SEEK_TYPE_NONE, -1, GST_SEEK_TYPE_NONE, -1);
+		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_SKIP|GST_SEEK_FLAG_FLUSH), GST_SEEK_TYPE_NONE, -1, GST_SEEK_TYPE_NONE, -1);
 	}
 
 	if (!gst_element_send_event ( GST_ELEMENT (m_gst_playbin), s_event))
@@ -899,10 +899,7 @@ PyObject *eServiceMP3::getInfoObject(int w)
 		default:
 			break;
 	}
-	gdouble value;
-	if ( !tag || !m_stream_tags )
-		value = 0.0;
-	PyObject *pyValue;
+
 	if ( isBuffer )
 	{
 		const GValue *gv_buffer = gst_tag_list_get_value_index(m_stream_tags, tag, 0);
@@ -910,16 +907,17 @@ PyObject *eServiceMP3::getInfoObject(int w)
 		{
 			GstBuffer *buffer;
 			buffer = gst_value_get_buffer (gv_buffer);
-			pyValue = PyBuffer_FromMemory(GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
+			return PyBuffer_FromMemory(GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
 		}
 	}
 	else
 	{
+		gdouble value = 0.0;
 		gst_tag_list_get_double(m_stream_tags, tag, &value);
-		pyValue = PyFloat_FromDouble(value);
+		return PyFloat_FromDouble(value);
 	}
 
-	return pyValue;
+	return 0;
 }
 
 RESULT eServiceMP3::audioChannel(ePtr<iAudioChannelSelection> &ptr)
@@ -1187,8 +1185,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				if (!caps)
 					continue;
 				GstStructure* str = gst_caps_get_structure(caps, 0);
-				gchar *g_type;
-				g_type = gst_structure_get_name(str);
+				const gchar *g_type = gst_structure_get_name(str);
 				eDebug("AUDIO STRUCT=%s", g_type);
 				audio.type = gstCheckAudioPad(str);
 				g_codec = g_strdup(g_type);
