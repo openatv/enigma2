@@ -194,7 +194,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_seekTimeout = eTimer::create(eApp);
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_stream_tags = 0;
-	m_currentAudioStream = 0;
+	m_currentAudioStream = -1;
 	m_currentSubtitleStream = 0;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 0;
@@ -945,6 +945,8 @@ int eServiceMP3::getNumberOfTracks()
 
 int eServiceMP3::getCurrentTrack()
 {
+	if (m_currentAudioStream == -1)
+		g_object_get (G_OBJECT (m_gst_playbin), "current-audio", &m_currentAudioStream, NULL);
 	return m_currentAudioStream;
 }
 
