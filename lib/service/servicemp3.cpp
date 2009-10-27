@@ -335,7 +335,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_gst_playbin = 0;
 	}
 
-	gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 	setBufferSize(m_buffer_size);
 }
 
@@ -355,7 +354,7 @@ eServiceMP3::~eServiceMP3()
 	}
 }
 
-DEFINE_REF(eServiceMP3);	
+DEFINE_REF(eServiceMP3);
 
 RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
@@ -366,25 +365,30 @@ RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event,
 RESULT eServiceMP3::start()
 {
 	ASSERT(m_state == stIdle);
-	
+
 	m_state = stRunning;
 	if (m_gst_playbin)
 	{
 		eDebug("eServiceMP3::starting pipeline");
 		gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 	}
+
 	m_event(this, evStart);
+
 	return 0;
 }
 
 RESULT eServiceMP3::stop()
 {
 	ASSERT(m_state != stIdle);
+
 	if (m_state == stStopped)
 		return -1;
+
 	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
+
 	return 0;
 }
 
