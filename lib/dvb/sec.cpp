@@ -37,7 +37,7 @@ void eDVBSatelliteEquipmentControl::setParam(int param, int value)
 }
 
 eDVBSatelliteEquipmentControl::eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends, eSmartPtrList<eDVBRegisteredFrontend> &avail_simulate_frontends)
-	:m_lnbidx((sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters))-1), m_curSat(m_lnbs[0].m_satellites.end()), m_avail_frontends(avail_frontends), m_avail_simulate_frontends(avail_simulate_frontends), m_rotorMoving(false)
+	:m_lnbidx((sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters))-1), m_curSat(m_lnbs[0].m_satellites.end()), m_avail_frontends(avail_frontends), m_avail_simulate_frontends(avail_simulate_frontends), m_rotorMoving(0)
 {
 	if (!instance)
 		instance = this;
@@ -1513,7 +1513,10 @@ bool eDVBSatelliteEquipmentControl::isRotorMoving()
 	return m_rotorMoving;
 }
 
-void eDVBSatelliteEquipmentControl::setRotorMoving(bool b)
+void eDVBSatelliteEquipmentControl::setRotorMoving(int slot_no, bool b)
 {
-	m_rotorMoving=b;
+	if (b)
+		m_rotorMoving |= (1 << slot_no);
+	else
+		m_rotorMoving &= ~(1 << slot_no);
 }

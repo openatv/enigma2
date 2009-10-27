@@ -194,7 +194,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_seekTimeout = eTimer::create(eApp);
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_stream_tags = 0;
-	m_currentAudioStream = 0;
+	m_currentAudioStream = -1;
 	m_currentSubtitleStream = 0;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 0;
@@ -302,7 +302,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-appsink");
 	else
 	{
-		g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
+		m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 	}
 
@@ -335,16 +335,28 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		m_gst_playbin = 0;
 	}
 
-	gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 	setBufferSize(m_buffer_size);
 }
 
 eServiceMP3::~eServiceMP3()
 {
+	// disconnect subtitle callback
+	GstElement *sink;
+	g_object_get (G_OBJECT (m_gst_playbin), "text-sink", &sink, NULL);
+	if (sink)
+	{
+		g_signal_handler_disconnect (sink, m_subs_to_pull_handler_id);
+		gst_object_unref(sink);
+	}
+
 	delete m_subtitle_widget;
+
+	// disconnect sync handler callback
+	gst_bus_set_sync_handler(gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin)), NULL, NULL);
+
 	if (m_state == stRunning)
 		stop();
-	
+
 	if (m_stream_tags)
 		gst_tag_list_free(m_stream_tags);
 	
@@ -355,7 +367,7 @@ eServiceMP3::~eServiceMP3()
 	}
 }
 
-DEFINE_REF(eServiceMP3);	
+DEFINE_REF(eServiceMP3);
 
 RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
@@ -366,25 +378,30 @@ RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event,
 RESULT eServiceMP3::start()
 {
 	ASSERT(m_state == stIdle);
-	
+
 	m_state = stRunning;
 	if (m_gst_playbin)
 	{
 		eDebug("eServiceMP3::starting pipeline");
 		gst_element_set_state (m_gst_playbin, GST_STATE_PLAYING);
 	}
+
 	m_event(this, evStart);
+
 	return 0;
 }
 
 RESULT eServiceMP3::stop()
 {
 	ASSERT(m_state != stIdle);
+
 	if (m_state == stStopped)
 		return -1;
+
 	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
 	gst_element_set_state(m_gst_playbin, GST_STATE_NULL);
 	m_state = stStopped;
+
 	return 0;
 }
 
@@ -522,11 +539,11 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		return seekRelative(0, 0);
 
 	GstEvent *s_event;
-	GstSeekFlags flags;
+	int flags;
 	flags = GST_SEEK_FLAG_NONE;
-	flags |= GstSeekFlags (GST_SEEK_FLAG_FLUSH);
+	flags |= GST_SEEK_FLAG_FLUSH;
 // 	flags |= GstSeekFlags (GST_SEEK_FLAG_ACCURATE);
-	flags |= GstSeekFlags (GST_SEEK_FLAG_KEY_UNIT);
+	flags |= GST_SEEK_FLAG_KEY_UNIT;
 // 	flags |= GstSeekFlags (GST_SEEK_FLAG_SEGMENT);
 // 	flags |= GstSeekFlags (GST_SEEK_FLAG_SKIP);
 
@@ -537,13 +554,13 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 
 	if ( ratio >= 0 )
 	{
-		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, flags, GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, len);
+		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, (GstSeekFlags)flags, GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, len);
 
 		eDebug("eServiceMP3::trickSeek with rate %lf to %" GST_TIME_FORMAT " ", ratio, GST_TIME_ARGS (pos));
 	}
 	else
 	{
-		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, GST_SEEK_FLAG_SKIP|GST_SEEK_FLAG_FLUSH, GST_SEEK_TYPE_NONE, -1, GST_SEEK_TYPE_NONE, -1);
+		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_SKIP|GST_SEEK_FLAG_FLUSH), GST_SEEK_TYPE_NONE, -1, GST_SEEK_TYPE_NONE, -1);
 	}
 
 	if (!gst_element_send_event ( GST_ELEMENT (m_gst_playbin), s_event))
@@ -899,10 +916,7 @@ PyObject *eServiceMP3::getInfoObject(int w)
 		default:
 			break;
 	}
-	gdouble value;
-	if ( !tag || !m_stream_tags )
-		value = 0.0;
-	PyObject *pyValue;
+
 	if ( isBuffer )
 	{
 		const GValue *gv_buffer = gst_tag_list_get_value_index(m_stream_tags, tag, 0);
@@ -910,16 +924,17 @@ PyObject *eServiceMP3::getInfoObject(int w)
 		{
 			GstBuffer *buffer;
 			buffer = gst_value_get_buffer (gv_buffer);
-			pyValue = PyBuffer_FromMemory(GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
+			return PyBuffer_FromMemory(GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
 		}
 	}
 	else
 	{
+		gdouble value = 0.0;
 		gst_tag_list_get_double(m_stream_tags, tag, &value);
-		pyValue = PyFloat_FromDouble(value);
+		return PyFloat_FromDouble(value);
 	}
 
-	return pyValue;
+	return 0;
 }
 
 RESULT eServiceMP3::audioChannel(ePtr<iAudioChannelSelection> &ptr)
@@ -947,6 +962,8 @@ int eServiceMP3::getNumberOfTracks()
 
 int eServiceMP3::getCurrentTrack()
 {
+	if (m_currentAudioStream == -1)
+		g_object_get (G_OBJECT (m_gst_playbin), "current-audio", &m_currentAudioStream, NULL);
 	return m_currentAudioStream;
 }
 
@@ -1187,8 +1204,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				if (!caps)
 					continue;
 				GstStructure* str = gst_caps_get_structure(caps, 0);
-				gchar *g_type;
-				g_type = gst_structure_get_name(str);
+				const gchar *g_type = gst_structure_get_name(str);
 				eDebug("AUDIO STRUCT=%s", g_type);
 				audio.type = gstCheckAudioPad(str);
 				g_codec = g_strdup(g_type);
