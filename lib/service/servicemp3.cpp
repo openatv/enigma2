@@ -42,7 +42,6 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("mp4");
 		extensions.push_back("mov");
 		extensions.push_back("m4a");
-		extensions.push_back("m2ts");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
