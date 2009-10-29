@@ -652,18 +652,23 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 
 int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int frame_types)
 {
-	int nr_frames = 0;
+	int nr_frames, direction;
 //	eDebug("trying to move %d frames at %llx", distance, offset);
 	
 	frame_types = frametypeI; /* TODO: intelligent "allow IP frames when not crossing an I-Frame */
 
-	int direction = distance > 0 ? 0 : -1;
-	distance = abs(distance);
-	
 	off_t new_offset = offset;
 	size_t new_len = len;
 	int first = 1;
 
+	if (distance > 0) {
+		direction = 0;
+                nr_frames = 0;
+        } else {
+		direction = -1;
+                nr_frames = -1;
+		distance = -distance+1;
+        }	
 	while (distance > 0)
 	{
 		int dir = direction;
@@ -677,12 +682,18 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 		
 //		eDebug("we moved %d, %d to go frames (now at %llx)", dir, distance, new_offset);
 
-		if (distance >= 0 || first)
+		if (distance >= 0 || direction == 0)
 		{
 			first = 0;
 			offset = new_offset;
 			len = new_len;
 			nr_frames += abs(dir);
+		} 
+		else if (first) {
+			first = 0;
+			offset = new_offset;
+			len = new_len;
+			nr_frames += abs(dir) + distance; // never jump forward during rewind
 		}
 	}
 
