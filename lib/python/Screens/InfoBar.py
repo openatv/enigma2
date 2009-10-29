@@ -212,7 +212,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 					return
 
 		if answer in ("quit", "quitanddeleteconfirmed"):
-			config.movielist.last_videodir.cancel()
 			self.close()
 		elif answer == "movielist":
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
