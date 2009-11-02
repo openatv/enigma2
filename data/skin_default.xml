@@ -956,14 +956,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Subtitle area -->
 	<screen name="SubtitleDisplay" position="0,0" size="720,576" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
-	<!-- Subtitle effects -->
-	<subtitles>
-		<sub name="Subtitle_TTX" font="Regular;30" foregroundColor="#FFFFFF" shadowColor="#40000000" shadowOffset="3,3" /> 
-		<sub name="Subtitle_Regular" font="Regular;30" foregroundColor="#FFFFFF" shadowColor="#40000000" shadowOffset="3,3" /> 
-		<sub name="Subtitle_Bold" font="Replacement;30" foregroundColor="#FFFFFF" shadowColor="#40000000" shadowOffset="3,3" /> 
-		<sub name="Subtitle_Italic" font="Regular;30" foregroundColor="#FFFFFF" shadowColor="#40000000" shadowOffset="3,3" />
-		<!-- omitting foregroundColor attribute will enable auto-assignment of color -->
-	</subtitles>
 	<!-- TextBox -->
 	<screen name="TextBox" position="center,center" size="550,400" title="Message...">
 		<widget name="text" position="0,0" size="540,390" font="Regular;18" />
