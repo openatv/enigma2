@@ -1,5 +1,6 @@
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations
+from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import Misc_Options, setTunerTypePriorityOrder;
 from SystemInfo import SystemInfo
 import os
@@ -30,8 +31,11 @@ def InitUsageConfig():
 		("standard", _("standard")), ("swap", _("swap PiP and main picture")),
 		("swapstop", _("move PiP to main picture")), ("stop", _("stop PiP")) ])
 
+	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
+	config.usage.timer_path = ConfigText(default = "<default>")
+	config.usage.instantrec_path = ConfigText(default = "<default>")
+	config.usage.timeshift_path = ConfigText(default = "/media/hdd/")
 	config.usage.allowed_timeshift_paths = ConfigLocations(default = ["/media/hdd/"])
-	config.usage.timeshift_path = ConfigText(default = "/media/hdd")
 
 	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
@@ -65,19 +69,19 @@ def InitUsageConfig():
 	
 	def TunerTypePriorityOrderChanged(configElement):
 		setTunerTypePriorityOrder(int(configElement.value))
-	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged)
+	config.usage.alternatives_priority.addNotifier(TunerTypePriorityOrderChanged, immediate_feedback=False)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(configElement.value))
-	config.usage.hdd_standby.addNotifier(setHDDStandby)
+	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
 	def set12VOutput(configElement):
 		if configElement.value == "on":
 			Misc_Options.getInstance().set_12V_output(1)
 		elif configElement.value == "off":
 			Misc_Options.getInstance().set_12V_output(0)
-	config.usage.output_12V.addNotifier(set12VOutput)
+	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
 	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
 
@@ -128,3 +132,23 @@ def updateChoices(sel, choices):
 					defval = str(x)
 					break
 		sel.setChoices(map(str, choices), defval)
+
+def preferredPath(path):
+	if config.usage.setup_level.index < 2 or path == "<default>":
+		return None  # config.usage.default_path.value, but delay lookup until usage
+	elif path == "<current>":
+		return config.movielist.last_videodir.value
+	elif path == "<timer>":
+		return config.movielist.last_timer_videodir.value
+	else:
+		return path
+
+def preferredTimerPath():
+	return preferredPath(config.usage.timer_path.value)
+
+def preferredInstantRecordPath():
+	return preferredPath(config.usage.instantrec_path.value)
+
+def defaultMoviePath():
+	return config.usage.default_path.value
+

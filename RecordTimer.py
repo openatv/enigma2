@@ -2,6 +2,7 @@ from enigma import eEPGCache, getBestPlayableServiceReference, \
 	eServiceReference, iRecordableService, quitMainloop
 
 from Components.config import config
+from Components.UsageConfig import defaultMoviePath
 from Components.TimerSanityCheck import TimerSanityCheck
 
 from Screens.MessageBox import MessageBox
@@ -141,11 +142,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
 
-		if self.dirname and not Directories.fileExists(self.dirname, 'w'):
-			self.dirnameHadToFallback = True
-			self.Filename = Directories.getRecordingFilename(filename, None)
+		if not self.dirname or not Directories.fileExists(self.dirname, 'w'):
+			if self.dirname:
+				self.dirnameHadToFallback = True
+			dirname = defaultMoviePath()
 		else:
-			self.Filename = Directories.getRecordingFilename(filename, self.dirname)
+			dirname = self.dirname
+		self.Filename = Directories.getRecordingFilename(filename, dirname)
 		self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		#begin_date + " - " + service_name + description)
 
