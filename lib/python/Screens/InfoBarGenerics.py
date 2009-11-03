@@ -10,6 +10,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
+from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -28,7 +29,7 @@ from Screens.TimeDateInput import TimeDateInput
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
-from Tools.Directories import SCOPE_HDD, resolveFilename, fileExists
+from Tools.Directories import fileExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eEPGCache
@@ -1484,7 +1485,7 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
-		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = config.movielist.last_videodir.value)
+		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = preferredInstantRecordPath())
 		recording.dontSave = True
 		
 		if event is None or limitEvent == False:
@@ -1585,9 +1586,9 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
-		dir = config.movielist.last_videodir.value
-		if not fileExists(dir, 'w'):
-			dir = resolveFilename(SCOPE_HDD)
+		dir = preferredInstantRecordPath()
+		if not dir or not fileExists(dir, 'w'):
+			dir = defaultMoviePath()
 		try:
 			stat = os_stat(dir)
 		except:

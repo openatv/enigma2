@@ -1,6 +1,6 @@
 from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_CONFIG
+from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
 from Components.Harddisk import harddiskmanager
 from copy import copy as copy_copy
 from os import path as os_path
@@ -1285,7 +1285,6 @@ class ConfigLocations(ConfigElement):
 		self.default = default
 		self.locations = []
 		self.mountpoints = []
-		harddiskmanager.on_partition_list_change.append(self.mountpointsChanged)
 		self.value = default[:]
 
 	def setValue(self, value):
@@ -1322,7 +1321,7 @@ class ConfigLocations(ConfigElement):
 		locations = [[x, None, False, False] for x in tmp]
 		self.refreshMountpoints()
 		for x in locations:
-			if os_path.exists(x[0]):
+			if fileExists(x[0]):
 				x[1] = self.getMountpoint(x[0])
 				x[2] = True
 		self.locations = locations
@@ -1341,20 +1340,11 @@ class ConfigLocations(ConfigElement):
 			return False
 		return self.tostring([x[0] for x in locations]) != sv
 
-	def mountpointsChanged(self, action, dev):
-		print "Mounts changed: ", action, dev
-		mp = dev.mountpoint+"/"
-		if action == "add":
-			self.addedMount(mp)
-		elif action == "remove":
-			self.removedMount(mp)
-		self.refreshMountpoints()
-
 	def addedMount(self, mp):
 		for x in self.locations:
 			if x[1] == mp:
 				x[2] = True
-			elif x[1] == None and os_path.exists(x[0]):
+			elif x[1] == None and fileExists(x[0]):
 				x[1] = self.getMountpoint(x[0])
 				x[2] = True
 
@@ -1364,7 +1354,7 @@ class ConfigLocations(ConfigElement):
 				x[2] = False
 
 	def refreshMountpoints(self):
-		self.mountpoints = [p.mountpoint + "/" for p in harddiskmanager.getMountedPartitions() if p.mountpoint != "/"]
+		self.mountpoints = [p.mountpoint for p in harddiskmanager.getMountedPartitions() if p.mountpoint != "/"]
 		self.mountpoints.sort(key = lambda x: -len(x))
 
 	def checkChangedMountpoints(self):

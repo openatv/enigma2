@@ -289,6 +289,11 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			else:
 				self["filelist"].refresh()
 				self.removeBookmark(name, True)
+				val = self.realBookmarks and self.realBookmarks.value
+				if val and name in val:
+					val.remove(name)
+					self.realBookmarks.value = val
+					self.realBookmarks.save()
 
 	def up(self):
 		self[self.currList].up()

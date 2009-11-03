@@ -3,7 +3,7 @@ from os import path as os_path, listdir
 from MenuList import MenuList
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename, fileExists
 
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
@@ -159,8 +159,11 @@ class FileList(MenuList):
 			directories.sort()
 			files.sort()
 		else:
-			if os_path.exists(directory):
-				files = listdir(directory)
+			if fileExists(directory):
+				try:
+					files = listdir(directory)
+				except:
+					files = []
 				files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
@@ -373,8 +376,11 @@ class MultiFileSelectList(FileList):
 			directories.sort()
 			files.sort()
 		else:
-			if os_path.exists(directory):
-				files = listdir(directory)
+			if fileExists(directory):
+				try:
+					files = listdir(directory)
+				except:
+					files = []
 				files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
