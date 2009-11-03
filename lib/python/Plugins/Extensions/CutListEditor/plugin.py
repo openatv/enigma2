@@ -7,6 +7,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.MultiContent import MultiContentEntryText
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.VideoWindow import VideoWindow
+from Components.Label import Label
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from Components.GUIComponent import GUIComponent
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iPlayableService, RT_HALIGN_RIGHT
@@ -119,12 +120,13 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		<widget source="session.CurrentService" render="Label" position="135,405" size="450,50" font="Regular;22" halign="center" valign="center">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="50,450" zPosition="1" size="620,25" font="Regular;20" halign="center" valign="center">
+		<widget source="session.CurrentService" render="Label" position="320,450" zPosition="1" size="420,25" font="Regular;20" halign="left" valign="center">
 			<convert type="ServicePosition">Position,Detailed</convert>
 		</widget>
-		<eLabel position="62,98" size="179,274" backgroundColor="#505555" />
-		<eLabel position="64,100" size="175,270" backgroundColor="#000000" />
-		<widget source="cutlist" position="64,100" zPosition="1" size="175,270" scrollbarMode="showOnDemand" transparent="1" render="Listbox" >
+		<widget name="SeekState" position="210,450" zPosition="1" size="100,25" halign="right" font="Regular;20" valign="center" />
+		<eLabel position="48,98" size="204,274" backgroundColor="#505555" />
+		<eLabel position="50,100" size="200,270" backgroundColor="#000000" />
+		<widget source="cutlist" position="50,100" zPosition="1" size="200,270" scrollbarMode="showOnDemand" transparent="1" render="Listbox" >
 			<convert type="TemplatedMultiContent">
 				{"template": [
 						MultiContentEntryText(size=(125, 20), text = 1, backcolor = MultiContentTemplateColor(3)),
@@ -161,6 +163,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self["Timeline"] = ServicePositionGauge(self.session.nav)
 		self["cutlist"] = List(self.getCutlist())
 		self["cutlist"].onSelectionChanged.append(self.selectionChanged)
+		self["SeekState"] = Label()
+		self.onPlayStateChanged.append(self.updateStateLabel)
+		self.updateStateLabel(self.seekstate)
 
 		self["Video"] = VideoWindow(decoder = 0)
 
@@ -184,12 +189,16 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			})
 
 		# to track new entries we save the last version of the cutlist
-		self.last_cuts = [ ]
+		self.last_cuts = self.getCutlist()
 		self.cut_start = None
+		self.inhibit_seek = False
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
 		self.session.nav.playService(self.old_service)
+
+	def updateStateLabel(self, state):
+		self["SeekState"].setText(state[3].strip())
 
 	def showTutorial(self):
 		if not self.tutorial_seen:
@@ -238,44 +247,46 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		return r
 
 	def selectionChanged(self):
-		where = self["cutlist"].getCurrent()
-		if where is None:
-			print "no selection"
-			return
-		pts = where[0][0]
-		seek = self.getSeek()
-		if seek is None:
-			print "no seek"
-			return
-		seek.seekTo(pts)
+		if not self.inhibit_seek:
+			where = self["cutlist"].getCurrent()
+			if where is None:
+				print "no selection"
+				return
+			pts = where[0][0]
+			seek = self.getSeek()
+			if seek is None:
+				print "no seek"
+				return
+			seek.seekTo(pts)
 
 	def refillList(self):
 		print "cue sheet changed, refilling"
 		self.downloadCuesheet()
 
-		# get the first changed entry, and select it
+		# get the first changed entry, counted from the end, and select it
 		new_list = self.getCutlist()
 		self["cutlist"].list = new_list
 
-		for i in range(min(len(new_list), len(self.last_cuts))):
-			if new_list[i] != self.last_cuts[i]:
-				self["cutlist"].setIndex(i)
+		l1 = len(new_list)
+		l2 = len(self.last_cuts)
+		for i in range(min(l1, l2)):
+			if new_list[l1-i-1] != self.last_cuts[l2-i-1]:
+				self["cutlist"].setIndex(l1-i-1)
 				break
 		self.last_cuts = new_list
 
 	def getStateForPosition(self, pos):
-		state = 0 # in
-
-		# when first point is "in", the beginning is "out"
-		if len(self.cut_list) and self.cut_list[0][1] == 0:
-			state = 1
-
+		state = -1
 		for (where, what) in self.cut_list:
-			if where < pos:
-				if what == 0: # in
-					state = 0
-				elif what == 1: # out
+			if what in [0, 1]:
+				if where < pos:
+					state = what
+				elif where == pos:
 					state = 1
+				elif state == -1:
+					state = 1 - what
+		if state == -1:
+			state = 0
 		return state
 
 	def showMenu(self):
@@ -329,11 +340,11 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			in_after = None
 
 			for (where, what) in self.cut_list:
-				if what == 1 and where < self.context_position: # out
+				if what == 1 and where <= self.context_position: # out
 					out_before = (where, what)
 				elif what == 0 and where < self.context_position: # in, before out
 					out_before = None
-				elif what == 0 and where > self.context_position and in_after is None:
+				elif what == 0 and where >= self.context_position and in_after is None:
 					in_after = (where, what)
 
 			if out_before is not None:
@@ -341,12 +352,16 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 			if in_after is not None:
 				self.cut_list.remove(in_after)
+			self.inhibit_seek = True
 			self.uploadCuesheet()
+			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_MARK:
 			self.__addMark()
 		elif result == CutListContextMenu.RET_DELETEMARK:
 			self.cut_list.remove(self.context_nearest_mark)
+			self.inhibit_seek = True
 			self.uploadCuesheet()
+			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_REMOVEBEFORE:
 			# remove in/out marks before current position
 			for (where, what) in self.cut_list[:]:
@@ -354,7 +369,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 					self.cut_list.remove((where, what))
 			# add 'in' point
 			bisect.insort(self.cut_list, (self.context_position, 0))
+			self.inhibit_seek = True
 			self.uploadCuesheet()
+			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_REMOVEAFTER:
 			# remove in/out marks after current position
 			for (where, what) in self.cut_list[:]:
@@ -362,7 +379,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 					self.cut_list.remove((where, what))
 			# add 'out' point
 			bisect.insort(self.cut_list, (self.context_position, 1))
+			self.inhibit_seek = True
 			self.uploadCuesheet()
+			self.inhibit_seek = False
 		elif result == CutListContextMenu.RET_GRABFRAME:
 			self.grabFrame()
 
