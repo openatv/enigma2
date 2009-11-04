@@ -1048,9 +1048,9 @@ int eTSMPEGDecoder::setState()
 int eTSMPEGDecoder::m_pcm_delay=-1,
 	eTSMPEGDecoder::m_ac3_delay=-1;
 
-RESULT eTSMPEGDecoder::setPCMDelay(int delay)
+RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 {
-	if (m_decoder == 0 && delay != m_pcm_delay )
+	if (delay != m_pcm_delay )
 	{
 		FILE *fp = fopen("/proc/stb/audio/audio_delay_pcm", "w");
 		if (fp)
@@ -1064,9 +1064,9 @@ RESULT eTSMPEGDecoder::setPCMDelay(int delay)
 	return -1;
 }
 
-RESULT eTSMPEGDecoder::setAC3Delay(int delay)
+RESULT eTSMPEGDecoder::setHwAC3Delay(int delay)
 {
-	if ( m_decoder == 0 && delay != m_ac3_delay )
+	if ( delay != m_ac3_delay )
 	{
 		FILE *fp = fopen("/proc/stb/audio/audio_delay_bitstream", "w");
 		if (fp)
@@ -1078,6 +1078,17 @@ RESULT eTSMPEGDecoder::setAC3Delay(int delay)
 		}
 	}
 	return -1;
+}
+
+
+RESULT eTSMPEGDecoder::setPCMDelay(int delay)
+{
+	return m_decoder == 0 ? setHwPCMDelay(delay) : -1;
+}
+
+RESULT eTSMPEGDecoder::setAC3Delay(int delay)
+{
+	return m_decoder == 0 ? setHwAC3Delay(delay) : -1;
 }
 
 eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
