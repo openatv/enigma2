@@ -49,8 +49,9 @@ typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFL
 typedef enum { stPlainText, stSSA, stSRT } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
 
-class eServiceMP3: public iPlayableService, public iPauseableService, 
-	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, public iSubtitleOutput, public iStreamedService, public Object
+class eServiceMP3: public iPlayableService, public iPauseableService,
+	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, 
+	public iSubtitleOutput, public iStreamedService, public iAudioDelay, public Object
 {
 	DECLARE_REF(eServiceMP3);
 public:
@@ -70,13 +71,14 @@ public:
 	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr);
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
+	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
 
 		// not implemented (yet)
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
 	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
-	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = 0; return -1; }
+
 	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
 	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
 	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
@@ -122,6 +124,12 @@ public:
 	PyObject *getBufferCharge();
 	int setBufferSize(int size);
 
+		// iAudioDelay
+	int getAC3Delay();
+	int getPCMDelay();
+	void setAC3Delay(int);
+	void setPCMDelay(int);
+
 	struct audioStream
 	{
 		GstPad* pad;
@@ -166,6 +174,8 @@ public:
 		}
 	};
 private:
+	static int pcm_delay;
+	static int ac3_delay;
 	int m_currentAudioStream;
 	int m_currentSubtitleStream;
 	int selectAudioStream(int i);
