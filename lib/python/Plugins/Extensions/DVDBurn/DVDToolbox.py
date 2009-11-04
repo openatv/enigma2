@@ -82,7 +82,9 @@ class DVDToolbox(Screen):
 		self.update()
 
 	def mediainfoCB(self, mediuminfo, retval, extra_args):
-		capacity = 1
+		formatted_capacity = 0
+		read_capacity = 0
+		capacity = 0
 		used = 0
 		infotext = ""
 		mediatype = ""
@@ -93,21 +95,17 @@ class DVDToolbox(Screen):
 					self.formattable = True
 				else:
 					self.formattable = False
-			if line.find("Legacy lead-out at:") > -1:
+			elif line.find("Legacy lead-out at:") > -1:
 				used = int(line.rsplit('=',1)[1]) / 1048576.0
-				print "[lead out] used =", used
+				print "[dvd+rw-mediainfo] lead out used =", used
 			elif line.find("formatted:") > -1:
-				capacity = int(line.rsplit('=',1)[1]) / 1048576.0
-				print "[formatted] capacity =", capacity
-			elif capacity == 1 and line.find("READ CAPACITY:") > -1:
-				capacity = int(line.rsplit('=',1)[1]) / 1048576.0
-				print "[READ CAP] capacity =", capacity
-			elif line.find("Disc status:") > -1:
-				if line.find("blank") > -1:
-					print "[Disc status] capacity=%d, used=0" % (capacity)
-					capacity = used
-					used = 0
-			elif line.find("Free Blocks:") > -1:
+				formatted_capacity = int(line.rsplit('=',1)[1]) / 1048576.0
+				print "[dvd+rw-mediainfo] formatted capacity =", formatted_capacity
+			elif formatted_capacity == 0 and line.find("READ CAPACITY:") > -1:
+				read_capacity = int(line.rsplit('=',1)[1]) / 1048576.0
+				print "[dvd+rw-mediainfo] READ CAPACITY =", read_capacity
+		for line in mediuminfo.splitlines():
+			if line.find("Free Blocks:") > -1:
 				try:
 					size = eval(line[14:].replace("KB","*1024"))
 				except:
@@ -116,8 +114,22 @@ class DVDToolbox(Screen):
 					capacity = size / 1048576
 					if used:
 						used = capacity-used
-					print "[free blocks] capacity=%d, used=%d" % (capacity, used)
+					print "[dvd+rw-mediainfo] free blocks capacity=%d, used=%d" % (capacity, used)
+			elif line.find("Disc status:") > -1:
+				if line.find("blank") > -1:
+					print "[dvd+rw-mediainfo] Disc status blank capacity=%d, used=0" % (capacity)
+					capacity = used
+					used = 0
+				elif line.find("complete") > -1 and formatted_capacity == 0:
+					print "[dvd+rw-mediainfo] Disc status complete capacity=0, used=%d" % (capacity)
+					used = read_capacity
+					capacity = 1
+				else:
+					capacity = formatted_capacity
 			infotext += line+'\n'
+		if capacity and used > capacity:
+			used = read_capacity or capacity
+			capacity = formatted_capacity or capacity
 		self["details"].setText(infotext)
 		if self.formattable:
 			self["key_yellow"].text = _("Format")
