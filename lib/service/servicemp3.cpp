@@ -2,20 +2,23 @@
 
 	/* note: this requires gstreamer 0.10.x and a big list of plugins. */
 	/* it's currently hardcoded to use a big-endian alsasink as sink. */
-#include <lib/base/eerror.h>
-#include <lib/base/object.h>
 #include <lib/base/ebase.h>
-#include <string>
-#include <lib/service/servicemp3.h>
-#include <lib/service/service.h>
-#include <lib/components/file_eraser.h>
+#include <lib/base/eerror.h>
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
+#include <lib/base/nconfig.h>
+#include <lib/base/object.h>
+#include <lib/dvb/decoder.h>
+#include <lib/components/file_eraser.h>
+#include <lib/gui/esubtitle.h>
+#include <lib/service/servicemp3.h>
+#include <lib/service/service.h>
+
+#include <string>
+
 #include <gst/gst.h>
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
-/* for subtitles */
-#include <lib/gui/esubtitle.h>
 
 // eServiceFactoryMP3
 
@@ -187,6 +190,8 @@ int eStaticServiceMP3Info::getLength(const eServiceReference &ref)
 }
 
 // eServiceMP3
+int eServiceMP3::ac3_delay,
+    eServiceMP3::pcm_delay;
 
 eServiceMP3::eServiceMP3(eServiceReference ref)
 	:m_ref(ref), m_pump(eApp, 1)
@@ -659,7 +664,6 @@ RESULT eServiceMP3::getName(std::string &name)
 	return 0;
 }
 
-
 int eServiceMP3::getInfo(int w)
 {
 	const gchar *tag = 0;
@@ -955,6 +959,12 @@ RESULT eServiceMP3::subtitle(ePtr<iSubtitleOutput> &ptr)
 	return 0;
 }
 
+RESULT eServiceMP3::audioDelay(ePtr<iAudioDelay> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
 int eServiceMP3::getNumberOfTracks()
 {
  	return m_audioStreams.size();
@@ -1093,6 +1103,8 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 						g_object_set (G_OBJECT (sink), "emit-signals", TRUE, NULL);
 						gst_object_unref(sink);
 					}
+					setAC3Delay(ac3_delay);
+					setPCMDelay(pcm_delay);
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
@@ -1579,6 +1591,75 @@ int eServiceMP3::setBufferSize(int size)
 	return 0;
 }
 
+int eServiceMP3::getAC3Delay()
+{
+	return ac3_delay;
+}
+
+int eServiceMP3::getPCMDelay()
+{
+	return pcm_delay;
+}
+
+void eServiceMP3::setAC3Delay(int delay)
+{
+	if (!m_gst_playbin || m_state != stRunning)
+		return;
+	else
+	{
+		GstElement *sink;
+		std::string config_delay;
+		int config_delay_int = delay;
+		if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
+			config_delay_int += atoi(config_delay.c_str());
+
+		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
+
+		if (!sink)
+			return;
+		else {
+			gchar *name = gst_element_get_name(sink);
+
+			if (strstr(name, "dvbaudiosink"))
+				eTSMPEGDecoder::setHwAC3Delay(config_delay_int);
+			g_free(name);
+			gst_object_unref(sink);
+		}
+	}
+}
+
+void eServiceMP3::setPCMDelay(int delay)
+{
+	if (!m_gst_playbin || m_state != stRunning)
+		return;
+	else
+	{
+		GstElement *sink;
+		std::string config_delay;
+		int config_delay_int = delay;
+		if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
+			config_delay_int += atoi(config_delay.c_str());
+
+		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
+
+		if (!sink)
+			return;
+		else {
+			gchar *name = gst_element_get_name(sink);
+
+			if (strstr(name, "dvbaudiosink"))
+				eTSMPEGDecoder::setHwPCMDelay(config_delay_int);
+			else {
+				// this is realy untested..and not used yet
+				gint64 offset = config_delay_int;
+				offset *= 1000000; // milli to nano
+				g_object_set (G_OBJECT (m_gst_playbin), "ts-offset", offset, NULL);
+			}
+			g_free(name);
+			gst_object_unref(sink);
+		}
+	}
+}
 
 #else
 #warning gstreamer not available, not building media player
