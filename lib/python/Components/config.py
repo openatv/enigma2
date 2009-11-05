@@ -1021,6 +1021,42 @@ class ConfigPassword(ConfigText):
 		ConfigText.onDeselect(self, session)
 		self.hidden = True
 
+# lets the user select between [min, min+stepwidth, min+(stepwidth*2)..., maxval] with maxval <= max depending
+# on the stepwidth
+# min, max, stepwidth, default are int values
+# wraparound: pressing RIGHT key at max value brings you to min value and vice versa if set to True
+class ConfigSelectionNumber(ConfigSelection):
+	def __init__(self, min, max, stepwidth, default = None, wraparound = False):
+		self.wraparound = wraparound
+		if default is None:
+			default = min
+		default = str(default)
+		choices = []
+		step = min
+		while step <= max:
+			choices.append(str(step))
+			step += stepwidth
+		
+		ConfigSelection.__init__(self, choices, default)
+		
+	def getValue(self):
+		return int(self.text)
+
+	def setValue(self, val):
+		self.text = str(val)
+		
+	def handleKey(self, key):
+		if not self.wraparound:
+			if key == KEY_RIGHT:
+				if len(self.choices) == (self.choices.index(self.value) + 1):
+					return
+			if key == KEY_LEFT:
+				if self.choices.index(self.value) == 0:
+					return
+		ConfigSelection.handleKey(self, key)
+				
+				
+
 class ConfigNumber(ConfigText):
 	def __init__(self, default = 0):
 		ConfigText.__init__(self, str(default), fixed_size = False)
@@ -1152,7 +1188,10 @@ class ConfigSatlist(ConfigSelection):
 	def __init__(self, list, default = None):
 		if default is not None:
 			default = str(default)
-		ConfigSelection.__init__(self, choices = [(str(orbpos), desc) for (orbpos, desc, flags) in list], default = default)
+		choices = [(str(orbpos), desc) for (orbpos, desc, flags) in list]
+		choices.sort(key = lambda x: int(x[0]))
+		
+		ConfigSelection.__init__(self, choices = choices, default = default)
 
 	def getOrbitalPosition(self):
 		if self.value == "":
