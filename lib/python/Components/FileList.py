@@ -23,6 +23,7 @@ EXTENSIONS = {
 		"ts": "movie",
 		"avi": "movie",
 		"divx": "movie",
+		"m4v": "movie",
 		"mpg": "movie",
 		"mpeg": "movie",
 		"mkv": "movie",
