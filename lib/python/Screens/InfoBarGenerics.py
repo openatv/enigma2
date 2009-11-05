@@ -916,8 +916,8 @@ class InfoBarSeek:
 
 	def seekFwd(self):
 		seek = self.getSeek()
-		if seek and (seek.isCurrentlySeekable() & 1) and not (seek.isCurrentlySeekable() & 2):
-			if not self.fast_winding_hint_message_showed:
+		if seek and not (seek.isCurrentlySeekable() & 2):
+			if not self.fast_winding_hint_message_showed and (seek.isCurrentlySeekable() & 1):
 				self.session.open(MessageBox, _("No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"), MessageBox.TYPE_INFO, timeout=10)
 				self.fast_winding_hint_message_showed = True
 			return
@@ -951,8 +951,8 @@ class InfoBarSeek:
 
 	def seekBack(self):
 		seek = self.getSeek()
-		if seek and (seek.isCurrentlySeekable() & 1) and not (seek.isCurrentlySeekable() & 2):
-			if not self.fast_winding_hint_message_showed:
+		if seek and not (seek.isCurrentlySeekable() & 2):
+			if not self.fast_winding_hint_message_showed and (seek.isCurrentlySeekable() & 1):
 				self.session.open(MessageBox, _("No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"), MessageBox.TYPE_INFO, timeout=10)
 				self.fast_winding_hint_message_showed = True
 			return
