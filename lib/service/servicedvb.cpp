@@ -1385,7 +1385,7 @@ RESULT eDVBServicePlay::setTrickmode(int trick)
 
 RESULT eDVBServicePlay::isCurrentlySeekable()
 {
-	return m_is_pvr || m_timeshift_active;
+	return m_is_pvr || m_timeshift_active ? 3 : 0; // fast forward/backward possible and seeking possible
 }
 
 RESULT eDVBServicePlay::frontendInfo(ePtr<iFrontendInformation> &ptr)
