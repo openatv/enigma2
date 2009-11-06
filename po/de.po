@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-12 12:40+0200\n"
+"POT-Creation-Date: 2009-11-05 18:09+0100\n"
 "PO-Revision-Date: 2009-10-12 12:38+0100\n"
 "Last-Translator: Stefan Pluecken <stefan.pluecken@multimedia-labs.de>\n"
 "Language-Team: none\n"
@@ -124,6 +124,9 @@ msgstr ""
 msgid " updates available."
 msgstr ""
 
+msgid " wireless networks found!"
+msgstr " Funk Netzwerke gefunden!"
+
 msgid "#000000"
 msgstr ""
 
@@ -219,6 +222,9 @@ msgstr ""
 
 msgid "1"
 msgstr ""
+
+msgid "1 wireless network found!"
+msgstr "1 Funk Netzwerk gefunden!"
 
 msgid "1.0"
 msgstr "1.0"
@@ -415,6 +421,9 @@ msgstr "Über"
 
 msgid "About..."
 msgstr "Über..."
+
+msgid "Accesspoint:"
+msgstr "Zugangspunkt:"
 
 msgid "Action on long powerbutton press"
 msgstr "Aktion beim langen Druck auf Power"
@@ -690,6 +699,9 @@ msgstr "Verhalten beim Stoppen eines Films"
 msgid "Behavior when a movie reaches the end"
 msgstr "Verhalten beim Filmende"
 
+msgid "Bitrate:"
+msgstr ""
+
 msgid "Block noise reduction"
 msgstr ""
 
@@ -812,6 +824,9 @@ msgstr "Überprüfe Dateisystem..."
 msgid "Choose Tuner"
 msgstr "Tuner wählen"
 
+msgid "Choose a wireless network"
+msgstr "Wählen Sie ein Funk Netzwerk"
+
 msgid "Choose backup files"
 msgstr "Wählen Sie die zu sichernden Dateien"
 
@@ -843,13 +858,13 @@ msgid "Cleanup"
 msgstr "Aufräumen"
 
 msgid "Cleanup Wizard"
-msgstr ""
+msgstr "Aufräumassistent"
 
 msgid "Cleanup Wizard settings"
-msgstr ""
+msgstr "Aufräumassistent Einstellunge"
 
 msgid "CleanupWizard"
-msgstr ""
+msgstr "Aufräumassistent"
 
 msgid "Clear before scan"
 msgstr "Vor der Suche löschen"
@@ -923,6 +938,21 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Konfiguration"
 
+msgid "Configure interface"
+msgstr "Netzwerkkarte konfigurieren"
+
+msgid "Configure nameservers"
+msgstr "DNS-Server konfigurieren"
+
+msgid "Configure your internal LAN"
+msgstr "Internes Netzwerk konfigurieren"
+
+msgid "Configure your network again"
+msgstr "Netzwerk erneut konfigurieren"
+
+msgid "Configure your wireless LAN again"
+msgstr "Funknetzwerk erneut konfigurieren"
+
 msgid "Configuring"
 msgstr "Konfiguriere"
 
@@ -930,7 +960,10 @@ msgid "Conflicting timer"
 msgstr "In Konflikt stehender Timer"
 
 msgid "Connect"
-msgstr ""
+msgstr "Verbinden"
+
+msgid "Connect to a Wireless Network"
+msgstr "Mit Funknetzwerk verbinden"
 
 msgid "Connected to"
 msgstr "Verbunden mit"
@@ -939,7 +972,7 @@ msgid "Connected to Fritz!Box!"
 msgstr "Mit Fritz!Box verbunden!"
 
 msgid "Connected!"
-msgstr ""
+msgstr "Verbunden!"
 
 msgid "Connecting to Fritz!Box..."
 msgstr "Verbinde zur Fritz!Box..."
@@ -1162,6 +1195,9 @@ msgstr "DiSEqC-Modus"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC-Wiederholungen"
 
+msgid "DiSEqC-Tester settings"
+msgstr ""
+
 msgid "Dialing:"
 msgstr ""
 
@@ -1174,6 +1210,9 @@ msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr "Verzeichnis %s existiert nicht."
+
+msgid "Directory browser"
+msgstr ""
 
 msgid "Disable"
 msgstr "Aus"
@@ -1434,7 +1473,7 @@ msgid "Enable 5V for active antenna"
 msgstr "5V für aktive Antenne"
 
 msgid "Enable Cleanup Wizard?"
-msgstr ""
+msgstr "Aufräumassisten aktivieren?"
 
 msgid "Enable multiple bouquets"
 msgstr "Mehrere Bouquets erlauben"
@@ -1448,6 +1487,10 @@ msgstr "Timer aktivieren"
 msgid "Enabled"
 msgstr "Eingeschaltet"
 
+#, python-format
+msgid "Encrypted: %s"
+msgstr "verschlüsselt: %s"
+
 msgid "Encryption"
 msgstr "Verschlüsselung"
 
@@ -1459,6 +1502,9 @@ msgstr "Passwortverschlüsselungstyp"
 
 msgid "Encryption Type"
 msgstr "Verschlüssellungsart"
+
+msgid "Encryption:"
+msgstr "Verschlüsselung:"
 
 msgid "End time"
 msgstr "Endzeit"
@@ -1551,6 +1597,9 @@ msgstr "Beenden"
 
 msgid "Exit editor"
 msgstr "Editor beenden"
+
+msgid "Exit network wizard"
+msgstr "Netzwerkassistent verlassen"
 
 msgid "Exit the cleanup wizard"
 msgstr ""
@@ -1744,6 +1793,9 @@ msgstr "Festplatten-Standby nach"
 msgid "Hidden network SSID"
 msgstr "Verstecke Netzwerk SSID"
 
+msgid "Hidden networkname"
+msgstr "versteckte SSID"
+
 msgid "Hierarchy Information"
 msgstr "Hierarchieinformationen"
 
@@ -1911,6 +1963,10 @@ msgstr "Eingebaute Netzwerkschnittstelle"
 msgid "Integrated Wireless"
 msgstr "Integriertes WLAN"
 
+#, python-format
+msgid "Interface: %s"
+msgstr "Adapter: %s"
+
 msgid "Intermediate"
 msgstr "Fortgeschritten"
 
@@ -2016,6 +2072,9 @@ msgstr "Limits ausschalten"
 msgid "Limits on"
 msgstr "Limits aktiviert"
 
+msgid "Link Quality:"
+msgstr "Qualität:"
+
 msgid "Link:"
 msgstr "Verbindung:"
 
@@ -2090,6 +2149,10 @@ msgstr "Nachlauf hinter Aufnahme"
 
 msgid "Margin before record (minutes)"
 msgstr "Vorlauf bei Aufnahme (in Minuten)"
+
+#, python-format
+msgid "Max. Bitrate: %s"
+msgstr ""
 
 msgid "Media player"
 msgstr "Media Player"
@@ -2220,6 +2283,9 @@ msgstr "Netzwerk SSID"
 msgid "Network Setup"
 msgstr "Netzwerkeinstellungen"
 
+msgid "Network Wizard"
+msgstr "Netzwerkassistent"
+
 msgid "Network scan"
 msgstr "Netzwerksuche"
 
@@ -2262,6 +2328,9 @@ msgstr "Kein (unterstütztes) DVD-Laufwerk gefunden!"
 msgid "No 50 Hz, sorry. :("
 msgstr "50 Hz nicht möglich. :("
 
+msgid "No Connection"
+msgstr "Keine Verbindung"
+
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Keine Festplatte gefunden oder\n"
@@ -2294,6 +2363,9 @@ msgstr "Keine EPG-Daten gefunden. Starte unbegrenzte Aufnahme."
 
 msgid "No free tuner!"
 msgstr "Kein freier Tuner"
+
+msgid "No networks found"
+msgstr ""
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
@@ -2346,6 +2418,9 @@ msgstr ""
 "Kein gültiger Service-PIN gefunden!\n"
 "Wollen Sie den Service-PIN jetzt ändern?\n"
 "Wenn Sie 'NEIN' wählen, bleibt der Einstellungen-Schutz deaktiviert!"
+
+msgid "No wireless networks found! Please refresh."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2582,6 +2657,22 @@ msgstr ""
 "Bitte wählen Sie die Standard-Kanallisten, die Sie installieren wollen."
 
 msgid ""
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Konfigurieren Sie Ihre DNS-Server durch Ausfüllen der entsprechenden Werte.\n"
+"Drücken Sie OK zum Fortfahren"
+
+msgid ""
+"Please configure your internet connection by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Konfigurieren Sie Ihr Netzwerk durch Ausfüllen der entsprechenden Werte.\n"
+"Drücken Sie OK zum Fortfahren"
+
+msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
 msgstr ""
@@ -2665,6 +2756,26 @@ msgstr "Bitte wählen Sie ein Ziel-Verzeichnis bzw. Datenträger"
 msgid "Please select the movie path..."
 msgstr "Bitte den Filmpfad angeben..."
 
+msgid ""
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Bitte wählen Sie die Netzwerkschnittstelle welche Sie für Ihren "
+"Internetzugang nutzen möchten.\n"
+"\n"
+"Drücken Sie OK zum Fortfahren"
+
+msgid ""
+"Please select the wireless network that you want to connect to.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Bitte wählen Sie das Funknetzwerk zu welchem Sie sich verbinden möchten.\n"
+"\n"
+"Drücken Sie OK zum Fortfahren."
+
 msgid "Please set up tuner B"
 msgstr "Einstellungen für Tuner B."
 
@@ -2704,6 +2815,12 @@ msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Bitte warten während das Netzwerk konfiguriert wird..."
+
+msgid "Please wait while we prepare your network interfaces..."
+msgstr "Bitte warten während das Netzwerk konfiguriert wird..."
+
+msgid "Please wait while we test your network..."
+msgstr "Bitte warten während das Netzwerk überprüft wird..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Bitte warten während das Netzwerk neu startet..."
@@ -2926,6 +3043,9 @@ msgstr "Aufnahmen haben immer Vorrang"
 msgid "Reenter new pin"
 msgstr "Nochmals den Pincode eingeben"
 
+msgid "Refresh"
+msgstr "Aktualisieren"
+
 msgid "Refresh Rate"
 msgstr "Bildwiederholrate"
 
@@ -2936,7 +3056,7 @@ msgid "Reload"
 msgstr "aktualisieren"
 
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 msgid "Remove Bookmark"
 msgstr "Bookmark entfernen"
@@ -2972,9 +3092,6 @@ msgid "Remove title"
 msgstr "Titel entfernen"
 
 msgid "Removed successfully."
-msgstr ""
-
-msgid "Removeing"
 msgstr ""
 
 msgid "Removing"
@@ -3106,6 +3223,9 @@ msgid "SNR"
 msgstr ""
 
 msgid "SNR:"
+msgstr ""
+
+msgid "SSID:"
 msgstr ""
 
 msgid "Sat"
@@ -3283,6 +3403,9 @@ msgstr ""
 msgid "Select image"
 msgstr "Wählen Sie ein Image"
 
+msgid "Select interface"
+msgstr "Netzwerkkarte auswählen"
+
 msgid "Select package"
 msgstr ""
 
@@ -3306,6 +3429,9 @@ msgstr ""
 
 msgid "Select video mode"
 msgstr "Wählen Sie den Video-Modus"
+
+msgid "Select wireless network"
+msgstr "Funknetzwerk auswählen"
 
 msgid "Selected source image"
 msgstr "Wählen Sie ein Quell-Image"
@@ -3435,6 +3561,12 @@ msgstr "Zeigt den Status der WLAN Verbinung an.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Dreambox ausschalten nach"
+
+msgid "Signal Strength:"
+msgstr "Signal Stärke:"
+
+msgid "Signal: "
+msgstr "Signal: "
 
 msgid "Similar"
 msgstr "Ähnlich"
@@ -3715,6 +3847,13 @@ msgid "Test-Messagebox?"
 msgstr ""
 
 msgid ""
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
+msgstr ""
+"Vielen Dank, dass Sie den Assisten benutzt haben.\n"
+"Drücken Sie OK zum Fortfahren."
+
+msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
@@ -3822,6 +3961,13 @@ msgstr "Der Ausschalt-Timer wurde deaktiviert"
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "Die Timer-Datei (timers.xml) ist kaputt und konnte nicht geladen werden."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
+msgstr ""
+"Das WirelessLan Plugin ist nicht instaliert!\n"
+"Bitte installieren Sie es und wählen Sie dann eine Option zum Fortfahren."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -4197,9 +4343,6 @@ msgid ""
 "Remove"
 msgstr ""
 
-msgid "Unicable"
-msgstr ""
-
 msgid "Unicable LNB"
 msgstr ""
 
@@ -4212,8 +4355,11 @@ msgstr "Universal-LNB"
 msgid "Unmount failed"
 msgstr "Unmounten fehlgeschlagen"
 
+msgid "Unsupported"
+msgstr "Nicht unterstützt"
+
 msgid "Update"
-msgstr ""
+msgstr "Aktualisieren"
 
 msgid "Updates your receiver's software"
 msgstr "Aktualisiert die Software Ihres Receivers"
@@ -4231,9 +4377,6 @@ msgstr "Upgrade beendet."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Aktualisierung beendet. Möchten Sie Ihre Dreambox nun neu starten?"
-
-msgid "Upgradeing"
-msgstr ""
 
 msgid "Upgrading"
 msgstr "Upgrade"
@@ -4352,9 +4495,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Auswahl des Videomodus."
-
-msgid "VideoSetup"
-msgstr ""
 
 msgid "Videoenhancement Setup"
 msgstr ""
@@ -4495,12 +4635,21 @@ msgid ""
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
+"Willkommen.\n"
+"\n"
+"Wenn Sie Ihre Dreambox mit dem Internet verbinden möchten, wird Sie dieser "
+"Assistent durch die grundlegenden Netzwerkeinstellungen führen.\n"
+"\n"
+"Drücken Sie OK um Ihr Netzwerk zu konfigurieren"
 
 msgid ""
 "Welcome.\n"
@@ -4550,8 +4699,14 @@ msgstr "Wo wollen Sie temporäre Timeshift Aufnahmen speichern?"
 msgid "Wireless"
 msgstr "Funk"
 
+msgid "Wireless LAN"
+msgstr ""
+
 msgid "Wireless Network"
 msgstr "Funk Netzwerk"
+
+msgid "Wireless Network State"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
@@ -4720,6 +4875,19 @@ msgstr ""
 "\n"
 "Möchten Sie den Pincode nun setzen?"
 
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Ihre Dreambox ist nun konfiguriert.\n"
+"\n"
+"Ihre Internetverbindung funktioniert nun.\n"
+"\n"
+"Drücken Sie OK zum Fortfahren."
+
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
 "Ihre Dreambox wird neu starten nachdem Sie OK auf Ihrer Fernbedienung "
@@ -4760,6 +4928,13 @@ msgstr ""
 "Ihre Frontprozessor-Firmware muss aktualisiert werden.\n"
 "Drücken Sie OK, um das Upgrade zu starten."
 
+msgid ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Ihre Internetverbindung funktioniert nicht!\n"
+"Bitte wählen Sie eine Option zum Fortfahren."
+
 msgid "Your name (optional):"
 msgstr ""
 
@@ -4776,6 +4951,17 @@ msgstr ""
 "Ein zweiter konfigurierter Netzwerkadapter wurde gefunden.\n"
 "\n"
 "Wollen Sie den zweiten Netzwerkadapter deaktivieren?"
+
+msgid ""
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
+"\n"
+"Please choose what you want to do next."
+msgstr ""
+"Ihre Funk-Internetverbindung konnte nicht gestartet werden!\n"
+"Ist Ihr USB WLAN Stick korrekt angeschlossen?\n"
+"\n"
+"Bitte wählen Sie eine Option zum Fortfahren."
 
 msgid "Zap back to service before positioner setup?"
 msgstr ""
@@ -5067,6 +5253,9 @@ msgstr "Favoriteneditor beenden"
 msgid "enigma2 and network"
 msgstr "Enigma2 und Netzwerk"
 
+msgid "enter hidden network SSID"
+msgstr "Verstecke Netzwerk SSID eingeben"
+
 msgid "equal to"
 msgstr "Gleich wie"
 
@@ -5138,6 +5327,9 @@ msgstr "Hilfe..."
 
 msgid "hidden network"
 msgstr "verstecktes Netzwerk"
+
+msgid "hidden..."
+msgstr "hidden..."
 
 msgid "hide extended description"
 msgstr "erweiterte Beschreibung ausblenden"
@@ -5622,11 +5814,14 @@ msgstr "Toggle Marker an der aktuellen Position"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Schalte zwischen Zeit-, Kapitel-, Audio- und Untertitel-Info um"
 
+msgid "unavailable"
+msgstr "nicht verfügbar"
+
 msgid "unconfirmed"
 msgstr "Nicht bestätigt"
 
 msgid "unknown"
-msgstr ""
+msgstr "unbekannt"
 
 msgid "unknown service"
 msgstr "unbekannter Kanal"
@@ -5656,7 +5851,7 @@ msgid "waiting"
 msgstr "wartend"
 
 msgid "was removed successfully"
-msgstr ""
+msgstr "wurde erfolgreich entfernt"
 
 msgid "weekly"
 msgstr "wöchentlich"
