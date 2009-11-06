@@ -1,8 +1,9 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-09 13:06+0200\n"
+"POT-Creation-Date: 2009-11-05 18:09+0100\n"
 "PO-Revision-Date: 2009-08-29 20:23+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -95,6 +96,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"System will restart after the restore!"
+msgstr ""
+
+msgid ""
+"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -111,6 +117,9 @@ msgstr "pakettia valittu."
 
 msgid " updates available."
 msgstr "päivitystä tarjolla."
+
+msgid " wireless networks found!"
+msgstr ""
 
 msgid "#000000"
 msgstr ""
@@ -206,6 +215,9 @@ msgid "0"
 msgstr ""
 
 msgid "1"
+msgstr ""
+
+msgid "1 wireless network found!"
 msgstr ""
 
 msgid "1.0"
@@ -404,6 +416,9 @@ msgstr "Tietoja"
 
 msgid "About..."
 msgstr "Tietoja..."
+
+msgid "Accesspoint:"
+msgstr "Tukiasema:"
 
 msgid "Action on long powerbutton press"
 msgstr "Sammutusnapin pitkä painallus"
@@ -684,6 +699,9 @@ msgstr "Toiminto kun toisto pysäytetään"
 msgid "Behavior when a movie reaches the end"
 msgstr "Toiminto kun tallenne loppuu"
 
+msgid "Bitrate:"
+msgstr "Nopeus:"
+
 msgid "Block noise reduction"
 msgstr ""
 
@@ -806,6 +824,9 @@ msgstr "Tarkistetaan tiedostojärjestelmää"
 msgid "Choose Tuner"
 msgstr "Valitse viritin"
 
+msgid "Choose a wireless network"
+msgstr ""
+
 msgid "Choose backup files"
 msgstr "Varmuuskopioitavat tiedostot"
 
@@ -921,6 +942,21 @@ msgstr "Asetukset"
 msgid "Configuration Mode"
 msgstr "Toimintatila"
 
+msgid "Configure interface"
+msgstr "Määritä verkkosovitin"
+
+msgid "Configure nameservers"
+msgstr "Määritä nimipalvelimet"
+
+msgid "Configure your internal LAN"
+msgstr "Määritä LAN-asetukset"
+
+msgid "Configure your network again"
+msgstr "Määritä verkko uudelleen"
+
+msgid "Configure your wireless LAN again"
+msgstr "Määritä WLAN-asetukset uudelleen"
+
 msgid "Configuring"
 msgstr "Muokataan"
 
@@ -928,7 +964,10 @@ msgid "Conflicting timer"
 msgstr "Ristiriita ajastusten välillä"
 
 msgid "Connect"
-msgstr ""
+msgstr "Yhdistä"
+
+msgid "Connect to a Wireless Network"
+msgstr "Yhdistä WLAN-verkkoon"
 
 msgid "Connected to"
 msgstr "Kytketty virittimestä"
@@ -987,6 +1026,11 @@ msgid "CrashlogAutoSubmit settings"
 msgstr ""
 
 msgid "CrashlogAutoSubmit settings..."
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
 msgstr ""
 
 msgid ""
@@ -1151,6 +1195,9 @@ msgstr "DiSEqC-tila"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC-toistoja"
 
+msgid "DiSEqC-Tester settings"
+msgstr ""
+
 msgid "Dialing:"
 msgstr ""
 
@@ -1163,6 +1210,9 @@ msgstr "Linkitettyjen tallenteiden toisto ilman valikkoa"
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr "Hakemistoa %s ei löydy."
+
+msgid "Directory browser"
+msgstr ""
 
 msgid "Disable"
 msgstr "Keskeytä"
@@ -1454,6 +1504,10 @@ msgstr "Ajastin päälle"
 msgid "Enabled"
 msgstr "Käytössä"
 
+#, python-format
+msgid "Encrypted: %s"
+msgstr "Salattu: %s"
+
 msgid "Encryption"
 msgstr "Suojaus"
 
@@ -1465,6 +1519,9 @@ msgstr "Salausavaimen tyyppi"
 
 msgid "Encryption Type"
 msgstr "Suojausjärjestelmä"
+
+msgid "Encryption:"
+msgstr ""
 
 msgid "End time"
 msgstr "Lopetusaika"
@@ -1493,12 +1550,6 @@ msgid ""
 "© 2006 - Stephan Reichholf"
 msgstr ""
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Aloita kelaus eteenpäin nopeudella"
 
@@ -1557,6 +1608,9 @@ msgstr "Poistu"
 
 msgid "Exit editor"
 msgstr "Poistu editorista"
+
+msgid "Exit network wizard"
+msgstr "Poistu verkkoasennuksesta"
 
 msgid "Exit the cleanup wizard"
 msgstr ""
@@ -1752,6 +1806,9 @@ msgstr "Kiintolevyn automaattinen sammutus"
 msgid "Hidden network SSID"
 msgstr "Piilotettu verkko-SSID"
 
+msgid "Hidden networkname"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Hierarkia-tietoja"
 
@@ -1921,6 +1978,10 @@ msgstr "Sisäinen verkkokortti"
 msgid "Integrated Wireless"
 msgstr "Sisäänrakennettu WLAN"
 
+#, python-format
+msgid "Interface: %s"
+msgstr ""
+
 msgid "Intermediate"
 msgstr "Keskitaso"
 
@@ -2026,6 +2087,9 @@ msgstr "Rajat pois"
 msgid "Limits on"
 msgstr "Rajat päälle"
 
+msgid "Link Quality:"
+msgstr "Yhteyden laatu:"
+
 msgid "Link:"
 msgstr "Tila:"
 
@@ -2100,6 +2164,10 @@ msgstr "Lisäaika tallenteen loppuun (minuuttia)"
 
 msgid "Margin before record (minutes)"
 msgstr "Lisäaika tallenteen alkuun (minuuttia)"
+
+#, python-format
+msgid "Max. Bitrate: %s"
+msgstr "Maks. nopeus: %s"
 
 msgid "Media player"
 msgstr "Mediatoistin"
@@ -2230,6 +2298,9 @@ msgstr "Verkon SSID"
 msgid "Network Setup"
 msgstr "Lähiverkon asetukset"
 
+msgid "Network Wizard"
+msgstr "Ohjattu verkkoasennus"
+
 msgid "Network scan"
 msgstr "Verkkohaku"
 
@@ -2272,6 +2343,9 @@ msgstr "DVDROM-asemaa ei löytynyt!"
 msgid "No 50 Hz, sorry. :("
 msgstr "Ei 50Hz tilaa. :("
 
+msgid "No Connection"
+msgstr ""
+
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Kiintolevyä ei löydy tai sitä ei\n"
@@ -2306,6 +2380,9 @@ msgstr ""
 
 msgid "No free tuner!"
 msgstr "Kaikki virittimet ovat jo käytössä!"
+
+msgid "No networks found"
+msgstr "Verkkoja ei löytynyt"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
@@ -2359,6 +2436,9 @@ msgstr ""
 "Asetuksien tunnuslukua ei löydy!\n"
 "Haluatko määrittää asetuksien tunnusluvun?\n"
 "Jos vastaat 'Ei', asetuksia ei suojata tunnusluvulla."
+
+msgid "No wireless networks found! Please refresh."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2598,6 +2678,22 @@ msgid "Please choose the default services lists you want to install."
 msgstr "Valitse oletuskanavalistat jotka haluat asentaa ja paina OK."
 
 msgid ""
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Määritä ja tarkista nimipalvelimien tiedot.\n"
+"Paina OK-näppäintä kun olet valmis."
+
+msgid ""
+"Please configure your internet connection by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Määritä lähiverkkoyhteys syöttämällä tarvittavat arvot.\n"
+"Paina OK-näppäintä kun olet valmis."
+
+msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
 msgstr ""
@@ -2681,6 +2777,25 @@ msgstr "Valitse kohdehakemisto tai levy"
 msgid "Please select the movie path..."
 msgstr "Valitse tallennehakemisto..."
 
+msgid ""
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Valitse verkkosovitin jota haluat käyttää lähiverkkoyhteyteen.\n"
+"\n"
+"Jatka painamalla OK-näppäintä."
+
+msgid ""
+"Please select the wireless network that you want to connect to.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Valitse WLAN-verkko johon haluat kytkeytyä.\n"
+"\n"
+"Jatka painamalla OK-nappia."
+
 #  Ohjatun asennuksen (Startup Wizard) nelosruudun ohjeteksti
 msgid "Please set up tuner B"
 msgstr "Määritä virittimen B asetukset:"
@@ -2719,6 +2834,12 @@ msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Odota, verkkoa määritetään..."
+
+msgid "Please wait while we prepare your network interfaces..."
+msgstr "Odota, valmistelemme verkkosovittimia..."
+
+msgid "Please wait while we test your network..."
+msgstr "Odota, testaamme verkkoa..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Odota, verkko käynnistetään uudelleen..."
@@ -2941,6 +3062,9 @@ msgstr "Tallennukset saavat keskeyttää suoran katselun"
 msgid "Reenter new pin"
 msgstr "Syötä uusi tunnusluku toistamiseen"
 
+msgid "Refresh"
+msgstr "Päivitä"
+
 msgid "Refresh Rate"
 msgstr "Virkistystaajuus"
 
@@ -2987,9 +3111,6 @@ msgid "Remove title"
 msgstr "Poista"
 
 msgid "Removed successfully."
-msgstr ""
-
-msgid "Removeing"
 msgstr ""
 
 msgid "Removing"
@@ -3122,6 +3243,9 @@ msgstr "SNR"
 
 msgid "SNR:"
 msgstr "SNR:"
+
+msgid "SSID:"
+msgstr ""
 
 msgid "Sat"
 msgstr "la"
@@ -3298,6 +3422,9 @@ msgstr ""
 msgid "Select image"
 msgstr "Valitse päivitys"
 
+msgid "Select interface"
+msgstr "Valitse verkkosovitin"
+
 msgid "Select package"
 msgstr ""
 
@@ -3321,6 +3448,9 @@ msgstr "Valitse video-sisäänmeno ylös/alas-näppäimillä"
 
 msgid "Select video mode"
 msgstr "Valitse video-tila"
+
+msgid "Select wireless network"
+msgstr "Valitse WLAN-verkko"
 
 msgid "Selected source image"
 msgstr "Valittu päivitys"
@@ -3452,6 +3582,12 @@ msgstr "Näyttää WLAN-yhteyden tilan.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Sammuta Dreambox jälkeenpäin"
+
+msgid "Signal Strength:"
+msgstr "Signaalinvoimakkuus:"
+
+msgid "Signal: "
+msgstr "Signaali:"
 
 msgid "Similar"
 msgstr "Samanlaiset"
@@ -3734,6 +3870,13 @@ msgstr ""
 msgid "Test-Messagebox?"
 msgstr "Testiviesti-ikkuna?"
 
+msgid ""
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
+msgstr ""
+"Ohjattu verkkoasennut on päättynyt.\n"
+"Jatka painamalla OK-näppäintä."
+
 #  Ohjatun alkuasennuksen loppuviesti. Teksti on tässä tarkasti
 #  sovitettu tilaansa ja käyttäjäkokemusta on yritetty parantaa
 #  antamalla ohje siitä, mitä seuraavaksi tapahtuu. Älä muuta
@@ -3850,6 +3993,13 @@ msgstr "Uniajastin on kytketty pois päältä."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Ajastusluettelo (timers.xml) on korruptoitunut eikä sitä voida ladata"
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
+msgstr ""
+"WLAN-lisäosaa ei ole asennettu!\n"
+"Asenna se ja valitse mitä haluat tehdä seuraavaksi."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -4220,9 +4370,6 @@ msgstr ""
 "Kumoa\n"
 "Poista"
 
-msgid "Unicable"
-msgstr ""
-
 msgid "Unicable LNB"
 msgstr ""
 
@@ -4234,6 +4381,9 @@ msgstr "Universaali LNB"
 
 msgid "Unmount failed"
 msgstr "Irrottaminen epäonnistui"
+
+msgid "Unsupported"
+msgstr ""
 
 msgid "Update"
 msgstr "Päivitä"
@@ -4252,9 +4402,6 @@ msgstr "Päivitys suoritettu."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Päivitys suoritettu. Haluatko käynnistää Dreamboxin uudelleen?"
-
-msgid "Upgradeing"
-msgstr ""
 
 msgid "Upgrading"
 msgstr "Päivitetään"
@@ -4277,19 +4424,6 @@ msgstr "Käytä virran mittausta"
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr "Hyppivä kelaus kun nopeus ylittää"
 
@@ -4328,6 +4462,9 @@ msgstr ""
 "OK-näppäimellä."
 
 msgid "Use this video enhancement settings?"
+msgstr ""
+
+msgid "Use time of currently running service"
 msgstr ""
 
 msgid "Use usals for this sat"
@@ -4400,9 +4537,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Video-tilan valinta."
-
-msgid "VideoSetup"
-msgstr ""
 
 msgid "Videoenhancement Setup"
 msgstr ""
@@ -4549,12 +4683,21 @@ msgid ""
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
+"Tervetuloa.\n"
+"\n"
+"Jos haluat yhdistää Dreamboxin verkkoon, auttaa tämä velho määrittämään "
+"Dreamboxin lähiverhon perusasetukset.\n"
+"\n"
+"Siirry seuraavaan vaiheeseen painamalla OK-nappia."
 
 #  Ohjatun alkuasennuksen (Start Wizard) aloitusruutu. Teksti on
 #  sovitettu melko tarkasti tilaansa, joten muutoksia ei ole syytä
@@ -4609,8 +4752,14 @@ msgstr "Minne ajansiirron väliaikainen tiedosto tallennetaan?"
 msgid "Wireless"
 msgstr "Langaton"
 
+msgid "Wireless LAN"
+msgstr "WLAN-verkko"
+
 msgid "Wireless Network"
 msgstr "Langaton verkko"
+
+msgid "Wireless Network State"
+msgstr "WLAN-verkon tila"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Kirjoitusvirhe tallennuksessa. Levy täynnä?\n"
@@ -4774,6 +4923,19 @@ msgstr ""
 "\n"
 "Haluatko asettaa tunnusluvun nyt?"
 
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Dreambox on nyt valmis käyttöön.\n"
+"\n"
+"Lähiverkkoyhteys toimii.\n"
+"\n"
+"Jatka painamalla OK-näppäintä."
+
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "Dreambox käynnistyy uudelleen kun painat OK."
 
@@ -4810,6 +4972,13 @@ msgstr ""
 "Etupaneelin suorittimen ohjelmisto on päivitettävä.\n"
 "Paina OK aloittaaksesi päivityksen."
 
+msgid ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Lähiverkkoyhteys ei toimi!\n"
+"Valitse mitä haluat tehdä seuraavaksi."
+
 msgid "Your name (optional):"
 msgstr ""
 
@@ -4826,6 +4995,17 @@ msgstr ""
 "Toinen määritelty sovitin löytyi.\n"
 "\n"
 "Haluatko kytkeä sen pois päältä?"
+
+msgid ""
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
+"\n"
+"Please choose what you want to do next."
+msgstr ""
+"WLAN-yhteyttä ei voitu käynnistää!\n"
+"Oletko kytkenyt USB WLAN-tikun?\n"
+"\n"
+"Valitse mitä haluat tehdä seuraavaksi."
 
 msgid "Zap back to service before positioner setup?"
 msgstr ""
@@ -5122,6 +5302,9 @@ msgstr "Tallenna muutokset ja poistu"
 msgid "enigma2 and network"
 msgstr "enigma2 ja verkko"
 
+msgid "enter hidden network SSID"
+msgstr "syötä piilotettu verkko-SSID"
+
 msgid "equal to"
 msgstr "Sama kuin"
 
@@ -5193,6 +5376,9 @@ msgstr "apua..."
 
 msgid "hidden network"
 msgstr "piilotettu verkko"
+
+msgid "hidden..."
+msgstr "piilotettu..."
 
 msgid "hide extended description"
 msgstr "Piilota laajennettu ohjelmakuvaus"
@@ -5674,6 +5860,9 @@ msgstr "aseta leikkausmerkki nykyiseen kohtaan"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "valitse aika, kappale, ääni, tekstitys"
+
+msgid "unavailable"
+msgstr "Ei saatavilla"
 
 msgid "unconfirmed"
 msgstr "vahvistamaton"
