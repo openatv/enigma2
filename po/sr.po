@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-16 14:37+0200\n"
+"POT-Creation-Date: 2009-11-05 18:09+0100\n"
 "PO-Revision-Date: 2009-10-10 11:18+0100\n"
 "Last-Translator: maja <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -94,6 +94,13 @@ msgstr ""
 
 msgid ""
 "\n"
+"System will restart after the restore!"
+msgstr ""
+"\n"
+"Sistem će ponovo startovati posle vraćanja sigurnosne kopije!"
+
+msgid ""
+"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -110,6 +117,9 @@ msgstr "Paketa izabrano"
 
 msgid " updates available."
 msgstr "ažuriranja dostupna."
+
+msgid " wireless networks found!"
+msgstr ""
 
 msgid "#000000"
 msgstr "#000000"
@@ -205,6 +215,9 @@ msgstr "0"
 
 msgid "1"
 msgstr "1"
+
+msgid "1 wireless network found!"
+msgstr ""
 
 msgid "1.0"
 msgstr "1.0"
@@ -401,6 +414,9 @@ msgstr "O programu"
 
 msgid "About..."
 msgstr "O programu..."
+
+msgid "Accesspoint:"
+msgstr ""
 
 msgid "Action on long powerbutton press"
 msgstr "Dejstvo za dugo pritisnutu tipku paljenja"
@@ -682,6 +698,9 @@ msgstr "Način rada kad je film zaustavljen"
 msgid "Behavior when a movie reaches the end"
 msgstr "Način rada kad je film stigao do kraja"
 
+msgid "Bitrate:"
+msgstr ""
+
 msgid "Block noise reduction"
 msgstr "Blokiraj smanjenje šuma"
 
@@ -805,6 +824,9 @@ msgstr "Kontrola sistema datoteka"
 msgid "Choose Tuner"
 msgstr "Odaberi tjuner"
 
+msgid "Choose a wireless network"
+msgstr ""
+
 msgid "Choose backup files"
 msgstr "Izaberite snimljene datoteke  "
 
@@ -916,6 +938,21 @@ msgstr "Konfig"
 msgid "Configuration Mode"
 msgstr "Mod konfiguracije"
 
+msgid "Configure interface"
+msgstr ""
+
+msgid "Configure nameservers"
+msgstr ""
+
+msgid "Configure your internal LAN"
+msgstr ""
+
+msgid "Configure your network again"
+msgstr ""
+
+msgid "Configure your wireless LAN again"
+msgstr ""
+
 msgid "Configuring"
 msgstr "Konfigurišem"
 
@@ -924,6 +961,9 @@ msgstr "Konflikt tajmera"
 
 msgid "Connect"
 msgstr "Spojiti"
+
+msgid "Connect to a Wireless Network"
+msgstr ""
 
 msgid "Connected to"
 msgstr "Povezan sa"
@@ -1454,6 +1494,10 @@ msgstr "Omogući tajmer"
 msgid "Enabled"
 msgstr "Omogućeno"
 
+#, python-format
+msgid "Encrypted: %s"
+msgstr ""
+
 msgid "Encryption"
 msgstr "Šifrovanje"
 
@@ -1465,6 +1509,9 @@ msgstr "Tip ključa za  šifrovanje"
 
 msgid "Encryption Type"
 msgstr "Tip šifrovanja"
+
+msgid "Encryption:"
+msgstr ""
 
 msgid "End time"
 msgstr "Završno vreme"
@@ -1505,12 +1552,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Pokreni brzo premotavanje napred pri brzini"
 
@@ -1570,6 +1611,9 @@ msgstr "Izaći"
 
 msgid "Exit editor"
 msgstr "Izađi iz editora"
+
+msgid "Exit network wizard"
+msgstr ""
 
 msgid "Exit the cleanup wizard"
 msgstr "Izađite iz čarobnjaka za čišćenje"
@@ -1760,6 +1804,9 @@ msgstr "Isključi hard disk posle"
 msgid "Hidden network SSID"
 msgstr "Skriveni mrežni SSID"
 
+msgid "Hidden networkname"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Informacije hijerarhije"
 
@@ -1924,6 +1971,10 @@ msgstr "Integrisana mreža"
 msgid "Integrated Wireless"
 msgstr "Integrisana bežična veza"
 
+#, python-format
+msgid "Interface: %s"
+msgstr ""
+
 msgid "Intermediate"
 msgstr "Srednje"
 
@@ -2029,6 +2080,9 @@ msgstr "Isključi limite"
 msgid "Limits on"
 msgstr "Limite na"
 
+msgid "Link Quality:"
+msgstr ""
+
 msgid "Link:"
 msgstr "Link:"
 
@@ -2103,6 +2157,10 @@ msgstr "Margina nakon snimanja"
 
 msgid "Margin before record (minutes)"
 msgstr "Margina pre snimanja (minuti)"
+
+#, python-format
+msgid "Max. Bitrate: %s"
+msgstr ""
 
 msgid "Media player"
 msgstr "Medija plejer"
@@ -2231,6 +2289,9 @@ msgstr "Mrežni SSID"
 msgid "Network Setup"
 msgstr "Postavke Mreže"
 
+msgid "Network Wizard"
+msgstr ""
+
 msgid "Network scan"
 msgstr "Pretraga mreže"
 
@@ -2273,6 +2334,9 @@ msgstr "Nije pronađen (podržan) DVDROM!"
 msgid "No 50 Hz, sorry. :("
 msgstr "Nema 50 Hz,žao mi je, :("
 
+msgid "No Connection"
+msgstr ""
+
 msgid "No HDD found or HDD not initialized!"
 msgstr "Disk nije pronađen ili nije inicijaliziran!"
 
@@ -2303,6 +2367,9 @@ msgstr "Informacije o događaju nisu pronađene, snimanje beskrajno."
 
 msgid "No free tuner!"
 msgstr "Nema slobodnog tjunera!"
+
+msgid "No networks found"
+msgstr ""
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
@@ -2352,6 +2419,9 @@ msgstr ""
 "Ispravan PIN za 'Postavke' nije pronađen!\n"
 "Želite li promeniti PIN sada?\n"
 "Ukoliko kažete 'Ne' ovde, postavke uređaja ostaju nezaštićene!"
+
+msgid "No wireless networks found! Please refresh."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2589,6 +2659,18 @@ msgid "Please choose the default services lists you want to install."
 msgstr "Molim izaberite standardnu listu kanala za instalaciju."
 
 msgid ""
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid ""
+"Please configure your internet connection by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
 msgstr ""
@@ -2674,6 +2756,19 @@ msgstr "Molim izaberite ciljni direktorijum ili medij"
 msgid "Please select the movie path..."
 msgstr "Molim izaberite putanju filma..."
 
+msgid ""
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Please select the wireless network that you want to connect to.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Please set up tuner B"
 msgstr "Molim podesite tuner B"
 
@@ -2713,6 +2808,12 @@ msgstr "Molim čekajte dok je pretraživanje izmenjivih paketa u toku..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Molim sačekajte dok konfigurišemo vašu mrežu..."
+
+msgid "Please wait while we prepare your network interfaces..."
+msgstr ""
+
+msgid "Please wait while we test your network..."
+msgstr ""
 
 msgid "Please wait while your network is restarting..."
 msgstr "Molim sačekajte dok se vaša mreža ponovo startuje"
@@ -2935,6 +3036,9 @@ msgstr "Snimanje uvijek ima prioritet"
 msgid "Reenter new pin"
 msgstr "Ponovite novi pin"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh Rate"
 msgstr "Brzina osvježavanja"
 
@@ -3111,6 +3215,9 @@ msgstr "SNR"
 
 msgid "SNR:"
 msgstr "SNR:"
+
+msgid "SSID:"
+msgstr ""
 
 msgid "Sat"
 msgstr "Sat"
@@ -3291,6 +3398,9 @@ msgstr "Izaberi datoteke/fascikle za bekap"
 msgid "Select image"
 msgstr "Izaberi imidž"
 
+msgid "Select interface"
+msgstr ""
+
 msgid "Select package"
 msgstr "Izaberi paket"
 
@@ -3314,6 +3424,9 @@ msgstr "Izaberi video ulaz sa UP/DOWN tipkama"
 
 msgid "Select video mode"
 msgstr "Izaberi video mod"
+
+msgid "Select wireless network"
+msgstr ""
 
 msgid "Selected source image"
 msgstr "Izaberi izvorni imidž"
@@ -3443,6 +3556,12 @@ msgstr "Prikaži stanje vaše bežične LAN veze.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Isključi drimbox posle"
+
+msgid "Signal Strength:"
+msgstr ""
+
+msgid "Signal: "
+msgstr ""
 
 msgid "Similar"
 msgstr "Slično"
@@ -3723,6 +3842,11 @@ msgid "Test-Messagebox?"
 msgstr "Testiraj-sanduče poruka?"
 
 msgid ""
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
@@ -3832,6 +3956,11 @@ msgstr "Tajmer je onemogućen."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Tajmer datoteka (timers.xml) je nepravilna i ne može biti ubačena."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
+msgstr ""
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -4209,9 +4338,6 @@ msgstr ""
 "Nazad\n"
 "Ukloni"
 
-msgid "Unicable"
-msgstr "Unikabl"
-
 msgid "Unicable LNB"
 msgstr "Unikabl LNB"
 
@@ -4223,6 +4349,9 @@ msgstr "Univerzalni LNB"
 
 msgid "Unmount failed"
 msgstr "Demauntiranje nije uspelo"
+
+msgid "Unsupported"
+msgstr ""
 
 msgid "Update"
 msgstr "Ažuriranje"
@@ -4263,19 +4392,6 @@ msgstr "Koristi merenje snage"
 msgid "Use a gateway"
 msgstr "Koristi prolaz"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr "Koristi premotavanje sa brzinama iznad "
 
@@ -4517,12 +4633,15 @@ msgid ""
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
 
 msgid ""
 "Welcome.\n"
@@ -4572,8 +4691,14 @@ msgstr "Gde sačuvati privrem. snimanja uz pomoć vrem. pomaka?"
 msgid "Wireless"
 msgstr "Bežično"
 
+msgid "Wireless LAN"
+msgstr ""
+
 msgid "Wireless Network"
 msgstr "Bežična mreža"
+
+msgid "Wireless Network State"
+msgstr ""
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Greška tokom snimanja. Disk Pun?\n"
@@ -4744,6 +4869,14 @@ msgstr ""
 "\n"
 "Želite li postaviti pin kod sada?"
 
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
 "Vaš drimbox će ponovo startovati posle pritiskanja OK na vašem daljinskom "
@@ -4786,6 +4919,11 @@ msgstr ""
 "Vaš softver frontprocesora mora biti nadograđen.\n"
 "Pritisnite OK za početak nadogradnje."
 
+msgid ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+
 msgid "Your name (optional):"
 msgstr "Vaše  ime (opciono):"
 
@@ -4802,6 +4940,13 @@ msgstr ""
 "Drugi konfigurisani interfejs je pronađen.\n"
 "\n"
 "Da li želite da onemogućite drugi mrežni interfejs?"
+
+msgid ""
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
+"\n"
+"Please choose what you want to do next."
+msgstr ""
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Prebaciti na zadnji kanal pre podešavanja motora?"
@@ -5089,6 +5234,9 @@ msgstr "završi uređivanje favorita"
 msgid "enigma2 and network"
 msgstr "Enigma2 i mreža"
 
+msgid "enter hidden network SSID"
+msgstr ""
+
 msgid "equal to"
 msgstr "jednako"
 
@@ -5160,6 +5308,9 @@ msgstr "pomoć..."
 
 msgid "hidden network"
 msgstr "skrivena mreža"
+
+msgid "hidden..."
+msgstr ""
 
 msgid "hide extended description"
 msgstr "sakrij prošireni opis"
@@ -5644,6 +5795,9 @@ msgstr "aktiviraj rezanje na trenutno označenoj poziciji"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Prebacuj vreme,poglavlje,audio,subtitl informacije"
 
+msgid "unavailable"
+msgstr ""
+
 msgid "unconfirmed"
 msgstr "Nepotvrđeno"
 
@@ -5710,13 +5864,6 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "prebačen"
-
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "Sistem će ponovo startovati posle vraćanja sigurnosne kopije!"
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
@@ -6046,6 +6193,9 @@ msgstr "prebačen"
 #~ "Inicijalizacija Diska nije moguća.\n"
 #~ "Molim pogledajte u korisničke upute.\n"
 #~ "Greška:"
+
+#~ msgid "Unicable"
+#~ msgstr "Unikabl"
 
 #~ msgid "Upgrade"
 #~ msgstr "Nadogradi"
