@@ -799,15 +799,15 @@ class NimManager:
 				dm = nim.diseqcMode.value
 				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcA.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcA.index-1])
+						list.append(nim.diseqcA.getSat())
 				if dm in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcB.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcB.index-1])
+						list.append(nim.diseqcB.getSat())
 				if dm == "diseqc_a_b_c_d":
 					if nim.diseqcC.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcC.index-1])
+						list.append(nim.diseqcC.getSat())
 					if nim.diseqcD.orbital_position != 3601:
-						list.append(self.satList[nim.diseqcD.index-1])
+						list.append(nim.diseqcD.getSat())
 				if dm == "positioner":
 					for x in self.satList:
 						list.append(x)
