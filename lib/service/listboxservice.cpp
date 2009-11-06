@@ -132,6 +132,13 @@ int eListboxServiceContent::getPrevMarkerPos()
 		return 0;
 	list::iterator i(m_cursor);
 	int index = m_cursor_number;
+	while (index) // Skip precending markers
+	{
+		--i;
+		--index;
+		if (! (i->flags & eServiceReference::isMarker))
+			break;
+	}
 	while (index)
 	{
 		--i;
