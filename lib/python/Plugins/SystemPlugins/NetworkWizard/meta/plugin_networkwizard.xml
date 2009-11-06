@@ -1,0 +1,25 @@
+<default>
+	  <prerequisites>
+                    <tag type="System" />
+	  </prerequisites>
+          <info language="en">
+                    <author>Dream Multimedia</author>
+                    <name>NetworkWizard</name>
+                    <packagename>enigma2-plugin-systemplugins-networkwizard</packagename>
+                    <shortdescription>Step by step network configuration</shortdescription>
+                    <description>With the NetworkWizard you can easy configure your network step by step.
+                    </description>
+          </info>
+          <info language="de">
+                    <author>Dream Multimedia</author>
+                    <name>NetzwerkWizard</name>
+                    <packagename>enigma2-plugin-systemplugins-networkwizard</packagename>
+                    <shortdescription>Schritt für Schritt Netzwerk konfiguration</shortdescription>
+                    <description>Mit dem NetzwerkWizard können Sie Ihr Netzwerk konfigurieren. Sie werden Schritt
+                    	für Schritt durch die Konfiguration geleitet.
+                    </description>
+          </info>
+	  <files type="package"> <!-- without version, without .ipk -->
+		<file type="package" name="enigma2-plugin-systemplugins-networkwizard" />
+	  </files>
+</default>
