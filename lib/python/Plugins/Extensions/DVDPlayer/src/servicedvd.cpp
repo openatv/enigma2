@@ -696,7 +696,7 @@ RESULT eServiceDVD::setTrickmode(int /*trick*/)
 
 RESULT eServiceDVD::isCurrentlySeekable()
 {
-	return m_state == stRunning ? 3 : 0;
+	return m_state == stRunning;
 }
 
 RESULT eServiceDVD::keyPressed(int key)
