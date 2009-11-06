@@ -1184,15 +1184,25 @@ class ConfigSatlist(ConfigSelection):
 	def __init__(self, list, default = None):
 		if default is not None:
 			default = str(default)
+		list.sort(key = lambda x: int(x[0]))
+		self._satList = list
 		choices = [(str(orbpos), desc) for (orbpos, desc, flags) in list]
-		choices.sort(key = lambda x: int(x[0]))
 		
 		ConfigSelection.__init__(self, choices = choices, default = default)
 
+	# use this function to get the orbital position, don't rely on .index
 	def getOrbitalPosition(self):
 		if self.value == "":
 			return None
 		return int(self.value)
+	
+	def getSatList(self):
+		return self._satList
+	
+	def getSat(self):
+		return self.satList[self.index]
+	
+	satList = property(getSatList)
 
 	orbital_position = property(getOrbitalPosition)
 
