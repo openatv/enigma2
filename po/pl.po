@@ -2,12 +2,12 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-09 13:06+0200\n"
+"POT-Creation-Date: 2009-11-05 18:09+0100\n"
 "PO-Revision-Date: 2009-10-24 11:18+0100\n"
 "Last-Translator: Sebastian <zbigzbig2@op.pl>\n"
 "Language-Team: none\n"
@@ -97,6 +97,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"System will restart after the restore!"
+msgstr ""
+
+msgid ""
+"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -113,6 +118,9 @@ msgstr "Wybrane paczki"
 
 msgid " updates available."
 msgstr "Dostępne aktualizacje"
+
+msgid " wireless networks found!"
+msgstr ""
 
 msgid "#000000"
 msgstr "#000000"
@@ -209,6 +217,9 @@ msgstr "0"
 
 msgid "1"
 msgstr "1"
+
+msgid "1 wireless network found!"
+msgstr ""
 
 msgid "1.0"
 msgstr "1.0"
@@ -403,6 +414,9 @@ msgstr "O tunerze..."
 
 msgid "About..."
 msgstr "Informacje o tunerze..."
+
+msgid "Accesspoint:"
+msgstr "Punkt dostępowy:"
 
 msgid "Action on long powerbutton press"
 msgstr "Akcja po długim naciśnięciu Power"
@@ -682,6 +696,9 @@ msgstr "Zachowanie gdy film zatrzymany"
 msgid "Behavior when a movie reaches the end"
 msgstr "Zachowanie gdy film osiąga koniec"
 
+msgid "Bitrate:"
+msgstr "Bitrate:"
+
 msgid "Block noise reduction"
 msgstr "Blokowa redukcja szumów"
 
@@ -804,6 +821,9 @@ msgstr "Sprawdź System Plików..."
 msgid "Choose Tuner"
 msgstr "Wybierz tuner"
 
+msgid "Choose a wireless network"
+msgstr ""
+
 msgid "Choose backup files"
 msgstr "Wybierz pliki do kopii"
 
@@ -842,12 +862,6 @@ msgstr "Kreator czyszczenia"
 
 msgid "CleanupWizard"
 msgstr "Kreator czyszczenia"
-
-msgid "CleanupWizardConfiguration"
-msgstr "Kreator czyszczenia"
-
-msgid "CleanupWizard settings"
-msgstr "Ustawienia kreatora czyszczenia"
 
 msgid "Clear before scan"
 msgstr "Czyść przed skanowaniem"
@@ -921,6 +935,21 @@ msgstr "Config"
 msgid "Configuration Mode"
 msgstr "Tryb konfiguracji"
 
+msgid "Configure interface"
+msgstr "Konfiguracja interfejsu"
+
+msgid "Configure nameservers"
+msgstr "Konfiguracja nameservera"
+
+msgid "Configure your internal LAN"
+msgstr "Skonfiguruj wewnętrzną sieć LAN"
+
+msgid "Configure your network again"
+msgstr "Ponowna konfiguracja sieci"
+
+msgid "Configure your wireless LAN again"
+msgstr "Skonfiguruj ponownie bezprzewodową sieć LAN"
+
 msgid "Configuring"
 msgstr "Konfigurowanie"
 
@@ -929,6 +958,9 @@ msgstr "Konflikt timera"
 
 msgid "Connect"
 msgstr "Połącz"
+
+msgid "Connect to a Wireless Network"
+msgstr "Połącz z siecią bezprzewodową"
 
 msgid "Connected to"
 msgstr "Podłączony do"
@@ -991,6 +1023,11 @@ msgstr "Ustawienia crashlog"
 
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Ustawienia crashlog..."
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
+msgstr ""
 
 msgid ""
 "Crashlogs found!\n"
@@ -1155,6 +1192,9 @@ msgstr "Tryb DiSEqC"
 msgid "DiSEqC repeats"
 msgstr "Ilość powtorzeń DiSEqC"
 
+msgid "DiSEqC-Tester settings"
+msgstr ""
+
 msgid "Dialing:"
 msgstr "Wybieranie:"
 
@@ -1167,6 +1207,9 @@ msgstr "Bezpośrednie odtwarzanie podczepionych tytułów bez menu"
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr "Katalog %s nie istnieje"
+
+msgid "Directory browser"
+msgstr ""
 
 msgid "Disable"
 msgstr "Wyłącz"
@@ -1444,6 +1487,10 @@ msgstr "Włącz timer"
 msgid "Enabled"
 msgstr "Włączone"
 
+#, python-format
+msgid "Encrypted: %s"
+msgstr "Zakodowana: %s"
+
 msgid "Encryption"
 msgstr "Szyfrowanie"
 
@@ -1455,6 +1502,9 @@ msgstr "Typ klucza kodowania"
 
 msgid "Encryption Type"
 msgstr "Typ szyfrowania"
+
+msgid "Encryption:"
+msgstr "Kodowanie:"
 
 msgid "End time"
 msgstr "Czas zakończenia"
@@ -1547,6 +1597,9 @@ msgstr "Wyjście"
 
 msgid "Exit editor"
 msgstr "Opuść edytor"
+
+msgid "Exit network wizard"
+msgstr "Opuść konfigurację sieci"
 
 msgid "Exit the cleanup wizard"
 msgstr "Opuść kreatora czyszczenia"
@@ -1739,6 +1792,9 @@ msgstr "Tryb czuwania dysku twardego po"
 msgid "Hidden network SSID"
 msgstr "Ukryty sieciowy SSID"
 
+msgid "Hidden networkname"
+msgstr "Ukryta nazwa sieci"
+
 msgid "Hierarchy Information"
 msgstr "Informacja hierarchii"
 
@@ -1903,6 +1959,10 @@ msgstr "Zintegrowany Ethernet"
 msgid "Integrated Wireless"
 msgstr "Zintegrowana sieś bezprzewodowa"
 
+#, python-format
+msgid "Interface: %s"
+msgstr "Interfejs: %s"
+
 msgid "Intermediate"
 msgstr "Pośrednia"
 
@@ -2008,6 +2068,9 @@ msgstr "Limity wyłaczonyy"
 msgid "Limits on"
 msgstr "Limity właczony"
 
+msgid "Link Quality:"
+msgstr "Jakość sygnału:"
+
 msgid "Link:"
 msgstr "Łącze:"
 
@@ -2082,6 +2145,10 @@ msgstr "Margines po nagraniu (w min)"
 
 msgid "Margin before record (minutes)"
 msgstr "Margines przed nagraniem (w min)"
+
+#, python-format
+msgid "Max. Bitrate: %s"
+msgstr "Max. Bitrate: %s"
 
 msgid "Media player"
 msgstr "Odtwarzacz"
@@ -2211,6 +2278,9 @@ msgstr "Sieciowe SSID"
 msgid "Network Setup"
 msgstr "Ustawienia sieci"
 
+msgid "Network Wizard"
+msgstr "Menadżer konfiguracji sieci"
+
 msgid "Network scan"
 msgstr "Skanowanie sieci"
 
@@ -2253,6 +2323,9 @@ msgstr "Nie znaleziono (wspomaganego) nośnika DVDROM!"
 msgid "No 50 Hz, sorry. :("
 msgstr "Brak 50 Hz, przepraszam. :("
 
+msgid "No Connection"
+msgstr "Brak połączenia"
+
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nie znaleziono HDD lub HDD nie jest zainicjowany!"
 
@@ -2283,6 +2356,9 @@ msgstr "Nie znaleziono informacji o wydarzeniu, nagrywanie nieokreślone."
 
 msgid "No free tuner!"
 msgstr "Brak wolnego tunera!"
+
+msgid "No networks found"
+msgstr "Nie znaleziono sieci"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
@@ -2332,6 +2408,9 @@ msgstr ""
 "Nie znaleziono kodu PIN ustawień!\n"
 "Czy chcesz zmienić PIN ustawień?\n"
 "Gdy wciśniesz NIE ochrona ustawień zostanie wyłączona!"
+
+msgid "No wireless networks found! Please refresh."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2568,6 +2647,22 @@ msgid "Please choose the default services lists you want to install."
 msgstr "Proszę wybrać standardową listę serwisów, które chcesz zainstalować."
 
 msgid ""
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Skonfiguruj lub sprawdź dane nameservera.\n"
+"Jeśli już to zrobiłeś naciśnij OK"
+
+msgid ""
+"Please configure your internet connection by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Skonfiguruj połączenie z internetem.\n"
+"Jeśli już to zrobiłeś naciśnij OK"
+
+msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
 msgstr ""
@@ -2653,6 +2748,24 @@ msgstr "Proszę wybrać nośnik lub katalog docelowy"
 msgid "Please select the movie path..."
 msgstr "Wybierz ścieżkę filmu..."
 
+msgid ""
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Wybierz interfejs za pomocą którego będziesz się łączył z internetem.\n"
+"Jeśli już to zrobiłes nacisnij OK"
+
+msgid ""
+"Please select the wireless network that you want to connect to.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Wybierz sieć WiFi za pomocą której bedziesz się łączył.\n"
+"\n"
+"Jeśli już to zrobiłes nacisnij OK"
+
 msgid "Please set up tuner B"
 msgstr "Ustaw Tuner B"
 
@@ -2692,6 +2805,12 @@ msgstr "Poczekaj podczas szukania paczek do usunięcia..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Poczekaj podczas gdy skonfuguruję twoją sieć..."
+
+msgid "Please wait while we prepare your network interfaces..."
+msgstr "Czekaj aż zostanie aktywowana karta sieciowa..."
+
+msgid "Please wait while we test your network..."
+msgstr "Czekaj aż zakończy się test sieci..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Poczekaj podczas restartowania twojej sieci..."
@@ -2914,6 +3033,9 @@ msgstr "Nagrywanie zawsze ma priorytet"
 msgid "Reenter new pin"
 msgstr "Wpisz ponownie nowy pin"
 
+msgid "Refresh"
+msgstr "Odśwież"
+
 msgid "Refresh Rate"
 msgstr "Wartość odświeżania"
 
@@ -2961,9 +3083,6 @@ msgstr "Usuń tytuł"
 
 msgid "Removed successfully."
 msgstr "Kasowanie zakończone pomyślnie"
-
-msgid "Removeing"
-msgstr "Kasowanie"
 
 msgid "Removing"
 msgstr "Usuwanie"
@@ -3094,6 +3213,9 @@ msgstr "SNR"
 
 msgid "SNR:"
 msgstr "SNR:"
+
+msgid "SSID:"
+msgstr "SSID:"
 
 msgid "Sat"
 msgstr "Sob"
@@ -3271,6 +3393,9 @@ msgstr "Wybierz pliki /foldery do kopii"
 msgid "Select image"
 msgstr "Wybierz image"
 
+msgid "Select interface"
+msgstr "Wybierz interfejs"
+
 msgid "Select package"
 msgstr "Wybierz paczkę"
 
@@ -3294,6 +3419,9 @@ msgstr "Wybierz wejście video przyciskami góra/dół"
 
 msgid "Select video mode"
 msgstr "Wybierz tryb wideo"
+
+msgid "Select wireless network"
+msgstr "Wybierz sieć bezprzewodową WiFi"
 
 msgid "Selected source image"
 msgstr "Wybierz image źródłowy"
@@ -3423,6 +3551,12 @@ msgstr "Pokaż status połaczenia bezprzewodowego LAN.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Wyłącza dreamboxa po"
+
+msgid "Signal Strength:"
+msgstr "Siła sygnału:"
+
+msgid "Signal: "
+msgstr "Sygnał:"
 
 msgid "Similar"
 msgstr "Podobne"
@@ -3662,7 +3796,8 @@ msgstr "System"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"This is Polish translation made by @zbigzbig20.:)/nImprovements and additional translations made by SileliS® :)\n"
+"This is Polish translation made by @zbigzbig20.:)/nImprovements and "
+"additional translations made by SileliS® :)\n"
 "Best Regards for DM box owners...  Sebastian :) ... Cheers"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -3703,6 +3838,13 @@ msgstr "Test konfiguracji sieci Dreambox.\n"
 
 msgid "Test-Messagebox?"
 msgstr "Informacja testowa?"
+
+msgid ""
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
+msgstr ""
+"Dziekuję za skorzystanie z menadżera.\n"
+"Naciśnij OK aby kontynuować"
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -3812,6 +3954,13 @@ msgstr "Wyłącznik czasowy został wyłączony."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Plik Timera (timers.xml) jest zniszczony i nie może być załadowany."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
+msgstr ""
+"Wtyczka sieci bezprzewodowej nie zainstalowana \n"
+"Musisz ją zainstalować aby przejść dalej."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -4187,9 +4336,6 @@ msgstr ""
 "Cofnij\n"
 "Usuń"
 
-msgid "Unicable"
-msgstr "Unicable"
-
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
@@ -4201,6 +4347,9 @@ msgstr "Uniwersalny LNB"
 
 msgid "Unmount failed"
 msgstr "Błąd odmontowania"
+
+msgid "Unsupported"
+msgstr "Nieobsługiwany"
 
 msgid "Update"
 msgstr "Uaktualnienie"
@@ -4219,9 +4368,6 @@ msgstr "Aktualizacja zakończona."
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Aktualizacja skończona. Czy chcesz uruchomić ponownie Dreamboxa?"
-
-msgid "Upgradeing"
-msgstr "Aktualizowanie"
 
 msgid "Upgrading"
 msgstr "Aktualizowanie"
@@ -4244,19 +4390,6 @@ msgstr "Użyj Pomiaru Mocy"
 msgid "Use a gateway"
 msgstr "Użyj bramy"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills".
 msgid "Use non-smooth winding at speeds above"
 msgstr "Użyj nie-płynnego przewijania z poza szybkości"
 
@@ -4499,12 +4632,20 @@ msgid ""
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
+"Witam. \n"
+"\n"
+"Jeśli chcesz się połączyć z internetem ,to ten menadżer przeprowdzi cię "
+"przez uproszczoną konfigurację Dreamboxa . \n"
+"Nacisnij OK aby rozpocząć konfigurację sieci."
 
 msgid ""
 "Welcome.\n"
@@ -4552,8 +4693,14 @@ msgstr "Gdzie zachować tymczasowe nagrania timeshift?"
 msgid "Wireless"
 msgstr "Bezprzewodowy"
 
+msgid "Wireless LAN"
+msgstr "Sieć bezprzewodowa"
+
 msgid "Wireless Network"
 msgstr "Sieć bezprzewodowa"
+
+msgid "Wireless Network State"
+msgstr "Status sieci bezprzewodowej"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Błąd zapisu podczas nagrywania. Dysk jest pełny?\n"
@@ -4719,6 +4866,19 @@ msgstr ""
 "\n"
 "Czy chcesz ustawić kod PIN teraz?"
 
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Twój Dreambox jest gotowy do użycia. \n"
+"\n"
+"Twoje połączenie z internetem jest już aktywne.\n"
+"\n"
+"Nacisnij OK aby kontynuować"
+
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "W celu zrestartowania Dreamboxa naciśnij przycisk OK pilota."
 
@@ -4759,6 +4919,13 @@ msgstr ""
 "Twój frontprocessor musi zostać zaktualizowany.\n"
 "Naciśnij OK aby rozpocząć aktualizacje."
 
+msgid ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Połączenie z internetem jest nieaktywne \n"
+"Wybierz co dalej chcesz zrobić."
+
 msgid "Your name (optional):"
 msgstr "Twoja nazwa (opcjonalnie):"
 
@@ -4775,6 +4942,17 @@ msgstr ""
 "Drugi skonfigurowany interfejs został znaleziony.\n"
 "\n"
 "Czy chcesz wyłączyć drugi interfejs sieciowy?"
+
+msgid ""
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
+"\n"
+"Please choose what you want to do next."
+msgstr ""
+"Połączenie bezprzewodowe z internetem nie może zostać utworzone \n"
+"Sprawdź czy USB WLAN jest włożony \n"
+"\n"
+"Wybierz co dalej chcesz zrobić."
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Przełączyć spowrotem na serwis przed ustawieniem pozycjonera?"
@@ -5062,6 +5240,9 @@ msgstr "Koniec edycji ulubionych"
 msgid "enigma2 and network"
 msgstr "Enigma2 i sieć"
 
+msgid "enter hidden network SSID"
+msgstr "Wprowadż ukrytą sieć SSID"
+
 msgid "equal to"
 msgstr "Równy"
 
@@ -5133,6 +5314,9 @@ msgstr "Pomoc..."
 
 msgid "hidden network"
 msgstr "ukryta sieć"
+
+msgid "hidden..."
+msgstr "Ukryty..."
 
 msgid "hide extended description"
 msgstr "ukryj rozszerzony opis"
@@ -5617,6 +5801,9 @@ msgstr "przełącz ucięty znacznik w aktualną pozycję"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "czas odtwarzania, rozdział, audio, informacja o napisach"
 
+msgid "unavailable"
+msgstr "Niedostępny"
+
 msgid "unconfirmed"
 msgstr "Niepotwierdzony"
 
@@ -5694,7 +5881,6 @@ msgstr "Przełączony"
 #~ msgid " Day(s) "
 #~ msgstr " Dzień(i) "
 
-#, fuzzy
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
@@ -5765,20 +5951,20 @@ msgstr "Przełączony"
 #~ msgid "Choose Location"
 #~ msgstr "Sprawdzanie Lokalizacji"
 
+#~ msgid "CleanupWizard settings"
+#~ msgstr "Ustawienia kreatora czyszczenia"
+
+#~ msgid "CleanupWizardConfiguration"
+#~ msgstr "Kreator czyszczenia"
+
 #~ msgid "Configuration for the CrashlogAutoSubmitter"
 #~ msgstr "Konfiguracja dla CrashlogAutoSubmitter"
-
-#~ msgid "Configure your internal LAN"
-#~ msgstr "Skonfiguruj wewnętrzną sieć LAN"
 
 #~ msgid "Configure your internal LAN again"
 #~ msgstr "Skonfiguruj ponownie wewnętrzną sieć LAN"
 
 #~ msgid "Configure your wireless LAN"
 #~ msgstr "Skonfiguruj bezprzewodową sieć LAN"
-
-#~ msgid "Configure your wireless LAN again"
-#~ msgstr "Skonfiguruj ponownie bezprzewodową sieć LAN"
 
 #~ msgid "Confirm"
 #~ msgstr "Zatwierdź"
@@ -6148,6 +6334,9 @@ msgstr "Przełączony"
 #~ msgid "Remounting stick partition..."
 #~ msgstr "Podowne montowanie partycji USB..."
 
+#~ msgid "Removeing"
+#~ msgstr "Kasowanie"
+
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Restary interfejsu bezprzewodowego"
 
@@ -6267,8 +6456,14 @@ msgstr "Przełączony"
 #~ "Proszę wybrać samemu.\n"
 #~ "Błąd: "
 
+#~ msgid "Unicable"
+#~ msgstr "Unicable"
+
 #~ msgid "Upgrade"
 #~ msgstr "Aktualizuj"
+
+#~ msgid "Upgradeing"
+#~ msgstr "Aktualizowanie"
 
 #~ msgid "VCR Switch"
 #~ msgstr "Automatycznie przełącz VCR"
