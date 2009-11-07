@@ -565,9 +565,10 @@ class NimManager:
 		if self.hasNimType("DVB-S"):
 			print "Reading satellites.xml"
 			db.readSatellites(self.satList, self.satellites, self.transponders)
-#			print "SATLIST", self.satList
-#			print "SATS", self.satellites
-#			print "TRANSPONDERS", self.transponders
+			self.satList.sort(key = lambda x: x[0]) # sort by orbpos
+			#print "SATLIST", self.satList
+			#print "SATS", self.satellites
+			#print "TRANSPONDERS", self.transponders
 
 		if self.hasNimType("DVB-C"):
 			print "Reading cables.xml"
