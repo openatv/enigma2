@@ -1148,7 +1148,6 @@ class ConfigSatlist(ConfigSelection):
 	def __init__(self, list, default = None):
 		if default is not None:
 			default = str(default)
-		list.sort(key = lambda x: int(x[0]))
 		self._satList = list
 		choices = [(str(orbpos), desc) for (orbpos, desc, flags) in list]
 		
