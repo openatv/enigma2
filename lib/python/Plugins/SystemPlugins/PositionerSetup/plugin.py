@@ -484,8 +484,8 @@ class TunerScreen(ScanSetup):
 		self.updateTransponders()
 
 	def updateTransponders(self):
-		if len(tuning.sat.satList):
-			transponderlist = nimmanager.getTransponders(tuning.sat.orbital_position)
+		if len(tuning.sat.choices):
+			transponderlist = nimmanager.getTransponders(int(tuning.sat.value))
 			tps = []
 			cnt=0
 			for x in transponderlist:
