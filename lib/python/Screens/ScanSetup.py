@@ -729,10 +729,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				assert len(self.scan_satselection) > index_to_scan
 				
 				nimsats = self.satList[index_to_scan]
-				orbpos = self.scan_satselection[index_to_scan].getOrbitalPosition()
+				selsatidx = self.scan_satselection[index_to_scan].index
 
 				# however, the satList itself could be empty. in that case, "index" is 0 (for "None").
 				if len(nimsats):
+					orbpos = nimsats[selsatidx][0]
 					if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
 						fec = self.scan_sat.fec.value
 					else:
@@ -750,7 +751,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 								self.scan_sat.pilot.value)
 				removeAll = False
 			elif self.scan_type.value == "single_satellite":
-				sat = self.scan_satselection[index_to_scan].getSat()
+				sat = self.satList[index_to_scan][self.scan_satselection[index_to_scan].index]
 				getInitialTransponderList(tlist, sat[0])
 			elif self.scan_type.value.find("multisat") != -1:
 				SatList = nimmanager.getSatListForNim(index_to_scan)
