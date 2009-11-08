@@ -554,6 +554,13 @@ class NimManager:
 	def getSatDescription(self, pos):
 		return self.satellites[pos]
 
+	def sortFunc(self, x):
+		orbpos = x[0]
+		if orbpos > 1800:
+			return orbpos - 3600
+		else:
+			return orbpos + 1800
+
 	def readTransponders(self):
 		# read initial networks from file. we only read files which we are interested in,
 		# which means only these where a compatible tuner exists.
@@ -565,7 +572,7 @@ class NimManager:
 		if self.hasNimType("DVB-S"):
 			print "Reading satellites.xml"
 			db.readSatellites(self.satList, self.satellites, self.transponders)
-			self.satList.sort(key = lambda x: x[0]) # sort by orbpos
+			self.satList.sort(key = self.sortFunc) # sort by orbpos
 			#print "SATLIST", self.satList
 			#print "SATS", self.satellites
 			#print "TRANSPONDERS", self.transponders
