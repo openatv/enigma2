@@ -276,8 +276,15 @@ def configStrings(iface):
 		return "	pre-up /usr/sbin/wpa_supplicant -i"+iface+" -c/etc/wpa_supplicant.conf -B -Dralink\n	post-down wpa_cli terminate"
 	if driver == 'madwifi':
 		if config.plugins.wlan.essid.value == "hidden...":
-			return "	pre-up iwconfig "+iface+" essid "+config.plugins.wlan.hiddenessid.value+"\n	pre-up /usr/sbin/wpa_supplicant -i"+iface+" -c/etc/wpa_supplicant.conf -B -dd -Dmadwifi\n	post-down wpa_cli terminate"
-		return "	pre-up iwconfig "+iface+" essid "+config.plugins.wlan.essid.value+"\n	pre-up /usr/sbin/wpa_supplicant -i"+iface+" -c/etc/wpa_supplicant.conf -B -dd -Dmadwifi\n	post-down wpa_cli terminate"
+			if ' ' in config.plugins.wlan.hiddenessid.value:
+				return '	pre-up iwconfig '+iface+' essid "'+config.plugins.wlan.hiddenessid.value+'"\n	pre-up /usr/sbin/wpa_supplicant -i'+iface+' -c/etc/wpa_supplicant.conf -B -dd -Dmadwifi\n	post-down wpa_cli terminate'
+			else:
+				return '	pre-up iwconfig '+iface+' essid '+config.plugins.wlan.hiddenessid.value+'\n	pre-up /usr/sbin/wpa_supplicant -i'+iface+' -c/etc/wpa_supplicant.conf -B -dd -Dmadwifi\n	post-down wpa_cli terminate'
+		else:
+			if ' ' in config.plugins.wlan.essid.value:
+				return '	pre-up iwconfig '+iface+' essid "'+config.plugins.wlan.essid.value+'"\n	pre-up /usr/sbin/wpa_supplicant -i'+iface+' -c/etc/wpa_supplicant.conf -B -dd -Dmadwifi\n	post-down wpa_cli terminate'
+			else:
+				return '	pre-up iwconfig '+iface+' essid '+config.plugins.wlan.essid.value+'\n	pre-up /usr/sbin/wpa_supplicant -i'+iface+' -c/etc/wpa_supplicant.conf -B -dd -Dmadwifi\n	post-down wpa_cli terminate'
 	if driver == 'zydas':
 		return "	pre-up /usr/sbin/wpa_supplicant -i"+iface+" -c/etc/wpa_supplicant.conf -B -dd -Dzydas\n	post-down wpa_cli terminate"
 
