@@ -43,7 +43,9 @@
 		<widget source="Adaptertext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
 		<widget source="Adapter" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
 		<widget source="introduction2" render="Label" position="10,380" size="540,21" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1"/>
-		<widget name="VKeyIcon" pixmap="skin_default/buttons/key_text.png" position="10,380" zPosition="10" size="35,25" transparent="1" alphatest="on" />
+		<widget source="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="10,380" zPosition="10" size="35,25" transparent="1" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="160,315" zPosition="1" size="1,1" transparent="1" alphatest="on" />
 	</screen>
 
