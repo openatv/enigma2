@@ -8,6 +8,7 @@ from Components.NimManager import nimmanager
 from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
+from Screens.ChoiceBox import ChoiceBox
 
 from time import mktime, localtime
 from datetime import datetime
@@ -342,10 +343,10 @@ class NimSetup(Screen, ConfigListScreen):
 		new_configured_sats = nimmanager.getConfiguredSats()
 		self.unconfed_sats = old_configured_sats - new_configured_sats
 		self.satpos_to_remove = None
-		self.deleteConfirmed(False)
+		self.deleteConfirmed((None, "no"))
 
 	def deleteConfirmed(self, confirmed):
-		if confirmed:
+		if confirmed[1] == "yes" or confirmed[1] == "yestoall":
 			eDVBDB.getInstance().removeServices(-1, -1, -1, self.satpos_to_remove)
 
 		if self.satpos_to_remove is not None:
@@ -365,11 +366,15 @@ class NimSetup(Screen, ConfigListScreen):
 				else:
 					h = _("E")
 				sat_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Delete no more configured satellite\n%s?") %(sat_name))
+				
+			if confirmed[1] == "yes" or confirmed[1] == "no":
+				self.session.openWithCallback(self.deleteConfirmed, ChoiceBox, _("Delete no more configured satellite\n%s?") %(sat_name), [(_("Yes"), "yes"), (_("No"), "no"), (_("Yes to all"), "yestoall"), (_("No to all"), "notoall")])
+			if confirmed[1] == "yestoall" or confirmed[1] == "notoall":
+				self.deleteConfirmed(confirmed)
 			break
 		if not self.satpos_to_remove:
 			self.close()
-
+		
 	def __init__(self, session, slotid):
 		Screen.__init__(self, session)
 		self.list = [ ]
