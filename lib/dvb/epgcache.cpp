@@ -2314,6 +2314,7 @@ static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start,
 	if (!title)
 		return 0;
 	static const int EIT_LENGTH = 4108;
+	static const __u8 codePage = 0x15; // UTF-8 encoding
 	__u8 *data = new __u8[EIT_LENGTH];
 
 	eit_t *packet = (eit_t *) data;
@@ -2350,26 +2351,37 @@ static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start,
 	//TODO: convert text to correct character set (data is probably passed in as UTF-8)
 	__u8 *x = (__u8 *) evt_struct;
 	x += EIT_LOOP_SIZE;
-	int nameLength = strnlen(title, 248);
-	int descLength = short_summary ? strnlen(short_summary, 248 - nameLength) : 0;
+	int nameLength = strnlen(title, 246);
+	int descLength = short_summary ? strnlen(short_summary, 246 - nameLength) : 0;
 	
 	eit_short_event_descriptor_struct *short_evt = (eit_short_event_descriptor_struct*) x;
 	short_evt->descriptor_tag = SHORT_EVENT_DESCRIPTOR;
 	short_evt->descriptor_length = EIT_SHORT_EVENT_DESCRIPTOR_SIZE + nameLength + descLength + 1 - 2; //+1 for length of short description, -2 for tag and length 
+	if (nameLength) ++short_evt->descriptor_length; // +1 for codepage byte
+	if (descLength) ++short_evt->descriptor_length;
 	short_evt->language_code_1 = 'e';
 	short_evt->language_code_2 = 'n';
 	short_evt->language_code_3 = 'g';
-	short_evt->event_name_length = nameLength;
+	short_evt->event_name_length = nameLength ? nameLength + 1 : 0;
 	x = (__u8 *) short_evt;
 	x += EIT_SHORT_EVENT_DESCRIPTOR_SIZE;
+	*x = codePage;
+	++x;
 	memcpy(x, title, nameLength);
 	x += nameLength;
-	*x = descLength;
-	x += 1;
-	if (descLength) //not sure if memcpy can handle length of zero....
+	if (descLength)
 	{
+		*x = descLength + 1;
+		++x;
+		*x = codePage;
+		++x;
 		memcpy(x, short_summary, descLength);
 		x += descLength;
+	}
+	else
+	{
+		*x = 0;
+		++x;
 	}
 
 	//Content type
@@ -2384,8 +2396,8 @@ static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start,
 
 	//Long description
 	int currentLoopLength = x - (__u8*)short_evt;
-	int overheadPerDescriptor = 8; //increase if codepages are added!!!
-	int MAX_LEN = 256 - overheadPerDescriptor; 
+	static const int overheadPerDescriptor = 9; //increase if codepages are added!!!
+	static const int MAX_LEN = 256 - overheadPerDescriptor; 
 
 	int textLength = long_description ? strnlen(long_description, EIT_LENGTH) : 0;//EIT_LENGTH is a bit too much, but it's only here as a reasonable end point
 	int lastDescriptorNumber = (textLength + MAX_LEN-1) / MAX_LEN - 1;
@@ -2405,7 +2417,7 @@ static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start,
 		//descriptor header length is 6, including the 2 tag and length bytes
 		//so the length field must be: stringlength + 1 (2 4-bits numbers) + 3 (lang code) + 2 bytes for item info length field and text length field
 		int currentTextLength = descrIndex < lastDescriptorNumber ? MAX_LEN : remainingTextLength;
-		ext_evt->descriptor_length = 6 + currentTextLength;
+		ext_evt->descriptor_length = 6 + currentTextLength + 1;
 
 		ext_evt->descriptor_number = descrIndex;
 		ext_evt->last_descriptor_number = lastDescriptorNumber;
@@ -2414,8 +2426,9 @@ static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start,
 		ext_evt->iso_639_2_language_code_3 = 'g';
 
 		x[6] = 0; //item information (car, year, director, etc. Unsupported for now)
-		x[7] = currentTextLength; //length of description string (part in this message)
-		memcpy(x + 8, &long_description[descrIndex*MAX_LEN], currentTextLength);
+		x[7] = currentTextLength + 1; //length of description string (part in this message)
+		x[8] = codePage;
+		memcpy(x + 9, &long_description[descrIndex*MAX_LEN], currentTextLength);
 
 		x += 2 + ext_evt->descriptor_length; 
 	}
