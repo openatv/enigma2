@@ -1,7 +1,7 @@
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
-from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, ConfigElement
-from Components.ActionMap import NumberActionMap
+from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, ConfigElement, ConfigText, ConfigPassword
+from Components.ActionMap import NumberActionMap, ActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 
@@ -66,6 +66,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.current = self.getCurrent()
 		if self.current:
 			self.current[1].onSelect(self.session)
+
 		for x in self.onSelectionChanged:
 			x()
 
@@ -127,13 +128,47 @@ class ConfigListScreen:
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1) # to prevent left/right overriding the listbox
+
+		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
+		{
+			"showVirtualKeyboard": self.KeyText,
+		}, -2)
+		self["VirtualKB"].setEnabled(False)
 		
 		self["config"] = ConfigList(list, session = session)
+		
 		if on_change is not None:
 			self.__changed = on_change
 		else:
 			self.__changed = lambda: None
+		
+		if not self.handleInputHelpers in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 
+	def handleInputHelpers(self):
+		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self.has_key("VKeyIcon"):
+				self["VirtualKB"].setEnabled(True)
+				self["VKeyIcon"].boolean = True
+			if self.has_key("HelpWindow"):
+				if self["config"].getCurrent()[1].help_window.instance is not None:
+					helpwindowpos = self["HelpWindow"].getPosition()
+					from enigma import ePoint
+					self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+		else:
+			if self.has_key("VKeyIcon"):
+				self["VirtualKB"].setEnabled(False)
+				self["VKeyIcon"].boolean = False
+
+	def KeyText(self):
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+			
 	def keyOK(self):
 		self["config"].handleKey(KEY_OK)
 
