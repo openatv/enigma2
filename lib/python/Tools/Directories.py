@@ -33,6 +33,7 @@ SCOPE_DEFAULTDIR = 13
 SCOPE_DEFAULTPARTITION = 14
 SCOPE_DEFAULTPARTITIONMOUNTDIR = 15
 SCOPE_METADIR = 16
+SCOPE_CURRENT_PLUGIN = 17
 
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
@@ -85,7 +86,27 @@ def resolveFilename(scope, base = "", path_prefix = None):
 		tmp = defaultPaths[SCOPE_SKIN]
 		pos = config.skin.primary_skin.value.rfind('/')
 		if pos != -1:
-			path = tmp[0]+config.skin.primary_skin.value[:pos+1]
+			#if basefile is not available use default skin path as fallback
+			tmpfile = tmp[0]+config.skin.primary_skin.value[:pos+1] + base
+			if fileExists(tmpfile):
+				path = tmp[0]+config.skin.primary_skin.value[:pos+1]
+			else:
+				path = tmp[0]
+		else:
+			path = tmp[0]
+
+	elif scope == SCOPE_CURRENT_PLUGIN:
+		tmp = defaultPaths[SCOPE_PLUGINS]
+		from Components.config import config
+		skintmp = defaultPaths[SCOPE_SKIN]
+		pos = config.skin.primary_skin.value.rfind('/')
+		if pos != -1:
+			#if basefile is not available inside current skin path, use the original provided file as fallback
+			skintmpfile = skintmp[0]+config.skin.primary_skin.value[:pos+1] + base
+			if fileExists(skintmpfile):
+				path = skintmp[0]+config.skin.primary_skin.value[:pos+1]
+			else:
+				path = tmp[0]
 		else:
 			path = tmp[0]
 	else:
