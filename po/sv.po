@@ -2,12 +2,12 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-19 10:22+0200\n"
+"POT-Creation-Date: 2009-11-05 18:09+0100\n"
 "PO-Revision-Date: 2009-10-12 11:27+0100\n"
 "Last-Translator: WeeGull <weegull@hotmail.com>\n"
 "Language-Team: WeeGull <weegull@hotmail.com>\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: Swedish\n"
-"X-Poedit-Country: SWEDEN\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+"X-Poedit-Country: SWEDEN\n"
 
 msgid ""
 "\n"
@@ -100,6 +100,13 @@ msgstr ""
 
 msgid ""
 "\n"
+"System will restart after the restore!"
+msgstr ""
+"\n"
+"Systemet kommer starta om efter återläsningen!"
+
+msgid ""
+"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -116,6 +123,9 @@ msgstr " valda paket."
 
 msgid " updates available."
 msgstr " Uppdateringar tillgängliga."
+
+msgid " wireless networks found!"
+msgstr ""
 
 msgid "#000000"
 msgstr ""
@@ -210,6 +220,9 @@ msgid "0"
 msgstr ""
 
 msgid "1"
+msgstr ""
+
+msgid "1 wireless network found!"
 msgstr ""
 
 msgid "1.0"
@@ -407,6 +420,9 @@ msgstr "Om"
 
 msgid "About..."
 msgstr "Om..."
+
+msgid "Accesspoint:"
+msgstr "Accespunkt:"
 
 msgid "Action on long powerbutton press"
 msgstr "Beteende vid långt tryck på powerknapp"
@@ -687,6 +703,9 @@ msgstr "Beteende när en film stoppas"
 msgid "Behavior when a movie reaches the end"
 msgstr "Beteende när en film slutar"
 
+msgid "Bitrate:"
+msgstr "Bitrate:"
+
 msgid "Block noise reduction"
 msgstr "Block brus minskning"
 
@@ -809,6 +828,9 @@ msgstr "Kontrollerar filsystem..."
 msgid "Choose Tuner"
 msgstr "Välj tuner"
 
+msgid "Choose a wireless network"
+msgstr ""
+
 msgid "Choose backup files"
 msgstr "Välj backupfil"
 
@@ -920,6 +942,21 @@ msgstr "Konfig"
 msgid "Configuration Mode"
 msgstr "Konfigurationsläge"
 
+msgid "Configure interface"
+msgstr "Konfigurera kort"
+
+msgid "Configure nameservers"
+msgstr "Konfigurera namnservers"
+
+msgid "Configure your internal LAN"
+msgstr "Konfigurera ditt interna LAN"
+
+msgid "Configure your network again"
+msgstr "Konfigurera ditt nätverk igen"
+
+msgid "Configure your wireless LAN again"
+msgstr "Konfigurera ditt trådlösa LAN igen"
+
 msgid "Configuring"
 msgstr "Konfigurering"
 
@@ -928,6 +965,9 @@ msgstr "Timerkonflikt"
 
 msgid "Connect"
 msgstr "Anslut"
+
+msgid "Connect to a Wireless Network"
+msgstr "Anslut till ett Trådlöst nätverk"
 
 msgid "Connected to"
 msgstr "Ansluten till"
@@ -1458,6 +1498,10 @@ msgstr "Aktivera timer"
 msgid "Enabled"
 msgstr "Aktiverad"
 
+#, python-format
+msgid "Encrypted: %s"
+msgstr "Krypterat: %s"
+
 msgid "Encryption"
 msgstr "Kryptering"
 
@@ -1469,6 +1513,9 @@ msgstr "Krypterings Nyckelvariant"
 
 msgid "Encryption Type"
 msgstr "Krypteringstyp"
+
+msgid "Encryption:"
+msgstr ""
 
 msgid "End time"
 msgstr "Sluttid"
@@ -1509,12 +1556,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Ange hastighet för snabbspolning framåt"
 
@@ -1573,6 +1614,9 @@ msgstr "Avsluta"
 
 msgid "Exit editor"
 msgstr "Avsluta editor"
+
+msgid "Exit network wizard"
+msgstr "Avsluta nätverksguiden"
 
 msgid "Exit the cleanup wizard"
 msgstr "Avsluta upprensningsguiden"
@@ -1763,6 +1807,9 @@ msgstr "Viloläge för hårddisk efter"
 msgid "Hidden network SSID"
 msgstr "Dold nätverks SSID"
 
+msgid "Hidden networkname"
+msgstr "Dolt nätverksnamn"
+
 msgid "Hierarchy Information"
 msgstr "Hierarkisk information "
 
@@ -1926,6 +1973,10 @@ msgstr "Integrerat nätverk"
 msgid "Integrated Wireless"
 msgstr "Inbyggt Trådlöst"
 
+#, python-format
+msgid "Interface: %s"
+msgstr "Kort: %s"
+
 msgid "Intermediate"
 msgstr "Normal"
 
@@ -2031,6 +2082,9 @@ msgstr "Gränser av"
 msgid "Limits on"
 msgstr "Gränser på"
 
+msgid "Link Quality:"
+msgstr "Länkkvalitet:"
+
 msgid "Link:"
 msgstr "Länk:"
 
@@ -2105,6 +2159,10 @@ msgstr "Marginal efter inspelning (i minuter)"
 
 msgid "Margin before record (minutes)"
 msgstr "Marginal innan inspelning (i minuter)"
+
+#, python-format
+msgid "Max. Bitrate: %s"
+msgstr "Max. Bitrate: %s"
 
 msgid "Media player"
 msgstr "Mediaspelare"
@@ -2233,6 +2291,9 @@ msgstr "Nätverk SSID"
 msgid "Network Setup"
 msgstr "Nätverksinställningar"
 
+msgid "Network Wizard"
+msgstr "Nätverksguide"
+
 msgid "Network scan"
 msgstr "Sök nätverk"
 
@@ -2275,6 +2336,9 @@ msgstr "Ingen (supporterad) DVDROM hittad!"
 msgid "No 50 Hz, sorry. :("
 msgstr "Ingen 50 Hz, tyvärr. :("
 
+msgid "No Connection"
+msgstr ""
+
 msgid "No HDD found or HDD not initialized!"
 msgstr "Ingen hårddisk hittad eller initierad!"
 
@@ -2305,6 +2369,9 @@ msgstr "Ingen programinfo hittades, inspelning oändlig."
 
 msgid "No free tuner!"
 msgstr "Ingen ledig tuner!"
+
+msgid "No networks found"
+msgstr ""
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
@@ -2352,6 +2419,9 @@ msgstr ""
 "Ingen giltig installations PIN hittad!\n"
 "Vill du ändra installations PIN nu?\n"
 "Om du anger 'Nej' här kommer installationsskyddet vara avaktiverat!"
+
+msgid "No wireless networks found! Please refresh."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2588,6 +2658,21 @@ msgid "Please choose the default services lists you want to install."
 msgstr "Vänligen välj vilken grundservicelista som du vill installera."
 
 msgid ""
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Vänligen konfigurera eller bekräfta din namnserver med att fylla i de "
+"begärda fälten.\n"
+"När du är klar tryck OK för att fortsätta"
+
+msgid ""
+"Please configure your internet connection by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
 msgstr ""
@@ -2673,6 +2758,23 @@ msgstr "Vänligen välj målbibliotek eller media"
 msgid "Please select the movie path..."
 msgstr "Vänligen ange filmens sökväg..."
 
+msgid ""
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Vänligen välj nätverkskort som du vill använda för anslutning till "
+"Internet.\n"
+"\n"
+"Vänligen tryck OK för att fortsätta"
+
+msgid ""
+"Please select the wireless network that you want to connect to.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Please set up tuner B"
 msgstr "Vänligen installera tuner B"
 
@@ -2713,6 +2815,12 @@ msgstr "Vänligen vänta medans sökning för paket som kan tas bort..."
 
 msgid "Please wait while we configure your network..."
 msgstr "Vänligen vänta medans ditt nätverk konfigureras..."
+
+msgid "Please wait while we prepare your network interfaces..."
+msgstr "Vänligen vänta medan vi förbereder dina nätverkskort..."
+
+msgid "Please wait while we test your network..."
+msgstr "Vänligen vänta meda vi testar ditt nätverk..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Vänligen vänta medans ditt nätverk startas om..."
@@ -2935,6 +3043,9 @@ msgstr "Inspelningar har alltid prioritet"
 msgid "Reenter new pin"
 msgstr "Ange ny PIN igen"
 
+msgid "Refresh"
+msgstr "Uppdatera"
+
 msgid "Refresh Rate"
 msgstr "Uppdateringstakt"
 
@@ -3111,6 +3222,9 @@ msgstr "SNR"
 
 msgid "SNR:"
 msgstr "SNR:"
+
+msgid "SSID:"
+msgstr "SSID:"
 
 msgid "Sat"
 msgstr "Lör"
@@ -3289,6 +3403,9 @@ msgstr "Ange filer/bibliotek att ta backup på"
 msgid "Select image"
 msgstr "Välj image"
 
+msgid "Select interface"
+msgstr "Välj kort"
+
 msgid "Select package"
 msgstr "Välj paket"
 
@@ -3312,6 +3429,9 @@ msgstr "Välj video ingång med upp/ner knapparna"
 
 msgid "Select video mode"
 msgstr "Välj videoläge"
+
+msgid "Select wireless network"
+msgstr "Välj trådlöst nätverk"
 
 msgid "Selected source image"
 msgstr "Välj käll image"
@@ -3441,6 +3561,12 @@ msgstr "Visa status på ditt trådlösa LAN anslutning.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Stäng av Dreambox efter"
+
+msgid "Signal Strength:"
+msgstr "Signalstyrka:"
+
+msgid "Signal: "
+msgstr "Signal:"
 
 msgid "Similar"
 msgstr "Liknande"
@@ -3724,6 +3850,11 @@ msgid "Test-Messagebox?"
 msgstr "Test-Meddelandebox?"
 
 msgid ""
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
@@ -3830,6 +3961,13 @@ msgstr "Sovtimer är deaktiverad."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr "Timer filen (timers.xml) är skadad och kan inte läsas."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
+msgstr ""
+"Trådlöst LAN plugin är inte installerad!\n"
+"Vänligen installera den och välj vad du vill göra härnäst."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -4206,9 +4344,6 @@ msgstr ""
 "Ångra\n"
 "Borttagning"
 
-msgid "Unicable"
-msgstr "Unicable"
-
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
@@ -4220,6 +4355,9 @@ msgstr "Universal LNB"
 
 msgid "Unmount failed"
 msgstr "Avmontering misslyckades"
+
+msgid "Unsupported"
+msgstr "Osupporterat"
 
 msgid "Update"
 msgstr "Uppdatera"
@@ -4260,19 +4398,6 @@ msgstr "Använd Strömmätning"
 msgid "Use a gateway"
 msgstr "Använd en gateway"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr "Använd hackig spolning vid hastigheter över"
 
@@ -4514,12 +4639,21 @@ msgid ""
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
+"Välkommen.\n"
+"\n"
+"Om du vill ansluta din Dreambox till Internet, då kommer den här guiden "
+"hjälpa dig genom grundläggande konfiguration av din Dreambox.\n"
+"\n"
+"Tryck OK för att starta konfigurationen av ditt nätverk."
 
 msgid ""
 "Welcome.\n"
@@ -4567,8 +4701,14 @@ msgstr "Var ska temporära timeshift inspelningar sparas?"
 msgid "Wireless"
 msgstr "Trådlöst"
 
+msgid "Wireless LAN"
+msgstr "Trådlöst LAN"
+
 msgid "Wireless Network"
 msgstr "Trådlöst Nätverk"
+
+msgid "Wireless Network State"
+msgstr "Status Trådlöst nätverk"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Skrivfel under inspelning. Disken full?\n"
@@ -4739,6 +4879,14 @@ msgstr ""
 "\n"
 "Vill du ange PIN kod nu?"
 
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "Din Dreambox kommer starta vid tryck på OK på din fjärrkontroll."
 
@@ -4779,6 +4927,11 @@ msgstr ""
 "Din frontprocessors mjukvara måste uppgraderas.\n"
 "Tryck OK för att starta."
 
+msgid ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+
 msgid "Your name (optional):"
 msgstr "Ditt namn (valfritt):"
 
@@ -4795,6 +4948,17 @@ msgstr ""
 "Ett annat konfigurerat kort har hittats.\n"
 "\n"
 "Vill du akaktivera det andra nätverkskortet?"
+
+msgid ""
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
+"\n"
+"Please choose what you want to do next."
+msgstr ""
+"Ditt trådlösa LAN Internet anslutning kunde inte startas!\n"
+"Har du anslutit ditt USB WLAN Stick?\n"
+"\n"
+"Vänligen välja vad du vill göra härnäst."
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Gå till föregående kanal före motorinstallation?"
@@ -5086,6 +5250,9 @@ msgstr "avsluta favoriter editor"
 msgid "enigma2 and network"
 msgstr "enigma2 och nätverk"
 
+msgid "enter hidden network SSID"
+msgstr "ange dold nätverks SSID"
+
 msgid "equal to"
 msgstr "lika med"
 
@@ -5157,6 +5324,9 @@ msgstr "hjälp..."
 
 msgid "hidden network"
 msgstr "gömt nätverk"
+
+msgid "hidden..."
+msgstr "dold..."
 
 msgid "hide extended description"
 msgstr "dölj utökad beskrivning"
@@ -5641,6 +5811,9 @@ msgstr "skifta en klippmarkering på nuvarande position"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "skifta tid, kapitel, ljud, textning info"
 
+msgid "unavailable"
+msgstr "ej tillgänglig"
+
 msgid "unconfirmed"
 msgstr "obekräftad"
 
@@ -5715,13 +5888,6 @@ msgstr "zapped"
 #~ "\n"
 #~ "Enigma2 kommer startas om efter återställningen"
 
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "Systemet kommer starta om efter återläsningen!"
-
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
@@ -5792,17 +5958,11 @@ msgstr "zapped"
 #~ msgid "Configuration for the CrashlogAutoSubmitter"
 #~ msgstr "Konfiguration av CrashlogAutoSubmitter"
 
-#~ msgid "Configure your internal LAN"
-#~ msgstr "Konfigurera ditt interna LAN"
-
 #~ msgid "Configure your internal LAN again"
 #~ msgstr "Konfigurera ditt interna LAN igen"
 
 #~ msgid "Configure your wireless LAN"
 #~ msgstr "Konfigurera ditt trådlösa LAN"
-
-#~ msgid "Configure your wireless LAN again"
-#~ msgstr "Konfigurera ditt trådlösa LAN igen"
 
 #~ msgid "Confirm"
 #~ msgstr "Bekräfta"
@@ -6190,6 +6350,9 @@ msgstr "zapped"
 #~ "För att säkerställa att du verkligen vill göra detta, vänligen ta ut mål "
 #~ "USB stickan nu och sätt tillbaka den vid begäran. Tryck OK när du har "
 #~ "tagit ut stickan."
+
+#~ msgid "Unicable"
+#~ msgstr "Unicable"
 
 #~ msgid "Upgrade"
 #~ msgstr "Uppgradera"
