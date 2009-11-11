@@ -148,6 +148,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 			guiObject.setFont(parseFont(value, scale))
 		elif attrib == 'zPosition':
 			guiObject.setZPosition(int(value))
+		elif attrib == 'itemHeight':
+			guiObject.setItemHeight(int(value))
 		elif attrib in ("pixmap", "backgroundPixmap", "selectionPixmap"):
 			ptr = loadPixmap(value, desktop) # this should already have been filename-resolved.
 			if attrib == "pixmap":
