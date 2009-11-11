@@ -4,7 +4,7 @@ from Components.ActionMap import NumberActionMap
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
 from Components.Label import Label
-from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
 class RdsInfoDisplay(Screen):
@@ -122,10 +122,10 @@ class RassInteractive(Screen):
 			9 : self["subpages_9"] }
 
 		self.subpage_png = {
-			1 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page1.png")),
-			2 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page2.png")),
-			3 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page3.png")),
-			4 : LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/rass_page4.png")) }
+			1 : LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/rass_page1.png")),
+			2 : LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/rass_page2.png")),
+			3 : LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/rass_page3.png")),
+			4 : LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/rass_page4.png")) }
 
 		self.current_page=0;
 		self.current_subpage=0;
