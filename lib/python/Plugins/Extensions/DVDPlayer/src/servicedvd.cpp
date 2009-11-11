@@ -107,7 +107,7 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 	int ac3thru = 0;
 	std::string ac3downmix;
 	if (!ePythonConfigQuery::getConfigValue("config.av.downmix_ac3", ac3downmix))
-		ac3thru = (ac3downmix != "True");
+		ac3thru = (ac3downmix == "False");
 	ddvd_set_ac3thru(m_ddvdconfig, ac3thru);
 
 	std::string ddvd_language;
