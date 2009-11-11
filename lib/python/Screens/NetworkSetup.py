@@ -6,6 +6,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.HelpMenu import HelpableScreen
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
+from Components.Sources.Boolean import Boolean
 from Components.Label import Label,MultiColorLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
@@ -14,7 +15,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
@@ -36,14 +37,14 @@ def InterfaceEntryComponent(index,name,default,active ):
 	num_configured_if = len(iNetwork.getConfiguredAdapters())
 	if num_configured_if >= 2:
 		if default is True:
-			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/buttons/button_blue.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue.png"))
 		if default is False:
-			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/buttons/button_blue_off.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue_off.png"))
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(25, 25), png = png))
 	if active is True:
-		png2 = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_on.png"))
+		png2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
 	if active is False:
-		png2 = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_error.png"))
+		png2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_error.png"))
 	res.append(MultiContentEntryPixmapAlphaTest(pos=(40, 1), size=(25, 25), png = png2))
 	return res
 
@@ -319,11 +320,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			"blue": (self.KeyBlue, _("open nameserver configuration")),
 			})
 
-		self["VirtualKB"] = HelpableActionMap(self, "VirtualKeyboardActions",
-			{
-			"showVirtualKeyboard": (self.KeyText, [_("open virtual keyboard input help"),_("* Only available when entering hidden SSID or network key")] ),
-			})
-
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.ok,
@@ -355,9 +351,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_blue"] = StaticText(_("Edit DNS"))
 
-		self["VKeyIcon"] = Pixmap()
+		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
-
+		self["HelpWindow"].hide()
+		
 	def layoutFinished(self):
 		self["DNS1"].setText(self.primaryDNS.getText())
 		self["DNS2"].setText(self.secondaryDNS.getText())
@@ -386,9 +383,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self["Gateway"].setText("")
 			self["Gatewaytext"].setText("")
 		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
-		self["VKeyIcon"].hide()
-		self["VirtualKB"].setEnabled(False)
-		self["HelpWindow"].hide()
 
 	def createConfig(self):
 		self.InterfaceEntry = None
@@ -518,29 +512,9 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
 
 	def KeyBlue(self):
 		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup)
-
-	def KeyText(self):
-		if self.iface == "wlan0" or self.iface == "ath0" :
-			if self["config"].getCurrent() == self.hiddenSSID:
-				if config.plugins.wlan.essid.value == 'hidden...':
-					self.session.openWithCallback(self.VirtualKeyBoardSSIDCallback, VirtualKeyBoard, title = (_("Enter WLAN network name/SSID:")), text = config.plugins.wlan.essid.value)
-			if self["config"].getCurrent() == self.encryptionKey:
-				self.session.openWithCallback(self.VirtualKeyBoardKeyCallback, VirtualKeyBoard, title = (_("Enter WLAN passphrase/key:")), text = config.plugins.wlan.encryption.psk.value)
-
-	def VirtualKeyBoardSSIDCallback(self, callback = None):
-		if callback is not None and len(callback):
-			config.plugins.wlan.hiddenessid.setValue(callback)
-			self["config"].invalidate(self.hiddenSSID)
-
-	def VirtualKeyBoardKeyCallback(self, callback = None):
-		if callback is not None and len(callback):
-			config.plugins.wlan.encryption.psk.setValue(callback)
-			self["config"].invalidate(self.encryptionKey)
 
 	def newConfig(self):
 		if self["config"].getCurrent() == self.InterfaceEntry:
@@ -564,24 +538,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		self.newConfig()
-
-	def selectionChanged(self):
-		current = self["config"].getCurrent()
-		if current == self.hiddenSSID and config.plugins.wlan.essid.value == 'hidden...':
-			helpwindowpos = self["HelpWindow"].getPosition()
-			if current[1].help_window.instance is not None:
-				current[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
-				self["VKeyIcon"].show()
-				self["VirtualKB"].setEnabled(True)
-		elif current == self.encryptionKey and config.plugins.wlan.encryption.enabled.value:
-			helpwindowpos = self["HelpWindow"].getPosition()
-			if current[1].help_window.instance is not None:
-				current[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
-				self["VKeyIcon"].show()
-				self["VirtualKB"].setEnabled(True)
-		else:
-			self["VKeyIcon"].hide()
-			self["VirtualKB"].setEnabled(False)
 
 	def ok(self):
 		current = self["config"].getCurrent()
