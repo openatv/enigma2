@@ -146,15 +146,20 @@ class ConfigListScreen:
 			self["config"].onSelectionChanged.append(self.handleInputHelpers)
 
 	def handleInputHelpers(self):
-		if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-			if self.has_key("VKeyIcon"):
-				self["VirtualKB"].setEnabled(True)
-				self["VKeyIcon"].boolean = True
-			if self.has_key("HelpWindow"):
-				if self["config"].getCurrent()[1].help_window.instance is not None:
-					helpwindowpos = self["HelpWindow"].getPosition()
-					from enigma import ePoint
-					self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+		if self["config"].getCurrent() is not None:
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self.has_key("VKeyIcon"):
+					self["VirtualKB"].setEnabled(True)
+					self["VKeyIcon"].boolean = True
+				if self.has_key("HelpWindow"):
+					if self["config"].getCurrent()[1].help_window.instance is not None:
+						helpwindowpos = self["HelpWindow"].getPosition()
+						from enigma import ePoint
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+			else:
+				if self.has_key("VKeyIcon"):
+					self["VirtualKB"].setEnabled(False)
+					self["VKeyIcon"].boolean = False
 		else:
 			if self.has_key("VKeyIcon"):
 				self["VirtualKB"].setEnabled(False)
