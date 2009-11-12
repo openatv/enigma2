@@ -144,7 +144,7 @@ class PluginDownloadBrowser(Screen):
 
 	def installDestinationCallback(self, result):
 		if result is not None:
-			self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + result[1]], closeOnSuccess = True)
+			self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install -force-defaults enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + result[1]], closeOnSuccess = True)
 
 	def runInstall(self, val):
 		if val:
@@ -173,7 +173,7 @@ class PluginDownloadBrowser(Screen):
 					if len(list):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list = list)
 					return
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install -force-defaults enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
 				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 
