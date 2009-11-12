@@ -2,7 +2,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.GUIComponent import GUIComponent
 from Components.Input import Input
 from Components.Ipkg import IpkgComponent
-from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.Slider import Slider
 from Plugins.Plugin import PluginDescriptor
@@ -14,15 +14,14 @@ from os import popen
 
 class UpdatePlugin(Screen):
 	skin = """
-		<screen position="100,100" size="550,200" title="Software Update..." >
+		<screen name="UpdatePlugin" position="center,center" size="550,200" title="Software update" >
 			<widget name="activityslider" position="0,0" size="550,5"  />
-			<widget name="slider" position="0,100" size="550,30"  />
-			<widget name="package" position="10,30" size="540,20" font="Regular;18"/>
-			<widget name="status" position="10,60" size="540,45" font="Regular;18"/>
+			<widget name="slider" position="0,150" size="550,30"  />
+			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="status" render="Label" position="10,60" size="540,45" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 		
 	def __init__(self, session, args = None):
-		self.skin = UpdatePlugin.skin
 		Screen.__init__(self, session)
 		
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
@@ -31,9 +30,9 @@ class UpdatePlugin(Screen):
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
-		self.status = Label(_("Upgrading Dreambox... Please wait"))
+		self.status = StaticText(_("Upgrading Dreambox... Please wait"))
 		self["status"] = self.status
-		self.package = Label()
+		self.package = StaticText()
 		self["package"] = self.package
 		
 		self.packages = 0
