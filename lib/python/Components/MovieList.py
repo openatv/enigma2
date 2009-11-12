@@ -104,7 +104,7 @@ class MovieList(GUIComponent):
 
 		begin_string = ""
 		if begin > 0:
-			t = FuzzyTime(begin)
+			t = FuzzyTime(begin, inPast=True)
 			begin_string = t[0] + ", " + t[1]
 		
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:

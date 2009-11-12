@@ -1,19 +1,27 @@
 from time import localtime, time
 
-def FuzzyTime(t):
+def FuzzyTime(t, inPast=False):
 	d = localtime(t)
 	nt = time()
 	n = localtime()
+	dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 	
 	if d[:3] == n[:3]:
 		# same day
 		date = _("Today")
-	elif ((t - nt) < 7*86400) and (nt < t):
-		# same week
-		date = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))[d[6]]
+	elif d[0] == n[0] and d[7] == n[7] - 1 and inPast:
+		# won't work on New Year's day
+		date = _("Yesterday")
+	elif ((t - nt) < 7*86400) and (nt < t) and not inPast:
+		# same week (must be future)
+		date = dayOfWeek[d[6]]
 	elif d[0] == n[0]:
 		# same year
-		date = "%d.%d." % (d[2], d[1])
+		if inPast:
+			# I want the day in the movielist
+			date = "%s %d.%d" % (dayOfWeek[d[6]], d[2], d[1])
+		else:
+			date = "%d.%d" % (d[2], d[1])
 	else:
 		date = "%d.%d.%d" % (d[2], d[1], d[0])
 	
@@ -22,18 +30,10 @@ def FuzzyTime(t):
 	return (date, timeres)
 
 if __name__ == "__main__":
-	print "now:    %s %s" % FuzzyTime(time())
-	print "1 day:  %s %s" % FuzzyTime(time() + 86400)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *2)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *3)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *4)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *5)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *6)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *7)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *8)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *9)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *10)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *11)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *12)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *13)
-	print "2 days: %s %s" % FuzzyTime(time() + 86400 *14)
+	def _(x): return x
+	print "now: %s %s" % FuzzyTime(time())
+	for i in range(1, 14):
+		print "+%2s day(s):  %s " % (i, FuzzyTime(time() + 86400 * i))
+	for i in range(1, 14):
+		print "-%2s day(s):  %s " % (i, FuzzyTime(time() - 86400 * i, True))
+
