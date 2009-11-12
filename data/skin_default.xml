@@ -805,9 +805,9 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget name="config" position="10,165" size="500,225" scrollbarMode="showOnDemand" />
 	</screen>
 	<!-- Scan setup -->
-	<screen name="ScanSetup" position="center,center" size="520,390" title="Service scan">
+	<screen name="ScanSetup" position="center,center" size="520,450" title="Service scan">
 		<widget name="config" position="10,10" size="500,350" scrollbarMode="showOnDemand" />
-		<widget name="introduction" position="10,365" size="500,25" font="Regular;20" halign="center" />
+		<widget name="introduction" position="10,365" size="500,75" font="Regular;20" halign="center" />
 	</screen>
 	<!-- Scan simple -->
 	<screen name="ScanSimple" position="center,center" size="420,350" title="Service scan">
