@@ -21,6 +21,7 @@ from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize
+import os
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
@@ -29,8 +30,8 @@ config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
-config.movielist.first_tags = ConfigText(default="")
-config.movielist.second_tags = ConfigText(default="")
+#config.movielist.first_tags = ConfigText(default="")
+#config.movielist.second_tags = ConfigText(default="")
 
 
 def setPreferredTagEditor(te):
@@ -113,38 +114,8 @@ class MovieContextMenu(Screen):
 		plugin(session=self.session, service=self.service)
 
 	def delete(self):
-		serviceHandler = eServiceCenter.getInstance()
-		offline = serviceHandler.offlineOperations(self.service)
-		info = serviceHandler.info(self.service)
-		name = info and info.getName(self.service) or _("this recording")
-		result = False
-		if offline is not None:
-			# simulate first
-			if not offline.deleteFromDisk(1):
-				result = True
-		if result == True:
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete %s?") % (name))
-		else:
-			self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
-
-	def deleteConfirmed(self, confirmed):
-		if not confirmed:
-			return self.close()
-		
-		serviceHandler = eServiceCenter.getInstance()
-		offline = serviceHandler.offlineOperations(self.service)
-		result = False
-		if offline is not None:
-			# really delete!
-			if not offline.deleteFromDisk(0):
-				result = True
-		
-		if result == False:
-			self.session.openWithCallback(self.close, MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
-		else:
-			self.csel["list"].removeService(self.service)
-			self.csel["freeDiskSpace"].update()
-			self.close()
+		self.csel.delete()
+		self.close()
 
 class SelectionEventInfo:
 	def __init__(self):
@@ -167,7 +138,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 
-		self.tags = [ ]
+		self.tags = {}
 		self.selected_tags = None
 		self.selected_tags_ele = None
 
@@ -199,10 +170,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# Need list for init
 		SelectionEventInfo.__init__(self)
 
-		self["key_red"] = Button(_("All"))
-		self["key_green"] = Button("")
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
+		self["key_red"] = Button(_("delete..."))
+		self["key_green"] = Button(_("All"))
+		self["key_yellow"] = Button(_("Location"))
+		self["key_blue"] = Button(_("Tags"))
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
@@ -221,9 +192,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-				"red": (self.showAll, _("show all")),
-				"green": (self.showTagsFirst, _("show first selected tag")),
-				"yellow": (self.showTagsSecond, _("show second selected tag")),
+				"red": (self.delete, _("delete...")),
+				"green": (self.showAll, _("show all tags")),
+				"yellow": (self.showBookmarks, _("select the movie path")),
 				"blue": (self.showTagsSelect, _("show tag menu")),
 			})
 
@@ -302,26 +273,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def updateTags(self):
 		# get a list of tags available in this list
-		self.tags = list(self["list"].tags)
+		self.tags = self["list"].tags
 
-		if not self.tags:
-			# by default, we do not display any filtering options
-			self.tag_first = ""
-			self.tag_second = ""
-		else:
-			tmp = config.movielist.first_tags.value
-			if tmp in self.tags:
-				self.tag_first = tmp
-			else:
-				self.tag_first = "<"+_("Tag 1")+">"
-			tmp = config.movielist.second_tags.value
-			if tmp in self.tags:
-				self.tag_second = tmp
-			else:
-				self.tag_second = "<"+_("Tag 2")+">"
-		self["key_green"].text = self.tag_first
-		self["key_yellow"].text = self.tag_second
-		
 		# the rest is presented in a list, available on the
 		# fourth ("blue") button
 		if self.tags:
@@ -396,7 +349,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self.showTagsMenu(tagele)
 		else:
 			self.selected_tags_ele = tagele
-			self.selected_tags = set([tagele.value])
+			self.selected_tags = self.tags[tagele.value]
 			self.reloadList(home = True)
 
 	def showTagsFirst(self):
@@ -410,7 +363,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def tagChosen(self, tag):
 		if tag is not None:
-			self.selected_tags = set([tag[0]])
+			# TODO: Some error checking maybe, don't wanna crash on KeyError
+			self.selected_tags = self.tags[tag[0]]
 			if self.selected_tags_ele:
 				self.selected_tags_ele.value = tag[0]
 				self.selected_tags_ele.save()
@@ -418,8 +372,66 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def showTagsMenu(self, tagele):
 		self.selected_tags_ele = tagele
-		list = [(tag, self.getTagDescription(tag)) for tag in self.tags ]
+		list = [(tag, self.getTagDescription(tag)) for tag in self.tags]
 		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list = list)
 
 	def showTagWarning(self):
 		self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
+
+	def showBookmarks(self):
+		paths = list(config.movielist.videodirs.value)
+		moviePath = resolveFilename(SCOPE_HDD)
+		for fn in os.listdir(moviePath):
+			pn = os.path.join(moviePath, fn)
+			if os.path.isdir(pn):
+				if not pn.endswith('/'):
+					pn += '/'
+				if pn not in paths:
+					paths.append(pn)
+		bookmarks = [(d,d) for d in paths]
+		self.session.openWithCallback(self.bookmarkChosen, ChoiceBox, title=_("Please select the movie path..."), list = bookmarks)
+
+	def bookmarkChosen(self, bookmark):
+		if bookmark:
+			print "selected:", bookmark
+			self.gotFilename(bookmark[0])
+
+
+	def delete(self):
+		current = self.getCurrent()
+		if current is not None:
+			serviceHandler = eServiceCenter.getInstance()
+			offline = serviceHandler.offlineOperations(current)
+			info = serviceHandler.info(current)
+			name = info and info.getName(current) or _("this recording")
+			result = False
+			if offline is not None:
+				# simulate first
+				if not offline.deleteFromDisk(1):
+					result = True
+			if result == True:
+				self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete %s?") % (name))
+			else:
+				self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
+
+	def deleteConfirmed(self, confirmed):
+		if not confirmed:
+			return
+
+		current = self.getCurrent()
+		if current is None:
+			# huh?
+			return
+		serviceHandler = eServiceCenter.getInstance()
+		offline = serviceHandler.offlineOperations(current)
+		result = False
+		if offline is not None:
+			# really delete!
+			if not offline.deleteFromDisk(0):
+				result = True
+
+		if result == False:
+			self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
+		else:
+			self["list"].removeService(current)
+			self["freeDiskSpace"].update()

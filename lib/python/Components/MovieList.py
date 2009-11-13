@@ -1,12 +1,35 @@
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
-from Components.MultiContent import MultiContentEntryText
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.config import config
+import os
+import struct
+from Tools.LoadPixmap import LoadPixmap
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
 
+def moviePlayState(cutsFileName):
+	'''For now, returns "stop" marker position in PTS, whatever that may be
+	So if it returns anything, the movie was being played.'''
+	parser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
+	try:
+		f = open(cutsFileName, 'rb')
+		while 1:
+			data = f.read(parser.size)
+			if len(data) < parser.size:
+				break
+			cutPTS, cutType = parser.unpack(data)
+			print cutsFileName, cutPTS, cutType
+			if cutType == 3: # undocumented, but 3 appears to be the stop
+				return cutPTS
+		f.close()
+	except:
+		import sys
+		print "Exception in moviePlayState: %s: %s" % sys.exc_info()[:2]
+        
 class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
 	SORT_RECORDED = 2
@@ -35,6 +58,9 @@ class MovieList(GUIComponent):
 		self.l.setBuildFunc(self.buildMovieListEntry)
 		
 		self.onSelectionChanged = [ ]
+		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/record.png"))
+		self.iconMovieWatching =LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_play.png"))
+		self.iconMovieSeen = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_forward.png"))
 
 	def connectSelChanged(self, fnc):
 		if not fnc in self.onSelectionChanged:
@@ -98,17 +124,35 @@ class MovieList(GUIComponent):
 		res = [ None ]
 		
 		txt = info.getName(serviceref)
+		pathName = serviceref.getPath()
+		cutsPathName = pathName + '.cuts'
+		
+		if config.usage.show_icons_in_movielist.value:
+			iconSize = 20
+			icon = self.iconMovieNew
+			if os.path.exists(cutsPathName):
+				if moviePlayState(cutsPathName):
+					# There's a stop point in the movie, we're watching it
+					icon = self.iconMovieWatching
+				elif os.stat(cutsPathName).st_mtime - os.stat(pathName).st_mtime > 600:  
+					# mtime of cuts file is much newer, we've seen it
+					icon = self.iconMovieSeen
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,0), size=(iconSize,iconSize), png=icon))
+		else:
+			icon = None
+			iconSize = 0		
+
 		service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 		description = info.getInfoString(serviceref, iServiceInformation.sDescription)
 		tags = info.getInfoString(serviceref, iServiceInformation.sTags)
 
 		begin_string = ""
 		if begin > 0:
-			t = FuzzyTime(begin, inPast=True)
+			t = FuzzyTime(begin, inPast = True)
 			begin_string = t[0] + ", " + t[1]
-		
+
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
-			res.append(MultiContentEntryText(pos=(0, 0), size=(width-182, 30), font = 0, flags = RT_HALIGN_LEFT, text=txt))
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-182, 30), font = 0, flags = RT_HALIGN_LEFT, text=txt))
 			if self.tags:
 				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = tags))
 				if service is not None:
@@ -118,16 +162,26 @@ class MovieList(GUIComponent):
 					res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
 			res.append(MultiContentEntryText(pos=(0, 30), size=(width, 20), font=1, flags=RT_HALIGN_LEFT, text=description))
 			res.append(MultiContentEntryText(pos=(0, 50), size=(200, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
-			res.append(MultiContentEntryText(pos=(width-200, 50), size=(198, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+			if len:
+			     res.append(MultiContentEntryText(pos=(width-200, 50), size=(198, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION:
-			res.append(MultiContentEntryText(pos=(0, 0), size=(width-120, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-			res.append(MultiContentEntryText(pos=(0, 20), size=(width-212, 17), font=1, flags=RT_HALIGN_LEFT, text=description))
+			if len:
+			     lenSize = 58
+			else:
+			     lenSize = 0
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-140, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+			res.append(MultiContentEntryText(pos=(0, 20), size=(width-154-lenSize, 17), font=1, flags=RT_HALIGN_LEFT, text=description))
 			res.append(MultiContentEntryText(pos=(width-120, 6), size=(120, 20), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 			if service is not None:
-				res.append(MultiContentEntryText(pos=(width-212, 20), size=(154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
-			res.append(MultiContentEntryText(pos=(width-58, 20), size=(58, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+				res.append(MultiContentEntryText(pos=(width-154-lenSize, 20), size=(154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
+			if lenSize:
+			     res.append(MultiContentEntryText(pos=(width-lenSize, 20), size=(lenSize, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT:
-			res.append(MultiContentEntryText(pos=(0, 0), size=(width-77, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+			if len:
+			     lenSize = 75
+			else:
+			     lenSize = 0
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-lenSize-22, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 			if self.tags:
 				res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = tags))
 				if service is not None:
@@ -136,14 +190,15 @@ class MovieList(GUIComponent):
 				if service is not None:
 					res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = service.getServiceName()))
 			res.append(MultiContentEntryText(pos=(0, 20), size=(200, 17), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
-			res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
+			if lenSize:
+			     res.append(MultiContentEntryText(pos=(width-lenSize, 0), size=(lenSize, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		else:
 			assert(self.list_type == MovieList.LISTTYPE_MINIMAL)
-			if self.descr_state == MovieList.SHOW_DESCRIPTION:
-				res.append(MultiContentEntryText(pos=(0, 0), size=(width-146, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+			if not len:
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 20), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 			else:
-				res.append(MultiContentEntryText(pos=(0, 0), size=(width-77, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-97, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 				res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		
 		return res
@@ -201,8 +256,8 @@ class MovieList(GUIComponent):
 			print "listing of movies failed"
 			list = [ ]	
 			return
-		tags = set()
-		
+		realtags = set()
+		tags = {}
 		while 1:
 			serviceref = list.getNext()
 			if not serviceref.valid():
@@ -217,15 +272,24 @@ class MovieList(GUIComponent):
 		
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
+			name = info.getName(serviceref)
 			if this_tags == ['']:
-				this_tags = []
+				# No tags? Auto tag!
+				this_tags = [x for x in name.replace(',',' ').replace('.',' ').split() if len(x)>1]
+			else:
+				realtags.update(this_tags)
+			for tag in this_tags:
+				if tags.has_key(tag):
+					tags[tag].append(name)
+				else:
+					tags[tag] = [name]
 			this_tags = set(this_tags)
-			tags |= this_tags
 		
 			# filter_tags is either None (which means no filter at all), or 
 			# a set. In this case, all elements of filter_tags must be present,
 			# otherwise the entry will be dropped.			
 			if filter_tags is not None and not this_tags.issuperset(filter_tags):
+				print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
 				continue
 		
 			self.list.append((serviceref, info, begin, -1))
@@ -238,7 +302,23 @@ class MovieList(GUIComponent):
 		
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
-		self.tags = tags
+		# ML: Only use the tags that occur more than once in the list OR that were
+		# really in the tag set of some file.
+		
+		# reverse the dictionary to see which unique movie each tag now references
+		rtags = {}
+		for tag, movies in tags.items():
+			if (len(movies) > 1) or (tag in realtags):
+				movies = tuple(movies) # a tuple can be hashed, but a list not
+				item = rtags.get(movies, [])
+				if not item: rtags[movies] = item
+				item.append(tag)
+		# format the tag lists so that they are in 'original' order
+		self.tags = {}
+		for movies, tags in rtags.items():
+			movie = movies[0]
+			tags.sort(key = movie.find)
+			self.tags[' '.join(tags)] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):
 		ref = x[0]
