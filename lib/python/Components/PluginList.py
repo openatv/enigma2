@@ -22,8 +22,8 @@ def PluginEntryComponent(plugin):
 def PluginCategoryComponent(name, png):
 	return [
 		name,
-		MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=name),
-		MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(100, 50), png = png)
+		MultiContentEntryText(pos=(80, 5), size=(360, 25), font=0, text=name),
+		MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(60, 50), png = png)
 	]
 
 def PluginDownloadComponent(plugin, name):
@@ -34,9 +34,9 @@ def PluginDownloadComponent(plugin, name):
 
 	return [
 		plugin,
-		MultiContentEntryText(pos=(120, 5), size=(320, 25), font=0, text=name),
-		MultiContentEntryText(pos=(120, 26), size=(320, 17), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(100, 50), png = png)
+		MultiContentEntryText(pos=(80, 5), size=(360, 25), font=0, text=name),
+		MultiContentEntryText(pos=(80, 26), size=(360, 17), font=1, text=plugin.description),
+		MultiContentEntryPixmapAlphaTest(pos=(10, 0), size=(60, 50), png = png)
 	]
 	
 
