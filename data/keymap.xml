@@ -227,6 +227,8 @@
 		<key id="KEY_POWER" mapto="power_long" flags="l" />
 		<key id="KEY_POWER" mapto="power_down" flags="m" />
 		<key id="KEY_POWER" mapto="power_up" flags="b" />
+		<key id="KEY_KP0" mapto="power_down" flags="m" />
+		<key id="KEY_KP0" mapto="power_up" flags="b" /> 
 		<key id="KEY_KP0" mapto="discrete_off" flags="m" />
 		<device name="dreambox front panel">
 			<key id="KEY_POWER" mapto="deepstandby" flags="l" />
@@ -561,6 +563,7 @@
 
 		<key id="KEY_RED" mapto="red" flags="mr" />
 		<key id="KEY_YELLOW" mapto="yellow" flags="mr" />
+		<key id="KEY_KP1" mapto="power" flags="m" />
 		<key id="KEY_GREEN" mapto="green" flags="mr" />
 		<key id="KEY_BLUE" mapto="blue" flags="mr" />
 	</map>
