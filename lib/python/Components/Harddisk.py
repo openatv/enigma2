@@ -316,20 +316,14 @@ class Harddisk:
 		idle_time = t - self.last_access
 
 		stats = self.readStats()
-		print "nr_read", stats[0], "nr_write", stats[1]
 		l = sum(stats)
-		print "sum", l, "prev_sum", self.last_stat
 
 		if l != self.last_stat: # access
-			print "hdd was accessed since previous check!"
 			self.last_stat = l
 			self.last_access = t
 			idle_time = 0
 			self.is_sleeping = False
-		else:
-			print "hdd IDLE!"
 
-		print "[IDLE]", idle_time, self.max_idle_time, self.is_sleeping
 		if idle_time >= self.max_idle_time and not self.is_sleeping:
 			self.setSleep()
 			self.is_sleeping = True
