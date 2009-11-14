@@ -222,9 +222,6 @@ int eDVBAudio::startPid(int pid, int type)
 
 void eDVBAudio::stop()
 {
-#if HAVE_DVB_API_VERSION > 2
-	flush();
-#endif
 	eDebugNoNewLine("AUDIO_STOP - ");
 	if (::ioctl(m_fd, AUDIO_STOP) < 0)
 		eDebug("failed (%m)");
