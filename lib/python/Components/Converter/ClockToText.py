@@ -65,7 +65,7 @@ class ClockToText(Converter, object):
 		if self.type == self.WITH_SECONDS:
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
-			return "%02d:%02d" % (t.tm_hour, t.tm_min)
+			return "%2d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
 			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
 		elif self.type == self.FORMAT:
