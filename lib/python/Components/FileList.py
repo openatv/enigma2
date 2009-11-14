@@ -161,14 +161,19 @@ class FileList(MenuList):
 			directories.sort()
 			files.sort()
 		else:
-			if os_path.exists(directory):
-				files = listdir(directory)
-				files.sort()
-				tmpfiles = files[:]
-				for x in tmpfiles:
-					if os_path.isdir(directory + x):
-						directories.append(directory + x + "/")
-						files.remove(x)
+			try:
+				if os_path.exists(directory):
+					files = listdir(directory)
+					files.sort()
+					tmpfiles = files[:]
+					for x in tmpfiles:
+						if os_path.isdir(directory + x):
+							directories.append(directory + x + "/")
+							files.remove(x)
+			except:
+				# This happens if directory exists, but cannot be accessed
+				# Should display something to the user?
+				pass
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
