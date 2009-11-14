@@ -170,7 +170,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# Need list for init
 		SelectionEventInfo.__init__(self)
 
-		self["key_red"] = Button(_("delete..."))
+		self["key_red"] = Button(_("Delete"))
 		self["key_green"] = Button(_("All"))
 		self["key_yellow"] = Button(_("Location"))
 		self["key_blue"] = Button(_("Tags"))
