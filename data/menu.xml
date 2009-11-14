@@ -35,7 +35,7 @@
 				<item text="Add to Bouquets"></item>
 				<item text="Edit Bouquets"></item>
 			</menu>-->
-			<menu weight="0" level="0" text="Service Searching" entryID="service_searching_selection">
+			<menu weight="7" level="0" text="Service Searching" entryID="service_searching_selection">
 				<id val="scan" />
 				<item text="Tuner configuration" entryID="tuner_setup"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item text="Default services lists" entryID="default_lists"><screen module="ScanSetup" screen="DefaultSatLists" /></item>
@@ -48,9 +48,8 @@
 			</menu>
 			<menu weight="5" level="0" text="System" entryID="system_selection">
 				<id val="system" />
-				<item level="0" text="Language..." entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item level="0" entryID="usage_setup"><setup id="usage" /></item>
-				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
+				<item level="0" entryID="recording_setup"><setup id="recording" /></item>
 				<item level="0" entryID="av_setup"><setup id="avsetup"/></item>
 				<!--<item level="0" text="Video Setup" entryID="video_setup"><screen module="VideoSetup" /></item>-->
 				<item level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
@@ -59,6 +58,7 @@
 					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
 					<item level="0" text="Initialization..." entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 					<item level="0" text="Filesystem Check..." entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
+					<item level="2" text="Timeshift path..." entryId="timeshift_path"><screen module="LocationBox" screen="TimeshiftLocationBox" /></item>
 				</menu>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
@@ -68,7 +68,8 @@
 					<id val="network" />
 					<item level="1" text="Device Setup..." entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 				</menu>
-				<item level="2" text="Timeshift path..." entryId="timeshift_path"><screen module="LocationBox" screen="TimeshiftLocationBox" /></item>
+				<item level="0" text="Language..." entryID="language_setup"><screen module="LanguageSelection" /></item>
+				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 			</menu>
 			<menu weight="10" text="SoftCam / CI" entryID="cam_setup">
 				<id val="cam" />
