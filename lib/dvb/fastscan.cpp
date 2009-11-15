@@ -455,6 +455,7 @@ void eFastScan::parseResult()
 					{
 						switch (type)
 						{
+						default: /* assume that anything *not* radio is tv */
 						case 1:
 							numbered_channels[(*channel)->getLogicalChannelNumber()] = ref;
 							break;
