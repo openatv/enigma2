@@ -12,9 +12,11 @@ class MessageBox(Screen):
 	TYPE_WARNING = 2
 	TYPE_ERROR = 3
 
-	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True):
+	def __init__(self, session, text, type = TYPE_YESNO, timeout = -1, close_on_any_key = False, default = True, enable_input = True, msgBoxID = None):
 		self.type = type
 		Screen.__init__(self, session)
+		
+		self.msgBoxID = msgBoxID
 
  		self["text"] = Label(text)
 		self["Text"] = StaticText(text)
