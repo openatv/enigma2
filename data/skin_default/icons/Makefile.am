@@ -34,6 +34,11 @@ dist_install_DATA = \
 	lock.png \
 	marker.png \
 	mp_buttons.png \
+	part_0_4.png \
+	part_1_4.png \
+	part_2_4.png \
+	part_3_4.png \
+	part_4_4.png \
 	plilogo-fs8.png \
 	plugin.png \
 	rass_logo.png \
