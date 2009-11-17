@@ -12,20 +12,32 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformat
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
 
 def moviePlayState(cutsFileName):
-	'''For now, returns "stop" marker position in PTS, whatever that may be
-	So if it returns anything, the movie was being played.'''
+	'''Returns None, 0..4 for percentage'''
 	parser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 	try:
+		lastCut = None
+		cutPTS = None
 		f = open(cutsFileName, 'rb')
 		while 1:
 			data = f.read(parser.size)
 			if len(data) < parser.size:
 				break
-			cutPTS, cutType = parser.unpack(data)
-			print cutsFileName, cutPTS, cutType
+			cut, cutType = parser.unpack(data)
+			#print cutsFileName, cutPTS, cutType
 			if cutType == 3: # undocumented, but 3 appears to be the stop
-				return cutPTS
+				cutPTS = cut
+			else:
+				lastCut = cut
 		f.close()
+		if not cutPTS:
+			# Was not played (or played till the end)
+			return None
+		if not lastCut:
+			# dunno, just say 50% then
+			return 2
+		if cutPTS >= lastCut:
+			return 4
+		return (4 * cutPTS) // lastCut
 	except:
 		import sys
 		print "Exception in moviePlayState: %s: %s" % sys.exc_info()[:2]
@@ -58,6 +70,9 @@ class MovieList(GUIComponent):
 		self.l.setBuildFunc(self.buildMovieListEntry)
 		
 		self.onSelectionChanged = [ ]
+		self.iconPart = []
+		for part in range(5):
+			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_%d_4.png" % part)))
 		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/record.png"))
 		self.iconMovieWatching =LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_play.png"))
 		self.iconMovieSeen = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_forward.png"))
@@ -131,9 +146,10 @@ class MovieList(GUIComponent):
 			iconSize = 20
 			icon = self.iconMovieNew
 			if os.path.exists(cutsPathName):
-				if moviePlayState(cutsPathName):
+				part = moviePlayState(cutsPathName)
+				if part is not None:
 					# There's a stop point in the movie, we're watching it
-					icon = self.iconMovieWatching
+					icon = self.iconPart[part]
 				elif os.stat(cutsPathName).st_mtime - os.stat(pathName).st_mtime > 600:  
 					# mtime of cuts file is much newer, we've seen it
 					icon = self.iconMovieSeen
