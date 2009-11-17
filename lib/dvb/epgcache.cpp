@@ -1717,7 +1717,7 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 				++argcount;
 				continue;
 			default:  // ignore unknown
-				tmp = ePyObjec();
+				tmp = ePyObject();
 				eDebug("fillTuple unknown '%c'... insert 'None' in result", c);
 		}
 		if (!tmp)
