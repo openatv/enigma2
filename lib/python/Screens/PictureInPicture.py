@@ -11,17 +11,10 @@ class PictureInPicture(Screen):
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
 		self.currentService = None
-		self.currentServicePath = None
 		if not pip_config_initialized:
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
 			pip_config_initialized = True
 		self.onLayoutFinish.append(self.LayoutFinished)
-
-	def getCurrentlyPlayingServiceReference(self):
-		return self.currentService
-
-	def getCurrentlyPlayingServicePath(self):
-		return self.currentServicePath
 
 	def LayoutFinished(self):
 		self.onLayoutFinish.remove(self.LayoutFinished)
@@ -52,10 +45,7 @@ class PictureInPicture(Screen):
 	def getSize(self):
 		return (self.instance.size().width(), self.instance.size().height())
 
-	def playService(self, service, path = None):
-		if service and self.currentService and service == self.currentService:
-			self.currentServicePath = path
-			return True
+	def playService(self, service):
 		if service and (service.flags & eServiceReference.isGroup):
 			ref = getBestPlayableServiceReference(service, eServiceReference())
 		else:
@@ -65,7 +55,6 @@ class PictureInPicture(Screen):
 			if self.pipservice and not self.pipservice.setTarget(1):
 				self.pipservice.start()
 				self.currentService = service
-				self.currentServicePath = path
 				return True
 			else:
 				self.pipservice = None

@@ -1360,13 +1360,11 @@ class InfoBarPiP:
 			self.session.pipshown
 		except:
 			self.session.pipshown = False
-		self.zappip = False
 		if SystemInfo.get("NumVideoDecoders", 1) > 1:
 			if (self.allowPiP):
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
-				self.addExtension((self.getZapFocusName, self.zapFocusToggle, self.pipShown), "red")
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
@@ -1389,59 +1387,34 @@ class InfoBarPiP:
 	def getMoveName(self):
 		return _("Move Picture in Picture")
 
-	def getZapFocusName(self):
-		if self.zappip:
-			return _("Set zap focus to main screen")
-		else:
-			return _("Set zap focus to Picture in Picture")
-
-	def zapFocusToggle(self):
-		self.zappip = not self.zappip
-		if self.zappip:
-			self.servicelist.setZapFocus(self.session.pip)
-			if self.session.pip.getCurrentlyPlayingServicePath() is not None:
-				self.servicelist.setCurrentServicePath(self.session.pip.getCurrentlyPlayingServicePath())
-		else:
-			self.servicelist.setZapFocus(self.session.nav)
-			if self.session.nav.getCurrentlyPlayingServicePath():
-				self.servicelist.setCurrentServicePath(self.session.nav.getCurrentlyPlayingServicePath())
-
 	def showPiP(self):
 		if self.session.pipshown:
-			if self.zappip:
-				self.zappip = False
-				self.servicelist.setZapFocus(self.session.nav)
-				self.servicelist.setCurrentServicePath(self.session.nav.getCurrentlyPlayingServicePath())
-			self.session.pipshown = False
 			del self.session.pip
+			self.session.pipshown = False
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
 			self.session.pip.show()
 			newservice = self.session.nav.getCurrentlyPlayingServiceReference()
-			if self.session.pip.playService(newservice, self.servicelist.getCurrentServicePath()):
+			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
+				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 			else:
+				self.session.pipshown = False
 				del self.session.pip
+			self.session.nav.playService(newservice)
 
 	def swapPiP(self):
-		navservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		pipservice = self.session.pip.getCurrentlyPlayingServiceReference()
-		if navservice.toString() != pipservice.toString():
-			if self.zappip:
-				navservicepath = self.session.nav.getCurrentlyPlayingServicePath()
-				pipservicepath = self.servicelist.getCurrentServicePath()
-			else:
-				pipservicepath = self.session.pip.getCurrentlyPlayingServicePath()
-				navservicepath = self.servicelist.getCurrentServicePath()
-			self.session.nav.stopService() # stop portal
-			self.session.nav.playService(pipservice, pipservicepath)
-			self.session.pip.playService(navservice, navservicepath)
-			if self.zappip:
-				newservicepath = navservicepath
-			else:
-				newservicepath = pipservicepath
-			if newservicepath is not None:
-				self.servicelist.setCurrentServicePath(newservicepath)
+		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		if self.session.pip.servicePath:
+			servicepath = self.servicelist.getCurrentServicePath()
+			ref=servicepath[len(servicepath)-1]
+			pipref=self.session.pip.getCurrentService()
+			self.session.pip.playService(swapservice)
+			self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
+			if pipref.toString() != ref.toString(): # is a subservice ?
+				self.session.nav.stopService() # stop portal
+				self.session.nav.playService(pipref) # start subservice
+			self.session.pip.servicePath=servicepath
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)

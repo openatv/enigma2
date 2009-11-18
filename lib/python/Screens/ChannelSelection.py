@@ -79,7 +79,6 @@ class ChannelContextMenu(Screen):
 		#raise Exception("we need a better summary screen here")
 		self.csel = csel
 		self.bsel = None
-		self.session = session
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
@@ -1141,15 +1140,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.new_service_played = False
 		self.onExecBegin.append(self.asciiOn)
 
-		#zap focus setting, when True, zap the PiP. When false, zap the main screen
-		self.zappip = False
-
-	def setZapFocus(self, focus):
-		if self.session.pipshown and focus == self.session.pip:
-			self.zappip = True
-		else:
-			self.zappip = False
-
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmAscii)
@@ -1162,9 +1152,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.recallBouquetMode()
 
 	def __evServiceStart(self):
-		#we're starting a service on the main screen, don't obey current zap focus here
 		service = self.session.nav.getCurrentService()
-
 		if service:
 			info = service.info()
 			if info:
@@ -1232,24 +1220,16 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	#called from infoBar and channelSelected
 	def zap(self):
 		self.revertMode=None
-		if self.zappip and self.session.pipshown:
-			ref = self.session.pip.getCurrentlyPlayingServiceReference()
-		else:
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		nref = self.getCurrentSelection()
 		if ref is None or ref != nref:
+			self.new_service_played = True
+			self.session.nav.playService(nref)
 			self.saveRoot()
 			self.saveChannel(nref)
 			if config.usage.savelastservice.value:
 				config.servicelist.lastmode.save()
 			self.addToHistory(nref)
-			self.new_service_played = True
-			#now that we set the current path, call playService
-			#(which needs the path as an argument, in order to be able to swap PiP and main screen, if required)
-			if self.zappip and self.session.pipshown:
-				self.session.pip.playService(nref, self.getCurrentServicePath())
-			else:
-				self.session.nav.playService(nref, self.getCurrentServicePath())
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
@@ -1293,14 +1273,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		cur_root = self.getRoot()
 		if cur_root and cur_root != root:
 			self.setRoot(root)
+		self.session.nav.playService(ref)
 		self.setCurrentSelection(ref)
 		self.saveChannel(ref)
-		#now that we set the current path, call playService
-		#(which needs the path as an argument, in order to be able to swap PiP and main screen, if required)
-		if self.zappip and self.session.pipshown:
-			self.session.pip.playService(ref, self.getCurrentServicePath())
-		else:
-			self.session.nav.playService(ref, self.getCurrentServicePath())
 
 	def saveRoot(self):
 		if not config.usage.savelastservice.value:
