@@ -1509,7 +1509,7 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
-		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = config.movielist.last_videodir.value)
+		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = resolveFilename(SCOPE_HDD))
 		recording.dontSave = True
 		
 		if event is None or limitEvent == False:
@@ -1610,9 +1610,7 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
-		dir = config.movielist.last_videodir.value
-		if not fileExists(dir, 'w'):
-			dir = resolveFilename(SCOPE_HDD)
+		dir = resolveFilename(SCOPE_HDD)
 		try:
 			stat = os_stat(dir)
 		except:
