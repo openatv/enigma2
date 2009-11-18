@@ -12,6 +12,7 @@ def InitUsageConfig():
 	config.usage.multibouquet = ConfigYesNo(default = True)
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
+	config.usage.savelastservice = ConfigYesNo(default = True)
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [
 		("0", _("no timeout")), ("1", "1 " + _("second")), ("2", "2 " + _("seconds")), ("3", "3 " + _("seconds")),
 		("4", "4 " + _("seconds")), ("5", "5 " + _("seconds")), ("6", "6 " + _("seconds")), ("7", "7 " + _("seconds")),

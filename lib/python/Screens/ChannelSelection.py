@@ -1240,7 +1240,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if ref is None or ref != nref:
 			self.saveRoot()
 			self.saveChannel(nref)
-			config.servicelist.lastmode.save()
+			if config.usage.savelastservice.value:
+				config.servicelist.lastmode.save()
 			self.addToHistory(nref)
 			self.new_service_played = True
 			#now that we set the current path, call playService
@@ -1302,6 +1303,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.session.nav.playService(ref, self.getCurrentServicePath())
 
 	def saveRoot(self):
+		if not config.usage.savelastservice.value:
+			return
 		path = ''
 		for i in self.servicePath:
 			path += i.toString()
@@ -1337,6 +1340,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		return False
 
 	def saveChannel(self, ref):
+		if not config.usage.savelastservice.value:
+			return
 		if ref is not None:
 			refstr = ref.toString()
 		else:
@@ -1462,6 +1467,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
 
 	def saveRoot(self):
+		if not config.usage.savelastservice.value:
+			return
 		path = ''
 		for i in self.servicePathRadio:
 			path += i.toString()
@@ -1522,8 +1529,9 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 				playingref = self.session.nav.getCurrentlyPlayingServiceReference()
 				if playingref is None or playingref != ref:
 					self.session.nav.playService(ref)
-					config.radio.lastservice.value = ref.toString()
-					config.radio.lastservice.save()
+					if config.usage.savelastservice.value:
+						config.radio.lastservice.value = ref.toString()
+						config.radio.lastservice.save()
 				self.saveRoot()
 
 class SimpleChannelSelection(ChannelSelectionBase):
