@@ -242,7 +242,7 @@ class InfoBarNumberZap:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(bouquet)
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
-			self.servicelist.zap()
+			self.servicelist.zap(enable_pipzap = True)
 
 config.misc.initialchannelselection = ConfigBoolean(default = True)
 
@@ -315,7 +315,7 @@ class InfoBarChannelSelection:
 						break
 		else:
 			self.servicelist.moveUp()
-		self.servicelist.zap()
+		self.servicelist.zap(enable_pipzap = True)
 
 	def zapDown(self):
 		if self.servicelist.inBouquet():
@@ -332,7 +332,7 @@ class InfoBarChannelSelection:
 						break
 		else:
 			self.servicelist.moveDown()
-		self.servicelist.zap()
+		self.servicelist.zap(enable_pipzap = True)
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
@@ -469,7 +469,7 @@ class InfoBarEPG:
 					self.servicelist.enterPath(self.servicelist.bouquet_root)
 				self.servicelist.enterPath(self.epg_bouquet)
 			self.servicelist.setCurrentSelection(service) #select the service in servicelist
-			self.servicelist.zap()
+			self.servicelist.zap(enable_pipzap = True)
 
 	def getBouquetServices(self, bouquet):
 		services = [ ]
@@ -1083,8 +1083,8 @@ class InfoBarShowMovies:
 		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions",
 			{
 				"movieList": (self.showMovies, _("movie list")),
-				"up": (self.showMovies, _("movie list")),
-				"down": (self.showMovies, _("movie list"))
+				"up": (self.up, _("movie list")),
+				"down": (self.down, _("movie list"))
 			})
 
 # InfoBarTimeshift requires InfoBarSeek, instantiated BEFORE!
@@ -1365,6 +1365,11 @@ class InfoBarPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
+				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
+				self["InfobarPiPActions"] = HelpableActionMap(self, "InfobarPiPActions", 
+					{
+						"switchPiP": (self.togglePipzap, _("zap in pip window...")),
+					})
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
@@ -1387,8 +1392,25 @@ class InfoBarPiP:
 	def getMoveName(self):
 		return _("Move Picture in Picture")
 
+	def getTogglePipzapName(self):
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			return _("Zap focus to main screen")
+		return _("Zap focus to Picture in Picture")
+
+
+	def togglePipzap(self):
+		if not self.session.pipshown:
+			self.showPiP()
+		slist = self.servicelist
+		if slist:
+			slist.togglePipzap()
+
 	def showPiP(self):
 		if self.session.pipshown:
+			slist = self.servicelist
+			if slist and slist.dopipzap:
+				slist.togglePipzap()
 			del self.session.pip
 			self.session.pipshown = False
 		else:
@@ -1401,20 +1423,25 @@ class InfoBarPiP:
 			else:
 				self.session.pipshown = False
 				del self.session.pip
-			self.session.nav.playService(newservice)
 
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		if self.session.pip.servicePath:
-			servicepath = self.servicelist.getCurrentServicePath()
-			ref=servicepath[len(servicepath)-1]
-			pipref=self.session.pip.getCurrentService()
-			self.session.pip.playService(swapservice)
-			self.servicelist.setCurrentServicePath(self.session.pip.servicePath)
-			if pipref.toString() != ref.toString(): # is a subservice ?
+		pipref = self.session.pip.getCurrentService()
+		if pipref and pipref.toString() != swapservice.toString():
+				self.session.pip.playService(swapservice)
+
+				slist = self.servicelist
+				if slist:
+					# TODO: this behaves real bad on subservices
+					if slist.dopipzap:
+						slist.servicelist.setCurrent(swapservice)
+					else:
+						slist.servicelist.setCurrent(pipref)
+
+					slist.addToHistory(pipref) # add service to history
+					slist.lastservice.value = pipref.toString() # save service as last playing one
 				self.session.nav.stopService() # stop portal
 				self.session.nav.playService(pipref) # start subservice
-			self.session.pip.servicePath=servicepath
 
 	def movePiP(self):
 		self.session.open(PiPSetup, pip = self.session.pip)

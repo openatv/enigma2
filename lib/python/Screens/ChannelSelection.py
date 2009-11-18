@@ -6,6 +6,7 @@ from Components.ServiceList import ServiceList
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.SystemInfo import SystemInfo
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode
@@ -114,6 +115,12 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected), level = 0)
 					else:
 						append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
+
+					if SystemInfo.get("NumVideoDecoders", 1) > 1:
+						if not csel.dopipzap:
+							append_when_current_valid(current, menu, (_("play as picture in picture"), self.playPiP), level = 0)
+						else:
+							append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
 				else:
 					if current_root.getPath().find('FROM SATELLITES') != -1:
 						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level = 0)
@@ -162,6 +169,29 @@ class ChannelContextMenu(Screen):
 
 		menu.append((_("back"), self.cancelClick))
 		self["menu"] = MenuList(menu)
+
+	def playPiP(self):
+		# Show PiP if not visible
+		if not self.session.pipshown:
+			from Screens.PictureInPicture import PictureInPicture
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+
+		# Play Service in PiP
+		if self.session.pip.playService(self.csel.getCurrentSelection()):
+			self.session.pipshown = True
+		else:
+			del self.session.pip
+			self.session.pipshown = False
+
+		self.close()
+
+	def playMain(self):
+		# XXX: we want to keep the current selection
+		sel = self.csel.getCurrentSelection()
+		self.csel.zap()
+		self.csel.setCurrentSelection(sel)
+		self.close()
 
 	def okbuttonClick(self):
 		self["menu"].getCurrent()[1]()
@@ -1040,7 +1070,8 @@ class ChannelSelectionBase(Screen):
 		return self.servicelist.getCurrent()
 
 	def setCurrentSelection(self, service):
-		self.servicelist.setCurrent(service)
+		if service:
+			self.servicelist.setCurrent(service)
 
 	def getBouquetList(self):
 		bouquets = [ ]
@@ -1138,6 +1169,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.revertMode = None
 		config.usage.multibouquet.addNotifier(self.multibouquet_config_changed)
 		self.new_service_played = False
+		self.dopipzap = False
 		self.onExecBegin.append(self.asciiOn)
 
 	def asciiOn(self):
@@ -1213,23 +1245,72 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		elif not (ref.flags & eServiceReference.isMarker): # no marker
 			root = self.getRoot()
 			if not root or not (root.flags & eServiceReference.isGroup):
-				self.zap()
+				self.zap(enable_pipzap = True)
 				self.asciiOff()
 				self.close(ref)
 
+	def togglePipzap(self):
+		assert(self.session.pip)
+		title = self.instance.getTitle()
+		pos = title.find(" (")
+		if pos != -1:
+			title = title[:pos]
+		if self.dopipzap:
+			# Mark PiP as inactive and effectively deactivate pipzap
+			self.session.pip.inactive()
+			self.dopipzap = False
+
+			# Disable PiP if not playing a service
+			if self.session.pip.pipservice is None:
+				self.session.pipshown = False
+				del self.session.pip
+
+			# Move to playing service
+			lastservice = eServiceReference(self.lastservice.value)      
+			if lastservice.valid() and self.getCurrentSelection() != lastservice:                        
+				self.setCurrentSelection(lastservice)
+
+			title += " (TV)"
+		else:
+			# Mark PiP as active and effectively active pipzap
+			self.session.pip.active()
+			self.dopipzap = True
+
+			# Move to service playing in pip (will not work with subservices)
+			self.setCurrentSelection(self.session.pip.getCurrentService())
+
+			title += " (PiP)"
+		self.setTitle(title)
+		self.buildTitleString()
+
 	#called from infoBar and channelSelected
-	def zap(self):
+	def zap(self, enable_pipzap = False):
 		self.revertMode=None
-		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		nref = self.getCurrentSelection()
-		if ref is None or ref != nref:
-			self.new_service_played = True
-			self.session.nav.playService(nref)
-			self.saveRoot()
-			self.saveChannel(nref)
-			if config.usage.savelastservice.value:
-				config.servicelist.lastmode.save()
-			self.addToHistory(nref)
+		if enable_pipzap and self.dopipzap:
+			ref = self.session.pip.getCurrentService()
+			if ref is None or ref != nref:
+				if not self.session.pip.playService(nref):
+					# XXX: Make sure we set an invalid ref
+					self.session.pip.playService(None)
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			if ref is None or ref != nref:
+				self.new_service_played = True
+				self.session.nav.playService(nref)
+				self.saveRoot()
+				self.saveChannel(nref)
+				if config.usage.savelastservice.value:
+					config.servicelist.lastmode.save()
+				self.addToHistory(nref)
+
+			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
+			# and we just wanted to zap in mainwindow once
+			# XXX: do we really want this? this also resets the service when zapping from context menu
+			#      which is irritating
+			if self.dopipzap:
+				# This unfortunately won't work with subservices
+				self.setCurrentSelection(self.session.pip.getCurrentService())
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
@@ -1274,7 +1355,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if cur_root and cur_root != root:
 			self.setRoot(root)
 		self.session.nav.playService(ref)
-		self.setCurrentSelection(ref)
+		if self.dopipzap:
+			self.setCurrentSelection(self.session.pip.getCurrentService())
+		else:
+			self.setCurrentSelection(ref)
 		self.saveChannel(ref)
 
 	def saveRoot(self):
@@ -1352,10 +1436,14 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def cancel(self):
 		if self.revertMode is None:
-			self.restoreRoot()
-			lastservice=eServiceReference(self.lastservice.value)
-			if lastservice.valid() and self.getCurrentSelection() != lastservice:
-				self.setCurrentSelection(lastservice)
+			if self.dopipzap:
+				# This unfortunately won't work with subservices
+				self.setCurrentSelection(self.session.pip.getCurrentService())
+			else:
+				self.restoreRoot()
+				lastservice=eServiceReference(self.lastservice.value)
+				if lastservice.valid() and self.getCurrentSelection() != lastservice:
+					self.setCurrentSelection(lastservice)
 		elif self.revertMode == MODE_TV:
 			self.setModeTv()
 		elif self.revertMode == MODE_RADIO:
