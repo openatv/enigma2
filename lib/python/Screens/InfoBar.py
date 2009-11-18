@@ -121,7 +121,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def movieSelected(self, service):
 		if service is not None:
-			self.session.open(MoviePlayer, service)
+			self.session.open(MoviePlayer, service, slist = self.servicelist)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, \
@@ -133,15 +133,21 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
 		
-	def __init__(self, session, service):
+	def __init__(self, session, service, slist = None):
 		Screen.__init__(self, session)
 		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
 				"leavePlayer": (self.leavePlayer, _("leave movie player..."))
 			})
-		
-		self.allowPiP = False
+
+		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
+			{
+				"left": self.left,
+				"right": self.right
+			}, prio = -2)
+
+		self.allowPiP = True
 		
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
@@ -152,6 +158,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				InfoBarPlugins, InfoBarPiP:
 			x.__init__(self)
 
+		self.servicelist = slist
 		self.lastservice = session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
 		self.returning = False
@@ -229,6 +236,84 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		if not playing :
 			return
 		self.handleLeave(config.usage.on_movie_eof.value)
+
+	def up(self):
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			slist.moveUp()
+			self.session.execDialog(slist)
+		else:
+			self.showMovies()
+
+	def down(self):
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			slist.moveDown()
+			self.session.execDialog(slist)
+		else:
+			self.showMovies()
+
+	def right(self):
+		# XXX: gross hack, we do not really seek if changing channel in pip :-)
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			# XXX: We replicate InfoBarChannelSelection.zapDown here - we shouldn't do that
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value and slist.atEnd():
+							slist.nextBouquet()
+						else:
+							slist.moveDown()
+						cur = slist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
+			else:
+				slist.moveDown()
+			slist.zap(enable_pipzap = True)
+		else:
+			InfoBarSeek.seekFwd(self)
+
+	def left(self):
+		slist = self.servicelist
+		if slist and slist.dopipzap:
+			# XXX: We replicate InfoBarChannelSelection.zapUp here - we shouldn't do that
+			if slist.inBouquet():
+				prev = slist.getCurrentSelection()
+				if prev:
+					prev = prev.toString()
+					while True:
+						if config.usage.quickzap_bouquet_change.value:
+							if slist.atBegin():
+								slist.prevBouquet()
+						slist.moveUp()
+						cur = slist.getCurrentSelection()
+						if not cur or (not (cur.flags & 64)) or cur.toString() == prev:
+							break
+			else:
+				slist.moveUp()
+			slist.zap(enable_pipzap = True)
+		else:
+			InfoBarSeek.seekBack(self)
+
+	def showPiP(self):
+		slist = self.servicelist
+		if self.session.pipshown:
+			if slist and slist.dopipzap:
+				slist.togglePipzap()
+			del self.session.pip
+			self.session.pipshown = False
+		else:
+			from Screens.PictureInPicture import PictureInPicture
+			self.session.pip = self.session.instantiateDialog(PictureInPicture)
+			self.session.pip.show()
+			self.session.pipshown = True
+			self.session.pip.playService(slist.getCurrentSelection())
+
+	def swapPiP(self):
+		pass
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()

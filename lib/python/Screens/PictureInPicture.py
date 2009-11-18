@@ -5,11 +5,17 @@ from Components.config import config, ConfigPosition
 
 pip_config_initialized = False
 
+class PictureInPictureZapping(Screen):
+	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">
+			<eLabel text="PiP-Zap" position="0,0" size="90,26" foregroundColor="#00ff66" font="Regular;26" />
+		</screen>"""
+
 class PictureInPicture(Screen):
 	def __init__(self, session):
 		global pip_config_initialized
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
+		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
 		self.currentService = None
 		if not pip_config_initialized:
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
@@ -38,6 +44,12 @@ class PictureInPicture(Screen):
 		config.av.pip.save()
 		self.instance.resize(eSize(*(w, h)))
 		self["video"].instance.resize(eSize(*(w, h)))
+
+	def active(self):
+		self.pipActive.show()
+
+	def inactive(self):
+		self.pipActive.hide()
 
 	def getPosition(self):
 		return ((self.instance.position().x(), self.instance.position().y()))
