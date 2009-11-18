@@ -1919,6 +1919,7 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 				++argcount;
 				continue;
 			default:  // ignore unknown
+				tmp = ePyObject();
 				eDebug("fillTuple unknown '%c'... insert 'None' in result", c);
 		}
 		if (!tmp)
@@ -2263,6 +2264,7 @@ void fillTuple2(ePyObject tuple, const char *argstring, int argcount, eventData 
 				inc_refcount = true;
 				break;
 			default:  // ignore unknown
+				tmp = ePyObject();
 				eDebug("fillTuple2 unknown '%c'... insert None in Result", argstring[pos]);
 		}
 		if (!tmp)
