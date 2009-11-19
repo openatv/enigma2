@@ -319,7 +319,7 @@ const char *getEnigmaVersionString()
 #ifdef ENIGMA2_BRANCH
 		ENIGMA2_BRANCH;
 #else
-		"HEAD"
+		"HEAD";
 #endif
 	return std::string(date + '-' + branch).c_str();
 }
