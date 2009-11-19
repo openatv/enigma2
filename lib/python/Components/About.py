@@ -19,11 +19,20 @@ class About:
 					#0120 2005 11 29 01 16
 					#0123 4567 89 01 23 45
 					version = splitted[1]
+					image_type = version[0] # 0 = release, 1 = experimental
+					major = version[1]
+					minor = version[2]
+					revision = version[3]
 					year = version[4:8]
 					month = version[8:10]
 					day = version[10:12]
-
-					return '-'.join(("dev", year, month, day))
+					if image_type == '0':
+						image_type = "Release"
+					else:
+						image_type = "Experimental"
+					date = '-'.join((year, month, day))
+					version = '.'.join((major, minor, revision))
+					return ' '.join((image_type, version, date))
 			file.close()
 		except IOError:
 			pass
