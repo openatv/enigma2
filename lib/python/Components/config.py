@@ -1034,13 +1034,13 @@ class ConfigSelectionNumber(ConfigSelection):
 			step += stepwidth
 		
 		ConfigSelection.__init__(self, choices, default)
-		
+
 	def getValue(self):
-		return int(self.text)
+		return int(ConfigSelection.getValue(self))
 
 	def setValue(self, val):
-		self.text = str(val)
-		
+		ConfigSelection.setValue(self, str(val))
+
 	def handleKey(self, key):
 		if not self.wraparound:
 			if key == KEY_RIGHT:
@@ -1050,8 +1050,6 @@ class ConfigSelectionNumber(ConfigSelection):
 				if self.choices.index(self.value) == 0:
 					return
 		ConfigSelection.handleKey(self, key)
-				
-				
 
 class ConfigNumber(ConfigText):
 	def __init__(self, default = 0):
