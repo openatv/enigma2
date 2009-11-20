@@ -10,7 +10,7 @@ from Components.SystemInfo import SystemInfo
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode
-from Components.config import config, ConfigSubsection, ConfigText
+from Components.config import config, configfile, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
 from Components.NimManager import nimmanager
@@ -102,6 +102,7 @@ class ChannelContextMenu(Screen):
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
+					append_when_current_valid(current, menu, (_("set as startup service"), self.setStartupService), level = 0)
 					if config.ParentalControl.configured.value:
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level = 0)
@@ -201,6 +202,18 @@ class ChannelContextMenu(Screen):
 
 	def showServiceInformations(self):
 		self.session.open( ServiceInfo, self.csel.getCurrentSelection() )
+
+	def setStartupService(self):
+		config.servicelist.startupservice.value = self.csel.getCurrentSelection().toString()
+		path = ''
+		for i in self.csel.servicePath:
+			path += i.toString()
+			path += ';'
+		config.servicelist.startuproot.value = path
+		config.servicelist.startupmode.value = config.servicelist.lastmode.value
+		config.servicelist.save()
+		configfile.save()
+		self.close()
 
 	def showBouquetInputBox(self):
 		self.session.openWithCallback(self.bouquetInputCallback, InputBox, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width = 56, type=Input.TEXT)
@@ -1133,6 +1146,9 @@ config.radio.lastservice = ConfigText()
 config.radio.lastroot = ConfigText()
 config.servicelist = ConfigSubsection()
 config.servicelist.lastmode = ConfigText(default = "tv")
+config.servicelist.startupservice = ConfigText()
+config.servicelist.startuproot = ConfigText()
+config.servicelist.startupmode = ConfigText(default = "tv")
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
 	def __init__(self, session):
@@ -1163,6 +1179,15 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.history_radio = [ ]
 		self.history = self.history_tv
 		self.history_pos = 0
+
+		if config.servicelist.startupservice.value and config.servicelist.startuproot.value:
+			config.servicelist.lastmode.value = config.servicelist.startupmode.value
+			if config.servicelist.lastmode.value == "tv":
+				config.tv.lastservice.value = config.servicelist.startupservice.value
+				config.tv.lastroot.value = config.servicelist.startuproot.value
+			elif config.servicelist.lastmode.value == "radio":
+				config.radio.lastservice.value = config.servicelist.startupservice.value
+				config.radio.lastroot.value = config.servicelist.startuproot.value
 
 		self.lastservice = config.tv.lastservice
 		self.lastroot = config.tv.lastroot
