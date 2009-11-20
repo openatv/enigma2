@@ -26,13 +26,14 @@ class About:
 					year = version[4:8]
 					month = version[8:10]
 					day = version[10:12]
+					date = '-'.join((year, month, day))
 					if image_type == '0':
 						image_type = "Release"
+						version = '.'.join((major, minor, revision))
+						return ' '.join((image_type, version, date))
 					else:
 						image_type = "Experimental"
-					date = '-'.join((year, month, day))
-					version = '.'.join((major, minor, revision))
-					return ' '.join((image_type, version, date))
+						return ' '.join((image_type, date))
 			file.close()
 		except IOError:
 			pass
