@@ -1325,8 +1325,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.session.nav.playService(nref)
 				self.saveRoot()
 				self.saveChannel(nref)
-				if config.usage.savelastservice.value:
-					config.servicelist.lastmode.save()
+				config.servicelist.lastmode.save()
 				self.addToHistory(nref)
 
 			# Yes, we might double-check this, but we need to re-select pipservice if pipzap is active
@@ -1387,8 +1386,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.saveChannel(ref)
 
 	def saveRoot(self):
-		if not config.usage.savelastservice.value:
-			return
 		path = ''
 		for i in self.servicePath:
 			path += i.toString()
@@ -1424,8 +1421,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		return False
 
 	def saveChannel(self, ref):
-		if not config.usage.savelastservice.value:
-			return
 		if ref is not None:
 			refstr = ref.toString()
 		else:
@@ -1555,8 +1550,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
 
 	def saveRoot(self):
-		if not config.usage.savelastservice.value:
-			return
 		path = ''
 		for i in self.servicePathRadio:
 			path += i.toString()
@@ -1617,9 +1610,8 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 				playingref = self.session.nav.getCurrentlyPlayingServiceReference()
 				if playingref is None or playingref != ref:
 					self.session.nav.playService(ref)
-					if config.usage.savelastservice.value:
-						config.radio.lastservice.value = ref.toString()
-						config.radio.lastservice.save()
+					config.radio.lastservice.value = ref.toString()
+					config.radio.lastservice.save()
 				self.saveRoot()
 
 class SimpleChannelSelection(ChannelSelectionBase):
