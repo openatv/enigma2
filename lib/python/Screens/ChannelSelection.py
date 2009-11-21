@@ -118,10 +118,12 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("add service to favourites"), self.addServiceToBouquetSelected), level = 0)
 
 					if SystemInfo.get("NumVideoDecoders", 1) > 1:
-						if not csel.dopipzap:
-							append_when_current_valid(current, menu, (_("play as picture in picture"), self.playPiP), level = 0)
-						else:
-							append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
+						# only allow the service to be played directly in pip / mainwindow when the service is not under parental control
+						if not config.ParentalControl.configured.value or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+							if not csel.dopipzap:
+								append_when_current_valid(current, menu, (_("play as picture in picture"), self.playPiP), level = 0)
+							else:
+								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
 				else:
 					if current_root.getPath().find('FROM SATELLITES') != -1:
 						append_when_current_valid(current, menu, (_("remove selected satellite"), self.removeSatelliteServices), level = 0)
