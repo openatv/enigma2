@@ -1427,7 +1427,7 @@ class InfoBarPiP:
 	def swapPiP(self):
 		swapservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		pipref = self.session.pip.getCurrentService()
-		if pipref and pipref.toString() != swapservice.toString():
+		if pipref and pipref.toString() != swapservice and swapservice.toString():
 				self.session.pip.playService(swapservice)
 
 				slist = self.servicelist
