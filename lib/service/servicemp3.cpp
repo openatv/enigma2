@@ -1610,18 +1610,27 @@ void eServiceMP3::setAC3Delay(int delay)
 	else
 	{
 		GstElement *sink;
-		std::string config_delay;
 		int config_delay_int = delay;
-		if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
-			config_delay_int += atoi(config_delay.c_str());
+		g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
+
+		if (sink)
+		{
+			std::string config_delay;
+			if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
+				config_delay_int += atoi(config_delay.c_str());
+			gst_object_unref(sink);
+		}
+		else
+		{
+			eDebug("dont apply ac3 delay when no video is running!");
+			config_delay_int = 0;
+		}
 
 		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
 
-		if (!sink)
-			return;
-		else {
+		if (sink)
+		{
 			gchar *name = gst_element_get_name(sink);
-
 			if (strstr(name, "dvbaudiosink"))
 				eTSMPEGDecoder::setHwAC3Delay(config_delay_int);
 			g_free(name);
@@ -1638,21 +1647,31 @@ void eServiceMP3::setPCMDelay(int delay)
 	else
 	{
 		GstElement *sink;
-		std::string config_delay;
 		int config_delay_int = delay;
-		if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
-			config_delay_int += atoi(config_delay.c_str());
+		g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
+
+		if (sink)
+		{
+			std::string config_delay;
+			if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
+				config_delay_int += atoi(config_delay.c_str());
+			gst_object_unref(sink);
+		}
+		else
+		{
+			eDebug("dont apply pcm delay when no video is running!");
+			config_delay_int = 0;
+		}
 
 		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
 
-		if (!sink)
-			return;
-		else {
+		if (sink)
+		{
 			gchar *name = gst_element_get_name(sink);
-
 			if (strstr(name, "dvbaudiosink"))
 				eTSMPEGDecoder::setHwPCMDelay(config_delay_int);
-			else {
+			else
+			{
 				// this is realy untested..and not used yet
 				gint64 offset = config_delay_int;
 				offset *= 1000000; // milli to nano
