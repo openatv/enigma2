@@ -1602,6 +1602,7 @@ int eServiceMP3::getPCMDelay()
 
 void eServiceMP3::setAC3Delay(int delay)
 {
+	ac3_delay = delay;
 	if (!m_gst_playbin || m_state != stRunning)
 		return;
 	else
@@ -1629,6 +1630,7 @@ void eServiceMP3::setAC3Delay(int delay)
 
 void eServiceMP3::setPCMDelay(int delay)
 {
+	pcm_delay = delay;
 	if (!m_gst_playbin || m_state != stRunning)
 		return;
 	else
