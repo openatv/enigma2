@@ -11,7 +11,6 @@ from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
 from xml.etree.cElementTree import parse as ci_parse
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import eDVBCI_UI, eDVBCIInterfaces
 
 from os import system, path as os_path
