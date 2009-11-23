@@ -1,10 +1,9 @@
-import xml.dom.minidom
 
 def elementsWithTag(el, tag):
-
 	"""filters all elements of childNode with the specified function
 	example: nodes = elementsWithTag(childNodes, lambda x: x == "bla")"""
 
+	import xml.dom.minidom
 	# fiiixme! (works but isn't nice)
 	if isinstance(tag, str):
 		s = tag
