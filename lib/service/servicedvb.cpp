@@ -917,7 +917,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_is_pvr = !m_reference.path.empty();
 	
 	m_timeshift_enabled = m_timeshift_active = 0, m_timeshift_changed = 0;
-	m_skipmode = 0;
+	m_skipmode = m_fastforward = m_slowmotion = 0;
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
@@ -1185,7 +1185,10 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 	eDebug("eDVBServicePlay::setSlowMotion(%d)", ratio);
 	setFastForward_internal(0);
 	if (m_decoder)
+	{
+		m_slowmotion = ratio;
 		return m_decoder->setSlowMotion(ratio);
+	}
 	else
 		return -1;
 }
@@ -1197,10 +1200,11 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
 	return setFastForward_internal(ratio);
 }
 
-RESULT eDVBServicePlay::setFastForward_internal(int ratio)
+RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 {
-	int skipmode, ffratio;
-	
+	int skipmode, ffratio, ret = 0;
+	pts_t pos=0;
+
 	if (ratio > 8)
 	{
 		skipmode = ratio;
@@ -1225,19 +1229,28 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 		if (m_cue)
 			m_cue->setSkipmode(skipmode * 90000); /* convert to 90000 per second */
 	}
-	
+
 	m_skipmode = skipmode;
-	
+
+	if (final_seek)
+		eDebug("trickplay stopped .. ret %d, pos %lld", getPlayPosition(pos), pos);
+
+	m_fastforward = ffratio;
+
 	if (!m_decoder)
 		return -1;
-		
+
 	if (ffratio == 0)
 		; /* return m_decoder->play(); is done in caller*/
 	else if (ffratio != 1)
-		return m_decoder->setFastForward(ffratio);
+		ret = m_decoder->setFastForward(ffratio);
 	else
-		return m_decoder->setTrickmode();
-	return 0;
+		ret = m_decoder->setTrickmode();
+
+	if (pos)
+		eDebug("final seek after trickplay ret %d", seekTo(pos));
+
+	return ret;
 }
 
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
@@ -1278,9 +1291,10 @@ RESULT eDVBServicePlay::pause()
 RESULT eDVBServicePlay::unpause()
 {
 	eDebug("eDVBServicePlay::unpause");
-	setFastForward_internal(0);
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
 	if (m_decoder)
 	{
+		m_slowmotion = 0;
 		m_is_paused = 0;
 		return m_decoder->play();
 	} else
@@ -2229,7 +2243,7 @@ void eDVBServicePlay::switchToLive()
 	m_new_subtitle_page_connection = 0;
 	m_rds_decoder_event_connection = 0;
 	m_video_event_connection = 0;
-	m_is_paused = m_skipmode = 0; /* not supported in live mode */
+	m_is_paused = m_skipmode = m_fastforward = m_slowmotion = 0; /* not supported in live mode */
 
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();

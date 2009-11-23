@@ -220,7 +220,7 @@ private:
 
 	int m_current_audio_stream;
 	int selectAudioStream(int n = -1);
-	RESULT setFastForward_internal(int ratio);
+	RESULT setFastForward_internal(int ratio, bool final_seek=false);
 	
 		/* timeshift */
 	ePtr<iDVBTSRecorder> m_record;
@@ -233,6 +233,8 @@ private:
 	void updateDecoder();
 	
 	int m_skipmode;
+	int m_fastforward;
+	int m_slowmotion;
 	
 		/* cuesheet */
 	
