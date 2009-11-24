@@ -587,11 +587,8 @@ def readSkin(screen, skin, names, desktop):
 						c = i
 
 				if c is None:
-					print "allocating new converter!"
 					c = converter_class(parms)
 					c.connect(source)
-				else:
-					print "reused converter!"
 
 				source = c
 
