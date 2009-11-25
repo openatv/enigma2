@@ -1,6 +1,6 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins/WirelessLan
 
-#SUBDIRS = meta
+SUBDIRS = meta
 
 install_PYTHON =	\
 	__init__.py \
