@@ -11,7 +11,6 @@ profile("PYTHON_START")
 
 from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, \
 	getDesktop, ePythonConfigQuery, eAVSwitch, eServiceEvent
-from tools import *
 
 profile("LANGUAGE")
 
