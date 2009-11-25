@@ -10,7 +10,8 @@ from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
+from Components.MultiContent import MultiContentEntryText
+from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 class TitleList(Screen, HelpableScreen):
@@ -27,7 +28,17 @@ class TitleList(Screen, HelpableScreen):
 			<widget source="title_label" render="Label" position="10,48" size="540,38" font="Regular;18" transparent="1" />
 			<widget source="error_label" render="Label" position="10,48" size="540,395" zPosition="3" font="Regular;20" transparent="1" />
 			<widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="540,312" zPosition="3" transparent="1" >
-				<convert type="StaticMultiList" />
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (0, 0), size = (420, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 Title,
+							MultiContentEntryText(pos = (0, 20), size = (328, 17), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 description,
+							MultiContentEntryText(pos = (420, 6), size = (120, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 3), # index 3 begin time,
+							MultiContentEntryText(pos = (328, 20), size = (154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 channel,
+						],
+					"fonts": [gFont("Regular", 20), gFont("Regular", 14)],
+					"itemHeight": 37
+					}
+				</convert>
 			</widget>
 			<widget source="space_bar" render="Progress" position="10,410" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
 			<widget source="space_label" render="Label" position="40,414" size="480,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
@@ -71,7 +82,7 @@ class TitleList(Screen, HelpableScreen):
 		else:
 			self.newProject()
 
-		self["titles"] = List(list = [ ], enableWrapAround = True, item_height=30, fonts = [gFont("Regular", 20)])
+		self["titles"] = List([])
 		self.updateTitleList()
 		self.previous_size = 0
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -256,15 +267,14 @@ class TitleList(Screen, HelpableScreen):
 		job = Process.DVDJob(self.project, menupreview=True)
 		job_manager.in_background = False
 		job_manager.AddJob(job)
-		
+
 	def updateTitleList(self):
-		res = [ ]
+		list = [ ]
 		for title in self.project.titles:
-			a = [ title, (eListboxPythonMultiContent.TYPE_TEXT, 0, 5, 500, 25, 0, RT_HALIGN_LEFT, title.properties.menutitle.getValue())  ]
-			res.append(a)
-		self["titles"].list = res
+			list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0)))
+		self["titles"].list = list
 		self.updateSize()
-		if len(res):
+		if len(list):
 			self["key_red"].text = _("Remove title")
 			self["key_yellow"].text = _("Title properties")
 		else:
