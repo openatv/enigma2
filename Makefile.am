@@ -4,7 +4,7 @@ installdir = $(pkglibdir)/python
 
 install_PYTHON = \
 	Navigation.py NavigationInstance.py RecordTimer.py SleepTimer.py ServiceReference.py \
-	keyids.py keymapparser.py mytest.py skin.py timer.py tools.py GlobalActions.py \
+	keyids.py keymapparser.py mytest.py skin.py timer.py GlobalActions.py \
 	e2reactor.py
 
 LANGS := $(shell cat $(srcdir)/po/LINGUAS)
