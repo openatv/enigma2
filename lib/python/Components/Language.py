@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import gettext
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
@@ -13,41 +14,41 @@ class Language:
 		# FIXME make list dynamically
 		# name, iso-639 language, iso-3166 country. Please don't mix language&country!
 		# also, see "precalcLanguageList" below on how to re-create the language cache after you added a language
-		self.addLanguage(_("English"), "en", "EN")
-		self.addLanguage(_("German"), "de", "DE")
-		self.addLanguage(_("Arabic"), "ar", "AE")
-		self.addLanguage(_("Catalan"), "ca", "AD")
-		self.addLanguage(_("Croatian"), "hr", "HR")
-		self.addLanguage(_("Czech"), "cs", "CZ")
-		self.addLanguage(_("Danish"), "da", "DK")
-		self.addLanguage(_("Dutch"), "nl", "NL")
-		self.addLanguage(_("Estonian"), "et", "EE")
-		self.addLanguage(_("Finnish"), "fi", "FI")
-		self.addLanguage(_("French"), "fr", "FR")
-		self.addLanguage(_("Greek"), "el", "GR")
-		self.addLanguage(_("Hungarian"), "hu", "HU")
-		self.addLanguage(_("Lithuanian"), "lt", "LT")
-		self.addLanguage(_("Latvian"), "lv", "LV")
-		self.addLanguage(_("Icelandic"), "is", "IS")
-		self.addLanguage(_("Italian"), "it", "IT")
-		self.addLanguage(_("Norwegian"), "no", "NO")
-		self.addLanguage(_("Polish"), "pl", "PL")
-		self.addLanguage(_("Portuguese"), "pt", "PT")
-		self.addLanguage(_("Russian"), "ru", "RU")
-		self.addLanguage(_("Serbian"), "sr", "YU")
-		self.addLanguage(_("Slovakian"), "sk", "SK")
-		self.addLanguage(_("Slovenian"), "sl", "SI")
-		self.addLanguage(_("Spanish"), "es", "ES")
-		self.addLanguage(_("Swedish"), "sv", "SE")
-		self.addLanguage(_("Turkish"), "tr", "TR")
-		self.addLanguage(_("Ukrainian"), "uk", "UA")
-		self.addLanguage(_("Frisian"), "fy", "x-FY") # there is no separate country for frisian
+		self.addLanguage("English", "en", "EN")
+		self.addLanguage("Deutsch", "de", "DE")
+		self.addLanguage("Arabic", "ar", "AE")
+		self.addLanguage("Català", "ca", "AD")
+		self.addLanguage("Hrvatski", "hr", "HR")
+		self.addLanguage("Česky", "cs", "CZ")
+		self.addLanguage("Dansk", "da", "DK")
+		self.addLanguage("Nederlands", "nl", "NL")
+		self.addLanguage("Eesti", "et", "EE")
+		self.addLanguage("Suomi", "fi", "FI")
+		self.addLanguage("Français", "fr", "FR")
+		self.addLanguage("Ελληνικά", "el", "GR")
+		self.addLanguage("Magyar", "hu", "HU")
+		self.addLanguage("Lietuvių", "lt", "LT")
+		self.addLanguage("Latviešu", "lv", "LV")
+		self.addLanguage("Íslenska", "is", "IS")
+		self.addLanguage("Italiano", "it", "IT")
+		self.addLanguage("Norsk", "no", "NO")
+		self.addLanguage("Polski", "pl", "PL")
+		self.addLanguage("Português", "pt", "PT")
+		self.addLanguage("Русский", "ru", "RU")
+		self.addLanguage("Srpski", "sr", "YU")
+		self.addLanguage("Slovakian", "sk", "SK")
+		self.addLanguage("Slovensko", "sl", "SI")
+		self.addLanguage("Español", "es", "ES")
+		self.addLanguage("Svenska", "sv", "SE")
+		self.addLanguage("Türkçe", "tr", "TR")
+		self.addLanguage("Ukrainian", "uk", "UA")
+		self.addLanguage("Frysk", "fy", "x-FY") # there is no separate country for frisian
 
 		self.callbacks = []
 
 	def addLanguage(self, name, lang, country):
 		try:
-			self.lang[str(lang + "_" + country)] = ((_(name), lang, country))
+			self.lang[str(lang + "_" + country)] = ((name, lang, country))
 			self.langlist.append(str(lang + "_" + country))
 		except:
 			print "Language " + str(name) + " not found"
@@ -101,9 +102,6 @@ class Language:
 		for language in self.langlist:
 			self.activateLanguage(language)
 			print >>l, '"%s": {' % language
-			for name, lang, country in self.lang.values():
-				print >>l, '\t"%s_%s": "%s",' % (lang, country, _(name))
-
 			print >>l, '\t"T1": "%s",' % (_(T1))
 			print >>l, '\t"T2": "%s",' % (_(T2))
 			print >>l, '},'
