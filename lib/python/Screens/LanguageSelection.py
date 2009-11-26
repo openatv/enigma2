@@ -76,27 +76,16 @@ class LanguageSelection(Screen):
 		print "ok"
 
 	def updateList(self):
-		first_time = not self.list
-
 		languageList = language.getLanguageList()
 		if not languageList: # no language available => display only english
-			list = [ LanguageEntryComponent("en", _cached("en_EN"), "en_EN") ]
+			list = [ LanguageEntryComponent("en", "English", "en_EN") ]
 		else:
-			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = _cached("%s_%s" % x[1][1:3]), index = x[0]) for x in languageList]
+			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[0], index = x[0]) for x in languageList]
 		self.list = list
-
-		#list.sort(key=lambda x: x[1][7])
-
-		print "updateList"
-		if first_time:
-			self["languages"].list = list
-		else:
-			self["languages"].updateList(list)
-		print "done"
+		self["languages"].list = list
 
 	def changed(self):
 		self.run(justlocal = True)
-		self.updateList()
 
 class LanguageWizard(LanguageSelection, Rc):
 	def __init__(self, session):
@@ -115,7 +104,6 @@ class LanguageWizard(LanguageSelection, Rc):
 		
 	def changed(self):
 		self.run(justlocal = True)
-		self.updateList()
 		self.setText()
 		
 	def setText(self):
