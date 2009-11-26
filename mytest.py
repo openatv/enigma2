@@ -1,3 +1,7 @@
+from Tools.Profile import profile, profile_final
+
+profile("PYTHON_START")
+
 import eConsoleImpl
 import eBaseImpl
 import enigma
@@ -5,20 +9,13 @@ enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
-from Tools.Profile import profile, profile_final
-
-profile("PYTHON_START")
-
-from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, \
-	getDesktop, ePythonConfigQuery, eAVSwitch, eServiceEvent
-
 profile("LANGUAGE")
 
 from Components.Language import language
 
 def setEPGLanguage():
 	print "language set to", language.getLanguage()
-	eServiceEvent.setEPGLanguage(language.getLanguage())
+	enigma.eServiceEvent.setEPGLanguage(language.getLanguage())
 
 language.addCallback(setEPGLanguage)
 
@@ -45,7 +42,7 @@ from Components.config import config, configfile, ConfigText, ConfigYesNo, Confi
 InitFallbackFiles()
 
 profile("ReloadProfiles")
-eDVBDB.getInstance().reloadBouquets()
+enigma.eDVBDB.getInstance().reloadBouquets()
 
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_SKIN_IMAGE)+"radio.mvi")
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
@@ -84,7 +81,7 @@ try:
 except ImportError:
 	print "twisted not available"
 	def runReactor():
-		runMainloop()
+		enigma.runMainloop()
 
 profile("LOAD:Plugin")
 
@@ -159,7 +156,7 @@ class Session:
 		self.desktop = desktop
 		self.summary_desktop = summary_desktop
 		self.nav = navigation
-		self.delay_timer = eTimer()
+		self.delay_timer = enigma.eTimer()
 		self.delay_timer.callback.append(self.processDelay)
 
 		self.current_dialog = None
@@ -230,7 +227,7 @@ class Session:
 			errstr = "Screen %s(%s, %s): %s" % (str(screen), str(arguments), str(kwargs), exc_info()[0])
 			print errstr
 			print_exc(file=stdout)
-			quitMainloop(5)
+			enigma.quitMainloop(5)
 
 	def instantiateDialog(self, screen, *arguments, **kwargs):
 		return self.doInstantiateDialog(screen, arguments, kwargs, self.desktop)
@@ -251,7 +248,7 @@ class Session:
 			print 'EXCEPTION IN DIALOG INIT CODE, ABORTING:'
 			print '-'*60
 			print_exc(file=stdout)
-			quitMainloop(5)
+			enigma.quitMainloop(5)
 			print '-'*60
 
 		if dlg is None:
@@ -399,13 +396,13 @@ from Screens.Scart import Scart
 class AutoScartControl:
 	def __init__(self, session):
 		self.force = False
-		self.current_vcr_sb = eAVSwitch.getInstance().getVCRSlowBlanking()
+		self.current_vcr_sb = enigma.eAVSwitch.getInstance().getVCRSlowBlanking()
 		if self.current_vcr_sb and config.av.vcrswitch.value:
 			self.scartDialog = session.instantiateDialog(Scart, True)
 		else:
 			self.scartDialog = session.instantiateDialog(Scart, False)
 		config.av.vcrswitch.addNotifier(self.recheckVCRSb)
-		eAVSwitch.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
+		enigma.eAVSwitch.getInstance().vcr_sb_notifier.get().append(self.VCRSbChanged)
 
 	def recheckVCRSb(self, configElement):
 		self.VCRSbChanged(self.current_vcr_sb)
@@ -434,7 +431,7 @@ def runScreenTest():
 
 	profile("Init:Session")
 	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.value)
-	session = Session(desktop = getDesktop(0), summary_desktop = getDesktop(1), navigation = nav)
+	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
 
 	CiHandler.setSession(session)
 
@@ -447,7 +444,7 @@ def runScreenTest():
 
 	screensToRun.sort()
 
-	ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
+	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 
 #	eDVBCIInterfaces.getInstance().setDescrambleRules(0 # Slot Number
 #		,(	["1:0:1:24:4:85:C00000:0:0:0:"], #service_list
@@ -457,7 +454,7 @@ def runScreenTest():
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
-			quitMainloop(*result)
+			enigma.quitMainloop(*result)
 			return
 
 		screen = screensToRun[0][1]
@@ -525,7 +522,7 @@ def runScreenTest():
 
 profile("Init:skin")
 import skin
-skin.loadSkinData(getDesktop(0))
+skin.loadSkinData(enigma.getDesktop(0))
 
 profile("InputDevice")
 import Components.InputDevice
@@ -584,5 +581,5 @@ except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60
 	print_exc(file=stdout)
-	quitMainloop(5)
+	enigma.quitMainloop(5)
 	print '-'*60
