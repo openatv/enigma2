@@ -1279,9 +1279,10 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 RESULT eDVBServicePlay::pause()
 {
 	eDebug("eDVBServicePlay::pause");
-	setFastForward_internal(0);
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
 	if (m_decoder)
 	{
+		m_slowmotion = 0;
 		m_is_paused = 1;
 		return m_decoder->pause();
 	} else
