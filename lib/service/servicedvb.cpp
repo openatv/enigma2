@@ -1743,6 +1743,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 {
 	eDVBServicePMTHandler::program program;
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+	pts_t position = -1;
 
 	if (h.getProgramInfo(program))
 		return -1;
@@ -1765,6 +1766,9 @@ int eDVBServicePlay::selectAudioStream(int i)
 		apidtype = program.audioStreams[stream].type;
 	}
 
+	if (i != -1 && apid != m_current_audio_pid && (m_is_pvr || m_timeshift_active))
+		eDebug("getPlayPosition ret %d, pos %lld in selectAudioStream", getPlayPosition(position), position);
+
 	m_current_audio_pid = apid;
 
 	if (m_is_primary && m_decoder->setAudioPID(apid, apidtype))
@@ -1772,6 +1776,9 @@ int eDVBServicePlay::selectAudioStream(int i)
 		eDebug("set audio pid failed");
 		return -4;
 	}
+
+	if (position != -1)
+		eDebug("seekTo ret %d", seekTo(position));
 
 	int rdsPid = apid;
 
