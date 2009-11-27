@@ -107,5 +107,4 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.setText()
 		
 	def setText(self):
-		
 		self["text"].setText(_cached("T1"))
