@@ -745,11 +745,11 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 
 			if (ref.path.empty())
 			{
+				m_dvb_scan = 0;
 				std::string disable_background_scan;
 				if (ePythonConfigQuery::getConfigValue("config.misc.disable_background_scan", disable_background_scan) < 0
 					|| disable_background_scan != "True")
 				{
-					m_dvb_scan = 0;
 					m_dvb_scan = new eDVBScan(m_channel, true, false);
 					m_dvb_scan->connectEvent(slot(*this, &eDVBServicePMTHandler::SDTScanEvent), m_scan_event_connection);
 				}
