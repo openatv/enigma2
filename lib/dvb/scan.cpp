@@ -36,6 +36,12 @@ eDVBScan::~eDVBScan()
 
 int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTransportStreamID tsid)
 {
+	/*
+	 * Assume cable and terrestrial ONIDs/TSIDs are always valid,
+	 * don't check them against the satellite blacklist.
+	 */
+	if (orbital_position == 0xFFFF || orbital_position == 0xEEEE) return 1;
+
 	switch (onid.get())
 	{
 	case 0:
