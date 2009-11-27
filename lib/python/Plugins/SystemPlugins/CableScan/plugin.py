@@ -56,7 +56,7 @@ class CableScan:
 
 class CableScanStatus(Screen):
 	skin = """
-	<screen position="150,115" size="420,180" title="Cable scan">
+	<screen position="150,115" size="420,180" title="Cable Scan">
 		<widget name="frontend" pixmap="skin_default/icons/scan-c.png" position="5,5" size="64,64" transparent="1" alphatest="on" />
 		<widget name="scan_state" position="10,120" zPosition="2" size="400,30" font="Regular;18" />
 		<widget name="scan_progress" position="10,155" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
@@ -118,7 +118,7 @@ config.plugins.CableScan.modulation = ConfigSelection(
 
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """
-	<screen position="100,115" size="520,290" title="Cable scan">
+	<screen position="100,115" size="520,290" title="Cable Scan">
 		<widget name="config" position="10,10" size="500,250" scrollbarMode="showOnDemand" />
 		<widget name="introduction" position="10,265" size="500,25" font="Regular;20" halign="center" />
 	</screen>"""
@@ -185,12 +185,12 @@ def CableScanMain(session, **kwargs):
 
 def CableScanStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Cable scan"), CableScanMain, "cablescan", None)]
+		return [(_("Cable Scan"), CableScanMain, "cablescan", None)]
 	else:
 		return []
 
 def Plugins(**kwargs):
 	if (nimmanager.hasNimType("DVB-C")):
-		return PluginDescriptor(name=_("Cable scan"), description="Scan cable provider channels", where = PluginDescriptor.WHERE_MENU, fnc=CableScanStart)
+		return PluginDescriptor(name=_("Cable Scan"), description="Scan cable provider channels", where = PluginDescriptor.WHERE_MENU, fnc=CableScanStart)
 	else:
 		return []
