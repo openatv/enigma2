@@ -3,8 +3,6 @@ import gettext
 
 from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
-import language_cache
-
 class Language:
 	def __init__(self):
 		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
