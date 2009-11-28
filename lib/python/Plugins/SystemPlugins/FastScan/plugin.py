@@ -71,7 +71,7 @@ class FastScan:
 
 class FastScanStatus(Screen):
 	skin = """
-	<screen position="150,115" size="420,180" title="Fast scan">
+	<screen position="150,115" size="420,180" title="Fast Scan">
 		<widget name="frontend" pixmap="skin_default/icons/scan-s.png" position="5,5" size="64,64" transparent="1" alphatest="on" />
 		<widget name="scan_state" position="10,120" zPosition="2" size="400,30" font="Regular;18" />
 		<widget name="scan_progress" position="10,155" size="400,15" pixmap="skin_default/progress_big.png" borderWidth="2" borderColor="#cccccc" />
@@ -118,7 +118,7 @@ class FastScanStatus(Screen):
 
 class FastScanScreen(ConfigListScreen, Screen):
 	skin = """
-	<screen position="100,115" size="520,290" title="Fast scan">
+	<screen position="100,115" size="520,290" title="Fast Scan">
 		<widget name="config" position="10,10" size="500,250" scrollbarMode="showOnDemand" />
 		<widget name="introduction" position="10,265" size="500,25" font="Regular;20" halign="center" />
 	</screen>"""
@@ -202,12 +202,12 @@ def FastScanMain(session, **kwargs):
 
 def FastScanStart(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Fast scan"), FastScanMain, "fastscan", None)]
+		return [(_("Fast Scan"), FastScanMain, "fastscan", None)]
 	else:
 		return []
 
 def Plugins(**kwargs):
 	if (nimmanager.hasNimType("DVB-S")):
-		return PluginDescriptor(name=_("Fast scan"), description="Scan Dutch/Belgian sat provider", where = PluginDescriptor.WHERE_MENU, fnc=FastScanStart)
+		return PluginDescriptor(name=_("Fast Scan"), description="Scan Dutch/Belgian sat provider", where = PluginDescriptor.WHERE_MENU, fnc=FastScanStart)
 	else:
 		return []
