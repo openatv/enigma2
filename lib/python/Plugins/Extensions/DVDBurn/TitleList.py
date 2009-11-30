@@ -34,6 +34,7 @@ class TitleList(Screen, HelpableScreen):
 							MultiContentEntryText(pos = (0, 20), size = (328, 17), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 description,
 							MultiContentEntryText(pos = (420, 6), size = (120, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 3), # index 3 begin time,
 							MultiContentEntryText(pos = (328, 20), size = (154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 channel,
+							MultiContentEntryText(pos = (482, 20), size = (58, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 5), # index 4 channel,
 						],
 					"fonts": [gFont("Regular", 20), gFont("Regular", 14)],
 					"itemHeight": 37
@@ -271,7 +272,7 @@ class TitleList(Screen, HelpableScreen):
 	def updateTitleList(self):
 		list = [ ]
 		for title in self.project.titles:
-			list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0)))
+			list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
 		self["titles"].list = list
 		self.updateSize()
 		if len(list):
