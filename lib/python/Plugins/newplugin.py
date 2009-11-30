@@ -101,8 +101,8 @@ for where in targetlist:
 	importlist.append(where[0])
 
 file.write("""from Screens.Screen import Screen
-from Plugins.Plugin import PluginDescriptor, %s
-""" % ', '.join(importlist))
+from Plugins.Plugin import PluginDescriptor
+""")
 
 mainlist = []
 for count in range(len(targetlist)):
