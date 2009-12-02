@@ -70,7 +70,15 @@ struct uniqueEPGKey
 	}
 	bool operator <(const uniqueEPGKey &a) const
 	{
-		return memcmp( &sid, &a.sid, sizeof(int)*3)<0;
+		if (sid < a.sid)
+			return true;
+		if (sid > a.sid)
+			return false;
+		if (onid < a.onid)
+			return true;
+		if (onid > a.onid)
+			return false;
+		return (tsid < a.tsid);
 	}
 	operator bool() const
 	{ 
@@ -78,13 +86,13 @@ struct uniqueEPGKey
 	}
 	bool operator==(const uniqueEPGKey &a) const
 	{
-		return !memcmp( &sid, &a.sid, sizeof(int)*3);
+		return (tsid == a.tsid) && (onid == a.onid) && (sid == a.sid);
 	}
 	struct equal
 	{
 		bool operator()(const uniqueEPGKey &a, const uniqueEPGKey &b) const
 		{
-			return !memcmp( &a.sid, &b.sid, sizeof(int)*3);
+			return (tsid == a.tsid) && (onid == a.onid) && (sid == a.sid);
 		}
 	};
 };
