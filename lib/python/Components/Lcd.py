@@ -42,9 +42,18 @@ def InitLcd():
 		def setLCDinverted(configElement):
 			ilcd.setInverted(configElement.value);
 
+		standby_default = 0
+
 		ilcd = LCD()
 
-		config.lcd.standby = ConfigSlider(default=0, limits=(0, 10))
+		if not ilcd.isOled():
+			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
+			config.lcd.contrast.addNotifier(setLCDcontrast);
+		else:
+			config.lcd.contrast = ConfigNothing()
+			standby_default = 1
+
+		config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 		config.lcd.standby.addNotifier(setLCDbright);
 		config.lcd.standby.apply = lambda : setLCDbright(config.lcd.standby)
 
@@ -52,12 +61,6 @@ def InitLcd():
 		config.lcd.bright.addNotifier(setLCDbright);
 		config.lcd.bright.apply = lambda : setLCDbright(config.lcd.bright)
 		config.lcd.bright.callNotifiersOnSaveAndCancel = True
-
-		if not ilcd.isOled():
-			config.lcd.contrast = ConfigSlider(default=5, limits=(0, 20))
-			config.lcd.contrast.addNotifier(setLCDcontrast);
-		else:
-			config.lcd.contrast = ConfigNothing()
 
 		config.lcd.invert = ConfigYesNo(default=False)
 		config.lcd.invert.addNotifier(setLCDinverted);

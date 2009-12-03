@@ -84,7 +84,8 @@ class VideoWizard(WizardLanguage, Rc):
 				descr = port
 				if descr == 'DVI' and hw_type == 'dm500hd':
 					descr = 'HDMI'
-				list.append((descr,port))
+				if port != "DVI-PC":
+					list.append((descr,port))
 		list.sort(key = lambda x: x[0])
 		print "listInputChannels:", list
 		return list

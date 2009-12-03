@@ -295,9 +295,11 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
-		self.createSetup()
-
-		self["introduction"] = Label(_("Press OK to start the scan"))
+		if not self.scan_nims.value == "":
+			self.createSetup()
+			self["introduction"] = Label(_("Press OK to start the scan"))
+		else:
+			self["introduction"] = Label(_("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."))
 
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
@@ -709,6 +711,8 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		tlist.append(buildTerTransponder(*args, **kwargs))
 
 	def keyGo(self):
+		if self.scan_nims.value == "":
+			return
 		tlist = []
 		flags = None
 		startScan = True

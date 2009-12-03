@@ -309,14 +309,21 @@ void quitMainloop(int exitCode)
 
 const char *getEnigmaVersionString()
 {
-	return 
-#ifdef ENIGMA2_CHECKOUT_TAG
-		ENIGMA2_CHECKOUT_TAG
+	std::string date =
+#ifdef ENIGMA2_LAST_CHANGE_DATE
+		ENIGMA2_LAST_CHANGE_DATE;
 #else
-		"HEAD"
+		__DATE__;
 #endif
-			"-" __DATE__;
+	std::string branch =
+#ifdef ENIGMA2_BRANCH
+		ENIGMA2_BRANCH;
+#else
+		"HEAD";
+#endif
+	return std::string(date + '-' + branch).c_str();
 }
+
 #include <malloc.h>
 
 void dump_malloc_stats(void)

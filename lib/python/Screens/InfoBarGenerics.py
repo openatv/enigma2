@@ -24,7 +24,6 @@ from Screens.TimerSelection import TimerSelection
 from Screens.PictureInPicture import PictureInPicture
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
-from Screens.SleepTimerEdit import SleepTimerEdit
 from Screens.TimeDateInput import TimeDateInput
 from ServiceReference import ServiceReference
 
@@ -1348,17 +1347,6 @@ class InfoBarJobman:
 	
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
-
-# depends on InfoBarExtensions
-class InfoBarSleepTimer:
-	def __init__(self):
-		self.addExtension((self.getSleepTimerName, self.showSleepTimerSetup, lambda: True), "1")
-
-	def getSleepTimerName(self):
-		return _("Sleep Timer")
-
-	def showSleepTimerSetup(self):
-		self.session.open(SleepTimerEdit)
 
 # depends on InfoBarExtensions
 class InfoBarPiP:

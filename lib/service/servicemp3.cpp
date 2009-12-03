@@ -34,6 +34,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("vob");
 		extensions.push_back("wav");
 		extensions.push_back("wave");
+		extensions.push_back("m4v");
 		extensions.push_back("mkv");
 		extensions.push_back("avi");
 		extensions.push_back("divx");
@@ -42,7 +43,6 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("mp4");
 		extensions.push_back("mov");
 		extensions.push_back("m4a");
-		extensions.push_back("m2ts");
 		sc->addServiceFactory(eServiceFactoryMP3::id, this, extensions);
 	}
 
@@ -236,7 +236,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		sourceinfo.containertype = ctAVI;
 		sourceinfo.is_video = TRUE;
 	}
-	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0)
+	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0 || strcasecmp(ext, ".m4v") == 0)
 	{
 		sourceinfo.containertype = ctMP4;
 		sourceinfo.is_video = TRUE;

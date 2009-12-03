@@ -27,7 +27,17 @@ entries: .svn/entries
 
 version.h: entries
 	> version.h
-	if [ -d .svn ]; then echo "#define ENIGMA2_CHECKOUT_TAG \"D`svn info | grep 'Last Changed Date:' | sed -e 's/[^:]*: \(....\)-\(..\)-\(..\) \(..\):\(..\):\(..\).*+.*$$/\1.\2.\3.\4.\5.\6/'`\"" >> version.h; fi
+	@if [ -d .svn ]; then \
+		echo "#define ENIGMA2_LAST_CHANGE_DATE \"`LANG="en" svn info | grep 'Last Changed Date:' | cut -d' ' -f4`\"" >> version.h; \
+	elif [ -d ../.git ]; then \
+		if [ -f ../.git/last_commit_info ]; then \
+			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`cat ../.git/last_commit_info | grep 'Date:' | cut -d' ' -f4`\"" >> version.h; \
+			echo "#define ENIGMA2_BRANCH \"`cat ../.git/branch`\"" >> version.h; \
+		else \
+			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`LANG="en" git log --max-count=1 --date=short | grep 'Date:' | cut -d' ' -f4`\"" >> version.h; \
+			echo "#define ENIGMA2_BRANCH \"`LANG="en" git branch | grep '* ' | cut -d' ' -f2`\"" >> version.h; \
+		fi; \
+	fi;
 
 enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/actions/libenigma_actions.a \
