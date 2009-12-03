@@ -1,8 +1,9 @@
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-10-09 13:06+0200\n"
+"POT-Creation-Date: 2009-11-05 18:09+0100\n"
 "PO-Revision-Date: 2008-12-12 12:10+0100\n"
 "Last-Translator: mimi74 <remi.jarrige0293@orange.fr>\n"
 "Language-Team: french\n"
@@ -11,8 +12,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Poedit-Language: French\n"
-"X-Poedit-Country: FRENCH\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
+"X-Poedit-Country: FRENCH\n"
 
 msgid ""
 "\n"
@@ -93,6 +94,13 @@ msgstr ""
 
 msgid ""
 "\n"
+"System will restart after the restore!"
+msgstr ""
+"\n"
+"Le système redémarrera après restauration!"
+
+msgid ""
+"\n"
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
@@ -108,6 +116,9 @@ msgid " packages selected."
 msgstr ""
 
 msgid " updates available."
+msgstr ""
+
+msgid " wireless networks found!"
 msgstr ""
 
 msgid "#000000"
@@ -204,6 +215,9 @@ msgid "0"
 msgstr ""
 
 msgid "1"
+msgstr ""
+
+msgid "1 wireless network found!"
 msgstr ""
 
 msgid "1.0"
@@ -401,6 +415,9 @@ msgstr "À propos"
 
 msgid "About..."
 msgstr "À propos..."
+
+msgid "Accesspoint:"
+msgstr "Point accès:"
 
 msgid "Action on long powerbutton press"
 msgstr "Mode appui long sur bouton éteindre"
@@ -677,6 +694,9 @@ msgstr "Action lorsqu'un film est stoppé"
 msgid "Behavior when a movie reaches the end"
 msgstr "Action lorsqu'un film atteint la fin"
 
+msgid "Bitrate:"
+msgstr ""
+
 msgid "Block noise reduction"
 msgstr ""
 
@@ -801,6 +821,9 @@ msgstr "Vérification fichier système..."
 msgid "Choose Tuner"
 msgstr "Choisir tuner"
 
+msgid "Choose a wireless network"
+msgstr ""
+
 msgid "Choose backup files"
 msgstr "Choisir fichiers sauvegarde"
 
@@ -912,6 +935,21 @@ msgstr ""
 msgid "Configuration Mode"
 msgstr "Mode de configuration"
 
+msgid "Configure interface"
+msgstr "Configurer interface"
+
+msgid "Configure nameservers"
+msgstr "Configurer noms serveurs"
+
+msgid "Configure your internal LAN"
+msgstr "Configurer votre réseau interne"
+
+msgid "Configure your network again"
+msgstr "Configurer votre réseau encore"
+
+msgid "Configure your wireless LAN again"
+msgstr "Configurer votre LAN sans fil encore"
+
 msgid "Configuring"
 msgstr "configuration"
 
@@ -919,7 +957,10 @@ msgid "Conflicting timer"
 msgstr "Programmation conflictuelle"
 
 msgid "Connect"
-msgstr ""
+msgstr "Connecter"
+
+msgid "Connect to a Wireless Network"
+msgstr "Connecter à un réseau sans fil"
 
 msgid "Connected to"
 msgstr "Connecté à"
@@ -981,6 +1022,11 @@ msgid "CrashlogAutoSubmit settings"
 msgstr ""
 
 msgid "CrashlogAutoSubmit settings..."
+msgstr ""
+
+msgid ""
+"Crashlogs found!\n"
+"Send them to Dream Multimedia ?"
 msgstr ""
 
 msgid ""
@@ -1144,6 +1190,9 @@ msgstr "Mode DiSEqC"
 msgid "DiSEqC repeats"
 msgstr "DiSEqC-Répétitions"
 
+msgid "DiSEqC-Tester settings"
+msgstr ""
+
 msgid "Dialing:"
 msgstr ""
 
@@ -1156,6 +1205,9 @@ msgstr "Lecture direct des titres liés sans menu"
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr "Répertoire %s non existant."
+
+msgid "Directory browser"
+msgstr ""
 
 msgid "Disable"
 msgstr "Désactiver"
@@ -1433,6 +1485,10 @@ msgstr "Activer programmation"
 msgid "Enabled"
 msgstr "Activer"
 
+#, python-format
+msgid "Encrypted: %s"
+msgstr "Chiffré: %s"
+
 msgid "Encryption"
 msgstr "Cryptage"
 
@@ -1444,6 +1500,9 @@ msgstr "Type clé cryptage"
 
 msgid "Encryption Type"
 msgstr "type cryptage"
+
+msgid "Encryption:"
+msgstr ""
 
 msgid "End time"
 msgstr "Heure fin"
@@ -1478,12 +1537,6 @@ msgstr ""
 "\n"
 "© 2006 - Stephan Reichholf"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: Note that "Enter" in the two strings below should *not*
-#.       be interpreted as "Give speed as input". The intended meaning is
-#.       instead "Initial speed when starting winding", i.e. the speed at
-#.       which "winding mode" is entered when first pressing "rewind" or
-#.       "fast forward". 
 msgid "Enter Fast Forward at speed"
 msgstr "Entrer avance rapide à la vitesse"
 
@@ -1542,6 +1595,9 @@ msgstr "Quitter"
 
 msgid "Exit editor"
 msgstr "Quitter éditeur"
+
+msgid "Exit network wizard"
+msgstr "Quitter assistant réseau"
 
 msgid "Exit the cleanup wizard"
 msgstr ""
@@ -1734,6 +1790,9 @@ msgstr "Disque dur en veille après"
 msgid "Hidden network SSID"
 msgstr "SSID réseau caché"
 
+msgid "Hidden networkname"
+msgstr ""
+
 msgid "Hierarchy Information"
 msgstr "Information hiérarchie"
 
@@ -1901,6 +1960,10 @@ msgstr "Ethernet intégrée"
 msgid "Integrated Wireless"
 msgstr "Sans fil intégré"
 
+#, python-format
+msgid "Interface: %s"
+msgstr "Adaptateur: %s"
+
 msgid "Intermediate"
 msgstr "Intermédiaire"
 
@@ -2006,6 +2069,9 @@ msgstr "Désactiver les limites"
 msgid "Limits on"
 msgstr "Limites activées"
 
+msgid "Link Quality:"
+msgstr "qualité lien:"
+
 msgid "Link:"
 msgstr "Lien:"
 
@@ -2080,6 +2146,10 @@ msgstr "Marge après enregistrement"
 
 msgid "Margin before record (minutes)"
 msgstr "Marge avant l'enregistrement (minutes)"
+
+#, python-format
+msgid "Max. Bitrate: %s"
+msgstr ""
 
 msgid "Media player"
 msgstr "Lecteur de médias"
@@ -2208,6 +2278,9 @@ msgstr "Réseau SSID"
 msgid "Network Setup"
 msgstr "Paramètres réseau"
 
+msgid "Network Wizard"
+msgstr "Assistant réseau"
+
 msgid "Network scan"
 msgstr "Analyse du réseau"
 
@@ -2250,6 +2323,9 @@ msgstr "Aucun lecteur DVD (supporté) trouvé!"
 msgid "No 50 Hz, sorry. :("
 msgstr "Pas de 50 Hz, désolé. :("
 
+msgid "No Connection"
+msgstr ""
+
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "Aucun disque dur trouvé ou\n"
@@ -2282,6 +2358,9 @@ msgstr "Aucune information trouvée sur l'émission, enregistre indéfiniment."
 
 msgid "No free tuner!"
 msgstr "Pas de tuner libre"
+
+msgid "No networks found"
+msgstr "Aucun réseaux trouvés"
 
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
@@ -2331,6 +2410,9 @@ msgstr ""
 "Aucun Réglages-PIN trouvé!\n"
 "Voulez-vous changer le Réglages-PIN maintenant?\n"
 "Si vous répondez 'NON', la protection des Réglages restera désactivé!"
+
+msgid "No wireless networks found! Please refresh."
+msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2565,6 +2647,24 @@ msgid "Please choose the default services lists you want to install."
 msgstr "Veuillez choisir la liste services standard à installer."
 
 msgid ""
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Veuillez configurer ou vérifier vos Nomserveurs en renseignant les valeurs "
+"nécessaires.\n"
+"Quand vous serez prèt, pressez OK pour continuer."
+
+msgid ""
+"Please configure your internet connection by filling out the required "
+"values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Veuillez configurer votre connection internet en renseignant les valeurs "
+"nécessaires.\n"
+"Quand vous serez prèt, pressez OK pour continuer."
+
+msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
 msgstr ""
@@ -2650,6 +2750,26 @@ msgstr "Veuillez sélectionner le répertoire ou support cible"
 msgid "Please select the movie path..."
 msgstr "Veuillez choisir le chemin du film..."
 
+msgid ""
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Veuillez sélectionner l'interface réseau que vous voulez utiliser pour votre "
+"connection internet.\n"
+"\n"
+"Veuillez presser OK pour continuer."
+
+msgid ""
+"Please select the wireless network that you want to connect to.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Veuillez sélectionner le réseau sans fil LAN auquel se connecter.\n"
+"\n"
+"Veuillez presser OK pour continuer."
+
 msgid "Please set up tuner B"
 msgstr "Veuillez paramétrer le tuner B"
 
@@ -2689,6 +2809,12 @@ msgstr ""
 
 msgid "Please wait while we configure your network..."
 msgstr "Veuillez attendre pendant que nous configurons votre réseau..."
+
+msgid "Please wait while we prepare your network interfaces..."
+msgstr "Veuillez patienter pendant la préparation des interfaces réseau..."
+
+msgid "Please wait while we test your network..."
+msgstr "Veuillez patienter pendant le test de votre réseau..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Veullez attendre pendant le redémarrage de votre réseau..."
@@ -2912,6 +3038,9 @@ msgstr "Enregistrements toujours prioritaires"
 msgid "Reenter new pin"
 msgstr "Resaisir nouveau pin"
 
+msgid "Refresh"
+msgstr "Actualiser"
+
 msgid "Refresh Rate"
 msgstr "Vitesse rafraîchissement"
 
@@ -2958,9 +3087,6 @@ msgid "Remove title"
 msgstr "Retirer titre"
 
 msgid "Removed successfully."
-msgstr ""
-
-msgid "Removeing"
 msgstr ""
 
 msgid "Removing"
@@ -3092,6 +3218,9 @@ msgid "SNR"
 msgstr ""
 
 msgid "SNR:"
+msgstr ""
+
+msgid "SSID:"
 msgstr ""
 
 msgid "Sat"
@@ -3271,6 +3400,9 @@ msgstr ""
 msgid "Select image"
 msgstr "Choisir l'image"
 
+msgid "Select interface"
+msgstr "Sélectionner l'interface"
+
 msgid "Select package"
 msgstr ""
 
@@ -3294,6 +3426,9 @@ msgstr ""
 
 msgid "Select video mode"
 msgstr "Choisir le mode vidéo"
+
+msgid "Select wireless network"
+msgstr "séectionner l'interface sans fil"
 
 msgid "Selected source image"
 msgstr "Source image sélectionnée"
@@ -3423,6 +3558,12 @@ msgstr "Montrer l'état de votre connection LAN sans fil.\n"
 
 msgid "Shutdown Dreambox after"
 msgstr "Eteindre la Dreambox après"
+
+msgid "Signal Strength:"
+msgstr "Force signal:"
+
+msgid "Signal: "
+msgstr ""
 
 msgid "Similar"
 msgstr "Similaire"
@@ -3703,6 +3844,13 @@ msgid "Test-Messagebox?"
 msgstr ""
 
 msgid ""
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
+msgstr ""
+"Merci d'utiliser l'assistant.\n"
+"Veuillez presser OK pour continuer."
+
+msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
 msgstr ""
@@ -3814,6 +3962,13 @@ msgstr "La veille programmée a été désactivée"
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 "Le fichier programmation (timers.xml) est corrompu et ne peut-être chargé."
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
+msgstr ""
+"L'extension LAN sans fil n'est pas installée!\n"
+"Veuillez l'installer et choisir ce que vous voulez faire ensuite."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -4191,9 +4346,6 @@ msgid ""
 "Remove"
 msgstr ""
 
-msgid "Unicable"
-msgstr ""
-
 msgid "Unicable LNB"
 msgstr ""
 
@@ -4205,6 +4357,9 @@ msgstr "LNB universel"
 
 msgid "Unmount failed"
 msgstr "Echec démontage"
+
+msgid "Unsupported"
+msgstr ""
 
 msgid "Update"
 msgstr "Mise à jour"
@@ -4224,9 +4379,6 @@ msgstr ""
 
 msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr "Mise à jour terminée. Voulez-vous redémarrer votre Dreambox?"
-
-msgid "Upgradeing"
-msgstr ""
 
 msgid "Upgrading"
 msgstr "Mise à jour"
@@ -4249,19 +4401,6 @@ msgstr "Utiliser mesure puissance"
 msgid "Use a gateway"
 msgstr "Utiliser passerelle"
 
-#. #-#-#-#-#  enigma2.pot (PACKAGE VERSION)  #-#-#-#-#
-#.   TRANSLATORS: The effect of "Non-smooth winding" is that rather
-#.       than using ordinary "continuous" or "smooth" winding, a fast
-#.       sequence of stills is shown when winding at high speeds. This
-#.       makes it much easier too follow when almost each frame comes from
-#.       a new scene. The effect is achieved by repeating each shown frame
-#.       a couple of times. The settings control both at which speed this
-#.       winding mode sets in, and how many times each frame should be
-#.       repeated. This was previously called "Discontinuous playback"
-#.       which was incomprehensible. "Non-smooth winding" may be a better
-#.       term, but note that there is nothing irregular about it. Synonyms
-#.       better suited for translation to other languages may be "stepwise
-#.       winding/playback", or "winding/playback using stills". 
 msgid "Use non-smooth winding at speeds above"
 msgstr "Utiliser lecture discontinue aux vitesses ci-dessus"
 
@@ -4288,6 +4427,9 @@ msgstr ""
 "option. Après cela, appuyez sur OK."
 
 msgid "Use this video enhancement settings?"
+msgstr ""
+
+msgid "Use time of currently running service"
 msgstr ""
 
 msgid "Use usals for this sat"
@@ -4355,9 +4497,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Sélection mode vidéo."
-
-msgid "VideoSetup"
-msgstr ""
 
 msgid "Videoenhancement Setup"
 msgstr ""
@@ -4504,12 +4643,21 @@ msgid ""
 "cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
+"Bienvenue.\n"
+"\n"
+"Si vous voulez connecter votre Dreambox à internet, cette assistant vous "
+"guidera à paramètrer les réglages basiques du réseau de votre Dreambox.\n"
+"\n"
+"Presser OK pour démarrer la configuration du réseau"
 
 msgid ""
 "Welcome.\n"
@@ -4561,8 +4709,14 @@ msgstr "Ou sauver les enregistrements temporaires PauseDirect?"
 msgid "Wireless"
 msgstr "Sans fil"
 
+msgid "Wireless LAN"
+msgstr "LAN sans fil"
+
 msgid "Wireless Network"
 msgstr "Réseau sans fil"
+
+msgid "Wireless Network State"
+msgstr "Etat réseau sans fil"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Erreur d'écriture en enregistrement. Disque plein?\n"
@@ -4729,6 +4883,19 @@ msgstr ""
 "\n"
 "Voulez-vous paramétrer ce pin maintenant?"
 
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Votre Dreambox est maintenant prète à l'utilisation.\n"
+"\n"
+"Votre connection internet fonctionne maintenant.\n"
+"\n"
+"Veuillez presser OK pour continuer."
+
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
 "Votre Dreambox redémarrera après avoir pressé la touche OK de votre "
@@ -4769,6 +4936,13 @@ msgstr ""
 "Le logiciel de votre frontprocessor doit être mis à jour.\n"
 "Veuillez appuyer sur OK pour commencer la mise à jour."
 
+msgid ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+"Votre connection internet ne fonctionne pas!\n"
+"Veuillez choisir ce que vous voulez faire ensuite."
+
 msgid "Your name (optional):"
 msgstr ""
 
@@ -4785,6 +4959,17 @@ msgstr ""
 "Une seconde interface configurée a été trouvée.\n"
 "\n"
 "Voulez-vous désactiver la seconde interface réseau?"
+
+msgid ""
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
+"\n"
+"Please choose what you want to do next."
+msgstr ""
+"Votre connection internet LAN sans fil ne peut démarrer!\n"
+"Avez-vous connecté correctement votre clé USB WLAN?\n"
+"\n"
+"Veuillez choisir ce que vous voulez faire ensuite."
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Revenir sur le service avant réglage positionneur?"
@@ -5072,6 +5257,9 @@ msgstr "terminer l'édition des favoris"
 msgid "enigma2 and network"
 msgstr "enigma2 et réseau"
 
+msgid "enter hidden network SSID"
+msgstr "entrer SSID réseau caché"
+
 msgid "equal to"
 msgstr "égale au"
 
@@ -5143,6 +5331,9 @@ msgstr "aide..."
 
 msgid "hidden network"
 msgstr "réseau caché"
+
+msgid "hidden..."
+msgstr "cacher..."
 
 msgid "hide extended description"
 msgstr "masquer la description étendue"
@@ -5627,6 +5818,9 @@ msgstr "commuter un marqueur coupé à cette position"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "commuter temps, chapitre, audio, info sous-titres"
 
+msgid "unavailable"
+msgstr "indisponible"
+
 msgid "unconfirmed"
 msgstr "non confirmé"
 
@@ -5693,13 +5887,6 @@ msgstr "zap"
 
 msgid "zapped"
 msgstr "zappé"
-
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "Le système redémarrera après restauration!"
 
 #~ msgid ".NFI Flasher bootable USB stick successfully created."
 #~ msgstr "Flasheur bootable sur clef USB .NFI créé avec succés."

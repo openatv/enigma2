@@ -92,7 +92,7 @@ So this would only install the lamedb.192 file, if you have a DVB-S NIM in your 
 - "image default"
   An image default is stored in /usr/share/enigma2/defaults. You can have several defaults at the same time, but you should keep
   in mind, that these defaults are all installed without user interaction. So defaults with contrary contents should be avoided
-  (e.g. setting a default parameter in one settings file an setting another setting for the same parameter in another could lead
+  (e.g. setting a default parameter in one settings file and setting another setting for the same parameter in another could lead
   to unexpected behaviour, since the installation order is undetermined and completely random. so use prerequisites insted)
   The "image default" is also used to set box specific config elements (for example show the new RC on a dm8000) and install the
   default bouquets.
