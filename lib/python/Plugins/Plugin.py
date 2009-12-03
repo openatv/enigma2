@@ -52,6 +52,8 @@ class PluginDescriptor:
 	# reason (True: Networkconfig read finished, False: Networkconfig reload initiated )
 	WHERE_NETWORKCONFIG_READ = 12
 
+	WHERE_AUDIOMENU = 13
+
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, internal = False):
 		self.name = name
 		self.internal = internal
