@@ -5,6 +5,7 @@ from Components.Input import Input
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
+from Components.SystemInfo import SystemInfo
 from enigma import eEPGCache
 from SleepTimer import SleepTimer
 from time import time
@@ -77,7 +78,11 @@ class SleepTimerEdit(Screen):
 			self["red_text"].setText(_("Action:") + " " + _("Disable timer"))
 		
 		if config.SleepTimer.action.value == "shutdown":
-			self["green_text"].setText(_("Sleep timer action:") + " " + _("Deep Standby"))
+			if SystemInfo["DeepstandbySupport"]:
+				shutdownString = _("Deep Standby")
+			else:
+				shutdownString = _("Shutdown")
+			self["green_text"].setText(_("Sleep timer action:") + " " + shutdownString)
 		elif config.SleepTimer.action.value == "standby":
 			self["green_text"].setText(_("Sleep timer action:") + " " + _("Standby"))
 		
