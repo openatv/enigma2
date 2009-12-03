@@ -1663,17 +1663,46 @@ class InfoBarAudioSelection:
 				else:
 					break
 
+			availableKeys = []
+			usedKeys = []
+
 			if SystemInfo["CanDownmixAC3"]:
-				tlist = [(_("AC3 downmix") + " - " +(_("Off"), _("On"))[config.av.downmix_ac3.value and 1 or 0], "CALLFUNC", self.changeAC3Downmix),
-					((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode"),
-					("--", "")] + tlist
-				keys = [ "red", "green", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
-				selection += 3
-			else:
-				tlist = [((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
-				keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
+				flist = [(_("AC3 downmix") + " - " +(_("Off"), _("On"))[config.av.downmix_ac3.value and 1 or 0], "CALLFUNC", self.changeAC3Downmix),
+					((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode")]
+				usedKeys.extend(["red", "green"])
+				availableKeys.extend(["yellow", "blue"])
 				selection += 2
-			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection, keys = keys, skin_name = "AudioTrackSelection")
+			else:
+				flist = [((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode")]
+				usedKeys.extend(["red"])
+				availableKeys.extend(["green", "yellow", "blue"])
+				selection += 1
+
+			if hasattr(self, "runPlugin"):
+				class PluginCaller:
+					def __init__(self, fnc, *args):
+						self.fnc = fnc
+						self.args = args
+					def __call__(self, *args, **kwargs):
+						self.fnc(*self.args)
+
+				Plugins = [ (p.name, PluginCaller(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
+
+				for p in Plugins:
+					selection += 1
+					flist.append((p[0], "CALLFUNC", p[1]))
+					if availableKeys:
+						usedKeys.append(availableKeys[0])
+						del availableKeys[0]
+					else:
+						usedKeys.append("")
+
+			flist.append(("--", ""))
+			usedKeys.append("")
+			selection += 1
+
+			keys = usedKeys + [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" ] + [""] * n
+			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = flist + tlist, selection = selection, keys = keys, skin_name = "AudioTrackSelection")
 		else:
 			del self.audioTracks
 
