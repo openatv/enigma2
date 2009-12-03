@@ -37,7 +37,6 @@ void eFilePushThread::thread()
 	
 	size_t written_since_last_sync = 0;
 
-	int already_empty = 0;
 	eDebug("FILEPUSH THREAD START");
 	
 		/* we set the signal to not restart syscalls, so we can detect our signal. */
@@ -186,21 +185,14 @@ void eFilePushThread::thread()
 		if (m_buf_end == 0)
 		{
 				/* on EOF, try COMMITting once. */
-			if (m_send_pvr_commit && !already_empty)
+			if (m_send_pvr_commit)
 			{
 				eDebug("sending PVR commit");
-				
 				struct pollfd pfd;
 				pfd.fd = m_fd_dest;
 				pfd.events = POLLIN;
-				poll(&pfd, 1, 10000);
-				sleep(5); /* HACK to allow ES buffer to drain */
-				already_empty = 1;
-//				if (::ioctl(m_fd_dest, PVR_COMMIT) < 0 && errno == EINTR)
-//					continue;
+				poll(&pfd, 1, -1);
 				eDebug("commit done");
-						/* well check again */
-				continue;
 			}
 			
 				/* in stream_mode, we are sending EOF events 
@@ -230,7 +222,6 @@ void eFilePushThread::thread()
 			bytes_read += m_buf_end;
 			if (m_sg)
 				current_span_remaining -= m_buf_end;
-			already_empty = 0;
 		}
 //		printf("FILEPUSH: read %d bytes\n", m_buf_end);
 	}
