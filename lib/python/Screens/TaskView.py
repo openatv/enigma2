@@ -1,6 +1,7 @@
 from Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigSelection, getConfigListEntry
+from Components.SystemInfo import SystemInfo
 from InfoBarGenerics import InfoBarNotifications
 import Screens.Standby
 from Tools import Notifications
@@ -44,7 +45,11 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 
 		self.afterevents = [ "nothing", "standby", "deepstandby", "close" ]
 		self.settings = ConfigSubsection()
-		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby"))], default = self.afterevents[afterEvent])
+		if SystemInfo["DeepstandbySupport"]:
+			shutdownString = _("go to deep standby")
+		else:
+			shutdownString = _("shut down")
+		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default = self.afterevents[afterEvent])
 		self.setupList()
 		self.state_changed()
 
