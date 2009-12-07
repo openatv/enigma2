@@ -78,9 +78,9 @@ typedef struct {
    u_char ppv_id_ml                              :8;
    u_char ppv_id_lo                              :8;
    u_char program_id_hi                          :8;
-   u_char program_id_mh                          :8; // mhw2_title end (33chars max)
+   u_char program_id_mh                          :8;
    u_char program_id_ml                          :8;
-   u_char program_id_lo                          :8;
+   u_char program_id_lo                          :8; // mhw2_title end (35chars max)
    u_char mhw2_mjd_hi                            :8;
    u_char mhw2_mjd_lo                            :8;
    u_char mhw2_duration_hi                       :8;
