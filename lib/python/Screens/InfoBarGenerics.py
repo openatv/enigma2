@@ -1220,10 +1220,7 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 		if back:
-			self.doSeek(-5) # seek some gops before end
 			self.ts_rewind_timer.start(200, 1)
-		else:
-			self.doSeek(-1) # seek 1 gop before end
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
