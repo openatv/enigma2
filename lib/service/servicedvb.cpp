@@ -2285,12 +2285,13 @@ void eDVBServicePlay::switchToTimeshift()
 	r.path = m_timeshift_file;
 
 	m_cue = new eCueSheet();
+	m_cue->seekTo(0, -1000);
 	m_service_handler_timeshift.tune(r, 1, m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
 	updateDecoder(); /* mainly to switch off PCR, and to set pause */
-	
+
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 }
 
