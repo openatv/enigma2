@@ -1324,16 +1324,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		return;
 	}
 
-	m_cue->m_lock.RdLock();
-	if (!m_cue->m_decoding_demux)
-	{
-		start = current_offset;
-		size = max;
-		eDebug("getNextSourceSpan, no decoding demux. forcing normal play");
-		m_cue->m_lock.Unlock();
-		return;
-	}
-
 	if (m_skipmode_n)
 	{
 		eDebug("skipmode %d:%d (x%d)", m_skipmode_m, m_skipmode_n, m_skipmode_frames);
@@ -1341,7 +1331,6 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	}
 
 	eDebug("getNextSourceSpan, current offset is %08llx, m_skipmode_m = %d!", current_offset, m_skipmode_m);
-	
 	int frame_skip_success = 0;
 
 	if (m_skipmode_m)
@@ -1386,6 +1375,8 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 		}
 	}
 
+	m_cue->m_lock.RdLock();
+
 	while (!m_cue->m_seek_requests.empty())
 	{
 		std::pair<int, pts_t> seek = m_cue->m_seek_requests.front();
@@ -1408,6 +1399,13 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			if (m_cue->m_decoder->getPTS(0, now))
 			{
 				eDebug("decoder getPTS failed, can't seek relative");
+				continue;
+			}
+			if (!m_cue->m_decoding_demux)
+			{
+				eDebug("getNextSourceSpan, no decoding demux. couldn't seek to %llx... ignore request!", pts);
+				start = current_offset;
+				size = max;
 				continue;
 			}
 			if (getCurrentPosition(m_cue->m_decoding_demux, now, 1))
