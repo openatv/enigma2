@@ -187,12 +187,21 @@ void eFilePushThread::thread()
 				/* on EOF, try COMMITting once. */
 			if (m_send_pvr_commit)
 			{
-				eDebug("sending PVR commit");
 				struct pollfd pfd;
 				pfd.fd = m_fd_dest;
 				pfd.events = POLLIN;
-				poll(&pfd, 1, -1);
-				eDebug("commit done");
+				switch (poll(&pfd, 1, 250)) // wait for 250ms
+				{
+					case 0:
+						eDebug("wait for driver eof timeout");
+						continue;
+					case 1:
+						eDebug("wait for driver eof ok");
+						break;
+					default:
+						eDebug("wait for driver eof aborted by signal");
+						continue;
+				}
 			}
 			
 				/* in stream_mode, we are sending EOF events 
