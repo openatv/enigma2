@@ -279,7 +279,6 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def remove(self):
 		print "currentIndex:", self["config"].getCurrentIndex()
-		
 		index = self["config"].getCurrentIndex()
 		if index < len(self.nameservers):
 			iNetwork.removeNameserver(self.nameservers[index])
@@ -310,19 +309,19 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-			"cancel": (self.cancel, _("exit network adapter setup menu")),
-			"ok": (self.ok, _("select menu entry")),
+			"cancel": (self.keyCancel, _("exit network adapter configuration")),
+			"ok": (self.keySave, _("activate network adapter configuration")),
 			})
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-			"red": (self.cancel, _("exit network adapter configuration")),
+			"red": (self.keyCancel, _("exit network adapter configuration")),
 			"blue": (self.KeyBlue, _("open nameserver configuration")),
 			})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
-			"ok": self.ok,
+			"ok": self.keySave,
 		}, -2)
 
 		self.list = []
@@ -420,7 +419,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				try:
 					self.aps = self.w.getNetworkList()
 					if self.aps is not None:
-						print "[NetworkSetup.py] got Accespoints!"
 						for ap in self.aps:
 							a = self.aps[ap]
 							if a['active']:
@@ -437,7 +435,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.default = self.wsconfig['ssid']
 
 			if "hidden..." not in self.nwlist:
-				self.nwlist.append(("hidden...",_("hidden network")))
+				self.nwlist.append(("hidden...",_("enter hidden network SSID")))
 			if self.default not in self.nwlist:
 				self.nwlist.append((self.default,self.default))
 			config.plugins.wlan.essid = NoSave(ConfigSelection(self.nwlist, default = self.default ))
@@ -538,16 +536,35 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		self.newConfig()
+	
+	def keySave(self):
+		self.hideInputHelp()
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.keySaveConfirm, MessageBox, (_("Are you sure you want to activate this network configuration?\n\n") + self.oktext ) )
+		else:
+			self.close('cancel')
 
-	def ok(self):
-		current = self["config"].getCurrent()
-		if current == self.hiddenSSID and config.plugins.wlan.essid.value == 'hidden...':
-			if current[1].help_window.instance is not None:
-				current[1].help_window.instance.hide()
-		elif current == self.encryptionKey and config.plugins.wlan.encryption.enabled.value:
-			if current[1].help_window.instance is not None:
-				current[1].help_window.instance.hide()
-		self.session.openWithCallback(self.applyConfig, MessageBox, (_("Are you sure you want to activate this network configuration?\n\n") + self.oktext ) )
+	def keySaveConfirm(self, ret = False):
+		if (ret == True):		
+			num_configured_if = len(iNetwork.getConfiguredAdapters())
+			if num_configured_if >= 1:
+				self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("A second configured interface has been found.\n\nDo you want to disable the second network interface?"), default = True)
+			else:
+				self.applyConfig(True)
+		else:
+			self.keyCancel()		
+
+	def secondIfaceFoundCB(self,data):
+		if data is False:
+			self.applyConfig(True)
+		else:
+			configuredInterfaces = iNetwork.getConfiguredAdapters()
+			for interface in configuredInterfaces:
+				if interface == self.iface:
+					continue
+				iNetwork.setAdapterAttribute(interface, "up", False)
+				iNetwork.deactivateInterface(interface)
+				self.applyConfig(True)
 
 	def applyConfig(self, ret = False):
 		if (ret == True):
@@ -568,7 +585,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			iNetwork.restartNetwork(self.applyConfigDataAvail)
 			self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type = MessageBox.TYPE_INFO, enable_input = False)
 		else:
-			self.cancel()
+			self.keyCancel()
 
 	def applyConfigDataAvail(self, data):
 		if data is True:
@@ -580,46 +597,39 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def applyConfigfinishedCB(self,data):
 		if data is True:
-			num_configured_if = len(iNetwork.getConfiguredAdapters())
-			if num_configured_if >= 2:
-				self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("Your network configuration has been activated.\nA second configured interface has been found.\n\nDo you want to disable the second network interface?"), default = True)
+			if self.finished_cb:
+				self.session.openWithCallback(lambda x : self.finished_cb(), MessageBox, _("Your network configuration has been activated."), type = MessageBox.TYPE_INFO, timeout = 10)
 			else:
-				if self.finished_cb:
-					self.session.openWithCallback(lambda x : self.finished_cb(), MessageBox, _("Your network configuration has been activated."), type = MessageBox.TYPE_INFO, timeout = 10)
-				else:
-					self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, _("Your network configuration has been activated."), type = MessageBox.TYPE_INFO, timeout = 10)
-
-	def secondIfaceFoundCB(self,data):
-		if data is False:
-			self.close('ok')
-		else:
-			configuredInterfaces = iNetwork.getConfiguredAdapters()
-			for interface in configuredInterfaces:
-				if interface == self.iface:
-					continue
-				iNetwork.setAdapterAttribute(interface, "up", False)
-				iNetwork.deactivateInterface(interface)
-				self.applyConfig(True)
+				self.session.openWithCallback(self.ConfigfinishedCB, MessageBox, _("Your network configuration has been activated."), type = MessageBox.TYPE_INFO, timeout = 10)
 
 	def ConfigfinishedCB(self,data):
 		if data is not None:
 			if data is True:
 				self.close('ok')
 
-	def cancel(self):
+	def keyCancelConfirm(self, result):
+		if not result:
+			return
 		if self.oldInterfaceState is False:
-			iNetwork.deactivateInterface(self.iface,self.cancelCB)
+			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
 			self.close('cancel')
 
-	def cancelCB(self,data):
+	def keyCancel(self):
+		self.hideInputHelp()
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close('cancel')
+
+	def keyCancelCB(self,data):
 		if data is not None:
 			if data is True:
 				self.close('cancel')
 
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
-		self.ok()
+		self.keySave()
 
 	def NameserverSetupClosed(self, *ret):
 		iNetwork.loadNameserverConfig()
@@ -631,6 +641,15 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
+		
+	def hideInputHelp(self):
+		current = self["config"].getCurrent()
+		if current == self.hiddenSSID and config.plugins.wlan.essid.value == 'hidden...':
+			if current[1].help_window.instance is not None:
+				current[1].help_window.instance.hide()
+		elif current == self.encryptionKey and config.plugins.wlan.encryption.enabled.value:
+			if current[1].help_window.instance is not None:
+				current[1].help_window.instance.hide()
 
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
@@ -769,7 +788,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.loadDescription()
 
 	def loadDescription(self):
-		print self["menulist"].getCurrent()[1]
 		if self["menulist"].getCurrent()[1] == 'edit':
 			self["description"].setText(_("Edit the network configuration of your Dreambox.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'test':
@@ -794,10 +812,10 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		
 		if self.iface == 'wlan0' or self.iface == 'ath0':
 			try:
-				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except:
-					self["statuspic"].setPixmapNum(1)
-					self["statuspic"].show()
+				self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()
 			else:
 				iStatus.getDataForInterface(self.iface,self.getInfoCB)
 		else:
@@ -819,7 +837,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			callFnc = p.__call__["ifaceSupported"](self.iface)
 			if callFnc is not None:
 				self.extended = callFnc
-				print p.__call__
 				if p.__call__.has_key("WlanPluginEntry"): # internally used only for WLAN Plugin
 					menu.append((_("Scan Wireless Networks"), "scanwlan"))
 					if iNetwork.getAdapterAttribute(self.iface, "up"):
@@ -920,7 +937,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		iNetwork.stopLinkStateConsole()
 		iNetwork.stopDeactivateInterfaceConsole()
 		try:
-			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 		except ImportError:
 			pass
 		else:
