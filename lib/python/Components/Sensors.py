@@ -67,6 +67,6 @@ class Sensors:
 					self.sensors_list.append((self.TYPE_TEMPERATURE, name, unit, "/proc/stb/sensors/%s" % dirname))
 		for fanid in range(fancontrol.getFanCount()):
 			if fancontrol.hasRPMSensor(fanid):
-				self.sensors_list.append((self.TYPE_FAN_RPM, _("fan"), "rpm", fanid))
+				self.sensors_list.append((self.TYPE_FAN_RPM, _("Fan %d") % (fanid + 1), "rpm", fanid))
 	
 sensors = Sensors()
