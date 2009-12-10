@@ -20,8 +20,6 @@ class FanControl:
 		
 		config.fans = ConfigSubList()
 		for fanid in range(self.getFanCount()):
-			default_vlt = self.getVoltage(fanid)
-			default_pwm = self.getPWM(fanid)
 			fan = ConfigSubsection()
 			fan.vlt = ConfigSlider(default = 16, increment = 5, limits = (0, 255))
 			fan.pwm = ConfigSlider(default = 0, increment = 5, limits = (0, 255))
