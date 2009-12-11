@@ -12,8 +12,17 @@ from Components.FanControl import fancontrol
 
 class TempFanControl(Screen, ConfigListScreen):
 	skin = """
-		<screen position="100,100" size="550,400" title="Fan Control" >
-			<!--widget name="text" position="0,0" size="550,400" font="Regular;15" /-->
+		<screen position="90,100" size="550,420" title="Fan Control" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			
+			<widget name="config" position="10,50" size="500,90" scrollbarMode="showOnDemand" />
 			
 			<widget source="SensorTempText0" render="Label" position="10,150" zPosition="1" size="90,40" font="Regular;20" halign="left" valign="top" backgroundColor="#9f1313" transparent="1" />
 			<widget source="SensorTemp0" render="Label" position="100,150" zPosition="1" size="100,20" font="Regular;19" halign="right">
@@ -80,7 +89,6 @@ class TempFanControl(Screen, ConfigListScreen):
 			<widget source="SensorFan7" render="Label" position="380,290" zPosition="1" size="150,20" font="Regular;19" halign="right">
 				<convert type="SensorToText"></convert>
 			</widget>
-			<widget name="config" position="10,10" size="500,225" scrollbarMode="showOnDemand" />
 		</screen>"""
 	
 	def __init__(self, session, args = None):
@@ -90,6 +98,11 @@ class TempFanControl(Screen, ConfigListScreen):
 		tempcount = len(templist)
 		fanlist = sensors.getSensorsList(sensors.TYPE_FAN_RPM)
 		fancount = len(fanlist)
+		
+		self["red"] = StaticText(_("Cancel"))
+		self["green"] = StaticText(_("OK"))
+		self["yellow"] = StaticText("")
+		self["blue"] = StaticText("")	
 		
 		for count in range(8):
 			if count < tempcount:
@@ -116,10 +129,12 @@ class TempFanControl(Screen, ConfigListScreen):
 		#self["config"].list = self.list
 		#self["config"].setList(self.list)
 		
-		self["actions"] = ActionMap(["OkCancelActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{
 			"ok": self.save,
-			"cancel": self.revert
+			"cancel": self.revert,
+			"red": self.revert,
+			"green": self.save
 		}, -1)
 		
 	def save(self):
