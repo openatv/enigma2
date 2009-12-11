@@ -12,7 +12,7 @@ from Components.FanControl import fancontrol
 
 class TempFanControl(Screen, ConfigListScreen):
 	skin = """
-		<screen position="90,100" size="550,420" title="Fan Control" >
+		<screen position="90,100" size="570,420" title="Fan Control" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -22,7 +22,7 @@ class TempFanControl(Screen, ConfigListScreen):
 			<widget source="yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 			<widget source="blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			
-			<widget name="config" position="10,50" size="500,90" scrollbarMode="showOnDemand" />
+			<widget name="config" position="10,50" size="550,90" scrollbarMode="showOnDemand" />
 			
 			<widget source="SensorTempText0" render="Label" position="10,150" zPosition="1" size="90,40" font="Regular;20" halign="left" valign="top" backgroundColor="#9f1313" transparent="1" />
 			<widget source="SensorTemp0" render="Label" position="100,150" zPosition="1" size="100,20" font="Regular;19" halign="right">
