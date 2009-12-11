@@ -542,7 +542,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if self["config"].isChanged():
 			self.session.openWithCallback(self.keySaveConfirm, MessageBox, (_("Are you sure you want to activate this network configuration?\n\n") + self.oktext ) )
 		else:
-			self.close('cancel')
+			if self.finished_cb:
+				self.finished_cb()
+			else:
+				self.close('cancel')
 
 	def keySaveConfirm(self, ret = False):
 		if (ret == True):		
