@@ -138,13 +138,15 @@ class TempFanControl(Screen, ConfigListScreen):
 		}, -1)
 		
 	def save(self):
-		fancontrol.getConfig(0).vlt.save()
-		fancontrol.getConfig(0).pwm.save()
+		for count in range(fancontrol.getFanCount()):
+			fancontrol.getConfig(count).vlt.save()
+			fancontrol.getConfig(count).pwm.save()
 		self.close()
 		
 	def revert(self):
-		fancontrol.getConfig(0).vlt.load()
-		fancontrol.getConfig(0).pwm.load()
+		for count in range(fancontrol.getFanCount()):
+			fancontrol.getConfig(count).vlt.load()
+			fancontrol.getConfig(count).pwm.load()
 		self.close()
 		
 def main(session, **kwargs):
