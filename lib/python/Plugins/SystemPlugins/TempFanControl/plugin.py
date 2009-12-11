@@ -146,10 +146,16 @@ class TempFanControl(Screen, ConfigListScreen):
 		fancontrol.getConfig(0).vlt.load()
 		fancontrol.getConfig(0).pwm.load()
 		self.close()
-
+		
 def main(session, **kwargs):
 	session.open(TempFanControl)
 
+def startMenu(menuid):
+	if menuid != "system":
+		return []
+	
+	return [(_("Temperature and Fan control"), main, "tempfancontrol", 80)]
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name = "Temperature and Fan control", description = _("Temperature and Fan control"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main)
+	return PluginDescriptor(name = "Temperature and Fan control", description = _("Temperature and Fan control"), where = PluginDescriptor.WHERE_MENU, fnc = startMenu)
 	
