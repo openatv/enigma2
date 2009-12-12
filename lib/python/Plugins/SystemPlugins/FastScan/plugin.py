@@ -152,6 +152,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		provider_list.append((str(920), 'TéléSAT'))
 		
 		self.scan_provider = ConfigSelection(choices = provider_list)
+		self.scan_hd = ConfigYesNo(default = False)
 		self.scan_keepnumbering = ConfigYesNo(default = False)
 		self.scan_keepsettings = ConfigYesNo(default = False)
 
@@ -161,6 +162,9 @@ class FastScanScreen(ConfigListScreen, Screen):
 
 		self.scanProvider = getConfigListEntry(_("Provider"), self.scan_provider)
 		self.list.append(self.scanProvider)
+
+		self.scanHD = getConfigListEntry(_("HD list"), self.scan_hd)
+		self.list.append(self.scanHD)
 
 		self.list.append(getConfigListEntry(_("Use fastscan channel numbering"), self.scan_keepnumbering))
 
@@ -180,7 +184,10 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value), scanPid = int(self.scan_provider.value), keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
+		pid = int(self.scan_provider.value)
+		if self.scan_hd.value:
+			pid += 1
+		self.session.open(FastScanStatus, scanTuner = int(self.scan_nims.value), scanPid = pid, keepNumbers = self.scan_keepnumbering.value, keepSettings = self.scan_keepsettings.value, providerName = self.scan_provider.getText())
 
 	def keyCancel(self):
 		self.close()
