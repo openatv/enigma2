@@ -123,6 +123,7 @@ public:
 		eventNewProgramInfo, // we just received a PMT
 		eventTuned,        // a channel was sucessfully (re-)tuned in, you may start additional filters now
 		
+		eventPreStart,     // before start filepush thread
 		eventSOF,          // seek pre start
 		eventEOF,          // a file playback did end
 		
