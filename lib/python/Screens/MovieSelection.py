@@ -398,7 +398,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def showTagsN(self, tagele):
 		if not self.tags:
 			self.showTagWarning()
-		elif not tagele or tagele.value in self.selected_tags or not tagele.value in self.tags:
+		elif not tagele or (self.selected_tags and tagele.value in self.selected_tags) or not tagele.value in self.tags:
 			self.showTagsMenu(tagele)
 		else:
 			self.selected_tags_ele = tagele
