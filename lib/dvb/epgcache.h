@@ -72,11 +72,11 @@ struct uniqueEPGKey
 	{
 		if (sid < a.sid)
 			return true;
-		if (sid > a.sid)
+		if (sid != a.sid)
 			return false;
 		if (onid < a.onid)
 			return true;
-		if (onid > a.onid)
+		if (onid != a.onid)
 			return false;
 		return (tsid < a.tsid);
 	}
