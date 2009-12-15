@@ -25,6 +25,7 @@ from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
 profile("ChannelSelection.py 4")
+from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
@@ -101,6 +102,7 @@ class ChannelContextMenu(Screen):
 			if not inBouquetRootList:
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
+					append_when_current_valid(current, menu, (_("Activate Picture in Picture"), self.showServiceInPiP), level = 0)
 					if config.ParentalControl.configured.value:
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level = 0)
@@ -189,6 +191,21 @@ class ChannelContextMenu(Screen):
 			self.close()
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+			
+	def showServiceInPiP(self):
+		if self.session.pipshown:
+			del self.session.pip
+		self.session.pip = self.session.instantiateDialog(PictureInPicture)
+		self.session.pip.show()
+		newservice = self.csel.servicelist.getCurrent()
+		if self.session.pip.playService(newservice):
+			self.session.pipshown = True
+			self.session.pip.servicePath = self.csel.getCurrentServicePath()
+			self.close()
+		else:
+			self.session.pipshown = False
+			del self.session.pip
+			self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
