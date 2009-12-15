@@ -3,7 +3,7 @@ from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 
-def ChoiceEntryComponent(key, text):
+def ChoiceEntryComponent(key = "", text = ["--"]):
 	res = [ text ]
 	if text[0] == "--":
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 00, 800, 25, 0, RT_HALIGN_LEFT, "-"*200))
