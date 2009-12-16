@@ -92,7 +92,7 @@ struct uniqueEPGKey
 	{
 		bool operator()(const uniqueEPGKey &a, const uniqueEPGKey &b) const
 		{
-			return (tsid == a.tsid) && (onid == a.onid) && (sid == a.sid);
+			return (a.tsid == b.tsid) && (a.onid == b.onid) && (a.sid == b.sid);
 		}
 	};
 };
