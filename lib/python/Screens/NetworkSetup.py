@@ -712,7 +712,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.onClose.append(self.cleanup)
 
 	def ok(self):
-		self.stopCheckNetworkConsole()
+		self.cleanup()
 		if self["menulist"].getCurrent()[1] == 'edit':
 			if self.iface == 'wlan0' or self.iface == 'ath0':
 				try:
@@ -927,7 +927,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
-		iNetwork.checkNetworkState(self.checkNetworkCB)
+		if self.LinkState == True:
+			iNetwork.checkNetworkState(self.checkNetworkCB)
+		else:
+			self["statuspic"].setPixmapNum(1)
+			self["statuspic"].show()			
 
 	def showErrorMessage(self):
 		self.session.open(MessageBox, self.errortext, type = MessageBox.TYPE_INFO,timeout = 10 )
@@ -935,7 +939,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
 		iNetwork.stopDeactivateInterfaceConsole()
-		self.stopCheckNetworkConsole()
+		iNetwork.stopPingConsole()
 		try:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 		except ImportError:
@@ -944,14 +948,17 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			iStatus.stopWlanConsole()
 
 	def getInfoCB(self,data,status):
+		self.LinkState = None
 		if data is not None:
 			if data is True:
 				if status is not None:
 					if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
+						self.LinkState = False
 						self["statuspic"].setPixmapNum(1)
+						self["statuspic"].show()
 					else:
-						self["statuspic"].setPixmapNum(0)
-					self["statuspic"].show()
+						self.LinkState = True
+						iNetwork.checkNetworkState(self.checkNetworkCB)
 
 	def checkNetworkCB(self,data):
 		if iNetwork.getAdapterAttribute(self.iface, "up") is True:
@@ -960,17 +967,14 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self["statuspic"].setPixmapNum(0)
 				else:
 					self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()	
 			else:
 				self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()
 		else:
 			self["statuspic"].setPixmapNum(1)
-		self["statuspic"].show()
+			self["statuspic"].show()
 
-	def stopCheckNetworkConsole(self):
-		if iNetwork.PingConsole is not None:
-			if len(iNetwork.PingConsole.appContainers):
-				for name in iNetwork.PingConsole.appContainers.keys():
-					iNetwork.PingConsole.kill(name)
 
 class NetworkAdapterTest(Screen):	
 	def __init__(self, session,iface):
@@ -1389,4 +1393,4 @@ class NetworkAdapterTest(Screen):
 			pass
 		else:
 			iStatus.stopWlanConsole()
-			
+
