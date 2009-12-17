@@ -551,7 +551,10 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if (ret == True):		
 			num_configured_if = len(iNetwork.getConfiguredAdapters())
 			if num_configured_if >= 1:
-				self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("A second configured interface has been found.\n\nDo you want to disable the second network interface?"), default = True)
+				if num_configured_if == 1 and self.iface in iNetwork.getConfiguredAdapters():
+					self.applyConfig(True)
+				else:
+					self.session.openWithCallback(self.secondIfaceFoundCB, MessageBox, _("A second configured interface has been found.\n\nDo you want to disable the second network interface?"), default = True)
 			else:
 				self.applyConfig(True)
 		else:
