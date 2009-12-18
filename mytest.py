@@ -69,7 +69,6 @@ config.misc.useTransponderTime.addNotifier(useTransponderTimeChanged)
 profile("Twisted")
 try:
 	import twisted.python.runtime
-	twisted.python.runtime.platform.supportsThreads = lambda: False
 
 	import e2reactor
 	e2reactor.install()
