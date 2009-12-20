@@ -362,12 +362,14 @@ public:
 	RESULT startTimeQuery(const eServiceReference &service, time_t begin=-1, int minutes=-1);
 
 #ifndef SWIG
+private:
 	// eventData's are plain entrys out of the cache.. it's not safe to use them after cache unlock
 	// but its faster in use... its not allowed to delete this pointers via delete or free..
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eventData *&);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 	RESULT getNextTimeEntry(const eventData *&);
 
+public:
 	// eit_event_struct's are plain dvb eit_events .. it's not safe to use them after cache unlock
 	// its not allowed to delete this pointers via delete or free..
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eit_event_struct *&);
