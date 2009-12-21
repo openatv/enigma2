@@ -144,24 +144,83 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		} else
 			payload = packet + 4;
 
-		
 /*		if (m_pid >= 0)
 			if (pid != m_pid)
 				continue; */
 		if (!pusi)
 			continue;
-		
-		
+
 			/* somehow not a startcode. (this is invalid, since pusi was set.) ignore it. */
 		if (payload[0] || payload[1] || (payload[2] != 1))
 			continue;
-		
+
+		if (payload[3] == 0xFD)
+		{ // stream use extension mechanism defined in ISO 13818-1 Amendment 2
+			if (payload[7] & 1) // PES extension flag
+			{
+				int offs = 0;
+				if (payload[7] & 0x80) // pts avail
+					offs += 5;
+				if (payload[7] & 0x40) // dts avail
+					offs += 5;
+				if (payload[7] & 0x20) // escr avail
+					offs += 6;
+				if (payload[7] & 0x10) // es rate
+					offs += 3;
+				if (payload[7] & 0x8) // dsm trickmode
+					offs += 1;
+				if (payload[7] & 0x4) // additional copy info
+					offs += 1;
+				if (payload[7] & 0x2) // crc
+					offs += 2;
+				if (payload[8] < offs)
+					continue;
+				uint8_t pef = payload[9+offs++]; // pes extension field
+				if (pef & 1) // pes extension flag 2
+				{
+					if (pef & 0x80) // private data flag
+						offs += 16;
+					if (pef & 0x40) // pack header field flag
+						offs += 1;
+					if (pef & 0x20) // program packet sequence counter flag
+						offs += 2;
+					if (pef & 0x10) // P-STD buffer flag
+						offs += 2;
+					if (payload[8] < offs)
+						continue;
+					uint8_t stream_id_extension_len = payload[9+offs++] & 0x7F;
+					if (stream_id_extension_len >= 1)
+					{
+						if (payload[8] < (offs + stream_id_extension_len) )
+							continue;
+						if (payload[9+offs] & 0x80) // stream_id_extension_bit (should not set)
+							continue;
+						switch (payload[9+offs])
+						{
+						case 0x55 ... 0x5f: // VC-1
+							break;
+						case 0x71: // AC3 / DTS
+							break;
+						default:
+							eDebug("skip unknwn stream_id_extension %02x\n", payload[9+offs]);
+							continue;
+						}
+					}
+					else
+						continue;
+				}
+				else
+					continue;
+			}
+			else
+				continue;
+		}
 			/* drop non-audio, non-video packets because other streams
 			   can be non-compliant.*/
-		if (((payload[3] & 0xE0) != 0xC0) &&  // audio
-		    ((payload[3] & 0xF0) != 0xE0))    // video
+		else if (((payload[3] & 0xE0) != 0xC0) &&  // audio
+			((payload[3] & 0xF0) != 0xE0)) // video
 			continue;
-		
+
 		if (payload[7] & 0x80) /* PTS */
 		{
 			pts  = ((unsigned long long)(payload[ 9]&0xE))  << 29;
