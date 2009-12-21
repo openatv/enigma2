@@ -2303,6 +2303,7 @@ void eDVBServicePlay::switchToTimeshift()
 void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 {
 	int vpid = -1, vpidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
+	bool mustPlay = false;
 
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
@@ -2383,11 +2384,10 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 					Py_DECREF(subs);
 				}
 			}
-			m_decoder->play(); /* pids will be set later */
 		}
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
-		m_decoder->play(); /* pids will be set later. */
+		mustPlay = true;
 	}
 
 	m_timeshift_changed = 0;
@@ -2453,7 +2453,11 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 				m_decoder->setRadioPic(radio_pic);
 		}
 
-		m_decoder->set();
+		if (mustPlay)
+			m_decoder->play();
+		else
+			m_decoder->set();
+
 		m_decoder->setAudioChannel(achannel);
 
 		/* don't worry about non-existing services, nor pvr services */
