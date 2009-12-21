@@ -363,8 +363,7 @@ public:
 
 #ifndef SWIG
 private:
-	// eventData's are plain entrys out of the cache.. it's not safe to use them after cache unlock
-	// but its faster in use... its not allowed to delete this pointers via delete or free..
+	// For internal use only. Acquire the cache lock before calling. 
 	RESULT lookupEventId(const eServiceReference &service, int event_id, const eventData *&);
 	RESULT lookupEventTime(const eServiceReference &service, time_t, const eventData *&, int direction=0);
 	RESULT getNextTimeEntry(const eventData *&);
@@ -376,6 +375,7 @@ public:
 	RESULT lookupEventTime(const eServiceReference &service, time_t , const eit_event_struct *&, int direction=0);
 	RESULT getNextTimeEntry(const eit_event_struct *&);
 
+public:
 	// Event's are parsed epg events.. it's safe to use them after cache unlock
 	// after use this Events must be deleted (memleaks)
 	RESULT lookupEventId(const eServiceReference &service, int event_id, Event* &);

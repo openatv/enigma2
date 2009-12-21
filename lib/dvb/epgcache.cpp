@@ -1662,7 +1662,6 @@ void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
 RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, const eventData *&result, int direction)
 // if t == -1 we search the current event...
 {
-	singleLock s(cache_lock);
 	uniqueEPGKey key(handleGroup(service));
 
 	// check if EPG for this service is ready...
@@ -1738,7 +1737,6 @@ RESULT eEPGCache::lookupEventTime(const eServiceReference &service, time_t t, eP
 
 RESULT eEPGCache::lookupEventId(const eServiceReference &service, int event_id, const eventData *&result )
 {
-	singleLock s(cache_lock);
 	uniqueEPGKey key(handleGroup(service));
 
 	eventCache::iterator It = eventDB.find( key );
