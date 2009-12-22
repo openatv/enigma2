@@ -1,147 +1,66 @@
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService, eDVBCAHandler
+from enigma import eTimer
 from Components.Element import cached
+import os
+
+ECM_INFO = '/tmp/ecm.info'
 
 class CryptoInfo(Converter, object):
-	SOFTCAM = 1
-	DECODEINFO = 2
-	VERBOSEINFO = 3
-	DECODETIME = 4
-	USINGCARDID = 5
-	HAS_SECA = 0x100
-	HAS_VIACCESS = 0x500
-	HAS_IRDETO = 0x600
-	HAS_CONAX = 0xb00
-	HAS_CRYPTOWORKS = 0xd00
-	HAS_BETACRYPT = 0x1700
-	HAS_NAGRA = 0x1800
-	HAS_NDS = 0x900
-	USING_SECA = HAS_SECA + 0x10000
-	USING_VIACCESS = HAS_VIACCESS + 0x10000
-	USING_IRDETO = HAS_IRDETO + 0x10000
-	USING_CONAX = HAS_CONAX + 0x10000
-	USING_CRYPTOWORKS = HAS_CRYPTOWORKS + 0x10000
-	USING_BETACRYPT = HAS_BETACRYPT + 0x10000
-	USING_NAGRA = HAS_NAGRA + 0x10000
-	USING_NDS = HAS_NDS + 0x10000
-
 	def __init__(self, type):
 		Converter.__init__(self, type)
-		options = {
-				"SoftCam": self.SOFTCAM,
-				"DecodeInfo": self.DECODEINFO,
-				"VerboseInfo": self.VERBOSEINFO,
-				"DecodeTime": self.DECODETIME,
-				"UsingCardId": self.USINGCARDID,
-				"HasSeca": self.HAS_SECA,
-				"HasViaccess": self.HAS_VIACCESS,
-				"HasIrdeto": self.HAS_IRDETO,
-				"HasConax": self.HAS_CONAX,
-				"HasCryptoworks": self.HAS_CRYPTOWORKS,
-				"HasBetacrypt": self.HAS_BETACRYPT,
-				"HasNagra": self.HAS_NAGRA,
-				"HasNds": self.HAS_NDS,
-				"UsingSeca": self.USING_SECA,
-				"UsingViaccess": self.USING_VIACCESS,
-				"UsingIrdeto": self.USING_IRDETO,
-				"UsingConax": self.USING_CONAX,
-				"UsingCryptoworks": self.USING_CRYPTOWORKS,
-				"UsingBetacrypt": self.USING_BETACRYPT,
-				"UsingNagra": self.USING_NAGRA,
-				"UsingNds": self.USING_NDS,
-			}
-		events = {
-				self.HAS_SECA: [iPlayableService.evUpdatedInfo],
-				self.HAS_VIACCESS: [iPlayableService.evUpdatedEventInfo],
-				self.HAS_IRDETO: [iPlayableService.evUpdatedInfo],
-				self.HAS_CRYPTOWORKS: [iPlayableService.evUpdatedInfo],
-				self.HAS_CONAX: [iPlayableService.evUpdatedEventInfo],
-				self.HAS_BETACRYPT: [iPlayableService.evVideoSizeChanged],
-				self.HAS_NAGRA: [iPlayableService.evUpdatedEventInfo],
-				self.HAS_NDS: [iPlayableService.evUpdatedEventInfo],
-			}
-
-		self.type = options[type]
+		# type is ignored, expected to be "verboseInfo"
 		self.active = False
 		self.visible = True
 		self.textvalue = ""
+		self.clock_timer = eTimer()
+		self.clock_timer.callback.append(self.poll)
+		self.clock_timer.start(1000)
+		self.ecm_mtime = None
+		
+	def destroy(self):
+		self.clock_timer.callback.remove(self.poll)
+		Converter.destroy(self)
 
-		if self.type == self.SOFTCAM:
-			eDVBCAHandler.getCryptoInfo().clientname.get().append(self.clientName)
-		if self.type == self.DECODEINFO:
-			eDVBCAHandler.getCryptoInfo().clientinfo.get().append(self.clientInfo)
-		elif self.type == self.VERBOSEINFO:
-			eDVBCAHandler.getCryptoInfo().verboseinfo.get().append(self.verboseInfo)
-		elif self.type == self.DECODETIME:
-			eDVBCAHandler.getCryptoInfo().decodetime.get().append(self.decodeTime)
-		elif self.type == self.USINGCARDID:
-			eDVBCAHandler.getCryptoInfo().usingcardid.get().append(self.usingCardId)
-		elif self.type > 0x10000:
-			eDVBCAHandler.getCryptoInfo().usedcaid.get().append(self.caidChanged)
+	def poll(self):
+		try:
+			ecm_mtime = os.stat(ECM_INFO).st_mtime
+		except:
+			ecm_mtime = None
+		if ecm_mtime != self.ecm_mtime:
+			self.ecm_mtime = ecm_mtime
+			self.changed((self.CHANGED_POLL,))
+
+	def doSuspend(self, suspended):
+		if suspended:
+			self.clock_timer.stop()
 		else:
-			self.interesting_events = events[self.type]
-
-	@cached
-	def getBoolean(self):
-		if not self.visible:
-			return False
-		service = self.source.service
-		info = service and service.info()
-		if not info:
-			return False
-
-		if self.type < 0x10000:
-			caids = info.getInfoObject(iServiceInformation.sCAIDs)
-			for caid in caids:
-				caid &= 0xff00
-			return self.type in caids
-		else:
-			return self.active
-
-	boolean = property(getBoolean)
+			self.clock_timer.start(1000)
+			self.poll()
 
 	@cached
 	def getText(self):
-		return self.visible and self.textvalue
+		if not self.visible:
+			return ''
+		# file changed.
+		try:
+			ecm = open(ECM_INFO, 'rb').readlines()
+			info = {}
+			for line in ecm:
+				d = line.split(':', 1)
+				if len(d) > 1:
+					info[d[0]] = d[1].strip()
+			# info is dictionary
+			using = info.get('using', '')
+			if using:
+				if using == 'fta':
+					self.textvalue = _("FTA")
+				else:
+					self.textvalue = "%s (%ss) %sh" % (info.get('address', '?'), info.get('ecm time', '?'), info.get('hops', '-'))
+			else:
+				self.textvalue = ""
+		except:
+			ecm = None
+			self.textvalue = ""
+		return self.textvalue
 
 	text = property(getText)
-
-	def changed(self, what):
-		if self.type >= self.HAS_SECA and self.type < 0x10000:
-			if what[0] != self.CHANGED_SPECIFIC or what[1] in self.interesting_events:
-				Converter.changed(self, what)
-
-	def caidChanged(self, caid):
-		oldactive = self.active
-		caid &= 0xff00
-		if self.type == (caid + 0x10000):
-			self.active = True
-		else:
-			self.active = False
-		if self.active != oldactive:
-			Converter.changed(self, (self.CHANGED_ALL,))
-
-	def decodeTime(self, time):
-		self.textvalue = "%01d.%03d" % (time/1000, time%1000)
-		if self.type == self.DECODETIME:
-			Converter.changed(self, (self.CHANGED_ALL,))
-
-	def clientName(self, name):
-		if self.type == self.SOFTCAM:
-			self.textvalue = name
-			Converter.changed(self, (self.CHANGED_ALL,))
-
-	def clientInfo(self, name):
-		if self.type == self.DECODEINFO:
-			self.textvalue = name
-			Converter.changed(self, (self.CHANGED_ALL,))
-
-	def verboseInfo(self, info):
-		if self.type == self.VERBOSEINFO:
-			self.textvalue = info
-			Converter.changed(self, (self.CHANGED_ALL,))
-
-	def usingCardId(self, info):
-		if self.type == self.USINGCARDID:
-			self.textvalue = info
-			Converter.changed(self, (self.CHANGED_ALL,))
