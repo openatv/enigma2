@@ -10,6 +10,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
 from Components.SystemInfo import SystemInfo
+from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
@@ -28,7 +29,7 @@ from Screens.TimeDateInput import TimeDateInput
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
-from Tools.Directories import SCOPE_HDD, resolveFilename, fileExists
+from Tools.Directories import fileExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
 	iPlayableService, eServiceReference, eEPGCache
@@ -689,8 +690,6 @@ class InfoBarSeek:
 				iPlayableService.evSOF: self.__evSOF,
 			})
 
-		self.minSpeedBackward = useSeekBackHack and 16 or 0
-
 		class InfoBarSeekActionMap(HelpableActionMap):
 			def __init__(self, screen, *args, **kwargs):
 				HelpableActionMap.__init__(self, screen, *args, **kwargs)
@@ -737,24 +736,19 @@ class InfoBarSeek:
 		self.__seekableStatusChanged()
 
 	def makeStateForward(self, n):
-		minspeed = config.seek.stepwise_minspeed.value
-		repeat = int(config.seek.stepwise_repeat.value)
-		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-			return (0, n * repeat, repeat, ">> %dx" % n)
-		else:
+#		minspeed = config.seek.stepwise_minspeed.value
+#		repeat = int(config.seek.stepwise_repeat.value)
+#		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+#			return (0, n * repeat, repeat, ">> %dx" % n)
+#		else:
 			return (0, n, 0, ">> %dx" % n)
 
 	def makeStateBackward(self, n):
-		minspeed = config.seek.stepwise_minspeed.value
-		repeat = int(config.seek.stepwise_repeat.value)
-		if self.minSpeedBackward and n < self.minSpeedBackward:
-			r = (self.minSpeedBackward - 1)/ n + 1
-			if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-				r = max(r, repeat)
-			return (0, -n * r, r, "<< %dx" % n)
-		elif minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-			return (0, -n * repeat, repeat, "<< %dx" % n)
-		else:
+#		minspeed = config.seek.stepwise_minspeed.value
+#		repeat = int(config.seek.stepwise_repeat.value)
+#		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+#			return (0, -n * repeat, repeat, "<< %dx" % n)
+#		else:
 			return (0, -n, 0, "<< %dx" % n)
 
 	def makeStateSlowMotion(self, n):
@@ -874,7 +868,7 @@ class InfoBarSeek:
 			if config.seek.on_pause.value == "play":
 				self.unPauseService()
 			elif config.seek.on_pause.value == "step":
-				self.doSeekRelative(0)
+				self.doSeekRelative(1)
 			elif config.seek.on_pause.value == "last":
 				self.setSeekState(self.lastseekstate)
 				self.lastseekstate = self.SEEK_STATE_PLAY
@@ -947,7 +941,7 @@ class InfoBarSeek:
 			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 			self.doSeekRelative(-6)
 		elif seekstate == self.SEEK_STATE_PAUSE:
-			self.doSeekRelative(-3)
+			self.doSeekRelative(-1)
 		elif self.isStateForward(seekstate):
 			speed = seekstate[1]
 			if seekstate[2]:
@@ -1210,10 +1204,7 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 		if back:
-			self.doSeek(-5) # seek some gops before end
 			self.ts_rewind_timer.start(200, 1)
-		else:
-			self.doSeek(-1) # seek 1 gop before end
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
@@ -1509,7 +1500,7 @@ class InfoBarInstantRecord:
 		if isinstance(serviceref, eServiceReference):
 			serviceref = ServiceReference(serviceref)
 
-		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = resolveFilename(SCOPE_HDD))
+		recording = RecordTimerEntry(serviceref, begin, end, name, description, eventid, dirname = preferredInstantRecordPath())
 		recording.dontSave = True
 		
 		if event is None or limitEvent == False:
@@ -1610,7 +1601,9 @@ class InfoBarInstantRecord:
 			self.session.nav.RecordTimer.timeChanged(entry)
 
 	def instantRecord(self):
-		dir = resolveFilename(SCOPE_HDD)
+		dir = preferredInstantRecordPath()
+		if not dir or not fileExists(dir, 'w'):
+			dir = defaultMoviePath()
 		try:
 			stat = os_stat(dir)
 		except:
@@ -1692,17 +1685,46 @@ class InfoBarAudioSelection:
 				else:
 					break
 
+			availableKeys = []
+			usedKeys = []
+
 			if SystemInfo["CanDownmixAC3"]:
-				tlist = [(_("AC3 downmix") + " - " +(_("Off"), _("On"))[config.av.downmix_ac3.value and 1 or 0], "CALLFUNC", self.changeAC3Downmix),
-					((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode"),
-					("--", "")] + tlist
-				keys = [ "red", "green", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
-				selection += 3
-			else:
-				tlist = [((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode"), ("--", "")] + tlist
-				keys = [ "red", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"] + [""]*n
+				flist = [(_("AC3 downmix") + " - " +(_("Off"), _("On"))[config.av.downmix_ac3.value and 1 or 0], "CALLFUNC", self.changeAC3Downmix),
+					((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode")]
+				usedKeys.extend(["red", "green"])
+				availableKeys.extend(["yellow", "blue"])
 				selection += 2
-			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = tlist, selection = selection, keys = keys, skin_name = "AudioTrackSelection")
+			else:
+				flist = [((_("Left"), _("Stereo"), _("Right"))[self.audioChannel.getCurrentChannel()], "mode")]
+				usedKeys.extend(["red"])
+				availableKeys.extend(["green", "yellow", "blue"])
+				selection += 1
+
+			if hasattr(self, "runPlugin"):
+				class PluginCaller:
+					def __init__(self, fnc, *args):
+						self.fnc = fnc
+						self.args = args
+					def __call__(self, *args, **kwargs):
+						self.fnc(*self.args)
+
+				Plugins = [ (p.name, PluginCaller(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
+
+				for p in Plugins:
+					selection += 1
+					flist.append((p[0], "CALLFUNC", p[1]))
+					if availableKeys:
+						usedKeys.append(availableKeys[0])
+						del availableKeys[0]
+					else:
+						usedKeys.append("")
+
+			flist.append(("--", ""))
+			usedKeys.append("")
+			selection += 1
+
+			keys = usedKeys + [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" ] + [""] * n
+			self.session.openWithCallback(self.audioSelected, ChoiceBox, title=_("Select audio track"), list = flist + tlist, selection = selection, keys = keys, skin_name = "AudioTrackSelection")
 		else:
 			del self.audioTracks
 

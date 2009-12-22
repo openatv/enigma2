@@ -58,16 +58,18 @@
 					<item level="1" entryID="harddisk_setup"><setup id="harddisk"/></item>
 					<item level="0" text="Initialization..." entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 					<item level="0" text="Filesystem Check..." entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-					<item level="2" text="Timeshift path..." entryId="timeshift_path"><screen module="LocationBox" screen="TimeshiftLocationBox" /></item>
 				</menu>
 				<!--<item text="Remote Control"><setup id="rc" /></item>-->
 				<!--<item text="OSD"><setup id="osd" /></item>-->
 				<item requires="Display"><setup level="1" id="lcd" /></item>
+				<item level="0" text="Network..." entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
 				<item text="Keyboard"><setup id="keyboard" /></item>
-				<menu level="0" text="Network..." entryID="network_menu">
+				<!--<menu level="0" text="Network..." entryID="network_menu">
 					<id val="network" />
-					<item level="1" text="Device Setup..." entryID="network_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-				</menu>
+					<item level="1" text="Device Setup..." entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item level="1" text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>
+				</menu>-->
+				<item level="2" text="Recording paths..." entryId="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
 				<item level="0" text="Language..." entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 			</menu>
@@ -106,6 +108,7 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 			<item text="Standby" entryID="standby"><screen module="Standby" screen="Standby"/></item>
 			<item text="Restart" entryID="restart"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 			<item text="Restart enigma" entryID="restart_enigma"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>
-			<item text="Deep Standby" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+			<item text="Deep Standby" requires="DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
+			<item text="Shutdown" requires="!DeepstandbySupport" entryID="deep_standby"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 		</menu>
 </menu>

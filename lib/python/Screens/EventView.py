@@ -8,6 +8,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.PluginComponent import plugins
 from Components.MenuList import MenuList
 from Components.TimerList import TimerList
+from Components.UsageConfig import preferredTimerPath
 from enigma import eEPGCache, eTimer, eServiceReference
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from TimerEntry import TimerEntry
@@ -121,7 +122,7 @@ class EventViewBase:
 				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete %s?") % event.getEventName())
 				break
 		else:
-			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, *parseEvent(self.event))
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def finishedAdd(self, answer):

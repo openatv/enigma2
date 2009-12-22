@@ -8,11 +8,12 @@ from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.SystemInfo import SystemInfo
+from Components.UsageConfig import defaultMoviePath
 from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from RecordTimer import AFTEREVENT
-from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import eEPGCache
 from time import localtime, mktime, time, strftime
 from datetime import datetime
@@ -93,7 +94,11 @@ class TimerEntry(Screen, ConfigListScreen):
 				day[weekday] = 1
 
 			self.timerentry_justplay = ConfigSelection(choices = [("zap", _("zap")), ("record", _("record"))], default = {0: "record", 1: "zap"}[justplay])
-			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", _("go to deep standby")), ("auto", _("auto"))], default = afterevent)
+			if SystemInfo["DeepstandbySupport"]:
+				shutdownString = _("go to deep standby")
+			else:
+				shutdownString = _("shut down")
+			self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
 			self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
 			self.timerentry_name = ConfigText(default = self.timer.name, visible_width = 50, fixed_size = False)
 			self.timerentry_description = ConfigText(default = self.timer.description, visible_width = 50, fixed_size = False)
@@ -106,7 +111,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
 
-			default = self.timer.dirname or resolveFilename(SCOPE_HDD)
+			default = self.timer.dirname or defaultMoviePath()
 			tmp = config.movielist.videodirs.value
 			if default not in tmp:
 				tmp.append(default)
@@ -273,9 +278,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.service_ref = self.timerentry_service_ref
 		self.timer.tags = self.timerentry_tags
 
-		self.timer.dirname = self.timerentry_dirname.value
-		config.movielist.last_timer_videodir.value = self.timer.dirname
-		config.movielist.last_timer_videodir.save()
+		if self.timer.dirname or self.timerentry_dirname.value != defaultMoviePath():
+			self.timer.dirname = self.timerentry_dirname.value
+			config.movielist.last_timer_videodir.value = self.timer.dirname
+			config.movielist.last_timer_videodir.save()
 
 		if self.timerentry_type.value == "once":
 			self.timer.begin, self.timer.end = self.getBeginEnd()

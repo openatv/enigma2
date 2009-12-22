@@ -97,8 +97,12 @@ class Menu(Screen):
 
 	def addMenu(self, destList, node):
 		requires = node.get("requires")
-		if requires and not SystemInfo.get(requires, False):
-			return
+		if requires:
+			if requires[0] == '!':
+				if SystemInfo.get(requires[1:], False):
+					return
+			elif not SystemInfo.get(requires, False):
+				return
 		MenuTitle = _(node.get("text", "??").encode("UTF-8"))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
@@ -120,8 +124,12 @@ class Menu(Screen):
 
 	def addItem(self, destList, node):
 		requires = node.get("requires")
-		if requires and not SystemInfo.get(requires, False):
-			return
+		if requires:
+			if requires[0] == '!':
+				if SystemInfo.get(requires[1:], False):
+					return
+			elif not SystemInfo.get(requires, False):
+				return
 		item_text = node.get("text", "").encode("UTF-8")
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)

@@ -3,7 +3,7 @@ from os import path as os_path, listdir
 from MenuList import MenuList
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
+from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename, fileExists
 
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
 	eServiceReference, eServiceCenter, gFont
@@ -161,19 +161,17 @@ class FileList(MenuList):
 			directories.sort()
 			files.sort()
 		else:
-			try:
-				if os_path.exists(directory):
+			if fileExists(directory):
+				try:
 					files = listdir(directory)
-					files.sort()
-					tmpfiles = files[:]
-					for x in tmpfiles:
-						if os_path.isdir(directory + x):
-							directories.append(directory + x + "/")
-							files.remove(x)
-			except:
-				# This happens if directory exists, but cannot be accessed
-				# Should display something to the user?
-				pass
+				except:
+					files = []
+				files.sort()
+				tmpfiles = files[:]
+				for x in tmpfiles:
+					if os_path.isdir(directory + x):
+						directories.append(directory + x + "/")
+						files.remove(x)
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
@@ -380,8 +378,11 @@ class MultiFileSelectList(FileList):
 			directories.sort()
 			files.sort()
 		else:
-			if os_path.exists(directory):
-				files = listdir(directory)
+			if fileExists(directory):
+				try:
+					files = listdir(directory)
+				except:
+					files = []
 				files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
