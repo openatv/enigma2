@@ -899,7 +899,7 @@ def InitSecParams():
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MEASURE_IDLE_INPUTPOWER, configElement.value))
 	config.sec.delay_after_voltage_change_before_measure_idle_inputpower = x
 
-	x = ConfigInteger(default=750, limits = (0, 9999))
+	x = ConfigInteger(default=900, limits = (0, 9999))
 	x.addNotifier(lambda configElement: secClass.setParam(secClass.DELAY_AFTER_ENABLE_VOLTAGE_BEFORE_MOTOR_CMD, configElement.value))
 	config.sec.delay_after_enable_voltage_before_motor_command = x
 
