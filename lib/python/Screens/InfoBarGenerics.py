@@ -691,8 +691,6 @@ class InfoBarSeek:
 				iPlayableService.evSOF: self.__evSOF,
 			})
 
-		self.minSpeedBackward = useSeekBackHack and 16 or 0
-
 		class InfoBarSeekActionMap(HelpableActionMap):
 			def __init__(self, screen, *args, **kwargs):
 				HelpableActionMap.__init__(self, screen, *args, **kwargs)
@@ -739,24 +737,19 @@ class InfoBarSeek:
 		self.__seekableStatusChanged()
 
 	def makeStateForward(self, n):
-		minspeed = config.seek.stepwise_minspeed.value
-		repeat = int(config.seek.stepwise_repeat.value)
-		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-			return (0, n * repeat, repeat, ">> %dx" % n)
-		else:
+#		minspeed = config.seek.stepwise_minspeed.value
+#		repeat = int(config.seek.stepwise_repeat.value)
+#		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+#			return (0, n * repeat, repeat, ">> %dx" % n)
+#		else:
 			return (0, n, 0, ">> %dx" % n)
 
 	def makeStateBackward(self, n):
-		minspeed = config.seek.stepwise_minspeed.value
-		repeat = int(config.seek.stepwise_repeat.value)
-		if self.minSpeedBackward and n < self.minSpeedBackward:
-			r = (self.minSpeedBackward - 1)/ n + 1
-			if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-				r = max(r, repeat)
-			return (0, -n * r, r, "<< %dx" % n)
-		elif minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-			return (0, -n * repeat, repeat, "<< %dx" % n)
-		else:
+#		minspeed = config.seek.stepwise_minspeed.value
+#		repeat = int(config.seek.stepwise_repeat.value)
+#		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
+#			return (0, -n * repeat, repeat, "<< %dx" % n)
+#		else:
 			return (0, -n, 0, "<< %dx" % n)
 
 	def makeStateSlowMotion(self, n):
@@ -876,7 +869,7 @@ class InfoBarSeek:
 			if config.seek.on_pause.value == "play":
 				self.unPauseService()
 			elif config.seek.on_pause.value == "step":
-				self.doSeekRelative(0)
+				self.doSeekRelative(1)
 			elif config.seek.on_pause.value == "last":
 				self.setSeekState(self.lastseekstate)
 				self.lastseekstate = self.SEEK_STATE_PLAY
@@ -949,7 +942,7 @@ class InfoBarSeek:
 			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
 			self.doSeekRelative(-6)
 		elif seekstate == self.SEEK_STATE_PAUSE:
-			self.doSeekRelative(-3)
+			self.doSeekRelative(-1)
 		elif self.isStateForward(seekstate):
 			speed = seekstate[1]
 			if seekstate[2]:
@@ -1212,10 +1205,7 @@ class InfoBarTimeshift:
 			self.setSeekState(self.SEEK_STATE_PAUSE)
 
 		if back:
-			self.doSeek(-5) # seek some gops before end
 			self.ts_rewind_timer.start(200, 1)
-		else:
-			self.doSeek(-1) # seek 1 gop before end
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
