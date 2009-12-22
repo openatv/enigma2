@@ -127,6 +127,16 @@ std::string eRCInputEventDriver::getDeviceName()
 	return name;
 }
 
+void eRCInputEventDriver::setExclusive(bool b)
+{
+	if (handle >= 0)
+	{
+		int grab = b;
+		if (::ioctl(handle, EVIOCGRAB, &grab) < 0)
+			perror("EVIOCGRAB");
+	}
+}
+
 eRCInputEventDriver::~eRCInputEventDriver()
 {
 	if (handle>=0)
