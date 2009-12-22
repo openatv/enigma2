@@ -3077,7 +3077,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 								{
 									__u8 buffer[10];
 									(*desc)->writeToBuffer(buffer);
-									if (!strncmp((unsigned char*)buffer+2, "EPGDATA", 7))
+									if (!strncmp((const char*)buffer+2, "EPGDATA", 7))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
@@ -3086,7 +3086,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 											messages.send(Message(Message::got_mhw2_channel_pid, ref, pid));
 										}
 									}
-									else if(!strncmp((unsigned char*)buffer+2, "FICHAS", 6))
+									else if(!strncmp((const char*)buffer+2, "FICHAS", 6))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
@@ -3095,7 +3095,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 											messages.send(Message(Message::got_mhw2_summary_pid, ref, pid));
 										}
 									}
-									else if(!strncmp((unsigned char*)buffer+2, "GENEROS", 7))
+									else if(!strncmp((const char*)buffer+2, "GENEROS", 7))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
@@ -3924,10 +3924,10 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 		{
 			if (dataLen > 18)
 				eDebug("mhw2 title table invalid!!");
-			if (checkTimeout())
+			if (checkMHWTimeout())
 				goto abort;
 			if (!m_MHWTimeoutTimer->isActive())
-				startTimeout(5000);
+				startMHWTimeout(5000);
 			return; // continue reading
 		}
 
@@ -4001,7 +4001,6 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 				break;
 			}
 		}
-start_summary:
 		if (finish)
 		{
 			eDebug("[EPGC] mhw2 %d titles(%d with summary) found", m_titles.size(), m_program_ids.size());
