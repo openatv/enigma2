@@ -83,6 +83,7 @@ eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver)
 			break;
 		}
 	}
+	driver->setExclusive(!iskeyboard);
 	eDebug("Input device \"%s\" is %sa keyboard.", id.c_str(), iskeyboard ? "" : "not ");
 
 }

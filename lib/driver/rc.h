@@ -112,6 +112,7 @@ public:
 	std::string getDeviceName();
 	eRCInputEventDriver(const char *filename);
 	~eRCInputEventDriver();
+	void setExclusive(bool b); // in exclusive mode data is not carried to console device
 };
 
 class eRCKey
