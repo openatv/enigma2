@@ -7,8 +7,9 @@ from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations
+from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet
 from Components.Sources.ServiceEvent import ServiceEvent
+from Components.UsageConfig import defaultMoviePath
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -32,6 +33,7 @@ config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 #config.movielist.first_tags = ConfigText(default="")
 #config.movielist.second_tags = ConfigText(default="")
+config.movielist.last_selected_tags = ConfigSet([], default=[])
 
 
 def setPreferredTagEditor(te):
@@ -139,7 +141,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		HelpableScreen.__init__(self)
 
 		self.tags = {}
-		self.selected_tags = None
+		if selectedmovie:
+			self.selected_tags = config.movielist.last_selected_tags.value
+		else:
+			self.selected_tags = None
 		self.selected_tags_ele = None
 
 		self.movemode = False
@@ -154,8 +159,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["DescriptionBorder"] = Pixmap()
 		self["DescriptionBorder"].hide()
 
-		if not pathExists(config.movielist.last_videodir.value):
-			config.movielist.last_videodir.value = resolveFilename(SCOPE_HDD)
+		if not fileExists(config.movielist.last_videodir.value):
+			config.movielist.last_videodir.value = defaultMoviePath()
 			config.movielist.last_videodir.save()
 		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
 
@@ -263,6 +268,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.close(None)
 
 	def saveconfig(self):
+		config.movielist.last_selected_tags.value = self.selected_tags
 		config.movielist.moviesort.save()
 		config.movielist.listtype.save()
 		config.movielist.description.save()
@@ -292,8 +298,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["list"].setSortType(type)
 
 	def reloadList(self, sel = None, home = False):
-		if not pathExists(config.movielist.last_videodir.value):
-			path = resolveFilename(SCOPE_HDD)
+		if not fileExists(config.movielist.last_videodir.value):
+			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
 			self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
@@ -323,7 +329,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def gotFilename(self, res):
 		if res is not None and res is not config.movielist.last_videodir.value:
-			if pathExists(res):
+			if fileExists(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
 				self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + res)
@@ -345,7 +351,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def showTagsN(self, tagele):
 		if not self.tags:
 			self.showTagWarning()
-		elif not tagele or self.selected_tags_ele == tagele or not tagele.value in self.tags:
+		elif not tagele or (self.selected_tags and tagele.value in self.selected_tags) or not tagele.value in self.tags:
 			self.showTagsMenu(tagele)
 		else:
 			self.selected_tags_ele = tagele

@@ -258,6 +258,11 @@ void eEPGCache::DVBChannelAdded(eDVBChannel *chan)
 #ifdef ENABLE_PRIVATE_EPG
 		data->m_PrivatePid = -1;
 #endif
+#ifdef ENABLE_MHW_EPG
+		data->m_mhw2_channel_pid = 0x231; // defaults for astra 19.2 D+
+		data->m_mhw2_title_pid = 0x234; // defaults for astra 19.2 D+
+		data->m_mhw2_summary_pid = 0x236; // defaults for astra 19.2 D+
+#endif
 		singleLock s(channel_map_lock);
 		m_knownChannels.insert( std::pair<iDVBChannel*, channel_data* >(chan, data) );
 		chan->connectStateChange(slot(*this, &eEPGCache::DVBChannelStateChanged), data->m_stateChangedConn);
@@ -898,6 +903,62 @@ void eEPGCache::gotMessage( const Message &msg )
 			break;
 		}
 #endif
+#ifdef ENABLE_MHW_EPG
+		case Message::got_mhw2_channel_pid:
+		{
+			singleLock s(channel_map_lock);
+			for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+			{
+				eDVBChannel *channel = (eDVBChannel*) it->first;
+				channel_data *data = it->second;
+				eDVBChannelID chid = channel->getChannelID();
+				if ( chid.transport_stream_id.get() == msg.service.tsid &&
+					chid.original_network_id.get() == msg.service.onid )
+				{
+					data->m_mhw2_channel_pid = msg.pid;
+					eDebug("[EPGC] got mhw2 channel pid %04x", msg.pid);
+					break;
+				}
+			}
+			break;
+		}
+		case Message::got_mhw2_title_pid:
+		{
+			singleLock s(channel_map_lock);
+			for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+			{
+				eDVBChannel *channel = (eDVBChannel*) it->first;
+				channel_data *data = it->second;
+				eDVBChannelID chid = channel->getChannelID();
+				if ( chid.transport_stream_id.get() == msg.service.tsid &&
+					chid.original_network_id.get() == msg.service.onid )
+				{
+					data->m_mhw2_title_pid = msg.pid;
+					eDebug("[EPGC] got mhw2 title pid %04x", msg.pid);
+					break;
+				}
+			}
+			break;
+		}
+		case Message::got_mhw2_summary_pid:
+		{
+			singleLock s(channel_map_lock);
+			for (channelMapIterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+			{
+				eDVBChannel *channel = (eDVBChannel*) it->first;
+				channel_data *data = it->second;
+				eDVBChannelID chid = channel->getChannelID();
+				if ( chid.transport_stream_id.get() == msg.service.tsid &&
+					chid.original_network_id.get() == msg.service.onid )
+				{
+					data->m_mhw2_summary_pid = msg.pid;
+					eDebug("[EPGC] got mhw2 summary pid %04x", msg.pid);
+					break;
+				}
+			}
+			break;
+		}
+#endif
 		case Message::timeChanged:
 			cleanLoop();
 			break;
@@ -1204,7 +1265,7 @@ void eEPGCache::channel_data::startEPG()
 		isRunning |= MHW;
 		memcpy(&m_MHWFilterMask, &mask, sizeof(eDVBSectionFilterMask));
 
-		mask.pid = 0x231;
+		mask.pid = m_mhw2_channel_pid;
 		mask.data[0] = 0xC8;
 		mask.mask[0] = 0xFF;
 		mask.data[1] = 0;
@@ -1215,6 +1276,7 @@ void eEPGCache::channel_data::startEPG()
 		memcpy(&m_MHWFilterMask2, &mask, sizeof(eDVBSectionFilterMask));
 		mask.data[1] = 0;
 		mask.mask[1] = 0;
+		m_MHWTimeoutet=false;
 	}
 #endif
 #ifdef ENABLE_FREESAT
@@ -3004,6 +3066,50 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 				int tmp=0;
 				switch ((*es)->getType())
 				{
+				case 0xC1: // user private
+					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+						desc != (*es)->getDescriptors()->end(); ++desc)
+					{
+						switch ((*desc)->getTag())
+						{
+							case 0xC2: // user defined
+								if ((*desc)->getLength() == 8) 
+								{
+									__u8 buffer[10];
+									(*desc)->writeToBuffer(buffer);
+									if (!strncmp((unsigned char*)buffer+2, "EPGDATA", 7))
+									{
+										eServiceReferenceDVB ref;
+										if (!pmthandler->getServiceReference(ref))
+										{
+											int pid = (*es)->getPid();
+											messages.send(Message(Message::got_mhw2_channel_pid, ref, pid));
+										}
+									}
+									else if(!strncmp((unsigned char*)buffer+2, "FICHAS", 6))
+									{
+										eServiceReferenceDVB ref;
+										if (!pmthandler->getServiceReference(ref))
+										{
+											int pid = (*es)->getPid();
+											messages.send(Message(Message::got_mhw2_summary_pid, ref, pid));
+										}
+									}
+									else if(!strncmp((unsigned char*)buffer+2, "GENEROS", 7))
+									{
+										eServiceReferenceDVB ref;
+										if (!pmthandler->getServiceReference(ref))
+										{
+											int pid = (*es)->getPid();
+											messages.send(Message(Message::got_mhw2_title_pid, ref, pid));
+										}
+									}
+								}
+								break;
+							default:
+								break;
+						}
+					}
 				case 0x05: // private
 					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 						desc != (*es)->getDescriptors()->end(); ++desc)
@@ -3409,7 +3515,7 @@ void eEPGCache::channel_data::storeMHWTitle(std::map<__u32, mhw_title_t>::iterat
 	packet->segment_last_table_id = 0x50;
 
 	__u8 *title = isMHW2 ? ((__u8*)(itTitle->second.title))-4 : (__u8*)itTitle->second.title;
-	std::string prog_title = (char *) delimitName( title, name, isMHW2 ? 33 : 23 );
+	std::string prog_title = (char *) delimitName( title, name, isMHW2 ? 35 : 23 );
 	int prog_title_length = prog_title.length();
 
 	int packet_length = EIT_SIZE + EIT_LOOP_SIZE + EIT_SHORT_EVENT_DESCRIPTOR_SIZE +
@@ -3740,14 +3846,14 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 	{
 		eDebug("[EPGC] mhw2 aborted %d", state);
 	}
-	else if (m_MHWFilterMask2.pid == 0x231 && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 0)
+	else if (m_MHWFilterMask2.pid == m_mhw2_channel_pid && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 0)
 	// Channels table
 	{
-		int num_channels = data[119];
+		int num_channels = data[120];
 		m_channels.resize(num_channels);
-		if(dataLen > 119)
+		if(dataLen > 120)
 		{
-			int ptr = 120 + 8 * num_channels;
+			int ptr = 121 + 8 * num_channels;
 			if( dataLen > ptr )
 			{
 				for( int chid = 0; chid < num_channels; ++chid )
@@ -3763,7 +3869,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 		else
 			goto abort;
 		// data seems consistent...
-		const __u8 *tmp = data+120;
+		const __u8 *tmp = data+121;
 		for (int i=0; i < num_channels; ++i)
 		{
 			mhw_channel_name_t channel;
@@ -3774,6 +3880,7 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			channel.channel_id_hi = *(tmp++);
 			channel.channel_id_lo = *(tmp++);
 			m_channels[i]=channel;
+//			eDebug("%d(%02x) %04x: %02x %02x", i, i, (channel.channel_id_hi << 8) | channel.channel_id_lo, *tmp, *(tmp+1));
 			tmp+=2;
 		}
 		for (int i=0; i < num_channels; ++i)
@@ -3784,83 +3891,86 @@ void eEPGCache::channel_data::readMHWData2(const __u8 *data)
 			for (; x < channel_name_len; ++x)
 				channel.name[x]=*(tmp++);
 			channel.name[x+1]=0;
+//			eDebug("%d(%02x) %s", i, i, channel.name);
 		}
 		haveData |= MHW;
 		eDebug("[EPGC] mhw2 %d channels found", m_channels.size());
 	}
-	else if (m_MHWFilterMask2.pid == 0x231 && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 1)
+	else if (m_MHWFilterMask2.pid == m_mhw2_channel_pid && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 1)
 	{
 		// Themes table
 		eDebug("[EPGC] mhw2 themes nyi");
 	}
-	else if (m_MHWFilterMask2.pid == 0x234 && m_MHWFilterMask2.data[0] == 0xe6)
+	else if (m_MHWFilterMask2.pid == m_mhw2_title_pid && m_MHWFilterMask2.data[0] == 0xe6)
 	// Titles table
 	{
 		int pos=18;
-		bool valid=true;
-		int len = ((data[1]&0xf)<<8) + data[2] - 16;
+		bool valid=false;
 		bool finish=false;
-		if(data[dataLen-1] != 0xff)
-			return;
-		while( pos < dataLen )
+
+//		eDebug("%02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x",
+//			data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10],
+//			data[11], data[12], data[13], data[14], data[15], data[16], data[17] );
+
+		while( pos < dataLen && !valid)
 		{
-			valid = false;
-			pos += 7;
-			if( pos < dataLen )
-			{
-				pos += 3;
-				if( pos < dataLen )
-				{
-					if( data[pos] > 0xc0 )
-					{
-						pos += ( data[pos] - 0xc0 );
-						pos += 4;
-						if( pos < dataLen )
-						{
-							if( data[pos] == 0xff )
-							{
-								++pos;
-								valid = true;
-							}
-						}
-					}
-				}
-			}
-			if( !valid )
-			{
-				if (checkMHWTimeout())
-					goto start_summary;
-				return;
-			}
+			pos += 18;
+			pos += (data[pos] & 0x3F) + 4;
+			if( pos == dataLen )
+				valid = true;
 		}
+
+		if (!valid)
+		{
+			if (dataLen > 18)
+				eDebug("mhw2 title table invalid!!");
+			if (checkTimeout())
+				goto abort;
+			if (!m_MHWTimeoutTimer->isActive())
+				startTimeout(5000);
+			return; // continue reading
+		}
+
 		// data seems consistent...
 		mhw_title_t title;
 		pos = 18;
-		while (pos < len)
+		while (pos < dataLen)
 		{
+//			eDebugNoNewLine("    [%02x] %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x [%02x %02x %02x %02x %02x %02x %02x] LL - DESCR - ",
+//				data[pos], data[pos+1], data[pos+2], data[pos+3], data[pos+4], data[pos+5], data[pos+6], data[pos+7], 
+//				data[pos+8], data[pos+9], data[pos+10], data[pos+11], data[pos+12], data[pos+13], data[pos+14], data[pos+15], data[pos+16], data[pos+17]);
 			title.channel_id = data[pos]+1;
-			title.program_id_ml = data[pos+1];
-			title.program_id_lo = data[pos+2];
-			title.mhw2_mjd_hi = data[pos+3];
-			title.mhw2_mjd_lo = data[pos+4];
-			title.mhw2_hours = data[pos+5];
-			title.mhw2_minutes = data[pos+6];
-			title.mhw2_seconds = data[pos+7];
-			int duration = ((data[pos+8] << 8)|data[pos+9]) >> 4;
+			title.mhw2_mjd_hi = data[pos+11];
+			title.mhw2_mjd_lo = data[pos+12];
+			title.mhw2_hours = data[pos+13];
+			title.mhw2_minutes = data[pos+14];
+			title.mhw2_seconds = data[pos+15];
+			int duration = ((data[pos+16] << 8)|data[pos+17]) >> 4;
 			title.mhw2_duration_hi = (duration&0xFF00) >> 8;
 			title.mhw2_duration_lo = duration&0xFF;
-			__u8 slen = data[pos+10] & 0x3f;
+
+			// Create unique key per title
+			__u32 title_id = (data[pos+7] << 24) | (data[pos+8] << 16) | (data[pos+9] << 8) | data[pos+10];
+
+			__u8 slen = data[pos+18] & 0x3f;
 			__u8 *dest = ((__u8*)title.title)-4;
-			memcpy(dest, &data[pos+11], slen>33 ? 33 : slen);
-			memset(dest+slen, 0, 33-slen);
-			pos += 11 + slen;
+			memcpy(dest, &data[pos+19], slen>35 ? 35 : slen);
+			memset(dest+slen, 0, 35-slen);
+			pos += 19 + slen;
+//			eDebug("%02x [%02x %02x]: %s", data[pos], data[pos+1], data[pos+2], dest);
+
 //			not used theme id (data[7] & 0x3f) + (data[pos] & 0x3f);
 			__u32 summary_id = (data[pos+1] << 8) | data[pos+2];
 
-			// Create unique key per title
-			__u32 title_id = (title.channel_id<<16) | (title.program_id_ml<<8) | title.program_id_lo;
+//			if (title.channel_id > m_channels.size())
+//				eDebug("channel_id(%d %02x) to big!!", title.channel_id);
 
-			pos += 4;
+//			eDebug("pos %d prog_id %02x %02x chid %02x summary_id %04x dest %p len %d\n",
+//				pos, title.program_id_ml, title.program_id_lo, title.channel_id, summary_id, dest, slen);
+
+//			eDebug("title_id %08x -> summary_id %04x\n", title_id, summary_id);
+
+			pos += 3;
 
 			std::map<__u32, mhw_title_t>::iterator it = m_titles.find( title_id );
 			if ( it == m_titles.end() )
@@ -3899,7 +4009,7 @@ start_summary:
 			{
 				// Titles table has been read, there are summaries to read.
 				// Start reading summaries, store corresponding titles on the fly.
-				startMHWReader2(0x236, 0x96);
+				startMHWReader2(m_mhw2_summary_pid, 0x96);
 				startMHWTimeout(15000);
 				return;
 			}
@@ -3907,7 +4017,7 @@ start_summary:
 		else
 			return;
 	}
-	else if (m_MHWFilterMask2.pid == 0x236 && m_MHWFilterMask2.data[0] == 0x96)
+	else if (m_MHWFilterMask2.pid == m_mhw2_summary_pid && m_MHWFilterMask2.data[0] == 0x96)
 	// Summaries table
 	{
 		if (!checkMHWTimeout())
@@ -3941,10 +4051,13 @@ start_summary:
 			}
 			else
 				return;  // continue reading
+
 			if (valid)
 			{
 				// data seems consistent...
 				__u32 summary_id = (data[3]<<8)|data[4];
+//				eDebug ("summary id %04x\n", summary_id);
+//				eDebug("[%02x %02x] %02x %02x %02x %02x %02x %02x %02x %02x XX\n", data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13] );
 
 				// ugly workaround to convert const __u8* to char*
 				char *tmp=0;
@@ -3962,7 +4075,7 @@ start_summary:
 					len += lenline + 1;
 				}
 				if( len > 0 )
-				    tmp[pos+len] = 0;
+					tmp[pos+len] = 0;
 				else
 					tmp[pos+1] = 0;
 
@@ -3978,8 +4091,11 @@ start_summary:
 					startMHWTimeout(15000);
 					std::string the_text = (char *) (data + pos + 1);
 
+//					eDebug ("summary id %04x : %s\n", summary_id, data+pos+1);
+
 					while( itProgId != m_program_ids.end() && itProgId->first == summary_id )
 					{
+//						eDebug(".");
 						// Find corresponding title, store title and summary in epgcache.
 						std::map<__u32, mhw_title_t>::iterator itTitle( m_titles.find( itProgId->second ) );
 						if ( itTitle != m_titles.end() )
@@ -3999,16 +4115,16 @@ start_summary:
 	}
 	if (isRunning & eEPGCache::MHW)
 	{
-		if ( m_MHWFilterMask2.pid == 0x231 && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 0)
+		if ( m_MHWFilterMask2.pid == m_mhw2_channel_pid && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 0)
 		{
 			// Channels table has been read, start reading the themes table.
-			startMHWReader2(0x231, 0xC8, 1);
+			startMHWReader2(m_mhw2_channel_pid, 0xC8, 1);
 			return;
 		}
-		else if ( m_MHWFilterMask2.pid == 0x231 && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 1)
+		else if ( m_MHWFilterMask2.pid == m_mhw2_channel_pid && m_MHWFilterMask2.data[0] == 0xC8 && m_MHWFilterMask2.data[1] == 1)
 		{
 			// Themes table has been read, start reading the titles table.
-			startMHWReader2(0x234, 0xe6);
+			startMHWReader2(m_mhw2_title_pid, 0xe6);
 			return;
 		}
 		else

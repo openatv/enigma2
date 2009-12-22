@@ -291,7 +291,10 @@ class Harddisk:
 	# any access has been made to the disc. If there has been no access over a specifed time,
 	# we set the hdd into standby.
 	def readStats(self):
-		l = readFile("/sys/block/%s/stat" % self.device)
+		try:
+			l = open("/sys/block/%s/stat" % self.device).read()
+		except IOError:
+			return -1,-1
 		(nr_read, _, _, _, nr_write) = l.split()[:5]
 		return int(nr_read), int(nr_write)
 
@@ -318,7 +321,7 @@ class Harddisk:
 		stats = self.readStats()
 		l = sum(stats)
 
-		if l != self.last_stat: # access
+		if l != self.last_stat and l >= 0: # access
 			self.last_stat = l
 			self.last_access = t
 			idle_time = 0

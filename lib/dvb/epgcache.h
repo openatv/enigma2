@@ -239,6 +239,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<iDVBSectionReader> m_MHWReader, m_MHWReader2;
 		eDVBSectionFilterMask m_MHWFilterMask, m_MHWFilterMask2;
 		ePtr<eTimer> m_MHWTimeoutTimer;
+		__u16 m_mhw2_channel_pid, m_mhw2_title_pid, m_mhw2_summary_pid;
 		bool m_MHWTimeoutet;
 		void MHWTimeout() { m_MHWTimeoutet=true; }
 		void readMHWData(const __u8 *data);
@@ -273,6 +274,9 @@ public:
 			leaveChannel,
 			quit,
 			got_private_pid,
+			got_mhw2_channel_pid,
+			got_mhw2_title_pid,
+			got_mhw2_summary_pid,
 			timeChanged
 		};
 		int type;
