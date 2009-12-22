@@ -70,7 +70,7 @@
 					<item level="1" text="Device Setup..." entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item level="1" text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>
 				</menu>-->
-				<item level="2" text="Timeshift path..." entryId="timeshift_path"><screen module="LocationBox" screen="TimeshiftLocationBox" /></item>
+				<item level="2" text="Recording paths..." entryId="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
 			</menu>
 			<item weight="10" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 			<item weight="15" level="0" text="Parental control" entryID="parental_setup"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>

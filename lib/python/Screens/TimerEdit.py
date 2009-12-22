@@ -4,6 +4,7 @@ from Components.config import config
 from Components.MenuList import MenuList
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
+from Components.UsageConfig import preferredTimerPath
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
@@ -243,7 +244,7 @@ class TimerEditList(Screen):
 		else:
 			data = parseEvent(event, description = False)
 
-		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, dirname = config.movielist.last_timer_videodir.value, *data))
+		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *data))
 		
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
