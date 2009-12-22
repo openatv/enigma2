@@ -529,6 +529,7 @@ void eFastScan::parseResult()
 		std::string bouquetname = "userbouquet." + bouquetFilename + ".tv";
 		std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
 		eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
+		bouquetref.setData(0, 1); /* bouquet 'servicetype' tv */
 		eBouquet *bouquet = NULL;
 		eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet");
 
@@ -543,11 +544,11 @@ void eFastScan::parseResult()
 			if (!db->getBouquet(rootref, bouquet) && bouquet)
 			{
 				bouquet->m_services.push_front(bouquetref);
+				bouquet->flushChanges();
 			}
-			/* HACK: this seems to be necessary in order to create the bouquet file and start using the new bouquet */
-			bouquet->flushChanges();
-			dvbdb->reloadBouquets();
-			/* */
+			/* loading the bouquet seems to be the only way to add it to the bouquet list */
+			dvbdb->loadBouquet(bouquetname.c_str());
+			/* and now that it has been added to the list, we can find it */
 			db->getBouquet(bouquetref, bouquet);
 		}
 
@@ -598,6 +599,7 @@ void eFastScan::parseResult()
 			std::string bouquetname = "userbouquet." + bouquetFilename + ".radio";
 			std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
 			eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
+			bouquetref.setData(0, 2); /* bouquet 'servicetype' radio */
 			eBouquet *bouquet = NULL;
 			eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets.radio\" ORDER BY bouquet");
 
@@ -612,11 +614,11 @@ void eFastScan::parseResult()
 				if (!db->getBouquet(rootref, bouquet) && bouquet)
 				{
 					bouquet->m_services.push_front(bouquetref);
+					bouquet->flushChanges();
 				}
-				/* HACK: this seems to be necessary in order to create the bouquet file and start using the new bouquet */
-				bouquet->flushChanges();
-				dvbdb->reloadBouquets();
-				/* */
+				/* loading the bouquet seems to be the only way to add it to the bouquet list */
+				dvbdb->loadBouquet(bouquetname.c_str());
+				/* and now that it has been added to the list, we can find it */
 				db->getBouquet(bouquetref, bouquet);
 			}
 
@@ -661,10 +663,9 @@ void eFastScan::parseResult()
 		}
 	}
 
-	/* HACK: try to force services to be saved, and bouquets to be effective right away, the first time they're opened... */
+	/* force services to be saved */
 	if (dvbdb)
 	{
-		dvbdb->reloadBouquets();
 		dvbdb->saveServicelist();
 	}
 
