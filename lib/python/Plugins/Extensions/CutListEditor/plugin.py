@@ -195,7 +195,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
-		self.session.nav.playService(self.old_service)
+		self.session.nav.playService(self.old_service, forceRestart=True)
 
 	def updateStateLabel(self, state):
 		self["SeekState"].setText(state[3].strip())
