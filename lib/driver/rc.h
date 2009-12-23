@@ -53,6 +53,7 @@ public:
 	 * \param key The key to get the description for.
 	 * \result User readable description of given key.
 	 */
+	virtual void setExclusive(bool b) { };
 };
 
 /**
@@ -89,6 +90,7 @@ public:
 	~eRCDriver();
 	
 	void enable(int en) { enabled=en; }
+	virtual void setExclusive(bool) { }
 };
 
 class eRCShortDriver: public eRCDriver
@@ -174,7 +176,6 @@ public:
 class eRCInput: public Object
 {
 	int locked;	
-	int handle;
 	static eRCInput *instance;
 	int keyboardMode;
 #ifdef SWIG
@@ -199,8 +200,6 @@ public:
 
 	void close();
 	bool open();
-
-	void setFile(int handle);
 
 	/* This is only relevant for "keyboard"-styled input devices,
 	   i.e. not plain remote controls. It's up to the input device
@@ -238,7 +237,7 @@ public:
 	void setKeyboardMode(int mode) { keyboardMode = mode; }
 	int  getKeyboardMode() { return keyboardMode; }
 	static eRCInput *getInstance() { return instance; }
-	int lock();
+	void lock();
 	void unlock();
 	int islocked() { return locked; }
 };
