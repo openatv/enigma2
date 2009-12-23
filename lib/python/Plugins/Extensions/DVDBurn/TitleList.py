@@ -200,6 +200,9 @@ class TitleList(Screen, HelpableScreen):
 	def selectedSource(self, source):
 		if source is None:
 			return None
+		if not source.getPath().endswith(".ts"):
+			self.session.open(MessageBox,text = _("You can only burn Dreambox recordings!"), type = MessageBox.TYPE_ERROR)
+			return None
 		t = self.project.addService(source)
 		try:
 			editor = source.edit
