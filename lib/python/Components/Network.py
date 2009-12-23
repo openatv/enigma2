@@ -24,6 +24,7 @@ class Network:
 		self.activateConsole = Console()
 		self.resetNetworkConsole = Console()
 		self.DnsConsole = Console()
+		self.PingConsole = Console()
 		self.config_ready = None
 		self.getInterfaces()
 
@@ -475,10 +476,17 @@ class Network:
 
 	def getLinkStateFinished(self, result, retval,extra_args):
 		(callback) = extra_args
+
 		if self.LinkConsole is not None:
 			if len(self.LinkConsole.appContainers) == 0:
 				callback(result)
 			
+	def stopPingConsole(self):
+		if self.PingConsole is not None:
+			if len(self.PingConsole.appContainers):
+				for name in self.PingConsole.appContainers.keys():
+					self.PingConsole.kill(name)
+
 	def stopLinkStateConsole(self):
 		if self.LinkConsole is not None:
 			if len(self.LinkConsole.appContainers):

@@ -66,6 +66,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		self.setTitle(_("Backup is running..."))
 
 	def doBackup(self):
+		configfile.save()
 		try:
 			if (path.exists(self.backuppath) == False):
 				makedirs(self.backuppath)
