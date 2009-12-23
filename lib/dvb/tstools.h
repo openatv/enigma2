@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <lib/dvb/pvrparse.h>
 #include <lib/base/rawfile.h>
+#include <lib/base/elock.h>
 
 /*
  * Note: we're interested in PTS values, not STC values.
@@ -75,9 +76,10 @@ public:
 private:
 	int m_pid;
 	int m_maxrange;
-	
+
+	eSingleLock m_file_lock;
 	eRawFile m_file;
-	
+
 	int m_begin_valid, m_end_valid;
 	pts_t m_pts_begin, m_pts_end;
 	off_t m_offset_begin, m_offset_end;

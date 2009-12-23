@@ -1029,6 +1029,9 @@ void eDVBServicePlay::serviceEvent(int event)
 		m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
+	case eDVBServicePMTHandler::eventPreStart:
+		loadCuesheet();
+		break;
 	case eDVBServicePMTHandler::eventEOF:
 		m_event((iPlayableService*)this, evEOF);
 		break;
@@ -1095,7 +1098,6 @@ RESULT eDVBServicePlay::start()
 			m_event_handler.inject(event, 0);
 			m_event_handler.inject(empty, 1);
 		}
-		loadCuesheet();
 		m_event(this, evStart);
 	}
 	return 0;

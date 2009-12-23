@@ -522,7 +522,7 @@ public:
 	virtual RESULT getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &)=0;
 	enum 
 	{
-		evtEOF, evtSOF, evtFailed
+		evtPreStart, evtEOF, evtSOF, evtFailed
 	};
 	virtual RESULT connectStateChange(const Slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT connectEvent(const Slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
