@@ -501,12 +501,14 @@ void eFastScan::parseResult()
 		{
 			if (useFixedServiceInfo)
 			{
-				/* replace current settings by fastscan settings */
-				if (!(dvb_service->m_flags & eDVBService::dxHoldName))
-				{
-					dvb_service->m_service_name = service->second->m_service_name;
-					dvb_service->m_service_name_sort = service->second->m_service_name_sort;
-				}
+				/*
+				 * replace current settings by fastscan settings,
+				 * note that we don't obey the dxHoldName flag here,
+				 * as the user explicitly gave us permission to use
+				 * the fastscan names.
+				 */
+				dvb_service->m_service_name = service->second->m_service_name;
+				dvb_service->m_service_name_sort = service->second->m_service_name_sort;
 				dvb_service->m_provider_name = service->second->m_provider_name;
 			}
 			dvb_service->m_flags |= service->second->m_flags;
