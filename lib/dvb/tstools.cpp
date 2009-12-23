@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 eDVBTSTools::eDVBTSTools()
+	:m_file_lock(true)
 {
 	m_pid = -1;
 	m_maxrange = 256*1024;
@@ -47,6 +48,7 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	
 	m_samples_taken = 0;
 
+	eSingleLocker l(m_file_lock);
 	if (m_file.open(filename, 1) < 0)
 		return -1;
 	return 0;
@@ -54,6 +56,7 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 
 void eDVBTSTools::closeFile()
 {
+	eSingleLocker l(m_file_lock);
 	m_file.close();
 }
 
@@ -78,7 +81,8 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		return -1;
 
 	offset -= offset % 188;
-	
+
+	eSingleLocker l(m_file_lock);
 	if (m_file.lseek(offset, SEEK_SET) < 0)
 	{
 		eDebug("lseek failed");
@@ -417,7 +421,8 @@ void eDVBTSTools::calcEnd()
 {
 	if (!m_file.valid())
 		return;
-	
+
+	eSingleLocker l(m_file_lock);
 	off_t end = m_file.lseek(0, SEEK_END);
 	
 	if (llabs(end - m_last_filelength) > 1*1024*1024)
@@ -574,6 +579,7 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 		return -1;
 	}
 
+	eSingleLocker l(m_file_lock);
 	if (m_file.lseek(0, SEEK_SET) < 0)
 	{
 		eDebug("seek failed");
