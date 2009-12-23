@@ -48,16 +48,35 @@ class CryptoInfo(Converter, object):
 			for line in ecm:
 				d = line.split(':', 1)
 				if len(d) > 1:
-					info[d[0]] = d[1].strip()
+					info[d[0].strip()] = d[1].strip()
 			# info is dictionary
 			using = info.get('using', '')
 			if using:
+				# CCcam
 				if using == 'fta':
 					self.textvalue = _("FTA")
 				else:
 					self.textvalue = "%s @%s (%ss)" % (info.get('address', '?'), info.get('hops', '-'), info.get('ecm time', '?'))
 			else:
-				self.textvalue = ""
+				decode = info.get('decode', None)
+				if decode:
+					# gbox (untested)
+					if info['decode'] == 'Network':
+						cardid = 'id:' + info.get('prov', '')
+						try:
+							share = open('/tmp/share.info', 'rb').readlines()
+							for line in share:
+								if cardid in line:
+									self.textvalue = line.strip()
+									break
+							else:
+								self.textvalue = cardid
+						except:
+							self.textvalue = decode
+					else:
+						self.textvalue = decode
+				else:
+					self.textvalue = ""
 		except:
 			ecm = None
 			self.textvalue = ""
