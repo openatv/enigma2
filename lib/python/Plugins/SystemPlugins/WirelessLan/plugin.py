@@ -262,11 +262,6 @@ class WlanScan(Screen):
 		self.updateAPList()
 
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
-<<<<<<< HEAD:lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py
-		print "buildEntryComponent",essid
-		print "buildEntryComponent",bssid
-=======
->>>>>>> bug_203_fix_wrong_networkstate:lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
 		encryption = encrypted and _("Yes") or _("No")
 		if bssid == 'hidden...':
