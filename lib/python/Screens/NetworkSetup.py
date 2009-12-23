@@ -15,7 +15,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
@@ -37,14 +37,14 @@ def InterfaceEntryComponent(index,name,default,active ):
 	num_configured_if = len(iNetwork.getConfiguredAdapters())
 	if num_configured_if >= 2:
 		if default is True:
-			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/buttons/button_blue.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue.png"))
 		if default is False:
-			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/buttons/button_blue_off.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue_off.png"))
 		res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(25, 25), png = png))
 	if active is True:
-		png2 = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_on.png"))
+		png2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
 	if active is False:
-		png2 = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/lock_error.png"))
+		png2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_error.png"))
 	res.append(MultiContentEntryPixmapAlphaTest(pos=(40, 1), size=(25, 25), png = png2))
 	return res
 
