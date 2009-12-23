@@ -5,7 +5,8 @@ from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.NimManager import nimmanager
-from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement
+from Components.config import getConfigListEntry, config, ConfigNothing, ConfigSelection, updateConfigElement,\
+	ConfigSatlist
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -381,10 +382,11 @@ class NimSetup(Screen, ConfigListScreen):
 
 		ConfigListScreen.__init__(self, self.list)
 
-		self["actions"] = ActionMap(["SetupActions"],
+		self["actions"] = ActionMap(["SetupActions", "SatlistShortcutAction"],
 		{
 			"ok": self.keySave,
 			"cancel": self.keyCancel,
+			"nothingconnected": self.nothingConnectedShortcut
 		}, -2)
 
 		self.slotid = slotid
@@ -421,6 +423,11 @@ class NimSetup(Screen, ConfigListScreen):
 		# we need to call saveAll to reset the connectedTo choices
 		self.saveAll()
 		self.close()
+		
+	def nothingConnectedShortcut(self):
+		if type(self["config"].getCurrent()[1]) is ConfigSatlist:
+			self["config"].getCurrent()[1].setValue("3601")
+			self["config"].invalidateCurrent()
 			
 class NimSelection(Screen):
 	def __init__(self, session):
