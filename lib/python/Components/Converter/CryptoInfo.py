@@ -55,7 +55,7 @@ class CryptoInfo(Converter, object):
 				if using == 'fta':
 					self.textvalue = _("FTA")
 				else:
-					self.textvalue = "%s (%ss) %sh" % (info.get('address', '?'), info.get('ecm time', '?'), info.get('hops', '-'))
+					self.textvalue = "%s @%s (%ss)" % (info.get('address', '?'), info.get('hops', '-'), info.get('ecm time', '?'))
 			else:
 				self.textvalue = ""
 		except:
