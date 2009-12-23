@@ -7,26 +7,25 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 from Screen import Screen
-from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
 class VirtualKeyBoardList(MenuList):
 	def __init__(self, list, enableWrapAround=False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 22))
+		self.l.setFont(0, gFont("Regular", 28))
 		self.l.setItemHeight(45)
 
 def VirtualKeyBoardEntryComponent(keys, selectedKey,shiftMode=False):
-	key_backspace = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_backspace.png"))
-	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_bg.png"))
-	key_clr = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_clr.png"))
-	key_esc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_esc.png"))
-	key_ok = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_ok.png"))
-	key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_sel.png"))
-	key_shift = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_shift.png"))
-	key_shift_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_shift_sel.png"))
-	key_space = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/vkey_space.png"))
-	
+	key_backspace = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_backspace.png"))
+	key_bg = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_bg.png"))
+	key_clr = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_clr.png"))
+	key_esc = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_esc.png"))
+	key_ok = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_ok.png"))
+	key_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_sel.png"))
+	key_shift = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_shift.png"))
+	key_shift_sel = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_shift_sel.png"))
+	key_space = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/vkey_space.png"))
 	res = [ (keys) ]
 	
 	x = 0
@@ -36,33 +35,45 @@ def VirtualKeyBoardEntryComponent(keys, selectedKey,shiftMode=False):
 	else:
 		shiftkey_png = key_shift
 	for key in keys:
+		width = None
 		if key == "EXIT":
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_esc))
+			width = key_esc.size().width()
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_esc))
 		elif key == "BACKSPACE":
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_backspace))
+			width = key_backspace.size().width()
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_backspace))
 		elif key == "CLEAR":
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_clr))
+			width = key_clr.size().width()
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_clr))
 		elif key == "SHIFT":
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=shiftkey_png))
+			width = shiftkey_png.size().width()
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=shiftkey_png))
 		elif key == "SPACE":
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_space))
+			width = key_space.size().width()
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_space))
 		elif key == "OK":
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_ok))
+			width = key_ok.size().width()
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_ok))
 		#elif key == "<-":
 		#	res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_left))
 		#elif key == "->":
 		#	res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_right))
 		
 		else:
+			width = key_bg.size().width()
 			res.extend((
-				MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_bg),
-				MultiContentEntryText(pos=(x, 0), size=(45, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER)
+				MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_bg),
+				MultiContentEntryText(pos=(x, 0), size=(width, 45), font=0, text=key.encode("utf-8"), flags=RT_HALIGN_CENTER | RT_VALIGN_CENTER)
 			))
 		
 		if selectedKey == count:
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(45, 45), png=key_sel))
-		
-		x += 45
+			width = key_sel.size().width()
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(width, 45), png=key_sel))
+
+		if width is not None:
+			x += width
+		else:
+			x += 45
 		count += 1
 	
 	return res
