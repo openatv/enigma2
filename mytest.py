@@ -1,10 +1,10 @@
 from Tools.Profile import profile, profile_final
 
 profile("PYTHON_START")
-
+import Tools.RedirectOutput
+import enigma
 import eConsoleImpl
 import eBaseImpl
-import enigma
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
