@@ -665,6 +665,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.session = session
 		self.iface = iface
 		self.restartLanRef = None
+		self.LinkState = None
 		self.mainmenu = self.genMainMenu()
 		self["menulist"] = MenuList(self.mainmenu)
 		self["key_red"] = StaticText(_("Close"))
@@ -714,6 +715,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.onClose.append(self.cleanup)
 
 	def ok(self):
+		self.cleanup()
 		if self["menulist"].getCurrent()[1] == 'edit':
 			if self.iface == 'wlan0' or self.iface == 'ath0':
 				try:
@@ -812,6 +814,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext )
 		
 	def updateStatusbar(self, data = None):
+		self.mainmenu = self.genMainMenu()
+		self["menulist"].l.setList(self.mainmenu)
 		self["IFtext"].setText(_("Network:"))
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
@@ -881,20 +885,14 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 						# Display Wlan not available Message
 						self.showErrorMessage()
 			else:
-				self.mainmenu = self.genMainMenu()
-				self["menulist"].l.setList(self.mainmenu)
 				self.updateStatusbar()
 		else:
-			self.mainmenu = self.genMainMenu()
-			self["menulist"].l.setList(self.mainmenu)
 			self.updateStatusbar()
 
 	def WlanStatusClosed(self, *ret):
 		if ret is not None and len(ret):
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
 			iStatus.stopWlanConsole()
-			self.mainmenu = self.genMainMenu()
-			self["menulist"].l.setList(self.mainmenu)
 			self.updateStatusbar()
 
 	def WlanScanClosed(self,*ret):
@@ -903,8 +901,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
 			iStatus.stopWlanConsole()
-			self.mainmenu = self.genMainMenu()
-			self["menulist"].l.setList(self.mainmenu)
 			self.updateStatusbar()
 			
 	def restartLan(self, ret = False):
@@ -926,15 +922,19 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.session.open(MessageBox, _("Finished restarting your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
 	def dataAvail(self,data):
-		self.output = data.strip()
-		result = self.output.split('\n')
-		pattern = re_compile("Link detected: yes")
-		for item in result:
-			if re_search(pattern, item):
-				self["statuspic"].setPixmapNum(0)
-			else:
-				self["statuspic"].setPixmapNum(1)
-		self["statuspic"].show()
+		self.LinkState = None
+		for line in data.splitlines():
+			line = line.strip()
+			if 'Link detected:' in line:
+				if "yes" in line:
+					self.LinkState = True
+				else:
+					self.LinkState = False
+		if self.LinkState == True:
+			iNetwork.checkNetworkState(self.checkNetworkCB)
+		else:
+			self["statuspic"].setPixmapNum(1)
+			self["statuspic"].show()			
 
 	def showErrorMessage(self):
 		self.session.open(MessageBox, self.errortext, type = MessageBox.TYPE_INFO,timeout = 10 )
@@ -942,6 +942,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
 		iNetwork.stopDeactivateInterfaceConsole()
+		iNetwork.stopPingConsole()
 		try:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 		except ImportError:
@@ -950,14 +951,33 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			iStatus.stopWlanConsole()
 
 	def getInfoCB(self,data,status):
+		self.LinkState = None
 		if data is not None:
 			if data is True:
 				if status is not None:
 					if status[self.iface]["acesspoint"] == "No Connection" or status[self.iface]["acesspoint"] == "Not-Associated" or status[self.iface]["acesspoint"] == False:
+						self.LinkState = False
 						self["statuspic"].setPixmapNum(1)
+						self["statuspic"].show()
 					else:
-						self["statuspic"].setPixmapNum(0)
-					self["statuspic"].show()
+						self.LinkState = True
+						iNetwork.checkNetworkState(self.checkNetworkCB)
+
+	def checkNetworkCB(self,data):
+		if iNetwork.getAdapterAttribute(self.iface, "up") is True:
+			if self.LinkState is True:
+				if data <= 2:
+					self["statuspic"].setPixmapNum(0)
+				else:
+					self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()	
+			else:
+				self["statuspic"].setPixmapNum(1)
+				self["statuspic"].show()
+		else:
+			self["statuspic"].setPixmapNum(1)
+			self["statuspic"].show()
+
 
 class NetworkAdapterTest(Screen):	
 	def __init__(self, session,iface):
@@ -1376,4 +1396,4 @@ class NetworkAdapterTest(Screen):
 			pass
 		else:
 			iStatus.stopWlanConsole()
-			
+
