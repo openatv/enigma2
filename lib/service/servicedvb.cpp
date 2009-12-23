@@ -917,7 +917,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_is_pvr = !m_reference.path.empty();
 	
 	m_timeshift_enabled = m_timeshift_active = 0, m_timeshift_changed = 0;
-	m_skipmode = 0;
+	m_skipmode = m_fastforward = m_slowmotion = 0;
 	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
@@ -1185,7 +1185,10 @@ RESULT eDVBServicePlay::setSlowMotion(int ratio)
 	eDebug("eDVBServicePlay::setSlowMotion(%d)", ratio);
 	setFastForward_internal(0);
 	if (m_decoder)
+	{
+		m_slowmotion = ratio;
 		return m_decoder->setSlowMotion(ratio);
+	}
 	else
 		return -1;
 }
@@ -1197,10 +1200,11 @@ RESULT eDVBServicePlay::setFastForward(int ratio)
 	return setFastForward_internal(ratio);
 }
 
-RESULT eDVBServicePlay::setFastForward_internal(int ratio)
+RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 {
-	int skipmode, ffratio;
-	
+	int skipmode, ffratio, ret = 0;
+	pts_t pos=0;
+
 	if (ratio > 8)
 	{
 		skipmode = ratio;
@@ -1225,19 +1229,28 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio)
 		if (m_cue)
 			m_cue->setSkipmode(skipmode * 90000); /* convert to 90000 per second */
 	}
-	
+
 	m_skipmode = skipmode;
-	
+
+	if (final_seek)
+		eDebug("trickplay stopped .. ret %d, pos %lld", getPlayPosition(pos), pos);
+
+	m_fastforward = ffratio;
+
 	if (!m_decoder)
 		return -1;
-		
+
 	if (ffratio == 0)
 		; /* return m_decoder->play(); is done in caller*/
 	else if (ffratio != 1)
-		return m_decoder->setFastForward(ffratio);
+		ret = m_decoder->setFastForward(ffratio);
 	else
-		return m_decoder->setTrickmode();
-	return 0;
+		ret = m_decoder->setTrickmode();
+
+	if (pos)
+		eDebug("final seek after trickplay ret %d", seekTo(pos));
+
+	return ret;
 }
 
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
@@ -1266,9 +1279,10 @@ RESULT eDVBServicePlay::getLength(pts_t &len)
 RESULT eDVBServicePlay::pause()
 {
 	eDebug("eDVBServicePlay::pause");
-	setFastForward_internal(0);
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
 	if (m_decoder)
 	{
+		m_slowmotion = 0;
 		m_is_paused = 1;
 		return m_decoder->pause();
 	} else
@@ -1278,9 +1292,10 @@ RESULT eDVBServicePlay::pause()
 RESULT eDVBServicePlay::unpause()
 {
 	eDebug("eDVBServicePlay::unpause");
-	setFastForward_internal(0);
+	setFastForward_internal(0, m_slowmotion || m_fastforward > 1);
 	if (m_decoder)
 	{
+		m_slowmotion = 0;
 		m_is_paused = 0;
 		return m_decoder->play();
 	} else
@@ -1728,6 +1743,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 {
 	eDVBServicePMTHandler::program program;
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
+	pts_t position = -1;
 
 	if (h.getProgramInfo(program))
 		return -1;
@@ -1750,6 +1766,9 @@ int eDVBServicePlay::selectAudioStream(int i)
 		apidtype = program.audioStreams[stream].type;
 	}
 
+	if (i != -1 && apid != m_current_audio_pid && (m_is_pvr || m_timeshift_active))
+		eDebug("getPlayPosition ret %d, pos %lld in selectAudioStream", getPlayPosition(position), position);
+
 	m_current_audio_pid = apid;
 
 	if (m_is_primary && m_decoder->setAudioPID(apid, apidtype))
@@ -1757,6 +1776,9 @@ int eDVBServicePlay::selectAudioStream(int i)
 		eDebug("set audio pid failed");
 		return -4;
 	}
+
+	if (position != -1)
+		eDebug("seekTo ret %d", seekTo(position));
 
 	int rdsPid = apid;
 
@@ -2229,7 +2251,7 @@ void eDVBServicePlay::switchToLive()
 	m_new_subtitle_page_connection = 0;
 	m_rds_decoder_event_connection = 0;
 	m_video_event_connection = 0;
-	m_is_paused = m_skipmode = 0; /* not supported in live mode */
+	m_is_paused = m_skipmode = m_fastforward = m_slowmotion = 0; /* not supported in live mode */
 
 		/* free the timeshift service handler, we need the resources */
 	m_service_handler_timeshift.free();
@@ -2263,12 +2285,13 @@ void eDVBServicePlay::switchToTimeshift()
 	r.path = m_timeshift_file;
 
 	m_cue = new eCueSheet();
+	m_cue->seekTo(0, -1000);
 	m_service_handler_timeshift.tune(r, 1, m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
 	updateDecoder(); /* mainly to switch off PCR, and to set pause */
-	
+
 	m_event((iPlayableService*)this, evSeekableStatusChanged);
 }
 
@@ -2398,17 +2421,8 @@ void eDVBServicePlay::updateDecoder()
 			}
 		}
 
-		std::string config_delay;
-		int config_delay_int = 0;
-		if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
-			config_delay_int = atoi(config_delay.c_str());
-		m_decoder->setAC3Delay(ac3_delay == -1 ? config_delay_int : ac3_delay + config_delay_int);
-
-		if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
-			config_delay_int = atoi(config_delay.c_str());
-		else
-			config_delay_int = 0;
-		m_decoder->setPCMDelay(pcm_delay == -1 ? config_delay_int : pcm_delay + config_delay_int);
+		setAC3Delay(ac3_delay == -1 ? 0 : ac3_delay);
+		setPCMDelay(pcm_delay == -1 ? 0 : pcm_delay);
 
 		m_decoder->setVideoPID(vpid, vpidtype);
 		selectAudioStream();
@@ -2932,16 +2946,28 @@ void eDVBServicePlay::setAC3Delay(int delay)
 {
 	if (m_dvb_service)
 		m_dvb_service->setCacheEntry(eDVBService::cAC3DELAY, delay ? delay : -1);
-	if (m_decoder)
-		m_decoder->setAC3Delay(delay);
+	if (m_decoder) {
+		std::string config_delay;
+		int config_delay_int = 0;
+		if(ePythonConfigQuery::getConfigValue("config.av.generalAC3delay", config_delay) == 0)
+			config_delay_int = atoi(config_delay.c_str());
+		m_decoder->setAC3Delay(delay + config_delay_int);
+	}
 }
 
 void eDVBServicePlay::setPCMDelay(int delay)
 {
 	if (m_dvb_service)
 		m_dvb_service->setCacheEntry(eDVBService::cPCMDELAY, delay ? delay : -1);
-	if (m_decoder)
-		m_decoder->setPCMDelay(delay);
+	if (m_decoder) {
+		std::string config_delay;
+		int config_delay_int = 0;
+		if(ePythonConfigQuery::getConfigValue("config.av.generalPCMdelay", config_delay) == 0)
+			config_delay_int = atoi(config_delay.c_str());
+		else
+			config_delay_int = 0;
+		m_decoder->setPCMDelay(delay + config_delay_int);
+	}
 }
 
 void eDVBServicePlay::video_event(struct iTSMPEGDecoder::videoEvent event)

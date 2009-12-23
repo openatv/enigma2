@@ -134,7 +134,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 					pts |= ((unsigned long long)(packet[ 9]&0xFF)) << 1;
 					pts |= ((unsigned long long)(packet[10]&0x80)) >> 7;
 					offset -= 188;
-					eDebug("PCR  found at %llx: %16llx", offset, pts);
+					eDebug("PCR %16llx found at %lld pid %02x (%02x %02x %02x %02x %02x %02x %02x %02x %02x %02x %02x)", pts, offset, pid, packet[0], packet[1], packet[2], packet[3], packet[4], packet[5], packet[6], packet[7], packet[8], packet[9], packet[10]);
 					if (fixed && fixupPTS(offset, pts))
 						return -1;
 					return 0;
@@ -171,11 +171,11 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			pts |= ((unsigned long long)(payload[13]&0xFE)) >> 1;
 			offset -= 188;
 
-//			eDebug("found pts %08llx at %08llx pid %02x stream: %02x", pts, offset, pid, payload[3]);
-			
+			eDebug("PTS %16llx found at %lld pid %02x stream: %02x", pts, offset, pid, payload[3]);
+
 				/* convert to zero-based */
 			if (fixed && fixupPTS(offset, pts))
-					return -1;
+				return -1;
 			return 0;
 		}
 	}
@@ -212,10 +212,13 @@ int eDVBTSTools::fixupPTS(const off_t &offset, pts_t &now)
 			now -= pos;
 		return 0;
 	}
+	eDebug("eDVBTSTools::fixupPTS failed!");
+	return -1;
 }
 
 int eDVBTSTools::getOffset(off_t &offset, pts_t &pts, int marg)
 {
+	eDebug("getOffset for pts 0x%llx", pts);
 	if (m_use_streaminfo)
 	{
 		if (pts >= m_pts_end && marg > 0 && m_end_valid)
@@ -440,6 +443,8 @@ void eDVBTSTools::takeSamples()
 	m_samples_taken = 1;
 	m_samples.clear();
 	pts_t dummy;
+	int retries=2;
+
 	if (calcLen(dummy) == -1)
 		return;
 	
@@ -449,21 +454,27 @@ void eDVBTSTools::takeSamples()
 		bytes_per_sample = 40*1024*1024;
 
 	bytes_per_sample -= bytes_per_sample % 188;
-	
-	for (off_t offset = m_offset_begin; offset < m_offset_end; offset += bytes_per_sample)
+
+	eDebug("samples step %lld, pts begin %llx, pts end %llx, offs begin %lld, offs end %lld:",
+		bytes_per_sample, m_pts_begin, m_pts_end, m_offset_begin, m_offset_end);
+
+	for (off_t offset = m_offset_begin; offset < m_offset_end;)
 	{
 		pts_t p;
-		takeSample(offset, p);
+		if (takeSample(offset, p) && retries--)
+			continue;
+		retries = 2;
+		offset += bytes_per_sample;
 	}
 	m_samples[0] = m_offset_begin;
 	m_samples[m_pts_end - m_pts_begin] = m_offset_end;
-	
-//	eDebug("begin, end: %llx %llx", m_offset_begin, m_offset_end); 
 }
 
 	/* returns 0 when a sample was taken. */
 int eDVBTSTools::takeSample(off_t off, pts_t &p)
 {
+	off_t offset_org = off;
+
 	if (!eDVBTSTools::getPTS(off, p, 1))
 	{
 			/* as we are happily mixing PTS and PCR values (no comment, please), we might
@@ -481,18 +492,18 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 			{
 				if ((l->second > off) || (u->second < off))
 				{
-					eDebug("ignoring sample %llx %llx %llx (%lld %lld %lld)",
+					eDebug("ignoring sample %lld %lld %lld (%llx %llx %llx)",
 						l->second, off, u->second, l->first, p, u->first);
 					return 1;
 				}
 			}
 		}
 
-		
+		eDebug("adding sample %lld: pts 0x%llx -> pos %lld (diff %lld bytes)", offset_org, p, off, off-offset_org);
 		m_samples[p] = off;
 		return 0;
 	}
-	return 1;
+	return -1;
 }
 
 int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
@@ -652,18 +663,23 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 
 int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int frame_types)
 {
-	int nr_frames = 0;
+	int nr_frames, direction;
 //	eDebug("trying to move %d frames at %llx", distance, offset);
 	
 	frame_types = frametypeI; /* TODO: intelligent "allow IP frames when not crossing an I-Frame */
 
-	int direction = distance > 0 ? 0 : -1;
-	distance = abs(distance);
-	
 	off_t new_offset = offset;
 	size_t new_len = len;
 	int first = 1;
 
+	if (distance > 0) {
+		direction = 0;
+                nr_frames = 0;
+        } else {
+		direction = -1;
+                nr_frames = -1;
+		distance = -distance+1;
+        }	
 	while (distance > 0)
 	{
 		int dir = direction;
@@ -677,12 +693,18 @@ int eDVBTSTools::findNextPicture(off_t &offset, size_t &len, int &distance, int 
 		
 //		eDebug("we moved %d, %d to go frames (now at %llx)", dir, distance, new_offset);
 
-		if (distance >= 0 || first)
+		if (distance >= 0 || direction == 0)
 		{
 			first = 0;
 			offset = new_offset;
 			len = new_len;
 			nr_frames += abs(dir);
+		} 
+		else if (first) {
+			first = 0;
+			offset = new_offset;
+			len = new_len;
+			nr_frames += abs(dir) + distance; // never jump forward during rewind
 		}
 	}
 

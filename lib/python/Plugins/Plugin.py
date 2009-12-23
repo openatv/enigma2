@@ -52,6 +52,15 @@ class PluginDescriptor:
 	# reason (True: Networkconfig read finished, False: Networkconfig reload initiated )
 	WHERE_NETWORKCONFIG_READ = 12
 
+	WHERE_AUDIOMENU = 13
+
+	# fnc 'SoftwareSupported' or  'AdvancedSoftwareSupported' must take a parameter and return None
+	# if the plugin should not be displayed inside Softwaremanger or return a function which is called with session
+	# and 'None' as parameter to call the plugin from the Softwaremanager menus. "menuEntryName" and "menuEntryDescription"
+	# should be provided to name and describe the new menu entry.
+	WHERE_SOFTWAREMANAGER = 14
+
+
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, internal = False):
 		self.name = name
 		self.internal = internal

@@ -1462,12 +1462,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 			continue;
 		}
 		
-		size_t iframe_len;
-			/* try to align to iframe */
-		int direction = pts < 0 ? -1 : 1;
-		m_tstools.findFrame(offset, iframe_len, direction);
-
-		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx (skipped additional %d frames due to iframe re-align)", relative, pts, offset, direction);
+		eDebug("ok, resolved skip (rel: %d, diff %lld), now at %08llx", relative, pts, offset);
 		current_offset = align(offset, blocksize); /* in case tstools return non-aligned offset */
 	}
 
