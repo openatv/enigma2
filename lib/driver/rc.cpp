@@ -81,7 +81,6 @@ eRCShortDriver::eRCShortDriver(const char *filename): eRCDriver(eRCInput::getIns
 	{
 		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCShortDriver::keyPressed);
-		eRCInput::getInstance()->setFile(handle);
 	}
 }
 
@@ -115,7 +114,6 @@ eRCInputEventDriver::eRCInputEventDriver(const char *filename): eRCDriver(eRCInp
 	{
 		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCInputEventDriver::keyPressed);
-		eRCInput::getInstance()->setFile(handle);
 	}
 }
 
@@ -132,7 +130,7 @@ void eRCInputEventDriver::setExclusive(bool b)
 	if (handle >= 0)
 	{
 		int grab = b;
-		if (::ioctl(handle, EVIOCGRAB, &grab) < 0)
+		if (::ioctl(handle, EVIOCGRAB, grab) < 0)
 			perror("EVIOCGRAB");
 	}
 }
@@ -175,7 +173,6 @@ eRCInput::eRCInput()
 {
 	ASSERT( !instance);
 	instance=this;
-	handle = -1;
 	locked = 0;
 	keyboardMode = kmNone;
 }
@@ -193,21 +190,18 @@ bool eRCInput::open()
 	return false;
 }
 
-int eRCInput::lock()
+void eRCInput::lock()
 {
 	locked=1;
-	return handle;
+	for (std::map<std::string,eRCDevice*>::iterator i=devices.begin(); i != devices.end(); ++i)
+		i->second->setExclusive(false);
 }
 
 void eRCInput::unlock()
 {
-	if (locked)
-		locked=0;
-}
-
-void eRCInput::setFile(int newh)
-{
-	handle=newh;
+	locked=0;
+	for (std::map<std::string,eRCDevice*>::iterator i=devices.begin(); i != devices.end(); ++i)
+		i->second->setExclusive(true);
 }
 
 void eRCInput::addDevice(const std::string &id, eRCDevice *dev)
@@ -226,7 +220,7 @@ eRCDevice *eRCInput::getDevice(const std::string &id)
 	if (i == devices.end())
 	{
 		eDebug("failed, possible choices are:");
-		for (std::map<std::string,eRCDevice*>::iterator i=devices.begin(); i != devices.end(); ++i)	
+		for (std::map<std::string,eRCDevice*>::iterator i=devices.begin(); i != devices.end(); ++i)
 			eDebug("%s", i->first.c_str());
 		return 0;
 	}
