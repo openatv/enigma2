@@ -4,15 +4,11 @@ from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
 
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
+from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, configfile, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, getConfigListEntry, ConfigSelection, ConfigPassword
 from Components.Network import iNetwork
 
-#from Components.Label import Label
-#from Components.MenuList import MenuList
-#from Components.PluginComponent import plugins
-#from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
-#import time, os, re
 
 
 config.misc.firstrun = ConfigBoolean(default = True)
@@ -39,7 +35,7 @@ config.plugins.wlan.encryption.psk = NoSave(ConfigPassword(default = "mysecurewl
 class NetworkWizard(WizardLanguage, Rc):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
-			<widget name="text" position="153,40" size="340,330" font="Regular;22" />
+			<widget name="text" position="153,40" size="340,300" font="Regular;22" />
 			<widget source="list" render="Listbox" position="53,340" size="440,180" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
 			</widget>
@@ -52,6 +48,10 @@ class NetworkWizard(WizardLanguage, Rc):
 			<widget name="arrowdown2" pixmap="skin_default/arrowdown.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 			<widget name="arrowup" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
 			<widget name="arrowup2" pixmap="skin_default/arrowup.png" position="-100,-100" zPosition="11" size="37,70" alphatest="on" />
+			<widget source="VKeyIcon" render="Pixmap" pixmap="skin_default/buttons/key_text.png" position="40,260" zPosition="0" size="35,25" transparent="1" alphatest="on" >
+				<convert type="ConditionalShowHide" />
+			</widget>
+			<widget name="HelpWindow" pixmap="skin_default/buttons/key_text.png" position="125,170" zPosition="1" size="1,1" transparent="1" alphatest="on" />	
 		</screen>"""
 	def __init__(self, session):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")
@@ -59,7 +59,10 @@ class NetworkWizard(WizardLanguage, Rc):
 		Rc.__init__(self)
 		self.session = session
 		self["wizard"] = Pixmap()
-		
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+
 		self.InterfaceState = None
 		self.isInterfaceUp = None
 		self.WlanPluginInstalled = None
