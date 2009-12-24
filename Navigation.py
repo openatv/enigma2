@@ -81,7 +81,7 @@ class Navigation:
 	
 	def recordService(self, ref, simulate=False):
 		service = None
-		print "recording service: %s" % (str(ref))
+		if not simulate: print "recording service: %s" % (str(ref))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
 		if ref:

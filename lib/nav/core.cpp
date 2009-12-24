@@ -76,9 +76,11 @@ RESULT eNavigation::recordService(const eServiceReference &ref, ePtr<iRecordable
 {
 	ASSERT(m_servicehandler);
 	RESULT res = m_servicehandler->record(ref, service);
-	eDebug("record: %d", res);
 	if (res)
+	{
+		eDebug("record: %d", res);
 		service = 0;
+	}
 	else
 	{
 		if (simulate)
