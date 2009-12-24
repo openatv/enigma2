@@ -1,6 +1,7 @@
 #include <lib/dvb/metaparser.h>
 #include <lib/base/eerror.h>
 #include <errno.h>
+#include <sys/stat.h>
 
 eDVBMetaParser::eDVBMetaParser()
 {
@@ -8,6 +9,16 @@ eDVBMetaParser::eDVBMetaParser()
 	m_data_ok = 0;
 	m_length = 0;
 	m_filesize = 0;
+}
+
+static int getctime(const std::string &basename)
+{
+	struct stat s;
+	if (::stat(basename.c_str(), &s) == 0)
+	{
+		return s.st_ctime;
+	}
+	return 0;
 }
 
 int eDVBMetaParser::parseFile(const std::string &basename)
@@ -20,6 +31,7 @@ int eDVBMetaParser::parseFile(const std::string &basename)
 	if (!parseRecordings(basename))
 		return 0;
 	m_filesize = fileSize(basename);
+	m_time_create = getctime(basename);
 	return -1;
 
 }
