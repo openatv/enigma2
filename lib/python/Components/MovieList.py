@@ -76,6 +76,7 @@ class MovieList(GUIComponent):
 		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/record.png"))
 		self.iconMovieWatching =LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_play.png"))
 		self.iconMovieSeen = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_forward.png"))
+		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 
 	def connectSelChanged(self, fnc):
 		if not fnc in self.onSelectionChanged:
@@ -117,14 +118,27 @@ class MovieList(GUIComponent):
 	# | name of movie              |
 	#
 	def buildMovieListEntry(self, serviceref, info, begin, len):
-		if serviceref.flags & eServiceReference.mustDescent:
-			return None
-
 		width = self.l.getItemSize().width()
+		pathName = serviceref.getPath()
+
+		if serviceref.flags & eServiceReference.mustDescent:
+			# Experiment: Directory support
+			res = [ None ]
+			iconSize = 20
+			# Name is full path name
+			p = os.path.split(pathName)
+			if not p[1]:
+				# if path ends in '/', p is blank.
+				p = os.path.split(p[0])
+			txt = "[" + p[1] + "]"
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,0), size=(iconSize,iconSize), png=self.iconFolder))
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+			res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 20), font=1, flags=RT_HALIGN_RIGHT, text=_("DIR")))
+			return res
 
 		if len <= 0: #recalc len when not already done
 			cur_idx = self.l.getCurrentSelectionIndex()
-			x = self.list[cur_idx]
+			x = self.list[cur_idx] # x = ref,info,begin,...
 			if config.usage.load_length_of_movies_in_moviellist.value:
 				len = x[1].getLength(x[0]) #recalc the movie length...
 			else:
@@ -139,7 +153,6 @@ class MovieList(GUIComponent):
 		res = [ None ]
 		
 		txt = info.getName(serviceref)
-		pathName = serviceref.getPath()
 		cutsPathName = pathName + '.cuts'
 		
 		if config.usage.show_icons_in_movielist.value:
@@ -278,13 +291,14 @@ class MovieList(GUIComponent):
 			serviceref = list.getNext()
 			if not serviceref.valid():
 				break
-			if serviceref.flags & eServiceReference.mustDescent:
-				continue
-		
 			info = self.serviceHandler.info(serviceref)
 			if info is None:
 				continue
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
+			if serviceref.flags & eServiceReference.mustDescent:
+				self.list.append((serviceref, info, begin, -1))
+				continue
+		
 		
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
@@ -314,7 +328,7 @@ class MovieList(GUIComponent):
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		else:
 			# sort: key is 'begin'
-			self.list.sort(key=lambda x: -x[2])
+			self.list.sort(key=self.buildBeginTimeSortKey)
 		
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list
@@ -337,10 +351,18 @@ class MovieList(GUIComponent):
 			self.tags[' '.join(tags)] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):
+		# x = ref,info,begin,...
 		ref = x[0]
-		info = self.serviceHandler.info(ref)
-		name = info and info.getName(ref)
-		return (name and name.lower() or "", -x[2])
+		if ref.flags & eServiceReference.mustDescent:
+			return (0, x[1].getName(ref), -x[2])
+		name = x[1].getName(ref)
+		return (1, name and name.lower() or "", -x[2])
+		
+	def buildBeginTimeSortKey(self, x):
+		ref = x[0]
+		if ref.flags & eServiceReference.mustDescent:
+			return (0, x[1].getName(ref))
+		return (1, -x[2])
 
 	def moveTo(self, serviceref):
 		count = 0
