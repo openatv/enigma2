@@ -255,8 +255,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def movieSelected(self):
 		current = self.getCurrent()
 		if current is not None:
-			self.saveconfig()
-			self.close(current)
+			if current.flags & eServiceReference.mustDescent:
+				self.gotFilename(current.getPath())
+			else:
+				self.saveconfig()
+				self.close(current)
 
 	def doContext(self):
 		current = self.getCurrent()
