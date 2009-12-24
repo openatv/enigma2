@@ -107,7 +107,7 @@ public:
 
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &connection);
-	void insertInto(iDVBChannelList *db, bool dontRemoveNewFlags=false);
+	void insertInto(iDVBChannelList *db, bool backgroundscanresult=false);
 	
 	void getStats(int &transponders_done, int &transponders_total, int &services);
 	void getLastServiceName(std::string &name);

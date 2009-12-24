@@ -888,7 +888,7 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 	nextChannel();
 }
 
-void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
+void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 {
 	if (m_flags & scanRemoveServices)
 	{
@@ -1033,7 +1033,7 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 			dvb_service->m_provider_name = service->second->m_provider_name;
 			if (service->second->m_ca.size())
 				dvb_service->m_ca = service->second->m_ca;
-			if (!dontRemoveOldFlags) // do not remove new found flags when not wished
+			if (!backgroundscanresult) // do not remove new found flags when this is the result of a 'background scan'
 				dvb_service->m_flags &= ~eDVBService::dxNewFound;
 		}
 		else
@@ -1044,45 +1044,49 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool dontRemoveOldFlags)
 		}
 	}
 
-	std::string bouquetname = "userbouquet.LastScanned.tv";
-	std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
-	eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
-	bouquetref.setData(0, 1); /* set bouquet 'servicetype' to tv (even though we probably have both tv and radio channels) */
-	eBouquet *bouquet = NULL;
-	eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet");
-	if (!db->getBouquet(bouquetref, bouquet) && bouquet)
+	if (!backgroundscanresult)
 	{
-		/* bouquet already exists, empty it before we continue */
-		bouquet->m_services.clear();
-	}
-	else
-	{
-		/* bouquet doesn't yet exist, create a new one */
-		if (!db->getBouquet(rootref, bouquet) && bouquet)
+		/* only create a 'Last Scanned' bouquet when this is not the result of a background scan */
+		std::string bouquetname = "userbouquet.LastScanned.tv";
+		std::string bouquetquery = "FROM BOUQUET \"" + bouquetname + "\" ORDER BY bouquet";
+		eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
+		bouquetref.setData(0, 1); /* set bouquet 'servicetype' to tv (even though we probably have both tv and radio channels) */
+		eBouquet *bouquet = NULL;
+		eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet");
+		if (!db->getBouquet(bouquetref, bouquet) && bouquet)
 		{
-			bouquet->m_services.push_back(bouquetref);
+			/* bouquet already exists, empty it before we continue */
+			bouquet->m_services.clear();
+		}
+		else
+		{
+			/* bouquet doesn't yet exist, create a new one */
+			if (!db->getBouquet(rootref, bouquet) && bouquet)
+			{
+				bouquet->m_services.push_back(bouquetref);
+				bouquet->flushChanges();
+			}
+			/* loading the bouquet seems to be the only way to add it to the bouquet list */
+			eDVBDB *dvbdb = eDVBDB::getInstance();
+			if (dvbdb) dvbdb->loadBouquet(bouquetname.c_str());
+			/* and now that it has been added to the list, we can find it */
+			db->getBouquet(bouquetref, bouquet);
+		}
+		if (bouquet)
+		{
+			bouquet->m_bouquet_name = "Last Scanned";
+
+			for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::const_iterator
+				service(m_new_services.begin()); service != m_new_services.end(); ++service)
+			{
+				bouquet->m_services.push_back(service->first);
+			}
 			bouquet->flushChanges();
 		}
-		/* loading the bouquet seems to be the only way to add it to the bouquet list */
-		eDVBDB *dvbdb = eDVBDB::getInstance();
-		if (dvbdb) dvbdb->loadBouquet(bouquetname.c_str());
-		/* and now that it has been added to the list, we can find it */
-		db->getBouquet(bouquetref, bouquet);
-	}
-	if (bouquet)
-	{
-		bouquet->m_bouquet_name = "Last Scanned";
-
-		for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::const_iterator
-			service(m_new_services.begin()); service != m_new_services.end(); ++service)
+		else
 		{
-			bouquet->m_services.push_back(service->first);
+			eDebug("failed to create 'Last Scanned' bouquet!");
 		}
-		bouquet->flushChanges();
-	}
-	else
-	{
-		eDebug("failed to create 'Last Scanned' bouquet!");
 	}
 }
 
