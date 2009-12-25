@@ -1057,8 +1057,8 @@ int eTSMPEGDecoder::setState()
 	return res;
 }
 
-int eTSMPEGDecoder::m_pcm_delay=0,
-	eTSMPEGDecoder::m_ac3_delay=0;
+int eTSMPEGDecoder::m_pcm_delay=-1,
+	eTSMPEGDecoder::m_ac3_delay=-1;
 
 RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 {
