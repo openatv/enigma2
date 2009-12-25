@@ -252,11 +252,19 @@ void eCableScan::parseSDT()
 			{
 				switch (ref.getServiceType())
 				{
-				default: /* assume that anything *not* radio is tv */
-				case 1:
+				case 1: /* digital television service */
+				case 4: /* nvod reference service (NYI) */
+				case 17: /* MPEG-2 HD digital television service */
+				case 22: /* advanced codec SD digital television */
+				case 24: /* advanced codec SD NVOD reference service (NYI) */
+				case 25: /* advanced codec HD digital television */
+				case 27: /* advanced codec HD NVOD reference service (NYI) */
+				default:
+					/* just assume that anything *not* radio is tv */
 					numberedServiceRefs[serviceIdToChannelId[service_id]] = ref;
 					break;
-				case 2:
+				case 2: /* digital radio sound service */
+				case 10: /* advanced codec digital radio sound service */
 					numberedRadioServiceRefs[serviceIdToChannelId[service_id]] = ref;
 					break;
 				}
