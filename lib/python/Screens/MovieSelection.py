@@ -67,7 +67,7 @@ class MovieContextMenu(Screen):
 				"cancel": self.cancelClick
 			})
 
-		menu = [(_("delete..."), self.delete)]
+		menu = [(_("delete..."), self.delete), (_("Move"), self.moveMovie)]
 		menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
 		if config.movielist.moviesort.value == MovieList.SORT_ALPHANUMERIC:
@@ -117,6 +117,10 @@ class MovieContextMenu(Screen):
 
 	def delete(self):
 		self.csel.delete()
+		self.close()
+
+	def moveMovie(self):
+		self.csel.moveMovie()
 		self.close()
 
 class SelectionEventInfo:
@@ -176,17 +180,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		SelectionEventInfo.__init__(self)
 
 		self["key_red"] = Button(_("Delete"))
-		self["key_green"] = Button(_("All"))
+		self["key_green"] = Button(_("Move"))
 		self["key_yellow"] = Button(_("Location"))
 		self["key_blue"] = Button(_("Tags"))
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
-		if config.usage.setup_level.index >= 2: # expert+
-			self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
-				{
-					"showMovies": (self.doPathSelect, _("select the movie path")),
-				})
+		#if config.usage.setup_level.index >= 2: # expert? nah.
+		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
+			{
+				"showMovies": (self.doPathSelect, _("select the movie path")),
+				#"showTv": (self.goHome, _("Go to default movie dir")),
+			})
 
 
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
@@ -198,7 +203,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
 				"red": (self.delete, _("delete...")),
-				"green": (self.showAll, _("show all tags")),
+				"green": (self.moveMovie, _("Move to other directory")),
 				"yellow": (self.showBookmarks, _("select the movie path")),
 				"blue": (self.showTagsSelect, _("show tag menu")),
 			})
@@ -372,6 +377,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def tagChosen(self, tag):
 		if tag is not None:
+			if tag[1] is None: # all
+				self.showAll()
+				return
 			# TODO: Some error checking maybe, don't wanna crash on KeyError
 			self.selected_tags = self.tags[tag[0]]
 			if self.selected_tags_ele:
@@ -381,13 +389,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def showTagsMenu(self, tagele):
 		self.selected_tags_ele = tagele
-		list = [(tag, self.getTagDescription(tag)) for tag in self.tags]
-		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list = list)
+		lst = [(_("show all tags"), None)] + [(tag, self.getTagDescription(tag)) for tag in self.tags]
+		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list = lst)
 
 	def showTagWarning(self):
 		self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
 
-	def showBookmarks(self):
+	def selectMovieLocation(self, title, callback):
 		paths = list(config.movielist.videodirs.value)
 		moviePath = resolveFilename(SCOPE_HDD)
 		for fn in os.listdir(moviePath):
@@ -398,17 +406,67 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				if pn not in paths:
 					paths.append(pn)
 		bookmarks = [(d,d) for d in paths]
-		self.session.openWithCallback(self.bookmarkChosen, ChoiceBox, title=_("Please select the movie path..."), list = bookmarks)
+		self.session.openWithCallback(callback, ChoiceBox, title=title, list = bookmarks)
+
+	def showBookmarks(self):
+		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.bookmarkChosen)
 
 	def bookmarkChosen(self, bookmark):
 		if bookmark:
-			print "selected:", bookmark
 			self.gotFilename(bookmark[0])
 
+	def moveMovie(self):
+		current = self.getCurrent()
+		if (current is not None) and (not current.flags & eServiceReference.mustDescent):
+			serviceHandler = eServiceCenter.getInstance()
+			info = serviceHandler.info(current)
+			name = info and info.getName(current) or _("this recording")
+			self.selectMovieLocation(title=_("Select destination for:") + " " + name, callback=self.gotMoveMovieDest)
+
+	def gotMoveMovieDest(self, choice):
+		if not choice:
+			return
+		dest = os.path.normpath(choice[0])
+		print "[Movie] Moving to:", dest
+		current = self.getCurrent()
+		src = current.getPath()
+		srcPath, srcName = os.path.split(src)
+		if os.path.normpath(srcPath) == dest:
+			# move file to itself is allowed, so we have to check it
+			print "[Movie] Refusing to move to the same directory", srcPath
+			return
+		srcBase = os.path.splitext(src)[0]
+		baseName = os.path.split(srcBase)[1]
+		moveList = [(src, os.path.join(dest, srcName))]
+		eitName =  srcBase + '.eit' 
+		if os.path.exists(eitName):
+			moveList.append((eitName, os.path.join(dest, baseName+'.eit')))
+		baseName = os.path.split(src)[1]
+		for ext in ('.ap', '.cuts', '.meta', '.sc'):
+			candidate = src + ext
+			if os.path.exists(candidate):
+				moveList.append((candidate, os.path.join(dest, baseName+ext)))
+		# Try to "atomically" move these files
+		movedList = []
+		try:
+			for item in moveList:
+				print "[MOVE]", item[0], "->", item[1]
+				os.rename(item[0], item[1])
+				movedList.append(item)
+			self["list"].removeService(current)
+		except Exception, e:
+			print "[MovieSelection] Failed move:", e
+			for item in movedList:
+				try:
+					os.rename(item[1], item[0])
+				except:
+					print "[MovieSelection] Failed to undo move:", item
+			# this will crash (RuntimeError: modal open are allowed only from a screen which is modal)
+			# self.session.openWithCallback(self.noop, MessageBox, str(e), MessageBox.TYPE_ERROR)			
 
 	def delete(self):
 		current = self.getCurrent()
-		if current is not None:
+		if (current is not None) and (not current.flags & eServiceReference.mustDescent):
 			serviceHandler = eServiceCenter.getInstance()
 			offline = serviceHandler.offlineOperations(current)
 			info = serviceHandler.info(current)
@@ -444,3 +502,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		else:
 			self["list"].removeService(current)
 			self["freeDiskSpace"].update()
+
+	def noop(self):
+		pass
