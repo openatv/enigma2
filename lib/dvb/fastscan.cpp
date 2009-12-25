@@ -298,8 +298,9 @@ void eFastScan::start(int frontendid)
 	fesat.inversion = eDVBFrontendParametersSatellite::Inversion_Unknown;
 	fesat.orbital_position = 192;
 	fesat.system = eDVBFrontendParametersSatellite::System_DVB_S;
-	fesat.rolloff = 0;
-	fesat.pilot = 0;
+	fesat.modulation = eDVBFrontendParametersSatellite::Modulation_QPSK;
+	fesat.rolloff = eDVBFrontendParametersSatellite::RollOff_alpha_0_35;
+	fesat.pilot = eDVBFrontendParametersSatellite::Pilot_Off;
 
 	eDVBFrontendParameters parm;
 	parm.setDVBS(fesat);
@@ -424,7 +425,9 @@ void eFastScan::parseResult()
 			fesat.inversion = eDVBFrontendParametersSatellite::Inversion_Unknown;
 			fesat.orbital_position = orbitalpos;
 			fesat.system = (*it)->getModulationSystem();
+			fesat.modulation = (*it)->getModulation();
 			fesat.rolloff = (*it)->getRollOff();
+			fesat.pilot = eDVBFrontendParametersSatellite::Pilot_Unknown;
 
 			parm->setDVBS(fesat);
 			db->addChannelToList(chid, parm);
@@ -455,11 +458,19 @@ void eFastScan::parseResult()
 					{
 						switch (type)
 						{
-						default: /* assume that anything *not* radio is tv */
-						case 1:
+						case 1: /* digital television service */
+						case 4: /* nvod reference service (NYI) */
+						case 17: /* MPEG-2 HD digital television service */
+						case 22: /* advanced codec SD digital television */
+						case 24: /* advanced codec SD NVOD reference service (NYI) */
+						case 25: /* advanced codec HD digital television */
+						case 27: /* advanced codec HD NVOD reference service (NYI) */
+						default:
+							/* just assume that anything *not* radio is tv */
 							numbered_channels[(*channel)->getLogicalChannelNumber()] = ref;
 							break;
-						case 2:
+						case 2: /* digital radio sound service */
+						case 10: /* advanced codec digital radio sound service */
 							radio_channels[(*channel)->getLogicalChannelNumber()] = ref;
 							break;
 						}
