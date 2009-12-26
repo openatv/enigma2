@@ -67,8 +67,12 @@ class MovieContextMenu(Screen):
 				"cancel": self.cancelClick
 			})
 
-		menu = [(_("delete..."), self.delete), (_("Move"), self.moveMovie)]
-		menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+		if (not service) or (service.flags & eServiceReference.mustDescent):
+			menu = []
+		else:
+			menu = [(_("delete..."), self.delete), (_("Move"), self.moveMovie)]
+			# Plugins expect a valid selection, so only include them if we selected a non-dir 
+			menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
 		if config.movielist.moviesort.value == MovieList.SORT_ALPHANUMERIC:
 			menu.append((_("sort by date"), boundFunction(self.sortBy, MovieList.SORT_RECORDED)))
@@ -216,6 +220,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 		self.onShown.append(self.go)
 		self.onLayoutFinish.append(self.saveListsize)
+		self.list.connectSelChanged(self.updateButtons)
 		self.inited = False
 
 	def updateDescription(self):
@@ -226,6 +231,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self["Service"].newService(None)
 			self["DescriptionBorder"].hide()
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
+			
+	def updateButtons(self):
+		current = self.getCurrent()
+		if (not current) or (current.flags & eServiceReference.mustDescent):
+			self["key_red"].hide()
+			self["key_green"].hide()
+		else:
+			self["key_red"].show()
+			self["key_green"].show()
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
