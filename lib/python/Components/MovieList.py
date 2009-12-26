@@ -73,9 +73,8 @@ class MovieList(GUIComponent):
 		self.iconPart = []
 		for part in range(5):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_%d_4.png" % part)))
-		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/record.png"))
-		self.iconMovieWatching =LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_play.png"))
-		self.iconMovieSeen = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/ico_mp_forward.png"))
+		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
+		self.iconMovieUnknown = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_unk.png"))
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 
 	def connectSelChanged(self, fnc):
@@ -124,14 +123,14 @@ class MovieList(GUIComponent):
 		if serviceref.flags & eServiceReference.mustDescent:
 			# Experiment: Directory support
 			res = [ None ]
-			iconSize = 20
+			iconSize = 22
 			# Name is full path name
 			p = os.path.split(pathName)
 			if not p[1]:
 				# if path ends in '/', p is blank.
 				p = os.path.split(p[0])
 			txt = "[" + p[1] + "]"
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,0), size=(iconSize,iconSize), png=self.iconFolder))
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,iconSize), png=self.iconFolder))
 			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 			res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 20), font=1, flags=RT_HALIGN_RIGHT, text=_("DIR")))
 			return res
@@ -165,8 +164,8 @@ class MovieList(GUIComponent):
 					icon = self.iconPart[part]
 				elif os.stat(cutsPathName).st_mtime - os.stat(pathName).st_mtime > 600:  
 					# mtime of cuts file is much newer, we've seen it
-					icon = self.iconMovieSeen
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,0), size=(iconSize,iconSize), png=icon))
+					icon = self.iconMovieUnknown
+			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,iconSize), png=icon))
 		else:
 			icon = None
 			iconSize = 0		
@@ -224,11 +223,11 @@ class MovieList(GUIComponent):
 		else:
 			assert(self.list_type == MovieList.LISTTYPE_MINIMAL)
 			if not len:
-				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 20), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 25), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 25), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 			else:
-				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-97, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-				res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-97, 25), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+				res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 25), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		
 		return res
 
