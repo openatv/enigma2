@@ -1370,7 +1370,14 @@ RESULT eDVBServicePlay::setTrickmode(int trick)
 
 RESULT eDVBServicePlay::isCurrentlySeekable()
 {
-	return m_is_pvr || m_timeshift_active ? 3 : 0; // fast forward/backward possible and seeking possible
+	int ret = 0;
+	if (m_decoder)
+	{
+		ret = (m_is_pvr || m_timeshift_active) ? 3 : 0; // fast forward/backward possible and seeking possible
+		if (m_decoder->getVideoWidth() == -1)
+			ret &= ~2;
+	}
+	return ret;
 }
 
 RESULT eDVBServicePlay::frontendInfo(ePtr<iFrontendInformation> &ptr)
