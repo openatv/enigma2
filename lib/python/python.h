@@ -3,7 +3,7 @@
 #ifndef SKIP_PART2
 	#define __lib_python_python_class_h
 #endif
-#define WITH_THREAD
+
 #include <Python.h>
 #include <string>
 #include <lib/base/object.h>
