@@ -29,7 +29,7 @@ void eFilePushThread::thread()
 {
 	setIoPrio(prio_class, prio);
 
-	off_t dest_pos = 0, source_pos = 0;
+	off_t source_pos = 0;
 	size_t bytes_read = 0;
 	
 	off_t current_span_offset = 0;
@@ -116,16 +116,20 @@ void eFilePushThread::thread()
 				// ... we would stop the thread
 			}
 
-			written_since_last_sync += w;
-
-			if (written_since_last_sync >= 512*1024)
+			if (!m_send_pvr_commit)
 			{
-				int toflush = written_since_last_sync > 2*1024*1024 ?
-					2*1024*1024 : written_since_last_sync &~ 4095; // write max 2MB at once
-				dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
-				dest_pos -= toflush;
-				posix_fadvise(m_fd_dest, dest_pos, toflush, POSIX_FADV_DONTNEED);
-				written_since_last_sync -= toflush;
+				/* only do posix_fadvise for real files, not for the pvr device */
+				written_since_last_sync += w;
+
+				if (written_since_last_sync >= 512*1024)
+				{
+					int toflush = written_since_last_sync > 2*1024*1024 ?
+						2*1024*1024 : written_since_last_sync &~ 4095; // write max 2MB at once
+					off_t dest_pos = lseek(m_fd_dest, 0, SEEK_CUR);
+					dest_pos -= toflush;
+					posix_fadvise(m_fd_dest, dest_pos, toflush, POSIX_FADV_DONTNEED);
+					written_since_last_sync -= toflush;
+				}
 			}
 
 //			printf("FILEPUSH: wrote %d bytes\n", w);
