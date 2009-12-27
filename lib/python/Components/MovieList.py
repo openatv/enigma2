@@ -59,6 +59,7 @@ class MovieList(GUIComponent):
 		self.list_type = list_type or self.LISTTYPE_ORIGINAL
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
 		self.sort_type = sort_type or self.SORT_RECORDED
+		self.firstFileEntry = 0
 
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -231,6 +232,9 @@ class MovieList(GUIComponent):
 		
 		return res
 
+	def moveToFirstMovie(self):
+		self.instance.moveSelectionTo(self.firstFileEntry)
+
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
@@ -277,6 +281,7 @@ class MovieList(GUIComponent):
 		
 		self.list = [ ]
 		self.serviceHandler = eServiceCenter.getInstance()
+		numberOfDirs = 0
 		
 		self.root = root
 		list = self.serviceHandler.list(root)
@@ -296,6 +301,7 @@ class MovieList(GUIComponent):
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
 				self.list.append((serviceref, info, begin, -1))
+				numberOfDirs += 1
 				continue
 		
 		
@@ -323,6 +329,7 @@ class MovieList(GUIComponent):
 		
 			self.list.append((serviceref, info, begin, -1))
 		
+		self.firstFileEntry = numberOfDirs
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list.sort(key=self.buildAlphaNumericSortKey)
 		else:
