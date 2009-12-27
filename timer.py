@@ -35,7 +35,6 @@ class TimerEntry:
 
 	def setRepeated(self, day):
 		self.repeated |= (2 ** day)
-		print "Repeated: " + str(self.repeated)
 		
 	def isRunning(self):
 		return self.state == self.StateRunning
@@ -49,7 +48,6 @@ class TimerEntry:
 		
 	# update self.begin and self.end according to the self.repeated-flags
 	def processRepeated(self, findRunningEvent = True):
-		print "ProcessRepeated"
 		if (self.repeated != 0):
 			now = int(time()) + 1
 
@@ -59,17 +57,11 @@ class TimerEntry:
 			localend = localtime(self.end)
 			localnow = localtime(now)
 
-			print "localrepeatedbegindate:", strftime("%c", localrepeatedbegindate)
-			print "localbegin:", strftime("%c", localbegin)
-			print "localend:", strftime("%c", localend)
-			print "localnow:", strftime("%c", localnow)
-
 			day = []
 			flags = self.repeated
 			for x in (0, 1, 2, 3, 4, 5, 6):
 				if (flags & 1 == 1):
 					day.append(0)
-					print "Day: " + str(x)
 				else:
 					day.append(1)
 				flags = flags >> 1
@@ -80,18 +72,12 @@ class TimerEntry:
 				((day[localbegin.tm_wday] == 0) and ((findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow)))):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)
-				print "localbegin after addOneDay:", strftime("%c", localbegin)
-				print "localend after addOneDay:", strftime("%c", localend)
 				
 			#we now have a struct_time representation of begin and end in localtime, but we have to calculate back to (gmt) seconds since epoch
 			self.begin = int(mktime(localbegin))
 			self.end = int(mktime(localend))
 			if self.begin == self.end:
 				self.end += 1
-
-			print "ProcessRepeated result"
-			print strftime("%c", localtime(self.begin))
-			print strftime("%c", localtime(self.end))
 
 			self.timeChanged()
 
@@ -167,10 +153,6 @@ class Timer:
 		# don't go trough waiting/running/end-states, but sort it
 		# right into the processedTimers.
 		if entry.shouldSkip() or entry.state == TimerEntry.StateEnded or (entry.state == TimerEntry.StateWaiting and entry.disabled):
-			print "already passed, skipping"
-			print "shouldSkip:", entry.shouldSkip()
-			print "state == ended", entry.state == TimerEntry.StateEnded
-			print "waiting && disabled:", (entry.state == TimerEntry.StateWaiting and entry.disabled)
 			insort(self.processed_timers, entry)
 			entry.state = TimerEntry.StateEnded
 		else:

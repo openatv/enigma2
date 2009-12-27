@@ -5,7 +5,6 @@ from enigma import iServiceInformation, eServiceCenter, eServiceReference
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
-		print "sanitycheck"
 		self.localtimediff = 25*3600 - mktime(gmtime(25*3600))
 		self.timerlist = timerlist
 		self.newtimer = newtimer
@@ -16,7 +15,6 @@ class TimerSanityCheck:
 		self.eflag = -1
 
 	def check(self, ext_timer=1):
-		print "check"
 		if ext_timer != 1:
 			self.newtimer = ext_timer
 		if self.newtimer is None:
@@ -60,7 +58,6 @@ class TimerSanityCheck:
 		# count of running timers
 
 		serviceHandler = eServiceCenter.getInstance()
-		print "checkTimerlist"
 # create a list with all start and end times
 # split it into recurring and singleshot timers
 
