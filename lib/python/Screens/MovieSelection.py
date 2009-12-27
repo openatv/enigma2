@@ -56,10 +56,9 @@ def getPreferredTagEditor():
 setPreferredTagEditor(None)
 
 class MovieContextMenu(Screen):
+	# Contract: On OK returns a callable object (e.g. delete)
 	def __init__(self, session, csel, service):
 		Screen.__init__(self, session)
-		self.csel = csel
-		self.service = service
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 			{
@@ -70,62 +69,33 @@ class MovieContextMenu(Screen):
 		if (not service) or (service.flags & eServiceReference.mustDescent):
 			menu = []
 		else:
-			menu = [(_("delete..."), self.delete), (_("Move"), self.moveMovie)]
+			menu = [(_("delete..."), csel.delete), (_("Move"), csel.moveMovie)]
 			# Plugins expect a valid selection, so only include them if we selected a non-dir 
-			menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+			menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
 		if config.movielist.moviesort.value == MovieList.SORT_ALPHANUMERIC:
-			menu.append((_("sort by date"), boundFunction(self.sortBy, MovieList.SORT_RECORDED)))
+			menu.append((_("sort by date"), boundFunction(csel.sortBy, MovieList.SORT_RECORDED)))
 		else:
-			menu.append((_("alphabetic sort"), boundFunction(self.sortBy, MovieList.SORT_ALPHANUMERIC)))
+			menu.append((_("alphabetic sort"), boundFunction(csel.sortBy, MovieList.SORT_ALPHANUMERIC)))
 		
 		menu.extend((
-			(_("list style default"), boundFunction(self.listType, MovieList.LISTTYPE_ORIGINAL)),
-			(_("list style compact with description"), boundFunction(self.listType, MovieList.LISTTYPE_COMPACT_DESCRIPTION)),
-			(_("list style compact"), boundFunction(self.listType, MovieList.LISTTYPE_COMPACT)),
-			(_("list style single line"), boundFunction(self.listType, MovieList.LISTTYPE_MINIMAL))
+			(_("list style default"), boundFunction(csel.listType, MovieList.LISTTYPE_ORIGINAL)),
+			(_("list style compact with description"), boundFunction(csel.listType, MovieList.LISTTYPE_COMPACT_DESCRIPTION)),
+			(_("list style compact"), boundFunction(csel.listType, MovieList.LISTTYPE_COMPACT)),
+			(_("list style single line"), boundFunction(csel.listType, MovieList.LISTTYPE_MINIMAL))
 		))
 
 		if config.movielist.description.value == MovieList.SHOW_DESCRIPTION:
-			menu.append((_("hide extended description"), boundFunction(self.showDescription, MovieList.HIDE_DESCRIPTION)))
+			menu.append((_("hide extended description"), boundFunction(csel.showDescription, MovieList.HIDE_DESCRIPTION)))
 		else:
-			menu.append((_("show extended description"), boundFunction(self.showDescription, MovieList.SHOW_DESCRIPTION)))
+			menu.append((_("show extended description"), boundFunction(csel.showDescription, MovieList.SHOW_DESCRIPTION)))
 		self["menu"] = MenuList(menu)
 
 	def okbuttonClick(self):
-		self["menu"].getCurrent()[1]()
+		self.close(self["menu"].getCurrent()[1])
 
 	def cancelClick(self):
-		self.close(False)
-
-	def sortBy(self, newType):
-		config.movielist.moviesort.value = newType
-		self.csel.setSortType(newType)
-		self.csel.reloadList()
-		self.close()
-
-	def listType(self, newType):
-		config.movielist.listtype.value = newType
-		self.csel.setListType(newType)
-		self.csel.list.redrawList()
-		self.close()
-
-	def showDescription(self, newType):
-		config.movielist.description.value = newType
-		self.csel.setDescriptionState(newType)
-		self.csel.updateDescription()
-		self.close()
-
-	def execPlugin(self, plugin):
-		plugin(session=self.session, service=self.service)
-
-	def delete(self):
-		self.csel.delete()
-		self.close()
-
-	def moveMovie(self):
-		self.csel.moveMovie()
-		self.close()
+		self.close(None)
 
 class SelectionEventInfo:
 	def __init__(self):
@@ -283,7 +253,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def doContext(self):
 		current = self.getCurrent()
 		if current is not None:
-			self.session.open(MovieContextMenu, self, current)
+			self.session.openWithCallback(self.doneContext, MovieContextMenu, self, current)
+
+	def doneContext(self, action):
+		if action is not None:
+			action()
+
+	def sortBy(self, newType):
+		config.movielist.moviesort.value = newType
+		self.setSortType(newType)
+		self.reloadList()
+
+	def listType(self, newType):
+		config.movielist.listtype.value = newType
+		self.setListType(newType)
+		self.list.redrawList()
+
+	def showDescription(self, newType):
+		config.movielist.description.value = newType
+		self.setDescriptionState(newType)
+		self.updateDescription()
 
 	def abort(self):
 		self.saveconfig()
@@ -419,7 +408,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 					pn += '/'
 				if pn not in paths:
 					paths.append(pn)
-		bookmarks = [(d,d) for d in paths]
+		bookmarks = [("("+_("Other")+"...)", None)] + [(d,d) for d in paths]
 		self.session.openWithCallback(callback, ChoiceBox, title=title, list = bookmarks)
 
 	def showBookmarks(self):
@@ -427,7 +416,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def bookmarkChosen(self, bookmark):
 		if bookmark:
-			self.gotFilename(bookmark[0])
+			if bookmark[1] is None:
+				self.doPathSelect()
+			else:
+				self.gotFilename(bookmark[1])
 
 	def moveMovie(self):
 		current = self.getCurrent()
@@ -440,7 +432,20 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def gotMoveMovieDest(self, choice):
 		if not choice:
 			return
-		dest = os.path.normpath(choice[0])
+		if isinstance(choice, tuple):
+			if choice[1] is None:
+				# Display full browser
+				self.session.openWithCallback(
+					self.gotMoveMovieDest,
+					MovieLocationBox,
+					_("Please select the movie path..."),
+					config.movielist.last_videodir.value
+				)
+				return
+			dest = os.path.normpath(choice[0])
+		else:
+			# full browser returns only a string
+			dest = os.path.normpath(choice)
 		print "[Movie] Moving to:", dest
 		current = self.getCurrent()
 		src = current.getPath()
@@ -476,7 +481,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				except:
 					print "[MovieSelection] Failed to undo move:", item
 			# this will crash (RuntimeError: modal open are allowed only from a screen which is modal)
-			# self.session.openWithCallback(self.noop, MessageBox, str(e), MessageBox.TYPE_ERROR)			
+			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)			
 
 	def delete(self):
 		current = self.getCurrent()
@@ -516,6 +521,3 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		else:
 			self["list"].removeService(current)
 			self["freeDiskSpace"].update()
-
-	def noop(self):
-		pass
