@@ -232,7 +232,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self.updateDescription()
 
 	def updateHDDData(self):
- 		self.reloadList(self.selectedmovie)
+ 		self.reloadList(self.selectedmovie, home=True)
 		self["waitingtext"].visible = False
 
 	def moveTo(self):
@@ -326,7 +326,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.setTitle(title)
  		if not (sel and self["list"].moveTo(sel)):
 			if home:
-				self["list"].moveToIndex(0)
+				self["list"].moveToFirstMovie()
 		self.updateTags()
 		self["freeDiskSpace"].update()
 
