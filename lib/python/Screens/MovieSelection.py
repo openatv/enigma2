@@ -401,13 +401,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def selectMovieLocation(self, title, callback):
 		paths = list(config.movielist.videodirs.value)
 		moviePath = resolveFilename(SCOPE_HDD)
-		for fn in os.listdir(moviePath):
-			pn = os.path.join(moviePath, fn)
-			if os.path.isdir(pn):
-				if not pn.endswith('/'):
-					pn += '/'
-				if pn not in paths:
-					paths.append(pn)
+		try:
+			for fn in os.listdir(moviePath):
+				pn = os.path.join(moviePath, fn)
+				if os.path.isdir(pn):
+					if not pn.endswith('/'):
+						pn += '/'
+					if pn not in paths:
+						paths.append(pn)
+		except:
+			# Probably, there is no harddisk, so tell the caller
+			# that the user picked the "Other" option
+			callback((None, None))
+			return
 		bookmarks = [("("+_("Other")+"...)", None)] + [(d,d) for d in paths]
 		self.session.openWithCallback(callback, ChoiceBox, title=title, list = bookmarks)
 
