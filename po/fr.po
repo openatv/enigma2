@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2008-12-12 12:10+0100\n"
 "Last-Translator: mimi74 <remi.jarrige0293@orange.fr>\n"
 "Language-Team: french\n"
@@ -43,6 +43,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -78,10 +83,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Scanner les paquets locals et les installer."
 
 msgid ""
 "\n"
@@ -98,13 +101,6 @@ msgid ""
 msgstr ""
 "\n"
 "Le système redémarrera après restauration!"
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Visualiser, installer et retirer paquets disponibles ou installés."
 
 msgid " "
 msgstr ""
@@ -301,6 +297,15 @@ msgstr ""
 msgid "9"
 msgstr ""
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<inconnu>"
 
@@ -367,6 +372,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Un outil (%s) nécessaire n'a pas été trouvé"
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -492,6 +506,12 @@ msgstr "Avancé"
 
 msgid "Advanced Options"
 msgstr "Options avancées"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
@@ -990,9 +1010,6 @@ msgstr ""
 msgid "Content does not fit on DVD!"
 msgstr "Le contenu ne tient pas sur le DVD!"
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr "Continuer en arrière plan"
 
@@ -1007,6 +1024,9 @@ msgstr "Ne peux se connecter au serveur d'image Dreambox .NFI Feed:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Ne peux charger le support! Aucun DVD inserré?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1131,6 +1151,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Liste services standard"
 
@@ -1168,6 +1191,9 @@ msgstr ""
 
 msgid "Destination directory"
 msgstr "Répertoire destination"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "DD détecté: "
@@ -1485,9 +1511,8 @@ msgstr "Activer programmation"
 msgid "Enabled"
 msgstr "Activer"
 
-#, python-format
-msgid "Encrypted: %s"
-msgstr "Chiffré: %s"
+msgid "Encrypted: "
+msgstr ""
 
 msgid "Encryption"
 msgstr "Cryptage"
@@ -1617,8 +1642,17 @@ msgstr "Extension paramètre réseau avancée..."
 msgid "Extended Setup..."
 msgstr "Paramètre avancé..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Extensions"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr ""
@@ -1628,6 +1662,18 @@ msgstr "Réinitialisation usine"
 
 msgid "Failed"
 msgstr "Echoué"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Rapide"
@@ -1677,7 +1723,7 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flash échoué"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1739,13 +1785,13 @@ msgstr "Passerelle"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1900,6 +1946,9 @@ msgstr "Informations"
 msgid "Init"
 msgstr "Initialiser"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Initialisation..."
 
@@ -1954,15 +2003,17 @@ msgstr "Installation contenu paquet... Veuillez patienter..."
 msgid "Instant Record..."
 msgstr "enregistrement immédiat..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Ethernet intégrée"
 
 msgid "Integrated Wireless"
 msgstr "Sans fil intégré"
 
-#, python-format
-msgid "Interface: %s"
-msgstr "Adaptateur: %s"
+msgid "Interface: "
+msgstr ""
 
 msgid "Intermediate"
 msgstr "Intermédiaire"
@@ -2096,6 +2147,9 @@ msgstr "Réseau local"
 msgid "Location"
 msgstr "Emplacement"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Signal:"
 
@@ -2129,6 +2183,9 @@ msgstr "Faire de cette marque un point 'hors'"
 msgid "Make this mark just a mark"
 msgstr "Faire de cette marque juste une marque"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr ""
 
@@ -2147,8 +2204,7 @@ msgstr "Marge après enregistrement"
 msgid "Margin before record (minutes)"
 msgstr "Marge avant l'enregistrement (minutes)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2211,6 +2267,9 @@ msgstr "Déplacer vers l'est"
 msgid "Move west"
 msgstr "Déplacer vers l'ouest"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Menu liste film"
 
@@ -2234,6 +2293,9 @@ msgstr ""
 
 msgid "NEXT"
 msgstr "SUIVANT"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "Flash de l'image NFI terminé. Presser Jaune pour redémarrer!"
@@ -2356,8 +2418,16 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr "Aucune information trouvée sur l'émission, enregistre indéfiniment."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Pas de tuner libre"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr "Aucun réseaux trouvés"
@@ -2379,6 +2449,9 @@ msgstr "Aucun tuner satellite trouvé!!"
 
 msgid "No tags are set on these movies."
 msgstr "Aucune étiquette réglée sur ces films."
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Aucun tuner n'est configuré pour utiliser un positionneur DiSEqC !"
@@ -2530,6 +2603,9 @@ msgstr "Mise à jour en ligne"
 msgid "Only Free scan"
 msgstr "Scanner seulement libre"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2541,9 +2617,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Mise à jour liste paquets"
@@ -2828,9 +2901,6 @@ msgstr "Veuillez patienter... Chargement de la liste..."
 msgid "Plugin browser"
 msgstr "Navigateur d'extensions"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -3025,6 +3095,9 @@ msgstr "Fichiers enregistrés..."
 msgid "Recording"
 msgstr "Enregistrement"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 "Des enregistrement(s) sont en cours ou se terminent dans quelques secondes!"
@@ -3037,9 +3110,6 @@ msgstr "Enregistrements toujours prioritaires"
 
 msgid "Reenter new pin"
 msgstr "Resaisir nouveau pin"
-
-msgid "Refresh"
-msgstr "Actualiser"
 
 msgid "Refresh Rate"
 msgstr "Vitesse rafraîchissement"
@@ -3358,6 +3428,9 @@ msgstr "Rechercher à l'est"
 msgid "Search west"
 msgstr "Rechercher à l'ouest"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3556,6 +3629,9 @@ msgstr "afficher l'image TV..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Montrer l'état de votre connection LAN sans fil.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Eteindre la Dreambox après"
 
@@ -3629,8 +3705,8 @@ msgstr "Vitesses du ralenti"
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
-msgstr "Gestionnaire logiciel"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Restauration logiciel"
@@ -3822,6 +3898,9 @@ msgstr "Etich. 2"
 msgid "Tags"
 msgstr "Etich."
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Terrestre"
 
@@ -3876,6 +3955,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "La sauvegarde a échoué. Veuillez choisir un autre emplacement."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3989,16 +4074,19 @@ msgstr "L'assistant est terminé."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Il n'y a pas de liste services standard dans votre Image."
 
 msgid "There are no default settings in your image."
 msgstr "Il n'y a pas de paramètres standards dans votre Image."
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4171,6 +4259,9 @@ msgstr ""
 "Chevauchement temporisateur dans timers.xml détecté!\n"
 "Veuiller le re-vérifier!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Erreur de programmation"
 
@@ -4182,6 +4273,9 @@ msgstr "Status programmation:"
 
 msgid "Timeshift"
 msgstr "PauseDirect"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "PauseDirect pas possible"
@@ -4218,6 +4312,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Aujourd'hui"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Mode tonalité"
@@ -4336,20 +4433,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Commande DiSEqC non validée"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unicable"
 msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4369,6 +4468,9 @@ msgstr "Mise à jour du logiciel du récepteur"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Mise à jour terminée. Voici le résultat :"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
@@ -4736,6 +4838,9 @@ msgstr ""
 msgid "Yes"
 msgstr "Oui"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Oui, et effacer ce film"
 
@@ -4783,6 +4888,9 @@ msgid "You can choose, what you want to install..."
 msgstr "Vous pouvez choisir ce que vous voulez installer..."
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4882,6 +4990,13 @@ msgstr ""
 "vous devez saisir un code pin et le cacher de vos enfants.\n"
 "\n"
 "Voulez-vous paramétrer ce pin maintenant?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -5009,6 +5124,9 @@ msgstr "sur le point de commencer"
 
 msgid "activate current configuration"
 msgstr "activer configuration courante"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr ""
@@ -5331,9 +5449,6 @@ msgstr "aide..."
 
 msgid "hidden network"
 msgstr "réseau caché"
-
-msgid "hidden..."
-msgstr "cacher..."
 
 msgid "hide extended description"
 msgstr "masquer la description étendue"
@@ -5725,6 +5840,9 @@ msgstr "montrer info transpondeur"
 msgid "shuffle playlist"
 msgstr "mélanger liste lecture"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "éteindre"
 
@@ -5888,6 +6006,20 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zappé"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Scanner les paquets locals et les installer."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Visualiser, installer et retirer paquets disponibles ou installés."
+
 #~ msgid ".NFI Flasher bootable USB stick successfully created."
 #~ msgstr "Flasheur bootable sur clef USB .NFI créé avec succés."
 
@@ -5954,6 +6086,9 @@ msgstr "zappé"
 #~ msgid "Enable Autoresolution"
 #~ msgstr "Activer Autoresolution"
 
+#~ msgid "Encrypted: %s"
+#~ msgstr "Chiffré: %s"
+
 #~ msgid "End"
 #~ msgstr "Fin"
 
@@ -5974,6 +6109,9 @@ msgstr "zappé"
 
 #~ msgid "Install local IPKG"
 #~ msgstr "Installer IPKG local"
+
+#~ msgid "Interface: %s"
+#~ msgstr "Adaptateur: %s"
 
 #~ msgid "Main Setup"
 #~ msgstr "Paramètres principaux"
@@ -6014,6 +6152,9 @@ msgstr "zappé"
 #~ msgid "Really delete this timer?"
 #~ msgstr "Vraiment effacer cette programmation?"
 
+#~ msgid "Refresh"
+#~ msgstr "Actualiser"
+
 #~ msgid "Remounting stick partition..."
 #~ msgstr "Remontage partition clef..."
 
@@ -6040,6 +6181,9 @@ msgstr "zappé"
 
 #~ msgid "Software Update..."
 #~ msgstr "Mise à jour logiciel..."
+
+#~ msgid "Software manager"
+#~ msgstr "Gestionnaire logiciel"
 
 #~ msgid "Software manager..."
 #~ msgstr "Gestionnaire logiciel"
@@ -6123,6 +6267,9 @@ msgstr "zappé"
 
 #~ msgid "headline"
 #~ msgstr "titre"
+
+#~ msgid "hidden..."
+#~ msgstr "cacher..."
 
 #~ msgid "highlighted button"
 #~ msgstr "bouton accentué"

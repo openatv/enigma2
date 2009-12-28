@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Turkish Locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-10-19 21:10+0200\n"
 "Last-Translator: Zülfikar VEYİSOĞLU <z.veyisoglu@hobiagaci.com>\n"
 "Language-Team: http://hobiagaci.com <z.veyisoglu@hobiagaci.com>\n"
@@ -42,6 +42,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -77,10 +82,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Yereldeki paketleri ara ve yükle."
 
 msgid ""
 "\n"
@@ -95,13 +98,6 @@ msgid ""
 "\n"
 "System will restart after the restore!"
 msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Paketleri görün, yükleyin veya yüklü paketleri kaldırın."
 
 msgid " "
 msgstr " "
@@ -298,6 +294,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<bilinmiyor>"
 
@@ -364,6 +369,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "İhtiyaç duyulan (%s) aracı bulunamadı."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -490,6 +504,12 @@ msgstr "Gelişmiş"
 
 msgid "Advanced Options"
 msgstr "Gelişmiş seçenekler"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr "Gelişmiş görüntü iyileştirme kurulumu"
@@ -990,9 +1010,6 @@ msgstr "Takımyıldız"
 msgid "Content does not fit on DVD!"
 msgstr "İçerik DVD'ye sığmıyor!"
 
-msgid "Continue"
-msgstr "İlerle"
-
 msgid "Continue in background"
 msgstr "Arkaplanda devam et"
 
@@ -1007,6 +1024,9 @@ msgstr "Dreambox .NFI bellenim sunucusuna bağlanamıyor:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "DVD medyası yüklenemedi. DVD diski takılı değil mi?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1136,6 +1156,9 @@ msgstr "Varsayılan"
 msgid "Default Settings"
 msgstr "Varsayılan ayarlar"
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Varsayılan kanal listesi"
 
@@ -1173,6 +1196,9 @@ msgstr "Seçimi kaldır"
 
 msgid "Destination directory"
 msgstr "Hedef Klasör"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Tanınan HDD:"
@@ -1495,8 +1521,7 @@ msgstr "Zamanlayıcıyı aç"
 msgid "Enabled"
 msgstr "Etkin"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1635,8 +1660,17 @@ msgstr "Gelişmiş Ağ Kurulum Eklentisi..."
 msgid "Extended Setup..."
 msgstr "Gelişmiş Kurulum..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Eklentiler"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1646,6 +1680,18 @@ msgstr "Fabrika ayarlarına dön"
 
 msgid "Failed"
 msgstr "Başarısız"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Hızlı"
@@ -1695,8 +1741,8 @@ msgstr "Flaş"
 msgid "Flashing failed"
 msgstr "Flaşa yazma başarısız"
 
-msgid "Following tasks will be done after you press continue!"
-msgstr "İlerle tuşuna bastıktan sonra aşağıdaki görevler yapılacak!"
+msgid "Following tasks will be done after you press OK!"
+msgstr ""
 
 msgid "Format"
 msgstr "Biçimlendir"
@@ -1757,14 +1803,14 @@ msgstr "Ağ geçidi"
 msgid "General AC3 Delay"
 msgstr "Genel AC3 gecikmesi"
 
-msgid "General AC3 delay"
-msgstr "Genel AC3 gecikmesi"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "Genel PCM gecikmesi"
 
-msgid "General PCM delay"
-msgstr "Genel PCM gecikmesi"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Tür"
@@ -1918,6 +1964,9 @@ msgstr "Bilgi"
 msgid "Init"
 msgstr "Sıfırla"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Sıfırlama..."
 
@@ -1972,15 +2021,17 @@ msgstr "Paket içeriği yükleniyor... Lütfen bekleyin..."
 msgid "Instant Record..."
 msgstr "Anlık Kayıt..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Entegre Ağ Donanımı"
 
 msgid "Integrated Wireless"
 msgstr "Entegre Kablosuz Ağ Donanımı"
 
-#, python-format
-msgid "Interface: %s"
-msgstr "Arayüz: %s"
+msgid "Interface: "
+msgstr ""
 
 msgid "Intermediate"
 msgstr "Orta"
@@ -2114,6 +2165,9 @@ msgstr "Yerel Ağ"
 msgid "Location"
 msgstr "Konum"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Kilitli:"
 
@@ -2147,6 +2201,9 @@ msgstr "'dışında' noktası olarak işaretle"
 msgid "Make this mark just a mark"
 msgstr "Bu işareti sadece bir işaret olarak kullan"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Uydu alıcınızın sistem yazılımı yönetin"
 
@@ -2165,9 +2222,8 @@ msgstr "Kayıt sonrasına marj süresi ekle (dk.)"
 msgid "Margin before record (minutes)"
 msgstr "Kayıt başına marj süresi ekle (dk.)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
-msgstr "Maks. Hız: %s"
+msgid "Max. Bitrate: "
+msgstr ""
 
 msgid "Media player"
 msgstr "Ortam oynatıcı"
@@ -2229,6 +2285,9 @@ msgstr "Doğuya taşı"
 msgid "Move west"
 msgstr "Batıya taşı"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Film Listesi Menüsü"
 
@@ -2252,6 +2311,9 @@ msgstr "Kullanılamaz"
 
 msgid "NEXT"
 msgstr "SONRA"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -2373,8 +2435,16 @@ msgstr "Bu medyada gösterilecek dosya bulunamadı!"
 msgid "No event info found, recording indefinitely."
 msgstr "EPG bilgisi bulunamadı, süresiz kaydediliyor."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Boş tuner yok!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2396,6 +2466,9 @@ msgstr "Uydu uç ekipmanı (frontend) bulunamadı!!"
 
 msgid "No tags are set on these movies."
 msgstr "Bu filmler için etiket tanımlanmamış"
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "DiSEqC pozisyoner kullanımı için tuner ayarı yapılmamış!"
@@ -2549,6 +2622,9 @@ msgstr "Çevrimiçi Güncelle"
 msgid "Only Free scan"
 msgstr "Yalnızca şifresiz"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "Adınızı göndermek istiyorsanız adınızı giriniz."
 
@@ -2560,9 +2636,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PID"
-
-msgid "Package details for: "
-msgstr "Belirtilen paketin detayları:"
 
 msgid "Package list update"
 msgstr "Paket listesi güncelleniyor"
@@ -2838,9 +2911,6 @@ msgstr "Lütfen bekleyin... Liste yükleniyor..."
 msgid "Plugin browser"
 msgstr "Eklenti listesi"
 
-msgid "Plugin manager"
-msgstr "Eklenti yönetimi"
-
 msgid "Plugin manager activity information"
 msgstr "Eklenti yönetimi aktivite bilgisi"
 
@@ -3035,6 +3105,9 @@ msgstr "Kaydedilmiş dosyalar..."
 msgid "Recording"
 msgstr "Kaydediliyor"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Kayıt işlemi devam ediyor veya birkaç saniye içinde başlayacak!"
 
@@ -3046,9 +3119,6 @@ msgstr "Kayıt işlemine öncelik ver"
 
 msgid "Reenter new pin"
 msgstr "Yeni şifreyi tekrar girin"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Tazeleme hızı"
@@ -3368,6 +3438,9 @@ msgstr "Doğu'yu ara"
 msgid "Search west"
 msgstr "Batı'yı ara"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Yeni yüklenen veya kaldırılan paketler aranıyor. Lütfen bekleyin..."
 
@@ -3568,6 +3641,9 @@ msgstr "TV kanal listesini göster..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Kablosuz ağ bağlantısı durumunu gösterir.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Zamanlayıcı süresi: "
 
@@ -3641,8 +3717,8 @@ msgstr "Ağır çekim hızları"
 msgid "Software"
 msgstr "Yazılım"
 
-msgid "Software manager"
-msgstr "Yazılım yönetimi"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Yedekle -> Bellenim güncelle"
@@ -3834,6 +3910,9 @@ msgstr "Etiket 2"
 msgid "Tags"
 msgstr "Etiketler"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Karasal"
 
@@ -3886,6 +3965,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Yedek alınamadı. Lütfen başka bir yedekleme konumu seçin."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3996,17 +4081,20 @@ msgstr "Sihirbaz tamamlandı."
 msgid "There are at least "
 msgstr "En az "
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Kurulu bellenimde kayıtlı, varsayılan kanal listesi yok."
 
 msgid "There are no default settings in your image."
 msgstr "Kurulu bellenimde kayıtlı varsayılan ayar yok."
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Cihazın belleğinde "
-
-msgid "There is nothing to be done."
-msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -4177,6 +4265,9 @@ msgstr ""
 "timers.xml de zamanlayıcı çakışması tespit edildi!\n"
 "Lütfen tekrar kontrol edin!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Zamanlayıcı hatası"
 
@@ -4188,6 +4279,9 @@ msgstr "Zamanlayıcı durumu:"
 
 msgid "Timeshift"
 msgstr "Zamanı bük"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Zaman bükücü kullanılamaz!"
@@ -4226,6 +4320,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Bugün"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Ton modu"
@@ -4340,25 +4437,23 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Bağımsız DiSEqC tekrarı"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
-"Yüklemeyi\n"
-"Geri al"
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"Kaldırmayı\n"
-"Geri al"
+
+msgid "Unicable"
+msgstr "Unicable"
 
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
 msgid "Unicable Martix"
 msgstr "Unicable Matris"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Üniversal LNB"
@@ -4377,6 +4472,9 @@ msgstr "Uydu Alıcınızın yazılımını güncelleyin"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Güncelleme tamamlandı. Sonucu burada görebilirsiniz:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
@@ -4744,6 +4842,9 @@ msgstr "Yıl"
 msgid "Yes"
 msgstr "Evet"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Evet, ve bu filmi sil"
 
@@ -4792,6 +4893,9 @@ msgstr "Yüklemek istediğinizi seçebilirsiniz..."
 
 msgid "You can install this plugin."
 msgstr "Bu eklentiyi yükleyebilirsiniz."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Bu eklentiyi kaldırabilirsiniz."
@@ -4897,6 +5001,13 @@ msgstr ""
 "Bir şifre tanımlamalı ve çocuklarınızdan gizlemelisiniz.\n"
 "\n"
 "Şimdi bir şifre tanımlamak istiyor musunuz?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -5018,6 +5129,9 @@ msgstr "başlamak üzere"
 
 msgid "activate current configuration"
 msgstr "geçerli yapılandırmayı etkinleştir"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "Yayıncı ekle"
@@ -5340,9 +5454,6 @@ msgstr "yardım..."
 
 msgid "hidden network"
 msgstr "gizlenmiş ağ"
-
-msgid "hidden..."
-msgstr "gizlenmiş..."
 
 msgid "hide extended description"
 msgstr "genişletilmiş açıklamayı gizle"
@@ -5734,6 +5845,9 @@ msgstr "transponder bilgisini göster"
 msgid "shuffle playlist"
 msgstr "oynatma listesini karıştır"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "kapat"
 
@@ -5904,6 +6018,20 @@ msgstr "kanal değiştirildi"
 #~ "\n"
 #~ "Enigma2 geri yüklemeden sonra yeniden başlatılacak"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Yereldeki paketleri ara ve yükle."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Paketleri görün, yükleyin veya yüklü paketleri kaldırın."
+
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
@@ -5977,6 +6105,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Console..."
 #~ msgstr "Konsol..."
+
+#~ msgid "Continue"
+#~ msgstr "İlerle"
 
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "Önyükleme yapabilir USB flaşlayıcı imajı belleğe kopyalanıyor..."
@@ -6060,8 +6191,17 @@ msgstr "kanal değiştirildi"
 #~ msgid "Fix USB stick"
 #~ msgstr "USB belleği onar"
 
+#~ msgid "Following tasks will be done after you press continue!"
+#~ msgstr "İlerle tuşuna bastıktan sonra aşağıdaki görevler yapılacak!"
+
 #~ msgid "Font size"
 #~ msgstr "Yazıtipi boyutu"
+
+#~ msgid "General AC3 delay"
+#~ msgstr "Genel AC3 gecikmesi"
+
+#~ msgid "General PCM delay"
+#~ msgstr "Genel PCM gecikmesi"
 
 #~ msgid "Genre:"
 #~ msgstr "Tür:"
@@ -6079,8 +6219,14 @@ msgstr "kanal değiştirildi"
 #~ "Yükle/\n"
 #~ "Kaldır"
 
+#~ msgid "Interface: %s"
+#~ msgstr "Arayüz: %s"
+
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Dreambox'ınızdaki dosyaları görün/düzenleyin"
+
+#~ msgid "Max. Bitrate: %s"
+#~ msgstr "Maks. Hız: %s"
 
 #~ msgid "No new plugins found"
 #~ msgstr "Yeni eklenti bulunamadı"
@@ -6145,6 +6291,9 @@ msgstr "kanal değiştirildi"
 #~ msgid "Other..."
 #~ msgstr "Diğer..."
 
+#~ msgid "Package details for: "
+#~ msgstr "Belirtilen paketin detayları:"
+
 #~ msgid "PacketManager"
 #~ msgstr "Paket yönetimi"
 
@@ -6187,6 +6336,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Plugin Download/Remove"
 #~ msgstr "Eklenti İndir/Kaldır"
+
+#~ msgid "Plugin manager"
+#~ msgstr "Eklenti yönetimi"
 
 #~ msgid ""
 #~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
@@ -6250,6 +6402,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "Software Update..."
 #~ msgstr "Yazılım Güncelle"
+
+#~ msgid "Software manager"
+#~ msgstr "Yazılım yönetimi"
 
 #~ msgid "Software manager..."
 #~ msgstr "Yazılım yönetimi"
@@ -6330,8 +6485,19 @@ msgstr "kanal değiştirildi"
 #~ "çıkarın ve istenildiğinde tekrar takın. USB çubuğu çıkardıysanız lütfen "
 #~ "OK tuşuna basın."
 
-#~ msgid "Unicable"
-#~ msgstr "Unicable"
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "Yüklemeyi\n"
+#~ "Geri al"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Kaldırmayı\n"
+#~ "Geri al"
 
 #~ msgid "Unicable Matrix"
 #~ msgstr "Unicable Matris"
@@ -6429,6 +6595,9 @@ msgstr "kanal değiştirildi"
 
 #~ msgid "headline"
 #~ msgstr "başlık"
+
+#~ msgid "hidden..."
+#~ msgstr "gizlenmiş..."
 
 #~ msgid "highlighted button"
 #~ msgstr "belirtilmiş tuş"

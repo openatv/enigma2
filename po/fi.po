@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-08-29 20:23+0200\n"
 "Last-Translator: Timo Jarvenpaa <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
@@ -44,6 +44,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -80,10 +85,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Etsi ja asenna paikallisia IPKG-paketteja."
 
 msgid ""
 "\n"
@@ -98,13 +101,6 @@ msgid ""
 "\n"
 "System will restart after the restore!"
 msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Lisää ja poista ohjelmapaketteja."
 
 msgid " "
 msgstr " "
@@ -199,8 +195,11 @@ msgstr "* Käytettävissä vain kun syötetään piilotettu SSID tai verkkoavain
 msgid ".NFI Download failed:"
 msgstr ".NFI lataus epäonnistui:"
 
-msgid ".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr ".NFI-tiedoston md5sum-allekirjoitus on kunnossa. Voit asentaa tämän päivityksen."
+msgid ""
+".NFI file passed md5sum signature check. You can safely flash this image!"
+msgstr ""
+".NFI-tiedoston md5sum-allekirjoitus on kunnossa. Voit asentaa tämän "
+"päivityksen."
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2-hakemisto"
@@ -298,6 +297,15 @@ msgstr ""
 msgid "9"
 msgstr ""
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<tuntematon>"
 
@@ -347,12 +355,16 @@ msgstr ""
 "Tallennus on parhaillaan käynnissä.\n"
 "Mitä haluat tehdä?"
 
-msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"configure the positioner."
 msgstr ""
 "Tallennus on parhaillaan käynnissä. Pysäytä tallennus\n"
 "ennen kuin yrität muokata kääntömoottorin asetuksia."
 
-msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
+msgid ""
+"A recording is currently running. Please stop the recording before trying to "
+"start the satfinder."
 msgstr ""
 "Tallennus on parhaillaan käynnissä. Pysäytä tallennus\n"
 "ennen kuin käynnistät satelliittietsimen."
@@ -360,6 +372,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Tarvittavaa osaa (%s) ei löytynyt."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -458,8 +479,12 @@ msgstr "Lisää suosikkilistalle"
 msgid "Add to favourites"
 msgstr "Lisää suosikkilistalle"
 
-msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
-msgstr "Jos valinta on ei, lisätään Enigma2:n asetukset, Dreamboxin malli, sarjanumero yms."
+msgid ""
+"Adds enigma2 settings and dreambox model informations like SN, rev... if "
+"enabled."
+msgstr ""
+"Jos valinta on ei, lisätään Enigma2:n asetukset, Dreamboxin malli, "
+"sarjanumero yms."
 
 msgid "Adds network configuration if enabled."
 msgstr "Jos valittu, lisätään tiedot lähiverkosta."
@@ -467,18 +492,30 @@ msgstr "Jos valittu, lisätään tiedot lähiverkosta."
 msgid "Adds wlan configuration if enabled."
 msgstr "Jos valittu, lisätään tiedot WLAN-verkosta."
 
-msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
+msgid ""
+"Adjust the color settings so that all the color shades are distinguishable, "
+"but appear as saturated as possible. If you are happy with the result, press "
+"OK to close the video fine-tuning, or use the number keys to select other "
+"test screens."
 msgstr ""
-"Säädä värikylläisyys siten, että kaikki sävyt erottuvat ja ovat mahdollisimman\n"
+"Säädä värikylläisyys siten, että kaikki sävyt erottuvat ja ovat "
+"mahdollisimman\n"
 "kylläisiä.\n"
 "\n"
-"Kun olet tyytyväinen tulokseen, sulje testikuva painamalla OK tai valitse numeronäppäimillä 1-6 joku muu testikuva."
+"Kun olet tyytyväinen tulokseen, sulje testikuva painamalla OK tai valitse "
+"numeronäppäimillä 1-6 joku muu testikuva."
 
 msgid "Advanced"
 msgstr "Laajennetut"
 
 msgid "Advanced Options"
 msgstr "Laajennetut valinnat"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr "Laajemmat kuvanparannukset asetukset"
@@ -492,8 +529,12 @@ msgstr "Laajennettu palautus"
 msgid "After event"
 msgstr "Ajastuksen jälkeen"
 
-msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
-msgstr "Kun alkuasennus on päättynyt, pitää sinun valita lapsilukolla suojattavat kanavat. Katso ohjekirjasta kuinka se tehdään."
+msgid ""
+"After the start wizard is completed, you need to protect single services. "
+"Refer to your dreambox's manual on how to do that."
+msgstr ""
+"Kun alkuasennus on päättynyt, pitää sinun valita lapsilukolla suojattavat "
+"kanavat. Katso ohjekirjasta kuinka se tehdään."
 
 msgid "Album"
 msgstr "Albumi"
@@ -707,7 +748,9 @@ msgstr "Polta DVD:lle..."
 msgid "Bus: "
 msgstr "Väylä: "
 
-msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
+msgid ""
+"By pressing the OK Button on your remote control, the info bar is being "
+"displayed."
 msgstr "Painamalla kaukosäätimen OK-näppäintä, näet tietopalkin."
 
 msgid "C"
@@ -973,9 +1016,6 @@ msgstr "Modulaatio"
 msgid "Content does not fit on DVD!"
 msgstr "Sisältö ei mahdu DVD:lle!"
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr "Jatka taustalla"
 
@@ -990,6 +1030,9 @@ msgstr "NFI-ohjelmistopäivityksien palvelimelle ei saatu yhteyttä:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Levyä ei voitu ladata! Levy puuttuu?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1115,6 +1158,9 @@ msgstr "Oletus"
 msgid "Default Settings"
 msgstr "Oletusasetukset"
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Lataa oletuskanavalista"
 
@@ -1152,6 +1198,9 @@ msgstr "Ei valittu"
 
 msgid "Destination directory"
 msgstr "Kohdehakemisto"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Kiintolevy:"
@@ -1337,8 +1386,12 @@ msgstr ""
 "Jatketaanko kohdasta,\n"
 "johon katselu viimeksi jäi?"
 
-msgid "Do you want to submit your email address and name so that we can contact you if needed?"
-msgstr "Haluatko lähettää sähköpostiosoitteesi ja nimesi mahdollista yhteydenottoa varten?"
+msgid ""
+"Do you want to submit your email address and name so that we can contact you "
+"if needed?"
+msgstr ""
+"Haluatko lähettää sähköpostiosoitteesi ja nimesi mahdollista yhteydenottoa "
+"varten?"
 
 msgid "Do you want to update your Dreambox?"
 msgstr "Haluatko päivittää Dreamboxisi?"
@@ -1481,9 +1534,8 @@ msgstr "Ajastin päälle"
 msgid "Enabled"
 msgstr "Käytössä"
 
-#, python-format
-msgid "Encrypted: %s"
-msgstr "Salattu: %s"
+msgid "Encrypted: "
+msgstr ""
 
 msgid "Encryption"
 msgstr "Suojaus"
@@ -1609,8 +1661,17 @@ msgstr "Laajennetut verkkoasetukset"
 msgid "Extended Setup..."
 msgstr "Laajat asetukset..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Laajennukset"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1620,6 +1681,18 @@ msgstr "Palauta tehdasasetukset"
 
 msgid "Failed"
 msgstr "Epäonnistui"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Nopea"
@@ -1657,8 +1730,10 @@ msgstr "Verkko käynnistyi uudelleen"
 msgid "Finnish"
 msgstr "Suomi"
 
-msgid "First we need to download the latest boot environment for the USB flasher."
-msgstr "Aluksi lataamme viimeisimmän käynnistysympäristön USB-päivitysohjelmalle."
+msgid ""
+"First we need to download the latest boot environment for the USB flasher."
+msgstr ""
+"Aluksi lataamme viimeisimmän käynnistysympäristön USB-päivitysohjelmalle."
 
 msgid "Flash"
 msgstr ""
@@ -1666,8 +1741,8 @@ msgstr ""
 msgid "Flashing failed"
 msgstr "Päivitys epäonnistui"
 
-msgid "Following tasks will be done after you press continue!"
-msgstr "Seuraavat tehtävät suoritetaan kun painat jatka!"
+msgid "Following tasks will be done after you press OK!"
+msgstr ""
 
 msgid "Format"
 msgstr "Alusta"
@@ -1730,14 +1805,14 @@ msgstr "Yhdyskäytävä"
 msgid "General AC3 Delay"
 msgstr "AC3-viive (ms)"
 
-msgid "General AC3 delay"
-msgstr "AC3-viive (ms)"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "PCM-viive (ms)"
 
-msgid "General PCM delay"
-msgstr "PCM-viive (ms)"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Laji"
@@ -1831,14 +1906,23 @@ msgstr ""
 "Paina OK palataksesi takaisin."
 
 msgid ""
-"If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", set it to standard. Adjust the backlight level to a value suiting your taste. Turn down contrast on your TV as much as possible.\n"
-"Then turn the brightness setting as low as possible, but make sure that the two lowermost shades of gray stay distinguishable.\n"
-"Do not care about the bright shades now. They will be set up in the next step.\n"
+"If your TV has a brightness or contrast enhancement, disable it. If there is "
+"something called \"dynamic\", set it to standard. Adjust the backlight level "
+"to a value suiting your taste. Turn down contrast on your TV as much as "
+"possible.\n"
+"Then turn the brightness setting as low as possible, but make sure that the "
+"two lowermost shades of gray stay distinguishable.\n"
+"Do not care about the bright shades now. They will be set up in the next "
+"step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Jos televisiossasi on kirkkauden tai kontrastin automaattisäätö, kytke se pois päältä. Jos kuva-asetuksissa on säätöjä nimeltä \"dynamic\" kytke ne normaaliarvoon. Säädä huoneen valaistus sopivaksi. Säädä television kontrasti alimpaan arvoon.\n"
+"Jos televisiossasi on kirkkauden tai kontrastin automaattisäätö, kytke se "
+"pois päältä. Jos kuva-asetuksissa on säätöjä nimeltä \"dynamic\" kytke ne "
+"normaaliarvoon. Säädä huoneen valaistus sopivaksi. Säädä television "
+"kontrasti alimpaan arvoon.\n"
 "\n"
-"Säädä television valoisuus niin alas kuin mahdollista ilman, että testikuvan kaksi tumminta sävyä (1 ja 2) muuttuu yhtä tummiksi.\n"
+"Säädä television valoisuus niin alas kuin mahdollista ilman, että testikuvan "
+"kaksi tumminta sävyä (1 ja 2) muuttuu yhtä tummiksi.\n"
 "\n"
 "Älä välitä kirkkaista sävyistä, ne säädetään seuraavassa vaiheessa.\n"
 "\n"
@@ -1853,7 +1937,8 @@ msgstr "Päivitys"
 msgid "In Progress"
 msgstr "Käynnissä"
 
-msgid "In order to record a timer, the TV was switched to the recording service!\n"
+msgid ""
+"In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
 "Pakotettu kanavanvaihto. Ajastettu tallennus\n"
 "käynnistyi juuri ja tarvitsi tätä viritintä.\n"
@@ -1881,6 +1966,9 @@ msgstr "Tietoja"
 
 msgid "Init"
 msgstr "Palauta CA-moduulin alkuasetukset"
+
+msgid "Initial location in new timers"
+msgstr ""
 
 msgid "Initialization..."
 msgstr "Alustus..."
@@ -1937,14 +2025,16 @@ msgstr "Asennetaan paketin sisältö...Odota..."
 msgid "Instant Record..."
 msgstr "Välitön tallennus..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Sisäinen verkkokortti"
 
 msgid "Integrated Wireless"
 msgstr "Sisäänrakennettu WLAN"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -1978,8 +2068,7 @@ msgstr "Italia"
 msgid "Job View"
 msgstr "Työnäkymä"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this
-#. breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Aina kokoruutu"
 
@@ -2034,8 +2123,7 @@ msgstr "Poistutaanko DVD-soittimesta?"
 msgid "Left"
 msgstr "Vasen"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep
-#. english term.
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr ""
 
@@ -2081,6 +2169,9 @@ msgstr "Lähiverkko"
 msgid "Location"
 msgstr "Hakemisto"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lukit."
 
@@ -2114,6 +2205,9 @@ msgstr "Tee tästä merkistä lopetuspiste"
 msgid "Make this mark just a mark"
 msgstr "Tee tästä tavallinen merkki"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Hallitse vastaanottimen ohjelmistoa"
 
@@ -2132,9 +2226,8 @@ msgstr "Lisäaika tallenteen loppuun (minuuttia)"
 msgid "Margin before record (minutes)"
 msgstr "Lisäaika tallenteen alkuun (minuuttia)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
-msgstr "Maks. nopeus: %s"
+msgid "Max. Bitrate: "
+msgstr ""
 
 msgid "Media player"
 msgstr "Mediatoistin"
@@ -2196,6 +2289,9 @@ msgstr "Liikuta itään"
 msgid "Move west"
 msgstr "Liikuta länteen"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Tallenneluettelon valikko"
 
@@ -2220,8 +2316,13 @@ msgstr "Ei saatavilla"
 msgid "NEXT"
 msgstr "SEURAAVA"
 
+msgid "NFI Image Flashing"
+msgstr ""
+
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI-päivityksen asennus on suoritettu. Käynnistä uudelleen keltaisella näppäimellä!"
+msgstr ""
+"NFI-päivityksen asennus on suoritettu. Käynnistä uudelleen keltaisella "
+"näppäimellä!"
 
 msgid "NOW"
 msgstr "NYT"
@@ -2343,13 +2444,22 @@ msgstr ""
 "Lähetyksessä ei ole tietoa ohjelman loppumisajasta.\n"
 "Ohjelma tallennetaan jatkuvana tallennuksena."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Kaikki virittimet ovat jo käytössä!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr "Verkkoja ei löytynyt"
 
-msgid "No packages were upgraded yet. So you can check your network and try again."
+msgid ""
+"No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 "Ohjelmistoja ei ole vielä päivitetty.\n"
 "Voit tarkistaa verkkoasetukset ja yrittää uudelleen."
@@ -2367,6 +2477,9 @@ msgstr "Dreamboxissasi ei ole satelliittiviritintä."
 
 msgid "No tags are set on these movies."
 msgstr "Näissä tallenteissa ei ole avainsanoja."
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
@@ -2406,24 +2519,30 @@ msgstr ""
 
 msgid ""
 "No working local network adapter found.\n"
-"Please verify that you have attached a network cable and your network is configured correctly."
+"Please verify that you have attached a network cable and your network is "
+"configured correctly."
 msgstr ""
 "Toimivaa verkkokorttia ei löydy.\n"
-"Tarkista, että olet kytkennyt verkkokaapelin ja lähiverkon asetukset ovat oikein."
+"Tarkista, että olet kytkennyt verkkokaapelin ja lähiverkon asetukset ovat "
+"oikein."
 
 msgid ""
 "No working wireless network adapter found.\n"
-"Please verify that you have attached a compatible WLAN device and your network is configured correctly."
+"Please verify that you have attached a compatible WLAN device and your "
+"network is configured correctly."
 msgstr ""
 "Toimivaa langatonta yhteyttä ei löydy.\n"
-"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen ja verkko on määritelty oikein."
+"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen ja verkko on "
+"määritelty oikein."
 
 msgid ""
 "No working wireless network interface found.\n"
-" Please verify that you have attached a compatible WLAN device or enable your local network interface."
+" Please verify that you have attached a compatible WLAN device or enable "
+"your local network interface."
 msgstr ""
 "Toimivaa langatonta yhteyttä ei löydy.\n"
-"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen tai kytke lähiverkko päälle."
+"Tarkista, että olet kytkenyt yhteensopivan WLAN-laitteen tai kytke "
+"lähiverkko päälle."
 
 msgid "No, but restart from begin"
 msgstr "Ei, aloita alusta"
@@ -2447,8 +2566,7 @@ msgstr "Ei, älä lähetä koskaan"
 msgid "None"
 msgstr "Ei mitään"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching
-#. the left/right)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Epälineaarinen"
 
@@ -2459,8 +2577,12 @@ msgid "Norwegian"
 msgstr "Norja"
 
 #, python-format
-msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
-msgstr "Liian vähän levytilaa. Vapauta levytilaa ja yritä uudelleen. (%d Mt tarvitaan, %d Mt vapaana)"
+msgid ""
+"Not enough diskspace. Please free up some diskspace and try again. (%d MB "
+"required, %d MB available)"
+msgstr ""
+"Liian vähän levytilaa. Vapauta levytilaa ja yritä uudelleen. (%d Mt "
+"tarvitaan, %d Mt vapaana)"
 
 msgid ""
 "Nothing to scan!\n"
@@ -2472,7 +2594,10 @@ msgstr ""
 msgid "Now Playing"
 msgstr "Toistetaan"
 
-msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
+msgid ""
+"Now, use the contrast setting to turn up the brightness of the background as "
+"much as possible, but make sure that you can still see the difference "
+"between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
 "Säädä kontrastisäädöllä tausta mahdollisimman valkoiseksi.\n"
 "\n"
@@ -2513,6 +2638,9 @@ msgstr "Online-päivitys"
 msgid "Only Free scan"
 msgstr "Hae vain salaamattomat"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "Jos haluat, lisää nimesi."
 
@@ -2524,9 +2652,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDit"
-
-msgid "Package details for: "
-msgstr "Ohjelmapaketin tiedot:"
 
 msgid "Package list update"
 msgstr "Ohjelmapakettilistan päivitys"
@@ -2546,8 +2671,7 @@ msgstr "Ohjelmapakettien hallinta"
 msgid "Page"
 msgstr "Sivu"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt,
-#. keep english term
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr ""
 
@@ -2581,8 +2705,7 @@ msgstr "PiP-kuvan asetukset"
 msgid "PicturePlayer"
 msgstr "Kuvien katselu"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep
-#. english term.
+#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
 msgstr ""
 
@@ -2632,20 +2755,24 @@ msgid "Please choose the default services lists you want to install."
 msgstr "Valitse oletuskanavalistat jotka haluat asentaa ja paina OK."
 
 msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
+"Please configure or verify your Nameservers by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Määritä ja tarkista nimipalvelimien tiedot.\n"
 "Paina OK-näppäintä kun olet valmis."
 
 msgid ""
-"Please configure your internet connection by filling out the required values.\n"
+"Please configure your internet connection by filling out the required "
+"values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Määritä lähiverkkoyhteys syöttämällä tarvittavat arvot.\n"
 "Paina OK-näppäintä kun olet valmis."
 
-msgid "Please disconnect all USB devices from your Dreambox and (re-)attach the target USB stick (minimum size is 64 MB) now!"
+msgid ""
+"Please disconnect all USB devices from your Dreambox and (re-)attach the "
+"target USB stick (minimum size is 64 MB) now!"
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -2681,8 +2808,12 @@ msgstr "Syötä nimesi (ei pakollinen):"
 msgid "Please follow the instructions on the TV"
 msgstr "Seuraa ruudulla näkyviä ohjeita"
 
-msgid "Please note that the previously selected media could not be accessed and therefore the default directory is being used instead."
-msgstr "Huomaa, että oletushakemisto on käytössä, koska aikaisemmin valittua levyä ei voitu ladata."
+msgid ""
+"Please note that the previously selected media could not be accessed and "
+"therefore the default directory is being used instead."
+msgstr ""
+"Huomaa, että oletushakemisto on käytössä, koska aikaisemmin valittua levyä "
+"ei voitu ladata."
 
 msgid "Please press OK to continue."
 msgstr "Jatka painamalla OK."
@@ -2724,7 +2855,8 @@ msgid "Please select the movie path..."
 msgstr "Valitse tallennehakemisto..."
 
 msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
+"Please select the network interface that you want to use for your internet "
+"connection.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
@@ -2760,7 +2892,9 @@ msgstr ""
 "Muuta ikkunan kokoa Bouquet +/- napeilla.\n"
 "Palaa TV-tilaan OK-näppäimellä tai hylkää siirto EXIT-näppäimellä."
 
-msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
+msgid ""
+"Please use the UP and DOWN keys to select your language. Afterwards press "
+"the OK button."
 msgstr "Valitse kieli ylös/alas näppäimillä ja paina OK-näppäintä."
 
 msgid "Please wait for activation of your network configuration..."
@@ -2795,9 +2929,6 @@ msgstr "Odota... Luetteloa ladataan..."
 
 msgid "Plugin browser"
 msgstr "Asennetut Plugin-lisäosat"
-
-msgid "Plugin manager"
-msgstr "Lisäosien hallinta"
 
 msgid "Plugin manager activity information"
 msgstr "Lisäosien hallinnan asennustiedot"
@@ -2993,6 +3124,9 @@ msgstr "Tallenteet..."
 msgid "Recording"
 msgstr "Tallenne"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Tallennuksia on käynnissä tai käynnistymässä!"
 
@@ -3004,9 +3138,6 @@ msgstr "Tallennukset saavat keskeyttää suoran katselun"
 
 msgid "Reenter new pin"
 msgstr "Syötä uusi tunnusluku toistamiseen"
-
-msgid "Refresh"
-msgstr "Päivitä"
 
 msgid "Refresh Rate"
 msgstr "Virkistystaajuus"
@@ -3131,8 +3262,12 @@ msgstr "Palautus käynnissä"
 msgid "Restore system settings"
 msgstr "Palauta asetukset"
 
-msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
-msgstr "Asetusten palautus on suoritettu. Paina OK ottaaksesi palautetut asetukset käyttöön."
+msgid ""
+"Restoring the settings is done. Please press OK to activate the restored "
+"settings now."
+msgstr ""
+"Asetusten palautus on suoritettu. Paina OK ottaaksesi palautetut asetukset "
+"käyttöön."
 
 msgid "Resume from last position"
 msgstr "Jatka viimeksi katsotusta kohdasta"
@@ -3297,20 +3432,30 @@ msgstr ""
 msgid "Scan band US SUPER"
 msgstr ""
 
-msgid "Scan your network for wireless Access Points and connect to them using your WLAN USB Stick\n"
+msgid ""
+"Scan your network for wireless Access Points and connect to them using your "
+"WLAN USB Stick\n"
 msgstr "Hae WLAN-tukiasemia ja kytkeydy niihin USB WLAN-tikun avulla\n"
 
-msgid "Scan your network for wireless Access Points and connect to them using your selected wireless device.\n"
+msgid ""
+"Scan your network for wireless Access Points and connect to them using your "
+"selected wireless device.\n"
 msgstr ""
 
-msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
-msgstr "Hakee oletuskanavalistan satelliittijärjestyksessä käyttäen kytkettyä antennimoottoria"
+msgid ""
+"Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
+"Hakee oletuskanavalistan satelliittijärjestyksessä käyttäen kytkettyä "
+"antennimoottoria"
 
 msgid "Search east"
 msgstr "Etsintä itään"
 
 msgid "Search west"
 msgstr "Etsintä länteen"
+
+msgid "Searching for available updates. Please wait..."
+msgstr ""
 
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Etsitään asennettuja tai poistettuja ohjelmapaketteja. Odota..."
@@ -3512,6 +3657,9 @@ msgstr "Näytä tv..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Näyttää WLAN-yhteyden tilan.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Sammuta Dreambox jälkeenpäin"
 
@@ -3585,8 +3733,8 @@ msgstr "Hidastusnopeudet"
 msgid "Software"
 msgstr "Ohjelmisto"
 
-msgid "Software manager"
-msgstr "Ohjelmistojen hallinta"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Ohjelmiston palautus"
@@ -3757,8 +3905,7 @@ msgstr "Symbolinopeus"
 msgid "System"
 msgstr "Järjestelmä"
 
-#. TRANSLATORS: Add here whatever should be shown in the "translator" about
-#. screen, up to 6 lines (use \n for newline)
+#. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
 
@@ -3779,6 +3926,9 @@ msgstr "Avainsana 2"
 
 msgid "Tags"
 msgstr "Avainsanat"
+
+msgid "Temperature and Fan control"
+msgstr ""
 
 msgid "Terrestrial"
 msgstr "Antennivastaanotto (DVB-T)"
@@ -3828,14 +3978,27 @@ msgstr ""
 "värinäppäimien takaa löytyviä\n"
 "toimintoja."
 
-msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
-msgstr "DVD-standardi ei tue H.264 (HDTV) videota. Haluatko luoda Dreamboxin omassa formaatissa olevan data-DVD:n? Levy ei toistu normaaleissa DVD-soittimissa."
+msgid ""
+"The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
+"create a Dreambox format data DVD (which will not play in stand-alone DVD "
+"players) instead?"
+msgstr ""
+"DVD-standardi ei tue H.264 (HDTV) videota. Haluatko luoda Dreamboxin omassa "
+"formaatissa olevan data-DVD:n? Levy ei toistu normaaleissa DVD-soittimissa."
 
-msgid "The USB stick is now bootable. Do you want to download the latest image from the feed server and save it on the stick?"
+msgid ""
+"The USB stick is now bootable. Do you want to download the latest image from "
+"the feed server and save it on the stick?"
 msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varmuuskopiointi epäonnistui. Valitse toinen varmuuskopiointipaikka."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3856,7 +4019,8 @@ msgstr "Seuraavat tiedostot löytyi..."
 
 msgid ""
 "The input port should be configured now.\n"
-"You can now configure the screen by displaying some test pictures. Do you want to do that now?"
+"You can now configure the screen by displaying some test pictures. Do you "
+"want to do that now?"
 msgstr ""
 "Näytön liitäntä pitäisi nyt olla kunnossa.\n"
 "Voit nyt säätää näyttöä testikuvien avulla. Haluatko tehdä sen?"
@@ -3864,14 +4028,28 @@ msgstr ""
 msgid "The installation of the default services lists is finished."
 msgstr "Oletuskanavalistojen asennus on suoritettu."
 
-msgid "The installation of the default settings is finished. You can now continue configuring your Dreambox by pressing the OK button on the remote control."
-msgstr "Oletusarvojen asennus on suoritettu. Voit jatkaa Dreamboxin asetusten muokkausta painamalla OK."
+msgid ""
+"The installation of the default settings is finished. You can now continue "
+"configuring your Dreambox by pressing the OK button on the remote control."
+msgstr ""
+"Oletusarvojen asennus on suoritettu. Voit jatkaa Dreamboxin asetusten "
+"muokkausta painamalla OK."
 
-msgid "The md5sum validation failed, the file may be corrupted! Are you sure that you want to burn this image to flash memory? You are doing this at your own risk!"
-msgstr "MD5SUM-tarkistusluku virheellinen, tiedosto voi olla vioittunut! Oletko varma, että haluat asentaa tämän ohjelmistopäivityksen? Teet sen omalla vastuulla!"
+msgid ""
+"The md5sum validation failed, the file may be corrupted! Are you sure that "
+"you want to burn this image to flash memory? You are doing this at your own "
+"risk!"
+msgstr ""
+"MD5SUM-tarkistusluku virheellinen, tiedosto voi olla vioittunut! Oletko "
+"varma, että haluat asentaa tämän ohjelmistopäivityksen? Teet sen omalla "
+"vastuulla!"
 
-msgid "The md5sum validation failed, the file may be downloaded incompletely or be corrupted!"
-msgstr "MD5SUM-tarkistusluku virheellinen, tiedosto voi olla keskeneräinen tai vioittunut!"
+msgid ""
+"The md5sum validation failed, the file may be downloaded incompletely or be "
+"corrupted!"
+msgstr ""
+"MD5SUM-tarkistusluku virheellinen, tiedosto voi olla keskeneräinen tai "
+"vioittunut!"
 
 msgid "The package doesn't contain anything."
 msgstr "Paketti ei sisällä mitään."
@@ -3919,8 +4097,11 @@ msgstr ""
 "WLAN-lisäosaa ei ole asennettu!\n"
 "Asenna se."
 
-msgid "The wizard can backup your current settings. Do you want to do a backup now?"
-msgstr "Avustaja voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset?"
+msgid ""
+"The wizard can backup your current settings. Do you want to do a backup now?"
+msgstr ""
+"Avustaja voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida "
+"asetukset?"
 
 msgid "The wizard is finished now."
 msgstr "Avustaja on lopettanut. Paina OK."
@@ -3928,17 +4109,20 @@ msgstr "Avustaja on lopettanut. Paina OK."
 msgid "There are at least "
 msgstr "Saatavilla ainakin"
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Oletuskanavalistoja ei löydy. Paina OK."
 
 msgid "There are no default settings in your image."
 msgstr "Oletusarvoja ei löydy. Paina OK."
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Nyt on "
-
-msgid "There is nothing to be done."
-msgstr "Ei tehtäviä."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -3957,14 +4141,26 @@ msgstr "Tapahtui virhe. Paketti:"
 msgid "This .NFI file does not contain a valid %s image!"
 msgstr "Tämä .NFI-tiedosto ei sisällä toimivaa %s ohjelmistopäivitystä!"
 
-msgid "This .NFI file does not have a md5sum signature and is not guaranteed to work. Do you really want to burn this image to flash memory?"
-msgstr "Tällä .NFI-tiedostolla ei ole MD5SUM-tarkistuslukua eikä sen toiminnasta ole takeita. Oletko varma, että haluat asentaa tämän ohjelmistopäivityksen?"
+msgid ""
+"This .NFI file does not have a md5sum signature and is not guaranteed to "
+"work. Do you really want to burn this image to flash memory?"
+msgstr ""
+"Tällä .NFI-tiedostolla ei ole MD5SUM-tarkistuslukua eikä sen toiminnasta ole "
+"takeita. Oletko varma, että haluat asentaa tämän ohjelmistopäivityksen?"
 
-msgid "This .NFI file has a valid md5 signature. Continue programming this image to flash memory?"
-msgstr ".NFI-tiedoston MD5-tarkistusluku on kunnossa. Jatketaanko ohjelmistopäivityksen asentamista?"
+msgid ""
+"This .NFI file has a valid md5 signature. Continue programming this image to "
+"flash memory?"
+msgstr ""
+".NFI-tiedoston MD5-tarkistusluku on kunnossa. Jatketaanko "
+"ohjelmistopäivityksen asentamista?"
 
-msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
-msgstr "Tämä DVD-RW levy on jo alustettu - uudelleenalustus tuhoaa levyn kaiken sisällön."
+msgid ""
+"This DVD RW medium is already formatted - reformatting will erase all "
+"content on the disc."
+msgstr ""
+"Tämä DVD-RW levy on jo alustettu - uudelleenalustus tuhoaa levyn kaiken "
+"sisällön."
 
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
@@ -3996,12 +4192,14 @@ msgid ""
 "This test checks for configured Nameservers.\n"
 "If you get a \"unconfirmed\" message:\n"
 "- please check your DHCP, cabling and Adapter setup\n"
-"- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
+"- if you configured your Nameservers manually please verify your entries in "
+"the \"Nameserver\" Configuration"
 msgstr ""
 "Tämä testi tarkistaa nimipalvelimet.\n"
 "Jos näet \"vahvistamaton\" ilmoituksen:\n"
 "- tarkista DHCP, kaapelointi ja Sovittimen asetukset\n"
-"- jos määrittelit nimipalvelimet käsin, tarkista arvot \"Nimipalvelimen asetukset\" kohdassa"
+"- jos määrittelit nimipalvelimet käsin, tarkista arvot \"Nimipalvelimen "
+"asetukset\" kohdassa"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -4026,19 +4224,24 @@ msgstr ""
 "- tarkista DHCP, kaapeli ja verkkosovittimen asetukset"
 
 msgid ""
-"This test checks whether your LAN Adapter is set up for automatic IP Address configuration with DHCP.\n"
+"This test checks whether your LAN Adapter is set up for automatic IP Address "
+"configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
 " - then your LAN Adapter is configured for manual IP Setup\n"
-"- verify thay you have entered correct IP informations in the AdapterSetup dialog.\n"
+"- verify thay you have entered correct IP informations in the AdapterSetup "
+"dialog.\n"
 "If you get an \"enabeld\" message:\n"
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
-"Tämä testi tarkistaa, onko verkkosovittimelle määritetty automaattinen IP-osoite DHCP:n kautta.\n"
+"Tämä testi tarkistaa, onko verkkosovittimelle määritetty automaattinen IP-"
+"osoite DHCP:n kautta.\n"
 "Jos näet \"ei käytössä\" ilmoituksen:\n"
 "- verkkosovitin on määritelty käyttämään kiinteää IP-osoitetta\n"
-"- tarkista, että olet syöttänyt oikeat IP-tiedot Sovittimen asetukset -kohdassa.\n"
+"- tarkista, että olet syöttänyt oikeat IP-tiedot Sovittimen asetukset -"
+"kohdassa.\n"
 "Jos näet \"käytössä\" ilmoituksen:\n"
-"- tarkista, että sinulla on lähiverkossasi toimiva ja oikein määritelty DCHP-palvelin."
+"- tarkista, että sinulla on lähiverkossasi toimiva ja oikein määritelty DCHP-"
+"palvelin."
 
 msgid "This test detects your configured LAN-Adapter."
 msgstr "Tämä testi tunnistaa määrittelemäsi verkkosovittimen."
@@ -4091,6 +4294,9 @@ msgstr ""
 "Ajastusten päällekkäisyys havaittu!\n"
 "Tarkista ajastusasetukset!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Päällekkäinen ajastus"
 
@@ -4102,6 +4308,9 @@ msgstr "Ajastimen tila:"
 
 msgid "Timeshift"
 msgstr "Ajansiirto"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Ajansiirtotallennusta ei voida käyttää."
@@ -4123,13 +4332,18 @@ msgstr "Tila"
 
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+"1) Turn off your box with the rear power switch and plug in the bootable USB "
+"stick.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
 msgid "Today"
 msgstr "Tänään"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "22KHz-ääni"
@@ -4244,24 +4458,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC-käsky"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
-"Kumoa\n"
-"Asenna"
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"Kumoa\n"
-"Poista"
+
+msgid "Unicable"
+msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4281,6 +4493,9 @@ msgstr "Päivittää vastaanottimen ohjelmiston"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Päivitys suoritettu. Tulos:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Päivitetään... Odota... Tämä voi kestää muutaman minuutin..."
@@ -4338,7 +4553,9 @@ msgstr ""
 
 #  Ohjatun asennuksen (Start Wizard) toinen ruutu. Teksti on rivitetty
 #  tilaansa käsin. Hyödyksi käytetään Unicode-nuolisymboleja.
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgid ""
+"Use the up/down keys on your remote control to select an option. After that, "
+"press OK."
 msgstr ""
 "Valitse haluamasi vaihtoehto\n"
 "kaukosäätimen nuolinäppäimillä\n"
@@ -4409,13 +4626,15 @@ msgstr "Kuvanparannuksen asetukset"
 msgid ""
 "Video input selection\n"
 "\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
+"Please press OK if you can see this page on your TV (or select a different "
+"input port).\n"
 "\n"
 "The next input port will be automatically probed in 10 seconds."
 msgstr ""
 "Video-sisäänmenon valinta\n"
 "\n"
-"Paina OK jos näet tämän ruudun TV:ssä (tai valitse TV:stä toinen sisäänmeno)\n"
+"Paina OK jos näet tämän ruudun TV:ssä (tai valitse TV:stä toinen "
+"sisäänmeno)\n"
 "\n"
 "Seuraavaa sisäänmenoa tunnistetaan automaattisesti 10 sekunnin kuluttua."
 
@@ -4516,10 +4735,13 @@ msgid "Warn if free space drops below (kB):"
 msgstr "Varoita jos tyhjä tila putoaa alle (kB):"
 
 msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+"We will now test if your TV can also display this resolution at 50hz. If "
+"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
 "Please press OK to begin."
 msgstr ""
-"Testaamme nyt näyttääkö televisiosi tämän tarkkuuden 50hz:llä. Jos ruutu menee mustaksi, odota 20 sekuntia jolloin 60hz tila kytkeytyy takaisin päälle.\n"
+"Testaamme nyt näyttääkö televisiosi tämän tarkkuuden 50hz:llä. Jos ruutu "
+"menee mustaksi, odota 20 sekuntia jolloin 60hz tila kytkeytyy takaisin "
+"päälle.\n"
 "Aloita painamalla OK."
 
 msgid "Wed"
@@ -4534,24 +4756,34 @@ msgstr "Viikonpäivä"
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start cut'.\n"
+"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
+"cut'.\n"
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 "Tervetuloa leikkauskohtien muokkaukseen.\n"
 "\n"
-"Hae kohta, josta haluat aloittaa poisleikkauksen. Paina OK-näppäintä ja valitse 'Aloita leikkaus'.\n"
+"Hae kohta, josta haluat aloittaa poisleikkauksen. Paina OK-näppäintä ja "
+"valitse 'Aloita leikkaus'.\n"
 "\n"
-"Hae seuraavaksi kohta, johon haluat lopettaa leikkauksen. Paina OK-näppäintä ja valitse 'Lopeta leikkaus'."
+"Hae seuraavaksi kohta, johon haluat lopettaa leikkauksen. Paina OK-näppäintä "
+"ja valitse 'Lopeta leikkaus'."
 
-msgid "Welcome to the Image upgrade wizard. The wizard will assist you in upgrading the firmware of your Dreambox by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr "Tervetuloa ohjelmiston päivitysavustajaan. Avustaja opastaa ohjelmiston päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa päivityksen jälkeen."
+msgid ""
+"Welcome to the Image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your Dreambox by providing a backup facility for your "
+"current settings and a short explanation of how to upgrade your firmware."
+msgstr ""
+"Tervetuloa ohjelmiston päivitysavustajaan. Avustaja opastaa ohjelmiston "
+"päivityksessä ja varmuuskopioinnissa sekä asetusten palauttamisessa "
+"päivityksen jälkeen."
 
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
 "We have detected that your available internal memory has dropped below 2MB.\n"
-"To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
+"To ensure stable operation of your Dreambox, the internal memory should be "
+"cleaned up.\n"
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 "Tervetuloa puhdistusavustajaan.\n"
@@ -4563,13 +4795,15 @@ msgstr ""
 msgid ""
 "Welcome.\n"
 "\n"
-"If you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n"
+"If you want to connect your Dreambox to the Internet, this wizard will guide "
+"you through the basic network setup of your Dreambox.\n"
 "\n"
 "Press OK to start configuring your network"
 msgstr ""
 "Tervetuloa.\n"
 "\n"
-"Jos haluat yhdistää Dreamboxin verkkoon, auttaa tämä avustaja määrittämään Dreamboxin lähiverhon perusasetukset.\n"
+"Jos haluat yhdistää Dreamboxin verkkoon, auttaa tämä avustaja määrittämään "
+"Dreamboxin lähiverhon perusasetukset.\n"
 "\n"
 "Siirry seuraavaan vaiheeseen painamalla OK-nappia."
 
@@ -4611,7 +4845,8 @@ msgstr "Mitä lähetetyille lokeille tehdään?"
 msgid ""
 "When you do a factory reset, you will lose ALL your configuration data\n"
 "(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your receiver will restart automatically!\n"
+"After completion of factory reset, your receiver will restart "
+"automatically!\n"
 "\n"
 "Really do a factory reset?"
 msgstr ""
@@ -4652,6 +4887,9 @@ msgstr "Vuosi"
 msgid "Yes"
 msgstr "Kyllä"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Kyllä ja poista tämä tallenne"
 
@@ -4688,7 +4926,9 @@ msgstr "Voi keskeyttää asennuksen."
 msgid "You can cancel the removal."
 msgstr "Voit keskeyttää poiston."
 
-msgid "You can choose some default settings now. Please select the settings you want to be installed."
+msgid ""
+"You can choose some default settings now. Please select the settings you "
+"want to be installed."
 msgstr "Valitse mitkä oletusarvot haluat asentaa."
 
 msgid "You can choose, what you want to install..."
@@ -4696,6 +4936,9 @@ msgstr "Voit valita, mitä haluat asentaa..."
 
 msgid "You can install this plugin."
 msgstr "Voit asentaa tämän lisäosan."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Voit poistaa tämän lisäosan."
@@ -4706,51 +4949,84 @@ msgstr "Et voi poistaa tätä!"
 msgid "You chose not to install any default services lists."
 msgstr "Et valinnut yhtään oletuskanavalistaa. Paina OK."
 
-msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
-msgstr "Et valinnut mitään oletusasetuksia. Voit kuitenkin asentaa ne myöhemmin asetusvalikon kautta."
-
-msgid "You chose not to install anything. Please press OK finish the install wizard."
-msgstr "Et valinnut mitään asennettavaksi. Poistu painamalla OK."
-
-msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
-msgstr "Laitteessasi ei näytä olevan kiintolevyä, joten et voi varmuuskopioida kiintolevylle."
+msgid ""
+"You chose not to install any default settings. You can however install the "
+"default settings later in the settings menu."
+msgstr ""
+"Et valinnut mitään oletusasetuksia. Voit kuitenkin asentaa ne myöhemmin "
+"asetusvalikon kautta."
 
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
+"You chose not to install anything. Please press OK finish the install wizard."
+msgstr "Et valinnut mitään asennettavaksi. Poistu painamalla OK."
+
+msgid ""
+"You do not seem to have a harddisk in your Dreambox. So backing up to a "
+"harddisk is not an option for you."
+msgstr ""
+"Laitteessasi ei näytä olevan kiintolevyä, joten et voi varmuuskopioida "
+"kiintolevylle."
+
+msgid ""
+"You have chosen to backup to a compact flash card. The card must be in the "
+"slot. We do not verify if it is really used at the moment. So better backup "
+"to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Olet valinnut varmuuskopioinnin Compact Flash -kortille. Kortin on oltava lukijassa. Sen toimintaa ei voi todeta. Suosittelemme varmuuskopiointia kiintolevylle!\n"
+"Olet valinnut varmuuskopioinnin Compact Flash -kortille. Kortin on oltava "
+"lukijassa. Sen toimintaa ei voi todeta. Suosittelemme varmuuskopiointia "
+"kiintolevylle!\n"
 "Paina OK aloittaakseni varmuuskopioinnin nyt."
 
 msgid ""
 "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
 "Please press OK to start the backup now."
 msgstr ""
-"Olet valinnut varmuuskopioinnin USB:lle. Kiintolevy on luotettavampi vaihtoehto!\n"
+"Olet valinnut varmuuskopioinnin USB:lle. Kiintolevy on luotettavampi "
+"vaihtoehto!\n"
 "Paina OK aloittaaksesi varmuuskopioinnin."
 
-msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
-msgstr "Olet valinnut varmuuskopioinnin kiintolevylle. Paina OK aloittaaksesi varmistuksen nyt."
+msgid ""
+"You have chosen to backup to your harddisk. Please press OK to start the "
+"backup now."
+msgstr ""
+"Olet valinnut varmuuskopioinnin kiintolevylle. Paina OK aloittaaksesi "
+"varmistuksen nyt."
 
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
+msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
 msgstr "Valitsit asetusten varmuuskopioinnin. Aloita painamalla OK-näppäintä."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Olet valinnut .NFI-päivitysohjelman asennuksen USB-muistille. Tämä toiminto osioi USB-muistin ja tuhoaa siltä kaikki tiedostot."
+msgid ""
+"You have chosen to create a new .NFI flasher bootable USB stick. This will "
+"repartition the USB stick and therefore all data on it will be erased."
+msgstr ""
+"Olet valinnut .NFI-päivitysohjelman asennuksen USB-muistille. Tämä toiminto "
+"osioi USB-muistin ja tuhoaa siltä kaikki tiedostot."
 
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Valitsit asetusten palautuksen. Enigma2 käynnistyy uudelleen palautuksen jälkeen. Aloita painamalla OK-näppäintä."
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
+"Valitsit asetusten palautuksen. Enigma2 käynnistyy uudelleen palautuksen "
+"jälkeen. Aloita painamalla OK-näppäintä."
 
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Sinun täytyy odottaa %s!"
 
 msgid ""
-"You need a PC connected to your dreambox. If you need further instructions, please visit the website http://www.dm7025.de.\n"
-"Your dreambox will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
+"You need a PC connected to your dreambox. If you need further instructions, "
+"please visit the website http://www.dm7025.de.\n"
+"Your dreambox will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
 msgstr ""
-"Tarvitse PC:n, joka on yhdistetty Dreamboksiin. Katso lisätietoja http://www.dm7025.de.\n"
-"Dreamboksisi sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
+"Tarvitse PC:n, joka on yhdistetty Dreamboksiin. Katso lisätietoja http://www."
+"dm7025.de.\n"
+"Dreamboksisi sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston "
+"mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
@@ -4760,6 +5036,13 @@ msgstr ""
 "Sinun täytyy asettaa tunnusluku ja piilottaa se lapsiltasi.\n"
 "\n"
 "Haluatko asettaa tunnusluvun nyt?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4780,17 +5063,25 @@ msgstr "Dreambox käynnistyy uudelleen kun painat OK."
 msgid "Your TV works with 50 Hz. Good!"
 msgstr "Televisiosi toimii 50Hz:llä. Hyvä!"
 
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
 msgstr "Varmuuskopiointi onnistui. Päivitys jatkuu eteenpäin."
 
-msgid "Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"
+msgid ""
+"Your collection exceeds the size of a single layer medium, you will need a "
+"blank dual layer DVD!"
 msgstr ""
 
 msgid "Your dreambox is shutting down. Please stand by..."
 msgstr "Laite sammutetaan. Odota..."
 
-msgid "Your dreambox isn't connected to the internet properly. Please check it and try again."
-msgstr "Yhteyttä Internetiin ei kyetty muodostamaan. Tarkista verkkoasetukset ja yritä uudelleen."
+msgid ""
+"Your dreambox isn't connected to the internet properly. Please check it and "
+"try again."
+msgstr ""
+"Yhteyttä Internetiin ei kyetty muodostamaan. Tarkista verkkoasetukset ja "
+"yritä uudelleen."
 
 msgid "Your email address:"
 msgstr "Sähköpostiosoite:"
@@ -4879,6 +5170,9 @@ msgstr "alkaa juuri"
 
 msgid "activate current configuration"
 msgstr "aktivoi nykyiset asetukset"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "Lisää p.tarjoaja"
@@ -5206,9 +5500,6 @@ msgstr "apua..."
 
 msgid "hidden network"
 msgstr "piilotettu verkko"
-
-msgid "hidden..."
-msgstr "piilotettu..."
 
 msgid "hide extended description"
 msgstr "Piilota laajennettu ohjelmakuvaus"
@@ -5598,6 +5889,9 @@ msgstr "Näytä lähettimen tietoja"
 msgid "shuffle playlist"
 msgstr "arvo soittolista"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "sammuta"
 
@@ -5748,14 +6042,33 @@ msgstr "Kyllä"
 msgid "yes (keep feeds)"
 msgstr "Kyllä (pidä feedit)"
 
-msgid "your dreambox might be unusable now. Please consult the manual for further assistance before rebooting your dreambox."
-msgstr "Asennus ei onnistunut. Dreambox saattaa olla käyttökelvottomassa tilassa. Joudut ehkä asentamaan ohjelmiston uudelleen tietokoneen avulla. Katso käyttöoppaasta lisäohjeita ennen kuin käynnistät laitteen uudelleen."
+msgid ""
+"your dreambox might be unusable now. Please consult the manual for further "
+"assistance before rebooting your dreambox."
+msgstr ""
+"Asennus ei onnistunut. Dreambox saattaa olla käyttökelvottomassa tilassa. "
+"Joudut ehkä asentamaan ohjelmiston uudelleen tietokoneen avulla. Katso "
+"käyttöoppaasta lisäohjeita ennen kuin käynnistät laitteen uudelleen."
 
 msgid "zap"
 msgstr "kanavanvaihto"
 
 msgid "zapped"
 msgstr "vaihdettu"
+
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Etsi ja asenna paikallisia IPKG-paketteja."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Lisää ja poista ohjelmapaketteja."
 
 #~ msgid "Backup running"
 #~ msgstr "Varmuuskopiointi käynnissä"
@@ -5769,8 +6082,20 @@ msgstr "vaihdettu"
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Muokkaa IPKG-lähdeosoitetta..."
 
+#~ msgid "Encrypted: %s"
+#~ msgstr "Salattu: %s"
+
+#~ msgid "Following tasks will be done after you press continue!"
+#~ msgstr "Seuraavat tehtävät suoritetaan kun painat jatka!"
+
 #~ msgid "Following tasks will be done after you press continue."
 #~ msgstr "Seuraavat tehtävät suoritetaan kun valitset jatka."
+
+#~ msgid "General AC3 delay"
+#~ msgstr "AC3-viive (ms)"
+
+#~ msgid "General PCM delay"
+#~ msgstr "PCM-viive (ms)"
 
 #~ msgid "How to handle found crashlogs:"
 #~ msgstr "Mitä lokitiedostoille tehdään:"
@@ -5784,8 +6109,20 @@ msgstr "vaihdettu"
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Katsele/muokkaa Dreamboxin tiedostoja"
 
+#~ msgid "Max. Bitrate: %s"
+#~ msgstr "Maks. nopeus: %s"
+
 #~ msgid "No, send them never."
 #~ msgstr "Älä lähetä koskaan."
+
+#~ msgid "Package details for: "
+#~ msgstr "Ohjelmapaketin tiedot:"
+
+#~ msgid "Plugin manager"
+#~ msgstr "Lisäosien hallinta"
+
+#~ msgid "Refresh"
+#~ msgstr "Päivitä"
 
 #~ msgid "Restore backups..."
 #~ msgstr "Palauta varmuuskopio"
@@ -5796,8 +6133,31 @@ msgstr "vaihdettu"
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Valitse kopioitavat tiedostot/kansiot..."
 
+#~ msgid "Software manager"
+#~ msgstr "Ohjelmistojen hallinta"
+
 #~ msgid "Software manager..."
 #~ msgstr "Ohjelmistojen hallinta"
 
+#~ msgid "There is nothing to be done."
+#~ msgstr "Ei tehtäviä."
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "Kumoa\n"
+#~ "Asenna"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Kumoa\n"
+#~ "Poista"
+
 #~ msgid "Upgrade"
 #~ msgstr "Päivitä"
+
+#~ msgid "hidden..."
+#~ msgstr "piilotettu..."
