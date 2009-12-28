@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Icelandic translation v.1.44\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-09-24 22:09-0000\n"
 "Last-Translator: Baldur Þór Sveinsson <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -46,6 +46,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -81,10 +86,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Leita að innsettum pökkum og setja þá upp."
 
 msgid ""
 "\n"
@@ -101,13 +104,6 @@ msgid ""
 msgstr ""
 "\n"
 "Kerfi verður endurræst eftir innsetningu!"
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Skoða, setja inn og taka út hugbúnaðar pakka."
 
 msgid " "
 msgstr " "
@@ -303,6 +299,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<óþekktur>"
 
@@ -369,6 +374,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Nauðsynlegt tól (%s) fannst ekki."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -494,6 +508,12 @@ msgstr "Sérfræði"
 
 msgid "Advanced Options"
 msgstr "Sérfræði stillingar"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
@@ -995,9 +1015,6 @@ msgstr "Constellation"
 msgid "Content does not fit on DVD!"
 msgstr "Innihald passar ekki á DVD!"
 
-msgid "Continue"
-msgstr "Áfram"
-
 msgid "Continue in background"
 msgstr "Halda áfram í bakgrunni"
 
@@ -1012,6 +1029,9 @@ msgstr "Gat ekki tengt við Dreambox .NFI stýrikerfis vefþjón:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Gat ekki lesið disk! Er enginn diskur í drifi?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1138,6 +1158,9 @@ msgstr "Venjulegt"
 msgid "Default Settings"
 msgstr "Upphafs stillingar"
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Sjálfgefinn rásalisti"
 
@@ -1175,6 +1198,9 @@ msgstr "Ekki velja"
 
 msgid "Destination directory"
 msgstr "Endanleg mappa"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Fann harðan disk:"
@@ -1493,8 +1519,7 @@ msgstr "Virkja tímastillingu"
 msgid "Enabled"
 msgstr "Virkt"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1625,8 +1650,17 @@ msgstr "Innskot fyrir nánari stillingar netkerfis..."
 msgid "Extended Setup..."
 msgstr "Meiri stillingar..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Viðbætur"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1636,6 +1670,18 @@ msgstr "Verksmiðju stilling"
 
 msgid "Failed"
 msgstr "Tókst ekki"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Hratt"
@@ -1685,7 +1731,7 @@ msgstr "Forritun"
 msgid "Flashing failed"
 msgstr "Forritun tókt ekki"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1747,14 +1793,14 @@ msgstr "Beinir"
 msgid "General AC3 Delay"
 msgstr "Heildar AC3 seinkun"
 
-msgid "General AC3 delay"
-msgstr "Heildar AC3 seinkun"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "Heildar PCM seinkun"
 
-msgid "General PCM delay"
-msgstr "Heildar PCM seinkun"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Gerð"
@@ -1904,6 +1950,9 @@ msgstr "Upplýsingar"
 msgid "Init"
 msgstr "Stilli"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Frumstilli....."
 
@@ -1958,14 +2007,16 @@ msgstr "Set inn innihald pakkans... vinsamlega bíðið..."
 msgid "Instant Record..."
 msgstr "Skyndi upptaka..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Innbyggt Netkort"
 
 msgid "Integrated Wireless"
 msgstr "Innbyggt þráðlaust"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2100,6 +2151,9 @@ msgstr "Nærnet"
 msgid "Location"
 msgstr "Staðsetning"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lás:"
 
@@ -2133,6 +2187,9 @@ msgstr "Gera þetta merki að 'út' merki"
 msgid "Make this mark just a mark"
 msgstr "Gera þetta merki bara að merki"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Stjórna hugbúnaði móttakarans"
 
@@ -2151,8 +2208,7 @@ msgstr "Mörk eftir upptöku"
 msgid "Margin before record (minutes)"
 msgstr "Mörk fyrir upptöku (mínútur)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2215,6 +2271,9 @@ msgstr "Færa austur"
 msgid "Move west"
 msgstr "Færa vestur"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Bíómynda valmynd"
 
@@ -2238,6 +2297,9 @@ msgstr "Ekki til"
 
 msgid "NEXT"
 msgstr "NÆST"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI forritun er lokið. Ýttu á gulan til að endurræsa!"
@@ -2358,8 +2420,16 @@ msgstr "Engar skrár fundust á þessu tæki!"
 msgid "No event info found, recording indefinitely."
 msgstr "Engar upplýsingar um atriði fundust, tek upp endalaust."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Enginn laus móttakari!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2380,6 +2450,9 @@ msgstr "Það fannst ekki gervihnattamóttakari!!"
 
 msgid "No tags are set on these movies."
 msgstr "Engin merki sett á þessa mynd."
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Enginn móttakari er stilltur til að nota með staðsetjara!"
@@ -2532,6 +2605,9 @@ msgstr "Uppfærsla frá neti"
 msgid "Only Free scan"
 msgstr "Bara fríar rásir"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "Settu inn nafn þitt ef að þú vilt."
 
@@ -2543,9 +2619,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr "Upplýsingar um pakka:"
 
 msgid "Package list update"
 msgstr "Listi uppfærðra pakka"
@@ -2817,9 +2890,6 @@ msgstr "Vinsamlega bíðið.. les inn lista...."
 msgid "Plugin browser"
 msgstr "Innskots leit"
 
-msgid "Plugin manager"
-msgstr "Innskots stjóri"
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -3014,6 +3084,9 @@ msgstr "Uppteknar skrár..."
 msgid "Recording"
 msgstr "Upptaka"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Upptaka (tökur) eru í gangi núna eða eru væntanlegar fljótlega!"
 
@@ -3025,9 +3098,6 @@ msgstr "Upptaka hefur alltaf forgang"
 
 msgid "Reenter new pin"
 msgstr "Sláðu aftur inn kóða"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Hressingar tíðni"
@@ -3340,6 +3410,9 @@ msgstr "Leita austur"
 msgid "Search west"
 msgstr "Leita vestur"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Leita að nýinnsettum eða fjarlægðum pökkum. Vinsamlega bíðið..."
 
@@ -3538,6 +3611,9 @@ msgstr "Sýna sjónvarpsspilara"
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Sýnir stöðu þráðlausrar nettenginar.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Slökkva á móttakara eftir"
 
@@ -3611,8 +3687,8 @@ msgstr "Hraði hægspilunar"
 msgid "Software"
 msgstr "Hugbúnaður"
 
-msgid "Software manager"
-msgstr "Hugbúnaðar stjóri"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Hugbúnaðar endurinnsetning"
@@ -3810,6 +3886,9 @@ msgstr "Merki 2"
 msgid "Tags"
 msgstr "Merki"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Stafrænt í lofti"
 
@@ -3860,6 +3939,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Afritun mistókst. Veldu annan stað fyrir afritið."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3966,17 +4051,20 @@ msgstr "Álfurinn er búinn núna."
 msgid "There are at least "
 msgstr "Það eru allavega "
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Það er enginn sjálfgefinn rásalisti í þessu stýrikerfi."
 
 msgid "There are no default settings in your image."
 msgstr "Það er engar sjálfgefnar stillingar í þessu stýrikerfi."
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Það er núna"
-
-msgid "There is nothing to be done."
-msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -4145,6 +4233,9 @@ msgstr ""
 "Tímastillingar ná yfir hvorn annan!\n"
 "Vinsamlega athugið það!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Villa í tímastillingu"
 
@@ -4156,6 +4247,9 @@ msgstr "Tíma staða:"
 
 msgid "Timeshift"
 msgstr "Lifandi pása"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Tímabreyting ekki möguleg!"
@@ -4192,6 +4286,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Í dag"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Tón stilling"
@@ -4306,25 +4403,23 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC stýring"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
-"Hættal við\n"
-"Setja inn"
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"Hætta við\n"
-"Taka út"
+
+msgid "Unicable"
+msgstr "Unicable"
 
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
 msgid "Unicable Martix"
 msgstr "Unicable Martix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Venjulegt LNB"
@@ -4343,6 +4438,9 @@ msgstr "Uppfærir forrit móttakarans"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Uppfærslu er lokið. Hér er útkoman:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Uppfæri... Vinsamlega bíðið... Þetta getur tekið nokkurn tíma.."
@@ -4696,6 +4794,9 @@ msgstr "Ár"
 msgid "Yes"
 msgstr "Já"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Já, og eyða þessari bíómynd"
 
@@ -4744,6 +4845,9 @@ msgstr "Þú getur valið það sem að þú vilt setja inn..."
 
 msgid "You can install this plugin."
 msgstr "Þú getur sett inn þetta innskot."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Þú getur tekið út þetta innskot."
@@ -4845,6 +4949,13 @@ msgstr ""
 "Þú þarft að velja númer og fela hann fyrir börnunum.\n"
 "\n"
 "Viltu búa til númerið núna?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4961,6 +5072,9 @@ msgstr "er að byrja"
 
 msgid "activate current configuration"
 msgstr "virkja núverandi stillingar"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "bæta við sendanda"
@@ -5283,9 +5397,6 @@ msgstr "hjálp..."
 
 msgid "hidden network"
 msgstr "falið netkerfi"
-
-msgid "hidden..."
-msgstr ""
 
 msgid "hide extended description"
 msgstr "fela auka upplýsingar"
@@ -5677,6 +5788,9 @@ msgstr "sýna upplýsingar um sendi"
 msgid "shuffle playlist"
 msgstr "spila af handahófi úr lista"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "slökkva"
 
@@ -5847,6 +5961,20 @@ msgstr "stokkið"
 #~ "\n"
 #~ "Enigma2 mun endurræsa eftir að hafa sett inn afrit"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Leita að innsettum pökkum og setja þá upp."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Skoða, setja inn og taka út hugbúnaðar pakka."
+
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
@@ -5969,6 +6097,9 @@ msgstr "stokkið"
 #~ msgid "Confirm"
 #~ msgstr "Staðfestu"
 
+#~ msgid "Continue"
+#~ msgstr "Áfram"
+
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "Afrita keyranlegt USB stýrikerfi yfir á staut..."
 
@@ -6058,6 +6189,12 @@ msgstr "stokkið"
 
 #~ msgid "Games / Plugins"
 #~ msgstr "Leikir / Innskot"
+
+#~ msgid "General AC3 delay"
+#~ msgstr "Heildar AC3 seinkun"
+
+#~ msgid "General PCM delay"
+#~ msgstr "Heildar PCM seinkun"
 
 #~ msgid "Genre:"
 #~ msgstr "Gerð:"
@@ -6155,6 +6292,9 @@ msgstr "stokkið"
 #~ msgid "Other..."
 #~ msgstr "Annað..."
 
+#~ msgid "Package details for: "
+#~ msgstr "Upplýsingar um pakka:"
+
 #~ msgid "Parental Control"
 #~ msgstr "Foreldra stýring"
 
@@ -6169,6 +6309,9 @@ msgstr "stokkið"
 
 #~ msgid "Please wait for md5 signature verification..."
 #~ msgstr "Vinsamlega bíðið eftir staðfestingu md5 staðfestingu..."
+
+#~ msgid "Plugin manager"
+#~ msgstr "Innskots stjóri"
 
 #~ msgid "Plugin manager help..."
 #~ msgstr "Innskots stjóra hjálp..."
@@ -6287,6 +6430,9 @@ msgstr "stokkið"
 #~ msgid "Socket "
 #~ msgstr "Tengi"
 
+#~ msgid "Software manager"
+#~ msgstr "Hugbúnaðar stjóri"
+
 #~ msgid "Software manager..."
 #~ msgstr "Hugbúnaðar stjóri..."
 
@@ -6346,8 +6492,19 @@ msgstr "stokkið"
 #~ "Athugaðu upplýsingar um diskinn.\n"
 #~ "Villa:"
 
-#~ msgid "Unicable"
-#~ msgstr "Unicable"
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "Hættal við\n"
+#~ "Setja inn"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Hætta við\n"
+#~ "Taka út"
 
 #~ msgid "Upgrade"
 #~ msgstr "Uppfærsla"

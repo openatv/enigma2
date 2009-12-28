@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-09-03 23:41+0200\n"
 "Last-Translator: Audronis Grincevicius <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
@@ -43,6 +43,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -78,10 +83,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Skanuoti vietinius paketus ir įdiegti juos."
 
 msgid ""
 "\n"
@@ -98,13 +101,6 @@ msgid ""
 msgstr ""
 "\n"
 "Sistema po atkūrimo pasileis iš naujo!"
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Peržiūrėkite, įdiekite ir pašalinkite esamus arba įdiegtus paketus."
 
 msgid " "
 msgstr " "
@@ -301,6 +297,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<nežinomas>"
 
@@ -367,6 +372,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Reikalingas įrankis (%s) nebuvo surastas."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -494,6 +508,12 @@ msgstr "Išplėstinis"
 
 msgid "Advanced Options"
 msgstr "Išplėstiniai nustatymai"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
@@ -993,9 +1013,6 @@ msgstr "Žvaigždynas"
 msgid "Content does not fit on DVD!"
 msgstr "Turinys netinka dėl DVD!"
 
-msgid "Continue"
-msgstr "Tęsti"
-
 msgid "Continue in background"
 msgstr "Tęsti fone"
 
@@ -1010,6 +1027,9 @@ msgstr "Negalima prisijungti prie Dreambox .NFI atvaizdo perdavimo serverio:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Negalima užkrauti! Joks diskas neįdėtas?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1136,6 +1156,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr "Numatytieji nustatymai"
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Numatytas kanalų sąrašas"
 
@@ -1173,6 +1196,9 @@ msgstr "Nepasirinkti"
 
 msgid "Destination directory"
 msgstr "Direktorijos vieta"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Rastas HDD:"
@@ -1493,8 +1519,7 @@ msgstr "Įjungti laikmatį"
 msgid "Enabled"
 msgstr "Įjungta"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1627,8 +1652,17 @@ msgstr "Išplėsta tinklo nustatymų papildoma programa..."
 msgid "Extended Setup..."
 msgstr "Išplėstiniai nustatymai..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Ekstra meniu"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1638,6 +1672,18 @@ msgstr "Gamykliniai nustatymai"
 
 msgid "Failed"
 msgstr "Klaidingas"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Greitas"
@@ -1685,7 +1731,7 @@ msgstr "Vidinė atmintis"
 msgid "Flashing failed"
 msgstr "Diegimas klaidingas"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1747,14 +1793,14 @@ msgstr "Šliuzas"
 msgid "General AC3 Delay"
 msgstr "Bendras AC3 užlaikymas"
 
-msgid "General AC3 delay"
-msgstr "Bendras AC3 užlaikymas"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "Bendras PCM užlaikymas"
 
-msgid "General PCM delay"
-msgstr "Bendras PCM užlaikymas"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Žanras"
@@ -1909,6 +1955,9 @@ msgstr "Informacija"
 msgid "Init"
 msgstr "Inicializacija"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Inicializacija..."
 
@@ -1963,14 +2012,16 @@ msgstr "Įdiegiamas paketo turinys... Prašome laukti..."
 msgid "Instant Record..."
 msgstr "Greitas įrašas..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Integruotas tinklo adapteris"
 
 msgid "Integrated Wireless"
 msgstr "Integruotas belaidis tinklas"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2105,6 +2156,9 @@ msgstr "Vietinis tinklas"
 msgid "Location"
 msgstr "Vieta"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lock:"
 
@@ -2138,6 +2192,9 @@ msgstr "Padarykite šį žymeklį 'išėjimo' taške"
 msgid "Make this mark just a mark"
 msgstr "Padarykite šį žymeklį kaip žymekliu"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Valdykite savo imtuvo programinę įrangą"
 
@@ -2156,8 +2213,7 @@ msgstr "Sujungti po įrašymo"
 msgid "Margin before record (minutes)"
 msgstr "Sujungti prieš įrašymą (minutėmis)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2220,6 +2276,9 @@ msgstr "Sukti į rytus"
 msgid "Move west"
 msgstr "Sukti į vakarus"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Filmų sąrašo meniu"
 
@@ -2243,6 +2302,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "KITAS"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -2365,8 +2427,16 @@ msgstr "Jokių failų čia nerasta!"
 msgid "No event info found, recording indefinitely."
 msgstr "Informacija apie įvykius nerasta, tęsiamas įrašymas."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Nėra laisvo imtuvo!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2389,6 +2459,9 @@ msgstr "Nerastas palydovas!!"
 
 msgid "No tags are set on these movies."
 msgstr "Jokios kortelės su užrašu nėra nustatytos šiems kino filmams"
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Nėra imtuvo, suderinto naudotis su diseqc pozicionieriumi!"
@@ -2544,6 +2617,9 @@ msgstr "Tiesioginis atnaujinimas"
 msgid "Only Free scan"
 msgstr "Tik nekoduotus"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "Pasirinktinai įrašykite savo vardą, jei jūs norite."
 
@@ -2555,9 +2631,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr "Paketo detalės: "
 
 msgid "Package list update"
 msgstr "Paketo sąrašo atnaujinimas"
@@ -2844,9 +2917,6 @@ msgstr "Prašome laukti... Užkraunamas sąrašas..."
 msgid "Plugin browser"
 msgstr "Papildomų programų naršyklė"
 
-msgid "Plugin manager"
-msgstr "Papildomų programų valdymas"
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -3041,6 +3111,9 @@ msgstr "Įrašyti failai..."
 msgid "Recording"
 msgstr "Įrašymas"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Įrašas (ai) yra vykdymas arba bus prieinamas po kelių sekundžių!"
 
@@ -3052,9 +3125,6 @@ msgstr "Įrašai visada turi pirmenybę"
 
 msgid "Reenter new pin"
 msgstr "Pakartokite naują pin"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Atnaujinimo norma"
@@ -3371,6 +3441,9 @@ msgstr "Ieškokite rytų"
 msgid "Search west"
 msgstr "Ieškokite vakarų"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Naujai įdiegtų ar pašalintų paketų paieška. Prašome laukti..."
 
@@ -3569,6 +3642,9 @@ msgstr "Rodyti TV grotuvą ..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Rodyti jūsų belaidžio tinklo prisijungimo ribas.\n"
 
+msgid "Shutdown"
+msgstr "Išjungti"
+
 msgid "Shutdown Dreambox after"
 msgstr "Išjungti imtuvą po:  "
 
@@ -3642,8 +3718,8 @@ msgstr "Palėtinto judėjimo greitis"
 msgid "Software"
 msgstr "Programinė įranga"
 
-msgid "Software manager"
-msgstr "Programinės įrangos valdymas"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Programinės įrangos atkūrimas"
@@ -3835,6 +3911,9 @@ msgstr "Kortelė 2"
 msgid "Tags"
 msgstr "Kortelės"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Antžeminė"
 
@@ -3887,6 +3966,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui. "
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3996,17 +4081,20 @@ msgstr "Nustatymų vedlys baigė darbą."
 msgid "There are at least "
 msgstr "Bent jau yra"
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Nėra jokių numatytųjų kanalų sąrašų jūsų atvaizde."
 
 msgid "There are no default settings in your image."
 msgstr "Nėra jokių numatytųjų nustatymų jūsų atvaizde."
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Yra dabar "
-
-msgid "There is nothing to be done."
-msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -4179,6 +4267,9 @@ msgstr ""
 "Aptiktas laikmačio timers.xml sutapimas! \n"
 " prašome iš naujo tikrinti tai!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Laikmačio padėties klaida"
 
@@ -4190,6 +4281,9 @@ msgstr "Laikmačio būsena:  "
 
 msgid "Timeshift"
 msgstr "Laiko perst."
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Laiko perstumimas negalimas!"
@@ -4226,6 +4320,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Šiandien"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Tonas"
@@ -4342,25 +4439,23 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Perjungimo komanda DiSEqC"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
-"Undo\n"
-"Įdiegti"
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"Undo\n"
-"Pašalinti"
+
+msgid "Unicable"
+msgstr "Unicable"
 
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
 msgid "Unicable Martix"
 msgstr "Unicable Martix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Universali LNB"
@@ -4379,6 +4474,9 @@ msgstr "Programinės įrangos atnaujinimai"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Atnaujinimas baigtas. Rezultatas čia:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Atnaujinama... Prašome palaukti... tai gali trukti keletą minučių..."
@@ -4738,6 +4836,9 @@ msgstr "Metai"
 msgid "Yes"
 msgstr "Taip"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Taip, ir trinti šį filmą"
 
@@ -4786,6 +4887,9 @@ msgstr "Jūs galite išsirinkti, ką jūs norite įdiegti..."
 
 msgid "You can install this plugin."
 msgstr "Jūs galite įdiegti šią papildomą programą."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Jūs galite pašalinti šią papildomą programą."
@@ -4888,6 +4992,13 @@ msgstr ""
 "Jūs galite surinkti PIN kodą ir paslėpti jį nuo vaikų.\n"
 "\n"
 "Norite tai padaryti dabar?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 #, fuzzy
 msgid ""
@@ -5009,6 +5120,9 @@ msgstr "apie pradžią"
 
 msgid "activate current configuration"
 msgstr "aktyvuokite dabartinę konfigūraciją"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "pridėti Tiekėją"
@@ -5331,9 +5445,6 @@ msgstr "pagalba..."
 
 msgid "hidden network"
 msgstr "paslėptas tinklas"
-
-msgid "hidden..."
-msgstr ""
 
 msgid "hide extended description"
 msgstr "slėpti išplėstą aprašymą"
@@ -5725,6 +5836,9 @@ msgstr "transponderio informacija"
 msgid "shuffle playlist"
 msgstr "sukeisti vietomis grojaraštį"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "išjungti"
 
@@ -5900,10 +6014,24 @@ msgstr "įjungta"
 
 #~ msgid ""
 #~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Skanuoti vietinius paketus ir įdiegti juos."
+
+#~ msgid ""
+#~ "\n"
 #~ "View, install and remove available or installed package."
 #~ msgstr ""
 #~ "\n"
 #~ "Peržiūrėti, įdiekti ir pašalinti pasiekiamą ar įdiegtą paketą."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Peržiūrėkite, įdiekite ir pašalinkite esamus arba įdiegtus paketus."
 
 #~ msgid "\"?"
 #~ msgstr "\"?"
@@ -6088,6 +6216,9 @@ msgstr "įjungta"
 
 #~ msgid "Console"
 #~ msgstr "Konsolė"
+
+#~ msgid "Continue"
+#~ msgstr "Tęsti"
 
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "Kopijuojamas USB diegėjo paleidimo atvaizdas į raktelį..."
@@ -6302,6 +6433,12 @@ msgstr "įjungta"
 #~ msgid "FritzCall Setup"
 #~ msgstr "FritzCall nustatymas"
 
+#~ msgid "General AC3 delay"
+#~ msgstr "Bendras AC3 užlaikymas"
+
+#~ msgid "General PCM delay"
+#~ msgstr "Bendras PCM užlaikymas"
+
 #~ msgid "Harddisk wait"
 #~ msgstr "Kietas diskas laukia"
 
@@ -6513,6 +6650,9 @@ msgstr "įjungta"
 #~ msgid "Other..."
 #~ msgstr "Kitas..."
 
+#~ msgid "Package details for: "
+#~ msgstr "Paketo detalės: "
+
 #~ msgid "Package installer"
 #~ msgstr "Paketo įdiegėjas"
 
@@ -6589,6 +6729,9 @@ msgstr "įjungta"
 
 #~ msgid "Please wait for md5 signature verification..."
 #~ msgstr "Prašome laukti md5 parašo patikrinimo..."
+
+#~ msgid "Plugin manager"
+#~ msgstr "Papildomų programų valdymas"
 
 #~ msgid "Plugin manager help..."
 #~ msgstr "Papildomų programų valdymo pagalba..."
@@ -6751,9 +6894,6 @@ msgstr "įjungta"
 #~ msgid "Show orbital position of infobar"
 #~ msgstr "Rodyti orbitinę padėtį infojuostoje"
 
-#~ msgid "Shutdown"
-#~ msgstr "Išjungti"
-
 #~ msgid "Shutdown after (minutes)"
 #~ msgstr "Išjungimas po (minučių)"
 
@@ -6780,6 +6920,9 @@ msgstr "įjungta"
 
 #~ msgid "Software Update..."
 #~ msgstr "Programinės įrangos atnaujinimas..."
+
+#~ msgid "Software manager"
+#~ msgstr "Programinės įrangos valdymas"
 
 #~ msgid "Software manager..."
 #~ msgstr "Programinės įrangos valdymas ..."
@@ -6907,8 +7050,19 @@ msgstr "įjungta"
 #~ msgid "Tutorial Wizard"
 #~ msgstr "Mokymo Vedlys"
 
-#~ msgid "Unicable"
-#~ msgstr "Unicable"
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "Undo\n"
+#~ "Įdiegti"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Undo\n"
+#~ "Pašalinti"
 
 #~ msgid "Update..."
 #~ msgstr "Atnaujinimas..."

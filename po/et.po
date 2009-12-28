@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-09-11 18:28+0200\n"
 "Last-Translator: Hendrik Gross <h_gross@neti.ee> ja Arvo Järve "
 "<arvo@softshark.ee>. Tõlkel abiks oli Raivo\n"
@@ -46,6 +46,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -81,10 +86,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Otsi kohalikke programme ja seadista need."
 
 msgid ""
 "\n"
@@ -101,13 +104,6 @@ msgid ""
 msgstr ""
 "\n"
 "Pärast süsteemitaastet toimub taaskäivitus!"
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Vaata, paigalda ja eemalda tarkvara pakette."
 
 msgid " "
 msgstr ""
@@ -304,6 +300,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<tundmatu>"
 
@@ -370,6 +375,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Ei leidnud (%s) vajaliku tööriista"
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -496,6 +510,12 @@ msgstr "Lisavalikud"
 
 msgid "Advanced Options"
 msgstr "Lisavalikud"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
@@ -995,9 +1015,6 @@ msgstr "konstellatsioon"
 msgid "Content does not fit on DVD!"
 msgstr "Sisu ei mahu DVD-le!"
 
-msgid "Continue"
-msgstr "Jätka"
-
 msgid "Continue in background"
 msgstr "Jätka taustal"
 
@@ -1012,6 +1029,9 @@ msgstr "Ei saa vastuvõtjaga ühendust .NFI tarkvara Server:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Ei saa plaati avada! Pole plaati sisestatud?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1138,6 +1158,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr "Vaikimisi sätted"
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Vaikimisi teenuste nimekiri"
 
@@ -1175,6 +1198,9 @@ msgstr "Tühista valik"
 
 msgid "Destination directory"
 msgstr "Sihtkataloog"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Leitud kõvaketas:"
@@ -1496,8 +1522,7 @@ msgstr "Luba taimer"
 msgid "Enabled"
 msgstr "Kasutusel"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1628,8 +1653,17 @@ msgstr "Laiendatud  võrguseaded"
 msgid "Extended Setup..."
 msgstr "Laiendatud seaded"
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Laiendused"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1639,6 +1673,18 @@ msgstr "Algseadistuse taaste"
 
 msgid "Failed"
 msgstr "Nurjus"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Kiire"
@@ -1686,7 +1732,7 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flashimine nurjus"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1749,14 +1795,14 @@ msgstr "Gateway"
 msgid "General AC3 Delay"
 msgstr "Üldine AC3 viide"
 
-msgid "General AC3 delay"
-msgstr "Üldine AC3 viide"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "Üldine PCM viide"
 
-msgid "General PCM delay"
-msgstr "Üldine PCM viide"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Zanr:"
@@ -1907,6 +1953,9 @@ msgstr "Info"
 msgid "Init"
 msgstr "Algseaded"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Algseadistus..."
 
@@ -1961,14 +2010,16 @@ msgstr "Installin pakendi sisu.Palun oodake ..."
 msgid "Instant Record..."
 msgstr "Kohene salvestus"
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Sisemine võrgukaart"
 
 msgid "Integrated Wireless"
 msgstr "Sisemine WiFi"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2103,6 +2154,9 @@ msgstr "Kohalik võrk"
 msgid "Location"
 msgstr "Salvestuskoht"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lukus:"
 
@@ -2136,6 +2190,9 @@ msgstr "Tee see märk lõpupunktiks"
 msgid "Make this mark just a mark"
 msgstr "Tee see märk lihtsalt märgiks"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Uuendab vastuvõtja tarkvara"
 
@@ -2154,8 +2211,7 @@ msgstr "Salvestise lõppu lisatakse (minutit)"
 msgid "Margin before record (minutes)"
 msgstr "Salvestise algusesse lisatakse (minutit)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2218,6 +2274,9 @@ msgstr "Liiguta itta"
 msgid "Move west"
 msgstr "Liiguta läände"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Salvestiste menüü"
 
@@ -2241,6 +2300,9 @@ msgstr "Ei ole kasutusel"
 
 msgid "NEXT"
 msgstr "JÄRGMINE"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI tarkvara on fläshitud.Vajuta kollast nuppu taaskäivitamiseks!"
@@ -2363,8 +2425,16 @@ msgstr "Sellel meedial pole kuvatavaid faile!"
 msgid "No event info found, recording indefinitely."
 msgstr "Saatel pole teada lõppaeg. Salvestatakse pidevalt."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Pole vaba tüünerit!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2384,6 +2454,9 @@ msgstr "Ei leitud satelliidi tüünerit!!!"
 
 msgid "No tags are set on these movies."
 msgstr "Salvestisele pole märksõnu määratud"
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Ükski tüüner pole seadistatud DISEqC-positsioneeri kasutama"
@@ -2537,6 +2610,9 @@ msgstr "Online-uuendus"
 msgid "Only Free scan"
 msgstr "Ainult vabade otsimine"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "Kui soovite, sisestage oma nimi."
 
@@ -2548,9 +2624,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr "Paketi detailid: "
 
 msgid "Package list update"
 msgstr "Pakettide nimekirja uuendus"
@@ -2822,9 +2895,6 @@ msgstr "Oota.Sisu laetakse..."
 msgid "Plugin browser"
 msgstr "Laienduste sirvija"
 
-msgid "Plugin manager"
-msgstr "Laienduste haldur"
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -3019,6 +3089,9 @@ msgstr "Salvestised"
 msgid "Recording"
 msgstr "Salvestab"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Salvestus(ed) on käimas või käivituvad peatselt!"
 
@@ -3030,9 +3103,6 @@ msgstr "Salvestused omavad alati eelist"
 
 msgid "Reenter new pin"
 msgstr "Korda koodi"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Värskendussagedus"
@@ -3348,6 +3418,9 @@ msgstr "Otsi itta"
 msgid "Search west"
 msgstr "Otsi läände"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Otsin uusi installitud või kustutatud pakette. Oota..."
 
@@ -3546,6 +3619,9 @@ msgstr "Näita TV-d"
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Näitab WiFi olekut.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Lülita välja peale"
 
@@ -3619,8 +3695,8 @@ msgstr "Aeglustuskiirused"
 msgid "Software"
 msgstr "Alusta"
 
-msgid "Software manager"
-msgstr "Tarkvara haldur"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Tarkvara taaste"
@@ -3813,6 +3889,9 @@ msgstr "Võtmesõna 2"
 msgid "Tags"
 msgstr "Võtmesõnad"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Digitaalne TV (DVB-T)"
 
@@ -3863,6 +3942,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Varukoopia tegemine nurjus. Vali uus varukoopia asukoht."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3967,17 +4052,20 @@ msgstr "Toiming on nüüd lõpetatud. Vajuta OK"
 msgid "There are at least "
 msgstr "Seal on vähemalt"
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Selles tarkvaras ei ole vaikimisi saatjate nimekirja."
 
 msgid "There are no default settings in your image."
 msgstr "Selles tarkvaras ei ole vaikimisi seadeid"
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Seal on nüüd"
-
-msgid "There is nothing to be done."
-msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -4144,6 +4232,9 @@ msgstr ""
 "Taimerite ajad kattuvad!\n"
 "Palun kontrolli ajad üle!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Taimeri viga"
 
@@ -4155,6 +4246,9 @@ msgstr "Taimeri olek:"
 
 msgid "Timeshift"
 msgstr "Ajanihe"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Ajanihke kasutamine pole võimalik."
@@ -4192,6 +4286,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Täna"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "22KHz-toon"
@@ -4306,25 +4403,23 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC-käsk"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
-"Tagasi\n"
-"Paigalda"
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"Tagasi\n"
-"Eemalda"
+
+msgid "Unicable"
+msgstr "Luba"
 
 msgid "Unicable LNB"
 msgstr "Universaal LNB"
 
 msgid "Unicable Martix"
 msgstr "Unicable Martix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Universaal LNB"
@@ -4343,6 +4438,9 @@ msgstr "Uuendab vastuvõtja tarkvara"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Uuendamine lõppenud. Tulemus:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Uuendan. Oota...See võib kesta mõne minuti."
@@ -4691,6 +4789,9 @@ msgstr "Aasta"
 msgid "Yes"
 msgstr "Jah"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Jah, kustuta see salvestis"
 
@@ -4739,6 +4840,9 @@ msgstr "Saad valida, mida tahad installida"
 
 msgid "You can install this plugin."
 msgstr "Te saate paigaldada selle laienduse."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Te saate eemaldada selle laienduse."
@@ -4823,6 +4927,13 @@ msgstr ""
 "Sa pead määrama koodi ja peitma selle laste eest.\n"
 "\n"
 "Kas tahad määrata koodi nüüd?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4938,6 +5049,9 @@ msgstr "just algab"
 
 msgid "activate current configuration"
 msgstr "Aktiveeri muudatused"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "Lisa levitaja"
@@ -5260,9 +5374,6 @@ msgstr "Abi"
 
 msgid "hidden network"
 msgstr "Taaskäivitame võrgu"
-
-msgid "hidden..."
-msgstr ""
 
 msgid "hide extended description"
 msgstr "peida laiendatud programmi info"
@@ -5654,6 +5765,9 @@ msgstr "Näita transponderi infot"
 msgid "shuffle playlist"
 msgstr "Sega playlist"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "lülita välja"
 
@@ -5817,17 +5931,40 @@ msgstr "kanalivahetus"
 msgid "zapped"
 msgstr "vahetatud"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Otsi kohalikke programme ja seadista need."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Vaata, paigalda ja eemalda tarkvara pakette."
+
 #~ msgid "Backup running"
 #~ msgstr "Varukoopia asukoht"
 
 #~ msgid "Backup running..."
 #~ msgstr "Varukoopia valmistus"
 
+#~ msgid "Continue"
+#~ msgstr "Jätka"
+
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Muuda IPKG allika URL-i"
 
 #~ msgid "Following tasks will be done after you press continue."
 #~ msgstr "Jätkamisel lõpetatakse järgnevad toimingud"
+
+#~ msgid "General AC3 delay"
+#~ msgstr "Üldine AC3 viide"
+
+#~ msgid "General PCM delay"
+#~ msgstr "Üldine PCM viide"
 
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Ülevaade saadaolevatest ikoonivõimalustest"
@@ -5837,6 +5974,12 @@ msgstr "vahetatud"
 
 #~ msgid "Install software updates..."
 #~ msgstr "Installin tarkvara..."
+
+#~ msgid "Package details for: "
+#~ msgstr "Paketi detailid: "
+
+#~ msgid "Plugin manager"
+#~ msgstr "Laienduste haldur"
 
 #~ msgid "Plugin manager help..."
 #~ msgstr "Laienduste halduri abi"
@@ -5856,11 +5999,25 @@ msgstr "vahetatud"
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Vali failid/kaustad varundamiseks"
 
+#~ msgid "Software manager"
+#~ msgstr "Tarkvara haldur"
+
 #~ msgid "Software manager..."
 #~ msgstr "Tarkvara haldur"
 
-#~ msgid "Unicable"
-#~ msgstr "Luba"
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "Tagasi\n"
+#~ "Paigalda"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Tagasi\n"
+#~ "Eemalda"
 
 #~ msgid "Upgrade"
 #~ msgstr "Uuenda"
