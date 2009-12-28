@@ -60,6 +60,7 @@ class PluginDescriptor:
 	# should be provided to name and describe the new menu entry.
 	WHERE_SOFTWAREMANAGER = 14
 
+
 	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, internal = False):
 		self.name = name
 		self.internal = internal

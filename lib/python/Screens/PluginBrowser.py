@@ -22,18 +22,16 @@ class PluginBrowser(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		
-		self["red"] = Label(_("Remove Plugins"))
-		self["green"] = Label(_("Download Plugins"))
+		self["red"] = Label()
+		self["green"] = Label()
 		
 		self.list = []
 		self["list"] = PluginList(self.list)
 		
-		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.save,
 			"back": self.close,
-			"red": self.delete,
-			"green": self.download
 		})
 		self.onFirstExecBegin.append(self.checkWarnings)
 		self.onShown.append(self.updateList)
@@ -47,7 +45,6 @@ class PluginBrowser(Screen):
 			self.session.open(MessageBox, text = text, type = MessageBox.TYPE_WARNING)
 
 	def save(self):
-		#self.close()
 		self.run()
 	
 	def run(self):
