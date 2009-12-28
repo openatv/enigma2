@@ -997,7 +997,7 @@ class InfoBarSeek:
 			try:
 				tmp = self.cueGetEndCutPosition()
 				if tmp:
-					len = [False, tmp]
+					len = (False, tmp)
 			except:
 				pass
 			pos = seekable.getPlayPosition()
@@ -1985,13 +1985,20 @@ class InfoBarCueSheetSupport:
 		self.downloadCuesheet()
 
 		if self.ENABLE_RESUME_SUPPORT:
-			last = None
-
 			for (pts, what) in self.cut_list:
 				if what == self.CUT_TYPE_LAST:
 					last = pts
-
-			if last is not None:
+					break
+			else:
+				return
+			# only resume if at least 10 seconds ahead, or <10 seconds before the end.
+			seekable = self.__getSeekable()
+			if seekable is None:
+				return # Should not happen?
+			length = seekable.getLength() or (None,0)
+			print "seekable.getLength() returns:", length
+			# Hmm, this implies we don't resume if the length is unknown...
+			if last is not None and (last > 900000) and (last < length[1] - 900000):
 				self.resume_point = last
 				if config.usage.on_movie_start.value == "ask":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?"), timeout=10)
