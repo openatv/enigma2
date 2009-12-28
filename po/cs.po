@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2008-09-28 18:09+0100\n"
 "Last-Translator: ws79 <ws79@centrum.cz>\n"
 "Language-Team: \n"
@@ -37,6 +37,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 
@@ -62,7 +67,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 
 msgid ""
@@ -74,11 +79,6 @@ msgstr ""
 msgid ""
 "\n"
 "System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
 msgstr ""
 
 msgid " "
@@ -274,6 +274,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<neznámý>"
 
@@ -334,6 +343,15 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
+msgstr ""
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
 msgstr ""
 
 msgid ""
@@ -454,6 +472,12 @@ msgid "Advanced"
 msgstr "Rozšířené"
 
 msgid "Advanced Options"
+msgstr ""
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
 msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
@@ -946,9 +970,6 @@ msgstr "Sestava"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr ""
 
@@ -962,6 +983,9 @@ msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+msgid "Could not open Picture in Picture"
 msgstr ""
 
 #, python-format
@@ -1087,6 +1111,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Standardní seznam programů"
 
@@ -1123,6 +1150,9 @@ msgid "Deselect"
 msgstr ""
 
 msgid "Destination directory"
+msgstr ""
+
+msgid "Details for extension: "
 msgstr ""
 
 msgid "Detected HDD:"
@@ -1437,8 +1467,7 @@ msgstr ""
 msgid "Enabled"
 msgstr "Povoleno"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1567,8 +1596,17 @@ msgstr ""
 msgid "Extended Setup..."
 msgstr "Rozšířené nastavení..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Rozšíření"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1578,6 +1616,18 @@ msgstr "Tovární nastavení"
 
 msgid "Failed"
 msgstr "Selhalo"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Rychlý"
@@ -1625,7 +1675,7 @@ msgstr ""
 msgid "Flashing failed"
 msgstr ""
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1687,13 +1737,13 @@ msgstr "Brána"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1845,6 +1895,9 @@ msgstr "Informace"
 msgid "Init"
 msgstr "Init"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Inicializace..."
 
@@ -1899,14 +1952,16 @@ msgstr "Instaluji balíčky. Prosím počkejte..."
 msgid "Instant Record..."
 msgstr "Okamžité nahrávání..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Integrovaný ethernet"
 
 msgid "Integrated Wireless"
 msgstr ""
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2041,6 +2096,9 @@ msgstr "Lokální síť"
 msgid "Location"
 msgstr "Umístění"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Zámek:"
 
@@ -2074,6 +2132,9 @@ msgstr "Udělat z této značky 'out' point"
 msgid "Make this mark just a mark"
 msgstr "Udat z toho jen značku"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr ""
 
@@ -2092,8 +2153,7 @@ msgstr "Rezerva po skončení pořadu"
 msgid "Margin before record (minutes)"
 msgstr "Rezerva před nahráváním (minuty)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2156,6 +2216,9 @@ msgstr "Posun východně"
 msgid "Move west"
 msgstr "Posun západně"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Filmové menu"
 
@@ -2179,6 +2242,9 @@ msgstr "Není k dispozici"
 
 msgid "NEXT"
 msgstr "DALŠÍ"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -2299,8 +2365,16 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr "Žádná informace o programu. Nahrávání do nekonečna."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Žádný volný tuner!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2321,6 +2395,9 @@ msgid "No satellite frontend found!!"
 msgstr "Žádný satelitní frontend nenalezen!"
 
 msgid "No tags are set on these movies."
+msgstr ""
+
+msgid "No to all"
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -2464,6 +2541,9 @@ msgstr "Online-Upgrade"
 msgid "Only Free scan"
 msgstr ""
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2475,9 +2555,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDy"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Aktualizován seznam balíčků"
@@ -2743,9 +2820,6 @@ msgstr "Prosím čekejte... Načítá se seznam..."
 msgid "Plugin browser"
 msgstr "Prohlížeč pluginů"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -2940,6 +3014,9 @@ msgstr "Nahrané pořady..."
 msgid "Recording"
 msgstr "Nahrávání"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
@@ -2951,9 +3028,6 @@ msgstr "Nahrávání má vždy prioritu"
 
 msgid "Reenter new pin"
 msgstr "Zadejte znova PIN"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Obnovovací frekvence"
@@ -3268,6 +3342,9 @@ msgstr "Hledej východ"
 msgid "Search west"
 msgstr "Hledej západ"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3466,6 +3543,9 @@ msgstr "Zobrazit TV..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Zobrazit stav vaší bezdrátové sítě.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Vypnout Dreambox po"
 
@@ -3539,7 +3619,7 @@ msgstr "Rychlosti zpomaleného filmu"
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
+msgid "Software management"
 msgstr ""
 
 msgid "Software restore"
@@ -3733,6 +3813,9 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Pozemní"
 
@@ -3779,6 +3862,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Zálohování selhalo. Prosím vyberte jiné umístění zálohy."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3875,16 +3964,19 @@ msgstr "Průvodce skončil."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Nejsou na výběr žádné settingy. "
 
 msgid "There are no default settings in your image."
 msgstr "Nejsou žádné standardní nastavení ve vaší image."
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4045,6 +4137,9 @@ msgid ""
 "Please recheck it!"
 msgstr ""
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Nelogické časování"
 
@@ -4056,6 +4151,9 @@ msgstr "Stav časovače:"
 
 msgid "Timeshift"
 msgstr "Timeshift"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Časový posun není možný!"
@@ -4086,6 +4184,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Dnes"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Mód tónu"
@@ -4202,20 +4303,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Nepotvrzený DiSEqC příkaz"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unicable"
 msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4235,6 +4338,9 @@ msgstr "Aktualizujte software vašeho přijmače"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Aktualizace hotova. Tady je výsledek:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aktualizují... Prosím čekejte... Toto může trvat několik minut..."
@@ -4584,6 +4690,9 @@ msgstr "Rok"
 msgid "Yes"
 msgstr "Ano"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr ""
 
@@ -4631,6 +4740,9 @@ msgid "You can choose, what you want to install..."
 msgstr "Můžete si vybrat, co chcete nainstalovat..."
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4725,6 +4837,13 @@ msgstr ""
 "Potřebujete nastavit PIN a ukrýt ho před vašimi dětmi.\n"
 "\n"
 "Chcete nyní nastavit PIN?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4834,6 +4953,9 @@ msgid "about to start"
 msgstr "právě začne"
 
 msgid "activate current configuration"
+msgstr ""
+
+msgid "activate network adapter configuration"
 msgstr ""
 
 msgid "add Provider"
@@ -5156,9 +5278,6 @@ msgid "help..."
 msgstr "Pomoc..."
 
 msgid "hidden network"
-msgstr ""
-
-msgid "hidden..."
 msgstr ""
 
 msgid "hide extended description"
@@ -5550,6 +5669,9 @@ msgstr "Zobraz info o transpondéru"
 
 msgid "shuffle playlist"
 msgstr "promíchat playlist"
+
+msgid "shut down"
+msgstr ""
 
 msgid "shutdown"
 msgstr "vypnout"

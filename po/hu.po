@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2008-11-26 15:36+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -39,6 +39,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 
@@ -64,7 +69,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 
 msgid ""
@@ -76,11 +81,6 @@ msgstr ""
 msgid ""
 "\n"
 "System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
 msgstr ""
 
 msgid " "
@@ -278,6 +278,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<ismeretlen>"
 
@@ -344,6 +353,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "A keresett eszköz (%s) nem található."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -467,6 +485,12 @@ msgid "Advanced"
 msgstr "Haladó"
 
 msgid "Advanced Options"
+msgstr ""
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
 msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
@@ -960,9 +984,6 @@ msgstr "Együttállás"
 msgid "Content does not fit on DVD!"
 msgstr "A tartalom nem fér fel a DVD-re!"
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr "Folytatás a háttérben"
 
@@ -977,6 +998,9 @@ msgstr "Nem lehet csatlakozni a Dreambox .NFI Image feed szerveréhez:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nem lehet betölteni a médiumot! Van bennt lemez?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1101,6 +1125,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Alaphelyzeti szolgáltatások listája"
 
@@ -1138,6 +1165,9 @@ msgstr ""
 
 msgid "Destination directory"
 msgstr "Célkönyvtár"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Beépített merevlemez:"
@@ -1455,8 +1485,7 @@ msgstr "Időzítés engedélyezése"
 msgid "Enabled"
 msgstr "Engedélyezve"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1587,8 +1616,17 @@ msgstr "Bővített hálózati beállítások Plugin..."
 msgid "Extended Setup..."
 msgstr "Bővített beállítások..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Bővítmények"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1598,6 +1636,18 @@ msgstr "Gyári alapbeállítások"
 
 msgid "Failed"
 msgstr "Sikertelen"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Gyors"
@@ -1646,7 +1696,7 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flashelés sikertelen"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1708,13 +1758,13 @@ msgstr "Átjáró IP címe"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1868,6 +1918,9 @@ msgstr "Információk"
 msgid "Init"
 msgstr "Inicializálás"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Inicializálás..."
 
@@ -1922,14 +1975,16 @@ msgstr "Csomag tartalmak telepítése... Kérem várjon..."
 msgid "Instant Record..."
 msgstr "Felvétel azonnali indítása..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Beépített Ethernet"
 
 msgid "Integrated Wireless"
 msgstr "Integrált Wireless"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2064,6 +2119,9 @@ msgstr "Helyi hálózat"
 msgid "Location"
 msgstr "Pozíció"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Zárol:"
 
@@ -2097,6 +2155,9 @@ msgstr "Legyen ez a vége pont"
 msgid "Make this mark just a mark"
 msgstr "Legyen ez csak egy jelölőpont"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr ""
 
@@ -2115,8 +2176,7 @@ msgstr "Felvétel utáni ráhagyás (perc)"
 msgid "Margin before record (minutes)"
 msgstr "Felvétel előtti ráhagyás (perc)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2179,6 +2239,9 @@ msgstr "Mozgatás kelet felé"
 msgid "Move west"
 msgstr "Mozgatás nyugat felé"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Filmlista menü"
 
@@ -2202,6 +2265,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "KÖVETKEZŐ"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -2323,8 +2389,16 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr "Nincs esemény infó, felvétel korlátlanul."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Nincs szabad tuner!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2345,6 +2419,9 @@ msgid "No satellite frontend found!!"
 msgstr "Nem találtam műholdas tunert!!"
 
 msgid "No tags are set on these movies."
+msgstr ""
+
+msgid "No to all"
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -2491,6 +2568,9 @@ msgstr "Online-Frissítés"
 msgid "Only Free scan"
 msgstr "Csak FTA keresés"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2502,9 +2582,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PID-ek"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Csomaglista frissítés"
@@ -2778,9 +2855,6 @@ msgstr "Kérem várjon... Lista betöltése..."
 msgid "Plugin browser"
 msgstr "Telepített Pluginek"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -2975,6 +3049,9 @@ msgstr "Felvett filmek..."
 msgid "Recording"
 msgstr "Felvétel"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Felvétel folyik, vagy hamarosan indulni fog!"
 
@@ -2986,9 +3063,6 @@ msgstr "A felvételnek mindíg elsőbbsége van"
 
 msgid "Reenter new pin"
 msgstr "Adja meg újra az új PIN-t"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Frissítési arány"
@@ -3303,6 +3377,9 @@ msgstr "Léptetés kelet felé"
 msgid "Search west"
 msgstr "Léptetés nyugat felé"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3501,6 +3578,9 @@ msgstr "TV csatorna lista..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Megmutatja a wireless LAN kapcsolat pillanatnyi állapotát.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Kapcsolja le a DreamBox-ot miután"
 
@@ -3574,7 +3654,7 @@ msgstr "Lassítási sebességek"
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
+msgid "Software management"
 msgstr ""
 
 msgid "Software restore"
@@ -3768,6 +3848,9 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Földi"
 
@@ -3817,6 +3900,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "A mentés nem sikerült. Válasszon másik célt ahova menthetem."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3924,16 +4013,19 @@ msgstr "A varázsló befejezte feladatát."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Az image nem tartalmaz semmilyen csatornalistát."
 
 msgid "There are no default settings in your image."
 msgstr "Az image nem tartalmaz semmilyen csatornalistát."
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4104,6 +4196,9 @@ msgstr ""
 "Időzítési átfedést találtam a timers.xml fájlban!\n"
 "Kérem ellenőrizze!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Időzítési logikai hiba"
 
@@ -4115,6 +4210,9 @@ msgstr "Időzítő állapota"
 
 msgid "Timeshift"
 msgstr "Timeshift"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Timeshift nem lehetséges!"
@@ -4145,6 +4243,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Ma"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Tone"
@@ -4261,20 +4362,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Nem elkötelezett DiSEqC parancs"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unicable"
 msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4294,6 +4397,9 @@ msgstr "A beltéri szoftverét frissíti fel"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Frissítés befejezve. Itt az eredmény:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Frissítés... Kérem várjon... Ez akár pár percig is eltarthat..."
@@ -4645,6 +4751,9 @@ msgstr ""
 msgid "Yes"
 msgstr "Igen"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr ""
 
@@ -4692,6 +4801,9 @@ msgid "You can choose, what you want to install..."
 msgstr "Itt kiválaszhatja mit szeretne telepíteni..."
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4793,6 +4905,13 @@ msgstr ""
 "Meg kell adnia egy PIN kódot, melyet rejtsen el gyermekei elől.\n"
 "\n"
 "Meg akarja most adni a PIN kódot?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4902,6 +5021,9 @@ msgid "about to start"
 msgstr "az indításról"
 
 msgid "activate current configuration"
+msgstr ""
+
+msgid "activate network adapter configuration"
 msgstr ""
 
 msgid "add Provider"
@@ -5224,9 +5346,6 @@ msgid "help..."
 msgstr "HELP..."
 
 msgid "hidden network"
-msgstr ""
-
-msgid "hidden..."
 msgstr ""
 
 msgid "hide extended description"
@@ -5618,6 +5737,9 @@ msgstr "transzponder infó mutatása"
 
 msgid "shuffle playlist"
 msgstr "playlista megkeverése"
+
+msgid "shut down"
+msgstr ""
 
 msgid "shutdown"
 msgstr "kikapcsolás"
