@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-02-25 20:35+0200\n"
 "Last-Translator: Ivo Grinbergs <ivog@apollo.lv>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -43,6 +43,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -78,10 +83,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Meklēt lokālās pakotnes un uzstādīt tās."
 
 msgid ""
 "\n"
@@ -98,13 +101,6 @@ msgid ""
 msgstr ""
 "\n"
 "Sistēma restartēsies pēc atjaunošanas!"
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Skatīt, uzstādīt un dzēst pieejamās vai uzstādītās pakotnes."
 
 msgid " "
 msgstr " "
@@ -301,6 +297,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<nezināms>"
 
@@ -369,6 +374,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Vajadzīgais rīks (%s) netika atrasts."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -495,6 +509,12 @@ msgstr "Paplašināts"
 
 msgid "Advanced Options"
 msgstr "Paplašinātās opcijas"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
@@ -1000,9 +1020,6 @@ msgstr "Zvaigznājs"
 msgid "Content does not fit on DVD!"
 msgstr "Saturs neietilpst DVD!"
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr "Turpināt fonā"
 
@@ -1017,6 +1034,9 @@ msgstr "Nevar savienoties ar Dreambox .NFI imidža barotnes serveris:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nevar ielādēt datu nesēju! Disks nav ievietots?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1141,6 +1161,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Noklus. kanālu saraksti"
 
@@ -1180,6 +1203,9 @@ msgstr "Neizvēlēties"
 
 msgid "Destination directory"
 msgstr "Galamērķa mape"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Atrasts HDD:"
@@ -1503,8 +1529,7 @@ msgstr "Aktivizēt taimeri"
 msgid "Enabled"
 msgstr "Aktivizēts"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1635,8 +1660,17 @@ msgstr "Paplašinātās tīkla iestatnes spraudnis..."
 msgid "Extended Setup..."
 msgstr "Paplašinātā iestatne..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Paplašinājumi"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1646,6 +1680,18 @@ msgstr "Rūpnīcas uzstādījumi"
 
 msgid "Failed"
 msgstr "Neizdevās"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Ātrs"
@@ -1694,7 +1740,7 @@ msgstr "Iekšējā atmiņa"
 msgid "Flashing failed"
 msgstr "Lādēšana neizdevās"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1757,13 +1803,13 @@ msgstr "Vārteja"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1916,6 +1962,9 @@ msgstr "Informācija"
 msgid "Init"
 msgstr "Inic"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Inicializācija..."
 
@@ -1970,14 +2019,16 @@ msgstr "Uzstāda pakotnes saturu... Lūdzu gaidiet..."
 msgid "Instant Record..."
 msgstr "Tūlītējs ieraksts..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Iebūvētais Ethernet"
 
 msgid "Integrated Wireless"
 msgstr "Iebūvētais Wireless"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2112,6 +2163,9 @@ msgstr "Lokālais tīkls"
 msgid "Location"
 msgstr "Atrašanās vieta"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Slēgt:"
 
@@ -2145,6 +2199,9 @@ msgstr "Padarīt šo zīmi par 'izejas' punktu"
 msgid "Make this mark just a mark"
 msgstr "Padarīt šo iezīmi vienkārši par zīmi"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Pārvaldīt ierīces programmatūru"
 
@@ -2163,8 +2220,7 @@ msgstr "Atstarpe aiz ieraksta"
 msgid "Margin before record (minutes)"
 msgstr "Atstarpe pirms ieraksta (minūtēs)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2227,6 +2283,9 @@ msgstr "Griezt uz austrumiem"
 msgid "Move west"
 msgstr "Griezt uz rietumiem"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Filmu saraksta izvēlne"
 
@@ -2250,6 +2309,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "NĀKAMAIS"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI imidža lādēšana pabeigta. Spiediet dzelteno pogu, lai atsāknētu!"
@@ -2370,8 +2432,16 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr "Nav atrasta informācija par notikumiem, ieraksts turpinās."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Nav brīva uztvērēja!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2391,6 +2461,9 @@ msgstr "Nav atrasts pavadonis!!"
 
 msgid "No tags are set on these movies."
 msgstr "Šīm filmām nav uzstādīti tagi"
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Uztvērējs nav konfigurēts lietošanai ar diseqc pozicionieri!"
@@ -2544,6 +2617,9 @@ msgstr "Tiešsaistes atjaunināšana"
 msgid "Only Free scan"
 msgstr "Tikai nekodētos"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2555,9 +2631,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Pakotņu saraksta atjaunināšana"
@@ -2831,9 +2904,6 @@ msgstr "Lūdzu gaidiet... Ielādē sarakstu..."
 msgid "Plugin browser"
 msgstr "Spraudņu pārlūks"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -3029,6 +3099,9 @@ msgstr "Ierakstītās datnes..."
 msgid "Recording"
 msgstr "Ieraksta"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Ieraksts(i) notiek pašreiz, vai sāksies dažu sekunžu laikā!"
 
@@ -3040,9 +3113,6 @@ msgstr "Ierakstiem vienmēr ir prioritāte"
 
 msgid "Reenter new pin"
 msgstr "Ievadiet vēlreiz jauno pin"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Atjaunināšanas ātrums"
@@ -3360,6 +3430,9 @@ msgstr "Meklēt austrumos"
 msgid "Search west"
 msgstr "Meklēt rietumos"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3560,6 +3633,9 @@ msgstr "Skatīties TV..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Rādīt bezvadu tīkla savienojuma statusu.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Izslēgt Dreambox pēc"
 
@@ -3636,8 +3712,8 @@ msgstr "Palēninātās kustības ātrumi"
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
-msgstr "Programmatūras pārvaldnieks"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Programmatūras atjaunošana"
@@ -3826,6 +3902,9 @@ msgstr "Etiķete 2"
 msgid "Tags"
 msgstr "Etiķetes"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Zemes"
 
@@ -3878,6 +3957,12 @@ msgstr ""
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 "Dublējumkopēšana neizdevās. Lūdzu izvēlieties citu vietu dublējumkopijai. "
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3987,16 +4072,19 @@ msgstr "Vednis ir pabeidzis darbu."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Imidžā nav noklusēto kanālu sarakstu."
 
 msgid "There are no default settings in your image."
 msgstr "Imidžā nav noklusēto iestatījumu."
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4166,6 +4254,9 @@ msgstr ""
 "Taimeru pārklāšanās konstatēta timers.xml! \n"
 "Lūdzu vēlreiz pārbaudiet!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Taimera kļūda"
 
@@ -4177,6 +4268,9 @@ msgstr "Taimera statuss:"
 
 msgid "Timeshift"
 msgstr "Laikaizture"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Laikaizture nav iespējama!"
@@ -4213,6 +4307,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Šodien"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Toņa režīms"
@@ -4328,21 +4425,23 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Pasīvā DiSEqC komanda"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
+
+msgid "Unicable"
+msgstr "Vienkabeļa"
 
 msgid "Unicable LNB"
 msgstr "Vienkabeļa LNB"
 
 msgid "Unicable Martix"
 msgstr "Vienkabeļa Martix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "Universālā LNB"
@@ -4361,6 +4460,9 @@ msgstr "Atjaunina ierīces programmatūru"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Atjaunināšana pabeigta. Skatīt rezultātu:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Atjaunina... Lūdzu gaidiet... tas var aizņemt dažas minūtes..."
@@ -4719,6 +4821,9 @@ msgstr "Gads"
 msgid "Yes"
 msgstr "Jā"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Jā, un dzēst šo filmu"
 
@@ -4766,6 +4871,9 @@ msgid "You can choose, what you want to install..."
 msgstr "Jūs varat izvēlēties, ko vēlaties uzstādīti..."
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4869,6 +4977,13 @@ msgstr ""
 "Jums vajag uzstādīt PIN kodu un nerādīt to bērniem.\n"
 "\n"
 "Vai vēlaties tagad uzstādīt PIN kodu?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4984,6 +5099,9 @@ msgstr "gatavojas sākt"
 
 msgid "activate current configuration"
 msgstr "aktivizēt pašreizējo konfigurāciju"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr ""
@@ -5306,9 +5424,6 @@ msgstr "palīdzība..."
 
 msgid "hidden network"
 msgstr "slēpts tīkls"
-
-msgid "hidden..."
-msgstr ""
 
 msgid "hide extended description"
 msgstr "slēpt paplašināto aprakstu"
@@ -5702,6 +5817,9 @@ msgstr "rādīt transpondera informāciju"
 msgid "shuffle playlist"
 msgstr "jaukts repertuārs"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "izslēgt"
 
@@ -5872,6 +5990,20 @@ msgstr "pārslēgts"
 #~ "\n"
 #~ "Enigma2 restartēsies pēc atjaunošanas"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Meklēt lokālās pakotnes un uzstādīt tās."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Skatīt, uzstādīt un dzēst pieejamās vai uzstādītās pakotnes."
+
 #~ msgid "5 seconds"
 #~ msgstr "5 sekundes"
 
@@ -5956,6 +6088,9 @@ msgstr "pārslēgts"
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Izvēlēties datnes/mapes dublējumkopēšanai..."
 
+#~ msgid "Software manager"
+#~ msgstr "Programmatūras pārvaldnieks"
+
 #~ msgid "Software manager..."
 #~ msgstr "Programmatūras pārvaldnieks..."
 
@@ -5967,9 +6102,6 @@ msgstr "pārslēgts"
 #~ "Izvēlētais dublējumkopijas galamērķis nav ierakstāms.\n"
 #~ "\n"
 #~ "Lūdzu izvēlieties citu."
-
-#~ msgid "Unicable"
-#~ msgstr "Vienkabeļa"
 
 #~ msgid "committed, toneburst"
 #~ msgstr "aktīvā, toņsignāls"

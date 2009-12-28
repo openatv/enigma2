@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 
@@ -63,7 +68,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 
 msgid ""
@@ -75,11 +80,6 @@ msgstr ""
 msgid ""
 "\n"
 "System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
 msgstr ""
 
 msgid " extensions."
@@ -132,9 +132,6 @@ msgid "(show optional DVD audio menu)"
 msgstr ""
 
 msgid "* Only available if more than one interface is active."
-msgstr ""
-
-msgid "* Only available when entering hidden SSID or network key"
 msgstr ""
 
 msgid ".NFI Download failed:"
@@ -198,6 +195,15 @@ msgstr ""
 msgid "60 minutes"
 msgstr ""
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr ""
 
@@ -249,6 +255,15 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
+msgstr ""
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
 msgstr ""
 
 msgid ""
@@ -351,6 +366,12 @@ msgid ""
 msgstr ""
 
 msgid "Advanced Options"
+msgstr ""
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
 msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
@@ -711,9 +732,6 @@ msgstr ""
 msgid "Content does not fit on DVD!"
 msgstr ""
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue playing"
 msgstr ""
 
@@ -724,6 +742,9 @@ msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+msgid "Could not open Picture in Picture"
 msgstr ""
 
 #, python-format
@@ -829,6 +850,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Delete"
 msgstr ""
 
@@ -854,6 +878,9 @@ msgid "Deselect"
 msgstr ""
 
 msgid "Destination directory"
+msgstr ""
+
+msgid "Details for extension: "
 msgstr ""
 
 msgid "Detected HDD:"
@@ -1017,9 +1044,6 @@ msgstr ""
 msgid "Download .NFI-Files for USB-Flasher"
 msgstr ""
 
-msgid "Download Plugins"
-msgstr ""
-
 msgid "Download of USB flasher boot image failed: "
 msgstr ""
 
@@ -1105,8 +1129,7 @@ msgstr ""
 msgid "Enabled"
 msgstr ""
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1140,12 +1163,6 @@ msgid ""
 "stephan@reichholf.net\n"
 "\n"
 "© 2006 - Stephan Reichholf"
-msgstr ""
-
-msgid "Enter WLAN network name/SSID:"
-msgstr ""
-
-msgid "Enter WLAN passphrase/key:"
 msgstr ""
 
 msgid "Enter main menu..."
@@ -1205,10 +1222,31 @@ msgstr ""
 msgid "Extended Setup..."
 msgstr ""
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
+msgid "Extensions management"
+msgstr ""
+
 msgid "FEC"
 msgstr ""
 
 msgid "Failed"
+msgstr ""
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
 msgstr ""
 
 msgid "Fast"
@@ -1248,7 +1286,7 @@ msgstr ""
 msgid "Flashing failed"
 msgstr ""
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1416,6 +1454,9 @@ msgstr ""
 msgid "Init"
 msgstr ""
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialize"
 msgstr ""
 
@@ -1449,14 +1490,16 @@ msgstr ""
 msgid "Instant Record..."
 msgstr ""
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr ""
 
 msgid "Integrated Wireless"
 msgstr ""
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -1564,6 +1607,9 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Log results to harddisk"
 msgstr ""
 
@@ -1585,6 +1631,9 @@ msgstr ""
 msgid "Make this mark just a mark"
 msgstr ""
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr ""
 
@@ -1594,8 +1643,7 @@ msgstr ""
 msgid "Manufacturer"
 msgstr ""
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -1646,6 +1694,9 @@ msgstr ""
 msgid "Move west"
 msgstr ""
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Multi EPG"
 msgstr ""
 
@@ -1659,6 +1710,9 @@ msgid "Multisat"
 msgstr ""
 
 msgid "N/A"
+msgstr ""
+
+msgid "NFI Image Flashing"
 msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
@@ -1751,7 +1805,15 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr ""
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
+msgstr ""
+
+msgid "No network connection available."
 msgstr ""
 
 msgid "No networks found"
@@ -1768,6 +1830,9 @@ msgid "No satellite frontend found!!"
 msgstr ""
 
 msgid "No tags are set on these movies."
+msgstr ""
+
+msgid "No to all"
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -1877,6 +1942,9 @@ msgstr ""
 msgid "Only Free scan"
 msgstr ""
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -1889,13 +1957,7 @@ msgstr ""
 msgid "PIDs"
 msgstr ""
 
-msgid "Package details for: "
-msgstr ""
-
 msgid "Package list update"
-msgstr ""
-
-msgid "Packet management"
 msgstr ""
 
 msgid "Packet manager"
@@ -2092,9 +2154,6 @@ msgstr ""
 msgid "Please wait... Loading list..."
 msgstr ""
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -2280,9 +2339,6 @@ msgstr ""
 msgid "Reenter new pin"
 msgstr ""
 
-msgid "Refresh"
-msgstr ""
-
 msgid "Refresh Rate"
 msgstr ""
 
@@ -2293,9 +2349,6 @@ msgid "Remove"
 msgstr ""
 
 msgid "Remove Bookmark"
-msgstr ""
-
-msgid "Remove Plugins"
 msgstr ""
 
 msgid "Remove a mark"
@@ -2552,6 +2605,9 @@ msgstr ""
 msgid "Search west"
 msgstr ""
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -2675,6 +2731,9 @@ msgstr ""
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr ""
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr ""
 
@@ -2739,7 +2798,7 @@ msgstr ""
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
+msgid "Software management"
 msgstr ""
 
 msgid "Software restore"
@@ -2903,6 +2962,9 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr ""
 
@@ -2930,6 +2992,12 @@ msgstr ""
 msgid ""
 "The USB stick is now bootable. Do you want to download the latest image from "
 "the feed server and save it on the stick?"
+msgstr ""
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
 msgstr ""
 
 #, python-format
@@ -3004,10 +3072,13 @@ msgstr ""
 msgid "There are at least "
 msgstr ""
 
-msgid "There are now "
+msgid "There are currently no outstanding actions."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are no updates available."
+msgstr ""
+
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -3118,7 +3189,13 @@ msgid ""
 "Please recheck it!"
 msgstr ""
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer status:"
+msgstr ""
+
+msgid "Timeshift location"
 msgstr ""
 
 msgid "Timeshift not possible!"
@@ -3143,6 +3220,9 @@ msgid ""
 msgstr ""
 
 msgid "Today"
+msgstr ""
+
+msgid "Tone Amplitude"
 msgstr ""
 
 msgid "Tone mode"
@@ -3239,20 +3319,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unicable"
 msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -3268,6 +3350,9 @@ msgid "Update"
 msgstr ""
 
 msgid "Updating finished. Here is the result:"
+msgstr ""
+
+msgid "Updating software catalog"
 msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
@@ -3501,6 +3586,9 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr ""
 
@@ -3519,6 +3607,9 @@ msgstr ""
 msgid "You can install this plugin."
 msgstr ""
 
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
+
 msgid "You can remove this plugin."
 msgstr ""
 
@@ -3532,6 +3623,13 @@ msgstr ""
 
 #, python-format
 msgid "You have to wait %s!"
+msgstr ""
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
 msgstr ""
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
@@ -3559,13 +3657,6 @@ msgid "Your name (optional):"
 msgstr ""
 
 msgid "Your network configuration has been activated."
-msgstr ""
-
-msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
 msgstr ""
 
 msgid "Zap back to service before positioner setup?"
@@ -3605,6 +3696,9 @@ msgid "about to start"
 msgstr ""
 
 msgid "activate current configuration"
+msgstr ""
+
+msgid "activate network adapter configuration"
 msgstr ""
 
 msgid "add Provider"
@@ -3856,9 +3950,6 @@ msgstr ""
 msgid "exit network adapter configuration"
 msgstr ""
 
-msgid "exit network adapter setup menu"
-msgstr ""
-
 msgid "exit network interface list"
 msgstr ""
 
@@ -3899,12 +3990,6 @@ msgid "green"
 msgstr ""
 
 msgid "hear radio..."
-msgstr ""
-
-msgid "hidden network"
-msgstr ""
-
-msgid "hidden..."
 msgstr ""
 
 msgid "hide extended description"
@@ -4099,9 +4184,6 @@ msgstr ""
 msgid "open servicelist(up)"
 msgstr ""
 
-msgid "open virtual keyboard input help"
-msgstr ""
-
 msgid "pass"
 msgstr ""
 
@@ -4287,6 +4369,9 @@ msgid "show transponder info"
 msgstr ""
 
 msgid "shuffle playlist"
+msgstr ""
+
+msgid "shut down"
 msgstr ""
 
 msgid "shutdown"
@@ -4685,10 +4770,10 @@ msgstr ""
 msgid "Frame repeat count during non-smooth winding"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Harddisk setup"
@@ -4862,6 +4947,9 @@ msgstr ""
 msgid "Reception Settings"
 msgstr ""
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recordings always have priority"
 msgstr ""
 
@@ -4994,9 +5082,6 @@ msgid "Timer selection"
 msgstr ""
 
 msgid "Timeshift"
-msgstr ""
-
-msgid "Timeshift path..."
 msgstr ""
 
 msgid "Timezone"
@@ -5343,6 +5428,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "* Only available when entering hidden SSID or network key"
+msgstr ""
+
 msgid "/usr/share/enigma2 directory"
 msgstr ""
 
@@ -5407,6 +5495,9 @@ msgstr ""
 msgid "Done - Installed or upgraded %d packages with %d errors"
 msgstr ""
 
+msgid "Download Plugins"
+msgstr ""
+
 msgid ""
 "Enigma2 Skinselector v0.5 BETA\n"
 "\n"
@@ -5414,6 +5505,12 @@ msgid ""
 "stephan@reichholf.net\n"
 "\n"
 "© 2006 - Stephan Reichholf"
+msgstr ""
+
+msgid "Enter WLAN network name/SSID:"
+msgstr ""
+
+msgid "Enter WLAN passphrase/key:"
 msgstr ""
 
 msgid "Fritz!Box FON IP address"
@@ -5428,7 +5525,13 @@ msgstr ""
 msgid "Online-Upgrade"
 msgstr ""
 
+msgid "Packet management"
+msgstr ""
+
 msgid "RSS Feed URI"
+msgstr ""
+
+msgid "Remove Plugins"
 msgstr ""
 
 msgid ""
@@ -5459,6 +5562,13 @@ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
 msgstr ""
 
 msgid ""
+"Your network configuration has been activated.\n"
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+
+msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
@@ -5475,10 +5585,19 @@ msgstr ""
 msgid "enigma2 and network"
 msgstr ""
 
+msgid "exit network adapter setup menu"
+msgstr ""
+
+msgid "hidden network"
+msgstr ""
+
 #, python-format
 msgid ""
 "incoming call!\n"
 "%s calls on %s!"
+msgstr ""
+
+msgid "open virtual keyboard input help"
 msgstr ""
 
 msgid "Backup is done. Please press OK to see the result."
@@ -5499,6 +5618,9 @@ msgid "Somewhere else"
 msgstr ""
 
 msgid "This is unsupported at the moment."
+msgstr ""
+
+msgid "Timeshift path..."
 msgstr ""
 
 msgid "USB"

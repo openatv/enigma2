@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-10-16 11:57+0100\n"
 "Last-Translator: Laco Filo <filowood@post.mbc.sk>\n"
 "Language-Team: none\n"
@@ -48,6 +48,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -83,10 +88,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Prehľadať miestne balíčky a nainštalovať ich."
 
 msgid ""
 "\n"
@@ -103,13 +106,6 @@ msgid ""
 msgstr ""
 "\n"
 "Systém sa po obnovení reštartuje!"
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Prezrieť, nainštalovať a odstrániť dostupné alebo nainštalované balíčky."
 
 msgid " "
 msgstr ""
@@ -305,6 +301,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<neznámy>"
 
@@ -368,6 +373,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Požadovaný nástroj (%s) sa nenašiel."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -494,6 +508,12 @@ msgstr "Rozšírené"
 
 msgid "Advanced Options"
 msgstr "Rozšírené voľby"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr "Rozšírené nastavenie obrazu"
@@ -993,9 +1013,6 @@ msgstr "Zostava"
 msgid "Content does not fit on DVD!"
 msgstr "Obsah sa nezmestí na DVD!"
 
-msgid "Continue"
-msgstr "Pokračovať"
-
 msgid "Continue in background"
 msgstr "Pokračovať v pozadí"
 
@@ -1010,6 +1027,9 @@ msgstr "Nemôžem sa pripojiť k serveru so súbormi Dreambox .NFI:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Nemôžem použiť médium. Je vložený disk?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1138,6 +1158,9 @@ msgstr "Predvolené"
 msgid "Default Settings"
 msgstr "Predvolené nastavenia"
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Zoznamy predvolených staníc"
 
@@ -1175,6 +1198,9 @@ msgstr "Zrušiť výber"
 
 msgid "Destination directory"
 msgstr "Cieľový adresár"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Zistený pevný disk:"
@@ -1497,8 +1523,7 @@ msgstr "Zapnúť časovač"
 msgid "Enabled"
 msgstr "Zapnuté"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1636,8 +1661,17 @@ msgstr "Modul rozšíreného nastavenia siete..."
 msgid "Extended Setup..."
 msgstr "Rozšírené nastavenie..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Rozšírenia"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1647,6 +1681,18 @@ msgstr "Továrenské nastavenia"
 
 msgid "Failed"
 msgstr "Zlyhalo"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "rýchlo"
@@ -1695,8 +1741,8 @@ msgstr "Flešovať"
 msgid "Flashing failed"
 msgstr "Flešovanie zlyhalo"
 
-msgid "Following tasks will be done after you press continue!"
-msgstr "Keď stlačíte pokračovať, vykonajú sa tieto úlohy."
+msgid "Following tasks will be done after you press OK!"
+msgstr ""
 
 msgid "Format"
 msgstr "Formát"
@@ -1757,14 +1803,14 @@ msgstr "Brána"
 msgid "General AC3 Delay"
 msgstr "Oneskorenie AC3"
 
-msgid "General AC3 delay"
-msgstr "Oneskorenie AC3"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "Oneskorenie PCM"
 
-msgid "General PCM delay"
-msgstr "Oneskorenie PCM"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Žáner"
@@ -1916,6 +1962,9 @@ msgstr "Informácie"
 msgid "Init"
 msgstr "Inic."
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Inicializácia..."
 
@@ -1970,14 +2019,16 @@ msgstr "Inštalujem obsah balíčka... Čakajte..."
 msgid "Instant Record..."
 msgstr "Okamžité nahrávanie..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Integrovaný eternet"
 
 msgid "Integrated Wireless"
 msgstr "Integrovaná WLAN"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2112,6 +2163,9 @@ msgstr "Miestna sieť"
 msgid "Location"
 msgstr "Umiestnenie"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Signál:"
 
@@ -2145,6 +2199,9 @@ msgstr "Urobiť z tejto značky výstupný bod („out“)"
 msgid "Make this mark just a mark"
 msgstr "Urobiť z tejto značky len značku."
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Spravovať softvér ptijímača"
 
@@ -2163,8 +2220,7 @@ msgstr "Rezerva po skončení programu"
 msgid "Margin before record (minutes)"
 msgstr "Rezerva pred začiatkom programu (min)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2227,6 +2283,9 @@ msgstr "Pootočiť východne"
 msgid "Move west"
 msgstr "Pootočiť západne"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Menu filmov"
 
@@ -2250,6 +2309,9 @@ msgstr "Nie je k dispozícii"
 
 msgid "NEXT"
 msgstr "NASLED."
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "Flešovanie image .NFI skončené. Stlačením žltého tlačidla reštartujte."
@@ -2370,8 +2432,16 @@ msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
 msgid "No event info found, recording indefinitely."
 msgstr "Žiadne informácie EPG, spúšťam nekonečné nahrávanie"
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Nie je voľný tuner!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2392,6 +2462,9 @@ msgstr "Nebol nájdený satelitný tuner!"
 
 msgid "No tags are set on these movies."
 msgstr "Žiadne štítky nie sú nastavené na týchto filmoch."
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Žiadny tuner nie je nastavený na použitie motora DiSEqC."
@@ -2544,6 +2617,9 @@ msgstr "Aktualizácia online"
 msgid "Only Free scan"
 msgstr "Vyhľadať len FTA"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "Prípadne zadajte meno, ak chcete."
 
@@ -2555,9 +2631,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDy"
-
-msgid "Package details for: "
-msgstr "Údaje o balíčku:"
 
 msgid "Package list update"
 msgstr "Aktualizovať zoznam balíčkov"
@@ -2827,9 +2900,6 @@ msgstr "Čakajte... Naťahuje sa zoznam..."
 msgid "Plugin browser"
 msgstr "Prehliadač modulov"
 
-msgid "Plugin manager"
-msgstr "Správca modulov"
-
 msgid "Plugin manager activity information"
 msgstr "Informácie o činnosti správcu modulov..."
 
@@ -3024,6 +3094,9 @@ msgstr "Nahrané súbory..."
 msgid "Recording"
 msgstr "Nahrávanie"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Nahrávanie prebieha alebo o pár sekúnd začne!"
 
@@ -3035,9 +3108,6 @@ msgstr "Nahrávanie má vždy prednosť"
 
 msgid "Reenter new pin"
 msgstr "Znova zadajte nový PIN"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Obnovovací kmitočet"
@@ -3355,6 +3425,9 @@ msgstr "Hľadať východne"
 msgid "Search west"
 msgstr "Hľadať západne"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Hľadám novoinštalované alebo odstránené balíčky. Čakajte..."
 
@@ -3553,6 +3626,9 @@ msgstr "Zobraziť režim TV..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Zobrazuje stav pripojenia bezdrôtovej LAN.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Vypnúť Dreambox o"
 
@@ -3626,8 +3702,8 @@ msgstr "Rýchlosti časovej lupy"
 msgid "Software"
 msgstr "Softvér"
 
-msgid "Software manager"
-msgstr "Správca softvéru"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Obnoviť softvér"
@@ -3820,6 +3896,9 @@ msgstr "Štítok 2"
 msgid "Tags"
 msgstr "Štítky"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Pozemné"
 
@@ -3871,6 +3950,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Zálohovanie zlyhalo. Zvoľte iné umiestnenie zálohy."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3977,17 +4062,20 @@ msgstr "Pomocník teraz skončil."
 msgid "There are at least "
 msgstr "Je aspoň"
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "V tomto image nie sú zoznamy predvolených staníc."
 
 msgid "There are no default settings in your image."
 msgstr "V tomto image nie sú predvolené nastavenia."
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Teraz sú"
-
-msgid "There is nothing to be done."
-msgstr "Nie je nič na vykonanie."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -4156,6 +4244,9 @@ msgstr ""
 "Zistené prekrývanie časovačov v súbore timers.xml!\n"
 "Skontrolujte to!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Nerozumné časovanie"
 
@@ -4167,6 +4258,9 @@ msgstr "Stav časovača:"
 
 msgid "Timeshift"
 msgstr "Časový posun"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Časový posun nie je možný!"
@@ -4203,6 +4297,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Dnes"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Tónový režim"
@@ -4317,24 +4414,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Nepotvrdený príkaz DiSEqC"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
-"Späť\n"
-"(Inštalácia)"
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"Späť\n"
-"(Odstránenie)"
+
+msgid "Unicable"
+msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4354,6 +4449,9 @@ msgstr "Aktualizuje softvér prijímača"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Aktualizácia je skončená. Tu je výsledok:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Aktualizujem... Čakajte... Môže to trvať pár minút..."
@@ -4710,6 +4808,9 @@ msgstr "Rok"
 msgid "Yes"
 msgstr "Áno"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Áno, a zmazať tento film"
 
@@ -4758,6 +4859,9 @@ msgstr "Môžete si vybrať, čo chcete nainštalovať."
 
 msgid "You can install this plugin."
 msgstr "Môžete nainštalovať modul."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Tento modul môžete zmazať!"
@@ -4859,6 +4963,13 @@ msgstr ""
 "Musíte nastaviť kód PIN a skryť ho pred deťmi.\n"
 "\n"
 "Chcete teraz nastaviť kód PIN?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4974,6 +5085,9 @@ msgstr "hneď začne"
 
 msgid "activate current configuration"
 msgstr "aktivovať aktuálne nastavenie"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "pridať poskytovateľa"
@@ -5296,9 +5410,6 @@ msgstr "pomoc..."
 
 msgid "hidden network"
 msgstr "skrytá sieť"
-
-msgid "hidden..."
-msgstr ""
 
 msgid "hide extended description"
 msgstr "skryť rozšírené opisy"
@@ -5690,6 +5801,9 @@ msgstr "zobraziť infor. o transpondéri"
 msgid "shuffle playlist"
 msgstr "premiešať zoznam prehrávok"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "vypnúť"
 
@@ -5853,11 +5967,28 @@ msgstr "prepnúť"
 msgid "zapped"
 msgstr "prepnuté"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Prehľadať miestne balíčky a nainštalovať ich."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Prezrieť, nainštalovať a odstrániť dostupné alebo nainštalované balíčky."
+
 #~ msgid "Backup running"
 #~ msgstr "Zálohovanie beží"
 
 #~ msgid "Configuration for the CrashlogAutoSubmitter"
 #~ msgstr "Nastavenie autom. posielania správ o zrútení"
+
+#~ msgid "Continue"
+#~ msgstr "Pokračovať"
 
 #~ msgid "CrashlogAutoSubmitConfiguration"
 #~ msgstr "Nastavenie autom. posielania správ o zrútení"
@@ -5868,6 +5999,15 @@ msgstr "prepnuté"
 
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Upraviť URL zdroja IPKG..."
+
+#~ msgid "Following tasks will be done after you press continue!"
+#~ msgstr "Keď stlačíte pokračovať, vykonajú sa tieto úlohy."
+
+#~ msgid "General AC3 delay"
+#~ msgstr "Oneskorenie AC3"
+
+#~ msgid "General PCM delay"
+#~ msgstr "Oneskorenie PCM"
 
 #~ msgid "Install software updates..."
 #~ msgstr "Inštalovať aktualizácie softvéru..."
@@ -5882,11 +6022,37 @@ msgstr "prepnuté"
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Umožní prezerať a upravovať súbory v Dreamboxe."
 
+#~ msgid "Package details for: "
+#~ msgstr "Údaje o balíčku:"
+
+#~ msgid "Plugin manager"
+#~ msgstr "Správca modulov"
+
 #~ msgid "Removeing"
 #~ msgstr "Odstraňujem"
 
+#~ msgid "Software manager"
+#~ msgstr "Správca softvéru"
+
 #~ msgid "Software manager..."
 #~ msgstr "Správca softvéru..."
+
+#~ msgid "There is nothing to be done."
+#~ msgstr "Nie je nič na vykonanie."
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "Späť\n"
+#~ "(Inštalácia)"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Späť\n"
+#~ "(Odstránenie)"
 
 #~ msgid "Upgrade"
 #~ msgstr "Aktualizácia"
