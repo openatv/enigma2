@@ -11,19 +11,19 @@ from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
 
+cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
+
 def moviePlayState(cutsFileName):
 	'''Returns None, 0..4 for percentage'''
-	parser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 	try:
 		lastCut = None
 		cutPTS = None
 		f = open(cutsFileName, 'rb')
 		while 1:
-			data = f.read(parser.size)
-			if len(data) < parser.size:
+			data = f.read(cutsParser.size)
+			if len(data) < cutsParser.size:
 				break
-			cut, cutType = parser.unpack(data)
-			#print cutsFileName, cutPTS, cutType
+			cut, cutType = cutsParser.unpack(data)
 			if cutType == 3: # undocumented, but 3 appears to be the stop
 				cutPTS = cut
 			else:
@@ -60,6 +60,10 @@ class MovieList(GUIComponent):
 		self.descr_state = descr_state or self.HIDE_DESCRIPTION
 		self.sort_type = sort_type or self.SORT_RECORDED
 		self.firstFileEntry = 0
+		self.fontName = "Regular"
+		self.fontSizesOriginal = (22,18,16)
+		self.fontSizesCompact = (20,14)
+		self.fontSizesMinimal = (20,16)
 
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -67,7 +71,6 @@ class MovieList(GUIComponent):
 		if root is not None:
 			self.reload(root)
 		
-		self.redrawList()
 		self.l.setBuildFunc(self.buildMovieListEntry)
 		
 		self.onSelectionChanged = [ ]
@@ -99,24 +102,43 @@ class MovieList(GUIComponent):
 	def setSortType(self, type):
 		self.sort_type = type
 
+	def applySkin(self, desktop, parent):
+		attribs = [ ]
+		if self.skinAttributes is not None:
+			attribs = [ ]
+			for (attrib, value) in self.skinAttributes:
+				try:
+					if attrib == "fontName":
+						self.fontName = value
+					elif attrib == "fontSizesOriginal":
+						self.fontSizesOriginal = map(int, value.split(","))
+					elif attrib == "fontSizesCompact":
+						self.fontSizesCompact = map(int, value.split(","))
+					elif attrib == "fontSizesMinimal":
+						self.fontSizesMinimal = map(int, value.split(","))
+					else:
+						attribs.append((attrib, value))
+				except Exception, e:
+					print '[MovieList] Error "%s" parsing attribute: %s="%s"' % (str(e), attrib,value)					
+		self.skinAttributes = attribs
+		self.redrawList()
+		return GUIComponent.applySkin(self, desktop, parent)
+
 	def redrawList(self):
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
-			self.l.setFont(0, gFont("Regular", 22))
-			self.l.setFont(1, gFont("Regular", 18))
-			self.l.setFont(2, gFont("Regular", 16))
-			self.l.setItemHeight(75)
+			for i in range(3):
+				self.l.setFont(i, gFont(self.fontName, self.fontSizesOriginal[i]))
+			self.itemHeight = 75
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION or self.list_type == MovieList.LISTTYPE_COMPACT:
-			self.l.setFont(0, gFont("Regular", 20))
-			self.l.setFont(1, gFont("Regular", 14))
-			self.l.setItemHeight(37)
+			for i in range(2):
+				self.l.setFont(i, gFont(self.fontName, self.fontSizesCompact[i]))
+			self.itemHeight = 37
 		else:
-			self.l.setFont(0, gFont("Regular", 20))
-			self.l.setFont(1, gFont("Regular", 16))
-			self.l.setItemHeight(25)
+			for i in range(2):
+				self.l.setFont(i, gFont(self.fontName, self.fontSizesMinimal[i]))
+			self.itemHeight = 25
+		self.l.setItemHeight(self.itemHeight)
 
-	#
-	# | name of movie              |
-	#
 	def buildMovieListEntry(self, serviceref, info, begin, len):
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
@@ -130,10 +152,10 @@ class MovieList(GUIComponent):
 			if not p[1]:
 				# if path ends in '/', p is blank.
 				p = os.path.split(p[0])
-			txt = "[" + p[1] + "]"
+			txt = p[1]
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,iconSize), png=self.iconFolder))
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
-			res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 20), font=1, flags=RT_HALIGN_RIGHT, text=_("DIR")))
+			res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
+			res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT, text=_("Directory")))
 			return res
 
 		if len <= 0: #recalc len when not already done
@@ -156,7 +178,7 @@ class MovieList(GUIComponent):
 		cutsPathName = pathName + '.cuts'
 		
 		if config.usage.show_icons_in_movielist.value:
-			iconSize = 20
+			iconSize = 22
 			icon = self.iconMovieNew
 			if os.path.exists(cutsPathName):
 				part = moviePlayState(cutsPathName)
@@ -166,14 +188,17 @@ class MovieList(GUIComponent):
 				elif os.stat(cutsPathName).st_mtime - os.stat(pathName).st_mtime > 600:  
 					# mtime of cuts file is much newer, we've seen it
 					icon = self.iconMovieUnknown
-			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,iconSize), png=icon))
+			if self.list_type in (MovieList.LISTTYPE_COMPACT_DESCRIPTION,MovieList.LISTTYPE_COMPACT):
+				pos = (0,0)
+			else:
+				pos = (0,1) 
+			res.append(MultiContentEntryPixmapAlphaTest(pos=pos, size=(iconSize,20), png=icon))
 		else:
 			icon = None
 			iconSize = 0		
 
 		service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 		description = info.getInfoString(serviceref, iServiceInformation.sDescription)
-		tags = info.getInfoString(serviceref, iServiceInformation.sTags)
 
 		begin_string = ""
 		if begin > 0:
@@ -183,7 +208,7 @@ class MovieList(GUIComponent):
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
 			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-182, 30), font = 0, flags = RT_HALIGN_LEFT, text=txt))
 			if self.tags:
-				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = tags))
+				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
 				if service is not None:
 					res.append(MultiContentEntryText(pos=(200, 50), size=(200, 20), font = 1, flags = RT_HALIGN_LEFT, text = service.getServiceName()))
 			else:
@@ -212,7 +237,7 @@ class MovieList(GUIComponent):
 			     lenSize = 0
 			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-lenSize-22, 20), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 			if self.tags:
-				res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = tags))
+				res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
 				if service is not None:
 					res.append(MultiContentEntryText(pos=(200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_LEFT, text = service.getServiceName()))
 			else:
