@@ -16,7 +16,6 @@ eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::ge
 	{
 		sn=eSocketNotifier::create(eApp, handle, eSocketNotifier::Read);
 		CONNECT(sn->activated, eRCConsoleDriver::keyPressed);
-		eRCInput::getInstance()->setFile(handle);
 	}
 	
 		/* set console mode */

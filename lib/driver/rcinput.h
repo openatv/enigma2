@@ -10,6 +10,7 @@ public:
 	void handleCode(long code);
 	eRCDeviceInputDev(eRCInputEventDriver *driver);
 	const char *getDescription() const;
+	void setExclusive(bool);
 };
 
 #endif
