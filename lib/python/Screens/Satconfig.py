@@ -146,6 +146,8 @@ class NimSetup(Screen, ConfigListScreen):
 					currSat = self.nimConfig.advanced.sat[cur_orb_pos]
 					self.fillListWithAdvancedSatEntrys(currSat)
 				self.have_advanced = True
+			if self.nim.description == "Alps BSBE2" and config.usage.setup_level.index >= 2: # expert
+				self.list.append(getConfigListEntry(_("Tone Amplitude"), self.nimConfig.toneAmplitude))
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
 			self.list.append(self.configMode)
