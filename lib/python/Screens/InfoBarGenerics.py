@@ -58,15 +58,13 @@ class InfoBarUnhandledKey:
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
 		eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.actionA) #highest prio
 		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.actionB) #lowest prio
-		self.key = -1;
-		self.flags = 0;
+		self.flags = (1<<1);
 		self.uflags = 0;
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		if flag != 4:
-			if self.key != key:
-				self.key = key
+			if self.flags & (1<<1):
 				self.flags = self.uflags = 0
 			self.flags |= (1<<flag)
 			if flag == 1: # break
