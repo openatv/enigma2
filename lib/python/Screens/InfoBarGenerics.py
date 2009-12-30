@@ -66,9 +66,6 @@ class InfoBarUnhandledKey:
 	def actionA(self, key, flag):
 		if flag != 4:
 			if self.key != key:
-				if self.checkUnusedTimer.isActive():
-					self.checkUnusedTimer.stop()
-					self.checkUnused()
 				self.key = key
 				self.flags = self.uflags = 0
 			self.flags |= (1<<flag)
