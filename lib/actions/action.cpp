@@ -208,7 +208,7 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 				}
 			} else
 			{
-				eDebug("wildcard.");
+//				eDebug("wildcard.");
 				ePyObject pArgs = PyTuple_New(2);
 				PyTuple_SET_ITEM(pArgs, 0, PyInt_FromLong(key));
 				PyTuple_SET_ITEM(pArgs, 1, PyInt_FromLong(flags));
