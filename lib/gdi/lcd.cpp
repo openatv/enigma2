@@ -10,6 +10,9 @@
 #include <lib/gdi/esize.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#ifdef HAVE_TEXTLCD
+	#include <lib/base/estring.h>
+#endif
 #include <lib/gdi/glcddc.h>
 
 eDBoxLCD *eDBoxLCD::instance;
@@ -41,6 +44,15 @@ void eLCD::unlock()
 {
 	locked=0;
 }
+
+#ifdef HAVE_TEXTLCD
+void eLCD::renderText(ePoint start, const char *text)
+{
+	std::string message = text;
+	message = replace_all(message, "\n", " ");
+	::write(lcdfd, message.c_str(), message.size());
+}
+#endif
 
 eDBoxLCD::eDBoxLCD(): eLCD(eSize(132, 64))
 {

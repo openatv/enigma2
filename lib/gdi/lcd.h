@@ -36,6 +36,9 @@ public:
 	eSize size() { return res; }
 	
 	virtual void update()=0;
+#ifdef HAVE_TEXTLCD
+	virtual void renderText(ePoint start, const char *text);
+#endif
 #endif
 };
 
