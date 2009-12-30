@@ -21,6 +21,17 @@ AC_ARG_WITH(libsdl,
 	[[withsdl=yes]]
 )
 
+AC_ARG_WITH(alsa,
+	AC_HELP_STRING([--with-alsa], [use alsa, yes or no]),
+	[[withalsa=$withval]],
+	[[withalsa=yes]]
+)
+
+if test "$withalsa" = "yes" ; then
+	_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(ALSA, alsa, HAVE_ALSA)
+	LDFLAGS="$LDFLAGS $ALSA_LIBS"
+fi
+
 AC_CHECK_HEADER(dreamdvd/ddvdlib.h,have_ddvdlib="yes",have_ddvdlib="no")
 if test x"${have_ddvdlib}" = xyes ; then
 	AC_DEFINE(HAVE_DDVDLIB, 1,[Define if ddvdlib is available])
