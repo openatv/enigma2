@@ -51,7 +51,7 @@ public:
 	int data[8];
 	std::string path;
 #endif
-	std::string getPath() { return path; }
+	std::string getPath() const { return path; }
 	void setPath( const std::string &n ) { path=n; }
 
 	unsigned int getUnsignedData(unsigned int num) const
