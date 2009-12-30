@@ -144,15 +144,19 @@ class MovieList(GUIComponent):
 		pathName = serviceref.getPath()
 
 		if serviceref.flags & eServiceReference.mustDescent:
-			# Experiment: Directory support
+			# Directory
 			res = [ None ]
 			iconSize = 22
 			# Name is full path name
-			p = os.path.split(pathName)
-			if not p[1]:
-				# if path ends in '/', p is blank.
-				p = os.path.split(p[0])
-			txt = p[1]
+			if info is None:
+				# Special case: "parent"
+				txt = ".."
+			else:
+				p = os.path.split(pathName)
+				if not p[1]:
+					# if path ends in '/', p is blank.
+					p = os.path.split(p[0])
+				txt = p[1]
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,iconSize), png=self.iconFolder))
 			res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 			res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT, text=_("Directory")))
@@ -309,15 +313,24 @@ class MovieList(GUIComponent):
 		numberOfDirs = 0
 		
 		self.root = root
-		list = self.serviceHandler.list(root)
-		if list is None:
+		reflist = self.serviceHandler.list(root)
+		if reflist is None:
 			print "listing of movies failed"
-			list = [ ]	
 			return
 		realtags = set()
 		tags = {}
+		rootPath = root.getPath();
+		if rootPath and rootPath not in list(config.movielist.videodirs.value):
+			parent = os.path.split(os.path.normpath(rootPath))[0]
+			ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent + '/')
+			ref.flags = eServiceReference.flagDirectory
+			self.list.append((ref, None, 0, -1))
+			numberOfDirs += 1
+		else:
+			print "[Movie] no parent for this root"
+		 
 		while 1:
-			serviceref = list.getNext()
+			serviceref = reflist.getNext()
 			if not serviceref.valid():
 				break
 			info = self.serviceHandler.info(serviceref)
@@ -384,15 +397,15 @@ class MovieList(GUIComponent):
 	def buildAlphaNumericSortKey(self, x):
 		# x = ref,info,begin,...
 		ref = x[0]
+		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, x[1].getName(ref), -x[2])
-		name = x[1].getName(ref)
+			return (0, name, -x[2])
 		return (1, name and name.lower() or "", -x[2])
 		
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, x[1].getName(ref))
+			return (0, x[1] and x[1].getName(ref))
 		return (1, -x[2])
 
 	def moveTo(self, serviceref):
