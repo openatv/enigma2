@@ -132,6 +132,7 @@ class VideoWizard(WizardLanguage, Rc):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
 		if self.port == "DVI" and mode in ("720p", "1080i"):
+			self.rate = "multi"
 			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
 		else:
 			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
