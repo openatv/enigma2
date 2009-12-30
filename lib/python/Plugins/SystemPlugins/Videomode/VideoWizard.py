@@ -131,8 +131,11 @@ class VideoWizard(WizardLanguage, Rc):
 	def modeSelect(self, mode):
 		ratesList = self.listRates(mode)
 		print "ratesList:", ratesList
-		self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
-		
+		if self.port == "DVI" and mode in ("720p", "1080i"):
+			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
+		else:
+			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
+	
 	def listRates(self, querymode = None):
 		if querymode is None:
 			querymode = self.mode

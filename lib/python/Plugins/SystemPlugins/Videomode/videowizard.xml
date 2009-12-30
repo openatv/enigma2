@@ -20,7 +20,7 @@ self.selectKey("DOWN")
 self["portpic"].hide()
 		</code>
 	</step>
-	<step id="rateselection" nextstep="dvirateintroduction" timeout="20" timeoutaction="selectnext">
+	<step id="rateselection" nextstep="end" timeout="20" timeoutaction="selectnext">
 		<condition>
 self.condition = (self.port != "DVI" or self.mode == "PC")
 		</condition>		
@@ -33,7 +33,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 		</code>
 	</step>
-	<step id="dvirateintroduction" nextstep="dvirateselection">
+	<!--step id="dvirateintroduction" nextstep="dvirateselection">
 		<condition>
 self.condition = (self.port == "DVI" and self.mode in ["720p", "1080i"])
 		</condition>
@@ -89,7 +89,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
 self.rateSelect("50Hz")
 		</code>
-	</step>
+	</step-->
 	<step id="end">
 		<code>
 self.hw.saveMode(self.port, self.mode, self.rate)
