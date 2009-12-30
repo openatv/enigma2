@@ -32,6 +32,16 @@ if test "$withalsa" = "yes" ; then
 	LDFLAGS="$LDFLAGS $ALSA_LIBS"
 fi
 
+AC_ARG_WITH(textlcd,
+	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
+	[[withtextlcd=$withval]],
+	[[withtextlcd=yes]]
+)
+
+if test "$withtextlcd" = "yes" ; then
+	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
+fi
+
 AC_CHECK_HEADER(dreamdvd/ddvdlib.h,have_ddvdlib="yes",have_ddvdlib="no")
 if test x"${have_ddvdlib}" = xyes ; then
 	AC_DEFINE(HAVE_DDVDLIB, 1,[Define if ddvdlib is available])

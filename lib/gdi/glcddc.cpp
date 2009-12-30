@@ -34,9 +34,20 @@ void gLCDDC::exec(gOpcode *o)
 {
 	switch (o->opcode)
 	{
+#ifdef HAVE_TEXTLCD
+	case gOpcode::renderText:
+		if (o->parm.renderText->text)
+		{
+			lcd->renderText(gDC::m_current_offset,o->parm.renderText->text);
+			free(o->parm.renderText->text);
+		}
+		delete o->parm.renderText;
+		break;
+#else
 	case gOpcode::flush:
 //		if (update)
 			lcd->update();
+#endif
 	default:
 		gDC::exec(o);
 		break;
