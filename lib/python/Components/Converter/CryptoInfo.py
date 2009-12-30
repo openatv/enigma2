@@ -55,6 +55,8 @@ class CryptoInfo(Converter, object):
 				# CCcam
 				if using == 'fta':
 					self.textvalue = _("FTA")
+				elif using == 'emu':
+					self.textvalue = "EMU (%ss)" % (info.get('ecm time', '?'))
 				else:
 					self.textvalue = "%s @%s (%ss)" % (info.get('address', '?'), info.get('hops', '-'), info.get('ecm time', '?'))
 			else:
