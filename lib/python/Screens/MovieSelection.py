@@ -200,7 +200,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def updateDescription(self):
 		if config.movielist.description.value == MovieList.SHOW_DESCRIPTION:
 			self["DescriptionBorder"].show()
-			self["list"].instance.resize(eSize(self.listWidth, self.listHeight-self["DescriptionBorder"].instance.size().height()))
+			height = self["DescriptionBorder"].instance.position().y() - self["list"].instance.position().y()
+			self["list"].instance.resize(eSize(self.listWidth, height))
 		else:
 			self["Service"].newService(None)
 			self["DescriptionBorder"].hide()
