@@ -1,6 +1,6 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached, ElementError
-from enigma import iServiceInformation
+from enigma import iServiceInformation, eServiceReference
 from ServiceReference import ServiceReference
 
 class MovieInfo(Converter, object):
@@ -28,6 +28,9 @@ class MovieInfo(Converter, object):
 		info = self.source.info
 		if info and service:
 			if self.type == self.MOVIE_SHORT_DESCRIPTION:
+				if (self.source.service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+					# Short description for Directory is the full path
+					return self.source.service.getPath()  
 				event = self.source.event
 				if event:
 					descr = info.getInfoString(service, iServiceInformation.sDescription)
@@ -41,6 +44,8 @@ class MovieInfo(Converter, object):
 				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
 				return ServiceReference(rec_ref_str).getServiceName()
 			elif self.type == self.MOVIE_REC_FILESIZE:
+				if (self.source.service.flags & eServiceReference.flagDirectory) == eServiceReference.flagDirectory:
+					return _("Directory")
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
 					return "%d MB" % (filesize / (1024*1024))
