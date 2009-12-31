@@ -160,13 +160,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
-		#if config.usage.setup_level.index >= 2: # expert? nah.
 		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions", 
 			{
 				"showMovies": (self.doPathSelect, _("select the movie path")),
-				#"showTv": (self.goHome, _("Go to default movie dir")),
 			})
 
+		self["NumberActions"] =  HelpableActionMap(self, "NumberActions", 
+			{
+				"2": (self.list.moveToFirst, _("Go to top of list")),
+				"5": (self.list.moveToFirstMovie, _("Go to first movie")),
+				"8": (self.list.moveToLast, _("Go to last item")),
+			})
 
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
 			{
