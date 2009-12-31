@@ -7,6 +7,7 @@ import os
 import struct
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_HDD, SCOPE_SKIN_IMAGE, resolveFilename
+from Screens.LocationBox import defaultInhibitDirs
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
@@ -325,13 +326,14 @@ class MovieList(GUIComponent):
 		tags = {}
 		rootPath = os.path.normpath(root.getPath());
 		moviePath = os.path.normpath(resolveFilename(SCOPE_HDD))
-		if (len(rootPath) > 1) and (rootPath != moviePath):
+		if rootPath and (rootPath != moviePath):
 			parent = os.path.split(os.path.normpath(rootPath))[0]
-			ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent + '/')
-			ref.flags = eServiceReference.flagDirectory
-			self.list.append((ref, None, 0, -1))
-			numberOfDirs += 1
-		 
+			if parent and (parent not in defaultInhibitDirs):
+				ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent)
+				ref.flags = eServiceReference.flagDirectory
+				self.list.append((ref, None, 0, -1))
+				numberOfDirs += 1
+
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
