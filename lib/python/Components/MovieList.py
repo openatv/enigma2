@@ -267,6 +267,14 @@ class MovieList(GUIComponent):
 			self.instance.moveSelectionTo(self.firstFileEntry)
 		else:
 			# there are no movies, just directories...
+			self.moveToFirst()
+
+	def moveToLast(self):
+		if self.list:
+			self.instance.moveSelectionTo(len(self.list) - 1)
+
+	def moveToFirst(self):
+		if self.list:
 			self.instance.moveSelectionTo(0)
 
 	def moveToIndex(self, index):
