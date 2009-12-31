@@ -567,9 +567,7 @@ class PluginManager(Screen, DreamInfoHandler):
 					for foundtag in prerequisites["tag"]:
 						if categorytag == foundtag:
 							attributes = package[0]["attributes"]
-							print "ATTRIBUTES",attributes
 							if attributes.has_key("packagetype"):
-								print "PACKAGETYPE",attributes["packagetype"]
 								if attributes["packagetype"] == "internal":
 									continue
 								self.packetlist.append([attributes["name"], attributes["details"], attributes["shortdescription"], attributes["packagename"]])
@@ -696,11 +694,12 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.session.openWithCallback(self.ExecuteReboot, MessageBox, _("Install or remove finished.") +" "+_("Do you want to reboot your Dreambox?"), MessageBox.TYPE_YESNO)
 
 	def ExecuteReboot(self, result):
+		print "RESULT im ExecuteReboot",result
 		if result is None:
 			return
 		if result is False:
 			self.reloadPluginlist()
-			self.selectedFiles = None
+			self.selectedFiles = []
 			self.detailsClosed(True)
 		if result:
 			quitMainloop(3)
