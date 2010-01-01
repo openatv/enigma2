@@ -16,7 +16,7 @@ from Screens.TimerEntry import TimerEntry
 from Screens.EpgSelection import EPGSelection
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.MessageBox import MessageBox
-from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference
 from Tools.LoadPixmap import LoadPixmap
@@ -41,11 +41,11 @@ class EPGList(HTMLComponent, GUIComponent):
 		if overjump_empty:
 			self.l.setSelectableFunc(self.isSelectable)
 		self.epgcache = eEPGCache.getInstance()
-		self.clock_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock.png'))
-		self.clock_add_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_add.png'))
-		self.clock_pre_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_pre.png'))
-		self.clock_post_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_post.png'))
-		self.clock_prepost_pixmap = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, 'skin_default/icons/epgclock_prepost.png'))
+		self.clock_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png'))
+		self.clock_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png'))
+		self.clock_pre_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png'))
+		self.clock_post_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png'))
+		self.clock_prepost_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png'))
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None

@@ -1,16 +1,15 @@
 from Screen import Screen
-
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
-from Components.config import config, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS
+from Components.config import config, ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS
 
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from Components.ActionMap import NumberActionMap
 from Components.MenuList import MenuList
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
-
 from enigma import eTimer
 
 from xml.sax import make_parser
@@ -19,8 +18,8 @@ from xml.sax.handler import ContentHandler
 class WizardSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget name="text" position="6,4" size="120,42" font="Regular;14" transparent="1" />
-		<widget source="parent.list" render="Label" position="6,25" size="120,21" font="Regular;16">
+		<widget source="text" render="Label" position="6,0" size="120,16" font="Regular;16" transparent="1" />
+		<widget source="parent.list" render="Label" position="6,18" size="120,46" font="Regular;12">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>"""
@@ -36,7 +35,7 @@ class WizardSummary(Screen):
 		#self.skinName.append("Wizard")
 		#print "*************+++++++++++++++++****************++++++++++******************* WizardSummary", self.skinName
 			#
-		self["text"] = Label("")
+		self["text"] = StaticText("")
 		self.onShow.append(self.setCallback)
 		
 	def setCallback(self):
@@ -214,12 +213,13 @@ class Wizard(Screen):
 		self.onShown.append(self.updateValues)
 
 		self.configInstance = None
+		self.currentConfigIndex = None
 		
 		self.lcdCallbacks = []
 		
 		self.disableKeys = False
 		
-		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions", "SetupActions", "InputAsciiActions"],
+		self["actions"] = NumberActionMap(["WizardActions", "NumberActions", "ColorActions", "SetupActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
 			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.ok,
@@ -245,6 +245,13 @@ class Wizard(Screen):
 			"9": self.keyNumberGlobal,
 			"0": self.keyNumberGlobal
 		}, -1)
+
+		self["VirtualKB"] = NumberActionMap(["VirtualKeyboardActions"],
+		{
+			"showVirtualKeyboard": self.KeyText,
+		}, -2)
+		
+		self["VirtualKB"].setEnabled(False)
 		
 	def red(self):
 		print "red"
@@ -405,6 +412,7 @@ class Wizard(Screen):
 		self.resetCounter()
 		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None  or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
+			self.handleInputHelpers()
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			self["list"].selectPrevious()
 			if self.wizard[self.currStep].has_key("onselect"):
@@ -418,6 +426,7 @@ class Wizard(Screen):
 		self.resetCounter()
 		if (self.showConfig and self.wizard[self.currStep]["config"]["screen"] != None  or self.wizard[self.currStep]["config"]["type"] == "dynamic"):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
+			self.handleInputHelpers()
 		elif (self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0):
 			#self["list"].instance.moveSelection(self["list"].instance.moveDown)
 			self["list"].selectNext()
@@ -598,6 +607,9 @@ class Wizard(Screen):
 						print "clearConfigList", self.configInstance["config"], self["config"]
 				else:
 					self["config"].l.setList([])
+					self.handleInputHelpers()
+					
+					
 			else:
 				if self.has_key("config"):
 					self["config"].hide()
@@ -613,6 +625,45 @@ class Wizard(Screen):
 				if self.wizard[self.currStep]["timeoutaction"] == "changestep":
 					self.finished(gotoStep = self.wizard[self.currStep]["timeoutstep"])
 		self.updateText()
+
+	def handleInputHelpers(self):
+		if self["config"].getCurrent() is not None:
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self.has_key("VKeyIcon"):
+					self["VirtualKB"].setEnabled(True)
+					self["VKeyIcon"].boolean = True
+				if self.has_key("HelpWindow"):
+					if self["config"].getCurrent()[1].help_window.instance is not None:
+						helpwindowpos = self["HelpWindow"].getPosition()
+						from enigma import ePoint
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+			else:
+				if self.has_key("VKeyIcon"):
+					self["VirtualKB"].setEnabled(False)
+					self["VKeyIcon"].boolean = False
+		else:
+			if self.has_key("VKeyIcon"):
+				self["VirtualKB"].setEnabled(False)
+				self["VKeyIcon"].boolean = False
+
+	def KeyText(self):
+		from Screens.VirtualKeyBoard import VirtualKeyBoard
+		self.currentConfigIndex = self["config"].getCurrentIndex()
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+
+	def VirtualKeyBoardCallback(self, callback = None):
+		if callback is not None and len(callback):
+			if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+				if self.has_key("HelpWindow"):
+					if self["config"].getCurrent()[1].help_window.instance is not None:
+						helpwindowpos = self["HelpWindow"].getPosition()
+						from enigma import ePoint
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+			self["config"].instance.moveSelectionTo(self.currentConfigIndex)
+			self["config"].setCurrentIndex(self.currentConfigIndex)
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+
 
 class WizardManager:
 	def __init__(self):

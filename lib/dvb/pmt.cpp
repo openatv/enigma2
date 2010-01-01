@@ -75,6 +75,9 @@ void eDVBServicePMTHandler::channelEvent(iDVBChannel *channel, int event)
 {
 	switch (event)
 	{
+	case iDVBChannel::evtPreStart:
+		serviceEvent(eventPreStart);
+		break;
 	case iDVBChannel::evtEOF:
 		serviceEvent(eventEOF);
 		break;

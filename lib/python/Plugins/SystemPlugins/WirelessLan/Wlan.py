@@ -1,7 +1,7 @@
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
-from Components.MultiContent import MultiContentEntryText
-from Components.GUIComponent import GUIComponent
-from Components.HTMLComponent import HTMLComponent
+#from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
+#from Components.MultiContent import MultiContentEntryText
+#from Components.GUIComponent import GUIComponent
+#from Components.HTMLComponent import HTMLComponent
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Console import Console
 
@@ -35,13 +35,12 @@ config.plugins.wlan.encryption.psk = NoSave(ConfigPassword(default = "mysecurewl
 class Wlan:
 	def __init__(self, iface):
 		a = ''; b = ''
-		
 		for i in range(0, 255):
-		    a = a + chr(i)
-		    if i < 32 or i > 127:
-			b = b + ' '
-		    else:
-			b = b + chr(i)
+			a = a + chr(i)
+			if i < 32 or i > 127:
+				b = b + ' '
+			else:
+				b = b + chr(i)
 		
 		self.iface = iface
 		self.wlaniface = {}
@@ -243,91 +242,6 @@ class Wlan:
 					status[key] = _("N/A")
 				
 		return status
-
-
-
-class WlanList(HTMLComponent, GUIComponent):
-	def __init__(self, session, iface):
-		
-		GUIComponent.__init__(self)
-		self.w = Wlan(iface)
-		self.iface = iface
-		
-		self.length = 0
-		self.aplist = None
-		self.list = None
-		self.oldlist = None
-		self.l = None
-		self.l = eListboxPythonMultiContent()
-		
-		self.l.setFont(0, gFont("Regular", 32))
-		self.l.setFont(1, gFont("Regular", 18))
-		self.l.setFont(2, gFont("Regular", 16))
-		self.l.setBuildFunc(self.buildWlanListEntry)		
-				
-		self.reload()
-	
-	def buildWlanListEntry(self, essid, bssid, encrypted, iface, maxrate, signal):                                                                                                 
-		
-		res = [ (essid, encrypted, iface) ]
-		
-		if essid == "":
-			essid = bssid
-		
-		e = encrypted and _("Yes") or _("No")
-		res.append( MultiContentEntryText(pos=(0, 0), size=(470, 35), font=0, flags=RT_HALIGN_LEFT, text=essid) )
-		res.append( MultiContentEntryText(pos=(425, 0), size=(60, 20), font=1, flags=RT_HALIGN_LEFT, text=_("Signal: ")))
-		res.append( MultiContentEntryText(pos=(480, 0), size=(70, 35), font=0, flags=RT_HALIGN_RIGHT, text="%s" %signal))
-		res.append( MultiContentEntryText(pos=(0, 40), size=(180, 20), font=1, flags=RT_HALIGN_LEFT, text=_("Max. Bitrate: %s") %maxrate ))
-		res.append( MultiContentEntryText(pos=(190, 40), size=(180, 20), font=1, flags=RT_HALIGN_CENTER, text=_("Encrypted: %s") %e ))
-		res.append( MultiContentEntryText(pos=(345, 40), size=(190, 20), font=1, flags=RT_HALIGN_RIGHT, text=_("Interface: %s") %iface ))
-		return res
-		
-			
-	def reload(self):
-		aps = self.w.getNetworkList()
-
-		self.list = []
-		self.aplist = []
-		if aps is not None:
-			print "[Wlan.py] got Accespoints!"
-			for ap in aps:
-				a = aps[ap]
-				if a['active']:
-					if a['essid'] != '':
-					#	a['essid'] = a['bssid']
-						self.list.append( (a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal']) )
-					#self.aplist.append( a['essid'])
-		if self.oldlist is not None:
-			for entry in self.oldlist:
-				if entry not in self.list:
-					self.list.append(entry)
-		
-		if len(self.list):
-			for entry in self.list:
-				self.aplist.append( entry[0])
-		self.length = len(self.list)
-		self.oldlist = self.list
-		self.l.setList([])
-		self.l.setList(self.list)
-		 	
-	GUI_WIDGET = eListbox
-
-
-	def getCurrent(self):
-		return self.l.getCurrentSelection()
-	
-	
-	def postWidgetCreate(self, instance):
-		instance.setContent(self.l)
-		instance.setItemHeight(60)
-	
-	
-	def getLength(self):
-		return self.length
-	
-	def getList(self):
-		return self.aplist
 
 
 class wpaSupplicant:

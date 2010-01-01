@@ -1213,10 +1213,21 @@ def InitNimManager(nimmgr):
 				tmp.lnb = lnb
 				nim.advanced.sat[x] = tmp
 
+	def toneAmplitudeChanged(configElement):
+		fe_id = configElement.fe_id
+		slot_id = configElement.slot_id
+		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
+			open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w").write(configElement.value)
+
+	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
 		if slot.isCompatible("DVB-S"):
+			nim.toneAmplitude = ConfigSelection([("9", "600mV"), ("8", "700mV"), ("7", "800mV"), ("6", "900mV"), ("5", "1100mV")], "7")
+			nim.toneAmplitude.fe_id = x - empty_slots
+			nim.toneAmplitude.slot_id = x
+			nim.toneAmplitude.addNotifier(toneAmplitudeChanged)
 			nim.diseqc13V = ConfigYesNo(False)
 			nim.diseqcMode = ConfigSelection(diseqc_mode_choices, "diseqc_a_b")
 			nim.connectedTo = ConfigSelection([(str(id), nimmgr.getNimDescription(id)) for id in nimmgr.getNimListOfType("DVB-S") if id != x])
@@ -1307,6 +1318,7 @@ def InitNimManager(nimmgr):
 			nim.terrestrial = ConfigSelection(choices = list)
 			nim.terrestrial_5V = ConfigOnOff()
 		else:
+			empty_slots += 1
 			nim.configMode = ConfigSelection(choices = { "nothing": _("disabled") }, default="nothing");
 			if slot.type is not None:
 				print "pls add support for this frontend type!", slot.type

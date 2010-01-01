@@ -1767,6 +1767,8 @@ RESULT eDVBChannel::playFile(const char *file)
 	m_pvr_thread->setStreamMode(1);
 	m_pvr_thread->setScatterGather(this);
 
+	m_event(this, evtPreStart);
+
 	if (m_pvr_thread->start(file, m_pvr_fd_dst))
 	{
 		delete m_pvr_thread;

@@ -23,7 +23,7 @@ from Components.About import about
 from Components.DreamInfoHandler import DreamInfoHandler
 from Components.Language import language
 from Components.AVSwitch import AVSwitch
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_METADIR
+from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad
 from cPickle import dump, load
@@ -108,21 +108,47 @@ class UpdatePluginMenu(Screen):
 		self.oktext = _("\nPress OK on your remote control to continue.")
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 		if self.menu == 0:
-			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Dreambox software." ) + self.oktext) )
-			#self.list.append(("install-plugins", _("Install extensions"), _("\nInstall new Extensions or Plugins to your dreambox" ) + self.oktext) )
-			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext))
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext))
-			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext))
-			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local packages and install them." ) + self.oktext))
+			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Dreambox software." ) + self.oktext, None))
+			#self.list.append(("install-plugins", _("Install extensions"), _("\nInstall new Extensions or Plugins to your dreambox" ) + self.oktext, None))
+			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext, None))
+			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext, None))
+			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext, None))
+			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local packages and install them." ) + self.oktext, None))
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
+				if p.__call__.has_key("SoftwareSupported"):
+					callFnc = p.__call__["SoftwareSupported"](None)
+					if callFnc is not None:
+						if p.__call__.has_key("menuEntryName"):
+							menuEntryName = p.__call__["menuEntryName"](None)
+						else:
+							menuEntryName = _('Extended Software')
+						if p.__call__.has_key("menuEntryDescription"):
+							menuEntryDescription = p.__call__["menuEntryDescription"](None)
+						else:
+							menuEntryDescription = _('Extended Software Plugin')
+						self.list.append(('default-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("advanced", _("Advanced Options"), _("\nAdvanced options and settings." ) + self.oktext))
+				self.list.append(("advanced", _("Advanced Options"), _("\nAdvanced options and settings." ) + self.oktext, None))
 		elif self.menu == 1:
-			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext))
-			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext ))
-			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup. Currently selected:\n" ) + self.backupdirs + self.oktext))
+			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
+			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
+			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup. Currently selected:\n" ) + self.backupdirs + self.oktext, None))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext))
-			self.list.append(("ipkg-source",_("Choose upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext))
+				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
+			self.list.append(("ipkg-source",_("Choose upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
+				if p.__call__.has_key("AdvancedSoftwareSupported"):
+					callFnc = p.__call__["AdvancedSoftwareSupported"](None)
+					if callFnc is not None:
+						if p.__call__.has_key("menuEntryName"):
+							menuEntryName = p.__call__["menuEntryName"](None)
+						else:
+							menuEntryName = _('Advanced Software')
+						if p.__call__.has_key("menuEntryDescription"):
+							menuEntryDescription = p.__call__["menuEntryDescription"](None)
+						else:
+							menuEntryDescription = _('Advanced Software Plugin')
+						self.list.append(('advanced-plugin', menuEntryName, menuEntryDescription + self.oktext, callFnc))
 
 		self["menu"] = List(self.list)
 		self["key_red"] = StaticText(_("Close"))
@@ -150,33 +176,36 @@ class UpdatePluginMenu(Screen):
 	def go(self):
 		current = self["menu"].getCurrent()
 		if current:
-			current = current[0]
+			currentEntry = current[0]
 			if self.menu == 0:
-				if (current == "software-update"):
+				if (currentEntry == "software-update"):
 					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("\nAfter pressing OK, please wait!"))
-				elif (current == "software-restore"):
+				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
-				elif (current == "install-plugins"):
+				elif (currentEntry == "install-plugins"):
 					self.session.open(PluginManager, self.skin_path)
-				elif (current == "system-backup"):
+				elif (currentEntry == "system-backup"):
 					self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
-				elif (current == "system-restore"):
+				elif (currentEntry == "system-restore"):
 					if os_path.exists(self.fullbackupfilename):
 						self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your Enigma2 backup?\nEnigma2 will restart after the restore"))
 					else:
 						self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
-				elif (current == "ipkg-install"):
+				elif (currentEntry == "ipkg-install"):
 					try:
 						from Plugins.Extensions.MediaScanner.plugin import main
 						main(self.session)
 					except:
 						self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
-				elif (current == "advanced"):
+				elif (currentEntry == "default-plugin"):
+					self.extended = current[3]
+					self.extended(self.session, None)
+				elif (currentEntry == "advanced"):
 					self.session.open(UpdatePluginMenu, 1)
 			elif self.menu == 1:
-				if (current == "ipkg-manager"):
+				if (currentEntry == "ipkg-manager"):
 					self.session.open(PacketManager, self.skin_path)
-				elif (current == "backuplocation"):
+				elif (currentEntry == "backuplocation"):
 					parts = [ (r.description, r.mountpoint, self.session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
 					for x in parts:
 						if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
@@ -186,12 +215,15 @@ class UpdatePluginMenu(Screen):
 							parts.remove(x)
 					if len(parts):
 						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title = _("Please select medium to use as backup location"), list = parts)
-				elif (current == "backupfiles"):
+				elif (currentEntry == "backupfiles"):
 					self.session.openWithCallback(self.backupfiles_choosen,BackupSelection)
-				elif (current == "advancedrestore"):
+				elif (currentEntry == "advancedrestore"):
 					self.session.open(RestoreMenu, self.skin_path)
-				elif (current == "ipkg-source"):
+				elif (currentEntry == "ipkg-source"):
 					self.session.open(IPKGMenu, self.skin_path)
+				elif (currentEntry == "advanced-plugin"):
+					self.extended = current[3]
+					self.extended(self.session, None)
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
@@ -478,13 +510,13 @@ class PacketManager(Screen):
 	def setStatus(self,status = None):
 		if status:
 			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)	
 			elif status == 'error':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'',statuspng, divpng ))
 				self['list'].setList(self.statuslist)				
 
@@ -600,15 +632,15 @@ class PacketManager(Screen):
 		self.buildPacketList()
 
 	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if state == 'installed':
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
 			return((name, version, description, state, installedpng, divpng))	
 		elif state == 'upgradeable':
-			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgradeable.png"))
+			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
 			return((name, version, description, state, upgradeablepng, divpng))	
 		else:
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, version, description, state, installablepng, divpng))
 
 	def buildPacketList(self):
@@ -779,19 +811,19 @@ class PluginManager(Screen, DreamInfoHandler):
 			self["key_green"].setText("")
 			self["key_blue"].setText("")
 			self["key_yellow"].setText("")
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new packetlist. Please wait..." ),'', '', statuspng, divpng, None, '' ))
 				self["list"].style = "default"
 				self['list'].setList(self.statuslist)
 			elif status == 'sync':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Searching for new installed or removed packages. Please wait..." ),'', '', statuspng, divpng, None, '' ))
 				self["list"].style = "default"
 				self['list'].setList(self.statuslist)
 			elif status == 'error':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
+				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'', '', statuspng, divpng, None, '' ))
 				self["list"].style = "default"
 				self['list'].setList(self.statuslist)
@@ -978,18 +1010,18 @@ class PluginManager(Screen, DreamInfoHandler):
 			self.Console.ePopen(cmd, self.InstallMetaPackage_Finished)
 
 	def buildEntryComponent(self, name, details, description, packagename, state, selected = False):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if state == 'installed':
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
+			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
 			return((name, details, description, packagename, state, installedpng, divpng, selected))
 		elif state == 'installable':
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
+			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, details, description, packagename, state, installablepng, divpng, selected))
 		elif state == 'remove':
-			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
+			removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 			return((name, details, description, packagename, state, removepng, divpng, selected))
 		elif state == 'install':
-			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/install.png"))
+			installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
 			return((name, details, description, packagename, state, installpng, divpng, selected))
 
 	def buildPacketList(self, categorytag = None):
@@ -1051,7 +1083,7 @@ class PluginManager(Screen, DreamInfoHandler):
 		self.selectionChanged()
 
 	def buildCategoryComponent(self, tag = None):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if tag is not None:
 			if tag == 'System':
 				return(( _("System"), _("View list of available system extensions" ), tag, divpng ))
@@ -1210,10 +1242,10 @@ class PluginManagerInfo(Screen):
 			self['list'].updateList(self.list)
 
 	def buildEntryComponent(self, action,info):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
-		upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/upgrade.png"))
-		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/install.png"))
-		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		upgradepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
+		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
+		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 		if action == 'install':
 			return(( _('Installing'), info, installpng, divpng))
 		elif action == 'remove':
@@ -1282,11 +1314,11 @@ class PluginManagerHelp(Screen):
 		self['list'].updateList(self.list)
 
 	def buildEntryComponent(self, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/div-h.png"))
-		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installed.png"))
-		installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/installable.png"))
-		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/remove.png"))
-		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/install.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
+		installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
+		removepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
+		installpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/install.png"))
 
 		if state == 'installed':
 			return(( _('This plugin is installed.'), _('You can remove this plugin.'), installedpng, divpng))
@@ -1432,7 +1464,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 		if not noScreenshot:
 			filename = self.thumbnail
 		else:
-			filename = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/noprev.png")
+			filename = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/noprev.png")
 
 		sc = AVSwitch().getFramebufferScale()
 		self.picload.setPara((self["screenshot"].instance.size().width(), self["screenshot"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))

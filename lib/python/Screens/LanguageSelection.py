@@ -13,14 +13,14 @@ def _cached(x):
 
 from Screens.Rc import Rc
 
-from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 
 from Tools.LoadPixmap import LoadPixmap
 
 def LanguageEntryComponent(file, name, index):
-	png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "countries/" + file + ".png"))
+	png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + file + ".png"))
 	if png == None:
-		png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "countries/missing.png"))
+		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
 	res = (index, name, png)
 	return res
 

@@ -26,13 +26,14 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateInput
+from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
 from Tools.Directories import fileExists
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, \
-	iPlayableService, eServiceReference, eEPGCache
+	iPlayableService, eServiceReference, eEPGCache, eActionMap
 
 from time import time, localtime, strftime
 from os import stat as os_stat
@@ -46,6 +47,39 @@ from Menu import MainMenu, mdom
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
+
+class InfoBarUnhandledKey:
+	def __init__(self):
+		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
+		self.hideUnhandledKeySymbolTimer = eTimer()
+		self.hideUnhandledKeySymbolTimer.callback.append(self.unhandledKeyDialog.hide)
+		self.checkUnusedTimer = eTimer()
+		self.checkUnusedTimer.callback.append(self.checkUnused)
+		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
+		eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.actionA) #highest prio
+		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.actionB) #lowest prio
+		self.flags = (1<<1);
+		self.uflags = 0;
+
+	#this function is called on every keypress!
+	def actionA(self, key, flag):
+		if flag != 4:
+			if self.flags & (1<<1):
+				self.flags = self.uflags = 0
+			self.flags |= (1<<flag)
+			if flag == 1: # break
+				self.checkUnusedTimer.start(0, True)
+		return 0
+
+	#this function is only called when no other action has handled this key
+	def actionB(self, key, flag):
+		if flag != 4:
+			self.uflags |= (1<<flag)
+
+	def checkUnused(self):
+		if self.flags == self.uflags:
+			self.unhandledKeyDialog.show()
+			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
