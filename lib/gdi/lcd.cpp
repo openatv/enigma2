@@ -48,9 +48,12 @@ void eLCD::unlock()
 #ifdef HAVE_TEXTLCD
 void eLCD::renderText(ePoint start, const char *text)
 {
-	std::string message = text;
-	message = replace_all(message, "\n", " ");
-	::write(lcdfd, message.c_str(), message.size());
+	if (lcdfd >= 0) && start.y() == 0)
+	{
+		std::string message = text;
+		message = replace_all(message, "\n", " ");
+		::write(lcdfd, message.c_str(), message.size());
+	}
 }
 #endif
 
