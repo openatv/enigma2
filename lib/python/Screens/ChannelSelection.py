@@ -208,7 +208,7 @@ class ChannelContextMenu(Screen):
 		if self.session.pip.playService(newservice):
 			self.session.pipshown = True
 			self.session.pip.servicePath = self.csel.getCurrentServicePath()
-			self.close()
+			self.close(True)
 		else:
 			self.session.pipshown = False
 			del self.session.pip
@@ -672,7 +672,11 @@ class ChannelSelectionEdit:
 			self.entry_marked = True
 
 	def doContext(self):
-		self.session.open(ChannelContextMenu, self)
+		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
+		
+	def exitContext(self, close = False):
+		if close:
+			self.cancel()
 
 MODE_TV = 0
 MODE_RADIO = 1
