@@ -50,6 +50,7 @@ dist_install_DATA = \
 	sleeptimer.png \
 	timeline-now.png \
 	timeline.png \
+	unhandled-key.png \
 	verticalline-plugins.png \
 	vkey_backspace.png \
 	vkey_bg.png \

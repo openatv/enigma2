@@ -22,10 +22,12 @@ profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ParentalControl import parentalControl
+from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Screens.InputBox import InputBox, PinInput
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
 profile("ChannelSelection.py 4")
+from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
@@ -70,9 +72,9 @@ OFF = 0
 EDIT_BOUQUET = 1
 EDIT_ALTERNATIVES = 2
 
-def append_when_current_valid(current, menu, args, level = 0):
+def append_when_current_valid(current, menu, args, level = 0, key = ""):
 	if current and current.valid() and level <= config.usage.setup_level.index:
-		menu.append(args)
+		menu.append(ChoiceEntryComponent(key, args))
 
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
@@ -81,13 +83,15 @@ class ChannelContextMenu(Screen):
 		self.csel = csel
 		self.bsel = None
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions"],
 			{
 				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
+				"cancel": self.cancelClick,
+				"blue": self.showServiceInPiP
 			})
 		menu = [ ]
 
+		self.pipAvailable = False
 		current = csel.getCurrentSelection()
 		current_root = csel.getRoot()
 		current_sel_path = current.getPath()
@@ -136,8 +140,11 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
 				if current_root and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
+				if isPlayable:
+					append_when_current_valid(current, menu, (_("Activate Picture in Picture"), self.showServiceInPiP), level = 0, key = "blue")
+					self.pipAvailable = True
 			else:
-					menu.append((_("add bouquet"), self.showBouquetInputBox))
+					menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
 
 		if inBouquet: # current list is editable?
@@ -145,7 +152,7 @@ class ChannelContextMenu(Screen):
 				if not csel.movemode:
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level = 1)
 					if not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
-						menu.append((_("add marker"), self.showMarkerInputBox))
+						menu.append(ChoiceEntryComponent(text = (_("add marker"), self.showMarkerInputBox)))
 						if haveBouquets:
 							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level = 0)
 						else:
@@ -170,8 +177,8 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level = 0)
 						append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level = 0)
 
-		menu.append((_("back"), self.cancelClick))
-		self["menu"] = MenuList(menu)
+		menu.append(ChoiceEntryComponent(text = (_("back"), self.cancelClick)))
+		self["menu"] = ChoiceList(menu)
 
 	def playPiP(self):
 		# Show PiP if not visible
@@ -197,7 +204,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def okbuttonClick(self):
-		self["menu"].getCurrent()[1]()
+		self["menu"].getCurrent()[0][1]()
 
 	def cancelClick(self):
 		self.close(False)
@@ -246,6 +253,23 @@ class ChannelContextMenu(Screen):
 			self.close()
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+			
+	def showServiceInPiP(self):
+		if not self.pipAvailable:
+			return
+		if self.session.pipshown:
+			del self.session.pip
+		self.session.pip = self.session.instantiateDialog(PictureInPicture)
+		self.session.pip.show()
+		newservice = self.csel.servicelist.getCurrent()
+		if self.session.pip.playService(newservice):
+			self.session.pipshown = True
+			self.session.pip.servicePath = self.csel.getCurrentServicePath()
+			self.close(True)
+		else:
+			self.session.pipshown = False
+			del self.session.pip
+			self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -705,7 +729,11 @@ class ChannelSelectionEdit:
 			self.entry_marked = True
 
 	def doContext(self):
-		self.session.open(ChannelContextMenu, self)
+		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
+		
+	def exitContext(self, close = False):
+		if close:
+			self.cancel()
 
 MODE_TV = 0
 MODE_RADIO = 1

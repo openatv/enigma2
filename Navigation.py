@@ -50,9 +50,9 @@ class Navigation:
 		for x in self.record_event:
 			x(rec_service, event)
 
-	def playService(self, ref, checkParentalControl = True):
+	def playService(self, ref, checkParentalControl = True, forceRestart = False):
 		oldref = self.currentlyPlayingServiceReference
-		if ref and oldref and ref == oldref:
+		if ref and oldref and ref == oldref and not forceRestart:
 			print "ignore request to play already running service"
 			return 0
 		print "playing", ref and ref.toString()
