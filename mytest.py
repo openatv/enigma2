@@ -363,9 +363,10 @@ class PowerKey:
 	def powerlong(self):
 		if Screens.Standby.inTryQuitMainloop or (self.session.current_dialog and not self.session.current_dialog.ALLOW_SUSPEND):
 			return
+		self.doAction(action = config.usage.on_long_powerpress.value)
 
+	def doAction(self, action):
 		self.standbyblocked = 1
-		action = config.usage.on_long_powerpress.value
 		if action == "shutdown":
 			self.shutdown()
 		elif action == "show_menu":
@@ -388,8 +389,7 @@ class PowerKey:
 
 	def powerup(self):
 		if self.standbyblocked == 0:
-			self.standbyblocked = 1
-			self.standby()
+			self.doAction(action = config.usage.on_short_powerpress.value)
 
 	def standby(self):
 		if not Screens.Standby.inStandby and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND and self.session.in_exec:
