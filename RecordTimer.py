@@ -471,8 +471,9 @@ class RecordTimer(timer.Timer):
 				w.state = RecordTimerEntry.StateWaiting
 				self.addTimerEntry(w)
 			else:
+				# Remove old timers as set in config
+				self.cleanupDaily(config.recording.keep_timers.value)
 				insort(self.processed_timers, w)
-		
 		self.stateChanged(w)
 
 	def isRecording(self):

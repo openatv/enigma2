@@ -6,7 +6,8 @@ from Components.config import config
 import os
 import struct
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
+from Tools.Directories import SCOPE_HDD, SCOPE_SKIN_IMAGE, resolveFilename
+from Screens.LocationBox import defaultInhibitDirs
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
@@ -262,7 +263,19 @@ class MovieList(GUIComponent):
 		return res
 
 	def moveToFirstMovie(self):
-		self.instance.moveSelectionTo(self.firstFileEntry)
+		if self.firstFileEntry < len(self.list):
+			self.instance.moveSelectionTo(self.firstFileEntry)
+		else:
+			# there are no movies, just directories...
+			self.moveToFirst()
+
+	def moveToLast(self):
+		if self.list:
+			self.instance.moveSelectionTo(len(self.list) - 1)
+
+	def moveToFirst(self):
+		if self.list:
+			self.instance.moveSelectionTo(0)
 
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
@@ -319,16 +332,19 @@ class MovieList(GUIComponent):
 			return
 		realtags = set()
 		tags = {}
-		rootPath = root.getPath();
-		if rootPath and rootPath not in list(config.movielist.videodirs.value):
+		rootPath = os.path.normpath(root.getPath());
+		moviePath = os.path.normpath(resolveFilename(SCOPE_HDD))
+		# skip '/' and '/hdd/movie'
+		if len(rootPath) > 1 and (rootPath != moviePath):
 			parent = os.path.split(os.path.normpath(rootPath))[0]
-			ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent + '/')
-			ref.flags = eServiceReference.flagDirectory
-			self.list.append((ref, None, 0, -1))
-			numberOfDirs += 1
-		else:
-			print "[Movie] no parent for this root"
-		 
+			if parent and (parent not in defaultInhibitDirs):
+				# enigma wants an extra '/' appended
+				if not parent.endswith('/'):
+					parent += '/'
+				ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + parent)
+				ref.flags = eServiceReference.flagDirectory
+				self.list.append((ref, None, 0, -1))
+				numberOfDirs += 1
 		while 1:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
