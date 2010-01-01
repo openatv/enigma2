@@ -51,7 +51,8 @@ def InitUsageConfig():
 
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
 		("show_menu", _("show shutdown menu")),
-		("shutdown", _("immediate shutdown")) ] )
+		("shutdown", _("immediate shutdown")),
+		("standby", _("Standby")) ] )
 
 	config.usage.alternatives_priority = ConfigSelection(default = "0", choices = [
 		("0", "DVB-S/-C/-T"),
