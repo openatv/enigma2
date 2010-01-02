@@ -230,7 +230,7 @@ private:
 	void switchToLive();
 	void switchToTimeshift();
 	
-	void updateDecoder();
+	void updateDecoder(bool sendSeekableStateChanged=false);
 	
 	int m_skipmode;
 	int m_fastforward;
