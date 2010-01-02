@@ -15,6 +15,7 @@ dist_install_DATA = \
 	border_eventinfo.png \
 	border_info.png \
 	border_menu_300.png \
+	border_menu_350.png \
 	border_menu.png \
 	border_multiepg.png \
 	bottombar.png \
