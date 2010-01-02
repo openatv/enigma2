@@ -9,7 +9,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.FileList import FileList
 from Components.Pixmap import Pixmap
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, ePicLoad
+from enigma import ePicLoad
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry, ConfigInteger, ConfigSubsection, ConfigSelection
 from Components.ConfigList import ConfigListScreen
