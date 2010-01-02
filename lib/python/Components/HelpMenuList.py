@@ -31,6 +31,10 @@ class HelpMenuList(GUIComponent):
 					if name is not None:
 						break
 
+				# only show entries with keys that are available on the used rc
+				if name is None:
+					continue
+
 				if flags & 8: # for long keypresses, prepend l_ into the key name.
 					name = (name[0], "long")
 					
