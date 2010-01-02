@@ -264,6 +264,7 @@ class WaitForResidentTasks(Task):
 		
 	def run(self, callback):
 		print "waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks),str(self.job.resident_tasks))
+		self.callback = callback
 		if self.job.resident_tasks == 0:
 			callback(self, [])
 
