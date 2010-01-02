@@ -4,10 +4,10 @@ from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 from Tools.LoadPixmap import LoadPixmap
 from timer import TimerEntry
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_SKIN_IMAGE
 
 class TimerList(HTMLComponent, GUIComponent, object):
 #
@@ -17,30 +17,30 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	def buildTimerEntry(self, timer, processed):
 		width = self.l.getItemSize().width()
 		res = [ None ]
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.service_ref.getServiceName()))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 30, width, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, timer.name))
+		if timer.disabled:
+			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/redx.png"))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, width-40, 1, 40, 40, png))
+			width -= 40
+		x = (2*width) // 3
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, x, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, timer.service_ref.getServiceName()))
 
-		repeatedtext = ""
 		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 		if timer.repeated:
+			repeatedtext = []
 			flags = timer.repeated
-			count = 0
 			for x in (0, 1, 2, 3, 4, 5, 6):
-					if (flags & 1 == 1):
-						if (count != 0):
-							repeatedtext += ", "
-						repeatedtext += days[x]
-						count += 1
-					flags = flags >> 1
-			if timer.justplay:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1]))))
-			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))))
+				if (flags & 1 == 1):
+					repeatedtext.append(days[x])
+				flags = flags >> 1
+			repeatedtext = ", ".join(repeatedtext)
 		else:
-			if timer.justplay:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
-			else:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:] + ((timer.end - timer.begin) / 60,)))))
+			repeatedtext = ""
+		if timer.justplay:
+			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1])) 
+		else:
+			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 25, width-150, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
@@ -62,11 +62,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if timer.disabled:
 			state = _("disabled")
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, width-150, 50, 150, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, state))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 25, 150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 
-		if timer.disabled:
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/redx.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 490, 5, 40, 40, png))
 		return res
 
 	def __init__(self, list):
@@ -75,7 +72,7 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.setBuildFunc(self.buildTimerEntry)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.l.setFont(1, gFont("Regular", 18))
-		self.l.setItemHeight(70)
+		self.l.setItemHeight(50)
 		self.l.setList(list)
 	
 	def getCurrent(self):
