@@ -2278,6 +2278,11 @@ class InfoBarTeletextPlugin:
 class InfoBarSubtitleSupport(object):
 	def __init__(self):
 		object.__init__(self)
+		self["SubtitleSelectionAction"] = HelpableActionMap(self, "InfobarSubtitleSelectionActions",
+			{
+				"subtitleSelection": (self.subtitleSelection, _("Subtitle selection...")),
+			})
+
 		self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
 		self.__subtitles_enabled = False
 
@@ -2288,6 +2293,10 @@ class InfoBarSubtitleSupport(object):
 			})
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
+
+	def subtitleSelection(self):
+		from Screens.Subtitles import Subtitles
+		self.session.open(Subtitles, self)
 
 	def __serviceStopped(self):
 		self.cached_subtitle_checked = False
