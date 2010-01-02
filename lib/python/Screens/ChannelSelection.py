@@ -126,7 +126,8 @@ class ChannelContextMenu(Screen):
 						# only allow the service to be played directly in pip / mainwindow when the service is not under parental control
 						if not config.ParentalControl.configured.value or parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if not csel.dopipzap:
-								append_when_current_valid(current, menu, (_("play as picture in picture"), self.playPiP), level = 0)
+								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level = 0, key = "blue")
+								self.pipAvailable = True
 							else:
 								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level = 0)
 				else:
@@ -141,9 +142,6 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeCurrentService), level = 0)
 				if current_root and current_root.getPath().find("flags == %d" %(FLAG_SERVICE_NEW_FOUND)) != -1:
 					append_when_current_valid(current, menu, (_("remove new found flag"), self.removeNewFoundFlag), level = 0)
-				if isPlayable and SystemInfo.get("NumVideoDecoders", 1) > 1:
-					append_when_current_valid(current, menu, (_("Activate Picture in Picture"), self.showServiceInPiP), level = 0, key = "blue")
-					self.pipAvailable = True
 			else:
 					menu.append(ChoiceEntryComponent(text = (_("add bouquet"), self.showBouquetInputBox)))
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeBouquet), level = 0)
@@ -180,22 +178,6 @@ class ChannelContextMenu(Screen):
 
 		menu.append(ChoiceEntryComponent(text = (_("back"), self.cancelClick)))
 		self["menu"] = ChoiceList(menu)
-
-	def playPiP(self):
-		# Show PiP if not visible
-		if not self.session.pipshown:
-			from Screens.PictureInPicture import PictureInPicture
-			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			self.session.pip.show()
-
-		# Play Service in PiP
-		if self.session.pip.playService(self.csel.getCurrentSelection()):
-			self.session.pipshown = True
-		else:
-			del self.session.pip
-			self.session.pipshown = False
-
-		self.close()
 
 	def playMain(self):
 		# XXX: we want to keep the current selection
