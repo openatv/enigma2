@@ -3,6 +3,7 @@ AM_INIT_AUTOMAKE(enigma2,2.4)
 
 TUXBOX_APPS
 TUXBOX_APPS_DIRECTORY
+TUXBOX_APPS_PKGCONFIG
 
 AC_PROG_CC
 AC_PROG_CXX
@@ -24,10 +25,10 @@ AC_ARG_WITH(libsdl,
 AC_ARG_WITH(alsa,
 	AC_HELP_STRING([--with-alsa], [use alsa, yes or no]),
 	[[withalsa=$withval]],
-	[[withalsa=yes]]
+	[[withalsa=no]]
 )
 
-if test "$withalsa" = "yes" ; then
+if test x"$withalsa" != xno ; then
 	_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(ALSA, alsa, HAVE_ALSA)
 	LDFLAGS="$LDFLAGS $ALSA_LIBS"
 fi
@@ -35,10 +36,10 @@ fi
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],
-	[[withtextlcd=yes]]
+	[[withtextlcd=no]]
 )
 
-if test "$withtextlcd" = "yes" ; then
+if test x"$withtextlcd" != xno ; then
 	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 
