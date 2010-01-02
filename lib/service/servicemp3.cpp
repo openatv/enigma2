@@ -189,6 +189,25 @@ int eStaticServiceMP3Info::getLength(const eServiceReference &ref)
 	return -1;
 }
 
+int eStaticServiceMP3Info::getInfo(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sTimeCreate:
+	{
+		struct stat s;
+		if(stat(ref.path.c_str(), &s) == 0)
+		{
+		  return s.st_mtime;
+		}
+		return iServiceInformation::resNA;
+	}
+	default: break;
+	}
+	return iServiceInformation::resNA;
+}
+ 
+
 // eServiceMP3
 int eServiceMP3::ac3_delay,
     eServiceMP3::pcm_delay;
