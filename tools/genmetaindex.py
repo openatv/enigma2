@@ -24,7 +24,7 @@ for file in sys.argv[2:]:
 	assert info
 	
 	for i in info[:]:
-		if i.tag not in ["name", "packagename", "shortdescription"]:
+		if i.tag not in ["name", "packagename", "packagetype", "shortdescription"]:
 			info.remove(i)
 
 	for i in info[:]:

@@ -9,7 +9,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.FileList import FileList
 from Components.Pixmap import Pixmap
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, ePicLoad
+from enigma import ePicLoad
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry, ConfigInteger, ConfigSubsection, ConfigSelection
 from Components.ConfigList import ConfigListScreen
@@ -164,7 +164,8 @@ class LanguageChoices():
 		self.choices.sort()
 		self.choices.insert(0,("nolang", ("unspecified")))
 		self.choices.insert(1,(syslang, self.langdict[syslang]))
-		self.choices.insert(2,("en", self.langdict["en"]))
+		if syslang != "en":
+			self.choices.insert(2,("en", self.langdict["en"]))
 
 	def getLanguage(self, DVB_lang):
 		DVB_lang = DVB_lang.lower()
