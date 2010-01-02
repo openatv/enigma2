@@ -1391,7 +1391,7 @@ RESULT eDVBServicePlay::isCurrentlySeekable()
 	if (m_decoder)
 	{
 		ret = (m_is_pvr || m_timeshift_active) ? 3 : 0; // fast forward/backward possible and seeking possible
-		if (m_decoder->getVideoWidth() == -1)
+		if (m_decoder->getVideoProgressive() == -1)
 			ret &= ~2;
 	}
 	return ret;
@@ -2267,9 +2267,7 @@ void eDVBServicePlay::switchToLive()
 	m_timeshift_active = 0;
 	m_timeshift_changed = 1;
 
-	m_event((iPlayableService*)this, evSeekableStatusChanged);
-
-	updateDecoder();
+	updateDecoder(true);
 }
 
 void eDVBServicePlay::switchToTimeshift()
@@ -2299,12 +2297,10 @@ void eDVBServicePlay::switchToTimeshift()
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
-	updateDecoder(); /* mainly to switch off PCR, and to set pause */
-
-	m_event((iPlayableService*)this, evSeekableStatusChanged);
+	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
 }
 
-void eDVBServicePlay::updateDecoder()
+void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 {
 	int vpid = -1, vpidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
 
@@ -2398,6 +2394,7 @@ void eDVBServicePlay::updateDecoder()
 
 	if (m_decoder)
 	{
+		bool wasSeekable = m_decoder->getVideoProgressive() != -1;
 		if (m_dvb_service)
 		{
 			achannel = m_dvb_service->getCacheEntry(eDVBService::cACHANNEL);
@@ -2468,8 +2465,13 @@ void eDVBServicePlay::updateDecoder()
 			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
 			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
+		if (!sendSeekableStateChanged && (m_decoder->getVideoProgressive() != -1) != wasSeekable)
+			sendSeekableStateChanged = true;
 	}
 	m_have_video_pid = (vpid > 0 && vpid < 0x2000);
+
+	if (sendSeekableStateChanged)
+		m_event((iPlayableService*)this, evSeekableStatusChanged);
 }
 
 void eDVBServicePlay::loadCuesheet()
