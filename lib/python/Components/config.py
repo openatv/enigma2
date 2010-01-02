@@ -1142,6 +1142,9 @@ class ConfigDirectory(ConfigText):
 		else:
 			return ConfigText.getMulti(self, selected)
 
+	def onSelect(self, session):
+		self.allmarked = (self.value != "")
+
 # a slider.
 class ConfigSlider(ConfigElement):
 	def __init__(self, default = 0, increment = 1, limits = (0, 100)):
