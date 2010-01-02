@@ -74,15 +74,21 @@ gAccel *gAccel::getInstance()
 void gAccel::setAccelMemorySpace(void *addr, int phys_addr, int size)
 {
 	if (m_accel_allocation)
+	{
 		delete[] m_accel_allocation;
-	
-	m_accel_size = size >> 12;
-	
-	m_accel_allocation = new int[m_accel_size];
-	memset(m_accel_allocation, 0, sizeof(int)*m_accel_size);
-	
-	m_accel_addr = addr;
-	m_accel_phys_addr = phys_addr;
+		m_accel_allocation = NULL;
+	}
+
+	if (size > 0)
+	{
+		m_accel_size = size >> 12;
+
+		m_accel_allocation = new int[m_accel_size];
+		memset(m_accel_allocation, 0, sizeof(int)*m_accel_size);
+
+		m_accel_addr = addr;
+		m_accel_phys_addr = phys_addr;
+	}
 }
 
 int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect &area, int flags)
