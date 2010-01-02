@@ -725,6 +725,7 @@ class InfoBarSeek:
 				iPlayableService.evEOF: self.__evEOF,
 				iPlayableService.evSOF: self.__evSOF,
 			})
+		self.fast_winding_hint_message_showed = False
 
 		class InfoBarSeekActionMap(HelpableActionMap):
 			def __init__(self, screen, *args, **kwargs):
@@ -851,6 +852,7 @@ class InfoBarSeek:
 #			print "seekable"
 
 	def __serviceStarted(self):
+		self.fast_winding_hint_message_showed = False
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.__seekableStatusChanged()
 
@@ -941,6 +943,13 @@ class InfoBarSeek:
 			self.showAfterSeek()
 
 	def seekFwd(self):
+		seek = self.getSeek()
+		if seek and not (seek.isCurrentlySeekable() & 2):
+			if not self.fast_winding_hint_message_showed and (seek.isCurrentlySeekable() & 1):
+				self.session.open(MessageBox, _("No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"), MessageBox.TYPE_INFO, timeout=10)
+				self.fast_winding_hint_message_showed = True
+				return
+			return 0 # trade as unhandled action
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			self.setSeekState(self.makeStateForward(int(config.seek.enter_forward.value)))
 		elif self.seekstate == self.SEEK_STATE_PAUSE:
@@ -970,6 +979,13 @@ class InfoBarSeek:
 			self.setSeekState(self.makeStateSlowMotion(speed))
 
 	def seekBack(self):
+		seek = self.getSeek()
+		if seek and not (seek.isCurrentlySeekable() & 2):
+			if not self.fast_winding_hint_message_showed and (seek.isCurrentlySeekable() & 1):
+				self.session.open(MessageBox, _("No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"), MessageBox.TYPE_INFO, timeout=10)
+				self.fast_winding_hint_message_showed = True
+				return
+			return 0 # trade as unhandled action
 		seekstate = self.seekstate
 		if seekstate == self.SEEK_STATE_PLAY:
 			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
