@@ -11,7 +11,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
+from Tools.Directories import resolveFilename, fileExists, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
@@ -26,19 +26,23 @@ class PluginBrowser(Screen):
 
 		self.firsttime = True
 
-		self["red"] = Label(_("Remove Plugins"))
-		self["green"] = Label(_("Download Plugins"))
+		self["red"] = Label()
+		self["green"] = Label()
 		
 		self.list = []
 		self["list"] = PluginList(self.list)
 		
-		self["actions"] = ActionMap(["WizardActions", "ColorActions"],
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.save,
 			"back": self.close,
+		})
+		self["PluginDownloadActions"] = ActionMap(["ColorActions"],
+		{
 			"red": self.delete,
 			"green": self.download
 		})
+		self["PluginDownloadActions"].setEnabled(False)
 		self.onFirstExecBegin.append(self.checkWarnings)
 		self.onShown.append(self.updateList)
 	
@@ -51,7 +55,6 @@ class PluginBrowser(Screen):
 			self.session.open(MessageBox, text = text, type = MessageBox.TYPE_WARNING)
 
 	def save(self):
-		#self.close()
 		self.run()
 	
 	def run(self):
@@ -62,7 +65,15 @@ class PluginBrowser(Screen):
 		self.pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
 		self.list = [PluginEntryComponent(plugin) for plugin in self.pluginlist]
 		self["list"].l.setList(self.list)
-
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
+			self["red"].setText("")
+			self["green"].setText("")
+			self["PluginDownloadActions"].setEnabled(False)
+		else:
+			self["red"].setText(_("Remove Plugins"))
+			self["green"].setText(_("Download Plugins"))
+			self["PluginDownloadActions"].setEnabled(True)
+			
 	def delete(self):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.REMOVE)
 	
