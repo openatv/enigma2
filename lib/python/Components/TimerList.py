@@ -17,15 +17,12 @@ class TimerList(HTMLComponent, GUIComponent, object):
 	def buildTimerEntry(self, timer, processed):
 		width = self.l.getItemSize().width()
 		res = [ None ]
-		if timer.disabled:
-			png = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/redx.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, width-40, 1, 40, 40, png))
-			width -= 40
 		x = (2*width) // 3
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, x, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 0, x-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, timer.service_ref.getServiceName()))
 
 		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
+		begin = FuzzyTime(timer.begin)
 		if timer.repeated:
 			repeatedtext = []
 			flags = timer.repeated
@@ -34,36 +31,49 @@ class TimerList(HTMLComponent, GUIComponent, object):
 					repeatedtext.append(days[x])
 				flags = flags >> 1
 			repeatedtext = ", ".join(repeatedtext)
+			if self.iconRepeat:
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 25, 20, 20, self.iconRepeat))
 		else:
-			repeatedtext = ""
-		if timer.justplay:
-			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1])) 
+			repeatedtext = begin[0] # date
+		if timer.justplay: 
+			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1])) 
 		else:
-			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
+			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 25, width-150, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
 
+		icon = None
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
 				state = _("waiting")
+				icon = self.iconWait
 			elif timer.state == TimerEntry.StatePrepared:
 				state = _("about to start")
+				icon = self.iconPrepared
 			elif timer.state == TimerEntry.StateRunning:
 				if timer.justplay:
 					state = _("zapped")
+					icon = self.iconZapped
 				else:
 					state = _("recording...")
+					icon = self.iconRecording
 			elif timer.state == TimerEntry.StateEnded:
 				state = _("done!")
+				icon = self.iconDone
 			else:
 				state = _("<unknown>")
+				icon = None
 		else:
 			state = _("done!")
+			icon = self.iconDone
+		if timer.disabled:
+			icon = self.iconDisabled
 
 		if timer.disabled:
 			state = _("disabled")
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 25, 150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
-
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 25, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+		if icon:
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 20, 20, icon))
 		return res
 
 	def __init__(self, list):
@@ -74,6 +84,13 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		self.l.setFont(1, gFont("Regular", 18))
 		self.l.setItemHeight(50)
 		self.l.setList(list)
+		self.iconWait = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_wait.png"))
+		self.iconRecording = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rec.png"))
+		self.iconPrepared = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_prep.png"))
+		self.iconDone = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_done.png"))
+		self.iconRepeat = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_rep.png"))
+		self.iconZapped = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_zap.png"))
+		self.iconDisabled = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/timer_off.png"))
 	
 	def getCurrent(self):
 		cur = self.l.getCurrentSelection()

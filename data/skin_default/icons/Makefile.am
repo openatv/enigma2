@@ -55,4 +55,7 @@ dist_install_DATA = \
 	scan-c.png \
 	scan-s.png \
 	scan-t.png \
-	selectioncross.png
+	selectioncross.png \
+	timer_done.png  timer_prep.png  timer_rep.png   timer_zap.png \
+	timer_off.png   timer_rec.png   timer_wait.png
+
