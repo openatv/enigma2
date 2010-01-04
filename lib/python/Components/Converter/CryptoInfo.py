@@ -58,7 +58,12 @@ class CryptoInfo(Converter, object):
 				elif using == 'emu':
 					self.textvalue = "EMU (%ss)" % (info.get('ecm time', '?'))
 				else:
-					self.textvalue = "%s @%s (%ss)" % (info.get('address', '?'), info.get('hops', '-'), info.get('ecm time', '?'))
+					hops = info.get('hops', None)
+					if hops and hops != '0':
+						hops = ' @' + hops
+					else:
+						hops = ''
+					self.textvalue = info.get('address', '?') + hops + " (%ss)" % info.get('ecm time', '?')
 			else:
 				decode = info.get('decode', None)
 				if decode:
