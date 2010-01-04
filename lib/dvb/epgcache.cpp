@@ -978,12 +978,18 @@ void eEPGCache::thread()
 	save();
 }
 
+static const char* EPGDAT = "/hdd/epg.dat";
+static const char* EPGDATX = "/hdd/epg.dat.loading";
+
 void eEPGCache::load()
 {
+	// cleanup any mess
+	unlink(EPGDATX);
 	FILE *f = fopen("/hdd/epg.dat", "r");
 	if (f)
 	{
-		unlink("/hdd/epg.dat");
+		int renameResult = rename(EPGDAT, EPGDATX);
+		if (renameResult) eDebug("[EPGC] failed to rename epg.dat");
 		int size=0;
 		int cnt=0;
 #if 0
@@ -1087,6 +1093,12 @@ void eEPGCache::load()
 			else
 				eDebug("[EPGC] don't read old epg database");
 			fclose(f);
+			// We got this far, so the EPG file is okay.
+			if (renameResult == 0)
+			{
+				renameResult = rename(EPGDATX, EPGDAT);
+				if (renameResult) eDebug("[EPGC] failed to rename epg.dat back");
+			}
 		}
 	}
 }
