@@ -2576,7 +2576,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 	{
 		if (i == m_cue_entries.end())
 		{
-			if (!have_any_span)
+			if (!have_any_span && !in)
 				break;
 			out = length;
 		} else {
@@ -2606,6 +2606,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 		{
 			have_any_span = 1;
 			m_cue->addSourceSpan(in, out);
+			in = out = 0;
 		}
 		
 		in = length;
