@@ -1387,7 +1387,14 @@ RESULT eDVBServicePlay::setTrickmode(int trick)
 
 RESULT eDVBServicePlay::isCurrentlySeekable()
 {
-	return m_is_pvr || m_timeshift_active;
+	int ret = 0;
+	if (m_decoder)
+	{
+		ret = (m_is_pvr || m_timeshift_active) ? 3 : 0; // fast forward/backward possible and seeking possible
+		if (m_decoder->getVideoProgressive() == -1)
+			ret &= ~2;
+	}
+	return ret;
 }
 
 RESULT eDVBServicePlay::frontendInfo(ePtr<iFrontendInformation> &ptr)
@@ -2260,9 +2267,7 @@ void eDVBServicePlay::switchToLive()
 	m_timeshift_active = 0;
 	m_timeshift_changed = 1;
 
-	m_event((iPlayableService*)this, evSeekableStatusChanged);
-
-	updateDecoder();
+	updateDecoder(true);
 }
 
 void eDVBServicePlay::switchToTimeshift()
@@ -2292,14 +2297,13 @@ void eDVBServicePlay::switchToTimeshift()
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");
 	pause();
-	updateDecoder(); /* mainly to switch off PCR, and to set pause */
-
-	m_event((iPlayableService*)this, evSeekableStatusChanged);
+	updateDecoder(true); /* mainly to switch off PCR, and to set pause */
 }
 
-void eDVBServicePlay::updateDecoder()
+void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 {
 	int vpid = -1, vpidtype = -1, pcrpid = -1, tpid = -1, achannel = -1, ac3_delay=-1, pcm_delay=-1;
+	bool mustPlay = false;
 
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
 
@@ -2380,17 +2384,17 @@ void eDVBServicePlay::updateDecoder()
 					Py_DECREF(subs);
 				}
 			}
-			m_decoder->play(); /* pids will be set later */
 		}
 		if (m_cue)
 			m_cue->setDecodingDemux(m_decode_demux, m_decoder);
-		m_decoder->play(); /* pids will be set later. */
+		mustPlay = true;
 	}
 
 	m_timeshift_changed = 0;
 
 	if (m_decoder)
 	{
+		bool wasSeekable = m_decoder->getVideoProgressive() != -1;
 		if (m_dvb_service)
 		{
 			achannel = m_dvb_service->getCacheEntry(eDVBService::cACHANNEL);
@@ -2449,7 +2453,11 @@ void eDVBServicePlay::updateDecoder()
 				m_decoder->setRadioPic(radio_pic);
 		}
 
-		m_decoder->set();
+		if (mustPlay)
+			m_decoder->play();
+		else
+			m_decoder->set();
+
 		m_decoder->setAudioChannel(achannel);
 
 		/* don't worry about non-existing services, nor pvr services */
@@ -2461,8 +2469,13 @@ void eDVBServicePlay::updateDecoder()
 			m_dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
 			m_dvb_service->setCacheEntry(eDVBService::cTPID, tpid);
 		}
+		if (!sendSeekableStateChanged && (m_decoder->getVideoProgressive() != -1) != wasSeekable)
+			sendSeekableStateChanged = true;
 	}
 	m_have_video_pid = (vpid > 0 && vpid < 0x2000);
+
+	if (sendSeekableStateChanged)
+		m_event((iPlayableService*)this, evSeekableStatusChanged);
 }
 
 void eDVBServicePlay::loadCuesheet()
