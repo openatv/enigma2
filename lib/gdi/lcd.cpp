@@ -156,6 +156,7 @@ eDBoxLCD *eDBoxLCD::getInstance()
 
 void eDBoxLCD::update()
 {
+#ifndef HAVE_TEXTLCD
 	if (!is_oled || is_oled == 2)
 	{
 		unsigned char raw[132*8];
@@ -193,5 +194,6 @@ void eDBoxLCD::update()
 		if (lcdfd >= 0)
 			write(lcdfd, raw, 64*64);
 	}
+#endif
 }
 

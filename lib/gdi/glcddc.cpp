@@ -43,11 +43,10 @@ void gLCDDC::exec(gOpcode *o)
 		}
 		delete o->parm.renderText;
 		break;
-#else
+#endif
 	case gOpcode::flush:
 //		if (update)
 			lcd->update();
-#endif
 	default:
 		gDC::exec(o);
 		break;
