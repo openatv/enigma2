@@ -23,7 +23,7 @@ AC_ARG_WITH(libsdl,
 )
 
 AC_ARG_WITH(alsa,
-	AC_HELP_STRING([--with-alsa], [use alsa, yes or no]),
+	AC_HELP_STRING([--with-alsa=mixername], [use alsa 'mixername' for volume control, e.g. Master]),
 	[[withalsa=$withval]],
 	[[withalsa=no]]
 )
@@ -31,6 +31,7 @@ AC_ARG_WITH(alsa,
 if test x"$withalsa" != xno ; then
 	_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(ALSA, alsa, HAVE_ALSA)
 	LDFLAGS="$LDFLAGS $ALSA_LIBS"
+	AC_DEFINE_UNQUOTED(ALSA_VOLUME_MIXER, "$withval",[Defines which alsa mixer to use for volume control])
 fi
 
 AC_ARG_WITH(textlcd,
