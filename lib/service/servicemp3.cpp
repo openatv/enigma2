@@ -189,6 +189,25 @@ int eStaticServiceMP3Info::getLength(const eServiceReference &ref)
 	return -1;
 }
 
+int eStaticServiceMP3Info::getInfo(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sTimeCreate:
+	{
+		struct stat s;
+		if(stat(ref.path.c_str(), &s) == 0)
+		{
+		  return s.st_mtime;
+		}
+		return iServiceInformation::resNA;
+	}
+	default: break;
+	}
+	return iServiceInformation::resNA;
+}
+ 
+
 // eServiceMP3
 int eServiceMP3::ac3_delay,
     eServiceMP3::pcm_delay;
@@ -640,7 +659,31 @@ RESULT eServiceMP3::setTrickmode(int trick)
 
 RESULT eServiceMP3::isCurrentlySeekable()
 {
-	return 1;
+	int ret = 3; // seeking and fast/slow winding possible
+	GstElement *sink;
+
+	if (!m_gst_playbin)
+		return 0;
+	if (m_state != stRunning)
+		return 0;
+
+	g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
+
+	// disable fast winding yet when a dvbvideosink or dvbaudiosink is used
+	// for this we must do some changes on different places.. (gstreamer.. our sinks.. enigma2)
+	if (sink) {
+		ret &= ~2; // only seeking possible
+		gst_object_unref(sink);
+	}
+	else {
+		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
+		if (sink) {
+			ret &= ~2; // only seeking possible
+			gst_object_unref(sink);
+		}
+	}
+
+	return ret;
 }
 
 RESULT eServiceMP3::info(ePtr<iServiceInformation>&i)

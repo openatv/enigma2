@@ -8,7 +8,6 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.FileList import FileList
-from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS, SCOPE_HDD
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
@@ -235,7 +234,6 @@ class ProjectSettings(Screen,ConfigListScreen):
 				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
 		elif scope == "project":
 			if self.project.loadProject(path):
-				configRef.setValue(path)
 				self.initConfigList()
 			else:
 				self.session.open(MessageBox,self.project.error,MessageBox.TYPE_ERROR)
