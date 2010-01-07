@@ -63,10 +63,10 @@ def readKeymap(filename):
 		context = cmap.attrib.get("context")
 		assert context, "map must have context"
 
+		parseKeys(context, filename, p, "generic", cmap)
+
 		for device in cmap.findall("device"):
 			parseKeys(context, filename, p, device.attrib.get("name"), device)
-
-		parseKeys(context, filename, p, "generic", cmap)
 
 def removeKeymap(filename):
 	p = enigma.eActionMap.getInstance()
