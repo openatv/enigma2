@@ -486,7 +486,6 @@ void eDVBTeletextParser::handlePageStart()
 	}
 //	else
 //		eDebug("no erase flag set!");
-	m_current_source_line = -1;
 }
 
 void eDVBTeletextParser::handleLine(unsigned char *data, int len)
@@ -510,7 +509,7 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 		return;
 	}
 
-	int last_was_white = 1, color = 1; /* start with whitespace. start with color=white. (that's unrelated.) */
+	int last_was_white = 1, color = 7; /* start with whitespace. start with color=white. (that's unrelated.) */
 
 	static unsigned char out[128];
 
@@ -627,14 +626,11 @@ void eDVBTeletextParser::handleLine(unsigned char *data, int len)
 
 void eDVBTeletextParser::handlePageEnd(int have_pts, const pts_t &pts)
 {
-//	eDebug("handle page end");
-	addSubtitleString(-2, "", -1); /* end last line */ 
-	
 	m_subtitle_page.m_have_pts = have_pts;
 	m_subtitle_page.m_pts = pts;
 	m_subtitle_page.m_timeout = 90000 * 20; /* 20s */
 	if (m_page_X != 0)
-		sendSubtitlePage();  /* send assembled subtitle page to display */
+		m_new_subtitle_page(m_subtitle_page); /* send assembled subtitle page to display */
 }
 
 void eDVBTeletextParser::setPageAndMagazine(int page, int magazine)
@@ -660,44 +656,22 @@ void eDVBTeletextParser::connectNewPage(const Slot1<void, const eDVBTeletextSubt
 void eDVBTeletextParser::addSubtitleString(int color, std::string string, int source_line)
 {
 //	eDebug("(%d)add subtitle string: %s, col %d", m_Y, string.c_str(), color);
-	int force_cell = 0;
 
-	if (string.substr(0, 2) == "- ")
-	{
-		string = string.substr(2);
-		force_cell = 1;
-	}
+	const gRGB pal[8] = { gRGB(0, 0, 0), gRGB(255, 0, 0), gRGB(0, 255, 0), gRGB(255, 255, 0),
+		gRGB(0, 0, 255), gRGB(255, 0, 255), gRGB(0, 255, 255), gRGB(255, 255, 255) };
 
-//	eDebug("color %d, m_subtitle_color %d", color, m_subtitle_color);
-	if ((color != m_subtitle_color || force_cell) && !m_subtitle_text.empty() && ((color == -2) || !string.empty()))
-	{
-		const gRGB pal[4] = { gRGB(64, 0, 76), gRGB(180, 40, 86), gRGB(160, 170, 105), gRGB(250, 200, 140) };
-//		eDebug("add text |%s|: %d != %d || %d", m_subtitle_text.c_str(), color, m_subtitle_color, force_cell);
-		m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(pal[m_subtitle_color & 3], m_subtitle_text, m_current_source_line));
-		m_current_source_line = -1;
-		m_subtitle_text = "";
-	} else if (!m_subtitle_text.empty() && m_subtitle_text[m_subtitle_text.size()-1] != ' ')
-		m_subtitle_text += " ";
+	if (string.empty()) return;
 
-	if (m_current_source_line == -1)
-		m_current_source_line = source_line;
-
-	if (!string.empty())
-	{
-//		eDebug("set %d as new color", color);
-		if (color >= 0)
-			m_subtitle_color = color;
-		m_subtitle_text += string;
-	}
-}
-
-void eDVBTeletextParser::sendSubtitlePage()
-{
-//	eDebug("subtitle page:");
-	bool send=m_C & (1<<4);
 	for (unsigned int i = 0; i < m_subtitle_page.m_elements.size(); ++i)
-		if (!m_subtitle_page.m_elements[i].m_text.empty())
-			send=true;
-	if (send)
-		m_new_subtitle_page(m_subtitle_page);
+	{
+		if ( m_subtitle_page.m_elements[i].m_source_line == source_line )
+		{
+			m_subtitle_page.m_elements[i].m_text += " ";
+			m_subtitle_page.m_elements[i].m_text += string;
+			return;
+		}
+	}
+
+	m_subtitle_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(pal[color], string, source_line));
 }
+
