@@ -185,6 +185,9 @@ class TitleList(Screen, HelpableScreen):
 				pass
 			def doContext(self):
 				print "context menu forbidden inside DVDBurn to prevent calling multiple instances"
+			def updateButtons(self):
+				# the original will hide red/green, and crash...
+				pass
 			def insertWithoutEdit(self):
 				current = self.getCurrent()
 				if current is not None:
