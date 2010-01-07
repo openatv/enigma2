@@ -33,19 +33,15 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	int elements = m_page.m_elements.size();
 	if (elements)
 	{
-		int startY = elements > 1
-			? size().height() / 2
-			: size().height() / 3 * 2;
 		int width = size().width() - startX * 2;
-		int height = size().height() - startY;
-		int size_per_element = height / (elements ? elements : 1);
+		int size_per_element = (size().height() - 25) / 24;
 		for (int i=0; i<elements; ++i)
 		{
 			eRect &area = m_page.m_elements[i].m_area;
 			area.setLeft(startX);
-			area.setTop(size_per_element * i + startY);
+			area.setTop(size_per_element * m_page.m_elements[i].m_source_line);
 			area.setWidth(width);
-			area.setHeight(size_per_element);
+			area.setHeight(size_per_element * 2); //teletext subtitles are double height only even lines are used
 			m_visible_region.rects.push_back(area);
 		}
 	}
