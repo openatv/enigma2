@@ -50,12 +50,12 @@ class Subtitles(Screen, ConfigListScreen):
 					list.append(getConfigListEntry(text+" DVB "+x[4], ConfigNothing(), x))
 			elif x[0] == 1:
 				if x[4] == 'und': #undefined
-					list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2]), ConfigNothing(), x))
+					list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3] and x[3] or 8, x[2]), ConfigNothing(), x))
 				else:
 					if LanguageCodes.has_key(x[4]):
-						list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2])+" "+LanguageCodes[x[4]][0], ConfigNothing(), x))
+						list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3] and x[3] or 8, x[2])+" "+LanguageCodes[x[4]][0], ConfigNothing(), x))
 					else:
-						list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3],x[2])+" "+x[4], ConfigNothing(), x))
+						list.append(getConfigListEntry(text+" TTX "+_("Page")+" %x%02x"%(x[3] and x[3] or 8, x[2])+" "+x[4], ConfigNothing(), x))
 			elif x[0] == 2:
 				types = (" UTF-8 text "," SSA / AAS "," .SRT file ")
 				if x[4] == 'und': #undefined
