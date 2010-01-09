@@ -322,11 +322,6 @@ private:
 
 	void thread();  // thread function
 
-// called from epgcache thread
-	void save();
-public:
-	void load();
-private:
 #ifdef ENABLE_PRIVATE_EPG
 	void privateSectionRead(const uniqueEPGKey &, const __u8 *);
 #endif
@@ -349,6 +344,9 @@ private:
 #endif // SWIG
 public:
 	static eEPGCache *getInstance() { return instance; }
+
+	void save();
+	void load();
 #ifndef SWIG
 	eEPGCache();
 	~eEPGCache();
