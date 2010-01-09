@@ -42,7 +42,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 			area.setTop(size_per_element * m_page.m_elements[i].m_source_line);
 			area.setWidth(width);
 			area.setHeight(size_per_element * 2); //teletext subtitles are double height only even lines are used
-			m_visible_region.rects.push_back(area);
+			m_visible_region |= area;
 		}
 	}
 	m_hide_subtitles_timer->start(7500, true);
@@ -61,7 +61,7 @@ void eSubtitleWidget::setPage(const eDVBSubtitlePage &p)
 		eDebug("disp width %d, disp height %d", p.m_display_size.width(), p.m_display_size.height());
 		eRect r = eRect(it->m_position, it->m_pixmap->size());
 		r.scale(size().width(), p.m_display_size.width(), size().height(), p.m_display_size.height());
-		m_visible_region.rects.push_back(r);
+		m_visible_region |= r;
 	}
 	m_dvb_page_ok = 1;
 	m_hide_subtitles_timer->start(7500, true);
@@ -91,7 +91,7 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 			area.setTop(size_per_element * i + startY);
 			area.setWidth(width);
 			area.setHeight(size_per_element);
-			m_visible_region.rects.push_back(area);
+			m_visible_region |= area;
 		}
 	}
 	int timeout_ms = m_pango_page.m_timeout;
