@@ -7,6 +7,7 @@ from Components.PluginComponent import plugins
 from Components.PluginList import *
 from Components.Label import Label
 from Components.Harddisk import harddiskmanager
+from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
@@ -19,6 +20,37 @@ from time import time
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
+class PluginBrowserSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="6,4" size="120,16" font="Regular;12" />
+		<widget source="entry" render="Label" position="6,16" size="120,20" font="Regular;18" />
+		<widget source="desc" render="Label" position="6,36" size="120,12" font="Regular;12" />
+		<widget source="global.CurrentTime" render="Label" position="56,49" size="72,15" font="Regular;14" halign="right">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["entry"] = StaticText("")
+		self["desc"] = StaticText("")
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		self.parent.onChangedEntry.append(self.selectionChanged)
+		self.parent.selectionChanged()
+
+	def removeWatcher(self):
+		self.parent.onChangedEntry.remove(self.selectionChanged)
+
+	def selectionChanged(self, name, desc):
+		print "[***]", name, desc
+		self["entry"].text = name
+		self["desc"].text = desc
+
 
 class PluginBrowser(Screen):
 	def __init__(self, session):
@@ -45,6 +77,23 @@ class PluginBrowser(Screen):
 
 		self.onFirstExecBegin.append(self.checkWarnings)
 		self.onShown.append(self.updateList)
+		self.onChangedEntry = []
+		self["list"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		return PluginBrowserSummary
+		
+	def selectionChanged(self):
+		item = self["list"].getCurrent()
+		if item:
+			p = item[0]
+			name = p.name
+			desc = p.description
+		else:
+			name = "-"
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 	
 	def checkWarnings(self):
 		if len(plugins.warnings):
