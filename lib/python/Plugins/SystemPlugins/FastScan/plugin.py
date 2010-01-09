@@ -4,6 +4,7 @@ from os import path as os_path, walk as os_walk, unlink as os_unlink
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.config import config, ConfigSelection, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager
