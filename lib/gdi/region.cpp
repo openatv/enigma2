@@ -342,6 +342,11 @@ void gRegion::intersect(const gRegion &r1, const gRegion &r2)
 		*this = r2;
 		return;
 	}
+	if (r1 == r2)
+	{
+		*this = r1;
+		return;
+	}
 	int overlap;
 	// TODO: handle trivial reject
 	regionOp(r1, r2, OP_INTERSECT, overlap);
@@ -367,6 +372,11 @@ void gRegion::merge(const gRegion &r1, const gRegion &r2)
 		return;
 	}
 	if (r2.rects.empty())
+	{
+		*this = r1;
+		return;
+	}
+	if (r1 == r2)
 	{
 		*this = r1;
 		return;
@@ -433,3 +443,30 @@ void gRegion::scale(int x_n, int x_d, int y_n, int y_d)
 		rects[i].scale(x_n, x_d, y_n, y_d);
 }
 
+bool operator == (const gRegion &r1, const gRegion &r2)
+{
+	if (r1.rects.size() != r2.rects.size()) return false;
+
+	for (unsigned int i = 0; i < r1.rects.size(); i++)
+	{
+		if (r1.rects[i] != r2.rects[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+bool operator != (const gRegion &r1, const gRegion &r2)
+{
+	if (r1.rects.size() != r2.rects.size()) return true;
+
+	for (unsigned int i = 0; i < r1.rects.size(); i++)
+	{
+		if (r1.rects[i] != r2.rects[i])
+		{
+			return true;
+		}
+	}
+	return false;
+}
