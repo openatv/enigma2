@@ -9,6 +9,7 @@ from Components.Label import Label
 from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet
 from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import defaultMoviePath
 
 from Plugins.Plugin import PluginDescriptor
@@ -55,6 +56,33 @@ def getPreferredTagEditor():
 
 setPreferredTagEditor(None)
 
+class MovieContextMenuSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="4,0" size="124,14" font="Regular;12" halign="left" valign="top" noWrap="1" />
+		<widget source="selected" render="Label" position="4,14" size="124,32" font="Regular;16" />
+		<widget source="global.CurrentTime" render="Label" position="64,46" size="60,18" halign="right" font="Regular;16" >
+			<convert type="ClockToText"></convert>
+		</widget>
+	</screen>"""
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["selected"] = StaticText("")
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
+
+	def __onShow(self):
+		self.parent["menu"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def __onHide(self):
+		self.parent["menu"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		item = self.parent["menu"].getCurrent()
+		self["selected"].text = item[0]
+
+
 class MovieContextMenu(Screen):
 	# Contract: On OK returns a callable object (e.g. delete)
 	def __init__(self, session, csel, service):
@@ -91,6 +119,9 @@ class MovieContextMenu(Screen):
 			menu.append((_("show extended description"), boundFunction(csel.showDescription, MovieList.SHOW_DESCRIPTION)))
 		self["menu"] = MenuList(menu)
 
+	def createSummary(self):
+		return MovieContextMenuSummary
+
 	def okbuttonClick(self):
 		self.close(self["menu"].getCurrent()[1])
 
@@ -112,6 +143,52 @@ class SelectionEventInfo:
 	def updateEventInfo(self):
 		serviceref = self.getCurrent()
 		self["Service"].newService(serviceref)
+
+class MovieSelectionSummary(Screen):
+	# Kludgy component to display current selection on LCD. Should use
+	# parent.Service as source for everything, but that seems to have a
+	# performance impact as the MovieSelection goes through hoops to prevent
+	# this when the info is not selected
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="4,0" size="124,14" font="Regular;12" halign="left" valign="top" />
+		<widget source="name" render="Label" position="4,14" size="124,32" font="Regular;16" halign="left" valign="top" />
+		<widget source="parent.Service" render="Label" position="4,46" size="74,18" font="Regular;14" halign="left" noWrap="1">
+			<convert type="MovieInfo">RecordServiceName</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="78,46" size="46,18" font="Regular;14" halign="left" noWrap="1">
+			<convert type="MovieInfo">FileSize</convert>
+		</widget>
+	</screen>"""
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["name"] = StaticText("")
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
+
+	def __onShow(self):
+		self.parent.list.connectSelChanged(self.selectionChanged)
+		self.selectionChanged()
+
+	def __onHide(self):
+		self.parent.list.disconnectSelChanged(self.selectionChanged)
+
+	def selectionChanged(self):
+		item = self.parent["list"].l.getCurrentSelection()
+		if item and item[0]:
+			if not item[1]:
+				# special case, one up
+				name = ".."
+			else:
+				name = item[1].getName(item[0])
+				if (item[0].flags & eServiceReference.mustDescent):
+					if len(name) > 12:
+						name = os.path.split(os.path.normpath(name))[1]
+					name = "> " + name
+			self["name"].text = name
+		else:
+			self["name"].text = ""
+
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def __init__(self, session, selectedmovie = None):
@@ -197,6 +274,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.list.connectSelChanged(self.updateButtons)
 		self.inited = False
 
+	def createSummary(self):
+		return MovieSelectionSummary
+		
 	def updateDescription(self):
 		if config.movielist.description.value == MovieList.SHOW_DESCRIPTION:
 			self["DescriptionBorder"].show()
