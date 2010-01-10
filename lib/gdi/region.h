@@ -83,7 +83,10 @@ public:
 	gRegion &operator&=(const gRegion &r2);
 	gRegion &operator-=(const gRegion &r2);
 	gRegion &operator|=(const gRegion &r2);
-	
+
+	friend bool operator == (const gRegion &, const gRegion &);
+	friend bool operator != (const gRegion &, const gRegion &);
+
 	void intersect(const gRegion &r1, const gRegion &r2);
 	void subtract(const gRegion &r1, const gRegion &r2);
 	void merge(const gRegion &r1, const gRegion &r2);
@@ -97,5 +100,8 @@ public:
 	
 	void scale(int x_n, int x_d, int y_n, int y_d);
 };
+
+bool operator == (const gRegion &, const gRegion &);
+bool operator != (const gRegion &, const gRegion &);
 
 #endif
