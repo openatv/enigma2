@@ -24,12 +24,9 @@ def languageChanged():
 class PluginBrowserSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="6,4" size="120,16" font="Regular;12" />
-		<widget source="entry" render="Label" position="6,16" size="120,20" font="Regular;18" />
-		<widget source="desc" render="Label" position="6,36" size="120,12" font="Regular;12" />
-		<widget source="global.CurrentTime" render="Label" position="56,49" size="72,15" font="Regular;14" halign="right">
-			<convert type="ClockToText">WithSeconds</convert>
-		</widget>
+		<widget source="parent.Title" render="Label" position="6,4" size="120,16" font="Regular;12"  noWrap="1" />
+		<widget source="entry" render="Label" position="6,16" size="120,20" font="Regular;18" noWrap="1" />
+		<widget source="desc" render="Label" position="6,36" size="120,28" font="Regular;12" valign="top" />
 	</screen>"""
 
 	def __init__(self, session, parent):
