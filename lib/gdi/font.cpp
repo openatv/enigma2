@@ -665,20 +665,23 @@ int eTextPara::renderString(const char *string, int rflags)
 			{
 			case '\\':
 			{
-				unsigned long c = *(i+1);
-				switch (c)
+				if ((i + 1) != uc_visual.end())
 				{
-					case 'n':
-						i++;
-						goto newline;
-					case 't':
-						i++;
-						goto tab;
-					case 'r':
-						i++;
-						goto nprint;
-					default:
-					;
+					unsigned long c = *(i+1);
+					switch (c)
+					{
+						case 'n':
+							i++;
+							goto newline;
+						case 't':
+							i++;
+							goto tab;
+						case 'r':
+							i++;
+							goto nprint;
+						default:
+						;
+					}
 				}
 				break;
 			}
