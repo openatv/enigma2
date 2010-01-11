@@ -16,7 +16,7 @@ from operator import itemgetter
 class ProtectedScreen:
 	def __init__(self):
 		if self.isProtected():
-			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.protectedWithPin()], triesEntry = self.getTriesEntry(), title = self.getPinText(), windowTitle = _("Change pin code")))
+			self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.protectedWithPin()], triesEntry = self.getTriesEntry(), title = self.getPinText(), windowTitle = _("Enter pin code")))
 
 	def getTriesEntry(self):
 		return config.ParentalControl.retries.setuppin
@@ -48,11 +48,11 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
 		self.createSetup()
-
+		
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
-			"cancel": self.keyCancel,
-			"save": self.keyCancel
+		  "cancel": self.keyCancel,
+		  "save": self.keyCancel
 		}, -2)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
@@ -63,12 +63,12 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and config.ParentalControl.configured.value
-
+	
 	def createSetup(self):
 		self.editListEntry = None
 		self.changePin = None
 		self.changeSetupPin = None
-
+		
 		self.list = []
 		self.list.append(getConfigListEntry(_("Enable parental control"), config.ParentalControl.configured))
 		print "config.ParentalControl.configured.value", config.ParentalControl.configured.value
@@ -87,10 +87,19 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				elif config.ParentalControl.mode.value == "simple":	
 					self.changePin = getConfigListEntry(_("Change service pin"), NoSave(ConfigNothing()))
 					self.list.append(self.changePin)
-				#self.list.append(getConfigListEntry(_("Remember service pin"), config.ParentalControl.storeservicepin))	
+				#Added Option to remember the service pin
+				self.list.append(getConfigListEntry(_("Remember service pin"), config.ParentalControl.storeservicepin))	
+				#Added Option to remember the cancellation of service pin entry
+				self.list.append(getConfigListEntry(_("Remember service pin cancel"), config.ParentalControl.storeservicepincancel))	
 				self.editListEntry = getConfigListEntry(_("Edit services list"), NoSave(ConfigNothing()))
 				self.list.append(self.editListEntry)
-
+				#New funtion: Possibility to add Bouquets to whitelist / blacklist
+				self.editBouquetListEntry = getConfigListEntry(_("Edit bouquets list"), NoSave(ConfigNothing()))
+				self.list.append(self.editBouquetListEntry)
+				#New option to reload service lists (for example if bouquets have changed)
+				self.reloadLists = getConfigListEntry(_("Reload Black-/Whitelists"), NoSave(ConfigNothing()))
+				self.list.append(self.reloadLists)
+				
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
@@ -98,6 +107,8 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		print "self[\"config\"].l.getCurrentSelection()", self["config"].l.getCurrentSelection()
 		if self["config"].l.getCurrentSelection() == self.editListEntry:
 			self.session.open(ParentalControlEditor)
+		elif self["config"].l.getCurrentSelection() == self.editBouquetListEntry:
+			self.session.open(ParentalControlBouquetEditor)
 		elif self["config"].l.getCurrentSelection() == self.changePin:
 			if config.ParentalControl.mode.value == "complex":
 				pass
@@ -105,6 +116,8 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 				self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("service pin"))
 		elif self["config"].l.getCurrentSelection() == self.changeSetupPin:
 			self.session.open(ParentalControlChangePin, config.ParentalControl.setuppin, _("setup pin"))
+		elif self["config"].l.getCurrentSelection() == self.reloadLists:
+			parentalControl.open()
 		else:
 			ConfigListScreen.keyRight(self)
 			print "current selection:", self["config"].l.getCurrentSelection()
@@ -149,6 +162,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 
 	def keyNumberGlobal(self, number):
 		pass
+
 	# for summary:
 	def changedEntry(self):
 		for x in self.onChangedEntry:
@@ -224,13 +238,13 @@ class ParentalControlEditor(Screen):
 				if not self.servicesList.has_key(key):
 					self.servicesList[key] = []
 				self.servicesList[key].append(s)
-
+			
 	def chooseLetter(self):
 		print "choose letter"
 		mylist = []
 		for x in self.servicesList.keys():
 			if x == chr(SPECIAL_CHAR):
-				x = ("special characters", x)
+				x = (_("special characters"), x)
 			else:
 				x = (x, x)
 			mylist.append(x)
@@ -242,11 +256,50 @@ class ParentalControlEditor(Screen):
 		if result is not None:
 			print "result:", result
 			self.currentLetter = result[1]
-			self.list = [ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionLevel(x[0]) != -1) for x in self.servicesList[result[1]]]
+			#Replace getProtectionLevel by new getProtectionType
+			self.list = [ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionType(x[0])) for x in self.servicesList[result[1]]]
 			self.servicelist.setList(self.list)
 		else:
 			parentalControl.save()
 			self.close()
+
+class ParentalControlBouquetEditor(Screen):
+	#This new class allows adding complete bouquets to black- and whitelists
+	#The servicereference that is stored for bouquets is their refstr as listed in bouquets.tv
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "ParentalControlEditor"
+		self.list = []
+		self.bouquetslist = ParentalControlList(self.list)
+		self["servicelist"] = self.bouquetslist;
+		self.readBouquetList()
+		self.onLayoutFinish.append(self.selectBouquet)
+
+		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions"],
+		{
+			"ok": self.select,
+			"cancel": self.cancel
+		}, -1)
+
+	def cancel(self):
+		parentalControl.save()
+		self.close()
+
+	def select(self):
+		self.bouquetslist.toggleSelectedLock()
+
+	def readBouquetList(self):
+		serviceHandler = eServiceCenter.getInstance()
+		refstr = '1:134:1:0:0:0:0:0:0:0:FROM BOUQUET \"bouquets.tv\" ORDER BY bouquet'
+		bouquetroot = eServiceReference(refstr)
+		self.bouquetlist = {}
+		list = serviceHandler.list(bouquetroot)
+		if list is not None:
+			self.bouquetlist = list.getContent("CN", True)
+	
+	def selectBouquet(self):
+		self.list = [ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionType(x[0])) for x in self.bouquetlist]
+		self.bouquetslist.setList(self.list)
 
 class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 	def __init__(self, session, pin, pinname):
@@ -264,12 +317,12 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		self.pin2.addEndNotifier(boundFunction(self.valueChanged, 2))
 		self.list.append(getConfigListEntry(_("New pin"), NoSave(self.pin1)))
 		self.list.append(getConfigListEntry(_("Reenter new pin"), NoSave(self.pin2)))
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list)
 #		print "old pin:", pin
 		#if pin.value != "aaaa":
 			#self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.pinEntered, PinInput, pinList = [self.pin.value], title = _("please enter the old pin"), windowTitle = _("Change pin code")))
 		ProtectedScreen.__init__(self)
-
+		
 		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions"],
 		{
 			"cancel": self.cancel,
