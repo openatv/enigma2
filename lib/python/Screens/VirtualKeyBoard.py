@@ -148,11 +148,11 @@ class VirtualKeyBoard(Screen):
 				[u"SHIFT", u"SPACE", u"OK"]]
 		
 		self.shiftMode = False
-		self.text = text
+		self.text = text.decode("utf-8")
 		self.selectedKey = 0
 		
 		self["header"] = Label(title)
-		self["text"] = Label(self.text)
+		self["text"] = Label(text)
 		self["list"] = VirtualKeyBoardList([])
 		
 		self["actions"] = ActionMap(["OkCancelActions", "WizardActions", "ColorActions"],
@@ -195,8 +195,8 @@ class VirtualKeyBoard(Screen):
 
 	
 	def backClicked(self):
-		self.text = self["text"].getText()[:-1]
-		self["text"].setText(self.text)
+		self.text = self.text[:-1]
+		self["text"].setText(self.text.encode("utf-8"))
 			
 	def okClicked(self):
 		if self.shiftMode:
@@ -219,18 +219,16 @@ class VirtualKeyBoard(Screen):
 		if text is None:
 			return
 
-		text = text.encode("utf-8")
-
 		if text == "EXIT":
 			self.close(None)
 		
 		elif text == "BACKSPACE":
-			self.text = self["text"].getText()[:-1]
-			self["text"].setText(self.text)
+			self.text = self.text[:-1]
+			self["text"].setText(self.text.encode("utf-8"))
 		
 		elif text == "CLEAR":
 			self.text = ""
-			self["text"].setText(self.text)
+			self["text"].setText(self.text.encode("utf-8"))
 		
 		elif text == "SHIFT":
 			if self.shiftMode:
@@ -242,18 +240,17 @@ class VirtualKeyBoard(Screen):
 		
 		elif text == "SPACE":
 			self.text += " "
-			self["text"].setText(self.text)
+			self["text"].setText(self.text.encode("utf-8"))
 		
 		elif text == "OK":
-			self.close(self["text"].getText())
+			self.close(self.text.encode("utf-8"))
 		
 		else:
-			self.text = self["text"].getText()
 			self.text += text
-			self["text"].setText(self.text)
+			self["text"].setText(self.text.encode("utf-8"))
 
 	def ok(self):
-		self.close(self["text"].getText())
+		self.close(self.text.encode("utf-8"))
 
 	def exit(self):
 		self.close(None)
