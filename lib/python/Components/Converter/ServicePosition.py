@@ -89,7 +89,7 @@ class ServicePosition(Poll, Converter, object):
 
 			if self.negate: l = -l
 
-			if l > 0:
+			if l >= 0:
 				sign = ""
 			else:
 				l = -l
