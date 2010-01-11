@@ -32,6 +32,8 @@ dist_install_DATA = \
 	expanded-plugins.png \
 	info-bg_mp.png \
 	info-bg.png \
+	lock.png \
+	lockBouquet.png \
 	mediaplayer_bg.png \
 	mute.png \
 	nim_active.png \
@@ -52,6 +54,8 @@ dist_install_DATA = \
 	timeline-now.png \
 	timeline.png \
 	unhandled-key.png \
+	unlock.png \
+	unlockBouquet.png \
 	verticalline-plugins.png \
 	vkey_backspace.png \
 	vkey_bg.png \
