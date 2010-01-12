@@ -100,12 +100,15 @@ def InitUsageConfig():
 	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
 
 	config.epg = ConfigSubsection()
+	config.epg.eit = ConfigYesNo(default = True)
 	config.epg.mhw = ConfigYesNo(default = True)
 	config.epg.freesat = ConfigYesNo(default = True)
 	config.epg.viasat = ConfigYesNo(default = True)
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff
+		if not config.epg.eit.value:
+			mask &= ~(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER);
 		if not config.epg.mhw.value:
 			mask &= ~eEPGCache.MHW
 		if not config.epg.freesat.value:
@@ -113,6 +116,7 @@ def InitUsageConfig():
 		if not config.epg.viasat.value:
 			mask &= ~eEPGCache.VIASAT
 		eEPGCache.getInstance().setEpgSources(mask)
+	config.epg.eit.addNotifier(EpgSettingsChanged)
 	config.epg.mhw.addNotifier(EpgSettingsChanged)
 	config.epg.freesat.addNotifier(EpgSettingsChanged)
 	config.epg.viasat.addNotifier(EpgSettingsChanged)
