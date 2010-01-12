@@ -982,6 +982,7 @@ void eDVBServicePlay::gotNewEvent(int error)
 #endif
 	if (!error)
 	{
+		m_nownext_timer->stop();
 		m_event((iPlayableService*)this, evUpdatedEventInfo);
 	}
 	else
@@ -993,7 +994,7 @@ void eDVBServicePlay::gotNewEvent(int error)
 
 void eDVBServicePlay::updateEpgCacheNowNext()
 {
-	/* our EIT reader is not running, fill now/next with info from the epg cache */
+	bool update = false;
 	ePtr<eServiceEvent> next = 0;
 	ePtr<eServiceEvent> ptr = 0;
 	eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_reference;
@@ -1003,6 +1004,7 @@ void eDVBServicePlay::updateEpgCacheNowNext()
 		m_event_handler.getEvent(current, 0);
 		if (!current || !ptr || current->getEventId() != ptr->getEventId())
 		{
+			update = true;
 			m_event_handler.inject(ptr, 0);
 			time_t next_time = ptr->getBeginTime() + ptr->getDuration();
 			if (eEPGCache::getInstance()->lookupEventTime(ref, next_time, ptr) >= 0)
@@ -1025,6 +1027,7 @@ void eDVBServicePlay::updateEpgCacheNowNext()
 		if (refreshtime <= 0 || refreshtime > 60) refreshtime = 60;
 	}
 	m_nownext_timer->startLongTimer(refreshtime);
+	if (update) m_event((iPlayableService*)this, evUpdatedEventInfo);
 }
 
 void eDVBServicePlay::serviceEvent(int event)
@@ -1035,37 +1038,28 @@ void eDVBServicePlay::serviceEvent(int event)
 	{
 	case eDVBServicePMTHandler::eventTuned:
 	{
-		ePtr<iDVBDemux> m_demux;
-		if (!m_service_handler.getDataDemux(m_demux))
+		/* fill now/next with info from the epg cache, will be replaced by EIT when it arrives */
+		updateEpgCacheNowNext();
+
+		std::string show_eit_nownext;
+		/* default behaviour is to start an eit reader, and wait for now/next info, unless this is disabled */
+		if (ePythonConfigQuery::getConfigValue("config.usage.show_eit_nownext", show_eit_nownext) < 0
+			|| show_eit_nownext != "False")
 		{
-			eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_reference;
-			int sid = ref.getParentServiceID().get();
-			if (!sid)
-				sid = ref.getServiceID().get();
-
-			/* fill now/next with info from the epg cache, will be replaced by EIT when it arrives */
-			ePtr<eServiceEvent> ptr = 0;
-			if (eEPGCache::getInstance() && eEPGCache::getInstance()->lookupEventTime(ref, -1, ptr) >= 0)
+			ePtr<iDVBDemux> m_demux;
+			if (!m_service_handler.getDataDemux(m_demux))
 			{
-				if (ptr)
-				{
-					m_event_handler.inject(ptr, 0);
-					time_t next_time = ptr->getBeginTime() + ptr->getDuration();
-					if (eEPGCache::getInstance()->lookupEventTime(ref, next_time, ptr) >= 0)
-					{
-						if (ptr)
-						{
-							m_event_handler.inject(ptr, 1);
-						}
-					}
-				}
-			}
+				eServiceReferenceDVB &ref = (eServiceReferenceDVB&) m_reference;
+				int sid = ref.getParentServiceID().get();
+				if (!sid)
+					sid = ref.getServiceID().get();
 
-			if ( ref.getParentTransportStreamID().get() &&
-				ref.getParentTransportStreamID() != ref.getTransportStreamID() )
-				m_event_handler.startOther(m_demux, sid);
-			else
-				m_event_handler.start(m_demux, sid);
+				if ( ref.getParentTransportStreamID().get() &&
+					ref.getParentTransportStreamID() != ref.getTransportStreamID() )
+					m_event_handler.startOther(m_demux, sid);
+				else
+					m_event_handler.start(m_demux, sid);
+			}
 		}
 		m_event((iPlayableService*)this, evTunedIn);
 		break;
@@ -1214,6 +1208,7 @@ RESULT eDVBServicePlay::stop()
 		if (!::stat(m_reference.path.c_str(), &s))
 			saveCuesheet();
 	}
+	m_nownext_timer->stop();
 	m_event((iPlayableService*)this, evStopped);
 	return 0;
 }
