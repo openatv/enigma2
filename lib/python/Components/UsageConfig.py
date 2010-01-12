@@ -48,7 +48,7 @@ def InitUsageConfig():
 	config.usage.on_movie_eof = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")) ])
 
-	config.usage.setup_level = ConfigSelection(default = "intermediate", choices = [
+	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert")) ])
