@@ -16,4 +16,6 @@ dist_install_DATA = \
 	LICENSE \
 	Scart.png \
 	videowizard.xml \
-	YPbPr.png
+	YPbPr.png \
+	HDMI.png \
+	lcd_HDMI.png
