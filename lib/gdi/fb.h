@@ -6,7 +6,7 @@
 
 class fbClass
 {
-	int fd;
+	int fbFd;
 	unsigned int xRes, yRes, stride, bpp;
 	int available;
 	struct fb_var_screeninfo screeninfo, oldscreen;

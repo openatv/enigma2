@@ -30,6 +30,7 @@ fbClass::fbClass(const char *fb)
 	m_manual_blit=-1;
 	instance=this;
 	locked=0;
+	lfb = 0;
 	available=0;
 	cmap.start=0;
 	cmap.len=256;
@@ -38,15 +39,15 @@ fbClass::fbClass(const char *fb)
 	cmap.blue=blue;
 	cmap.transp=trans;
 
-	fd=open(fb, O_RDWR);
-	if (fd<0)
+	fbFd=open(fb, O_RDWR);
+	if (fbFd<0)
 	{
 		perror(fb);
 		goto nolfb;
 	}
 
 
-	if (ioctl(fd, FBIOGET_VSCREENINFO, &screeninfo)<0)
+	if (ioctl(fbFd, FBIOGET_VSCREENINFO, &screeninfo)<0)
 	{
 		perror("FBIOGET_VSCREENINFO");
 		goto nolfb;
@@ -55,7 +56,7 @@ fbClass::fbClass(const char *fb)
 	memcpy(&oldscreen, &screeninfo, sizeof(screeninfo));
 
 	fb_fix_screeninfo fix;
-	if (ioctl(fd, FBIOGET_FSCREENINFO, &fix)<0)
+	if (ioctl(fbFd, FBIOGET_FSCREENINFO, &fix)<0)
 	{
 		perror("FBIOGET_FSCREENINFO");
 		goto nolfb;
@@ -64,7 +65,7 @@ fbClass::fbClass(const char *fb)
 	available=fix.smem_len;
 	m_phys_mem = fix.smem_start;
 	eDebug("%dk video mem", available/1024);
-	lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fd, 0);
+	lfb=(unsigned char*)mmap(0, available, PROT_WRITE|PROT_READ, MAP_SHARED, fbFd, 0);
 	if (!lfb)
 	{
 		perror("mmap");
@@ -76,7 +77,11 @@ fbClass::fbClass(const char *fb)
 	enableManualBlit();
 	return;
 nolfb:
-	lfb=0;
+	if (fbFd >= 0)
+	{
+		::close(fbFd);
+		fbFd = -1;
+	}
 	printf("framebuffer not available.\n");
 	return;
 }
@@ -129,12 +134,12 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 		break;
 	}
 
-	if (ioctl(fd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
+	if (ioctl(fbFd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 	{
 		// try single buffering
 		screeninfo.yres_virtual=screeninfo.yres=nyRes;
 		
-		if (ioctl(fd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
+		if (ioctl(fbFd, FBIOPUT_VSCREENINFO, &screeninfo)<0)
 		{
 			perror("FBIOPUT_VSCREENINFO");
 			printf("fb failed\n");
@@ -146,7 +151,7 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	
 	m_number_of_pages = screeninfo.yres_virtual / nyRes;
 	
-	ioctl(fd, FBIOGET_VSCREENINFO, &screeninfo);
+	ioctl(fbFd, FBIOGET_VSCREENINFO, &screeninfo);
 	
 	if ((screeninfo.xres!=nxRes) && (screeninfo.yres!=nyRes) && (screeninfo.bits_per_pixel!=nbpp))
 	{
@@ -158,7 +163,7 @@ int fbClass::SetMode(unsigned int nxRes, unsigned int nyRes, unsigned int nbpp)
 	yRes=screeninfo.yres;
 	bpp=screeninfo.bits_per_pixel;
 	fb_fix_screeninfo fix;
-	if (ioctl(fd, FBIOGET_FSCREENINFO, &fix)<0)
+	if (ioctl(fbFd, FBIOGET_FSCREENINFO, &fix)<0)
 	{
 		perror("FBIOGET_FSCREENINFO");
 		printf("fb failed\n");
@@ -172,19 +177,19 @@ int fbClass::setOffset(int off)
 {
 	screeninfo.xoffset = 0;
 	screeninfo.yoffset = off;
-	return ioctl(fd, FBIOPAN_DISPLAY, &screeninfo);
+	return ioctl(fbFd, FBIOPAN_DISPLAY, &screeninfo);
 }
 
 int fbClass::waitVSync()
 {
 	int c = 0;
-	return ioctl(fd, FBIO_WAITFORVSYNC, &c);
+	return ioctl(fbFd, FBIO_WAITFORVSYNC, &c);
 }
 
 void fbClass::blit()
 {
 	if (m_manual_blit == 1) {
-		if (ioctl(fd, FBIO_BLIT) < 0)
+		if (ioctl(fbFd, FBIO_BLIT) < 0)
 			perror("FBIO_BLIT");
 	}
 }
@@ -192,16 +197,21 @@ void fbClass::blit()
 fbClass::~fbClass()
 {
 	if (available)
-		ioctl(fd, FBIOPUT_VSCREENINFO, &oldscreen);
+		ioctl(fbFd, FBIOPUT_VSCREENINFO, &oldscreen);
 	if (lfb)
 		munmap(lfb, available);
 	showConsole(1);
 	disableManualBlit();
+	if (fbFd >= 0)
+	{
+		::close(fbFd);
+		fbFd = -1;
+	}
 }
 
 int fbClass::PutCMAP()
 {
-	return ioctl(fd, FBIOPUTCMAP, &cmap);
+	return ioctl(fbFd, FBIOPUTCMAP, &cmap);
 }
 
 int fbClass::lock()
@@ -215,7 +225,7 @@ int fbClass::lock()
 	}
 	else
 		locked = 1;
-	return fd;
+	return fbFd;
 }
 
 void fbClass::unlock()
@@ -232,7 +242,7 @@ void fbClass::unlock()
 void fbClass::enableManualBlit()
 {
 	unsigned char tmp = 1;
-	if (ioctl(fd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
+	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
 		perror("FBIO_SET_MANUAL_BLIT");
 	else
 		m_manual_blit = 1;
@@ -241,7 +251,7 @@ void fbClass::enableManualBlit()
 void fbClass::disableManualBlit()
 {
 	unsigned char tmp = 0;
-	if (ioctl(fd,FBIO_SET_MANUAL_BLIT, &tmp)<0) 
+	if (ioctl(fbFd,FBIO_SET_MANUAL_BLIT, &tmp)<0)
 		perror("FBIO_SET_MANUAL_BLIT");
 	else
 		m_manual_blit = 0;
