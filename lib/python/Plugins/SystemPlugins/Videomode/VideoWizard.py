@@ -99,7 +99,10 @@ class VideoWizard(WizardLanguage, Rc):
 		print "input selection moved:", self.selection
 		self.inputSelect(self.selection)
 		if self["portpic"].instance is not None:
-			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + self.selection + ".png"))
+			picname = self.selection
+			if picname == "DVI" and HardwareInfo().get_device_name() == "dm500hd":
+				picname = "HDMI"
+			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + picname + ".png"))
 		
 	def inputSelect(self, port):
 		print "inputSelect:", port
