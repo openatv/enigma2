@@ -212,8 +212,8 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader, m_ViasatReader;
 		tidMap seenSections[4], calcedSections[4];
 #ifdef ENABLE_FREESAT
-		ePtr<eConnection> m_FreeSatScheduleOtherConn;
-		ePtr<iDVBSectionReader> m_FreeSatScheduleOtherReader;
+		ePtr<eConnection> m_FreeSatScheduleOtherConn, m_FreeSatScheduleOtherConn2;
+		ePtr<iDVBSectionReader> m_FreeSatScheduleOtherReader, m_FreeSatScheduleOtherReader2;
 		std::map<__u32, freesatEITSubtableStatus> m_FreeSatSubTableStatus;
 		__u32 m_FreesatTablesToComplete;
 		void readFreeSatScheduleOtherData(const __u8 *data);

@@ -344,7 +344,13 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader );
 				if ( res )
 				{
-					eDebug("[eEPGCache] couldnt initialize FreeSat schedule other reader!!");
+					eDebug("[eEPGCache] couldnt initialize FreeSat reader!!");
+					return;
+				}
+				res = demux->createSectionReader( this, data.m_FreeSatScheduleOtherReader2 );
+				if ( res )
+				{
+					eDebug("[eEPGCache] couldnt initialize FreeSat reader 2!!");
 					return;
 				}
 #endif
@@ -1297,9 +1303,19 @@ void eEPGCache::channel_data::startEPG()
 		mask.pid = 3842;
 		mask.flags = eDVBSectionFilterMask::rfCRC;
 		mask.data[0] = 0x60;
-		mask.mask[0] = 0xF0;
+		mask.mask[0] = 0xFE;
 		m_FreeSatScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readFreeSatScheduleOtherData), m_FreeSatScheduleOtherConn);
 		m_FreeSatScheduleOtherReader->start(mask);
+
+		/*
+		 * faster pid, available on ITV HD transponder.
+		 * We rely on the fact that we have either of the two,
+		 * never both. (both readers share the same data callback
+		 * and status maps)
+		 */
+		mask.pid = 3003;
+		m_FreeSatScheduleOtherReader2->connectRead(slot(*this, &eEPGCache::channel_data::readFreeSatScheduleOtherData), m_FreeSatScheduleOtherConn2);
+		m_FreeSatScheduleOtherReader2->start(mask);
 		isRunning |= FREESAT_SCHEDULE_OTHER;
 	}
 #endif
@@ -1377,7 +1393,9 @@ void eEPGCache::channel_data::abortNonAvail()
 			eDebug("[EPGC] abort non avail FreeSat schedule_other reading");
 			isRunning &= ~FREESAT_SCHEDULE_OTHER;
 			m_FreeSatScheduleOtherReader->stop();
+			m_FreeSatScheduleOtherReader2->stop();
 			m_FreeSatScheduleOtherConn=0;
+			m_FreeSatScheduleOtherConn2=0;
 			cleanupFreeSat();
 		}
 #endif
@@ -1480,7 +1498,9 @@ void eEPGCache::channel_data::abortEPG()
 		{
 			isRunning &= ~FREESAT_SCHEDULE_OTHER;
 			m_FreeSatScheduleOtherReader->stop();
+			m_FreeSatScheduleOtherReader2->stop();
 			m_FreeSatScheduleOtherConn=0;
+			m_FreeSatScheduleOtherConn2=0;
 		}
 #endif
 		if (isRunning & VIASAT)
