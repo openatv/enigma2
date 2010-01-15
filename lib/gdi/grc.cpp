@@ -316,7 +316,7 @@ void gPainter::setFont(gFont *font)
 	m_rc->submit(o);
 }
 
-void gPainter::renderText(const eRect &pos, const std::string &string, int flags)
+void gPainter::renderText(const eRect &pos, const std::string &string, int flags, int border)
 {
 	if ( m_dc->islocked() )
 		return;
@@ -327,6 +327,7 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.parm.renderText->area = pos;
 	o.parm.renderText->text = string.empty()?0:strdup(string.c_str());
 	o.parm.renderText->flags = flags;
+	o.parm.renderText->border = border;
 	m_rc->submit(o);
 }
 
@@ -644,7 +645,7 @@ void gDC::exec(gOpcode *o)
 		int flags = o->parm.renderText->flags;
 		ASSERT(m_current_font);
 		para->setFont(m_current_font);
-		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0);
+		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0, o->parm.renderText->border);
 		if (o->parm.renderText->text)
 			free(o->parm.renderText->text);
 		if (flags & gPainter::RT_HALIGN_RIGHT)
