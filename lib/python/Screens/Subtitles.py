@@ -84,8 +84,8 @@ class Subtitles(Screen, ConfigListScreen):
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles") + ' ' + LanguageCodes[x[4]][0], ConfigNothing(), x))
 					else:
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d " % x[1] +x[4], ConfigNothing(), x))
-		list.append(getConfigListEntry(_("use TXT colors and position"), config.subtitles.txt_subtitle_colors, None))
-		list.append(getConfigListEntry(_("TXT subtitle position"), config.subtitles.txt_subtitle_position, None))
+		list.append(getConfigListEntry(_("use TXT colors and position"), config.subtitles.txt_subtitle_colors))
+		list.append(getConfigListEntry(_("TXT subtitle position"), config.subtitles.txt_subtitle_position))
 #		return _("Disable subtitles")
 		self["config"].list = list
 		self["config"].l.setList(list)
@@ -117,7 +117,7 @@ class Subtitles(Screen, ConfigListScreen):
 	def ok(self):
 		if self.list:
 			cur = self["config"].getCurrent()
-			if cur and cur[2]:
+			if cur and len(cur) > 2:
 				self.enableSubtitle(cur[2])
 			else:
 				config.subtitles.save()
