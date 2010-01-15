@@ -220,7 +220,7 @@ class PluginDownloadBrowser(Screen):
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
 						list.append((partitiondict[mountpoint].description, '-d hdd', partitiondict[mountpoint]))
 					mountpoint = '/'
-					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].free() > 10 * 1024 * 1024:
+					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].free() > 5 * 1024 * 1024:
 						list.append((partitiondict[mountpoint].description, '', partitiondict[mountpoint]))
 
 					if len(list):
