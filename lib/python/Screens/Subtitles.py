@@ -2,10 +2,29 @@ from Screen import Screen
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, getConfigListEntry, ConfigNothing
+from Components.config import config, getConfigListEntry, ConfigNothing, ConfigSubsection, ConfigYesNo, ConfigSelection
 from enigma import iPlayableService
 
 from Tools.ISO639 import LanguageCodes
+
+config.subtitles = ConfigSubsection()
+config.subtitles.txt_subtitle_colors = ConfigYesNo(default = False)
+config.subtitles.txt_subtitle_position = ConfigSelection(
+	choices =
+		[("0", "0"),
+		("25", "25"),
+		("50", "50"),
+		("75", "75"),
+		("100", "100"),
+		("150", "150"),
+		("200", "200"),
+		("250", "250"),
+		("300", "300"),
+		("350", "350"),
+		("400", "400"),
+		("450", "450"),
+		],
+	default = "50")
 
 class Subtitles(Screen, ConfigListScreen):
 	def __init__(self, session, infobar=None):
@@ -65,6 +84,8 @@ class Subtitles(Screen, ConfigListScreen):
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles") + ' ' + LanguageCodes[x[4]][0], ConfigNothing(), x))
 					else:
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d " % x[1] +x[4], ConfigNothing(), x))
+		list.append(getConfigListEntry(_("use TXT colors and position"), config.subtitles.txt_subtitle_colors, None))
+		list.append(getConfigListEntry(_("TXT subtitle position"), config.subtitles.txt_subtitle_position, None))
 #		return _("Disable subtitles")
 		self["config"].list = list
 		self["config"].l.setList(list)
@@ -96,7 +117,10 @@ class Subtitles(Screen, ConfigListScreen):
 	def ok(self):
 		if self.list:
 			cur = self["config"].getCurrent()
-			self.enableSubtitle(cur[2])
+			if cur and cur[2]:
+				self.enableSubtitle(cur[2])
+			else:
+				config.subtitles.save()
 		self.close(1)
 
 	def cancel(self):
