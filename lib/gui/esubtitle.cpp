@@ -1,6 +1,7 @@
 #include <lib/gui/esubtitle.h>
 #include <lib/gdi/grc.h>
 #include <lib/base/estring.h>
+#include <lib/base/nconfig.h>
 
 	/*
 		ok, here's much room for improvements.
@@ -30,19 +31,49 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	invalidate(m_visible_region);  // invalidate old visible regions
 	m_visible_region.rects.clear();
 
-	int elements = m_page.m_elements.size();
+	unsigned int elements = m_page.m_elements.size();
 	if (elements)
 	{
-		int width = size().width() - startX * 2;
-		int size_per_element = (size().height() - 25) / 24;
-		for (int i=0; i<elements; ++i)
+		std::string colored_txt;
+		if (ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_colors", colored_txt) < 0
+		    || colored_txt != "True")
 		{
-			eRect &area = m_page.m_elements[i].m_area;
-			area.setLeft(startX);
-			area.setTop(size_per_element * m_page.m_elements[i].m_source_line);
+			int width = size().width() * 2 / 3;
+			int height = size().height() / 3;
+
+			int lowerborder = 50;
+			std::string subtitle_position;
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_position", subtitle_position))
+			{
+				lowerborder = atoi(subtitle_position.c_str());
+			}
+			for (unsigned int i = 1; i < elements; ++i)
+			{
+				m_page.m_elements[0].m_text += " ";
+				m_page.m_elements[0].m_text += m_page.m_elements[i].m_text;
+				m_page.m_elements[i].m_text = "";
+			}
+			m_page.m_elements[0].m_color = gRGB(255, 255, 255);
+			eRect &area = m_page.m_elements[0].m_area;
+			area.setLeft((size().width() - width) / 2);
+			area.setTop(size().height() - height - lowerborder);
 			area.setWidth(width);
-			area.setHeight(size_per_element * 2); //teletext subtitles are double height only even lines are used
+			area.setHeight(height);
 			m_visible_region |= area;
+		}
+		else
+		{
+			int width = size().width() - startX * 2;
+			int size_per_element = (size().height() - 25) / 24;
+			for (unsigned int i = 0; i < elements; ++i)
+			{
+				eRect &area = m_page.m_elements[i].m_area;
+				area.setLeft(startX);
+				area.setTop(size_per_element * m_page.m_elements[i].m_source_line);
+				area.setWidth(width);
+				area.setHeight(size_per_element * 2); //teletext subtitles are double height only even lines are used
+				m_visible_region |= area;
+			}
 		}
 	}
 	m_hide_subtitles_timer->start(7500, true);
@@ -143,19 +174,23 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 			painter.blitScale(m_pixmap, r);
 		} else if (m_page_ok)
 		{
-			int elements = m_page.m_elements.size();
+			unsigned int elements = m_page.m_elements.size();
 			painter.setFont(subtitleStyles[Subtitle_TTX].font);
-			for (int i=0; i<elements; ++i)
+			for (unsigned int i = 0; i < elements; ++i)
 			{
 				eDVBTeletextSubtitlePageElement &element = m_page.m_elements[i];
-				eRect &area = element.m_area;
-				painter.setForegroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
-				painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, 3);
-				if ( !subtitleStyles[Subtitle_TTX].have_foreground_color )
-					painter.setForegroundColor(element.m_color);
-				else
-					painter.setForegroundColor(subtitleStyles[Subtitle_TTX].foreground_color);
-				painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				if (!element.m_text.empty())
+				{
+					eRect &area = element.m_area;
+					painter.setForegroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
+					int flags = gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER;
+					painter.renderText(area, element.m_text, flags, 3);
+					if (!subtitleStyles[Subtitle_TTX].have_foreground_color)
+						painter.setForegroundColor(element.m_color);
+					else
+						painter.setForegroundColor(subtitleStyles[Subtitle_TTX].foreground_color);
+					painter.renderText(area, element.m_text, flags);
+				}
 			}
 		}
 		else if (m_pango_page_ok)
