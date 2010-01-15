@@ -185,6 +185,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					painter.setForegroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
 					int flags = gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER;
 					painter.renderText(area, element.m_text, flags, 3);
+					painter.setBackgroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
 					if (!subtitleStyles[Subtitle_TTX].have_foreground_color)
 						painter.setForegroundColor(element.m_color);
 					else
