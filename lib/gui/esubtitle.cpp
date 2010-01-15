@@ -149,10 +149,8 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 			{
 				eDVBTeletextSubtitlePageElement &element = m_page.m_elements[i];
 				eRect &area = element.m_area;
-				eRect shadow = area;
-				shadow.moveBy(subtitleStyles[Subtitle_TTX].shadow_offset);
 				painter.setForegroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
-				painter.renderText(shadow, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, 3);
 				if ( !subtitleStyles[Subtitle_TTX].have_foreground_color )
 					painter.setForegroundColor(element.m_color);
 				else
