@@ -27,6 +27,7 @@ from Screens.SubtitleDisplay import SubtitleDisplay
 from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateInput
 from Screens.UnhandledKey import UnhandledKey
+from Screens.Subtitles import Subtitles
 from ServiceReference import ServiceReference
 
 from Tools import Notifications
@@ -2292,7 +2293,6 @@ class InfoBarSubtitleSupport(object):
 		self.__selected_subtitle = None
 
 	def subtitleSelection(self):
-		from Screens.Subtitles import Subtitles
 		self.session.open(Subtitles, self)
 
 	def __serviceStopped(self):
