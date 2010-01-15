@@ -223,14 +223,13 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&amp;", "&");
 				painter.setFont(subtitleStyles[face].font);
 				eRect &area = element.m_area;
-				eRect shadow = area;
-				shadow.moveBy(subtitleStyles[face].shadow_offset);
 				painter.setForegroundColor(subtitleStyles[face].shadow_color);
-				painter.renderText(shadow, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, 3);
 				if ( !subtitleStyles[face].have_foreground_color && element.m_have_color )
 					painter.setForegroundColor(element.m_color);
 				else
 					painter.setForegroundColor(subtitleStyles[face].foreground_color);
+				painter.setBackgroundColor(subtitleStyles[face].shadow_color);
 				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
 			}
 		}
