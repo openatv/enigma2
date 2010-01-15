@@ -930,12 +930,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			if (i->image)
 			{
 				FT_BitmapGlyph glyph = (FT_BitmapGlyph)i->image;
-				if (!glyph->bitmap.buffer)
-				{
-					FT_Done_Glyph(i->image);
-					i->image = NULL;
-					continue;
-				}
+				if (!glyph->bitmap.buffer) continue;
 				rx = i->x + glyph->left + offset.x();
 				ry = i->y - glyph->top + offset.y();
 				s = glyph->bitmap.buffer;
@@ -1036,11 +1031,6 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 					}
 				}
 			}
-			if (i->image)
-			{
-				FT_Done_Glyph(i->image);
-				i->image = NULL;
-			}
 		}
 	}
 }
@@ -1134,6 +1124,10 @@ void eTextPara::clear()
 	current_font = 0;
 	replacement_font = 0;
 
+	for (unsigned int i = 0; i < glyphs.size(); i++)
+	{
+		if (glyphs[i].image) FT_Done_Glyph(glyphs[i].image);
+	}
 	glyphs.clear();
 	totalheight = 0;
 }
