@@ -667,7 +667,7 @@ void gDC::exec(gOpcode *o)
 		else if (o->parm.renderText->flags & gPainter::RT_VALIGN_BOTTOM)
 		{
 			eRect bbox = para->getBoundBox();
-			int correction = o->parm.renderText->area.height() - bbox.height();
+			int correction = o->parm.renderText->area.height() - bbox.height() - 2;
 			offset += ePoint(0, correction);
 		}
 		para->blit(*this, offset, m_background_color_rgb, m_foreground_color_rgb);
