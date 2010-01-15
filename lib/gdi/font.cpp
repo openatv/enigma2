@@ -978,46 +978,64 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				d+=diff*buffer_stride;
 			}
 			if (sx>0)
-				for (int ay=0; ay<sy; ay++)
+			{
+				int extra_source_stride = pitch - sx;
+				if (!opcode)		// 4bit lookup to 8bit
 				{
-					if (!opcode)		// 4bit lookup to 8bit
+					register int extra_buffer_stride = buffer_stride - sx;
+					register __u8 *td=d;
+					for (int ay = 0; ay < sy; ay++)
 					{
-						register __u8 *td=d;
 						register int ax;
-						
+
 						for (ax=0; ax<sx; ax++)
-						{	
+						{
 							register int b=(*s++)>>4;
 							if(b)
 								*td++=lookup8[b];
 							else
 								td++;
 						}
-					} else if (opcode == 1)	// 8bit direct
+						s += extra_source_stride;
+						td += extra_buffer_stride;
+					}
+				}
+				else if (opcode == 1)	// 8bit direct
+				{
+					register int extra_buffer_stride = buffer_stride - sx;
+					register __u8 *td=d;
+					for (int ay = 0; ay < sy; ay++)
 					{
-						register __u8 *td=d;
 						register int ax;
 						for (ax=0; ax<sx; ax++)
-						{	
+						{
 							register int b=*s++;
 							*td++^=b;
 						}
-					} else
+						s += extra_source_stride;
+						td += extra_buffer_stride;
+					}
+				}
+				else
+				{
+					register int extra_buffer_stride = (buffer_stride >> 2) - sx;
+					register __u32 *td=(__u32*)d;
+					for (int ay = 0; ay < sy; ay++)
 					{
-						register __u32 *td=(__u32*)d;
 						register int ax;
 						for (ax=0; ax<sx; ax++)
-						{	
+						{
 							register int b=(*s++)>>4;
 							if(b)
 								*td++=lookup32[b];
 							else
 								td++;
 						}
+						s += extra_source_stride;
+						td += extra_buffer_stride;
 					}
-					s+=pitch-sx;
-					d+=buffer_stride;
 				}
+			}
 			if (i->image)
 			{
 				FT_Done_Glyph(i->image);
