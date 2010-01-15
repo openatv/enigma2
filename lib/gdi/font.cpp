@@ -122,13 +122,37 @@ int fontRenderClass::getFaceProperties(const std::string &face, FTC_FaceID &id, 
 }
 
 #ifdef HAVE_FREETYPE2
-FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit)
+inline FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit)
 #else
-FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit)
+inline FT_Error fontRenderClass::getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit)
 #endif
 {
-	FT_Error res=FTC_SBit_Cache_Lookup(sbitsCache, font, glyph_index, sbit);
-	return res;
+	return FTC_SBit_Cache_Lookup(sbitsCache, font, glyph_index, sbit);
+}
+
+#ifdef HAVE_FREETYPE2
+inline FT_Error fontRenderClass::getGlyphImage(FTC_Image_Desc *font, FT_UInt glyph_index, FT_Glyph *glyph, int bordersize)
+#else
+inline FT_Error fontRenderClass::getGlyphImage(FTC_Image_Desc *font, FT_ULong glyph_index, FT_Glyph *glyph, int bordersize)
+#endif
+{
+	FT_Glyph image;
+	FT_Error err = FTC_ImageCache_Lookup(imageCache, font, glyph_index, &image, NULL);
+	if (err) return err;
+
+	err = FT_Glyph_Copy(image, glyph);
+	if (err) return err;
+
+	if (bordersize)
+	{
+		if (bordersize != strokerRadius)
+		{
+			strokerRadius = bordersize;
+			FT_Stroker_Set(stroker, strokerRadius, FT_STROKER_LINECAP_ROUND, FT_STROKER_LINEJOIN_ROUND, 0);
+		}
+		return FT_Glyph_Stroke(glyph, stroker, 1);
+	}
+	return err;
 }
 
 std::string fontRenderClass::AddFont(const std::string &filename, const std::string &name, int scale, int renderflags)
@@ -199,7 +223,12 @@ fontRenderClass::fontRenderClass(): fb(fbClass::getInstance())
 		{
 			eDebug("[FONT] initializing font cache imagecache failed!");
 		}
+		if (FT_Stroker_New(library, &stroker))
+		{
+			eDebug("[FONT] initializing font stroker failed!");
+		}
 	}
+	strokerRadius = -1;
 	return;
 }
 
@@ -294,12 +323,21 @@ Font::Font(fontRenderClass *render, FTC_FaceID faceid, int isize, int tw, int re
 }
 
 #ifdef HAVE_FREETYPE2
-FT_Error Font::getGlyphBitmap(FT_UInt glyph_index, FTC_SBit *sbit)
+inline FT_Error Font::getGlyphBitmap(FT_UInt glyph_index, FTC_SBit *sbit)
 #else
-FT_Error Font::getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit)
+inline FT_Error Font::getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit)
 #endif
 {
 	return renderer->getGlyphBitmap(&font, glyph_index, sbit);
+}
+
+#ifdef HAVE_FREETYPE2
+inline FT_Error Font::getGlyphImage(FT_UInt glyph_index, FT_Glyph *glyph, int bordersize)
+#else
+inline FT_Error Font::getGlyphImage(FT_ULong glyph_index, FT_Glyph *glyph, int bordersize)
+#endif
+{
+	return renderer->getGlyphImage(&font, glyph_index, glyph, bordersize);
 }
 
 Font::~Font()
@@ -307,15 +345,44 @@ Font::~Font()
 }
 
 DEFINE_REF(eTextPara);
-int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags)
+int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt glyphIndex, int flags, int rflags, int border)
 {
-	FTC_SBit glyph;
-	if (current_font->getGlyphBitmap(glyphIndex, &glyph))
-		return 1;
+	int xadvance, top, left, width, height;
+	pGlyph ng;
+
+	if (border)
+	{
+		/* TODO: scale border radius with current_font scaling */
+		if (current_font->getGlyphImage(glyphIndex, &ng.image, 64 * border))
+			return 1;
+		if (ng.image->format != FT_GLYPH_FORMAT_BITMAP)
+		{
+			FT_Glyph_To_Bitmap(&ng.image, FT_RENDER_MODE_NORMAL, NULL, 1);
+			if (ng.image->format != FT_GLYPH_FORMAT_BITMAP) return 1;
+		}
+		xadvance = ng.image->advance.x >> 16;
+		FT_BitmapGlyph glyph = (FT_BitmapGlyph)ng.image;
+		top = glyph->top;
+		left = glyph->left;
+		width = glyph->bitmap.width;
+		height = glyph->bitmap.rows;
+	}
+	else
+	{
+		FTC_SBit glyph;
+		if (current_font->getGlyphBitmap(glyphIndex, &glyph))
+			return 1;
+
+		xadvance = glyph->xadvance;
+		top = glyph->top;
+		left = glyph->left;
+		width = glyph->width;
+		height = glyph->height;
+	}
 
 	int nx=cursor.x();
 
-	nx+=glyph->xadvance;
+	nx+=xadvance;
 
 	if ((rflags & RS_WRAP) && (nx >= area.right()))
 	{
@@ -367,7 +434,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		}
 	}
 
-	int xadvance=glyph->xadvance, kern=0;
+	int kern=0;
 
 	if (previous && use_kerning)
 	{
@@ -376,11 +443,10 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 		kern=delta.x>>6;
 	}
 
-	pGlyph ng;
-	ng.bbox.setLeft( (flags&GS_ISFIRST|cursor.x()-1)+glyph->left );
-	ng.bbox.setTop( cursor.y() - glyph->top );
-	ng.bbox.setWidth( glyph->width );
-	ng.bbox.setHeight( glyph->height );
+	ng.bbox.setLeft( (flags&GS_ISFIRST|cursor.x()-1)+left );
+	ng.bbox.setTop( cursor.y() - top );
+	ng.bbox.setWidth( width );
+	ng.bbox.setHeight( height );
 
 	xadvance += kern;
 	ng.bbox.setWidth(xadvance);
@@ -523,7 +589,7 @@ void eTextPara::setFont(Font *fnt, Font *replacement)
 void
 shape (std::vector<unsigned long> &string, const std::vector<unsigned long> &text);
 
-int eTextPara::renderString(const char *string, int rflags)
+int eTextPara::renderString(const char *string, int rflags, int border)
 {
 	singleLock s(ftlock);
 	
@@ -735,9 +801,9 @@ nprint:	isprintable=0;
 				if (!index)
 					eDebug("unicode U+%4lx not present", chr);
 				else
-					appendGlyph(replacement_font, replacement_face, index, flags, rflags);
+					appendGlyph(replacement_font, replacement_face, index, flags, rflags, border);
 			} else
-				appendGlyph(current_font, current_face, index, flags, rflags);
+				appendGlyph(current_font, current_face, index, flags, rflags, border);
 		}
 	}
 	bboxValid=false;
@@ -854,17 +920,43 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				lookup8 = lookup8_invert;
 				lookup32 = lookup32_invert;
 			}
-		
-			static FTC_SBit glyph_bitmap;
-			if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
-				continue;
-			int rx=i->x+glyph_bitmap->left + offset.x();
-			int ry=i->y-glyph_bitmap->top  + offset.y();
-		
-			__u8 *d=(__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
-			__u8 *s=glyph_bitmap->buffer;
-			register int sx=glyph_bitmap->width;
-			int sy=glyph_bitmap->height;
+
+			int rx, ry;
+			__u8 *d;
+			__u8 *s;
+			register int sx;;
+			int sy;
+			int pitch;
+			if (i->image)
+			{
+				FT_BitmapGlyph glyph = (FT_BitmapGlyph)i->image;
+				if (!glyph->bitmap.buffer)
+				{
+					FT_Done_Glyph(i->image);
+					i->image = NULL;
+					continue;
+				}
+				rx = i->x + glyph->left + offset.x();
+				ry = i->y - glyph->top + offset.y();
+				s = glyph->bitmap.buffer;
+				sx = glyph->bitmap.width;
+				sy = glyph->bitmap.rows;
+				pitch = glyph->bitmap.pitch;
+			}
+			else
+			{
+				static FTC_SBit glyph_bitmap;
+				if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
+					continue;
+				rx=i->x+glyph_bitmap->left + offset.x();
+				ry=i->y-glyph_bitmap->top  + offset.y();
+
+				s=glyph_bitmap->buffer;
+				sx=glyph_bitmap->width;
+				sy=glyph_bitmap->height;
+				pitch = glyph_bitmap->pitch;
+			}
+			d = (__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
 			if ((sy+ry) >= clip.rects[c].bottom())
 				sy=clip.rects[c].bottom()-ry;
 			if ((sx+rx) >= clip.rects[c].right())
@@ -880,7 +972,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			if (ry < clip.rects[c].top())
 			{
 				int diff=clip.rects[c].top()-ry;
-				s+=diff*glyph_bitmap->pitch;
+				s+=diff*pitch;
 				sy-=diff;
 				ry+=diff;
 				d+=diff*buffer_stride;
@@ -923,9 +1015,14 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 								td++;
 						}
 					}
-					s+=glyph_bitmap->pitch-sx;
+					s+=pitch-sx;
 					d+=buffer_stride;
 				}
+			if (i->image)
+			{
+				FT_Done_Glyph(i->image);
+				i->image = NULL;
+			}
 		}
 	}
 }
