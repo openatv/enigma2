@@ -109,11 +109,11 @@ def InitUsageConfig():
 		from enigma import eEPGCache
 		mask = 0xffffffff
 		if not config.epg.eit.value:
-			mask &= ~(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER);
+			mask &= ~(eEPGCache.NOWNEXT | eEPGCache.SCHEDULE | eEPGCache.SCHEDULE_OTHER)
 		if not config.epg.mhw.value:
 			mask &= ~eEPGCache.MHW
 		if not config.epg.freesat.value:
-			mask &= ~(eEPGCache.FREESAT_NOWNEXT | eEPGCache.FREESAT_SCHEDULE | eEPGCache.FREESAT_SCHEDULE_OTHER);
+			mask &= ~(eEPGCache.FREESAT_NOWNEXT | eEPGCache.FREESAT_SCHEDULE | eEPGCache.FREESAT_SCHEDULE_OTHER)
 		if not config.epg.viasat.value:
 			mask &= ~eEPGCache.VIASAT
 		eEPGCache.getInstance().setEpgSources(mask)
