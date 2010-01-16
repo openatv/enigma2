@@ -1343,6 +1343,7 @@ void eEPGCache::channel_data::startEPG()
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::SCHEDULE_OTHER)
 	{
 		mask.data[0] = 0x60;
+		mask.mask[0] = 0xF0;
 		m_ScheduleOtherReader->connectRead(slot(*this, &eEPGCache::channel_data::readData), m_ScheduleOtherConn);
 		m_ScheduleOtherReader->start(mask);
 		isRunning |= SCHEDULE_OTHER;
