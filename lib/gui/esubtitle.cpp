@@ -34,11 +34,11 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	unsigned int elements = m_page.m_elements.size();
 	if (elements)
 	{
+		int width = size().width() - startX * 2;
 		std::string colored_txt;
 		if (ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_colors", colored_txt) < 0
 		    || colored_txt != "True")
 		{
-			int width = size().width() * 2 / 3;
 			int height = size().height() / 3;
 
 			int lowerborder = 50;
@@ -49,7 +49,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 			}
 			for (unsigned int i = 1; i < elements; ++i)
 			{
-				m_page.m_elements[0].m_text += " ";
+				if (!m_page.m_elements[0].m_text.empty()) m_page.m_elements[0].m_text += "\\n";
 				m_page.m_elements[0].m_text += m_page.m_elements[i].m_text;
 				m_page.m_elements[i].m_text = "";
 			}
@@ -63,7 +63,6 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 		}
 		else
 		{
-			int width = size().width() - startX * 2;
 			int size_per_element = (size().height() - 25) / 24;
 			for (unsigned int i = 0; i < elements; ++i)
 			{
