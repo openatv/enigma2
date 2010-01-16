@@ -258,6 +258,7 @@ public:
 
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
+	RESULT playUrl(const char *url);
 	void stopFile();
 	
 	void setCueSheet(eCueSheet *cuesheet);

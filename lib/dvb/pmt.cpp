@@ -769,7 +769,14 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		if (m_pvr_channel)
 		{
 			m_pvr_channel->setCueSheet(cue);
-			m_pvr_channel->playFile(ref.path.c_str());
+			if (!ref.path.compare(0, 7, "http://"))
+			{
+				m_pvr_channel->playUrl(ref.path.c_str());
+			}
+			else
+			{
+				m_pvr_channel->playFile(ref.path.c_str());
+			}
 		}
 	}
 

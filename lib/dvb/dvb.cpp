@@ -1786,6 +1786,55 @@ RESULT eDVBChannel::playFile(const char *file)
 	return 0;
 }
 
+RESULT eDVBChannel::playUrl(const char *url)
+{
+	ASSERT(!m_frontend);
+	if (m_pvr_thread)
+	{
+		m_pvr_thread->stop();
+		delete m_pvr_thread;
+		m_pvr_thread = 0;
+	}
+
+	m_tstools.closeFile();
+
+	if (m_pvr_fd_dst < 0)
+	{
+#if HAVE_DVB_API_VERSION < 3
+		m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
+#else
+		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
+#endif
+		if (m_pvr_fd_dst < 0)
+		{
+			eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
+			return -ENODEV;
+		}
+	}
+
+	m_pvr_thread = new eDVBChannelFilePush();
+	m_pvr_thread->enablePVRCommit(1);
+	m_pvr_thread->setStreamMode(1);
+
+	m_event(this, evtPreStart);
+
+	if (m_pvr_thread->startUrl(url, m_pvr_fd_dst))
+	{
+		delete m_pvr_thread;
+		m_pvr_thread = 0;
+		::close(m_pvr_fd_dst);
+		m_pvr_fd_dst = -1;
+		eDebug("can't start PVR url %s (%m)", url);
+		return -ENOENT;
+	}
+	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
+
+	m_state = state_ok;
+	m_stateChanged(this);
+
+	return 0;
+}
+
 void eDVBChannel::stopFile()
 {
 	if (m_pvr_thread)
