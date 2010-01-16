@@ -210,6 +210,9 @@ class PluginDownloadBrowser(Screen):
 
 					supported_filesystems = ['ext3', 'ext2', 'reiser', 'reiser4']
 					list = []
+					mountpoint = '/'
+					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].free() > 5 * 1024 * 1024:
+						list.append((partitiondict[mountpoint].description, '', partitiondict[mountpoint]))
 					mountpoint = '/media/cf'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
 						list.append((partitiondict[mountpoint].description, '-d cf', partitiondict[mountpoint]))
@@ -219,9 +222,6 @@ class PluginDownloadBrowser(Screen):
 					mountpoint = '/media/hdd'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
 						list.append((partitiondict[mountpoint].description, '-d hdd', partitiondict[mountpoint]))
-					mountpoint = '/'
-					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].free() > 5 * 1024 * 1024:
-						list.append((partitiondict[mountpoint].description, '', partitiondict[mountpoint]))
 
 					if len(list):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list = list)
