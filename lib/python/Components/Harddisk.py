@@ -204,7 +204,15 @@ class Harddisk:
 			if path.realpath(parts[0]) == self.partitionPath("1"):
 				cmd = "/bin/mount -t ext3 " + parts[0]
 				res = system(cmd)
-				break
+				return (res >> 8)
+
+		# device is not in fstab
+		if self.type == self.DEVTYPE_UDEV:
+			# we can let udev do the job, re-read the partition table
+			res = system('/sbin/sfdisk -R ' + self.disk_path)
+			# give udev some time to make the mount, which it will do asynchronously
+			from time import sleep
+			sleep(3)
 
 		return (res >> 8)
 
