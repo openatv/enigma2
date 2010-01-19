@@ -89,7 +89,6 @@ class PluginBrowser(Screen):
 
 	def openExtensionmanager(self):
 		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
-			print "blah"
 			try:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:
