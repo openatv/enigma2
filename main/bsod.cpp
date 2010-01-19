@@ -101,6 +101,7 @@ static std::string getConfigFileValue(const char *entry)
 			return configvalue;
 		}
 	}
+	return "";
 }
 
 static std::string getFileContent(const char *file)
@@ -121,11 +122,11 @@ static std::string getFileContent(const char *file)
 				break;
 			std::string tmp = line;
 			std::string password;
-			int pwdpos = tmp.find(".password=", 0);
+			size_t pwdpos = tmp.find(".password=", 0);
 			if( pwdpos != std::string::npos)
 			{
 				filecontent += tmp.substr(0,pwdpos +10);
-				for ( int pos = pwdpos +10; pos < tmp.length()-1; ++pos )
+				for ( size_t pos = pwdpos +10; pos < tmp.length()-1; ++pos )
 				{
 					filecontent += "X";
 				}
@@ -423,7 +424,7 @@ void oops(const mcontext_t &context, int dumpcode)
 	{
 		eDebugNoNewLine(" %08x", (int)context.gregs[i]);
 		if ((i&3) == 3)
-			eDebug("");
+			eDebug(" ");
 	}
 		/* this is temporary debug stuff. */
 	if (dumpcode && ((unsigned long)context.pc) > 0x10000) /* not a zero pointer */
