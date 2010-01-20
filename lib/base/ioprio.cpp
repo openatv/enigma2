@@ -12,6 +12,7 @@
 extern "C" int sys_ioprio_set(int, int, int);
 extern "C" int sys_ioprio_get(int, int);
 
+#ifndef __NR_ioprio_set
 #if defined(__i386__)
 #define __NR_ioprio_set		289
 #define __NR_ioprio_get		290
@@ -29,6 +30,7 @@ extern "C" int sys_ioprio_get(int, int);
 #define __NR_ioprio_get		4285
 #else
 #error "Unsupported arch"
+#endif
 #endif
 
 #if defined(_syscall3) && defined(_syscall2)
