@@ -754,6 +754,7 @@ class ChannelSelectionBase(Screen):
 		self.servicePath = [ ]
 
 		self.mode = MODE_TV
+		self.dopipzap = False
 
 		self.pathChangeDisabled = False
 
