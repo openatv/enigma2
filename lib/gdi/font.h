@@ -92,11 +92,17 @@ public:
 #define GS_INVERT   8
 #define GS_SOFTHYPHEN 16
 #define GS_HYPHEN   32
+#define GS_COLORCHANGE 64
 #define GS_CANBREAK (GS_ISSPACE|GS_SOFTHYPHEN|GS_HYPHEN)
 
 struct pGlyph
 {
-	int x, y, w;
+	union
+	{
+		int y;
+		unsigned long newcolor;
+	};
+	int x, w;
 	ePtr<Font> font;
 #ifdef HAVE_FREETYPE2
 	FT_UInt glyph_index;
