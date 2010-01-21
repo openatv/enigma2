@@ -536,8 +536,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		else:
 			# full browser returns only a string
 			dest = os.path.normpath(choice)
+		self.moveMovieFiles(self.getCurrent(), dest)
+
+	def moveMovieFiles(self, current, dest):
+		# current should be 'ref' type, dest a simple path string
 		print "[Movie] Moving to:", dest
-		current = self.getCurrent()
 		src = current.getPath()
 		srcPath, srcName = os.path.split(src)
 		if os.path.normpath(srcPath) == dest:
@@ -563,6 +566,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				os.rename(item[0], item[1])
 				movedList.append(item)
 			self["list"].removeService(current)
+			return True
 		except Exception, e:
 			print "[MovieSelection] Failed move:", e
 			for item in movedList:
@@ -570,17 +574,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 					os.rename(item[1], item[0])
 				except:
 					print "[MovieSelection] Failed to undo move:", item
-			# this will crash (RuntimeError: modal open are allowed only from a screen which is modal)
-			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)			
+			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
+			return False
 
 	def delete(self):
 		current = self.getCurrent()
 		if (current is not None) and (not current.flags & eServiceReference.mustDescent):
 			serviceHandler = eServiceCenter.getInstance()
-			offline = serviceHandler.offlineOperations(current)
 			info = serviceHandler.info(current)
 			name = info and info.getName(current) or _("this recording")
 			result = False
+			# simulation not implemented, so why bother...
+			offline = serviceHandler.offlineOperations(current)
 			if offline is not None:
 				# simulate first
 				if not offline.deleteFromDisk(1):
