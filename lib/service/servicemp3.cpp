@@ -127,11 +127,10 @@ RESULT eMP3ServiceOfflineOperations::deleteFromDisk(int simulate)
 		{
 			eDebug("Removing %s...", i->c_str());
 			if (eraser)
-				eraser->erase(i->c_str());
+				eraser->erase(*i);
 			else
 				::unlink(i->c_str());
 		}
-		
 		return 0;
 	}
 }

@@ -10,14 +10,14 @@ class eBackgroundFileEraser: public eMainloop, private eThread, public Object
 	struct Message
 	{
 		int type;
-		const char *filename;
+		const char* filename;
 		enum
 		{
 			erase,
 			quit
 		};
-		Message(int type=0, const char *filename=0)
-			:type(type), filename(filename)
+		Message(int type=0, const char* afilename=NULL)
+			:type(type), filename(afilename)
 		{}
 	};
 	eFixedMessagePump<Message> messages;
@@ -34,7 +34,7 @@ public:
 #ifdef SWIG
 public:
 #endif
-	void erase(const char * filename);
+	void erase(const std::string& filename);
 	static eBackgroundFileEraser *getInstance() { return instance; }
 };
 

@@ -47,17 +47,21 @@ void eBackgroundFileEraser::thread()
 	stop_thread_timer->stop();
 }
 
-void eBackgroundFileEraser::erase(const char *filename)
+void eBackgroundFileEraser::erase(const std::string& filename)
 {
-	if (filename)
+	if (!filename.empty())
 	{
-		char buf[255];
-		snprintf(buf, 255, "%s.del", filename);
-		if (rename(filename, buf)<0)
-			;/*perror("rename file failed !!!");*/
+		std::string delname(filename);
+		delname.append(".del");
+		if (rename(filename.c_str(), delname.c_str())<0)
+		{
+			// if rename fails, try deleting in foreground.
+			eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
+			::unlink(filename.c_str());
+		}
 		else
 		{
-			messages.send(Message(Message::erase, strdup(buf)));
+			messages.send(Message(Message::erase, strdup(delname.c_str())));
 			run();
 		}
 	}
@@ -68,14 +72,10 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 	switch (msg.type)
 	{
 		case Message::erase:
-			if ( msg.filename )
-			{
-				if ( ::unlink(msg.filename) < 0 )
-					eDebug("remove file %s failed (%m)", msg.filename);
-				else
-					eDebug("file %s erased", msg.filename);
-				free((char*)msg.filename);
-			}
+			if ( ::unlink(msg.filename) < 0 )
+				eDebug("remove file %s failed (%m)", msg.filename);
+			else
+				eDebug("file %s erased", msg.filename);
 			stop_thread_timer->start(1000, true); // stop thread in one seconds
 			break;
 		case Message::quit:
