@@ -598,6 +598,7 @@ class InfoBarEPG:
 
 		if list:
 			list.append((_("show single service EPG..."), self.openSingleServiceEPG))
+			list.append((_("Multi EPG"), self.openMultiServiceEPG))
 			self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list = list, skin_name = "EPGExtensionsList")
 		else:
 			self.openSingleServiceEPG()
