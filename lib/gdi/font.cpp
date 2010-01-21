@@ -745,6 +745,27 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 						case 'r':
 							i++;
 							goto nprint;
+						case 'c':
+						{
+							char color[8];
+							int codeidx;
+							for (codeidx = 0; codeidx < 8; codeidx++)
+							{
+								if ((i + 2 + codeidx) == uc_visual.end()) break;
+								color[codeidx] = (char)((*(i + 2 + codeidx)) & 0xff);
+							}
+							if (codeidx == 8)
+							{
+								pGlyph ng;
+								ng.newcolor = gRGB(color).argb();
+								ng.flags = GS_COLORCHANGE;
+								ng.w = 0;
+								glyphs.push_back(ng);
+								i += 1 + codeidx;
+								continue;
+							}
+							break;
+						}
 						default:
 						;
 					}
@@ -848,56 +869,15 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
 	gSurface *surface = target->surface;
+	gRGB currentforeground = background; /* force an initial color change */
 
-	register int opcode;
+	register int opcode = 0;
 
 	gColor *lookup8, lookup8_invert[16];
 	gColor *lookup8_normal=0;
 
 	__u32 lookup32_normal[16], lookup32_invert[16], *lookup32;
-	
-	if (surface->bpp == 8)
-	{
-		if (surface->clut.data)
-		{
-			lookup8_normal=getColor(surface->clut, background, foreground).lookup;
-			
-			int i;
-			for (i=0; i<16; ++i)
-				lookup8_invert[i] = lookup8_normal[i^0xF];
-			
-			opcode=0;
-		} else
-			opcode=1;
-	} else if (surface->bpp == 32)
-	{
-		opcode=3;
 
-		for (int i=0; i<16; ++i)
-		{
-#define BLEND(y, x, a) (y + (((x-y) * a)>>8))
-
-			unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
-			int sa = i * 16;
-			if (sa < 256)
-			{
-				da = BLEND(background.a, foreground.a, sa) & 0xFF;
-				dr = BLEND(background.r, foreground.r, sa) & 0xFF;
-				dg = BLEND(background.g, foreground.g, sa) & 0xFF;
-				db = BLEND(background.b, foreground.b, sa) & 0xFF;
-			}
-#undef BLEND
-			da ^= 0xFF;
-			lookup32_normal[i]=db | (dg << 8) | (dr << 16) | (da << 24);;
-		}
-		for (int i=0; i<16; ++i)
-			lookup32_invert[i]=lookup32_normal[i^0xF];
-	} else
-	{
-		eWarning("can't render to %dbpp", surface->bpp);
-		return;
-	}
-	
 	gRegion sarea(eRect(0, 0, surface->x, surface->y));
 	gRegion clip = dc.getClip() & sarea;
 	clip &= eRect(area.left() + offset.x(), area.top() + offset.y(), area.width(), area.height()+(current_face->size->metrics.ascender>>6));
@@ -906,8 +886,65 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	
 	for (unsigned int c = 0; c < clip.rects.size(); ++c)
 	{
+		bool setcolor = false;
+		if (currentforeground != foreground)
+		{
+			currentforeground = foreground;
+			setcolor = true;
+		}
 		for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
 		{
+			if (setcolor)
+			{
+				setcolor = false;
+				if (surface->bpp == 8)
+				{
+					if (surface->clut.data)
+					{
+						lookup8_normal=getColor(surface->clut, background, currentforeground).lookup;
+
+						int i;
+						for (i=0; i<16; ++i)
+							lookup8_invert[i] = lookup8_normal[i^0xF];
+
+						opcode=0;
+					} else
+						opcode=1;
+				} else if (surface->bpp == 32)
+				{
+					opcode=3;
+
+					for (int i=0; i<16; ++i)
+					{
+#define BLEND(y, x, a) (y + (((x-y) * a)>>8))
+
+						unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
+						int sa = i * 16;
+						if (sa < 256)
+						{
+							da = BLEND(background.a, currentforeground.a, sa) & 0xFF;
+							dr = BLEND(background.r, currentforeground.r, sa) & 0xFF;
+							dg = BLEND(background.g, currentforeground.g, sa) & 0xFF;
+							db = BLEND(background.b, currentforeground.b, sa) & 0xFF;
+						}
+#undef BLEND
+						da ^= 0xFF;
+						lookup32_normal[i]=db | (dg << 8) | (dr << 16) | (da << 24);;
+					}
+					for (int i=0; i<16; ++i)
+						lookup32_invert[i]=lookup32_normal[i^0xF];
+				} else
+				{
+					eWarning("can't render to %dbpp", surface->bpp);
+					return;
+				}
+			}
+			if (i->flags & GS_COLORCHANGE)
+			{
+				currentforeground = i->newcolor;
+				setcolor = true;
+				continue;
+			}
 			if (i->flags & GS_SOFTHYPHEN)
 				continue;
 
