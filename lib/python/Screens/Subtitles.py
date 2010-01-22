@@ -9,6 +9,7 @@ from Tools.ISO639 import LanguageCodes
 
 config.subtitles = ConfigSubsection()
 config.subtitles.txt_subtitle_colors = ConfigYesNo(default = False)
+config.subtitles.txt_subtitle_original_position = ConfigYesNo(default = False)
 config.subtitles.txt_subtitle_position = ConfigSelection(
 	choices =
 		[("0", "0"),
@@ -84,8 +85,9 @@ class Subtitles(Screen, ConfigListScreen):
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles") + ' ' + LanguageCodes[x[4]][0], ConfigNothing(), x))
 					else:
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d " % x[1] +x[4], ConfigNothing(), x))
-		list.append(getConfigListEntry(_("use TXT colors and position"), config.subtitles.txt_subtitle_colors))
-		list.append(getConfigListEntry(_("TXT subtitle position"), config.subtitles.txt_subtitle_position))
+		list.append(getConfigListEntry(_("use original TXT colors"), config.subtitles.txt_subtitle_colors))
+		list.append(getConfigListEntry(_("use original TXT position"), config.subtitles.txt_subtitle_original_position))
+		list.append(getConfigListEntry(_("custom TXT subtitle position"), config.subtitles.txt_subtitle_position))
 #		return _("Disable subtitles")
 		self["config"].list = list
 		self["config"].l.setList(list)
