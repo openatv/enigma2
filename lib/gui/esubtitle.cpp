@@ -26,18 +26,23 @@ eSubtitleWidget::eSubtitleWidget(eWidget *parent)
 #define startX 50
 void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 {
+	eDVBTeletextSubtitlePage newpage = p;
 	m_page = p;
+	m_page.clear();
 	m_page_ok = 1;
 	invalidate(m_visible_region);  // invalidate old visible regions
 	m_visible_region.rects.clear();
 
-	unsigned int elements = m_page.m_elements.size();
+	unsigned int elements = newpage.m_elements.size();
 	if (elements)
 	{
 		int width = size().width() - startX * 2;
-		std::string colored_txt;
-		if (ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_colors", colored_txt) < 0
-		    || colored_txt != "True")
+		std::string configvalue;
+		bool original_colors = (ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_colors", configvalue) >= 0 && configvalue == "True");
+		bool original_position = (ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_original_position", configvalue) >= 0 && configvalue == "True");
+		gRGB color = original_colors ? newpage.m_elements[0].m_color : gRGB(255, 255, 255);
+
+		if (!original_position)
 		{
 			int height = size().height() / 3;
 
@@ -47,13 +52,24 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 			{
 				lowerborder = atoi(subtitle_position.c_str());
 			}
-			for (unsigned int i = 1; i < elements; ++i)
+			int line = newpage.m_elements[0].m_source_line;
+			/* create a new page with just one text element */
+			m_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(color, "", 0));
+			for (unsigned int i = 0; i < elements; ++i)
 			{
-				if (!m_page.m_elements[0].m_text.empty()) m_page.m_elements[0].m_text += "\\n";
-				m_page.m_elements[0].m_text += m_page.m_elements[i].m_text;
-				m_page.m_elements[i].m_text = "";
+				if (!m_page.m_elements[0].m_text.empty()) m_page.m_elements[0].m_text += " ";
+				if (original_colors && color != newpage.m_elements[i].m_color)
+				{
+					color = newpage.m_elements[i].m_color;
+					m_page.m_elements[0].m_text += (std::string)color;
+				}
+				if (line != newpage.m_elements[i].m_source_line)
+				{
+					line = newpage.m_elements[i].m_source_line;
+					m_page.m_elements[0].m_text += "\\n";
+				}
+				m_page.m_elements[0].m_text += newpage.m_elements[i].m_text;
 			}
-			m_page.m_elements[0].m_color = gRGB(255, 255, 255);
 			eRect &area = m_page.m_elements[0].m_area;
 			area.setLeft((size().width() - width) / 2);
 			area.setTop(size().height() - height - lowerborder);
@@ -64,7 +80,26 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 		else
 		{
 			int size_per_element = (size().height() - 25) / 24;
+			int line = newpage.m_elements[0].m_source_line;
+			int currentelement = 0;
+			m_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(color, "", line));
 			for (unsigned int i = 0; i < elements; ++i)
+			{
+				if (!m_page.m_elements[currentelement].m_text.empty()) m_page.m_elements[currentelement].m_text += " ";
+				if (original_colors && color != newpage.m_elements[i].m_color)
+				{
+					color = newpage.m_elements[i].m_color;
+					m_page.m_elements[currentelement].m_text += (std::string)color;
+				}
+				if (line != newpage.m_elements[i].m_source_line)
+				{
+					line = newpage.m_elements[i].m_source_line;
+					m_page.m_elements.push_back(eDVBTeletextSubtitlePageElement(color, "", line));
+					currentelement++;
+				}
+				m_page.m_elements[currentelement].m_text += newpage.m_elements[i].m_text;
+			}
+			for (unsigned int i = 0; i < m_page.m_elements.size(); i++)
 			{
 				eRect &area = m_page.m_elements[i].m_area;
 				area.setLeft(startX);
@@ -181,15 +216,11 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				if (!element.m_text.empty())
 				{
 					eRect &area = element.m_area;
-					painter.setForegroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
-					int flags = gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER;
-					painter.renderText(area, element.m_text, flags, 3);
-					painter.setBackgroundColor(subtitleStyles[Subtitle_TTX].shadow_color);
 					if (!subtitleStyles[Subtitle_TTX].have_foreground_color)
 						painter.setForegroundColor(element.m_color);
 					else
 						painter.setForegroundColor(subtitleStyles[Subtitle_TTX].foreground_color);
-					painter.renderText(area, element.m_text, flags);
+					painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER, subtitleStyles[Subtitle_TTX].shadow_color, 3);
 				}
 			}
 		}
@@ -222,14 +253,11 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&amp;", "&");
 				painter.setFont(subtitleStyles[face].font);
 				eRect &area = element.m_area;
-				painter.setForegroundColor(subtitleStyles[face].shadow_color);
-				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, 3);
 				if ( !subtitleStyles[face].have_foreground_color && element.m_have_color )
 					painter.setForegroundColor(element.m_color);
 				else
 					painter.setForegroundColor(subtitleStyles[face].foreground_color);
-				painter.setBackgroundColor(subtitleStyles[face].shadow_color);
-				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER);
+				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, subtitleStyles[face].shadow_color, 3);
 			}
 		}
 		else if (m_dvb_page_ok)
