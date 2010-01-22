@@ -57,10 +57,10 @@ class fontRenderClass
 	int getFaceProperties(const std::string &face, FTC_FaceID &id, int &renderflags);
 #ifdef HAVE_FREETYPE2
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_UInt glyph_index, FTC_SBit *sbit);
-	FT_Error getGlyphImage(FTC_Image_Desc *font, FT_UInt glyph_index, FT_Glyph *glyph, int bordersize);
+	FT_Error getGlyphImage(FTC_Image_Desc *font, FT_UInt glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 #else
 	FT_Error getGlyphBitmap(FTC_Image_Desc *font, FT_ULong glyph_index, FTC_SBit *sbit);
-	FT_Error getGlyphImage(FTC_Image_Desc *font, FT_ULong glyph_index, FT_Glyph *glyph, int bordersize);
+	FT_Error getGlyphImage(FTC_Image_Desc *font, FT_ULong glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 #endif
 	static fontRenderClass *instance;
 #else
@@ -111,10 +111,11 @@ struct pGlyph
 #endif
 	int flags;
 	eRect bbox;
-	FT_Glyph image;
+	FT_Glyph image, borderimage;
 	pGlyph()
 	{
 		image = NULL;
+		borderimage = NULL;
 	}
 };
 
@@ -162,7 +163,7 @@ public:
 
 	void clear();
 
-	void blit(gDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground);
+	void blit(gDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground, bool border = false);
 
 	enum
 	{
@@ -217,10 +218,10 @@ public:
 	fontRenderClass *renderer;
 #ifdef HAVE_FREETYPE2
 	FT_Error getGlyphBitmap(FT_UInt glyph_index, FTC_SBit *sbit);
-	FT_Error getGlyphImage(FT_UInt glyph_index, FT_Glyph *glyph, int bordersize);
+	FT_Error getGlyphImage(FT_UInt glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 #else
 	FT_Error getGlyphBitmap(FT_ULong glyph_index, FTC_SBit *sbit);
-	FT_Error getGlyphImage(FT_ULong glyph_index, FT_Glyph *glyph, int bordersize);
+	FT_Error getGlyphImage(FT_ULong glyph_index, FT_Glyph *glyph, FT_Glyph *borderglyph, int bordersize);
 #endif
 	FT_Face face;
 	FT_Size size;
