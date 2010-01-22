@@ -17,6 +17,7 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 	m_have_shadow_color = 0;
 	
 	m_nowrap = 0;
+	m_border_size = 0;
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -108,7 +109,7 @@ int eLabel::event(int event, void *data, void *data2)
 				flags |= gPainter::RT_WRAP;
 			
 				/* if we don't have shadow, m_shadow_offset will be 0,0 */
-			painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags);
+			painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags, m_border_color, m_border_size);
 			
 			if (m_have_shadow_color)
 			{
@@ -173,7 +174,7 @@ void eLabel::setHAlign(int align)
 
 void eLabel::setForegroundColor(const gRGB &col)
 {
-	if ((!m_have_foreground_color) || !(m_foreground_color == col))
+	if ((!m_have_foreground_color) || (m_foreground_color != col))
 	{
 		m_foreground_color = col;
 		m_have_foreground_color = 1;
@@ -183,7 +184,7 @@ void eLabel::setForegroundColor(const gRGB &col)
 
 void eLabel::setShadowColor(const gRGB &col)
 {
-	if ((!m_have_shadow_color) || !(m_shadow_color == col))
+	if ((!m_have_shadow_color) || (m_shadow_color != col))
 	{
 		m_shadow_color = col;
 		m_have_shadow_color = 1;
@@ -194,6 +195,20 @@ void eLabel::setShadowColor(const gRGB &col)
 void eLabel::setShadowOffset(const ePoint &offset)
 {
 	m_shadow_offset = offset;
+}
+
+void eLabel::setBorderColor(const gRGB &col)
+{
+	if (m_border_color != col)
+	{
+		m_border_color = col;
+		invalidate();
+	}
+}
+
+void eLabel::setBorderWidth(int size)
+{
+	m_border_size = size;
 }
 
 void eLabel::setNoWrap(int nowrap)
