@@ -55,15 +55,12 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 		delname.append(".del");
 		if (rename(filename.c_str(), delname.c_str())<0)
 		{
-			// if rename fails, try deleting in foreground.
+			// if rename fails, try deleting the file itself without renaming.
 			eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
-			::unlink(filename.c_str());
+			delname = filename;
 		}
-		else
-		{
-			messages.send(Message(Message::erase, strdup(delname.c_str())));
-			run();
-		}
+		messages.send(Message(Message::erase, strdup(delname.c_str())));
+		run();
 	}
 }
 
@@ -74,8 +71,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		case Message::erase:
 			if ( ::unlink(msg.filename) < 0 )
 				eDebug("remove file %s failed (%m)", msg.filename);
-			else
-				eDebug("file %s erased", msg.filename);
+			free(msg.filename);
 			stop_thread_timer->start(1000, true); // stop thread in one seconds
 			break;
 		case Message::quit:

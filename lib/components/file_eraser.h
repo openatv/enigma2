@@ -16,7 +16,10 @@ class eBackgroundFileEraser: public eMainloop, private eThread, public Object
 			erase,
 			quit
 		};
-		Message(int type=0, const char* afilename=NULL)
+		Message(int type=0)
+			:type(type), filename(NULL)
+		{}
+		Message(int type, const char* afilename)
 			:type(type), filename(afilename)
 		{}
 	};
