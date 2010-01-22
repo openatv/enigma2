@@ -1,6 +1,7 @@
 #ifndef __lib_gui_subtitle_h
 #define __lib_gui_subtitle_h
 
+#include <map>
 #include <lib/gui/ewidget.h>
 #include <lib/dvb/teletext.h>
 #include <lib/dvb/subtitle.h>
@@ -48,13 +49,13 @@ public:
 	struct eSubtitleStyle
 	{
 		subfont_t face;
-		int have_foreground_color, have_shadow_color;
-		gRGB foreground_color, shadow_color;
-		ePoint shadow_offset;
+		int have_foreground_color;
+		gRGB foreground_color, border_color;
+		int  border_width;
 		ePtr<gFont> font;
 	};
 
-	static void setFontStyle(subfont_t face, gFont *font, int autoColor, const gRGB &col, const gRGB &shadowCol, const ePoint &shadowOffset);
+	static void setFontStyle(subfont_t face, gFont *font, int autoColor, const gRGB &col, const gRGB &borderCol, int borderWidth);
 
 protected:
 	int event(int event, void *data=0, void *data2=0);
@@ -72,7 +73,7 @@ private:
 
 	gRegion m_visible_region;
 
-	static eSubtitleStyle subtitleStyles[Subtitle_MAX];
+	static std::map<subfont_t, eSubtitleStyle> subtitleStyles;
 
 	ePtr<gPixmap> m_pixmap;  // pixmap to paint on next evtPaint
 	eRect m_pixmap_dest;

@@ -3,15 +3,8 @@
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
 
-	/*
-		ok, here's much room for improvements.
-	
-		first, the placing of the individual elements is sub-optimal.
-		then maybe a colored background would be an option.
-		....
- 	*/	
 
-eSubtitleWidget::eSubtitleStyle eSubtitleWidget::subtitleStyles[Subtitle_MAX];
+std::map<eSubtitleWidget::subfont_t, eSubtitleWidget::eSubtitleStyle> eSubtitleWidget::subtitleStyles;
 
 eSubtitleWidget::eSubtitleWidget(eWidget *parent)
 	: eWidget(parent), m_hide_subtitles_timer(eTimer::create(eApp))
@@ -220,7 +213,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 						painter.setForegroundColor(element.m_color);
 					else
 						painter.setForegroundColor(subtitleStyles[Subtitle_TTX].foreground_color);
-					painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER, subtitleStyles[Subtitle_TTX].shadow_color, 3);
+					painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER, subtitleStyles[Subtitle_TTX].border_color, subtitleStyles[Subtitle_TTX].border_width);
 				}
 			}
 		}
@@ -257,7 +250,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					painter.setForegroundColor(element.m_color);
 				else
 					painter.setForegroundColor(subtitleStyles[face].foreground_color);
-				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, subtitleStyles[face].shadow_color, 3);
+				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, subtitleStyles[face].border_color, subtitleStyles[face].border_width);
 			}
 		}
 		else if (m_dvb_page_ok)
@@ -276,12 +269,12 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 	}
 }
 
-void eSubtitleWidget::setFontStyle(subfont_t face, gFont *font, int haveColor, const gRGB &col, const gRGB &shadowCol, const ePoint &shadowOffset)
+void eSubtitleWidget::setFontStyle(subfont_t face, gFont *font, int haveColor, const gRGB &col, const gRGB &borderCol, int borderWidth)
 {
 	subtitleStyles[face].font = font;
 	subtitleStyles[face].have_foreground_color = haveColor;
 	subtitleStyles[face].foreground_color = col;
-	subtitleStyles[face].shadow_color = shadowCol;
-	subtitleStyles[face].shadow_offset = shadowOffset;
+	subtitleStyles[face].border_color = borderCol;
+	subtitleStyles[face].border_width = borderWidth;
 }
 

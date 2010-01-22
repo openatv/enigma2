@@ -387,14 +387,19 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			else:
 				foregroundColor = gRGB(0xFFFFFF)
 				haveColor = 0
-			col = get_attr("shadowColor")
+			col = get_attr("borderColor")
 			if col:
-				shadowColor = parseColor(col)
+				borderColor = parseColor(col)
 			else:
-				shadowColor = gRGB(0)
-			shadowOffset = parsePosition(get_attr("shadowOffset"), scale)
+				borderColor = gRGB(0)
+			borderwidth = get_attr("borderWidth")
+			if borderwidth is None:
+				# default: use a subtitle border
+				borderwidth = 3
+			else:
+				borderWidth = int(borderwidth)
 			face = eSubtitleWidget.__dict__[get_attr("name")]
-			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, shadowColor, shadowOffset)
+			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, shadowColor, shadowOffset, borderColor, borderWidth)
 
 	for windowstyle in skin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
