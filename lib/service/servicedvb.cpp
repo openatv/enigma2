@@ -2089,12 +2089,13 @@ RESULT eDVBServicePlay::startTimeshift()
 	return 0;
 }
 
-RESULT eDVBServicePlay::stopTimeshift()
+RESULT eDVBServicePlay::stopTimeshift(bool switchToLive=true)
 {
 	if (!m_timeshift_enabled)
 		return -1;
 	
-	switchToLive();
+	if (switchToLive)
+		switchToLive();
 	
 	m_timeshift_enabled = 0;
 	
