@@ -395,11 +395,11 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 			borderwidth = get_attr("borderWidth")
 			if borderwidth is None:
 				# default: use a subtitle border
-				borderwidth = 3
+				borderWidth = 3
 			else:
 				borderWidth = int(borderwidth)
 			face = eSubtitleWidget.__dict__[get_attr("name")]
-			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, shadowColor, shadowOffset, borderColor, borderWidth)
+			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, borderColor, borderWidth)
 
 	for windowstyle in skin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
