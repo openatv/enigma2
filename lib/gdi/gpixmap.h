@@ -29,10 +29,14 @@ struct gRGB
 	gRGB(const char *colorstring)
 	{
 		unsigned long val = 0;
-		for (int i = 0; i < 8; i++)
+		if (colorstring)
 		{
-			if (i) val <<= 4;
-			val |= (colorstring[i]) & 0x0f;
+			for (int i = 0; i < 8; i++)
+			{
+				if (i) val <<= 4;
+				if (!colorstring[i]) break;
+				val |= (colorstring[i]) & 0x0f;
+			}
 		}
 		set(val);
 	}
