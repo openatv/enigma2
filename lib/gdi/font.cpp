@@ -894,7 +894,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	ePtr<gPixmap> target;
 	dc.getPixmap(target);
 	gSurface *surface = target->surface;
-	gRGB currentforeground = background; /* force an initial color change */
+	gRGB currentforeground = foreground;
+	currentforeground.r++; /* force an initial color change in the render loop */
 
 	register int opcode = 0;
 
