@@ -1,6 +1,7 @@
 #ifndef __lib_base_message_h
 #define __lib_base_message_h
 
+#include <queue>
 #include <lib/base/ebase.h>
 #include <lib/python/connections.h>
 #include <lib/python/swig.h>
@@ -37,26 +38,62 @@ protected:
  * Automatically creates a eSocketNotifier and gives you a callback.
  */
 template<class T>
-class eFixedMessagePump: private eMessagePump, public Object
+class eFixedMessagePump: public Object
 {
 	ePtr<eSocketNotifier> sn;
+	std::queue<T> m_queue;
+	int m_pipe[2];
+	eSingleLock lock;
 	void do_recv(int)
 	{
-		T msg;
-		recv(&msg, sizeof(msg));
-		/*emit*/ recv_msg(msg);
+		eSingleLocker s(lock);
+		int res;
+		while (1)
+		{
+			char data[64];
+			/*
+			 * This may look weird, but it's save.
+			 * A read on a pipe will immediately return with whatever data is
+			 * available, when it is readable.
+			 * (and we know it is readable, because we are called by eSocketNotifier)
+			 */
+			res = ::read(m_pipe[0], data, sizeof(data));
+			if (res < 0 && errno == EINTR) continue;
+			break;
+		}
+		if (res <= 0) return;
+		while (!m_queue.empty())
+		{
+			T msg = m_queue.front();
+			m_queue.pop();
+			/*emit*/ recv_msg(msg);
+		}
 	}
 public:
 	Signal1<void,const T&> recv_msg;
 	void send(const T &msg)
 	{
-		eMessagePump::send(&msg, sizeof(msg));
+		eSingleLocker s(lock);
+		char byte = 0;
+		m_queue.push(msg);
+		while (1)
+		{
+			int res = ::write(m_pipe[1], &byte, sizeof(byte));
+			if (res < 0 && errno == EINTR) continue;
+			break;
+		}
 	}
-	eFixedMessagePump(eMainloop *context, int mt): eMessagePump(mt)
+	eFixedMessagePump(eMainloop *context, int mt) : lock(true)
 	{
-		sn=eSocketNotifier::create(context, getOutputFD(), eSocketNotifier::Read);
+		pipe(m_pipe);
+		sn=eSocketNotifier::create(context, m_pipe[0], eSocketNotifier::Read);
 		CONNECT(sn->activated, eFixedMessagePump<T>::do_recv);
 		sn->start();
+	}
+	~eFixedMessagePump()
+	{
+		close(m_pipe[0]);
+		close(m_pipe[1]);
 	}
 	void start() { if (sn) sn->start(); }
 	void stop() { if (sn) sn->stop(); }
