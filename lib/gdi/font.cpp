@@ -962,8 +962,11 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 		if (i->flags & GS_COLORCHANGE)
 		{
 			/* don't do colorchanges in borders */
-			if (!border) currentforeground = i->newcolor;
-			setcolor = true;
+			if (!border)
+			{
+				currentforeground = i->newcolor;
+				setcolor = true;
+			}
 			continue;
 		}
 		if (i->flags & GS_SOFTHYPHEN)
