@@ -979,21 +979,21 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			lookup32 = lookup32_invert;
 		}
 
-		int rx, ry;
-		__u8 *d;
-		__u8 *s;
-		register int sx;;
-		int sy;
+		int rxbase, rybase;
+		__u8 *dbase;
+		__u8 *sbase;
+		int sxbase;
+		int sybase;
 		int pitch;
 		if (i->image)
 		{
 			FT_BitmapGlyph glyph = border ? (FT_BitmapGlyph)i->borderimage : (FT_BitmapGlyph)i->image;
 			if (!glyph->bitmap.buffer) continue;
-			rx = i->x + glyph->left + offset.x();
-			ry = i->y - glyph->top + offset.y();
-			s = glyph->bitmap.buffer;
-			sx = glyph->bitmap.width;
-			sy = glyph->bitmap.rows;
+			rxbase = i->x + glyph->left + offset.x();
+			rybase = i->y - glyph->top + offset.y();
+			sbase = glyph->bitmap.buffer;
+			sxbase = glyph->bitmap.width;
+			sybase = glyph->bitmap.rows;
 			pitch = glyph->bitmap.pitch;
 		}
 		else
@@ -1001,21 +1001,26 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			static FTC_SBit glyph_bitmap;
 			if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
 				continue;
-			rx=i->x+glyph_bitmap->left + offset.x();
-			ry=i->y-glyph_bitmap->top  + offset.y();
+			rxbase=i->x+glyph_bitmap->left + offset.x();
+			rybase=i->y-glyph_bitmap->top  + offset.y();
 
-			s=glyph_bitmap->buffer;
-			sx=glyph_bitmap->width;
-			sy=glyph_bitmap->height;
+			sbase=glyph_bitmap->buffer;
+			sxbase=glyph_bitmap->width;
+			sybase=glyph_bitmap->height;
 			pitch = glyph_bitmap->pitch;
 		}
-		d = (__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
+		dbase = (__u8*)(surface->data)+buffer_stride*rybase+rxbase*surface->bypp;
 		for (unsigned int c = 0; c < clip.rects.size(); ++c)
 		{
+			int rx = rxbase, ry = rybase;
+			__u8 *d = dbase;
+			__u8 *s = sbase;
+			register int sx = sxbase;
+			int sy = sybase;
 			if ((sy+ry) >= clip.rects[c].bottom())
-				sy=clip.rects[c].bottom()-ry;
+				sy = clip.rects[c].bottom()-ry;
 			if ((sx+rx) >= clip.rects[c].right())
-				sx=clip.rects[c].right()-rx;
+				sx = clip.rects[c].right()-rx;
 			if (rx < clip.rects[c].left())
 			{
 				int diff=clip.rects[c].left()-rx;
