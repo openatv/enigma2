@@ -608,20 +608,22 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		if not os.path.isdir(trash):
 			os.mkdir(trash)
 		return trash
-			
 
 	def delete(self):
 		current = self.getCurrent()
 		if (current is not None) and (not current.flags & eServiceReference.mustDescent):
-			try:
-				trash = self.createTrashFolder()
-				self.moveMovieFiles(current, trash)
-				# Files were moved to .Trash, ok.
-				return
-			except Exception, e:
-				# Failed to create trash or move files.
-				print "[MovieSelection] Failed to move to .Trash folder:", e
-				msg = "Failed to move to .Trash folder\n" + str(e) + "\n"  
+			if config.usage.movielist_trashcan.value:
+				try:
+					trash = self.createTrashFolder()
+					self.moveMovieFiles(current, trash)
+					# Files were moved to .Trash, ok.
+					return
+				except Exception, e:
+					# Failed to create trash or move files.
+					print "[MovieSelection] Failed to move to .Trash folder:", e
+					msg = "Failed to move to .Trash folder\n" + str(e) + "\n"
+			else:
+				msg = ''
 			serviceHandler = eServiceCenter.getInstance()
 			info = serviceHandler.info(current)
 			name = info and info.getName(current) or _("this recording")

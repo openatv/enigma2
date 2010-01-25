@@ -41,6 +41,7 @@ def InitUsageConfig():
 	config.usage.timeshift_path = ConfigText(default = "/media/hdd/")
 	config.usage.allowed_timeshift_paths = ConfigLocations(default = ["/media/hdd/"])
 
+	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.on_movie_start = ConfigSelection(default = "ask", choices = [
 		("ask", _("Ask user")), ("resume", _("Resume from last position")), ("beginning", _("Start from the beginning")) ])
 	config.usage.on_movie_stop = ConfigSelection(default = "ask", choices = [
