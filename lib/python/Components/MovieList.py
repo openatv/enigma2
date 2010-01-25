@@ -81,6 +81,7 @@ class MovieList(GUIComponent):
 		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
 		self.iconMovieUnknown = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_unk.png"))
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
+		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
 
 	def connectSelChanged(self, fnc):
 		if not fnc in self.onSelectionChanged:
@@ -158,6 +159,11 @@ class MovieList(GUIComponent):
 					# if path ends in '/', p is blank.
 					p = os.path.split(p[0])
 				txt = p[1]
+				if txt == ".Trash":
+					res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,24), png=self.iconTrash))
+					res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = _("Deleted items")))
+					res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT, text=_("Trashcan")))
+					return res
 			res.append(MultiContentEntryPixmapAlphaTest(pos=(0,1), size=(iconSize,iconSize), png=self.iconFolder))
 			res.append(MultiContentEntryText(pos=(iconSize+2, 0), size=(width-166, self.itemHeight), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 			res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT, text=_("Directory")))
