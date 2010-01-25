@@ -16,13 +16,14 @@
 
 DEFINE_REF(eCableScan);
 
-eCableScan::eCableScan(int networkid, unsigned int frequency, unsigned int symbolrate, int modulation, bool originalnumbering)
+eCableScan::eCableScan(int networkid, unsigned int frequency, unsigned int symbolrate, int modulation, bool originalnumbering, bool hdlist)
 {
 	networkId = networkid;
 	initialFrequency = frequency;
 	initialSymbolRate = symbolrate;
 	initialModulation = modulation;
 	originalNumbering = originalnumbering;
+	hdList = hdlist;
 }
 
 eCableScan::~eCableScan()
@@ -164,6 +165,19 @@ void eCableScan::parseNIT()
 					{
 						serviceIdToChannelId[(*c)->getServiceId()] = (*c)->getLogicalChannelNumber();
 					}
+					break;
+				}
+				case 0x88: /* HD simulcast logical channel descriptor */
+				{
+					unsigned char buf[(*desc)->getLength() + 2];
+					(*desc)->writeToBuffer(buf);
+					LogicalChannelDescriptor d(buf);
+					const LogicalChannelList &channels = *d.getChannelList();
+					for (LogicalChannelListConstIterator c(channels.begin()); c != channels.end(); ++c)
+					{
+						serviceIdToHDChannelId[(*c)->getServiceId()] = (*c)->getLogicalChannelNumber();
+					}
+					break;
 				}
 				default:
 					break;
@@ -248,7 +262,24 @@ void eCableScan::parseSDT()
 				db->addService(ref, service);
 				service->m_flags |= eDVBService::dxNewFound;
 			}
-			if (!serviceIdToChannelId.empty() && serviceIdToChannelId[service_id])
+			int logicalchannelid = 0;
+			if (hdList)
+			{
+				std::map<int, int>::const_iterator it = serviceIdToHDChannelId.find(service_id);
+				if (it != serviceIdToHDChannelId.end())
+				{
+					logicalchannelid = it->second;
+				}
+			}
+			if (!logicalchannelid)
+			{
+				std::map<int, int>::const_iterator it = serviceIdToChannelId.find(service_id);
+				if (it != serviceIdToChannelId.end())
+				{
+					logicalchannelid = it->second;
+				}
+			}
+			if (logicalchannelid)
 			{
 				switch (ref.getServiceType())
 				{
@@ -261,11 +292,11 @@ void eCableScan::parseSDT()
 				case 27: /* advanced codec HD NVOD reference service (NYI) */
 				default:
 					/* just assume that anything *not* radio is tv */
-					numberedServiceRefs[serviceIdToChannelId[service_id]] = ref;
+					numberedServiceRefs[logicalchannelid] = ref;
 					break;
 				case 2: /* digital radio sound service */
 				case 10: /* advanced codec digital radio sound service */
-					numberedRadioServiceRefs[serviceIdToChannelId[service_id]] = ref;
+					numberedRadioServiceRefs[logicalchannelid] = ref;
 					break;
 				}
 			}
