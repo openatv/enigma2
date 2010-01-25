@@ -144,10 +144,10 @@ class MovieList(GUIComponent):
 	def buildMovieListEntry(self, serviceref, info, begin, len):
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
+		res = [ None ]
 
 		if serviceref.flags & eServiceReference.mustDescent:
 			# Directory
-			res = [ None ]
 			iconSize = 22
 			# Name is full path name
 			if info is None:
@@ -182,8 +182,6 @@ class MovieList(GUIComponent):
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
 			len = ""
-		
-		res = [ None ]
 		
 		txt = info.getName(serviceref)
 		cutsPathName = pathName + '.cuts'

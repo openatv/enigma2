@@ -22,7 +22,7 @@ from Screens.HelpMenu import HelpableScreen
 from Tools.Directories import *
 from Tools.BoundFunction import boundFunction
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eBackgroundFileEraser
 import os
 
 config.movielist = ConfigSubsection()
@@ -52,6 +52,12 @@ def setPreferredTagEditor(te):
 def getPreferredTagEditor():
 	global preferredTagEditor
 	return preferredTagEditor
+
+def isTrashFolder(ref):
+	if not ref.flags & eServiceReference.mustDescent:
+		return False
+	pathName = os.path.normpath(ref.getPath())
+	return pathName.endswith('.Trash')
 
 setPreferredTagEditor(None)
 
@@ -93,12 +99,17 @@ class MovieContextMenu(Screen):
 				"cancel": self.cancelClick
 			})
 
-		if (not service) or (service.flags & eServiceReference.mustDescent):
-			menu = []
-		else:
-			menu = [(_("delete..."), csel.delete), (_("Move"), csel.moveMovie)]
-			# Plugins expect a valid selection, so only include them if we selected a non-dir 
-			menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+		menu = []
+		if service:
+		 	if (service.flags & eServiceReference.mustDescent):
+				if isTrashFolder(service):
+					menu.append((_("Purge all deleted items"), csel.purgeAll))
+				else:
+					menu.append((_("Move"), csel.moveMovie))
+			else:
+				menu = [(_("delete..."), csel.delete), (_("Move"), csel.moveMovie)]
+				# Plugins expect a valid selection, so only include them if we selected a non-dir 
+				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
 		if config.movielist.moviesort.value == MovieList.SORT_ALPHANUMERIC:
 			menu.append((_("sort by date"), boundFunction(csel.sortBy, MovieList.SORT_RECORDED)))
@@ -286,7 +297,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
 			
 	def updateButtons(self):
-		return # allow all actions
 		current = self.getCurrent()
 		if not current:
 			self["key_red"].hide()
@@ -294,7 +304,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		else:
 			if (current.flags & eServiceReference.mustDescent):
 				self["key_red"].hide()
-				self["key_green"].show()
+				if isTrashFolder(current):
+					self["key_green"].hide()
+				else:
+					self["key_green"].show()
 			else:
 				self["key_red"].show()
 				self["key_green"].show()
@@ -645,3 +658,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		else:
 			self["list"].removeService(current)
 			self["freeDiskSpace"].update()
+
+	def purgeAll(self):
+		recordings = self.session.nav.getRecordings()
+		next_rec_time = -1
+		if not recordings:
+			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
+		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 120):
+			msg = "\n" + _("Recording(s) are in progress or coming up in few seconds!")
+		else:
+			msg = ""
+		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trashcan?") + msg)
+	
+	def purgeConfirmed(self, confirmed):
+		if not confirmed:
+			return
+		eraser = eBackgroundFileEraser.getInstance()
+		top = self.createTrashFolder()
+		for root, dirs, files in os.walk(top, topdown=False):
+			for name in files:
+				print "Background erasing", name
+				eraser.erase(os.path.join(root, name))
+			#for name in dirs:
+			#	os.rmdir(os.path.join(root, name))
