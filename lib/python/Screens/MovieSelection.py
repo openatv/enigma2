@@ -36,7 +36,6 @@ config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)
 #config.movielist.second_tags = ConfigText(default="")
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 
-
 def setPreferredTagEditor(te):
 	global preferredTagEditor
 	try:
@@ -287,13 +286,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
 			
 	def updateButtons(self):
+		return # allow all actions
 		current = self.getCurrent()
-		if (not current) or (current.flags & eServiceReference.mustDescent):
+		if not current:
 			self["key_red"].hide()
 			self["key_green"].hide()
 		else:
-			self["key_red"].show()
-			self["key_green"].show()
+			if (current.flags & eServiceReference.mustDescent):
+				self["key_red"].hide()
+				self["key_green"].show()
+			else:
+				self["key_red"].show()
+				self["key_green"].show()
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
@@ -487,6 +491,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		moviePath = resolveFilename(SCOPE_HDD)
 		try:
 			for fn in os.listdir(moviePath):
+				if fn.startswith('.'):
+					continue
 				pn = os.path.join(moviePath, fn)
 				if os.path.isdir(pn):
 					if not pn.endswith('/'):
@@ -513,9 +519,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def moveMovie(self):
 		current = self.getCurrent()
-		if (current is not None) and (not current.flags & eServiceReference.mustDescent):
+		if current is not None:
 			serviceHandler = eServiceCenter.getInstance()
 			info = serviceHandler.info(current)
+			#if current.flags & eServiceReference.mustDescent:
 			name = info and info.getName(current) or _("this recording")
 			self.selectMovieLocation(title=_("Select destination for:") + " " + name, callback=self.gotMoveMovieDest)
 
@@ -536,28 +543,35 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		else:
 			# full browser returns only a string
 			dest = os.path.normpath(choice)
-		self.moveMovieFiles(self.getCurrent(), dest)
+		try:
+			self.moveMovieFiles(self.getCurrent(), dest)
+		except Exception, e:
+			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
 	def moveMovieFiles(self, current, dest):
 		# current should be 'ref' type, dest a simple path string
 		print "[Movie] Moving to:", dest
-		src = current.getPath()
+		#normpath is to remove the trailing '/' from directories
+		src = os.path.normpath(current.getPath())
 		srcPath, srcName = os.path.split(src)
 		if os.path.normpath(srcPath) == dest:
 			# move file to itself is allowed, so we have to check it
 			print "[Movie] Refusing to move to the same directory", srcPath
 			return
-		srcBase = os.path.splitext(src)[0]
-		baseName = os.path.split(srcBase)[1]
+		# Make a list of items to move
 		moveList = [(src, os.path.join(dest, srcName))]
-		eitName =  srcBase + '.eit' 
-		if os.path.exists(eitName):
-			moveList.append((eitName, os.path.join(dest, baseName+'.eit')))
-		baseName = os.path.split(src)[1]
-		for ext in ('.ap', '.cuts', '.meta', '.sc'):
-			candidate = src + ext
-			if os.path.exists(candidate):
-				moveList.append((candidate, os.path.join(dest, baseName+ext)))
+		if not current.flags & eServiceReference.mustDescent:
+			# Real movie, add extra files...
+			srcBase = os.path.splitext(src)[0]
+			baseName = os.path.split(srcBase)[1]
+			eitName =  srcBase + '.eit' 
+			if os.path.exists(eitName):
+				moveList.append((eitName, os.path.join(dest, baseName+'.eit')))
+			baseName = os.path.split(src)[1]
+			for ext in ('.ap', '.cuts', '.meta', '.sc'):
+				candidate = src + ext
+				if os.path.exists(candidate):
+					moveList.append((candidate, os.path.join(dest, baseName+ext)))
 		# Try to "atomically" move these files
 		movedList = []
 		try:
@@ -566,7 +580,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				os.rename(item[0], item[1])
 				movedList.append(item)
 			self["list"].removeService(current)
-			return True
 		except Exception, e:
 			print "[MovieSelection] Failed move:", e
 			for item in movedList:
@@ -574,12 +587,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 					os.rename(item[1], item[0])
 				except:
 					print "[MovieSelection] Failed to undo move:", item
-			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
-			return False
+			# rethrow exception
+			raise
+
+	def createTrashFolder(self):
+		trash = os.path.join(resolveFilename(SCOPE_HDD), ".Trash")
+		if not os.path.isdir(trash):
+			os.mkdir(trash)
+		return trash
+			
 
 	def delete(self):
 		current = self.getCurrent()
 		if (current is not None) and (not current.flags & eServiceReference.mustDescent):
+			try:
+				trash = self.createTrashFolder()
+				self.moveMovieFiles(current, trash)
+				# Files were moved to .Trash, ok.
+				return
+			except Exception, e:
+				# Failed to create trash or move files.
+				print "[MovieSelection] Failed to move to .Trash folder:", e
+				msg = "Failed to move to .Trash folder\n" + str(e) + "\n"  
 			serviceHandler = eServiceCenter.getInstance()
 			info = serviceHandler.info(current)
 			name = info and info.getName(current) or _("this recording")
@@ -590,8 +619,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				# simulate first
 				if not offline.deleteFromDisk(1):
 					result = True
-			if result == True:
-				self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete %s?") % (name))
+			if result:
+				self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + _("Do you really want to delete %s?") % (name))
 			else:
 				self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
 
