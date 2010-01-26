@@ -59,6 +59,24 @@ def isTrashFolder(ref):
 	pathName = os.path.normpath(ref.getPath())
 	return pathName.endswith('.Trash')
 
+def canDelete(item):
+	if not item:
+		return False
+	if not item[0] or not item[1]:
+		# cannot delete nothing
+		return False
+	return (item[0].flags & eServiceReference.mustDescent) == 0
+
+def canMove(item):
+	if not item:
+		return False
+	if not item[0] or not item[1]:
+		# cannot move nothing
+		return False
+	if item[0].flags & eServiceReference.mustDescent:
+		return not isTrashFolder(item[0])
+	return True
+
 setPreferredTagEditor(None)
 
 class MovieContextMenuSummary(Screen):
@@ -184,7 +202,7 @@ class MovieSelectionSummary(Screen):
 		self.parent.list.disconnectSelChanged(self.selectionChanged)
 
 	def selectionChanged(self):
-		item = self.parent["list"].l.getCurrentSelection()
+		item = self.parent.getCurrentSelection()
 		if item and item[0]:
 			if not item[1]:
 				# special case, one up
@@ -297,20 +315,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
 			
 	def updateButtons(self):
-		current = self.getCurrent()
-		if not current:
-			self["key_red"].hide()
-			self["key_green"].hide()
+		item = self.getCurrentSelection()
+		if canDelete(item):
+			self["key_red"].show()
 		else:
-			if (current.flags & eServiceReference.mustDescent):
-				self["key_red"].hide()
-				if isTrashFolder(current):
-					self["key_green"].hide()
-				else:
-					self["key_green"].show()
-			else:
-				self["key_red"].show()
-				self["key_green"].show()
+			self["key_red"].hide()
+		if canMove(item):
+			self["key_green"].show()
+		else:
+			self["key_green"].hide()
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
@@ -340,7 +353,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["list"].moveTo(self.selectedmovie)
 
 	def getCurrent(self):
+		# Returns selected serviceref (may be None)
 		return self["list"].getCurrent()
+		
+	def getCurrentSelection(self):
+		# Returns None or (serviceref, info, begin, len)
+		return self["list"].l.getCurrentSelection()
 
 	def movieSelected(self):
 		current = self.getCurrent()
@@ -531,11 +549,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				self.gotFilename(bookmark[1])
 
 	def moveMovie(self):
-		current = self.getCurrent()
-		if current is not None:
-			serviceHandler = eServiceCenter.getInstance()
-			info = serviceHandler.info(current)
-			#if current.flags & eServiceReference.mustDescent:
+		item = self.getCurrentSelection() 
+		if canMove(item):
+			current = item[0]
+			info = item[1]
+			if info is None:
+				# Special case
+				return
 			name = info and info.getName(current) or _("this recording")
 			self.selectMovieLocation(title=_("Select destination for:") + " " + name, callback=self.gotMoveMovieDest)
 
@@ -610,39 +630,37 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		return trash
 
 	def delete(self):
-		current = self.getCurrent()
-		if (current is not None) and (not current.flags & eServiceReference.mustDescent):
+		item = self.getCurrentSelection()
+		if not canDelete(item):
+			if item and isTrashFolder(item[0]):
+				# Red button to empty trashcan...
+				self.purgeAll()
+			return
+		current = item[0]
+		info = item[1]
+		if current and (not current.flags & eServiceReference.mustDescent):
 			if config.usage.movielist_trashcan.value:
 				try:
 					trash = self.createTrashFolder()
-					self.moveMovieFiles(current, trash)
-					# Files were moved to .Trash, ok.
-					return
+					# Also check whether we're INSIDE the trash, then it's a purge.
+					if current.getPath().startswith(trash):
+						msg = _("Deleted items") + "\n"
+					else:
+						self.moveMovieFiles(current, trash)
+						# Files were moved to .Trash, ok.
+						return
 				except Exception, e:
 					# Failed to create trash or move files.
 					print "[MovieSelection] Failed to move to .Trash folder:", e
-					msg = "Failed to move to .Trash folder\n" + str(e) + "\n"
+					msg = _("Cannot move to .Trash folder") + "\n" + str(e) + "\n"
 			else:
 				msg = ''
-			serviceHandler = eServiceCenter.getInstance()
-			info = serviceHandler.info(current)
 			name = info and info.getName(current) or _("this recording")
-			result = False
-			# simulation not implemented, so why bother...
-			offline = serviceHandler.offlineOperations(current)
-			if offline is not None:
-				# simulate first
-				if not offline.deleteFromDisk(1):
-					result = True
-			if result:
-				self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + _("Do you really want to delete %s?") % (name))
-			else:
-				self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + _("Do you really want to delete %s?") % (name))
 
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
 			return
-
 		current = self.getCurrent()
 		if current is None:
 			# huh?
@@ -654,11 +672,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			# really delete!
 			if not offline.deleteFromDisk(0):
 				result = True
-
 		if result == False:
 			self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 		else:
 			self["list"].removeService(current)
+			# Todo: This is pointless, delete is not finished yet.
 			self["freeDiskSpace"].update()
 
 	def purgeAll(self):
