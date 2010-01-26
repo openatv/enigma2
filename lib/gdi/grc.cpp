@@ -318,6 +318,7 @@ void gPainter::setFont(gFont *font)
 
 void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border)
 {
+	if (string.empty()) return;
 	if ( m_dc->islocked() )
 		return;
 	gOpcode o;
@@ -325,7 +326,7 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.dc = m_dc.grabRef();
 	o.parm.renderText = new gOpcode::para::prenderText;
 	o.parm.renderText->area = pos;
-	o.parm.renderText->text = string.empty()?0:strdup(string.c_str());
+	o.parm.renderText->text = strdup(string.c_str());
 	o.parm.renderText->flags = flags;
 	o.parm.renderText->border = border;
 	o.parm.renderText->bordercolor = bordercolor;

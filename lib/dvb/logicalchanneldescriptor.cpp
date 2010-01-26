@@ -6,7 +6,8 @@
 LogicalChannel::LogicalChannel(const uint8_t *const buffer)
 {
 	serviceId = UINT16(&buffer[0]);
-	logicalChannelNumber = UINT16(&buffer[2]) & 0x3fff;
+	visibleServiceFlag = (buffer[2] >> 7) & 0x01;
+	logicalChannelNumber = UINT16(&buffer[2]) & 0x3ff;
 }
 
 LogicalChannel::~LogicalChannel(void)
@@ -16,6 +17,11 @@ LogicalChannel::~LogicalChannel(void)
 uint16_t LogicalChannel::getServiceId(void) const
 {
 	return serviceId;
+}
+
+uint8_t LogicalChannel::getVisibleServiceFlag(void) const
+{
+	return visibleServiceFlag;
 }
 
 uint16_t LogicalChannel::getLogicalChannelNumber(void) const
