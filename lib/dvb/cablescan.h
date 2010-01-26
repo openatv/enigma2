@@ -17,6 +17,7 @@ class eCableScan: public Object, public iObject
 	eUsePtr<iDVBChannel> m_channel;
 	ePtr<iDVBDemux> m_demux;
 	bool originalNumbering;
+	bool hdList;
 	unsigned int initialFrequency;
 	unsigned int initialSymbolRate;
 	int initialModulation;
@@ -30,7 +31,7 @@ class eCableScan: public Object, public iObject
 
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > newServices;
 
-	std::map<int, int> serviceIdToChannelId;
+	std::map<int, int> serviceIdToChannelId, serviceIdToHDChannelId;
 	std::map<int, eServiceReferenceDVB> numberedServiceRefs, numberedRadioServiceRefs;
 
 	ePtr<eTable<NetworkInformationSection> > m_NIT;
@@ -48,7 +49,7 @@ class eCableScan: public Object, public iObject
 #endif /* no SWIG */
 
 public:
-	eCableScan(int networkid, unsigned int frequency, unsigned int symbolrate, int modulation, bool originalnumbering = false);
+	eCableScan(int networkid, unsigned int frequency, unsigned int symbolrate, int modulation, bool originalnumbering = false, bool hdlist = false);
 	~eCableScan();
 
 	void start(int frontendid = 0);

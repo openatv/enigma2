@@ -7,13 +7,15 @@ class LogicalChannel
 {
 protected:
 	unsigned serviceId : 16;
-	unsigned logicalChannelNumber : 14;
+	unsigned visibleServiceFlag : 1;
+	unsigned logicalChannelNumber : 10;
 
 public:
 	LogicalChannel(const uint8_t *const buffer);
 	~LogicalChannel(void);
 
 	uint16_t getServiceId(void) const;
+	uint8_t getVisibleServiceFlag(void) const;
 	uint16_t getLogicalChannelNumber(void) const;
 };
 
