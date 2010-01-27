@@ -21,8 +21,9 @@ from Screens.HelpMenu import HelpableScreen
 
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
+import Tools.Trashcan
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eBackgroundFileEraser
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eBackgroundFileEraser, iRecordableService
 import os
 
 config.movielist = ConfigSubsection()
@@ -701,3 +702,4 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				eraser.erase(os.path.join(root, name))
 			#for name in dirs:
 			#	os.rmdir(os.path.join(root, name))
+

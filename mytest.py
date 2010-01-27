@@ -474,6 +474,10 @@ def runScreenTest():
 	# we need session.scart to access it from within menu.xml
 	session.scart = AutoScartControl(session)
 
+	profile("Init:Trashcan")
+	import Tools.Trashcan
+	Tools.Trashcan.init(session)
+
 	profile("RunReactor")
 	profile_final()
 	runReactor()
