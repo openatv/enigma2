@@ -107,7 +107,7 @@ FastScanTransportStream::FastScanTransportStream(const uint8_t *const buffer)
 	{
 		switch (buffer[pos])
 		{
-		case 0x83: /* logical channel descriptor */
+		case LOGICAL_CHANNEL_DESCRIPTOR:
 			logicalChannels = new LogicalChannelDescriptor(&buffer[pos]);
 			break;
 		case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:

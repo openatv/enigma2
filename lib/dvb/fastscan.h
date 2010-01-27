@@ -8,13 +8,13 @@
 
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/esection.h>
-#include <lib/dvb/logicalchanneldescriptor.h>
 
 #include <dvbsi++/long_crc_section.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/network_name_descriptor.h>
 #include <dvbsi++/service_list_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
+#include <dvbsi++/logical_channel_descriptor.h>
 
 class FastScanService : public ServiceDescriptor
 {
