@@ -11,6 +11,20 @@ class FanControl:
 		else:
 			self.fancount = 0
 		self.createConfig()
+		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call = False)
+
+	def leaveStandby(self):
+		for fanid in range(self.getFanCount()):
+			cfg = self.getConfig(fanid)
+			self.setVoltage(fanid, cfg.vlt.value)
+			self.setPWM(fanid, cfg.pwm.value)
+
+	def standbyCounterChanged(self, configElement):
+		from Screens.Standby import inStandby
+		inStandby.onClose.append(self.leaveStandby)
+		for fanid in range(self.getFanCount()):
+			self.setVoltage(fanid, 0)
+			self.setPWM(fanid, 0)
 
 	def createConfig(self):
 		def setVlt(fancontrol, fanid, configElement):
