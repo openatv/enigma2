@@ -1,11 +1,9 @@
-#include <byteswap.h>
-#include <dvbsi++/byte_stream.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/ca_identifier_descriptor.h>
+#include <dvbsi++/logical_channel_descriptor.h>
 
-#include <lib/dvb/logicalchanneldescriptor.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
@@ -155,7 +153,7 @@ void eCableScan::parseNIT()
 					scanChannels.push_back(feparm);
 					break;
 				}
-				case 0x83: /* logical channel descriptor */
+				case LOGICAL_CHANNEL_DESCRIPTOR:
 				{
 					unsigned char buf[(*desc)->getLength() + 2];
 					(*desc)->writeToBuffer(buf);
@@ -167,7 +165,7 @@ void eCableScan::parseNIT()
 					}
 					break;
 				}
-				case 0x88: /* HD simulcast logical channel descriptor */
+				case HD_SIMULCAST_LOGICAL_CHANNEL_DESCRIPTOR:
 				{
 					unsigned char buf[(*desc)->getLength() + 2];
 					(*desc)->writeToBuffer(buf);
