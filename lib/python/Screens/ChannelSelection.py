@@ -1181,6 +1181,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
 
 	def setMode(self):
+		self.rootChanged = True
 		self.restoreRoot()
 		lastservice=eServiceReference(self.lastservice.value)
 		if lastservice.valid():
