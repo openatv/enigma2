@@ -19,7 +19,7 @@ class RecordState(Source):
 				self.changed((self.CHANGED_ALL,))
 
 	def destroy(self):
-		session.nav.record_event.remove(self.gotRecordEvent)
+		self.session.nav.record_event.remove(self.gotRecordEvent)
 		Source.destroy(self)
 
 	@cached
