@@ -10,11 +10,12 @@ from Components.config import getConfigListEntry, config, ConfigNothing, ConfigS
 from Components.Sources.List import List
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.ServiceStopScreen import ServiceStopScreen
 
 from time import mktime, localtime
 from datetime import datetime
 
-class NimSetup(Screen, ConfigListScreen):
+class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
 		nim = self.nimConfig
 		if mode == "single":
@@ -376,11 +377,14 @@ class NimSetup(Screen, ConfigListScreen):
 				self.deleteConfirmed(confirmed)
 			break
 		if not self.satpos_to_remove:
-			self.close()
+			self.restoreService(_("Zap back to service before tuner setup?"))
 		
 	def __init__(self, session, slotid):
 		Screen.__init__(self, session)
 		self.list = [ ]
+		
+		ServiceStopScreen.__init__(self)
+		self.stopService()
 
 		ConfigListScreen.__init__(self, self.list)
 
@@ -405,6 +409,12 @@ class NimSetup(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 		self.newConfig()
 		
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.restoreService(_("Zap back to service before tuner setup?"))
+		
 	def saveAll(self):
 		if self.nim.isCompatible("DVB-S"):
 			# reset connectedTo to all choices to properly store the default value
@@ -424,7 +434,7 @@ class NimSetup(Screen, ConfigListScreen):
 			x[1].cancel()
 		# we need to call saveAll to reset the connectedTo choices
 		self.saveAll()
-		self.close()
+		self.restoreService(_("Zap back to service before tuner setup?"))
 		
 	def nothingConnectedShortcut(self):
 		if type(self["config"].getCurrent()[1]) is ConfigSatlist:
