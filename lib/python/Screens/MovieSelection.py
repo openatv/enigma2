@@ -19,7 +19,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 
-from Tools.Directories import *
+from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
 
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eBackgroundFileEraser
@@ -32,22 +32,18 @@ config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
-#config.movielist.first_tags = ConfigText(default="")
-#config.movielist.second_tags = ConfigText(default="")
 config.movielist.last_selected_tags = ConfigSet([], default=[])
+
+preferredTagEditor = None
 
 def setPreferredTagEditor(te):
 	global preferredTagEditor
-	try:
-		if preferredTagEditor == None:
-			preferredTagEditor = te
-			print "Preferred tag editor changed to ", preferredTagEditor
-		else:
-			print "Preferred tag editor already set to ", preferredTagEditor
-			print "ignoring ", te
-	except:
+	if preferredTagEditor is None:
 		preferredTagEditor = te
-		print "Preferred tag editor set to ", preferredTagEditor
+		print "Preferred tag editor changed to ", preferredTagEditor
+	else:
+		print "Preferred tag editor already set to ", preferredTagEditor
+		print "ignoring ", te
 
 def getPreferredTagEditor():
 	global preferredTagEditor
@@ -76,8 +72,6 @@ def canMove(item):
 	if item[0].flags & eServiceReference.mustDescent:
 		return not isTrashFolder(item[0])
 	return True
-
-setPreferredTagEditor(None)
 
 class MovieContextMenuSummary(Screen):
 	skin = """
@@ -242,7 +236,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["DescriptionBorder"] = Pixmap()
 		self["DescriptionBorder"].hide()
 
-		if not fileExists(config.movielist.last_videodir.value):
+		if not os.path.isdir(config.movielist.last_videodir.value):
 			config.movielist.last_videodir.value = defaultMoviePath()
 			config.movielist.last_videodir.save()
 		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
@@ -434,7 +428,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["list"].setSortType(type)
 
 	def reloadList(self, sel = None, home = False):
-		if not fileExists(config.movielist.last_videodir.value):
+		if not os.path.isdir(config.movielist.last_videodir.value):
 			path = defaultMoviePath()
 			config.movielist.last_videodir.value = path
 			config.movielist.last_videodir.save()
@@ -465,7 +459,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def gotFilename(self, res):
 		if res is not None and res is not config.movielist.last_videodir.value:
-			if fileExists(res):
+			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
 				self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + res)
