@@ -1128,11 +1128,7 @@ RESULT eDVBServicePlay::stop()
 			
 			if (length)
 			{
-				int perc = play_position * 100LL / length;
-			
-					/* only store last play position when between 1% and 99% */
-				if ((1 < perc) && (perc < 99))
-					m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
+				m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
 			}
 			m_cuesheet_changed = 1;
 		}
