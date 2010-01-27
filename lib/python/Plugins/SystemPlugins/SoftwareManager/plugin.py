@@ -137,8 +137,8 @@ class UpdatePluginMenu(Screen):
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
 			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
 			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup. Currently selected:\n" ) + self.backupdirs + self.oktext, None))
-			#if config.usage.setup_level.index >= 2: # expert+
-			#	self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
+			if config.usage.setup_level.index >= 2: # expert+
+				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
 			self.list.append(("ipkg-source",_("Choose upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if p.__call__.has_key("AdvancedSoftwareSupported"):
@@ -326,10 +326,12 @@ class PluginManager(Screen, DreamInfoHandler):
 			<widget source="status" render="Label" position="5,410" zPosition="10" size="540,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
 		</screen>"""
 
-	def __init__(self, session, plugin_path, args = None):
+	def __init__(self, session, plugin_path = None, args = None):
 		Screen.__init__(self, session)
 		self.session = session
 		self.skin_path = plugin_path
+		if self.skin_path == None:
+			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
 		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "HelpActions" ],
 		{
@@ -634,7 +636,7 @@ class PluginManager(Screen, DreamInfoHandler):
 			elif tag == 'Default':
 				return(( _("Default Settings"), _("View list of available default settings" ), tag, divpng ))
 			elif tag == 'SAT':
-				return(( _("Satteliteequipment"), _("View list of available Satteliteequipment extensions." ), tag, divpng ))
+				return(( _("Satellite equipment"), _("View list of available Satellite equipment extensions." ), tag, divpng ))
 			elif tag == 'Software':
 				return(( _("Software"), _("View list of available software extensions" ), tag, divpng ))
 			elif tag == 'Multimedia':
@@ -818,7 +820,7 @@ class PluginManagerHelp(Screen):
 			<widget source="list" render="Listbox" position="5,50" size="550,350" scrollbarMode="showOnDemand" selectionDisabled="1">
 				<convert type="TemplatedMultiContent">
 					{"template": [
-							MultiContentEntryText(pos = (50, 0), size = (150, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (50, 0), size = (540, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (50, 27), size = (540, 23), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
 							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
 							MultiContentEntryPixmapAlphaTest(pos = (0, 48), size = (550, 2), png = 3), # index 3 is the div pixmap

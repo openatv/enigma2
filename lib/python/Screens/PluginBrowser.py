@@ -38,7 +38,12 @@ class PluginBrowser(Screen):
 			"red": self.delete,
 			"green": self.download
 		})
+		self["SoftwareActions"] = ActionMap(["ColorActions"],
+		{
+			"red": self.openExtensionmanager
+		})
 		self["PluginDownloadActions"].setEnabled(False)
+		self["SoftwareActions"].setEnabled(False)
 		self.onFirstExecBegin.append(self.checkWarnings)
 		self.onShown.append(self.updateList)
 	
@@ -62,12 +67,14 @@ class PluginBrowser(Screen):
 		self.list = [PluginEntryComponent(plugin) for plugin in self.pluginlist]
 		self["list"].l.setList(self.list)
 		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
-			self["red"].setText("")
+			self["red"].setText(_("Manage extensions"))
 			self["green"].setText("")
+			self["SoftwareActions"].setEnabled(True)
 			self["PluginDownloadActions"].setEnabled(False)
 		else:
 			self["red"].setText(_("Remove Plugins"))
 			self["green"].setText(_("Download Plugins"))
+			self["SoftwareActions"].setEnabled(False)
 			self["PluginDownloadActions"].setEnabled(True)
 			
 	def delete(self):
@@ -80,6 +87,14 @@ class PluginBrowser(Screen):
 		self.updateList()
 		self.checkWarnings()
 
+	def openExtensionmanager(self):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
+			try:
+				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
+			except ImportError:
+				self.session.open(MessageBox, _("The Softwaremanagement extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
 
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
