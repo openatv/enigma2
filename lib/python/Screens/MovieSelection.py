@@ -294,7 +294,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"cancel": (self.abort, _("exit movielist")),
-				"ok": (self.movieSelected, _("select movie")),
+				"ok": (self.itemSelected, _("select movie")),
 			})
 
 		self.onShown.append(self.go)
@@ -360,14 +360,20 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# Returns None or (serviceref, info, begin, len)
 		return self["list"].l.getCurrentSelection()
 
-	def movieSelected(self):
+	def itemSelected(self):
 		current = self.getCurrent()
 		if current is not None:
 			if current.flags & eServiceReference.mustDescent:
 				self.gotFilename(current.getPath())
 			else:
-				self.saveconfig()
-				self.close(current)
+				self.movieSelected()
+
+	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
+	def movieSelected(self):
+		current = self.getCurrent()
+		if current is not None:
+			self.saveconfig()
+			self.close(current)
 
 	def doContext(self):
 		current = self.getCurrent()
