@@ -25,6 +25,7 @@ import Tools.Trashcan
 
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eBackgroundFileEraser, iRecordableService
 import os
+import time
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
@@ -685,7 +686,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		next_rec_time = -1
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 120):
+		if recordings or (next_rec_time > 0 and (next_rec_time - time.time()) < 120):
 			msg = "\n" + _("Recording(s) are in progress or coming up in few seconds!")
 		else:
 			msg = ""
