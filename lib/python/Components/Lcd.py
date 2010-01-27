@@ -28,6 +28,14 @@ class LCD:
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
 
+def leaveStandby():
+	config.lcd.bright.apply()
+
+def standbyCounterChanged(configElement):
+	from Screens.Standby import inStandby
+	inStandby.onClose.append(leaveStandby)
+	config.lcd.standby.apply()
+
 def InitLcd():
 	detected = eDBoxLCD.getInstance().detected()
 	SystemInfo["Display"] = detected
@@ -72,3 +80,6 @@ def InitLcd():
 		config.lcd.standby = ConfigNothing()
 		config.lcd.bright.apply = lambda : doNothing()
 		config.lcd.standby.apply = lambda : doNothing()
+
+	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call = False)
+
