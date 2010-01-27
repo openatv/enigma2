@@ -31,7 +31,6 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
-from re import compile
 from os import remove
 profile("ChannelSelection.py after imports")
 
@@ -713,6 +712,7 @@ class ChannelSelectionBase(Screen):
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
 		self.servicePath = [ ]
+		self.rootChanged = False
 
 		self.mode = MODE_TV
 
@@ -819,6 +819,7 @@ class ChannelSelectionBase(Screen):
 		else:
 			self.servicelist.setMode(ServiceList.MODE_NORMAL)
 		self.servicelist.setRoot(root, justSet)
+		self.rootChanged = True
 		self.buildTitleString()
 
 	def removeModeStr(self, str):
@@ -1303,19 +1304,21 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.lastroot.save()
 
 	def restoreRoot(self):
-		self.clearPath()
-		re = compile('.+?;')
-		tmp = re.findall(self.lastroot.value)
-		cnt = 0
-		for i in tmp:
-			self.servicePath.append(eServiceReference(i[:-1]))
-			cnt += 1
-		if cnt:
-			path = self.servicePath.pop()
-			self.enterPath(path)
-		else:
-			self.showFavourites()
-			self.saveRoot()
+		tmp = [x for x in self.lastroot.value.split(';') if x != '']
+		current = [x.toString() for x in self.servicePath]
+		if tmp != current or self.rootChanged:
+			self.clearPath()
+			cnt = 0
+			for i in tmp:
+				self.servicePath.append(eServiceReference(i))
+				cnt += 1
+			if cnt:
+				path = self.servicePath.pop()
+				self.enterPath(path)
+			else:
+				self.showFavourites()
+				self.saveRoot()
+			self.rootChanged = False
 
 	def preEnterPath(self, refstr):
 		if self.servicePath and self.servicePath[0] != eServiceReference(refstr):
@@ -1463,19 +1466,20 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 			config.radio.lastroot.save()
 
 	def restoreRoot(self):
-		self.clearPath()
-		re = compile('.+?;')
-		tmp = re.findall(config.radio.lastroot.value)
-		cnt = 0
-		for i in tmp:
-			self.servicePathRadio.append(eServiceReference(i[:-1]))
-			cnt += 1
-		if cnt:
-			path = self.servicePathRadio.pop()
-			self.enterPath(path)
-		else:
-			self.showFavourites()
-			self.saveRoot()
+		tmp = [x for x in self.lastroot.value.split(';') if x != '']
+		current = [x.toString() for x in self.servicePath]
+		if tmp != current or self.rootChanged:
+			cnt = 0
+			for i in tmp:
+				self.servicePathRadio.append(eServiceReference(i))
+				cnt += 1
+			if cnt:
+				path = self.servicePathRadio.pop()
+				self.enterPath(path)
+			else:
+				self.showFavourites()
+				self.saveRoot()
+			self.rootChanged = False
 
 	def preEnterPath(self, refstr):
 		if self.servicePathRadio and self.servicePathRadio[0] != eServiceReference(refstr):
