@@ -100,6 +100,14 @@ public:
 	{
 		pthread_mutex_destroy(&m_lock);
 	}
+	void lock()
+	{
+		pthread_mutex_lock(&m_lock);
+	}
+	void unlock()
+	{
+		pthread_mutex_unlock(&m_lock);
+	}
 };
 
 class eSingleLocker
