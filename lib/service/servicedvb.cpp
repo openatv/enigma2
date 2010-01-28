@@ -1189,10 +1189,6 @@ RESULT eDVBServicePlay::stop()
 			
 			if (length)
 			{
-<<<<<<< HEAD
-				/* Always store last play position, solve "border" cases in Python code */
-=======
->>>>>>> 025acea46debca45f8ae004cdb17cc6e5fc84309
 				m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
 			}
 			m_cuesheet_changed = 1;
