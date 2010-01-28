@@ -1189,7 +1189,10 @@ RESULT eDVBServicePlay::stop()
 			
 			if (length)
 			{
+<<<<<<< HEAD
 				/* Always store last play position, solve "border" cases in Python code */
+=======
+>>>>>>> 025acea46debca45f8ae004cdb17cc6e5fc84309
 				m_cue_entries.insert(cueEntry(play_position, 3)); /* last play position */
 			}
 			m_cuesheet_changed = 1;
@@ -2641,7 +2644,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 	{
 		if (i == m_cue_entries.end())
 		{
-			if (!have_any_span)
+			if (!have_any_span && !in)
 				break;
 			out = length;
 		} else {
@@ -2671,6 +2674,7 @@ void eDVBServicePlay::cutlistToCuesheet()
 		{
 			have_any_span = 1;
 			m_cue->addSourceSpan(in, out);
+			in = out = 0;
 		}
 		
 		in = length;
