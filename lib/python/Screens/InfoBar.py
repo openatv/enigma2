@@ -179,7 +179,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				list = (
 					(_("Yes"), "quit"),
 					(_("Yes, returning to movie list"), "movielist"),
-					(_("Yes, and delete this movie"), "quitanddelete"),
 					(_("No"), "continue"),
 					(_("No, but restart from begin"), "restart")
 				)
@@ -192,33 +191,9 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayer(self):
 		self.handleLeave(config.usage.on_movie_stop.value)
 
-	def deleteConfirmed(self, answer):
-		if answer:
-			self.leavePlayerConfirmed((True, "quitanddeleteconfirmed"))
-
 	def leavePlayerConfirmed(self, answer):
 		answer = answer and answer[1]
-
-		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
-			from enigma import eServiceCenter
-			serviceHandler = eServiceCenter.getInstance()
-			info = serviceHandler.info(ref)
-			name = info and info.getName(ref) or _("this recording")
-
-			if answer == "quitanddelete":
-				from Screens.MessageBox import MessageBox
-				self.session.openWithCallback(self.deleteConfirmed, MessageBox, _("Do you really want to delete %s?") % name)
-				return
-
-			elif answer == "quitanddeleteconfirmed":
-				offline = serviceHandler.offlineOperations(ref)
-				if offline.deleteFromDisk(0):
-					from Screens.MessageBox import MessageBox
-					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
-					return
-
-		if answer in ("quit", "quitanddeleteconfirmed"):
+		if answer  == "quit":
 			self.close()
 		elif answer == "movielist":
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
