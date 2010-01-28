@@ -123,6 +123,14 @@ class PluginBrowser(Screen):
 		self.updateList()
 		self.checkWarnings()
 
+	def openExtensionmanager(self):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.py")):
+			try:
+				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
+			except ImportError:
+				self.session.open(MessageBox, _("The Softwaremanagement extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
 
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0

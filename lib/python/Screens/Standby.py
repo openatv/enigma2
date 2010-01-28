@@ -15,8 +15,6 @@ class Standby(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
-		#set brightness of lcd
-		config.lcd.bright.apply()
 		#kill me
 		self.close(True)
 
@@ -64,8 +62,6 @@ class Standby(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
-		#set lcd brightness to standby value
-		config.lcd.standby.apply()
 		self.onFirstExecBegin.append(self.__onFirstExecBegin)
 		self.onClose.append(self.__onClose)
 
