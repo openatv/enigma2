@@ -46,7 +46,6 @@ class eFixedMessagePump: public Object
 	eSingleLock lock;
 	void do_recv(int)
 	{
-		eSingleLocker s(lock);
 		int res;
 		while (1)
 		{
@@ -62,28 +61,42 @@ class eFixedMessagePump: public Object
 			break;
 		}
 		if (res <= 0) return;
+
+		lock.lock();
 		while (!m_queue.empty())
 		{
 			T msg = m_queue.front();
 			m_queue.pop();
+			lock.unlock();
+			/*
+			 * We should not deliver the message while holding the lock,
+			 * not even if we would use a recursive mutex.
+			 * We would risk deadlock when pump writer and reader share another
+			 * mutex besides this one, which could be grabbed / released
+			 * in a different order
+			 */
 			/*emit*/ recv_msg(msg);
+			lock.lock();
 		}
+		lock.unlock();
 	}
 public:
 	Signal1<void,const T&> recv_msg;
 	void send(const T &msg)
 	{
-		eSingleLocker s(lock);
-		char byte = 0;
-		m_queue.push(msg);
+		{
+			eSingleLocker s(lock);
+			m_queue.push(msg);
+		}
 		while (1)
 		{
+			char byte = 0;
 			int res = ::write(m_pipe[1], &byte, sizeof(byte));
 			if (res < 0 && errno == EINTR) continue;
 			break;
 		}
 	}
-	eFixedMessagePump(eMainloop *context, int mt) : lock(true)
+	eFixedMessagePump(eMainloop *context, int mt)
 	{
 		pipe(m_pipe);
 		sn=eSocketNotifier::create(context, m_pipe[0], eSocketNotifier::Read);
