@@ -199,15 +199,15 @@ private:
 	int m_state;
 	GstElement *m_gst_playbin;
 	GstTagList *m_stream_tags;
-	eFixedMessagePump<int> m_pump;
+	eFixedMessagePump<GstMessage *> m_pump;
 	std::string m_error_message;
 
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
-	void gstBusCall(GstBus *bus, GstMessage *msg);
+	void gstBusCall(GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
-	void gstPoll(const int&);
+	void gstPoll(GstMessage * const &);
 
 	std::list<ePangoSubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
