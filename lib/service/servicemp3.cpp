@@ -916,7 +916,7 @@ std::string eServiceMP3::getInfoString(int w)
 	if ( !tag )
 		return "";
 	gchar *value;
-	if (gst_tag_list_get_string(m_stream_tags, tag, &value))
+	if (m_stream_tags && gst_tag_list_get_string(m_stream_tags, tag, &value))
 	{
 		std::string res = value;
 		g_free(value);
@@ -965,21 +965,24 @@ PyObject *eServiceMP3::getInfoObject(int w)
 			break;
 	}
 
-	if ( isBuffer )
+	if (m_stream_tags)
 	{
-		const GValue *gv_buffer = gst_tag_list_get_value_index(m_stream_tags, tag, 0);
-		if ( gv_buffer )
+		if (isBuffer)
 		{
-			GstBuffer *buffer;
-			buffer = gst_value_get_buffer (gv_buffer);
-			return PyBuffer_FromMemory(GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
+			const GValue *gv_buffer = gst_tag_list_get_value_index(m_stream_tags, tag, 0);
+			if ( gv_buffer )
+			{
+				GstBuffer *buffer;
+				buffer = gst_value_get_buffer (gv_buffer);
+				return PyBuffer_FromMemory(GST_BUFFER_DATA(buffer), GST_BUFFER_SIZE(buffer));
+			}
 		}
-	}
-	else
-	{
-		gdouble value = 0.0;
-		gst_tag_list_get_double(m_stream_tags, tag, &value);
-		return PyFloat_FromDouble(value);
+		else
+		{
+			gdouble value = 0.0;
+			gst_tag_list_get_double(m_stream_tags, tag, &value);
+			return PyFloat_FromDouble(value);
+		}
 	}
 
 	return 0;
