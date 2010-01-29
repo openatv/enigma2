@@ -234,7 +234,7 @@ class Network:
 				self.configuredNetworkAdapters = self.configuredInterfaces
 				# load ns only once	
 				self.loadNameserverConfig()
-				print "read configured interfac:", ifaces
+				print "read configured interface:", ifaces
 				print "self.ifaces after loading:", self.ifaces
 				self.config_ready = True
 				self.msgPlugins()
@@ -425,6 +425,7 @@ class Network:
 
 	def checkNetworkState(self,statecallback):
 		# www.dream-multimedia-tv.de, www.heise.de, www.google.de
+		self.NetworkState = 0
 		cmd1 = "ping -c 1 82.149.226.170"
 		cmd2 = "ping -c 1 193.99.144.85"
 		cmd3 = "ping -c 1 209.85.135.103"

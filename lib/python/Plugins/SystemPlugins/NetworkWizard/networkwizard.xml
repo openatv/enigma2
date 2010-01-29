@@ -1,11 +1,14 @@
 <wizard>
-        <step id="welcome" nextstep="selectinterface">
+        <step id="welcome">
                 <text value="Welcome.\n\nIf you want to connect your Dreambox to the Internet, this wizard will guide you through the basic network setup of your Dreambox.\n\nPress OK to start configuring your network" />
                 <displaytext value="Network Wizard" />
 	        <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
                 </code>
+		<code pos="after" async="yes">
+self.selectInterface()
+		</code>
         </step>
 
         <step id="selectinterface">
@@ -80,7 +83,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
                 </code>
                 <list>
-                        <listentry caption="Configure your network again" step="selectinterface" />
+                        <listentry caption="Configure your network again" step="welcome" />
                         <listentry caption="Exit network wizard" step="end" />
                 </list>
         </step>
@@ -109,11 +112,7 @@ self.condition = (self.isInterfaceUp == False and self.WlanPluginInstalled == Tr
                 </condition>
                 <text value="Your wireless LAN internet connection could not be started!\nHave you attached your USB WLAN Stick?\n\nPlease choose what you want to do next." />
                 <displaytext value="Please follow the instructions on the TV" />
-                <list>
-                        <listentry caption="Configure your wireless LAN again" step="scanwlan" />
-                        <listentry caption="Configure your internal LAN" step="selectinterface" />
-                        <listentry caption="Exit network wizard" step="end" />
-                </list>
+                <list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
@@ -127,10 +126,8 @@ self.condition = (self.isInterfaceUp == True and self.WlanPluginInstalled == Fal
                 </condition>
                 <text value="The wireless LAN plugin is not installed!\nPlease install it and choose what you want to do next." />
                 <displaytext value="Please follow the instructions on the TV" />
-                <list>
-                        <listentry caption="Configure your internal LAN" step="selectinterface" />
-                        <listentry caption="Exit network wizard" step="end" />
-                </list>
+                <list type="dynamic" source="listChoices" evaluation="ChoicesSelectionMade" onselect="ChoicesSelectionMoved" />
+		
                 <code>
 self.clearSelectedKeys()
 self.selectKey("OK")
@@ -185,7 +182,7 @@ self.selectKey("UP")
 self.selectKey("DOWN")
                 </code>
                 <list>
-                        <listentry caption="Configure your network again" step="selectinterface" />
+                        <listentry caption="Configure your network again" step="welcome" />
                         <listentry caption="Exit network wizard" step="end" />
                 </list>
         </step>
