@@ -49,13 +49,7 @@ class eFixedMessagePump: public Object
 		int res;
 		while (1)
 		{
-			char data[64];
-			/*
-			 * This may look weird, but it's save.
-			 * A read on a pipe will immediately return with whatever data is
-			 * available, when it is readable.
-			 * (and we know it is readable, because we are called by eSocketNotifier)
-			 */
+			char byte = 0;
 			res = ::read(m_pipe[0], data, sizeof(data));
 			if (res < 0 && errno == EINTR) continue;
 			break;
@@ -63,7 +57,7 @@ class eFixedMessagePump: public Object
 		if (res <= 0) return;
 
 		lock.lock();
-		while (!m_queue.empty())
+		if (!m_queue.empty())
 		{
 			T msg = m_queue.front();
 			m_queue.pop();
@@ -76,9 +70,11 @@ class eFixedMessagePump: public Object
 			 * in a different order
 			 */
 			/*emit*/ recv_msg(msg);
-			lock.lock();
 		}
-		lock.unlock();
+		else
+		{
+			lock.unlock();
+		}
 	}
 public:
 	Signal1<void,const T&> recv_msg;
