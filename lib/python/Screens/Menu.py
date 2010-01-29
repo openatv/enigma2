@@ -160,7 +160,7 @@ class Menu(Screen):
 			elif x.tag == 'setup':
 				id = x.get("id")
 				if item_text == "":
-					item_text = _(getSetupTitle(id)) + "..."
+					item_text = _(getSetupTitle(id))
 				else:
 					item_text = _(item_text)
 				destList.append((item_text, boundFunction(self.openSetup, id), entryID, weight))
@@ -245,7 +245,7 @@ class Menu(Screen):
 		# Calculate index
 		number -= 1
 
- 		if len(self["menu"].list) > number:
+		if len(self["menu"].list) > number:
 			self["menu"].setIndex(number)
 			self.okbuttonClick()
 
