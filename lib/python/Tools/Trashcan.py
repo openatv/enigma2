@@ -12,6 +12,12 @@ from Directories import resolveFilename, SCOPE_HDD
 def getTrashFolder():
 	return os.path.join(resolveFilename(SCOPE_HDD), ".Trash")
 
+def createTrashFolder(self):
+	trash = getTrashFolder()
+	if not os.path.isdir(trash):
+		os.mkdir(trash)
+	return trash
+
 class Trashcan:
 	def __init__(self, session):
 		self.session = session
@@ -32,16 +38,25 @@ class Trashcan:
 			print "[Trashcan] Recording about to start in", int(next_rec_time - time.time()), "sec."
 			return
 		try:
-			self.clean()
+			ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
+			reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value) 
+			self.clean(ctimeLimit, reserveBytes)
 		except Exception, e:
 			print "[Trashcan] Weirdness:", e
 
-	def clean(self):
+	def clean(self, ctimeLimit, reserveBytes):
+		# Remove expired items from trash, and attempt to have
+		# reserveBytes of free disk space. 
 		trash = getTrashFolder()
 		if not os.path.isdir(trash):
 			print "[Trashcan] No trash.", trash
 			return 0
-		ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
+		diskstat = os.statvfs(trash)
+		free = diskstat.f_bfree * diskstat.f_bsize
+		bytesToRemove = reserveBytes - free 
+		candidates = []
+		print "[Trashcan] bytesToRemove", bytesToRemove
+		size = 0
 		for root, dirs, files in os.walk(trash, topdown=False):
 			for name in files:
 				try:
@@ -50,6 +65,10 @@ class Trashcan:
 					if st.st_ctime < ctimeLimit:
 						print "[Trashcan] Too old:", name, st.st_ctime
 						enigma.eBackgroundFileEraser.getInstance().erase(fn)
+						bytesToRemove -= st.st_size
+					else:
+						candidates.append((st.st_ctime, fn, st.st_size))
+						size += st.st_size
 				except Exception, e:
 					print "[Trashcan] Failed to stat %s:"% name, e 
 			# Remove empty directories if possible
@@ -58,7 +77,37 @@ class Trashcan:
 					os.rmdir(os.path.join(root, name))
 				except:
 					pass
-
+		candidates.sort()
+		# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
+		print "[Trashcan] Bytes to remove:", bytesToRemove
+		print "[Trashcan] Size now:", size
+		for st_ctime, fn, st_size in candidates:
+			if bytesToRemove < 0:
+				break
+			enigma.eBackgroundFileEraser.getInstance().erase(fn)
+			bytesToRemove -= st_size
+			size -= st_size
+		print "[Trashcan] Size now:", size
+		 
+		
+	def cleanAll(self):
+		trash = getTrashFolder()
+		if not os.path.isdir(trash):
+			print "[Trashcan] No trash.", trash
+			return 0
+		for root, dirs, files in os.walk(trash, topdown=False):
+			for name in files:
+				fn = os.path.join(root, name)
+				try:
+					enigma.eBackgroundFileEraser.getInstance().erase(fn)
+				except Exception, e:
+					print "[Trashcan] Failed to erase %s:"% name, e 
+			# Remove empty directories if possible
+			for name in dirs:
+				try:
+					os.rmdir(os.path.join(root, name))
+				except:
+					pass
 		
 	
 	def destroy(self):
@@ -83,7 +132,8 @@ if __name__ == '__main__':
 			self.RecordTimer = self
 			self.usage = self
 			self.movielist_trashcan_days = self
-			self.value = 0.001
+			self.movielist_trashcan_reserve = self
+			self.value = 1
 			self.eBackgroundFileEraser = self
 		def getInstance(self):
 			# eBackgroundFileEraser
@@ -103,5 +153,10 @@ if __name__ == '__main__':
 	config = s
 	enigma = s
 	init(s)
+	diskstat = os.statvfs('/hdd/movie')
+	free = diskstat.f_bfree * diskstat.f_bsize
+	# Clean up one MB
+	instance.clean(1264606758, free + 1000000)
+	instance.cleanAll()
 	instance.destroy()
 	s.destroy()
