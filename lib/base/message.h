@@ -50,7 +50,7 @@ class eFixedMessagePump: public Object
 		while (1)
 		{
 			char byte = 0;
-			res = ::read(m_pipe[0], data, sizeof(data));
+			res = ::read(m_pipe[0], &byte, sizeof(byte));
 			if (res < 0 && errno == EINTR) continue;
 			break;
 		}
