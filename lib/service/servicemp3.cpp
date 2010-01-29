@@ -1094,7 +1094,7 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 	return 0;
 }
 
-void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
+void eServiceMP3::gstBusCall(GstMessage *msg)
 {
 	if (!msg)
 		return;
@@ -1364,9 +1364,8 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	_this->m_pump.send(1);
-		/* wake */
-	return GST_BUS_PASS;
+	_this->m_pump.send(message);
+	return GST_BUS_DROP;
 }
 
 audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
@@ -1409,24 +1408,12 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 	return atUnknown;
 }
 
-void eServiceMP3::gstPoll(const int &msg)
+void eServiceMP3::gstPoll(GstMessage * const &msg)
 {
-		/* ok, we have a serious problem here. gstBusSyncHandler sends 
-		   us the wakup signal, but likely before it was posted.
-		   the usleep, an EVIL HACK (DON'T DO THAT!!!) works around this.
-		   
-		   I need to understand the API a bit more to make this work 
-		   proplerly. */
-	if (msg == 1)
+	if (msg)
 	{
-		GstBus *bus = gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin));
-		GstMessage *message;
-		usleep(1);
-		while ((message = gst_bus_pop (bus)))
-		{
-			gstBusCall(bus, message);
-			gst_message_unref (message);
-		}
+		gstBusCall(msg);
+		gst_message_unref(msg);
 	}
 	else
 		pullSubtitle();
@@ -1439,7 +1426,7 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *appsink, gpointer user_data)
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	eSingleLocker l(_this->m_subs_to_pull_lock);
 	++_this->m_subs_to_pull;
-	_this->m_pump.send(2);
+	_this->m_pump.send(NULL);
 }
 
 void eServiceMP3::pullSubtitle()
