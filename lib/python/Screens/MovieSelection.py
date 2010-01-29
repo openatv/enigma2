@@ -54,8 +54,7 @@ def getPreferredTagEditor():
 def isTrashFolder(ref):
 	if not ref.flags & eServiceReference.mustDescent:
 		return False
-	pathName = os.path.normpath(ref.getPath())
-	return pathName.endswith('.Trash')
+	return ref.getPath().startswith(Tools.Trashcan.getTrashFolder())
 
 def canDelete(item):
 	if not item:
@@ -117,7 +116,7 @@ class MovieContextMenu(Screen):
 		if service:
 		 	if (service.flags & eServiceReference.mustDescent):
 				if isTrashFolder(service):
-					menu.append((_("Purge all deleted items"), csel.purgeAll))
+					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
 					menu.append((_("Move"), csel.moveMovie))
 			else:
@@ -625,12 +624,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			# rethrow exception
 			raise
 
-	def createTrashFolder(self):
-		trash = os.path.join(resolveFilename(SCOPE_HDD), ".Trash")
-		if not os.path.isdir(trash):
-			os.mkdir(trash)
-		return trash
-
 	def delete(self):
 		item = self.getCurrentSelection()
 		if not canDelete(item):
@@ -643,7 +636,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		if current and (not current.flags & eServiceReference.mustDescent):
 			if config.usage.movielist_trashcan.value:
 				try:
-					trash = self.createTrashFolder()
+					trash = Tools.Trashcan.createTrashFolder()
 					# Also check whether we're INSIDE the trash, then it's a purge.
 					if current.getPath().startswith(trash):
 						msg = _("Deleted items") + "\n"
@@ -654,7 +647,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				except Exception, e:
 					# Failed to create trash or move files.
 					print "[MovieSelection] Failed to move to .Trash folder:", e
-					msg = _("Cannot move to .Trash folder") + "\n" + str(e) + "\n"
+					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 			else:
 				msg = ''
 			name = info and info.getName(current) or _("this recording")
@@ -695,12 +688,4 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		eraser = eBackgroundFileEraser.getInstance()
-		top = self.createTrashFolder()
-		for root, dirs, files in os.walk(top, topdown=False):
-			for name in files:
-				print "Background erasing", name
-				eraser.erase(os.path.join(root, name))
-			#for name in dirs:
-			#	os.rmdir(os.path.join(root, name))
-
+		Tools.Trashcan.instance.cleanAll()
