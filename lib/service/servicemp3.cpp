@@ -985,7 +985,7 @@ PyObject *eServiceMP3::getInfoObject(int w)
 		}
 	}
 
-	return 0;
+	return Py_RETURN_NONE;
 }
 
 RESULT eServiceMP3::audioChannel(ePtr<iAudioChannelSelection> &ptr)
