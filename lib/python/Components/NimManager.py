@@ -947,7 +947,7 @@ def InitNimManager(nimmgr):
 
 	lnb_choices = {
 		"universal_lnb": _("Universal LNB"),
-#		"unicable": _("Unicable"),
+		"unicable": _("Unicable"),
 		"c_band": _("C-Band"),
 		"user_defined": _("User defined")}
 
