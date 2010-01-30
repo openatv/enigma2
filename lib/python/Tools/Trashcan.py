@@ -27,24 +27,31 @@ class Trashcan:
 	def gotRecordEvent(self, service, event):
 		print "[Trashcan] gotRecordEvent", service, event
 		self.recordings = len(self.session.nav.getRecordings())
-		self.cleanIfIdle()
+		if (event == enigma.iRecordableService.evEnd):
+			self.cleanIfIdle()
 	
+	def destroy(self):
+		if self.session is not None:
+			self.session.nav.record_event.remove(self.gotRecordEvent)
+		self.session = None
+
+	def __del__(self):
+		self.destroy()
+
 	def cleanIfIdle(self):
+		# RecordTimer calls this when preparing a recording. That is a
+		# nice moment to clean up.
 		if self.recordings:
 			print "[Trashcan] Recording in progress", self.recordings
-			return
-		next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()	
-		if (next_rec_time > 0) and ((next_rec_time - time.time()) < 30):
-			print "[Trashcan] Recording about to start in", int(next_rec_time - time.time()), "sec."
 			return
 		try:
 			ctimeLimit = time.time() - (config.usage.movielist_trashcan_days.value * 3600 * 24)
 			reserveBytes = 1024*1024*1024 * int(config.usage.movielist_trashcan_reserve.value) 
-			self.clean(ctimeLimit, reserveBytes)
+			clean(ctimeLimit, reserveBytes)
 		except Exception, e:
 			print "[Trashcan] Weirdness:", e
 
-	def clean(self, ctimeLimit, reserveBytes):
+def clean(ctimeLimit, reserveBytes):
 		# Remove expired items from trash, and attempt to have
 		# reserveBytes of free disk space. 
 		trash = getTrashFolder()
@@ -90,7 +97,7 @@ class Trashcan:
 		print "[Trashcan] Size now:", size
 		 
 		
-	def cleanAll(self):
+def cleanAll():
 		trash = getTrashFolder()
 		if not os.path.isdir(trash):
 			print "[Trashcan] No trash.", trash
@@ -110,14 +117,6 @@ class Trashcan:
 					pass
 		
 	
-	def destroy(self):
-		if self.session is not None:
-			self.session.nav.record_event.remove(self.gotRecordEvent)
-		self.session = None
-
-	def __del__(self):
-		self.destroy()
-
 def init(session):
 	global instance
 	instance = Trashcan(session)
@@ -135,6 +134,8 @@ if __name__ == '__main__':
 			self.movielist_trashcan_reserve = self
 			self.value = 1
 			self.eBackgroundFileEraser = self
+			self.iRecordableService = self
+			self.evEnd = None
 		def getInstance(self):
 			# eBackgroundFileEraser
 			return self
@@ -156,7 +157,7 @@ if __name__ == '__main__':
 	diskstat = os.statvfs('/hdd/movie')
 	free = diskstat.f_bfree * diskstat.f_bsize
 	# Clean up one MB
-	instance.clean(1264606758, free + 1000000)
-	instance.cleanAll()
+	clean(1264606758, free + 1000000)
+	cleanAll()
 	instance.destroy()
 	s.destroy()
