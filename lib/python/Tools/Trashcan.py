@@ -12,7 +12,7 @@ from Directories import resolveFilename, SCOPE_HDD
 def getTrashFolder():
 	return os.path.join(resolveFilename(SCOPE_HDD), ".Trash")
 
-def createTrashFolder(self):
+def createTrashFolder():
 	trash = getTrashFolder()
 	if not os.path.isdir(trash):
 		os.mkdir(trash)
@@ -151,6 +151,7 @@ if __name__ == '__main__':
 				raise Exception, "record_event not empty" + str(self.record_event)
 	
 	s = Fake()
+	createTrashFolder()
 	config = s
 	enigma = s
 	init(s)
