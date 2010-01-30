@@ -7,7 +7,7 @@ from Components.TimerSanityCheck import TimerSanityCheck
 
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Tools import Directories, Notifications, ASCIItranslit
+from Tools import Directories, Notifications, ASCIItranslit, Trashcan
 from Tools.XMLTools import stringToXML
 
 import timer
@@ -226,7 +226,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
 				# here than calculateFilename is happy
 				if not self.justplay:
-					open(self.Filename + ".ts", "w").close() 
+					open(self.Filename + ".ts", "w").close()
+					# Give the Trashcan a chance to clean up
+					try:
+						Trashcan.instance.cleanIfIdle()
+					except Exception, e:
+						 print "[TIMER] Failed to call Trashcan.instance.cleanIfIdle()"
+						 print "[TIMER] Error:", e
 				# fine. it worked, resources are allocated.
 				self.next_activation = self.begin
 				self.backoff = 0

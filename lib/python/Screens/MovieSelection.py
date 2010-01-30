@@ -683,9 +683,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			msg = "\n" + _("Recording(s) are in progress or coming up in few seconds!")
 		else:
 			msg = ""
-		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trashcan?") + msg)
+		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg)
 	
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:
 			return
-		Tools.Trashcan.instance.cleanAll()
+		Tools.Trashcan.cleanAll()
