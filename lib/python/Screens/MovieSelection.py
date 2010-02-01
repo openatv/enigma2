@@ -74,6 +74,47 @@ def canMove(item):
 		return not isTrashFolder(item[0])
 	return True
 
+def moveServiceFiles(serviceref, dest):
+	# current should be 'ref' type, dest a simple path string
+	print "[Movie] Moving to:", dest
+	#normpath is to remove the trailing '/' from directories
+	src = os.path.normpath(serviceref.getPath())
+	srcPath, srcName = os.path.split(src)
+	if os.path.normpath(srcPath) == dest:
+		# move file to itself is allowed, so we have to check it
+		raise Exception, "Refusing to move to the same directory"
+	# Make a list of items to move
+	moveList = [(src, os.path.join(dest, srcName))]
+	if not serviceref.flags & eServiceReference.mustDescent:
+		# Real movie, add extra files...
+		srcBase = os.path.splitext(src)[0]
+		baseName = os.path.split(srcBase)[1]
+		eitName =  srcBase + '.eit' 
+		if os.path.exists(eitName):
+			moveList.append((eitName, os.path.join(dest, baseName+'.eit')))
+		baseName = os.path.split(src)[1]
+		for ext in ('.ap', '.cuts', '.meta', '.sc'):
+			candidate = src + ext
+			if os.path.exists(candidate):
+				moveList.append((candidate, os.path.join(dest, baseName+ext)))
+	# Try to "atomically" move these files
+	movedList = []
+	try:
+		for item in moveList:
+			print "[MOVE]", item[0], "->", item[1]
+			os.rename(item[0], item[1])
+			movedList.append(item)
+	except Exception, e:
+		print "[MovieSelection] Failed move:", e
+		for item in movedList:
+			try:
+				os.rename(item[1], item[0])
+			except:
+				print "[MovieSelection] Failed to undo move:", item
+		# rethrow exception
+		raise
+
+
 class MovieContextMenuSummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -578,51 +619,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			# full browser returns only a string
 			dest = os.path.normpath(choice)
 		try:
-			self.moveMovieFiles(self.getCurrent(), dest)
-		except Exception, e:
-			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
-
-	def moveMovieFiles(self, current, dest):
-		# current should be 'ref' type, dest a simple path string
-		print "[Movie] Moving to:", dest
-		#normpath is to remove the trailing '/' from directories
-		src = os.path.normpath(current.getPath())
-		srcPath, srcName = os.path.split(src)
-		if os.path.normpath(srcPath) == dest:
-			# move file to itself is allowed, so we have to check it
-			print "[Movie] Refusing to move to the same directory", srcPath
-			return
-		# Make a list of items to move
-		moveList = [(src, os.path.join(dest, srcName))]
-		if not current.flags & eServiceReference.mustDescent:
-			# Real movie, add extra files...
-			srcBase = os.path.splitext(src)[0]
-			baseName = os.path.split(srcBase)[1]
-			eitName =  srcBase + '.eit' 
-			if os.path.exists(eitName):
-				moveList.append((eitName, os.path.join(dest, baseName+'.eit')))
-			baseName = os.path.split(src)[1]
-			for ext in ('.ap', '.cuts', '.meta', '.sc'):
-				candidate = src + ext
-				if os.path.exists(candidate):
-					moveList.append((candidate, os.path.join(dest, baseName+ext)))
-		# Try to "atomically" move these files
-		movedList = []
-		try:
-			for item in moveList:
-				print "[MOVE]", item[0], "->", item[1]
-				os.rename(item[0], item[1])
-				movedList.append(item)
+			current = self.getCurrent()
+			moveServiceFiles(current, dest)
 			self["list"].removeService(current)
 		except Exception, e:
-			print "[MovieSelection] Failed move:", e
-			for item in movedList:
-				try:
-					os.rename(item[1], item[0])
-				except:
-					print "[MovieSelection] Failed to undo move:", item
-			# rethrow exception
-			raise
+			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
 	def delete(self):
 		item = self.getCurrentSelection()
@@ -641,7 +642,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 					if current.getPath().startswith(trash):
 						msg = _("Deleted items") + "\n"
 					else:
-						self.moveMovieFiles(current, trash)
+						moveServiceFiles(self.getCurrent(), trash)
+						self["list"].removeService(current)
 						# Files were moved to .Trash, ok.
 						return
 				except Exception, e:

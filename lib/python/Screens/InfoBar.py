@@ -1,7 +1,7 @@
 from Tools.Profile import profile
 
 # workaround for required config entry dependencies.
-from Screens.MovieSelection import MovieSelection
+import Screens.MovieSelection
 
 from Screen import Screen
 
@@ -116,8 +116,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.rds_display.show()  # in InfoBarRdsDecoder
 
 	def showMovies(self):
-		from Screens.MovieSelection import MovieSelection
-		self.session.openWithCallback(self.movieSelected, MovieSelection)
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection)
 
 	def movieSelected(self, service):
 		if service is not None:
@@ -179,6 +178,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 				list = (
 					(_("Yes"), "quit"),
 					(_("Yes, returning to movie list"), "movielist"),
+					(_("Yes, and delete this movie"), "quitanddelete"),
 					(_("No"), "continue"),
 					(_("No, but restart from begin"), "restart")
 				)
@@ -191,15 +191,50 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	def leavePlayer(self):
 		self.handleLeave(config.usage.on_movie_stop.value)
 
+	def deleteConfirmed(self, answer):
+		if answer:
+			self.leavePlayerConfirmed((True, "quitanddeleteconfirmed"))
+
 	def leavePlayerConfirmed(self, answer):
 		answer = answer and answer[1]
-		if answer  == "quit":
+
+		if answer in ("quitanddelete", "quitanddeleteconfirmed"):
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			from enigma import eServiceCenter
+			serviceHandler = eServiceCenter.getInstance()
+			if answer == "quitanddelete":
+				msg = ''
+				if config.usage.movielist_trashcan.value:
+					import Tools.Trashcan
+					try:
+						trash = Tools.Trashcan.createTrashFolder()
+						Screens.MovieSelection.moveServiceFiles(ref, trash)
+						# Moved to trash, okay
+						self.close()
+						return
+					except Exception, e:
+						print "[InfoBar] Failed to move to .Trash folder:", e
+						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+				info = serviceHandler.info(ref)
+				name = info and info.getName(ref) or _("this recording")
+				msg += _("Do you really want to delete %s?") % name
+				from Screens.MessageBox import MessageBox
+				self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg)
+				return
+
+			elif answer == "quitanddeleteconfirmed":
+				offline = serviceHandler.offlineOperations(ref)
+				if offline.deleteFromDisk(0):
+					from Screens.MessageBox import MessageBox
+					self.session.openWithCallback(self.close, MessageBox, _("You cannot delete this!"), MessageBox.TYPE_ERROR)
+					return
+
+		if answer in ("quit", "quitanddeleteconfirmed"):
 			self.close()
 		elif answer == "movielist":
 			ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			self.returning = True
-			from Screens.MovieSelection import MovieSelection
-			self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
+			self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 			self.session.nav.stopService()
 		elif answer == "restart":
 			self.doSeek(0)
@@ -291,8 +326,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
-		from Screens.MovieSelection import MovieSelection
-		self.session.openWithCallback(self.movieSelected, MovieSelection, ref)
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 
 	def movieSelected(self, service):
 		if service is not None:
