@@ -138,7 +138,8 @@ class CableTransponderSearchSupport:
 					"QAM128" : parm.Modulation_QAM128,
 					"QAM256" : parm.Modulation_QAM256 }
 				inv = { "INVERSION_OFF" : parm.Inversion_Off,
-					"INVERSION_ON" : parm.Inversion_On }
+					"INVERSION_ON" : parm.Inversion_On,
+					"INVERSION_AUTO" : parm.Inversion_Unknown }
 				fec = { "FEC_AUTO" : parm.FEC_Auto,
 					"FEC_1_2" : parm.FEC_1_2,
 					"FEC_2_3" : parm.FEC_2_3,
