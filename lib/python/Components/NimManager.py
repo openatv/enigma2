@@ -444,7 +444,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}):
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", None):
@@ -455,6 +455,7 @@ class NIM(object):
 		self.description = description
 		self.has_outputs = has_outputs
 		self.internally_connectable = internally_connectable
+		self.multi_type = multi_type
 
 	def isCompatible(self, what):
 		compatible = {
@@ -465,6 +466,9 @@ class NIM(object):
 				"DVB-S2": ("DVB-S", "DVB-S2", None)
 			}
 		return what in compatible[self.type]
+	
+	def getType(self):
+		return self.type
 	
 	def connectableTo(self):
 		connectable = {
@@ -491,6 +495,13 @@ class NIM(object):
 	
 	def internallyConnectableTo(self):
 		return self.internally_connectable
+	
+	def isMultiType(self):
+		return (len(self.multi_type) > 0)
+	
+	# returns dict {<slotid>: <type>}
+	def getMultiTypeList(self):
+		return self.multi_type
 
 	slot_id = property(getSlotID)
 
@@ -636,7 +647,15 @@ class NimManager:
 				entries[current_slot]["has_outputs"] = (input == "yes")
 			elif line.strip().startswith("Internally_Connectable:"):
 				input = int(line.strip()[len("Internally_Connectable:") + 1:])
-				entries[current_slot]["internally_connectable"] = input 
+				entries[current_slot]["internally_connectable"] = input
+			elif  line.strip().startswith("Mode"):
+				# "Mode 0: DVB-T" -> ["Mode 0", " DVB-T"]
+				split = line.strip().split(":")
+				# "Mode 0" -> ["Mode, "0"]
+				split2 = split[0].split(" ")
+				modes = entries[current_slot].get("multi_type", {})
+				modes[split2[1]] = split[1].strip()
+				entries[current_slot]["multi_type"] = modes
 			elif line.strip().startswith("empty"):
 				entries[current_slot]["type"] = None
 				entries[current_slot]["name"] = _("N/A")
@@ -650,12 +669,17 @@ class NimManager:
 				entry["has_outputs"] = True
 			if not (entry.has_key("internally_connectable")):
 				entry["internally_connectable"] = None
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"]))
+			if not (entry.has_key("multi_type")):
+				entry["multi_type"] = {}
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
 			if slot.isCompatible(chktype):
 				return True
+			for type in slot.getMultiTypeList().values():
+				if chktype == type:
+					return True
 		return False
 	
 	def getNimType(self, slotid):
@@ -1218,11 +1242,28 @@ def InitNimManager(nimmgr):
 		slot_id = configElement.slot_id
 		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
 			open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w").write(configElement.value)
+			
+	def tunerTypeChanged(configElement):
+		fe_id = configElement.fe_id
+		open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
 
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
+		if slot.isMultiType():
+			typeList = []
+			value = None
+			for id in slot.getMultiTypeList().keys():
+				type = slot.getMultiTypeList()[id]
+				typeList.append((id, type))
+				if type == slot.getType():
+					value = id
+			nim.multiType = ConfigSelection(typeList, "0")
+			nim.multiType.value = value
+			nim.multiType.fe_id = x - empty_slots
+			nim.multiType.addNotifier(tunerTypeChanged)
+		
 		if slot.isCompatible("DVB-S"):
 			nim.toneAmplitude = ConfigSelection([("9", "600mV"), ("8", "700mV"), ("7", "800mV"), ("6", "900mV"), ("5", "1100mV")], "7")
 			nim.toneAmplitude.fe_id = x - empty_slots
