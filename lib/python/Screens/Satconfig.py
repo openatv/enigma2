@@ -94,6 +94,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedType = None
 		self.advancedManufacturer = None
 		self.advancedSCR = None
+		
+		if self.nim.isMultiType():
+			multiType = self.nimConfig.multiType
+			self.multiType = getConfigListEntry(_("Tuner type"), multiType)
+			self.list.append(self.multiType)
 
 		if self.nim.isCompatible("DVB-S"):
 			self.configMode = getConfigListEntry(_("Configuration Mode"), self.nimConfig.configMode)
@@ -200,10 +205,19 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
 			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, \
-			self.uncommittedDiseqcCommand, self.cableScanType)
+			self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
+		if self["config"].getCurrent() == self.multiType:
+			print "enumerating:"
+			nimmanager.enumerateNIMs()
+			print "mode value:", self.multiType[1].value
+			from Components.NimManager import InitNimManager
+			InitNimManager(nimmanager)
+			self.nim = nimmanager.nim_slots[self.slotid]
+			self.nimConfig = self.nim.config
 		for x in checkList:
 			if self["config"].getCurrent() == x:
 				self.createSetup()
+				break
 
 	def run(self):
 		if self.have_advanced and self.nim.config_mode == "advanced":
@@ -511,6 +525,8 @@ class NimSelection(Screen):
 						text = _("nothing connected")
 					elif nimConfig.configMode.value == "enabled":
 						text = _("enabled")
+				if x.isMultiType():
+					text = _("Switchable tuner types:") + "(" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text
 					
 				self.list.append((slotid, x.friendly_full_description, text, x))
 		self["nimlist"].setList(self.list)
