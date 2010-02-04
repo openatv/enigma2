@@ -13,6 +13,9 @@ class ServiceStopScreen:
 	def stopService(self):		
 		self.oldref = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
+		if self.session.pipshown: # try to disable pip
+			self.session.pipshown = False
+			del self.session.pip
 		
 	def __onClose(self):
 		self.session.nav.playService(self.oldref)
