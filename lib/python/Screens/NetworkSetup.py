@@ -64,6 +64,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
 		
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
@@ -81,6 +82,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			{
 			"red": (self.close, _("exit network interface list")),
 			"green": (self.okbuttonClick, _("select interface")),
+			"blue": (self.openNetworkWizard, _("Use the Networkwizard to configure selected network adapter")),
 			})
 		
 		self["DefaultInterfaceAction"] = HelpableActionMap(self, "ColorActions",
@@ -132,7 +134,9 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 				else:
 					active_int = False
 				self.list.append(InterfaceEntryComponent(index = x[1],name = _(x[0]),default=default_int,active=active_int ))
-
+		
+		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+			self["key_blue"].setText(_("NetworkWizard"))
 		self["list"].l.setList(self.list)
 
 	def setDefaultInterface(self):
@@ -202,6 +206,16 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			self.updateList()
 			self.session.open(MessageBox, _("Finished configuring your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
+	def openNetworkWizard(self):
+		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+			try:
+				from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
+			except ImportError:
+				self.session.open(MessageBox, _("The NetworkWizard extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				selection = self["list"].getCurrent()
+				if selection is not None:
+					self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, selection[0])
 
 
 class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
@@ -769,7 +783,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.session.openWithCallback(self.restartLan, MessageBox, (_("Are you sure you want to restart your network interfaces?\n\n") + self.oktext ) )
 		if self["menulist"].getCurrent()[1] == 'openwizard':
 			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
-			self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard)
+			self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, self.iface)
 		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
 			self.extended = self["menulist"].getCurrent()[1][2]
 			self.extended(self.session, self.iface)
