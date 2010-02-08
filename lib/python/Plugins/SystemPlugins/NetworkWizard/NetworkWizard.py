@@ -9,7 +9,6 @@ from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from enigma import eTimer
 
-
 config.misc.firstrun = ConfigBoolean(default = True)
 list = []
 list.append("WEP")
@@ -52,7 +51,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			</widget>
 			<widget name="HelpWindow" pixmap="skin_default/buttons/key_text.png" position="125,170" zPosition="1" size="1,1" transparent="1" alphatest="on" />	
 		</screen>"""
-	def __init__(self, session):
+	def __init__(self, session, interface = None):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")
 		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
 		Rc.__init__(self)
@@ -68,7 +67,10 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.isInterfaceUp = None
 		self.WlanPluginInstalled = None
 		self.ap = None
-		self.selectedInterface = None
+		if interface is not None:
+			self.selectedInterface = interface
+		else:
+			self.selectedInterface = None
 		self.NextStep = None
 		self.resetRef = None
 		self.checkRef = None
@@ -95,6 +97,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def markDone(self):
 		self.rescanTimer.stop()
 		del self.rescanTimer
+		self.checkOldInterfaceState()
 		pass
 
 	def getInstalledInterfaceCount(self):
@@ -104,6 +107,35 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.originalAth0State = iNetwork.getAdapterAttribute('ath0', 'up')
 		self.originalEth0State = iNetwork.getAdapterAttribute('eth0', 'up')
 		self.originalWlan0State = iNetwork.getAdapterAttribute('wlan0', 'up')
+
+	def selectInterface(self):
+		self.InterfaceState = None
+		if self.selectedInterface is None and self.InstalledInterfaceCount <= 1:
+			if self.selectedInterface == 'eth0':
+				self.NextStep = 'nwconfig'
+			else:
+				self.NextStep = 'scanwlan'
+			self.checkInterface(self.selectedInterface)
+		elif self.selectedInterface is not None and self.InstalledInterfaceCount <= 1:
+			if self.selectedInterface == 'eth0':
+				self.NextStep = 'nwconfig'
+			else:
+				self.NextStep = 'scanwlan'
+			self.checkInterface(self.selectedInterface)
+		elif self.selectedInterface is None and self.InstalledInterfaceCount > 1:
+			self.NextStep = 'selectinterface'
+			self.currStep = self.getStepWithID(self.NextStep)
+			self.afterAsyncCode()
+		elif self.selectedInterface is not None and self.InstalledInterfaceCount > 1:
+			if self.selectedInterface == 'eth0':
+				self.NextStep = 'nwconfig'
+			else:
+				self.NextStep = 'scanwlan'
+			self.checkInterface(self.selectedInterface)
+		else:
+			self.NextStep = 'selectinterface'
+			self.currStep = self.getStepWithID(self.NextStep)
+			self.afterAsyncCode()			
 
 	def checkOldInterfaceState(self):
 		# disable up interface if it was originally down and config is unchanged.
@@ -220,16 +252,18 @@ class NetworkWizard(WizardLanguage, Rc):
 			if data is True:
 				if status is not None:
 					text1 = _("Your Dreambox is now ready to use.\n\nYour internet connection is working now.\n\n")
-					text2 = _('Accesspoint:') + "\t" + status[self.selectedInterface]["acesspoint"] + "\n"
-					text3 = _('SSID:') + "\t" + status[self.selectedInterface]["essid"] + "\n"
-					text4 = _('Link Quality:') + "\t" + status[self.selectedInterface]["quality"]+"%" + "\n"
-					text5 = _('Signal Strength:') + "\t" + status[self.selectedInterface]["signal"] + "\n"
-					text6 = _('Bitrate:') + "\t" + status[self.selectedInterface]["bitrate"] + "\n"
-					text7 = _('Encryption:') + " " + status[self.selectedInterface]["encryption"] + "\n"
+					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["acesspoint"]) + "\n"
+					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
+					text4 = _('Link Quality:') + "\t" + str(status[self.selectedInterface]["quality"])+"%" + "\n"
+					text5 = _('Signal Strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
+					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
+					text7 = _('Encryption:') + " " + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
 					infotext = text1 + text2 + text3 + text4 + text5 + text7 +"\n" + text8
 					self.currStep = self.getStepWithID("checkWlanstatusend")
 					self.Text = infotext
+					if str(status[self.selectedInterface]["acesspoint"]) == "Not-Associated":
+						self.InterfaceState = False
 					self.afterAsyncCode()
 
 	def checkNetwork(self):
@@ -300,32 +334,38 @@ class NetworkWizard(WizardLanguage, Rc):
 		except ImportError:
 			self.APList.append( ( _("No networks found"),_("unavailable") ) )
 			return self.APList
-		else:	
-			self.w = Wlan(self.selectedInterface)
-			aps = self.w.getNetworkList()
-			if aps is not None:
-				print "[NetworkWizard.py] got Accespoints!"
-				tmplist = []
-				complist = []
-				for ap in aps:
-					a = aps[ap]
-					if a['active']:
-						tmplist.append( (a['bssid'], a['essid']) )
-						complist.append( (a['bssid'], a['essid']) )
-				
-				for entry in tmplist:
-					if entry[1] == "":
-						for compentry in complist:
-							if compentry[0] == entry[0]:
-								complist.remove(compentry)
-				for entry in complist:
-					self.APList.append( (entry[1], entry[1]) )
-
-			if "hidden..." not in self.APList:
-				self.APList.append(( _("enter hidden network SSID"), "hidden..." ))
-		
-			self.rescanTimer.start(3000)
-			return self.APList
+		else:
+			try:
+				self.w = Wlan(self.selectedInterface)
+				aps = self.w.getNetworkList()
+			except ValueError:
+				self.APList = []
+				self.APList.append( ( _("No networks found"),_("unavailable") ) )
+				return self.APList
+			else:
+				if aps is not None:
+					print "[NetworkWizard.py] got Accespoints!"
+					tmplist = []
+					complist = []
+					for ap in aps:
+						a = aps[ap]
+						if a['active']:
+							tmplist.append( (a['bssid'], a['essid']) )
+							complist.append( (a['bssid'], a['essid']) )
+					
+					for entry in tmplist:
+						if entry[1] == "":
+							for compentry in complist:
+								if compentry[0] == entry[0]:
+									complist.remove(compentry)
+					for entry in complist:
+						self.APList.append( (entry[1], entry[1]) )
+	
+				if "hidden..." not in self.APList:
+					self.APList.append(( _("enter hidden network SSID"), "hidden..." ))
+			
+				self.rescanTimer.start(3000)
+				return self.APList
 
 	def AccessPointsSelectionMade(self, index):
 		self.ap = index
@@ -355,5 +395,26 @@ class NetworkWizard(WizardLanguage, Rc):
 		else:
 			self.WlanPluginInstalled = True
 
+	def listChoices(self):
+		self.rescanTimer.stop()
+		list = []
+		if self.WlanPluginInstalled == True:
+			list.append((_("Configure your wireless LAN again"), "scanwlan"))
+		list.append((_("Configure your internal LAN"), "nwconfig"))
+		list.append((_("Exit network wizard"), "end"))		
+		return list
 
+	def ChoicesSelectionMade(self, index):
+		self.ChoicesSelect(index)
 
+	def ChoicesSelect(self, index):
+		if index == 'end':
+			self.NextStep = 'end'
+		elif index == 'nwconfig':
+			self.selectedInterface = "eth0"
+			self.NextStep = 'nwconfig'
+		else:
+			self.NextStep = 'scanwlan'
+
+	def ChoicesSelectionMoved(self):
+		pass

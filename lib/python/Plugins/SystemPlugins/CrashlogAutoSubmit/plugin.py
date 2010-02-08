@@ -391,7 +391,7 @@ def selSetup(menuid, **kwargs):
 	if menuid != "system":
 		return [ ]
 
-	return [(_("Crashlog settings") + "...", openconfig, "crashlog_config", 70)]
+	return [(_("Crashlog settings"), openconfig, "crashlog_config", 70)]
 
 
 def Plugins(**kwargs):
