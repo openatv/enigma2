@@ -2402,31 +2402,25 @@ static inline __u8 HI(int x) { return (__u8) ((x >> 8) & 0xFF); }
 static inline __u8 LO(int x) { return (__u8) (x & 0xFF); }
 #define SET_HILO(x, val) {x##_hi = ((val) >> 8); x##_lo = (val) & 0xff; }
 // convert from set of strings to DVB format (EIT)
-static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start, 
+void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& serviceRefs, long start, 
 	long duration, const char* title, const char* short_summary, 
 	const char* long_description, char event_type)
 {
 	if (!title)
-		return 0;
+		return;
 	static const int EIT_LENGTH = 4108;
 	static const __u8 codePage = 0x15; // UTF-8 encoding
-	__u8 *data = new __u8[EIT_LENGTH];
+	__u8 data[EIT_LENGTH];
 
 	eit_t *packet = (eit_t *) data;
 	packet->table_id = 0x50;
 	packet->section_syntax_indicator = 1;
 
-	eDVBChannelID chid;
-	serviceRef.getChannelID(chid);
-
-	SET_HILO(packet->service_id, serviceRef.getServiceID().get());
 	packet->version_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
 	packet->current_next_indicator = 0;
 	packet->section_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
 	packet->last_section_number = 0;	// eEPGCache::sectionRead() will dig this for the moment
 	
-	SET_HILO(packet->transport_stream_id, chid.transport_stream_id.get());
-	SET_HILO(packet->original_network_id, chid.original_network_id.get());
 	packet->segment_last_section_number = 0; // eEPGCache::sectionRead() will dig this for the moment
 	packet->segment_last_table_id = 0x50;
 
@@ -2534,7 +2528,18 @@ static __u8* createEventData(const eServiceReferenceDVB& serviceRef, long start,
 
 	int packet_length = (x - data) - 3; //should add 1 for crc....
 	SET_HILO(packet->section_length, packet_length);
-	return data;
+	// Add channelrefs and submit data.
+	for (std::vector<eServiceReferenceDVB>::const_iterator serviceRef = serviceRefs.begin();
+		serviceRef != serviceRefs.end();
+		++serviceRef)
+	{
+		eDVBChannelID chid;
+		serviceRef->getChannelID(chid);
+		SET_HILO(packet->service_id, serviceRef->getServiceID().get());
+		SET_HILO(packet->transport_stream_id, chid.transport_stream_id.get());
+		SET_HILO(packet->original_network_id, chid.original_network_id.get());
+		sectionRead(data, EPG_IMPORT, 0);
+	}
 }
 #undef SET_HILO
 
@@ -2558,6 +2563,12 @@ static const char* getStringFromPython(ePyObject obj)
 	}
 	return result;
 }
+
+void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
+{
+	importEvents(serviceReference, list);
+}
+
 //here we get a python tuple of tuples ;)
 // consider it an array of objects with the following data
 // 1. start time (long)
@@ -2566,29 +2577,45 @@ static const char* getStringFromPython(ePyObject obj)
 // 4. short description (string)
 // 5. extended description (string)
 // 6. event type (byte)
-void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
+void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 {
-	if (!PyString_Check(serviceReference))
+	std::vector<eServiceReferenceDVB> refs;
+	
+	if (PyString_Check(serviceReferences))
 	{
-		eDebug("[EPG:import] serviceReference does not pass PyString_Check, aborting");
+		char *refstr;
+		refstr = PyString_AS_STRING(serviceReferences);
+	        if (!refstr)
+	        {
+        	        eDebug("[EPG:import] serviceReference string is 0, aborting");
+                	return;
+	        }
+		refs.push_back(eServiceReferenceDVB(refstr));
+	}
+	else if (PyList_Check(serviceReferences))
+	{
+		int nRefs = PyList_Size(serviceReferences);
+		for (int i = 0; i < nRefs; ++i)
+		{
+			PyObject* item = PyList_GET_ITEM(serviceReferences, i);
+			char *refstr;
+	                refstr = PyString_AS_STRING(item);
+	                if (!refstr)
+        	        {
+                	        eDebug("[EPG:import] a serviceref item is not a string");
+                        }
+			else
+		        {
+		                refs.push_back(eServiceReferenceDVB(refstr));
+			}
+		}
+	}
+	else
+	{
+		eDebug("[EPG:import] serviceReference string is neither string nor list, aborting");
 		return;
 	}
 
-	char *refstr = PyString_AS_STRING(serviceReference);
-	if (!refstr)
-	{
-		eDebug("[EPG:import] serviceReference string is 0, aborting");
-		return;
-	}
-	eServiceReferenceDVB ref(refstr);
-	if (!ref.valid())
-	{
-		std::string s("[EPG:import] invalid reference: ");
-		s += refstr;
-		s += ", aborting";
-		eDebug(s.c_str());
-		return;
-	}
 	if (!PyTuple_Check(list))
 	{
 		eDebug("[EPG:import] argument 'list' does not pas PyTuple_Check, aborting");
@@ -2624,10 +2651,7 @@ void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
 		const char *long_description = getStringFromPython(PyTuple_GET_ITEM(singleEvent, 4));
 		char event_type = (char) PyInt_AsLong(PyTuple_GET_ITEM(singleEvent, 5));
 
-		__u8* data = createEventData(ref, start, duration, title, short_summary, long_description, event_type);
-		if (data)
-			sectionRead(data, EPG_IMPORT, 0);
-		delete [] data;
+		submitEventData(refs, start, duration, title, short_summary, long_description, event_type);
 	}
 }
 
