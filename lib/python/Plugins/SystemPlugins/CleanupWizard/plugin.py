@@ -122,7 +122,7 @@ def selSetup(menuid, **kwargs):
 	if menuid != "system":
 		return [ ]
 
-	return [(_("Cleanup Wizard settings") + "...", openconfig, "cleanup_config", 71)]
+	return [(_("Cleanup Wizard settings"), openconfig, "cleanup_config", 71)]
 
 def Plugins(**kwargs):
 	list = []
