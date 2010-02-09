@@ -12,23 +12,25 @@
 extern "C" int sys_ioprio_set(int, int, int);
 extern "C" int sys_ioprio_get(int, int);
 
-#if defined(__i386__)
-#define __NR_ioprio_set		289
-#define __NR_ioprio_get		290
-#elif defined(__ppc__) || defined(__powerpc__)
-#define __NR_ioprio_set		273
-#define __NR_ioprio_get		274
-#elif defined(__x86_64__)
-#define __NR_ioprio_set		251
-#define __NR_ioprio_get		252
-#elif defined(__ia64__)
-#define __NR_ioprio_set		1274
-#define __NR_ioprio_get		1275
-#elif defined(__mips__)
-#define __NR_ioprio_set		4284
-#define __NR_ioprio_get		4285
-#else
-#error "Unsupported arch"
+#ifndef __NR_ioprio_set
+	#if defined(__i386__)
+		#define __NR_ioprio_set		289
+		#define __NR_ioprio_get		290
+	#elif defined(__ppc__) || defined(__powerpc__)
+		#define __NR_ioprio_set		273
+		#define __NR_ioprio_get		274
+	#elif defined(__x86_64__)
+		#define __NR_ioprio_set		251
+		#define __NR_ioprio_get		252
+	#elif defined(__ia64__)
+		#define __NR_ioprio_set		1274
+		#define __NR_ioprio_get		1275
+	#elif defined(__mips__)
+		#define __NR_ioprio_set		4284
+		#define __NR_ioprio_get		4285
+	#else
+		#error "Unsupported arch"
+	#endif
 #endif
 
 #if defined(_syscall3) && defined(_syscall2)
