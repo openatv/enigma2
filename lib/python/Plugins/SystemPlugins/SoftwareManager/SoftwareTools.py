@@ -94,14 +94,17 @@ class SoftwareTools(DreamInfoHandler):
 
 	def IpkgListAvailableCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
-		if len(result):
+		if result:
 			if SoftwareTools.list_updating:
 				SoftwareTools.available_packetlist = []
 				for x in result.splitlines():
-					split = x.split(' - ')
-					name = split[0].strip()
+					tokens = x.split(' - ')
+					name = tokens[0].strip()
 					if not any(name.endswith(x) for x in self.unwanted_extensions):
-						SoftwareTools.available_packetlist.append([name, split[1].strip(), split[2].strip()])
+						l = len(tokens)
+						version = l > 1 and tokens[1].strip() or ""
+						descr = l > 2 and tokens[2].strip() or ""
+						SoftwareTools.available_packetlist.append([name, version, descr])
 				if callback is None:
 					self.startInstallMetaPackage()
 				else:
@@ -126,7 +129,7 @@ class SoftwareTools(DreamInfoHandler):
 
 	def InstallMetaPackageCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
-		if len(result):
+		if result:
 			self.fillPackagesIndexList()
 			if callback is None:
 				self.startIpkgListInstalled()
@@ -152,13 +155,15 @@ class SoftwareTools(DreamInfoHandler):
 
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
-		if len(result):
+		if result:
 			SoftwareTools.installed_packetlist = {}
 			for x in result.splitlines():
-				split = x.split(' - ')
-				name = split[0].strip()
+				tokens = x.split(' - ')
+				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
-					SoftwareTools.installed_packetlist[name] = split[1].strip()
+					l = len(tokens)
+					version = l > 1 and tokens[1].strip() or ""
+					SoftwareTools.installed_packetlist[name] = version
 			if callback is None:
 				self.countUpdates()
 			else:
@@ -203,7 +208,7 @@ class SoftwareTools(DreamInfoHandler):
 
 	def IpkgUpdateCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
-		if len(result):
+		if result:
 			if self.Console:
 				if len(self.Console.appContainers) == 0:
 					if callback is not None:

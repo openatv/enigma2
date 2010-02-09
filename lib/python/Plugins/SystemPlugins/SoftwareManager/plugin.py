@@ -1558,24 +1558,31 @@ class PacketManager(Screen):
 		pass
 
 	def IpkgList_Finished(self, result, retval, extra_args = None):
-		if len(result):
+		if result:
 			self.packetlist = []
 			for x in result.splitlines():
-				split = x.split(' - ')   #self.blacklisted_packages
-				if not any(split[0].strip().endswith(x) for x in self.unwanted_extensions):
-					self.packetlist.append([split[0].strip(), split[1].strip(),split[2].strip()])
+				tokens = x.split(' - ')   #self.blacklisted_packages
+				name = tokens[0].strip()
+				if not any(name.endswith(x) for x in self.unwanted_extensions):
+					l = len(tokens)
+					version = l > 1 and tokens[1].strip() or ""
+					descr = l > 2 and tokens[2].strip() or ""
+					self.packetlist.append([name, version, descr])
 		if not self.Console:
 			self.Console = Console()
 		cmd = "ipkg list_installed"
 		self.Console.ePopen(cmd, self.IpkgListInstalled_Finished)
 
 	def IpkgListInstalled_Finished(self, result, retval, extra_args = None):
-		if len(result):
+		if result:
 			self.installed_packetlist = {}
 			for x in result.splitlines():
-				split = x.split(' - ')
-				if not any(split[0].strip().endswith(x) for x in self.unwanted_extensions):
-					self.installed_packetlist[split[0].strip()] = split[1].strip()
+				tokens = x.split(' - ')   #self.blacklisted_packages
+				name = tokens[0].strip()
+				if not any(name.endswith(x) for x in self.unwanted_extensions):
+					l = len(tokens)
+					version = l > 1 and tokens[1].strip() or ""
+					self.installed_packetlist[name] = version
 		self.buildPacketList()
 
 	def buildEntryComponent(self, name, version, description, state):
@@ -1703,7 +1710,7 @@ def Plugins(path, **kwargs):
 	plugin_path = path
 	list = [
 		PluginDescriptor(where = [PluginDescriptor.WHERE_NETWORKCONFIG_READ], fnc = autostart),
-		PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup), 
+		PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)
 	]
 	if config.usage.setup_level.index >= 2: # expert+
