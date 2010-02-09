@@ -3,7 +3,7 @@ class HardwareInfo:
 
 	def __init__(self):
 		if HardwareInfo.device_name is not None:
-			print "using cached result"
+#			print "using cached result"
 			return
 
 		HardwareInfo.device_name = "unknown"
