@@ -183,8 +183,11 @@ class Harddisk:
 
 	def mkfs(self):
 		cmd = "/sbin/mkfs.ext3 "
-		if self.diskSize() > 4 * 1024:
-			cmd += "-T largefile "
+		size = self.diskSize()
+		if size > 2 * 1024:
+			cmd += "-T largefile -N %d " % (size * 32)
+		elif size > 16 * 1024:
+			cmd += "-T largefile -O sparse_super "
 		cmd += "-m0 -O dir_index " + self.partitionPath("1")
 		res = system(cmd)
 		return (res >> 8)
