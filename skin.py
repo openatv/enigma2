@@ -181,9 +181,9 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 		elif attrib == 'size':
 			guiObject.resize(parseSize(value, scale, guiObject, desktop))
 		elif attrib == 'title':
-			guiObject.setTitle(_(value.encode('UTF-8')))
+			guiObject.setTitle(_(value))
 		elif attrib == 'text':
-			guiObject.setText(_(value.encode('UTF-8')))
+			guiObject.setText(_(value))
 		elif attrib == 'font':
 			guiObject.setFont(parseFont(value, scale))
 		elif attrib == 'zPosition':
