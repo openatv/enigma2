@@ -104,6 +104,9 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.rescanTimer.stop()
 		self.Adapterlist = iNetwork.getAdapterList()
 		self.InstalledInterfaceCount = len(self.Adapterlist)
+		if self.Adapterlist is not None:
+			if self.InstalledInterfaceCount == 1 and self.selectedInterface is None:
+					self.selectedInterface = self.Adapterlist[0]
 		self.originalAth0State = iNetwork.getAdapterAttribute('ath0', 'up')
 		self.originalEth0State = iNetwork.getAdapterAttribute('eth0', 'up')
 		self.originalWlan0State = iNetwork.getAdapterAttribute('wlan0', 'up')
