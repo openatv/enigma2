@@ -2616,22 +2616,19 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 		return;
 	}
 
-	if (!PyTuple_Check(list))
+	bool isTuple = PyTuple_Check(list);
+	if (!isTuple && !PyList_Check(list))
 	{
-		eDebug("[EPG:import] argument 'list' does not pas PyTuple_Check, aborting");
+		
+		eDebug("[EPG:import] argument 'list' is neither list nor tuple.");
 		return;
 	}
 
-	int numberOfEvents = PyTuple_Size(list);
-	if (numberOfEvents < 1)
-	{
-		eDebug("[EPG:import] numberOfEvents less than 1, aborting");
-		return;
-	}
+	int numberOfEvents = isTuple ? PyTuple_Size(list) : PyList_Size(list);
 	
 	for (int i = 0; i < numberOfEvents;  ++i)
 	{
-		ePyObject singleEvent = PyTuple_GET_ITEM(list, i);
+		ePyObject singleEvent = isTuple ? PyTuple_GET_ITEM(list, i) : PyList_GET_ITEM(list, i);
 		if (!PyTuple_Check(singleEvent))
 		{
 			eDebug("[EPG:import] eventdata tuple does not pass PyTuple_Check, aborting");
