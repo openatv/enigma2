@@ -159,7 +159,7 @@ public:
 
 		// iTimeshiftService
 	RESULT startTimeshift();
-	RESULT stopTimeshift();
+	RESULT stopTimeshift(bool swToLive=true);
 	int isTimeshiftActive();
 	RESULT activateTimeshift();
 
