@@ -1111,6 +1111,10 @@ void eEPGCache::load()
 
 void eEPGCache::save()
 {
+	// only save epg.dat if it's worth the trouble...
+	if (eventData::CacheSize < 10240)
+		return;
+
 	struct statfs s;
 	off64_t tmp;
 	if (statfs("/hdd", &s)<0)
