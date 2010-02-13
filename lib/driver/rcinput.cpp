@@ -89,7 +89,8 @@ eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver)
 
 void eRCDeviceInputDev::setExclusive(bool b)
 {
-	driver->setExclusive(!iskeyboard && b);
+	if (!iskeyboard)
+		driver->setExclusive(b);
 }
 
 const char *eRCDeviceInputDev::getDescription() const
