@@ -245,10 +245,10 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Remove plugins"))
 
 	def startIpkgListInstalled(self):
-		self.container.execute("ipkg list_installed enigma2-plugin-*")
+		self.container.execute("ipkg list_installed 'enigma2-plugin-*'")
 
 	def startIpkgListAvailable(self):
-		self.container.execute("ipkg list enigma2-plugin-*")
+		self.container.execute("ipkg list 'enigma2-plugin-*'")
 
 	def startRun(self):
 		self["list"].instance.hide()
