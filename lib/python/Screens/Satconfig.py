@@ -485,17 +485,25 @@ class NimSelection(Screen):
 						text = _("nothing connected")
 					elif nimConfig.configMode.value == "simple":
 						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
-							text = _("Sats") + ": " 
+							text = {"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
+							text += _("Sats") + ": " 
+							satnames = []
 							if nimConfig.diseqcA.orbital_position != 3601:
-								text += nimmanager.getSatName(int(nimConfig.diseqcA.value))
+								satnames.append(nimmanager.getSatName(int(nimConfig.diseqcA.value)))
 							if nimConfig.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 								if nimConfig.diseqcB.orbital_position != 3601:
-									text += "," + nimmanager.getSatName(int(nimConfig.diseqcB.value))
+									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcB.value)))
 							if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
 								if nimConfig.diseqcC.orbital_position != 3601:
-									text += "," + nimmanager.getSatName(int(nimConfig.diseqcC.value))
+									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcC.value)))
 								if nimConfig.diseqcD.orbital_position != 3601:
-									text += "," + nimmanager.getSatName(int(nimConfig.diseqcD.value))
+									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcD.value)))
+							if len(satnames) <= 2:
+								text += ", ".join(satnames)
+							elif len(satnames) > 2:
+								# we need a newline here, since multi content lists don't support automtic line wrapping
+								text += ", ".join(satnames[:2]) + ",\n"
+								text += "         " + ", ".join(satnames[2:])
 						elif nimConfig.diseqcMode.value == "positioner":
 							text = _("Positioner") + ":"
 							if nimConfig.positionerMode.value == "usals":
