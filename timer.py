@@ -3,8 +3,6 @@ from time import strftime, time, localtime, mktime
 from enigma import eTimer
 import datetime
 
-import NavigationInstance
-
 class TimerEntry:
 	StateWaiting  = 0
 	StatePrepared = 1
