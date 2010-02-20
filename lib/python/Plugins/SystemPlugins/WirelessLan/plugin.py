@@ -190,7 +190,7 @@ class WlanScan(Screen):
 		self.newAPList = None
 		self.WlanList = None
 		self.cleanList = None
-		self.oldlist = None
+		self.oldlist = {}
 		self.listLength = None
 		self.rescanTimer = eTimer()
 		self.rescanTimer.callback.append(self.rescanTimerFired)
@@ -274,24 +274,18 @@ class WlanScan(Screen):
 			return((essid, bssid, _("Signal: ") + str(signal), _("Max. Bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), divpng))
 
 	def updateAPList(self):
-		self.oldlist = []
-		self.oldlist = self.cleanList
-		self.newAPList = []
 		newList = []
+		newList = self.getAccessPoints(refresh = True)	
+		self.newAPList = []
 		tmpList = []
 		newListIndex = None
 		currentListEntry = None
 		currentListIndex = None
-		newList = self.getAccessPoints(refresh = True)
-		
-		for oldentry in self.oldlist:
-			if oldentry not in newList:
-				newList.append(oldentry)
 
-		for newentry in newList:
-			if newentry[1] == "hidden...":
-				continue
-			tmpList.append(newentry)
+		for ap in self.oldlist.keys():
+			data = self.oldlist[ap]['data']
+			if data is not None:
+				tmpList.append(data)
 
 		if len(tmpList):
 			if "hidden..." not in tmpList:
@@ -303,7 +297,7 @@ class WlanScan(Screen):
 			currentListEntry = self["list"].getCurrent()
 			idx = 0
 			for entry in self.newAPList:
-				if entry == currentListEntry:
+				if entry[0] == currentListEntry[0]:
 					newListIndex = idx
 				idx +=1
 			self['list'].setList(self.newAPList)
@@ -335,6 +329,10 @@ class WlanScan(Screen):
 							compList.remove(compentry)
 			for entry in compList:
 				self.cleanList.append( ( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ) )
+				if not self.oldlist.has_key(entry[0]):
+					self.oldlist[entry[0]] = { 'data': entry }
+				else:
+					self.oldlist[entry[0]]['data'] = entry
 		
 		if "hidden..." not in self.cleanList:
 			self.cleanList.append( ( _("enter hidden network SSID"), "hidden...", True, self.iface, _("unavailable"), "" ) )
