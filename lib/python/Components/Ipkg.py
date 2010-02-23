@@ -1,4 +1,5 @@
 from enigma import eConsoleAppContainer
+from Tools.Directories import fileExists
 
 class IpkgComponent:
 	EVENT_INSTALL = 0
@@ -20,7 +21,7 @@ class IpkgComponent:
 	
 	def __init__(self, ipkg = '/usr/bin/ipkg'):
 		self.ipkg = ipkg
-		
+		self.opkgAvail = fileExists('/usr/bin/opkg')
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
 		self.callbackList = []
@@ -89,7 +90,10 @@ class IpkgComponent:
 			if data.find('Downloading') == 0:
 				self.callCallbacks(self.EVENT_DOWNLOAD, data.split(' ', 5)[1].strip())
 			elif data.find('Upgrading') == 0:
-				self.callCallbacks(self.EVENT_UPGRADE, data.split('    ', 1)[1].split(' ')[0])
+				if self.opkgAvail:
+					self.callCallbacks(self.EVENT_UPGRADE, data.split(' ', 1)[1].split(' ')[0])
+				else:
+					self.callCallbacks(self.EVENT_UPGRADE, data.split('    ', 1)[1].split(' ')[0])
 			elif data.find('Installing') == 0:
 				self.callCallbacks(self.EVENT_INSTALL, data.split(' ', 1)[1].split(' ')[0])
 			elif data.find('Removing') == 0:
