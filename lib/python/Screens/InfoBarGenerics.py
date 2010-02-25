@@ -1,4 +1,4 @@
-from ChannelSelection import ChannelSelection, BouquetSelector
+from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -555,18 +555,15 @@ class InfoBarEPG:
 
 	def openMultiServiceEPG(self, withCallback=True):
 		bouquets = self.servicelist.getBouquetList()
+		root = self.servicelist.getRoot()
 		if bouquets is None:
 			cnt = 0
 		else:
 			cnt = len(bouquets)
-		if cnt > 1: # show bouquet list
-			if withCallback:
-				self.bouquetSel = self.session.openWithCallback(self.closed, BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
-				self.dlg_stack.append(self.bouquetSel)
-			else:
-				self.bouquetSel = self.session.open(BouquetSelector, bouquets, self.openBouquetEPG, enableWrapAround=True)
-		elif cnt == 1:
-			self.openBouquetEPG(bouquets[0][1], withCallback)
+		if cnt > 1: # create bouquet list for bouq+/-
+			self.bouquetSel = SilentBouquetSelector(bouquets, True, self.servicelist.getBouquetNumOffset(root))
+		if cnt >= 1:
+			self.openBouquetEPG(root, withCallback)
 
 	def changeServiceCB(self, direction, epg):
 		if self.serviceSel:
