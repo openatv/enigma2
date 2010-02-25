@@ -1,6 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
 from GraphMultiEpg import GraphMultiEPG
-from Screens.ChannelSelection import BouquetSelector
+from Screens.ChannelSelection import SilentBouquetSelector
 from enigma import eServiceCenter, eServiceReference
 from ServiceReference import ServiceReference
 
@@ -79,16 +79,16 @@ def main(session, servicelist, **kwargs):
 	global Servicelist
 	Servicelist = servicelist
 	bouquets = Servicelist.getBouquetList()
+	root = Servicelist.getRoot()
 	if bouquets is None:
 		cnt = 0
 	else:
 		cnt = len(bouquets)
-	if cnt > 1: # show bouquet list
+	if cnt > 1: # create bouquet list
 		global bouquetSel
-		bouquetSel = Session.openWithCallback(closed, BouquetSelector, bouquets, openBouquetEPG, enableWrapAround=True)
-		dlg_stack.append(bouquetSel)
-	elif cnt == 1:
-		if not openBouquetEPG(bouquets[0][1]):
+		bouquetSel = SilentBouquetSelector(bouquets, True, Servicelist.getBouquetNumOffset(root))
+	if cnt >= 1: # open current bouquet
+		if not openBouquetEPG(root):
 			cleanup()
 
 def Plugins(**kwargs):
