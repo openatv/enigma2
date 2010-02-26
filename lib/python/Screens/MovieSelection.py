@@ -646,9 +646,16 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 						self["list"].removeService(current)
 						# Files were moved to .Trash, ok.
 						return
+				except OSError, e:
+					print "[MovieSelection] Cannot move to trash", e
+					if e.errno == 18:
+						# This occurs when moving across devices
+						msg = _("Cannot move files on a different disk or system to the trash can") + ". "
+					else:
+						msg = _("Cannot move to trash can") + ".\n" + e.message + "\n"
 				except Exception, e:
+					print "[MovieSelection] Weird error moving to trash", e
 					# Failed to create trash or move files.
-					print "[MovieSelection] Failed to move to .Trash folder:", e
 					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 			else:
 				msg = ''
