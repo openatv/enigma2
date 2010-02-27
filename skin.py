@@ -60,6 +60,16 @@ except (SkinError, IOError, AssertionError), err:
 	print "not loading user skin: ", err
 
 try:
+	loadSkin('skin_display.xml', SCOPE_CONFIG)
+except (SkinError, IOError, AssertionError), err:
+	print "not loading skin_display.xml: ", err
+
+try:
+	loadSkin('skin_subtitles.xml', SCOPE_CONFIG)
+except (SkinError, IOError, AssertionError), err:
+	print "not loading skin_subtitles.xml: ", err
+
+try:
 	loadSkin(config.skin.primary_skin.value)
 except (SkinError, IOError, AssertionError), err:
 	print "SKIN ERROR:", err

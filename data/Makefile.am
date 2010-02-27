@@ -12,6 +12,8 @@ dist_pkgdata_DATA = \
 	rcpositions.xml \
 	setup.xml \
 	skin_default.xml \
+	skin_display.xml \
+	skin_subtitles.xml \
 	skin.xml \
 	startwizard.xml \
 	tutorialwizard.xml \
