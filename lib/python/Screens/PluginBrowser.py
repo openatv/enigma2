@@ -22,13 +22,6 @@ def languageChanged():
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
 class PluginBrowserSummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="6,4" size="120,16" font="Regular;12"  noWrap="1" />
-		<widget source="entry" render="Label" position="6,16" size="120,20" font="Regular;18" noWrap="1" />
-		<widget source="desc" render="Label" position="6,36" size="120,28" font="Regular;12" valign="top" />
-	</screen>"""
-
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["entry"] = StaticText("")

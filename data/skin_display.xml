@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--  Skin: LCD from Magic by MiLo -->
 <skin>
-<!-- LCD screen (main) -->
+<!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="3,1" size="126,20" font="Regular;20" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
@@ -25,7 +25,7 @@
 	</screen>
     
   
-<!-- LCD screen (channelselection) -->
+<!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
 		<widget source="parent.ServiceEvent" render="Label" position="3,1" size="126,20" font="Regular;20" halign="left" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
@@ -44,7 +44,7 @@
 		</widget>
 	</screen>
   
-<!-- LCD screen (menus) -->
+<!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="132,64">
 		<widget source="parent.title" render="Label" position="4,0" size="124,16" font="Regular;14" halign="center" valign="top" noWrap="1" />
 		<widget source="parent.menu" render="Label" position="4,16" size="124,48" font="Regular;16" halign="left" valign="top">
@@ -52,7 +52,7 @@
 		</widget>
 	</screen>
 
-<!-- LCD screen (movieplayer) -->
+<!-- movieplayer-->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="4,0" size="124,36" font="Regular;16" halign="left" valign="top" >
 			<convert type="ServiceName">Name</convert>
@@ -71,14 +71,14 @@
 		</widget>
 	</screen>
 	
-<!-- LCD screen (setup) -->
+<!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="132,64">
 		<widget source="SetupTitle" render="Label" position="6,0" size="120,12" font="Regular;12" halign="left" />
 		<widget source="SetupEntry" render="Label" position="6,12" size="120,40" font="Regular;12" halign="left" />
 		<widget source="SetupValue" render="Label" position="6,52" size="120,12" font="Regular;12" halign="left" />
 	</screen>
 
-<!-- LCD screen (misc) -->
+<!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="132,64">
 		<widget source="parent.Title" render="Label" position="4,0" size="124,40" font="Regular;16" halign="center" valign="center" />
 	    	<widget source="session.RecordState" render="FixedLabel" text="Rec" position="3,52" size="36,12" font="Regular;12" zPosition="1">
@@ -89,7 +89,7 @@
 		</widget>
 	</screen>
 
-<!-- LCD screen (standby) -->
+<!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="6,0" size="120,64" font="Regular;48" halign="center" valign="center">
 			<convert type="ClockToText"></convert>
@@ -97,5 +97,11 @@
 		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="4,50" size="120,12" font="Regular;12" zPosition="2" valign="bottom" halign="left">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
+	</screen>
+<!-- Plugin browser -->
+	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="6,4" size="120,16" font="Regular;12"  noWrap="1" />
+		<widget source="entry" render="Label" position="6,16" size="120,20" font="Regular;18" noWrap="1" />
+		<widget source="desc" render="Label" position="6,36" size="120,28" font="Regular;12" valign="top" />
 	</screen>
 </skin>
