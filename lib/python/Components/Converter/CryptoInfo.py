@@ -1,6 +1,7 @@
 from Components.Converter.Converter import Converter
 from enigma import eTimer
 from Components.Element import cached
+from Components.config import config
 import os
 
 ECM_INFO = '/tmp/ecm.info'
@@ -10,13 +11,14 @@ class CryptoInfo(Converter, object):
 		Converter.__init__(self, type)
 		# type is ignored, expected to be "verboseInfo"
 		self.active = False
-		self.visible = True
+		self.visible = config.usage.show_cryptoinfo.value
 		self.textvalue = ""
 		self.clock_timer = eTimer()
 		self.clock_timer.callback.append(self.poll)
-		self.clock_timer.start(1000)
+		if self.visible:
+			self.clock_timer.start(1000)
 		self.ecm_mtime = None
-		
+
 	def destroy(self):
 		self.clock_timer.callback.remove(self.poll)
 		Converter.destroy(self)
