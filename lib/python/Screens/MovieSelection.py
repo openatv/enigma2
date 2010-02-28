@@ -116,14 +116,6 @@ def moveServiceFiles(serviceref, dest):
 
 
 class MovieContextMenuSummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="4,0" size="124,14" font="Regular;12" halign="left" valign="top" noWrap="1" />
-		<widget source="selected" render="Label" position="4,14" size="124,32" font="Regular;16" />
-		<widget source="global.CurrentTime" render="Label" position="64,46" size="60,18" halign="right" font="Regular;16" >
-			<convert type="ClockToText"></convert>
-		</widget>
-	</screen>"""
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["selected"] = StaticText("")
@@ -213,17 +205,6 @@ class MovieSelectionSummary(Screen):
 	# parent.Service as source for everything, but that seems to have a
 	# performance impact as the MovieSelection goes through hoops to prevent
 	# this when the info is not selected
-	skin = """
-	<screen position="0,0" size="132,64">
-		<widget source="parent.Title" render="Label" position="4,0" size="124,14" font="Regular;12" halign="left" valign="top" />
-		<widget source="name" render="Label" position="4,14" size="124,32" font="Regular;16" halign="left" valign="top" />
-		<widget source="parent.Service" render="Label" position="4,46" size="74,18" font="Regular;14" halign="left" noWrap="1">
-			<convert type="MovieInfo">RecordServiceName</convert>
-		</widget>
-		<widget source="parent.Service" render="Label" position="78,46" size="46,18" font="Regular;14" halign="left" noWrap="1">
-			<convert type="MovieInfo">FileSize</convert>
-		</widget>
-	</screen>"""
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
 		self["name"] = StaticText("")
