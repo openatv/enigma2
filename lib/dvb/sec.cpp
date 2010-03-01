@@ -175,21 +175,6 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					else
 						ret += 15;
 					eSecDebugNoSimulate("ret2 %d", ret);
-					if (ret) // special case when this tuner is linked to a satpos dependent tuner
-					{
-						fe->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satpos_depends_ptr);
-						if (satpos_depends_ptr != -1)
-						{
-							eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
-							satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, rotor_pos);
-							if (!rotor || rotor_pos == -1 /* we dont know the rotor position yet */
-								|| rotor_pos != sat.orbital_position ) // not the same orbital position?
-							{
-								ret = 0;
-							}
-						}
-					}
-					eSecDebugNoSimulate("ret3 %d", ret);
 				}
 				else if (satpos_depends_ptr != -1)
 				{
@@ -215,8 +200,12 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							ret = 0;
 						}
 					}
-					eSecDebugNoSimulate("ret4 %d", ret);
+					eSecDebugNoSimulate("ret3 %d", ret);
 				}
+				else if (!direct_connected)
+					ret = 0;
+
+				eSecDebugNoSimulate("ret4 %d", ret);
 
 				if (ret && rotor && rotor_pos != -1)
 					ret -= abs(rotor_pos-sat.orbital_position);
