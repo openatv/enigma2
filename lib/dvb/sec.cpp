@@ -156,6 +156,11 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					ret = 15000;
 				}
 
+				if (sat.no_rotor_command_on_tune && !rotor) {
+					eSecDebugNoSimulate("no rotor but no_rotor_command_on_tune is set.. ignore lnb %d", idx);
+					continue;
+				}
+
 				eSecDebugNoSimulate("ret1 %d", ret);
 
 				if (linked_in_use)
