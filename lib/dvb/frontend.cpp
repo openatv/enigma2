@@ -455,7 +455,7 @@ int eDVBFrontend::PriorityOrder=0;
 
 eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 	:m_simulate(simulate), m_enabled(false), m_type(-1), m_dvbid(fe), m_slotid(fe)
-	,m_fd(-1), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
+	,m_fd(-1), m_rotor_mode(false), m_need_rotor_workaround(false), m_can_handle_dvbs2(false)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 #if HAVE_DVB_API_VERSION < 3
 	,m_secfd(-1)
@@ -692,7 +692,8 @@ void eDVBFrontend::feEvent(int w)
 			{
 				eDebug("stateLostLock");
 				state = stateLostLock;
-				sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
+				if (!m_rotor_mode)
+					sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = -1; // reset diseqc
 			}
 		}
 		if (m_state != state)
@@ -2343,6 +2344,20 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where)
 			res = -EINVAL;
 			goto tune_error;
 		}
+		if (m_rotor_mode != feparm.no_rotor_command_on_tune && !feparm.no_rotor_command_on_tune)
+		{
+			eDVBFrontend *sec_fe = this;
+			long tmp = m_data[LINKED_PREV_PTR];
+			while (tmp != -1)
+			{
+				eDVBRegisteredFrontend *linked_fe = (eDVBRegisteredFrontend*)tmp;
+				sec_fe = linked_fe->m_frontend;
+				sec_fe->getData(LINKED_NEXT_PTR, tmp);
+			}
+			eDebug("(fe%d) reset diseqc after leave rotor mode!", m_dvbid);
+			sec_fe->m_data[CSW] = sec_fe->m_data[UCSW] = sec_fe->m_data[TONEBURST] = sec_fe->m_data[ROTOR_CMD] = sec_fe->m_data[ROTOR_POS] = -1; // reset diseqc
+		}
+		m_rotor_mode = feparm.no_rotor_command_on_tune;
 		if (!m_simulate)
 			m_sec->setRotorMoving(m_slotid, false);
 		res=prepare_sat(feparm, timeout);

@@ -77,7 +77,7 @@ class PositionerSetup(Screen):
 		
 		self.frontendStatus = { }
 		self.diseqc = Diseqc(self.frontend)
-		self.tuner = Tuner(self.frontend)
+		self.tuner = Tuner(self.frontend, True) #True means we dont like that the normal sec stuff sends commands to the rotor!
 
 		tp = ( cur.get("frequency", 0) / 1000,
 			cur.get("symbol_rate", 0) / 1000,
