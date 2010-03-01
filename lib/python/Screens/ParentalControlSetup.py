@@ -72,6 +72,8 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Enable parental control"), config.ParentalControl.configured))
 		print "config.ParentalControl.configured.value", config.ParentalControl.configured.value
+		self.editBouquetListEntry = -1
+		self.reloadLists = -1
 		if config.ParentalControl.configured.value:
 			#self.list.append(getConfigListEntry(_("Configuration mode"), config.ParentalControl.mode))
 			self.list.append(getConfigListEntry(_("Protect setup"), config.ParentalControl.setuppinactive))

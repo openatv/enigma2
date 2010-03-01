@@ -318,6 +318,9 @@ class ParentalControl:
 			return services
 		
 	def save(self):
+		# we need to open the files in case we havent's read them yet
+		if not self.filesOpened:
+			self.open()
 		self.saveListToFile(LIST_BLACKLIST)
 		self.saveListToFile(LIST_WHITELIST)
 		
