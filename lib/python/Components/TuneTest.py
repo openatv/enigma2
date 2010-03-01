@@ -1,8 +1,9 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParameters, eDVBResourceManager, eTimer
 
 class Tuner:
-	def __init__(self, frontend):
+	def __init__(self, frontend, ignore_rotor=False):
 		self.frontend = frontend
+		self.ignore_rotor = ignore_rotor
 
 	# transponder = (frequency, symbolrate, polarisation, fec, inversion, orbpos, system, modulation, rolloff, pilot, tsid, onid)
 	#                    0         1             2         3       4         5       6        7          8       9      10    11
@@ -21,7 +22,7 @@ class Tuner:
 			parm.rolloff = transponder[8]
 			parm.pilot = transponder[9]
 			feparm = eDVBFrontendParameters()
-			feparm.setDVBS(parm)
+			feparm.setDVBS(parm, self.ignore_rotor)
 			self.lastparm = feparm
 			self.frontend.tune(feparm)
 
