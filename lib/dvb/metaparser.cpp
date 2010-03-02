@@ -21,6 +21,29 @@ static int getctime(const std::string &basename)
 	return 0;
 }
 
+static long long fileSize(const std::string &basename)
+{
+	long long filesize = 0;
+	char buf[8];
+	std::string splitname;
+	struct stat64 s;
+
+	/* get filesize */
+	if (!stat64(basename.c_str(), &s))
+		filesize = (long long) s.st_size;
+	/* handling for old splitted recordings (enigma 1) */
+	int slice=1;
+	while(true)
+	{
+		snprintf(buf, sizeof(buf), ".%03d", slice++);
+		splitname = basename + buf;
+		if (stat64(splitname.c_str(), &s) < 0)
+			break;
+		filesize += (long long) s.st_size;
+	}
+	return filesize;
+}
+
 int eDVBMetaParser::parseFile(const std::string &basename)
 {
 		/* first, try parsing the .meta file */
@@ -33,32 +56,11 @@ int eDVBMetaParser::parseFile(const std::string &basename)
 	m_filesize = fileSize(basename);
 	m_time_create = getctime(basename);
 	return -1;
-
-}
-
-long long eDVBMetaParser::fileSize(const std::string &basename)
-{
-	long long filesize = 0;
-	char buf[255];
-	struct stat64 s;
-		/* get filesize */
-	if (!stat64(basename.c_str(), &s))
-		filesize = (long long) s.st_size;
-		/* handling for old splitted recordings (enigma 1) */
-	int slice=1;
-	while(true)
-	{
-		snprintf(buf, 255, "%s.%03d", basename.c_str(), slice++);
-		if (stat64(buf, &s) < 0)
-			break;
-		filesize += (long long) s.st_size;
-	}
-	return filesize;
 }
 
 int eDVBMetaParser::parseMeta(const std::string &tsname)
 {
-		/* if it's a PVR channel, recover service id. */
+	/* if it's a PVR channel, recover service id. */
 	std::string filename = tsname + ".meta";
 		
 	FILE *f = fopen(filename.c_str(), "r");
@@ -74,11 +76,17 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 		char line[1024];
 		if (!fgets(line, 1024, f))
 			break;
-		if (*line && line[strlen(line)-1] == '\n')
-			line[strlen(line)-1] = 0;
-
- 		if (*line && line[strlen(line)-1] == '\r')
-			line[strlen(line)-1] = 0;
+		size_t len = strlen(line);
+		if (len && line[len-1] == '\n')
+		{
+			--len;
+			line[len] = 0;
+		}
+ 		if (len && line[len-1] == '\r')
+		{
+			--len;
+			line[len] = 0;
+		}
 
 		switch (linecnt)
 		{
@@ -93,6 +101,10 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 			break;
 		case 3:
 			m_time_create = atoi(line);
+			if (m_time_create == 0)
+			{
+			        m_time_create = getctime(tsname);
+			}
 			break;
 		case 4:
 			m_tags = line;
@@ -142,26 +154,29 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 		if (!fgets(line, 1024, f))
 			break;
 		
-		if (strlen(line))
-			line[strlen(line)-1] = 0;
+		size_t len = strlen(line);
+		if (len < 2)
+			// Lines with less than one char aren't meaningful
+			continue;
+		// Remove trailing \r\n
+		--len;
+		line[len] = 0;
+		if (line[len-1] == '\r')
+			line[len-1] = 0;
 		
-		if (strlen(line) && line[strlen(line)-1] == '\r')
-			line[strlen(line)-1] = 0;
-		
-		if (!strncmp(line, "#SERVICE: ", 10))
+		if (strncmp(line, "#SERVICE: ", 10) == 0)
 			ref = eServiceReferenceDVB(line + 10);
-		if (!strncmp(line, "#DESCRIPTION: ", 14))
+		else if (strncmp(line, "#DESCRIPTION: ", 14) == 0)
 			description = line + 14;
-		if ((line[0] == '/') && (ref.path.substr(ref.path.find_last_of('/')) == filename.substr(filename.find_last_of('/'))))
+		else if ((line[0] == '/') && (ref.path.substr(ref.path.find_last_of('/')) == filename.substr(filename.find_last_of('/'))))
 		{
 //			eDebug("hit! ref %s descr %s", m_ref.toString().c_str(), m_name.c_str());
 			m_ref = ref;
 			m_name = description;
 			m_description = "";
-			m_time_create = 0;
+			m_time_create = getctime(filename);
 			m_length = 0;
 			m_filesize = fileSize(filename);
-						
 			m_data_ok = 1;
 			fclose(f);
 			updateMeta(filename.c_str());
