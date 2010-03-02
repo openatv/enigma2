@@ -12,7 +12,6 @@ public:
 	int parseMeta(const std::string &filename);
 	int parseRecordings(const std::string &filename);
 	int updateMeta(const std::string &basename);
-	long long fileSize(const std::string &basename);
 
 	eServiceReferenceDVB m_ref;
 	int m_data_ok, m_time_create, m_length;
