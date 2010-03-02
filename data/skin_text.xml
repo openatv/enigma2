@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--  Skin: LCD from Magic by MiLo -->
+<skin>
+<!-- main-->
+	<screen name="InfoBarSummary" position="0,0" size="132,1">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="80,1" halign="left" noWrap="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<!--
+		<widget source="global.CurrentTime" render="Label" position="10,0" size="48,1" halign="right" valign="top" noWrap="1">
+			<convert type="ClockToText"></convert>
+		</widget>
+		-->
+	</screen>
+    
+  
+<!-- channelselection-->
+	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="132,1" halign="left" noWrap="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+	</screen>
+  
+<!-- menus-->
+	<screen name="MenuSummary" position="0,0" size="16,1">
+		<widget source="parent.menu" render="Label" position="0,0" size="132,1" font="Regular;16" halign="left" valign="top">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+
+<!-- movieplayer-->
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,1">
+		<widget source="session.CurrentService" render="Progress" position="0,0" size="132,1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+	</screen>
+	
+	<screen name="MovieContextMenuSummary" position="0,0" size="132,64">
+		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
+	</screen>
+
+	<screen name="MovieSelectionSummary" position="0,0" size="132,64">
+		<widget source="name" render="Label" position="0,0" size="124,32" font="Regular;16" halign="left" valign="top" />
+	</screen>
+
+<!-- setup-->
+	<screen name="SetupSummary" position="0,0" size="132,64">
+		<widget source="SetupEntry" render="Label" position="0,0" size="120,40" font="Regular;12" halign="left" />
+	</screen>
+
+<!-- misc-->
+	<screen name="SimpleSummary" position="0,0" size="132,64">
+		<widget source="parent.Title" render="Label" position="0,0" size="124,40" font="Regular;16" halign="center" valign="center" />
+	</screen>
+
+<!-- standby -->
+	<screen name="StandbySummary" position="0,0" size="132,64">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
+			<convert type="ClockToText"></convert>
+		</widget>
+	</screen>
+
+<!-- Plugin browser -->
+	<screen name="PluginBrowserSummary" position="0,0" size="132,64">
+		<widget source="entry" render="Label" position="0,0" size="120,20" font="Regular;18" noWrap="1" />
+	</screen>
+</skin>
