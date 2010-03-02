@@ -128,4 +128,23 @@
 		<widget source="entry" render="Label" position="6,16" size="120,20" font="FdLcD;18" noWrap="1" />
 		<widget source="desc" render="Label" position="6,36" size="120,28" font="FdLcD;12" valign="top" />
 	</screen>
+
+<!-- JobView Summary -->
+	<screen name="JobView_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="FdLcD;16" />
+		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="FdLcD;12" />
+		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="FdLcD;12" zPosition="2" halign="center" transparent="1"  >
+			<convert type="ProgressToText" />
+		</widget>
+	</screen>
+
+	<screen name="ChoiceBox_summary" position="0,0" size="132,64">
+		<widget source="parent.summary_list" render="Label" position="6,0" size="126,64" font="FdLcD;11" />
+	</screen>	
+
+	<screen name="MessageBox_summary" position="0,0" size="132,64">
+		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="FdLcD;11" halign="center" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="6,50" size="120,14" font="FdLcD;14" halign="center" valign="center" />
+	</screen>
 </skin>

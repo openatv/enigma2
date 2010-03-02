@@ -184,9 +184,6 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 
 		</applet>
 	</screen>
-	<screen name="ChoiceBox_summary" position="0,0" size="132,64">
-		<widget source="parent.summary_list" render="Label" position="6,0" size="126,64" font="Regular;11" />
-	</screen>	
 	<!-- Common interface -->
 	<screen name="MMIDialog" position="center,center" size="450,270">
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
@@ -534,10 +531,6 @@ self[&quot;list&quot;].instance.resize(eSize(*listsize))
 newwidth = wsize[0]
 self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
-	</screen>
-	<screen name="MessageBox_summary" position="0,0" size="132,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="6,50" size="120,14" font="Regular;14" halign="center" valign="center" />
 	</screen>
 	<!-- Minute input -->
 	<screen name="MinuteInput" position="center,center" size="280,60" title="Seek">
@@ -1094,15 +1087,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</widget>
 		<widget source="backgroundable" render="FixedLabel" text="Continue in background" font="Regular;20" halign="center" valign="center" position="360,300" size="140,40" transparent="1" backgroundColor="#18188b" >
 			<convert type="ConditionalShowHide" />
-		</widget>
-	</screen>
-	<!-- JobView Summary -->
-	<screen name="JobView_summary" position="0,0" size="132,64">
-		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="Regular;16" />
-		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="Regular;12" />
-		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="66,50" size="50,12" font="Regular;12" zPosition="2" halign="center" transparent="1"  >
-			<convert type="ProgressToText" />
 		</widget>
 	</screen>
 	<!-- VirtualKeyBoard -->
