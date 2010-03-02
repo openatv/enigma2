@@ -59,7 +59,10 @@ try:
 except (SkinError, IOError, AssertionError), err:
 	print "not loading user skin: ", err
 
+# Only one of these two is present, compliments of AM_CONDITIONAL
 loadSkin('skin_display.xml')
+loadSkin('skin_text.xml')
+
 loadSkin('skin_subtitles.xml')
 
 try:

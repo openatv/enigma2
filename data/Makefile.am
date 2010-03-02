@@ -12,10 +12,15 @@ dist_pkgdata_DATA = \
 	rcpositions.xml \
 	setup.xml \
 	skin_default.xml \
-	skin_display.xml \
 	skin_subtitles.xml \
 	skin.xml \
 	startwizard.xml \
 	tutorialwizard.xml \
 	freesat.t1 \
 	freesat.t2
+
+if HAVE_TEXTLCD
+dist_pkgdata_DATA += skin_text.xml
+else
+dist_pkgdata_DATA += skin_display.xml
+endif
