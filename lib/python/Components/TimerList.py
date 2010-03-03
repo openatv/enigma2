@@ -33,12 +33,18 @@ class TimerList(HTMLComponent, GUIComponent, object):
 						count += 1
 					flags = flags >> 1
 			if timer.justplay:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1]))))
+				if timer.end - timer.begin < 4: # rounding differences
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s "+ _("(ZAP)")) % (FuzzyTime(timer.begin)[1]))))
+				else:
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s ... %s (%d " + _("mins") + ") ") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60)) + _("(ZAP)")))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))))
 		else:
 			if timer.justplay:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
+				if timer.end - timer.begin < 4:
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s " + _("(ZAP)")) % (FuzzyTime(timer.begin)))))
+				else:
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s ... %s (%d " + _("mins") + ") ") % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:] + ((timer.end - timer.begin) / 60,))) + _("(ZAP)")))
 			else:
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 50, width-150, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, repeatedtext + (("%s, %s ... %s (%d " + _("mins") + ")") % (FuzzyTime(timer.begin) + FuzzyTime(timer.end)[1:] + ((timer.end - timer.begin) / 60,)))))
 
