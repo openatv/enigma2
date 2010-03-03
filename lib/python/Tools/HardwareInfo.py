@@ -1,5 +1,6 @@
 class HardwareInfo:
 	device_name = None
+	device_version = None
 
 	def __init__(self):
 		if HardwareInfo.device_name is not None:
@@ -11,6 +12,12 @@ class HardwareInfo:
 			file = open("/proc/stb/info/model", "r")
 			HardwareInfo.device_name = file.readline().strip()
 			file.close()
+			try:
+				file = open("/proc/stb/info/version", "r")
+				HardwareInfo.device_version = file.readline().strip()
+				file.close()
+			except:
+				pass
 		except:
 			print "----------------"
 			print "you should upgrade to new drivers for the hardware detection to work properly"
@@ -32,3 +39,6 @@ class HardwareInfo:
 
 	def get_device_name(self):
 		return HardwareInfo.device_name
+
+	def get_device_version(self):
+		return HardwareInfo.device_version
