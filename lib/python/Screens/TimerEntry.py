@@ -106,10 +106,11 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
 			self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-
+			
 			self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d.%B %Y"), increment = 86400)
 			self.timerentry_starttime = ConfigClock(default = self.timer.begin)
 			self.timerentry_endtime = ConfigClock(default = self.timer.end)
+			self.timerentry_showendtime = ConfigSelection(default = ((self.timer.end - self.timer.begin) > 4), choices = [(True, _("yes")), (False, _("no"))])
 
 			default = self.timer.dirname or defaultMoviePath()
 			tmp = config.movielist.videodirs.value
@@ -172,11 +173,14 @@ class TimerEntry(Screen, ConfigListScreen):
 		
 		self.entryStartTime = getConfigListEntry(_("StartTime"), self.timerentry_starttime)
 		self.list.append(self.entryStartTime)
-		if self.timerentry_justplay.value != "zap":
-			self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
+		
+		self.entryShowEndTime = getConfigListEntry(_("Set End Time"), self.timerentry_showendtime)
+		if self.timerentry_justplay.value == "zap":
+			self.list.append(self.entryShowEndTime)
+		self.entryEndTime = getConfigListEntry(_("EndTime"), self.timerentry_endtime)
+		if self.timerentry_justplay.value != "zap" or self.timerentry_showendtime.value:
 			self.list.append(self.entryEndTime)
-		else:
-			self.entryEndTime = None
+
 		self.channelEntry = getConfigListEntry(_("Channel"), self.timerentry_service)
 		self.list.append(self.channelEntry)
 
@@ -194,11 +198,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def newConfig(self):
 		print "newConfig", self["config"].getCurrent()
-		if self["config"].getCurrent() == self.timerTypeEntry:
-			self.createSetup("config")
-		if self["config"].getCurrent() == self.timerJustplayEntry:
-			self.createSetup("config")
-		if self["config"].getCurrent() == self.frequencyEntry:
+		if self["config"].getCurrent() in (self.timerTypeEntry, self.timerJustplayEntry, self.frequencyEntry, self.entryShowEndTime):
 			self.createSetup("config")
 
 	def keyLeft(self):
@@ -268,6 +268,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timer.name = self.timerentry_name.value
 		self.timer.description = self.timerentry_description.value
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
+		if self.timerentry_justplay.value == "zap":
+			if not self.timerentry_showendtime.value:
+				self.timerentry_endtime.value = self.timerentry_starttime.value
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
