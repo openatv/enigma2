@@ -165,7 +165,13 @@ void *gRC::thread()
 				if (pthread_cond_timedwait(&cond, &mutex, &timeout) == ETIMEDOUT)
 				{
 					if (eApp && !eApp->isIdle())
-						idle = 0;
+					{
+						int idle_count = eApp->idleCount();
+						if (idle_count == m_prev_idle_count)
+							idle = 0;
+						else
+							m_prev_idle_count = idle_count;
+					}
 				}
 
 				if (!idle)

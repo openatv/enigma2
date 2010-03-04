@@ -736,6 +736,7 @@ def filescan(**kwargs):
 			paths_to_scan =
 				[
 					ScanPath(path = "video_ts", with_subdirs = False),
+					ScanPath(path = "VIDEO_TS", with_subdirs = False),
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "DVD",

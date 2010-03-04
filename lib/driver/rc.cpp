@@ -129,8 +129,11 @@ void eRCInputEventDriver::setExclusive(bool b)
 {
 	if (handle >= 0)
 	{
+		long evbits;
 		int grab = b;
-		if (::ioctl(handle, EVIOCGRAB, grab) < 0)
+		if (::ioctl(handle, EVIOCGBIT(0, EV_MAX+1), &evbits) < 0)
+			perror("EVIOCGBIT");
+		else if ((evbits & (1 << 0x1E)) && ::ioctl(handle, EVIOCGRAB, grab) < 0)
 			perror("EVIOCGRAB");
 	}
 }
