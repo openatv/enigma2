@@ -180,6 +180,7 @@ class gRC: public iObject, public Object
 	
 	ePtr<gCompositingData> m_compositing;
 
+	int m_prev_idle_count;
 public:
 	gRC();
 	virtual ~gRC();

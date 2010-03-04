@@ -2147,12 +2147,13 @@ RESULT eDVBServicePlay::startTimeshift()
 	return 0;
 }
 
-RESULT eDVBServicePlay::stopTimeshift()
+RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 {
 	if (!m_timeshift_enabled)
 		return -1;
 	
-	switchToLive();
+	if (swToLive)
+		switchToLive();
 	
 	m_timeshift_enabled = 0;
 	
