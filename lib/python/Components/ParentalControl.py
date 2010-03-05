@@ -89,9 +89,6 @@ class ParentalControl:
 	def isServicePlayable(self, ref, callback):
 		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
 			return True
-		#Check if we already read the whitelists and blacklists. If not: call open
-		if self.filesOpened == False:
-			self.open()
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration 
 		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value or self.storeServicePinCancel != config.ParentalControl.storeservicepincancel.value:
@@ -153,8 +150,6 @@ class ParentalControl:
 	def getProtectionType(self, service):
 		#New method used in ParentalControlList: This method does not only return
 		#if a service is protected or not, it also returns, why (whitelist or blacklist, service or bouquet)
-		if self.filesOpened == False:
-			self.open()
 		sImage = ""
 		if (config.ParentalControl.type.value == LIST_WHITELIST):
 			if self.whitelist.has_key(service):
@@ -249,13 +244,9 @@ class ParentalControl:
 					self.sessionPinCachedValue = False
 					self.sessionPinTimer.start(self.pinIntervalSecondsCancel*1000,1) 
 			
-	def saveListToFile(self,sWhichList):
+	def saveListToFile(self,sWhichList,vList):
 		#Replaces saveWhiteList and saveBlackList: 
 		#I don't like to have two functions with identical code...
-		if sWhichList == LIST_BLACKLIST:
-			vList = self.blacklist
-		else:
-			vList = self.whitelist
 		file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'w')
 		for sService,sType in vList.iteritems():
 			#Only Services that are selected directly and Bouqets are saved. 
@@ -263,32 +254,24 @@ class ParentalControl:
 			#This is the reason for the change in self.whitelist and self.blacklist
 			if TYPE_SERVICE in sType or TYPE_BOUQUET in sType:
 				file.write(str(sService) + "\n")
-		file.close
+		file.close()
 
 	def openListFromFile(self,sWhichList):
 		#Replaces openWhiteList and openBlackList: 
 		#I don't like to have two functions with identical code...
-		if sWhichList == LIST_BLACKLIST:
-			self.blacklist = {}
-			vList = self.blacklist
-		else:
-			self.whitelist = {}
-			vList = self.whitelist
+		result = {}
 		try:
-			file = open(resolveFilename(SCOPE_CONFIG, sWhichList ), 'r')
-			lines = file.readlines()
-			for x in lines:
+			for x in open(resolveFilename(SCOPE_CONFIG, sWhichList ), 'r'):
 				sPlain = x.strip()
-				self.serviceMethodWrapper(sPlain, self.addServiceToList, vList)
-			file.close
+				self.serviceMethodWrapper(sPlain, self.addServiceToList, result)
 		except:
 			pass
+		return result
 	
 	def addServiceToList(self, service, type, vList):
 		#Replaces addWhitelistService and addBlacklistService
 		#The lists are not only lists of service references any more. 
 		#They are named lists with the service as key and an array of types as value:
-		
 		if vList.has_key(service):
 			if not type in vList[service]:
 				vList[service].append(type)
@@ -319,14 +302,23 @@ class ParentalControl:
 		
 	def save(self):
 		# we need to open the files in case we havent's read them yet
-		if not self.filesOpened:
-			self.open()
-		self.saveListToFile(LIST_BLACKLIST)
-		self.saveListToFile(LIST_WHITELIST)
-		
+		self.saveListToFile(LIST_BLACKLIST, self.blacklist)
+		self.saveListToFile(LIST_WHITELIST, self.whitelist)
+
 	def open(self):
-		self.openListFromFile(LIST_BLACKLIST)
-		self.openListFromFile(LIST_WHITELIST)
+		print "[ParentalControl] *** Loading configuration ***"
+		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
+		self.whitelist = self.openListFromFile(LIST_WHITELIST)
 		self.filesOpened = True
+
+	def __getattr__(self, name):
+		# This method is called if we lack a property. I'm lazy, so
+		# I load the files when someone 'hits' this code
+		if name in ('blacklist', 'whitelist'):
+			if not self.filesOpened:
+				self.open()
+				return getattr(self, name)
+		raise AttributeError, name
+			
 
 parentalControl = ParentalControl()
