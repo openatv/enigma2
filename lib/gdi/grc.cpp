@@ -659,7 +659,7 @@ void gDC::exec(gOpcode *o)
 		if (flags & gPainter::RT_HALIGN_RIGHT)
 			para->realign(eTextPara::dirRight);
 		else if (flags & gPainter::RT_HALIGN_CENTER)
-			para->realign(eTextPara::dirCenter);
+			para->realign((flags & gPainter::RT_WRAP) ? eTextPara::dirCenter : eTextPara::dirCenterIfFits);
 		else if (flags & gPainter::RT_HALIGN_BLOCK)
 			para->realign(eTextPara::dirBlock);
 		
