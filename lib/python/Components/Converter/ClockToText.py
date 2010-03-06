@@ -2,8 +2,8 @@ from Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
 
-MONTHS = (_("Januari"),
-          _("Februari"),
+MONTHS = (_("January"),
+          _("February"),
           _("March"),
           _("April"),
           _("May"),
