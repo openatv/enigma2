@@ -189,6 +189,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							else
 								ret += 10;
 						}
+						eSecDebugNoSimulate("ret3 %d", ret);
 					}
 					else // current fe is dependent of another tuner ... (so this fe can't turn the rotor!)
 					{
@@ -200,12 +201,8 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							ret = 0;
 						}
 					}
-					eSecDebugNoSimulate("ret3 %d", ret);
+					eSecDebugNoSimulate("ret4 %d", ret);
 				}
-				else if (!direct_connected)
-					ret = 0;
-
-				eSecDebugNoSimulate("ret4 %d", ret);
 
 				if (ret && rotor && rotor_pos != -1)
 					ret -= abs(rotor_pos-sat.orbital_position);
