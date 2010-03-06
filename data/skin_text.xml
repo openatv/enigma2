@@ -56,7 +56,7 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="132,64">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="120,64" font="Regular;48" halign="center" valign="center">
-			<convert type="ClockToText"></convert>
+			<convert type="ClockToText">Full</convert>
 		</widget>
 	</screen>
 
