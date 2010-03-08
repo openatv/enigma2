@@ -166,7 +166,7 @@ class Harddisk:
 		lines = mounts.readlines()
 		mounts.close()
 
-		cmd = "/bin/umount"
+		cmd = "umount"
 
 		for line in lines:
 			parts = line.strip().split(" ")
@@ -177,12 +177,12 @@ class Harddisk:
 		return (res >> 8)
 
 	def createPartition(self):
-		cmd = 'printf "0,\n;\n;\n;\ny\n" | /sbin/sfdisk -f ' + self.disk_path
+		cmd = 'printf "0,\n;\n;\n;\ny\n" | sfdisk -f ' + self.disk_path
 		res = system(cmd)
 		return (res >> 8)
 
 	def mkfs(self):
-		cmd = "/sbin/mkfs.ext3 "
+		cmd = "mkfs.ext3 "
 		if self.diskSize() > 4 * 1024:
 			cmd += "-T largefile "
 		cmd += "-m0 -O dir_index " + self.partitionPath("1")
@@ -202,7 +202,7 @@ class Harddisk:
 		for line in lines:
 			parts = line.strip().split(" ")
 			if path.realpath(parts[0]) == self.partitionPath("1"):
-				cmd = "/bin/mount -t ext3 " + parts[0]
+				cmd = "mount -t ext3 " + parts[0]
 				res = system(cmd)
 				break
 
@@ -218,7 +218,7 @@ class Harddisk:
 	def fsck(self):
 		# We autocorrect any failures
 		# TODO: we could check if the fs is actually ext3
-		cmd = "/sbin/fsck.ext3 -f -p " + self.partitionPath("1")
+		cmd = "fsck.ext3 -f -p " + self.partitionPath("1")
 		res = system(cmd)
 		return (res >> 8)
 
@@ -226,7 +226,7 @@ class Harddisk:
 		part = self.partitionPath(n)
 
 		if access(part, 0):
-			cmd = '/bin/dd bs=512 count=3 if=/dev/zero of=' + part
+			cmd = 'dd bs=512 count=3 if=/dev/zero of=' + part
 			res = system(cmd)
 		else:
 			res = 0
