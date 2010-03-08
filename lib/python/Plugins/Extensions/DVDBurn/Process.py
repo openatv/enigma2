@@ -5,7 +5,7 @@ from Screens.MessageBox import MessageBox
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
 		Task.__init__(self, job, "Creating menu video")
-		self.setTool("/usr/bin/png2yuv")
+		self.setTool("png2yuv")
 		self.args += ["-n1", "-Ip", "-f25", "-j", inputfile]
 		self.dumpFile = outputfile
 		self.weighting = 15
@@ -21,7 +21,7 @@ class png2yuvTask(Task):
 class mpeg2encTask(Task):
 	def __init__(self, job, inputfile, outputfile):
 		Task.__init__(self, job, "Encoding menu video")
-		self.setTool("/usr/bin/mpeg2enc")
+		self.setTool("mpeg2enc")
 		self.args += ["-f8", "-np", "-a2", "-o", outputfile]
 		self.inputFile = inputfile
 		self.weighting = 25
@@ -36,7 +36,7 @@ class mpeg2encTask(Task):
 class spumuxTask(Task):
 	def __init__(self, job, xmlfile, inputfile, outputfile):
 		Task.__init__(self, job, "Muxing buttons into menu")
-		self.setTool("/usr/bin/spumux")
+		self.setTool("spumux")
 		self.args += [xmlfile]
 		self.inputFile = inputfile
 		self.dumpFile = outputfile
@@ -54,7 +54,7 @@ class spumuxTask(Task):
 class MakeFifoNode(Task):
 	def __init__(self, job, number):
 		Task.__init__(self, job, "Make FIFO nodes")
-		self.setTool("/bin/mknod")
+		self.setTool("mknod")
 		nodename = self.job.workspace + "/dvd_title_%d" % number + ".mpg"
 		self.args += [nodename, "p"]
 		self.weighting = 10
@@ -62,14 +62,14 @@ class MakeFifoNode(Task):
 class LinkTS(Task):
 	def __init__(self, job, sourcefile, link_name):
 		Task.__init__(self, job, "Creating symlink for source titles")
-		self.setTool("/bin/ln")
+		self.setTool("ln")
 		self.args += ["-s", sourcefile, link_name]
 		self.weighting = 10
 
 class CopyMeta(Task):
 	def __init__(self, job, sourcefile):
 		Task.__init__(self, job, "Copy title meta files")
-		self.setTool("/bin/cp")
+		self.setTool("cp")
 		from os import listdir
 		path, filename = sourcefile.rstrip("/").rsplit("/",1)
 		tsfiles = listdir(path)
@@ -84,7 +84,7 @@ class DemuxTask(Task):
 		Task.__init__(self, job, "Demux video into ES")
 		title = job.project.titles[job.i]
 		self.global_preconditions.append(DiskspacePrecondition(title.estimatedDiskspace))
-		self.setTool("/usr/bin/projectx")
+		self.setTool("projectx")
 		self.args += [inputfile, "-demux", "-out", self.job.workspace ]
 		self.end = 300
 		self.prog_state = 0
@@ -194,7 +194,7 @@ class MplexTask(Task):
 		self.weighting = weighting
 		self.demux_task = demux_task
 		self.postconditions.append(MplexTaskPostcondition())
-		self.setTool("/usr/bin/mplex")
+		self.setTool("mplex")
 		self.args += ["-f8", "-o", outputfile, "-v1"]
 		if inputfiles:
 			self.args += inputfiles
@@ -222,7 +222,7 @@ class RemoveESFiles(Task):
 	def __init__(self, job, demux_task):
 		Task.__init__(self, job, "Remove temp. files")
 		self.demux_task = demux_task
-		self.setTool("/bin/rm")
+		self.setTool("rm")
 		self.weighting = 10
 
 	def prepare(self):
@@ -234,7 +234,7 @@ class DVDAuthorTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Authoring DVD")
 		self.weighting = 20
-		self.setTool("/usr/bin/dvdauthor")
+		self.setTool("dvdauthor")
 		self.CWD = self.job.workspace
 		self.args += ["-x", self.job.workspace+"/dvdauthor.xml"]
 		self.menupreview = job.menupreview
@@ -255,7 +255,7 @@ class DVDAuthorTask(Task):
 class DVDAuthorFinalTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "dvdauthor finalize")
-		self.setTool("/usr/bin/dvdauthor")
+		self.setTool("dvdauthor")
 		self.args += ["-T", "-o", self.job.workspace + "/dvd"]
 
 class WaitForResidentTasks(Task):
@@ -292,7 +292,7 @@ class BurnTaskPostcondition(Condition):
 
 class BurnTask(Task):
 	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = range(10)
-	def __init__(self, job, extra_args=[], tool="/bin/growisofs"):
+	def __init__(self, job, extra_args=[], tool="growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500
 		self.end = 120 # 100 for writing, 10 for buffer flush, 10 for closing disc
@@ -357,7 +357,7 @@ class BurnTask(Task):
 class RemoveDVDFolder(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Remove temp. files")
-		self.setTool("/bin/rm")
+		self.setTool("rm")
 		self.args += ["-rf", self.job.workspace]
 		self.weighting = 10
 
@@ -882,13 +882,13 @@ class DVDJob(Job):
 			volName = self.project.settings.name.getValue()
 			if output == "dvd":
 				self.name = _("Burn DVD")
-				tool = "/bin/growisofs"
+				tool = "growisofs"
 				burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
 				if self.project.size/(1024*1024) > self.project.MAX_SL:
 					burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 			elif output == "iso":
 				self.name = _("Create DVD-ISO")
-				tool = "/usr/bin/mkisofs"
+				tool = "mkisofs"
 				isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
 				burnargs = [ "-o", isopathfile ]
 			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, self.workspace + "/dvd" ]
@@ -920,14 +920,14 @@ class DVDdataJob(Job):
 
 		output = self.project.settings.output.getValue()
 		volName = self.project.settings.name.getValue()
-		tool = "/bin/growisofs"
+		tool = "growisofs"
 		if output == "dvd":
 			self.name = _("Burn DVD")
 			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
 			if self.project.size/(1024*1024) > self.project.MAX_SL:
 				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 		elif output == "iso":
-			tool = "/usr/bin/mkisofs"
+			tool = "mkisofs"
 			self.name = _("Create DVD-ISO")
 			isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
 			burnargs = [ "-o", isopathfile ]
@@ -959,5 +959,5 @@ class DVDisoJob(Job):
 			if getSize(imagepath)/(1024*1024) > self.project.MAX_SL:
 				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, imagepath ]
-		tool = "/bin/growisofs"
+		tool = "growisofs"
 		BurnTask(self, burnargs, tool)
