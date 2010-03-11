@@ -888,7 +888,7 @@ class DVDJob(Job):
 					burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 			elif output == "iso":
 				self.name = _("Create DVD-ISO")
-				tool = "mkisofs"
+				tool = "genisoimage"
 				isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
 				burnargs = [ "-o", isopathfile ]
 			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, self.workspace + "/dvd" ]
@@ -927,7 +927,7 @@ class DVDdataJob(Job):
 			if self.project.size/(1024*1024) > self.project.MAX_SL:
 				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
 		elif output == "iso":
-			tool = "mkisofs"
+			tool = "genisoimage"
 			self.name = _("Create DVD-ISO")
 			isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
 			burnargs = [ "-o", isopathfile ]
