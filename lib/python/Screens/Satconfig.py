@@ -58,7 +58,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		
 	def createConfigMode(self):
 		if self.nim.isCompatible("DVB-S"):
-			choices = { "nothing": _("nothing connected"),
+			choices = { "nothing": _("not configured"),
 						"simple": _("simple"),
 						"advanced": _("advanced")}
 			#if len(nimmanager.getNimListOfType(nimmanager.getNimType(self.slotid), exception = x)) > 0:
@@ -482,7 +482,7 @@ class NimSelection(Screen):
 								 "satposdepends": _("second cable of motorized LNB") } [nimConfig.configMode.value]
 						text += " " + _("Tuner") + " " + ["A", "B", "C", "D"][int(nimConfig.connectedTo.value)]
 					elif nimConfig.configMode.value == "nothing":
-						text = _("nothing connected")
+						text = _("not configured")
 					elif nimConfig.configMode.value == "simple":
 						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 							text = {"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value] + "\n"
