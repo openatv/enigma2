@@ -1,3 +1,5 @@
+SUBDIRS = hdbouquets sdbouquets
+
 installdir = $(pkgdatadir)/defaults/Dream
 
 dist_install_DATA = \
@@ -9,5 +11,4 @@ dist_install_DATA = \
 	settings.500hd \
 	settings.7025 \
 	settings.800 \
-	settings.8000 \
-	userbouquet.favourites.tv
+	settings.8000
