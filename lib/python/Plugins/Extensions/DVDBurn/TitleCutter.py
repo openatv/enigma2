@@ -52,6 +52,8 @@ class TitleCutter(CutListEditor):
 			CutListEditor.grabFrame(self)
 
 	def exit(self):
+		if self.t.VideoType == -1:
+			self.getPMTInfo()
 		self.checkAndGrabThumb()
 		self.session.nav.stopService()
 		self.close(self.cut_list[:])
