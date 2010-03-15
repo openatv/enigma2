@@ -303,11 +303,11 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		if ( ret == -1 ) // this is a "REAL" VCD
 			uri = g_strdup_printf ("vcd://");
 		else
-			uri = g_strdup_printf ("file://%s", filename);
+			uri = g_filename_to_uri(filename, NULL, NULL);
 	}
 	else
 
-		uri = g_strdup_printf ("file://%s", filename);
+		uri = g_filename_to_uri(filename, NULL, NULL);
 
 	eDebug("eServiceMP3::playbin2 uri=%s", uri);
 
@@ -341,9 +341,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		struct stat buffer;
 		if (stat(srt_filename, &buffer) == 0)
 		{
-			std::string suburi = "file://" + (std::string)srt_filename;
-			eDebug("eServiceMP3::subtitle uri: %s",suburi.c_str());
-			g_object_set (G_OBJECT (m_gst_playbin), "suburi", suburi.c_str(), NULL);
+			eDebug("eServiceMP3::subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
+			g_object_set (G_OBJECT (m_gst_playbin), "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
 			subtitleStream subs;
 			subs.type = stSRT;
 			subs.language_code = std::string("und");
