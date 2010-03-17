@@ -12,6 +12,7 @@
 #include <lib/dvb/frontend.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
+#include <lib/python/python.h>
 #include <errno.h>
 
 #define SCAN_eDebug(x...) do { if (m_scan_debug) eDebug(x); } while(0)
@@ -23,37 +24,118 @@ eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
 	:m_channel(channel), m_channel_state(iDVBChannel::state_idle)
 	,m_ready(0), m_ready_all(usePAT ? (readySDT|readyPAT) : readySDT)
 	,m_pmt_running(false), m_abort_current_pmt(false), m_flags(0)
-	,m_usePAT(usePAT), m_scan_debug(debug)
+	,m_usePAT(usePAT), m_scan_debug(debug), m_show_add_tsid_onid_check_failed_msg(true)
 {
 	if (m_channel->getDemux(m_demux))
 		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
+	FILE *f = fopen("/etc/enigma2/scan_tp_valid_check.py", "r");
+	if (f)
+	{
+		char code[16384];
+		size_t rd = fread(code, 1, 16383, f);
+		if (rd)
+		{
+			code[rd]=0;
+			m_additional_tsid_onid_check_func = Py_CompileString(code, "/etc/enigma2/scan_tp_valid_check.py", Py_file_input);
+		}
+		fclose(f);
+	}
 }
 
 eDVBScan::~eDVBScan()
 {
+	if (m_additional_tsid_onid_check_func)
+		Py_DECREF(m_additional_tsid_onid_check_func);
 }
 
 int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTransportStreamID tsid)
 {
+	int ret;
 	switch (onid.get())
 	{
 	case 0:
 	case 0x1111:
-		return 0;
+		ret=0;
+		break;
 	case 0x13E:  // workaround for 11258H and 11470V on hotbird with same ONID/TSID (0x13E/0x578)
-		return orbital_position != 130 || tsid != 0x578;
+		ret = orbital_position != 130 || tsid != 0x578;
+		break;
 	case 1:
-		return orbital_position == 192;
+		ret = orbital_position == 192;
+		break;
 	case 0x00B1:
-		return tsid != 0x00B0;
+		ret = tsid != 0x00B0;
+		break;
 	case 0x00eb:
-		return tsid != 0x4321;
+		ret = tsid != 0x4321;
+		break;
 	case 0x0002:
-		return abs(orbital_position-282) < 6;
+		ret = abs(orbital_position-282) < 6 && tsid != 2019;
+		// 12070H and 10936V have same tsid/onid.. but even the same services are provided
+		break;
+	case 0x2000:
+		ret = tsid != 0x1000;
+		break;
+	case 0x5E: // Sirius 4.8E 12322V and 12226H
+		ret = abs(orbital_position-48) < 3 && tsid != 1;
+		break;
+	case 10100: // Eutelsat W7 36.0E 11644V and 11652V
+		ret = orbital_position != 360 || tsid != 10187;
+		break;
+	case 42: // Tuerksat 42.0E
+		ret = orbital_position != 420 || (
+		    tsid != 8 && // 11830V 12729V
+		    tsid != 5 && // 12679V 12685H
+		    tsid != 2 && // 11096V 12015H
+		    tsid != 55); // 11996V 11716V
+		break;
+	case 100: // Intelsat 10 68.5E 3808V 3796V 4012V, Amos 4.0W 10723V 11571H
+		ret = (orbital_position != 685 && orbital_position != 3560) || tsid != 1;
+		break;
+	case 70: // Thor 0.8W 11862H 12341V
+		ret = abs(orbital_position-3592) < 3 && tsid != 46;
+		break;
+	case 32: // NSS 806 (40.5W) 4059R, 3774L
+		ret = orbital_position != 3195 || tsid != 21;
+		break;
 	default:
-		return onid.get() < 0xFF00;
+		ret = onid.get() < 0xFF00;
+		break;
 	}
+	if (ret && m_additional_tsid_onid_check_func)
+	{
+		bool failed = true;
+		ePyObject dict = PyDict_New();
+		extern void PutToDict(ePyObject &, const char *, long);
+		PyDict_SetItemString(dict, "__builtins__", PyEval_GetBuiltins());
+		PutToDict(dict, "orbpos", orbital_position);
+		PutToDict(dict, "tsid", tsid.get());
+		PutToDict(dict, "onid", onid.get());
+		ePyObject r = PyEval_EvalCode((PyCodeObject*)(PyObject*)m_additional_tsid_onid_check_func, dict, dict);
+		if (r)
+		{
+			ePyObject o = PyDict_GetItemString(dict, "ret");
+			if (o)
+			{
+				if (PyInt_Check(o))
+				{
+					ret = PyInt_AsLong(o);
+					failed = false;
+				}
+			}
+			Py_DECREF(r);
+		}
+		if (failed && m_show_add_tsid_onid_check_failed_msg)
+		{
+			eDebug("execing /etc/enigma2/scan_tp_valid_check failed!\n"
+				"usable global variables in scan_tp_valid_check.py are 'orbpos', 'tsid', 'onid'\n"
+				"the return value must be stored in a global var named 'ret'");
+			m_show_add_tsid_onid_check_failed_msg=false;
+		}
+		Py_DECREF(dict);
+	}
+	return ret;
 }
 
 eDVBNamespace eDVBScan::buildNamespace(eOriginalNetworkID onid, eTransportStreamID tsid, unsigned long hash)
