@@ -594,7 +594,7 @@ class iTimeshiftService: public iObject
 #endif
 public:
 	virtual RESULT startTimeshift()=0;
-	virtual RESULT stopTimeshift()=0;
+	virtual RESULT stopTimeshift(bool swToLive=true)=0;
 
 	virtual int isTimeshiftActive()=0;
 			/* this essentially seeks to the relative end of the timeshift buffer */

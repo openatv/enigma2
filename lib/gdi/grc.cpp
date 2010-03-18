@@ -165,7 +165,13 @@ void *gRC::thread()
 				if (pthread_cond_timedwait(&cond, &mutex, &timeout) == ETIMEDOUT)
 				{
 					if (eApp && !eApp->isIdle())
-						idle = 0;
+					{
+						int idle_count = eApp->idleCount();
+						if (idle_count == m_prev_idle_count)
+							idle = 0;
+						else
+							m_prev_idle_count = idle_count;
+					}
 				}
 
 				if (!idle)
@@ -653,7 +659,7 @@ void gDC::exec(gOpcode *o)
 		if (flags & gPainter::RT_HALIGN_RIGHT)
 			para->realign(eTextPara::dirRight);
 		else if (flags & gPainter::RT_HALIGN_CENTER)
-			para->realign(eTextPara::dirCenter);
+			para->realign((flags & gPainter::RT_WRAP) ? eTextPara::dirCenter : eTextPara::dirCenterIfFits);
 		else if (flags & gPainter::RT_HALIGN_BLOCK)
 			para->realign(eTextPara::dirBlock);
 		

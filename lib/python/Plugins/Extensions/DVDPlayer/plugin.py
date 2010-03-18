@@ -93,7 +93,7 @@ class DVDSummary(Screen):
 		<widget source="session.CurrentService" render="Label" position="5,4" size="120,28" font="Regular;12" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget name="DVDPlayer" position="5,30" size="66,16" font="Regular;12" transparent="1" />
+		<widget name="DVDPlayer" position="5,30" size="66,16" font="Regular;11" transparent="1" />
 		<widget name="Chapter" position="72,30" size="54,16" font="Regular;12" transparent="1" halign="right" />
 		<widget source="session.CurrentService" render="Label" position="66,46" size="60,18" font="Regular;16" transparent="1" halign="right" >
 			<convert type="ServicePosition">Position</convert>
@@ -736,6 +736,7 @@ def filescan(**kwargs):
 			paths_to_scan =
 				[
 					ScanPath(path = "video_ts", with_subdirs = False),
+					ScanPath(path = "VIDEO_TS", with_subdirs = False),
 					ScanPath(path = "", with_subdirs = False),
 				],
 			name = "DVD",

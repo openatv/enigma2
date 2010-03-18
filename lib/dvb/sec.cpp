@@ -168,6 +168,11 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					ret = 15000;
 				}
 
+				if (sat.no_rotor_command_on_tune && !rotor) {
+					eSecDebugNoSimulate("no rotor but no_rotor_command_on_tune is set.. ignore lnb %d", idx);
+					continue;
+				}
+
 				eSecDebugNoSimulate("ret1 %d", ret);
 
 				if (linked_in_use)
@@ -182,21 +187,6 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 					else
 						ret += 15;
 					eSecDebugNoSimulate("ret2 %d", ret);
-					if (ret) // special case when this tuner is linked to a satpos dependent tuner
-					{
-						fe->getData(eDVBFrontend::SATPOS_DEPENDS_PTR, satpos_depends_ptr);
-						if (satpos_depends_ptr != -1)
-						{
-							eDVBRegisteredFrontend *satpos_depends_to_fe = (eDVBRegisteredFrontend*) satpos_depends_ptr;
-							satpos_depends_to_fe->m_frontend->getData(eDVBFrontend::ROTOR_POS, rotor_pos);
-							if (!rotor || rotor_pos == -1 /* we dont know the rotor position yet */
-								|| rotor_pos != sat.orbital_position ) // not the same orbital position?
-							{
-								ret = 0;
-							}
-						}
-					}
-					eSecDebugNoSimulate("ret3 %d", ret);
 				}
 				else if (satpos_depends_ptr != -1)
 				{
@@ -211,6 +201,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 							else
 								ret += 10;
 						}
+						eSecDebugNoSimulate("ret3 %d", ret);
 					}
 					else // current fe is dependent of another tuner ... (so this fe can't turn the rotor!)
 					{

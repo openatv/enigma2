@@ -112,10 +112,6 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level = 0)
 						else:
 							append_when_current_valid(current, menu, (_("remove from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level = 0)
-						if parentalControl.isPinTimeoutActive():
-							append_when_current_valid(current, menu, (_("re-activate parental locking"), self.resetPinTimeout), level = 0)
-						else:
-							append_when_current_valid(current, menu, (_("disable parental locking"), self.disableParental), level = 0)
 					if haveBouquets:
 						append_when_current_valid(current, menu, (_("add service to bouquet"), self.addServiceToBouquetSelected), level = 0)
 					else:
@@ -221,14 +217,6 @@ class ChannelContextMenu(Screen):
 	def removeParentalProtection(self, service):
 		self.session.openWithCallback(boundFunction(self.pinEntered, service.toCompareString()), PinInput, pinList = [config.ParentalControl.servicepin[0].value], triesEntry = config.ParentalControl.retries.servicepin, title = _("Enter the service pin"), windowTitle = _("Change pin code"))
 
-	def resetPinTimeout(self):
-		parentalControl.resetPinTimeout()
-		self.close()
-	
-	def disableParental(self):
-		parentalControl.disableParental(self.session)
-		self.close()
-	
 	def pinEntered(self, service, result):
 		if result:
 			parentalControl.unProtectService(service)

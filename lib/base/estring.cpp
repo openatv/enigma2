@@ -380,7 +380,10 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	switch(data[0])
 	{
 		case 1 ... 11:
-			table=data[i++]+4;
+			// For Thai providers, encoding char is present but faulty.
+			if (table != 11)
+				table=data[i]+4;
+			++i;
 //			eDebug("(1..11)text encoded in ISO-8859-%d",table);
 			break;
 		case 0x10:
