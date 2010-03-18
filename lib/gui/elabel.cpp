@@ -44,7 +44,7 @@ int eLabel::event(int event, void *data, void *data2)
 			if (m_halign == alignLeft)
 				para->realign(eTextPara::dirLeft);
 			else if (m_halign == alignCenter)
-				para->realign(eTextPara::dirCenter);
+				para->realign(m_nowrap ? eTextPara::dirCenterIfFits : eTextPara::dirCenter);
 			else if (m_halign == alignRight)
 				para->realign(eTextPara::dirRight);
 			else if (m_halign == alignBlock)

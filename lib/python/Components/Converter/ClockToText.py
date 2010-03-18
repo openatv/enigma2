@@ -2,8 +2,8 @@ from Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
 
-MONTHS = (_("Januari"),
-          _("Februari"),
+MONTHS = (_("January"),
+          _("February"),
           _("March"),
           _("April"),
           _("May"),
@@ -15,6 +15,7 @@ MONTHS = (_("Januari"),
           _("November"),
           _("December"))
 
+dayOfWeek = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
 
 class ClockToText(Converter, object):
 	DEFAULT = 0
@@ -24,6 +25,7 @@ class ClockToText(Converter, object):
 	FORMAT = 4
 	AS_LENGTH = 5
 	TIMESTAMP = 6
+	FULL = 7
 	
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
@@ -40,7 +42,9 @@ class ClockToText(Converter, object):
 			self.type = self.AS_LENGTH
 		elif type == "Timestamp":	
 			self.type = self.TIMESTAMP
-		elif str(type).find("Format") != -1:
+		elif type == "Full":
+			self.type = self.FULL
+		elif "Format" in type:
 			self.type = self.FORMAT
 			self.fmt_string = type[7:]
 		else:
@@ -70,6 +74,8 @@ class ClockToText(Converter, object):
 			return "%2d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
 			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
+		elif self.type == self.FULL:
+			return "%2d:%02d" % (t.tm_hour, t.tm_min) + "  " + dayOfWeek[t[6]] + " %d/%d" % (t[2],t[1])  
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
 			if spos > 0:

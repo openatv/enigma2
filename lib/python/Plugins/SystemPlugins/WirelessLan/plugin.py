@@ -151,6 +151,7 @@ class WlanStatus(Screen):
 				self["statuspic"].setPixmapNum(0)
 			self["statuspic"].show()		
 
+
 class WlanScan(Screen):
 	skin = """
 		<screen name="WlanScan" position="center,center" size="560,400" title="Choose a Wireless Network" >
@@ -190,7 +191,7 @@ class WlanScan(Screen):
 		self.WlanList = None
 		self.cleanList = None
 		self.oldlist = None
-		self.listLenght = None
+		self.listLength = None
 		self.rescanTimer = eTimer()
 		self.rescanTimer.callback.append(self.rescanTimerFired)
 		
@@ -226,7 +227,10 @@ class WlanScan(Screen):
 			self.rescanTimer.stop()
 			del self.rescanTimer
 			if cur[1] is not None:
-				essid = cur[1]
+				if cur[1] == 'hidden...':
+					essid = cur[1]
+				else:
+					essid = cur[0]
 				self.close(essid,self.getWlanList())
 			else:
 				self.close(None,None)
@@ -305,7 +309,7 @@ class WlanScan(Screen):
 			self['list'].setList(self.newAPList)
 			self["list"].setIndex(newListIndex)
 			self["list"].updateList(self.newAPList)
-			self.listLenght = len(self.newAPList)
+			self.listLength = len(self.newAPList)
 			self.buildWlanList()
 			self.setInfo()
 
@@ -315,7 +319,7 @@ class WlanScan(Screen):
 		self.w = Wlan(self.iface)
 		aps = self.w.getNetworkList()
 		if aps is not None:
-			print "[NetworkWizard.py] got Accespoints!"
+			print "[WirelessLan.py] got Accespoints!"
 			tmpList = []
 			compList = []
 			for ap in aps:
@@ -340,31 +344,34 @@ class WlanScan(Screen):
 		
 		if refresh is False:
 			self['list'].setList(self.APList)
-		self.listLenght = len(self.APList)
+		self.listLength = len(self.APList)
 		self.setInfo()
 		self.rescanTimer.start(5000)
 		return self.cleanList
 
 	def setInfo(self):
 		length = self.getLength()
-		if length == 0:
+		if length <= 1:
 			self["info"].setText(_("No wireless networks found! Please refresh."))
-		elif length == 1:
+		elif length == 2:
 			self["info"].setText(_("1 wireless network found!"))
 		else:
-			self["info"].setText(str(length)+_(" wireless networks found!"))
+			self["info"].setText(str(length-1)+_(" wireless networks found!"))
 
 	def buildWlanList(self):
 		self.WlanList = []
-		currList = []
-		currList = self['list'].list
-		for entry in currList:
-			self.WlanList.append( (entry[1], entry[0]) )		
+		for entry in self['list'].list:
+			if entry[1] == "hidden...":
+				self.WlanList.append(( "hidden...",_("enter hidden network SSID") ))#continue
+			else:
+				self.WlanList.append( (entry[0], entry[0]) )
 
 	def getLength(self):
-		return self.listLenght		
+		return self.listLength		
 
 	def getWlanList(self):
+		if self.WlanList is None:
+			self.buildWlanList()
 		return self.WlanList
 
 

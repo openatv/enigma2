@@ -167,7 +167,7 @@ public:
 
 	enum
 	{
-		dirLeft, dirRight, dirCenter, dirBlock
+		dirLeft, dirRight, dirCenter, dirBlock, dirCenterIfFits
 	};
 
 	void realign(int dir);

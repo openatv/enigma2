@@ -1137,6 +1137,13 @@ void eTextPara::realign(int dir)	// der code hier ist ein wenig merkwuerdig.
 
 		switch (dir)
 		{
+		case dirCenterIfFits:
+			// If the text is larger than the available space,
+			// don't re-align but align left.
+			if (linelength > area.width())
+				return;
+			dir = dirCenter;
+			// fall-through on purpose
 		case dirRight:
 		case dirCenter:
 		{

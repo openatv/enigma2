@@ -27,8 +27,8 @@ from Screens.SimpleSummary import SimpleSummary
 from sys import stdout, exc_info
 
 profile("ParentalControl")
-from Components.ParentalControl import InitParentalControl
-InitParentalControl()
+import Components.ParentalControl
+Components.ParentalControl.InitParentalControl()
 
 profile("LOAD:Navigation")
 from Navigation import Navigation
@@ -578,8 +578,7 @@ try:
 
 	plugins.shutdown()
 
-	from Components.ParentalControl import parentalControl
-	parentalControl.save()
+	Components.ParentalControl.parentalControl.save()
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
 	print '-'*60
