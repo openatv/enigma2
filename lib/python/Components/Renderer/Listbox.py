@@ -19,6 +19,7 @@ class Listbox(Renderer, object):
 		self.__content = None
 		self.__wrap_around = False
 		self.__selection_enabled = True
+		self.__scrollbarMode = "showOnDemand"
 
 	GUI_WIDGET = eListbox
 
@@ -38,6 +39,7 @@ class Listbox(Renderer, object):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		self.wrap_around = self.wrap_around # trigger
 		self.selection_enabled = self.selection_enabled # trigger
+		self.scrollbarMode = self.scrollbarMode # trigger
 
 	def preWidgetRemove(self, instance):
 		instance.setContent(None)
@@ -76,7 +78,24 @@ class Listbox(Renderer, object):
 
 	selection_enabled = property(lambda self: self.__selection_enabled, setSelectionEnabled)
 
+	def setScrollbarMode(self, mode):
+		self.__scrollbarMode = mode
+		if self.instance is not None:
+			self.instance.setScrollbarMode(int(
+				{ "showOnDemand": 0,
+				  "showAlways": 1,
+				  "showNever": 2,
+				}[mode]))
+
+	scrollbarMode = property(lambda self: self.__scrollbarMode, setScrollbarMode)
+	
 	def changed(self, what):
+		if hasattr(self.source, "selectionEnabled"):
+			self.selection_enabled = self.source.selectionEnabled
+		if hasattr(self.source, "scrollbarMode"):
+			self.scrollbarMode = self.source.scrollbarMode
+		if len(what) > 1 and isinstance(what[1], str) and what[1] == "style":
+			return
 		self.content = self.source.content
 
 	def entry_changed(self, index):
