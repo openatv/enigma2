@@ -2514,9 +2514,14 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			;
 		else
 		{
+			std::string value;
+			bool showRadioBackground = (ePythonConfigQuery::getConfigValue("config.misc.showradiopic", value) >= 0 && value == "False");
 			std::string radio_pic;
-			if (!ePythonConfigQuery::getConfigValue("config.misc.radiopic", radio_pic))
-				m_decoder->setRadioPic(radio_pic);
+			if (showRadioBackground)
+				ePythonConfigQuery::getConfigValue("config.misc.radiopic", radio_pic);
+			else
+				ePythonConfigQuery::getConfigValue("config.misc.blackradiopic", radio_pic);
+			m_decoder->setRadioPic(radio_pic);
 		}
 
 		if (mustPlay)
