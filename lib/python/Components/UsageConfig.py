@@ -108,6 +108,7 @@ def InitUsageConfig():
 	config.epg.mhw = ConfigYesNo(default = True)
 	config.epg.freesat = ConfigYesNo(default = True)
 	config.epg.viasat = ConfigYesNo(default = True)
+	config.misc.showradiopic = ConfigYesNo(default = True)
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff

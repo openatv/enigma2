@@ -9,6 +9,7 @@ dist_pkgdata_DATA = \
 	menu.xml \
 	prev.png \
 	radio.mvi \
+	black.mvi \
 	rcpositions.xml \
 	setup.xml \
 	skin_default.xml \
