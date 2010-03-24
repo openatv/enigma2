@@ -17,7 +17,7 @@ GNU General Public License for more details.
 
 #include "freesatv2.h"
 
-freesatHuffmanDecoder::freesatHuffmanDecoder() : m_tablesLoaded(false) 
+freesatHuffmanDecoder::freesatHuffmanDecoder() : m_tablesLoaded(false)
 {
 	int	i;
 	
@@ -70,19 +70,22 @@ void freesatHuffmanDecoder::loadTables()
 unsigned char freesatHuffmanDecoder::resolveChar(char *str)
 {
 	int val;
-	if ( strcmp(str,"ESCAPE") == 0 ) 
+
+	if (str[1] == 0) return str[0];
+
+	if ( strcmp(str,"ESCAPE") == 0 )
 	{
 		return ESCAPE;
-	} 
-	else if ( strcmp(str,"STOP") == 0 ) 
+	}
+	else if ( strcmp(str,"STOP") == 0 )
 	{
 		return STOP;
 	}
-	else if ( strcmp(str,"START") == 0 ) 
+	else if ( strcmp(str,"START") == 0 )
 	{
 		return START;
-	} 
-	else if ( sscanf(str,"0x%02x", &val) == 1 ) 
+	}
+	else if ( sscanf(str,"0x%02x", &val) == 1 )
 	{
 		return val;
 	}
@@ -99,17 +102,15 @@ unsigned char freesatHuffmanDecoder::resolveChar(char *str)
 unsigned long freesatHuffmanDecoder::decodeBinary(char *binary)
 {
 	unsigned long mask = 0x80000000;
-	unsigned long maskval = 0;
 	unsigned long val = 0;
-	size_t i;
-	
-	for ( i = 0; i < strlen(binary); i++ ) 
+	size_t i, len = strlen(binary);
+
+	for ( i = 0; i < len; i++ )
 	{
-		if ( binary[i] == '1' ) 
+		if ( binary[i] == '1' )
 		{
 			val |= mask;
 		}
-		maskval |= mask;
 		mask >>= 1;
 	}
 	return val;
@@ -123,26 +124,26 @@ unsigned long freesatHuffmanDecoder::decodeBinary(char *binary)
 void freesatHuffmanDecoder::loadFile(int tableid, char *filename)
 {
 	char     buf[1024];
-	char    *from, *to, *binary; 
+	char    *from, *to, *binary;
 	FILE    *fp;
-	
+
 	tableid--;
-	
-	if ( ( fp = fopen(filename,"r") ) != NULL ) 
+
+	if ( ( fp = fopen(filename,"r") ) != NULL )
 	{
 		eDebug("[FREESAT] Loading table %d Filename <%s>",tableid + 1, filename);
-	
-		while ( fgets(buf,sizeof(buf),fp) != NULL ) 
+
+		while ( fgets(buf,sizeof(buf),fp) != NULL )
 		{
 			from = binary = to = NULL;
 			int elems = sscanf(buf,"%a[^:]:%a[^:]:%a[^:]:", &from, &binary, &to);
-			if ( elems == 3 ) 
+			if ( elems == 3 )
 			{
 				int bin_len = strlen(binary);
 				int from_char = resolveChar(from);
 				char to_char = resolveChar(to);
 				unsigned long bin = decodeBinary(binary);
-				
+
 				// Add entry to end of bucket
 				huffTableEntry **pCurrent = &m_tables[tableid][from_char];
 				while ( *pCurrent != NULL )
@@ -150,14 +151,13 @@ void freesatHuffmanDecoder::loadFile(int tableid, char *filename)
 					pCurrent = &((*pCurrent)->nextEntry);
 				}
 				*pCurrent = new huffTableEntry(bin, bin_len, to_char, NULL);
-				
-				free(from);
-				free(to);
-				free(binary);
 			}
+			free(from);
+			free(to);
+			free(binary);
 		}
-	} 
-	else 
+	}
+	else
 	{
 		eDebug("[FREESAT] Cannot load <%s> for table %d",filename,tableid + 1);
 	}
@@ -172,106 +172,106 @@ void freesatHuffmanDecoder::loadFile(int tableid, char *filename)
 *  \retval NULL - Can't decode
 *  \return A decoded string
 */
-char  *freesatHuffmanDecoder::decode( const unsigned char *src, size_t size) 
-{ 
+char  *freesatHuffmanDecoder::decode( const unsigned char *src, size_t size)
+{
 	int tableid;
-	
+
 	loadTables();
-	
-	if (src[0] == 0x1f && (src[1] == 1 || src[1] == 2)) 
+
+	if (src[0] == 0x1f && (src[1] == 1 || src[1] == 2))
 	{
 		int    uncompressed_len = 30;
 		char * uncompressed = (char *)calloc(1,uncompressed_len + 1);
-		unsigned value = 0, byte = 2, bit = 0; 
-		int p = 0; 
-		int lastch = START; 
+		unsigned value = 0, byte = 2, bit = 0;
+		int p = 0;
+		int lastch = START;
 	
 		tableid = src[1] - 1;
-		while (byte < 6 && byte < size) 
+		while (byte < 6 && byte < size)
 		{
-			value |= src[byte] << ((5-byte) * 8); 
-			byte++; 
-		} 
-	
-		do 
+			value |= src[byte] << ((5-byte) * 8);
+			byte++;
+		}
+
+		do
 		{
-			int found = 0; 
-			unsigned bitShift = 0; 
-			if (lastch == ESCAPE) 
+			int found = 0;
+			unsigned bitShift = 0;
+			if (lastch == ESCAPE)
 			{
-				char nextCh = (value >> 24) & 0xff; 
-				found = 1; 
-				// Encoded in the next 8 bits. 
-				// Terminated by the first ASCII character. 
-				bitShift = 8; 
-				if ((nextCh & 0x80) == 0) 
-					lastch = nextCh; 
-				if (p >= uncompressed_len) 
+				char nextCh = (value >> 24) & 0xff;
+				found = 1;
+				// Encoded in the next 8 bits.
+				// Terminated by the first ASCII character.
+				bitShift = 8;
+				if ((nextCh & 0x80) == 0)
+					lastch = nextCh;
+				if (p >= uncompressed_len)
 				{
 					uncompressed_len += 10;
 					uncompressed = (char *)realloc(uncompressed, uncompressed_len + 1);
 				}
-				uncompressed[p++] = nextCh; 
+				uncompressed[p++] = nextCh;
 				uncompressed[p] = 0;
-			} 
-			else 
+			}
+			else
 			{
 				huffTableEntry * currentEntry = m_tables[tableid][lastch];
 				while ( currentEntry != NULL )
 				{
-					unsigned mask = 0, maskbit = 0x80000000; 
+					unsigned mask = 0, maskbit = 0x80000000;
 					short kk;
-					for ( kk = 0; kk < currentEntry->bits; kk++) 
+					for ( kk = 0; kk < currentEntry->bits; kk++)
 					{
-						mask |= maskbit; 
-						maskbit >>= 1; 
-					} 
-					if ((value & mask) == currentEntry->value) 
+						mask |= maskbit;
+						maskbit >>= 1;
+					}
+					if ((value & mask) == currentEntry->value)
 					{
-						char nextCh = currentEntry->next; 
-						bitShift = currentEntry->bits; 
-						if (nextCh != STOP && nextCh != ESCAPE) 
+						char nextCh = currentEntry->next;
+						bitShift = currentEntry->bits;
+						if (nextCh != STOP && nextCh != ESCAPE)
 						{
-							if (p >= uncompressed_len) 
+							if (p >= uncompressed_len)
 							{
 								uncompressed_len += 10;
 								uncompressed = (char *)realloc(uncompressed, uncompressed_len + 1);
 							}
-							uncompressed[p++] = nextCh; 
+							uncompressed[p++] = nextCh;
 							uncompressed[p] = 0;
-						} 
+						}
 						found = 1;
-						lastch = nextCh; 
-						break; 
+						lastch = nextCh;
+						break;
 					}
 					currentEntry = currentEntry->nextEntry;
-				} 
-			} 
-			if (found) 
+				}
+			}
+			if (found)
 			{
-				// Shift up by the number of bits. 
+				// Shift up by the number of bits.
 				unsigned b;
-				for ( b = 0; b < bitShift; b++) 
-				{ 
-					value = (value << 1) & 0xfffffffe; 
-					if (byte < size) 
-						value |= (src[byte] >> (7-bit)) & 1; 
-					if (bit == 7) 
-					{ 
-						bit = 0; 
-						byte++; 
-					} 
-					else bit++; 
-				} 
-			} 
-			else 
+				for ( b = 0; b < bitShift; b++)
+				{
+					value = (value << 1) & 0xfffffffe;
+					if (byte < size)
+						value |= (src[byte] >> (7-bit)) & 1;
+					if (bit == 7)
+					{
+						bit = 0;
+						byte++;
+					}
+					else bit++;
+				}
+			}
+			else
 			{
 				eDebug("[FREESAT] Missing table %d entry: <%s>", tableid + 1, uncompressed);
-				return uncompressed; 
-			} 
-		} while (lastch != STOP && value != 0); 
-	
+				return uncompressed;
+			}
+		} while (lastch != STOP && value != 0);
+
 		return uncompressed;
-	} 
-	return NULL; 
-} 
+	}
+	return NULL;
+}
