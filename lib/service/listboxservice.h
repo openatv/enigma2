@@ -90,6 +90,8 @@ public:
 		serviceEventProgressbarColorSelected,
 		serviceEventProgressbarBorderColor,
 		serviceEventProgressbarBorderColorSelected,
+		serviceDescriptionColor,
+		serviceDescriptionColorSelected,
 		colorElements
 	};
 	
