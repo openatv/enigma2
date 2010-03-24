@@ -68,6 +68,8 @@ def InitUsageConfig():
 		("4", "DVB-T/-C/-S"),
 		("5", "DVB-T/-S/-C") ])
 
+	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = False)
+
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
