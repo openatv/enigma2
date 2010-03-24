@@ -20,7 +20,7 @@ GNU General Public License for more details.
 freesatHuffmanDecoder::freesatHuffmanDecoder() : m_tablesLoaded(false)
 {
 	int	i;
-	
+
 	eDebug("[FREESAT] Init tables");
 	for ( i = 0 ; i < 256; i++ ) 
 	{
@@ -156,6 +156,7 @@ void freesatHuffmanDecoder::loadFile(int tableid, char *filename)
 			free(to);
 			free(binary);
 		}
+		fclose(fp);
 	}
 	else
 	{
@@ -185,7 +186,7 @@ char  *freesatHuffmanDecoder::decode( const unsigned char *src, size_t size)
 		unsigned value = 0, byte = 2, bit = 0;
 		int p = 0;
 		int lastch = START;
-	
+
 		tableid = src[1] - 1;
 		while (byte < 6 && byte < size)
 		{
