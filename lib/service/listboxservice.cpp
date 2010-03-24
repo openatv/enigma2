@@ -585,7 +585,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				}
 				case celServiceInfo:
 				{
-					if ( isPlayable && evt )
+					if ( isPlayable && (evt || !service_info->getEvent(*m_cursor, evt)) )
 					{
 						std::string name = evt->getEventName();
 						if (!name.length())
@@ -685,7 +685,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				eRect area = m_element_position[p];
 				if (area.width() > 0 && (isPlayable || isMarker))
 				{
-
 					if ( isPlayable && service_info && !service_info->getEvent(*m_cursor, evt) )
 					{
 						if (!selected && m_color_set[serviceEventProgressbarBorderColor])
