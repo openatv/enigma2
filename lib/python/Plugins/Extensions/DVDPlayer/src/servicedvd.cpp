@@ -103,12 +103,7 @@ eServiceDVD::eServiceDVD(eServiceReference ref):
 	eDebug("SERVICEDVD construct!");
 	// create handle
 	ddvd_set_dvd_path(m_ddvdconfig, ref.path.c_str());
-
-	int ac3thru = 0;
-	std::string ac3downmix;
-	if (!ePythonConfigQuery::getConfigValue("config.av.downmix_ac3", ac3downmix))
-		ac3thru = (ac3downmix == "False");
-	ddvd_set_ac3thru(m_ddvdconfig, ac3thru);
+	ddvd_set_ac3thru(m_ddvdconfig, 0);
 
 	std::string ddvd_language;
 	if (!ePythonConfigQuery::getConfigValue("config.osd.language", ddvd_language))
