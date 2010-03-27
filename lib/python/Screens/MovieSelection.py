@@ -11,7 +11,6 @@ from Components.config import config, ConfigSubsection, ConfigText, ConfigIntege
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import defaultMoviePath
-import Components.Harddisk
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -61,7 +60,6 @@ def canDelete(item):
 	if not item:
 		return False
 	if not item[0] or not item[1]:
-		# cannot delete nothing
 		return False
 	return (item[0].flags & eServiceReference.mustDescent) == 0
 
@@ -69,15 +67,21 @@ def canMove(item):
 	if not item:
 		return False
 	if not item[0] or not item[1]:
-		# cannot move nothing
 		return False
 	if item[0].flags & eServiceReference.mustDescent:
 		return not isTrashFolder(item[0])
 	return True
 
-def moveServiceFiles(serviceref, dest):
-	# current should be 'ref' type, dest a simple path string
-	print "[Movie] Moving to:", dest
+def canCopy(item):
+	if not item:
+		return False
+	if not item[0] or not item[1]:
+		return False
+	if item[0].flags & eServiceReference.mustDescent:
+		return False
+	return True
+
+def createMoveList(serviceref, dest):
 	#normpath is to remove the trailing '/' from directories
 	src = os.path.normpath(serviceref.getPath())
 	srcPath, srcName = os.path.split(src)
@@ -98,6 +102,10 @@ def moveServiceFiles(serviceref, dest):
 			candidate = src + ext
 			if os.path.exists(candidate):
 				moveList.append((candidate, os.path.join(dest, baseName+ext)))
+	return moveList
+
+def moveServiceFiles(serviceref, dest):
+	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
 	movedList = []
 	try:
@@ -115,6 +123,43 @@ def moveServiceFiles(serviceref, dest):
 		# rethrow exception
 		raise
 
+def onCopyDone(result, fileList):
+	#callback from reactor, result=None or Failure.
+	if result is None:
+		print "[MovieSelection] Copy done."
+		return
+	print "[MovieSelection] Copy FAILED!", result
+	for s,d in fileList:
+		# Remove incomplete data.
+		try:
+			os.unlink(d)
+		except:
+			pass
+
+def copyServiceFiles(serviceref, dest):
+	# current should be 'ref' type, dest a simple path string
+	print "[Movie] Copying to:", dest
+	moveList = createMoveList(serviceref, dest)
+	# Try to "atomically" move these files
+	movedList = []
+	try:
+		for item in moveList:
+			print "[LINK]", item[0], "->", item[1]
+			os.link(item[0], item[1])
+			movedList.append(item)
+		# this worked, we're done
+		return
+	except Exception, e:
+		print "[MovieSelection] Failed copy using link:", e
+		for item in movedList:
+			try:
+				os.unlink(item[1])
+			except:
+				print "[MovieSelection] Failed to undo copy:", item
+	#Link failed, really copy.
+	import CopyFiles
+	CopyFiles.copyFiles(moveList, onCopyDone)
+	print "[MovieSelection] Copying in background..."
 
 class MovieContextMenuSummary(Screen):
 	def __init__(self, session, parent):
@@ -154,7 +199,7 @@ class MovieContextMenu(Screen):
 				else:
 					menu.append((_("Move"), csel.moveMovie))
 			else:
-				menu = [(_("delete..."), csel.delete), (_("Move"), csel.moveMovie)]
+				menu = [(_("delete..."), csel.delete), (_("Move"), csel.moveMovie), (_("Copy"), csel.copyMovie)]
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
@@ -542,14 +587,24 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
 
 	def selectMovieLocation(self, title, callback):
-		bookmarks = [("("+_("Other")+"...)", None)]
-		#moviePath = resolveFilename(SCOPE_HDD)
-		#bookmarks.append((moviePath, moviePath))
-		for d in config.movielist.videodirs.value:
-			bookmarks.append((d,d))
-		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
-			if os.path.exists(p.mountpoint):
-				bookmarks.append((p.description, os.path.join(p.mountpoint, "")))
+		paths = list(config.movielist.videodirs.value)
+		moviePath = resolveFilename(SCOPE_HDD)
+		try:
+			for fn in os.listdir(moviePath):
+				if fn.startswith('.'):
+					continue
+				pn = os.path.join(moviePath, fn)
+				if os.path.isdir(pn):
+					if not pn.endswith('/'):
+						pn += '/'
+					if pn not in paths:
+						paths.append(pn)
+		except:
+			# Probably, there is no harddisk, so tell the caller
+			# that the user picked the "Other" option
+			callback((None, None))
+			return
+		bookmarks = [("("+_("Other")+"...)", None)] + [(d,d) for d in paths]
 		self.session.openWithCallback(callback, ChoiceBox, title=title, list = bookmarks)
 
 	def showBookmarks(self):
@@ -594,6 +649,40 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			current = self.getCurrent()
 			moveServiceFiles(current, dest)
 			self["list"].removeService(current)
+		except Exception, e:
+			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
+
+	def copyMovie(self):
+		item = self.getCurrentSelection() 
+		if canMove(item):
+			current = item[0]
+			info = item[1]
+			if info is None:
+				# Special case
+				return
+			name = info and info.getName(current) or _("this recording")
+			self.selectMovieLocation(title=_("Select copy destination for:") + " " + name, callback=self.gotCopyMovieDest)
+
+	def gotCopyMovieDest(self, choice):
+		if not choice:
+			return
+		if isinstance(choice, tuple):
+			if choice[1] is None:
+				# Display full browser
+				self.session.openWithCallback(
+					self.gotCopyMovieDest,
+					MovieLocationBox,
+					_("Please select the movie path..."),
+					config.movielist.last_videodir.value
+				)
+				return
+			dest = os.path.normpath(choice[0])
+		else:
+			# full browser returns only a string
+			dest = os.path.normpath(choice)
+		try:
+			current = self.getCurrent()
+			copyServiceFiles(current, dest)
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
