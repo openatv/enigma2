@@ -11,6 +11,7 @@ from Components.config import config, ConfigSubsection, ConfigText, ConfigIntege
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import defaultMoviePath
+import Components.Harddisk
 
 from Plugins.Plugin import PluginDescriptor
 
@@ -589,24 +590,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR)
 
 	def selectMovieLocation(self, title, callback):
-		paths = list(config.movielist.videodirs.value)
-		moviePath = resolveFilename(SCOPE_HDD)
-		try:
-			for fn in os.listdir(moviePath):
-				if fn.startswith('.'):
-					continue
-				pn = os.path.join(moviePath, fn)
-				if os.path.isdir(pn):
-					if not pn.endswith('/'):
-						pn += '/'
-					if pn not in paths:
-						paths.append(pn)
-		except:
-			# Probably, there is no harddisk, so tell the caller
-			# that the user picked the "Other" option
-			callback((None, None))
-			return
-		bookmarks = [("("+_("Other")+"...)", None)] + [(d,d) for d in paths]
+		bookmarks = [("("+_("Other")+"...)", None)]
+		#moviePath = resolveFilename(SCOPE_HDD)
+		#bookmarks.append((moviePath, moviePath))
+		for d in config.movielist.videodirs.value:
+			bookmarks.append((d,d))
+		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
+			if os.path.exists(p.mountpoint):
+				bookmarks.append((p.description, os.path.join(p.mountpoint, "")))
 		self.session.openWithCallback(callback, ChoiceBox, title=title, list = bookmarks)
 
 	def showBookmarks(self):
