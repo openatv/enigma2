@@ -85,12 +85,9 @@ RESULT eServiceFactoryDVD::offlineOperations(const eServiceReference &, ePtr<iSe
 DEFINE_REF(eServiceDVD);
 
 eServiceDVD::eServiceDVD(eServiceReference ref):
-	m_ref(ref),
-	m_ddvdconfig(ddvd_create()),
-	m_subtitle_widget(0),
-	m_state(stIdle),
-	m_current_trick(0),
-	m_pump(eApp, 1)
+	m_ref(ref), m_ddvdconfig(ddvd_create()), m_subtitle_widget(0), m_state(stIdle),
+	m_current_trick(0), m_pump(eApp, 1), m_width(-1), m_height(-1),
+	m_aspect(-1), m_framerate(-1), m_progressive(-1)
 {
 	int aspect = DDVD_16_9;
 	int policy = DDVD_PAN_SCAN;
@@ -309,6 +306,32 @@ void eServiceDVD::gotMessage(int /*what*/)
 			m_event(this, evSeekableStatusChanged);
 			m_event(this, evUser+12);
 			break;
+#ifdef DDVD_SUPPORTS_PICTURE_INFO
+		case DDVD_SIZE_CHANGED:
+		{
+			int changed = m_width != -1 && m_height != -1 && m_aspect != -1;
+			ddvd_get_last_size(m_ddvdconfig, &m_width, &m_height, &m_aspect);
+			if (changed)
+				m_event((iPlayableService*)this, evVideoSizeChanged);
+			break;
+		}
+		case DDVD_PROGRESSIVE_CHANGED:
+		{
+			int changed = m_progressive != -1;
+			ddvd_get_last_progressive(m_ddvdconfig, &m_progressive);
+			if (changed)
+				m_event((iPlayableService*)this, evVideoProgressiveChanged);
+			break;
+		}
+		case DDVD_FRAMERATE_CHANGED:
+		{
+			int changed = m_framerate != -1;
+			ddvd_get_last_framerate(m_ddvdconfig, &m_framerate);
+			if (changed)
+				m_event((iPlayableService*)this, evVideoFramerateChanged);
+			break;
+		}
+#endif
 		default:
 			break;
 	}
@@ -500,6 +523,18 @@ int eServiceDVD::getInfo(int w)
 		case sUser+7:
 		case sUser+8:
 			return resIsPyObject;
+#ifdef DDVD_SUPPORTS_PICTURE_INFO
+		case sVideoWidth:
+			return m_width;
+		case sVideoHeight:
+			return m_height;
+		case sAspect:
+			return m_aspect;
+		case sProgressive:
+			return m_progressive;
+		case sFrameRate:
+			return m_framerate;
+#endif
 		default:
 			return resNA;
 	}

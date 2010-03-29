@@ -127,6 +127,8 @@ private:
 
 	void loadCuesheet();
 	void saveCuesheet();
+
+	int m_width, m_height, m_aspect, m_framerate, m_progressive;
 };
 
 #endif
