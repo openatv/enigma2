@@ -158,6 +158,8 @@ def copyServiceFiles(serviceref, dest):
 				print "[MovieSelection] Failed to undo copy:", item
 	#Link failed, really copy.
 	import CopyFiles
+	# start with the smaller files, do the big one later.
+	moveList.reverse()
 	CopyFiles.copyFiles(moveList, onCopyDone)
 	print "[MovieSelection] Copying in background..."
 
