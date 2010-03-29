@@ -16,33 +16,40 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
 class TitleList(Screen, HelpableScreen):
 	skin = """
-		<screen name="TitleList" position="center,center" size="560,445" title="DVD Tool" >
+		<screen name="TitleList" position="center,center" size="560,470" title="DVD Tool" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget source="title_label" render="Label" position="10,48" size="540,38" font="Regular;18" transparent="1" />
-			<widget source="error_label" render="Label" position="10,48" size="540,395" zPosition="3" font="Regular;20" transparent="1" />
-			<widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="540,312" zPosition="3" transparent="1" >
+			<widget source="error_label" render="Label" position="10,48" size="540,296" zPosition="3" font="Regular;20" transparent="1" />
+			<widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="546,296" zPosition="3" transparent="1" >
 				<convert type="TemplatedMultiContent">
 					{"template": [
 							MultiContentEntryText(pos = (0, 0), size = (420, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 Title,
 							MultiContentEntryText(pos = (0, 20), size = (328, 17), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 description,
-							MultiContentEntryText(pos = (420, 6), size = (120, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 3), # index 3 begin time,
-							MultiContentEntryText(pos = (328, 20), size = (154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 channel,
-							MultiContentEntryText(pos = (482, 20), size = (58, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 5), # index 4 channel,
+							MultiContentEntryText(pos = (418, 6), size = (120, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 3), # index 3 channel,
+							MultiContentEntryText(pos = (326, 20), size = (154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 begin time,
+							MultiContentEntryText(pos = (480, 20), size = (58, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 5), # index 5 duration,
 						],
 					"fonts": [gFont("Regular", 20), gFont("Regular", 14)],
 					"itemHeight": 37
 					}
 				</convert>
 			</widget>
-			<widget source="space_bar" render="Progress" position="10,410" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
-			<widget source="space_label" render="Label" position="40,414" size="480,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,390" zPosition="10" size="560,2" />
+			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="10,394" size="35,25" alphatest="on" />
+			<widget source="hint" render="Label" position="50,396" size="540,22" font="Regular;18" halign="left" />
+			<widget source="medium" render="Label" position="10,420" size="540,22" font="Regular;18" halign="left" />
+			<widget source="space_bar_single" render="Progress" position="10,446" size="270,24" borderWidth="1" zPosition="2" backgroundColor="#254f7497" />
+			<widget source="space_label_single" render="Label" position="10,449" size="270,22" zPosition="3" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
+			<widget source="space_bar_dual" render="Progress" position="10,446" size="540,24" borderWidth="1" backgroundColor="#254f7497" />
+			<widget source="space_label_dual" render="Label" position="10,449" size="540,22" zPosition="2" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
+			
 		</screen>"""
 
 	def __init__(self, session, project = None):
@@ -75,17 +82,19 @@ class TitleList(Screen, HelpableScreen):
 
 		self["title_label"] = StaticText()
 		self["error_label"] = StaticText()
-		self["space_label"] = StaticText()
-		self["space_bar"] = Progress()
+		self["space_label_single"] = StaticText()
+		self["space_label_dual"] = StaticText()
+		self["hint"] = StaticText(_("Advanced Options"))
+		self["medium"] = StaticText()
+		self["space_bar_single"] = Progress()
+		self["space_bar_dual"] = Progress()
 
+		self["titles"] = List([])
+		self.previous_size = 0
 		if project is not None:
 			self.project = project
 		else:
 			self.newProject()
-
-		self["titles"] = List([])
-		self.updateTitleList()
-		self.previous_size = 0
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -107,15 +116,16 @@ class TitleList(Screen, HelpableScreen):
 			j = self.backgroundJob
 			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress/float(j.end))), self.showBackgroundJob))
 		menu.append((_("DVD media toolbox"), self.toolbox))
-		menu.append((_("Preview menu"), self.previewMenu))
 		if self.project.settings.output.getValue() == "dvd":
 			if len(self["titles"].list):
 				menu.append((_("Burn DVD"), self.burnProject))
 		elif self.project.settings.output.getValue() == "iso":
 			menu.append((_("Create DVD-ISO"), self.burnProject))
 		menu.append((_("Burn existing image to DVD"), self.selectImage))
-		menu.append((_("Edit chapters of current title"), self.editTitle))
-		menu.append((_("Reset and renumerate title names"), self.resetTitles))
+		if len(self["titles"].list):
+			menu.append((_("Preview menu"), self.previewMenu))
+			menu.append((_("Edit chapters of current title"), self.editTitle))
+			menu.append((_("Reset and renumerate title names"), self.resetTitles))
 		menu.append((_("Exit"), self.leave))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
@@ -149,9 +159,9 @@ class TitleList(Screen, HelpableScreen):
 				<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 				<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 				<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-				<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-				<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+				<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+				<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+				<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
 				<widget name="waitingtext" position="0,45" size="560,395" zPosition="4" font="Regular;22" halign="center" valign="center" />
 				<widget name="list" position="5,40" size="550,375" zPosition="2" scrollbarMode="showOnDemand" />
 				<widget name="DescriptionBorder" pixmap="skin_default/border_eventinfo.png" position="0,316" zPosition="1" size="560,103" transparent="1" alphatest="on" />
@@ -197,7 +207,7 @@ class TitleList(Screen, HelpableScreen):
 					self.close(current)
 		self.session.openWithCallback(self.selectedSource, DVDMovieSelection)
 
-	def selectedSource(self, source):
+	def selectedSource(self, source = None):
 		if source is None:
 			return None
 		if not source.getPath().endswith(".ts"):
@@ -228,7 +238,7 @@ class TitleList(Screen, HelpableScreen):
 	def settingsCB(self, update=True):
 		if not update:
 			return
-		self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"
+		self.updateTitleList()
 
 	def loadTemplate(self):
 		filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
@@ -281,9 +291,11 @@ class TitleList(Screen, HelpableScreen):
 		if len(list):
 			self["key_red"].text = _("Remove title")
 			self["key_yellow"].text = _("Title properties")
+			self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"
 		else:
 			self["key_red"].text = ""
 			self["key_yellow"].text = ""
+			self["title_label"].text = _("Please add titles to the compilation")
 
 	def updateSize(self):
 		size = self.project.size/(1024*1024)
@@ -292,20 +304,29 @@ class TitleList(Screen, HelpableScreen):
 		print "updateSize:", size, "MAX_DL:", MAX_DL, "MAX_SL:", MAX_SL
 		if size > MAX_DL:
 			percent = 100 * size / float(MAX_DL)
-			self["space_label"].text = "%d MB - " % size + _("exceeds dual layer medium!") + " (%.2f%% " % (100-percent) + _("free") + ")"
-			self["space_bar"].value = int(percent)
+			self["space_label_dual"].text = "%d MB (%.2f%%)" % (size, percent)
+			self["space_bar_dual"].value = int(percent)
+			self["space_bar_single"].value = 100
+			self["space_label_single"].text = ""
+			self["medium"].text = _("exceeds dual layer medium!")
 			if self.previous_size < MAX_DL:
 				self.session.open(MessageBox,text = _("exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
 		elif size > MAX_SL:
 			percent = 100 * size / float(MAX_DL)
-			self["space_label"].text = "%d MB  " % size + _("of a DUAL layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
-			self["space_bar"].value = int(percent)
+			self["space_label_dual"].text = "%d MB (%.2f%%)" % (size, percent)
+			self["space_bar_dual"].value = int(percent)
+			self["space_bar_single"].value = 100
+			self["space_label_single"].text = ""
+			self["medium"].text = _("required medium type: DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free")
 			if self.previous_size < MAX_SL:
-				self.session.open(MessageBox,text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout = 10, type = MessageBox.TYPE_INFO)
 		elif size < MAX_SL:
 			percent = 100 * size / float(MAX_SL)
-			self["space_label"].text = "%d MB " % size + _("of a SINGLE layer medium used.") + " (%.2f%% " % (100-percent) + _("free") + ")"
-			self["space_bar"].value = int(percent)
+			self["space_label_single"].text = "%d MB (%.2f%%)" % (size, percent)
+			self["space_bar_single"].value = int(percent)
+			self["space_bar_dual"].value = 0
+			self["space_label_dual"].text = ""
+			self["medium"].text = _("required medium type: SINGLE LAYER DVD") + ", %d MB " % (MAX_SL - size) + _("free")
 		self.previous_size = size
 
 	def getCurrentTitle(self):
@@ -346,5 +367,13 @@ class TitleList(Screen, HelpableScreen):
 		else:
 			self.removeTitle(t)
 
-	def leave(self):
-		self.close()
+	def leave(self, close = False):
+		if not len(self["titles"].list) or close:
+			self.close()
+		else:
+			self.session.openWithCallback(self.exitCB, MessageBox,text = _("Are you sure you want to exit this wizard?"), type = MessageBox.TYPE_YESNO)
+
+	def exitCB(self, answer):
+		print "exitCB", answer
+		if answer is not None and answer:
+			self.close()
