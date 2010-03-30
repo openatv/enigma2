@@ -11,6 +11,7 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.MultiContent import MultiContentEntryText
+from Components.Label import MultiColorLabel
 from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
@@ -44,7 +45,7 @@ class TitleList(Screen, HelpableScreen):
 			<ePixmap pixmap="skin_default/div-h.png" position="0,390" zPosition="10" size="560,2" />
 			<ePixmap pixmap="skin_default/buttons/key_menu.png" position="10,394" size="35,25" alphatest="on" />
 			<widget source="hint" render="Label" position="50,396" size="540,22" font="Regular;18" halign="left" />
-			<widget source="medium" render="Label" position="10,420" size="540,22" font="Regular;18" halign="left" />
+			<widget name="medium_label"  position="10,420" size="540,22" font="Regular;18" halign="left" foregroundColors="#FFFFFF,#FFFF00,#FF0000" />
 			<widget source="space_bar_single" render="Progress" position="10,446" size="270,24" borderWidth="1" zPosition="2" backgroundColor="#254f7497" />
 			<widget source="space_label_single" render="Label" position="10,449" size="270,22" zPosition="3" font="Regular;18" halign="center" transparent="1" foregroundColor="#000000" />
 			<widget source="space_bar_dual" render="Progress" position="10,446" size="540,24" borderWidth="1" backgroundColor="#254f7497" />
@@ -85,7 +86,7 @@ class TitleList(Screen, HelpableScreen):
 		self["space_label_single"] = StaticText()
 		self["space_label_dual"] = StaticText()
 		self["hint"] = StaticText(_("Advanced Options"))
-		self["medium"] = StaticText()
+		self["medium_label"] = MultiColorLabel()
 		self["space_bar_single"] = Progress()
 		self["space_bar_dual"] = Progress()
 
@@ -308,7 +309,8 @@ class TitleList(Screen, HelpableScreen):
 			self["space_bar_dual"].value = int(percent)
 			self["space_bar_single"].value = 100
 			self["space_label_single"].text = ""
-			self["medium"].text = _("exceeds dual layer medium!")
+			self["medium_label"].setText(_("exceeds dual layer medium!"))
+			self["medium_label"].setForegroundColorNum(2)
 			if self.previous_size < MAX_DL:
 				self.session.open(MessageBox,text = _("exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
 		elif size > MAX_SL:
@@ -317,7 +319,8 @@ class TitleList(Screen, HelpableScreen):
 			self["space_bar_dual"].value = int(percent)
 			self["space_bar_single"].value = 100
 			self["space_label_single"].text = ""
-			self["medium"].text = _("required medium type:") + " " + _("DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free")
+			self["medium_label"].setText(_("required medium type:") + " " + _("DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free"))
+			self["medium_label"].setForegroundColorNum(1)
 			if self.previous_size < MAX_SL:
 				self.session.open(MessageBox, text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout = 10, type = MessageBox.TYPE_INFO)
 		elif size < MAX_SL:
@@ -326,7 +329,8 @@ class TitleList(Screen, HelpableScreen):
 			self["space_bar_single"].value = int(percent)
 			self["space_bar_dual"].value = 0
 			self["space_label_dual"].text = ""
-			self["medium"].text = _("required medium type:") + " " + _("SINGLE LAYER DVD") + ", %d MB " % (MAX_SL - size) + _("free")
+			self["medium_label"].setText(_("required medium type:") + " " + _("SINGLE LAYER DVD") + ", %d MB " % (MAX_SL - size) + _("free"))
+			self["medium_label"].setForegroundColorNum(0)
 		self.previous_size = size
 
 	def getCurrentTitle(self):
