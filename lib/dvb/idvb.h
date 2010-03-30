@@ -459,6 +459,7 @@ class iDVBFrontend: public iDVBFrontend_ENUMS, public iObject
 public:
 	virtual RESULT getFrontendType(int &SWIG_OUTPUT)=0;
 	virtual RESULT tune(const iDVBFrontendParameters &where)=0;
+	virtual void reopenFrontend()=0;
 #ifndef SWIG
 	virtual RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
 #endif
