@@ -19,6 +19,7 @@ class ServiceInfo(Converter, object):
 	ONID = 13
 	SID = 14
 	FRAMERATE = 15
+	TRANSFERBPS = 16
 	
 
 	def __init__(self, type):
@@ -40,6 +41,7 @@ class ServiceInfo(Converter, object):
 				"OnId": (self.ONID, (iPlayableService.evUpdatedInfo,)),
 				"Sid": (self.SID, (iPlayableService.evUpdatedInfo,)),
 				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged,iPlayableService.evUpdatedInfo,)),
+				"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
 	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
@@ -112,6 +114,8 @@ class ServiceInfo(Converter, object):
 			return self.getServiceInfoString(info, iServiceInformation.sSID)
 		elif self.type == self.FRAMERATE:
 			return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: "%d fps" % ((x+500)/1000))
+		elif self.type == self.TRANSFERBPS:
+			return self.getServiceInfoString(info, iServiceInformation.sTransferBPS, lambda x: "%d kB/s" % (x/1024))
 		return ""
 
 	text = property(getText)
