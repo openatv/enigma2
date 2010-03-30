@@ -2562,7 +2562,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 								{
 									__u8 buffer[10];
 									(*desc)->writeToBuffer(buffer);
-									if (!strncmp((unsigned char*)buffer+2, "EPGDATA", 7))
+									if (!strncmp((const char *)buffer+2, "EPGDATA", 7))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
@@ -2571,7 +2571,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 											messages.send(Message(Message::got_mhw2_channel_pid, ref, pid));
 										}
 									}
-									else if(!strncmp((unsigned char*)buffer+2, "FICHAS", 6))
+									else if(!strncmp((const char *)buffer+2, "FICHAS", 6))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
@@ -2580,7 +2580,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 											messages.send(Message(Message::got_mhw2_summary_pid, ref, pid));
 										}
 									}
-									else if(!strncmp((unsigned char*)buffer+2, "GENEROS", 7))
+									else if(!strncmp((const char *)buffer+2, "GENEROS", 7))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
