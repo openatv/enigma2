@@ -59,8 +59,28 @@ class TitleCutter(CutListEditor):
 		self.close(self.cut_list[:])
 
 class CutlistReader(TitleCutter):
+	skin = """
+		<screen position="0,0" size="720,576">
+		<eLabel position="0,0" size="720,576" zPosition="1" backgroundColor="#000000" />
+		<widget name="Video" position="0,0" size="100,75" />
+		<widget name="SeekState" position="0,0" />
+		<widget source="cutlist" position="0,0" render="Listbox" >
+			<convert type="TemplatedMultiContent">
+				{"template": [
+						MultiContentEntryText(text = 1),
+						MultiContentEntryText(text = 2)
+					],
+				 "fonts": [gFont("Regular", 18)],
+				 "itemHeight": 20
+				}
+			</convert>
+		</widget>
+		<widget name="Timeline" position="0,0" />
+	</screen>"""
+
 	def __init__(self, session, t):
 		TitleCutter.__init__(self, session, t)
+		self.skin = CutlistReader.skin
 
 	def getPMTInfo(self):
 		TitleCutter.getPMTInfo(self)

@@ -7,7 +7,7 @@ import Screens.Standby
 from Tools import Notifications
 
 class JobView(InfoBarNotifications, Screen, ConfigListScreen):
-	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True, afterEvent = 0):
+	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True):
 		from Components.Sources.StaticText import StaticText
 		from Components.Sources.Progress import Progress
 		from Components.Sources.Boolean import Boolean
@@ -43,19 +43,20 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		    "ok": self.ok,
 		}, -2)
 
-		self.afterevents = [ "nothing", "standby", "deepstandby", "close" ]
 		self.settings = ConfigSubsection()
 		if SystemInfo["DeepstandbySupport"]:
 			shutdownString = _("go to deep standby")
 		else:
 			shutdownString = _("shut down")
-		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default = self.afterevents[afterEvent])
+		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default = self.job.afterEvent or "nothing")
+		self.job.afterEvent = self.settings.afterEvent.getValue()
 		self.setupList()
 		self.state_changed()
 
 	def setupList(self):
 		self["config"].setList( [ getConfigListEntry(_("After event"), self.settings.afterEvent) ])
-		
+		self.job.afterEvent = self.settings.afterEvent.getValue()
+
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
 		self.setupList()
