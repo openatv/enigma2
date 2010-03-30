@@ -356,6 +356,8 @@ public:
 		sTagCRC,
 		sTagChannelMode,
 
+		sTransferBPS,
+
 		sUser = 0x100
 	};
 	enum {
