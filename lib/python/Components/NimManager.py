@@ -1,4 +1,5 @@
 from Tools.HardwareInfo import HardwareInfo
+from Tools.BoundFunction import boundFunction
 
 from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, \
 	ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, \
@@ -13,6 +14,7 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 
 from time import localtime, mktime
 from datetime import datetime
+from Tools.BoundFunction import boundFunction
 
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
@@ -687,6 +689,9 @@ class NimManager:
 	
 	def getNimDescription(self, slotid):
 		return self.nim_slots[slotid].friendly_full_description
+	
+	def getNimName(self, slotid):
+		return self.nim_slots[slotid].description
 
 	def getNimListOfType(self, type, exception = -1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
@@ -962,12 +967,18 @@ def InitSecParams():
 # the configElement should be only visible when diseqc 1.2 is disabled
 
 def InitNimManager(nimmgr):
-	InitSecParams()
 	hw = HardwareInfo()
+	addNimConfig = False
+	try:
+		config.Nims
+	except:
+		addNimConfig = True
 
-	config.Nims = ConfigSubList()
-	for x in range(len(nimmgr.nim_slots)):
-		config.Nims.append(ConfigSubsection())
+	if addNimConfig:
+		InitSecParams()
+		config.Nims = ConfigSubList()
+		for x in range(len(nimmgr.nim_slots)):
+			config.Nims.append(ConfigSubsection())
 
 	lnb_choices = {
 		"universal_lnb": _("Universal LNB"),
@@ -1243,27 +1254,38 @@ def InitNimManager(nimmgr):
 		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
 			open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w").write(configElement.value)
 			
-	def tunerTypeChanged(configElement):
+	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
+		print "tunerTypeChanged feid %d to mode %s" % (fe_id, configElement.value)
 		open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
-
+		frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
+		frontend.reopenFrontend()
+		nimmgr.enumerateNIMs()
+	
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
 		nim = config.Nims[x]
-		if slot.isMultiType():
+		addMultiType = False
+		try:
+			nim.multiType
+		except:
+			addMultiType = True
+		if slot.isMultiType() and addMultiType:
 			typeList = []
-			value = None
 			for id in slot.getMultiTypeList().keys():
 				type = slot.getMultiTypeList()[id]
 				typeList.append((id, type))
-				if type == slot.getType():
-					value = id
 			nim.multiType = ConfigSelection(typeList, "0")
-			nim.multiType.value = value
+			
 			nim.multiType.fe_id = x - empty_slots
-			nim.multiType.addNotifier(tunerTypeChanged)
+			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
 		
+	empty_slots = 0
+	for slot in nimmgr.nim_slots:
+		x = slot.slot
+		nim = config.Nims[x]
+
 		if slot.isCompatible("DVB-S"):
 			nim.toneAmplitude = ConfigSelection([("9", "600mV"), ("8", "700mV"), ("7", "800mV"), ("6", "900mV"), ("5", "1100mV")], "7")
 			nim.toneAmplitude.fe_id = x - empty_slots

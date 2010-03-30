@@ -208,11 +208,11 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, \
 			self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
-			nimmanager.enumerateNIMs()
 			from Components.NimManager import InitNimManager
 			InitNimManager(nimmanager)
 			self.nim = nimmanager.nim_slots[self.slotid]
 			self.nimConfig = self.nim.config
+			
 		for x in checkList:
 			if self["config"].getCurrent() == x:
 				self.createSetup()
