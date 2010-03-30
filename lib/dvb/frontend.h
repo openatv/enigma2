@@ -146,6 +146,7 @@ public:
 	static void setTypePriorityOrder(int val) { PriorityOrder = val; }
 	static int getTypePriorityOrder() { return PriorityOrder; }
 
+	void reopenFrontend();
 	int openFrontend();
 	int closeFrontend(bool force=false);
 	const char *getDescription() const { return m_description; }
