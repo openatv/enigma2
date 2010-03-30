@@ -16,6 +16,7 @@ class Job(object):
 		self.end = 100
 		self.__progress = 0
 		self.weightScale = 1
+		self.afterEvent = None
 
 		self.state_changed = CList()
 
