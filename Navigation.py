@@ -53,7 +53,7 @@ class Navigation:
 	def playService(self, ref, checkParentalControl = True, forceRestart = False):
 		oldref = self.currentlyPlayingServiceReference
 		if ref and oldref and ref == oldref and not forceRestart:
-			print "ignore request to play already running service"
+			print "ignore request to play already running service(1)"
 			return 0
 		print "playing", ref and ref.toString()
 		if ref is None:
@@ -64,6 +64,10 @@ class Navigation:
 				if not oldref:
 					oldref = eServiceReference()
 				playref = getBestPlayableServiceReference(ref, oldref)
+				print "playref", playref
+				if playref and oldref and playref == oldref and not forceRestart:
+					print "ignore request to play already running service(2)"
+					return 0
 				if not playref or (checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False))):
 					self.stopService()
 					return 0
