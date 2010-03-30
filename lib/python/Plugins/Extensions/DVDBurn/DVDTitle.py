@@ -1,4 +1,5 @@
 from Components.config import config, ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigYesNo
+import TitleCutter
 
 class ConfigFixedText(ConfigText):
 	def __init__(self, text, visible_width=60):
@@ -7,17 +8,17 @@ class ConfigFixedText(ConfigText):
 		pass
 
 class DVDTitle:
-	def __init__(self):
+	def __init__(self, project):
 		self.properties = ConfigSubsection()
 		self.properties.menutitle = ConfigText(fixed_size = False, visible_width = 80)
 		self.properties.menusubtitle = ConfigText(fixed_size = False, visible_width = 80)
-		self.DVBname = _("Title")
-		self.DVBdescr = _("Description")
-		self.DVBchannel = _("Channel")
 		self.properties.aspect = ConfigSelection(choices = [("4:3", _("4:3")), ("16:9", _("16:9"))])
 		self.properties.widescreen = ConfigSelection(choices = [("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
 		self.properties.autochapter = ConfigInteger(default = 0, limits = (0, 60))
 		self.properties.audiotracks = ConfigSubList()
+		self.DVBname = _("Title")
+		self.DVBdescr = _("Description")
+		self.DVBchannel = _("Channel")
 		self.cuesheet = [ ]
 		self.source = None
 		self.filesize = 0
@@ -27,6 +28,8 @@ class DVDTitle:
 		self.chaptermarks = [ ]
 		self.timeCreate = None
 		self.VideoType = -1
+		self.project = project
+		self.length = 0
 
 	def addService(self, service):
 		from os import path
@@ -36,7 +39,7 @@ class DVDTitle:
 		self.source = service
 		serviceHandler = eServiceCenter.getInstance()
 		info = serviceHandler.info(service)
-		sDescr = info and " " + info.getInfoString(service, iServiceInformation.sDescription) or ""
+		sDescr = info and info.getInfoString(service, iServiceInformation.sDescription) or ""
 		self.DVBdescr = sDescr
 		sTimeCreate = info.getInfo(service, iServiceInformation.sTimeCreate)
 		if sTimeCreate > 1:
@@ -49,9 +52,20 @@ class DVDTitle:
 		self.filesize = path.getsize(self.inputfile)
 		self.estimatedDiskspace = self.filesize
 		self.length = info.getLength(service)
+						
+	def addFile(self, filename):
+		from enigma import eServiceReference
+		ref = eServiceReference(1, 0, filename)
+		self.addService(ref)
+		self.project.session.openWithCallback(self.titleEditDone, TitleCutter.CutlistReader, self)
+	
+	def titleEditDone(self, cutlist):
+		self.initDVDmenuText(len(self.project.titles))
+		self.cuesheet = cutlist
+		self.produceFinalCuesheet()
 
-	def initDVDmenuText(self, project, track):
-		s = project.menutemplate.settings
+	def initDVDmenuText(self, track):
+		s = self.project.menutemplate.settings
 		self.properties.menutitle.setValue(self.formatDVDmenuText(s.titleformat.getValue(), track))
 		self.properties.menusubtitle.setValue(self.formatDVDmenuText(s.subtitleformat.getValue(), track))
 
