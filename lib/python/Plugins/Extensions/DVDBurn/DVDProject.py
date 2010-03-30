@@ -1,5 +1,7 @@
 from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigSubList
+import DVDTitle
+import xml.dom.minidom
 
 class ConfigColor(ConfigSequence):
 	def __init__(self, default = [128,128,128]):
@@ -10,7 +12,10 @@ class ConfigFilename(ConfigText):
 		ConfigText.__init__(self, default = "", fixed_size = True, visible_width = False)
 
 	def getMulti(self, selected):
-		filename = (self.text.rstrip("/").rsplit("/",1))[1].encode("utf-8")[:40] + " "
+		if self.text == "":
+			return ("mtext"[1-selected:], "", 0)
+		cut_len = min(len(self.text),40)
+		filename = (self.text.rstrip("/").rsplit("/",1))[1].encode("utf-8")[:cut_len] + " "
 		if self.allmarked:
 			mark = range(0, len(filename))
 		else:
@@ -34,10 +39,11 @@ class DVDProject:
 		self.settings.vmgm = ConfigFilename()
 		self.filekeys = ["vmgm", "isopath", "menutemplate"]
 		self.menutemplate = MenuTemplate()
+		self.error = ""
+		self.session = None
 
 	def addService(self, service):
-		import DVDTitle
-		title = DVDTitle.DVDTitle()
+		title = DVDTitle.DVDTitle(self)
 		title.addService(service)
 		self.titles.append(title)
 		return title
@@ -100,47 +106,78 @@ class DVDProject:
 		return ret
 
 	def loadProject(self, filename):
-		import xml.dom.minidom
-		try:
+		#try:
 			if not fileExists(filename):
 				self.error = "xml file not found!"
-				raise AttributeError
-			else:
-				self.error = ""
+				#raise AttributeError
 			file = open(filename, "r")
 			data = file.read().decode("utf-8").replace('&',"&amp;").encode("ascii",'xmlcharrefreplace')
 			file.close()
 			projectfiledom = xml.dom.minidom.parseString(data)
-			for project in projectfiledom.childNodes[0].childNodes:
-			  if project.nodeType == xml.dom.minidom.Element.nodeType:
-			    if project.tagName == 'settings':
-				i = 0
-				if project.attributes.length < len(self.settings.dict())-1:
-					self.error = "project attributes missing"
-					raise AttributeError
-				while i < project.attributes.length:
-					item = project.attributes.item(i)
-					key = item.name.encode("utf-8")
-					try:
-						val = eval(item.nodeValue)
-					except (NameError, SyntaxError):
-						val = item.nodeValue.encode("utf-8")
-					try:
-						self.settings.dict()[key].setValue(val)
-					except (KeyError):
-						self.error = "unknown attribute '%s'" % (key)
-						raise AttributeError
-					i += 1
+			for node in projectfiledom.childNodes[0].childNodes:
+			  print "node:", node
+			  if node.nodeType == xml.dom.minidom.Element.nodeType:
+			    if node.tagName == 'settings':
+				self.xmlAttributesToConfig(node, self.settings)
+			    elif node.tagName == 'titles':
+				self.xmlGetTitleNodeRecursive(node)
+				
 			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):
 					self.error += "\n%s '%s' not found" % (key, val)
-			if len(self.error):
-				raise AttributeError
+		#except AttributeError:
+		  	#print "loadProject AttributeError", self.error
+			#self.error += (" in project '%s'") % (filename)
+			#return False
+			return True
+
+	def xmlAttributesToConfig(self, node, config):
+		try:
+			i = 0
+			#if node.attributes.length < len(config.dict())-1:
+				#self.error = "project attributes missing"
+				#raise AttributeError
+			while i < node.attributes.length:
+				item = node.attributes.item(i)
+				key = item.name.encode("utf-8")
+				try:
+					val = eval(item.nodeValue)
+				except (NameError, SyntaxError):
+					val = item.nodeValue.encode("utf-8")
+				try:
+					print "config[%s].setValue(%s)" % (key, val)
+					config.dict()[key].setValue(val)
+				except (KeyError):
+					self.error = "unknown attribute '%s'" % (key)
+					print "KeyError", self.error
+					raise AttributeError
+				i += 1
 		except AttributeError:
-			self.error += (" in project '%s'") % (filename)
+			self.error += (" XML attribute error '%s'") % node.toxml()
 			return False
-		return True
+
+	def xmlGetTitleNodeRecursive(self, node, title_idx = -1):
+		print "[xmlGetTitleNodeRecursive]", title_idx, node
+		print node.childNodes
+		for subnode in node.childNodes:
+		  print "xmlGetTitleNodeRecursive subnode:", subnode
+		  if subnode.nodeType == xml.dom.minidom.Element.nodeType:
+		    if subnode.tagName == 'title':
+			title_idx += 1
+			title = DVDTitle.DVDTitle(self)
+			self.titles.append(title)
+			self.xmlGetTitleNodeRecursive(subnode, title_idx)
+		    if subnode.tagName == 'path':
+			print "path:", subnode.firstChild.data
+			filename = subnode.firstChild.data
+			self.titles[title_idx].addFile(filename.encode("utf-8"))
+		    if subnode.tagName == 'properties':
+			self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
+		    if subnode.tagName == 'audiotracks':
+			self.xmlGetTitleNodeRecursive(subnode, title_idx)
+		    if subnode.tagName == 'audiotrack':
+			print "audiotrack...", subnode.toxml()
 
 	def getSize(self):
 		totalsize = 0
@@ -187,6 +224,7 @@ class MenuTemplate(DVDProject):
 		self.filekeys = ["menubg", "menuaudio", "fontface_headline", "fontface_title", "fontface_subtitle"]
 		from TitleProperties import languageChoices
 		self.settings.menulang = ConfigSelection(choices = languageChoices.choices, default=languageChoices.choices[1][0])
+		self.error = ""
 
 	def loadTemplate(self, filename):
 		ret = DVDProject.loadProject(self, filename)
