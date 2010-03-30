@@ -176,7 +176,11 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.appClosed.append(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.append(self.getCableTransponderData)
 		cableConfig = config.Nims[nim_idx].cable
-		cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
+		tunername = nimmanager.getNimName(nim_idx)
+		if tunername == "CXD1981":
+			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus "
+		else:
+			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
 		#FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
 		if nim_idx < 2:
 			cmd += str(nim_idx)
