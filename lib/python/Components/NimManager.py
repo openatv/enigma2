@@ -1257,9 +1257,19 @@ def InitNimManager(nimmgr):
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
 		print "tunerTypeChanged feid %d to mode %s" % (fe_id, configElement.value)
-		open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
+		try:
+			oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
+		except:
+			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 		frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
+		frontend.closeFrontend()
+		open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
 		frontend.reopenFrontend()
+		try:
+			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
+		except:
+			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 		nimmgr.enumerateNIMs()
 	
 	empty_slots = 0
