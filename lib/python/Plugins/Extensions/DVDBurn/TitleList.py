@@ -31,11 +31,11 @@ class TitleList(Screen, HelpableScreen):
 			<widget source="titles" render="Listbox" scrollbarMode="showOnDemand" position="10,86" size="546,296" zPosition="3" transparent="1" >
 				<convert type="TemplatedMultiContent">
 					{"template": [
-							MultiContentEntryText(pos = (0, 0), size = (420, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 Title,
-							MultiContentEntryText(pos = (0, 20), size = (328, 17), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 description,
-							MultiContentEntryText(pos = (418, 6), size = (120, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 3), # index 3 channel,
-							MultiContentEntryText(pos = (326, 20), size = (154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 begin time,
-							MultiContentEntryText(pos = (480, 20), size = (58, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 5), # index 5 duration,
+							MultiContentEntryText(pos = (0, 0), size = (360, 20), font = 0, flags = RT_HALIGN_LEFT, text = 1), # index 1 Title,
+							MultiContentEntryText(pos = (0, 20), size = (360, 17), font = 1, flags = RT_HALIGN_LEFT, text = 2), # index 2 description,
+							MultiContentEntryText(pos = (366, 6), size = (152, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 3), # index 3 channel,
+							MultiContentEntryText(pos = (366, 20), size = (102, 17), font = 1, flags = RT_HALIGN_RIGHT, text = 4), # index 4 begin time,
+							MultiContentEntryText(pos = (470, 20), size = (48, 20), font = 1, flags = RT_HALIGN_RIGHT, text = 5), # index 5 duration,
 						],
 					"fonts": [gFont("Regular", 20), gFont("Regular", 14)],
 					"itemHeight": 37
@@ -296,7 +296,7 @@ class TitleList(Screen, HelpableScreen):
 		else:
 			self["key_red"].text = ""
 			self["key_yellow"].text = ""
-			self["title_label"].text = _("Please add titles to the compilation")
+			self["title_label"].text = _("Please add titles to the compilation.")
 
 	def updateSize(self):
 		size = self.project.size/(1024*1024)
@@ -309,17 +309,17 @@ class TitleList(Screen, HelpableScreen):
 			self["space_bar_dual"].value = int(percent)
 			self["space_bar_single"].value = 100
 			self["space_label_single"].text = ""
-			self["medium_label"].setText(_("exceeds dual layer medium!"))
+			self["medium_label"].setText(_("Exceeds dual layer medium!"))
 			self["medium_label"].setForegroundColorNum(2)
 			if self.previous_size < MAX_DL:
-				self.session.open(MessageBox,text = _("exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox,text = _("Exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
 		elif size > MAX_SL:
 			percent = 100 * size / float(MAX_DL)
 			self["space_label_dual"].text = "%d MB (%.2f%%)" % (size, percent)
 			self["space_bar_dual"].value = int(percent)
 			self["space_bar_single"].value = 100
 			self["space_label_single"].text = ""
-			self["medium_label"].setText(_("required medium type:") + " " + _("DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free"))
+			self["medium_label"].setText(_("Required medium type:") + " " + _("DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free"))
 			self["medium_label"].setForegroundColorNum(1)
 			if self.previous_size < MAX_SL:
 				self.session.open(MessageBox, text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout = 10, type = MessageBox.TYPE_INFO)
@@ -329,7 +329,7 @@ class TitleList(Screen, HelpableScreen):
 			self["space_bar_single"].value = int(percent)
 			self["space_bar_dual"].value = 0
 			self["space_label_dual"].text = ""
-			self["medium_label"].setText(_("required medium type:") + " " + _("SINGLE LAYER DVD") + ", %d MB " % (MAX_SL - size) + _("free"))
+			self["medium_label"].setText(_("Required medium type:") + " " + _("SINGLE LAYER DVD") + ", %d MB " % (MAX_SL - size) + _("free"))
 			self["medium_label"].setForegroundColorNum(0)
 		self.previous_size = size
 
