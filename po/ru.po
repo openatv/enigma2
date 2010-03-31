@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-03-25 10:11+0300\n"
 "Last-Translator: <peter@dreambox.org.ua>\n"
 "Language-Team: Russian / enigma(c) Ukraine, Kiev>\n"
@@ -45,6 +45,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -80,10 +85,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Сканирование и установка локальных пакетов."
 
 msgid ""
 "\n"
@@ -100,13 +103,6 @@ msgid ""
 msgstr ""
 "\n"
 "Система будет перезагружена после восстановления!"
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Просмотр, установка и удаление доступных или установленных пакетов."
 
 msgid " "
 msgstr ""
@@ -302,6 +298,15 @@ msgstr ""
 msgid "9"
 msgstr ""
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<неизвестный>"
 
@@ -366,6 +371,15 @@ msgstr "Идет запись. Остановите запись перед по
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Нужный инструмент (%s), не найден."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -490,6 +504,12 @@ msgstr "Расширенный"
 
 msgid "Advanced Options"
 msgstr "Расширенные опции"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
@@ -987,9 +1007,6 @@ msgstr "Созвездие"
 msgid "Content does not fit on DVD!"
 msgstr "Содержание не помещается на DVD"
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr "Продолжить в фоновом режиме"
 
@@ -1004,6 +1021,9 @@ msgstr "Не удалось подключиться к Dreambox. NFI Feed Image
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Не удалось загрузить носитель! Проверьте, вставлен ли диск?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1128,6 +1148,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Сервисы по умолчанию"
 
@@ -1165,6 +1188,9 @@ msgstr "Отменить"
 
 msgid "Destination directory"
 msgstr "Каталог назначения"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Найден HDD:"
@@ -1482,8 +1508,7 @@ msgstr "Включить таймер"
 msgid "Enabled"
 msgstr "Включен"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1614,8 +1639,17 @@ msgstr "Расширенный плагин настроек сети..."
 msgid "Extended Setup..."
 msgstr "Расширенные настройки..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Расширения"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1625,6 +1659,18 @@ msgstr "Заводские установки"
 
 msgid "Failed"
 msgstr "Неудачный"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Быстро"
@@ -1672,7 +1718,7 @@ msgstr "Прошивка"
 msgid "Flashing failed"
 msgstr "Прошивка не удалась"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1734,13 +1780,13 @@ msgstr "Шлюз"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1892,6 +1938,9 @@ msgstr "Информация"
 msgid "Init"
 msgstr "Инициализация"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Инициализация..."
 
@@ -1946,14 +1995,16 @@ msgstr "Установка содержимого пакета... Пожалуй
 msgid "Instant Record..."
 msgstr "Немедленная запись..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Адаптер локальной сети"
 
 msgid "Integrated Wireless"
 msgstr "Адаптер беспроводной сети"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2088,6 +2139,9 @@ msgstr "Локальная сеть"
 msgid "Location"
 msgstr "Расположение"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Захват:"
 
@@ -2121,6 +2175,9 @@ msgstr "Отметить эту точку как 'конец'"
 msgid "Make this mark just a mark"
 msgstr "Создать простую метку"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Менеджер ПО ресивера"
 
@@ -2139,8 +2196,7 @@ msgstr "Объединить после записи"
 msgid "Margin before record (minutes)"
 msgstr "Объединить перед записью (в минутах)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2203,6 +2259,9 @@ msgstr "Переместить на восток"
 msgid "Move west"
 msgstr "Переместить на запад"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Меню списка видео"
 
@@ -2226,6 +2285,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "Следующий"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI имидж удачно установлен. Нажмите ЖЕЛТЫЙ для перезагрузки!"
@@ -2348,8 +2410,16 @@ msgstr "Нет отображаемых файлов на этом носите�
 msgid "No event info found, recording indefinitely."
 msgstr "Информация о событиях не найдена, запись продолжена."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Нет свободного тюнера!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr "Сети не найдены"
@@ -2369,6 +2439,9 @@ msgstr "Не найден спутниковый интерфейс!"
 
 msgid "No tags are set on these movies."
 msgstr "Нет меток для этих фильмов."
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Нет тюнера, настроенного для использования с diseqc позиционером!"
@@ -2525,6 +2598,9 @@ msgstr "Online-обновление"
 msgid "Only Free scan"
 msgstr "Только бесплатные"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2536,9 +2612,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "ПИДы"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Обновление списка пакетов"
@@ -2823,9 +2896,6 @@ msgstr "Пожалуйста, ждите...Загружается список"
 msgid "Plugin browser"
 msgstr "Установленные плагины"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -3020,6 +3090,9 @@ msgstr "Записанные файлы..."
 msgid "Recording"
 msgstr "Запись"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Запись(и) идет или начнется в ближайшие несколько секунд!"
 
@@ -3031,9 +3104,6 @@ msgstr "Записи всегда имеют приоритет"
 
 msgid "Reenter new pin"
 msgstr "Повторите новый PIN"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Частота обновления"
@@ -3347,6 +3417,9 @@ msgstr "Поиск восток"
 msgid "Search west"
 msgstr "Поиск запад"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3545,6 +3618,9 @@ msgstr "Включить режим TV..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Показывает состояние вашего беспроводного соединения.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Выключить через :  "
 
@@ -3618,8 +3694,8 @@ msgstr "Низкая скорость"
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
-msgstr "Менеджер ПО"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Восстановление ПО"
@@ -3810,6 +3886,9 @@ msgstr "Тэг 2"
 msgid "Tags"
 msgstr "Теги"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Наземный"
 
@@ -3863,6 +3942,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Сохранение не выполнено. Выберите другое место ресположения. "
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3973,16 +4058,19 @@ msgstr "Мастер закончил работу."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "В этом имидже нет сервисов по умолчанию."
 
 msgid "There are no default settings in your image."
 msgstr "В этом имидже нет настроек по умолчанию."
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4154,6 +4242,9 @@ msgstr ""
 "Обнаружено дублирование таймера в timers.xml!\n"
 "Проверьте его!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Ошибка состояния таймера"
 
@@ -4165,6 +4256,9 @@ msgstr "Состояние таймера:  "
 
 msgid "Timeshift"
 msgstr "Таймшифт"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Сдвиг времени не возможен!"
@@ -4201,6 +4295,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Сегодня"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Тоновый режим"
@@ -4319,21 +4416,23 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Команда переключения DiSEqC"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
+
+msgid "Unicable"
+msgstr "Unicable"
 
 msgid "Unicable LNB"
 msgstr "Unicable LNB"
 
 msgid "Unicable Martix"
 msgstr "Unicable Martix"
+
+msgid "Uninstall"
+msgstr ""
 
 msgid "Universal LNB"
 msgstr "универсальный-LNB"
@@ -4352,6 +4451,9 @@ msgstr "Обновление программы вашего ресивера"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Обновление завершено.Результат:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Обновление... Пожалуйста ждите... Это может занять несколько минут... "
@@ -4714,6 +4816,9 @@ msgstr "Год"
 msgid "Yes"
 msgstr "Да"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Да, удалить эту запись"
 
@@ -4761,6 +4866,9 @@ msgid "You can choose, what you want to install..."
 msgstr "Вы можете выбрать то, что хотите установить..."
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4861,6 +4969,13 @@ msgstr ""
 "Вы можете задать PIN код и скрыть его от детей.\n"
 "\n"
 "Вы хотите установить PIN сейчас?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4986,6 +5101,9 @@ msgstr "about to start"
 
 msgid "activate current configuration"
 msgstr "активировать текущие настройки"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr ""
@@ -5308,9 +5426,6 @@ msgstr "помощь..."
 
 msgid "hidden network"
 msgstr "скрытая сеть"
-
-msgid "hidden..."
-msgstr "скрытый..."
 
 msgid "hide extended description"
 msgstr "скрыть расширенное описание"
@@ -5702,6 +5817,9 @@ msgstr "показать инфо транспондера"
 msgid "shuffle playlist"
 msgstr "перемешать плейлист"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "Выключить"
 
@@ -5872,6 +5990,20 @@ msgstr "переключено"
 #~ "\n"
 #~ "Enigma2 будет запущена после восстановления."
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Сканирование и установка локальных пакетов."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Просмотр, установка и удаление доступных или установленных пакетов."
+
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
@@ -5943,6 +6075,9 @@ msgstr "переключено"
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Выбор файлов/папок для сохранения"
 
+#~ msgid "Software manager"
+#~ msgstr "Менеджер ПО"
+
 #~ msgid "Software manager..."
 #~ msgstr "Менеджер ПО..."
 
@@ -5964,9 +6099,6 @@ msgstr "переключено"
 #~ "Пожалуйста, обратитесь к инструкции пользователя.\n"
 #~ "Ошибка: "
 
-#~ msgid "Unicable"
-#~ msgstr "Unicable"
-
 #~ msgid "VCR Switch"
 #~ msgstr "VCR переключатель"
 
@@ -5975,6 +6107,9 @@ msgstr "переключено"
 
 #~ msgid "full /etc directory"
 #~ msgstr "всю папку /etc"
+
+#~ msgid "hidden..."
+#~ msgstr "скрытый..."
 
 #~ msgid "no Picture found"
 #~ msgstr "Изображение не найдено"

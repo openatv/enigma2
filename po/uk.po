@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2008-09-28 14:03+0200\n"
 "Last-Translator: stepan_kv <stepan_kv@mail.ru>\n"
 "Language-Team: http://sat-ukraine.info/\n"
@@ -49,6 +49,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -84,10 +89,8 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
-"\n"
-"Пошук локальних пакетів і їх встановлення."
 
 msgid ""
 "\n"
@@ -102,13 +105,6 @@ msgid ""
 "\n"
 "System will restart after the restore!"
 msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Переглянути, встановити або видалити наявні чи встановлені пакети."
 
 msgid " "
 msgstr ""
@@ -305,6 +301,15 @@ msgstr ""
 msgid "9"
 msgstr ""
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<невідомий>"
 
@@ -367,6 +372,15 @@ msgstr "В даний час йде запис. Зупиніть запис пе
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Потрібний інструмент (%s) не знайдено."
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -493,6 +507,12 @@ msgstr "Розширене"
 
 msgid "Advanced Options"
 msgstr "Додаткові Опції"
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
+msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
 msgstr ""
@@ -992,9 +1012,6 @@ msgstr "Сукупність"
 msgid "Content does not fit on DVD!"
 msgstr "Інформація не поміститься на DVD!!"
 
-msgid "Continue"
-msgstr "Продовжити"
-
 msgid "Continue in background"
 msgstr "Фоновий режим"
 
@@ -1009,6 +1026,9 @@ msgstr "Підключення з сервером Dreambox .NFI Image не вд
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Неможливо визначити носій! Диск не вставлено?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1135,6 +1155,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr "Стандартні налаштування"
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Стандартний список"
 
@@ -1172,6 +1195,9 @@ msgstr "Зняти відм."
 
 msgid "Destination directory"
 msgstr "Кінцева директорія"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Виявлено HDD:"
@@ -1491,8 +1517,7 @@ msgstr "Ввімкнути таймер"
 msgid "Enabled"
 msgstr "Ввімкнено"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1625,8 +1650,17 @@ msgstr "Додаток Розширених параметрів мережі...
 msgid "Extended Setup..."
 msgstr "Розширені налаштування..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Розширення"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1636,6 +1670,18 @@ msgstr "Заводські налаштування"
 
 msgid "Failed"
 msgstr "Невдало"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Швидко"
@@ -1683,7 +1729,7 @@ msgstr "Запис"
 msgid "Flashing failed"
 msgstr "Флешування невдале"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1746,14 +1792,14 @@ msgstr "Шлюз"
 msgid "General AC3 Delay"
 msgstr "Загальна AC3 затримка"
 
-msgid "General AC3 delay"
-msgstr "Загальна AC3 затримка"
+msgid "General AC3 delay (ms)"
+msgstr ""
 
 msgid "General PCM Delay"
 msgstr "Загальна PCM затримка"
 
-msgid "General PCM delay"
-msgstr "Загальна PCM затримка"
+msgid "General PCM delay (ms)"
+msgstr ""
 
 msgid "Genre"
 msgstr "Жанр"
@@ -1906,6 +1952,9 @@ msgstr "Інформація"
 msgid "Init"
 msgstr "Ініціалізувати"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Ініціалізація..."
 
@@ -1960,14 +2009,16 @@ msgstr "Встановлення пакетів...Прохання зачека�
 msgid "Instant Record..."
 msgstr "миттєвий запис..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Інтегрований Ethernet"
 
 msgid "Integrated Wireless"
 msgstr "Інтегрований Wireless"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2102,6 +2153,9 @@ msgstr "Локальна Мережа"
 msgid "Location"
 msgstr "Розташування"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Сигнал:"
 
@@ -2135,6 +2189,9 @@ msgstr "Зробити цю закладку як зовнішню"
 msgid "Make this mark just a mark"
 msgstr "Зробити цю закладку як звичайну"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr "Управління ПЗ ресівера"
 
@@ -2153,8 +2210,7 @@ msgstr "Відступ після запису (в хвил.)"
 msgid "Margin before record (minutes)"
 msgstr "Відступ перед записом (в хвил.)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2217,6 +2273,9 @@ msgstr "Перемістити на схід"
 msgid "Move west"
 msgstr "Перемістити на захід"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Меню списку фільмів"
 
@@ -2240,6 +2299,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "НАСТУПНИЙ"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "Запис NFI іміджу завершено. Натисніть Жовту для перезавантаження"
@@ -2362,8 +2424,16 @@ msgstr "Потрібних файлів на цьому носії не знай
 msgid "No event info found, recording indefinitely."
 msgstr "Не знайдено EPG інформаціїї, запис на невизначений час."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Нема вільного тюнера!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2387,6 +2457,9 @@ msgstr "Не знайдено SAT-тюнер!!!"
 
 msgid "No tags are set on these movies."
 msgstr "Теги не встановлені на цих фільмах."
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Нема тюнера налаштованого для роботи з позиціонером!"
@@ -2541,6 +2614,9 @@ msgstr "Онлайн-Оновлення"
 msgid "Only Free scan"
 msgstr "Тільки відкриті"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr "При необхідності введіть Ваше ім'я, якщо хочете."
 
@@ -2552,9 +2628,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "Піди"
-
-msgid "Package details for: "
-msgstr "Деталі пакету для:"
 
 msgid "Package list update"
 msgstr "Оновлення списку пакетів"
@@ -2826,9 +2899,6 @@ msgstr "Прохання зачекати... Завантаження списк
 msgid "Plugin browser"
 msgstr "Список додатків"
 
-msgid "Plugin manager"
-msgstr "Менеджер додатків"
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -3023,6 +3093,9 @@ msgstr "Записані файли..."
 msgid "Recording"
 msgstr "Запис"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Запис у дії або розпочнеться за декілька секунд!"
 
@@ -3034,9 +3107,6 @@ msgstr "Запис завжди має перевагу"
 
 msgid "Reenter new pin"
 msgstr "Введіть новий PIN-код ще раз"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Частота оновлення"
@@ -3353,6 +3423,9 @@ msgstr "Пошук на схід"
 msgid "Search west"
 msgstr "Пошук на захід"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3551,6 +3624,9 @@ msgstr "ТБ-режим..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Показати стан безпровідного LAN з'єднання.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Вимкнути Dreambox після"
 
@@ -3624,8 +3700,8 @@ msgstr "Швидкість відеоповтору"
 msgid "Software"
 msgstr "Програмне забезпечення"
 
-msgid "Software manager"
-msgstr "Менеджер ПЗ"
+msgid "Software management"
+msgstr ""
 
 msgid "Software restore"
 msgstr "Встановлення іміджу"
@@ -3817,6 +3893,9 @@ msgstr "Відмітка 2"
 msgid "Tags"
 msgstr "Відмітки"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Наземний"
 
@@ -3868,6 +3947,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Збереження невдале. Виберіть інше місце для розташування копії."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3975,17 +4060,20 @@ msgstr "Майстер завершив роботу."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Цей імідж не містить стандартного списку каналів."
 
 msgid "There are no default settings in your image."
 msgstr "Цей імідж не містить стандартних налаштувань."
 
+msgid "There are no updates available."
+msgstr ""
+
 msgid "There are now "
 msgstr "Наявні зараз"
-
-msgid "There is nothing to be done."
-msgstr ""
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -4156,6 +4244,9 @@ msgstr ""
 "В файлі timers.xml виявлено дублювання!\n"
 "Будь-ласка перевірте його!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Помилка таймера"
 
@@ -4167,6 +4258,9 @@ msgstr "Статус таймера:"
 
 msgid "Timeshift"
 msgstr "Timeshift"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Timeshift неможливий!"
@@ -4203,6 +4297,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Сьогодні"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Тоновий режим"
@@ -4321,22 +4418,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Нейтральна DiSEqC команда"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
 msgstr ""
-"Скасувати\n"
-"Видалити"
+
+msgid "Unicable"
+msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4356,6 +4453,9 @@ msgstr "Оновлення ПЗ Вашого ресівера"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Оновлення завершено. Ось результат:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Йде оновлення... Прохання зачекати... Це займе декілька хвилин..."
@@ -4718,6 +4818,9 @@ msgstr "Рік"
 msgid "Yes"
 msgstr "Так"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Так, і видалити цей фільм"
 
@@ -4766,6 +4869,9 @@ msgstr "Ви можете вибрати, що хочете встановити
 
 msgid "You can install this plugin."
 msgstr "Ви можете встановити цей додаток"
+
+msgid "You can only burn Dreambox recordings!"
+msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Ви можете видалити цей додаток"
@@ -4865,6 +4971,13 @@ msgstr ""
 "Ви повинні ввести PIN-код і сховати це від своїх дітей.\n"
 "\n"
 "Хочете ввести PIN-код зараз?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4983,6 +5096,9 @@ msgstr "Як почати"
 
 msgid "activate current configuration"
 msgstr "Активувати поточну конфігурацію"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr "дод. Провайдера"
@@ -5305,9 +5421,6 @@ msgstr "допомога..."
 
 msgid "hidden network"
 msgstr "прихована мережа"
-
-msgid "hidden..."
-msgstr ""
 
 msgid "hide extended description"
 msgstr "не показувати розширений опис"
@@ -5699,6 +5812,9 @@ msgstr "інформація транспондера"
 msgid "shuffle playlist"
 msgstr "перемішати плейлист"
 
+msgid "shut down"
+msgstr ""
+
 msgid "shutdown"
 msgstr "вимкнути"
 
@@ -5869,6 +5985,20 @@ msgstr "Переключений"
 #~ "\n"
 #~ "Enigma2 буде перезавантажена після відновлення"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Пошук локальних пакетів і їх встановлення."
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Переглянути, встановити або видалити наявні чи встановлені пакети."
+
 #~ msgid "AGC:"
 #~ msgstr "AGC:"
 
@@ -5901,6 +6031,9 @@ msgstr "Переключений"
 
 #~ msgid "Confirm"
 #~ msgstr "Перевірити"
+
+#~ msgid "Continue"
+#~ msgstr "Продовжити"
 
 #~ msgid "Custom skip time for 1/3 keys"
 #~ msgstr "Час пропуску для клавіш 1/3"
@@ -5964,6 +6097,12 @@ msgstr "Переключений"
 #~ msgid "Games / Plugins"
 #~ msgstr "Ігри / Додатки"
 
+#~ msgid "General AC3 delay"
+#~ msgstr "Загальна AC3 затримка"
+
+#~ msgid "General PCM delay"
+#~ msgstr "Загальна PCM затримка"
+
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Невеликий огляд доступних іконок статусу."
 
@@ -6017,8 +6156,14 @@ msgstr "Переключений"
 #~ msgid "Other..."
 #~ msgstr "Інше..."
 
+#~ msgid "Package details for: "
+#~ msgstr "Деталі пакету для:"
+
 #~ msgid "Please select keyword to filter..."
 #~ msgstr "Виберіть ключове слово для фільтрування..."
+
+#~ msgid "Plugin manager"
+#~ msgstr "Менеджер додатків"
 
 #~ msgid "Plugin manager help..."
 #~ msgstr "Допомога по менеджеру додатків..."
@@ -6088,6 +6233,9 @@ msgstr "Переключений"
 #~ msgid "Slovene"
 #~ msgstr "Словенська"
 
+#~ msgid "Software manager"
+#~ msgstr "Менеджер ПЗ"
+
 #~ msgid "Software manager..."
 #~ msgstr "Менеджер ПЗ..."
 
@@ -6124,6 +6272,13 @@ msgstr "Переключений"
 #~ "\n"
 #~ "Будь ласка перегляньте інструкцію.\n"
 #~ "Помилка: "
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Скасувати\n"
+#~ "Видалити"
 
 #~ msgid "Upgrade"
 #~ msgstr "Оновлення"
