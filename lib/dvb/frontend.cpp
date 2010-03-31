@@ -485,7 +485,7 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 
 void eDVBFrontend::reopenFrontend()
 {
-	closeFrontend();
+	sleep(1);
 	m_type = -1;
 	openFrontend();
 }
