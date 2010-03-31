@@ -36,6 +36,7 @@ config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
+last_selected_dest = []
 
 preferredTagEditor = None
 
@@ -530,7 +531,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		)
 
 	def gotFilename(self, res):
-		if res is not None and res is not config.movielist.last_videodir.value:
+		if not res:
+			return
+		# serviceref must end with /
+		if not res.endswith('/'):
+			res += '/'
+		if res is not config.movielist.last_videodir.value:
 			if os.path.isdir(res):
 				config.movielist.last_videodir.value = res
 				config.movielist.last_videodir.save()
@@ -591,24 +597,56 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def selectMovieLocation(self, title, callback):
 		bookmarks = [("("+_("Other")+"...)", None)]
-		#moviePath = resolveFilename(SCOPE_HDD)
-		#bookmarks.append((moviePath, moviePath))
+		inlist = []
 		for d in config.movielist.videodirs.value:
+			d = os.path.normpath(d)
 			bookmarks.append((d,d))
+			inlist.append(d)
 		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
-			if os.path.exists(p.mountpoint):
-				bookmarks.append((p.description, os.path.join(p.mountpoint, "")))
-		self.session.openWithCallback(callback, ChoiceBox, title=title, list = bookmarks)
+			d = os.path.normpath(p.mountpoint)
+			if os.path.exists(d):
+				bookmarks.append((p.description, d))
+				inlist.append(d)
+		for d in last_selected_dest:
+			if d not in inlist:
+				bookmarks.append((d,d))
+		self.onMovieSelected = callback
+		self.movieSelectTitle = title
+		self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list = bookmarks)
+
+	def gotMovieLocation(self, choice):
+		if not choice:
+			# cancelled
+			self.onMovieSelected(None)
+			del self.onMovieSelected
+			return
+		if isinstance(choice, tuple):
+			if choice[1] is None:
+				# Display full browser, which returns string
+				self.session.openWithCallback(
+					self.gotMovieLocation,
+					MovieLocationBox,
+					self.movieSelectTitle,
+					config.movielist.last_videodir.value
+				)
+				return
+			choice = choice[1]
+		choice = os.path.normpath(choice)
+		self.rememberMovieLocation(choice)
+		self.onMovieSelected(choice)
+		del self.onMovieSelected
+
+	def rememberMovieLocation(self, where):
+		print "[--Movie--] rememberMovieLocation", where
+		if where in last_selected_dest:
+			last_selected_dest.remove(where)
+		last_selected_dest.insert(0, where)
+		if len(last_selected_dest) > 5:
+			del last_selected_dest[-1]
+		print last_selected_dest
 
 	def showBookmarks(self):
-		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.bookmarkChosen)
-
-	def bookmarkChosen(self, bookmark):
-		if bookmark:
-			if bookmark[1] is None:
-				self.doPathSelect()
-			else:
-				self.gotFilename(bookmark[1])
+		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.gotFilename)
 
 	def moveMovie(self):
 		item = self.getCurrentSelection() 
@@ -624,20 +662,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def gotMoveMovieDest(self, choice):
 		if not choice:
 			return
-		if isinstance(choice, tuple):
-			if choice[1] is None:
-				# Display full browser
-				self.session.openWithCallback(
-					self.gotMoveMovieDest,
-					MovieLocationBox,
-					_("Please select the movie path..."),
-					config.movielist.last_videodir.value
-				)
-				return
-			dest = os.path.normpath(choice[0])
-		else:
-			# full browser returns only a string
-			dest = os.path.normpath(choice)
+		dest = os.path.normpath(choice)
 		try:
 			current = self.getCurrent()
 			moveServiceFiles(current, dest)
@@ -659,20 +684,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def gotCopyMovieDest(self, choice):
 		if not choice:
 			return
-		if isinstance(choice, tuple):
-			if choice[1] is None:
-				# Display full browser
-				self.session.openWithCallback(
-					self.gotCopyMovieDest,
-					MovieLocationBox,
-					_("Please select the movie path..."),
-					config.movielist.last_videodir.value
-				)
-				return
-			dest = os.path.normpath(choice[0])
-		else:
-			# full browser returns only a string
-			dest = os.path.normpath(choice)
+		dest = os.path.normpath(choice)
 		try:
 			current = self.getCurrent()
 			copyServiceFiles(current, dest)
