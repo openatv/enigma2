@@ -1457,7 +1457,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 	}
 	tidMap &seenSections = this->seenSections[map];
 	tidMap &calcedSections = this->calcedSections[map];
-	if ( state == 1 && calcedSections == seenSections || state > 1 )
+	if ( (state == 1 && calcedSections == seenSections) || state > 1 )
 	{
 		eDebugNoNewLine("[EPGC] ");
 		switch (source)
