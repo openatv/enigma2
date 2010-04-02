@@ -113,6 +113,7 @@ class CableTransponderSearchSupport:
 
 	def cableTransponderSearchSessionClosed(self, *val):
 		print "cableTransponderSearchSessionClosed, val", val
+		self.resetTimeout()
 		self.cable_search_container.appClosed.remove(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.remove(self.getCableTransponderData)
 		self.cable_search_container = None
@@ -160,6 +161,19 @@ class CableTransponderSearchSupport:
 		tmpstr += " kHz "
 		tmpstr += data[0]
 		self.cable_search_session["text"].setText(tmpstr)
+		
+	def setTimeout(self):
+		try:
+			self.oldtimeoutvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
+		except:
+			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"		
+		
+	def resetTimeout(self):
+		try:
+			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(self.oldtimeoutvalue)
+		except:
+			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 
 	def startCableTransponderSearch(self, nim_idx):
 		if not self.tryGetRawFrontend(nim_idx):
@@ -243,6 +257,7 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.execute(cmd)
 		tmpstr = _("Try to find used transponders in cable network.. please wait...")
 		tmpstr += "\n\n..."
+		self.setTimeout()
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
 class DefaultSatLists(DefaultWizard):
