@@ -32,26 +32,11 @@ class ServiceScan(Screen):
 	def ok(self):
 		print "ok"
 		if self["scan"].isDone():
-			self.resetTimeout()
 			self.close()
 	
 	def cancel(self):
-		self.resetTimeout()
 		self.close()
 		
-	def setTimeout(self):
-		try:
-			self.oldtimeoutvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"		
-		
-	def resetTimeout(self):
-		try:
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(self.oldtimeoutvalue)
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-	
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
 		
@@ -73,9 +58,7 @@ class ServiceScan(Screen):
 				"ok": self.ok,
 				"cancel": self.cancel
 			})
-		
-		self.setTimeout()
-		
+
 		self.onFirstExecBegin.append(self.doServiceScan)
 
 	def doServiceScan(self):
