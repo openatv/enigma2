@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2008-01-27 23:38+0100\n"
 "Last-Translator: Jurica <jurica@clarkdigital.com>\n"
 "Language-Team:  <jurica@dream-multimedia.eu>\n"
@@ -34,6 +34,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 
@@ -59,7 +64,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 
 msgid ""
@@ -71,11 +76,6 @@ msgstr ""
 msgid ""
 "\n"
 "System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
 msgstr ""
 
 msgid " "
@@ -271,6 +271,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<nepoznato>"
 
@@ -336,6 +345,15 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
+msgstr ""
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
 msgstr ""
 
 msgid ""
@@ -456,6 +474,12 @@ msgid "Advanced"
 msgstr "Napredno"
 
 msgid "Advanced Options"
+msgstr ""
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
 msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
@@ -948,9 +972,6 @@ msgstr "Konstalacija"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr ""
 
@@ -964,6 +985,9 @@ msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+msgid "Could not open Picture in Picture"
 msgstr ""
 
 #, python-format
@@ -1089,6 +1113,9 @@ msgstr "Tvorni?ko"
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr ""
 
@@ -1123,6 +1150,9 @@ msgid "Deselect"
 msgstr ""
 
 msgid "Destination directory"
+msgstr ""
+
+msgid "Details for extension: "
 msgstr ""
 
 msgid "Detected HDD:"
@@ -1435,8 +1465,7 @@ msgstr ""
 msgid "Enabled"
 msgstr "Omogućeno"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1565,8 +1594,17 @@ msgstr ""
 msgid "Extended Setup..."
 msgstr "Proširene postavke..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Ekstenzije"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1575,6 +1613,18 @@ msgid "Factory reset"
 msgstr ""
 
 msgid "Failed"
+msgstr ""
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
 msgstr ""
 
 msgid "Fast"
@@ -1623,7 +1673,7 @@ msgstr ""
 msgid "Flashing failed"
 msgstr ""
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1685,13 +1735,13 @@ msgstr "Gateway"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1836,6 +1886,9 @@ msgstr "Informacije"
 msgid "Init"
 msgstr "Init"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Inicijalizacija..."
 
@@ -1890,14 +1943,16 @@ msgstr ""
 msgid "Instant Record..."
 msgstr "Trenutno Snimanje..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Integrirana mreža"
 
 msgid "Integrated Wireless"
 msgstr ""
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2032,6 +2087,9 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lock:"
 
@@ -2065,6 +2123,9 @@ msgstr "Napravi ovu oznaku kao 'izlaznu' točku"
 msgid "Make this mark just a mark"
 msgstr "Napravi ovu oznaku samo kao oznaku"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr ""
 
@@ -2083,8 +2144,7 @@ msgstr "Rub nakon snimanja"
 msgid "Margin before record (minutes)"
 msgstr "Rub prije snimanja (u minutama)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2147,6 +2207,9 @@ msgstr "Pokreći na istok"
 msgid "Move west"
 msgstr "Pokreći na zapad"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Meni izbornika filmova"
 
@@ -2170,6 +2233,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "SLJEDEĆE"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -2290,8 +2356,16 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr "Informacije o događaju nisu pronađene, snimanje nedefinirano."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Nema slobodnog tunera!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2312,6 +2386,9 @@ msgid "No satellite frontend found!!"
 msgstr "Nije pronađen Satelitski tuner!!"
 
 msgid "No tags are set on these movies."
+msgstr ""
+
+msgid "No to all"
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -2452,6 +2529,9 @@ msgstr "Online-nadogradnja"
 msgid "Only Free scan"
 msgstr ""
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2463,9 +2543,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Nadogradnja liste paketa"
@@ -2731,9 +2808,6 @@ msgstr "Molim pričekajte... Učitavam listu..."
 msgid "Plugin browser"
 msgstr "Preglednik dodataka"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -2928,6 +3002,9 @@ msgstr "Snimljene datoteke..."
 msgid "Recording"
 msgstr "Snimanje"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
@@ -2939,9 +3016,6 @@ msgstr "Snimanje uvijek ima prioritet"
 
 msgid "Reenter new pin"
 msgstr "Ponovite novi pin"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Brzina osvježavanja"
@@ -3254,6 +3328,9 @@ msgstr "Pretraži istok"
 msgid "Search west"
 msgstr "Pretraži zapad"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3452,6 +3529,9 @@ msgstr "Prikaži tv player..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr ""
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Isključi Dreambox nakon"
 
@@ -3525,7 +3605,7 @@ msgstr ""
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
+msgid "Software management"
 msgstr ""
 
 msgid "Software restore"
@@ -3713,6 +3793,9 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Zemaljski"
 
@@ -3760,6 +3843,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Neuspjela izrada sigurnosne kopije. Molim odaberite drugu lokaciju."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3852,16 +3941,19 @@ msgstr "Čarobnjak je gotov."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr ""
 
 msgid "There are no default settings in your image."
 msgstr ""
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4000,6 +4092,9 @@ msgid ""
 "Please recheck it!"
 msgstr ""
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Greška nerazumnog tajmera"
 
@@ -4011,6 +4106,9 @@ msgstr "Status tajmera:"
 
 msgid "Timeshift"
 msgstr "Vrem.pomak"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Vremenski pomak nije moguć!"
@@ -4041,6 +4139,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Danas"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Ton mod"
@@ -4155,20 +4256,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC command"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unicable"
 msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4188,6 +4291,9 @@ msgstr "Nadograđuje softver vašeg prijemnika"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Nadogradnja uspješna. Ovo su rezultati:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr ""
@@ -4526,6 +4632,9 @@ msgstr "Godina"
 msgid "Yes"
 msgstr "Da"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr ""
 
@@ -4571,6 +4680,9 @@ msgid "You can choose, what you want to install..."
 msgstr ""
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4664,6 +4776,13 @@ msgstr ""
 "Vi morate postaviti pin kod te sakriti ga od djece.\n"
 "\n"
 "Želite li postaviti pin kod sada?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4773,6 +4892,9 @@ msgid "about to start"
 msgstr "spremni za početak"
 
 msgid "activate current configuration"
+msgstr ""
+
+msgid "activate network adapter configuration"
 msgstr ""
 
 msgid "add Provider"
@@ -5095,9 +5217,6 @@ msgid "help..."
 msgstr "pomoć..."
 
 msgid "hidden network"
-msgstr ""
-
-msgid "hidden..."
 msgstr ""
 
 msgid "hide extended description"
@@ -5489,6 +5608,9 @@ msgstr "prikaži info transpondera"
 
 msgid "shuffle playlist"
 msgstr "sam biraj iz playliste"
+
+msgid "shut down"
+msgstr ""
 
 msgid "shutdown"
 msgstr "isključi"

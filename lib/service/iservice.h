@@ -357,6 +357,8 @@ public:
 		sTagCRC,
 		sTagChannelMode,
 
+		sTransferBPS,
+
 		sUser = 0x100
 	};
 	enum {
@@ -595,6 +597,7 @@ class iTimeshiftService: public iObject
 public:
 	virtual RESULT startTimeshift()=0;
 	virtual RESULT stopTimeshift(bool swToLive=true)=0;
+	virtual RESULT setNextPlaybackFile(const char *fn)=0; // not needed by our internal timeshift.. but external plugin...
 
 	virtual int isTimeshiftActive()=0;
 			/* this essentially seeks to the relative end of the timeshift buffer */

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2008-12-29 16:22+0100\n"
 "Last-Translator: gerrit <gerrit@nedlinux.nl>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -44,6 +44,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 
@@ -69,7 +74,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 
 msgid ""
@@ -81,11 +86,6 @@ msgstr ""
 msgid ""
 "\n"
 "System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
 msgstr ""
 
 msgid " "
@@ -283,6 +283,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<net bekend>"
 
@@ -348,6 +357,15 @@ msgstr ""
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "In benedicht programma (%s) wie net fûn"
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -471,6 +489,12 @@ msgid "Advanced"
 msgstr "Afansjearre"
 
 msgid "Advanced Options"
+msgstr ""
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
 msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
@@ -965,9 +989,6 @@ msgstr "Himmel"
 msgid "Content does not fit on DVD!"
 msgstr "Ynhald past net op in DVD !"
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr "Fjierder gean yn 'e eftergrûn"
 
@@ -982,6 +1003,9 @@ msgstr "Kin net ferbine mei Dreambox .NFI Image feed server:"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Koe medium net lade ! Is der wol in disc oanwezig ?"
+
+msgid "Could not open Picture in Picture"
+msgstr ""
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1106,6 +1130,9 @@ msgstr ""
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Standert ynstellingen lysten"
 
@@ -1143,6 +1170,9 @@ msgstr ""
 
 msgid "Destination directory"
 msgstr "Doel Directory"
+
+msgid "Details for extension: "
+msgstr ""
 
 msgid "Detected HDD:"
 msgstr "Fûne hurde skiif:"
@@ -1454,8 +1484,7 @@ msgstr "Tiidsjtoering ynskeakelje"
 msgid "Enabled"
 msgstr "Ynskeakele"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1585,8 +1614,17 @@ msgstr "Utwreide Netwurkynstellingen Ynstekker..."
 msgid "Extended Setup..."
 msgstr "Utwreide Ynstellingen..."
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Utwreidingen"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1596,6 +1634,18 @@ msgstr "Fabryks ynstellingen"
 
 msgid "Failed"
 msgstr "mislearre"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Rap"
@@ -1644,7 +1694,7 @@ msgstr "Flash"
 msgid "Flashing failed"
 msgstr "Flashen misljearre"
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1706,13 +1756,13 @@ msgstr "Gateway"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1863,6 +1913,9 @@ msgstr "Ynformaasje"
 msgid "Init"
 msgstr "Initialisearje"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Formattearje..."
 
@@ -1917,14 +1970,16 @@ msgstr "Pakket ynhald an it ynstallearjen... Eefkes wachtsje"
 msgid "Instant Record..."
 msgstr "In direct opnimmen..."
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Integreerd Ethernet"
 
 msgid "Integrated Wireless"
 msgstr "Integreerd Triidloas"
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2059,6 +2114,9 @@ msgstr "Lokaal netwurk"
 msgid "Location"
 msgstr "Doel"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Slot:"
 
@@ -2092,6 +2150,9 @@ msgstr "Markeer dit as in 'út' punt"
 msgid "Make this mark just a mark"
 msgstr "Meitsje dit in gewoan markeer punt"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr ""
 
@@ -2110,8 +2171,7 @@ msgstr "Extra tiid nei by it opnimmen"
 msgid "Margin before record (minutes)"
 msgstr "Extra tiid foar by it opnimmen"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2174,6 +2234,9 @@ msgstr "Draai nei east"
 msgid "Move west"
 msgstr "Draai nei west"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Filmlyst menu"
 
@@ -2197,6 +2260,9 @@ msgstr "Net oanwêzig"
 
 msgid "NEXT"
 msgstr "Folgende"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI image flashen is klear. Druk giel om nei te starten!"
@@ -2317,8 +2383,16 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr "Gjin barren ynfo fûn, giit foar altiid troch mei opnimmen.."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Gjin tuner oer"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2338,6 +2412,9 @@ msgstr "Gjin sattelyt foarein fûn."
 
 msgid "No tags are set on these movies."
 msgstr "Gjin merkers oanwêzig op dizze films"
+
+msgid "No to all"
+msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Der is gjin tuner ynsteld foar gebrûk mei in diseqc posysje syker!"
@@ -2489,6 +2566,9 @@ msgstr "Online-Bywurkje"
 msgid "Only Free scan"
 msgstr "Allinne Freie útstjoeringen"
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2500,9 +2580,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Bywurkje pakketlyst  "
@@ -2771,9 +2848,6 @@ msgstr "Lyst wurd laden..."
 msgid "Plugin browser"
 msgstr "Ynstekker browser"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -2968,6 +3042,9 @@ msgstr "Opnâme bestannen..."
 msgid "Recording"
 msgstr "An it opnimmen"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "In Opnimmen is dwaande of start binnen in pear sekonden!"
 
@@ -2979,9 +3056,6 @@ msgstr "Opnimmen hat altiid foarrang"
 
 msgid "Reenter new pin"
 msgstr "pin opnei ynjaan"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Fernij faasje"
@@ -3297,6 +3371,9 @@ msgstr "Sykje east"
 msgid "Search west"
 msgstr "Sykje west"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3493,6 +3570,9 @@ msgstr "TV Spieler sjen litte..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Status fan WLAN sjen litte.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Dreambox útskeakelje nei"
 
@@ -3566,7 +3646,7 @@ msgstr "Langsaam beweechjen faasje"
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
+msgid "Software management"
 msgstr ""
 
 msgid "Software restore"
@@ -3754,6 +3834,9 @@ msgstr "Merker 2"
 msgid "Tags"
 msgstr "Merkers"
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Ether"
 
@@ -3805,6 +3888,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backup is mislearre. Kies in oare backup lokaasje."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3912,16 +4001,19 @@ msgstr "De gucheler is klear."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Der binne gjin standert lysts yn de Dreambox"
 
 msgid "There are no default settings in your image."
 msgstr "Der binne gjin standert ynstellingen yn jo byld"
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4090,6 +4182,9 @@ msgstr ""
 "Tiidstjoerings conflicten fûn yn timers.xml\n"
 "Graach nei sjen en meitsje!"
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Tiidsbarren kontrole flater"
 
@@ -4101,6 +4196,9 @@ msgstr "Tiidsbarren status:"
 
 msgid "Timeshift"
 msgstr "Tiidsskowen"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Tiidsskowen is net mooglik !"
@@ -4137,6 +4235,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Hjoed"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Toan moadus"
@@ -4251,20 +4352,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Net oanwizen DiSEqC kommando"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unicable"
 msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4284,6 +4387,9 @@ msgstr "UntfangerSoftware bywurkje"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Klear met bywurkjen. Dit hat allegear bart :"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Bywurkjen is dwaande. Waachtje even. Dit kin inkele minuten duorje."
@@ -4629,6 +4735,9 @@ msgstr "Jier"
 msgid "Yes"
 msgstr "Ja"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr "Ja, en ferwiderje dizze film"
 
@@ -4676,6 +4785,9 @@ msgid "You can choose, what you want to install..."
 msgstr "Jo kinne kieze wat te ynstallearen"
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4773,6 +4885,13 @@ msgstr ""
 "In pincode moat brûkt wurde om of te sluten foar bern.\n"
 "\n"
 "No in pinkode ynstelle ?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4887,6 +5006,9 @@ msgstr "op it punt om te starten"
 
 msgid "activate current configuration"
 msgstr "Dizze ynstellingen aktief meitsje"
+
+msgid "activate network adapter configuration"
+msgstr ""
 
 msgid "add Provider"
 msgstr ""
@@ -5209,9 +5331,6 @@ msgstr "help..."
 
 msgid "hidden network"
 msgstr "ferstoppe netwurk"
-
-msgid "hidden..."
-msgstr ""
 
 msgid "hide extended description"
 msgstr "utbreide beskriuwing ferbergje"
@@ -5602,6 +5721,9 @@ msgstr "transponder ynfo sjen litte"
 
 msgid "shuffle playlist"
 msgstr "meitsje willekeurige ôfspiellyst"
+
+msgid "shut down"
+msgstr ""
 
 msgid "shutdown"
 msgstr "útskeakelje"

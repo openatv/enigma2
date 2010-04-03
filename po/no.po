@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2008-06-12 14:34+0100\n"
 "Last-Translator: MMMMMM <theMMMMMM@gmail.com>\n"
 "Language-Team: none\n"
@@ -36,6 +36,11 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 
@@ -61,7 +66,7 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 
 msgid ""
@@ -73,11 +78,6 @@ msgstr ""
 msgid ""
 "\n"
 "System will restart after the restore!"
-msgstr ""
-
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
 msgstr ""
 
 msgid " "
@@ -273,6 +273,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr ""
+
+msgid "<Default movie location>"
+msgstr ""
+
+msgid "<Last timer location>"
+msgstr ""
+
 msgid "<unknown>"
 msgstr "<ukjent>"
 
@@ -338,6 +347,15 @@ msgstr ""
 
 #, python-format
 msgid "A required tool (%s) was not found."
+msgstr ""
+
+msgid "A search for available updates is currently in progress."
+msgstr ""
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
 msgstr ""
 
 msgid ""
@@ -462,6 +480,12 @@ msgid "Advanced"
 msgstr "Avansert"
 
 msgid "Advanced Options"
+msgstr ""
+
+msgid "Advanced Software"
+msgstr ""
+
+msgid "Advanced Software Plugin"
 msgstr ""
 
 msgid "Advanced Video Enhancement Setup"
@@ -952,9 +976,6 @@ msgstr "Konstellasjon"
 msgid "Content does not fit on DVD!"
 msgstr ""
 
-msgid "Continue"
-msgstr ""
-
 msgid "Continue in background"
 msgstr ""
 
@@ -968,6 +989,9 @@ msgid "Could not connect to Dreambox .NFI Image Feed Server:"
 msgstr ""
 
 msgid "Could not load Medium! No disc inserted?"
+msgstr ""
+
+msgid "Could not open Picture in Picture"
 msgstr ""
 
 #, python-format
@@ -1093,6 +1117,9 @@ msgstr "Standard"
 msgid "Default Settings"
 msgstr ""
 
+msgid "Default movie location"
+msgstr ""
+
 msgid "Default services lists"
 msgstr "Standard tjeneste liste"
 
@@ -1127,6 +1154,9 @@ msgid "Deselect"
 msgstr ""
 
 msgid "Destination directory"
+msgstr ""
+
+msgid "Details for extension: "
 msgstr ""
 
 msgid "Detected HDD:"
@@ -1441,8 +1471,7 @@ msgstr ""
 msgid "Enabled"
 msgstr "Aktivert"
 
-#, python-format
-msgid "Encrypted: %s"
+msgid "Encrypted: "
 msgstr ""
 
 msgid "Encryption"
@@ -1571,8 +1600,17 @@ msgstr ""
 msgid "Extended Setup..."
 msgstr "Utvidet Oppsett"
 
+msgid "Extended Software"
+msgstr ""
+
+msgid "Extended Software Plugin"
+msgstr ""
+
 msgid "Extensions"
 msgstr "Tillegg"
+
+msgid "Extensions management"
+msgstr ""
 
 msgid "FEC"
 msgstr "FEC"
@@ -1582,6 +1620,18 @@ msgstr "Gjenopprett fabrikkinstillingene"
 
 msgid "Failed"
 msgstr "Feilet"
+
+#, python-format
+msgid "Fan %d"
+msgstr ""
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr ""
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr ""
 
 msgid "Fast"
 msgstr "Hurtig"
@@ -1629,7 +1679,7 @@ msgstr ""
 msgid "Flashing failed"
 msgstr ""
 
-msgid "Following tasks will be done after you press continue!"
+msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 msgid "Format"
@@ -1691,13 +1741,13 @@ msgstr "Gateway"
 msgid "General AC3 Delay"
 msgstr ""
 
-msgid "General AC3 delay"
+msgid "General AC3 delay (ms)"
 msgstr ""
 
 msgid "General PCM Delay"
 msgstr ""
 
-msgid "General PCM delay"
+msgid "General PCM delay (ms)"
 msgstr ""
 
 msgid "Genre"
@@ -1850,6 +1900,9 @@ msgstr "Informasjon"
 msgid "Init"
 msgstr "Init"
 
+msgid "Initial location in new timers"
+msgstr ""
+
 msgid "Initialization..."
 msgstr "Initiering..."
 
@@ -1904,14 +1957,16 @@ msgstr "Installerer pakke innhold... Vennligst vent..."
 msgid "Instant Record..."
 msgstr "Direkte avspilling"
 
+msgid "Instant record location"
+msgstr ""
+
 msgid "Integrated Ethernet"
 msgstr "Integrert Nettverk"
 
 msgid "Integrated Wireless"
 msgstr ""
 
-#, python-format
-msgid "Interface: %s"
+msgid "Interface: "
 msgstr ""
 
 msgid "Intermediate"
@@ -2046,6 +2101,9 @@ msgstr "Lokalnettverk"
 msgid "Location"
 msgstr "Plassering"
 
+msgid "Location for instant recordings"
+msgstr ""
+
 msgid "Lock:"
 msgstr "Lås:"
 
@@ -2079,6 +2137,9 @@ msgstr "Gjør denne markør til et 'ut' punkt"
 msgid "Make this mark just a mark"
 msgstr "Gjør denne markør til bare en markør"
 
+msgid "Manage extensions"
+msgstr ""
+
 msgid "Manage your receiver's software"
 msgstr ""
 
@@ -2097,8 +2158,7 @@ msgstr "Margin etter opptak"
 msgid "Margin before record (minutes)"
 msgstr "Margin før opptak (i minutter)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
+msgid "Max. Bitrate: "
 msgstr ""
 
 msgid "Media player"
@@ -2161,6 +2221,9 @@ msgstr "Flytt østover"
 msgid "Move west"
 msgstr "Flytt vestover"
 
+msgid "Movie location"
+msgstr ""
+
 msgid "Movielist menu"
 msgstr "Filmliste Meny"
 
@@ -2184,6 +2247,9 @@ msgstr "Ikke tilgjengelig"
 
 msgid "NEXT"
 msgstr "NESTE"
+
+msgid "NFI Image Flashing"
+msgstr ""
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
@@ -2306,8 +2372,16 @@ msgstr ""
 msgid "No event info found, recording indefinitely."
 msgstr "Ingen EPG-data funnet. Start ubegrenset innspilling."
 
+msgid ""
+"No fast winding possible yet.. but you can use the number buttons to skip "
+"forward/backward!"
+msgstr ""
+
 msgid "No free tuner!"
 msgstr "Ingen ledig tuner!"
+
+msgid "No network connection available."
+msgstr ""
 
 msgid "No networks found"
 msgstr ""
@@ -2327,6 +2401,9 @@ msgid "No satellite frontend found!!"
 msgstr "Ingen satellit frontend funnet!!"
 
 msgid "No tags are set on these movies."
+msgstr ""
+
+msgid "No to all"
 msgstr ""
 
 msgid "No tuner is configured for use with a diseqc positioner!"
@@ -2470,6 +2547,9 @@ msgstr "Online-Oppgradering"
 msgid "Only Free scan"
 msgstr ""
 
+msgid "Only extensions."
+msgstr ""
+
 msgid "Optionally enter your name if you want to."
 msgstr ""
 
@@ -2481,9 +2561,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr ""
 
 msgid "Package list update"
 msgstr "Pakkeliste oppdatering"
@@ -2749,9 +2826,6 @@ msgstr "Vennligst vent... laster liste..."
 msgid "Plugin browser"
 msgstr "Plugin Meny"
 
-msgid "Plugin manager"
-msgstr ""
-
 msgid "Plugin manager activity information"
 msgstr ""
 
@@ -2946,6 +3020,9 @@ msgstr "Innspilte filer"
 msgid "Recording"
 msgstr "Spiller inn"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
@@ -2957,9 +3034,6 @@ msgstr "Innspillinger har alltid prioritet"
 
 msgid "Reenter new pin"
 msgstr "Skriv inn ny pin igjen"
-
-msgid "Refresh"
-msgstr ""
 
 msgid "Refresh Rate"
 msgstr "Gjennoppfrisknings Rate"
@@ -3274,6 +3348,9 @@ msgstr "Søk øst"
 msgid "Search west"
 msgstr "Søk vest"
 
+msgid "Searching for available updates. Please wait..."
+msgstr ""
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr ""
 
@@ -3472,6 +3549,9 @@ msgstr "Vis TV spilleren"
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Viser status for din trådløse forbindelse.\n"
 
+msgid "Shutdown"
+msgstr ""
+
 msgid "Shutdown Dreambox after"
 msgstr "Slå av Dreamboxen etter"
 
@@ -3545,7 +3625,7 @@ msgstr "Hastigheter for slow motion"
 msgid "Software"
 msgstr ""
 
-msgid "Software manager"
+msgid "Software management"
 msgstr ""
 
 msgid "Software restore"
@@ -3737,6 +3817,9 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
+msgid "Temperature and Fan control"
+msgstr ""
+
 msgid "Terrestrial"
 msgstr "Terrestrial"
 
@@ -3783,6 +3866,12 @@ msgstr ""
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Backupen feilet. Vennligst velg en annen backuplokasjon."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -3879,16 +3968,19 @@ msgstr "Guiden er ferdig nå."
 msgid "There are at least "
 msgstr ""
 
+msgid "There are currently no outstanding actions."
+msgstr ""
+
 msgid "There are no default services lists in your image."
 msgstr "Det finnes ingen standard tjenesteliste i ditt image."
 
 msgid "There are no default settings in your image."
 msgstr "Det finnes ingen standard innstillinger i ditt image."
 
-msgid "There are now "
+msgid "There are no updates available."
 msgstr ""
 
-msgid "There is nothing to be done."
+msgid "There are now "
 msgstr ""
 
 msgid ""
@@ -4051,6 +4143,9 @@ msgid ""
 "Please recheck it!"
 msgstr ""
 
+msgid "Timer record location"
+msgstr ""
+
 msgid "Timer sanity error"
 msgstr "Timer feil"
 
@@ -4062,6 +4157,9 @@ msgstr "Timer status:"
 
 msgid "Timeshift"
 msgstr "Timeshift"
+
+msgid "Timeshift location"
+msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "Timeshift er ikke mulig!"
@@ -4092,6 +4190,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Idag"
+
+msgid "Tone Amplitude"
+msgstr ""
 
 msgid "Tone mode"
 msgstr "Tone modus"
@@ -4206,20 +4307,22 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Uncommitted DiSEqC kommando"
 
-msgid ""
-"Undo\n"
-"Install"
+msgid "Undo install"
 msgstr ""
 
-msgid ""
-"Undo\n"
-"Remove"
+msgid "Undo uninstall"
+msgstr ""
+
+msgid "Unicable"
 msgstr ""
 
 msgid "Unicable LNB"
 msgstr ""
 
 msgid "Unicable Martix"
+msgstr ""
+
+msgid "Uninstall"
 msgstr ""
 
 msgid "Universal LNB"
@@ -4239,6 +4342,9 @@ msgstr "Oppdaterer software på din mottager"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Oppdatering avsluttet. Her er resultatet:"
+
+msgid "Updating software catalog"
+msgstr ""
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Oppdaterer...Vennligst vent..Dette kan ta noen minutter "
@@ -4581,6 +4687,9 @@ msgstr "År"
 msgid "Yes"
 msgstr "Ja"
 
+msgid "Yes to all"
+msgstr ""
+
 msgid "Yes, and delete this movie"
 msgstr ""
 
@@ -4627,6 +4736,9 @@ msgid "You can choose, what you want to install..."
 msgstr "Du kan velge det du vil ha installert..."
 
 msgid "You can install this plugin."
+msgstr ""
+
+msgid "You can only burn Dreambox recordings!"
 msgstr ""
 
 msgid "You can remove this plugin."
@@ -4722,6 +4834,13 @@ msgstr ""
 "Du mp sette opp en pin kode og gjemme den for dine barn.\n"
 "\n"
 "Vil du sette opp en pin kode nå?"
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+msgstr ""
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4831,6 +4950,9 @@ msgid "about to start"
 msgstr "starter snart"
 
 msgid "activate current configuration"
+msgstr ""
+
+msgid "activate network adapter configuration"
 msgstr ""
 
 msgid "add Provider"
@@ -5153,9 +5275,6 @@ msgid "help..."
 msgstr "Hjelp..."
 
 msgid "hidden network"
-msgstr ""
-
-msgid "hidden..."
 msgstr ""
 
 msgid "hide extended description"
@@ -5547,6 +5666,9 @@ msgstr "vis transponder info"
 
 msgid "shuffle playlist"
 msgstr "blande spilliste "
+
+msgid "shut down"
+msgstr ""
 
 msgid "shutdown"
 msgstr "slå av"

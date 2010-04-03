@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-11-05 18:09+0100\n"
+"POT-Creation-Date: 2009-12-28 20:46+0100\n"
 "PO-Revision-Date: 2009-10-10 11:18+0100\n"
 "Last-Translator: maja <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -44,6 +44,13 @@ msgstr ""
 
 msgid ""
 "\n"
+"Manage extensions or plugins for your Dreambox"
+msgstr ""
+"\n"
+"Izvrši proširenja i dodatke za vaš drimboks"
+
+msgid ""
+"\n"
 "Online update of your Dreambox software."
 msgstr ""
 "\n"
@@ -79,10 +86,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Scan for local packages and install them."
+"Scan for local extensions and install them."
 msgstr ""
 "\n"
-"Traži lokalne pakete i instaliraj ih "
+"Traži lokalna proširenja i instaliraj ih. "
 
 msgid ""
 "\n"
@@ -100,13 +107,6 @@ msgstr ""
 "\n"
 "Sistem će ponovo startovati posle vraćanja sigurnosne kopije!"
 
-msgid ""
-"\n"
-"View, install and remove available or installed packages."
-msgstr ""
-"\n"
-"Pogledaj,instaliraj i ukloni pristupačne ili instalirane pakete"
-
 msgid " "
 msgstr " "
 
@@ -120,7 +120,7 @@ msgid " updates available."
 msgstr "ažuriranja dostupna."
 
 msgid " wireless networks found!"
-msgstr "Bežične mreža pronađene!"
+msgstr "Bežična mreža pronađena!"
 
 msgid "#000000"
 msgstr "#000000"
@@ -216,7 +216,7 @@ msgid "1"
 msgstr "1"
 
 msgid "1 wireless network found!"
-msgstr "Jedna bežična mreža nađena!"
+msgstr "1 bežična mreža pronađena!"
 
 msgid "1.0"
 msgstr "1.0"
@@ -299,6 +299,15 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
+msgid "<Current movielist location>"
+msgstr "<Trenutna lokacija liste filmova>"
+
+msgid "<Default movie location>"
+msgstr "<Standardna lokacija filmova>"
+
+msgid "<Last timer location>"
+msgstr "<Zadnja lokacija tajmera> "
+
 msgid "<unknown>"
 msgstr "<nepoznato>"
 
@@ -357,6 +366,18 @@ msgstr "Snimanje je trenutno u toku. Molim zaustavite snimanje pre nego što pok
 #, python-format
 msgid "A required tool (%s) was not found."
 msgstr "Potrebni alat (%s) nije pronađen."
+
+msgid "A search for available updates is currently in progress."
+msgstr "Traženje za moguća ažuriranja je trenutno u toku."
+
+msgid ""
+"A second configured interface has been found.\n"
+"\n"
+"Do you want to disable the second network interface?"
+msgstr ""
+"Drugi konfigurisani interfejs je pronađen.\n"
+"\n"
+"Da li želite da onemogućite drugi mrežni interfejs?"
 
 msgid ""
 "A sleep timer wants to set your\n"
@@ -471,6 +492,12 @@ msgstr "Napredno"
 
 msgid "Advanced Options"
 msgstr "Napredne opcije"
+
+msgid "Advanced Software"
+msgstr "Napredni softver"
+
+msgid "Advanced Software Plugin"
+msgstr "Napredni softver dodatak"
 
 msgid "Advanced Video Enhancement Setup"
 msgstr "Napredne postavke video poboljšavanja "
@@ -919,7 +946,7 @@ msgid "Configure your internal LAN"
 msgstr "Konfiguriši svoj interni LAN"
 
 msgid "Configure your network again"
-msgstr "Konfiguriši svoju mrežu ponovo"
+msgstr "Konfigurišite vašu mrežu ponovo"
 
 msgid "Configure your wireless LAN again"
 msgstr "Konfiguriši svoj bežični LAN ponovo"
@@ -934,7 +961,7 @@ msgid "Connect"
 msgstr "Spojiti"
 
 msgid "Connect to a Wireless Network"
-msgstr "Spoji se na bežičnu mrežu"
+msgstr "Spojite se na bežičnu mrežu"
 
 msgid "Connected to"
 msgstr "Povezan sa"
@@ -964,9 +991,6 @@ msgstr "Konstelacija"
 msgid "Content does not fit on DVD!"
 msgstr "Sadržaj ne staje na DVD!"
 
-msgid "Continue"
-msgstr "Nastaviti"
-
 msgid "Continue in background"
 msgstr "Nastaviti u pozadini "
 
@@ -981,6 +1005,9 @@ msgstr "Ne može se povezati na drimbox.NFI Imidž Feed Server"
 
 msgid "Could not load Medium! No disc inserted?"
 msgstr "Ne može se ubaciti medij.Disk nije ubačen?"
+
+msgid "Could not open Picture in Picture"
+msgstr "Ne mogu otvoriti sliku u slici"
 
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
@@ -1109,6 +1136,9 @@ msgstr "Tvorni?ko"
 msgid "Default Settings"
 msgstr "Standardne postavke"
 
+msgid "Default movie location"
+msgstr "Standardna lokacija filmova"
+
 msgid "Default services lists"
 msgstr "Standardna lista kanala"
 
@@ -1147,6 +1177,9 @@ msgstr "Deselektuj"
 msgid "Destination directory"
 msgstr "Ciljni direktorijum"
 
+msgid "Details for extension: "
+msgstr "Detalji za proširenje:"
+
 msgid "Detected HDD:"
 msgstr "Primećeni hard disk:"
 
@@ -1169,7 +1202,7 @@ msgid "DiSEqC repeats"
 msgstr "DiSEqC ponavljanja"
 
 msgid "DiSEqC-Tester settings"
-msgstr "Postavke DISEqC testera"
+msgstr "podešavanje DISEqC testera"
 
 msgid "Dialing:"
 msgstr "Zovem:"
@@ -1461,9 +1494,8 @@ msgstr "Omogući tajmer"
 msgid "Enabled"
 msgstr "Omogućeno"
 
-#, python-format
-msgid "Encrypted: %s"
-msgstr "Kodirano: %s"
+msgid "Encrypted: "
+msgstr "Kodirano:"
 
 msgid "Encryption"
 msgstr "Šifrovanje"
@@ -1579,7 +1611,7 @@ msgid "Exit editor"
 msgstr "Izađi iz editora"
 
 msgid "Exit network wizard"
-msgstr "Izađi iz mrež. čarob."
+msgstr "Napusti mrežnog čarobnjaka"
 
 msgid "Exit the cleanup wizard"
 msgstr "Izađite iz čarobnjaka za čišćenje"
@@ -1599,8 +1631,17 @@ msgstr "Prošireni dodatak za postavke mreže..."
 msgid "Extended Setup..."
 msgstr "Proširene postavke..."
 
+msgid "Extended Software"
+msgstr "Prošireni softver"
+
+msgid "Extended Software Plugin"
+msgstr "Prošireni softver dodatak "
+
 msgid "Extensions"
 msgstr "Proširenja"
+
+msgid "Extensions management"
+msgstr "Rukovanje proširenjima"
 
 msgid "FEC"
 msgstr "FEC"
@@ -1610,6 +1651,18 @@ msgstr "Fabrički reset"
 
 msgid "Failed"
 msgstr "Neuspeh"
+
+#, python-format
+msgid "Fan %d"
+msgstr "Vent. %d "
+
+#, python-format
+msgid "Fan %d PWM"
+msgstr "Ventil. %d PWM"
+
+#, python-format
+msgid "Fan %d Voltage"
+msgstr "Ventil. %d Napona"
 
 msgid "Fast"
 msgstr "Brzo"
@@ -1656,8 +1709,8 @@ msgstr "Fleš"
 msgid "Flashing failed"
 msgstr "Fleš nije uspeo"
 
-msgid "Following tasks will be done after you press continue!"
-msgstr "Sledeći zadaci će biti urađeni kad pritisnete nastavit!"
+msgid "Following tasks will be done after you press OK!"
+msgstr "Sledeći zadaci će biti urađeni kad pritisnete OK!"
 
 msgid "Format"
 msgstr "Formatiranje"
@@ -1718,14 +1771,14 @@ msgstr "Mrežni čvor"
 msgid "General AC3 Delay"
 msgstr "Opšte AC3 kašnjenje"
 
-msgid "General AC3 delay"
-msgstr "Opšte AC3 kašnjenje"
+msgid "General AC3 delay (ms)"
+msgstr "Opšte AC3 kašnjenje (ms) "
 
 msgid "General PCM Delay"
 msgstr "Opšte PCM kašnjenje"
 
-msgid "General PCM delay"
-msgstr "Opšte PCM kašnjenje"
+msgid "General PCM delay (ms)"
+msgstr "Opšte PCM kašnjenje (ms)"
 
 msgid "Genre"
 msgstr "Žanrovi"
@@ -1865,6 +1918,9 @@ msgstr "Informacije"
 msgid "Init"
 msgstr "Init"
 
+msgid "Initial location in new timers"
+msgstr "Početna lokacija u novim tajmerima."
+
 msgid "Initialization..."
 msgstr "Inicijalizacija..."
 
@@ -1919,15 +1975,17 @@ msgstr "Instalacija sadržaja paketa...Molim pričekajte..."
 msgid "Instant Record..."
 msgstr "Trenutno snimanje..."
 
+msgid "Instant record location"
+msgstr "Lokacija instant snimanja"
+
 msgid "Integrated Ethernet"
 msgstr "Integrisana mreža"
 
 msgid "Integrated Wireless"
 msgstr "Integrisana bežična veza"
 
-#, python-format
-msgid "Interface: %s"
-msgstr "Interfejs: %s"
+msgid "Interface: "
+msgstr "Iinterfejs:"
 
 msgid "Intermediate"
 msgstr "Srednje"
@@ -2063,6 +2121,9 @@ msgstr "Lokalna mreža"
 msgid "Location"
 msgstr "Lokacija"
 
+msgid "Location for instant recordings"
+msgstr "Lokacija za instant snimanja"
+
 msgid "Lock:"
 msgstr "Zaključaj:"
 
@@ -2096,6 +2157,9 @@ msgstr "Napravi ovu oznaku kao 'izlaznu' tačku"
 msgid "Make this mark just a mark"
 msgstr "Napravi ovu oznaku samo kao oznaku"
 
+msgid "Manage extensions"
+msgstr "Rukuj proširenjima"
+
 msgid "Manage your receiver's software"
 msgstr "Upravljanje softverom vašeg prijemnika"
 
@@ -2114,9 +2178,8 @@ msgstr "Margina nakon snimanja"
 msgid "Margin before record (minutes)"
 msgstr "Margina pre snimanja (minuti)"
 
-#, python-format
-msgid "Max. Bitrate: %s"
-msgstr "Maks. Bit rata: %s"
+msgid "Max. Bitrate: "
+msgstr "Maks. Bit rata:"
 
 msgid "Media player"
 msgstr "Medija plejer"
@@ -2178,6 +2241,9 @@ msgstr "Pokreći na istok"
 msgid "Move west"
 msgstr "Pokreći na zapad"
 
+msgid "Movie location"
+msgstr "Lokacija filmova"
+
 msgid "Movielist menu"
 msgstr "Meni liste filmova"
 
@@ -2201,6 +2267,9 @@ msgstr "N/A"
 
 msgid "NEXT"
 msgstr "SLEDEĆE"
+
+msgid "NFI Image Flashing"
+msgstr "NFI imidž flešovanje"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "Flešovanje NFI imidža završeno.Pritisni žuto za novo podizanje"
@@ -2291,7 +2360,7 @@ msgid "No 50 Hz, sorry. :("
 msgstr "Nema 50 Hz,žao mi je, :("
 
 msgid "No Connection"
-msgstr "Nema konekcije"
+msgstr "Nema veze"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Disk nije pronađen ili nije inicijaliziran!"
@@ -2321,11 +2390,17 @@ msgstr "Nisu pronađene vidljive datoteke na ovom mediju!"
 msgid "No event info found, recording indefinitely."
 msgstr "Informacije o događaju nisu pronađene, snimanje beskrajno."
 
+msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
+msgstr "Još uvek nije moguće brzo premotavanje.. ali možeš koristiti num. tipke za skok napred/nazad!"
+
 msgid "No free tuner!"
 msgstr "Nema slobodnog tjunera!"
 
+msgid "No network connection available."
+msgstr "Nijedna mrežna veza nije dostupna."
+
 msgid "No networks found"
-msgstr "Nijedna mreža nije pronađena"
+msgstr "Nijedna mreža nije nađena"
 
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Još nijedan paket nije nadograđen.Proverite postavke mreže i pokušajte ponovo."
@@ -2341,6 +2416,9 @@ msgstr "Nije pronađen čeoni satelit!!"
 
 msgid "No tags are set on these movies."
 msgstr "Nema postavljenih oznaka na ovim filmovima."
+
+msgid "No to all"
+msgstr "Ne za sve"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Niedan tjuner nije konfigurisan za rad s DiSEqC pozicionerom!"
@@ -2374,7 +2452,7 @@ msgstr ""
 "Ukoliko kažete 'Ne' ovde, postavke uređaja ostaju nezaštićene!"
 
 msgid "No wireless networks found! Please refresh."
-msgstr "Nijedna bežična mreža nije nađena! Molim osveži."
+msgstr "Nisu pronađene bežične mreže! Molim osveži."
 
 msgid ""
 "No working local network adapter found.\n"
@@ -2479,6 +2557,9 @@ msgstr "Online-nadogradnja"
 msgid "Only Free scan"
 msgstr "Samo slobodno traženje"
 
+msgid "Only extensions."
+msgstr "Samo proširenja:"
+
 msgid "Optionally enter your name if you want to."
 msgstr "Opciono unesite vaše ime ako želite."
 
@@ -2490,9 +2571,6 @@ msgstr "PAL"
 
 msgid "PIDs"
 msgstr "PIDs"
-
-msgid "Package details for: "
-msgstr "Detalji programskog paketa za:"
 
 msgid "Package list update"
 msgstr "Nadogradnja liste paketa"
@@ -2601,15 +2679,15 @@ msgid ""
 "Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Molim konfiguriši ili potvrdi svoje nejmservere popunjavajući tražene vrednosti.\n"
-"Kada si spreman pritisni OK da nastaviš. "
+"Molim konfiguriši ili verifikuj svoje nejmservere popunjavajući tražene vrednosti.\n"
+"Kad si spreman pritisni OK da nastaviš."
 
 msgid ""
 "Please configure your internet connection by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
 "Molim konfiguriši svoju internet vezu popunjavajući tražene vrednosti.\n"
-"Kada si spreman pritisni OK da nastaviš. "
+"Kad si spreman pritisni OK da nastaviš."
 
 msgid "Please disconnect all USB devices from your Dreambox and (re-)attach the target USB stick (minimum size is 64 MB) now!"
 msgstr "Molimo odspojite sve USB uređaje sa vašeg drimboxa i sada (opet)dodajte ciljni USB stik (minimalna veličina je 64MB)!"
@@ -2744,10 +2822,10 @@ msgid "Please wait while we configure your network..."
 msgstr "Molim sačekajte dok konfigurišemo vašu mrežu..."
 
 msgid "Please wait while we prepare your network interfaces..."
-msgstr "Molim sačekajte dok pripremim vaše mrežne interfejse..."
+msgstr "Molim sačekajte dok pripremimo vaše mrežne interfejse..."
 
 msgid "Please wait while we test your network..."
-msgstr "Molim sačekajte doktestiram vašu mrežu..."
+msgstr "Molim sačekajte dok testiramo vašu mrežu..."
 
 msgid "Please wait while your network is restarting..."
 msgstr "Molim sačekajte dok se vaša mreža ponovo startuje"
@@ -2760,9 +2838,6 @@ msgstr "Molim pričekajte... Učitavam listu..."
 
 msgid "Plugin browser"
 msgstr "Pretraživač dodataka"
-
-msgid "Plugin manager"
-msgstr "Menadžer dodataka"
 
 msgid "Plugin manager activity information"
 msgstr "Info o aktivnosti menadžera dodataka"
@@ -2958,6 +3033,9 @@ msgstr "Snimljene datoteke..."
 msgid "Recording"
 msgstr "Snimanje"
 
+msgid "Recording paths..."
+msgstr ""
+
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Snimanje u toku ili počinje za nekoliko sekundi!"
 
@@ -2965,13 +3043,10 @@ msgid "Recordings"
 msgstr "Snimanja"
 
 msgid "Recordings always have priority"
-msgstr "Snimanje uvijek ima prioritet"
+msgstr "Snimanje uvek ima prioritet"
 
 msgid "Reenter new pin"
 msgstr "Ponovite novi pin"
-
-msgid "Refresh"
-msgstr "Osveži"
 
 msgid "Refresh Rate"
 msgstr "Brzina osvježavanja"
@@ -3275,6 +3350,9 @@ msgstr "Pretraži istok"
 msgid "Search west"
 msgstr "Pretraži zapad"
 
+msgid "Searching for available updates. Please wait..."
+msgstr "Traženje dostupnih ažuriranja.Molim sačekajte..."
+
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Traženje novih instaliranih ili uklonjenih paketa.Molim sačekajte..."
 
@@ -3318,7 +3396,7 @@ msgid "Select image"
 msgstr "Izaberi imidž"
 
 msgid "Select interface"
-msgstr "Izaberi interfejs"
+msgstr "Izaberite interfejs "
 
 msgid "Select package"
 msgstr "Izaberi paket"
@@ -3473,6 +3551,9 @@ msgstr "Prikaži tv plejer..."
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr "Prikaži stanje vaše bežične LAN veze.\n"
 
+msgid "Shutdown"
+msgstr "Isključivanje"
+
 msgid "Shutdown Dreambox after"
 msgstr "Isključi drimbox posle"
 
@@ -3480,7 +3561,7 @@ msgid "Signal Strength:"
 msgstr "Jačina signala:"
 
 msgid "Signal: "
-msgstr "Signal:"
+msgstr "Signal: "
 
 msgid "Similar"
 msgstr "Slično"
@@ -3546,8 +3627,8 @@ msgstr "Brzine usporene reprodukcije"
 msgid "Software"
 msgstr "Softver"
 
-msgid "Software manager"
-msgstr "Upravljač softvera"
+msgid "Software management"
+msgstr "Upravljač softvera "
 
 msgid "Software restore"
 msgstr "Vraćanje softvera"
@@ -3740,6 +3821,9 @@ msgstr "Oznaka 2"
 msgid "Tags"
 msgstr "Oznake"
 
+msgid "Temperature and Fan control"
+msgstr "Kontrola temperature i ventilatora"
+
 msgid "Terrestrial"
 msgstr "Zemaljski"
 
@@ -3765,8 +3849,8 @@ msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
 msgstr ""
-"Hvala na korišćenju čarobnjaka.\n"
-"Molim pritisni OK da nastaviš."
+"Hvala vam na korišćenju čarobnjaka.\n"
+"Molim pritisnite OK da nastavite."
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
@@ -3783,6 +3867,14 @@ msgstr "USB stik je sada butabilan.Da li želite da skinete poslednji imidž sa 
 
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Neuspešna sigurnosna kopija. Molim odaberite drugu lokaciju."
+
+#, python-format
+msgid ""
+"The directory %s is not writable.\n"
+"Make sure you select a writable directory instead."
+msgstr ""
+"Direktorium %s nije za pisanje.\n"
+"Budi siguran da si umesto toga izabrao moguć direktorium."
 
 #, python-format
 msgid ""
@@ -3857,7 +3949,7 @@ msgid ""
 "Please install it and choose what you want to do next."
 msgstr ""
 "Bežični LAN dodatak nije instaliran!\n"
-"Molim instaliraj ga i izaberi šta želiš sledeće učiniti."
+"Molimo instalirajte ga i izaberite šta sledeće da činite."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -3875,17 +3967,20 @@ msgstr "Čarobnjak je sada gotov."
 msgid "There are at least "
 msgstr "Postoji najmanje"
 
+msgid "There are currently no outstanding actions."
+msgstr "Trenutno nema izrazitih dešavanja."
+
 msgid "There are no default services lists in your image."
 msgstr "Nema osnovne liste kanala u vašem imidžu."
 
 msgid "There are no default settings in your image."
 msgstr "Nema osnovnih postavki u vašem imidžu."
 
+msgid "There are no updates available."
+msgstr "Nema dostupnih ažuriranja."
+
 msgid "There are now "
 msgstr "Postoji sada"
-
-msgid "There is nothing to be done."
-msgstr "Ništa se ne može učiniti."
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
@@ -4036,6 +4131,9 @@ msgstr ""
 "Otkriveno preklapanje tajmera u timers.xml!\n"
 "Molimo ponovo proverite!"
 
+msgid "Timer record location"
+msgstr "Lokacija snimanja po tajmeru"
+
 msgid "Timer sanity error"
 msgstr "Greška nerazumnog tajmera"
 
@@ -4047,6 +4145,9 @@ msgstr "Status tajmera:"
 
 msgid "Timeshift"
 msgstr "Vrem. pomak"
+
+msgid "Timeshift location"
+msgstr "Lokacija vrem. pomaka"
 
 msgid "Timeshift not possible!"
 msgstr "Vrem.i pomak nije moguć!"
@@ -4079,6 +4180,9 @@ msgstr ""
 
 msgid "Today"
 msgstr "Danas"
+
+msgid "Tone Amplitude"
+msgstr "Ton amplituda"
 
 msgid "Tone mode"
 msgstr "Ton mod"
@@ -4193,25 +4297,23 @@ msgstr ""
 msgid "Uncommitted DiSEqC command"
 msgstr "Nedodeljena DiSEqC komanda"
 
-msgid ""
-"Undo\n"
-"Install"
-msgstr ""
-"Nazad\n"
-"Instaliraj"
+msgid "Undo install"
+msgstr "Poništi instaliranje"
 
-msgid ""
-"Undo\n"
-"Remove"
-msgstr ""
-"Nazad\n"
-"Ukloni"
+msgid "Undo uninstall"
+msgstr "Poništi deinstalaciju"
+
+msgid "Unicable"
+msgstr "Unikabl"
 
 msgid "Unicable LNB"
 msgstr "Unikabl LNB"
 
 msgid "Unicable Martix"
 msgstr "Unikabl Matrix"
+
+msgid "Uninstall"
+msgstr "Deinstaliraj"
 
 msgid "Universal LNB"
 msgstr "Univerzalni LNB"
@@ -4220,7 +4322,7 @@ msgid "Unmount failed"
 msgstr "Demauntiranje nije uspelo"
 
 msgid "Unsupported"
-msgstr "Nije podržano"
+msgstr "Nepodržano"
 
 msgid "Update"
 msgstr "Ažuriranje"
@@ -4230,6 +4332,9 @@ msgstr "Nadograđuje softver vašeg prijemnika"
 
 msgid "Updating finished. Here is the result:"
 msgstr "Ažuriranje završeno. Evo rezultata:"
+
+msgid "Updating software catalog"
+msgstr "Ažuriranje kataloga softvera"
 
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Ažuriram... Molim čekajte... To može potrajati nekoliko minuta..."
@@ -4286,7 +4391,7 @@ msgid "Use this video enhancement settings?"
 msgstr "Koristi postavke ovog video poboljšavanja?"
 
 msgid "Use time of currently running service"
-msgstr "Koristi vreme trenutnog kanala u radu"
+msgstr "Koristi vreme trenutnog kanala"
 
 msgid "Use usals for this sat"
 msgstr "Koristi USALS za ovaj satelit"
@@ -4494,7 +4599,7 @@ msgid ""
 msgstr ""
 "Dobro došli.\n"
 "\n"
-"Ako želite da spojite svoj drimboks na Internet,ovaj čarobnjak će vas voditi kroz osnovna mrežna podešavanja vašeg drimboksa.\n"
+"Ako želite da spojite vaš drimboks sa internetom,ovaj čarobnjak će vas voditi kroz osnovne mrežne postavke vašeg drimboxa.\n"
 "\n"
 "Pritisnite OK da počnete konfigurisanje vaše mreže"
 
@@ -4550,7 +4655,7 @@ msgid "Wireless Network"
 msgstr "Bežična mreža"
 
 msgid "Wireless Network State"
-msgstr "Stanje bežične mreže"
+msgstr "Status bežične mreže"
 
 msgid "Write error while recording. Disk full?\n"
 msgstr "Greška tokom snimanja. Disk Pun?\n"
@@ -4569,6 +4674,9 @@ msgstr "Godina"
 
 msgid "Yes"
 msgstr "Da"
+
+msgid "Yes to all"
+msgstr "Da za sve"
 
 msgid "Yes, and delete this movie"
 msgstr "Da i izbrišite ovaj film"
@@ -4614,6 +4722,9 @@ msgstr "Možete izabrati šta želite da instalirate..."
 
 msgid "You can install this plugin."
 msgstr "Možete instalirati ovaj dodatak."
+
+msgid "You can only burn Dreambox recordings!"
+msgstr "Možeš pržiti samo drimboks snimke!"
 
 msgid "You can remove this plugin."
 msgstr "Možete ukloniti ovaj dodatak."
@@ -4684,13 +4795,24 @@ msgid ""
 "\n"
 "Your internet connection is working now.\n"
 "\n"
-"Please press OK to continue."
 msgstr ""
-"Vaš drimboks je sad spreman za upotrebu.\n"
+"Vaš drimboks je sada spreman za upotrebu.\n"
 "\n"
 "Vaša internet veza sada radi.\n"
 "\n"
-"Molim pritisni OK da nastaviš."
+
+msgid ""
+"Your Dreambox is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+"Vaš drimboks je sada spreman za upotrebu.\n"
+"\n"
+"Vaša internet veza sada radi.\n"
+"\n"
+"Molim pritisnite OK da nastavite."
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "Vaš drimbox će ponovo startovati posle pritiskanja OK na vašem daljinskom upravljaču."
@@ -4725,7 +4847,7 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 "Vaša internet veza ne radi!\n"
-"Molim izaberi šta želiš sledeće učiniti."
+"Molim izaberite šta želite sledeće učiniti."
 
 msgid "Your name (optional):"
 msgstr "Vaše  ime (opciono):"
@@ -4750,6 +4872,10 @@ msgid ""
 "\n"
 "Please choose what you want to do next."
 msgstr ""
+"Vaša bežična LAN internet veza ne može biti pokrenuta!\n"
+"Da li ste spojili vaš USB WLAN stik?\n"
+"\n"
+"Molim izaberite šta želite sledeće da učinite."
 
 msgid "Zap back to service before positioner setup?"
 msgstr "Prebaciti na zadnji kanal pre podešavanja motora?"
@@ -4789,6 +4915,9 @@ msgstr "spremni za početak"
 
 msgid "activate current configuration"
 msgstr "Aktivirajte aktuelnu konfiguraciju"
+
+msgid "activate network adapter configuration"
+msgstr "Aktivirajte konfiguraciju mrežnog adaptera"
 
 msgid "add Provider"
 msgstr "Dodaj provajdera"
@@ -5111,9 +5240,6 @@ msgstr "pomoć..."
 
 msgid "hidden network"
 msgstr "skrivena mreža"
-
-msgid "hidden..."
-msgstr "skriven..."
 
 msgid "hide extended description"
 msgstr "sakrij prošireni opis"
@@ -5505,6 +5631,9 @@ msgstr "prikaži info transpondera"
 msgid "shuffle playlist"
 msgstr "sam biraj iz plejliste"
 
+msgid "shut down"
+msgstr "isključi "
+
 msgid "shutdown"
 msgstr "isključi"
 
@@ -5664,6 +5793,20 @@ msgstr "zap"
 msgid "zapped"
 msgstr "prebačen"
 
+#~ msgid ""
+#~ "\n"
+#~ "Scan for local packages and install them."
+#~ msgstr ""
+#~ "\n"
+#~ "Traži lokalne pakete i instaliraj ih "
+
+#~ msgid ""
+#~ "\n"
+#~ "View, install and remove available or installed packages."
+#~ msgstr ""
+#~ "\n"
+#~ "Pogledaj,instaliraj i ukloni pristupačne ili instalirane pakete"
+
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
@@ -5747,6 +5890,9 @@ msgstr "prebačen"
 #~ msgid "Configuration for the CrashlogAutoSubmitter"
 #~ msgstr "Konfiguracija za Autodostavljača krah zapisa "
 
+#~ msgid "Continue"
+#~ msgstr "Nastaviti"
+
 #~ msgid "CrashlogAutoSubmitConfiguration"
 #~ msgstr "Konfiguracija Autodostavljača krah zapisa"
 
@@ -5788,6 +5934,9 @@ msgstr "prebačen"
 #~ msgid "Edit title..."
 #~ msgstr "Uredi titl..."
 
+#~ msgid "Encrypted: %s"
+#~ msgstr "Kodirano: %s"
+
 #~ msgid "End"
 #~ msgstr "Kraj"
 
@@ -5800,8 +5949,17 @@ msgstr "prebačen"
 #~ msgid "Fast zapping"
 #~ msgstr "Brzo prebacivanje"
 
+#~ msgid "Following tasks will be done after you press continue!"
+#~ msgstr "Sledeći zadaci će biti urađeni kad pritisnete nastavit!"
+
 #~ msgid "Games / Plugins"
 #~ msgstr "Igre / Dodaci"
+
+#~ msgid "General AC3 delay"
+#~ msgstr "Opšte AC3 kašnjenje"
+
+#~ msgid "General PCM delay"
+#~ msgstr "Opšte PCM kašnjenje"
 
 #~ msgid "Hide error windows"
 #~ msgstr "Sakrij prozor greA!ke"
@@ -5815,6 +5973,9 @@ msgstr "prebačen"
 #~ msgstr ""
 #~ "Instalisati/\n"
 #~ "Ukloniti"
+
+#~ msgid "Interface: %s"
+#~ msgstr "Interfejs: %s"
 
 #~ msgid "Invert"
 #~ msgstr "Invertni"
@@ -5830,6 +5991,9 @@ msgstr "prebačen"
 
 #~ msgid "Loopthrough to Socket A"
 #~ msgstr "PoveA3i s Utorom A"
+
+#~ msgid "Max. Bitrate: %s"
+#~ msgstr "Maks. Bit rata: %s"
 
 #~ msgid "Movie Menu"
 #~ msgstr "Izbornik filma"
@@ -5852,6 +6016,9 @@ msgstr "prebačen"
 #~ msgid "Other..."
 #~ msgstr "Ostalo..."
 
+#~ msgid "Package details for: "
+#~ msgstr "Detalji programskog paketa za:"
+
 #~ msgid "Parental Control"
 #~ msgstr "Roditeljska zaA!tita "
 
@@ -5860,6 +6027,9 @@ msgstr "prebačen"
 
 #~ msgid "Please select keyword to filter..."
 #~ msgstr "Molim odaberite kljućnu riječ za filtraciju..."
+
+#~ msgid "Plugin manager"
+#~ msgstr "Menadžer dodataka"
 
 #~ msgid "Predefined satellite"
 #~ msgstr "Predefinirani sateliti"
@@ -5887,6 +6057,9 @@ msgstr "prebačen"
 
 #~ msgid "Recording(s) are in progress or comming up in few seconds... really shutdown now?"
 #~ msgstr "Snimanje je u tijeku ili će poćeti za nekoliko trenutaka...zaista želite isključiti sada?"
+
+#~ msgid "Refresh"
+#~ msgstr "Osveži"
 
 #~ msgid "Remove service"
 #~ msgstr "Izbriši uslugu"
@@ -5936,6 +6109,9 @@ msgstr "prebačen"
 #~ msgid "Socket "
 #~ msgstr "Utori"
 
+#~ msgid "Software manager"
+#~ msgstr "Upravljač softvera"
+
 #~ msgid "Software manager..."
 #~ msgstr "Upravljač softvera..."
 
@@ -5947,6 +6123,9 @@ msgstr "prebačen"
 
 #~ msgid "Step "
 #~ msgstr "Korak"
+
+#~ msgid "There is nothing to be done."
+#~ msgstr "Ništa se ne može učiniti."
 
 #~ msgid "Timeshifting"
 #~ msgstr "Vremeski pomak"
@@ -5966,8 +6145,19 @@ msgstr "prebačen"
 #~ "Molim pogledajte u korisničke upute.\n"
 #~ "Greška:"
 
-#~ msgid "Unicable"
-#~ msgstr "Unikabl"
+#~ msgid ""
+#~ "Undo\n"
+#~ "Install"
+#~ msgstr ""
+#~ "Nazad\n"
+#~ "Instaliraj"
+
+#~ msgid ""
+#~ "Undo\n"
+#~ "Remove"
+#~ msgstr ""
+#~ "Nazad\n"
+#~ "Ukloni"
 
 #~ msgid "Upgrade"
 #~ msgstr "Nadogradi"
@@ -6019,6 +6209,9 @@ msgstr "prebačen"
 
 #~ msgid "full /etc directory"
 #~ msgstr "puni /etc direktorij"
+
+#~ msgid "hidden..."
+#~ msgstr "skriven..."
 
 #~ msgid "list"
 #~ msgstr "lista"

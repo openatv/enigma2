@@ -21,10 +21,12 @@ class TitleProperties(Screen,ConfigListScreen):
 		<screen name="TitleProperties" position="center,center" size="560,445" title="Properties of current title" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;19" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
 			<widget source="serviceinfo" render="Label" position="10,46" size="350,144" font="Regular;18" />
 			<widget name="thumbnail" position="370,46" size="180,144" alphatest="on" />
 			<widget name="config" position="10,206" size="540,228" scrollbarMode="showOnDemand" />
@@ -38,7 +40,8 @@ class TitleProperties(Screen,ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self["key_blue"] = StaticText(_("Edit Title"))
+		self["key_yellow"] = StaticText(_("Edit Title"))
+		self["key_blue"] = StaticText()
 		self["serviceinfo"] = StaticText()
 
 		self["thumbnail"] = Pixmap()
@@ -57,7 +60,7 @@ class TitleProperties(Screen,ConfigListScreen):
 		{
 		    "green": self.exit,
 		    "red": self.cancel,
-		    "blue": self.editTitle,
+		    "yellow": self.editTitle,
 		    "cancel": self.cancel,
 		    "ok": self.ok,
 		}, -2)

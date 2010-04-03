@@ -10,8 +10,8 @@ class TemplatedMultiContent(StringList):
 		del l["self"] # cleanup locals a bit
 		del l["args"]
 
-		self.template = eval(args, {}, l)
 		self.active_style = None
+		self.template = eval(args, {}, l)
 		assert "fonts" in self.template
 		assert "itemHeight" in self.template
 		assert "template" in self.template or "templates" in self.template
@@ -25,7 +25,6 @@ class TemplatedMultiContent(StringList):
 		if not self.content:
 			from enigma import eListboxPythonMultiContent
 			self.content = eListboxPythonMultiContent()
-			self.setTemplate()
 
 			# also setup fonts (also given by source)
 			index = 0
@@ -35,30 +34,33 @@ class TemplatedMultiContent(StringList):
 
 		# if only template changed, don't reload list
 		if what[0] == self.CHANGED_SPECIFIC and what[1] == "style":
-			self.setTemplate()
-			return
-
-		if self.source:
+			pass
+		elif self.source:
 			self.content.setList(self.source.list)
-			self.setTemplate()
 
+		self.setTemplate()
 		self.downstream_elements.changed(what)
 
 	def setTemplate(self):
 		if self.source:
 			style = self.source.style
+
 			if style == self.active_style:
-				return # style did not change
+				return
 
 			# if skin defined "templates", that means that it defines multiple styles in a dict. template should still be a default
 			templates = self.template.get("templates")
 			template = self.template.get("template")
 			itemheight = self.template["itemHeight"]
+			selectionEnabled = self.template.get("selectionEnabled", True)
 
 			if templates and style and style in templates: # if we have a custom style defined in the source, and different templates in the skin, look it up
 				template = templates[style][1]
 				itemheight = templates[style][0]
+				if len(templates[style]) > 2:
+					selectionEnabled = templates[style][2]
 
 			self.content.setTemplate(template)
-
 			self.content.setItemHeight(itemheight)
+			self.selectionEnabled = selectionEnabled
+			self.active_style = style
