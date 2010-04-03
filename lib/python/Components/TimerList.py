@@ -40,7 +40,6 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 25, width-150, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
-
 		icon = None
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:

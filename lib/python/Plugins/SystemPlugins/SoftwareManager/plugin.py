@@ -420,7 +420,7 @@ class PluginManager(Screen, DreamInfoHandler):
 
 	def getUpdateInfos(self):
 		self.setState('update')
-		iSoftwareTools.getUpdates(self.getUpdateInfosCB)
+		iSoftwareTools.startSoftwareTools(self.getUpdateInfosCB)
 
 	def getUpdateInfosCB(self, retval = None):
 		if retval is not None:
@@ -429,9 +429,10 @@ class PluginManager(Screen, DreamInfoHandler):
 					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available."))
 				else:
 					self["status"].setText(_("There are no updates available."))
+				self.rebuildList()
 			elif retval is False:
+				self.setState('error')
 				self["status"].setText(_("No network connection available."))
-			self.rebuildList()
 
 	def rebuildList(self, retval = None):
 		if self.currentSelectedTag is None:
@@ -1701,15 +1702,11 @@ def startSetup(menuid):
 		return [ ]
 	return [(_("Software management"), UpgradeMain, "software_manager", 50)]
 
-def autostart(reason, **kwargs):
-	if reason is True:
-		iSoftwareTools.startSoftwareTools()
 
 def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
 	list = [
-		PluginDescriptor(where = [PluginDescriptor.WHERE_NETWORKCONFIG_READ], fnc = autostart),
 		PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup),
 		PluginDescriptor(name=_("Ipkg"), where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)
 	]

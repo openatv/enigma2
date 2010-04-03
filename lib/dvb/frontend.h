@@ -149,6 +149,7 @@ public:
 	static void setPreferredFrontend(int index) { PreferredFrontendIndex = index; }
 	static int getPreferredFrontend() { return PreferredFrontendIndex; }
 
+	void reopenFrontend();
 	int openFrontend();
 	int closeFrontend(bool force=false);
 	const char *getDescription() const { return m_description; }

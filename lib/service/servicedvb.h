@@ -162,6 +162,7 @@ public:
 	RESULT stopTimeshift(bool swToLive=true);
 	int isTimeshiftActive();
 	RESULT activateTimeshift();
+	RESULT setNextPlaybackFile(const char *fn);
 
 		// iCueSheet
 	PyObject *getCutList();
@@ -213,9 +214,8 @@ private:
 	int m_is_pvr, m_is_paused, m_timeshift_enabled, m_timeshift_active, m_timeshift_changed;
 	int m_first_program_info;
 	
-	std::string m_timeshift_file;
+	std::string m_timeshift_file, m_timeshift_file_next;
 	int m_timeshift_fd;
-	
 	ePtr<iDVBDemux> m_decode_demux;
 
 	int m_current_audio_stream;
@@ -228,8 +228,10 @@ private:
 
 	void updateTimeshiftPids();
 	void switchToLive();
+
+	void resetTimeshift(int start);
 	void switchToTimeshift();
-	
+
 	void updateDecoder(bool sendSeekableStateChanged=false);
 	
 	int m_skipmode;

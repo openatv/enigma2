@@ -16,6 +16,7 @@ class Job(object):
 		self.end = 100
 		self.__progress = 0
 		self.weightScale = 1
+		self.afterEvent = None
 
 		self.state_changed = CList()
 
@@ -370,12 +371,20 @@ class DiskspacePrecondition(Condition):
 class ToolExistsPrecondition(Condition):
 	def check(self, task):
 		import os
+		
 		if task.cmd[0]=='/':
-			realpath = task.cmd
+			self.realpath = task.cmd
+			print "[Task.py][ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!" 
+			return os.access(self.realpath, os.X_OK)
 		else:
-			realpath = task.cwd + '/' + task.cmd
-		self.realpath = realpath
-		return os.access(realpath, os.X_OK)
+			self.realpath = task.cmd
+			path = os.environ.get('PATH', '').split(os.pathsep)
+			path.append(task.cwd + '/')
+			absolutes = filter(lambda file: os.access(file, os.X_OK), map(lambda directory, file = task.cmd: os.path.join(directory, file), path))
+			if len(absolutes) > 0:
+				self.realpath = task.cmd[0]
+				return True
+		return False 
 
 	def getErrorMessage(self, task):
 		return _("A required tool (%s) was not found.") % (self.realpath)

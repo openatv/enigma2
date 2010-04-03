@@ -77,6 +77,10 @@ class Listbox(Renderer, object):
 	selection_enabled = property(lambda self: self.__selection_enabled, setSelectionEnabled)
 
 	def changed(self, what):
+		if hasattr(self.source, "selectionEnabled"):
+			self.selection_enabled = self.source.selectionEnabled
+		if len(what) > 1 and isinstance(what[1], str) and what[1] == "style":
+			return
 		self.content = self.source.content
 
 	def entry_changed(self, index):

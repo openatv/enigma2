@@ -6,7 +6,7 @@ from Components.config import config, ConfigSelection, getConfigListEntry, confi
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Tools.Directories import fileExists
-
+from Components.UsageConfig import preferredPath
 
 class RecordPathsSettings(Screen,ConfigListScreen):
 	skin = """
@@ -115,7 +115,7 @@ class RecordPathsSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				txt,
-				self.default_dirname.value
+				preferredPath(self.default_dirname.value)
 			)
 		elif currentry == self.timer_entry:
 			self.entrydirname = self.timer_dirname
@@ -123,7 +123,7 @@ class RecordPathsSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				_("Initial location in new timers"),
-				self.timer_dirname.value
+				preferredPath(self.timer_dirname.value)
 			)
 		elif currentry == self.instantrec_entry:
 			self.entrydirname = self.instantrec_dirname
@@ -131,7 +131,7 @@ class RecordPathsSettings(Screen,ConfigListScreen):
 				self.dirnameSelected,
 				MovieLocationBox,
 				_("Location for instant recordings"),
-				self.instantrec_dirname.value
+				preferredPath(self.instantrec_dirname.value)
 			)
 		elif currentry == self.timeshift_entry:
 			self.entrydirname = self.timeshift_dirname

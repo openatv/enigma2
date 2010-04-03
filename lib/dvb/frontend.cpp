@@ -484,6 +484,13 @@ eDVBFrontend::eDVBFrontend(int adap, int fe, int &ok, bool simulate)
 	closeFrontend();
 }
 
+void eDVBFrontend::reopenFrontend()
+{
+	sleep(1);
+	m_type = -1;
+	openFrontend();
+}
+
 int eDVBFrontend::openFrontend()
 {
 	if (m_state != stateClosed)
