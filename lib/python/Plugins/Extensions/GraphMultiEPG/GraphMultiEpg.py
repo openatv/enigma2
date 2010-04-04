@@ -228,8 +228,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1=self.service_rect
 		r2=self.event_rect
 		res = [ None, MultiContentEntryText(
-						pos = (r1.left(),r1.top()),
-						size = (r1.width(), r1.height()),
+						pos = (r1.x,y),
+						size = (r1.w, r1.h),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = service_name,
 						color = self.foreColorService,
@@ -238,10 +238,10 @@ class EPGList(HTMLComponent, GUIComponent):
 		if events:
 			start = self.time_base+self.offs*self.time_epoch*60
 			end = start + self.time_epoch * 60
-			left = r2.left()
-			top = r2.top()
-			width = r2.width()
-			height = r2.height()
+			left = r2.x
+			top = r2.y
+			width = r2.w
+			height = r2.h
 			foreColor = self.foreColor
 			foreColorSelected = self.foreColorSelected
 			backColor = self.backColor
@@ -291,9 +291,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base+self.offs*self.time_epoch*60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.height()), visible and update)
+			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
-			self.l.setSelectionClip(eRect(self.event_rect.left(), self.event_rect.top(), self.event_rect.width(), self.event_rect.height()), False)
+			self.l.setSelectionClip(eRect(self.event_rect.x, self.event_rect.y, self.event_rect.w, self.event_rect.h), False)
 		self.selectionChanged()
 		return False
 
