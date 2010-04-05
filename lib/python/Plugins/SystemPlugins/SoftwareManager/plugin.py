@@ -307,8 +307,8 @@ class PluginManager(Screen, DreamInfoHandler):
 				<convert type="TemplatedMultiContent">
 				{"templates":
 					{"default": (51,[
-							MultiContentEntryText(pos = (30, 1), size = (470, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (30, 25), size = (470, 24), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
+							MultiContentEntryText(pos = (0, 1), size = (470, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
+							MultiContentEntryText(pos = (0, 25), size = (470, 24), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
 							MultiContentEntryPixmapAlphaTest(pos = (475, 0), size = (48, 48), png = 5), # index 5 is the status pixmap
 							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (550, 2), png = 6), # index 6 is the div pixmap
 						]),
@@ -405,18 +405,15 @@ class PluginManager(Screen, DreamInfoHandler):
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Updating software catalog"), '', _("Searching for available updates. Please wait..." ),'', '', statuspng, divpng, None, '' ))
-				self["list"].style = "default"
-				self['list'].setList(self.statuslist)
 			elif status == 'sync':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Searching for new installed or removed packages. Please wait..." ),'', '', statuspng, divpng, None, '' ))
-				self["list"].style = "default"
-				self['list'].setList(self.statuslist)
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'', '', statuspng, divpng, None, '' ))
-				self["list"].style = "default"
-				self['list'].setList(self.statuslist)
+			self["list"].style = "default"
+			self['list'].setList(self.statuslist)
+
 
 	def getUpdateInfos(self):
 		self.setState('update')
@@ -432,7 +429,10 @@ class PluginManager(Screen, DreamInfoHandler):
 				self.rebuildList()
 			elif retval is False:
 				self.setState('error')
-				self["status"].setText(_("No network connection available."))
+				if iSoftwareTools.NetworkConnectionAvailable:
+					self["status"].setText(_("Updatefeed not available."))
+				else:
+					self["status"].setText(_("No network connection available."))
 
 	def rebuildList(self, retval = None):
 		if self.currentSelectedTag is None:
