@@ -670,7 +670,11 @@ void gDC::exec(gOpcode *o)
 			eRect bbox = para->getBoundBox();
 			int vcentered_top = o->parm.renderText->area.top() + ((o->parm.renderText->area.height() - bbox.height()) / 2);
 			int correction = vcentered_top - bbox.top();
-			offset += ePoint(0, correction);
+			// Only center if it fits, don't push text out the top
+			if (correction > 0)
+			{
+				offset += ePoint(0, correction);
+			}
 		}
 		else if (o->parm.renderText->flags & gPainter::RT_VALIGN_BOTTOM)
 		{
