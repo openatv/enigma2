@@ -228,7 +228,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		r1=self.service_rect
 		r2=self.event_rect
 		res = [ None, MultiContentEntryText(
-						pos = (r1.x,y),
+						pos = (r1.x, r1.y),
 						size = (r1.w, r1.h),
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = service_name,
