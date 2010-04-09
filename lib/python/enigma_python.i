@@ -39,6 +39,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
+#include <lib/base/etpm.h>
 #include <lib/base/nconfig.h>
 #include <lib/base/message.h>
 #include <lib/driver/rc.h>
@@ -157,6 +158,7 @@ typedef long time_t;
 %immutable ePythonMessagePump::recv_msg;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
 %include <lib/base/message.h>
+%include <lib/base/etpm.h>
 %include <lib/base/nconfig.h>
 %include <lib/driver/rc.h>
 %include <lib/gdi/fb.h>
