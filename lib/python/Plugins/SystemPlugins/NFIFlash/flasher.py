@@ -63,10 +63,10 @@ class NFIFlash(Screen):
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
-			<widget source="listlabel" render="Label" position="16,44" size="200,21" valign="center" font="Regular;18" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="listlabel" render="Label" position="10,44" size="250,20" font="Regular;16" />
 			<widget name="filelist" position="0,68" size="260,260" scrollbarMode="showOnDemand" />
 			<widget source="infolabel" render="Label" position="270,44" size="280,284" font="Regular;16" />
 			<widget source="job_progressbar" render="Progress" position="10,374" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
@@ -95,6 +95,7 @@ class NFIFlash(Screen):
 		{
 			"green": self.ok,
 			"yellow": self.reboot,
+			"blue": self.runWizard,
 			"ok": self.ok,
 			"left": self.left,
 			"right": self.right,
@@ -109,6 +110,43 @@ class NFIFlash(Screen):
 		self.md5sum = ""
 		self.job = None
 		self.box = HardwareInfo().get_device_name()
+		self.configuration_restorable = None
+		self.wizard_mode = False
+		from enigma import eTimer
+		self.delayTimer = eTimer()
+		self.delayTimer.callback.append(self.runWizard)
+		self.delayTimer.start(50,1)
+
+	def check_for_wizard(self):
+		if self["filelist"].getCurrentDirectory() is not None and fileExists(self["filelist"].getCurrentDirectory()+"wizard.nfo"):
+			self["key_blue"].text = _("USB stick wizard")
+			return True
+		else:
+			self["key_blue"].text = ""
+			return False
+
+	def runWizard(self):
+		if not self.check_for_wizard():
+			self.wizard_mode = False
+			return
+		wizardcontent = open(self["filelist"].getCurrentDirectory()+"/wizard.nfo", "r").readlines()
+		nfifile = None
+		for line in wizardcontent:
+			line = line.strip()
+			if line.startswith("image: "):
+				nfifile = self["filelist"].getCurrentDirectory()+line[7:]
+			if line.startswith("configuration: "):
+				backupfile = self["filelist"].getCurrentDirectory()+line[15:]
+				if fileExists(backupfile):
+					print "wizard configuration:", backupfile
+					self.configuration_restorable = backupfile
+				else:
+					self.configuration_restorable = None
+		if nfifile and fileExists(nfifile):
+			self.wizard_mode = True
+			print "wizard image:", nfifile
+			self.check_for_NFO(nfifile)
+			self.queryFlash()
 
 	def closeCB(self):
 		if ( self.job is None or self.job.status is not self.job.IN_PROGRESS ) and not self.no_autostart:
@@ -133,12 +171,16 @@ class NFIFlash(Screen):
 		self["filelist"].pageUp()
 		self.check_for_NFO()
 
-	def check_for_NFO(self):
+	def check_for_NFO(self, nfifile=None):
 		self.session.summary.setText(self["filelist"].getFilename())
-		if self["filelist"].getFilename() is None:
-			return
-		if self["filelist"].getCurrentDirectory() is not None:
-			self.nfifile = self["filelist"].getCurrentDirectory()+self["filelist"].getFilename()
+		if nfifile is None:
+			self.session.summary.setText(self["filelist"].getFilename())
+			if self["filelist"].getFilename() is None:
+				return
+			if self["filelist"].getCurrentDirectory() is not None:
+				self.nfifile = self["filelist"].getCurrentDirectory()+self["filelist"].getFilename()
+		else:
+			self.nfifile = nfifile
 
 		if self.nfifile.upper().endswith(".NFI"):
 			self["key_green"].text = _("Flash")
@@ -152,7 +194,7 @@ class NFIFlash(Screen):
 				else:
 					self.md5sum = ""
 			else:
-				self["infolabel"].text = _("No details for this image file") + ":\n" + self["filelist"].getFilename()
+				self["infolabel"].text = _("No details for this image file") + (self["filelist"].getFilename() or "")
 				self.md5sum = ""
 		else:
 			self["infolabel"].text = ""
@@ -164,6 +206,7 @@ class NFIFlash(Screen):
 				self["filelist"].descent()
 				self.session.summary.setText(self["filelist"].getFilename())
 				self.check_for_NFO()
+				self.check_for_wizard()
 			else:
 				self.queryFlash()
 	
@@ -192,7 +235,10 @@ class NFIFlash(Screen):
 
 	def md5finished(self, retval):
 		if retval==0:
-			self.session.openWithCallback(self.queryCB, MessageBox, _("This .NFI file has a valid md5 signature. Continue programming this image to flash memory?"), MessageBox.TYPE_YESNO)
+			if self.wizard_mode:
+				self.session.openWithCallback(self.queryCB, MessageBox, _("Shall the USB stick wizard proceed and program the image file %s into flash memory?" % self.nfifile.rsplit('/',1)[-1]), MessageBox.TYPE_YESNO)
+			else:
+				self.session.openWithCallback(self.queryCB, MessageBox, _("This .NFI file has a valid md5 signature. Continue programming this image to flash memory?"), MessageBox.TYPE_YESNO)
 		else:
 			self.session.openWithCallback(self.queryCB, MessageBox, _("The md5sum validation failed, the file may be corrupted! Are you sure that you want to burn this image to flash memory? You are doing this at your own risk!"), MessageBox.TYPE_YESNO)
 
@@ -201,6 +247,7 @@ class NFIFlash(Screen):
 			self.createJob()
 		else:
 			self["statusbar"].text = _("Please select .NFI flash image file from medium")
+			self.wizard_mode = False
 
 	def createJob(self):
 		self.job = Job("Image flashing job")
@@ -240,6 +287,8 @@ class NFIFlash(Screen):
 		elif j.status == j.FINISHED:
 			self["statusbar"].text = _("Writing NFI image file to flash completed")
 			self.session.summary.setText(_("NFI image flashing completed. Press Yellow to Reboot!"))
+			if self.wizard_mode:
+				self.restoreConfiguration()
 			self["key_yellow"].text = _("Reboot")
 
 		elif j.status == j.FAILED:
@@ -250,10 +299,19 @@ class NFIFlash(Screen):
 		print "[jobcb] %s %s %s" % (jobref, fasel, blubber)
 		self["key_green"].text = _("Flash")
 
-	def reboot(self):
+	def reboot(self, ret=None):
 		if self.job.status == self.job.FINISHED:
 			self["statusbar"].text = ("rebooting...")
 			TryQuitMainloop(self.session,2)
-			
+
+	def restoreConfiguration(self):
+		if self.configuration_restorable:
+			from Screens.Console import Console
+			cmdlist = [ "mount /dev/mtdblock/3 /mnt/realroot -t jffs2", "tar -xzvf " + self.configuration_restorable + " -C /mnt/realroot/" ]
+			self.session.open(Console, title = "Restore running", cmdlist = cmdlist, finishedCallback = self.restore_finished, closeOnSuccess = True)
+
+	def restore_finished(self):
+		self.session.openWithCallback(self.reboot, MessageBox, _("USB stick wizard finished. Your dreambox will now restart with your new image!"), MessageBox.TYPE_INFO)
+
 	def createSummary(self):
 		return NFISummary

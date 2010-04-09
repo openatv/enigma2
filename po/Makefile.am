@@ -9,11 +9,13 @@ LANGS := $(shell cat $(srcdir)/LINGUAS)
 LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
 LANGMO := $(foreach LANG, $(LANGS),$(LANG).mo)
 
-default: enigma2.pot $(LANGPO) merge $(LANGMO)
+default: enigma2.pot $(LANGMO)
 	for lang in $(LANGS); do \
 		mkdir -p $$lang/LC_MESSAGES; \
 		cp $$lang.mo $$lang/LC_MESSAGES/enigma2.mo; \
 	done
+	
+rebuild: clean cleanall enigma2.pot $(LANGPO) merge default
 
 merge:
 	for lang in $(LANGS); do \
@@ -37,9 +39,6 @@ enigma2.pot:
 	$(RM) enigma2.pot
 	mv enigma2uniq.pot enigma2.pot
 
-.PHONY: enigma2.pot
-
-
 %.mo: %.po
 	$(MSGFMT) -o $@ $<
 
@@ -47,6 +46,9 @@ enigma2.pot:
 	msginit -l $@ -o $@ -i enigma2.pot --no-translator
 
 CLEANFILES = $(foreach LANG, $(LANGS),$(LANG).mo)
+
+cleanall:
+	$(RM) enigma2.pot
 
 clean-local:
 	$(RM) -r $(LANGS)

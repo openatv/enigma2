@@ -580,11 +580,11 @@ class Network:
 				self.wlanmodule = 'madwifi'
 		if os_path.exists(rt73_dir):
 			rtfiles = listdir(rt73_dir)
-			if len(rtfiles) == 2:
+			if len(rtfiles) == 2 or len(rtfiles) == 5:
 				self.wlanmodule = 'ralink'
 		if os_path.exists(zd1211b_dir):
 			zdfiles = listdir(zd1211b_dir)
-			if len(zdfiles) == 1:
+			if len(zdfiles) == 1 or len(zdfiles) == 5:
 				self.wlanmodule = 'zydas'
 		return self.wlanmodule
 	

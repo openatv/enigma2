@@ -90,6 +90,8 @@ data/fonts/Makefile
 data/countries/Makefile
 data/defaults/Makefile
 data/defaults/Dream/Makefile
+data/defaults/Dream/hdbouquets/Makefile
+data/defaults/Dream/sdbouquets/Makefile
 data/extensions/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile

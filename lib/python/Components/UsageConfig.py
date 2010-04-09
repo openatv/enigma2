@@ -51,7 +51,14 @@ def InitUsageConfig():
 
 	config.usage.on_long_powerpress = ConfigSelection(default = "show_menu", choices = [
 		("show_menu", _("show shutdown menu")),
-		("shutdown", _("immediate shutdown")) ] )
+		("shutdown", _("immediate shutdown")),
+		("standby", _("Standby")) ] )
+	
+	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = [
+		("show_menu", _("show shutdown menu")),
+		("shutdown", _("immediate shutdown")),
+		("standby", _("Standby")) ] )
+
 
 	config.usage.alternatives_priority = ConfigSelection(default = "0", choices = [
 		("0", "DVB-S/-C/-T"),
@@ -60,6 +67,8 @@ def InitUsageConfig():
 		("3", "DVB-C/-T/-S"),
 		("4", "DVB-T/-C/-S"),
 		("5", "DVB-T/-S/-C") ])
+
+	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = False)
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 

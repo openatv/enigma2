@@ -36,7 +36,7 @@ class ServiceScan(Screen):
 	
 	def cancel(self):
 		self.close()
-	
+		
 	def __init__(self, session, scanList):
 		Screen.__init__(self, session)
 		
@@ -58,7 +58,7 @@ class ServiceScan(Screen):
 				"ok": self.ok,
 				"cancel": self.cancel
 			})
-			
+
 		self.onFirstExecBegin.append(self.doServiceScan)
 
 	def doServiceScan(self):
