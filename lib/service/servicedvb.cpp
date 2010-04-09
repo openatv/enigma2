@@ -2590,7 +2590,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		else
 		{
 			std::string value;
-			bool showRadioBackground = (ePythonConfigQuery::getConfigValue("config.misc.showradiopic", value) >= 0 && value == "False");
+			bool showRadioBackground = (ePythonConfigQuery::getConfigValue("config.misc.showradiopic", value) < 0 || value == "True");
 			std::string radio_pic;
 			if (showRadioBackground)
 				ePythonConfigQuery::getConfigValue("config.misc.radiopic", radio_pic);
