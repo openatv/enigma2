@@ -8,6 +8,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.NimManager import nimmanager, getConfigSatlist
 from Components.Label import Label
 from Tools.Directories import resolveFilename, SCOPE_DEFAULTPARTITIONMOUNTDIR, SCOPE_DEFAULTDIR, SCOPE_DEFAULTPARTITION
+from Tools.HardwareInfo import HardwareInfo
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, \
 	eDVBSatelliteEquipmentControl, eDVBFrontendParametersTerrestrial, \
@@ -113,6 +114,7 @@ class CableTransponderSearchSupport:
 
 	def cableTransponderSearchSessionClosed(self, *val):
 		print "cableTransponderSearchSessionClosed, val", val
+		self.resetTimeout()
 		self.cable_search_container.appClosed.remove(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.remove(self.getCableTransponderData)
 		self.cable_search_container = None
@@ -160,6 +162,19 @@ class CableTransponderSearchSupport:
 		tmpstr += " kHz "
 		tmpstr += data[0]
 		self.cable_search_session["text"].setText(tmpstr)
+		
+	def setTimeout(self):
+		try:
+			self.oldtimeoutvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
+		except:
+			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"		
+		
+	def resetTimeout(self):
+		try:
+			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(self.oldtimeoutvalue)
+		except:
+			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 
 	def startCableTransponderSearch(self, nim_idx):
 		if not self.tryGetRawFrontend(nim_idx):
@@ -176,10 +191,17 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.appClosed.append(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.append(self.getCableTransponderData)
 		cableConfig = config.Nims[nim_idx].cable
-		cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
+		tunername = nimmanager.getNimName(nim_idx)
+		if tunername == "CXD1981":
+			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus "
+		else:
+			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
 		#FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
 		if nim_idx < 2:
-			cmd += str(nim_idx)
+			if HardwareInfo().get_device_name() == "dm500hd":
+				cmd += "2"
+			else:
+				cmd += str(nim_idx)
 		else:
 			if nim_idx == 2:
 				cmd += "2" # first nim socket on DM8000 use /dev/i2c/2
@@ -243,6 +265,7 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.execute(cmd)
 		tmpstr = _("Try to find used transponders in cable network.. please wait...")
 		tmpstr += "\n\n..."
+		self.setTimeout()
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
 class DefaultSatLists(DefaultWizard):

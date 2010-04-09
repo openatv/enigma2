@@ -323,7 +323,7 @@
 		</widget>
 		<!-- Remaining time -->
 		<widget source="session.CurrentService" render="Label" position="576,129" size="100,20" font="Regular;18" halign="center" valign="center" backgroundColor="#06224f" shadowColor="#1d354c" shadowOffset="-1,-1" transparent="1">
-			<convert type="ServicePosition">Remaining</convert>
+			<convert type="ServicePosition">Remaining,Negate</convert>
 		</widget>
 	</screen>
 </skin>

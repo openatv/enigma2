@@ -91,8 +91,9 @@ to generate HTML."""
 		return self.__style
 
 	def setStyle(self, style):
-		self.__style = style
-		self.changed((self.CHANGED_SPECIFIC, "style"))
+		if self.__style != style:
+			self.__style = style
+			self.changed((self.CHANGED_SPECIFIC, "style"))
 
 	style = property(getStyle, setStyle)
 

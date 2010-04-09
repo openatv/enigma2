@@ -910,7 +910,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 	return 0;
 }
 
-eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service): 
+eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service):
 	m_reference(ref), m_dvb_service(service), m_have_video_pid(0), m_is_paused(0)
 {
 	m_is_primary = 1;
@@ -1021,12 +1021,13 @@ void eDVBServicePlay::serviceEvent(int event)
 			updateTimeshiftPids();
 		if (!m_timeshift_active)
 			updateDecoder();
-		if (m_first_program_info && m_is_pvr)
+		if (m_first_program_info & 1 && m_is_pvr)
 		{
-			m_first_program_info = 0;
+			m_first_program_info &= ~1;
 			seekTo(0);
 		}
-		m_event((iPlayableService*)this, evUpdatedInfo);
+		if (!m_timeshift_active)
+			m_event((iPlayableService*)this, evUpdatedInfo);
 		break;
 	}
 	case eDVBServicePMTHandler::eventPreStart:
@@ -1046,17 +1047,85 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 	switch (event)
 	{
 	case eDVBServicePMTHandler::eventNewProgramInfo:
+		eDebug("eventNewProgramInfo TS");
 		if (m_timeshift_active)
+		{
 			updateDecoder();
+			if (m_first_program_info & 2)
+			{
+				if (m_slowmotion)
+				{
+					eDebug("re-apply slowmotion after timeshift file change");
+					m_decoder->setSlowMotion(m_slowmotion);
+				}
+				if (m_fastforward)
+				{
+					eDebug("re-apply skip %d, ratio %d after timeshift file change", m_skipmode, m_fastforward);
+					if (m_skipmode)
+						m_cue->setSkipmode(m_skipmode * 90000); /* convert to 90000 per second */
+					if (m_fastforward != 1)
+						m_decoder->setFastForward(m_fastforward);
+					else
+						m_decoder->setTrickmode();
+				}
+				else
+					seekTo(0);
+				m_first_program_info &= ~2;
+			}
+			m_event((iPlayableService*)this, evUpdatedInfo);
+		}
 		break;
 	case eDVBServicePMTHandler::eventSOF:
-		m_event((iPlayableService*)this, evSOF);
+#if 0
+		if (!m_timeshift_file_next.empty())
+		{
+			eDebug("timeshift SOF, switch to next file");
+			m_decoder->pause();
+
+			m_first_program_info |= 2;
+
+			eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
+			r.path = m_timeshift_file_next;
+
+			/* free the timeshift service handler, we need the resources */
+			m_service_handler_timeshift.free();
+			resetTimeshift(1);
+
+			if (m_skipmode < 0)
+				m_cue->seekTo(0, -1000);
+			m_service_handler_timeshift.tune(r, 1, m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
+
+			m_event((iPlayableService*)this, evUser+1);
+		}
+		else
+#endif
+			m_event((iPlayableService*)this, evSOF);
 		break;
 	case eDVBServicePMTHandler::eventEOF:
 		if ((!m_is_paused) && (m_skipmode >= 0))
 		{
-			eDebug("timeshift EOF, so let's go live");
-			switchToLive();
+			if (m_timeshift_file_next.empty())
+			{
+				eDebug("timeshift EOF, so let's go live");
+				switchToLive();
+			}
+			else
+			{
+				eDebug("timeshift EOF, switch to next file");
+
+				m_first_program_info |= 2;
+
+				eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
+				r.path = m_timeshift_file_next;
+
+				/* free the timeshift service handler, we need the resources */
+				m_service_handler_timeshift.free();
+				resetTimeshift(1);
+
+				m_service_handler_timeshift.tune(r, 1, m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
+
+				m_event((iPlayableService*)this, evUser+1);
+			}
 		}
 		break;
 	}
@@ -2240,31 +2309,51 @@ void eDVBServicePlay::updateTimeshiftPids()
 	}
 }
 
+RESULT eDVBServicePlay::setNextPlaybackFile(const char *f)
+{
+	m_timeshift_file_next = f;
+	return 0;
+}
+
 void eDVBServicePlay::switchToLive()
 {
 	if (!m_timeshift_active)
 		return;
-	
+
 	eDebug("SwitchToLive");
-	
+
+	resetTimeshift(0);
+
+	m_is_paused = m_skipmode = m_fastforward = m_slowmotion = 0; /* not supported in live mode */
+
+	/* free the timeshift service handler, we need the resources */
+	m_service_handler_timeshift.free();
+
+	updateDecoder(true);
+}
+
+void eDVBServicePlay::resetTimeshift(int start)
+{
 	m_cue = 0;
-	m_decoder = 0;
 	m_decode_demux = 0;
+	m_decoder = 0;
 	m_teletext_parser = 0;
 	m_rds_decoder = 0;
 	m_subtitle_parser = 0;
-	m_new_dvb_subtitle_page_connection = 0;
 	m_new_subtitle_page_connection = 0;
+	m_new_dvb_subtitle_page_connection = 0;
 	m_rds_decoder_event_connection = 0;
 	m_video_event_connection = 0;
-	m_is_paused = m_skipmode = m_fastforward = m_slowmotion = 0; /* not supported in live mode */
-
-		/* free the timeshift service handler, we need the resources */
-	m_service_handler_timeshift.free();
-	m_timeshift_active = 0;
 	m_timeshift_changed = 1;
+	m_timeshift_file_next.clear();
 
-	updateDecoder(true);
+	if (start)
+	{
+		m_cue = new eCueSheet();
+		m_timeshift_active = 1;
+	}
+	else
+		m_timeshift_active = 0;
 }
 
 void eDVBServicePlay::switchToTimeshift()
@@ -2272,23 +2361,11 @@ void eDVBServicePlay::switchToTimeshift()
 	if (m_timeshift_active)
 		return;
 
-	m_decode_demux = 0;
-	m_decoder = 0;
-	m_teletext_parser = 0;
-	m_rds_decoder = 0;
-	m_subtitle_parser = 0;
-	m_new_subtitle_page_connection = 0;
-	m_new_dvb_subtitle_page_connection = 0;
-	m_rds_decoder_event_connection = 0;
-	m_video_event_connection = 0;
-
-	m_timeshift_active = 1;
-	m_timeshift_changed = 1;
+	resetTimeshift(1);
 
 	eServiceReferenceDVB r = (eServiceReferenceDVB&)m_reference;
 	r.path = m_timeshift_file;
 
-	m_cue = new eCueSheet();
 	m_cue->seekTo(0, -1000);
 	m_service_handler_timeshift.tune(r, 1, m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
@@ -2351,8 +2428,6 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 	if (!m_decoder)
 	{
 		h.getDecodeDemux(m_decode_demux);
-		if (m_timeshift_changed)
-			m_decoder = 0;
 		if (m_decode_demux)
 		{
 			m_decode_demux->getMPEGDecoder(m_decoder, m_is_primary);
