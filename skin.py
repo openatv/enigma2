@@ -298,7 +298,7 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 		elif attrib == 'noWrap':
 			guiObject.setNoWrap(1)
 		else:
-			raise SkinError("unsupported attribute " + attrib + "=" + value)
+			print "[Skin] ***Warning*** Ignored unknown attribute for %s: %s=%s" % (guiObject.__class__.__name__, attrib, value)
 	except int:
 # AttributeError:
 		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
