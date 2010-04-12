@@ -1,16 +1,14 @@
 #ifndef __lib_base_etpm_h
 #define __lib_base_etpm_h
 
-#include <lib/base/object.h>
-#include <lib/python/python.h>
-
 #ifndef SWIG
 #define TPMD_SOCKET "/var/run/tpmd_socket"
 #endif
 
-class eTPM: public Object, public iObject
+#include <string>
+
+class eTPM
 {
-	DECLARE_REF(eTPM);
 #ifndef SWIG
 	int fd;
 	unsigned char level2_cert[210];
@@ -26,9 +24,9 @@ class eTPM: public Object, public iObject
 		TPMD_CMD_APP_CERT		= 0x0004,
 	};
 
-	bool send_cmd(enum tpmd_cmd cmd, const void *data, unsigned int len);
-	void *recv_cmd(unsigned int *tag, unsigned int *len);
-	void parse_data(const unsigned char *data, unsigned int datalen);
+	bool send_cmd(enum tpmd_cmd cmd, const void *data, size_t len);
+	void *recv_cmd(unsigned int *tag, size_t *len);
+	void parse_data(const unsigned char *data, size_t datalen);
 
 #endif
 public:
@@ -39,8 +37,8 @@ public:
 		TPMD_DT_LEVEL2_CERT = 0x04,
 		TPMD_DT_LEVEL3_CERT = 0x05
 	};
-	PyObject *getCert(cert_type type);
-	PyObject *challenge(PyObject *rnd);
+	std::string getCert(cert_type type);
+	std::string challenge(std::string rnd);
 };
 
 #endif // __lib_base_etpm_h
