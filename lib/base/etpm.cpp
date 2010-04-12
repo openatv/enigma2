@@ -8,15 +8,16 @@
 #include <unistd.h>
 #include <openssl/bn.h>
 #include <openssl/sha.h>
-#include <lib/base/etpm.h>
+#include <lib/base/eerror.h>
 
-DEFINE_REF(eTPM);
+#include "etpm.h"
 
 eTPM::eTPM()
 {
 	struct sockaddr_un addr;
 	unsigned char buf[8];
-	unsigned int tag, len;
+	unsigned int tag;
+	size_t len;
 	unsigned char *val;
 
 	level2_cert_read = level3_cert_read = false;
@@ -25,12 +26,14 @@ eTPM::eTPM()
 	strcpy(addr.sun_path, TPMD_SOCKET);
 
 	fd = socket(PF_UNIX, SOCK_STREAM, 0);
-	if (fd < 0) {
+	if (fd < 0)
+	{
 		eDebug("[eTPM] socket error");
 		return;
 	}
 
-	if (connect(fd, (const struct sockaddr *)&addr, SUN_LEN(&addr)) < 0) {
+	if (connect(fd, (const struct sockaddr *)&addr, SUN_LEN(&addr)) < 0)
+	{
 		eDebug("[eTPM] connect error");
 		return;
 	}
@@ -57,7 +60,7 @@ eTPM::~eTPM()
 
 }
 
-bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, unsigned int len)
+bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, size_t len)
 {
 	unsigned char buf[len + 4];
 
@@ -67,7 +70,8 @@ bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, unsigned int len)
 	buf[3] = (len >> 0) & 0xff;
 	memcpy(&buf[4], data, len);
 
-	if (write(fd, buf, sizeof(buf)) != (ssize_t)sizeof(buf)) {
+	if (write(fd, buf, sizeof(buf)) != (ssize_t)sizeof(buf))
+	{
 		fprintf(stderr, "%s: incomplete write\n", __func__);
 		return false;
 	}
@@ -75,12 +79,13 @@ bool eTPM::send_cmd(enum tpmd_cmd cmd, const void *data, unsigned int len)
 	return true;
 }
 
-void* eTPM::recv_cmd(unsigned int *tag, unsigned int *len)
+void* eTPM::recv_cmd(unsigned int *tag, size_t *len)
 {
 	unsigned char buf[4];
 	void *val;
 
-	if (read(fd, buf, 4) != 4) {
+	if (read(fd, buf, 4) != 4)
+	{
 		fprintf(stderr, "%s: incomplete read\n", __func__);
 		return NULL;
 	}
@@ -92,7 +97,13 @@ void* eTPM::recv_cmd(unsigned int *tag, unsigned int *len)
 	if (val == NULL)
 		return NULL;
 
-	if (read(fd, val, *len) != (ssize_t)*len) {
+	ssize_t rd = read(fd, val, *len);
+	if (rd < 0)
+	{
+		perror("eTPM::recv_cmd read");
+		free(val);
+	}
+        else if ((size_t)rd != *len) {
 		fprintf(stderr, "%s: incomplete read\n", __func__);
 		free(val);
 		return NULL;
@@ -101,7 +112,7 @@ void* eTPM::recv_cmd(unsigned int *tag, unsigned int *len)
 	return val;
 }
 
-void eTPM::parse_data(const unsigned char *data, unsigned int datalen)
+void eTPM::parse_data(const unsigned char *data, size_t datalen)
 {
 	unsigned int i;
 	unsigned int tag;
@@ -130,32 +141,32 @@ void eTPM::parse_data(const unsigned char *data, unsigned int datalen)
 	}
 }
 
-PyObject *eTPM::getCert(cert_type type)
+std::string eTPM::getCert(cert_type type)
 {
 	if (type == TPMD_DT_LEVEL2_CERT && level2_cert_read)
-		return PyBuffer_FromMemory(level2_cert, 210);
+		return std::string((char*)level2_cert, 210);
 	else if (type == TPMD_DT_LEVEL3_CERT && level3_cert_read)
-		return PyBuffer_FromMemory(level3_cert, 210);
-	return Py_None;
-
+		return std::string((char*)level3_cert, 210);
+	return "";
 }
 
-PyObject *eTPM::challenge(PyObject* rnd)
+std::string eTPM::challenge(std::string rnd)
 {
-	if (PyString_Check(rnd) && PyString_Size(rnd) == 8)
+	if (rnd.length() == 8)
 	{
-		char* buf = PyString_AsString(rnd);
-		if (!send_cmd(TPMD_CMD_COMPUTE_SIGNATURE, buf, 8))
-			return Py_None;
+		if (!send_cmd(TPMD_CMD_COMPUTE_SIGNATURE, rnd.c_str(), 8))
+			return "";
 
-		unsigned int tag, len;
+		unsigned int tag;
+		size_t len;
 		unsigned char *val = (unsigned char*)recv_cmd(&tag, &len);
 
 		if (tag != TPMD_CMD_COMPUTE_SIGNATURE)
-			return Py_None;
+			return "";
 
-		return PyBuffer_FromMemory(val, len);
+		std::string ret((char*)val, len);
+		free(val);
+		return ret;
 	}
-	else
-		return Py_None;
+	return "";
 }
