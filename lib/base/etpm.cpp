@@ -1,4 +1,4 @@
-#include <linux/socket.h>
+#include <sys/socket.h>
 #include <fcntl.h>
 #include <stdbool.h>
 #include <stdlib.h>
@@ -103,7 +103,7 @@ void* eTPM::recv_cmd(unsigned int *tag, unsigned int *len)
 
 void eTPM::parse_data(const unsigned char *data, unsigned int datalen)
 {
-	unsigned int i, j;
+	unsigned int i;
 	unsigned int tag;
 	unsigned int len;
 	const unsigned char *val;
