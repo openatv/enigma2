@@ -1657,6 +1657,18 @@ void eDVBChannel::SDTready(int result)
 	m_SDT = 0;
 }
 
+int eDVBChannel::reserveDemux()
+{
+	ePtr<iDVBDemux> dmx;
+	if (!getDemux(dmx, 0))
+	{
+		uint8_t id;
+		if (!dmx->getCADemuxID(id))
+			return id;
+	}
+	return -1;
+}
+
 RESULT eDVBChannel::requestTsidOnid(ePyObject callback)
 {
 	if (PyCallable_Check(callback))
