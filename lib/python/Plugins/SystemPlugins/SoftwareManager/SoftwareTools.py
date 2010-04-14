@@ -7,6 +7,7 @@ from Components.Sources.List import List
 from Components.Ipkg import IpkgComponent
 from Components.Network import iNetwork
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_METADIR
+from Tools.HardwareInfo import HardwareInfo
 
 from time import time
 
@@ -29,6 +30,7 @@ class SoftwareTools(DreamInfoHandler):
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
 		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion, language = self.language)
 		self.directory = resolveFilename(SCOPE_METADIR)
+		self.hardware_info = HardwareInfo()
 		self.list = List([])
 		self.NotifierCallback = None
 		self.Console = Console()
@@ -78,9 +80,12 @@ class SoftwareTools(DreamInfoHandler):
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
 			SoftwareTools.list_updating = False
+			if self.NotifierCallback is not None:
+				self.NotifierCallback(False)
 		elif event == IpkgComponent.EVENT_DONE:
 			if SoftwareTools.list_updating:
 				self.startIpkgListAvailable()
+		#print event, "-", param		
 		pass
 
 	def startIpkgListAvailable(self, callback = None):
@@ -164,6 +169,14 @@ class SoftwareTools(DreamInfoHandler):
 					l = len(tokens)
 					version = l > 1 and tokens[1].strip() or ""
 					SoftwareTools.installed_packetlist[name] = version
+			for package in self.packagesIndexlist[:]:
+				if not self.verifyPrerequisites(package[0]["prerequisites"]):
+					self.packagesIndexlist.remove(package)
+			for package in self.packagesIndexlist[:]:
+				attributes = package[0]["attributes"]
+				if attributes.has_key("packagetype"):
+					if attributes["packagetype"] == "internal":
+						self.packagesIndexlist.remove(package)
 			if callback is None:
 				self.countUpdates()
 			else:
@@ -227,5 +240,15 @@ class SoftwareTools(DreamInfoHandler):
 			if len(self.UpdateConsole.appContainers):
 				for name in self.UpdateConsole.appContainers.keys():
 					self.UpdateConsole.kill(name)
+
+	def verifyPrerequisites(self, prerequisites):
+		if prerequisites.has_key("hardware"):
+			hardware_found = False
+			for hardware in prerequisites["hardware"]:
+				if hardware == self.hardware_info.device_name:
+					hardware_found = True
+			if not hardware_found:
+				return False
+		return True
 
 iSoftwareTools = SoftwareTools()
