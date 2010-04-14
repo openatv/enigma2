@@ -1,0 +1,27 @@
+The TPM check is currently to be considered a beta version. So please expect
+code changes in the future.
+
+If you'd like to write your own plugins and honor the efforts, Dream Multimedia
+puts into developing Enigma 2, you can protect your plugin against execution
+on Non-Dream Multimedia Hardware by implementing a TPM (Trusted Platform Module)
+check into your plugin.
+For ease of use we provide a demo plugin in lib/python/Plugins/DemoPlugins/TPMDemo.
+
+The main TPM check is implemented into the "main" function. You need to provide
+this code yourself in your plugin. So copy&paste the code into your own as well
+as the needed functions
+- bin2long
+- long2bin
+- rsa_pub1024
+- decrypt_block
+- validate_cert
+- read_random
+Importing the functions from somewhere else would spoil the security model. So
+you need to provide the code with your plugin.
+ 
+You can either use the given method using the main function (which will run the
+TPM check each time the plugin is called) or directly use it in the
+Plugins(**kwargs) function and not return the Plugins-list if the TPM check failes
+(which will prevent the plugin from showing up at all). You can also implement
+a warning message for all possible TPM failure scenarios.
+  
