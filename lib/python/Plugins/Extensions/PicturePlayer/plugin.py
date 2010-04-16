@@ -19,7 +19,7 @@ def getScale():
 
 config.pic = ConfigSubsection()
 config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
-config.pic.slidetime = ConfigInteger(default=10, limits=(10, 60))
+config.pic.slidetime = ConfigInteger(default=10, limits=(1, 600))
 config.pic.resize = ConfigSelection(default="1", choices = [("0", _("simple")), ("1", _("better"))])
 config.pic.cache = ConfigEnableDisable(default=True)
 config.pic.lastDir = ConfigText(default=resolveFilename(SCOPE_MEDIA))
