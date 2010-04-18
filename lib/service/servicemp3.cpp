@@ -30,6 +30,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 	if (sc)
 	{
 		std::list<std::string> extensions;
+		extensions.push_back("dts");
 		extensions.push_back("mp2");
 		extensions.push_back("mp3");
 		extensions.push_back("ogg");
@@ -43,6 +44,7 @@ eServiceFactoryMP3::eServiceFactoryMP3()
 		extensions.push_back("divx");
 		extensions.push_back("dat");
 		extensions.push_back("flac");
+		extensions.push_back("flv");
 		extensions.push_back("mp4");
 		extensions.push_back("mov");
 		extensions.push_back("m4a");
