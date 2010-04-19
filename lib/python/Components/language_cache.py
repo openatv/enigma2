@@ -104,6 +104,10 @@ LANG_TEXT = {
 	"T1": "Vänligen använd UPP och NER pil för att välja språk. Efter val tryck på OK knappen.",
 	"T2": "Välj språk",
 },
+"th_TH": {
+	"T1": "ใช้ปุ่มขึ้นหรือลงเพื่อเลือกภาษาที่ต้องการ จากนั้นให้กดปุ่ม OK เพื่อเลือก",
+	"T2": "เลือกภาษา",
+},
 "tr_TR": {
 	"T1": "Dil seçiminizi, yapmak için YUKARI ve AŞAĞI tuşlarını, onaylamak için OK tuşunu kullanın.",
 	"T2": "Dil seçimi",
