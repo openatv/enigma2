@@ -217,6 +217,9 @@ class PluginDownloadBrowser(Screen):
 					mountpoint = '/media/cf'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
 						list.append((partitiondict[mountpoint].description, '-d cf', partitiondict[mountpoint]))
+					mountpoint = '/media/mmc1'
+					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
+						list.append((partitiondict[mountpoint].description, '-d mmc1', partitiondict[mountpoint]))
 					mountpoint = '/media/usb'
 					if mountpoint in partitiondict.keys() and partitiondict[mountpoint].filesystem() in supported_filesystems:
 						list.append((partitiondict[mountpoint].description, '-d usb', partitiondict[mountpoint]))
