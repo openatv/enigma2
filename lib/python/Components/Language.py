@@ -38,6 +38,7 @@ class Language:
 		self.addLanguage("Slovensko", "sl", "SI")
 		self.addLanguage("Español", "es", "ES")
 		self.addLanguage("Svenska", "sv", "SE")
+		self.addLanguage("Thai", "th", "TH")
 		self.addLanguage("Türkçe", "tr", "TR")
 		self.addLanguage("Ukrainian", "uk", "UA")
 		self.addLanguage("Frysk", "fy", "x-FY") # there is no separate country for frisian
