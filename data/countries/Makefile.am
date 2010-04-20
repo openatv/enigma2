@@ -28,6 +28,7 @@ dist_install_DATA = \
 	se.png \
 	si.png \
 	sk.png \
+	th.png \
 	tr.png \
 	ua.png \
 	x-fy.png \
