@@ -3,6 +3,10 @@
 		<font filename="nmsbd.ttf" name="Regular" scale="90" />
 		<font filename="andale.ttf" name="Fixed" scale="100" />
 		<font filename="tuxtxt.ttf" name="Console" scale="100" />
+		<!-- To render Thai/Vietnamese, uncomment this, and remove the ae_AlMateen.ttf -->
+		<!-- <font filename="DroidSans-Bold.ttf" name="Replacement" scale="100" replacement="1" /> -->
+		<!-- Arabic char set replacement -->
+		<font filename="ae_AlMateen.ttf" name="Replacement" scale="100" replacement="1" />
 	</fonts>
 	<colors>
 		<color name="white" value="#ffffff" />
