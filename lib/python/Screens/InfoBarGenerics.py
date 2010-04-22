@@ -64,6 +64,7 @@ class InfoBarUnhandledKey:
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
+		self.unhandledKeyDialog.hide();
 		if flag != 4:
 			if self.flags & (1<<1):
 				self.flags = self.uflags = 0
