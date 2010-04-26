@@ -123,6 +123,51 @@ void bcm_accel_fill(
 		int x, int y, int width, int height,
 		unsigned long color)
 {
-//	printf("unimplemented bcm_accel_fill\n");
+	C(0x43); // reset source
+	C(0x53); // reset dest
+	C(0x5b); // reset pattern
+	C(0x67); // reset blend
+	C(0x75); // reset output
+
+	// clear dest surface
+	P(0x0, 0);
+	P(0x1, 0);
+	P(0x2, 0);
+	P(0x3, 0);
+	P(0x4, 0);
+	C(0x45);
+
+	// clear src surface
+	P(0x0, 0);
+	P(0x1, 0);
+	P(0x2, 0);
+	P(0x3, 0);
+	P(0x4, 0);
+	C(0x5);
+
+	P(0x2d, color);
+
+	P(0x2e, x); // prepare output rect
+	P(0x2f, y);
+	P(0x30, width);
+	P(0x31, height);
+	C(0x6e); // set this rect as output rect
+
+	P(0x0, dst_addr); // prepare output surface
+	P(0x1, dst_stride);
+	P(0x2, dst_width);
+	P(0x3, dst_height);
+	P(0x4, 0x7e48888);
+	C(0x69); // set output surface
+
+	P(0x6f, 0);
+	P(0x70, 0);
+	P(0x71, 2);
+	P(0x72, 2);
+	C(0x73); // select color keying
+
+	C(0x77);  // do it
+
+	exec_list();
 }
 
