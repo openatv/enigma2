@@ -64,7 +64,7 @@ void bcm_accel_blit(
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
 		int src_x, int src_y, int width, int height,
 		int dst_x, int dst_y, int dwidth, int dheight,
-		int pal_addr)
+		int pal_addr, int flags)
 {
 	C(0x43); // reset source
 	C(0x53); // reset dest
