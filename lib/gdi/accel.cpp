@@ -32,7 +32,7 @@ extern void bcm_accel_blit(
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
 		int src_x, int src_y, int width, int height,
 		int dst_x, int dst_y, int dwidth, int dheight,
-		int pal_addr);
+		int pal_addr, int flags);
 extern void bcm_accel_fill(
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
 		int x, int y, int width, int height,
@@ -122,7 +122,7 @@ int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect
 			dst->data_phys, dst->x, dst->y, dst->stride, 
 			area.left(), area.top(), area.width(), area.height(),
 			p.x(), p.y(), p.width(), p.height(),
-			pal_addr);
+			pal_addr, flags);
 		return 0;
 	}
 #endif
