@@ -152,12 +152,14 @@ int gAccel::fill(gSurface *dst, const eRect &area, unsigned long col)
 		col);
 	return 0;
 #endif
-#if 0 // def BCM_ACCEL
-	bcm_accel_fill(
-		dst->data_phys, dst->x, dst->y, dst->stride, 
-		area.left(), area.top(), area.width(), area.height(),
-		col);
-	return 0;
+#ifdef BCM_ACCEL
+	if (!m_bcm_accel_state) {
+		bcm_accel_fill(
+			dst->data_phys, dst->x, dst->y, dst->stride,
+			area.left(), area.top(), area.width(), area.height(),
+			col);
+		return 0;
+	}
 #endif
 	return -1;
 }
