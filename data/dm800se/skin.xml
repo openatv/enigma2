@@ -347,4 +347,20 @@
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
+	
+		<!-- LCD screen (channelselection) -->
+	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
+		<widget source="parent.ServiceEvent" render="Label" position="3,0" size="90,25" font="Regular;14" halign="center" valign="center" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Progress" position="8,27" size="80,5" borderWidth="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="3,32" size="65,32" font="Regular;26" halign="right" valign="top">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="70,34" zPosition="1" size="26,30" font="Regular;14" valign="top">
+			<convert type="ClockToText">Format:%S</convert>
+		</widget>
+	</screen>
 </skin>
