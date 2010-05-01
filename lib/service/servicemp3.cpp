@@ -240,64 +240,22 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if (!ext)
 		ext = filename;
 
-	sourceStream sourceinfo;
-	sourceinfo.is_video = FALSE;
-	sourceinfo.audiotype = atUnknown;
-	if ( (strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin") && strcasecmp(ext, ".dat") ) == 0 )
-	{
-		sourceinfo.containertype = ctMPEGPS;
-		sourceinfo.is_video = TRUE;
-	}
-	else if ( strcasecmp(ext, ".ts") == 0 )
-	{
-		sourceinfo.containertype = ctMPEGTS;
-		sourceinfo.is_video = TRUE;
-	}
-	else if ( strcasecmp(ext, ".mkv") == 0 )
-	{
-		sourceinfo.containertype = ctMKV;
-		sourceinfo.is_video = TRUE;
-	}
-	else if ( strcasecmp(ext, ".avi") == 0 || strcasecmp(ext, ".divx") == 0)
-	{
-		sourceinfo.containertype = ctAVI;
-		sourceinfo.is_video = TRUE;
-	}
-	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0 || strcasecmp(ext, ".m4v") == 0)
-	{
-		sourceinfo.containertype = ctMP4;
-		sourceinfo.is_video = TRUE;
-	}
-	else if ( strcasecmp(ext, ".m4a") == 0 )
-	{
-		sourceinfo.containertype = ctMP4;
-		sourceinfo.audiotype = atAAC;
-	}
-	else if ( strcasecmp(ext, ".mp3") == 0 )
-		sourceinfo.audiotype = atMP3;
-	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
-		sourceinfo.containertype = ctCDA;
-	if ( strcasecmp(ext, ".dat") == 0 )
-	{
-		sourceinfo.containertype = ctVCD;
-		sourceinfo.is_video = TRUE;
-	}
-	if ( (strncmp(filename, "http://", 7)) == 0 || (strncmp(filename, "udp://", 6)) == 0 || (strncmp(filename, "rtp://", 6)) == 0  || (strncmp(filename, "https://", 8)) == 0 || (strncmp(filename, "mms://", 6)) == 0 || (strncmp(filename, "rtsp://", 7)) == 0 )
-		sourceinfo.is_streaming = TRUE;
-
 	gchar *uri;
 
-	if ( sourceinfo.is_streaming )
+	if ( (strncmp(filename, "http://", 7)) == 0 || (strncmp(filename, "udp://", 6)) == 0 || (strncmp(filename, "rtp://", 6)) == 0  || (strncmp(filename, "https://", 8)) == 0 || (strncmp(filename, "mms://", 6)) == 0 || (strncmp(filename, "rtsp://", 7)) == 0 )
 	{
+		// Streaming
 		uri = g_strdup_printf ("%s", filename);
 	}
-	else if ( sourceinfo.containertype == ctCDA )
+	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
 	{
+		// CD Audio
 		int i_track = atoi(filename+18);
 		uri = g_strdup_printf ("cdda://%i", i_track);
 	}
-	else if ( sourceinfo.containertype == ctVCD )
+	else if ( strcasecmp(ext, ".dat") == 0 )
 	{
+		// VCD
 		int fd = open(filename,O_RDONLY);
 		char tmp[128*1024];
 		int ret = read(fd, tmp, 128*1024);
@@ -308,9 +266,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			uri = g_filename_to_uri(filename, NULL, NULL);
 	}
 	else
-
+	{
 		uri = g_filename_to_uri(filename, NULL, NULL);
-
+	}
 	eDebug("eServiceMP3::playbin2 uri=%s", uri);
 
 	m_gst_playbin = gst_element_factory_make("playbin2", "playbin");
