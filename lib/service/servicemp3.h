@@ -152,17 +152,6 @@ public:
 		{
 		}
 	};
-	struct sourceStream
-	{
-		audiotype_t audiotype;
-		containertype_t containertype;
-		bool is_video;
-		bool is_streaming;
-		sourceStream()
-			:audiotype(atUnknown), containertype(ctNone), is_video(FALSE), is_streaming(FALSE)
-		{
-		}
-	};
 	struct bufferInfo
 	{
 		int bufferPercent;
