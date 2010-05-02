@@ -105,7 +105,7 @@ def InitUsageConfig():
 
 	config.epg = ConfigSubsection()
 	config.epg.eit = ConfigYesNo(default = True)
-	config.epg.mhw = ConfigYesNo(default = True)
+	config.epg.mhw = ConfigYesNo(default = False)
 	config.epg.freesat = ConfigYesNo(default = True)
 	config.epg.viasat = ConfigYesNo(default = True)
 	config.misc.showradiopic = ConfigYesNo(default = True)
