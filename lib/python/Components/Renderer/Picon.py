@@ -9,6 +9,7 @@ class Picon(Renderer):
 	searchPaths = ('/usr/share/enigma2/picon/',
 				'/picon/',
 				'/media/cf/picon/',
+				'/media/mmc1/picon/',
 				'/media/usb/picon/')
 
 	def __init__(self):
