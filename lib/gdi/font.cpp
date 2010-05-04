@@ -595,22 +595,59 @@ int eTextPara::renderString(const char *string, int rflags)
 	shape(uc_shape, uc_string);
 	
 		// now do the usual logical->visual reordering
-#ifdef HAVE_FRIBIDI	
+	int size=uc_shape.size();
+#ifdef HAVE_FRIBIDI
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
+	int lines=1;
+	int pos=0, spos=0;
+	uc_visual.resize(size);
+	// gaaanz lahm, aber anders geht das leider nicht, sorry.
+	FriBidiChar array[size], target[size];
+	std::copy(uc_shape.begin(), uc_shape.end(), array);
+
+	bool line_open = false;
+	while(pos < size)
 	{
-		int size=uc_shape.size();
-		uc_visual.resize(size);
-		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-		FriBidiChar array[size], target[size];
-		std::copy(uc_shape.begin(), uc_shape.end(), array);
-		fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
-		uc_visual.assign(target, target+size);
+		int incr=1;
+		bool line_end = false;
+		if (!line_open)
+			line_open = true;
+		switch((unsigned long)array[pos])
+		{
+		case '\\':
+			if (pos+1 == size || (unsigned long)array[pos+1] != 'n')
+				break;
+			++incr;
+		case 0x8A:
+		case 0xE08A:
+		case '\n':
+			line_end = true;
+		default:
+			break;
+		}
+		if (line_end || pos+incr >= size) {
+			int len = pos - spos;
+			if (len)
+				fribidi_log2vis(array+spos, len, &dir, target+spos, 0, 0, 0);
+			target[pos] = array[pos];
+			if (incr > 1)
+				target[pos+1] = array[pos+1];
+			spos = pos+incr;
+			++lines;
+			line_open = false;
+		}
+		pos += incr;
 	}
+
+	if (lines < 2)
+		fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
+
+	uc_visual.assign(target, target+size);
 #else
 	uc_visual=uc_shape;
 #endif
 
-	glyphs.reserve(uc_visual.size());
+	glyphs.reserve(size);
 	
 	int nextflags = 0;
 	
