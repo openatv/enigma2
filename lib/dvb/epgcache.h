@@ -150,8 +150,10 @@ private:
 	static descriptorMap descriptors;
 	static __u8 data[4108];
 	static int CacheSize;
+	static bool isCacheCorrupt;
 	static void load(FILE *);
 	static void save(FILE *);
+	static void cacheCorrupt(const char* context);
 public:
 	eventData(const eit_event_struct* e=NULL, int size=0, int type=0);
 	~eventData();

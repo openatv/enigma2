@@ -20,9 +20,12 @@
 #include <dvbsi++/descriptor_tag.h>
 
 int eventData::CacheSize=0;
+bool eventData::isCacheCorrupt = 0;
 descriptorMap eventData::descriptors;
 __u8 eventData::data[4108];
 extern const uint32_t crc32_table[256];
+static const char* EPGDAT = "/hdd/epg.dat";
+static const char* EPGDATX = "/hdd/epg.dat.loading";
 
 const eServiceReference &handleGroup(const eServiceReference &ref)
 {
@@ -129,7 +132,7 @@ const eit_event_struct* eventData::get() const
 			descriptors_length += b;
 		}
 		else
-			eFatal("LINE %d descriptor not found in descriptor cache %08x!!!!!!", __LINE__, *(p-1));
+			cacheCorrupt("eventData::get");
 		tmp-=4;
 	}
 	ASSERT(pos <= 4108);
@@ -160,7 +163,9 @@ eventData::~eventData()
 				}
 			}
 			else
-				eFatal("LINE %d descriptor not found in descriptor cache %08x!!!!!!", __LINE__, *(d-1));
+			{
+				cacheCorrupt("eventData::~eventData");
+			}
 			ByteSize -= 4;
 		}
 		delete [] EITdata;
@@ -192,6 +197,8 @@ void eventData::load(FILE *f)
 
 void eventData::save(FILE *f)
 {
+	if (isCacheCorrupt)
+		return;
 	int size=descriptors.size();
 	descriptorMap::iterator it(descriptors.begin());
 	fwrite(&size, sizeof(int), 1, f);
@@ -204,6 +211,18 @@ void eventData::save(FILE *f)
 		--size;
 	}
 }
+
+void eventData::cacheCorrupt(const char* context)
+{
+
+	eDebug("WARNING: EPG Cache is corrupt (%s), you should restart Enigma!", context);
+	if (!isCacheCorrupt)
+	{
+		isCacheCorrupt = true;
+		unlink(EPGDAT); // Remove corrupt EPG data
+	}
+}
+
 
 eEPGCache* eEPGCache::instance;
 pthread_mutex_t eEPGCache::cache_lock=
@@ -984,9 +1003,6 @@ void eEPGCache::thread()
 	save();
 }
 
-static const char* EPGDAT = "/hdd/epg.dat";
-static const char* EPGDATX = "/hdd/epg.dat.loading";
-
 void eEPGCache::load()
 {
 	// cleanup any mess
@@ -1111,6 +1127,8 @@ void eEPGCache::load()
 
 void eEPGCache::save()
 {
+	if (eventData::isCacheCorrupt)
+		return;
 	// only save epg.dat if it's worth the trouble...
 	if (eventData::CacheSize < 10240)
 		return;
