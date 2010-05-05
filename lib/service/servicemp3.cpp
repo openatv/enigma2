@@ -336,6 +336,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	else
 	{
 		m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
+		g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/x-plain; text/x-pango-markup"), NULL);
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 	}
 
