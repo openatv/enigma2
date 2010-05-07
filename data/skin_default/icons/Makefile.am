@@ -32,6 +32,7 @@ dist_install_DATA = \
 	lock_off.png \
 	lock_on.png \
 	lock.png \
+	lockBouquet.png \
 	marker.png \
 	mp_buttons.png \
 	plugin.png \
@@ -47,4 +48,6 @@ dist_install_DATA = \
 	scan-c.png \
 	scan-s.png \
 	scan-t.png \
-	selectioncross.png
+	selectioncross.png \
+	unlock.png \
+	unlockBouquet.png
