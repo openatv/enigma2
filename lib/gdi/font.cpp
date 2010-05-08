@@ -341,6 +341,8 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 				i->x-=offset.x();
 				i->y-=offset.y();
 				i->bbox.moveBy(-offset.x(), -offset.y());
+				--lineChars.back();
+				++charCount;
 			} while (i-- != glyphs.rbegin()); // rearrange them into the next line
 			cursor+=ePoint(linelength, 0);  // put the cursor after that line
 		} else
@@ -378,6 +380,7 @@ int eTextPara::appendGlyph(Font *current_font, FT_Face current_face, FT_UInt gly
 	ng.glyph_index = glyphIndex;
 	ng.flags = flags;
 	glyphs.push_back(ng);
+	++charCount;
 
 		/* when we have a SHY, don't xadvance. It will either be the last in the line (when used for breaking), or not displayed. */
 	if (!(flags & GS_SOFTHYPHEN))
@@ -425,7 +428,13 @@ void eTextPara::newLine(int flags)
 	cursor.setX(left);
 	previous=0;
 	int linegap=current_face->size->metrics.height-(current_face->size->metrics.ascender+current_face->size->metrics.descender);
+
+	lineOffsets.push_back(cursor.y());
+	lineChars.push_back(charCount);
+	charCount=0;
+
 	cursor+=ePoint(0, (current_face->size->metrics.ascender+current_face->size->metrics.descender+linegap)>>6);
+
 	if (maximum.height()<cursor.y())
 		maximum.setHeight(cursor.y());
 	previous=0;
@@ -595,22 +604,20 @@ int eTextPara::renderString(const char *string, int rflags)
 	shape(uc_shape, uc_string);
 	
 		// now do the usual logical->visual reordering
-#ifdef HAVE_FRIBIDI	
+	int size=uc_shape.size();
+#ifdef HAVE_FRIBIDI
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
-	{
-		int size=uc_shape.size();
-		uc_visual.resize(size);
-		// gaaanz lahm, aber anders geht das leider nicht, sorry.
-		FriBidiChar array[size], target[size];
-		std::copy(uc_shape.begin(), uc_shape.end(), array);
-		fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
-		uc_visual.assign(target, target+size);
-	}
+	uc_visual.resize(size);
+	// gaaanz lahm, aber anders geht das leider nicht, sorry.
+	FriBidiChar array[size], target[size];
+	std::copy(uc_shape.begin(), uc_shape.end(), array);
+	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
+	uc_visual.assign(target, target+size);
 #else
 	uc_visual=uc_shape;
 #endif
 
-	glyphs.reserve(uc_visual.size());
+	glyphs.reserve(size);
 	
 	int nextflags = 0;
 	
@@ -704,8 +711,19 @@ nprint:	isprintable=0;
 	calc_bbox();
 #ifdef HAVE_FRIBIDI
 	if (dir & FRIBIDI_MASK_RTL)
+	{
 		realign(dirRight);
+		doTopBottomReordering=true;
+	}
 #endif
+
+	if (charCount)
+	{
+		lineOffsets.push_back(cursor.y());
+		lineChars.push_back(charCount);
+		charCount=0;
+	}
+
 	return 0;
 }
 
@@ -796,11 +814,21 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	gRegion clip = dc.getClip() & area;
 
 	int buffer_stride=surface->stride;
-	
+
 	for (unsigned int c = 0; c < clip.rects.size(); ++c)
 	{
-		for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i)
+		std::list<int>::reverse_iterator line_offs_it(lineOffsets.rbegin());
+		std::list<int>::iterator line_chars_it(lineChars.begin());
+		int line_offs=0;
+		int line_chars=0;
+		for (glyphString::iterator i(glyphs.begin()); i != glyphs.end(); ++i, --line_chars)
 		{
+			while(!line_chars)
+			{
+				line_offs = *(line_offs_it++);
+				line_chars = *(line_chars_it++);
+			}
+
 			if (i->flags & GS_SOFTHYPHEN)
 				continue;
 
@@ -813,13 +841,13 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				lookup8 = lookup8_invert;
 				lookup32 = lookup32_invert;
 			}
-		
+
 			static FTC_SBit glyph_bitmap;
 			if (fontRenderClass::instance->getGlyphBitmap(&i->font->font, i->glyph_index, &glyph_bitmap))
 				continue;
 			int rx=i->x+glyph_bitmap->left + offset.x();
-			int ry=i->y-glyph_bitmap->top  + offset.y();
-		
+			int ry=(doTopBottomReordering ? line_offs : i->y) - glyph_bitmap->top + offset.y();
+
 			__u8 *d=(__u8*)(surface->data)+buffer_stride*ry+rx*surface->bypp;
 			__u8 *s=glyph_bitmap->buffer;
 			register int sx=glyph_bitmap->width;
