@@ -257,7 +257,7 @@ class MovieList(GUIComponent):
 			     res.append(MultiContentEntryText(pos=(width-lenSize, 0), size=(lenSize, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		else:
 			assert(self.list_type == MovieList.LISTTYPE_MINIMAL)
-			if not len:
+			if (self.descr_state == MovieList.SHOW_DESCRIPTION) or not len:
 				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 25), font = 0, flags = RT_HALIGN_LEFT, text = txt))
 				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 25), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 			else:
