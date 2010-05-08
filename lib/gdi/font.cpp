@@ -597,8 +597,7 @@ int eTextPara::renderString(const char *string, int rflags)
 		// now do the usual logical->visual reordering
 	int size=uc_shape.size();
 #ifdef HAVE_FRIBIDI
-	FriBidiCharType dir=FRIBIDI_TYPE_ON;
-	int lines=1;
+	bool mustRealign=false;
 	int pos=0, spos=0;
 	uc_visual.resize(size);
 	// gaaanz lahm, aber anders geht das leider nicht, sorry.
@@ -625,22 +624,24 @@ int eTextPara::renderString(const char *string, int rflags)
 		default:
 			break;
 		}
-		if (line_end || pos+incr >= size) {
+		if (line_end || pos+incr >= size)
+		{
 			int len = pos - spos;
 			if (len)
+			{
+				FriBidiCharType dir=FRIBIDI_TYPE_ON;
 				fribidi_log2vis(array+spos, len, &dir, target+spos, 0, 0, 0);
+				if (!mustRealign && dir&FRIBIDI_MASK_RTL)
+					mustRealign = true;
+			}
 			target[pos] = array[pos];
 			if (incr > 1)
 				target[pos+1] = array[pos+1];
 			spos = pos+incr;
-			++lines;
 			line_open = false;
 		}
 		pos += incr;
 	}
-
-	if (lines < 2)
-		fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
 
 	uc_visual.assign(target, target+size);
 #else
@@ -740,7 +741,7 @@ nprint:	isprintable=0;
 	bboxValid=false;
 	calc_bbox();
 #ifdef HAVE_FRIBIDI
-	if (dir & FRIBIDI_MASK_RTL)
+	if (mustRealign)
 		realign(dirRight);
 #endif
 	return 0;
