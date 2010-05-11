@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-11 10:40+0000\n"
+"POT-Creation-Date: 2010-05-11 11:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -247,7 +247,7 @@ msgstr ""
 msgid "(show optional DVD audio menu)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:90
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:65
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:90
 msgid "* Only available if more than one interface is active."
 msgstr ""
@@ -482,7 +482,7 @@ msgstr ""
 msgid "A search for available updates is currently in progress."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:571
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:582
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:571
 msgid ""
 "A second configured interface has been found.\n"
@@ -595,12 +595,12 @@ msgid ""
 "Inactive"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:853
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:864
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:853
 msgid "Adapter settings"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:229
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:240
 #: ../enigma2_experimental/lib/python/Screens/TimerEdit.py:44
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/TitleList.py:187
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:229
@@ -848,7 +848,7 @@ msgstr ""
 msgid "Arabic"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:557
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:568
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:557
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -867,7 +867,7 @@ msgstr ""
 msgid "Are you sure you want to exit this wizard?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:783
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:794
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:783
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
@@ -930,6 +930,10 @@ msgstr ""
 #: ../enigma2_master/lib/python/Plugins/SystemPlugins/Videomode/plugin.py:78
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "Aspect Ratio"
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Components/Network.py:347
+msgid "Atheros"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1672
@@ -1101,11 +1105,11 @@ msgstr ""
 msgid "BB"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1231
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1236
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1241
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1246
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1251
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1242
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1247
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1252
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1257
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1262
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/SoftwareManager/plugin.py:448
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1231
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1236
@@ -1302,8 +1306,8 @@ msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/LocationBox.py:94
 #: ../enigma2_experimental/lib/python/Screens/LocationBox.py:128
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:228
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:364
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:239
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:375
 #: ../enigma2_experimental/lib/python/Screens/ParentalControlSetup.py:57
 #: ../enigma2_experimental/lib/python/Screens/ParentalControlSetup.py:334
 #: ../enigma2_experimental/lib/python/Screens/RecordPaths.py:24
@@ -1604,10 +1608,10 @@ msgstr ""
 msgid "Clear log"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:64
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:685
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1059
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1316
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:39
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:696
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1070
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1328
 #: ../enigma2_experimental/lib/python/Screens/TaskView.py:51
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/TitleList.py:186
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/PicturePlayer/plugin.py:60
@@ -1949,7 +1953,7 @@ msgstr ""
 msgid "Current Transponder"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:351
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:362
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:351
 msgid "Current settings:"
 msgstr ""
@@ -1999,7 +2003,7 @@ msgstr ""
 msgid "Czech Republic"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1295
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1307
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1295
 msgid "DHCP"
 msgstr ""
@@ -2090,7 +2094,7 @@ msgstr ""
 msgid "Deep Standby"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:107
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:118
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py:50
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:107
 #: ../enigma2_master/lib/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py:50
@@ -2113,7 +2117,7 @@ msgstr ""
 msgid "Defaults"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:230
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:241
 #: ../enigma2_experimental/lib/python/Screens/TimerEdit.py:133
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/plugin.py:120
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/SoftwareManager/BackupRestore.py:207
@@ -2151,7 +2155,7 @@ msgstr ""
 msgid "Delete mount"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:389
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:389
 #, python-format
 msgid ""
@@ -2204,14 +2208,14 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:501
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1062
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1062
 msgid "DiSEqC A/B"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:501
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1062
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1062
@@ -2605,7 +2609,7 @@ msgid "Dynamic contrast"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:966
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:385
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:384
 #: ../enigma2_experimental/lib/python/Components/ServiceScan.py:51
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/plugin.py:484
 #: ../enigma2_master/lib/python/Screens/ChannelSelection.py:966
@@ -2651,7 +2655,7 @@ msgstr ""
 msgid "Edit AutoTimer services"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:365
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:376
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:365
 msgid "Edit DNS"
 msgstr ""
@@ -2689,7 +2693,7 @@ msgstr ""
 msgid "Edit services list"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1313
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1325
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/MediaPlayer/plugin.py:510
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/MediaPlayer/settings.py:64
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1313
@@ -2698,12 +2702,12 @@ msgstr ""
 msgid "Edit settings"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:818
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:829
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:818
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:814
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:825
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:814
 msgid "Edit the network configuration of your Dreambox.\n"
 msgstr ""
@@ -2829,24 +2833,24 @@ msgstr ""
 msgid "Encrypted: "
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:511
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:522
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:511
 msgid "Encryption"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:519
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:522
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:530
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:533
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:519
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:522
 msgid "Encryption Key"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:518
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:529
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:518
 msgid "Encryption Keytype"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:515
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:526
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:515
 msgid "Encryption Type"
 msgstr ""
@@ -3068,12 +3072,12 @@ msgstr ""
 msgid "Expert"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:876
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:887
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:876
 msgid "Extended Networksetup Plugin..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:872
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:883
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:872
 msgid "Extended Setup..."
 msgstr ""
@@ -3187,12 +3191,12 @@ msgstr ""
 msgid "Finished"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:207
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:218
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:207
 msgid "Finished configuring your network"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:936
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:947
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:936
 #: ../enigma2_plugins/networkbrowser/src/MountManager.py:132
 msgid "Finished restarting your network"
@@ -3337,10 +3341,10 @@ msgstr ""
 msgid "Gaming"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:355
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:390
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:393
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:491
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:366
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:401
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:404
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:502
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:355
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:390
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:393
@@ -3463,7 +3467,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:506
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:517
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:506
 msgid "Hidden network SSID"
 msgstr ""
@@ -3538,9 +3542,9 @@ msgstr ""
 msgid "Hungarian"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:353
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:486
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1301
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:364
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:497
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1313
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:353
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:486
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1301
@@ -3742,12 +3746,10 @@ msgstr ""
 msgid "Instant record location"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/Network.py:314
 #: ../enigma2_master/lib/python/Components/Network.py:314
 msgid "Integrated Ethernet"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/Network.py:316
 #: ../enigma2_master/lib/python/Components/Network.py:316
 msgid "Integrated Wireless"
 msgstr ""
@@ -3765,6 +3767,10 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Components/Harddisk.py:443
 #: ../enigma2_master/lib/python/Components/Harddisk.py:443
 msgid "Internal Flash"
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Components/Network.py:339
+msgid "Internal LAN adapter."
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/LocationBox.py:401
@@ -3864,9 +3870,14 @@ msgstr ""
 msgid "Key %(key)s (current value: %(value)i ms)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1279
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1291
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1279
 msgid "LAN Adapter"
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Components/Network.py:325
+#: ../enigma2_experimental/lib/python/Components/Network.py:328
+msgid "LAN connection"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:243
@@ -3971,7 +3982,7 @@ msgstr ""
 msgid "Link Quality:"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:835
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:846
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:144
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:835
 #: ../enigma2_master/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:144
@@ -4010,7 +4021,7 @@ msgstr ""
 msgid "Load movie-length"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1288
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1300
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1288
 msgid "Local Network"
 msgstr ""
@@ -4463,11 +4474,11 @@ msgstr ""
 msgid "MyTubeVideohelpScreen"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:376
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:380
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:383
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:387
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:391
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:394
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:398
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:402
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:663
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:668
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:795
@@ -4510,25 +4521,25 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1307
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1319
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1307
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "Nameserver"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:266
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:277
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:266
 #, python-format
 msgid "Nameserver %d"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:854
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:865
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:854
 msgid "Nameserver settings"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:354
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:487
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:365
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:498
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:354
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:487
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
@@ -4546,8 +4557,8 @@ msgstr ""
 msgid "Network Mount"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:504
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:509
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:515
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:520
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:504
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:509
 msgid "Network SSID"
@@ -4567,13 +4578,17 @@ msgstr ""
 msgid "Network scan"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:855
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:866
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:855
 msgid "Network test"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:361
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:833
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1277
+msgid "Network test: "
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:372
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:844
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:142
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:361
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:833
@@ -4585,8 +4600,8 @@ msgstr ""
 msgid "NetworkBrowser"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:139
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:881
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:150
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:892
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:139
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:881
 msgid "NetworkWizard"
@@ -4632,7 +4647,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/Ci.py:27
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:169
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:176
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:389
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:270
 #: ../enigma2_master/lib/python/Screens/Ci.py:25
 #: ../enigma2_master/lib/python/Screens/Ci.py:27
@@ -4671,7 +4686,7 @@ msgstr ""
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:443
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:454
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:443
 msgid "No Networks found"
 msgstr ""
@@ -4764,7 +4779,7 @@ msgstr ""
 msgid "No tags are set on these movies."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:389
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:389
 msgid "No to all"
 msgstr ""
@@ -4811,7 +4826,7 @@ msgstr ""
 msgid "No wireless networks found! Please refresh."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:58
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:33
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:58
 msgid ""
 "No working local network adapter found.\n"
@@ -4819,7 +4834,7 @@ msgid ""
 "configured correctly."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:57
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:32
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:57
 msgid ""
 "No working wireless network adapter found.\n"
@@ -4827,7 +4842,7 @@ msgid ""
 "network is configured correctly."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:695
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:706
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:695
 msgid ""
 "No working wireless network interface found.\n"
@@ -5173,7 +5188,7 @@ msgstr ""
 msgid "Parent Directory"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/ParentalControl.py:113
+#: ../enigma2_experimental/lib/python/Components/ParentalControl.py:109
 #: ../enigma2_master/lib/python/Components/ParentalControl.py:113
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "Parental control"
@@ -5492,7 +5507,7 @@ msgstr ""
 msgid "Please wait (Step 2)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:606
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:617
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:606
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
@@ -5524,7 +5539,7 @@ msgstr ""
 msgid "Please wait while updating your network mount..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:194
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:205
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:194
 msgid "Please wait while we configure your network..."
 msgstr ""
@@ -5541,15 +5556,15 @@ msgstr ""
 msgid "Please wait while we test your network..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:923
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:934
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:923
 #: ../enigma2_plugins/networkbrowser/src/MountManager.py:119
 msgid "Please wait while your network is restarting..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1160
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1183
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1190
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1171
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1194
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1201
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:136
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:137
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:138
@@ -5649,7 +5664,7 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:521
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:522
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1063
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:521
 #: ../enigma2_master/lib/python/Components/NimManager.py:1063
@@ -5703,9 +5718,9 @@ msgstr ""
 msgid "Preparing... Please wait"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:59
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:319
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:693
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:34
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:330
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:704
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:59
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:319
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:693
@@ -5717,8 +5732,8 @@ msgstr ""
 msgid "Press OK to activate the selected skin."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:232
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:363
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:243
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:374
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:232
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:363
 #: ../enigma2_plugins/networkbrowser/src/MountEdit.py:64
@@ -5733,7 +5748,7 @@ msgstr ""
 msgid "Press OK to edit selected settings."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:60
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:35
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:60
 #: ../enigma2_plugins/networkbrowser/src/MountView.py:62
 msgid "Press OK to edit the settings."
@@ -5797,7 +5812,7 @@ msgstr ""
 msgid "Press OK to view full changelog"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:61
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:36
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:61
 msgid "Press yellow to set this interface as default interface."
 msgstr ""
@@ -5820,7 +5835,7 @@ msgstr ""
 msgid "Preview menu"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:347
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:358
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:347
 msgid "Primary DNS"
 msgstr ""
@@ -5902,6 +5917,10 @@ msgstr ""
 msgid "RGB"
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Components/Network.py:351
+msgid "Ralink"
+msgstr ""
+
 #: ../enigma2_experimental/lib/python/Components/Harddisk.py:441
 #: ../enigma2_master/lib/python/Components/Harddisk.py:441
 msgid "Ram Disk"
@@ -5921,8 +5940,8 @@ msgstr ""
 msgid "Ratings: "
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:641
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:426
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:652
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:427
 #: ../enigma2_experimental/lib/python/Components/ConfigList.py:236
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:221
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py:174
@@ -6229,19 +6248,19 @@ msgstr ""
 msgid "Restart GUI now?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:856
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:867
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:856
 msgid "Restart network"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1260
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1382
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1271
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1394
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1260
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1382
 msgid "Restart test"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:824
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:835
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:824
 msgid "Restart your network connection and interfaces.\n"
 msgstr ""
@@ -6443,7 +6462,7 @@ msgstr ""
 msgid "Satfinder"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:503
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:502
 msgid "Sats"
 msgstr ""
@@ -6572,7 +6591,7 @@ msgstr ""
 msgid "Scan SR6900"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:865
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:876
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:865
 msgid "Scan Wireless Networks"
 msgstr ""
@@ -6648,10 +6667,15 @@ msgstr ""
 msgid "Scan range"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:820
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:820
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
+"selected wireless device.\n"
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:831
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
 
@@ -6722,7 +6746,7 @@ msgstr ""
 msgid "Searching your network. Please wait..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:348
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:359
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:348
 msgid "Secondary DNS"
 msgstr ""
@@ -6731,7 +6755,7 @@ msgstr ""
 msgid "Security service not running."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:65
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:40
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/SoftwareManager/BackupRestore.py:155
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:65
 #: ../enigma2_master/lib/python/Plugins/SystemPlugins/SoftwareManager/BackupRestore.py:155
@@ -6941,7 +6965,7 @@ msgstr ""
 msgid "Set delay to %i ms (can be set)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:90
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:65
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:90
 msgid "Set interface as default Interface"
 msgstr ""
@@ -7014,11 +7038,11 @@ msgid ""
 "Should timers created by this AutoTimer be recorded to a custom location?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1282
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1292
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1298
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1294
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1304
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1310
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1316
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1322
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1282
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1292
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1298
@@ -7027,7 +7051,7 @@ msgstr ""
 msgid "Show Info"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:867
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:878
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:867
 msgid "Show WLAN Status"
 msgstr ""
@@ -7051,7 +7075,7 @@ msgstr ""
 msgid "Show the tv player..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:822
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:833
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:822
 msgid "Shows the state of your wireless LAN connection.\n"
 msgstr ""
@@ -7099,7 +7123,7 @@ msgstr ""
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:501
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1061
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1061
@@ -7303,7 +7327,7 @@ msgstr ""
 msgid "Standby"
 msgstr ""
 
-#: ../enigma2_experimental/mytest.py:382 ../enigma2_master/mytest.py:381
+#: ../enigma2_experimental/mytest.py:384 ../enigma2_master/mytest.py:381
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "Standby / Restart"
 msgstr ""
@@ -7334,7 +7358,7 @@ msgstr ""
 msgid "Start recording?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1317
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1329
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1317
 msgid "Start test"
 msgstr ""
@@ -7424,8 +7448,8 @@ msgstr ""
 msgid "Stop playing this movie?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1147
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1318
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1158
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1330
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1147
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1318
 msgid "Stop test"
@@ -7518,7 +7542,7 @@ msgstr ""
 msgid "Switch to previous subservice"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:536
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:537
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:536
 msgid "Switchable tuner types:"
 msgstr ""
@@ -7638,7 +7662,7 @@ msgstr ""
 msgid "Test again"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:816
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:827
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:816
 msgid "Test the network configuration of your Dreambox.\n"
 msgstr ""
@@ -7656,7 +7680,7 @@ msgid ""
 "players) instead?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:214
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:225
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:214
 msgid ""
 "The NetworkWizard extension is not installed!\n"
@@ -7761,7 +7785,7 @@ msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:198
 #: ../enigma2_experimental/lib/python/Screens/ParentalControlSetup.py:37
-#: ../enigma2_experimental/lib/python/Components/ParentalControl.py:242
+#: ../enigma2_experimental/lib/python/Components/ParentalControl.py:236
 #: ../enigma2_master/lib/python/Screens/ChannelSelection.py:198
 #: ../enigma2_master/lib/python/Screens/ParentalControlSetup.py:37
 #: ../enigma2_master/lib/python/Components/ParentalControl.py:242
@@ -7794,10 +7818,10 @@ msgstr ""
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:739
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:759
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:773
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:892
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:750
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:770
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:784
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:903
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:739
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:759
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:773
@@ -7968,7 +7992,7 @@ msgstr ""
 msgid "This setting controls the behavior when a timer matches a found event."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1248
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1259
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1248
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -7978,7 +8002,7 @@ msgid ""
 "the \"Nameserver\" Configuration"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1233
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1244
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1233
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -7987,7 +8011,7 @@ msgid ""
 "- verify that the cable is not broken"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1243
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1254
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1243
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
@@ -7996,7 +8020,7 @@ msgid ""
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1238
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1249
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1238
 msgid ""
 "This test checks whether your LAN Adapter is set up for automatic IP Address "
@@ -8009,7 +8033,7 @@ msgid ""
 "-verify that you have a configured and working DHCP Server in your network."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1228
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1239
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1228
 msgid "This test detects your configured LAN-Adapter."
 msgstr ""
@@ -8174,7 +8198,7 @@ msgstr ""
 msgid "Toneburst"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:501
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1061
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1061
@@ -8295,7 +8319,7 @@ msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:123
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:132
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:496
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:497
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:346
 #: ../enigma2_experimental/lib/python/Components/ServiceScan.py:137
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:123
@@ -8347,7 +8371,7 @@ msgstr ""
 msgid "Type of scan"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:523
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:524
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1065
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:523
 #: ../enigma2_master/lib/python/Components/NimManager.py:1065
@@ -8436,6 +8460,11 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:984
 #: ../enigma2_master/lib/python/Components/NimManager.py:984
 msgid "Universal LNB"
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Components/Network.py:353
+#: ../enigma2_experimental/lib/python/Components/Network.py:355
+msgid "Unknown network adapter."
 msgstr ""
 
 #: ../enigma2_plugins/autotimer/src/AutoTimerSettings.py:39
@@ -8543,13 +8572,13 @@ msgstr ""
 msgid "Use"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:483
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:494
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:483
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "Use DHCP"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:479
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:490
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:479
 msgid "Use Interface"
 msgstr ""
@@ -8565,17 +8594,17 @@ msgstr ""
 msgid "Use a custom location"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:488
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:499
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:488
 msgid "Use a gateway"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:85
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:60
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:85
 msgid "Use the Networkwizard to configure selected network adapter"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:826
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:837
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:826
 msgid "Use the Networkwizard to configure your Network\n"
 msgstr ""
@@ -8829,7 +8858,7 @@ msgid "Voltage mode"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:964
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:383
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:382
 #: ../enigma2_experimental/lib/python/Components/ServiceScan.py:49
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/plugin.py:482
 #: ../enigma2_master/lib/python/Screens/ChannelSelection.py:964
@@ -8839,22 +8868,33 @@ msgstr ""
 msgid "W"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:420
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:431
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:420
 msgid "WEP"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:421
+#: ../enigma2_experimental/lib/python/Components/Network.py:347
+#: ../enigma2_experimental/lib/python/Components/Network.py:349
+#: ../enigma2_experimental/lib/python/Components/Network.py:351
+msgid "WLAN adapter."
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Components/Network.py:332
+#: ../enigma2_experimental/lib/python/Components/Network.py:335
+msgid "WLAN connection"
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:432
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:421
 msgid "WPA"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:423
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:434
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:423
 msgid "WPA or WPA2"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:422
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:433
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:422
 msgid "WPA2"
 msgstr ""
@@ -8996,7 +9036,6 @@ msgstr ""
 msgid "Where to save temporary timeshift recordings?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/Network.py:315
 #: ../enigma2_master/lib/python/Components/Network.py:315
 msgid "Wireless"
 msgstr ""
@@ -9006,7 +9045,7 @@ msgstr ""
 msgid "Wireless LAN"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1286
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1298
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1286
 msgid "Wireless Network"
 msgstr ""
@@ -9063,7 +9102,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/Ci.py:27
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:168
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:173
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:389
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:275
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:270
 #: ../enigma2_master/lib/python/Screens/Ci.py:25
@@ -9085,7 +9124,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:389
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:389
 msgid "Yes to all"
 msgstr ""
@@ -9177,7 +9216,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:694
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:705
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:694
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
@@ -9227,8 +9266,8 @@ msgstr ""
 msgid "Your name (optional):"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:621
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:623
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:632
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:634
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:621
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:623
 msgid "Your network configuration has been activated."
@@ -9261,13 +9300,17 @@ msgstr ""
 msgid "Zap back to service before satfinder?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:363
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:428
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:449
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:393
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:429
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:450
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:363
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:428
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:449
 msgid "Zap back to service before tuner setup?"
+msgstr ""
+
+#: ../enigma2_experimental/lib/python/Components/Network.py:349
+msgid "Zydas"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:558
@@ -9320,12 +9363,12 @@ msgstr ""
 msgid "about to start"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:238
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:249
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:238
 msgid "activate current configuration"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:327
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:338
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:327
 msgid "activate network adapter configuration"
 msgstr ""
@@ -9345,7 +9388,7 @@ msgstr ""
 msgid "add Service"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:244
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:255
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:244
 msgid "add a nameserver entry"
 msgstr ""
@@ -9437,7 +9480,7 @@ msgid "add to parental protection"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:63
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:529
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:530
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1327
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:63
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:529
@@ -9590,15 +9633,15 @@ msgstr ""
 msgid "complex"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1355
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1369
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1367
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1381
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1355
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1369
 msgid "confirmed"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1344
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1400
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1356
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1412
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1344
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1400
 msgid "connected"
@@ -9677,7 +9720,7 @@ msgstr ""
 msgid "disable move mode"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1174
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1185
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1394
 #: ../enigma2_experimental/lib/python/Components/TimerList.py:69
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1174
@@ -9686,9 +9729,9 @@ msgstr ""
 msgid "disabled"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1329
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1348
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1395
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1341
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1360
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1407
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1329
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1348
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1395
@@ -9762,8 +9805,8 @@ msgstr ""
 msgid "enable move mode"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1170
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:534
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1181
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:535
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1341
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1381
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1170
@@ -9795,7 +9838,7 @@ msgstr ""
 msgid "end favourites edit"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:452
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:463
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/NetworkWizard/NetworkWizard.py:319
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/NetworkWizard/NetworkWizard.py:368
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:292
@@ -9811,7 +9854,7 @@ msgid "enter hidden network SSID"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:68
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:494
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:495
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1329
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:68
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:494
@@ -9838,29 +9881,29 @@ msgstr ""
 msgid "exit movielist"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:237
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:243
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:248
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:254
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:237
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:243
 msgid "exit nameserver configuration"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:326
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:332
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:337
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:343
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:326
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:332
 msgid "exit network adapter configuration"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:77
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:83
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:52
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:58
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:77
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:83
 msgid "exit network interface list"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:707
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:713
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:718
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:724
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:707
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:713
 msgid "exit networkadapter setup menu"
@@ -10091,7 +10134,7 @@ msgid "locked"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:72
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:493
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:494
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1332
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:72
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:493
@@ -10099,7 +10142,7 @@ msgstr ""
 msgid "loopthrough to"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:525
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:526
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1065
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:525
 #: ../enigma2_master/lib/python/Components/NimManager.py:1065
@@ -10119,7 +10162,7 @@ msgstr ""
 msgid "menu"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:828
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:839
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:828
 msgid "menulist"
 msgstr ""
@@ -10164,22 +10207,22 @@ msgstr ""
 msgid "move PiP to main picture"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:702
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:713
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:702
 msgid "move down to last entry"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:700
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:711
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:700
 msgid "move down to next entry"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:701
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:712
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:701
 msgid "move up to first entry"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:699
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:710
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:699
 msgid "move up to previous entry"
 msgstr ""
@@ -10279,7 +10322,7 @@ msgid "none"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:61
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:498
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:499
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:61
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:498
 msgid "not configured"
@@ -10295,7 +10338,7 @@ msgstr ""
 msgid "not used"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:532
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:533
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1067
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1326
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1342
@@ -10362,7 +10405,7 @@ msgstr ""
 msgid "once"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:333
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:344
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:333
 msgid "open nameserver configuration"
 msgstr ""
@@ -10454,7 +10497,7 @@ msgstr ""
 msgid "red"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:245
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:256
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:245
 msgid "remove a nameserver entry"
 msgstr ""
@@ -10575,7 +10618,7 @@ msgid "second"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:70
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:495
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:496
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1330
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:70
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:495
@@ -10621,14 +10664,14 @@ msgstr ""
 msgid "select image from server"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:78
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:84
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:53
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:59
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:78
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:84
 msgid "select interface"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:708
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:719
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:708
 msgid "select menu entry"
 msgstr ""
@@ -10750,7 +10793,7 @@ msgid "shutdown"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:62
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:527
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:528
 #: ../enigma2_experimental/lib/python/Components/NimManager.py:1327
 #: ../enigma2_experimental/lib/python/Components/ParentalControl.py:26
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/PicturePlayer/plugin.py:23
@@ -10911,7 +10954,7 @@ msgstr ""
 msgid "this recording"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/ParentalControl.py:113
+#: ../enigma2_experimental/lib/python/Components/ParentalControl.py:109
 #: ../enigma2_master/lib/python/Components/ParentalControl.py:113
 msgid "this service is protected by a parental control pin"
 msgstr ""
@@ -10937,8 +10980,8 @@ msgstr ""
 msgid "unavailable"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1359
-#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1373
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1371
+#: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1385
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1359
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1373
 msgid "unconfirmed"
