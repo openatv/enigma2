@@ -60,7 +60,6 @@ protected:
 private:
 	iFilePushScatterGather *m_sg;
 	int m_stop;
-	unsigned char m_buffer[65536];
 	int m_buf_start, m_buf_end, m_filter_end;
 	int m_fd_dest;
 	int m_send_pvr_commit;
@@ -70,6 +69,8 @@ private:
 	eRawFile m_raw_source;
 	
 	eFixedMessagePump<int> m_messagepump;
+
+	unsigned char m_buffer[188*1024]; // Align to page (4096) and DMX (188)
 	
 	void recvEvent(const int &evt);
 };
