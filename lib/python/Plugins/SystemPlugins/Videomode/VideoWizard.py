@@ -77,13 +77,13 @@ class VideoWizard(WizardLanguage, Rc):
 	
 	def listInputChannels(self):
 		hw_type = HardwareInfo().get_device_name()
-		hw_vers = HardwareInfo().get_device_version()
+		has_hdmi = HardwareInfo().has_hdmi()
 		list = []
 
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
 				descr = port
-				if descr == 'DVI' and (hw_type == 'dm500hd' or hw_type == 'dm8000' and hw_vers != None):
+				if descr == 'DVI' and has_hdmi:
 					descr = 'HDMI'
 				if port != "DVI-PC":
 					list.append((descr,port))
@@ -98,12 +98,12 @@ class VideoWizard(WizardLanguage, Rc):
 		
 	def inputSelectionMoved(self):
 		hw_type = HardwareInfo().get_device_name()
-		hw_vers = HardwareInfo().get_device_version()
+		has_hdmi = HardwareInfo().has_hdmi()
 		print "input selection moved:", self.selection
 		self.inputSelect(self.selection)
 		if self["portpic"].instance is not None:
 			picname = self.selection
-			if picname == 'DVI' and (hw_type == 'dm500hd' or hw_type == 'dm8000' and hw_vers != None):
+			if picname == 'DVI' and has_hdmi:
 				picname = "HDMI"
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + picname + ".png"))
 		

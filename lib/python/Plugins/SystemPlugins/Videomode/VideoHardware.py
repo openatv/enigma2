@@ -230,7 +230,7 @@ class VideoHardware:
 
 	def createConfig(self, *args):
 		hw_type = HardwareInfo().get_device_name()
-		hw_vers = HardwareInfo().get_device_version()
+		has_hdmi = HardwareInfo().has_hdmi()
 		lst = []
 
 		config.av.videomode = ConfigSubDict()
@@ -240,9 +240,9 @@ class VideoHardware:
 		portlist = self.getPortList()
 		for port in portlist:
 			descr = port
-			if descr == 'DVI' and (hw_type == 'dm500hd' or hw_type == 'dm8000' and hw_vers != None):
-                                descr = 'HDMI'                         
-			elif descr == 'DVI-PC' and  (hw_type == 'dm500hd' or hw_type == 'dm8000' and hw_vers != None):
+			if descr == 'DVI' and has_hdmi:
+				descr = 'HDMI'
+			elif descr == 'DVI-PC' and has_hdmi:
 				descr = 'HDMI-PC'
 			lst.append((port, descr))
 
