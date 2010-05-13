@@ -169,17 +169,17 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			self.updateList()
 
 	def NetworkFallback(self):
-		if iNetwork.configuredNetworkAdapters.has_key('wlan0') is True:
+		if 'wlan0' in iNetwork.configuredNetworkAdapters:
 			self.session.openWithCallback(self.ErrorMessageClosed, MessageBox, self.wlan_errortext, type = MessageBox.TYPE_INFO,timeout = 10)
-		if iNetwork.configuredNetworkAdapters.has_key('ath0') is True:
+		if 'ath0' in iNetwork.configuredNetworkAdapters:
 			self.session.openWithCallback(self.ErrorMessageClosed, MessageBox, self.wlan_errortext, type = MessageBox.TYPE_INFO,timeout = 10)
 		else:
 			self.session.openWithCallback(self.ErrorMessageClosed, MessageBox, self.lan_errortext, type = MessageBox.TYPE_INFO,timeout = 10)
 
 	def ErrorMessageClosed(self, *ret):
-		if iNetwork.configuredNetworkAdapters.has_key('wlan0') is True:
+		if 'wlan0' in iNetwork.configuredNetworkAdapters:
 			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, 'wlan0')
-		elif iNetwork.configuredNetworkAdapters.has_key('ath0') is True:
+		elif 'ath0' in iNetwork.configuredNetworkAdapters:
 			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, 'ath0')
 		else:
 			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, 'eth0')
