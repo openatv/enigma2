@@ -1415,10 +1415,6 @@ class InfoBarPiP:
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
 				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
 				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
-				self["InfobarPiPActions"] = HelpableActionMap(self, "InfobarPiPActions", 
-					{
-						"switchPiP": (self.togglePipzap, _("zap in pip window...")),
-					})
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
