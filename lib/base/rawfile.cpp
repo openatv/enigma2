@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <unistd.h>
 #include <fcntl.h>
+#include <errno.h>
 #include <lib/base/rawfile.h>
 #include <lib/base/eerror.h>
 
@@ -104,6 +105,24 @@ int eRawFile::close()
 	}
 }
 
+ssize_t eRawFile::readAll(void *buf, size_t count)
+{
+	unsigned char *ptr = (unsigned char*)buf;
+	ssize_t result = 0;
+	while (result < count)
+	{
+		int retval = ::read(m_fd, &ptr[result], count - result);
+		if (retval < 0)
+		{
+			if (errno == EINTR) continue;
+			return retval;
+		}
+		if (retval == 0) break;
+		result += retval;
+	}
+	return result;
+}
+
 ssize_t eRawFile::read(void *buf, size_t count)
 {
 //	eDebug("read: %p, %d", buf, count);
@@ -120,7 +139,7 @@ ssize_t eRawFile::read(void *buf, size_t count)
 	int ret;
 	
 	if (!m_cached)
-		ret = ::read(m_fd, buf, count);
+		ret = readAll(buf, count);
 	else
 		ret = ::fread(buf, 1, count, m_file);
 
