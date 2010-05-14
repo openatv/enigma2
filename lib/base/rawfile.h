@@ -29,7 +29,6 @@ private:
 	int switchOffset(off_t off);
 	FILE *openFileCached(int nr);
 	int openFileUncached(int nr);
-	ssize_t readAll(void *buf, size_t count);
 };
 
 #endif
