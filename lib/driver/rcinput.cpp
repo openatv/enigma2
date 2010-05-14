@@ -73,16 +73,8 @@ void eRCDeviceInputDev::handleCode(long rccode)
 eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver)
 	:eRCDevice(driver->getDeviceName(), driver), iskeyboard(false)
 {
-	int len=id.length();
-	int idx=0;
-	while(idx <= len-8)
-	{
-		if (!strncasecmp(&id[idx++], "KEYBOARD", 8))
-		{
-			iskeyboard=true;
-			break;
-		}
-	}
+	if (strcasestr(id.c_str(), "keyboard") != NULL)
+		iskeyboard = true;
 	setExclusive(true);
 	eDebug("Input device \"%s\" is %sa keyboard.", id.c_str(), iskeyboard ? "" : "not ");
 }

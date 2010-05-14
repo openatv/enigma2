@@ -602,7 +602,7 @@ RESULT eDVBVideo::connectEvent(const Slot1<void, struct iTSMPEGDecoder::videoEve
 	return 0;
 }
 
-static int readMpegProc(char *str, int decoder)
+static int readMpegProc(const char *str, int decoder)
 {
 	int val = -1;
 	char tmp[64];
