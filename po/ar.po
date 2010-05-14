@@ -7,14 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-12-28 20:46+0100\n"
-"PO-Revision-Date: 2006-01-10 01:17+0300\n"
-"Last-Translator: hazem <moustafagamal@hotmail.com>\n"
+"POT-Creation-Date: 2010-05-11 10:44+0000\n"
+"PO-Revision-Date: 2010-05-10 21:32+0200\n"
+"Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ar\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"X-Generator: Pootle 2.0.2\n"
 "X-Poedit-Language: Arabic\n"
 "X-Poedit-Country: EGYPT\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
@@ -23,274 +26,345 @@ msgid ""
 "\n"
 "Advanced options and settings."
 msgstr ""
+"\n"
+"إعدادات و إختيارات متقدمه"
 
 msgid ""
 "\n"
 "After pressing OK, please wait!"
 msgstr ""
+"\n"
+"بعد الضغط على موافق ، رجاء الانتظار"
 
+#
 msgid ""
 "\n"
 "Backup your Dreambox settings."
 msgstr ""
+"\n"
+"عمل باك أب للاعدادات"
 
+#
 msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
+"\n"
+"تحرير عنوان مصدر الترقيه"
 
+#
 msgid ""
 "\n"
 "Manage extensions or plugins for your Dreambox"
 msgstr ""
+"\n"
+"تحكم فى الاضافات والبلج إنز للدريم بوكس"
 
 msgid ""
 "\n"
 "Online update of your Dreambox software."
 msgstr ""
+"\n"
+"تحديث البرنامج التشغيلى عن طريق الانترنت"
 
+#
 msgid ""
 "\n"
 "Press OK on your remote control to continue."
 msgstr ""
+"\n"
+"أضغط موافق من الريموت للاستمرار"
 
+#
 msgid ""
 "\n"
 "Restore your Dreambox settings."
 msgstr ""
+"\n"
+"إستعادة إعدادات الدريم بوكس"
 
+#
 msgid ""
 "\n"
 "Restore your Dreambox with a new firmware."
 msgstr ""
+"\n"
+"إستعاده الدريم بوكس بصوره جديده"
 
+#
 msgid ""
 "\n"
 "Restore your backups by date."
 msgstr ""
+"\n"
+"إستعاده الباك أب بالتاريخ"
 
+#
 msgid ""
 "\n"
 "Scan for local extensions and install them."
 msgstr ""
+"\n"
+"البحث عن إضافات موضعيه وتركيبها"
 
 msgid ""
 "\n"
 "Select your backup device.\n"
 "Current device: "
 msgstr ""
+"\n"
+"أختار جهاز الباك أب.\n"
+"الجهاز الحالى: "
 
+#
 msgid ""
 "\n"
 "System will restart after the restore!"
 msgstr ""
+"\n"
+"سيتم عمل إعادة تشغيل بعد الاستعاده !"
 
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
+"\n"
+"مشاهده،تنصيب أو إزالة الباقات."
+
+#
 msgid " "
 msgstr ""
 
+#
+msgid " Results"
+msgstr "النتائج"
+
+#
 msgid " extensions."
-msgstr ""
+msgstr "الاضافات"
 
 msgid " packages selected."
-msgstr ""
+msgstr "الحزم المختاره"
 
+#
 msgid " updates available."
-msgstr ""
+msgstr "التحديثات المتاحه"
 
+#
 msgid " wireless networks found!"
-msgstr ""
+msgstr "الشبكات اللاسلكيه التى تم العثور عليها"
 
+#
 msgid "#000000"
-msgstr ""
+msgstr "#000000"
 
+#
 msgid "#0064c7"
-msgstr ""
+msgstr "0064c7"
 
 msgid "#25062748"
-msgstr ""
+msgstr "#25062748"
 
 msgid "#389416"
-msgstr ""
+msgstr "#389416"
 
 msgid "#80000000"
-msgstr ""
+msgstr "#80000000"
 
 msgid "#80ffffff"
-msgstr ""
+msgstr "#80ffffff"
 
 msgid "#bab329"
-msgstr ""
+msgstr "#bab329"
 
 msgid "#f23d21"
-msgstr ""
+msgstr "#f23d21"
 
 msgid "#ffffff"
-msgstr ""
+msgstr "#ffffff"
 
 msgid "#ffffffff"
-msgstr ""
+msgstr "#ffffffff"
 
 msgid "%H:%M"
-msgstr ""
+msgstr "%H:%M"
 
+#
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "%d وظائف تعمل فى الخلفيه"
 
+#
 #, python-format
 msgid "%d min"
-msgstr ""
+msgstr "%d دقيقه"
 
+#
 #, python-format
 msgid "%d services found!"
 msgstr "%d تم العثور على"
 
 msgid "%d.%B %Y"
+msgstr "%d.%B %Y"
+
+#
+#, python-format
+msgid "%i ms"
 msgstr ""
 
+#
 #, python-format
 msgid ""
 "%s\n"
 "(%s, %d MB free)"
 msgstr ""
 
+#
 #, python-format
 msgid "%s (%s)\n"
 msgstr ""
 
 msgid "(ZAP)"
-msgstr ""
+msgstr "(تنقل)"
 
 msgid "(empty)"
-msgstr ""
+msgstr "(خالى)"
 
 msgid "(show optional DVD audio menu)"
-msgstr ""
+msgstr "(شاهد قائمه صوت دى فى دى إختياريه)"
 
 msgid "* Only available if more than one interface is active."
-msgstr ""
+msgstr "*متاحه فقط عند وجود أكثر من واحهه نشطه"
 
-msgid "* Only available when entering hidden SSID or network key"
-msgstr ""
-
+#
 msgid ".NFI Download failed:"
-msgstr ""
+msgstr "فشل تحميل ملف صوره"
 
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr ""
+msgstr "ملف صوره به بصمة md5sumصحيح ، تستطيع تنصيب الصوره بأمان!"
 
-msgid "/usr/share/enigma2 directory"
-msgstr ""
-
-msgid "/var directory"
-msgstr ""
-
+#
 msgid "0"
 msgstr ""
 
+#
 msgid "1"
 msgstr ""
 
+#
 msgid "1 wireless network found!"
-msgstr ""
+msgstr "تم العثور على شبكه لاسلكيه"
 
+#
 msgid "1.0"
 msgstr ""
 
 msgid "1.1"
-msgstr ""
+msgstr "1.1"
 
 msgid "1.2"
-msgstr ""
+msgstr "1.2"
 
+#
 msgid "12V output"
-msgstr ""
+msgstr "مخرج 12 ف"
 
+#
 msgid "13 V"
-msgstr ""
+msgstr "13 ف"
 
 msgid "16:10"
-msgstr ""
+msgstr "16:10"
 
+#
 msgid "16:10 Letterbox"
 msgstr ""
 
+#
 msgid "16:10 PanScan"
 msgstr ""
 
 msgid "16:9"
-msgstr ""
+msgstr "16:9"
 
+#
 msgid "16:9 Letterbox"
 msgstr ""
 
+#
 msgid "16:9 always"
 msgstr ""
 
+#
 msgid "18 V"
-msgstr ""
+msgstr "18 ف"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
 msgid "3"
-msgstr ""
+msgstr "3"
 
+#
 msgid "30 minutes"
-msgstr ""
+msgstr "30 دقيقه"
 
 msgid "4"
-msgstr ""
+msgstr "4"
 
 msgid "4:3"
-msgstr ""
+msgstr "4:3"
 
+#
 msgid "4:3 Letterbox"
 msgstr ""
 
+#
 msgid "4:3 PanScan"
 msgstr ""
 
 msgid "5"
-msgstr ""
+msgstr "5"
 
 msgid "5 minutes"
-msgstr ""
+msgstr "5 دقائق"
 
-msgid "50 Hz"
-msgstr ""
-
+#
 msgid "6"
 msgstr ""
 
 msgid "60 minutes"
-msgstr ""
+msgstr "60 دقيقه"
 
 msgid "7"
-msgstr ""
+msgstr "7"
 
 msgid "8"
-msgstr ""
+msgstr "8"
 
 msgid "9"
-msgstr ""
+msgstr "9"
 
+#
 msgid "<Current movielist location>"
-msgstr ""
+msgstr "<موقع قائمه الافلام الحاليه>"
 
+#
 msgid "<Default movie location>"
-msgstr ""
+msgstr "<مكان الافلام الافتراضى>"
 
+#
 msgid "<Last timer location>"
-msgstr ""
+msgstr "<مكان المؤقت الاخير>"
 
 msgid "<unknown>"
-msgstr ""
+msgstr "<غير معروف>"
 
 msgid "??"
-msgstr ""
+msgstr "؟؟"
 
+#
 msgid "A"
 msgstr "أ"
 
@@ -299,18 +373,34 @@ msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
+"تم تعديل ملف التكوين (%s) منذ التثبيت\n"
+"هل تريد الاحتفاظ بإصدارك ؟"
+
+msgid "A demo plugin for TPM usage."
+msgstr ""
 
 msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"انتهاء التسجيل بالمؤقت ، يجب وضع \n"
+"الدريم بوكس فى وضع الاستعداد , أفعل ذلك الان ؟"
 
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"انتهاء التسجيل بالمؤقت ، يجب إغلاق الدريم بوكس \n"
+"أغلاق الان؟"
 
+#
 msgid "A graphical EPG for all services of an specific bouquet"
+msgstr ""
+
+#
+msgid ""
+"A mount entry with this name already exists!\n"
+"Update existing entry and continue?\n"
 msgstr ""
 
 #, python-format
@@ -318,45 +408,61 @@ msgid ""
 "A record has been started:\n"
 "%s"
 msgstr ""
+"التسجيل بدأ:\n"
+"%s"
 
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
+"هناك تسجيل جارى الان \n"
+"ماذا تريد أن تفعل ؟"
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
-msgstr ""
+msgstr "هناك تسجيل جارى حاليا . من فضلك أوقف التسجيل قبل محاولة ضبط الموتور."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
+"هناك تسجيل جارى حاليا . من فضلك أوقف التسجيل قبل محاولة بدأ مكتشف الأقمار."
 
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr ""
+msgstr "لم يتم العثور على الاداه المطلوبه (%s)"
 
+#
 msgid "A search for available updates is currently in progress."
-msgstr ""
+msgstr "يتم حاليا البحث عن التحديثات المتاحه"
 
 msgid ""
 "A second configured interface has been found.\n"
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
+"تم العثور على واجهه ثانيه جاهزة الاعدادات\n"
+"\n"
+"هل تريد تعطيل واجهه الشبكه الثانيه ؟"
 
+#
 msgid ""
 "A sleep timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
+"مؤقت النوم يريد نقل\n"
+"الدريم بوكس الى وضع الاستعداد. هل توافق ؟"
 
+#
 msgid ""
 "A sleep timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
+"مؤقت النوم يريد إغلاف\n"
+"الدريم بوكس . هل توافق ؟"
 
+#
 msgid "A small overview of the available icon states and actions."
 msgstr ""
 
@@ -365,88 +471,156 @@ msgid ""
 "Disable TV and try again?\n"
 msgstr ""
 "فشل عمليه التسجيل بالمؤقت\n"
-"حاول مره ثانيه؟\n"
+"قم بتعطيل التليفزيون وحاول مره ثانيه؟\n"
 
+#
 msgid "A/V Settings"
 msgstr "إعدادات الصوت والصوره"
 
+#
 msgid "AA"
 msgstr "أأ"
 
+#
 msgid "AB"
 msgstr "أب"
 
 msgid "AC3 default"
-msgstr "AC3 المعتاده"
+msgstr "AC3 الافتراضى"
 
+#
 msgid "AC3 downmix"
 msgstr ""
 
+#
 msgid "Abort"
+msgstr "الغاء"
+
+msgid "Abort this Wizard."
 msgstr ""
 
+#
 msgid "About"
 msgstr "عن"
 
+#
 msgid "About..."
 msgstr "عـن..."
 
+#
 msgid "Accesspoint:"
-msgstr ""
+msgstr "نقطة وصول"
 
+#
 msgid "Action on long powerbutton press"
-msgstr ""
+msgstr "العمل عند الضغط المستمر على ذر الاغلاق"
 
+#
+msgid "Action on short powerbutton press"
+msgstr "العمل عند الضغط السريع على ذر الاغلاق"
+
+#
 msgid "Action:"
-msgstr ""
+msgstr "العمل"
 
+#
 msgid "Activate Picture in Picture"
-msgstr ""
+msgstr "صوره داخل صوره نشط"
 
+#
 msgid "Activate network settings"
 msgstr "تفعيل إعدادات الشبكه"
 
-msgid "Adapter settings"
-msgstr ""
+#
+msgid "Active"
+msgstr "نشط"
 
+#
+msgid ""
+"Active/\n"
+"Inactive"
+msgstr ""
+"نشط/\n"
+"غير نشط"
+
+#
+msgid "Adapter settings"
+msgstr "إعدادات المحول"
+
+#
 msgid "Add"
 msgstr "أضف"
 
+#
 msgid "Add Bookmark"
-msgstr ""
+msgstr "إضافة مرجعيه"
 
+#
 msgid "Add WLAN configuration?"
-msgstr ""
+msgstr "إضافة إعدادات شبكه واسعه"
 
+#
 msgid "Add a mark"
+msgstr "أضف علامه"
+
+#
+msgid "Add a new NFS or CIFS mount point to your Dreambox."
 msgstr ""
 
+#
 msgid "Add a new title"
-msgstr ""
+msgstr "إضافة عنوان جديد"
 
+#
 msgid "Add network configuration?"
+msgstr "إضافه إعدادات شبكه ؟"
+
+#
+msgid "Add new AutoTimer"
+msgstr "إضافة مؤقت تلقائى جديد"
+
+#
+msgid "Add new network mount point"
 msgstr ""
 
+#
 msgid "Add timer"
 msgstr "أضف مؤقت"
 
+#
+msgid "Add timer as disabled on conflict"
+msgstr ""
+
 msgid "Add title"
-msgstr ""
+msgstr "إضافة عنوان"
 
+#
 msgid "Add to bouquet"
-msgstr ""
+msgstr "إضافه الى الباقه"
 
+#
 msgid "Add to favourites"
+msgstr "إضافه الى المفضله"
+
+#
+msgid "Add zap timer instead of record timer?"
 msgstr ""
 
+#
+msgid "Added: "
+msgstr "تمت الاضافه"
+
+#
 msgid ""
 "Adds enigma2 settings and dreambox model informations like SN, rev... if "
 "enabled."
 msgstr ""
 
+#
 msgid "Adds network configuration if enabled."
 msgstr ""
 
+#
 msgid "Adds wlan configuration if enabled."
 msgstr ""
 
@@ -456,792 +630,1088 @@ msgid ""
 "OK to close the video fine-tuning, or use the number keys to select other "
 "test screens."
 msgstr ""
+"أضبط إعدادات الالوان بحيث يمكن تمييز أطياف اللون، لكن تبدو مشبعه قدر "
+"الامكان. إذا كانت النتيجه مرضيه أضغط موافقلاغلاق النافذه ، أو استخدم مفاتيح "
+"الارقام لاختيار شاشات اختبار أخرى"
 
-msgid "Advanced"
-msgstr "متقدم"
-
+#
 msgid "Advanced Options"
-msgstr ""
+msgstr "إختيارات متقدمه"
 
+#
 msgid "Advanced Software"
-msgstr ""
+msgstr "سوفت وير متقدم"
 
+#
 msgid "Advanced Software Plugin"
-msgstr ""
+msgstr "سوفت ويريلج إنز متقدمه"
 
+#
 msgid "Advanced Video Enhancement Setup"
-msgstr ""
+msgstr "إعدادات تحسين فيديو متقدمه"
 
+#
 msgid "Advanced Video Setup"
-msgstr ""
+msgstr "إعدادات فيديو متقدمه"
 
+#
 msgid "Advanced restore"
-msgstr ""
+msgstr "إستعاده متقدمه"
 
+#
 msgid "After event"
-msgstr ""
+msgstr "بعد الحدث"
 
 msgid ""
 "After the start wizard is completed, you need to protect single services. "
 "Refer to your dreambox's manual on how to do that."
 msgstr ""
+"إذا أردت حمايه خدمه واحده بعد انتهاء نافذه البدأأرجع الى دليل المستخدم لتعرف "
+"كيف تفعل ذلك"
 
+#
 msgid "Album"
-msgstr ""
+msgstr "البوم"
 
+#
 msgid "All"
 msgstr "الكل"
 
+#
 msgid "All Satellites"
-msgstr ""
+msgstr "كل الاقمار"
 
+#
+msgid "All Time"
+msgstr "كل الوقت"
+
+msgid "All non-repeating timers"
+msgstr "مؤقت غير متكرر"
+
+msgid "Allow zapping via Webinterface"
+msgstr "السماح بالتنقل من خلال واجهة الشبكه"
+
+#
 msgid "Alpha"
 msgstr "الفا"
 
+#
 msgid "Alternative radio mode"
-msgstr ""
+msgstr "وضع راديو بديل"
 
+#
 msgid "Alternative services tuner priority"
 msgstr ""
 
+#
 msgid "Always ask before sending"
-msgstr ""
+msgstr "اسأل دائما قبل الارسال"
 
+#
+msgid "Ammount of recordings left"
+msgstr "التسجيل المتبقى"
+
+#
 msgid "An empty filename is illegal."
-msgstr ""
+msgstr "غير مسموح بملف بدون اسم"
+
+#
+msgid "An error occured."
+msgstr "حدث خطأ"
 
 msgid "An unknown error occured!"
-msgstr ""
+msgstr "حدث خطأ غير معروف !"
 
+#
 msgid "Anonymize crashlog?"
 msgstr ""
 
 msgid "Arabic"
-msgstr ""
+msgstr "عـربى"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
 msgstr ""
+"هل أنت متاكد أنك تريد تنشيط تكوينات الشبكه؟\n"
+"\n"
 
 msgid ""
 "Are you sure you want to delete\n"
 "following backup:\n"
 msgstr ""
+"هل أنت متأكد أنك تريد مسح\n"
+"الباك أب الاتى:\n"
 
 msgid "Are you sure you want to exit this wizard?"
-msgstr ""
+msgstr "هل أنت متأكد أنك تريد الخروج من هذه النافذه ؟"
 
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
 msgstr ""
+"هل أنت كتأكد أنك تريد إعادة تشغيل واجهة الشبكه ؟\n"
+"\n"
 
 msgid ""
 "Are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
+"هل أنت متاكد إنك تريد إستعادة\n"
+"الباك أب التالى:\n"
 
 msgid ""
 "Are you sure you want to restore your Enigma2 backup?\n"
 "Enigma2 will restart after the restore"
 msgstr ""
+"هل أنت متأكد أنك تريد إستعادة بالك أب الاينجما2 ؟\n"
+"سيتم عمل إعادة تشغيل الاينجما2 بعد الاستعاده"
+
+#
+msgid ""
+"Are you sure you want to save this network mount?\n"
+"\n"
+msgstr ""
 
 msgid "Artist"
-msgstr ""
+msgstr "الفنان"
+
+msgid "Ascending"
+msgstr "تصاعدى"
 
 msgid "Ask before shutdown:"
-msgstr ""
+msgstr "أسأل قبل الاغلاق"
 
 msgid "Ask user"
-msgstr ""
+msgstr "أسال المستخدم"
 
 msgid "Aspect Ratio"
+msgstr "نسبة الجانب"
+
+msgid "Atheros"
 msgstr ""
 
+#
 msgid "Audio"
 msgstr "صوت"
 
 msgid "Audio Options..."
+msgstr "خيارات الصوت"
+
+#
+msgid "Audio Sync"
 msgstr ""
+
+#
+msgid "Audio Sync Setup"
+msgstr ""
+
+msgid "Australia"
+msgstr "استراليا"
 
 msgid "Author: "
-msgstr ""
+msgstr "المؤلف:"
 
+#
 msgid "Authoring mode"
 msgstr ""
 
+#
 msgid "Auto"
 msgstr "آلـى"
 
+#
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr ""
 
+#
 msgid "Auto flesh"
 msgstr ""
 
+#
 msgid "Auto scart switching"
 msgstr ""
 
-msgid "Automatic"
-msgstr ""
+msgid "AutoTimer Editor"
+msgstr "محرر المؤقت الالى"
 
+msgid "AutoTimer Filters"
+msgstr "مرشحات المؤقت الالى"
+
+msgid "AutoTimer Services"
+msgstr "خدمات المؤقت الالى"
+
+msgid "AutoTimer Settings"
+msgstr "إعدادات المؤقت الالى"
+
+msgid "AutoTimer overview"
+msgstr "معاينة المؤقت الالى"
+
+msgid "Automatic"
+msgstr "آلى"
+
+#
 msgid "Automatic Scan"
 msgstr "بحث آلـى"
 
-msgid "Available format variables"
-msgstr ""
+msgid "Autos & Vehicles"
+msgstr "سيارات ومركبات"
 
+msgid "Autowrite timer"
+msgstr "مؤقت الكتابه الالى"
+
+msgid "Available format variables"
+msgstr "متغيرات النسق المتاحه"
+
+#
 msgid "B"
 msgstr "ب"
 
+#
 msgid "BA"
 msgstr "ب أ"
 
+#
 msgid "BB"
 msgstr "ب ب"
 
+#
 msgid "BER"
 msgstr ""
 
+#
 msgid "BER:"
 msgstr ""
 
 msgid "Back"
-msgstr ""
+msgstr "خلف"
 
 msgid "Background"
-msgstr ""
-
-msgid "Backup"
-msgstr ""
-
-msgid "Backup Location"
-msgstr ""
-
-msgid "Backup Mode"
-msgstr ""
+msgstr "خلفيه"
 
 msgid "Backup done."
-msgstr ""
+msgstr "تم عمل باك أب"
 
 msgid "Backup failed."
-msgstr ""
-
-msgid "Backup is done. Please press OK to see the result."
-msgstr ""
+msgstr "فشل عمل باك أب"
 
 msgid "Backup is running..."
-msgstr ""
+msgstr "جارى عمل باك أب........"
 
 msgid "Backup system settings"
-msgstr ""
+msgstr "عمل باك أب لأعدادات النظام"
 
+#
 msgid "Band"
 msgstr ""
 
+#
 msgid "Bandwidth"
 msgstr ""
 
-msgid "Begin time"
+#
+msgid "Begin of \"after event\" timespan"
 msgstr ""
 
+#
+msgid "Begin of timespan"
+msgstr ""
+
+#
+msgid "Begin time"
+msgstr "وقت البدأ"
+
+#
 msgid "Behavior of 'pause' when paused"
 msgstr ""
 
+#
 msgid "Behavior of 0 key in PiP-mode"
 msgstr ""
 
+#
 msgid "Behavior when a movie is started"
-msgstr ""
+msgstr "التصرف عندما يبدأ الفيلم"
 
+#
 msgid "Behavior when a movie is stopped"
-msgstr ""
+msgstr "التصرف عند إيقاف الفيلم"
 
+#
 msgid "Behavior when a movie reaches the end"
-msgstr ""
+msgstr "التصرف عندما يصل الفيلم للنهايه"
 
+#
 msgid "Bitrate:"
 msgstr ""
 
+#
 msgid "Block noise reduction"
-msgstr ""
+msgstr "منع الحد من الضوضاء"
 
+#
 msgid "Blue boost"
-msgstr ""
+msgstr "الدعم الازرق"
 
+#
 msgid "Bookmarks"
 msgstr ""
 
+#
+msgid "Bouquets"
+msgstr ""
+
+msgid "Brazil"
+msgstr "البرازيل"
+
+#
 msgid "Brightness"
 msgstr "الإضاءه"
 
+#
+msgid "Browse network neighbourhood"
+msgstr ""
+
+#
 msgid "Burn DVD"
-msgstr ""
+msgstr "حرق دى فى دى"
 
+#
 msgid "Burn existing image to DVD"
-msgstr ""
+msgstr "حرق الصوره الحاليه الى دى فى دى"
 
-msgid "Burn to DVD..."
-msgstr ""
+#
+msgid "Burn to DVD"
+msgstr "حرق الى دى فى دى"
 
+#
 msgid "Bus: "
 msgstr "الناقل"
 
 msgid ""
 "By pressing the OK Button on your remote control, the info bar is being "
 "displayed."
-msgstr "بالضغط على ذرok من الريموت كونترول،سيظهر شريط المعلومات"
+msgstr "بالضغط على ذر موافق من الريموت كونترول ، سيظهر شريط المعلومات"
 
+#
 msgid "C"
 msgstr ""
 
+#
 msgid "C-Band"
 msgstr ""
 
-msgid "CF Drive"
-msgstr ""
+msgid "CDInfo"
+msgstr "بيانات القرص المدمج"
 
+#
 msgid "CI assignment"
 msgstr ""
 
+#
+msgid "CIFS share"
+msgstr ""
+
+#
 msgid "CVBS"
 msgstr ""
 
 msgid "Cable"
-msgstr ""
+msgstr "كابل"
 
+#
 msgid "Cache Thumbnails"
 msgstr ""
 
-msgid "Call monitoring"
-msgstr ""
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 108
+msgid "Can't connect to server. Please check your network!"
+msgstr "تعذر الاتصال بالخادم. رجاء فحص الشبكه !"
 
+msgid "Canada"
+msgstr "كندا"
+
+#
 msgid "Cancel"
 msgstr "إلغاء"
 
+#
 msgid "Cannot parse feed directory"
 msgstr ""
 
+#
 msgid "Capacity: "
 msgstr "السعه:"
 
 msgid "Card"
-msgstr ""
+msgstr "بطاقه"
 
+#
 msgid "Catalan"
 msgstr ""
 
+#
+msgid "Center screen at the lower border"
+msgstr "مركز الشاشه عند الحافه السفلى"
+
+#
+msgid "Center screen at the upper border"
+msgstr "مركز الشاشه عند الحافه العليا"
+
+#
+msgid "Change active delay"
+msgstr ""
+
+#
 msgid "Change bouquets in quickzap"
 msgstr ""
 
-msgid "Change dir."
+#
+msgid "Change default recording offset?"
 msgstr ""
 
+#
+msgid "Change dir."
+msgstr "تغيير الدليل"
+
+#
+msgid "Change hostname"
+msgstr ""
+
+#
 msgid "Change pin code"
 msgstr ""
 
+#
 msgid "Change service pin"
 msgstr ""
 
 msgid "Change service pins"
-msgstr ""
+msgstr "تغيير الرقم السرى للخدمه"
 
 msgid "Change setup pin"
-msgstr ""
+msgstr "تغيير الرقم السرى للضبط"
 
+#
 msgid "Change step size"
 msgstr ""
 
+#
+msgid "Change the hostname of your Dreambox."
+msgstr "تغيير أسم المضيف للدريم بوكس"
+
+#
 msgid "Channel"
 msgstr "قناه"
 
+#
 msgid "Channel Selection"
 msgstr "إختيار القناه"
 
-msgid "Channel not in services list"
-msgstr ""
+msgid "Channel audio:"
+msgstr "صوت القناه:"
 
+#
+msgid "Channel not in services list"
+msgstr "قناه غير موجوده فى قائمة الخدمات"
+
+#
 msgid "Channel:"
 msgstr "قناه:"
 
+#
 msgid "Channellist menu"
 msgstr ""
 
+#
+msgid "Channels"
+msgstr "قنوات"
+
+#
 msgid "Chap."
 msgstr ""
 
 msgid "Chapter"
-msgstr ""
+msgstr "فصل"
 
 msgid "Chapter:"
-msgstr ""
+msgstr "فصل:"
 
 msgid "Check"
-msgstr ""
+msgstr "فحص"
 
 msgid "Checking Filesystem..."
-msgstr ""
+msgstr "فحص ملفات النظام...."
 
+#
 msgid "Choose Tuner"
-msgstr ""
+msgstr "أختار الموالف"
 
+#
 msgid "Choose a wireless network"
-msgstr ""
+msgstr "اختار الشبكه اللاسلكيه"
 
+#
 msgid "Choose backup files"
-msgstr ""
+msgstr "اختار ملفات الباك أب"
 
+#
 msgid "Choose backup location"
-msgstr ""
+msgstr "اختار مكان الباك أب"
 
+#
 msgid "Choose bouquet"
-msgstr ""
+msgstr "أختار الباقه"
 
-msgid "Choose source"
-msgstr ""
-
+#
 msgid "Choose target folder"
-msgstr ""
+msgstr "أختار المجلد الهدف"
 
+#
 msgid "Choose upgrade source"
-msgstr ""
+msgstr "أختار مصدر الترقيه"
 
+#
 msgid "Choose your Skin"
-msgstr ""
+msgstr "أختار الجلد"
 
 msgid "Circular left"
-msgstr ""
+msgstr "يسار دائرى"
 
 msgid "Circular right"
-msgstr ""
+msgstr "يمين دائرى"
+
+#
+msgid "Classic"
+msgstr "كلاسيك"
 
 msgid "Cleanup"
-msgstr ""
+msgstr "تنظيف"
 
+#
 msgid "Cleanup Wizard"
 msgstr ""
 
 msgid "Cleanup Wizard settings"
-msgstr ""
+msgstr "إعدادات نافذة التنظيف"
 
 msgid "CleanupWizard"
-msgstr ""
+msgstr "نافذة التنظيف"
 
 msgid "Clear before scan"
-msgstr ""
+msgstr "مسح قبل البحث"
 
+msgid "Clear history on Exit:"
+msgstr "مسح الذاكره عند الخروج:"
+
+#
 msgid "Clear log"
 msgstr ""
 
 msgid "Close"
-msgstr ""
+msgstr "أغلاق"
+
+msgid "Close and forget changes"
+msgstr "أغلق وتجاهل التغيرات"
+
+msgid "Close and save changes"
+msgstr "أغلق وأحفظ التغيرات"
 
 msgid "Close title selection"
-msgstr ""
+msgstr "إغلاق إختيار العنوان"
 
+#
 msgid "Code rate high"
 msgstr ""
 
+#
 msgid "Code rate low"
 msgstr ""
 
+#
 msgid "Coderate HP"
 msgstr ""
 
+#
 msgid "Coderate LP"
 msgstr ""
 
+#
 msgid "Collection name"
 msgstr ""
 
+#
 msgid "Collection settings"
 msgstr ""
 
 msgid "Color Format"
-msgstr "نوع الالـوان"
+msgstr "نسق الالـوان"
+
+msgid "Comedy"
+msgstr "كوميدي"
 
 msgid "Command execution..."
-msgstr ""
+msgstr "تنفيذ الأمر..."
 
 msgid "Command order"
-msgstr ""
+msgstr "ترتيب الأوامر"
 
+#
 msgid "Committed DiSEqC command"
 msgstr ""
 
+#
 msgid "Common Interface"
 msgstr "وحده النفاذ المشروط"
 
+#
 msgid "Common Interface Assignment"
 msgstr ""
 
 msgid "CommonInterface"
-msgstr ""
+msgstr "وحـدة النفـاذ المشروط"
 
 msgid "Communication"
-msgstr ""
+msgstr "اتصال"
 
 msgid "Compact Flash"
-msgstr ""
-
-msgid "Compact flash card"
-msgstr ""
+msgstr "كومباكت فلاش"
 
 msgid "Complete"
-msgstr ""
+msgstr "مكتمل"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr ""
-
-msgid "Config"
-msgstr ""
+msgstr "مركب (يسمح بمزج مسارات صوت ومظاهر)"
 
 msgid "Configuration Mode"
-msgstr "وضع التهيئه"
+msgstr "نسق التكوين"
+
+msgid "Configuration for the Webinterface"
+msgstr "تكوين لواجهة الشبكه"
+
+msgid "Configure AutoTimer behavior"
+msgstr "تكوين سلوك المؤقت الالى"
 
 msgid "Configure interface"
-msgstr ""
+msgstr "تكوين الواجهه"
 
 msgid "Configure nameservers"
-msgstr ""
+msgstr "تكوين اسم الخادم"
 
 msgid "Configure your internal LAN"
-msgstr ""
+msgstr "تكوين شبكتك الداخليه"
 
 msgid "Configure your network again"
-msgstr ""
+msgstr "تكوين الشبكه مره ثانيه"
 
 msgid "Configure your wireless LAN again"
-msgstr ""
+msgstr "تكوين شبكتك اللاسلكيه"
 
 msgid "Configuring"
-msgstr ""
+msgstr "تكوين"
 
 msgid "Conflicting timer"
-msgstr ""
+msgstr "مؤقت متعارض"
 
 msgid "Connect"
-msgstr ""
+msgstr "يتصل"
 
 msgid "Connect to a Wireless Network"
-msgstr ""
+msgstr "متصل بشبكه لاسلكيه"
 
 msgid "Connected to"
-msgstr ""
-
-msgid "Connected to Fritz!Box!"
-msgstr ""
+msgstr "متصل بـ"
 
 msgid "Connected!"
-msgstr ""
-
-msgid "Connecting to Fritz!Box..."
-msgstr ""
-
-#, python-format
-msgid ""
-"Connection to Fritz!Box\n"
-"failed! (%s)\n"
-"retrying..."
-msgstr ""
+msgstr "تم الاتصال !"
 
 msgid "Constellation"
-msgstr ""
+msgstr "كوكبه"
 
 msgid "Content does not fit on DVD!"
-msgstr ""
+msgstr "المحتوى لا يناسب دى فى دى !"
 
 msgid "Continue in background"
-msgstr ""
+msgstr "استمر فى الخلفيه"
 
 msgid "Continue playing"
-msgstr ""
+msgstr "استمرار العرض"
 
 msgid "Contrast"
-msgstr "التباين"
+msgstr "تباين"
 
+#
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
-msgstr ""
+msgstr "NFIتعذر إتصال الدريم بوكس بخادم تغذية صور "
 
+#
 msgid "Could not load Medium! No disc inserted?"
-msgstr ""
+msgstr "تعذر تحميل الوسيط ! هل لا يوجد قرص"
 
 msgid "Could not open Picture in Picture"
-msgstr ""
+msgstr "لا يمكن فتح صوره داخل صوره"
 
+#
 #, python-format
 msgid "Couldn't record due to conflicting timer %s"
-msgstr ""
+msgstr "تعذر التسجيل بسبب مؤقت متعارض%s"
 
 msgid "Crashlog settings"
-msgstr ""
+msgstr "إعدادات سجل العطب"
 
+#
 msgid "CrashlogAutoSubmit"
-msgstr ""
+msgstr "الارسال الالى لسجل العطب"
 
+#
 msgid "CrashlogAutoSubmit settings"
-msgstr ""
+msgstr "إعدادات الارسال الالى لسجل العطب"
 
+#
 msgid "CrashlogAutoSubmit settings..."
-msgstr ""
-
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia ?"
-msgstr ""
+msgstr "إعدادات الارسال الالى لسجل العطب..."
 
 msgid ""
 "Crashlogs found!\n"
 "Send them to Dream Multimedia?"
 msgstr ""
+"تم العثور على سجل عطب!\n"
+"هل تريد إرساله الى دريم مالتيميديا ؟"
 
+#
 msgid "Create DVD-ISO"
 msgstr ""
 
-msgid "Create movie folder failed"
+msgid "Create a new AutoTimer."
 msgstr ""
+
+msgid "Create a new timer using the classic editor"
+msgstr "أنشأ مؤقت جديد باستخدام المحرر الكلاسيكى"
+
+msgid "Create a new timer using the wizard"
+msgstr "أنشأ مؤقت جديد باستخدام نافذه الاعدادات"
+
+msgid "Create movie folder failed"
+msgstr "فشل إنشاء مجلد أفلام"
 
 #, python-format
 msgid "Creating directory %s failed."
-msgstr ""
+msgstr "فشل إنشاء دليل %s"
 
+#
 msgid "Creating partition failed"
-msgstr ""
+msgstr "فشل عمل تسقيم"
 
+#
 msgid "Croatian"
-msgstr ""
+msgstr "كرواتى"
 
 msgid "Current Transponder"
-msgstr ""
+msgstr "التردد الحالى"
 
 msgid "Current settings:"
-msgstr ""
+msgstr "الاعدادات الحاليه:"
 
 msgid "Current value: "
-msgstr ""
+msgstr "القيمه الحاليه:"
 
 msgid "Current version:"
+msgstr "الاصدار الحالى:"
+
+#
+#, python-format
+msgid "Custom (%s)"
 msgstr ""
 
+#
+msgid "Custom location"
+msgstr ""
+
+#
+msgid "Custom offset"
+msgstr ""
+
+#
 msgid "Custom skip time for '1'/'3'-keys"
 msgstr ""
 
+#
 msgid "Custom skip time for '4'/'6'-keys"
 msgstr ""
 
+#
 msgid "Custom skip time for '7'/'9'-keys"
 msgstr ""
 
 msgid "Customize"
-msgstr ""
+msgstr "تخصيص"
 
 msgid "Cut"
-msgstr ""
+msgstr "قطع"
 
 msgid "Cutlist editor..."
-msgstr ""
+msgstr "محرر قائمة القطع..."
 
 msgid "Czech"
-msgstr ""
+msgstr "التشيك"
+
+msgid "Czech Republic"
+msgstr "حمهورية التشيك"
 
 msgid "D"
-msgstr ""
+msgstr "د"
 
 msgid "DHCP"
-msgstr ""
+msgstr "DHCP"
+
+msgid "DUAL LAYER DVD"
+msgstr "دى فى بى ثنائى الطبقه"
 
 msgid "DVB-S"
-msgstr ""
+msgstr "DVB-S"
 
 msgid "DVB-S2"
-msgstr ""
+msgstr "DVB-S2"
 
 msgid "DVD File Browser"
-msgstr ""
+msgstr "متصفح ملفات دى فى دى"
 
 msgid "DVD Player"
-msgstr ""
+msgstr "مشغل دى فى دى"
 
 msgid "DVD Titlelist"
-msgstr ""
+msgstr "قائمة عناوين دى فى دى"
 
+#
 msgid "DVD media toolbox"
 msgstr ""
 
 msgid "Danish"
-msgstr ""
+msgstr "دنماركى"
 
 msgid "Date"
-msgstr ""
+msgstr "تاريخ"
 
 msgid "Decide if you want to enable or disable the Cleanup Wizard."
-msgstr ""
+msgstr "قرر إذا كنت تريد تشغيل أو تعطيل نافذة إعدادات التنظيف."
 
+#
 msgid "Decide what should be done when crashlogs are found."
 msgstr ""
 
 msgid "Decide what should happen to the crashlogs after submission."
-msgstr ""
+msgstr "قرر مصير سجل العطب بعد إرساله."
+
+msgid "Decrease delay"
+msgstr "قلل التأخير"
+
+#, python-format
+msgid "Decrease delay by %i ms (can be set)"
+msgstr "قلل التأخير بـ %i مللى ثانيه (يمكن إعدادها)"
 
 msgid "Deep Standby"
-msgstr "وضع الاستعداد"
+msgstr "وضع الاستعداد العميق"
 
 msgid "Default"
-msgstr "المعتاد"
+msgstr "الافتراضى"
 
 msgid "Default Settings"
-msgstr ""
+msgstr "الاعدادات الافتراضيه"
 
 msgid "Default movie location"
-msgstr ""
+msgstr "المكان الافتراضى للفيلم"
 
 msgid "Default services lists"
-msgstr ""
+msgstr "قوائم القنوات الافتراضيه"
 
-msgid "Default settings"
-msgstr ""
+msgid "Defaults"
+msgstr "الافتراضيات"
 
+#
 msgid "Delay"
 msgstr "تأخير"
 
+#
 msgid "Delete"
 msgstr "أمسح"
 
 msgid "Delete crashlogs"
-msgstr ""
+msgstr "مسح سجل العطب"
 
 msgid "Delete entry"
-msgstr ""
+msgstr "مسح البند"
 
+#
 msgid "Delete failed!"
 msgstr "فشل المسح"
+
+#
+msgid "Delete mount"
+msgstr ""
 
 #, python-format
 msgid ""
 "Delete no more configured satellite\n"
 "%s?"
 msgstr ""
+"مسح الاقمار الغير مهيأه \n"
+"%s ؟"
 
+msgid "Descending"
+msgstr "تنازلى"
+
+#
 msgid "Description"
 msgstr "الوصـف"
 
 msgid "Deselect"
-msgstr ""
+msgstr "إلغاء الاختيار"
 
 msgid "Destination directory"
-msgstr ""
+msgstr "الدليل الوجهه"
 
 msgid "Details for extension: "
-msgstr ""
+msgstr "تفاصيل الاضافه:"
 
 msgid "Detected HDD:"
-msgstr "موجود قرص صلب:"
+msgstr "يوجد قرص صلب:"
 
+#
 msgid "Detected NIMs:"
 msgstr "موجود تيونر:"
 
 msgid "DiSEqC"
-msgstr ""
+msgstr "دايزك"
 
+#
 msgid "DiSEqC A/B"
 msgstr "دايزك أ/ب"
 
+#
 msgid "DiSEqC A/B/C/D"
 msgstr "دايزك أ/ب/ج/د"
 
+#
 msgid "DiSEqC mode"
 msgstr "وضعيـه الدايزك"
 
 msgid "DiSEqC repeats"
-msgstr ""
+msgstr "تكرار الدايزك"
 
+#
 msgid "DiSEqC-Tester settings"
 msgstr ""
 
 msgid "Dialing:"
-msgstr ""
+msgstr "جاري الاتصال:"
 
 msgid "Digital contour removal"
+msgstr "حذف الكفاف الرقمى"
+
+#
+msgid "Dir:"
 msgstr ""
 
+#
 msgid "Direct playback of linked titles without menu"
 msgstr ""
 
+#
 #, python-format
 msgid "Directory %s nonexistent."
 msgstr ""
 
+#
 msgid "Directory browser"
 msgstr ""
 
 msgid "Disable"
-msgstr "إبطال"
+msgstr "تعطيل"
 
+#
 msgid "Disable Picture in Picture"
-msgstr ""
+msgstr "تعطيل صوره داخل صوره"
 
+#
 msgid "Disable Subtitles"
-msgstr ""
+msgstr "تعطيل العناوين الفرعيه"
 
+#
 msgid "Disable crashlog reporting"
-msgstr ""
+msgstr "تعطيل التبليغ عن سجل عطب"
 
+#
 msgid "Disable timer"
-msgstr ""
+msgstr "تعطيل المؤقت"
 
+#
 msgid "Disabled"
-msgstr ""
+msgstr "تم التعطيل"
 
+msgid "Discard changes and close plugin"
+msgstr "تجاهل التغيرات وغلق البلج إن"
+
+#
+msgid "Discard changes and close screen"
+msgstr "تجاهل التغيرات وأغلاق الشاشه"
+
+#
 msgid "Disconnect"
-msgstr ""
+msgstr "قطع الاتصال"
 
-#, python-format
-msgid ""
-"Disconnected from\n"
-"Fritz!Box! (%s)\n"
-"retrying..."
-msgstr ""
-
+#
 msgid "Dish"
 msgstr "طبق الاستقبال"
 
 msgid "Display 16:9 content as"
-msgstr ""
+msgstr "عرض محتويات 16:9 كـ"
 
 msgid "Display 4:3 content as"
-msgstr ""
+msgstr "عرض محتويات 4:3 كـ"
 
+#
 msgid "Display >16:9 content as"
 msgstr ""
 
 msgid "Display Setup"
-msgstr ""
+msgstr "إعدادات العرض"
 
 msgid "Display and Userinterface"
-msgstr ""
+msgstr "عرض و واجهه مستخدم"
+
+msgid "Display search results by:"
+msgstr "إظهار نتائج البحث بـ :"
 
 #, python-format
 msgid ""
 "Do you really want to REMOVE\n"
 "the plugin \"%s\"?"
 msgstr ""
+"هل تريد فعلا مسح\n"
+"البلج إن \"%s\" ؟"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take lots of time!"
 msgstr ""
+"هل تريد فعلا فحص ملفات النظام؟\n"
+"قد يستغرق ذلك بعض الوقت !"
 
 #, python-format
 msgid "Do you really want to delete %s?"
-msgstr ""
+msgstr "هل تريد فعلا مسح %s ؟"
 
 #, python-format
 msgid ""
 "Do you really want to download\n"
 "the plugin \"%s\"?"
 msgstr ""
+"هل تريد فعلا تحميل \n"
+"البلج إن \"%s\" ؟"
 
+msgid "Do you really want to exit?"
+msgstr "هل تريد فعلا الخروج ؟"
+
+#
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
@@ -1249,219 +1719,357 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
-msgstr ""
+msgstr "هل تريد فعلا حذف الدليل %s من القرص؟"
 
+#
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr ""
 
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-
+#
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr ""
 
+#
 msgid "Do you want to do a service scan?"
 msgstr "هل تريد عمل بحث"
 
 msgid "Do you want to do another manual service scan?"
-msgstr ""
+msgstr "هل تريد عمل بحث يدوى جديد ؟"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
+msgstr "هل تريد تفعيل خاصية التحكم الابوى فى الدريم بوكس ؟"
+
+#
+msgid "Do you want to enter a username and password for this host?\n"
 msgstr ""
 
 msgid "Do you want to install default sat lists?"
-msgstr ""
+msgstr "هل تريد تثبيت قوائم الأقمار الافتراضيه؟"
 
 msgid "Do you want to install the package:\n"
-msgstr ""
+msgstr "هل تريد فعلا تثبيت الرزمه:\n"
 
+#
 msgid "Do you want to play DVD in drive?"
-msgstr ""
+msgstr "هل تريد تشغيل الدى فى دى الموجود فى السواقه"
 
+#
 msgid "Do you want to preview this DVD before burning?"
-msgstr ""
+msgstr "هل تريد معاينة هذا الدى فى دى قبل الحرق؟"
 
 msgid "Do you want to reboot your Dreambox?"
-msgstr ""
+msgstr "هل تريد إعادة تشغيل الدريم بوكس ؟"
 
 msgid "Do you want to remove the package:\n"
-msgstr ""
+msgstr "هل تريد فعلا حذف الرزمه:\n"
 
 msgid "Do you want to restore your settings?"
-msgstr ""
+msgstr "هل تريد إستعادة الاعدادات ؟"
 
+#
 msgid "Do you want to resume this playback?"
 msgstr ""
 
+#
+msgid "Do you want to see more entries?"
+msgstr "هل تريد مشاهدة المزيد من المدخلات؟"
+
+#
 msgid ""
 "Do you want to submit your email address and name so that we can contact you "
 "if needed?"
-msgstr ""
+msgstr "هل تريد وضع أسمك وبريدك الالكترونى ليتم الاتصال بكعند الحاجه ؟"
 
+#
 msgid "Do you want to update your Dreambox?"
-msgstr ""
+msgstr "هل تريد تحديث الدريم بوكس"
 
 msgid ""
 "Do you want to update your Dreambox?\n"
 "After pressing OK, please wait!"
 msgstr ""
-"هل تريد تحديث الدريم بوكس\n"
-"إضغط OK ثم إنتظر!"
+"هل تريد تحديث الدريم بوكس؟\n"
+"بعد أن تضغط موافق ، من فضلك إنتظر !"
 
 msgid "Do you want to upgrade the package:\n"
-msgstr ""
+msgstr "هل تريد ترقية الحزمه \n"
 
+#
 msgid "Do you want to view a tutorial?"
 msgstr "هل تريد مشاهده الشرح ؟"
 
 msgid "Don't ask, just send"
-msgstr ""
+msgstr "لا تسأل ، فقط أرسل"
 
 msgid "Don't stop current event but disable coming events"
-msgstr ""
+msgstr "لا توقف الحدث الحالى لكن قم بتعطيل الاحداث القادمه"
 
+#
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr ""
 
-#, python-format
-msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr ""
-
+#
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr ""
 
 msgid "Download"
-msgstr ""
+msgstr "تحميل"
 
+#
 msgid "Download .NFI-Files for USB-Flasher"
 msgstr ""
 
 msgid "Download Plugins"
-msgstr ""
+msgstr "تحميل بلج إنز"
 
+msgid "Download Video"
+msgstr "تحميل فيديو"
+
+msgid "Download location"
+msgstr "موقع التحميل"
+
+#
 msgid "Download of USB flasher boot image failed: "
 msgstr ""
 
 msgid "Downloadable new plugins"
-msgstr ""
+msgstr "بلج أنز جديده متاحه للتحميل"
 
 msgid "Downloadable plugins"
-msgstr ""
+msgstr "بلج إنز متاحه للتحميل"
 
 msgid "Downloading"
-msgstr ""
+msgstr "جارى التحميل"
 
 msgid "Downloading plugin information. Please wait..."
-msgstr ""
+msgstr "جارى تحميل معلومات عن البلج إن. رجاء الانتظار.."
 
+msgid "Downloading screenshots. Please wait..."
+msgstr "جارى تحميل لقطات. رجاء الانتظار..."
+
+#
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr ""
 
+#
 msgid "Dreambox software because updates are available."
 msgstr ""
 
+#
+msgid "Duration: "
+msgstr "مده زمنيه"
+
+#
 msgid "Dutch"
-msgstr ""
+msgstr "هولندى"
 
 msgid "Dynamic contrast"
-msgstr ""
+msgstr "تباين ديناميكى"
 
 msgid "E"
-msgstr "O"
+msgstr ""
 
+#
 msgid "EPG Selection"
 msgstr "إختيار EPG"
 
+#
+msgid "EPG encoding"
+msgstr ""
+
+#
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "خطأ - فشل البحث (%s)!"
 
+#
 msgid "East"
 msgstr "شرق"
 
 msgid "Edit"
-msgstr ""
+msgstr "تحرير"
 
+msgid "Edit AutoTimer"
+msgstr "تحرير المـؤقت الالى"
+
+msgid "Edit AutoTimer filters"
+msgstr "تحرير مرشحات المؤقت الالى"
+
+#
+msgid "Edit AutoTimer services"
+msgstr "تحرير خدمات المؤقت الالى"
+
+#
 msgid "Edit DNS"
 msgstr ""
 
+msgid "Edit Timers and scan for new Events"
+msgstr "تحرير المؤقت والبحث عن أحداث جديده"
+
+#
 msgid "Edit Title"
-msgstr ""
+msgstr "تحرير العنوان"
+
+msgid "Edit bouquets list"
+msgstr "تحرير قائمة الباقات"
 
 msgid "Edit chapters of current title"
-msgstr ""
+msgstr "تحرير الفصول والعنوان الحالى"
+
+msgid "Edit new timer defaults"
+msgstr "تحرير إفتراضيات المؤقت الجديد"
+
+msgid "Edit selected AutoTimer"
+msgstr "تحرير المققت الالى المختار"
 
 msgid "Edit services list"
-msgstr ""
+msgstr "تحرير قائمة القنوات"
 
+#
 msgid "Edit settings"
-msgstr ""
+msgstr "تحرير الاعدادات"
 
+#
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
-msgstr ""
+msgstr "تحرير تهيئة اسم الخادم للدريم بوكس. \n"
 
+#
 msgid "Edit the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "تحرير تهيئة الشبكه للدريم بوكس. \n"
 
 msgid "Edit title"
+msgstr "تحرير العنوان"
+
+#
+msgid "Edit upgrade source url."
+msgstr "تحرير عنوان مصدر الترقيه"
+
+#
+msgid "Editing"
 msgstr ""
 
-msgid "Edit upgrade source url."
-msgstr ""
+#
+msgid "Editor for new AutoTimers"
+msgstr "محرر المؤقتات الاليه الجديده"
+
+msgid "Education"
+msgstr "تعليم"
 
 msgid "Electronic Program Guide"
-msgstr ""
+msgstr "دليل البرنامج الالكترونى"
 
+#
 msgid "Enable"
 msgstr "تفعيل"
 
+#
+msgid "Enable /media"
+msgstr ""
+
+#
 msgid "Enable 5V for active antenna"
 msgstr ""
 
+#
 msgid "Enable Cleanup Wizard?"
 msgstr ""
 
+#
+msgid "Enable Filtering"
+msgstr "تفعيل الترشيح"
+
+#
+msgid "Enable HTTP Access"
+msgstr "تفعيل دخول HTTP"
+
+#
+msgid "Enable HTTP Authentication"
+msgstr "تفعيل توثيق HTTP"
+
+#
+msgid "Enable HTTPS Access"
+msgstr "تفعيل دخول HTTPS"
+
+#
+msgid "Enable HTTPS Authentication"
+msgstr "تفعيل توثيق HTTPS"
+
+#
+msgid "Enable Service Restriction"
+msgstr "تفعيل محدودية الخدمه"
+
+#
+msgid "Enable Streaming Authentication"
+msgstr ""
+
+#
 msgid "Enable multiple bouquets"
-msgstr ""
+msgstr "تفعيل باقات متعدده"
 
+#
 msgid "Enable parental control"
-msgstr ""
+msgstr "تفعيل التحكم الابوى"
 
+#
+msgid ""
+"Enable this to be able to access the AutoTimer Overview from within the "
+"extension menu."
+msgstr ""
+"تفعيل هذا لتكون قادرا على الدخول الى معاينة المؤقت الالى من خلالقائمة "
+"الاضافات"
+
+#
 msgid "Enable timer"
-msgstr ""
+msgstr "تفعيل المؤقت"
 
+#
 msgid "Enabled"
+msgstr "تم التفعيل"
+
+#
+msgid ""
+"Encoding the channel uses for it's EPG data. You only need to change this if "
+"you're searching for special characters like the german umlauts."
 msgstr ""
 
+#
 msgid "Encrypted: "
-msgstr ""
+msgstr "مشفر"
 
 msgid "Encryption"
-msgstr ""
+msgstr "التشفير"
 
 msgid "Encryption Key"
-msgstr ""
+msgstr "مفتاح التشقير"
 
 msgid "Encryption Keytype"
-msgstr ""
+msgstr "نوع مفتاح التشفير"
 
 msgid "Encryption Type"
-msgstr ""
+msgstr "نوع التشفير"
 
 msgid "Encryption:"
+msgstr "التشفير:"
+
+#
+msgid "End of \"after event\" timespan"
 msgstr ""
 
+#
+msgid "End of timespan"
+msgstr "نهاية المدى الزمنى"
+
+#
 msgid "End time"
-msgstr ""
+msgstr "وقت النهايه"
 
 msgid "EndTime"
-msgstr " إنتهاء الوقت"
+msgstr "وقت الانتهاء"
 
+#
 msgid "English"
 msgstr "إنجليزى"
 
@@ -1473,330 +2081,517 @@ msgid ""
 "\n"
 "© 2006 - Stephan Reichholf"
 msgstr ""
-
-msgid ""
-"Enigma2 Skinselector v0.5 BETA\n"
+"منتقى جلد إينجما2 \n"
 "\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
+"إذا كنت تعانى من أى مشكله رجاء الاتصال بـ \n"
+"stephan@reichholf.net \n"
 "\n"
 "© 2006 - Stephan Reichholf"
-msgstr ""
 
+#
 msgid "Enter Fast Forward at speed"
 msgstr ""
 
+#
+msgid "Enter IP to scan..."
+msgstr ""
+
+#
 msgid "Enter Rewind at speed"
 msgstr ""
 
-msgid "Enter WLAN network name/SSID:"
-msgstr ""
-
-msgid "Enter WLAN passphrase/key:"
-msgstr ""
-
 msgid "Enter main menu..."
-msgstr ""
+msgstr "دخول القائمه الرئيسيه"
+
+#
+msgid "Enter new hostname for your Dreambox"
+msgstr "أدخا أسم المضيف الجديد للدريم بوكس"
+
+msgid "Enter options:"
+msgstr "أدخل الخيارات :"
+
+msgid "Enter password:"
+msgstr "أدخل كلمة المرور:"
+
+msgid "Enter pin code"
+msgstr "أدخل الرقم السرى:"
+
+msgid "Enter share directory:"
+msgstr "أدخل دليل المشاركه:"
+
+msgid "Enter share name:"
+msgstr "أدخل أسم المشاركه:"
 
 msgid "Enter the service pin"
-msgstr ""
+msgstr "أدخل الرقم السرى للخدمه"
+
+msgid "Enter user and password for host: "
+msgstr "أدخل اسم المستخدم وكلمة المرور للمضيف:"
+
+msgid "Enter username:"
+msgstr "أدخل أسم المستخدم:"
 
 msgid "Enter your email address so that we can contact you if needed."
+msgstr "أدخل عنوان بريدك الألكترونى ليتم الاتصال بك عند الحاجه."
+
+#
+msgid "Enter your search term(s)"
 msgstr ""
+
+msgid "Entertainment"
+msgstr "ترفيه"
 
 msgid "Error"
-msgstr ""
+msgstr "خطأ"
 
 msgid "Error executing plugin"
-msgstr ""
+msgstr "خطأ فى تنفيذ البلج إن"
 
 #, python-format
 msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
+"خطأ: %s\n"
+"إعادة المحاوله ؟"
 
+#
 msgid "Estonian"
 msgstr ""
 
+#
 msgid "Eventview"
 msgstr "مشاهده الحدث"
 
 msgid "Everything is fine"
+msgstr "كل شيئ تمام"
+
+msgid "Exact match"
+msgstr "تطابق تام"
+
+#
+msgid "Exceeds dual layer medium!"
+msgstr ""
+
+#
+msgid "Exclude"
+msgstr ""
+
+#
+msgid "Execute \"after event\" during timespan"
 msgstr ""
 
 msgid "Execution Progress:"
-msgstr ""
+msgstr "درجة تطور التنفيذ:"
 
 msgid "Execution finished!!"
-msgstr ""
+msgstr "إنهاء التنفيذ !!"
 
+#
 msgid "Exif"
 msgstr ""
 
 msgid "Exit"
-msgstr ""
+msgstr "خروج"
 
 msgid "Exit editor"
-msgstr ""
+msgstr "خروج من المحرر"
 
 msgid "Exit network wizard"
-msgstr ""
+msgstr "خروج من نافذة إعدادات الشبكه"
 
 msgid "Exit the cleanup wizard"
-msgstr ""
+msgstr "خروج من نافذة إعدادات التنظيف"
 
 msgid "Exit the wizard"
-msgstr ""
+msgstr "خروج من نافذة الاعدادات"
 
 msgid "Exit wizard"
-msgstr "خـروج"
+msgstr "خـروج من نافـذة الاعدادات"
 
 msgid "Expert"
-msgstr ""
+msgstr "خبير"
 
 msgid "Extended Networksetup Plugin..."
-msgstr ""
+msgstr "بلج إن إعدادات الشبكه المتقدمه"
 
 msgid "Extended Setup..."
-msgstr ""
+msgstr "إعدادات متقدمه"
 
 msgid "Extended Software"
-msgstr ""
+msgstr "برنامج تشغيلى متقدم"
 
+#
 msgid "Extended Software Plugin"
 msgstr ""
 
 msgid "Extensions"
-msgstr ""
+msgstr "إضافات"
 
 msgid "Extensions management"
-msgstr ""
+msgstr "التحكم فى الاضافات"
 
+#
 msgid "FEC"
 msgstr ""
 
 msgid "Factory reset"
-msgstr ""
+msgstr "العوده الى إعدادات المصنع"
 
 msgid "Failed"
-msgstr ""
+msgstr "فشل"
 
+#
 #, python-format
 msgid "Fan %d"
 msgstr ""
 
+#
 #, python-format
 msgid "Fan %d PWM"
 msgstr ""
 
+#
 #, python-format
 msgid "Fan %d Voltage"
 msgstr ""
 
+#
 msgid "Fast"
-msgstr ""
+msgstr "سريع"
 
+#
 msgid "Fast DiSEqC"
-msgstr ""
+msgstr "دايزك سريع"
 
+#
 msgid "Fast Forward speeds"
 msgstr ""
 
+#
 msgid "Fast epoch"
 msgstr ""
 
+#
 msgid "Favourites"
 msgstr "المفضله"
 
-msgid "Filesystem Check..."
+#
+msgid "Fetching feed entries"
+msgstr "جارى البحث عن مدخلات التغذيه"
+
+#
+msgid "Fetching search entries"
 msgstr ""
+
+msgid "Filesystem Check"
+msgstr "فحص نظام الملفات"
 
 msgid "Filesystem contains uncorrectable errors"
+msgstr "نظام الملفات به أخطاء لا يمكن تصحيحها"
+
+msgid "Film & Animation"
+msgstr "أفلام ورسوم متحركه"
+
+msgid "Filter"
+msgstr "مرشح"
+
+msgid ""
+"Filters are another powerful tool when matching events. An AutoTimer can be "
+"restricted to certain Weekdays or only match an event with a text inside eg "
+"it's Description.\n"
+"Press BLUE to add a new restriction and YELLOW to remove the selected one."
 msgstr ""
 
+#
 msgid "Finetune"
 msgstr "الضبط الدقيق"
 
 msgid "Finished"
-msgstr ""
+msgstr "تم الانتهاء"
 
 msgid "Finished configuring your network"
-msgstr ""
+msgstr "تم الانتهاء من تكوين شبكتك"
 
 msgid "Finished restarting your network"
-msgstr ""
+msgstr "تم النتهاء من إعادة تشغيل الشبكه"
 
 msgid "Finnish"
-msgstr ""
+msgstr "إنتهاء"
 
+#
 msgid ""
 "First we need to download the latest boot environment for the USB flasher."
 msgstr ""
 
 msgid "Flash"
-msgstr ""
+msgstr "شحن"
 
 msgid "Flashing failed"
-msgstr ""
+msgstr "فشل الشحن"
 
 msgid "Following tasks will be done after you press OK!"
-msgstr ""
+msgstr "سيتم تنفيذ الاعمال الاتيه بعد أن تضغط على موافق !"
 
 msgid "Format"
+msgstr "نسق"
+
+#
+#, python-format
+msgid ""
+"Found a total of %d matching Events.\n"
+"%d Timer were added and %d modified."
 msgstr ""
 
+#
 msgid "Frame repeat count during non-smooth winding"
 msgstr ""
 
+#
 msgid "Frame size in full view"
 msgstr ""
 
-msgid "French"
-msgstr ""
+msgid "France"
+msgstr "فرنسا"
 
+#
+msgid "French"
+msgstr "فرنسى"
+
+#
 msgid "Frequency"
 msgstr "التردد"
 
 msgid "Frequency bands"
-msgstr ""
+msgstr "نطاقات التردد"
 
+#
 msgid "Frequency scan step size(khz)"
 msgstr ""
 
+#
 msgid "Frequency steps"
-msgstr ""
+msgstr "خطوات التردد"
 
+#
 msgid "Fri"
-msgstr ""
+msgstr "الجمعه"
 
+#
 msgid "Friday"
 msgstr "الجمعه"
 
+#
 msgid "Frisian"
 msgstr ""
 
-msgid "Fritz!Box FON IP address"
-msgstr ""
-
+#
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr ""
 
 msgid "Fsck failed"
-msgstr ""
+msgstr "فشل فحص الملفات"
 
-msgid "Function not yet implemented"
-msgstr ""
-
+#
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
+"يجب إعادة تشغيل الاينجما2 لتطبيق الجلد \n"
+"هل تريد إعادة تشغيل الاينجما2 الان ؟"
 
+#
+msgid "Gaming"
+msgstr ""
+
+#
 msgid "Gateway"
 msgstr ""
 
+#
 msgid "General AC3 Delay"
 msgstr ""
 
+#
 msgid "General AC3 delay (ms)"
 msgstr ""
 
+#
 msgid "General PCM Delay"
 msgstr ""
 
+#
 msgid "General PCM delay (ms)"
 msgstr ""
 
+#
 msgid "Genre"
 msgstr ""
 
+msgid "Genuine Dreambox"
+msgstr "دريم بوكس أصلى"
+
+msgid "Genuine Dreambox validation failed!"
+msgstr ""
+
+#
 msgid "German"
 msgstr "المانـى"
 
-msgid "Getting plugin information. Please wait..."
+#
+msgid "Germany"
 msgstr ""
 
+#
+msgid "Getting plugin information. Please wait..."
+msgstr "جارى الحصول على معلومات عن البلج إن. رجاء الانتظار..."
+
+#
+msgid "Global delay"
+msgstr ""
+
+#
 msgid "Goto 0"
 msgstr ""
 
+#
 msgid "Goto position"
 msgstr ""
 
+#
 msgid "Graphical Multi EPG"
 msgstr ""
 
-msgid "Greek"
-msgstr ""
+msgid "Great Britain"
+msgstr "بريطانيا"
 
+msgid "Greek"
+msgstr "اليونان"
+
+#
 msgid "Green boost"
 msgstr ""
 
+#
 msgid "Guard Interval"
 msgstr ""
 
+#
 msgid "Guard interval mode"
 msgstr ""
 
+#
+msgid "Guess existing timer based on begin/end"
+msgstr ""
+
+msgid "HD videos"
+msgstr "فيديو فائق الوضوح"
+
+#
+msgid "HTTP Port"
+msgstr ""
+
+#
+msgid "HTTPS Port"
+msgstr ""
+
+#
 msgid "Harddisk"
 msgstr "قرص صلب"
 
 msgid "Harddisk setup"
-msgstr ""
+msgstr "ضبط القرص الصلب"
 
 msgid "Harddisk standby after"
-msgstr ""
+msgstr "القرص الصلب فى وضع الاستعداد بعد"
 
+msgid "Help"
+msgstr "مسـاعده"
+
+#
 msgid "Hidden network SSID"
 msgstr ""
 
+#
 msgid "Hidden networkname"
-msgstr ""
+msgstr "إسم شبكه مخفى"
 
+#
 msgid "Hierarchy Information"
 msgstr ""
 
+#
 msgid "Hierarchy mode"
 msgstr ""
 
+#
 msgid "High bitrate support"
 msgstr ""
 
+msgid "History"
+msgstr "تاريخ"
+
+msgid "Holland"
+msgstr "هولندا"
+
+msgid "Hong Kong"
+msgstr "هونج كونج"
+
 msgid "Horizontal"
-msgstr ""
+msgstr "أفقـى"
 
 msgid "How many minutes do you want to record?"
-msgstr ""
+msgstr "كم دقيقه تريد أن تسجل ؟"
 
 msgid "How to handle found crashlogs?"
+msgstr "كيف أتعامل من سجل العطب"
+
+#
+msgid "Howto & Style"
 msgstr ""
 
+#
 msgid "Hue"
 msgstr ""
 
+#
 msgid "Hungarian"
-msgstr ""
+msgstr "مجرى"
 
+#
 msgid "IP Address"
 msgstr "عنوان IP"
 
+#
+msgid "IP:"
+msgstr ""
+
+#
 msgid "ISO file is too large for this filesystem!"
 msgstr ""
 
+#
 msgid "ISO path"
 msgstr ""
 
+#
 msgid "Icelandic"
 msgstr ""
 
-msgid "If you can see this page, please press OK."
+#
+#, python-format
+msgid ""
+"If this is enabled an existing timer will also be considered recording an "
+"event if it records at least 80% of the it."
 msgstr ""
 
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
 msgstr ""
+"إذا كنت تشاهد هذا، فهناك شيئ خطا فى \n"
+"وصلة السكارت . أضغط موافق للعوده"
 
 msgid ""
 "If your TV has a brightness or contrast enhancement, disable it. If there is "
@@ -1809,884 +2604,1473 @@ msgid ""
 "step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
+"إذا كان التليفزيون به خاصية الاضاءه أو تعزيز التباين ، قم بتعطيلها . إذا كان "
+"هناك شيئ أسمه \"ديناميكى\" قم بضبطه الى الوضع القياسى . أضبط الاضاءه الخلفيه "
+"الى قيمه تناسب ذوقك . أخفض التباين فى التليفزيون الى أقل مستوى ممكن \n"
+"بعد ذلك أخفض مستوى الاضاء الى أقل مستوى ممكن ، لكن ـاكد من وجود ظللين "
+"رماديين يمكن بقائهما فى حالة تمييز \n"
+"لا تهتم بظلال الاضاءه الان . سيتم عمل الاعادادت لها فى الخطوه القادمه \n"
+"إذا كنت تتقبل النتيجه ، أضغط موافق"
 
+#
 msgid "Image flash utility"
 msgstr ""
 
-msgid "Image-Upgrade"
+#
+msgid "Import AutoTimer"
 msgstr ""
 
+#
+msgid "Import existing Timer"
+msgstr ""
+
+#
+msgid "Import from EPG"
+msgstr ""
+
+#
 msgid "In Progress"
 msgstr ""
 
+#
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr ""
 
+msgid "Include"
+msgstr "يشمل"
+
+#
 msgid "Include your email and name (optional) in the mail?"
 msgstr ""
 
+#
+msgid "Increase delay"
+msgstr "زيادة التأخير؟"
+
+#
+#, python-format
+msgid "Increase delay by %i ms (can be set)"
+msgstr ""
+
+#
 msgid "Increased voltage"
 msgstr "فولت زائد"
 
 msgid "Index"
-msgstr ""
+msgstr "فهرس"
 
+#
+msgid "India"
+msgstr "الهند"
+
+#
 msgid "Info"
-msgstr ""
+msgstr "معلومات"
 
+#
 msgid "InfoBar"
 msgstr "شريط المعلومات"
 
+#
 msgid "Infobar timeout"
 msgstr ""
 
+#
 msgid "Information"
 msgstr "معلومات"
 
+#
 msgid "Init"
 msgstr ""
 
+#
 msgid "Initial location in new timers"
 msgstr ""
 
-msgid "Initialization..."
+#
+msgid "Initialization"
 msgstr ""
 
+#
 msgid "Initialize"
 msgstr "تفعيل البدأ"
 
+#
 msgid "Initializing Harddisk..."
 msgstr "تفعيل القرص الصلب"
 
+#
 msgid "Input"
 msgstr ""
 
+#
 msgid "Install"
-msgstr ""
+msgstr "تثبيت"
 
+#
 msgid "Install a new image with a USB stick"
 msgstr ""
 
 msgid "Install a new image with your web browser"
-msgstr ""
+msgstr "تثبيت صوره جديد بواسطه متصفح الشبكه"
 
 msgid "Install extensions."
-msgstr ""
+msgstr "تثبيت إضافات"
 
 msgid "Install local extension"
-msgstr ""
+msgstr "تثبيت إضافات محليه"
 
 msgid "Install or remove finished."
-msgstr ""
+msgstr "إنتهاء التثبيت أو الحذف"
 
 msgid "Install settings, skins, software..."
-msgstr ""
+msgstr "تثبيت إعدادات، جلد ، برامج...."
 
 msgid "Installation finished."
-msgstr ""
+msgstr "إنتهاء التثبيت."
 
 msgid "Installing"
-msgstr ""
+msgstr "جارى التثبيت"
 
 msgid "Installing Software..."
-msgstr ""
+msgstr "تثبيت برمجيات"
 
 msgid "Installing default sat lists... Please wait..."
-msgstr ""
+msgstr "تثبيت قوائم الأقمار الأفتراضيه... رجاء الانتظار.."
 
 msgid "Installing defaults... Please wait..."
-msgstr ""
+msgstr "جارى تثبيت الافتراضيات ... رجاء الأنتظار..."
 
 msgid "Installing package content... Please wait..."
-msgstr ""
+msgstr "جارى تثبيت محتويات الرزمه ... رجاء الأنتظار..."
 
 msgid "Instant Record..."
-msgstr ""
+msgstr "تسجيل سريع"
 
 msgid "Instant record location"
-msgstr ""
+msgstr "مكان التسجيل السريع"
 
+#
 msgid "Integrated Ethernet"
 msgstr ""
 
 msgid "Integrated Wireless"
-msgstr ""
+msgstr "لاسلكى مدمج"
 
 msgid "Interface: "
-msgstr ""
+msgstr "واجهه"
 
 msgid "Intermediate"
-msgstr ""
+msgstr "متوسط"
 
+#
 msgid "Internal Flash"
 msgstr ""
 
-msgid "Invalid Location"
+msgid "Internal LAN adapter."
 msgstr ""
+
+msgid "Invalid Location"
+msgstr "موقع غير صالح"
 
 #, python-format
 msgid "Invalid directory selected: %s"
+msgstr "تم إختياردليل غير صالح %s"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 304
+msgid "Invalid response from Security service pls restart again"
 msgstr ""
 
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
+msgid "Invalid response from server."
+msgstr "رد غير صالح من الخادم"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
+#, python-format
+msgid "Invalid response from server. Please report: %s"
+msgstr ""
+
+msgid "Invalid selection"
+msgstr "إختيار غير صالح"
+
+#
 msgid "Inversion"
 msgstr "عكـس"
 
-msgid "Invert display"
-msgstr ""
-
+#
 msgid "Ipkg"
 msgstr ""
 
+#
+msgid "Ireland"
+msgstr "إيرلندا"
+
+#
 msgid "Is this videomode ok?"
+msgstr "هل توافق على وضعية الفيديو هذه؟"
+
+#
+msgid "Israel"
+msgstr "إسرائيل"
+
+msgid ""
+"It's possible to restrict an AutoTimer to certain Services or Bouquets or to "
+"deny specific ones.\n"
+"An Event will only match this AutoTimer if it's on a specific and not denied "
+"Service (inside a Bouquet).\n"
+"Press BLUE to add a new restriction and YELLOW to remove the selected one."
 msgstr ""
 
 msgid "Italian"
-msgstr ""
+msgstr "إيطالى"
 
+msgid "Italy"
+msgstr "إيطاليا"
+
+msgid "Japan"
+msgstr "اليابان"
+
+#
 msgid "Job View"
 msgstr ""
 
+#
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr ""
 
-msgid "Keyboard"
+#
+#, python-format
+msgid "Key %(Key)s successfully set to %(delay)i ms"
 msgstr ""
 
+#
+#, python-format
+msgid "Key %(key)s (current value: %(value)i ms)"
+msgstr ""
+
+msgid "Keyboard"
+msgstr "لوحة مفاتيح"
+
+#
 msgid "Keyboard Map"
 msgstr "خريطه لوحه المفاتيح"
 
+#
 msgid "Keyboard Setup"
 msgstr "ضبط لوحه المفاتيح"
 
+#
 msgid "Keymap"
 msgstr "خريطه المفاتيح"
 
+#
 msgid "LAN Adapter"
+msgstr "محول شبكه محليه"
+
+msgid "LAN connection"
 msgstr ""
 
+#
 msgid "LNB"
 msgstr ""
 
+#
 msgid "LOF"
 msgstr ""
 
+#
 msgid "LOF/H"
 msgstr ""
 
+#
 msgid "LOF/L"
 msgstr ""
 
-msgid "Language selection"
-msgstr "إختيار اللغه"
-
+#
 msgid "Language"
 msgstr "لغه"
 
+#
+msgid "Language selection"
+msgstr "إختيار اللغه"
+
+#
 msgid "Last config"
-msgstr ""
+msgstr "التهيئه السابقه"
 
+#
 msgid "Last speed"
-msgstr ""
+msgstr "السرعه السابقه"
 
+#
 msgid "Latitude"
 msgstr "خط العرض"
 
+#
 msgid "Latvian"
 msgstr ""
 
+#
 msgid "Leave DVD Player?"
-msgstr ""
+msgstr "هل تريد مغادرة مشغل الدى فى دى ؟"
 
+#
 msgid "Left"
-msgstr ""
+msgstr "يسار"
 
+#
 #. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr ""
 
+#
 msgid "Limit east"
-msgstr ""
+msgstr "الحد الشرقى"
 
+#
 msgid "Limit west"
-msgstr ""
+msgstr "الحد الغربى"
 
 msgid "Limited character set for recording filenames"
-msgstr ""
+msgstr "حروف محدوده لاسماء ملفات التسجيل"
 
+#
 msgid "Limits off"
 msgstr ""
 
+#
 msgid "Limits on"
 msgstr ""
 
+#
 msgid "Link Quality:"
 msgstr ""
 
+#
 msgid "Link:"
 msgstr ""
 
+#
 msgid "Linked titles with a DVD menu"
 msgstr ""
 
+#
 msgid "List of Storage Devices"
-msgstr ""
+msgstr "قائمة أجهزة التخزين"
 
+#
 msgid "Lithuanian"
-msgstr ""
+msgstr "ليتوانى"
 
+#
 msgid "Load"
+msgstr "تحميل"
+
+#
+msgid "Load Length of Movies in Movielist"
+msgstr "تحميل طول الفيلم فى قائمة الافلام"
+
+#
+msgid "Load feed on startup:"
 msgstr ""
 
-msgid "Load Length of Movies in Movielist"
-msgstr ""
+#
+msgid "Load movie-length"
+msgstr "تحميل طول الفيلم"
 
 msgid "Local Network"
+msgstr "شبكه محليه"
+
+#
+msgid "Local share name"
 msgstr ""
 
 msgid "Location"
-msgstr ""
+msgstr "مكان"
 
 msgid "Location for instant recordings"
-msgstr ""
+msgstr "مكان التسجيلات السريعه"
 
+#
 msgid "Lock:"
 msgstr ""
 
+#
 msgid "Log results to harddisk"
 msgstr ""
 
+#
 msgid "Long Keypress"
-msgstr ""
+msgstr "ضغط مستمر على مفتاح"
 
+#
 msgid "Longitude"
 msgstr "خط الطول"
 
+#
+msgid "Lower bound of timespan."
+msgstr ""
+
+#
+msgid ""
+"Lower bound of timespan. Nothing before this time will be matched. Offsets "
+"are not taken into account!"
+msgstr ""
+
+#
 msgid "MMC Card"
 msgstr ""
 
 msgid "MORE"
-msgstr ""
+msgstr "المزيـد"
 
+#
 msgid "Main menu"
 msgstr "القائـمه الرئيسيـه"
 
+#
 msgid "Mainmenu"
 msgstr "القائمه الاساسيه"
 
+#
 msgid "Make this mark an 'in' point"
 msgstr ""
 
+#
 msgid "Make this mark an 'out' point"
-msgstr ""
+msgstr "أجعل هذه العلامه نقطة خروج"
 
+#
 msgid "Make this mark just a mark"
-msgstr ""
+msgstr "أجعل هذه العلامه مجرد علامه"
 
+#
 msgid "Manage extensions"
+msgstr "التحكم فى الاضافات"
+
+#
+msgid "Manage network shares"
 msgstr ""
 
+#
+msgid "Manage your network shares..."
+msgstr ""
+
+#
 msgid "Manage your receiver's software"
-msgstr ""
+msgstr "تحكم فى البرنامج التشغيلى للرسيفر"
 
+#
 msgid "Manual Scan"
 msgstr "بحـث يدوى"
 
 msgid "Manual transponder"
-msgstr ""
+msgstr "تردد يدوى"
 
 msgid "Manufacturer"
-msgstr ""
+msgstr "الصانع"
 
 msgid "Margin after record"
-msgstr ""
+msgstr "الهامش بعد التسجيل"
 
 msgid "Margin before record (minutes)"
+msgstr "الهامش قبل التسجيل (بالدقائق)"
+
+#
+#, python-format
+msgid "Match Timespan: %02d:%02d - %02d:%02d"
 msgstr ""
 
+#
+msgid "Match title"
+msgstr "مطابقة العنوان"
+
+#
+#, python-format
+msgid "Match title: %s"
+msgstr ""
+
+#
 msgid "Max. Bitrate: "
 msgstr ""
 
-msgid "Media player"
+#
+msgid "Maximum duration (in m)"
 msgstr ""
+
+#
+msgid ""
+"Maximum event duration to match. If an event is longer than this ammount of "
+"time (without offset) it won't be matched."
+msgstr ""
+
+#
+msgid "Media player"
+msgstr "مشغل الوسائط"
 
 msgid "MediaPlayer"
-msgstr ""
+msgstr "مشغل الـوسائط"
 
+#
 msgid "Medium is not a writeable DVD!"
 msgstr ""
 
 msgid "Medium is not empty!"
-msgstr ""
+msgstr "الوسيط غير فارغ"
 
+#
 msgid "Menu"
 msgstr "قائمه"
 
+#
 msgid "Message"
 msgstr "رسـاله"
 
 msgid "Message..."
-msgstr ""
+msgstr "رساله..."
 
+msgid "Mexico"
+msgstr "المكسيك"
+
+#
 msgid "Mkfs failed"
-msgstr ""
+msgstr "فشل عمل نظام ملفات"
 
+#
 msgid "Mode"
-msgstr ""
+msgstr "وضعيه"
 
+#
 msgid "Model: "
 msgstr "موديل :"
 
-msgid "Modulation"
+#
+msgid "Modify existing timers"
 msgstr ""
 
+#
+msgid "Modulation"
+msgstr "تعديل"
+
+#
 msgid "Modulator"
 msgstr ""
 
+#
 msgid "Mon"
-msgstr ""
+msgstr "الاثنين"
 
+#
 msgid "Mon-Fri"
 msgstr "الاثنين - الجمعه"
 
+#
 msgid "Monday"
 msgstr "الاثنين"
 
+msgid "Monthly"
+msgstr "شهرى"
+
+#
+msgid "More video entries."
+msgstr "المزيد من مدخلات الفيديو"
+
+#
 msgid "Mosquito noise reduction"
 msgstr ""
 
-msgid "Mount failed"
+#
+msgid "Most discussed"
+msgstr "الاكثر مناقشه"
+
+#
+msgid "Most linked"
 msgstr ""
+
+msgid "Most popular"
+msgstr "الاكثر شهره"
+
+msgid "Most recent"
+msgstr "الأحدث"
+
+#
+msgid "Most responded"
+msgstr "الاكثر إستجابه"
+
+msgid "Most viewed"
+msgstr "الأكثر مشاهده"
+
+#
+msgid "Mount failed"
+msgstr "فشل الاعتلاء"
+
+#
+msgid "Mount informations"
+msgstr "معلومات الاعتلاء"
+
+#
+msgid "Mount options"
+msgstr "نقاط الاعتلاء"
+
+#
+msgid "Mount type"
+msgstr "نوع الاعتلاء"
+
+#
+msgid "MountManager"
+msgstr "المتحكم فى الاعتلاء"
+
+#
+msgid ""
+"Mounted/\n"
+"Unmounted"
+msgstr ""
+
+#
+msgid "Mountpoints management"
+msgstr "التحكم فى نقاط الاعتلاء"
+
+#
+msgid "Mounts editor"
+msgstr "تحرير الاعتلاء"
+
+#
+msgid "Mounts management"
+msgstr "التحكم فى الاعتلاء"
 
 msgid "Move Picture in Picture"
-msgstr ""
+msgstr "تحريك صوره داخل صوره"
 
 msgid "Move east"
-msgstr ""
+msgstr "تحرك شرقا"
+
+#
+msgid "Move plugin screen"
+msgstr "حرك شاشة البلج إن"
+
+msgid "Move screen down"
+msgstr "تحريك الشاشه لأسفل"
+
+msgid "Move screen to the center of your TV"
+msgstr "تحريك الشاشه الى منتصف التليفزيون"
+
+msgid "Move screen to the left"
+msgstr "تحريك الشاه الى اليسار"
+
+msgid "Move screen to the lower left corner"
+msgstr "حرك الشاشه الى الركن الايسر السفلى"
+
+msgid "Move screen to the lower right corner"
+msgstr "حرك الشاشه الى الركن الايمن السفلى"
+
+msgid "Move screen to the middle of the left border"
+msgstr "حرك الشاشه الى منتصف الحافه اليسرى"
+
+msgid "Move screen to the middle of the right border"
+msgstr "حرك الشاشه الى منتصف الحافه اليمنى"
+
+msgid "Move screen to the right"
+msgstr "حرك الشاشه الى اليمين"
+
+msgid "Move screen to the upper left corner"
+msgstr "حرك الشاشه الى الركن الايسر العلوى"
+
+msgid "Move screen to the upper right corner"
+msgstr "حرك الشاشه الى الركن الايمن العلوى"
+
+msgid "Move screen up"
+msgstr "حرك الشاشه لأعلى"
 
 msgid "Move west"
-msgstr ""
+msgstr "تحرك للغرب"
 
 msgid "Movie location"
-msgstr ""
+msgstr "مكان الفيلم"
 
+#
 msgid "Movielist menu"
 msgstr ""
 
+#
 msgid "Multi EPG"
-msgstr ""
+msgstr "دليل برامج متعدد"
 
 msgid "Multimedia"
-msgstr ""
+msgstr "وسائط متعدده"
 
+#
 msgid "Multiple service support"
 msgstr ""
 
+#
 msgid "Multisat"
-msgstr ""
+msgstr "عدة أقمار"
+
+msgid "Music"
+msgstr "موسيقى"
 
 msgid "Mute"
-msgstr "Stummschaltung"
+msgstr "كتم الصوت"
 
+#
+msgid "My TubePlayer"
+msgstr ""
+
+#
+msgid "MyTube Settings"
+msgstr "إعدادات MyTube"
+
+#
+msgid "MyTubePlayer"
+msgstr "MyTubePlayer"
+
+#
+msgid "MyTubePlayer Help"
+msgstr "مساعده MyTubePlayer"
+
+#
+msgid "MyTubePlayer active video downloads"
+msgstr "تحميلات الفيديو النشطه لـ MyTubePlayer"
+
+#
+msgid "MyTubePlayer settings"
+msgstr "إعدادات MyTubePlayer"
+
+#
+msgid "MyTubeVideoInfoScreen"
+msgstr "شاشه معلومات MyTubeVideo"
+
+#
+msgid "MyTubeVideohelpScreen"
+msgstr "شاشة مساعده MyTubeVideo"
+
+#
 msgid "N/A"
 msgstr "غير موجود"
 
+#
 msgid "NEXT"
-msgstr ""
+msgstr "التالى"
 
+#
 msgid "NFI Image Flashing"
-msgstr ""
+msgstr "شحن صوره NFI"
 
+#
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
+msgstr ""
+"تم النتهاء من شحن صوره NFI، رجاء الضغط على الذر الاصفر لاعادة التشغيل !"
+
+#
+msgid "NFS share"
 msgstr ""
 
 msgid "NOW"
-msgstr ""
+msgstr "الان"
 
+#
 msgid "NTSC"
-msgstr ""
+msgstr "NTSC"
 
+#
 msgid "Name"
 msgstr "الاسم"
 
 msgid "Nameserver"
-msgstr "اسم السيرفر"
+msgstr "اسم الخادم"
 
 #, python-format
 msgid "Nameserver %d"
-msgstr ""
+msgstr "اسم الخادم %d"
 
 msgid "Nameserver Setup"
-msgstr ""
+msgstr "ضبط أسم الخادم"
 
 msgid "Nameserver settings"
-msgstr ""
+msgstr "إعدادات اسم الخادم"
 
+#
 msgid "Netmask"
 msgstr ""
 
 msgid "Network"
-msgstr "شبكه"
+msgstr "الشبكه"
 
 msgid "Network Configuration..."
-msgstr ""
+msgstr "تكوين الشبكه"
 
+#
 msgid "Network Mount"
-msgstr ""
+msgstr "إعتلاء الشبكه"
 
+#
 msgid "Network SSID"
 msgstr ""
 
+#
 msgid "Network Setup"
 msgstr "ضبط الشبـكة"
 
 msgid "Network Wizard"
-msgstr ""
+msgstr "نافذة ضبط الشبكه"
 
 msgid "Network scan"
-msgstr ""
+msgstr "بحث عن الشبكه"
 
 msgid "Network setup"
-msgstr "تهيئه الشبكه"
+msgstr "ضبط الشبكه"
 
 msgid "Network test"
-msgstr ""
+msgstr "أختبار الشبكه"
 
 msgid "Network test..."
-msgstr ""
+msgstr "اختبار الشبكه ..."
 
-msgid "Network..."
+msgid "Network test: "
 msgstr ""
 
 msgid "Network:"
-msgstr ""
+msgstr "الشبكه:"
 
+msgid "NetworkBrowser"
+msgstr "متصفح الشبكه"
+
+#
 msgid "NetworkWizard"
-msgstr ""
+msgstr "نافذة إعدادات الشبكه"
 
+#
+msgid "Never"
+msgstr "مطلقا"
+
+#
 msgid "New"
-msgstr ""
+msgstr "جديد"
 
+#
+msgid "New Zealand"
+msgstr "نيوزيلنده"
+
+#
 msgid "New pin"
-msgstr ""
+msgstr "رقم سرى جديد"
 
+#
 msgid "New version:"
-msgstr ""
+msgstr "إصدار جديد:"
 
+#
+msgid "News & Politics"
+msgstr "أخبار وسياسه"
+
+#
 msgid "Next"
 msgstr "التالى"
 
+#
 msgid "No"
 msgstr "لا"
 
+#
 msgid "No (supported) DVDROM found!"
 msgstr ""
 
-msgid "No 50 Hz, sorry. :("
-msgstr ""
-
 msgid "No Connection"
-msgstr ""
+msgstr "لا يوجد إتصال"
 
+#
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
 "لا يوجد قرص صلب\n"
 "أو ان القرص الصلب لم يبدأ"
 
+#
 msgid "No Networks found"
-msgstr ""
+msgstr "لم يتم العثور على شبكات"
 
+#
 msgid "No backup needed"
-msgstr ""
+msgstr "لا حاجه الى باك أب"
 
+#
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
 msgstr ""
 
+#
 msgid "No description available."
-msgstr ""
+msgstr "لا يوجد وصف"
 
+#
 msgid "No details for this image file"
-msgstr ""
+msgstr "لا يوجد تفاصيل لملف الصوره هذا"
 
+#
 msgid "No displayable files on this medium found!"
-msgstr ""
+msgstr "لا يوجد ملفات للعرض على هذا الوسيط !"
 
+#
 msgid "No event info found, recording indefinitely."
 msgstr ""
 
+#
 msgid ""
 "No fast winding possible yet.. but you can use the number buttons to skip "
 "forward/backward!"
 msgstr ""
 
+#
 msgid "No free tuner!"
 msgstr ""
 
+#
 msgid "No network connection available."
-msgstr ""
+msgstr "لا يوجد اتصال متاح بشبكه"
 
+#
+msgid "No network devices found!"
+msgstr "لا يوجد جهاز شبكه"
+
+#
 msgid "No networks found"
-msgstr ""
+msgstr "لم يتم العثور على شبكه"
 
+#
 msgid ""
 "No packages were upgraded yet. So you can check your network and try again."
-msgstr ""
+msgstr "لم تتم ترقيه أى باقه بعد . تأكد من الشبكه وأعد المحاوله"
 
+#
 msgid "No picture on TV? Press EXIT and retry."
-msgstr ""
+msgstr "هل لا يوجد صوره ؟ أضغط خروج وحاول ثانيه"
 
+msgid "No playable video found! Stop playing this movie?"
+msgstr "لا يوجد فيديو للعرض ، هل تريد وقف تشغيل هذا الفيلم ؟"
+
+#
 msgid "No positioner capable frontend found."
 msgstr ""
 
 msgid "No satellite frontend found!!"
-msgstr ""
+msgstr "لم يتم العثور على أقمار موجهه !!"
 
+#
 msgid "No tags are set on these movies."
 msgstr ""
 
+#
 msgid "No to all"
-msgstr ""
+msgstr "لا للجميع"
 
 msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr ""
+msgstr "لم يتم العثور على موالف مهيأ للعمل مع موتور دايزك !"
 
+#
 msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 
+#
 msgid "No useable USB stick found"
-msgstr ""
+msgstr "لم يتم العثور على يو أس بى"
 
+#
 msgid ""
 "No valid service PIN found!\n"
 "Do you like to change the service PIN now?\n"
 "When you say 'No' here the service protection stay disabled!"
 msgstr ""
 
+#
 msgid ""
 "No valid setup PIN found!\n"
 "Do you like to change the setup PIN now?\n"
 "When you say 'No' here the setup protection stay disabled!"
 msgstr ""
 
+msgid "No videos to display"
+msgstr "لا يوجد فيديو للعرض"
+
 msgid "No wireless networks found! Please refresh."
-msgstr ""
+msgstr "لم يتم العثور على شبكه لاسلكيه! . من فضلك حدث"
 
 msgid ""
 "No working local network adapter found.\n"
 "Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
+"لا يوجد محول شبكه \n"
+"من فضلك تأكد من توصيل كابل الشبكه وأن إعدادات الشبكه تمت بشكل صحيح"
 
 msgid ""
 "No working wireless network adapter found.\n"
 "Please verify that you have attached a compatible WLAN device and your "
 "network is configured correctly."
 msgstr ""
+"لم يتم العثور على محول شبكه لاسلكى. \n"
+"رجاء التأكد من توصيل محول شبكه مناسب وأن ضبط الشبكه قد تم بشكل صحي"
 
 msgid ""
 "No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable "
 "your local network interface."
 msgstr ""
+"لم يتم العثور على واحهة شبكه عامله.\n"
+"رجاء التأكد من توصيل محول شبكه مناسب أو قم بتشغيل واحهة الشبكه المحليه."
+
+msgid "No, but play video again"
+msgstr "لا، لكن أعد تشغيل الفيديو ثانية"
 
 msgid "No, but restart from begin"
+msgstr "لا، لكن أعد التشغيل من البدايه"
+
+#
+msgid "No, but switch to video entries."
 msgstr ""
+
+#
+msgid "No, but switch to video search."
+msgstr "لا، لكن تحول الى البحث عن الفيديو"
 
 msgid "No, do nothing."
-msgstr ""
+msgstr "لا ، لا تفعل شيئ"
 
+#
 msgid "No, just start my dreambox"
 msgstr "لا ، فقط قم بتشغيل الدريم بوكس"
 
 msgid "No, not now"
+msgstr "لا ، ليس الان"
+
+msgid "No, remove them."
 msgstr ""
 
+#
 msgid "No, scan later manually"
 msgstr "لا، بحث يدوى بعد ذلك"
 
+#
 msgid "No, send them never"
 msgstr ""
 
+#
 msgid "None"
 msgstr "لاشيئ"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
+msgstr "غير خطى"
+
+#
+msgid "Nonprofits & Activism"
 msgstr ""
 
+#
 msgid "North"
 msgstr "شمال"
 
+#
 msgid "Norwegian"
-msgstr ""
+msgstr "نرويجى"
 
+#
 #, python-format
 msgid ""
 "Not enough diskspace. Please free up some diskspace and try again. (%d MB "
 "required, %d MB available)"
 msgstr ""
 
+#
+msgid "Not fetching feed entries"
+msgstr ""
+
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
+"لا يوجد شيئ للبحث ! \n"
+"من فضلك قم بضبط الموالف قبل بدأ البحث"
 
+#
 msgid "Now Playing"
-msgstr ""
+msgstr "الان يعرض"
 
 msgid ""
 "Now, use the contrast setting to turn up the brightness of the background as "
 "much as possible, but make sure that you can still see the difference "
 "between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
+"الان، استخدم إعدادات التباين لزيادة درجه إضاءه الخلفيه الى أعلى قيمه ممكنه ، "
+"لكن كن متأكدا انك لازلت تستطيع ان ترى الفرق بين مستويين من الاضاءه فى الظل . "
+"إذا انتهيت من ذلك ، أضغط موافق."
 
+msgid "Number of scheduled recordings left."
+msgstr "عدد التسجيلات المجدوله المتبقى"
+
+#
 msgid "OK"
 msgstr "موافق"
 
 msgid "OK, guide me through the upgrade process"
-msgstr ""
+msgstr "موافق، أرشدنى أثناء عملية الترقيه"
 
 msgid "OK, remove another extensions"
-msgstr ""
+msgstr "موافق، أحذف إضافات اخرى"
 
 msgid "OK, remove some extensions"
-msgstr ""
+msgstr "موافق، أحذف بعض الاضافات"
 
+#
 msgid "OSD Settings"
 msgstr "إعدادات OSD"
 
+#
 msgid "OSD visibility"
 msgstr ""
 
+#
 msgid "Off"
 msgstr "لا يعمل"
 
+#
+msgid "Offset after recording (in m)"
+msgstr ""
+
+#
+msgid "Offset before recording (in m)"
+msgstr ""
+
+#
 msgid "On"
 msgstr "يعمل"
 
+#
+msgid "On any service"
+msgstr "على أى خدمه"
+
+#
+msgid "On same service"
+msgstr "على نفس الخدمه"
+
+#
 msgid "One"
 msgstr "واحد"
 
-msgid "Online-Upgrade"
-msgstr ""
+msgid "Only AutoTimers created during this session"
+msgstr "فقط المؤقتات الاليه التى تم عملها فى هذه الجلسه"
 
+#
 msgid "Only Free scan"
-msgstr ""
+msgstr "فقط بحث عن القنوات المفتوحه"
 
 msgid "Only extensions."
+msgstr "إضافات فقط"
+
+msgid "Only match during timespan"
+msgstr "تطابق اثناء المدى الزمنى فقط"
+
+#, python-format
+msgid "Only on Service: %s"
+msgstr "فقط على الخدمه: %s"
+
+#
+msgid "Open Context Menu"
 msgstr ""
+
+msgid "Open plugin menu"
+msgstr "أفتح قائمة البلج إنز"
 
 msgid "Optionally enter your name if you want to."
-msgstr ""
+msgstr "أدخل اسم إذا كنت ترغب فى ذلك - إختيارى-"
 
+#
 msgid "Orbital Position"
+msgstr "الوضع المدارى"
+
+#
+msgid "Outer Bound (+/-)"
 msgstr ""
 
-msgid "PAL"
+#
+msgid "Override found with alternative service"
 msgstr ""
+
+#
+msgid "PAL"
+msgstr "بال"
 
 msgid "PIDs"
-msgstr ""
+msgstr "PIDs"
 
+#
 msgid "Package list update"
-msgstr ""
+msgstr "تحديث قائمة الباقات"
 
+#
 msgid "Package removal failed.\n"
 msgstr ""
 
 msgid "Package removed successfully.\n"
-msgstr ""
+msgstr "تم حذف الرزمه بنجاح \n"
 
 msgid "Packet management"
-msgstr ""
+msgstr "التحكم فى الحزم"
 
 msgid "Packet manager"
-msgstr ""
+msgstr "المتحكم فى الحزم"
 
+#
 msgid "Page"
-msgstr ""
+msgstr "صفحه"
 
+#
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr ""
 
+#
 msgid "Parent Directory"
-msgstr ""
+msgstr "الدليل الرئيسى"
 
+#
 msgid "Parental control"
-msgstr ""
+msgstr "التحكم الابوى"
 
 msgid "Parental control services Editor"
-msgstr ""
+msgstr "محرر خدمات التحكم الأبوى"
 
+#
 msgid "Parental control setup"
-msgstr ""
+msgstr "اعداد التحكم الابوى"
 
+#
 msgid "Parental control type"
-msgstr ""
+msgstr "نوع التحكم الابوى"
 
+#
 msgid "Password"
-msgstr ""
+msgstr "كلمة المرور"
 
 msgid "Pause movie at end"
+msgstr "إيقاف الفيلم عند النهايه"
+
+#
+msgid "People & Blogs"
 msgstr ""
 
-msgid "Phone number"
+#
+msgid "Pets & Animals"
 msgstr ""
+
+#
+msgid "Phone number"
+msgstr "رقم التليفون"
 
 msgid "PiPSetup"
-msgstr ""
+msgstr "ضبط صوره داخل صوره"
 
 msgid "PicturePlayer"
-msgstr ""
+msgstr "عارض الصور"
 
 #. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
-msgstr ""
+msgstr "عمود مربع"
 
+#
 msgid "Pilot"
 msgstr ""
 
 msgid "Pin code needed"
-msgstr ""
+msgstr "مطلوب رقم سرى"
 
+#
 msgid "Play"
-msgstr ""
+msgstr "تشغيل"
 
+#
 msgid "Play Audio-CD..."
-msgstr ""
+msgstr "تشغيل سى دى صوت"
 
+#
 msgid "Play DVD"
-msgstr ""
+msgstr "تشغيل دى فى دى"
 
+#
 msgid "Play Music..."
-msgstr ""
+msgstr "تشغيل موسيقى"
 
+#
+msgid "Play YouTube movies"
+msgstr "تشغيل افلام يوتيوب"
+
+#
+msgid "Play next video"
+msgstr "تشغيل الفيديو التالى"
+
+#
 msgid "Play recorded movies..."
 msgstr "عرض الافلام المسجله"
 
+#
+msgid "Play video again"
+msgstr "تشغيل الفيديو مره ثانيه"
+
 msgid "Please Reboot"
-msgstr ""
+msgstr "من فضلك أعد التشغيل"
 
 msgid "Please Select Medium to be Scanned"
+msgstr "من فضلك أختار الوسيط المطلوب فحصه"
+
+#
+msgid "Please add titles to the compilation."
 msgstr ""
 
 msgid "Please change recording endtime"
-msgstr ""
+msgstr "من فضلك قم بتغيير وقت إنتهاء التسجيل"
 
 msgid "Please check your network settings!"
-msgstr ""
+msgstr "من فضلك أفحص إعدادات الشبكه!"
 
 msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
+msgstr "من فضلك أختار صوره nfi للتحميل من خادم التغذيه "
 
 msgid "Please choose an extension..."
-msgstr ""
+msgstr "من فضلك أختار إضافه..."
 
 msgid "Please choose he package..."
-msgstr ""
+msgstr "من فضلك اختار رزمه..."
 
 msgid "Please choose the default services lists you want to install."
-msgstr ""
+msgstr "من فضلك أختار قوائم القنوات الافتراضيه التى تريد تثبيتها."
 
 msgid ""
 "Please configure or verify your Nameservers by filling out the required "
 "values.\n"
 "When you are ready press OK to continue."
 msgstr ""
+"من فضلك فم بتكوين أو تأكد من اسم الخادم بوضع القيم المطلوبه.\n"
+"عندما تكون مستعد أضغط موافق للاستمرار."
 
 msgid ""
 "Please configure your internet connection by filling out the required "
 "values.\n"
 "When you are ready press OK to continue."
 msgstr ""
+"من فضلك قم بتكوين التصال بالنترنت بملأ القيم المطلوبه \n"
+"عندما تكون مستعد أضغط موافق للاستمرار"
 
 msgid ""
 "Please disconnect all USB devices from your Dreambox and (re-)attach the "
 "target USB stick (minimum size is 64 MB) now!"
 msgstr ""
+"من فضلك أفصل الان كل اجهزة USB من الدريم بوكس، ثم اشبك الـ USB المستهدف (أقل "
+"سعه مسموحه 64 ميجا)"
 
 msgid "Please do not change any values unless you know what you are doing!"
-msgstr ""
+msgstr "من فضلك لا تغير أى قيمه ألا إذا كنت متأكد مما تفعل !"
 
 msgid "Please enter a name for the new bouquet"
-msgstr ""
+msgstr "من فضلك أدخل أسم الباقه الجديده"
 
+#
 msgid "Please enter a name for the new marker"
 msgstr ""
 
 msgid "Please enter a new filename"
-msgstr ""
+msgstr "من فضلك أدخل اسم جديد للملف"
 
+#
 msgid "Please enter filename (empty = use current date)"
 msgstr ""
 
 msgid "Please enter name of the new directory"
-msgstr ""
+msgstr "من فضلك أدخل أسم الدليل الجديد"
 
+#
 msgid "Please enter the correct pin code"
 msgstr ""
 
 msgid "Please enter the old pin code"
-msgstr ""
+msgstr "من فضلك أدخل الرقم السرى القديم"
 
 msgid "Please enter your email address here:"
-msgstr ""
+msgstr "من فضلك أدخل بريدك الالكترونى هنا:"
 
 msgid "Please enter your name here (optional):"
-msgstr ""
+msgstr "من فضلك أدخل اسمك هنا (إختيارى):"
+
+msgid "Please enter your search term."
+msgstr "من فضلك أدخل شرط البحث."
 
 msgid "Please follow the instructions on the TV"
-msgstr ""
+msgstr "من فضلك اتبع التعليمات على التليفزيون"
 
 msgid ""
 "Please note that the previously selected media could not be accessed and "
 "therefore the default directory is being used instead."
 msgstr ""
+"من فضلك أعلم ان الوسيط المختار لا يمكن الدخول اليه ، ولهذا سيتم استخدام "
+"الدليل الافتراضى بدلا منه ."
 
 msgid "Please press OK to continue."
-msgstr ""
+msgstr "من فضلك أضغط موافق للاستمرار"
 
+#
 msgid "Please press OK!"
 msgstr "من فضلك اضغط موافق"
 
+#
+msgid "Please provide a Text to match"
+msgstr ""
+
+#
 msgid "Please select .NFI flash image file from medium"
 msgstr ""
 
 msgid "Please select a playlist to delete..."
-msgstr ""
+msgstr "أختار قائمة العرض المراد مسحها..."
 
 msgid "Please select a playlist..."
+msgstr "من فضلك أختار قائمة العرض..."
+
+#
+msgid "Please select a standard feed or try searching for videos."
 msgstr ""
 
 msgid "Please select a subservice to record..."
-msgstr ""
+msgstr "من فضلك أختار الخدمه الفرعيه المطلوب تسجيلها..."
 
+#
 msgid "Please select a subservice..."
-msgstr ""
+msgstr "من فضلك أختار الخدمه الفرعيه"
 
 msgid "Please select an extension to remove."
-msgstr ""
+msgstr "من فضلك أختار الاضافه المطلوب حذفها"
 
+#
 msgid "Please select an option below."
-msgstr ""
+msgstr "من فضلك حدد إختيارا من التالى :"
 
+#
 msgid "Please select medium to use as backup location"
-msgstr ""
+msgstr "من فضلك أختار الوسيط الذى سييستخدم كمان للباك أب"
 
+#
 msgid "Please select tag to filter..."
 msgstr ""
 
+#
 msgid "Please select target directory or medium"
 msgstr ""
 
 msgid "Please select the movie path..."
-msgstr ""
+msgstr "من فضلك أختار مسار الفيلم..."
 
 msgid ""
 "Please select the network interface that you want to use for your internet "
@@ -2694,404 +4078,599 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
+"من فضلك أختار واجهة الشبكه التى تريد استخدامها فى الاتصال بالانترنت.\n"
+"\n"
+"أضغط موافق للاستمرار."
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
 "\n"
 "Please press OK to continue."
 msgstr ""
+"من فضلك أختار الشبكه اللاسلكيه التى تريد الاتصال بها \n"
+"\n"
+"أضغط موافق للاستمرار"
 
 msgid "Please set up tuner B"
-msgstr "من فضلك أضبط التيونر ب"
+msgstr "من فضلك أضبط التيونر B"
 
 msgid "Please set up tuner C"
-msgstr ""
+msgstr "من فضلك أضبط الموالف C"
 
 msgid "Please set up tuner D"
-msgstr ""
+msgstr "من فضلك أضبط الموالف D"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
+"من فضلك استخدم أذرار الاسهم لتحريك نافذه صوره داخل صوره \n"
+"أضغط ذر الباقات +/- لتغير مقاس النافذه \n"
+"أضغط موافق للعوده لوضع التليفزيون أو خروج لألغاء التحريك"
 
 msgid ""
 "Please use the UP and DOWN keys to select your language. Afterwards press "
 "the OK button."
 msgstr ""
+"من فضلك أستخدم ذر السهم العلوى أو السفلى لإختيار اللغه. ثم أضغط موافق ."
+
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 137
+msgid "Please wait (Step 2)"
+msgstr "رجاء الانتظار (خطوه 2)"
 
 msgid "Please wait for activation of your network configuration..."
-msgstr ""
+msgstr "رجاء الانتظار حتى يتم تنشيط تكوينات الشبكه"
+
+#
+msgid "Please wait for activation of your network mount..."
+msgstr "رجاء الانتظار بينما يتم تنشيط إعتلاء الشبكه"
 
 msgid "Please wait while removing selected package..."
-msgstr ""
+msgstr "رجاء الانتظار حتى يتم حذف الرزم المختاره"
+
+#
+msgid "Please wait while removing your network mount..."
+msgstr "من فضلك إنتظر بينما يتم حذف إعتلاء الشبكه"
 
 msgid "Please wait while scanning is in progress..."
-msgstr ""
+msgstr "رجاء الانتظار حيث جارى البحث..."
 
 msgid "Please wait while searching for removable packages..."
-msgstr ""
+msgstr "رجاء الانتظار جارى البحث عن الرزم المحذوفه..."
+
+#
+msgid "Please wait while updating your network mount..."
+msgstr "رجاء الانتظار بينما يتم تحديث إعتلاء الشبكه"
 
 msgid "Please wait while we configure your network..."
-msgstr ""
+msgstr "رجاء الانتظار..... جارى تهيئة الشبكه"
 
 msgid "Please wait while we prepare your network interfaces..."
-msgstr ""
+msgstr "رجاء الانتظار.... جارى تحضير واجهات الشبكه"
 
 msgid "Please wait while we test your network..."
-msgstr ""
+msgstr "رجاء الانتظار.... جارى إختبار الشبكه"
 
 msgid "Please wait while your network is restarting..."
-msgstr ""
+msgstr "رجاء الانتظار.... جارى إعادة تشغيل الشبكه"
 
 msgid "Please wait..."
-msgstr ""
+msgstr "رجاء الانتظار...."
 
 msgid "Please wait... Loading list..."
 msgstr "انتظر من فضلك ...يتم تحميل القائمه..."
 
+#
 msgid "Plugin browser"
 msgstr "متصفح البلج إنز"
 
+#
 msgid "Plugin manager activity information"
 msgstr ""
 
+#
 msgid "Plugin manager help"
+msgstr "مساعده متحكم البلج إن"
+
+#
+#, python-format
+msgid "Plugin: %(plugin)s , Version: %(version)s"
 msgstr ""
 
+#
 msgid "Plugins"
 msgstr "بلج إنز"
 
+msgid "Poland"
+msgstr "بولندا"
+
+#
 msgid "Polarity"
 msgstr "القطبيه"
 
+#
 msgid "Polarization"
 msgstr "الاستقطاب"
 
+#
 msgid "Polish"
+msgstr "بولندى"
+
+#
+msgid "Poll Interval (in h)"
 msgstr ""
 
+#
+msgid "Poll automatically"
+msgstr ""
+
+#
 msgid "Port A"
 msgstr "مدخل أ"
 
+#
 msgid "Port B"
 msgstr "مدخل ب"
 
+#
 msgid "Port C"
 msgstr "مدخل ج"
 
+#
 msgid "Port D"
 msgstr "مدخل د"
 
+#
 msgid "Portuguese"
-msgstr ""
+msgstr "برتغالى"
 
+#
 msgid "Positioner"
 msgstr "الموتور"
 
 msgid "Positioner fine movement"
-msgstr ""
+msgstr "التحريك الدقيق للموتور"
 
 msgid "Positioner movement"
-msgstr ""
+msgstr "تحريك الموتور"
 
 msgid "Positioner setup"
-msgstr ""
+msgstr "ضبط الموتور"
 
+#
 msgid "Positioner storage"
 msgstr ""
 
+#
+msgid ""
+"Power state to change to after recordings. Select \"standard\" to not change "
+"the default behavior of enigma2 or values changed by yourself."
+msgstr ""
+
+#
 msgid "Power threshold in mA"
 msgstr ""
 
+#
 msgid "Predefined transponder"
 msgstr ""
 
+#
 msgid "Preparing... Please wait"
-msgstr ""
+msgstr "جارى التجهيز ... رجاء الانتظار"
 
+#
 msgid "Press OK on your remote control to continue."
-msgstr ""
+msgstr "أضغط موافق من الريموت للمتابعه"
 
 msgid "Press OK to activate the selected skin."
-msgstr ""
+msgstr "أضغط موافق لتفعيل الجلد المختار."
 
+#
 msgid "Press OK to activate the settings."
 msgstr "اضغط موافق لتفعيل الاعدادات"
 
+#
+msgid "Press OK to collapse this host"
+msgstr ""
+
+msgid "Press OK to edit selected settings."
+msgstr "اضغط موافق لتحرير الاعدادات المختاره"
+
 msgid "Press OK to edit the settings."
+msgstr "أضغط موافق لتحرير الاعدادات"
+
+#
+msgid "Press OK to expand this host"
 msgstr ""
 
 #, python-format
 msgid "Press OK to get further details for %s"
+msgstr "أضغط موالق للحصول على تفاصيل أكثر عن %s"
+
+#
+msgid "Press OK to mount this share!"
 msgstr ""
 
+#
+msgid "Press OK to mount!"
+msgstr "أضغط موافق ليتم الاعتلاء"
+
+msgid "Press OK to save settings."
+msgstr "أضغط موافق لحفظ الاعدادات"
+
+#
 msgid "Press OK to scan"
 msgstr "اضغط موافق للبحث"
 
 msgid "Press OK to select a Provider."
-msgstr ""
+msgstr "أضغط موافق لتختار مزود"
 
+msgid "Press OK to select."
+msgstr "أضغط موافق لتختار"
+
+#
 msgid "Press OK to select/deselect a CAId."
 msgstr ""
 
+#
 msgid "Press OK to start the scan"
 msgstr "اضغط موافق لبدأ البحث"
 
 msgid "Press OK to toggle the selection."
-msgstr ""
+msgstr "أضغط موافق لتبدل الأختيار"
 
 msgid "Press OK to view full changelog"
-msgstr ""
+msgstr "أضغط موافق لتشاهد سجل تغيرات كامل"
 
 msgid "Press yellow to set this interface as default interface."
-msgstr ""
+msgstr "أضغط الذر الأصفر لتجعل هذه الواجهه هى الواجهه الأفتراضيه"
 
+#
 msgid "Prev"
 msgstr ""
 
-msgid "Preview menu"
-msgstr ""
+msgid "Preview"
+msgstr "معاينه"
 
+msgid "Preview AutoTimer"
+msgstr "معاينة المؤقت الالى"
+
+msgid "Preview menu"
+msgstr "معاينة القائمه"
+
+#
 msgid "Primary DNS"
 msgstr ""
 
 msgid "Priority"
-msgstr ""
+msgstr "أولويه"
 
 msgid "Process"
-msgstr ""
+msgstr "عمليه"
 
 msgid "Properties of current title"
-msgstr ""
+msgstr "خصائص العنوان الحالى"
 
 msgid "Protect services"
-msgstr ""
+msgstr "إحمى القنوات"
 
 msgid "Protect setup"
-msgstr ""
+msgstr "إحمى الضبط"
 
 msgid "Provider"
-msgstr "مقدم الخدمه"
+msgstr "مزود"
 
+#
 msgid "Provider to scan"
 msgstr ""
 
+#
 msgid "Providers"
 msgstr "مقدمو الخدمه"
 
+#
+msgid "Published"
+msgstr ""
+
+#
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr ""
 
 msgid "Quick"
-msgstr ""
+msgstr "سريع"
 
 msgid "Quickzap"
-msgstr ""
+msgstr "انتقال سريع"
 
+#
 msgid "RC Menu"
 msgstr "قائمه الريموت كونترول"
 
 msgid "RF output"
-msgstr ""
+msgstr "مخرج RF"
 
 msgid "RGB"
-msgstr ""
-
-msgid "RSS Feed URI"
-msgstr ""
+msgstr "RGB"
 
 msgid "Radio"
+msgstr "راديو"
+
+msgid "Ralink"
 msgstr ""
 
+#
 msgid "Ram Disk"
 msgstr ""
 
 msgid "Random"
-msgstr ""
+msgstr "عشوائى"
+
+msgid "Rating"
+msgstr "تصنيف"
+
+#
+msgid "Ratings: "
+msgstr "التصنيف"
 
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "هل تريد فعلا الغلق بدون حفظ الاعدادات ؟"
 
+#
 msgid "Really delete done timers?"
 msgstr ""
 
+#
 msgid "Really exit the subservices quickzap?"
 msgstr ""
 
+msgid "Really quit MyTube Player?"
+msgstr "هل تريد فعلا الخروج من مشغل MyTube ؟"
+
 msgid "Really reboot now?"
-msgstr ""
+msgstr "هل تريد فعلا إعادة التشغيل الان ؟"
 
 msgid "Really restart now?"
-msgstr ""
+msgstr "هل تريد فعلا إعـادة التشغـيل الان ؟"
 
 msgid "Really shutdown now?"
-msgstr ""
+msgstr "هل تريد فعلا الاغلاق الان ؟"
 
 msgid "Reboot"
+msgstr "إعادة التشغيل"
+
+#
+msgid "Recently featured"
 msgstr ""
 
+#
 msgid "Reception Settings"
-msgstr ""
+msgstr "إعدادات الاستقبال"
 
+#
 msgid "Record"
 msgstr "تسجيل"
 
+#
+msgid "Record a maximum of x times"
+msgstr ""
+
+#
+msgid "Record on"
+msgstr ""
+
+#
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
 msgstr ""
 
 msgid "Recorded files..."
-msgstr ""
+msgstr "ملفات مسجله..."
 
+#
 msgid "Recording"
 msgstr "تسجيل"
 
-msgid "Recording paths..."
-msgstr ""
+msgid "Recording paths"
+msgstr "مسارات التسجيل"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
-msgstr ""
+msgstr "التسجيل قيد التنفيذ أو سيبدأ فى ثوان قليله"
 
 msgid "Recordings"
-msgstr ""
+msgstr "تسجيلات"
 
 msgid "Recordings always have priority"
-msgstr ""
+msgstr "التسجيلات لها الأوليه دائما"
 
 msgid "Reenter new pin"
-msgstr ""
+msgstr "أعد إدخال الرقم السرى"
 
 msgid "Refresh Rate"
-msgstr ""
+msgstr "معدل الأنعاش"
 
 msgid "Refresh rate selection."
-msgstr ""
+msgstr "إختيار معدل الأنعاش"
+
+#
+msgid "Related video entries."
+msgstr "مدخلات الفيديو ذات الصله"
+
+#
+msgid "Relevance"
+msgstr "علاقه"
 
 msgid "Reload"
+msgstr "إعادة تحميل"
+
+#
+msgid "Reload Black-/Whitelists"
 msgstr ""
+
+msgid "Remember service pin"
+msgstr "تذكر الرقم السرى للخدمه"
+
+msgid "Remember service pin cancel"
+msgstr "إلغاء تذكر الرقم السرى للخدمه"
 
 msgid "Remove"
-msgstr ""
+msgstr "حذف"
 
+#
 msgid "Remove Bookmark"
 msgstr ""
 
 msgid "Remove Plugins"
-msgstr ""
+msgstr "حذف الـبلج إنز"
 
 msgid "Remove a mark"
-msgstr ""
+msgstr "حذف علامه"
 
 msgid "Remove currently selected title"
-msgstr ""
+msgstr "حذف العنوان الحالى المختار"
 
 msgid "Remove failed."
-msgstr ""
+msgstr "فشل الحذف"
 
 msgid "Remove finished."
-msgstr ""
+msgstr "إنتهاء الحذف"
 
 msgid "Remove plugins"
-msgstr ""
+msgstr "حذف البلج إنز"
+
+msgid "Remove selected AutoTimer"
+msgstr "حذف المؤقت الالى المختار"
 
 msgid "Remove the broken .NFI file?"
-msgstr ""
+msgstr "حذف ملف nfiغير صالح ؟"
 
 msgid "Remove the incomplete .NFI file?"
-msgstr ""
+msgstr "حذف ملف nfi غير كامل ؟"
 
 msgid "Remove timer"
-msgstr ""
+msgstr "حذف المؤقت"
 
 msgid "Remove title"
-msgstr ""
+msgstr "حذف عنوان"
 
 msgid "Removed successfully."
-msgstr ""
+msgstr "تم الحذف بنجاح ."
 
 msgid "Removing"
-msgstr ""
+msgstr "جارى الحذف"
 
 #, python-format
 msgid "Removing directory %s failed. (Maybe not empty.)"
-msgstr ""
+msgstr "فشل حذف الدليل%s .قد يكون فارغ ."
 
 msgid "Rename"
-msgstr ""
+msgstr "إعادة التسميه"
 
 msgid "Rename crashlogs"
-msgstr ""
+msgstr "إعادة تسمية سجلات العطب"
 
+#
 msgid "Repeat"
 msgstr "إعاده"
 
 msgid "Repeat Type"
-msgstr ""
+msgstr "نوع الإعاده"
 
+#
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr ""
 
+#
 msgid "Repeats"
 msgstr ""
 
+msgid "Require description to be unique"
+msgstr "يحتاج وصف ليكون فريدا"
+
+msgid "Required medium type:"
+msgstr "نوع الوسيط المطلوب"
+
+msgid "Rescan"
+msgstr "تكرار البحث"
+
+#
 msgid "Reset"
 msgstr "إعاده الضبط"
 
+#
 msgid "Reset and renumerate title names"
 msgstr ""
 
-msgid "Reset video enhancement settings to system defaults?"
+#
+msgid "Reset count"
 msgstr ""
+
+#
+msgid "Reset saved position"
+msgstr ""
+
+msgid "Reset video enhancement settings to system defaults?"
+msgstr "إعادة إعدادات تعزيز الفيديو الى إفتراضيات النظام ؟"
 
 msgid "Reset video enhancement settings to your last configuration?"
-msgstr ""
+msgstr "إعادة إعدادات تعزيز الفيديو الى التكوينات الاخيره الخاصه بك ؟"
 
+#
 msgid "Resolution"
 msgstr ""
 
+#
+msgid "Response video entries."
+msgstr ""
+
+#
 msgid "Restart"
 msgstr "إعاده التشغيل"
 
 msgid "Restart GUI"
-msgstr ""
+msgstr "إعادة تشغيل الاينجما"
 
 msgid "Restart GUI now?"
-msgstr ""
+msgstr "هل تريد إعادة تشغيل الاينجما2 الان ؟"
 
 msgid "Restart network"
-msgstr ""
+msgstr "إعادة تشغيل الشبكه"
 
 msgid "Restart test"
-msgstr ""
+msgstr "إعادة الاختبار"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr ""
+msgstr "إعادة تشغيل إتصال الشبكه والواجهه.\n"
 
 msgid "Restore"
-msgstr ""
+msgstr "إستعاده"
 
 msgid "Restore backups"
-msgstr ""
+msgstr "إستعادة الباك أب"
 
 msgid "Restore is running..."
-msgstr ""
+msgstr "الاستعاده قيد التنفيذ"
 
+#
 msgid "Restore running"
 msgstr ""
 
 msgid "Restore system settings"
-msgstr ""
+msgstr "إستعادة إعدادات النظام"
 
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
+#
+msgid "Restrict \"after event\" to a certain timespan?"
 msgstr ""
 
 msgid "Resume from last position"
-msgstr ""
+msgstr "إستعاده من الوضع السابق"
 
+#, python-format
+msgid "Resume position at %s"
+msgstr "إستعادة الوضع الى%s"
+
+#
 #. TRANSLATORS: The string "Resuming playback" flashes for a moment
 #. TRANSLATORS: at the start of a movie, when the user has selected
 #. TRANSLATORS: "Resume from last position" as start behavior.
@@ -3103,293 +4682,453 @@ msgid "Resuming playback"
 msgstr ""
 
 msgid "Return to file browser"
-msgstr ""
+msgstr "العوده الى متصفح الملفات"
 
 msgid "Return to movie list"
-msgstr ""
+msgstr "العوده الى قائمة الأفلام"
 
 msgid "Return to previous service"
-msgstr ""
+msgstr "العوده الى الخدمه القناه السابقه"
 
 msgid "Rewind speeds"
-msgstr ""
+msgstr "سرعة العوده للخلف"
 
 msgid "Right"
-msgstr ""
+msgstr "يمين"
 
+#
 msgid "Rolloff"
 msgstr ""
 
+#
 msgid "Rotor turning speed"
 msgstr ""
 
+#
 msgid "Running"
 msgstr ""
 
+#
+msgid "Russia"
+msgstr "روسيا"
+
+#
 msgid "Russian"
-msgstr ""
+msgstr "روسى"
 
 msgid "S-Video"
+msgstr "S-Video"
+
+#
+msgid "SINGLE LAYER DVD"
 msgstr ""
 
+#
 msgid "SNR"
-msgstr ""
+msgstr "SNR"
 
+#
 msgid "SNR:"
-msgstr ""
+msgstr "SNR:"
 
+#
 msgid "SSID:"
-msgstr ""
+msgstr "SSID:"
 
+#
 msgid "Sat"
-msgstr ""
+msgstr "قمر"
 
+#
 msgid "Sat / Dish Setup"
 msgstr "ضبط القمر/طبق الاستقبال"
 
+#
 msgid "Satellite"
 msgstr "قمر صناعى"
 
+#
 msgid "Satellite Equipment Setup"
-msgstr ""
+msgstr "ضبط معدات القمر"
 
+msgid "Satellite equipment"
+msgstr "معدات القمر"
+
+#
 msgid "Satellites"
 msgstr "اقمار صناعيه"
 
 msgid "Satfinder"
-msgstr ""
+msgstr "الباحث عن الأقمار"
 
+#
 msgid "Sats"
-msgstr ""
-
-msgid "Satteliteequipment"
-msgstr ""
+msgstr "أقمار"
 
 msgid "Saturation"
-msgstr ""
+msgstr "تشبع"
 
+#
 msgid "Saturday"
 msgstr "السبت"
 
 msgid "Save"
-msgstr ""
+msgstr "حفظ"
 
 msgid "Save Playlist"
-msgstr ""
+msgstr "حفظ قائمة العرض"
 
+msgid "Save current delay to key"
+msgstr "حفظ التاخير الحالى فى مفتاح"
+
+msgid "Save to key"
+msgstr "حفظ فى مفتاح"
+
+msgid "Save values and close plugin"
+msgstr "حفظ القيم وإغلاق البلج إن"
+
+msgid "Save values and close screen"
+msgstr "حفظ القيم وإغلاق الشاشه"
+
+#
 msgid "Scaler sharpness"
 msgstr ""
 
 msgid "Scaling Mode"
-msgstr ""
+msgstr "وضع التدريج"
 
 msgid "Scan "
-msgstr ""
+msgstr "بحـث"
 
+#
 msgid "Scan Files..."
+msgstr "فحص الملفات..."
+
+#
+msgid "Scan NFS share"
 msgstr ""
 
 msgid "Scan QAM128"
-msgstr ""
+msgstr "بحث QAM128"
 
 msgid "Scan QAM16"
-msgstr ""
+msgstr "بحث QAM16"
 
 msgid "Scan QAM256"
-msgstr ""
+msgstr "بحث QAM256"
 
 msgid "Scan QAM32"
-msgstr ""
+msgstr "بحث QAM32"
 
 msgid "Scan QAM64"
-msgstr ""
+msgstr "بحث QAM64"
 
 msgid "Scan SR6875"
-msgstr ""
+msgstr "بحث SR6875"
 
 msgid "Scan SR6900"
-msgstr ""
+msgstr "بحث SR6900"
 
 msgid "Scan Wireless Networks"
-msgstr ""
+msgstr "البحث عن شبكات لاسلكيه"
 
+#
 msgid "Scan additional SR"
 msgstr ""
 
+#
 msgid "Scan band EU HYPER"
 msgstr ""
 
+#
 msgid "Scan band EU MID"
 msgstr ""
 
+#
 msgid "Scan band EU SUPER"
 msgstr ""
 
+#
 msgid "Scan band EU UHF IV"
 msgstr ""
 
+#
 msgid "Scan band EU UHF V"
 msgstr ""
 
+#
 msgid "Scan band EU VHF I"
 msgstr ""
 
+#
 msgid "Scan band EU VHF III"
 msgstr ""
 
+#
 msgid "Scan band US HIGH"
 msgstr ""
 
+#
 msgid "Scan band US HYPER"
 msgstr ""
 
+#
 msgid "Scan band US LOW"
 msgstr ""
 
+#
 msgid "Scan band US MID"
 msgstr ""
 
+#
 msgid "Scan band US SUPER"
 msgstr ""
 
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
-"WLAN USB Stick\n"
-msgstr ""
+msgid "Scan range"
+msgstr "نطاق البحث"
 
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
+"بحث فى الشبكه عن نقاط دخول لاسلكيه والاتصال بها باستخدام الجهاز اللاسلكى "
+"المختار.\n"
 
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
+"selected wireless device.\n"
+msgstr ""
+
+#
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
 
+msgid "Science & Technology"
+msgstr "علوم وتكنولوجيا"
+
+msgid "Search Term(s)"
+msgstr "شروط البحث"
+
+msgid "Search category:"
+msgstr "فئة البحث:"
+
 msgid "Search east"
+msgstr "البحث شرقا"
+
+msgid "Search for network shares"
+msgstr "البحث عن شبكه مشاركه"
+
+msgid "Search for network shares..."
+msgstr "البحث عن شبكه مشاركه..."
+
+msgid "Search region:"
+msgstr "منطقة البحث:"
+
+msgid "Search restricted content:"
+msgstr "بحث محتويات محدوده:"
+
+#
+msgid "Search strictness"
 msgstr ""
+
+msgid "Search type"
+msgstr "نوع البحث"
 
 msgid "Search west"
-msgstr ""
+msgstr "بحث غربا"
 
 msgid "Searching for available updates. Please wait..."
-msgstr ""
+msgstr "بحث عن التحديثات المتاحه. رجاء الانتظار...."
 
 msgid "Searching for new installed or removed packages. Please wait..."
-msgstr ""
+msgstr "جارى البحث عن حزم جديده تم تثبيتها أو حذفها. رجاء الانتظار..."
 
+msgid "Searching your network. Please wait..."
+msgstr "بحث عن الشبكه. رجاء الانتظار..."
+
+#
 msgid "Secondary DNS"
 msgstr ""
 
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 160
+msgid "Security service not running."
+msgstr ""
+
+#
 msgid "Seek"
 msgstr "بحـث"
 
 msgid "Select"
-msgstr ""
+msgstr "أختار"
 
+msgid ""
+"Select \"exact match\" to enforce \"Match title\" to match exactly or "
+"\"partial match\" if you only want to search for a part of the event title."
+msgstr ""
+"أختار \"تطابق كامل\" لفرض \"عنوان تطابق\" لكى يتم عمل تطابق كامل ، أو "
+"\"تطابق جزئى\" إذا كنت تريد البحث عن جزء من عنوان الحدث"
+
+#
 msgid "Select HDD"
 msgstr "اختار القرص الصلب"
 
 msgid "Select Location"
-msgstr ""
+msgstr "أختار الموقع"
 
 msgid "Select Network Adapter"
-msgstr ""
+msgstr "أختار محول الشبكه"
 
+#
 msgid "Select a movie"
 msgstr "اختار الفيلم"
 
+msgid "Select a timer to import"
+msgstr "أختار المؤقت المراد توريده"
+
 msgid "Select audio mode"
-msgstr ""
+msgstr "أختار أسلوب الصوت"
 
 msgid "Select audio track"
-msgstr ""
+msgstr "أختار مسار الصوت"
 
+msgid "Select bouquet to record on"
+msgstr "أختار الباقه التى تريد التسجيل عليها"
+
+#
 msgid "Select channel to record from"
 msgstr "اختار القناه التى تريد ان تسجل منها"
 
+msgid "Select channel to record on"
+msgstr "أختار القناه التى تريد التسجيل عليها"
+
 msgid "Select files for backup. Currently selected:\n"
-msgstr ""
+msgstr "أختار ملفات الباك أب . المختار حاليا:\n"
 
 msgid "Select files/folders to backup"
-msgstr ""
+msgstr "أختار ملفات/مجلدات الباك أب"
 
 msgid "Select image"
-msgstr ""
+msgstr "أختار صوره:"
 
 msgid "Select interface"
-msgstr ""
+msgstr "أختار واجهه"
+
+msgid "Select new feed to view."
+msgstr "اختار تغذيه جديده لتشاهدها."
 
 msgid "Select package"
-msgstr ""
+msgstr "أختار رزمه"
 
 msgid "Select provider to add..."
-msgstr ""
+msgstr "أختار مزود ليتم إضافته..."
 
 msgid "Select refresh rate"
-msgstr ""
+msgstr "أختار معدل الأنعاش"
 
 msgid "Select service to add..."
+msgstr "اختار قناه ليتم إضافتها"
+
+#
+#, python-format
+msgid "Select the key you want to set to %i ms"
 msgstr ""
+
+#
+msgid "Select the location to save the recording to."
+msgstr ""
+
+msgid "Select type of Filter"
+msgstr "أختار نوع الفلتر"
 
 msgid "Select upgrade source to edit."
-msgstr ""
+msgstr "أختار مصدر الترقيه المراد تحريره"
 
-msgid "Select video input"
-msgstr ""
-
+#
 msgid "Select video input with up/down buttons"
 msgstr ""
 
 msgid "Select video mode"
+msgstr "أختار اسلوب الفيديو"
+
+#
+msgid "Select whether or not you want to enforce case correctness."
 msgstr ""
 
 msgid "Select wireless network"
-msgstr ""
+msgstr "اختار الشبكه اللاسلكيه"
+
+msgid "Select your choice."
+msgstr "حدد إختيارك"
 
 msgid "Selected source image"
-msgstr ""
+msgstr "الصوره المصدر المختاره"
 
+#
 msgid "Send DiSEqC"
 msgstr ""
 
+#
 msgid "Send DiSEqC only on satellite change"
 msgstr ""
 
+#
 msgid "Seperate titles with a main menu"
 msgstr ""
 
+#
 msgid "Sequence repeat"
 msgstr ""
 
+#
 msgid "Serbian"
+msgstr "صريى"
+
+#
+msgid "Server IP"
 msgstr ""
 
+#
+msgid "Server share"
+msgstr ""
+
+#
 msgid "Service"
 msgstr "قناه/خدمه"
 
+#
 msgid "Service Scan"
 msgstr "بخث عن القنوات"
 
+#
 msgid "Service Searching"
 msgstr "بحث عن القنـوات"
 
-msgid "Service has been added to the favourites."
+#
+msgid "Service delay"
 msgstr ""
+
+#
+msgid "Service has been added to the favourites."
+msgstr "تم إضافة القناه الى المفضله"
 
 msgid "Service has been added to the selected bouquet."
-msgstr ""
+msgstr "تم إضافة القناه الى الباقه المختاره."
 
+#
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
 
+#
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 
+#
 msgid "Service scan"
 msgstr "بحث عـن القنـوات"
 
@@ -3397,369 +5136,591 @@ msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
+"الخدمه غير متاحه !\n"
+"تأكد من تهيئة الموالف !"
 
+#
 msgid "Serviceinfo"
 msgstr "معلومات القناه"
 
+#
 msgid "Services"
 msgstr "القنوات/الخدمات"
 
+#
+msgid "Set End Time"
+msgstr "أضبط وقت النتهاء"
+
+#
 msgid "Set Voltage and 22KHz"
-msgstr ""
+msgstr "ضبط الفولتيه و 22KHz"
 
-msgid "Set as default Interface"
-msgstr ""
-
+#
 msgid "Set available internal memory threshold for the warning."
+msgstr "أضبط أقل مستوى للذاكره الداخليه للتنبيه"
+
+#
+#, python-format
+msgid "Set delay to %i ms (can be set)"
 msgstr ""
 
+#
 msgid "Set interface as default Interface"
+msgstr "أبط واجهه لتكون واجهه إفتراضيه"
+
+#
+msgid "Set limits"
+msgstr "ضبط الحدود"
+
+msgid "Set maximum duration"
+msgstr "حدد أقصى مده"
+
+#
+msgid "Set this NO to disable this AutoTimer."
 msgstr ""
 
-msgid "Set limits"
-msgstr ""
+#
+msgid "Setting key canceled"
+msgstr "تم الغاء مفاتيح الاعداد"
 
 msgid "Settings"
-msgstr ""
+msgstr "إعدادات"
 
+#
 msgid "Setup"
 msgstr "الضبـط"
 
 msgid "Setup Mode"
+msgstr "أسلوب الضبط"
+
+#
+msgid "Setup for the Audio Sync Plugin"
+msgstr ""
+
+#
+#, python-format
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
 msgstr ""
 
 msgid "Sharpness"
+msgstr "الحده"
+
+msgid "Short Movies"
+msgstr "افلام قصيره"
+
+msgid "Should this AutoTimer be restricted to a timespan?"
+msgstr "هل تريد أن يكون المؤقت الالى محددا بهذه المده الزمنيه؟"
+
+#
+msgid "Should this AutoTimer only match up to a certain event duration?"
 msgstr ""
 
+#
+msgid ""
+"Should timers created by this AutoTimer be recorded to a custom location?"
+msgstr ""
+
+#
 msgid "Show Info"
-msgstr ""
+msgstr "أظهر المعلومات"
 
+#
 msgid "Show Message when Recording starts"
-msgstr ""
+msgstr "أظهر رساله عندما يبدأ التسجيل"
 
+#
 msgid "Show WLAN Status"
+msgstr "أظهر حالة الشبكه الواسعه"
+
+#
+msgid "Show blinking clock in display during recording"
+msgstr "أظهار ساعه تومض عند التسجيل"
+
+#
+msgid "Show event-progress in channel selection"
 msgstr ""
 
-msgid "Show blinking clock in display during recording"
-msgstr ""
+msgid "Show in extension menu"
+msgstr "شاهد فى الشاشه ألإضافيه"
 
 msgid "Show infobar on channel change"
-msgstr ""
+msgstr "شاهد شريط المعلومات عند تغيير القناه"
 
 msgid "Show infobar on event change"
-msgstr ""
+msgstr "شاهد شريط المعلومات عند تغيير الحدث"
 
 msgid "Show infobar on skip forward/backward"
-msgstr ""
+msgstr "شاهد شريط المعلومات عند الانتقال للأمام/الخلف"
 
 msgid "Show positioner movement"
-msgstr ""
+msgstr "شاهد حركة الموتور"
 
+#
 msgid "Show services beginning with"
-msgstr ""
+msgstr "إظهر القنوات التى تبدأ بـ"
 
+#
 msgid "Show the radio player..."
-msgstr ""
+msgstr "إظهار مشغل الراديو..."
 
+#
 msgid "Show the tv player..."
-msgstr ""
+msgstr "إظهار مشغل التليفزيون"
 
+#
 msgid "Shows the state of your wireless LAN connection.\n"
-msgstr ""
+msgstr "تشاهد حالة إتصال الشبكه المحليه اللاسلكيه \n"
 
+#
 msgid "Shutdown"
-msgstr ""
+msgstr "إغلاق"
 
+#
 msgid "Shutdown Dreambox after"
-msgstr ""
+msgstr "إغلاق الدريم بوكس بعد"
 
+#
 msgid "Signal Strength:"
-msgstr ""
+msgstr "قوة الاشاره"
 
+#
 msgid "Signal: "
-msgstr ""
+msgstr "الاشاره"
 
+#
 msgid "Similar"
-msgstr ""
+msgstr "شبيهه"
 
+#
 msgid "Similar broadcasts:"
 msgstr ""
 
+#
 msgid "Simple"
 msgstr "بسيطه"
 
+#
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr ""
 
+#
 msgid "Single"
 msgstr "مفرد"
 
 msgid "Single EPG"
-msgstr ""
+msgstr "دليل برامج واحد"
 
+#
 msgid "Single satellite"
-msgstr ""
+msgstr "قمر واحد"
 
+#
 msgid "Single transponder"
-msgstr ""
+msgstr "تردد واحد"
 
+#
 msgid "Singlestep (GOP)"
 msgstr ""
 
+#
 msgid "Skin"
-msgstr ""
+msgstr "الجلد"
 
-msgid "Skin..."
-msgstr ""
-
+#
 msgid "Skins"
-msgstr ""
+msgstr "الجلود"
 
+#
 msgid "Sleep Timer"
-msgstr ""
+msgstr "مؤقت النوم"
 
+#
 msgid "Sleep timer action:"
 msgstr ""
 
+#
 msgid "Slideshow Interval (sec.)"
 msgstr ""
 
+#
 #, python-format
 msgid "Slot %d"
 msgstr ""
 
+#
 msgid "Slovakian"
-msgstr ""
+msgstr "سلوفاكى"
 
+#
 msgid "Slovenian"
-msgstr ""
+msgstr "سلوفانى"
 
 msgid "Slow"
-msgstr ""
+msgstr "بطيئ"
 
 msgid "Slow Motion speeds"
-msgstr ""
+msgstr "سرعات العرض البطئ"
 
 msgid "Software"
-msgstr ""
+msgstr "برنامج تشغيلى"
 
 msgid "Software management"
-msgstr ""
+msgstr "التحكم فى البرنامج التشغيلى"
 
 msgid "Software restore"
-msgstr ""
+msgstr "إستعادة البرنامج التشغيلى"
 
 msgid "Software update"
-msgstr ""
+msgstr "ترقية البرنامج التشغيلى"
 
 msgid "Some plugins are not available:\n"
-msgstr ""
+msgstr "بعض البلج إنز غير متوفر : \n"
 
-msgid "Somewhere else"
-msgstr ""
-
+#
 msgid "Sorry MediaScanner is not installed!"
 msgstr ""
 
 msgid "Sorry no backups found!"
-msgstr ""
-
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
+msgstr "عفوا.. لم يتم العثور على أى باك أب !"
 
 msgid ""
 "Sorry your backup destination is not writeable.\n"
 "Please choose an other one."
 msgstr ""
+"المكان الذى تريد وضع الباك أب فيه لا يمكن الكتابه عليه \n"
+"من فضلك أختار مكان آخر."
 
+#
 msgid "Sorry, no Details available!"
-msgstr ""
+msgstr "عفوا ، لا يوجد تفاصيل متاحه !"
+
+msgid "Sorry, video is not available!"
+msgstr "عفوا ، الفيديو غير متاح !"
 
 msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "\n"
 "Please choose another one."
 msgstr ""
+"عفوا، المكان الذى تريد وضع الباك أب فيه لا يمكن الكتابه عليه \n"
+"\n"
+"من فضلك أختار مكان آخر."
 
+#
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort A-Z"
-msgstr ""
+msgstr "تصنيف أبجدى"
 
+#
+msgid "Sort AutoTimer"
+msgstr "تصنيف المؤقت الالى"
+
+#
 #. TRANSLATORS: This must fit into the header button in the EPG-List
 msgid "Sort Time"
-msgstr ""
+msgstr "تصنيف الوقت"
 
+#
 msgid "Sound"
 msgstr "صـوت"
 
+#
 msgid "Soundcarrier"
 msgstr "حامل الصوت"
 
+#
 msgid "South"
 msgstr "جنوب"
 
-msgid "Spanish"
-msgstr ""
+#
+msgid "South Korea"
+msgstr "كوريا الجنوبيه"
 
+#
+msgid "Spain"
+msgstr "أسبانيا"
+
+#
+msgid "Spanish"
+msgstr "أسبانى"
+
+#
 msgid "Split preview mode"
-msgstr ""
+msgstr "تقسيم وضعية المعاينه"
+
+#
+msgid "Sports"
+msgstr "رياضه"
 
 msgid "Standby"
-msgstr "الاستعداد"
+msgstr "وضع الاستعداد"
 
 msgid "Standby / Restart"
-msgstr "الاستعداد/إعاده التشغيل"
+msgstr "وضع الاستعداد/إعاده التشغيل"
 
-msgid "Start from the beginning"
+#
+#, python-format
+msgid "Standby Fan %d PWM"
 msgstr ""
 
+#
+#, python-format
+msgid "Standby Fan %d Voltage"
+msgstr ""
+
+#
+msgid "Start Webinterface"
+msgstr "أبدا واجهة الشبكه"
+
+#
+msgid "Start from the beginning"
+msgstr "أبدأ من البدايه"
+
+#
 msgid "Start recording?"
 msgstr "أبـدأ التسجيل؟"
 
+#
 msgid "Start test"
-msgstr ""
+msgstr "أختبار البدأ"
 
+#
+msgid "Start with following feed:"
+msgstr "أبدأ بالتغذيه الاتيه:"
+
+#
 msgid "StartTime"
 msgstr "وقت البـدأ"
 
+#
 msgid "Starting on"
 msgstr ""
 
+#
+msgid "Std. Feeds"
+msgstr ""
+
+#
 msgid "Step east"
+msgstr "خطوه ناحية الشرق"
+
+#
+msgid "Step in ms for arrow keys"
 msgstr ""
 
+#
+#, python-format
+msgid "Step in ms for key %i"
+msgstr ""
+
+#
+#, python-format
+msgid "Step in ms for keys '%s'"
+msgstr ""
+
+#
 msgid "Step west"
-msgstr ""
+msgstr "خطوه ناحية الغري"
 
+#
 msgid "Stereo"
-msgstr ""
+msgstr "ستيريـو"
 
+#
 msgid "Stop"
-msgstr ""
+msgstr "إيقاف"
 
+#
 msgid "Stop Timeshift?"
-msgstr ""
+msgstr "إيقاف التايم شفت؟"
 
+#
 msgid "Stop current event and disable coming events"
-msgstr ""
+msgstr "إيقاف الحدث الحالى وتعطيل الاحداث القادمه"
 
+#
 msgid "Stop current event but not coming events"
-msgstr ""
+msgstr "إقاف الحدث الحالى فقط وليس الاحداث القادمه"
 
+#
 msgid "Stop playing this movie?"
 msgstr "إيقاف عرض هذا الفيلم؟"
 
+#
 msgid "Stop test"
-msgstr ""
+msgstr "إيقاف الاختبار"
 
+#
 msgid "Stop testing plane after # failed transponders"
 msgstr ""
 
+#
 msgid "Stop testing plane after # successful transponders"
 msgstr ""
 
+#
 msgid "Store position"
 msgstr ""
 
+#
 msgid "Stored position"
 msgstr "الوضع المخزن"
 
+#
 msgid "Subservice list..."
-msgstr ""
+msgstr "قائمة الخدمات الفرعيه..."
 
+#
 msgid "Subservices"
 msgstr "الخدمات الفرعيه"
 
+#
 msgid "Subtitle selection"
-msgstr ""
+msgstr "إختيار العناوين الفرعيه"
 
+#
 msgid "Subtitles"
-msgstr ""
+msgstr "العناوين الفرعيه"
 
+#
 msgid "Sun"
-msgstr ""
+msgstr "الاحد"
 
+#
 msgid "Sunday"
 msgstr "الاحد"
 
+#
 msgid "Swap Services"
 msgstr ""
 
+#
+msgid "Sweden"
+msgstr "السويد"
+
+#
 msgid "Swedish"
-msgstr ""
+msgstr "سويدى"
 
+#
 msgid "Switch to next subservice"
-msgstr ""
+msgstr "الانتقال الى الخدمه الفرعيه التاليه"
 
+#
 msgid "Switch to previous subservice"
+msgstr "الانتقال الى الفرعيه السابقه"
+
+#
+msgid "Switchable tuner types:"
 msgstr ""
 
+#
 msgid "Symbol Rate"
 msgstr ""
 
+#
 msgid "Symbolrate"
 msgstr ""
 
+#
 msgid "System"
 msgstr "النـظام"
 
+#
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
 
+#
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
+#
 msgid "TV System"
 msgstr "التليفزبـون"
 
+#
 msgid "Table of content for collection"
 msgstr ""
 
+#
 msgid "Tag 1"
 msgstr ""
 
+#
 msgid "Tag 2"
 msgstr ""
 
+#
 msgid "Tags"
 msgstr ""
 
-msgid "Temperature and Fan control"
+#
+msgid "Tags the Timer/Recording will have."
 msgstr ""
 
+#
+msgid "Tags: "
+msgstr ""
+
+#
+msgid "Taiwan"
+msgstr "تايوانى"
+
+msgid "Temperature and Fan control"
+msgstr "درجة الحراره والتحكم فى المروحه"
+
+#
 msgid "Terrestrial"
 msgstr ""
 
+#
 msgid "Terrestrial provider"
 msgstr "Region"
 
+#
 msgid "Test DiSEqC settings"
 msgstr ""
 
+#
 msgid "Test Type"
-msgstr ""
+msgstr "نوع الاختبار"
 
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
+msgid "Test again"
+msgstr "أختبر مره ثانيه"
+
+#
 msgid "Test mode"
 msgstr "وضع الاختبار"
 
 msgid "Test the network configuration of your Dreambox.\n"
-msgstr ""
+msgstr "اختبر تكوين الشبكه الخاصه بالدريم بوكس. \n"
 
 msgid "Test-Messagebox?"
-msgstr ""
+msgstr "أختبر صندوق الرسائل ؟"
 
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
 msgstr ""
+"شكرا لإستخدامك نافذة الاعدادات . \n"
+"من فضلك أضغط موافق للاستمرار ."
 
 msgid ""
 "Thank you for using the wizard. Your box is now ready to use.\n"
 "Please press OK to start using your Dreambox."
+msgstr ""
+"شكرا لأستخدامك نافذة الاعدادات . الدريم بوكس جاهز الا للاستخدام. \n"
+"من فضلك أضغط موافق لتبدأ استخدام الدريم بوكس."
+
+msgid ""
+"Thank you for using the wizard. Your new AutoTimer has been added to the "
+"List.\n"
+"Please press OK to continue."
 msgstr ""
 
 msgid ""
@@ -3767,19 +5728,61 @@ msgid ""
 "create a Dreambox format data DVD (which will not play in stand-alone DVD "
 "players) instead?"
 msgstr ""
+"نظام دى فى دى القياسى لا يدعم الفيديو H.264 (HDTV) .هل تريد عمل نسق معلومات "
+"دى فى دى للدريم بوكس بدلا من ذلك (هذا لن يعمل فى مشغلات دى فى دى المستقله ) ؟"
+
+msgid ""
+"The NetworkWizard extension is not installed!\n"
+"Please install it."
+msgstr ""
+"نافذة إعدادات الشبكه غير مثبته \n"
+"من فضلك قم بتثبيتها ."
+
+#
+msgid ""
+"The Softwaremanagement extension is not installed!\n"
+"Please install it."
+msgstr ""
+
+msgid ""
+"The Timer will not be added to the List.\n"
+"Please press OK to close this Wizard."
+msgstr ""
+
+msgid ""
+"The Timespan of an AutoTimer is the first 'advanced' attribute. If a "
+"timespan is specified an event will only match this AutoTimer if it lies "
+"inside of this timespan."
+msgstr ""
 
 msgid ""
 "The USB stick is now bootable. Do you want to download the latest image from "
 "the feed server and save it on the stick?"
 msgstr ""
+"الـ USB غير قابل للإقلاع . هل تريد أحدث صوره من خادم التغذيه وحفظها فى "
+"الـUSB ؟"
 
 msgid "The backup failed. Please choose a different backup location."
+msgstr "فشل عمل باك أب ، من فضلك أختار مان آخر للباك أب ."
+
+#
+msgid ""
+"The counter can automatically be reset to the limit at certain intervals."
 msgstr ""
 
+#
 #, python-format
 msgid ""
 "The directory %s is not writable.\n"
 "Make sure you select a writable directory instead."
+msgstr ""
+"الدليل %s لا يمكن الكتابه فيه.\n"
+" تأكد من إختيار دليل بديل يمكن الكتابه فيه"
+
+#
+msgid ""
+"The editor to be used for new AutoTimers. This can either be the Wizard or "
+"the classic editor."
 msgstr ""
 
 #, python-format
@@ -3790,64 +5793,88 @@ msgid ""
 "\n"
 "Do you want to write the USB flasher to this stick?"
 msgstr ""
+"تم العثور على هذه الاجهزه:\n"
+"\n"
+"%s \n"
+"\n"
+"هل تريد كتابه شاحن الـusb على هذه العصا؟"
 
+#
 msgid "The following files were found..."
-msgstr ""
+msgstr "تم العثور على هذه الملفات"
 
 msgid ""
 "The input port should be configured now.\n"
 "You can now configure the screen by displaying some test pictures. Do you "
 "want to do that now?"
 msgstr ""
+"يجب تهيئه منفذ الدخول الان \n"
+"يمكنك تهيئه الشاشه بعرض بعض صور أختبار . هل تريدعمل ذلك الان ؟"
 
+#
 msgid "The installation of the default services lists is finished."
-msgstr ""
+msgstr "تم الانتهاء من تثبيت قوائم القنوات الافتراضيه"
 
 msgid ""
 "The installation of the default settings is finished. You can now continue "
 "configuring your Dreambox by pressing the OK button on the remote control."
 msgstr ""
+"تم تثبيت الاعدادات الافتراضيه . يمكنك الان استكمال تهيئة الدريم بوكس بالضغط "
+"على ذر موافق من الريموت كونترول ."
+
+msgid "The match attribute is mandatory."
+msgstr "نعت التطابق إجبارى ."
 
 msgid ""
 "The md5sum validation failed, the file may be corrupted! Are you sure that "
 "you want to burn this image to flash memory? You are doing this at your own "
 "risk!"
 msgstr ""
+"فشل التحقق من صحة md5sum ، قد يكون الملف معطوب. هل انت متأكد إنك تريد تثبيت "
+"هذه الصوره فى الفلاش الداخلى ؟ سيكون هذا على مسئوليتك الشخصيه !"
 
 msgid ""
 "The md5sum validation failed, the file may be downloaded incompletely or be "
 "corrupted!"
-msgstr ""
+msgstr "فشل التحقق من صحة md5sum ، قد يكون التحميل غير كامل أو الملف معطوب !"
 
 msgid "The package doesn't contain anything."
-msgstr ""
+msgstr "الرزمه لا تحتوى على أى شيئ ."
 
 msgid "The package:"
-msgstr ""
+msgstr "الرزمه:"
 
+#
 #, python-format
 msgid "The path %s already exists."
 msgstr ""
 
+#
 msgid "The pin code has been changed successfully."
-msgstr ""
+msgstr "تم تغيير الرقم السرى بنجاح"
 
+#
 msgid "The pin code you entered is wrong."
-msgstr ""
+msgstr "الرقم السرى الذى ادخلته خطأ"
 
+#
 msgid "The pin codes you entered are different."
-msgstr ""
+msgstr "الرقمان اللذان اخلتهما غير متطابقين"
 
+#
 #, python-format
 msgid "The results have been written to %s."
 msgstr ""
 
+#
 msgid "The sleep timer has been activated."
-msgstr ""
+msgstr "تم تنشيط مؤقت النوم"
 
+#
 msgid "The sleep timer has been disabled."
-msgstr ""
+msgstr "تم تعطيل مؤقت النوم"
 
+#
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
 
@@ -3855,92 +5882,150 @@ msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it and choose what you want to do next."
 msgstr ""
+"بلج إن الشبكه المحليه اللاسلكيه غير مثبت ! \n"
+"من فضلك ثبته أولا ثم أختار ماذا تريد أن تفعل بعد ذك ."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"بلج إن الشبكه المحليه اللاسلكيه غير مثبت ! \n"
+"من فضلك ثبته"
 
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
+"من خلال هذه النافذه يمكنك عمل باك أب للإعدادات الحاليه . هل تريد عمل باك أب "
+"الان ؟"
 
 msgid "The wizard is finished now."
-msgstr ""
+msgstr "إنتهاء نافذة الاعدادات الان ."
 
 msgid "There are at least "
-msgstr ""
+msgstr "يوجد على الأقل"
 
+#
 msgid "There are currently no outstanding actions."
 msgstr ""
 
 msgid "There are no default services lists in your image."
-msgstr ""
+msgstr "لا يوجد قائمة قنوات إفتراضيه فى هذه الصوره ."
 
+#
 msgid "There are no default settings in your image."
 msgstr ""
 
 msgid "There are no updates available."
-msgstr ""
+msgstr "لا يوجد تحديثات متاحه ."
 
 msgid "There are now "
-msgstr ""
+msgstr "يوجد الان"
 
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
 msgstr ""
+"قد لا يكون هناك مساحه كافيه على القسم المختار . \n"
+"هل تريد فعلا الاستمرار ؟"
 
+#
 msgid "There was an error downloading the packetlist. Please try again."
+msgstr "حدث خطا اثناء تحميل قائمة الحزم. من فضلك حاول ثانيه"
+
+#
+msgid "There was an error getting the feed entries. Please try again."
 msgstr ""
 
+#
 msgid "There was an error. The package:"
+msgstr "حدث خطأ. الرزمه:"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 130
+msgid ""
+"There's a certificate update available for your dreambox. Would you like to "
+"apply this update now?"
 msgstr ""
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
-msgstr ""
+msgstr "ملف NFI هذا لا يحتوى على صوره %s صالحه"
 
 msgid ""
 "This .NFI file does not have a md5sum signature and is not guaranteed to "
 "work. Do you really want to burn this image to flash memory?"
 msgstr ""
+"ملف الـ nfiهذا لايوجد فيه بصمة md5sum ، وهو غير مضمون العمل . هل تريد فعلا "
+"تثبيه على الفلاش الداخلى ؟"
 
 msgid ""
 "This .NFI file has a valid md5 signature. Continue programming this image to "
 "flash memory?"
 msgstr ""
+"ملف الـnfi هذا به بصمة md5 صالحه. هل تريد الاستمرار وتثبيت الملف فى الفلاش "
+"الداخلى ؟"
 
+#
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
 msgstr ""
 
+#
 #, python-format
 msgid "This Dreambox can't decode %s streams!"
 msgstr ""
 
-#, python-format
-msgid "This Dreambox can't decode %s video streams!"
-msgstr ""
+#
+msgid "This Month"
+msgstr "هذا الشهر"
 
+msgid "This Week"
+msgstr "هذا الاسبوع"
+
+msgid ""
+"This is a name you can give the AutoTimer. It will be shown in the Overview "
+"and the Preview."
+msgstr ""
+"هذا هو الاسم الذى يمكنك إعطاؤه للمؤقت الالى . سيظهر فى المعاينه والنظره "
+"العامه ."
+
+#
 msgid "This is step number 2."
 msgstr "هذه هى الخطوه رقم 2"
 
-msgid "This is unsupported at the moment."
+#
+msgid ""
+"This is the delay in hours that the AutoTimer will wait after a search to "
+"search the EPG again."
+msgstr ""
+
+#
+msgid "This is the help screen. Feed me with something to display."
+msgstr "هذه هى شاشه المساعده. أعطنى شيئ لأعرضه"
+
+#
+msgid ""
+"This is what will be looked for in event titles. Note that looking for e.g. "
+"german umlauts can be tricky as you have to know the encoding the channel "
+"uses."
 msgstr ""
 
 msgid "This plugin is installed."
-msgstr ""
+msgstr "هذا البلج إن مثبت ."
 
 msgid "This plugin is not installed."
-msgstr ""
+msgstr "هذا البلج إن غير مثبت ."
 
 msgid "This plugin will be installed."
-msgstr ""
+msgstr "سيتم تثبيت هذا البلج إن ."
 
 msgid "This plugin will be removed."
-msgstr ""
+msgstr "سيتم حذف هذا البلج إن ."
+
+#
+msgid "This setting controls the behavior when a timer matches a found event."
+msgstr "هذا الاعداد سيتحكم فى التصرف عندمايطابق المؤقت حدث تم العثور عليه"
 
 msgid ""
 "This test checks for configured Nameservers.\n"
@@ -3949,6 +6034,11 @@ msgid ""
 "- if you configured your Nameservers manually please verify your entries in "
 "the \"Nameserver\" Configuration"
 msgstr ""
+"هذه التجربه ستفحص اسم خادم مكون :\n"
+"إذا جاءتك رسالة \"غير مؤكد\" : \n"
+"-تأكد من إعدادات DHCP وضبط المحول والكابل \n"
+"-إذا كنت قد قمت بتكوين أسم الخادم يدويا ، من فضلك تأكد من المدخلات فى خانة "
+"اسم الخادم فى التكوين"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN-Adapter.\n"
@@ -3956,6 +6046,10 @@ msgid ""
 "- verify that a network cable is attached\n"
 "- verify that the cable is not broken"
 msgstr ""
+"هذه التجربه ستحدد ما إذا كان كابل الشبكه متصل بمحول الشبكه \n"
+"إذا جاءتك رسالة \"غير متصل\" : \n"
+"-تاكد من أن كابل الشبكه مشبوك \n"
+"-تأكد أن الكابل غير مقطوع"
 
 msgid ""
 "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
@@ -3963,7 +6057,12 @@ msgid ""
 "- no valid IP Address was found\n"
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
+"هذه التجربه ستحدد العثور على IP صالح فى محول الشبكه المحليه. \n"
+"إذا جاءتك رسالة :غير مؤكد: : \n"
+"-لم يتم العثور على IP صالح . \n"
+"-تأكد من إعدادات DHCP وضبط المحول والكابل"
 
+#
 msgid ""
 "This test checks whether your LAN Adapter is set up for automatic IP Address "
 "configuration with DHCP.\n"
@@ -3976,85 +6075,126 @@ msgid ""
 msgstr ""
 
 msgid "This test detects your configured LAN-Adapter."
+msgstr "هذه التجربه تكتشف وجود محول شبكه محليه مكونه ."
+
+#
+msgid ""
+"This toggles the behavior on timer conflicts. If an AutoTimer matches an "
+"event that conflicts with an existing timer it will not ignore this event "
+"but add it disabled."
 msgstr ""
 
+#
 msgid "Three"
 msgstr "ثلاثه"
 
+#
 msgid "Threshold"
 msgstr ""
 
+#
 msgid "Thu"
 msgstr ""
 
+#
 msgid "Thumbnails"
 msgstr ""
 
+#
 msgid "Thursday"
 msgstr "الخميس"
 
+#
 msgid "Time"
-msgstr ""
+msgstr "وقت"
 
+#
+msgid "Time in minutes to append to recording."
+msgstr "الوقت بالدقائق المضاف بعد التسجيل"
+
+#
+msgid "Time in minutes to prepend to recording."
+msgstr "الوقت بالدقائق المضاف قبل التسجيل"
+
+#
 msgid "Time/Date Input"
 msgstr ""
 
+#
 msgid "Timer"
 msgstr "المؤقت"
 
+#
 msgid "Timer Edit"
 msgstr "تحرير المؤقت"
 
+#
 msgid "Timer Editor"
 msgstr "تحرير المؤقت"
 
+#
 msgid "Timer Type"
 msgstr "نوع المؤقت"
 
+#
 msgid "Timer entry"
 msgstr "إدخال المؤقت"
 
+#
 msgid "Timer log"
 msgstr ""
 
+#
 msgid ""
 "Timer overlap in timers.xml detected!\n"
 "Please recheck it!"
 msgstr ""
 
+#
 msgid "Timer record location"
 msgstr ""
 
+#
 msgid "Timer sanity error"
 msgstr ""
 
+#
 msgid "Timer selection"
-msgstr ""
+msgstr "إختيار المؤقت"
 
+#
 msgid "Timer status:"
-msgstr ""
+msgstr "حالة المؤقت:"
 
+#
+msgid "Timer type"
+msgstr "نوع المؤقت"
+
+#
 msgid "Timeshift"
 msgstr ""
 
+#
 msgid "Timeshift location"
 msgstr ""
 
+#
 msgid "Timeshift not possible!"
 msgstr ""
 
-msgid "Timeshift path..."
-msgstr ""
-
+#
 msgid "Timezone"
 msgstr "منطقه الوقت"
 
+#
 msgid "Title"
-msgstr ""
+msgstr "عنوان"
 
+#
 msgid "Title properties"
-msgstr ""
+msgstr "خصائص العنوان"
 
+#
 msgid "Titleset mode"
 msgstr ""
 
@@ -4066,199 +6206,328 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
+"لترقية البرنامج التشغيلى للدريم بوكس، من فضلك أتبع الخطوات الاتيه:\n"
+"1-أفصل الكهرباء عن الدريم بوكس من خلال الذر الخلفى ، ثم أشبك USB قابل "
+"للأقلاع \n"
+"2-أعد الكهرباء وأضغط على ذر DOWN الموجود فى مقدمه الجهاز لمدة 10 ثوانى \n"
+"3-أنتظر الأقلاع ثم أتبع التعليمات على الشاشه ."
 
+#
 msgid "Today"
-msgstr ""
+msgstr "اليوم"
 
+#
 msgid "Tone Amplitude"
 msgstr ""
 
+#
 msgid "Tone mode"
 msgstr ""
 
+#
 msgid "Toneburst"
 msgstr ""
 
+#
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
+#
+msgid "Top favorites"
+msgstr "المفضلات العليا"
+
+#
+msgid "Top rated"
+msgstr "الاعلى تصنيفا"
+
+#
 msgid "Track"
-msgstr ""
+msgstr "مسار"
 
+#
 msgid "Translation"
-msgstr ""
+msgstr "ترجمه"
 
+#
 msgid "Translation:"
-msgstr ""
+msgstr "ترجمه:"
 
+#
 msgid "Transmission Mode"
-msgstr ""
+msgstr "وضع الترجمه"
 
+#
 msgid "Transmission mode"
 msgstr "وضع النقل"
 
+#
 msgid "Transponder"
-msgstr ""
+msgstr "التردد"
 
+#
 msgid "Transponder Type"
+msgstr "نوع التردد"
+
+#
+msgid "Travel & Events"
 msgstr ""
 
+#
 msgid "Tries left:"
 msgstr ""
 
+#
 msgid "Try to find used Transponders in cable network.. please wait..."
 msgstr ""
 
 msgid "Try to find used transponders in cable network.. please wait..."
-msgstr ""
+msgstr "محاولة إيجاد ترددات عامله فى كابل الشبكه. رجاء الانتظار..."
 
+#
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr ""
 
+#
+msgid "Trying to download the Youtube feed entries. Please wait..."
+msgstr ""
+
+#
+msgid "Trying to download the Youtube search results. Please wait..."
+msgstr ""
+
+#
 msgid "Tue"
 msgstr ""
 
+#
 msgid "Tuesday"
 msgstr "الثلاثاء"
 
 msgid "Tune"
-msgstr ""
+msgstr "توليف"
 
 msgid "Tune failed!"
-msgstr ""
+msgstr "فشل التوليف"
 
+#
 msgid "Tuner"
-msgstr "التيونر(الموالف)"
+msgstr "الموالف"
 
+#
 msgid "Tuner "
-msgstr ""
+msgstr "موالف"
 
 msgid "Tuner Slot"
-msgstr "موضع التيونر(الموالف)"
+msgstr "موضع الموالف"
 
 msgid "Tuner configuration"
-msgstr ""
+msgstr "تهيئة الموالف"
 
 msgid "Tuner status"
-msgstr ""
+msgstr "حالة الموالف"
+
+msgid "Tuner type"
+msgstr "نوع الموالف"
 
 msgid "Turkish"
-msgstr ""
+msgstr "تركى"
 
+#
 msgid "Two"
 msgstr "اثنين"
 
+#
 msgid "Type"
-msgstr ""
+msgstr "نوع"
 
+#
 msgid "Type of scan"
 msgstr "نوع البحث"
 
+#
 msgid "USALS"
 msgstr "USALS"
 
-msgid "USB"
-msgstr ""
-
+#
 msgid "USB Stick"
 msgstr ""
 
+#
 msgid "USB stick wizard"
 msgstr ""
 
-msgid "Ukrainian"
+msgid ""
+"USB stick wizard finished. Your dreambox will now restart with your new "
+"image!"
 msgstr ""
+"إنتهاء نافذة إعداد الـ USB . الان سيتم إعادة تشغيل الدريم بوكس بالصوره "
+"الجدديده ."
+
+msgid "Ukrainian"
+msgstr "أوكرانى"
 
 msgid ""
 "Unable to complete filesystem check.\n"
 "Error: "
 msgstr ""
+"غير قادر على تكملة فحص ملفات النظام. \n"
+"خطأ:"
 
 msgid ""
 "Unable to initialize harddisk.\n"
 "Error: "
 msgstr ""
+"غير قادر على بدأ القرص الصلب. \n"
+"خطأ:"
 
+#
 msgid "Uncommitted DiSEqC command"
 msgstr ""
 
 msgid "Undo install"
-msgstr ""
+msgstr "تراجع عن التثبيت"
 
 msgid "Undo uninstall"
+msgstr "تراجع عن الغاء التثبيت"
+
+#
+msgid "UnhandledKey"
 msgstr ""
 
+#
 msgid "Unicable"
 msgstr ""
 
+#
 msgid "Unicable LNB"
 msgstr ""
 
+#
 msgid "Unicable Martix"
 msgstr ""
 
 msgid "Uninstall"
-msgstr ""
+msgstr "تراجع عن التثبيت"
 
+msgid "United States"
+msgstr "الولايات المتحده"
+
+#
 msgid "Universal LNB"
 msgstr ""
 
+msgid "Unknown network adapter."
+msgstr ""
+
+msgid ""
+"Unless this is enabled AutoTimer will NOT automatically look for events "
+"matching your AutoTimers but only when you leave the GUI with the green "
+"button."
+msgstr ""
+"إن لم يكن هذا مفعلا فإن المؤقت الالى لن يبحث آليا عن أحداث تطابق المؤقت "
+"الالى الخاص بك، لكن فقط عندما تغادر الواجهه التخطيطيه بالذر الأخضر"
+
+#
 msgid "Unmount failed"
 msgstr ""
 
 msgid "Unsupported"
-msgstr ""
+msgstr "غير مدعم"
 
+#
 msgid "Update"
-msgstr ""
+msgstr "تحديث"
 
-msgid "Updates your receiver's software"
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 167
+msgid "Update done..."
+msgstr "تم التحديث ..."
+
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 170
+msgid ""
+"Update done... The genuine dreambox test will now be rerun and should not "
+"ask you to update again."
+msgstr ""
+"تم التحديث... اختبار الدريم بوكس الاصلى سيعمل الان ولن يسألك بعد ذلك عن "
+"التحديث."
+
+#
+msgid "Updatefeed not available."
+msgstr "تغذية التحديث غير متاحه"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 150
+msgid ""
+"Updating failed. Nothing is broken, just the update couldn't be applied."
 msgstr ""
 
 msgid "Updating finished. Here is the result:"
-msgstr "إنتهاء التحديث، وهذه هى النتيجه"
+msgstr "إنتهاء التحديث، وهذه هى النتيجه:"
 
+#
 msgid "Updating software catalog"
-msgstr ""
+msgstr "جارى تحديث فهرس البرنامج التشغيلى"
+
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 118
+msgid "Updating, please wait..."
+msgstr "جارى التحديث. رجاء الانتظار ..."
 
 msgid "Updating... Please wait... This can take some minutes..."
-msgstr "جارى التحديث ..انتظر..قد يستغرق بعض الوقت"
+msgstr "جارى التحديث ..انتظر..قد يستغرق بعض الوقت..."
 
 msgid "Upgrade finished."
-msgstr ""
+msgstr "إنتهاء الترقيه ."
 
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr ""
-
+#
 msgid "Upgrading"
-msgstr ""
+msgstr "جارى الترقيه"
 
 msgid "Upgrading Dreambox... Please wait"
+msgstr "جارى ترقية الدريم بوكس ... رجاء الانتظار"
+
+#
+msgid "Upper bound of timespan."
 msgstr ""
 
+#
+msgid ""
+"Upper bound of timespan. Nothing after this time will be matched. Offsets "
+"are not taken into account!"
+msgstr ""
+
+#
 msgid "Use"
-msgstr ""
+msgstr "استخدم"
 
+#
 msgid "Use DHCP"
 msgstr "استخدمDHCP"
 
 msgid "Use Interface"
-msgstr ""
+msgstr "استخدم الواجهه"
 
 msgid "Use Power Measurement"
+msgstr "استخدم قياس الطاقه"
+
+#
+msgid "Use a custom location"
 msgstr ""
 
+#
 msgid "Use a gateway"
 msgstr ""
 
+#
 msgid "Use non-smooth winding at speeds above"
 msgstr ""
 
 msgid "Use power measurement"
-msgstr ""
+msgstr "استخدم قـياس الطاقه"
+
+msgid "Use the Networkwizard to configure selected network adapter"
+msgstr "استخدم نافذة الأعدادت لتهيئة محول الشبكه المختار"
 
 msgid "Use the Networkwizard to configure your Network\n"
-msgstr ""
+msgstr "أستخدم نافذة الاعدادات لتهيئة الشبكه \n"
 
 msgid ""
 "Use the left and right buttons to change an option.\n"
@@ -4272,62 +6541,86 @@ msgstr ""
 msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
 "press OK."
-msgstr "اضغط المفتاح العلوى أو السفلى من الريموت وأختار  ثم أضغط موافق"
+msgstr "اضغط المفتاح العلوى أو السفلى من الريموت وحدد إختيارك ثم أضغط موافق"
 
 msgid "Use this video enhancement settings?"
-msgstr ""
+msgstr "استخدام إعدادات تعزيز الفيديو هذه ؟"
 
+#
 msgid "Use time of currently running service"
-msgstr ""
+msgstr "استخدم وقت القناه المعروضه حاليا"
 
+#
 msgid "Use usals for this sat"
 msgstr "USALS für diesen Sat benutzen"
 
 msgid "Use wizard to set up basic features"
-msgstr "استخدم الويزارد لعمل الاعدادات الاساسيه "
+msgstr "استخدم نافذة الاعدادات لعمل الاعدادات الاساسيه "
 
+#
 msgid "Used service scan type"
-msgstr ""
+msgstr "نوع البحث عن القنوات المستخدم"
 
+#
 msgid "User defined"
 msgstr "يحددها المستخدم"
 
-msgid "Username"
+#
+msgid "User management"
+msgstr "تحكم المستخدم"
+
+#
+msgid "Usermanager"
 msgstr ""
 
+#
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#
 msgid "VCR scart"
 msgstr "وصله فيديو كاسيت"
 
+#
 msgid "VMGM (intro trailer)"
 msgstr ""
 
-msgid "Vertical"
+msgid ""
+"Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr ""
+
+msgid "Vertical"
+msgstr "رأسى"
 
 msgid "Video Fine-Tuning"
-msgstr ""
+msgstr "الضبط الدقيق للفيديو"
 
+#
 msgid "Video Fine-Tuning Wizard"
-msgstr ""
+msgstr "نافذة الضبط الدقيق للفيديو"
 
+#
 msgid "Video Output"
-msgstr ""
+msgstr "مخرج الفيديو"
 
+#
 msgid "Video Setup"
-msgstr ""
+msgstr "ضبط الفيديو"
 
+#
 msgid "Video Wizard"
-msgstr ""
+msgstr "نافذة إعدادات الفيديو"
 
 msgid "Video enhancement preview"
-msgstr ""
+msgstr "معاينة تعزيز الفيديو"
 
 msgid "Video enhancement settings"
-msgstr ""
+msgstr "إعدادات تعزيز الفيديو"
 
 msgid "Video enhancement setup"
-msgstr ""
+msgstr "ضبط تعزيز الفيديو"
 
+#
 msgid ""
 "Video input selection\n"
 "\n"
@@ -4338,116 +6631,197 @@ msgid ""
 msgstr ""
 
 msgid "Video mode selection."
+msgstr "إختيار وضعية الفيديو."
+
+#
+msgid "Videobrowser exit behavior:"
 msgstr ""
 
 msgid "Videoenhancement Setup"
+msgstr "ضبط تعزيز الفيديو"
+
+msgid "Videoplayer stop/exit behavior:"
+msgstr "التصرف عند إيقاف/خروج مشغل الفيديو:"
+
+#
+msgid "View Count"
 msgstr ""
 
+#
 msgid "View Movies..."
-msgstr ""
+msgstr "مشاهدة أفلام..."
 
+#
 msgid "View Photos..."
-msgstr ""
+msgstr "مشاهدة صور..."
 
+#
 msgid "View Rass interactive..."
 msgstr ""
 
+#
 msgid "View Video CD..."
-msgstr ""
+msgstr "مشاهدة فيديو سى دى"
 
+#
+msgid "View active downloads"
+msgstr "شاهد التحميلات النشطه"
+
+#
 msgid "View details"
-msgstr ""
+msgstr "مشاهدة تفاصيل"
 
+#
 msgid "View list of available "
 msgstr ""
 
+#
 msgid "View list of available CommonInterface extensions"
-msgstr ""
+msgstr "مشاهدة قائمه بإضافات وحدة التحكم المشترك"
 
 msgid "View list of available Display and Userinterface extensions."
-msgstr ""
+msgstr "شاهد قائمه يالاضافت المتاحه للعرض وواجهة المستخدم."
 
+#
 msgid "View list of available EPG extensions."
 msgstr ""
 
-msgid "View list of available Satteliteequipment extensions."
-msgstr ""
+msgid "View list of available Satellite equipment extensions."
+msgstr "شاهد قائمه بالاضافات المتاحه لمعدات القمر."
 
 msgid "View list of available communication extensions."
-msgstr ""
+msgstr "شاهد قائمه بإلاضافات المتاحه للاتصال."
 
 msgid "View list of available default settings"
-msgstr ""
+msgstr "شاهد قائمه بالاعدادات الافتراضيه المتاحه"
 
 msgid "View list of available multimedia extensions."
-msgstr ""
+msgstr "شاهد قائمه بإضافات الوسائط المتعدده المتاحه"
 
 msgid "View list of available networking extensions"
-msgstr ""
+msgstr "شاهد قائمه بإضافات الشبكه المتاحه"
 
 msgid "View list of available recording extensions"
-msgstr ""
+msgstr "شاهد قائمه بإضافات التسجيل المتاحه"
 
 msgid "View list of available skins"
-msgstr ""
+msgstr "شاهد قائمه بالجلد المتاح"
 
 msgid "View list of available software extensions"
-msgstr ""
+msgstr "شاهد قائمه بإضافات البرنامج التشغيلى المتاحه"
 
 msgid "View list of available system extensions"
+msgstr "شاهد قائمه بإضافات النظام المتاحه"
+
+#
+msgid "View related videos"
+msgstr "مشاهدة الفيديو ذات الصله"
+
+#
+msgid "View response videos"
 msgstr ""
 
+#
 msgid "View teletext..."
 msgstr ""
 
-msgid "Virtual KeyBoard"
+#
+msgid "View, edit or delete mountpoints on your Dreambox."
 msgstr ""
 
+msgid "View, edit or delete usernames and passwords for your network."
+msgstr "مشاهده ، تحرير أو مسح اسم المستخدم وكلمة المرور للشبكه ."
+
+#
+msgid "Views: "
+msgstr "مشاهدات:"
+
+#
+msgid "Virtual KeyBoard"
+msgstr "لوحة مفاتيح تخيليه"
+
+#
 msgid "Voltage mode"
 msgstr "وضعيه الفولت"
 
+#
 msgid "Volume"
 msgstr "درجه الصوت"
 
+#
 msgid "W"
 msgstr ""
 
+#
 msgid "WEP"
 msgstr ""
 
+msgid "WLAN adapter."
+msgstr ""
+
+msgid "WLAN connection"
+msgstr ""
+
+#
 msgid "WPA"
-msgstr ""
+msgstr "WPA"
 
+#
 msgid "WPA or WPA2"
-msgstr ""
+msgstr "WPA أو WPA2"
 
+#
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
+#
 msgid "WSS on 4:3"
 msgstr ""
 
+#
+msgid "Wait time in ms before activation:"
+msgstr "وقت الانتظار بالميللى ثانيه قبل التنشيط"
+
+#
 msgid "Waiting"
-msgstr ""
+msgstr "جارى الانتظار"
 
+#
 msgid "Warn if free space drops below (kB):"
-msgstr ""
+msgstr "حذرنى إذا قلت المساحه عن (kB) :"
 
-msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If "
-"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-"Please press OK to begin."
-msgstr ""
+#
+msgid "Webinterface"
+msgstr "واجهة الشبكه"
 
+#
+msgid "Webinterface: Main Setup"
+msgstr "واجهة الشبكه: الضبط الرئيسى"
+
+#
 msgid "Wed"
-msgstr ""
+msgstr "الاربعاء"
 
+#
 msgid "Wednesday"
 msgstr "الاربعاء"
 
+#
 msgid "Weekday"
 msgstr "يوم الاسبوع"
 
+msgid "Weekend"
+msgstr "نهاية الاسبوع"
+
+#
+msgid "Weekly (Monday)"
+msgstr "اسبوعيا (الاثنين)"
+
+#
+msgid "Weekly (Sunday)"
+msgstr "اسبوعيا (الاحد)"
+
+#
 msgid ""
 "Welcome to the Cutlist editor.\n"
 "\n"
@@ -4462,7 +6836,58 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
+"مرحبا بك فى نافذة ترقية الصوره. هذه النافذه ستساعدك فى ترقية البرنامج "
+"التشغبلى للدريم بوكس بواسطة توفير وسيلة عمل باك أب للاعدادات الحاليه وشرح "
+"مبسط لطريقة ترقية البرنامج التشغيلى ."
 
+msgid ""
+"Welcome to the MyTube Youtube Player.\n"
+"\n"
+"Use the Bouqet+ button to navigate to the search field and the Bouqet- to "
+"navigate to the video entries.\n"
+"\n"
+"To play a movie just press OK on your remote control.\n"
+"\n"
+"Press info to see the movie description.\n"
+"\n"
+"Press the Menu button for additional options.\n"
+"\n"
+"The Help button shows this help again."
+msgstr ""
+"مرحبا فى مشغل اليو تيوب.\n"
+"\n"
+"أستخدم ذر الباقه+ للتنقل والوصول الى حقل البحث ، وذر الباقه- للتنقل الى "
+"مدخلات الفيديو.\n"
+"\n"
+"لتشغيل فيديو أضغط ذر موافق.\n"
+"\n"
+"أضغط ذر info لتشاهد وصف الفيلم.\n"
+"\n"
+"أضغط ذر Menu لخيارات إضافيه\n"
+"\n"
+"ذر Help يظهر هذه المساعده مره ثانيه."
+
+msgid ""
+"Welcome to the MyTube Youtube Player.\n"
+"\n"
+"While entering your search term(s) you will get suggestions displayed "
+"matching your search term.\n"
+"\n"
+"To select a suggestion press DOWN on your remote, select the desired result "
+"and press OK on your remote to start the search.\n"
+"\n"
+"Press exit to get back to the input field."
+msgstr ""
+"مرحبا فى MyTube مشغل اليوتيوب.\n"
+"\n"
+"بينما تدخل عناصر البحث ستعرض لك إقتراحات تطابق عناصر البحث.\n"
+"\n"
+"لتختار إقتراح أضغط ذر أسفل من الريموت ، أختار النتيجه التى تريدها وأضغط "
+"موافق من الريموت اتبدأ البحث.\n"
+"\n"
+"أضغط خروج نت الريموت للعوده الى حقل المدخلات."
+
+#
 msgid ""
 "Welcome to the cleanup wizard.\n"
 "\n"
@@ -4472,6 +6897,7 @@ msgid ""
 "You can use this wizard to remove some extensions.\n"
 msgstr ""
 
+#
 msgid ""
 "Welcome.\n"
 "\n"
@@ -4479,6 +6905,13 @@ msgid ""
 "you through the basic network setup of your Dreambox.\n"
 "\n"
 "Press OK to start configuring your network"
+msgstr ""
+
+msgid ""
+"Welcome.\n"
+"\n"
+"This Wizard will help you to create a new AutoTimer by providing "
+"descriptions for common settings."
 msgstr ""
 
 msgid ""
@@ -4492,16 +6925,26 @@ msgstr ""
 "هذه النوافذ سترشدك لعمل الضبط وتهيئه الدريم بوكس اضغط ذر OK من الريموت "
 "للانتقال للخطوه التاليه"
 
+#
 msgid "Welcome..."
-msgstr ""
+msgstr "مرحبا..."
 
+#
 msgid "West"
 msgstr "غرب"
 
+#
 msgid "What do you want to scan?"
 msgstr "ماذا تريد ان تبحث ؟"
 
+#
 msgid "What to do with submitted crashlogs?"
+msgstr ""
+
+#
+msgid ""
+"When this option is enabled the AutoTimer won't match events where another "
+"timer with the same description already exists in the timer list."
 msgstr ""
 
 msgid ""
@@ -4512,141 +6955,186 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
+"عند العوده الى ضبط المصنع ستفقد كل معلومات الضبط \n"
+"(بما فى ذلك الباقات والقنوات ومعلومات القمر...)\n"
+"بعد الانتهاء من العوده الى ضبط المصنع سيتم عمل إعادة تشغيل اتوماتيكيا "
+"للرسيفر !\n"
+"\n"
+"هل تريد فعلا العوده الى ضبط المصنع ؟"
 
 msgid "Where do you want to backup your settings?"
-msgstr ""
+msgstr "هل تريد فعلا عمل باك أب للاعدادات ؟"
 
+#
 msgid "Where to save temporary timeshift recordings?"
-msgstr ""
+msgstr "أين تحفظ تسجيلات التايم شفت المؤقته؟"
 
+#
 msgid "Wireless"
-msgstr ""
+msgstr "لاسلكى"
 
 msgid "Wireless LAN"
-msgstr ""
+msgstr "شبكه محليه لا سلكيه"
 
 msgid "Wireless Network"
-msgstr ""
+msgstr "شبكه لا سلكيه"
 
 msgid "Wireless Network State"
+msgstr "حالة الشبكه اللاسلكيه"
+
+#
+msgid ""
+"With this option enabled the channel to record on can be changed to a "
+"alternative service it is restricted to."
 msgstr ""
 
+#
+msgid ""
+"With this option you can restrict the AutoTimer to a certain ammount of "
+"scheduled recordings. Set this to 0 to disable this functionality."
+msgstr ""
+"من خلال هذه الخاصيه تستطيع حصر المؤقت الالى لعدد محددمن التسجيلات المجدوله، "
+"ضعها فى الاعداد 0 لتعطيل هذه الوظيفه"
+
+#
+msgid "Wizard"
+msgstr "نافذة إعدادات"
+
+#
 msgid "Write error while recording. Disk full?\n"
 msgstr ""
 
 msgid "Write failed!"
-msgstr ""
+msgstr "فشل الكتابه !"
 
 msgid "Writing NFI image file to flash completed"
-msgstr ""
+msgstr "إكتمال كتابة صوره NFI على الفلاش"
 
 msgid "YPbPr"
-msgstr ""
+msgstr "YPbPr"
 
 msgid "Year"
-msgstr ""
+msgstr "عام"
 
+#
 msgid "Yes"
 msgstr "نعم"
 
 msgid "Yes to all"
-msgstr ""
+msgstr "نعم للجميع"
 
 msgid "Yes, and delete this movie"
-msgstr ""
+msgstr "نعم، وامسح هذا الفيلم"
 
 msgid "Yes, and don't ask again"
-msgstr ""
+msgstr "نعم ، ولا تسأل بعد ذلك"
 
+#
 msgid "Yes, backup my settings!"
-msgstr ""
+msgstr "نعم ، أعمل باك أب للاعدادات"
+
+#
+msgid "Yes, but play next video"
+msgstr "نعم ، لكن أعرض الفيديو التالى"
+
+#
+msgid "Yes, but play previous video"
+msgstr "نعم ، لكن أعرض الفيديو السابق"
 
 msgid "Yes, do a manual scan now"
-msgstr ""
+msgstr "نعم، أعمل بحث يدوى الان"
 
 msgid "Yes, do an automatic scan now"
-msgstr ""
+msgstr "نعم، أعمل بحث آالى الان"
 
 msgid "Yes, do another manual scan now"
+msgstr "نعم، أعمل بحث يدوى آخر الان"
+
+msgid "Yes, keep them."
 msgstr ""
 
 msgid "Yes, perform a shutdown now."
-msgstr ""
+msgstr "نعم أغلق الان."
 
 msgid "Yes, restore the settings now"
-msgstr ""
+msgstr "نعم، أستعد الاعدادات الان"
 
 msgid "Yes, returning to movie list"
-msgstr ""
+msgstr "نعم، العوده الى قائمة الافلام"
 
+#
 msgid "Yes, view the tutorial"
 msgstr "مشاهده الشرح"
 
 msgid "You can cancel the installation."
-msgstr ""
+msgstr "تستطيع إلغاء التثبيت"
 
 msgid "You can cancel the removal."
-msgstr ""
+msgstr "تستطيع إلغاء الحذف"
 
 msgid ""
 "You can choose some default settings now. Please select the settings you "
 "want to be installed."
 msgstr ""
+"تستطيع أختيار بعض الاعدادات الافتراضيه . من فضلك أختار الاعدادات التى تريد "
+"تثبيتها ."
 
 msgid "You can choose, what you want to install..."
-msgstr ""
+msgstr "تستطيع أن تختار . ماذا تريد أن تثبت......"
 
 msgid "You can install this plugin."
-msgstr ""
+msgstr "تستطيع تثبيت هذا البلج إن"
 
 msgid "You can only burn Dreambox recordings!"
-msgstr ""
+msgstr "تستطيع فقط حرق تسجيلات الدريم بوكس!"
 
 msgid "You can remove this plugin."
+msgstr "تستطيع حذف هذا البلج إن."
+
+msgid ""
+"You can set the basic properties of an AutoTimer here.\n"
+"While 'Name' is just a human-readable name displayed in the Overview, 'Match "
+"in title' is what is looked for in the EPG."
 msgstr ""
 
+#
 msgid "You cannot delete this!"
 msgstr "لايمكنك مسح هذه !"
 
 msgid "You chose not to install any default services lists."
-msgstr ""
+msgstr "لقد أخترت عدم تثبيت قوائم القنوات الافتراضيه"
 
 msgid ""
 "You chose not to install any default settings. You can however install the "
 "default settings later in the settings menu."
 msgstr ""
+"لقد أخترت عدم تثبيت الاعدادات الافتراضيه ، لكن يمكنك تثبيتها لاحقا من قائمة "
+"الاعدادات"
 
 msgid ""
 "You chose not to install anything. Please press OK finish the install wizard."
-msgstr ""
+msgstr "لقد أخترت عدم تثبيت أى شيئ ، من فضلك أغط موافق لأغلاق نافذة التثبيت"
 
 msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
+"You did not provide a valid 'Match in title' Attribute for your new "
+"AutoTimer.\n"
+"As this is a mandatory Attribute you cannot continue without doing so."
 msgstr ""
 
+#
+#, python-format
 msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
+"You entered \"%s\" as Text to match.\n"
+"Do you want to remove trailing whitespaces?"
 msgstr ""
 
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-
+#
 msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
 "now."
-msgstr ""
+msgstr "إذا أخترت عمل باك أب للاعدادات ، من فضلك أضغط موافق اتبدأ الباك أبالان"
 
+#
 msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
@@ -4656,10 +7144,12 @@ msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
 msgstr ""
+"لقد أخترت أن تستعيد الاعدادات . سيتم إعادة تشغيل الاينجما2 بعد الاستعاده ."
+"أضغط موافق لتبدأ الاستعاده الان ."
 
 #, python-format
 msgid "You have to wait %s!"
-msgstr ""
+msgstr "يجب أن تنتظر %s !"
 
 msgid ""
 "You need a PC connected to your dreambox. If you need further instructions, "
@@ -4668,11 +7158,30 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
+"تحتاج الى كومبيوتر متصل بالدريم بوكس، لمزيد من الارشادات نرجو زيارة "
+"الموقعhttp://www.dm7025.de \n"
+"سوف يتم الان إغلاق الدريم بوكس.بعد النتهاء من تنفيذ تعليمات التحديث من صفحة "
+"الانترنت سوف يتم سؤالك إذا كنت تريد إستعادة الاعدادات."
 
 msgid ""
 "You need to set a pin code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
+msgstr ""
+"تحتاج الى رقم سرى ﻷإخفاءها عن أبناءك.\n"
+"\n"
+"هل تريد وضع رقم سرى الان؟"
+
+msgid ""
+"You successfully configured a new AutoTimer. Do you want to add it to the "
+"list?\n"
+"\n"
+"You can go back a step by pressing EXIT on your remote."
+msgstr ""
+
+msgid ""
+"Your 'Match in title' Attribute ends with a Whitespace.\n"
+"Please confirm if this was intentional, if not they will be removed."
 msgstr ""
 
 msgid ""
@@ -4681,6 +7190,10 @@ msgid ""
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
+"الدريم بوكس جاهز للاستخدام الان.\n"
+"\n"
+"الاتصال بالانترنت يعمل الان.\n"
+"\n"
 
 msgid ""
 "Your Dreambox is now ready to use.\n"
@@ -4689,57 +7202,81 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
+"الدريم بوكس جاهز للاستخدام الان.\n"
+"\n"
+"الاتصال بالانترنت يعمل الان.\n"
+"\n"
+"أضغط موافق للاستمرار."
 
 msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
-
-msgid "Your TV works with 50 Hz. Good!"
-msgstr ""
+"سيتم إعادة تشغيل الدريم بوكس بعد الضغط على ذر موافق من الريموت كونترول."
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
-msgstr ""
+msgstr "نجاح عمل باك أب. سوف نشرح لك طريقة الترقيه الان."
 
 msgid ""
 "Your collection exceeds the size of a single layer medium, you will need a "
 "blank dual layer DVD!"
 msgstr ""
+"هذه المجموعه تزيد عن حجم وسيط ذو طبقه واحده. أنت تحتاج الى دى فى دى ثنائى "
+"الطبقه خالى!"
+
+#
+#, python-format
+msgid ""
+"Your config file is not well-formed:\n"
+"%s"
+msgstr ""
+
+msgid "Your current collection will get lost!"
+msgstr "سوف تفقد المجموعه الحاليه !"
 
 msgid "Your dreambox is shutting down. Please stand by..."
-msgstr ""
+msgstr "يتم الان إغلاق الدريم بوكس. من فضلك كن مستعدا..."
 
 msgid ""
 "Your dreambox isn't connected to the internet properly. Please check it and "
 "try again."
 msgstr ""
+"الدريم بوكس غير متصل بالانترنت بشكل صحيح. من فضلكأفحصه وحاول مره ثانيه."
 
 msgid "Your email address:"
-msgstr ""
+msgstr "عنوان بريدك الالكترونى:"
 
+#
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
 
+#
 msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
 
 msgid "Your name (optional):"
-msgstr ""
+msgstr "إسمك (إختيارى):"
 
 msgid "Your network configuration has been activated."
+msgstr "تم تنشيط تكوين الشبكه"
+
+#
+msgid "Your network mount has been activated."
 msgstr ""
 
-msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
+#
+msgid "Your network mount has been removed."
 msgstr ""
 
+#
+msgid "Your network mount has been updated."
+msgstr ""
+
+#
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
 "Have you attached your USB WLAN Stick?\n"
@@ -4747,906 +7284,1063 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 
+#
+msgid "Zap back to previously tuned service?"
+msgstr ""
+
+#
 msgid "Zap back to service before positioner setup?"
 msgstr ""
 
+#
 msgid "Zap back to service before satfinder?"
 msgstr ""
 
-msgid "[alternative edit]"
+#
+msgid "Zap back to service before tuner setup?"
 msgstr ""
 
+msgid "Zydas"
+msgstr ""
+
+msgid "[alternative edit]"
+msgstr "[تحرير البديل]"
+
 msgid "[bouquet edit]"
-msgstr "تحرير الباقه"
+msgstr "[تحرير الباقه]"
 
 msgid "[favourite edit]"
-msgstr "تحرير المفضله"
+msgstr "[تحرير المفضله]"
 
+#
 msgid "[move mode]"
 msgstr "وضع التحريك"
 
+#
 msgid "a gui to assign services/providers to common interface modules"
 msgstr ""
 
+#
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr ""
 
 msgid "abort alternatives edit"
-msgstr ""
+msgstr "إلغاء تحرير البدائل"
 
+#
 msgid "abort bouquet edit"
 msgstr "الغاء تحرير الباقه"
 
+#
 msgid "abort favourites edit"
 msgstr "الغاء تحرير المفضله"
 
 msgid "about to start"
-msgstr ""
+msgstr "على وشك البدأ"
 
 msgid "activate current configuration"
-msgstr ""
+msgstr "تنشيط التكوين الحالى"
 
 msgid "activate network adapter configuration"
-msgstr ""
+msgstr "تنشيط تكوين محول الشبكه"
+
+msgid "add AutoTimer..."
+msgstr "إضافة مؤقت ألى...."
 
 msgid "add Provider"
-msgstr ""
+msgstr "إضافة مزود خدمه"
 
 msgid "add Service"
-msgstr ""
+msgstr "إضافة قماه"
 
 msgid "add a nameserver entry"
-msgstr ""
+msgstr "إضافه بند اسم خادم"
 
 msgid "add alternatives"
-msgstr ""
+msgstr "إضافة بدائل"
 
 msgid "add bookmark"
-msgstr ""
+msgstr "إضافة مرجعيه"
 
 msgid "add bouquet"
-msgstr ""
+msgstr "إضافة باقه"
 
 msgid "add directory to playlist"
-msgstr ""
+msgstr "إضافة دليل لقائمه الاغانى"
 
 msgid "add file to playlist"
-msgstr ""
+msgstr "إضافة ملف لقائمة الاغانى"
 
 msgid "add files to playlist"
-msgstr ""
+msgstr "إضافة ملفات لقائمة الاغانى"
+
+msgid "add filters"
+msgstr "إضافة مرشحات"
 
 msgid "add marker"
-msgstr ""
+msgstr "إضافة علامه"
 
 msgid "add recording (enter recording duration)"
-msgstr ""
+msgstr "إضافة تسجيل (دخل مدة التسجيل)"
 
 msgid "add recording (enter recording endtime)"
-msgstr ""
+msgstr "إضافة تسجيل(أدخل زمن انتهاء التسجيل)"
 
 msgid "add recording (indefinitely)"
-msgstr ""
+msgstr "أضف تسجيل (غير محدد المده)"
 
 msgid "add recording (stop after current event)"
-msgstr ""
+msgstr "أضف تسجيل (وإيقاف بعد انتهاء البرنامج الحالى)"
 
+#
 msgid "add service to bouquet"
 msgstr "إضافه القناه الى الباقه"
 
+#
 msgid "add service to favourites"
 msgstr "إضافه القناه الى المفضله"
 
+msgid "add services"
+msgstr "إضافة قنوات"
+
 msgid "add to parental protection"
-msgstr ""
+msgstr "أضف حمايه أبويه"
 
 msgid "advanced"
-msgstr ""
+msgstr "متقدم"
 
 msgid "alphabetic sort"
-msgstr ""
+msgstr "ترنيب أبجدى"
 
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-
-msgid "assigned CAIds"
-msgstr ""
-
+#
 msgid "assigned CAIds:"
 msgstr ""
 
-msgid "assigned Services/Provider"
-msgstr ""
-
+#
 msgid "assigned Services/Provider:"
 msgstr ""
 
+#
 #, python-format
 msgid "audio track (%s) format"
 msgstr ""
 
+#
 #, python-format
 msgid "audio track (%s) language"
 msgstr ""
 
+#
 msgid "audio tracks"
-msgstr ""
+msgstr "مسارات الصوت"
 
 msgid "auto"
-msgstr ""
+msgstr "تلقائى"
 
 msgid "available"
-msgstr ""
+msgstr "متاح"
 
+#
 msgid "back"
 msgstr "للخلف"
 
 msgid "background image"
-msgstr ""
+msgstr "صورة الخلفيه"
 
 msgid "backgroundcolor"
-msgstr ""
+msgstr "لون الخلفيه"
 
 msgid "better"
-msgstr ""
+msgstr "أفضل"
 
 msgid "black"
-msgstr ""
+msgstr "أسود"
 
 msgid "blacklist"
-msgstr ""
+msgstr "القائمه السوداء"
 
 msgid "blue"
-msgstr ""
+msgstr "أزرق"
 
+#
 #, python-format
 msgid "burn audio track (%s)"
 msgstr ""
 
+#
+msgid "case-insensitive search"
+msgstr ""
+
+#
+msgid "case-sensitive search"
+msgstr ""
+
+#
 msgid "change recording (duration)"
 msgstr ""
 
+#
 msgid "change recording (endtime)"
 msgstr ""
 
+#
 msgid "chapters"
-msgstr ""
+msgstr "فصول"
 
+#
 msgid "choose destination directory"
 msgstr ""
 
+#
 msgid "circular left"
 msgstr "دائرى يسار"
 
+#
 msgid "circular right"
 msgstr "دائرى يمين"
 
+#
 msgid "clear playlist"
 msgstr ""
 
+#
 msgid "complex"
-msgstr ""
+msgstr "مركب"
 
+#
 msgid "config menu"
 msgstr "قائمه الضبط"
 
 msgid "confirmed"
-msgstr ""
+msgstr "تم التأكيد"
 
 msgid "connected"
-msgstr ""
+msgstr "تم الاتصال"
 
 msgid "continue"
-msgstr ""
+msgstr "استمرار"
 
 msgid "copy to bouquets"
-msgstr ""
+msgstr "نسخ الى الباقات"
 
 msgid "could not be removed"
-msgstr ""
+msgstr "لا يمكن حذفها"
 
 msgid "create directory"
-msgstr ""
+msgstr "إنشاء دليل"
 
+#
 msgid "daily"
 msgstr "يومى"
 
+#
 msgid "day"
-msgstr ""
+msgstr "يوم"
 
 msgid "delete"
-msgstr ""
+msgstr "مسح"
 
 msgid "delete cut"
-msgstr ""
+msgstr "مسح القطع"
 
 msgid "delete file"
-msgstr ""
+msgstr "حذف الملف"
 
+#
 msgid "delete playlist entry"
 msgstr ""
 
+#
 msgid "delete saved playlist"
-msgstr ""
+msgstr "مسح قائمة العرض المحفوظه"
 
+#
 msgid "delete..."
 msgstr "مسح ..."
 
 msgid "disable"
-msgstr ""
+msgstr "تعطيل"
 
 msgid "disable move mode"
-msgstr "ألغاء وضع التحريك"
+msgstr "تعطيل وضع التحريك"
 
 msgid "disabled"
-msgstr ""
+msgstr "تم التعطيل"
 
 msgid "disconnected"
-msgstr ""
+msgstr "تم الفصل"
 
+#
 msgid "do not change"
 msgstr ""
 
 msgid "do nothing"
-msgstr ""
+msgstr "لا تفعل شيئ"
 
+#
 msgid "don't record"
 msgstr ""
 
 msgid "done!"
-msgstr ""
+msgstr "تم !"
 
 msgid "edit alternatives"
-msgstr ""
+msgstr "تحرير البدائل"
+
+msgid "edit filters"
+msgstr "تحرير الفلاتر"
+
+msgid "edit services"
+msgstr "تحرير القنوات"
 
 msgid "empty"
-msgstr ""
+msgstr "فارغ"
 
 msgid "enable"
-msgstr ""
+msgstr "تفعيل"
 
+#
 msgid "enable bouquet edit"
 msgstr "تفعيل تحرير الباقه"
 
+#
 msgid "enable favourite edit"
 msgstr "تفعيل تحرير المفضله"
 
+#
 msgid "enable move mode"
 msgstr "تفعيل وضع التحريك"
 
 msgid "enabled"
-msgstr ""
+msgstr "تم النفعيل"
 
+#
 msgid "end alternatives edit"
 msgstr ""
 
+#
 msgid "end bouquet edit"
 msgstr "إنتهاء تحرير الباقه"
 
+#
 msgid "end cut here"
 msgstr ""
 
+#
 msgid "end favourites edit"
 msgstr "إنتهاء تحرير المفضله"
 
-msgid "enigma2 and network"
-msgstr ""
-
+#
 msgid "enter hidden network SSID"
 msgstr ""
 
 msgid "equal to"
-msgstr ""
+msgstr "مساوى لـــ"
 
-msgid "exceeds dual layer medium!"
-msgstr ""
+msgid "exact match"
+msgstr "تطابق كامل"
 
+#
 msgid "exit DVD player or return to file browser"
 msgstr ""
 
 msgid "exit mediaplayer"
-msgstr ""
+msgstr "الخروج من مشغل الوسائط"
 
 msgid "exit movielist"
-msgstr ""
+msgstr "الخروج من قائمة الافلام"
 
 msgid "exit nameserver configuration"
-msgstr ""
+msgstr "الخروج من تكوين أسم الخادم"
 
 msgid "exit network adapter configuration"
-msgstr ""
-
-msgid "exit network adapter setup menu"
-msgstr ""
+msgstr "الخروج من تهيئة محول الشبكه"
 
 msgid "exit network interface list"
-msgstr ""
+msgstr "الخروج من قائمة واجهة الشبكه"
 
 msgid "exit networkadapter setup menu"
-msgstr ""
+msgstr "الخروج من قائمه إعداد الشبكه"
 
 msgid "failed"
-msgstr ""
+msgstr "فشل"
 
+#
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr ""
 
 msgid "filename"
-msgstr ""
+msgstr "اسم الملف"
 
+#
 msgid "fine-tune your display"
 msgstr ""
 
+#
 msgid "forward to the next chapter"
 msgstr ""
 
+#
 msgid "free"
 msgstr ""
 
+#
 msgid "free diskspace"
 msgstr "المساحه المتبقيه فى القرص"
 
 msgid "go to deep standby"
-msgstr ""
+msgstr "الذهاب الى وضع الاستعداد العميق"
 
 msgid "go to standby"
-msgstr ""
+msgstr "الذهاب لوضع الاستعداد"
 
+#
 msgid "grab this frame as bitmap"
 msgstr ""
 
 msgid "green"
-msgstr ""
+msgstr "أخضر"
 
 msgid "hear radio..."
-msgstr ""
+msgstr "استمع للراديو......"
 
 msgid "help..."
-msgstr "مساعده"
-
-msgid "hidden network"
-msgstr ""
+msgstr "مساعده..."
 
 msgid "hide extended description"
-msgstr ""
+msgstr "إخفاء الوصف التفصيلى"
 
 msgid "hide player"
-msgstr ""
+msgstr "إخفاء المشغل"
 
 msgid "horizontal"
-msgstr "عرضى"
+msgstr "أفقى"
 
 msgid "hour"
-msgstr ""
+msgstr "ساعه"
 
 msgid "hours"
-msgstr ""
+msgstr "ساعات"
 
 msgid "immediate shutdown"
-msgstr ""
+msgstr "إغلاق فورى"
 
-#, python-format
-msgid ""
-"incoming call!\n"
-"%s calls on %s!"
-msgstr ""
+msgid "in Description"
+msgstr "فى الوصف"
 
+msgid "in Shortdescription"
+msgstr "فى وصف مختصر"
+
+msgid "in Title"
+msgstr "فى عنوان"
+
+#
 msgid "init module"
 msgstr "تفعيل الكـام"
 
+#
 msgid "init modules"
 msgstr ""
 
+#
 msgid "insert mark here"
 msgstr ""
 
 msgid "jump back to the previous title"
-msgstr ""
+msgstr "الانتقال خلفا للعنوان السابق"
 
 msgid "jump forward to the next title"
-msgstr ""
+msgstr "الانتقال أماما للعنوان التالى"
 
 msgid "jump to listbegin"
-msgstr ""
+msgstr "الانتقال الى بداية القائمه"
 
 msgid "jump to listend"
-msgstr ""
+msgstr "الوصول الى نهاية القائمه"
 
+#
 msgid "jump to next marked position"
 msgstr ""
 
+#
 msgid "jump to previous marked position"
 msgstr ""
 
+#
 msgid "leave movie player..."
 msgstr "اترك عارض الافلام .."
 
 msgid "left"
-msgstr ""
+msgstr "يسار"
 
 msgid "length"
+msgstr "طول"
+
+#
+msgid "list of EPG views..."
 msgstr ""
 
+#
 msgid "list style compact"
 msgstr ""
 
+#
 msgid "list style compact with description"
 msgstr ""
 
+#
 msgid "list style default"
 msgstr ""
 
+#
 msgid "list style single line"
 msgstr ""
 
 msgid "load playlist"
-msgstr ""
+msgstr "تحميل قائمة العرض"
 
 msgid "locked"
-msgstr ""
+msgstr "مغلق"
 
+#
 msgid "loopthrough to"
 msgstr ""
 
+#
 msgid "manual"
 msgstr "يدوى"
 
 msgid "menu"
-msgstr ""
+msgstr "قائمه"
 
 msgid "menulist"
-msgstr ""
+msgstr "فهرس القوائم"
 
 msgid "mins"
-msgstr ""
+msgstr "دقائق"
 
 msgid "minute"
-msgstr ""
+msgstr "دقيقه"
 
 msgid "minutes"
-msgstr ""
+msgstr "دقائق"
 
 msgid "month"
-msgstr ""
+msgstr "شهر"
 
 msgid "move PiP to main picture"
-msgstr ""
+msgstr "تحريك صوره داخل صوره الى الصوره الرئيسيه"
 
 msgid "move down to last entry"
-msgstr ""
+msgstr "الانتقال لأسفل الى البند الاخير"
 
 msgid "move down to next entry"
-msgstr ""
+msgstr "الانتقال لاسفل الى البند التالى"
 
 msgid "move up to first entry"
-msgstr ""
+msgstr "الانتقال لاعلى الى البند الاول"
 
 msgid "move up to previous entry"
-msgstr ""
+msgstr "الانتقال لاعلى الى البند السابق"
 
 msgid "movie list"
-msgstr ""
+msgstr "قائمة الافلام"
 
 msgid "multinorm"
-msgstr ""
+msgstr "متعدد المعايير"
 
 msgid "never"
-msgstr ""
+msgstr "مطلقا"
 
+#
 msgid "next channel"
 msgstr "القناه التاليه"
 
+#
 msgid "next channel in history"
 msgstr ""
 
+#
 msgid "no"
 msgstr "لا."
 
+#
 msgid "no CAId selected"
 msgstr ""
 
+#
 msgid "no CI slots found"
 msgstr ""
 
+#
 msgid "no HDD found"
 msgstr "لم يتم العثور على قرص صلب"
 
+#
 msgid "no Services/Providers selected"
 msgstr ""
 
+#
 msgid "no module found"
 msgstr "لم يتم العثور على كامه"
 
+#
 msgid "no standby"
 msgstr ""
 
+#
 msgid "no timeout"
 msgstr ""
 
+#
 msgid "none"
 msgstr "لا احد"
 
+msgid "not configured"
+msgstr "غير مكونه"
+
 msgid "not locked"
-msgstr ""
+msgstr "غير مغلقه"
 
 msgid "not used"
-msgstr ""
+msgstr "غير مستخدمه"
 
 msgid "nothing connected"
-msgstr ""
+msgstr "لا شيئ متصل"
 
+#
 msgid "of a DUAL layer medium used."
 msgstr ""
 
+#
 msgid "of a SINGLE layer medium used."
 msgstr ""
 
+#
 msgid "off"
 msgstr "لا يعمـل!"
 
+#
 msgid "on"
 msgstr "يعمل!"
 
+#
 msgid "on READ ONLY medium."
 msgstr ""
 
+#
+msgid "on Weekday"
+msgstr ""
+
+#
 msgid "once"
 msgstr "مره واحده"
 
 msgid "open nameserver configuration"
-msgstr ""
+msgstr "فتح تكوين أسم الخادم"
 
 msgid "open servicelist"
-msgstr ""
+msgstr "فتح قائمة القنوات"
 
 msgid "open servicelist(down)"
-msgstr ""
+msgstr "أفتح قائمة القنوات(اسفل)"
 
 msgid "open servicelist(up)"
-msgstr ""
+msgstr "أفتح قائمة القنوات(أعلى)"
 
-msgid "open virtual keyboard input help"
-msgstr ""
+msgid "partial match"
+msgstr "تطابق جزئى"
 
 msgid "pass"
-msgstr ""
+msgstr "مرور"
 
 msgid "pause"
-msgstr ""
+msgstr "وقف مؤقت"
 
+#
 msgid "play entry"
 msgstr ""
 
+#
 msgid "play from next mark or playlist entry"
 msgstr ""
 
+#
 msgid "play from previous mark or playlist entry"
 msgstr ""
 
 msgid "please press OK when ready"
-msgstr ""
+msgstr "من فضلك أضغط موافق عندما تكون مستعد"
 
 msgid "please wait, loading picture..."
-msgstr ""
+msgstr "رجاء الانتظار... جارى تحميل الصوره"
 
 msgid "previous channel"
-msgstr ""
+msgstr "القناه السابقه"
 
+#
 msgid "previous channel in history"
 msgstr ""
 
 msgid "record"
-msgstr ""
+msgstr "تسجيل"
 
 msgid "recording..."
-msgstr ""
+msgstr "جارى التسجيل....."
 
 msgid "red"
-msgstr ""
+msgstr "أحمر"
 
+#
 msgid "remove a nameserver entry"
 msgstr ""
 
+#
 msgid "remove after this position"
 msgstr ""
 
 msgid "remove all alternatives"
-msgstr ""
+msgstr "حذف كل البدائل"
 
 msgid "remove all new found flags"
-msgstr ""
+msgstr "أحذف كل علامات وجد حديثا"
 
+#
 msgid "remove before this position"
 msgstr ""
 
+#
 msgid "remove bookmark"
 msgstr ""
 
 msgid "remove directory"
-msgstr ""
+msgstr "حذف الدليل"
 
 msgid "remove entry"
-msgstr ""
+msgstr "حذف"
 
 msgid "remove from parental protection"
-msgstr ""
+msgstr "حذف من الحمايه الابويه"
 
+#
 msgid "remove new found flag"
 msgstr ""
 
 msgid "remove selected satellite"
-msgstr ""
+msgstr "حذف القمر المختار"
 
+#
 msgid "remove this mark"
 msgstr ""
 
 msgid "repeat playlist"
-msgstr ""
+msgstr "إعادة قائمة الاغانى"
 
+#
 msgid "repeated"
 msgstr "متكرر"
 
 msgid "rewind to the previous chapter"
-msgstr ""
+msgstr "عوده للفصل السابق"
 
 msgid "right"
-msgstr ""
+msgstr "يمين"
 
 msgid "save last directory on exit"
-msgstr ""
+msgstr "حفظ الدليل عند الخروج"
 
 msgid "save playlist"
-msgstr ""
+msgstr "حفظ قائمة العرض"
 
 msgid "save playlist on exit"
-msgstr ""
+msgstr "حفظ قائمة العرض عند الخروج"
 
+#
 msgid "scan done!"
 msgstr "انتهـى البحث!"
 
+#
 #, python-format
 msgid "scan in progress - %d%% done!"
 msgstr "بتم البحث الان %d %%"
 
+#
 msgid "scan state"
 msgstr "حاله البحث"
 
+#
 msgid "second"
 msgstr ""
 
+#
 msgid "second cable of motorized LNB"
 msgstr ""
 
 msgid "seconds"
-msgstr ""
+msgstr "ثوانى"
 
 msgid "select"
-msgstr ""
+msgstr "أختار"
 
 msgid "select .NFI flash file"
-msgstr ""
+msgstr "أختار ملفnfi"
 
+#
 msgid "select CAId"
 msgstr ""
 
+#
 msgid "select CAId's"
 msgstr ""
 
 msgid "select image from server"
-msgstr ""
+msgstr "إختيار صوره من الخادم(السرفر)"
 
 msgid "select interface"
-msgstr ""
+msgstr "أختار الواجهه"
 
+#
 msgid "select menu entry"
 msgstr ""
 
 msgid "select movie"
-msgstr ""
+msgstr "أختار الفيلم"
 
 msgid "select the movie path"
-msgstr ""
+msgstr "أختار مسار الفيلم"
 
 msgid "service pin"
+msgstr "الرقم السرى للقناه"
+
+#
+msgid "sets the Audio Delay (LipSync)"
 msgstr ""
 
 msgid "setup pin"
-msgstr ""
+msgstr "الرقم السرى للاعدادات"
 
+#
 msgid "show DVD main menu"
 msgstr ""
 
+#
 msgid "show EPG..."
 msgstr "إظهار دليل البرامج الالكترونى"
 
 msgid "show Infoline"
-msgstr ""
+msgstr "إظهار شريط المعلومات"
 
 msgid "show all"
-msgstr ""
+msgstr "إظهر الكل"
 
 msgid "show alternatives"
-msgstr ""
+msgstr "إظهار البدائل"
 
 msgid "show event details"
-msgstr ""
+msgstr "إظهار تفاصيل الحدث"
 
 msgid "show extended description"
-msgstr ""
+msgstr "إظهار وصف متقدم"
 
+#
 msgid "show first selected tag"
 msgstr ""
 
+#
 msgid "show second selected tag"
 msgstr ""
 
 msgid "show shutdown menu"
-msgstr ""
+msgstr "إظهار قائمة الاغلاق"
 
+#
 msgid "show single service EPG..."
 msgstr ""
 
+#
 msgid "show tag menu"
 msgstr ""
 
 msgid "show transponder info"
-msgstr ""
+msgstr "إظهار بيانات التردد"
 
+#
 msgid "shuffle playlist"
 msgstr ""
 
 msgid "shut down"
-msgstr ""
+msgstr "إغــلاق"
 
 msgid "shutdown"
-msgstr ""
+msgstr "إغلاق"
 
 msgid "simple"
-msgstr ""
+msgstr "بسيط"
 
 msgid "skip backward"
-msgstr ""
+msgstr "تخطى للخلف"
 
 msgid "skip backward (enter time)"
-msgstr ""
+msgstr "تخطى للخلف (أدخل الوقت)"
 
 msgid "skip forward"
-msgstr ""
+msgstr "تخطى للأمام"
 
 msgid "skip forward (enter time)"
-msgstr ""
+msgstr "تخطى للأمام (أدخل الوقت)"
 
+#
 msgid "slide picture in loop"
 msgstr ""
 
 msgid "sort by date"
-msgstr ""
+msgstr "تصنيف حسب التاريخ"
+
+msgid "special characters"
+msgstr "حروف خاصه"
 
 msgid "standard"
-msgstr ""
+msgstr "قياسى"
 
 msgid "standby"
-msgstr ""
+msgstr "وضع الاستعداد"
 
 msgid "start cut here"
-msgstr ""
+msgstr "أبدأ القطع هنا"
 
 msgid "start directory"
-msgstr ""
+msgstr "دليل البدايه"
 
 msgid "start timeshift"
-msgstr ""
+msgstr "أبدأ تايم شفت"
 
 msgid "stereo"
-msgstr ""
+msgstr "ستيريو"
 
 msgid "stop PiP"
-msgstr ""
+msgstr "إيقاف صوره داخل صوره"
 
+#
 msgid "stop entry"
 msgstr ""
 
 msgid "stop recording"
-msgstr ""
+msgstr "إيقاف التسجيل"
 
 msgid "stop timeshift"
-msgstr ""
+msgstr "إيقاف التايم شفت"
 
+#
 msgid "swap PiP and main picture"
 msgstr ""
 
+#
 msgid "switch to bookmarks"
 msgstr ""
 
 msgid "switch to filelist"
-msgstr ""
+msgstr "الانتقال الى قائمة الملفات"
 
 msgid "switch to playlist"
-msgstr ""
+msgstr "الانتقال الى قائمه الاغانى"
 
 msgid "switch to the next angle"
-msgstr ""
+msgstr "الانتقال الى الزاويه التاليه"
 
 msgid "switch to the next audio track"
-msgstr ""
+msgstr "الانتقال الى مسار الصوت التالى"
 
 msgid "switch to the next subtitle language"
-msgstr ""
+msgstr "الانتقال الى لغة العناوين الفرعيه التاليه"
 
 msgid "template file"
-msgstr ""
+msgstr "ملف قالب"
 
 msgid "textcolor"
-msgstr ""
+msgstr "لون النص"
 
 msgid "this recording"
-msgstr ""
+msgstr "هذا التسجيل"
 
 msgid "this service is protected by a parental control pin"
-msgstr ""
+msgstr "هذه القناه محميه برقم سرى بواسطه التحكم الابوى"
 
+#
 msgid "toggle a cut mark at the current position"
 msgstr ""
 
+#
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
 msgid "unavailable"
-msgstr ""
+msgstr "غير متاح"
 
 msgid "unconfirmed"
-msgstr ""
+msgstr "غير مؤكد"
 
 msgid "unknown"
-msgstr ""
+msgstr "غير معروف"
 
+#
 msgid "unknown service"
 msgstr "قناه غير معروفه"
 
-msgid "until restart"
+#
+msgid "until standby/restart"
 msgstr ""
 
+#
+msgid "use as HDD replacement"
+msgstr ""
+
+#
 msgid "user defined"
 msgstr "محدده من قبل المستخدم"
 
+#
 msgid "vertical"
 msgstr "رأسى"
 
 msgid "view extensions..."
-msgstr ""
+msgstr "مشاهدة الاضافات..."
 
 msgid "view recordings..."
-msgstr ""
+msgstr "مشاهدة التسجيلات..."
 
+#
 msgid "wait for ci..."
 msgstr ""
 
+#
 msgid "wait for mmi..."
 msgstr ""
 
 msgid "waiting"
-msgstr ""
+msgstr "فى الانتظار"
 
 msgid "was removed successfully"
-msgstr ""
+msgstr "تم الحذف بنجاح"
 
+#
 msgid "weekly"
 msgstr "اسبوعى"
 
+#
 msgid "whitelist"
 msgstr ""
 
 msgid "working"
-msgstr ""
+msgstr "يعمل"
 
 msgid "yellow"
-msgstr ""
+msgstr "أصفر"
 
+#
 msgid "yes"
 msgstr "نعـم"
 
+#
 msgid "yes (keep feeds)"
 msgstr ""
 
@@ -5654,34 +8348,56 @@ msgid ""
 "your dreambox might be unusable now. Please consult the manual for further "
 "assistance before rebooting your dreambox."
 msgstr ""
+"الدريم بوكس غير مستقر الان ، من فضلك راجع دليل المستخدم للمساعده قبل إعادة "
+"التشغيل"
 
 msgid "zap"
-msgstr ""
+msgstr "الانتقال"
 
 msgid "zapped"
-msgstr ""
+msgstr "تم الانتقال"
 
+#
 #~ msgid "%s (%s, %d MB free)"
 #~ msgstr "%s (%s, %d MB frei)"
 
+#
 #~ msgid "12V Output"
 #~ msgstr "مخرج 12 فولت"
 
+#
+#~ msgid "Advanced"
+#~ msgstr "متقدم"
+
+#
 #~ msgid "Ask before zapping"
 #~ msgstr "أسأل قبل التنقل"
 
+#
 #~ msgid "Auto show inforbar"
 #~ msgstr "إظهار تلقائى لشريط المعلومات"
 
+#
 #~ msgid "Cable provider"
 #~ msgstr "مقدم خدمه الكابل"
 
-#~ msgid "Classic"
-#~ msgstr "كلاسيك"
+#~ msgid "Default settings"
+#~ msgstr "الاعـدادات الافتـراضيه"
 
+#~ msgid "Deinterlacer mode for interlaced content"
+#~ msgstr "اسلوب فك التشابك للمحتويات المتشابكه"
+
+#~ msgid "Deinterlacer mode for progressive content"
+#~ msgstr "اسلوب فك التشابك للمحتويات التقدميه"
+
+#~ msgid "Delay x seconds after service started"
+#~ msgstr "تأخير (عدد) ثوانى بعد بدأ القناه"
+
+#
 #~ msgid "Do you really want to delete this recording?"
 #~ msgstr "هل تريد مسح هذا التسجيل؟"
 
+#
 #~ msgid ""
 #~ "Do you want to stop the current\n"
 #~ "(instant) recording?"
@@ -5689,69 +8405,110 @@ msgstr ""
 #~ "هل تريد إلغـاء التسجيل\n"
 #~ "الحالى؟"
 
+#
+#~ msgid "Enable 1080p24 Mode"
+#~ msgstr "تفعيل الوضعيه 1080p24"
+
+#
+#~ msgid "Enable 1080p25 Mode"
+#~ msgstr "تفعيل الوضعيه 1080p25"
+
+#
+#~ msgid "Enable 1080p30 Mode"
+#~ msgstr "تفعيل الوضعيه 1080p30"
+
+#
+#~ msgid "Enable 720p24 Mode"
+#~ msgstr "تفعيل الوضعيه 720p24"
+
+#
 #~ msgid "End"
 #~ msgstr "النهايه"
 
+#
 #~ msgid "Expert Setup"
 #~ msgstr "قائمه اعدادت الخبراء"
 
+#
 #~ msgid "Fast zapping"
 #~ msgstr "التنقل السريع"
 
+#
 #~ msgid "Games / Plugins"
 #~ msgstr "العاب/بلج إنز"
 
+#
 #~ msgid "Hide error windows"
 #~ msgstr "إخفاء نافذه الاخطاء"
 
+#
 #~ msgid "Invert"
 #~ msgstr "مقلوب"
 
+#
 #~ msgid "LCD"
 #~ msgstr "الشاشه الكريستال"
 
+#
 #~ msgid "LCD Setup"
 #~ msgstr "ضبط شاشه الكريستال"
 
+#
 #~ msgid "Movie Menu"
 #~ msgstr "قائمه الافلام"
 
+#
 #~ msgid "Nothing connected"
 #~ msgstr "لاشيئ متصل"
 
+#
 #~ msgid "Parental Control"
 #~ msgstr "التحكم الابوى"
 
+#
 #~ msgid "Parental Lock"
 #~ msgstr "الاغلاق الابـوى"
 
+#
 #~ msgid "Positioner mode"
 #~ msgstr "Rotorart"
 
+#
 #~ msgid "Satconfig"
 #~ msgstr "اعداد القمر"
 
+#
 #~ msgid "Satelliteconfig"
 #~ msgstr "ضبط الاقمـر"
 
+#
 #~ msgid "Setup Lock"
 #~ msgstr "إغلاق الضبط"
 
+#
 #~ msgid "Show Satposition"
 #~ msgstr "مشاهده وضع القمر"
 
+#~ msgid "Show info screen"
+#~ msgstr "إظهار شاشة المعلومات"
+
+#
 #~ msgid "Skip confirmations"
 #~ msgstr "تخطى التأكيد"
 
+#
 #~ msgid "Start"
 #~ msgstr "أبـدأ"
 
+#
 #~ msgid "Step "
 #~ msgstr "خطوه "
 
+#
 #~ msgid "Thanks for using the wizard. Your box is now ready to use."
 #~ msgstr "شكرا، الرسيفر جاهز للاستخدام الان"
 
+#
 #~ msgid ""
 #~ "Unable to initialize harddisk.\n"
 #~ "Please refer to the user manual.\n"
@@ -5761,21 +8518,34 @@ msgstr ""
 #~ "من فضلك راجع تعليمات التشغيل\n"
 #~ "خطـأ .. "
 
+#
 #~ msgid "VCR Switch"
 #~ msgstr "مفتاح فيديو كاسيت"
 
+#
 #~ msgid "Video Audio"
 #~ msgstr "صوره صوت"
 
+#
 #~ msgid "Yes, scan now"
 #~ msgstr "نعم : ابحث الان"
 
+#
+#~ msgid "bob"
+#~ msgstr "شعبى"
+
+#~ msgid "default"
+#~ msgstr "إفتراضى"
+
+#
 #~ msgid "empty/unknown"
 #~ msgstr "فارغ/غير معروف"
 
+#
 #~ msgid "remove service"
 #~ msgstr "حذف القناه"
 
+#
 #~ msgid ""
 #~ "scan done!\n"
 #~ "%d services found!"
@@ -5783,6 +8553,7 @@ msgstr ""
 #~ "انتهاء البحث\n"
 #~ "%d قنوات وجدت"
 
+#
 #~ msgid ""
 #~ "scan done!\n"
 #~ "No service found!"
@@ -5790,6 +8561,7 @@ msgstr ""
 #~ "انتهى البحث\n"
 #~ "لم يتم العثور على قنوات !"
 
+#
 #~ msgid ""
 #~ "scan done!\n"
 #~ "One service found!"
@@ -5797,6 +8569,7 @@ msgstr ""
 #~ "انتهـى البحث!\n"
 #~ "وجدت قناه واحده فقط!"
 
+#
 #~ msgid ""
 #~ "scan in progress - %d %% done!\n"
 #~ "%d services found!"
@@ -5804,8 +8577,10 @@ msgstr ""
 #~ "بتم البحث الان %d %%\n"
 #~ "%d تم العثور على"
 
+#
 #~ msgid "select Slot"
 #~ msgstr "موضع التيونر(الموالف)"
 
+#
 #~ msgid "القناه السابقه"
 #~ msgstr "vorheriger Kanal"
