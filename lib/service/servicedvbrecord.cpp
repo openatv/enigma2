@@ -265,8 +265,11 @@ int eDVBServiceRecord::doRecord()
 			return errOpenRecordFile;
 		}
 
-			/* turn off kernel caching strategies */
-		posix_fadvise(fd, 0, 0, POSIX_FADV_RANDOM);
+		/* turn off kernel caching strategies */
+		if (posix_fadvise(fd, 0, 0, POSIX_FADV_RANDOM) != 0)
+		{
+			eDebug("posix_fadvise still fails.");
+		}
 
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
