@@ -75,7 +75,7 @@ class ClockToText(Converter, object):
 		elif self.type == self.DATE:
 			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
 		elif self.type == self.FULL:
-			return "%2d:%02d" % (t.tm_hour, t.tm_min) + "  " + dayOfWeek[t[6]] + " %d/%d" % (t[2],t[1])  
+			return dayOfWeek[t[6]] + " %d/%d  %2d:%02d" % (t[2],t[1], t.tm_hour, t.tm_min)  
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
 			if spos > 0:
