@@ -56,7 +56,7 @@ def openBouquetEPG(bouquet):
 	if len(services):
 		global epg_bouquet
 		epg_bouquet = bouquet
-		dlg_stack.append(Session.openWithCallback(closed, GraphMultiEPG, services, zapToService, changeBouquetCB))
+		dlg_stack.append(Session.openWithCallback(closed, GraphMultiEPG, services, zapToService, changeBouquetCB, ServiceReference(bouquet).getServiceName()))
 		return True
 	return False
 
@@ -72,6 +72,7 @@ def changeBouquetCB(direction, epg):
 			global epg_bouquet
 			epg_bouquet = bouquet
 			epg.setServices(services)
+			epg.setTitle(ServiceReference(bouquet).getServiceName())
 
 def main(session, servicelist = None, **kwargs):
 	global Session

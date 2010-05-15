@@ -409,7 +409,7 @@ class GraphMultiEPG(Screen):
 	
 	ZAP = 1
 
-	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None):
+	def __init__(self, session, services, zapFunc=None, bouquetChangeCB=None, bouquetname=""):
 		Screen.__init__(self, session)
 		self.bouquetChangeCB = bouquetChangeCB
 		now = time()
@@ -430,6 +430,8 @@ class GraphMultiEPG(Screen):
 		self["timeline_now"] = Pixmap()
 		self.services = services
 		self.zapFunc = zapFunc
+		if bouquetname != "":                                                                                                                           
+			Screen.setTitle(self, bouquetname)                                                                                                       
 
 		self["list"] = EPGList(selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer, time_epoch = config.misc.graph_mepg_prev_time_period.value )
 
