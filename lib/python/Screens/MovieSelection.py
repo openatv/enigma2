@@ -27,6 +27,7 @@ import Tools.Trashcan
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eBackgroundFileEraser, iRecordableService
 import os
 import time
+import cPickle as pickle
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
@@ -207,7 +208,7 @@ class MovieContextMenu(Screen):
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
-		if config.movielist.moviesort.value == MovieList.SORT_ALPHANUMERIC:
+		if csel.settings["moviesort"] == MovieList.SORT_ALPHANUMERIC:
 			menu.append((_("sort by date"), boundFunction(csel.sortBy, MovieList.SORT_RECORDED)))
 		else:
 			menu.append((_("alphabetic sort"), boundFunction(csel.sortBy, MovieList.SORT_ALPHANUMERIC)))
@@ -219,7 +220,7 @@ class MovieContextMenu(Screen):
 			(_("list style single line"), boundFunction(csel.listType, MovieList.LISTTYPE_MINIMAL))
 		))
 
-		if config.movielist.description.value == MovieList.SHOW_DESCRIPTION:
+		if csel.settings["description"] == MovieList.SHOW_DESCRIPTION:
 			menu.append((_("hide extended description"), boundFunction(csel.showDescription, MovieList.HIDE_DESCRIPTION)))
 		else:
 			menu.append((_("show extended description"), boundFunction(csel.showDescription, MovieList.SHOW_DESCRIPTION)))
@@ -243,7 +244,7 @@ class SelectionEventInfo:
 		self.onShown.append(self.__selectionChanged)
 
 	def __selectionChanged(self):
-		if self.execing and config.movielist.description.value == MovieList.SHOW_DESCRIPTION:
+		if self.execing and self.settings["description"] == MovieList.SHOW_DESCRIPTION:
 			self.timer.start(100, True)
 
 	def updateEventInfo(self):
@@ -314,10 +315,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			config.movielist.last_videodir.save()
 		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
 
-		self["list"] = MovieList(None,
-			config.movielist.listtype.value,
-			config.movielist.moviesort.value,
-			config.movielist.description.value)
+		self.settings = {\
+			"listtype": MovieList.LISTTYPE_MINIMAL,
+			"moviesort": MovieList.SORT_RECORDED,
+			"description": MovieList.SHOW_DESCRIPTION
+		}
+		self["list"] = MovieList(None)
 
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
@@ -373,7 +376,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		return MovieSelectionSummary
 		
 	def updateDescription(self):
-		if config.movielist.description.value == MovieList.SHOW_DESCRIPTION:
+		if self.settings["description"] == MovieList.SHOW_DESCRIPTION:
 			self["DescriptionBorder"].show()
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight-self["DescriptionBorder"].instance.size().height()))
 		else:
@@ -451,18 +454,42 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		if action is not None:
 			action()
 
+	def saveLocalSettings(self):
+		try:
+			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
+			pickle.dump(self.settings, open(path, "wb"))
+			print "[MovieSelection] settings saved:", self.settings
+		except Exception, e:
+			print "Failed to save settings:", e
+
+	def loadLocalSettings(self):
+		try:
+			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
+			updates = pickle.load(open(path, "rb"))
+			print "[MovieSelection] local settings:", updates
+			self.settings.update(updates)
+			self["list"].setListType(self.settings["listtype"])
+			self["list"].setDescriptionState(self.settings["description"])
+			self["list"].setSortType(self.settings["moviesort"])
+		except Exception, e:
+			print "Failed to load settings:", e
+		
+
 	def sortBy(self, newType):
-		config.movielist.moviesort.value = newType
+		self.settings["moviesort"] = newType
+		self.saveLocalSettings()
 		self.setSortType(newType)
 		self.reloadList()
 
 	def listType(self, newType):
-		config.movielist.listtype.value = newType
+		self.settings["listtype"] = newType
+		self.saveLocalSettings()
 		self.setListType(newType)
 		self.list.redrawList()
 
 	def showDescription(self, newType):
-		config.movielist.description.value = newType
+		self.settings["description"] = newType
+		self.saveLocalSettings()
 		self.setDescriptionState(newType)
 		self.updateDescription()
 
@@ -472,9 +499,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def saveconfig(self):
 		config.movielist.last_selected_tags.value = self.selected_tags
-		config.movielist.moviesort.save()
-		config.movielist.listtype.save()
-		config.movielist.description.save()
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
@@ -509,6 +533,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self["freeDiskSpace"].path = path
 		if sel is None:
 			sel = self.getCurrent()
+		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		title = _("Recorded files...")
 		if config.usage.setup_level.index >= 2: # expert+
