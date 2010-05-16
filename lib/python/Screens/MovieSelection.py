@@ -458,18 +458,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		try:
 			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
 			pickle.dump(self.settings, open(path, "wb"))
-			print "[MovieSelection] settings saved:", self.settings
 		except Exception, e:
 			print "Failed to save settings:", e
 
 	def loadLocalSettings(self):
+		'Load settings, called when entering a directory'
 		try:
 			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
 			updates = pickle.load(open(path, "rb"))
-			print "[MovieSelection] local settings:", updates
+			if ("description" in updates) and (updates["description"] != self.settings["description"]):
+				self["list"].setDescriptionState(self.settings["description"])
+				self.updateDescription()
 			self.settings.update(updates)
 			self["list"].setListType(self.settings["listtype"])
-			self["list"].setDescriptionState(self.settings["description"])
 			self["list"].setSortType(self.settings["moviesort"])
 		except Exception, e:
 			print "Failed to load settings:", e
