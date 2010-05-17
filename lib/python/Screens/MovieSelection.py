@@ -31,8 +31,8 @@ import cPickle as pickle
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
-config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_COMPACT)
-config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
+config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_MINIMAL)
+config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
@@ -316,9 +316,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
 
 		self.settings = {\
-			"listtype": MovieList.LISTTYPE_MINIMAL,
-			"moviesort": MovieList.SORT_RECORDED,
-			"description": MovieList.SHOW_DESCRIPTION
+			"listtype": config.movielist.listtype.value,
+			"moviesort": config.movielist.moviesort.value,
+			"description": config.movielist.description.value
 		}
 		self["list"] = MovieList(None)
 
@@ -460,16 +460,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			pickle.dump(self.settings, open(path, "wb"))
 		except Exception, e:
 			print "Failed to save settings:", e
+		# Also set config items, in case the user has a read-only disk 
+		config.movielist.moviesort.value = self.settings["moviesort"]
+		config.movielist.listtype.value = self.settings["listtype"]
+		config.movielist.description.value = self.settings["description"]
 
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
 		try:
 			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
 			updates = pickle.load(open(path, "rb"))
-			if ("description" in updates) and (updates["description"] != self.settings["description"]):
+			needUpdateDesc = ("description" in updates) and (updates["description"] != self.settings["description"]) 
+			self.settings.update(updates)
+			if needUpdateDesc:
 				self["list"].setDescriptionState(self.settings["description"])
 				self.updateDescription()
-			self.settings.update(updates)
 			self["list"].setListType(self.settings["listtype"])
 			self["list"].setSortType(self.settings["moviesort"])
 		except Exception, e:
