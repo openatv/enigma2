@@ -320,7 +320,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			"moviesort": config.movielist.moviesort.value,
 			"description": config.movielist.description.value
 		}
-		self["list"] = MovieList(None)
+		self["list"] = MovieList(None, list_type=self.settings["listtype"], sort_type=self.settings["moviesort"], descr_state=self.settings["description"])
 
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
@@ -479,7 +479,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			self["list"].setSortType(self.settings["moviesort"])
 		except Exception, e:
 			print "Failed to load settings:", e
-		
+
 
 	def sortBy(self, newType):
 		self.settings["moviesort"] = newType
@@ -491,7 +491,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.settings["listtype"] = newType
 		self.saveLocalSettings()
 		self.setListType(newType)
-		self.list.redrawList()
 
 	def showDescription(self, newType):
 		self.settings["description"] = newType
