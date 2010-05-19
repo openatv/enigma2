@@ -31,8 +31,8 @@ import cPickle as pickle
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_RECORDED)
-config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_COMPACT)
-config.movielist.description = ConfigInteger(default=MovieList.HIDE_DESCRIPTION)
+config.movielist.listtype = ConfigInteger(default=MovieList.LISTTYPE_MINIMAL)
+config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
@@ -316,11 +316,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + config.movielist.last_videodir.value)
 
 		self.settings = {\
-			"listtype": MovieList.LISTTYPE_MINIMAL,
-			"moviesort": MovieList.SORT_RECORDED,
-			"description": MovieList.SHOW_DESCRIPTION
+			"listtype": config.movielist.listtype.value,
+			"moviesort": config.movielist.moviesort.value,
+			"description": config.movielist.description.value
 		}
-		self["list"] = MovieList(None)
+		self["list"] = MovieList(None, list_type=self.settings["listtype"], sort_type=self.settings["moviesort"], descr_state=self.settings["description"])
 
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
@@ -458,22 +458,28 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		try:
 			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
 			pickle.dump(self.settings, open(path, "wb"))
-			print "[MovieSelection] settings saved:", self.settings
 		except Exception, e:
 			print "Failed to save settings:", e
+		# Also set config items, in case the user has a read-only disk 
+		config.movielist.moviesort.value = self.settings["moviesort"]
+		config.movielist.listtype.value = self.settings["listtype"]
+		config.movielist.description.value = self.settings["description"]
 
 	def loadLocalSettings(self):
+		'Load settings, called when entering a directory'
 		try:
 			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
 			updates = pickle.load(open(path, "rb"))
-			print "[MovieSelection] local settings:", updates
+			needUpdateDesc = ("description" in updates) and (updates["description"] != self.settings["description"]) 
 			self.settings.update(updates)
+			if needUpdateDesc:
+				self["list"].setDescriptionState(self.settings["description"])
+				self.updateDescription()
 			self["list"].setListType(self.settings["listtype"])
-			self["list"].setDescriptionState(self.settings["description"])
 			self["list"].setSortType(self.settings["moviesort"])
 		except Exception, e:
 			print "Failed to load settings:", e
-		
+
 
 	def sortBy(self, newType):
 		self.settings["moviesort"] = newType
@@ -485,7 +491,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.settings["listtype"] = newType
 		self.saveLocalSettings()
 		self.setListType(newType)
-		self.list.redrawList()
 
 	def showDescription(self, newType):
 		self.settings["description"] = newType

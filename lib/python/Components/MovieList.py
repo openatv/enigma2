@@ -96,7 +96,9 @@ class MovieList(GUIComponent):
 			x()
 
 	def setListType(self, type):
-		self.list_type = type
+		if type != self.list_type:
+			self.list_type = type
+			self.redrawList()
 
 	def setDescriptionState(self, val):
 		self.descr_state = val
