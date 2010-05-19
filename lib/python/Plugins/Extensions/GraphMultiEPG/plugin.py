@@ -92,8 +92,23 @@ def main(session, servicelist = None, **kwargs):
 		if not openBouquetEPG(bouquets[0][1]):
 			cleanup()
 
+def mains(session, servicelist = None, **kwargs):
+	global Session
+	Session = session
+	global Servicelist
+	Servicelist = servicelist
+	bq = Servicelist.getRoot()
+	if bq is not None:
+		if not openBouquetEPG(bq):
+			cleanup()
+
 def Plugins(**kwargs):
-	name = _("Graphical Multi EPG")
+	name = _("Graphical Multi EPG with bouquet selector")
 	descr = _("A graphical EPG for all services of an specific bouquet")
- 	return [ PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, fnc=main),
-	  PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main) ]
+	names = _("Graphical Multi EPG current bouquet")
+	descrs = _("A graphical EPG for all services in the current bouquet")
+	return [
+		PluginDescriptor(name=names, description=descrs, where = PluginDescriptor.WHERE_EVENTINFO, fnc=mains),
+		PluginDescriptor(name=names, description=descrs, where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=mains),
+		PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, fnc=main),
+		PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main) ]
