@@ -7,6 +7,7 @@ from Screens.HelpMenu import HelpableScreen
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
+from Components.Sources.List import List
 from Components.Label import Label,MultiColorLabel
 from Components.Pixmap import Pixmap,MultiPixmap
 from Components.MenuList import MenuList
@@ -21,32 +22,6 @@ from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, ePoint, eSize, RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from os import path as os_path, system as os_system, unlink
 from re import compile as re_compile, search as re_search
-
-
-class InterfaceList(MenuList):
-	def __init__(self, list, enableWrapAround=False):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setItemHeight(30)
-
-def InterfaceEntryComponent(index,name,default,active ):
-	res = [
-		(index),
-		MultiContentEntryText(pos=(80, 5), size=(430, 25), font=0, text=name)
-	]
-	num_configured_if = len(iNetwork.getConfiguredAdapters())
-	if num_configured_if >= 2:
-		if default is True:
-			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue.png"))
-		if default is False:
-			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue_off.png"))
-		res.append(MultiContentEntryPixmapAlphaTest(pos=(10, 5), size=(25, 25), png = png))
-	if active is True:
-		png2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
-	if active is False:
-		png2 = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_error.png"))
-	res.append(MultiContentEntryPixmapAlphaTest(pos=(40, 1), size=(25, 25), png = png2))
-	return res
 
 
 class NetworkAdapterSelection(Screen,HelpableScreen):
@@ -91,13 +66,49 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			})
 
 		self.list = []
-		self["list"] = InterfaceList(self.list)
+		self["list"] = List(self.list)
 		self.updateList()
 
 		if len(self.adapters) == 1:
 			self.onFirstExecBegin.append(self.okbuttonClick)
 		self.onClose.append(self.cleanup)
 
+	def buildInterfaceList(self,iface,name,default,active ):
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		defaultpng = None
+		activepng = None
+		description = None
+		interfacepng = None
+
+		if iface in iNetwork.lan_interfaces:
+			if active is True:
+				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wired-active.png"))
+			elif active is False:
+				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wired-inactive.png"))
+			else:
+				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wired.png"))
+		elif iface in iNetwork.wlan_interfaces:
+			if active is True:
+				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wireless-active.png"))
+			elif active is False:
+				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wireless-inactive.png"))
+			else:
+				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wireless.png"))
+
+		num_configured_if = len(iNetwork.getConfiguredAdapters())
+		if num_configured_if >= 2:
+			if default is True:
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue.png"))
+			elif default is False:
+				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/buttons/button_blue_off.png"))
+		if active is True:
+			activepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
+		elif active is False:
+			activepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_error.png"))
+		
+		description = iNetwork.getFriendlyAdapterDescription(iface)
+
+		return((iface, name, description, interfacepng, defaultpng, activepng, divpng))	
 
 	def updateList(self):
 		self.list = []
@@ -122,7 +133,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			default_gw = result
 					
 		if len(self.adapters) == 0: # no interface available => display only eth0
-			self.list.append(InterfaceEntryComponent("eth0",iNetwork.getFriendlyAdapterName('eth0'),True,True ))
+			self.list.append(self.buildInterfaceList("eth0",iNetwork.getFriendlyAdapterName('eth0'),True,True ))
 		else:
 			for x in self.adapters:
 				if x[1] == default_gw:
@@ -133,11 +144,11 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 					active_int = True
 				else:
 					active_int = False
-				self.list.append(InterfaceEntryComponent(index = x[1],name = _(x[0]),default=default_int,active=active_int ))
+				self.list.append(self.buildInterfaceList(x[1],_(x[0]),default_int,active_int ))
 		
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("NetworkWizard"))
-		self["list"].l.setList(self.list)
+		self["list"].setList(self.list)
 
 	def setDefaultInterface(self):
 		selection = self["list"].getCurrent()
@@ -253,7 +264,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.createSetup()
-
+		
 	def createConfig(self):
 		self.nameservers = iNetwork.getNameserverList()
 		self.nameserverEntries = [ NoSave(ConfigIP(default=nameserver)) for nameserver in self.nameservers]
@@ -412,7 +423,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.wsconfig = None
 		self.default = None
 
-		if self.iface == "wlan0" or self.iface == "ath0" :
+		if self.iface in iNetwork.wlan_interfaces:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant,Wlan
 			self.w = Wlan(self.iface)
 			self.ws = wpaSupplicant()
@@ -535,7 +546,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 		if self["config"].getCurrent() == self.gatewayEntry:
 			self.createSetup()
-		if self.iface == "wlan0" or self.iface == "ath0" :
+		if self.iface in iNetwork.wlan_interfaces:
 			if self["config"].getCurrent() == self.wlanSSID:
 				self.createSetup()
 			if self["config"].getCurrent() == self.encryptionEnabled:
@@ -731,7 +742,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def ok(self):
 		self.cleanup()
 		if self["menulist"].getCurrent()[1] == 'edit':
-			if self.iface == 'wlan0' or self.iface == 'ath0':
+			if self.iface in iNetwork.wlan_interfaces:
 				try:
 					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
 					from Plugins.SystemPlugins.WirelessLan.iwlibs import Wireless
@@ -817,7 +828,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1] == 'dns':
 			self["description"].setText(_("Edit the Nameserver configuration of your Dreambox.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
-			self["description"].setText(_("Scan your network for wireless Access Points and connect to them using your selected wireless device.\n" ) + self.oktext )
+			self["description"].setText(_("Scan your network for wireless access points and connect to them using your selected wireless device.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'wlanstatus':
 			self["description"].setText(_("Shows the state of your wireless LAN connection.\n" ) + self.oktext )
 		if self["menulist"].getCurrent()[1] == 'lanrestart':
@@ -834,7 +845,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 		
-		if self.iface == 'wlan0' or self.iface == 'ath0':
+		if self.iface in iNetwork.wlan_interfaces:
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except:
@@ -884,7 +895,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def AdapterSetupClosed(self, *ret):
 		if ret is not None and len(ret):
-			if ret[0] == 'ok' and (self.iface == 'wlan0' or self.iface == 'ath0') and iNetwork.getAdapterAttribute(self.iface, "up") is True:
+			if ret[0] == 'ok' and (self.iface in iNetwork.wlan_interfaces) and iNetwork.getAdapterAttribute(self.iface, "up") is True:
 				try:
 					from Plugins.SystemPlugins.WirelessLan.plugin import WlanStatus
 					from Plugins.SystemPlugins.WirelessLan.iwlibs import Wireless
@@ -1263,6 +1274,7 @@ class NetworkAdapterTest(Screen):
 		self.nextStepTimer.stop()
 
 	def layoutFinished(self):
+		self.setTitle(_("Network test: ") + iNetwork.getFriendlyAdapterName(self.iface) )
 		self["shortcutsyellow"].setEnabled(False)
 		self["AdapterInfo_OK"].hide()
 		self["NetworkInfo_Check"].hide()
@@ -1282,7 +1294,7 @@ class NetworkAdapterTest(Screen):
 		self["AdapterInfo_Text"] = MultiColorLabel(_("Show Info"))
 		self["AdapterInfo_OK"] = Pixmap()
 		
-		if self.iface == 'wlan0' or self.iface == 'ath0':
+		if self.iface in iNetwork.wlan_interfaces:
 			self["Networktext"] = MultiColorLabel(_("Wireless Network"))
 		else:
 			self["Networktext"] = MultiColorLabel(_("Local Network"))
@@ -1321,7 +1333,7 @@ class NetworkAdapterTest(Screen):
 		self["InfoText"] = Label()
 
 	def getLinkState(self,iface):
-		if iface == 'wlan0' or iface == 'ath0':
+		if iface in iNetwork.wlan_interfaces:
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
 			except:
