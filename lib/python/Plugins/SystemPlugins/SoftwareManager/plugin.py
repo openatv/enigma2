@@ -114,6 +114,7 @@ class UpdatePluginMenu(Screen):
 		if self.menu == 0:
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your Dreambox" ) + self.oktext, None))
 			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Dreambox software." ) + self.oktext, None))
+			self.list.append(("software-update-offline", _("Software update") + " (Offline)", _("\nOnline update of your Dreambox software." ) + _("\nShut down upgrade and reboot") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext, None))
@@ -210,6 +211,8 @@ class UpdatePluginMenu(Screen):
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
 					self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("\nAfter pressing OK, please wait!"))
+				if (currentEntry == "software-update-offline"):
+					self.session.openWithCallback(self.runUpgradeOffline, MessageBox, _("Do you want to update your Dreambox?")+"\n"+_("The screen will go blank while upgrading, be patient and wait for the reboot."))
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
@@ -269,6 +272,10 @@ class UpdatePluginMenu(Screen):
 	def runUpgrade(self, result):
 		if result:
 			self.session.open(UpdatePlugin, self.skin_path)
+
+	def runUpgradeOffline(self, result):
+		if result:
+			self.session.open(UpdatePlugin, self.skin_path, 'offline')
 
 	def createBackupfolders(self):
 		print "Creating backup folder if not already there..."
@@ -1102,7 +1109,7 @@ class UpdatePlugin(Screen):
 			<widget source="status" render="Label" position="10,60" size="540,45" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 
 		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
@@ -1127,6 +1134,8 @@ class UpdatePlugin(Screen):
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
+		self.offline = "offline" in args
+
 		self.updating = True
 		self.package.setText(_("Package list update"))
 		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
@@ -1136,6 +1145,7 @@ class UpdatePlugin(Screen):
 			"ok": self.exit,
 			"back": self.exit
 		}, -1)
+
 
 	def doActivityTimer(self):
 		self.activity += 1
@@ -1170,7 +1180,10 @@ class UpdatePlugin(Screen):
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
+				if self.offline:
+					quitMainloop(42)
+				else:
+					self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE, args = {'test_only': False})
 			elif self.error == 0:
 				self.slider.setValue(4)
 				
