@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-05-11 10:44+0000\n"
-"PO-Revision-Date: 2010-05-10 21:32+0200\n"
+"PO-Revision-Date: 2010-05-18 22:10+0200\n"
 "Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
-"X-Generator: Pootle 2.0.2\n"
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Pootle 2.0.3\n"
 "X-Poedit-Language: Arabic\n"
 "X-Poedit-Country: EGYPT\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
@@ -397,11 +397,12 @@ msgstr ""
 msgid "A graphical EPG for all services of an specific bouquet"
 msgstr ""
 
-#
 msgid ""
 "A mount entry with this name already exists!\n"
 "Update existing entry and continue?\n"
 msgstr ""
+"يوجد مدخل إعتلاء بنفس الاسم ! \n"
+"هل تريد تحديث المدخل الحالى والاستمرار ؟ \n"
 
 #, python-format
 msgid ""
@@ -789,7 +790,7 @@ msgid "Aspect Ratio"
 msgstr "نسبة الجانب"
 
 msgid "Atheros"
-msgstr ""
+msgstr "اثيروس"
 
 #
 msgid "Audio"
@@ -1047,7 +1048,7 @@ msgstr "بطاقه"
 
 #
 msgid "Catalan"
-msgstr ""
+msgstr "كاتالاني"
 
 #
 msgid "Center screen at the lower border"
@@ -1142,7 +1143,6 @@ msgstr "فحص"
 msgid "Checking Filesystem..."
 msgstr "فحص ملفات النظام...."
 
-#
 msgid "Choose Tuner"
 msgstr "أختار الموالف"
 
@@ -1577,7 +1577,7 @@ msgstr "يوجد قرص صلب:"
 
 #
 msgid "Detected NIMs:"
-msgstr "موجود تيونر:"
+msgstr "موجود موالف:"
 
 msgid "DiSEqC"
 msgstr "دايزك"
@@ -1728,7 +1728,7 @@ msgstr ""
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
-msgstr ""
+msgstr "هل تريد حرق هذه المجموعه فى وسيط دى فى دى ؟"
 
 #
 msgid "Do you want to do a service scan?"
@@ -1742,7 +1742,7 @@ msgstr "هل تريد تفعيل خاصية التحكم الابوى فى ال�
 
 #
 msgid "Do you want to enter a username and password for this host?\n"
-msgstr ""
+msgstr "هل تريد إدخال أسم مستخدم وكلمة مرور فى هذا المضيف؟ \n"
 
 msgid "Do you want to install default sat lists?"
 msgstr "هل تريد تثبيت قوائم الأقمار الافتراضيه؟"
@@ -1805,15 +1805,13 @@ msgstr "لا تسأل ، فقط أرسل"
 msgid "Don't stop current event but disable coming events"
 msgstr "لا توقف الحدث الحالى لكن قم بتعطيل الاحداث القادمه"
 
-#
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
-msgstr ""
+msgstr "تم - تثبيت أو تحديث %d الرزم"
 
-#
 #, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
-msgstr ""
+msgstr "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
 
 msgid "Download"
 msgstr "تحميل"
@@ -2155,9 +2153,8 @@ msgstr ""
 "خطأ: %s\n"
 "إعادة المحاوله ؟"
 
-#
 msgid "Estonian"
-msgstr ""
+msgstr "أستونى"
 
 #
 msgid "Eventview"
@@ -2171,11 +2168,11 @@ msgstr "تطابق تام"
 
 #
 msgid "Exceeds dual layer medium!"
-msgstr ""
+msgstr "تتعدى وسيط طبقه مزدوجه !"
 
 #
 msgid "Exclude"
-msgstr ""
+msgstr "أستبعاد"
 
 #
 msgid "Execute \"after event\" during timespan"
@@ -2244,7 +2241,7 @@ msgstr "فشل"
 #
 #, python-format
 msgid "Fan %d"
-msgstr ""
+msgstr "مروحه %d"
 
 #
 #, python-format
@@ -2254,7 +2251,7 @@ msgstr ""
 #
 #, python-format
 msgid "Fan %d Voltage"
-msgstr ""
+msgstr "مروحه %d فولتيه"
 
 #
 msgid "Fast"
@@ -2264,9 +2261,8 @@ msgstr "سريع"
 msgid "Fast DiSEqC"
 msgstr "دايزك سريع"
 
-#
 msgid "Fast Forward speeds"
-msgstr ""
+msgstr "سرعات التسريع للامام"
 
 #
 msgid "Fast epoch"
@@ -2766,10 +2762,10 @@ msgstr "متوسط"
 
 #
 msgid "Internal Flash"
-msgstr ""
+msgstr "الفلاش الداخلى"
 
 msgid "Internal LAN adapter."
-msgstr ""
+msgstr "محول شبكه محليه داخلى"
 
 msgid "Invalid Location"
 msgstr "موقع غير صالح"
@@ -2872,7 +2868,7 @@ msgid "LAN Adapter"
 msgstr "محول شبكه محليه"
 
 msgid "LAN connection"
-msgstr ""
+msgstr "أتصال شبكه محليه"
 
 #
 msgid "LNB"
@@ -3431,7 +3427,7 @@ msgid "Network test..."
 msgstr "اختبار الشبكه ..."
 
 msgid "Network test: "
-msgstr ""
+msgstr "إختبار الشبكه:"
 
 msgid "Network:"
 msgstr "الشبكه:"
@@ -3978,9 +3974,8 @@ msgstr "من فضلك لا تغير أى قيمه ألا إذا كنت متأك�
 msgid "Please enter a name for the new bouquet"
 msgstr "من فضلك أدخل أسم الباقه الجديده"
 
-#
 msgid "Please enter a name for the new marker"
-msgstr ""
+msgstr "من فضلك أدخل أسم للعلامه الجديده"
 
 msgid "Please enter a new filename"
 msgstr "من فضلك أدخل اسم جديد للملف"
@@ -4092,7 +4087,7 @@ msgstr ""
 "أضغط موافق للاستمرار"
 
 msgid "Please set up tuner B"
-msgstr "من فضلك أضبط التيونر B"
+msgstr "من فضلك أضبط الموالف B"
 
 msgid "Please set up tuner C"
 msgstr "من فضلك أضبط الموالف C"
@@ -4327,9 +4322,8 @@ msgstr "أضغط موافق لتشاهد سجل تغيرات كامل"
 msgid "Press yellow to set this interface as default interface."
 msgstr "أضغط الذر الأصفر لتجعل هذه الواجهه هى الواجهه الأفتراضيه"
 
-#
 msgid "Prev"
-msgstr ""
+msgstr "معاينه"
 
 msgid "Preview"
 msgstr "معاينه"
@@ -4417,9 +4411,8 @@ msgstr "التصنيف"
 msgid "Really close without saving settings?"
 msgstr "هل تريد فعلا الغلق بدون حفظ الاعدادات ؟"
 
-#
 msgid "Really delete done timers?"
-msgstr ""
+msgstr "هل تريد فعلا مسح المؤقتات المعموله ؟"
 
 #
 msgid "Really exit the subservices quickzap?"
@@ -5494,9 +5487,8 @@ msgstr "أبدأ بالتغذيه الاتيه:"
 msgid "StartTime"
 msgstr "وقت البـدأ"
 
-#
 msgid "Starting on"
-msgstr ""
+msgstr "يبدأ فى"
 
 #
 msgid "Std. Feeds"
@@ -5560,9 +5552,8 @@ msgstr ""
 msgid "Stop testing plane after # successful transponders"
 msgstr ""
 
-#
 msgid "Store position"
-msgstr ""
+msgstr "تخزين الموقع"
 
 #
 msgid "Stored position"
@@ -5637,9 +5628,8 @@ msgstr ""
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
 
-#
 msgid "TV System"
-msgstr "التليفزبـون"
+msgstr "نظام التليفزبـون"
 
 #
 msgid "Table of content for collection"
@@ -5676,13 +5666,11 @@ msgstr "درجة الحراره والتحكم فى المروحه"
 msgid "Terrestrial"
 msgstr ""
 
-#
 msgid "Terrestrial provider"
-msgstr "Region"
+msgstr "مزود أرضى"
 
-#
 msgid "Test DiSEqC settings"
-msgstr ""
+msgstr "إختبار إعدادات الدايزك"
 
 #
 msgid "Test Type"
@@ -5722,6 +5710,8 @@ msgid ""
 "List.\n"
 "Please press OK to continue."
 msgstr ""
+"شكرا على استخدامك هذه النافذه. تم إضافة المؤقت الالى الجديد الى القائمه \n"
+"من فضلك أضغط موافق للاستمرار ."
 
 msgid ""
 "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to "
@@ -5738,16 +5728,19 @@ msgstr ""
 "نافذة إعدادات الشبكه غير مثبته \n"
 "من فضلك قم بتثبيتها ."
 
-#
 msgid ""
 "The Softwaremanagement extension is not installed!\n"
 "Please install it."
 msgstr ""
+"إن إضافة التحكم فى البرنامج التشغيلى غير مثبته ّ \n"
+"من فضلك ثبتها ."
 
 msgid ""
 "The Timer will not be added to the List.\n"
 "Please press OK to close this Wizard."
 msgstr ""
+"لن يتم إضافة المؤقت للقائمه. \n"
+"من فضلك أضغط موافق لإغلاق النافذه."
 
 msgid ""
 "The Timespan of an AutoTimer is the first 'advanced' attribute. If a "
@@ -5945,7 +5938,7 @@ msgstr "حدث خطأ. الرزمه:"
 msgid ""
 "There's a certificate update available for your dreambox. Would you like to "
 "apply this update now?"
-msgstr ""
+msgstr "يوجد تحديث وثيقه متاح للدريم بوكس . هل تريدتطبيق هذا التحديث الان ؟"
 
 #, python-format
 msgid "This .NFI file does not contain a valid %s image!"
@@ -6140,9 +6133,8 @@ msgstr "نوع المؤقت"
 msgid "Timer entry"
 msgstr "إدخال المؤقت"
 
-#
 msgid "Timer log"
-msgstr ""
+msgstr "سجل المؤقت"
 
 #
 msgid ""
@@ -6152,11 +6144,11 @@ msgstr ""
 
 #
 msgid "Timer record location"
-msgstr ""
+msgstr "موضع تسجيل المؤقت"
 
 #
 msgid "Timer sanity error"
-msgstr ""
+msgstr "خطأ إستقامة المؤقت"
 
 #
 msgid "Timer selection"
@@ -6172,15 +6164,15 @@ msgstr "نوع المؤقت"
 
 #
 msgid "Timeshift"
-msgstr ""
+msgstr "تحول الوقت"
 
 #
 msgid "Timeshift location"
-msgstr ""
+msgstr "موقع تحول الوقت"
 
 #
 msgid "Timeshift not possible!"
-msgstr ""
+msgstr "تحول الوقت غير ممكن"
 
 #
 msgid "Timezone"
@@ -6218,15 +6210,15 @@ msgstr "اليوم"
 
 #
 msgid "Tone Amplitude"
-msgstr ""
+msgstr "مدى النغمه"
 
 #
 msgid "Tone mode"
-msgstr ""
+msgstr "وضعية النغمه"
 
 #
 msgid "Toneburst"
-msgstr ""
+msgstr "نغمة إنفجار"
 
 #
 msgid "Toneburst A/B"
@@ -6278,7 +6270,7 @@ msgstr ""
 
 #
 msgid "Try to find used Transponders in cable network.. please wait..."
-msgstr ""
+msgstr "جارى محاولة البحث عن إرسال فى كابل الشبكه.. رجاء الانتظار... "
 
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr "محاولة إيجاد ترددات عامله فى كابل الشبكه. رجاء الانتظار..."
@@ -6289,15 +6281,15 @@ msgstr ""
 
 #
 msgid "Trying to download the Youtube feed entries. Please wait..."
-msgstr ""
+msgstr "جارى محاولة تحميل مدخلات تغذية يوتيوب ، رجاء الانتظار..."
 
 #
 msgid "Trying to download the Youtube search results. Please wait..."
-msgstr ""
+msgstr "جارى محاولة تحميل نتائج بحث اليوتيوب. رجاء الانتظار"
 
 #
 msgid "Tue"
-msgstr ""
+msgstr "الثلاثاء"
 
 #
 msgid "Tuesday"
@@ -6417,7 +6409,7 @@ msgid "Universal LNB"
 msgstr ""
 
 msgid "Unknown network adapter."
-msgstr ""
+msgstr "محول شبكه غير معروف"
 
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
@@ -6536,7 +6528,7 @@ msgid ""
 msgstr ""
 "استخد الذر الايمن والايسر للاختيار\n"
 "\n"
-"من فضلك أضبط التيونر أ"
+"من فضلك أضبط الموالف أ"
 
 msgid ""
 "Use the up/down keys on your remote control to select an option. After that, "
@@ -6757,10 +6749,10 @@ msgid "WEP"
 msgstr ""
 
 msgid "WLAN adapter."
-msgstr ""
+msgstr "محوله شبكه واسعه"
 
 msgid "WLAN connection"
-msgstr ""
+msgstr "إتصال شبكه واسعه"
 
 #
 msgid "WPA"
@@ -7000,9 +6992,8 @@ msgstr ""
 msgid "Wizard"
 msgstr "نافذة إعدادات"
 
-#
 msgid "Write error while recording. Disk full?\n"
-msgstr ""
+msgstr "خطأ اثناء التسجيل. القرص ممتلئ ؟ \n"
 
 msgid "Write failed!"
 msgstr "فشل الكتابه !"
@@ -7252,11 +7243,12 @@ msgid ""
 "Press OK to start upgrade."
 msgstr ""
 
-#
 msgid ""
 "Your internet connection is not working!\n"
 "Please choose what you want to do next."
 msgstr ""
+"الاتصال بالانترنت لا يعمل ! \n"
+"من فضلك أختار ماذا تريد أن تفعل بعد ذلك."
 
 msgid "Your name (optional):"
 msgstr "إسمك (إختيارى):"
@@ -7264,17 +7256,14 @@ msgstr "إسمك (إختيارى):"
 msgid "Your network configuration has been activated."
 msgstr "تم تنشيط تكوين الشبكه"
 
-#
 msgid "Your network mount has been activated."
-msgstr ""
+msgstr "تم تنشيط إعتلاء الشبكه."
 
-#
 msgid "Your network mount has been removed."
-msgstr ""
+msgstr "تم حذف إعتلاء الشبكه."
 
-#
 msgid "Your network mount has been updated."
-msgstr ""
+msgstr "تم تحديث إعتلاء الشبكه."
 
 #
 msgid ""
@@ -7286,19 +7275,19 @@ msgstr ""
 
 #
 msgid "Zap back to previously tuned service?"
-msgstr ""
+msgstr "هل تريد التنقل الى أخر قناه مولفه ؟"
 
 #
 msgid "Zap back to service before positioner setup?"
-msgstr ""
+msgstr "هل تريد التنقل الى القناه الاخيره قبل ضبط الموتور ؟"
 
 #
 msgid "Zap back to service before satfinder?"
-msgstr ""
+msgstr "هل تريد التنقل الى القناه الاخيره قبل باحث الاقمار ؟"
 
 #
 msgid "Zap back to service before tuner setup?"
-msgstr ""
+msgstr "هل تريد التنقل الىالقناه الخيره قبل ضبط الموالف ؟"
 
 msgid "Zydas"
 msgstr ""
@@ -7546,9 +7535,8 @@ msgstr "مسح القطع"
 msgid "delete file"
 msgstr "حذف الملف"
 
-#
 msgid "delete playlist entry"
-msgstr ""
+msgstr "مسح مدخل قائمة العرض"
 
 #
 msgid "delete saved playlist"
@@ -7570,16 +7558,14 @@ msgstr "تم التعطيل"
 msgid "disconnected"
 msgstr "تم الفصل"
 
-#
 msgid "do not change"
-msgstr ""
+msgstr "لا تغيير"
 
 msgid "do nothing"
 msgstr "لا تفعل شيئ"
 
-#
 msgid "don't record"
-msgstr ""
+msgstr "لا تسجل"
 
 msgid "done!"
 msgstr "تم !"
@@ -7614,9 +7600,8 @@ msgstr "تفعيل وضع التحريك"
 msgid "enabled"
 msgstr "تم النفعيل"
 
-#
 msgid "end alternatives edit"
-msgstr ""
+msgstr "إنهاء تحرير البدائل"
 
 #
 msgid "end bouquet edit"
@@ -8029,9 +8014,8 @@ msgstr ""
 msgid "remove selected satellite"
 msgstr "حذف القمر المختار"
 
-#
 msgid "remove this mark"
-msgstr ""
+msgstr "حذف هذه العلامه"
 
 msgid "repeat playlist"
 msgstr "إعادة قائمة الاغانى"
