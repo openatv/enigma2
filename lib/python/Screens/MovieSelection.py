@@ -24,7 +24,7 @@ from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
 import Tools.Trashcan
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize, eBackgroundFileEraser, iRecordableService
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize
 import os
 import time
 import cPickle as pickle
