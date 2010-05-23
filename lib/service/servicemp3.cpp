@@ -113,28 +113,20 @@ eMP3ServiceOfflineOperations::eMP3ServiceOfflineOperations(const eServiceReferen
 
 RESULT eMP3ServiceOfflineOperations::deleteFromDisk(int simulate)
 {
-	if (simulate)
-		return 0;
-	else
+	if (!simulate)
 	{
 		std::list<std::string> res;
 		if (getListOfFilenames(res))
 			return -1;
 		
 		eBackgroundFileEraser *eraser = eBackgroundFileEraser::getInstance();
-		if (!eraser)
-			eDebug("FATAL !! can't get background file eraser");
-		
 		for (std::list<std::string>::iterator i(res.begin()); i != res.end(); ++i)
 		{
 			eDebug("Removing %s...", i->c_str());
-			if (eraser)
-				eraser->erase(*i);
-			else
-				::unlink(i->c_str());
+			eraser->erase(*i);
 		}
-		return 0;
 	}
+	return 0;
 }
 
 RESULT eMP3ServiceOfflineOperations::getListOfFilenames(std::list<std::string> &res)
