@@ -59,7 +59,7 @@ void eBackgroundFileEraser::erase(const std::string& filename)
 			eDebug("Rename %s -> %s failed.", filename.c_str(), delname.c_str());
 			delname = filename;
 		}
-		messages.send(Message(Message::erase, strdup(delname.c_str())));
+		messages.send(Message(Message::erase, delname));
 		run();
 	}
 }
@@ -69,9 +69,8 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 	switch (msg.type)
 	{
 		case Message::erase:
-			if ( ::unlink(msg.filename) < 0 )
+			if ( ::unlink(msg.filename.c_str()) < 0 )
 				eDebug("remove file %s failed (%m)", msg.filename);
-			free(msg.filename);
 			stop_thread_timer->start(1000, true); // stop thread in one seconds
 			break;
 		case Message::quit:

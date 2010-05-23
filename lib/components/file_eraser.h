@@ -10,16 +10,16 @@ class eBackgroundFileEraser: public eMainloop, private eThread, public Object
 	struct Message
 	{
 		int type;
-		const char* filename;
+		std::string filename;
 		enum
 		{
 			erase,
 			quit
 		};
 		Message(int type=0)
-			:type(type), filename(NULL)
+			:type(type)
 		{}
-		Message(int type, const char* afilename)
+		Message(int type, const std::string& afilename)
 			:type(type), filename(afilename)
 		{}
 	};
