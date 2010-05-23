@@ -70,7 +70,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 	{
 		case Message::erase:
 			if ( ::unlink(msg.filename.c_str()) < 0 )
-				eDebug("remove file %s failed (%m)", msg.filename);
+				eDebug("remove file %s failed (%m)", msg.filename.c_str());
 			stop_thread_timer->start(1000, true); // stop thread in one seconds
 			break;
 		case Message::quit:
