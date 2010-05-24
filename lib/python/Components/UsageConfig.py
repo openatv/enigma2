@@ -161,6 +161,10 @@ def InitUsageConfig():
 		("step", _("Singlestep (GOP)")),
 		("last", _("Last speed")) ])
 
+
+	config.crash = ConfigSubsection()
+	config.crash.details = ConfigYesNo(default = False)
+
 	def updateEnterForward(configElement):
 		if not configElement.value:
 			configElement.value = [2]

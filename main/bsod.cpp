@@ -324,20 +324,26 @@ void bsodFatal(const char *component)
 		}
 		fprintf(f, "\t</image>\n");
 
-		fprintf(f, "\t<software>\n");
-		std::string installedplugins = execCommand("ipkg list_installed | grep enigma2");
-		fprintf(f, "\t\t<enigma2software>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2software>\n", installedplugins.c_str());
-		std::string dreambox = execCommand("ipkg list_installed | grep dream");
-		fprintf(f, "\t\t<dreamboxsoftware>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</dreamboxsoftware>\n", dreambox.c_str());
-		std::string gstreamer = execCommand("ipkg list_installed | grep gst");
-		fprintf(f, "\t\t<gstreamersoftware>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</gstreamersoftware>\n", gstreamer.c_str());
-		fprintf(f, "\t</software>\n");
+		bool detailedCrash = getConfigFileValue("config.crash.details") == "true";
+		if (detailedCrash)
+		{
+			fprintf(f, "\t<software>\n");
+			std::string installedplugins = execCommand("ipkg list_installed 'enigma2*'");
+			fprintf(f, "\t\t<enigma2software>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2software>\n", installedplugins.c_str());
+			std::string dreambox = execCommand("ipkg list_installed 'dream*'");
+			fprintf(f, "\t\t<dreamboxsoftware>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</dreamboxsoftware>\n", dreambox.c_str());
+			std::string gstreamer = execCommand("ipkg list_installed 'gst*'");
+			fprintf(f, "\t\t<gstreamersoftware>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</gstreamersoftware>\n", gstreamer.c_str());
+			fprintf(f, "\t</software>\n");
+		}
 
 		fprintf(f, "\t<crashlogs>\n");
-		std::string buffer = getLogBuffer();
-		fprintf(f, "\t\t<enigma2crashlog>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2crashlog>\n", buffer.c_str());
-		std::string pythonmd5 = execCommand("find /usr/lib/enigma2/python/ -name \"*.py\" | xargs md5sum");
-		fprintf(f, "\t\t<pythonMD5sum>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</pythonMD5sum>\n", pythonmd5.c_str());
+		fprintf(f, "\t\t<enigma2crashlog>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2crashlog>\n", getLogBuffer().c_str());
+		if (detailedCrash)
+		{
+			std::string pythonmd5 = execCommand("find /usr/lib/enigma2/python/ -name \"*.py\" | xargs md5sum");
+			fprintf(f, "\t\t<pythonMD5sum>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</pythonMD5sum>\n", pythonmd5.c_str());
+		}
 		fprintf(f, "\t</crashlogs>\n");
 
 		fprintf(f, "\n</opendreambox>\n");
