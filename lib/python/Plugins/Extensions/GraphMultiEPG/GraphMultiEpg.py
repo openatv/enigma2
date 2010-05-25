@@ -1,5 +1,5 @@
 from skin import parseColor
-from Components.config import config, ConfigClock, ConfigInteger
+from Components.config import config, ConfigClock, ConfigInteger,ConfigSubsection
 from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.ActionMap import ActionMap
@@ -22,6 +22,7 @@ from ServiceReference import ServiceReference
 from Tools.LoadPixmap import LoadPixmap
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, \
 	RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eRect, eTimer
+from GraphMultiEpgSetup import GraphMultiEpgSetup
 
 from time import localtime, time, strftime
 
@@ -36,6 +37,10 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.onSelChanged.append(selChangedCB)
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
+		#esize = self.l.getSize()
+		#width = esize.width()
+		#height = esize.height()
+		#print "EPG list size: ", width, "x", height
 		self.l.setItemHeight(54);
 		self.l.setBuildFunc(self.buildEntry)
 		if overjump_empty:
@@ -186,12 +191,15 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	GUI_WIDGET = eListbox
 
+	def setEventFontsize(self):
+		self.l.setFont(1, gFont("Regular", config.misc.graph_mepg.ev_fontsize.value))
+
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
 		instance.selectionChanged.get().append(self.serviceChanged)
 		instance.setContent(self.l)
 		self.l.setFont(0, gFont("Regular", 20))
-		self.l.setFont(1, gFont("Regular", 14))
+		self.setEventFontsize()
 		self.l.setSelectionClip(eRect(0,0,0,0), False)
 
 	def preWidgetRemove(self, instance):
@@ -399,8 +407,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos-30, 0, 60, 25, 0, RT_HALIGN_CENTER|RT_VALIGN_CENTER, str))
 		self.l.setList([res])
 
-config.misc.graph_mepg_prev_time=ConfigClock(default = time())
-config.misc.graph_mepg_prev_time_period=ConfigInteger(default=120, limits=(60,300))
+config.misc.graph_mepg=ConfigSubsection()
+config.misc.graph_mepg.prev_time=ConfigClock(default = time())
+config.misc.graph_mepg.prev_time_period=ConfigInteger(default=120, limits=(60,300))
+config.misc.graph_mepg.ev_fontsize = ConfigInteger(default=14, limits=(10, 25))
 
 class GraphMultiEPG(Screen):
 	EMPTY = 0
@@ -418,6 +428,8 @@ class GraphMultiEPG(Screen):
 		self.closeRecursive = False
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
+		self["key_blue"] = Button(_("Setup"))
+
 		self.key_green_choice = self.EMPTY
 		self.key_red_choice = self.EMPTY
 		self["timeline_text"] = TimelineText()
@@ -433,7 +445,7 @@ class GraphMultiEPG(Screen):
 		if bouquetname != "":                                                                                                                           
 			Screen.setTitle(self, bouquetname)                                                                                                       
 
-		self["list"] = EPGList(selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer, time_epoch = config.misc.graph_mepg_prev_time_period.value )
+		self["list"] = EPGList(selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer, time_epoch = config.misc.graph_mepg.prev_time_period.value )
 
 		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
 			{
@@ -445,6 +457,7 @@ class GraphMultiEPG(Screen):
 				"input_date_time": self.enterDateTime,
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
+				"blue": self.showSetup,
 			})
 		self["actions"].csel = self
 
@@ -482,27 +495,27 @@ class GraphMultiEPG(Screen):
 
 	def key1(self):
 		self["list"].setEpoch(60)
-		config.misc.graph_mepg_prev_time_period.value = 60
+		config.misc.graph_mepg.prev_time_period.value = 60
 		self.moveTimeLines()
 
 	def key2(self):
 		self["list"].setEpoch(120)
-		config.misc.graph_mepg_prev_time_period.value = 120
+		config.misc.graph_mepg.prev_time_period.value = 120
 		self.moveTimeLines()
 
 	def key3(self):
 		self["list"].setEpoch(180)
-		config.misc.graph_mepg_prev_time_period.value = 180
+		config.misc.graph_mepg.prev_time_period.value = 180
 		self.moveTimeLines()
 
 	def key4(self):
 		self["list"].setEpoch(240)
-		config.misc.graph_mepg_prev_time_period.value = 240
+		config.misc.graph_mepg.prev_time_period.value = 240
 		self.moveTimeLines()
 
 	def key5(self):
 		self["list"].setEpoch(300)
-		config.misc.graph_mepg_prev_time_period.value = 300
+		config.misc.graph_mepg.prev_time_period.value = 300
 		self.moveTimeLines()
 
 	def nextBouquet(self):
@@ -514,7 +527,7 @@ class GraphMultiEPG(Screen):
 			self.bouquetChangeCB(-1, self)
 
 	def enterDateTime(self):
-		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg_prev_time )
+		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg.prev_time )
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
@@ -525,7 +538,18 @@ class GraphMultiEPG(Screen):
 				l.fillMultiEPG(self.services, ret[1])
 				self.moveTimeLines(True)
 
+	def showSetup(self):
+		self.session.openWithCallback(self.onSetupClose, GraphMultiEpgSetup )
+
+	def onSetupClose(self):
+		print "EPG setup close..."
+		self["list"].setEventFontsize()
+		self["list"].setEpoch(config.misc.graph_mepg.prev_time_period.value)
+		self.moveTimeLines()
+#		self["list"].fillMultiEPG(None) # refill
+		
 	def closeScreen(self):
+		config.misc.graph_mepg.save()
 		self.close(self.closeRecursive)
 
 	def infoKeyPressed(self):
