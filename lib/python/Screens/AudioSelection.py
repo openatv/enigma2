@@ -288,10 +288,10 @@ class AudioSelection(Screen, ConfigListScreen):
 		print "[keyok]", self["streams"].list, self["streams"].getCurrent()
 		if self.focus == FOCUS_STREAMS and self["streams"].list:
 			cur = self["streams"].getCurrent()
-			if self.settings.menupage.getValue() == "audio" and cur[0]:
+			if self.settings.menupage.getValue() == "audio" and cur[0] is not None:
 				self.changeAudio(cur[2])
 				self.__updatedInfo()
-			if self.settings.menupage.getValue() == "subtitles" and cur[0]:
+			if self.settings.menupage.getValue() == "subtitles" and cur[0] is not None:
 				if self.infobar.selected_subtitle == cur[0]:
 					self.enableSubtitle(None)
 					selectedidx = self["streams"].getIndex()
