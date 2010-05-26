@@ -73,7 +73,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.downmix = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix.addNotifier(self.changeAC3Downmix, initial_call = False)
 				conflist.append(getConfigListEntry(_("AC3 downmix"), self.settings.downmix))
-				self["key_red"] = Boolean(True)
+				self["key_red"].setBoolean(True)
 
 			if n > 0:
 				self.audioChannel = service.audioChannel()
@@ -82,7 +82,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.settings.channelmode = ConfigSelection(choices = choicelist, default = str(self.audioChannel.getCurrentChannel()))
 				self.settings.channelmode.addNotifier(self.changeMode, initial_call = False)
 				conflist.append(getConfigListEntry(_("Channel"), self.settings.channelmode))
-				self["key_green"] = Boolean(True)
+				self["key_green"].setBoolean(True)
 				
 				selectedAudio = self.audioTracks.getCurrentTrack()
 				print "selectedAudio:", selectedAudio
@@ -113,33 +113,17 @@ class AudioSelection(Screen, ConfigListScreen):
 
 					streams.append((x, "", number, description, language, selected))
 
-				#if hasattr(self, "runPlugin"):
-					#class PluginCaller:
-						#def __init__(self, fnc, *args):
-							#self.fnc = fnc
-							#self.args = args
-						#def __call__(self, *args, **kwargs):
-							#self.fnc(*self.args)
-
-					#Plugins = [ (p.name, PluginCaller(self.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
-
-					#for p in Plugins:
-						#selection += 1
-						#flist.append((p[0], "CALLFUNC", p[1]))
-						#if availableKeys:
-							#usedKeys.append(availableKeys[0])
-							#del availableKeys[0]
-						#else:
-							#usedKeys.append("")
 			else:
-				streams = [(None, "", "", _("none"), "")]
+				streams = []
 
 		elif self.settings.menupage.getValue() == "subtitles":
 			self.setTitle(_("Subtitle selection"))
 			
 			self.settings.dummy = ConfigNothing()
 			conflist.append(getConfigListEntry("", self.settings.dummy))
+			self["key_red"].setBoolean(False)
 			conflist.append(getConfigListEntry("", self.settings.dummy))
+			self["key_green"].setBoolean(False)
 
 			if self.subtitlesEnabled():
 				sel = self.infobar.selected_subtitle
@@ -149,7 +133,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			idx = 0
 			
 			subtitlelist = self.getSubtitleList()
-			
+
 			if len(subtitlelist):
 				for x in subtitlelist:
 					number = str(x[1])
@@ -183,14 +167,39 @@ class AudioSelection(Screen, ConfigListScreen):
 					idx += 1
 			
 			else:
-				streams = [(None, "", "", _("none"), "")]
+				streams = []
 
 		conflist.append(getConfigListEntry(_("Menu"), self.settings.menupage))
+		
+		from Components.PluginComponent import plugins
+		from Plugins.Plugin import PluginDescriptor
+		
+		if hasattr(self.infobar, "runPlugin"):
+			class PluginCaller:
+				def __init__(self, fnc, *args):
+					self.fnc = fnc
+					self.args = args
+				def __call__(self, *args, **kwargs):
+					self.fnc(*self.args)
+
+			Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
+			
+			print "Plugins", Plugins
+
+			self.settings.dummy = ConfigNothing()
+			if len(Plugins):
+				self["key_blue"].setBoolean(True)
+				conflist.append(getConfigListEntry(Plugins[0][0], self.settings.dummy))
+				self.plugincallfunc = Plugins[0][1]
+
 		self["config"].list = conflist
 		self["config"].l.setList(conflist)
 
+		print "setting self[streams].list:", streams
 		self["streams"].list = streams
+		print "setting self[streams].setIndex:", selectedidx
 		self["streams"].setIndex(selectedidx)
+		print "debug1"
 
 	def __updatedInfo(self):
 		self.fillList()
@@ -237,27 +246,35 @@ class AudioSelection(Screen, ConfigListScreen):
 		elif self.focus == FOCUS_STREAMS:
 			self["streams"].setIndex(0)
 
-	def keyRight(self):
-		if self.focus == FOCUS_CONFIG:
-			ConfigListScreen.keyRight(self)
-		elif self.focus == FOCUS_STREAMS and self["streams"].count():
+	def keyRight(self, config = False):
+		if config or self.focus == FOCUS_CONFIG:
+			if self["config"].getCurrentIndex() < 3:
+				ConfigListScreen.keyRight(self)
+			elif hasattr(self, "plugincallfunc"):
+				self.plugincallfunc()
+		if self.focus == FOCUS_STREAMS and self["streams"].count():
 			self["streams"].setIndex(self["streams"].count()-1)
 
 	def keyRed(self):
-		self.colorkey(0)
+		if self["key_red"].getBoolean():
+			self.colorkey(0)
 
 	def keyGreen(self):
-		self.colorkey(1)
+		if self["key_green"].getBoolean():
+			self.colorkey(1)
 
 	def keyYellow(self):
-		self.colorkey(2)
-	
+		if self["key_yellow"].getBoolean():
+			self.colorkey(2)
+
 	def keyBlue(self):
-		pass
-		
+		if self["key_blue"].getBoolean():
+			print "colorkey(3)"
+			self.colorkey(3)
+
 	def colorkey(self, idx):
 		self["config"].setCurrentIndex(idx)
-		ConfigListScreen.keyRight(self)
+		self.keyRight(True)
 
 	def keyUp(self):
 		print "[keyUp]", self["streams"].getIndex()
@@ -305,4 +322,4 @@ class AudioSelection(Screen, ConfigListScreen):
 			self.keyRight()
 
 	def cancel(self):
-		self.close()
+		self.close(0)
