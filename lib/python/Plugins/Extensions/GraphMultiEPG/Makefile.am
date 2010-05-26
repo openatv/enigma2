@@ -5,7 +5,8 @@ SUBDIRS = meta
 install_PYTHON =	\
 	__init__.py \
 	plugin.py \
-	GraphMultiEpg.py
+	GraphMultiEpg.py \
+	GraphMultiEpgSetup.py
 
 dist_install_DATA = LICENSE
 
