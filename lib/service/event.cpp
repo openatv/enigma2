@@ -25,7 +25,7 @@ void eServiceEvent::setEPGLanguage( const std::string language )
 DEFINE_REF(eServiceEvent);
 DEFINE_REF(eComponentData);
 
-const char MAX_LANG = 37;
+const char MAX_LANG = 38;
 /* OSD language (see /share/locales/locales) to iso639 conversion table */
 std::string ISOtbl[MAX_LANG][2] =
 {
