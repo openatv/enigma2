@@ -64,6 +64,7 @@ std::string ISOtbl[MAX_LANG][2] =
 	{"sr_YU","srp"},     /* or 'scc' */
 	{"sr_YU","scc"},
 	{"sv_SE","swe"},
+	{"th_TH","tha"},
 	{"tr_TR","tur"},
 	{"ur_IN","urd"}
 };
