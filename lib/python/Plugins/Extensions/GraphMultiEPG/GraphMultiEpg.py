@@ -37,10 +37,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.onSelChanged.append(selChangedCB)
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
-		#esize = self.l.getSize()
-		#width = esize.width()
-		#height = esize.height()
-		#print "EPG list size: ", width, "x", height
 		self.l.setItemHeight(54);
 		self.l.setBuildFunc(self.buildEntry)
 		if overjump_empty:
