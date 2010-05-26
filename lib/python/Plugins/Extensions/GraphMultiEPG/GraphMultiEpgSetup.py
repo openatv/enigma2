@@ -12,7 +12,7 @@ from Tools.Directories import *
 
 class GraphMultiEpgSetup(Screen, ConfigListScreen):
 	skin = """
-        	<screen name="GraphMultiEPG" position="center,center" size="560,435" title="Electronic Program Guide Setup">
+        	<screen name="GraphMultiEPGSetup" position="center,center" size="560,435" title="Electronic Program Guide Setup">
                 	<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
                 	<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
                 	<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -32,6 +32,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self["actions"] = ActionMap(["SetupActions"],
 		{
 			"ok": self.keySave,
+			"save": self.keySave,
 			"cancel": self.keyCancel,
 		}, -1)
 		
@@ -42,10 +43,11 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.createSetup()
 
 	def createSetup(self):
-		print "Creating Graph Epg Setup"
 		self.list = [ ]
 		self.list.append(getConfigListEntry(_("Event Fontsize"), config.misc.graph_mepg.ev_fontsize))
 		self.list.append(getConfigListEntry(_("Time Scale"), config.misc.graph_mepg.prev_time_period))
+		# self.list.append(getConfigListEntry(_("Item Height "), config.misc.graph_mepg.itemheight))
+		# self.list.append(getConfigListEntry(_("Itmes per page "), config.misc.graph_mepg.items_per_page))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
