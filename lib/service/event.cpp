@@ -16,10 +16,6 @@
 // static members / methods
 std::string eServiceEvent::m_language = "de_DE";
 
-void eServiceEvent::setEPGLanguage( const std::string language )
-{
-	m_language = language;
-}
 ///////////////////////////
 
 DEFINE_REF(eServiceEvent);
@@ -208,7 +204,7 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	return 0;
 }
 
-RESULT eServiceEvent::parseFrom(const std::string filename, int tsidonid)
+RESULT eServiceEvent::parseFrom(const std::string& filename, int tsidonid)
 {
 	if (!filename.empty())
 	{
@@ -309,7 +305,7 @@ RESULT eServiceEvent::getLinkageService(eServiceReference &service, eServiceRefe
 
 void setServiceEventLanguage(const std::string language)
 {
-	eServiceEvent::setEPGLanguage(language);
+       eServiceEvent::setEPGLanguage(language);
 }
 
 DEFINE_REF(eDebugClass);
