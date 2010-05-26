@@ -47,8 +47,14 @@ public:
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC } audiotype_t;
-typedef enum { stPlainText, stSSA, stSRT } subtype_t;
+typedef enum { stUnknown, stPlainText, stSSA, stSRT, stVOB } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
+
+struct SubtitlePage
+{
+	ePangoSubtitlePage *pango_page;
+	eVobSubtitlePage *vob_page;
+};
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, 
@@ -198,6 +204,7 @@ private:
 	};
 	int m_state;
 	GstElement *m_gst_playbin;
+	GstElement *m_gst_subtitlebin;
 	GstTagList *m_stream_tags;
 	eFixedMessagePump<int> m_pump;
 	std::string m_error_message;
@@ -206,10 +213,11 @@ private:
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
+	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
 
-	std::list<ePangoSubtitlePage> m_subtitle_pages;
+	std::list<SubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 	void pushSubtitles();
 	void pullSubtitle();
