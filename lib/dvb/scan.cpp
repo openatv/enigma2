@@ -1236,7 +1236,6 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 					case 145:
 					case 150:
 					case 154:
-					case 160:
 					case 163:
 					case 164:
 					case 166:
