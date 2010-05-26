@@ -69,7 +69,7 @@ SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEvent);
 SWIG_EXTEND(ePtr<eServiceEvent>,
 	static void setEPGLanguage(const std::string& language)
 	{
-		setEPGLanguage(language);
+		eServiceEvent::setEPGLanguage(language);
 	}
 );
 
