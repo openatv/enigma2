@@ -50,8 +50,8 @@ class eServiceEvent: public iObject
 public:
 #ifndef SWIG
 	RESULT parseFrom(Event *evt, int tsidonid=0);
-	RESULT parseFrom(const std::string filename, int tsidonid=0);
-	static void setEPGLanguage( const std::string language );
+	RESULT parseFrom(const std::string& filename, int tsidonid=0);
+	static void setEPGLanguage(const std::string& language) { m_language = language; }
 #endif
 	time_t getBeginTime() const { return m_begin; }
 	int getDuration() const { return m_duration; }
@@ -67,10 +67,9 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<eServiceEvent>, eServiceEvent);
 SWIG_EXTEND(ePtr<eServiceEvent>,
-	static void setEPGLanguage( const std::string language )
+	static void setEPGLanguage(const std::string& language)
 	{
-		extern void setServiceEventLanguage(const std::string language);
-		setServiceEventLanguage(language);
+		setEPGLanguage(language);
 	}
 );
 
