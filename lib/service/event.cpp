@@ -303,9 +303,4 @@ RESULT eServiceEvent::getLinkageService(eServiceReference &service, eServiceRefe
 	return -1;
 }
 
-void setServiceEventLanguage(const std::string language)
-{
-	eServiceEvent::setEPGLanguage(language);
-}
-
 DEFINE_REF(eDebugClass);
