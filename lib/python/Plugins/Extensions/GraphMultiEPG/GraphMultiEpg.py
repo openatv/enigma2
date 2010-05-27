@@ -37,7 +37,6 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.onSelChanged.append(selChangedCB)
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
-		self.l.setItemHeight(54);
 		self.l.setBuildFunc(self.buildEntry)
 		if overjump_empty:
 			self.l.setSelectableFunc(self.isSelectable)
@@ -81,7 +80,10 @@ class EPGList(HTMLComponent, GUIComponent):
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
-		return GUIComponent.applySkin(self, desktop, screen)
+		rc = GUIComponent.applySkin(self, desktop, screen)
+		# now we know our size and can savely set items per page
+		self.setItemsPerPage()
+		return rc
 
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
@@ -187,6 +189,13 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	GUI_WIDGET = eListbox
 
+	def setItemsPerPage(self):
+		h = self.instance.size().height()
+		if h > 0:
+			self.l.setItemHeight(h / config.misc.graph_mepg.items_per_page.value)
+		else:
+			self.l.setItemHeight(54) # some default (270/5)
+
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont("Regular", config.misc.graph_mepg.ev_fontsize.value))
 
@@ -194,9 +203,9 @@ class EPGList(HTMLComponent, GUIComponent):
 		instance.setWrapAround(True)
 		instance.selectionChanged.get().append(self.serviceChanged)
 		instance.setContent(self.l)
+		self.l.setSelectionClip(eRect(0,0,0,0), False)
 		self.l.setFont(0, gFont("Regular", 20))
 		self.setEventFontsize()
-		self.l.setSelectionClip(eRect(0,0,0,0), False)
 
 	def preWidgetRemove(self, instance):
 		instance.selectionChanged.get().remove(self.serviceChanged)
@@ -208,7 +217,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		height = esize.height()
 		xpos = 0;
 		w = width/10*2;
-		self.service_rect = Rect(xpos, 0, w-10, height)
+		#self.service_rect = Rect(xpos, 0, w-10, height)
+		self.service_rect = Rect(xpos, 0, w, height)
 		xpos += w;
 		w = width/10*8;
 		self.event_rect = Rect(xpos, 0, w, height)
@@ -237,7 +247,8 @@ class EPGList(HTMLComponent, GUIComponent):
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = service_name,
 						color = self.foreColorService,
-						backcolor = self.backColorService) ]
+						backcolor = self.backColorService, 
+						border_width = 1, border_color = self.backColor) ]
 
 		if events:
 			start = self.time_base+self.offs*self.time_epoch*60
@@ -407,6 +418,8 @@ config.misc.graph_mepg=ConfigSubsection()
 config.misc.graph_mepg.prev_time=ConfigClock(default = time())
 config.misc.graph_mepg.prev_time_period=ConfigInteger(default=120, limits=(60,300))
 config.misc.graph_mepg.ev_fontsize = ConfigInteger(default=14, limits=(10, 25))
+config.misc.graph_mepg.itemheight = ConfigInteger(default=54, limits=(27, 90))
+config.misc.graph_mepg.items_per_page = ConfigInteger(default=5, limits=(3, 10))
 
 class GraphMultiEPG(Screen):
 	EMPTY = 0
@@ -538,11 +551,11 @@ class GraphMultiEPG(Screen):
 		self.session.openWithCallback(self.onSetupClose, GraphMultiEpgSetup )
 
 	def onSetupClose(self):
-		print "EPG setup close..."
-		self["list"].setEventFontsize()
-		self["list"].setEpoch(config.misc.graph_mepg.prev_time_period.value)
+		l = self["list"]
+		l.setItemsPerPage()
+		l.setEventFontsize()
+		l.setEpoch(config.misc.graph_mepg.prev_time_period.value)
 		self.moveTimeLines()
-#		self["list"].fillMultiEPG(None) # refill
 		
 	def closeScreen(self):
 		config.misc.graph_mepg.save()
