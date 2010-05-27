@@ -1152,7 +1152,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 	source = GST_MESSAGE_SRC(msg);
 	sourceName = gst_object_get_name(source);
-#if 0
+#if 1
 	if (gst_message_get_structure(msg))
 	{
 		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
@@ -1560,40 +1560,44 @@ void eServiceMP3::pullSubtitle()
 				gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
 				gint64 duration_ns = GST_BUFFER_DURATION(buffer);
 				size_t len = GST_BUFFER_SIZE(buffer);
-
-				if ( m_subtitleStreams[m_currentSubtitleStream].type < stVOB )
+				eDebug("pullSubtitle m_subtitleStreams[m_currentSubtitleStream].type=%i",m_subtitleStreams[m_currentSubtitleStream].type);
+				
+				if ( m_subtitleStreams[m_currentSubtitleStream].type )
 				{
-					unsigned char line[len+1];
-					memcpy(line, GST_BUFFER_DATA(buffer), len);
-					line[len] = 0;
-					eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
-					ePangoSubtitlePage* page = new ePangoSubtitlePage;
-					gRGB rgbcol(0xD0,0xD0,0xD0);
-					page->m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
-					page->show_pts = buf_pos / 11111L;
-					page->m_timeout = duration_ns / 1000000;
-					SubtitlePage subtitlepage;
-					subtitlepage.pango_page = page;
-					subtitlepage.vob_page = NULL;
-					m_subtitle_pages.push_back(subtitlepage);
-					pushSubtitles();
-				}
-				else
-				{
-					eDebug("got new subpicture @ buf_pos = %lld ns (in pts=%lld), len=%i bytes. ", buf_pos, buf_pos/11111, len);
-					eVobSubtitlePage* page = new eVobSubtitlePage;
-					eSize size = eSize(720, 576); 
-					page->m_pixmap = new gPixmap(size, 32, 0);
-// 					ePtr<gPixmap> pixmap;
-// 					pixmap = new gPixmap(size, 32, 1); /* allocate accel surface (if possible) */
-					memcpy(page->m_pixmap->surface->data, GST_BUFFER_DATA(buffer), len);
-					page->show_pts = buf_pos / 11111L;
-					page->m_timeout = duration_ns / 1000000;
-					SubtitlePage subtitlepage;
-					subtitlepage.vob_page = page;
-					subtitlepage.pango_page = NULL;
-					m_subtitle_pages.push_back(subtitlepage);
-					pushSubtitles();
+					if ( m_subtitleStreams[m_currentSubtitleStream].type < stVOB )
+					{
+						unsigned char line[len+1];
+						memcpy(line, GST_BUFFER_DATA(buffer), len);
+						line[len] = 0;
+						eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
+						ePangoSubtitlePage* page = new ePangoSubtitlePage;
+						gRGB rgbcol(0xD0,0xD0,0xD0);
+						page->m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
+						page->show_pts = buf_pos / 11111L;
+						page->m_timeout = duration_ns / 1000000;
+						SubtitlePage subtitlepage;
+						subtitlepage.pango_page = page;
+						subtitlepage.vob_page = NULL;
+						m_subtitle_pages.push_back(subtitlepage);
+						pushSubtitles();
+					}
+					else
+					{
+						eDebug("got new subpicture @ buf_pos = %lld ns (in pts=%lld), duration=%lld ns, len=%i bytes. ", buf_pos, buf_pos/11111, duration_ns, len);
+						eVobSubtitlePage* page = new eVobSubtitlePage;
+						eSize size = eSize(720, 576); 
+						page->m_pixmap = new gPixmap(size, 32, 0);
+	// 					ePtr<gPixmap> pixmap;
+	// 					pixmap = new gPixmap(size, 32, 1); /* allocate accel surface (if possible) */
+						memcpy(page->m_pixmap->surface->data, GST_BUFFER_DATA(buffer), len);
+						page->show_pts = buf_pos / 11111L;
+						page->m_timeout = duration_ns / 1000000;
+						SubtitlePage subtitlepage;
+						subtitlepage.vob_page = page;
+						subtitlepage.pango_page = NULL;
+						m_subtitle_pages.push_back(subtitlepage);
+						pushSubtitles();
+					}
 				}
 				gst_buffer_unref(buffer);
 			}
@@ -1704,6 +1708,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	g_object_get (G_OBJECT (m_gst_playbin), "current-text", &text_pid, NULL);
 
 	eDebug ("eServiceMP3::switched to subtitle stream %i", text_pid);
+	m_event((iPlayableService*)this, evUpdatedInfo);
 
 	return 0;
 
@@ -1731,26 +1736,24 @@ PyObject *eServiceMP3::getCachedSubtitle()
 PyObject *eServiceMP3::getSubtitleList()
 {
 	eDebug("eServiceMP3::getSubtitleList");
-
 	ePyObject l = PyList_New(0);
-	int stream_count[sizeof(subtype_t)];
+	int stream_idx = 0;
 	
-	for ( unsigned int i = 0; i <= sizeof(subtype_t); i++ )
-		stream_count[i] = 0;
-
 	for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
 	{
 		subtype_t type = IterSubtitleStream->type;
 		ePyObject tuple = PyTuple_New(5);
+		eDebug("eServiceMP3::getSubtitleList idx=%i type=%i, code=%s", stream_idx, int(type), (IterSubtitleStream->language_code).c_str());
 		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(stream_count[type]));
+		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(stream_idx));
 		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(int(type)));
 		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(0));
 		PyTuple_SET_ITEM(tuple, 4, PyString_FromString((IterSubtitleStream->language_code).c_str()));
 		PyList_Append(l, tuple);
 		Py_DECREF(tuple);
-		stream_count[type]++;
+		stream_idx++;
 	}
+	eDebug("eServiceMP3::getSubtitleList finished");
 	return l;
 }
 
