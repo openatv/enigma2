@@ -43,11 +43,11 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 		self.createSetup()
 
 	def createSetup(self):
+		print "Creating Graph Epg Setup"
 		self.list = [ ]
 		self.list.append(getConfigListEntry(_("Event Fontsize"), config.misc.graph_mepg.ev_fontsize))
 		self.list.append(getConfigListEntry(_("Time Scale"), config.misc.graph_mepg.prev_time_period))
-		# self.list.append(getConfigListEntry(_("Item Height "), config.misc.graph_mepg.itemheight))
-		# self.list.append(getConfigListEntry(_("Itmes per page "), config.misc.graph_mepg.items_per_page))
+		self.list.append(getConfigListEntry(_("Items per Page "), config.misc.graph_mepg.items_per_page))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
