@@ -46,7 +46,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
-		}, -3)
+		}, -2)
 
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO,_("audio tracks")), (PAGE_SUBTITLES,_("Subtitles"))]
@@ -110,6 +110,8 @@ class AudioSelection(Screen, ConfigListScreen):
 					streams.append((x, "", number, description, language, selected))
 
 			else:
+				conflist.append(getConfigListEntry("", self.settings.dummy))
+				self["key_green"].setBoolean(False)
 				streams = []
 				conflist.append(('',))
 				self["key_green"].setBoolean(False)
@@ -156,7 +158,7 @@ class AudioSelection(Screen, ConfigListScreen):
 						number = "%x%02x" % (x[3],x[2])
 
 					elif x[0] == 2:
-						types = ("UTF-8 text","SSA / AAS",".SRT file")
+						types = (_("<unknown>"), "UTF-8 text", "SSA / AAS", ".SRT", "VOB")
 						description = types[x[2]]
 
 					streams.append((x, "", number, description, language, selected))
@@ -310,5 +312,4 @@ class AudioSelection(Screen, ConfigListScreen):
 
 class SubtitleSelection(AudioSelection):
 	def __init__(self, session, infobar=None):
-		AudioSelection.__init__(self, session, infobar, page=PAGE_SUBTITLES)
-		self.skinName = ["AudioSelection"]
+		AudioSelection.__init__(self, session, infobar, PAGE_SUBTITLES)
