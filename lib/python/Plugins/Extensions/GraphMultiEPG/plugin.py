@@ -24,7 +24,7 @@ class SelectBouquet(Screen):
 		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
 			{
 				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
+				"cancel": self.cancelClick,
 				"nextBouquet": self.up,
 				"prevBouquet": self.down
 			})

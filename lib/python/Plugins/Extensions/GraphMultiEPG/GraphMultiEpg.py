@@ -1,5 +1,5 @@
 from skin import parseColor
-from Components.config import config, ConfigClock, ConfigInteger,ConfigSubsection
+from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigBoolean
 from Components.Pixmap import Pixmap
 from Components.Button import Button
 from Components.ActionMap import ActionMap
@@ -38,8 +38,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 		self.l.setBuildFunc(self.buildEntry)
-		if overjump_empty:
-			self.l.setSelectableFunc(self.isSelectable)
+		self.setOverjump_Empty(overjump_empty)
 		self.epgcache = eEPGCache.getInstance()
 		self.clock_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png'))
 		self.clock_add_pixmap = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png'))
@@ -87,6 +86,10 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def isSelectable(self, service, sname, event_list):
 		return (event_list and len(event_list) and True) or False
+
+	def setOverjump_Empty(self, overjump_empty):
+		if overjump_empty:
+			self.l.setSelectableFunc(self.isSelectable)
 
 	def setEpoch(self, epoch):
 #		if self.cur_event is not None and self.cur_service is not None:
@@ -433,6 +436,7 @@ config.misc.graph_mepg.prev_time_period=ConfigInteger(default=120, limits=(60,30
 config.misc.graph_mepg.ev_fontsize = ConfigInteger(default=14, limits=(10, 25))
 config.misc.graph_mepg.itemheight = ConfigInteger(default=54, limits=(27, 90))
 config.misc.graph_mepg.items_per_page = ConfigInteger(default=5, limits=(3, 10))
+config.misc.graph_mepg.overjump = ConfigBoolean(default=True)
 
 class GraphMultiEPG(Screen):
 	EMPTY = 0
@@ -467,7 +471,9 @@ class GraphMultiEPG(Screen):
 		if bouquetname != "":
 			Screen.setTitle(self, bouquetname)
 
-		self["list"] = EPGList(selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer, time_epoch = config.misc.graph_mepg.prev_time_period.value )
+		self["list"] = EPGList(selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer,
+					time_epoch = config.misc.graph_mepg.prev_time_period.value,
+					overjump_empty = config.misc.graph_mepg.overjump.value)
 
 		self["actions"] = ActionMap(["EPGSelectActions", "OkCancelActions"],
 			{
@@ -571,6 +577,7 @@ class GraphMultiEPG(Screen):
 		l.setItemsPerPage()
 		l.setEventFontsize()
 		l.setEpoch(config.misc.graph_mepg.prev_time_period.value)
+		l.setOverjump_Empty(config.misc.graph_mepg.overjump.value)
 		self.moveTimeLines()
 		
 	def closeScreen(self):
