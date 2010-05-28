@@ -21,10 +21,12 @@ class SelectBouquet(Screen):
 	def __init__(self, session, bouquets, curbouquet, direction, enableWrapAround=True):
 		Screen.__init__(self, session)
 
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "EPGSelectActions"],
 			{
 				"ok": self.okbuttonClick,
 				"cancel": self.cancelClick
+				"nextBouquet": self.up,
+				"prevBouquet": self.down
 			})
 		entrys = [ (x[0], x[1]) for x in bouquets ]
 		self["menu"] = MenuList(entrys, enableWrapAround)
