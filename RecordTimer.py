@@ -138,14 +138,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		
 		filename = begin_date + " - " + service_name
 		if self.name:
-			filename += " - " + self.name
 			if config.usage.setup_level.index >= 2: # expert+
 				if config.recording.filename_composition.value == "short":
 					filename = begin_shortdate + " - " + self.name
 				elif config.recording.filename_composition.value == "long":
-					filename = begin_date + " - " + service_name + " - " + self.name + " - " + self.description
+					filename += " - " + self.name + " - " + self.description
 				else:
 					filename += " - " + self.name # standard
+			else:
+				filename += " - " + self.name
 
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
