@@ -247,7 +247,7 @@ class EPGList(HTMLComponent, GUIComponent):
 						font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 						text = service_name,
 						color = self.foreColorService,
-						backcolor = self.backColorService, 
+						backcolor = self.backColorService,
 						border_width = 1, border_color = self.backColor) ]
 
 		if events:
@@ -299,6 +299,15 @@ class EPGList(HTMLComponent, GUIComponent):
 				if valid_event and self.cur_event-1 >= 0:
 					self.cur_event-=1
 				elif self.offs > 0:
+					self.offs -= 1
+					self.fillMultiEPG(None) # refill
+					return True
+			elif dir == +2: #next page
+				self.offs += 1
+				self.fillMultiEPG(None) # refill
+				return True
+			elif dir == -2: #prev
+				if self.offs > 0:
 					self.offs -= 1
 					self.fillMultiEPG(None) # refill
 					return True
@@ -407,6 +416,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 	def setEntries(self, entries):
 		res = [ None ] # no private data needed
+		tm = entries[0][0]
+		width = entries[0][1]
+		str = strftime("%A %d %B", localtime(tm))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 0, 0, width, 25, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, str))
 		for x in entries:
 			tm = x[0]
 			xpos = x[1]
@@ -451,8 +464,8 @@ class GraphMultiEPG(Screen):
 		self["timeline_now"] = Pixmap()
 		self.services = services
 		self.zapFunc = zapFunc
-		if bouquetname != "":                                                                                                                           
-			Screen.setTitle(self, bouquetname)                                                                                                       
+		if bouquetname != "":
+			Screen.setTitle(self, bouquetname)
 
 		self["list"] = EPGList(selChangedCB = self.onSelectionChanged, timer = self.session.nav.RecordTimer, time_epoch = config.misc.graph_mepg.prev_time_period.value )
 
@@ -467,6 +480,8 @@ class GraphMultiEPG(Screen):
 				"nextBouquet": self.nextBouquet,
 				"prevBouquet": self.prevBouquet,
 				"blue": self.showSetup,
+				"prevService": self.prevPressed,
+				"nextService": self.nextPressed,
 			})
 		self["actions"].csel = self
 
@@ -486,19 +501,20 @@ class GraphMultiEPG(Screen):
 		self.updateTimelineTimer.start(60*1000)
 		self.onLayoutFinish.append(self.onCreate)
 
+	def prevPressed(self):
+		self.updEvent(-2)
+
+	def nextPressed(self):
+		self.updEvent(+2)
+
 	def leftPressed(self):
-		self.prevEvent()
+		self.updEvent(-1)
 
 	def rightPressed(self):
-		self.nextEvent()
+		self.updEvent(+1)
 
-	def nextEvent(self, visible=True):
-		ret = self["list"].selEntry(+1, visible)
-		if ret:
-			self.moveTimeLines(True)
-
-	def prevEvent(self, visible=True):
-		ret = self["list"].selEntry(-1, visible)
+	def updEvent(self, dir, visible=True):
+		ret = self["list"].selEntry(dir, visible)
 		if ret:
 			self.moveTimeLines(True)
 
@@ -584,10 +600,7 @@ class GraphMultiEPG(Screen):
 	def eventViewCallback(self, setEvent, setService, val):
 		l = self["list"]
 		old = l.getCurrent()
-		if val == -1:
-			self.prevEvent(False)
-		elif val == +1:
-			self.nextEvent(False)
+		self.updEvent(val, False)
 		cur = l.getCurrent()
 		if cur[0] is None and cur[1].ref != old[1].ref:
 			self.eventViewCallback(setEvent, setService, val)
