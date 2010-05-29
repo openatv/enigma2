@@ -558,15 +558,18 @@ class GraphMultiEPG(Screen):
 			self.bouquetChangeCB(-1, self)
 
 	def enterDateTime(self):
+		t = localtime(time())
+		config.misc.graph_mepg.prev_time.value =  [t.tm_hour, t.tm_min]
 		self.session.openWithCallback(self.onDateTimeInputClosed, TimeDateInput, config.misc.graph_mepg.prev_time )
 
 	def onDateTimeInputClosed(self, ret):
 		if len(ret) > 1:
 			if ret[0]:
-				self.ask_time=ret[1]
+				tmp = ret[1] % 900
+				self.ask_time = ret[1] - tmp
 				l = self["list"]
 				l.resetOffset()
-				l.fillMultiEPG(self.services, ret[1])
+				l.fillMultiEPG(self.services, self.ask_time)
 				self.moveTimeLines(True)
 
 	def showSetup(self):
@@ -598,7 +601,6 @@ class GraphMultiEPG(Screen):
 		self.services = services
 		self.onCreate()
 
-	#just used in multipeg
 	def onCreate(self):
 		self["list"].fillMultiEPG(self.services, self.ask_time)
 		self["list"].moveToService(self.session.nav.getCurrentlyPlayingServiceReference())
