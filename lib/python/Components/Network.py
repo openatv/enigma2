@@ -26,6 +26,9 @@ class Network:
 		self.DnsConsole = Console()
 		self.PingConsole = Console()
 		self.config_ready = None
+		self.friendlyNames = {}
+		self.lan_interfaces = []
+		self.wlan_interfaces = []
 		self.getInterfaces()
 
 	def onRemoteRootFS(self):
@@ -309,13 +312,47 @@ class Network:
 		return len(self.ifaces)
 
 	def getFriendlyAdapterName(self, x):
-		# maybe this needs to be replaced by an external list.
-		friendlyNames = {
-			"eth0": _("Integrated Ethernet"),
-			"wlan0": _("Wireless"),
-			"ath0": _("Integrated Wireless")
-		}
-		return friendlyNames.get(x, x) # when we have no friendly name, use adapter name
+		if x in self.friendlyNames.keys():
+			return self.friendlyNames.get(x, x)
+		else:
+			self.friendlyNames[x] = self.getFriendlyAdapterNaming(x)
+			return self.friendlyNames.get(x, x) # when we have no friendly name, use adapter name
+
+	def getFriendlyAdapterNaming(self, iface):
+		if iface.startswith('eth'):
+			if iface not in self.lan_interfaces and len(self.lan_interfaces) == 0:
+				self.lan_interfaces.append(iface)
+				return _("LAN connection")
+			elif iface not in self.lan_interfaces and len(self.lan_interfaces) >= 1:
+				self.lan_interfaces.append(iface)
+				return _("LAN connection") + " " + str(len(self.lan_interfaces))
+		else:
+			if iface not in self.wlan_interfaces and len(self.wlan_interfaces) == 0:
+				self.wlan_interfaces.append(iface)
+				return _("WLAN connection")
+			elif iface not in self.wlan_interfaces and len(self.wlan_interfaces) >= 1:
+				self.wlan_interfaces.append(iface)
+				return _("WLAN connection") + " " + str(len(self.wlan_interfaces))
+
+	def getFriendlyAdapterDescription(self, iface):
+		if iface == 'eth0':
+			return _("Internal LAN adapter.")
+		else:
+			classdir = "/sys/class/net/" + iface + "/device/"
+			driverdir = "/sys/class/net/" + iface + "/device/driver/"
+			if os_path.exists(classdir):
+				files = listdir(classdir)
+				if 'driver' in files:
+					if os_path.realpath(driverdir).endswith('ath_pci'):
+						return _("Atheros")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
+					elif os_path.realpath(driverdir).endswith('zd1211b'):
+						return _("Zydas")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
+					elif os_path.realpath(driverdir).endswith('rt73'):
+						return _("Ralink")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
+					else:
+						return _("Unknown network adapter.")
+				else:
+					return _("Unknown network adapter.")
 
 	def getAdapterName(self, iface):
 		return iface

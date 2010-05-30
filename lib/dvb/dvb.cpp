@@ -96,6 +96,8 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM800;
 	else if (!strncmp(tmp, "dm500hd\n", rd))
 		m_boxtype = DM500HD;
+	else if (!strncmp(tmp, "dm800se\n", rd))
+		m_boxtype = DM800SE;
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
@@ -455,7 +457,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
-	if (m_boxtype == DM800 || m_boxtype == DM500HD) // dm800 / 500hd
+	if (m_boxtype == DM800 || m_boxtype == DM500HD || m_boxtype == DM800SE) // dm800 / 500hd
 	{
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
 		for (; i != m_demux.end(); ++i, ++n)
@@ -1655,6 +1657,18 @@ void eDVBChannel::SDTready(int result)
 	m_tsid_onid_callback = ePyObject();
 	m_tsid_onid_demux = 0;
 	m_SDT = 0;
+}
+
+int eDVBChannel::reserveDemux()
+{
+	ePtr<iDVBDemux> dmx;
+	if (!getDemux(dmx, 0))
+	{
+		uint8_t id;
+		if (!dmx->getCADemuxID(id))
+			return id;
+	}
+	return -1;
 }
 
 RESULT eDVBChannel::requestTsidOnid(ePyObject callback)

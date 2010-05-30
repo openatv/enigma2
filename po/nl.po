@@ -6,6 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-11 10:44+0000\n"
 "PO-Revision-Date: 2009-09-30 01:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: <Benny.DeTandt@gmail.com>\n"
@@ -54,6 +55,8 @@ msgid ""
 "\n"
 "Manage extensions or plugins for your Dreambox"
 msgstr ""
+"\n"
+"Beheer extensies of plugins op uw Dreambox"
 
 #
 msgid ""
@@ -100,6 +103,8 @@ msgid ""
 "\n"
 "Scan for local extensions and install them."
 msgstr ""
+"\n"
+"Zoek naar locale extensies en installeer."
 
 #
 msgid ""
@@ -118,6 +123,14 @@ msgid ""
 msgstr ""
 "\n"
 "Systeem zal opnieuw opstarten na het herstellen!"
+
+#
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
+"\n"
+"Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
 
 #
 msgid " "
@@ -232,18 +245,6 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:82
-#, python-format
-msgid "%s delay:"
-msgstr "%s vertraging:"
-
-#
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:83
-#, python-format
-msgid "%s:"
-msgstr "%s:"
-
-#
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
@@ -260,12 +261,6 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Alleen beschikbaar indien meer dan één interface actief is."
 
 #
-msgid "* Only available when entering hidden SSID or network key"
-msgstr ""
-"* Alleen beschikbaar bij het ingegeven van de verborgen SSID of netwerk "
-"sleutel"
-
-#
 msgid ".NFI Download failed:"
 msgstr ".NFI Download mislukt:"
 
@@ -275,14 +270,6 @@ msgid ""
 msgstr ""
 "Md5 controle was succesvol op .NFI bestand. U kunt dit image veilig "
 "schrijven!"
-
-#
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 map"
-
-#
-msgid "/var directory"
-msgstr "/var map"
 
 #
 msgid "0"
@@ -381,10 +368,6 @@ msgid "5 minutes"
 msgstr "5 minuten"
 
 #
-msgid "50 Hz"
-msgstr "50 Hz"
-
-#
 msgid "6"
 msgstr "6"
 
@@ -436,6 +419,9 @@ msgid ""
 msgstr ""
 "Een configuratiebestand (%s) is sinds installatie gewijzigd.\n"
 "Wilt u uw versie behouden?"
+
+msgid "A demo plugin for TPM usage."
+msgstr ""
 
 #
 msgid ""
@@ -505,7 +491,7 @@ msgstr "Het benodigde hulpmiddel (%s) kon niet worden gevonden."
 
 #
 msgid "A search for available updates is currently in progress."
-msgstr ""
+msgstr "Een zoektocht naar beschikbare updates is bezig."
 
 #
 msgid ""
@@ -558,18 +544,6 @@ msgid "AB"
 msgstr "AB"
 
 #
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:30
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:34
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:36
-msgid "AC3 Lip Sync"
-msgstr "AC3 Lip Sync"
-
-#
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:35
-msgid "AC3 Lip Sync Setup"
-msgstr "AC3 Lip Sync Instellingen"
-
-#
 msgid "AC3 default"
 msgstr "Standaard AC3"
 
@@ -603,7 +577,7 @@ msgstr "Bij lang indrukken stand-by toets"
 
 #
 msgid "Action on short powerbutton press"
-msgstr ""
+msgstr "Bij kort indrukken stand-by toets"
 
 #
 msgid "Action:"
@@ -698,10 +672,6 @@ msgid "Added: "
 msgstr ""
 
 #
-msgid "Address"
-msgstr "Adres"
-
-#
 msgid ""
 "Adds enigma2 settings and dreambox model informations like SN, rev... if "
 "enabled."
@@ -727,10 +697,6 @@ msgstr ""
 "Wijzig de kleuren zodanig dat alle tinten zichtbaar, maar wel zo kleurig "
 "mogelijk zijn. Zodra het resultaat u bevalt, druk dan op OK om dit menu af "
 "te sluiten of gebruik de nummertoetsen om een ander testscherm te selecteren."
-
-#
-msgid "Advanced"
-msgstr "Expert"
 
 #
 msgid "Advanced Options"
@@ -889,10 +855,6 @@ msgid "Artist"
 msgstr "Artiest"
 
 #
-msgid "Ascanding"
-msgstr ""
-
-#
 msgid "Ascending"
 msgstr ""
 
@@ -907,6 +869,9 @@ msgstr "Vraag gebruiker"
 #
 msgid "Aspect Ratio"
 msgstr "Beeldverhouding"
+
+msgid "Atheros"
+msgstr ""
 
 #
 msgid "Audio"
@@ -926,7 +891,7 @@ msgstr ""
 
 #
 msgid "Australia"
-msgstr ""
+msgstr "Australië"
 
 #
 msgid "Author: "
@@ -935,10 +900,6 @@ msgstr "Auteur:"
 #
 msgid "Authoring mode"
 msgstr "Creatie wijze"
-
-#
-msgid "Authorization"
-msgstr "Autorisatie"
 
 #
 msgid "Auto"
@@ -985,29 +946,6 @@ msgid "Automatic Scan"
 msgstr "Automatisch zoeken"
 
 #
-#, python-format
-msgid ""
-"Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
-msgstr ""
-
-#
-msgid "Autoresolution Switch"
-msgstr ""
-
-#
-msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-msgstr ""
-
-#
-msgid "Autoresolution settings"
-msgstr ""
-
-#
-msgid "Autoresolution videomode setup"
-msgstr ""
-
-#
 msgid "Autos & Vehicles"
 msgstr ""
 
@@ -1048,28 +986,12 @@ msgid "Background"
 msgstr "Achtergrond"
 
 #
-msgid "Backup"
-msgstr "Back-up"
-
-#
-msgid "Backup Location"
-msgstr "Back-up locatie"
-
-#
-msgid "Backup Mode"
-msgstr "Back-up modus"
-
-#
 msgid "Backup done."
 msgstr "Back-up voltooid."
 
 #
 msgid "Backup failed."
 msgstr "Back-up is mislukt."
-
-#
-msgid "Backup is done. Please press OK to see the result."
-msgstr "Back-up is voltooid. Druk op OK om de resultaten te zien."
 
 #
 msgid "Backup is running..."
@@ -1141,7 +1063,7 @@ msgstr "Boeketten"
 
 #
 msgid "Brazil"
-msgstr ""
+msgstr "Brazilië"
 
 #
 msgid "Brightness"
@@ -1160,8 +1082,8 @@ msgid "Burn existing image to DVD"
 msgstr "Brand deze image op DVD"
 
 #
-msgid "Burn to DVD..."
-msgstr "Schrijf op DVD..."
+msgid "Burn to DVD"
+msgstr "Schrijf op DVD"
 
 #
 msgid "Bus: "
@@ -1184,8 +1106,9 @@ msgid "C-Band"
 msgstr "C-Band"
 
 #
-msgid "CF Drive"
-msgstr "CF Drive"
+#, fuzzy
+msgid "CDInfo"
+msgstr "Info"
 
 #
 msgid "CI assignment"
@@ -1208,12 +1131,13 @@ msgid "Cache Thumbnails"
 msgstr "Miniatuurafbeeldingen cachen"
 
 #
-msgid "Call monitoring"
-msgstr "Bel monitor"
+#, fuzzy
+msgid "Can't connect to server. Please check your network!"
+msgstr "Controleer uw netwerkinstellingen a.u.b.!"
 
 #
 msgid "Canada"
-msgstr ""
+msgstr "Canada"
 
 #
 msgid "Cancel"
@@ -1236,20 +1160,12 @@ msgid "Catalan"
 msgstr "Catalaans"
 
 #
-msgid "Category"
-msgstr ""
-
-#
 msgid "Center screen at the lower border"
 msgstr ""
 
 #
 msgid "Center screen at the upper border"
 msgstr ""
-
-#
-msgid "Change"
-msgstr "Wijzigen"
 
 #
 msgid "Change active delay"
@@ -1365,10 +1281,6 @@ msgid "Choose bouquet"
 msgstr "Kies boeket"
 
 #
-msgid "Choose source"
-msgstr "Bron kiezen"
-
-#
 msgid "Choose target folder"
 msgstr "Kies doelmap"
 
@@ -1466,7 +1378,7 @@ msgstr "Beeldinstelling"
 
 #
 msgid "Comedy"
-msgstr ""
+msgstr "Komedie"
 
 #
 msgid "Command execution..."
@@ -1501,20 +1413,12 @@ msgid "Compact Flash"
 msgstr "Compact Flash"
 
 #
-msgid "Compact flash card"
-msgstr "Compact flash kaart"
-
-#
 msgid "Complete"
 msgstr "Compleet"
 
 #
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Complex (mixen audio sporen en aspecten)"
-
-#
-msgid "Config"
-msgstr "Configuratie"
 
 #
 msgid "Configuration Mode"
@@ -1569,27 +1473,8 @@ msgid "Connected to"
 msgstr "Verbonden met"
 
 #
-msgid "Connected to Fritz!Box!"
-msgstr "Verbonden met Fritz!Box!"
-
-#
 msgid "Connected!"
 msgstr "Verbonden!"
-
-#
-msgid "Connecting to Fritz!Box..."
-msgstr "Verbinden met Fritz!Box..."
-
-#
-#, python-format
-msgid ""
-"Connection to Fritz!Box\n"
-"failed! (%s)\n"
-"retrying..."
-msgstr ""
-"Verbinding met Fritz!Box\n"
-"mislukt! (%s)\n"
-"Probeert opnieuw..."
 
 #
 msgid "Constellation"
@@ -1621,7 +1506,7 @@ msgstr "Kan medium niet laden! Geen disk in speler?"
 
 #
 msgid "Could not open Picture in Picture"
-msgstr ""
+msgstr "Kan Picture In Picture niet openen"
 
 #
 #, python-format
@@ -1643,14 +1528,6 @@ msgstr "Crashlog mailer instellingen"
 #
 msgid "CrashlogAutoSubmit settings..."
 msgstr "Crashlog mailer instellingen..."
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia ?"
-msgstr ""
-"Crashlogs gevonden!\n"
-"Verstuur ze naar Dream Multimedia?"
 
 #
 msgid ""
@@ -1752,7 +1629,7 @@ msgstr "Tsjechisch"
 
 #
 msgid "Czech Republic"
-msgstr ""
+msgstr "Tsjechische Republiek"
 
 #
 msgid "D"
@@ -1840,24 +1717,12 @@ msgid "Default services lists"
 msgstr "Standaard zenderlijst"
 
 #
-msgid "Default settings"
-msgstr "Standaard instellingen"
-
-#
-msgid "Deinterlacer mode for interlaced content"
-msgstr ""
-
-#
-msgid "Deinterlacer mode for progressive content"
-msgstr ""
+msgid "Defaults"
+msgstr "Standaard"
 
 #
 msgid "Delay"
 msgstr "Vertraging"
-
-#
-msgid "Delay x seconds after service started"
-msgstr ""
 
 #
 msgid "Delete"
@@ -1889,10 +1754,6 @@ msgstr ""
 "%s verwijderen?"
 
 #
-msgid "Delete selected mount"
-msgstr "Verwijder deze verbinding"
-
-#
 msgid "Descending"
 msgstr ""
 
@@ -1910,7 +1771,7 @@ msgstr "Doelmap"
 
 #
 msgid "Details for extension: "
-msgstr ""
+msgstr "Details voor extensies:"
 
 #
 msgid "Detected HDD:"
@@ -2006,17 +1867,6 @@ msgid "Disconnect"
 msgstr "Verbreken"
 
 #
-#, python-format
-msgid ""
-"Disconnected from\n"
-"Fritz!Box! (%s)\n"
-"retrying..."
-msgstr ""
-"Verbinding metFritz!Box\n"
-"verbroken! (%s)\n"
-"Probeert opnieuw..."
-
-#
 msgid "Dish"
 msgstr "Schotel"
 
@@ -2096,14 +1946,6 @@ msgstr "Weet u zeker dat u map %s van de harde schijf wilt wissen?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Weet u zeker dat u het markeerpunt van %s wilt wissen?"
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Wilt u nu een back-up maken?\n"
-"Druk op OK en een ogenblik geduld!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2204,11 +2046,6 @@ msgstr "Klaar - %d pakket(ten) geïnstalleerd of vervangen"
 
 #
 #, python-format
-msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "Klaar - %d pakket(ten) geïnstalleerd of vervangen met %d fouten"
-
-#
-#, python-format
 msgid "Done - Installed, upgraded or removed %d packages with %d errors"
 msgstr ""
 "Klaar - %d pakket(ten) geïnstalleerd, vervangen of verwijderd met %d fouten"
@@ -2227,7 +2064,7 @@ msgstr "Downloaden"
 
 #
 msgid "Download Video"
-msgstr ""
+msgstr "Download Video"
 
 #
 msgid "Download location"
@@ -2328,7 +2165,7 @@ msgstr "Wijzig Titel"
 
 #
 msgid "Edit bouquets list"
-msgstr ""
+msgstr "Bewerk boeketten lijst"
 
 #
 msgid "Edit chapters of current title"
@@ -2391,28 +2228,8 @@ msgid "Enable /media"
 msgstr "Activeer harde schijf"
 
 #
-msgid "Enable 1080p24 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p25 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p30 Mode"
-msgstr ""
-
-#
 msgid "Enable 5V for active antenna"
 msgstr "5V voor actieve antenne inschakelen"
-
-#
-msgid "Enable 720p24 Mode"
-msgstr ""
-
-#
-msgid "Enable Autoresolution"
-msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2535,22 +2352,6 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 #
-msgid ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"Als u problemen ondervind kunt u kontakt opnemen\n"
-"via e-mail: stephan@reichholf.net\n"
-"\n"
-"© 2007 - Stephan Reichholf"
-
-#
 msgid "Enter Fast Forward at speed"
 msgstr "Snel vooruitspoelen op volgende snelheid"
 
@@ -2561,14 +2362,6 @@ msgstr "Geef IP om te zoeken..."
 #
 msgid "Enter Rewind at speed"
 msgstr "Snel terugspoelen op volgende snelheid"
-
-#
-msgid "Enter WLAN network name/SSID:"
-msgstr "Geef WLAN netwerk naam/SSID:"
-
-#
-msgid "Enter WLAN passphrase/key:"
-msgstr "Geef WLAN wachtwoord/sleutel:"
 
 #
 msgid "Enter main menu..."
@@ -2588,7 +2381,7 @@ msgstr "Geef wachtwoord:"
 
 #
 msgid "Enter pin code"
-msgstr ""
+msgstr "Pincode ingeven"
 
 #
 msgid "Enter share directory:"
@@ -2621,7 +2414,7 @@ msgstr ""
 
 #
 msgid "Entertainment"
-msgstr ""
+msgstr "Amusement"
 
 #
 msgid "Error"
@@ -2655,6 +2448,11 @@ msgstr "Alles is in orde"
 #
 msgid "Exact match"
 msgstr "Exacte overeenkomst"
+
+#
+#, fuzzy
+msgid "Exceeds dual layer medium!"
+msgstr "overschrijdt dubbel lagen medium!"
 
 #
 msgid "Exclude"
@@ -2726,7 +2524,7 @@ msgstr "Applicaties"
 
 #
 msgid "Extensions management"
-msgstr ""
+msgstr "Extensies beheer"
 
 #
 msgid "FEC"
@@ -2785,11 +2583,7 @@ msgstr ""
 
 #
 msgid "Filesystem Check"
-msgstr ""
-
-#
-msgid "Filesystem Check..."
-msgstr "Bestandssysteem controle..."
+msgstr "Controle bestandssysteem"
 
 #
 msgid "Filesystem contains uncorrectable errors"
@@ -2797,7 +2591,7 @@ msgstr "Bestandssysteem bevat onherstelbare fouten"
 
 #
 msgid "Film & Animation"
-msgstr ""
+msgstr "Film & Animatie"
 
 #
 msgid "Filter"
@@ -2850,7 +2644,7 @@ msgstr "Flashen mislukt"
 
 #
 msgid "Following tasks will be done after you press OK!"
-msgstr ""
+msgstr "Volgende taken worden uitgevoerd nadat u op OK drukt!"
 
 #
 msgid "Format"
@@ -2875,7 +2669,7 @@ msgstr "Framegrootte in vol beeld"
 
 #
 msgid "France"
-msgstr ""
+msgstr "Frankrijk"
 
 #
 msgid "French"
@@ -2910,14 +2704,6 @@ msgid "Frisian"
 msgstr "Fries"
 
 #
-msgid "Fritz!Box FON IP address"
-msgstr "Fritz!Box FON IP adres"
-
-#
-msgid "From Region"
-msgstr ""
-
-#
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor versie: %d"
@@ -2925,10 +2711,6 @@ msgstr "Frontprocessor versie: %d"
 #
 msgid "Fsck failed"
 msgstr "Fsck mislukt"
-
-#
-msgid "Function not yet implemented"
-msgstr "Functie nog niet geïmplementeerd"
 
 #
 msgid ""
@@ -2940,7 +2722,7 @@ msgstr ""
 
 #
 msgid "Gaming"
-msgstr ""
+msgstr "Spelletjes"
 
 #
 msgid "Gateway"
@@ -2970,13 +2752,16 @@ msgstr "Genre"
 msgid "Genuine Dreambox"
 msgstr ""
 
+msgid "Genuine Dreambox validation failed!"
+msgstr ""
+
 #
 msgid "German"
 msgstr "Duits"
 
 #
 msgid "Germany"
-msgstr ""
+msgstr "Duitsland"
 
 #
 msgid "Getting plugin information. Please wait..."
@@ -3000,7 +2785,7 @@ msgstr "Grafische Multi EPG"
 
 #
 msgid "Great Britain"
-msgstr ""
+msgstr "Groot-Brittannië"
 
 #
 msgid "Greek"
@@ -3023,24 +2808,16 @@ msgid "Guess existing timer based on begin/end"
 msgstr "Raad bestaande timer gebaseerd op begin/einde"
 
 #
-msgid "HD Interlace Mode"
-msgstr ""
-
-#
-msgid "HD Progressive Mode"
-msgstr ""
-
-#
 msgid "HD videos"
-msgstr ""
+msgstr "HD videos"
 
 #
 msgid "HTTP Port"
-msgstr ""
+msgstr "HTTP Poort"
 
 #
 msgid "HTTPS Port"
-msgstr ""
+msgstr "HTTPS Poort"
 
 #
 msgid "Harddisk"
@@ -3056,7 +2833,7 @@ msgstr "Harde schijf standby na"
 
 #
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
 #
 msgid "Hidden network SSID"
@@ -3080,15 +2857,15 @@ msgstr "Hoge bitrate ondersteuning"
 
 #
 msgid "History"
-msgstr ""
+msgstr "Historiek"
 
 #
 msgid "Holland"
-msgstr ""
+msgstr "Nederland"
 
 #
 msgid "Hong Kong"
-msgstr ""
+msgstr "Hong Kong"
 
 #
 msgid "Horizontal"
@@ -3142,10 +2919,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "If you can see this page, please press OK."
-msgstr "Indien u deze pagina kunt zien, druk dan op OK"
-
-#
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
@@ -3179,10 +2952,6 @@ msgstr ""
 #
 msgid "Image flash utility"
 msgstr "Image flash utility"
-
-#
-msgid "Image-Upgrade"
-msgstr "Image vernieuwen"
 
 #
 msgid "Import AutoTimer"
@@ -3232,7 +3001,7 @@ msgstr "Index"
 
 #
 msgid "India"
-msgstr ""
+msgstr "Indië"
 
 #
 msgid "Info"
@@ -3260,11 +3029,7 @@ msgstr "Initiële locatie in nieuwe timers"
 
 #
 msgid "Initialization"
-msgstr ""
-
-#
-msgid "Initialization..."
-msgstr "Formatteren..."
+msgstr "Formatteren"
 
 #
 msgid "Initialize"
@@ -3351,16 +3116,15 @@ msgid "Interface: "
 msgstr "Interface: "
 
 #
-msgid "Interfaces"
-msgstr "Interfaces"
-
-#
 msgid "Intermediate"
 msgstr "Uitgebreid"
 
 #
 msgid "Internal Flash"
 msgstr "Intern geheugen"
+
+msgid "Internal LAN adapter."
+msgstr ""
 
 #
 msgid "Invalid Location"
@@ -3370,6 +3134,22 @@ msgstr "Ongeldige locatie"
 #, python-format
 msgid "Invalid directory selected: %s"
 msgstr "Ongeldige map geselecteerd: %s"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 304
+msgid "Invalid response from Security service pls restart again"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
+msgid "Invalid response from server."
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
+#, python-format
+msgid "Invalid response from server. Please report: %s"
+msgstr ""
 
 #
 # L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:228
@@ -3382,16 +3162,12 @@ msgid "Inversion"
 msgstr "Inversie"
 
 #
-msgid "Invert display"
-msgstr "Inverteer display"
-
-#
 msgid "Ipkg"
 msgstr "Ipkg"
 
 #
 msgid "Ireland"
-msgstr ""
+msgstr "Ierland"
 
 #
 msgid "Is this videomode ok?"
@@ -3399,7 +3175,7 @@ msgstr "Is deze videomodus ok?"
 
 #
 msgid "Israel"
-msgstr ""
+msgstr "Israël"
 
 #
 msgid ""
@@ -3421,19 +3197,18 @@ msgstr "Italiaans"
 
 #
 msgid "Italy"
-msgstr ""
+msgstr "Italië"
 
 #
 msgid "Japan"
-msgstr ""
+msgstr "Japan"
 
 #
 msgid "Job View"
 msgstr "Voortgang"
 
 #
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this
-#. breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Alleen schalen"
 
@@ -3467,6 +3242,9 @@ msgstr "Toetsenbord layout"
 msgid "LAN Adapter"
 msgstr "LAN adapter"
 
+msgid "LAN connection"
+msgstr ""
+
 #
 msgid "LNB"
 msgstr "LNB"
@@ -3490,9 +3268,6 @@ msgstr "Taal"
 #
 msgid "Language selection"
 msgstr "Taalkeuze"
-
-msgid "Language..."
-msgstr "Taal..."
 
 #
 msgid "Last config"
@@ -3519,8 +3294,7 @@ msgid "Left"
 msgstr "Links"
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep
-#. english term.
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
@@ -3652,7 +3426,7 @@ msgstr "Universele markering"
 
 #
 msgid "Manage extensions"
-msgstr ""
+msgstr "Beheer extensies"
 
 #
 msgid "Manage network shares"
@@ -3744,7 +3518,7 @@ msgstr "Boodschap..."
 
 #
 msgid "Mexico"
-msgstr ""
+msgstr "Mexico"
 
 #
 msgid "Mkfs failed"
@@ -3944,7 +3718,7 @@ msgstr "Multisat"
 
 #
 msgid "Music"
-msgstr ""
+msgstr "Muziek"
 
 #
 msgid "Mute"
@@ -4075,9 +3849,8 @@ msgstr "Netwerk test"
 msgid "Network test..."
 msgstr "Netwerk test..."
 
-#
-msgid "Network..."
-msgstr "Netwerk..."
+msgid "Network test: "
+msgstr ""
 
 #
 msgid "Network:"
@@ -4101,7 +3874,7 @@ msgstr "Nieuw"
 
 #
 msgid "New Zealand"
-msgstr ""
+msgstr "Nieuw-Zeeland"
 
 #
 msgid "New pin"
@@ -4113,7 +3886,7 @@ msgstr "Nieuwe versie:"
 
 #
 msgid "News & Politics"
-msgstr ""
+msgstr "Nieuws & Politiek"
 
 #
 msgid "Next"
@@ -4126,10 +3899,6 @@ msgstr "Nee"
 #
 msgid "No (supported) DVDROM found!"
 msgstr "Geen (ondersteunde) DVDROM gevonden!"
-
-#
-msgid "No 50 Hz, sorry. :("
-msgstr "Geen 50Hz, sorry! :("
 
 #
 msgid "No Connection"
@@ -4185,7 +3954,7 @@ msgstr "Geen vrije tuner!"
 
 #
 msgid "No network connection available."
-msgstr ""
+msgstr "Geen netwerkverbinding beschikbaar."
 
 #
 msgid "No network devices found!"
@@ -4301,14 +4070,6 @@ msgstr ""
 "lokale netwerk interface."
 
 #
-msgid "No, but play next video"
-msgstr ""
-
-#
-msgid "No, but play previous video"
-msgstr ""
-
-#
 msgid "No, but play video again"
 msgstr ""
 
@@ -4353,8 +4114,7 @@ msgid "None"
 msgstr "Geen"
 
 #
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching
-#. the left/right)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Nonlineair"
 
@@ -4463,10 +4223,6 @@ msgid "One"
 msgstr "Een"
 
 #
-msgid "Online-Upgrade"
-msgstr "Online software update"
-
-#
 msgid "Only AutoTimers created during this session"
 msgstr "AutoTimers gemaakt tijdens deze sessie"
 
@@ -4476,7 +4232,7 @@ msgstr "Alleen ongecodeerde zenders scannen"
 
 #
 msgid "Only extensions."
-msgstr ""
+msgstr "Enkel extensies"
 
 #
 msgid "Only match during timespan"
@@ -4502,10 +4258,6 @@ msgstr "Desgewenst geeft u uw naam als u wilt."
 #
 msgid "Orbital Position"
 msgstr "Orbit positie"
-
-#
-msgid "Order by"
-msgstr ""
 
 #
 msgid "Outer Bound (+/-)"
@@ -4548,8 +4300,7 @@ msgid "Page"
 msgstr "Pagina"
 
 #
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt,
-#. keep english term
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr "Pan&Scan"
 
@@ -4602,8 +4353,7 @@ msgid "PicturePlayer"
 msgstr "PicturePlayer"
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep
-#. english term.
+#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
 msgstr "Pillarbox"
 
@@ -4656,7 +4406,7 @@ msgid "Please Select Medium to be Scanned"
 msgstr "Selecteer het te scannen medium..."
 
 #
-msgid "Please add titles to the compilation"
+msgid "Please add titles to the compilation."
 msgstr ""
 
 #
@@ -4881,6 +4631,11 @@ msgstr ""
 "daarna op OK."
 
 #
+#, fuzzy
+msgid "Please wait (Step 2)"
+msgstr "Eventjes geduld..."
+
+#
 msgid "Please wait for activation of your network configuration..."
 msgstr "Een ogenblikje geduld a.u.b. terwijl we uw netwerk activeren..."
 
@@ -4959,7 +4714,7 @@ msgstr "Applicaties"
 
 #
 msgid "Poland"
-msgstr ""
+msgstr "Polen"
 
 #
 msgid "Polarity"
@@ -4980,10 +4735,6 @@ msgstr "Pollinginterval (in uren)"
 #
 msgid "Poll automatically"
 msgstr "Controleer automatisch"
-
-#
-msgid "Port"
-msgstr "Poort"
 
 #
 msgid "Port A"
@@ -5029,12 +4780,6 @@ msgstr "Rotor positie opslaan"
 msgid ""
 "Power state to change to after recordings. Select \"standard\" to not change "
 "the default behavior of enigma2 or values changed by yourself."
-msgstr ""
-
-#
-msgid ""
-"Power state to change to after recordings. Select \"standard\" to not change "
-"the default behaviour of enigma2 or values changed by yourself."
 msgstr ""
 
 #
@@ -5207,12 +4952,11 @@ msgid "RGB"
 msgstr "RGB"
 
 #
-msgid "RSS Feed URI"
-msgstr "RSS Feed URI"
-
-#
 msgid "Radio"
 msgstr "Radio"
+
+msgid "Ralink"
+msgstr ""
 
 #
 msgid "Ram Disk"
@@ -5237,10 +4981,6 @@ msgstr "Afsluiten zonder opslaan?"
 #
 msgid "Really delete done timers?"
 msgstr "Wilt u de gebruikte timers echt wissen?"
-
-#
-msgid "Really delete this Interface?"
-msgstr "Werkelijk deze interface verwijderen?"
 
 #
 msgid "Really exit the subservices quickzap?"
@@ -5301,11 +5041,7 @@ msgstr "Opnemen"
 
 #
 msgid "Recording paths"
-msgstr ""
-
-#
-msgid "Recording paths..."
-msgstr "Opname paden..."
+msgstr "Opname paden"
 
 #
 msgid "Recording(s) are in progress or coming up in few seconds!"
@@ -5349,11 +5085,11 @@ msgstr ""
 
 #
 msgid "Remember service pin"
-msgstr ""
+msgstr "Onthoud service pin"
 
 #
 msgid "Remember service pin cancel"
-msgstr ""
+msgstr "Herinner service pin annuleren"
 
 #
 msgid "Remove"
@@ -5445,20 +5181,16 @@ msgid "Repeats"
 msgstr "Herhalingen"
 
 #
-msgid "Require Authorization"
-msgstr "Autorisatie vereist"
-
-#
 msgid "Require description to be unique"
 msgstr "Beschrijving moet uniek zijn"
 
 #
-msgid "Rescan"
+msgid "Required medium type:"
 msgstr ""
 
 #
-msgid "Rescan network"
-msgstr "Netwerk opnieuw doorzoeken"
+msgid "Rescan"
+msgstr ""
 
 #
 msgid "Reset"
@@ -5537,19 +5269,7 @@ msgid "Restore system settings"
 msgstr "Herstel uw instellingen"
 
 #
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"Herstellen van de instellingen is gereed. Druk op OK om de instellingen te "
-"activeren."
-
-#
 msgid "Restrict \"after event\" to a certain timespan?"
-msgstr ""
-
-#
-msgid "Restricted Content"
 msgstr ""
 
 #
@@ -5559,7 +5279,7 @@ msgstr "Ga door op laatste positie"
 #
 #, python-format
 msgid "Resume position at %s"
-msgstr ""
+msgstr "Hervat positie op %s"
 
 #
 #. TRANSLATORS: The string "Resuming playback" flashes for a moment
@@ -5571,10 +5291,6 @@ msgstr ""
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Afspelen wordt hervat"
-
-#
-msgid "Retrieving network information. Please wait..."
-msgstr ""
 
 #
 msgid "Return to file browser"
@@ -5609,12 +5325,8 @@ msgid "Running"
 msgstr "In behandeling"
 
 #
-msgid "Running in testmode"
-msgstr ""
-
-#
 msgid "Russia"
-msgstr ""
+msgstr "Rusland"
 
 #
 msgid "Russian"
@@ -5623,22 +5335,6 @@ msgstr "Russisch"
 #
 msgid "S-Video"
 msgstr "S-Video"
-
-#
-msgid "SD 25/50HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 25/50HZ Progressive Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Progressive Mode"
-msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5655,14 +5351,6 @@ msgstr "SNR:"
 #
 msgid "SSID:"
 msgstr "SSID:"
-
-#
-msgid "SSL"
-msgstr "SSL"
-
-#
-msgid "SSL Encryption"
-msgstr "SSL Codering"
 
 #
 msgid "Sat"
@@ -5682,7 +5370,7 @@ msgstr "Apparartuur instellingen"
 
 #
 msgid "Satellite equipment"
-msgstr ""
+msgstr "Satellietapparatuur"
 
 #
 msgid "Satellites"
@@ -5697,10 +5385,6 @@ msgid "Sats"
 msgstr "Satellieten"
 
 #
-msgid "Satteliteequipment"
-msgstr "Satellietapparatuur"
-
-#
 msgid "Saturation"
 msgstr "Verzadiging"
 
@@ -5713,26 +5397,8 @@ msgid "Save"
 msgstr "Opslaan"
 
 #
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:247
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:248
-#, python-format
-msgid "Save %s delay"
-msgstr "Bewaar %s vertraging"
-
-#
 msgid "Save Playlist"
 msgstr "Afspeellijst opslaan"
-
-#
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:249
-msgid "Save both delays"
-msgstr "Bewaar beide vertragingen"
-
-#
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:215
-#, python-format
-msgid "Save current %(audio)s delay of %(delay)i ms to key"
-msgstr "Bewaar huidige %(audio)s vertraging van %(delay)i ms aan toets"
 
 #
 msgid "Save current delay to key"
@@ -5751,12 +5417,6 @@ msgid "Save values and close screen"
 msgstr ""
 
 #
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:284
-#, python-format
-msgid "Saved %(audio)s value: %(delay)i ms"
-msgstr "Bewaarde %(audio)s waarde: %(delay)i ms"
-
-#
 msgid "Scaler sharpness"
 msgstr "Scaler scherpte"
 
@@ -5771,10 +5431,6 @@ msgstr "Zoeken"
 #
 msgid "Scan Files..."
 msgstr "Bestanden zoeken..."
-
-#
-msgid "Scan NFS Share"
-msgstr "Zoek NFS share"
 
 #
 msgid "Scan NFS share"
@@ -5871,17 +5527,15 @@ msgstr ""
 #
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
-"WLAN USB Stick\n"
-msgstr ""
-"Zoek naar WiFi accesspoints en verbind hiermee middels uw WLAN USB Stick.\n"
-
-#
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
 "Doorzoek uw netwerk naar draadloze Access Points en connecteer met behulp "
 "van uw geselecteerde draadloze apparaat.\n"
+
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
+"selected wireless device.\n"
+msgstr ""
 
 #
 msgid ""
@@ -5892,10 +5546,6 @@ msgstr ""
 
 #
 msgid "Science & Technology"
-msgstr ""
-
-#
-msgid "Search"
 msgstr ""
 
 #
@@ -5940,7 +5590,7 @@ msgstr "Zoek west"
 
 #
 msgid "Searching for available updates. Please wait..."
-msgstr ""
+msgstr "Zoeken naar beschikbare updates. Ogenblikje..."
 
 #
 msgid "Searching for new installed or removed packages. Please wait..."
@@ -5954,6 +5604,11 @@ msgstr "Netwerk doorzoeken. Een ogenblikje..."
 #
 msgid "Secondary DNS"
 msgstr "Secondaire DNS"
+
+#
+#, fuzzy
+msgid "Security service not running."
+msgstr "Selecteer zender om toe te voegen..."
 
 #
 msgid "Seek"
@@ -6000,10 +5655,6 @@ msgstr "Kies audiospoor"
 #
 msgid "Select bouquet to record on"
 msgstr "Kies een boeket voor opname"
-
-#
-msgid "Select channel audio"
-msgstr ""
 
 #
 msgid "Select channel to record from"
@@ -6065,10 +5716,6 @@ msgstr "Selecteer type filter"
 #
 msgid "Select upgrade source to edit."
 msgstr "Selecteer upgrade bron om te bewerken."
-
-#
-msgid "Select video input"
-msgstr "Selecteer video ingang"
 
 #
 msgid "Select video input with up/down buttons"
@@ -6191,10 +5838,6 @@ msgid "Set Voltage and 22KHz"
 msgstr "Gebruik Voltage en 22KHz"
 
 #
-msgid "Set as default Interface"
-msgstr "Als standaard interface instellen"
-
-#
 msgid "Set available internal memory threshold for the warning."
 msgstr "Voor een waarschuwing stel de beschikbare interne geheugendrempel in."
 
@@ -6237,12 +5880,14 @@ msgid "Setup Mode"
 msgstr "Menu modus"
 
 #
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:35
-msgid "Setup for the AC3 Lip Sync Plugin"
-msgstr "Configuratie van de AC3 Lip Sync Plugin"
+msgid "Setup for the Audio Sync Plugin"
+msgstr ""
 
 #
-msgid "Setup for the Audio Sync Plugin"
+#, python-format
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
 msgstr ""
 
 #
@@ -6289,10 +5934,6 @@ msgstr ""
 #
 msgid "Show in extension menu"
 msgstr "Toon in uitbreidingsmenu"
-
-#
-msgid "Show info screen"
-msgstr ""
 
 #
 msgid "Show infobar on channel change"
@@ -6383,10 +6024,6 @@ msgid "Skin"
 msgstr "Skin"
 
 #
-msgid "Skin..."
-msgstr "Skin..."
-
-#
 msgid "Skins"
 msgstr "Skins"
 
@@ -6429,7 +6066,7 @@ msgstr "Software"
 
 #
 msgid "Software management"
-msgstr ""
+msgstr "Softwarebeheer"
 
 #
 msgid "Software restore"
@@ -6444,26 +6081,12 @@ msgid "Some plugins are not available:\n"
 msgstr "Applicaties die niet beschikbaar zijn:\n"
 
 #
-msgid "Somewhere else"
-msgstr "Ergens anders"
-
-#
 msgid "Sorry MediaScanner is not installed!"
 msgstr "Sorry MediaScanner is niet geïnstalleerd!"
 
 #
 msgid "Sorry no backups found!"
 msgstr "Sorry geen back-ups gevonden!"
-
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Sorry uw back-up locatie is ongeldig\n"
-"\n"
-"Kies een andere locatie a.u.b..."
 
 #
 msgid ""
@@ -6519,11 +6142,11 @@ msgstr "Zuid"
 
 #
 msgid "South Korea"
-msgstr ""
+msgstr "Zuid-Korea"
 
 #
 msgid "Spain"
-msgstr ""
+msgstr "Spanje"
 
 #
 msgid "Spanish"
@@ -6535,7 +6158,7 @@ msgstr "Split preview-modus"
 
 #
 msgid "Sports"
-msgstr ""
+msgstr "Sport"
 
 #
 msgid "Standby"
@@ -6685,16 +6308,11 @@ msgstr "Zenders omwisselen"
 
 #
 msgid "Sweden"
-msgstr ""
+msgstr "Zweden"
 
 #
 msgid "Swedish"
 msgstr "Zweeds"
-
-#
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:94
-msgid "Switch audio"
-msgstr "Kies audio"
 
 #
 msgid "Switch to next subservice"
@@ -6721,8 +6339,7 @@ msgid "System"
 msgstr "Systeem"
 
 #
-#. TRANSLATORS: Add here whatever should be shown in the "translator" about
-#. screen, up to 6 lines (use \n for newline)
+#. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Deze vertaling wordt u aangeboden door :\n"
@@ -6763,7 +6380,7 @@ msgstr ""
 
 #
 msgid "Taiwan"
-msgstr ""
+msgstr "Taiwan"
 
 #
 msgid "Temperature and Fan control"
@@ -6784,6 +6401,11 @@ msgstr "Test DiSEqC instellingen"
 #
 msgid "Test Type"
 msgstr "Test Type"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
+msgid "Test again"
+msgstr ""
 
 #
 msgid "Test mode"
@@ -6837,12 +6459,16 @@ msgid ""
 "The NetworkWizard extension is not installed!\n"
 "Please install it."
 msgstr ""
+"De netwerk wizard extensie is niet geïnstalleerd!\n"
+"Installeer deze a.u.b."
 
 #
 msgid ""
 "The Softwaremanagement extension is not installed!\n"
 "Please install it."
 msgstr ""
+"De Sofwarebeheer extensie is niet geïnstalleerd!\n"
+"Installeer deze a.u.b."
 
 #
 msgid ""
@@ -7030,7 +6656,7 @@ msgstr "Er zijn ten minste"
 
 #
 msgid "There are currently no outstanding actions."
-msgstr ""
+msgstr "Er zijn momenteel geen openstaande acties."
 
 #
 msgid "There are no default services lists in your image."
@@ -7042,7 +6668,7 @@ msgstr "Er zijn geen standaard instellingen in uw firmware gevonden."
 
 #
 msgid "There are no updates available."
-msgstr ""
+msgstr "Er zijn geen updates beschikbaar."
 
 #
 msgid "There are now "
@@ -7069,6 +6695,13 @@ msgstr ""
 #
 msgid "There was an error. The package:"
 msgstr "Er is een fout. Het pakket:"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 130
+msgid ""
+"There's a certificate update available for your dreambox. Would you like to "
+"apply this update now?"
+msgstr ""
 
 #
 #, python-format
@@ -7105,17 +6738,12 @@ msgid "This Dreambox can't decode %s streams!"
 msgstr "Deze Dreambox kan geen %s decoderen!"
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s video streams!"
-msgstr "Deze Dreambox kan volgende %s video niet decoderen!"
-
-#
 msgid "This Month"
-msgstr ""
+msgstr "Deze maand"
 
 #
 msgid "This Week"
-msgstr ""
+msgstr "Deze week"
 
 #
 msgid ""
@@ -7136,10 +6764,6 @@ msgstr ""
 #
 msgid "This is the help screen. Feed me with something to display."
 msgstr ""
-
-#
-msgid "This is unsupported at the moment."
-msgstr "Dit wordt nog niet ondersteund op dit ogenblik."
 
 #
 msgid ""
@@ -7166,10 +6790,6 @@ msgstr "Deze plugin wordt verwijderd."
 
 #
 msgid "This setting controls the behavior when a timer matches a found event."
-msgstr ""
-
-#
-msgid "This setting controls the behaviour when a timer matches a found event."
 msgstr ""
 
 #
@@ -7238,13 +6858,6 @@ msgstr "Deze test detecteert de geconfigureerde LAN-adapter."
 #
 msgid ""
 "This toggles the behavior on timer conflicts. If an AutoTimer matches an "
-"event that conflicts with an existing timer it will not ignore this event "
-"but add it disabled."
-msgstr ""
-
-#
-msgid ""
-"This toggles the behaviour on timer conflicts. If an AutoTimer matches an "
 "event that conflicts with an existing timer it will not ignore this event "
 "but add it disabled."
 msgstr ""
@@ -7350,10 +6963,6 @@ msgid "Timeshift not possible!"
 msgstr "Timeshift is niet mogelijk!"
 
 #
-msgid "Timeshift path..."
-msgstr "Timeshift pad..."
-
-#
 msgid "Timezone"
 msgstr "Tijdzone"
 
@@ -7391,7 +7000,7 @@ msgstr "Vandaag"
 
 #
 msgid "Tone Amplitude"
-msgstr ""
+msgstr "Toon Amplitude"
 
 #
 msgid "Tone mode"
@@ -7407,7 +7016,7 @@ msgstr "Toneburst A/B"
 
 #
 msgid "Top favorites"
-msgstr ""
+msgstr "Top favorieten"
 
 #
 msgid "Top rated"
@@ -7511,7 +7120,7 @@ msgstr "Tuner"
 
 #
 msgid "Tuner type"
-msgstr ""
+msgstr "Tuner type"
 
 #
 msgid "Turkish"
@@ -7534,16 +7143,18 @@ msgid "USALS"
 msgstr "USALS"
 
 #
-msgid "USB"
-msgstr "USB"
-
-#
 msgid "USB Stick"
 msgstr "USB Stick"
 
 #
 msgid "USB stick wizard"
 msgstr "USB stick wizard"
+
+#
+msgid ""
+"USB stick wizard finished. Your dreambox will now restart with your new "
+"image!"
+msgstr ""
 
 #
 msgid "Ukrainian"
@@ -7571,11 +7182,11 @@ msgstr "Uncommitted DiSEqC commando"
 
 #
 msgid "Undo install"
-msgstr ""
+msgstr "Ongedaan"
 
 #
 msgid "Undo uninstall"
-msgstr ""
+msgstr "Ongedaan"
 
 #
 msgid "UnhandledKey"
@@ -7595,15 +7206,18 @@ msgstr "Unicable Martix"
 
 #
 msgid "Uninstall"
-msgstr ""
+msgstr "Deinstalleer"
 
 #
 msgid "United States"
-msgstr ""
+msgstr "Verenigde Staten"
 
 #
 msgid "Universal LNB"
 msgstr "Universeel LNB"
+
+msgid "Unknown network adapter."
+msgstr ""
 
 #
 msgid ""
@@ -7625,8 +7239,27 @@ msgid "Update"
 msgstr "Update"
 
 #
-msgid "Updates your receiver's software"
-msgstr "Dreambox software vernieuwen"
+#, fuzzy
+msgid "Update done..."
+msgstr "Update"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 170
+msgid ""
+"Update done... The genuine dreambox test will now be rerun and should not "
+"ask you to update again."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Updatefeed not available."
+msgstr " updates beschikbaar."
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 150
+msgid ""
+"Updating failed. Nothing is broken, just the update couldn't be applied."
+msgstr ""
 
 #
 msgid "Updating finished. Here is the result:"
@@ -7634,7 +7267,11 @@ msgstr "Software update gereed. Dit is het resultaat:"
 
 #
 msgid "Updating software catalog"
-msgstr ""
+msgstr "Bijwerken software catalogus"
+
+#
+msgid "Updating, please wait..."
+msgstr "Eventjes geduld..."
 
 #
 msgid "Updating... Please wait... This can take some minutes..."
@@ -7645,10 +7282,6 @@ msgstr ""
 #
 msgid "Upgrade finished."
 msgstr "Upgrade voltooid."
-
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Software update gereed. Uw Dreambox herstarten?"
 
 #
 msgid "Upgrading"
@@ -7693,10 +7326,6 @@ msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
 #
-msgid "Use domain/username for windows domains as username!"
-msgstr ""
-
-#
 msgid "Use non-smooth winding at speeds above"
 msgstr "Gebruik 'ruw' spoelen bij snelheden boven"
 
@@ -7707,6 +7336,7 @@ msgstr "Meet stroomopname"
 #
 msgid "Use the Networkwizard to configure selected network adapter"
 msgstr ""
+"Gebruik de netwerk wizard om de geselecteerde netwerkadapter te configureren"
 
 #
 msgid "Use the Networkwizard to configure your Network\n"
@@ -7773,6 +7403,10 @@ msgstr "VCR scart"
 #
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid ""
+"Verify your Dreambox authenticity by running the genuine dreambox plugin!"
+msgstr ""
 
 #
 msgid "Vertical"
@@ -7887,11 +7521,7 @@ msgstr "Bekijk de lijst met beschikbare EPG-extensies."
 
 #
 msgid "View list of available Satellite equipment extensions."
-msgstr ""
-
-#
-msgid "View list of available Satteliteequipment extensions."
-msgstr "Bekijk de lijst met beschikbare sattelietapparatuur extensies."
+msgstr "Bekijk de lijst met beschikbare satellietapparatuur extensies."
 
 #
 msgid "View list of available communication extensions."
@@ -7970,6 +7600,12 @@ msgstr "W"
 msgid "WEP"
 msgstr "WEP"
 
+msgid "WLAN adapter."
+msgstr ""
+
+msgid "WLAN connection"
+msgstr ""
+
 #
 msgid "WPA"
 msgstr "WPA"
@@ -8000,27 +7636,8 @@ msgid "Warn if free space drops below (kB):"
 msgstr "Waarschuwen als vrije ruimte daalt onder (kB):"
 
 #
-msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If "
-"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-"Please press OK to begin."
-msgstr ""
-"Er zal nu worden getest of uw TV deze resolutie ook bij 50Hz weer kan geven. "
-"Indien u nu zwart beeld krijgt, dient u 20 seconden te wachten, waarna er "
-"teruggeschakelt wordt naar 60Hz.\n"
-"Druk nu op OK om met de test te beginnen."
-
-#
 msgid "Webinterface"
 msgstr "Webinterface"
-
-#
-msgid "Webinterface: Edit Interface"
-msgstr "Webinterface: Bewerk Interface"
-
-#
-msgid "Webinterface: List of configured Interfaces"
-msgstr "Webinterface: Lijst van geconfigureerde Interfaces"
 
 #
 msgid "Webinterface: Main Setup"
@@ -8210,11 +7827,6 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "Waar de tijdelijke timeshift opnames bewaren?"
 
 #
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:252
-msgid "Which delays do you want to set"
-msgstr "Welke vertragingen wilt u instellen..."
-
-#
 msgid "Wireless"
 msgstr "Draadloos"
 
@@ -8352,7 +7964,7 @@ msgstr "Deze plugin kunt u installeren."
 
 #
 msgid "You can only burn Dreambox recordings!"
-msgstr ""
+msgstr "U kunt alleen Dreambox opnames schrijven!"
 
 #
 msgid "You can remove this plugin."
@@ -8401,14 +8013,6 @@ msgstr ""
 "Omdat deze verplicht is, kunt u niet verder zonder deze alsnog op te geven."
 
 #
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Er bevind zich waarschijnlijk geen harde schijf in uw Dreambox. U kunt de "
-"instellingen in dit geval niet naar de harde schijf opslaan."
-
-#
 #, python-format
 msgid ""
 "You entered \"%s\" as Text to match.\n"
@@ -8416,35 +8020,6 @@ msgid ""
 msgstr ""
 "U gaf \"%s\" als vergelijking.\n"
 "Wilt u achterliggende spaties verwijderen?"
-
-#
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"U heeft gekozen om de instellingen op een compact flash kaart op te slaan. "
-"De kaart moet in het slot zitten. De inhoud van de kaart wordt overschreven. "
-"Mogelijk is het beter de instellingen op de harde schijf op te slaan!\n"
-"Druk op OK om de back-up te starten."
-
-#
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"U heeft gekozen uw instellingen op een USB stick op te slaan. Gebruik van "
-"een harde schijf voor dit doel wordt aangeraden!\n"
-"Druk op OK om de back-up te starten."
-
-#
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"U heeft gekozen uw instellingen op de harde schijf op te slaan. Druk op OK "
-"om de back-up te starten."
 
 #
 msgid ""
@@ -8550,10 +8125,6 @@ msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "Uw Dreambox zal na OK drukken herstarten."
 
 #
-msgid "Your TV works with 50 Hz. Good!"
-msgstr "Uw TV werkt prima op 50Hz!"
-
-#
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
@@ -8623,18 +8194,6 @@ msgid "Your network configuration has been activated."
 msgstr "Configuratie van uw netwerk is geactiveerd."
 
 #
-msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Configuratie van uw netwerk is geactiveerd.\n"
-"Een tweede reeds geconfigureerde interface is gevonden.\n"
-"\n"
-"Wilt u de tweede netwerk interface deactiveren?"
-
-#
 msgid "Your network mount has been activated."
 msgstr "Uw netwerkverbinding is geactiveerd."
 
@@ -8660,7 +8219,7 @@ msgstr ""
 
 #
 msgid "Zap back to previously tuned service?"
-msgstr ""
+msgstr "Wilt u terugkeren naar de vorige zender?"
 
 #
 msgid "Zap back to service before positioner setup?"
@@ -8672,6 +8231,9 @@ msgstr "Wilt u terugkeren naar de vorige zender?"
 
 #
 msgid "Zap back to service before tuner setup?"
+msgstr "Wilt u terugkeren naar de vorige zender?"
+
+msgid "Zydas"
 msgstr ""
 
 #
@@ -8803,10 +8365,6 @@ msgid "add to parental protection"
 msgstr "Zender op kinderslot zetten"
 
 #
-msgid "address range"
-msgstr "Adresbereik"
-
-#
 msgid "advanced"
 msgstr "geavanceerd"
 
@@ -8815,24 +8373,8 @@ msgid "alphabetic sort"
 msgstr "Alfabetisch sorteren"
 
 #
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"weet u zeker dat u deze instellingen terug\n"
-"wilt zetten:\n"
-
-#
-msgid "assigned CAIds"
-msgstr "Toegewezen CAids:"
-
-#
 msgid "assigned CAIds:"
 msgstr "Toegewezen CAids:"
-
-#
-msgid "assigned Services/Provider"
-msgstr "Toegewezen Zenders/Provider:"
 
 #
 msgid "assigned Services/Provider:"
@@ -8887,10 +8429,6 @@ msgstr "zwarte lijst"
 #
 msgid "blue"
 msgstr "blauw"
-
-#
-msgid "bob"
-msgstr ""
 
 #
 #, python-format
@@ -8972,10 +8510,6 @@ msgstr "dagelijks"
 #
 msgid "day"
 msgstr "dag"
-
-#
-msgid "default"
-msgstr ""
 
 #
 msgid "delete"
@@ -9086,10 +8620,6 @@ msgid "end favourites edit"
 msgstr "Favorieten bewerken deactiveren "
 
 #
-msgid "enigma2 and network"
-msgstr "enigma2 en netwerk"
-
-#
 msgid "enter hidden network SSID"
 msgstr "Geef verborgen netwerk SSID in"
 
@@ -9100,10 +8630,6 @@ msgstr "gelijk aan"
 #
 msgid "exact match"
 msgstr "exacte overeenkomst"
-
-#
-msgid "exceeds dual layer medium!"
-msgstr "overschrijdt dubbel lagen medium!"
 
 #
 msgid "exit DVD player or return to file browser"
@@ -9124,10 +8650,6 @@ msgstr "verlaat nameserver configuratie"
 #
 msgid "exit network adapter configuration"
 msgstr "verlaat netwerkadapter configuratie"
-
-#
-msgid "exit network adapter setup menu"
-msgstr "verlaat netwerkadapter instellingen menu"
 
 #
 msgid "exit network interface list"
@@ -9190,10 +8712,6 @@ msgid "help..."
 msgstr "Help..."
 
 #
-msgid "hidden network"
-msgstr "verborgen netwerk"
-
-#
 msgid "hide extended description"
 msgstr "Weergave: Zonder uitgebreide informatie"
 
@@ -9228,15 +8746,6 @@ msgstr "in de korte omschrijving"
 #
 msgid "in Title"
 msgstr "in de titel"
-
-#
-#, python-format
-msgid ""
-"incoming call!\n"
-"%s calls on %s!"
-msgstr ""
-"inkomend gesprek!\n"
-"%s gesprek met %s!"
 
 #
 msgid "init module"
@@ -9424,7 +8933,7 @@ msgstr "geen"
 
 #
 msgid "not configured"
-msgstr ""
+msgstr "niet geconfigureerd"
 
 #
 msgid "not locked"
@@ -9481,10 +8990,6 @@ msgstr "Open zenderlijst (omlaag)"
 #
 msgid "open servicelist(up)"
 msgstr "Open zenderlijst (omhoog)"
-
-#
-msgid "open virtual keyboard input help"
-msgstr "open virtueel toetsenbord hulp"
 
 #
 msgid "partial match"
@@ -9595,10 +9100,6 @@ msgid "repeated"
 msgstr "herhalen"
 
 #
-msgid "required medium type:"
-msgstr ""
-
-#
 msgid "rewind to the previous chapter"
 msgstr "Terugspoelen naar vorig hoofdstuk"
 
@@ -9682,12 +9183,6 @@ msgstr "Selecteer het opname pad"
 #
 msgid "service pin"
 msgstr "zender pincode"
-
-#
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:34
-# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:36
-msgid "sets the AC3 audio Delay (LipSync)"
-msgstr "Stel de AC3 audio vertraging in (LipSync)"
 
 #
 msgid "sets the Audio Delay (LipSync)"
@@ -9791,7 +9286,7 @@ msgstr "Alfabetisch"
 
 #
 msgid "special characters"
-msgstr ""
+msgstr "speciale tekens"
 
 #
 msgid "standard"
@@ -9902,10 +9397,6 @@ msgid "unknown service"
 msgstr "onbekende zender"
 
 #
-msgid "until restart"
-msgstr "tot herstart"
-
-#
 msgid "until standby/restart"
 msgstr ""
 
@@ -9986,10 +9477,6 @@ msgid "zapped"
 msgstr "zapte"
 
 #
-#
-#
-#
-#
 #~ msgid ""
 #~ "\n"
 #~ "Enigma2 will restart after the restore"
@@ -9997,10 +9484,6 @@ msgstr "zapte"
 #~ "\n"
 #~ "Enigma2 zal herstarten na het terugzetten."
 
-#
-#
-#
-#
 #
 #~ msgid ""
 #~ "\n"
@@ -10010,77 +9493,177 @@ msgstr "zapte"
 #~ "Lokale pakketten zoeken en installeer deze."
 
 #
-#
-#
-#
-#
-#~ msgid ""
-#~ "\n"
-#~ "View, install and remove available or installed packages."
-#~ msgstr ""
-#~ "\n"
-#~ "Bekijk, installeer en verwijder beschikbare of geïnstalleerde pakketten."
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:82
+#~ msgid "%s delay:"
+#~ msgstr "%s vertraging:"
 
 #
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:83
+#~ msgid "%s:"
+#~ msgstr "%s:"
+
 #
+#~ msgid "* Only available when entering hidden SSID or network key"
+#~ msgstr ""
+#~ "* Alleen beschikbaar bij het ingegeven van de verborgen SSID of netwerk "
+#~ "sleutel"
+
 #
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 map"
+
 #
+#~ msgid "/var directory"
+#~ msgstr "/var map"
+
+#
+#~ msgid "50 Hz"
+#~ msgstr "50 Hz"
+
+#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:30
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:34
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:36
+#~ msgid "AC3 Lip Sync"
+#~ msgstr "AC3 Lip Sync"
+
+#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:35
+#~ msgid "AC3 Lip Sync Setup"
+#~ msgstr "AC3 Lip Sync Instellingen"
+
+#
+#~ msgid "Address"
+#~ msgstr "Adres"
+
+#
+#~ msgid "Advanced"
+#~ msgstr "Expert"
+
 #
 #~ msgid "An error occured!"
 #~ msgstr "Er is een fout opgetreden!"
 
 #
+#~ msgid "Authorization"
+#~ msgstr "Autorisatie"
+
 #
+#~ msgid "Backup"
+#~ msgstr "Back-up"
+
 #
+#~ msgid "Backup Location"
+#~ msgstr "Back-up locatie"
+
 #
+#~ msgid "Backup Mode"
+#~ msgstr "Back-up modus"
+
+#
+#~ msgid "Backup is done. Please press OK to see the result."
+#~ msgstr "Back-up is voltooid. Druk op OK om de resultaten te zien."
+
 #
 #~ msgid "Backup running"
 #~ msgstr "Back-up bezig"
 
 #
-#
-#
-#
-#
 #~ msgid "Backup running..."
 #~ msgstr "Back-up bezig..."
 
 #
+#~ msgid "CF Drive"
+#~ msgstr "CF Drive"
+
 #
+#~ msgid "Call monitoring"
+#~ msgstr "Bel monitor"
+
 #
+#~ msgid "Change"
+#~ msgstr "Wijzigen"
+
 #
+#~ msgid "Choose source"
+#~ msgstr "Bron kiezen"
+
+#
+#~ msgid "Compact flash card"
+#~ msgstr "Compact flash kaart"
+
+#
+#~ msgid "Config"
+#~ msgstr "Configuratie"
+
 #
 #~ msgid "Configuration for the CrashlogAutoSubmitter"
 #~ msgstr "Configuratie van de crashlog mailer"
 
 #
+#~ msgid "Connected to Fritz!Box!"
+#~ msgstr "Verbonden met Fritz!Box!"
+
 #
+#~ msgid "Connecting to Fritz!Box..."
+#~ msgstr "Verbinden met Fritz!Box..."
+
 #
-#
+#~ msgid ""
+#~ "Connection to Fritz!Box\n"
+#~ "failed! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Verbinding met Fritz!Box\n"
+#~ "mislukt! (%s)\n"
+#~ "Probeert opnieuw..."
+
 #
 #~ msgid "Continue"
 #~ msgstr "Doorgaan"
 
 #
-#
-#
-#
-#
 #~ msgid "CrashlogAutoSubmitConfiguration"
 #~ msgstr "Crashlog mailer instellingen"
 
 #
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to Dream Multimedia ?"
+#~ msgstr ""
+#~ "Crashlogs gevonden!\n"
+#~ "Verstuur ze naar Dream Multimedia?"
+
 #
+#~ msgid "Default settings"
+#~ msgstr "Standaard instellingen"
+
 #
-#
+#~ msgid "Delete selected mount"
+#~ msgstr "Verwijder deze verbinding"
+
 #
 #~ msgid "Details"
 #~ msgstr "Details"
 
 #
+#~ msgid ""
+#~ "Disconnected from\n"
+#~ "Fritz!Box! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Verbinding metFritz!Box\n"
+#~ "verbroken! (%s)\n"
+#~ "Probeert opnieuw..."
+
 #
-#
-#
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Wilt u nu een back-up maken?\n"
+#~ "Druk op OK en een ogenblik geduld!"
+
 #
 #~ msgid "Do you want to continue installing or removing selected plugins?\n"
 #~ msgstr ""
@@ -10088,89 +9671,97 @@ msgstr "zapte"
 #~ "applicaties?\n"
 
 #
-#
-#
-#
+#~ msgid "Done - Installed or upgraded %d packages with %d errors"
+#~ msgstr "Klaar - %d pakket(ten) geïnstalleerd of vervangen met %d fouten"
+
 #
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Wijzig IPKG bron URL..."
 
 #
-#
-#
-#
-#
 #~ msgid "Encrypted: %s"
 #~ msgstr "Gecodeerd : %s"
 
 #
+#~ msgid ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "Als u problemen ondervind kunt u kontakt opnemen\n"
+#~ "via e-mail: stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2007 - Stephan Reichholf"
+
 #
+#~ msgid "Enter WLAN network name/SSID:"
+#~ msgstr "Geef WLAN netwerk naam/SSID:"
+
 #
+#~ msgid "Enter WLAN passphrase/key:"
+#~ msgstr "Geef WLAN wachtwoord/sleutel:"
+
 #
+#~ msgid "Filesystem Check..."
+#~ msgstr "Bestandssysteem controle..."
+
 #
 #~ msgid "Following tasks will be done after you press continue!"
 #~ msgstr "Volgende taken zullen gebeuren nadat u op OK drukt!"
 
 #
-#
-#
-#
-#
 #~ msgid "Following tasks will be done after you press continue."
 #~ msgstr "Volgende taken zullen gebeuren nadat u op OK drukt."
 
 #
+#~ msgid "Fritz!Box FON IP address"
+#~ msgstr "Fritz!Box FON IP adres"
+
 #
-#
-#
+#~ msgid "Function not yet implemented"
+#~ msgstr "Functie nog niet geïmplementeerd"
+
 #
 #~ msgid "General AC3 delay"
 #~ msgstr "Algemene AC3 vertraging"
 
 #
-#
-#
-#
-#
 #~ msgid "General PCM delay"
 #~ msgstr "Algemene PCM vertraging"
 
-#
-#
-#
-#
 #
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Hier is een klein overzicht van de beschikbare icoontjes."
 
 #
-#
-#
-#
-#
 #~ msgid "How to handle found crashlogs:"
 #~ msgstr "Wat te doen met crashlogs:"
 
 #
+#~ msgid "If you can see this page, please press OK."
+#~ msgstr "Indien u deze pagina kunt zien, druk dan op OK"
+
 #
+#~ msgid "Image-Upgrade"
+#~ msgstr "Image vernieuwen"
+
 #
-#
+#~ msgid "Initialization..."
+#~ msgstr "Formatteren..."
+
 #
 #~ msgid "Install local IPKG"
 #~ msgstr "Installeer lokale IPKG"
 
 #
-#
-#
-#
-#
 #~ msgid "Install software updates..."
 #~ msgstr "Installeer software updates..."
 
-#
-#
-#
-#
 #
 #~ msgid ""
 #~ "Install/\n"
@@ -10180,145 +9771,226 @@ msgstr "zapte"
 #~ "Verwijder"
 
 #
-#
-#
-#
-#
 #~ msgid "Interface: %s"
 #~ msgstr "Interface: %s"
 
 #
+#~ msgid "Interfaces"
+#~ msgstr "Interfaces"
+
 #
+#~ msgid "Invert display"
+#~ msgstr "Inverteer display"
+
 #
-#
+#~ msgid "Language..."
+#~ msgstr "Taal..."
+
 #
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Hiermee kunt u bestanden bekijken/bewerken in uw  Dreambox"
 
 #
-#
-#
-#
-#
 #~ msgid "Max. Bitrate: %s"
 #~ msgstr "Max. Bitrate: %s"
 
 #
+#~ msgid "Network..."
+#~ msgstr "Netwerk..."
+
 #
-#
-#
+#~ msgid "No 50 Hz, sorry. :("
+#~ msgstr "Geen 50Hz, sorry! :("
+
 #
 #~ msgid "No, send them never."
 #~ msgstr "Nee, verstuur ze nooit."
 
 #
-#
-#
-#
+#~ msgid "Online-Upgrade"
+#~ msgstr "Online software update"
+
 #
 #~ msgid "Package details for: "
 #~ msgstr "Pakket details voor:"
 
 #
-#
-#
-#
-#
 #~ msgid "Plugin manager"
 #~ msgstr "Applicatie beheer"
 
-#
-#
-#
-#
 #
 #~ msgid "Plugin manager help..."
 #~ msgstr "Help Pakket beheer..."
 
 #
-#
-#
-#
-#
 #~ msgid "Plugin manager process information..."
 #~ msgstr "Pakket beheer proces informatie..."
 
 #
+#~ msgid "Port"
+#~ msgstr "Poort"
+
 #
+#~ msgid "RSS Feed URI"
+#~ msgstr "RSS Feed URI"
+
 #
+#~ msgid "Really delete this Interface?"
+#~ msgstr "Werkelijk deze interface verwijderen?"
+
 #
+#~ msgid "Recording paths..."
+#~ msgstr "Opname paden..."
+
 #
 #~ msgid "Refresh"
 #~ msgstr "Vernieuwen"
 
 #
+#~ msgid "Require Authorization"
+#~ msgstr "Autorisatie vereist"
+
 #
-#
-#
+#~ msgid "Rescan network"
+#~ msgstr "Netwerk opnieuw doorzoeken"
+
 #
 #~ msgid "Restore backups..."
 #~ msgstr "Back-ups herstellen..."
 
 #
-#
-#
-#
-#
 #~ msgid "Restore running..."
 #~ msgstr "Herstellen bezig..."
 
 #
+#~ msgid ""
+#~ "Restoring the settings is done. Please press OK to activate the restored "
+#~ "settings now."
+#~ msgstr ""
+#~ "Herstellen van de instellingen is gereed. Druk op OK om de instellingen "
+#~ "te activeren."
+
 #
+#~ msgid "SSL"
+#~ msgstr "SSL"
+
 #
+#~ msgid "SSL Encryption"
+#~ msgstr "SSL Codering"
+
 #
+#~ msgid "Satteliteequipment"
+#~ msgstr "Satellietapparatuur"
+
+#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:247
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:248
+#~ msgid "Save %s delay"
+#~ msgstr "Bewaar %s vertraging"
+
+#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:249
+#~ msgid "Save both delays"
+#~ msgstr "Bewaar beide vertragingen"
+
+#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:215
+#~ msgid "Save current %(audio)s delay of %(delay)i ms to key"
+#~ msgstr "Bewaar huidige %(audio)s vertraging van %(delay)i ms aan toets"
+
+#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:284
+#~ msgid "Saved %(audio)s value: %(delay)i ms"
+#~ msgstr "Bewaarde %(audio)s waarde: %(delay)i ms"
+
+#
+#~ msgid "Scan NFS Share"
+#~ msgstr "Zoek NFS share"
+
+#
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your WLAN USB Stick\n"
+#~ msgstr ""
+#~ "Zoek naar WiFi accesspoints en verbind hiermee middels uw WLAN USB "
+#~ "Stick.\n"
+
 #
 #~ msgid "Select IPKG source to edit..."
 #~ msgstr "Selecteer IPKG bron om te bewerken..."
 
 #
-#
-#
-#
-#
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Kies bestanden/mappen om te back-uppen..."
 
 #
+#~ msgid "Select video input"
+#~ msgstr "Selecteer video ingang"
+
 #
+#~ msgid "Set as default Interface"
+#~ msgstr "Als standaard interface instellen"
+
 #
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:35
+#~ msgid "Setup for the AC3 Lip Sync Plugin"
+#~ msgstr "Configuratie van de AC3 Lip Sync Plugin"
+
 #
+#~ msgid "Skin..."
+#~ msgstr "Skin..."
+
 #
 #~ msgid "Slovene"
 #~ msgstr "Sloveens"
 
 #
-#
-#
-#
-#
 #~ msgid "Software manager"
 #~ msgstr "Softwarebeheer"
 
-#
-#
-#
-#
 #
 #~ msgid "Software manager..."
 #~ msgstr "Softwarebeheer..."
 
 #
+#~ msgid "Somewhere else"
+#~ msgstr "Ergens anders"
+
 #
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Sorry uw back-up locatie is ongeldig\n"
+#~ "\n"
+#~ "Kies een andere locatie a.u.b..."
+
 #
-#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:94
+#~ msgid "Switch audio"
+#~ msgstr "Kies audio"
+
 #
 #~ msgid "There is nothing to be done."
 #~ msgstr "Er is niets om uit te voeren."
 
 #
+#~ msgid "This Dreambox can't decode %s video streams!"
+#~ msgstr "Deze Dreambox kan volgende %s video niet decoderen!"
+
 #
+#~ msgid "This is unsupported at the moment."
+#~ msgstr "Dit wordt nog niet ondersteund op dit ogenblik."
+
 #
+#~ msgid "Timeshift path..."
+#~ msgstr "Timeshift pad..."
+
 #
+#~ msgid "USB"
+#~ msgstr "USB"
+
 #
 #~ msgid ""
 #~ "Undo\n"
@@ -10328,10 +10000,6 @@ msgstr "zapte"
 #~ "Installeer"
 
 #
-#
-#
-#
-#
 #~ msgid ""
 #~ "Undo\n"
 #~ "Remove"
@@ -10340,49 +10008,170 @@ msgstr "zapte"
 #~ "Verwijder"
 
 #
-#
-#
-#
+#~ msgid "Updates your receiver's software"
+#~ msgstr "Dreambox software vernieuwen"
+
 #
 #~ msgid "Upgrade"
 #~ msgstr "Upgrade"
 
 #
-#
-#
-#
+#~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+#~ msgstr "Software update gereed. Uw Dreambox herstarten?"
+
 #
 #~ msgid "View"
 #~ msgstr "Bekijken"
 
 #
+#~ msgid "View list of available Satteliteequipment extensions."
+#~ msgstr "Bekijk de lijst met beschikbare sattelietapparatuur extensies."
+
 #
+#~ msgid ""
+#~ "We will now test if your TV can also display this resolution at 50hz. If "
+#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+#~ "Please press OK to begin."
+#~ msgstr ""
+#~ "Er zal nu worden getest of uw TV deze resolutie ook bij 50Hz weer kan "
+#~ "geven. Indien u nu zwart beeld krijgt, dient u 20 seconden te wachten, "
+#~ "waarna er teruggeschakelt wordt naar 60Hz.\n"
+#~ "Druk nu op OK om met de test te beginnen."
+
 #
+#~ msgid "Webinterface: Edit Interface"
+#~ msgstr "Webinterface: Bewerk Interface"
+
 #
+#~ msgid "Webinterface: List of configured Interfaces"
+#~ msgstr "Webinterface: Lijst van geconfigureerde Interfaces"
+
 #
 #~ msgid "What to do with sent crashlogs:"
 #~ msgstr "Wat te doen met verzonden crashlogs:"
 
 #
-#
-#
-#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:252
+#~ msgid "Which delays do you want to set"
+#~ msgstr "Welke vertragingen wilt u instellen..."
+
 #
 #~ msgid "Yes, and don't ask again."
 #~ msgstr "Ja, en niet meer vragen."
 
 #
+#~ msgid ""
+#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
+#~ "harddisk is not an option for you."
+#~ msgstr ""
+#~ "Er bevind zich waarschijnlijk geen harde schijf in uw Dreambox. U kunt de "
+#~ "instellingen in dit geval niet naar de harde schijf opslaan."
+
 #
+#~ msgid ""
+#~ "You have chosen to backup to a compact flash card. The card must be in "
+#~ "the slot. We do not verify if it is really used at the moment. So better "
+#~ "backup to the harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "U heeft gekozen om de instellingen op een compact flash kaart op te "
+#~ "slaan. De kaart moet in het slot zitten. De inhoud van de kaart wordt "
+#~ "overschreven. Mogelijk is het beter de instellingen op de harde schijf op "
+#~ "te slaan!\n"
+#~ "Druk op OK om de back-up te starten."
+
 #
+#~ msgid ""
+#~ "You have chosen to backup to an usb drive. Better backup to the "
+#~ "harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "U heeft gekozen uw instellingen op een USB stick op te slaan. Gebruik van "
+#~ "een harde schijf voor dit doel wordt aangeraden!\n"
+#~ "Druk op OK om de back-up te starten."
+
 #
+#~ msgid ""
+#~ "You have chosen to backup to your harddisk. Please press OK to start the "
+#~ "backup now."
+#~ msgstr ""
+#~ "U heeft gekozen uw instellingen op de harde schijf op te slaan. Druk op "
+#~ "OK om de back-up te starten."
+
+#
+#~ msgid "Your TV works with 50 Hz. Good!"
+#~ msgstr "Uw TV werkt prima op 50Hz!"
+
+#
+#~ msgid ""
+#~ "Your network configuration has been activated.\n"
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Configuratie van uw netwerk is geactiveerd.\n"
+#~ "Een tweede reeds geconfigureerde interface is gevonden.\n"
+#~ "\n"
+#~ "Wilt u de tweede netwerk interface deactiveren?"
+
+#
+#~ msgid "address range"
+#~ msgstr "Adresbereik"
+
+#
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "weet u zeker dat u deze instellingen terug\n"
+#~ "wilt zetten:\n"
+
+#
+#~ msgid "assigned CAIds"
+#~ msgstr "Toegewezen CAids:"
+
+#
+#~ msgid "assigned Services/Provider"
+#~ msgstr "Toegewezen Zenders/Provider:"
+
+#
+#~ msgid "enigma2 and network"
+#~ msgstr "enigma2 en netwerk"
+
+#
+#~ msgid "exit network adapter setup menu"
+#~ msgstr "verlaat netwerkadapter instellingen menu"
+
+#
+#~ msgid "hidden network"
+#~ msgstr "verborgen netwerk"
+
 #
 #~ msgid "hidden..."
 #~ msgstr "verborgen..."
 
 #
-#
-#
-#
+#~ msgid ""
+#~ "incoming call!\n"
+#~ "%s calls on %s!"
+#~ msgstr ""
+#~ "inkomend gesprek!\n"
+#~ "%s gesprek met %s!"
+
 #
 #~ msgid "no module"
 #~ msgstr "geen module"
+
+#
+#~ msgid "open virtual keyboard input help"
+#~ msgstr "open virtueel toetsenbord hulp"
+
+#
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:34
+# L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:36
+#~ msgid "sets the AC3 audio Delay (LipSync)"
+#~ msgstr "Stel de AC3 audio vertraging in (LipSync)"
+
+#
+#~ msgid "until restart"
+#~ msgstr "tot herstart"

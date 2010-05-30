@@ -6,6 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma Portuguese\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-11 10:44+0000\n"
 "PO-Revision-Date: 2008-03-30 18:45-0000\n"
 "Last-Translator: Muaitai <muaitai@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -80,12 +81,6 @@ msgstr ""
 msgid ""
 "\n"
 "Scan for local extensions and install them."
-msgstr ""
-
-#
-msgid ""
-"\n"
-"Scan for local packages and install them."
 msgstr ""
 
 #
@@ -230,10 +225,6 @@ msgid "* Only available if more than one interface is active."
 msgstr ""
 
 #
-msgid "* Only available when entering hidden SSID or network key"
-msgstr ""
-
-#
 msgid ".NFI Download failed:"
 msgstr ""
 
@@ -241,14 +232,6 @@ msgstr ""
 msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr ""
-
-#
-msgid "/usr/share/enigma2 directory"
-msgstr "directoria /usr/share/enigma2 "
-
-#
-msgid "/var directory"
-msgstr "directoria /var "
 
 #
 msgid "0"
@@ -347,10 +330,6 @@ msgid "5 minutes"
 msgstr "5 minutos"
 
 #
-msgid "50 Hz"
-msgstr "50 Hz"
-
-#
 msgid "6"
 msgstr "6"
 
@@ -402,6 +381,9 @@ msgid ""
 msgstr ""
 "Alguns ficheiros (%s) foram alterados depois da instalação.\n"
 "Deseja manter a sua configuração?"
+
+msgid "A demo plugin for TPM usage."
+msgstr ""
 
 #
 msgid ""
@@ -670,10 +652,6 @@ msgstr ""
 "sair, ou use as teclas com números para selecionar outros ecrãs."
 
 #
-msgid "Advanced"
-msgstr "Avançadas"
-
-#
 msgid "Advanced Options"
 msgstr ""
 
@@ -818,10 +796,6 @@ msgid "Artist"
 msgstr "Artista"
 
 #
-msgid "Ascanding"
-msgstr ""
-
-#
 msgid "Ascending"
 msgstr ""
 
@@ -836,6 +810,9 @@ msgstr "Consultar Utilizador"
 #
 msgid "Aspect Ratio"
 msgstr "Aspect Ratio"
+
+msgid "Atheros"
+msgstr ""
 
 #
 msgid "Audio"
@@ -910,29 +887,6 @@ msgid "Automatic Scan"
 msgstr "Busca automatica"
 
 #
-#, python-format
-msgid ""
-"Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
-msgstr ""
-
-#
-msgid "Autoresolution Switch"
-msgstr ""
-
-#
-msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-msgstr ""
-
-#
-msgid "Autoresolution settings"
-msgstr ""
-
-#
-msgid "Autoresolution videomode setup"
-msgstr ""
-
-#
 msgid "Autos & Vehicles"
 msgstr ""
 
@@ -973,28 +927,12 @@ msgid "Background"
 msgstr ""
 
 #
-msgid "Backup"
-msgstr "Restauro"
-
-#
-msgid "Backup Location"
-msgstr "Local do Backup"
-
-#
-msgid "Backup Mode"
-msgstr "Modo do Backup"
-
-#
 msgid "Backup done."
 msgstr ""
 
 #
 msgid "Backup failed."
 msgstr ""
-
-#
-msgid "Backup is done. Please press OK to see the result."
-msgstr "Backup Completo. Pressione OK para ver o resultado"
 
 #
 msgid "Backup is running..."
@@ -1084,9 +1022,9 @@ msgstr "Gravar DVD"
 msgid "Burn existing image to DVD"
 msgstr ""
 
-#
-msgid "Burn to DVD..."
-msgstr ""
+#, fuzzy
+msgid "Burn to DVD"
+msgstr "Gravar DVD"
 
 #
 msgid "Bus: "
@@ -1107,9 +1045,9 @@ msgstr ""
 msgid "C-Band"
 msgstr "Banda C"
 
-#
-msgid "CF Drive"
-msgstr "Drive de Compact Flash"
+#, fuzzy
+msgid "CDInfo"
+msgstr "Barra de Info"
 
 #
 msgid "CI assignment"
@@ -1131,9 +1069,9 @@ msgstr "Cabo"
 msgid "Cache Thumbnails"
 msgstr "Cache Thumbnails"
 
-#
-msgid "Call monitoring"
-msgstr "Call monitoring"
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 108
+msgid "Can't connect to server. Please check your network!"
+msgstr ""
 
 #
 msgid "Canada"
@@ -1158,10 +1096,6 @@ msgstr "Cartão"
 #
 msgid "Catalan"
 msgstr "Catalão"
-
-#
-msgid "Category"
-msgstr ""
 
 #
 msgid "Center screen at the lower border"
@@ -1282,10 +1216,6 @@ msgstr ""
 #
 msgid "Choose bouquet"
 msgstr "Escolha o Bouquet"
-
-#
-msgid "Choose source"
-msgstr "Escolha a fonte"
 
 #
 msgid "Choose target folder"
@@ -1420,19 +1350,11 @@ msgid "Compact Flash"
 msgstr "Compact Flash"
 
 #
-msgid "Compact flash card"
-msgstr "Cartão Compact Flash"
-
-#
 msgid "Complete"
 msgstr "Completo"
 
 #
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr ""
-
-#
-msgid "Config"
 msgstr ""
 
 #
@@ -1488,27 +1410,8 @@ msgid "Connected to"
 msgstr ""
 
 #
-msgid "Connected to Fritz!Box!"
-msgstr "Ligado a Fritz!Box!"
-
-#
 msgid "Connected!"
 msgstr ""
-
-#
-msgid "Connecting to Fritz!Box..."
-msgstr "A ligar a Fritz!Box!"
-
-#
-#, python-format
-msgid ""
-"Connection to Fritz!Box\n"
-"failed! (%s)\n"
-"retrying..."
-msgstr ""
-"Ligação ao Fritz!Box\n"
-"falhou! (%s)\n"
-"Tentar de novo..."
 
 #
 msgid "Constellation"
@@ -1516,10 +1419,6 @@ msgstr "Constelação"
 
 #
 msgid "Content does not fit on DVD!"
-msgstr ""
-
-#
-msgid "Continue"
 msgstr ""
 
 #
@@ -1565,12 +1464,6 @@ msgstr ""
 
 #
 msgid "CrashlogAutoSubmit settings..."
-msgstr ""
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia ?"
 msgstr ""
 
 #
@@ -1759,24 +1652,13 @@ msgid "Default services lists"
 msgstr ""
 
 #
-msgid "Default settings"
-msgstr ""
-
-#
-msgid "Deinterlacer mode for interlaced content"
-msgstr ""
-
-#
-msgid "Deinterlacer mode for progressive content"
-msgstr ""
+#, fuzzy
+msgid "Defaults"
+msgstr "Assistente"
 
 #
 msgid "Delay"
 msgstr "Atraso"
-
-#
-msgid "Delay x seconds after service started"
-msgstr ""
 
 #
 msgid "Delete"
@@ -1803,10 +1685,6 @@ msgstr ""
 msgid ""
 "Delete no more configured satellite\n"
 "%s?"
-msgstr ""
-
-#
-msgid "Delete selected mount"
 msgstr ""
 
 #
@@ -1923,17 +1801,6 @@ msgid "Disconnect"
 msgstr ""
 
 #
-#, python-format
-msgid ""
-"Disconnected from\n"
-"Fritz!Box! (%s)\n"
-"retrying..."
-msgstr ""
-"Desligado de\n"
-"Fritz!Box! (%s)\n"
-"a tentar..."
-
-#
 msgid "Dish"
 msgstr "Antena"
 
@@ -1989,6 +1856,10 @@ msgid ""
 msgstr ""
 
 #
+msgid "Do you really want to exit?"
+msgstr "Deseja realmente sair?"
+
+#
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
@@ -2005,14 +1876,6 @@ msgstr ""
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr ""
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Deseja fazer o backup agora?\n"
-"depois de carregar OK,espere por favor!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2108,11 +1971,6 @@ msgstr "Não parar o programa actual mas desbilitar novos programas"
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "OK - %d Pacotes instalados ou actualizados"
-
-#
-#, python-format
-msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "OK - %d Pacotes instalados ou actualizados com %d erros"
 
 #
 #, python-format
@@ -2297,28 +2155,8 @@ msgid "Enable /media"
 msgstr ""
 
 #
-msgid "Enable 1080p24 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p25 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p30 Mode"
-msgstr ""
-
-#
 msgid "Enable 5V for active antenna"
 msgstr "Activar saída de 5V para a antena"
-
-#
-msgid "Enable 720p24 Mode"
-msgstr ""
-
-#
-msgid "Enable Autoresolution"
-msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2385,11 +2223,6 @@ msgid "Encrypted: "
 msgstr ""
 
 #
-#, python-format
-msgid "Encrypted: %s"
-msgstr ""
-
-#
 msgid "Encryption"
 msgstr ""
 
@@ -2440,22 +2273,6 @@ msgid ""
 msgstr ""
 
 #
-msgid ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"Se tiver problemas por favor contacte\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-
-#
 msgid "Enter Fast Forward at speed"
 msgstr "Velocidade do avance rapido"
 
@@ -2466,14 +2283,6 @@ msgstr ""
 #
 msgid "Enter Rewind at speed"
 msgstr "Velocidade do retrocesso rapido"
-
-#
-msgid "Enter WLAN network name/SSID:"
-msgstr ""
-
-#
-msgid "Enter WLAN passphrase/key:"
-msgstr ""
 
 #
 msgid "Enter main menu..."
@@ -2556,6 +2365,10 @@ msgstr "Tudo OK"
 
 #
 msgid "Exact match"
+msgstr ""
+
+#
+msgid "Exceeds dual layer medium!"
 msgstr ""
 
 #
@@ -2690,10 +2503,6 @@ msgid "Filesystem Check"
 msgstr ""
 
 #
-msgid "Filesystem Check..."
-msgstr "Verificação do sistema de ficheiros"
-
-#
 msgid "Filesystem contains uncorrectable errors"
 msgstr "O sistema de ficheiros encontrou erros incorrigiveis"
 
@@ -2748,10 +2557,6 @@ msgstr ""
 
 #
 msgid "Following tasks will be done after you press OK!"
-msgstr ""
-
-#
-msgid "Following tasks will be done after you press continue!"
 msgstr ""
 
 #
@@ -2810,14 +2615,6 @@ msgid "Frisian"
 msgstr ""
 
 #
-msgid "Fritz!Box FON IP address"
-msgstr "Endereço de IP do Fritz-Box FON"
-
-#
-msgid "From Region"
-msgstr ""
-
-#
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Versão do Processador: %d"
@@ -2825,10 +2622,6 @@ msgstr "Versão do Processador: %d"
 #
 msgid "Fsck failed"
 msgstr "Fsck failed"
-
-#
-msgid "Function not yet implemented"
-msgstr "Função não implementada"
 
 #
 msgid ""
@@ -2851,19 +2644,11 @@ msgid "General AC3 Delay"
 msgstr ""
 
 #
-msgid "General AC3 delay"
-msgstr ""
-
-#
 msgid "General AC3 delay (ms)"
 msgstr ""
 
 #
 msgid "General PCM Delay"
-msgstr ""
-
-#
-msgid "General PCM delay"
 msgstr ""
 
 #
@@ -2876,6 +2661,9 @@ msgstr "Genero"
 
 #
 msgid "Genuine Dreambox"
+msgstr ""
+
+msgid "Genuine Dreambox validation failed!"
 msgstr ""
 
 #
@@ -2928,14 +2716,6 @@ msgstr "Manter  modo intervalo"
 
 #
 msgid "Guess existing timer based on begin/end"
-msgstr ""
-
-#
-msgid "HD Interlace Mode"
-msgstr ""
-
-#
-msgid "HD Progressive Mode"
 msgstr ""
 
 #
@@ -3050,10 +2830,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "If you can see this page, please press OK."
-msgstr "Se consegue ler isto, carregue OK."
-
-#
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
@@ -3085,10 +2861,6 @@ msgstr ""
 #
 msgid "Image flash utility"
 msgstr ""
-
-#
-msgid "Image-Upgrade"
-msgstr "Actualizar imagem"
 
 #
 msgid "Import AutoTimer"
@@ -3167,10 +2939,6 @@ msgstr ""
 #
 msgid "Initialization"
 msgstr ""
-
-#
-msgid "Initialization..."
-msgstr "A iniciar...."
 
 #
 msgid "Initialize"
@@ -3257,17 +3025,15 @@ msgid "Interface: "
 msgstr ""
 
 #
-#, python-format
-msgid "Interface: %s"
-msgstr ""
-
-#
 msgid "Intermediate"
 msgstr "Intermediario"
 
 #
 msgid "Internal Flash"
 msgstr "Flash Interna"
+
+msgid "Internal LAN adapter."
+msgstr ""
 
 #
 msgid "Invalid Location"
@@ -3279,16 +3045,28 @@ msgid "Invalid directory selected: %s"
 msgstr ""
 
 #
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 304
+msgid "Invalid response from Security service pls restart again"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
+msgid "Invalid response from server."
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
+#, python-format
+msgid "Invalid response from server. Please report: %s"
+msgstr ""
+
+#
 msgid "Invalid selection"
 msgstr ""
 
 #
 msgid "Inversion"
 msgstr "Inversão"
-
-#
-msgid "Invert display"
-msgstr "Inverter o Display"
 
 #
 msgid "Ipkg"
@@ -3366,6 +3144,9 @@ msgstr "Mapa das teclas"
 msgid "LAN Adapter"
 msgstr ""
 
+msgid "LAN connection"
+msgstr ""
+
 #
 msgid "LNB"
 msgstr "LNB"
@@ -3389,9 +3170,6 @@ msgstr "Idioma"
 #
 msgid "Language selection"
 msgstr "Selecção do Idioma"
-
-msgid "Language..."
-msgstr "Idioma"
 
 #
 msgid "Last config"
@@ -3600,11 +3378,6 @@ msgstr ""
 
 #
 msgid "Max. Bitrate: "
-msgstr ""
-
-#
-#, python-format
-msgid "Max. Bitrate: %s"
 msgstr ""
 
 #
@@ -3976,9 +3749,8 @@ msgstr ""
 msgid "Network test..."
 msgstr ""
 
-#
-msgid "Network..."
-msgstr "Rede..."
+msgid "Network test: "
+msgstr ""
 
 #
 msgid "Network:"
@@ -4027,10 +3799,6 @@ msgstr "Não"
 #
 msgid "No (supported) DVDROM found!"
 msgstr ""
-
-#
-msgid "No 50 Hz, sorry. :("
-msgstr "Sem 50Hz, desculpe.:("
 
 #
 msgid "No Connection"
@@ -4189,14 +3957,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "No, but play next video"
-msgstr ""
-
-#
-msgid "No, but play previous video"
-msgstr ""
-
-#
 msgid "No, but play video again"
 msgstr ""
 
@@ -4347,10 +4107,6 @@ msgid "One"
 msgstr "Um"
 
 #
-msgid "Online-Upgrade"
-msgstr "Actualiização Online"
-
-#
 msgid "Only AutoTimers created during this session"
 msgstr ""
 
@@ -4388,10 +4144,6 @@ msgid "Orbital Position"
 msgstr "Posição Orbital"
 
 #
-msgid "Order by"
-msgstr ""
-
-#
 msgid "Outer Bound (+/-)"
 msgstr ""
 
@@ -4406,10 +4158,6 @@ msgstr "PAL"
 #
 msgid "PIDs"
 msgstr "PIDs"
-
-#
-msgid "Package details for: "
-msgstr ""
 
 #
 msgid "Package list update"
@@ -4542,7 +4290,7 @@ msgid "Please Select Medium to be Scanned"
 msgstr "Selecione o dispositivo a procurar"
 
 #
-msgid "Please add titles to the compilation"
+msgid "Please add titles to the compilation."
 msgstr ""
 
 #
@@ -4747,6 +4495,11 @@ msgid ""
 msgstr ""
 
 #
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 137
+msgid "Please wait (Step 2)"
+msgstr ""
+
+#
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
@@ -4801,10 +4554,6 @@ msgstr "Por favor espere...a carregar a lista..."
 #
 msgid "Plugin browser"
 msgstr "Plugins Instalados"
-
-#
-msgid "Plugin manager"
-msgstr ""
 
 #
 msgid "Plugin manager activity information"
@@ -4891,12 +4640,6 @@ msgstr "Gravar no Posicionador"
 msgid ""
 "Power state to change to after recordings. Select \"standard\" to not change "
 "the default behavior of enigma2 or values changed by yourself."
-msgstr ""
-
-#
-msgid ""
-"Power state to change to after recordings. Select \"standard\" to not change "
-"the default behaviour of enigma2 or values changed by yourself."
 msgstr ""
 
 #
@@ -5069,12 +4812,11 @@ msgid "RGB"
 msgstr "RGB"
 
 #
-msgid "RSS Feed URI"
-msgstr "RSS Feed URI"
-
-#
 msgid "Radio"
 msgstr "Radio"
+
+msgid "Ralink"
+msgstr ""
 
 #
 msgid "Ram Disk"
@@ -5162,10 +4904,6 @@ msgid "Recording paths"
 msgstr ""
 
 #
-msgid "Recording paths..."
-msgstr ""
-
-#
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
 
@@ -5180,10 +4918,6 @@ msgstr "Gravações têm sempre prioridade"
 #
 msgid "Reenter new pin"
 msgstr "Reintroduza o PIN"
-
-#
-msgid "Refresh"
-msgstr ""
 
 #
 msgid "Refresh Rate"
@@ -5311,11 +5045,11 @@ msgid "Require description to be unique"
 msgstr ""
 
 #
-msgid "Rescan"
+msgid "Required medium type:"
 msgstr ""
 
 #
-msgid "Rescan network"
+msgid "Rescan"
 msgstr ""
 
 #
@@ -5395,17 +5129,7 @@ msgid "Restore system settings"
 msgstr ""
 
 #
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr "O restauro está concluído. Por favor carregue em OK para activar."
-
-#
 msgid "Restrict \"after event\" to a certain timespan?"
-msgstr ""
-
-#
-msgid "Restricted Content"
 msgstr ""
 
 #
@@ -5427,10 +5151,6 @@ msgstr ""
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Retomar "
-
-#
-msgid "Retrieving network information. Please wait..."
-msgstr ""
 
 #
 msgid "Return to file browser"
@@ -5465,10 +5185,6 @@ msgid "Running"
 msgstr "A instalar"
 
 #
-msgid "Running in testmode"
-msgstr ""
-
-#
 msgid "Russia"
 msgstr ""
 
@@ -5479,22 +5195,6 @@ msgstr "Russo"
 #
 msgid "S-Video"
 msgstr "S-Video"
-
-#
-msgid "SD 25/50HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 25/50HZ Progressive Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Progressive Mode"
-msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5542,10 +5242,6 @@ msgstr "Busca Satelites"
 
 #
 msgid "Sats"
-msgstr ""
-
-#
-msgid "Satteliteequipment"
 msgstr ""
 
 #
@@ -5691,12 +5387,11 @@ msgstr ""
 #
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
-"WLAN USB Stick\n"
+"selected wireless device.\n"
 msgstr ""
 
-#
 msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
+"Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
 
@@ -5707,10 +5402,6 @@ msgstr ""
 
 #
 msgid "Science & Technology"
-msgstr ""
-
-#
-msgid "Search"
 msgstr ""
 
 #
@@ -5770,6 +5461,11 @@ msgid "Secondary DNS"
 msgstr ""
 
 #
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 160
+msgid "Security service not running."
+msgstr ""
+
+#
 msgid "Seek"
 msgstr "Busca"
 
@@ -5813,10 +5509,6 @@ msgstr "Seleciona a pista de audio"
 
 #
 msgid "Select bouquet to record on"
-msgstr ""
-
-#
-msgid "Select channel audio"
 msgstr ""
 
 #
@@ -5879,10 +5571,6 @@ msgstr ""
 #
 msgid "Select upgrade source to edit."
 msgstr ""
-
-#
-msgid "Select video input"
-msgstr "Seleccione entrada de Video"
 
 #
 msgid "Select video input with up/down buttons"
@@ -6005,10 +5693,6 @@ msgid "Set Voltage and 22KHz"
 msgstr ""
 
 #
-msgid "Set as default Interface"
-msgstr ""
-
-#
 msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
@@ -6054,6 +5738,13 @@ msgid "Setup for the Audio Sync Plugin"
 msgstr ""
 
 #
+#, python-format
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
+msgstr ""
+
+#
 msgid "Sharpness"
 msgstr ""
 
@@ -6096,10 +5787,6 @@ msgstr ""
 
 #
 msgid "Show in extension menu"
-msgstr ""
-
-#
-msgid "Show info screen"
 msgstr ""
 
 #
@@ -6191,10 +5878,6 @@ msgid "Skin"
 msgstr ""
 
 #
-msgid "Skin..."
-msgstr ""
-
-#
 msgid "Skins"
 msgstr ""
 
@@ -6240,10 +5923,6 @@ msgid "Software management"
 msgstr ""
 
 #
-msgid "Software manager"
-msgstr ""
-
-#
 msgid "Software restore"
 msgstr ""
 
@@ -6256,26 +5935,12 @@ msgid "Some plugins are not available:\n"
 msgstr "Alguns plugins não estão disponiveis:\n"
 
 #
-msgid "Somewhere else"
-msgstr "Algures"
-
-#
 msgid "Sorry MediaScanner is not installed!"
 msgstr ""
 
 #
 msgid "Sorry no backups found!"
 msgstr ""
-
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Desculpe mas o seu backup não existe\n"
-"\n"
-"Por favor seleccione outro."
 
 #
 msgid ""
@@ -6497,10 +6162,6 @@ msgid "Swedish"
 msgstr "Sueco"
 
 #
-msgid "Switch audio"
-msgstr ""
-
-#
 msgid "Switch to next subservice"
 msgstr "Mudar para o proximo canal"
 
@@ -6583,6 +6244,11 @@ msgstr ""
 
 #
 msgid "Test Type"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
+msgid "Test again"
 msgstr ""
 
 #
@@ -6818,10 +6484,6 @@ msgid "There are now "
 msgstr ""
 
 #
-msgid "There is nothing to be done."
-msgstr ""
-
-#
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -6839,6 +6501,13 @@ msgstr ""
 
 #
 msgid "There was an error. The package:"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 130
+msgid ""
+"There's a certificate update available for your dreambox. Would you like to "
+"apply this update now?"
 msgstr ""
 
 #
@@ -6870,11 +6539,6 @@ msgid "This Dreambox can't decode %s streams!"
 msgstr ""
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s video streams!"
-msgstr ""
-
-#
 msgid "This Month"
 msgstr ""
 
@@ -6903,10 +6567,6 @@ msgid "This is the help screen. Feed me with something to display."
 msgstr ""
 
 #
-msgid "This is unsupported at the moment."
-msgstr "Não suportado de momento."
-
-#
 msgid ""
 "This is what will be looked for in event titles. Note that looking for e.g. "
 "german umlauts can be tricky as you have to know the encoding the channel "
@@ -6931,10 +6591,6 @@ msgstr ""
 
 #
 msgid "This setting controls the behavior when a timer matches a found event."
-msgstr ""
-
-#
-msgid "This setting controls the behaviour when a timer matches a found event."
 msgstr ""
 
 #
@@ -6981,13 +6637,6 @@ msgstr ""
 #
 msgid ""
 "This toggles the behavior on timer conflicts. If an AutoTimer matches an "
-"event that conflicts with an existing timer it will not ignore this event "
-"but add it disabled."
-msgstr ""
-
-#
-msgid ""
-"This toggles the behaviour on timer conflicts. If an AutoTimer matches an "
 "event that conflicts with an existing timer it will not ignore this event "
 "but add it disabled."
 msgstr ""
@@ -7089,10 +6738,6 @@ msgstr ""
 #
 msgid "Timeshift not possible!"
 msgstr "Timeshift não permitido!"
-
-#
-msgid "Timeshift path..."
-msgstr ""
 
 #
 msgid "Timezone"
@@ -7267,15 +6912,17 @@ msgid "USALS"
 msgstr "USALS"
 
 #
-msgid "USB"
-msgstr "USB"
-
-#
 msgid "USB Stick"
 msgstr "USB Stick"
 
 #
 msgid "USB stick wizard"
+msgstr ""
+
+#
+msgid ""
+"USB stick wizard finished. Your dreambox will now restart with your new "
+"image!"
 msgstr ""
 
 #
@@ -7301,18 +6948,6 @@ msgstr ""
 #
 msgid "Uncommitted DiSEqC command"
 msgstr "Instrução de DiSECQ não permitida"
-
-#
-msgid ""
-"Undo\n"
-"Install"
-msgstr ""
-
-#
-msgid ""
-"Undo\n"
-"Remove"
-msgstr ""
 
 #
 msgid "Undo install"
@@ -7350,6 +6985,9 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "LNB Universal "
 
+msgid "Unknown network adapter."
+msgstr ""
+
 #
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
@@ -7370,8 +7008,26 @@ msgid "Update"
 msgstr ""
 
 #
-msgid "Updates your receiver's software"
-msgstr "Actualiza o software do seu Dreambox"
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 167
+msgid "Update done..."
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 170
+msgid ""
+"Update done... The genuine dreambox test will now be rerun and should not "
+"ask you to update again."
+msgstr ""
+
+#
+msgid "Updatefeed not available."
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 150
+msgid ""
+"Updating failed. Nothing is broken, just the update couldn't be applied."
+msgstr ""
 
 #
 msgid "Updating finished. Here is the result:"
@@ -7382,16 +7038,17 @@ msgid "Updating software catalog"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Updating, please wait..."
+msgstr "Em preparação… Por favor espere "
+
+#
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Em actualização...Espere por favor...Pode levar alguns minutos..."
 
 #
 msgid "Upgrade finished."
 msgstr ""
-
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Actualização terminada.Deseja reiniciar?"
 
 #
 msgid "Upgrading"
@@ -7434,10 +7091,6 @@ msgstr ""
 #
 msgid "Use a gateway"
 msgstr "Use gateway"
-
-#
-msgid "Use domain/username for windows domains as username!"
-msgstr ""
 
 #
 msgid "Use non-smooth winding at speeds above"
@@ -7515,6 +7168,10 @@ msgstr "Entrada VCR"
 
 #
 msgid "VMGM (intro trailer)"
+msgstr ""
+
+msgid ""
+"Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr ""
 
 #
@@ -7634,10 +7291,6 @@ msgid "View list of available Satellite equipment extensions."
 msgstr ""
 
 #
-msgid "View list of available Satteliteequipment extensions."
-msgstr ""
-
-#
 msgid "View list of available communication extensions."
 msgstr ""
 
@@ -7713,6 +7366,12 @@ msgstr "W"
 msgid "WEP"
 msgstr ""
 
+msgid "WLAN adapter."
+msgstr ""
+
+msgid "WLAN connection"
+msgstr ""
+
 #
 msgid "WPA"
 msgstr ""
@@ -7740,16 +7399,6 @@ msgstr ""
 #
 msgid "Warn if free space drops below (kB):"
 msgstr ""
-
-#
-msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If "
-"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-"Please press OK to begin."
-msgstr ""
-"Vamos agora testar se a sua TV suporta resolução a 50hz.Se o ecrã ficar "
-"preto, espere 20 segundos e irá voltar a 60hz.\n"
-"Carregue OK para começar"
 
 #
 msgid "Webinterface"
@@ -8087,43 +7736,11 @@ msgid ""
 msgstr ""
 
 #
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr "Disco rigido não encontrado.Esta opção não é válida para si."
-
-#
 #, python-format
 msgid ""
 "You entered \"%s\" as Text to match.\n"
 "Do you want to remove trailing whitespaces?"
 msgstr ""
-
-#
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Escolheu gravar para compact flash.O card deve estar inserido.Não é possivel "
-"verificar se está em uso.Deve gravar para o Disco rigido!\n"
-"Carregue OK para iniciar."
-
-#
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Escolheu gravar para USB.Deve gravar para o Disco rigido!\n"
-"Carregue OK para iniciar."
-
-#
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Escolheu fazer um backup do seu disco rigido. Carregue OK para iniciar."
 
 #
 msgid ""
@@ -8207,10 +7824,6 @@ msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr ""
 
 #
-msgid "Your TV works with 50 Hz. Good!"
-msgstr "A sua TV trabalha a 50hz.Optimo!"
-
-#
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
@@ -8272,14 +7885,6 @@ msgid "Your network configuration has been activated."
 msgstr ""
 
 #
-msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-
-#
 msgid "Your network mount has been activated."
 msgstr ""
 
@@ -8313,6 +7918,9 @@ msgstr "Voltar ao canal  antes de satfinder?"
 
 #
 msgid "Zap back to service before tuner setup?"
+msgstr ""
+
+msgid "Zydas"
 msgstr ""
 
 #
@@ -8452,23 +8060,7 @@ msgid "alphabetic sort"
 msgstr "oedenar alfabeticamente"
 
 #
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"Deseja instalar\n"
-"Ficheiro guardado:\n"
-
-#
-msgid "assigned CAIds"
-msgstr ""
-
-#
 msgid "assigned CAIds:"
-msgstr ""
-
-#
-msgid "assigned Services/Provider"
 msgstr ""
 
 #
@@ -8523,10 +8115,6 @@ msgstr "Lista negra"
 
 #
 msgid "blue"
-msgstr ""
-
-#
-msgid "bob"
 msgstr ""
 
 #
@@ -8608,10 +8196,6 @@ msgstr "diário"
 
 #
 msgid "day"
-msgstr ""
-
-#
-msgid "default"
 msgstr ""
 
 #
@@ -8723,10 +8307,6 @@ msgid "end favourites edit"
 msgstr "Terminar edição de favoritos"
 
 #
-msgid "enigma2 and network"
-msgstr ""
-
-#
 msgid "enter hidden network SSID"
 msgstr ""
 
@@ -8736,10 +8316,6 @@ msgstr ""
 
 #
 msgid "exact match"
-msgstr ""
-
-#
-msgid "exceeds dual layer medium!"
 msgstr ""
 
 #
@@ -8760,10 +8336,6 @@ msgstr ""
 
 #
 msgid "exit network adapter configuration"
-msgstr ""
-
-#
-msgid "exit network adapter setup menu"
 msgstr ""
 
 #
@@ -8827,14 +8399,6 @@ msgid "help..."
 msgstr "ajuda..."
 
 #
-msgid "hidden network"
-msgstr ""
-
-#
-msgid "hidden..."
-msgstr ""
-
-#
 msgid "hide extended description"
 msgstr "ocultar descrição"
 
@@ -8869,15 +8433,6 @@ msgstr ""
 #
 msgid "in Title"
 msgstr ""
-
-#
-#, python-format
-msgid ""
-"incoming call!\n"
-"%s calls on %s!"
-msgstr ""
-"Chamada!\n"
-"%s chamdas activas %s!"
 
 #
 msgid "init module"
@@ -9124,10 +8679,6 @@ msgid "open servicelist(up)"
 msgstr "Abrir lista de canais (cima)"
 
 #
-msgid "open virtual keyboard input help"
-msgstr ""
-
-#
 msgid "partial match"
 msgstr ""
 
@@ -9234,10 +8785,6 @@ msgstr ""
 #
 msgid "repeated"
 msgstr "Repetido"
-
-#
-msgid "required medium type:"
-msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -9537,10 +9084,6 @@ msgid "unknown service"
 msgstr "Desconhecido"
 
 #
-msgid "until restart"
-msgstr "Até reinicio"
-
-#
 msgid "until standby/restart"
 msgstr ""
 
@@ -9621,7 +9164,6 @@ msgid "zapped"
 msgstr "zapped"
 
 #
-#
 #~ msgid ""
 #~ "\n"
 #~ "Enigma2 will restart after the restore"
@@ -9630,86 +9172,145 @@ msgstr "zapped"
 #~ "Enigma2 vai reiniciar depois do restauro"
 
 #
-#
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
-#
 #
 #~ msgid "#003258"
 #~ msgstr "#003258"
 
 #
-#
 #~ msgid "#33294a6b"
 #~ msgstr "#33294a6b"
 
-#
 #
 #~ msgid "#77ffffff"
 #~ msgstr "#77ffffff"
 
 #
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "directoria /usr/share/enigma2 "
+
+#
+#~ msgid "/var directory"
+#~ msgstr "directoria /var "
+
+#
+#~ msgid "50 Hz"
+#~ msgstr "50 Hz"
+
 #
 #~ msgid "AGC"
 #~ msgstr "AGC"
 
 #
-#
 #~ msgid "AGC:"
 #~ msgstr "AGC:"
 
-#
 #
 #~ msgid "Add files to playlist"
 #~ msgstr "Adicionar ficheiros á lista de reprodução"
 
 #
-#
 #~ msgid "Add title..."
 #~ msgstr "Adicionar titulo..."
 
 #
+#~ msgid "Advanced"
+#~ msgstr "Avançadas"
+
 #
 #~ msgid "Album:"
 #~ msgstr "Album:"
 
 #
-#
 #~ msgid "All..."
 #~ msgstr "Todos..."
 
 #
+#~ msgid "Backup"
+#~ msgstr "Restauro"
+
+#
+#~ msgid "Backup Location"
+#~ msgstr "Local do Backup"
+
+#
+#~ msgid "Backup Mode"
+#~ msgstr "Modo do Backup"
+
+#
+#~ msgid "Backup is done. Please press OK to see the result."
+#~ msgstr "Backup Completo. Pressione OK para ver o resultado"
+
 #
 #~ msgid "Burn"
 #~ msgstr "Gravar"
 
 #
-#
 #~ msgid "Burn DVD..."
 #~ msgstr "Gravar DVD..."
 
 #
+#~ msgid "CF Drive"
+#~ msgstr "Drive de Compact Flash"
+
+#
+#~ msgid "Call monitoring"
+#~ msgstr "Call monitoring"
+
 #
 #~ msgid "Choose Location"
 #~ msgstr "Seleccione Localização"
 
 #
+#~ msgid "Choose source"
+#~ msgstr "Escolha a fonte"
+
+#
+#~ msgid "Compact flash card"
+#~ msgstr "Cartão Compact Flash"
+
 #
 #~ msgid "Confirm"
 #~ msgstr "Confirme"
 
 #
+#~ msgid "Connected to Fritz!Box!"
+#~ msgstr "Ligado a Fritz!Box!"
+
+#
+#~ msgid "Connecting to Fritz!Box..."
+#~ msgstr "A ligar a Fritz!Box!"
+
+#
+#~ msgid ""
+#~ "Connection to Fritz!Box\n"
+#~ "failed! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Ligação ao Fritz!Box\n"
+#~ "falhou! (%s)\n"
+#~ "Tentar de novo..."
+
 #
 #~ msgid "Default-Wizard"
 #~ msgstr "Assistente"
 
 #
-#
 #~ msgid "Device Setup..."
 #~ msgstr "Definições..."
 
 #
+#~ msgid ""
+#~ "Disconnected from\n"
+#~ "Fritz!Box! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Desligado de\n"
+#~ "Fritz!Box! (%s)\n"
+#~ "a tentar..."
+
 #
 #~ msgid ""
 #~ "Do you really want to REMOVE\n"
@@ -9719,78 +9320,135 @@ msgstr "zapped"
 #~ "o plugin \""
 
 #
-#
 #~ msgid ""
 #~ "Do you really want to download\n"
 #~ "the plugin \""
 #~ msgstr "Descarregar plugin \""
 
 #
-#
-#~ msgid "Do you really want to exit?"
-#~ msgstr "Deseja realmente sair?"
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Deseja fazer o backup agora?\n"
+#~ "depois de carregar OK,espere por favor!"
 
-#
 #
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Deseja ver um manual do editor de listas?"
 
 #
+#~ msgid "Done - Installed or upgraded %d packages with %d errors"
+#~ msgstr "OK - %d Pacotes instalados ou actualizados com %d erros"
+
 #
 #~ msgid "Edit current title"
 #~ msgstr "Editar o titulo actual"
 
 #
-#
 #~ msgid "Edit title..."
 #~ msgstr "Editar o titulo..."
 
-#
 #
 #~ msgid "End"
 #~ msgstr "Terminar"
 
 #
+#~ msgid ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "Se tiver problemas por favor contacte\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#
+#~ msgid "Filesystem Check..."
+#~ msgstr "Verificação do sistema de ficheiros"
+
+#
+#~ msgid "Fritz!Box FON IP address"
+#~ msgstr "Endereço de IP do Fritz-Box FON"
+
+#
+#~ msgid "Function not yet implemented"
+#~ msgstr "Função não implementada"
+
 #
 #~ msgid "Games / Plugins"
 #~ msgstr "Jogos / Plugins"
 
 #
-#
 #~ msgid "Hello!"
 #~ msgstr "Olá!!"
 
 #
+#~ msgid "If you can see this page, please press OK."
+#~ msgstr "Se consegue ler isto, carregue OK."
+
+#
+#~ msgid "Image-Upgrade"
+#~ msgstr "Actualizar imagem"
+
+#
+#~ msgid "Initialization..."
+#~ msgstr "A iniciar...."
+
+#
+#~ msgid "Invert display"
+#~ msgstr "Inverter o Display"
+
+#
+#~ msgid "Language..."
+#~ msgstr "Idioma"
+
 #
 #~ msgid "Movie Menu"
 #~ msgstr "Menu de Filmes"
 
 #
-#
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Nameserver Setup..."
 
 #
+#~ msgid "Network..."
+#~ msgstr "Rede..."
+
 #
 #~ msgid "New DVD"
 #~ msgstr "Novo DVD"
 
 #
+#~ msgid "No 50 Hz, sorry. :("
+#~ msgstr "Sem 50Hz, desculpe.:("
+
+#
+#~ msgid "Online-Upgrade"
+#~ msgstr "Actualiização Online"
+
 #
 #~ msgid "Other..."
 #~ msgstr "Outros.."
 
 #
-#
 #~ msgid "Please select keyword to filter..."
 #~ msgstr "Escreva palavra a filtrar"
 
 #
+#~ msgid "RSS Feed URI"
+#~ msgstr "RSS Feed URI"
+
 #
 #~ msgid "Really delete this timer?"
 #~ msgstr "Apagar este timer?"
 
-#
 #
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really reboot "
@@ -9800,7 +9458,6 @@ msgstr "zapped"
 #~ "reiniciar agora? "
 
 #
-#
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really "
 #~ "restart now?"
@@ -9808,7 +9465,6 @@ msgstr "zapped"
 #~ "As gravações estão em andamento ou a iniciar em poucos segundos… Deseja "
 #~ "reiniciar agora? "
 
-#
 #
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really "
@@ -9818,46 +9474,69 @@ msgstr "zapped"
 #~ "desligar agora? "
 
 #
-#
 #~ msgid "Replace current playlist"
 #~ msgstr "Substituir a lista actual"
 
-#
 #
 #~ msgid "Restart Enigma2"
 #~ msgstr "Reiniciar Enigma2"
 
 #
+#~ msgid ""
+#~ "Restoring the settings is done. Please press OK to activate the restored "
+#~ "settings now."
+#~ msgstr "O restauro está concluído. Por favor carregue em OK para activar."
+
 #
 #~ msgid "Save current project to disk"
 #~ msgstr "Gravar para o Disco rigido"
 
 #
-#
 #~ msgid "Save..."
 #~ msgstr "Guardar..."
 
 #
+#~ msgid "Select video input"
+#~ msgstr "Seleccione entrada de Video"
+
 #
 #~ msgid "Show files from %s"
 #~ msgstr "Mostras os ficheiros de %s"
 
 #
+#~ msgid "Somewhere else"
+#~ msgstr "Algures"
+
+#
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Desculpe mas o seu backup não existe\n"
+#~ "\n"
+#~ "Por favor seleccione outro."
+
 #
 #~ msgid "Start"
 #~ msgstr "Iniciar"
 
 #
-#
 #~ msgid "Startwizard"
 #~ msgstr "Assistente"
 
-#
 #
 #~ msgid "Step "
 #~ msgstr "Avançar"
 
 #
+#~ msgid "This is unsupported at the moment."
+#~ msgstr "Não suportado de momento."
+
+#
+#~ msgid "USB"
+#~ msgstr "USB"
+
 #
 #~ msgid ""
 #~ "Unable to initialize harddisk.\n"
@@ -9869,11 +9548,60 @@ msgstr "zapped"
 #~ "Erro:"
 
 #
+#~ msgid "Updates your receiver's software"
+#~ msgstr "Actualiza o software do seu Dreambox"
+
+#
+#~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+#~ msgstr "Actualização terminada.Deseja reiniciar?"
+
 #
 #~ msgid "VCR Switch"
 #~ msgstr "Mudar para VCR"
 
 #
+#~ msgid ""
+#~ "We will now test if your TV can also display this resolution at 50hz. If "
+#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+#~ "Please press OK to begin."
+#~ msgstr ""
+#~ "Vamos agora testar se a sua TV suporta resolução a 50hz.Se o ecrã ficar "
+#~ "preto, espere 20 segundos e irá voltar a 60hz.\n"
+#~ "Carregue OK para começar"
+
+#
+#~ msgid ""
+#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
+#~ "harddisk is not an option for you."
+#~ msgstr "Disco rigido não encontrado.Esta opção não é válida para si."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to a compact flash card. The card must be in "
+#~ "the slot. We do not verify if it is really used at the moment. So better "
+#~ "backup to the harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "Escolheu gravar para compact flash.O card deve estar inserido.Não é "
+#~ "possivel verificar se está em uso.Deve gravar para o Disco rigido!\n"
+#~ "Carregue OK para iniciar."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to an usb drive. Better backup to the "
+#~ "harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "Escolheu gravar para USB.Deve gravar para o Disco rigido!\n"
+#~ "Carregue OK para iniciar."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to your harddisk. Please press OK to start the "
+#~ "backup now."
+#~ msgstr ""
+#~ "Escolheu fazer um backup do seu disco rigido. Carregue OK para iniciar."
+
 #
 #~ msgid ""
 #~ "You need to define some keywords first!\n"
@@ -9885,51 +9613,61 @@ msgstr "zapped"
 #~ "Deseja definir palavra chave?"
 
 #
-#
 #~ msgid "You selected a playlist"
 #~ msgstr "Seleccionou uma playlist"
 
 #
+#~ msgid "Your TV works with 50 Hz. Good!"
+#~ msgstr "A sua TV trabalha a 50hz.Optimo!"
+
+#
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "Deseja instalar\n"
+#~ "Ficheiro guardado:\n"
+
 #
 #~ msgid "by Exif"
 #~ msgstr "por Exif"
 
 #
-#
 #~ msgid "equal to Socket A"
 #~ msgstr "Igual ao socket A"
 
-#
 #
 #~ msgid "full /etc directory"
 #~ msgstr "pasta full /etc "
 
 #
+#~ msgid ""
+#~ "incoming call!\n"
+#~ "%s calls on %s!"
+#~ msgstr ""
+#~ "Chamada!\n"
+#~ "%s chamdas activas %s!"
+
 #
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Passagem atraves do socket A"
 
 #
-#
 #~ msgid "no Picture found"
 #~ msgstr "Imagens não encontradas"
 
-#
 #
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "só a pasta /etc/enigma2"
 
 #
-#
 #~ msgid "play next playlist entry"
 #~ msgstr "reproduzir a próxima entrada de lista"
 
 #
-#
 #~ msgid "play previous playlist entry"
 #~ msgstr "reproduzir a entrada de lista anterior"
 
-#
 #
 #~ msgid ""
 #~ "scan done!\n"
@@ -9938,7 +9676,6 @@ msgstr "zapped"
 #~ "Busca Terminada!\n"
 #~ "%d Canais encontrados!"
 
-#
 #
 #~ msgid ""
 #~ "scan done!\n"
@@ -9948,7 +9685,6 @@ msgstr "zapped"
 #~ "%d Nenhum canal encontrado!"
 
 #
-#
 #~ msgid ""
 #~ "scan done!\n"
 #~ "One service found!"
@@ -9956,7 +9692,6 @@ msgstr "zapped"
 #~ "Busca terminada!\n"
 #~ "Canal encontrado!"
 
-#
 #
 #~ msgid ""
 #~ "scan in progress - %d %% done!\n"
@@ -9966,26 +9701,25 @@ msgstr "zapped"
 #~ "%d Canais encontrados!"
 
 #
-#
 #~ msgid "show first tag"
 #~ msgstr "mostrar primeira marca"
 
-#
 #
 #~ msgid "show second tag"
 #~ msgstr "mostrar segunda marca"
 
 #
-#
 #~ msgid "skip backward (self defined)"
 #~ msgstr "voltar atrás (autodefinido)"
 
-#
 #
 #~ msgid "skip forward (self defined)"
 #~ msgstr "avançar (autodefinido)"
 
 #
-#
 #~ msgid "text"
 #~ msgstr "texto"
+
+#
+#~ msgid "until restart"
+#~ msgstr "Até reinicio"

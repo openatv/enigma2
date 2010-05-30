@@ -7,6 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-05-11 10:44+0000\n"
 "PO-Revision-Date: 2008-11-26 15:36+0100\n"
 "Last-Translator: MediaVox-Extrasat <info@mediavox.hu>\n"
 "Language-Team: none\n"
@@ -80,12 +81,6 @@ msgstr ""
 msgid ""
 "\n"
 "Scan for local extensions and install them."
-msgstr ""
-
-#
-msgid ""
-"\n"
-"Scan for local packages and install them."
 msgstr ""
 
 #
@@ -230,10 +225,6 @@ msgid "* Only available if more than one interface is active."
 msgstr ""
 
 #
-msgid "* Only available when entering hidden SSID or network key"
-msgstr ""
-
-#
 msgid ".NFI Download failed:"
 msgstr ".NFI letöltés sikertelen:"
 
@@ -243,14 +234,6 @@ msgid ""
 msgstr ""
 "Az .NFI fájl md5sum szignatúra ellenőrzése sikeres. Ezt az imaget "
 "biztonságosan lehet használni!"
-
-#
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 könyvtár"
-
-#
-msgid "/var directory"
-msgstr "/var könyvtár"
 
 #
 msgid "0"
@@ -349,10 +332,6 @@ msgid "5 minutes"
 msgstr "5 perc"
 
 #
-msgid "50 Hz"
-msgstr "50 Hz"
-
-#
 msgid "6"
 msgstr "6"
 
@@ -404,6 +383,9 @@ msgid ""
 msgstr ""
 "A telepítés óta a (%s) konfigurációs fájl módosítva lett.\n"
 "Meg akarja tartani az Ön verzióját?"
+
+msgid "A demo plugin for TPM usage."
+msgstr ""
 
 #
 msgid ""
@@ -673,10 +655,6 @@ msgstr ""
 "bezárásához, vagy a számgombok segítségével válasszon másik teszt ábrát."
 
 #
-msgid "Advanced"
-msgstr "Haladó"
-
-#
 msgid "Advanced Options"
 msgstr ""
 
@@ -824,10 +802,6 @@ msgid "Artist"
 msgstr ""
 
 #
-msgid "Ascanding"
-msgstr ""
-
-#
 msgid "Ascending"
 msgstr ""
 
@@ -842,6 +816,9 @@ msgstr "Felhasználó kérdezése"
 #
 msgid "Aspect Ratio"
 msgstr "Képarány"
+
+msgid "Atheros"
+msgstr ""
 
 #
 msgid "Audio"
@@ -916,29 +893,6 @@ msgid "Automatic Scan"
 msgstr "Automatikus keresés"
 
 #
-#, python-format
-msgid ""
-"Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
-msgstr ""
-
-#
-msgid "Autoresolution Switch"
-msgstr ""
-
-#
-msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-msgstr ""
-
-#
-msgid "Autoresolution settings"
-msgstr ""
-
-#
-msgid "Autoresolution videomode setup"
-msgstr ""
-
-#
 msgid "Autos & Vehicles"
 msgstr ""
 
@@ -979,28 +933,12 @@ msgid "Background"
 msgstr "Háttér"
 
 #
-msgid "Backup"
-msgstr "Mentés"
-
-#
-msgid "Backup Location"
-msgstr "Mentés helye"
-
-#
-msgid "Backup Mode"
-msgstr "Mentési mód"
-
-#
 msgid "Backup done."
 msgstr ""
 
 #
 msgid "Backup failed."
 msgstr ""
-
-#
-msgid "Backup is done. Please press OK to see the result."
-msgstr "A mentés készen van. Nyomja meg az OK-t a részletekért."
 
 #
 msgid "Backup is running..."
@@ -1091,7 +1029,8 @@ msgid "Burn existing image to DVD"
 msgstr ""
 
 #
-msgid "Burn to DVD..."
+#, fuzzy
+msgid "Burn to DVD"
 msgstr "DVD-re kiírás..."
 
 #
@@ -1112,9 +1051,9 @@ msgstr "C"
 msgid "C-Band"
 msgstr "C-sáv"
 
-#
-msgid "CF Drive"
-msgstr "CF meghajtó"
+#, fuzzy
+msgid "CDInfo"
+msgstr "Info-sor"
 
 #
 msgid "CI assignment"
@@ -1136,9 +1075,9 @@ msgstr "Kábel"
 msgid "Cache Thumbnails"
 msgstr "Cache ikonok"
 
-#
-msgid "Call monitoring"
-msgstr "Hivás figyelése"
+#, fuzzy
+msgid "Can't connect to server. Please check your network!"
+msgstr "Kérem ellenőrizze a hálózati beállításokat!"
 
 #
 msgid "Canada"
@@ -1163,10 +1102,6 @@ msgstr "Kártya"
 #
 msgid "Catalan"
 msgstr "Katalán"
-
-#
-msgid "Category"
-msgstr ""
 
 #
 msgid "Center screen at the lower border"
@@ -1287,10 +1222,6 @@ msgstr ""
 #
 msgid "Choose bouquet"
 msgstr "Bouquet kiválasztása"
-
-#
-msgid "Choose source"
-msgstr "Forrás kiválasztása"
 
 #
 msgid "Choose target folder"
@@ -1425,19 +1356,11 @@ msgid "Compact Flash"
 msgstr "Compact Flash"
 
 #
-msgid "Compact flash card"
-msgstr "Compact flash kártya"
-
-#
 msgid "Complete"
 msgstr "Kész"
 
 #
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr ""
-
-#
-msgid "Config"
 msgstr ""
 
 #
@@ -1493,27 +1416,8 @@ msgid "Connected to"
 msgstr "Csatlakoztatva"
 
 #
-msgid "Connected to Fritz!Box!"
-msgstr "Fritz!Box!-hoz csatlakoztatva"
-
-#
 msgid "Connected!"
 msgstr ""
-
-#
-msgid "Connecting to Fritz!Box..."
-msgstr "Csatlakozás a Fritz!Box!-hoz..."
-
-#
-#, python-format
-msgid ""
-"Connection to Fritz!Box\n"
-"failed! (%s)\n"
-"retrying..."
-msgstr ""
-"Csatlakozás a Fritz!Box!-hoz\n"
-"sikertelen! (%s)\n"
-"újra próbálkozom..."
 
 #
 msgid "Constellation"
@@ -1522,10 +1426,6 @@ msgstr "Együttállás"
 #
 msgid "Content does not fit on DVD!"
 msgstr "A tartalom nem fér fel a DVD-re!"
-
-#
-msgid "Continue"
-msgstr ""
 
 #
 msgid "Continue in background"
@@ -1570,12 +1470,6 @@ msgstr ""
 
 #
 msgid "CrashlogAutoSubmit settings..."
-msgstr ""
-
-#
-msgid ""
-"Crashlogs found!\n"
-"Send them to Dream Multimedia ?"
 msgstr ""
 
 #
@@ -1764,24 +1658,13 @@ msgid "Default services lists"
 msgstr "Alaphelyzeti szolgáltatások listája"
 
 #
-msgid "Default settings"
+#, fuzzy
+msgid "Defaults"
 msgstr "Alapbeállítások"
-
-#
-msgid "Deinterlacer mode for interlaced content"
-msgstr ""
-
-#
-msgid "Deinterlacer mode for progressive content"
-msgstr ""
 
 #
 msgid "Delay"
 msgstr "Késleltetés"
-
-#
-msgid "Delay x seconds after service started"
-msgstr ""
 
 #
 msgid "Delete"
@@ -1811,10 +1694,6 @@ msgid ""
 msgstr ""
 "Nem beállított műholdak törlése?\n"
 "%s?"
-
-#
-msgid "Delete selected mount"
-msgstr ""
 
 #
 msgid "Descending"
@@ -1930,17 +1809,6 @@ msgid "Disconnect"
 msgstr ""
 
 #
-#, python-format
-msgid ""
-"Disconnected from\n"
-"Fritz!Box! (%s)\n"
-"retrying..."
-msgstr ""
-"Lekapcsolódva a\n"
-"Fritz!Box!-ról (%s)\n"
-"újra próbálkozás..."
-
-#
 msgid "Dish"
 msgstr "Antenna"
 
@@ -2000,6 +1868,10 @@ msgstr ""
 "a \"%s\" plugint?"
 
 #
+msgid "Do you really want to exit?"
+msgstr "Biztos ki akar lépni?"
+
+#
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
@@ -2016,14 +1888,6 @@ msgstr "Biztos hogy el akarja távolítani a %s könyvtárat a merevlemezről?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "El akarja távolítani a %s bolkmarkot?"
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Most akarja a mentést csinálni?\n"
-"Az OK gombbal elindíthatja, kérem várjon!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2119,11 +1983,6 @@ msgstr "Ne állítsa le a futó eseményt, de kapcsolja le a következőt"
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Kész - A %d csomag módosítása/telepítése megtörtént"
-
-#
-#, python-format
-msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "Kész - A %d csomag módosítása/telepítése %d hibával megtörtént"
 
 #
 #, python-format
@@ -2308,28 +2167,8 @@ msgid "Enable /media"
 msgstr ""
 
 #
-msgid "Enable 1080p24 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p25 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p30 Mode"
-msgstr ""
-
-#
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
-
-#
-msgid "Enable 720p24 Mode"
-msgstr ""
-
-#
-msgid "Enable Autoresolution"
-msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2396,11 +2235,6 @@ msgid "Encrypted: "
 msgstr ""
 
 #
-#, python-format
-msgid "Encrypted: %s"
-msgstr ""
-
-#
 msgid "Encryption"
 msgstr "Kódolás"
 
@@ -2451,22 +2285,6 @@ msgid ""
 msgstr ""
 
 #
-msgid ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 skinválasztó v0.5 BETA\n"
-"\n"
-"Ha bármilyen hibát találna, kérem írja meg (angolul)\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-
-#
 msgid "Enter Fast Forward at speed"
 msgstr "Adja meg a gyors előre csévélést ezen a sebességen"
 
@@ -2477,14 +2295,6 @@ msgstr ""
 #
 msgid "Enter Rewind at speed"
 msgstr "Adja meg a vissza csévélést ezen a sebességen"
-
-#
-msgid "Enter WLAN network name/SSID:"
-msgstr ""
-
-#
-msgid "Enter WLAN passphrase/key:"
-msgstr ""
 
 #
 msgid "Enter main menu..."
@@ -2570,6 +2380,11 @@ msgstr "Minden rendben van"
 #
 msgid "Exact match"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Exceeds dual layer medium!"
+msgstr "meghaladja a dual layer medium méretét!"
 
 #
 msgid "Exclude"
@@ -2703,10 +2518,6 @@ msgid "Filesystem Check"
 msgstr ""
 
 #
-msgid "Filesystem Check..."
-msgstr "Fájlrendszer ellenőrzés..."
-
-#
 msgid "Filesystem contains uncorrectable errors"
 msgstr "A fájlrendszerben nem javítható hibák vannak"
 
@@ -2765,10 +2576,6 @@ msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
 #
-msgid "Following tasks will be done after you press continue!"
-msgstr ""
-
-#
 msgid "Format"
 msgstr "Formázás"
 
@@ -2824,14 +2631,6 @@ msgid "Frisian"
 msgstr ""
 
 #
-msgid "Fritz!Box FON IP address"
-msgstr "Fritz!Box FON IP szám"
-
-#
-msgid "From Region"
-msgstr ""
-
-#
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Előlapi processzor verziója: %d"
@@ -2839,10 +2638,6 @@ msgstr "Előlapi processzor verziója: %d"
 #
 msgid "Fsck failed"
 msgstr "Fsck sikertelen"
-
-#
-msgid "Function not yet implemented"
-msgstr "Ez a funkció még nincs kivitelezve"
 
 #
 msgid ""
@@ -2865,19 +2660,11 @@ msgid "General AC3 Delay"
 msgstr ""
 
 #
-msgid "General AC3 delay"
-msgstr ""
-
-#
 msgid "General AC3 delay (ms)"
 msgstr ""
 
 #
 msgid "General PCM Delay"
-msgstr ""
-
-#
-msgid "General PCM delay"
 msgstr ""
 
 #
@@ -2890,6 +2677,9 @@ msgstr ""
 
 #
 msgid "Genuine Dreambox"
+msgstr ""
+
+msgid "Genuine Dreambox validation failed!"
 msgstr ""
 
 #
@@ -2942,14 +2732,6 @@ msgstr "Védelmi intervallum mód"
 
 #
 msgid "Guess existing timer based on begin/end"
-msgstr ""
-
-#
-msgid "HD Interlace Mode"
-msgstr ""
-
-#
-msgid "HD Progressive Mode"
 msgstr ""
 
 #
@@ -3064,10 +2846,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "If you can see this page, please press OK."
-msgstr "Ha látja ezt a képernyőt, akkor nyomja meg az OK gombot."
-
-#
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
@@ -3102,10 +2880,6 @@ msgstr ""
 #
 msgid "Image flash utility"
 msgstr "Image flash alkalmazás"
-
-#
-msgid "Image-Upgrade"
-msgstr "Image-Frissítés"
 
 #
 msgid "Import AutoTimer"
@@ -3184,10 +2958,6 @@ msgstr ""
 #
 msgid "Initialization"
 msgstr ""
-
-#
-msgid "Initialization..."
-msgstr "Inicializálás..."
 
 #
 msgid "Initialize"
@@ -3274,17 +3044,15 @@ msgid "Interface: "
 msgstr ""
 
 #
-#, python-format
-msgid "Interface: %s"
-msgstr ""
-
-#
 msgid "Intermediate"
 msgstr "Középfokú"
 
 #
 msgid "Internal Flash"
 msgstr "Belső Flash"
+
+msgid "Internal LAN adapter."
+msgstr ""
 
 #
 msgid "Invalid Location"
@@ -3296,16 +3064,28 @@ msgid "Invalid directory selected: %s"
 msgstr "A kiválasztott könyvtár érvénytelen: %s"
 
 #
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 304
+msgid "Invalid response from Security service pls restart again"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
+msgid "Invalid response from server."
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
+#, python-format
+msgid "Invalid response from server. Please report: %s"
+msgstr ""
+
+#
 msgid "Invalid selection"
 msgstr ""
 
 #
 msgid "Inversion"
 msgstr "Invertálás"
-
-#
-msgid "Invert display"
-msgstr "Kijelző invertálása"
 
 #
 msgid "Ipkg"
@@ -3383,6 +3163,9 @@ msgstr "Bill. kiosztás"
 msgid "LAN Adapter"
 msgstr "LAN Adapter"
 
+msgid "LAN connection"
+msgstr ""
+
 #
 msgid "LNB"
 msgstr "LNB"
@@ -3406,9 +3189,6 @@ msgstr "Nyelvezet"
 #
 msgid "Language selection"
 msgstr "Válasszon nyelvet"
-
-msgid "Language..."
-msgstr "Nyelvezet..."
 
 #
 msgid "Last config"
@@ -3617,11 +3397,6 @@ msgstr ""
 
 #
 msgid "Max. Bitrate: "
-msgstr ""
-
-#
-#, python-format
-msgid "Max. Bitrate: %s"
 msgstr ""
 
 #
@@ -3994,9 +3769,8 @@ msgstr "Hálózat ellenőrzése"
 msgid "Network test..."
 msgstr "Hálózat ellenőrzése..."
 
-#
-msgid "Network..."
-msgstr "Hálózat..."
+msgid "Network test: "
+msgstr ""
 
 #
 msgid "Network:"
@@ -4045,10 +3819,6 @@ msgstr "Nem"
 #
 msgid "No (supported) DVDROM found!"
 msgstr "Nincs (támogatott) DVD ROM!"
-
-#
-msgid "No 50 Hz, sorry. :("
-msgstr "Sajnos nincs 50 Hz. :("
 
 #
 msgid "No Connection"
@@ -4209,14 +3979,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "No, but play next video"
-msgstr ""
-
-#
-msgid "No, but play previous video"
-msgstr ""
-
-#
 msgid "No, but play video again"
 msgstr ""
 
@@ -4370,10 +4132,6 @@ msgid "One"
 msgstr "Egy"
 
 #
-msgid "Online-Upgrade"
-msgstr "Online-Frissítés"
-
-#
 msgid "Only AutoTimers created during this session"
 msgstr ""
 
@@ -4411,10 +4169,6 @@ msgid "Orbital Position"
 msgstr "Pálya pozíció"
 
 #
-msgid "Order by"
-msgstr ""
-
-#
 msgid "Outer Bound (+/-)"
 msgstr ""
 
@@ -4429,10 +4183,6 @@ msgstr "PAL"
 #
 msgid "PIDs"
 msgstr "PID-ek"
-
-#
-msgid "Package details for: "
-msgstr ""
 
 #
 msgid "Package list update"
@@ -4565,7 +4315,7 @@ msgid "Please Select Medium to be Scanned"
 msgstr "Válassza ki a keresendő médiumot"
 
 #
-msgid "Please add titles to the compilation"
+msgid "Please add titles to the compilation."
 msgstr ""
 
 #
@@ -4778,6 +4528,11 @@ msgstr ""
 "nyomja meg az OK gombot."
 
 #
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 137
+msgid "Please wait (Step 2)"
+msgstr ""
+
+#
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
@@ -4832,10 +4587,6 @@ msgstr "Kérem várjon... Lista betöltése..."
 #
 msgid "Plugin browser"
 msgstr "Telepített Pluginek"
-
-#
-msgid "Plugin manager"
-msgstr ""
 
 #
 msgid "Plugin manager activity information"
@@ -4922,12 +4673,6 @@ msgstr "Pozícioner mentés"
 msgid ""
 "Power state to change to after recordings. Select \"standard\" to not change "
 "the default behavior of enigma2 or values changed by yourself."
-msgstr ""
-
-#
-msgid ""
-"Power state to change to after recordings. Select \"standard\" to not change "
-"the default behaviour of enigma2 or values changed by yourself."
 msgstr ""
 
 #
@@ -5100,12 +4845,11 @@ msgid "RGB"
 msgstr "RGB"
 
 #
-msgid "RSS Feed URI"
-msgstr "RSS Feed URI"
-
-#
 msgid "Radio"
 msgstr "Rádió"
+
+msgid "Ralink"
+msgstr ""
 
 #
 msgid "Ram Disk"
@@ -5193,10 +4937,6 @@ msgid "Recording paths"
 msgstr ""
 
 #
-msgid "Recording paths..."
-msgstr ""
-
-#
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Felvétel folyik, vagy hamarosan indulni fog!"
 
@@ -5211,10 +4951,6 @@ msgstr "A felvételnek mindíg elsőbbsége van"
 #
 msgid "Reenter new pin"
 msgstr "Adja meg újra az új PIN-t"
-
-#
-msgid "Refresh"
-msgstr ""
 
 #
 msgid "Refresh Rate"
@@ -5342,11 +5078,11 @@ msgid "Require description to be unique"
 msgstr ""
 
 #
-msgid "Rescan"
+msgid "Required medium type:"
 msgstr ""
 
 #
-msgid "Rescan network"
+msgid "Rescan"
 msgstr ""
 
 #
@@ -5426,19 +5162,7 @@ msgid "Restore system settings"
 msgstr ""
 
 #
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr ""
-"A beállítások visszaállítása kész. Az OK gomb megnyomásával aktiválhatja a "
-"visszaállított beállításokat."
-
-#
 msgid "Restrict \"after event\" to a certain timespan?"
-msgstr ""
-
-#
-msgid "Restricted Content"
 msgstr ""
 
 #
@@ -5460,10 +5184,6 @@ msgstr ""
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Lejátszás folytatása"
-
-#
-msgid "Retrieving network information. Please wait..."
-msgstr ""
 
 #
 msgid "Return to file browser"
@@ -5498,10 +5218,6 @@ msgid "Running"
 msgstr "Futó"
 
 #
-msgid "Running in testmode"
-msgstr ""
-
-#
 msgid "Russia"
 msgstr ""
 
@@ -5512,22 +5228,6 @@ msgstr "Orosz"
 #
 msgid "S-Video"
 msgstr "S-Video"
-
-#
-msgid "SD 25/50HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 25/50HZ Progressive Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Progressive Mode"
-msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5576,10 +5276,6 @@ msgstr "Műholdkereső"
 #
 msgid "Sats"
 msgstr "Műholdak"
-
-#
-msgid "Satteliteequipment"
-msgstr ""
 
 #
 msgid "Saturation"
@@ -5724,14 +5420,11 @@ msgstr ""
 #
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
-"WLAN USB Stick\n"
+"selected wireless device.\n"
 msgstr ""
-"Wireless Access Point keresése a hálózaton és csatlakozás rá a WLAN USB "
-"Stick segítségével\n"
 
-#
 msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
+"Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
 
@@ -5742,10 +5435,6 @@ msgstr "Műholdanként rendezett Lamedb keresése csatlakoztatott pozícionerhez
 
 #
 msgid "Science & Technology"
-msgstr ""
-
-#
-msgid "Search"
 msgstr ""
 
 #
@@ -5805,6 +5494,11 @@ msgid "Secondary DNS"
 msgstr "Másodlagos DNS"
 
 #
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 160
+msgid "Security service not running."
+msgstr ""
+
+#
 msgid "Seek"
 msgstr "Keresés"
 
@@ -5848,10 +5542,6 @@ msgstr "Hangsáv kiválasztása"
 
 #
 msgid "Select bouquet to record on"
-msgstr ""
-
-#
-msgid "Select channel audio"
 msgstr ""
 
 #
@@ -5914,10 +5604,6 @@ msgstr ""
 #
 msgid "Select upgrade source to edit."
 msgstr ""
-
-#
-msgid "Select video input"
-msgstr "Válassza ki a video bemenetet"
 
 #
 msgid "Select video input with up/down buttons"
@@ -6040,10 +5726,6 @@ msgid "Set Voltage and 22KHz"
 msgstr ""
 
 #
-msgid "Set as default Interface"
-msgstr "Jelölje meg mint alapértelmezett interfészt"
-
-#
 msgid "Set available internal memory threshold for the warning."
 msgstr ""
 
@@ -6089,6 +5771,13 @@ msgid "Setup for the Audio Sync Plugin"
 msgstr ""
 
 #
+#, python-format
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
+msgstr ""
+
+#
 msgid "Sharpness"
 msgstr ""
 
@@ -6131,10 +5820,6 @@ msgstr ""
 
 #
 msgid "Show in extension menu"
-msgstr ""
-
-#
-msgid "Show info screen"
 msgstr ""
 
 #
@@ -6226,10 +5911,6 @@ msgid "Skin"
 msgstr ""
 
 #
-msgid "Skin..."
-msgstr "Skin..."
-
-#
 msgid "Skins"
 msgstr ""
 
@@ -6275,10 +5956,6 @@ msgid "Software management"
 msgstr ""
 
 #
-msgid "Software manager"
-msgstr ""
-
-#
 msgid "Software restore"
 msgstr ""
 
@@ -6291,26 +5968,12 @@ msgid "Some plugins are not available:\n"
 msgstr "Egyes pluginek nem elérhetőek:\n"
 
 #
-msgid "Somewhere else"
-msgstr "Valahol máshol"
-
-#
 msgid "Sorry MediaScanner is not installed!"
 msgstr ""
 
 #
 msgid "Sorry no backups found!"
 msgstr ""
-
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Sajnálom, de nem létezik a megadott mentési célhely\n"
-"\n"
-"Válasszon másikat."
 
 #
 msgid ""
@@ -6532,10 +6195,6 @@ msgid "Swedish"
 msgstr "Svéd"
 
 #
-msgid "Switch audio"
-msgstr ""
-
-#
 msgid "Switch to next subservice"
 msgstr "Ugrás a köv. alcsatornára"
 
@@ -6624,6 +6283,11 @@ msgstr ""
 
 #
 msgid "Test Type"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
+msgid "Test again"
 msgstr ""
 
 #
@@ -6875,10 +6539,6 @@ msgid "There are now "
 msgstr ""
 
 #
-msgid "There is nothing to be done."
-msgstr ""
-
-#
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -6896,6 +6556,13 @@ msgstr ""
 
 #
 msgid "There was an error. The package:"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 130
+msgid ""
+"There's a certificate update available for your dreambox. Would you like to "
+"apply this update now?"
 msgstr ""
 
 #
@@ -6933,11 +6600,6 @@ msgid "This Dreambox can't decode %s streams!"
 msgstr ""
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s video streams!"
-msgstr "Ez a Dreambox nem tudja dekódolni a %s videó streamet!"
-
-#
 msgid "This Month"
 msgstr ""
 
@@ -6966,10 +6628,6 @@ msgid "This is the help screen. Feed me with something to display."
 msgstr ""
 
 #
-msgid "This is unsupported at the moment."
-msgstr "Ez jelenleg még nem támogatott."
-
-#
 msgid ""
 "This is what will be looked for in event titles. Note that looking for e.g. "
 "german umlauts can be tricky as you have to know the encoding the channel "
@@ -6994,10 +6652,6 @@ msgstr ""
 
 #
 msgid "This setting controls the behavior when a timer matches a found event."
-msgstr ""
-
-#
-msgid "This setting controls the behaviour when a timer matches a found event."
 msgstr ""
 
 #
@@ -7066,13 +6720,6 @@ msgstr "Ez a teszt leellenőrzi a beállított LAN-Adaptert."
 #
 msgid ""
 "This toggles the behavior on timer conflicts. If an AutoTimer matches an "
-"event that conflicts with an existing timer it will not ignore this event "
-"but add it disabled."
-msgstr ""
-
-#
-msgid ""
-"This toggles the behaviour on timer conflicts. If an AutoTimer matches an "
 "event that conflicts with an existing timer it will not ignore this event "
 "but add it disabled."
 msgstr ""
@@ -7176,10 +6823,6 @@ msgstr ""
 #
 msgid "Timeshift not possible!"
 msgstr "Timeshift nem lehetséges!"
-
-#
-msgid "Timeshift path..."
-msgstr ""
 
 #
 msgid "Timezone"
@@ -7354,15 +6997,17 @@ msgid "USALS"
 msgstr "USALS"
 
 #
-msgid "USB"
-msgstr "USB"
-
-#
 msgid "USB Stick"
 msgstr "USB Stick"
 
 #
 msgid "USB stick wizard"
+msgstr ""
+
+#
+msgid ""
+"USB stick wizard finished. Your dreambox will now restart with your new "
+"image!"
 msgstr ""
 
 #
@@ -7388,18 +7033,6 @@ msgstr ""
 #
 msgid "Uncommitted DiSEqC command"
 msgstr "Nem elkötelezett DiSEqC parancs"
-
-#
-msgid ""
-"Undo\n"
-"Install"
-msgstr ""
-
-#
-msgid ""
-"Undo\n"
-"Remove"
-msgstr ""
 
 #
 msgid "Undo install"
@@ -7437,6 +7070,9 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "Univerzális LNB"
 
+msgid "Unknown network adapter."
+msgstr ""
+
 #
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
@@ -7456,9 +7092,26 @@ msgstr ""
 msgid "Update"
 msgstr "Frissítés"
 
+#, fuzzy
+msgid "Update done..."
+msgstr "Frissítés"
+
 #
-msgid "Updates your receiver's software"
-msgstr "A beltéri szoftverét frissíti fel"
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 170
+msgid ""
+"Update done... The genuine dreambox test will now be rerun and should not "
+"ask you to update again."
+msgstr ""
+
+#
+msgid "Updatefeed not available."
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 150
+msgid ""
+"Updating failed. Nothing is broken, just the update couldn't be applied."
+msgstr ""
 
 #
 msgid "Updating finished. Here is the result:"
@@ -7469,16 +7122,17 @@ msgid "Updating software catalog"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Updating, please wait..."
+msgstr "Előkészítés... Kérem várjon"
+
+#
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Frissítés... Kérem várjon... Ez akár pár percig is eltarthat..."
 
 #
 msgid "Upgrade finished."
 msgstr ""
-
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Frissiítés sikeres. Újraindítsam most a DreamBox-ot?"
 
 #
 msgid "Upgrading"
@@ -7521,10 +7175,6 @@ msgstr ""
 #
 msgid "Use a gateway"
 msgstr "Átjáró használata"
-
-#
-msgid "Use domain/username for windows domains as username!"
-msgstr ""
 
 #
 msgid "Use non-smooth winding at speeds above"
@@ -7602,6 +7252,10 @@ msgstr "VCR scart"
 #
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Intro trailer)"
+
+msgid ""
+"Verify your Dreambox authenticity by running the genuine dreambox plugin!"
+msgstr ""
 
 #
 msgid "Vertical"
@@ -7719,10 +7373,6 @@ msgid "View list of available Satellite equipment extensions."
 msgstr ""
 
 #
-msgid "View list of available Satteliteequipment extensions."
-msgstr ""
-
-#
 msgid "View list of available communication extensions."
 msgstr ""
 
@@ -7798,6 +7448,12 @@ msgstr "Ny"
 msgid "WEP"
 msgstr "WEP"
 
+msgid "WLAN adapter."
+msgstr ""
+
+msgid "WLAN connection"
+msgstr ""
+
 #
 msgid "WPA"
 msgstr "WPA"
@@ -7825,17 +7481,6 @@ msgstr "Várakozás"
 #
 msgid "Warn if free space drops below (kB):"
 msgstr ""
-
-#
-msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If "
-"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-"Please press OK to begin."
-msgstr ""
-"Most kipróbáljuk, hogy a TV készüléke képes-e megjeleníteni ezt a felbontást "
-"50 Hz-en. Ha a képernyő feketére vált, várjon 20 mp-et és akkor "
-"automatikusan visszakapcsol 60 Hz-re.\n"
-"Nyomja meg az OK-t a kezdéshez."
 
 #
 msgid "Webinterface"
@@ -8189,49 +7834,11 @@ msgid ""
 msgstr ""
 
 #
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Úgy látom a készülékben nincs merevlemez. Így a merevlemezre való mentés nem "
-"végrehajtható."
-
-#
 #, python-format
 msgid ""
 "You entered \"%s\" as Text to match.\n"
 "Do you want to remove trailing whitespaces?"
 msgstr ""
-
-#
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Ön azt választotta, hogy készítsek egy mentést egy CF kártyára. A kártyának "
-"ehhez benne kell lennie a nyílásban. Most azonban nem ellenőrizzük, hogy "
-"valóban van behelyezett kártya. Így jobb ha a mentést a merevlemezre "
-"tároljuk el!\n"
-"Nyomja meg az OK-t a mentés indításához."
-
-#
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Ön azt választotta hogy a mentést az USB meghajtóra tároljam le. Azonban "
-"biztonságosabb ezt a merevlemezen eltárolni!\n"
-"Nyomja meg az OK-t a mentés indításához."
-
-#
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Ön azt választotta, hogy a mentést a merevlemezre tároljam el. Nyomja meg az "
-"OK-t a mentés elindításához."
 
 #
 msgid ""
@@ -8319,10 +7926,6 @@ msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "Az OK gomb megnyomása után a Dreambox újra fog indulni."
 
 #
-msgid "Your TV works with 50 Hz. Good!"
-msgstr "A TV készüléke alkalmas az 50 Hz-re. Rendben van!"
-
-#
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
@@ -8386,14 +7989,6 @@ msgid "Your network configuration has been activated."
 msgstr ""
 
 #
-msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-
-#
 msgid "Your network mount has been activated."
 msgstr ""
 
@@ -8427,6 +8022,9 @@ msgstr "Ugorjunk vissza a műholdkereső elött nézett csatornához?"
 
 #
 msgid "Zap back to service before tuner setup?"
+msgstr ""
+
+msgid "Zydas"
 msgstr ""
 
 #
@@ -8566,23 +8164,7 @@ msgid "alphabetic sort"
 msgstr "ábécé szerinti rendezés"
 
 #
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"biztos hogy vissza akarja állítani\n"
-"a következő mentést:\n"
-
-#
-msgid "assigned CAIds"
-msgstr ""
-
-#
 msgid "assigned CAIds:"
-msgstr ""
-
-#
-msgid "assigned Services/Provider"
 msgstr ""
 
 #
@@ -8637,10 +8219,6 @@ msgstr "feketelista"
 
 #
 msgid "blue"
-msgstr ""
-
-#
-msgid "bob"
 msgstr ""
 
 #
@@ -8723,10 +8301,6 @@ msgstr "naponta"
 #
 msgid "day"
 msgstr "nap"
-
-#
-msgid "default"
-msgstr ""
 
 #
 msgid "delete"
@@ -8837,10 +8411,6 @@ msgid "end favourites edit"
 msgstr "kedvencek módosításának vége"
 
 #
-msgid "enigma2 and network"
-msgstr ""
-
-#
 msgid "enter hidden network SSID"
 msgstr ""
 
@@ -8851,10 +8421,6 @@ msgstr "egyenlő"
 #
 msgid "exact match"
 msgstr ""
-
-#
-msgid "exceeds dual layer medium!"
-msgstr "meghaladja a dual layer medium méretét!"
 
 #
 msgid "exit DVD player or return to file browser"
@@ -8874,10 +8440,6 @@ msgstr ""
 
 #
 msgid "exit network adapter configuration"
-msgstr ""
-
-#
-msgid "exit network adapter setup menu"
 msgstr ""
 
 #
@@ -8941,14 +8503,6 @@ msgid "help..."
 msgstr "HELP..."
 
 #
-msgid "hidden network"
-msgstr ""
-
-#
-msgid "hidden..."
-msgstr ""
-
-#
 msgid "hide extended description"
 msgstr "bővített leírás elrejtése"
 
@@ -8983,15 +8537,6 @@ msgstr ""
 #
 msgid "in Title"
 msgstr ""
-
-#
-#, python-format
-msgid ""
-"incoming call!\n"
-"%s calls on %s!"
-msgstr ""
-"bejövő hívás!\n"
-"%s hívások a %s-en!"
 
 #
 msgid "init module"
@@ -9238,10 +8783,6 @@ msgid "open servicelist(up)"
 msgstr "csatornalista megnyitása (fel)"
 
 #
-msgid "open virtual keyboard input help"
-msgstr ""
-
-#
 msgid "partial match"
 msgstr ""
 
@@ -9348,10 +8889,6 @@ msgstr "playlista ismétlése"
 #
 msgid "repeated"
 msgstr "többszöri"
-
-#
-msgid "required medium type:"
-msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -9651,10 +9188,6 @@ msgid "unknown service"
 msgstr "ismeretlen csatorna"
 
 #
-msgid "until restart"
-msgstr "újraindításig"
-
-#
 msgid "until standby/restart"
 msgstr ""
 
@@ -9735,7 +9268,6 @@ msgid "zapped"
 msgstr "zap-elt"
 
 #
-#
 #~ msgid ""
 #~ "\n"
 #~ "Enigma2 will restart after the restore"
@@ -9744,36 +9276,41 @@ msgstr "zap-elt"
 #~ "A visszaállítás után az Enigma2 újraindul"
 
 #
-#
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
-#
 #
 #~ msgid "#33294a6b"
 #~ msgstr "#33294a6b"
 
 #
-#
 #~ msgid ".NFI Flasher bootable USB stick successfully created."
 #~ msgstr "Az .NFI Flasher bootolható USB Stick létrehozása sikerült."
 
 #
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 könyvtár"
+
+#
+#~ msgid "/var directory"
+#~ msgstr "/var könyvtár"
+
 #
 #~ msgid "0 V"
 #~ msgstr "0 V"
 
 #
-#
 #~ msgid "12 V"
 #~ msgstr "12 V"
 
-#
 #
 #~ msgid "12V Output"
 #~ msgstr "12V kimenet"
 
 #
+#~ msgid "50 Hz"
+#~ msgstr "50 Hz"
+
 #
 #~ msgid ""
 #~ "A sleep timer want's to set your\n"
@@ -9783,7 +9320,6 @@ msgstr "zap-elt"
 #~ "kapcsolni a DreamBox-ot. Mehet?"
 
 #
-#
 #~ msgid ""
 #~ "A sleep timer want's to shut down\n"
 #~ "your Dreambox. Shutdown now?"
@@ -9792,61 +9328,53 @@ msgstr "zap-elt"
 #~ "kapcsolni a DreamBox-ot. Mehet?"
 
 #
-#
 #~ msgid "AGC"
 #~ msgstr "AGC"
 
-#
 #
 #~ msgid "AGC:"
 #~ msgstr "AGC:"
 
 #
-#
 #~ msgid "AV-Setup"
 #~ msgstr "AV-beállítások"
 
-#
 #
 #~ msgid "Add alternative"
 #~ msgstr "Alternatív hozzáadása"
 
 #
-#
 #~ msgid "Add files to playlist"
 #~ msgstr "Fájlok hozzáadása a playlistához"
 
-#
 #
 #~ msgid "Add service"
 #~ msgstr "Csatorna hozzáaádása"
 
 #
-#
 #~ msgid "Add title..."
 #~ msgstr "Cím hozzáadása..."
 
 #
+#~ msgid "Advanced"
+#~ msgstr "Haladó"
+
 #
 #~ msgid "Album:"
 #~ msgstr "Album:"
 
 #
-#
 #~ msgid "All..."
 #~ msgstr "Összes..."
 
-#
 #
 #~ msgid "Allow Unsupported Modes"
 #~ msgstr "Nem támogatott módok engedélyezése"
 
 #
-#
 #~ msgid "An error has occured. (%s)"
 #~ msgstr "Hibát érzékeltem. (%s)"
 
-#
 #
 #~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"
@@ -9858,7 +9386,6 @@ msgstr "zap-elt"
 #~ "\n"
 
 #
-#
 #~ msgid ""
 #~ "Are you sure you want to enable your local network?\n"
 #~ "\n"
@@ -9867,116 +9394,157 @@ msgstr "zap-elt"
 #~ "\n"
 
 #
-#
 #~ msgid "Artist:"
 #~ msgstr "Előadó:"
 
-#
 #
 #~ msgid "Automatic SSID lookup"
 #~ msgstr "Automatikus SSID keresés"
 
 #
+#~ msgid "Backup"
+#~ msgstr "Mentés"
+
+#
+#~ msgid "Backup Location"
+#~ msgstr "Mentés helye"
+
+#
+#~ msgid "Backup Mode"
+#~ msgstr "Mentési mód"
+
+#
+#~ msgid "Backup is done. Please press OK to see the result."
+#~ msgstr "A mentés készen van. Nyomja meg az OK-t a részletekért."
+
 #
 #~ msgid "Burn"
 #~ msgstr "Égetés"
 
 #
-#
 #~ msgid "Burn To DVD..."
 #~ msgstr "Kiírás DVD-re..."
 
 #
+#~ msgid "CF Drive"
+#~ msgstr "CF meghajtó"
+
+#
+#~ msgid "Call monitoring"
+#~ msgstr "Hivás figyelése"
+
 #
 #~ msgid "Choose Location"
 #~ msgstr "Válasszon egy pozíciót"
 
 #
+#~ msgid "Choose source"
+#~ msgstr "Forrás kiválasztása"
+
+#
+#~ msgid "Compact flash card"
+#~ msgstr "Compact flash kártya"
+
 #
 #~ msgid "Configure your internal LAN again"
 #~ msgstr "Belső hálózat ismételt beállítása"
 
 #
-#
 #~ msgid "Configure your wireless LAN"
 #~ msgstr "Wireless hálózat beállítása"
 
-#
 #
 #~ msgid "Confirm"
 #~ msgstr "Megerősítés"
 
 #
-#
 #~ msgid "Connect to the Internet with a USB Wlan Stick"
 #~ msgstr "Csatlakozás az Internethez egy USB Wlan Stick segítségével"
 
-#
 #
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Csatlakozás az Internethez a helyi hálózat segítségével"
 
 #
+#~ msgid "Connected to Fritz!Box!"
+#~ msgstr "Fritz!Box!-hoz csatlakoztatva"
+
+#
+#~ msgid "Connecting to Fritz!Box..."
+#~ msgstr "Csatlakozás a Fritz!Box!-hoz..."
+
+#
+#~ msgid ""
+#~ "Connection to Fritz!Box\n"
+#~ "failed! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Csatlakozás a Fritz!Box!-hoz\n"
+#~ "sikertelen! (%s)\n"
+#~ "újra próbálkozom..."
+
 #
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "USB flasher image másolása stickre..."
 
 #
-#
 #~ msgid "DVD ENTER key"
 #~ msgstr "DVD ENTER gomb"
 
-#
 #
 #~ msgid "DVD down key"
 #~ msgstr "DVD le gomb"
 
 #
-#
 #~ msgid "DVD left key"
 #~ msgstr "DVD balra gomb"
 
-#
 #
 #~ msgid "DVD right key"
 #~ msgstr "DVD jobbra gomb"
 
 #
-#
 #~ msgid "DVD up key"
 #~ msgstr "DVD fel gomb"
 
-#
 #
 #~ msgid "Decompressing USB stick flasher boot image..."
 #~ msgstr "USB Stick flasher boot image kicsomagolása..."
 
 #
+#~ msgid "Default settings"
+#~ msgstr "Alapbeállítások"
+
 #
 #~ msgid "Default-Wizard"
 #~ msgstr "Alap-Varázsló"
 
 #
-#
 #~ msgid "Device Setup..."
 #~ msgstr "Eszközök beállítása..."
 
-#
 #
 #~ msgid "DiSEqC Mode"
 #~ msgstr "DiSEqC mód"
 
 #
+#~ msgid ""
+#~ "Disconnected from\n"
+#~ "Fritz!Box! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Lekapcsolódva a\n"
+#~ "Fritz!Box!-ról (%s)\n"
+#~ "újra próbálkozás..."
+
 #
 #~ msgid "Discontinuous playback at speeds above"
 #~ msgstr "Nem folytatólagos lejátszás a fenti sebességekre"
 
 #
-#
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Nem folytatólagos lejátszási képismétlés számolása"
 
-#
 #
 #~ msgid ""
 #~ "Do you really want to REMOVE\n"
@@ -9986,7 +9554,6 @@ msgstr "zap-elt"
 #~ "a plugin-t? \""
 
 #
-#
 #~ msgid ""
 #~ "Do you really want to download\n"
 #~ "the plugin \""
@@ -9995,41 +9562,41 @@ msgstr "zap-elt"
 #~ "plugint? \""
 
 #
-#
-#~ msgid "Do you really want to exit?"
-#~ msgstr "Biztos ki akar lépni?"
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Most akarja a mentést csinálni?\n"
+#~ "Az OK gombbal elindíthatja, kérem várjon!"
 
-#
 #
 #~ msgid "Do you want to view a cutlist tutorial?"
 #~ msgstr "Meg szeretné nézni a vágólista ismertetöt?"
 
 #
+#~ msgid "Done - Installed or upgraded %d packages with %d errors"
+#~ msgstr "Kész - A %d csomag módosítása/telepítése %d hibával megtörtént"
+
 #
 #~ msgid "Downloading image description..."
 #~ msgstr "Image leírások letöltése..."
 
 #
-#
 #~ msgid "Edit current title"
 #~ msgstr "Kijelölt cím módosítása"
 
-#
 #
 #~ msgid "Edit title..."
 #~ msgstr "Cím módosítása..."
 
 #
-#
 #~ msgid "Enable LAN"
 #~ msgstr "LAN engedélyezése"
 
 #
-#
 #~ msgid "Enable WLAN"
 #~ msgstr "WLAN engedélyezése"
 
-#
 #
 #~ msgid ""
 #~ "Enable the local network of your Dreambox.\n"
@@ -10039,71 +9606,113 @@ msgstr "zap-elt"
 #~ "\n"
 
 #
-#
 #~ msgid "End"
 #~ msgstr "Befejezési időpont"
 
 #
+#~ msgid ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 skinválasztó v0.5 BETA\n"
+#~ "\n"
+#~ "Ha bármilyen hibát találna, kérem írja meg (angolul)\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
 #
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Kilépés a varázslóból, beállítás kézi módszerrel késöbb"
 
 #
+#~ msgid "Filesystem Check..."
+#~ msgstr "Fájlrendszer ellenőrzés..."
+
 #
 #~ msgid "Fix USB stick"
 #~ msgstr "Fix USB stick"
 
 #
-#
 #~ msgid "Font size"
 #~ msgstr "Font méret"
 
 #
+#~ msgid "Fritz!Box FON IP address"
+#~ msgstr "Fritz!Box FON IP szám"
+
+#
+#~ msgid "Function not yet implemented"
+#~ msgstr "Ez a funkció még nincs kivitelezve"
+
 #
 #~ msgid "Games / Plugins"
 #~ msgstr "Játékok / Pluginek"
 
 #
-#
 #~ msgid "Genre:"
 #~ msgstr "Műfaj:"
 
-#
 #
 #~ msgid "Hello!"
 #~ msgstr "Helló!"
 
 #
+#~ msgid "If you can see this page, please press OK."
+#~ msgstr "Ha látja ezt a képernyőt, akkor nyomja meg az OK gombot."
+
+#
+#~ msgid "Image-Upgrade"
+#~ msgstr "Image-Frissítés"
+
+#
+#~ msgid "Initialization..."
+#~ msgstr "Inicializálás..."
+
+#
+#~ msgid "Invert display"
+#~ msgstr "Kijelző invertálása"
+
 #
 #~ msgid "Jump to video title 1 (play movie from start)"
 #~ msgstr "Ugrás a videó 1 címére (lejátszás az elejétől)"
 
 #
-#
 #~ msgid "LCD Setup"
 #~ msgstr "LCD beállítás"
 
 #
+#~ msgid "Language..."
+#~ msgstr "Nyelvezet..."
+
 #
 #~ msgid "Movie Menu"
 #~ msgstr "Mozi menü"
 
 #
-#
 #~ msgid "NIM "
 #~ msgstr "NIM"
 
-#
 #
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Névszerver beállítások..."
 
 #
+#~ msgid "Network..."
+#~ msgstr "Hálózat..."
+
 #
 #~ msgid "New DVD"
 #~ msgstr "Új DVD"
 
 #
+#~ msgid "No 50 Hz, sorry. :("
+#~ msgstr "Sajnos nincs 50 Hz. :("
+
 #
 #~ msgid ""
 #~ "No working local networkadapter found.\n"
@@ -10115,7 +9724,6 @@ msgstr "zap-elt"
 #~ "helyesen állította be."
 
 #
-#
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
@@ -10125,7 +9733,6 @@ msgstr "zap-elt"
 #~ "Ellenőrizze hogy be van dugva egy a Dreamboxal kompatibilis wireless "
 #~ "hálózati eszköz vagy engedélyezze a helyi hálózati interfészt."
 
-#
 #
 #~ msgid ""
 #~ "No working wireless interface found.\n"
@@ -10137,7 +9744,6 @@ msgstr "zap-elt"
 #~ "a helyi hálózati interfészt."
 
 #
-#
 #~ msgid ""
 #~ "No working wireless networkadapter found.\n"
 #~ "Please verify that you have attached a compatible WLAN USB Stick and your "
@@ -10148,11 +9754,9 @@ msgstr "zap-elt"
 #~ "hálózati eszköz és hogy a hálózat helyesen van beállítva."
 
 #
-#
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nem, az alaphelyzeti listát választom"
 
-#
 #
 #~ msgid ""
 #~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
@@ -10164,21 +9768,21 @@ msgstr "zap-elt"
 #~ "gombot amint behelyezte hátul a sticket."
 
 #
+#~ msgid "Online-Upgrade"
+#~ msgstr "Online-Frissítés"
+
 #
 #~ msgid "Other..."
 #~ msgstr "Egyéb..."
 
 #
-#
 #~ msgid "Output Type"
 #~ msgstr "Kimeneti típus"
 
 #
-#
 #~ msgid "Partitioning USB stick..."
 #~ msgstr "USB stick partícionálása..."
 
-#
 #
 #~ msgid ""
 #~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
@@ -10190,7 +9794,6 @@ msgstr "zap-elt"
 #~ "engedélyezze a wireless hálózati támogatást"
 
 #
-#
 #~ msgid ""
 #~ "Please configure your local LAN internet connection by filling out the "
 #~ "needed values.\n"
@@ -10200,7 +9803,6 @@ msgstr "zap-elt"
 #~ "megadásával.\n"
 #~ "Ha elkészült nyomja meg az OK gombot a folytatáshoz."
 
-#
 #
 #~ msgid ""
 #~ "Please configure your wireless LAN internet connection by filling out the "
@@ -10212,22 +9814,18 @@ msgstr "zap-elt"
 #~ "Ha elkészült nyomja meg az OK gombot a folytatáshoz."
 
 #
-#
 #~ msgid "Please select below the wireless network you want to connect to."
 #~ msgstr ""
 #~ "Válassza ki alul azt a wireless hálózatot melyhez csatlakozni szeretne."
 
 #
-#
 #~ msgid "Please select keyword to filter..."
 #~ msgstr "Válasszon egy keresési kulcsszót..."
 
 #
-#
 #~ msgid "Please wait for md5 signature verification..."
 #~ msgstr "Kérem várjon, az md5 szignatúra ellenőrzés folyik..."
 
-#
 #
 #~ msgid ""
 #~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
@@ -10245,16 +9843,17 @@ msgstr "zap-elt"
 #~ "\n"
 
 #
+#~ msgid "RSS Feed URI"
+#~ msgstr "RSS Feed URI"
+
 #
 #~ msgid "Rate"
 #~ msgstr "Arány"
 
 #
-#
 #~ msgid "Really delete this timer?"
 #~ msgstr "Biztos töröljem ezt az időzítést?"
 
-#
 #
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really reboot "
@@ -10263,14 +9862,12 @@ msgstr "zap-elt"
 #~ "Felvétel van éppen, vagy hamarosan indul... biztos újraindítsam most?"
 
 #
-#
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really "
 #~ "restart now?"
 #~ msgstr ""
 #~ "Felvétel van éppen, vagy hamarosan indul... biztos újraindítsam most?"
 
-#
 #
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really "
@@ -10279,86 +9876,111 @@ msgstr "zap-elt"
 #~ "Felvétel van éppen, vagy hamarosan indul... biztos kikapcsoljam most?"
 
 #
-#
 #~ msgid "Remounting stick partition..."
 #~ msgstr "Stick partíció újramountolása..."
 
-#
 #
 #~ msgid "Remove service"
 #~ msgstr "Csatorna eltávolítása"
 
 #
-#
 #~ msgid "Replace current playlist"
 #~ msgstr "Jelenlegi playlista lecserélése"
 
-#
 #
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Wireless interfész újraindítása"
 
 #
+#~ msgid ""
+#~ "Restoring the settings is done. Please press OK to activate the restored "
+#~ "settings now."
+#~ msgstr ""
+#~ "A beállítások visszaállítása kész. Az OK gomb megnyomásával aktiválhatja "
+#~ "a visszaállított beállításokat."
+
 #
 #~ msgid "Save current project to disk"
 #~ msgstr "Jelenlegi project mentése lemezre"
 
 #
-#
 #~ msgid "Save..."
 #~ msgstr "Mentés..."
 
-#
 #
 #~ msgid "Scan NIM"
 #~ msgstr "NIM keresése"
 
 #
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your WLAN USB Stick\n"
+#~ msgstr ""
+#~ "Wireless Access Point keresése a hálózaton és csatlakozás rá a WLAN USB "
+#~ "Stick segítségével\n"
+
 #
 #~ msgid "Select alternative service"
 #~ msgstr "Alternatív csatorna kiválasztása"
 
 #
-#
 #~ msgid "Select reference service"
 #~ msgstr "Referencia mühold kiválasztása"
 
 #
+#~ msgid "Select video input"
+#~ msgstr "Válassza ki a video bemenetet"
+
 #
 #~ msgid "Service scan type needed"
 #~ msgstr "Meg kell adni a csatornakeresés típusát"
 
 #
+#~ msgid "Set as default Interface"
+#~ msgstr "Jelölje meg mint alapértelmezett interfészt"
+
 #
 #~ msgid "Show files from %s"
 #~ msgstr "Mutassa a %s fájljait"
 
 #
+#~ msgid "Skin..."
+#~ msgstr "Skin..."
+
 #
 #~ msgid "Slot "
 #~ msgstr "Nyílás"
 
 #
-#
 #~ msgid "Socket "
 #~ msgstr "Foglalat"
 
 #
+#~ msgid "Somewhere else"
+#~ msgstr "Valahol máshol"
+
+#
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Sajnálom, de nem létezik a megadott mentési célhely\n"
+#~ "\n"
+#~ "Válasszon másikat."
+
 #
 #~ msgid "Start"
 #~ msgstr "Indítási időpont"
 
 #
-#
 #~ msgid "Startwizard"
 #~ msgstr "Indítási varázsló"
 
 #
-#
 #~ msgid "Step "
 #~ msgstr "Lépés"
 
-#
 #
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
@@ -10375,7 +9997,6 @@ msgstr "zap-elt"
 #~ "Nyomja meg az OK-t a folytatáshoz."
 
 #
-#
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
 #~ "\n"
@@ -10391,7 +10012,6 @@ msgstr "zap-elt"
 #~ "Nyomja meg az OK-t a folytatáshoz."
 
 #
-#
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
 #~ "Please press OK to start using your Dreambox."
@@ -10400,7 +10020,6 @@ msgstr "zap-elt"
 #~ "veheti.\n"
 #~ "Nyomja meg az OK-t a folytatáshoz."
 
-#
 #
 #~ msgid ""
 #~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
@@ -10414,11 +10033,17 @@ msgstr "zap-elt"
 #~ "'Lefelé' gombot hogy a sticken lévő .NFI flasher induljon el!"
 
 #
+#~ msgid "This Dreambox can't decode %s video streams!"
+#~ msgstr "Ez a Dreambox nem tudja dekódolni a %s videó streamet!"
+
+#
+#~ msgid "This is unsupported at the moment."
+#~ msgstr "Ez jelenleg még nem támogatott."
+
 #
 #~ msgid "Title:"
 #~ msgstr "Cím:"
 
-#
 #
 #~ msgid ""
 #~ "To make sure you intend to do this, please remove the target USB stick "
@@ -10429,6 +10054,9 @@ msgstr "zap-elt"
 #~ "és kérésre tegye azt vissza. Nyomja meg az OK gombot ha kivette a sticket."
 
 #
+#~ msgid "USB"
+#~ msgstr "USB"
+
 #
 #~ msgid ""
 #~ "Unable to initialize harddisk.\n"
@@ -10440,21 +10068,36 @@ msgstr "zap-elt"
 #~ "Hiba:"
 
 #
+#~ msgid "Updates your receiver's software"
+#~ msgstr "A beltéri szoftverét frissíti fel"
+
+#
+#~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+#~ msgstr "Frissiítés sikeres. Újraindítsam most a DreamBox-ot?"
+
 #
 #~ msgid "VCR Switch"
 #~ msgstr "VCR kapcsoló"
 
 #
-#
 #~ msgid "Video-Setup"
 #~ msgstr "Videó-beállítások"
 
-#
 #
 #~ msgid "Waiting for USB stick to settle..."
 #~ msgstr "Várakozás az USB stick behelyezésére..."
 
 #
+#~ msgid ""
+#~ "We will now test if your TV can also display this resolution at 50hz. If "
+#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+#~ "Please press OK to begin."
+#~ msgstr ""
+#~ "Most kipróbáljuk, hogy a TV készüléke képes-e megjeleníteni ezt a "
+#~ "felbontást 50 Hz-en. Ha a képernyő feketére vált, várjon 20 mp-et és "
+#~ "akkor automatikusan visszakapcsol 60 Hz-re.\n"
+#~ "Nyomja meg az OK-t a kezdéshez."
+
 #
 #~ msgid ""
 #~ "Welcome.\n"
@@ -10471,16 +10114,52 @@ msgstr "zap-elt"
 #~ "Nyomja meg az OK gombot a távirányítón a következő lépéshez."
 
 #
-#
 #~ msgid "Writing image file to NAND Flash"
 #~ msgstr "Image fájl beírása a NAND Flashbe"
 
-#
 #
 #~ msgid "Year:"
 #~ msgstr "Év:"
 
 #
+#~ msgid ""
+#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
+#~ "harddisk is not an option for you."
+#~ msgstr ""
+#~ "Úgy látom a készülékben nincs merevlemez. Így a merevlemezre való mentés "
+#~ "nem végrehajtható."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to a compact flash card. The card must be in "
+#~ "the slot. We do not verify if it is really used at the moment. So better "
+#~ "backup to the harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "Ön azt választotta, hogy készítsek egy mentést egy CF kártyára. A "
+#~ "kártyának ehhez benne kell lennie a nyílásban. Most azonban nem "
+#~ "ellenőrizzük, hogy valóban van behelyezett kártya. Így jobb ha a mentést "
+#~ "a merevlemezre tároljuk el!\n"
+#~ "Nyomja meg az OK-t a mentés indításához."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to an usb drive. Better backup to the "
+#~ "harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "Ön azt választotta hogy a mentést az USB meghajtóra tároljam le. Azonban "
+#~ "biztonságosabb ezt a merevlemezen eltárolni!\n"
+#~ "Nyomja meg az OK-t a mentés indításához."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to your harddisk. Please press OK to start the "
+#~ "backup now."
+#~ msgstr ""
+#~ "Ön azt választotta, hogy a mentést a merevlemezre tároljam el. Nyomja meg "
+#~ "az OK-t a mentés elindításához."
+
 #
 #~ msgid ""
 #~ "You need to define some keywords first!\n"
@@ -10492,11 +10171,13 @@ msgstr "zap-elt"
 #~ "Akar most megadni néhány kulcsszót?"
 
 #
-#
 #~ msgid "You selected a playlist"
 #~ msgstr "Ön egy playlistát választott ki"
 
 #
+#~ msgid "Your TV works with 50 Hz. Good!"
+#~ msgstr "A TV készüléke alkalmas az 50 Hz-re. Rendben van!"
+
 #
 #~ msgid ""
 #~ "Your local LAN internet connection is not working!\n"
@@ -10506,7 +10187,6 @@ msgstr "zap-elt"
 #~ "Kérem válassza ki mit szeretne tenni."
 
 #
-#
 #~ msgid ""
 #~ "Your network is restarting.\n"
 #~ "You will be automatically forwarded to the next step."
@@ -10514,7 +10194,6 @@ msgstr "zap-elt"
 #~ "A hálózat újraindul.\n"
 #~ "Automatikusan tovább lesz irányítva a következő lépéshez."
 
-#
 #
 #~ msgid ""
 #~ "Your wired LAN Adapter could not be started.\n"
@@ -10524,7 +10203,6 @@ msgstr "zap-elt"
 #~ "Újraindítsam a DreamBox-ot az új konfiguráció élesítéséhez?\n"
 
 #
-#
 #~ msgid ""
 #~ "Your wireless LAN Adapter could not be started.\n"
 #~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
@@ -10532,7 +10210,6 @@ msgstr "zap-elt"
 #~ "A wireless LAn adaptert nem lehetett elindítani.\n"
 #~ "Újraindítsam a DreamBox-ot az új konfiguráció élesítéséhez?\n"
 
-#
 #
 #~ msgid ""
 #~ "Your wireless internet connection is not working!\n"
@@ -10542,81 +10219,85 @@ msgstr "zap-elt"
 #~ "Kérem válassza ki mit szeretne tenni."
 
 #
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "biztos hogy vissza akarja állítani\n"
+#~ "a következő mentést:\n"
+
 #
 #~ msgid "by Exif"
 #~ msgstr "Exif-el"
 
 #
-#
 #~ msgid "color"
 #~ msgstr "szín"
 
-#
 #
 #~ msgid "empty/unknown"
 #~ msgstr "üres/ismeretlen"
 
 #
-#
 #~ msgid "equal to Socket A"
 #~ msgstr "olyan mint az A foglalat"
 
 #
+#~ msgid "exceeds dual layer medium!"
+#~ msgstr "meghaladja a dual layer medium méretét!"
+
 #
 #~ msgid "font face"
 #~ msgstr "font arculat"
 
 #
-#
 #~ msgid "full /etc directory"
 #~ msgstr "a teljes /etc könyvtár"
 
-#
 #
 #~ msgid "headline"
 #~ msgstr "főcím"
 
 #
-#
 #~ msgid "highlighted button"
 #~ msgstr "kiemelt gomb"
 
 #
+#~ msgid ""
+#~ "incoming call!\n"
+#~ "%s calls on %s!"
+#~ msgstr ""
+#~ "bejövő hívás!\n"
+#~ "%s hívások a %s-en!"
+
 #
 #~ msgid "list"
 #~ msgstr "lista"
 
 #
-#
 #~ msgid "loopthrough to socket A"
 #~ msgstr "átfüzés az A foglalathoz"
 
-#
 #
 #~ msgid "no Picture found"
 #~ msgstr "nincs kép"
 
 #
-#
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "csak az /etc/enigma2 könyvtár"
 
-#
 #
 #~ msgid "play next playlist entry"
 #~ msgstr "következő playlista bejegyzés lejátszása"
 
 #
-#
 #~ msgid "play previous playlist entry"
 #~ msgstr "előző playlista bejegyzés lejátszása"
 
 #
-#
 #~ msgid "rebooting..."
 #~ msgstr "újraindítás..."
 
-#
 #
 #~ msgid ""
 #~ "scan done!\n"
@@ -10625,7 +10306,6 @@ msgstr "zap-elt"
 #~ "keresés vége!\n"
 #~ "%d csatornát találtam!"
 
-#
 #
 #~ msgid ""
 #~ "scan done!\n"
@@ -10635,7 +10315,6 @@ msgstr "zap-elt"
 #~ "Nem találtam csatornákat!"
 
 #
-#
 #~ msgid ""
 #~ "scan done!\n"
 #~ "One service found!"
@@ -10643,7 +10322,6 @@ msgstr "zap-elt"
 #~ "keresés vége!\n"
 #~ "Egy csatornát találtam!"
 
-#
 #
 #~ msgid ""
 #~ "scan in progress - %d %% done!\n"
@@ -10653,41 +10331,37 @@ msgstr "zap-elt"
 #~ "%d csatornát találtam!"
 
 #
-#
 #~ msgid "select Slot"
 #~ msgstr "válasszon nyílást"
 
-#
 #
 #~ msgid "show first tag"
 #~ msgstr "első cimke mutatása"
 
 #
-#
 #~ msgid "show second tag"
 #~ msgstr "második cimke mutatása"
 
-#
 #
 #~ msgid "skip backward (self defined)"
 #~ msgstr "Ugrás visszafelé (előre megadott)"
 
 #
-#
 #~ msgid "skip forward (self defined)"
 #~ msgstr "Ugrás előre (előre megadott)"
 
-#
 #
 #~ msgid "spaces (top, between rows, left)"
 #~ msgstr "szünetek (fennt, sorok között, bal oldalt)"
 
 #
-#
 #~ msgid "text"
 #~ msgstr "text"
 
 #
+#~ msgid "until restart"
+#~ msgstr "újraindításig"
+
 #
 #~ msgid "year"
 #~ msgstr "év"
