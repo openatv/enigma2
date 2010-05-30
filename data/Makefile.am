@@ -1,4 +1,4 @@
-SUBDIRS = countries fonts defaults extensions skin_default
+SUBDIRS = countries fonts defaults extensions skin_default dm800se
 
 dist_pkgdata_DATA = \
 	defaultsatlists.xml \

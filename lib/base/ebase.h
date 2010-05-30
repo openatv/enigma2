@@ -205,11 +205,9 @@ class eMainloop
 	void removeSocketNotifier(eSocketNotifier *sn);
 	void addTimer(eTimer* e);
 	void removeTimer(eTimer* e);
-public:
-#ifndef SWIG
 	static ePtrList<eMainloop> existing_loops;
-#endif
-
+	static bool isValid(eMainloop *);
+public:
 	eMainloop()
 		:app_quit_now(0),loop_level(0),retval(0), m_is_idle(0), m_idle_count(0), m_inActivate(0), m_interrupt_requested(0)
 	{

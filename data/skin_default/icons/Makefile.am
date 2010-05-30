@@ -32,8 +32,15 @@ dist_install_DATA = \
 	lock_off.png \
 	lock_on.png \
 	lock.png \
+	lockBouquet.png \
 	marker.png \
 	mp_buttons.png \
+	network_wired.png \
+	network_wired-active.png \
+	network_wired-inactive.png \	
+	network_wireless.png \
+	network_wireless-active.png \
+	network_wireless-inactive.png \	
 	plugin.png \
 	rass_logo.png \
 	rass_page1.png \
@@ -47,4 +54,6 @@ dist_install_DATA = \
 	scan-c.png \
 	scan-s.png \
 	scan-t.png \
-	selectioncross.png
+	selectioncross.png \
+	unlock.png \
+	unlockBouquet.png

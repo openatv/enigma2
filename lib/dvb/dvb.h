@@ -135,7 +135,7 @@ class eDVBResourceManager: public iObject, public Object
 	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
 
-	enum { DM7025, DM800, DM500HD, DM8000 };
+	enum { DM7025, DM800, DM500HD, DM800SE, DM8000 };
 
 	int m_boxtype;
 
@@ -268,6 +268,7 @@ public:
 	int getUseCount() { return m_use_count; }
 
 	RESULT requestTsidOnid(ePyObject callback);
+	int reserveDemux();
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;

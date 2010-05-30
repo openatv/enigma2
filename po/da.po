@@ -3,13 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2009-09-04 07:50+0100\n"
-"Last-Translator: Ingmar Jørgensen <dreambox@ingmar.dk>\n"
+"POT-Creation-Date: 2010-05-11 10:44+0000\n"
+"PO-Revision-Date: 2010-04-13 21:10+0200\n"
+"Last-Translator: Ingmar <dreambox@ingmar.dk>\n"
 "Language-Team: jazzydane <dreambox@ingmar.dk>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.0.2\n"
 "X-Poedit-Language: Danish\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 "X-Poedit-Country: DENMARK\n"
@@ -121,28 +124,31 @@ msgstr ""
 "Systemet vil genstarte efter gendannelsen!"
 
 #
+msgid ""
+"\n"
+"View, install and remove available or installed packages."
+msgstr ""
+"\n"
+"Se, installer og fjern nuværende eller installerede pakker."
+
+#
 msgid " "
 msgstr " "
 
-#
 msgid " Results"
-msgstr ""
+msgstr " Resultater"
 
-#
 msgid " extensions."
-msgstr "filendelser."
+msgstr " filendelser."
 
-#
 msgid " packages selected."
-msgstr "pakker valgt."
+msgstr " pakker valgt."
 
-#
 msgid " updates available."
-msgstr "opdateringer tilgængelig."
+msgstr " opdateringer tilgængelig."
 
-#
 msgid " wireless networks found!"
-msgstr "trådløst neværk fundet!"
+msgstr " trådløst neværk fundet!"
 
 #
 msgid "#000000"
@@ -207,10 +213,9 @@ msgstr "%d kanaler fundet!"
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
-#
 #, python-format
 msgid "%i ms"
-msgstr ""
+msgstr "%i ms"
 
 #
 #, python-format
@@ -230,21 +235,15 @@ msgstr "%s (%s)\n"
 msgid "(ZAP)"
 msgstr "(ZAP)"
 
-#
 msgid "(empty)"
-msgstr "(Tom)"
+msgstr "(tom)"
 
-#
 msgid "(show optional DVD audio menu)"
 msgstr "(Vis ekstra DVD lyd menu)"
 
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Kun tilgængelig hvis mere end et interface er aktivt."
-
-#
-msgid "* Only available when entering hidden SSID or network key"
-msgstr "* Kun tilgængelig ved indtastning af skjult SSID eller netværks nøgle"
 
 #
 msgid ".NFI Download failed:"
@@ -256,14 +255,6 @@ msgid ""
 msgstr ""
 ".NFI filen godkendt af md5sum signatur tjek. Du kan flashe dette image "
 "sikkert!"
-
-#
-msgid "/usr/share/enigma2 directory"
-msgstr "/usr/share/enigma2 mappe"
-
-#
-msgid "/var directory"
-msgstr "/var mappe"
 
 #
 msgid "0"
@@ -289,9 +280,8 @@ msgstr "1.1"
 msgid "1.2"
 msgstr "1.2"
 
-#
 msgid "12V output"
-msgstr "12V Output"
+msgstr "12V udgang"
 
 #
 msgid "13 V"
@@ -301,25 +291,21 @@ msgstr "13 V"
 msgid "16:10"
 msgstr "16:10"
 
-#
 msgid "16:10 Letterbox"
-msgstr "16:10 BrevBox"
+msgstr "16:10 letterbox"
 
-#
 msgid "16:10 PanScan"
-msgstr "16:10 PanScan"
+msgstr "16:10 panscan"
 
 #
 msgid "16:9"
 msgstr "16:9"
 
-#
 msgid "16:9 Letterbox"
-msgstr "16:9 Brevbox"
+msgstr "16:9 letterbox"
 
-#
 msgid "16:9 always"
-msgstr "16:9 Altid"
+msgstr "16:9 altid"
 
 #
 msgid "18 V"
@@ -345,13 +331,11 @@ msgstr "4"
 msgid "4:3"
 msgstr "4:3"
 
-#
 msgid "4:3 Letterbox"
-msgstr "4:3 BrevBox"
+msgstr "4:3 letterbox"
 
-#
 msgid "4:3 PanScan"
-msgstr "4:3 PanScan"
+msgstr "4:3 panscan"
 
 #
 msgid "5"
@@ -360,10 +344,6 @@ msgstr "5"
 #
 msgid "5 minutes"
 msgstr "5 minutter"
-
-#
-msgid "50 Hz"
-msgstr "50 Hz"
 
 #
 msgid "6"
@@ -385,9 +365,8 @@ msgstr "8"
 msgid "9"
 msgstr "9"
 
-#
 msgid "<Current movielist location>"
-msgstr "<Nuværende placering af filmliste>"
+msgstr "<Nuværende filmliste placering>"
 
 #
 msgid "<Default movie location>"
@@ -418,20 +397,21 @@ msgstr ""
 "En konfigurationsfil (%s) er ændret siden installation.\n"
 "Vil du beholde denne version?"
 
-#
+msgid "A demo plugin for TPM usage."
+msgstr ""
+
 msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
-"En afsluttet optagelses timer vil gerne sætte din\n"
+"En afsluttet optagelsestimer vil gerne sætte din\n"
 "Dreambox til standby.Vil du gøre det nu?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
 msgstr ""
-"En afsluttet optagelses timer vil gerne slukke\n"
+"En afsluttet optagelsestimer vil gerne slukke\n"
 "din Dreambox. Slukke nu?"
 
 #
@@ -443,6 +423,8 @@ msgid ""
 "A mount entry with this name already exists!\n"
 "Update existing entry and continue?\n"
 msgstr ""
+"Der findes allerede en montering med dette navn!\n"
+"Opdater den eksisterende montering og fortsæt?\n"
 
 #
 #, python-format
@@ -547,9 +529,8 @@ msgstr "AC3 Nedmix"
 msgid "Abort"
 msgstr "Afbryd"
 
-#
 msgid "Abort this Wizard."
-msgstr ""
+msgstr "Afbryd denne hjælper."
 
 #
 msgid "About"
@@ -567,9 +548,8 @@ msgstr "Accesspoint:"
 msgid "Action on long powerbutton press"
 msgstr "Aktion ved langt powerknap tryk"
 
-#
 msgid "Action on short powerbutton press"
-msgstr ""
+msgstr "Handling ved kortvarigt tryk på tændknappen"
 
 #
 msgid "Action:"
@@ -585,13 +565,15 @@ msgstr "Aktiver netværks indstilling"
 
 #
 msgid "Active"
-msgstr ""
+msgstr "Aktiv"
 
 #
 msgid ""
 "Active/\n"
 "Inactive"
 msgstr ""
+"Aktiv/\n"
+"Inaktiv"
 
 #
 msgid "Adapter settings"
@@ -615,7 +597,7 @@ msgstr "Tilføj en markør"
 
 #
 msgid "Add a new NFS or CIFS mount point to your Dreambox."
-msgstr ""
+msgstr "Tilføj et NFS eller CIFS monteringspunkt til din Dreambox."
 
 #
 msgid "Add a new title"
@@ -625,21 +607,18 @@ msgstr "Tilføj en ny titel"
 msgid "Add network configuration?"
 msgstr "tilføj netværksopsætning?"
 
-#
 msgid "Add new AutoTimer"
-msgstr ""
+msgstr "Tilføj ny automatisk timer"
 
-#
 msgid "Add new network mount point"
-msgstr ""
+msgstr "Tilføj nyt netværks monteringspunkt"
 
 #
 msgid "Add timer"
 msgstr "Tilføj timer"
 
-#
 msgid "Add timer as disabled on conflict"
-msgstr ""
+msgstr "Tilføj timer som deaktiveret ved konflikt"
 
 #
 msgid "Add title"
@@ -655,11 +634,11 @@ msgstr "Tilføj til favoritter"
 
 #
 msgid "Add zap timer instead of record timer?"
-msgstr ""
+msgstr "Tilføj zap timer i stedet for optagelsestimer?"
 
 #
 msgid "Added: "
-msgstr ""
+msgstr "Tilføjet:"
 
 #
 msgid ""
@@ -688,10 +667,6 @@ msgstr ""
 "gennemtrængende som muligt. Er du tilfreds med resultatet, tryk OK for at "
 "lukke Video-Finjustering, eller brug nummer knapper, for at vælge andre "
 "testbilleder."
-
-#
-msgid "Advanced"
-msgstr "Avanceret"
 
 #
 msgid "Advanced Options"
@@ -743,11 +718,11 @@ msgstr "Alle satellitter"
 
 #
 msgid "All Time"
-msgstr ""
+msgstr "Hele tiden"
 
 #
 msgid "All non-repeating timers"
-msgstr ""
+msgstr "Alle ikke-gentagne timere"
 
 #
 msgid "Allow zapping via Webinterface"
@@ -771,7 +746,7 @@ msgstr "Spørg altid inden afsendelse"
 
 #
 msgid "Ammount of recordings left"
-msgstr ""
+msgstr "Antal tilbageværende optagelser"
 
 #
 msgid "An empty filename is illegal."
@@ -779,7 +754,7 @@ msgstr "Et tomt filnavn er ugyldigt."
 
 #
 msgid "An error occured."
-msgstr ""
+msgstr "Der opstod en fejl"
 
 #
 msgid "An unknown error occured!"
@@ -842,18 +817,16 @@ msgid ""
 "Are you sure you want to save this network mount?\n"
 "\n"
 msgstr ""
+"Bekræft at du vil gemme denne netværksmontering?\n"
+"\n"
 
 #
 msgid "Artist"
 msgstr "Kunstner"
 
 #
-msgid "Ascanding"
-msgstr ""
-
-#
 msgid "Ascending"
-msgstr ""
+msgstr "Stigende"
 
 #
 msgid "Ask before shutdown:"
@@ -867,6 +840,9 @@ msgstr "Spørg bruger"
 msgid "Aspect Ratio"
 msgstr "Billed format"
 
+msgid "Atheros"
+msgstr ""
+
 #
 msgid "Audio"
 msgstr "Lyd"
@@ -877,15 +853,13 @@ msgstr "Lyd Valg..."
 
 #
 msgid "Audio Sync"
-msgstr ""
+msgstr "Lyd synk."
 
-#
 msgid "Audio Sync Setup"
-msgstr ""
+msgstr "Indstilling af lydsynk."
 
-#
 msgid "Australia"
-msgstr ""
+msgstr "Australien"
 
 #
 msgid "Author: "
@@ -940,29 +914,6 @@ msgid "Automatic Scan"
 msgstr "Automatisk søgning"
 
 #
-#, python-format
-msgid ""
-"Autoresolution Plugin Testmode:\n"
-"Is %s ok?"
-msgstr ""
-
-#
-msgid "Autoresolution Switch"
-msgstr ""
-
-#
-msgid "Autoresolution is not working in Scart/DVI-PC Mode"
-msgstr ""
-
-#
-msgid "Autoresolution settings"
-msgstr ""
-
-#
-msgid "Autoresolution videomode setup"
-msgstr ""
-
-#
 msgid "Autos & Vehicles"
 msgstr ""
 
@@ -1003,28 +954,12 @@ msgid "Background"
 msgstr "Baggrund"
 
 #
-msgid "Backup"
-msgstr "Kopi"
-
-#
-msgid "Backup Location"
-msgstr "Kopi placering"
-
-#
-msgid "Backup Mode"
-msgstr "Kopi Type"
-
-#
 msgid "Backup done."
 msgstr "Backup gennemført."
 
 #
 msgid "Backup failed."
 msgstr "Backup mislykkedes."
-
-#
-msgid "Backup is done. Please press OK to see the result."
-msgstr "Kopien er færdig. Tryk OK for at se resultat."
 
 #
 msgid "Backup is running..."
@@ -1115,7 +1050,8 @@ msgid "Burn existing image to DVD"
 msgstr "Brænd eksisterende image til DVD"
 
 #
-msgid "Burn to DVD..."
+#, fuzzy
+msgid "Burn to DVD"
 msgstr "Brænd til DVD..."
 
 #
@@ -1136,9 +1072,9 @@ msgstr "C"
 msgid "C-Band"
 msgstr "C-Bånd"
 
-#
-msgid "CF Drive"
-msgstr "CF Disk"
+#, fuzzy
+msgid "CDInfo"
+msgstr "Info"
 
 #
 msgid "CI assignment"
@@ -1160,9 +1096,9 @@ msgstr "Kabel"
 msgid "Cache Thumbnails"
 msgstr "Hente Oversigt"
 
-#
-msgid "Call monitoring"
-msgstr "Overvåg opkald"
+#, fuzzy
+msgid "Can't connect to server. Please check your network!"
+msgstr "Tjek venligst din netværks opsætning!"
 
 #
 msgid "Canada"
@@ -1187,10 +1123,6 @@ msgstr "Kort"
 #
 msgid "Catalan"
 msgstr "Katalansk"
-
-#
-msgid "Category"
-msgstr ""
 
 #
 msgid "Center screen at the lower border"
@@ -1311,10 +1243,6 @@ msgstr "Vælg backup placering"
 #
 msgid "Choose bouquet"
 msgstr "Vælg pakke"
-
-#
-msgid "Choose source"
-msgstr "Vælg kilde"
 
 #
 msgid "Choose target folder"
@@ -1449,20 +1377,12 @@ msgid "Compact Flash"
 msgstr "Kompakt Flash"
 
 #
-msgid "Compact flash card"
-msgstr "Kompakt flash kort"
-
-#
 msgid "Complete"
 msgstr "Færdig"
 
 #
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Kompleks (tillader blanding af lydspor og billedformater)"
-
-#
-msgid "Config"
-msgstr "Indtilling"
 
 #
 msgid "Configuration Mode"
@@ -1517,27 +1437,8 @@ msgid "Connected to"
 msgstr "Forbundet til"
 
 #
-msgid "Connected to Fritz!Box!"
-msgstr "Forbindelse Ok til Fritz!Box!"
-
-#
 msgid "Connected!"
 msgstr "Forbundet!"
-
-#
-msgid "Connecting to Fritz!Box..."
-msgstr "Forbinder til Fritz!Box..."
-
-#
-#, python-format
-msgid ""
-"Connection to Fritz!Box\n"
-"failed! (%s)\n"
-"retrying..."
-msgstr ""
-"Forbindelse til Fritz!Box\n"
-"fejlede! (%s)\n"
-"prøver igen..."
 
 #
 msgid "Constellation"
@@ -1595,14 +1496,6 @@ msgstr "Opsætning for automatisk nedbrudslog..."
 #
 msgid ""
 "Crashlogs found!\n"
-"Send them to Dream Multimedia ?"
-msgstr ""
-"Der er fundet nedbrudslog!\n"
-"Vil du sende dem til Dream Multimedia ?"
-
-#
-msgid ""
-"Crashlogs found!\n"
 "Send them to Dream Multimedia?"
 msgstr ""
 "Nedbrudslogninger fundet!\n"
@@ -1616,7 +1509,6 @@ msgstr "Opret DVD-ISO"
 msgid "Create a new AutoTimer."
 msgstr ""
 
-#
 msgid "Create a new timer using the classic editor"
 msgstr ""
 
@@ -1788,24 +1680,13 @@ msgid "Default services lists"
 msgstr "Standard kanallister "
 
 #
-msgid "Default settings"
-msgstr "Standard indstillinger"
-
-#
-msgid "Deinterlacer mode for interlaced content"
-msgstr ""
-
-#
-msgid "Deinterlacer mode for progressive content"
-msgstr ""
+#, fuzzy
+msgid "Defaults"
+msgstr "Standard"
 
 #
 msgid "Delay"
 msgstr "Forsinkelse"
-
-#
-msgid "Delay x seconds after service started"
-msgstr ""
 
 #
 msgid "Delete"
@@ -1835,10 +1716,6 @@ msgid ""
 msgstr ""
 "Slette ikke konfigurede satelliter\n"
 "%s?"
-
-#
-msgid "Delete selected mount"
-msgstr ""
 
 #
 msgid "Descending"
@@ -1954,17 +1831,6 @@ msgid "Disconnect"
 msgstr "Afbryd"
 
 #
-#, python-format
-msgid ""
-"Disconnected from\n"
-"Fritz!Box! (%s)\n"
-"retrying..."
-msgstr ""
-"Forbindelse afbrudt til\n"
-"Fritz!Box! (%s)\n"
-"prøver igen..."
-
-#
 msgid "Dish"
 msgstr "Parabol"
 
@@ -2024,6 +1890,10 @@ msgstr ""
 "pluginet \"%s\"?"
 
 #
+msgid "Do you really want to exit?"
+msgstr "Ønsker du virkelig at afslutte?"
+
+#
 msgid ""
 "Do you really want to initialize the harddisk?\n"
 "All data on the disk will be lost!"
@@ -2040,14 +1910,6 @@ msgstr "Vil du virkelig fjerne mappen %s fra disken?"
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
 msgstr "Vil du virkelig fjerne dit bogmærke af %s?"
-
-#
-msgid ""
-"Do you want to backup now?\n"
-"After pressing OK, please wait!"
-msgstr ""
-"Vil du lave backup nu?\n"
-"Efter tryk på OK, vent venligst!"
 
 #
 msgid "Do you want to burn this collection to DVD medium?"
@@ -2145,11 +2007,6 @@ msgstr "Stop ikke nuværende program men slå kommende programmer fra"
 #, python-format
 msgid "Done - Installed or upgraded %d packages"
 msgstr "Færdig - Installerede og opgraderede %d pakker"
-
-#
-#, python-format
-msgid "Done - Installed or upgraded %d packages with %d errors"
-msgstr "Færdig - Installerede og opgraderede %d pakker med %d fejl"
 
 #
 #, python-format
@@ -2334,28 +2191,8 @@ msgid "Enable /media"
 msgstr "Aktiver /medier"
 
 #
-msgid "Enable 1080p24 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p25 Mode"
-msgstr ""
-
-#
-msgid "Enable 1080p30 Mode"
-msgstr ""
-
-#
 msgid "Enable 5V for active antenna"
 msgstr "Aktivere 5V for aktiv antenne"
-
-#
-msgid "Enable 720p24 Mode"
-msgstr ""
-
-#
-msgid "Enable Autoresolution"
-msgstr ""
 
 #
 msgid "Enable Cleanup Wizard?"
@@ -2422,11 +2259,6 @@ msgid "Encrypted: "
 msgstr "Krypteret:"
 
 #
-#, python-format
-msgid "Encrypted: %s"
-msgstr ""
-
-#
 msgid "Encryption"
 msgstr "Kodning"
 
@@ -2483,22 +2315,6 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 #
-msgid ""
-"Enigma2 Skinselector v0.5 BETA\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 grafisk temavælger v0.5 BETA\n"
-"\n"
-"Ved problemer venligst kontakt\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-
-#
 msgid "Enter Fast Forward at speed"
 msgstr "Nuværende hastighed ved spoling"
 
@@ -2509,14 +2325,6 @@ msgstr ""
 #
 msgid "Enter Rewind at speed"
 msgstr "Sæt tilbagespolings hastighed"
-
-#
-msgid "Enter WLAN network name/SSID:"
-msgstr "Indtast WLAN netværks navn/SSID"
-
-#
-msgid "Enter WLAN passphrase/key:"
-msgstr "Indtast WLAN kodesætning/nøgle:"
 
 #
 msgid "Enter main menu..."
@@ -2602,6 +2410,11 @@ msgstr "Alt er i orden"
 #
 msgid "Exact match"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Exceeds dual layer medium!"
+msgstr "overskrider dobbelt lags media!"
 
 #
 msgid "Exclude"
@@ -2735,10 +2548,6 @@ msgid "Filesystem Check"
 msgstr ""
 
 #
-msgid "Filesystem Check..."
-msgstr "Filsystem kontrol..."
-
-#
 msgid "Filesystem contains uncorrectable errors"
 msgstr "Filsystem indeholder ikke rettelige fejl"
 
@@ -2796,10 +2605,6 @@ msgid "Following tasks will be done after you press OK!"
 msgstr "Følgende opgaver vil blive udført efter tryk på OK!"
 
 #
-msgid "Following tasks will be done after you press continue!"
-msgstr ""
-
-#
 msgid "Format"
 msgstr "Formatere"
 
@@ -2855,14 +2660,6 @@ msgid "Frisian"
 msgstr "Frisisk"
 
 #
-msgid "Fritz!Box FON IP address"
-msgstr "Fritz!Box TELEFON IP adresse"
-
-#
-msgid "From Region"
-msgstr ""
-
-#
 #, python-format
 msgid "Frontprocessor version: %d"
 msgstr "Frontprocessor Version: %d"
@@ -2870,10 +2667,6 @@ msgstr "Frontprocessor Version: %d"
 #
 msgid "Fsck failed"
 msgstr "Fsck fejlede"
-
-#
-msgid "Function not yet implemented"
-msgstr "Funktion endnu ikke tilgængelig"
 
 #
 msgid ""
@@ -2913,6 +2706,9 @@ msgstr "Genre"
 
 #
 msgid "Genuine Dreambox"
+msgstr ""
+
+msgid "Genuine Dreambox validation failed!"
 msgstr ""
 
 #
@@ -2965,14 +2761,6 @@ msgstr "Sikkerhedsinterval type"
 
 #
 msgid "Guess existing timer based on begin/end"
-msgstr ""
-
-#
-msgid "HD Interlace Mode"
-msgstr ""
-
-#
-msgid "HD Progressive Mode"
 msgstr ""
 
 #
@@ -3087,10 +2875,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "If you can see this page, please press OK."
-msgstr "Hvis du kan se denne side, venligst tryk OK."
-
-#
 msgid ""
 "If you see this, something is wrong with\n"
 "your scart connection. Press OK to return."
@@ -3122,10 +2906,6 @@ msgstr ""
 #
 msgid "Image flash utility"
 msgstr "Image flash redskab"
-
-#
-msgid "Image-Upgrade"
-msgstr "Image-opgradering"
 
 #
 msgid "Import AutoTimer"
@@ -3204,10 +2984,6 @@ msgstr "Oprindelig placering i nye timere"
 #
 msgid "Initialization"
 msgstr ""
-
-#
-msgid "Initialization..."
-msgstr "Initialisere harddisk..."
 
 #
 msgid "Initialize"
@@ -3294,17 +3070,15 @@ msgid "Interface: "
 msgstr "Interface: "
 
 #
-#, python-format
-msgid "Interface: %s"
-msgstr ""
-
-#
 msgid "Intermediate"
 msgstr "Normal"
 
 #
 msgid "Internal Flash"
 msgstr "Intern Flash"
+
+msgid "Internal LAN adapter."
+msgstr ""
 
 #
 msgid "Invalid Location"
@@ -3316,16 +3090,28 @@ msgid "Invalid directory selected: %s"
 msgstr "Ugyldig mappe valgt: %s"
 
 #
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 304
+msgid "Invalid response from Security service pls restart again"
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 132
+msgid "Invalid response from server."
+msgstr ""
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 177
+#, python-format
+msgid "Invalid response from server. Please report: %s"
+msgstr ""
+
+#
 msgid "Invalid selection"
 msgstr ""
 
 #
 msgid "Inversion"
 msgstr "Invertere"
-
-#
-msgid "Invert display"
-msgstr "Inverter display"
 
 #
 msgid "Ipkg"
@@ -3369,8 +3155,7 @@ msgid "Job View"
 msgstr "Job oversigt"
 
 #
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this
-#. breaks the aspect)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if this breaks the aspect)
 msgid "Just Scale"
 msgstr "Fyld billede helt ud"
 
@@ -3404,6 +3189,9 @@ msgstr "Tastelayout"
 msgid "LAN Adapter"
 msgstr "LAN adapter"
 
+msgid "LAN connection"
+msgstr ""
+
 #
 msgid "LNB"
 msgstr "LNB"
@@ -3427,9 +3215,6 @@ msgstr "Sprog"
 #
 msgid "Language selection"
 msgstr "Valg af sprog"
-
-msgid "Language..."
-msgstr "Sprog..."
 
 #
 msgid "Last config"
@@ -3456,8 +3241,7 @@ msgid "Left"
 msgstr "Venstre"
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep
-#. english term.
+#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
 msgid "Letterbox"
 msgstr "Sorte striber i top og bund af billede"
 
@@ -3640,11 +3424,6 @@ msgstr ""
 #
 msgid "Max. Bitrate: "
 msgstr "Maks. bitrate: "
-
-#
-#, python-format
-msgid "Max. Bitrate: %s"
-msgstr ""
 
 #
 msgid "Maximum duration (in m)"
@@ -4015,9 +3794,8 @@ msgstr "Netværks test"
 msgid "Network test..."
 msgstr "Netværks test..."
 
-#
-msgid "Network..."
-msgstr "Netværk..."
+msgid "Network test: "
+msgstr ""
 
 #
 msgid "Network:"
@@ -4066,10 +3844,6 @@ msgstr "Nej"
 #
 msgid "No (supported) DVDROM found!"
 msgstr "Ingen (understøttet) DVDROM fundet!"
-
-#
-msgid "No 50 Hz, sorry. :("
-msgstr "Ingen 50 Hz, desværre. :("
 
 #
 msgid "No Connection"
@@ -4242,14 +4016,6 @@ msgstr ""
 "aktiver dit lokale netværks interface."
 
 #
-msgid "No, but play next video"
-msgstr ""
-
-#
-msgid "No, but play previous video"
-msgstr ""
-
-#
 msgid "No, but play video again"
 msgstr ""
 
@@ -4294,8 +4060,7 @@ msgid "None"
 msgstr "Ingen"
 
 #
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching
-#. the left/right)
+#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right)
 msgid "Nonlinear"
 msgstr "Fuldt billede, venstre/højre"
 
@@ -4403,10 +4168,6 @@ msgid "One"
 msgstr "En"
 
 #
-msgid "Online-Upgrade"
-msgstr "Online-opgradering"
-
-#
 msgid "Only AutoTimers created during this session"
 msgstr ""
 
@@ -4442,10 +4203,6 @@ msgstr "Du kan valgfrit indtaste dit navn, hvis du vil."
 #
 msgid "Orbital Position"
 msgstr "Kredsløbsposition"
-
-#
-msgid "Order by"
-msgstr ""
 
 #
 msgid "Outer Bound (+/-)"
@@ -4488,8 +4245,7 @@ msgid "Page"
 msgstr "Side"
 
 #
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt,
-#. keep english term
+#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr "Sorte striber lodret samt top og bund"
 
@@ -4542,8 +4298,7 @@ msgid "PicturePlayer"
 msgstr "Billed afspiller"
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep
-#. english term.
+#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 msgid "Pillarbox"
 msgstr "Sort stribe i top og bund af billede"
 
@@ -4596,7 +4351,7 @@ msgid "Please Select Medium to be Scanned"
 msgstr "Venligst vælg media som skal skannes"
 
 #
-msgid "Please add titles to the compilation"
+msgid "Please add titles to the compilation."
 msgstr ""
 
 #
@@ -4819,6 +4574,11 @@ msgstr ""
 "knappen."
 
 #
+#, fuzzy
+msgid "Please wait (Step 2)"
+msgstr "Vent venligst..."
+
+#
 msgid "Please wait for activation of your network configuration..."
 msgstr "Vent venligt på aktivering af din netværks opsætning..."
 
@@ -4959,12 +4719,6 @@ msgstr "Gem position"
 msgid ""
 "Power state to change to after recordings. Select \"standard\" to not change "
 "the default behavior of enigma2 or values changed by yourself."
-msgstr ""
-
-#
-msgid ""
-"Power state to change to after recordings. Select \"standard\" to not change "
-"the default behaviour of enigma2 or values changed by yourself."
 msgstr ""
 
 #
@@ -5137,12 +4891,11 @@ msgid "RGB"
 msgstr "RGB"
 
 #
-msgid "RSS Feed URI"
-msgstr "RSS feed URI"
-
-#
 msgid "Radio"
 msgstr "Radio"
+
+msgid "Ralink"
+msgstr ""
 
 #
 msgid "Ram Disk"
@@ -5230,10 +4983,6 @@ msgid "Recording paths"
 msgstr ""
 
 #
-msgid "Recording paths..."
-msgstr "Optagelses stier..."
-
-#
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "Optagelse(r) igang eller starter om få sekunder!"
 
@@ -5248,10 +4997,6 @@ msgstr "Optagelser har altid prioritet"
 #
 msgid "Reenter new pin"
 msgstr "Gentag ny kode"
-
-#
-msgid "Refresh"
-msgstr ""
 
 #
 msgid "Refresh Rate"
@@ -5379,11 +5124,11 @@ msgid "Require description to be unique"
 msgstr ""
 
 #
-msgid "Rescan"
+msgid "Required medium type:"
 msgstr ""
 
 #
-msgid "Rescan network"
+msgid "Rescan"
 msgstr ""
 
 #
@@ -5463,17 +5208,7 @@ msgid "Restore system settings"
 msgstr "Gendan system opsætning"
 
 #
-msgid ""
-"Restoring the settings is done. Please press OK to activate the restored "
-"settings now."
-msgstr "Indstillinger genskabt. Tryk OK for at aktivere indstillingerne nu."
-
-#
 msgid "Restrict \"after event\" to a certain timespan?"
-msgstr ""
-
-#
-msgid "Restricted Content"
 msgstr ""
 
 #
@@ -5495,10 +5230,6 @@ msgstr ""
 #. TRANSLATORS: question or a choice, but it is a statement.)
 msgid "Resuming playback"
 msgstr "Genoptag afspilning"
-
-#
-msgid "Retrieving network information. Please wait..."
-msgstr ""
 
 #
 msgid "Return to file browser"
@@ -5533,10 +5264,6 @@ msgid "Running"
 msgstr "Aktiveret"
 
 #
-msgid "Running in testmode"
-msgstr ""
-
-#
 msgid "Russia"
 msgstr ""
 
@@ -5547,22 +5274,6 @@ msgstr "Russisk"
 #
 msgid "S-Video"
 msgstr "S-Video"
-
-#
-msgid "SD 25/50HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 25/50HZ Progressive Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Interlace Mode"
-msgstr ""
-
-#
-msgid "SD 30/60HZ Progressive Mode"
-msgstr ""
 
 #
 msgid "SINGLE LAYER DVD"
@@ -5611,10 +5322,6 @@ msgstr "Sat Søger"
 #
 msgid "Sats"
 msgstr "Satellitter"
-
-#
-msgid "Satteliteequipment"
-msgstr "Satellitudstyr"
 
 #
 msgid "Saturation"
@@ -5759,18 +5466,15 @@ msgstr ""
 #
 msgid ""
 "Scan your network for wireless Access Points and connect to them using your "
-"WLAN USB Stick\n"
-msgstr ""
-"Søg efter netværk med trådløs adgang og tilslut disse med din WLAN USB "
-"stick\n"
-
-#
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
 "Søg i dit netværk efter trådløse Accesspoints og forbind til den ved hjælp "
 "af det valgte trådløse udstyr.\n"
+
+msgid ""
+"Scan your network for wireless access points and connect to them using your "
+"selected wireless device.\n"
+msgstr ""
 
 #
 msgid ""
@@ -5780,10 +5484,6 @@ msgstr ""
 
 #
 msgid "Science & Technology"
-msgstr ""
-
-#
-msgid "Search"
 msgstr ""
 
 #
@@ -5843,6 +5543,11 @@ msgid "Secondary DNS"
 msgstr "Sekundær DNS"
 
 #
+#, fuzzy
+msgid "Security service not running."
+msgstr "Vælg kanal der skal tilføjes..."
+
+#
 msgid "Seek"
 msgstr "Søg"
 
@@ -5886,10 +5591,6 @@ msgstr "Vælg lyd spor"
 
 #
 msgid "Select bouquet to record on"
-msgstr ""
-
-#
-msgid "Select channel audio"
 msgstr ""
 
 #
@@ -5952,10 +5653,6 @@ msgstr ""
 #
 msgid "Select upgrade source to edit."
 msgstr "Vælg opgraderingskilde til redigering."
-
-#
-msgid "Select video input"
-msgstr "Vælg video indgang"
 
 #
 msgid "Select video input with up/down buttons"
@@ -6078,10 +5775,6 @@ msgid "Set Voltage and 22KHz"
 msgstr "Sætter spænding og 22KHz"
 
 #
-msgid "Set as default Interface"
-msgstr "Sæt som standard interface"
-
-#
 msgid "Set available internal memory threshold for the warning."
 msgstr "Trådløs netværkstilstand"
 
@@ -6127,6 +5820,13 @@ msgid "Setup for the Audio Sync Plugin"
 msgstr ""
 
 #
+#, python-format
+msgid ""
+"Shall the USB stick wizard proceed and program the image file %s into flash "
+"memory?"
+msgstr ""
+
+#
 msgid "Sharpness"
 msgstr "Skarphed"
 
@@ -6169,10 +5869,6 @@ msgstr ""
 
 #
 msgid "Show in extension menu"
-msgstr ""
-
-#
-msgid "Show info screen"
 msgstr ""
 
 #
@@ -6264,10 +5960,6 @@ msgid "Skin"
 msgstr "Grafisk tema"
 
 #
-msgid "Skin..."
-msgstr "Grafisk tema..."
-
-#
 msgid "Skins"
 msgstr "Grafiske temaer"
 
@@ -6325,26 +6017,12 @@ msgid "Some plugins are not available:\n"
 msgstr "Nogle plugins er ikke tilstede:\n"
 
 #
-msgid "Somewhere else"
-msgstr "Andet steds"
-
-#
 msgid "Sorry MediaScanner is not installed!"
 msgstr "Desværre, MediaScanner er ikke installeret!"
 
 #
 msgid "Sorry no backups found!"
 msgstr "Beklager, ingen backup fundet!"
-
-#
-msgid ""
-"Sorry your Backup destination does not exist\n"
-"\n"
-"Please choose an other one."
-msgstr ""
-"Desværre, din backup destination eksisterer ikke\n"
-"\n"
-"Vælg venligst en anden."
 
 #
 msgid ""
@@ -6571,10 +6249,6 @@ msgid "Swedish"
 msgstr "Svensk"
 
 #
-msgid "Switch audio"
-msgstr ""
-
-#
 msgid "Switch to next subservice"
 msgstr "Skift til næste underkanal"
 
@@ -6599,8 +6273,7 @@ msgid "System"
 msgstr "System"
 
 #
-#. TRANSLATORS: Add here whatever should be shown in the "translator" about
-#. screen, up to 6 lines (use \n for newline)
+#. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Sidste opdatering: 12. Juni 2008\n"
@@ -6666,6 +6339,11 @@ msgstr "Afprøv DiSEqC indstillinger"
 #
 msgid "Test Type"
 msgstr "Afprøv type"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 80
+msgid "Test again"
+msgstr ""
 
 #
 msgid "Test mode"
@@ -6926,10 +6604,6 @@ msgid "There are now "
 msgstr "Der er nu"
 
 #
-msgid "There is nothing to be done."
-msgstr ""
-
-#
 msgid ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
@@ -6948,6 +6622,13 @@ msgstr ""
 #
 msgid "There was an error. The package:"
 msgstr "Der var en fejl. Pakken:"
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 130
+msgid ""
+"There's a certificate update available for your dreambox. Would you like to "
+"apply this update now?"
+msgstr ""
 
 #
 #, python-format
@@ -6984,11 +6665,6 @@ msgid "This Dreambox can't decode %s streams!"
 msgstr "Dreamboxen kan ikke afkode %s streams!"
 
 #
-#, python-format
-msgid "This Dreambox can't decode %s video streams!"
-msgstr "Denne Dreambox kan ikke afkode %s video strams!"
-
-#
 msgid "This Month"
 msgstr ""
 
@@ -7017,10 +6693,6 @@ msgid "This is the help screen. Feed me with something to display."
 msgstr ""
 
 #
-msgid "This is unsupported at the moment."
-msgstr "Denne funktion er ikke understøttet."
-
-#
 msgid ""
 "This is what will be looked for in event titles. Note that looking for e.g. "
 "german umlauts can be tricky as you have to know the encoding the channel "
@@ -7045,10 +6717,6 @@ msgstr "Dette plugin vil blive fjernet"
 
 #
 msgid "This setting controls the behavior when a timer matches a found event."
-msgstr ""
-
-#
-msgid "This setting controls the behaviour when a timer matches a found event."
 msgstr ""
 
 #
@@ -7116,13 +6784,6 @@ msgstr "Denne test finder din konfigurerede LAN-Adapter."
 #
 msgid ""
 "This toggles the behavior on timer conflicts. If an AutoTimer matches an "
-"event that conflicts with an existing timer it will not ignore this event "
-"but add it disabled."
-msgstr ""
-
-#
-msgid ""
-"This toggles the behaviour on timer conflicts. If an AutoTimer matches an "
 "event that conflicts with an existing timer it will not ignore this event "
 "but add it disabled."
 msgstr ""
@@ -7226,10 +6887,6 @@ msgstr "Placering af tidsforskydning"
 #
 msgid "Timeshift not possible!"
 msgstr "Tidsforskydning ikke mulig!."
-
-#
-msgid "Timeshift path..."
-msgstr "Tidsforskydningsstien..."
 
 #
 msgid "Timezone"
@@ -7408,16 +7065,18 @@ msgid "USALS"
 msgstr "USALS"
 
 #
-msgid "USB"
-msgstr "USB"
-
-#
 msgid "USB Stick"
 msgstr "USB stick"
 
 #
 msgid "USB stick wizard"
 msgstr "USB stick assistenten"
+
+#
+msgid ""
+"USB stick wizard finished. Your dreambox will now restart with your new "
+"image!"
+msgstr ""
 
 #
 msgid "Ukrainian"
@@ -7479,6 +7138,9 @@ msgstr ""
 msgid "Universal LNB"
 msgstr "Universal LNB"
 
+msgid "Unknown network adapter."
+msgstr ""
+
 #
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
@@ -7498,9 +7160,27 @@ msgstr "Ikke understøttet"
 msgid "Update"
 msgstr "Opdater"
 
+#, fuzzy
+msgid "Update done..."
+msgstr "Opdater"
+
 #
-msgid "Updates your receiver's software"
-msgstr "Opdaterer din Dreambox's software"
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 170
+msgid ""
+"Update done... The genuine dreambox test will now be rerun and should not "
+"ask you to update again."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Updatefeed not available."
+msgstr "opdateringer tilgængelig."
+
+#
+# File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 150
+msgid ""
+"Updating failed. Nothing is broken, just the update couldn't be applied."
+msgstr ""
 
 #
 msgid "Updating finished. Here is the result:"
@@ -7511,16 +7191,17 @@ msgid "Updating software catalog"
 msgstr "Opdaterer softwarekatalog"
 
 #
+#, fuzzy
+msgid "Updating, please wait..."
+msgstr "Vent venligst..."
+
+#
 msgid "Updating... Please wait... This can take some minutes..."
 msgstr "Opdaterer... Vent venligst...  Dette kan tage adskillige minutter..."
 
 #
 msgid "Upgrade finished."
 msgstr "Opgradering afsluttet"
-
-#
-msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-msgstr "Opgradering færdig. Vil du genstarte din DreamBox?"
 
 #
 msgid "Upgrading"
@@ -7563,10 +7244,6 @@ msgstr ""
 #
 msgid "Use a gateway"
 msgstr "Brug af Router"
-
-#
-msgid "Use domain/username for windows domains as username!"
-msgstr ""
 
 #
 msgid "Use non-smooth winding at speeds above"
@@ -7644,6 +7321,10 @@ msgstr "Scart / Video"
 #
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
+
+msgid ""
+"Verify your Dreambox authenticity by running the genuine dreambox plugin!"
+msgstr ""
 
 #
 msgid "Vertical"
@@ -7763,10 +7444,6 @@ msgid "View list of available Satellite equipment extensions."
 msgstr ""
 
 #
-msgid "View list of available Satteliteequipment extensions."
-msgstr "Vis oplistning af tilgængelige satellitudstyrsudvidelser"
-
-#
 msgid "View list of available communication extensions."
 msgstr "Vis oplistning af tilgængelige kommunikationsudvidelser"
 
@@ -7842,6 +7519,12 @@ msgstr "V"
 msgid "WEP"
 msgstr "WEP"
 
+msgid "WLAN adapter."
+msgstr ""
+
+msgid "WLAN connection"
+msgstr ""
+
 #
 msgid "WPA"
 msgstr "WPA"
@@ -7869,16 +7552,6 @@ msgstr "Venter"
 #
 msgid "Warn if free space drops below (kB):"
 msgstr "Advar ved frie tomme udfald under (kb):"
-
-#
-msgid ""
-"We will now test if your TV can also display this resolution at 50hz. If "
-"your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-"Please press OK to begin."
-msgstr ""
-"Vi vil nu teste om dit TV kan vise denne opløsning ved 50hz. Hvis din skærm "
-"bliver sort, så vent 20 sekunder og så skiftes tilbage til 60hz.\n"
-"Venligst tryk OK for at starte."
 
 #
 msgid "Webinterface"
@@ -8248,46 +7921,11 @@ msgid ""
 msgstr ""
 
 #
-msgid ""
-"You do not seem to have a harddisk in your Dreambox. So backing up to a "
-"harddisk is not an option for you."
-msgstr ""
-"Du ser ikke ud til at have en HDD i din Dreambox. Så derfor kan du ikke lave "
-"en HDD backup."
-
-#
 #, python-format
 msgid ""
 "You entered \"%s\" as Text to match.\n"
 "Do you want to remove trailing whitespaces?"
 msgstr ""
-
-#
-msgid ""
-"You have chosen to backup to a compact flash card. The card must be in the "
-"slot. We do not verify if it is really used at the moment. So better backup "
-"to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Du har valgt backup på compact flash. Kortet skal sidde i CF-slottet. Den "
-"foretrukne måde at lave backup på er på HDD!\n"
-"Tryk på OK, for alligevel at starte en backup."
-
-#
-msgid ""
-"You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-"Please press OK to start the backup now."
-msgstr ""
-"Du har valgt at lave backup på USB stick. Den anbefalede metode er\n"
-"at lave backup på HDD! Tryk på OK for at begynde backup."
-
-#
-msgid ""
-"You have chosen to backup to your harddisk. Please press OK to start the "
-"backup now."
-msgstr ""
-"Du har valgt at lave en backup på HDD. Tryk venligst på OK, for at lave "
-"backup nu."
 
 #
 msgid ""
@@ -8387,10 +8025,6 @@ msgid "Your Dreambox will restart after pressing OK on your remote control."
 msgstr "Din Dreambox vil genstarte efter OK tryk på din fjernbetjening."
 
 #
-msgid "Your TV works with 50 Hz. Good!"
-msgstr "Dit TV virker ved 50 Hz. Tillykke!"
-
-#
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
@@ -8458,18 +8092,6 @@ msgid "Your network configuration has been activated."
 msgstr "Din netværks opsætning er blevet aktiveret."
 
 #
-msgid ""
-"Your network configuration has been activated.\n"
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
-msgstr ""
-"Din netværks opsætning er blevet aktiveret.\n"
-"Der er fundet et andet opsat interface.\n"
-"\n"
-"Vil du deaktivere det andet netværks interface?"
-
-#
 msgid "Your network mount has been activated."
 msgstr ""
 
@@ -8507,6 +8129,9 @@ msgstr "Skift tilbage til kanal før sat søger?"
 
 #
 msgid "Zap back to service before tuner setup?"
+msgstr ""
+
+msgid "Zydas"
 msgstr ""
 
 #
@@ -8647,24 +8272,8 @@ msgid "alphabetic sort"
 msgstr "alfabetisk sortering"
 
 #
-msgid ""
-"are you sure you want to restore\n"
-"following backup:\n"
-msgstr ""
-"er du sikker på, at du vil gendanne\n"
-"følgende backup:\n"
-
-#
-msgid "assigned CAIds"
-msgstr "tilknttede CAIds"
-
-#
 msgid "assigned CAIds:"
 msgstr "tilknyttede CAId'er:"
-
-#
-msgid "assigned Services/Provider"
-msgstr "tilknyttede kanaler/udbyder"
 
 #
 msgid "assigned Services/Provider:"
@@ -8719,10 +8328,6 @@ msgstr "Sortliste"
 #
 msgid "blue"
 msgstr "blå"
-
-#
-msgid "bob"
-msgstr ""
 
 #
 #, python-format
@@ -8804,10 +8409,6 @@ msgstr "daglig"
 #
 msgid "day"
 msgstr "dag"
-
-#
-msgid "default"
-msgstr ""
 
 #
 msgid "delete"
@@ -8918,10 +8519,6 @@ msgid "end favourites edit"
 msgstr "afslut favoritredigering"
 
 #
-msgid "enigma2 and network"
-msgstr "enigma2 og netværk"
-
-#
 msgid "enter hidden network SSID"
 msgstr "indtast skjult netværks SSID"
 
@@ -8932,10 +8529,6 @@ msgstr "svarende til"
 #
 msgid "exact match"
 msgstr ""
-
-#
-msgid "exceeds dual layer medium!"
-msgstr "overskrider dobbelt lags media!"
 
 #
 msgid "exit DVD player or return to file browser"
@@ -8956,10 +8549,6 @@ msgstr "luk navneserver opsætning"
 #
 msgid "exit network adapter configuration"
 msgstr "luk netværksadapter opsætning"
-
-#
-msgid "exit network adapter setup menu"
-msgstr "luk netværksadapter opsætningsmenu"
 
 #
 msgid "exit network interface list"
@@ -9022,14 +8611,6 @@ msgid "help..."
 msgstr "hjælp..."
 
 #
-msgid "hidden network"
-msgstr "skjult netværk"
-
-#
-msgid "hidden..."
-msgstr ""
-
-#
 msgid "hide extended description"
 msgstr "skjul udvidet beskrivelse"
 
@@ -9064,15 +8645,6 @@ msgstr ""
 #
 msgid "in Title"
 msgstr ""
-
-#
-#, python-format
-msgid ""
-"incoming call!\n"
-"%s calls on %s!"
-msgstr ""
-"indgående opkald!\n"
-"%s opkald på %s!"
 
 #
 msgid "init module"
@@ -9319,10 +8891,6 @@ msgid "open servicelist(up)"
 msgstr "åbne kanalliste(op)"
 
 #
-msgid "open virtual keyboard input help"
-msgstr "åbn hjælp til virtuel tastatur input"
-
-#
 msgid "partial match"
 msgstr ""
 
@@ -9429,10 +8997,6 @@ msgstr "gentag afspilningsliste"
 #
 msgid "repeated"
 msgstr "gentaget"
-
-#
-msgid "required medium type:"
-msgstr ""
 
 #
 msgid "rewind to the previous chapter"
@@ -9732,10 +9296,6 @@ msgid "unknown service"
 msgstr "ukendt kanal"
 
 #
-msgid "until restart"
-msgstr "indtil genstart"
-
-#
 msgid "until standby/restart"
 msgstr ""
 
@@ -9816,8 +9376,6 @@ msgid "zapped"
 msgstr "zappet"
 
 #
-#
-#
 #~ msgid ""
 #~ "\n"
 #~ "Enigma2 will restart after the restore"
@@ -9826,87 +9384,73 @@ msgstr "zappet"
 #~ "Enigma2 vil genstarte efter gendannelse"
 
 #
-#
-#
 #~ msgid ""
 #~ "\n"
 #~ "Scan for local packages and install them."
 #~ msgstr ""
 #~ "\n"
-#~ "Scan efter lokale pakker og installer dem."
+#~ "Se, installer og fjern nuværende eller installerede pakker.Scan efter "
+#~ "lokale pakker og installer dem."
 
-#
-#
-#
-#~ msgid ""
-#~ "\n"
-#~ "View, install and remove available or installed packages."
-#~ msgstr ""
-#~ "\n"
-#~ "Se, installer og fjern nuværende eller installerede pakker."
-
-#
-#
 #
 #~ msgid "\"?"
 #~ msgstr "\"?"
 
-#
-#
+#~ msgid "* Only available when entering hidden SSID or network key"
+#~ msgstr "(tom)"
+
 #
 #~ msgid ".NFI Flasher bootable USB stick successfully created."
 #~ msgstr ".NFI flash bootbar USB stick blev oprettet."
 
 #
+#~ msgid "/usr/share/enigma2 directory"
+#~ msgstr "/usr/share/enigma2 mappe"
+
 #
+#~ msgid "/var directory"
+#~ msgstr "/var mappe"
+
+#
+#~ msgid "50 Hz"
+#~ msgstr "50 Hz"
+
 #
 #~ msgid "AGC"
 #~ msgstr "AGC"
 
 #
-#
-#
 #~ msgid "AGC:"
 #~ msgstr "AGC:"
 
-#
-#
 #
 #~ msgid "AV-Setup"
 #~ msgstr "AV-Indstilling"
 
 #
-#
-#
 #~ msgid "Add title..."
 #~ msgstr "Tilføj titel..."
 
 #
-#
+#~ msgid "Advanced"
+#~ msgstr "Avanceret"
+
 #
 #~ msgid "All..."
 #~ msgstr "Alle..."
 
 #
-#
-#
 #~ msgid "Allow Unsupported Modes"
 #~ msgstr "Tillade Usupporterede Typer"
 
-#
-#
 #
 #~ msgid "An error has occured. (%s)"
 #~ msgstr "En fejl er opstået. (%s)"
 
 #
-#
-#
 #~ msgid "An error occured!"
 #~ msgstr "Der opstod en fejl!"
 
-#
-#
 #
 #~ msgid ""
 #~ "Are you sure you want to enable WLAN support?\n"
@@ -9918,8 +9462,6 @@ msgstr "zappet"
 #~ "\n"
 
 #
-#
-#
 #~ msgid ""
 #~ "Are you sure you want to enable your local network?\n"
 #~ "\n"
@@ -9927,8 +9469,6 @@ msgstr "zappet"
 #~ "Er du sikker på at du vil tilslutte dit lokale netværk?\n"
 #~ "\n"
 
-#
-#
 #
 #~ msgid ""
 #~ "Are you sure you want to reset \n"
@@ -9940,169 +9480,193 @@ msgstr "zappet"
 #~ "\n"
 
 #
-#
+#~ msgid "Ascanding"
+#~ msgstr "Stigende"
+
 #
 #~ msgid "Automatic SSID lookup"
 #~ msgstr "Automatisk SSID fremfinding"
 
 #
+#~ msgid "Backup"
+#~ msgstr "Kopi"
+
 #
+#~ msgid "Backup Location"
+#~ msgstr "Kopi placering"
+
+#
+#~ msgid "Backup Mode"
+#~ msgstr "Kopi Type"
+
+#
+#~ msgid "Backup is done. Please press OK to see the result."
+#~ msgstr "Kopien er færdig. Tryk OK for at se resultat."
+
 #
 #~ msgid "Backup running"
 #~ msgstr "Backup kører"
 
 #
-#
-#
 #~ msgid "Backup running..."
 #~ msgstr "Backup kører..."
 
-#
-#
 #
 #~ msgid "Burn"
 #~ msgstr "Brænd"
 
 #
-#
-#
 #~ msgid "Burn To DVD..."
 #~ msgstr "Brænd til DVD..."
 
 #
+#~ msgid "CF Drive"
+#~ msgstr "CF Disk"
+
 #
+#~ msgid "Call monitoring"
+#~ msgstr "Overvåg opkald"
+
 #
 #~ msgid "Choose Location"
 #~ msgstr "Vælg Position"
 
 #
+#~ msgid "Choose source"
+#~ msgstr "Vælg kilde"
+
 #
+#~ msgid "Compact flash card"
+#~ msgstr "Kompakt flash kort"
+
+#
+#~ msgid "Config"
+#~ msgstr "Indtilling"
+
 #
 #~ msgid "Configuration for the CrashlogAutoSubmitter"
 #~ msgstr "Opsætning for NedbrudsAutoUnderretning"
 
 #
-#
-#
 #~ msgid "Configure your internal LAN again"
 #~ msgstr "Konfigurer dit interne LAN igen"
 
-#
-#
 #
 #~ msgid "Configure your wireless LAN"
 #~ msgstr "Konfigurer dit trådløse LAN"
 
 #
-#
-#
 #~ msgid "Confirm"
 #~ msgstr "Bekræft"
 
-#
-#
 #
 #~ msgid "Connect to the Internet with a USB Wlan Stick"
 #~ msgstr "Tilslutte Internet med en USB Wlan Stick"
 
 #
-#
-#
 #~ msgid "Connect to the Internet with your local LAN"
 #~ msgstr "Tilslutte Internet til dit lokale LAN netværk"
 
 #
+#~ msgid "Connected to Fritz!Box!"
+#~ msgstr "Forbindelse Ok til Fritz!Box!"
+
 #
+#~ msgid "Connecting to Fritz!Box..."
+#~ msgstr "Forbinder til Fritz!Box..."
+
+#
+#~ msgid ""
+#~ "Connection to Fritz!Box\n"
+#~ "failed! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Forbindelse til Fritz!Box\n"
+#~ "fejlede! (%s)\n"
+#~ "prøver igen..."
+
 #
 #~ msgid "Continue"
 #~ msgstr "Fortsæt"
 
 #
-#
-#
 #~ msgid "Copying USB flasher boot image to stick..."
 #~ msgstr "Kopierer USB flash boot imaget til stick..."
 
-#
-#
 #
 #~ msgid "CrashlogAutoSubmitConfiguration"
 #~ msgstr "Opsætning af NedbrudslogAutoUnderretning"
 
 #
-#
+#~ msgid ""
+#~ "Crashlogs found!\n"
+#~ "Send them to Dream Multimedia ?"
+#~ msgstr ""
+#~ "Der er fundet nedbrudslog!\n"
+#~ "Vil du sende dem til Dream Multimedia ?"
+
 #
 #~ msgid "DVD ENTER key"
 #~ msgstr "DVD ENTER tast"
 
 #
-#
-#
 #~ msgid "DVD down key"
 #~ msgstr "DVD ned tast"
 
-#
-#
 #
 #~ msgid "DVD left key"
 #~ msgstr "DVD venstre tast"
 
 #
-#
-#
 #~ msgid "DVD right key"
 #~ msgstr "DVD højre tast"
 
-#
-#
 #
 #~ msgid "DVD up key"
 #~ msgstr "DVD op tast"
 
 #
-#
-#
 #~ msgid "Decompressing USB stick flasher boot image..."
 #~ msgstr "Dekomprimerer USB stik flash boot image..."
 
 #
-#
+#~ msgid "Default settings"
+#~ msgstr "Standard indstillinger"
+
 #
 #~ msgid "Default-Wizard"
 #~ msgstr "Default-Guide"
 
 #
-#
-#
 #~ msgid "Details"
 #~ msgstr "Detaljer"
 
-#
-#
 #
 #~ msgid "Device Setup..."
 #~ msgstr "Netværks Opsætning..."
 
 #
-#
+#~ msgid ""
+#~ "Disconnected from\n"
+#~ "Fritz!Box! (%s)\n"
+#~ "retrying..."
+#~ msgstr ""
+#~ "Forbindelse afbrudt til\n"
+#~ "Fritz!Box! (%s)\n"
+#~ "prøver igen..."
+
 #
 #~ msgid "Discontinuous playback at speeds above"
 #~ msgstr "Usikker afspilning ved hastigheder over"
 
 #
-#
-#
 #~ msgid "Discontinuous playback frame repeat count"
 #~ msgstr "Usikker afspilnings ramme gentagelses antal"
 
 #
-#
-#
 #~ msgid "Display spinner"
 #~ msgstr "Bruge Spinner"
 
-#
-#
 #
 #~ msgid ""
 #~ "Do you really want to REMOVE\n"
@@ -10112,8 +9676,6 @@ msgstr "zappet"
 #~ "dette plugin \""
 
 #
-#
-#
 #~ msgid ""
 #~ "Do you really want to download\n"
 #~ "the plugin \""
@@ -10122,61 +9684,49 @@ msgstr "zappet"
 #~ "dette plugin \""
 
 #
-#
-#
-#~ msgid "Do you really want to exit?"
-#~ msgstr "Ønsker du virkelig at afslutte?"
+#~ msgid ""
+#~ "Do you want to backup now?\n"
+#~ "After pressing OK, please wait!"
+#~ msgstr ""
+#~ "Vil du lave backup nu?\n"
+#~ "Efter tryk på OK, vent venligst!"
 
-#
-#
 #
 #~ msgid "Do you want to continue installing or removing selected plugins?\n"
 #~ msgstr "Vil du fortsætte med at installere eller fjerne valgte plugins?\n"
 
 #
-#
+#~ msgid "Done - Installed or upgraded %d packages with %d errors"
+#~ msgstr "Færdig - Installerede og opgraderede %d pakker med %d fejl"
+
 #
 #~ msgid "Downloading image description..."
 #~ msgstr "Downloader image beskrivelse..."
 
 #
-#
-#
 #~ msgid "Edit IPKG source URL..."
 #~ msgstr "Rediger IPKG kilde URL..."
 
-#
-#
 #
 #~ msgid "Edit current title"
 #~ msgstr "Ændre nuværende titel"
 
 #
-#
-#
 #~ msgid "Edit title..."
 #~ msgstr "Ændre titel..."
 
-#
-#
 #
 #~ msgid "Enable LAN"
 #~ msgstr "Tilslut LAN"
 
 #
-#
-#
 #~ msgid "Enable WLAN"
 #~ msgstr "Tilslut WLAN"
 
 #
-#
-#
 #~ msgid "Enable WLAN Support"
 #~ msgstr "Aktivere WLAN Support"
 
-#
-#
 #
 #~ msgid ""
 #~ "Enable the local network of your Dreambox.\n"
@@ -10186,85 +9736,105 @@ msgstr "zappet"
 #~ "\n"
 
 #
-#
-#
 #~ msgid "Enable zap history"
 #~ msgstr "Aktivere zap historie"
 
-#
-#
 #
 #~ msgid "End"
 #~ msgstr "Slut"
 
 #
+#~ msgid ""
+#~ "Enigma2 Skinselector v0.5 BETA\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 grafisk temavælger v0.5 BETA\n"
+#~ "\n"
+#~ "Ved problemer venligst kontakt\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
 #
+#~ msgid "Enter WLAN network name/SSID:"
+#~ msgstr "Indtast WLAN netværks navn/SSID"
+
+#
+#~ msgid "Enter WLAN passphrase/key:"
+#~ msgstr "Indtast WLAN kodesætning/nøgle:"
+
 #
 #~ msgid "Exit wizard and configure later manually"
 #~ msgstr "Afslutte hjælpen og konfigure manuelt senere"
 
 #
-#
+#~ msgid "Filesystem Check..."
+#~ msgstr "Filsystem kontrol..."
+
 #
 #~ msgid "Fix USB stick"
 #~ msgstr "Klargør USB stick"
 
 #
-#
-#
 #~ msgid "Following tasks will be done after you press continue."
 #~ msgstr "Følgende opgaver vil blive udført efter du har trykket fortsæt."
 
-#
-#
 #
 #~ msgid "Font size"
 #~ msgstr "Skrift størrelse"
 
 #
+#~ msgid "Fritz!Box FON IP address"
+#~ msgstr "Fritz!Box TELEFON IP adresse"
+
 #
+#~ msgid "Function not yet implemented"
+#~ msgstr "Funktion endnu ikke tilgængelig"
+
 #
 #~ msgid "General AC3 delay"
 #~ msgstr "Almindelig AC3 forsinkelse"
 
 #
-#
-#
 #~ msgid "General PCM delay"
 #~ msgstr "Almindelig PCM forsinkelse"
 
-#
-#
 #
 #~ msgid "Hello!"
 #~ msgstr "Goddag!"
 
 #
-#
-#
 #~ msgid "Here is a small overview of the available icon states."
 #~ msgstr "Her er en lille oversigt over de tilgængelig ikon tilstande."
 
-#
-#
 #
 #~ msgid "How to handle found crashlogs:"
 #~ msgstr "Hvordan skal fundne nedbrudslog behandles:"
 
 #
+#~ msgid "If you can see this page, please press OK."
+#~ msgstr "Hvis du kan se denne side, venligst tryk OK."
+
 #
+#~ msgid "Image-Upgrade"
+#~ msgstr "Image-opgradering"
+
+#
+#~ msgid "Initialization..."
+#~ msgstr "Initialisere harddisk..."
+
 #
 #~ msgid "Install local IPKG"
 #~ msgstr "Installer lokal IPKG"
 
 #
-#
-#
 #~ msgid "Install software updates..."
 #~ msgstr "Installer software opdateringer..."
 
-#
-#
 #
 #~ msgid ""
 #~ "Install/\n"
@@ -10274,55 +9844,53 @@ msgstr "zappet"
 #~ "Fjern"
 
 #
-#
-#
 #~ msgid "Installing defaults... Please wait.."
 #~ msgstr "Installerer standard... Vent venligst..."
 
 #
-#
+#~ msgid "Invert display"
+#~ msgstr "Inverter display"
+
 #
 #~ msgid "Jump to video title 1 (play movie from start)"
 #~ msgstr "Hop til video titel 1 (afspil film fra start)"
 
 #
-#
+#~ msgid "Language..."
+#~ msgstr "Sprog..."
+
 #
 #~ msgid "Lets you view/edit files in your Dreambox"
 #~ msgstr "Lad os se på/rediger filer i din Dreambox"
 
 #
-#
-#
 #~ msgid "Maximal zap history entries"
 #~ msgstr "Maximum zap historie størrelse"
 
-#
-#
 #
 #~ msgid "Name:"
 #~ msgstr "Navn:"
 
 #
-#
-#
 #~ msgid "Nameserver Setup..."
 #~ msgstr "Navneserver Opsætning..."
 
-#
-#
 #
 #~ msgid "Namespace:"
 #~ msgstr "Navneplads:"
 
 #
-#
+#~ msgid "Network..."
+#~ msgstr "Netværk..."
+
 #
 #~ msgid "New DVD"
 #~ msgstr "Ny DVD"
 
 #
-#
+#~ msgid "No 50 Hz, sorry. :("
+#~ msgstr "Ingen 50 Hz, desværre. :("
+
 #
 #~ msgid ""
 #~ "No working local networkadapter found.\n"
@@ -10334,8 +9902,6 @@ msgstr "zappet"
 #~ "Netværk er konfigureret rigtigt."
 
 #
-#
-#
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN USB Stick or "
@@ -10345,8 +9911,6 @@ msgstr "zappet"
 #~ " Venligst undersøg om du har en kompatibel WLAN USB Stick eller aktiver "
 #~ "dit lokale netværks interface."
 
-#
-#
 #
 #~ msgid ""
 #~ "No working wireless interface found.\n"
@@ -10358,8 +9922,6 @@ msgstr "zappet"
 #~ "lokale netværk interface."
 
 #
-#
-#
 #~ msgid ""
 #~ "No working wireless interface found.\n"
 #~ " Please verify that you have attached a compatible WLAN device or enable "
@@ -10369,8 +9931,6 @@ msgstr "zappet"
 #~ " Undersøg venligst, om du har en kompatibel WLAN enhed eller aktiver dit "
 #~ "lokale netværks interface."
 
-#
-#
 #
 #~ msgid ""
 #~ "No working wireless networkadapter found.\n"
@@ -10382,19 +9942,13 @@ msgstr "zappet"
 #~ "lokale Netværk er konfigureret rigtigt."
 
 #
-#
-#
 #~ msgid "No, let me choose default lists"
 #~ msgstr "Nej, lad mig vælge standard lister"
 
 #
-#
-#
 #~ msgid "No, send them never."
 #~ msgstr "Nej, send dem aldrig."
 
-#
-#
 #
 #~ msgid ""
 #~ "Now please insert the USB stick (minimum size is 64 MB) that you want to "
@@ -10406,31 +9960,25 @@ msgstr "zappet"
 #~ "igen er sat i boxen."
 
 #
-#
+#~ msgid "Online-Upgrade"
+#~ msgstr "Online-opgradering"
+
 #
 #~ msgid "Other..."
 #~ msgstr "Andet..."
 
 #
-#
-#
 #~ msgid "Output Type"
 #~ msgstr "Udgangs Type"
 
-#
-#
 #
 #~ msgid "Package details for: "
 #~ msgstr "Pakkedetaljer for:"
 
 #
-#
-#
 #~ msgid "Partitioning USB stick..."
 #~ msgstr "Partitionerer USB stick..."
 
-#
-#
 #
 #~ msgid ""
 #~ "Please attach your Zydas ZD1211B chipset compatibe WLAN USB Stick to your "
@@ -10442,8 +9990,6 @@ msgstr "zappet"
 #~ "indbyggede trådløse netværks undrstøttelse"
 
 #
-#
-#
 #~ msgid ""
 #~ "Please configure your local LAN internet connection by filling out the "
 #~ "needed values.\n"
@@ -10453,8 +9999,6 @@ msgstr "zappet"
 #~ "nødvendige oplysnings værdier.\n"
 #~ "Når du er færdig venligst tryk på OK for at fortsætte."
 
-#
-#
 #
 #~ msgid ""
 #~ "Please configure your wireless LAN internet connection by filling out the "
@@ -10466,44 +10010,30 @@ msgstr "zappet"
 #~ "Når du er færdig venligst tryk på OK for at fortsætte."
 
 #
-#
-#
 #~ msgid "Please select below the wireless network you want to connect to."
 #~ msgstr ""
 #~ "Venligst vælg nedenunder det trådløse Netværk du vil tilsluttes til."
 
 #
-#
-#
 #~ msgid "Please select keyword to filter..."
 #~ msgstr "Vælg venligst et nøgleord til filter..."
 
-#
-#
 #
 #~ msgid "Please wait for md5 signature verification..."
 #~ msgstr "Vent venligst på verificering af md5 signatur..."
 
 #
-#
-#
 #~ msgid "Plugin manager"
 #~ msgstr "Plugin styring"
 
-#
-#
 #
 #~ msgid "Plugin manager help..."
 #~ msgstr "Hjælp til pluginstyring..."
 
 #
-#
-#
 #~ msgid "Plugin manager process information..."
 #~ msgstr "Pluginstyring berarbejdningsinformation..."
 
-#
-#
 #
 #~ msgid ""
 #~ "Pressing OK enables the built in wireless LAN support of your Dreambox.\n"
@@ -10520,25 +10050,25 @@ msgstr "zappet"
 #~ "\n"
 
 #
-#
-#
 #~ msgid "Provider:"
 #~ msgstr "Udbyder:"
 
 #
-#
+#~ msgid "RSS Feed URI"
+#~ msgstr "RSS feed URI"
+
 #
 #~ msgid "Rate"
 #~ msgstr "Billedfrekvens"
 
 #
-#
-#
 #~ msgid "Really delete this timer?"
 #~ msgstr "Vil du virkelig slette denne timer?"
 
 #
-#
+#~ msgid "Recording paths..."
+#~ msgstr "Optagelses stier..."
+
 #
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really reboot "
@@ -10548,8 +10078,6 @@ msgstr "zappet"
 #~ "reboote nu?"
 
 #
-#
-#
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really "
 #~ "restart now?"
@@ -10557,8 +10085,6 @@ msgstr "zappet"
 #~ "Optagelse(r) er igang eller starter op om få sekunder... vil du virkelig "
 #~ "genstarte nu?"
 
-#
-#
 #
 #~ msgid ""
 #~ "Recording(s) are in progress or coming up in few seconds... really "
@@ -10568,19 +10094,13 @@ msgstr "zappet"
 #~ "afbryde nu?"
 
 #
-#
-#
 #~ msgid "Remounting stick partition..."
 #~ msgstr "Genmonterer partitioner på stick..."
 
 #
-#
-#
 #~ msgid "Reset configuration"
 #~ msgstr "Genstart Konfiguration"
 
-#
-#
 #
 #~ msgid ""
 #~ "Reset the network configuration of your Dreambox.\n"
@@ -10590,97 +10110,109 @@ msgstr "zappet"
 #~ "\n"
 
 #
-#
-#
 #~ msgid "Restart your wireless interface"
 #~ msgstr "Genstart dit trådløse interface"
 
-#
-#
 #
 #~ msgid "Restore backups..."
 #~ msgstr "Gendan backup..."
 
 #
-#
-#
 #~ msgid "Restore running..."
 #~ msgstr "Gendanelse afvikles..."
 
 #
+#~ msgid ""
+#~ "Restoring the settings is done. Please press OK to activate the restored "
+#~ "settings now."
+#~ msgstr "Indstillinger genskabt. Tryk OK for at aktivere indstillingerne nu."
+
 #
+#~ msgid "Satteliteequipment"
+#~ msgstr "Satellitudstyr"
+
 #
 #~ msgid "Save current project to disk"
 #~ msgstr "Gemme nuværende projekt på disk"
 
 #
-#
-#
 #~ msgid "Save..."
 #~ msgstr "Gemme..."
 
 #
-#
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your WLAN USB Stick\n"
+#~ msgstr ""
+#~ "Søg efter netværk med trådløs adgang og tilslut disse med din WLAN USB "
+#~ "stick\n"
+
 #
 #~ msgid "Select IPKG source to edit..."
 #~ msgstr "Vælg IPKG kilde, der skal redigeres..."
 
 #
-#
-#
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Vælg filer/mapper til backup..."
 
 #
-#
+#~ msgid "Select video input"
+#~ msgstr "Vælg video indgang"
+
 #
 #~ msgid "Service Reference:"
 #~ msgstr "Kanal reference:"
 
 #
-#
+#~ msgid "Set as default Interface"
+#~ msgstr "Sæt som standard interface"
+
 #
 #~ msgid "Show Zap-Errors"
 #~ msgstr "Vis Zap-Fejl"
 
 #
-#
-#
 #~ msgid "Show files from %s"
 #~ msgstr "Vis filer fra %s"
 
 #
-#
+#~ msgid "Skin..."
+#~ msgstr "Grafisk tema..."
+
 #
 #~ msgid "Software manager"
 #~ msgstr "Software styring"
 
 #
-#
-#
 #~ msgid "Software manager..."
 #~ msgstr "Software styring..."
 
 #
+#~ msgid "Somewhere else"
+#~ msgstr "Andet steds"
+
 #
+#~ msgid ""
+#~ "Sorry your Backup destination does not exist\n"
+#~ "\n"
+#~ "Please choose an other one."
+#~ msgstr ""
+#~ "Desværre, din backup destination eksisterer ikke\n"
+#~ "\n"
+#~ "Vælg venligst en anden."
+
 #
 #~ msgid "Start"
 #~ msgstr "Start"
 
 #
-#
-#
 #~ msgid "Startwizard"
 #~ msgstr "Start Hjælp"
 
 #
-#
-#
 #~ msgid "Step "
 #~ msgstr "Drej"
 
-#
-#
 #
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
@@ -10696,8 +10228,6 @@ msgstr "zappet"
 #~ "Venligst tryk på OK for at fortsætte."
 
 #
-#
-#
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
 #~ "\n"
@@ -10712,8 +10242,6 @@ msgstr "zappet"
 #~ "Venligst tryk på OK for at fortsætte."
 
 #
-#
-#
 #~ msgid ""
 #~ "Thank you for using the wizard. Your Dreambox is now ready to use.\n"
 #~ "Please press OK to start using your Dreambox."
@@ -10721,8 +10249,6 @@ msgstr "zappet"
 #~ "Tak fordi du brugte hjælpen. Din Dreambox er nu klar til brug.\n"
 #~ "Tryk venligst OK for at starte din Dreambox nu."
 
-#
-#
 #
 #~ msgid ""
 #~ "The .NFI Image flasher USB stick is now ready to use. Please download an ."
@@ -10736,7 +10262,13 @@ msgstr "zappet"
 #~ "sticken!"
 
 #
+#~ msgid "This Dreambox can't decode %s video streams!"
+#~ msgstr "Denne Dreambox kan ikke afkode %s video strams!"
+
 #
+#~ msgid "This is unsupported at the moment."
+#~ msgstr "Denne funktion er ikke understøttet."
+
 #
 #~ msgid ""
 #~ "This test checks whether your LAN Adapter is set up for automatic IP "
@@ -10759,7 +10291,9 @@ msgstr "zappet"
 #~ "netværk."
 
 #
-#
+#~ msgid "Timeshift path..."
+#~ msgstr "Tidsforskydningsstien..."
+
 #
 #~ msgid ""
 #~ "To make sure you intend to do this, please remove the target USB stick "
@@ -10771,7 +10305,9 @@ msgstr "zappet"
 #~ "OK, når du har taget sticken ud."
 
 #
-#
+#~ msgid "USB"
+#~ msgstr "USB"
+
 #
 #~ msgid ""
 #~ "Unable to initialize harddisk.\n"
@@ -10783,8 +10319,6 @@ msgstr "zappet"
 #~ "FEJL: "
 
 #
-#
-#
 #~ msgid ""
 #~ "Undo\n"
 #~ "Install"
@@ -10792,8 +10326,6 @@ msgstr "zappet"
 #~ "Fortryd\n"
 #~ "Installer"
 
-#
-#
 #
 #~ msgid ""
 #~ "Undo\n"
@@ -10803,43 +10335,51 @@ msgstr "zappet"
 #~ "Fjern"
 
 #
-#
+#~ msgid "Updates your receiver's software"
+#~ msgstr "Opdaterer din Dreambox's software"
+
 #
 #~ msgid "Upgrade"
 #~ msgstr "Opgrader"
 
 #
-#
+#~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
+#~ msgstr "Opgradering færdig. Vil du genstarte din DreamBox?"
+
 #
 #~ msgid "VCR Switch"
 #~ msgstr "Video Omskifter"
 
 #
-#
-#
 #~ msgid "Videoformat:"
 #~ msgstr "TVformat:"
 
-#
-#
 #
 #~ msgid "Videosize:"
 #~ msgstr "Billedformat:"
 
 #
-#
-#
 #~ msgid "View"
 #~ msgstr "Vis"
 
 #
-#
+#~ msgid "View list of available Satteliteequipment extensions."
+#~ msgstr "Vis oplistning af tilgængelige satellitudstyrsudvidelser"
+
 #
 #~ msgid "Waiting for USB stick to settle..."
 #~ msgstr "Venter på USB sticken..."
 
 #
-#
+#~ msgid ""
+#~ "We will now test if your TV can also display this resolution at 50hz. If "
+#~ "your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
+#~ "Please press OK to begin."
+#~ msgstr ""
+#~ "Vi vil nu teste om dit TV kan vise denne opløsning ved 50hz. Hvis din "
+#~ "skærm bliver sort, så vent 20 sekunder og så skiftes tilbage til 60hz.\n"
+#~ "Venligst tryk OK for at starte."
+
 #
 #~ msgid ""
 #~ "Welcome.\n"
@@ -10857,31 +10397,57 @@ msgstr "zappet"
 #~ "Tryk OK på din fjernbetjening for at gå videre til næste trin."
 
 #
-#
-#
 #~ msgid "What to do with sent crashlogs:"
 #~ msgstr "Hvad skal der ske med afsendte nedbrudslogs:"
 
-#
-#
 #
 #~ msgid "Writing image file to NAND Flash"
 #~ msgstr "Skriver image fil til NAND flash"
 
 #
-#
-#
 #~ msgid "Yes, and don't ask again."
 #~ msgstr "Ja, og spørg ikke igen"
 
-#
-#
 #
 #~ msgid "You can choose, what you want to install.."
 #~ msgstr "Du kan vælge, hvad du vil have indstalleret..."
 
 #
+#~ msgid ""
+#~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
+#~ "harddisk is not an option for you."
+#~ msgstr ""
+#~ "Du ser ikke ud til at have en HDD i din Dreambox. Så derfor kan du ikke "
+#~ "lave en HDD backup."
+
 #
+#~ msgid ""
+#~ "You have chosen to backup to a compact flash card. The card must be in "
+#~ "the slot. We do not verify if it is really used at the moment. So better "
+#~ "backup to the harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "Du har valgt backup på compact flash. Kortet skal sidde i CF-slottet. Den "
+#~ "foretrukne måde at lave backup på er på HDD!\n"
+#~ "Tryk på OK, for alligevel at starte en backup."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to an usb drive. Better backup to the "
+#~ "harddisk!\n"
+#~ "Please press OK to start the backup now."
+#~ msgstr ""
+#~ "Du har valgt at lave backup på USB stick. Den anbefalede metode er\n"
+#~ "at lave backup på HDD! Tryk på OK for at begynde backup."
+
+#
+#~ msgid ""
+#~ "You have chosen to backup to your harddisk. Please press OK to start the "
+#~ "backup now."
+#~ msgstr ""
+#~ "Du har valgt at lave en backup på HDD. Tryk venligst på OK, for at lave "
+#~ "backup nu."
+
 #
 #~ msgid ""
 #~ "You need to define some keywords first!\n"
@@ -10893,7 +10459,9 @@ msgstr "zappet"
 #~ "Vil du definere nøgleord nu?"
 
 #
-#
+#~ msgid "Your TV works with 50 Hz. Good!"
+#~ msgstr "Dit TV virker ved 50 Hz. Tillykke!"
+
 #
 #~ msgid ""
 #~ "Your local LAN internet connection is not working!\n"
@@ -10903,7 +10471,17 @@ msgstr "zappet"
 #~ "Vælg venligst hvad du nu vil gøre."
 
 #
-#
+#~ msgid ""
+#~ "Your network configuration has been activated.\n"
+#~ "A second configured interface has been found.\n"
+#~ "\n"
+#~ "Do you want to disable the second network interface?"
+#~ msgstr ""
+#~ "Din netværks opsætning er blevet aktiveret.\n"
+#~ "Der er fundet et andet opsat interface.\n"
+#~ "\n"
+#~ "Vil du deaktivere det andet netværks interface?"
+
 #
 #~ msgid ""
 #~ "Your network is restarting.\n"
@@ -10913,8 +10491,6 @@ msgstr "zappet"
 #~ "Du vil automatisk blive ført til næste trin."
 
 #
-#
-#
 #~ msgid ""
 #~ "Your wired LAN Adapter could not be started.\n"
 #~ "Do you want to reboot your Dreambox to apply the new configuration?\n"
@@ -10922,8 +10498,6 @@ msgstr "zappet"
 #~ "Din kabel LAN Adapter kunne ikke startes.\n"
 #~ "Vil du reboote din Dreambox for at starte din nye konfiguration?\n"
 
-#
-#
 #
 #~ msgid ""
 #~ "Your wireless LAN Adapter could not be started.\n"
@@ -10933,8 +10507,6 @@ msgstr "zappet"
 #~ "Vil du reboote din Dreambox for at starte din nye konfiguration?\n"
 
 #
-#
-#
 #~ msgid ""
 #~ "Your wireless internet connection is not working!\n"
 #~ "Please choose what you want to do next."
@@ -10943,127 +10515,133 @@ msgstr "zappet"
 #~ "Vælg venligst hvad du nu vil gøre."
 
 #
+#~ msgid ""
+#~ "are you sure you want to restore\n"
+#~ "following backup:\n"
+#~ msgstr ""
+#~ "er du sikker på, at du vil gendanne\n"
+#~ "følgende backup:\n"
+
 #
+#~ msgid "assigned CAIds"
+#~ msgstr "tilknttede CAIds"
+
+#
+#~ msgid "assigned Services/Provider"
+#~ msgstr "tilknyttede kanaler/udbyder"
+
 #
 #~ msgid "by Exif"
 #~ msgstr "Via Exif"
 
 #
-#
-#
 #~ msgid "color"
 #~ msgstr "farve"
 
 #
-#
+#~ msgid "enigma2 and network"
+#~ msgstr "enigma2 og netværk"
+
 #
 #~ msgid "equal to Socket A"
 #~ msgstr "Som Tuner A"
 
 #
+#~ msgid "exceeds dual layer medium!"
+#~ msgstr "overskrider dobbelt lags media!"
+
 #
+#~ msgid "exit network adapter setup menu"
+#~ msgstr "luk netværksadapter opsætningsmenu"
+
 #
 #~ msgid "font face"
 #~ msgstr "skrift udseende"
 
 #
-#
-#
 #~ msgid "full /etc directory"
 #~ msgstr "full /etc direktorie"
 
-#
-#
 #
 #~ msgid "headline"
 #~ msgstr "overskrift"
 
 #
-#
+#~ msgid "hidden network"
+#~ msgstr "skjult netværk"
+
 #
 #~ msgid "highlighted button"
 #~ msgstr "fremhævede knap"
 
 #
-#
+#~ msgid ""
+#~ "incoming call!\n"
+#~ "%s calls on %s!"
+#~ msgstr ""
+#~ "indgående opkald!\n"
+#~ "%s opkald på %s!"
+
 #
 #~ msgid "loopthrough to socket A"
 #~ msgstr "Forbundet til Tuner A"
 
 #
-#
-#
 #~ msgid "no Picture found"
 #~ msgstr "Intet Billede fundet"
 
-#
-#
 #
 #~ msgid "only /etc/enigma2 directory"
 #~ msgstr "Kun /etc/enigma2 direktorie"
 
 #
-#
+#~ msgid "open virtual keyboard input help"
+#~ msgstr "åbn hjælp til virtuel tastatur input"
+
 #
 #~ msgid "play next playlist entry"
 #~ msgstr "Afspil næste i spilleliste"
 
 #
-#
-#
 #~ msgid "play previous playlist entry"
 #~ msgstr "Afspil forrige i spilleliste"
 
-#
-#
 #
 #~ msgid "rebooting..."
 #~ msgstr "genstarter..."
 
 #
-#
-#
 #~ msgid "reindex..."
 #~ msgstr "omindekser"
 
-#
-#
 #
 #~ msgid "show first tag"
 #~ msgstr "Vis første mærke"
 
 #
-#
-#
 #~ msgid "show second tag"
 #~ msgstr "Vis andet mærke"
 
-#
-#
 #
 #~ msgid "skip backward (self defined)"
 #~ msgstr "Skip tilbage (bruger defineret)"
 
 #
-#
-#
 #~ msgid "skip forward (self defined)"
 #~ msgstr "Skip frem (bruger defineret)"
 
-#
-#
 #
 #~ msgid "spaces (top, between rows, left)"
 #~ msgstr "luft (top, mellem rækker, venstre)"
 
 #
-#
-#
 #~ msgid "text"
 #~ msgstr "Tekst"
 
 #
-#
+#~ msgid "until restart"
+#~ msgstr "indtil genstart"
+
 #
 #~ msgid "welcome"
 #~ msgstr "Velkommen"
