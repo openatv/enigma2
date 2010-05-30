@@ -10,7 +10,8 @@ except:
 from Directories import resolveFilename, SCOPE_HDD
 
 def getTrashFolder():
-	return os.path.join(resolveFilename(SCOPE_HDD), ".Trash")
+	# Returns trash folder without symlinks
+	return os.path.realpath(os.path.join(resolveFilename(SCOPE_HDD), ".Trash"))
 
 def createTrashFolder():
 	trash = getTrashFolder()
