@@ -57,7 +57,7 @@ def getPreferredTagEditor():
 def isTrashFolder(ref):
 	if not ref.flags & eServiceReference.mustDescent:
 		return False
-	return ref.getPath().startswith(Tools.Trashcan.getTrashFolder())
+	return os.path.realpath(ref.getPath()).startswith(Tools.Trashcan.getTrashFolder())
 
 def canDelete(item):
 	if not item:
@@ -735,7 +735,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				try:
 					trash = Tools.Trashcan.createTrashFolder()
 					# Also check whether we're INSIDE the trash, then it's a purge.
-					if current.getPath().startswith(trash):
+					if os.path.realpath(current.getPath()).startswith(trash):
 						msg = _("Deleted items") + "\n"
 					else:
 						moveServiceFiles(self.getCurrent(), trash)
