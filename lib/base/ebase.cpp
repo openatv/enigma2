@@ -243,14 +243,9 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 
 	if (this == eApp)
 	{
-		gOpcode op;
-		op.dc = 0;
-		op.opcode = gOpcode::flush;
-		gRC::getInstance()->submit(op);
 		Py_BEGIN_ALLOW_THREADS
 		ret = ::poll(pfd, fdcount, poll_timeout);
 		Py_END_ALLOW_THREADS
-		
 	} else
 		ret = ::poll(pfd, fdcount, poll_timeout);
 
