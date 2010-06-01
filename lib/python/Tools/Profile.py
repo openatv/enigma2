@@ -35,7 +35,10 @@ def profile(id):
 
 		if id in profile_data:
 			t = profile_data[id]
-			perc = t * (PERCENTAGE_END - PERCENTAGE_START) / total_time + PERCENTAGE_START
+			if total_time:
+				perc = t * (PERCENTAGE_END - PERCENTAGE_START) / total_time + PERCENTAGE_START
+			else:
+				perc = PERCENTAGE_START
 			try:
 				open("/proc/progress", "w").write("%d \n" % perc)
 			except IOError:
