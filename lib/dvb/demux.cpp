@@ -537,7 +537,7 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 	}
 	
-	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 1024*1024);
+	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 4*188*1024);
 
 	dmx_pes_filter_params flt;
 #if HAVE_DVB_API_VERSION > 3
