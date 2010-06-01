@@ -78,18 +78,26 @@ loadSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
 def parseCoordinate(str, e, size = 0):
+	str = str.strip()
 	if str == "center":
 		val = (e - size)/2
-	elif str[0] is 'e':
-		val = e
-		if len(str) > 2:
-			val = val + int(str[1:len(str)])
-	elif str[0] is 'c':
-		val = e/2
-		if len(str) > 2:
-			val = val + int(str[1:len(str)])
 	else:
-		val = int(str)
+		sl = len(str)
+		l = 1
+
+		if str[0] is 'e':
+			val = e
+		elif str[0] is 'c':
+			val = e/2
+		else:
+			val = 0;
+			l = 0
+
+		if sl - l > 1:
+			if str[sl-1] is '%':
+				val += e * int(str[l:sl-1]) / 100
+			else:
+				val += int(str[l:sl])
 	if val < 0:
 		val = 0
 	return val
