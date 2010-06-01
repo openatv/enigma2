@@ -70,7 +70,7 @@ private:
 	
 	eFixedMessagePump<int> m_messagepump;
 
-	unsigned char m_buffer[188*1024]; // Align to page (4096) and DMX (188)
+	unsigned char m_buffer[2*188*1024]; // Align to page (4096) and DMX (188)
 	
 	void recvEvent(const int &evt);
 };
