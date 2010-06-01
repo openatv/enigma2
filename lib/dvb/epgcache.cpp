@@ -793,8 +793,6 @@ void eEPGCache::cleanLoop()
 	singleLock s(cache_lock);
 	if (!eventDB.empty())
 	{
-		eDebug("[EPGC] start cleanloop");
-
 		time_t now = ::time(0);
 
 		for (eventCache::iterator DBIt = eventDB.begin(); DBIt != eventDB.end(); DBIt++)
@@ -850,7 +848,6 @@ void eEPGCache::cleanLoop()
 			}
 #endif
 		}
-		eDebug("[EPGC] stop cleanloop");
 		eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
 	}
 	cleanTimer->start(CLEAN_INTERVAL,true);
@@ -1740,7 +1737,7 @@ void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
 	if ( itmap == freeSatSubTableStatus.end() )
 	{
 		// New sub table. Store version.
-		eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
+		//eDebug("[EPGC] New subtable (%x) version (%d) now/next (%d) tsid (%x/%x) onid (%x/%x)", subtableNo, eit->version_number, eit->current_next_indicator, eit->transport_stream_id_hi, eit->transport_stream_id_lo, eit->original_network_id_hi, eit->original_network_id_lo);
 		fsstatus = new freesatEITSubtableStatus(eit->version_number, eit->last_section_number);
 		m_FreesatTablesToComplete++;
 		freeSatSubTableStatus.insert(std::pair<__u32,freesatEITSubtableStatus>(subtableNo, *fsstatus));
