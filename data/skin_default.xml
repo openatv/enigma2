@@ -1079,6 +1079,22 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
+	<!-- Color OLED screen (main) -->
+	<screen name="InfoBarSummary" position="0,0" size="96,64" id="2">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="96,25" font="Regular;14" halign="center" valign="center" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,27" size="96,5" borderWidth="1" >
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,32" size="96,32" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,32" zPosition="1" size="96,32">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
 	<!-- LCD screen (menus) -->
 	<screen name="MenuSummary" position="0,0" size="132,64">
 		<widget source="parent.title" render="Label" position="6,0" size="120,32" font="Regular;14" halign="center" valign="center"/>
