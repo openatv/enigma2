@@ -6,6 +6,11 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <byteswap.h>
+
+#ifndef BYTE_ORDER
+#error "no BYTE_ORDER defined!"
+#endif
 
 // use this for init Freetype...
 #include <ft2build.h>
@@ -40,8 +45,6 @@ static pthread_mutex_t ftlock=PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 #ifndef HAVE_FREETYPE2
 static FTC_Font cache_current_font=0;
 #endif
-
-#define RBG565
 
 struct fntColorCacheKey
 {
@@ -790,8 +793,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 		for (int i=0; i<16; ++i)
 		{
 #define BLEND(y, x, a) (y + (((x-y) * a)>>8))
-
-			unsigned char dr = background.r, dg = background.g, db = background.b;
+			unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
 			int sa = i * 16;
 			if (sa < 256)
 			{
@@ -800,11 +802,12 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				db = BLEND(background.b, foreground.b, sa) & 0xFF;
 			}
 #undef BLEND
-#ifdef RBG565
-			lookup16_normal[i] = ((dr >> 3) << 11) | ((db >> 2) << 5) | (dg >> 3);
+#if BYTE_ORDER == LITTLE_ENDIAN
+			lookup16_normal[i] = bswap_16(((db >> 3) << 11) | ((dg >> 2) << 5) | (dr >> 3));
 #else
-			lookup16_normal[i] = ((dr >> 3) << 11) | ((dg >> 2) << 5) | (db >> 3);
+			lookup16_normal[i] = ((db >> 3) << 11) | ((dg >> 2) << 5) | (dr >> 3);
 #endif
+			da ^= 0xFF;
 		}
 		for (int i=0; i<16; ++i)
 			lookup16_invert[i]=lookup16_normal[i^0xF];
