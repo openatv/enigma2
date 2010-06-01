@@ -3,8 +3,11 @@
 #include <lib/gdi/gpixmap.h>
 #include <lib/gdi/region.h>
 #include <lib/gdi/accel.h>
+#include <byteswap.h>
 
-#define RBG565
+#ifndef BYTE_ORDER
+#error "no BYTE_ORDER defined!"
+#endif
 
 gLookup::gLookup()
 	:size(0), lookup(0)
@@ -164,10 +167,10 @@ void gPixmap::fill(const gRegion &region, const gColor &color)
 				icol=(surface->clut.data[color].a<<24)|(surface->clut.data[color].r<<16)|(surface->clut.data[color].g<<8)|(surface->clut.data[color].b);
 			else
 				icol=0x10101*color;
-#ifdef RBG565
-			__u16 col = ((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF) >> 2) << 5 | (icol & 0xFF00) >> 11;
+#if BYTE_ORDER == LITTLE_ENDIAN
+			__u16 col = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19);
 #else
-			__u16 col = ((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF) >> 3;
+			__u16 col = ((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
 #endif
 			for (int y=area.top(); y<area.bottom(); y++)
 			{
@@ -233,10 +236,10 @@ void gPixmap::fill(const gRegion &region, const gRGB &color)
 		} else if (surface->bpp == 16)
 		{
 			__u32 icol = color.argb();
-#ifdef RBG565
-			__u16 col = ((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF) >> 2) << 5 | (icol & 0xFF00) >> 11;
+#if BYTE_ORDER == LITTLE_ENDIAN
+			__u16 col = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19);
 #else
-			__u16 col = ((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF) >> 3;
+			__u16 col = ((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
 #endif
 			for (int y=area.top(); y<area.bottom(); y++)
 			{
@@ -510,10 +513,10 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					icol=(src.surface->clut.data[i].a<<24)|(src.surface->clut.data[i].r<<16)|(src.surface->clut.data[i].g<<8)|(src.surface->clut.data[i].b);
 				else
 					icol=0x010101*i;
-#ifdef RBG565
-				pal[i]=icol&0xFF000000 | ((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF) >> 2) << 5 | (icol & 0xFF00) >> 11;
+#if BYTE_ORDER == LITTLE_ENDIAN
+				pal[i] = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19);
 #else
-				pal[i]=icol&0xFF000000 | ((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF) >> 3;
+				pal[i] = ((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
 #endif
 				pal[i]^=0xFF000000;
 			}
@@ -564,10 +567,10 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 						} else
 						{
 							__u32 icol = *srcp++;
-#ifdef RBG565
-							*dstp++=((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF) >> 2) << 5 | (icol & 0xFF00) >> 11;
+#if BYTE_ORDER == LITTLE_ENDIAN
+							*dstp++ = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19);
 #else
-							*dstp++=((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF) >> 3;
+							*dstp++ = ((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
 #endif
 						}
 					}
@@ -576,10 +579,10 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 					while (width--)
 					{
 						__u32 icol = *srcp++;
-#ifdef RBG565
-						*dstp++=((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF) >> 2) << 5 | (icol & 0xFF00) >> 11;
+#if BYTE_ORDER == LITTLE_ENDIAN
+						*dstp++ = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19);
 #else
-						*dstp++=((icol & 0xFF0000) >> 19) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF) >> 3;
+						*dstp++ = ((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
 #endif
 					}
 				}
@@ -655,13 +658,11 @@ void gPixmap::line(const gRegion &clip, ePoint start, ePoint dst, gColor color)
 	}
 
 	if (surface->bpp == 16)
-	{
-#ifdef RBG565
-		col16=((col & 0xFF0000) >> 19) << 11 | ((col & 0xFF) >> 2) << 5 | (col & 0xFF00) >> 11;
+#if BYTE_ORDER == LITTLE_ENDIAN
+		col16=bswap_16(((col & 0xFF) >> 3) << 11 | ((col & 0xFF00) >> 10) << 5 | (col & 0xFF0000) >> 19);
 #else
-		col16=((col & 0xFF0000) >> 19) << 11 | ((col & 0xFF00) >> 10) << 5 | (col & 0xFF) >> 3;
+		col16=((col & 0xFF) >> 3) << 11 | ((col & 0xFF00) >> 10) << 5 | (col & 0xFF0000) >> 19;
 #endif
-	}
 
 	int xa = start.x(), ya = start.y(), xb = dst.x(), yb = dst.y();
 	int dx, dy, x, y, s1, s2, e, temp, swap, i;
