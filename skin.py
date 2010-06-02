@@ -93,7 +93,7 @@ def parseCoordinate(str, e, size = 0):
 			val = 0;
 			l = 0
 
-		if sl - l > 1:
+		if sl - l > 0:
 			if str[sl-1] is '%':
 				val += e * int(str[l:sl-1]) / 100
 			else:
