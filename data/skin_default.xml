@@ -62,8 +62,8 @@
 		<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 	</screen>
 	<!-- Audio selection -->
-	<screen name="AudioSelection" position="center,center" size="420,330" title="Audio">
-		<widget name="config" position="50,10" size="360,110" scrollbarMode="showOnDemand" />
+	<screen name="AudioSelection" position="center,center" size="560,330" title="Audio">
+		<widget name="config" position="50,10" size="500,110" scrollbarMode="showOnDemand" />
 		
 		<widget source="key_red" render="Pixmap" pixmap="skin_default/buttons/key_red.png" position="10,10" size="35,25" alphatest="on">
 			<convert type="ConditionalShowHide" />
@@ -78,24 +78,24 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 		
-		<ePixmap pixmap="skin_default/div-h.png" position="10,112" zPosition="10" size="360,2" />
+		<ePixmap pixmap="skin_default/div-h.png" position="10,112" zPosition="10" size="540,2" />
 
-		<widget source="streams" render="Listbox" scrollbarMode="showOnDemand" position="10,120" size="400,200" zPosition="3" transparent="1" >
+		<widget source="streams" render="Listbox" scrollbarMode="showOnDemand" position="10,120" size="540,200" zPosition="3" transparent="1" >
 			<convert type="TemplatedMultiContent">
 				{"templates":
 					{"default": (25, [ 
 						MultiContentEntryText(pos = (0, 0),   size = (35, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 1), # key,
-						MultiContentEntryText(pos = (40, 0),  size = (55, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
-						MultiContentEntryText(pos = (100, 0), size = (80, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
-						MultiContentEntryText(pos = (190, 0), size = (140, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 4), # language,
-						MultiContentEntryText(pos = (340, 4), size = (60, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
+						MultiContentEntryText(pos = (40, 0),  size = (60, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
+						MultiContentEntryText(pos = (110, 0), size = (120, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
+						MultiContentEntryText(pos = (240, 0), size = (210, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 4), # language,
+						MultiContentEntryText(pos = (460, 4), size = (80, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
 					], True, "showNever"),
 					"notselected": (25, [ 
 						MultiContentEntryText(pos = (0, 0),   size = (35, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 1), # key,
-						MultiContentEntryText(pos = (40, 0),  size = (55, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
-						MultiContentEntryText(pos = (100, 0), size = (80, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
-						MultiContentEntryText(pos = (190, 0), size = (140, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 4), # language,
-						MultiContentEntryText(pos = (340, 4), size = (60, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
+						MultiContentEntryText(pos = (40, 0),  size = (60, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 2), # number,
+						MultiContentEntryText(pos = (110, 0), size = (120, 25),  font = 0, flags = RT_HALIGN_LEFT,  text = 3), # description,
+						MultiContentEntryText(pos = (240, 0), size = (210, 25), font = 0, flags = RT_HALIGN_LEFT,  text = 4), # language,
+						MultiContentEntryText(pos = (460, 4), size = (80, 25),  font = 1, flags = RT_HALIGN_RIGHT, text = 5), # selection,
 					], False, "showNever")
 					},
 				"fonts": [gFont("Regular", 20), gFont("Regular", 16)],
