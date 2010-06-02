@@ -14,9 +14,10 @@ from enigma import iPlayableService
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
+[PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
 class AudioSelection(Screen, ConfigListScreen):
-	def __init__(self, session, infobar=None):
+	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
 		Screen.__init__(self, session)
 
 		self["streams"] = List([])
@@ -48,8 +49,8 @@ class AudioSelection(Screen, ConfigListScreen):
 		}, -3)
 
 		self.settings = ConfigSubsection()
-		choicelist = [("audio",_("audio tracks")), ("subtitles",_("Subtitles"))]
-		self.settings.menupage = ConfigSelection(choices = choicelist)
+		choicelist = [(PAGE_AUDIO,_("audio tracks")), (PAGE_SUBTITLES,_("Subtitles"))]
+		self.settings.menupage = ConfigSelection(choices = choicelist, default=page)
 		self.settings.menupage.addNotifier(self.fillList)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -66,7 +67,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.audioTracks = audio = service and service.audioTracks()
 		n = audio and audio.getNumberOfTracks() or 0
 		
-		if self.settings.menupage.getValue() == "audio":
+		if self.settings.menupage.getValue() == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
 			if SystemInfo["CanDownmixAC3"]:
 				print "config.av.downmix_ac3.value=", config.av.downmix_ac3.value
@@ -115,8 +116,11 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			else:
 				streams = []
+				self.settings.dummy = ConfigNothing()
+				conflist.append(getConfigListEntry("", self.settings.dummy))
+				self["key_green"].setBoolean(False)
 
-		elif self.settings.menupage.getValue() == "subtitles":
+		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
 			self.setTitle(_("Subtitle selection"))
 			
 			self.settings.dummy = ConfigNothing()
@@ -158,9 +162,9 @@ class AudioSelection(Screen, ConfigListScreen):
 					elif x[0] == 1:
 						description = "TTX"
 						number = "%x%02x" % (x[3],x[2])
-					
+
 					elif x[0] == 2:
-						types = (" UTF-8 text "," SSA / AAS "," .SRT file ")
+						types = ("UTF-8 text","SSA / AAS",".SRT file")
 						description = types[x[2]]
 
 					streams.append((x, "", number, description, language, selected))
@@ -252,7 +256,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				ConfigListScreen.keyRight(self)
 			elif hasattr(self, "plugincallfunc"):
 				self.plugincallfunc()
-		if self.focus == FOCUS_STREAMS and self["streams"].count():
+		if self.focus == FOCUS_STREAMS and self["streams"].count() and config == False:
 			self["streams"].setIndex(self["streams"].count()-1)
 
 	def keyRed(self):
@@ -305,10 +309,10 @@ class AudioSelection(Screen, ConfigListScreen):
 		print "[keyok]", self["streams"].list, self["streams"].getCurrent()
 		if self.focus == FOCUS_STREAMS and self["streams"].list:
 			cur = self["streams"].getCurrent()
-			if self.settings.menupage.getValue() == "audio" and cur[0] is not None:
+			if self.settings.menupage.getValue() == PAGE_AUDIO and cur[0] is not None:
 				self.changeAudio(cur[2])
 				self.__updatedInfo()
-			if self.settings.menupage.getValue() == "subtitles" and cur[0] is not None:
+			if self.settings.menupage.getValue() == PAGE_SUBTITLES and cur[0] is not None:
 				if self.infobar.selected_subtitle == cur[0]:
 					self.enableSubtitle(None)
 					selectedidx = self["streams"].getIndex()
@@ -323,3 +327,8 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def cancel(self):
 		self.close(0)
+
+class SubtitleSelection(AudioSelection):
+	def __init__(self, session, infobar=None):
+		AudioSelection.__init__(self, session, infobar, page=PAGE_SUBTITLES)
+		self.skinName = ["AudioSelection"]

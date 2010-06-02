@@ -901,11 +901,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 	def unPauseService(self):
 		self.setSeekState(self.SEEK_STATE_PLAY)
-		
+
 	def subtitleSelection(self):
-		from Screens.Subtitles import Subtitles
-		self.session.open(Subtitles, self)
-	
+		from Screens.AudioSelection import SubtitleSelection
+		self.session.open(SubtitleSelection, self)
+
 	def hotplugCB(self, dev, media_state):
 		if dev == harddiskmanager.getCD():
 			if media_state == "1":
