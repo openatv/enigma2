@@ -510,7 +510,7 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 
 	// Cablecom HACK .. tsid / onid in eit data are incorrect.. so we use
 	// it from running channel (just for current transport stream eit data)
-	bool use_transponder_chid = source == SCHEDULE || (source == NOWNEXT && data[0] == 0x4E);
+	bool use_transponder_chid = onid != 0x101 && onid != 0x100 && (source == SCHEDULE || (source == NOWNEXT && data[0] == 0x4E));
 
 	int onid = HILO(eit->original_network_id);
 	int tsid  = HILO(eit->transport_stream_id);
