@@ -508,12 +508,18 @@ void eEPGCache::sectionRead(const __u8 *data, int source, channel_data *channel)
 	if ( data[ptr-1] < 0x40 )
 		--ptr;
 
-	// Cablecom HACK .. tsid / onid in eit data are incorrect.. so we use
-	// it from running channel (just for current transport stream eit data)
-	bool use_transponder_chid = onid != 0x101 && onid != 0x100 && (source == SCHEDULE || (source == NOWNEXT && data[0] == 0x4E));
-
 	int onid = HILO(eit->original_network_id);
 	int tsid  = HILO(eit->transport_stream_id);
+
+	// Cablecom HACK .. tsid / onid in eit data are incorrect.. so we use
+	// it from running channel (just for current transport stream eit data)
+	/*
+	 * Make an exception for BEV (onid 0x100, 0x101), which doesn't use
+	 * SCHEDULE_OTHER. As a result SCHEDULE will contain data for different tsid's,
+	 * so we should not replace it with the current tsid.
+	 */
+	bool use_transponder_chid = onid != 0x101 && onid != 0x100 && (source == SCHEDULE || (source == NOWNEXT && data[0] == 0x4E));
+
 	if (use_transponder_chid && channel)
 	{
 		eDVBChannelID chid = channel->channel->getChannelID();
