@@ -397,13 +397,15 @@ def loadSkinData(desktop):
 	for (path, dom_skin) in skins:
 		loadSingleSkinData(desktop, dom_skin, path)
 
-def lookupScreen(name, style_id = None):
+def lookupScreen(name, style_id):
 	for (path, skin) in dom_skins:
 		# first, find the corresponding screen element
 		for x in skin.findall("screen"):
 			if x.attrib.get('name', '') == name:
-				screen_style_id = int(x.attrib.get('id', None) or '0')
-				if style_id is None or screen_style_id == style_id:
+				screen_style_id = x.attrib.get('id', None)
+				if screen_style_id is None and name.find('Summary') > 0:
+					screen_style_id = 1
+				if screen_style_id is None or screen_style_id == style_id:
 					return x, path
 	return None, None
 
@@ -438,7 +440,8 @@ def readSkin(screen, skin, names, desktop):
 			skin_tuple = (skin_tuple,)
 		for sskin in skin_tuple:
 			parsedSkin = xml.etree.cElementTree.fromstring(sskin)
-			if style_id != 2 or parsedSkin.attrib.get('id', 0) == 2:
+			screen_style_id = parsedSkin.attrib.get('id', None)
+			if style_id != 2 or screen_style_id is None or int(screen_style_id) == style_id:
 				myscreen = screen.parsedSkin = parsedSkin
 
 	#assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
