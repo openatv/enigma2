@@ -70,7 +70,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		if self.settings.menupage.getValue() == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
 			if SystemInfo["CanDownmixAC3"]:
-				print "config.av.downmix_ac3.value=", config.av.downmix_ac3.value
 				self.settings.downmix = ConfigOnOff(default=config.av.downmix_ac3.value)
 				self.settings.downmix.addNotifier(self.changeAC3Downmix, initial_call = False)
 				conflist.append(getConfigListEntry(_("AC3 downmix"), self.settings.downmix))
@@ -78,16 +77,12 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			if n > 0:
 				self.audioChannel = service.audioChannel()
-				print "self.audioChannel.getCurrentChannel()", self.audioChannel.getCurrentChannel()
 				choicelist = [("0",_("left")), ("1",_("stereo")), ("2", _("right"))]
 				self.settings.channelmode = ConfigSelection(choices = choicelist, default = str(self.audioChannel.getCurrentChannel()))
 				self.settings.channelmode.addNotifier(self.changeMode, initial_call = False)
 				conflist.append(getConfigListEntry(_("Channel"), self.settings.channelmode))
 				self["key_green"].setBoolean(True)
-				
 				selectedAudio = self.audioTracks.getCurrentTrack()
-				print "selectedAudio:", selectedAudio
-
 				for x in range(n):
 					number = str(x)
 					i = audio.getTrackInfo(x)
@@ -116,17 +111,14 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			else:
 				streams = []
-				self.settings.dummy = ConfigNothing()
-				conflist.append(getConfigListEntry("", self.settings.dummy))
+				conflist.append(('',))
 				self["key_green"].setBoolean(False)
 
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
 			self.setTitle(_("Subtitle selection"))
-			
-			self.settings.dummy = ConfigNothing()
-			conflist.append(getConfigListEntry("", self.settings.dummy))
+			conflist.append(('',))
+			conflist.append(('',))
 			self["key_red"].setBoolean(False)
-			conflist.append(getConfigListEntry("", self.settings.dummy))
 			self["key_green"].setBoolean(False)
 
 			if self.subtitlesEnabled():
@@ -187,23 +179,19 @@ class AudioSelection(Screen, ConfigListScreen):
 					self.fnc(*self.args)
 
 			Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_AUDIOMENU) ]
-			
-			print "Plugins", Plugins
 
-			self.settings.dummy = ConfigNothing()
 			if len(Plugins):
 				self["key_blue"].setBoolean(True)
-				conflist.append(getConfigListEntry(Plugins[0][0], self.settings.dummy))
+				conflist.append(getConfigListEntry(Plugins[0][0], ConfigNothing()))
 				self.plugincallfunc = Plugins[0][1]
+			if len(Plugins) > 1:
+				print "these plugins are installed but not displayed in the dialog box:", Plugins[1:]
 
 		self["config"].list = conflist
 		self["config"].l.setList(conflist)
 
-		print "setting self[streams].list:", streams
 		self["streams"].list = streams
-		print "setting self[streams].setIndex:", selectedidx
 		self["streams"].setIndex(selectedidx)
-		print "debug1"
 
 	def __updatedInfo(self):
 		self.fillList()
@@ -217,7 +205,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		return self.infobar.subtitles_enabled
 
 	def enableSubtitle(self, subtitles):
-		print "[enableSubtitle]", subtitles
 		if self.infobar.selected_subtitle != subtitles:
 			self.infobar.subtitles_enabled = False
 			self.infobar.selected_subtitle = subtitles
@@ -225,7 +212,6 @@ class AudioSelection(Screen, ConfigListScreen):
 				self.infobar.subtitles_enabled = True
 
 	def changeAC3Downmix(self, downmix):
-		print "changeAC3Downmix config.av.downmix_ac3.value=", config.av.downmix_ac3.value, downmix.getValue()
 		if downmix.getValue() == True:
 			config.av.downmix_ac3.value = True
 		else:
@@ -233,12 +219,10 @@ class AudioSelection(Screen, ConfigListScreen):
 		config.av.downmix_ac3.save()
 
 	def changeMode(self, mode):
-		print "changeMode", mode, mode.getValue()
 		if mode is not None:
 			self.audioChannel.selectChannel(int(mode.getValue()))
 
 	def changeAudio(self, audio):
-		print "changeAudio", audio, "self.session.nav.getCurrentService().audioTracks().getNumberOfTracks():", self.session.nav.getCurrentService().audioTracks().getNumberOfTracks()
 		track = int(audio)
 		if isinstance(track, int):
 			if self.session.nav.getCurrentService().audioTracks().getNumberOfTracks() > track:
@@ -273,7 +257,6 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def keyBlue(self):
 		if self["key_blue"].getBoolean():
-			print "colorkey(3)"
 			self.colorkey(3)
 
 	def colorkey(self, idx):
@@ -281,7 +264,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.keyRight(True)
 
 	def keyUp(self):
-		print "[keyUp]", self["streams"].getIndex()
 		if self.focus == FOCUS_CONFIG:
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif self.focus == FOCUS_STREAMS:
@@ -294,7 +276,6 @@ class AudioSelection(Screen, ConfigListScreen):
 				self["streams"].selectPrevious()
 
 	def keyDown(self):
-		print "[keyDown]", self["config"].getCurrentIndex(), len(self["config"].getList())-1
 		if self.focus == FOCUS_CONFIG:
 			if self["config"].getCurrentIndex() < len(self["config"].getList())-1:
 				self["config"].instance.moveSelection(self["config"].instance.moveDown)
@@ -306,7 +287,6 @@ class AudioSelection(Screen, ConfigListScreen):
 			self["streams"].selectNext()
 
 	def keyOk(self):
-		print "[keyok]", self["streams"].list, self["streams"].getCurrent()
 		if self.focus == FOCUS_STREAMS and self["streams"].list:
 			cur = self["streams"].getCurrent()
 			if self.settings.menupage.getValue() == PAGE_AUDIO and cur[0] is not None:
