@@ -403,9 +403,9 @@ def lookupScreen(name, style_id):
 		for x in skin.findall("screen"):
 			if x.attrib.get('name', '') == name:
 				screen_style_id = x.attrib.get('id', None)
-				if screen_style_id is None and name.find('Summary') > 0:
+				if screen_style_id is None and name.find('ummary') > 0:
 					screen_style_id = 1
-				if screen_style_id is None or screen_style_id == style_id:
+				if screen_style_id is None or int(screen_style_id) == style_id:
 					return x, path
 	return None, None
 
