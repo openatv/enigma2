@@ -343,7 +343,6 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		if (PyTuple_Check(item))
 		{
 				/* handle left part. get item from tuple, convert to string, display. */
-
 			text = PyTuple_GET_ITEM(item, 0);
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyString_Check(text)) ? PyString_AsString(text) : "<not-a-string>";
@@ -357,7 +356,9 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			int value_alignment_left = !*string;
 
 				/* now, handle the value. get 2nd part from tuple*/
-			value = PyTuple_GET_ITEM(item, 1);
+			if (PyTuple_Size(item) >= 2) // when no 2nd entry is in tuple this is a non selectable entry without config part
+				value = PyTuple_GET_ITEM(item, 1);
+
 			if (value)
 			{
 				ePyObject args = PyTuple_New(1);
@@ -468,7 +469,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					}
 				}
 					/* type is borrowed */
-			} else
+			} else if (value)
 				eWarning("eListboxPythonConfigContent: second value of tuple is not a tuple.");
 			if (value)
 				Py_DECREF(value);
