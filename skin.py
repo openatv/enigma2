@@ -402,10 +402,10 @@ def lookupScreen(name, style_id):
 		# first, find the corresponding screen element
 		for x in skin.findall("screen"):
 			if x.attrib.get('name', '') == name:
-				screen_style_id = x.attrib.get('id', None)
-				if screen_style_id is None and name.find('ummary') > 0:
-					screen_style_id = 1
-				if screen_style_id is None or int(screen_style_id) == style_id:
+				screen_style_id = x.attrib.get('id', '-1')
+				if screen_style_id == '-1' and name.find('ummary') > 0:
+					screen_style_id = '1'
+				if (style_id != 2 and int(screen_style_id) == -1) or int(screen_style_id) == style_id:
 					return x, path
 	return None, None
 
@@ -440,9 +440,10 @@ def readSkin(screen, skin, names, desktop):
 			skin_tuple = (skin_tuple,)
 		for sskin in skin_tuple:
 			parsedSkin = xml.etree.cElementTree.fromstring(sskin)
-			screen_style_id = parsedSkin.attrib.get('id', None)
-			if style_id != 2 or screen_style_id is None or int(screen_style_id) == style_id:
+			screen_style_id = parsedSkin.attrib.get('id', '-1')
+			if (style_id != 2 and int(screen_style_id) == -1) or int(screen_style_id) == style_id:
 				myscreen = screen.parsedSkin = parsedSkin
+				break
 
 	#assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
 	if myscreen is None:
