@@ -165,7 +165,7 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 		return;
 	}
 	for (i = notifiers.begin(); i != notifiers.end(); ++i)
-		eDebug("fd=%d, sn=%d", i->second->getFD(), (void*)i->second);
+		eDebug("fd=%d, sn=%p", i->second->getFD(), (void*)i->second);
 	eFatal("removed socket notifier which is not present, fd=%d", fd);
 }
 
