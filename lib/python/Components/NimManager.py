@@ -1040,10 +1040,10 @@ def InitNimManager(nimmgr):
 				else:
 					break;
 			lof=[]
-			lof.append(product.get("positions","1"))
-			lof.append(product.get("lofl","9750"))
-			lof.append(product.get("lofh","10600"))
-			lof.append(product.get("threshold","11700"))
+			lof.append(int(product.get("positions",1)))
+			lof.append(int(product.get("lofl",9750)))
+			lof.append(int(product.get("lofh",10600)))
+			lof.append(int(product.get("threshold",11700)))
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
 		unicablelnbproducts.update({manufacturer.get("name"):m})
@@ -1062,10 +1062,10 @@ def InitNimManager(nimmgr):
 				else:
 					break;
 			lof=[]
-			lof.append(product.get("positions","1"))
-			lof.append(product.get("lofl","9750"))
-			lof.append(product.get("lofh","10600"))
-			lof.append(product.get("threshold","11700"))
+			lof.append(int(product.get("positions",1)))
+			lof.append(int(product.get("lofl",9750)))
+			lof.append(int(product.get("lofh",10600)))
+			lof.append(int(product.get("threshold",11700)))
 			scr.append(tuple(lof))
 			m.update({product.get("name"):tuple(scr)})
 		unicablematrixproducts.update({manufacturer.get("name"):m})
