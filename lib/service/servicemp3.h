@@ -47,7 +47,7 @@ public:
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC } audiotype_t;
-typedef enum { stUnknown, stPlainText, stSSA, stSRT, stVOB } subtype_t;
+typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
 
 struct SubtitlePage
@@ -214,13 +214,16 @@ private:
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
+	static void gstCBsubtitleLink(subtype_t type, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
 
 	std::list<SubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
+	ePtr<eTimer> m_subtitle_hide_timer;
 	void pushSubtitles();
 	void pullSubtitle();
+	void hideSubtitles();
 	int m_subs_to_pull;
 	eSingleLock m_subs_to_pull_lock;
 	gulong m_subs_to_pull_handler_id;
