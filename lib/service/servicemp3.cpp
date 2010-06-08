@@ -219,6 +219,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 {
 	m_seekTimeout = eTimer::create(eApp);
 	m_subtitle_sync_timer = eTimer::create(eApp);
+	m_subtitle_hide_timer = eTimer::create(eApp);
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = 0;
@@ -228,6 +229,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_buffer_size = 1*1024*1024;
 	CONNECT(m_seekTimeout->timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
+	CONNECT(m_subtitle_hide_timer->timeout, eServiceMP3::hideSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	m_aspect = m_width = m_height = m_framerate = m_progressive = -1;
 
@@ -338,27 +340,32 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 // 	}
 // =======
 
-	GstElement *dvdsubdec = gst_element_factory_make("dvdsubdec", "vobsubtitle_decoder");
-	if ( !dvdsubdec )
-		eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-dvdsub");
-
-	gst_bin_add_many(GST_BIN(m_gst_subtitlebin), dvdsubdec, appsink, NULL);
+// 	GstElement *dvdsubdec = gst_element_factory_make("dvdsubdec", "vobsubtitle_decoder");
+// 	if ( !dvdsubdec )
+// 		eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-dvdsub");
+// 
+// 	gst_bin_add_many(GST_BIN(m_gst_subtitlebin), dvdsubdec, appsink, NULL);
 // 	GstPad *ghostpad = gst_ghost_pad_new("sink", gst_element_get_static_pad (appsink, "sink"));
-	GstPad *ghostpad = gst_ghost_pad_new("sink", gst_element_get_static_pad (dvdsubdec, "sink"));
-	gst_element_add_pad (m_gst_subtitlebin, ghostpad);
-	eDebug("eServiceMP3::construct dvdsubdec=%p, appsink=%p, ghostpad=%p,", dvdsubdec, appsink, ghostpad);
+// // 	GstPad *ghostpad = gst_ghost_pad_new("sink", gst_element_get_static_pad (dvdsubdec, "sink"));
+// 	gst_element_add_pad (m_gst_subtitlebin, ghostpad);
+// 	eDebug("eServiceMP3::construct dvdsubdec=%p, appsink=%p, ghostpad=%p,", dvdsubdec, appsink, ghostpad);
+// 
+// 	g_signal_connect (ghostpad, "notify::caps", G_CALLBACK (gstCBsubtitleCAPS), this);
+// 
+// 	GstCaps* caps = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-raw-rgb");
+// 	g_object_set (G_OBJECT (appsink), "caps", caps, NULL);
+// 	g_object_set (G_OBJECT (dvdsubdec), "singlebuffer", TRUE, NULL);
+// 	gst_caps_unref(caps);
+// 
+// 	int ret = gst_element_link(dvdsubdec, appsink);
+// 	eDebug("eServiceMP3::linking elements dvdsubdec and subsink appsink %i", ret);
+	
+// 	g_object_set (G_OBJECT (m_gst_playbin), "text-sink", m_gst_subtitlebin, NULL);
 
-	g_signal_connect (ghostpad, "notify::caps", G_CALLBACK (gstCBsubtitleCAPS), this);
-
-	GstCaps* caps = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-dvd-subpicture; video/x-raw-rgb");
+	GstCaps* caps = gst_caps_from_string("text/plain; text/x-pango-markup");
 	g_object_set (G_OBJECT (appsink), "caps", caps, NULL);
-	g_object_set (G_OBJECT (dvdsubdec), "singlebuffer", TRUE, NULL);
-	gst_caps_unref(caps);
-
-	int ret = gst_element_link(dvdsubdec, appsink);
-	eDebug("eServiceMP3::linking elements dvdsubdec and subsink appsink %i", ret);
-		
-	g_object_set (G_OBJECT (m_gst_playbin), "text-sink", m_gst_subtitlebin, NULL);
+	
+	g_object_set (G_OBJECT (m_gst_playbin), "text-sink", appsink, NULL);
 	m_subs_to_pull_handler_id = g_signal_connect (appsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 // >>>>>>> fix empty streams list crash, correctly show/hide color key buttons, re-implement plugin-hook for blue key, fix possible exit crash
 
@@ -1121,25 +1128,37 @@ RESULT eServiceMP3::getTrackInfo(struct iAudioTrackInfo &info, unsigned int i)
 	return 0;
 }
 
-subtype_t getSubtitleType(GstPad* pad)
+subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 {
 	subtype_t type = stUnknown;
 	GstCaps* caps = gst_pad_get_negotiated_caps(pad);
-	
-	if (!caps)
-		return type;
 
-	GstStructure* str = gst_caps_get_structure(caps, 0);
-	const gchar *g_type = gst_structure_get_name(str);
-	eDebug("getSubtitleType::subtitle probe type=%s", g_type);
+	if ( caps )
+	{
+		GstStructure* str = gst_caps_get_structure(caps, 0);
+		const gchar *g_type = gst_structure_get_name(str);
+		eDebug("getSubtitleType::subtitle probe caps type=%s", g_type);
 
-	if ( !strcmp(g_type, "video/x-dvd-subpicture") )
-		type = stVOB;
-	else if ( !strcmp(g_type, "text/x-pango-markup") )
-		type = stSSA;
-	else if ( !strcmp(g_type, "text/plain") )
-		type = stPlainText;
-	
+		if ( !strcmp(g_type, "video/x-dvd-subpicture") )
+			type = stVOB;
+		else if ( !strcmp(g_type, "text/x-pango-markup") )
+			type = stSSA;
+		else if ( !strcmp(g_type, "text/plain") )
+			type = stPlainText;
+	}
+	else if ( g_codec )
+	{
+		eDebug("getSubtitleType::subtitle probe codec tag=%s", g_codec);
+		if ( !strcmp(g_codec, "VOB") )
+			type = stVOB;
+		else if ( !strcmp(g_codec, "SubStation Alpha") )
+			type = stSSA;
+		else if ( !strcmp(g_codec, "ASS") )
+			type = stASS;
+		else if ( !strcmp(g_codec, "UTF-8 plain text") )
+			type = stPlainText;
+	}
+
 	return type;
 }
 
@@ -1189,7 +1208,8 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
-					GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_subtitlebin), "subtitle_sink");
+// 					GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_subtitlebin), "subtitle_sink");
+					GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 					if (appsink)
 					{
 						g_object_set (G_OBJECT (appsink), "max-buffers", 2, NULL);
@@ -1334,19 +1354,25 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 			for (i = 0; i < n_text; i++)
 			{
-				gchar *g_lang;
+				gchar *g_codec = NULL, *g_lang = NULL;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-tags", i, &tags);
 				subtitleStream subs;
 
 				g_lang = g_strdup_printf ("und");
 				if ( tags && gst_is_tag_list(tags) )
+				{
 					gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang);
+					gst_tag_list_get_string(tags, GST_TAG_SUBTITLE_CODEC, &g_codec);
+					gst_tag_list_free(tags);
+				}
+
 				subs.language_code = std::string(g_lang);
-				eDebug("eServiceMP3::subtitle stream=%i language=%s unknown type", i, g_lang);
+				eDebug("eServiceMP3::subtitle stream=%i language=%s", i, g_lang);
 				
 				GstPad* pad = 0;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-pad", i, &pad);
-				subs.type = getSubtitleType(pad);
+				if ( subs.type != stSRT )
+					subs.type = getSubtitleType(pad, g_codec);
 
 				m_subtitleStreams.push_back(subs);
 				g_free (g_lang);
@@ -1522,28 +1548,34 @@ void eServiceMP3::gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer us
 
 		g_free (g_lang);
 	}
+}
 
-	if ( subs.type == stVOB )
+void eServiceMP3::gstCBsubtitleLink(subtype_t type, gpointer user_data)
+{
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	
+	if ( type == stVOB )
 	{
 		GstPad *ghostpad = gst_element_get_static_pad(_this->m_gst_subtitlebin, "sink");
 		GstElement *dvdsubdec = gst_bin_get_by_name(GST_BIN(_this->m_gst_subtitlebin), "vobsubtitle_decoder");
 		GstPad *subdecsinkpad = gst_element_get_static_pad (dvdsubdec, "sink");
-		eDebug("gstCBsubtitleCAPS:: dvdsubdec=%p, subdecsinkpad=%p, ghostpad=%p,", dvdsubdec, subdecsinkpad, ghostpad);
-		gst_ghost_pad_set_target((GstGhostPad*)ghostpad, subdecsinkpad);
+		int ret = gst_ghost_pad_set_target((GstGhostPad*)ghostpad, subdecsinkpad);
+		eDebug("gstCBsubtitleLink:: dvdsubdec=%p, subdecsinkpad=%p, ghostpad=%p, link=%i", dvdsubdec, subdecsinkpad, ghostpad, ret);
 	}
 	else
 	{
 		GstPad *ghostpad = gst_element_get_static_pad(_this->m_gst_subtitlebin, "sink");
 		GstElement *appsink = gst_bin_get_by_name(GST_BIN(_this->m_gst_subtitlebin), "subtitle_sink");
 		GstPad *appsinkpad = gst_element_get_static_pad (appsink, "sink");
-		eDebug("gstCBsubtitleCAPS:: appsink=%p, appsinkpad=%p, ghostpad=%p,", appsink, appsinkpad, ghostpad);
-		gst_ghost_pad_set_target((GstGhostPad*)ghostpad, appsinkpad);
+		int ret = gst_ghost_pad_set_target((GstGhostPad*)ghostpad, appsinkpad);
+		eDebug("gstCBsubtitleLink:: appsink=%p, appsinkpad=%p, ghostpad=%p, link=%i", appsink, appsinkpad, ghostpad, ret);
 	}
 }
 
 void eServiceMP3::pullSubtitle()
 {
-	GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_subtitlebin), "subtitle_sink");
+// 	GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_subtitlebin), "subtitle_sink");
+	GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
 
 	if (appsink)
 	{
@@ -1591,7 +1623,7 @@ void eServiceMP3::pullSubtitle()
 	// 					pixmap = new gPixmap(size, 32, 1); /* allocate accel surface (if possible) */
 						memcpy(page->m_pixmap->surface->data, GST_BUFFER_DATA(buffer), len);
 						page->show_pts = buf_pos / 11111L;
-						page->m_timeout = duration_ns / 1000000;
+						page->m_timeout = duration_ns / 1000;
 						SubtitlePage subtitlepage;
 						subtitlepage.vob_page = page;
 						subtitlepage.pango_page = NULL;
@@ -1659,11 +1691,20 @@ void eServiceMP3::pushSubtitles()
 		}
 		else // immediate show
 		{
-			if ( m_subtitle_widget && frontpage.pango_page != 0)
-				m_subtitle_widget->setPage(*(frontpage.pango_page));
-			else if ( m_subtitle_widget && frontpage.vob_page != 0)
+			if ( m_subtitle_widget )
 			{
-				m_subtitle_widget->setPixmap(frontpage.vob_page->m_pixmap, eRect(0, 0, 720, 576));
+				if ( frontpage.pango_page != 0)
+				{
+					eDebug("immediate show pango subtitle line");
+					m_subtitle_widget->setPage(*(frontpage.pango_page));
+				}
+				else if ( frontpage.vob_page != 0)
+				{
+					m_subtitle_widget->setPixmap(frontpage.vob_page->m_pixmap, eRect(0, 0, 720, 576));
+					eDebug("blit vobsub pixmap... hide in %i ms", frontpage.vob_page->m_timeout);
+					m_subtitle_hide_timer->start(frontpage.vob_page->m_timeout, true);
+				}
+				m_subtitle_widget->show();
 			}
 			m_subtitle_pages.pop_front();
 		}
@@ -1672,12 +1713,21 @@ void eServiceMP3::pushSubtitles()
 		pullSubtitle();
 }
 
+void eServiceMP3::hideSubtitles()
+{
+	eDebug("eServiceMP3::hideSubtitles()");
+	if ( m_subtitle_widget )
+		m_subtitle_widget->hide();
+}
+
 RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 {
+	eDebug ("eServiceMP3::enableSubtitles m_currentSubtitleStream=%i",m_currentSubtitleStream);
 	ePyObject entry;
 	int tuplesize = PyTuple_Size(tuple);
 	int pid, type;
 	gint text_pid = 0;
+	eSingleLocker l(m_subs_to_pull_lock);
 
 	if (!PyTuple_Check(tuple))
 		goto error_out;
@@ -1692,14 +1742,19 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		goto error_out;
 	type = PyInt_AsLong(entry);
 
-	if (m_currentSubtitleStream != pid)
-	{
-		eSingleLocker l(m_subs_to_pull_lock);
+	eDebug ("eServiceMP3::enableSubtitles new pid=%i",pid);
+// 	if (m_currentSubtitleStream != pid)
+// 	{
+		
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
+eDebug ("eServiceMP3::enableSubtitles g_object_set");
 		m_currentSubtitleStream = pid;
 		m_subs_to_pull = 0;
 		m_subtitle_pages.clear();
-	}
+eDebug ("eServiceMP3::enableSubtitles cleared");
+// 	}
+
+// 	gstCBsubtitleLink(m_subtitleStreams[m_currentSubtitleStream].type, this);
 
 	m_subtitle_widget = 0;
 	m_subtitle_widget = new eSubtitleWidget(parent);
@@ -1722,8 +1777,11 @@ RESULT eServiceMP3::disableSubtitles(eWidget *parent)
 {
 	eDebug("eServiceMP3::disableSubtitles");
 	m_subtitle_pages.clear();
+	eDebug("eServiceMP3::disableSubtitles cleared");
 	delete m_subtitle_widget;
+	eDebug("eServiceMP3::disableSubtitles deleted");
 	m_subtitle_widget = 0;
+	eDebug("eServiceMP3::disableSubtitles nulled");
 	return 0;
 }
 
