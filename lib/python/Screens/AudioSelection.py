@@ -158,7 +158,7 @@ class AudioSelection(Screen, ConfigListScreen):
 						number = "%x%02x" % (x[3],x[2])
 
 					elif x[0] == 2:
-						types = (_("<unknown>"), "UTF-8 text", "SSA / AAS", ".SRT", "VOB")
+						types = (_("<unknown>"), "UTF-8 text", "SSA", "AAS", ".SRT file", "VOB")
 						description = types[x[2]]
 
 					streams.append((x, "", number, description, language, selected))
