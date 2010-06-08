@@ -106,8 +106,7 @@ public:
 	}
 	void push_back(eSecCommandList &list)
 	{
-		ASSERT(*this != list);
-		secSequence.splice(end(), list.secSequence);
+		secSequence.insert(end(), list.begin(), list.end());
 	}
 	void clear()
 	{
