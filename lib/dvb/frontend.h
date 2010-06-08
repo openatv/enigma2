@@ -110,6 +110,7 @@ private:
 	void feEvent(int);
 	void timeout();
 	void tuneLoop();  // called by m_tuneTimer
+	int tuneLoopInt();
 	void setFrontend(bool recvEvents=true);
 	bool setSecSequencePos(int steps);
 	static int PriorityOrder;
@@ -130,7 +131,7 @@ public:
 	RESULT sendDiseqc(const eDVBDiseqcCommand &diseqc);
 	RESULT sendToneburst(int burst);
 	RESULT setSEC(iDVBSatelliteEquipmentControl *sec);
-	RESULT setSecSequence(const eSecCommandList &list);
+	RESULT setSecSequence(eSecCommandList &list);
 	RESULT getData(int num, long &data);
 	RESULT setData(int num, long val);
 
@@ -148,12 +149,9 @@ public:
 
 	void reopenFrontend();
 	int openFrontend();
-	int closeFrontend(bool force=false);
+	int closeFrontend(bool force=false, bool no_delayed=false);
 	const char *getDescription() const { return m_description; }
 	bool is_simulate() const { return m_simulate; }
-
-	RESULT turnOffSatCR(int satcr);
-	RESULT ScanSatCR();
 };
 
 #endif // SWIG
