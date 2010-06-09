@@ -215,7 +215,6 @@ private:
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
 	static void gstCBsubtitleLink(subtype_t type, gpointer user_data);
-	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
 
 	std::list<SubtitlePage> m_subtitle_pages;
