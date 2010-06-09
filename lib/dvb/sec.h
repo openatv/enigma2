@@ -133,6 +133,12 @@ public:
 	{
 		return secSequence.size();
 	}
+	eSecCommandList &operator=(const eSecCommandList &lst)
+	{
+		secSequence = lst.secSequence;
+		cur = begin();
+		return *this;
+	}
 };
 #endif
 
