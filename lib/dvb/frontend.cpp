@@ -1101,7 +1101,7 @@ static void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &
 	PutToDict(dict, "orbital_position", orb_pos);
 	PutToDict(dict, "polarization", polarization);
 
-	switch(parm_u_qpsk_fec_inner)
+	switch((int)parm_u_qpsk_fec_inner)
 	{
 	case FEC_1_2: tmp = eDVBFrontendParametersSatellite::FEC_1_2; break;
 	case FEC_2_3: tmp = eDVBFrontendParametersSatellite::FEC_2_3; break;
