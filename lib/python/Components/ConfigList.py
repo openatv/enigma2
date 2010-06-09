@@ -61,12 +61,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 	
 	def selectionChanged(self):
-		if self.current:
+		if isinstance(self.current,tuple) and len(self.current) == 2:
 			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
-		if self.current:
+		if isinstance(self.current,tuple) and len(self.current) == 2:
 			self.current[1].onSelect(self.session)
-
+		else:
+			return
 		for x in self.onSelectionChanged:
 			x()
 
@@ -75,11 +76,11 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		instance.setContent(self.l)
 	
 	def preWidgetRemove(self, instance):
-		if self.current:
+		if isinstance(self.current,tuple) and len(self.current) == 2:
 			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 		instance.setContent(None)
-	
+
 	def setList(self, l):
 		self.timer.stop()
 		self.__list = l
