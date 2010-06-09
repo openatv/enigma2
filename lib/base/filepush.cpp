@@ -5,6 +5,14 @@
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#ifdef SHOW_WRITE_TIME
+#	include <sys/types.h>
+#	include <sys/stat.h>
+#	include <sys/time.h>
+#endif
+
+// For SYS_ stuff
+#include <syscall.h>
 
 #define PVR_COMMIT 1
 
@@ -286,12 +294,55 @@ void eFilePushThread::thread()
 			if (m_buf_start == m_buf_end)
 				continue;
 
-				/* now write out data. it will be 'aligned' (according to filterRecordData). 
-				   absolutely forbidden is to return EINTR and consume a non-aligned number of bytes. 
-				*/
-			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
-//			fwrite(m_buffer + m_buf_start, 1, m_buf_end - m_buf_start, f);
-//			eDebug("wrote %d bytes", w);
+#ifdef SHOW_WRITE_TIME
+			 struct timeval starttime;
+			 struct timeval now;
+			 gettimeofday(&starttime, NULL);
+#endif
+			/* now write out data. it will be 'aligned' (according to filterRecordData). 
+			   absolutely forbidden is to return EINTR and consume a non-aligned number of bytes. 
+			*/
+			 int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
+
+#ifdef SHOW_WRITE_TIME
+			 gettimeofday(&now, NULL);
+			 suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
+			 elapsed += now.tv_usec;
+			 elapsed -= starttime.tv_usec;
+			 if (elapsed > 10000)
+				    eDebug("[filepush] LONG WRITE (>10ms): %u us", elapsed);
+#endif
+			if (!m_send_pvr_commit)
+			{
+				written_since_last_sync += w;
+				if (written_since_last_sync > 1024000)
+				{
+					written_since_last_sync = 0;
+
+#ifdef SHOW_WRITE_TIME
+					 gettimeofday(&starttime, NULL);
+#endif
+
+					int pr;
+					pr = syscall(SYS_fadvise64, m_fd_dest, 0, 0, 0, 0, 0, POSIX_FADV_DONTNEED);
+					if (pr != 0)
+					{
+						eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
+					}
+#ifdef SHOW_WRITE_TIME
+					else
+					{
+						 gettimeofday(&now, NULL);
+						 suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
+						 elapsed += now.tv_usec;
+						 elapsed -= starttime.tv_usec;
+						 if (elapsed > 10000)
+						    eDebug("[filepush] POSIX_FADV_DONTNEED (>10ms): %u us", elapsed);
+					}
+#endif
+				}
+			}
+
 			if (w <= 0)
 			{
 				if (errno == EINTR || errno == EAGAIN || errno == EBUSY)
