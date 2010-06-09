@@ -293,6 +293,20 @@ class SecConfigure:
 					sec.setLNBLOFH(10600000)
 					sec.setLNBThreshold(11700000)
 				elif currLnb.lof.value == "unicable":
+					def setupUnicable(configManufacturer, ProductDict):
+						manufacturer_name = configManufacturer.value
+						manufacturer = ProductDict[manufacturer_name]
+						product_name = manufacturer.product.value
+						sec.setLNBSatCR(manufacturer.scr[product_name].index)
+						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].value*1000)
+						sec.setLNBSatCRpositions(manufacturer.positions[product_name][0].value)
+						sec.setLNBLOFL(manufacturer.lofl[product_name][0].value * 1000)
+						sec.setLNBLOFH(manufacturer.lofh[product_name][0].value * 1000)
+						sec.setLNBThreshold(manufacturer.loft[product_name][0].value * 1000)
+						configManufacturer.save_forced = True
+						manufacturer.product.save_forced = True
+						manufacturer.vco[product_name][manufacturer.scr[product_name].index].save_forced = True
+
 					if currLnb.unicable.value == "unicable_user":
 #TODO satpositions for satcruser
 						sec.setLNBLOFL(currLnb.lofl.value * 1000)
@@ -302,31 +316,9 @@ class SecConfigure:
 						sec.setLNBSatCRvco(currLnb.satcrvcouser[currLnb.satcruser.index].value*1000)
 						sec.setLNBSatCRpositions(1)	#HACK
 					elif currLnb.unicable.value == "unicable_matrix":
-						manufacturer_name = currLnb.unicableMatrixManufacturer.value
-						manufacturer = currLnb.unicableMatrix[manufacturer_name]
-						product_name = manufacturer.product.value
-						sec.setLNBSatCR(manufacturer.scr[product_name].index)
-						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].value*1000)
-						sec.setLNBSatCRpositions(manufacturer.positions[product_name][0].value)
-						sec.setLNBLOFL(manufacturer.lofl[product_name][0].value * 1000)
-						sec.setLNBLOFH(manufacturer.lofh[product_name][0].value * 1000)
-						sec.setLNBThreshold(manufacturer.loft[product_name][0].value * 1000)
-						currLnb.unicableMatrixManufacturer.save_forced = True
-						manufacturer.product.save_forced = True
-						manufacturer.vco[product_name][manufacturer.scr[product_name].index].save_forced = True
+						setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix)
 					elif currLnb.unicable.value == "unicable_lnb":
-						manufacturer_name = currLnb.unicableLnbManufacturer.value
-						manufacturer = currLnb.unicableLnb[manufacturer_name]
-						product_name = manufacturer.product.value
-						sec.setLNBSatCR(manufacturer.scr[product_name].index)
-						sec.setLNBSatCRvco(manufacturer.vco[product_name][manufacturer.scr[product_name].index].value*1000)
-						sec.setLNBSatCRpositions(manufacturer.positions[product_name][0].value)
-						sec.setLNBLOFL(manufacturer.lofl[product_name][0].value * 1000)
-						sec.setLNBLOFH(manufacturer.lofh[product_name][0].value * 1000)
-						sec.setLNBThreshold(manufacturer.loft[product_name][0].value * 1000)
-						currLnb.unicableLnbManufacturer.save_forced = True
-						manufacturer.product.save_forced = True
-						manufacturer.vco[product_name][manufacturer.scr[product_name].index].save_forced = True
+						setupUnicable(currLnb.unicableLnbManufacturer, currLnb.unicableLnb)
 				elif currLnb.lof.value == "c_band":
 					sec.setLNBLOFL(5150000)
 					sec.setLNBLOFH(5150000)
@@ -1138,35 +1130,9 @@ def InitNimManager(nimmgr):
 				else:
 					section.unicable = ConfigSelection(choices = {"unicable_user": _("User defined")}, default = "unicable_user")
 
-				if lnb < 3:
-					section.unicableMatrix = ConfigSubDict()
-					section.unicableMatrixManufacturer = ConfigSelection(choices = UnicableMatrixManufacturers, default = UnicableMatrixManufacturers[0])
-					for y in unicablematrixproducts:
-						products = unicablematrixproducts[y].keys()
-						products.sort()
-						tmp = ConfigSubsection()
-						tmp.product = ConfigSelection(choices = products, default = products[0])
-						tmp.scr = ConfigSubDict()
-						tmp.vco = ConfigSubDict()
-						for z in products:
-							scrlist = []
-							vcolist = unicablematrixproducts[y][z]
-							tmp.vco[z] = ConfigSubList()
-							for cnt in range(1,1+len(vcolist)-1):
-								vcofreq = int(vcolist[cnt-1])
-								if vcofreq == 0:
-									scrlist.append(("%d" %cnt,"SCR %d " %cnt +_("not used")))
-								else:
-									scrlist.append(("%d" %cnt,"SCR %d" %cnt))
-								tmp.vco[z].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
-							tmp.scr[z] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
-						section.unicableMatrix[y] = tmp
-
-				if lnb < 2:
-					section.unicableLnb = ConfigSubDict()
-					section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, UnicableLnbManufacturers[0])
-					for y in unicablelnbproducts:
-						products = unicablelnbproducts[y].keys()
+				def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
+					for y in unicableproducts:
+						products = unicableproducts[y].keys()
 						products.sort()
 						tmp = ConfigSubsection()
 						tmp.product = ConfigSelection(choices = products, default = products[0])
@@ -1178,32 +1144,46 @@ def InitNimManager(nimmgr):
 						tmp.positions = ConfigSubDict()
 						for z in products:
 							scrlist = []
-							vcolist = unicablelnbproducts[y][z]
+							vcolist = unicableproducts[y][z]
 							tmp.vco[z] = ConfigSubList()
 							for cnt in range(1,1+len(vcolist)-1):
-								scrlist.append(("%d" %cnt,"SCR %d" %cnt))
 								vcofreq = int(vcolist[cnt-1])
+								if vcofreq == 0 and vco_null_check:
+									scrlist.append(("%d" %cnt,"SCR %d " %cnt +_("not used")))
+								else:
+									scrlist.append(("%d" %cnt,"SCR %d" %cnt))
 								tmp.vco[z].append(ConfigInteger(default=vcofreq, limits = (vcofreq, vcofreq)))
-							tmp.scr[z] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
-							
-							positions = int(vcolist[len(vcolist)-1][0])
-							tmp.positions[z] = ConfigSubList()
-							tmp.positions[z].append(ConfigInteger(default=positions, limits = (positions, positions)))
-							
-							lofl = vcolist[len(vcolist)-1][1]
-							tmp.lofl[z] = ConfigSubList()
-							tmp.lofl[z].append(ConfigInteger(default=lofl, limits = (lofl, lofl)))
-							
-							lofh = int(vcolist[len(vcolist)-1][2])
-							tmp.lofh[z] = ConfigSubList()
-							tmp.lofh[z].append(ConfigInteger(default=lofh, limits = (lofh, lofh)))
-							
-							loft = int(vcolist[len(vcolist)-1][3])
-							tmp.loft[z] = ConfigSubList()
-							tmp.loft[z].append(ConfigInteger(default=loft, limits = (loft, loft)))
-						
-						section.unicableLnb[y] = tmp
-				
+								tmp.scr[z] = ConfigSelection(choices = scrlist, default = scrlist[0][0])
+
+								positions = int(vcolist[len(vcolist)-1][0])
+								tmp.positions[z] = ConfigSubList()
+								tmp.positions[z].append(ConfigInteger(default=positions, limits = (positions, positions)))
+
+								lofl = vcolist[len(vcolist)-1][1]
+								tmp.lofl[z] = ConfigSubList()
+								tmp.lofl[z].append(ConfigInteger(default=lofl, limits = (lofl, lofl)))
+
+								lofh = int(vcolist[len(vcolist)-1][2])
+								tmp.lofh[z] = ConfigSubList()
+								tmp.lofh[z].append(ConfigInteger(default=lofh, limits = (lofh, lofh)))
+
+								loft = int(vcolist[len(vcolist)-1][3])
+								tmp.loft[z] = ConfigSubList()
+								tmp.loft[z].append(ConfigInteger(default=loft, limits = (loft, loft)))
+						sectionDict[y] = tmp
+
+				if lnb < 3:
+					print "MATRIX"
+					section.unicableMatrix = ConfigSubDict()
+					section.unicableMatrixManufacturer = ConfigSelection(UnicableMatrixManufacturers, UnicableMatrixManufacturers[0])
+					fillUnicableConf(section.unicableMatrix, unicablematrixproducts, True)
+
+				if lnb < 2:
+					print "LNB"
+					section.unicableLnb = ConfigSubDict()
+					section.unicableLnbManufacturer = ConfigSelection(UnicableLnbManufacturers, UnicableLnbManufacturers[0])
+					fillUnicableConf(section.unicableLnb, unicablelnbproducts, False)
+
 #TODO satpositions for satcruser
 				section.satcruser = ConfigSelection(advanced_lnb_satcruser_choices, default="1")
 				tmp = ConfigSubList()
