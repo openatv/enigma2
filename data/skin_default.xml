@@ -164,9 +164,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 
 		</applet>
 	</screen>
-	<screen name="ChoiceBox_summary" position="0,0" size="132,64">
-		<widget source="parent.summary_list" render="Label" position="6,0" size="126,64" font="Regular;11" />
-	</screen>	
+
 	<!-- Common interface -->
 	<screen name="MMIDialog" position="center,center" size="450,270">
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
@@ -510,10 +508,6 @@ self[&quot;list&quot;].instance.resize(eSize(*listsize))
 newwidth = wsize[0]
 self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		</applet>
-	</screen>
-	<screen name="MessageBox_summary" position="0,0" size="132,64">
-		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="6,50" size="120,14" font="Regular;14" halign="center" valign="center" />
 	</screen>
 	<!-- Minute input -->
 	<screen name="MinuteInput" position="center,center" size="280,60" title="Seek">
@@ -1042,11 +1036,55 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/volume.png" position="0,0" size="214,21" />
 		<widget name="Volume" pixmap="skin_default/progress_small.png" position="31,7" zPosition="1" size="168,7" transparent="1" />
 	</screen>
+	<!-- JobView -->
+	<screen name="JobView" position="center,center" size="520,350" title="Job View">
+		<widget source="job_name" render="Label" position="20,12" size="480,60" font="Regular;28" />
+		<widget source="job_task" render="Label" position="20,90" size="480,50" font="Regular;23" />
+		<widget source="job_progress" render="Progress" position="20,162" size="480,36" borderWidth="2" backgroundColor="#254f7497" />
+		<widget source="job_progress" render="Label" position="120,166" size="280,32" font="Regular;28" foregroundColor="#000000" zPosition="2" halign="center" transparent="1"  >
+			<convert type="ProgressToText" />
+		</widget>
+		<widget source="job_status" render="Label" position="20,212" size="480,26" font="Regular;23" />
+		<widget name="config" position="20,254" size="480,20" />
+		<widget source="cancelable" render="Pixmap" pixmap="skin_default/buttons/red.png" position="20,300" size="140,40" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="cancelable" render="FixedLabel" text="Cancel" position="20,300" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="finished" render="Pixmap" pixmap="skin_default/buttons/green.png" position="190,300" size="140,40" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="finished" render="FixedLabel" text="OK" font="Regular;20" halign="center" valign="center" position="190,300" size="140,40" transparent="1" backgroundColor="#1f771f" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="backgroundable" render="Pixmap" pixmap="skin_default/buttons/blue.png" position="360,300" size="140,40" alphatest="on" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="backgroundable" render="FixedLabel" text="Continue in background" font="Regular;20" halign="center" valign="center" position="360,300" size="140,40" transparent="1" backgroundColor="#18188b" >
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<!-- VirtualKeyBoard -->
+	<screen name="VirtualKeyBoard" position="center,center" size="560,350" zPosition="99" title="Virtual KeyBoard">
+		<ePixmap pixmap="skin_default/vkey_text.png" position="9,35" zPosition="-4" size="542,52" alphatest="on" />
+		<widget name="header" position="10,10" size="500,20" font="Regular;20" transparent="1" noWrap="1" />
+		<widget name="text" position="12,35" size="536,46" font="Regular;46" transparent="1" noWrap="1" halign="right" />
+		<widget name="list" position="10,100" size="540,225" selectionDisabled="1" transparent="1" />
+	</screen>
+	<!-- FileBrowser -->
+	<screen name="FileBrowser" position="center,center" size="520,430" title="DVD File Browser" >
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
+	</screen>
 
 	<!-- LCD/OLED Screens -->
 
 	<!-- LCD screen (channelselection) -->
-	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
+	<screen name="ChannelSelection_summary" position="0,0" size="132,64" id="1">
 		<widget source="parent.ServiceEvent" render="Label" position="6,0" size="120,25" font="Regular;14" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -1059,9 +1097,21 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="global.CurrentTime" render="Label" position="100,34" zPosition="1" size="26,30" font="Regular;16" valign="top">
 			<convert type="ClockToText">Format:%S</convert>
 		</widget>
+	</screen> 
+	<!-- Color OLED screen (ChannelSelection) -->
+	<screen name="ChannelSelection_summary" position="0,0" size="96,64" id="2">
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,25" font="Regular;14" halign="center" valign="center" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="parent.ServiceEvent" render="Progress" position="0,27" size="96,5" borderWidth="1" >
+			<convert type="EventTime">Progress</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,32" size="96,32" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
 	</screen>
 	<!-- LCD screen (main) -->
-	<screen name="InfoBarSummary" position="0,0" size="132,64">
+	<screen name="InfoBarSummary" position="0,0" size="132,64" id="1">
 		<widget source="session.CurrentService" render="Label" position="6,0" size="120,25" font="Regular;14" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -1095,15 +1145,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-	<!-- LCD screen (menus) -->
-	<screen name="MenuSummary" position="0,0" size="132,64">
-		<widget source="parent.title" render="Label" position="6,0" size="120,32" font="Regular;14" halign="center" valign="center"/>
-		<widget source="parent.menu" render="Label" position="6,32" size="120,32" font="Regular;16" halign="center" valign="center">
-			<convert type="StringListSelection" />
-		</widget>
-	</screen>
 	<!-- LCD screen (movieplayer) -->
-	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64">
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="132,64" id="1">
 		<widget source="session.CurrentService" render="Label" position="6,0" size="120,25" font="Regular;14" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -1118,18 +1161,89 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
+	<!-- Color OLED screen (movieplayer) -->
+	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="96,64" id="2">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="96,25" font="Regular;14" halign="center" valign="center" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,27" size="96,5" borderWidth="1" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,32" size="96,32" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,32" zPosition="1" size="96,32">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+	<!-- LCD screen (ChoiceBox) -->
+	<screen name="ChoiceBox_summary" position="0,0" size="132,64" id="1">
+		<widget source="parent.summary_list" render="Label" position="6,0" size="126,64" font="Regular;11" />
+	</screen>
+	<!-- Color OLED screen (ChoiceBox) -->
+	<screen name="ChoiceBox_summary" position="0,0" size="96,64" id="2">
+		<widget source="parent.summary_list" render="Label" position="0,0" size="96,64" font="Regular;10" />
+	</screen>	
+	<!-- LCD screen (MessageBox) -->
+	<screen name="MessageBox_summary" position="0,0" size="132,64" id="1">
+		<widget source="parent.Text" render="Label" position="0,0" size="132,52" font="Regular;11" halign="center" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="6,50" size="120,14" font="Regular;14" halign="center" valign="center" />
+	</screen>
+	<!-- Color OLED screen (MessageBox) -->
+	<screen name="MessageBox_summary" position="0,0" size="96,64" id="2">
+		<widget source="parent.Text" render="Label" position="0,0" size="96,52" font="Regular;10" halign="center" valign="center" />
+		<widget source="parent.selectedChoice" render="Label" position="0,50" size="96,14" font="Regular;12" halign="center" valign="center" />
+	</screen>
+
+	<!-- LCD screen (menus) -->
+	<screen name="MenuSummary" position="0,0" size="132,64" id="1">
+		<widget source="parent.title" render="Label" position="6,0" size="120,32" font="Regular;14" halign="center" valign="center"/>
+		<widget source="parent.menu" render="Label" position="6,32" size="120,32" font="Regular;16" halign="center" valign="center">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen> 
+	<!-- Color OLED screen (menus) -->
+	<screen name="MenuSummary" position="0,0" size="96,64" id="2">
+		<widget source="parent.title" render="Label" position="0,0" size="96,32" font="Regular;14" halign="center" valign="center"/>
+		<widget source="parent.menu" render="Label" position="0,32" size="96,32" font="Regular;14" halign="center" valign="center">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>	
+	<!-- LCD screen (ServiceScan) -->
+	<screen name="ServiceScanSummary" position="0,0" size="132,64" id="1">
+		<widget name="Title" position="6,4" size="120,42" font="Regular;16" transparent="1" />
+		<widget name="Service" position="6,22" size="120,26" font="Regular;12" transparent="1" />
+		<widget name="scan_progress" position="6,50" zPosition="1" borderWidth="1" size="56,12" backgroundColor="dark" />
+	</screen>
+	<!-- Color OLED screen (ServiceScan) -->
+	<screen name="ServiceScanSummary" position="0,0" size="96,64" id="2">
+		<widget name="Title" position="0,0" size="96,30" font="Regular;14" transparent="1" />
+		<widget name="Service" position="0,30" size="96,20" font="Regular;10" transparent="1" />
+		<widget name="scan_progress" position="0,50" zPosition="1" borderWidth="1" size="96,12" backgroundColor="dark" />
+	</screen>
 	<!-- LCD screen (setup) -->
-	<screen name="SetupSummary" position="0,0" size="132,64">
+	<screen name="SetupSummary" position="0,0" size="132,64" id="1">
 		<widget source="SetupTitle" render="Label" position="6,0" size="120,16" font="Regular;12" />
 		<widget source="SetupEntry" render="Label" position="6,16" size="120,32" font="Regular;12" />
 		<widget source="SetupValue" render="Label" position="6,48" size="120,16" font="Regular;12" />
 	</screen>
+	<!-- Color OLED screen (setup) -->
+	<screen name="SetupSummary" position="0,0" size="96,64" id="2">
+		<widget source="SetupTitle" render="Label" position="0,0" size="96,16" font="Regular;10" />
+		<widget source="SetupEntry" render="Label" position="0,16" size="96,32" font="Regular;10" />
+		<widget source="SetupValue" render="Label" position="0,48" size="96,16" font="Regular;10" />
+	</screen>
 	<!-- LCD screen (misc) -->
-	<screen name="SimpleSummary" position="0,0" size="132,64">
+	<screen name="SimpleSummary" position="0,0" size="132,64" id="1">
 		<widget source="parent.Title" render="Label" position="6,0" size="120,64" font="Regular;16" halign="center" valign="center" />
 	</screen>
+	<!-- Color OLED screen (misc) -->
+	<screen name="SimpleSummary" position="0,0" size="96,64" id="2">
+		<widget source="parent.Title" render="Label" position="0,0" size="96,64" font="Regular;14" halign="center" valign="center" />
+	</screen>
 	<!-- LCD screen (standby) -->
-	<screen name="StandbySummary" position="0,0" size="132,64">
+	<screen name="StandbySummary" position="0,0" size="132,64" id="1">
 		<widget source="global.CurrentTime" render="Label" position="6,0" size="120,64" font="Regular;40" halign="center" valign="center">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
@@ -1138,37 +1252,18 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-	<!-- JobView -->
-	<screen name="JobView" position="center,center" size="520,350" title="Job View">
-		<widget source="job_name" render="Label" position="20,12" size="480,60" font="Regular;28" />
-		<widget source="job_task" render="Label" position="20,90" size="480,50" font="Regular;23" />
-		<widget source="job_progress" render="Progress" position="20,162" size="480,36" borderWidth="2" backgroundColor="#254f7497" />
-		<widget source="job_progress" render="Label" position="120,166" size="280,32" font="Regular;28" foregroundColor="#000000" zPosition="2" halign="center" transparent="1"  >
-			<convert type="ProgressToText" />
+	<!-- Color OLED screen (standby) -->
+	<screen name="StandbySummary" position="0,0" size="96,64" id="2">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="96,64" font="Regular;40" halign="center" valign="center">
+			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="job_status" render="Label" position="20,212" size="480,26" font="Regular;23" />
-		<widget name="config" position="20,254" size="480,20" />
-		<widget source="cancelable" render="Pixmap" pixmap="skin_default/buttons/red.png" position="20,300" size="140,40" alphatest="on" >
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="cancelable" render="FixedLabel" text="Cancel" position="20,300" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" >
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="finished" render="Pixmap" pixmap="skin_default/buttons/green.png" position="190,300" size="140,40" alphatest="on" >
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="finished" render="FixedLabel" text="OK" font="Regular;20" halign="center" valign="center" position="190,300" size="140,40" transparent="1" backgroundColor="#1f771f" >
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="backgroundable" render="Pixmap" pixmap="skin_default/buttons/blue.png" position="360,300" size="140,40" alphatest="on" >
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="backgroundable" render="FixedLabel" text="Continue in background" font="Regular;20" halign="center" valign="center" position="360,300" size="140,40" transparent="1" backgroundColor="#18188b" >
-			<convert type="ConditionalShowHide" />
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" zPosition="1" size="96,64" text=" ">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
-	<!-- JobView Summary -->
-	<screen name="JobView_summary" position="0,0" size="132,64">
+	<!-- LCD screen (JobView) -->
+	<screen name="JobView_summary" position="0,0" size="132,64" id="1">
 		<widget source="parent.summary_job_name" render="Label" position="6,4" size="120,42" font="Regular;16" />
 		<widget source="parent.summary_job_task" render="Label" position="6,22" size="120,26" font="Regular;12" />
 		<widget source="parent.summary_job_progress" render="Progress" position="6,50" size="60,12" borderWidth="1" zPosition="1" />
@@ -1176,19 +1271,29 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
-	<!-- VirtualKeyBoard -->
-	<screen name="VirtualKeyBoard" position="center,center" size="560,350" zPosition="99" title="Virtual KeyBoard">
-		<ePixmap pixmap="skin_default/vkey_text.png" position="9,35" zPosition="-4" size="542,52" alphatest="on" />
-		<widget name="header" position="10,10" size="500,20" font="Regular;20" transparent="1" noWrap="1" />
-		<widget name="text" position="12,35" size="536,46" font="Regular;46" transparent="1" noWrap="1" halign="right" />
-		<widget name="list" position="10,100" size="540,225" selectionDisabled="1" transparent="1" />
+	<!-- Color OLED screen (JobView) -->
+	<screen name="JobView_summary" position="0,0" size="96,64" id="2">
+		<widget source="parent.summary_job_name" render="Label" position="0,4" size="96,42" font="Regular;14" />
+		<widget source="parent.summary_job_task" render="Label" position="0,22" size="96,26" font="Regular;10" />
+		<widget source="parent.summary_job_progress" render="Progress" position="0,50" size="60,12" borderWidth="1" zPosition="1" />
+		<widget source="parent.summary_job_progress" render="Label" position="60,50" size="36,12" font="Regular;10" zPosition="2" halign="center" transparent="1"  >
+			<convert type="ProgressToText" />
+		</widget>
 	</screen>
-	<!-- FileBrowser -->
-	<screen name="FileBrowser" position="center,center" size="520,430" title="DVD File Browser" >
-		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-		<widget name="filelist" position="5,50" size="510,370" scrollbarMode="showOnDemand" />
+	<!-- LCD screen (Wizard) -->
+	<screen name="WizardSummary" position="0,0" size="132,64" id="1">
+		<widget source="text" render="Label" position="6,0" size="120,16" font="Regular;16" transparent="1" />
+		<widget source="parent.list" render="Label" position="6,18" size="120,46" font="Regular;12">
+			<convert type="StringListSelection" />
+		</widget>
 	</screen>
+	<!-- Color OLED screen (Wizard) -->
+	<screen name="WizardSummary" position="0,0" size="96,64" id="2">
+		<widget source="text" render="Label" position="0,0" size="96,16" font="Regular;14" transparent="1" />
+		<widget source="parent.list" render="Label" position="0,18" size="96,46" font="Regular;12">
+			<convert type="StringListSelection" />
+		</widget>
+	</screen>
+
+
 </skin>
