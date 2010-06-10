@@ -39,13 +39,19 @@ class writeNAND(Task):
 			self.output_line = data
 
 class NFISummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
+	skin = (
+	"""<screen name="NFISummary" position="0,0" size="132,64" id="1">
 		<widget source="title" render="Label" position="2,0" size="120,14" valign="center" font="Regular;12" />
 		<widget source="content" render="Label" position="2,14" size="120,34" font="Regular;12" transparent="1" zPosition="1"  />
-		<widget source="job_progresslabel" render="Label" position="66,50" size="60,14" font="Regular;12" transparent="1" halign="right" zPosition="0" />
 		<widget source="job_progressbar" render="Progress" position="2,50" size="66,14" borderWidth="1" />
-	</screen>"""
+		<widget source="job_progresslabel" render="Label" position="66,50" size="60,14" font="Regular;12" transparent="1" halign="right" zPosition="0" />
+	</screen>""",
+	"""<screen name="NFISummary" position="0,0" size="96,64" id="2">
+		<widget source="title" render="Label" position="0,0" size="96,14" valign="center" font="Regular;10" />
+		<widget source="content" render="Label" position="0,14" size="96,34" font="Regular;10" transparent="1" zPosition="1"  />
+		<widget source="job_progressbar" render="Progress" position="0,50" size="50,14" borderWidth="1" />
+		<widget source="job_progresslabel" render="Label" position="50,50" size="46,14" font="Regular;10" transparent="1" halign="right" zPosition="0" />
+	</screen>""")
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
