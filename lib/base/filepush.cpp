@@ -5,6 +5,9 @@
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <netdb.h>
+
+//#define SHOW_WRITE_TIME
+
 #ifdef SHOW_WRITE_TIME
 #	include <sys/types.h>
 #	include <sys/stat.h>
@@ -217,7 +220,8 @@ void eFilePushThread::thread()
 	
 	off_t current_span_offset = 0;
 	size_t current_span_remaining = 0;
-	
+
+	off_t offset_last_sync = 0;
 	size_t written_since_last_sync = 0;
 
 	eDebug("FILEPUSH THREAD START");
@@ -317,14 +321,12 @@ void eFilePushThread::thread()
 				written_since_last_sync += w;
 				if (written_since_last_sync > 1024000)
 				{
-					written_since_last_sync = 0;
-
 #ifdef SHOW_WRITE_TIME
 					 gettimeofday(&starttime, NULL);
 #endif
 
 					int pr;
-					pr = syscall(SYS_fadvise64, m_fd_dest, 0, 0, 0, 0, 0, POSIX_FADV_DONTNEED);
+					pr = syscall(SYS_fadvise64, m_fd_dest, offset_last_sync, 0, 0, 0, POSIX_FADV_DONTNEED);
 					if (pr != 0)
 					{
 						eDebug("[filepush] POSIX_FADV_DONTNEED returned %d", pr);
@@ -337,9 +339,11 @@ void eFilePushThread::thread()
 						 elapsed += now.tv_usec;
 						 elapsed -= starttime.tv_usec;
 						 if (elapsed > 10000)
-						    eDebug("[filepush] POSIX_FADV_DONTNEED (>10ms): %u us", elapsed);
+						    eDebug("[filepush] POSIX_FADV_DONTNEED (%u) (>10ms): %u us", (unsigned int)offset_last_sync, (unsigned int)elapsed);
 					}
 #endif
+					offset_last_sync += written_since_last_sync;
+					written_since_last_sync = 0;
 				}
 			}
 
