@@ -6,6 +6,11 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <byteswap.h>
+
+#ifndef BYTE_ORDER
+#error "no BYTE_ORDER defined!"
+#endif
 
 // use this for init Freetype...
 #include <ft2build.h>
@@ -766,8 +771,9 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 	gColor *lookup8, lookup8_invert[16];
 	gColor *lookup8_normal=0;
 
+	__u16 lookup16_normal[16], lookup16_invert[16], *lookup16;
 	__u32 lookup32_normal[16], lookup32_invert[16], *lookup32;
-	
+
 	if (surface->bpp == 8)
 	{
 		if (surface->clut.data)
@@ -781,10 +787,33 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			opcode=0;
 		} else
 			opcode=1;
+	} else if (surface->bpp == 16)
+	{
+		opcode=2;
+		for (int i=0; i<16; ++i)
+		{
+#define BLEND(y, x, a) (y + (((x-y) * a)>>8))
+			unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
+			int sa = i * 16;
+			if (sa < 256)
+			{
+				dr = BLEND(background.r, foreground.r, sa) & 0xFF;
+				dg = BLEND(background.g, foreground.g, sa) & 0xFF;
+				db = BLEND(background.b, foreground.b, sa) & 0xFF;
+			}
+#undef BLEND
+#if BYTE_ORDER == LITTLE_ENDIAN
+			lookup16_normal[i] = bswap_16(((db >> 3) << 11) | ((dg >> 2) << 5) | (dr >> 3));
+#else
+			lookup16_normal[i] = ((db >> 3) << 11) | ((dg >> 2) << 5) | (dr >> 3);
+#endif
+			da ^= 0xFF;
+		}
+		for (int i=0; i<16; ++i)
+			lookup16_invert[i]=lookup16_normal[i^0xF];
 	} else if (surface->bpp == 32)
 	{
 		opcode=3;
-
 		for (int i=0; i<16; ++i)
 		{
 #define BLEND(y, x, a) (y + (((x-y) * a)>>8))
@@ -809,7 +838,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 		eWarning("can't render to %dbpp", surface->bpp);
 		return;
 	}
-	
+
 	gRegion area(eRect(0, 0, surface->x, surface->y));
 	gRegion clip = dc.getClip() & area;
 
@@ -835,10 +864,12 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			if (!(i->flags & GS_INVERT))
 			{
 				lookup8 = lookup8_normal;
+				lookup16 = lookup16_normal;
 				lookup32 = lookup32_normal;
 			} else
 			{
 				lookup8 = lookup8_invert;
+				lookup16 = lookup16_invert;
 				lookup32 = lookup32_invert;
 			}
 
@@ -873,46 +904,76 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				d+=diff*buffer_stride;
 			}
 			if (sx>0)
-				for (int ay=0; ay<sy; ay++)
-				{
-					if (!opcode)		// 4bit lookup to 8bit
+			{
+				switch(opcode) {
+				case 0: // 4bit lookup to 8bit
+					for (int ay=0; ay<sy; ay++)
 					{
 						register __u8 *td=d;
 						register int ax;
-						
 						for (ax=0; ax<sx; ax++)
-						{	
+						{
 							register int b=(*s++)>>4;
 							if(b)
 								*td++=lookup8[b];
 							else
 								td++;
 						}
-					} else if (opcode == 1)	// 8bit direct
+						s+=glyph_bitmap->pitch-sx;
+						d+=buffer_stride;
+					}
+					break;
+				case 1: // 8bit direct
+					for (int ay=0; ay<sy; ay++)
 					{
 						register __u8 *td=d;
 						register int ax;
 						for (ax=0; ax<sx; ax++)
-						{	
+						{
 							register int b=*s++;
 							*td++^=b;
 						}
-					} else
+						s+=glyph_bitmap->pitch-sx;
+						d+=buffer_stride;
+					}
+					break;
+				case 2: // 16bit
+					for (int ay=0; ay<sy; ay++)
+					{
+						register __u16 *td=(__u16*)d;
+						register int ax;
+						for (ax=0; ax<sx; ax++)
+						{
+							register int b=(*s++)>>4;
+							if(b)
+								*td++=lookup16[b];
+							else
+								td++;
+						}
+						s+=glyph_bitmap->pitch-sx;
+						d+=buffer_stride;
+					}
+					break;
+				case 3: // 32bit
+					for (int ay=0; ay<sy; ay++)
 					{
 						register __u32 *td=(__u32*)d;
 						register int ax;
 						for (ax=0; ax<sx; ax++)
-						{	
+						{
 							register int b=(*s++)>>4;
 							if(b)
 								*td++=lookup32[b];
 							else
 								td++;
 						}
+						s+=glyph_bitmap->pitch-sx;
+						d+=buffer_stride;
 					}
-					s+=glyph_bitmap->pitch-sx;
-					d+=buffer_stride;
+				default:
+					break;
 				}
+			}
 		}
 	}
 }

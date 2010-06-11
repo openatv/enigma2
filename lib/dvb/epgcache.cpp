@@ -1457,7 +1457,7 @@ void eEPGCache::channel_data::readData( const __u8 *data)
 	}
 	tidMap &seenSections = this->seenSections[map];
 	tidMap &calcedSections = this->calcedSections[map];
-	if ( state == 1 && calcedSections == seenSections || state > 1 )
+	if ( (state == 1 && calcedSections == seenSections) || state > 1 )
 	{
 		eDebugNoNewLine("[EPGC] ");
 		switch (source)
@@ -2562,7 +2562,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 								{
 									__u8 buffer[10];
 									(*desc)->writeToBuffer(buffer);
-									if (!strncmp((unsigned char*)buffer+2, "EPGDATA", 7))
+									if (!strncmp((char*)buffer+2, "EPGDATA", 7))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
@@ -2571,7 +2571,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 											messages.send(Message(Message::got_mhw2_channel_pid, ref, pid));
 										}
 									}
-									else if(!strncmp((unsigned char*)buffer+2, "FICHAS", 6))
+									else if(!strncmp((char*)buffer+2, "FICHAS", 6))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
@@ -2580,7 +2580,7 @@ void eEPGCache::PMTready(eDVBServicePMTHandler *pmthandler)
 											messages.send(Message(Message::got_mhw2_summary_pid, ref, pid));
 										}
 									}
-									else if(!strncmp((unsigned char*)buffer+2, "GENEROS", 7))
+									else if(!strncmp((char*)buffer+2, "GENEROS", 7))
 									{
 										eServiceReferenceDVB ref;
 										if (!pmthandler->getServiceReference(ref))
