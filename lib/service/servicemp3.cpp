@@ -21,6 +21,8 @@
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
 
+static GstStaticPadTemplate subsinktemplate = GST_STATIC_PAD_TEMPLATE ("sink", GST_PAD_SINK, GST_PAD_ALWAYS, GST_STATIC_CAPS ("text/plain; text/x-pango-markup; video/x-dvd-subpicture"));
+
 // eServiceFactoryMP3
 
 eServiceFactoryMP3::eServiceFactoryMP3()
@@ -330,7 +332,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if ( m_gst_playbin )
 	{
 		GstElement *appsink = gst_element_factory_make("appsink", "subtitle_sink");
-		GstElement *fakesink = gst_element_factory_make("fakesink", "subtitle_fakesink");
 
 		if (!appsink)
 			eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-appsink");
@@ -339,22 +340,33 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		if ( !dvdsubdec )
 			eDebug("eServiceMP3::sorry, can't play: missing gst-plugin-dvdsub");
 
-		gst_bin_add_many(GST_BIN(m_gst_subtitlebin), dvdsubdec, appsink, fakesink, NULL);
-		GstPad *ghostpad = gst_ghost_pad_new("sink", gst_element_get_static_pad (fakesink, "sink"));
-		gst_element_add_pad (m_gst_subtitlebin, ghostpad);
+		gst_bin_add_many(GST_BIN(m_gst_subtitlebin), dvdsubdec, appsink, NULL);
+		
+// 		GstPad *ghostpad = gst_ghost_pad_new("sink", gst_element_get_static_pad (appsink, "sink"));
 
-		eDebug("eServiceMP3::construct dvdsubdec=%p, appsink=%p, fakesink=%p, ghostpad=%p", dvdsubdec, appsink, fakesink, ghostpad);
+		GstPadTemplate *templ;
+		templ = gst_static_pad_template_get (&subsinktemplate);
+  
+		GstPad *ghostpad = gst_ghost_pad_new_no_target_from_template("sink", templ);
+		gst_element_add_pad (m_gst_subtitlebin, ghostpad);
 
 		g_signal_connect (ghostpad, "notify::caps", G_CALLBACK (gstCBsubtitleCAPS), this);
 
 		GstCaps* caps = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-raw-rgb");
 		g_object_set (G_OBJECT (appsink), "caps", caps, NULL);
+		gst_caps_unref(caps);
+		
+// 		GstCaps* caps2 = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-dvd-subpicture");
+// 		int ret = gst_pad_set_caps (ghostpad, caps2);
+// 		gst_caps_unref(caps2);
+		
 		g_object_set (G_OBJECT (dvdsubdec), "singlebuffer", TRUE, NULL);
 		g_object_set (G_OBJECT (appsink), "async", FALSE, NULL);
-		g_object_set (G_OBJECT (fakesink), "async", FALSE, NULL);
 
-		gst_caps_unref(caps);
+		gst_pad_set_getcaps_function (ghostpad, gstGhostpadGetCAPS);
 
+		eDebug("eServiceMP3::construct dvdsubdec=%p, appsink=%p, ghostpad=%p", dvdsubdec, appsink, ghostpad);
+		
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", m_gst_subtitlebin, NULL);
 		m_subs_to_pull_handler_id = g_signal_connect (appsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
 		
@@ -448,7 +460,6 @@ RESULT eServiceMP3::stop()
 	if (m_state == stStopped)
 		return -1;
 	
-	GST_DEBUG_BIN_TO_DOT_FILE(GST_BIN(m_gst_subtitlebin),GST_DEBUG_GRAPH_SHOW_ALL,"e2-subtitlebin");
 	GST_DEBUG_BIN_TO_DOT_FILE(GST_BIN(m_gst_playbin),GST_DEBUG_GRAPH_SHOW_ALL,"e2-playbin");
 
 	eDebug("eServiceMP3::stop %s", m_ref.path.c_str());
@@ -1512,6 +1523,16 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *appsink, gpointer user_data)
 	_this->m_pump.send(2);
 }
 
+GstCaps* eServiceMP3::gstGhostpadGetCAPS (GstPad * pad)
+{
+	eDebug("eServiceMP3::gstGhostpadGetCAPS");
+	return gst_static_pad_template_get_caps(&subsinktemplate);
+// 	return gst_pad_get_pad_template_caps(pad);
+// 	return get_pad_template_caps(pad);
+// 	GstCaps* caps = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-dvd-subpicture");
+// 	return caps;
+}
+
 void eServiceMP3::gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data)
 {
 	eDebug("gstCBsubtitleCAPS:: signal::caps callback obj=%p", obj);
@@ -1519,7 +1540,7 @@ void eServiceMP3::gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer us
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	eDebug("gstCBsubtitleCAPS:: m_currentSubtitleStream=%i, m_subtitleStreams.size()=%i", _this->m_currentSubtitleStream, _this->m_subtitleStreams.size());
 
-	if ( _this->m_currentSubtitleStream >= _this->m_subtitleStreams.size() )
+	if ( _this->m_currentSubtitleStream >= (int)_this->m_subtitleStreams.size() )
 	{
 		eDebug("return invalid stream count");
 		return;
@@ -1546,7 +1567,8 @@ void eServiceMP3::gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer us
 
 		g_free (g_lang);
 	}
-	eDebug("return sub type already known: %i", subs.type);
+
+	gstCBsubtitleLink(subs.type, _this);
 }
 
 void eServiceMP3::gstCBsubtitleLink(subtype_t type, gpointer user_data)
@@ -1575,11 +1597,7 @@ void eServiceMP3::gstCBsubtitleLink(subtype_t type, gpointer user_data)
 	}
 	else
 	{
-		GstPad *ghostpad = gst_element_get_static_pad(_this->m_gst_subtitlebin, "sink");
-		GstElement *fakesink = gst_bin_get_by_name(GST_BIN(_this->m_gst_subtitlebin), "subtitle_fakesink");
-		GstPad *fakesinkpad = gst_element_get_static_pad (fakesink, "sink");
-		int ret = gst_ghost_pad_set_target((GstGhostPad*)ghostpad, fakesinkpad);
-		eDebug("gstCBsubtitleLink:: unsupported subtitles ... throwing them into fakesink %i", ret);
+		eDebug("gstCBsubtitleLink:: unsupported subtitles");
 	}
 }
 
@@ -1777,8 +1795,6 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	eDebug ("eServiceMP3::enableSubtitles new pid=%i",pid);
 	if (m_currentSubtitleStream != pid)
 	{
-		gstCBsubtitleLink(stUnknown, this);
-
 		g_object_set (G_OBJECT (m_gst_playbin), "current-text", pid, NULL);
 		eDebug ("eServiceMP3::enableSubtitles g_object_set current-text = %i", pid);
 		m_currentSubtitleStream = pid;
@@ -1786,8 +1802,6 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 		m_subtitle_pages.clear();
 	}
 
-	gstCBsubtitleLink(m_subtitleStreams[m_currentSubtitleStream].type, this);
-	
 	m_subtitle_widget = 0;
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size()); /* full size */
@@ -1795,7 +1809,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 	g_object_get (G_OBJECT (m_gst_playbin), "current-text", &text_pid, NULL);
 
 	eDebug ("eServiceMP3::switched to subtitle stream %i", text_pid);
-	gst_pad_remove_buffer_probe (pad, subprobe_handler_id);
+// 	gst_pad_remove_buffer_probe (pad, subprobe_handler_id);
 
 	m_event((iPlayableService*)this, evUpdatedInfo);
 

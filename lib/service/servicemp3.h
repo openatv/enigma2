@@ -213,6 +213,7 @@ private:
 	void gstBusCall(GstBus *bus, GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
+	static GstCaps* gstGhostpadGetCAPS (GstPad * pad);
 	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
 	static void gstCBsubtitleLink(subtype_t type, gpointer user_data);
 	static gboolean gstCBsubtitleDrop(GstPad *pad, GstBuffer *buffer, gpointer user_data);
