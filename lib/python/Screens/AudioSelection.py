@@ -50,28 +50,19 @@ class AudioSelection(Screen, ConfigListScreen):
 
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO,_("audio tracks")), (PAGE_SUBTITLES,_("Subtitles"))]
-		print "debug 1: choicelist", page
 		self.settings.menupage = ConfigSelection(choices = choicelist, default=page)
 		self.settings.menupage.addNotifier(self.fillList)
-		print "debug 2"
 		self.onLayoutFinish.append(self.__layoutFinished)
-		print "debug 3"
 
 	def __layoutFinished(self):
-		print "[__layoutFinished]"
 		self["config"].instance.setSelectionEnable(False)
-		print "after instance.setSelectionEnable"
 		self.focus = FOCUS_STREAMS
-		print "debug 4"
 
 	def fillList(self, arg=None):
-		print "debug fillList"
 		streams = []
 		conflist = []
 		selectedidx = 0
-		
-		print "debug fillList 2"
-		
+
 		if self.settings.menupage.getValue() == PAGE_AUDIO:
 			self.setTitle(_("Select audio track"))
 			service = self.session.nav.getCurrentService()
@@ -123,7 +114,6 @@ class AudioSelection(Screen, ConfigListScreen):
 				self["key_green"].setBoolean(False)
 
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
-			print "debug PAGE_SUBTITLES"
 			self.setTitle(_("Subtitle selection"))
 			conflist.append(('',))
 			conflist.append(('',))
@@ -138,7 +128,6 @@ class AudioSelection(Screen, ConfigListScreen):
 			idx = 0
 			
 			subtitlelist = self.getSubtitleList()
-			print ">>>>>>>>subtitlelist", subtitlelist
 
 			if len(subtitlelist):
 				for x in subtitlelist:
@@ -170,7 +159,6 @@ class AudioSelection(Screen, ConfigListScreen):
 						description = types[x[2]]
 
 					streams.append((x, "", number, description, language, selected))
-					print "appending", x, "", number, description, language, selected
 					idx += 1
 			
 			else:
@@ -196,7 +184,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(Plugins[0][0], ConfigNothing()))
 				self.plugincallfunc = Plugins[0][1]
 			if len(Plugins) > 1:
-				print "these plugins are installed but not displayed in the dialog box:", Plugins[1:]
+				print "plugin(s) installed but not displayed in the dialog box:", Plugins[1:]
 
 		self["config"].list = conflist
 		self["config"].l.setList(conflist)

@@ -215,8 +215,9 @@ private:
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
 	static void gstCBsubtitleLink(subtype_t type, gpointer user_data);
+	static gboolean gstCBsubtitleDrop(GstPad *pad, GstBuffer *buffer, gpointer user_data);
 	void gstPoll(const int&);
-
+	
 	std::list<SubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 	ePtr<eTimer> m_subtitle_hide_timer;
