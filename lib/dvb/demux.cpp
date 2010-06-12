@@ -443,9 +443,10 @@ private:
 };
 
 eDVBRecordFileThread::eDVBRecordFileThread()
-	:eFilePushThread(IOPRIO_CLASS_RT, 7), m_ts_parser(m_stream_info)
+	:eFilePushThread(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 2 * 188 * 1024),
+	 m_ts_parser(m_stream_info),
+	 m_current_offset(0)
 {
-	m_current_offset = 0;
 }
 
 void eDVBRecordFileThread::setTimingPID(int pid, int type)

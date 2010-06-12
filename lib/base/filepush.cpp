@@ -21,15 +21,20 @@
 
 //FILE *f = fopen("/log.ts", "wb");
 
-eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize)
-	:prio_class(io_prio_class), prio(io_prio_level), m_messagepump(eApp, 0)
+eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
+	:prio_class(io_prio_class),
+	 prio(io_prio_level),
+	 streamFd(-1),
+	 m_sg(NULL),
+	 m_stop(0),
+	 m_buf_start(0),
+	 m_send_pvr_commit(0),
+	 m_stream_mode(0),
+	 m_blocksize(blocksize),
+	 m_buffersize(buffersize),
+	 m_buffer((unsigned char*)malloc(buffersize)),
+	 m_messagepump(eApp, 0)
 {
-	m_stop = 0;
-	m_sg = 0;
-	m_send_pvr_commit = 0;
-	m_stream_mode = 0;
-	m_blocksize = blocksize;
-	streamFd = -1;
 	flush();
 	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -38,6 +43,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 eFilePushThread::~eFilePushThread()
 {
 	if (streamFd >= 0) ::close(streamFd);
+	free(m_buffer);
 }
 
 static void signal_handler(int x)
@@ -374,7 +380,7 @@ void eFilePushThread::thread()
 			bytes_read = 0;
 		}
 		
-		size_t maxread = sizeof(m_buffer);
+		size_t maxread = m_buffersize;
 		
 			/* if we have a source span, don't read past the end */
 		if (m_raw_source.valid() && m_sg && maxread > current_span_remaining)

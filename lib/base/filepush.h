@@ -26,7 +26,7 @@ class eFilePushThread: public eThread, public Object
 	ssize_t socketWrite(int fd, const void *buf, size_t count);
 
 public:
-	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188);
+	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024);
 	~eFilePushThread();
 	void thread();
 	void stop();
@@ -65,12 +65,11 @@ private:
 	int m_send_pvr_commit;
 	int m_stream_mode;
 	int m_blocksize;
+	size_t m_buffersize;
+	unsigned char* m_buffer;
 
 	eRawFile m_raw_source;
-	
 	eFixedMessagePump<int> m_messagepump;
-
-	unsigned char m_buffer[2*188*1024]; // Align to page (4096) and DMX (188)
 	
 	void recvEvent(const int &evt);
 };
