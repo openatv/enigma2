@@ -933,7 +933,12 @@ bool eDVBResourceManager::canMeasureFrontendInputPower()
 class eDVBChannelFilePush: public eFilePushThread
 {
 public:
-	eDVBChannelFilePush() { setIFrameSearch(0); setTimebaseChange(0); }
+	eDVBChannelFilePush():
+		eFilePushThread(IOPRIO_CLASS_BE, 0, 188, 65536), // 64k buffer for playback
+		m_iframe_search(0),
+		m_iframe_state(0),
+		m_timebase_change(0)
+	{}
 	void setIFrameSearch(int enabled) { m_iframe_search = enabled; m_iframe_state = 0; }
 
 			/* "timebase change" is for doing trickmode playback at an exact speed, even when pictures are skipped. */

@@ -443,7 +443,7 @@ private:
 };
 
 eDVBRecordFileThread::eDVBRecordFileThread()
-	:eFilePushThread(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 2 * 188 * 1024),
+	:eFilePushThread(IOPRIO_CLASS_RT, 7, /*blocksize*/ 188, /*buffersize*/ 188 * 1024),
 	 m_ts_parser(m_stream_info),
 	 m_current_offset(0)
 {
@@ -538,7 +538,7 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 	}
 	
-	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 4*188*1024);
+	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 5*188*1024);
 
 	dmx_pes_filter_params flt;
 #if HAVE_DVB_API_VERSION > 3
