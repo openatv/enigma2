@@ -166,7 +166,7 @@ RESULT eDVBServiceRecord::prepare(const char *filename, time_t begTime, time_t e
 					std::string fname = filename;
 					fname.erase(fname.length()-2, 2);
 					fname+="eit";
-					int fd = open(fname.c_str(), O_CREAT|O_WRONLY, 0777);
+					int fd = open(fname.c_str(), O_CREAT|O_WRONLY, 0666);
 					if (fd>-1)
 					{
 						int evLen=HILO(event->descriptors_loop_length)+12/*EIT_LOOP_SIZE*/;
@@ -259,7 +259,7 @@ int eDVBServiceRecord::doRecord()
 	{
 		eDebug("Recording to %s...", m_filename.c_str());
 		::remove(m_filename.c_str());
-		int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0644);
+		int fd = ::open(m_filename.c_str(), O_WRONLY|O_CREAT|O_LARGEFILE, 0666);
 		if (fd == -1)
 		{
 			eDebug("eDVBServiceRecord - can't open recording file!");
