@@ -26,6 +26,8 @@ class ClockToText(Converter, object):
 	AS_LENGTH = 5
 	TIMESTAMP = 6
 	FULL = 7
+	SHORT_DATE = 8
+	LONG_DATE = 9
 	
 	# add: date, date as string, weekday, ... 
 	# (whatever you need!)
@@ -43,6 +45,10 @@ class ClockToText(Converter, object):
 		elif type == "Timestamp":	
 			self.type = self.TIMESTAMP
 		elif type == "Full":
+			self.type = self.FULL
+		elif type == "ShortDate":
+			self.type = self.FULL
+		elif type == "LongDate":
 			self.type = self.FULL
 		elif "Format" in type:
 			self.type = self.FORMAT
@@ -76,6 +82,10 @@ class ClockToText(Converter, object):
 			return _(strftime("%A",t)) + " " + str(t[2]) + " " + MONTHS[t[1]-1] + " " + str(t[0])
 		elif self.type == self.FULL:
 			return dayOfWeek[t[6]] + " %d/%d  %2d:%02d" % (t[2],t[1], t.tm_hour, t.tm_min)  
+		elif self.type == self.SHORT_DATE:
+			return dayOfWeek[t[6]] + " %d/%d" % (t[2], t[1])
+		elif self.type == self.LONG_DATE:
+			return dayOfWeek[t[6]] + " " + str(t[2]) + " " + MONTHS[t[1]-1]  
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
 			if spos > 0:
