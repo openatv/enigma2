@@ -7,6 +7,7 @@
 #include <netdb.h>
 
 //#define SHOW_WRITE_TIME
+#define FLUSH_SIZE (512*1024)
 
 #ifdef SHOW_WRITE_TIME
 #	include <sys/types.h>
@@ -18,8 +19,6 @@
 #include <syscall.h>
 
 #define PVR_COMMIT 1
-
-//FILE *f = fopen("/log.ts", "wb");
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -322,10 +321,11 @@ void eFilePushThread::thread()
 			 if (elapsed > 10000)
 				    eDebug("[filepush] LONG WRITE (>10ms): %u us", elapsed);
 #endif
+#ifdef FLUSH_SIZE
 			if (!m_send_pvr_commit)
 			{
 				written_since_last_sync += w;
-				if (written_since_last_sync > 1024000)
+				if (written_since_last_sync > FLUSH_SIZE)
 				{
 #ifdef SHOW_WRITE_TIME
 					 gettimeofday(&starttime, NULL);
@@ -352,6 +352,7 @@ void eFilePushThread::thread()
 					written_since_last_sync = 0;
 				}
 			}
+#endif
 
 			if (w <= 0)
 			{
