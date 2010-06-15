@@ -318,8 +318,8 @@ void eFilePushThread::thread()
 			 suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
 			 elapsed += now.tv_usec;
 			 elapsed -= starttime.tv_usec;
-			 if (elapsed > 10000)
-				    eDebug("[filepush] LONG WRITE (>10ms): %u us", elapsed);
+			 if (elapsed > 30000)
+				    eDebug("[filepush] LONG WRITE (>30ms): %u us", elapsed);
 #endif
 #ifdef FLUSH_SIZE
 			if (!m_send_pvr_commit)
@@ -344,8 +344,8 @@ void eFilePushThread::thread()
 						 suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
 						 elapsed += now.tv_usec;
 						 elapsed -= starttime.tv_usec;
-						 if (elapsed > 10000)
-						    eDebug("[filepush] POSIX_FADV_DONTNEED (%u) (>10ms): %u us", (unsigned int)offset_last_sync, (unsigned int)elapsed);
+						 if (elapsed > 20000)
+						    eDebug("[filepush] POSIX_FADV_DONTNEED (%u) (>20ms): %u us", (unsigned int)offset_last_sync, (unsigned int)elapsed);
 					}
 #endif
 					offset_last_sync += written_since_last_sync;
