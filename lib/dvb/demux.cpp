@@ -347,9 +347,7 @@ void eDVBPESReader::data(int)
 
 eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res): m_demux(demux)
 {
-	char filename[128];
 	m_fd = m_demux->openDemux();
-	
 	if (m_fd >= 0)
 	{
 		::ioctl(m_fd, DMX_SET_BUFFER_SIZE, 64*1024);
@@ -359,7 +357,7 @@ eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res):
 		res = 0;
 	} else
 	{
-		perror(filename);
+		perror("openDemux");
 		res = errno;
 	}
 }
@@ -538,7 +536,7 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 	}
 	
-	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 5*188*1024);
+	::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 8*188*1024);
 
 	dmx_pes_filter_params flt;
 #if HAVE_DVB_API_VERSION > 3
