@@ -64,7 +64,7 @@ eDBoxLCD::eDBoxLCD(): eLCD(eSize(132, 64))
 	lcdfd = open("/dev/dbox/oled0", O_RDWR);
 	if (lcdfd < 0)
 	{
-		FILE *f=fopen("/proc/stb/fp/oled_brightness", "w");
+		FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 		if (f)
 		{
 			is_oled = 2;
@@ -117,11 +117,11 @@ int eDBoxLCD::setLCDContrast(int contrast)
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
 	eDebug("setLCDBrightness %d", brightness);
-	FILE *f=fopen("/proc/stb/fp/oled_brightness", "w");
+	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (f)
 	{
 		if (fprintf(f, "%d", brightness) == 0)
-			eDebug("write /proc/stb/fp/oled_brightness failed!! (%m)");
+			eDebug("write /proc/stb/lcd/oled_brightness failed!! (%m)");
 		fclose(f);
 	}
 	else
