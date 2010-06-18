@@ -1,5 +1,6 @@
 #include <lib/base/filepush.h>
 #include <lib/base/eerror.h>
+#include <lib/base/systemsettings.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -7,7 +8,6 @@
 #include <netdb.h>
 
 //#define SHOW_WRITE_TIME
-#define FLUSH_SIZE (512*1024)
 
 #ifdef SHOW_WRITE_TIME
 #	include <sys/types.h>
@@ -19,6 +19,8 @@
 #include <syscall.h>
 
 #define PVR_COMMIT 1
+
+static size_t flushSize;
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -34,6 +36,7 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_buffer((unsigned char*)malloc(buffersize)),
 	 m_messagepump(eApp, 0)
 {
+	flushSize = (size_t)getFlushSize();
 	flush();
 	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
@@ -321,11 +324,10 @@ void eFilePushThread::thread()
 			 if (elapsed > 30000)
 				    eDebug("[filepush] LONG WRITE (>30ms): %u us", elapsed);
 #endif
-#ifdef FLUSH_SIZE
-			if (!m_send_pvr_commit)
+			if (!m_send_pvr_commit && (flushSize != 0))
 			{
 				written_since_last_sync += w;
-				if (written_since_last_sync > FLUSH_SIZE)
+				if (written_since_last_sync > flushSize)
 				{
 #ifdef SHOW_WRITE_TIME
 					 gettimeofday(&starttime, NULL);
@@ -352,7 +354,6 @@ void eFilePushThread::thread()
 					written_since_last_sync = 0;
 				}
 			}
-#endif
 
 			if (w <= 0)
 			{

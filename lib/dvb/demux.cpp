@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <signal.h>
+#include <lib/base/systemsettings.h>
 
 // #define FUZZING 1
 
@@ -536,9 +537,9 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 	}
 	
-	if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 8*188*1024) == -1)
+	if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, getDemuxSize()) == -1)
 	{
-		eDebug("Failed to set DMX_BUFFER_SIZE to 1.5M: %m");
+		eDebug("Failed to set DMX_BUFFER_SIZE to %d: %m", getDemuxSize());
 		if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 5*188*1024) == -1)
 		{
 			eDebug("Also failed to set DMX_BUFFER_SIZE to 1M: %m");
