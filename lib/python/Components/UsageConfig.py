@@ -1,11 +1,12 @@
 from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations
 from Tools.Directories import resolveFilename, SCOPE_HDD
-from enigma import Misc_Options, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
+from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
 from Components.NimManager import nimmanager
 from Components.Harddisk import harddiskmanager
 from SystemInfo import SystemInfo
 import os
+import enigma
 
 def InitUsageConfig():
 	config.usage = ConfigSubsection();
@@ -133,12 +134,12 @@ def InitUsageConfig():
 
 	def set12VOutput(configElement):
 		if configElement.value == "on":
-			Misc_Options.getInstance().set_12V_output(1)
+			enigma.Misc_Options.getInstance().set_12V_output(1)
 		elif configElement.value == "off":
-			Misc_Options.getInstance().set_12V_output(0)
+			enigma.Misc_Options.getInstance().set_12V_output(0)
 	config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
-	SystemInfo["12V_Output"] = Misc_Options.getInstance().detected_12V_output()
+	SystemInfo["12V_Output"] = enigma.Misc_Options.getInstance().detected_12V_output()
 
 	config.usage.keymap = ConfigText(default = "/usr/share/enigma2/keymap.xml")
 
@@ -178,6 +179,26 @@ def InitUsageConfig():
 		updateChoices(config.seek.enter_backward, configElement.value)
 
 	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
+
+	def updateFlushSize(el):
+		enigma.setFlushSize(int(el.value))
+		print "[SETTING] getFlushSize=", enigma.getFlushSize()
+	def updateDemuxSize(el):
+		enigma.setDemuxSize(int(el.value))
+		print "[SETTING] getDemuxSize=", enigma.getDemuxSize()
+	config.misc.flush_size = ConfigSelection(default = "524288", choices = [
+		("0", "Off"),
+		("524288", "512kB"),
+		("1048576", "1 MB"),
+		("2097152", "2 MB"),
+		("4194304", "4 MB")])
+	config.misc.flush_size.addNotifier(updateFlushSize, immediate_feedback = False)
+	config.misc.demux_size = ConfigSelection(default = "1540096", choices = [
+		("770048", "Small 0.7 MB"),
+		("962560", "Normal 1 MB"),
+		("1540096", "Large 1.5MB"),
+		("1925120", "Huge 2 MB")])
+	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
 
 def updateChoices(sel, choices):
 	if choices:
