@@ -1773,7 +1773,6 @@ void eEPGCache::channel_data::readFreeSatScheduleOtherData( const __u8 *data)
 	if (fsstatus->isCompleted())
 	{
 		m_FreesatTablesToComplete--;
-		eDebug("[EPGC] Subtable %x complete %d left", subtableNo, m_FreesatTablesToComplete); 
 	}
 	cache->sectionRead(data, FREESAT_SCHEDULE_OTHER, this);
 }
