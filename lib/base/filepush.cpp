@@ -20,7 +20,22 @@
 
 #define PVR_COMMIT 1
 
-static size_t flushSize;
+static size_t flushSize = 512 * 1024;
+
+// Defined and exported to SWIG in systemsettings.h
+int getFlushSize(void)
+{
+	return (int)flushSize;
+}
+
+void setFlushSize(int size)
+{
+	if (size >= 0)
+	{
+		flushSize = (size_t)size;
+	}
+}
+
 
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	:prio_class(io_prio_class),
@@ -36,7 +51,6 @@ eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int block
 	 m_buffer((unsigned char*)malloc(buffersize)),
 	 m_messagepump(eApp, 0)
 {
-	flushSize = (size_t)getFlushSize();
 	flush();
 	enablePVRCommit(0);
 	CONNECT(m_messagepump.recv_msg, eFilePushThread::recvEvent);
