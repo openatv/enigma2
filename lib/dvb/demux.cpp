@@ -6,6 +6,22 @@
 #include <signal.h>
 #include <lib/base/systemsettings.h>
 
+
+static int demuxSize = 8 * 188 * 1024;
+// exported to SWIG in lib/base/systemsettings.h
+int getDemuxSize(void)
+{
+	return demuxSize;
+}
+void setDemuxSize(int size)
+{
+	if ((size >= 2*188*1024) && (size <= 16*188*1024))
+	{
+		demuxSize = size;
+	}
+}
+
+
 // #define FUZZING 1
 
 #if FUZZING
@@ -537,9 +553,9 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 	}
 	
-	if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, getDemuxSize()) == -1)
+	if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, demuxSize) == -1)
 	{
-		eDebug("Failed to set DMX_BUFFER_SIZE to %d: %m", getDemuxSize());
+		eDebug("Failed to set DMX_BUFFER_SIZE to %d: %m", demuxSize);
 		if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 5*188*1024) == -1)
 		{
 			eDebug("Also failed to set DMX_BUFFER_SIZE to 1M: %m");
