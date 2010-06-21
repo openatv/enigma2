@@ -214,11 +214,23 @@ private:
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	static GstCaps* gstGhostpadGetCAPS (GstPad * pad);
-	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
+	static gboolean gstGhostpadAcceptCAPS(GstPad * pad, GstCaps * caps);
+	static void gstGhostpadLink(gpointer user_data, GstCaps * caps);
+	static GstFlowReturn gstGhostpadBufferAlloc(GstPad *pad, guint64 offset, guint size, GstCaps *caps, GstBuffer **buf);
+	static void gstGhostpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer user_data);
+	static gboolean gstGhostpadSinkEvent(GstPad * pad, GstEvent * event);
+	static GstFlowReturn gstGhostpadChainFunction(GstPad * pad, GstBuffer * buffer);
+/*	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
 	static void gstCBsubtitleLink(subtype_t type, gpointer user_data);
-	static gboolean gstCBsubtitleDrop(GstPad *pad, GstBuffer *buffer, gpointer user_data);
+	static gboolean gstCBsubtitleDrop(GstPad *pad, GstBuffer *buffer, gpointer user_data);*/
 	void gstPoll(const int&);
-	
+	GstPadBufferAllocFunction m_ghost_pad_buffer_alloc;
+	GstPadChainFunction m_ghost_pad_chain_function;
+	GstPadEventFunction m_ghost_pad_subtitle_sink_event;
+	GstCaps *m_gst_prev_subtitle_caps;
+	GstSegment m_gst_subtitle_segment;
+	GstPadEventFunction m_gst_sink_event;
+
 	std::list<SubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 	ePtr<eTimer> m_subtitle_hide_timer;
