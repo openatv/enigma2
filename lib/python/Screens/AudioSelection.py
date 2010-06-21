@@ -51,12 +51,12 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.settings = ConfigSubsection()
 		choicelist = [(PAGE_AUDIO,_("audio tracks")), (PAGE_SUBTITLES,_("Subtitles"))]
 		self.settings.menupage = ConfigSelection(choices = choicelist, default=page)
-		self.settings.menupage.addNotifier(self.fillList)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
 	def __layoutFinished(self):
 		self["config"].instance.setSelectionEnable(False)
 		self.focus = FOCUS_STREAMS
+		self.settings.menupage.addNotifier(self.fillList)
 
 	def fillList(self, arg=None):
 		streams = []
@@ -301,7 +301,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				else:
 					self.enableSubtitle(cur[0])
 					self.__updatedInfo()
-		#self.close()
+			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
 			self.keyRight()
 
