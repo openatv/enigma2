@@ -42,6 +42,26 @@ def moviePlayState(cutsFileName):
 	except:
 		import sys
 		print "Exception in moviePlayState: %s: %s" % sys.exc_info()[:2]
+
+def resetMoviePlayState(cutsFileName):
+	try:
+		f = open(cutsFileName, 'rb')
+		cutlist = []
+		while 1:
+			data = f.read(cutsParser.size)
+			if len(data) < cutsParser.size:
+				break
+			cut, cutType = cutsParser.unpack(data)
+			if cutType != 3:
+				cutlist.append(data)
+		f.close()
+		f = open(cutsFileName, 'wb')
+		f.write(''.join(cutlist))
+		f.close()
+	except:
+		import sys
+		print "Exception in moviePlayState: %s: %s" % sys.exc_info()[:2]
+
         
 class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
@@ -79,7 +99,6 @@ class MovieList(GUIComponent):
 		for part in range(5):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_%d_4.png" % part)))
 		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
-		self.iconMovieUnknown = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_unk.png"))
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
 
@@ -196,9 +215,6 @@ class MovieList(GUIComponent):
 				if part is not None:
 					# There's a stop point in the movie, we're watching it
 					icon = self.iconPart[part]
-				elif os.stat(cutsPathName).st_mtime - os.stat(pathName).st_mtime > 600:  
-					# mtime of cuts file is much newer, we've seen it
-					icon = self.iconMovieUnknown
 			if self.list_type in (MovieList.LISTTYPE_COMPACT_DESCRIPTION,MovieList.LISTTYPE_COMPACT):
 				pos = (0,0)
 			else:

@@ -2,7 +2,7 @@ from Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap
 from Components.MenuList import MenuList
-from Components.MovieList import MovieList
+from Components.MovieList import MovieList, resetMoviePlayState
 from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
@@ -204,7 +204,11 @@ class MovieContextMenu(Screen):
 				else:
 					menu.append((_("Move"), csel.moveMovie))
 			else:
-				menu = [(_("delete..."), csel.delete), (_("Move"), csel.moveMovie), (_("Copy"), csel.copyMovie)]
+				menu = [(_("Delete"), csel.delete),
+					(_("Move"), csel.moveMovie),
+					(_("Copy"), csel.copyMovie),
+					(_("Reset playback position"), csel.resetMovie),
+					]
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
@@ -677,6 +681,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def showBookmarks(self):
 		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.gotFilename)
+
+	def resetMovie(self):
+		current = self.getCurrent()
+		if current:
+			resetMoviePlayState(current.getPath() + ".cuts")
 
 	def moveMovie(self):
 		item = self.getCurrentSelection() 
