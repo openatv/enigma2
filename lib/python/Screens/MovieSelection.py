@@ -638,9 +638,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			inlist.append(d)
 		for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
 			d = os.path.normpath(p.mountpoint)
-			if os.path.exists(d):
-				bookmarks.append((p.description, d))
-				inlist.append(d)
+			bookmarks.append((p.description, d))
+			inlist.append(d)
 		for d in last_selected_dest:
 			if d not in inlist:
 				bookmarks.append((d,d))
@@ -696,7 +695,35 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				# Special case
 				return
 			name = info and info.getName(current) or _("this recording")
-			self.selectMovieLocation(title=_("Select destination for:") + " " + name, callback=self.gotMoveMovieDest)
+			path = os.path.normpath(current.getPath())
+			# show a more limited list of destinations, no point
+			# in showing mountpoints.
+			title = _("Select destination for:") + " " + name
+			bookmarks = [("("+_("Other")+"...)", None)]
+			inlist = []
+			# Subdirs
+			try:
+				base = os.path.split(path)[0]
+				for fn in os.listdir(base):
+					if not fn.startswith('.'): # Skip hidden things
+						d = os.path.join(base, fn)
+						if os.path.isdir(d) and (d not in inlist):
+							bookmarks.append((fn,d))
+							inlist.append(d)
+			except Exception, e :
+				print "[MovieSelection]", e
+			# Last favourites
+			for d in last_selected_dest:
+				if d not in inlist:
+					bookmarks.append((d,d))
+			# Other favourites
+			for d in config.movielist.videodirs.value:
+				d = os.path.normpath(d)
+				bookmarks.append((d,d))
+				inlist.append(d)
+			self.onMovieSelected = self.gotMoveMovieDest
+			self.movieSelectTitle = title
+			self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks)
 
 	def gotMoveMovieDest(self, choice):
 		if not choice:
