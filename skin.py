@@ -51,7 +51,8 @@ def loadSkin(name, scope = SCOPE_SKIN):
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-config.skin.primary_skin = ConfigText(default = "Magic/skin.xml")
+DEFAULT_SKIN = "Magic/skin.xml"
+config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
 try:
@@ -69,9 +70,13 @@ try:
 	loadSkin(config.skin.primary_skin.value)
 except (SkinError, IOError, AssertionError), err:
 	print "SKIN ERROR:", err
-	print "defaulting to standard skin..."
-	config.skin.primary_skin.value = 'skin.xml'
-	loadSkin('skin.xml')
+	skin = DEFAULT_SKIN
+	if config.skin.primary_skin.value == skin:
+		skin = 'skin.xml'
+	print "defaulting to standard skin...", skin
+	config.skin.primary_skin.value = skin
+	loadSkin(skin)
+	del skin
 
 profile("LoadSkinDefault")
 loadSkin('skin_default.xml')
@@ -463,19 +468,30 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(id, style)
 
+dom_screens = {}
 def loadSkinData(desktop):
+	# Kinda hackish, but this is called once by mytest.py
+	global dom_skins
 	skins = dom_skins[:]
 	skins.reverse()
 	for (path, dom_skin) in skins:
 		loadSingleSkinData(desktop, dom_skin, path)
-
-def lookupScreen(name):
-	for (path, skin) in dom_skins:
-		# first, find the corresponding screen element
-		for x in skin.findall("screen"):
-			if x.attrib.get('name', '') == name:
-				return x, path
-	return None, None
+		for elem in dom_skin:
+			if elem.tag == 'screen':
+				name = elem.attrib.get('name', None)
+				if name:
+					if name in dom_screens:
+						# Kill old versions, save memory
+						dom_screens[name][0].clear()
+					dom_screens[name] = (elem, path)
+				else:
+					# without name, it's useless!
+					elem.clear()
+			else:
+				# non-screen element, no need for it any longer
+				elem.clear()
+	# no longer needed, we know where the screens are now.
+	del dom_skins
 
 class additionalWidget:
 	pass
@@ -487,8 +503,9 @@ def readSkin(screen, skin, names, desktop):
 	name = "<embedded-in-'%s'>" % screen.__class__.__name__
 
 	# try all skins, first existing one have priority
+	global dom_screens
 	for n in names:
-		myscreen, path = lookupScreen(n)
+		myscreen, path = dom_screens.get(n, (None,None))
 		if myscreen is not None:
 			# use this name for debug output
 			name = n
