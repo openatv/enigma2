@@ -186,7 +186,7 @@ def InitUsageConfig():
 	def updateDemuxSize(el):
 		enigma.setDemuxSize(int(el.value))
 		print "[SETTING] getDemuxSize=", enigma.getDemuxSize()
-	config.misc.flush_size = ConfigSelection(default = "524288", choices = [
+	config.misc.flush_size = ConfigSelection(default = "0", choices = [
 		("0", "Off"),
 		("524288", "512kB"),
 		("1048576", "1 MB"),
