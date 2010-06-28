@@ -1458,9 +1458,11 @@ int eDVBFrontend::readInputpower()
 		return 0;
 	int power=m_slotid;  // this is needed for read inputpower from the correct tuner !
 	char proc_name[64];
-	sprintf(proc_name, "/proc/stb/fp/lnb_sense%d", m_slotid);
-	FILE *f=fopen(proc_name, "r");
-	if (f)
+	char proc_name2[64];
+	sprintf(proc_name, "/proc/stb/frontend/%d/lnb_sense", m_slotid);
+	sprintf(proc_name2, "/proc/stb/fp/lnb_sense%d", m_slotid);
+	FILE *f;
+	if ((f=fopen(proc_name, "r")) || (f=fopen(proc_name2, "r")))
 	{
 		if (fscanf(f, "%d", &power) != 1)
 			eDebug("read %s failed!! (%m)", proc_name);
