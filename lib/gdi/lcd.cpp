@@ -65,6 +65,8 @@ eDBoxLCD::eDBoxLCD(): eLCD(eSize(132, 64))
 	if (lcdfd < 0)
 	{
 		FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
+		if (!f)
+			f = fopen("/proc/stb/fp/oled_brightness", "w");
 		if (f)
 		{
 			is_oled = 2;
@@ -118,6 +120,8 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 {
 	eDebug("setLCDBrightness %d", brightness);
 	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
+	if (!f)
+		f = fopen("/proc/stb/fp/oled_brightness", "w");
 	if (f)
 	{
 		if (fprintf(f, "%d", brightness) == 0)
