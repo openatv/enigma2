@@ -1076,6 +1076,7 @@ static void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &
 	case FEC_AUTO: tmp = eDVBFrontendParametersSatellite::FEC_Auto; break;
 	default: eDebug("got unsupported FEC from frontend! report as FEC_AUTO!\n");
 	}
+	PutToDict(dict, "fec_inner", tmp);
 
 	switch (p[0].u.data)
 	{
