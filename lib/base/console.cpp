@@ -516,18 +516,15 @@ eConsolePy_write(eConsolePy* self, PyObject *args)
 {
 	int len;
 	char *data;
-	if (PyArg_ParseTuple(args, "si", &data, &len))
-		;
-	else
+	int ret = -1;
+	Py_ssize_t argc = PyTuple_Size(args);
+	if (argc > 1)
+		ret = PyArg_ParseTuple(args, "si", &data, &len);
+	else if (argc == 1)
 	{
 		PyObject *ob;
-		if (!PyArg_ParseTuple(args, "O", &ob) || !PyString_Check(ob))
-		{
-			PyErr_SetString(PyExc_TypeError,
-				"1st arg must be a string, optionaly 2nd arg can be the string length");
-			return NULL;
-		}
-		else
+		ret = !PyArg_ParseTuple(args, "O", &ob) || !PyString_Check(ob);
+		if (!ret)
 		{
 			Py_ssize_t length;
 			if (!PyString_AsStringAndSize(ob, &data, &length))
@@ -535,6 +532,12 @@ eConsolePy_write(eConsolePy* self, PyObject *args)
 			else
 				len = 0;
 		}
+	}
+	if (ret)
+	{
+		PyErr_SetString(PyExc_TypeError,
+			"1st arg must be a string, optionaly 2nd arg can be the string length");
+		return NULL;
 	}
 	self->cont->write(data, len);
 	Py_RETURN_NONE;
