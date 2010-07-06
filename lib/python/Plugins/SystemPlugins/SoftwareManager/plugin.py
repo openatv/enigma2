@@ -14,7 +14,8 @@ from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Components.Slider import Slider
 from Components.Harddisk import harddiskmanager
-from Components.config import config,getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations
+from Components.config import config,getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
+from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
@@ -26,7 +27,8 @@ from Components.AVSwitch import AVSwitch
 from Components.Network import iNetwork
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad
+from Tools.NumericalTextInput import NumericalTextInput
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
@@ -42,6 +44,14 @@ from SoftwareTools import iSoftwareTools
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
 config.plugins.configurationbackup.backupdirs = ConfigLocations(default=['/etc/enigma2/', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+
+config.plugins.SoftwareManager = ConfigSubsection()
+config.plugins.SoftwareManager.overwriteConfigFiles = ConfigSelection(
+				[
+				 ("Y", _("Yes, always")),
+				 ("N", _("No, never")),				 
+				 ("ask", _("Always ask"))
+				], "Y")
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -109,13 +119,16 @@ class UpdatePluginMenu(Screen):
 		self.menu = args
 		self.list = []
 		self.oktext = _("\nPress OK on your remote control to continue.")
+		self.menutext = _("Press MENU on your remote control for additional options.")
+		self.infotext = _("Press INFO on your remote control for additional information.")
 		self.text = ""
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 		if self.menu == 0:
+			print "building menu entries"
 			self.list.append(("install-extensions", _("Manage extensions"), _("\nManage extensions or plugins for your Dreambox" ) + self.oktext, None))
 			self.list.append(("software-update", _("Software update"), _("\nOnline update of your Dreambox software." ) + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("\nRestore your Dreambox with a new firmware." ) + self.oktext, None))
-			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext, None))
+			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your Dreambox settings." ) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore",_("Restore system settings"), _("\nRestore your Dreambox settings." ) + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"),  _("\nScan for local extensions and install them." ) + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
@@ -136,7 +149,7 @@ class UpdatePluginMenu(Screen):
 		elif self.menu == 1:
 			self.list.append(("advancedrestore", _("Advanced restore"), _("\nRestore your backups by date." ) + self.oktext, None))
 			self.list.append(("backuplocation", _("Choose backup location"),  _("\nSelect your backup device.\nCurrent device: " ) + config.plugins.configurationbackup.backuplocation.value + self.oktext, None))
-			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup. Currently selected:\n" ) + self.backupdirs + self.oktext, None))
+			self.list.append(("backupfiles", _("Choose backup files"),  _("Select files for backup.") + self.oktext + "\n\n" + self.infotext, None))
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(("ipkg-manager", _("Packet management"),  _("\nView, install and remove available or installed packages." ) + self.oktext, None))
 			self.list.append(("ipkg-source",_("Choose upgrade source"), _("\nEdit the upgrade source address." ) + self.oktext, None))
@@ -156,25 +169,25 @@ class UpdatePluginMenu(Screen):
 
 		self["menu"] = List(self.list)
 		self["key_red"] = StaticText(_("Close"))
-		self["status"] = StaticText("")
+		self["status"] = StaticText(self.menutext)
 
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions"],
+		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions", "InfobarEPGActions", "MenuActions"],
 		{
 			"ok": self.go,
 			"back": self.close,
 			"red": self.close,
+			"menu": self.handleMenu,
+			"showEventInfo": self.handleInfo,
 		}, -1)
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.backuppath = getBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 		self.onShown.append(self.setWindowTitle)
-		#self.onClose.append(self.cleanup)
 
 	def layoutFinished(self):
 		idx = 0
 		self["menu"].index = idx
-		#self.getUpdateInfos()
 
 	def setWindowTitle(self):
 		self.setTitle(_("Software management"))
@@ -201,9 +214,17 @@ class UpdatePluginMenu(Screen):
 			self.text = _("No network connection available.")
 		self["status"].setText(self.text)
 
+	def handleMenu(self):
+		self.session.open(SoftwareManagerSetup)
+		
+	def handleInfo(self):
+		current = self["menu"].getCurrent()
+		if current:
+			currentEntry = current[0]
+			if currentEntry in ("system-backup","backupfiles"):
+				self.session.open(SoftwareManagerInfo, mode = "backupinfo")
 
 	def go(self):
-		#iNetwork.stopPingConsole()
 		current = self["menu"].getCurrent()
 		if current:
 			currentEntry = current[0]
@@ -290,6 +311,185 @@ class UpdatePluginMenu(Screen):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore = True)
 
+class SoftwareManagerSetup(Screen, ConfigListScreen):
+
+	skin = """
+		<screen name="SoftwareManagerSetup" position="center,center" size="560,440" title="SoftwareManager setup">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget name="config" position="5,50" size="550,350" scrollbarMode="showOnDemand" />
+			<ePixmap pixmap="skin_default/div-h.png" position="0,400" zPosition="1" size="560,2" />
+			<widget source="introduction" render="Label" position="5,410" size="550,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session, skin_path = None):
+		Screen.__init__(self, session)
+		self.session = session
+		self.skin_path = skin_path
+		if self.skin_path == None:
+			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
+
+		self.onChangedEntry = [ ]
+		self.setup_title = _("Software manager setup")
+		self.overwriteConfigfilesEntry = None
+
+		self.list = [ ]
+		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+
+		self["actions"] = ActionMap(["SetupActions"],
+			{
+				"cancel": self.keyCancel,
+				"save": self.apply,
+			}, -2)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
+		self["introduction"] = StaticText()
+
+		self.createSetup()
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(self.setup_title)
+
+	def createSetup(self):
+		self.list = [ ]
+		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files ?"), config.plugins.SoftwareManager.overwriteConfigFiles)
+		self.list.append(self.overwriteConfigfilesEntry)	
+		self["config"].list = self.list
+		self["config"].l.setSeperation(400)
+		self["config"].l.setList(self.list)
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		if self["config"].getCurrent() == self.overwriteConfigfilesEntry:
+			self["introduction"].setText(_("Overwrite configuration files during software upgrade?"))
+		else:
+			self["introduction"].setText("")
+
+	def newConfig(self):
+		pass
+
+	def keyLeft(self):
+		ConfigListScreen.keyLeft(self)
+
+	def keyRight(self):
+		ConfigListScreen.keyRight(self)
+
+	def confirm(self, confirmed):
+		if not confirmed:
+			print "not confirmed"
+			return
+		else:
+			self.keySave()
+
+	def apply(self):
+		self.session.openWithCallback(self.confirm, MessageBox, _("Use this settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
+
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
+		else:
+			self.close()
+
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+		self.selectionChanged()
+
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].value)
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
+
+class SoftwareManagerInfo(Screen):
+	skin = """
+		<screen name="SoftwareManagerInfo" position="center,center" size="560,440" title="SoftwareManager information">
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
+			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
+			<widget source="list" render="Listbox" position="5,50" size="550,340" scrollbarMode="showOnDemand" selectionDisabled="0">
+				<convert type="TemplatedMultiContent">
+					{"template": [
+							MultiContentEntryText(pos = (5, 0), size = (540, 26), font=0, flags = RT_HALIGN_LEFT | RT_HALIGN_CENTER, text = 0), # index 0 is the name
+						],
+					"fonts": [gFont("Regular", 24),gFont("Regular", 22)],
+					"itemHeight": 26
+					}
+				</convert>
+			</widget>
+			<ePixmap pixmap="skin_default/div-h.png" position="0,400" zPosition="1" size="560,2" />
+			<widget source="introduction" render="Label" position="5,410" size="550,30" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+		</screen>"""
+
+	def __init__(self, session, skin_path = None, mode = None):
+		Screen.__init__(self, session)
+		self.session = session
+		self.mode = mode
+		self.skin_path = skin_path
+		if self.skin_path == None:
+			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
+
+		self["actions"] = ActionMap(["ShortcutActions", "WizardActions"],
+			{
+				"back": self.close,
+				"red": self.close,
+			}, -2)
+
+		self.list = []
+		self["list"] = List(self.list)
+		
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
+		self["introduction"] = StaticText()
+
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Softwaremanager information"))
+		if self.mode is not None:
+			self.showInfos()
+
+	def showInfos(self):
+		if self.mode == "backupinfo":
+			self.list = []
+			backupfiles = config.plugins.configurationbackup.backupdirs.value
+			for entry in backupfiles:
+				print entry
+				self.list.append((entry,))
+			self['list'].setList(self.list)
+			
 
 class PluginManager(Screen, DreamInfoHandler):
 
@@ -1095,7 +1295,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 
 class UpdatePlugin(Screen):
 	skin = """
-		<screen name="UpdatePlugin" position="center,center" size="550,200" title="Software update" >
+		<screen name="UpdatePlugin" position="center,center" size="550,300" title="Software update" >
 			<widget name="activityslider" position="0,0" size="550,5"  />
 			<widget name="slider" position="0,150" size="550,30"  />
 			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
@@ -1115,9 +1315,11 @@ class UpdatePlugin(Screen):
 		self["status"] = self.status
 		self.package = StaticText()
 		self["package"] = self.package
+		self.oktext = _("Press OK on your remote control to continue.")
 
 		self.packages = 0
 		self.error = 0
+		self.processed_packages = []
 
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -1151,20 +1353,34 @@ class UpdatePlugin(Screen):
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
 			self.status.setText(_("Upgrading"))
-			self.packages += 1
+			if not param in self.processed_packages:
+				self.processed_packages.append(param)
+				self.packages += 1
 		elif event == IpkgComponent.EVENT_INSTALL:
 			self.package.setText(param)
 			self.status.setText(_("Installing"))
-			self.packages += 1
+			if not param in self.processed_packages:
+				self.processed_packages.append(param)
+				self.packages += 1
+		elif event == IpkgComponent.EVENT_REMOVE:
+			self.package.setText(param)
+			self.status.setText(_("Removing"))
+			if not param in self.processed_packages:
+				self.processed_packages.append(param)
+				self.packages += 1
 		elif event == IpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
+			
 		elif event == IpkgComponent.EVENT_MODIFIED:
-			self.session.openWithCallback(
-				self.modificationCallback,
-				MessageBox,
-				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
-			)
+			if config.plugins.SoftwareManager.overwriteConfigFiles.value in ("N", "Y"):
+				self.ipkg.write(True and config.plugins.SoftwareManager.overwriteConfigFiles.value)
+			else:
+				self.session.openWithCallback(
+					self.modificationCallback,
+					MessageBox,
+					_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+				)
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
 		elif event == IpkgComponent.EVENT_DONE:
@@ -1178,7 +1394,7 @@ class UpdatePlugin(Screen):
 				self.activityslider.setValue(0)
 				
 				self.package.setText("")
-				self.status.setText(_("Done - Installed or upgraded %d packages") % self.packages)
+				self.status.setText(_("Done - Installed or upgraded %d packages") % self.packages + "\n\n" + self.oktext)
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
@@ -1381,7 +1597,7 @@ class IPKGSource(Screen):
 		self["text"].number(number)
 
 
-class PacketManager(Screen):
+class PacketManager(Screen, NumericalTextInput):
 	skin = """
 		<screen name="PacketManager" position="center,center" size="530,420" title="Packet manager" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -1405,15 +1621,29 @@ class PacketManager(Screen):
 		
 	def __init__(self, session, plugin_path, args = None):
 		Screen.__init__(self, session)
+		NumericalTextInput.__init__(self)
 		self.session = session
 		self.skin_path = plugin_path
 
-		self["shortcuts"] = ActionMap(["ShortcutActions", "WizardActions"], 
+		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
+
+		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions" ],
 		{
 			"ok": self.go,
 			"back": self.exit,
 			"red": self.exit,
 			"green": self.reload,
+			"gotAsciiCode": self.keyGotAscii,
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal,
+			"0": self.keyNumberGlobal
 		}, -1)
 		
 		self.list = []
@@ -1438,12 +1668,44 @@ class PacketManager(Screen):
 		self.onShown.append(self.setWindowTitle)
 		self.onLayoutFinish.append(self.rebuildList)
 
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmAscii)		
+
+	def keyNumberGlobal(self, val):
+		key = self.getKey(val)
+		if key is not None:
+			keyvalue = key.encode("utf-8")
+			if len(keyvalue) == 1:
+				self.setNextIdx(keyvalue[0])
+		
+	def keyGotAscii(self):
+		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		if len(keyvalue) == 1:
+			self.setNextIdx(keyvalue[0])
+		
+	def setNextIdx(self,char):
+		if char in ("0", "1", "a"):
+			self["list"].setIndex(0)
+		else:
+			idx = self.getNextIdx(char)
+			if idx and idx <= self["list"].count:
+				self["list"].setIndex(idx)
+
+	def getNextIdx(self,char):
+		idx = 0
+		for i in self["list"].list:
+			if i[0][0] == char:
+				return idx
+			idx += 1
+
 	def exit(self):
 		self.ipkg.stop()
 		if self.Console is not None:
 			if len(self.Console.appContainers):
 				for name in self.Console.appContainers.keys():
 					self.Console.kill(name)
+		rcinput = eRCInput.getInstance()
+		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()
 
 	def reload(self):
