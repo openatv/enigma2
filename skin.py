@@ -282,7 +282,7 @@ class AttributeParser:
 			print "halign must be either left, center, right or block!"
 	def textOffset(self, value):
 		x, y = value.split(',')
-		self.guiObject.setTextOffset(ePoint(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1]))
+		self.guiObject.setTextOffset(ePoint(int(x) * self.scale[0][0] / self.scale[0][1], int(y) * self.scale[1][0] / self.scale[1][1]))
 	def flags(self, value):
 		flags = value.split(',')
 		for f in flags:
@@ -322,16 +322,16 @@ class AttributeParser:
 		self.guiObject.setItemHeight(int(value))
 	def pointer(self, value):
 		(name, pos) = value.split(':')
-		pos = parsePosition(pos, scale)
-		ptr = loadPixmap(name, desktop)
+		pos = parsePosition(pos, self.scale)
+		ptr = loadPixmap(name, self.desktop)
 		self.guiObject.setPointer(0, ptr, pos)
 	def seek_pointer(self, value):
 		(name, pos) = value.split(':')
-		pos = parsePosition(pos, scale)
-		ptr = loadPixmap(name, desktop)
+		pos = parsePosition(pos, self.scale)
+		ptr = loadPixmap(name, self.desktop)
 		self.guiObject.setPointer(1, ptr, pos)
 	def shadowOffset(self, value):
-		self.guiObject.setShadowOffset(parsePosition(value, scale))
+		self.guiObject.setShadowOffset(parsePosition(value, self.scale))
 	def noWrap(self, value):
 		self.guiObject.setNoWrap(1)
 
