@@ -21,7 +21,9 @@
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
 
-static GstStaticPadTemplate subsinktemplate = GST_STATIC_PAD_TEMPLATE ("sink", GST_PAD_SINK, GST_PAD_ALWAYS, GST_STATIC_CAPS("text/plain; text/x-pango-markup; video/x-dvd-subpicture"));
+static GstStaticPadTemplate subsinktemplate = GST_STATIC_PAD_TEMPLATE ("sink", GST_PAD_SINK, GST_PAD_ALWAYS, GST_STATIC_CAPS("text/plain; text/x-pango-markup; video/x-dvd-subpicture; subpicture/x-pgs"));
+// 		int ret = gst_pad_set_caps (ghostpad, caps2);
+// 		gst_caps_unref(caps2);));
 
 // eServiceFactoryMP3
 
@@ -350,7 +352,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		GstPad *ghostpad = gst_ghost_pad_new_no_target_from_template("sink", templ);
 		gst_element_add_pad (m_gst_subtitlebin, ghostpad);
 
-		GstCaps* caps = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-raw-rgb");
+		GstCaps* caps = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-raw-rgb; subpicture/x-pgs");
 		g_object_set (G_OBJECT (appsink), "caps", caps, NULL);
 		gst_caps_unref(caps);
 		
@@ -1160,6 +1162,8 @@ subtype_t getSubtitleType(GstPad* pad, gchar *g_codec=NULL)
 			type = stSSA;
 		else if ( !strcmp(g_type, "text/plain") )
 			type = stPlainText;
+		else if ( !strcmp(g_type, "subpicture/x-pgs") )
+			type = stPGS;
 		else
 			eDebug("getSubtitleType::unsupported subtitle caps %s (%s)", g_type, g_codec);
 	}
@@ -1537,7 +1541,7 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *appsink, gpointer user_data)
 
 gboolean eServiceMP3::gstGhostpadSinkEvent(GstPad * pad, GstEvent * event)
 {
-	eDebug("eServiceMP3::gstGhostpadSinkEvent %s", gst_structure_get_name (event->structure));
+// 	eDebug("eServiceMP3::gstGhostpadSinkEvent %s", gst_structure_get_name (event->structure));
 
 // 	eServiceMP3 *_this = (eServiceMP3*) (gst_pad_get_parent (pad));
 	eServiceMP3 *_this = g_object_get_data (G_OBJECT (pad), "application-instance");
@@ -1603,7 +1607,7 @@ gboolean eServiceMP3::gstGhostpadSinkEvent(GstPad * pad, GstEvent * event)
   }
 
   ret = _this->m_ghost_pad_subtitle_sink_event (pad, gst_event_ref (event));
-eDebug("original EVENTFUNC returned %i", ret);
+// eDebug("original EVENTFUNC returned %i", ret);
 
   if (GST_EVENT_TYPE (event) == GST_EVENT_NEWSEGMENT) {
     gboolean update;
@@ -1886,7 +1890,7 @@ void eServiceMP3::pullSubtitle()
 						m_subtitle_pages.push_back(subtitlepage);
 						pushSubtitles();
 					}
-					else
+					else if ( m_subtitleStreams[m_currentSubtitleStream].type == stVOB )
 					{
 						eDebug("got new subpicture @ buf_pos = %lld ns (in pts=%lld), duration=%lld ns, len=%i bytes. ", buf_pos, buf_pos/11111, duration_ns, len);
 						eVobSubtitlePage* page = new eVobSubtitlePage;
@@ -1902,6 +1906,10 @@ void eServiceMP3::pullSubtitle()
 						subtitlepage.pango_page = NULL;
 						m_subtitle_pages.push_back(subtitlepage);
 						pushSubtitles();
+					}
+					else
+					{
+						eDebug("unsupported subpicture... ignoring");
 					}
 				}
 				gst_buffer_unref(buffer);
