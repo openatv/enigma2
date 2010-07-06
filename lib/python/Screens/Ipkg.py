@@ -25,6 +25,7 @@ class Ipkg(Screen):
 		
 		self.packages = 0
 		self.error = 0
+		self.processed_packages = []
 		
 		self.activity = 0
 		self.activityTimer = eTimer()
@@ -85,15 +86,21 @@ class Ipkg(Screen):
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
 			self.status.setText(_("Upgrading"))
-			self.packages += 1
+			if not param in self.processed_packages:
+				self.processed_packages.append(param)
+				self.packages += 1
 		elif event == IpkgComponent.EVENT_INSTALL:
 			self.package.setText(param)
 			self.status.setText(_("Installing"))
-			self.packages += 1
+			if not param in self.processed_packages:
+				self.processed_packages.append(param)
+				self.packages += 1
 		elif event == IpkgComponent.EVENT_REMOVE:
 			self.package.setText(param)
 			self.status.setText(_("Removing"))
-			self.packages += 1
+			if not param in self.processed_packages:
+				self.processed_packages.append(param)
+				self.packages += 1
 		elif event == IpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
@@ -103,10 +110,10 @@ class Ipkg(Screen):
 			self.runNextCmd()
 		elif event == IpkgComponent.EVENT_MODIFIED:
 			self.session.openWithCallback(
-                                self.modificationCallback,
-                                MessageBox,
-                                _("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
-                        )
+				self.modificationCallback,
+				MessageBox,
+				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+			)
 
 	def modificationCallback(self, res):
 		self.ipkg.write(res and "N" or "Y")
