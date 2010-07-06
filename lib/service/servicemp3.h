@@ -47,7 +47,7 @@ public:
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC } audiotype_t;
-typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB } subtype_t;
+typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
 
 struct SubtitlePage
