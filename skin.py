@@ -192,133 +192,155 @@ def loadPixmap(path, desktop):
 		raise SkinError("pixmap file %s not found!" % (path))
 	return ptr
 
+class AttributeParser:
+	def __init__(self, guiObject, desktop, scale = ((1,1),(1,1))):
+		self.guiObject = guiObject
+		self.desktop = desktop
+		self.scale = scale
+	def applyOne(self, attrib, value):
+		try:
+			fn = getattr(self, attrib)
+		except AttributeError:
+			print "[***SKIN***] Attribute not implemented:", attrib, "value:", value
+			return
+		fn(value)
+	def applyAll(self, attrs):
+		for attrib, value in attrs:
+			try:
+				fn = getattr(self, attrib)
+			except AttributeError:
+				print "[***SKIN***] Attribute not implemented:", attrib, "value:", value
+				continue
+			fn(value)
+	def position(self, value):
+		self.guiObject.move(parsePosition(value, self.scale, self.guiObject, self.desktop, self.guiObject.csize()))
+	def size(self, value):
+		self.guiObject.resize(parseSize(value, self.scale, self.guiObject, self.desktop))
+	def title(self, value):
+		self.guiObject.setTitle(_(value))
+	def text(self, value):
+		self.guiObject.setText(_(value))
+	def font(self, value):
+		self.guiObject.setFont(parseFont(value, self.scale))
+	def zPosition(self, value):
+		self.guiObject.setZPosition(int(value))
+	def itemHeight(self, value):
+		self.guiObject.setItemHeight(int(value))
+	def pixmap(self, value):
+		ptr = loadPixmap(value, self.desktop)
+		self.guiObject.setPixmap(ptr)
+	def backgroundPixmap(self, value):
+		ptr = loadPixmap(value, self.desktop)
+		self.guiObject.setBackgroundPicture(ptr)
+	def selectionPixmap(self, value):
+		ptr = loadPixmap(value, self.desktop)
+		self.guiObject.setSelectionPicture(ptr)
+	def sliderPixmap(self, value):
+		ptr = loadPixmap(value, self.desktop)
+		self.guiObject.setSliderPicture(ptr)
+	def scrollbarbackgroundPixmap(self, value):
+		ptr = loadPixmap(value, self.desktop)
+		self.guiObject.setScrollbarBackgroundPicture(ptr)
+	def alphatest(self, value):
+		self.guiObject.setAlphatest(
+			{ "on": 1,
+			  "off": 0,
+			  "blend": 2,
+			}[value])
+	def scale(self, value):
+		self.guiObject.setScale(1)
+	def orientation(self, value): # used by eSlider
+		try:
+			self.guiObject.setOrientation(*
+				{ "orVertical": (self.guiObject.orVertical, False),
+					"orTopToBottom": (self.guiObject.orVertical, False),
+					"orBottomToTop": (self.guiObject.orVertical, True),
+					"orHorizontal": (self.guiObject.orHorizontal, False),
+					"orLeftToRight": (self.guiObject.orHorizontal, False),
+					"orRightToLeft": (self.guiObject.orHorizontal, True),
+				}[value])
+		except KeyError:
+			print "oprientation must be either orVertical or orHorizontal!"
+	def valign(self, value):
+		try:
+			self.guiObject.setVAlign(
+				{ "top": self.guiObject.alignTop,
+					"center": self.guiObject.alignCenter,
+					"bottom": self.guiObject.alignBottom
+				}[value])
+		except KeyError:
+			print "valign must be either top, center or bottom!"
+	def halign(self, value):
+		try:
+			self.guiObject.setHAlign(
+				{ "left": self.guiObject.alignLeft,
+					"center": self.guiObject.alignCenter,
+					"right": self.guiObject.alignRight,
+					"block": self.guiObject.alignBlock
+				}[value])
+		except KeyError:
+			print "halign must be either left, center, right or block!"
+	def textOffset(self, value):
+		x, y = value.split(',')
+		self.guiObject.setTextOffset(ePoint(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1]))
+	def flags(self, value):
+		flags = value.split(',')
+		for f in flags:
+			try:
+				fv = eWindow.__dict__[f]
+				self.guiObject.setFlag(fv)
+			except KeyError:
+				print "illegal flag %s!" % f
+	def backgroundColor(self, value):
+		self.guiObject.setBackgroundColor(parseColor(value))
+	def backgroundColorSelected(self, value):
+		self.guiObject.setBackgroundColorSelected(parseColor(value))
+	def foregroundColor(self, value):
+		self.guiObject.setForegroundColor(parseColor(value))
+	def foregroundColorSelected(self, value):
+		self.guiObject.setForegroundColorSelected(parseColor(value))
+	def shadowColor(self, value):
+		self.guiObject.setShadowColor(parseColor(value))
+	def selectionDisabled(self, value):
+		self.guiObject.setSelectionEnable(0)
+	def transparent(self, value):
+		self.guiObject.setTransparent(int(value))
+	def borderColor(self, value):
+		self.guiObject.setBorderColor(parseColor(value))
+	def borderWidth(self, value):
+		self.guiObject.setBorderWidth(int(value))
+	def scrollbarMode(self, value):
+		self.guiObject.setScrollbarMode(getattr(self.guiObject, value))
+		#	{ "showOnDemand": self.guiObject.showOnDemand,
+		#		"showAlways": self.guiObject.showAlways,
+		#		"showNever": self.guiObject.showNever,
+		#		"showLeft": self.guiObject.showLeft
+		#	}[value])
+	def enableWrapAround(self, value):
+		self.guiObject.setWrapAround(True)
+	def itemHeight(self, value):
+		self.guiObject.setItemHeight(int(value))
+	def pointer(self, value):
+		(name, pos) = value.split(':')
+		pos = parsePosition(pos, scale)
+		ptr = loadPixmap(name, desktop)
+		self.guiObject.setPointer(0, ptr, pos)
+	def seek_pointer(self, value):
+		(name, pos) = value.split(':')
+		pos = parsePosition(pos, scale)
+		ptr = loadPixmap(name, desktop)
+		self.guiObject.setPointer(1, ptr, pos)
+	def shadowOffset(self, value):
+		self.guiObject.setShadowOffset(parsePosition(value, scale))
+	def noWrap(self, value):
+		self.guiObject.setNoWrap(1)
+
 def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1))):
-	# and set attributes
-	try:
-		if attrib == 'position':
-			guiObject.move(parsePosition(value, scale, guiObject, desktop, guiObject.csize()))
-		elif attrib == 'size':
-			guiObject.resize(parseSize(value, scale, guiObject, desktop))
-		elif attrib == 'title':
-			guiObject.setTitle(_(value))
-		elif attrib == 'text':
-			guiObject.setText(_(value))
-		elif attrib == 'font':
-			guiObject.setFont(parseFont(value, scale))
-		elif attrib == 'zPosition':
-			guiObject.setZPosition(int(value))
-		elif attrib == 'itemHeight':
-			guiObject.setItemHeight(int(value))
-		elif attrib in ("pixmap", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarbackgroundPixmap"):
-			ptr = loadPixmap(value, desktop) # this should already have been filename-resolved.
-			if attrib == "pixmap":
-				guiObject.setPixmap(ptr)
-			elif attrib == "backgroundPixmap":
-				guiObject.setBackgroundPicture(ptr)
-			elif attrib == "selectionPixmap":
-				guiObject.setSelectionPicture(ptr)
-			elif attrib == "sliderPixmap":
-				guiObject.setSliderPicture(ptr)
-			elif attrib == "scrollbarbackgroundPixmap":
-				guiObject.setScrollbarBackgroundPicture(ptr)
-			# guiObject.setPixmapFromFile(value)
-		elif attrib == "alphatest": # used by ePixmap
-			guiObject.setAlphatest(
-				{ "on": 1,
-				  "off": 0,
-				  "blend": 2,
-				}[value])
-		elif attrib == "scale":
-			guiObject.setScale(1)
-		elif attrib == "orientation": # used by eSlider
-			try:
-				guiObject.setOrientation(*
-					{ "orVertical": (guiObject.orVertical, False),
-						"orTopToBottom": (guiObject.orVertical, False),
-						"orBottomToTop": (guiObject.orVertical, True),
-						"orHorizontal": (guiObject.orHorizontal, False),
-						"orLeftToRight": (guiObject.orHorizontal, False),
-						"orRightToLeft": (guiObject.orHorizontal, True),
-					}[value])
-			except KeyError:
-				print "oprientation must be either orVertical or orHorizontal!"
-		elif attrib == "valign":
-			try:
-				guiObject.setVAlign(
-					{ "top": guiObject.alignTop,
-						"center": guiObject.alignCenter,
-						"bottom": guiObject.alignBottom
-					}[value])
-			except KeyError:
-				print "valign must be either top, center or bottom!"
-		elif attrib == "halign":
-			try:
-				guiObject.setHAlign(
-					{ "left": guiObject.alignLeft,
-						"center": guiObject.alignCenter,
-						"right": guiObject.alignRight,
-						"block": guiObject.alignBlock
-					}[value])
-			except KeyError:
-				print "halign must be either left, center, right or block!"
-		elif attrib == "textOffset":
-			x, y = value.split(',')
-			guiObject.setTextOffset(ePoint(int(x) * scale[0][0] / scale[0][1], int(y) * scale[1][0] / scale[1][1]))
-		elif attrib == "flags":
-			flags = value.split(',')
-			for f in flags:
-				try:
-					fv = eWindow.__dict__[f]
-					guiObject.setFlag(fv)
-				except KeyError:
-					print "illegal flag %s!" % f
-		elif attrib == "backgroundColor":
-			guiObject.setBackgroundColor(parseColor(value))
-		elif attrib == "backgroundColorSelected":
-			guiObject.setBackgroundColorSelected(parseColor(value))
-		elif attrib == "foregroundColor":
-			guiObject.setForegroundColor(parseColor(value))
-		elif attrib == "foregroundColorSelected":
-			guiObject.setForegroundColorSelected(parseColor(value))
-		elif attrib == "shadowColor":
-			guiObject.setShadowColor(parseColor(value))
-		elif attrib == "selectionDisabled":
-			guiObject.setSelectionEnable(0)
-		elif attrib == "transparent":
-			guiObject.setTransparent(int(value))
-		elif attrib == "borderColor":
-			guiObject.setBorderColor(parseColor(value))
-		elif attrib == "borderWidth":
-			guiObject.setBorderWidth(int(value))
-		elif attrib == "scrollbarMode":
-			guiObject.setScrollbarMode(
-				{ "showOnDemand": guiObject.showOnDemand,
-					"showAlways": guiObject.showAlways,
-					"showNever": guiObject.showNever,
-					"showLeft": guiObject.showLeft
-				}[value])
-		elif attrib == "enableWrapAround":
-			guiObject.setWrapAround(True)
-		elif attrib == "itemHeight":
-			guiObject.setItemHeight(int(value))
-		elif attrib == "pointer" or attrib == "seek_pointer":
-			(name, pos) = value.split(':')
-			pos = parsePosition(pos, scale)
-			ptr = loadPixmap(name, desktop)
-			guiObject.setPointer({"pointer": 0, "seek_pointer": 1}[attrib], ptr, pos)
-		elif attrib == 'shadowOffset':
-			guiObject.setShadowOffset(parsePosition(value, scale))
-		elif attrib == 'noWrap':
-			guiObject.setNoWrap(1)
-		else:
-			print "[Skin] ***Warning*** Ignored unknown attribute for %s: %s=%s" % (guiObject.__class__.__name__, attrib, value)
-	except int:
-# AttributeError:
-		print "widget %s (%s) doesn't support attribute %s!" % ("", guiObject.__class__.__name__, attrib)
+	# Someone still using applySingleAttribute?
+	AttributeParser(guiObject, desktop, scale).applyOne(attrib, value)
 
 def applyAllAttributes(guiObject, desktop, attributes, scale):
-	for (attrib, value) in attributes:
-		applySingleAttribute(guiObject, desktop, attrib, value, scale)
+	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
 
 def loadSingleSkinData(desktop, skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
