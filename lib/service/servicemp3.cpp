@@ -20,6 +20,8 @@
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
 
+#define HTTP_TIMEOUT 10
+
 // eServiceFactoryMP3
 
 eServiceFactoryMP3::eServiceFactoryMP3()
@@ -218,6 +220,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 {
 	m_seekTimeout = eTimer::create(eApp);
 	m_subtitle_sync_timer = eTimer::create(eApp);
+	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = 0;
@@ -238,63 +241,64 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if (!ext)
 		ext = filename;
 
-	sourceStream sourceinfo;
-	sourceinfo.is_video = FALSE;
-	sourceinfo.audiotype = atUnknown;
+	m_sourceinfo.is_video = FALSE;
+	m_sourceinfo.audiotype = atUnknown;
 	if ( (strcasecmp(ext, ".mpeg") && strcasecmp(ext, ".mpg") && strcasecmp(ext, ".vob") && strcasecmp(ext, ".bin") && strcasecmp(ext, ".dat") ) == 0 )
 	{
-		sourceinfo.containertype = ctMPEGPS;
-		sourceinfo.is_video = TRUE;
+		m_sourceinfo.containertype = ctMPEGPS;
+		m_sourceinfo.is_video = TRUE;
 	}
 	else if ( strcasecmp(ext, ".ts") == 0 )
 	{
-		sourceinfo.containertype = ctMPEGTS;
-		sourceinfo.is_video = TRUE;
+		m_sourceinfo.containertype = ctMPEGTS;
+		m_sourceinfo.is_video = TRUE;
 	}
 	else if ( strcasecmp(ext, ".mkv") == 0 )
 	{
-		sourceinfo.containertype = ctMKV;
-		sourceinfo.is_video = TRUE;
+		m_sourceinfo.containertype = ctMKV;
+		m_sourceinfo.is_video = TRUE;
 	}
 	else if ( strcasecmp(ext, ".avi") == 0 || strcasecmp(ext, ".divx") == 0)
 	{
-		sourceinfo.containertype = ctAVI;
-		sourceinfo.is_video = TRUE;
+		m_sourceinfo.containertype = ctAVI;
+		m_sourceinfo.is_video = TRUE;
 	}
 	else if ( strcasecmp(ext, ".mp4") == 0 || strcasecmp(ext, ".mov") == 0 || strcasecmp(ext, ".m4v") == 0)
 	{
-		sourceinfo.containertype = ctMP4;
-		sourceinfo.is_video = TRUE;
+		m_sourceinfo.containertype = ctMP4;
+		m_sourceinfo.is_video = TRUE;
 	}
 	else if ( strcasecmp(ext, ".m4a") == 0 )
 	{
-		sourceinfo.containertype = ctMP4;
-		sourceinfo.audiotype = atAAC;
+		m_sourceinfo.containertype = ctMP4;
+		m_sourceinfo.audiotype = atAAC;
 	}
 	else if ( strcasecmp(ext, ".mp3") == 0 )
-		sourceinfo.audiotype = atMP3;
+		m_sourceinfo.audiotype = atMP3;
 	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
-		sourceinfo.containertype = ctCDA;
+		m_sourceinfo.containertype = ctCDA;
 	if ( strcasecmp(ext, ".dat") == 0 )
 	{
-		sourceinfo.containertype = ctVCD;
-		sourceinfo.is_video = TRUE;
+		m_sourceinfo.containertype = ctVCD;
+		m_sourceinfo.is_video = TRUE;
 	}
-	if ( (strncmp(filename, "http://", 7)) == 0 || (strncmp(filename, "udp://", 6)) == 0 || (strncmp(filename, "rtp://", 6)) == 0  || (strncmp(filename, "https://", 8)) == 0 || (strncmp(filename, "mms://", 6)) == 0 || (strncmp(filename, "rtsp://", 7)) == 0 )
-		sourceinfo.is_streaming = TRUE;
+	if ( (strncmp(filename, "http://", 7)) == 0 || (strncmp(filename, "udp://", 6)) == 0 || (strncmp(filename, "rtp://", 6)) == 0  || (strncmp(filename, "https://", 8)) == 0 || (strncmp(filename, "mms://", 6)) == 0 || (strncmp(filename, "rtsp://", 7)) == 0 || (strncmp(filename, "rtspt://", 7)) == 0 )
+		m_sourceinfo.is_streaming = TRUE;
 
 	gchar *uri;
 
-	if ( sourceinfo.is_streaming )
+	if ( m_sourceinfo.is_streaming )
 	{
 		uri = g_strdup_printf ("%s", filename);
+		m_streamingsrc_timeout = eTimer::create(eApp);;
+		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 	}
-	else if ( sourceinfo.containertype == ctCDA )
+	else if ( m_sourceinfo.containertype == ctCDA )
 	{
 		int i_track = atoi(filename+18);
 		uri = g_strdup_printf ("cdda://%i", i_track);
 	}
-	else if ( sourceinfo.containertype == ctVCD )
+	else if ( m_sourceinfo.containertype == ctVCD )
 	{
 		int fd = open(filename,O_RDONLY);
 		char tmp[128*1024];
@@ -414,6 +418,12 @@ RESULT eServiceMP3::start()
 	m_event(this, evStart);
 
 	return 0;
+}
+
+void eServiceMP3::sourceTimeout()
+{
+	eDebug("eServiceMP3::http source timeout! issuing eof...");
+	m_event((iPlayableService*)this, evEOF);
 }
 
 RESULT eServiceMP3::stop()
@@ -1152,6 +1162,8 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
+					if ( m_sourceinfo.is_streaming && m_streamingsrc_timeout )
+						m_streamingsrc_timeout->stop();
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{
@@ -1303,6 +1315,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 // 				g_free (g_type);
 			}
 			m_event((iPlayableService*)this, evUpdatedEventInfo);
+			break;
 		}
 		case GST_MESSAGE_ELEMENT:
 		{
@@ -1351,6 +1364,37 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			gst_message_parse_buffering(msg, &(m_bufferInfo.bufferPercent));
 			gst_message_parse_buffering_stats(msg, &mode, &(m_bufferInfo.avgInRate), &(m_bufferInfo.avgOutRate), &(m_bufferInfo.bufferingLeft));
 			m_event((iPlayableService*)this, evBuffering);
+			break;
+		}
+		case GST_MESSAGE_STREAM_STATUS:
+		{
+			GstStreamStatusType type;
+			GstElement *owner;
+			gst_message_parse_stream_status (msg, &type, &owner);
+			if ( type == GST_STREAM_STATUS_TYPE_CREATE && m_sourceinfo.is_streaming )
+			{
+				if ( GST_IS_PAD(source) )
+					owner = gst_pad_get_parent_element(GST_PAD(source));
+				else if ( GST_IS_ELEMENT(source) )
+					owner = GST_ELEMENT(source);
+				else
+					owner = 0;
+				if ( owner )
+				{
+					GstElementFactory *factory = gst_element_get_factory(GST_ELEMENT(owner));
+					const gchar *name = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
+					if (!strcmp(name, "souphttpsrc"))
+					{
+						m_streamingsrc_timeout->start(HTTP_TIMEOUT*1000, true);
+						g_object_set (G_OBJECT (owner), "timeout", HTTP_TIMEOUT, NULL);
+						eDebug("eServiceMP3::GST_STREAM_STATUS_TYPE_CREATE -> setting timeout on %s to %is", name, HTTP_TIMEOUT);
+					}
+					
+				}
+				if ( GST_IS_PAD(source) )
+					gst_object_unref(owner);
+			}
+			break;
 		}
 		default:
 			break;

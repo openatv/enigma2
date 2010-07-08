@@ -211,9 +211,13 @@ private:
 
 	std::list<ePangoSubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
+	
+	ePtr<eTimer> m_streamingsrc_timeout;
 	void pushSubtitles();
 	void pullSubtitle();
+	void sourceTimeout();
 	int m_subs_to_pull;
+	sourceStream m_sourceinfo;
 	eSingleLock m_subs_to_pull_lock;
 	gulong m_subs_to_pull_handler_id;
 
