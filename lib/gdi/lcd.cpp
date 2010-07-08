@@ -196,14 +196,8 @@ void eDBoxLCD::update()
 			}
 			write(lcdfd, raw, 132*8);
 		}
-		else if (is_oled == 3) {
-			FILE *f = fopen("/tmp/bla", "w+");
-			if (f) {
-				fwrite(_buffer, _stride * res.height(), 1, f);
-				fclose(f);
-			}
+		else if (is_oled == 3)
 			write(lcdfd, _buffer, _stride * res.height());
-		}
 		else
 		{
 			unsigned char raw[64*64];
