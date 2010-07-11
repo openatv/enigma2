@@ -1,7 +1,7 @@
 from Tools.Profile import profile
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree
-from os import path
+import os
 
 profile("LOAD:enigma_skin")
 from enigma import eSize, ePoint, gFont, eWindow, eLabel, ePixmap, eWindowStyleManager, \
@@ -32,11 +32,11 @@ class SkinError(Exception):
 
 dom_skins = [ ]
 
-def loadSkin(name, scope = SCOPE_SKIN):
+def addSkin(name, scope = SCOPE_SKIN):
 	# read the skin
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
-		mpath = path.dirname(filename) + "/"
+		mpath = os.path.dirname(filename) + "/"
 		dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
 
 # we do our best to always select the "right" value
@@ -56,18 +56,18 @@ config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
 profile("LoadSkin")
 try:
-	loadSkin('skin_user.xml', SCOPE_CONFIG)
+	addSkin('skin_user.xml', SCOPE_CONFIG)
 except (SkinError, IOError, AssertionError), err:
 	print "not loading user skin: ", err
 
 # Only one of these two is present, compliments of AM_CONDITIONAL
-loadSkin('skin_display.xml')
-loadSkin('skin_text.xml')
+addSkin('skin_display.xml')
+addSkin('skin_text.xml')
 
-loadSkin('skin_subtitles.xml')
+addSkin('skin_subtitles.xml')
 
 try:
-	loadSkin(config.skin.primary_skin.value)
+	addSkin(config.skin.primary_skin.value)
 except (SkinError, IOError, AssertionError), err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
@@ -75,11 +75,11 @@ except (SkinError, IOError, AssertionError), err:
 		skin = 'skin.xml'
 	print "defaulting to standard skin...", skin
 	config.skin.primary_skin.value = skin
-	loadSkin(skin)
+	addSkin(skin)
 	del skin
 
 profile("LoadSkinDefault")
-loadSkin('skin_default.xml')
+addSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
 def parseCoordinate(str, e, size = 0):
@@ -491,6 +491,27 @@ def loadSingleSkinData(desktop, skin, path_prefix):
 		x.setStyle(id, style)
 
 dom_screens = {}
+
+def loadSkin(name, scope = SCOPE_SKIN):
+	# Now a utility for plugins to add skin data to the screens
+	global dom_screens
+	filename = resolveFilename(scope, name)
+	if fileExists(filename):
+		path = os.path.dirname(filename) + "/"
+		for elem in xml.etree.cElementTree.parse(filename).getroot():
+			if elem.tag == 'screen':
+				name = elem.attrib.get('name', None)
+				if name:
+					if name in dom_screens:
+						print "loadSkin: Screen already defined elsewhere:", name
+						elem.clear()
+					else:
+						dom_screens[name] = (elem, path)
+				else:
+					elem.clear()
+			else:
+				elem.clear()
+
 def loadSkinData(desktop):
 	# Kinda hackish, but this is called once by mytest.py
 	global dom_skins
