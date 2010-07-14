@@ -56,6 +56,17 @@ void eRCDeviceInputDev::handleCode(long rccode)
 //		eDebug("passed!");
 	}
 
+#if KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE
+	if (ev->code == KEY_PLAY)
+	{
+		if (id == "dreambox advanced remote control (native)")
+		{
+			/* 8k rc has a KEY_PLAYPAUSE key, which sends KEY_PLAY events. Correct this, so we do not have to place hacks in the keymaps. */
+			ev->code = KEY_PLAYPAUSE;
+		}
+	}
+#endif
+
 	switch (ev->value)
 	{
 	case 0:
