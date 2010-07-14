@@ -16,6 +16,10 @@ AC_ARG_WITH(boxtype,
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
+if test x"$BOXTYPE" == "xdm8000" ; then
+	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
+fi
+
 AC_ARG_WITH(libsdl,
 	AC_HELP_STRING([--with-libsdl], [use sdl, yes or no]),
 	[[withsdl=$withval]],
