@@ -70,21 +70,6 @@ self.selectKey("LEFT")
 self.selectKey("RIGHT")
 			</code>
 		</step>
-		<step id="satlistsquestion">
-			<text value="Do you want to install default sat lists?" />
-			<condition>
-from Components.NimManager import nimmanager
-self.condition = config.misc.startwizard.doservicescan.value and nimmanager.somethingConnected()
-			</condition>
-			<code>
-self.hideRc()
-			</code>
-			<list>
-				<listentry caption="Yes" step="startdefaultlists" />
-				<listentry caption="No" step="scanquestion" />
-			</list>
-		</step>
-
 		<step id="scanquestion">
 			<text value="Do you want to do a service scan?" />
 			<condition>
