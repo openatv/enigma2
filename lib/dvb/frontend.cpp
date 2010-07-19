@@ -1061,6 +1061,7 @@ static void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &
 	case FEC_AUTO: tmp = eDVBFrontendParametersSatellite::FEC_Auto; break;
 	default: eDebug("got unsupported FEC from frontend! report as FEC_AUTO!\n");
 	}
+	PutToDict(dict, "fec_inner", tmp);
 
 	switch (p[0].u.data)
 	{
@@ -1109,7 +1110,7 @@ static void fillDictWithSatelliteData(ePyObject dict, const FRONTENDPARAMETERS &
 	PutToDict(dict, "orbital_position", orb_pos);
 	PutToDict(dict, "polarization", polarization);
 
-	switch(parm_u_qpsk_fec_inner)
+	switch((int)parm_u_qpsk_fec_inner)
 	{
 	case FEC_1_2: tmp = eDVBFrontendParametersSatellite::FEC_1_2; break;
 	case FEC_2_3: tmp = eDVBFrontendParametersSatellite::FEC_2_3; break;
@@ -1443,9 +1444,11 @@ int eDVBFrontend::readInputpower()
 		return 0;
 	int power=m_slotid;  // this is needed for read inputpower from the correct tuner !
 	char proc_name[64];
-	sprintf(proc_name, "/proc/stb/fp/lnb_sense%d", m_slotid);
-	FILE *f=fopen(proc_name, "r");
-	if (f)
+	char proc_name2[64];
+	sprintf(proc_name, "/proc/stb/frontend/%d/lnb_sense", m_slotid);
+	sprintf(proc_name2, "/proc/stb/fp/lnb_sense%d", m_slotid);
+	FILE *f;
+	if ((f=fopen(proc_name, "r")) || (f=fopen(proc_name2, "r")))
 	{
 		if (fscanf(f, "%d", &power) != 1)
 			eDebug("read %s failed!! (%m)", proc_name);
