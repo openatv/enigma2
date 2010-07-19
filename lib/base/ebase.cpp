@@ -26,8 +26,11 @@ void eSocketNotifier::start()
 	if (state)
 		stop();
 
-	context.addSocketNotifier(this);
-	state=2;  // running but not in poll yet
+	if (eMainloop::isValid(&context))
+	{
+		context.addSocketNotifier(this);
+		state=2;  // running but not in poll yet
+	}
 }
 
 void eSocketNotifier::stop()
@@ -46,29 +49,35 @@ void eTimer::start(long msek, bool singleShot)
 	if (bActive)
 		stop();
 
-	bActive = true;
-	bSingleShot = singleShot;
-	interval = msek;
-	clock_gettime(CLOCK_MONOTONIC, &nextActivation);
-//	eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_nsec, msek);
-	nextActivation += (msek<0 ? 0 : msek);
-//	eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
-	context.addTimer(this);
+	if (eMainloop::isValid(&context))
+	{
+		bActive = true;
+		bSingleShot = singleShot;
+		interval = msek;
+		clock_gettime(CLOCK_MONOTONIC, &nextActivation);
+//		eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d msec", this, nextActivation.tv_sec, nextActivation.tv_nsec, msek);
+		nextActivation += (msek<0 ? 0 : msek);
+//		eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
+		context.addTimer(this);
+	}
 }
 
-void eTimer::startLongTimer( int seconds )
+void eTimer::startLongTimer(int seconds)
 {
 	if (bActive)
 		stop();
 
-	bActive = bSingleShot = true;
-	interval = 0;
-	clock_gettime(CLOCK_MONOTONIC, &nextActivation);
-//	eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_nsec, seconds);
-	if ( seconds > 0 )
-		nextActivation.tv_sec += seconds;
-//	eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
-	context.addTimer(this);
+	if (eMainloop::isValid(&context))
+	{
+		bActive = bSingleShot = true;
+		interval = 0;
+		clock_gettime(CLOCK_MONOTONIC, &nextActivation);
+//		eDebug("this = %p\nnow sec = %d, nsec = %d\nadd %d sec", this, nextActivation.tv_sec, nextActivation.tv_nsec, seconds);
+		if ( seconds > 0 )
+			nextActivation.tv_sec += seconds;
+//		eDebug("next Activation sec = %d, nsec = %d", nextActivation.tv_sec, nextActivation.tv_nsec );
+		context.addTimer(this);
+	}
 }
 
 void eTimer::stop()
@@ -114,6 +123,11 @@ void eTimer::activate()   // Internal Funktion... called from eApplication
 // mainloop
 ePtrList<eMainloop> eMainloop::existing_loops;
 
+bool eMainloop::isValid(eMainloop *ml)
+{
+	return std::find(existing_loops.begin(), existing_loops.end(), ml) != existing_loops.end();
+}
+
 eMainloop::~eMainloop()
 {
 	existing_loops.remove(this);
@@ -151,7 +165,7 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 		return;
 	}
 	for (i = notifiers.begin(); i != notifiers.end(); ++i)
-		eDebug("fd=%d, sn=%d", i->second->getFD(), (void*)i->second);
+		eDebug("fd=%d, sn=%p", i->second->getFD(), (void*)i->second);
 	eFatal("removed socket notifier which is not present, fd=%d", fd);
 }
 
@@ -229,14 +243,9 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 
 	if (this == eApp)
 	{
-		gOpcode op;
-		op.dc = 0;
-		op.opcode = gOpcode::flush;
-		gRC::getInstance()->submit(op);
 		Py_BEGIN_ALLOW_THREADS
 		ret = ::poll(pfd, fdcount, poll_timeout);
 		Py_END_ALLOW_THREADS
-		
 	} else
 		ret = ::poll(pfd, fdcount, poll_timeout);
 

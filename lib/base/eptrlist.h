@@ -164,7 +164,7 @@ public:
 		// returns a pointer to this new vector ( the reserved memory must deletet from the receiver !! )
 		std::vector<T>* v=new std::vector<T>();
 		v->reserve( std::list<T>::size() );
-    for ( std_list_T_iterator it( std::list<T*>::begin() ); it != std::list<T*>::end(); it++)
+		for ( std_list_T_iterator it( std::list<T*>::begin() ); it != std::list<T*>::end(); it++)
 			v->push_back( **it );
 
 		return v;
