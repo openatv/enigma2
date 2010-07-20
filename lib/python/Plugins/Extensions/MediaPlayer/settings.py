@@ -12,6 +12,8 @@ config.mediaplayer.repeat = ConfigYesNo(default=False)
 config.mediaplayer.savePlaylistOnExit = ConfigYesNo(default=True)
 config.mediaplayer.saveDirOnExit = ConfigYesNo(default=False)
 config.mediaplayer.defaultDir = ConfigDirectory()
+config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)
+config.mediaplayer.alternateUserAgent = ConfigText(default="")
 
 class DirectoryBrowser(Screen, HelpableScreen):
 
