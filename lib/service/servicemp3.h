@@ -208,6 +208,7 @@ private:
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const int&);
+	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
 
 	std::list<ePangoSubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
@@ -224,6 +225,7 @@ private:
 	RESULT seekToImpl(pts_t to);
 
 	gint m_aspect, m_width, m_height, m_framerate, m_progressive;
+	std::string m_useragent;
 	RESULT trickSeek(gdouble ratio);
 };
 #endif

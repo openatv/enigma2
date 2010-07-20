@@ -290,8 +290,20 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if ( m_sourceinfo.is_streaming )
 	{
 		uri = g_strdup_printf ("%s", filename);
+<<<<<<< HEAD
 		m_streamingsrc_timeout = eTimer::create(eApp);;
 		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
+=======
+
+		std::string config_str;
+		if( ePythonConfigQuery::getConfigValue("config.mediaplayer.useAlternateUserAgent", config_str) == 0 )
+		{
+			if ( config_str == "True" )
+				ePythonConfigQuery::getConfigValue("config.mediaplayer.alternateUserAgent", m_useragent);
+		}
+		if ( m_useragent.length() == 0 )
+			m_useragent = "Dream Multimedia Dreambox Enigma2 Mediaplayer";
+>>>>>>> b08c138... implement configurable http user-agent (fixes #224)
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
 	{
@@ -352,6 +364,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			subs.type = stSRT;
 			subs.language_code = std::string("und");
 			m_subtitleStreams.push_back(subs);
+		}
+		if ( sourceinfo.is_streaming )
+		{
+			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
 		}
 	} else
 	{
@@ -1408,6 +1424,15 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	_this->m_pump.send(1);
 		/* wake */
 	return GST_BUS_PASS;
+}
+
+void eServiceMP3::gstHTTPSourceSetAgent(GObject *object, GParamSpec *unused, gpointer user_data)
+{
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	GstElement *source;
+	g_object_get(_this->m_gst_playbin, "source", &source, NULL);
+	g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
+	gst_object_unref(source);
 }
 
 audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
