@@ -290,10 +290,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if ( m_sourceinfo.is_streaming )
 	{
 		uri = g_strdup_printf ("%s", filename);
-<<<<<<< HEAD
 		m_streamingsrc_timeout = eTimer::create(eApp);;
 		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
-=======
 
 		std::string config_str;
 		if( ePythonConfigQuery::getConfigValue("config.mediaplayer.useAlternateUserAgent", config_str) == 0 )
@@ -303,7 +301,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		}
 		if ( m_useragent.length() == 0 )
 			m_useragent = "Dream Multimedia Dreambox Enigma2 Mediaplayer";
->>>>>>> b08c138... implement configurable http user-agent (fixes #224)
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
 	{
