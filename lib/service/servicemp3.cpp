@@ -362,7 +362,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			subs.language_code = std::string("und");
 			m_subtitleStreams.push_back(subs);
 		}
-		if ( sourceinfo.is_streaming )
+		if ( m_sourceinfo.is_streaming )
 		{
 			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
 		}
