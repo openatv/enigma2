@@ -179,7 +179,7 @@ class choicesList(object): # XXX: we might want a better name for this
 
 	def __list__(self):
 		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = [not isinstance(x, tuple) and x or x[0] for x in self.choices]
+			ret = [not isinstance(x, tuple) and x or len(x) > 0 and x[0] or len(x) == 0 and x for x in self.choices]
 		else:
 			ret = self.choices.keys()
 		return ret or [""]
