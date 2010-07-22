@@ -13,8 +13,9 @@ from Components.UsageConfig import defaultMoviePath
 from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
 from RecordTimer import AFTEREVENT
-from enigma import eEPGCache
+from enigma import eEPGCache, eServiceReference
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 
@@ -245,7 +246,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_service_ref = ServiceReference(args[0])
 			self.timerentry_service.setCurrentText(self.timerentry_service_ref.getServiceName())
 			self["config"].invalidate(self.channelEntry)
-
+			
 	def getTimestamp(self, date, mytime):
 		d = localtime(date)
 		dt = datetime(d.tm_year, d.tm_mon, d.tm_mday, mytime[0], mytime[1])
@@ -264,7 +265,22 @@ class TimerEntry(Screen, ConfigListScreen):
 			end += 86400
 		return begin, end
 
-	def keyGo(self):
+	def selectChannelSelector(self, *args):
+		self.session.openWithCallback(
+				self.finishedChannelSelectionCorrection,
+				ChannelSelection.SimpleChannelSelection,
+				_("Select channel to record from")
+			)
+
+	def finishedChannelSelectionCorrection(self, *args):
+		if args:
+			self.finishedChannelSelection(*args)
+			self.keyGo()
+
+	def keyGo(self, result = None):
+		if self.timerentry_service_ref.getType() != eServiceReference.idDVB or self.timerentry_service_ref.getPath() != "":
+			self.session.openWithCallback(self.selectChannelSelector, MessageBox, _("You didn't select a channel to record from."), MessageBox.TYPE_ERROR)
+			return
 		self.timer.name = self.timerentry_name.value
 		self.timer.description = self.timerentry_description.value
 		self.timer.justplay = self.timerentry_justplay.value == "zap"
