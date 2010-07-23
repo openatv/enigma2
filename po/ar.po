@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-11 10:44+0000\n"
-"PO-Revision-Date: 2010-06-09 10:34+0200\n"
+"POT-Creation-Date: 2010-06-09 10:31+0000\n"
+"PO-Revision-Date: 2010-07-23 12:13+0200\n"
 "Last-Translator: Mladen <acid-burn@opendreambox.org>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
 "Language: ar\n"
@@ -42,7 +42,7 @@ msgid ""
 "Backup your Dreambox settings."
 msgstr ""
 "\n"
-"عمل باك أب للاعدادات"
+"عمل نسخه إحتياطيه  للاعدادات"
 
 #
 msgid ""
@@ -97,7 +97,7 @@ msgid ""
 "Restore your backups by date."
 msgstr ""
 "\n"
-"إستعاده الباك أب بالتاريخ"
+"إستعاده النسخه الاحتياطيه بالتاريخ"
 
 #
 msgid ""
@@ -113,7 +113,7 @@ msgid ""
 "Current device: "
 msgstr ""
 "\n"
-"أختار جهاز الباك أب.\n"
+"أختار جهاز النسخه الاحتياطيه.\n"
 "الجهاز الحالى: "
 
 #
@@ -207,22 +207,21 @@ msgstr "%d تم العثور على"
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
-#
 #, python-format
 msgid "%i ms"
-msgstr ""
+msgstr "%i مللى ثانيه"
 
-#
 #, python-format
 msgid ""
 "%s\n"
 "(%s, %d MB free)"
 msgstr ""
+"% \n"
+"s( %s , %d ميجا خاليه )"
 
-#
 #, python-format
 msgid "%s (%s)\n"
-msgstr ""
+msgstr "%s (%s) \n"
 
 msgid "(ZAP)"
 msgstr "(تنقل)"
@@ -244,13 +243,11 @@ msgid ""
 ".NFI file passed md5sum signature check. You can safely flash this image!"
 msgstr "ملف صوره به بصمة md5sumصحيح ، تستطيع تنصيب الصوره بأمان!"
 
-#
 msgid "0"
-msgstr ""
+msgstr "0"
 
-#
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #
 msgid "1 wireless network found!"
@@ -737,8 +734,8 @@ msgid ""
 "Are you sure you want to delete\n"
 "following backup:\n"
 msgstr ""
-"هل أنت متأكد أنك تريد مسح\n"
-"الباك أب الاتى:\n"
+"هل أنت متأكد أنك تريد مسحالنسخه الاحتياطيه الاتيه:\n"
+"\n"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "هل أنت متأكد أنك تريد الخروج من هذه النافذه ؟"
@@ -755,7 +752,7 @@ msgid ""
 "following backup:\n"
 msgstr ""
 "هل أنت متاكد إنك تريد إستعادة\n"
-"الباك أب التالى:\n"
+"النسخه الاحتياطيه التاليه:\n"
 
 msgid ""
 "Are you sure you want to restore your Enigma2 backup?\n"
@@ -887,16 +884,16 @@ msgid "Background"
 msgstr "خلفيه"
 
 msgid "Backup done."
-msgstr "تم عمل باك أب"
+msgstr "تم عمل نسخه إحتياطيه "
 
 msgid "Backup failed."
-msgstr "فشل عمل باك أب"
+msgstr "فشل عمل نسخه إحتياطيه "
 
 msgid "Backup is running..."
-msgstr "جارى عمل باك أب........"
+msgstr "جارى عمل نسخه إحتياطيه ........"
 
 msgid "Backup system settings"
-msgstr "عمل باك أب لأعدادات النظام"
+msgstr "عمل نسخه إحتياطيه  لأعدادات النظام"
 
 msgid "Band"
 msgstr "نطاق"
@@ -1136,13 +1133,11 @@ msgstr "أختار الموالف"
 msgid "Choose a wireless network"
 msgstr "اختار الشبكه اللاسلكيه"
 
-#
 msgid "Choose backup files"
-msgstr "اختار ملفات الباك أب"
+msgstr "اختار ملفات النسخه الإحتياطيه "
 
-#
 msgid "Choose backup location"
-msgstr "اختار مكان الباك أب"
+msgstr "اختار مكان النسخه الإحتياطيه "
 
 #
 msgid "Choose bouquet"
@@ -1264,6 +1259,9 @@ msgstr "مكتمل"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "مركب (يسمح بمزج مسارات صوت ومظاهر)"
+
+msgid "Composition of the recording filenames"
+msgstr ""
 
 msgid "Configuration Mode"
 msgstr "نسق التكوين"
@@ -2845,11 +2843,11 @@ msgstr ""
 
 #
 msgid "Language"
-msgstr "لغه"
+msgstr "اللغـه "
 
 #
 msgid "Language selection"
-msgstr "إختيار اللغه"
+msgstr "إختيار اللغـه"
 
 #
 msgid "Last config"
@@ -2959,6 +2957,9 @@ msgstr ""
 #
 msgid "Long Keypress"
 msgstr "ضغط مستمر على مفتاح"
+
+msgid "Long filenames"
+msgstr ""
 
 #
 msgid "Longitude"
@@ -3442,7 +3443,7 @@ msgstr "لم يتم العثور على شبكات"
 
 #
 msgid "No backup needed"
-msgstr "لا حاجه الى باك أب"
+msgstr "لا حاجه الى نسخه إحتياطيه "
 
 #
 msgid ""
@@ -3999,9 +4000,8 @@ msgstr "من فضلك أختار الاضافه المطلوب حذفها"
 msgid "Please select an option below."
 msgstr "من فضلك حدد إختيارا من التالى :"
 
-#
 msgid "Please select medium to use as backup location"
-msgstr "من فضلك أختار الوسيط الذى سييستخدم كمان للباك أب"
+msgstr "من فضلك أختار الوسيط الذى سييستخدم كمكان للنسخه الإحتياطيه "
 
 #
 msgid "Please select tag to filter..."
@@ -4580,7 +4580,7 @@ msgid "Restore"
 msgstr "إستعاده"
 
 msgid "Restore backups"
-msgstr "إستعادة الباك أب"
+msgstr "إستعادة النسخه الإحتياطيه "
 
 msgid "Restore is running..."
 msgstr "الاستعاده قيد التنفيذ"
@@ -4880,9 +4880,8 @@ msgstr "جارى البحث عن حزم جديده تم تثبيتها أو حذ
 msgid "Searching your network. Please wait..."
 msgstr "بحث عن الشبكه. رجاء الانتظار..."
 
-#
 msgid "Secondary DNS"
-msgstr ""
+msgstr "DNS ثانوى"
 
 # File: tmp/enigma2_plugins/genuinedreambox/src/plugin.py, line: 160
 msgid "Security service not running."
@@ -4936,10 +4935,10 @@ msgid "Select channel to record on"
 msgstr "أختار القناه التى تريد التسجيل عليها"
 
 msgid "Select files for backup. Currently selected:\n"
-msgstr "أختار ملفات الباك أب . المختار حاليا:\n"
+msgstr "أختار ملفات النسخه الاحتياطيه . المختار حاليا:\n"
 
 msgid "Select files/folders to backup"
-msgstr "أختار ملفات/مجلدات الباك أب"
+msgstr "أختار ملفات/مجلدات النسخه الاحتياطيه"
 
 msgid "Select image"
 msgstr "أختار صوره:"
@@ -4962,10 +4961,9 @@ msgstr "أختار معدل الأنعاش"
 msgid "Select service to add..."
 msgstr "اختار قناه ليتم إضافتها"
 
-#
 #, python-format
 msgid "Select the key you want to set to %i ms"
-msgstr ""
+msgstr "أختار المفتاح الذى تريد الضبط الى %i مللى ثانيه"
 
 #
 msgid "Select the location to save the recording to."
@@ -4997,33 +4995,27 @@ msgstr "حدد إختيارك"
 msgid "Selected source image"
 msgstr "الصوره المصدر المختاره"
 
-#
 msgid "Send DiSEqC"
-msgstr ""
+msgstr "أرسل دايزك"
 
-#
 msgid "Send DiSEqC only on satellite change"
-msgstr ""
+msgstr "ارسل دايزك عند تغيير القمر فقط"
 
-#
 msgid "Seperate titles with a main menu"
-msgstr ""
+msgstr "عناوين منفصله مع قائمة رئيسيه"
 
-#
 msgid "Sequence repeat"
-msgstr ""
+msgstr "تكرار التسلسل"
 
 #
 msgid "Serbian"
 msgstr "صريى"
 
-#
 msgid "Server IP"
-msgstr ""
+msgstr "IP الخادم"
 
-#
 msgid "Server share"
-msgstr ""
+msgstr "مشاركة الخادم"
 
 #
 msgid "Service"
@@ -5037,9 +5029,8 @@ msgstr "بخث عن القنوات"
 msgid "Service Searching"
 msgstr "بحث عن القنـوات"
 
-#
 msgid "Service delay"
-msgstr ""
+msgstr "تأخير الخدمه"
 
 #
 msgid "Service has been added to the favourites."
@@ -5091,10 +5082,9 @@ msgstr "ضبط الفولتيه و 22KHz"
 msgid "Set available internal memory threshold for the warning."
 msgstr "أضبط أقل مستوى للذاكره الداخليه للتنبيه"
 
-#
 #, python-format
 msgid "Set delay to %i ms (can be set)"
-msgstr ""
+msgstr "أضبط التاخير الى %i مللى ثانيه (يمكن ضبطها)"
 
 #
 msgid "Set interface as default Interface"
@@ -5142,12 +5132,14 @@ msgstr "الحده"
 msgid "Short Movies"
 msgstr "افلام قصيره"
 
+msgid "Short filenames"
+msgstr ""
+
 msgid "Should this AutoTimer be restricted to a timespan?"
 msgstr "هل تريد أن يكون المؤقت الالى محددا بهذه المده الزمنيه؟"
 
-#
 msgid "Should this AutoTimer only match up to a certain event duration?"
-msgstr ""
+msgstr "هل هذا المؤقت الآلى سيتطابق مع مده حدث معين ؟"
 
 #
 msgid ""
@@ -5225,9 +5217,8 @@ msgstr "الاشاره"
 msgid "Similar"
 msgstr "شبيهه"
 
-#
 msgid "Similar broadcasts:"
-msgstr ""
+msgstr "إذاعات مماثله :"
 
 #
 msgid "Simple"
@@ -5268,18 +5259,15 @@ msgstr "الجلود"
 msgid "Sleep Timer"
 msgstr "مؤقت النوم"
 
-#
 msgid "Sleep timer action:"
-msgstr ""
+msgstr "عمل مؤقت النوم :"
 
-#
 msgid "Slideshow Interval (sec.)"
-msgstr ""
+msgstr "الفاصل الزمنى بين عرض الرائح(ثانيه)"
 
-#
 #, python-format
 msgid "Slot %d"
-msgstr ""
+msgstr "فتحة %d"
 
 #
 msgid "Slovakian"
@@ -5315,13 +5303,13 @@ msgid "Sorry MediaScanner is not installed!"
 msgstr ""
 
 msgid "Sorry no backups found!"
-msgstr "عفوا.. لم يتم العثور على أى باك أب !"
+msgstr "عفوا.. لم يتم العثور على أى نسخه إحتياطيه !"
 
 msgid ""
 "Sorry your backup destination is not writeable.\n"
 "Please choose an other one."
 msgstr ""
-"المكان الذى تريد وضع الباك أب فيه لا يمكن الكتابه عليه \n"
+"المكان الذى تريد وضع النسخه الاحتياطيه فيه لا يمكن الكتابه عليه \n"
 "من فضلك أختار مكان آخر."
 
 #
@@ -5336,7 +5324,7 @@ msgid ""
 "\n"
 "Please choose another one."
 msgstr ""
-"عفوا، المكان الذى تريد وضع الباك أب فيه لا يمكن الكتابه عليه \n"
+"عفوا، المكان الذى تريد وضع النسخه الاحتياطيه فيه لا يمكن الكتابه عليه \n"
 "\n"
 "من فضلك أختار مكان آخر."
 
@@ -5483,13 +5471,11 @@ msgstr "إيقاف عرض هذا الفيلم؟"
 msgid "Stop test"
 msgstr "إيقاف الاختبار"
 
-#
 msgid "Stop testing plane after # failed transponders"
-msgstr ""
+msgstr "إيقاف خطة الاختبار بعد # إرسال فاشل"
 
-#
 msgid "Stop testing plane after # successful transponders"
-msgstr ""
+msgstr "إيقاف خطة الاختبار بعد # إرسال ناجح"
 
 msgid "Store position"
 msgstr "تخزين الموقع"
@@ -5546,13 +5532,11 @@ msgstr "الانتقال الى الفرعيه السابقه"
 msgid "Switchable tuner types:"
 msgstr ""
 
-#
 msgid "Symbol Rate"
-msgstr ""
+msgstr "معدل الترميز"
 
-#
 msgid "Symbolrate"
-msgstr ""
+msgstr "معدل الترميز"
 
 #
 msgid "System"
@@ -5574,17 +5558,14 @@ msgstr "نظام التليفزبـون"
 msgid "Table of content for collection"
 msgstr ""
 
-#
 msgid "Tag 1"
-msgstr ""
+msgstr "شعار1"
 
-#
 msgid "Tag 2"
-msgstr ""
+msgstr "شعار 2"
 
-#
 msgid "Tags"
-msgstr ""
+msgstr "شعارات"
 
 #
 msgid "Tags the Timer/Recording will have."
@@ -5686,6 +5667,8 @@ msgid ""
 "timespan is specified an event will only match this AutoTimer if it lies "
 "inside of this timespan."
 msgstr ""
+"المدى الزمنى للمؤقت الزمنى هو السمه المتقدمه الاولى. إذا كان المدى الزمنى "
+"محدد ، فإن حدثا سوف يطابق هذا المؤقت الالى إذا كان يقع فى هذا المدى الزمنى"
 
 msgid ""
 "The USB stick is now bootable. Do you want to download the latest image from "
@@ -5695,12 +5678,11 @@ msgstr ""
 "الـUSB ؟"
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr "فشل عمل باك أب ، من فضلك أختار مان آخر للباك أب ."
+msgstr "فشل عمل نسخه إحتياطيه  ، من فضلك أختار مان آخر للنسخه الإحتياطيه  ."
 
-#
 msgid ""
 "The counter can automatically be reset to the limit at certain intervals."
-msgstr ""
+msgstr "يمكن إعادة ضبط العداد آليا الى الحد عند فترات معينه"
 
 #
 #, python-format
@@ -5776,10 +5758,9 @@ msgstr "الرزمه لا تحتوى على أى شيئ ."
 msgid "The package:"
 msgstr "الرزمه:"
 
-#
 #, python-format
 msgid "The path %s already exists."
-msgstr ""
+msgstr "المسار %s موجود سلفا"
 
 #
 msgid "The pin code has been changed successfully."
@@ -5806,9 +5787,8 @@ msgstr "تم تنشيط مؤقت النوم"
 msgid "The sleep timer has been disabled."
 msgstr "تم تعطيل مؤقت النوم"
 
-#
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr ""
+msgstr "ملف المؤقت (timers.xml) فاسد ولا يمكن تحميله"
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -5827,8 +5807,8 @@ msgstr ""
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"من خلال هذه النافذه يمكنك عمل باك أب للإعدادات الحاليه . هل تريد عمل باك أب "
-"الان ؟"
+"من خلال هذه النافذه يمكنك عمل نسخه إحتياطيه  للإعدادات الحاليه . هل تريد عمل "
+"نسخه إحتياطيه  الان ؟"
 
 msgid "The wizard is finished now."
 msgstr "إنتهاء نافذة الاعدادات الان ."
@@ -5843,9 +5823,8 @@ msgstr ""
 msgid "There are no default services lists in your image."
 msgstr "لا يوجد قائمة قنوات إفتراضيه فى هذه الصوره ."
 
-#
 msgid "There are no default settings in your image."
-msgstr ""
+msgstr "لا يوجد إعدادات إفتراضيه فى هذه الصوره"
 
 msgid "There are no updates available."
 msgstr "لا يوجد تحديثات متاحه ."
@@ -6768,8 +6747,8 @@ msgid ""
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 "مرحبا بك فى نافذة ترقية الصوره. هذه النافذه ستساعدك فى ترقية البرنامج "
-"التشغبلى للدريم بوكس بواسطة توفير وسيلة عمل باك أب للاعدادات الحاليه وشرح "
-"مبسط لطريقة ترقية البرنامج التشغيلى ."
+"التشغبلى للدريم بوكس بواسطة توفير وسيلة عمل نسخه إحتياطيه  للاعدادات الحاليه "
+"وشرح مبسط لطريقة ترقية البرنامج التشغيلى ."
 
 msgid ""
 "Welcome to the MyTube Youtube Player.\n"
@@ -6895,7 +6874,7 @@ msgstr ""
 "هل تريد فعلا العوده الى ضبط المصنع ؟"
 
 msgid "Where do you want to backup your settings?"
-msgstr "هل تريد فعلا عمل باك أب للاعدادات ؟"
+msgstr "هل تريد فعلا عمل نسخه إحتياطيه  للاعدادات ؟"
 
 #
 msgid "Where to save temporary timeshift recordings?"
@@ -6962,7 +6941,7 @@ msgstr "نعم ، ولا تسأل بعد ذلك"
 
 #
 msgid "Yes, backup my settings!"
-msgstr "نعم ، أعمل باك أب للاعدادات"
+msgstr "نعم ، أعمل نسخه إحتياطيه  للاعدادات"
 
 #
 msgid "Yes, but play next video"
@@ -7052,18 +7031,20 @@ msgid ""
 "As this is a mandatory Attribute you cannot continue without doing so."
 msgstr ""
 
-#
 #, python-format
 msgid ""
 "You entered \"%s\" as Text to match.\n"
 "Do you want to remove trailing whitespaces?"
 msgstr ""
+"لقد أدخلت \"%s\" كنص للمطابقه . \n"
+"هل تريد حذف المسافات الزائده ؟"
 
-#
 msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
 "now."
-msgstr "إذا أخترت عمل باك أب للاعدادات ، من فضلك أضغط موافق اتبدأ الباك أبالان"
+msgstr ""
+"إذا أخترت عمل نسخه إحتياطيه  للاعدادات ، من فضلك أضغط موافق اتبدأ النسخه "
+"الإحتياطيه الان"
 
 #
 msgid ""
@@ -7109,6 +7090,9 @@ msgid ""
 "\n"
 "You can go back a step by pressing EXIT on your remote."
 msgstr ""
+"تم بنجاح تكوين مؤقت آلى جديد . هل تريد إضافته الى القائمه ؟ \n"
+"\n"
+"يمكنك العوده خطوه للخلف بالضغط على ذر خروج من الريموت ."
 
 msgid ""
 "Your 'Match in title' Attribute ends with a Whitespace.\n"
@@ -7146,7 +7130,7 @@ msgstr ""
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
 "process."
-msgstr "نجاح عمل باك أب. سوف نشرح لك طريقة الترقيه الان."
+msgstr "نجاح عمل نسخه إحتياطيه . سوف نشرح لك طريقة الترقيه الان."
 
 msgid ""
 "Your collection exceeds the size of a single layer medium, you will need a "
@@ -7155,12 +7139,13 @@ msgstr ""
 "هذه المجموعه تزيد عن حجم وسيط ذو طبقه واحده. أنت تحتاج الى دى فى دى ثنائى "
 "الطبقه خالى!"
 
-#
 #, python-format
 msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
+"ملف التكوين غير جيد :\n"
+"%s"
 
 msgid "Your current collection will get lost!"
 msgstr "سوف تفقد المجموعه الحاليه !"
@@ -7310,16 +7295,24 @@ msgid "add marker"
 msgstr "إضافة علامه"
 
 msgid "add recording (enter recording duration)"
-msgstr "إضافة تسجيل (دخل مدة التسجيل)"
+msgstr ""
+"                                                                                 إضافة "
+"تسجيل (دخل مدة التسجيل)"
 
 msgid "add recording (enter recording endtime)"
-msgstr "إضافة تسجيل(أدخل زمن انتهاء التسجيل)"
+msgstr ""
+"                                                                            إضافة "
+"تسجيل(أدخل زمن انتهاء التسجيل)"
 
 msgid "add recording (indefinitely)"
-msgstr "أضف تسجيل (غير محدد المده)"
+msgstr ""
+"                                                                                      أضف "
+"تسجيل (غير محدد المده)"
 
 msgid "add recording (stop after current event)"
-msgstr "أضف تسجيل (وإيقاف بعد انتهاء البرنامج الحالى)"
+msgstr ""
+"                                                                   أضف تسجيل "
+"(وإيقاف بعد انتهاء البرنامج الحالى)"
 
 #
 msgid "add service to bouquet"
@@ -7404,13 +7397,11 @@ msgstr ""
 msgid "case-sensitive search"
 msgstr ""
 
-#
 msgid "change recording (duration)"
-msgstr ""
+msgstr "تغيير التسجيل (المده الزمنيه)"
 
-#
 msgid "change recording (endtime)"
-msgstr ""
+msgstr "تغيير التسجيل (وقت الانتهاء)"
 
 #
 msgid "chapters"
@@ -7428,9 +7419,8 @@ msgstr "دائرى يسار"
 msgid "circular right"
 msgstr "دائرى يمين"
 
-#
 msgid "clear playlist"
-msgstr ""
+msgstr "مسح قائمة العرض"
 
 #
 msgid "complex"
@@ -7502,10 +7492,14 @@ msgid "do not change"
 msgstr "لا تغيير"
 
 msgid "do nothing"
-msgstr "لا تفعل شيئ"
+msgstr ""
+"                                                                                                       لا "
+"تفعل شيئ"
 
 msgid "don't record"
-msgstr "لا تسجل"
+msgstr ""
+"                                                                                                            لا "
+"تسجل"
 
 msgid "done!"
 msgstr "تم !"
