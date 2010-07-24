@@ -257,7 +257,7 @@ class NetworkWizard(WizardLanguage, Rc):
 					text1 = _("Your Dreambox is now ready to use.\n\nYour internet connection is working now.\n\n")
 					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["acesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
-					text4 = _('Link Quality:') + "\t" + str(status[self.selectedInterface]["quality"])+"%" + "\n"
+					text4 = _('Link Quality:') + "\t" + str(status[self.selectedInterface]["quality"])+ "\n"
 					text5 = _('Signal Strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
 					text6 = _('Bitrate:') + "\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
 					text7 = _('Encryption:') + " " + str(status[self.selectedInterface]["encryption"]) + "\n"
