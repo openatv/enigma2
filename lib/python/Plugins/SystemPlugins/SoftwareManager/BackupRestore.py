@@ -251,8 +251,9 @@ class RestoreMenu(Screen):
 	def KeyOk(self):
 		if (self.exe == False) and (self.entry == True):
 			self.sel = self["filelist"].getCurrent()
-			self.val = self.path + "/" + self.sel
-			self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore\nfollowing backup:\n") + self.sel + _("\nSystem will restart after the restore!"))
+			if self.sel:
+				self.val = self.path + "/" + self.sel
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore\nfollowing backup:\n") + self.sel + _("\nSystem will restart after the restore!"))
 
 	def keyCancel(self):
 		self.close()
@@ -265,8 +266,9 @@ class RestoreMenu(Screen):
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
 			self.sel = self["filelist"].getCurrent()
-			self.val = self.path + "/" + self.sel
-			self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nfollowing backup:\n" + self.sel ))
+			if self.sel:
+				self.val = self.path + "/" + self.sel
+				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nfollowing backup:\n" + self.sel ))
 
 	def startDelete(self, ret = False):
 		if (ret == True):
