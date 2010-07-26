@@ -336,7 +336,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 
 	g_object_set (G_OBJECT (m_gst_playbin), "uri", uri, NULL);
 
-	int flags = 0x47; // ( == GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_NATIVE_VIDEO | GST_PLAY_FLAG_TEXT )
+	int flags = 0x47; // ( GST_PLAY_FLAG_VIDEO | GST_PLAY_FLAG_AUDIO | GST_PLAY_FLAG_NATIVE_VIDEO | GST_PLAY_FLAG_TEXT );
 	g_object_set (G_OBJECT (m_gst_playbin), "flags", flags, NULL);
 
 	g_free(uri);
@@ -362,8 +362,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			gst_bin_add(GST_BIN(m_gst_subtitlebin), appsink);
 		}
 
-// 		GstPad *ghostpad = gst_ghost_pad_new("sink", gst_element_get_static_pad (appsink, "sink"));
-
 		GstPadTemplate *templ;
 		templ = gst_static_pad_template_get (&subsinktemplate);
   
@@ -374,11 +372,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		g_object_set (G_OBJECT (appsink), "caps", caps, NULL);
 		gst_caps_unref(caps);
 		
-// 		GstCaps* caps2 = gst_caps_from_string("text/plain; text/x-pango-markup; video/x-dvd-subpicture");
-// 		int ret = gst_pad_set_caps (ghostpad, caps2);
-// 		gst_caps_unref(caps2);
-		
-
 		g_object_set (G_OBJECT (appsink), "async", FALSE, NULL);
 		g_object_set (G_OBJECT (appsink), "sync", TRUE, NULL);
 		g_object_set (G_OBJECT (appsink), "emit-signals", TRUE, NULL);
@@ -1222,7 +1215,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 	source = GST_MESSAGE_SRC(msg);
 	sourceName = gst_object_get_name(source);
-#if 0
+#if 1
 	if (gst_message_get_structure(msg))
 	{
 		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
@@ -1385,7 +1378,6 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 					continue;
 				GstStructure* str = gst_caps_get_structure(caps, 0);
 				const gchar *g_type = gst_structure_get_name(str);
-				eDebug("AUDIO STRUCT=%s", g_type);
 				audio.type = gstCheckAudioPad(str);
 				g_codec = g_strdup(g_type);
 				g_lang = g_strdup_printf ("und");
@@ -2040,7 +2032,6 @@ void eServiceMP3::pushSubtitles()
 			{
 				if ( frontpage.pango_page != 0)
 				{
-// 					eDebug("immediate show pango subtitle line");
 					m_subtitle_widget->setPage(*(frontpage.pango_page));
 				}
 				else if ( frontpage.vob_page != 0)
@@ -2156,6 +2147,7 @@ PyObject *eServiceMP3::getSubtitleList()
 		Py_DECREF(tuple);
 		stream_idx++;
 	}
+	eDebug("eServiceMP3::getSubtitleList finished");
 	return l;
 }
 
