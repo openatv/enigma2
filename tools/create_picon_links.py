@@ -21,9 +21,9 @@ while len(f):
 #	X   X  X    X    D     D
 
 #	REFTYPE:FLAGS:STYPE:SID:TSID:ONID:NS:PARENT_SID:PARENT_TSID:UNUSED
-#   D       D     X     X   X    X    X  X          X           X
+#	D       D     X     X   X    X    X  X          X           X
 
-	refstr = "1:0:%X:%X:%X:%X:%X:0:0:0" % (ref[4], ref[0], ref[2], ref[3], ref[1], ref[5])
+	refstr = "1:0:%X:%X:%X:%X:%X:0:0:0" % (ref[4], ref[0], ref[2], ref[3], ref[1])
 	refstr = refstr.replace(':', '_')
 
 	filename = name + ".png"
