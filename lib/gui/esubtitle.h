@@ -30,9 +30,17 @@ struct ePangoSubtitlePage
 	void clear() { m_elements.clear(); }
 };
 
+struct eVobSubtitlePage
+{
+	pts_t show_pts;
+	int m_timeout; /* in milliseconds */
+	ePtr<gPixmap> m_pixmap;
+};
+
 class eDVBTeletextSubtitlePage;
 class eDVBPangoSubtitlePage;
 class ePangoSubtitlePage;
+class eVobSubtitlePage;
 
 class eSubtitleWidget: public eWidget, public Object
 {
