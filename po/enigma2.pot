@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-11 11:01+0000\n"
+"POT-Creation-Date: 2010-06-09 10:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,10 +161,10 @@ msgstr ""
 msgid " wireless networks found!"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1173
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1174
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1323
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1325
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1233
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1234
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1383
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1385
 #: ../enigma2_master/lib/python/Components/NimManager.py:1173
 #: ../enigma2_master/lib/python/Components/NimManager.py:1174
 #: ../enigma2_master/lib/python/Components/NimManager.py:1323
@@ -172,7 +172,7 @@ msgstr ""
 msgid "%H:%M"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Standby.py:121
+#: ../enigma2_experimental/lib/python/Screens/Standby.py:125
 #: ../enigma2_master/lib/python/Screens/Standby.py:121
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -237,7 +237,7 @@ msgstr ""
 msgid "(ZAP)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:525
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:558
 #: ../enigma2_master/lib/python/Components/NimManager.py:525
 msgid "(empty)"
 msgstr ""
@@ -270,24 +270,24 @@ msgstr ""
 msgid "1 wireless network found!"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1081
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1116
 #: ../enigma2_master/lib/python/Components/NimManager.py:1081
 msgid "1.0"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1081
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1116
 #: ../enigma2_master/lib/python/Components/NimManager.py:1081
 msgid "1.1"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1080
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1081
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1115
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1116
 #: ../enigma2_master/lib/python/Components/NimManager.py:1080
 #: ../enigma2_master/lib/python/Components/NimManager.py:1081
 msgid "1.2"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1077
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1112
 #: ../enigma2_master/lib/python/Components/NimManager.py:1077
 msgid "13 V"
 msgstr ""
@@ -326,7 +326,7 @@ msgstr ""
 msgid "16:9 always"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1077
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1112
 #: ../enigma2_master/lib/python/Components/NimManager.py:1077
 msgid "18 V"
 msgstr ""
@@ -384,6 +384,9 @@ msgstr ""
 msgid "<Last timer location>"
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:90
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:105
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:137
 #: ../enigma2_experimental/lib/python/Components/TimerList.py:64
 #: ../enigma2_master/lib/python/Components/TimerList.py:64
 msgid "<unknown>"
@@ -396,7 +399,7 @@ msgstr ""
 msgid "??"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1079
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1114
 #: ../enigma2_master/lib/python/Components/NimManager.py:1079
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "A"
@@ -417,14 +420,14 @@ msgstr ""
 msgid "A demo plugin for TPM usage."
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:288
+#: ../enigma2_experimental/RecordTimer.py:297
 #: ../enigma2_master/RecordTimer.py:288
 msgid ""
 "A finished record timer wants to set your\n"
 "Dreambox to standby. Do that now?"
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:294
+#: ../enigma2_experimental/RecordTimer.py:303
 #: ../enigma2_master/RecordTimer.py:294
 msgid ""
 "A finished record timer wants to shut down\n"
@@ -442,7 +445,7 @@ msgid ""
 "Update existing entry and continue?\n"
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:369
+#: ../enigma2_experimental/RecordTimer.py:378
 #: ../enigma2_master/RecordTimer.py:369
 #, python-format
 msgid ""
@@ -513,7 +516,7 @@ msgstr ""
 msgid "A small overview of the available icon states and actions."
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:238
+#: ../enigma2_experimental/RecordTimer.py:247
 #: ../enigma2_master/RecordTimer.py:238
 msgid ""
 "A timer failed to record!\n"
@@ -528,12 +531,12 @@ msgstr ""
 msgid "A/V Settings"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1055
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1090
 #: ../enigma2_master/lib/python/Components/NimManager.py:1055
 msgid "AA"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1055
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1090
 #: ../enigma2_master/lib/python/Components/NimManager.py:1055
 msgid "AB"
 msgstr ""
@@ -544,8 +547,7 @@ msgstr ""
 msgid "AC3 default"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1724
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1768
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:75
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/Videomode/plugin.py:100
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1723
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1767
@@ -685,12 +687,12 @@ msgstr ""
 msgid "Add title"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1875
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1760
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1874
 msgid "Add to bouquet"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1877
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1762
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1876
 msgid "Add to favourites"
 msgstr ""
@@ -791,8 +793,8 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1074
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1075
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1109
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1110
 #: ../enigma2_master/lib/python/Components/NimManager.py:1074
 #: ../enigma2_master/lib/python/Components/NimManager.py:1075
 msgid "All Satellites"
@@ -980,7 +982,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:671
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:677
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:683
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1052
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1087
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:10
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:15
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:26
@@ -1089,18 +1091,18 @@ msgstr ""
 msgid "Available format variables"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1079
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1114
 #: ../enigma2_master/lib/python/Components/NimManager.py:1079
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "B"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1055
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1090
 #: ../enigma2_master/lib/python/Components/NimManager.py:1055
 msgid "BA"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1055
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1090
 #: ../enigma2_master/lib/python/Components/NimManager.py:1055
 msgid "BB"
 msgstr ""
@@ -1149,7 +1151,7 @@ msgstr ""
 msgid "Backup system settings"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1078
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1113
 #: ../enigma2_master/lib/python/Components/NimManager.py:1078
 msgid "Band"
 msgstr ""
@@ -1171,7 +1173,7 @@ msgid "Begin of timespan"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:50
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:331
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:344
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:117
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/TitleProperties.py:97
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:50
@@ -1254,7 +1256,7 @@ msgstr ""
 msgid "Bus: "
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:986
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1019
 #: ../enigma2_master/lib/python/Components/NimManager.py:986
 msgid "C-Band"
 msgstr ""
@@ -1457,9 +1459,10 @@ msgstr ""
 msgid "Change the hostname of your Dreambox."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:260
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:272
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:283
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:83
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:261
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:273
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:284
 #: ../enigma2_experimental/lib/python/Screens/TimerEntry.py:184
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/DVDTitle.py:21
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:117
@@ -1725,14 +1728,14 @@ msgstr ""
 msgid "Comedy"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:302
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:314
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:315
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:327
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:302
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:314
 msgid "Command order"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:298
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:311
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:298
 msgid "Committed DiSEqC command"
 msgstr ""
@@ -1771,11 +1774,11 @@ msgstr ""
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:105
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:159
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:193
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:257
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:348
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:106
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:160
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:194
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:258
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:361
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:105
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:159
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:193
@@ -1827,7 +1830,8 @@ msgstr ""
 msgid "Connect to a Wireless Network"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:141
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:142
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:299
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:141
 msgid "Connected to"
 msgstr ""
@@ -2155,7 +2159,7 @@ msgstr ""
 msgid "Delete mount"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:401
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:389
 #, python-format
 msgid ""
@@ -2208,26 +2212,26 @@ msgstr ""
 msgid "Detected NIMs:"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1062
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:515
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1097
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1062
 msgid "DiSEqC A/B"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1062
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:515
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1097
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1062
 msgid "DiSEqC A/B/C/D"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:294
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:307
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:294
 msgid "DiSEqC mode"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:317
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:330
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:317
 msgid "DiSEqC repeats"
 msgstr ""
@@ -2281,7 +2285,6 @@ msgstr ""
 msgid "Disable Picture in Picture"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:37
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:37
 msgid "Disable Subtitles"
 msgstr ""
@@ -2471,7 +2474,7 @@ msgstr ""
 msgid "Do you want to restore your settings?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2027
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1912
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2026
 msgid "Do you want to resume this playback?"
 msgstr ""
@@ -2609,7 +2612,7 @@ msgid "Dynamic contrast"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:966
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:384
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:397
 #: ../enigma2_experimental/lib/python/Components/ServiceScan.py:51
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/plugin.py:484
 #: ../enigma2_master/lib/python/Screens/ChannelSelection.py:966
@@ -2629,7 +2632,7 @@ msgstr ""
 msgid "ERROR - failed to scan (%s)!"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1069
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1104
 #: ../enigma2_master/lib/python/Components/NimManager.py:1069
 msgid "East"
 msgstr ""
@@ -2741,7 +2744,6 @@ msgstr ""
 msgid "Electronic Program Guide"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:45
 #: ../enigma2_experimental/lib/python/Screens/TimerEdit.py:138
 #: ../enigma2_experimental/lib/python/Screens/TimerEdit.py:408
 #: ../enigma2_experimental/lib/python/Screens/TimerEdit.py:428
@@ -2756,7 +2758,7 @@ msgstr ""
 msgid "Enable /media"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:198
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:199
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:198
 msgid "Enable 5V for active antenna"
 msgstr ""
@@ -2872,7 +2874,7 @@ msgid "End of timespan"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:51
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:332
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:345
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:51
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:332
 msgid "End time"
@@ -3141,17 +3143,17 @@ msgstr ""
 msgid "Fan %d Voltage"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1071
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1106
 #: ../enigma2_master/lib/python/Components/NimManager.py:1071
 msgid "Fast"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:299
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:312
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:299
 msgid "Fast DiSEqC"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1071
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1106
 #: ../enigma2_master/lib/python/Components/NimManager.py:1071
 msgid "Fast epoch"
 msgstr ""
@@ -3258,9 +3260,9 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:262
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:276
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:287
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:263
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:277
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:288
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:377
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:407
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:414
@@ -3279,17 +3281,17 @@ msgstr ""
 msgid "Frequency"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1351
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1411
 #: ../enigma2_master/lib/python/Components/NimManager.py:1351
 msgid "Frequency bands"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:181
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:182
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:181
 msgid "Frequency scan step size(khz)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1351
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1411
 #: ../enigma2_master/lib/python/Components/NimManager.py:1351
 msgid "Frequency steps"
 msgstr ""
@@ -3624,7 +3626,7 @@ msgstr ""
 msgid "In Progress"
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:241
+#: ../enigma2_experimental/RecordTimer.py:250
 #: ../enigma2_master/RecordTimer.py:241
 msgid ""
 "In order to record a timer, the TV was switched to the recording service!\n"
@@ -3652,7 +3654,7 @@ msgstr ""
 msgid "Increase delay by %i ms (can be set)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:290
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:303
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:290
 msgid "Increased voltage"
 msgstr ""
@@ -3880,25 +3882,25 @@ msgstr ""
 msgid "LAN connection"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:243
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:244
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:243
 msgid "LNB"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:248
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:249
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:248
 msgid "LOF"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:252
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:264
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:253
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:265
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:252
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:264
 msgid "LOF/H"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:251
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:263
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:252
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:264
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:251
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:263
 msgid "LOF/L"
@@ -3923,7 +3925,7 @@ msgid "Last speed"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:40
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:321
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:334
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:40
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:321
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
@@ -3940,8 +3942,6 @@ msgstr ""
 msgid "Leave DVD Player?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1725
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1730
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/VideoEnhancement/VideoEnhancement.py:149
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1724
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1729
@@ -3994,7 +3994,7 @@ msgstr ""
 msgid "Linked titles with a DVD menu"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/config.py:1137
+#: ../enigma2_experimental/lib/python/Components/config.py:1138
 #: ../enigma2_experimental/lib/python/Components/FileList.py:177
 #: ../enigma2_experimental/lib/python/Components/FileList.py:394
 #: ../enigma2_master/lib/python/Components/config.py:1137
@@ -4051,8 +4051,12 @@ msgstr ""
 msgid "Long Keypress"
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Components/RecordingConfig.py:14
+msgid "Long filenames"
+msgstr ""
+
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:38
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:319
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:332
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:38
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:319
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
@@ -4118,8 +4122,8 @@ msgstr ""
 msgid "Manual transponder"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:270
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:281
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:271
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:282
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:270
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:281
 msgid "Manufacturer"
@@ -4174,6 +4178,7 @@ msgstr ""
 msgid "Medium is not empty!"
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:168
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:156
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:158
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:159
@@ -4199,7 +4204,7 @@ msgstr ""
 msgid "Mkfs failed"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:109
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:110
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/Videomode/plugin.py:62
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:109
 #: ../enigma2_master/lib/python/Plugins/SystemPlugins/Videomode/plugin.py:62
@@ -4479,9 +4484,9 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:394
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:398
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:402
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:663
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:668
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:795
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:696
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:701
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:828
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/Wlan.py:242
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:376
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:380
@@ -4647,7 +4652,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/Ci.py:27
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:169
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:176
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:401
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:270
 #: ../enigma2_master/lib/python/Screens/Ci.py:25
 #: ../enigma2_master/lib/python/Screens/Ci.py:27
@@ -4691,7 +4696,7 @@ msgstr ""
 msgid "No Networks found"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2331
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2216
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2330
 msgid ""
 "No data on transponder!\n"
@@ -4731,7 +4736,7 @@ msgid ""
 "forward/backward!"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2329
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2214
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2328
 msgid "No free tuner!"
 msgstr ""
@@ -4779,7 +4784,7 @@ msgstr ""
 msgid "No tags are set on these movies."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:401
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:389
 msgid "No to all"
 msgstr ""
@@ -4880,11 +4885,11 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:591
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:634
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:679
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1055
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1058
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1079
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1081
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1087
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1090
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1093
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1114
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1116
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1122
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:14
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:61
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:107
@@ -4916,7 +4921,7 @@ msgstr ""
 msgid "Nonprofits & Activism"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1070
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1105
 #: ../enigma2_master/lib/python/Components/NimManager.py:1070
 msgid "North"
 msgstr ""
@@ -5028,9 +5033,7 @@ msgstr ""
 msgid "OSD visibility"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1724
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1768
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1078
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1113
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:12
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:46
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:59
@@ -5055,9 +5058,7 @@ msgstr ""
 msgid "Offset before recording (in m)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1724
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1768
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1078
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1113
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:11
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:45
 #: ../enigma2_experimental/lib/python/Tools/Transponder.py:58
@@ -5080,7 +5081,7 @@ msgstr ""
 msgid "On same service"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1087
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1122
 #: ../enigma2_master/lib/python/Components/NimManager.py:1087
 msgid "One"
 msgstr ""
@@ -5164,9 +5165,6 @@ msgstr ""
 msgid "Packet manager"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:53
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:56
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:58
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:53
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:56
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:58
@@ -5403,7 +5401,7 @@ msgstr ""
 msgid "Please enter your search term."
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:371
+#: ../enigma2_experimental/RecordTimer.py:380
 #: ../enigma2_master/RecordTimer.py:371
 msgid ""
 "Please note that the previously selected media could not be accessed and "
@@ -5454,7 +5452,7 @@ msgstr ""
 msgid "Please select a subservice to record..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1884
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1769
 #: ../enigma2_experimental/lib/python/Screens/SubservicesQuickzap.py:116
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1883
 #: ../enigma2_master/lib/python/Screens/SubservicesQuickzap.py:116
@@ -5620,7 +5618,7 @@ msgid "Polarity"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ServiceInfo.py:141
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1077
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1112
 #: ../enigma2_master/lib/python/Screens/ServiceInfo.py:141
 #: ../enigma2_master/lib/python/Components/NimManager.py:1077
 msgid "Polarization"
@@ -5664,8 +5662,8 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:522
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1063
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:535
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1098
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:521
 #: ../enigma2_master/lib/python/Components/NimManager.py:1063
 msgid "Positioner"
@@ -5700,7 +5698,7 @@ msgid ""
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:46
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:327
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:340
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:46
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:327
 msgid "Power threshold in mA"
@@ -5840,7 +5838,7 @@ msgstr ""
 msgid "Primary DNS"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:247
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:248
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:247
 msgid "Priority"
 msgstr ""
@@ -5869,14 +5867,14 @@ msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:703
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:839
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1353
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1413
 #: ../enigma2_master/lib/python/Screens/ChannelSelection.py:703
 #: ../enigma2_master/lib/python/Screens/ChannelSelection.py:839
 #: ../enigma2_master/lib/python/Components/NimManager.py:1353
 msgid "Provider"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:165
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:166
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:165
 msgid "Provider to scan"
 msgstr ""
@@ -5903,9 +5901,9 @@ msgstr ""
 msgid "Quick"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1875
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1877
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1880
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1760
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1762
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1765
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1874
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1876
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1879
@@ -5941,8 +5939,8 @@ msgid "Ratings: "
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:652
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:427
-#: ../enigma2_experimental/lib/python/Components/ConfigList.py:236
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:440
+#: ../enigma2_experimental/lib/python/Components/ConfigList.py:237
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:221
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py:174
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:641
@@ -5972,17 +5970,17 @@ msgstr ""
 msgid "Really quit MyTube Player?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Standby.py:126
+#: ../enigma2_experimental/lib/python/Screens/Standby.py:130
 #: ../enigma2_master/lib/python/Screens/Standby.py:126
 msgid "Really reboot now?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Standby.py:130
+#: ../enigma2_experimental/lib/python/Screens/Standby.py:134
 #: ../enigma2_master/lib/python/Screens/Standby.py:130
 msgid "Really restart now?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Standby.py:124
+#: ../enigma2_experimental/lib/python/Screens/Standby.py:128
 #: ../enigma2_master/lib/python/Screens/Standby.py:124
 msgid "Really shutdown now?"
 msgstr ""
@@ -6029,7 +6027,7 @@ msgstr ""
 msgid "Recording"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Standby.py:115
+#: ../enigma2_experimental/lib/python/Screens/Standby.py:119
 #: ../enigma2_master/lib/python/Screens/Standby.py:115
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr ""
@@ -6303,7 +6301,7 @@ msgstr ""
 msgid "Resume from last position"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2027
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1912
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2026
 #, python-format
 msgid "Resume position at %s"
@@ -6316,7 +6314,7 @@ msgstr ""
 #. TRANSLATORS: in the middle somewhere and not from the beginning.
 #. TRANSLATORS: (Some translators seem to have interpreted it as a
 #. TRANSLATORS: question or a choice, but it is a statement.)
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2036
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1921
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2035
 msgid "Resuming playback"
 msgstr ""
@@ -6344,8 +6342,6 @@ msgstr ""
 msgid "Return to previous service"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1725
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1730
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/VideoEnhancement/VideoEnhancement.py:150
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1724
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1729
@@ -6365,13 +6361,14 @@ msgid "Rolloff"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:47
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:328
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:341
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:47
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:328
 msgid "Rotor turning speed"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:43
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:95
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:141
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:43
 msgid "Running"
 msgstr ""
@@ -6415,8 +6412,8 @@ msgid "Sat"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:22
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:146
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:350
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:147
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:363
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:376
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:392
 #: ../enigma2_experimental/lib/python/Components/ServiceScan.py:40
@@ -6462,7 +6459,7 @@ msgstr ""
 msgid "Satfinder"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:503
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:516
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:502
 msgid "Sats"
 msgstr ""
@@ -6556,37 +6553,37 @@ msgstr ""
 msgid "Scan NFS share"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:185
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:186
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:185
 msgid "Scan QAM128"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:182
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:183
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:182
 msgid "Scan QAM16"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:186
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:187
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:186
 msgid "Scan QAM256"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:183
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:184
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:183
 msgid "Scan QAM32"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:184
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:185
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:184
 msgid "Scan QAM64"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:188
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:189
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:188
 msgid "Scan SR6875"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:187
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:188
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:187
 msgid "Scan SR6900"
 msgstr ""
@@ -6596,69 +6593,69 @@ msgstr ""
 msgid "Scan Wireless Networks"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:189
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:190
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:191
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:189
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:190
 msgid "Scan additional SR"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:174
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:175
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:174
 msgid "Scan band EU HYPER"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:169
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:170
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:169
 msgid "Scan band EU MID"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:173
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:174
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:173
 msgid "Scan band EU SUPER"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:171
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:172
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:171
 msgid "Scan band EU UHF IV"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:172
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:173
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:172
 msgid "Scan band EU UHF V"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:168
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:169
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:168
 msgid "Scan band EU VHF I"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:170
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:171
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:170
 msgid "Scan band EU VHF III"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:177
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:178
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:177
 msgid "Scan band US HIGH"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:179
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:180
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:179
 msgid "Scan band US HYPER"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:175
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:176
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:175
 msgid "Scan band US LOW"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:176
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:177
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:176
 msgid "Scan band US MID"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:178
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:179
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:178
 msgid "Scan band US SUPER"
 msgstr ""
@@ -6777,12 +6774,11 @@ msgstr ""
 msgid "Select a timer to import"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1783
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1782
 msgid "Select audio mode"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1759
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:71
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1758
 msgid "Select audio track"
 msgstr ""
@@ -6878,7 +6874,7 @@ msgstr ""
 msgid "Seperate titles with a main menu"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:300
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:313
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:300
 msgid "Sequence repeat"
 msgstr ""
@@ -6900,31 +6896,31 @@ msgstr ""
 msgid "Service delay"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1908
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1793
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1907
 msgid "Service has been added to the favourites."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1914
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1799
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1913
 msgid "Service has been added to the selected bouquet."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2333
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2218
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2332
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2332
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2217
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2331
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2338
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2223
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2337
 msgid ""
 "Service unavailable!\n"
@@ -7025,6 +7021,10 @@ msgstr ""
 msgid "Short Movies"
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Components/RecordingConfig.py:13
+msgid "Short filenames"
+msgstr ""
+
 #: ../enigma2_plugins/autotimer/src/AutoTimerEditor.py:466
 msgid "Should this AutoTimer be restricted to a timespan?"
 msgstr ""
@@ -7123,8 +7123,8 @@ msgstr ""
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1061
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:515
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1096
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1061
 msgid "Single"
@@ -7200,7 +7200,7 @@ msgstr ""
 msgid "Slovenian"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1071
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1106
 #: ../enigma2_master/lib/python/Components/NimManager.py:1071
 msgid "Slow"
 msgstr ""
@@ -7289,7 +7289,7 @@ msgstr ""
 msgid "Sort Time"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1070
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1105
 #: ../enigma2_master/lib/python/Components/NimManager.py:1070
 msgid "South"
 msgstr ""
@@ -7409,8 +7409,6 @@ msgstr ""
 msgid "Step west"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1725
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1730
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1724
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1729
 msgid "Stereo"
@@ -7470,31 +7468,30 @@ msgstr ""
 msgid "Store position"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:342
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:355
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:342
 msgid "Stored position"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1801
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1686
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1800
 msgid "Subservice list..."
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:118
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/MediaPlayer/plugin.py:173
 #: ../enigma2_master/lib/python/Plugins/Extensions/MediaPlayer/plugin.py:173
-#: ../enigma2_experimental/data/ ../enigma2_master/data/
+#: ../enigma2_master/data/
 msgid "Subtitle selection"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:62
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:65
-#: ../enigma2_experimental/lib/python/Screens/Subtitles.py:67
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:52
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:159
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:62
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:65
 #: ../enigma2_master/lib/python/Screens/Subtitles.py:67
 #: ../enigma2_master/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:159
-#: ../enigma2_experimental/data/ ../enigma2_master/data/
+#: ../enigma2_master/data/
 msgid "Subtitles"
 msgstr ""
 
@@ -7532,17 +7529,17 @@ msgstr ""
 msgid "Swedish"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1806
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1691
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1805
 msgid "Switch to next subservice"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1807
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1692
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1806
 msgid "Switch to previous subservice"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:537
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:550
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:536
 msgid "Switchable tuner types:"
 msgstr ""
@@ -7643,7 +7640,7 @@ msgstr ""
 msgid "Terrestrial"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:197
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:198
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:197
 msgid "Terrestrial provider"
 msgstr ""
@@ -7813,7 +7810,7 @@ msgstr ""
 msgid "The sleep timer has been disabled."
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:489
+#: ../enigma2_experimental/RecordTimer.py:498
 #: ../enigma2_master/RecordTimer.py:489
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
 msgstr ""
@@ -8045,13 +8042,13 @@ msgid ""
 "but add it disabled."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1087
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1122
 #: ../enigma2_master/lib/python/Components/NimManager.py:1087
 msgid "Three"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:253
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:265
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:254
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:266
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:253
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:265
 msgid "Threshold"
@@ -8099,7 +8096,7 @@ msgstr ""
 msgid "Timer Type"
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:511
+#: ../enigma2_experimental/RecordTimer.py:520
 #: ../enigma2_master/RecordTimer.py:511
 msgid ""
 "Timer overlap in timers.xml detected!\n"
@@ -8183,23 +8180,23 @@ msgstr ""
 msgid "Today"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:157
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:158
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:157
 msgid "Tone Amplitude"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:291
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:304
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:291
 msgid "Tone mode"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:297
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:310
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:297
 msgid "Toneburst"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:502
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1061
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:515
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1096
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:501
 #: ../enigma2_master/lib/python/Components/NimManager.py:1061
 msgid "Toneburst A/B"
@@ -8312,14 +8309,14 @@ msgstr ""
 msgid "Tune"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2330
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2215
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2329
 msgid "Tune failed!"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:123
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:132
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:497
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:124
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:133
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:510
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:346
 #: ../enigma2_experimental/lib/python/Components/ServiceScan.py:137
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:123
@@ -8330,7 +8327,7 @@ msgstr ""
 msgid "Tuner"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:488
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:521
 #: ../enigma2_master/lib/python/Components/NimManager.py:488
 msgid "Tuner "
 msgstr ""
@@ -8340,7 +8337,7 @@ msgstr ""
 msgid "Tuner status"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:101
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:102
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:101
 msgid "Tuner type"
 msgstr ""
@@ -8350,13 +8347,13 @@ msgstr ""
 msgid "Turkish"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1087
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1122
 #: ../enigma2_master/lib/python/Components/NimManager.py:1087
 msgid "Two"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:271
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:282
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:272
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:283
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:271
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:282
 msgid "Type"
@@ -8371,8 +8368,8 @@ msgstr ""
 msgid "Type of scan"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:524
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1065
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:537
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1100
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:523
 #: ../enigma2_master/lib/python/Components/NimManager.py:1065
 msgid "USALS"
@@ -8416,7 +8413,7 @@ msgid ""
 "Error: "
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:315
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:328
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:315
 msgid "Uncommitted DiSEqC command"
 msgstr ""
@@ -8431,17 +8428,17 @@ msgstr ""
 msgid "Undo uninstall"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:985
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1018
 msgid "Unicable"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1044
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1079
 #: ../enigma2_master/lib/python/Components/NimManager.py:1044
 msgid "Unicable LNB"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1045
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1102
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1080
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1137
 #: ../enigma2_master/lib/python/Components/NimManager.py:1045
 #: ../enigma2_master/lib/python/Components/NimManager.py:1102
 msgid "Unicable Martix"
@@ -8457,7 +8454,7 @@ msgstr ""
 msgid "United States"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:984
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1017
 #: ../enigma2_master/lib/python/Components/NimManager.py:984
 msgid "Universal LNB"
 msgstr ""
@@ -8584,7 +8581,7 @@ msgid "Use Interface"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:43
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:324
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:337
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:43
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:324
 msgid "Use Power Measurement"
@@ -8619,20 +8616,20 @@ msgstr ""
 msgid "Use time of currently running service"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:339
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:352
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:339
 msgid "Use usals for this sat"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:162
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:163
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:162
 msgid "Used service scan type"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:987
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1046
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1102
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1104
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1020
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1081
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1137
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1139
 #: ../enigma2_master/lib/python/Components/NimManager.py:987
 #: ../enigma2_master/lib/python/Components/NimManager.py:1046
 #: ../enigma2_master/lib/python/Components/NimManager.py:1102
@@ -8834,7 +8831,7 @@ msgstr ""
 msgid "View response videos"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2243
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:2128
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:2242
 msgid "View teletext..."
 msgstr ""
@@ -8852,13 +8849,13 @@ msgstr ""
 msgid "Views: "
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:289
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:302
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:289
 msgid "Voltage mode"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/ChannelSelection.py:964
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:382
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:395
 #: ../enigma2_experimental/lib/python/Components/ServiceScan.py:49
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/plugin.py:482
 #: ../enigma2_master/lib/python/Screens/ChannelSelection.py:964
@@ -9004,7 +9001,7 @@ msgid ""
 "Press exit to get back to the input field."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1069
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1104
 #: ../enigma2_master/lib/python/Components/NimManager.py:1069
 msgid "West"
 msgstr ""
@@ -9071,7 +9068,7 @@ msgstr ""
 msgid "Wizard"
 msgstr ""
 
-#: ../enigma2_experimental/RecordTimer.py:364
+#: ../enigma2_experimental/RecordTimer.py:373
 #: ../enigma2_master/RecordTimer.py:364
 msgid "Write error while recording. Disk full?\n"
 msgstr ""
@@ -9102,7 +9099,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/Ci.py:27
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:168
 #: ../enigma2_experimental/lib/python/Screens/InfoBar.py:173
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:401
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/CrashlogAutoSubmit/plugin.py:275
 #: ../enigma2_experimental/lib/python/Plugins/SystemPlugins/WirelessLan/plugin.py:270
 #: ../enigma2_master/lib/python/Screens/Ci.py:25
@@ -9124,7 +9121,7 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:388
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:401
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:389
 msgid "Yes to all"
 msgstr ""
@@ -9300,9 +9297,9 @@ msgstr ""
 msgid "Zap back to service before satfinder?"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:393
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:429
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:450
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:406
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:442
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:463
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:363
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:428
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:449
@@ -9480,8 +9477,8 @@ msgid "add to parental protection"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:63
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:530
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1327
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:543
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1387
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:63
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:529
 #: ../enigma2_master/lib/python/Components/NimManager.py:1327
@@ -9515,6 +9512,7 @@ msgstr ""
 msgid "audio track (%s) language"
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:52
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:117
 #: ../enigma2_master/lib/python/Plugins/Extensions/DVDBurn/ProjectSettings.py:117
 msgid "audio tracks"
@@ -9642,6 +9640,7 @@ msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1356
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1412
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:295
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1344
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1400
 msgid "connected"
@@ -9709,7 +9708,7 @@ msgstr ""
 msgid "delete..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/config.py:448
+#: ../enigma2_experimental/lib/python/Components/config.py:449
 #: ../enigma2_master/lib/python/Components/config.py:448
 #: ../enigma2_plugins/autotimer/src/AutoTimerImporter.py:128
 msgid "disable"
@@ -9721,7 +9720,7 @@ msgid "disable move mode"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1185
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1394
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1454
 #: ../enigma2_experimental/lib/python/Components/TimerList.py:69
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1174
 #: ../enigma2_master/lib/python/Components/NimManager.py:1394
@@ -9779,12 +9778,12 @@ msgstr ""
 msgid "edit services"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:516
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:549
 #: ../enigma2_master/lib/python/Components/NimManager.py:516
 msgid "empty"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/config.py:448
+#: ../enigma2_experimental/lib/python/Components/config.py:449
 #: ../enigma2_master/lib/python/Components/config.py:448
 #: ../enigma2_plugins/autotimer/src/AutoTimerImporter.py:128
 msgid "enable"
@@ -9806,9 +9805,9 @@ msgid "enable move mode"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/NetworkSetup.py:1181
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:535
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1341
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1381
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:548
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1401
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1441
 #: ../enigma2_master/lib/python/Screens/NetworkSetup.py:1170
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:534
 #: ../enigma2_master/lib/python/Components/NimManager.py:1341
@@ -9854,8 +9853,8 @@ msgid "enter hidden network SSID"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:68
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:495
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1329
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:508
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1389
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:68
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:494
 #: ../enigma2_master/lib/python/Components/NimManager.py:1329
@@ -10073,12 +10072,12 @@ msgstr ""
 msgid "jump to listend"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1998
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1883
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1997
 msgid "jump to next marked position"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1997
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1882
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1996
 msgid "jump to previous marked position"
 msgstr ""
@@ -10088,7 +10087,7 @@ msgstr ""
 msgid "leave movie player..."
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1782
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:80
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1781
 msgid "left"
 msgstr ""
@@ -10134,16 +10133,16 @@ msgid "locked"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:72
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:494
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1332
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:507
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1392
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:72
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:493
 #: ../enigma2_master/lib/python/Components/NimManager.py:1332
 msgid "loopthrough to"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:526
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1065
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:539
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1100
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:525
 #: ../enigma2_master/lib/python/Components/NimManager.py:1065
 msgid "manual"
@@ -10264,7 +10263,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:928
 #: ../enigma2_experimental/lib/python/Screens/SleepTimerEdit.py:92
 #: ../enigma2_experimental/lib/python/Screens/TimerEntry.py:113
-#: ../enigma2_experimental/lib/python/Components/config.py:438
+#: ../enigma2_experimental/lib/python/Components/config.py:439
 #: ../enigma2_master/lib/python/Screens/MessageBox.py:44
 #: ../enigma2_master/lib/python/Screens/MessageBox.py:46
 #: ../enigma2_master/lib/python/Screens/ScanSetup.py:519
@@ -10322,7 +10321,7 @@ msgid "none"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:61
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:499
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:512
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:61
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:498
 msgid "not configured"
@@ -10333,16 +10332,16 @@ msgstr ""
 msgid "not locked"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1123
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1158
 #: ../enigma2_master/lib/python/Components/NimManager.py:1123
 msgid "not used"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:533
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1067
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1326
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1342
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1382
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:546
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1102
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1386
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1402
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1442
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:532
 #: ../enigma2_master/lib/python/Components/NimManager.py:1067
 #: ../enigma2_master/lib/python/Components/NimManager.py:1326
@@ -10365,7 +10364,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:610
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:617
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:640
-#: ../enigma2_experimental/lib/python/Components/config.py:443
+#: ../enigma2_experimental/lib/python/Components/config.py:444
 #: ../enigma2_experimental/lib/python/Components/UsageConfig.py:28
 #: ../enigma2_master/lib/python/Screens/ScanSetup.py:552
 #: ../enigma2_master/lib/python/Screens/ScanSetup.py:587
@@ -10380,7 +10379,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:611
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:618
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:641
-#: ../enigma2_experimental/lib/python/Components/config.py:443
+#: ../enigma2_experimental/lib/python/Components/config.py:444
 #: ../enigma2_experimental/lib/python/Components/UsageConfig.py:28
 #: ../enigma2_master/lib/python/Screens/ScanSetup.py:553
 #: ../enigma2_master/lib/python/Screens/ScanSetup.py:588
@@ -10574,7 +10573,7 @@ msgstr ""
 msgid "rewind to the previous chapter"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1782
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:80
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1781
 msgid "right"
 msgstr ""
@@ -10618,8 +10617,8 @@ msgid "second"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:70
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:496
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1330
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:509
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1390
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:70
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:495
 #: ../enigma2_master/lib/python/Components/NimManager.py:1330
@@ -10793,8 +10792,8 @@ msgid "shutdown"
 msgstr ""
 
 #: ../enigma2_experimental/lib/python/Screens/Satconfig.py:62
-#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:528
-#: ../enigma2_experimental/lib/python/Components/NimManager.py:1327
+#: ../enigma2_experimental/lib/python/Screens/Satconfig.py:541
+#: ../enigma2_experimental/lib/python/Components/NimManager.py:1387
 #: ../enigma2_experimental/lib/python/Components/ParentalControl.py:26
 #: ../enigma2_experimental/lib/python/Plugins/Extensions/PicturePlayer/plugin.py:23
 #: ../enigma2_master/lib/python/Screens/Satconfig.py:62
@@ -10840,6 +10839,7 @@ msgstr ""
 msgid "special characters"
 msgstr ""
 
+#: ../enigma2_experimental/lib/python/Components/RecordingConfig.py:12
 #: ../enigma2_experimental/lib/python/Components/UsageConfig.py:31
 #: ../enigma2_master/lib/python/Components/UsageConfig.py:31
 #: ../enigma2_plugins/autotimer/src/AutoTimerEditor.py:238
@@ -10867,7 +10867,7 @@ msgstr ""
 msgid "start timeshift"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1782
+#: ../enigma2_experimental/lib/python/Screens/AudioSelection.py:80
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1781
 msgid "stereo"
 msgstr ""
@@ -10959,7 +10959,7 @@ msgstr ""
 msgid "this service is protected by a parental control pin"
 msgstr ""
 
-#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1999
+#: ../enigma2_experimental/lib/python/Screens/InfoBarGenerics.py:1884
 #: ../enigma2_master/lib/python/Screens/InfoBarGenerics.py:1998
 msgid "toggle a cut mark at the current position"
 msgstr ""
@@ -11080,7 +11080,7 @@ msgstr ""
 #: ../enigma2_experimental/lib/python/Screens/ScanSetup.py:928
 #: ../enigma2_experimental/lib/python/Screens/SleepTimerEdit.py:90
 #: ../enigma2_experimental/lib/python/Screens/TimerEntry.py:113
-#: ../enigma2_experimental/lib/python/Components/config.py:438
+#: ../enigma2_experimental/lib/python/Components/config.py:439
 #: ../enigma2_master/lib/python/Screens/MessageBox.py:44
 #: ../enigma2_master/lib/python/Screens/MessageBox.py:46
 #: ../enigma2_master/lib/python/Screens/ScanSetup.py:519
@@ -11303,6 +11303,10 @@ msgstr ""
 
 #: ../enigma2_experimental/data/ ../enigma2_master/data/
 msgid "Common Interface"
+msgstr ""
+
+#: ../enigma2_experimental/data/
+msgid "Composition of the recording filenames"
 msgstr ""
 
 #: ../enigma2_experimental/data/ ../enigma2_master/data/

@@ -41,6 +41,10 @@ enigma2.pot:
 	mv enigma2uniq.pot enigma2.pot
 
 %.mo: %.po
+	if [ -f pli_$< ] ; then \
+		mv $< dmm_$< ; \
+		msgcat --use-first -o $< pli_$< dmm_$< ; \
+	fi
 	$(MSGFMT) -o $@ $<
 
 %.po:
