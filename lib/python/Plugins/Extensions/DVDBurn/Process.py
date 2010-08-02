@@ -230,6 +230,16 @@ class RemoveESFiles(Task):
 		self.args += self.demux_task.generated_files
 		self.args += [self.demux_task.cutfile]
 
+class ReplexTask(Task):
+	def __init__(self, job, outputfile, inputfile):
+		Task.__init__(self, job, "ReMux TS into PS")
+		self.weighting = 1000
+		self.setTool("replex")
+		self.args += ["-t", "DVD", "-j", "-o", outputfile, inputfile]
+
+	def processOutputLine(self, line):
+		print "[ReplexTask] ", line[:-1]
+
 class DVDAuthorTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Authoring DVD")
@@ -872,10 +882,11 @@ class DVDJob(Job):
 				link_name =  self.workspace + "/source_title_%d.ts" % (self.i+1)
 				title_filename = self.workspace + "/dvd_title_%d.mpg" % (self.i+1)
 				LinkTS(self, self.title.inputfile, link_name)
-				demux = DemuxTask(self, link_name)
-				self.mplextask = MplexTask(self, outputfile=title_filename, demux_task=demux)
-				self.mplextask.end = self.estimateddvdsize
-				RemoveESFiles(self, demux)
+				ReplexTask(self, outputfile=title_filename, inputfile=link_name).end = self.estimateddvdsize
+				#demux = DemuxTask(self, link_name)
+				#self.mplextask = MplexTask(self, outputfile=title_filename, demux_task=demux)
+				#self.mplextask.end = self.estimateddvdsize
+				#RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 			output = self.project.settings.output.getValue()
