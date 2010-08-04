@@ -8,14 +8,20 @@ from enigma import iPlayableService
 from Tools.ISO639 import LanguageCodes
 
 config.subtitles = ConfigSubsection()
-config.subtitles.txt_subtitle_colors = ConfigYesNo(default = False)
-config.subtitles.txt_subtitle_original_position = ConfigYesNo(default = False)
-config.subtitles.txt_subtitle_position = ConfigSelection(
+config.subtitles.ttx_subtitle_colors = ConfigYesNo(default = False)
+config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
+config.subtitles.subtitle_position = ConfigSelection(
 	choices =
 		[("0", "0"),
-		("25", "25"),
+		("10", "10"),
+		("20", "20"),
+		("30", "30"),
+		("40", "40"),
 		("50", "50"),
-		("75", "75"),
+		("60", "60"),
+		("70", "70"),
+		("80", "80"),
+		("90", "90"),
 		("100", "100"),
 		("150", "150"),
 		("200", "200"),
@@ -85,9 +91,9 @@ class Subtitles(Screen, ConfigListScreen):
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles") + ' ' + LanguageCodes[x[4]][0], ConfigNothing(), x))
 					else:
 						list.append(getConfigListEntry(text+types[x[2]]+_("Subtitles")+" %d " % x[1] +x[4], ConfigNothing(), x))
-		list.append(getConfigListEntry(_("use original TXT colors"), config.subtitles.txt_subtitle_colors))
-		list.append(getConfigListEntry(_("use original TXT position"), config.subtitles.txt_subtitle_original_position))
-		list.append(getConfigListEntry(_("custom TXT subtitle position"), config.subtitles.txt_subtitle_position))
+		list.append(getConfigListEntry(_("use original TTX colors"), config.subtitles.ttx_subtitle_colors))
+		list.append(getConfigListEntry(_("use original TTX position"), config.subtitles.ttx_subtitle_original_position))
+		list.append(getConfigListEntry(_("custom subtitle position"), config.subtitles.subtitle_position))
 #		return _("Disable subtitles")
 		self["config"].list = list
 		self["config"].l.setList(list)

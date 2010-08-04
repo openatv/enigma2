@@ -31,8 +31,8 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	{
 		int width = size().width() - startX * 2;
 		std::string configvalue;
-		bool original_colors = (ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_colors", configvalue) >= 0 && configvalue == "True");
-		bool original_position = (ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_original_position", configvalue) >= 0 && configvalue == "True");
+		bool original_colors = (ePythonConfigQuery::getConfigValue("config.subtitles.ttx_subtitle_colors", configvalue) >= 0 && configvalue == "True");
+		bool original_position = (ePythonConfigQuery::getConfigValue("config.subtitles.ttx_subtitle_original_position", configvalue) >= 0 && configvalue == "True");
 		gRGB color = original_colors ? newpage.m_elements[0].m_color : gRGB(255, 255, 255);
 
 		if (!original_position)
@@ -41,7 +41,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 
 			int lowerborder = 50;
 			std::string subtitle_position;
-			if (!ePythonConfigQuery::getConfigValue("config.subtitles.txt_subtitle_position", subtitle_position))
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_position", subtitle_position))
 			{
 				lowerborder = atoi(subtitle_position.c_str());
 			}
@@ -146,7 +146,13 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 		{
 			eRect &area = m_pango_page.m_elements[i].m_area;
 			area.setLeft(startX);
-			area.setTop(size_per_element * i + startY);
+			int lowerborder=50;
+			std::string subtitle_position;
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_position", subtitle_position))
+			{
+				lowerborder = atoi(subtitle_position.c_str());
+			}
+			area.setTop(size_per_element * i + startY - lowerborder);
 			area.setWidth(width);
 			area.setHeight(size_per_element);
 			m_visible_region |= area;
@@ -250,7 +256,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					painter.setForegroundColor(element.m_color);
 				else
 					painter.setForegroundColor(subtitleStyles[face].foreground_color);
-				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_CENTER|gPainter::RT_HALIGN_CENTER, subtitleStyles[face].border_color, subtitleStyles[face].border_width);
+				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER, subtitleStyles[face].border_color, subtitleStyles[face].border_width);
 			}
 		}
 		else if (m_dvb_page_ok)
