@@ -5,22 +5,20 @@ from Screens.Mute import Mute
 from GlobalActions import globalActionMap
 from config import config, ConfigSubsection, ConfigInteger
 
-instance = None
-
 profile("VolumeControl")
 #TODO .. move this to a own .py file
 class VolumeControl:
+	instance = None
 	"""Volume control, handles volUp, volDown, volMute actions and display
 	a corresponding dialog"""
 	def __init__(self, session):
 		global globalActionMap
-		global instance
 		globalActionMap.actions["volumeUp"]=self.volUp
 		globalActionMap.actions["volumeDown"]=self.volDown
 		globalActionMap.actions["volumeMute"]=self.volMute
 
-		assert not instance, "only one VolumeControl instance is allowed!"
-		instance = self
+		assert not VolumeControl.instance, "only one VolumeControl instance is allowed!"
+		VolumeControl.instance = self
 
 		config.audio = ConfigSubsection()
 		config.audio.volume = ConfigInteger(default = 50, limits = (0, 100))
