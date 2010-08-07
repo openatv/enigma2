@@ -309,7 +309,7 @@ eStaticServiceDVBPVRInformation::eStaticServiceDVBPVRInformation(const eServiceR
 RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	ASSERT(ref == m_ref);
-	if (m_parser.m_name.size())
+	if (!m_parser.m_name.empty())
 		name = m_parser.m_name;
 	else
 	{
@@ -317,6 +317,7 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 		size_t n = name.rfind('/');
 		if (n != std::string::npos)
 			name = name.substr(n + 1);
+		m_parser.m_name = name;
 	}
 	return 0;
 }
@@ -346,6 +347,12 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	if (tstools.calcLen(len))
 		return 0;
 
+	if (m_parser.m_name.empty())
+	{
+		std::string name;
+		getName(ref, name); // This also updates m_parser.name
+	}
+	m_parser.m_data_ok = 1;
  	m_parser.m_length = len;
 	m_parser.m_filesize = s.st_size;
 	m_parser.updateMeta(ref.path);
