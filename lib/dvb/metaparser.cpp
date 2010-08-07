@@ -179,7 +179,7 @@ int eDVBMetaParser::parseRecordings(const std::string &filename)
 			m_filesize = fileSize(filename);
 			m_data_ok = 1;
 			fclose(f);
-			updateMeta(filename.c_str());
+			updateMeta(filename);
 			return 0;
 		}
 	}
