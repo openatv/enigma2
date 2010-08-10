@@ -8,25 +8,55 @@ from Components.Sources.Progress import Progress
 from Components.Sources.Boolean import Boolean
 from Components.Label import Label
 from Components.FileList import FileList
-from Components.Task import Task, Job, JobManager
+from Components.Task import Task, Job, job_manager, Condition
+from Screens.TaskView import JobView
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 from os import system
 from enigma import eConsoleAppContainer
-import re
+from Components.About import about
+
+class md5Postcondition(Condition):
+	def check(self, task):
+		print "md5Postcondition::check", task.returncode
+		return task.returncode == 0
+
+	def getErrorMessage(self, task):
+		if task.returncode == 1:
+			return _("The md5sum validation failed, the file may be corrupted!")
+		return "md5 error"
+
+class md5verify(Task):
+	def __init__(self, job, path, md5):
+		Task.__init__(self, job, "md5sum")
+		self.postconditions.append(md5Postcondition())
+		self.weighting = 5
+		self.cwd = path
+		self.setTool("md5sum")
+		self.args += ["-c", "-s"]
+		self.initial_input = md5
+	
+	def writeInput(self, input):
+		self.container.dataSent.append(self.md5ready)
+		print "[writeInput]", input
+		Task.writeInput(self, input)
+
+	def md5ready(self, retval):
+		self.container.sendEOF()
+
+	def processOutput(self, data):
+		print "[md5sum]",
 
 class writeNAND(Task):
-	def __init__(self,job,param,box):
+	def __init__(self, job, param, box):
 		Task.__init__(self,job, ("Writing image file to NAND Flash"))
-		self.setTool("/usr/lib/enigma2/python/Plugins/SystemPlugins/NFIFlash/mywritenand")
+		self.setTool("/usr/lib/enigma2/python/Plugins/SystemPlugins/NFIFlash/writenfi-mipsel-2.6.18-r1")
 		if box == "dm7025":
 			self.end = 256
 		elif box[:5] == "dm800":
 			self.end = 512
-		if box == "dm8000":
-			self.setTool("/usr/lib/enigma2/python/Plugins/SystemPlugins/NFIFlash/dm8000_writenand")
 		self.args += param
-		self.weighting = 1
+		self.weighting = 95
 
 	def processOutput(self, data):
 		print "[writeNand] " + data
@@ -38,149 +68,84 @@ class writeNAND(Task):
 		else:
 			self.output_line = data
 
-class NFISummary(Screen):
-	skin = (
-	"""<screen name="NFISummary" position="0,0" size="132,64" id="1">
-		<widget source="title" render="Label" position="2,0" size="120,14" valign="center" font="Regular;12" />
-		<widget source="content" render="Label" position="2,14" size="120,34" font="Regular;12" transparent="1" zPosition="1"  />
-		<widget source="job_progressbar" render="Progress" position="2,50" size="66,14" borderWidth="1" />
-		<widget source="job_progresslabel" render="Label" position="66,50" size="60,14" font="Regular;12" transparent="1" halign="right" zPosition="0" />
-	</screen>""",
-	"""<screen name="NFISummary" position="0,0" size="96,64" id="2">
-		<widget source="title" render="Label" position="0,0" size="96,14" valign="center" font="Regular;10" />
-		<widget source="content" render="Label" position="0,14" size="96,34" font="Regular;10" transparent="1" zPosition="1"  />
-		<widget source="job_progressbar" render="Progress" position="0,50" size="50,14" borderWidth="1" />
-		<widget source="job_progresslabel" render="Label" position="50,50" size="46,14" font="Regular;10" transparent="1" halign="right" zPosition="0" />
-	</screen>""")
-
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent)
-		self["title"] = StaticText(_("Image flash utility"))
-		self["content"] = StaticText(_("Please select .NFI flash image file from medium"))
-		self["job_progressbar"] = Progress()
-		self["job_progresslabel"] = StaticText("")
-
-	def setText(self, text):
-		self["content"].setText(text)
-
 class NFIFlash(Screen):
 	skin = """
-		<screen name="NFIFlash" position="90,95" size="560,420" title="Image flash utility">
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
-			<widget source="listlabel" render="Label" position="10,44" size="250,20" font="Regular;16" />
-			<widget name="filelist" position="0,68" size="260,260" scrollbarMode="showOnDemand" />
-			<widget source="infolabel" render="Label" position="270,44" size="280,284" font="Regular;16" />
-			<widget source="job_progressbar" render="Progress" position="10,374" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
-			<widget source="job_progresslabel" render="Label" position="180,378" zPosition="2" font="Regular;18" halign="center" transparent="1" size="200,22" foregroundColor="#000000" />
-			<widget source="statusbar" render="Label" position="10,404" size="540,16" font="Regular;16" foregroundColor="#cccccc" />
-		</screen>"""
+	<screen name="NFIFlash" position="center,center" size="610,410" title="Image flash utility" >
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
+		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
+		<ePixmap pixmap="skin_default/border_menu_350.png" position="5,50" zPosition="1" size="350,300" transparent="1" alphatest="on" />
+		<widget name="filelist" position="15,60" size="330,284" scrollbarMode="showOnDemand" />
+		<widget source="infolabel" render="Label" position="360,50" size="240,300" font="Regular;13" />
+		<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+	</screen>"""
 
-	def __init__(self, session, cancelable = True, close_on_finish = False):
-		self.skin = NFIFlash.skin
+	def __init__(self, session, destdir=None):
 		Screen.__init__(self, session)
 		
-		self["job_progressbar"] = Progress()
-		self["job_progresslabel"] = StaticText("")
-		
-		self["finished"] = Boolean()
+		self.box = HardwareInfo().get_device_name()
+		self.usbmountpoint = "/mnt/usb/"
 
-		self["infolabel"] = StaticText("")
-		self["statusbar"] = StaticText(_("Please select .NFI flash image file from medium"))
-		self["listlabel"] = StaticText(_("select .NFI flash file")+":")
-		
+		self["key_red"] = StaticText()
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions"],
-		{
-			"green": self.ok,
-			"yellow": self.reboot,
-			"blue": self.runWizard,
-			"ok": self.ok,
-			"left": self.left,
-			"right": self.right,
-			"up": self.up,
-			"down": self.down
-		}, -1)
-
-		currDir = "/media/usb/"
-		self.filelist = FileList(currDir, matchingPattern = "^.*\.(nfi|NFI)")
+		self.filelist = FileList(self.usbmountpoint, matchingPattern = "^.*\.(nfi|NFI)")
 		self["filelist"] = self.filelist
-		self.nfifile = ""
-		self.md5sum = ""
+		self["infolabel"] = StaticText("")
+
+		self["status"] = StaticText("currently installed image: %s" % (about.getImageVersionString()))
 		self.job = None
-		self.box = HardwareInfo().get_device_name()
-		self.configuration_restorable = None
-		self.wizard_mode = False
-		from enigma import eTimer
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.runWizard)
-		self.delayTimer.start(50,1)
 
-	def check_for_wizard(self):
-		if self["filelist"].getCurrentDirectory() is not None and fileExists(self["filelist"].getCurrentDirectory()+"wizard.nfo"):
-			self["key_blue"].text = _("USB stick wizard")
-			return True
-		else:
-			self["key_blue"].text = ""
-			return False
+		self["shortcuts"] = ActionMap(["OkCancelActions", "ColorActions", "ShortcutActions", "DirectionActions"],
+		{
+			"ok": self.keyOk,
+			"green": self.keyOk,
+			"up": self.keyUp,
+			"upRepeated": self.keyUp,
+			"downRepeated": self.keyDown,
+			"down": self.keyDown,
+			"left": self.keyLeft,
+			"yellow": self.reboot,
+			"right": self.keyRight
+		}, -1)
+		self.md5sum = ""
 
-	def runWizard(self):
-		if not self.check_for_wizard():
-			self.wizard_mode = False
-			return
-		wizardcontent = open(self["filelist"].getCurrentDirectory()+"/wizard.nfo", "r").readlines()
-		nfifile = None
-		for line in wizardcontent:
-			line = line.strip()
-			if line.startswith("image: "):
-				nfifile = self["filelist"].getCurrentDirectory()+line[7:]
-			if line.startswith("configuration: "):
-				backupfile = self["filelist"].getCurrentDirectory()+line[15:]
-				if fileExists(backupfile):
-					print "wizard configuration:", backupfile
-					self.configuration_restorable = backupfile
-				else:
-					self.configuration_restorable = None
-		if nfifile and fileExists(nfifile):
-			self.wizard_mode = True
-			print "wizard image:", nfifile
-			self.check_for_NFO(nfifile)
-			self.queryFlash()
-
-	def closeCB(self):
-		if ( self.job is None or self.job.status is not self.job.IN_PROGRESS ) and not self.no_autostart:
-			self.close()
-		#else:
-			#if self.cancelable:
-				#self.cancel()
-
-	def up(self):
+	def keyUp(self):
 		self["filelist"].up()
 		self.check_for_NFO()
 
-	def down(self):
+	def keyDown(self):
 		self["filelist"].down()
 		self.check_for_NFO()
 	
-	def right(self):
+	def keyRight(self):
 		self["filelist"].pageDown()
 		self.check_for_NFO()
 
-	def left(self):
+	def keyLeft(self):
 		self["filelist"].pageUp()
 		self.check_for_NFO()
 
+	def keyOk(self):
+		if self.job is None or self.job.status is not self.job.IN_PROGRESS:
+			if self["filelist"].canDescent(): # isDir
+				self["filelist"].descent()
+				self.check_for_NFO()
+			elif self["filelist"].getFilename():
+				self.session.openWithCallback(self.queryCB, MessageBox, _("Shall the USB stick wizard proceed and program the image file %s into flash memory?" % self.nfifile.rsplit('/',1)[-1]), MessageBox.TYPE_YESNO)
+
 	def check_for_NFO(self, nfifile=None):
-		self.session.summary.setText(self["filelist"].getFilename())
+		print "check_for_NFO", self["filelist"].getFilename(), self["filelist"].getCurrentDirectory()
+		self["infolabel"].text = ""
+		self["key_green"].text = ""
+
 		if nfifile is None:
-			self.session.summary.setText(self["filelist"].getFilename())
 			if self["filelist"].getFilename() is None:
 				return
 			if self["filelist"].getCurrentDirectory() is not None:
@@ -191,8 +156,10 @@ class NFIFlash(Screen):
 		if self.nfifile.upper().endswith(".NFI"):
 			self["key_green"].text = _("Flash")
 			nfofilename = self.nfifile[0:-3]+"nfo"
+			print nfofilename, fileExists(nfofilename)
 			if fileExists(nfofilename):
 				nfocontent = open(nfofilename, "r").read()
+				print "nfocontent:", nfocontent
 				self["infolabel"].text = nfocontent
 				pos = nfocontent.find("MD5:")
 				if pos > 0:
@@ -202,122 +169,27 @@ class NFIFlash(Screen):
 			else:
 				self["infolabel"].text = _("No details for this image file") + (self["filelist"].getFilename() or "")
 				self.md5sum = ""
-		else:
-			self["infolabel"].text = ""
-			self["key_green"].text = ""
-
-	def ok(self):
-		if self.job is None or self.job.status is not self.job.IN_PROGRESS:
-			if self["filelist"].canDescent(): # isDir
-				self["filelist"].descent()
-				self.session.summary.setText(self["filelist"].getFilename())
-				self.check_for_NFO()
-				self.check_for_wizard()
-			else:
-				self.queryFlash()
-	
-	def queryFlash(self):
-		fd = open(self.nfifile, 'r')
-		print fd
-		sign = fd.read(11)
-		print sign
-		if sign.find("NFI1" + self.box + "\0") == 0:
-			if self.md5sum != "":
-				self["statusbar"].text = ("Please wait for md5 signature verification...")
-				self.session.summary.setText(("Please wait for md5 signature verification..."))
-				self.container = eConsoleAppContainer()
-				self.container.setCWD(self["filelist"].getCurrentDirectory())
-				self.container.appClosed.append(self.md5finished)
-				self.container.dataSent.append(self.md5ready)
-				self.container.execute("md5sum -cw -")
-				self.container.write(self.md5sum)
-			else:
-				self.session.openWithCallback(self.queryCB, MessageBox, _("This .NFI file does not have a md5sum signature and is not guaranteed to work. Do you really want to burn this image to flash memory?"), MessageBox.TYPE_YESNO)
-		else:
-			self.session.open(MessageBox, (_("This .NFI file does not contain a valid %s image!") % (self.box.upper())), MessageBox.TYPE_ERROR)
-
-	def md5ready(self, retval):
-		self.container.sendEOF()
-
-	def md5finished(self, retval):
-		if retval==0:
-			if self.wizard_mode:
-				self.session.openWithCallback(self.queryCB, MessageBox, _("Shall the USB stick wizard proceed and program the image file %s into flash memory?" % self.nfifile.rsplit('/',1)[-1]), MessageBox.TYPE_YESNO)
-			else:
-				self.session.openWithCallback(self.queryCB, MessageBox, _("This .NFI file has a valid md5 signature. Continue programming this image to flash memory?"), MessageBox.TYPE_YESNO)
-		else:
-			self.session.openWithCallback(self.queryCB, MessageBox, _("The md5sum validation failed, the file may be corrupted! Are you sure that you want to burn this image to flash memory? You are doing this at your own risk!"), MessageBox.TYPE_YESNO)
 
 	def queryCB(self, answer):
 		if answer == True:
 			self.createJob()
-		else:
-			self["statusbar"].text = _("Please select .NFI flash image file from medium")
-			self.wizard_mode = False
 
 	def createJob(self):
 		self.job = Job("Image flashing job")
-		param = [self.nfifile]
-		writeNAND(self.job,param,self.box)
-		#writeNAND2(self.job,param)
-		#writeNAND3(self.job,param)
-		self.job.state_changed.append(self.update_job)
-		self.job.end = 540
-		self.cwd = self["filelist"].getCurrentDirectory()
-		self["job_progressbar"].range = self.job.end
-		self.startJob()
-
-	def startJob(self):
+		cwd = self["filelist"].getCurrentDirectory()
+		md5verify(self.job, cwd, self.md5sum)
+		writeNAND(self.job, [self.nfifile], self.box)
 		self["key_blue"].text = ""
 		self["key_yellow"].text = ""
 		self["key_green"].text = ""
-		#self["progress0"].show()
-		#self["progress1"].show()
+		job_manager.AddJob(self.job)
+		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable = False, backgroundable = False)
 
-		self.job.start(self.jobcb)
-
-	def update_job(self):
-		j = self.job
-		#print "[job state_changed]"
-		if j.status == j.IN_PROGRESS:
-			self.session.summary["job_progressbar"].value = j.progress
-			self.session.summary["job_progressbar"].range = j.end
-			self.session.summary["job_progresslabel"].text = "%.2f%%" % (100*j.progress/float(j.end))
-			self["job_progressbar"].range = j.end
-			self["job_progressbar"].value = j.progress
-			#print "[update_job] j.progress=%f, j.getProgress()=%f, j.end=%d, text=%f" % (j.progress, j.getProgress(), j.end,  (100*j.progress/float(j.end)))
-			self["job_progresslabel"].text = "%.2f%%" % (100*j.progress/float(j.end))
-			self.session.summary.setText(j.tasks[j.current_task].name)
-			self["statusbar"].text = (j.tasks[j.current_task].name)
-
-		elif j.status == j.FINISHED:
-			self["statusbar"].text = _("Writing NFI image file to flash completed")
-			self.session.summary.setText(_("NFI image flashing completed. Press Yellow to Reboot!"))
-			if self.wizard_mode:
-				self.restoreConfiguration()
-			self["key_yellow"].text = _("Reboot")
-
-		elif j.status == j.FAILED:
-			self["statusbar"].text = j.tasks[j.current_task].name + " " + _("failed")
-			self.session.open(MessageBox, (_("Flashing failed") + ":\n" + j.tasks[j.current_task].name + ":\n" + j.tasks[j.current_task].output_line), MessageBox.TYPE_ERROR)
-
-	def jobcb(self, jobref, fasel, blubber):
-		print "[jobcb] %s %s %s" % (jobref, fasel, blubber)
-		self["key_green"].text = _("Flash")
+	def flashed(self, bg):
+		print "[flashed]"
+		self["key_yellow"].text = _("Reboot")
 
 	def reboot(self, ret=None):
 		if self.job.status == self.job.FINISHED:
-			self["statusbar"].text = ("rebooting...")
+			self["status"].text = ("rebooting...")
 			TryQuitMainloop(self.session,2)
-
-	def restoreConfiguration(self):
-		if self.configuration_restorable:
-			from Screens.Console import Console
-			cmdlist = [ "mount /dev/mtdblock/3 /mnt/realroot -t jffs2", "tar -xzvf " + self.configuration_restorable + " -C /mnt/realroot/" ]
-			self.session.open(Console, title = "Restore running", cmdlist = cmdlist, finishedCallback = self.restore_finished, closeOnSuccess = True)
-
-	def restore_finished(self):
-		self.session.openWithCallback(self.reboot, MessageBox, _("USB stick wizard finished. Your dreambox will now restart with your new image!"), MessageBox.TYPE_INFO)
-
-	def createSummary(self):
-		return NFISummary
