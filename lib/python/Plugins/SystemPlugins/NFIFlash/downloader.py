@@ -1,72 +1,209 @@
 # -*- coding: utf-8 -*-
-from Components.MenuList import MenuList
+from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.HelpMenu import HelpableScreen
+from Screens.TaskView import JobView
+from Components.About import about
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Sources.Progress import Progress
+from Components.Sources.List import List
 from Components.Label import Label
 from Components.FileList import FileList
+from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText
 from Components.ScrollLabel import ScrollLabel
+from Components.Harddisk import harddiskmanager
+from Components.Task import Task, Job, job_manager, Condition
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
-from enigma import eConsoleAppContainer, eListbox, gFont, eListboxPythonMultiContent, \
-	RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eRect, eTimer
-from os import system, remove
-import re
-import urllib
 from Tools.Downloader import downloadWithProgress
+from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer
+from os import system, path, access, stat, remove, W_OK, R_OK
 from twisted.web import client
 from twisted.internet import reactor, defer
 from twisted.python import failure
-from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+import re
 
-class UserRequestedCancel(Exception):
-	pass
+class ImageDownloadJob(Job):
+	def __init__(self, url, filename, device=None, mountpoint="/"):
+		Job.__init__(self, _("Download .NFI-Files for USB-Flasher"))
+		if device:
+			MountTask(self, device, mountpoint)
+		ImageDownloadTask(self, url, mountpoint+filename)
+		ImageDownloadTask(self, url[:-4]+".nfo", mountpoint+filename[:-4]+".nfo")
+		if device:
+			UmountTask(self, mountpoint)
 
-class Feedlist(MenuList):
-	def __init__(self, list=[], enableWrapAround = False):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 16))
-		self.l.setItemHeight(22)
+	def retry(self):
+		self.tasks[0].args += self.tasks[0].retryargs
+		Job.retry(self)
 
-	def clear(self):
-		del self.list[:]
-		self.l.setList(self.list)
+class MountTask(Task):
+	def __init__(self, job, device, mountpoint):
+		Task.__init__(self, job, ("mount"))
+		self.setTool("mount")
+		self.args += [device, mountpoint, "-orw,sync"]
+		self.weighting = 1
 
-	def getNFIname(self):
-		l = self.l.getCurrentSelection()
-		return l and l[0][0]
+	def processOutput(self, data):
+		print "[MountTask] output:", data
 
-	def getNFIurl(self):
-		l = self.l.getCurrentSelection()
-		return l and l[0][1]
+class UmountTask(Task):
+	def __init__(self, job, mountpoint):
+		Task.__init__(self, job, ("mount"))
+		self.setTool("umount")
+		self.args += [mountpoint]
+		self.weighting = 1
 
-	def getNFOname(self):
-		l = self.l.getCurrentSelection()
-		return l and l[0][0][:-3]+"nfo"
+class DownloaderPostcondition(Condition):
+	def check(self, task):
+		return task.returncode == 0
 
-	def getNFOurl(self):
-		l = self.l.getCurrentSelection()
-		return l and l[0][1][:-3]+"nfo"
+	def getErrorMessage(self, task):
+		return self.error_message
+		
+class ImageDownloadTask(Task):
+	def __init__(self, job, url, path):
+		Task.__init__(self, job, _("Downloading"))
+		self.postconditions.append(DownloaderPostcondition())
+		self.job = job
+		self.url = url
+		self.path = path
+		self.error_message = ""
+		self.last_recvbytes = 0
+		self.error_message = None
+		
+	def run(self, callback):
+		self.callback = callback
+		self.download = downloadWithProgress(self.url,self.path)
+		self.download.addProgress(self.download_progress)
+		self.download.start().addCallback(self.download_finished).addErrback(self.download_failed)
+		print "[ImageDownloadTask] downloading", self.url, "to", self.path
 
-	def isValid(self):
-		l = self.l.getCurrentSelection()
-		if not l or l[0] == 0:
-			return False
+	def download_progress(self, recvbytes, totalbytes):
+		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
+		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
+			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
+			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
+			self.last_recvbytes = recvbytes
+		
+	def download_failed(self, failure_instance=None, error_message=""):
+		self.error_message = error_message
+		if error_message == "" and failure_instance is not None:
+			self.error_message = failure_instance.getErrorMessage()
+		print "[download_failed]", self.error_message
+		Task.processFinished(self, 1)
+		
+	def download_finished(self, string=""):
+		print "[download_finished]", string
+		Task.processFinished(self, 0)
+
+class StickWizardJob(Job):
+	def __init__(self, path):
+		Job.__init__(self, _("USB stick wizard"))
+		self.path = path
+		self.device = path
+		while self.device[-1:] == "/" or self.device[-1:].isdigit():
+			self.device = self.device[:-1]
+				
+		box = HardwareInfo().get_device_name()
+		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s.tar.bz2" % box
+		self.downloadfilename = "/tmp/dreambox-nfiflasher-%s.tar.bz2" % box
+		self.imagefilename = "/tmp/nfiflash_%s.img" % box
+		#UmountTask(self, device)
+		PartitionTask(self)
+		ImageDownloadTask(self, url, self.downloadfilename)
+		UnpackTask(self)
+		CopyTask(self)
+
+class PartitionTaskPostcondition(Condition):
+	def check(self, task):
+		return task.returncode == 0
+
+	def getErrorMessage(self, task):
+		return {
+			task.ERROR_BLKRRPART: ("Device or resource busy"),
+			task.ERROR_UNKNOWN: (task.errormsg)
+		}[task.error]
+		
+class PartitionTask(Task):
+	ERROR_UNKNOWN, ERROR_BLKRRPART = range(2)
+	def __init__(self, job):
+		Task.__init__(self, job, ("partitioning"))
+		self.postconditions.append(PartitionTaskPostcondition())
+		self.job = job		
+		self.setTool("sfdisk")
+		self.args += [self.job.device]
+		self.weighting = 10
+		self.initial_input = "0 - 0x6 *\n;\n;\n;\ny"
+		self.errormsg = ""
+	
+	def run(self, callback):
+		Task.run(self, callback)
+	
+	def processOutput(self, data):
+		print "[PartitionTask] output:", data
+		if data.startswith("BLKRRPART:"):
+			self.error = self.ERROR_BLKRRPART
 		else:
-			return True
+			self.error = self.ERROR_UNKNOWN
+			self.errormsg = data
 
-	def moveSelection(self,idx=0):
-		if self.instance is not None:
-			self.instance.moveSelectionTo(idx)
+class UnpackTask(Task):
+	def __init__(self, job):
+		Task.__init__(self, job, ("Unpacking USB flasher image..."))
+		self.job = job
+		self.setTool("tar")
+		self.args += ["-xjvf", self.job.downloadfilename]
+		self.weighting = 80
+		self.end = 80
+		self.delayTimer = eTimer()
+		self.delayTimer.callback.append(self.progress_increment)
+	
+	def run(self, callback):
+		Task.run(self, callback)
+		self.delayTimer.start(1000, False)
+		
+	def progress_increment(self):
+		self.progress += 1
+
+	def processOutput(self, data):
+		print "[UnpackTask] output: \'%s\'" % data
+		self.job.imagefilename = data
+	
+	def afterRun(self):
+		self.delayTimer.callback.remove(self.progress_increment)
+
+class CopyTask(Task):
+	def __init__(self, job):
+		Task.__init__(self, job, ("Copying USB flasher boot image to stick..."))
+		self.job = job
+		self.setTool("dd")
+		self.args += ["if=%s" % self.job.imagefilename, "of=%s1" % self.job.device]
+		self.weighting = 20
+		self.end = 20
+		self.delayTimer = eTimer()
+		self.delayTimer.callback.append(self.progress_increment)
+
+	def run(self, callback):
+		Task.run(self, callback)
+		self.delayTimer.start(100, False)
+		
+	def progress_increment(self):
+		self.progress += 1
+
+	def processOutput(self, data):
+		print "[CopyTask] output:", data
+
+	def afterRun(self):
+		self.delayTimer.callback.remove(self.progress_increment)
 
 class NFOViewer(Screen):
 	skin = """
-		<screen name="NFOViewer" position="110,115" size="540,400" title="Changelog viewer" >
-			<widget name="changelog" position="10,10" size="520,380" font="Regular;16" />
+		<screen name="NFOViewer" position="center,center" size="610,410" title="Changelog viewer" >
+			<widget name="changelog" position="10,10" size="590,380" font="Regular;16" />
 		</screen>"""
 
 	def __init__(self, session, nfo):
@@ -80,206 +217,37 @@ class NFOViewer(Screen):
 				"ok": self.exit,
 				"cancel": self.exit,
 				"down": self.pageDown,
-				"up": self.pageUp			
+				"up": self.pageUp
 			})
 	def pageUp(self):
 		self["changelog"].pageUp()
 
 	def pageDown(self):
 		self["changelog"].pageDown()
-			
+
 	def exit(self):
 		self.close(False)
 
-class NFIDownload(Screen):
-	LIST_SOURCE = 1
-	LIST_DEST = 2
-	skin = """
-		<screen name="NFIDownload" position="90,95" size="560,420" title="Image download utility">
-			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;19" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
-			
-			<widget source="label_top" render="Label" position="10,44" size="240,20" font="Regular;16" />
-			<widget name="feedlist" position="10,66" size="250,222" scrollbarMode="showOnDemand" />
-			<widget name="destlist" position="0,66" size="260,222" scrollbarMode="showOnDemand" />
-
-			<widget source="label_bottom" render="Label" position="10,312" size="240,18" font="Regular;16"/>
-			<widget source="path_bottom" render="Label" position="10,330" size="250,42" font="Regular;18" />
-			
-			<widget source="infolabel" render="Label" position="270,44" size="280,284" font="Regular;16" />
-			<widget source="job_progressbar" render="Progress" position="10,374" size="540,26" borderWidth="1" backgroundColor="#254f7497" />
-			<widget source="job_progresslabel" render="Label" position="130,378" zPosition="2" font="Regular;18" halign="center" transparent="1" size="300,22" foregroundColor="#000000" />
-			<widget source="statusbar" render="Label" position="10,404" size="540,16" font="Regular;16" foregroundColor="#cccccc" />
-		</screen>"""
-
-	def __init__(self, session, destdir="/tmp/"):
-		self.skin = NFIDownload.skin
-		Screen.__init__(self, session)
-		
-		self["job_progressbar"] = Progress()
-		self["job_progresslabel"] = StaticText()
-		
-		self["infolabel"] = StaticText()
-		self["statusbar"] = StaticText()
-		self["label_top"] = StaticText()
-		self["label_bottom"] = StaticText()
-		self["path_bottom"] = StaticText()
-		
-		self["key_green"] = StaticText()
-		self["key_yellow"] = StaticText()
-		self["key_blue"] = StaticText()
-
-		self["key_red"] = StaticText()
-
-		self["feedlist"] = Feedlist([0,(eListboxPythonMultiContent.TYPE_TEXT, 0, 0,250, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, "feed not available")])
-		self["destlist"] = FileList(destdir, showDirectories = True, showFiles = False)
-		self["destlist"].hide()
-
-		self.download_container = eConsoleAppContainer()
-		self.nfo = ""
-		self.nfofile = ""
-		self.feedhtml = ""
-		self.focus = None
-		self.download = None
-		self.box = HardwareInfo().get_device_name()
-		self.feed_base = "http://www.dreamboxupdate.com/opendreambox/1.5/%s/images/" % self.box
-		self.nfi_filter = "" # "release" # only show NFIs containing this string, or all if ""
-		self.wizard_mode = False
-
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "EPGSelectActions"],
-		{
-			"cancel": self.closeCB,
-			"red": self.closeCB,
-			"green": self.nfi_download,
-			"yellow": self.switchList,
-			"blue": self.askCreateUSBstick,
-			"prevBouquet": self.switchList,
-			"nextBouquet": self.switchList,
-			"ok": self.ok,
-			"left": self.left,
-			"right": self.right,
-			"up": self.up,
-			"upRepeated": self.up,
-			"downRepeated": self.down,
-			"down": self.down
-		}, -1)
-
-		self.feed_download()
-
-	def downloading(self, state=True):
-		if state is True:	
-			self["key_red"].text = _("Cancel")
-			self["key_green"].text = ""
-			self["key_yellow"].text = ""
-			self["key_blue"].text = ""
-		else:
-			self.download = None
-			self["key_red"].text = _("Exit")
-			if self["feedlist"].isValid():
-				self["key_green"].text = (_("Download"))
-				if self.focus is self.LIST_SOURCE:
-					self["key_yellow"].text = (_("Change dir."))
-				else:
-					self["key_yellow"].text = (_("Select image"))
-			self["key_blue"].text = (_("USB stick wizard"))
-
-	def switchList(self,to_where=None):
-		if self.download or not self["feedlist"].isValid():
-			return
-
-		self["job_progressbar"].value = 0
-		self["job_progresslabel"].text = ""
-
-		if to_where is None:
-			if self.focus is self.LIST_SOURCE:
-				to_where = self.LIST_DEST
-			if self.focus is self.LIST_DEST:
-				to_where = self.LIST_SOURCE
-
-		if to_where is self.LIST_DEST:
-			self.focus = self.LIST_DEST
-			self["statusbar"].text = _("Please select target directory or medium")
-			self["label_top"].text = _("choose destination directory")+":"
-			self["feedlist"].hide()
-			self["destlist"].show()
-			self["label_bottom"].text = _("Selected source image")+":"
-			self["path_bottom"].text = str(self["feedlist"].getNFIname())
-			self["key_yellow"].text = (_("Select image"))
-
-		elif to_where is self.LIST_SOURCE:
-			self.focus = self.LIST_SOURCE
-			self["statusbar"].text = _("Please choose .NFI image file from feed server to download")
-			self["label_top"].text = _("select image from server")+":"
-			self["feedlist"].show()
-			self["destlist"].hide()
-			self["label_bottom"].text = _("Destination directory")+":"
-			self["path_bottom"].text = str(self["destlist"].getCurrentDirectory())
-			self["key_yellow"].text = (_("Change dir."))
-
-	def up(self):
-		if self.download:
-			return
-		if self.focus is self.LIST_SOURCE:
-			self["feedlist"].up()
-			self.nfo_download()
-		if self.focus is self.LIST_DEST:
-			self["destlist"].up()
-
-	def down(self):
-		if self.download:
-			return
-		if self.focus is self.LIST_SOURCE:
-			self["feedlist"].down()
-			self.nfo_download()
-		if self.focus is self.LIST_DEST:
-			self["destlist"].down()
-
-	def left(self):
-		if self.download:
-			return
-		if self.focus is self.LIST_SOURCE:
-			self["feedlist"].pageUp()
-			self.nfo_download()
-		if self.focus is self.LIST_DEST:
-			self["destlist"].pageUp()
-
-	def right(self):
-		if self.download:
-			return
-		if self.focus is self.LIST_SOURCE:
-			self["feedlist"].pageDown()
-			self.nfo_download()
-		if self.focus is self.LIST_DEST:
-			self["destlist"].pageDown()
-
-	def ok(self):
-		if self.focus is self.LIST_SOURCE and self.nfo:
-			self.session.open(NFOViewer, self.nfo)
-		if self.download:
-			return
-		if self.focus is self.LIST_DEST:
-			if self["destlist"].canDescent():
-				self["destlist"].descent()
-
-	def feed_download(self):
-		self.downloading(True)
-		self.download = self.feed_download
-		client.getPage(self.feed_base).addCallback(self.feed_finished).addErrback(self.feed_failed)
+class feedDownloader:
+	def __init__(self, feed_base, box, OE_vers):
+		print "[feedDownloader::init] feed_base=%s, box=%s" % (feed_base, box)
+		self.feed_base = feed_base
+		self.OE_vers = OE_vers
+		self.box = box
+	
+	def getList(self, callback, errback):
+		self.urlbase = "%s/%s/%s/images/" % (self.feed_base, self.OE_vers, self.box)
+		print "[getList]", self.urlbase
+		self.callback = callback
+		self.errback = errback
+		client.getPage(self.urlbase).addCallback(self.feed_finished).addErrback(self.feed_failed)
 
 	def feed_failed(self, failure_instance):
-		print "[feed_failed] " + str(failure_instance)
-		self["infolabel"].text = _("Could not connect to Dreambox .NFI Image Feed Server:") + "\n" + failure_instance.getErrorMessage() + "\n\n" + _("Please check your network settings!")
-		self.downloading(False)
+		print "[feed_failed]", str(failure_instance)
+		self.errback(failure_instance.getErrorMessage())
 
 	def feed_finished(self, feedhtml):
-		print "[feed_finished] " + str(feedhtml)
-		self.downloading(False)
+		print "[feed_finished]"
 		fileresultmask = re.compile("<a class=[\'\"]nfi[\'\"] href=[\'\"](?P<url>.*?)[\'\"]>(?P<name>.*?.nfi)</a>", re.DOTALL)
 		searchresults = fileresultmask.finditer(feedhtml)
 		fileresultlist = []
@@ -287,378 +255,472 @@ class NFIDownload(Screen):
 			for x in searchresults:
 				url = x.group("url")
 				if url[0:7] != "http://":
-					url = self.feed_base + x.group("url")
+					url = self.urlbase + x.group("url")
 				name = x.group("name")
-				if name.find(self.nfi_filter) > -1:
-					entry = [[name, url],(eListboxPythonMultiContent.TYPE_TEXT, 0, 0,250, 30, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, name)]
-					print "adding to feedlist: " + str(entry)
-					fileresultlist.append(entry)
-				else:
-					print "NOT adding to feedlist: " + name
-			self["feedlist"].l.setList(fileresultlist)
-			self["feedlist"].moveSelection(0)
+				entry = (name, url)
+				fileresultlist.append(entry)
+		self.callback(fileresultlist, self.OE_vers)
 
-		if len(fileresultlist) > 0:
-			self.switchList(self.LIST_SOURCE)
-			self.nfo_download()
+class DeviceBrowser(Screen, HelpableScreen):
+	skin = """
+		<screen name="DeviceBrowser" position="center,center" size="520,430" title="Please select target medium" >
+			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
+			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
+			<widget source="message" render="Label" position="5,50" size="510,150" font="Regular;16" />
+			<widget name="filelist" position="5,210" size="510,220" scrollbarMode="showOnDemand" />
+		</screen>"""
+
+	def __init__(self, session, startdir, message="", showDirectories = True, showFiles = True, showMountpoints = True, matchingPattern = "", useServiceRef = False, inhibitDirs = False, inhibitMounts = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
+		Screen.__init__(self, session)
+
+		HelpableScreen.__init__(self)
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText()
+		self["message"] = StaticText(message)
+
+		self.filelist = FileList(startdir, showDirectories = showDirectories, showFiles = showFiles, showMountpoints = showMountpoints, matchingPattern = matchingPattern, useServiceRef = useServiceRef, inhibitDirs = inhibitDirs, inhibitMounts = inhibitMounts, isTop = isTop, enableWrapAround = enableWrapAround, additionalExtensions = additionalExtensions)
+		self["filelist"] = self.filelist
+
+		self["FilelistActions"] = ActionMap(["SetupActions", "ColorActions"],
+			{
+				"green": self.use,
+				"red": self.exit,
+				"ok": self.ok,
+				"cancel": self.exit
+			})
+		
+		hotplugNotifier.append(self.hotplugCB)
+		self.onShown.append(self.updateButton)
+		self.onClose.append(self.removeHotplug)
+
+	def hotplugCB(self, dev, action):
+		print "[hotplugCB]", dev, action
+		self.updateButton()
+	
+	def updateButton(self):
+		
+		if self["filelist"].getFilename() or self["filelist"].getCurrentDirectory():
+			self["key_green"].text = _("Use")
 		else:
-			self["infolabel"].text = _("Cannot parse feed directory")
+			self["key_green"].text = ""
+	
+	def removeHotplug(self):
+		print "[removeHotplug]"
+		hotplugNotifier.remove(self.hotplugCB)
 
-	def nfo_download(self):
-		print "[check_for_NFO]"
-		if self["feedlist"].isValid():
-			print "nfiname: " + self["feedlist"].getNFIname()
-			self["job_progressbar"].value = 0
-			self["job_progresslabel"].text = ""
-			if self["feedlist"].getNFIurl() is None:
-				self["key_green"].text = ""
-				return
-			self["key_green"].text = _("Download")
-			nfourl = self["feedlist"].getNFOurl()
-			print "downloading " + nfourl
-			self.download = self.nfo_download
-			self.downloading(True)
-			client.getPage(nfourl).addCallback(self.nfo_finished).addErrback(self.nfo_failed)
-			self["statusbar"].text = ("Downloading image description...")
-
-	def nfo_failed(self, failure_instance):
-		print "[nfo_failed] " + str(failure_instance)
-		self["infolabel"].text = _("No details for this image file") + "\n" + self["feedlist"].getNFIname()
-		self["statusbar"].text = ""
-		self.nfofilename = ""
-		self.nfo = ""
-		self.downloading(False)
-
-	def nfo_finished(self,nfodata=""):
-		print "[nfo_finished] " + str(nfodata)
-		self.downloading(False)
-		self.nfo = nfodata
-		if self.nfo != "":
-			self.nfofilename = self["destlist"].getCurrentDirectory() + '/' + self["feedlist"].getNFOname()
-			self["infolabel"].text = self.nfo
-		else:	
-			self.nfofilename = ""
-			self["infolabel"].text = _("No details for this image file")
-		self["statusbar"].text = _("Press OK to view full changelog")
-
-	def nfi_download(self):
-		if self["destlist"].getCurrentDirectory() is None:
-			self.switchList(self.LIST_TARGET)
-		if self["feedlist"].isValid():
-			url = self["feedlist"].getNFIurl()
-			self.nfilocal = self["destlist"].getCurrentDirectory()+'/'+self["feedlist"].getNFIname()
-			print "[nfi_download] downloading %s to %s" % (url, self.nfilocal)
-			self.download = downloadWithProgress(url,self.nfilocal)
-			self.download.addProgress(self.nfi_progress)
-			self["job_progressbar"].range = 1000
-			self.download.start().addCallback(self.nfi_finished).addErrback(self.nfi_failed)
-			self.downloading(True)
-
-	def nfi_progress(self, recvbytes, totalbytes):
-		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
-		self["job_progressbar"].value = int(1000*recvbytes/float(totalbytes))
-		self["job_progresslabel"].text = "%d of %d kBytes (%.2f%%)" % (recvbytes/1024, totalbytes/1024, 100*recvbytes/float(totalbytes))
-
-	def nfi_failed(self, failure_instance=None, error_message=""):
-		if error_message == "" and failure_instance is not None:
-			error_message = failure_instance.getErrorMessage()
-		print "[nfi_failed] " + error_message
-		if fileExists(self["destlist"].getCurrentDirectory()+'/'+self["feedlist"].getNFIname()):
-			message = "%s %s\n%s" % (_(".NFI Download failed:"), error_message, _("Remove the incomplete .NFI file?"))
-			self.session.openWithCallback(self.nfi_remove, MessageBox, message, MessageBox.TYPE_YESNO)
-		else:
-			message = "%s %s" % (_(".NFI Download failed:"),error_message)
-			self.session.open(MessageBox, message, MessageBox.TYPE_ERROR)
-			self.downloading(False)
-
-	def nfi_finished(self, string=""):
-		print "[nfi_finished] " + str(string)
-		if self.nfo != "":
-			self.nfofilename = self["destlist"].getCurrentDirectory() + '/' + self["feedlist"].getNFOname()
-			nfofd = open(self.nfofilename, "w")
-			if nfofd:
-				nfofd.write(self.nfo)
-				nfofd.close()
+	def ok(self):
+		if self.filelist.canDescent():
+			if self["filelist"].showMountpoints == True and self["filelist"].showDirectories == False:
+				self.use()
 			else:
-				print "couldn't save nfo file " + self.nfofilename
+				self.filelist.descent()
 
-			pos = self.nfo.find("MD5:")
-			if pos > 0 and len(self.nfo) >= pos+5+32:
-				self["statusbar"].text = ("Please wait for md5 signature verification...")
-				cmd = "md5sum -c -"
-				md5 = self.nfo[pos+5:pos+5+32] + "  " + self.nfilocal
-				print cmd, md5
-				self.download_container.setCWD(self["destlist"].getCurrentDirectory())
-				self.download_container.appClosed.append(self.md5finished)
-				self.download_container.execute(cmd)
-				self.download_container.write(md5)
-				self.download_container.dataSent.append(self.md5ready)
-			else:
-				self["statusbar"].text = "Download completed."
-				self.downloading(False)
-		else:
-			self["statusbar"].text = "Download completed."
-			self.downloading(False)
-			if self.wizard_mode:
-				self.configBackup()
+	def use(self):
+		print "[use]", self["filelist"].getCurrentDirectory(), self["filelist"].getFilename()
+		if self["filelist"].getCurrentDirectory() is not None:
+			if self.filelist.canDescent() and self["filelist"].getFilename() and len(self["filelist"].getFilename()) > len(self["filelist"].getCurrentDirectory()):
+				self.filelist.descent()
+			self.close(self["filelist"].getCurrentDirectory())
+		elif self["filelist"].getFilename():
+			self.close(self["filelist"].getFilename())
 
-	def md5ready(self, retval):
-		self.download_container.sendEOF()
+	def exit(self):
+		self.close(False)
 
-	def md5finished(self, retval):
-		print "[md5finished]: " + str(retval)
-		self.download_container.appClosed.remove(self.md5finished)
-		if retval==0:
-			self.downloading(False)
-			if self.wizard_mode:
-				self.configBackup()
-			else:
-				self["statusbar"].text = _(".NFI file passed md5sum signature check. You can safely flash this image!")
-				self.switchList(self.LIST_SOURCE)
-		else:
-			self.session.openWithCallback(self.nfi_remove, MessageBox, (_("The md5sum validation failed, the file may be downloaded incompletely or be corrupted!") + "\n" + _("Remove the broken .NFI file?")), MessageBox.TYPE_YESNO)
+(ALLIMAGES, RELEASE, EXPERIMENTAL, STICK_WIZARD, START) = range(5)
 
-	def nfi_remove(self, answer):
-		self.downloading(False)
-		if answer == True:
-			nfifilename =  self["destlist"].getCurrentDirectory()+'/'+self["feedlist"].getNFIname()
-			if fileExists(self.nfofilename):
-				remove(self.nfofilename)
-			if fileExists(nfifilename):
-				remove(nfifilename)
-		self.switchList(self.LIST_SOURCE)
+class NFIDownload(Screen):
+	skin = """
+	<screen name="NFIDownload" position="center,center" size="610,410" title="NFIDownload" >
+		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
+		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" />
+		<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" />
+		<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#a08500" transparent="1" />
+		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" />
+		<ePixmap pixmap="skin_default/border_menu_350.png" position="5,50" zPosition="1" size="350,300" transparent="1" alphatest="on" />
+		<widget source="menu" render="Listbox" position="15,60" size="330,290" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"templates": 
+					{"default": (25, [
+						MultiContentEntryText(pos = (2, 2), size = (330, 24), flags = RT_HALIGN_LEFT, text = 1), # index 0 is the MenuText,
+					], True, "showOnDemand")
+					},
+				"fonts": [gFont("Regular", 22)],
+				"itemHeight": 25
+				}
+			</convert>
+		</widget>
+		<widget source="menu" render="Listbox" position="360,50" size="240,300" scrollbarMode="showNever" selectionDisabled="1">
+			<convert type="TemplatedMultiContent">
+				{"templates":
+					{"default": (300, [
+						MultiContentEntryText(pos = (2, 2), size = (240, 300), flags = RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, text = 2), # index 2 is the Description,
+					], False, "showNever")
+					},	
+				"fonts": [gFont("Regular", 22)],
+				"itemHeight": 300
+				}
+			</convert>
+		</widget>
+		<widget source="status" render="Label" position="5,360" zPosition="10" size="600,50" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
+	</screen>"""
+		
+	def __init__(self, session, destdir=None):
+		Screen.__init__(self, session)
+		#self.skin_path = plugin_path
+		#self.menu = args
+		
+		self.box = HardwareInfo().get_device_name()
+		self.feed_base = "http://www.dreamboxupdate.com/opendreambox" #/1.5/%s/images/" % self.box	
+		self.usbmountpoint = "/mnt/usb/"
 
-	def askCreateUSBstick(self):
-		self.downloading()
-		self.imagefilename = "/tmp/nfiflash_" + self.box + ".img"
-		message = _("You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased.")
-		self.session.openWithCallback(self.flasherdownload_query, MessageBox, (message + '\n' + _("First we need to download the latest boot environment for the USB flasher.")), MessageBox.TYPE_YESNO)
+		self.menulist = []
 
-	def flasherdownload_query(self, answer):
-		if answer is False:
-			self.downloading(False)
-			self.switchList(self.LIST_SOURCE)
-			return
-		#url = self.feed_base + "/nfiflasher_" + self.box + ".tar.bz2"
-		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s.tar.bz2" % self.box
-		localfile = "/tmp/nfiflasher_image.tar.bz2"
-		print "[flasherdownload_query] downloading %s to %s" % (url, localfile)
-		self["statusbar"].text = ("Downloading %s..." % url)
-		self.download = downloadWithProgress(url,localfile)
-		self.download.addProgress(self.nfi_progress)
-		self["job_progressbar"].range = 1000
-		self.download.start().addCallback(self.flasherdownload_finished).addErrback(self.flasherdownload_failed)
+		self["menu"] = List(self.menulist)
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 
-	def flasherdownload_failed(self, failure_instance=None, error_message=""):
-		if error_message == "" and failure_instance is not None:
-			error_message = failure_instance.getErrorMessage()
-		print "[flasherdownload_failed] " + error_message
-		message = "%s %s" % (_("Download of USB flasher boot image failed: "),error_message)
-		self.session.open(MessageBox, message, MessageBox.TYPE_ERROR)
-		self.remove_img(True)
+		self["status"] = StaticText(_("Please wait... Loading list..."))
 
-	def flasherdownload_finished(self, string=""):
-		print "[flasherdownload_finished] " + str(string)	
+		self["shortcuts"] = ActionMap(["OkCancelActions", "ColorActions", "ShortcutActions", "DirectionActions"],
+		{
+			"ok": self.keyOk,
+			"green": self.keyOk,
+			"red": self.keyRed,
+			"blue": self.keyBlue,
+			"up": self.keyUp,
+			"upRepeated": self.keyUp,
+			"downRepeated": self.keyDown,
+			"down": self.keyDown,
+			"cancel": self.close,
+		}, -1)
+		self.onShown.append(self.go)
+		self.feedlists = [[],[],[]]
+		self.branch = START
 		self.container = eConsoleAppContainer()
-		self.container.appClosed.append(self.umount_finished)
 		self.container.dataAvail.append(self.tool_avail)
 		self.taskstring = ""
-		umountdevs = ""
-		from os import listdir
-		for device in listdir("/dev"):
-			if device[:2] == "sd" and device[-1:].isdigit():
-				umountdevs += "/dev/"+device
-		self.cmd = "umount " + umountdevs
-		print "executing " + self.cmd
-		self.container.execute(self.cmd)
+		self.image_idx = 0
+		self.nfofilename = ""
+		self.nfo = ""
+		self.target_dir = None
 
 	def tool_avail(self, string):
 		print "[tool_avail]" + string
 		self.taskstring += string
 
-	def umount_finished(self, retval):
-		self.container.appClosed.remove(self.umount_finished)
-		self.container.appClosed.append(self.dmesg_cleared)
-		self.taskstring = ""
-		self.cmd = "dmesg -c"
-		print "executing " + self.cmd
-		self.container.execute(self.cmd)
+	def go(self):
+		self.onShown.remove(self.go)
+		self["menu"].index = 0
+		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s-md5sums" % self.box
+		client.getPage(url).addCallback(self.md5sums_finished).addErrback(self.feed_failed)
 
-	def dmesg_cleared(self, answer):
-		self.container.appClosed.remove(self.dmesg_cleared)
-		self.msgbox = self.session.open(MessageBox, _("Please disconnect all USB devices from your Dreambox and (re-)attach the target USB stick (minimum size is 64 MB) now!"), MessageBox.TYPE_INFO)
-		hotplugNotifier.append(self.hotplugCB)
+	def md5sums_finished(self, data):
+		print "[md5sums_finished]", data
+		self.stickimage_md5 = data
+		self.checkUSBStick()
 
-	def hotplugCB(self, dev, action):
-		print "[hotplugCB]", dev, action
-		if dev.startswith("sd") and action == "add":
-			self.msgbox.close()
-			hotplugNotifier.remove(self.hotplugCB)
-			self.container.appClosed.append(self.dmesg_scanned)
-			self.taskstring = ""
-			self.cmd = "dmesg"
-			print "executing " + self.cmd
-			self.container.execute(self.cmd)
-
-	def dmesg_scanned(self, retval):
-		self.container.appClosed.remove(self.dmesg_scanned)
-		dmesg_lines = self.taskstring.splitlines()
-		self.devicetext = None
-		self.stickdevice = None
-		for i, line in enumerate(dmesg_lines):
-			if line.find("usb-storage: waiting for device") != -1 and len(dmesg_lines) > i+3:
-				self.devicetext = dmesg_lines[i+1].lstrip()+"\n"+dmesg_lines[i+3]
-			elif line.find("/dev/scsi/host") != -1:
-				self.stickdevice = line.split(":",1)[0].lstrip()
-
-		if retval != 0 or self.devicetext is None or self.stickdevice is None:
-			self.session.openWithCallback(self.remove_img, MessageBox, _("No useable USB stick found"), MessageBox.TYPE_ERROR)
+	def keyRed(self):
+		if self.branch == START:
+			self.close()
 		else:
-			self.session.openWithCallback(self.fdisk_query, MessageBox, (_("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % self.devicetext), MessageBox.TYPE_YESNO)
+			self.branch = START
+			self["menu"].setList(self.menulist)
+		#elif self.branch == ALLIMAGES or self.branch == STICK_WIZARD:
 
-	def fdisk_query(self, answer):
-		if answer == True and self.stickdevice:
-			self["statusbar"].text = ("Partitioning USB stick...")
-			self["job_progressbar"].range = 1000
-			self["job_progressbar"].value = 100
-			self["job_progresslabel"].text = "5.00%"
-			self.taskstring = ""
-			self.container.appClosed.append(self.fdisk_finished)
-			self.container.execute("fdisk " + self.stickdevice + "/disc")
-			self.container.write("d\n4\nd\n3\nd\n2\nd\nn\np\n1\n\n\nt\n6\nw\n")
-			self.delayTimer = eTimer()
-			self.delayTimer.callback.append(self.progress_increment)
-			self.delayTimer.start(105, False)
+	def keyBlue(self):
+		if self.nfo != "":
+			self.session.open(NFOViewer, self.nfo)
+
+	def keyOk(self):
+		print "[keyOk]", self["menu"].getCurrent()
+		current = self["menu"].getCurrent()
+		if current:
+			if self.branch == START:
+				currentEntry = current[0]
+				if currentEntry == RELEASE:
+					self.image_idx = 0
+					self.branch = RELEASE
+					self.askDestination()
+				elif currentEntry == EXPERIMENTAL:
+					self.image_idx = 0
+					self.branch = EXPERIMENTAL
+					self.askDestination()
+				elif currentEntry == ALLIMAGES:
+					self.branch = ALLIMAGES
+					self.listImages()
+				elif currentEntry == STICK_WIZARD:
+					self.askStartWizard()
+			elif self.branch == ALLIMAGES:
+				self.image_idx = self["menu"].getIndex()
+				self.askDestination()
+		self.updateButtons()
+
+	def keyUp(self):
+		self["menu"].selectPrevious()
+		self.updateButtons()
+
+	def keyDown(self):
+		self["menu"].selectNext()
+		self.updateButtons()
+		
+	def updateButtons(self):
+		current = self["menu"].getCurrent()
+		if current:
+			if self.branch == START:
+				self["key_red"].text = _("Close")
+				currentEntry = current[0]
+				if currentEntry in (RELEASE, EXPERIMENTAL):
+					self.nfo_download(currentEntry, 0)
+					self["key_green"].text = _("Download")
+				else:
+					self.nfofilename = ""
+					self.nfo = ""
+					self["key_blue"].text = ""
+					self["key_green"].text = _("continue")
+
+			elif self.branch == ALLIMAGES:
+				self["key_red"].text = _("Back")
+				self["key_green"].text = _("Download")
+				self.nfo_download(ALLIMAGES, self["menu"].getIndex())
+
+	def listImages(self):
+		print "[listImages]"
+		imagelist = []
+		for name, url in self.feedlists[ALLIMAGES]:
+			imagelist.append((url, name, _("Download %s from Server" ) % url, None))
+		self["menu"].setList(imagelist)
+	
+	def getUSBPartitions(self):
+		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+		print "[getUSBPartitions]", allpartitions
+		usbpartition = []
+		for x in allpartitions:
+			print x, x[1] == '/', x[0].find("USB"), access(x[1], R_OK)
+			if x[1] != '/' and x[0].find("USB") > -1:  # and access(x[1], R_OK) is True:
+				usbpartition.append(x)
+		return usbpartition
+				
+	def askDestination(self):
+		usbpartition = self.getUSBPartitions()
+		if len(usbpartition) == 1:
+			self.target_dir = usbpartition[0][1]
+			self.ackDestinationDevice(device_description=usbpartition[0][0])
 		else:
-			self.remove_img(True)
+			self.openDeviceBrowser()
+	
+	def openDeviceBrowser(self):
+		if self.branch != STICK_WIZARD:
+			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
+		if self.branch == STICK_WIZARD:
+			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=False, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/"])
 
-	def fdisk_finished(self, retval):
-		self.container.appClosed.remove(self.fdisk_finished)
-		self.delayTimer.stop()
-		if retval == 0:
-			if fileExists(self.imagefilename):
-				self.tar_finished(0)
-				self["job_progressbar"].value = 700
-			else:
-				self["statusbar"].text = ("Decompressing USB stick flasher boot image...")
-				self.taskstring = ""
-				self.container.appClosed.append(self.tar_finished)
-				self.container.setCWD("/tmp")
-				self.cmd = "tar -xjvf nfiflasher_image.tar.bz2"
-				self.container.execute(self.cmd)
-				print "executing " + self.cmd
-				self.delayTimer = eTimer()
-				self.delayTimer.callback.append(self.progress_increment)
-				self.delayTimer.start(105, False)
+	def DeviceBrowserClosed(self, path):
+		print "[DeviceBrowserClosed]", str(path)
+		self.target_dir = path
+		if path:
+			self.ackDestinationDevice()
 		else:
-                        print "fdisk failed: " + str(retval)
-			self.session.openWithCallback(self.remove_img, MessageBox, ("fdisk " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
-
-	def progress_increment(self):
-		newval = int(self["job_progressbar"].value) + 1
-		if newval < 950:
-			self["job_progressbar"].value = newval
-			self["job_progresslabel"].text = "%.2f%%" % (newval/10.0)
-
-	def tar_finished(self, retval):
-		self.delayTimer.stop()
-		if len(self.container.appClosed) > 0:
-			self.container.appClosed.remove(self.tar_finished)
-		if retval == 0:
-			self.imagefilename = "/tmp/nfiflash_" + self.box + ".img"
-			self["statusbar"].text = ("Copying USB flasher boot image to stick...")
-			self.taskstring = ""
-			self.container.appClosed.append(self.dd_finished)
-			self.cmd = "dd if=%s of=%s" % (self.imagefilename,self.stickdevice+"/part1")
-			self.container.execute(self.cmd)
-			print "executing " + self.cmd
-			self.delayTimer = eTimer()
-			self.delayTimer.callback.append(self.progress_increment)
-			self.delayTimer.start(105, False)
+			self.keyRed()
+	
+	def ackDestinationDevice(self, device_description=None):
+		if device_description == None:
+			dev = self.target_dir
 		else:
-			self.session.openWithCallback(self.remove_img, MessageBox, (self.cmd + " " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
+			dev = device_description
+		message = _("Do you want to download the image to %s ?") % (dev)
+		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.openDeviceBrowser), (_("Cancel"),self.keyRed)]
+		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
-	def dd_finished(self, retval):
-		self.delayTimer.stop()
-		self.container.appClosed.remove(self.dd_finished)
-		self.downloading(False)
-		if retval == 0:
-			self["job_progressbar"].value = 950
-			self["job_progresslabel"].text = "95.00%"
-			self["statusbar"].text = ("Remounting stick partition...")
-			self.taskstring = ""
-			self.container.appClosed.append(self.mount_finished)
-			self.cmd = "mount %s /mnt/usb -o rw,sync" % (self.stickdevice+"/part1")
-			self.container.execute(self.cmd)
-			print "executing " + self.cmd
+	def ackDestination_query(self, choice):
+		print "[ackDestination_query]", choice
+		if isinstance(choice, tuple):
+			choice[1]()
 		else:
-			self.session.openWithCallback(self.remove_img, MessageBox, (self.cmd + " " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
+			self.keyRed()
 
-	def mount_finished(self, retval):
-		self.container.dataAvail.remove(self.tool_avail)
-		self.container.appClosed.remove(self.mount_finished)
-		if retval == 0:
-			self["job_progressbar"].value = 1000
-			self["job_progresslabel"].text = "100.00%"
-			self["statusbar"].text = (".NFI Flasher bootable USB stick successfully created.")
-			self.session.openWithCallback(self.flasherFinishedCB, MessageBox, _("The USB stick is now bootable. Do you want to download the latest image from the feed server and save it on the stick?"), type = MessageBox.TYPE_YESNO)
-			self["destlist"].changeDir("/mnt/usb")
+	def ackedDestination(self):
+		print "[ackedDestination]", self.branch, self.target_dir, self.target_dir[8:]
+		self.container.setCWD("/mnt")
+		if self.target_dir[:8] == "/autofs/":
+			self.target_dir = "/dev/" + self.target_dir[8:-1]
+
+			if self.branch == STICK_WIZARD:
+				job = StickWizardJob(self.target_dir)
+				job_manager.AddJob(job)
+				self.session.openWithCallback(self.StickWizardCB, JobView, job)
+
+			elif self.branch != STICK_WIZARD:
+				url = self.feedlists[self.branch][self.image_idx][1]
+				filename = self.feedlists[self.branch][self.image_idx][0]
+				print "[getImage] start downloading %s to %s" % (url, path)
+				job = ImageDownloadJob(url, filename, self.target_dir, self.usbmountpoint)
+				job_manager.AddJob(job)
+				self.session.openWithCallback(self.ImageDownloadCB, JobView, job)
+
+	def StickWizardCB(self, ret=None):
+		self.session.open(MessageBox, _("The USB stick was prepared to be bootable.\nNow you can download an NFI image file!"), type = MessageBox.TYPE_INFO)
+		print "[StickWizardCB]", ret
+		if len(self.feedlists[ALLIMAGES]) == 0:
+			self.getFeed()
 		else:
-			self.session.openWithCallback(self.flasherFinishedCB, MessageBox, (self.cmd + " " + _("failed") + ":\n" + str(self.taskstring)), MessageBox.TYPE_ERROR)
-			self.remove_img(True)
+			self.setMenu()
 
-	def remove_img(self, answer):
-		if fileExists("/tmp/nfiflasher_image.tar.bz2"):
-			remove("/tmp/nfiflasher_image.tar.bz2")
-		if fileExists(self.imagefilename):
-			remove(self.imagefilename)
-		self.downloading(False)
-		self.switchList(self.LIST_SOURCE)
-
-	def flasherFinishedCB(self, answer):
-		if answer == True:
-			self.wizard_mode = True
-			self["feedlist"].moveSelection(0)
-			self["path_bottom"].text = str(self["destlist"].getCurrentDirectory())
-			self.nfo_download()
-			self.nfi_download()
-
-	def configBackup(self):
-		self.session.openWithCallback(self.runBackup, MessageBox, _("The wizard can backup your current settings. Do you want to do a backup now?"))
-
-	def runBackup(self, result=None):
-		from Tools.Directories import createDir, isMount, pathExists
-		from time import localtime
-		from datetime import date
-		from Screens.Console import Console
-		if result:
-			if isMount("/mnt/usb/"):
-				if (pathExists("/mnt/usb/backup") == False):
-					createDir("/mnt/usb/backup", True)
-				d = localtime()
-				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
-				self.backup_file = "backup/" + str(dt) + "_settings_backup.tar.gz"
-				self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + "/mnt/usb/" + self.backup_file + " /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"], finishedCallback = self.backup_finished, closeOnSuccess = True)
-		else:
-			self.backup_file = None
-			self.backup_finished(skipped=True)
-
-	def backup_finished(self, skipped=False):
-		if not skipped:
-			wizardfd = open("/mnt/usb/wizard.nfo", "w")
-			if wizardfd:
-				wizardfd.write("image: "+self["feedlist"].getNFIname()+'\n')
-				wizardfd.write("configuration: "+self.backup_file+'\n')
-				wizardfd.close()
+	def ImageDownloadCB(self, ret):
+		print "[ImageDownloadCB]", ret
 		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
 
-	def closeCB(self):
-		try:
-			self.download.stop()
-			#self.nfi_failed(None, "Cancelled by user request")
-			self.downloading(False)
-		except AttributeError:
+	def getFeed(self):
+		self.feedDownloader15 = feedDownloader(self.feed_base, self.box, OE_vers="1.5")
+		self.feedDownloader16 = feedDownloader(self.feed_base, self.box, OE_vers="1.6")
+		self.feedlists = [[],[],[]]
+		self.feedDownloader15.getList(self.gotFeed, self.feed_failed)
+		self.feedDownloader16.getList(self.gotFeed, self.feed_failed)
+		
+	def feed_failed(self, message=""):
+		self["status"].text = _("Could not connect to Dreambox .NFI Image Feed Server:") + "\n" + str(message) + "\n" + _("Please check your network settings!")
+
+	def gotFeed(self, feedlist, OE_vers):
+		print "[gotFeed]", OE_vers
+		releaselist = []
+		experimentallist = []
+		
+		for name, url in feedlist:
+			if name.find("release") > -1:
+				releaselist.append((name, url))
+			if name.find("experimental") > -1:
+				experimentallist.append((name, url))
+			self.feedlists[ALLIMAGES].append((name, url))
+		
+		if OE_vers == "1.6":
+			self.feedlists[RELEASE] = releaselist + self.feedlists[RELEASE]
+			self.feedlists[EXPERIMENTAL] = experimentallist + self.feedlists[RELEASE]
+		elif OE_vers == "1.5":
+			self.feedlists[RELEASE] = self.feedlists[RELEASE] + releaselist
+			self.feedlists[EXPERIMENTAL] = self.feedlists[EXPERIMENTAL] + experimentallist
+
+		self.setMenu()
+
+	def checkUSBStick(self):
+		self.target_dir = None
+		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+		print "[checkUSBStick] found partitions:", allpartitions
+		usbpartition = []
+		for x in allpartitions:
+			print x, x[1] == '/', x[0].find("USB"), access(x[1], R_OK)
+			if x[1] != '/' and x[0].find("USB") > -1:  # and access(x[1], R_OK) is True:
+				usbpartition.append(x)
+
+		print usbpartition
+		if len(usbpartition) == 1:
+			self.target_dir = usbpartition[0][1]
+			self.md5_passback = self.getFeed
+			self.md5_failback = self.askStartWizard
+			self.md5verify(self.stickimage_md5, self.target_dir)
+		elif usbpartition == []:
+			print "[NFIFlash] needs to create usb flasher stick first!"
+			self.askStartWizard()
+		else:
+			self.askStartWizard()
+
+	def askStartWizard(self):
+		self.branch = STICK_WIZARD
+		message = _("""This plugin creates a USB stick which can be used to update the firmware of your Dreambox in case it has no network connection or only WLAN access.
+First, you need to prepare a USB stick so that it is bootable.
+In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.
+If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""")
+		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/"])
+
+	def wizardDeviceBrowserClosed(self, path):
+		print "[wizardDeviceBrowserClosed]", path
+		self.target_dir = path
+		if path:
+			self.md5_passback = self.getFeed
+			self.md5_failback = self.wizardQuery
+			self.md5verify(self.stickimage_md5, self.target_dir)
+		else:
 			self.close()
+	
+	def wizardQuery(self):
+		print "[wizardQuery]"
+		description = self.target_dir
+		for name, dev in self.getUSBPartitions():
+			if dev == self.target_dir:
+				description = name
+		message = _("You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased.") + "\n"
+		message += _("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % description
+		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.askStartWizard), (_("Cancel"),self.close)]
+		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
+			
+	def setMenu(self):
+		self.menulist = []
+		try:
+			latest_release = "Release %s (Opendreambox 1.5)" % self.feedlists[RELEASE][0][0][-9:-4]
+			self.menulist.append((RELEASE, _("Get latest release image"), _("Download %s from Server" ) % latest_release, None))
+		except IndexError:
+			pass
+
+		try:
+			dat = self.feedlists[EXPERIMENTAL][0][0][-12:-4]
+			latest_experimental = "Experimental %s-%s-%s (Opendreambox 1.6)" % (dat[:4], dat[4:6], dat[6:])
+			self.menulist.append((EXPERIMENTAL, _("Get latest experimental image"), _("Download %s from Server") % latest_experimental, None))
+		except IndexError:
+			pass
+
+		self.menulist.append((ALLIMAGES, _("Choose image to download"), _("Select desired image from feed list" ), None))
+		self.menulist.append((STICK_WIZARD, _("USB stick wizard"), _("Prepare another USB stick for image flashing" ), None))
+		self["menu"].setList(self.menulist)
+		self["status"].text = _("Currently installed image") + ": %s" % (about.getImageVersionString()))
+		self.branch = START
+		self.updateButtons()
+
+	def nfo_download(self, branch, idx):
+		nfourl = (self.feedlists[branch][idx][1])[:-4]+".nfo"
+		self.nfofilename = (self.feedlists[branch][idx][0])[:-4]+".nfo"
+		print "[check_for_NFO]", nfourl
+		client.getPage(nfourl).addCallback(self.nfo_finished).addErrback(self.nfo_failed)
+
+	def nfo_failed(self, failure_instance):
+		print "[nfo_failed] " + str(failure_instance)
+		self["key_blue"].text = ""
+		self.nfofilename = ""
+		self.nfo = ""
+
+	def nfo_finished(self,nfodata=""):
+		print "[nfo_finished] " + str(nfodata)
+		self["key_blue"].text = _("Changelog viewer")
+		self.nfo = nfodata
+
+	def md5verify(self, md5, path):
+		cmd = "md5sum -c -s"
+		print "[verify_md5]", md5, path, cmd
+		self.container.setCWD(path)
+		self.container.appClosed.append(self.md5finished)
+		self.container.execute(cmd)
+		self.container.write(md5)
+		self.container.dataSent.append(self.md5ready)
+
+	def md5ready(self, retval):
+		self.container.sendEOF()
+
+	def md5finished(self, retval):
+		print "[md5finished]", str(retval)
+		self.container.appClosed.remove(self.md5finished)
+		self.container.dataSent.remove(self.md5ready)
+		if retval==0:
+			print "check passed! calling", repr(self.md5_passback)
+			self.md5_passback()
+		else:
+			print "check failed! calling", repr(self.md5_failback)
+			self.md5_failback()
 
 def main(session, **kwargs):
 	session.open(NFIDownload,"/home/root")
