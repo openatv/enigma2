@@ -515,13 +515,7 @@ class NFIDownload(Screen):
 			self.target_dir = usbpartition[0][1]
 			self.ackDestinationDevice(device_description=usbpartition[0][0])
 		else:
-			self.openDeviceBrowser()
-	
-	def openDeviceBrowser(self):
-		if self.branch != STICK_WIZARD:
 			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
-		if self.branch == STICK_WIZARD:
-			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=False, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/"])
 
 	def DeviceBrowserClosed(self, path):
 		print "[DeviceBrowserClosed]", str(path)
@@ -537,7 +531,7 @@ class NFIDownload(Screen):
 		else:
 			dev = device_description
 		message = _("Do you want to download the image to %s ?") % (dev)
-		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.openDeviceBrowser), (_("Cancel"),self.keyRed)]
+		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.askDestination), (_("Cancel"),self.keyRed)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
 	def ackDestination_query(self, choice):
@@ -637,7 +631,7 @@ class NFIDownload(Screen):
 First, you need to prepare a USB stick so that it is bootable.
 In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.
 If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""")
-		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/"])
+		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/","/autofs/sda1/","/media/hdd/","/media/net/","/media/usb/","/media/dvd/"])
 
 	def wizardDeviceBrowserClosed(self, path):
 		print "[wizardDeviceBrowserClosed]", path
@@ -678,7 +672,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.menulist.append((ALLIMAGES, _("Choose image to download"), _("Select desired image from feed list" ), None))
 		self.menulist.append((STICK_WIZARD, _("USB stick wizard"), _("Prepare another USB stick for image flashing" ), None))
 		self["menu"].setList(self.menulist)
-		self["status"].text = _("Currently installed image") + ": %s" % (about.getImageVersionString()))
+		self["status"].text = _("Currently installed image") + ": %s" % (about.getImageVersionString())
 		self.branch = START
 		self.updateButtons()
 
