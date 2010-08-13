@@ -196,6 +196,9 @@ class FileList(MenuList):
 				if (self.matchingPattern is None) or re_compile(self.matchingPattern).search(path):
 					self.list.append(FileEntryComponent(name = name, absolute = x , isDir = False))
 
+		if self.showMountpoints and len(self.list) == 0:
+			self.list.append(FileEntryComponent(name = _("nothing connected"), absolute = None, isDir = False))
+
 		self.l.setList(self.list)
 
 		if select is not None:
