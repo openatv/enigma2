@@ -16,7 +16,7 @@ from Components.MultiContent import MultiContentEntryText
 from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Task import Task, Job, job_manager, Condition
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, isMount
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
 from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer
@@ -30,6 +30,8 @@ class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
 		Job.__init__(self, _("Download .NFI-Files for USB-Flasher"))
 		if device:
+			if isMount(mountpoint):
+				UmountTask(self, mountpoint)
 			MountTask(self, device, mountpoint)
 		ImageDownloadTask(self, url, mountpoint+filename)
 		ImageDownloadTask(self, url[:-4]+".nfo", mountpoint+filename[:-4]+".nfo")
@@ -44,7 +46,9 @@ class MountTask(Task):
 	def __init__(self, job, device, mountpoint):
 		Task.__init__(self, job, ("mount"))
 		self.setTool("mount")
-		self.args += [device, mountpoint, "-orw,sync"]
+		options = "rw,sync"
+		self.mountpoint = mountpoint
+		self.args += [ device, mountpoint, "-o"+options ]
 		self.weighting = 1
 
 	def processOutput(self, data):
@@ -164,7 +168,7 @@ class UnpackTask(Task):
 	
 	def run(self, callback):
 		Task.run(self, callback)
-		self.delayTimer.start(1000, False)
+		self.delayTimer.start(950, False)
 		
 	def progress_increment(self):
 		self.progress += 1
@@ -549,28 +553,40 @@ class NFIDownload(Screen):
 
 			if self.branch == STICK_WIZARD:
 				job = StickWizardJob(self.target_dir)
+				job.afterEvent = "close"
 				job_manager.AddJob(job)
-				self.session.openWithCallback(self.StickWizardCB, JobView, job)
+				job_manager.failed_jobs = []
+				self.session.openWithCallback(self.StickWizardCB, JobView, job, afterEventChangeable = False)
 
 			elif self.branch != STICK_WIZARD:
 				url = self.feedlists[self.branch][self.image_idx][1]
 				filename = self.feedlists[self.branch][self.image_idx][0]
-				print "[getImage] start downloading %s to %s" % (url, path)
+				print "[getImage] start downloading %s to %s" % (url, filename)
 				job = ImageDownloadJob(url, filename, self.target_dir, self.usbmountpoint)
+				job.afterEvent = "close"
 				job_manager.AddJob(job)
-				self.session.openWithCallback(self.ImageDownloadCB, JobView, job)
+				job_manager.failed_jobs = []
+				self.session.openWithCallback(self.ImageDownloadCB, JobView, job, afterEventChangeable = False)
 
 	def StickWizardCB(self, ret=None):
-		self.session.open(MessageBox, _("The USB stick was prepared to be bootable.\nNow you can download an NFI image file!"), type = MessageBox.TYPE_INFO)
 		print "[StickWizardCB]", ret
-		if len(self.feedlists[ALLIMAGES]) == 0:
-			self.getFeed()
+		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
+		if len(job_manager.failed_jobs) == 0:
+			self.session.open(MessageBox, _("The USB stick was prepared to be bootable.\nNow you can download an NFI image file!"), type = MessageBox.TYPE_INFO)
+			if len(self.feedlists[ALLIMAGES]) == 0:
+				self.getFeed()
+			else:
+				self.setMenu()
 		else:
-			self.setMenu()
+			self.checkUSBStick()
 
 	def ImageDownloadCB(self, ret):
 		print "[ImageDownloadCB]", ret
-		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
+		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
+		if len(job_manager.failed_jobs) == 0:
+			self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
+		else:
+			self.branch = START
 
 	def getFeed(self):
 		self.feedDownloader15 = feedDownloader(self.feed_base, self.box, OE_vers="1.5")
