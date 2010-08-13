@@ -69,6 +69,12 @@ class PluginBrowser(Screen):
 		self.onShown.append(self.updateList)
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
+		self.onLayoutFinish.append(self.saveListsize)
+
+	def saveListsize(self):
+		listsize = self["list"].instance.size()
+		self.listWidth = listsize.width()
+		self.listHeight = listsize.height()
 
 	def createSummary(self):
 		return PluginBrowserSummary
@@ -156,15 +162,13 @@ class PluginDownloadBrowser(Screen):
 			self["text"] = Label(_("Getting plugin information. Please wait..."))
 		
 		self.run = 0
-
 		self.remainingdata = ""
-
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.go,
 			"back": self.requestClose,
 		})
-		
+
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
 
@@ -247,7 +251,10 @@ class PluginDownloadBrowser(Screen):
 		self.container.execute("ipkg list 'enigma2-plugin-*'")
 
 	def startRun(self):
+		listsize = self["list"].instance.size()
 		self["list"].instance.hide()
+		self.listWidth = listsize.width()
+		self.listHeight = listsize.height()
 		if self.type == self.DOWNLOAD:
 			if self.needupdate and not PluginDownloadBrowser.lastDownloadDate or (time() - PluginDownloadBrowser.lastDownloadDate) > 3600:
 				# Only update from internet once per hour
@@ -327,14 +334,14 @@ class PluginDownloadBrowser(Screen):
 			if not self.plugins.has_key(split[0]):
 				self.plugins[split[0]] = []
 				
-			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1]))
+			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 			
 		for x in self.plugins.keys():
 			if x in self.expanded:
-				list.append(PluginCategoryComponent(x, expandedIcon))
-				list.extend([PluginDownloadComponent(plugin[0], plugin[1]) for plugin in self.plugins[x]])
+				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
+				list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth) for plugin in self.plugins[x]])
 			else:
-				list.append(PluginCategoryComponent(x, expandableIcon))
+				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
 		self.list = list
 		self["list"].l.setList(list)
 
