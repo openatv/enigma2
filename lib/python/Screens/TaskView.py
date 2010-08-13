@@ -7,7 +7,7 @@ import Screens.Standby
 from Tools import Notifications
 
 class JobView(InfoBarNotifications, Screen, ConfigListScreen):
-	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True):
+	def __init__(self, session, job, parent=None, cancelable = True, backgroundable = True, afterEventChangeable = True):
 		from Components.Sources.StaticText import StaticText
 		from Components.Sources.Progress import Progress
 		from Components.Sources.Boolean import Boolean
@@ -50,11 +50,15 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 			shutdownString = _("shut down")
 		self.settings.afterEvent = ConfigSelection(choices = [("nothing", _("do nothing")), ("close", _("Close")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default = self.job.afterEvent or "nothing")
 		self.job.afterEvent = self.settings.afterEvent.getValue()
+		self.afterEventChangeable = afterEventChangeable
 		self.setupList()
 		self.state_changed()
 
 	def setupList(self):
-		self["config"].setList( [ getConfigListEntry(_("After event"), self.settings.afterEvent) ])
+		if self.afterEventChangeable:
+			self["config"].setList( [ getConfigListEntry(_("After event"), self.settings.afterEvent) ])
+		else:
+			self["config"].hide()
 		self.job.afterEvent = self.settings.afterEvent.getValue()
 
 	def keyLeft(self):
