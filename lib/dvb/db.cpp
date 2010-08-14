@@ -796,7 +796,13 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 		return NULL;
 	}
 	XMLTree tree;
-	tree.setFilename("/etc/tuxbox/satellites.xml");
+	const char* satellitesFilename = "/etc/enigma2/satellites.xml";
+	struct stat stat_dummy;
+	if (stat(satellitesFilename, &stat_dummy) != 0)
+	{
+		satellitesFilename = "/etc/tuxbox/satellites.xml";
+	}
+	tree.setFilename(satellitesFilename);
 	tree.read();
 	Element *root = tree.getRoot();
 	if (!root)
