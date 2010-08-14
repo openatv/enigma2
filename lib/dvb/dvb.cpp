@@ -82,8 +82,8 @@ eDVBResourceManager::eDVBResourceManager()
 	}
 
 	int fd = open("/proc/stb/info/model", O_RDONLY);
-	char tmp[255];
-	int rd = fd >= 0 ? read(fd, tmp, 255) : 0;
+	char tmp[16];
+	int rd = fd >= 0 ? read(fd, tmp, sizeof(tmp)) : 0;
 	if (fd >= 0)
 		close(fd);
 
