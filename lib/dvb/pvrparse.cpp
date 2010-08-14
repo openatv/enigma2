@@ -93,7 +93,7 @@ bool eMPEGStreamInformation::empty()
 void eMPEGStreamInformation::fixupDiscontinuties()
 {
 	m_timestamp_deltas.clear();
-	if (!m_access_points.size())
+	if (m_access_points.empty())
 		return;
 		
 //	eDebug("Fixing discontinuities ...");

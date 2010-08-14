@@ -24,13 +24,6 @@ def getConfigSatlist(orbpos, satlist):
 			break
 	return ConfigSatlist(satlist, default_orbpos)
 
-def tryOpen(filename):
-	try:
-		procFile = open(filename)
-	except IOError:
-		return None
-	return procFile
-
 class SecConfigure:
 	def getConfiguredSats(self):
 		return self.configuredSatellites
@@ -625,40 +618,41 @@ class NimManager:
 		# nim_slots is an array which has exactly one entry for each slot, even for empty ones.
 		self.nim_slots = [ ]
 
-		nimfile = tryOpen("/proc/bus/nim_sockets")
-
-		if nimfile is None:
+		try:
+			nimfile = open("/proc/bus/nim_sockets")
+		except IOError:
 			return
 
 		current_slot = None
 
 		entries = {}
-		for line in nimfile.readlines():
-			if line == "":
+		for line in nimfile:
+			if not line:
 				break
-			if line.strip().startswith("NIM Socket"):
-				parts = line.strip().split(" ")
+			line = line.strip()
+			if line.startswith("NIM Socket"):
+				parts = line.split(" ")
 				current_slot = int(parts[2][:-1])
 				entries[current_slot] = {}
-			elif line.strip().startswith("Type:"):
-				entries[current_slot]["type"] = str(line.strip()[6:])
-			elif line.strip().startswith("Name:"):
-				entries[current_slot]["name"] = str(line.strip()[6:])
-			elif line.strip().startswith("Has_Outputs:"):
-				input = str(line.strip()[len("Has_Outputs:") + 1:])
+			elif line.startswith("Type:"):
+				entries[current_slot]["type"] = str(line[6:])
+			elif line.startswith("Name:"):
+				entries[current_slot]["name"] = str(line[6:])
+			elif line.startswith("Has_Outputs:"):
+				input = str(line[len("Has_Outputs:") + 1:])
 				entries[current_slot]["has_outputs"] = (input == "yes")
-			elif line.strip().startswith("Internally_Connectable:"):
-				input = int(line.strip()[len("Internally_Connectable:") + 1:])
+			elif line.startswith("Internally_Connectable:"):
+				input = int(line[len("Internally_Connectable:") + 1:])
 				entries[current_slot]["internally_connectable"] = input
-			elif  line.strip().startswith("Mode"):
+			elif  line.startswith("Mode"):
 				# "Mode 0: DVB-T" -> ["Mode 0", " DVB-T"]
-				split = line.strip().split(":")
+				split = line.split(":")
 				# "Mode 0" -> ["Mode, "0"]
 				split2 = split[0].split(" ")
 				modes = entries[current_slot].get("multi_type", {})
-				modes[split2[1]] = split[1].strip()
+				modes[split2[1]] = split[1]
 				entries[current_slot]["multi_type"] = modes
-			elif line.strip().startswith("empty"):
+			elif line.startswith("empty"):
 				entries[current_slot]["type"] = None
 				entries[current_slot]["name"] = _("N/A")
 		nimfile.close()
@@ -738,7 +732,6 @@ class NimManager:
 					slots.remove(testnim)
 					break 
 		slots.sort()
-		
 		return slots
 	
 	def canEqualTo(self, slotid):
