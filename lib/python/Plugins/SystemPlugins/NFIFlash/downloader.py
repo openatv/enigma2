@@ -499,8 +499,16 @@ class NFIDownload(Screen):
 	def listImages(self):
 		print "[listImages]"
 		imagelist = []
+		mask = re.compile("%s/(?P<OE_vers>1\.\d)/%s/images/(?P<branch>.*?)-%s_(?P<version>.*?).nfi" % (self.feed_base, self.box, self.box), re.DOTALL)
 		for name, url in self.feedlists[ALLIMAGES]:
-			imagelist.append((url, name, _("Download %s from Server" ) % url, None))
+			result = mask.match(url)
+			if result:
+				if result.group("version").startswith("20"):
+					version = ( result.group("version")[:4]+'-'+result.group("version")[4:6]+'-'+result.group("version")[6:8] )
+				else:
+					version = result.group("version")
+				description = "\nOpendreambox %s\n%s image\n%s\n" % (result.group("OE_vers"), result.group("branch"), version)
+				imagelist.append((url, name, _("Download %s from Server" ) % description, None))
 		self["menu"].setList(imagelist)
 	
 	def getUSBPartitions(self):
