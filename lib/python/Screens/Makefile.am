@@ -1,7 +1,7 @@
 installdir = $(pkglibdir)/python/Screens
 
 install_PYTHON = \
-	ChannelSelection.py ClockDisplay.py ConfigMenu.py InfoBar.py Menu.py    \
+	ChannelSelection.py ClockDisplay.py ConfigMenu.py CopyFiles.py InfoBar.py Menu.py    \
 	MessageBox.py Screen.py ServiceScan.py TimerEdit.py \
 	MovieSelection.py Setup.py About.py HarddiskSetup.py FixedMenu.py \
 	Satconfig.py ScanSetup.py NetworkSetup.py Ci.py TimerEntry.py Volume.py \
