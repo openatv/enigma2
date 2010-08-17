@@ -123,7 +123,7 @@ void eMPEGStreamInformation::fixupDiscontinuties()
 		pts_t current = i->second - currentDelta;
 		pts_t diff = current - lastpts_t;
 		
-		if (llabs(diff) > (90000*5)) // 5sec diff
+		if (llabs(diff) > (90000*10)) // 10sec diff
 		{
 //			eDebug("%llx < %llx, have discont. new timestamp is %llx (diff is %llx)!", current, lastpts_t, i->second, diff);
 			currentDelta = i->second - lastpts_t; /* FIXME: should be the extrapolated new timestamp, based on the current rate */
