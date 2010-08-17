@@ -716,7 +716,7 @@ class InfoBarSeek:
 	SEEK_STATE_PAUSE = (1, 0, 0, "||")
 	SEEK_STATE_EOF = (1, 0, 0, "END")
 
-	def __init__(self, actionmap = "InfobarSeekActions", useSeekBackHack=True):
+	def __init__(self, actionmap = "InfobarSeekActions"):
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -773,20 +773,10 @@ class InfoBarSeek:
 		self.__seekableStatusChanged()
 
 	def makeStateForward(self, n):
-#		minspeed = config.seek.stepwise_minspeed.value
-#		repeat = int(config.seek.stepwise_repeat.value)
-#		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-#			return (0, n * repeat, repeat, ">> %dx" % n)
-#		else:
-			return (0, n, 0, ">> %dx" % n)
+		return (0, n, 0, ">> %dx" % n)
 
 	def makeStateBackward(self, n):
-#		minspeed = config.seek.stepwise_minspeed.value
-#		repeat = int(config.seek.stepwise_repeat.value)
-#		if minspeed != "Never" and n >= int(minspeed) and repeat > 1:
-#			return (0, -n * repeat, repeat, "<< %dx" % n)
-#		else:
-			return (0, -n, 0, "<< %dx" % n)
+		return (0, -n, 0, "<< %dx" % n)
 
 	def makeStateSlowMotion(self, n):
 		return (0, 0, n, "/%d" % n)
@@ -2084,20 +2074,21 @@ class InfoBarCueSheetSupport:
 		return True
 
 	def jumpPreviousMark(self):
-		# we add 2 seconds, so if the play position is <2s after
+		# we add 5 seconds, so if the play position is <5s after
 		# the mark, the mark before will be used
 		self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True)
 
 	def jumpNextMark(self):
-		if not self.jumpPreviousNextMark(lambda x: x):
+		if not self.jumpPreviousNextMark(lambda x: x-90000):
 			self.doSeek(-1)
 
 	def getNearestCutPoint(self, pts, cmp=abs, start=False):
 		# can be optimized
-		beforecut = False
+		beforecut = True
 		nearest = None
+		bestdiff = -1
+		instate = True
 		if start:
-			beforecut = True
 			bestdiff = cmp(0 - pts)
 			if bestdiff >= 0:
 				nearest = [0, False]
@@ -2106,14 +2097,19 @@ class InfoBarCueSheetSupport:
 				beforecut = False
 				if cp[1] == self.CUT_TYPE_IN:  # Start is here, disregard previous marks
 					diff = cmp(cp[0] - pts)
-					if diff >= 0:
+					if start and diff >= 0:
 						nearest = cp
 						bestdiff = diff
 					else:
 						nearest = None
-			if cp[1] in (self.CUT_TYPE_MARK, self.CUT_TYPE_LAST):
+						bestdiff = -1
+			if cp[1] == self.CUT_TYPE_IN:
+				instate = True
+			elif cp[1] == self.CUT_TYPE_OUT:
+				instate = False
+			elif cp[1] in (self.CUT_TYPE_MARK, self.CUT_TYPE_LAST):
 				diff = cmp(cp[0] - pts)
-				if diff >= 0 and (nearest is None or bestdiff > diff):
+				if instate and diff >= 0 and (nearest is None or bestdiff > diff):
 					nearest = cp
 					bestdiff = diff
 		return nearest
