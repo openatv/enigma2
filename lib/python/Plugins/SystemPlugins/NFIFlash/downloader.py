@@ -78,7 +78,9 @@ class ImageDownloadTask(Task):
 		self.error_message = ""
 		self.last_recvbytes = 0
 		self.error_message = None
-		
+		self.download = None
+		self.aborted = False
+
 	def run(self, callback):
 		self.callback = callback
 		self.download = downloadWithProgress(self.url,self.path)
@@ -86,23 +88,30 @@ class ImageDownloadTask(Task):
 		self.download.start().addCallback(self.download_finished).addErrback(self.download_failed)
 		print "[ImageDownloadTask] downloading", self.url, "to", self.path
 
+	def abort(self):
+		print "[ImageDownloadTask] aborting", self.url
+		if self.download:
+			self.download.stop()
+		self.aborted = True
+
 	def download_progress(self, recvbytes, totalbytes):
 		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
 		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
 			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
 			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
 			self.last_recvbytes = recvbytes
-		
+
 	def download_failed(self, failure_instance=None, error_message=""):
 		self.error_message = error_message
 		if error_message == "" and failure_instance is not None:
 			self.error_message = failure_instance.getErrorMessage()
-		print "[download_failed]", self.error_message
 		Task.processFinished(self, 1)
-		
+
 	def download_finished(self, string=""):
-		print "[download_finished]", string
-		Task.processFinished(self, 0)
+		if self.aborted:
+			self.finish(aborted = True)
+		else:
+			Task.processFinished(self, 0)
 
 class StickWizardJob(Job):
 	def __init__(self, path):
@@ -423,7 +432,10 @@ class NFIDownload(Screen):
 
 	def go(self):
 		self.onShown.remove(self.go)
-		self["menu"].index = 0
+		self.umountCallback = self.getMD5
+		self.umount()
+	
+	def getMD5(self):
 		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s-md5sums" % self.box
 		client.getPage(url).addCallback(self.md5sums_finished).addErrback(self.feed_failed)
 
@@ -578,7 +590,7 @@ class NFIDownload(Screen):
 
 	def StickWizardCB(self, ret=None):
 		print "[StickWizardCB]", ret
-		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
+#		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
 		if len(job_manager.failed_jobs) == 0:
 			self.session.open(MessageBox, _("The USB stick was prepared to be bootable.\nNow you can download an NFI image file!"), type = MessageBox.TYPE_INFO)
 			if len(self.feedlists[ALLIMAGES]) == 0:
@@ -586,15 +598,17 @@ class NFIDownload(Screen):
 			else:
 				self.setMenu()
 		else:
-			self.checkUSBStick()
+			self.umountCallback = self.checkUSBStick
+			self.umount()
 
 	def ImageDownloadCB(self, ret):
 		print "[ImageDownloadCB]", ret
-		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
+#		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
 		if len(job_manager.failed_jobs) == 0:
 			self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
 		else:
-			self.branch = START
+			self.umountCallback = self.keyRed
+			self.umount()
 
 	def getFeed(self):
 		self.feedDownloader15 = feedDownloader(self.feed_base, self.box, OE_vers="1.5")
@@ -655,7 +669,7 @@ class NFIDownload(Screen):
 First, you need to prepare a USB stick so that it is bootable.
 In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.
 If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""")
-		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/","/autofs/sda1/","/media/hdd/","/media/net/","/media/usb/","/media/dvd/"])
+		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/","/autofs/sda1/","/media/hdd/","/media/net/",self.usbmountpoint,"/media/dvd/"])
 
 	def wizardDeviceBrowserClosed(self, path):
 		print "[wizardDeviceBrowserClosed]", path
@@ -739,6 +753,18 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		else:
 			print "check failed! calling", repr(self.md5_failback)
 			self.md5_failback()
+
+	def umount(self):
+		cmd = "umount " + self.usbmountpoint
+		print "[umount]", cmd
+		self.container.setCWD('/')
+		self.container.appClosed.append(self.umountFinished)
+		self.container.execute(cmd)
+
+	def umountFinished(self, retval):
+		print "[umountFinished]", str(retval)
+		self.container.appClosed.remove(self.umountFinished)
+		self.umountCallback()
 
 def main(session, **kwargs):
 	session.open(NFIDownload,"/home/root")
