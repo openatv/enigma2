@@ -539,7 +539,10 @@ class NFIDownload(Screen):
 			self.target_dir = usbpartition[0][1]
 			self.ackDestinationDevice(device_description=usbpartition[0][0])
 		else:
-			self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
+			self.openDeviceBrowser()
+	
+	def openDeviceBrowser(self):
+		self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
 
 	def DeviceBrowserClosed(self, path):
 		print "[DeviceBrowserClosed]", str(path)
@@ -555,7 +558,7 @@ class NFIDownload(Screen):
 		else:
 			dev = device_description
 		message = _("Do you want to download the image to %s ?") % (dev)
-		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.askDestination), (_("Cancel"),self.keyRed)]
+		choices = [(_("Yes"), self.ackedDestination), (_("List of Storage Devices"),self.openDeviceBrowser), (_("Cancel"),self.keyRed)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
 	def ackDestination_query(self, choice):
@@ -566,27 +569,30 @@ class NFIDownload(Screen):
 			self.keyRed()
 
 	def ackedDestination(self):
-		print "[ackedDestination]", self.branch, self.target_dir, self.target_dir[8:]
+		print "[ackedDestination]", self.branch, self.target_dir
 		self.container.setCWD("/mnt")
 		if self.target_dir[:8] == "/autofs/":
 			self.target_dir = "/dev/" + self.target_dir[8:-1]
 
-			if self.branch == STICK_WIZARD:
-				job = StickWizardJob(self.target_dir)
-				job.afterEvent = "close"
-				job_manager.AddJob(job)
-				job_manager.failed_jobs = []
-				self.session.openWithCallback(self.StickWizardCB, JobView, job, afterEventChangeable = False)
+		if self.branch == STICK_WIZARD:
+			job = StickWizardJob(self.target_dir)
+			job.afterEvent = "close"
+			job_manager.AddJob(job)
+			job_manager.failed_jobs = []
+			self.session.openWithCallback(self.StickWizardCB, JobView, job, afterEventChangeable = False)
 
-			elif self.branch != STICK_WIZARD:
-				url = self.feedlists[self.branch][self.image_idx][1]
-				filename = self.feedlists[self.branch][self.image_idx][0]
-				print "[getImage] start downloading %s to %s" % (url, filename)
+		elif self.branch != STICK_WIZARD:
+			url = self.feedlists[self.branch][self.image_idx][1]
+			filename = self.feedlists[self.branch][self.image_idx][0]
+			print "[getImage] start downloading %s to %s" % (url, filename)
+			if self.target_dir.startswith("/dev/"):
 				job = ImageDownloadJob(url, filename, self.target_dir, self.usbmountpoint)
-				job.afterEvent = "close"
-				job_manager.AddJob(job)
-				job_manager.failed_jobs = []
-				self.session.openWithCallback(self.ImageDownloadCB, JobView, job, afterEventChangeable = False)
+			else:
+				job = ImageDownloadJob(url, filename, None, self.target_dir)
+			job.afterEvent = "close"
+			job_manager.AddJob(job)
+			job_manager.failed_jobs = []
+			self.session.openWithCallback(self.ImageDownloadCB, JobView, job, afterEventChangeable = False)
 
 	def StickWizardCB(self, ret=None):
 		print "[StickWizardCB]", ret
