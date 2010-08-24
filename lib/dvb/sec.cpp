@@ -212,7 +212,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				eSecDebugNoSimulate("ret5 %d", ret);
 
-				if (ret && lnb_param.SatCR_idx != -1)
+				if (ret && lnb_param.SatCR_idx == -1)
 				{
 					int lof = sat.frequency > lnb_param.m_lof_threshold ?
 						lnb_param.m_lof_hi : lnb_param.m_lof_lo;
