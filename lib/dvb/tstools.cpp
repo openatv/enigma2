@@ -698,9 +698,23 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 		else if (direction == +1)
 			direction = 0;
 	}
-			/* let's find the next frame after the given offset */
 	off_t start = offset;
 
+			/* backtrack to find the previous sequence start, in case of MPEG2 */
+	if ((data & 0xFF) == 0x00) {
+		do {
+			--start;
+			if (m_streaminfo.getStructureEntry(start, data, 0))
+			{
+				eDebug("get previous failed");
+				return -1;
+			}
+		} while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00) && ((data & 0xFF) != 0xB3)); /* sequence start or previous frame */
+		if ((data & 0xFF) != 0xB3)
+			start = offset;  /* Failed to find corresponding sequence start, so never mind */
+	}
+
+			/* let's find the next frame after the given offset */
 	do {
 		if (m_streaminfo.getStructureEntry(offset, data, 1))
 		{
@@ -716,8 +730,8 @@ int eDVBTSTools::findFrame(off_t &_offset, size_t &len, int &direction, int fram
 	} while (((data & 0xFF) != 9) && ((data & 0xFF) != 0x00)); /* next frame */
 
 			/* align to TS pkt start */
-//	start = start - (start % 188);
-//	offset = offset - (offset % 188);
+	start = start - (start % 188);
+	offset = offset - (offset % 188);
 
 	len = offset - start;
 	_offset = start;
