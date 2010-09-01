@@ -35,8 +35,8 @@ class ImageDownloadJob(Job):
 			MountTask(self, device, mountpoint)
 		ImageDownloadTask(self, url, mountpoint+filename)
 		ImageDownloadTask(self, url[:-4]+".nfo", mountpoint+filename[:-4]+".nfo")
-		if device:
-			UmountTask(self, mountpoint)
+		#if device:
+			#UmountTask(self, mountpoint)
 
 	def retry(self):
 		self.tasks[0].args += self.tasks[0].retryargs
@@ -611,10 +611,29 @@ class NFIDownload(Screen):
 		print "[ImageDownloadCB]", ret
 #		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
 		if len(job_manager.failed_jobs) == 0:
-			self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
+			self.session.openWithCallback(self.askBackupCB, MessageBox, _("The wizard can backup your current settings. Do you want to do a backup now?"), MessageBox.TYPE_YESNO)
 		else:
 			self.umountCallback = self.keyRed
 			self.umount()
+
+	def askBackupCB(self, ret):
+		if ret:
+			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+
+			class USBBackupScreen(BackupScreen):
+				def __init__(self, session, usbmountpoint):
+					BackupScreen.__init__(self, session, runBackup = True)
+					self.backuppath = usbmountpoint
+					self.fullbackupfilename = self.backuppath + "/" + self.backupfile
+
+			self.session.openWithCallback(self.showHint, USBBackupScreen, self.usbmountpoint)
+		else:
+			self.showHint()
+
+	def showHint(self, ret=None):
+		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
+		self.umountCallback = self.keyRed
+		self.umount()
 
 	def getFeed(self):
 		self.feedDownloader15 = feedDownloader(self.feed_base, self.box, OE_vers="1.5")
