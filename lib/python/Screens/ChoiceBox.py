@@ -31,7 +31,8 @@ class ChoiceBox(Screen):
 			pos += 1
 		self["list"] = ChoiceList(list = self.list, selection = selection)
 		self["summary_list"] = StaticText()
-		self.updateSummary()
+		self["summary_selection"] = StaticText()
+		self.updateSummary(selection)
 				
 		self["actions"] = NumberActionMap(["WizardActions", "InputActions", "ColorActions", "DirectionActions"], 
 		{
@@ -124,6 +125,7 @@ class ChoiceBox(Screen):
 			if pos > curpos-2 and pos < curpos+5:
 				if pos == curpos:
 					summarytext += ">"
+					self["summary_selection"].setText(entry[1])
 				else:
 					summarytext += entry[0]
 				summarytext += ' ' + entry[1] + '\n'
