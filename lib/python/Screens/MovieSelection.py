@@ -685,6 +685,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		current = self.getCurrent()
 		if current:
 			resetMoviePlayState(current.getPath() + ".cuts")
+			self["list"].invalidateCurrentItem() # trigger repaint
 
 	def moveMovie(self):
 		item = self.getCurrentSelection() 
