@@ -165,14 +165,14 @@ class MovieList(GUIComponent):
 			self.itemHeight = 25
 		self.l.setItemHeight(self.itemHeight)
 
+	def invalidateItem(self, index):
+		x = self.list[index]
+		self.list[index] = (x[0], x[1], x[2], None)
+		
+	def invalidateCurrentItem(self):
+		self.invalidateItem(self.getCurrentIndex())
+
 	def buildMovieListEntry(self, serviceref, info, begin, data):
-		try:
-			return self.really(serviceref, info, begin, data)
-		except:
-			import traceback
-			traceback.print_exc()
-			raise
-	def really(self, serviceref, info, begin, data):
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [ None ]
