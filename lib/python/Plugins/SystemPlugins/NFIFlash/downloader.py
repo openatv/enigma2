@@ -215,7 +215,7 @@ class CopyTask(Task):
 
 class NFOViewer(Screen):
 	skin = """
-		<screen name="NFOViewer" position="center,center" size="610,410" title="Changelog viewer" >
+		<screen name="NFOViewer" position="center,center" size="610,410" title="Changelog" >
 			<widget name="changelog" position="10,10" size="590,380" font="Regular;16" />
 		</screen>"""
 
@@ -631,7 +631,7 @@ class NFIDownload(Screen):
 			self.showHint()
 
 	def showHint(self, ret=None):
-		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and plug in the bootable USB stick.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
+		self.session.open(MessageBox, _("To update your Dreambox firmware, please follow these steps:\n1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n3) Wait for bootup and follow instructions of the wizard."), type = MessageBox.TYPE_INFO)
 		self.umountCallback = self.keyRed
 		self.umount()
 
@@ -690,8 +690,8 @@ class NFIDownload(Screen):
 
 	def askStartWizard(self):
 		self.branch = STICK_WIZARD
-		message = _("""This plugin creates a USB stick which can be used to update the firmware of your Dreambox in case it has no network connection or only WLAN access.
-First, you need to prepare a USB stick so that it is bootable.
+		message = _("""This plugin creates a USB stick which can be used to update the firmware of your Dreambox without the need for a network or WLAN connection.
+First, a USB stick needs to be prepared so that it becomes bootable.
 In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.
 If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""")
 		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/","/autofs/sda1/","/media/hdd/","/media/net/",self.usbmountpoint,"/media/dvd/"])
@@ -753,7 +753,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 
 	def nfo_finished(self,nfodata=""):
 		print "[nfo_finished] " + str(nfodata)
-		self["key_blue"].text = _("Changelog viewer")
+		self["key_blue"].text = _("Changelog")
 		self.nfo = nfodata
 
 	def md5verify(self, md5, path):
