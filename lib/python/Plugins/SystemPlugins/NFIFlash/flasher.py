@@ -2,6 +2,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Standby import TryQuitMainloop
+from Screens.Console import Console
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
@@ -13,7 +14,7 @@ from Screens.TaskView import JobView
 from Tools.Directories import fileExists
 from Tools.HardwareInfo import HardwareInfo
 from os import system
-from enigma import eConsoleAppContainer
+from enigma import eConsoleAppContainer, quitMainloop
 from Components.About import about
 
 class md5Postcondition(Condition):
@@ -95,11 +96,11 @@ class NFIFlash(Screen):
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self.filelist = FileList(self.usbmountpoint, matchingPattern = "^.*\.(nfi|NFI)")
+		self.filelist = FileList(self.usbmountpoint, matchingPattern = "^.*\.(nfi|NFI)", showDirectories = False, showMountpoints = False)
 		self["filelist"] = self.filelist
-		self["infolabel"] = StaticText("")
+		self["infolabel"] = StaticText()
 
-		self["status"] = StaticText("currently installed image: %s" % (about.getImageVersionString()))
+		self["status"] = StaticText(_("Please select an NFI file and press green key to flash!") + '\n' + _("currently installed image: %s") % (about.getImageVersionString()))
 		self.job = None
 
 		self["shortcuts"] = ActionMap(["OkCancelActions", "ColorActions", "ShortcutActions", "DirectionActions"],
@@ -115,6 +116,15 @@ class NFIFlash(Screen):
 			"right": self.keyRight
 		}, -1)
 		self.md5sum = ""
+		self.onShown.append(self.autostart)
+
+	def autostart(self):
+		self.onShown.remove(self.autostart)
+		self.check_for_NFO()
+		print "[[layoutFinished]]", len(self["filelist"].getFileList())
+		if len(self["filelist"].getFileList()) == 1:
+			print "==1"
+			self.keyOk()
 
 	def keyUp(self):
 		self["filelist"].up()
@@ -176,6 +186,7 @@ class NFIFlash(Screen):
 
 	def createJob(self):
 		self.job = Job("Image flashing job")
+		self.job.afterEvent = "close"
 		cwd = self["filelist"].getCurrentDirectory()
 		md5verify(self.job, cwd, self.md5sum)
 		writeNAND(self.job, [self.nfifile], self.box)
@@ -183,13 +194,36 @@ class NFIFlash(Screen):
 		self["key_yellow"].text = ""
 		self["key_green"].text = ""
 		job_manager.AddJob(self.job)
-		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable = False, backgroundable = False)
+		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable = False, backgroundable = False, afterEventChangeable = False)
 
 	def flashed(self, bg):
 		print "[flashed]"
-		self["key_yellow"].text = _("Reboot")
+		if self.job.status == self.job.FINISHED:
+			self["status"].text = _("NFI image flashing completed. Press Yellow to Reboot!")
+			filename = self.usbmountpoint+'enigma2settingsbackup.tar.gz'
+			if fileExists(filename):
+				import os.path, time
+				date = time.ctime(os.path.getmtime(filename))
+				self.session.openWithCallback(self.askRestoreCB, MessageBox, _("The wizard found a configuration backup. Do you want to restore your old settings from %s?") % date, MessageBox.TYPE_YESNO)
+			else:
+				self.unlockRebootButton()
+		else:
+			self["status"].text = _("Flashing failed")
+
+	def askRestoreCB(self, ret):
+		if ret:
+			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import getBackupFilename
+			restorecmd = ["tar -xzvf " + self.usbmountpoint + getBackupFilename() + " -C /"]
+			self.session.openWithCallback(self.unlockRebootButton, Console, title = _("Restore is running..."), cmdlist = restorecmd, closeOnSuccess = True)
+		else:
+			self.unlockRebootButton()
+
+	def unlockRebootButton(self, retval = None):
+		if self.job.status == self.job.FINISHED:
+			self["key_yellow"].text = _("Reboot")
 
 	def reboot(self, ret=None):
 		if self.job.status == self.job.FINISHED:
 			self["status"].text = ("rebooting...")
-			TryQuitMainloop(self.session,2)
+			from os import system
+			system("/usr/lib/enigma2/python/Plugins/SystemPlugins/NFIFlash/kill_e2_reboot.sh")
