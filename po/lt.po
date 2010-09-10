@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-09 10:31+0000\n"
-"PO-Revision-Date: 2010-06-16 07:13+0200\n"
-"Last-Translator: Adga <audrgrin@takas.lt>\n"
+"POT-Creation-Date: 2010-09-07 12:29+0000\n"
+"PO-Revision-Date: 2010-09-07 22:53+0200\n"
+"Last-Translator: Audronis <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -129,13 +129,16 @@ msgstr ""
 "Peržiūrėkite, įdiekite ir pašalinkite esamus arba įdiegtus paketus."
 
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid " Results"
 msgstr "Rezultatai"
 
 msgid " extensions."
 msgstr "išplėtimai."
+
+msgid " ms"
+msgstr "ms"
 
 msgid " packages selected."
 msgstr "paketai išsirinkti."
@@ -735,6 +738,9 @@ msgstr "Kitoks radijo būdas"
 msgid "Alternative services tuner priority"
 msgstr "Kitų kanalų imtuvo pirmenybė"
 
+msgid "Always ask"
+msgstr "Visada klausti"
+
 #
 msgid "Always ask before sending"
 msgstr "Visada klauskite prieš siuntimą"
@@ -1145,6 +1151,9 @@ msgstr "Keisti žingsnio dydį"
 msgid "Change the hostname of your Dreambox."
 msgstr "Keisti savo Dreambox'o pagrindinio kompiuterio vardą."
 
+msgid "Changelog"
+msgstr "Pakeitimų sąrašas"
+
 msgid "Channel"
 msgstr "Kanalas"
 
@@ -1206,6 +1215,9 @@ msgstr "Išsirinkite atsarginės kopijos vietą"
 #
 msgid "Choose bouquet"
 msgstr "Išsirinkite paketą"
+
+msgid "Choose image to download"
+msgstr "Pasirinkite atvaizdą parsisiuntimui"
 
 #
 msgid "Choose target folder"
@@ -1501,6 +1513,9 @@ msgstr "Kroatų"
 msgid "Current Transponder"
 msgstr "Dabartinis transponderis"
 
+msgid "Current device: "
+msgstr "Dabartinis prietaisas:"
+
 #
 msgid "Current settings:"
 msgstr "Dabartiniai nustatymai:"
@@ -1511,6 +1526,9 @@ msgstr "Dabartinė reikšmė:"
 #
 msgid "Current version:"
 msgstr "Dabartinė versija:"
+
+msgid "Currently installed image"
+msgstr "Šiuo metu įdiegtas atvaizdas"
 
 #
 #, python-format
@@ -1873,6 +1891,10 @@ msgstr "Jūs norite skanuoti palydovą?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Jūs norite atlikti rankinį kanalų skanavimą?"
 
+#, python-format
+msgid "Do you want to download the image to %s ?"
+msgstr "Jūs norite parsisiųsti atvaizdą į %s ?"
+
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Jūs norite įdiegti tėvų kontrolę Jūsų imtuvui?"
 
@@ -1965,6 +1987,10 @@ msgstr "Baigta - Įdiegti, patobulinti ar pašalinti %d paketai su %d klaidomis"
 #
 msgid "Download"
 msgstr "Parsisiuntimas"
+
+#, python-format
+msgid "Download %s from Server"
+msgstr "Parsisiųsta %s iš serverio"
 
 #
 msgid "Download .NFI-Files for USB-Flasher"
@@ -2341,6 +2367,9 @@ msgstr "Išeiti"
 msgid "Exit editor"
 msgstr "Išeiti iš redaktoriaus"
 
+msgid "Exit input device selection."
+msgstr "Išeiti iš įvesto prietaiso pasirinkimo."
+
 msgid "Exit network wizard"
 msgstr "Išeiti iš tinklo vedlio"
 
@@ -2558,6 +2587,12 @@ msgstr "Vokiečių"
 
 msgid "Germany"
 msgstr "Vokietija"
+
+msgid "Get latest experimental image"
+msgstr "Gaukite paskutinį bandomąjį atvaizdą"
+
+msgid "Get latest release image"
+msgstr "Gaukite paskutinį atvaizdą"
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Gaunama informacija apie papildomas programas. Prašome palaukti..."
@@ -2780,6 +2815,12 @@ msgstr "Kieto disko inicializavimas..."
 
 msgid "Input"
 msgstr "Įėjimas"
+
+msgid "Input device setup"
+msgstr "Prietaiso įvesties valdymas"
+
+msgid "Input devices"
+msgstr "Įvesties prietaisai"
 
 msgid "Install"
 msgstr "Įdiegti"
@@ -3598,6 +3639,9 @@ msgstr "Ne, nereikia"
 msgid "No, just start my dreambox"
 msgstr "Ne, įjungti mano imtuvą"
 
+msgid "No, never"
+msgstr "Ne, niekada"
+
 msgid "No, not now"
 msgstr "Ne, ne dabar"
 
@@ -3731,6 +3775,12 @@ msgstr "Išorinis Susijęs (+/-)"
 
 msgid "Override found with alternative service"
 msgstr "Nepaisyti rastų alternatyvių kanalų"
+
+msgid "Overwrite configuration files ?"
+msgstr "Perrašyti konfigūracijos failus ?"
+
+msgid "Overwrite configuration files during software upgrade?"
+msgstr "Perrašyti konfigūracijos failus per programinės įrangos atnaujinimą?"
 
 msgid "PAL"
 msgstr "PAL"
@@ -3952,6 +4002,10 @@ msgstr "Prašome išsirinkti subkanalą dėl įrašymo..."
 msgid "Please select a subservice..."
 msgstr "Prašome išsirinkti subkanalą..."
 
+msgid "Please select an NFI file and press green key to flash!"
+msgstr ""
+"Prašome išsirinkti NFI failą ir spauskite žalią mygtuką atvaizdo užkrovumui!"
+
 msgid "Please select an extension to remove."
 msgstr "Prašome išsirinkti išplėtimą pašalinimui."
 
@@ -4134,8 +4188,20 @@ msgstr "Įtampos galia mA"
 msgid "Predefined transponder"
 msgstr "Nustatytas transponderis"
 
+msgid "Prepare another USB stick for image flashing"
+msgstr "Paruoškite kitą USB laikmeną atvaizdo užkrovimui"
+
 msgid "Preparing... Please wait"
 msgstr "Pasiruošiama... Prašome laukti"
+
+msgid "Press INFO on your remote control for additional information."
+msgstr ""
+"Spauskite INFO ant savo distancinio valdymo pulto dėl papildomos "
+"informacijos."
+
+msgid "Press MENU on your remote control for additional options."
+msgstr ""
+"Spauskite MENU ant savo distancinio valdymo pulto papildomam pasirinkimui."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Spauskite OK savo valdymo pulte ir tęskite."
@@ -4801,6 +4867,12 @@ msgstr "Išsirinkite kanalą įrašymui"
 msgid "Select channel to record on"
 msgstr "Išsirinkite kanalą įrašymui"
 
+msgid "Select desired image from feed list"
+msgstr "Išsirinkite pageidaujamą atvaizdą iš perdavimo sąrašo"
+
+msgid "Select files for backup."
+msgstr "Pasirinkite failus atsarginei kopijai."
+
 msgid "Select files for backup. Currently selected:\n"
 msgstr "Išsirinkite failus atsarginei kopijai. Dabar išsirinkta:\n"
 
@@ -4809,6 +4881,12 @@ msgstr "Išsirinkite failus/aplankus dėl atsarginės kopijos"
 
 msgid "Select image"
 msgstr "Išsirinkite atvaizdą"
+
+msgid "Select input device"
+msgstr "Išsirinkite įvesties prietaisą"
+
+msgid "Select input device."
+msgstr "Išsirinkite įvesties prietaisą."
 
 msgid "Select interface"
 msgstr "Išsrinkite sąsają"
@@ -5112,11 +5190,17 @@ msgstr "Programinė įranga"
 msgid "Software management"
 msgstr "Programinės įrangos valdymas"
 
+msgid "Software manager setup"
+msgstr "Programinės įrangos valdymo nustatymas"
+
 msgid "Software restore"
 msgstr "Programinės įrangos atkūrimas"
 
 msgid "Software update"
 msgstr "Programinės įrangos atnaujinimas"
+
+msgid "Softwaremanager information"
+msgstr "Programinės įrangos valdymo informacija"
 
 msgid "Some plugins are not available:\n"
 msgstr "Kai kurių papildomų programų nėra:\n"
@@ -5445,6 +5529,13 @@ msgstr ""
 "USB raktas dabar yra paleidžiamasis. Jūs norite persisiųsti paskutinį "
 "atvaizdą iš perdavimo serverio ir išsaugoti tai rakte?"
 
+msgid ""
+"The USB stick was prepared to be bootable.\n"
+"Now you can download an NFI image file!"
+msgstr ""
+"USB laikmena buvo paruošta paleidimui.\n"
+"Dabar, jūs galite parsisiųsti NFI atvaizdo failą!"
+
 msgid "The backup failed. Please choose a different backup location."
 msgstr "Išsaugoti nepavyko. Pasirinkite kitą vietą išsaugojimui. "
 
@@ -5506,6 +5597,9 @@ msgstr ""
 
 msgid "The match attribute is mandatory."
 msgstr "Požymis yra privalomas."
+
+msgid "The md5sum validation failed, the file may be corrupted!"
+msgstr "Md5sum patvirtinimas nepasisekė, failas gali būti sugadintas!"
 
 msgid ""
 "The md5sum validation failed, the file may be corrupted! Are you sure that "
@@ -5574,6 +5668,14 @@ msgid ""
 msgstr ""
 "Nustatymų vedlys gali išsaugoti Jūsų dabartinius nustatymus. Jūs norite tai "
 "padaryti dabar?"
+
+#, python-format
+msgid ""
+"The wizard found a configuration backup. Do you want to restore your old "
+"settings from %s?"
+msgstr ""
+"Vedlys surado konfigūracijos atsarginę kopiją. Jūs norite atkurti savo senus "
+"nustatymus iš %s?"
 
 msgid "The wizard is finished now."
 msgstr "Nustatymų vedlys baigė darbą."
@@ -5682,6 +5784,23 @@ msgid ""
 msgstr ""
 "Tai yra tai, kas bus ieškoma įvykių pavadinimuose. Žinokite, kad ieškojimas "
 "gali būti sudėtingas, kadangi jūs turite žinoti kanalo naudojamą kodavimą."
+
+msgid ""
+"This plugin creates a USB stick which can be used to update the firmware of "
+"your Dreambox without the need for a network or WLAN connection.\n"
+"First, a USB stick needs to be prepared so that it becomes bootable.\n"
+"In the next step, an NFI image file can be downloaded from the update server "
+"and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. "
+"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+msgstr ""
+"Ši papildoma programa kuria USB laikmeną, kuri gali būti panaudota, kad "
+"atnaujinti programinę įrangą jūsų Dreambox be tinklo ar WLAN ryšio.\n"
+"Iš pradžių USB laikmena turi būti paruošta, kad tai taptų paleidžiama.\n"
+"Kitame žingsnyje NFI atvaizdo failas gali būti parsisiųstas iš atnaujinimo "
+"serverio ir išsaugotas USB laikmenoje.\n"
+"Jei jūs jau turite parengtą paleidžiamą USB laikmeną, prašome įdėti tai "
+"dabar. Kitaip įjunkite USB laikmeną su minimaliu 64 MB dydžiu!"
 
 msgid "This plugin is installed."
 msgstr "Ši papildoma programa yra įdiegta."
@@ -5855,6 +5974,22 @@ msgstr "Ypatybės"
 
 msgid "Titleset mode"
 msgstr "Pavadinimo nustatymo būdas"
+
+msgid ""
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and make sure the bootable "
+"USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
+msgstr ""
+"Kad atnaujintumėte jūsų Dreambox programinę įrangą, prašome sekti šiuos "
+"žingsnius:\n"
+"1) Išjunkite jūsų imtuvą su užpakaliniu įtampos išjungimo mygtuku ir "
+"įsitikinkite, kad paleidžiama USB laikmena yra pajungta.\n"
+"2) Įjunkite atgal įtampą, laikydami nuspaustą DOWN mygtuką ant priekinės "
+"panelės 10 sekundžių.\n"
+"3) Laukite paleidimo ir sekite vedlio instrukcijas."
 
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
@@ -6156,6 +6291,12 @@ msgid ""
 msgstr ""
 "Naudokitės mygtukais aukštyn/žemyn valdymo pulte, nustatymų pasirinkimui. Po "
 "to spauskite OK."
+
+msgid "Use this input device settings?"
+msgstr "Naudoti šiuos įvesties prietaiso nustatymus?"
+
+msgid "Use this settings?"
+msgstr "Naudoti šiuos nustatymus?"
 
 msgid "Use this video enhancement settings?"
 msgstr "Naudoti šiuos vaizdo stiprinimo nustatymus?"
@@ -6615,6 +6756,9 @@ msgstr "Taip"
 msgid "Yes to all"
 msgstr "Taip į visus"
 
+msgid "Yes, always"
+msgstr "Taip, visada"
+
 msgid "Yes, and delete this movie"
 msgstr "Taip, ir trinti šį filmą"
 
@@ -6715,6 +6859,9 @@ msgstr ""
 "Jūs nepateikėte galiojančio 'Pavadinimo' požymių jūsų naujam Auto "
 "laikmačiui.\n"
 "Kadangi tai yra privalomas Požymis, jūs negalite tęsti, nedarydami taip."
+
+msgid "You didn't select a channel to record from."
+msgstr "Jūs nepasirinkote kanalo, kad įrašyti."
 
 #, python-format
 msgid ""
@@ -7107,6 +7254,10 @@ msgstr "negalėjo būti pašalintas"
 
 msgid "create directory"
 msgstr "kurti direktoriją"
+
+#, python-format
+msgid "currently installed image: %s"
+msgstr "šiuo metu įdiegtas atvaizdas: %s"
 
 msgid "daily"
 msgstr "kasdien"
