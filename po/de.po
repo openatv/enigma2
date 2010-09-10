@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-09 10:31+0000\n"
-"PO-Revision-Date: 2010-06-11 21:15+0200\n"
+"POT-Creation-Date: 2010-09-07 12:29+0000\n"
+"PO-Revision-Date: 2010-09-09 13:53+0200\n"
 "Last-Translator: Andreas <andreas.frisch@multimedia-labs.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -146,6 +146,9 @@ msgstr " Ergebnisse"
 #
 msgid " extensions."
 msgstr "erweiterungen."
+
+msgid " ms"
+msgstr ""
 
 #
 msgid " packages selected."
@@ -768,6 +771,9 @@ msgstr "Alternativer Radio-Modus"
 msgid "Alternative services tuner priority"
 msgstr "Tuner-Priorität bei Alternativen Services"
 
+msgid "Always ask"
+msgstr ""
+
 #
 msgid "Always ask before sending"
 msgstr "Immer nachfragen vor dem Senden."
@@ -1207,6 +1213,9 @@ msgstr "Schrittweite ändern."
 msgid "Change the hostname of your Dreambox."
 msgstr "Ändern Sie den Netzwerknamen Ihrer Dreambox."
 
+msgid "Changelog"
+msgstr ""
+
 #
 msgid "Channel"
 msgstr "Kanal"
@@ -1274,6 +1283,9 @@ msgstr "Wählen Sie den Sicherungsort"
 #
 msgid "Choose bouquet"
 msgstr "Bouquet wählen"
+
+msgid "Choose image to download"
+msgstr "Image zum Download auswählen"
 
 #
 msgid "Choose target folder"
@@ -1574,6 +1586,9 @@ msgstr "Kroatisch"
 msgid "Current Transponder"
 msgstr "Aktueller Transponder"
 
+msgid "Current device: "
+msgstr ""
+
 #
 msgid "Current settings:"
 msgstr "Aktuelle Einstellungen:"
@@ -1582,9 +1597,11 @@ msgstr "Aktuelle Einstellungen:"
 msgid "Current value: "
 msgstr "Aktueller Wert:"
 
-#
 msgid "Current version:"
-msgstr "Aktuelle Version:"
+msgstr "Derzeitige Version:"
+
+msgid "Currently installed image"
+msgstr ""
 
 #
 #, python-format
@@ -1957,6 +1974,10 @@ msgstr "Jetzt nach Kanälen suchen?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Wollen Sie eine weitere manuelle Suche durchführen?"
 
+#, python-format
+msgid "Do you want to download the image to %s ?"
+msgstr "Wollen Sie das Image nach %s herunterladen?"
+
 #
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Möchten Sie den Jugendschutz Ihrer Dreambox aktivieren?"
@@ -2052,6 +2073,10 @@ msgstr ""
 #
 msgid "Download"
 msgstr "Herunterladen"
+
+#, python-format
+msgid "Download %s from Server"
+msgstr "%s vom Server herunterladen"
 
 #
 msgid "Download .NFI-Files for USB-Flasher"
@@ -2479,6 +2504,9 @@ msgstr "Beenden"
 msgid "Exit editor"
 msgstr "Editor beenden"
 
+msgid "Exit input device selection."
+msgstr ""
+
 #
 msgid "Exit network wizard"
 msgstr "Netzwerkassistent verlassen"
@@ -2763,6 +2791,12 @@ msgstr "Deutsch"
 msgid "Germany"
 msgstr "Deutschland"
 
+msgid "Get latest experimental image"
+msgstr "Neuestes Experimental-Image"
+
+msgid "Get latest release image"
+msgstr "Neuestes Release-Image"
+
 #
 msgid "Getting plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen. Bitte warten..."
@@ -3046,6 +3080,12 @@ msgstr "Initialisiere Festplatte..."
 #
 msgid "Input"
 msgstr "Eingabe"
+
+msgid "Input device setup"
+msgstr ""
+
+msgid "Input devices"
+msgstr ""
 
 #
 msgid "Install"
@@ -3777,11 +3817,10 @@ msgstr "NÄCHSTE"
 msgid "NFI Image Flashing"
 msgstr ""
 
-#
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr ""
-"NFI Image flashen beendet.\n"
-"Drücken Sie gelb um die Dreambox neu zu starten!"
+"NFI Image Flashen beendet.\n"
+"Drücken Sie Gelb um die Dreambox neu zu starten!"
 
 #
 msgid "NFS share"
@@ -4108,6 +4147,9 @@ msgstr "Nein, nichts tun"
 msgid "No, just start my dreambox"
 msgstr "Nein, nur die Dreambox starten"
 
+msgid "No, never"
+msgstr ""
+
 #
 msgid "No, not now"
 msgstr "Nein, jetzt nicht"
@@ -4281,6 +4323,12 @@ msgstr "Grenzen (+/-)"
 #
 msgid "Override found with alternative service"
 msgstr "Service mit alternative ersetzen"
+
+msgid "Overwrite configuration files ?"
+msgstr ""
+
+msgid "Overwrite configuration files during software upgrade?"
+msgstr ""
 
 #
 msgid "PAL"
@@ -4568,6 +4616,9 @@ msgstr "Bitte einen Unterkanal zur Aufnahme auswählen..."
 msgid "Please select a subservice..."
 msgstr "Bitte einen Unterkanal auswählen..."
 
+msgid "Please select an NFI file and press green key to flash!"
+msgstr "Bitte wählen Sie eine NFI-Datei aus und drücken Sie Grün zum Flashen!"
+
 #
 msgid "Please select an extension to remove."
 msgstr "Bitte wählen Sie eine Erweiterung zum Deinstallieren."
@@ -4802,9 +4853,18 @@ msgstr "Strom Schwellwert in mA"
 msgid "Predefined transponder"
 msgstr "Vordefinierte Transponder"
 
+msgid "Prepare another USB stick for image flashing"
+msgstr "Weiteren USB-Stick zum Image-Flashen vorbereiten"
+
 #
 msgid "Preparing... Please wait"
 msgstr "Vorbereitung läuft... Bitte warten!"
+
+msgid "Press INFO on your remote control for additional information."
+msgstr ""
+
+msgid "Press MENU on your remote control for additional options."
+msgstr ""
 
 #
 msgid "Press OK on your remote control to continue."
@@ -5681,6 +5741,12 @@ msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 msgid "Select channel to record on"
 msgstr "Wähle Kanal für Aufnahme"
 
+msgid "Select desired image from feed list"
+msgstr "Bestimmtes Image vom Feed-Server herunterladen"
+
+msgid "Select files for backup."
+msgstr ""
+
 #
 msgid "Select files for backup. Currently selected:\n"
 msgstr "Zu sichernde Dateien auswählen. Aktuell gewählt:\n"
@@ -5692,6 +5758,12 @@ msgstr "Wählen Sie Dateien/Ordner für die Sicherung"
 #
 msgid "Select image"
 msgstr "Wählen Sie ein Image"
+
+msgid "Select input device"
+msgstr ""
+
+msgid "Select input device."
+msgstr ""
 
 #
 msgid "Select interface"
@@ -5901,12 +5973,13 @@ msgstr "Benutzermodus"
 msgid "Setup for the Audio Sync Plugin"
 msgstr "Setup fürs Audio Sync Plugin"
 
-#
 #, python-format
 msgid ""
 "Shall the USB stick wizard proceed and program the image file %s into flash "
 "memory?"
 msgstr ""
+"Soll der Assistent fortfahren und die Image-Datei %s in den Flashspeicher "
+"schreiben?"
 
 #
 msgid "Sharpness"
@@ -6092,6 +6165,9 @@ msgstr ""
 msgid "Software management"
 msgstr "Softwareverwaltung"
 
+msgid "Software manager setup"
+msgstr ""
+
 #
 msgid "Software restore"
 msgstr "Software wiederherstellen"
@@ -6099,6 +6175,9 @@ msgstr "Software wiederherstellen"
 #
 msgid "Software update"
 msgstr "Software aktualisieren"
+
+msgid "Softwaremanager information"
+msgstr ""
 
 #
 msgid "Some plugins are not available:\n"
@@ -6511,6 +6590,13 @@ msgstr ""
 "Der USB-Stick ist nun bootfähig. Wollen Sie das neueste Image vom Update-"
 "Server herunterladen und auf dem Stick speichern?"
 
+msgid ""
+"The USB stick was prepared to be bootable.\n"
+"Now you can download an NFI image file!"
+msgstr ""
+"Der USB-Stick wurde bootfähig gemacht.\n"
+"Sie können nun eine NFI-Imagedatei herunterladen!"
+
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
@@ -6585,6 +6671,9 @@ msgstr ""
 #
 msgid "The match attribute is mandatory."
 msgstr "Das Attribut 'Finde in Titel' muss angegeben werden!"
+
+msgid "The md5sum validation failed, the file may be corrupted!"
+msgstr ""
 
 #
 msgid ""
@@ -6669,6 +6758,14 @@ msgid ""
 msgstr ""
 "Der Assistent kann jetzt Ihre Einstellungen sichern. Wollen Sie dies nun "
 "durchführen?"
+
+#, python-format
+msgid ""
+"The wizard found a configuration backup. Do you want to restore your old "
+"settings from %s?"
+msgstr ""
+"Der Assistent hat eine Konfigurations-Sicherungsdatei entdeckt. Wollen Sie "
+"Ihre Einstellungen von %s wiederherstellen?"
 
 #
 msgid "The wizard is finished now."
@@ -6802,6 +6899,24 @@ msgid ""
 msgstr ""
 "Hiernach wird im Sendungstitel gesucht. Die Suche z.B. nach Umlauten ist "
 "etwas komplizierter, da man dazu den Zeichensatz des Sender-EPGs wissen muss."
+
+msgid ""
+"This plugin creates a USB stick which can be used to update the firmware of "
+"your Dreambox without the need for a network or WLAN connection.\n"
+"First, a USB stick needs to be prepared so that it becomes bootable.\n"
+"In the next step, an NFI image file can be downloaded from the update server "
+"and saved on the USB stick.\n"
+"If you already have a prepared bootable USB stick, please insert it now. "
+"Otherwise plug in a USB stick with a minimum size of 64 MB!"
+msgstr ""
+"Dieses Plugin erzeugt einen USB-Stick, mit dessen Hilfe die Firmware Ihrer "
+"Dreambox aktualisiert werden kann, ohne dass dafür eine Netzwerk- oder WLAN-"
+"Verbindung notwendig ist.Zuerst muss ein USB-Stick vorbereitet und bootfähig "
+"gemacht werden. Im nächsten Schritt kann eine NFI-Imagedatei vom Update-"
+"Server heruntergeladen und auf diesem Stick gespeichert werden.Wenn Sie "
+"bereits einen bootfähigen USB-Stick vorbereitet haben, stecken Sie ihn bitte "
+"jetzt ein. Anderenfalls stecken Sie bitte einen USB-Stick mit einer "
+"Mindestgröße von 64 MB ein."
 
 #
 msgid "This plugin is installed."
@@ -7017,6 +7132,22 @@ msgstr "Titeldetails"
 msgid "Titleset mode"
 msgstr "Titleset"
 
+msgid ""
+"To update your Dreambox firmware, please follow these steps:\n"
+"1) Turn off your box with the rear power switch and make sure the bootable "
+"USB stick is plugged in.\n"
+"2) Turn mains back on and hold the DOWN button on the front panel pressed "
+"for 10 seconds.\n"
+"3) Wait for bootup and follow instructions of the wizard."
+msgstr ""
+"Um Ihre Dreambox-Firmware zu aktualisieren, folgen Sie bitte diesen "
+"Anweisungen:\n"
+"1) Schalten Sie Ihre Dreambox mit dem Schalter auf der Rückseite aus und "
+"achten Sie darauf, dass der bootfähige USB-Stick eingesteckt ist.\n"
+"2) Schalten Sie den Netzschalter wieder ein und halten dabei den \"nach unten"
+"\"-Knopf auf der Vorderseite für 10 Sekunden gedrückt.\n"
+"3) Nach dem Bootvorgang folgen Sie bitte den Instruktionen des Assistenten."
+
 #
 msgid ""
 "To update your Dreambox firmware, please follow these steps:\n"
@@ -7183,9 +7314,8 @@ msgstr "USALS"
 msgid "USB Stick"
 msgstr "USB-Stick"
 
-#
 msgid "USB stick wizard"
-msgstr "USB-Stick Assistent"
+msgstr "USB-Stick-Assistent"
 
 #
 msgid ""
@@ -7256,13 +7386,12 @@ msgstr "Universal-LNB"
 msgid "Unknown network adapter."
 msgstr ""
 
-#
 msgid ""
 "Unless this is enabled AutoTimer will NOT automatically look for events "
 "matching your AutoTimers but only when you leave the GUI with the green "
 "button."
 msgstr ""
-"Der AutoTiemr wird nur automatisch nach Sendungen suchen wenn diese "
+"Der AutoTimer wird nur automatisch nach Sendungen suchen wenn diese "
 "Einstellung aktiviert wird. Ansonsten wird nur beim Verlassen der Übersicht "
 "über die grüne Taste gesucht."
 
@@ -7401,6 +7530,12 @@ msgid ""
 msgstr ""
 "Mit den hoch/runter-Tasten können Sie eine Option auswählen. Danach bitte OK "
 "drücken."
+
+msgid "Use this input device settings?"
+msgstr ""
+
+msgid "Use this settings?"
+msgstr ""
 
 #
 msgid "Use this video enhancement settings?"
@@ -7950,6 +8085,9 @@ msgstr "Ja"
 msgid "Yes to all"
 msgstr "Ja zu allen"
 
+msgid "Yes, always"
+msgstr ""
+
 #
 msgid "Yes, and delete this movie"
 msgstr "Ja, diesen Film löschen"
@@ -8076,6 +8214,9 @@ msgstr ""
 "Sie haben das Attribut \"Finde in Titel\" nicht angegeben. Da dies ein "
 "notwendiges Attribut ist können Sie nicht fortfahren ohne dies zu tun."
 
+msgid "You didn't select a channel to record from."
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -8093,14 +8234,13 @@ msgstr ""
 "Sie haben sich entschieden Ihre Einstellungen zu sichern. Drücken Sie OK, um "
 "den Vorgang zu starten."
 
-#
 msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
 "repartition the USB stick and therefore all data on it will be erased."
 msgstr ""
-"Sie möchten einen bootbaren USB-Stick zum Flashen von .NFI-Images erstellen. "
-"Dies wird den USB-Stick repartitionieren wodurch alle darauf enthaltenen "
-"Daten verloren gehen."
+"Sie möchten einen bootfähigen USB-Stick zum Flashen von NFI-Images "
+"erstellen. Dabei wird der USB-Stick repartitioniert, wodurch alle darauf "
+"enthaltenen Daten verloren gehen."
 
 #
 msgid ""
@@ -8574,6 +8714,10 @@ msgstr "konnte nicht entfernt werden"
 #
 msgid "create directory"
 msgstr "Verzeichnis erstellen"
+
+#, python-format
+msgid "currently installed image: %s"
+msgstr "Derzeit installiertes Image: %s"
 
 #
 msgid "daily"
