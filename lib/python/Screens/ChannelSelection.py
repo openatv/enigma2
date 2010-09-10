@@ -1183,10 +1183,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
 
-		self.lastChannelRootTimer = eTimer()
-		self.lastChannelRootTimer.callback.append(self.__onCreate)
-		self.lastChannelRootTimer.start(100,True)
-
 		self.history_tv = [ ]
 		self.history_radio = [ ]
 		self.history = self.history_tv
@@ -1208,6 +1204,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.new_service_played = False
 		self.dopipzap = False
 		self.onExecBegin.append(self.asciiOn)
+
+		self.lastChannelRootTimer = eTimer()
+		self.lastChannelRootTimer.callback.append(self.__onCreate)
+		self.lastChannelRootTimer.start(100,True)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
