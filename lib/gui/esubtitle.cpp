@@ -33,6 +33,8 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 		std::string configvalue;
 		bool original_colors = (ePythonConfigQuery::getConfigValue("config.subtitles.ttx_subtitle_colors", configvalue) >= 0 && configvalue == "True");
 		bool original_position = (ePythonConfigQuery::getConfigValue("config.subtitles.ttx_subtitle_original_position", configvalue) >= 0 && configvalue == "True");
+		bool rewrap = (ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_rewrap", configvalue) >= 0 && configvalue == "True");
+		
 		gRGB color = original_colors ? newpage.m_elements[0].m_color : gRGB(255, 255, 255);
 
 		if (!original_position)
@@ -40,10 +42,9 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 			int height = size().height() / 3;
 
 			int lowerborder = 50;
-			std::string subtitle_position;
-			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_position", subtitle_position))
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_position", configvalue))
 			{
-				lowerborder = atoi(subtitle_position.c_str());
+				lowerborder = atoi(configvalue.c_str());
 			}
 			int line = newpage.m_elements[0].m_source_line;
 			/* create a new page with just one text element */
@@ -59,7 +60,7 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 				if (line != newpage.m_elements[i].m_source_line)
 				{
 					line = newpage.m_elements[i].m_source_line;
-					m_page.m_elements[0].m_text += "\\n";
+					if (!rewrap) m_page.m_elements[0].m_text += "\\n";
 				}
 				m_page.m_elements[0].m_text += newpage.m_elements[i].m_text;
 			}
@@ -200,12 +201,31 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		getStyle(style);
 		eWidget::event(event, data, data2);
 
+                std::string configvalue;
+
+                int rt_halignment_flag;
+                if (ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_alignment", configvalue))
+                    configvalue = "center";
+                if (configvalue == "center")
+                    rt_halignment_flag = gPainter::RT_HALIGN_CENTER;
+                else if (configvalue == "left")
+                    rt_halignment_flag = gPainter::RT_HALIGN_LEFT;
+                else
+                    rt_halignment_flag = gPainter::RT_HALIGN_RIGHT;
+       
+                int borderwidth = 2;
+		if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_borderwidth", configvalue))
+		{
+                    borderwidth = atoi(configvalue.c_str());
+		}
+
 		if (m_pixmap)
 		{
 			eRect r = m_pixmap_dest;
 			r.scale(size().width(), 720, size().height(), 576);
 			painter.blitScale(m_pixmap, r);
-		} else if (m_page_ok)
+		}
+		else if (m_page_ok)
 		{
 			unsigned int elements = m_page.m_elements.size();
 			painter.setFont(subtitleStyles[Subtitle_TTX].font);
@@ -219,7 +239,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 						painter.setForegroundColor(element.m_color);
 					else
 						painter.setForegroundColor(subtitleStyles[Subtitle_TTX].foreground_color);
-					painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER, subtitleStyles[Subtitle_TTX].border_color, subtitleStyles[Subtitle_TTX].border_width);
+					painter.renderText(area, element.m_text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|rt_halignment_flag, subtitleStyles[Subtitle_TTX].border_color, borderwidth);
 				}
 			}
 		}
@@ -256,7 +276,7 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					painter.setForegroundColor(element.m_color);
 				else
 					painter.setForegroundColor(subtitleStyles[face].foreground_color);
-				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|gPainter::RT_HALIGN_CENTER, subtitleStyles[face].border_color, subtitleStyles[face].border_width);
+				painter.renderText(area, text, gPainter::RT_WRAP|gPainter::RT_VALIGN_BOTTOM|rt_halignment_flag, subtitleStyles[face].border_color, borderwidth);
 			}
 		}
 		else if (m_dvb_page_ok)

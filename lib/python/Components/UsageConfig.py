@@ -197,7 +197,44 @@ def InitUsageConfig():
 		("1540096", "Large 1.5MB"),
 		("1925120", "Huge 2 MB")])
 	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
-
+	config.subtitles = ConfigSubsection()
+	config.subtitles.ttx_subtitle_colors = ConfigYesNo(default = False)
+	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
+	config.subtitles.subtitle_position = ConfigSelection(
+		choices =
+			[("0", "0"),
+			("10", "10"),
+			("20", "20"),
+			("30", "30"),
+			("40", "40"),
+			("50", "50"),
+			("60", "60"),
+			("70", "70"),
+			("80", "80"),
+			("90", "90"),
+			("100", "100"),
+			("150", "150"),
+			("200", "200"),
+			("250", "250"),
+			("300", "300"),
+			("350", "350"),
+			("400", "400"),
+			("450", "450")],
+		default = "50")
+	config.subtitles.subtitle_alignment = ConfigSelection(
+		choices =
+			[("left", "left"),
+			("center", "center"),
+			("right", "right")],
+		default = "center")
+	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
+	config.subtitles.subtitle_borderwidth = ConfigSelection(
+		choices =
+			[("1", "1"),
+			("2", "2"),
+			("3", "3")],
+		default = "2")
+	
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
