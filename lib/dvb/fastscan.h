@@ -14,7 +14,39 @@
 #include <dvbsi++/network_name_descriptor.h>
 #include <dvbsi++/service_list_descriptor.h>
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
-#include <dvbsi++/logical_channel_descriptor.h>
+
+/* HACK: fastscan table uses a nonstandard version of the LogicalChannel descriptor, with 14bit channel numbers (instead of 10bit), and a nonstandard definition of a 'hidden' flag */
+class FastScanLogicalChannel
+{
+protected:
+	unsigned serviceId : 16;
+	unsigned hiddenFlag : 1;
+	unsigned logicalChannelNumber : 14;
+
+public:
+	FastScanLogicalChannel(const uint8_t *const buffer);
+	~FastScanLogicalChannel(void);
+
+	uint16_t getServiceId(void) const;
+	uint8_t getHiddenFlag(void) const;
+	uint16_t getLogicalChannelNumber(void) const;
+};
+
+typedef std::list<FastScanLogicalChannel *> FastScanLogicalChannelList;
+typedef FastScanLogicalChannelList::iterator FastScanLogicalChannelListIterator;
+typedef FastScanLogicalChannelList::const_iterator FastScanLogicalChannelListConstIterator;
+
+class FastScanLogicalChannelDescriptor : public Descriptor
+{
+protected:
+	FastScanLogicalChannelList channelList;
+
+public:
+	FastScanLogicalChannelDescriptor(const uint8_t *const buffer);
+	~FastScanLogicalChannelDescriptor(void);
+
+	const FastScanLogicalChannelList *getChannelList(void) const;
+};
 
 class FastScanService : public ServiceDescriptor
 {
@@ -72,7 +104,7 @@ protected:
 
 	SatelliteDeliverySystemDescriptor *deliverySystem;
 	ServiceListDescriptor *serviceList;
-	LogicalChannelDescriptor *logicalChannels;
+	FastScanLogicalChannelDescriptor *logicalChannels;
 
 public:
 	FastScanTransportStream(const uint8_t *const buffer);
@@ -90,7 +122,7 @@ public:
 	uint8_t getFecInner(void) const;
 
 	const ServiceListItemList *getServiceList(void) const;
-	const LogicalChannelList *getLogicalChannelList(void) const;
+	const FastScanLogicalChannelList *getLogicalChannelList(void) const;
 };
 
 typedef std::list<FastScanTransportStream *> FastScanTransportStreamList;
