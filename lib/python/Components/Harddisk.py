@@ -11,6 +11,14 @@ def readFile(filename):
 	file.close()
 	return data
 
+def getProcMounts():
+	try:
+		mounts = open("/proc/mounts")
+	except IOError, ex:
+		print "[Harddisk] Failed to open /proc/mounts", ex 
+		return []
+	return [line.strip().split(' ') for line in mounts]
+
 class Harddisk:
 	DEVTYPE_UDEV = 0
 	DEVTYPE_DEVFS = 1
@@ -115,23 +123,13 @@ class Harddisk:
 			assert False, "no hdX or sdX"
 
 	def free(self):
-		try:
-			mounts = open("/proc/mounts")
-		except IOError:
-			return -1
-
-		lines = mounts.readlines()
-		mounts.close()
-
-		for line in lines:
-			parts = line.strip().split(" ")
+		for parts in getProcMounts():
 			if path.realpath(parts[0]).startswith(self.dev_path):
 				try:
 					stat = statvfs(parts[1])
 				except OSError:
 					continue
 				return stat.f_bfree/1000 * stat.f_bsize/1000
-
 		return -1
 
 	def numPartitions(self):
@@ -158,21 +156,10 @@ class Harddisk:
 		return numPart
 
 	def unmount(self):
-		try:
-			mounts = open("/proc/mounts")
-		except IOError:
-			return -1
-
-		lines = mounts.readlines()
-		mounts.close()
-
 		cmd = "umount"
-
-		for line in lines:
-			parts = line.strip().split(" ")
+		for parts in getProcMounts():
 			if path.realpath(parts[0]).startswith(self.dev_path):
 				cmd = ' ' . join([cmd, parts[1]])
-
 		res = system(cmd)
 		return (res >> 8)
 
@@ -381,32 +368,20 @@ class Partition:
 		except OSError:
 			return None
 
-	def mounted(self):
+	def mounted(self, mounts = None):
 		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
 		# TODO: can os.path.ismount be used?
 		if self.force_mounted:
 			return True
-
-		try:
-			mounts = open("/proc/mounts")
-		except IOError:
-			return False
-
-		lines = mounts.readlines()
-		mounts.close()
-
-		for line in lines:
-			if line.split(' ')[1] == self.mountpoint:
+		if mounts is None:
+			mounts = getProcMounts()
+		for parts in mounts:
+			if parts[1] == self.mountpoint:
 				return True
 		return False
 
 	def filesystem(self):
-		try:
-			procfile = open("/proc/mounts")
-		except IOError:
-			return ''
-		for n in procfile.readlines():
-			fields = n.split(' ')
+		for fields in getProcMounts():
 			if fields[1] == self.mountpoint:
 				return fields[2]
 		return ''
@@ -585,7 +560,8 @@ class HarddiskManager:
 		return self.cd
 
 	def getMountedPartitions(self, onlyhotplug = False):
-		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted()]
+		mounts = getProcMounts()
+		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted(mounts)]
 		devs = set([x.device for x in parts])
 		for devname in devs.copy():
 			if not devname:
