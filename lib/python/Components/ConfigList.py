@@ -6,10 +6,10 @@ from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 
 class ConfigList(HTMLComponent, GUIComponent, object):
-	def __init__(self, list, session = None, seperation = 200):
+	def __init__(self, list, session = None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		self.l.setSeperation(seperation)
+		self.l.setSeperation(200)
 		self.timer = eTimer()
 		self.list = list
 		self.onSelectionChanged = [ ]
@@ -61,12 +61,13 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 	
 	def selectionChanged(self):
-		if self.current:
+		if isinstance(self.current,tuple) and len(self.current) == 2:
 			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
-		if self.current:
+		if isinstance(self.current,tuple) and len(self.current) == 2:
 			self.current[1].onSelect(self.session)
-
+		else:
+			return
 		for x in self.onSelectionChanged:
 			x()
 
@@ -75,11 +76,11 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		instance.setContent(self.l)
 	
 	def preWidgetRemove(self, instance):
-		if self.current:
+		if isinstance(self.current,tuple) and len(self.current) == 2:
 			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 		instance.setContent(None)
-	
+
 	def setList(self, l):
 		self.timer.stop()
 		self.__list = l
@@ -87,7 +88,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 		if l is not None:
 			for x in l:
-				assert isinstance(x[1], ConfigElement), "entry in ConfigList " + str(x[1]) + " must be a ConfigElement"
+				assert len(x) < 2 or isinstance(x[1], ConfigElement), "entry in ConfigList " + str(x[1]) + " must be a ConfigElement"
 
 	def getList(self):
 		return self.__list
@@ -134,12 +135,9 @@ class ConfigListScreen:
 			"showVirtualKeyboard": self.KeyText,
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
-
-		if hasattr(self, "seperation") and self.seperation:
-			self["config"] = ConfigList(list, session = session, seperation = self.seperation)
-		else:
-			self["config"] = ConfigList(list, session = session)
-
+		
+		self["config"] = ConfigList(list, session = session)
+		
 		if on_change is not None:
 			self.__changed = on_change
 		else:
