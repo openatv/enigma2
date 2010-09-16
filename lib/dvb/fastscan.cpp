@@ -9,6 +9,57 @@
 #include <lib/base/estring.h>
 #include <lib/base/nconfig.h>
 
+FastScanLogicalChannel::FastScanLogicalChannel(const uint8_t *const buffer)
+{
+	serviceId = UINT16(&buffer[0]);
+	hiddenFlag = (buffer[2] >> 6) & 0x01;
+	logicalChannelNumber = UINT16(&buffer[2]) & 0x3fff;
+}
+
+FastScanLogicalChannel::~FastScanLogicalChannel(void)
+{
+}
+
+uint16_t FastScanLogicalChannel::getServiceId(void) const
+{
+	return serviceId;
+}
+
+uint8_t FastScanLogicalChannel::getHiddenFlag(void) const
+{
+	return hiddenFlag;
+}
+
+uint16_t FastScanLogicalChannel::getLogicalChannelNumber(void) const
+{
+	return logicalChannelNumber;
+}
+
+FastScanLogicalChannelDescriptor::FastScanLogicalChannelDescriptor(const uint8_t *const buffer)
+: Descriptor(buffer)
+{
+	uint16_t pos = 2;
+	uint16_t bytesLeft = descriptorLength;
+	uint16_t loopLength = 4;
+
+	while (bytesLeft >= loopLength) {
+		channelList.push_back(new FastScanLogicalChannel(&buffer[pos]));
+		bytesLeft -= loopLength;
+		pos += loopLength;
+	}
+}
+
+FastScanLogicalChannelDescriptor::~FastScanLogicalChannelDescriptor(void)
+{
+	for (FastScanLogicalChannelListIterator i = channelList.begin(); i != channelList.end(); ++i)
+		delete *i;
+}
+
+const FastScanLogicalChannelList *FastScanLogicalChannelDescriptor::getChannelList(void) const
+{
+	return &channelList;
+}
+
 FastScanService::FastScanService(const uint8_t * const buffer)
 : ServiceDescriptor(&buffer[18])
 {
@@ -108,7 +159,7 @@ FastScanTransportStream::FastScanTransportStream(const uint8_t *const buffer)
 		switch (buffer[pos])
 		{
 		case LOGICAL_CHANNEL_DESCRIPTOR:
-			logicalChannels = new LogicalChannelDescriptor(&buffer[pos]);
+			logicalChannels = new FastScanLogicalChannelDescriptor(&buffer[pos]);
 			break;
 		case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 			deliverySystem = new SatelliteDeliverySystemDescriptor(&buffer[pos]);
@@ -193,7 +244,7 @@ const ServiceListItemList *FastScanTransportStream::getServiceList(void) const
 	return NULL;
 }
 
-const LogicalChannelList *FastScanTransportStream::getLogicalChannelList(void) const
+const FastScanLogicalChannelList *FastScanTransportStream::getLogicalChannelList(void) const
 {
 	if (logicalChannels) return logicalChannels->getChannelList();
 	return NULL;
@@ -443,10 +494,10 @@ void eFastScan::parseResult()
 					servicetypemap[(*service)->getServiceId()] = (*service)->getServiceType();
 				}
 			}
-			const LogicalChannelList *channels = (*it)->getLogicalChannelList();
+			const FastScanLogicalChannelList *channels = (*it)->getLogicalChannelList();
 			if (channels)
 			{
-				for (LogicalChannelListConstIterator channel = channels->begin(); channel != channels->end(); channel++)
+				for (FastScanLogicalChannelListConstIterator channel = channels->begin(); channel != channels->end(); channel++)
 				{
 					int type = servicetypemap[(*channel)->getServiceId()];
 					eServiceReferenceDVB ref(orbitalpos << 16, (*it)->getTransportStreamId(), (*it)->getOriginalNetworkId(), (*channel)->getServiceId(), type);
