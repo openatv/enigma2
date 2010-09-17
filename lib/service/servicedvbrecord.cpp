@@ -523,9 +523,9 @@ void eDVBServiceRecord::saveCutlist()
 		eDebug("[eDVBServiceRecord] saving cutlist failed because tstools failed");
 		return;
 	}
-	
-	FILE *f = fopen(filename.c_str(), "wb");
 
+	// If a cuts file exists, append to it (who cares about sorting it)
+	FILE *f = fopen(filename.c_str(), "a+b");
 	if (f)
 	{
 		unsigned long long where;
