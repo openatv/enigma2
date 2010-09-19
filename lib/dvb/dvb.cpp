@@ -459,8 +459,11 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 		{
 			if (!i->m_inuse)
 			{
-				if (!unused)
-					unused = i;
+				if (!fe || i->m_adapter == fe->m_adapter)
+				{
+					if (!unused)
+						unused = i;
+				}
 			}
 			else
 			{
@@ -475,8 +478,11 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 				}
 				else if (i->m_demux->getSource() == -1) // PVR
 				{
-					demux = new eDVBAllocatedDemux(i);
-					return 0;
+					if (!fe || i->m_adapter == fe->m_adapter)
+					{
+						demux = new eDVBAllocatedDemux(i);
+						return 0;
+					}
 				}
 			}
 		}
@@ -515,16 +521,18 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 		{
 			if (fe)
 			{
-				if (!i->m_inuse)
+				if (i->m_adapter == fe->m_adapter)
 				{
-					if (!unused)
-						unused = i;
-				}
-				else if (i->m_adapter == fe->m_adapter &&
-				    i->m_demux->getSource() == fe->m_frontend->getDVBID())
-				{
-					demux = new eDVBAllocatedDemux(i);
-					return 0;
+					if (!i->m_inuse)
+					{
+						if (!unused)
+							unused = i;
+					}
+					else if (i->m_demux->getSource() == fe->m_frontend->getDVBID())
+					{
+						demux = new eDVBAllocatedDemux(i);
+						return 0;
+					}
 				}
 			}
 			else if (n == 4) // always use demux4 for PVR (demux 4 can not descramble...)
