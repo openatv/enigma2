@@ -14,7 +14,7 @@ from enigma import iPlayableService
 from Tools.ISO639 import LanguageCodes
 from Tools.BoundFunction import boundFunction
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
-[PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
+[PAGE_AUDIO, PAGE_SUBTITLES] = ["audio","subtitles"]
 
 class AudioSelection(Screen, ConfigListScreen):
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
@@ -35,12 +35,14 @@ class AudioSelection(Screen, ConfigListScreen):
 			})
 		self.cached_subtitle_checked = False
 		self.__selected_subtitle = None
-        
-		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
+
+		self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions", "InfobarAudioSelectionActions", "InfobarSubtitleSelectionActions"],
 		{
 			"red": self.keyRed,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
+			"audioSelection": self.keyYellow,
+			"subtitleSelection": self.keyYellow,
 			"blue": self.keyBlue,
 			"ok": self.keyOk,
 			"cancel": self.cancel,
@@ -49,7 +51,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		}, -3)
 
 		self.settings = ConfigSubsection()
-		choicelist = [(PAGE_AUDIO,_("audio tracks")), (PAGE_SUBTITLES,_("Subtitles"))]
+		choicelist = [(PAGE_AUDIO,""), (PAGE_SUBTITLES,"")]
 		self.settings.menupage = ConfigSelection(choices = choicelist, default=page)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -114,6 +116,8 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(('',))
 				self["key_green"].setBoolean(False)
 
+			conflist.append(getConfigListEntry(_("To subtitle selection"), self.settings.menupage))
+
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
 			self.setTitle(_("Subtitle selection"))
 			conflist.append(('',))
@@ -165,8 +169,8 @@ class AudioSelection(Screen, ConfigListScreen):
 			else:
 				streams = []
 
-		conflist.append(getConfigListEntry(_("Menu"), self.settings.menupage))
-		
+			conflist.append(getConfigListEntry(_("To audio selection"), self.settings.menupage))
+
 		from Components.PluginComponent import plugins
 		from Plugins.Plugin import PluginDescriptor
 		
