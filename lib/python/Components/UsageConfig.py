@@ -234,7 +234,18 @@ def InitUsageConfig():
 			("2", "2"),
 			("3", "3")],
 		default = "2")
-	
+	config.subtitles.subtitle_fontsize  = ConfigSelection(
+		choices =
+			[("16", "16"),
+			("20", "20"),
+			("24", "24"),
+			("28", "28"),
+			("32", "32"),
+			("34", "34"),
+			("40", "40"),
+			("48", "48")],
+		default = "34")
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None

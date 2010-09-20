@@ -219,6 +219,12 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
                     borderwidth = atoi(configvalue.c_str());
 		}
 
+                int fontsize = 34;
+		if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_fontsize", configvalue))
+		{
+                    fontsize = atoi(configvalue.c_str());
+		}
+
 		if (m_pixmap)
 		{
 			eRect r = m_pixmap_dest;
@@ -228,6 +234,9 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		else if (m_page_ok)
 		{
 			unsigned int elements = m_page.m_elements.size();
+
+			subtitleStyles[Subtitle_TTX].font->pointSize=fontsize;
+
 			painter.setFont(subtitleStyles[Subtitle_TTX].font);
 			for (unsigned int i = 0; i < elements; ++i)
 			{
@@ -270,7 +279,10 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&apos;", "'");
 				text = replace_all(text, "&quot;", "\"");
 				text = replace_all(text, "&amp;", "&");
+
+				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
+
 				eRect &area = element.m_area;
 				if ( !subtitleStyles[face].have_foreground_color && element.m_have_color )
 					painter.setForegroundColor(element.m_color);
