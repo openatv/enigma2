@@ -7,12 +7,8 @@ install_PYTHON = \
 	keyids.py keymapparser.py mytest.py skin.py timer.py tools.py GlobalActions.py \
 	e2reactor.py
 
-LANGS := $(shell cat $(srcdir)/po/LINGUAS)
-
 install-exec-hook:
-	for lang in $(LANGS); do \
-		$(PYTHON) $(srcdir)/tools/genmetaindex.py $$lang $(DESTDIR)$(datadir)/meta/plugin_*.xml > $(DESTDIR)$(datadir)/meta/index-enigma2_$$lang.xml; \
-	done
+		$(PYTHON) $(srcdir)/tools/genmetaindex.py $(DESTDIR)$(datadir)/meta/plugin_*.xml > $(DESTDIR)$(datadir)/meta/index-enigma2.xml
 
 uninstall-hook:
-	$(RM) $(DESTDIR)$(datadir)/meta/index-enigma2_*.xml
+	$(RM) $(DESTDIR)$(datadir)/meta/index-enigma2.xml
