@@ -222,6 +222,8 @@ class DreamInfoHandler:
 		for indexfile in os.listdir(self.directory[0]):
 			if indexfile.startswith("index-"):
 				if indexfile.endswith(".xml"):
+					if indexfile[-7:-6] == "_":
+						continue
 					indexfileList.append(indexfile)
 		if len(indexfileList):
 			for file in indexfileList:
