@@ -200,51 +200,11 @@ def InitUsageConfig():
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigYesNo(default = False)
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
-	config.subtitles.subtitle_position = ConfigSelection(
-		choices =
-			[("0", "0"),
-			("10", "10"),
-			("20", "20"),
-			("30", "30"),
-			("40", "40"),
-			("50", "50"),
-			("60", "60"),
-			("70", "70"),
-			("80", "80"),
-			("90", "90"),
-			("100", "100"),
-			("150", "150"),
-			("200", "200"),
-			("250", "250"),
-			("300", "300"),
-			("350", "350"),
-			("400", "400"),
-			("450", "450")],
-		default = "50")
-	config.subtitles.subtitle_alignment = ConfigSelection(
-		choices =
-			[("left", "left"),
-			("center", "center"),
-			("right", "right")],
-		default = "center")
+	config.subtitles.subtitle_position = ConfigSelection( choices = ["0","10","20","30","40","50","60","70","80","90","100","150","200","250","300","350","400","450"], default = "50")
+	config.subtitles.subtitle_alignment = ConfigSelection(choices = ["left","center","right"], default = "center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
-	config.subtitles.subtitle_borderwidth = ConfigSelection(
-		choices =
-			[("1", "1"),
-			("2", "2"),
-			("3", "3")],
-		default = "2")
-	config.subtitles.subtitle_fontsize  = ConfigSelection(
-		choices =
-			[("16", "16"),
-			("20", "20"),
-			("24", "24"),
-			("28", "28"),
-			("32", "32"),
-			("34", "34"),
-			("40", "40"),
-			("48", "48")],
-		default = "34")
+	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1","2","3","4","5"], default = "3")
+	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16","18","20","22","24","26","28","30","32","34","36","38","40","42","44","46","48"], default = "34")
 
 def updateChoices(sel, choices):
 	if choices:
