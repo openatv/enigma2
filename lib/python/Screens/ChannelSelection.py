@@ -223,7 +223,7 @@ class ChannelContextMenu(Screen):
 		if cnt > 1: # show bouquet list
 			self.bsel = self.session.openWithCallback(self.bouquetSelClosed, BouquetSelector, bouquets, self.addCurrentServiceToBouquet)
 		elif cnt == 1: # add to only one existing bouquet
-			self.addCurrentServiceToBouquet(bouquets[0][1])
+			self.addCurrentServiceToBouquet(bouquets[0][1], closeBouquetSelection = False)
 
 	def bouquetSelClosed(self, recursive):
 		self.bsel = None
@@ -257,12 +257,12 @@ class ChannelContextMenu(Screen):
 			self.csel.addMarker(marker)
 		self.close()
 
-	def addCurrentServiceToBouquet(self, dest):
+	def addCurrentServiceToBouquet(self, dest, closeBouquetSelection = True):
 		self.csel.addServiceToBouquet(dest)
 		if self.bsel is not None:
 			self.bsel.close(True)
 		else:
-			self.close(True) # close bouquet selection
+			self.close(closeBouquetSelection) # close bouquet selection
 
 	def removeCurrentService(self):
 		self.csel.removeCurrentService()
@@ -1400,9 +1400,9 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 
 		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
 			{
-				"keyTV": self.closeRadio,
-				"keyRadio": self.closeRadio,
-				"cancel": self.closeRadio,
+				"keyTV": self.cancel,
+				"keyRadio": self.cancel,
+				"cancel": self.cancel,
 				"ok": self.channelSelected,
 			})
 
@@ -1440,7 +1440,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self["RdsActions"].setEnabled(state)
 ########## RDS Radiotext / Rass Support END
 
-	def closeRadio(self):
+	def cancel(self):
 		self.infobar.rds_display.onRassInteractivePossibilityChanged.remove(self.RassInteractivePossibilityChanged)
 		self.info.hide()
 		#set previous tv service
