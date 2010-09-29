@@ -123,7 +123,7 @@ class InfoHandler(xml.sax.ContentHandler):
 		if self.elements[-1] == "shortdescription":
 			self.attributes["shortdescription"] = str(data)
 		if self.elements[-1] == "description":
-			self.data += data
+			self.data += data.strip()
 			self.attributes["description"] = str(self.data)
 		#print "characters", data
 
