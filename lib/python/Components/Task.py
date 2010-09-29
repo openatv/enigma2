@@ -266,7 +266,7 @@ class JobManager:
 
 	def kick(self):
 		if self.active_job is None:
-			if len(self.active_jobs):
+			if self.active_jobs:
 				self.active_job = self.active_jobs.pop(0)
 				self.active_job.start(self.jobDone)
 
