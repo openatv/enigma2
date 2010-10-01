@@ -209,7 +209,7 @@ def InitUsageConfig():
 	
 	config.autolanguage = ConfigSubsection()
 	subtitle_language_choices = {
-		"":"None",
+		"None":"None",
 		"Arab":"Arabic",
 		"Basque":"Basque",
 		"Danish":"Danish",
@@ -235,7 +235,7 @@ def InitUsageConfig():
 		"Spanish":"Spanish",
 		"Swedish":"Swedish"}
 	audio_language_choices={	
-		"":"None",
+		"None":"None",
 		"Arab":"Arabic",
 		"Basque":"Basque",
 		"Danish":"Danish",
@@ -262,18 +262,18 @@ def InitUsageConfig():
 		"Swedish":"Swedish",
 		"Audio 2":"Turkish",
 		"Originalton Tonoption 2 orj dos ory org esl qaa":"Original"}
-	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices,default="")
-	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices,default="")
-	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices,default="")
-	config.autolanguage.subtitle_autoselect4 = ConfigSelection(choices=subtitle_language_choices,default="")
+	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices,default="None")
+	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices,default="None")
+	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices,default="None")
+	config.autolanguage.subtitle_autoselect4 = ConfigSelection(choices=subtitle_language_choices,default="None")
 	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default = False)
-	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices,default="") 
-	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices,default="")
-	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices,default="")
-	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices,default="")
+	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices,default="None")
+	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices,default="None")
+	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices,default="None")
+	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices,default="None")
 	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
 	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = False)
 						    
