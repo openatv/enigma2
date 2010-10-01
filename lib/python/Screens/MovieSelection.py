@@ -126,19 +126,6 @@ def moveServiceFiles(serviceref, dest):
 		# rethrow exception
 		raise
 
-def onCopyDone(result, fileList):
-	#callback from reactor, result=None or Failure.
-	if result is None:
-		print "[MovieSelection] Copy done."
-		return
-	print "[MovieSelection] Copy FAILED!", result
-	for s,d in fileList:
-		# Remove incomplete data.
-		try:
-			os.unlink(d)
-		except:
-			pass
-
 def copyServiceFiles(serviceref, dest):
 	# current should be 'ref' type, dest a simple path string
 	print "[Movie] Copying to:", dest
@@ -163,7 +150,7 @@ def copyServiceFiles(serviceref, dest):
 	import CopyFiles
 	# start with the smaller files, do the big one later.
 	moveList.reverse()
-	CopyFiles.copyFiles(moveList, onCopyDone)
+	CopyFiles.copyFiles(moveList, os.path.split(moveList[-1][0])[1])
 	print "[MovieSelection] Copying in background..."
 
 class MovieContextMenuSummary(Screen):
