@@ -197,6 +197,7 @@ def InitUsageConfig():
 		("1540096", "Large 1.5MB"),
 		("1925120", "Huge 2 MB")])
 	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
+	
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigYesNo(default = False)
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
@@ -205,7 +206,77 @@ def InitUsageConfig():
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
 	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1","2","3","4","5"], default = "3")
 	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16","18","20","22","24","26","28","30","32","34","36","38","40","42","44","46","48"], default = "34")
-
+	
+	config.autolanguage = ConfigSubsection()
+	subtitle_language_choices = {
+		"":"None",
+		"Arab":"Arabic",
+		"Basque":"Basque",
+		"Danish":"Danish",
+		"Croatian":"Croatian",
+		"zvuk":"Czech",
+		"Dutch":"Dutch",
+		"Englisch English":"English",
+		"Finnish":"Finnish",
+		"French":"French",
+		"Deutsch":"German",
+		"greek Modern Modern(1453-) 1453":"Greek",
+		"Hungarian":"Hungarian",
+		"Letzeburgesch":"Letzeburgesch",
+		"Italiano":"Italian",
+		"Norwegian":"Norwegian",
+		"Polski":"Polish",
+		"Portuguese":"Portuguese",
+		"Persian":"Persian",
+		"Romanian":"Romanian",
+		"Russian":"Russian",
+		"Serbian":"Serbian",
+		"slk slo":"Slovak",
+		"Spanish":"Spanish",
+		"Swedish":"Swedish"}
+	audio_language_choices={	
+		"":"None",
+		"Arab":"Arabic",
+		"Basque":"Basque",
+		"Danish":"Danish",
+		"Croatian":"Croatian",
+		"zvuk":"Czech",
+		"Dutch":"Dutch",
+		"Englisch English":"English",
+		"Finnish":"Finnish",
+		"French":"French",
+		"Deutsch":"German",
+		"greek Modern Modern(1453-) 1453":"Greek",
+		"Hungarian":"Hungarian",
+		"Letzeburgesch":"Letzeburgesch",
+		"Italiano":"Italian",
+		"Norwegian":"Norwegian",
+		"Polski":"Polish",
+		"Portuguese":"Portuguese",
+		"Persian":"Persian",
+		"Romanian":"Romanian",
+		"Russian":"Russian",
+		"Serbian":"Serbian",
+		"slk slo":"Slovak",
+		"Spanish":"Spanish",
+		"Swedish":"Swedish",
+		"Audio 2":"Turkish",
+		"Originalton Tonoption 2 orj dos ory org esl qaa":"Original"}
+	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices,default="")
+	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices,default="")
+	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices,default="")
+	config.autolanguage.subtitle_autoselect4 = ConfigSelection(choices=subtitle_language_choices,default="")
+	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default = False)
+	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default = False)
+	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
+	config.autolanguage.subtitle_usecache = ConfigYesNo(default = False)
+	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices,default="") 
+	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices,default="")
+	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices,default="")
+	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices,default="")
+	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
+	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = False)
+						    
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
