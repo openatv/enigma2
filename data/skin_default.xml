@@ -1151,13 +1151,13 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen> 
 	<!-- Color OLED screen (ChannelSelection) -->
 	<screen name="ChannelSelection_summary" position="0,0" size="96,64" id="2">
-		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,25" font="Regular;14" halign="center" valign="center" >
+		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,28" font="Regular;16" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Progress" position="0,27" size="96,5" borderWidth="1" >
+		<widget source="session.Event_Now" render="Progress" position="0,30" size="96,8" borderWidth="1" backgroundColor="dark">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,32" size="96,32" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
+		<widget source="global.CurrentTime" render="Label" position="0,38" size="96,26" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 	</screen>
@@ -1182,16 +1182,16 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Color OLED screen (main) -->
 	<screen name="InfoBarSummary" position="0,0" size="96,64" id="2">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="96,25" font="Regular;14" halign="center" valign="center" >
+		<widget source="session.CurrentService" render="Label" position="0,0" size="96,28" font="Regular;16" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Progress" position="0,27" size="96,5" borderWidth="1" >
+		<widget source="session.Event_Now" render="Progress" position="0,30" size="96,8" borderWidth="1" backgroundColor="dark">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,32" size="96,32" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
+		<widget source="global.CurrentTime" render="Label" position="0,38" size="96,26" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,32" zPosition="1" size="96,32">
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,38" zPosition="1" size="96,30">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
@@ -1214,16 +1214,16 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Color OLED screen (movieplayer) -->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="96,64" id="2">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="96,25" font="Regular;14" halign="center" valign="center" >
+		<widget source="session.CurrentService" render="Label" position="0,0" size="96,28" font="Regular;16" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Progress" position="0,27" size="96,5" borderWidth="1" >
-			<convert type="ServicePosition">Position</convert>
+		<widget source="session.Event_Now" render="Progress" position="0,30" size="96,8" borderWidth="1" backgroundColor="dark">
+			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="0,32" size="96,32" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
+		<widget source="global.CurrentTime" render="Label" position="0,38" size="96,26" font="Regular;32" halign="center" valign="center" foregroundColor="#FFFFFF" backgroundColor="#000000" >
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,32" zPosition="1" size="96,32">
+		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,38" zPosition="1" size="96,30">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
@@ -1246,7 +1246,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<widget source="parent.Text" render="Label" position="0,0" size="96,52" font="Regular;10" halign="center" valign="center" />
 		<widget source="parent.selectedChoice" render="Label" position="0,50" size="96,14" font="Regular;12" halign="center" valign="center" />
 	</screen>
-
 	<!-- LCD screen (menus) -->
 	<screen name="MenuSummary" position="0,0" size="132,64" id="1">
 		<widget source="parent.title" render="Label" position="6,0" size="120,32" font="Regular;14" halign="center" valign="center"/>
@@ -1256,8 +1255,8 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen> 
 	<!-- Color OLED screen (menus) -->
 	<screen name="MenuSummary" position="0,0" size="96,64" id="2">
-		<widget source="parent.title" render="Label" position="0,0" size="96,32" font="Regular;14" halign="center" valign="center"/>
-		<widget source="parent.menu" render="Label" position="0,32" size="96,32" font="Regular;14" halign="center" valign="center">
+		<widget source="parent.title" render="Label" position="0,0" size="96,32" font="Regular;15" halign="center" valign="center"/>
+		<widget source="parent.menu" render="Label" position="0,32" size="96,32" font="Regular;16" halign="center" valign="top">
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>	
@@ -1345,6 +1344,5 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 			<convert type="StringListSelection" />
 		</widget>
 	</screen>
-
 
 </skin>
