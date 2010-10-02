@@ -471,7 +471,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None):
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", None):
@@ -483,8 +483,11 @@ class NIM(object):
 		self.has_outputs = has_outputs
 		self.internally_connectable = internally_connectable
 		self.multi_type = multi_type
+		self.frontend_id = frontend_id
 
 	def isCompatible(self, what):
+		if not self.isSupported():
+			return False
 		compatible = {
 				None: (None,),
 				"DVB-S": ("DVB-S", None),
@@ -526,6 +529,9 @@ class NIM(object):
 	def isMultiType(self):
 		return (len(self.multi_type) > 0)
 	
+	def isSupported(self):
+		return (self.frontend_id is not None)
+	
 	# returns dict {<slotid>: <type>}
 	def getMultiTypeList(self):
 		return self.multi_type
@@ -548,8 +554,10 @@ class NIM(object):
 			
 		if self.empty:
 			nim_text += _("(empty)")
+		elif not self.isSupported():
+			nim_text += self.description + " (" + _("not supported") + ")"
 		else:
-		 	nim_text += self.description + " (" + self.friendly_type + ")"
+			nim_text += self.description + " (" + self.friendly_type + ")"
 		
 		return nim_text
 
@@ -675,6 +683,9 @@ class NimManager:
 			elif line.strip().startswith("Internally_Connectable:"):
 				input = int(line.strip()[len("Internally_Connectable:") + 1:])
 				entries[current_slot]["internally_connectable"] = input
+			elif line.strip().startswith("Frontend_Device:"):
+				input = int(line.strip()[len("Frontend_Device:") + 1:])
+				entries[current_slot]["frontend_device"] = input
 			elif  line.strip().startswith("Mode"):
 				# "Mode 0: DVB-T" -> ["Mode 0", " DVB-T"]
 				split = line.strip().split(":")
@@ -688,17 +699,24 @@ class NimManager:
 				entries[current_slot]["name"] = _("N/A")
 		nimfile.close()
 		
+		from os import path
+		
 		for id, entry in entries.items():
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
-			if not (entry.has_key("internally_connectable")):
-				entry["internally_connectable"] = None
+			if entry.has_key("frontend_device"): # check if internally connectable
+				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]):
+					entry["internally_connectable"] = entry["frontend_device"] - 1
+				else:
+					entry["internally_connectable"] = None
+			else:
+				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
 				entry["multi_type"] = {}
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"]))
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
