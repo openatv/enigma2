@@ -85,7 +85,31 @@ class CryptoInfo(Converter, object):
 					else:
 						self.textvalue = decode
 				else:
-					self.textvalue = ""
+					eEnc  = ""
+					eCaid = ""
+					eSrc = ""
+					eTime = ""
+					source = info.get('source', '')
+					if source:
+						# MGcam
+						for line in ecm:
+							line = line.strip() 
+							if line.find('ECM') != -1:
+								line = line.split(' ')
+								eEnc = line[1]
+								eCaid = line[5][2:-1]
+								continue
+							if line.find('source') != -1:
+								line = line.split(' ')
+								eSrc = line[4][:-1]
+								continue
+							if line.find('msec') != -1:
+								line = line.split(' ')
+								eTime = line[0]
+								continue
+						self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
+					else:
+						self.textvalue = ""
 		except:
 			ecm = None
 			self.textvalue = ""
