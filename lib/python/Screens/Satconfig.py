@@ -489,7 +489,7 @@ class NimSelection(Screen):
 	def okbuttonClick(self):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
-		if nim is not None and not nim.empty:
+		if nim is not None and not nim.empty and nim.isSupported():
 			self.session.openWithCallback(self.updateList, self.resultclass, nim.slot)
 			
 	def showNim(self, nim):
@@ -548,6 +548,8 @@ class NimSelection(Screen):
 						text = _("enabled")
 				if x.isMultiType():
 					text = _("Switchable tuner types:") + "(" + ','.join(x.getMultiTypeList().values()) + ")" + "\n" + text
+				if not x.isSupported():
+					text = _("tuner is not supported")
 					
 				self.list.append((slotid, x.friendly_full_description, text, x))
 		self["nimlist"].setList(self.list)
