@@ -62,16 +62,16 @@
 			<item level="1" text="Audio language selection 2">config.autolanguage.audio_autoselect2</item>
 			<item level="1" text="Audio language selection 3">config.autolanguage.audio_autoselect3</item>
 			<item level="1" text="Audio language selection 4">config.autolanguage.audio_autoselect4</item>
-			<item level="1" text="Audio AC3 default">config.autolanguage.audio_defaultac3</item>
-			<item level="1" text="Use selected audio channel stored by service">config.autolanguage.audio_usecache</item>
-			<!--item level="1" text="Subtitle language selection 1">config.autolanguage.subtitle_autoselect1</item>
+			<item level="1" text="Prefer AC3">config.autolanguage.audio_defaultac3</item>
+			<item level="1" text="Prefer audio stream stored by service">config.autolanguage.audio_usecache</item>
+			<item level="1" text="Subtitle language selection 1">config.autolanguage.subtitle_autoselect1</item>
 			<item level="1" text="Subtitle language selection 2">config.autolanguage.subtitle_autoselect2</item>
 			<item level="1" text="Subtitle language selection 3">config.autolanguage.subtitle_autoselect3</item>
 			<item level="1" text="Subtitle language selection 4">config.autolanguage.subtitle_autoselect4</item>
-                        <item level="1" text="Allow auto select hearing impaired subtitles">config.autolanguage.subtitle_hearingimpaired</item>
-                        <item level="1" text="Default auto select hearing impaired subtitles">config.autolanguage.subtitle_defaultimpaired</item>
-                        <item level="1" text="Auto select priority for grafical subtitles">config.autolanguage.subtitle_defaultdvb</item>
-                        <item level="1" text="Use selected subtitle stored by service">config.autolanguage.subtitle_usecache</item-->
+                        <item level="1" text="Allow hearing impaired subtitles">config.autolanguage.subtitle_hearingimpaired</item>
+                        <item level="1" text="Prefer hearing impaired subtitles">config.autolanguage.subtitle_defaultimpaired</item>
+                        <item level="1" text="Prefer DVB-grafical subtitles">config.autolanguage.subtitle_defaultdvb</item>
+                        <item level="1" text="Prefer subtitle stored by service">config.autolanguage.subtitle_usecache</item>
 		</setup>		
 		<setup key="recording" title="Record">
 			<item level="1" text="Recordings always have priority">config.recording.asktozap</item>
