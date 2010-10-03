@@ -231,7 +231,8 @@ def InitUsageConfig():
 		("Romanian","Romanian"),
 		("Russian","Russian"),
 		("Serbian","Serbian"),
-		("Slovensko Slovak Slk slo","Slovenian"),
+		("Slovak Slk slo","Slovak"),
+		("Slovensko","Slovenian"),
 		("Spanish","Spanish"),
 		("Swedish","Swedish"),
 		("Turkish","Turkish")]
@@ -259,7 +260,8 @@ def InitUsageConfig():
 		("Romanian","Romanian"),
 		("Russian","Russian"),
 		("Serbian","Serbian"),
-		("Slovensko Slovak Slk slo","Slovenian"),
+		("Slovak Slk slo","Slovak"),
+		("Slovensko","Slovenian"),
 		("Spanish","Spanish"),
 		("Swedish","Swedish"),
 		("Turkish Audio 2","Turkish")]
