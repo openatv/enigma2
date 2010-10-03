@@ -4,6 +4,7 @@ from Tools.CList import CList
 from SystemInfo import SystemInfo
 import time
 from Components.Console import Console
+import Task
 
 def readFile(filename):
 	file = open(filename)
@@ -155,11 +156,19 @@ class Harddisk:
 					numPart += 1
 		return numPart
 
+	def _unmount(self):
+		self.unmount()
+		
 	def unmount(self):
 		cmd = "umount"
 		for parts in getProcMounts():
 			if path.realpath(parts[0]).startswith(self.dev_path):
 				cmd = ' ' . join([cmd, parts[1]])
+				break
+		else:
+			# not mounted, return OK
+			return 0
+		print "[Harddisk]", cmd
 		res = system(cmd)
 		return (res >> 8)
 
@@ -171,10 +180,10 @@ class Harddisk:
 	def mkfs(self):
 		cmd = "mkfs.ext3 "
 		size = self.diskSize()
-		if size > 2 * 1024:
-			cmd += "-T largefile -N %d " % (size * 32)
-		elif size > 16 * 1024:
+		if size > 16 * 1024:
 			cmd += "-T largefile -O sparse_super "
+		elif size > 2 * 1024:
+			cmd += "-T largefile -N %d " % (size * 32)
 		cmd += "-m0 -O dir_index " + self.partitionPath("1")
 		res = system(cmd)
 		return (res >> 8)
@@ -223,16 +232,45 @@ class Harddisk:
 
 	def killPartition(self, n):
 		part = self.partitionPath(n)
-
-		if access(part, 0):
-			cmd = 'dd bs=512 count=3 if=/dev/zero of=' + part
-			res = system(cmd)
-		else:
-			res = 0
-
-		return (res >> 8)
+		try:
+			h = open(part, 'wb')
+			zero = 512 * '\0'
+			for i in range(3):
+				h.write(zero)
+			h.close()
+		except Exception, e:
+			print "[Harddisk] Failed to write to", part, "error:", e
 
 	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Fsck failed"), _("Please Reboot"), _("Filesystem contains uncorrectable errors"), _("Unmount failed")]
+
+	def createInitializeJob(self):
+		job = Task.Job(_("Initializing storage device..."))
+
+		task = Task.PythonTask(job, _("Unmount"))
+		task.work = self.unmount
+
+		task = Task.PythonTask(job, _("Kill partition"))
+		task.work = lambda: self.killPartition("1")
+
+		task = Task.Task(job, _("Create Partition"))
+		task.setTool('sfdisk')
+		task.args.append('-f')
+		task.args.append(self.disk_path)
+		task.initial_input = "0,\n;\n;\n;\ny\n"
+		
+		task = Task.Task(job, _("Create Filesystem"))
+		task.setTool("mkfs.ext3")
+		size = self.diskSize()
+		if size > 16 * 1024:
+			task.args += ["-T", "largefile", "-O", "sparse_super"]
+		elif size > 2 * 1024:
+			task.args += ["-T", "largefile", "-N", str(size * 32)]
+		task.args += ["-m0", "-O", "dir_index", self.partitionPath("1")]
+
+		task = Task.PythonTask(job, _("Mount"))
+		task.work = self.mount
+
+		return job
 
 	def initialize(self):
 		self.unmount()
@@ -276,6 +314,23 @@ class Harddisk:
 			return -3
 
 		return 0
+		
+	def createCheckJob(self):
+		job = Task.Job(_("Check storage device..."))
+
+		task = Task.PythonTask(job, _("Unmount"))
+		task.work = self.unmount
+
+		task = Task.Task(job, "fsck")
+		task.setTool('fsck.ext3')
+		task.args.append('-f')
+		task.args.append('-p')
+		task.args.append(self.partitionPath("1"))
+
+		task = Task.PythonTask(job, _("Mount"))
+		task.work = self.mount
+
+		return job
 
 	def getDeviceDir(self):
 		return self.dev_path

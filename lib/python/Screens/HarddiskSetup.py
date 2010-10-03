@@ -5,6 +5,7 @@ from Components.MenuList import MenuList
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
+import Components.Task
 from enigma import eTimer
 
 class HarddiskWait(Screen):
@@ -15,8 +16,8 @@ class HarddiskWait(Screen):
 
 	def doCheck(self):
 		self.timer.stop()
-		result = self.hdd.check()
-		self.close(result)
+		Components.Task.job_manager.AddJob(self.hdd.createCheckJob())
+		self.close(None)
 
 	def __init__(self, session, hdd, type):
 		Screen.__init__(self, session)
@@ -68,7 +69,10 @@ class HarddiskSetup(Screen):
 
 	def hddReady(self, result):
 		print "Result: " + str(result)
-		if (result != 0):
+		if result is None:
+			# todo: Notify about background task?
+			self.close()
+		elif (result != 0):
 			if self.type == self.HARDDISK_INITIALIZE:
 				message = _("Unable to initialize device.\nError: ")
 			else:
