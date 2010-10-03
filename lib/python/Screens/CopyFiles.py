@@ -10,10 +10,10 @@ class FailedPostcondition(Components.Task.Condition):
 	def check(self, task):
 		return self.exception is None
 
-
-class CopyFileTask(Components.Task.Task):
+class CopyFileTask(Components.Task.PythonTask):
 	def openFiles(self, fileList):
 		self.callback = None
+		self.fileList = fileList
 		self.handles = [(open(fn[0], 'rb'), open(fn[1], 'wb')) for fn in fileList]
 		self.end = 0
 		for src,dst in fileList:
@@ -24,55 +24,34 @@ class CopyFileTask(Components.Task.Task):
 		if not self.end:
 			self.end = 1
 		print "[CopyFileTask] size:", self.end
-	def run(self, callback):
-		print "[CopyFileTask] run"
-		self.callback = callback
-		self.aborted = False
-		self.pos = 0
-		threads.deferToThread(self.copyHandles).addBoth(self.onComplete)
-		self.timer = task.LoopingCall(self.onTimer)
-		self.timer.start(5, False)
-	def copyHandles(self):
-		print "copyHandles: ", len(self.handles)
+	def work(self):
+		print "[CopyFileTask] handles ", len(self.handles)
 		try:
 			for src, dst in self.handles:
 				while 1:
 					if self.aborted:
+						print "[CopyFileTask] aborting"
 						raise Exception, "Aborted"
 					d = src.read(65536)
 					if not d:
+						src.close()
+						dst.close()
 						# EOF
 						break
 					dst.write(d)
 					self.pos += len(d)
-		finally:
+		except:
 			# In any event, close all handles
 			for src, dst in self.handles:
 				src.close()
 				dst.close()
-	def abort(self):
-		print "[CopyFileTask] abort!"
-		self.aborted = True
-		if self.callback is None:
-			self.finish(aborted = True)
-	def onTimer(self):
-		self.setProgress(self.pos)
-	def onComplete(self, result):
-		#callback from reactor, result=None or Failure.
-		print "[CopyFileTask] onComplete", result
-		self.postconditions.append(FailedPostcondition(result))
-		self.timer.stop()
-		del self.timer
-		if result is None:
-			print "[CopyFileTask] done, okay"
-		else:
-			for s,d in fileList:
+			for s,d in self.fileList:
 				# Remove incomplete data.
 				try:
 					os.unlink(d)
 				except:
 					pass
-		self.finish()
+			raise
 
 
 def copyFiles(fileList, name):

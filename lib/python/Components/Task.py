@@ -111,6 +111,9 @@ class Job(object):
 	def cancel(self):
 		# some Jobs might have a better idea of how to cancel a job
 		self.abort()
+		
+	def __str__(self):	
+		return "Components.Task.Job name=%s #tasks=%s" % (self.name, len(self.tasks))
 
 class Task(object):
 	def __init__(self, job, name):
@@ -158,23 +161,14 @@ class Task(object):
 				not_met.append(precondition)
 		return not_met
 
-	def run(self, callback):
-		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
-		if len(failed_preconditions):
-			callback(self, failed_preconditions)
-			return
-		self.prepare()
-
-		self.callback = callback
+	def _run(self):
 		from enigma import eConsoleAppContainer
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.processFinished)
 		self.container.stdoutAvail.append(self.processStdout)
 		self.container.stderrAvail.append(self.processStderr)
-
 		if self.cwd is not None:
 			self.container.setCWD(self.cwd)
-
 		if not self.cmd and self.cmdline:
 			print "execute:", self.container.execute(self.cmdline), self.cmdline
 		else:
@@ -183,6 +177,15 @@ class Task(object):
 			print "execute:", self.container.execute(self.cmd, *self.args), ' '.join(self.args)
 		if self.initial_input:
 			self.writeInput(self.initial_input)
+
+	def run(self, callback):
+		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
+		if failed_preconditions:
+			callback(self, failed_preconditions)
+			return
+		self.prepare()
+		self.callback = callback
+		self._run()
 
 	def prepare(self):
 		pass
@@ -206,6 +209,7 @@ class Task(object):
 			self.output_line = self.output_line[i+1:]
 
 	def processOutputLine(self, line):
+		print "[Task %s]" % self.name, line
 		pass
 
 	def processFinished(self, returncode):
@@ -248,6 +252,32 @@ class Task(object):
 			self.task_progress_changed()
 
 	progress = property(getProgress, setProgress)
+
+	def __str__(self):	
+		return "Components.Task.Task name=%s" % (self.name)
+
+class PythonTask(Task):
+	def _run(self):
+		from twisted.internet import threads, task
+		self.aborted = False
+		self.pos = 0
+		threads.deferToThread(self.work).addBoth(self.onComplete)
+		self.timer = task.LoopingCall(self.onTimer)
+		self.timer.start(5, False)
+	def work(self):
+		raise NotImplemented, "work"
+	def abort(self):
+		self.aborted = True
+		if self.callback is None:
+			self.finish(aborted = True)
+	def onTimer(self):
+		self.setProgress(self.pos)
+	def onComplete(self, result):
+		self.postconditions.append(FailedPostcondition(result))
+		self.timer.stop()
+		del self.timer
+		self.finish()
+
 
 # The jobmanager will execute multiple jobs, each after another.
 # later, it will also support suspending jobs (and continuing them after reboot etc)
@@ -396,6 +426,14 @@ class AbortedPostcondition(Condition):
 class ReturncodePostcondition(Condition):
 	def check(self, task):
 		return task.returncode == 0
+
+class FailedPostcondition(Condition):
+	def __init__(self, exception):
+		self.exception = exception
+	def getErrorMessage(self, task):
+		return str(self.exception)
+	def check(self, task):
+		return (self.exception is None) or (self.exception == 0) 
 
 #class HDDInitJob(Job):
 #	def __init__(self, device):
