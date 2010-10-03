@@ -139,6 +139,7 @@ public:
 		std::vector<audioStream> audioStreams;
 		int defaultAudioStream;
 		std::vector<subtitleStream> subtitleStreams;
+		int defaultSubtitleStream;
 		std::set<uint16_t> caids;
 		int pcrPid;
 		int pmtPid;
