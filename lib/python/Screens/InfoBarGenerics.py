@@ -1252,6 +1252,8 @@ class InfoBarTimeshift:
 
 		if back:
 			self.ts_rewind_timer.start(200, 1)
+		else:
+			self.doSeek(-1)
 
 	def rewindService(self):
 		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
@@ -2189,7 +2191,11 @@ class InfoBarSubtitleSupport(object):
 	def __updatedInfo(self):
 		subtitle = self.getCurrentServiceSubtitle()
 		if self.__subtitles_enabled:
-			self.setSelectedSubtitle(False)
+			if subtitle:
+				subtitle.disableSubtitles(self.subtitle_window.instance)
+			self.__selected_subtitle = False
+			self.__subtitles_enabled = False
+			self.subtitle_window.hide()
 		self.setSelectedSubtitle(subtitle and subtitle.getCachedSubtitle())
 		if self.__selected_subtitle:
 			self.setSubtitlesEnable(True)
