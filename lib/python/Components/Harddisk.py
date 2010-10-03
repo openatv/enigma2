@@ -40,8 +40,10 @@ class Harddisk:
 
 		self.dev_path = ''
 		self.disk_path = ''
+		self.mount_path = None
+		self.mount_device = None
 		self.phys_path = path.realpath(self.sysfsPath('device'))
-
+		
 		if self.type == self.DEVTYPE_UDEV:
 			self.dev_path = '/dev/' + self.device
 			self.disk_path = self.dev_path
@@ -124,13 +126,10 @@ class Harddisk:
 			assert False, "no hdX or sdX"
 
 	def free(self):
-		for parts in getProcMounts():
-			if path.realpath(parts[0]).startswith(self.dev_path):
-				try:
-					stat = statvfs(parts[1])
-				except OSError:
-					continue
-				return stat.f_bfree/1000 * stat.f_bsize/1000
+		dev = self.findMount()
+		if dev:
+			stat = statvfs(dev)
+			return (stat.f_bfree/1000) * (stat.f_bsize/1000)
 		return -1
 
 	def numPartitions(self):
@@ -156,18 +155,24 @@ class Harddisk:
 					numPart += 1
 		return numPart
 
-	def _unmount(self):
-		self.unmount()
-		
-	def unmount(self):
-		cmd = "umount"
+	def mountDevice(self):
 		for parts in getProcMounts():
 			if path.realpath(parts[0]).startswith(self.dev_path):
-				cmd = ' ' . join([cmd, parts[1]])
-				break
-		else:
+				self.mount_device = parts[0]
+				self.mount_path = parts[1]
+				return parts[1]
+
+	def findMount(self):
+		if self.mount_path is None:
+			return self.mountDevice()
+		return self.mount_path
+
+	def unmount(self):
+		dev = self.mountDevice()
+		if dev is None:
 			# not mounted, return OK
 			return 0
+		cmd = 'umount ' + dev
 		print "[Harddisk]", cmd
 		res = system(cmd)
 		return (res >> 8)
@@ -185,34 +190,39 @@ class Harddisk:
 		elif size > 2 * 1024:
 			cmd += "-T largefile -N %d " % (size * 32)
 		cmd += "-m0 -O dir_index " + self.partitionPath("1")
+		print "[Harddisk]", cmd
 		res = system(cmd)
 		return (res >> 8)
 
 	def mount(self):
+		# try mounting through fstab first
+		if self.mount_device is None:
+			dev = self.partitionPath("1")
+		else:
+			# if previously mounted, use the same spot
+			dev = self.mount_device
 		try:
 			fstab = open("/etc/fstab")
+			lines = fstab.readlines()
 		except IOError:
 			return -1
-
-		lines = fstab.readlines()
 		fstab.close()
-
-		res = -1
 		for line in lines:
 			parts = line.strip().split(" ")
-			if path.realpath(parts[0]) == self.partitionPath("1"):
-				cmd = "mount -t ext3 " + parts[0]
+			fspath = path.realpath(parts[0])
+			if path.realpath(fspath) == dev:
+				print "[Harddisk] mounting:", fspath
+				cmd = "mount -t ext3 " + fspath
 				res = system(cmd)
 				return (res >> 8)
-
 		# device is not in fstab
+		res = -1
 		if self.type == self.DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
 			res = system('/sbin/sfdisk -R ' + self.disk_path)
 			# give udev some time to make the mount, which it will do asynchronously
 			from time import sleep
 			sleep(3)
-
 		return (res >> 8)
 
 	def createMovieFolder(self):
@@ -226,7 +236,7 @@ class Harddisk:
 	def fsck(self):
 		# We autocorrect any failures
 		# TODO: we could check if the fs is actually ext3
-		cmd = "fsck.ext3 -f -p " + self.partitionPath("1")
+		cmd = "fsck.ext3 -f -p " + self.disk_path
 		res = system(cmd)
 		return (res >> 8)
 
@@ -316,16 +326,21 @@ class Harddisk:
 		return 0
 		
 	def createCheckJob(self):
-		job = Task.Job(_("Check storage device..."))
-
-		task = Task.PythonTask(job, _("Unmount"))
-		task.work = self.unmount
+		job = Task.Job(_("Checking Filesystem..."))
+		if self.findMount():
+			# Create unmount task if it was not mounted
+			task = Task.PythonTask(job, _("Unmount"))
+			task.work = self.unmount
+			dev = self.mount_device
+		else:
+			# otherwise, assume there is one partition
+			dev = self.partitionPath("1")
 
 		task = Task.Task(job, "fsck")
 		task.setTool('fsck.ext3')
 		task.args.append('-f')
 		task.args.append('-p')
-		task.args.append(self.partitionPath("1"))
+		task.args.append(dev)
 
 		task = Task.PythonTask(job, _("Mount"))
 		task.work = self.mount
