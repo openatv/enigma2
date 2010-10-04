@@ -10,7 +10,7 @@ class ServiceReference(eServiceReference):
 
 	def __str__(self):
 		return self.ref.toString()
-	
+
 	def getServiceName(self):
 		info = self.info()
 		return info and info.getName(self.ref) or ""
@@ -20,9 +20,16 @@ class ServiceReference(eServiceReference):
 
 	def list(self):
 		return self.serviceHandler.list(self.ref)
-	
+
 	def getType(self):
 		return self.ref.type
-	
+
 	def getPath(self):
 		return self.ref.getPath()
+
+	def getFlags(self):
+		return self.ref.flags
+
+	def isRecordable(self):
+		ref = self.ref
+		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB and ref.getPath() == "")
