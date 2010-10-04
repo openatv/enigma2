@@ -124,7 +124,6 @@ class Task(object):
 		self.returncode = None
 		self.initial_input = None
 		self.job = None
-
 		self.end = 100
 		self.weighting = 100
 		self.__progress = 0
@@ -209,7 +208,7 @@ class Task(object):
 			self.output_line = self.output_line[i+1:]
 
 	def processOutputLine(self, line):
-		print "[Task %s]" % self.name, line
+		print "[Task %s]" % self.name, line[:-1]
 		pass
 
 	def processFinished(self, returncode):
@@ -255,6 +254,14 @@ class Task(object):
 
 	def __str__(self):	
 		return "Components.Task.Task name=%s" % (self.name)
+
+class LoggingTask(Task):
+	def __init__(self, job, name):
+		Task.__init__(self, job, name)
+		self.log = []
+	def processOutput(self, data):
+		self.log.append(data)
+
 
 class PythonTask(Task):
 	def _run(self):
@@ -316,7 +323,6 @@ class JobManager:
 				self.errorCB(False)
 			return
 			#self.failed_jobs.append(self.active_job)
-
 		self.active_job = None
 		self.kick()
 

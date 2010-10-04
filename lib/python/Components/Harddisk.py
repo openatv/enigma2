@@ -270,13 +270,13 @@ class Harddisk:
 		task = Task.PythonTask(job, _("Kill partition"))
 		task.work = lambda: self.killPartition("1")
 
-		task = Task.Task(job, _("Create Partition"))
+		task = Task.LoggingTask(job, _("Create Partition"))
 		task.setTool('sfdisk')
 		task.args.append('-f')
 		task.args.append(self.disk_path)
 		task.initial_input = "0,\n;\n;\n;\ny\n"
 		
-		task = Task.Task(job, _("Create Filesystem"))
+		task = Task.LoggingTask(job, _("Create Filesystem"))
 		task.setTool("mkfs.ext3")
 		size = self.diskSize()
 		if size > 16 * 1024:
@@ -344,7 +344,7 @@ class Harddisk:
 			# otherwise, assume there is one partition
 			dev = self.partitionPath("1")
 
-		task = Task.Task(job, "fsck")
+		task = Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext3')
 		task.args.append('-f')
 		task.args.append('-p')
