@@ -6,31 +6,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Screens.MessageBox import MessageBox
 import Components.Task
-from enigma import eTimer
 
-class HarddiskWait(Screen):
-	def doInit(self):
-		self.timer.stop()
-		result = self.hdd.initialize()
-		self.close(result)
-
-	def doCheck(self):
-		self.timer.stop()
-		Components.Task.job_manager.AddJob(self.hdd.createCheckJob())
-		self.close(None)
-
-	def __init__(self, session, hdd, type):
-		Screen.__init__(self, session)
-		self.hdd = hdd
-		self.timer = eTimer()
-		if type == HarddiskSetup.HARDDISK_INITIALIZE:
-			text = _("Initializing storage device...")
-			self.timer.callback.append(self.doInit)
-		else:
-			text = _("Checking Filesystem...")
-			self.timer.callback.append(self.doCheck)
-		self["wait"] = Label(text)
-		self.timer.start(100)
 
 class HarddiskSetup(Screen):
 	HARDDISK_INITIALIZE = 1
@@ -86,14 +62,19 @@ class HarddiskSetup(Screen):
 			message = _("Do you really want to initialize the device?\nAll data on the disk will be lost!")
 		else:
 			message = _("Do you really want to check the filesystem?\nThis could take lots of time!")
+		message += "\n" + _("You can continue watching TV etc. while this is running.")
 		self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 	def hddConfirmed(self, confirmed):
 		if not confirmed:
 			return
-
 		print "this will start either the initialize or the fsck now!"
-		self.session.openWithCallback(self.hddReady, HarddiskWait, self.hdd, self.type)
+		if self.type == self.HARDDISK_INITIALIZE:
+			Components.Task.job_manager.AddJob(self.hdd.createInitializeJob())
+		else:
+			Components.Task.job_manager.AddJob(self.hdd.createCheckJob())
+		self.close()
+
 
 class HarddiskSelection(Screen):
 	def __init__(self, session):

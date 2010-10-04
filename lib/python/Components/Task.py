@@ -401,7 +401,6 @@ class DiskspacePrecondition(Condition):
 class ToolExistsPrecondition(Condition):
 	def check(self, task):
 		import os
-		
 		if task.cmd[0]=='/':
 			self.realpath = task.cmd
 			print "[Task.py][ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!" 
@@ -411,8 +410,8 @@ class ToolExistsPrecondition(Condition):
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
 			absolutes = filter(lambda file: os.access(file, os.X_OK), map(lambda directory, file = task.cmd: os.path.join(directory, file), path))
-			if len(absolutes) > 0:
-				self.realpath = task.cmd[0]
+			if absolutes:
+				self.realpath = absolutes[0]
 				return True
 		return False 
 

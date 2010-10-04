@@ -116,14 +116,18 @@ class Harddisk:
 		return "%d.%03d GB" % (cap/1000, cap%1000)
 
 	def model(self):
-		if self.device[:2] == "hd":
-			return readFile('/proc/ide/' + self.device + '/model')
-		elif self.device[:2] == "sd":
-			vendor = readFile(self.sysfsPath('device/vendor'))
-			model = readFile(self.sysfsPath('device/model'))
-			return vendor + '(' + model + ')'
-		else:
-			assert False, "no hdX or sdX"
+		try:
+			if self.device[:2] == "hd":
+				return readFile('/proc/ide/' + self.device + '/model')
+			elif self.device[:2] == "sd":
+				vendor = readFile(self.sysfsPath('device/vendor'))
+				model = readFile(self.sysfsPath('device/model'))
+				return vendor + '(' + model + ')'
+			else:
+				raise Exception, "no hdX or sdX" 
+		except Exception, e:
+			print "[Harddisk] Failed to get model:", e
+			return "-?-"
 
 	def free(self):
 		dev = self.findMount()
@@ -219,7 +223,7 @@ class Harddisk:
 		res = -1
 		if self.type == self.DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
-			res = system('/sbin/sfdisk -R ' + self.disk_path)
+			res = system('sfdisk -R ' + self.disk_path)
 			# give udev some time to make the mount, which it will do asynchronously
 			from time import sleep
 			sleep(3)
@@ -236,7 +240,11 @@ class Harddisk:
 	def fsck(self):
 		# We autocorrect any failures
 		# TODO: we could check if the fs is actually ext3
-		cmd = "fsck.ext3 -f -p " + self.disk_path
+		if self.mount_device is None:
+			dev = self.partitionPath("1")
+		else:
+			dev = self.mount_device
+		cmd = "fsck.ext3 -f -p " + dev
 		res = system(cmd)
 		return (res >> 8)
 
