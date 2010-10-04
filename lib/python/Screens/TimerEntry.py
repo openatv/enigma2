@@ -278,7 +278,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.keyGo()
 
 	def keyGo(self, result = None):
-		if self.timerentry_service_ref.getType() != eServiceReference.idDVB or self.timerentry_service_ref.getPath() != "":
+		if not self.timerentry_service_ref.isRecordable():
 			self.session.openWithCallback(self.selectChannelSelector, MessageBox, _("You didn't select a channel to record from."), MessageBox.TYPE_ERROR)
 			return
 		self.timer.name = self.timerentry_name.value
