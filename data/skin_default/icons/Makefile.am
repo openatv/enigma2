@@ -27,7 +27,15 @@ dist_install_DATA = \
 	icon_view.png \
 	input_error.png \
 	input_info.png \
+	input_keyboard-configured.png \
+	input_keyboard.png \
+	input_mouse-configured.png \
+	input_mouse.png \
 	input_question.png \
+	input_rcnew-configured.png \
+	input_rcnew.png \
+	input_rcold-configured.png \
+	input_rcold.png \
 	lock_error.png \
 	lock_off.png \
 	lock_on.png \
@@ -54,3 +62,4 @@ dist_install_DATA = \
 	scan-s.png \
 	scan-t.png \
 	selectioncross.png
+
