@@ -745,14 +745,21 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			if self.iface in iNetwork.wlan_interfaces:
 				try:
 					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
-					from Plugins.SystemPlugins.WirelessLan.iwlibs import Wireless
+					from pythonwifi.iwlibs import Wireless
 				except ImportError:
 					self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 				else:
 					ifobj = Wireless(self.iface) # a Wireless NIC Object
-					self.wlanresponse = ifobj.getStatistics()
-					if self.wlanresponse[0] != 19: # Wlan Interface found.
-						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
+					try:
+						self.wlanresponse = ifobj.getAPaddr()
+					except IOError:
+						self.wlanresponse = ifobj.getStatistics()
+					if self.wlanresponse:
+						if self.wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
+							self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
+						else:
+							# Display Wlan not available Message
+							self.showErrorMessage()
 					else:
 						# Display Wlan not available Message
 						self.showErrorMessage()
@@ -765,28 +772,42 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
-				from Plugins.SystemPlugins.WirelessLan.iwlibs import Wireless
+				from pythonwifi.iwlibs import Wireless
 			except ImportError:
 				self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
 				ifobj = Wireless(self.iface) # a Wireless NIC Object
-				self.wlanresponse = ifobj.getStatistics()
-				if self.wlanresponse[0] != 19:
-					self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
+				try:
+					self.wlanresponse = ifobj.getAPaddr()
+				except IOError:
+					self.wlanresponse = ifobj.getStatistics()
+				if self.wlanresponse:
+					if self.wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
+						self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
+					else:
+						# Display Wlan not available Message
+						self.showErrorMessage()
 				else:
 					# Display Wlan not available Message
 					self.showErrorMessage()
 		if self["menulist"].getCurrent()[1] == 'wlanstatus':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanStatus
-				from Plugins.SystemPlugins.WirelessLan.iwlibs import Wireless
+				from pythonwifi.iwlibs import Wireless
 			except ImportError:
 				self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:	
 				ifobj = Wireless(self.iface) # a Wireless NIC Object
-				self.wlanresponse = ifobj.getStatistics()
-				if self.wlanresponse[0] != 19:
-					self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
+				try:
+					self.wlanresponse = ifobj.getAPaddr()
+				except IOError:
+					self.wlanresponse = ifobj.getStatistics()
+				if self.wlanresponse:
+					if self.wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
+						self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
+					else:
+						# Display Wlan not available Message
+						self.showErrorMessage()
 				else:
 					# Display Wlan not available Message
 					self.showErrorMessage()
@@ -898,14 +919,21 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			if ret[0] == 'ok' and (self.iface in iNetwork.wlan_interfaces) and iNetwork.getAdapterAttribute(self.iface, "up") is True:
 				try:
 					from Plugins.SystemPlugins.WirelessLan.plugin import WlanStatus
-					from Plugins.SystemPlugins.WirelessLan.iwlibs import Wireless
+					from pythonwifi.iwlibs import Wireless
 				except ImportError:
 					self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 				else:	
 					ifobj = Wireless(self.iface) # a Wireless NIC Object
-					self.wlanresponse = ifobj.getStatistics()
-					if self.wlanresponse[0] != 19:
-						self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
+					try:
+						self.wlanresponse = ifobj.getAPaddr()
+					except IOError:
+						self.wlanresponse = ifobj.getStatistics()
+					if self.wlanresponse:
+						if self.wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
+							self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
+						else:
+							# Display Wlan not available Message
+							self.showErrorMessage()
 					else:
 						# Display Wlan not available Message
 						self.showErrorMessage()
@@ -916,7 +944,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def WlanStatusClosed(self, *ret):
 		if ret is not None and len(ret):
-			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
 			self.updateStatusbar()
 
@@ -924,7 +952,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if ret[0] is not None:
 			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface,ret[0],ret[1])
 		else:
-			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
 			self.updateStatusbar()
 			
@@ -1335,7 +1363,7 @@ class NetworkAdapterTest(Screen):
 	def getLinkState(self,iface):
 		if iface in iNetwork.wlan_interfaces:
 			try:
-				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except:
 					self["Network"].setForegroundColorNum(1)
 					self["Network"].setText(_("disconnected"))
@@ -1417,7 +1445,7 @@ class NetworkAdapterTest(Screen):
 		iNetwork.stopLinkStateConsole()
 		iNetwork.stopDNSConsole()
 		try:
-			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus,Status
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 		except ImportError:
 			pass
 		else:

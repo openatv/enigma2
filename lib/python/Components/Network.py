@@ -4,6 +4,7 @@ from socket import *
 from enigma import eConsoleAppContainer
 from Components.Console import Console
 from Components.PluginComponent import plugins
+from Components.About import about
 from Plugins.Plugin import PluginDescriptor
 
 class Network:
@@ -349,8 +350,10 @@ class Network:
 						return _("Zydas")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
 					elif os_path.realpath(driverdir).endswith('rt73'):
 						return _("Ralink")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
+					elif os_path.realpath(driverdir).endswith('rt73usb'):
+						return _("Ralink")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
 					else:
-						return _("Unknown network adapter.")
+						return str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
 				else:
 					return _("Unknown network adapter.")
 
@@ -606,24 +609,39 @@ class Network:
 				if callback is not None:
 					callback(True)
 
-	def detectWlanModule(self):
+	def detectWlanModule(self, iface = None):
 		self.wlanmodule = None
-		rt73_dir = "/sys/bus/usb/drivers/rt73/"
-		zd1211b_dir = "/sys/bus/usb/drivers/zd1211b/"
-		madwifi_dir = "/sys/bus/pci/drivers/ath_pci/"
-		if os_path.exists(madwifi_dir):
-			files = listdir(madwifi_dir)
-			if len(files) >= 1:
-				self.wlanmodule = 'madwifi'
-		if os_path.exists(rt73_dir):
-			rtfiles = listdir(rt73_dir)
-			if len(rtfiles) == 2 or len(rtfiles) == 5:
-				self.wlanmodule = 'ralink'
-		if os_path.exists(zd1211b_dir):
-			zdfiles = listdir(zd1211b_dir)
-			if len(zdfiles) == 1 or len(zdfiles) == 5:
-				self.wlanmodule = 'zydas'
-		return self.wlanmodule
+		classdir = "/sys/class/net/" + iface + "/device/"
+		driverdir = "/sys/class/net/" + iface + "/device/driver/"
+		if os_path.exists(classdir):
+			classfiles = listdir(classdir)
+			driver_found = False
+			nl80211_found = False
+			for x in classfiles:
+				if x == 'driver':
+					driver_found = True
+				if x.startswith('ieee80211:'):
+					nl80211_found = True
+
+			if driver_found and nl80211_found:
+				#print about.getKernelVersionString()
+				self.wlanmodule = "nl80211"
+			else:
+				if driver_found and not nl80211_found:
+					driverfiles = listdir(driverdir)
+					if os_path.realpath(driverdir).endswith('ath_pci'):
+						if len(driverfiles) >= 1:
+							self.wlanmodule = 'madwifi'
+					if os_path.realpath(driverdir).endswith('rt73'):
+						if len(driverfiles) == 2 or len(driverfiles) == 5:
+							self.wlanmodule = 'ralink'					
+					if os_path.realpath(driverdir).endswith('zd1211b'):
+						if len(driverfiles) == 1 or len(driverfiles) == 5:
+							self.wlanmodule = 'zydas'
+			if self.wlanmodule is None:
+				self.wlanmodule = "wext"
+			print 'Using "%s" as wpa-supplicant driver' % (self.wlanmodule)
+			return self.wlanmodule
 	
 	def calc_netmask(self,nmask):
 		from struct import pack, unpack

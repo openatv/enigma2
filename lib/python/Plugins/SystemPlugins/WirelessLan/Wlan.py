@@ -1,7 +1,3 @@
-#from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER
-#from Components.MultiContent import MultiContentEntryText
-#from Components.GUIComponent import GUIComponent
-#from Components.HTMLComponent import HTMLComponent
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Console import Console
 
@@ -10,7 +6,8 @@ from string import maketrans, strip
 import sys
 import types
 from re import compile as re_compile, search as re_search
-from iwlibs import getNICnames, Wireless, Iwfreq
+from pythonwifi.iwlibs import getNICnames, Wireless, Iwfreq, getWNICnames
+from pythonwifi import flags as wififlags
 
 list = []
 list.append("WEP")
@@ -65,38 +62,42 @@ class Wlan:
 		print "self.iface im iwconfigFinished",self.iface
 		callback = extra_args
 		data = { 'essid': False, 'frequency': False, 'acesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False }
-		#print "result im iwconfigFinished",result
 		
 		for line in result.splitlines():
-			#print "line",line
 			line = line.strip()
 			if "ESSID" in line:
 				if "off/any" in line:
 					ssid = _("No Connection")
 				else:
-					tmpssid=(line[line.index('ESSID')+7:len(line)-1])
-					if tmpssid == '':
-						ssid = _("Hidden networkname")
-					elif tmpssid ==' ':
-						ssid = _("Hidden networkname")
+					if "Nickname" in line:
+						tmpssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
+						if tmpssid == '':
+							ssid = _("Hidden networkname")
+						elif tmpssid ==' ':
+							ssid = _("Hidden networkname")
+						else:
+							ssid = tmpssid
 					else:
-					    ssid = tmpssid
-				#print "SSID->",ssid
+						tmpssid=(line[line.index('ESSID')+7:len(line)-1])
+						if tmpssid == '':
+							ssid = _("Hidden networkname")
+						elif tmpssid ==' ':
+							ssid = _("Hidden networkname")
+						else:
+							ssid = tmpssid						
+
 				if ssid is not None:
 					data['essid'] = ssid
 			if 'Frequency' in line:
 				frequency = line[line.index('Frequency')+10 :line.index(' GHz')]
-				#print "Frequency",frequency   
 				if frequency is not None:
 					data['frequency'] = frequency
 			if "Access Point" in line:
 				ap=line[line.index('Access Point')+14:len(line)-1]
-				#print "AP",ap
 				if ap is not None:
 					data['acesspoint'] = ap
 			if "Bit Rate" in line:
 				br = line[line.index('Bit Rate')+9 :line.index(' Mb/s')]
-				#print "Bitrate",br
 				if br is not None:
 					data['bitrate'] = br
 			if 'Encryption key' in line:
@@ -104,7 +105,6 @@ class Wlan:
 				    enc = _("Disabled")
 				else:
 				    enc = line[line.index('Encryption key')+15 :line.index('   Security')]
-				#print "Encryption key",enc 
 				if enc is not None:
 					data['encryption'] = _("Enabled")
 			if 'Quality' in line:
@@ -112,12 +112,10 @@ class Wlan:
 					qual = line[line.index('Quality')+8:line.index('/100')]
 				else:
 					qual = line[line.index('Quality')+8:line.index('Sig')]
-				#print "Quality",qual
 				if qual is not None:
 					data['quality'] = qual
 			if 'Signal level' in line:
-				signal = line[line.index('Signal level')+14 :line.index(' dBm')]
-				#print "Signal level",signal		
+				signal = line[line.index('Signal level')+13 :line.index(' dBm')]
 				if signal is not None:
 					data['signal'] = signal
 
@@ -130,7 +128,6 @@ class Wlan:
 				callback(True,self.wlaniface)
 
 	def getAdapterAttribute(self, attribute):
-		print "im getAdapterAttribute"
 		if self.wlaniface.has_key(self.iface):
 			print "self.wlaniface.has_key",self.iface
 			if self.wlaniface[self.iface].has_key(attribute):
@@ -142,13 +139,17 @@ class Wlan:
 
 	
 	def getWirelessInterfaces(self):
-		iwifaces = None
-		try:
-			iwifaces = getNICnames()
-		except:
-			print "[Wlan.py] No Wireless Networkcards could be found"
-		
-		return iwifaces
+		device = re_compile('[a-z]{2,}[0-9]*:')
+		ifnames = []
+
+		fp = open('/proc/net/wireless', 'r')
+		for line in fp:
+			try:
+				# append matching pattern, without the trailing colon
+				ifnames.append(device.search(line).group()[:-1])
+			except AttributeError:
+				pass
+		return ifnames
 
 	
 	def getNetworkList(self):
@@ -156,8 +157,8 @@ class Wlan:
 		ifobj = Wireless(self.iface) # a Wireless NIC Object
 		
 		#Association mappings
-		stats, quality, discard, missed_beacon = ifobj.getStatistics()
-		snr = quality.signallevel - quality.noiselevel
+		#stats, quality, discard, missed_beacon = ifobj.getStatistics()
+		#snr = quality.signallevel - quality.noiselevel
 
 		try:
 			scanresults = ifobj.scan()
@@ -167,55 +168,47 @@ class Wlan:
 		
 		if scanresults is not None:
 			aps = {}
+			(num_channels, frequencies) = ifobj.getChannelInfo()
+			index = 1
 			for result in scanresults:
-			
 				bssid = result.bssid
-		
-				encryption = map(lambda x: hex(ord(x)), result.encode)
-		
-				if encryption[-1] == "0x8":
+
+				if result.encode.flags & wififlags.IW_ENCODE_DISABLED > 0:
+					encryption = False
+				elif result.encode.flags & wififlags.IW_ENCODE_NOKEY > 0:
 					encryption = True
 				else:
-					encryption = False
-		
+					encryption = None
+				
+				signal = str(result.quality.siglevel-0x100) + " dBm"
+				quality = "%s/%s" % (result.quality.quality,ifobj.getQualityMax().quality)
+				
 				extra = []
 				for element in result.custom:
 					element = element.encode()
 					extra.append( strip(self.asciify(element)) )
-				
-				if result.quality.sl is 0 and len(extra) > 0:
-					begin = extra[0].find('SignalStrength=')+15
-									
-					done = False
-					end = begin+1
-					
-					while not done:
-						if extra[0][begin:end].isdigit():
-							end += 1
-						else:
-							done = True
-							end -= 1
-					
-					signal = extra[0][begin:end]
-					#print "[Wlan.py] signal is:" + str(signal)
+				for element in extra:
+					print element
+					if 'SignalStrength' in element:
+						signal = element[element.index('SignalStrength')+15:element.index(',L')]					
+					if 'LinkQuality' in element:
+						quality = element[element.index('LinkQuality')+12:len(element)]				
 
-				else:
-					signal = str(result.quality.sl)
-				
 				aps[bssid] = {
 					'active' : True,
 					'bssid': result.bssid,
-					'channel': result.frequency.getChannel(result.frequency.getFrequency()),
+					'channel': frequencies.index(ifobj._formatFrequency(result.frequency.getFrequency())) + 1,
 					'encrypted': encryption,
 					'essid': strip(self.asciify(result.essid)),
 					'iface': self.iface,
-					'maxrate' : result.rate[-1],
-					'noise' : result.quality.getNoiselevel(),
-					'quality' : str(result.quality.quality),
-					'signal' : signal,
+					'maxrate' : ifobj._formatBitrate(result.rate[-1][-1]),
+					'noise' : '',#result.quality.nlevel-0x100,
+					'quality' : str(quality),
+					'signal' : str(signal),
 					'custom' : extra,
 				}
-				print aps[bssid]
+				#print "GOT APS ENTRY:",aps[bssid]
+				index = index + 1
 			return aps
 
 		
@@ -226,12 +219,11 @@ class Wlan:
 			self.channel = str(fq.getChannel(str(ifobj.getFrequency()[0:-3])))
 		except:
 			self.channel = 0
-		#print ifobj.getStatistics()
 		status = {
-				  'BSSID': str(ifobj.getAPaddr()),
+				  'BSSID': str(ifobj.getAPaddr()), #ifobj.getStatistics()
 				  'ESSID': str(ifobj.getEssid()),
-				  'quality': str(ifobj.getStatistics()[1].quality),
-				  'signal': str(ifobj.getStatistics()[1].sl),
+				  'quality': "%s/%s" % (ifobj.getStatistics()[1].quality,ifobj.getQualityMax().quality),
+				  'signal': str(ifobj.getStatistics()[1].siglevel-0x100) + " dBm",
 				  'bitrate': str(ifobj.getBitrate()),
 				  'channel': str(self.channel),
 				  #'channel': str(fq.getChannel(str(ifobj.getFrequency()[0:-3]))),
@@ -326,7 +318,6 @@ class wpaSupplicant:
 					essid = split[1][1:-1]
 					
 				elif split[0] == 'proto':
-					print "split[1]",split[1]
 					config.plugins.wlan.encryption.enabled.value = True
 					if split[1] == "WPA" :
 						mode = 'WPA'
@@ -354,12 +345,9 @@ class wpaSupplicant:
 					else:
 						config.plugins.wlan.encryption.wepkeytype.value = 'HEX'
 						config.plugins.wlan.encryption.psk.value = split[1]						
-					print "[Wlan.py] Got Encryption: WEP - keytype is: "+config.plugins.wlan.encryption.wepkeytype.value
-					print "[Wlan.py] Got Encryption: WEP - key0 is: "+config.plugins.wlan.encryption.psk.value
 					
 				elif split[0] == 'psk':
 					config.plugins.wlan.encryption.psk.value = split[1][1:-1]
-					print "[Wlan.py] Got PSK: "+split[1][1:-1]
 				else:
 					pass
 				
@@ -436,24 +424,30 @@ class Status:
 				if "off/any" in line:
 					ssid = _("No Connection")
 				else:
-					tmpssid=(line[line.index('ESSID')+7:len(line)-1])
-					if tmpssid == '':
-						ssid = _("Hidden networkname")
-					elif tmpssid ==' ':
-						ssid = _("Hidden networkname")
+					if "Nickname" in line:
+						tmpssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
+						if tmpssid == '':
+							ssid = _("Hidden networkname")
+						elif tmpssid ==' ':
+							ssid = _("Hidden networkname")
+						else:
+							ssid = tmpssid
 					else:
-					    ssid = tmpssid
-				#print "SSID->",ssid
+						tmpssid=(line[line.index('ESSID')+7:len(line)-1])
+						if tmpssid == '':
+							ssid = _("Hidden networkname")
+						elif tmpssid ==' ':
+							ssid = _("Hidden networkname")
+						else:
+							ssid = tmpssid						
 				if ssid is not None:
 					data['essid'] = ssid
 			if 'Frequency' in line:
 				frequency = line[line.index('Frequency')+10 :line.index(' GHz')]
-				#print "Frequency",frequency   
 				if frequency is not None:
 					data['frequency'] = frequency
 			if "Access Point" in line:
 				ap=line[line.index('Access Point')+14:len(line)]
-				#print "AP",ap
 				if ap is not None:
 					data['acesspoint'] = ap
 					if ap == "Not-Associated":
@@ -467,7 +461,6 @@ class Status:
 						br += " Mb/s"
 				else:
 					br = line[line.index('Bit Rate')+9 :line.index(' Mb/s')] + " Mb/s"
-				#print "Bitrate",br
 				if br is not None:
 					data['bitrate'] = br
 			if 'Encryption key' in line:
@@ -480,28 +473,30 @@ class Status:
 					enc = line[line.index('Encryption key')+15 :line.index('   Security')]
 					if enc is not None:
 						enc = _("Enabled")
-				#print "Encryption key",enc 
 				if enc is not None:
 					data['encryption'] = enc
 			if 'Quality' in line:
 				if "/100" in line:
-					qual = line[line.index('Quality')+8:line.index('/100')]
+					#qual = line[line.index('Quality')+8:line.index('/100')]
+					qual = line[line.index('Quality')+8:line.index('  Signal')]
 				else:
 					qual = line[line.index('Quality')+8:line.index('Sig')]
-				#print "Quality",qual
 				if qual is not None:
 					data['quality'] = qual
 			if 'Signal level' in line:
 				if "dBm" in line:
-					signal = line[line.index('Signal level')+14 :line.index(' dBm')]
+					signal = line[line.index('Signal level')+13 :line.index(' dBm')]
 					signal += " dBm"
 				elif "/100" in line:
-					signal = line[line.index('Signal level')+13:line.index('/100  Noise')]
-					signal += "%"
+					if "Noise" in line:
+						signal = line[line.index('Signal level')+13:line.index('  Noise')]
+					else:
+						signal = line[line.index('Signal level')+13:len(line)]
 				else:
-					signal = line[line.index('Signal level')+13:line.index('  Noise')]
-					signal += "%"
-				#print "Signal level",signal		
+					if "Noise" in line:
+						signal = line[line.index('Signal level')+13:line.index('  Noise')]
+					else:
+						signal = line[line.index('Signal level')+13:len(line)]						
 				if signal is not None:
 					data['signal'] = signal
 
@@ -515,10 +510,8 @@ class Status:
 					callback(True,self.wlaniface)
 
 	def getAdapterAttribute(self, iface, attribute):
-		print "im getAdapterAttribute"
 		self.iface = iface
 		if self.wlaniface.has_key(self.iface):
-			print "self.wlaniface.has_key",self.iface
 			if self.wlaniface[self.iface].has_key(attribute):
 				return self.wlaniface[self.iface][attribute]
 		return None
