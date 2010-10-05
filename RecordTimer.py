@@ -129,6 +129,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def calculateFilename(self):
 		service_name = self.service_ref.getServiceName()
 		begin_date = strftime("%Y%m%d %H%M", localtime(self.begin))
+		begin_shortdate = strftime("%Y%m%d", localtime(self.begin))
 		
 		print "begin_date: ", begin_date
 		print "service_name: ", service_name
@@ -137,7 +138,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		
 		filename = begin_date + " - " + service_name
 		if self.name:
-			filename += " - " + self.name
+			if config.usage.setup_level.index >= 2: # expert+
+				if config.recording.filename_composition.value == "short":
+					filename = begin_shortdate + " - " + self.name
+				elif config.recording.filename_composition.value == "long":
+					filename += " - " + self.name + " - " + self.description
+				else:
+					filename += " - " + self.name # standard
+			else:
+				filename += " - " + self.name
 
 		if config.recording.ascii_filenames.value:
 			filename = ASCIItranslit.legacyEncode(filename)
