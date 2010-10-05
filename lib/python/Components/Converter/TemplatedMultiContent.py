@@ -53,14 +53,18 @@ class TemplatedMultiContent(StringList):
 			template = self.template.get("template")
 			itemheight = self.template["itemHeight"]
 			selectionEnabled = self.template.get("selectionEnabled", True)
+			scrollbarMode = self.template.get("scrollbarMode", "showOnDemand")
 
 			if templates and style and style in templates: # if we have a custom style defined in the source, and different templates in the skin, look it up
 				template = templates[style][1]
 				itemheight = templates[style][0]
 				if len(templates[style]) > 2:
 					selectionEnabled = templates[style][2]
+				if len(templates[style]) > 3:
+					scrollbarMode = templates[style][3]
 
 			self.content.setTemplate(template)
 			self.content.setItemHeight(itemheight)
 			self.selectionEnabled = selectionEnabled
+			self.scrollbarMode = scrollbarMode
 			self.active_style = style
