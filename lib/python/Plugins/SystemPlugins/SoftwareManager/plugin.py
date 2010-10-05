@@ -789,13 +789,13 @@ class PluginManager(Screen, DreamInfoHandler):
 						status = "remove"
 					else:
 						status = "installed"
-					self.list.append(self.buildEntryComponent(name, details, description, packagename, status, selected = selectState))
+					self.list.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected = selectState))
 				else:
 					if selectState == True:
 						status = "install"
 					else:
 						status = "installable"
-					self.list.append(self.buildEntryComponent(name, details, description, packagename, status, selected = selectState))
+					self.list.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected = selectState))
 			if len(self.list):
 				self.list.sort(key=lambda x: x[0])
 			self["list"].style = "default"
@@ -1104,8 +1104,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.skin_path = plugin_path
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
 		self.attributes = None
-		self.translatedAttributes = None
-		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, language = self.language)
+		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		if packagedata:
 			self.pluginname = packagedata[0]
@@ -1143,8 +1142,6 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.package = self.packageDetails[0]
 		if self.package[0].has_key("attributes"):
 			self.attributes = self.package[0]["attributes"]
-		if self.package[0].has_key("translation"):
-			self.translatedAttributes = self.package[0]["translation"]
 
 		self.cmdList = []
 		self.oktext = _("\nAfter pressing OK, please wait!")
@@ -1154,7 +1151,7 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self.onLayoutFinish.append(self.setInfos)
 
 	def setWindowTitle(self):
-		self.setTitle(_("Details for extension: " + self.pluginname))
+		self.setTitle(_("Details for plugin: ") + self.pluginname )
 
 	def exit(self):
 		self.close(False)
@@ -1169,34 +1166,26 @@ class PluginDetails(Screen, DreamInfoHandler):
 		pass
 
 	def setInfos(self):
-		if self.translatedAttributes.has_key("name"):
-			self.pluginname = self.translatedAttributes["name"]
-		elif self.attributes.has_key("name"):
+		if self.attributes.has_key("screenshot"):
+			self.loadThumbnail(self.attributes)
+
+		if self.attributes.has_key("name"):
 			self.pluginname = self.attributes["name"]
 		else:
 			self.pluginname = _("unknown")
 
-		if self.translatedAttributes.has_key("author"):
-			self.author = self.translatedAttributes["author"]
-		elif self.attributes.has_key("author"):
+		if self.attributes.has_key("author"):
 			self.author = self.attributes["author"]
 		else:
 			self.author = _("unknown")
 
-		if self.translatedAttributes.has_key("description"):
-			self.description = self.translatedAttributes["description"]
-		elif self.attributes.has_key("description"):
-			self.description = self.attributes["description"]
+		if self.attributes.has_key("description"):
+			self.description = _(self.attributes["description"].replace("\\n", "\n"))
 		else:
 			self.description = _("No description available.")
 
-		if self.translatedAttributes.has_key("screenshot"):
-			self.loadThumbnail(self.translatedAttributes)
-		else:
-			self.loadThumbnail(self.attributes)
-
 		self["author"].setText(_("Author: ") + self.author)
-		self["detailtext"].setText(self.description.strip())
+		self["detailtext"].setText(_(self.description))
 		if self.pluginstate in ('installable', 'install'):
 			self["key_green"].setText(_("Install"))
 		else:
@@ -1206,6 +1195,10 @@ class PluginDetails(Screen, DreamInfoHandler):
 		thumbnailUrl = None
 		if entry.has_key("screenshot"):
 			thumbnailUrl = entry["screenshot"]
+			if self.language == "de":
+				if thumbnailUrl[-7:] == "_en.jpg":
+					thumbnailUrl = thumbnailUrl[:-7] + "_de.jpg"
+
 		if thumbnailUrl is not None:
 			self.thumbnail = "/tmp/" + thumbnailUrl.split('/')[-1]
 			print "[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail
