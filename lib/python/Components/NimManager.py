@@ -769,6 +769,9 @@ class NimManager:
 	
 	def getNim(self, slotid):
 		return self.nim_slots[slotid]
+	
+	def getI2CDevice(self, slotid):
+		return self.nim_slots[slotid].getI2C()
 
 	def getNimListOfType(self, type, exception = -1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
