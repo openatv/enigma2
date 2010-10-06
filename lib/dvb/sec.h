@@ -25,7 +25,8 @@ public:
 		IF_TONE_GOTO, IF_NOT_TONE_GOTO,
 		START_TUNE_TIMEOUT,
 		SET_ROTOR_MOVING,
-		SET_ROTOR_STOPPED
+		SET_ROTOR_STOPPED,
+		DELAYED_CLOSE_FRONTEND
 	};
 	int cmd;
 	struct rotor
@@ -103,6 +104,10 @@ public:
 	{
 		secSequence.push_back(cmd);
 	}
+	void push_back(eSecCommandList &list)
+	{
+		secSequence.insert(end(), list.begin(), list.end());
+	}
 	void clear()
 	{
 		secSequence.clear();
@@ -127,6 +132,12 @@ public:
 	operator bool() const
 	{
 		return secSequence.size();
+	}
+	eSecCommandList &operator=(const eSecCommandList &lst)
+	{
+		secSequence = lst.secSequence;
+		cur = begin();
+		return *this;
 	}
 };
 #endif
@@ -252,6 +263,7 @@ public:
 #define MAX_SATCR 8
 #define MAX_LNBNUM 32
 
+	int SatCR_positions;
 	int SatCR_idx;
 	unsigned int SatCRvco;
 	unsigned int UnicableTuningWord;
@@ -311,6 +323,7 @@ public:
 #ifndef SWIG
 	eDVBSatelliteEquipmentControl(eSmartPtrList<eDVBRegisteredFrontend> &avail_frontends, eSmartPtrList<eDVBRegisteredFrontend> &avail_simulate_frontends);
 	RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id, unsigned int tunetimeout);
+	void prepareTurnOffSatCR(iDVBFrontend &frontend, int satcr); // used for unicable
 	int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *, int frontend_id, int *highest_score_lnb=0);
 	bool currentLNBValid() { return m_lnbidx > -1 && m_lnbidx < (int)(sizeof(m_lnbs) / sizeof(eDVBSatelliteLNBParameters)); }
 #endif
@@ -346,9 +359,10 @@ public:
 /* Unicable Specific Parameters */
 	RESULT setLNBSatCR(int SatCR_idx);
 	RESULT setLNBSatCRvco(int SatCRvco);
-//	RESULT checkGuardOffset(const eDVBFrontendParametersSatellite &sat);
+	RESULT setLNBSatCRpositions(int SatCR_positions);
 	RESULT getLNBSatCR();
 	RESULT getLNBSatCRvco();
+	RESULT getLNBSatCRpositions();
 /* Satellite Specific Parameters */
 	RESULT addSatellite(int orbital_position);
 	RESULT setVoltageMode(int mode);

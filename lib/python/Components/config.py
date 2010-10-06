@@ -29,6 +29,7 @@ from time import localtime, strftime
 class ConfigElement(object):
 	def __init__(self):
 		self.saved_value = None
+		self.save_forced = False
 		self.last_value = None
 		self.save_disabled = False
 		self.__notifiers = None
@@ -83,7 +84,7 @@ class ConfigElement(object):
 
 	# you need to override this if str(self.value) doesn't work
 	def save(self):
-		if self.save_disabled or self.value == self.default:
+		if self.save_disabled or (self.value == self.default and not self.save_forced):
 			self.saved_value = None
 		else:
 			self.saved_value = self.tostring(self.value)
