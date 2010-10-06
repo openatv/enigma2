@@ -72,6 +72,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
 				elif attrib == "colorEventProgressbarBorderSelected":
 					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+				elif attrib == "colorServiceDescription":
+					self.l.setColor(eListboxServiceContent.serviceDescriptionColor, parseColor(value))
+				elif attrib == "colorServiceDescriptionSelected":
+					self.l.setColor(eListboxServiceContent.serviceDescriptionColorSelected, parseColor(value))
 				elif attrib == "picServiceEventProgressbar":
 					pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
 					if pic:

@@ -531,12 +531,15 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		bool paintProgress = false;
 		ePtr<eServiceEvent> evt;
 
+		bool serviceAvail = true;
+
 		if (!marked && isPlayable && service_info && m_is_playable_ignore.valid() && !service_info->isPlayable(*m_cursor, m_is_playable_ignore))
 		{
 			if (m_color_set[serviceNotAvail])
 				painter.setForegroundColor(m_color[serviceNotAvail]);
 			else
 				painter.setForegroundColor(gRGB(0xbbbbbb));
+			serviceAvail = false;
 		}
 
 		if (selected && local_style && local_style->m_selection)
@@ -592,6 +595,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (!name.length())
 							continue;
 						text = '(' + evt->getEventName() + ')';
+						if (serviceAvail)
+						{
+							if (!selected && m_color_set[serviceDescriptionColor])
+								painter.setForegroundColor(m_color[serviceDescriptionColor]);
+							else if (selected && m_color_set[serviceDescriptionColorSelected])
+								painter.setForegroundColor(m_color[serviceDescriptionColorSelected]);
+						}
 					}
 					else
 						continue;
