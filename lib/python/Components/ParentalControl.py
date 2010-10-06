@@ -55,11 +55,10 @@ def InitParentalControl():
 class ParentalControl:
 	def __init__(self):
 		#Do not call open on init, because bouquets are not ready at that moment 
-#		self.open()
+		self.open()
 		self.serviceLevel = {}
 		#Instead: Use Flags to see, if we already initialized config and called open
 		self.configInitialized = False
-		self.filesOpened = False
 		#This is the timer that is used to see, if the time for caching the pin is over
 		#Of course we could also work without a timer and compare the times every
 		#time we call isServicePlayable. But this might probably slow down zapping, 
@@ -89,9 +88,6 @@ class ParentalControl:
 	def isServicePlayable(self, ref, callback):
 		if not config.ParentalControl.configured.value or not config.ParentalControl.servicepinactive.value:
 			return True
-		#Check if we already read the whitelists and blacklists. If not: call open
-		if self.filesOpened == False:
-			self.open()
 		#Check if configuration has already been read or if the significant values have changed.
 		#If true: read the configuration 
 		if self.configInitialized == False or self.storeServicePin != config.ParentalControl.storeservicepin.value or self.storeServicePinCancel != config.ParentalControl.storeservicepincancel.value:
@@ -153,8 +149,6 @@ class ParentalControl:
 	def getProtectionType(self, service):
 		#New method used in ParentalControlList: This method does not only return
 		#if a service is protected or not, it also returns, why (whitelist or blacklist, service or bouquet)
-		if self.filesOpened == False:
-			self.open()
 		sImage = ""
 		if (config.ParentalControl.type.value == LIST_WHITELIST):
 			if self.whitelist.has_key(service):
@@ -319,14 +313,11 @@ class ParentalControl:
 		
 	def save(self):
 		# we need to open the files in case we havent's read them yet
-		if not self.filesOpened:
-			self.open()
 		self.saveListToFile(LIST_BLACKLIST)
 		self.saveListToFile(LIST_WHITELIST)
 		
 	def open(self):
 		self.openListFromFile(LIST_BLACKLIST)
 		self.openListFromFile(LIST_WHITELIST)
-		self.filesOpened = True
 
 parentalControl = ParentalControl()
