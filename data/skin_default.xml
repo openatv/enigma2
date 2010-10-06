@@ -1253,7 +1253,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- Color OLED screen (standby) -->
 	<screen name="StandbySummary" position="0,0" size="96,64" id="2">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="96,64" font="Regular;40" halign="center" valign="center">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="96,64" font="Regular;38" halign="center" valign="center">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" zPosition="1" size="96,64" text=" ">
