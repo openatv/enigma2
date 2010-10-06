@@ -857,6 +857,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				break;
 			}
+			case TYPE_PROGRESS_PIXMAP: // Progress
+			/*
+				(1, x, y, width, height, filled_percent, pixmap [, borderWidth, foreColor, backColor, backColorSelected] )
+			*/
 			case TYPE_PROGRESS: // Progress
 			{
 			/*
@@ -867,41 +871,55 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 							pwidth = PyTuple_GET_ITEM(item, 3),
 							pheight = PyTuple_GET_ITEM(item, 4),
 							pfilled_perc = PyTuple_GET_ITEM(item, 5),
-							pborderWidth, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected;
-
-				if (!(px && py && pwidth && pheight && pfilled_perc))
+							ppixmap, pborderWidth, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected;
+				int idx = 6;
+				if (type == TYPE_PROGRESS)
 				{
-					eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PROGRESS, x, y, width, height, filled percent [,border width, foreColor, backColor, backColorSelected]))");
-					goto error_out;
+					if (!(px && py && pwidth && pheight && pfilled_perc))
+					{
+						eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PROGRESS, x, y, width, height, filled percent [,border width, foreColor, backColor, backColorSelected]))");
+						goto error_out;
+					}
+				}
+				else
+				{
+					ppixmap = PyTuple_GET_ITEM(item, idx++);
+					if (ppixmap == Py_None)
+						continue;
+					if (!(px && py && pwidth && pheight && pfilled_perc, ppixmap))
+					{
+						eDebug("eListboxPythonMultiContent received too small tuple (must be (TYPE_PROGRESS_PIXMAP, x, y, width, height, filled percent, pixmap, [,border width, foreColor, backColor, backColorSelected]))");
+						goto error_out;
+					}
 				}
 
-				if (size > 6)
+				if (size > idx)
 				{
-					pborderWidth = PyTuple_GET_ITEM(item, 6);
+					pborderWidth = PyTuple_GET_ITEM(item, idx++);
 					if (pborderWidth == Py_None)
 						pborderWidth = ePyObject();
 				}
-				if (size > 7)
+				if (size > idx)
 				{
-					pforeColor = PyTuple_GET_ITEM(item, 7);
+					pforeColor = PyTuple_GET_ITEM(item, idx++);
 					if (pforeColor == Py_None)
 						pforeColor = ePyObject();
 				}
-				if (size > 8)
+				if (size > idx)
 				{
-					pforeColorSelected = PyTuple_GET_ITEM(item, 8);
+					pforeColorSelected = PyTuple_GET_ITEM(item, idx++);
 					if (pforeColorSelected == Py_None)
 						pforeColorSelected=ePyObject();
 				}
-				if (size > 9)
+				if (size > idx)
 				{
-					pbackColor = PyTuple_GET_ITEM(item, 9);
+					pbackColor = PyTuple_GET_ITEM(item, idx++);
 					if (pbackColor == Py_None)
 						pbackColor=ePyObject();
 				}
-				if (size > 10)
+				if (size > idx)
 				{
-					pbackColorSelected = PyTuple_GET_ITEM(item, 10);
+					pbackColorSelected = PyTuple_GET_ITEM(item, idx++);
 					if (pbackColorSelected == Py_None)
 						pbackColorSelected=ePyObject();
 				}
@@ -943,12 +961,24 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				rect.setRect(x+width-bwidth, y+bwidth, bwidth, height-bwidth);
 				painter.fill(rect);
 
-				// progress
 				rect.setRect(x+bwidth, y+bwidth, (width-bwidth*2) * filled / 100, height-bwidth*2);
-				painter.fill(rect);
+
+				// progress
+				if (ppixmap)
+				{
+					ePtr<gPixmap> pixmap;
+					if (SwigFromPython(pixmap, ppixmap))
+					{
+						eDebug("eListboxPythonMultiContent (Pixmap) get pixmap failed");
+						painter.clippop();
+						continue;
+					}
+					painter.blit(pixmap, rect.topLeft(), rect, 0);
+				}
+				else
+					painter.fill(rect);
 
 				painter.clippop();
-
 				break;
 			}
 			case TYPE_PIXMAP_ALPHABLEND:
