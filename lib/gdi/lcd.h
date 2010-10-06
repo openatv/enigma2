@@ -13,10 +13,11 @@
 class eLCD
 {
 #ifdef SWIG
-	eLCD(eSize size);
+	eLCD();
 	~eLCD();
 #else
 protected:
+	void setSize(int xres, int yres, int bpp);
 	eSize res;
 	unsigned char *_buffer;
 	int lcdfd;
@@ -29,12 +30,11 @@ public:
 	int islocked() { return locked; }
 	bool detected() { return lcdfd >= 0; }
 #ifndef SWIG
-	eLCD(eSize size);
+	eLCD();
 	virtual ~eLCD();
 	__u8 *buffer() { return (__u8*)_buffer; }
 	int stride() { return _stride; }
 	eSize size() { return res; }
-	
 	virtual void update()=0;
 #endif
 };

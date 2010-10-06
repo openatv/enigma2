@@ -239,9 +239,9 @@ class VideoHardware:
 		portlist = self.getPortList()
 		for port in portlist:
 			descr = port
-			if descr == 'DVI' and hw_type == 'dm500hd':
+			if descr == 'DVI' and hw_type in ('dm500hd', 'dm800se'):
 				descr = 'HDMI'
-			elif descr == 'DVI-PC' and hw_type == 'dm500hd':
+			elif descr == 'DVI-PC' and hw_type in ('dm500hd', 'dm800se'):
 				descr = 'HDMI-PC'
 			lst.append((port, descr))
 

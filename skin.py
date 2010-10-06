@@ -241,6 +241,8 @@ def applySingleAttribute(guiObject, desktop, attrib, value, scale = ((1,1),(1,1)
 			guiObject.setShadowOffset(parsePosition(value, scale))
 		elif attrib == 'noWrap':
 			guiObject.setNoWrap(1)
+		elif attrib == 'id':
+			pass
 		else:
 			raise SkinError("unsupported attribute " + attrib + "=" + value)
 	except int:
@@ -395,12 +397,16 @@ def loadSkinData(desktop):
 	for (path, dom_skin) in skins:
 		loadSingleSkinData(desktop, dom_skin, path)
 
-def lookupScreen(name):
+def lookupScreen(name, style_id):
 	for (path, skin) in dom_skins:
 		# first, find the corresponding screen element
 		for x in skin.findall("screen"):
 			if x.attrib.get('name', '') == name:
-				return x, path
+				screen_style_id = x.attrib.get('id', '-1')
+				if screen_style_id == '-1' and name.find('ummary') > 0:
+					screen_style_id = '1'
+				if (style_id != 2 and int(screen_style_id) == -1) or int(screen_style_id) == style_id:
+					return x, path
 	return None, None
 
 class additionalWidget:
@@ -412,9 +418,11 @@ def readSkin(screen, skin, names, desktop):
 
 	name = "<embedded-in-'%s'>" % screen.__class__.__name__
 
+	style_id = desktop.getStyleID();
+
 	# try all skins, first existing one have priority
 	for n in names:
-		myscreen, path = lookupScreen(n)
+		myscreen, path = lookupScreen(n, style_id)
 		if myscreen is not None:
 			# use this name for debug output
 			name = n
@@ -427,7 +435,15 @@ def readSkin(screen, skin, names, desktop):
 	# try uncompiled embedded skin
 	if myscreen is None and getattr(screen, "skin", None):
 		print "Looking for embedded skin"
-		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(screen.skin)
+		skin_tuple = screen.skin
+		if not isinstance(skin_tuple, tuple):
+			skin_tuple = (skin_tuple,)
+		for sskin in skin_tuple:
+			parsedSkin = xml.etree.cElementTree.fromstring(sskin)
+			screen_style_id = parsedSkin.attrib.get('id', '-1')
+			if (style_id != 2 and int(screen_style_id) == -1) or int(screen_style_id) == style_id:
+				myscreen = screen.parsedSkin = parsedSkin
+				break
 
 	#assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
 	if myscreen is None:
