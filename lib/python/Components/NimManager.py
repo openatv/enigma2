@@ -110,9 +110,16 @@ class SecConfigure:
 	def setSatposDepends(self, sec, nim1, nim2):
 		print "tuner", nim1, "depends on satpos of", nim2
 		sec.setTunerDepends(nim1, nim2)
+		
+	def linkInternally(self, slotid):
+		nim = self.NimManager.getNim(slotid)
+		if nim.internallyConnectableTo is not None:
+			nim.setInternalLink()
 
 	def linkNIMs(self, sec, nim1, nim2):
 		print "link tuner", nim1, "to tuner", nim2
+		if nim2 == (nim1 - 1):
+			self.linkInternally(nim1)
 		sec.setTunerLinked(nim1, nim2)
 		
 	def getRoot(self, slotid, connto):
@@ -127,6 +134,9 @@ class SecConfigure:
 	def update(self):
 		sec = secClass.getInstance()
 		self.configuredSatellites = set()
+		for slotid in self.NimManager.getNimListOfType("DVB-S"):
+			if self.NimManager.nimInternallyConnectableTo(slotid) is not None:
+				self.NimManager.nimRemoveInternalLink(slotid)
 		sec.clear() ## this do unlinking NIMs too !!
 		print "sec config cleared"
 
@@ -471,7 +481,8 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, i2c = None):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None):
+
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", None):
@@ -484,8 +495,11 @@ class NIM(object):
 		self.internally_connectable = internally_connectable
 		self.multi_type = multi_type
 		self.i2c = i2c
+		self.frontend_id = frontend_id
 
 	def isCompatible(self, what):
+		if not self.isSupported():
+			return False
 		compatible = {
 				None: (None,),
 				"DVB-S": ("DVB-S", None),
@@ -527,8 +541,21 @@ class NIM(object):
 	def internallyConnectableTo(self):
 		return self.internally_connectable
 	
+	def setInternalLink(self):
+		if self.internally_connectable is not None:
+			print "setting internal link on frontend id", self.frontend_id
+			open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w").write("internal")
+		
+	def removeInternalLink(self):
+		if self.internally_connectable is not None:
+			print "removing internal link on frontend id", self.frontend_id
+			open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w").write("external")
+	
 	def isMultiType(self):
 		return (len(self.multi_type) > 0)
+	
+	def isSupported(self):
+		return (self.frontend_id is not None)
 	
 	# returns dict {<slotid>: <type>}
 	def getMultiTypeList(self):
@@ -552,8 +579,10 @@ class NIM(object):
 			
 		if self.empty:
 			nim_text += _("(empty)")
+		elif not self.isSupported():
+			nim_text += self.description + " (" + _("not supported") + ")"
 		else:
-		 	nim_text += self.description + " (" + self.friendly_type + ")"
+			nim_text += self.description + " (" + self.friendly_type + ")"
 		
 		return nim_text
 
@@ -679,6 +708,9 @@ class NimManager:
 			elif line.strip().startswith("Internally_Connectable:"):
 				input = int(line.strip()[len("Internally_Connectable:") + 1:])
 				entries[current_slot]["internally_connectable"] = input
+			elif line.strip().startswith("Frontend_Device:"):
+				input = int(line.strip()[len("Frontend_Device:") + 1:])
+				entries[current_slot]["frontend_device"] = input
 			elif  line.strip().startswith("Mode"):
 				# "Mode 0: DVB-T" -> ["Mode 0", " DVB-T"]
 				split = line.strip().split(":")
@@ -695,6 +727,8 @@ class NimManager:
 				entries[current_slot]["name"] = _("N/A")
 		nimfile.close()
 		
+		from os import path
+		
 		for id, entry in entries.items():
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
@@ -703,11 +737,17 @@ class NimManager:
 				entry["i2c"] = None
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
-			if not (entry.has_key("internally_connectable")):
-				entry["internally_connectable"] = None
+			if entry.has_key("frontend_device"): # check if internally connectable
+				if path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]):
+					entry["internally_connectable"] = entry["frontend_device"] - 1
+				else:
+					entry["internally_connectable"] = None
+			else:
+				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
 				entry["multi_type"] = {}
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], i2c = entry["i2c"]))
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"]))
+
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -726,6 +766,9 @@ class NimManager:
 	
 	def getNimName(self, slotid):
 		return self.nim_slots[slotid].description
+	
+	def getNim(self, slotid):
+		return self.nim_slots[slotid]
 
 	def getNimListOfType(self, type, exception = -1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
@@ -755,6 +798,12 @@ class NimManager:
 	
 	def hasOutputs(self, slotid):
 		return self.nim_slots[slotid].hasOutputs()
+	
+	def nimInternallyConnectableTo(self, slotid):
+		return self.nim_slots[slotid].internallyConnectableTo()
+	
+	def nimRemoveInternalLink(self, slotid):
+		self.nim_slots[slotid].removeInternalLink()
 	
 	def canConnectTo(self, slotid):
 		slots = []
