@@ -675,13 +675,16 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			bool allow_hearingimpaired = false;
 			bool default_hearingimpaired = false;
 			bool defaultdvb = false;
-
+			int equallanguagemask = false;
+			
 			if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_hearingimpaired", configvalue))
 				allow_hearingimpaired = configvalue == "True";
 			if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_defaultimpaired", configvalue))
 				default_hearingimpaired = configvalue == "True";
 			if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_defaultdvb", configvalue))
 				defaultdvb = configvalue == "True";
+			if (!ePythonConfigQuery::getConfigValue("config.autolanguage.equal_languages", configvalue))
+				equallanguagemask = atoi(configvalue.c_str());
 
 			if (defaultdvb)
 			{
@@ -713,7 +716,9 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 				else if (allow_hearingimpaired && autosub_dvb_hearing != -1)
 					program.defaultSubtitleStream = autosub_dvb_hearing;
 			}
-			
+			if (program.defaultSubtitleStream != -1 && (equallanguagemask & (1<<(autosub_level-1))) == 0 && program.subtitleStreams[program.defaultSubtitleStream].language_code.compare(program.audioStreams[program.defaultAudioStream].language_code) == 0 )
+				program.defaultSubtitleStream = -1;
+
 			m_cached_program = program;
 			m_have_cached_program = true;
 		}
