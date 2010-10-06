@@ -471,7 +471,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, i2c = None):
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", None):
@@ -483,6 +483,7 @@ class NIM(object):
 		self.has_outputs = has_outputs
 		self.internally_connectable = internally_connectable
 		self.multi_type = multi_type
+		self.i2c = i2c
 
 	def isCompatible(self, what):
 		compatible = {
@@ -516,6 +517,9 @@ class NIM(object):
 
 	def getSlotID(self):
 		return chr(ord('A') + self.slot)
+	
+	def getI2C(self):
+		return self.i2c
 	
 	def hasOutputs(self):
 		return self.has_outputs
@@ -683,6 +687,9 @@ class NimManager:
 				modes = entries[current_slot].get("multi_type", {})
 				modes[split2[1]] = split[1].strip()
 				entries[current_slot]["multi_type"] = modes
+			elif line.strip().startswith("I2C_Device:"):
+				input = int(line.strip()[len("I2C_Device:") + 1:])
+				entries[current_slot]["i2c"] = input
 			elif line.strip().startswith("empty"):
 				entries[current_slot]["type"] = None
 				entries[current_slot]["name"] = _("N/A")
@@ -692,13 +699,15 @@ class NimManager:
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
+			if not (entry.has_key("i2c")):
+				entry["i2c"] = None
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
 			if not (entry.has_key("internally_connectable")):
 				entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
 				entry["multi_type"] = {}
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"]))
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], i2c = entry["i2c"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
