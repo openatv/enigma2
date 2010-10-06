@@ -7,6 +7,8 @@ from Tools.LoadPixmap import LoadPixmap
 
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 
+from Components.config import config
+
 class ServiceList(HTMLComponent, GUIComponent):
 	MODE_NORMAL = 0
 	MODE_FAVOURITES = 1
@@ -62,6 +64,18 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
 				elif attrib == "foregroundColorServiceNotAvail":
 					self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+				elif attrib == "colorEventProgressbar":
+					self.l.setColor(eListboxServiceContent.serviceEventProgressbarColor, parseColor(value))
+				elif attrib == "colorEventProgressbarSelected":
+					self.l.setColor(eListboxServiceContent.serviceEventProgressbarColorSelected, parseColor(value))
+				elif attrib == "colorEventProgressbarBorder":
+					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
+				elif attrib == "colorEventProgressbarBorderSelected":
+					self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+				elif attrib == "picServiceEventProgressbar":
+					pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
+					if pic:
+						self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 				elif attrib == "serviceItemHeight":
 					self.ItemHeight = int(value)
 				elif attrib == "serviceNameFont":
@@ -213,17 +227,24 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 	def setMode(self, mode):
 		self.mode = mode
+		self.l.setItemHeight(self.ItemHeight)
+		self.l.setVisualMode(eListboxServiceContent.visModeComplex)
 		if mode == self.MODE_NORMAL:
-			self.l.setItemHeight(self.ItemHeight)
-			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
+			if config.usage.show_event_progress_in_servicelist.value:
+				self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 52, self.ItemHeight))
+			else:
+				self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
 			self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 			self.l.setElementPosition(self.l.celServiceName, eRect(0, 0, self.instance.size().width(), self.ItemHeight))
 			self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		else:
-			self.l.setItemHeight(self.ItemHeight)
-			self.l.setVisualMode(eListboxServiceContent.visModeComplex)
+			if config.usage.show_event_progress_in_servicelist.value:
+				self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(60, 0, 52, self.ItemHeight))
+			else:
+				self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(60, 0, 0, 0))
 			self.l.setElementFont(self.l.celServiceNumber, self.ServiceNumberFont)
 			self.l.setElementPosition(self.l.celServiceNumber, eRect(0, 0, 50, self.ItemHeight))
 			self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 			self.l.setElementPosition(self.l.celServiceName, eRect(60, 0, self.instance.size().width()-60, self.ItemHeight))
 			self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
+
