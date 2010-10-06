@@ -250,22 +250,18 @@ class Harddisk:
 
 	def killPartition(self, n):
 		part = self.partitionPath(n)
-		try:
-			h = open(part, 'wb')
-			zero = 512 * '\0'
-			for i in range(3):
-				h.write(zero)
-			h.close()
-		except Exception, e:
-			print "[Harddisk] Failed to write to", part, "error:", e
+		h = open(part, 'wb')
+		zero = 512 * '\0'
+		for i in range(3):
+			h.write(zero)
+		h.close()
 
 	errorList = [ _("Everything is fine"), _("Creating partition failed"), _("Mkfs failed"), _("Mount failed"), _("Create movie folder failed"), _("Fsck failed"), _("Please Reboot"), _("Filesystem contains uncorrectable errors"), _("Unmount failed")]
 
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
 
-		task = Task.PythonTask(job, _("Unmount"))
-		task.work = self.unmount
+		task =  UnmountTask(job, self)
 
 		task = Task.PythonTask(job, _("Kill partition"))
 		task.work = lambda: self.killPartition("1")
@@ -285,8 +281,7 @@ class Harddisk:
 			task.args += ["-T", "largefile", "-N", str(size * 32)]
 		task.args += ["-m0", "-O", "dir_index", self.partitionPath("1")]
 
-		task = Task.PythonTask(job, _("Mount"))
-		task.work = self.mount
+		task = MountTask(job, self)
 
 		return job
 
@@ -337,8 +332,7 @@ class Harddisk:
 		job = Task.Job(_("Checking Filesystem..."))
 		if self.findMount():
 			# Create unmount task if it was not mounted
-			task = Task.PythonTask(job, _("Unmount"))
-			task.work = self.unmount
+			UnmountTask(job, self)
 			dev = self.mount_device
 		else:
 			# otherwise, assume there is one partition
@@ -350,8 +344,7 @@ class Harddisk:
 		task.args.append('-p')
 		task.args.append(dev)
 
-		task = Task.PythonTask(job, _("Mount"))
-		task.work = self.mount
+                MountTask(job, self)
 
 		return job
 
@@ -690,5 +683,42 @@ class HarddiskManager:
 			if x.mountpoint == mountpoint:
 				self.partitions.remove(x)
 				self.on_partition_list_change("remove", x)
+
+class UnmountTask(Task.LoggingTask):
+	def __init__(self, job, hdd):
+		Task.LoggingTask.__init__(self, job, _("Unmount"))
+		self.hdd = hdd
+	def prepare(self):
+		dev = self.hdd.mountDevice()
+		if dev:
+			self.setCmdline('umount ' + dev)
+			self.postconditions.append(Task.ReturncodePostcondition())
+
+class MountTask(Task.LoggingTask):
+	def __init__(self, job, hdd):
+		Task.LoggingTask.__init__(self, job, _("Mount"))
+		self.hdd = hdd
+	def prepare(self):
+		# try mounting through fstab first
+		if self.hdd.mount_device is None:
+			dev = self.hdd.partitionPath("1")
+		else:
+			# if previously mounted, use the same spot
+			dev = self.hdd.mount_device
+		fstab = open("/etc/fstab")
+		lines = fstab.readlines()
+		fstab.close()
+		for line in lines:
+			parts = line.strip().split(" ")
+			fspath = path.realpath(parts[0])
+			if path.realpath(fspath) == dev:
+				self.setCmdline("mount -t ext3 " + fspath)
+				self.postconditions.append(Task.ReturncodePostcondition())
+				return
+		# device is not in fstab
+		if self.hdd.type == self.hdd.DEVTYPE_UDEV:
+			# we can let udev do the job, re-read the partition table
+			self.setCmdline('sfdisk -R ' + self.hdd.disk_path)
+       			self.postconditions.append(Task.ReturncodePostcondition())
 
 harddiskmanager = HarddiskManager()

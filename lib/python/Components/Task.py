@@ -182,9 +182,16 @@ class Task(object):
 		if failed_preconditions:
 			callback(self, failed_preconditions)
 			return
-		self.prepare()
 		self.callback = callback
-		self._run()
+		try:
+			self.prepare()
+			if (self.cmd is None) and (self.cmdline is None):
+				self.finish()
+			else: 
+				self._run()
+		except Exception, ex:
+			self.postconditions = [FailedPostcondition(ex)]
+			self.finish()
 
 	def prepare(self):
 		pass
@@ -260,6 +267,7 @@ class LoggingTask(Task):
 		Task.__init__(self, job, name)
 		self.log = []
 	def processOutput(self, data):
+		print "[%s]" % self.name, data,
 		self.log.append(data)
 
 
@@ -319,7 +327,7 @@ class JobManager:
 			if problems[0].RECOVERABLE:
 				Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
 			else:
-				Notifications.AddNotification(MessageBox, _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+				Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
 				self.errorCB(False)
 			return
 			#self.failed_jobs.append(self.active_job)
@@ -431,11 +439,27 @@ class AbortedPostcondition(Condition):
 class ReturncodePostcondition(Condition):
 	def check(self, task):
 		return task.returncode == 0
+	def getErrorMessage(self, task):
+		if hasattr(task, 'log') and task.log:
+			log = ''.join(task.log).strip()
+			log = log.split('\n')[-3:]
+			log = '\n'.join(log)
+			return log
+		else:
+			return _("Error code") + ": %s" % task.returncode
 
 class FailedPostcondition(Condition):
 	def __init__(self, exception):
 		self.exception = exception
 	def getErrorMessage(self, task):
+		if isinstance(self.exception, int):
+			if hasattr(task, 'log'):
+				log = ''.join(task.log).strip()
+				log = log.split('\n')[-4:]
+				log = '\n'.join(log)
+				return log
+			else:
+				return _("Error code") + " %s" % self.exception
 		return str(self.exception)
 	def check(self, task):
 		return (self.exception is None) or (self.exception == 0) 
