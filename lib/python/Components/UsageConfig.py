@@ -201,85 +201,90 @@ def InitUsageConfig():
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigYesNo(default = False)
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
-	config.subtitles.subtitle_position = ConfigSelection( choices = ["0","10","20","30","40","50","60","70","80","90","100","150","200","250","300","350","400","450"], default = "50")
-	config.subtitles.subtitle_alignment = ConfigSelection(choices = ["left","center","right"], default = "center")
+	config.subtitles.subtitle_position = ConfigSelection( choices = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default = "50")
+	config.subtitles.subtitle_alignment = ConfigSelection(choices = ["left", "center", "right"], default = "center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
-	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1","2","3","4","5"], default = "3")
-	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16","18","20","22","24","26","28","30","32","34","36","38","40","42","44","46","48"], default = "34")
+	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
+	config.subtitles.subtitle_fontsize  = ConfigSelection(choices = ["16", "18", "20", "22", "24", "26", "28", "30", "32", "34", "36", "38", "40", "42", "44", "46", "48"], default = "34")
 	
 	config.autolanguage = ConfigSubsection()
 	subtitle_language_choices = [
-		("None","None"),
-		("Arab","Arabic"),
-		("Basque","Basque"),
-		("Croatian","Croatian"),
-		("Czech zvuk","Czech"),
-		("Danish","Danish"),
-		("Dutch","Dutch"),
-		("Englisch English","English"),
-		("Finnish","Finnish"),
-		("French","French"),
-		("German Deutsch","German"),
-		("Greek Modern(1453-)","Greek"),
-		("Hungarian","Hungarian"),
-		("Italiano","Italian"),
-		("Letzeburgesch","Letzeburgesch"),
-		("Norwegian","Norwegian"),
-		("Polski","Polish"),
-		("Portuguese","Portuguese"),
-		("Persian","Persian"),
-		("Romanian","Romanian"),
-		("Russian","Russian"),
-		("Serbian","Serbian"),
-		("Slovak Slk slo","Slovak"),
-		("Slovensko","Slovenian"),
-		("Spanish","Spanish"),
-		("Swedish","Swedish"),
-		("Turkish","Turkish")]
+		("None", "None"),
+		("Arab", "Arabic"),
+		("Basque", "Basque"),
+		("Croatian", "Croatian"),
+		("Czech zvuk", "Czech"),
+		("Danish", "Danish"),
+		("Dutch", "Dutch"),
+		("Englisch English", "English"),
+		("Finnish", "Finnish"),
+		("French", "French"),
+		("German Deutsch", "German"),
+		("Greek Modern(1453-)", "Greek"),
+		("Hungarian", "Hungarian"),
+		("Italiano", "Italian"),
+		("Letzeburgesch", "Letzeburgesch"),
+		("Norwegian", "Norwegian"),
+		("Polski", "Polish"),
+		("Portuguese", "Portuguese"),
+		("Persian", "Persian"),
+		("Romanian", "Romanian"),
+		("Russian", "Russian"),
+		("Serbian", "Serbian"),
+		("Slovak Slk slo", "Slovak"),
+		("Slovensko", "Slovenian"),
+		("Spanish", "Spanish"),
+		("Swedish", "Swedish"),
+		("Turkish", "Turkish")]
 	audio_language_choices=[	
-		("None","None"),
-		("Originalton Tonoption 2 orj dos ory org esl qaa","Original"),
-		("Arab","Arabic"),
-		("Basque","Basque"),
-		("Croatian","Croatian"),
-		("Czech zvuk","Czech"),
-		("Danish","Danish"),
-		("Dutch","Dutch"),
-		("Englisch English","English"),
-		("Finnish","Finnish"),
-		("French","French"),
-		("German Deutsch","German"),
-		("Greek Modern(1453-)","Greek"),
-		("Hungarian","Hungarian"),
-		("Italiano","Italian"),
-		("Letzeburgesch","Letzeburgesch"),
-		("Norwegian","Norwegian"),
-		("Polski","Polish"),
-		("Portuguese","Portuguese"),
-		("Persian","Persian"),
-		("Romanian","Romanian"),
-		("Russian","Russian"),
-		("Serbian","Serbian"),
-		("Slovak Slk slo","Slovak"),
-		("Slovensko","Slovenian"),
-		("Spanish","Spanish"),
-		("Swedish","Swedish"),
-		("Turkish Audio 2","Turkish")]
-	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices,default="None")
-	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices,default="None")
-	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices,default="None")
-	config.autolanguage.subtitle_autoselect4 = ConfigSelection(choices=subtitle_language_choices,default="None")
+		("None", "None"),
+		("Originalton Tonoption 2 orj dos ory org esl qaa", "Original"),
+		("Arab", "Arabic"),
+		("Basque", "Basque"),
+		("Croatian", "Croatian"),
+		("Czech zvuk", "Czech"),
+		("Danish", "Danish"),
+		("Dutch", "Dutch"),
+		("Englisch English", "English"),
+		("Finnish", "Finnish"),
+		("French", "French"),
+		("German Deutsch", "German"),
+		("Greek Modern(1453-)", "Greek"),
+		("Hungarian", "Hungarian"),
+		("Italiano", "Italian"),
+		("Letzeburgesch", "Letzeburgesch"),
+		("Norwegian", "Norwegian"),
+		("Polski", "Polish"),
+		("Portuguese", "Portuguese"),
+		("Persian", "Persian"),
+		("Romanian", "Romanian"),
+		("Russian", "Russian"),
+		("Serbian", "Serbian"),
+		("Slovak Slk slo", "Slovak"),
+		("Slovensko", "Slovenian"),
+		("Spanish", "Spanish"),
+		("Swedish", "Swedish"),
+		("Turkish Audio 2", "Turkish")]
+	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="None")
+	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="None")
+	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="None")
+	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices, default="None")
+	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = False)
+	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
+	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="None")
+	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="None")
+	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="None")
+	config.autolanguage.subtitle_autoselect4 = ConfigSelection(choices=subtitle_language_choices, default="None")
 	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default = False)
-	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices,default="None")
-	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices,default="None")
-	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices,default="None")
-	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices,default="None")
-	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
-	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = False)
-						    
+	config.autolanguage.equal_languages = ConfigSelection(default = "0", choices = [
+		("0", "None"),("1", "1"),("2", "2"),("3", "1,2"),
+		("4", "3"),("5", "1,3"),("6", "2,3"),("7", "1,2,3"),
+		("8", "4"),("9", "1,4"),("10", "2,4"),("11", "1,2,4"),
+		("12", "3,4"),("13", "1,3,4"),("14", "2,3,4"),("15", "All")])
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
