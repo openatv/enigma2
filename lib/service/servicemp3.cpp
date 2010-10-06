@@ -289,6 +289,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	if ( m_sourceinfo.is_streaming )
 	{
 		uri = g_strdup_printf ("%s", filename);
+		m_streamingsrc_timeout = eTimer::create(eApp);;
+		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 
 		std::string config_str;
 		if( ePythonConfigQuery::getConfigValue("config.mediaplayer.useAlternateUserAgent", config_str) == 0 )
@@ -298,9 +300,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		}
 		if ( m_useragent.length() == 0 )
 			m_useragent = "Dream Multimedia Dreambox Enigma2 Mediaplayer";
-
-		m_streamingsrc_timeout = eTimer::create(eApp);;
-		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 	}
 	else if ( m_sourceinfo.containertype == ctCDA )
 	{
@@ -362,7 +361,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			subs.language_code = std::string("und");
 			m_subtitleStreams.push_back(subs);
 		}
-		if ( sourceinfo.is_streaming )
+		if ( m_sourceinfo.is_streaming )
 		{
 			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
 		}
