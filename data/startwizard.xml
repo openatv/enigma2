@@ -142,7 +142,7 @@ config.ParentalControl.configured.save()
 			</code>
 		</step>
 		<step id="parentalsetup">
-			<text value="You need to set a pin code and hide it from your children.\n\nDo you want to set the pin now?" />
+			<text value="You need to set a PIN code and hide it from your children.\n\nDo you want to set the pin now?" />
 			<list>
 				<listentry caption="Yes" step="finishparentalsetup" />
 				<listentry caption="No" step="warnpin" />
@@ -154,7 +154,7 @@ if self["list"].index == 0:
 			</code>
 		</step>
 		<step id="warnpin">
-			<text value="Please be aware, that anyone can disable the parental control, if you have not set a pin." />
+			<text value="Please be aware, that anyone can disable the parental control, if you have not set a PIN." />
 		</step>
 		<step id="finishparentalsetup">
 			<code>
