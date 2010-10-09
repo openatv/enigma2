@@ -3032,15 +3032,25 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 		pts_t pos = 0;
 		if (m_decoder)
 			m_decoder->getPTS(0, pos);
-		eDebug("got new subtitle page %lld %lld %d", pos, page.m_pts, page.m_have_pts);
-		m_subtitle_pages.push_back(page);
+//		eDebug("got new subtitle page %lld %lld %d", pos, page.m_pts, page.m_have_pts);
+		if ( !page.m_have_pts && (m_is_pvr || m_timeshift_enabled))
+		{
+			eDebug("Subtitle without PTS and recording");
+			eDVBTeletextSubtitlePage tmppage;
+			tmppage = page;
+			tmppage.m_have_pts = true;
+			tmppage.m_pts = pos + 315000;
+			m_subtitle_pages.push_back(tmppage);
+		}
+		else
+			m_subtitle_pages.push_back(page);
 		checkSubtitleTiming();
 	}
 }
 
 void eDVBServicePlay::checkSubtitleTiming()
 {
-	eDebug("checkSubtitleTiming");
+//	eDebug("checkSubtitleTiming");
 	if (!m_subtitle_widget)
 		return;
 	while (1)
@@ -3069,24 +3079,10 @@ void eDVBServicePlay::checkSubtitleTiming()
 		if (m_decoder)
 			m_decoder->getPTS(0, pos);
 
-		eDebug("%lld %lld", pos, show_time);
+//		eDebug("%lld %lld", pos, show_time);
 		int diff = show_time - pos;
-		if (type == TELETEXT && !page.m_have_pts)
-		{
-			eDebug("ttx subtitle page without pts... immediate show");
-			diff = 0;
-		}
-		if (diff < 0)
-		{
-			eDebug("[late (%d ms)]", -diff / 90);
-			diff = 0;
-		}
-		if (abs(diff) > 1800000)
-		{
-			eDebug("[invalid]... immediate show!");
-			diff = 0;
-		}
-		if ((diff/90)<20)
+
+		if ((diff/90)<20 || diff > 1800000 || (type == TELETEXT && !page.m_have_pts))
 		{
 			if (type == TELETEXT)
 			{
