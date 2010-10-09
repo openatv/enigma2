@@ -2882,7 +2882,7 @@ RESULT eDVBServicePlay::disableSubtitles(eWidget *parent)
 		m_subtitle_pages.clear();
 	}
 	if (m_dvb_service)
-		m_dvb_service->setCacheEntry(eDVBService::cSUBTITLE, -1);
+		m_dvb_service->setCacheEntry(eDVBService::cSUBTITLE, 0);
 	return 0;
 }
 
@@ -2898,10 +2898,12 @@ PyObject *eDVBServicePlay::getCachedSubtitle()
 			std::string configvalue;
 			if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_usecache", configvalue))
 				usecache = configvalue == "True";
+
 			int stream=program.defaultSubtitleStream;
+			int tmp = m_dvb_service->getCacheEntry(eDVBService::cSUBTITLE);
+
 			if (usecache || stream == -1)
 			{
-				int tmp = m_dvb_service->getCacheEntry(eDVBService::cSUBTITLE);
 				if (tmp != -1)
 				{
 					unsigned int data = (unsigned int)tmp;
@@ -2917,7 +2919,7 @@ PyObject *eDVBServicePlay::getCachedSubtitle()
 					return tuple;
 				}
 			}
-			if (stream != -1)
+			if (stream != -1 && (tmp != 0 || !usecache))
 			{
 				if (program.subtitleStreams[stream].subtitling_type == 1 )
 				{
