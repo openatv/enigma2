@@ -238,7 +238,7 @@ def InitUsageConfig():
 		("Turkish", "Turkish")]
 	audio_language_choices=[	
 		("None", "None"),
-		("Originalton Tonoption 2 orj dos ory org esl qaa", "Original"),
+		("Originalton Tonoption 2 orj dos ory org esl qaa Undetermined", "Original"),
 		("Arab", "Arabic"),
 		("Basque", "Basque"),
 		("Croatian", "Croatian"),
