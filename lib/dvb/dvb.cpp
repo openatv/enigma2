@@ -320,27 +320,34 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 		PyErr_SetString(PyExc_StandardError, "eDVBResourceManager::setFrontendSlotInformations argument should be a python list");
 		return NULL;
 	}
-	if ((unsigned int)PyList_Size(list) != m_frontend.size())
+	unsigned int assigned=0;
+	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 	{
+		int pos=0;
+		while (pos < PyList_Size(list)) {
+			ePyObject obj = PyList_GET_ITEM(list, pos++);
+			if (!i->m_frontend->setSlotInfo(obj))
+				continue;
+			++assigned;
+			break;
+		}
+	}
+	if (assigned != m_frontend.size()) {
 		char blasel[256];
-		sprintf(blasel, "eDVBResourceManager::setFrontendSlotInformations list size incorrect %d frontends avail, but %d entries in slotlist",
-			m_frontend.size(), PyList_Size(list));
+		sprintf(blasel, "eDVBResourceManager::setFrontendSlotInformations .. assigned %d socket informations, but %d registered frontends!",
+			m_frontend.size(), assigned);
 		PyErr_SetString(PyExc_StandardError, blasel);
 		return NULL;
 	}
-	int pos=0;
-	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
-	{
-		ePyObject obj = PyList_GET_ITEM(list, pos++);
-		if (!i->m_frontend->setSlotInfo(obj))
-			return NULL;
-	}
-	pos=0;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_simulate_frontend.begin()); i != m_simulate_frontend.end(); ++i)
 	{
-		ePyObject obj = PyList_GET_ITEM(list, pos++);
-		if (!i->m_frontend->setSlotInfo(obj))
-			return NULL;
+		int pos=0;
+		while (pos < PyList_Size(list)) {
+			ePyObject obj = PyList_GET_ITEM(list, pos++);
+			if (!i->m_frontend->setSlotInfo(obj))
+				continue;
+			break;
+		}
 	}
 	Py_RETURN_NONE;
 }
