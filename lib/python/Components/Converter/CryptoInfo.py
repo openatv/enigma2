@@ -109,7 +109,16 @@ class CryptoInfo(Converter, object):
 								continue
 						self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
 					else:
-						self.textvalue = ""
+						address = info.get('from', '')
+						if address:
+							hops = info.get('hops', None)
+							if hops and hops != '0':
+								hops = ' @' + hops
+							else:
+								hops = ''
+							self.textvalue = address + hops + " (%ss)" % info.get('ecm time', '?')
+						else:
+							self.textvalue = ""
 		except:
 			ecm = None
 			self.textvalue = ""
