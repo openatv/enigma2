@@ -95,7 +95,6 @@ class VideoSetup(Screen, ConfigListScreen):
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch))
 
 		if level >= 1:
-			self.list.append(getConfigListEntry(_("AC3 default"), config.av.defaultac3))
 			if SystemInfo["CanDownmixAC3"]:
 				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3))
 			if SystemInfo["CanDownmixDTS"]:

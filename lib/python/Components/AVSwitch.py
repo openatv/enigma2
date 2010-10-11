@@ -111,7 +111,6 @@ def InitAVSwitch():
 			default = "pillarbox")
 	config.av.tvsystem = ConfigSelection(choices = {"pal": _("PAL"), "ntsc": _("NTSC"), "multinorm": _("multinorm")}, default="pal")
 	config.av.wss = ConfigEnableDisable(default = True)
-	config.av.defaultac3 = ConfigYesNo(default = False)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 25, default = 0)
 	config.av.generalPCMdelay = ConfigSelectionNumber(-1000, 1000, 25, default = 0)
 	config.av.vcrswitch = ConfigEnableDisable(default = False)
