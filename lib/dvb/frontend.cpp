@@ -813,7 +813,7 @@ int eDVBFrontend::readFrontendData(int type)
 					float fval1 = SDS_SNRE / 268435456.0,
 						  fval2, fval3, fval4;
 
-					if (parm_u_qpsk_fec_inner <= FEC_S2_QPSK_9_10) // DVB-S2 QPSK
+					if (oparm.sat.modulation == eDVBFrontendParametersSatellite::Modulation_QPSK)
 					{
 						fval2 = 6.76;
 						fval3 = 4.35;
