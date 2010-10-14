@@ -481,7 +481,7 @@ class SecConfigure:
 		self.update()
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, is_empty = False):
+	def __init__(self, slot, type, description, has_outputs = True, internally_connectable = None, multi_type = {}, frontend_id = None, i2c = None, is_empty = False):
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", None):
@@ -493,6 +493,7 @@ class NIM(object):
 		self.has_outputs = has_outputs
 		self.internally_connectable = internally_connectable
 		self.multi_type = multi_type
+		self.i2c = i2c
 		self.frontend_id = frontend_id
 		self.__is_empty = is_empty
 
@@ -530,6 +531,9 @@ class NIM(object):
 
 	def getSlotID(self):
 		return chr(ord('A') + self.slot)
+	
+	def getI2C(self):
+		return self.i2c
 	
 	def hasOutputs(self):
 		return self.has_outputs
@@ -721,6 +725,9 @@ class NimManager:
 				modes = entries[current_slot].get("multi_type", {})
 				modes[split2[1]] = split[1].strip()
 				entries[current_slot]["multi_type"] = modes
+			elif line.strip().startswith("I2C_Device:"):
+				input = int(line.strip()[len("I2C_Device:") + 1:])
+				entries[current_slot]["i2c"] = input
 			elif line.strip().startswith("empty"):
 				entries[current_slot]["type"] = None
 				entries[current_slot]["name"] = _("N/A")
@@ -733,6 +740,8 @@ class NimManager:
 			if not (entry.has_key("name") and entry.has_key("type")):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
+			if not (entry.has_key("i2c")):
+				entry["i2c"] = None
 			if not (entry.has_key("has_outputs")):
 				entry["has_outputs"] = True
 			if entry.has_key("frontend_device"): # check if internally connectable
@@ -744,7 +753,7 @@ class NimManager:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if not (entry.has_key("multi_type")):
 				entry["multi_type"] = {}
-			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], is_empty = entry["isempty"]))
+			self.nim_slots.append(NIM(slot = id, description = entry["name"], type = entry["type"], has_outputs = entry["has_outputs"], internally_connectable = entry["internally_connectable"], multi_type = entry["multi_type"], frontend_id = entry["frontend_device"], i2c = entry["i2c"], is_empty = entry["isempty"]))
 
 	def hasNimType(self, chktype):
 		for slot in self.nim_slots:
@@ -766,6 +775,9 @@ class NimManager:
 	
 	def getNim(self, slotid):
 		return self.nim_slots[slotid]
+	
+	def getI2CDevice(self, slotid):
+		return self.nim_slots[slotid].getI2C()
 
 	def getNimListOfType(self, type, exception = -1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
