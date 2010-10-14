@@ -192,21 +192,16 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.dataAvail.append(self.getCableTransponderData)
 		cableConfig = config.Nims[nim_idx].cable
 		tunername = nimmanager.getNimName(nim_idx)
+		bus = nimmanager.getI2CDevice(nim_idx)
+		if bus is None:
+			print "ERROR: could not get I2C device for nim", nim_idx, "for cable transponder search"
+			bus = 2
+
 		if tunername == "CXD1981":
-			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus "
+			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
 		else:
-			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus "
-		#FIXMEEEEEE hardcoded i2c devices for dm7025 and dm8000
-		if nim_idx < 2:
-			if HardwareInfo().get_device_name() == "dm500hd":
-				cmd += "2"
-			else:
-				cmd += str(nim_idx)
-		else:
-			if nim_idx == 2:
-				cmd += "2" # first nim socket on DM8000 use /dev/i2c/2
-			else:
-				cmd += "4" # second nim socket on DM8000 use /dev/i2c/4
+			cmd = "tda1002x --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
+		
 		if cableConfig.scan_type.value == "bands":
 			cmd += " --scan-bands "
 			bands = 0
