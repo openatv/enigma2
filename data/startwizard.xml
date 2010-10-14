@@ -142,10 +142,10 @@ config.ParentalControl.configured.save()
 			</code>
 		</step>
 		<step id="parentalsetup">
-			<text value="You need to set a pin code and hide it from your children.\n\nDo you want to set the pin now?" />
+			<text value="You need to set a PIN code and hide it from your children.\n\nDo you want to set the pin now?" />
 			<list>
 				<listentry caption="Yes" step="finishparentalsetup" />
-				<listentry caption="No" step="finishparentalsetup" />
+				<listentry caption="No" step="warnpin" />
 			</list>
 			<code pos="after">
 from ParentalControlSetup import ParentalControlChangePin
@@ -153,9 +153,15 @@ if self["list"].index == 0:
 	self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("parental control pin"))
 			</code>
 		</step>
+		<step id="warnpin">
+			<text value="Please be aware, that anyone can disable the parental control, if you have not set a PIN." />
+		</step>
 		<step id="finishparentalsetup">
 			<code>
-config.ParentalControl.setuppinactive.value = True
+if config.ParentalControl.setuppin.value == "aaaa":
+	config.ParentalControl.setuppinactive.value = False
+else:
+	config.ParentalControl.setuppinactive.value = True
 config.ParentalControl.setuppinactive.save()
 config.ParentalControl.servicepinactive.value = True
 config.ParentalControl.servicepinactive.save()
