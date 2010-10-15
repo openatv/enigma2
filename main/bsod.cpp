@@ -234,6 +234,13 @@ void bsodFatal(const char *component)
 #endif
 		fprintf(f, "\t\t<contactemail>%s</contactemail>\n", crash_emailaddr);
 		fprintf(f, "\t\t<!-- Please email this crashlog to above address -->\n");
+		std::string activeSkin = getConfigFileValue("config.skin.primary_skin");
+		if (activeSkin != "Error")
+		{
+			if (activeSkin == "")
+				activeSkin = "Default Skin";
+			fprintf(f, "\t\t<skin>%s</skin>\n", activeSkin.c_str());
+		}
 		fprintf(f, "\t</enigma2>\n");
 
 		fprintf(f, "\t<image>\n");
