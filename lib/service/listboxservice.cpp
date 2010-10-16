@@ -639,7 +639,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					eRect bbox = para->getBoundBox();
 					int name_width = bbox.width() + 8;
-					int name_width = bbox.width()+8;
 					m_element_position[celServiceInfo].setLeft(area.left()+name_width+xoffs);
 					m_element_position[celServiceInfo].setTop(area.top());
 					m_element_position[celServiceInfo].setWidth(area.width()-(name_width+xoffs));
