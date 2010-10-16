@@ -315,7 +315,7 @@ RESULT eServiceXine::setTrickmode(int trick)
 
 RESULT eServiceXine::isCurrentlySeekable()
 {
-	return 3;
+	return 1;
 }
 
 RESULT eServiceXine::info(ePtr<iServiceInformation>&i)
