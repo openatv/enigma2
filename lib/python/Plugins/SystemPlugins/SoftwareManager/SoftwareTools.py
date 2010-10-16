@@ -69,7 +69,7 @@ class SoftwareTools(DreamInfoHandler):
 		else:
 			self.ImageVersion = 'Stable'
 		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
-		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion, language = self.language)
+		DreamInfoHandler.__init__(self, self.statusCallback, blocking = False, neededTag = 'ALL_TAGS', neededFlag = self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		self.hardware_info = HardwareInfo()
 		self.list = List([])
