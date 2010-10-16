@@ -563,13 +563,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 
 		int xoffset=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
 
-		for (int e = 0; e < celElements; ++e)
+		for (int e = 0; e != celElements; ++e)
 		{
 			if (m_element_font[e])
 			{
-				int flags=gPainter::RT_VALIGN_CENTER,
-					yoffs = 0,
-					xoffs = xoffset;
+				int flags=gPainter::RT_VALIGN_CENTER;
+				int yoffs = 0;
+				int xoffs = xoffset;
 				eRect &area = m_element_position[e];
 				std::string text = "<n/a>";
 				xoffset=0;
@@ -608,7 +608,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if ( isPlayable && !service_info->getEvent(*m_cursor, evt) )
 					{
 						std::string name = evt->getEventName();
-						if (!name.length())
+						if (name.empty())
 							continue;
 						text = evt->getEventName();
 						if (!selected && m_color_set[eventForeground])
