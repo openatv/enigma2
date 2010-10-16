@@ -269,6 +269,7 @@ public:
 	int getUseCount() { return m_use_count; }
 
 	RESULT requestTsidOnid(ePyObject callback);
+	int reserveDemux();
 private:
 	ePtr<eDVBAllocatedFrontend> m_frontend;
 	ePtr<eDVBAllocatedDemux> m_demux, m_decoder_demux;
