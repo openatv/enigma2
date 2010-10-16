@@ -3036,10 +3036,18 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 		if ( !page.m_have_pts && (m_is_pvr || m_timeshift_enabled))
 		{
 			eDebug("Subtitle without PTS and recording");
+
+			std::string configvalue;
+			int subtitledelay = 315000;
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_noPTSrecordingdelay", configvalue))
+			{
+				subtitledelay = atoi(configvalue.c_str());
+			}
+
 			eDVBTeletextSubtitlePage tmppage;
 			tmppage = page;
 			tmppage.m_have_pts = true;
-			tmppage.m_pts = pos + 315000;
+			tmppage.m_pts = pos + subtitledelay;
 			m_subtitle_pages.push_back(tmppage);
 		}
 		else
