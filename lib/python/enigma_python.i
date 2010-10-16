@@ -39,6 +39,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
+#include <lib/base/etpm.h>
 #include <lib/base/nconfig.h>
 #include <lib/base/message.h>
 #include <lib/base/systemsettings.h>
@@ -176,6 +177,7 @@ typedef long time_t;
 %immutable eTuxtxtApp::dataAvail;
 %immutable eTuxtxtApp::dataSent;
 %include <lib/base/message.h>
+%include <lib/base/etpm.h>
 %include <lib/base/nconfig.h>
 %include <lib/base/systemsettings.h>
 %include <lib/driver/rc.h>
