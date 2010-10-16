@@ -64,9 +64,9 @@ class ServiceList(HTMLComponent, GUIComponent):
 					self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
 				elif attrib == "foregroundColorServiceNotAvail":
 					self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
-				elif attrib == "foregroundColorEvent":
+				elif attrib == "foregroundColorEvent" or attrib == "colorServiceDescription":
 					self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
-				elif attrib == "foregroundColorEventSelected":
+				elif attrib == "foregroundColorEventSelected" or attrib == "colorServiceDescriptionSelected":
 					self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
 				elif attrib == "foregroundColorEventborder":
 					self.l.setColor(eListboxServiceContent.eventborderForeground, parseColor(value))
