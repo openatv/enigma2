@@ -237,7 +237,7 @@ def InitUsageConfig():
 		("Croatian", "Croatian"),
 		("Czech zvuk", "Czech"),
 		("Danish", "Danish"),
-		("Dutch", "Dutch"),
+		("Dutch nld", "Dutch"),
 		("Englisch English", "English"),
 		("Finnish", "Finnish"),
 		("French", "French"),
