@@ -131,6 +131,7 @@ class TempFanControl(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 		#self["config"].list = self.list
 		#self["config"].setList(self.list)
+		self["config"].l.setSeperation(300)
 		
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"], 
 		{

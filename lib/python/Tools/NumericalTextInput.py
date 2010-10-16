@@ -31,7 +31,7 @@ class NumericalTextInput:
 			return
 
 		if self.lang == 'de_DE':
-			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
+			self.mapping.append (u".,?'+\"0-()@/:_$!=") # 0
 			self.mapping.append (u" 1") # 1
 			self.mapping.append (u"aäbc2AÄBC") # 2
 			self.mapping.append (u"def3DEF") # 3
@@ -42,7 +42,7 @@ class NumericalTextInput:
 			self.mapping.append (u"tuüv8TUÜV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		elif self.lang == 'es_ES':
-			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
+			self.mapping.append (u".,?'+\"0-()@/:_$!=") # 0
 			self.mapping.append (u" 1") # 1
 			self.mapping.append (u"abcáà2ABCÁÀ") # 2
 			self.mapping.append (u"deéèf3DEFÉÈ") # 3
@@ -53,7 +53,7 @@ class NumericalTextInput:
 			self.mapping.append (u"tuvúù8TUVÚÙ") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		if self.lang in ('sv_SE', 'fi_FI'):
-			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
+			self.mapping.append (u".,?'+\"0-()@/:_$!=") # 0
 			self.mapping.append (u" 1") # 1
 			self.mapping.append (u"abcåä2ABCÅÄ") # 2
 			self.mapping.append (u"defé3DEFÉ") # 3
@@ -64,7 +64,7 @@ class NumericalTextInput:
 			self.mapping.append (u"tuv8TUV") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		else:
-			self.mapping.append (u".,?'+\"0-()@/:_$!") # 0
+			self.mapping.append (u".,?'+\"0-()@/:_$!=") # 0
 			self.mapping.append (u" 1") # 1
 			self.mapping.append (u"abc2ABC") # 2
 			self.mapping.append (u"def3DEF") # 3
