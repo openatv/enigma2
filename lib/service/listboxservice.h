@@ -49,6 +49,7 @@ public:
 		celServiceNumber,
 		celMarkerPixmap,
 		celFolderPixmap,
+		celServiceEventProgressbar,
 		celServiceName,
 		celServiceTypePixmap,
 		celServiceInfo, // "now" event
@@ -62,6 +63,7 @@ public:
 		picServiceGroup,
 		picFolder,
 		picMarker,
+		picServiceEventProgressbar,
 		picElements
 	};
 
@@ -88,6 +90,10 @@ public:
 		eventForegroundSelected,
 		eventborderForeground,
 		eventborderForegroundSelected,
+		serviceEventProgressbarColor,
+		serviceEventProgressbarColorSelected,
+		serviceEventProgressbarBorderColor,
+		serviceEventProgressbarBorderColorSelected,
 		colorElements
 	};
 	

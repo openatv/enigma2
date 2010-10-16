@@ -69,12 +69,13 @@ def InitUsageConfig():
 		("4", "DVB-T/-C/-S"),
 		("5", "DVB-T/-S/-C") ])
 
-	nims = []
-	nims.append(("-1", _("auto")))
+	nims = [("-1", _("auto"))]
 	for x in nimmanager.nim_slots:
 		nims.append((str(x.slot), x.getSlotName()))
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
+
+	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = False)
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
