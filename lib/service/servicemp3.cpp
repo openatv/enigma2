@@ -19,6 +19,8 @@
 #include <gst/gst.h>
 #include <gst/pbutils/missing-plugins.h>
 #include <sys/stat.h>
+/* for subtitles */
+#include <lib/gui/esubtitle.h>
 
 // eServiceFactoryMP3
 
