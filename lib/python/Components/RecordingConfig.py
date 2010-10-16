@@ -1,4 +1,4 @@
-from config import ConfigNumber, ConfigYesNo, ConfigSubsection, config
+from config import ConfigNumber, ConfigYesNo, ConfigSubsection, ConfigSelection, config
 
 def InitRecordingConfig():
 	config.recording = ConfigSubsection();
@@ -9,3 +9,7 @@ def InitRecordingConfig():
 	config.recording.debug = ConfigYesNo(default = False)
 	config.recording.ascii_filenames = ConfigYesNo(default = False)
 	config.recording.keep_timers = ConfigNumber(default=7)
+	config.recording.filename_composition = ConfigSelection(default = "standard", choices = [
+		("standard", _("standard")),
+		("short", _("Short filenames")),
+		("long", _("Long filenames")) ] )
