@@ -85,13 +85,13 @@ class CryptoInfo(Converter, object):
 					else:
 						self.textvalue = decode
 				else:
-					eEnc  = ""
-					eCaid = ""
-					eSrc = ""
-					eTime = ""
 					source = info.get('source', '')
 					if source:
 						# MGcam
+						eEnc  = ""
+						eCaid = ""
+						eSrc = ""
+						eTime = ""
 						for line in ecm:
 							line = line.strip() 
 							if line.find('ECM') != -1:
@@ -109,14 +109,14 @@ class CryptoInfo(Converter, object):
 								continue
 						self.textvalue = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
 					else:
-						address = info.get('from', '')
-						if address:
+						reader = info.get('reader', '')
+						if reader:
 							hops = info.get('hops', None)
 							if hops and hops != '0':
 								hops = ' @' + hops
 							else:
 								hops = ''
-							self.textvalue = address + hops + " (%ss)" % info.get('ecm time', '?')
+							self.textvalue = reader + hops + " (%ss)" % info.get('ecm time', '?')
 						else:
 							self.textvalue = ""
 		except:
