@@ -26,6 +26,9 @@ from Screens.SimpleSummary import SimpleSummary
 
 from sys import stdout, exc_info
 
+profile("Bouquets")
+enigma.eDVBDB.getInstance().reloadBouquets()
+
 profile("ParentalControl")
 import Components.ParentalControl
 Components.ParentalControl.InitParentalControl()
@@ -41,9 +44,7 @@ from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS,
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
 InitFallbackFiles()
 
-profile("ReloadProfiles")
-enigma.eDVBDB.getInstance().reloadBouquets()
-
+profile("config.misc")
 config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
 config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)

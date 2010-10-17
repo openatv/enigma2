@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.SystemInfo import SystemInfo
+from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol
 
 inStandby = None
@@ -42,6 +43,8 @@ class Standby(Screen):
 			"discrete_on": self.Power
 		}, -1)
 
+		globalActionMap.setEnabled(False)
+
 		#mute adc
 		self.setMute()
 
@@ -73,6 +76,7 @@ class Standby(Screen):
 		elif self.paused_service:
 			self.paused_service.unPauseService()
 		self.session.screen["Standby"].boolean = False
+		globalActionMap.setEnabled(True)
 
 	def __onFirstExecBegin(self):
 		global inStandby
