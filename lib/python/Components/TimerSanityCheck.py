@@ -11,8 +11,8 @@ class TimerSanityCheck:
 		self.simultimer = []
 		self.rep_eventlist = []
 		self.nrep_eventlist = []
-		self.bflag = 1
-		self.eflag = -1
+		self.bflag = -1
+		self.eflag = 1
 
 	def check(self, ext_timer=1):
 		if ext_timer != 1:

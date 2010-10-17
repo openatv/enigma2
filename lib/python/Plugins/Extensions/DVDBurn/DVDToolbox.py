@@ -68,7 +68,7 @@ class DVDToolbox(Screen):
 		self["info"].text = ""
 		self["details"].setText("")
 		self.Console = Console()
-		cmd = "/bin/dvd+rw-mediainfo /dev/" + harddiskmanager.getCD()
+		cmd = "dvd+rw-mediainfo /dev/" + harddiskmanager.getCD()
 		self.Console.ePopen(cmd, self.mediainfoCB)
 
 	def format(self):
@@ -186,7 +186,7 @@ class DVDformatTask(Task):
 		Task.__init__(self, job, ("RW medium format"))
 		self.toolbox = job.toolbox
 		self.postconditions.append(DVDformatTaskPostcondition())
-		self.setTool("/bin/dvd+rw-format")
+		self.setTool("dvd+rw-format")
 		self.args += [ "/dev/" + harddiskmanager.getCD() ]
 		self.end = 1100
 		self.retryargs = [ ]

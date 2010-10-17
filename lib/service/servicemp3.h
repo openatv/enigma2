@@ -152,6 +152,14 @@ public:
 		{
 		}
 	};
+	struct sourceStream
+	{
+		bool is_streaming;
+		sourceStream()
+			: is_streaming(FALSE)
+		{
+		}
+	};
 	struct bufferInfo
 	{
 		int bufferPercent;
@@ -197,18 +205,24 @@ private:
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(GstMessage * const &);
+	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
 
 	std::list<ePangoSubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
+	
+	ePtr<eTimer> m_streamingsrc_timeout;
 	void pushSubtitles();
 	void pullSubtitle();
+	void sourceTimeout();
 	int m_subs_to_pull;
+	sourceStream m_sourceinfo;
 	eSingleLock m_subs_to_pull_lock;
 	gulong m_subs_to_pull_handler_id;
 
 	RESULT seekToImpl(pts_t to);
 
 	gint m_aspect, m_width, m_height, m_framerate, m_progressive;
+	std::string m_useragent;
 	RESULT trickSeek(gdouble ratio);
 };
 #endif

@@ -583,7 +583,7 @@ int eDVBFrontend::openFrontend()
 	return 0;
 }
 
-int eDVBFrontend::closeFrontend(bool force)
+int eDVBFrontend::closeFrontend(bool force, bool no_delayed)
 {
 	if (!force && m_data[CUR_VOLTAGE] != -1 && m_data[CUR_VOLTAGE] != iDVBFrontend::voltageOff)
 	{
@@ -606,11 +606,34 @@ int eDVBFrontend::closeFrontend(bool force)
 		eDebugNoSimulate("close frontend %d", m_dvbid);
 		if (m_data[SATCR] != -1)
 		{
-			turnOffSatCR(m_data[SATCR]);
+			if (!no_delayed)
+			{
+				m_sec->prepareTurnOffSatCR(*this, m_data[SATCR]);
+				m_tuneTimer->start(0, true);
+				if(!m_tuneTimer->isActive())
+				{
+					int timeout=0;
+					eDebug("[turnOffSatCR] no mainloop");
+					while(true)
+					{
+						timeout = tuneLoopInt();
+						if (timeout == -1)
+							break;
+						usleep(timeout*1000); // blockierendes wait.. eTimer gibts ja nicht mehr
+					}
+				}
+				else
+					eDebug("[turnOffSatCR] running mainloop");
+				return 0;
+			}
+			else
+				m_data[ROTOR_CMD] = -1;
 		}
+
 		setTone(iDVBFrontend::toneOff);
 		setVoltage(iDVBFrontend::voltageOff);
 		m_tuneTimer->stop();
+
 		if (m_sec && !m_simulate)
 			m_sec->setRotorMoving(m_slotid, false);
 		if (!::close(m_fd))
@@ -1497,9 +1520,14 @@ bool eDVBFrontend::setSecSequencePos(int steps)
 	return true;
 }
 
-void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
+void eDVBFrontend::tuneLoop()
 {
-	int delay=0;
+	tuneLoopInt();
+}
+
+int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
+{
+	int delay=-1;
 	eDVBFrontend *sec_fe = this;
 	eDVBRegisteredFrontend *regFE = 0;
 	long tmp = m_data[LINKED_PREV_PTR];
@@ -1529,6 +1557,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 	{
 		long *sec_fe_data = sec_fe->m_data;
 //		eDebugNoSimulate("tuneLoop %d\n", m_sec_sequence.current()->cmd);
+		delay = 0;
 		switch (m_sec_sequence.current()->cmd)
 		{
 			case eSecCommand::SLEEP:
@@ -1855,6 +1884,13 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 				++m_sec_sequence.current();
 				break;
 			}
+			case eSecCommand::DELAYED_CLOSE_FRONTEND:
+			{
+				eDebugNoSimulate("[SEC] delayed close frontend");
+				closeFrontend(false, true);
+				++m_sec_sequence.current();
+				break;
+			}
 			default:
 				eDebugNoSimulate("[SEC] unhandled sec command %d",
 					++m_sec_sequence.current()->cmd);
@@ -1867,6 +1903,7 @@ void eDVBFrontend::tuneLoop()  // called by m_tuneTimer
 		regFE->dec_use();
 	if (m_simulate && m_sec_sequence.current() != m_sec_sequence.end())
 		tuneLoop();
+	return delay;
 }
 
 void eDVBFrontend::setFrontend(bool recvEvents)
@@ -2602,9 +2639,12 @@ RESULT eDVBFrontend::setSEC(iDVBSatelliteEquipmentControl *sec)
 	return 0;
 }
 
-RESULT eDVBFrontend::setSecSequence(const eSecCommandList &list)
+RESULT eDVBFrontend::setSecSequence(eSecCommandList &list)
 {
-	m_sec_sequence = list;
+	if (m_data[SATCR] != -1 && m_sec_sequence.current() != m_sec_sequence.end())
+		m_sec_sequence.push_back(list);
+	else
+		m_sec_sequence = list;
 	return 0;
 }
 
@@ -2680,43 +2720,4 @@ arg_error:
 	PyErr_SetString(PyExc_StandardError,
 		"eDVBFrontend::setSlotInfo must get a tuple with first param slotid, second param slot description and third param enabled boolean");
 	return false;
-}
-
-RESULT eDVBFrontend::turnOffSatCR(int satcr)
-{
-	eSecCommandList sec_sequence;
-	// check if voltage is disabled
-	eSecCommand::pair compare;
-	compare.steps = +9;	//nothing to do
-	compare.voltage = iDVBFrontend::voltageOff;
-	sec_sequence.push_back( eSecCommand(eSecCommand::IF_NOT_VOLTAGE_GOTO, compare) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50 ) );
-
-	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage18_5) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SET_TONE, iDVBFrontend::toneOff) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 250) );
-
-	eDVBDiseqcCommand diseqc;
-	memset(diseqc.data, 0, MAX_DISEQC_LENGTH);
-	diseqc.len = 5;
-	diseqc.data[0] = 0xE0;
-	diseqc.data[1] = 0x10;
-	diseqc.data[2] = 0x5A;
-	diseqc.data[3] = satcr << 5;
-	diseqc.data[4] = 0x00;
-
-	sec_sequence.push_back( eSecCommand(eSecCommand::SEND_DISEQC, diseqc) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, 50+20+14*diseqc.len) );
-	sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
-	setSecSequence(sec_sequence);
-	return 0;
-}
-
-RESULT eDVBFrontend::ScanSatCR()
-{
-	setFrontend();
-	usleep(20000);
-	setTone(iDVBFrontend::toneOff);
-	return 0;
 }
