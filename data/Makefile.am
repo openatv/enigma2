@@ -18,7 +18,8 @@ dist_pkgdata_DATA = \
 	startwizard.xml \
 	tutorialwizard.xml \
 	freesat.t1 \
-	freesat.t2
+	freesat.t2 \
+	unicable.xml
 
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml

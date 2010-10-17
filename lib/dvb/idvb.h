@@ -459,7 +459,7 @@ class iDVBFrontend: public iDVBFrontend_ENUMS, public iObject
 public:
 	virtual RESULT getFrontendType(int &SWIG_OUTPUT)=0;
 	virtual RESULT tune(const iDVBFrontendParameters &where)=0;
-	virtual int closeFrontend(bool force = false)=0;
+	virtual int closeFrontend(bool force = false, bool no_delayed = false)=0;
 	virtual void reopenFrontend()=0;
 #ifndef SWIG
 	virtual RESULT connectStateChange(const Slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
@@ -471,7 +471,7 @@ public:
 	virtual RESULT sendToneburst(int burst)=0;
 #ifndef SWIG
 	virtual RESULT setSEC(iDVBSatelliteEquipmentControl *sec)=0;
-	virtual RESULT setSecSequence(const eSecCommandList &list)=0;
+	virtual RESULT setSecSequence(eSecCommandList &list)=0;
 #endif
 	virtual int readFrontendData(int type)=0;
 	virtual void getFrontendStatus(SWIG_PYOBJECT(ePyObject) dest)=0;
@@ -491,6 +491,7 @@ class iDVBSatelliteEquipmentControl: public iObject
 {
 public:
 	virtual RESULT prepare(iDVBFrontend &frontend, FRONTENDPARAMETERS &parm, const eDVBFrontendParametersSatellite &sat, int frontend_id, unsigned int timeout)=0;
+	virtual void prepareTurnOffSatCR(iDVBFrontend &frontend, int satcr)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id, int *highest_score_lnb=0)=0;
 	virtual void setRotorMoving(int slotid, bool)=0;
 };

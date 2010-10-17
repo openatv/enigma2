@@ -95,6 +95,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.advancedType = None
 		self.advancedManufacturer = None
 		self.advancedSCR = None
+		self.advancedConnected = None
 		
 		if self.nim.isMultiType():
 			multiType = self.nimConfig.multiType
@@ -206,7 +207,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		checkList = (self.configMode, self.diseqcModeEntry, self.advancedSatsEntry, \
 			self.advancedLnbsEntry, self.advancedDiseqcMode, self.advancedUsalsEntry, \
 			self.advancedLof, self.advancedPowerMeasurement, self.turningSpeed, \
-			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, \
+			self.advancedType, self.advancedSCR, self.advancedManufacturer, self.advancedUnicable, self.advancedConnected, \
 			self.uncommittedDiseqcCommand, self.cableScanType, self.multiType)
 		if self["config"].getCurrent() == self.multiType:
 			from Components.NimManager import InitNimManager
@@ -286,6 +287,18 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(self.advancedType)
 					self.list.append(self.advancedSCR)
 					self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index])) 
+
+				choices = []
+				connectable = nimmanager.canConnectTo(self.slotid)
+				for id in connectable:
+					choices.append((str(id), nimmanager.getNimDescription(id)))
+				if len(choices):
+					self.advancedConnected = getConfigListEntry(_("connected"), self.nimConfig.advanced.unicableconnected)
+					self.list.append(self.advancedConnected)
+					if self.nimConfig.advanced.unicableconnected.value == True:
+						self.nimConfig.advanced.unicableconnectedTo.setChoices(choices)
+						self.list.append(getConfigListEntry(_("Connected to"),self.nimConfig.advanced.unicableconnectedTo))
+
 			else:	#kein Unicable
 				self.list.append(getConfigListEntry(_("Voltage mode"), Sat.voltage))
 				self.list.append(getConfigListEntry(_("Increased voltage"), currLnb.increased_voltage))

@@ -22,6 +22,8 @@
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
 
+#define HTTP_TIMEOUT 10
+
 // eServiceFactoryMP3
 
 eServiceFactoryMP3::eServiceFactoryMP3()
@@ -214,6 +216,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 {
 	m_seekTimeout = eTimer::create(eApp);
 	m_subtitle_sync_timer = eTimer::create(eApp);
+	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = 0;
@@ -235,11 +238,25 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		ext = filename;
 
 	gchar *uri;
+	m_sourceinfo.is_streaming = FALSE;
 
 	if ( (strncmp(filename, "http://", 7)) == 0 || (strncmp(filename, "udp://", 6)) == 0 || (strncmp(filename, "rtp://", 6)) == 0  || (strncmp(filename, "https://", 8)) == 0 || (strncmp(filename, "mms://", 6)) == 0 || (strncmp(filename, "rtsp://", 7)) == 0 )
 	{
 		// Streaming
+		m_sourceinfo.is_streaming = TRUE;
 		uri = g_strdup_printf ("%s", filename);
+
+		std::string config_str;
+		if( ePythonConfigQuery::getConfigValue("config.mediaplayer.useAlternateUserAgent", config_str) == 0 )
+		{
+			if ( config_str == "True" )
+				ePythonConfigQuery::getConfigValue("config.mediaplayer.alternateUserAgent", m_useragent);
+		}
+		if ( m_useragent.length() == 0 )
+			m_useragent = "Dream Multimedia Dreambox Enigma2 Mediaplayer";
+
+		m_streamingsrc_timeout = eTimer::create(eApp);;
+		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 	}
 	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
 	{
@@ -282,6 +299,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	else
 	{
 		m_subs_to_pull_handler_id = g_signal_connect (subsink, "new-buffer", G_CALLBACK (gstCBsubtitleAvail), this);
+		g_object_set (G_OBJECT (subsink), "caps", gst_caps_from_string("text/plain; text/x-plain; text/x-pango-markup"), NULL);
 		g_object_set (G_OBJECT (m_gst_playbin), "text-sink", subsink, NULL);
 	}
 
@@ -301,6 +319,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			subs.type = stSRT;
 			subs.language_code = std::string("und");
 			m_subtitleStreams.push_back(subs);
+		}
+		if ( sourceinfo.is_streaming )
+		{
+			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
 		}
 	} else
 	{
@@ -367,6 +389,12 @@ RESULT eServiceMP3::start()
 	m_event(this, evStart);
 
 	return 0;
+}
+
+void eServiceMP3::sourceTimeout()
+{
+	eDebug("eServiceMP3::http source timeout! issuing eof...");
+	m_event((iPlayableService*)this, evEOF);
 }
 
 RESULT eServiceMP3::stop()
@@ -1084,6 +1112,8 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
 				{
+					if ( m_sourceinfo.is_streaming && m_streamingsrc_timeout )
+						m_streamingsrc_timeout->stop();
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
 				{
@@ -1235,6 +1265,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 // 				g_free (g_type);
 			}
 			m_event((iPlayableService*)this, evUpdatedEventInfo);
+			break;
 		}
 		case GST_MESSAGE_ELEMENT:
 		{
@@ -1283,6 +1314,37 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			gst_message_parse_buffering(msg, &(m_bufferInfo.bufferPercent));
 			gst_message_parse_buffering_stats(msg, &mode, &(m_bufferInfo.avgInRate), &(m_bufferInfo.avgOutRate), &(m_bufferInfo.bufferingLeft));
 			m_event((iPlayableService*)this, evBuffering);
+			break;
+		}
+		case GST_MESSAGE_STREAM_STATUS:
+		{
+			GstStreamStatusType type;
+			GstElement *owner;
+			gst_message_parse_stream_status (msg, &type, &owner);
+			if ( type == GST_STREAM_STATUS_TYPE_CREATE && m_sourceinfo.is_streaming )
+			{
+				if ( GST_IS_PAD(source) )
+					owner = gst_pad_get_parent_element(GST_PAD(source));
+				else if ( GST_IS_ELEMENT(source) )
+					owner = GST_ELEMENT(source);
+				else
+					owner = 0;
+				if ( owner )
+				{
+					GstElementFactory *factory = gst_element_get_factory(GST_ELEMENT(owner));
+					const gchar *name = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
+					if (!strcmp(name, "souphttpsrc"))
+					{
+						m_streamingsrc_timeout->start(HTTP_TIMEOUT*1000, true);
+						g_object_set (G_OBJECT (owner), "timeout", HTTP_TIMEOUT, NULL);
+						eDebug("eServiceMP3::GST_STREAM_STATUS_TYPE_CREATE -> setting timeout on %s to %is", name, HTTP_TIMEOUT);
+					}
+					
+				}
+				if ( GST_IS_PAD(source) )
+					gst_object_unref(owner);
+			}
+			break;
 		}
 		default:
 			break;
@@ -1295,6 +1357,15 @@ GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message,
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	_this->m_pump.send(message);
 	return GST_BUS_DROP;
+}
+
+void eServiceMP3::gstHTTPSourceSetAgent(GObject *object, GParamSpec *unused, gpointer user_data)
+{
+	eServiceMP3 *_this = (eServiceMP3*)user_data;
+	GstElement *source;
+	g_object_get(_this->m_gst_playbin, "source", &source, NULL);
+	g_object_set (G_OBJECT (source), "user-agent", _this->m_useragent.c_str(), NULL);
+	gst_object_unref(source);
 }
 
 audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
