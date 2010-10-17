@@ -361,7 +361,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		new_configured_sats = nimmanager.getConfiguredSats()
 		self.unconfed_sats = old_configured_sats - new_configured_sats
 		self.satpos_to_remove = None
-		self.restoreService(_("Zap back to service before tuner setup?"))
 		self.deleteConfirmed((None, "no"))
 
 	def deleteConfirmed(self, confirmed):
@@ -394,7 +393,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if confirmed[1] == "yestoall" or confirmed[1] == "notoall":
 				self.deleteConfirmed(confirmed)
 			break
-		
+		else:
+			self.restoreService(_("Zap back to service before tuner setup?"))
+
 	def __init__(self, session, slotid):
 		Screen.__init__(self, session)
 		self.list = [ ]

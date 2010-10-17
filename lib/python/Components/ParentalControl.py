@@ -55,11 +55,10 @@ def InitParentalControl():
 class ParentalControl:
 	def __init__(self):
 		#Do not call open on init, because bouquets are not ready at that moment 
-#		self.open()
+		self.open()
 		self.serviceLevel = {}
 		#Instead: Use Flags to see, if we already initialized config and called open
 		self.configInitialized = False
-		self.filesOpened = False
 		#This is the timer that is used to see, if the time for caching the pin is over
 		#Of course we could also work without a timer and compare the times every
 		#time we call isServicePlayable. But this might probably slow down zapping, 
@@ -302,13 +301,12 @@ class ParentalControl:
 		
 	def save(self):
 		# we need to open the files in case we havent's read them yet
-		self.saveListToFile(LIST_BLACKLIST, self.blacklist)
-		self.saveListToFile(LIST_WHITELIST, self.whitelist)
-
+		self.saveListToFile(LIST_BLACKLIST)
+		self.saveListToFile(LIST_WHITELIST)
+		
 	def open(self):
-		print "[ParentalControl] *** Loading configuration ***"
-		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
-		self.whitelist = self.openListFromFile(LIST_WHITELIST)
+		self.openListFromFile(LIST_BLACKLIST)
+		self.openListFromFile(LIST_WHITELIST)
 		self.filesOpened = True
 
 	def __getattr__(self, name):

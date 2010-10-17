@@ -172,11 +172,11 @@ int main(int argc, char **argv)
 		eTextPara::forceReplacementGlyph(i);
 
 	eWidgetDesktop dsk(eSize(720, 576));
-	eWidgetDesktop dsk_lcd(eSize(132, 64));
-	
+	eWidgetDesktop dsk_lcd(my_lcd_dc->size());
+
 	dsk.setStyleID(0);
-	dsk_lcd.setStyleID(1);
-	
+	dsk_lcd.setStyleID(my_lcd_dc->size().width() == 96 ? 2 : 1);
+
 /*	if (double_buffer)
 	{
 		eDebug(" - double buffering found, enable buffered graphics mode.");

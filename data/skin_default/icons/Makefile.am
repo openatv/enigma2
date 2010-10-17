@@ -40,6 +40,7 @@ dist_install_DATA = \
 	lock_off.png \
 	lock_on.png \
 	lock.png \
+	lockBouquet.png \
 	marker.png \
 	mp_buttons.png \
 	part_0_4.png \
@@ -71,5 +72,7 @@ dist_install_DATA = \
 	selectioncross.png \
 	timer_done.png  timer_prep.png  timer_rep.png   timer_zap.png \
 	timer_off.png   timer_rec.png   timer_wait.png \
-	trashcan.png
+	trashcan.png \
+	unlock.png \
+	unlockBouquet.png
 

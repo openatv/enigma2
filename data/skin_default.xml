@@ -225,6 +225,7 @@ self.instance.move(ePoint((720-wsizex)/2, (576-wsizey)/(count &gt; 7 and 2 or 3)
 
 		</applet>
 	</screen>
+
 	<!-- Common interface -->
 	<screen name="MMIDialog" position="center,center" size="450,270">
 		<widget name="title" position="10,10" size="430,25" font="Regular;23" />
@@ -1117,7 +1118,6 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 		<ePixmap pixmap="skin_default/volume.png" position="0,0" size="214,21" />
 		<widget name="Volume" pixmap="skin_default/progress_small.png" position="31,7" zPosition="1" size="168,7" transparent="1" />
 	</screen>
-
 	<!-- JobView -->
 	<screen name="JobView" position="center,center" size="520,350" title="Job View">
 		<widget source="job_name" render="Label" position="20,12" size="480,60" font="Regular;28" />
