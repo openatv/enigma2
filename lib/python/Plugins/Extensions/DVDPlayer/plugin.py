@@ -88,8 +88,8 @@ class FileBrowser(Screen):
 		self.close(None)
 
 class DVDSummary(Screen):
-	skin = """
-	<screen position="0,0" size="132,64">
+	skin = (
+	"""<screen name="DVDSummary" position="0,0" size="132,64" id="1">
 		<widget source="session.CurrentService" render="Label" position="5,4" size="120,28" font="Regular;12" transparent="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -101,7 +101,20 @@ class DVDSummary(Screen):
 		<widget source="session.CurrentService" render="Progress" position="6,46" size="60,18" borderWidth="1" >
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-	</screen>"""
+	</screen>""",
+	"""<screen name="DVDSummary" position="0,0" size="96,64" id="2">
+		<widget source="session.CurrentService" render="Label" position="0,0" size="96,25" font="Regular;12" transparent="1" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget name="DVDPlayer" position="0,26" size="96,12" font="Regular;10" transparent="1" />
+		<widget name="Chapter" position="0,40" size="66,12" font="Regular;10" transparent="1" halign="left" />
+		<widget source="session.CurrentService" render="Label" position="66,40" size="30,12" font="Regular;10" transparent="1" halign="right" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Progress" position="0,52" size="96,12" borderWidth="1" >
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+	</screen>""")
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
