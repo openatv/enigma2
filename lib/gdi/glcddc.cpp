@@ -14,13 +14,13 @@ gLCDDC::gLCDDC()
 
 	surface.x=lcd->size().width();
 	surface.y=lcd->size().height();
-	surface.bpp=8;
-	surface.bypp=1;
 	surface.stride=lcd->stride();
+	surface.bypp=surface.stride / surface.x;
+	surface.bpp=surface.bypp*8;
 	surface.data=lcd->buffer();
-
-	surface.clut.colors=256;
+	surface.clut.colors=0;
 	surface.clut.data=0;
+
 	m_pixmap = new gPixmap(&surface);
 }
 

@@ -6,6 +6,11 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <byteswap.h>
+
+#ifndef BYTE_ORDER
+#error "no BYTE_ORDER defined!"
+#endif
 
 // use this for init Freetype...
 #include <ft2build.h>
@@ -1043,8 +1048,10 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 			if (sx>0)
 			{
 				int extra_source_stride = pitch - sx;
-				if (!opcode)		// 4bit lookup to 8bit
-				{
+				switch (opcode)
+				{ 
+				case 0: 		// 4bit lookup to 8bit
+					{
 					register int extra_buffer_stride = buffer_stride - sx;
 					register __u8 *td=d;
 					for (int ay = 0; ay < sy; ay++)
@@ -1062,9 +1069,10 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 						s += extra_source_stride;
 						td += extra_buffer_stride;
 					}
-				}
-				else if (opcode == 1)	// 8bit direct
-				{
+					}
+					break;
+				case 1:	// 8bit direct
+					{
 					register int extra_buffer_stride = buffer_stride - sx;
 					register __u8 *td=d;
 					for (int ay = 0; ay < sy; ay++)
@@ -1078,9 +1086,15 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 						s += extra_source_stride;
 						td += extra_buffer_stride;
 					}
-				}
-				else
-				{
+					}
+					break;
+				case 2: // 16bit
+					{
+						eDebug("16-bit not implemented yet, sorry");
+					}
+					break;
+				case 3: // 32bit
+					{
 					register int extra_buffer_stride = (buffer_stride >> 2) - sx;
 					register __u32 *td=(__u32*)d;
 					for (int ay = 0; ay < sy; ay++)
@@ -1097,6 +1111,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 						s += extra_source_stride;
 						td += extra_buffer_stride;
 					}
+					}
+					break;
 				}
 			}
 		}
