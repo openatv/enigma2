@@ -55,7 +55,7 @@ def InitParentalControl():
 class ParentalControl:
 	def __init__(self):
 		#Do not call open on init, because bouquets are not ready at that moment 
-		self.open()
+		self.filesOpened = False
 		self.serviceLevel = {}
 		#Instead: Use Flags to see, if we already initialized config and called open
 		self.configInitialized = False
@@ -300,13 +300,12 @@ class ParentalControl:
 			return services
 		
 	def save(self):
-		# we need to open the files in case we havent's read them yet
-		self.saveListToFile(LIST_BLACKLIST)
-		self.saveListToFile(LIST_WHITELIST)
+		self.saveListToFile(LIST_BLACKLIST, self.blacklist)
+		self.saveListToFile(LIST_WHITELIST, self.whitelist)
 		
 	def open(self):
-		self.openListFromFile(LIST_BLACKLIST)
-		self.openListFromFile(LIST_WHITELIST)
+		self.blacklist = self.openListFromFile(LIST_BLACKLIST)
+		self.whitelist = self.openListFromFile(LIST_WHITELIST)
 		self.filesOpened = True
 
 	def __getattr__(self, name):
