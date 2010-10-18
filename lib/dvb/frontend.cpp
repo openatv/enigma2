@@ -914,6 +914,19 @@ int eDVBFrontend::readFrontendData(int type)
 			{
 				ret = (int)((snr << 1) / 5);
 			}
+			else if (!strcmp(m_description, "CXD1981"))
+			{
+				int mse = (~snr) & 0xFF;
+				switch (parm_u_qam_modulation) {
+					case QAM_16:
+					case QAM_64:
+					case QAM_256: ret = (int)(-950 * log(((double)mse) / 760)); break;
+					case QAM_32:
+					case QAM_128: ret = (int)(-875 * log(((double)mse) / 650)); break;
+
+					default: break;
+				}
+			}
 
 			if (type == signalQuality)
 			{

@@ -245,6 +245,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		// Streaming
 		m_sourceinfo.is_streaming = TRUE;
 		uri = g_strdup_printf ("%s", filename);
+		m_streamingsrc_timeout = eTimer::create(eApp);;
+		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 
 		std::string config_str;
 		if( ePythonConfigQuery::getConfigValue("config.mediaplayer.useAlternateUserAgent", config_str) == 0 )
@@ -254,9 +256,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		}
 		if ( m_useragent.length() == 0 )
 			m_useragent = "Dream Multimedia Dreambox Enigma2 Mediaplayer";
-
-		m_streamingsrc_timeout = eTimer::create(eApp);;
-		CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3::sourceTimeout);
 	}
 	else if ( (strncmp(filename, "/autofs/", 8) || strncmp(filename+strlen(filename)-13, "/track-", 7) || strcasecmp(ext, ".wav")) == 0 )
 	{
