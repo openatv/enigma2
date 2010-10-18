@@ -114,7 +114,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		if self.settings.afterEvent.getValue() == "nothing":
 			return
 		elif self.settings.afterEvent.getValue() == "close":
-			self.abort()
+			self.close(False)
 		from Screens.MessageBox import MessageBox
 		if self.settings.afterEvent.getValue() == "deepstandby":
 			if not Screens.Standby.inTryQuitMainloop:

@@ -64,11 +64,10 @@ class Job(object):
 	def runNext(self):
 		if self.current_task == len(self.tasks):
 			if len(self.resident_tasks) == 0:
-				cb = self.callback
-				self.callback = None
 				self.status = self.FINISHED
 				self.state_changed()
-				cb(self, None, [])
+				self.callback(self, None, [])
+				self.callback = None
 			else:
 				print "still waiting for %d resident task(s) %s to finish" % (len(self.resident_tasks), str(self.resident_tasks))
 		else:
