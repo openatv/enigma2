@@ -117,7 +117,7 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 		self["config"].hide()
 		if self.settings.afterEvent.getValue() == "nothing":
 			return
-		elif self.settings.afterEvent.getValue() == "close":
+		elif self.settings.afterEvent.getValue() == "close" and self.job.status == self.job.FINISHED:
 			self.close(False)
 		from Screens.MessageBox import MessageBox
 		if self.settings.afterEvent.getValue() == "deepstandby":
@@ -127,6 +127,12 @@ class JobView(InfoBarNotifications, Screen, ConfigListScreen):
 			if not Screens.Standby.inStandby:
 				Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A sleep timer wants to set your\nDreambox to standby. Do that now?"), timeout = 20)
 
+	def checkNotifications(self):
+		InfoBarNotifications.checkNotifications(self)
+		if Notifications.notifications == []:
+			if self.settings.afterEvent.getValue() == "close" and self.job.status == self.job.FAILED:
+				self.close(False)
+		
 	def sendStandbyNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.Standby)
