@@ -3,7 +3,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-	:eWidget(parent), m_alphatest(false), m_scale(false)
+        :eWidget(parent), m_alphatest(false), m_scale(false), m_have_border_color(false), m_border_width(0)
 {
 }
 
@@ -49,9 +49,22 @@ void ePixmap::setPixmapFromFile(const char *filename)
 	event(evtChangedPixmap);
 }
 
+void ePixmap::setBorderWidth(int pixel)
+{
+	m_border_width=pixel;
+	invalidate();
+}
+
+void ePixmap::setBorderColor(const gRGB &color)
+{
+	m_border_color=color;
+	m_have_border_color=true;
+	invalidate();
+}
+
 void ePixmap::checkSize()
 {
-			/* when we have no pixmap, or a pixmap of different size, we need 
+	/* when we have no pixmap, or a pixmap of different size, we need
 	   to enable transparency in any case. */
 	if (m_pixmap && m_pixmap->size() == size() && !m_alphatest)
 		setTransparent(0);
@@ -67,13 +80,14 @@ int ePixmap::event(int event, void *data, void *data2)
 	case evtPaint:
 	{
 		ePtr<eWindowStyle> style;
-		
+
+		eSize s(size());
 		getStyle(style);
 
 //	we don't clear the background before because of performance reasons.
 //	when the pixmap is too small to fit the whole widget area, the widget is
 //	transparent anyway, so the background is already painted.
-//		eWidget::event(event, data, data2); 
+//		eWidget::event(event, data, data2);
 
 		gPainter &painter = *(gPainter*)data2;
 		if (m_pixmap)
@@ -89,6 +103,16 @@ int ePixmap::event(int event, void *data, void *data2)
 				painter.blitScale(m_pixmap, eRect(ePoint(0, 0), size()), eRect(), flags);
 			else
 				painter.blit(m_pixmap, ePoint(0, 0), eRect(), flags);
+		}
+
+		if (m_have_border_color)
+			painter.setForegroundColor(m_border_color);
+
+		if (m_border_width) {
+			painter.fill(eRect(0, 0, s.width(), m_border_width));
+			painter.fill(eRect(0, m_border_width, m_border_width, s.height()-m_border_width));
+			painter.fill(eRect(m_border_width, s.height()-m_border_width, s.width()-m_border_width, m_border_width));
+			painter.fill(eRect(s.width()-m_border_width, m_border_width, m_border_width, s.height()-m_border_width));
 		}
 
 		return 0;

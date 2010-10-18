@@ -15,6 +15,8 @@ public:
 	void setPixmapFromFile(const char *filename);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setScale(int scale);
+	void setBorderWidth(int pixel);
+	void setBorderColor(const gRGB &color);
 protected:
 	ePtr<gPixmap> m_pixmap;
 	int event(int event, void *data=0, void *data2=0);
@@ -24,6 +26,9 @@ private:
 	{
 		evtChangedPixmap = evtUserWidget,
 	};
+	bool m_have_border_color;
+	int m_border_width;
+	gRGB m_border_color;
 };
 
 #endif
