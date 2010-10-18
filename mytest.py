@@ -379,6 +379,8 @@ class PowerKey:
 						menu_screen = self.session.openWithCallback(self.MenuClosed, MainMenu, x)
 						menu_screen.setTitle(_("Standby / Restart"))
 						return
+		elif action == "standby":
+			self.standby()
 
 	def powerdown(self):
 		self.standbyblocked = 0
