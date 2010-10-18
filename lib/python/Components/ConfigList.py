@@ -88,7 +88,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 		if l is not None:
 			for x in l:
-				assert isinstance(x, ConfigElement), "entry in ConfigList " + str(x) + " must be a ConfigElement"
+				assert len(x) < 2 or isinstance(x[1], ConfigElement), "entry in ConfigList " + str(x[1]) + " must be a ConfigElement"
 
 	def getList(self):
 		return self.__list
