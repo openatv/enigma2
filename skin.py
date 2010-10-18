@@ -561,7 +561,11 @@ def readSkin(screen, skin, names, desktop):
 	# try uncompiled embedded skin
 	if myscreen is None and getattr(screen, "skin", None):
 		print "Looking for embedded skin"
-		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(screen.skin)
+		skin = screen.skin
+		if (isinstance(skin, tuple)):
+			# for now
+			skin = skin[0]
+		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(skin)
 
 	#assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
 	if myscreen is None:
