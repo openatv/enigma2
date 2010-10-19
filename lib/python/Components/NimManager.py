@@ -703,7 +703,7 @@ class NimManager:
 				entries[current_slot]["name"] = str(line[6:])
 				entries[current_slot]["isempty"] = False
 			elif line.startswith("Has_Outputs:"):
-				input = str(line.[len("Has_Outputs:") + 1:])
+				input = str(line[len("Has_Outputs:") + 1:])
 				entries[current_slot]["has_outputs"] = (input == "yes")
 			elif line.startswith("Internally_Connectable:"):
 				input = int(line[len("Internally_Connectable:") + 1:])
@@ -720,7 +720,7 @@ class NimManager:
 				modes[split2[1]] = split[1]
 				entries[current_slot]["multi_type"] = modes
 			elif line.startswith("I2C_Device:"):
-				input = int(line.[len("I2C_Device:") + 1:])
+				input = int(line[len("I2C_Device:") + 1:])
 				entries[current_slot]["i2c"] = input
 			elif line.startswith("empty"):
 				entries[current_slot]["type"] = None
