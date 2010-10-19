@@ -725,6 +725,7 @@ class InfoBarSeek:
 				iPlayableService.evEOF: self.__evEOF,
 				iPlayableService.evSOF: self.__evSOF,
 			})
+		self.fast_winding_hint_message_showed = False
 
 		class InfoBarSeekActionMap(HelpableActionMap):
 			def __init__(self, screen, *args, **kwargs):
@@ -841,6 +842,7 @@ class InfoBarSeek:
 #			print "seekable"
 
 	def __serviceStarted(self):
+		self.fast_winding_hint_message_showed = False
 		self.seekstate = self.SEEK_STATE_PLAY
 		self.__seekableStatusChanged()
 

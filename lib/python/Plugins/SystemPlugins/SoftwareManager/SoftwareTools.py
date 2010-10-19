@@ -1,5 +1,5 @@
 # -*- coding: iso-8859-1 -*-
-from enigma import eConsoleAppContainer,eTPM
+from enigma import eConsoleAppContainer
 from Components.Console import Console
 from Components.About import about
 from Components.DreamInfoHandler import DreamInfoHandler
@@ -10,7 +10,6 @@ from Components.Network import iNetwork
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_METADIR
 from Tools.HardwareInfo import HardwareInfo
 import sha
-
 from time import time
 
 def bin2long(s):
@@ -92,94 +91,69 @@ class SoftwareTools(DreamInfoHandler):
 	def checkNetworkCB(self,data):
 		if data is not None:
 			if data <= 2:
-				SoftwareTools.NetworkConnectionAvailable = True
+				self.NetworkConnectionAvailable = True
 				self.getUpdates()
 			else:
-				SoftwareTools.NetworkConnectionAvailable = False
+				self.NetworkConnectionAvailable = False
 				self.getUpdates()
 
 	def getUpdates(self, callback = None):
-		if SoftwareTools.lastDownloadDate is None:
-			if  self.hardware_info.device_name != "dm7025":
-				rootkey = ['\x9f', '|', '\xe4', 'G', '\xc9', '\xb4', '\xf4', '#', '&', '\xce', '\xb3', '\xfe', '\xda', '\xc9', 'U', '`', '\xd8', '\x8c', 's', 'o', '\x90', '\x9b', '\\', 'b', '\xc0', '\x89', '\xd1', '\x8c', '\x9e', 'J', 'T', '\xc5', 'X', '\xa1', '\xb8', '\x13', '5', 'E', '\x02', '\xc9', '\xb2', '\xe6', 't', '\x89', '\xde', '\xcd', '\x9d', '\x11', '\xdd', '\xc7', '\xf4', '\xe4', '\xe4', '\xbc', '\xdb', '\x9c', '\xea', '}', '\xad', '\xda', 't', 'r', '\x9b', '\xdc', '\xbc', '\x18', '3', '\xe7', '\xaf', '|', '\xae', '\x0c', '\xe3', '\xb5', '\x84', '\x8d', '\r', '\x8d', '\x9d', '2', '\xd0', '\xce', '\xd5', 'q', '\t', '\x84', 'c', '\xa8', ')', '\x99', '\xdc', '<', '"', 'x', '\xe8', '\x87', '\x8f', '\x02', ';', 'S', 'm', '\xd5', '\xf0', '\xa3', '_', '\xb7', 'T', '\t', '\xde', '\xa7', '\xf1', '\xc9', '\xae', '\x8a', '\xd7', '\xd2', '\xcf', '\xb2', '.', '\x13', '\xfb', '\xac', 'j', '\xdf', '\xb1', '\x1d', ':', '?']
-				etpm = eTPM()
-				l2cert = etpm.getCert(eTPM.TPMD_DT_LEVEL2_CERT)
-				if l2cert is None:
-					return
-				l2key = validate_cert(l2cert, rootkey)
-				if l2key is None:
-					return
-				l3cert = etpm.getCert(eTPM.TPMD_DT_LEVEL3_CERT)
-				if l3cert is None:
-					print "please run the genuine dreambox plugin"
-					return
-				l3key = validate_cert(l3cert, l2key)
-				if l3key is None:
-					return
-				rnd = read_random()
-				if rnd is None:
-					return
-				val = etpm.challenge(rnd)
-				result = decrypt_block(val, l3key)
-			if self.hardware_info.device_name == "dm7025" or result[80:88] == rnd:
-				if SoftwareTools.NetworkConnectionAvailable == True:
-					SoftwareTools.lastDownloadDate = time()
-					if SoftwareTools.list_updating is False and callback is None:
-						SoftwareTools.list_updating = True
+		if self.lastDownloadDate is None:
+				if self.NetworkConnectionAvailable == True:
+					self.lastDownloadDate = time()
+					if self.list_updating is False and callback is None:
+						self.list_updating = True
 						self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-					elif SoftwareTools.list_updating is False and callback is not None:
-						SoftwareTools.list_updating = True
+					elif self.list_updating is False and callback is not None:
+						self.list_updating = True
 						self.NotifierCallback = callback
 						self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-					elif SoftwareTools.list_updating is True and callback is not None:
+					elif self.list_updating is True and callback is not None:
 						self.NotifierCallback = callback
 				else:
-					SoftwareTools.list_updating = False
+					self.list_updating = False
 					if callback is not None:
 						callback(False)
 					elif self.NotifierCallback is not None:
 						self.NotifierCallback(False)
-			else:
-				SoftwareTools.NetworkConnectionAvailable = False
-				SoftwareTools.list_updating = False
-				if callback is not None:
-					callback(False)
-				elif self.NotifierCallback is not None:
-					self.NotifierCallback(False)		
 		else:
-			if SoftwareTools.NetworkConnectionAvailable == True:
-				SoftwareTools.lastDownloadDate = time()
-				if SoftwareTools.list_updating is False and callback is None:
-					SoftwareTools.list_updating = True
+			if self.NetworkConnectionAvailable == True:
+				self.lastDownloadDate = time()
+				if self.list_updating is False and callback is None:
+					self.list_updating = True
 					self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-				elif SoftwareTools.list_updating is False and callback is not None:
-					SoftwareTools.list_updating = True
+				elif self.list_updating is False and callback is not None:
+					self.list_updating = True
 					self.NotifierCallback = callback
 					self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
-				elif SoftwareTools.list_updating is True and callback is not None:
+				elif self.list_updating is True and callback is not None:
 					self.NotifierCallback = callback
 			else:
-				SoftwareTools.list_updating = False
-				if callback is not None:
-					callback(False)
-				elif self.NotifierCallback is not None:
-					self.NotifierCallback(False)
+				if self.list_updating and callback is not None:
+						self.NotifierCallback = callback
+						self.startIpkgListAvailable()
+				else:	
+					self.list_updating = False
+					if callback is not None:
+						callback(False)
+					elif self.NotifierCallback is not None:
+						self.NotifierCallback(False)
 
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
-			SoftwareTools.list_updating = False
+			self.list_updating = False
 			if self.NotifierCallback is not None:
 				self.NotifierCallback(False)
 		elif event == IpkgComponent.EVENT_DONE:
-			if SoftwareTools.list_updating:
+			if self.list_updating:
 				self.startIpkgListAvailable()
 		#print event, "-", param		
 		pass
 
 	def startIpkgListAvailable(self, callback = None):
 		if callback is not None:
-			SoftwareTools.list_updating = True
-		if SoftwareTools.list_updating:
+			self.list_updating = True
+		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
 			cmd = "ipkg list"
@@ -188,8 +162,8 @@ class SoftwareTools(DreamInfoHandler):
 	def IpkgListAvailableCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
 		if result:
-			if SoftwareTools.list_updating:
-				SoftwareTools.available_packetlist = []
+			if self.list_updating:
+				self.available_packetlist = []
 				for x in result.splitlines():
 					tokens = x.split(' - ')
 					name = tokens[0].strip()
@@ -197,7 +171,7 @@ class SoftwareTools(DreamInfoHandler):
 						l = len(tokens)
 						version = l > 1 and tokens[1].strip() or ""
 						descr = l > 2 and tokens[2].strip() or ""
-						SoftwareTools.available_packetlist.append([name, version, descr])
+						self.available_packetlist.append([name, version, descr])
 				if callback is None:
 					self.startInstallMetaPackage()
 				else:
@@ -205,7 +179,7 @@ class SoftwareTools(DreamInfoHandler):
 						if len(self.UpdateConsole.appContainers) == 0:
 								callback(True)
 		else:
-			SoftwareTools.list_updating = False
+			self.list_updating = False
 			if self.UpdateConsole:
 				if len(self.UpdateConsole.appContainers) == 0:
 					if callback is not None:
@@ -213,14 +187,17 @@ class SoftwareTools(DreamInfoHandler):
 
 	def startInstallMetaPackage(self, callback = None):
 		if callback is not None:
-			SoftwareTools.list_updating = True
-		if SoftwareTools.list_updating:
-			if not self.UpdateConsole:
-				self.UpdateConsole = Console()
-			cmd = "ipkg install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
-			self.UpdateConsole.ePopen(cmd, self.InstallMetaPackageCB, callback)
+			self.list_updating = True
+		if self.list_updating:
+			if self.NetworkConnectionAvailable == True:
+				if not self.UpdateConsole:
+					self.UpdateConsole = Console()
+				cmd = "ipkg install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
+				self.UpdateConsole.ePopen(cmd, self.InstallMetaPackageCB, callback)
+			else:
+				self.InstallMetaPackageCB(True)
 
-	def InstallMetaPackageCB(self, result, retval, extra_args = None):
+	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
 		(callback) = extra_args
 		if result:
 			self.fillPackagesIndexList()
@@ -231,16 +208,17 @@ class SoftwareTools(DreamInfoHandler):
 					if len(self.UpdateConsole.appContainers) == 0:
 							callback(True)
 		else:
-			SoftwareTools.list_updating = False
+			self.list_updating = False
 			if self.UpdateConsole:
 				if len(self.UpdateConsole.appContainers) == 0:
 					if callback is not None:
 						callback(False)
 
 	def startIpkgListInstalled(self, callback = None):
+		print "STARTIPKGLISTINSTALLED"
 		if callback is not None:
-			SoftwareTools.list_updating = True
-		if SoftwareTools.list_updating:
+			self.list_updating = True
+		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
 			cmd = "ipkg list_installed"
@@ -249,14 +227,14 @@ class SoftwareTools(DreamInfoHandler):
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
 		if result:
-			SoftwareTools.installed_packetlist = {}
+			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
 				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
 					l = len(tokens)
 					version = l > 1 and tokens[1].strip() or ""
-					SoftwareTools.installed_packetlist[name] = version
+					self.installed_packetlist[name] = version
 			for package in self.packagesIndexlist[:]:
 				if not self.verifyPrerequisites(package[0]["prerequisites"]):
 					self.packagesIndexlist.remove(package)
@@ -272,26 +250,26 @@ class SoftwareTools(DreamInfoHandler):
 					if len(self.UpdateConsole.appContainers) == 0:
 							callback(True)
 		else:
-			SoftwareTools.list_updating = False
+			self.list_updating = False
 			if self.UpdateConsole:
 				if len(self.UpdateConsole.appContainers) == 0:
 					if callback is not None:
 						callback(False)
 
 	def countUpdates(self, callback = None):
-		SoftwareTools.available_updates = 0
-		SoftwareTools.available_updatelist  = []
+		self.available_updates = 0
+		self.available_updatelist  = []
 		for package in self.packagesIndexlist[:]:
 			attributes = package[0]["attributes"]
 			packagename = attributes["packagename"]
-			for x in SoftwareTools.available_packetlist:
+			for x in self.available_packetlist:
 				if x[0] == packagename:
-					if SoftwareTools.installed_packetlist.has_key(packagename):
-						if SoftwareTools.installed_packetlist[packagename] != x[1]:
-							SoftwareTools.available_updates +=1
-							SoftwareTools.available_updatelist.append([packagename])
+					if self.installed_packetlist.has_key(packagename):
+						if self.installed_packetlist[packagename] != x[1]:
+							self.available_updates +=1
+							self.available_updatelist.append([packagename])
 
-		SoftwareTools.list_updating = False
+		self.list_updating = False
 		if self.UpdateConsole:
 			if len(self.UpdateConsole.appContainers) == 0:
 				if callback is not None:

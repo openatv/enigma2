@@ -95,6 +95,8 @@ class DemuxTask(Task):
 		self.relevantAudioPIDs = [ ]
 		self.getRelevantAudioPIDs(title)
 		self.generated_files = [ ]
+		self.mplex_audiofiles = { }
+		self.mplex_videofile = ""
 		self.mplex_streamfiles = [ ]
 		if len(self.cutlist) > 1:
 			self.args += [ "-cut", self.cutfile ]
@@ -132,8 +134,10 @@ class DemuxTask(Task):
 	def haveNewFile(self, file):
 		print "[DemuxTask] produced file:", file, self.currentPID
 		self.generated_files.append(file)
-		if self.currentPID in self.relevantAudioPIDs or file.endswith("m2v"):
-			self.mplex_streamfiles.append(file)
+		if self.currentPID in self.relevantAudioPIDs:
+			self.mplex_audiofiles[self.currentPID] = file
+		elif file.endswith("m2v"):
+			self.mplex_videofile = file
 
 	def haveProgress(self, progress):
 		#print "PROGRESS [%s]" % progress
@@ -167,6 +171,12 @@ class DemuxTask(Task):
 		f.close()
 
 	def cleanup(self, failed):
+		print "[DemuxTask::cleanup]"
+		self.mplex_streamfiles = [ self.mplex_videofile ]
+		for pid in self.relevantAudioPIDs:
+			self.mplex_streamfiles.append(self.mplex_audiofiles[pid])
+		print self.mplex_streamfiles
+
 		if failed:
 			import os
 			for file in self.generated_files:
