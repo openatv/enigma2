@@ -1,4 +1,4 @@
-from enigma import eTimer, eTPM
+from enigma import eTimer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -428,7 +428,7 @@ def callFunction(iface):
 
 
 def configStrings(iface):
-	driver = iNetwork.detectWlanModule()
+	driver = iNetwork.detectWlanModule(iface)
 	print "Found WLAN-Driver:",driver
 	if driver  in ('ralink', 'zydas'):
 		return "	pre-up /usr/sbin/wpa_supplicant -i"+iface+" -c/etc/wpa_supplicant.conf -B -D"+driver+"\n	post-down wpa_cli terminate"

@@ -815,7 +815,7 @@ int eDVBFrontend::readFrontendData(int type)
 					float fval1 = SDS_SNRE / 268435456.0,
 						  fval2, fval3, fval4;
 
-					if (parm_u_qpsk_fec_inner <= FEC_S2_QPSK_9_10) // DVB-S2 QPSK
+					if (oparm.sat.modulation == eDVBFrontendParametersSatellite::Modulation_QPSK)
 					{
 						fval2 = 6.76;
 						fval3 = 4.35;
@@ -2708,17 +2708,23 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 
 bool eDVBFrontend::setSlotInfo(ePyObject obj)
 {
-	ePyObject Id, Descr, Enabled, IsDVBS2;
-	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 4)
+	ePyObject Id, Descr, Enabled, IsDVBS2, frontendId;
+	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 5)
 		goto arg_error;
 	Id = PyTuple_GET_ITEM(obj, 0);
 	Descr = PyTuple_GET_ITEM(obj, 1);
 	Enabled = PyTuple_GET_ITEM(obj, 2);
 	IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
-	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2))
+	frontendId = PyTuple_GET_ITEM(obj, 4);
+	m_slotid = PyInt_AsLong(Id);
+	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2) || !PyInt_Check(frontendId))
 		goto arg_error;
 	strcpy(m_description, PyString_AS_STRING(Descr));
-	m_slotid = PyInt_AsLong(Id);
+	if (PyInt_AsLong(frontendId) == -1 || PyInt_AsLong(frontendId) != m_dvbid) {
+//		eDebugNoSimulate("skip slotinfo for slotid %d, descr %s",
+//			m_slotid, m_description);
+		return false;
+	}
 	m_enabled = Enabled == Py_True;
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||

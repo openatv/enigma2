@@ -616,6 +616,7 @@ class PluginManager(Screen, DreamInfoHandler):
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append(( _("Package list update"), '', _("Searching for new installed or removed packages. Please wait..." ),'', '', statuspng, divpng, None, '' ))
 			elif status == 'error':
+				self["key_green"].setText(_("Continue"))
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append(( _("Error"), '', _("There was an error downloading the packetlist. Please try again." ),'', '', statuspng, divpng, None, '' ))
 			self["list"].style = "default"
@@ -623,8 +624,11 @@ class PluginManager(Screen, DreamInfoHandler):
 
 
 	def getUpdateInfos(self):
-		self.setState('update')
-		iSoftwareTools.startSoftwareTools(self.getUpdateInfosCB)
+		if (iSoftwareTools.lastDownloadDate is not None and iSoftwareTools.NetworkConnectionAvailable is False):
+			self.rebuildList()
+		else:
+			self.setState('update')
+			iSoftwareTools.startSoftwareTools(self.getUpdateInfosCB)
 
 	def getUpdateInfosCB(self, retval = None):
 		if retval is not None:
@@ -635,11 +639,17 @@ class PluginManager(Screen, DreamInfoHandler):
 					self["status"].setText(_("There are no updates available."))
 				self.rebuildList()
 			elif retval is False:
-				self.setState('error')
-				if iSoftwareTools.NetworkConnectionAvailable:
-					self["status"].setText(_("Updatefeed not available."))
+				if iSoftwareTools.lastDownloadDate is None:
+					self.setState('error')
+					if iSoftwareTools.NetworkConnectionAvailable:
+						self["status"].setText(_("Updatefeed not available."))
+					else:
+						self["status"].setText(_("No network connection available."))
 				else:
-					self["status"].setText(_("No network connection available."))
+					iSoftwareTools.lastDownloadDate = time()
+					iSoftwareTools.list_updating = True
+					self.setState('update')
+					iSoftwareTools.getUpdates(self.getUpdateInfosCB)					
 
 	def rebuildList(self, retval = None):
 		if self.currentSelectedTag is None:
@@ -657,10 +667,14 @@ class PluginManager(Screen, DreamInfoHandler):
 					self["key_green"].setText(_("Uninstall"))
 				elif current[4] == 'installable':
 					self["key_green"].setText(_("Install"))
+					if iSoftwareTools.NetworkConnectionAvailable is False:
+						self["key_green"].setText("")
 				elif current[4] == 'remove':
 					self["key_green"].setText(_("Undo uninstall"))
 				elif current[4] == 'install':
 					self["key_green"].setText(_("Undo install"))
+					if iSoftwareTools.NetworkConnectionAvailable is False:
+						self["key_green"].setText("")
 				self["key_yellow"].setText(_("View details"))
 				self["key_blue"].setText("")
 				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates is not 0:
@@ -710,21 +724,31 @@ class PluginManager(Screen, DreamInfoHandler):
 							if entry[0] == detailsFile:
 								alreadyinList = True
 						if not alreadyinList:
-							self.selectedFiles.append((detailsFile,current[4],current[3]))
-							self.currentSelectedPackage = ((detailsFile,current[4],current[3]))
+							if (iSoftwareTools.NetworkConnectionAvailable is False and current[4] in ('installable','install')):
+								pass
+							else:
+								self.selectedFiles.append((detailsFile,current[4],current[3]))
+								self.currentSelectedPackage = ((detailsFile,current[4],current[3]))
 					if current[4] == 'installed':
 						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'remove', True)
 					elif current[4] == 'installable':
-						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'install', True)
+						if iSoftwareTools.NetworkConnectionAvailable:
+							self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'install', True)
 					elif current[4] == 'remove':
 						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'installed', False)
 					elif current[4] == 'install':
-						self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'installable',False)
+						if iSoftwareTools.NetworkConnectionAvailable:
+							self.list[idx] = self.buildEntryComponent(current[0], current[1], current[2], current[3], 'installable',False)
 					self["list"].setList(self.list)
 					self["list"].setIndex(idx)
 					self["list"].updateList(self.list)
 					self.selectionChanged()
-
+			elif self.currList == "status":
+				iSoftwareTools.lastDownloadDate = time()
+				iSoftwareTools.list_updating = True
+				self.setState('update')
+				iSoftwareTools.getUpdates(self.getUpdateInfosCB)
+				
 	def handleSelected(self):
 		current = self["list"].getCurrent()
 		if current:
@@ -1194,7 +1218,10 @@ class PluginDetails(Screen, DreamInfoHandler):
 		self["author"].setText(_("Author: ") + self.author)
 		self["detailtext"].setText(_(self.description))
 		if self.pluginstate in ('installable', 'install'):
-			self["key_green"].setText(_("Install"))
+			if iSoftwareTools.NetworkConnectionAvailable:
+				self["key_green"].setText(_("Install"))
+			else:
+				self["key_green"].setText("")
 		else:
 			self["key_green"].setText(_("Remove"))
 
@@ -1209,7 +1236,10 @@ class PluginDetails(Screen, DreamInfoHandler):
 		if thumbnailUrl is not None:
 			self.thumbnail = "/tmp/" + thumbnailUrl.split('/')[-1]
 			print "[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail
-			client.downloadPage(thumbnailUrl,self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
+			if iSoftwareTools.NetworkConnectionAvailable:
+				client.downloadPage(thumbnailUrl,self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
+			else:
+				self.setThumbnail(noScreenshot = True)
 		else:
 			self.setThumbnail(noScreenshot = True)
 
@@ -1249,11 +1279,12 @@ class PluginDetails(Screen, DreamInfoHandler):
 					if len(self.cmdList):
 						self.session.openWithCallback(self.runRemove, MessageBox, _("Do you want to remove the package:\n") + self.pluginname + "\n" + self.oktext)
 		else:
-			if self.packagefiles:
-				for package in self.packagefiles[:]:
-					self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": package["name"] }))
-					if len(self.cmdList):
-						self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + self.pluginname + "\n" + self.oktext)
+			if iSoftwareTools.NetworkConnectionAvailable:
+				if self.packagefiles:
+					for package in self.packagefiles[:]:
+						self.cmdList.append((IpkgComponent.CMD_INSTALL, { "package": package["name"] }))
+						if len(self.cmdList):
+							self.session.openWithCallback(self.runUpgrade, MessageBox, _("Do you want to install the package:\n") + self.pluginname + "\n" + self.oktext)
 
 	def runUpgrade(self, result):
 		if result:
@@ -1299,7 +1330,7 @@ class UpdatePlugin(Screen):
 			<widget name="activityslider" position="0,0" size="550,5"  />
 			<widget name="slider" position="0,150" size="550,30"  />
 			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="status" render="Label" position="10,60" size="540,45" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
+			<widget source="status" render="Label" position="10,180" size="540,100" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session, *args):
@@ -1399,8 +1430,8 @@ class UpdatePlugin(Screen):
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
 				
-				self.package.setText("")
-				self.status.setText(_("Done - Installed or upgraded %d packages") % self.packages + "\n\n" + self.oktext)
+				self.package.setText(_("Done - Installed or upgraded %d packages") % self.packages)
+				self.status.setText(self.oktext)
 			else:
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
