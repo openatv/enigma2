@@ -7,8 +7,6 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
-#error This version is FOOBAR, don't build it
-
 #ifndef I2C_SLAVE_FORCE
 #define I2C_SLAVE_FORCE	0x0706
 #endif
