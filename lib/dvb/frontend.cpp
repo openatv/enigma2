@@ -2710,23 +2710,17 @@ int eDVBFrontend::isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)
 
 bool eDVBFrontend::setSlotInfo(ePyObject obj)
 {
-	ePyObject Id, Descr, Enabled, IsDVBS2, frontendId;
-	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 5)
+	ePyObject Id, Descr, Enabled, IsDVBS2;
+	if (!PyTuple_Check(obj) || PyTuple_Size(obj) != 4)
 		goto arg_error;
 	Id = PyTuple_GET_ITEM(obj, 0);
 	Descr = PyTuple_GET_ITEM(obj, 1);
 	Enabled = PyTuple_GET_ITEM(obj, 2);
 	IsDVBS2 = PyTuple_GET_ITEM(obj, 3);
-	frontendId = PyTuple_GET_ITEM(obj, 4);
-	m_slotid = PyInt_AsLong(Id);
-	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2) || !PyInt_Check(frontendId))
+	if (!PyInt_Check(Id) || !PyString_Check(Descr) || !PyBool_Check(Enabled) || !PyBool_Check(IsDVBS2))
 		goto arg_error;
 	strcpy(m_description, PyString_AS_STRING(Descr));
-	if (PyInt_AsLong(frontendId) == -1 || PyInt_AsLong(frontendId) != m_dvbid) {
-//		eDebugNoSimulate("skip slotinfo for slotid %d, descr %s",
-//			m_slotid, m_description);
-		return false;
-	}
+	m_slotid = PyInt_AsLong(Id);
 	m_enabled = Enabled == Py_True;
 	// HACK.. the rotor workaround is neede for all NIMs with LNBP21 voltage regulator...
 	m_need_rotor_workaround = !!strstr(m_description, "Alps BSBE1") ||
