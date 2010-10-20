@@ -56,9 +56,9 @@ class eDVBSectionReader: public iDVBSectionReader, public Object
 	void data(int);
 	ePtr<eSocketNotifier> notifier;
 public:
-	
 	eDVBSectionReader(eDVBDemux *demux, eMainloop *context, RESULT &res);
 	virtual ~eDVBSectionReader();
+	RESULT setBufferSize(int size);
 	RESULT start(const eDVBSectionFilterMask &mask);
 	RESULT stop();
 	RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn);
@@ -76,6 +76,7 @@ class eDVBPESReader: public iDVBPESReader, public Object
 public:
 	eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res);
 	virtual ~eDVBPESReader();
+	RESULT setBufferSize(int size);
 	RESULT start(int pid);
 	RESULT stop();
 	RESULT connectRead(const Slot2<void,const __u8*, int> &read, ePtr<eConnection> &conn);
@@ -90,6 +91,7 @@ public:
 	eDVBTSRecorder(eDVBDemux *demux);
 	~eDVBTSRecorder();
 
+	RESULT setBufferSize(int size);
 	RESULT start();
 	RESULT addPID(int pid);
 	RESULT removePID(int pid);

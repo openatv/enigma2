@@ -6,6 +6,7 @@
 class iDVBSectionReader: public iObject
 {
 public:
+	virtual RESULT setBufferSize(int size)=0;
 	virtual RESULT start(const eDVBSectionFilterMask &mask)=0;
 	virtual RESULT stop()=0;
 	virtual RESULT connectRead(const Slot1<void,const __u8*> &read, ePtr<eConnection> &conn)=0;
@@ -15,6 +16,7 @@ public:
 class iDVBPESReader: public iObject
 {
 public:
+	virtual RESULT setBufferSize(int size)=0;
 	virtual RESULT start(int pid)=0;
 	virtual RESULT stop()=0;
 	virtual RESULT connectRead(const Slot2<void,const __u8*, int> &read, ePtr<eConnection> &conn)=0;
@@ -26,6 +28,7 @@ public:
 class iDVBTSRecorder: public iObject
 {
 public:
+	virtual RESULT setBufferSize(int size) = 0;
 	virtual RESULT start() = 0;
 	virtual RESULT addPID(int pid) = 0;
 	virtual RESULT removePID(int pid) = 0;
