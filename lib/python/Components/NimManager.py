@@ -103,16 +103,9 @@ class SecConfigure:
 	def setSatposDepends(self, sec, nim1, nim2):
 		print "tuner", nim1, "depends on satpos of", nim2
 		sec.setTunerDepends(nim1, nim2)
-		
-	def linkInternally(self, slotid):
-		nim = self.NimManager.getNim(slotid)
-		if nim.internallyConnectableTo is not None:
-			nim.setInternalLink()
 
 	def linkNIMs(self, sec, nim1, nim2):
 		print "link tuner", nim1, "to tuner", nim2
-		if nim2 == (nim1 - 1):
-			self.linkInternally(nim1)
 		sec.setTunerLinked(nim1, nim2)
 		
 	def getRoot(self, slotid, connto):
@@ -127,9 +120,6 @@ class SecConfigure:
 	def update(self):
 		sec = secClass.getInstance()
 		self.configuredSatellites = set()
-		for slotid in self.NimManager.getNimListOfType("DVB-S"):
-			if self.NimManager.nimInternallyConnectableTo(slotid) is not None:
-				self.NimManager.nimRemoveInternalLink(slotid)
 		sec.clear() ## this do unlinking NIMs too !!
 		print "sec config cleared"
 
@@ -533,16 +523,6 @@ class NIM(object):
 	def internallyConnectableTo(self):
 		return self.internally_connectable
 	
-	def setInternalLink(self):
-		if self.internally_connectable is not None:
-			print "setting internal link on frontend id", self.frontend_id
-			open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w").write("internal")
-		
-	def removeInternalLink(self):
-		if self.internally_connectable is not None:
-			print "removing internal link on frontend id", self.frontend_id
-			open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w").write("external")
-	
 	def isMultiType(self):
 		return (len(self.multi_type) > 0)
 	
@@ -758,12 +738,6 @@ class NimManager:
 	
 	def getNimName(self, slotid):
 		return self.nim_slots[slotid].description
-	
-	def getNim(self, slotid):
-		return self.nim_slots[slotid]
-	
-	def getI2CDevice(self, slotid):
-		return self.nim_slots[slotid].getI2C()
 
 	def getNimListOfType(self, type, exception = -1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
@@ -793,12 +767,6 @@ class NimManager:
 	
 	def hasOutputs(self, slotid):
 		return self.nim_slots[slotid].hasOutputs()
-	
-	def nimInternallyConnectableTo(self, slotid):
-		return self.nim_slots[slotid].internallyConnectableTo()
-	
-	def nimRemoveInternalLink(self, slotid):
-		self.nim_slots[slotid].removeInternalLink()
 	
 	def canConnectTo(self, slotid):
 		slots = []
