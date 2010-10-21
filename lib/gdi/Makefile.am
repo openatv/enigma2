@@ -1,4 +1,4 @@
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir)/include -I$(top_srcdir)/lib/gdi/ati
 
 noinst_LIBRARIES = libenigma_gdi.a

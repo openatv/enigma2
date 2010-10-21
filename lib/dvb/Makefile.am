@@ -1,6 +1,6 @@
 SUBDIRS = lowlevel
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir)/include
 
 noinst_LIBRARIES = libenigma_dvb.a

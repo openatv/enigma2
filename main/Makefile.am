@@ -1,4 +1,4 @@
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir)/include
 
 bin_PROGRAMS = enigma2
