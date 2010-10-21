@@ -135,11 +135,11 @@ void eDVBServicePMTHandler::PATready(int)
 	{
 		int pmtpid = -1;
 		std::vector<ProgramAssociationSection*>::const_iterator i;
-		for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
+		for (i = ptr->getSections().begin(); i != ptr->getSections().end() && pmtpid == -1; ++i)
 		{
 			const ProgramAssociationSection &pat = **i;
 			ProgramAssociationConstIterator program;
-			for (program = pat.getPrograms()->begin(); program != pat.getPrograms()->end(); ++program)
+			for (program = pat.getPrograms()->begin(); program != pat.getPrograms()->end() && pmtpid == -1; ++program)
 				if (eServiceID((*program)->getProgramNumber()) == m_reference.getServiceID())
 					pmtpid = (*program)->getProgramMapPid();
 		}
