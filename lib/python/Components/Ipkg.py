@@ -87,24 +87,21 @@ class IpkgComponent:
 			self.fetchedList.append(item)
 			self.callCallbacks(self.EVENT_LISTITEM, item)
 		else:
-			if data.find('Downloading') == 0:
+			if data.startswith('Downloading'):
 				self.callCallbacks(self.EVENT_DOWNLOAD, data.split(' ', 5)[1].strip())
-			elif data.find('Upgrading') == 0:
-				if self.opkgAvail:
-					self.callCallbacks(self.EVENT_UPGRADE, data.split(' ', 1)[1].split(' ')[0])
-				else:
-					self.callCallbacks(self.EVENT_UPGRADE, data.split('    ', 1)[1].split(' ')[0])
-			elif data.find('Installing') == 0:
-				self.callCallbacks(self.EVENT_INSTALL, data.split(' ', 1)[1].split(' ')[0])
-			elif data.find('Removing') == 0:
-				self.callCallbacks(self.EVENT_REMOVE, data.split(' ', 1)[1].split(' ')[1])
-			elif data.find('Configuring') == 0:
-				self.callCallbacks(self.EVENT_CONFIGURING, data.split(' ', 1)[1].split(' ')[0])
-			elif data.find('An error occurred') == 0:
+			elif data.startswith('Upgrading'):
+				self.callCallbacks(self.EVENT_UPGRADE, data.split(' ', 2)[1])
+			elif data.startswith('Installing'):
+				self.callCallbacks(self.EVENT_INSTALL, data.split(' ', 2)[1])
+			elif data.startswith('Removing'):
+				self.callCallbacks(self.EVENT_REMOVE, data.split(' ', 3)[2])
+			elif data.startswith('Configuring'):
+				self.callCallbacks(self.EVENT_CONFIGURING, data.split(' ', 2)[1])
+			elif data.startswith('An error occurred'):
 				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.find('Failed to download') == 0:
+			elif data.startswith('Failed to download'):
 				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.find('ipkg_download: ERROR:') == 0:
+			elif data.startswith('ipkg_download: ERROR:'):
 				self.callCallbacks(self.EVENT_ERROR, None)
 			elif data.find('    Configuration file \'') >= 0:
 				# Note: the config file update question doesn't end with a newline, so
