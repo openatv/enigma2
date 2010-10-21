@@ -7,6 +7,7 @@ TUXBOX_APPS_DIRECTORY
 AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_RANLIB
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_ARG_WITH(libsdl,
 	AC_HELP_STRING([--with-libsdl], [use sdl, yes or no]),
@@ -23,7 +24,7 @@ fi
 AM_CONDITIONAL(HAVE_DDVDLIB, test "$have_ddvdlib" = "yes")
 
 AM_PATH_PYTHON()
-AC_PYTHON_DEVEL
+AX_PYTHON_DEVEL
 #AM_PATH_XINE(1.1.0,, AC_MSG_ERROR([*** Please install xine-lib (devel) first ***]))
 
 TUXBOX_APPS_DVB
