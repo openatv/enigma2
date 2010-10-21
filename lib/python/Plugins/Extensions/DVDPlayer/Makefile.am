@@ -1,4 +1,3 @@
-if HAVE_DDVDLIB
 SUBDIRS = src meta
 
 installdir = $(pkglibdir)/python/Plugins/Extensions/DVDPlayer
@@ -8,4 +7,3 @@ install_PYTHON = \
 	plugin.py \
 	keymap.xml \
 	LICENSE
-endif

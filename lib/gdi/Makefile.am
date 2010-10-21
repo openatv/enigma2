@@ -4,6 +4,9 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
+AM_CXXFLAGS = \
+	$(LIBSDL_CFLAGS)
+
 noinst_LTLIBRARIES = libenigma_gdi.la
 
 libenigma_gdi_la_SOURCES = \
@@ -42,7 +45,7 @@ libenigma_gdi_la_SOURCES = \
 	region.cpp \
 	region.h
 
-if WITH_SDL
+if HAVE_LIBSDL
 libenigma_gdi_la_SOURCES += \
 	sdl.cpp \
 	sdl.h

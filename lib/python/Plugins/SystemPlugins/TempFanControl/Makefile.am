@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/SystemPlugins/TempFanControl
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/TempFanControl
 
 SUBDIRS = meta
 
