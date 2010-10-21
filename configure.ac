@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[2.4])
+AC_INIT([enigma2],[2.4],[enigma2-devel@lists.elitedvb.net])
 AM_INIT_AUTOMAKE(enigma2,2.4)
 
 TUXBOX_APPS
