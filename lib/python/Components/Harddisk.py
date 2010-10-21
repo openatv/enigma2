@@ -15,17 +15,17 @@ def readFile(filename):
 	file.close()
 	return data
 
-class Harddisk:
-	DEVTYPE_UDEV = 0
-	DEVTYPE_DEVFS = 1
+DEVTYPE_UDEV = 0
+DEVTYPE_DEVFS = 1
 
+class Harddisk:
 	def __init__(self, device):
 		self.device = device
 
 		if access("/dev/.udev", 0):
-			self.type = self.DEVTYPE_UDEV
+			self.type = DEVTYPE_UDEV
 		elif access("/dev/.devfsd", 0):
-			self.type = self.DEVTYPE_DEVFS
+			self.type = DEVTYPE_DEVFS
 		else:
 			print "Unable to determine structure of /dev"
 
@@ -37,11 +37,11 @@ class Harddisk:
 		self.disk_path = ''
 		self.phys_path = path.realpath(self.sysfsPath('device'))
 
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			self.dev_path = '/dev/' + self.device
 			self.disk_path = self.dev_path
 
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			tmp = readFile(self.sysfsPath('dev')).split(':')
 			s_major = int(tmp[0])
 			s_minor = int(tmp[1])
@@ -64,9 +64,9 @@ class Harddisk:
 		return self.device < ob.device
 
 	def partitionPath(self, n):
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			return self.dev_path + n
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			return self.dev_path + '/part' + n
 
 	def sysfsPath(self, filename):
@@ -79,9 +79,9 @@ class Harddisk:
 
 	def bus(self):
 		# CF (7025 specific)
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			ide_cf = False	# FIXME
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			ide_cf = self.device[:2] == "hd" and "host0" not in self.dev_path
 
 		internal = "pci" in self.phys_path
@@ -142,7 +142,7 @@ class Harddisk:
 
 	def numPartitions(self):
 		numPart = -1
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			try:
 				devdir = listdir('/dev')
 			except OSError:
@@ -151,7 +151,7 @@ class Harddisk:
 				if filename.startswith(self.device):
 					numPart += 1
 
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			try:
 				idedir = listdir(self.dev_path)
 			except OSError:
@@ -413,24 +413,38 @@ class Partition:
 				return True
 		return False
 
-DEVICEDB =  \
+DEVICEDB_SR = \
 	{"dm8000":
 		{
-			# dm8000:
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": "Front USB Slot",
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": "Back, upper USB Slot",
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": "Back, lower USB Slot",
-			"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/host1/target1:0:0/1:0:0:0": "DVD Drive",
+			"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("DVD Drive"),
+			"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("DVD Drive"),
+			"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/host3/target3:0:0/3:0:0:0": _("DVD Drive"),
 		},
 	"dm800":
 	{
-		# dm800:
+	},
+	"dm7025":
+	{
+	}
+	}
+
+DEVICEDB = \
+	{"dm8000":
+		{
+			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": _("Front USB Slot"),
+			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": _("Back, upper USB Slot"),
+			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": _("Back, lower USB Slot"),
+			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": _("Front USB Slot"),
+			"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/": _("Internal USB Slot"),
+			"/devices/platform/brcm-ohci-1.1/usb4/4-1/4-1:1.0/": _("Internal USB Slot"),
+		},
+	"dm800":
+	{
 		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": "Upper USB Slot",
 		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": "Lower USB Slot",
 	},
 	"dm7025":
 	{
-		# dm7025:
 		"/devices/pci0000:00/0000:00:14.1/ide1/1.0": "CF Card Slot", #hdc
 		"/devices/pci0000:00/0000:00:14.1/ide0/0.0": "Internal Harddisk"
 	}
@@ -441,6 +455,7 @@ class HarddiskManager:
 		self.hdd = [ ]
 		self.cd = ""
 		self.partitions = [ ]
+		self.devices_scanned_on_init = [ ]
 
 		self.on_partition_list_change = CList()
 
@@ -508,23 +523,22 @@ class HarddiskManager:
 	def enumerateBlockDevices(self):
 		print "enumerating block devices..."
 		for blockdev in listdir("/sys/block"):
-			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(blockdev)
-			print "found block device '%s':" % blockdev, 
-			if error:
-				print "error querying properties"
-			elif blacklisted:
-				print "blacklisted"
-			elif not medium_found:
-				print "no medium"
-			else:
-				print "ok, removable=%s, cdrom=%s, partitions=%s, device=%s" % (removable, is_cdrom, partitions, blockdev)
-
-				self.addHotplugPartition(blockdev)
-				for part in partitions:
-					self.addHotplugPartition(part)
+			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(blockdev)
+			if not error and not blacklisted:
+				if medium_found:
+					for part in partitions:
+						self.addHotplugPartition(part)
+				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
 	def getAutofsMountpoint(self, device):
 		return "/autofs/%s/" % (device)
+
+	def is_hard_mounted(self, device):
+		mounts = file('/proc/mounts').read().split('\n')
+		for x in mounts:
+			if x.find('/autofs') == -1 and x.find(device) != -1:
+				return True
+		return False
 
 	def addHotplugPartition(self, device, physdev = None):
 		if not physdev:
@@ -535,22 +549,36 @@ class HarddiskManager:
 				physdev = dev
 				print "couldn't determine blockdev physdev for device", device
 
-		# device is the device name, without /dev
-		# physdev is the physical device path, which we (might) use to determine the userfriendly name
-		description = self.getUserfriendlyDeviceName(device, physdev)
+		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
+		print "found block device '%s':" % device,
 
-		p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True, device = device)
-		self.partitions.append(p)
-		self.on_partition_list_change("add", p)
+		if blacklisted:
+			print "blacklisted"
+		else:
+			if error:
+				print "error querying properties"
+			elif not medium_found:
+				print "no medium"
+			else:
+				print "ok, removable=%s, cdrom=%s, partitions=%s" % (removable, is_cdrom, partitions)
 
-		# see if this is a harddrive
-		l = len(device)
-		if l and not device[l-1].isdigit():
-			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
-			if not blacklisted and not removable and not is_cdrom and medium_found:
-				self.hdd.append(Harddisk(device))
-				self.hdd.sort()
-				SystemInfo["Harddisk"] = len(self.hdd) > 0
+			l = len(device)
+			if l:
+				# see if this is a harddrive
+				if not device[l-1].isdigit() and not removable and not is_cdrom:
+					self.hdd.append(Harddisk(device))
+					self.hdd.sort()
+					SystemInfo["Harddisk"] = len(self.hdd) > 0
+
+				if (not removable or medium_found) and not self.is_hard_mounted(device):
+					# device is the device name, without /dev
+					# physdev is the physical device path, which we (might) use to determine the userfriendly name
+					description = self.getUserfriendlyDeviceName(device, physdev)
+					p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True, device = device)
+					self.partitions.append(p)
+					self.on_partition_list_change("add", p)
+
+		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):
 		mountpoint = self.getAutofsMountpoint(device)
@@ -608,15 +636,23 @@ class HarddiskManager:
 	def getUserfriendlyDeviceName(self, dev, phys):
 		dev, part = self.splitDeviceName(dev)
 		description = "External Storage %s" % dev
+		have_model_descr = False
 		try:
 			description = readFile("/sys" + phys + "/model")
+			have_model_descr = True
 		except IOError, s:
 			print "couldn't read model: ", s
 		from Tools.HardwareInfo import HardwareInfo
-		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
+		if dev.find('sr') == 0 and dev[2].isdigit():
+			devicedb = DEVICEDB_SR
+		else:
+			devicedb = DEVICEDB
+		for physdevprefix, pdescription in devicedb.get(HardwareInfo().device_name,{}).items():
 			if phys.startswith(physdevprefix):
-				description = pdescription
-
+				if have_model_descr:
+					description = pdescription + ' - ' + description
+				else:
+					description = pdescription
 		# not wholedisk and not partition 1
 		if part and part != 1:
 			description += " (Partition %d)" % part
