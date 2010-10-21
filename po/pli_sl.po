@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ENIGMA 1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-07 12:29+0000\n"
-"PO-Revision-Date: 2010-10-10 18:35+0100\n"
+"PO-Revision-Date: 2010-10-21 11:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -29,8 +29,8 @@ msgstr ""
 "Po pritisku na OK, počakajte!"
 
 #
-msgid "Auto language selection settings"
-msgstr "Samodejno nastavljanje zvoka in podnapisov"
+msgid "Auto language selection"
+msgstr "Samodejna izbira zvoka in podn."
 
 #
 msgid "Subtitle settings"
@@ -118,7 +118,7 @@ msgid ""
 "System will restart after the restore!"
 msgstr ""
 "\n"
-"Sprejemnik se bo po obnovitvi resetiral."
+"Sprejemnik se bo po obnovitvi ponovno zagnal."
 
 #
 msgid ""
@@ -157,7 +157,7 @@ msgstr "najdena brezzična omrežja!"
 
 #
 msgid "Restart enigma"
-msgstr "Ponovno zaženi Enigmo2"
+msgstr "Ponovno zaženi Enigmo"
 
 #
 msgid "#000000"
@@ -248,6 +248,146 @@ msgstr "(ZAP)"
 #
 msgid "(empty)"
 msgstr "(prazno)"
+
+#
+msgid "Fan always on in standby?"
+msgstr "Naj vent. deluje tudi v stanju pripravljenosti?"
+
+#
+msgid "Fan alternating on and off in standby?"
+msgstr "Se naj vent. v stanju pripr. redno izklaplja in vklaplja?"
+
+#
+msgid "Fan on (in minutes)"
+msgstr "Ventilator vključen (v minutah)"
+
+#
+msgid "Fan off (in minutes)"
+msgstr "Ventilator izključen (v minutah)"
+
+#
+msgid "Search IMDB"
+msgstr "Išči po IMDB bazi"
+
+#
+msgid "Subtitle files"
+msgstr "Prenesi podnapise"
+
+#
+msgid "Change Subtitle Position"
+msgstr "Spremeni položaj podnapisov"
+
+#
+msgid "Run subtitle"
+msgstr "Zaženi podnapis"
+
+#
+msgid "Daily automatic import"
+msgstr "Vsakodnevni prenos podatkov"
+
+#
+msgid "Automatic start time"
+msgstr "Začetek prenosa podatkov"
+
+#
+msgid "When in deep standby"
+msgstr "Pri uporabi globokega spanja"
+
+#
+msgid "skip the import"
+msgstr "preskoči prenos"
+
+#
+msgid "wake up and import"
+msgstr "prebudi in prenesi"
+
+#
+msgid "Show in extensions"
+msgstr "Prikaži med razširitvami"
+
+#
+msgid "Start import after booting up"
+msgstr "Začni s prenosom po vklopu sprejemnika"
+
+#
+msgid "Load long descriptions up to X days"
+msgstr "Prenesi podatke za X dni"
+
+#
+msgid "SoftCam / CI"
+msgstr "Emulatorji"
+
+#
+msgid "Softcam setup"
+msgstr "Nastavitve"
+
+#
+msgid "Select Softcam"
+msgstr "Izberi emulator"
+
+#
+msgid "Select Card Server"
+msgstr "Izberi bralca kartic"
+
+#
+msgid "Restart softcam"
+msgstr "Ponovno zaženi emulator"
+
+#
+msgid "Restart cardserver"
+msgstr "Ponovno zaženi bralca kartic"
+
+#
+msgid "Sources"
+msgstr "Viri"
+
+#
+msgid "Restart both"
+msgstr "Ponovno zaženi oba"
+
+#
+msgid "To subtitle selection"
+msgstr "Pojdi na izbiro podnapisa"
+
+#
+msgid "To audio selection"
+msgstr "Pojdi na izbiro zvočne sledi"
+
+#
+msgid "Use original teletext position"
+msgstr "Originalen položaj teletekst podn."
+
+#
+msgid "Use original teletext colors"
+msgstr "Originalne barve teletekst podn."
+
+#
+msgid "Rewrap teletext subtitles"
+msgstr "Rewrap teletekst podn."
+
+#
+msgid "Custom text position"
+msgstr "Položaj podnapisov"
+
+#
+msgid "Custom text alignment"
+msgstr "Poravnava podnapisov"
+
+#
+msgid "Text border width"
+msgstr "Širina obrobe pisave"
+
+#
+msgid "Mount again"
+msgstr "Ponovno dodaj"
+
+#
+msgid "Text font size"
+msgstr "Velikost pisave"
+
+#
+msgid "Fast scan"
+msgstr "Hitro iskanje"
 
 #
 msgid "(show optional DVD audio menu)"
@@ -516,7 +656,7 @@ msgstr ""
 
 #
 msgid "A/V Settings"
-msgstr "Avdio/Video nastavitve"
+msgstr "Avdio/Video"
 
 #
 msgid "AA"
@@ -708,7 +848,7 @@ msgstr "Album"
 
 #
 msgid "All"
-msgstr "Vsi"
+msgstr "Vse"
 
 #
 msgid "All Satellites"
@@ -1962,7 +2102,7 @@ msgstr "Ali želite predogled zbirke pred zapisom na DVD?"
 
 #
 msgid "Do you want to reboot your Dreambox?"
-msgstr "Želite resetirati vaš sprejemnik?"
+msgstr "Želite ponovno zagnati vaš sprejemnik?"
 
 #
 msgid "Do you want to remove the package:\n"
@@ -2036,7 +2176,7 @@ msgstr "Prenesi .NFI-datoteke za programsko nadgradnjo preko USB"
 
 #
 msgid "Download Plugins"
-msgstr "Presnemi vtičnike"
+msgstr "Prenesi vtičnike"
 
 #
 msgid "Download Video"
@@ -3211,7 +3351,7 @@ msgstr "LOF/L"
 
 #
 msgid "Language"
-msgstr "Nastavi jezik"
+msgstr "Jezik"
 
 #
 msgid "Language selection"
@@ -3756,7 +3896,7 @@ msgstr "Netmask"
 
 #
 msgid "Network"
-msgstr "Mrežne nastavitve"
+msgstr "Mreža"
 
 #
 msgid "Network Configuration..."
@@ -5460,11 +5600,15 @@ msgstr "Preveri Vzhod"
 
 #
 msgid "Search for network shares"
-msgstr ""
+msgstr "Išči mrežne naprave"
 
 #
 msgid "Search for network shares..."
-msgstr ""
+msgstr "Išči mrežne naprave..."
+
+#
+msgid "Attempt to recover lost mounts (in background)."
+msgstr "Poskus obnove vseh izgubljenih mrežnih naprav (proces poteka v ozadju)."
 
 #
 msgid "Search region:"
@@ -6289,6 +6433,10 @@ msgid "Temperature and Fan control"
 msgstr "Nadzor ventilatorja"
 
 #
+msgid "Fan control"
+msgstr "Nadzor ventilatorja"
+
+#
 msgid "Terrestrial"
 msgstr "Zemeljski"
 
@@ -6801,7 +6949,7 @@ msgstr "Časovni zamik ni možen!"
 
 #
 msgid "Timezone"
-msgstr "Nastavi časovni pas"
+msgstr "Časovni pas"
 
 #
 msgid "Title"
@@ -7595,11 +7743,10 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
-"Pri uporabi ponastavitve nastavitev sprejemnika boste izgubili popolnoma vse nastavitve!\n"
-"(vključno z listo kanalov, nastavitvami satelitov itd.)\n"
-"Po zaključku ponastavitve, se bo sprejemnik samodejno resetiral!\n"
+"Pozor! Uporaba te funkcije izbriše vse nastavitve vašega sprejemnika!\n"
+"Po zaključku ponastavitve se bo sprejemnik ponovno zagnal!\n"
 "\n"
-"Želite opraviti ponastavitev glavnih nastavitev sprejemnika?"
+"Želite nadaljevati?"
 
 #
 msgid "Where do you want to backup your settings?"
@@ -7796,7 +7943,7 @@ msgstr "Izbrali ste kreiranje novega .NFI zagonskega USB ključa. Iz ključa bod
 
 #
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr "Izbrali ste si opcijo obnove vaših nastavitev. Enigma 2 se bo po opravljenem procesu resetirala. Za začetek procesa pritisnite OK!"
+msgstr "Izbrali ste si opcijo obnove vaših nastavitev. Enigma 2 se bo po opravljenem procesu ponovno zagnala. Za začetek procesa pritisnite OK!"
 
 #
 #, python-format
@@ -8321,7 +8468,7 @@ msgstr "omoguči urejanje priljubljenih"
 
 #
 msgid "enable move mode"
-msgstr "omogoči način za premikanje"
+msgstr "Omogoči način za premikanje"
 
 #
 msgid "enabled"
@@ -8966,7 +9113,7 @@ msgstr "prikaži meni oznak"
 
 #
 msgid "show transponder info"
-msgstr "Prikaži informacijo o oddajniku"
+msgstr "Prikaži informacije o oddajniku"
 
 #
 msgid "shuffle playlist"
