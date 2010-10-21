@@ -5,9 +5,9 @@ GETTEXT=xgettext
 #MSGFMT = ./msgfmt.py
 MSGFMT = msgfmt
 
-LANGS := $(shell cat $(srcdir)/LINGUAS)
-LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
-LANGMO := $(foreach LANG, $(LANGS),$(LANG).mo)
+LANGS = $(shell cat $(srcdir)/LINGUAS)
+LANGPO = $(foreach LANG, $(LANGS),$(LANG).po)
+LANGMO = $(foreach LANG, $(LANGS),$(LANG).mo)
 
 default: enigma2.pot $(LANGMO)
 	for lang in $(LANGS); do \
