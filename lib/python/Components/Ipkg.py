@@ -86,7 +86,8 @@ class IpkgComponent:
 			item = data.split(' - ', 2)
 			self.fetchedList.append(item)
 			self.callCallbacks(self.EVENT_LISTITEM, item)
-		else:
+			return
+		try:
 			if data.startswith('Downloading'):
 				self.callCallbacks(self.EVENT_DOWNLOAD, data.split(' ', 5)[1].strip())
 			elif data.startswith('Upgrading'):
@@ -108,6 +109,9 @@ class IpkgComponent:
 				# if we get multiple config file update questions, the next ones
 				# don't necessarily start at the beginning of a line
 				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 1)[1][:-1])
+		except Exception, ex:
+			print "[Ipkg] Failed to parse: '%s'" % data
+			print "[Ipkg]", ex
 
 	def callCallbacks(self, event, param = None):
 		for callback in self.callbackList:
