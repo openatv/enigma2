@@ -1,4 +1,4 @@
-installdir = $(FONTDIR)
+installdir = $(datadir)/fonts
 
 dist_install_DATA = \
 	ae_AlMateen.ttf \

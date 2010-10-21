@@ -1,0 +1,42 @@
+#!/bin/sh
+
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+
+if [ -x @bindir@/showiframe -a -f /boot/backdrop.mvi ]; then
+	@bindir@/showiframe /boot/backdrop.mvi
+fi
+
+if [ -d /home/root ]; then
+	cd /home/root
+fi
+
+LD_PRELOAD=@libdir@/libopen.so.0.0.0 @bindir@/enigma2
+
+# enigma2 exit codes:
+#
+# 0 - restart enigma
+# 1 - halt
+# 2 - reboot
+#
+# >128 signal
+
+ret=$?
+case $ret in
+	1)
+		/sbin/halt
+		;;
+	2)
+		/sbin/reboot
+		;;
+	4)
+		/sbin/rmmod lcd
+		/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
+		sleep 1;
+		/sbin/rmmod fp
+		/sbin/modprobe fp
+		/sbin/reboot
+		;;
+	*)
+		;;
+esac

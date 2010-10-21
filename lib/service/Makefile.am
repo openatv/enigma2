@@ -4,9 +4,30 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
+AM_CXXFLAGS = \
+	$(LIBXINE_CFLAGS)
+
 noinst_LTLIBRARIES = libenigma_service.la
 
 libenigma_service_la_SOURCES = \
-	listboxservice.cpp service.cpp servicemp3.cpp servicedvb.cpp servicefs.cpp \
-	event.cpp servicedvbrecord.cpp
-	
+	event.cpp \
+	event.h \
+	iservice.h \
+	listboxservice.cpp \
+	listboxservice.h \
+	service.cpp \
+	service.h \
+	servicedvb.cpp \
+	servicedvb.h \
+	servicedvbrecord.cpp \
+	servicedvbrecord.h \
+	servicefs.cpp \
+	servicefs.h \
+	servicemp3.cpp \
+	servicemp3.h
+
+if HAVE_LIBXINE
+libenigma_service_la_SOURCES += \
+	servicexine.cpp \
+	servicexine.h
+endif

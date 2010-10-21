@@ -1,24 +1,25 @@
 AC_INIT([enigma2],[2.8.0],[enigma2-devel@lists.elitedvb.net])
-AM_INIT_AUTOMAKE([dist-bzip2 no-define silent-rules])
+AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
 AC_USE_SYSTEM_EXTENSIONS
 AC_SYS_LARGEFILE
-
-TUXBOX_APPS_DIRECTORY
 
 AC_PROG_CC
 AC_PROG_CXX
 LT_INIT
 AC_CONFIG_MACRO_DIR([m4])
 
-AC_ARG_WITH(libsdl,
-	AS_HELP_STRING([--with-libsdl],[use sdl, yes or no]),
-	[[with_sdl=$withval]],
-	[[with_sdl=no]]
-)
-
 AC_CHECK_HEADERS([dbox/fp.h dbox/lcd-ks0713.h])
+
+AC_PATH_PROG(MSGFMT,[msgfmt])
+AC_PATH_PROG(MSGINIT,[msginit])
+AC_PATH_PROG(MSGMERGE,[msgmerge])
+AC_PATH_PROG(MSGUNIQ,[msguniq])
+AC_PATH_PROG(XGETTEXT,[xgettext])
+if test -z "$MSGFMT" -o -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
+	AC_MSG_ERROR([Could not find required gettext tools])
+fi
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
@@ -30,30 +31,53 @@ AX_PTHREAD
 TUXBOX_APPS_DVB
 
 PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-0.10 gstreamer-pbutils-0.10 libdvbsi++ libpng libxml-2.0 sigc++-1.2])
-PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_DDVDLIB="yes", HAVE_DDVDLIB="no")
-AM_CONDITIONAL(HAVE_DDVDLIB, test "$HAVE_DDVDLIB" = "yes")
-PKG_CHECK_MODULES(LIBXINE, libxine, HAVE_LIBXINE="yes", HAVE_LIBXINE="no")
+PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_LIBDDVD="yes", HAVE_LIBDDVD="no")
+AM_CONDITIONAL(HAVE_LIBDDVD, test "$HAVE_LIBDDVD" = "yes")
 
-AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"])
+AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"], [AC_MSG_ERROR([Could not find libdl])])
 AC_SUBST(LIBDL_LIBS)
-AC_CHECK_LIB([jpeg], [jpeg_set_defaults])
-AC_CHECK_LIB([xmlccwrap], [exit])
-AC_CHECK_LIB([ungif], [DGifOpen], , [AC_CHECK_LIB([gif], [DGifOpen])])
+AC_CHECK_LIB([jpeg], [jpeg_set_defaults], [LIBJPEG_LIBS="-ljpeg"], [AC_MSG_ERROR([Could not find libjpeg])])
+AC_SUBST(LIBJPEG_LIBS)
+AC_CHECK_LIB([xmlccwrap], [exit], [LIBXMLCCWRAP_LIBS="-lxmlccwrap"], [AC_MSG_ERROR([Could not find libxmlccwrap])])
+AC_SUBST(LIBXMLCCWRAP_LIBS)
+AC_CHECK_LIB([ungif], [DGifOpen], [LIBGIF_LIBS="-lungif"], [AC_CHECK_LIB([gif], [DGifOpen], [LIBGIF_LIBS="-lgif"], [AC_MSG_ERROR([Could not find libgif or libungif])])])
+AC_SUBST(LIBGIF_LIBS)
 
-if test "$with_sdl" = "yes" ; then
-	PKG_CHECK_MODULES(SDL, sdl)
+AC_ARG_WITH(libsdl,
+	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
+	[with_libsdl=$withval],[with_libsdl=no])
+if test "$with_libsdl" = "yes"; then
+	PKG_CHECK_MODULES(LIBSDL, sdl)
 	AC_DEFINE([WITH_SDL],[1],[Define to 1 if you have libsdl])
 fi
-# allow 'if WITH_SDL' conditionals in Makefile.am
-AM_CONDITIONAL(WITH_SDL, test "$with_sdl" = "yes")
+AM_CONDITIONAL(HAVE_LIBSDL, test "$with_libsdl" = "yes")
+
+AC_ARG_WITH(libxine,
+	AS_HELP_STRING([--with-libxine],[use libxine, yes or no]),
+	[with_libxine=$withval],[with_libxine=no])
+if test "$with_libxine" = "yes"; then
+	PKG_CHECK_MODULES(LIBXINE, libxine)
+	AC_DEFINE([WITH_XINE],[1],[Define to 1 if you have libxine])
+fi
+AM_CONDITIONAL(HAVE_LIBXINE, test "$with_libxine" = "yes")
+
+AC_ARG_WITH(debug,
+	AS_HELP_STRING([--without-debug],[disable debugging code]),
+	[with_debug="$withval"],[with_debug="yes"])
+if test "$with_debug" = "yes"; then
+	DEBUG_CFLAGS="-ggdb3"
+	AC_DEFINE([DEBUG],[1],[Define to 1 to enable debugging code])
+fi
+
+AC_ARG_WITH(memcheck,
+	AS_HELP_STRING([--with-memcheck],[enable memory leak checks]),
+	[with_memcheck="$withval"],[with_memcheck="no"])
+if test "$with_memcheck" = "yes"; then
+	AC_DEFINE([MEMLEAK_CHECK],[1],[Define to 1 to enable memory leak checks])
+fi
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
-CXXFLAGS="$CXXFLAGS $BASE_CFLAGS $LIBUNGIF_CFLAGS $LIBXINE_CFLAGS $PTHREAD_CFLAGS $SDL_CFLAGS -fno-rtti -fno-exceptions -Wall"
-LDFLAGS="$LDFLAGS $BASE_LDFLAGS $PYTHON_LDFLAGS $SDL_LDFLAGS $LIBUNGIF_LDFLAGS $LIBXINE_LDFLAGS"
-
-#CPPFLAGS="$CPPFLAGS -DMEMLEAK_CHECK"
-
-TUXBOX_APPS_GETTEXT
+CXXFLAGS="$CXXFLAGS $BASE_CFLAGS $PTHREAD_CFLAGS $DEBUG_CFLAGS -fno-rtti -fno-exceptions -Wall"
 
 AC_CONFIG_FILES([
 Makefile
@@ -74,6 +98,7 @@ include/Makefile
 lib/Makefile
 lib/actions/Makefile
 lib/base/Makefile
+lib/base/eenv.cpp
 lib/driver/Makefile
 lib/dvb/Makefile
 lib/dvb/lowlevel/Makefile
@@ -160,9 +185,7 @@ lib/components/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
+tools/enigma2.sh
 enigma2.pc
 ])
 AC_OUTPUT
-
-#lib/python/Plugins/Extensions/SimpleRSS/Makefile
-#lib/python/Plugins/Extensions/FileManager/Makefile
