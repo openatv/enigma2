@@ -1,4 +1,4 @@
-OBJS := servicedvd.cpp
+OBJS = servicedvd.cpp
 
 -include $(OBJS:.cpp=.d)
 
