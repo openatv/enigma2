@@ -31,9 +31,7 @@
 
 #include "bsod.h"
 
-#ifdef HAVE_GSTREAMER
 #include <gst/gst.h>
-#endif
 
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
@@ -135,9 +133,7 @@ int main(int argc, char **argv)
 	atexit(object_dump);
 #endif
 
-#ifdef HAVE_GSTREAMER
 	gst_init(&argc, &argv);
-#endif
 
 	// set pythonpath if unset
 	setenv("PYTHONPATH", LIBDIR "/enigma2/python", 0);
