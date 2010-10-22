@@ -264,6 +264,14 @@ eDVBSectionReader::~eDVBSectionReader()
 		::close(fd);
 }
 
+RESULT eDVBSectionReader::setBufferSize(int size)
+{
+	int res=::ioctl(fd, DMX_SET_BUFFER_SIZE, size);
+	if (res < 0)
+		eDebug("eDVBSectionReader DMX_SET_BUFFER_SIZE failed(%m)");
+	return res;
+}
+
 RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 {
 	RESULT res;
@@ -296,8 +304,7 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	memcpy(sct.filter.mask, mask.mask, DMX_FILTER_SIZE);
 #if HAVE_DVB_API_VERSION >= 3
 	memcpy(sct.filter.mode, mask.mode, DMX_FILTER_SIZE);
-	if (::ioctl(fd, DMX_SET_BUFFER_SIZE, 8192*8) < 0)
-		eDebug("DMX_SET_BUFFER_SIZE failed(%m)");
+	setBufferSize(8192*8);
 #endif
 	
 	res = ::ioctl(fd, DMX_SET_FILTER, &sct);
@@ -367,7 +374,7 @@ eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res):
 	m_fd = m_demux->openDemux();
 	if (m_fd >= 0)
 	{
-		::ioctl(m_fd, DMX_SET_BUFFER_SIZE, 64*1024);
+		setBufferSize(64*1024);
 		::fcntl(m_fd, F_SETFL, O_NONBLOCK);
 		m_notifier = eSocketNotifier::create(context, m_fd, eSocketNotifier::Read, false);
 		CONNECT(m_notifier->activated, eDVBPESReader::data);
@@ -377,6 +384,14 @@ eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res):
 		perror("openDemux");
 		res = errno;
 	}
+}
+
+RESULT eDVBPESReader::setBufferSize(int size)
+{
+	int res = ::ioctl(m_fd, DMX_SET_BUFFER_SIZE, size);
+	if (res < 0)
+		eDebug("eDVBPESReader DMX_SET_BUFFER_SIZE failed(%m)");
+	return res;
 }
 
 DEFINE_REF(eDVBPESReader)
@@ -500,7 +515,7 @@ eDVBTSRecorder::eDVBTSRecorder(eDVBDemux *demux): m_demux(demux)
 	m_running = 0;
 	m_target_fd = -1;
 	m_thread = new eDVBRecordFileThread();
-  CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
+	CONNECT(m_thread->m_event, eDVBTSRecorder::filepushEvent);
 #ifndef HAVE_ADD_PID
 	m_demux->m_dvr_busy = 1;
 #endif
@@ -553,14 +568,7 @@ RESULT eDVBTSRecorder::start()
 		return -3;
 	}
 	
-	if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, demuxSize) == -1)
-	{
-		eDebug("Failed to set DMX_BUFFER_SIZE to %d: %m", demuxSize);
-		if (::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, 5*188*1024) == -1)
-		{
-			eDebug("Also failed to set DMX_BUFFER_SIZE to 1M: %m");
-		}
-	}
+	setBufferSize(demuxSize);
 
 	dmx_pes_filter_params flt;
 #if HAVE_DVB_API_VERSION > 3
@@ -599,6 +607,14 @@ RESULT eDVBTSRecorder::start()
 	}
 
 	return 0;
+}
+
+RESULT eDVBTSRecorder::setBufferSize(int size)
+{
+	int res = ::ioctl(m_source_fd, DMX_SET_BUFFER_SIZE, size);
+	if (res < 0)
+		eDebug("eDVBTSRecorder DMX_SET_BUFFER_SIZE failed(%m)");
+	return res;
 }
 
 RESULT eDVBTSRecorder::addPID(int pid)
