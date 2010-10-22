@@ -1,18 +1,10 @@
 AC_DEFUN([TUXBOX_APPS_DIRECTORY_ONE],[
 AC_ARG_WITH($1,[  $6$7 [[PREFIX$4$5]]],[
 	_$2=$withval
-	if test "$TARGET" = "cdk"; then
-		$2=`eval echo "${targetprefix}$withval"`
-	else
-		$2=$withval
-	fi
+	$2=$withval
 ],[
 	$2="\${$3}$5"
-	if test "$TARGET" = "cdk"; then
-		_$2=`eval echo "${target$3}$5"`
-	else
-		_$2=`eval echo "${$3}$5"`
-	fi
+	_$2=`eval echo "${$3}$5"`
 ])
 
 dnl automake <= 1.6 don't support this
