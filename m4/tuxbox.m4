@@ -191,42 +191,6 @@ AC_DEFUN([TUXBOX_APPS_LIB_CONFIG_CHECK],[
 _TUXBOX_APPS_LIB_CONFIG($1,$2,WARN)
 ])
 
-AC_DEFUN([TUXBOX_APPS_PKGCONFIG],[
-AC_PATH_PROG(PKG_CONFIG, pkg-config,no)
-if test "$PKG_CONFIG" = "no" ; then
-	AC_MSG_ERROR([could not find pkg-config]);
-fi
-])
-
-AC_DEFUN([_TUXBOX_APPS_LIB_PKGCONFIG],[
-PKG_CHECK_MODULES($1,$2)
-AC_SUBST($1_CFLAGS)
-AC_SUBST($1_LIBS)
-])
-
-AC_DEFUN([_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL],[
-PKG_CHECK_MODULES($1,$2,$3="yes",$3="no")
-if test "$$3" = "yes"; then
-	AC_DEFINE($3, 1, [$2 available])
-else
-	$1_CFLAGS=""
-	$1_LIBS=""
-fi
-AC_SUBST($1_CFLAGS)
-AC_SUBST($1_LIBS)
-])
-
-AC_DEFUN([TUXBOX_APPS_LIB_PKGCONFIG],[
-_TUXBOX_APPS_LIB_PKGCONFIG($1,$2)
-if test -z "$$1_CFLAGS" ; then
-	AC_MSG_ERROR([could not find package $2]);
-fi
-])
-
-AC_DEFUN([TUXBOX_APPS_LIB_PKGCONFIG_CHECK],[
-_TUXBOX_APPS_LIB_PKGCONFIG($1,$2)
-])
-
 AC_DEFUN([_TUXBOX_APPS_LIB_SYMBOL],[
 AC_CHECK_LIB($2,$3,HAVE_$1="yes",HAVE_$1="no")
 if test "$HAVE_$1" = "yes"; then
