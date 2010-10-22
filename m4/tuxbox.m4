@@ -1,74 +1,3 @@
-AC_DEFUN([TUXBOX_APPS],[
-
-INSTALL="$INSTALL -p"
-
-AC_USE_SYSTEM_EXTENSIONS
-AC_SYS_LARGEFILE
-
-AC_ARG_WITH(target,
-	[  --with-target=TARGET    target for compilation [[native,cdk]]],
-	[TARGET="$withval"],[TARGET="native"])
-
-AC_ARG_WITH(targetprefix,
-	[  --with-targetprefix=PATH  prefix relative to target root (only applicable in cdk mode)],
-	[targetprefix="$withval"],[targetprefix="NONE"])
-
-AC_ARG_WITH(debug,
-	[  --without-debug         disable debugging code],
-	[DEBUG="$withval"],[DEBUG="yes"])
-
-if test "$DEBUG" = "yes"; then
-	DEBUG_CFLAGS="-g3 -ggdb"
-	AC_DEFINE(DEBUG,1,[Enable debug messages])
-fi
-
-AC_MSG_CHECKING(target)
-
-if test "$TARGET" = "native"; then
-	AC_MSG_RESULT(native)
-
-	if test "$CFLAGS" = "" -a "$CXXFLAGS" = ""; then
-		CFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
-		CXXFLAGS="-Wall -O2 -pipe $DEBUG_CFLAGS"
-	fi
-	if test "$prefix" = "NONE"; then
-		prefix=/usr/local
-	fi
-	targetprefix=$prefix
-elif test "$TARGET" = "cdk"; then
-	AC_MSG_RESULT(cdk)
-
-	if test "$CC" = "" -a "$CXX" = ""; then
-		CC=powerpc-tuxbox-linux-gnu-gcc CXX=powerpc-tuxbox-linux-gnu-g++
-	fi
-	if test "$CFLAGS" = "" -a "$CXXFLAGS" = ""; then
-		CFLAGS="-Wall -Os -mcpu=823 -pipe $DEBUG_CFLAGS"
-		CXXFLAGS="-Wall -Os -mcpu=823 -pipe $DEBUG_CFLAGS"
-	fi
-	if test "$prefix" = "NONE"; then
-		AC_MSG_ERROR(invalid prefix, you need to specify one in cdk mode)
-	fi
-	if test "$targetprefix" = "NONE"; then
-		targetprefix=""
-	fi
-	if test "$host_alias" = ""; then
-		cross_compiling=yes
-		host_alias=powerpc-tuxbox-linux-gnu
-	fi
-else
-	AC_MSG_RESULT(none)
-	AC_MSG_ERROR([invalid target $TARGET, choose on from native,cdk]);
-fi
-
-AC_CANONICAL_BUILD
-AC_CANONICAL_HOST
-
-check_path () {
-	return $(perl -e "if(\"$1\"=~m#^/usr/(local/)?bin#){print \"0\"}else{print \"1\";}")
-}
-
-])
-
 AC_DEFUN([TUXBOX_APPS_DIRECTORY_ONE],[
 AC_ARG_WITH($1,[  $6$7 [[PREFIX$4$5]]],[
 	_$2=$withval
@@ -92,22 +21,6 @@ AC_DEFINE_UNQUOTED($2,"$_$2",$7)
 ])
 
 AC_DEFUN([TUXBOX_APPS_DIRECTORY],[
-AC_REQUIRE([TUXBOX_APPS])
-
-if test "$TARGET" = "cdk"; then
-	datadir="\${prefix}/share"
-	tuxboxdatadir="\${prefix}/share/tuxbox"
-	zoneinfodir="\${datadir}/zoneinfo"
-	sysconfdir="\${prefix}/etc"
-	localstatedir="\${prefix}/var"
-	localedir="\${prefix}/var"
-	libdir="\${prefix}/lib"
-	targetdatadir="\${targetprefix}/share"
-	targetsysconfdir="\${targetprefix}/etc"
-	targetlocalstatedir="\${targetprefix}/var"
-	targetlibdir="\${targetprefix}/lib"
-fi
-
 TUXBOX_APPS_DIRECTORY_ONE(configdir,CONFIGDIR,sysconfdir,/etc,,
 	[--with-configdir=PATH   ],[where to find the config files])
 
@@ -163,52 +76,6 @@ if test "$DVB_API_VERSION"; then
 else
 	AC_MSG_ERROR([can't find dvb headers])
 fi
-])
-
-AC_DEFUN([_TUXBOX_APPS_LIB_CONFIG],[
-AC_PATH_PROG($1_CONFIG,$2,no)
-if test "$$1_CONFIG" != "no"; then
-	if test "$TARGET" = "cdk" && check_path "$$1_CONFIG"; then
-		AC_MSG_$3([could not find a suitable version of $2]);
-	else
-		$1_CFLAGS=$($$1_CONFIG --cflags)
-		$1_LIBS=$($$1_CONFIG --libs)
-	fi
-fi
-
-AC_SUBST($1_CFLAGS)
-AC_SUBST($1_LIBS)
-])
-
-AC_DEFUN([TUXBOX_APPS_LIB_CONFIG],[
-_TUXBOX_APPS_LIB_CONFIG($1,$2,ERROR)
-if test "$$1_CONFIG" = "no"; then
-	AC_MSG_ERROR([could not find $2]);
-fi
-])
-
-AC_DEFUN([TUXBOX_APPS_LIB_CONFIG_CHECK],[
-_TUXBOX_APPS_LIB_CONFIG($1,$2,WARN)
-])
-
-AC_DEFUN([_TUXBOX_APPS_LIB_SYMBOL],[
-AC_CHECK_LIB($2,$3,HAVE_$1="yes",HAVE_$1="no")
-if test "$HAVE_$1" = "yes"; then
-	$1_LIBS=-l$2
-fi
-
-AC_SUBST($1_LIBS)
-])
-
-AC_DEFUN([TUXBOX_APPS_LIB_SYMBOL],[
-_TUXBOX_APPS_LIB_SYMBOL($1,$2,$3,ERROR)
-if test "$HAVE_$1" = "no"; then
-	AC_MSG_ERROR([could not find $2]);
-fi
-])
-
-AC_DEFUN([TUXBOX_APPS_LIB_CONFIG_SYMBOL],[
-_TUXBOX_APPS_LIB_SYMBOL($1,$2,$3,WARN)
 ])
 
 AC_DEFUN([TUXBOX_APPS_GETTEXT],[
@@ -300,26 +167,4 @@ AC_SUBST(GMOFILES)
 AC_SUBST(UPDATEPOFILES)
 AC_SUBST(DUMMYPOFILES)
 AC_SUBST(CATALOGS)
-])
-
-dnl backward compatiblity
-AC_DEFUN([AC_USE_SYSTEM_EXTENSIONS],
-[AH_VERBATIM([_GNU_SOURCE],
-[/* Enable GNU extensions on systems that have them.  */
-#ifndef _GNU_SOURCE
-# undef _GNU_SOURCE
-#endif])dnl
-AC_BEFORE([$0], [AC_COMPILE_IFELSE])dnl
-AC_BEFORE([$0], [AC_RUN_IFELSE])dnl
-AC_DEFINE([_GNU_SOURCE])
-])
-
-AC_DEFUN([AC_PROG_EGREP],
-[AC_CACHE_CHECK([for egrep], [ac_cv_prog_egrep],
-   [if echo a | (grep -E '(a|b)') >/dev/null 2>&1
-    then ac_cv_prog_egrep='grep -E'
-    else ac_cv_prog_egrep='egrep'
-    fi])
- EGREP=$ac_cv_prog_egrep
- AC_SUBST([EGREP])
 ])

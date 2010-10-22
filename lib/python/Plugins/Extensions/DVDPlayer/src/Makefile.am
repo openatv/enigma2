@@ -1,3 +1,7 @@
+CPPFLAGS += \
+	-I$(top_srcdir) \
+	-include Python.h
+
 OBJS = servicedvd.cpp
 
 -include $(OBJS:.cpp=.d)

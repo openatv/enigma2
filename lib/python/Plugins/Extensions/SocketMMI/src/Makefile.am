@@ -1,3 +1,7 @@
+CPPFLAGS += \
+	-I$(top_srcdir) \
+	-include Python.h
+
 OBJS = socket_mmi.cpp
 
 -include $(OBJS:.cpp=.d)

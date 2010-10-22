@@ -1,12 +1,13 @@
 AM_CPPFLAGS = \
+	-I$(top_srcdir) \
 	-I$(top_srcdir)/include \
-	-I$(top_srcdir)/src
+	-include Python.h
 
 SUBDIRS = Components Tools Screens Plugins
 
-noinst_LIBRARIES = libenigma_python.a
+noinst_LTLIBRARIES = libenigma_python.la
 
-libenigma_python_a_SOURCES = \
+libenigma_python_la_SOURCES = \
 	python.cpp enigma_python_wrap.cxx connections.cpp
 
 enigma_python_wrap.cxx: enigma_python.i
