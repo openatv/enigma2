@@ -1,7 +1,9 @@
 AC_INIT([enigma2],[2.8.0],[enigma2-devel@lists.elitedvb.net])
-AM_INIT_AUTOMAKE([dist-bzip2 no-define])
+AM_INIT_AUTOMAKE([dist-bzip2 no-define silent-rules])
 
-TUXBOX_APPS
+AC_USE_SYSTEM_EXTENSIONS
+AC_SYS_LARGEFILE
+
 TUXBOX_APPS_DIRECTORY
 
 AC_PROG_CC
@@ -25,25 +27,18 @@ AM_CONDITIONAL(HAVE_DDVDLIB, test "$have_ddvdlib" = "yes")
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
+AX_PTHREAD
 
 TUXBOX_APPS_DVB
 
-PKG_CHECK_MODULES(FREETYPE, freetype2)
-PKG_CHECK_MODULES(FRIBIDI, fribidi)
-PKG_CHECK_MODULES(GSTREAMER, gstreamer-0.10, HAVE_GSTREAMER="yes", HAVE_GSTREAMER="no")
-PKG_CHECK_MODULES(GSTREAMERPBUTILS, gstreamer-pbutils-0.10, HAVE_GSTSTREAMERPBUTILS="yes", HAVE_GSTSTREAMERPBUTILS="no")
-PKG_CHECK_MODULES(ID3TAG, id3tag)
-PKG_CHECK_MODULES(DVBSI, libdvbsi++)
-PKG_CHECK_MODULES(PNG, libpng)
+PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-0.10 gstreamer-pbutils-0.10 libdvbsi++ libpng libxml-2.0 sigc++-1.2])
 PKG_CHECK_MODULES(LIBXINE, libxine, HAVE_LIBXINE="yes", HAVE_LIBXINE="no")
-PKG_CHECK_MODULES(XML2, libxml-2.0)
-PKG_CHECK_MODULES(MAD, mad)
-PKG_CHECK_MODULES(SIGC, sigc++-1.2)
-AC_CHECK_LIB(jpeg, jpeg_set_defaults, HAVE_JPEG="yes", HAVE_JPEG="no")
-JPEG_LIBS="-ljpeg"
-AC_SUBST(JPEG_LIBS)
 
-AC_SUBST(LIBUNGIF_LIBS,"")
+AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"])
+AC_SUBST(LIBDL_LIBS)
+AC_CHECK_LIB([jpeg], [jpeg_set_defaults])
+AC_CHECK_LIB([xmlccwrap], [exit])
+
 AC_CHECK_HEADERS(gif_lib.h,
 	AC_CHECK_LIB(ungif,DGifOpen,
 	[AC_DEFINE(HAVE_LIBUNGIF,1,[Define if you have libgif/libungif including devel headers])
@@ -51,27 +46,20 @@ AC_CHECK_HEADERS(gif_lib.h,
 		[AC_CHECK_LIB(gif,DGifOpen,
 			[AC_DEFINE(HAVE_LIUNBGIF,1)
 			LIBUNGIF_LIBS="-lgif"])]))
-
-# ok, we are in trouble: XMLCCWRAP only defines C++ symbols. So let's just check if linking works,
-# and assume everything will be ok. Then just check for the "exit" symbol, which should be always there.
-AC_LANG_SAVE
-AC_LANG_CPLUSPLUS
-TUXBOX_APPS_LIB_SYMBOL(XMLCCWRAP, xmlccwrap, exit)
-AC_LANG_RESTORE
+AC_SUBST(LIBUNGIF_LIBS)
 
 if test "$with_sdl" = "yes" ; then
 	PKG_CHECK_MODULES(SDL, sdl)
-	AC_DEFINE_UNQUOTED([WITH_SDL],[1],[Define to 1 if you have libsdl])
+	AC_DEFINE([WITH_SDL],[1],[Define to 1 if you have libsdl])
 fi
 # allow 'if WITH_SDL' conditionals in Makefile.am
 AM_CONDITIONAL(WITH_SDL, test "$with_sdl" = "yes")
 
-CPPFLAGS="$CPPFLAGS "'-I$(top_srcdir)'
-CPPFLAGS="$CPPFLAGS -D_REENTRANT $PYTHON_CPPFLAGS $MD5SUM_CFLAGS $FREETYPE_CFLAGS $FRIBIDI_CFLAGS $ID3TAG_CFLAGS $MAD_CFLAGS $PLUGINS_CFLAGS $PNG_CFLAGS $SDL_CFLAGS $SIGC_CFLAGS $XMLTREE_CFLAGS $DVBSI_CFLAGS $GSTREAMER_CFLAGS $GSTREAMERPBUTILS_CFLAGS $LIBXINE_CFLAGS $LIBUNGIF_CFLAGS"
+CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
+CXXFLAGS="$CXXFLAGS $BASE_CFLAGS $LIBUNGIF_CFLAGS $LIBXINE_CFLAGS $PTHREAD_CFLAGS $SDL_CFLAGS -fno-rtti -fno-exceptions -Wall"
+LDFLAGS="$LDFLAGS $BASE_LDFLAGS $PYTHON_LDFLAGS $SDL_LDFLAGS $LIBUNGIF_LDFLAGS $LIBXINE_LDFLAGS"
+
 #CPPFLAGS="$CPPFLAGS -DMEMLEAK_CHECK"
-CXXFLAGS="$CXXFLAGS -fno-rtti -fno-exceptions -Wall"
-LDFLAGS="$LDFLAGS -pthread $PYTHON_LDFLAGS $SDL_LDFLAGS $GSTREAMER_LDFLAGS $GSTREAMERPBUTILS_LDFLAGS $LIBXINE_LDFLAGS $LIBUNGIF_LDFLAGS"
-#LDFLAGS="-rdynamic $LDFLAGS"
 
 TUXBOX_APPS_GETTEXT
 
