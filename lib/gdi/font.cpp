@@ -27,12 +27,7 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
-#define HAVE_FRIBIDI
-// until we have it in the cdk
-
-#ifdef HAVE_FRIBIDI
 #include <fribidi/fribidi.h>
-#endif
 
 #include <map>
 
@@ -568,7 +563,6 @@ int eTextPara::renderString(const char *string, int rflags)
 	
 		// now do the usual logical->visual reordering
 	int size=uc_shape.size();
-#ifdef HAVE_FRIBIDI
 	FriBidiCharType dir=FRIBIDI_TYPE_ON;
 	uc_visual.resize(size);
 	// gaaanz lahm, aber anders geht das leider nicht, sorry.
@@ -576,9 +570,6 @@ int eTextPara::renderString(const char *string, int rflags)
 	std::copy(uc_shape.begin(), uc_shape.end(), array);
 	fribidi_log2vis(array, size, &dir, target, 0, 0, 0);
 	uc_visual.assign(target, target+size);
-#else
-	uc_visual=uc_shape;
-#endif
 
 	glyphs.reserve(size);
 	
@@ -672,13 +663,11 @@ nprint:	isprintable=0;
 	}
 	bboxValid=false;
 	calc_bbox();
-#ifdef HAVE_FRIBIDI
 	if (dir & FRIBIDI_MASK_RTL)
 	{
 		realign(dirRight);
 		doTopBottomReordering=true;
 	}
-#endif
 
 	if (charCount)
 	{
