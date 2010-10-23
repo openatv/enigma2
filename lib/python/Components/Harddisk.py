@@ -283,6 +283,9 @@ class Harddisk:
 
 		task = MountTask(job, self)
 
+		task = Task.PythonTask(job, _("Create movie directory"))
+		task.work = lambda: self.createMovieFolder()
+
 		return job
 
 	def initialize(self):
