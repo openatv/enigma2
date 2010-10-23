@@ -239,72 +239,72 @@ def InitUsageConfig():
 	
 	config.autolanguage = ConfigSubsection()
 	subtitle_language_choices = [
-		("None", "None"),
-		("Arab", "Arabic"),
-		("Basque", "Basque"),
-		("Croatian hrv", "Croatian"),
-		("Czech zvuk", "Czech"),
-		("Danish", "Danish"),
-		("Dutch dut ndl", "Dutch"),
-		("Englisch English eng", "English"),
-		("Finnish", "Finnish"),
-		("French fra", "French"),
-		("German Deutsch deu", "German"),
-		("Greek Modern(1453-)", "Greek"),
-		("Hungarian", "Hungarian"),
-		("Italiano", "Italian"),
-		("Letzeburgesch", "Letzeburgesch"),
-		("Norwegian", "Norwegian"),
-		("Polski pol", "Polish"),
-		("Portuguese", "Portuguese"),
-		("Persian", "Persian"),
-		("Romanian ron rum", "Romanian"),
-		("Russian rus", "Russian"),
-		("Serbian srp", "Serbian"),
-		("Slovak Slk slo", "Slovak"),
-		("Slovenian Slovensko slv", "Slovenian"),
-		("Spanish esp", "Spanish"),
-		("Swedish", "Swedish"),
-		("Turkish", "Turkish")]
+		("---", "None"),
+		("ara", "Arabic"),
+		("eus baq", "Basque"),
+		("hrv", "Croatian"),
+		("ces cze", "Czech"),
+		("dan", "Danish"),
+		("dut ndl", "Dutch"),
+		("eng", "English"),
+		("fin", "Finnish"),
+		("fra fre", "French"),
+		("deu ger", "German"),
+		("ell gre", "Greek"),
+		("hun", "Hungarian"),
+		("ita", "Italian"),
+		("ltz", "Letzeburgesch"),
+		("nob", "Norwegian"),
+		("pol", "Polish"),
+		("por", "Portuguese"),
+		("fas per", "Persian"),
+		("ron rum", "Romanian"),
+		("rus", "Russian"),
+		("srp", "Serbian"),
+		("slk slo", "Slovak"),
+		("slv", "Slovenian"),
+		("spa", "Spanish"),
+		("swe", "Swedish"),
+		("Tur", "Turkish")]
 	audio_language_choices=[	
-		("None", "None"),
-		("Originalton Tonoption 2 orj dos ory org esl qaa Undetermined", "Original"),
-		("Arab", "Arabic"),
-		("Basque", "Basque"),
-		("Croatian hrv", "Croatian"),
-		("Czech zvuk", "Czech"),
-		("Danish", "Danish"),
-		("Dutch dut ndl", "Dutch"),
-		("Englisch English eng", "English"),
-		("Finnish", "Finnish"),
-		("French fra", "French"),
-		("German Deutsch deu", "German"),
-		("Greek Modern(1453-)", "Greek"),
-		("Hungarian", "Hungarian"),
-		("Italiano", "Italian"),
-		("Letzeburgesch", "Letzeburgesch"),
-		("Norwegian", "Norwegian"),
-		("Polski pol", "Polish"),
-		("Portuguese", "Portuguese"),
-		("Persian", "Persian"),
-		("Romanian ron rum", "Romanian"),
-		("Russian rus", "Russian"),
-		("Serbian srp", "Serbian"),
-		("Slovak Slk slo", "Slovak"),
-		("Slovenian Slovensko slv", "Slovenian"),
-		("Spanish esp", "Spanish"),
-		("Swedish", "Swedish"),
-		("Turkish Audio 2", "Turkish")]
-	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="None")
-	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="None")
-	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="None")
-	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices, default="None")
+		("---", "None"),
+		("orj dos ory org esl qaa und", "Original"),
+		("ara", "Arabic"),
+		("eus baq", "Basque"),
+		("hrv", "Croatian"),
+		("ces cze", "Czech"),
+		("dan", "Danish"),
+		("dut ndl", "Dutch"),
+		("eng", "English"),
+		("fin", "Finnish"),
+		("fra fre", "French"),
+		("deu ger", "German"),
+		("ell gre", "Greek"),
+		("hun", "Hungarian"),
+		("ita", "Italian"),
+		("ltz", "Letzeburgesch"),
+		("nob", "Norwegian"),
+		("pol", "Polish"),
+		("por", "Portuguese"),
+		("fas per", "Persian"),
+		("ron rum", "Romanian"),
+		("rus", "Russian"),
+		("srp", "Serbian"),
+		("slk slo", "Slovak"),
+		("slv", "Slovenian"),
+		("spa", "Spanish"),
+		("swe", "Swedish"),
+		("tur", "Turkish")]
+	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
+	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="---")
+	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="---")
+	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = False)
 	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
-	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="None")
-	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="None")
-	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="None")
-	config.autolanguage.subtitle_autoselect4 = ConfigSelection(choices=subtitle_language_choices, default="None")
+	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="---")
+	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="---")
+	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="---")
+	config.autolanguage.subtitle_autoselect4 = ConfigSelection(choices=subtitle_language_choices, default="---")
 	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default = False)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
