@@ -344,7 +344,7 @@ class Harddisk:
 		task.args.append('-p')
 		task.args.append(dev)
 
-                MountTask(job, self)
+		MountTask(job, self)
 
 		return job
 
@@ -719,6 +719,6 @@ class MountTask(Task.LoggingTask):
 		if self.hdd.type == self.hdd.DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
 			self.setCmdline('sfdisk -R ' + self.hdd.disk_path)
-       			self.postconditions.append(Task.ReturncodePostcondition())
+			self.postconditions.append(Task.ReturncodePostcondition())
 
 harddiskmanager = HarddiskManager()
