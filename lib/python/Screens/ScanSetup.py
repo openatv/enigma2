@@ -206,10 +206,23 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.dataAvail.append(self.getCableTransponderData)
 		cableConfig = config.Nims[nim_idx].cable
 		tunername = nimmanager.getNimName(nim_idx)
-		bus = nimmanager.getI2CDevice(nim_idx)
-		if bus is None:
-			print "ERROR: could not get I2C device for nim", nim_idx, "for cable transponder search"
-			bus = 2
+		try:
+			bus = nimmanager.getI2CDevice(nim_idx)
+			if bus is None:
+				print "ERROR: could not get I2C device for nim", nim_idx, "for cable transponder search"
+				bus = 2
+		except:
+			# older API
+			if nim_idx < 2:
+				if HardwareInfo().get_device_name() == "dm500hd":
+					bus = 2
+				else:
+					bus = nim_idx
+			else:
+				if nim_idx == 2:
+					bus = 2 # DM8000 first nim is /dev/i2c/2
+				else:
+					bus = 4 # DM8000 second num is /dev/i2c/4
 
 		if tunername == "CXD1981":
 			cmd = "cxd1978 --init --scan --verbose --wakeup --inv 2 --bus %d" % bus
