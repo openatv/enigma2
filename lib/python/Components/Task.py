@@ -160,6 +160,9 @@ class Task(object):
 		return not_met
 
 	def _run(self):
+		if (self.cmd is None) and (self.cmdline is None):
+			self.finish()
+			return
 		from enigma import eConsoleAppContainer
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.processFinished)
@@ -179,16 +182,15 @@ class Task(object):
 	def run(self, callback):
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
 		if failed_preconditions:
+			print "[Task] preconditions failed"
 			callback(self, failed_preconditions)
 			return
 		self.callback = callback
 		try:
 			self.prepare()
-			if (self.cmd is None) and (self.cmdline is None):
-				self.finish()
-			else: 
-				self._run()
+			self._run()
 		except Exception, ex:
+			print "[Task] exception:", ex
 			self.postconditions = [FailedPostcondition(ex)]
 			self.finish()
 
