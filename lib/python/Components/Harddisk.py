@@ -265,14 +265,16 @@ class Harddisk:
 
 		task = Task.PythonTask(job, _("Kill partition"))
 		task.work = lambda: self.killPartition("1")
+		task.weighting = 1
 
 		task = Task.LoggingTask(job, _("Create Partition"))
+		task.weighting = 5
 		task.setTool('sfdisk')
 		task.args.append('-f')
 		task.args.append(self.disk_path)
 		task.initial_input = "0,\n;\n;\n;\ny\n"
 		
-		task = Task.LoggingTask(job, _("Create Filesystem"))
+		task = MkfsTask(job, _("Create Filesystem"))
 		task.setTool("mkfs.ext3")
 		size = self.diskSize()
 		if size > 16 * 1024:
@@ -282,9 +284,11 @@ class Harddisk:
 		task.args += ["-m0", "-O", "dir_index", self.partitionPath("1")]
 
 		task = MountTask(job, self)
+		task.weighting = 5
 
 		task = Task.PythonTask(job, _("Create movie directory"))
-		task.work = lambda: self.createMovieFolder()
+		task.weighting = 1
+		task.work = self.createMovieFolder
 
 		return job
 
@@ -340,15 +344,12 @@ class Harddisk:
 		else:
 			# otherwise, assume there is one partition
 			dev = self.partitionPath("1")
-
 		task = Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext3')
 		task.args.append('-f')
 		task.args.append('-p')
 		task.args.append(dev)
-
 		MountTask(job, self)
-
 		return job
 
 	def getDeviceDir(self):
@@ -723,5 +724,28 @@ class MountTask(Task.LoggingTask):
 			# we can let udev do the job, re-read the partition table
 			self.setCmdline('sfdisk -R ' + self.hdd.disk_path)
 			self.postconditions.append(Task.ReturncodePostcondition())
+
+class MkfsTask(Task.LoggingTask):
+	def prepare(self):
+		self.fsck_state = None
+	def processOutput(self, data):
+		print "[Mkfs]", data
+		if 'Writing inode tables:' in data:
+			self.fsck_state = 'inode'
+		elif 'Creating journal' in data:
+			self.fsck_state = 'journal'
+			self.setProgress(80)
+		elif 'Writing superblocks ' in data:
+			self.setProgress(95)
+		elif self.fsck_state == 'inode':
+			if '/' in data:
+				try:
+					d = data.strip(' \x08\r\n').split('/')
+					self.setProgress(80*int(d[0])/int(d[1]))
+				except Exception, e:
+					print "[Mkfs] E:", e
+				return # don't log the progess
+		self.log.append(data)
+
 
 harddiskmanager = HarddiskManager()
