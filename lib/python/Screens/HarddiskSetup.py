@@ -96,7 +96,7 @@ class HarddiskSelection(Screen):
 	def okbuttonClick(self):
 		selection = self["hddlist"].getCurrent()
 		if selection[1] != 0:
-			self.session.open(HarddiskSetup, selection[1], HarddiskSetup.HARDDISK_INITIALIZE)
+			self.session.openWithCallback(self.close, HarddiskSetup, selection[1], HarddiskSetup.HARDDISK_INITIALIZE)
 
 # This is actually just HarddiskSelection but with correct type
 class HarddiskFsckSelection(HarddiskSelection):
