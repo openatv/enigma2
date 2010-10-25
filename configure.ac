@@ -1,5 +1,6 @@
 AC_INIT([enigma2],[2.8.0],[enigma2-devel@lists.elitedvb.net])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define silent-rules])
+AC_CONFIG_HEADERS([enigma2_config.h])
 
 AC_USE_SYSTEM_EXTENSIONS
 AC_SYS_LARGEFILE
@@ -17,36 +18,27 @@ AC_ARG_WITH(libsdl,
 	[[with_sdl=no]]
 )
 
-AC_CHECK_HEADER(dreamdvd/ddvdlib.h,have_ddvdlib="yes",have_ddvdlib="no")
-if test x"${have_ddvdlib}" = xyes ; then
-	AC_DEFINE(HAVE_DDVDLIB, 1,[Define if ddvdlib is available])
-else
-	AC_MSG_NOTICE([ddvdlib not found... dont build dvd plugin])
-fi
-AM_CONDITIONAL(HAVE_DDVDLIB, test "$have_ddvdlib" = "yes")
+AC_CHECK_HEADERS([dbox/fp.h dbox/lcd-ks0713.h])
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
+AX_PKG_SWIG
+AX_SWIG_ENABLE_CXX
+AX_SWIG_PYTHON
 AX_PTHREAD
 
 TUXBOX_APPS_DVB
 
 PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-0.10 gstreamer-pbutils-0.10 libdvbsi++ libpng libxml-2.0 sigc++-1.2])
+PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_DDVDLIB="yes", HAVE_DDVDLIB="no")
+AM_CONDITIONAL(HAVE_DDVDLIB, test "$HAVE_DDVDLIB" = "yes")
 PKG_CHECK_MODULES(LIBXINE, libxine, HAVE_LIBXINE="yes", HAVE_LIBXINE="no")
 
 AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"])
 AC_SUBST(LIBDL_LIBS)
 AC_CHECK_LIB([jpeg], [jpeg_set_defaults])
 AC_CHECK_LIB([xmlccwrap], [exit])
-
-AC_CHECK_HEADERS(gif_lib.h,
-	AC_CHECK_LIB(ungif,DGifOpen,
-	[AC_DEFINE(HAVE_LIBUNGIF,1,[Define if you have libgif/libungif including devel headers])
-		LIBUNGIF_LIBS="-lungif"],
-		[AC_CHECK_LIB(gif,DGifOpen,
-			[AC_DEFINE(HAVE_LIUNBGIF,1)
-			LIBUNGIF_LIBS="-lgif"])]))
-AC_SUBST(LIBUNGIF_LIBS)
+AC_CHECK_LIB([ungif], [DGifOpen], , [AC_CHECK_LIB([gif], [DGifOpen])])
 
 if test "$with_sdl" = "yes" ; then
 	PKG_CHECK_MODULES(SDL, sdl)

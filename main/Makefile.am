@@ -1,7 +1,8 @@
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/include \
-	-include Python.h
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
 
 bin_PROGRAMS = enigma2
 
@@ -44,7 +45,6 @@ version.h: entries
 enigma2_LDADD = \
 	$(top_builddir)/lib/libenigma.la \
 	@BASE_LIBS@ \
-	@LIBUNGIF_LIBS@ \
 	@LIBXINE_LIBS@ \
 	@PTHREAD_LIBS@ \
 	@SDL_LIBS@ \
