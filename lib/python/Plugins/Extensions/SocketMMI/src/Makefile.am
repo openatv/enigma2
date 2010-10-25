@@ -1,6 +1,7 @@
 CPPFLAGS += \
 	-I$(top_srcdir) \
-	-include Python.h
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
 
 OBJS = socket_mmi.cpp
 
