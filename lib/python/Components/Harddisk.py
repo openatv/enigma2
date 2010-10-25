@@ -721,8 +721,8 @@ class MountTask(Task.LoggingTask):
 				return
 		# device is not in fstab
 		if self.hdd.type == self.hdd.DEVTYPE_UDEV:
-			# we can let udev do the job, re-read the partition table
-			self.setCmdline('sfdisk -R ' + self.hdd.disk_path)
+			# we can let udev do the job, re-read the partition table, and give it some time to mount
+			self.setCmdline('sfdisk -R ' + self.hdd.disk_path + '; sleep 5')
 			self.postconditions.append(Task.ReturncodePostcondition())
 
 class MkfsTask(Task.LoggingTask):
