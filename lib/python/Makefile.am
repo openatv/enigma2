@@ -6,16 +6,16 @@ AM_CPPFLAGS = \
 
 SUBDIRS = Components Tools Screens Plugins
 
-noinst_LTLIBRARIES = libenigma_python.la
+noinst_LIBRARIES = libenigma_python.a
 
-libenigma_python_la_SOURCES = \
+libenigma_python_a_SOURCES = \
 	connections.cpp \
 	connections.h \
 	python.cpp \
 	python.h \
 	swig.h
 
-nodist_libenigma_python_la_SOURCES = \
+nodist_libenigma_python_a_SOURCES = \
 	enigma_python_wrap.cxx
 
 EXTRA_DIST = \

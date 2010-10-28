@@ -7,9 +7,9 @@ AM_CPPFLAGS = \
 AM_CXXFLAGS = \
 	$(LIBSDL_CFLAGS)
 
-noinst_LTLIBRARIES = libenigma_gdi.la
+noinst_LIBRARIES = libenigma_gdi.a
 
-libenigma_gdi_la_SOURCES = \
+libenigma_gdi_a_SOURCES = \
 	accel.cpp \
 	accel.h \
 	bcm.cpp \
@@ -46,7 +46,7 @@ libenigma_gdi_la_SOURCES = \
 	region.h
 
 if HAVE_LIBSDL
-libenigma_gdi_la_SOURCES += \
+libenigma_gdi_a_SOURCES += \
 	sdl.cpp \
 	sdl.h
 endif
