@@ -9,6 +9,7 @@
 #include <lib/driver/rc.h>
 #include <lib/base/ioprio.h>
 #include <lib/base/ebase.h>
+#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -136,7 +137,7 @@ int main(int argc, char **argv)
 	gst_init(&argc, &argv);
 
 	// set pythonpath if unset
-	setenv("PYTHONPATH", LIBDIR "/enigma2/python", 0);
+	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
 	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
 	
 	bsodLogInit();
@@ -186,7 +187,7 @@ int main(int argc, char **argv)
 	dsk_lcd.setDC(my_lcd_dc);
 
 	ePtr<gPixmap> m_pm;
-	loadPNG(m_pm, DATADIR "/enigma2/skin_default/pal.png");
+	loadPNG(m_pm, eEnv::resolve("${datadir}/enigma2/skin_default/pal.png").c_str());
 	if (!m_pm)
 	{
 		eFatal("pal.png not found!");
@@ -209,14 +210,16 @@ int main(int argc, char **argv)
 		ePtr<gPixmap> wait[MAX_SPINNER];
 		for (i=0; i<MAX_SPINNER; ++i)
 		{
-			char filename[strlen(DATADIR) + 41];
-			sprintf(filename, DATADIR "/enigma2/skin_default/spinner/wait%d.png", i + 1);
-			loadPNG(wait[i], filename);
+			char filename[64];
+			std::string rfilename;
+			snprintf(filename, sizeof(filename), "${datadir}/enigma2/skin_default/spinner/wait%d.png", i + 1);
+			rfilename = eEnv::resolve(filename);
+			loadPNG(wait[i], rfilename.c_str());
 			
 			if (!wait[i])
 			{
 				if (!i)
-					eDebug("failed to load %s! (%m)", filename);
+					eDebug("failed to load %s! (%m)", rfilename.c_str());
 				else
 					eDebug("found %d spinner!\n", i);
 				break;
@@ -239,7 +242,7 @@ int main(int argc, char **argv)
 	setIoPrio(IOPRIO_CLASS_BE, 3);
 
 //	python.execute("mytest", "__main__");
-	python.execFile("/usr/lib/enigma2/python/mytest.py");
+	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
 
 	extern void setFullsize(); // definend in lib/gui/evideo.cpp
 	setFullsize();

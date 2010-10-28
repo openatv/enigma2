@@ -2,6 +2,7 @@
 #include <signal.h>
 #include <asm/ptrace.h>
 
+#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/smartptr.h>
 #include <lib/base/nconfig.h>
@@ -65,7 +66,7 @@ static void addToLogbuffer(int level, const std::string &log)
 
 static std::string getConfigFileValue(const char *entry)
 {
-	std::string configfile = "/etc/enigma2/settings";
+	std::string configfile = eEnv::resolve("${sysconfdir}/enigma2/settings");
 	std::string configvalue;
 	if (entry)
 	{
@@ -140,8 +141,8 @@ static std::string getFileContent(const char *file)
 	return filecontent;
 }
 
-static std::string execCommand(char* cmd) {
-	FILE* pipe = popen(cmd, "r");
+static std::string execCommand(std::string cmd) {
+	FILE* pipe = popen(cmd.c_str(), "r");
 	if (!pipe)
 		return "Error";
 	char buffer[STDBUFFER_SIZE];
@@ -155,11 +156,6 @@ static std::string execCommand(char* cmd) {
 	pclose(pipe);
 	return result;
 }
-
-extern std::string execCommand();
-extern std::string getConfigFileValue();
-extern std::string getFileContent();
-extern std::string getLogBuffer();
 
 #define INFOFILE "/maintainer.info"
 
@@ -274,7 +270,7 @@ void bsodFatal(const char *component)
 					dreamboxca[strlen(dreamboxca)-1] = 0;
 				fprintf(f, "\t\t<dreamboxca>\n\t\t<![CDATA[\n%s\n\t\t]]>\n\t\t</dreamboxca>\n", dreamboxca);
 			}
-			std::string settings = getFileContent("/etc/enigma2/settings");
+			std::string settings = getFileContent(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
 			if (settings != "Error")
 			{
 				fprintf(f, "\t\t<enigma2settings>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2settings>\n", settings.c_str());
@@ -336,7 +332,7 @@ void bsodFatal(const char *component)
 		fprintf(f, "\t<crashlogs>\n");
 		std::string buffer = getLogBuffer();
 		fprintf(f, "\t\t<enigma2crashlog>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</enigma2crashlog>\n", buffer.c_str());
-		std::string pythonmd5 = execCommand("find /usr/lib/enigma2/python/ -name \"*.py\" | xargs md5sum");
+		std::string pythonmd5 = execCommand("find " + eEnv::resolve("${libdir}/enigma2/python/") + " -name \"*.py\" | xargs md5sum");
 		fprintf(f, "\t\t<pythonMD5sum>\n\t\t<![CDATA[\n%s\t\t]]>\n\t\t</pythonMD5sum>\n", pythonmd5.c_str());
 		fprintf(f, "\t</crashlogs>\n");
 

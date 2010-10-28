@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <libsig_comp.h>
 #include <lib/base/ebase.h>
+#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -67,7 +68,7 @@ int main()
 		pal[a | 0x10] = (0x111111 * a) | 0xFF;
 	p.setPalette(pal, 0, 256);
 
-	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Regular", 100);
+	fontRenderClass::getInstance()->AddFont(eEnv::resolve("${datadir}/fonts/arial.ttf"), "Regular", 100);
 
 	p.resetClip(gRegion(eRect(0, 0, 720, 576)));
 	

@@ -2,11 +2,11 @@
 ## Picon renderer by Gruffy .. some speedups by Ghost
 ##
 from Renderer import Renderer
-from enigma import ePixmap
+from enigma import ePixmap, eEnv
 from Tools.Directories import fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 
 class Picon(Renderer):
-	searchPaths = ('/usr/share/enigma2/%s/',
+	searchPaths = (eEnv.resolve('${datadir}/enigma2/%s/'),
 				'/media/cf/%s/',
 				'/media/usb/%s/')
 
