@@ -4,6 +4,7 @@ from Components.config import config, ConfigNothing
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
+from enigma import eEnv
 
 import xml.etree.cElementTree
 
@@ -14,7 +15,7 @@ try:
 	setupfile = file('data/setup.xml', 'r')
 except:
 	# if not found in the current path, we use the global datadir-path
-	setupfile = file('/usr/share/enigma2/setup.xml', 'r')
+	setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
 setupdom = xml.etree.cElementTree.parse(setupfile)
 setupfile.close()
 

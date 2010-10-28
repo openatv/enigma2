@@ -3,6 +3,7 @@
 from os import path as os_path, mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK
 from stat import S_IMODE
 from re import compile
+from enigma import eEnv
 
 try:
 	from os import chmod
@@ -39,26 +40,26 @@ PATH_CREATE = 0
 PATH_DONTCREATE = 1
 PATH_FALLBACK = 2
 defaultPaths = {
-		SCOPE_TRANSPONDERDATA: ("/etc/", PATH_DONTCREATE),
-		SCOPE_SYSETC: ("/etc/", PATH_DONTCREATE),
-		SCOPE_FONTS: ("/usr/share/fonts/", PATH_DONTCREATE),
-		SCOPE_CONFIG: ("/etc/enigma2/", PATH_CREATE),
-		SCOPE_PLUGINS: ("/usr/lib/enigma2/python/Plugins/", PATH_CREATE),
+		SCOPE_TRANSPONDERDATA: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
+		SCOPE_SYSETC: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
+		SCOPE_FONTS: (eEnv.resolve("${datadir}/fonts/"), PATH_DONTCREATE),
+		SCOPE_CONFIG: (eEnv.resolve("${sysconfdir}/enigma2/"), PATH_CREATE),
+		SCOPE_PLUGINS: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
 
-		SCOPE_LANGUAGE: ("/usr/share/enigma2/po/", PATH_DONTCREATE),
+		SCOPE_LANGUAGE: (eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
 
-		SCOPE_SKIN: ("/usr/share/enigma2/", PATH_DONTCREATE),
-		SCOPE_SKIN_IMAGE: ("/usr/share/enigma2/", PATH_DONTCREATE),
+		SCOPE_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
+		SCOPE_SKIN_IMAGE: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
 		SCOPE_HDD: ("/hdd/movie/", PATH_DONTCREATE),
 		SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
-		SCOPE_PLAYLIST: ("/etc/enigma2/playlist/", PATH_CREATE),
+		SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
 		
 		SCOPE_USERETC: ("", PATH_DONTCREATE), # user home directory
 		
-		SCOPE_DEFAULTDIR: ("/usr/share/enigma2/defaults/", PATH_CREATE),
+		SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
 		SCOPE_DEFAULTPARTITION: ("/dev/mtdblock/6", PATH_DONTCREATE),
-		SCOPE_DEFAULTPARTITIONMOUNTDIR: ("/usr/share/enigma2/dealer", PATH_CREATE),
-		SCOPE_METADIR: ("/usr/share/meta", PATH_CREATE),
+		SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
+		SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
 	}
 
 FILE_COPY = 0 # copy files from fallback dir to the basedir
@@ -67,7 +68,7 @@ PATH_COPY = 2 # copy the complete fallback dir to the basedir
 PATH_MOVE = 3 # move the fallback dir to the basedir (can be used for changes in paths)
 fallbackPaths = {
 		SCOPE_CONFIG: [("/home/root/", FILE_MOVE),
-					   ("/usr/share/enigma2/defaults/", FILE_COPY)],
+					   (eEnv.resolve("${datadir}/enigma2/defaults/"), FILE_COPY)],
 		SCOPE_HDD: [("/hdd/movies", PATH_MOVE)]
 	}
 
