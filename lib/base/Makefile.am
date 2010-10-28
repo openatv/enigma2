@@ -14,6 +14,8 @@ libenigma_base_la_SOURCES = \
 	console.h \
 	ebase.cpp \
 	ebase.h \
+	eenv.cpp \
+	eenv.h \
 	eerror.cpp \
 	eerror.h \
 	elock.cpp \
@@ -45,3 +47,6 @@ libenigma_base_la_SOURCES = \
 	smartptr.h \
 	thread.cpp \
 	thread.h
+
+EXTRA_DIST = \
+	eenv.cpp.in
