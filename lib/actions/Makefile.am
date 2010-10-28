@@ -7,13 +7,13 @@ AM_CPPFLAGS = \
 
 EXTRA_DIST = parseactions.py
 
-noinst_LTLIBRARIES = libenigma_actions.la
+noinst_LIBRARIES = libenigma_actions.a
 
-libenigma_actions_la_SOURCES = \
+libenigma_actions_a_SOURCES = \
 	action.cpp \
 	action.h
 
-nodist_libenigma_actions_la_SOURCES = \
+nodist_libenigma_actions_a_SOURCES = \
 	actionids.h
 
 BUILT_SOURCES = actionids.h

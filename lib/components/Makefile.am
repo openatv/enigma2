@@ -4,9 +4,9 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
-noinst_LTLIBRARIES = libenigma_components.la
+noinst_LIBRARIES = libenigma_components.a
 
-libenigma_components_la_SOURCES = \
+libenigma_components_a_SOURCES = \
 	file_eraser.cpp \
 	file_eraser.h \
 	scan.cpp \

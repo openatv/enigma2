@@ -4,9 +4,9 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
-noinst_LTLIBRARIES = libenigma_gui.la
+noinst_LIBRARIES = libenigma_gui.a
 
-libenigma_gui_la_SOURCES = \
+libenigma_gui_a_SOURCES = \
 	ebutton.cpp \
 	ebutton.h \
 	ecanvas.cpp \

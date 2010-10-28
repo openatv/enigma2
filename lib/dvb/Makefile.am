@@ -6,9 +6,9 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
-noinst_LTLIBRARIES = libenigma_dvb.la
+noinst_LIBRARIES = libenigma_dvb.a
 
-libenigma_dvb_la_SOURCES = \
+libenigma_dvb_a_SOURCES = \
 	crc32.cpp \
 	crc32.h \
 	db.cpp \

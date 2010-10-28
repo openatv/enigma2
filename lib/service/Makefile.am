@@ -7,9 +7,9 @@ AM_CPPFLAGS = \
 AM_CXXFLAGS = \
 	$(LIBXINE_CFLAGS)
 
-noinst_LTLIBRARIES = libenigma_service.la
+noinst_LIBRARIES = libenigma_service.a
 
-libenigma_service_la_SOURCES = \
+libenigma_service_a_SOURCES = \
 	event.cpp \
 	event.h \
 	iservice.h \
@@ -27,7 +27,7 @@ libenigma_service_la_SOURCES = \
 	servicemp3.h
 
 if HAVE_LIBXINE
-libenigma_service_la_SOURCES += \
+libenigma_service_a_SOURCES += \
 	servicexine.cpp \
 	servicexine.h
 endif

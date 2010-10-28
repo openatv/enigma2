@@ -4,8 +4,8 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
-noinst_LTLIBRARIES = libenigma_mmi.la
+noinst_LIBRARIES = libenigma_mmi.a
 
-libenigma_mmi_la_SOURCES = \
+libenigma_mmi_a_SOURCES = \
 	mmi_ui.cpp \
 	mmi_ui.h

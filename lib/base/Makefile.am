@@ -4,9 +4,9 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
-noinst_LTLIBRARIES = libenigma_base.la
+noinst_LIBRARIES = libenigma_base.a
 
-libenigma_base_la_SOURCES = \
+libenigma_base_a_SOURCES = \
 	buffer.cpp \
 	buffer.h \
 	connection.cpp \

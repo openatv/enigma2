@@ -4,9 +4,9 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
-noinst_LTLIBRARIES = libenigma_driver.la
+noinst_LIBRARIES = libenigma_driver.a
 
-libenigma_driver_la_SOURCES = \
+libenigma_driver_a_SOURCES = \
 	avswitch.cpp \
 	avswitch.h \
 	etimezone.cpp \
