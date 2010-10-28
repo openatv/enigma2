@@ -38,6 +38,7 @@ is usually caused by not marking PSignals as immutable.
 #define SWIG_COMPILE
 #include <lib/base/ebase.h>
 #include <lib/base/smartptr.h>
+#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/etpm.h>
 #include <lib/base/nconfig.h>
@@ -133,6 +134,7 @@ typedef long time_t;
 %include "std_string.i"
 %include <lib/python/swig.h>
 %include <lib/base/object.h>
+%include <lib/base/eenv.h>
 %include <lib/base/eerror.h>
 
 %immutable eSocketNotifier::activated;
