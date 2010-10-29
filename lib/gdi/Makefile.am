@@ -11,42 +11,46 @@ noinst_LIBRARIES = libenigma_gdi.a
 
 libenigma_gdi_a_SOURCES = \
 	accel.cpp \
-	accel.h \
 	bcm.cpp \
 	compositing.cpp \
-	compositing.h \
 	epng.cpp \
-	epng.h \
-	epoint.h \
 	erect.cpp \
-	erect.h \
-	esize.h \
 	fb.cpp \
-	fb.h \
 	font.cpp \
-	font.h \
 	font_arabic.cpp \
 	gfbdc.cpp \
-	gfbdc.h \
 	gfont.cpp \
-	gfont.h \
 	glcddc.cpp \
-	glcddc.h \
 	gpixmap.cpp \
-	gpixmap.h \
 	grc.cpp \
-	grc.h \
 	lcd.cpp \
-	lcd.h \
 	picexif.cpp \
-	picexif.h \
 	picload.cpp \
+	region.cpp
+
+gdiincludedir = $(pkgincludedir)/lib/gdi
+gdiinclude_HEADERS = \
+	accel.h \
+	compositing.h \
+	epng.h \
+	epoint.h \
+	erect.h \
+	esize.h \
+	fb.h \
+	font.h \
+	gfbdc.h \
+	gfont.h \
+	glcddc.h \
+	gpixmap.h \
+	grc.h \
+	lcd.h \
+	picexif.h \
 	picload.h \
-	region.cpp \
 	region.h
 
 if HAVE_LIBSDL
 libenigma_gdi_a_SOURCES += \
-	sdl.cpp \
+	sdl.cpp
+gdiinclude_HEADERS += \
 	sdl.h
 endif

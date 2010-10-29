@@ -8,19 +8,22 @@ noinst_LIBRARIES = libenigma_driver.a
 
 libenigma_driver_a_SOURCES = \
 	avswitch.cpp \
-	avswitch.h \
 	etimezone.cpp \
+	misc_options.cpp \
+	rc.cpp \
+	rcconsole.cpp \
+	rcinput.cpp \
+	rfmod.cpp
+
+driverincludedir = $(pkgincludedir)/lib/driver
+driverinclude_HEADERS = \
+	avswitch.h \
 	etimezone.h \
 	input_fake.h \
-	misc_options.cpp \
 	misc_options.h \
-	rc.cpp \
 	rc.h \
-	rcconsole.cpp \
 	rcconsole.h \
 	rcdbox.h \
 	rcdreambox2.h \
-	rcinput.cpp \
 	rcinput.h \
-	rfmod.cpp \
 	rfmod.h

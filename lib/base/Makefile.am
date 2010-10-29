@@ -8,45 +8,48 @@ noinst_LIBRARIES = libenigma_base.a
 
 libenigma_base_a_SOURCES = \
 	buffer.cpp \
-	buffer.h \
 	connection.cpp \
 	console.cpp \
-	console.h \
 	ebase.cpp \
-	ebase.h \
 	eenv.cpp \
-	eenv.h \
 	eerror.cpp \
-	eerror.h \
 	elock.cpp \
-	elock.h \
 	encoding.cpp \
-	encoding.h \
-	eptrlist.h \
 	estring.cpp \
-	estring.h \
 	etpm.cpp \
-	etpm.h \
 	filepush.cpp \
-	filepush.h \
-	i18n.h \
 	init.cpp \
-	init.h \
-	init_num.h \
 	ioprio.cpp \
-	ioprio.h \
 	message.cpp \
-	message.h \
 	nconfig.cpp \
-	nconfig.h \
-	object.h \
 	rawfile.cpp \
-	rawfile.h \
-	ringbuffer.h \
 	smartptr.cpp \
-	smartptr.h \
-	thread.cpp \
-	thread.h
+	thread.cpp
 
 EXTRA_DIST = \
 	eenv.cpp.in
+
+baseincludedir = $(pkgincludedir)/lib/base
+baseinclude_HEADERS = \
+	buffer.h \
+	console.h \
+	ebase.h \
+	eenv.h \
+	eerror.h \
+	elock.h \
+	encoding.h \
+	eptrlist.h \
+	estring.h \
+	etpm.h \
+	filepush.h \
+	i18n.h \
+	init.h \
+	init_num.h \
+	ioprio.h \
+	message.h \
+	nconfig.h \
+	object.h \
+	rawfile.h \
+	ringbuffer.h \
+	smartptr.h \
+	thread.h

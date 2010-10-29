@@ -8,40 +8,43 @@ noinst_LIBRARIES = libenigma_gui.a
 
 libenigma_gui_a_SOURCES = \
 	ebutton.cpp \
-	ebutton.h \
 	ecanvas.cpp \
-	ecanvas.h \
 	einput.cpp \
-	einput.h \
 	einputnumber.cpp \
-	einputnumber.h \
 	einputstring.cpp \
-	einputstring.h \
 	elabel.cpp \
-	elabel.h \
 	elistbox.cpp \
-	elistbox.h \
 	elistboxcontent.cpp \
-	elistboxcontent.h \
 	epixmap.cpp \
-	epixmap.h \
 	epositiongauge.cpp \
-	epositiongauge.h \
 	eslider.cpp \
-	eslider.h \
 	esubtitle.cpp \
-	esubtitle.h \
 	evideo.cpp \
-	evideo.h \
 	ewidget.cpp \
-	ewidget.h \
 	ewidgetanimation.cpp \
-	ewidgetanimation.h \
 	ewidgetdesktop.cpp \
-	ewidgetdesktop.h \
 	ewindow.cpp \
-	ewindow.h \
 	ewindowstyle.cpp \
+	ewindowstyleskinned.cpp
+
+guiincludedir = $(pkgincludedir)/lib/gui
+guiinclude_HEADERS = \
+	ebutton.h \
+	ecanvas.h \
+	einput.h \
+	einputnumber.h \
+	einputstring.h \
+	elabel.h \
+	elistbox.h \
+	elistboxcontent.h \
+	epixmap.h \
+	epositiongauge.h \
+	eslider.h \
+	esubtitle.h \
+	evideo.h \
+	ewidget.h \
+	ewidgetanimation.h \
+	ewidgetdesktop.h \
+	ewindow.h \
 	ewindowstyle.h \
-	ewindowstyleskinned.cpp \
 	ewindowstyleskinned.h

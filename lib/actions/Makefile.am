@@ -10,10 +10,13 @@ EXTRA_DIST = parseactions.py
 noinst_LIBRARIES = libenigma_actions.a
 
 libenigma_actions_a_SOURCES = \
-	action.cpp \
+	action.cpp
+
+actionsincludedir = $(pkgincludedir)/lib/actions
+actionsinclude_HEADERS = \
 	action.h
 
-nodist_libenigma_actions_a_SOURCES = \
+nodist_actionsinclude_HEADERS = \
 	actionids.h
 
 BUILT_SOURCES = actionids.h

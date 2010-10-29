@@ -11,23 +11,27 @@ noinst_LIBRARIES = libenigma_service.a
 
 libenigma_service_a_SOURCES = \
 	event.cpp \
+	listboxservice.cpp \
+	service.cpp \
+	servicedvb.cpp \
+	servicedvbrecord.cpp \
+	servicefs.cpp \
+	servicemp3.cpp
+
+serviceincludedir = $(pkgincludedir)/lib/service
+serviceinclude_HEADERS = \
 	event.h \
 	iservice.h \
-	listboxservice.cpp \
 	listboxservice.h \
-	service.cpp \
 	service.h \
-	servicedvb.cpp \
 	servicedvb.h \
-	servicedvbrecord.cpp \
 	servicedvbrecord.h \
-	servicefs.cpp \
 	servicefs.h \
-	servicemp3.cpp \
 	servicemp3.h
 
 if HAVE_LIBXINE
 libenigma_service_a_SOURCES += \
-	servicexine.cpp \
+	servicexine.cpp
+serviceinclude_HEADERS += \
 	servicexine.h
 endif
