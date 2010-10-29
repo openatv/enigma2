@@ -9,7 +9,7 @@ class gLCDDC: public gDC
 	eLCD *lcd;
 	static gLCDDC *instance;
 	int update;
-	void exec(gOpcode *opcode);
+	void exec(const gOpcode *opcode);
 	gSurface surface;
 public:
 	gLCDDC();

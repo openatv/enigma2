@@ -18,9 +18,9 @@ libenigma_gdi_a_SOURCES = \
 	fb.cpp \
 	font.cpp \
 	font_arabic.cpp \
-	gfbdc.cpp \
 	gfont.cpp \
 	glcddc.cpp \
+	gmaindc.cpp \
 	gpixmap.cpp \
 	grc.cpp \
 	lcd.cpp \
@@ -38,7 +38,6 @@ gdiinclude_HEADERS = \
 	esize.h \
 	fb.h \
 	font.h \
-	gfbdc.h \
 	gfont.h \
 	glcddc.h \
 	gpixmap.h \
@@ -50,7 +49,10 @@ gdiinclude_HEADERS = \
 
 if HAVE_LIBSDL
 libenigma_gdi_a_SOURCES += \
-	sdl.cpp
-gdiinclude_HEADERS += \
+	sdl.cpp \
 	sdl.h
+else
+libenigma_gdi_a_SOURCES += \
+	gfbdc.cpp \
+	gfbdc.h
 endif

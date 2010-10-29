@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 #include <lib/gdi/grc.h>
-#include <lib/gdi/gfbdc.h>
+#include <lib/gdi/gmaindc.h>
 #include <lib/gdi/font.h> 
 
 #include <lib/gui/ewidget.h>
@@ -53,8 +53,8 @@ int main()
 	eInit init;
 
 	init.setRunlevel(eAutoInitNumbers::main);
-	ePtr<gFBDC> my_dc;
-	gFBDC::getInstance(my_dc);
+	ePtr<gMainDC> my_dc;
+	gMainDC::getInstance(my_dc);
 
 	gPainter p(my_dc);
 	
