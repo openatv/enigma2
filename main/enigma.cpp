@@ -13,12 +13,9 @@
 #include <lib/base/eerror.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/gdi/gfbdc.h>
+#include <lib/gdi/gmaindc.h>
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/grc.h>
-#ifdef WITH_SDL
-#include <lib/gdi/sdl.h>
-#endif
 #include <lib/gdi/epng.h>
 #include <lib/gdi/font.h>
 #include <lib/gui/ebutton.h>
@@ -146,15 +143,10 @@ int main(int argc, char **argv)
 	eMain main;
 
 #if 1
-#ifdef WITH_SDL
-	ePtr<gSDLDC> my_dc;
-	gSDLDC::getInstance(my_dc);
-#else
-	ePtr<gFBDC> my_dc;
-	gFBDC::getInstance(my_dc);
+	ePtr<gMainDC> my_dc;
+	gMainDC::getInstance(my_dc);
 	
-	int double_buffer = my_dc->haveDoubleBuffering();
-#endif
+	//int double_buffer = my_dc->haveDoubleBuffering();
 
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);

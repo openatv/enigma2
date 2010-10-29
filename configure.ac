@@ -55,7 +55,6 @@ AC_ARG_WITH(libsdl,
 	[with_libsdl=$withval],[with_libsdl=no])
 if test "$with_libsdl" = "yes"; then
 	PKG_CHECK_MODULES(LIBSDL, sdl)
-	AC_DEFINE([WITH_SDL],[1],[Define to 1 if you have libsdl])
 fi
 AM_CONDITIONAL(HAVE_LIBSDL, test "$with_libsdl" = "yes")
 

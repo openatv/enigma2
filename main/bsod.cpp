@@ -7,10 +7,7 @@
 #include <lib/base/smartptr.h>
 #include <lib/base/nconfig.h>
 #include <lib/gdi/grc.h>
-#include <lib/gdi/gfbdc.h>
-#ifdef WITH_SDL
-#include <lib/gdi/sdl.h>
-#endif
+#include <lib/gdi/gmaindc.h>
 
 #include "version.h"
 
@@ -341,13 +338,8 @@ void bsodFatal(const char *component)
 		
 	}
 	
-#ifdef WITH_SDL
-	ePtr<gSDLDC> my_dc;
-	gSDLDC::getInstance(my_dc);
-#else
-	ePtr<gFBDC> my_dc;
-	gFBDC::getInstance(my_dc);
-#endif
+	ePtr<gMainDC> my_dc;
+	gMainDC::getInstance(my_dc);
 	
 	{
 		gPainter p(my_dc);

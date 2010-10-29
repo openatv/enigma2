@@ -3,25 +3,23 @@
 
 #include "fb.h"
 #include "gpixmap.h"
-#include "grc.h"
+#include "gmaindc.h"
 
 #include <SDL.h>
 
-class gSDLDC: public gDC
+class gSDLDC: public gMainDC
 {
 	SDL_Surface *m_screen;
-	static gSDLDC *m_instance;
-	void exec(gOpcode *opcode);
+	void exec(const gOpcode *opcode);
 
 	void setPalette();
 	gSurface m_surface;
 public:
 	
+	void setResolution(int xres, int yres);
 	gSDLDC();
 	virtual ~gSDLDC();
-	static int getInstance(ePtr<gSDLDC> &ptr) { if (!m_instance) return -1; ptr = m_instance; return 0; }
 	int islocked() { return 0; }
 };
-
 
 #endif

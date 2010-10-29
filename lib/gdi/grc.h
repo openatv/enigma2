@@ -286,7 +286,7 @@ protected:
 	eRect m_spinner_pos;
 	int m_spinner_num, m_spinner_i;
 public:
-	virtual void exec(gOpcode *opcode);
+	virtual void exec(const gOpcode *opcode);
 	gDC(gPixmap *pixmap);
 	gDC();
 	virtual ~gDC();
@@ -296,10 +296,10 @@ public:
 	virtual eSize size() { return m_pixmap->size(); }
 	virtual int islocked() { return 0; }
 	
-	void enableSpinner();
-	void disableSpinner();
-	void incrementSpinner();
-	void setSpinner(eRect pos, ePtr<gPixmap> *pic, int len);
+	virtual void enableSpinner();
+	virtual void disableSpinner();
+	virtual void incrementSpinner();
+	virtual void setSpinner(eRect pos, ePtr<gPixmap> *pic, int len);
 };
 
 #endif

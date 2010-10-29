@@ -1,12 +1,9 @@
-#ifdef WITH_SDL
 #include <lib/gdi/sdl.h>
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 
 #include <SDL.h>
-
-gSDLDC *gSDLDC::m_instance;
 
 gSDLDC::gSDLDC()
 {
@@ -15,23 +12,12 @@ gSDLDC::gSDLDC()
 		eWarning("Could not initialize SDL: %s", SDL_GetError());
 		return;
 	}
-	
-	m_screen = SDL_SetVideoMode(720, 576, 32, SDL_HWSURFACE);
-	if (!m_screen)
-	{
-		eWarning("Could not create SDL surface: %s", SDL_GetError());
-		return;
-	}
 
-	m_instance=this;
-	
+	setResolution(720, 576);
+
+	CONNECT(m_pump.recv_msg, gSDLDC::pumpEvent);
+
 	m_surface.type = 0;
-	m_surface.x = m_screen->w;
-	m_surface.y = m_screen->h;
-	m_surface.bpp = m_screen->format->BitsPerPixel;
-	m_surface.bypp = m_screen->format->BytesPerPixel;
-	m_surface.stride = m_screen->pitch;
-	m_surface.data = m_screen->pixels;
 	m_surface.clut.colors=256;
 	m_surface.clut.data=new gRGB[m_surface.clut.colors];
 	
@@ -43,7 +29,6 @@ gSDLDC::gSDLDC()
 gSDLDC::~gSDLDC()
 {
 	SDL_Quit();
-	m_instance=0;
 }
 
 void gSDLDC::setPalette()
@@ -63,7 +48,7 @@ void gSDLDC::setPalette()
 	fb->PutCMAP(); */
 }
 
-void gSDLDC::exec(gOpcode *o)
+void gSDLDC::exec(const gOpcode *o)
 {
 	switch (o->opcode)
 	{
@@ -83,6 +68,21 @@ void gSDLDC::exec(gOpcode *o)
 	}
 }
 
-eAutoInitPtr<gSDLDC> init_gSDLDC(eAutoInitNumbers::graphic-1, "gSDLDC");
+void gSDLDC::setResolution(int xres, int yres)
+{
+	m_screen = SDL_SetVideoMode(xres, yres, 32, SDL_HWSURFACE);
+	if (!m_screen)
+	{
+		eWarning("Could not create SDL surface: %s", SDL_GetError());
+		return;
+	}
 
-#endif
+	m_surface.x = m_screen->w;
+	m_surface.y = m_screen->h;
+	m_surface.bpp = m_screen->format->BitsPerPixel;
+	m_surface.bypp = m_screen->format->BytesPerPixel;
+	m_surface.stride = m_screen->pitch;
+	m_surface.data = m_screen->pixels;
+}
+
+eAutoInitPtr<gSDLDC> init_gSDLDC(eAutoInitNumbers::graphic-1, "gSDLDC");

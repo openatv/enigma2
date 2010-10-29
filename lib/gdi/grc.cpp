@@ -609,7 +609,7 @@ gDC::~gDC()
 	delete[] m_spinner_pic;
 }
 
-void gDC::exec(gOpcode *o)
+void gDC::exec(const gOpcode *o)
 {
 	switch (o->opcode)
 	{

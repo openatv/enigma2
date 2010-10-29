@@ -30,7 +30,7 @@ gLCDDC::~gLCDDC()
 	instance=0;
 }
 
-void gLCDDC::exec(gOpcode *o)
+void gLCDDC::exec(const gOpcode *o)
 {
 	switch (o->opcode)
 	{
