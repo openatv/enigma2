@@ -7,5 +7,8 @@ AM_CPPFLAGS = \
 noinst_LIBRARIES = libenigma_mmi.a
 
 libenigma_mmi_a_SOURCES = \
-	mmi_ui.cpp \
+	mmi_ui.cpp
+
+mmiincludedir = $(pkgincludedir)/lib/mmi
+mmiinclude_HEADERS = \
 	mmi_ui.h

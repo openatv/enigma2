@@ -8,6 +8,9 @@ noinst_LIBRARIES = libenigma_components.a
 
 libenigma_components_a_SOURCES = \
 	file_eraser.cpp \
+	scan.cpp
+
+componentsincludedir = $(pkgincludedir)/lib/components
+componentsinclude_HEADERS = \
 	file_eraser.h \
-	scan.cpp \
 	scan.h

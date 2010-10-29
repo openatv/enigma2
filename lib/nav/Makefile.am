@@ -8,6 +8,9 @@ noinst_LIBRARIES = libenigma_nav.a
 
 libenigma_nav_a_SOURCES = \
 	core.cpp \
+	pcore.cpp
+
+navincludedir = $(pkgincludedir)/lib/nav
+navinclude_HEADERS = \
 	core.h \
-	pcore.cpp \
 	pcore.h

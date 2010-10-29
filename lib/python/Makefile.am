@@ -10,16 +10,21 @@ noinst_LIBRARIES = libenigma_python.a
 
 libenigma_python_a_SOURCES = \
 	connections.cpp \
+	python.cpp
+
+pythonincludedir = $(pkgincludedir)/lib/python
+pythoninclude_HEADERS = \
 	connections.h \
-	python.cpp \
 	python.h \
 	swig.h
 
 nodist_libenigma_python_a_SOURCES = \
 	enigma_python_wrap.cxx
 
+noinst_PYTHON = \
+	enigma_py_patcher.py
+
 EXTRA_DIST = \
-	enigma_py_patcher.py \
 	enigma_python.i
 
 enigma_python_wrap.cxx: $(srcdir)/enigma_python.i
