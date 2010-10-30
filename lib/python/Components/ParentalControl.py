@@ -20,7 +20,11 @@ IMG_WHITEBOUQUET = LIST_WHITELIST + "-" + TYPE_BOUQUET
 IMG_BLACKSERVICE = LIST_BLACKLIST + "-" + TYPE_SERVICE
 IMG_BLACKBOUQUET = LIST_BLACKLIST + "-" + TYPE_BOUQUET
 
+parentalControl = None
+
 def InitParentalControl():
+	global parentalControl
+	parentalControl = ParentalControl()
 	config.ParentalControl = ConfigSubsection()
 	config.ParentalControl.configured = ConfigYesNo(default = False)
 	config.ParentalControl.mode = ConfigSelection(default = "simple", choices = [("simple", _("simple")), ("complex", _("complex"))])
@@ -320,4 +324,3 @@ class ParentalControl:
 		self.openListFromFile(LIST_BLACKLIST)
 		self.openListFromFile(LIST_WHITELIST)
 
-parentalControl = ParentalControl()
