@@ -13,6 +13,10 @@ enigma2_SOURCES = \
 	bsod.cpp \
 	bsod.h \
 	enigma.cpp \
+	xmlgenerator.cpp \
+	xmlgenerator.h \
+	version_info.cpp \
+	version_info.h
 	version.h
 
 EXTRA_DIST = \
@@ -48,27 +52,29 @@ enigma2_LDADD = \
 
 enigma2_LDFLAGS = -Wl,--export-dynamic
 
-BUILT_SOURCES = version.h
-
+if HAVE_GIT_DIR
 GIT_DIR = $(top_srcdir)/.git
+GIT = git --git-dir=$(GIT_DIR)
 
-version.h:
-	if [ -d $(GIT_DIR) ]; then \
-		if [ -f $(GIT_DIR)/last_commit_info ]; then \
-			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`cat $(GIT_DIR)/last_commit_info | grep 'Date:' | cut -d' ' -f4`\"" > $@; \
-			echo "#define ENIGMA2_BRANCH \"`cat $(GIT_DIR)/branch`\"" >> $@; \
-		else \
-			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`git --git-dir=$(top_srcdir)/.git log --no-color -n 1 --format=format:%cd --date=short`\"" > $@; \
-			echo "#define ENIGMA2_BRANCH \"`git --git-dir=$(top_srcdir)/.git branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`\"" >> $@; \
-		fi; \
-	elif [ ! -f $@ ]; then \
-		echo "#define ENIGMA2_LAST_CHANGE_DATE \"`date --rfc-3339=date`\"" > $@; \
-		echo "#define ENIGMA2_BRANCH \"$(PACKAGE_VERSION)\"" >> $@; \
-	fi;
+if HAVE_FAKE_GIT_DIR
+ENIGMA2_DATE = `cat $(GIT_DIR)/last_commit_info | grep 'Date:' | cut -d' ' -f4`
+ENIGMA2_BRANCH = `cat $(GIT_DIR)/branch`
+else
+ENIGMA2_DATE = `$(GIT) log --no-color -n 1 --format=format:%cd --date=short`
+ENIGMA2_BRANCH = `$(GIT) branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+ENIGMA2_REV = `$(GIT) describe --abbrev=7 --always --dirty --long --tags`
+endif
 
-dist-hook:
-	echo "#define ENIGMA2_LAST_CHANGE_DATE \"`date --rfc-3339=date`\"" > version.h;
-	echo "#define ENIGMA2_BRANCH \"$(PACKAGE_VERSION)\"" >> version.h;
+BUILT_SOURCES = version-intermediate.h
+CLEANFILES = version-intermediate.h
+version-intermediate.h:
+	$(AM_V_GEN)touch $@
+	$(AM_V_at)[ -n "$(ENIGMA2_DATE)" ] && echo "#define ENIGMA2_LAST_CHANGE_DATE \"$(ENIGMA2_DATE)\"" >> $@
+	$(AM_V_at)[ -n "$(ENIGMA2_BRANCH)" ] && echo "#define ENIGMA2_BRANCH \"$(ENIGMA2_BRANCH)\"" >> $@
+	$(AM_V_at)[ -n "$(ENIGMA2_REV)" ] && echo "#define ENIGMA2_REV \"$(ENIGMA2_REV)\"" >> $@
+	$(AM_V_at)([ -f version.h ] && diff -q version.h $@ >/dev/null) || $(INSTALL_HEADER) $@ version.h
+	$(AM_V_at)$(RM) $@
+endif
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
 	$(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@ $(enigma2_LDFLAGS) $(enigma2_OBJECTS) \
