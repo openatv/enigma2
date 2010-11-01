@@ -28,6 +28,7 @@
 #include <lib/python/python.h>
 
 #include "bsod.h"
+#include "version_info.h"
 
 #include <gst/gst.h>
 
@@ -296,22 +297,10 @@ void quitMainloop(int exitCode)
 	eApp->quit(0);
 }
 
-#include "version.h"
-
 const char *getEnigmaVersionString()
 {
-	std::string date =
-#ifdef ENIGMA2_LAST_CHANGE_DATE
-		ENIGMA2_LAST_CHANGE_DATE;
-#else
-		__DATE__;
-#endif
-	std::string branch =
-#ifdef ENIGMA2_BRANCH
-		ENIGMA2_BRANCH;
-#else
-		"HEAD";
-#endif
+	std::string date = enigma2_date;
+	std::string branch = enigma2_branch;
 	return std::string(date + '-' + branch).c_str();
 }
 
