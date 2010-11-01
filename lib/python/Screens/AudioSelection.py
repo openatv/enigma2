@@ -114,9 +114,20 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(('',))
 				self["key_green"].setBoolean(False)
 
-			conflist.append(getConfigListEntry(_("To subtitle selection"), self.settings.menupage))
-
+			subtitlelist = self.getSubtitleList()
+			if len(subtitlelist):
+				conflist.append(getConfigListEntry(_("To subtitle selection"), self.settings.menupage))
+			else:
+				self["key_yellow"].setBoolean(False)
+				conflist.append(('',))
+	
+			
 		elif self.settings.menupage.getValue() == PAGE_SUBTITLES:
+	
+			subtitlelist = self.getSubtitleList()
+			if not len(subtitlelist):
+				self.close(0)
+
 			self.setTitle(_("Subtitle selection"))
 			conflist.append(('',))
 			conflist.append(('',))
@@ -130,42 +141,35 @@ class AudioSelection(Screen, ConfigListScreen):
 
 			idx = 0
 			
-			subtitlelist = self.getSubtitleList()
+			for x in subtitlelist:
+				number = str(x[1])
+				description = "?"
+				language = ""
+				selected = ""
 
-			if len(subtitlelist):
-				for x in subtitlelist:
-					number = str(x[1])
-					description = "?"
-					language = ""
-					selected = ""
-
-					if sel and x[:4] == sel[:4]:
-						selected = "X"
-						selectedidx = idx
+				if sel and x[:4] == sel[:4]:
+					selected = "X"
+					selectedidx = idx
 					
-					if x[4] != "und":
-						if LanguageCodes.has_key(x[4]):
-							language = LanguageCodes[x[4]][0]
-						else:
-							language = x[4]
+				if x[4] != "und":
+					if LanguageCodes.has_key(x[4]):
+						language = LanguageCodes[x[4]][0]
+					else:
+						language = x[4]
 
-					if x[0] == 0:
-						description = "DVB"
-						number = "%x" % (x[1])
+				if x[0] == 0:
+					description = "DVB"
+					number = "%x" % (x[1])
 
-					elif x[0] == 1:
-						description = "TTX"
-						number = "%x%02x" %(x[3] and x[3] or 8, x[2])
+				elif x[0] == 1:
+					description = "TTX"
+					number = "%x%02x" %(x[3] and x[3] or 8, x[2])
 
-					elif x[0] == 2:
-						types = ("UTF-8 text","SSA / AAS",".SRT file")
-						description = types[x[2]]
-
-					streams.append((x, "", number, description, language, selected))
-					idx += 1
-			
-			else:
-				streams = []
+				elif x[0] == 2:
+					types = ("UTF-8 text","SSA / AAS",".SRT file")
+					description = types[x[2]]
+				streams.append((x, "", number, description, language, selected))
+				idx += 1
 
 			conflist.append(getConfigListEntry(_("To audio selection"), self.settings.menupage))
 
