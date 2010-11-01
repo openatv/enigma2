@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 09:15+0000\n"
-"PO-Revision-Date: 2010-09-13 09:57+0100\n"
-"Last-Translator: Language-Team: \n"
+"POT-Creation-Date: 2010-11-01 13:01+0000\n"
+"PO-Revision-Date: 2010-10-01 08:02+0200\n"
+"Last-Translator: sig <sigstop@hotmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -247,16 +247,6 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Enbart tillgänglig om mer än ett kort är aktivt."
 
 #
-msgid ".NFI Download failed:"
-msgstr ".NFI Nedladdning misslyckades:"
-
-#
-msgid ""
-".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr ""
-".NFI fil passerade md5sum signatur kontroll. Du kan använda denna image!"
-
-#
 msgid "0"
 msgstr "0"
 
@@ -392,6 +382,12 @@ msgstr "??"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A BackToTheRoots-Skin .. or good old times."
+msgstr ""
+
+msgid "A BackToTheRoots-Skin ... or good old times."
+msgstr ""
 
 msgid "A basic ftp client"
 msgstr ""
@@ -1221,6 +1217,9 @@ msgstr "Kabel"
 msgid "Cache Thumbnails"
 msgstr "Buffra miniatyrer"
 
+msgid "Callmonitor for NCID-based call notification"
+msgstr ""
+
 msgid "Callmonitor for the Fritz!Box routers"
 msgstr ""
 
@@ -1234,10 +1233,6 @@ msgstr "Kanada"
 #
 msgid "Cancel"
 msgstr "Avbryt"
-
-#
-msgid "Cannot parse feed directory"
-msgstr "Kan inte läsa feed bibliotek"
 
 #
 msgid "Capacity: "
@@ -1271,24 +1266,20 @@ msgid "Change default recording offset?"
 msgstr "Ändra grund inspelnings kompensation?"
 
 #
-msgid "Change dir."
-msgstr "Byt bibl."
-
-#
 msgid "Change hostname"
 msgstr "Byt hostnamn"
 
 msgid "Change pin code"
 msgstr "Ändra pin kod"
 
-msgid "Change service pin"
-msgstr "Ändra program pin"
+msgid "Change service PIN"
+msgstr ""
 
-msgid "Change service pins"
-msgstr "Ändra program pin"
+msgid "Change service PINs"
+msgstr ""
 
-msgid "Change setup pin"
-msgstr "Ändra installations pin"
+msgid "Change setup PIN"
+msgstr ""
 
 #
 msgid "Change step size"
@@ -1587,6 +1578,9 @@ msgstr "Konstellation"
 #
 msgid "Content does not fit on DVD!"
 msgstr "Innehållet för stort för en DVD!"
+
+msgid "Continue"
+msgstr ""
 
 #
 msgid "Continue in background"
@@ -1947,19 +1941,11 @@ msgstr "Beskrivning"
 msgid "Deselect"
 msgstr "Avmarkera"
 
-#
-msgid "Destination directory"
-msgstr "Målbibliotek"
-
-#
-msgid "Details for extension: "
-msgstr "Detaljer för utökning: "
-
 msgid "Details for plugin: "
 msgstr ""
 
 msgid "Detected HDD:"
-msgstr "Hittad hårddisk:"
+msgstr "Hittad HDD:"
 
 #
 msgid "Detected NIMs:"
@@ -2026,10 +2012,6 @@ msgid "Disable Picture in Picture"
 msgstr "Avaktivera Bild i Bild"
 
 #
-msgid "Disable Subtitles"
-msgstr "Avaktivera textning"
-
-#
 msgid "Disable crashlog reporting"
 msgstr "Avaktivera crashlog rapportering"
 
@@ -2093,7 +2075,7 @@ msgid ""
 "the plugin \"%s\"?"
 msgstr ""
 "Vill du verkligen ta BORT\n"
-"pluginet \"%s\"?"
+"plugin \"%s\"?"
 
 #
 msgid ""
@@ -2153,7 +2135,7 @@ msgstr "Vill du göra en ny manuell sökning?"
 
 #, python-format
 msgid "Do you want to download the image to %s ?"
-msgstr "Vill du ladda ner image to %s?"
+msgstr "Vill du ladda ner image till %s ?"
 
 msgid "Do you want to enable the parental control feature on your dreambox?"
 msgstr "Vill du aktivera föräldrakontroll på din dreambox?"
@@ -2270,9 +2252,6 @@ msgstr ""
 #
 msgid "Download location"
 msgstr "Nedladdningsplats"
-
-msgid "Download of USB flasher boot image failed: "
-msgstr "Ladda ner USB flash boot image misslyckades: "
 
 #
 msgid "Downloadable new plugins"
@@ -2828,7 +2807,7 @@ msgstr ""
 "Filter är en kraftfull metod när matchade händelser söks. En AutoTimer kan "
 "begränsas till en viss veckodag eller matchade text i en häändelse "
 "exempelvis Beskrivning.\n"
-"Tryck Blå för att lägga till begränsning och Gul för att ta bort vald "
+"Tryck BLÅ för att lägga till begränsning och GUL för att ta bort en vald "
 "begränsning."
 
 msgid "Finetune"
@@ -2852,11 +2831,6 @@ msgstr "Finska"
 
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
-
-#
-msgid ""
-"First we need to download the latest boot environment for the USB flasher."
-msgstr "Först måste vi ladda ner senaste bootmiljön för USB flasher."
 
 #
 msgid "Flash"
@@ -3224,10 +3198,6 @@ msgstr ""
 "När du är nöjd med resultatet, tryck OK."
 
 #
-msgid "Image flash utility"
-msgstr "Image flash redskap"
-
-#
 msgid "Import AutoTimer"
 msgstr "Importera AutoTimer"
 
@@ -3384,14 +3354,6 @@ msgid "Instant record location"
 msgstr "Direktinspelningars plats"
 
 #
-msgid "Integrated Ethernet"
-msgstr "Integrerat nätverk"
-
-#
-msgid "Integrated Wireless"
-msgstr "Inbyggt Trådlöst"
-
-#
 msgid "Interface: "
 msgstr "Gränssnitt: "
 
@@ -3465,12 +3427,12 @@ msgid ""
 "Service (inside a Bouquet).\n"
 "Press BLUE to add a new restriction and YELLOW to remove the selected one."
 msgstr ""
-"Det är möjligt att begränsa en AutoTimer till vissa kanaler eller "
-"favoritlista eller neka specifika sådana.\n"
-"En händelse kommer endast att matcha denna AutoTimer om det är på en "
-"specifik och inte förnekas kanal (inuti en favoritlista)\n"
-"Tryck BLÅ för att lägga till en ny begränsning och GUL för att ta bort de "
-"markerade en."
+"Det är möjligt att begränsa en AutoTimer till vissa Kanaler eller "
+"Favoritlista eller neka specifika sådana.\n"
+"En Händelse kommer endast att matcha denna AutoTimer om det är på en "
+"specifik och inte förnekad Kanal (inuti en Favoritlista).\n"
+"Tryck BLÅ för att lägga till en ny begränsning och GUL för att ta bort den "
+"markerade."
 
 #
 msgid "Italian"
@@ -3755,13 +3717,11 @@ msgstr "Huvudmeny"
 msgid "Mainmenu"
 msgstr "Huvudmeny"
 
-#
 msgid "Make this mark an 'in' point"
-msgstr "Gör denna markör till 'in'-punkt"
+msgstr "Gör denna markör till en 'in' punkt"
 
-#
 msgid "Make this mark an 'out' point"
-msgstr "Gör denna markör till 'ut'-punkt"
+msgstr "Gör denna markör till en 'ut' punkt"
 
 #
 msgid "Make this mark just a mark"
@@ -4141,6 +4101,11 @@ msgstr "MyTubeVideoHjälpSkärm"
 msgid "N/A"
 msgstr "N/A"
 
+msgid ""
+"NCID Client shows incoming voice calls promoted by any NCID server (e.g. "
+"Vodafone Easybox) on your Dreambox."
+msgstr ""
+
 msgid "NEXT"
 msgstr "NÄSTA"
 
@@ -4347,12 +4312,12 @@ msgstr "Aldrig"
 msgid "New"
 msgstr "Ny"
 
+msgid "New PIN"
+msgstr ""
+
 #
 msgid "New Zealand"
 msgstr "Nya Zeeland"
-
-msgid "New pin"
-msgstr "Ny pin"
 
 #
 msgid "New version:"
@@ -4379,7 +4344,7 @@ msgid "No Connection"
 msgstr "Ingen anslutning"
 
 msgid "No HDD found or HDD not initialized!"
-msgstr "Ingen hårddisk hittad eller initierad!"
+msgstr "Ingen HDD hittad eller HDD inte initierad!"
 
 #
 msgid "No Networks found"
@@ -4476,10 +4441,6 @@ msgid ""
 msgstr ""
 "Ingen tuner är aktiverad!\n"
 "Vänligen konfigurera tuner före scanning efter kanaler."
-
-#
-msgid "No useable USB stick found"
-msgstr "Ingen användbar USB-sticka hittad"
 
 #
 msgid ""
@@ -4635,8 +4596,8 @@ msgid ""
 msgstr ""
 "Nu, använd kontrastinställningen för att öka ljusstyrka på bakgrunden så "
 "mycket som möjligt, men säkerställ att du fortfarande kan se skillnaden "
-"mellan de två ljusaste nivåerna av skuggor på skalan. När du har gjort det, "
-"tryck OK."
+"mellan de två ljusaste nivåerna av skuggor på skalan.När du har gjort det, "
+"vänligen tryck OK för att fortsätta."
 
 #
 msgid "Number of scheduled recordings left."
@@ -4772,10 +4733,6 @@ msgstr "Pakethantering"
 #
 msgid "Packet manager"
 msgstr "Pakethanterare"
-
-#
-msgid "Page"
-msgstr "Sida"
 
 #
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
@@ -4914,6 +4871,11 @@ msgstr "Vänligen ange media som ska undersökas"
 msgid "Please add titles to the compilation."
 msgstr "Vänligen lägg till titel till sammanställningen."
 
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
+
 #
 msgid "Please change recording endtime"
 msgstr "Vänligen ändra inspelnings sluttid"
@@ -4921,10 +4883,6 @@ msgstr "Vänligen ändra inspelnings sluttid"
 #
 msgid "Please check your network settings!"
 msgstr "Vänligen kontrollera dina nätverksinställningar!"
-
-#
-msgid "Please choose .NFI image file from feed server to download"
-msgstr "Vänligen välj .NFI image fil från feed server som ska laddas ner"
 
 #
 msgid "Please choose an extension..."
@@ -4956,14 +4914,6 @@ msgstr ""
 "När du är klar tryck OK för att forsätta."
 
 #
-msgid ""
-"Please disconnect all USB devices from your Dreambox and (re-)attach the "
-"target USB stick (minimum size is 64 MB) now!"
-msgstr ""
-"Vänligen koppla bort alla USB enheter från din Dreambox och (åter-)anslut "
-"USB-stickan (minimumstorlek är 64MB) nu!"
-
-#
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Vänligen ändra inte om du inte vet vad du gör!"
 
@@ -4990,8 +4940,8 @@ msgstr "Vänligen ange namn till det nya biblioteket"
 msgid "Please enter the correct pin code"
 msgstr "Vänligen ange korrekt pin kod"
 
-msgid "Please enter the old pin code"
-msgstr "Vänligen ange den gamla pin koden"
+msgid "Please enter the old PIN code"
+msgstr ""
 
 #
 msgid "Please enter your email address here:"
@@ -5028,10 +4978,6 @@ msgstr "Vänligen tryck OK!"
 #
 msgid "Please provide a Text to match"
 msgstr "Vänligen ange en text för matchning"
-
-#
-msgid "Please select .NFI flash image file from medium"
-msgstr "Vänligen välj .NFI flash image fil från media"
 
 #
 msgid "Please select a playlist to delete..."
@@ -5071,10 +5017,6 @@ msgstr "Vänligen välj media som ska användas som backupdestination"
 #
 msgid "Please select tag to filter..."
 msgstr "Vänligen välj märke för filtrering..."
-
-#
-msgid "Please select target directory or medium"
-msgstr "Vänligen välj målbibliotek eller media"
 
 #
 msgid "Please select the movie path..."
@@ -5377,10 +5319,6 @@ msgid "Press OK to toggle the selection."
 msgstr "Tryck OK för att växla val."
 
 #
-msgid "Press OK to view full changelog"
-msgstr "Tryck OK för att visa full förändringslog"
-
-#
 msgid "Press yellow to set this interface as default interface."
 msgstr "Tryck gul knapp för att ange detta interface som grundinterface."
 
@@ -5462,7 +5400,7 @@ msgid "Quickzap"
 msgstr "Snabbzap"
 
 msgid "RC Menu"
-msgstr "Fjärrkontroll meny"
+msgstr "Fjärrkontroll Meny"
 
 #
 msgid "RF output"
@@ -5584,8 +5522,8 @@ msgstr "Inspelningar"
 msgid "Recordings always have priority"
 msgstr "Inspelningar har alltid prioritet"
 
-msgid "Reenter new pin"
-msgstr "Ange ny pin igen"
+msgid "Reenter new PIN"
+msgstr ""
 
 #
 msgid "Refresh Rate"
@@ -5611,13 +5549,11 @@ msgstr "Uppdatera"
 msgid "Reload Black-/Whitelists"
 msgstr "Ladda om Black-/Whitelistor"
 
-#
-msgid "Remember service pin"
-msgstr "Kom ihåg service pin"
+msgid "Remember service PIN"
+msgstr ""
 
-#
-msgid "Remember service pin cancel"
-msgstr "Avbryt kom ihåg service pin"
+msgid "Remember service PIN cancel"
+msgstr ""
 
 msgid "Remote timer and remote TV player"
 msgstr ""
@@ -5657,14 +5593,6 @@ msgstr "Ta bort plugins"
 #
 msgid "Remove selected AutoTimer"
 msgstr "Ta bort vald AutoTimer"
-
-#
-msgid "Remove the broken .NFI file?"
-msgstr "Ta bort trasig .NFI fil?"
-
-#
-msgid "Remove the incomplete .NFI file?"
-msgstr "Ta bort ofullständig .NFI fil?"
 
 #
 msgid "Remove timer"
@@ -6075,14 +6003,6 @@ msgstr ""
 msgid "Scan range"
 msgstr "Sökomfång"
 
-#
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
-"selected wireless device.\n"
-msgstr ""
-"Sök ditt nätverk efter trådlös Accesspunkt och anslut till det med din valda "
-"trådlösa enhet.\n"
-
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
@@ -6202,10 +6122,6 @@ msgid "Select a timer to import"
 msgstr "Välj timer för import"
 
 #
-msgid "Select audio mode"
-msgstr "Välj ljudläge"
-
-#
 msgid "Select audio track"
 msgstr "Välj ljudspår"
 
@@ -6228,16 +6144,8 @@ msgid "Select files for backup."
 msgstr "Väl fil för backup."
 
 #
-msgid "Select files for backup. Currently selected:\n"
-msgstr "Välj filer för backuptagning. Nuvarande valda:\n"
-
-#
 msgid "Select files/folders to backup"
 msgstr "Ange filer/bibliotek att ta backup på"
-
-#
-msgid "Select image"
-msgstr "Välj image"
 
 msgid "Select input device"
 msgstr "Välj inmatningsenhet"
@@ -6304,10 +6212,6 @@ msgstr "Välj trådlöst nätverk"
 #
 msgid "Select your choice."
 msgstr "Ange ditt val."
-
-#
-msgid "Selected source image"
-msgstr "Välj käll image"
 
 #
 msgid "Send DiSEqC"
@@ -6429,7 +6333,7 @@ msgid "Set maximum duration"
 msgstr "Sätt maximum längd"
 
 msgid "Set this NO to disable this AutoTimer."
-msgstr "Sätt detta till Nej för att avaktivera den här AutoTimer."
+msgstr "Sätt detta till NEJ för att avaktivera den här AutoTimer."
 
 msgid "Sets your Dreambox into Deep-Standby"
 msgstr ""
@@ -6546,6 +6450,9 @@ msgid ""
 msgstr ""
 
 msgid "Shows a list of recent zap entries"
+msgstr ""
+
+msgid "Shows average bitrate of video and audio"
 msgstr ""
 
 msgid "Shows statistics of watched services"
@@ -6840,10 +6747,6 @@ msgid "Step west"
 msgstr "Stega väst"
 
 #
-msgid "Stereo"
-msgstr "Stereo"
-
-#
 msgid "Stop"
 msgstr "Avsluta"
 
@@ -7090,6 +6993,12 @@ msgstr ""
 "Utökningen Nätverksguiden är inte installerad!\n"
 "Vänligen installera den."
 
+msgid "The PIN code has been changed successfully."
+msgstr ""
+
+msgid "The PIN codes you entered are different."
+msgstr ""
+
 msgid ""
 "The PicturePlayer displays your photos on the TV.\n"
 "You can view them as thumbnails or slideshow."
@@ -7137,20 +7046,12 @@ msgstr ""
 "ett tidsintervall är angett kommer en händelse bara att matcha om AutoTimer "
 "är innaför tidsintervallet."
 
-#
-msgid ""
-"The USB stick is now bootable. Do you want to download the latest image from "
-"the feed server and save it on the stick?"
-msgstr ""
-"USB-stickan är nu bootbar. Vill du ladda ner senaste image från feed server "
-"och spara den på stickan?"
-
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
 msgstr ""
 "USB-stickan förbereddes för att vara bootbar.\n"
-"Nu kan du ladda ner en NFT image fil!"
+"Nu kan du ladda ner en NFI image fil!"
 
 msgid ""
 "The VideoEnhancement plugin provides advanced video enhancement settings."
@@ -7239,21 +7140,6 @@ msgstr "Match attributet är ett krav."
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "Validering av md5sum misslyckades, filen kan vara korrupt!"
 
-msgid ""
-"The md5sum validation failed, the file may be corrupted! Are you sure that "
-"you want to burn this image to flash memory? You are doing this at your own "
-"risk!"
-msgstr ""
-"Validering av md5sun misslyckades, filen kan vara korrupt! Är du säker på "
-"att du vill flasha denna image till flashminnet? Du utför detta på egen risk!"
-
-msgid ""
-"The md5sum validation failed, the file may be downloaded incompletely or be "
-"corrupted!"
-msgstr ""
-"Validering av md5sum misslyckades, filen kanske inte blev helt nedladdad "
-"eller är korrupt!"
-
 #
 msgid "The package doesn't contain anything."
 msgstr "Paketet innehåller ingenting."
@@ -7267,14 +7153,8 @@ msgstr "Paketet:"
 msgid "The path %s already exists."
 msgstr "Sökvägen %s existerar redan."
 
-msgid "The pin code has been changed successfully."
-msgstr "Bytet av pin koden utfördes."
-
 msgid "The pin code you entered is wrong."
 msgstr "Pin koden du angav var fel."
-
-msgid "The pin codes you entered are different."
-msgstr "Pin koderna du angav är olika."
 
 #
 #, python-format
@@ -7385,27 +7265,6 @@ msgstr ""
 "uppdatera nu?"
 
 #
-#, python-format
-msgid "This .NFI file does not contain a valid %s image!"
-msgstr "Denna .NFI fil innehåller ingen giltig %s image!"
-
-#
-msgid ""
-"This .NFI file does not have a md5sum signature and is not guaranteed to "
-"work. Do you really want to burn this image to flash memory?"
-msgstr ""
-"Denna .NFI har ingen md5sum signatur och är inte garanterad att den "
-"fungerar. Vill du verkligen flasha denna image till flashminnet?"
-
-#
-msgid ""
-"This .NFI file has a valid md5 signature. Continue programming this image to "
-"flash memory?"
-msgstr ""
-"Denna .NFI har giltig md5sum. Fortsätta programmera denna image till "
-"flashminnet?"
-
-#
 msgid ""
 "This DVD RW medium is already formatted - reformatting will erase all "
 "content on the disc."
@@ -7475,7 +7334,7 @@ msgstr ""
 "Nästa steg, en NFI image fil ska laddas ner från uppdateringsservern och "
 "sparas till USB stickan.\n"
 "Om du redan har en förberedd bootbar USB sticka, vänligen sätt in den nu. "
-"Annars anslut en USB stcika med minsta storlek på 64 MB! "
+"Annars anslut en USB stcika med minsta storlek på 64 MB!"
 
 #
 msgid "This plugin is installed."
@@ -7560,7 +7419,7 @@ msgstr ""
 "- bekräfta att du har angivit korrekt IP information i Adapterinstallation "
 "dialogen.\n"
 "Om du får ett \"aktiverat\" meddelande:\n"
-"- bekräfta att du har konfigurerad och fungerandes DHCP server på ditt "
+"-bekräfta att du har konfigurerad och fungerandes DHCP server på ditt "
 "nätverk."
 
 #
@@ -7705,24 +7564,9 @@ msgid ""
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 "För att uppdatera din Dreambox, vänligen följ dessa anvisningar:\n"
-"1) Stäng av din Dreambox med strömbrytaren på baksidan och säkerställ att "
-"bootbar USB-sticka är ansluten.\n"
+"1) Stäng av din box med strömbrytaren på baksidan och säkerställ att bootbar "
+"USB-sticka är ansluten.\n"
 "2) Slå på strömmen och håll NER knappen på framsidan intryckt i cirka 10 "
-"sekunder.\n"
-"3) Vänta på uppstart och följ instruktionerna från guiden."
-
-msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB "
-"stick.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"För att uppdatera din Dreambox firmware, vänligen utför följande steg:\n"
-"1) Stäng av din box med strömbrytaren på baksidan och sätt in bootbar USB-"
-"sticka.\n"
-"2) Slå på strömbrytaren och håll NER pil på fronten intryckt i ungerfär 10 "
 "sekunder.\n"
 "3) Vänta på uppstart och följ instruktionerna från guiden."
 
@@ -7879,13 +7723,6 @@ msgstr "USB-sticka"
 #
 msgid "USB stick wizard"
 msgstr "USB-sticke-guide"
-
-#
-msgid ""
-"USB stick wizard finished. Your dreambox will now restart with your new "
-"image!"
-msgstr ""
-"USB-sticke-guide klar. Din dreambox kommer nu starta om med din nya image!"
 
 #
 msgid "Ukrainian"
@@ -8146,6 +7983,9 @@ msgstr "VMGM (intro trailer)"
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.nano skin"
+msgstr ""
+
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr "Kontrollera din Dreamboxs äkthet genom att köra Äkta Dreambox plugin!"
@@ -8343,6 +8183,14 @@ msgstr "Visningar: "
 msgid "Virtual KeyBoard"
 msgstr "Virtuellt tangentbord"
 
+msgid "Visualization for the European Installation Bus"
+msgstr ""
+
+msgid ""
+"Visualize and control your lights, dimmers, blinds, thermostats etc. through "
+"EIB/KNX. (linknx server required)"
+msgstr ""
+
 #
 msgid "Voltage mode"
 msgstr "Spännings läge"
@@ -8455,9 +8303,10 @@ msgid ""
 "the firmware of your Dreambox by providing a backup facility for your "
 "current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Välkommen till uppgraderings guiden. Guiden hjälper dig med uppgraderingen "
-"av mjukvaran i din Dreambox genom att tillgodose en backupmöjlighet av dina "
-"aktuella inställningar och en kort förklaring hur du uppgraderar mjukvaran."
+"Välkommen till uppgraderingsguiden för image. Guiden hjälper dig med "
+"uppgraderingen av mjukvaran i din Dreambox genom att tillgodose en "
+"backupmöjlighet av dina aktuella inställningar och en kort förklaring hur du "
+"uppgraderar mjukvaran."
 
 msgid ""
 "Welcome to the MyTube Youtube Player.\n"
@@ -8610,10 +8459,6 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "Var ska temporära timeshift inspelningar sparas?"
 
 #
-msgid "Wireless"
-msgstr "Trådlöst"
-
-#
 msgid "Wireless LAN"
 msgstr "Trådlöst LAN"
 
@@ -8738,10 +8583,6 @@ msgstr "Skrivfel under inspelning. Disken full?\n"
 #
 msgid "Write failed!"
 msgstr "Skrivning misslyckades!"
-
-#
-msgid "Writing NFI image file to flash completed"
-msgstr "Skrivning av NFI image fil till flash klart"
 
 #
 msgid "YPbPr"
@@ -8943,15 +8784,11 @@ msgstr ""
 "enligt instruktionerna från websidan, kommer din nya mjukvara kommer att "
 "fråga dig om du vill återställa dina inställningar."
 
-#
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"Du måste ange en PIN kod och dölja det från dina barn.\n"
-"\n"
-"Vill du ange PIN kod nu?"
 
 #
 msgid ""
@@ -9368,10 +9205,6 @@ msgid "chapters"
 msgstr "kapitel"
 
 #
-msgid "choose destination directory"
-msgstr "välj destinationsbibliotek"
-
-#
 msgid "circular left"
 msgstr "cirkulär vänster"
 
@@ -9420,7 +9253,7 @@ msgstr "skapa bibliotek"
 
 #, python-format
 msgid "currently installed image: %s"
-msgstr "nuvarande  installerad image: %s"
+msgstr "nuvarande installerad image: %s"
 
 #
 msgid "daily"
@@ -9580,10 +9413,6 @@ msgstr "avsluta nätverkskorts lista"
 #
 msgid "exit networkadapter setup menu"
 msgstr "avsluta nätverkskort installationsmeny"
-
-#
-msgid "failed"
-msgstr "misslyckades"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -9860,6 +9689,9 @@ msgstr "ej konfigurerad"
 msgid "not locked"
 msgstr "inte låst"
 
+msgid "not supported"
+msgstr ""
+
 #
 msgid "not used"
 msgstr "ej använd"
@@ -10076,20 +9908,12 @@ msgid "select"
 msgstr "välj"
 
 #
-msgid "select .NFI flash file"
-msgstr "välj .NFI flash fil"
-
-#
 msgid "select CAId"
 msgstr "vald CAId"
 
 #
 msgid "select CAId's"
 msgstr "välj CAIds"
-
-#
-msgid "select image from server"
-msgstr "välj image från server"
 
 #
 msgid "select interface"
@@ -10107,8 +9931,8 @@ msgstr "välj film"
 msgid "select the movie path"
 msgstr "välj film sökväg"
 
-msgid "service pin"
-msgstr "kanal pin"
+msgid "service PIN"
+msgstr ""
 
 msgid "set enigma2 to standby-mode after startup"
 msgstr ""
@@ -10117,8 +9941,8 @@ msgstr ""
 msgid "sets the Audio Delay (LipSync)"
 msgstr "anger Ljudfördröjning (Läppsynk)"
 
-msgid "setup pin"
-msgstr "installation pin"
+msgid "setup PIN"
+msgstr ""
 
 #
 msgid "show DVD main menu"
@@ -10307,6 +10131,9 @@ msgstr "skifta en klippmarkering på nuvarande position"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "skifta tid, kapitel, ljud, textning info"
 
+msgid "tuner is not supported"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr "ej tillgänglig"
@@ -10409,9 +10236,265 @@ msgstr "zap"
 msgid "zapped"
 msgstr "zapped"
 
+#
+#~ msgid ".NFI Download failed:"
+#~ msgstr ".NFI Nedladdning misslyckades:"
+
+#
+#~ msgid ""
+#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
+#~ msgstr ""
+#~ ".NFI fil passerade md5sum signatur kontroll. Du kan använda denna image!"
+
+#
+#~ msgid "Cannot parse feed directory"
+#~ msgstr "Kan inte läsa feed bibliotek"
+
+#
+#~ msgid "Change dir."
+#~ msgstr "Byt bibl."
+
+#~ msgid "Change service pin"
+#~ msgstr "Ändra program pin"
+
+#~ msgid "Change service pins"
+#~ msgstr "Ändra program pin"
+
+#~ msgid "Change setup pin"
+#~ msgstr "Ändra installations pin"
+
+#
+#~ msgid "Destination directory"
+#~ msgstr "Målbibliotek"
+
+#
+#~ msgid "Details for extension: "
+#~ msgstr "Detaljer för utökning: "
+
+#
+#~ msgid "Disable Subtitles"
+#~ msgstr "Avaktivera textning"
+
+#~ msgid "Download of USB flasher boot image failed: "
+#~ msgstr "Ladda ner USB flash boot image misslyckades: "
+
+#
+#~ msgid ""
+#~ "First we need to download the latest boot environment for the USB flasher."
+#~ msgstr "Först måste vi ladda ner senaste bootmiljön för USB flasher."
+
 #~ msgid ""
 #~ "If this is enabled an existing timer will also be considered recording an "
 #~ "event if it records at least 80%% of the it."
 #~ msgstr ""
 #~ "Om detta är aktiverat kommer befintlig timer att behandlas som en "
 #~ "inspelning om den spelar in minst 80%% av den."
+
+#
+#~ msgid "Image flash utility"
+#~ msgstr "Image flash redskap"
+
+#
+#~ msgid "Integrated Ethernet"
+#~ msgstr "Integrerat nätverk"
+
+#
+#~ msgid "Integrated Wireless"
+#~ msgstr "Inbyggt Trådlöst"
+
+#~ msgid "New pin"
+#~ msgstr "Ny pin"
+
+#
+#~ msgid "No useable USB stick found"
+#~ msgstr "Ingen användbar USB-sticka hittad"
+
+#
+#~ msgid "Page"
+#~ msgstr "Sida"
+
+#
+#~ msgid "Please choose .NFI image file from feed server to download"
+#~ msgstr "Vänligen välj .NFI image fil från feed server som ska laddas ner"
+
+#
+#~ msgid ""
+#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
+#~ "target USB stick (minimum size is 64 MB) now!"
+#~ msgstr ""
+#~ "Vänligen koppla bort alla USB enheter från din Dreambox och (åter-)anslut "
+#~ "USB-stickan (minimumstorlek är 64MB) nu!"
+
+#~ msgid "Please enter the old pin code"
+#~ msgstr "Vänligen ange den gamla pin koden"
+
+#
+#~ msgid "Please select .NFI flash image file from medium"
+#~ msgstr "Vänligen välj .NFI flash image fil från media"
+
+#
+#~ msgid "Please select target directory or medium"
+#~ msgstr "Vänligen välj målbibliotek eller media"
+
+#
+#~ msgid "Press OK to view full changelog"
+#~ msgstr "Tryck OK för att visa full förändringslog"
+
+#~ msgid "Reenter new pin"
+#~ msgstr "Ange ny pin igen"
+
+#
+#~ msgid "Remember service pin"
+#~ msgstr "Kom ihåg service pin"
+
+#
+#~ msgid "Remember service pin cancel"
+#~ msgstr "Avbryt kom ihåg service pin"
+
+#
+#~ msgid "Remove the broken .NFI file?"
+#~ msgstr "Ta bort trasig .NFI fil?"
+
+#
+#~ msgid "Remove the incomplete .NFI file?"
+#~ msgstr "Ta bort ofullständig .NFI fil?"
+
+#
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your selected wireless device.\n"
+#~ msgstr ""
+#~ "Sök ditt nätverk efter trådlös Accesspunkt och anslut till det med din "
+#~ "valda trådlösa enhet.\n"
+
+#
+#~ msgid "Select audio mode"
+#~ msgstr "Välj ljudläge"
+
+#
+#~ msgid "Select files for backup. Currently selected:\n"
+#~ msgstr "Välj filer för backuptagning. Nuvarande valda:\n"
+
+#
+#~ msgid "Select image"
+#~ msgstr "Välj image"
+
+#
+#~ msgid "Selected source image"
+#~ msgstr "Välj käll image"
+
+#
+#~ msgid "Stereo"
+#~ msgstr "Stereo"
+
+#
+#~ msgid ""
+#~ "The USB stick is now bootable. Do you want to download the latest image "
+#~ "from the feed server and save it on the stick?"
+#~ msgstr ""
+#~ "USB-stickan är nu bootbar. Vill du ladda ner senaste image från feed "
+#~ "server och spara den på stickan?"
+
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
+#~ "that you want to burn this image to flash memory? You are doing this at "
+#~ "your own risk!"
+#~ msgstr ""
+#~ "Validering av md5sun misslyckades, filen kan vara korrupt! Är du säker på "
+#~ "att du vill flasha denna image till flashminnet? Du utför detta på egen "
+#~ "risk!"
+
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be downloaded incompletely or "
+#~ "be corrupted!"
+#~ msgstr ""
+#~ "Validering av md5sum misslyckades, filen kanske inte blev helt nedladdad "
+#~ "eller är korrupt!"
+
+#~ msgid "The pin code has been changed successfully."
+#~ msgstr "Bytet av pin koden utfördes."
+
+#~ msgid "The pin codes you entered are different."
+#~ msgstr "Pin koderna du angav är olika."
+
+#
+#~ msgid "This .NFI file does not contain a valid %s image!"
+#~ msgstr "Denna .NFI fil innehåller ingen giltig %s image!"
+
+#
+#~ msgid ""
+#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
+#~ "work. Do you really want to burn this image to flash memory?"
+#~ msgstr ""
+#~ "Denna .NFI har ingen md5sum signatur och är inte garanterad att den "
+#~ "fungerar. Vill du verkligen flasha denna image till flashminnet?"
+
+#
+#~ msgid ""
+#~ "This .NFI file has a valid md5 signature. Continue programming this image "
+#~ "to flash memory?"
+#~ msgstr ""
+#~ "Denna .NFI har giltig md5sum. Fortsätta programmera denna image till "
+#~ "flashminnet?"
+
+#~ msgid ""
+#~ "To update your Dreambox firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and plug in the bootable "
+#~ "USB stick.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
+#~ "for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "För att uppdatera din Dreambox firmware, vänligen utför följande steg:\n"
+#~ "1) Stäng av din box med strömbrytaren på baksidan och sätt in bootbar USB-"
+#~ "sticka.\n"
+#~ "2) Slå på strömbrytaren och håll NER pil på fronten intryckt i ungerfär "
+#~ "10 sekunder.\n"
+#~ "3) Vänta på uppstart och följ instruktionerna från guiden."
+
+#
+#~ msgid ""
+#~ "USB stick wizard finished. Your dreambox will now restart with your new "
+#~ "image!"
+#~ msgstr ""
+#~ "USB-sticke-guide klar. Din dreambox kommer nu starta om med din nya image!"
+
+#
+#~ msgid "Wireless"
+#~ msgstr "Trådlöst"
+
+#
+#~ msgid "Writing NFI image file to flash completed"
+#~ msgstr "Skrivning av NFI image fil till flash klart"
+
+#
+#~ msgid ""
+#~ "You need to set a pin code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "Du måste ange en PIN kod och dölja det från dina barn.\n"
+#~ "\n"
+#~ "Vill du ange PIN kod nu?"
+
+#
+#~ msgid "choose destination directory"
+#~ msgstr "välj destinationsbibliotek"
+
+#
+#~ msgid "failed"
+#~ msgstr "misslyckades"
+
+#
+#~ msgid "select .NFI flash file"
+#~ msgstr "välj .NFI flash fil"
+
+#
+#~ msgid "select image from server"
+#~ msgstr "välj image från server"
+
+#~ msgid "service pin"
+#~ msgstr "kanal pin"
+
+#~ msgid "setup pin"
+#~ msgstr "installation pin"

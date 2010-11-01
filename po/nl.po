@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 09:15+0000\n"
+"POT-Creation-Date: 2010-11-01 13:01+0000\n"
 "PO-Revision-Date: 2010-08-10 14:18+0200\n"
 "Last-Translator: Benny <Benny.DeTandt@gmail.com>\n"
 "Language-Team: <Benny.DeTandt@gmail.com>\n"
@@ -146,7 +146,7 @@ msgid " extensions."
 msgstr " extensies."
 
 msgid " ms"
-msgstr ""
+msgstr " ms"
 
 #
 msgid " packages selected."
@@ -263,17 +263,6 @@ msgstr "(optioneel DVD audio menu weergeven)"
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Alleen beschikbaar indien meer dan één interface actief is."
-
-#
-msgid ".NFI Download failed:"
-msgstr ".NFI Download mislukt:"
-
-#
-msgid ""
-".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr ""
-"Md5 controle was succesvol op .NFI bestand. U kunt dit image veilig "
-"schrijven!"
 
 #
 msgid "0"
@@ -413,11 +402,17 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
+msgid "A BackToTheRoots-Skin .. or good old times."
+msgstr ""
+
+msgid "A BackToTheRoots-Skin ... or good old times."
+msgstr ""
+
 msgid "A basic ftp client"
 msgstr ""
 
 msgid "A client for www.dyndns.org"
-msgstr ""
+msgstr "Een client voor www.dyndns.org"
 
 #
 #, python-format
@@ -1242,6 +1237,9 @@ msgstr "Kabel"
 msgid "Cache Thumbnails"
 msgstr "Miniatuurafbeeldingen cachen"
 
+msgid "Callmonitor for NCID-based call notification"
+msgstr ""
+
 msgid "Callmonitor for the Fritz!Box routers"
 msgstr ""
 
@@ -1256,10 +1254,6 @@ msgstr "Canada"
 #
 msgid "Cancel"
 msgstr "Annuleren"
-
-#
-msgid "Cannot parse feed directory"
-msgstr "Kan feed map niet doorgeven"
 
 #
 msgid "Capacity: "
@@ -1294,10 +1288,6 @@ msgid "Change default recording offset?"
 msgstr "Wijzig de standaard opname afwijking?"
 
 #
-msgid "Change dir."
-msgstr "Wijzig map."
-
-#
 msgid "Change hostname"
 msgstr "Hostnaam wijzigen"
 
@@ -1305,17 +1295,14 @@ msgstr "Hostnaam wijzigen"
 msgid "Change pin code"
 msgstr "Verander pincode"
 
-#
-msgid "Change service pin"
-msgstr "Wijzig zender pincode"
+msgid "Change service PIN"
+msgstr ""
 
-#
-msgid "Change service pins"
-msgstr "Wijzig zender pincode"
+msgid "Change service PINs"
+msgstr ""
 
-#
-msgid "Change setup pin"
-msgstr "Wijzig menu pincode"
+msgid "Change setup PIN"
+msgstr ""
 
 #
 msgid "Change step size"
@@ -1398,7 +1385,7 @@ msgid "Choose bouquet"
 msgstr "Kies boeket"
 
 msgid "Choose image to download"
-msgstr ""
+msgstr "Kies bestand om te downloaden"
 
 #
 msgid "Choose target folder"
@@ -1616,6 +1603,10 @@ msgid "Content does not fit on DVD!"
 msgstr "De inhoud past niet op deze DVD!"
 
 #
+msgid "Continue"
+msgstr "Doorgaan"
+
+#
 msgid "Continue in background"
 msgstr "Verder op de achtergrond"
 
@@ -1745,7 +1736,7 @@ msgid "Current Transponder"
 msgstr "Huidige transponder"
 
 msgid "Current device: "
-msgstr ""
+msgstr "Huidig apparaat: "
 
 #
 msgid "Current settings:"
@@ -1760,7 +1751,7 @@ msgid "Current version:"
 msgstr "Actuele versie:"
 
 msgid "Currently installed image"
-msgstr ""
+msgstr "Huidig geinstalleerd image"
 
 #
 #, python-format
@@ -1978,14 +1969,6 @@ msgstr "Omschrijving"
 msgid "Deselect"
 msgstr "Deselecteer"
 
-#
-msgid "Destination directory"
-msgstr "Doelmap"
-
-#
-msgid "Details for extension: "
-msgstr "Details voor extensies: "
-
 msgid "Details for plugin: "
 msgstr ""
 
@@ -2056,10 +2039,6 @@ msgstr "Uit"
 #
 msgid "Disable Picture in Picture"
 msgstr "Picture In Picture uitschakelen"
-
-#
-msgid "Disable Subtitles"
-msgstr "Ondertitels uit"
 
 #
 msgid "Disable crashlog reporting"
@@ -2183,7 +2162,7 @@ msgstr "Wilt u opnieuw handmatig zoeken?"
 
 #, python-format
 msgid "Do you want to download the image to %s ?"
-msgstr ""
+msgstr "Wilt u het image downloaden naar %s ?"
 
 #
 msgid "Do you want to enable the parental control feature on your dreambox?"
@@ -2282,7 +2261,7 @@ msgstr "Downloaden"
 
 #, python-format
 msgid "Download %s from Server"
-msgstr ""
+msgstr "Download %s van server"
 
 #
 msgid "Download .NFI-Files for USB-Flasher"
@@ -2302,10 +2281,6 @@ msgstr ""
 #
 msgid "Download location"
 msgstr "Download locatie:"
-
-#
-msgid "Download of USB flasher boot image failed: "
-msgstr "Downloaden van USB flasher opstart bestand mislukt: "
 
 #
 msgid "Downloadable new plugins"
@@ -2731,7 +2706,7 @@ msgid "Exit editor"
 msgstr "Editor afsluiten"
 
 msgid "Exit input device selection."
-msgstr ""
+msgstr "Verlaat invoerapparaat selectie."
 
 #
 msgid "Exit network wizard"
@@ -2886,11 +2861,6 @@ msgstr "Fins"
 
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
-
-#
-msgid ""
-"First we need to download the latest boot environment for the USB flasher."
-msgstr "Eerst dienen we de opstart omgeving voor de USB flasher te downloaden."
 
 #
 msgid "Flash"
@@ -3048,10 +3018,10 @@ msgid "Get AudioCD info from CDDB and CD-Text"
 msgstr ""
 
 msgid "Get latest experimental image"
-msgstr ""
+msgstr "Ontvang het laatste experimentele image"
 
 msgid "Get latest release image"
-msgstr ""
+msgstr "Ontvang het laatste release image"
 
 #
 msgid "Getting plugin information. Please wait..."
@@ -3263,10 +3233,6 @@ msgstr ""
 "Indien het resultaat nu goed is, druk dan op OK."
 
 #
-msgid "Image flash utility"
-msgstr "Image flash utility"
-
-#
 msgid "Import AutoTimer"
 msgstr "Importeren AutoTimer"
 
@@ -3356,10 +3322,10 @@ msgid "Input"
 msgstr "Invoer"
 
 msgid "Input device setup"
-msgstr ""
+msgstr "Invoerapparaat instellingen"
 
 msgid "Input devices"
-msgstr ""
+msgstr "Invoerapparaten"
 
 #
 msgid "Install"
@@ -3420,14 +3386,6 @@ msgstr "Directe opname..."
 #
 msgid "Instant record location"
 msgstr "Direct opnemen locatie"
-
-#
-msgid "Integrated Ethernet"
-msgstr "Geïntegreerde ethernet"
-
-#
-msgid "Integrated Wireless"
-msgstr "Geïntegreerde WiFi"
 
 #
 msgid "Interface: "
@@ -3538,49 +3496,49 @@ msgid "Just Scale"
 msgstr "Alleen schalen"
 
 msgid "Kerni's BrushedAlu-HD skin"
-msgstr ""
+msgstr "Kerni's BrushedAlu-HD skin"
 
 msgid "Kerni's DreamMM-HD skin"
-msgstr ""
+msgstr "Kerni's DreamMM-HD skin"
 
 msgid "Kerni's Elgato-HD skin"
-msgstr ""
+msgstr "Kerni's Elgato-HD skin"
 
 msgid "Kerni's SWAIN skin"
-msgstr ""
+msgstr "Kerni's SWAIN skin"
 
 msgid "Kerni's SWAIN-HD skin"
-msgstr ""
+msgstr "Kerni's SWAIN-HD skin"
 
 msgid "Kerni's UltraViolet skin"
-msgstr ""
+msgstr "Kerni's UltraViolet skin"
 
 msgid "Kerni's YADS-HD skin"
-msgstr ""
+msgstr "Kerni's YADS-HD skin"
 
 msgid "Kerni's dTV-HD skin"
-msgstr ""
+msgstr "Kerni's dTV-HD skin"
 
 msgid "Kerni's dTV-HD-Reloaded skin"
-msgstr ""
+msgstr "Kerni's dTV-HD-Reloaded skin"
 
 msgid "Kerni's dmm-HD skin"
-msgstr ""
+msgstr "Kerni's dmm-HD skin"
 
 msgid "Kerni's dreamTV-HD skin"
-msgstr ""
+msgstr "Kerni's dreamTV-HD skin"
 
 msgid "Kerni's simple skin"
 msgstr ""
 
 msgid "Kerni-HD1 skin"
-msgstr ""
+msgstr "Kerni-HD1 skin"
 
 msgid "Kerni-HD1R2 skin"
-msgstr ""
+msgstr "Kerni-HD1R2 skin"
 
 msgid "Kernis HD1 skin"
-msgstr ""
+msgstr "Kernis HD1 skin"
 
 #
 #, python-format
@@ -3810,7 +3768,7 @@ msgid "Manage extensions"
 msgstr "Beheer extensies"
 
 msgid "Manage local files"
-msgstr ""
+msgstr "Beheren van lokale bestanden"
 
 msgid "Manage logos to display at boot time or while in radio mode."
 msgstr ""
@@ -4182,6 +4140,11 @@ msgstr "MyTube Help Scherm"
 msgid "N/A"
 msgstr "Niet beschikbaar"
 
+msgid ""
+"NCID Client shows incoming voice calls promoted by any NCID server (e.g. "
+"Vodafone Easybox) on your Dreambox."
+msgstr ""
+
 #
 msgid "NEXT"
 msgstr "VOLGENDE"
@@ -4228,100 +4191,100 @@ msgid "Nameserver settings"
 msgstr "Nameserver instellingen"
 
 msgid "Nemesis BlackBox Skin"
-msgstr ""
+msgstr "Nemesis BlackBox Skin"
 
 msgid "Nemesis BlackBox Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis BlackBox Skin voor de Dreambox"
 
 msgid "Nemesis Blueline Single Skin"
-msgstr ""
+msgstr "Nemesis Blueline Single Skin"
 
 msgid "Nemesis Blueline Single Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Blueline Single Skin voor de Dreambox"
 
 msgid "Nemesis Blueline Skin"
-msgstr ""
+msgstr "Nemesis Blueline Skin"
 
 msgid "Nemesis Blueline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Blueline Skin voor de Dreambox"
 
 msgid "Nemesis Blueline.Extended Skin"
-msgstr ""
+msgstr "Nemesis Blueline.Extended Skin"
 
 msgid "Nemesis Blueline.Extended Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Blueline.Extended Skin voor de Dreambox"
 
 msgid "Nemesis ChromeLine Cobolt Skin"
-msgstr ""
+msgstr "Nemesis ChromeLine Cobolt Skin"
 
 msgid "Nemesis ChromeLine Cobolt Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis ChromeLine Cobolt Skin voor de Dreambox"
 
 msgid "Nemesis ChromeLine Skin"
-msgstr ""
+msgstr "Nemesis ChromeLine Skin"
 
 msgid "Nemesis ChromeLine Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis ChromeLine Skin voor de Dreambox"
 
 msgid "Nemesis Flatline Blue Skin"
-msgstr ""
+msgstr "Nemesis Flatline Blue Skin"
 
 msgid "Nemesis Flatline Blue Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Flatline Blue Skin voor de Dreambox"
 
 msgid "Nemesis Flatline Skin"
-msgstr ""
+msgstr "Nemesis Flatline Skin"
 
 msgid "Nemesis Flatline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Flatline Skin voor de Dreambox"
 
 msgid "Nemesis GlassLine Skin"
-msgstr ""
+msgstr "Nemesis GlassLine Skin"
 
 msgid "Nemesis GlassLine Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis GlassLine Skin voor de Dreambox"
 
 msgid "Nemesis Greenline Extended Skin"
-msgstr ""
+msgstr "Nemesis Greenline Extended Skin"
 
 msgid "Nemesis Greenline Extended Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greenline Extended Skin voor de Dreambox"
 
 msgid "Nemesis Greenline Single Skin"
-msgstr ""
+msgstr "Nemesis Greenline Single Skin"
 
 msgid "Nemesis Greenline Single Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greenline Single Skin voor de Dreambox"
 
 msgid "Nemesis Greenline Skin"
-msgstr ""
+msgstr "Nemesis Greenline Skin"
 
 msgid "Nemesis Greenline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greenline Skin voor de Dreambox"
 
 msgid "Nemesis Greyline Extended Skin"
-msgstr ""
+msgstr "Nemesis Greyline Extended Skin"
 
 msgid "Nemesis Greyline Extended Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greyline Extended Skin voor de Dreambox"
 
 msgid "Nemesis Greyline Single Skin"
-msgstr ""
+msgstr "Nemesis Greyline Single Skin"
 
 msgid "Nemesis Greyline Single Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greyline Single Skin voor de Dreambox"
 
 msgid "Nemesis Greyline Skin"
-msgstr ""
+msgstr "Nemesis Greyline Skin"
 
 msgid "Nemesis Greyline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greyline Skin voor de Dreambox"
 
 msgid "Nemesis ShadowLine Skin"
-msgstr ""
+msgstr "Nemesis ShadowLine Skin"
 
 msgid "Nemesis ShadowLine Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis ShadowLine Skin voor de Dreambox"
 
 #
 msgid "Netmask"
@@ -4388,13 +4351,12 @@ msgstr "Nooit"
 msgid "New"
 msgstr "Nieuw"
 
+msgid "New PIN"
+msgstr ""
+
 #
 msgid "New Zealand"
 msgstr "Nieuw-Zeeland"
-
-#
-msgid "New pin"
-msgstr "Nieuwe pincode"
 
 #
 msgid "New version:"
@@ -4521,10 +4483,6 @@ msgid ""
 msgstr ""
 "Geen tuner geactiveerd!\n"
 "Controleer uw tunerinstellingen alvorens zenders te zoeken."
-
-#
-msgid "No useable USB stick found"
-msgstr "Geen bruikbare USB stick gevonden"
 
 #
 msgid ""
@@ -4815,10 +4773,6 @@ msgid "Packet manager"
 msgstr "Pakketbeheer"
 
 #
-msgid "Page"
-msgstr "Pagina"
-
-#
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr "Pan&Scan"
@@ -4860,7 +4814,7 @@ msgid "People & Blogs"
 msgstr "Mensen & Blogs"
 
 msgid "PermanentClock shows the clock permanently on the screen."
-msgstr ""
+msgstr "PermanentClock toont de klok permanent op het scherm."
 
 msgid "Pets & Animals"
 msgstr "Huisdieren & Dieren"
@@ -4911,10 +4865,10 @@ msgid "Play YouTube movies"
 msgstr "Afspelen YouTube filmpjes"
 
 msgid "Play music from Last.fm"
-msgstr ""
+msgstr "Afspelen van muziek via Last.fm"
 
 msgid "Play music from Last.fm."
-msgstr ""
+msgstr "Afspelen van muziek via Last.fm."
 
 #
 msgid "Play next video"
@@ -4929,10 +4883,10 @@ msgid "Play video again"
 msgstr "Speel video opnieuw"
 
 msgid "Play videos from PC on your Dreambox"
-msgstr ""
+msgstr "Video's afspelen vanaf de pc op je Dreambox"
 
 msgid "Playback of Youtube through a PC"
-msgstr ""
+msgstr "Het afspelen van Youtube door middel van een PC"
 
 msgid "Player for Network and Internet Streams"
 msgstr ""
@@ -4955,6 +4909,11 @@ msgstr "Selecteer het te scannen medium..."
 msgid "Please add titles to the compilation."
 msgstr "Gelieve titels aan de compilatie toe te voegen."
 
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
+
 #
 msgid "Please change recording endtime"
 msgstr "Wijzig de opname eindtijd a.u.b."
@@ -4962,10 +4921,6 @@ msgstr "Wijzig de opname eindtijd a.u.b."
 #
 msgid "Please check your network settings!"
 msgstr "Controleer uw netwerkinstellingen a.u.b.!"
-
-#
-msgid "Please choose .NFI image file from feed server to download"
-msgstr "Kies .NFI image bestand van feed server om te downloaden"
 
 #
 msgid "Please choose an extension..."
@@ -4999,14 +4954,6 @@ msgstr ""
 "Druk op OK om verder te gaan."
 
 #
-msgid ""
-"Please disconnect all USB devices from your Dreambox and (re-)attach the "
-"target USB stick (minimum size is 64 MB) now!"
-msgstr ""
-"Verwijder al uw USB apparaten van uw Dreambox en plaats nu de doel USB stick "
-"(min grootte van 64 mb)!"
-
-#
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr ""
 "Wijzig hier geen instellingen indien u niet precies weet waar u mee bezig "
@@ -5036,9 +4983,8 @@ msgstr "Voer de naam van de nieuwe map in a.u.b."
 msgid "Please enter the correct pin code"
 msgstr "Gelieve de juiste pincode in te voeren"
 
-#
-msgid "Please enter the old pin code"
-msgstr "Oude pincode invoeren a.u.b."
+msgid "Please enter the old PIN code"
+msgstr ""
 
 #
 msgid "Please enter your email address here:"
@@ -5076,10 +5022,6 @@ msgid "Please provide a Text to match"
 msgstr "Geef aub een tekst in om te vergelijken."
 
 #
-msgid "Please select .NFI flash image file from medium"
-msgstr "Selecteer.NFI flash image bestand van medium"
-
-#
 msgid "Please select a playlist to delete..."
 msgstr "Selecteer de afspeellijst die u wilt verwijderen..."
 
@@ -5100,7 +5042,7 @@ msgid "Please select a subservice..."
 msgstr "Selecteer een subzender..."
 
 msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
+msgstr "Selecteer een NFI-bestand en druk op de groene toets om te flashen!"
 
 #
 msgid "Please select an extension to remove."
@@ -5117,10 +5059,6 @@ msgstr "Selecteer het te gebruiken medium als back-up locatie..."
 #
 msgid "Please select tag to filter..."
 msgstr "Selecteer markering om te filteren..."
-
-#
-msgid "Please select target directory or medium"
-msgstr "Selecteer doelmap of medium"
 
 #
 msgid "Please select the movie path..."
@@ -5345,7 +5283,7 @@ msgid "Predefined transponder"
 msgstr "Vooraf ingestelde transponder"
 
 msgid "Prepare another USB stick for image flashing"
-msgstr ""
+msgstr "Maak een andere USB-stick klaar voor image flashing"
 
 #
 msgid "Preparing... Please wait"
@@ -5425,10 +5363,6 @@ msgstr "Druk OK om te zoeken."
 #
 msgid "Press OK to toggle the selection."
 msgstr "Druk op OK om te selecteren."
-
-#
-msgid "Press OK to view full changelog"
-msgstr "Druk op OK en bekijk de volledige changelog"
 
 #
 msgid "Press yellow to set this interface as default interface."
@@ -5632,9 +5566,8 @@ msgstr "Opnames"
 msgid "Recordings always have priority"
 msgstr "Een opname heeft altijd voorrang"
 
-#
-msgid "Reenter new pin"
-msgstr "Voer nieuwe pincode nogmaals in"
+msgid "Reenter new PIN"
+msgstr ""
 
 #
 msgid "Refresh Rate"
@@ -5659,13 +5592,11 @@ msgstr "Herlaad"
 msgid "Reload Black-/Whitelists"
 msgstr "Herlaad zwarte-/witte lijst"
 
-#
-msgid "Remember service pin"
-msgstr "Onthoud service pin"
+msgid "Remember service PIN"
+msgstr ""
 
-#
-msgid "Remember service pin cancel"
-msgstr "Herinner service pin annuleren"
+msgid "Remember service PIN cancel"
+msgstr ""
 
 msgid "Remote timer and remote TV player"
 msgstr ""
@@ -5705,14 +5636,6 @@ msgstr "Verwijderen"
 #
 msgid "Remove selected AutoTimer"
 msgstr "Verwijder geselecteerde Autotimer"
-
-#
-msgid "Remove the broken .NFI file?"
-msgstr "Verwijder het defecte .NFI bestand?"
-
-#
-msgid "Remove the incomplete .NFI file?"
-msgstr "Verwijder het onvolledige .NFI bestand?"
 
 #
 msgid "Remove timer"
@@ -5857,7 +5780,7 @@ msgid "Restore system settings"
 msgstr "Herstel uw instellingen"
 
 msgid "Restore your Dreambox with a USB stick"
-msgstr ""
+msgstr "Herstel uw Dreambox met een USB-stick"
 
 #
 msgid "Restrict \"after event\" to a certain timespan?"
@@ -5913,7 +5836,7 @@ msgstr "Rotor draaisnelheid"
 
 #
 msgid "Running"
-msgstr "Geactiveerd"
+msgstr "In behandeling"
 
 #
 msgid "Russia"
@@ -6124,14 +6047,6 @@ msgstr ""
 msgid "Scan range"
 msgstr "Scanbereik"
 
-#
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
-"selected wireless device.\n"
-msgstr ""
-"Doorzoek uw netwerk naar draadloze Access Points en connecteer met behulp "
-"van uw geselecteerde draadloze apparaat.\n"
-
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
@@ -6256,10 +6171,6 @@ msgid "Select a timer to import"
 msgstr "Kies een timer om te importeren"
 
 #
-msgid "Select audio mode"
-msgstr "Kies audio modus"
-
-#
 msgid "Select audio track"
 msgstr "Kies audiospoor"
 
@@ -6276,28 +6187,20 @@ msgid "Select channel to record on"
 msgstr "Kies zender voor opname"
 
 msgid "Select desired image from feed list"
-msgstr ""
+msgstr "Selecteer het gewenste bestand van de feed lijst"
 
 msgid "Select files for backup."
 msgstr "Selecteer bestanden voor back-up."
 
 #
-msgid "Select files for backup. Currently selected:\n"
-msgstr "Kies bestanden voor back-up. Momenteel geselecteerd:\n"
-
-#
 msgid "Select files/folders to backup"
 msgstr "Kies bestanden/mappen om te back-uppen"
 
-#
-msgid "Select image"
-msgstr "Selecteer bestand"
-
 msgid "Select input device"
-msgstr ""
+msgstr "Selecteer invoerapparaat"
 
 msgid "Select input device."
-msgstr ""
+msgstr "Selecteer invoerapparaat."
 
 #
 msgid "Select interface"
@@ -6359,10 +6262,6 @@ msgstr "Secteer draadloos netwerk"
 #
 msgid "Select your choice."
 msgstr "Selecteer uw keuze."
-
-#
-msgid "Selected source image"
-msgstr "Selecteer bron bestand"
 
 #
 msgid "Send DiSEqC"
@@ -6457,7 +6356,7 @@ msgstr ""
 
 #
 msgid "Set End Time"
-msgstr ""
+msgstr "Zet eind tijd"
 
 #
 msgid "Set Voltage and 22KHz"
@@ -6608,11 +6507,14 @@ msgstr ""
 msgid "Shows a list of recent zap entries"
 msgstr ""
 
+msgid "Shows average bitrate of video and audio"
+msgstr ""
+
 msgid "Shows statistics of watched services"
 msgstr ""
 
 msgid "Shows the clock permanently on the screen"
-msgstr ""
+msgstr "Toont de klok permanent op het scherm"
 
 #
 msgid "Shows the state of your wireless LAN connection.\n"
@@ -6880,7 +6782,7 @@ msgid "Std. Feeds"
 msgstr "Std. Feeds"
 
 msgid "Step by step network configuration"
-msgstr ""
+msgstr "Stap voor stap netwerkconfiguratie"
 
 #
 msgid "Step east"
@@ -6905,10 +6807,6 @@ msgstr "Stappen in ms voor Toetsen  '%s'"
 #
 msgid "Step west"
 msgstr "Stap > west"
-
-#
-msgid "Stereo"
-msgstr "Stereo"
 
 #
 msgid "Stop"
@@ -7161,6 +7059,12 @@ msgstr ""
 "De netwerk wizard extensie is niet geïnstalleerd!\n"
 "Installeer deze a.u.b."
 
+msgid "The PIN code has been changed successfully."
+msgstr ""
+
+msgid "The PIN codes you entered are different."
+msgstr ""
+
 msgid ""
 "The PicturePlayer displays your photos on the TV.\n"
 "You can view them as thumbnails or slideshow."
@@ -7208,18 +7112,12 @@ msgstr ""
 "Wanneer een tijdspanne is gespecificeerd, dan zal een gebeurtenis alleen "
 "overeenkomen met de AutoTimer indien deze binnen dit tijdspanne ligt."
 
-#
-msgid ""
-"The USB stick is now bootable. Do you want to download the latest image from "
-"the feed server and save it on the stick?"
-msgstr ""
-"De USB stick is opstartbaar. Wilt u de laatste image downloaden van de feed "
-"server en opslaan op de stick ?"
-
 msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
 msgstr ""
+"De USB-stick was voorbereid om op te starten.\n"
+"Nu kunt nu een NFI-bestand downloaden!"
 
 msgid ""
 "The VideoEnhancement plugin provides advanced video enhancement settings."
@@ -7311,24 +7209,7 @@ msgid "The match attribute is mandatory."
 msgstr "Het vergelijkings attribuut is verplicht."
 
 msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr ""
-
-#
-msgid ""
-"The md5sum validation failed, the file may be corrupted! Are you sure that "
-"you want to burn this image to flash memory? You are doing this at your own "
-"risk!"
-msgstr ""
-"De md5 validatie is mislukt, het bestand is waarschijnlijk beschadigd! Bent "
-"u zeker dat u dit image wil schrijven naar het flash geheugen? Dit is op uw "
-"eigen risico!"
-
-#
-msgid ""
-"The md5sum validation failed, the file may be downloaded incompletely or be "
-"corrupted!"
-msgstr ""
-"De md5 validatie is mislukt, het bestand is niet compleet of beschadigd!"
+msgstr "De md5sum validatie is mislukt, het bestand is misschien beschadigd!"
 
 #
 msgid "The package doesn't contain anything."
@@ -7344,16 +7225,8 @@ msgid "The path %s already exists."
 msgstr "Het pad %s bestaat al."
 
 #
-msgid "The pin code has been changed successfully."
-msgstr "De pincode is succesvol gewijzigd."
-
-#
 msgid "The pin code you entered is wrong."
 msgstr "De ingevoerde pincode is onjuist."
-
-#
-msgid "The pin codes you entered are different."
-msgstr "De ingevoerde pincodes komen niet overeen."
 
 #
 #, python-format
@@ -7402,6 +7275,8 @@ msgid ""
 "The wizard found a configuration backup. Do you want to restore your old "
 "settings from %s?"
 msgstr ""
+"De wizard vond een configuratie back-up. Wilt u uw oude instellingen van %s "
+"herstellen?"
 
 #
 msgid "The wizard is finished now."
@@ -7461,27 +7336,6 @@ msgid ""
 msgstr ""
 "Er is een certificaat update beschikbaar voor uw dreambox. Wilt u deze "
 "update nu toepassen?"
-
-#
-#, python-format
-msgid "This .NFI file does not contain a valid %s image!"
-msgstr "Dit .NFI bestand bevat geen geldig %s image!"
-
-#
-msgid ""
-"This .NFI file does not have a md5sum signature and is not guaranteed to "
-"work. Do you really want to burn this image to flash memory?"
-msgstr ""
-"Dit .NFI bestand bevat geen geldige md5 signatuur en is niet gegarandeerd om "
-"te werken. Wilt u echt dit image in het flash geheugen schrijven?"
-
-#
-msgid ""
-"This .NFI file has a valid md5 signature. Continue programming this image to "
-"flash memory?"
-msgstr ""
-"Dit .NFI bestand heeft een geldige md5 signatuur. Wilt u dit image in het "
-"flash geheugen schrijven?"
 
 #
 msgid ""
@@ -7772,16 +7626,6 @@ msgid ""
 "for 10 seconds.\n"
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
-
-#
-msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB "
-"stick.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
 "Om de Dreambox firmware te upgraden, ga als volgt te werk :\n"
 "1)Zet uw box af via de knop achteraan het toestel en plaats een opstartbare "
 "USB stick.\n"
@@ -7947,14 +7791,6 @@ msgstr "USB Stick"
 #
 msgid "USB stick wizard"
 msgstr "USB stick wizard"
-
-#
-msgid ""
-"USB stick wizard finished. Your dreambox will now restart with your new "
-"image!"
-msgstr ""
-"USB-stick wizard klaar. Uw Dreambox zal nu opnieuw opstarten met uw nieuw "
-"image!"
 
 #
 msgid "Ukrainian"
@@ -8173,7 +8009,7 @@ msgstr ""
 "Druk daarna op OK."
 
 msgid "Use this input device settings?"
-msgstr ""
+msgstr "Gebruik deze invoerapparaat instellingen?"
 
 msgid "Use this settings?"
 msgstr "Gebruik deze instellingen?"
@@ -8223,6 +8059,9 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
 msgid "Vali-XD skin"
+msgstr "Vali-XD skin"
+
+msgid "Vali.HD.nano skin"
 msgstr ""
 
 msgid ""
@@ -8314,10 +8153,10 @@ msgid "View Count"
 msgstr "Bekijk aantal"
 
 msgid "View Google maps"
-msgstr ""
+msgstr "Bekijk Google Maps"
 
 msgid "View Google maps with your Dreambox."
-msgstr ""
+msgstr "Bekijk Google Maps met je Dreambox."
 
 #
 msgid "View Movies..."
@@ -8424,6 +8263,14 @@ msgstr "Bekeken: "
 #
 msgid "Virtual KeyBoard"
 msgstr "Virtueel Toetsenbord"
+
+msgid "Visualization for the European Installation Bus"
+msgstr ""
+
+msgid ""
+"Visualize and control your lights, dimmers, blinds, thermostats etc. through "
+"EIB/KNX. (linknx server required)"
+msgstr ""
 
 #
 msgid "Voltage mode"
@@ -8695,10 +8542,6 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "Waar de tijdelijke timeshift opnames bewaren?"
 
 #
-msgid "Wireless"
-msgstr "Draadloos"
-
-#
 msgid "Wireless LAN"
 msgstr "Draadloos LAN"
 
@@ -8824,10 +8667,6 @@ msgstr "Schrijffout tijdens opname. Harde schijf vol?\n"
 #
 msgid "Write failed!"
 msgstr "Schrijven mislukt!"
-
-#
-msgid "Writing NFI image file to flash completed"
-msgstr "Schrijven NFI image naar flash is voltooid"
 
 #
 msgid "YPbPr"
@@ -9028,15 +8867,11 @@ msgstr ""
 "volgt, zal de Dreambox u na de update vragen of u uw instellingen terug wilt "
 "plaatsen."
 
-#
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"Voer nu een pincode in en verberg het voor uw kinderen.\n"
-"\n"
-"Wilt u nu een pincode instellen?"
 
 #
 msgid ""
@@ -9201,7 +9036,7 @@ msgid "Zap back to service before tuner setup?"
 msgstr "Wilt u terugkeren naar de vorige zender?"
 
 msgid "Zap between commercials"
-msgstr ""
+msgstr "Zap tussen de commercials"
 
 msgid "ZapStatistic shows the watched services with some statistics."
 msgstr ""
@@ -9232,7 +9067,7 @@ msgid "[move mode]"
 msgstr "[verplaats modus]"
 
 msgid "a HD skin from Kerni"
-msgstr ""
+msgstr "een HD skin van Kerni"
 
 #
 msgid "a gui to assign services/providers to common interface modules"
@@ -9454,10 +9289,6 @@ msgid "chapters"
 msgstr "hoofdstukken"
 
 #
-msgid "choose destination directory"
-msgstr "Kies doelmap"
-
-#
 msgid "circular left"
 msgstr "circular links"
 
@@ -9506,7 +9337,7 @@ msgstr "Map aanmaken"
 
 #, python-format
 msgid "currently installed image: %s"
-msgstr ""
+msgstr "huidig geïnstalleerd image: %s"
 
 #
 msgid "daily"
@@ -9541,7 +9372,7 @@ msgid "delete..."
 msgstr "Wissen..."
 
 msgid "description"
-msgstr ""
+msgstr "beschrijving"
 
 #
 msgid "disable"
@@ -9666,10 +9497,6 @@ msgstr "verlaat netwerk interface lijst"
 #
 msgid "exit networkadapter setup menu"
 msgstr "verlaat netwerkadapter instellingen menu"
-
-#
-msgid "failed"
-msgstr "mislukt"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -9947,6 +9774,9 @@ msgstr "niet geconfigureerd"
 msgid "not locked"
 msgstr "niet vergrendeld"
 
+msgid "not supported"
+msgstr ""
+
 #
 msgid "not used"
 msgstr "niet gebruikt"
@@ -10052,7 +9882,7 @@ msgid "red"
 msgstr "rood"
 
 msgid "redesigned Kerni-HD1 skin"
-msgstr ""
+msgstr "redesigned Kerni-HD1 skin"
 
 msgid "redirect notifications to Growl"
 msgstr ""
@@ -10166,20 +9996,12 @@ msgid "select"
 msgstr "selecteer"
 
 #
-msgid "select .NFI flash file"
-msgstr "selecteer .NFI flash bestand"
-
-#
 msgid "select CAId"
 msgstr "Selecteer CAId"
 
 #
 msgid "select CAId's"
 msgstr "Selecteer CAId's"
-
-#
-msgid "select image from server"
-msgstr "Selecteer bestand van server"
 
 #
 msgid "select interface"
@@ -10197,9 +10019,8 @@ msgstr "Selecteer opname"
 msgid "select the movie path"
 msgstr "Selecteer het opname pad"
 
-#
-msgid "service pin"
-msgstr "zender pincode"
+msgid "service PIN"
+msgstr ""
 
 msgid "set enigma2 to standby-mode after startup"
 msgstr ""
@@ -10208,9 +10029,8 @@ msgstr ""
 msgid "sets the Audio Delay (LipSync)"
 msgstr "Stelt de audio vertraging in (Lipsync)"
 
-#
-msgid "setup pin"
-msgstr "menu pincode"
+msgid "setup PIN"
+msgstr ""
 
 #
 msgid "show DVD main menu"
@@ -10400,6 +10220,9 @@ msgstr "Op huidige positie een markering wijzigen"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Tijd, hoofdstuk, audio en ondertitels instellen"
 
+msgid "tuner is not supported"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr "niet beschikbaar"
@@ -10535,6 +10358,17 @@ msgstr "zapte"
 #~ "sleutel"
 
 #
+#~ msgid ".NFI Download failed:"
+#~ msgstr ".NFI Download mislukt:"
+
+#
+#~ msgid ""
+#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
+#~ msgstr ""
+#~ "Md5 controle was succesvol op .NFI bestand. U kunt dit image veilig "
+#~ "schrijven!"
+
+#
 #~ msgid "/usr/share/enigma2 directory"
 #~ msgstr "/usr/share/enigma2 map"
 
@@ -10607,8 +10441,28 @@ msgstr "zapte"
 #~ msgstr "Bel monitor"
 
 #
+#~ msgid "Cannot parse feed directory"
+#~ msgstr "Kan feed map niet doorgeven"
+
+#
 #~ msgid "Change"
 #~ msgstr "Wijzigen"
+
+#
+#~ msgid "Change dir."
+#~ msgstr "Wijzig map."
+
+#
+#~ msgid "Change service pin"
+#~ msgstr "Wijzig zender pincode"
+
+#
+#~ msgid "Change service pins"
+#~ msgstr "Wijzig zender pincode"
+
+#
+#~ msgid "Change setup pin"
+#~ msgstr "Wijzig menu pincode"
 
 #
 #~ msgid "Choose source"
@@ -10645,10 +10499,6 @@ msgstr "zapte"
 #~ "Probeert opnieuw..."
 
 #
-#~ msgid "Continue"
-#~ msgstr "Doorgaan"
-
-#
 #~ msgid "CrashlogAutoSubmitConfiguration"
 #~ msgstr "Crashlog mailer instellingen"
 
@@ -10669,8 +10519,20 @@ msgstr "zapte"
 #~ msgstr "Verwijder deze verbinding"
 
 #
+#~ msgid "Destination directory"
+#~ msgstr "Doelmap"
+
+#
 #~ msgid "Details"
 #~ msgstr "Details"
+
+#
+#~ msgid "Details for extension: "
+#~ msgstr "Details voor extensies: "
+
+#
+#~ msgid "Disable Subtitles"
+#~ msgstr "Ondertitels uit"
 
 #
 #~ msgid ""
@@ -10699,6 +10561,10 @@ msgstr "zapte"
 #
 #~ msgid "Done - Installed or upgraded %d packages with %d errors"
 #~ msgstr "Klaar - %d pakket(ten) geïnstalleerd of vervangen met %d fouten"
+
+#
+#~ msgid "Download of USB flasher boot image failed: "
+#~ msgstr "Downloaden van USB flasher opstart bestand mislukt: "
 
 #
 #~ msgid "Edit IPKG source URL..."
@@ -10737,6 +10603,12 @@ msgstr "zapte"
 #~ msgstr "Bestandssysteem controle..."
 
 #
+#~ msgid ""
+#~ "First we need to download the latest boot environment for the USB flasher."
+#~ msgstr ""
+#~ "Eerst dienen we de opstart omgeving voor de USB flasher te downloaden."
+
+#
 #~ msgid "Following tasks will be done after you press continue!"
 #~ msgstr "Volgende taken zullen gebeuren nadat u op OK drukt!"
 
@@ -10773,6 +10645,10 @@ msgstr "zapte"
 #~ msgstr "Indien u deze pagina kunt zien, druk dan op OK"
 
 #
+#~ msgid "Image flash utility"
+#~ msgstr "Image flash utility"
+
+#
 #~ msgid "Image-Upgrade"
 #~ msgstr "Image vernieuwen"
 
@@ -10795,6 +10671,14 @@ msgstr "zapte"
 #~ msgstr ""
 #~ "Installeer/ \n"
 #~ "Verwijder"
+
+#
+#~ msgid "Integrated Ethernet"
+#~ msgstr "Geïntegreerde ethernet"
+
+#
+#~ msgid "Integrated Wireless"
+#~ msgstr "Geïntegreerde WiFi"
 
 #
 #~ msgid "Interface: %s"
@@ -10825,8 +10709,16 @@ msgstr "zapte"
 #~ msgstr "Netwerk..."
 
 #
+#~ msgid "New pin"
+#~ msgstr "Nieuwe pincode"
+
+#
 #~ msgid "No 50 Hz, sorry. :("
 #~ msgstr "Geen 50Hz, sorry! :("
+
+#
+#~ msgid "No useable USB stick found"
+#~ msgstr "Geen bruikbare USB stick gevonden"
 
 #
 #~ msgid "No, send them never."
@@ -10839,6 +10731,34 @@ msgstr "zapte"
 #
 #~ msgid "Package details for: "
 #~ msgstr "Pakket details voor:"
+
+#
+#~ msgid "Page"
+#~ msgstr "Pagina"
+
+#
+#~ msgid "Please choose .NFI image file from feed server to download"
+#~ msgstr "Kies .NFI image bestand van feed server om te downloaden"
+
+#
+#~ msgid ""
+#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
+#~ "target USB stick (minimum size is 64 MB) now!"
+#~ msgstr ""
+#~ "Verwijder al uw USB apparaten van uw Dreambox en plaats nu de doel USB "
+#~ "stick (min grootte van 64 mb)!"
+
+#
+#~ msgid "Please enter the old pin code"
+#~ msgstr "Oude pincode invoeren a.u.b."
+
+#
+#~ msgid "Please select .NFI flash image file from medium"
+#~ msgstr "Selecteer.NFI flash image bestand van medium"
+
+#
+#~ msgid "Please select target directory or medium"
+#~ msgstr "Selecteer doelmap of medium"
 
 #
 #~ msgid "Plugin manager"
@@ -10857,6 +10777,10 @@ msgstr "zapte"
 #~ msgstr "Poort"
 
 #
+#~ msgid "Press OK to view full changelog"
+#~ msgstr "Druk op OK en bekijk de volledige changelog"
+
+#
 #~ msgid "RSS Feed URI"
 #~ msgstr "RSS Feed URI"
 
@@ -10869,8 +10793,28 @@ msgstr "zapte"
 #~ msgstr "Opname paden..."
 
 #
+#~ msgid "Reenter new pin"
+#~ msgstr "Voer nieuwe pincode nogmaals in"
+
+#
 #~ msgid "Refresh"
 #~ msgstr "Vernieuwen"
+
+#
+#~ msgid "Remember service pin"
+#~ msgstr "Onthoud service pin"
+
+#
+#~ msgid "Remember service pin cancel"
+#~ msgstr "Herinner service pin annuleren"
+
+#
+#~ msgid "Remove the broken .NFI file?"
+#~ msgstr "Verwijder het defecte .NFI bestand?"
+
+#
+#~ msgid "Remove the incomplete .NFI file?"
+#~ msgstr "Verwijder het onvolledige .NFI bestand?"
 
 #
 #~ msgid "Require Authorization"
@@ -10942,16 +10886,40 @@ msgstr "zapte"
 #~ "Stick.\n"
 
 #
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your selected wireless device.\n"
+#~ msgstr ""
+#~ "Doorzoek uw netwerk naar draadloze Access Points en connecteer met behulp "
+#~ "van uw geselecteerde draadloze apparaat.\n"
+
+#
 #~ msgid "Select IPKG source to edit..."
 #~ msgstr "Selecteer IPKG bron om te bewerken..."
+
+#
+#~ msgid "Select audio mode"
+#~ msgstr "Kies audio modus"
+
+#
+#~ msgid "Select files for backup. Currently selected:\n"
+#~ msgstr "Kies bestanden voor back-up. Momenteel geselecteerd:\n"
 
 #
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Kies bestanden/mappen om te back-uppen..."
 
 #
+#~ msgid "Select image"
+#~ msgstr "Selecteer bestand"
+
+#
 #~ msgid "Select video input"
 #~ msgstr "Selecteer video ingang"
+
+#
+#~ msgid "Selected source image"
+#~ msgstr "Selecteer bron bestand"
 
 #
 #~ msgid "Set as default Interface"
@@ -10993,13 +10961,70 @@ msgstr "zapte"
 #~ "Kies een andere locatie a.u.b..."
 
 #
+#~ msgid "Stereo"
+#~ msgstr "Stereo"
+
+#
 # L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/AC3main.py:94
 #~ msgid "Switch audio"
 #~ msgstr "Kies audio"
 
 #
+#~ msgid ""
+#~ "The USB stick is now bootable. Do you want to download the latest image "
+#~ "from the feed server and save it on the stick?"
+#~ msgstr ""
+#~ "De USB stick is opstartbaar. Wilt u de laatste image downloaden van de "
+#~ "feed server en opslaan op de stick ?"
+
+#
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
+#~ "that you want to burn this image to flash memory? You are doing this at "
+#~ "your own risk!"
+#~ msgstr ""
+#~ "De md5 validatie is mislukt, het bestand is waarschijnlijk beschadigd! "
+#~ "Bent u zeker dat u dit image wil schrijven naar het flash geheugen? Dit "
+#~ "is op uw eigen risico!"
+
+#
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be downloaded incompletely or "
+#~ "be corrupted!"
+#~ msgstr ""
+#~ "De md5 validatie is mislukt, het bestand is niet compleet of beschadigd!"
+
+#
+#~ msgid "The pin code has been changed successfully."
+#~ msgstr "De pincode is succesvol gewijzigd."
+
+#
+#~ msgid "The pin codes you entered are different."
+#~ msgstr "De ingevoerde pincodes komen niet overeen."
+
+#
 #~ msgid "There is nothing to be done."
 #~ msgstr "Er is niets om uit te voeren."
+
+#
+#~ msgid "This .NFI file does not contain a valid %s image!"
+#~ msgstr "Dit .NFI bestand bevat geen geldig %s image!"
+
+#
+#~ msgid ""
+#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
+#~ "work. Do you really want to burn this image to flash memory?"
+#~ msgstr ""
+#~ "Dit .NFI bestand bevat geen geldige md5 signatuur en is niet gegarandeerd "
+#~ "om te werken. Wilt u echt dit image in het flash geheugen schrijven?"
+
+#
+#~ msgid ""
+#~ "This .NFI file has a valid md5 signature. Continue programming this image "
+#~ "to flash memory?"
+#~ msgstr ""
+#~ "Dit .NFI bestand heeft een geldige md5 signatuur. Wilt u dit image in het "
+#~ "flash geheugen schrijven?"
 
 #
 #~ msgid "This Dreambox can't decode %s video streams!"
@@ -11014,8 +11039,32 @@ msgstr "zapte"
 #~ msgstr "Timeshift pad..."
 
 #
+#~ msgid ""
+#~ "To update your Dreambox firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and plug in the bootable "
+#~ "USB stick.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
+#~ "for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Om de Dreambox firmware te upgraden, ga als volgt te werk :\n"
+#~ "1)Zet uw box af via de knop achteraan het toestel en plaats een "
+#~ "opstartbare USB stick.\n"
+#~ "2)Zet de box aan via dezelfde knop en druk op de DOWN toets gedurende 10 "
+#~ "seconden.\n"
+#~ "3)Wacht op het opstarten en volg de instructies van de wizard."
+
+#
 #~ msgid "USB"
 #~ msgstr "USB"
+
+#
+#~ msgid ""
+#~ "USB stick wizard finished. Your dreambox will now restart with your new "
+#~ "image!"
+#~ msgstr ""
+#~ "USB-stick wizard klaar. Uw Dreambox zal nu opnieuw opstarten met uw nieuw "
+#~ "image!"
 
 #
 #~ msgid ""
@@ -11082,6 +11131,14 @@ msgstr "zapte"
 #~ msgstr "Welke vertragingen wilt u instellen..."
 
 #
+#~ msgid "Wireless"
+#~ msgstr "Draadloos"
+
+#
+#~ msgid "Writing NFI image file to flash completed"
+#~ msgstr "Schrijven NFI image naar flash is voltooid"
+
+#
 #~ msgid "Yes, and don't ask again."
 #~ msgstr "Ja, en niet meer vragen."
 
@@ -11125,6 +11182,16 @@ msgstr "zapte"
 #~ "OK om de back-up te starten."
 
 #
+#~ msgid ""
+#~ "You need to set a pin code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "Voer nu een pincode in en verberg het voor uw kinderen.\n"
+#~ "\n"
+#~ "Wilt u nu een pincode instellen?"
+
+#
 #~ msgid "Your TV works with 50 Hz. Good!"
 #~ msgstr "Uw TV werkt prima op 50Hz!"
 
@@ -11161,12 +11228,20 @@ msgstr "zapte"
 #~ msgstr "Toegewezen Zenders/Provider:"
 
 #
+#~ msgid "choose destination directory"
+#~ msgstr "Kies doelmap"
+
+#
 #~ msgid "enigma2 and network"
 #~ msgstr "enigma2 en netwerk"
 
 #
 #~ msgid "exit network adapter setup menu"
 #~ msgstr "verlaat netwerkadapter instellingen menu"
+
+#
+#~ msgid "failed"
+#~ msgstr "mislukt"
 
 #
 #~ msgid "hidden network"
@@ -11193,10 +11268,26 @@ msgstr "zapte"
 #~ msgstr "open virtueel toetsenbord hulp"
 
 #
+#~ msgid "select .NFI flash file"
+#~ msgstr "selecteer .NFI flash bestand"
+
+#
+#~ msgid "select image from server"
+#~ msgstr "Selecteer bestand van server"
+
+#
+#~ msgid "service pin"
+#~ msgstr "zender pincode"
+
+#
 # L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:34
 # L:\Dreambox\Eclipse\enigma2-plugins\ac3lipsync\src/plugin.py:36
 #~ msgid "sets the AC3 audio Delay (LipSync)"
 #~ msgstr "Stel de AC3 audio vertraging in (LipSync)"
+
+#
+#~ msgid "setup pin"
+#~ msgstr "menu pincode"
 
 #
 #~ msgid "until restart"
