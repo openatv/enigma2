@@ -20,7 +20,6 @@ from Components.Sources.ServiceEvent import ServiceEvent
 profile("ChannelSelection.py 2.3")
 from Components.Input import Input
 profile("ChannelSelection.py 3")
-from Components.ParentalControl import parentalControl
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
 from Screens.InputBox import InputBox, PinInput
@@ -77,6 +76,7 @@ def append_when_current_valid(current, menu, args, level = 0, key = ""):
 
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
+		from Components.ParentalControl import parentalControl
 		Screen.__init__(self, session)
 		#raise Exception("we need a better summary screen here")
 		self.csel = csel

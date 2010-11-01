@@ -20,8 +20,6 @@ IMG_WHITEBOUQUET = LIST_WHITELIST + "-" + TYPE_BOUQUET
 IMG_BLACKSERVICE = LIST_BLACKLIST + "-" + TYPE_SERVICE
 IMG_BLACKBOUQUET = LIST_BLACKLIST + "-" + TYPE_BOUQUET
 
-parentalControl = None
-
 def InitParentalControl():
 	global parentalControl
 	parentalControl = ParentalControl()
