@@ -85,6 +85,11 @@ if test "$with_memcheck" = "yes"; then
 	AC_DEFINE([MEMLEAK_CHECK],[1],[Define to 1 to enable memory leak checks])
 fi
 
+AC_ARG_WITH(po,
+	AS_HELP_STRING([--without-po],[disable updating of po files]),
+	[with_po="$withval"],[with_po="yes"])
+AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
+
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CXXFLAGS="$CXXFLAGS $BASE_CFLAGS $PTHREAD_CFLAGS $DEBUG_CFLAGS -fno-rtti -fno-exceptions -Wall"
 
