@@ -28,7 +28,9 @@ eWindowStyleManager::~eWindowStyleManager()
 
 void eWindowStyleManager::getStyle(int style_id, ePtr<eWindowStyle> &style)
 {
-	style = m_current_style[style_id];
+	std::map<int, ePtr<eWindowStyle> >::iterator it = m_current_style.find(style_id);
+	ASSERT(it != m_current_style.end());
+	style = it->second;
 }
 
 void eWindowStyleManager::setStyle(int style_id, eWindowStyle *style)
