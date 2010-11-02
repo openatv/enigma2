@@ -76,7 +76,7 @@ def append_when_current_valid(current, menu, args, level = 0, key = ""):
 
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
-		from Components.ParentalControl import parentalControl
+
 		Screen.__init__(self, session)
 		#raise Exception("we need a better summary screen here")
 		self.csel = csel
@@ -106,6 +106,7 @@ class ChannelContextMenu(Screen):
 				isPlayable = not (current_sel_flags & (eServiceReference.isMarker|eServiceReference.isDirectory))
 				if isPlayable:
 					if config.ParentalControl.configured.value:
+						from Components.ParentalControl import parentalControl
 						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							append_when_current_valid(current, menu, (_("add to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level = 0)
 						else:
@@ -191,6 +192,7 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def addParentalProtection(self, service):
+		from Components.ParentalControl import parentalControl
 		parentalControl.protectService(service.toCompareString())
 		self.close()
 
@@ -199,6 +201,7 @@ class ChannelContextMenu(Screen):
 
 	def pinEntered(self, service, result):
 		if result:
+			from Components.ParentalControl import parentalControl
 			parentalControl.unProtectService(service)
 			self.close()
 		else:
