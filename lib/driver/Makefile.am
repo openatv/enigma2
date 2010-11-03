@@ -4,6 +4,9 @@ AM_CPPFLAGS = \
 	-include Python.h \
 	-include $(top_builddir)/enigma2_config.h
 
+AM_CXXFLAGS = \
+	$(LIBSDL_CFLAGS)
+
 noinst_LIBRARIES = libenigma_driver.a
 
 libenigma_driver_a_SOURCES = \
@@ -27,3 +30,9 @@ driverinclude_HEADERS = \
 	rcdreambox2.h \
 	rcinput.h \
 	rfmod.h
+
+if HAVE_LIBSDL
+libenigma_driver_a_SOURCES += \
+	rcsdl.cpp \
+	rcsdl.h
+endif
