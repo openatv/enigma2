@@ -1,5 +1,5 @@
 from MenuList import MenuList
-from Components.ParentalControl import parentalControl, IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET
+from Components.ParentalControl import IMG_WHITESERVICE, IMG_WHITEBOUQUET, IMG_BLACKSERVICE, IMG_BLACKBOUQUET
 from Tools.Directories import SCOPE_SKIN_IMAGE, resolveFilename
 
 from enigma import eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT
@@ -32,13 +32,14 @@ class ParentalControlList(MenuList):
 		self.l.setItemHeight(32)
 
 	def toggleSelectedLock(self):
+		from Components.ParentalControl import parentalControl
 		print "self.l.getCurrentSelection():", self.l.getCurrentSelection()
 		print "self.l.getCurrentSelectionIndex():", self.l.getCurrentSelectionIndex()
 		curSel = self.l.getCurrentSelection()
 		if curSel[0][2]:
 			parentalControl.unProtectService(self.l.getCurrentSelection()[0][0])
 		else:
-			parentalControl.protectService(self.l.getCurrentSelection()[0][0])	
+			parentalControl.protectService(self.l.getCurrentSelection()[0][0])
 		#Instead of just negating the locked- flag, now I call the getProtectionType every time...
 		self.list[self.l.getCurrentSelectionIndex()] = ParentalControlEntryComponent(curSel[0][0], curSel[0][1], parentalControl.getProtectionType(curSel[0][0]))
 		self.l.setList(self.list)
