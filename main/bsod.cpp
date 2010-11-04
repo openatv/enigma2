@@ -300,7 +300,6 @@ void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 void bsodCatchSignals()
 {
 	struct sigaction act;
-	act.sa_handler = SIG_DFL;
 	act.sa_sigaction = handleFatalSignal;
 	act.sa_flags = SA_RESTART | SA_SIGINFO;
 	if (sigemptyset(&act.sa_mask) == -1)
