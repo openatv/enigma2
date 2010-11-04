@@ -232,6 +232,30 @@ eEPGCache::eEPGCache()
 			timeUpdated();
 	}
 	instance=this;
+
+	memset(m_filename, 0, sizeof(m_filename));
+
+	FILE *f = fopen("/etc/enigma2/epg.dat.src", "r");
+	if (f)
+	{
+		int rd = fread(m_filename, 1, 255, f);
+		if (rd > 0)
+		{
+			m_filename[rd] = 0;
+			char *p=strchr(m_filename, '\n');
+			if (p)
+				m_filename[p-m_filename] = 0;
+			p=strchr(m_filename, '\t');
+			if (p)
+				m_filename[p-m_filename] = 0;
+		}
+		fclose(f);
+	}
+
+	if (!strlen(m_filename))
+		strcpy(m_filename, "/hdd/epg.dat");
+
+	eDebug("[EPGC] read/write epg data from/to '%s'", m_filename);
 }
 
 void eEPGCache::timeUpdated()
@@ -962,30 +986,13 @@ void eEPGCache::thread()
 
 void eEPGCache::load()
 {
-	FILE *f = fopen("/hdd/epg.dat", "r");
+	FILE *f = fopen(m_filename, "r");
 	if (f)
 	{
-		unlink("/hdd/epg.dat");
+		unlink(m_filename);
 		int size=0;
 		int cnt=0;
-#if 0
-		unsigned char md5_saved[16];
-		unsigned char md5[16];
-		bool md5ok=false;
 
-		if (!md5_file("/hdd/epg.dat", 1, md5))
-		{
-			FILE *f = fopen("/hdd/epg.dat.md5", "r");
-			if (f)
-			{
-				fread( md5_saved, 16, 1, f);
-				fclose(f);
-				if ( !memcmp(md5_saved, md5, 16) )
-					md5ok=true;
-			}
-		}
-		if ( md5ok )
-#endif
 		{
 			unsigned int magic=0;
 			fread( &magic, sizeof(int), 1, f);
@@ -1027,7 +1034,7 @@ void eEPGCache::load()
 					eventDB[key]=std::pair<eventMap,timeMap>(evMap,tmMap);
 				}
 				eventData::load(f);
-				eDebug("[EPGC] %d events read from /hdd/epg.dat", cnt);
+				eDebug("[EPGC] %d events read from %s", cnt, m_filename);
 #ifdef ENABLE_PRIVATE_EPG
 				char text2[11];
 				fread( text2, 11, 1, f);
@@ -1075,15 +1082,23 @@ void eEPGCache::load()
 
 void eEPGCache::save()
 {
+	char *buf = realpath(m_filename, NULL);
+	if (!buf)
+		return;
+
+	eDebug("[EPGC] store epg to '%s'", buf);
+
 	struct statfs s;
 	off64_t tmp;
-	if (statfs("/hdd", &s)<0)
+	if (statfs(buf, &s)<0)
 		tmp=0;
 	else
 	{
 		tmp=s.f_blocks;
 		tmp*=s.f_bsize;
 	}
+
+	free(buf);
 
 	// prevent writes to builtin flash
 	if ( tmp < 1024*1024*50 ) // storage size < 50MB
@@ -1095,7 +1110,7 @@ void eEPGCache::save()
 	if ( tmp < (eventData::CacheSize*12)/10 ) // 20% overhead
 		return;
 
-	FILE *f = fopen("/hdd/epg.dat", "w");
+	FILE *f = fopen(m_filename, "w");
 	int cnt=0;
 	if ( f )
 	{
@@ -1120,7 +1135,7 @@ void eEPGCache::save()
 				++cnt;
 			}
 		}
-		eDebug("[EPGC] %d events written to /hdd/epg.dat", cnt);
+		eDebug("[EPGC] %d events written to %s", cnt, m_filename);
 		eventData::save(f);
 #ifdef ENABLE_PRIVATE_EPG
 		const char* text3 = "PRIVATE_EPG";
@@ -1154,18 +1169,6 @@ void eEPGCache::save()
 		fseek(f, sizeof(int), SEEK_SET);
 		fwrite("ENIGMA_EPG_V7", 13, 1, f);
 		fclose(f);
-#if 0
-		unsigned char md5[16];
-		if (!md5_file("/hdd/epg.dat", 1, md5))
-		{
-			FILE *f = fopen("/hdd/epg.dat.md5", "w");
-			if (f)
-			{
-				fwrite( md5, 16, 1, f);
-				fclose(f);
-			}
-		}
-#endif
 	}
 }
 

@@ -290,6 +290,7 @@ private:
 	void thread();  // thread function
 
 // called from epgcache thread
+	char m_filename[1024];
 	void save();
 	void load();
 #ifdef ENABLE_PRIVATE_EPG
