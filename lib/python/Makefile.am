@@ -28,8 +28,8 @@ EXTRA_DIST = \
 	enigma_python.i
 
 enigma_python_wrap.cxx: $(srcdir)/enigma_python.i
-	$(SWIG) $(AX_SWIG_PYTHON_OPT) -I$(top_srcdir) -O -nortti -nothreads -o $@ $<
-	$(PYTHON) $(srcdir)/enigma_py_patcher.py
+	$(AM_V_GEN)$(SWIG) $(AX_SWIG_PYTHON_OPT) -I$(top_srcdir) -O -nortti -nothreads -o $@ $<
+	$(AM_V_at)$(PYTHON) $(srcdir)/enigma_py_patcher.py
 
 enigma.py: enigma_python_wrap.cxx
 
