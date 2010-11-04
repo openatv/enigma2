@@ -10,7 +10,8 @@ from Tools.Profile import profile, profile_final
 profile("PYTHON_START")
 
 from enigma import runMainloop, eDVBDB, eTimer, quitMainloop, \
-	getDesktop, ePythonConfigQuery, eAVSwitch, eServiceEvent
+	getDesktop, ePythonConfigQuery, eAVSwitch, eServiceEvent, \
+	eEPGCache
 from tools import *
 
 profile("LANGUAGE")
@@ -55,6 +56,9 @@ config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.useTransponderTime = ConfigYesNo(default=True)
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
+config.misc.epgcache_filename = ConfigText(default = "/hdd/epg.dat")
+
+eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
 
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():

@@ -177,7 +177,8 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		eEPGCache *cache;
 		ePtr<eTimer> abortTimer, zapTimer;
 		int prevChannelState;
-		__u8 state, isRunning, haveData;
+		int state;
+		__u8 isRunning, haveData;
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn, m_ViasatConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader, m_ViasatReader;
@@ -290,6 +291,7 @@ private:
 	void thread();  // thread function
 
 // called from epgcache thread
+	int m_running;
 	char m_filename[1024];
 	void save();
 	void load();
@@ -326,6 +328,9 @@ public:
 #endif
 
 #endif
+	// must be called once!
+	void setCacheFile(const char *filename);
+
 	// called from main thread
 	inline void Lock();
 	inline void Unlock();
