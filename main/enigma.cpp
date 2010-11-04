@@ -268,11 +268,6 @@ eApplication *getApplication()
 	return eApp;
 }
 
-void runMainloop()
-{
-	eApp->runLoop();
-}
-
 void quitMainloop(int exitCode)
 {
 	FILE *f = fopen("/proc/stb/fp/was_timer_wakeup", "w");
@@ -295,6 +290,26 @@ void quitMainloop(int exitCode)
 	}
 	exit_code = exitCode;
 	eApp->quit(0);
+}
+
+static void sigterm_handler(int num)
+{
+	quitMainloop(128 + num);
+}
+
+void runMainloop()
+{
+	struct sigaction act;
+
+	act.sa_handler = sigterm_handler;
+	act.sa_flags = SA_RESTART;
+
+	if (sigemptyset(&act.sa_mask) == -1)
+		perror("sigemptyset");
+	if (sigaction(SIGTERM, &act, 0) == -1)
+		perror("SIGTERM");
+
+	eApp->runLoop();
 }
 
 const char *getEnigmaVersionString()
