@@ -23,5 +23,5 @@ BUILT_SOURCES = actionids.h
 CLEANFILES = actionids.h
 
 actionids.h: $(srcdir)/parseactions.py $(top_srcdir)/lib/gui/*.h
-	$(PYTHON) $(srcdir)/parseactions.py include $(top_srcdir)/lib/gui/*.h > $@
-	$(PYTHON) $(srcdir)/parseactions.py parse $(top_srcdir)/lib/gui/*.h >> $@
+	$(AM_V_GEN)$(PYTHON) $(srcdir)/parseactions.py include $(top_srcdir)/lib/gui/*.h > $@
+	$(AM_V_at)$(PYTHON) $(srcdir)/parseactions.py parse $(top_srcdir)/lib/gui/*.h >> $@
