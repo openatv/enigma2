@@ -90,7 +90,7 @@ class VideoWizard(WizardLanguage, Rc):
 		for port in self.hw.getPortList():
 			if self.hw.isPortUsed(port):
 				descr = port
-				if descr == 'DVI' and hw_type in ('dm500hd', 'dm800se'):
+				if descr == 'DVI' and hw_type in ('dm500hd', 'dm800se', 'dm7020hd'):
 					descr = 'HDMI'
 				if port != "DVI-PC":
 					list.append((descr,port))
@@ -108,7 +108,7 @@ class VideoWizard(WizardLanguage, Rc):
 		self.inputSelect(self.selection)
 		if self["portpic"].instance is not None:
 			picname = self.selection
-			if picname == "DVI" and HardwareInfo().get_device_name() in ("dm500hd", "dm800se"):
+			if picname == "DVI" and HardwareInfo().get_device_name() in ("dm500hd", "dm800se", "dm7020hd"):
 				picname = "HDMI"
 			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/" + picname + ".png"))
 		
