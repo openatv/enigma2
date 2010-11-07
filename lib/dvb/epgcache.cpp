@@ -234,15 +234,14 @@ eEPGCache::eEPGCache()
 
 void eEPGCache::setCacheFile(const char *path)
 {
-	if (!strlen(m_filename))
+	bool inited = !!strlen(m_filename);
+	strncpy(m_filename, path, 1024);
+	if (!inited)
 	{
-		strncpy(m_filename, path, 1024);
 		eDebug("[EPGC] setCacheFile read/write epg data from/to '%s'", m_filename);
 		if (eDVBLocalTimeHandler::getInstance()->ready())
 			timeUpdated();
 	}
-	else
-		eDebug("[EPGC] setCacheFile already called... ignore '%s'", path);
 }
 
 void eEPGCache::timeUpdated()

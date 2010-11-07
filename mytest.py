@@ -58,7 +58,9 @@ config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
 config.misc.epgcache_filename = ConfigText(default = "/hdd/epg.dat")
 
-eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
+def setEPGCachePath(configElement):
+	eEPGCache.getInstance().setCacheFile(configElement.value)
+config.misc.epgcache_filename.addNotifier(setEPGCachePath)
 
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():
