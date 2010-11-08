@@ -161,13 +161,13 @@ class CableTransponderSearchSupport:
 				parm.modulation = qam[data[4]]
 				parm.inversion = inv[data[5]]
 				self.__tlist.append(parm)
-		tmpstr = _("Try to find used Transponders in cable network.. please wait...")
-		tmpstr += "\n\n"
-		tmpstr += data[1]
-		tmpstr += " kHz "
-		tmpstr += data[0]
-		self.cable_search_session["text"].setText(tmpstr)
-		
+			tmpstr = _("Try to find used Transponders in cable network.. please wait...")
+			tmpstr += "\n\n"
+			tmpstr += data[1]
+			tmpstr += " kHz "
+			tmpstr += data[0]
+			self.cable_search_session["text"].setText(tmpstr)
+
 	def setTimeout(self):
 		try:
 			self.oldtimeoutvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
