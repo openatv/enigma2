@@ -107,6 +107,7 @@ class CableTransponderSearchSupport:
 			if raw_channel:
 				frontend = raw_channel.getFrontend()
 				if frontend:
+					frontend.closeFrontend() # immediate close... 
 					del frontend
 					del raw_channel
 					return True
