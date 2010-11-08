@@ -118,10 +118,14 @@ class CableTransponderSearchSupport:
 		self.resetTimeout()
 		self.cable_search_container.appClosed.remove(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.remove(self.getCableTransponderData)
+		if val and len(val):
+			if val[0]:
+				self.setCableTransponderSearchResult(self.__tlist)
+			else:
+				self.cable_search_container.sendCtrlC()
+				self.setCableTransponderSearchResult(None)
 		self.cable_search_container = None
 		self.cable_search_session = None
-		if val and len(val) and val[0]:
-			self.setCableTransponderSearchResult(self.__tlist)
 		self.__tlist = None
 		self.cableTransponderSearchFinished()
 
@@ -846,7 +850,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.tlist = tlist
 
 	def cableTransponderSearchFinished(self):
-		self.startScan(self.tlist, self.flags, self.feid)
+		if self.tlist is None:
+			self.tlist = []
+		else:
+			self.startScan(self.tlist, self.flags, self.feid)
 
 	def startScan(self, tlist, flags, feid):
 		if len(tlist):
@@ -1012,7 +1019,8 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def setCableTransponderSearchResult(self, tlist):
-		self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags})
+		if tlist is not None:
+			self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags})
 
 	def cableTransponderSearchFinished(self):
 		self.buildTransponderList()
