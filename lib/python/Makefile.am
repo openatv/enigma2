@@ -19,7 +19,7 @@ pythoninclude_HEADERS = \
 	swig.h
 
 nodist_libenigma_python_a_SOURCES = \
-	enigma_python_wrap.cxx
+	enigma_python.cpp
 
 noinst_PYTHON = \
 	enigma_py_patcher.py
@@ -27,13 +27,16 @@ noinst_PYTHON = \
 EXTRA_DIST = \
 	enigma_python.i
 
-enigma_python_wrap.cxx: $(srcdir)/enigma_python.i
-	$(AM_V_GEN)$(SWIG) $(AX_SWIG_PYTHON_OPT) -I$(top_srcdir) -O -nortti -nothreads -o $@ $<
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/enigma_python.Pcpp@am__quote@
+
+.i.cpp:
+	$(AM_V_GEN)$(SWIG) $(AX_SWIG_PYTHON_OPT) -MT $@ -MD -MF $(DEPDIR)/$*.Tpo -I$(top_srcdir) -O -nortti -nothreads -o $@ $<
+	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Pcpp
 	$(AM_V_at)$(PYTHON) $(srcdir)/enigma_py_patcher.py
 
-enigma.py: enigma_python_wrap.cxx
+enigma.py: enigma_python.cpp
 
-CLEANFILES = enigma.py enigma_python_wrap.cxx
+CLEANFILES = enigma.py enigma_python.cpp
 
 installdir = $(pkglibdir)/python
 
