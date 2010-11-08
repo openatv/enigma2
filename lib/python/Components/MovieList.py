@@ -88,6 +88,7 @@ class MovieList(GUIComponent):
 		self.fontSizesOriginal = (22,18,16)
 		self.fontSizesCompact = (20,14)
 		self.fontSizesMinimal = (20,16)
+		self.itemHeights = (75,37,25)
 
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
@@ -142,6 +143,8 @@ class MovieList(GUIComponent):
 						self.fontSizesCompact = map(int, value.split(","))
 					elif attrib == "fontSizesMinimal":
 						self.fontSizesMinimal = map(int, value.split(","))
+					elif attrib == "itemHeights":
+						self.itemHeights = map(int, value.split(","))
 					else:
 						attribs.append((attrib, value))
 				except Exception, e:
@@ -154,15 +157,15 @@ class MovieList(GUIComponent):
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
 			for i in range(3):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesOriginal[i]))
-			self.itemHeight = 75
+			self.itemHeight = self.itemHeights[0]
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION or self.list_type == MovieList.LISTTYPE_COMPACT:
 			for i in range(2):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesCompact[i]))
-			self.itemHeight = 37
+			self.itemHeight = self.itemHeights[1]
 		else:
 			for i in range(2):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesMinimal[i]))
-			self.itemHeight = 25
+			self.itemHeight = self.itemHeights[2]
 		self.l.setItemHeight(self.itemHeight)
 
 	def invalidateItem(self, index):
@@ -246,55 +249,59 @@ class MovieList(GUIComponent):
 			t = FuzzyTime(begin, inPast = True)
 			begin_string = t[0] + ", " + t[1]
 
+		ih = self.itemHeight
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-182, 30), font = 0, flags = RT_HALIGN_LEFT, text=data.txt))
+			ih1 = (ih * 2) / 5 # 75 -> 30
+			ih2 = (ih * 2) / 3 # 75 -> 50 
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-182, ih1), font = 0, flags = RT_HALIGN_LEFT, text=data.txt))
 			if self.tags:
-				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
+				res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, ih1), font = 2, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(200, 50), size=(200, 20), font = 1, flags = RT_HALIGN_LEFT, text = data.serviceName))
+					res.append(MultiContentEntryText(pos=(200, ih2), size=(200, ih2-ih1), font = 1, flags = RT_HALIGN_LEFT, text = data.serviceName))
 			else:
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, 30), font = 2, flags = RT_HALIGN_RIGHT, text = data.serviceName))
-			res.append(MultiContentEntryText(pos=(0, 30), size=(width, 20), font=1, flags=RT_HALIGN_LEFT, text=data.description))
-			res.append(MultiContentEntryText(pos=(0, 50), size=(200, 20), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+					res.append(MultiContentEntryText(pos=(width-180, 0), size=(180, ih1), font = 2, flags = RT_HALIGN_RIGHT, text = data.serviceName))
+			res.append(MultiContentEntryText(pos=(0, ih1), size=(width, ih2-ih1), font=1, flags=RT_HALIGN_LEFT, text=data.description))
+			res.append(MultiContentEntryText(pos=(0, ih2), size=(200, ih-ih2), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
 			if len:
-			     res.append(MultiContentEntryText(pos=(width-200, 50), size=(198, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+			     res.append(MultiContentEntryText(pos=(width-200, ih2), size=(198, ih-ih2), font=1, flags=RT_HALIGN_RIGHT, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION:
+			ih1 = ((ih * 8) + 14) / 15 # 37 -> 20, round up
 			if len:
 			     lenSize = 58
 			else:
 			     lenSize = 0
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-140, 20), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-			res.append(MultiContentEntryText(pos=(0, 20), size=(width-154-lenSize, 17), font=1, flags=RT_HALIGN_LEFT, text=data.description))
-			res.append(MultiContentEntryText(pos=(width-120, 6), size=(120, 20), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-140, ih1), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+			res.append(MultiContentEntryText(pos=(0, ih1), size=(width-154-lenSize, ih-ih1), font=1, flags=RT_HALIGN_LEFT, text=data.description))
+			res.append(MultiContentEntryText(pos=(width-120, 6), size=(120, ih1), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 			if data.serviceName:
-				res.append(MultiContentEntryText(pos=(width-154-lenSize, 20), size=(154, 17), font = 1, flags = RT_HALIGN_RIGHT, text = data.serviceName))
+				res.append(MultiContentEntryText(pos=(width-154-lenSize, ih1), size=(154, ih-ih1), font = 1, flags = RT_HALIGN_RIGHT, text = data.serviceName))
 			if lenSize:
-			     res.append(MultiContentEntryText(pos=(width-lenSize, 20), size=(lenSize, 20), font=1, flags=RT_HALIGN_RIGHT, text=len))
+			     res.append(MultiContentEntryText(pos=(width-lenSize, ih1), size=(lenSize, ih-ih1), font=1, flags=RT_HALIGN_RIGHT, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT:
+			ih1 = ((ih * 8) + 14) / 15 # 37 -> 20, round up
 			if len:
 			     lenSize = 75
 			else:
 			     lenSize = 0
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-lenSize-22, 20), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-lenSize-22, ih1), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
 			if self.tags:
-				res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
+				res.append(MultiContentEntryText(pos=(width-200, ih1), size=(200, ih-ih1), font = 1, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_LEFT, text = data.serviceName))
+					res.append(MultiContentEntryText(pos=(200, ih1), size=(200, ih-ih1), font = 1, flags = RT_HALIGN_LEFT, text = data.serviceName))
 			else:
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(width-200, 20), size=(200, 17), font = 1, flags = RT_HALIGN_RIGHT, text = data.serviceName))
-			res.append(MultiContentEntryText(pos=(0, 20), size=(200, 17), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+					res.append(MultiContentEntryText(pos=(width-200, ih1), size=(200, ih-ih1), font = 1, flags = RT_HALIGN_RIGHT, text = data.serviceName))
+			res.append(MultiContentEntryText(pos=(0, ih1), size=(200, ih-ih1), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
 			if lenSize:
-			     res.append(MultiContentEntryText(pos=(width-lenSize, 0), size=(lenSize, 20), font=0, flags=RT_HALIGN_RIGHT, text=len))
+			     res.append(MultiContentEntryText(pos=(width-lenSize, 0), size=(lenSize, ih1), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		else:
-			assert(self.list_type == MovieList.LISTTYPE_MINIMAL)
 			if (self.descr_state == MovieList.SHOW_DESCRIPTION) or not len:
-				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, 25), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, 25), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 			else:
-				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-97, 25), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-				res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, 25), font=0, flags=RT_HALIGN_RIGHT, text=len))
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-97, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+				res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, ih), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		return res
 
 	def moveToFirstMovie(self):
