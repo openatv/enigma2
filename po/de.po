@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 09:15+0000\n"
-"PO-Revision-Date: 2010-09-28 12:36+0100\n"
+"POT-Creation-Date: 2010-11-01 13:01+0000\n"
+"PO-Revision-Date: 2010-11-01 14:20+0100\n"
 "Last-Translator: Mladen Horvat <acid-burn@opendreambox.org>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -150,9 +150,8 @@ msgstr "erweiterungen."
 msgid " ms"
 msgstr " ms"
 
-#
 msgid " packages selected."
-msgstr "Pakete ausgewählt."
+msgstr " Pakete ausgewählt."
 
 #
 msgid " updates available."
@@ -259,17 +258,6 @@ msgstr "(DVD-Audiomenü zeigen falls vorh.)"
 #
 msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar wenn mehr als ein Netzwerkadapter aktiv ist."
-
-#
-msgid ".NFI Download failed:"
-msgstr ".NFI Download fehlgeschlagen:"
-
-#
-msgid ""
-".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr ""
-"Die Signatur-Überprüfung der .NFI-Datei war erfolgreich. Sie können diese "
-"Datei ohne Bedenken installieren!"
 
 #
 msgid "0"
@@ -408,6 +396,12 @@ msgstr "??"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A BackToTheRoots-Skin .. or good old times."
+msgstr "Ein BackToTheRoots-Skin"
+
+msgid "A BackToTheRoots-Skin ... or good old times."
+msgstr "Ein BackToTheRoots-Skin ... der guten alten Zeiten wegen."
 
 msgid "A basic ftp client"
 msgstr "FTP-Client für die Dreambox"
@@ -1263,6 +1257,9 @@ msgstr "Kabel"
 msgid "Cache Thumbnails"
 msgstr "Vorschaubilder zwischenspeichern"
 
+msgid "Callmonitor for NCID-based call notification"
+msgstr "Callmonitor für NCID-basierte Dienste"
+
 msgid "Callmonitor for the Fritz!Box routers"
 msgstr "Anrufmonitor für Fritz!Boxen"
 
@@ -1277,10 +1274,6 @@ msgstr "Kanada"
 #
 msgid "Cancel"
 msgstr "Abbrechen"
-
-#
-msgid "Cannot parse feed directory"
-msgstr "Konnte das Feed-Verzeichnis nicht lesen."
 
 #
 msgid "Capacity: "
@@ -1315,10 +1308,6 @@ msgid "Change default recording offset?"
 msgstr "Angepasster Vor-/Nachlauf?"
 
 #
-msgid "Change dir."
-msgstr "Verzeichnis wechseln"
-
-#
 msgid "Change hostname"
 msgstr "Netzwerkname ändern"
 
@@ -1326,17 +1315,14 @@ msgstr "Netzwerkname ändern"
 msgid "Change pin code"
 msgstr "Pincode ändern"
 
-#
-msgid "Change service pin"
-msgstr "Kanal-Pincode ändern"
+msgid "Change service PIN"
+msgstr "Service PIN ändern"
 
-#
-msgid "Change service pins"
-msgstr "Kanal-Pincodes ändern"
+msgid "Change service PINs"
+msgstr "Service PINs ändern"
 
-#
-msgid "Change setup pin"
-msgstr "Einstellungen-Pincode ändern"
+msgid "Change setup PIN"
+msgstr "Setup PIN ändern"
 
 #
 msgid "Change step size"
@@ -1635,6 +1621,9 @@ msgstr "Konstellation"
 #
 msgid "Content does not fit on DVD!"
 msgstr "Inhalt passt nicht auf die DVD!"
+
+msgid "Continue"
+msgstr "Weiter"
 
 #
 msgid "Continue in background"
@@ -2015,14 +2004,6 @@ msgstr "Beschreibung"
 msgid "Deselect"
 msgstr "Markierung aufheben"
 
-#
-msgid "Destination directory"
-msgstr "Zielverzeichnis"
-
-#
-msgid "Details for extension: "
-msgstr "Details für Erweiterung:"
-
 msgid "Details for plugin: "
 msgstr "Details für Plugin: "
 
@@ -2093,10 +2074,6 @@ msgstr "Aus"
 #
 msgid "Disable Picture in Picture"
 msgstr "Bild in Bild ausschalten"
-
-#
-msgid "Disable Subtitles"
-msgstr "Untertitel abschalten"
 
 #
 msgid "Disable crashlog reporting"
@@ -2339,10 +2316,6 @@ msgstr "Lädt Dateien von Rapidshare herunter"
 #
 msgid "Download location"
 msgstr "Download Verzeichnis:"
-
-#
-msgid "Download of USB flasher boot image failed: "
-msgstr "Herunterladen des USB flasher boot image fehlgeschlagen: "
 
 #
 msgid "Downloadable new plugins"
@@ -2945,13 +2918,6 @@ msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr "Generieren Sie Ihren Ai.HD Skin-Stil mit diesem Plugin."
 
 #
-msgid ""
-"First we need to download the latest boot environment for the USB flasher."
-msgstr ""
-"Zuerst muss die neueste Bootumgebung für den USB-Flasher heruntergeladen "
-"werden."
-
-#
 msgid "Flash"
 msgstr "Flash"
 
@@ -3257,7 +3223,7 @@ msgstr "Wie viele Minuten möchten Sie aufnehmen?"
 
 #
 msgid "How to handle found crashlogs?"
-msgstr "Wie sollen gefundene Crashlogs behandelt werden?"
+msgstr "Wenn Crashlogs gefunden werden:"
 
 #
 msgid "Howto & Style"
@@ -3336,10 +3302,6 @@ msgstr ""
 "dabei sicher, dass die beiden untersten Grauschattierungen erkennbar "
 "bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücken Sie OK, wenn Sie mit dem Ergebnis zufrieden sind."
-
-#
-msgid "Image flash utility"
-msgstr ""
 
 #
 msgid "Import AutoTimer"
@@ -3498,14 +3460,6 @@ msgstr "Sofortaufnahme..."
 #
 msgid "Instant record location"
 msgstr "Sofortaufnahme-Verzeichnis"
-
-#
-msgid "Integrated Ethernet"
-msgstr "Eingebaute Netzwerkschnittstelle"
-
-#
-msgid "Integrated Wireless"
-msgstr "Integriertes WLAN"
 
 #
 msgid "Interface: "
@@ -4283,6 +4237,13 @@ msgstr "MyTubeVideohelpScreen"
 msgid "N/A"
 msgstr "N/V"
 
+msgid ""
+"NCID Client shows incoming voice calls promoted by any NCID server (e.g. "
+"Vodafone Easybox) on your Dreambox."
+msgstr ""
+"NCID Client zeit eingehende Sprachanrufe von NCID Servern wie z.b. Vodafone "
+"Easybox auf Ihrer Dreambox."
+
 #
 msgid "NEXT"
 msgstr "NÄCHSTE"
@@ -4492,13 +4453,12 @@ msgstr "Niemals"
 msgid "New"
 msgstr "Neu"
 
+msgid "New PIN"
+msgstr "Neuer PIN"
+
 #
 msgid "New Zealand"
 msgstr "Neu Seeland"
-
-#
-msgid "New pin"
-msgstr "Neuer Pincode"
 
 #
 msgid "New version:"
@@ -4630,10 +4590,6 @@ msgid ""
 msgstr ""
 "Kein Tuner angeschaltet!\n"
 "Bitte die Tuner konfigurieren bevor die Kanalsuche gestartet wird."
-
-#
-msgid "No useable USB stick found"
-msgstr "Kein nutzbarer USB-Stick gefunden"
 
 #
 msgid ""
@@ -4932,10 +4888,6 @@ msgid "Packet manager"
 msgstr "Paketmanager"
 
 #
-msgid "Page"
-msgstr "Seite"
-
-#
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr ""
@@ -5078,6 +5030,13 @@ msgstr "Bitte Medium zum Scannen auswählen"
 msgid "Please add titles to the compilation."
 msgstr "Bitte fügen Sie Titel zur Ihrer Zusammenstellung hinzu."
 
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
+"Bitte beachten Sie, dass jeder den Jugendschutz deaktivieren kann, wenn "
+"keine PIN gesetzt wurde."
+
 #
 msgid "Please change recording endtime"
 msgstr "Bitte Aufnahmeendzeit ändern"
@@ -5085,11 +5044,6 @@ msgstr "Bitte Aufnahmeendzeit ändern"
 #
 msgid "Please check your network settings!"
 msgstr "Bitte überprüfen Sie Ihre Netzwerkeinstellungen"
-
-#
-msgid "Please choose .NFI image file from feed server to download"
-msgstr ""
-"Bitte wählen Sie eine .NFI Image Datei zum Herunterladen vom Feed-Server"
 
 #
 msgid "Please choose an extension..."
@@ -5123,14 +5077,6 @@ msgstr ""
 "Drücken Sie OK zum Fortfahren"
 
 #
-msgid ""
-"Please disconnect all USB devices from your Dreambox and (re-)attach the "
-"target USB stick (minimum size is 64 MB) now!"
-msgstr ""
-"Bitte ziehen Sie jetzt alle USB-Geräte von Ihrer Dreambox ab und stecken "
-"(erneut) den zu benutzenden USB-Stick (Mindestgröße von 64 MB) ein!"
-
-#
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Bitte ändern Sie keine Werte, falls Sie nicht wissen, was Sie tun!"
 
@@ -5158,9 +5104,8 @@ msgstr "Bitte den Namen des neuen Verzeichnisses eingeben"
 msgid "Please enter the correct pin code"
 msgstr "Bitte den korrekten Pincode eingeben"
 
-#
-msgid "Please enter the old pin code"
-msgstr "Bitte den alten Pincode eingeben"
+msgid "Please enter the old PIN code"
+msgstr "Bitte den alten PIN Code eingeben"
 
 #
 msgid "Please enter your email address here:"
@@ -5197,10 +5142,6 @@ msgstr "Bitte OK drücken"
 #
 msgid "Please provide a Text to match"
 msgstr "Bitte zu findenden Text eingeben"
-
-#
-msgid "Please select .NFI flash image file from medium"
-msgstr "Bitte wählen Sie eine .NFI flash image Datei vom Datenträger"
 
 #
 msgid "Please select a playlist to delete..."
@@ -5240,10 +5181,6 @@ msgstr "Bitte wählen Sie einen Datenträger für eine Sicherung"
 #
 msgid "Please select tag to filter..."
 msgstr "Bitte einen Tag zum Filtern auswählen..."
-
-#
-msgid "Please select target directory or medium"
-msgstr "Bitte wählen Sie ein Ziel-Verzeichnis bzw. Datenträger"
 
 #
 msgid "Please select the movie path..."
@@ -5547,10 +5484,6 @@ msgid "Press OK to toggle the selection."
 msgstr "Drücken Sie OK um die Auswahl umzuschalten."
 
 #
-msgid "Press OK to view full changelog"
-msgstr "Drücken Sie OK um das komplette Änderungsprotokoll zu betrachten."
-
-#
 msgid "Press yellow to set this interface as default interface."
 msgstr "Drücken Sie Gelb um diese Schnittstelle als Standard zu setzen."
 
@@ -5758,9 +5691,8 @@ msgstr "Aufnahmen"
 msgid "Recordings always have priority"
 msgstr "Aufnahmen haben immer Vorrang"
 
-#
-msgid "Reenter new pin"
-msgstr "Nochmals den Pincode eingeben"
+msgid "Reenter new PIN"
+msgstr "Neuen PIN erneut eingeben"
 
 #
 msgid "Refresh Rate"
@@ -5786,13 +5718,11 @@ msgstr "aktualisieren"
 msgid "Reload Black-/Whitelists"
 msgstr "Black-/Whitelists neu laden"
 
-#
-msgid "Remember service pin"
-msgstr "Service Pin merken"
+msgid "Remember service PIN"
+msgstr "Service PIN merken"
 
-#
-msgid "Remember service pin cancel"
-msgstr "Service Pin abbruch merken"
+msgid "Remember service PIN cancel"
+msgstr "Service PIN Abbruch merken"
 
 msgid "Remote timer and remote TV player"
 msgstr "Zugriff auf die Timerverwaltung einer zweiten Dreambox"
@@ -5832,14 +5762,6 @@ msgstr "Plugins entfernen"
 #
 msgid "Remove selected AutoTimer"
 msgstr "Markierten AutoTimer löschen"
-
-#
-msgid "Remove the broken .NFI file?"
-msgstr "entferne defekte .NFI Datei?"
-
-#
-msgid "Remove the incomplete .NFI file?"
-msgstr "entferne unvollständige .NFI Datei?"
 
 #
 msgid "Remove timer"
@@ -6256,14 +6178,6 @@ msgstr "Durchsucht Geräte nach Mediendateien."
 msgid "Scan range"
 msgstr "Bereich durchsuchen"
 
-#
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
-"selected wireless device.\n"
-msgstr ""
-"Durchsucht Ihr Netzwerk nach WLAN-Zugangspunkten und stellt eine Verbindung "
-"mit Hilfe Ihres gewählten WLAN-Gerätes her.\n"
-
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
@@ -6394,10 +6308,6 @@ msgid "Select a timer to import"
 msgstr "Wähle zu importierende Aufnahme"
 
 #
-msgid "Select audio mode"
-msgstr "Wählen Sie den Ton-Modus"
-
-#
 msgid "Select audio track"
 msgstr "Wählen Sie eine Tonspur"
 
@@ -6420,16 +6330,8 @@ msgid "Select files for backup."
 msgstr "Dateien zum sichern auswählen."
 
 #
-msgid "Select files for backup. Currently selected:\n"
-msgstr "Zu sichernde Dateien auswählen. Aktuell gewählt:\n"
-
-#
 msgid "Select files/folders to backup"
 msgstr "Wählen Sie Dateien/Ordner für die Sicherung"
-
-#
-msgid "Select image"
-msgstr "Wählen Sie ein Image"
 
 msgid "Select input device"
 msgstr "Eingabegerät auswählen."
@@ -6499,10 +6401,6 @@ msgstr "Funk-Netzwerk auswählen"
 #
 msgid "Select your choice."
 msgstr "Treffen Sie Ihre Wahl."
-
-#
-msgid "Selected source image"
-msgstr "Wählen Sie ein Quell-Image"
 
 #
 msgid "Send DiSEqC"
@@ -6748,6 +6646,9 @@ msgstr "ZapHistoryBrowser zeigt eine Liste der zuletzt gesehenen Sender an."
 
 msgid "Shows a list of recent zap entries"
 msgstr "Zeigt eine Liste der zuletzt gesehenen Kanäle"
+
+msgid "Shows average bitrate of video and audio"
+msgstr "Zeigt die Audio und Video Bitrate an"
 
 msgid "Shows statistics of watched services"
 msgstr "Zeigt Statistiken zu angeschauten Sendungen"
@@ -7049,10 +6950,6 @@ msgid "Step west"
 msgstr "Schritt nach Westen"
 
 #
-msgid "Stereo"
-msgstr "Stereo"
-
-#
 msgid "Stop"
 msgstr "Stopp"
 
@@ -7311,6 +7208,12 @@ msgstr ""
 "Das NetzwerkWizard Plugin ist nicht installiert!\n"
 "Bitte installieren Sie es."
 
+msgid "The PIN code has been changed successfully."
+msgstr "Der PIN Code wurde erfolgreich geändert."
+
+msgid "The PIN codes you entered are different."
+msgstr "Die eingegebenen PIN Codes sind unterschiedlich."
+
 msgid ""
 "The PicturePlayer displays your photos on the TV.\n"
 "You can view them as thumbnails or slideshow."
@@ -7367,14 +7270,6 @@ msgstr ""
 "Der Zeitraum eines AutoTimers ist das erste \"fortgeschrittene\" Attribut. "
 "Wenn ein Zeitraum angegeben ist wird eine Sendung nur hinzugefügt wenn sie "
 "innerhalb dieser Zeitspanne liegt."
-
-#
-msgid ""
-"The USB stick is now bootable. Do you want to download the latest image from "
-"the feed server and save it on the stick?"
-msgstr ""
-"Der USB-Stick ist nun bootfähig. Wollen Sie das neueste Image vom Update-"
-"Server herunterladen und auf dem Stick speichern?"
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -7483,24 +7378,6 @@ msgstr ""
 "Die md5sum Überprüfung ist fehlgeschlagen. Die Datei könnte defekt sein!"
 
 #
-msgid ""
-"The md5sum validation failed, the file may be corrupted! Are you sure that "
-"you want to burn this image to flash memory? You are doing this at your own "
-"risk!"
-msgstr ""
-"Die md5sum-Gültigkeitsprüfung ist fehlgeschlagen, die Datei könnte "
-"beschädigt sein! Sind Sie sicher, dass sie dieses Image in den Flashspeicher "
-"schreiben möchten? Dies geschieht auf eigene Gefahr!"
-
-#
-msgid ""
-"The md5sum validation failed, the file may be downloaded incompletely or be "
-"corrupted!"
-msgstr ""
-"Die md5sum-Gültigkeitsprüfung ist fehlgeschlagen, die Datei könnte "
-"unvollständig heruntergeladen oder beschädigt sein!"
-
-#
 msgid "The package doesn't contain anything."
 msgstr "Das Paket enthält keine Daten"
 
@@ -7514,16 +7391,8 @@ msgid "The path %s already exists."
 msgstr "Der Pfad %s existiert bereits."
 
 #
-msgid "The pin code has been changed successfully."
-msgstr "Der Pincode wurde erfolgreich geändert."
-
-#
 msgid "The pin code you entered is wrong."
 msgstr "Der eingegebene Pincode ist falsch"
-
-#
-msgid "The pin codes you entered are different."
-msgstr "Die Pincodes unterscheiden sich."
 
 #
 #, python-format
@@ -7635,28 +7504,6 @@ msgid ""
 msgstr ""
 "Es gibt ein Zertifikats-Update für Ihre Dreambox. Wollen Sie Dieses Update "
 "einspielen?"
-
-#
-#, python-format
-msgid "This .NFI file does not contain a valid %s image!"
-msgstr "Diese .NFI Datei enthält kein gültiges %s Image!"
-
-#
-msgid ""
-"This .NFI file does not have a md5sum signature and is not guaranteed to "
-"work. Do you really want to burn this image to flash memory?"
-msgstr ""
-"Diese .NFI Datei besitzt keine md5sum Signatur und es kann nicht "
-"sichergestellt werden, dass sie funktioniert. Wollen Sie die Datei trotzdem "
-"in den Flash-Speicher schreiben?"
-
-#
-msgid ""
-"This .NFI file has a valid md5 signature. Continue programming this image to "
-"flash memory?"
-msgstr ""
-"Diese .NFI Datei besitzt eine gültige md5 Signatur. Wollen Sie mit dem "
-"Beschreiben des Flash-Speichers fortfahren?"
 
 #
 msgid ""
@@ -7973,23 +7820,6 @@ msgstr ""
 "3) Nach dem Bootvorgang folgen Sie bitte den Instruktionen des Assistenten."
 
 #
-msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB "
-"stick.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Um Ihre Dreambox-Firmware zu aktualisieren, folgen Sie bitte diesen "
-"Anweisungen:\n"
-"1) Schalten Sie Ihre Dreambox mit dem Schalter auf der Rückseite aus und "
-"stecken Sie den bootfähigen USB-Stick ein.\n"
-"2) Schalten Sie den Netzschalter wieder ein und halten dabei den \"nach unten"
-"\"-Knopf auf der Vorderseite für 10 Sekunden gedrückt.\n"
-"3) Nach dem Bootvorgang folgen Sie bitte den Instruktionen des Assistenten."
-
-#
 msgid "Today"
 msgstr "Heute"
 
@@ -8144,14 +7974,6 @@ msgstr "USB-Stick"
 
 msgid "USB stick wizard"
 msgstr "USB-Stick-Assistent"
-
-#
-msgid ""
-"USB stick wizard finished. Your dreambox will now restart with your new "
-"image!"
-msgstr ""
-"USB-Stick Assistent beendet. Ihre Dreambox wird nun mit dem neuen Image neu "
-"starten!"
 
 #
 msgid "Ukrainian"
@@ -8424,6 +8246,9 @@ msgstr ""
 msgid "Vali-XD skin"
 msgstr "Vali-XD Skin"
 
+msgid "Vali.HD.nano skin"
+msgstr "Vali.HD.nano Skin"
+
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr "Mit GenuineDreambox können Sie die Echtheit Ihrer Dreambox überprüfen."
@@ -8624,6 +8449,14 @@ msgstr "Aufrufe: "
 #
 msgid "Virtual KeyBoard"
 msgstr "Virtuelle Tastatur"
+
+msgid "Visualization for the European Installation Bus"
+msgstr "Visualisierungen für den European Installation Bus"
+
+msgid ""
+"Visualize and control your lights, dimmers, blinds, thermostats etc. through "
+"EIB/KNX. (linknx server required)"
+msgstr ""
 
 #
 msgid "Voltage mode"
@@ -8865,7 +8698,7 @@ msgstr "Was wollen Sie scannen?"
 
 #
 msgid "What to do with submitted crashlogs?"
-msgstr "Was soll mit übermittelten Crashlogs passieren?"
+msgstr "Übermittelte Crashlogs:"
 
 #
 msgid ""
@@ -8898,10 +8731,6 @@ msgstr "Wohin möchten Sie die Einstellungen sichern?"
 #
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Wo wollen Sie temporäre Timeshift Aufnahmen speichern?"
-
-#
-msgid "Wireless"
-msgstr "Funk"
 
 #
 msgid "Wireless LAN"
@@ -9068,10 +8897,6 @@ msgstr "Schreibfehler bei der Aufnahme. Festplatte voll?\n"
 #
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
-
-#
-msgid "Writing NFI image file to flash completed"
-msgstr "Flash-Schreibvorgang der NFI Image Datei abgeschlossen."
 
 #
 msgid "YPbPr"
@@ -9275,15 +9100,11 @@ msgstr ""
 "Webseite beschrieben durchgeführt haben, wird Sie die neue Firmware fragen, "
 "ob Sie die Einstellungen wiederherstellen wollen."
 
-#
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"Sie müssen einen Pincode setzen und diesen vor Ihren Kindern geheim halten.\n"
-"\n"
-"Möchten Sie den Pincode nun setzen?"
 
 #
 msgid ""
@@ -9707,10 +9528,6 @@ msgid "chapters"
 msgstr "Kapitel"
 
 #
-msgid "choose destination directory"
-msgstr "Wählen Sie das Zielverzeichnis"
-
-#
 msgid "circular left"
 msgstr "links-zirkulär"
 
@@ -9920,10 +9737,6 @@ msgstr "Netzwerkadapterübersicht verlassen"
 #
 msgid "exit networkadapter setup menu"
 msgstr "Netzwerkadaptermenü verlassen"
-
-#
-msgid "failed"
-msgstr "fehlgeschlagen"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -10201,6 +10014,9 @@ msgstr "nicht Konfiguriert"
 msgid "not locked"
 msgstr "Kein Signal"
 
+msgid "not supported"
+msgstr "nicht unterstützt"
+
 #
 msgid "not used"
 msgstr "nicht verwendet"
@@ -10420,20 +10236,12 @@ msgid "select"
 msgstr "wähle"
 
 #
-msgid "select .NFI flash file"
-msgstr "Wählen Sie eine .NFI Flashdatei"
-
-#
 msgid "select CAId"
 msgstr "CAID auswählen"
 
 #
 msgid "select CAId's"
 msgstr "CAIDs auswählen"
-
-#
-msgid "select image from server"
-msgstr "Wählen Sie ein Image vom Server"
 
 #
 msgid "select interface"
@@ -10451,9 +10259,8 @@ msgstr "Wählen Sie einen Film"
 msgid "select the movie path"
 msgstr "Den Filmpfad auswählen"
 
-#
-msgid "service pin"
-msgstr "Kanal-Pincode"
+msgid "service PIN"
+msgstr "Service PIN"
 
 msgid "set enigma2 to standby-mode after startup"
 msgstr "Startet die Dreambox im Standby-Modus"
@@ -10462,9 +10269,8 @@ msgstr "Startet die Dreambox im Standby-Modus"
 msgid "sets the Audio Delay (LipSync)"
 msgstr "Setzt die verschiedenen Audio- Verzögerungen (LipSync)"
 
-#
-msgid "setup pin"
-msgstr "Einstellungs-Pincode"
+msgid "setup PIN"
+msgstr "Setup PIN"
 
 #
 msgid "show DVD main menu"
@@ -10653,6 +10459,9 @@ msgstr "Toggle Marker an der aktuellen Position"
 #
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Schalte zwischen Zeit-, Kapitel-, Audio- und Untertitel-Info um"
+
+msgid "tuner is not supported"
+msgstr "nicht unterstützter Tuner"
 
 #
 msgid "unavailable"

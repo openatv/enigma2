@@ -665,21 +665,36 @@ RESULT eDVBTSRecorder::setBoundary(off_t max)
 
 RESULT eDVBTSRecorder::stop()
 {
+	int state=3;
+
 	for (std::map<int,int>::iterator i(m_pids.begin()); i != m_pids.end(); ++i)
 		stopPID(i->first);
 
 	if (!m_running)
 		return -1;
+
+#if HAVE_DVB_API_VERSION >= 5
+	/* workaround for record thread stop */
+	if (::ioctl(m_source_fd, DMX_STOP) < 0)
+		perror("DMX_STOP");
+	else
+		state &= ~1;
+
+	if (::close(m_source_fd) < 0)
+		perror("close");
+	else
+		state &= ~2;
+#endif
+
 	m_thread->stop();
 
-	if (m_source_fd >= 0)
-	{
-		close(m_source_fd);
-		m_source_fd = -1;
-	}
-	
+	if (state & 3)
+		::close(m_source_fd);
+
+	m_running = 0;
+	m_source_fd = -1;
+
 	m_thread->stopSaveMetaInformation();
-	
 	return 0;
 }
 

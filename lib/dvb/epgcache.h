@@ -207,7 +207,7 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		eEPGCache *cache;
 		ePtr<eTimer> abortTimer, zapTimer;
 		int prevChannelState;
-		__u8 state;
+		int state;
 		unsigned int isRunning, haveData;
 		ePtr<eDVBChannel> channel;
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn, m_ViasatConn;
@@ -306,6 +306,7 @@ public:
 	eFixedMessagePump<Message> messages;
 private:
 	friend class channel_data;
+	friend class eventData;
 	static eEPGCache *instance;
 
 	ePtr<eTimer> cleanTimer;
@@ -317,6 +318,7 @@ private:
 	eventCache eventDB;
 	updateMap channelLastUpdated;
 	static pthread_mutex_t cache_lock, channel_map_lock;
+	std::string m_filename;
 
 #ifdef ENABLE_PRIVATE_EPG
 	contentMaps content_time_tables;
@@ -360,6 +362,9 @@ public:
 #endif
 
 #endif
+	// must be called once!
+	void setCacheFile(const char *filename);
+
 	// called from main thread
 	inline void Lock();
 	inline void Unlock();
