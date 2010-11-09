@@ -47,7 +47,7 @@ void eFilePushThread::thread()
 	
 	hasStarted();
 	
-	source_pos = m_raw_source.lseek(0, SEEK_CUR);
+	source_pos = m_raw_source->lseek(0, SEEK_CUR);
 	
 		/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
@@ -141,7 +141,7 @@ void eFilePushThread::thread()
 			ASSERT(!(current_span_remaining % m_blocksize));
 
 			if (source_pos != current_span_offset)
-				source_pos = m_raw_source.lseek(current_span_offset, SEEK_SET);
+				source_pos = m_raw_source->lseek(current_span_offset, SEEK_SET);
 			bytes_read = 0;
 		}
 		
@@ -159,7 +159,7 @@ void eFilePushThread::thread()
 		m_buf_end = 0;
 		
 		if (maxread)
-			m_buf_end = m_raw_source.read(m_buffer, maxread);
+			m_buf_end = m_raw_source->read(m_buffer, maxread);
 
 		if (m_buf_end < 0)
 		{
@@ -178,7 +178,7 @@ void eFilePushThread::thread()
 		int d = m_buf_end % m_blocksize;
 		if (d)
 		{
-			m_raw_source.lseek(-d, SEEK_CUR);
+			m_raw_source->lseek(-d, SEEK_CUR);
 			m_buf_end -= d;
 		}
 
@@ -218,7 +218,7 @@ void eFilePushThread::thread()
 			}
 #if 0
 			eDebug("FILEPUSH: end-of-file! (currently unhandled)");
-			if (!m_raw_source.lseek(0, SEEK_SET))
+			if (!m_raw_source->lseek(0, SEEK_SET))
 			{
 				eDebug("(looping)");
 				continue;
@@ -239,20 +239,30 @@ void eFilePushThread::thread()
 	eDebug("FILEPUSH THREAD STOP");
 }
 
-void eFilePushThread::start(int fd_source, int fd_dest)
+void eFilePushThread::start(int fd, int fd_dest)
 {
-	m_raw_source.setfd(fd_source);
+	eRawFile *f = new eRawFile();
+	f->setfd(fd);
+	m_raw_source = f;
 	m_fd_dest = fd_dest;
 	resume();
 }
 
-int eFilePushThread::start(const char *filename, int fd_dest)
+int eFilePushThread::start(const char *file, int fd_dest)
 {
-	if (m_raw_source.open(filename) < 0)
+	eRawFile *f = new eRawFile();
+	ePtr<iDataSource> source = f;
+	if (f->open(file) < 0)
 		return -1;
+	start(source, fd_dest);
+	return 0;
+}
+
+void eFilePushThread::start(ePtr<iDataSource> source, int fd_dest)
+{
+	m_raw_source = source;
 	m_fd_dest = fd_dest;
 	resume();
-	return 0;
 }
 
 void eFilePushThread::stop()
@@ -275,7 +285,7 @@ void eFilePushThread::pause()
 
 void eFilePushThread::seek(int whence, off_t where)
 {
-	m_raw_source.lseek(where, whence);
+	m_raw_source->lseek(where, whence);
 }
 
 void eFilePushThread::resume()
