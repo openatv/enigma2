@@ -4,7 +4,10 @@
 #include <lib/base/rawfile.h>
 #include <lib/base/eerror.h>
 
+DEFINE_REF(eRawFile);
+
 eRawFile::eRawFile()
+	:m_lock(true)
 {
 	m_fd = -1;
 	m_file = 0;
@@ -231,4 +234,21 @@ int eRawFile::openFileUncached(int nr)
 off_t eRawFile::length()
 {
 	return m_totallength;
+}
+
+off_t eRawFile::position()
+{
+	if (m_nrfiles < 2)
+	{
+		if (!m_cached)
+			return ::lseek(m_fd, 0, SEEK_CUR);
+		else
+			return ::fseeko(m_file, 0, SEEK_CUR);
+	}
+	return m_current_offset;
+}
+
+eSingleLock &eRawFile::getLock()
+{
+	return m_lock;
 }
