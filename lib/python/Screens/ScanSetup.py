@@ -107,6 +107,7 @@ class CableTransponderSearchSupport:
 			if raw_channel:
 				frontend = raw_channel.getFrontend()
 				if frontend:
+					frontend.closeFrontend() # immediate close... 
 					del frontend
 					del raw_channel
 					return True
@@ -114,13 +115,16 @@ class CableTransponderSearchSupport:
 
 	def cableTransponderSearchSessionClosed(self, *val):
 		print "cableTransponderSearchSessionClosed, val", val
-		self.resetTimeout()
 		self.cable_search_container.appClosed.remove(self.cableTransponderSearchClosed)
 		self.cable_search_container.dataAvail.remove(self.getCableTransponderData)
+		if val and len(val):
+			if val[0]:
+				self.setCableTransponderSearchResult(self.__tlist)
+			else:
+				self.cable_search_container.sendCtrlC()
+				self.setCableTransponderSearchResult(None)
 		self.cable_search_container = None
 		self.cable_search_session = None
-		if val and len(val) and val[0]:
-			self.setCableTransponderSearchResult(self.__tlist)
 		self.__tlist = None
 		self.cableTransponderSearchFinished()
 
@@ -176,19 +180,6 @@ class CableTransponderSearchSupport:
 				tmpstr += data[0]
 				self.cable_search_session["text"].setText(tmpstr)
 		
-	def setTimeout(self):
-		try:
-			self.oldtimeoutvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"		
-		
-	def resetTimeout(self):
-		try:
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(self.oldtimeoutvalue)
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-
 	def startCableTransponderSearch(self, nim_idx):
 		if not self.tryGetRawFrontend(nim_idx):
 			self.session.nav.stopService()
@@ -287,7 +278,6 @@ class CableTransponderSearchSupport:
 		self.cable_search_container.execute(cmd)
 		tmpstr = _("Try to find used transponders in cable network.. please wait...")
 		tmpstr += "\n\n..."
-		self.setTimeout()
 		self.cable_search_session = self.session.openWithCallback(self.cableTransponderSearchSessionClosed, MessageBox, tmpstr, MessageBox.TYPE_INFO)
 
 class DefaultSatLists(DefaultWizard):
@@ -876,7 +866,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport):
 		self.tlist = tlist
 
 	def cableTransponderSearchFinished(self):
-		self.startScan(self.tlist, self.flags, self.feid, self.networkid)
+		if self.tlist is None:
+			self.tlist = []
+		else:
+			self.startScan(self.tlist, self.flags, self.feid)
 
 	def startScan(self, tlist, flags, feid, networkid = 0):
 		if len(tlist):
@@ -1045,7 +1038,8 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport):
 				self.session.open(MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
 	def setCableTransponderSearchResult(self, tlist):
-		self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags, "networkid": self.networkid})
+		if tlist is not None:
+			self.scanList.append({"transponders": tlist, "feid": self.feid, "flags": self.flags})
 
 	def cableTransponderSearchFinished(self):
 		self.buildTransponderList()

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 09:15+0000\n"
+"POT-Creation-Date: 2010-11-01 13:01+0000\n"
 "PO-Revision-Date: 2010-08-20 00:08+0200\n"
 "Last-Translator: Hazem <moustafagamal@hotmail.com>\n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -238,14 +238,6 @@ msgstr "(شاهد قائمه صوت دى فى دى إختياريه)"
 msgid "* Only available if more than one interface is active."
 msgstr "*متاحه فقط عند وجود أكثر من واحهه نشطه"
 
-#
-msgid ".NFI Download failed:"
-msgstr "فشل تحميل ملف صوره"
-
-msgid ""
-".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr "ملف صوره به بصمة md5sumصحيح ، تستطيع تنصيب الصوره بأمان!"
-
 msgid "0"
 msgstr "0"
 
@@ -364,6 +356,12 @@ msgstr "؟؟"
 #
 msgid "A"
 msgstr "أ"
+
+msgid "A BackToTheRoots-Skin .. or good old times."
+msgstr ""
+
+msgid "A BackToTheRoots-Skin ... or good old times."
+msgstr ""
 
 msgid "A basic ftp client"
 msgstr ""
@@ -629,7 +627,7 @@ msgstr "إضافه الى المفضله"
 
 #
 msgid "Add zap timer instead of record timer?"
-msgstr ""
+msgstr "أضف مؤقت تنقل بدلا من مؤقت تسجيل"
 
 #
 msgid "Added: "
@@ -639,15 +637,15 @@ msgstr "تمت الاضافه"
 msgid ""
 "Adds enigma2 settings and dreambox model informations like SN, rev... if "
 "enabled."
-msgstr ""
+msgstr " يضيف إعدادات وموديل الدريم بوكسإذا كانت مفعله"
 
 #
 msgid "Adds network configuration if enabled."
-msgstr ""
+msgstr "يضيف تكوينات شبكه إذا كانت مفعله"
 
 #
 msgid "Adds wlan configuration if enabled."
-msgstr ""
+msgstr "يضيف تكوينات شبكه واسعه إذا كانت مفعله"
 
 msgid ""
 "Adjust the color settings so that all the color shades are distinguishable, "
@@ -1127,6 +1125,9 @@ msgstr "كابل"
 msgid "Cache Thumbnails"
 msgstr ""
 
+msgid "Callmonitor for NCID-based call notification"
+msgstr ""
+
 msgid "Callmonitor for the Fritz!Box routers"
 msgstr ""
 
@@ -1140,10 +1141,6 @@ msgstr "كندا"
 #
 msgid "Cancel"
 msgstr "إلغاء"
-
-#
-msgid "Cannot parse feed directory"
-msgstr ""
 
 #
 msgid "Capacity: "
@@ -1177,10 +1174,6 @@ msgid "Change default recording offset?"
 msgstr ""
 
 #
-msgid "Change dir."
-msgstr "تغيير الدليل"
-
-#
 msgid "Change hostname"
 msgstr "تغيير أسم المضيف"
 
@@ -1188,15 +1181,14 @@ msgstr "تغيير أسم المضيف"
 msgid "Change pin code"
 msgstr "تغيير الرقم السرى"
 
-#
-msgid "Change service pin"
-msgstr "تغيير الرقم السرى للقناه"
+msgid "Change service PIN"
+msgstr ""
 
-msgid "Change service pins"
-msgstr "تغيير الرقم السرى للخدمه"
+msgid "Change service PINs"
+msgstr ""
 
-msgid "Change setup pin"
-msgstr "تغيير الرقم السرى للضبط"
+msgid "Change setup PIN"
+msgstr ""
 
 #
 msgid "Change step size"
@@ -1446,6 +1438,9 @@ msgstr "كوكبه"
 
 msgid "Content does not fit on DVD!"
 msgstr "المحتوى لا يناسب دى فى دى !"
+
+msgid "Continue"
+msgstr ""
 
 msgid "Continue in background"
 msgstr "استمر فى الخلفيه"
@@ -1764,12 +1759,6 @@ msgstr "الوصـف"
 msgid "Deselect"
 msgstr "إلغاء الاختيار"
 
-msgid "Destination directory"
-msgstr "الدليل الوجهه"
-
-msgid "Details for extension: "
-msgstr "تفاصيل الاضافه:"
-
 msgid "Details for plugin: "
 msgstr ""
 
@@ -1832,10 +1821,6 @@ msgstr "تعطيل"
 #
 msgid "Disable Picture in Picture"
 msgstr "تعطيل صوره داخل صوره"
-
-#
-msgid "Disable Subtitles"
-msgstr "تعطيل العناوين الفرعيه"
 
 #
 msgid "Disable crashlog reporting"
@@ -2048,10 +2033,6 @@ msgstr ""
 
 msgid "Download location"
 msgstr "موقع التحميل"
-
-#
-msgid "Download of USB flasher boot image failed: "
-msgstr ""
 
 msgid "Downloadable new plugins"
 msgstr "بلج أنز جديده متاحه للتحميل"
@@ -2563,11 +2544,6 @@ msgstr "إنتهاء"
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
 msgstr ""
 
-#
-msgid ""
-"First we need to download the latest boot environment for the USB flasher."
-msgstr ""
-
 msgid "Flash"
 msgstr "شحن"
 
@@ -2902,9 +2878,6 @@ msgstr ""
 "لا تهتم بظلال الاضاءه الان . سيتم عمل الاعادادت لها فى الخطوه القادمه \n"
 "إذا كنت تتقبل النتيجه ، أضغط موافق"
 
-msgid "Image flash utility"
-msgstr "استخدام شحن الفلاش"
-
 #
 msgid "Import AutoTimer"
 msgstr "إستيراد مؤقت آلى"
@@ -3041,13 +3014,6 @@ msgstr "تسجيل سريع"
 
 msgid "Instant record location"
 msgstr "مكان التسجيل السريع"
-
-#
-msgid "Integrated Ethernet"
-msgstr ""
-
-msgid "Integrated Wireless"
-msgstr "لاسلكى مدمج"
 
 msgid "Interface: "
 msgstr "واجهه"
@@ -3746,6 +3712,11 @@ msgstr "شاشة مساعده MyTubeVideo"
 msgid "N/A"
 msgstr "غير موجود"
 
+msgid ""
+"NCID Client shows incoming voice calls promoted by any NCID server (e.g. "
+"Vodafone Easybox) on your Dreambox."
+msgstr ""
+
 #
 msgid "NEXT"
 msgstr "التالى"
@@ -3940,13 +3911,12 @@ msgstr "مطلقا"
 msgid "New"
 msgstr "جديد"
 
+msgid "New PIN"
+msgstr ""
+
 #
 msgid "New Zealand"
 msgstr "نيوزيلنده"
-
-#
-msgid "New pin"
-msgstr "رقم سرى جديد"
 
 #
 msgid "New version:"
@@ -4064,10 +4034,6 @@ msgid ""
 msgstr ""
 "لا يوجد موالف مفعل \n"
 "من فضلك أضبط إعدادات الموالف قبل البحث عن القنوات ."
-
-#
-msgid "No useable USB stick found"
-msgstr "لم يتم العثور على يو أس بى"
 
 #
 msgid ""
@@ -4328,10 +4294,6 @@ msgid "Packet manager"
 msgstr "المتحكم فى الحزم"
 
 #
-msgid "Page"
-msgstr "صفحه"
-
-#
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr ""
@@ -4461,14 +4423,16 @@ msgstr "من فضلك أختار الوسيط المطلوب فحصه"
 msgid "Please add titles to the compilation."
 msgstr "من فضلك أدخل عناوين للتأليف"
 
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
+
 msgid "Please change recording endtime"
 msgstr "من فضلك قم بتغيير وقت إنتهاء التسجيل"
 
 msgid "Please check your network settings!"
 msgstr "من فضلك أفحص إعدادات الشبكه!"
-
-msgid "Please choose .NFI image file from feed server to download"
-msgstr "من فضلك أختار صوره nfi للتحميل من خادم التغذيه "
 
 msgid "Please choose an extension..."
 msgstr "من فضلك أختار إضافه..."
@@ -4495,13 +4459,6 @@ msgstr ""
 "من فضلك قم بتكوين التصال بالنترنت بملأ القيم المطلوبه \n"
 "عندما تكون مستعد أضغط موافق للاستمرار"
 
-msgid ""
-"Please disconnect all USB devices from your Dreambox and (re-)attach the "
-"target USB stick (minimum size is 64 MB) now!"
-msgstr ""
-"من فضلك أفصل الان كل اجهزة USB من الدريم بوكس، ثم اشبك الـ USB المستهدف (أقل "
-"سعه مسموحه 64 ميجا)"
-
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "من فضلك لا تغير أى قيمه ألا إذا كنت متأكد مما تفعل !"
 
@@ -4523,8 +4480,8 @@ msgstr "من فضلك أدخل أسم الدليل الجديد"
 msgid "Please enter the correct pin code"
 msgstr "من فضلك أدخل الرقم السرى الصحيح"
 
-msgid "Please enter the old pin code"
-msgstr "من فضلك أدخل الرقم السرى القديم"
+msgid "Please enter the old PIN code"
+msgstr ""
 
 msgid "Please enter your email address here:"
 msgstr "من فضلك أدخل بريدك الالكترونى هنا:"
@@ -4554,9 +4511,6 @@ msgstr "من فضلك اضغط موافق"
 
 msgid "Please provide a Text to match"
 msgstr "من فضلك أدخل نص لمقارنته"
-
-msgid "Please select .NFI flash image file from medium"
-msgstr "من فضلك أختار ملف صورة فلاش NFI من وسيط"
 
 msgid "Please select a playlist to delete..."
 msgstr "أختار قائمة العرض المراد مسحها..."
@@ -4590,10 +4544,6 @@ msgstr "من فضلك أختار الوسيط الذى سييستخدم كمكا
 #
 msgid "Please select tag to filter..."
 msgstr ""
-
-#
-msgid "Please select target directory or medium"
-msgstr "من فضلك إختار الدليل الهدف أو الوسيط"
 
 msgid "Please select the movie path..."
 msgstr "من فضلك أختار مسار الفيلم..."
@@ -4860,9 +4810,6 @@ msgstr "اضغط موافق لبدأ البحث"
 msgid "Press OK to toggle the selection."
 msgstr "أضغط موافق لتبدل الأختيار"
 
-msgid "Press OK to view full changelog"
-msgstr "أضغط موافق لتشاهد سجل تغيرات كامل"
-
 msgid "Press yellow to set this interface as default interface."
 msgstr "أضغط الذر الأصفر لتجعل هذه الواجهه هى الواجهه الأفتراضيه"
 
@@ -5035,8 +4982,8 @@ msgstr "تسجيلات"
 msgid "Recordings always have priority"
 msgstr "التسجيلات لها الأوليه دائما"
 
-msgid "Reenter new pin"
-msgstr "أعد إدخال الرقم السرى"
+msgid "Reenter new PIN"
+msgstr ""
 
 msgid "Refresh Rate"
 msgstr "معدل الأنعاش"
@@ -5059,11 +5006,11 @@ msgstr "إعادة تحميل"
 msgid "Reload Black-/Whitelists"
 msgstr "إعادة تحميل القائمه السوداء/البيضاء"
 
-msgid "Remember service pin"
-msgstr "تذكر الرقم السرى للخدمه"
+msgid "Remember service PIN"
+msgstr ""
 
-msgid "Remember service pin cancel"
-msgstr "إلغاء تذكر الرقم السرى للخدمه"
+msgid "Remember service PIN cancel"
+msgstr ""
 
 msgid "Remote timer and remote TV player"
 msgstr ""
@@ -5095,12 +5042,6 @@ msgstr "حذف البلج إنز"
 
 msgid "Remove selected AutoTimer"
 msgstr "حذف المؤقت الالى المختار"
-
-msgid "Remove the broken .NFI file?"
-msgstr "حذف ملف nfiغير صالح ؟"
-
-msgid "Remove the incomplete .NFI file?"
-msgstr "حذف ملف nfi غير كامل ؟"
 
 msgid "Remove timer"
 msgstr "حذف المؤقت"
@@ -5461,13 +5402,6 @@ msgid "Scan range"
 msgstr "نطاق البحث"
 
 msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
-"selected wireless device.\n"
-msgstr ""
-"بحث فى الشبكه عن نقاط دخول لاسلكيه والاتصال بها باستخدام الجهاز اللاسلكى "
-"المختار.\n"
-
-msgid ""
 "Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
 msgstr ""
@@ -5568,9 +5502,6 @@ msgstr "اختار الفيلم"
 msgid "Select a timer to import"
 msgstr "أختار المؤقت المراد توريده"
 
-msgid "Select audio mode"
-msgstr "أختار أسلوب الصوت"
-
 msgid "Select audio track"
 msgstr "أختار مسار الصوت"
 
@@ -5590,14 +5521,8 @@ msgstr ""
 msgid "Select files for backup."
 msgstr ""
 
-msgid "Select files for backup. Currently selected:\n"
-msgstr "أختار ملفات النسخه الاحتياطيه . المختار حاليا:\n"
-
 msgid "Select files/folders to backup"
 msgstr "أختار ملفات/مجلدات النسخه الاحتياطيه"
-
-msgid "Select image"
-msgstr "أختار صوره:"
 
 msgid "Select input device"
 msgstr ""
@@ -5653,9 +5578,6 @@ msgstr "اختار الشبكه اللاسلكيه"
 
 msgid "Select your choice."
 msgstr "حدد إختيارك"
-
-msgid "Selected source image"
-msgstr "الصوره المصدر المختاره"
 
 msgid "Send DiSEqC"
 msgstr "أرسل دايزك"
@@ -5870,6 +5792,9 @@ msgid ""
 msgstr ""
 
 msgid "Shows a list of recent zap entries"
+msgstr ""
+
+msgid "Shows average bitrate of video and audio"
 msgstr ""
 
 msgid "Shows statistics of watched services"
@@ -6150,10 +6075,6 @@ msgid "Step west"
 msgstr "خطوه ناحية الغري"
 
 #
-msgid "Stereo"
-msgstr "ستيريـو"
-
-#
 msgid "Stop"
 msgstr "إيقاف"
 
@@ -6382,6 +6303,12 @@ msgstr ""
 "نافذة إعدادات الشبكه غير مثبته \n"
 "من فضلك قم بتثبيتها ."
 
+msgid "The PIN code has been changed successfully."
+msgstr ""
+
+msgid "The PIN codes you entered are different."
+msgstr ""
+
 msgid ""
 "The PicturePlayer displays your photos on the TV.\n"
 "You can view them as thumbnails or slideshow."
@@ -6424,13 +6351,6 @@ msgid ""
 msgstr ""
 "المدى الزمنى للمؤقت الزمنى هو السمه المتقدمه الاولى. إذا كان المدى الزمنى "
 "محدد ، فإن حدثا سوف يطابق هذا المؤقت الالى إذا كان يقع فى هذا المدى الزمنى"
-
-msgid ""
-"The USB stick is now bootable. Do you want to download the latest image from "
-"the feed server and save it on the stick?"
-msgstr ""
-"الـ USB غير قابل للإقلاع . هل تريد أحدث صوره من خادم التغذيه وحفظها فى "
-"الـUSB ؟"
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -6518,19 +6438,6 @@ msgstr "نعت التطابق إجبارى ."
 msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
-msgid ""
-"The md5sum validation failed, the file may be corrupted! Are you sure that "
-"you want to burn this image to flash memory? You are doing this at your own "
-"risk!"
-msgstr ""
-"فشل التحقق من صحة md5sum ، قد يكون الملف معطوب. هل انت متأكد إنك تريد تثبيت "
-"هذه الصوره فى الفلاش الداخلى ؟ سيكون هذا على مسئوليتك الشخصيه !"
-
-msgid ""
-"The md5sum validation failed, the file may be downloaded incompletely or be "
-"corrupted!"
-msgstr "فشل التحقق من صحة md5sum ، قد يكون التحميل غير كامل أو الملف معطوب !"
-
 msgid "The package doesn't contain anything."
 msgstr "الرزمه لا تحتوى على أى شيئ ."
 
@@ -6542,16 +6449,8 @@ msgid "The path %s already exists."
 msgstr "المسار %s موجود سلفا"
 
 #
-msgid "The pin code has been changed successfully."
-msgstr "تم تغيير الرقم السرى بنجاح"
-
-#
 msgid "The pin code you entered is wrong."
 msgstr "الرقم السرى الذى ادخلته خطأ"
-
-#
-msgid "The pin codes you entered are different."
-msgstr "الرقمان اللذان اخلتهما غير متطابقين"
 
 #
 #, python-format
@@ -6645,24 +6544,6 @@ msgid ""
 "There's a certificate update available for your dreambox. Would you like to "
 "apply this update now?"
 msgstr "يوجد تحديث وثيقه متاح للدريم بوكس . هل تريدتطبيق هذا التحديث الان ؟"
-
-#, python-format
-msgid "This .NFI file does not contain a valid %s image!"
-msgstr "ملف NFI هذا لا يحتوى على صوره %s صالحه"
-
-msgid ""
-"This .NFI file does not have a md5sum signature and is not guaranteed to "
-"work. Do you really want to burn this image to flash memory?"
-msgstr ""
-"ملف الـ nfiهذا لايوجد فيه بصمة md5sum ، وهو غير مضمون العمل . هل تريد فعلا "
-"تثبيه على الفلاش الداخلى ؟"
-
-msgid ""
-"This .NFI file has a valid md5 signature. Continue programming this image to "
-"flash memory?"
-msgstr ""
-"ملف الـnfi هذا به بصمة md5 صالحه. هل تريد الاستمرار وتثبيت الملف فى الفلاش "
-"الداخلى ؟"
 
 #
 msgid ""
@@ -6923,20 +6804,6 @@ msgid ""
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 
-msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB "
-"stick.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"لترقية البرنامج التشغيلى للدريم بوكس، من فضلك أتبع الخطوات الاتيه:\n"
-"1-أفصل الكهرباء عن الدريم بوكس من خلال الذر الخلفى ، ثم أشبك USB قابل "
-"للأقلاع \n"
-"2-أعد الكهرباء وأضغط على ذر DOWN الموجود فى مقدمه الجهاز لمدة 10 ثوانى \n"
-"3-أنتظر الأقلاع ثم أتبع التعليمات على الشاشه ."
-
 #
 msgid "Today"
 msgstr "اليوم"
@@ -7083,13 +6950,6 @@ msgstr ""
 #
 msgid "USB stick wizard"
 msgstr ""
-
-msgid ""
-"USB stick wizard finished. Your dreambox will now restart with your new "
-"image!"
-msgstr ""
-"إنتهاء نافذة إعداد الـ USB . الان سيتم إعادة تشغيل الدريم بوكس بالصوره "
-"الجدديده ."
 
 msgid "Ukrainian"
 msgstr "أوكرانى"
@@ -7328,6 +7188,9 @@ msgstr ""
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.nano skin"
+msgstr ""
+
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr ""
@@ -7500,6 +7363,14 @@ msgstr "مشاهدات:"
 #
 msgid "Virtual KeyBoard"
 msgstr "لوحة مفاتيح تخيليه"
+
+msgid "Visualization for the European Installation Bus"
+msgstr ""
+
+msgid ""
+"Visualize and control your lights, dimmers, blinds, thermostats etc. through "
+"EIB/KNX. (linknx server required)"
+msgstr ""
 
 #
 msgid "Voltage mode"
@@ -7740,10 +7611,6 @@ msgstr "هل تريد فعلا عمل نسخه إحتياطيه  للاعداد�
 msgid "Where to save temporary timeshift recordings?"
 msgstr "أين تحفظ تسجيلات التايم شفت المؤقته؟"
 
-#
-msgid "Wireless"
-msgstr "لاسلكى"
-
 msgid "Wireless LAN"
 msgstr "شبكه محليه لا سلكيه"
 
@@ -7863,9 +7730,6 @@ msgstr "خطأ اثناء التسجيل. القرص ممتلئ ؟ \n"
 
 msgid "Write failed!"
 msgstr "فشل الكتابه !"
-
-msgid "Writing NFI image file to flash completed"
-msgstr "إكتمال كتابة صوره NFI على الفلاش"
 
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -8029,13 +7893,10 @@ msgstr ""
 "الانترنت سوف يتم سؤالك إذا كنت تريد إستعادة الاعدادات."
 
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"تحتاج الى رقم سرى ﻷإخفاءها عن أبناءك.\n"
-"\n"
-"هل تريد وضع رقم سرى الان؟"
 
 msgid ""
 "You successfully configured a new AutoTimer. Do you want to add it to the "
@@ -8395,10 +8256,6 @@ msgid "chapters"
 msgstr "فصول"
 
 #
-msgid "choose destination directory"
-msgstr ""
-
-#
 msgid "circular left"
 msgstr "دائرى يسار"
 
@@ -8575,9 +8432,6 @@ msgstr "الخروج من قائمة واجهة الشبكه"
 
 msgid "exit networkadapter setup menu"
 msgstr "الخروج من قائمه إعداد الشبكه"
-
-msgid "failed"
-msgstr "فشل"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -8813,6 +8667,9 @@ msgstr "غير مكونه"
 msgid "not locked"
 msgstr "غير مغلقه"
 
+msgid "not supported"
+msgstr ""
+
 msgid "not used"
 msgstr "غير مستخدمه"
 
@@ -8995,9 +8852,6 @@ msgstr ""
 msgid "select"
 msgstr "أختار"
 
-msgid "select .NFI flash file"
-msgstr "أختار ملفnfi"
-
 #
 msgid "select CAId"
 msgstr ""
@@ -9005,9 +8859,6 @@ msgstr ""
 #
 msgid "select CAId's"
 msgstr ""
-
-msgid "select image from server"
-msgstr "إختيار صوره من الخادم(السرفر)"
 
 msgid "select interface"
 msgstr "أختار الواجهه"
@@ -9022,8 +8873,8 @@ msgstr "أختار الفيلم"
 msgid "select the movie path"
 msgstr "أختار مسار الفيلم"
 
-msgid "service pin"
-msgstr "الرقم السرى للقناه"
+msgid "service PIN"
+msgstr ""
 
 msgid "set enigma2 to standby-mode after startup"
 msgstr ""
@@ -9032,8 +8883,8 @@ msgstr ""
 msgid "sets the Audio Delay (LipSync)"
 msgstr ""
 
-msgid "setup pin"
-msgstr "الرقم السرى للاعدادات"
+msgid "setup PIN"
+msgstr ""
 
 #
 msgid "show DVD main menu"
@@ -9188,6 +9039,9 @@ msgstr ""
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
+msgid "tuner is not supported"
+msgstr ""
+
 msgid "unavailable"
 msgstr "غير متاح"
 
@@ -9210,10 +9064,10 @@ msgid "use as HDD replacement"
 msgstr ""
 
 msgid "use your Dreambox as Web proxy"
-msgstr ""
+msgstr "أستخدم الدريم بوكس كبروكسى شبكه"
 
 msgid "use your Dreambox as Web proxy."
-msgstr ""
+msgstr "استخدم الدريم بوكس كبروكسى شبكه"
 
 #
 msgid "user defined"
@@ -9231,11 +9085,11 @@ msgstr "مشاهدة التسجيلات..."
 
 #
 msgid "wait for ci..."
-msgstr ""
+msgstr "ci فى إنتظار"
 
 #
 msgid "wait for mmi..."
-msgstr ""
+msgstr "mmi إنتظار"
 
 msgid "waiting"
 msgstr "فى الانتظار"
@@ -9282,6 +9136,14 @@ msgstr "تم الانتقال"
 #~ msgstr "%s (%s, %d MB frei)"
 
 #
+#~ msgid ".NFI Download failed:"
+#~ msgstr "فشل تحميل ملف صوره"
+
+#~ msgid ""
+#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
+#~ msgstr "ملف صوره به بصمة md5sumصحيح ، تستطيع تنصيب الصوره بأمان!"
+
+#
 #~ msgid "12V Output"
 #~ msgstr "مخرج 12 فولت"
 
@@ -9301,6 +9163,20 @@ msgstr "تم الانتقال"
 #~ msgid "Cable provider"
 #~ msgstr "مقدم خدمه الكابل"
 
+#
+#~ msgid "Change dir."
+#~ msgstr "تغيير الدليل"
+
+#
+#~ msgid "Change service pin"
+#~ msgstr "تغيير الرقم السرى للقناه"
+
+#~ msgid "Change service pins"
+#~ msgstr "تغيير الرقم السرى للخدمه"
+
+#~ msgid "Change setup pin"
+#~ msgstr "تغيير الرقم السرى للضبط"
+
 #~ msgid "Default settings"
 #~ msgstr "الاعـدادات الافتـراضيه"
 
@@ -9312,6 +9188,16 @@ msgstr "تم الانتقال"
 
 #~ msgid "Delay x seconds after service started"
 #~ msgstr "تأخير (عدد) ثوانى بعد بدأ القناه"
+
+#~ msgid "Destination directory"
+#~ msgstr "الدليل الوجهه"
+
+#~ msgid "Details for extension: "
+#~ msgstr "تفاصيل الاضافه:"
+
+#
+#~ msgid "Disable Subtitles"
+#~ msgstr "تعطيل العناوين الفرعيه"
 
 #
 #~ msgid "Do you really want to delete this recording?"
@@ -9361,6 +9247,12 @@ msgstr "تم الانتقال"
 #~ msgid "Hide error windows"
 #~ msgstr "إخفاء نافذه الاخطاء"
 
+#~ msgid "Image flash utility"
+#~ msgstr "استخدام شحن الفلاش"
+
+#~ msgid "Integrated Wireless"
+#~ msgstr "لاسلكى مدمج"
+
 #
 #~ msgid "Invert"
 #~ msgstr "مقلوب"
@@ -9378,8 +9270,20 @@ msgstr "تم الانتقال"
 #~ msgstr "قائمه الافلام"
 
 #
+#~ msgid "New pin"
+#~ msgstr "رقم سرى جديد"
+
+#
+#~ msgid "No useable USB stick found"
+#~ msgstr "لم يتم العثور على يو أس بى"
+
+#
 #~ msgid "Nothing connected"
 #~ msgstr "لاشيئ متصل"
+
+#
+#~ msgid "Page"
+#~ msgstr "صفحه"
 
 #
 #~ msgid "Parental Control"
@@ -9389,9 +9293,47 @@ msgstr "تم الانتقال"
 #~ msgid "Parental Lock"
 #~ msgstr "الاغلاق الابـوى"
 
+#~ msgid "Please choose .NFI image file from feed server to download"
+#~ msgstr "من فضلك أختار صوره nfi للتحميل من خادم التغذيه "
+
+#~ msgid ""
+#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
+#~ "target USB stick (minimum size is 64 MB) now!"
+#~ msgstr ""
+#~ "من فضلك أفصل الان كل اجهزة USB من الدريم بوكس، ثم اشبك الـ USB المستهدف "
+#~ "(أقل سعه مسموحه 64 ميجا)"
+
+#~ msgid "Please enter the old pin code"
+#~ msgstr "من فضلك أدخل الرقم السرى القديم"
+
+#~ msgid "Please select .NFI flash image file from medium"
+#~ msgstr "من فضلك أختار ملف صورة فلاش NFI من وسيط"
+
+#
+#~ msgid "Please select target directory or medium"
+#~ msgstr "من فضلك إختار الدليل الهدف أو الوسيط"
+
 #
 #~ msgid "Positioner mode"
 #~ msgstr "Rotorart"
+
+#~ msgid "Press OK to view full changelog"
+#~ msgstr "أضغط موافق لتشاهد سجل تغيرات كامل"
+
+#~ msgid "Reenter new pin"
+#~ msgstr "أعد إدخال الرقم السرى"
+
+#~ msgid "Remember service pin"
+#~ msgstr "تذكر الرقم السرى للخدمه"
+
+#~ msgid "Remember service pin cancel"
+#~ msgstr "إلغاء تذكر الرقم السرى للخدمه"
+
+#~ msgid "Remove the broken .NFI file?"
+#~ msgstr "حذف ملف nfiغير صالح ؟"
+
+#~ msgid "Remove the incomplete .NFI file?"
+#~ msgstr "حذف ملف nfi غير كامل ؟"
 
 #
 #~ msgid "Satconfig"
@@ -9400,6 +9342,25 @@ msgstr "تم الانتقال"
 #
 #~ msgid "Satelliteconfig"
 #~ msgstr "ضبط الاقمـر"
+
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your selected wireless device.\n"
+#~ msgstr ""
+#~ "بحث فى الشبكه عن نقاط دخول لاسلكيه والاتصال بها باستخدام الجهاز اللاسلكى "
+#~ "المختار.\n"
+
+#~ msgid "Select audio mode"
+#~ msgstr "أختار أسلوب الصوت"
+
+#~ msgid "Select files for backup. Currently selected:\n"
+#~ msgstr "أختار ملفات النسخه الاحتياطيه . المختار حاليا:\n"
+
+#~ msgid "Select image"
+#~ msgstr "أختار صوره:"
+
+#~ msgid "Selected source image"
+#~ msgstr "الصوره المصدر المختاره"
 
 #
 #~ msgid "Setup Lock"
@@ -9425,8 +9386,79 @@ msgstr "تم الانتقال"
 #~ msgstr "خطوه "
 
 #
+#~ msgid "Stereo"
+#~ msgstr "ستيريـو"
+
+#
 #~ msgid "Thanks for using the wizard. Your box is now ready to use."
 #~ msgstr "شكرا، الرسيفر جاهز للاستخدام الان"
+
+#~ msgid ""
+#~ "The USB stick is now bootable. Do you want to download the latest image "
+#~ "from the feed server and save it on the stick?"
+#~ msgstr ""
+#~ "الـ USB غير قابل للإقلاع . هل تريد أحدث صوره من خادم التغذيه وحفظها فى "
+#~ "الـUSB ؟"
+
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
+#~ "that you want to burn this image to flash memory? You are doing this at "
+#~ "your own risk!"
+#~ msgstr ""
+#~ "فشل التحقق من صحة md5sum ، قد يكون الملف معطوب. هل انت متأكد إنك تريد "
+#~ "تثبيت هذه الصوره فى الفلاش الداخلى ؟ سيكون هذا على مسئوليتك الشخصيه !"
+
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be downloaded incompletely or "
+#~ "be corrupted!"
+#~ msgstr ""
+#~ "فشل التحقق من صحة md5sum ، قد يكون التحميل غير كامل أو الملف معطوب !"
+
+#
+#~ msgid "The pin code has been changed successfully."
+#~ msgstr "تم تغيير الرقم السرى بنجاح"
+
+#
+#~ msgid "The pin codes you entered are different."
+#~ msgstr "الرقمان اللذان اخلتهما غير متطابقين"
+
+#~ msgid "This .NFI file does not contain a valid %s image!"
+#~ msgstr "ملف NFI هذا لا يحتوى على صوره %s صالحه"
+
+#~ msgid ""
+#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
+#~ "work. Do you really want to burn this image to flash memory?"
+#~ msgstr ""
+#~ "ملف الـ nfiهذا لايوجد فيه بصمة md5sum ، وهو غير مضمون العمل . هل تريد "
+#~ "فعلا تثبيه على الفلاش الداخلى ؟"
+
+#~ msgid ""
+#~ "This .NFI file has a valid md5 signature. Continue programming this image "
+#~ "to flash memory?"
+#~ msgstr ""
+#~ "ملف الـnfi هذا به بصمة md5 صالحه. هل تريد الاستمرار وتثبيت الملف فى "
+#~ "الفلاش الداخلى ؟"
+
+#~ msgid ""
+#~ "To update your Dreambox firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and plug in the bootable "
+#~ "USB stick.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
+#~ "for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "لترقية البرنامج التشغيلى للدريم بوكس، من فضلك أتبع الخطوات الاتيه:\n"
+#~ "1-أفصل الكهرباء عن الدريم بوكس من خلال الذر الخلفى ، ثم أشبك USB قابل "
+#~ "للأقلاع \n"
+#~ "2-أعد الكهرباء وأضغط على ذر DOWN الموجود فى مقدمه الجهاز لمدة 10 ثوانى \n"
+#~ "3-أنتظر الأقلاع ثم أتبع التعليمات على الشاشه ."
+
+#~ msgid ""
+#~ "USB stick wizard finished. Your dreambox will now restart with your new "
+#~ "image!"
+#~ msgstr ""
+#~ "إنتهاء نافذة إعداد الـ USB . الان سيتم إعادة تشغيل الدريم بوكس بالصوره "
+#~ "الجدديده ."
 
 #
 #~ msgid ""
@@ -9447,8 +9479,24 @@ msgstr "تم الانتقال"
 #~ msgstr "صوره صوت"
 
 #
+#~ msgid "Wireless"
+#~ msgstr "لاسلكى"
+
+#~ msgid "Writing NFI image file to flash completed"
+#~ msgstr "إكتمال كتابة صوره NFI على الفلاش"
+
+#
 #~ msgid "Yes, scan now"
 #~ msgstr "نعم : ابحث الان"
+
+#~ msgid ""
+#~ "You need to set a pin code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "تحتاج الى رقم سرى ﻷإخفاءها عن أبناءك.\n"
+#~ "\n"
+#~ "هل تريد وضع رقم سرى الان؟"
 
 #
 #~ msgid "bob"
@@ -9460,6 +9508,9 @@ msgstr "تم الانتقال"
 #
 #~ msgid "empty/unknown"
 #~ msgstr "فارغ/غير معروف"
+
+#~ msgid "failed"
+#~ msgstr "فشل"
 
 #
 #~ msgid "remove service"
@@ -9497,9 +9548,21 @@ msgstr "تم الانتقال"
 #~ "بتم البحث الان %d %%\n"
 #~ "%d تم العثور على"
 
+#~ msgid "select .NFI flash file"
+#~ msgstr "أختار ملفnfi"
+
 #
 #~ msgid "select Slot"
 #~ msgstr "موضع التيونر(الموالف)"
+
+#~ msgid "select image from server"
+#~ msgstr "إختيار صوره من الخادم(السرفر)"
+
+#~ msgid "service pin"
+#~ msgstr "الرقم السرى للقناه"
+
+#~ msgid "setup pin"
+#~ msgstr "الرقم السرى للاعدادات"
 
 #
 #~ msgid "القناه السابقه"

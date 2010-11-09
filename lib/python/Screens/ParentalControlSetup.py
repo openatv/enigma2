@@ -3,7 +3,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, getConfigListEntry, ConfigNothing, NoSave, ConfigPIN
 from Components.ParentalControlList import ParentalControlEntryComponent, ParentalControlList 
-from Components.ParentalControl import parentalControl
+
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -119,6 +119,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		elif self["config"].l.getCurrentSelection() == self.changeSetupPin:
 			self.session.open(ParentalControlChangePin, config.ParentalControl.setuppin, _("setup PIN"))
 		elif self["config"].l.getCurrentSelection() == self.reloadLists:
+			from Components.ParentalControl import parentalControl
 			parentalControl.open()
 		else:
 			ConfigListScreen.keyRight(self)
@@ -255,6 +256,7 @@ class ParentalControlEditor(Screen):
 		self.session.openWithCallback(self.letterChosen, ChoiceBox, title=_("Show services beginning with"), list=mylist, keys = [], selection = sel)
 
 	def letterChosen(self, result):
+		from Components.ParentalControl import parentalControl
 		if result is not None:
 			print "result:", result
 			self.currentLetter = result[1]
@@ -284,6 +286,7 @@ class ParentalControlBouquetEditor(Screen):
 		}, -1)
 
 	def cancel(self):
+		from Components.ParentalControl import parentalControl
 		parentalControl.save()
 		self.close()
 
@@ -300,6 +303,7 @@ class ParentalControlBouquetEditor(Screen):
 			self.bouquetlist = list.getContent("CN", True)
 	
 	def selectBouquet(self):
+		from Components.ParentalControl import parentalControl
 		self.list = [ParentalControlEntryComponent(x[0], x[1], parentalControl.getProtectionType(x[0])) for x in self.bouquetlist]
 		self.bouquetslist.setList(self.list)
 

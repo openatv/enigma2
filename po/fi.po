@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-29 09:15+0000\n"
-"PO-Revision-Date: 2010-09-13 16:43+0200\n"
+"POT-Creation-Date: 2010-11-01 13:01+0000\n"
+"PO-Revision-Date: 2010-10-26 20:50+0200\n"
 "Last-Translator: Timo <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
 "MIME-Version: 1.0\n"
@@ -241,17 +241,6 @@ msgstr "(näytä  DVD-äänen lisävalikko)"
 msgid "* Only available if more than one interface is active."
 msgstr "* Käytettävissä vain kun useampi kuin yksi sovitin on aktiivinen."
 
-#
-msgid ".NFI Download failed:"
-msgstr ".NFI lataus epäonnistui:"
-
-#
-msgid ""
-".NFI file passed md5sum signature check. You can safely flash this image!"
-msgstr ""
-".NFI-tiedoston md5sum-allekirjoitus on kunnossa. Voit asentaa tämän "
-"päivityksen."
-
 msgid "0"
 msgstr "0"
 
@@ -377,11 +366,17 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-msgid "A basic ftp client"
+msgid "A BackToTheRoots-Skin .. or good old times."
 msgstr ""
 
-msgid "A client for www.dyndns.org"
+msgid "A BackToTheRoots-Skin ... or good old times."
 msgstr ""
+
+msgid "A basic ftp client"
+msgstr "FTP-asiakasohjelma"
+
+msgid "A client for www.dyndns.org"
+msgstr "Asiakasohjelma www.dyndns.org palvelulle"
 
 #
 #, python-format
@@ -416,10 +411,10 @@ msgid "A graphical EPG for all services of an specific bouquet"
 msgstr "Graafinen EPG kaikille suosikkilistan kanaville"
 
 msgid "A graphical EPG interface"
-msgstr ""
+msgstr "Graafinen EPG"
 
 msgid "A graphical EPG interface."
-msgstr ""
+msgstr "Graafinen EPG"
 
 #
 msgid ""
@@ -430,13 +425,13 @@ msgstr ""
 "Päivitetäänkö sen arvot?\n"
 
 msgid "A nice looking HD skin from Kerni"
-msgstr ""
+msgstr "Kernin tekemä HD-teema"
 
 msgid "A nice looking HD skin in Brushed Alu Design from Kerni."
-msgstr ""
+msgstr "Kernin tekemä harjattu alumiini HD-teema"
 
 msgid "A nice looking skin from Kerni"
-msgstr ""
+msgstr "Kernin tekemä teema"
 
 #
 #, python-format
@@ -490,7 +485,7 @@ msgstr ""
 "Kytketäänkö se pois päältä?"
 
 msgid "A simple downloading application for other plugins"
-msgstr ""
+msgstr "Apuohjelma lisäosien lataamiseen"
 
 #
 msgid ""
@@ -556,10 +551,10 @@ msgid "About..."
 msgstr "Tietoja..."
 
 msgid "Access to the ARD-Mediathek"
-msgstr ""
+msgstr "ARD-Mediathek lisäosa"
 
 msgid "Access to the ARD-Mediathek online video database."
-msgstr ""
+msgstr "Katsele ARD-Mediathek videoita."
 
 #
 msgid "Accesspoint:"
@@ -688,10 +683,10 @@ msgstr ""
 "numeronäppäimillä 1-6 joku muu testikuva."
 
 msgid "Adult streaming plugin"
-msgstr ""
+msgstr "Lisäosa aikuisviihde-streamien katseluun"
 
 msgid "Adult streaming plugin."
-msgstr ""
+msgstr "Lisäosa aikuisviihde-streamien katseluun"
 
 #
 msgid "Advanced Options"
@@ -718,6 +713,8 @@ msgid ""
 "After a reboot or power outage, StartupToStandby will bring your Dreambox to "
 "standby-mode."
 msgstr ""
+"Kaatumisen tai virtakatkon jälkeen StartupToStandby palauttaa Dreamboxin "
+"valmiustilaan."
 
 #
 msgid "After event"
@@ -732,7 +729,7 @@ msgstr ""
 "kanavat. Katso ohjekirjasta kuinka se tehdään."
 
 msgid "Ai.HD skin-style control plugin"
-msgstr ""
+msgstr "Ai.HD teeman hallintalisäosa"
 
 #
 msgid "Album"
@@ -756,10 +753,10 @@ msgid "Allow zapping via Webinterface"
 msgstr "Kanavien vaihto Web-liittymän kautta"
 
 msgid "Allows the execution of TuxboxPlugins."
-msgstr ""
+msgstr "Mahdollistaa Tuxbox-lisäosien käyttämisen."
 
 msgid "Allows user to download files from rapidshare in the background."
-msgstr ""
+msgstr "Lataa taustalla tiedostoja Rapidsharesta."
 
 #
 msgid "Alpha"
@@ -873,7 +870,7 @@ msgid "Aspect Ratio"
 msgstr "Kuvasuhde"
 
 msgid "Assigning providers/services/caids to a CI module"
-msgstr ""
+msgstr "Määritä palvelutarjoajat/kanavat/CAId:t haluamaasi CI-moduuliin"
 
 msgid "Atheros"
 msgstr "Atheros"
@@ -896,6 +893,8 @@ msgid ""
 "AudoSync allows delaying the sound output (Bitstream/PCM) so that it is "
 "synchronous to the picture."
 msgstr ""
+"AudioSync mahdollistaa äänen (Bitstream/PCM) viiveen säädön jotta se on "
+"samanaikainen kuvan kanssa."
 
 msgid "Australia"
 msgstr "Australia"
@@ -943,6 +942,8 @@ msgid ""
 "AutoTimer scans the EPG and creates Timers depending on user-defined search  "
 "criteria."
 msgstr ""
+"Automaattiajastus hakee ohjelmatietoja ja luo ajastuksia käyttäjän "
+"määrittämien ehtojen mukaisesti."
 
 #
 msgid "Automatic"
@@ -953,30 +954,32 @@ msgid "Automatic Scan"
 msgstr "Automaattihaku"
 
 msgid "Automatic volume adjustment"
-msgstr ""
+msgstr "Automaattinen äänenvoimakkuuden säätö"
 
 msgid "Automatic volume adjustment for ac3/dts services."
-msgstr ""
+msgstr "Automaattinen äänenvoimakkuuden säätö AC3/DTS-äänille."
 
 msgid "Automatically change video resolution"
-msgstr ""
+msgstr "Automaattinen videoresoluution vaihto"
 
 msgid ""
 "Automatically changes the output resolution depending on the video "
 "resolution you are watching."
 msgstr ""
+"Vaihtaa automaattisesti ulostulon resoluutiota katseltavan kanavan käyttämän "
+"resoluution mukaisesti."
 
 msgid "Automatically create timer events based on keywords"
-msgstr ""
+msgstr "Automaattinen ajastusten luonti hakusanojen perusteella"
 
 msgid "Automatically informs you on low internal memory"
-msgstr ""
+msgstr "Varoittaa liian vähäisestä sisäisestä muistista"
 
 msgid "Automatically refresh EPG"
-msgstr ""
+msgstr "Päivittää ohjelmatiedot automaattisesti"
 
 msgid "Automatically send crashlogs to Dream Multimedia"
-msgstr ""
+msgstr "Lähettää kaatumislokit automaattisesti Dream Multimedialle"
 
 msgid "Autos & Vehicles"
 msgstr "Autot & kulkuvälineet"
@@ -997,10 +1000,10 @@ msgid "BA"
 msgstr "BA"
 
 msgid "BASIC-HD Skin by Ismail Demir"
-msgstr ""
+msgstr "Ismail Demirin BASIC-HD teema"
 
 msgid "BASIC-HD Skin for Dreambox Images created from Ismail Demir"
-msgstr ""
+msgstr "Ismail Demirin Dreambox BASIC-HD teema"
 
 #
 msgid "BB"
@@ -1088,10 +1091,10 @@ msgid "Blue boost"
 msgstr "Sinisen korostus"
 
 msgid "Bonjour/Avahi control plugin"
-msgstr ""
+msgstr "Bonjour/Avahi hallintalisäosa"
 
 msgid "Bonjour/Avahi control plugin."
-msgstr ""
+msgstr "Bonjour/Avahi hallintalisäosa."
 
 #
 msgid "Bookmarks"
@@ -1108,10 +1111,10 @@ msgid "Brightness"
 msgstr "Kirkkaus"
 
 msgid "Browse for and connect to network shares"
-msgstr ""
+msgstr "Selaa ja yhdistä verkkojakoja"
 
 msgid "Browse for nfs/cifs shares and connect to them."
-msgstr ""
+msgstr "Selaa ja yhdistä NFS/CIFS-verkkojakoja."
 
 msgid "Browse network neighbourhood"
 msgstr "Selaa verkkoympäristöä"
@@ -1127,7 +1130,7 @@ msgid "Burn to DVD"
 msgstr "Polta DVD:lle..."
 
 msgid "Burn your recordings to DVD"
-msgstr ""
+msgstr "Polta tallenteet DVD:lle"
 
 #
 msgid "Bus: "
@@ -1153,6 +1156,8 @@ msgid ""
 "CDInfo enables gathering album and track details from CDDB and CD-Text when "
 "playing Audio CDs in Mediaplayer."
 msgstr ""
+"Kun soitat CD-levyjä Mediatoistimella, hakee CD-info levy- ja kappaletietoja "
+"CDDB:stä ja CD-Textistä."
 
 #
 msgid "CI assignment"
@@ -1173,8 +1178,11 @@ msgstr "Kaapeli (DVB-C)"
 msgid "Cache Thumbnails"
 msgstr "Tallenna esikatselukuvat välimuistiin"
 
-msgid "Callmonitor for the Fritz!Box routers"
+msgid "Callmonitor for NCID-based call notification"
 msgstr ""
+
+msgid "Callmonitor for the Fritz!Box routers"
+msgstr "Soittomonitori Fritz!Box reitittimille"
 
 msgid "Can't connect to server. Please check your network!"
 msgstr "Palvelimeen ei saatu yhteyttä. Tarkista verkkoasetukset!"
@@ -1185,10 +1193,6 @@ msgstr "Kanada"
 #
 msgid "Cancel"
 msgstr "Peruuta"
-
-#
-msgid "Cannot parse feed directory"
-msgstr "Lataushakemistoa ei voitu lukea"
 
 #
 msgid "Capacity: "
@@ -1218,10 +1222,6 @@ msgstr "Suosikkilistan vaihto listan lopussa"
 msgid "Change default recording offset?"
 msgstr "Muuta tallennuksen oletuslisäaikaa?"
 
-#
-msgid "Change dir."
-msgstr "Muuta hak."
-
 msgid "Change hostname"
 msgstr "Muuta nimeä (hostname)"
 
@@ -1229,17 +1229,14 @@ msgstr "Muuta nimeä (hostname)"
 msgid "Change pin code"
 msgstr "Vaihda tunnusluku"
 
-#
-msgid "Change service pin"
-msgstr "Vaihda kanavan tunnusluku"
+msgid "Change service PIN"
+msgstr "Muuta kanavan PIN"
 
-#
-msgid "Change service pins"
-msgstr "Vaihda kanavan tunnusluvut"
+msgid "Change service PINs"
+msgstr "Muuta kanavan PIN:it"
 
-#
-msgid "Change setup pin"
-msgstr "Vaihda asetusten tunnusluku"
+msgid "Change setup PIN"
+msgstr "Muuta asetuksien PIN"
 
 #
 msgid "Change step size"
@@ -1356,10 +1353,10 @@ msgid "Cleanup Wizard settings"
 msgstr "Puhdistusavustajan asetukset"
 
 msgid "Cleanup timerlist automatically"
-msgstr ""
+msgstr "Poista menneet ajastukset automaattisesti"
 
 msgid "Cleanup timerlist automatically."
-msgstr ""
+msgstr "Poista menneet ajastukset automaattisesti."
 
 #
 msgid "CleanupWizard"
@@ -1484,7 +1481,7 @@ msgid "Configure nameservers"
 msgstr "Määritä nimipalvelimet"
 
 msgid "Configure your WLAN network interface"
-msgstr ""
+msgstr "Määritä WLAN-asetukset"
 
 #
 msgid "Configure your internal LAN"
@@ -1529,6 +1526,9 @@ msgstr "Modulaatio"
 msgid "Content does not fit on DVD!"
 msgstr "Sisältö ei mahdu DVD:lle!"
 
+msgid "Continue"
+msgstr "Jatka"
+
 #
 msgid "Continue in background"
 msgstr "Jatka taustalla"
@@ -1542,28 +1542,28 @@ msgid "Contrast"
 msgstr "Kontrasti"
 
 msgid "Control your Dreambox with your Web browser."
-msgstr ""
+msgstr "Hallitse Dreamboxia www-selaimella."
 
 msgid "Control your Dreambox with your browser"
-msgstr ""
+msgstr "Hallitse Dreamboxia www-selaimella"
 
 msgid "Control your dreambox with only the MUTE button"
-msgstr ""
+msgstr "Hallitse Dreamboxia mykistä-painikkeella"
 
 msgid "Control your dreambox with only the MUTE button."
-msgstr ""
+msgstr "Hallitse Dreamboxia mykistä-painikkeella."
 
 msgid "Control your internal system fan."
-msgstr ""
+msgstr "Hallitse tuuletinta."
 
 msgid "Control your kids's tv usage"
-msgstr ""
+msgstr "Hallitse lastesi TV:n katselua"
 
 msgid "Control your system fan"
-msgstr ""
+msgstr "Hallitse tuuletinta"
 
 msgid "Copy, rename, delete, move local files on your Dreambox."
-msgstr ""
+msgstr "Kopioi, uudelleennimeä, poista ja siirrä Dreamboxin tiedostoja."
 
 #
 msgid "Could not connect to Dreambox .NFI Image Feed Server:"
@@ -1609,10 +1609,10 @@ msgid "Create DVD-ISO"
 msgstr "Luo DVD-ISO"
 
 msgid "Create a backup of your Video DVD on your DreamBox hard drive."
-msgstr ""
+msgstr "Kopioi DVD-elokuva Dreamboxin kiintolevylle."
 
 msgid "Create a backup of your Video-DVD"
-msgstr ""
+msgstr "Kopioi DVD-elokuva"
 
 msgid "Create a new AutoTimer."
 msgstr "Luo uusi automaattiajastus."
@@ -1628,13 +1628,13 @@ msgid "Create movie folder failed"
 msgstr "Tallennehakemiston luonti epäonnistui"
 
 msgid "Create preview pictures of your Movies"
-msgstr ""
+msgstr "Luo tallenteista esikatselukuvat"
 
 msgid "Create remote timers"
-msgstr ""
+msgstr "Luo ajastuksia muihin Dreamboxeihin"
 
 msgid "Create timers on remote Dreamboxes."
-msgstr ""
+msgstr "Luo ajastuksia muihin Dreamboxeihin."
 
 #
 #, python-format
@@ -1698,23 +1698,23 @@ msgid "Customize"
 msgstr "Toimintojen mukautus"
 
 msgid "Customize Vali-XD skins"
-msgstr ""
+msgstr "Mukauta Vali-Xd teemoja"
 
 msgid "Customize Vali-XD skins by yourself."
-msgstr ""
+msgstr "Mukauta Vali-XD teemoja omatoimisesti."
 
 #
 msgid "Cut"
 msgstr "Leikkaa"
 
 msgid "Cut your movies"
-msgstr ""
+msgstr "Leikkaa tallenteita"
 
 msgid "Cut your movies."
-msgstr ""
+msgstr "Leikkaa tallenteita."
 
 msgid "CutListEditor allows you to edit your movies"
-msgstr ""
+msgstr "Leikkauseditorilla voit muokata tallenteita"
 
 msgid ""
 "CutListEditor allows you to edit your movies.\n"
@@ -1722,6 +1722,9 @@ msgid ""
 "cut'.\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
+"Leikkauseditorilla voit muokata tallenteita.\n"
+"Hae leikkauksen alkukohta, paina OK ja valitse 'aloita leikkaus'.\n"
+"Hae loppukohta, paina OK ja valitse 'lopeta leikkaus'. "
 
 #
 #  Tallennevalikko
@@ -1769,13 +1772,16 @@ msgid "DVD media toolbox"
 msgstr "DVD-levyn työkalut"
 
 msgid "DVDPlayer plays your DVDs on your Dreambox"
-msgstr ""
+msgstr "DVD-soitin toistaa DVD:t Dreamboxissa."
 
 msgid ""
 "DVDPlayer plays your DVDs on your Dreambox.\n"
 "With the DVDPlayer you can play your DVDs on your Dreambox from a DVD or "
 "even from an iso file or video_ts folder on your harddisc or network."
 msgstr ""
+"DVD-soitin toistaa DVD:t Dreamboxissa.\n"
+"DVD-soittimella voit toistaa DVD-levyn,  .iso-tiedoston tai video_ts "
+"hakemiston kiintolevyltä tai verkosta."
 
 #
 msgid "Danish"
@@ -1827,10 +1833,10 @@ msgid "Defaults"
 msgstr "Oletukset"
 
 msgid "Define a startup service"
-msgstr ""
+msgstr "Määritä aloituskanava"
 
 msgid "Define a startup service for your Dreambox."
-msgstr ""
+msgstr "Määritä Dreamboxin aloituskanava"
 
 #
 msgid "Delay"
@@ -1875,15 +1881,8 @@ msgstr "Kuvaus"
 msgid "Deselect"
 msgstr "Ei valittu"
 
-#
-msgid "Destination directory"
-msgstr "Kohdehakemisto"
-
-msgid "Details for extension: "
-msgstr "Laajennuksen tiedot: "
-
 msgid "Details for plugin: "
-msgstr ""
+msgstr "Lisäosan tiedot: "
 
 #
 msgid "Detected HDD:"
@@ -1928,7 +1927,7 @@ msgid "Dir:"
 msgstr "Hak:"
 
 msgid "Direct playback of Youtube videos"
-msgstr ""
+msgstr "Youtube-videoiden suoratoisto"
 
 #
 msgid "Direct playback of linked titles without menu"
@@ -1950,10 +1949,6 @@ msgstr "Keskeytä"
 #
 msgid "Disable Picture in Picture"
 msgstr "Sulje PiP-kuva"
-
-#
-msgid "Disable Subtitles"
-msgstr "Poista tekstitys"
 
 #
 msgid "Disable crashlog reporting"
@@ -2005,10 +2000,10 @@ msgid "Display search results by:"
 msgstr "Näytä hakutulokset:"
 
 msgid "Display your photos on the TV"
-msgstr ""
+msgstr "Näytä kuvia"
 
 msgid "Displays movie information from the InternetMovieDatabase"
-msgstr ""
+msgstr "Hakee ja näyttää elokuvan tiedot IMDb:stä"
 
 #
 #, python-format
@@ -2199,14 +2194,10 @@ msgid "Download Video"
 msgstr "Lataa video"
 
 msgid "Download files from Rapidshare"
-msgstr ""
+msgstr "Lataa tiedostoja Rapidsharesta"
 
 msgid "Download location"
 msgstr "Tallennushakemisto"
-
-#
-msgid "Download of USB flasher boot image failed: "
-msgstr "Päivitystiedoston lataaminen epäonnistui:"
 
 #
 msgid "Downloadable new plugins"
@@ -2262,6 +2253,9 @@ msgid ""
 "(in standby mode without any running recordings) to perform updates of the "
 "epg information on these channels."
 msgstr ""
+"EPGRefresh vaihtaa käyttäjän määrittelemille kanaville kun laite on vapaana "
+"(valmiustilassa eikä tallennuksia ole käynnissä) ja päivittää näiden "
+"kanavien ohjelmatiedot."
 
 #
 #, python-format
@@ -2318,10 +2312,10 @@ msgid "Edit settings"
 msgstr "Muokkaa asetuksia"
 
 msgid "Edit tags of recorded movies"
-msgstr ""
+msgstr "Muokkaa tallenteiden avainsanoja"
 
 msgid "Edit tags of recorded movies."
-msgstr ""
+msgstr "Muokkaa tallenteiden avainsanoja."
 
 #
 msgid "Edit the Nameserver configuration of your Dreambox.\n"
@@ -2357,7 +2351,7 @@ msgid "Electronic Program Guide"
 msgstr "Ohjelmaopas"
 
 msgid "Emailclient is an IMAP4 e-mail viewer for the Dreambox."
-msgstr ""
+msgstr "Emailclient on IMAP4-sähköpostien lukija Dreamboxille."
 
 #
 msgid "Enable"
@@ -2470,6 +2464,9 @@ msgid ""
 "Enigma2 Plugin to play AVI/DIVX/WMV/etc. videos from PC on your Dreambox. "
 "Needs a running VLC from www.videolan.org on your pc."
 msgstr ""
+"Lisäosa AVI/DIVX/WMV/yms. PC:llä olevien videoiden toistoon Dreamboxin "
+"kautta. Tarvitsee www.videolan.org osoitteesta ladattavan VLC-ohjelman "
+"pyörimään PC:lle."
 
 msgid ""
 "Enigma2 Skinselector\n"
@@ -2581,7 +2578,7 @@ msgid "Execute \"after event\" during timespan"
 msgstr "Suorita \"ohjelman jälkeen\" aikajakson aikana"
 
 msgid "Execute TuxboxPlugins"
-msgstr ""
+msgstr "Käytä Tuxbox-lisäosia"
 
 #
 msgid "Execution Progress:"
@@ -2656,6 +2653,8 @@ msgid ""
 "FTPBrowser allows uploading and downloading files between your Dreambox and "
 "a server using the file transfer protocol."
 msgstr ""
+"FTPBrowser lisäosalla voit ladata ja lähettää tiedostoja Dreamboxin ja "
+"palvelimen välillä FTP-protokollan avulla."
 
 #
 msgid "Factory reset"
@@ -2749,13 +2748,7 @@ msgid "Finnish"
 msgstr "Suomi"
 
 msgid "First generate your skin-style with the Ai.HD-Control plugin."
-msgstr ""
-
-#
-msgid ""
-"First we need to download the latest boot environment for the USB flasher."
-msgstr ""
-"Aluksi lataamme viimeisimmän käynnistysympäristön USB-päivitysohjelmalle."
+msgstr "Luo ensin oma teema Ai.HD-control lisäosalla."
 
 msgid "Flash"
 msgstr "Päivitä"
@@ -2823,15 +2816,14 @@ msgid "Frisian"
 msgstr "Friisi"
 
 msgid "FritzCall shows incoming calls to your Fritz!Box on your Dreambox."
-msgstr ""
+msgstr "FritzCall näyttää Fritz!Boxiin saapuvat puhelut Dreamboxissa."
 
 msgid "Frontend for /tmp/mmi.socket"
-msgstr ""
+msgstr "Käyttöliittymä /tmp/mmi.socketille"
 
-#
 #, python-format
 msgid "Frontprocessor version: %d"
-msgstr "Etupaneelin suorittimen versio: %d"
+msgstr "Edustaprosessorin versio: %d"
 
 #
 msgid "Fsck failed"
@@ -2848,14 +2840,14 @@ msgstr ""
 "uudelleen nyt?"
 
 msgid "GUI that allows user to change the ftp- / telnet password."
-msgstr ""
+msgstr "Graafinen käyttöliittymä ftp- ja telnet-salasanan vaihtoon."
 
 msgid ""
 "GUI that allows user to change the ftp-/telnet-password of the Dreambox."
-msgstr ""
+msgstr "Graafinen käyttöliittymä Dreamboxin ftp- ja telnet-salasanan vaihtoon."
 
 msgid "GUI to change the ftp and telnet-password"
-msgstr ""
+msgstr "Graafinen käyttöliittymä ftp- ja telnet-salasanan vaihtoon"
 
 msgid "Gaming"
 msgstr "Pelit"
@@ -2889,23 +2881,23 @@ msgid "Genuine Dreambox validation failed!"
 msgstr "Dreamboxin aitouden varmistus epäonnistui!"
 
 msgid "Genuine Dreambox verification"
-msgstr ""
+msgstr "Dreamboxin aitouden varmistaminen"
 
 #
 msgid "German"
 msgstr "Saksa"
 
 msgid "German storm information"
-msgstr ""
+msgstr "Saksan myrskytietoja"
 
 msgid "German traffic information"
-msgstr ""
+msgstr "Saksan liikennetietoja"
 
 msgid "Germany"
 msgstr "Saksa"
 
 msgid "Get AudioCD info from CDDB and CD-Text"
-msgstr ""
+msgstr "Hae ääni-CD tietoja CDDB:stä and CD-Textistä"
 
 msgid "Get latest experimental image"
 msgstr "Hae viimeisin koeversioinen ohjelmistopäivitys"
@@ -2929,12 +2921,14 @@ msgid "Goto position"
 msgstr "Mene sijaintiin"
 
 msgid "GraphMultiEPG shows a graphical timeline EPG"
-msgstr ""
+msgstr "GraphMultiEPG näyttää graafisen aikalinjaohjelmaoppaan"
 
 msgid ""
 "GraphMultiEPG shows a graphical timeline EPG.\n"
 "Shows a nice overview of all running und upcoming tv shows."
 msgstr ""
+"GraphMultiEPG näyttää graafisen aikalinjaohjelmaoppaan.\n"
+"Näet yleisnäkymän kaikista tällä hetkellä menevistä ja tulevista ohjelmista."
 
 #
 msgid "Graphical Multi EPG"
@@ -2956,6 +2950,10 @@ msgid ""
 "protocol\n"
 "like Recording started notifications to a PC running a growl client"
 msgstr ""
+"Growleen avulla Dreambox voi lähettää lyhyitä Growl-protokollan mukaisia "
+"viestejä,\n"
+"esim. ilmoituksen tallennuksen aloittamisesta, PC:lle jossa pyörii Growl-"
+"asiakasohjelma"
 
 #
 msgid "Guard Interval"
@@ -3026,7 +3024,7 @@ msgid "Horizontal"
 msgstr "Horisontaali"
 
 msgid "Hotplugging for removeable devices"
-msgstr ""
+msgstr "Oheislaitteiden pikalisääminen/poisto"
 
 #
 msgid "How many minutes do you want to record?"
@@ -3048,7 +3046,7 @@ msgid "Hungarian"
 msgstr "Unkari"
 
 msgid "IMAP4 e-mail viewer for the Dreambox"
-msgstr ""
+msgstr "IMAP4-sähköpostien lukija Dreamboxille."
 
 #
 msgid "IP Address"
@@ -3058,7 +3056,7 @@ msgid "IP:"
 msgstr "IP:"
 
 msgid "IRC Client for Enigma2"
-msgstr ""
+msgstr "IRC-sovellus Enigma2:lle"
 
 #
 msgid "ISO file is too large for this filesystem!"
@@ -3111,10 +3109,6 @@ msgstr ""
 "Älä välitä kirkkaista sävyistä, ne säädetään seuraavassa vaiheessa.\n"
 "\n"
 "Kun olet tyytyväinen tulokseen, paina OK."
-
-#
-msgid "Image flash utility"
-msgstr "Päivityksen asennusohjelma"
 
 msgid "Import AutoTimer"
 msgstr "Tuo automaattiajastus"
@@ -3263,14 +3257,6 @@ msgstr "Pikatallennus..."
 msgid "Instant record location"
 msgstr "Pikatallennuksen hakemisto"
 
-#
-msgid "Integrated Ethernet"
-msgstr "Sisäinen verkkokortti"
-
-#
-msgid "Integrated Wireless"
-msgstr "Sisäänrakennettu WLAN"
-
 msgid "Interface: "
 msgstr "Liittymä: "
 
@@ -3286,7 +3272,7 @@ msgid "Internal LAN adapter."
 msgstr "Sisäinen verkkokortti."
 
 msgid "Internal firmware updater"
-msgstr ""
+msgstr "Edustaprosessorin ohjelmiston päivitysohjelma"
 
 #
 msgid "Invalid Location"
@@ -3350,10 +3336,10 @@ msgid "Italian"
 msgstr "Italia"
 
 msgid "Italian Weather forecast on Dreambox"
-msgstr ""
+msgstr "Italian sääennuste"
 
 msgid "Italian Weather forecast on Dreambox from www.google.it."
-msgstr ""
+msgstr "Italian sääennuste noudettuna www.google.it sivulta."
 
 msgid "Italy"
 msgstr "Italia"
@@ -3371,49 +3357,49 @@ msgid "Just Scale"
 msgstr "Aina kokoruutu"
 
 msgid "Kerni's BrushedAlu-HD skin"
-msgstr ""
+msgstr "Kernin BrushedAlu-HD teema"
 
 msgid "Kerni's DreamMM-HD skin"
-msgstr ""
+msgstr "Kernin DreamMM-HD teema"
 
 msgid "Kerni's Elgato-HD skin"
-msgstr ""
+msgstr "Kernin Elgato-HD teema"
 
 msgid "Kerni's SWAIN skin"
-msgstr ""
+msgstr "Kernin SWAIN teema"
 
 msgid "Kerni's SWAIN-HD skin"
-msgstr ""
+msgstr "Kernin SWAIN-HD teema"
 
 msgid "Kerni's UltraViolet skin"
-msgstr ""
+msgstr "Kernin UltraViolet teema"
 
 msgid "Kerni's YADS-HD skin"
-msgstr ""
+msgstr "Kernin YADS-HD teema"
 
 msgid "Kerni's dTV-HD skin"
-msgstr ""
+msgstr "Kernin dTV-HD teema"
 
 msgid "Kerni's dTV-HD-Reloaded skin"
-msgstr ""
+msgstr "Kernin dTV-HD-Reloaded teema"
 
 msgid "Kerni's dmm-HD skin"
-msgstr ""
+msgstr "Kernin dmm-HD teema"
 
 msgid "Kerni's dreamTV-HD skin"
-msgstr ""
+msgstr "Kernin dreamTV-HD teema"
 
 msgid "Kerni's simple skin"
-msgstr ""
+msgstr "Kernin simple teema"
 
 msgid "Kerni-HD1 skin"
-msgstr ""
+msgstr "Kerni-HD1 teema"
 
 msgid "Kerni-HD1R2 skin"
-msgstr ""
+msgstr "Kerni-HD1R2 teema"
 
 msgid "Kernis HD1 skin"
-msgstr ""
+msgstr "Kernin HD1 teema"
 
 #, python-format
 msgid "Key %(Key)s successfully set to %(delay)i ms"
@@ -3440,7 +3426,7 @@ msgid "Keymap"
 msgstr "Näppäinasettelu"
 
 msgid "KiddyTimer allows to control your kids's daily tv usage."
-msgstr ""
+msgstr "KiddyTimerillä voit hallita lastesi päivittäistä TV:n katselua."
 
 #
 msgid "LAN Adapter"
@@ -3538,10 +3524,10 @@ msgid "List of Storage Devices"
 msgstr "Luettelo tallennusvälineistä"
 
 msgid "Listen and record internet radio"
-msgstr ""
+msgstr "Kuuntele ja tallenna Internet-radioita"
 
 msgid "Listen and record shoutcast internet radio on your Dreambox."
-msgstr ""
+msgstr "Kuuntele ja tallenna SHOUTcast-radioita."
 
 #
 msgid "Lithuanian"
@@ -3636,13 +3622,13 @@ msgid "Manage extensions"
 msgstr "Hallitse laajennuksia"
 
 msgid "Manage local files"
-msgstr ""
+msgstr "Hallitse tiedostoja"
 
 msgid "Manage logos to display at boot time or while in radio mode."
-msgstr ""
+msgstr "Hallitse käynnistys- ja radiotilan näyttökuvia."
 
 msgid "Manage logos to display at boottime"
-msgstr ""
+msgstr "Hallitse käynnistyksen näyttökuvia"
 
 msgid "Manage network shares"
 msgstr "Hallitse verkkojakoja"
@@ -3714,6 +3700,8 @@ msgid ""
 "MediaScanner scans devices for playable media files and displays a menu with "
 "possible actions like viewing pictures or playing movies."
 msgstr ""
+"MediaScanner hakee toistokelpoisia media-tiedostoja ja näyttää valikon "
+"niille sopivista tehtävistä, esim. katsele kuvia tai toista tallenne."
 
 msgid ""
 "Mediaplayer plays your favorite music and videos.\n"
@@ -3734,7 +3722,7 @@ msgid "Menu"
 msgstr "Valikko"
 
 msgid "Merlin Music Player and iDream"
-msgstr ""
+msgstr "Merlin musiikkisoitin ja iDream"
 
 #
 msgid "Message"
@@ -3891,10 +3879,10 @@ msgid "Move west"
 msgstr "Liikuta länteen"
 
 msgid "Movie information from the Online Film Datenbank (German)."
-msgstr ""
+msgstr "Nouda tietoja elokuvista Online Film Datenbankista (Saksa)."
 
 msgid "Movie informations from the Online Film Datenbank"
-msgstr ""
+msgstr "Nouda tietoja elokuvista Online Film Datenbankista"
 
 msgid "Movie location"
 msgstr "Tallennushakemisto"
@@ -3902,11 +3890,15 @@ msgstr "Tallennushakemisto"
 msgid ""
 "MovieTagger adds tags to recorded movies to sort a large list of movies."
 msgstr ""
+"MovieTagger lisää avainsanoja tallenteisiin suuren tallennemäärän "
+"järjestämistä varten."
 
 msgid ""
 "Movielist Preview creates screenshots of recordings and shows them inside "
 "the movielist."
 msgstr ""
+"Movielist Preview ottaa kuvaruutukaappaukset tallenteista ja näyttää ne "
+"tallenneluettelossa."
 
 #
 msgid "Movielist menu"
@@ -3962,6 +3954,11 @@ msgstr "MyTube-video ohjeruutu"
 msgid "N/A"
 msgstr "Ei saatavilla"
 
+msgid ""
+"NCID Client shows incoming voice calls promoted by any NCID server (e.g. "
+"Vodafone Easybox) on your Dreambox."
+msgstr ""
+
 #
 msgid "NEXT"
 msgstr "SEURAAVA"
@@ -4008,100 +4005,100 @@ msgid "Nameserver settings"
 msgstr "Nimipalvelimen asetukset"
 
 msgid "Nemesis BlackBox Skin"
-msgstr ""
+msgstr "Nemesis BlackBox teema"
 
 msgid "Nemesis BlackBox Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis BlackBox teema Dreamboxille"
 
 msgid "Nemesis Blueline Single Skin"
-msgstr ""
+msgstr "Nemesis Blueline Single teema"
 
 msgid "Nemesis Blueline Single Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Blueline Single teema Dreamboxille"
 
 msgid "Nemesis Blueline Skin"
-msgstr ""
+msgstr "Nemesis Blueline teema"
 
 msgid "Nemesis Blueline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Blueline teema Dreamboxille"
 
 msgid "Nemesis Blueline.Extended Skin"
-msgstr ""
+msgstr "Nemesis Blueline.Extended teema"
 
 msgid "Nemesis Blueline.Extended Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Blueline.Extended teema Dreamboxille"
 
 msgid "Nemesis ChromeLine Cobolt Skin"
-msgstr ""
+msgstr "Nemesis ChromeLine Cobolt teema"
 
 msgid "Nemesis ChromeLine Cobolt Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis ChromeLine Cobolt teema Dreamboxille"
 
 msgid "Nemesis ChromeLine Skin"
-msgstr ""
+msgstr "Nemesis ChromeLine teema"
 
 msgid "Nemesis ChromeLine Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis ChromeLine teema Dreamboxille"
 
 msgid "Nemesis Flatline Blue Skin"
-msgstr ""
+msgstr "Nemesis Flatline Blue teema"
 
 msgid "Nemesis Flatline Blue Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Flatline Blue teema Dreamboxille"
 
 msgid "Nemesis Flatline Skin"
-msgstr ""
+msgstr "Nemesis Flatline teema"
 
 msgid "Nemesis Flatline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Flatline teema Dreamboxille"
 
 msgid "Nemesis GlassLine Skin"
-msgstr ""
+msgstr "Nemesis GlassLine teema"
 
 msgid "Nemesis GlassLine Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis GlassLine teema Dreamboxille"
 
 msgid "Nemesis Greenline Extended Skin"
-msgstr ""
+msgstr "Nemesis Greenline Extended teema"
 
 msgid "Nemesis Greenline Extended Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greenline Extended teema Dreamboxille"
 
 msgid "Nemesis Greenline Single Skin"
-msgstr ""
+msgstr "Nemesis Greenline Single teema"
 
 msgid "Nemesis Greenline Single Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greenline Single teema Dreamboxille"
 
 msgid "Nemesis Greenline Skin"
-msgstr ""
+msgstr "Nemesis Greenline teema"
 
 msgid "Nemesis Greenline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greenline teema Dreamboxille"
 
 msgid "Nemesis Greyline Extended Skin"
-msgstr ""
+msgstr "Nemesis Greyline Extended teema"
 
 msgid "Nemesis Greyline Extended Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greyline Extended teema Dreamboxille"
 
 msgid "Nemesis Greyline Single Skin"
-msgstr ""
+msgstr "Nemesis Greyline Single teema"
 
 msgid "Nemesis Greyline Single Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greyline Single teema Dreamboxille"
 
 msgid "Nemesis Greyline Skin"
-msgstr ""
+msgstr "Nemesis Greyline teema"
 
 msgid "Nemesis Greyline Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis Greyline teema Dreamboxille"
 
 msgid "Nemesis ShadowLine Skin"
-msgstr ""
+msgstr "Nemesis ShadowLine teema"
 
 msgid "Nemesis ShadowLine Skin for the Dreambox"
-msgstr ""
+msgstr "Nemesis ShadowLine teema Dreamboxille"
 
 #
 msgid "Netmask"
@@ -4168,12 +4165,11 @@ msgstr "Ei koskaan"
 msgid "New"
 msgstr "Uusi"
 
+msgid "New PIN"
+msgstr "Uusi PIN"
+
 msgid "New Zealand"
 msgstr "Uusi-Seelanti"
-
-#
-msgid "New pin"
-msgstr "Uusi tunnusluku"
 
 #
 msgid "New version:"
@@ -4304,10 +4300,6 @@ msgid ""
 msgstr ""
 "Viritintä ei ole määritetty!\n"
 "Määritä virittimen asetukset ennen kanavahaun aloittamista."
-
-#
-msgid "No useable USB stick found"
-msgstr "Käyttökelpoista USB-muistitikkua ei löytynyt"
 
 #
 msgid ""
@@ -4584,10 +4576,6 @@ msgstr "Ohjelmapakettien hallinta"
 msgid "Packet manager"
 msgstr "Ohjelmapakettien hallinta"
 
-#
-msgid "Page"
-msgstr "Sivu"
-
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 msgid "Pan&Scan"
 msgstr "Pan&Scan"
@@ -4616,6 +4604,8 @@ msgid ""
 "Partnerbox allows editing a remote Dreambox's record timers and stream its "
 "TV  program."
 msgstr ""
+"Partnerboxin avulla voit verkon kautta muokata toisen Dreamboxin ajastuksia "
+"ja katsella sen kanavia."
 
 #
 msgid "Password"
@@ -4629,7 +4619,7 @@ msgid "People & Blogs"
 msgstr "Ihmiset ja blogit"
 
 msgid "PermanentClock shows the clock permanently on the screen."
-msgstr ""
+msgstr "PermanentClock näyttää kellon pysyvästi kuvaruudulla."
 
 msgid "Pets & Animals"
 msgstr "Lemmikit ja eläimet"
@@ -4676,10 +4666,10 @@ msgid "Play YouTube movies"
 msgstr "Toista Youtube-videoita"
 
 msgid "Play music from Last.fm"
-msgstr ""
+msgstr "Toista musiikkia Last.fm:ltä"
 
 msgid "Play music from Last.fm."
-msgstr ""
+msgstr "Toista musiikkia Last.fm:ltä."
 
 msgid "Play next video"
 msgstr "Toista seuraava video"
@@ -4692,7 +4682,7 @@ msgid "Play video again"
 msgstr "Toista video uudestaan"
 
 msgid "Play videos from PC on your Dreambox"
-msgstr ""
+msgstr "Toista elokuvia PC:ltä Dreamboxin kautta"
 
 msgid "Playback of Youtube through a PC"
 msgstr ""
@@ -4717,6 +4707,12 @@ msgstr "Valitse lähde josta haetaan"
 msgid "Please add titles to the compilation."
 msgstr "Lisää tallenteita kokoelmaan."
 
+msgid ""
+"Please be aware, that anyone can disable the parental control, if you have "
+"not set a PIN."
+msgstr ""
+"Huomaa, että kuka tahansa voi poistaa lapsilukon jos et aseta PIN-koodia."
+
 #
 msgid "Please change recording endtime"
 msgstr "Aseta tallennuksen päättymisaika"
@@ -4724,10 +4720,6 @@ msgstr "Aseta tallennuksen päättymisaika"
 #
 msgid "Please check your network settings!"
 msgstr "Tarkista verkkoasetukset!"
-
-#
-msgid "Please choose .NFI image file from feed server to download"
-msgstr "Valitse päivityspalvelimelta NFI-päivitys latausta varten"
 
 #
 msgid "Please choose an extension..."
@@ -4759,13 +4751,6 @@ msgstr ""
 "Määritä lähiverkkoyhteys syöttämällä tarvittavat arvot.\n"
 "Paina OK-näppäintä kun olet valmis."
 
-msgid ""
-"Please disconnect all USB devices from your Dreambox and (re-)attach the "
-"target USB stick (minimum size is 64 MB) now!"
-msgstr ""
-"Poista kaikki USB-laitteet Dreamboxista ja kytke/uudelleenkytke kohde USB-"
-"muistitikku (minimikoko 64 MB) nyt!"
-
 #
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Älä muuta arvoja, ellet tiedä mitä teet!"
@@ -4794,9 +4779,8 @@ msgstr "Syötä uuden hakemiston nimi"
 msgid "Please enter the correct pin code"
 msgstr "Syötä oikea tunnusluku"
 
-#
-msgid "Please enter the old pin code"
-msgstr "Syötä vanha tunnusluku"
+msgid "Please enter the old PIN code"
+msgstr "Syötä vanha PIN-koodi"
 
 #
 msgid "Please enter your email address here:"
@@ -4831,10 +4815,6 @@ msgstr "Paina OK."
 
 msgid "Please provide a Text to match"
 msgstr "Syötä haettava teksti"
-
-#
-msgid "Please select .NFI flash image file from medium"
-msgstr "Valitse NFI-päivitystiedosto"
 
 #
 msgid "Please select a playlist to delete..."
@@ -4873,10 +4853,6 @@ msgstr "Valitse tallennuspaikka varmuuskopiolle"
 #
 msgid "Please select tag to filter..."
 msgstr "Valitse suodatettava avainsana..."
-
-#
-msgid "Please select target directory or medium"
-msgstr "Valitse kohdehakemisto tai levy"
 
 #
 msgid "Please select the movie path..."
@@ -5161,10 +5137,6 @@ msgid "Press OK to toggle the selection."
 msgstr "Muuta valintaa OK-näppäimellä."
 
 #
-msgid "Press OK to view full changelog"
-msgstr "Katso koko muutosloki OK-näppäimellä"
-
-#
 msgid "Press yellow to set this interface as default interface."
 msgstr "Määritä tämä oletukseksi keltaisella näppäimellä."
 
@@ -5231,7 +5203,7 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python-liittymä /tmp/mmi.socket:ille"
 
 msgid "Python frontend for /tmp/mmi.socket."
-msgstr ""
+msgstr "Python-liittymä /tmp/mmi.socket:ille"
 
 #
 msgid "Quick"
@@ -5254,7 +5226,7 @@ msgid "RGB"
 msgstr "RGB"
 
 msgid "RSS viewer"
-msgstr ""
+msgstr "RSS-lukija"
 
 msgid "Radio"
 msgstr "Radio"
@@ -5358,9 +5330,8 @@ msgstr "Tallenteet"
 msgid "Recordings always have priority"
 msgstr "Tallennukset saavat keskeyttää suoran katselun"
 
-#
-msgid "Reenter new pin"
-msgstr "Syötä uusi tunnusluku toistamiseen"
+msgid "Reenter new PIN"
+msgstr "Syötä uusi PIN uudelleen"
 
 #
 msgid "Refresh Rate"
@@ -5383,11 +5354,11 @@ msgstr "Päivitä"
 msgid "Reload Black-/Whitelists"
 msgstr "Lataa esto-/sallilistat uudestaan"
 
-msgid "Remember service pin"
+msgid "Remember service PIN"
 msgstr "Muista kanavan PIN"
 
-msgid "Remember service pin cancel"
-msgstr "Unohda kanavan PIN"
+msgid "Remember service PIN cancel"
+msgstr "Älä muista kanavan PIN:iä"
 
 msgid "Remote timer and remote TV player"
 msgstr ""
@@ -5426,14 +5397,6 @@ msgstr "Poista lisäosia"
 
 msgid "Remove selected AutoTimer"
 msgstr "Poista valittu automaattiajastus"
-
-#
-msgid "Remove the broken .NFI file?"
-msgstr "Poista vioittunut .NFI-tiedosto"
-
-#
-msgid "Remove the incomplete .NFI file?"
-msgstr "Poista keskeneräinen .NFI-tiedosto"
 
 #
 msgid "Remove timer"
@@ -5685,7 +5648,7 @@ msgid "Satfinder"
 msgstr "Satelliittietsin"
 
 msgid "Satfinder helps you to align your dish"
-msgstr ""
+msgstr "Satelliittietsin auttaa suuntaamaan antennin"
 
 msgid "Sats"
 msgstr "Sat."
@@ -5826,13 +5789,6 @@ msgstr ""
 msgid "Scan range"
 msgstr "Hae alue"
 
-#
-msgid ""
-"Scan your network for wireless Access Points and connect to them using your "
-"selected wireless device.\n"
-msgstr ""
-"Hae WLAN-tukiasemia ja kytkeydy niihin valittua WLAN-laitetta käyttäen.\n"
-
 msgid ""
 "Scan your network for wireless access points and connect to them using your "
 "selected wireless device.\n"
@@ -5886,7 +5842,7 @@ msgid "Search strictness"
 msgstr "Haun tarkkuus"
 
 msgid "Search through the EPG"
-msgstr ""
+msgstr "Hae ohjelmatietoja"
 
 #
 msgid "Search type"
@@ -5955,10 +5911,6 @@ msgid "Select a timer to import"
 msgstr "Valitse tuotava ajastus"
 
 #
-msgid "Select audio mode"
-msgstr "Valitse äänimuoto"
-
-#
 msgid "Select audio track"
 msgstr "Valitse ääniraita"
 
@@ -5981,16 +5933,8 @@ msgid "Select files for backup."
 msgstr "Valitse varmistettavat tiedostot."
 
 #
-msgid "Select files for backup. Currently selected:\n"
-msgstr "Valitse kopioitavat tiedostot. Nykyinen valinta:\n"
-
-#
 msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
-
-#
-msgid "Select image"
-msgstr "Valitse päivitys"
 
 msgid "Select input device"
 msgstr "Valitse syöttölaite"
@@ -6054,10 +5998,6 @@ msgstr "Valitse WLAN-verkko"
 
 msgid "Select your choice."
 msgstr "Tee valinta."
-
-#
-msgid "Selected source image"
-msgstr "Valittu päivitys"
 
 #
 msgid "Send DiSEqC"
@@ -6184,7 +6124,7 @@ msgid "Set this NO to disable this AutoTimer."
 msgstr "Poista tämä automaattiajastus käytöstä laittamalla arvoksi Ei."
 
 msgid "Sets your Dreambox into Deep-Standby"
-msgstr ""
+msgstr "Sammuttaa Dreamboxin virransäästötilaan"
 
 #
 msgid "Setting key canceled"
@@ -6293,6 +6233,9 @@ msgid ""
 msgstr ""
 
 msgid "Shows a list of recent zap entries"
+msgstr ""
+
+msgid "Shows average bitrate of video and audio"
 msgstr ""
 
 msgid "Shows statistics of watched services"
@@ -6582,10 +6525,6 @@ msgid "Step west"
 msgstr "Askel länteen"
 
 #
-msgid "Stereo"
-msgstr "Stereo"
-
-#
 msgid "Stop"
 msgstr "Pysäytä"
 
@@ -6839,6 +6778,12 @@ msgstr ""
 "Verkkoavustajaa ei ole asennettu!\n"
 "Asenna se."
 
+msgid "The PIN code has been changed successfully."
+msgstr ""
+
+msgid "The PIN codes you entered are different."
+msgstr ""
+
 msgid ""
 "The PicturePlayer displays your photos on the TV.\n"
 "You can view them as thumbnails or slideshow."
@@ -6882,13 +6827,6 @@ msgstr ""
 "Automaattiajastuksen aikajakso on ensimmäinen 'laajempi' hakutieto. Jos "
 "aikajakso on määritetty, ohjelma haetaan tällä automaattiajastuksella vain "
 "jos se on aikajakson sisällä."
-
-msgid ""
-"The USB stick is now bootable. Do you want to download the latest image from "
-"the feed server and save it on the stick?"
-msgstr ""
-"USB-muisti on nyt automaattisesti käynnistyvä. Haluatko ladata uusimman "
-"päivityksen ja tallentaa sen muistitikulle?"
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -6983,24 +6921,6 @@ msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr "MD5-tarkistus epäonnistui, tiedosto voi olla vioittunut!"
 
 #
-msgid ""
-"The md5sum validation failed, the file may be corrupted! Are you sure that "
-"you want to burn this image to flash memory? You are doing this at your own "
-"risk!"
-msgstr ""
-"MD5SUM-tarkistusluku virheellinen, tiedosto voi olla vioittunut! Oletko "
-"varma, että haluat asentaa tämän ohjelmistopäivityksen? Teet sen omalla "
-"vastuulla!"
-
-#
-msgid ""
-"The md5sum validation failed, the file may be downloaded incompletely or be "
-"corrupted!"
-msgstr ""
-"MD5SUM-tarkistusluku virheellinen, tiedosto voi olla keskeneräinen tai "
-"vioittunut!"
-
-#
 msgid "The package doesn't contain anything."
 msgstr "Paketti ei sisällä mitään."
 
@@ -7014,16 +6934,8 @@ msgid "The path %s already exists."
 msgstr "Hakemisto %s on jo olemassa."
 
 #
-msgid "The pin code has been changed successfully."
-msgstr "Tunnusluku on nyt vaihdettu."
-
-#
 msgid "The pin code you entered is wrong."
 msgstr "Syötit virheellisen tunnusluvun."
-
-#
-msgid "The pin codes you entered are different."
-msgstr "Syöttämäsi tunnusluvut eroavat toisistaan."
 
 #
 #, python-format
@@ -7128,27 +7040,6 @@ msgid ""
 msgstr ""
 "Dreamboxiisi on saatavilla päivitetty sertifikaatti. Asennetaanko päivitys "
 "nyt?"
-
-#
-#, python-format
-msgid "This .NFI file does not contain a valid %s image!"
-msgstr "Tämä .NFI-tiedosto ei sisällä toimivaa %s ohjelmistopäivitystä!"
-
-#
-msgid ""
-"This .NFI file does not have a md5sum signature and is not guaranteed to "
-"work. Do you really want to burn this image to flash memory?"
-msgstr ""
-"Tällä .NFI-tiedostolla ei ole MD5SUM-tarkistuslukua eikä sen toiminnasta ole "
-"takeita. Oletko varma, että haluat asentaa tämän ohjelmistopäivityksen?"
-
-#
-msgid ""
-"This .NFI file has a valid md5 signature. Continue programming this image to "
-"flash memory?"
-msgstr ""
-".NFI-tiedoston MD5-tarkistusluku on kunnossa. Jatketaanko "
-"ohjelmistopäivityksen asentamista?"
 
 #
 msgid ""
@@ -7446,21 +7337,6 @@ msgstr ""
 "sekuntia pohjassa.\n"
 "3) Odota käynnistymistä ja seuraa ohjeita."
 
-msgid ""
-"To update your Dreambox firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and plug in the bootable USB "
-"stick.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed "
-"for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Päivitä Dreamboxin ohjelmisto näiden ohjeiden mukaisesti:\n"
-"1) Kytke virta pois päältä takapaneelin kytkimestä ja liitä automaattisesti "
-"käynnistyvä USB-muistitikku.\n"
-"2) Kytke virta takaisin päälle ja pidä etupaneelin nuoli alas -näppäintä 10 "
-"sekuntia pohjassa.\n"
-"3) Odota käynnistymistä ja seuraa ohjeita."
-
 #
 msgid "Today"
 msgstr "Tänään"
@@ -7610,12 +7486,6 @@ msgstr "USB-muisti"
 #
 msgid "USB stick wizard"
 msgstr "USB-muistiavustaja"
-
-msgid ""
-"USB stick wizard finished. Your dreambox will now restart with your new "
-"image!"
-msgstr ""
-"USB-muistiavustaja on valmis. Dreambox käynnistyy nyt uudella ohjelmistolla!"
 
 #
 msgid "Ukrainian"
@@ -7881,6 +7751,9 @@ msgstr "VMGM (intro trailer)"
 msgid "Vali-XD skin"
 msgstr ""
 
+msgid "Vali.HD.nano skin"
+msgstr ""
+
 msgid ""
 "Verify your Dreambox authenticity by running the genuine dreambox plugin!"
 msgstr "Tarkista Dreamboxin aitous suorittamalla Aito Dreambox -lisäosa!"
@@ -8069,6 +7942,14 @@ msgstr "Näkymät:"
 #
 msgid "Virtual KeyBoard"
 msgstr "Virtuaalinen näppäimistö"
+
+msgid "Visualization for the European Installation Bus"
+msgstr ""
+
+msgid ""
+"Visualize and control your lights, dimmers, blinds, thermostats etc. through "
+"EIB/KNX. (linknx server required)"
+msgstr ""
 
 #
 msgid "Voltage mode"
@@ -8345,10 +8226,6 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "Minne ajansiirron väliaikainen tiedosto tallennetaan?"
 
 #
-msgid "Wireless"
-msgstr "Langaton"
-
-#
 msgid "Wireless LAN"
 msgstr "WLAN-verkko"
 
@@ -8471,10 +8348,6 @@ msgstr "Kirjoitusvirhe tallennuksessa. Levy täynnä?\n"
 #
 msgid "Write failed!"
 msgstr "Kirjoitus epäonnistui!"
-
-#
-msgid "Writing NFI image file to flash completed"
-msgstr "NFI-päivityksen asennus suoritetti"
 
 #
 msgid "YPbPr"
@@ -8661,15 +8534,11 @@ msgstr ""
 "Dreamboksisi sammutetaan nyt. Kun olet tehnyt päivitystoimenpiteet sivuston "
 "mukaisesti, uusi ohjelmaversio pyytää sinua palauttamaan asetukset."
 
-#
 msgid ""
-"You need to set a pin code and hide it from your children.\n"
+"You need to set a PIN code and hide it from your children.\n"
 "\n"
 "Do you want to set the pin now?"
 msgstr ""
-"Sinun täytyy asettaa tunnusluku ja piilottaa se lapsiltasi.\n"
-"\n"
-"Haluatko asettaa tunnusluvun nyt?"
 
 msgid ""
 "You successfully configured a new AutoTimer. Do you want to add it to the "
@@ -8757,12 +8626,11 @@ msgstr ""
 msgid "Your email address:"
 msgstr "Sähköpostiosoite:"
 
-#
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
-"Etupaneelin suorittimen ohjelmisto on päivitettävä.\n"
+"Edustaprosessorin ohjelmisto on päivitettävä.\n"
 "Paina OK aloittaaksesi päivityksen."
 
 #
@@ -9077,10 +8945,6 @@ msgid "chapters"
 msgstr "kappaleet"
 
 #
-msgid "choose destination directory"
-msgstr "valitse kohdehakemisto"
-
-#
 msgid "circular left"
 msgstr "Kiertopolarisaatio vasen"
 
@@ -9292,10 +9156,6 @@ msgstr "poistu verkkosovitinluettelosta"
 #
 msgid "exit networkadapter setup menu"
 msgstr "poistu verkkosovittimen asetusvalikosta"
-
-#
-msgid "failed"
-msgstr "epäonnistui"
 
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -9573,6 +9433,9 @@ msgstr "ei määritetty"
 msgid "not locked"
 msgstr "ei lukittu"
 
+msgid "not supported"
+msgstr ""
+
 #
 msgid "not used"
 msgstr "ei käyt."
@@ -9792,20 +9655,12 @@ msgid "select"
 msgstr "valitse"
 
 #
-msgid "select .NFI flash file"
-msgstr "valitse .NFI flash-tiedosto"
-
-#
 msgid "select CAId"
 msgstr "Valitse CAId"
 
 #
 msgid "select CAId's"
 msgstr "valitse CAId:t"
-
-#
-msgid "select image from server"
-msgstr "valitse päivitys palvelimelta"
 
 #
 msgid "select interface"
@@ -9823,9 +9678,8 @@ msgstr "valitse tallenne"
 msgid "select the movie path"
 msgstr "valitse tallennehakemisto"
 
-#
-msgid "service pin"
-msgstr "kanavien tunnusluku"
+msgid "service PIN"
+msgstr ""
 
 msgid "set enigma2 to standby-mode after startup"
 msgstr ""
@@ -9834,9 +9688,8 @@ msgstr ""
 msgid "sets the Audio Delay (LipSync)"
 msgstr "aseta ääniviive (lipsync)"
 
-#
-msgid "setup pin"
-msgstr "asetusten tunnusluku"
+msgid "setup PIN"
+msgstr ""
 
 #
 msgid "show DVD main menu"
@@ -10026,6 +9879,9 @@ msgstr "aseta leikkausmerkki nykyiseen kohtaan"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "valitse aika, kappale, ääni, tekstitys"
 
+msgid "tuner is not supported"
+msgstr ""
+
 #
 msgid "unavailable"
 msgstr "Ei saatavilla"
@@ -10153,6 +10009,17 @@ msgstr "vaihdettu"
 #~ msgstr "* Käytettävissä vain kun syötetään piilotettu SSID tai verkkoavain."
 
 #
+#~ msgid ".NFI Download failed:"
+#~ msgstr ".NFI lataus epäonnistui:"
+
+#
+#~ msgid ""
+#~ ".NFI file passed md5sum signature check. You can safely flash this image!"
+#~ msgstr ""
+#~ ".NFI-tiedoston md5sum-allekirjoitus on kunnossa. Voit asentaa tämän "
+#~ "päivityksen."
+
+#
 #~ msgid "/usr/share/enigma2 directory"
 #~ msgstr "/usr/share/enigma2-hakemisto"
 
@@ -10228,8 +10095,28 @@ msgstr "vaihdettu"
 #~ msgid "Call monitoring"
 #~ msgstr "Puhelun tarkkailu"
 
+#
+#~ msgid "Cannot parse feed directory"
+#~ msgstr "Lataushakemistoa ei voitu lukea"
+
 #~ msgid "Category"
 #~ msgstr "Kategoria"
+
+#
+#~ msgid "Change dir."
+#~ msgstr "Muuta hak."
+
+#
+#~ msgid "Change service pin"
+#~ msgstr "Vaihda kanavan tunnusluku"
+
+#
+#~ msgid "Change service pins"
+#~ msgstr "Vaihda kanavan tunnusluvut"
+
+#
+#~ msgid "Change setup pin"
+#~ msgstr "Vaihda asetusten tunnusluku"
 
 #
 #~ msgid "Choose source"
@@ -10262,9 +10149,6 @@ msgstr "vaihdettu"
 #~ "epäonnistui! (%s)\n"
 #~ "yritetään uudelleen..."
 
-#~ msgid "Continue"
-#~ msgstr "Jatka"
-
 #~ msgid ""
 #~ "Crashlogs found!\n"
 #~ "Send them to Dream Multimedia ?"
@@ -10288,6 +10172,17 @@ msgstr "vaihdettu"
 #~ msgid "Delete selected mount"
 #~ msgstr "Poista valittu jako"
 
+#
+#~ msgid "Destination directory"
+#~ msgstr "Kohdehakemisto"
+
+#~ msgid "Details for extension: "
+#~ msgstr "Laajennuksen tiedot: "
+
+#
+#~ msgid "Disable Subtitles"
+#~ msgstr "Poista tekstitys"
+
 #~ msgid ""
 #~ "Disconnected from\n"
 #~ "Fritz!Box! (%s)\n"
@@ -10308,6 +10203,10 @@ msgstr "vaihdettu"
 #
 #~ msgid "Done - Installed or upgraded %d packages with %d errors"
 #~ msgstr "Valmis - asennettu tai päivitetty %d lisäosaa, %d virhettä"
+
+#
+#~ msgid "Download of USB flasher boot image failed: "
+#~ msgstr "Päivitystiedoston lataaminen epäonnistui:"
 
 #
 #~ msgid "Edit IPKG source URL..."
@@ -10360,6 +10259,12 @@ msgstr "vaihdettu"
 #~ msgstr "Tiedostojärjestelmän tarkistus..."
 
 #
+#~ msgid ""
+#~ "First we need to download the latest boot environment for the USB flasher."
+#~ msgstr ""
+#~ "Aluksi lataamme viimeisimmän käynnistysympäristön USB-päivitysohjelmalle."
+
+#
 #~ msgid "Following tasks will be done after you press continue!"
 #~ msgstr "Seuraavat tehtävät suoritetaan kun painat jatka!"
 
@@ -10400,6 +10305,10 @@ msgstr "vaihdettu"
 #~ msgstr "Jos näet tämän sivun, paina OK."
 
 #
+#~ msgid "Image flash utility"
+#~ msgstr "Päivityksen asennusohjelma"
+
+#
 #~ msgid "Image-Upgrade"
 #~ msgstr "Päivitys"
 
@@ -10414,6 +10323,14 @@ msgstr "vaihdettu"
 #
 #~ msgid "Install software updates..."
 #~ msgstr "Asenna ohjelmistopäivityksiä..."
+
+#
+#~ msgid "Integrated Ethernet"
+#~ msgstr "Sisäinen verkkokortti"
+
+#
+#~ msgid "Integrated Wireless"
+#~ msgstr "Sisäänrakennettu WLAN"
 
 #~ msgid "Interface: %s"
 #~ msgstr "Liittymä: %s"
@@ -10451,8 +10368,16 @@ msgstr "vaihdettu"
 #~ msgstr "Lähiverkko..."
 
 #
+#~ msgid "New pin"
+#~ msgstr "Uusi tunnusluku"
+
+#
 #~ msgid "No 50 Hz, sorry. :("
 #~ msgstr "Ei 50Hz tilaa. :("
+
+#
+#~ msgid "No useable USB stick found"
+#~ msgstr "Käyttökelpoista USB-muistitikkua ei löytynyt"
 
 #~ msgid "No, but play next video"
 #~ msgstr "Ei, mutta toista seuraava tallenne"
@@ -10476,6 +10401,33 @@ msgstr "vaihdettu"
 #~ msgstr "Ohjelmapaketin tiedot:"
 
 #
+#~ msgid "Page"
+#~ msgstr "Sivu"
+
+#
+#~ msgid "Please choose .NFI image file from feed server to download"
+#~ msgstr "Valitse päivityspalvelimelta NFI-päivitys latausta varten"
+
+#~ msgid ""
+#~ "Please disconnect all USB devices from your Dreambox and (re-)attach the "
+#~ "target USB stick (minimum size is 64 MB) now!"
+#~ msgstr ""
+#~ "Poista kaikki USB-laitteet Dreamboxista ja kytke/uudelleenkytke kohde USB-"
+#~ "muistitikku (minimikoko 64 MB) nyt!"
+
+#
+#~ msgid "Please enter the old pin code"
+#~ msgstr "Syötä vanha tunnusluku"
+
+#
+#~ msgid "Please select .NFI flash image file from medium"
+#~ msgstr "Valitse NFI-päivitystiedosto"
+
+#
+#~ msgid "Please select target directory or medium"
+#~ msgstr "Valitse kohdehakemisto tai levy"
+
+#
 #~ msgid "Plugin manager"
 #~ msgstr "Lisäosien hallinta"
 
@@ -10485,6 +10437,10 @@ msgstr "vaihdettu"
 #~ msgstr ""
 #~ "Tallennuksen jälkeinen tila. Valitse \"vakio\" jos et halua muuttaa "
 #~ "Enigma2:n oletustoimintaa tai arvoa jonka olet itse määrittänyt."
+
+#
+#~ msgid "Press OK to view full changelog"
+#~ msgstr "Katso koko muutosloki OK-näppäimellä"
 
 #
 #~ msgid "RSS Feed URI"
@@ -10498,8 +10454,26 @@ msgstr "vaihdettu"
 #~ msgstr "Tallennushakemistot..."
 
 #
+#~ msgid "Reenter new pin"
+#~ msgstr "Syötä uusi tunnusluku toistamiseen"
+
+#
 #~ msgid "Refresh"
 #~ msgstr "Päivitä"
+
+#~ msgid "Remember service pin"
+#~ msgstr "Muista kanavan PIN"
+
+#~ msgid "Remember service pin cancel"
+#~ msgstr "Unohda kanavan PIN"
+
+#
+#~ msgid "Remove the broken .NFI file?"
+#~ msgstr "Poista vioittunut .NFI-tiedosto"
+
+#
+#~ msgid "Remove the incomplete .NFI file?"
+#~ msgstr "Poista keskeneräinen .NFI-tiedosto"
 
 #
 #~ msgid "Restore backups..."
@@ -10561,6 +10535,13 @@ msgstr "vaihdettu"
 #~ msgstr "Hae WLAN-tukiasemia ja kytkeydy niihin USB WLAN-tikun avulla\n"
 
 #
+#~ msgid ""
+#~ "Scan your network for wireless Access Points and connect to them using "
+#~ "your selected wireless device.\n"
+#~ msgstr ""
+#~ "Hae WLAN-tukiasemia ja kytkeydy niihin valittua WLAN-laitetta käyttäen.\n"
+
+#
 #~ msgid "Search"
 #~ msgstr "Hae"
 
@@ -10569,12 +10550,24 @@ msgstr "vaihdettu"
 #~ msgstr "Valitse muokattava IPKG-lähde..."
 
 #
+#~ msgid "Select audio mode"
+#~ msgstr "Valitse äänimuoto"
+
+#
 #~ msgid "Select channel audio"
 #~ msgstr "Valitse kanavan ääni"
 
 #
+#~ msgid "Select files for backup. Currently selected:\n"
+#~ msgstr "Valitse kopioitavat tiedostot. Nykyinen valinta:\n"
+
+#
 #~ msgid "Select files/folders to backup..."
 #~ msgstr "Valitse kopioitavat tiedostot/kansiot..."
+
+#
+#~ msgid "Select image"
+#~ msgstr "Valitse päivitys"
 
 #
 #~ msgid "Select the key you want to set"
@@ -10583,6 +10576,10 @@ msgstr "vaihdettu"
 #
 #~ msgid "Select video input"
 #~ msgstr "Valitse video-sisäänmeno"
+
+#
+#~ msgid "Selected source image"
+#~ msgstr "Valittu päivitys"
 
 #
 #~ msgid "Set as default Interface"
@@ -10626,6 +10623,10 @@ msgstr "vaihdettu"
 #~ "Valitse uusi kohde."
 
 #
+#~ msgid "Stereo"
+#~ msgstr "Stereo"
+
+#
 #~ msgid "Switch audio"
 #~ msgstr "Ääniraita"
 
@@ -10637,9 +10638,63 @@ msgstr "vaihdettu"
 #~ msgid "Switch to user key- delays"
 #~ msgstr "Ota itse määritellyt viiveen pikavalinnat käyttöön"
 
+#~ msgid ""
+#~ "The USB stick is now bootable. Do you want to download the latest image "
+#~ "from the feed server and save it on the stick?"
+#~ msgstr ""
+#~ "USB-muisti on nyt automaattisesti käynnistyvä. Haluatko ladata uusimman "
+#~ "päivityksen ja tallentaa sen muistitikulle?"
+
+#
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be corrupted! Are you sure "
+#~ "that you want to burn this image to flash memory? You are doing this at "
+#~ "your own risk!"
+#~ msgstr ""
+#~ "MD5SUM-tarkistusluku virheellinen, tiedosto voi olla vioittunut! Oletko "
+#~ "varma, että haluat asentaa tämän ohjelmistopäivityksen? Teet sen omalla "
+#~ "vastuulla!"
+
+#
+#~ msgid ""
+#~ "The md5sum validation failed, the file may be downloaded incompletely or "
+#~ "be corrupted!"
+#~ msgstr ""
+#~ "MD5SUM-tarkistusluku virheellinen, tiedosto voi olla keskeneräinen tai "
+#~ "vioittunut!"
+
+#
+#~ msgid "The pin code has been changed successfully."
+#~ msgstr "Tunnusluku on nyt vaihdettu."
+
+#
+#~ msgid "The pin codes you entered are different."
+#~ msgstr "Syöttämäsi tunnusluvut eroavat toisistaan."
+
 #
 #~ msgid "There is nothing to be done."
 #~ msgstr "Ei tehtäviä."
+
+#
+#~ msgid "This .NFI file does not contain a valid %s image!"
+#~ msgstr "Tämä .NFI-tiedosto ei sisällä toimivaa %s ohjelmistopäivitystä!"
+
+#
+#~ msgid ""
+#~ "This .NFI file does not have a md5sum signature and is not guaranteed to "
+#~ "work. Do you really want to burn this image to flash memory?"
+#~ msgstr ""
+#~ "Tällä .NFI-tiedostolla ei ole MD5SUM-tarkistuslukua eikä sen toiminnasta "
+#~ "ole takeita. Oletko varma, että haluat asentaa tämän "
+#~ "ohjelmistopäivityksen?"
+
+#
+#~ msgid ""
+#~ "This .NFI file has a valid md5 signature. Continue programming this image "
+#~ "to flash memory?"
+#~ msgstr ""
+#~ ".NFI-tiedoston MD5-tarkistusluku on kunnossa. Jatketaanko "
+#~ "ohjelmistopäivityksen asentamista?"
 
 #
 #~ msgid "This Dreambox can't decode %s video streams!"
@@ -10653,9 +10708,31 @@ msgstr "vaihdettu"
 #~ msgid "Timeshift path..."
 #~ msgstr "Ajansiirron hakemisto..."
 
+#~ msgid ""
+#~ "To update your Dreambox firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and plug in the bootable "
+#~ "USB stick.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed "
+#~ "for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Päivitä Dreamboxin ohjelmisto näiden ohjeiden mukaisesti:\n"
+#~ "1) Kytke virta pois päältä takapaneelin kytkimestä ja liitä "
+#~ "automaattisesti käynnistyvä USB-muistitikku.\n"
+#~ "2) Kytke virta takaisin päälle ja pidä etupaneelin nuoli alas -näppäintä "
+#~ "10 sekuntia pohjassa.\n"
+#~ "3) Odota käynnistymistä ja seuraa ohjeita."
+
 #
 #~ msgid "USB"
 #~ msgstr "USB"
+
+#~ msgid ""
+#~ "USB stick wizard finished. Your dreambox will now restart with your new "
+#~ "image!"
+#~ msgstr ""
+#~ "USB-muistiavustaja on valmis. Dreambox käynnistyy nyt uudella "
+#~ "ohjelmistolla!"
 
 #
 #~ msgid ""
@@ -10713,6 +10790,14 @@ msgstr "vaihdettu"
 #~ msgstr "Mitkä viiveet haluat tallentaa?"
 
 #
+#~ msgid "Wireless"
+#~ msgstr "Langaton"
+
+#
+#~ msgid "Writing NFI image file to flash completed"
+#~ msgstr "NFI-päivityksen asennus suoritetti"
+
+#
 #~ msgid ""
 #~ "You do not seem to have a harddisk in your Dreambox. So backing up to a "
 #~ "harddisk is not an option for you."
@@ -10751,6 +10836,16 @@ msgstr "vaihdettu"
 #~ "varmistuksen nyt."
 
 #
+#~ msgid ""
+#~ "You need to set a pin code and hide it from your children.\n"
+#~ "\n"
+#~ "Do you want to set the pin now?"
+#~ msgstr ""
+#~ "Sinun täytyy asettaa tunnusluku ja piilottaa se lapsiltasi.\n"
+#~ "\n"
+#~ "Haluatko asettaa tunnusluvun nyt?"
+
+#
 #~ msgid "Your TV works with 50 Hz. Good!"
 #~ msgstr "Televisiosi toimii 50Hz:llä. Hyvä!"
 
@@ -10786,6 +10881,10 @@ msgstr "vaihdettu"
 #~ msgstr "bob"
 
 #
+#~ msgid "choose destination directory"
+#~ msgstr "valitse kohdehakemisto"
+
+#
 #~ msgid "default"
 #~ msgstr "oletus"
 
@@ -10800,6 +10899,10 @@ msgstr "vaihdettu"
 #
 #~ msgid "exit network adapter setup menu"
 #~ msgstr "poistu verkkosovittimen asetusvalikosta"
+
+#
+#~ msgid "failed"
+#~ msgstr "epäonnistui"
 
 #
 #~ msgid "hidden network"
@@ -10830,8 +10933,24 @@ msgstr "vaihdettu"
 #~ msgstr "tarvittava tallennusmedia:"
 
 #
+#~ msgid "select .NFI flash file"
+#~ msgstr "valitse .NFI flash-tiedosto"
+
+#
+#~ msgid "select image from server"
+#~ msgstr "valitse päivitys palvelimelta"
+
+#
+#~ msgid "service pin"
+#~ msgstr "kanavien tunnusluku"
+
+#
 #~ msgid "sets the AC3 audio Delay (LipSync)"
 #~ msgstr "säätää ääniviivettä (lipsync)"
+
+#
+#~ msgid "setup pin"
+#~ msgstr "asetusten tunnusluku"
 
 #
 #~ msgid "until restart"
