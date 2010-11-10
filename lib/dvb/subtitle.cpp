@@ -246,7 +246,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 			map_2_to_4_bit_table[i] = bitstream_get(&bit);
 //			eDebugNoNewLine("%d ", map_2_to_4_bit_table[i]);
 		}
-		eDebug("");
+//		eDebug("");
 		return bit.consumed + 1;
 	case 0x21:
 //		eDebugNoNewLine("2 -> 8 bit table: ");
@@ -800,7 +800,7 @@ int eDVBSubtitleParser::subtitle_process_segment(__u8 *segment)
 	{
 		if (segment_length > 4)
 		{
-			int dds_version_number = segment[0] >> 4;
+//			int dds_version_number = segment[0] >> 4;
 			int display_window_flag = (segment[0] >> 3) & 1;
 			int display_width = (segment[1] << 8) | (segment[2]);
 			int display_height = (segment[3] << 8) | (segment[4]);
