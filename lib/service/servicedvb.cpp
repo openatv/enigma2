@@ -503,18 +503,19 @@ RESULT eDVBPVRServiceOfflineOperations::reindex()
 	int err = f.open(m_ref.path.c_str(), 0);
 	if (err < 0)
 		return -1;
-	
+
+	off_t offset = 0;
 	off_t length = f.length();
 	unsigned char buffer[188*256*4];
 	while (1)
 	{
-		off_t offset = f.lseek(0, SEEK_CUR);
 		eDebug("at %08llx / %08llx (%d %%)", offset, length, (int)(offset * 100 / length));
-		int r = f.read(buffer, sizeof(buffer));
+		int r = f.read(offset, buffer, sizeof(buffer));
 		if (!r)
 			break;
 		if (r < 0)
 			return r;
+		offset += r;
 		parser.parseData(offset, buffer, r);
 	}
 	
