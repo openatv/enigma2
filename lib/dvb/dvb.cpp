@@ -1761,14 +1761,20 @@ RESULT eDVBChannel::playFile(const char *file)
 	}
 
 	eRawFile *f = new eRawFile();
+	ePtr<iDataSource> source = f;
+
 	if (f->open(file) < 0)
 	{
 		eDebug("can't open PVR file %s (%m)", file);
 		return -ENOENT;
 	}
 
-	ePtr<iDataSource> source = f;
-	m_tstools.setSource(source, file);
+	return playSource(source, file);
+}
+
+RESULT eDVBChannel::playSource(ePtr<iDataSource> &source, const char *priv)
+{
+	m_tstools.setSource(source, priv);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
@@ -1804,7 +1810,7 @@ RESULT eDVBChannel::playFile(const char *file)
 	return 0;
 }
 
-void eDVBChannel::stopFile()
+void eDVBChannel::stopSource()
 {
 	if (m_pvr_thread)
 	{
@@ -1814,6 +1820,11 @@ void eDVBChannel::stopFile()
 	}
 	if (m_pvr_fd_dst >= 0)
 		::close(m_pvr_fd_dst);
+}
+
+void eDVBChannel::stopFile()
+{
+	stopSource();
 }
 
 void eDVBChannel::setCueSheet(eCueSheet *cuesheet)
