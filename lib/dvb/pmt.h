@@ -206,6 +206,8 @@ public:
 	void resetCachedProgram() { m_have_cached_program = false; }
 
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0);
+	int tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iDataSource> &, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0);
+
 	void free();
 private:
 	bool m_have_cached_program;
