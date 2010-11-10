@@ -7,7 +7,7 @@
 DEFINE_REF(eRawFile);
 
 eRawFile::eRawFile()
-	:m_lock(true)
+	:m_lock(false)
 {
 	m_fd = -1;
 	m_file = 0;
