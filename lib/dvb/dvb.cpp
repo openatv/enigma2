@@ -1764,7 +1764,7 @@ RESULT eDVBChannel::playFile(const char *file)
 	return playSource(source, file);
 }
 
-RESULT eDVBChannel::playSource(ePtr<iDataSource> &source, const char *priv)
+RESULT eDVBChannel::playSource(ePtr<iDataSource> &source, const char *streaminfo_file)
 {
 	ASSERT(!m_frontend);
 	if (m_pvr_thread)
@@ -1774,7 +1774,13 @@ RESULT eDVBChannel::playSource(ePtr<iDataSource> &source, const char *priv)
 		m_pvr_thread = 0;
 	}
 
-	m_tstools.setSource(source, priv);
+	if (!source->valid())
+	{
+		eDebug("PVR source is not valid!");
+		return -ENOENT;
+	}
+
+	m_tstools.setSource(source, streaminfo_file);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
@@ -1820,6 +1826,8 @@ void eDVBChannel::stopSource()
 	}
 	if (m_pvr_fd_dst >= 0)
 		::close(m_pvr_fd_dst);
+	ePtr<iDataSource> d;
+	m_tstools.setSource(d);
 }
 
 void eDVBChannel::stopFile()
