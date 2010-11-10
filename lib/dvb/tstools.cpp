@@ -91,7 +91,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 		if (!m_streaminfo.getPTS(offset, pts))
 			return 0;
 	
-	if (!m_source->valid())
+	if (!m_source || !m_source->valid())
 		return -1;
 
 	offset -= offset % 188;
@@ -411,7 +411,7 @@ int eDVBTSTools::getNextAccessPoint(pts_t &ts, const pts_t &start, int direction
 
 void eDVBTSTools::calcBegin()
 {
-	if (!m_source->valid())
+	if (!m_source || !m_source->valid())
 		return;
 
 	if (!(m_begin_valid || m_futile))
@@ -426,7 +426,7 @@ void eDVBTSTools::calcBegin()
 
 void eDVBTSTools::calcEnd()
 {
-	if (!m_source->valid())
+	if (!m_source || !m_source->valid())
 		return;
 
 	off_t end = m_source->lseek(0, SEEK_END);
@@ -579,7 +579,7 @@ int eDVBTSTools::takeSample(off_t off, pts_t &p)
 int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 {
 		/* FIXME: this will be factored out soon! */
-	if (!m_source->valid())
+	if (!m_source || !m_source->valid())
 	{
 		eDebug(" file not valid");
 		return -1;
