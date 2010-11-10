@@ -19,7 +19,7 @@ public:
 	eDVBTSTools();
 	~eDVBTSTools();
 
-	void setSource(ePtr<iDataSource> source, const char *streaminfo_filename=NULL);
+	void setSource(ePtr<iDataSource> &source, const char *streaminfo_filename=NULL);
 	void closeSource();
 
 	int openFile(const char *filename, int nostreaminfo = 0);

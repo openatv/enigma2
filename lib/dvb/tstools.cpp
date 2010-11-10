@@ -37,8 +37,6 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	eRawFile *f = new eRawFile();
 	ePtr<iDataSource> src = f;
 
-	eSingleLocker l(f->getLock());
-
 	if (f->open(filename, 1) < 0)
 		return -1;
 
@@ -47,7 +45,7 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	return 0;
 }
 
-void eDVBTSTools::setSource(ePtr<iDataSource> source, const char *stream_info_filename)
+void eDVBTSTools::setSource(ePtr<iDataSource> &source, const char *stream_info_filename)
 {
 	closeFile();
 
@@ -72,10 +70,8 @@ void eDVBTSTools::setSource(ePtr<iDataSource> source, const char *stream_info_fi
 
 void eDVBTSTools::closeFile()
 {
-	if (m_source) {
-		eSingleLocker l(m_source->getLock());
+	if (m_source)
 		closeSource();
-	}
 }
 
 void eDVBTSTools::setSyncPID(int pid)
@@ -100,29 +96,19 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 
 	offset -= offset % 188;
 
-	iDataSourcePositionRestorer r(m_source);
-
-	eSingleLocker l(m_source->getLock());
-
-	if (m_source->lseek(offset, SEEK_SET) < 0)
-	{
-		eDebug("lseek failed");
-		return -1;
-	}
-	
 	int left = m_maxrange;
 	
 	while (left >= 188)
 	{
 		unsigned char packet[188];
-		if (m_source->read(packet, 188) != 188)
+		if (m_source->read(offset, packet, 188) != 188)
 		{
 			eDebug("read error");
 			break;
 		}
 		left -= 188;
 		offset += 188;
-		
+
 		if (packet[0] != 0x47)
 		{
 			eDebug("resync");
@@ -132,8 +118,8 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 				if (packet[i] == 0x47)
 					break;
 				++i;
+				--offset;
 			}
-			offset = m_source->lseek(i - 188, SEEK_CUR);
 			continue;
 		}
 		
@@ -443,10 +429,6 @@ void eDVBTSTools::calcEnd()
 	if (!m_source->valid())
 		return;
 
-	iDataSourcePositionRestorer r(m_source);
-
-	eSingleLocker l(m_source->getLock());
-
 	off_t end = m_source->lseek(0, SEEK_END);
 	
 	if (llabs(end - m_last_filelength) > 1*1024*1024)
@@ -603,28 +585,22 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 		return -1;
 	}
 
-	iDataSourcePositionRestorer r(m_source);
-
-	eSingleLocker l(m_source->getLock());
-
-	if (m_source->lseek(0, SEEK_SET) < 0)
-	{
-		eDebug("seek failed");
-		return -1;
-	}
+	off_t position=0;
 
 	int left = 5*1024*1024;
 	
 	while (left >= 188)
 	{
 		unsigned char packet[188];
-		if (m_source->read(packet, 188) != 188)
+		int ret = m_source->read(position, packet, 188);
+		if (ret != 188)
 		{
 			eDebug("read error");
 			break;
 		}
 		left -= 188;
-		
+		position += 188;
+
 		if (packet[0] != 0x47)
 		{
 			int i = 0;
@@ -632,12 +608,11 @@ int eDVBTSTools::findPMT(int &pmt_pid, int &service_id)
 			{
 				if (packet[i] == 0x47)
 					break;
+				--position;
 				++i;
 			}
-			m_source->lseek(i - 188, SEEK_CUR);
 			continue;
 		}
-		
 		int pid = ((packet[1] << 8) | packet[2]) & 0x1FFF;
 		
 		int pusi = !!(packet[1] & 0x40);
