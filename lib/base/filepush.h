@@ -25,10 +25,9 @@ public:
 	void start(int sourcefd, int destfd);
 	int start(const char *filename, int destfd);
 
-	void start(ePtr<iDataSource> source, int destfd);
+	void start(ePtr<iDataSource> &source, int destfd);
 
 	void pause();
-	void seek(int whence, off_t where);
 	void resume();
 	
 		/* flushes the internal readbuffer */ 
@@ -59,8 +58,9 @@ private:
 	int m_send_pvr_commit;
 	int m_stream_mode;
 	int m_blocksize;
+	off_t m_current_position;
 
-	ePtr<iDataSource> m_raw_source;
+	ePtr<iDataSource> m_source;
 
 	eFixedMessagePump<int> m_messagepump;
 
