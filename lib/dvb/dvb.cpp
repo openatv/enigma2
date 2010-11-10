@@ -1752,14 +1752,6 @@ RESULT eDVBChannel::getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &p
 
 RESULT eDVBChannel::playFile(const char *file)
 {
-	ASSERT(!m_frontend);
-	if (m_pvr_thread)
-	{
-		m_pvr_thread->stop();
-		delete m_pvr_thread;
-		m_pvr_thread = 0;
-	}
-
 	eRawFile *f = new eRawFile();
 	ePtr<iDataSource> source = f;
 
@@ -1774,6 +1766,14 @@ RESULT eDVBChannel::playFile(const char *file)
 
 RESULT eDVBChannel::playSource(ePtr<iDataSource> &source, const char *priv)
 {
+	ASSERT(!m_frontend);
+	if (m_pvr_thread)
+	{
+		m_pvr_thread->stop();
+		delete m_pvr_thread;
+		m_pvr_thread = 0;
+	}
+
 	m_tstools.setSource(source, priv);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
