@@ -185,7 +185,7 @@ public:
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	PyObject *getStreamingData();
 
-private:
+protected:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
 	
