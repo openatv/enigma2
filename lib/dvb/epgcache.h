@@ -319,6 +319,7 @@ private:
 	updateMap channelLastUpdated;
 	static pthread_mutex_t cache_lock, channel_map_lock;
 	std::string m_filename;
+	bool m_running;
 
 #ifdef ENABLE_PRIVATE_EPG
 	contentMaps content_time_tables;

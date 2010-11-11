@@ -232,7 +232,7 @@ pthread_mutex_t eEPGCache::channel_map_lock=
 DEFINE_REF(eEPGCache)
 
 eEPGCache::eEPGCache()
-	:messages(this,1), cleanTimer(eTimer::create(this)) 
+	:messages(this,1), cleanTimer(eTimer::create(this)), m_running(false) 
 {
 	eDebug("[EPGC] Initialized EPGCache (wait for setCacheFile call now)");
 
@@ -395,8 +395,12 @@ void eEPGCache::DVBChannelRunning(iDVBChannel *chan)
 					return;
 				}
 #endif
-				messages.send(Message(Message::startChannel, chan));
-				// -> gotMessage -> changedService
+				if (m_running)
+				{
+					data.state = 0;
+					messages.send(Message(Message::startChannel, chan));
+					// -> gotMessage -> changedService
+				}
 			}
 		}
 	}
@@ -1022,11 +1026,13 @@ void eEPGCache::gotMessage( const Message &msg )
 void eEPGCache::thread()
 {
 	hasStarted();
+	m_running = true;
 	nice(4);
 	load();
 	cleanLoop();
 	runLoop();
 	save();
+	m_running = false;
 }
 
 void eEPGCache::load()
