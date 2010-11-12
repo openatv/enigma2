@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: ENIGMA 1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-09-07 12:29+0000\n"
-"PO-Revision-Date: 2010-10-21 11:05+0100\n"
+"PO-Revision-Date: 2010-11-09 11:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -250,27 +250,15 @@ msgid "(empty)"
 msgstr "(prazno)"
 
 #
-msgid "Fan always on in standby?"
-msgstr "Naj vent. deluje tudi v stanju pripravljenosti?"
-
-#
-msgid "Fan alternating on and off in standby?"
-msgstr "Se naj vent. v stanju pripr. redno izklaplja in vklaplja?"
-
-#
-msgid "Fan on (in minutes)"
-msgstr "Ventilator vključen (v minutah)"
-
-#
-msgid "Fan off (in minutes)"
-msgstr "Ventilator izključen (v minutah)"
-
-#
 msgid "Search IMDB"
 msgstr "Išči po IMDB bazi"
 
 #
-msgid "Subtitle files"
+msgid "Teletext subtitle delay when timing lacks"
+msgstr "Določi zamik teletekst podnapisov, ko je to potrebno"
+
+#
+msgid "Subtitle Files"
 msgstr "Prenesi podnapise"
 
 #
@@ -294,11 +282,11 @@ msgid "When in deep standby"
 msgstr "Pri uporabi globokega spanja"
 
 #
-msgid "skip the import"
+msgid "Skip the import"
 msgstr "preskoči prenos"
 
 #
-msgid "wake up and import"
+msgid "Wake up and import"
 msgstr "prebudi in prenesi"
 
 #
@@ -318,7 +306,7 @@ msgid "SoftCam / CI"
 msgstr "Emulatorji"
 
 #
-msgid "Softcam setup"
+msgid "Softcam setup..."
 msgstr "Nastavitve"
 
 #
@@ -386,7 +374,7 @@ msgid "Text font size"
 msgstr "Velikost pisave"
 
 #
-msgid "Fast scan"
+msgid "Fast Scan"
 msgstr "Hitro iskanje"
 
 #
@@ -731,6 +719,82 @@ msgid "Adapter settings"
 msgstr "Nastavitve LAN vmesnika"
 
 #
+msgid "Backup location"
+msgstr "Lokacija kopije nastavitev"
+
+#
+msgid "Daily automatic backup"
+msgstr "Ustvari kopijo nastavitev vsak dan"
+
+#
+msgid "Audio language selection 1"
+msgstr "Jezik zvočne sledi 1"
+
+#
+msgid "Audio language selection 2"
+msgstr "Jezik zvočne sledi 2"
+
+#
+msgid "Audio language selection 3"
+msgstr "NJezik zvočne sledi 3"
+
+#
+msgid "Audio language selection 4"
+msgstr "Jezik zvočne sledi 4"
+
+#
+msgid "Prefer AC3"
+msgstr "AC3 zvok naj ima prednost"
+
+#
+msgid "Subtitle language selection 1"
+msgstr "Jezik podnapisa 1"
+
+#
+msgid "Subtitle language selection 2"
+msgstr "Jezik podnapisa 2"
+
+#
+msgid "Subtitle language selection 3"
+msgstr "Jezik podnapisa 3"
+
+#
+msgid "Subtitle language selection 4"
+msgstr "Jezik podnapisa 4"
+
+#
+msgid "Allow hearing impaired subtitles"
+msgstr "Dovoli podnapise za gluhe osebe"
+
+#
+msgid "Prefer hearing impaired subtitles"
+msgstr "Podnapisi za gluhe naj imajo prednost"
+
+#
+msgid "Prefer DVB-grafical subtitles"
+msgstr "DVB podnapisi naj imajo prednost"
+
+#
+msgid "Allow Subtitles equals Audio mask"
+msgstr "Podnapisi naj se ujemajo z zvočno sledjo"
+
+#
+msgid "EPGImport plugin"
+msgstr "EPGImport vtičnik"
+
+#
+msgid "Import of epg data will start"
+msgstr "Pričel se bo uvoz EPG podatkov"
+
+#
+msgid "This may take a few minutes"
+msgstr "Postopek lahko traja nekaj minut"
+
+#
+msgid "Is this ok?"
+msgstr "Se strinjate?"
+
+#
 msgid "Add"
 msgstr "Dodaj"
 
@@ -807,7 +871,7 @@ msgid "Adds wlan configuration if enabled."
 msgstr ""
 
 #
-msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
+msgid "Adjust the color settings so that all the color shades are distinshable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Spremenite nastavitve barv, da bodo vse barvne sence razločljive in hkrati dovolj sorodne. Če ste zadovoljni s spremembami pritisnite OK, da zaključite podrobno nastavitev video-parametrov, ali uporabite številke za izbiro drugih testnih oken."
 
 #
@@ -1412,7 +1476,7 @@ msgstr "Klasična "
 
 #
 msgid "Cleanup"
-msgstr "Čiščnje"
+msgstr "Čiščenje"
 
 #
 msgid "Cleanup Wizard"
@@ -2691,7 +2755,7 @@ msgstr ""
 
 #
 msgid "Filesystem Check"
-msgstr ""
+msgstr "Pregled datotečnega sistema"
 
 #
 msgid "Filesystem contains uncorrectable errors"
@@ -2816,8 +2880,8 @@ msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"GUI je potrebno ponovno zagnati za uporabo nove predloge\n"
-"A*1/2elite sedaj ponovno zagnati GUI ?"
+"Uporabniški vmesnik je potrebno ponovno zagnati za uporabo nove predloge\n"
+"Želite sedaj ponovno zagnati uporabniški vmesnik?"
 
 #
 msgid "Gaming"
@@ -3120,7 +3184,7 @@ msgstr ""
 
 #
 msgid "Initialization"
-msgstr "Zagon"
+msgstr "Ponastavitev diska"
 
 #
 msgid "Initialize"
@@ -4240,7 +4304,7 @@ msgstr "OK"
 
 #
 msgid "OK, guide me through the upgrade process"
-msgstr "OK, vodi me skozi postopek nadgradnje"
+msgstr "Prav, vodi me skozi postopek nadgradnje"
 
 #
 msgid "OK, remove another extensions"
@@ -4573,7 +4637,7 @@ msgstr "Prejšnji izbran medij ni bil dostopen in zato je bila uporabljena privz
 
 #
 msgid "Please press OK to continue."
-msgstr "Prosim pritisnite OK za nadaljevanje."
+msgstr "Za nadaljevanje pritisnite OK."
 
 #
 msgid "Please press OK!"
@@ -4843,7 +4907,7 @@ msgstr "Za dodatne nastavitve pritisni tipko INFO."
 
 #
 msgid "Press OK on your remote control to continue."
-msgstr "Pritisnite OK na vašem Upravljalniku za nadaljevanje."
+msgstr "Za nadaljevanje pritisnite OK."
 
 #
 msgid "Press OK to activate the selected skin."
@@ -4851,7 +4915,7 @@ msgstr "Za aktiviranje izbrane predloge pritisni OK."
 
 #
 msgid "Press OK to activate the settings."
-msgstr "Pritisnite OK za aktiviranje postavki."
+msgstr "Za aktiviranje nastavitev pritisni OK."
 
 #
 msgid "Press OK to collapse this host"
@@ -4863,7 +4927,7 @@ msgstr "Za spremembo izbranih nastavitev pritisni OK."
 
 #
 msgid "Press OK to edit the settings."
-msgstr "Pritisnite OK za spreminjanje nastavitev."
+msgstr "Za spreminjanje nastavitev pritisni OK."
 
 #
 msgid "Press OK to expand this host"
@@ -4872,15 +4936,15 @@ msgstr ""
 #
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr "Pritisnite OK za podrobnejše informacije o %s"
+msgstr "Za podrobnejše informacije o %s pritisni OK."
 
 #
 msgid "Press OK to mount this share!"
-msgstr ""
+msgstr "Za vklop mrežne naprave pritisni OK."
 
 #
 msgid "Press OK to mount!"
-msgstr ""
+msgstr "Za vklop pritisni OK!"
 
 #
 msgid "Press OK to save settings."
@@ -4888,7 +4952,7 @@ msgstr "Za shranitev nastavitev pritisni OK."
 
 #
 msgid "Press OK to scan"
-msgstr "Pritisnite ok za preverjanje"
+msgstr "Za skeniranje pritisni OK"
 
 #
 msgid "Press OK to select a Provider."
@@ -4904,7 +4968,7 @@ msgstr ""
 
 #
 msgid "Press OK to start the scan"
-msgstr "Pritisnite OK za začetek preverjanja"
+msgstr "Za začetek skeniranja pritisni OK"
 
 #
 msgid "Press OK to toggle the selection."
@@ -4952,7 +5016,7 @@ msgstr "Lastnosti trenutnega naslova"
 
 #
 msgid "Protect services"
-msgstr "Zaščiti storitve"
+msgstr "Zaščiti kanale"
 
 #
 msgid "Protect setup"
@@ -5277,11 +5341,11 @@ msgstr "Ponovni zagon"
 
 #
 msgid "Restart GUI"
-msgstr "Ponovno zaženi Uporabniški vmesnik"
+msgstr "Ponovno zaženi uporabniški vmesnik"
 
 #
 msgid "Restart GUI now?"
-msgstr "Ponoven zagon Uporabniškega vmesnika?"
+msgstr "Ponoven zagon uporabniškega vmesnika?"
 
 #
 msgid "Restart network"
@@ -6433,7 +6497,7 @@ msgid "Temperature and Fan control"
 msgstr "Nadzor ventilatorja"
 
 #
-msgid "Fan control"
+msgid "Fan Control"
 msgstr "Nadzor ventilatorja"
 
 #
@@ -8701,6 +8765,10 @@ msgstr "preskoči na"
 #
 msgid "manual"
 msgstr "ročno"
+
+#
+msgid "Manual"
+msgstr "Ročno"
 
 #
 msgid "menu"
