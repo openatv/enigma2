@@ -967,6 +967,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (ppixmap)
 				{
 					ePtr<gPixmap> pixmap;
+					if (PyInt_Check(ppixmap) && data) /* if the pixmap is in fact a number, it refers to the data list */
+						ppixmap = PyTuple_GetItem(data, PyInt_AsLong(ppixmap));
+
 					if (SwigFromPython(pixmap, ppixmap))
 					{
 						eDebug("eListboxPythonMultiContent (Pixmap) get pixmap failed");
