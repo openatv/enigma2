@@ -671,6 +671,7 @@ void ePicLoad::decodeThumb()
 				m_filepara->id = F_JPEG;
 				eDebug("[Picload] Cache File found");
 			}
+			fclose(f);
 		}
 	}
 
