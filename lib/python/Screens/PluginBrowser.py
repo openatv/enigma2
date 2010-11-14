@@ -16,6 +16,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 
 from time import time
+import os
 
 def languageChanged():
 	plugins.clearPluginList()
@@ -168,6 +169,14 @@ class PluginDownloadBrowser(Screen):
 			"ok": self.go,
 			"back": self.requestClose,
 		})
+		if os.path.isfile('/usr/bin/opkg'):
+			self.ipkg = '/usr/bin/opkg'
+			self.ipkg_install = self.ipkg + ' install'
+			self.ipkg_remove =  self.ipkg + ' remove --autoremove' 
+		else:
+			self.ipkg = 'ipkg'
+			self.ipkg_install = 'ipkg install -force-defaults'
+			self.ipkg_remove =  self.ipkg + ' remove' 
 
 	def go(self):
 		sel = self["list"].l.getCurrentSelection()
@@ -202,7 +211,7 @@ class PluginDownloadBrowser(Screen):
 
 	def installDestinationCallback(self, result):
 		if result is not None:
-			self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install -force-defaults enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + result[1]], closeOnSuccess = True)
+			self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name + ' ' + result[1]], closeOnSuccess = True)
 
 	def runInstall(self, val):
 		if val:
@@ -234,9 +243,9 @@ class PluginDownloadBrowser(Screen):
 					if len(list):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list = list)
 					return
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install -force-defaults enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_install + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = [self.ipkg_remove + " enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name], closeOnSuccess = True)
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
@@ -245,10 +254,10 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Remove plugins"))
 
 	def startIpkgListInstalled(self):
-		self.container.execute("ipkg list_installed 'enigma2-plugin-*'")
+		self.container.execute(self.ipkg + " list_installed 'enigma2-plugin-*'")
 
 	def startIpkgListAvailable(self):
-		self.container.execute("ipkg list 'enigma2-plugin-*'")
+		self.container.execute(self.ipkg + " list 'enigma2-plugin-*'")
 
 	def startRun(self):
 		listsize = self["list"].instance.size()
@@ -258,7 +267,7 @@ class PluginDownloadBrowser(Screen):
 		if self.type == self.DOWNLOAD:
 			if self.needupdate and not PluginDownloadBrowser.lastDownloadDate or (time() - PluginDownloadBrowser.lastDownloadDate) > 3600:
 				# Only update from internet once per hour
-				self.container.execute("ipkg update")
+				self.container.execute(self.ipkg + " update")
 				PluginDownloadBrowser.lastDownloadDate = time()
 			else:
 				self.run = 1
