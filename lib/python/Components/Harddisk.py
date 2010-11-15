@@ -5,6 +5,10 @@ from SystemInfo import SystemInfo
 import time
 from Components.Console import Console
 
+def MajorMinor(path):
+	rdev = stat(path).st_rdev
+	return (major(rdev),minor(rdev))
+
 def readFile(filename):
 	file = open(filename)
 	data = file.read().strip()
@@ -125,13 +129,15 @@ class Harddisk:
 
 		for line in lines:
 			parts = line.strip().split(" ")
-			if path.realpath(parts[0]).startswith(self.dev_path):
-				try:
+			real_path = path.realpath(parts[0])
+			if not real_path[-1].isdigit():
+				continue
+			try:
+				if MajorMinor(real_path) == MajorMinor(self.partitionPath(real_path[-1])):
 					stat = statvfs(parts[1])
-				except OSError:
-					continue
-				return stat.f_bfree/1000 * stat.f_bsize/1000
-
+					return stat.f_bfree/1000 * stat.f_bsize/1000
+			except OSError:
+				pass
 		return -1
 
 	def numPartitions(self):
@@ -168,10 +174,17 @@ class Harddisk:
 
 		cmd = "umount"
 
-		for line in lines:
-			parts = line.strip().split(" ")
-			if path.realpath(parts[0]).startswith(self.dev_path):
-				cmd = ' ' . join([cmd, parts[1]])
+                for line in lines:                                                                          
+                        parts = line.strip().split(" ")                                                     
+                        real_path = path.realpath(parts[0])                                                 
+                        if not real_path[-1].isdigit():                                                     
+                                continue                                                                    
+                        try:                                                                                
+                                if MajorMinor(real_path) == MajorMinor(self.partitionPath(real_path[-1])):
+					cmd = ' ' . join([cmd, parts[1]])
+					break
+			except OSError:
+				pass
 
 		res = system(cmd)
 		return (res >> 8)
@@ -201,10 +214,16 @@ class Harddisk:
 		res = -1
 		for line in lines:
 			parts = line.strip().split(" ")
-			if path.realpath(parts[0]) == self.partitionPath("1"):
-				cmd = "mount -t ext3 " + parts[0]
-				res = system(cmd)
-				break
+                        real_path = path.realpath(parts[0])                                                 
+                        if not real_path[-1].isdigit():                                                     
+                                continue                                                                    
+                        try:                                                                                
+                                if MajorMinor(real_path) == MajorMinor(self.partitionPath(real_path[-1])):
+					cmd = "mount -t ext3 " + parts[0]
+					res = system(cmd)
+					break
+			except OSError:
+				pass
 
 		return (res >> 8)
 
