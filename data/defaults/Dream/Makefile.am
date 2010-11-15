@@ -15,4 +15,6 @@ dist_install_DATA = \
 	settings.7020hd \
 	settings.7025 \
 	settings.800 \
-	settings.8000
+	settings.8000 \
+	settings.c \
+	settings.t
