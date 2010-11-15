@@ -19,8 +19,18 @@
 				<satellite type="192" />
 			</prerequisites>
 		</file-->
-		<file type="favourites" directory="" name="bouquets.tv" />		
-		<file type="favourites" directory="sdbouquets/" name="userbouquet.favourites.tv" />
+		<file type="favourites" directory="" name="bouquets.tv">
+			<prerequisites>
+				<bcastsystem type="DVB-S" />
+				<satellite type="192" />
+			</prerequisites>
+		</file>
+		<file type="favourites" directory="sdbouquets/" name="userbouquet.favourites.tv">
+			<prerequisites>
+				<bcastsystem type="DVB-S" />
+				<satellite type="192" />
+			</prerequisites>
+		</file>
 		<!--file type="package" directory="packages/" name="small-test_1.0_mipsel.ipk" /-->
 	</files>
 </default>
