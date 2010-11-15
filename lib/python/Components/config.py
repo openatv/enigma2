@@ -1624,16 +1624,17 @@ class Config(ConfigSubsection):
 		self.pickle_this("config", self.saved_value, result)
 		return ''.join(result)
 
-	def unpickle(self, lines):
+	def unpickle(self, lines, base_file=True):
 		tree = { }
 		for l in lines:
 			if not l or l[0] == '#':
 				continue
 
 			n = l.find('=')
+			name = l[:n]
 			val = l[n+1:].strip()
 
-			names = l[:n].split('.')
+			names = name.split('.')
 #			if val.find(' ') != -1:
 #				val = val[:val.find(' ')]
 
@@ -1643,6 +1644,12 @@ class Config(ConfigSubsection):
 				base = base.setdefault(n, {})
 
 			base[names[-1]] = val
+
+			if not base_file: # not the initial config file..
+				#update config.x.y.value when exist
+				configEntry = eval(name)
+				if configEntry is not None:
+					configEntry.value = val
 
 		# we inherit from ConfigSubsection, so ...
 		#object.__setattr__(self, "saved_value", tree["config"])
@@ -1655,9 +1662,9 @@ class Config(ConfigSubsection):
 		f.write(text)
 		f.close()
 
-	def loadFromFile(self, filename):
+	def loadFromFile(self, filename, base_file=False):
 		f = open(filename, "r")
-		self.unpickle(f.readlines())
+		self.unpickle(f.readlines(), base_file)
 		f.close()
 
 config = Config()
@@ -1668,7 +1675,7 @@ class ConfigFile:
 
 	def load(self):
 		try:
-			config.loadFromFile(self.CONFIG_FILE)
+			config.loadFromFile(self.CONFIG_FILE, True)
 		except IOError, e:
 			print "unable to load config (%s), assuming defaults..." % str(e)
 
