@@ -12,11 +12,14 @@ self.condition = self.runWizard
 self.disableKeys = True
 		</code>
 	</step>
-	<step id="nopackages" nextstep="finisheddefaultsatlists">
+
+	<!--step id="nopackages" nextstep="finisheddefaultsatlists"-->
+	<step id="nopackages" nextstep="scanquestion">
 		<text value="There are no default services lists in your image." />
 	</step>
 	
-	<step id="nothingtoinstall" nextstep="finisheddefaultsatlists">
+	<!--step id="nothingtoinstall" nextstep="finisheddefaultsatlists"-->
+	<step id="nothingtoinstall" nextstep="scanquestion">
 		<condition>
 if self.runWizard:
 	self.condition = True
