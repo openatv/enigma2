@@ -4,13 +4,13 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-01 13:01+0000\n"
-"PO-Revision-Date: 2010-10-26 20:50+0200\n"
+"PO-Revision-Date: 2010-11-13 18:57+0200\n"
 "Last-Translator: Timo <timojarvenpaa@hotmail.com>\n"
 "Language-Team: none\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.0.3\n"
 "X-Poedit-Language: Finnish\n"
@@ -144,9 +144,8 @@ msgstr " lisäosaa."
 msgid " ms"
 msgstr " ms"
 
-#
 msgid " packages selected."
-msgstr "pakettia valittu."
+msgstr " pakettia valittu."
 
 #
 msgid " updates available."
@@ -349,7 +348,7 @@ msgid "<Current movielist location>"
 msgstr "<Nykyinen tallennushakemisto>"
 
 msgid "<Default movie location>"
-msgstr "<Oletustallennushakemisto>"
+msgstr "<Oletushakemisto>"
 
 msgid "<Last timer location>"
 msgstr "<Viimeisin ajastushakemisto>"
@@ -1156,7 +1155,7 @@ msgid ""
 "CDInfo enables gathering album and track details from CDDB and CD-Text when "
 "playing Audio CDs in Mediaplayer."
 msgstr ""
-"Kun soitat CD-levyjä Mediatoistimella, hakee CD-info levy- ja kappaletietoja "
+"Kun soitat CD-levyjä Mediasoittimella, hakee CD-info levy- ja kappaletietoja "
 "CDDB:stä ja CD-Textistä."
 
 #
@@ -1179,7 +1178,7 @@ msgid "Cache Thumbnails"
 msgstr "Tallenna esikatselukuvat välimuistiin"
 
 msgid "Callmonitor for NCID-based call notification"
-msgstr ""
+msgstr "Soittomonitori NCID-pohjaisille puheluilmoituksille"
 
 msgid "Callmonitor for the Fritz!Box routers"
 msgstr "Soittomonitori Fritz!Box reitittimille"
@@ -1612,7 +1611,7 @@ msgid "Create a backup of your Video DVD on your DreamBox hard drive."
 msgstr "Kopioi DVD-elokuva Dreamboxin kiintolevylle."
 
 msgid "Create a backup of your Video-DVD"
-msgstr "Kopioi DVD-elokuva"
+msgstr "Kopioi DVD-elokuvia"
 
 msgid "Create a new AutoTimer."
 msgstr "Luo uusi automaattiajastus."
@@ -1823,7 +1822,7 @@ msgid "Default Settings"
 msgstr "Oletusasetukset"
 
 msgid "Default movie location"
-msgstr "Oletuskansio tallennuksille"
+msgstr "Oletushakemisto tallennuksille"
 
 #
 msgid "Default services lists"
@@ -1988,9 +1987,8 @@ msgstr "Näytä 4:3 sisältö"
 msgid "Display >16:9 content as"
 msgstr "Näytä >16:9 sisältö"
 
-#
 msgid "Display Setup"
-msgstr "Etupaneelin näyttö..."
+msgstr "Etupaneelin näyttö"
 
 #
 msgid "Display and Userinterface"
@@ -2897,7 +2895,7 @@ msgid "Germany"
 msgstr "Saksa"
 
 msgid "Get AudioCD info from CDDB and CD-Text"
-msgstr "Hae ääni-CD tietoja CDDB:stä and CD-Textistä"
+msgstr "Hae ääni-CD tietoja CDDB:stä ja CD-Textistä"
 
 msgid "Get latest experimental image"
 msgstr "Hae viimeisin koeversioinen ohjelmistopäivitys"
@@ -2975,9 +2973,8 @@ msgstr "HTTP-portti"
 msgid "HTTPS Port"
 msgstr "HTTPS-portti"
 
-#
 msgid "Harddisk"
-msgstr "Kiintolevy..."
+msgstr "Kiintolevy"
 
 #
 msgid "Harddisk setup"
@@ -3219,9 +3216,8 @@ msgstr "Asenna laajennukset."
 msgid "Install local extension"
 msgstr "Asenna paikallinen laajennus"
 
-#
 msgid "Install or remove finished."
-msgstr "Asenna tai poista valmiit."
+msgstr "Asennus/poisto suoritettu."
 
 #
 msgid "Install settings, skins, software..."
@@ -3409,9 +3405,8 @@ msgstr "Näppäin %(Key)s määritetty %(delay)i ms"
 msgid "Key %(key)s (current value: %(value)i ms)"
 msgstr "Näppäin %(key)s (nykyinen arvo: %(value)i ms)"
 
-#
 msgid "Keyboard"
-msgstr "Näppäimistö..."
+msgstr "Näppäimistö"
 
 #
 msgid "Keyboard Map"
@@ -3433,7 +3428,7 @@ msgid "LAN Adapter"
 msgstr "Verkkosovitin"
 
 msgid "LAN connection"
-msgstr "Verkkoyhteys"
+msgstr "LAN-yhteys"
 
 #
 msgid "LNB"
@@ -3688,13 +3683,11 @@ msgstr ""
 "Haussa käytettävä maksimi ohjelman kesto. Jos ohjelma on pidempi kuin "
 "määritetty kesto (ilman lisäaikaa) ohittaa haku sen."
 
-#
 msgid "Media player"
-msgstr "Mediatoistin"
+msgstr "Mediasoitin"
 
-#
 msgid "MediaPlayer"
-msgstr "Mediatoistin"
+msgstr "Mediasoitin"
 
 msgid ""
 "MediaScanner scans devices for playable media files and displays a menu with "
@@ -4539,7 +4532,7 @@ msgid "Outer Bound (+/-)"
 msgstr "Ääriraja (+/-)"
 
 msgid "Overlay for scrolling bars"
-msgstr ""
+msgstr "Tekstipalkkien peitto"
 
 msgid "Override found with alternative service"
 msgstr "Löydetty kumous vaihtoehtoiselta kanavalta"
@@ -5044,7 +5037,7 @@ msgid "Positioner storage"
 msgstr "Kääntömoottorin muisti"
 
 msgid "PositionerSetup helps you installing a motorized dish"
-msgstr ""
+msgstr "PositionerSetup auttaa moottoroidun antennin asennuksessa"
 
 msgid ""
 "Power state to change to after recordings. Select \"standard\" to not change "
@@ -5155,10 +5148,10 @@ msgid "Preview menu"
 msgstr "Esikatsele valikkoa"
 
 msgid "Preview screenshots of running tv shows"
-msgstr ""
+msgstr "Esikatselukuvat tv-kanavista"
 
 msgid "Preview screenshots of running tv shows."
-msgstr ""
+msgstr "Esikatselukuvat tv-kanavista."
 
 #
 msgid "Primary DNS"
@@ -5287,10 +5280,12 @@ msgid "Reception Settings"
 msgstr "Virittimen asetukset"
 
 msgid "Reconstruct .ap and .sc files"
-msgstr ""
+msgstr "Luo .ap ja .sc tiedostot uudelleen"
 
 msgid "Reconstruct missing or corrupt .ap and .sc files of recorded movies."
 msgstr ""
+"Luo tallenteiden puuttuvat tai korruptoituneet .ap ja .sc tiedostot "
+"uudelleen."
 
 #
 msgid "Record"
@@ -5428,7 +5423,7 @@ msgid "Rename crashlogs"
 msgstr "Muuta lokien tiedostonimet"
 
 msgid "Rename your movies"
-msgstr ""
+msgstr "Muuta tallenteiden nimiä"
 
 #
 msgid "Repeat"
@@ -5447,10 +5442,10 @@ msgid "Repeats"
 msgstr "Toistokerrat"
 
 msgid "Replace the minute input for the seek functions with a seekbar."
-msgstr ""
+msgstr "Korvaa hakutoiminnon ajansyöttö hakupalkilla."
 
 msgid "Replace the rewind  input with a seekbar"
-msgstr ""
+msgstr "Korvaa kelauksen  syöttö hakupalkilla"
 
 msgid "Require description to be unique"
 msgstr "Vaadi yksilöllinen kuvaus"
@@ -5537,7 +5532,7 @@ msgid "Restore system settings"
 msgstr "Palauta asetukset"
 
 msgid "Restore your Dreambox with a USB stick"
-msgstr ""
+msgstr "Palauta Dreamboxin ohjelmisto USB-muistitikulta"
 
 msgid "Restrict \"after event\" to a certain timespan?"
 msgstr "Rajoita \"ohjelman jälkeen\" toiminto tiettyyn aikajaksoon."
@@ -5637,7 +5632,7 @@ msgid "Satellite equipment"
 msgstr "Satelliittilaitteet"
 
 msgid "SatelliteEquipmentControl allows you to fine-tune DiSEqC-settings"
-msgstr ""
+msgstr "SatelliteEquipmentControlin avulla voit hienosäätää DiSEqC-asetuksia"
 
 #
 msgid "Satellites"
@@ -5783,7 +5778,7 @@ msgid "Scan band US SUPER"
 msgstr "Hae alue US SUPER"
 
 msgid "Scan devices for playable media files"
-msgstr ""
+msgstr "Hae mediatiedostoja"
 
 #
 msgid "Scan range"
@@ -5872,7 +5867,7 @@ msgid "Security service not running."
 msgstr "Turvapalvelu ei ole käynnissä."
 
 msgid "See service-epg (and PiP) from other channels in an infobar."
-msgstr ""
+msgstr "Näytä muiden kanavien ohjelmatiedot (ja PiP-kuva) tietopalkissa."
 
 #
 msgid "Seek"
@@ -6090,7 +6085,7 @@ msgid "Services"
 msgstr "Kanavat"
 
 msgid "Set Bitstream/PCM audio delays"
-msgstr ""
+msgstr "Muuta bitstream/PCM-äänen viivettä"
 
 #
 msgid "Set End Time"
@@ -6178,9 +6173,8 @@ msgstr ""
 msgid "Show Info"
 msgstr "Näytä tiedot"
 
-#
 msgid "Show Message when Recording starts"
-msgstr "Näytä viesti kun tallennus alkaa"
+msgstr "Näytä ilmoitus tallennuksen alkamisesta"
 
 #
 msgid "Show WLAN Status"
@@ -6225,7 +6219,7 @@ msgid "Show the tv player..."
 msgstr "Näytä tv..."
 
 msgid "Show webcam pictures on your TV Screen"
-msgstr ""
+msgstr "Katsele web-kameroita"
 
 msgid ""
 "Shows a list containing the zapping-history and allows user to zap to the "
@@ -6236,13 +6230,13 @@ msgid "Shows a list of recent zap entries"
 msgstr ""
 
 msgid "Shows average bitrate of video and audio"
-msgstr ""
+msgstr "Näyttää kuvan ja äänen bittinopeuden"
 
 msgid "Shows statistics of watched services"
-msgstr ""
+msgstr "Näyttää kanavien katselustatistiikkaa"
 
 msgid "Shows the clock permanently on the screen"
-msgstr ""
+msgstr "Näyttää kellonajan pysyvästi kuvaruudulla"
 
 #
 msgid "Shows the state of your wireless LAN connection.\n"
@@ -6284,7 +6278,7 @@ msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Suppea (yhteensopiva vanhojen soittimien kanssa)"
 
 msgid "SimpleRSS allows reading RSS newsfeeds on your Dreambox."
-msgstr ""
+msgstr "SimpleRSS:llä voit lukea RSS-feedejä Dreamboxilla."
 
 #
 msgid "Single"
@@ -6306,12 +6300,11 @@ msgstr "Yksi lähetin"
 msgid "Singlestep (GOP)"
 msgstr "Kuva-kuvalta (GOP)"
 
-#
 msgid "Skin"
-msgstr "Teema..."
+msgstr "Teema"
 
 msgid "SkinSelector shows a menu with selectable skins"
-msgstr ""
+msgstr "SkinSelector näyttää teemojen valintavalikon"
 
 #
 msgid "Skins"
@@ -6369,7 +6362,7 @@ msgid "Software update"
 msgstr "Ohjelmiston päivitys"
 
 msgid "SoftwareManager manages your Dreambox software"
-msgstr ""
+msgstr "Ohjelmiston hallinta hallitse Dreamboxin ohjelmistoja"
 
 msgid "Softwaremanager information"
 msgstr "Ohjelmiston hallinnan tiedot"
@@ -6501,7 +6494,7 @@ msgid "Std. Feeds"
 msgstr "Std.feedit"
 
 msgid "Step by step network configuration"
-msgstr ""
+msgstr "Verkkoasetukset askel kerrallaan"
 
 #
 msgid "Step east"
@@ -6632,7 +6625,7 @@ msgid "TRANSLATOR_INFO"
 msgstr ""
 "Suomenkielinen käännös: Timo Järvenpää\n"
 "timojarvenpaa@hotmail.com\n"
-"huoltovalikko.keskustelupalstat.com"
+"http://huoltovalikko.keskustelupalstat.com"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -6702,18 +6695,17 @@ msgstr ""
 "\n"
 
 msgid "Test your DiSEqC equipment"
-msgstr ""
+msgstr "Testaa DiSEqC-laitteita"
 
 #
 msgid "Test-Messagebox?"
 msgstr "Testiviesti-ikkuna?"
 
-#
 msgid ""
 "Thank you for using the wizard.\n"
 "Please press OK to continue."
 msgstr ""
-"Ohjattu verkkoasennut on päättynyt.\n"
+"Ohjattu verkkoasennus on päättynyt.\n"
 "Jatka painamalla OK-näppäintä."
 
 #
@@ -7762,9 +7754,8 @@ msgstr "Tarkista Dreamboxin aitous suorittamalla Aito Dreambox -lisäosa!"
 msgid "Vertical"
 msgstr "Vertikaali"
 
-#
 msgid "Video Fine-Tuning"
-msgstr "TV-kuvan hienosäätö..."
+msgstr "TV-kuvan hienosäätö"
 
 #
 msgid "Video Fine-Tuning Wizard"
@@ -7786,13 +7777,11 @@ msgstr "Video-avustaja"
 msgid "Video enhancement preview"
 msgstr "Kuvanparannuksen esikatselu"
 
-#
 msgid "Video enhancement settings"
-msgstr "Kuvanparannuksen asetukset..."
+msgstr "Kuvasäädöt"
 
-#
 msgid "Video enhancement setup"
-msgstr "Kuvanparannuksen asetukset"
+msgstr "Kuvansäätöjen asetukset"
 
 #
 msgid ""
@@ -7841,10 +7830,10 @@ msgid "View Count"
 msgstr "Katselukerrat"
 
 msgid "View Google maps"
-msgstr ""
+msgstr "Katsele Googlen karttoja"
 
 msgid "View Google maps with your Dreambox."
-msgstr ""
+msgstr "Katsele Googlen karttoja Dreamboxin kautta."
 
 #
 msgid "View Movies..."
@@ -7864,9 +7853,8 @@ msgstr "Katso Video-CD..."
 msgid "View active downloads"
 msgstr "Näytä aktiiviset lataukset"
 
-#
 msgid "View details"
-msgstr "Yksityiskohdat"
+msgstr "Lisätiedot"
 
 #
 msgid "View list of available "
@@ -8699,7 +8687,7 @@ msgid "ZapStatistic shows the watched services with some statistics."
 msgstr ""
 
 msgid "Zoom into letterboxed/anamorph movies"
-msgstr ""
+msgstr "Zoomaa letterbox/anamorfisia tallenteita"
 
 msgid "Zoom into letterboxed/anamorph movies."
 msgstr ""
@@ -8977,7 +8965,7 @@ msgid "continue"
 msgstr "jatka"
 
 msgid "control multiple Dreamboxes with different RCs"
-msgstr ""
+msgstr "Käytä Dreamboxeja eri kaukosäätimillä"
 
 #
 msgid "copy to bouquets"
@@ -9133,9 +9121,8 @@ msgstr "täysi vastaavuus"
 msgid "exit DVD player or return to file browser"
 msgstr "poistu DVD-soittimesta tai palaa tiedostonhallintaan"
 
-#
 msgid "exit mediaplayer"
-msgstr "Poistu Mediatoistimesta"
+msgstr "Poistu Mediasoittimesta"
 
 #
 msgid "exit movielist"
@@ -9544,7 +9531,7 @@ msgid "redesigned Kerni-HD1 skin"
 msgstr ""
 
 msgid "redirect notifications to Growl"
-msgstr ""
+msgstr "Näytä ilmoitusikkunat Growl:in kautta"
 
 #
 msgid "remove a nameserver entry"
@@ -9907,7 +9894,7 @@ msgid "use as HDD replacement"
 msgstr "käytä kiintolevyn tilalla"
 
 msgid "use your Dreambox as Web proxy"
-msgstr ""
+msgstr "Käytä Dreamboxia WWW-proxyna"
 
 msgid "use your Dreambox as Web proxy."
 msgstr ""

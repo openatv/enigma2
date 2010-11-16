@@ -1692,6 +1692,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.list_updating = True
 		self.packetlist = []
 		self.installed_packetlist = {}
+		self.upgradeable_packages = {}
 		self.Console = Console()
 		self.cmdList = []
 		self.cachelist = []
@@ -1699,6 +1700,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.cache_file = '/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache' #Path to cache directory	 
 		self.oktext = _("\nAfter pressing OK, please wait!")
 		self.unwanted_extensions = ('-dbg', '-dev', '-doc', 'busybox')
+		self.opkgAvail = fileExists('/usr/bin/opkg')
 
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
@@ -1860,14 +1862,19 @@ class PacketManager(Screen, NumericalTextInput):
 	def IpkgList_Finished(self, result, retval, extra_args = None):
 		if result:
 			self.packetlist = []
+			last_name = ""
 			for x in result.splitlines():
-				tokens = x.split(' - ')   #self.blacklisted_packages
+				tokens = x.split(' - ') 
 				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
 					l = len(tokens)
 					version = l > 1 and tokens[1].strip() or ""
 					descr = l > 2 and tokens[2].strip() or ""
+					if name == last_name:
+						continue
+					last_name = name 
 					self.packetlist.append([name, version, descr])
+
 		if not self.Console:
 			self.Console = Console()
 		cmd = "ipkg list_installed"
@@ -1877,30 +1884,47 @@ class PacketManager(Screen, NumericalTextInput):
 		if result:
 			self.installed_packetlist = {}
 			for x in result.splitlines():
-				tokens = x.split(' - ')   #self.blacklisted_packages
+				tokens = x.split(' - ')
 				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
 					l = len(tokens)
 					version = l > 1 and tokens[1].strip() or ""
 					self.installed_packetlist[name] = version
-		self.buildPacketList()
+		if self.opkgAvail:
+			if not self.Console:
+				self.Console = Console()
+			cmd = "opkg list-upgradable"
+			self.Console.ePopen(cmd, self.OpkgListUpgradeable_Finished)
+		else:
+			self.buildPacketList()
 
+	def OpkgListUpgradeable_Finished(self, result, retval, extra_args = None):
+		if result:
+			self.upgradeable_packages = {}
+			for x in result.splitlines():
+				tokens = x.split(' - ')
+				name = tokens[0].strip()
+				if not any(name.endswith(x) for x in self.unwanted_extensions):
+					l = len(tokens)
+					version = l > 2 and tokens[2].strip() or ""
+					self.upgradeable_packages[name] = version
+		self.buildPacketList()
+	
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, description, state, installedpng, divpng))	
+			return((name, version, _(description), state, installedpng, divpng))	
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return((name, version, description, state, upgradeablepng, divpng))	
+			return((name, version, _(description), state, upgradeablepng, divpng))	
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return((name, version, description, state, installablepng, divpng))
+			return((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
 		self.list = []
 		self.cachelist = []
-
 		if self.cache_ttl > 0 and self.vc != 0:
 			print 'Loading packagelist cache from ',self.cache_file
 			try:
@@ -1916,23 +1940,27 @@ class PacketManager(Screen, NumericalTextInput):
 			print 'rebuilding fresh package list'
 			for x in self.packetlist:
 				status = ""
-				if self.installed_packetlist.has_key(x[0].strip()):
-					if self.installed_packetlist[x[0].strip()] == x[1].strip():
-						status = "installed"
-						self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
+				if self.installed_packetlist.has_key(x[0]):
+					if self.opkgAvail:
+						if self.upgradeable_packages.has_key(x[0]):
+							status = "upgradeable"
+						else:
+							status = "installed"
 					else:
-						status = "upgradeable"
-						self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
+						if self.installed_packetlist[x[0]] == x[1]:
+							status = "installed"
+						else:
+							status = "upgradeable"
 				else:
 					status = "installable"
-					self.list.append(self.buildEntryComponent(x[0].strip(), x[1].strip(), x[2].strip(), status))
-				if not any(x[0].strip().endswith(x) for x in self.unwanted_extensions):
-					self.cachelist.append([x[0].strip(), x[1].strip(), x[2].strip(), status])
+				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], status))	
+				self.cachelist.append([x[0], x[1], x[2], status])
 			write_cache(self.cache_file, self.cachelist)
 			self['list'].setList(self.list)
 
 	def reloadPluginlist(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
 
 class IpkgInstaller(Screen):
 	skin = """
