@@ -31,7 +31,7 @@ EXTRA_DIST = \
 
 .i.cpp:
 	$(AM_V_GEN)$(SWIG) $(AX_SWIG_PYTHON_OPT) -MT $@ -MD -MF $(DEPDIR)/$*.Tpo -I$(top_srcdir) -O -nortti -nothreads -o $@ $<
-	$(AM_V_at)$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Pcpp
+	$(AM_V_at)mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Pcpp
 	$(AM_V_at)$(PYTHON) $(srcdir)/enigma_py_patcher.py
 
 enigma.py: enigma_python.cpp
