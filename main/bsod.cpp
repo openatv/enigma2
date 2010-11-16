@@ -1,3 +1,4 @@
+#include <csignal>
 #include <fstream>
 #include <sstream>
 #include <lib/base/eenv.h>
