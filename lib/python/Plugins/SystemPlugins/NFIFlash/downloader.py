@@ -16,7 +16,7 @@ from Components.MultiContent import MultiContentEntryText
 from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Task import Task, Job, job_manager, Condition
-from Tools.Directories import fileExists, isMount
+from Tools.Directories import fileExists, isMount, resolveFilename, SCOPE_HDD
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
 from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer
@@ -792,7 +792,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.umountCallback()
 
 def main(session, **kwargs):
-	session.open(NFIDownload,"/home/root")
+	session.open(NFIDownload,resolveFilename(SCOPE_HDD))
 
 def filescan_open(list, session, **kwargs):
 	dev = "/dev/" + (list[0].path).rsplit('/',1)[0][7:]
