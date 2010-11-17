@@ -391,7 +391,7 @@ class DreamInfoHandler:
 	def mergeConfig(self, directory, name, merge = True):
 		print "merging config:", directory, " - ", name
 		if os.path.isfile(directory + name):
-			config.loadFromFile(directory + name)
+			config.loadFromFile(directory + name, base_file=False)
 			configfile.save()
 		self.installNext()
 		
