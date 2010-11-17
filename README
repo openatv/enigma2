@@ -1,6 +1,13 @@
 To build enigma2 on Ubuntu 10.04, follow these steps:
 
 0.) Consider using OE to build it for a Dreambox instead.
+
+    To build this version for a Dreambox, you will need
+    a recent OE (branch "opendreambox-1.6" will do, but "3.0" won't)
+    or at least a backported BitBake recipe from there.
+
+    See http://opendreambox.org/.
+
     Stop reading here. It's not very useful for most people
     to build enigma2 for a PC.
 
