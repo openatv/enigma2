@@ -1666,7 +1666,7 @@ class Config(ConfigSubsection):
 		f.write(text)
 		f.close()
 
-	def loadFromFile(self, filename, base_file=False):
+	def loadFromFile(self, filename, base_file=True):
 		f = open(filename, "r")
 		self.unpickle(f.readlines(), base_file)
 		f.close()
