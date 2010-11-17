@@ -43,6 +43,7 @@ baseinclude_HEADERS = \
 	etpm.h \
 	filepush.h \
 	i18n.h \
+	idatasource.h \
 	init.h \
 	init_num.h \
 	ioprio.h \
