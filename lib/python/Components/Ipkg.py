@@ -1,5 +1,5 @@
 from enigma import eConsoleAppContainer
-from Tools.Directories import fileExists
+import os
 
 class IpkgComponent:
 	EVENT_INSTALL = 0
@@ -19,14 +19,18 @@ class IpkgComponent:
 	CMD_UPDATE = 3
 	CMD_UPGRADE = 4
 	
-	def __init__(self, ipkg = '/usr/bin/ipkg'):
-		self.ipkg = ipkg
-		self.opkgAvail = fileExists('/usr/bin/opkg')
+	def __init__(self, ipkg = None):
+		if ipkg:
+			self.ipkg = ipkg
+		elif os.path.isfile('/usr/bin/opkg'):
+			self.ipkg = '/usr/bin/opkg'
+		else:
+			self.ipkg = '/usr/bin/ipkg'
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
 		self.callbackList = []
 		self.setCurrentCommand()
-		
+
 	def setCurrentCommand(self, command = None):
 		self.currentCommand = command
 		
@@ -108,7 +112,7 @@ class IpkgComponent:
 				# Note: the config file update question doesn't end with a newline, so
 				# if we get multiple config file update questions, the next ones
 				# don't necessarily start at the beginning of a line
-				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 1)[1][:-1])
+				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 3)[1][:-1])
 		except Exception, ex:
 			print "[Ipkg] Failed to parse: '%s'" % data
 			print "[Ipkg]", ex
