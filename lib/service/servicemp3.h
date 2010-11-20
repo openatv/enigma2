@@ -180,9 +180,7 @@ private:
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
 	eSubtitleWidget *m_subtitle_widget;
-	int m_currentTrickRatio;
-	ePtr<eTimer> m_seekTimeout;
-	void seekTimeoutCB();
+	gdouble m_currentTrickRatio;
 	friend class eServiceFactoryMP3;
 	eServiceReference m_ref;
 	int m_buffer_size;
