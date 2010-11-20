@@ -29,8 +29,10 @@ eWindowStyleManager::~eWindowStyleManager()
 void eWindowStyleManager::getStyle(int style_id, ePtr<eWindowStyle> &style)
 {
 	std::map<int, ePtr<eWindowStyle> >::iterator it = m_current_style.find(style_id);
-	ASSERT(it != m_current_style.end());
-	style = it->second;
+	if (it != m_current_style.end())
+		style = it->second;
+	else
+		eDebug("eWindowStyleManager::getStyle(style_id=%d): NOT FOUND", style_id);
 }
 
 void eWindowStyleManager::setStyle(int style_id, eWindowStyle *style)
