@@ -214,17 +214,15 @@ int eServiceMP3::ac3_delay,
 eServiceMP3::eServiceMP3(eServiceReference ref)
 	:m_ref(ref), m_pump(eApp, 1)
 {
-	m_seekTimeout = eTimer::create(eApp);
 	m_subtitle_sync_timer = eTimer::create(eApp);
 	m_streamingsrc_timeout = 0;
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = 0;
 	m_subtitle_widget = 0;
-	m_currentTrickRatio = 0;
+	m_currentTrickRatio = 1.0;
 	m_subs_to_pull = 0;
 	m_buffer_size = 1*1024*1024;
-	CONNECT(m_seekTimeout->timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
 	m_aspect = m_width = m_height = m_framerate = m_progressive = -1;
@@ -425,8 +423,8 @@ RESULT eServiceMP3::setSlowMotion(int ratio)
 {
 	if (!ratio)
 		return 0;
-	eDebug("eServiceMP3::setSlowMotion ratio=%f",1/(float)ratio);
-	return trickSeek(1/(float)ratio);
+	eDebug("eServiceMP3::setSlowMotion ratio=%f",1.0/(gdouble)ratio);
+	return trickSeek(1.0/(gdouble)ratio);
 }
 
 RESULT eServiceMP3::setFastForward(int ratio)
@@ -435,35 +433,13 @@ RESULT eServiceMP3::setFastForward(int ratio)
 	return trickSeek(ratio);
 }
 
-void eServiceMP3::seekTimeoutCB()
-{
-	pts_t ppos, len;
-	getPlayPosition(ppos);
-	getLength(len);
-	ppos += 90000*m_currentTrickRatio;
-	
-	if (ppos < 0)
-	{
-		ppos = 0;
-		m_seekTimeout->stop();
-	}
-	if (ppos > len)
-	{
-		ppos = 0;
-		stop();
-		m_seekTimeout->stop();
-		return;
-	}
-	seekTo(ppos);
-}
-
 		// iPausableService
 RESULT eServiceMP3::pause()
 {
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
-	gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+	trickSeek(0.0);
 
 	return 0;
 }
@@ -473,7 +449,7 @@ RESULT eServiceMP3::unpause()
 	if (!m_gst_playbin || m_state != stRunning)
 		return -1;
 
-	gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+	trickSeek(1.0);
 
 	return 0;
 }
@@ -500,7 +476,7 @@ RESULT eServiceMP3::getLength(pts_t &pts)
 		return -1;
 		/* len is in nanoseconds. we have 90 000 pts per second. */
 	
-	pts = len / 11111;
+	pts = len / 11111LL;
 	return 0;
 }
 
@@ -508,7 +484,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to)
 {
 		/* convert pts to nanoseconds */
 	gint64 time_nanoseconds = to * 11111LL;
-	if (!gst_element_seek (m_gst_playbin, 1.0, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH,
+	if (!gst_element_seek (m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME, GST_SEEK_FLAG_FLUSH,
 		GST_SEEK_TYPE_SET, time_nanoseconds,
 		GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE))
 	{
@@ -538,42 +514,36 @@ RESULT eServiceMP3::seekTo(pts_t to)
 
 RESULT eServiceMP3::trickSeek(gdouble ratio)
 {
+	m_currentTrickRatio = ratio;
+
 	if (!m_gst_playbin)
 		return -1;
-	if (!ratio)
-		return seekRelative(0, 0);
-
-	GstEvent *s_event;
-	int flags;
-	flags = GST_SEEK_FLAG_NONE;
-	flags |= GST_SEEK_FLAG_FLUSH;
-// 	flags |= GstSeekFlags (GST_SEEK_FLAG_ACCURATE);
-	flags |= GST_SEEK_FLAG_KEY_UNIT;
-// 	flags |= GstSeekFlags (GST_SEEK_FLAG_SEGMENT);
-// 	flags |= GstSeekFlags (GST_SEEK_FLAG_SKIP);
-
-	GstFormat fmt = GST_FORMAT_TIME;
-	gint64 pos, len;
-	gst_element_query_duration(m_gst_playbin, &fmt, &len);
-	gst_element_query_position(m_gst_playbin, &fmt, &pos);
-
-	if ( ratio >= 0 )
+	if (ratio > -0.01 && ratio < 0.01)
 	{
-		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, (GstSeekFlags)flags, GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, len);
+		gst_element_set_state(m_gst_playbin, GST_STATE_PAUSED);
+		return 0;
+	}
 
-		eDebug("eServiceMP3::trickSeek with rate %lf to %" GST_TIME_FORMAT " ", ratio, GST_TIME_ARGS (pos));
+	gint64 pos;
+	pts_t pts;
+	getPlayPosition(pts);
+	pos = pts * 11111LL;
+
+	gst_element_set_state(m_gst_playbin, GST_STATE_PLAYING);
+
+	if (ratio >= 0.0)
+	{
+		gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, pos, GST_SEEK_TYPE_SET, -1);
 	}
 	else
 	{
-		s_event = gst_event_new_seek (ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_SKIP|GST_SEEK_FLAG_FLUSH), GST_SEEK_TYPE_NONE, -1, GST_SEEK_TYPE_NONE, -1);
+		/* note that most elements will not support negative speed */
+		gst_element_seek(m_gst_playbin, ratio, GST_FORMAT_TIME, (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_SKIP), GST_SEEK_TYPE_SET, 0, GST_SEEK_TYPE_SET, pos);
 	}
 
-	if (!gst_element_send_event ( GST_ELEMENT (m_gst_playbin), s_event))
-	{
-		eDebug("eServiceMP3::trickSeek failed");
-		return -1;
-	}
-
+	eSingleLocker l(m_subs_to_pull_lock);
+	m_subtitle_pages.clear();
+	m_subs_to_pull = 0;
 	return 0;
 }
 
@@ -628,7 +598,7 @@ RESULT eServiceMP3::getPlayPosition(pts_t &pts)
 	}
 
 	/* pos is in nanoseconds. we have 90 000 pts per second. */
-	pts = pos / 11111;
+	pts = pos / 11111LL;
 	return 0;
 }
 
@@ -640,29 +610,12 @@ RESULT eServiceMP3::setTrickmode(int trick)
 
 RESULT eServiceMP3::isCurrentlySeekable()
 {
-	int ret = 3; // seeking and fast/slow winding possible
-	GstElement *sink;
+	int ret = 3; /* just assume that seeking and fast/slow winding are possible */
 
 	if (!m_gst_playbin)
 		return 0;
 	if (m_state != stRunning)
 		return 0;
-
-	g_object_get (G_OBJECT (m_gst_playbin), "video-sink", &sink, NULL);
-
-	// disable fast winding yet when a dvbvideosink or dvbaudiosink is used
-	// for this we must do some changes on different places.. (gstreamer.. our sinks.. enigma2)
-	if (sink) {
-		ret &= ~2; // only seeking possible
-		gst_object_unref(sink);
-	}
-	else {
-		g_object_get (G_OBJECT (m_gst_playbin), "audio-sink", &sink, NULL);
-		if (sink) {
-			ret &= ~2; // only seeking possible
-			gst_object_unref(sink);
-		}
-	}
 
 	return ret;
 }
@@ -1463,8 +1416,12 @@ void eServiceMP3::pullSubtitle()
 			GstBuffer *buffer;
 			{
 				eSingleLocker l(m_subs_to_pull_lock);
-				--m_subs_to_pull;
-				g_signal_emit_by_name (sink, "pull-buffer", &buffer);
+				/* m_subs_to_pull could have been cleared, while we didn't have the lock */
+				if (m_subs_to_pull)
+				{
+					--m_subs_to_pull;
+					g_signal_emit_by_name (sink, "pull-buffer", &buffer);
+				}
 			}
 			if (buffer)
 			{
@@ -1474,11 +1431,11 @@ void eServiceMP3::pullSubtitle()
 				unsigned char line[len+1];
 				memcpy(line, GST_BUFFER_DATA(buffer), len);
 				line[len] = 0;
-				eDebug("got new subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
+				eDebug("got new subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111LL, line);
 				ePangoSubtitlePage page;
 				gRGB rgbcol(0xD0,0xD0,0xD0);
 				page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
-				page.show_pts = buf_pos / 11111L;
+				page.show_pts = buf_pos / 11111LL;
 				page.m_timeout = duration_ns / 1000000;
 				m_subtitle_pages.push_back(page);
 				pushSubtitles();
@@ -1507,7 +1464,7 @@ void eServiceMP3::pushSubtitles()
 			gint64 now;
 			if (gst_element_query_position(m_gst_playbin, &fmt, &now) != -1)
 			{
-				now /= 11111;
+				now /= 11111LL;
 				diff_ms = abs((now - running_pts) / 90);
 				eDebug("diff < -100ms check decoder/pipeline diff: decoder: %lld, pipeline: %lld, diff: %lld", running_pts, now, diff_ms);
 				if (diff_ms > 100000)
