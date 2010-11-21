@@ -459,8 +459,17 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
 		try:
-			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
-			updates = pickle.load(open(path, "rb"))
+			try:
+				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
+				updates = pickle.load(open(path, "rb"))
+			except:
+				# load old settings file and rename it (this code should be removed in a week or so)
+				oldpath = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
+				updates = pickle.load(open(oldpath, "rb"))
+				try:
+					os.rename(oldpath, path)
+				except:
+					pass
 			needUpdateDesc = ("description" in updates) and (updates["description"] != self.settings["description"]) 
 			self.settings.update(updates)
 			if needUpdateDesc:
