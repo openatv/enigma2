@@ -12,7 +12,7 @@ const char *enigma2_date = ENIGMA2_LAST_CHANGE_DATE;
 const char *enigma2_branch = ENIGMA2_BRANCH;
 
 #ifndef ENIGMA2_REV
-#define ENIGMA2_REV NULL
+#define ENIGMA2_REV ""
 #endif
 const char *enigma2_rev = ENIGMA2_REV;
 
