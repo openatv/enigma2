@@ -1647,9 +1647,12 @@ class Config(ConfigSubsection):
 
 			if not base_file: # not the initial config file..
 				#update config.x.y.value when exist
-				configEntry = eval(name)
-				if configEntry is not None:
-					configEntry.value = val
+				try:
+					configEntry = eval(name)
+					if configEntry is not None:
+						configEntry.value = val
+				except (SyntaxError, KeyError):
+					pass
 
 		# we inherit from ConfigSubsection, so ...
 		#object.__setattr__(self, "saved_value", tree["config"])
