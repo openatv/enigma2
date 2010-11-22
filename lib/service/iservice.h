@@ -289,6 +289,7 @@ public:
 		sFileSize,
 
 		sCAIDs,
+		sCAIDPIDs,
 		sVideoType, 		/* MPEG2 MPEG4 */
 
 		sTags,  			/* space seperated list of tags */

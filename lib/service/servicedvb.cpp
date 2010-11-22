@@ -1585,7 +1585,7 @@ int eDVBServicePlay::getInfo(int w)
 {
 	eDVBServicePMTHandler::program program;
 
-	if (w == sCAIDs)
+	if (w == sCAIDs || w == sCAIDPIDs)
 		return resIsPyObject;
 
 	eDVBServicePMTHandler &h = m_timeshift_active ? m_service_handler_timeshift : m_service_handler;
@@ -1726,6 +1726,8 @@ PyObject *eDVBServicePlay::getInfoObject(int w)
 	{
 	case sCAIDs:
 		return m_service_handler.getCaIds();
+	case sCAIDPIDs:
+		return m_service_handler.getCaIds(true);
 	case sTransponderData:
 		return eStaticServiceDVBInformation().getInfoObject(m_reference, w);
 	default:

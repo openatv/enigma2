@@ -149,7 +149,7 @@ void eDVBServicePMTHandler::PATready(int)
 		serviceEvent(eventNoPAT);
 }
 
-PyObject *eDVBServicePMTHandler::getCaIds()
+PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
 {
 	ePyObject ret;
 
@@ -161,16 +161,29 @@ PyObject *eDVBServicePMTHandler::getCaIds()
 		if (cnt)
 		{
 			ret=PyList_New(cnt);
-			std::set<uint16_t>::iterator it(prog.caids.begin());
-			while(cnt--)
-				PyList_SET_ITEM(ret, cnt, PyInt_FromLong(*it++));
+			std::set<program::capid_pair>::iterator it(prog.caids.begin());
+			if (pair)
+			{
+				while(cnt--)
+				{
+					ePyObject tuple = PyTuple_New(2);
+					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->caid));
+					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong((it++)->capid));
+					PyList_SET_ITEM(ret, cnt, tuple);
+				}
+			}
+			else
+			{
+				while(cnt--)
+					PyList_SET_ITEM(ret, cnt, PyInt_FromLong((it++)->caid));
+			}
 		}
 	}
 
 	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
 }
 
-int eDVBServicePMTHandler::getProgramInfo(struct program &program)
+int eDVBServicePMTHandler::getProgramInfo(program &program)
 {
 	ePtr<eTable<ProgramMapSection> > ptr;
 	int cached_apid_ac3 = -1;
@@ -460,7 +473,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							case CA_DESCRIPTOR:
 							{
 								CaDescriptor *descr = (CaDescriptor*)(*desc);
-								program.caids.insert(descr->getCaSystemId());
+								program::capid_pair pair;
+								pair.caid = descr->getCaSystemId();
+								pair.capid = descr->getCaPid();
+								program.caids.insert(pair);
 								break;
 							}
 							default:
@@ -523,7 +539,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					if ((*desc)->getTag() == CA_DESCRIPTOR)
 					{
 						CaDescriptor *descr = (CaDescriptor*)(*desc);
-						program.caids.insert(descr->getCaSystemId());
+						program::capid_pair pair;
+						pair.caid = descr->getCaSystemId();
+						pair.capid = descr->getCaPid();
+						program.caids.insert(pair);
 					}
 				}
 			}
@@ -589,8 +608,12 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			program.textPid = cached_tpid;
 		}
 		CAID_LIST &caids = m_service->m_ca;
-		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
-			program.caids.insert(*it);
+		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it) {
+			program::capid_pair pair;
+			pair.caid = *it;
+			pair.capid = -1; // not known yet
+			program.caids.insert(pair);
+		}
 		if ( cnt )
 			ret = 0;
 	}
