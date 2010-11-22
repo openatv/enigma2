@@ -60,7 +60,7 @@ if HAVE_FAKE_GIT_DIR
 ENIGMA2_DATE = `cat $(GIT_DIR)/last_commit_info | grep 'Date:' | cut -d' ' -f4`
 ENIGMA2_BRANCH = `cat $(GIT_DIR)/branch`
 else
-ENIGMA2_DATE = `$(GIT) log --no-color -n 1 --format=format:%cd --date=short`
+ENIGMA2_DATE = `$(GIT) log --no-color -n 1 --pretty=format:%cd --date=short`
 ENIGMA2_BRANCH = `$(GIT) branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 ENIGMA2_REV = `$(GIT) describe --abbrev=7 --always --dirty --long --tags`
 endif
