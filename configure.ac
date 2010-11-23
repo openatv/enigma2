@@ -86,8 +86,8 @@ if test "$with_memcheck" = "yes"; then
 fi
 
 AC_ARG_WITH(po,
-	AS_HELP_STRING([--without-po],[disable updating of po files]),
-	[with_po="$withval"],[with_po="yes"])
+	AS_HELP_STRING([--with-po],[enable updating of po files]),
+	[with_po="$withval"],[with_po="no"])
 AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
