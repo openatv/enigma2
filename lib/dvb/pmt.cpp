@@ -675,6 +675,12 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 
 int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service)
 {
+	ePtr<iDataSource> s;
+	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service);
+}
+
+int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iDataSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service)
+{
 	RESULT res=0;
 	m_reference = ref;
 	
@@ -704,7 +710,9 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		{
 			eWarning("no .meta file found, trying to find PMT pid");
 			eDVBTSTools tstools;
-			if (tstools.openFile(ref.path.c_str()))
+			if (source)
+				tstools.setSource(source, streaminfo_file ? streaminfo_file : ref.path.c_str());
+			else if (tstools.openFile(ref.path.c_str()))
 				eWarning("failed to open file");
 			else
 			{
@@ -757,7 +765,10 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		if (m_pvr_channel)
 		{
 			m_pvr_channel->setCueSheet(cue);
-			m_pvr_channel->playFile(ref.path.c_str());
+			if (source)
+				m_pvr_channel->playSource(source, streaminfo_file);
+			else
+				m_pvr_channel->playFile(ref.path.c_str());
 		}
 	}
 

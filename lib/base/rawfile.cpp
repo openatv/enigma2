@@ -4,7 +4,10 @@
 #include <lib/base/rawfile.h>
 #include <lib/base/eerror.h>
 
+DEFINE_REF(eRawFile);
+
 eRawFile::eRawFile()
+	:m_lock(false)
 {
 	m_fd = -1;
 	m_file = 0;
@@ -53,6 +56,13 @@ void eRawFile::setfd(int fd)
 
 off_t eRawFile::lseek(off_t offset, int whence)
 {
+	eSingleLocker l(m_lock);
+	m_current_offset = lseek_internal(offset, whence);
+	return m_current_offset;
+}
+
+off_t eRawFile::lseek_internal(off_t offset, int whence)
+{
 //	eDebug("lseek: %lld, %d", offset, whence);
 		/* if there is only one file, use the native lseek - the file could be growing! */
 	if (m_nrfiles < 2)
@@ -61,7 +71,8 @@ off_t eRawFile::lseek(off_t offset, int whence)
 			return ::lseek(m_fd, offset, whence);
 		else
 		{
-			::fseeko(m_file, offset, whence);
+			if (::fseeko(m_file, offset, whence) < 0)
+				perror("fseeko");
 			return ::ftello(m_file);
 		}
 	}
@@ -100,11 +111,19 @@ int eRawFile::close()
 	}
 }
 
-ssize_t eRawFile::read(void *buf, size_t count)
+ssize_t eRawFile::read(off_t offset, void *buf, size_t count)
 {
-//	eDebug("read: %p, %d", buf, count);
+	eSingleLocker l(m_lock);
+
+	if (offset != m_current_offset)
+	{
+		m_current_offset = lseek_internal(offset, SEEK_SET);
+		if (m_current_offset < 0)
+			return m_current_offset;
+	}
+
 	switchOffset(m_current_offset);
-	
+
 	if (m_nrfiles >= 2)
 	{
 		if (m_current_offset + count > m_totallength)

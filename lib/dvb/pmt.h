@@ -205,7 +205,12 @@ public:
 	int getChannel(eUsePtr<iDVBChannel> &channel);
 	void resetCachedProgram() { m_have_cached_program = false; }
 
+	/* deprecated interface */
 	int tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0);
+
+	/* new interface */
+	int tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iDataSource> &, const char *streaminfo_file, eCueSheet *sg=0, bool simulate=false, eDVBService *service = 0);
+
 	void free();
 private:
 	bool m_have_cached_program;

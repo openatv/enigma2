@@ -29,7 +29,7 @@ void eFilePushThread::thread()
 {
 	setIoPrio(prio_class, prio);
 
-	off_t dest_pos = 0, source_pos = 0;
+	off_t dest_pos = 0;
 	size_t bytes_read = 0;
 	
 	off_t current_span_offset = 0;
@@ -46,9 +46,7 @@ void eFilePushThread::thread()
 	sigaction(SIGUSR1, &act, 0);
 	
 	hasStarted();
-	
-	source_pos = m_raw_source.lseek(0, SEEK_CUR);
-	
+
 		/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
@@ -137,14 +135,12 @@ void eFilePushThread::thread()
 			
 		if (m_sg && !current_span_remaining)
 		{
-			m_sg->getNextSourceSpan(source_pos, bytes_read, current_span_offset, current_span_remaining);
+			m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining);
 			ASSERT(!(current_span_remaining % m_blocksize));
-
-			if (source_pos != current_span_offset)
-				source_pos = m_raw_source.lseek(current_span_offset, SEEK_SET);
+			m_current_position = current_span_offset;
 			bytes_read = 0;
 		}
-		
+
 		size_t maxread = sizeof(m_buffer);
 		
 			/* if we have a source span, don't read past the end */
@@ -157,9 +153,9 @@ void eFilePushThread::thread()
 		m_buf_start = 0;
 		m_filter_end = 0;
 		m_buf_end = 0;
-		
+
 		if (maxread)
-			m_buf_end = m_raw_source.read(m_buffer, maxread);
+			m_buf_end = m_source->read(m_current_position, m_buffer, maxread);
 
 		if (m_buf_end < 0)
 		{
@@ -177,10 +173,7 @@ void eFilePushThread::thread()
 			/* a read might be mis-aligned in case of a short read. */
 		int d = m_buf_end % m_blocksize;
 		if (d)
-		{
-			m_raw_source.lseek(-d, SEEK_CUR);
 			m_buf_end -= d;
-		}
 
 		if (m_buf_end == 0)
 		{
@@ -216,18 +209,10 @@ void eFilePushThread::thread()
 				sleep(1);
 				continue;
 			}
-#if 0
-			eDebug("FILEPUSH: end-of-file! (currently unhandled)");
-			if (!m_raw_source.lseek(0, SEEK_SET))
-			{
-				eDebug("(looping)");
-				continue;
-			}
-#endif
 			break;
 		} else
 		{
-			source_pos += m_buf_end;
+			m_current_position += m_buf_end;
 			bytes_read += m_buf_end;
 			if (m_sg)
 				current_span_remaining -= m_buf_end;
@@ -239,20 +224,30 @@ void eFilePushThread::thread()
 	eDebug("FILEPUSH THREAD STOP");
 }
 
-void eFilePushThread::start(int fd_source, int fd_dest)
+void eFilePushThread::start(int fd, int fd_dest)
 {
-	m_raw_source.setfd(fd_source);
-	m_fd_dest = fd_dest;
-	resume();
+	eRawFile *f = new eRawFile();
+	ePtr<iDataSource> source = f;
+	f->setfd(fd);
+	start(source, fd_dest);
 }
 
-int eFilePushThread::start(const char *filename, int fd_dest)
+int eFilePushThread::start(const char *file, int fd_dest)
 {
-	if (m_raw_source.open(filename) < 0)
+	eRawFile *f = new eRawFile();
+	ePtr<iDataSource> source = f;
+	if (f->open(file) < 0)
 		return -1;
-	m_fd_dest = fd_dest;
-	resume();
+	start(source, fd_dest);
 	return 0;
+}
+
+void eFilePushThread::start(ePtr<iDataSource> &source, int fd_dest)
+{
+	m_source = source;
+	m_fd_dest = fd_dest;
+	m_current_position = 0;
+	resume();
 }
 
 void eFilePushThread::stop()
@@ -271,11 +266,6 @@ void eFilePushThread::stop()
 void eFilePushThread::pause()
 {
 	stop();
-}
-
-void eFilePushThread::seek(int whence, off_t where)
-{
-	m_raw_source.lseek(where, whence);
 }
 
 void eFilePushThread::resume()
