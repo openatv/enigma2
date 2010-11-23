@@ -1,7 +1,6 @@
 #ifndef __LIB_BASE_CONSOLE_H__
 #define __LIB_BASE_CONSOLE_H__
 
-#include "Python.h"
 #include <string>
 #include <lib/base/ebase.h>
 #include <lib/python/connections.h>

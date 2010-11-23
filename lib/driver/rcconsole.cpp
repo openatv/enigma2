@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::getInstance())
+eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::getInstance()), m_escape(false)
 {
 	handle=open(filename, O_RDONLY|O_NONBLOCK);
 	if (handle<0)
@@ -38,7 +38,7 @@ void eRCConsoleDriver::keyPressed(int)
 	unsigned char data[16];
 	unsigned char *d = data;
 	int num = read(handle, data, 16);
-	int code=-1;
+	unsigned char code;
 	
 	int km = input->getKeyboardMode();
 
@@ -47,42 +47,29 @@ void eRCConsoleDriver::keyPressed(int)
 
 	while (num--)
 	{
-//		eDebug("console code %08x\n", *d);
-		if (km == eRCInput::kmAll)
-			code = *d++;
-		else
-		{
-			if (*d == 27) // escape code
-			{
-				while (num)
-				{
-					num--;
-					if (*++d != '[')
-						break;
-				}
-				code = -1;
-			} else
-				code = *d;
-			++d;
-
-			if (code < 32)			/* control characters */
-				code = -1;
-			else switch(code)
-			{
-			case 0x7E:  // mute, einfg, entf
-			case 0x7F:  // backspace
-			code = -1;
-			default:
-				break;
+		code = *d++;
+//		eDebug("console code %02x\n", code);
+		if (km == eRCInput::kmAscii) {
+			if (m_escape) {
+				if (code != '[')
+					m_escape = false;
+				continue;
 			}
+
+			if (code == 27) // escape code
+				m_escape = true;
+
+			if ((code < 32) ||	// control characters
+			    (code == 0x7e) ||	// mute, einfg, entf
+			    (code == 0x7f))	// backspace
+				continue;
 		}
 
-		if (code != -1)
-			for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)
-			{
-//				eDebug("ascii %08x", code);
-				(*i)->handleCode(code);
-			}
+		for (std::list<eRCDevice*>::iterator i(listeners.begin()); i!=listeners.end(); ++i)
+		{
+//			eDebug("ascii %02x", code);
+			(*i)->handleCode(code);
+		}
 	}
 }
 

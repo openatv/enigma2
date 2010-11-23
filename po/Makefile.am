@@ -1,60 +1,45 @@
-DOMAIN=enigma2
-#GETTEXT=./pygettext.py
-GETTEXT=xgettext
+dist_noinst_SCRIPTS = xml2po.py
 
-#MSGFMT = ./msgfmt.py
-MSGFMT = msgfmt
+LANGS = ar ca cs da de el en es et fi fr fy hr hu is it lt lv nl no pl pt ru sv sk sl sr tr uk
+LANGMO = $(LANGS:=.mo)
+LANGPO = $(LANGS:=.po)
 
-LANGS := $(shell cat $(srcdir)/LINGUAS)
-LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
-LANGMO := $(foreach LANG, $(LANGS),$(LANG).mo)
+EXTRA_DIST = $(LANGPO)
 
-default: enigma2.pot $(LANGMO)
-	for lang in $(LANGS); do \
-		mkdir -p $$lang/LC_MESSAGES; \
-		cp $$lang.mo $$lang/LC_MESSAGES/enigma2.mo; \
-	done
-	
-rebuild: clean cleanall enigma2.pot $(LANGPO) merge default
-
-merge:
-	for lang in $(LANGS); do \
-		msgmerge --no-location -s -N -U $$lang.po enigma2.pot; \
-	done
-
-
+if UPDATE_PO
 # the TRANSLATORS: allows putting translation comments before the to-be-translated line.
-enigma2.pot:
-	$(GETTEXT) -L python --add-comments="TRANSLATORS:" -d enigma2 -s -o enigma2.pot ../lib/python/Screens/*.py ../lib/python/Components/*.py \
-			../lib/python/Tools/*.py \
-			../*.py \
-			../lib/python/Plugins/*/*/*.py
+enigma2-py.pot: $(top_srcdir)/*.py $(top_srcdir)/lib/python/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*.py
+	$(XGETTEXT) -L Python --from-code=UTF-8 --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
 
-	./xml2po.py	../data/ >> enigma2.pot
-	./xml2po.py	../lib/python/Plugins/SystemPlugins/Videomode/ >> enigma2.pot
-	./xml2po.py	../lib/python/Plugins/SystemPlugins/SoftwareManager/ >> enigma2.pot
-	./xml2po.py	../lib/python/Plugins/SystemPlugins/CleanupWizard/ >> enigma2.pot
-	./xml2po.py     ../lib/python/Plugins/SystemPlugins/NetworkWizard/ >> enigma2.pot
-	msguniq --no-location -o enigma2uniq.pot enigma2.pot
-	$(RM) enigma2.pot
-	mv enigma2uniq.pot enigma2.pot
+enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/python/Plugins/SystemPlugins/*/*.xml
+	$(PYTHON) $^ > $@
 
-%.mo: %.po
+enigma2.pot: enigma2-py.pot enigma2-xml.pot
+	cat $^ | $(MSGUNIQ) --no-location -o $@ -
+
+%.po: enigma2.pot
+	if [ -f $@ ]; then \
+		$(MSGMERGE) --backup=none --no-location -s -N -U $@ $< && touch $@; \
+	else \
+		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
+	fi
+endif
+
+.po.mo:
 	$(MSGFMT) -o $@ $<
 
-%.po:
-	msginit -l $@ -o $@ -i enigma2.pot --no-translator
+BUILT_SOURCES = $(LANGMO)
+CLEANFILES = $(LANGMO) enigma2-py.pot enigma2-xml.pot enigma2.pot
 
-CLEANFILES = $(foreach LANG, $(LANGS),$(LANG).mo)
+dist-hook: $(LANGPO)
 
-cleanall:
-	$(RM) enigma2.pot
-
-clean-local:
-	$(RM) -r $(LANGS)
-
-install-data-am: default
+install-data-local: $(LANGMO)
 	for lang in $(LANGS); do \
-		mkdir -p $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
-		cp $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/$(DOMAIN).mo; \
+		$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES; \
+		$(INSTALL_DATA) $$lang.mo $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
+	done
+
+uninstall-local:
+	for lang in $(LANGS); do \
+		$(RM) $(DESTDIR)$(pkgdatadir)/po/$$lang/LC_MESSAGES/@PACKAGE_NAME@.mo; \
 	done

@@ -1,9 +1,7 @@
-libopen.so.0.0: libopen.c
-	$(CXX) -Wall -W libopen.c -O2 -nostartfiles -shared -fPIC -Wl,-soname,libopen.so.0 -o libopen.so.0.0 -ldl
+bin_SCRIPTS = enigma2.sh
+lib_LTLIBRARIES = libopen.la
 
-all: libopen.so.0.0
+libopen_la_SOURCES = libopen.c
+libopen_la_LIBADD = @LIBDL_LIBS@
 
-CLEANFILES = libopen.so.0.0
-
-install: all
-	$(INSTALL) libopen.so.0.0 $(DESTDIR)/usr/lib
+EXTRA_DIST = enigma2.sh.in

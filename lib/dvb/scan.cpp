@@ -10,6 +10,7 @@
 #include <lib/dvb/esection.h>
 #include <lib/dvb/scan.h>
 #include <lib/dvb/frontend.h>
+#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <lib/python/python.h>
@@ -29,7 +30,8 @@ eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
 	if (m_channel->getDemux(m_demux))
 		SCAN_eDebug("scan: failed to allocate demux!");
 	m_channel->connectStateChange(slot(*this, &eDVBScan::stateChange), m_stateChanged_connection);
-	FILE *f = fopen("/etc/enigma2/scan_tp_valid_check.py", "r");
+	std::string filename = eEnv::resolve("${sysconfdir}/scan_tp_valid_check.py");
+	FILE *f = fopen(filename.c_str(), "r");
 	if (f)
 	{
 		char code[16384];
@@ -37,7 +39,7 @@ eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
 		if (rd)
 		{
 			code[rd]=0;
-			m_additional_tsid_onid_check_func = Py_CompileString(code, "/etc/enigma2/scan_tp_valid_check.py", Py_file_input);
+			m_additional_tsid_onid_check_func = Py_CompileString(code, filename.c_str(), Py_file_input);
 		}
 		fclose(f);
 	}

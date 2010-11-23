@@ -1,4 +1,5 @@
-#include <png.h>	// must be included before Python.h because of setjmp
+#define PNG_SKIP_SETJMP_CHECK
+#include <png.h>
 #include <fcntl.h>
 
 #include <lib/gdi/picload.h>
