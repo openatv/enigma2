@@ -173,6 +173,7 @@ void bsodFatal(const char *component)
 		xml.string("contactemail", crash_emailaddr);
 		xml.comment("Please email this crashlog to above address");
 
+		xml.string("skin", getConfigString("config.skin.primary_skin", "Default Skin"));
 		xml.string("sourcedate", enigma2_date);
 		xml.string("branch", enigma2_branch);
 		xml.string("rev", enigma2_rev);
