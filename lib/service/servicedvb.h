@@ -185,7 +185,7 @@ public:
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	PyObject *getStreamingData();
 
-private:
+protected:
 	friend class eServiceFactoryDVB;
 	eServiceReference m_reference;
 	
@@ -289,6 +289,8 @@ private:
 
 	ePtr<eConnection> m_video_event_connection;
 	void video_event(struct iTSMPEGDecoder::videoEvent);
+
+	virtual ePtr<iDataSource> createDataSource(eServiceReferenceDVB &ref);
 };
 
 class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation

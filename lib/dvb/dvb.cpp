@@ -1752,6 +1752,20 @@ RESULT eDVBChannel::getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &p
 
 RESULT eDVBChannel::playFile(const char *file)
 {
+	eRawFile *f = new eRawFile();
+	ePtr<iDataSource> source = f;
+
+	if (f->open(file) < 0)
+	{
+		eDebug("can't open PVR file %s (%m)", file);
+		return -ENOENT;
+	}
+
+	return playSource(source, file);
+}
+
+RESULT eDVBChannel::playSource(ePtr<iDataSource> &source, const char *streaminfo_file)
+{
 	ASSERT(!m_frontend);
 	if (m_pvr_thread)
 	{
@@ -1760,7 +1774,13 @@ RESULT eDVBChannel::playFile(const char *file)
 		m_pvr_thread = 0;
 	}
 
-	m_tstools.openFile(file);
+	if (!source->valid())
+	{
+		eDebug("PVR source is not valid!");
+		return -ENOENT;
+	}
+
+	m_tstools.setSource(source, streaminfo_file);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
@@ -1787,15 +1807,7 @@ RESULT eDVBChannel::playFile(const char *file)
 
 	m_event(this, evtPreStart);
 
-	if (m_pvr_thread->start(file, m_pvr_fd_dst))
-	{
-		delete m_pvr_thread;
-		m_pvr_thread = 0;
-		::close(m_pvr_fd_dst);
-		m_pvr_fd_dst = -1;
-		eDebug("can't open PVR file %s (%m)", file);
-		return -ENOENT;
-	}
+	m_pvr_thread->start(source, m_pvr_fd_dst);
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
 	m_state = state_ok;
@@ -1804,7 +1816,7 @@ RESULT eDVBChannel::playFile(const char *file)
 	return 0;
 }
 
-void eDVBChannel::stopFile()
+void eDVBChannel::stopSource()
 {
 	if (m_pvr_thread)
 	{
@@ -1814,6 +1826,13 @@ void eDVBChannel::stopFile()
 	}
 	if (m_pvr_fd_dst >= 0)
 		::close(m_pvr_fd_dst);
+	ePtr<iDataSource> d;
+	m_tstools.setSource(d);
+}
+
+void eDVBChannel::stopFile()
+{
+	stopSource();
 }
 
 void eDVBChannel::setCueSheet(eCueSheet *cuesheet)
