@@ -1,5 +1,6 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
+#include <lib/dvb/metaparser.h>
 #include <lib/service/servicem2ts.h>
 
 DEFINE_REF(eServiceFactoryM2TS)
@@ -25,12 +26,149 @@ private:
 	off_t lseek_internal(off_t offset, int whence);
 };
 
+class eStaticServiceM2TSInformation: public iStaticServiceInformation
+{
+	DECLARE_REF(eStaticServiceM2TSInformation);
+	eServiceReference m_ref;
+	eDVBMetaParser m_parser;
+public:
+	eStaticServiceM2TSInformation(const eServiceReference &ref);
+	RESULT getName(const eServiceReference &ref, std::string &name);
+	int getLength(const eServiceReference &ref);
+	RESULT getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &SWIG_OUTPUT, time_t start_time);
+	int isPlayable(const eServiceReference &ref, const eServiceReference &ignore) { return 1; }
+	int getInfo(const eServiceReference &ref, int w);
+	std::string getInfoString(const eServiceReference &ref,int w);
+	PyObject *getInfoObject(const eServiceReference &r, int what);
+};
+
+DEFINE_REF(eStaticServiceM2TSInformation);
+
+eStaticServiceM2TSInformation::eStaticServiceM2TSInformation(const eServiceReference &ref)
+{
+	m_ref = ref;
+	m_parser.parseFile(ref.path);
+}
+
+RESULT eStaticServiceM2TSInformation::getName(const eServiceReference &ref, std::string &name)
+{
+	ASSERT(ref == m_ref);
+	if (m_parser.m_name.size())
+		name = m_parser.m_name;
+	else
+	{
+		name = ref.path;
+		size_t n = name.rfind('/');
+		if (n != std::string::npos)
+			name = name.substr(n + 1);
+	}
+	return 0;
+}
+
+int eStaticServiceM2TSInformation::getLength(const eServiceReference &ref)
+{
+	ASSERT(ref == m_ref);
+	
+	eDVBTSTools tstools;
+	
+	struct stat s;
+	stat(ref.path.c_str(), &s);
+
+	eM2TSFile *file = new eM2TSFile(ref.path.c_str());
+	ePtr<iDataSource> source = file;
+
+	if (!source->valid())
+		return 0;
+
+	tstools.setSource(source);
+
+			/* check if cached data is still valid */
+	if (m_parser.m_data_ok && (s.st_size == m_parser.m_filesize) && (m_parser.m_length))
+		return m_parser.m_length / 90000;
+
+	/* open again, this time with stream info */
+	tstools.setSource(source, ref.path.c_str());
+
+			/* otherwise, re-calc length and update meta file */
+	pts_t len;
+	if (tstools.calcLen(len))
+		return 0;
+
+	m_parser.m_length = len;
+	m_parser.m_filesize = s.st_size;
+	m_parser.updateMeta(ref.path);
+	return m_parser.m_length / 90000;
+}
+
+int eStaticServiceM2TSInformation::getInfo(const eServiceReference &ref, int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sDescription:
+		return iServiceInformation::resIsString;
+	case iServiceInformation::sServiceref:
+		return iServiceInformation::resIsString;
+	case iServiceInformation::sFileSize:
+		return m_parser.m_filesize;
+	case iServiceInformation::sTimeCreate:
+		if (m_parser.m_time_create)
+			return m_parser.m_time_create;
+		else
+			return iServiceInformation::resNA;
+	default:
+		return iServiceInformation::resNA;
+	}
+}
+
+std::string eStaticServiceM2TSInformation::getInfoString(const eServiceReference &ref,int w)
+{
+	switch (w)
+	{
+	case iServiceInformation::sDescription:
+		return m_parser.m_description;
+	case iServiceInformation::sServiceref:
+		return m_parser.m_ref.toString();
+	case iServiceInformation::sTags:
+		return m_parser.m_tags;
+	default:
+		return "";
+	}
+}
+
+PyObject *eStaticServiceM2TSInformation::getInfoObject(const eServiceReference &r, int what)
+{
+	switch (what)
+	{
+	case iServiceInformation::sFileSize:
+		return PyLong_FromLongLong(m_parser.m_filesize);
+	default:
+		Py_RETURN_NONE;
+	}
+}
+
+RESULT eStaticServiceM2TSInformation::getEvent(const eServiceReference &ref, ePtr<eServiceEvent> &evt, time_t start_time)
+{
+	if (!ref.path.empty())
+	{
+		ePtr<eServiceEvent> event = new eServiceEvent;
+		std::string filename = ref.path;
+		filename.erase(filename.length()-4, 2);
+		filename+="eit";
+		if (!event->parseFrom(filename, (m_parser.m_ref.getTransportStreamID().get()<<16)|m_parser.m_ref.getOriginalNetworkID().get()))
+		{
+			evt = event;
+			return 0;
+		}
+	}
+	evt = 0;
+	return -1;
+}
+
 DEFINE_REF(eM2TSFile);
 
 eM2TSFile::eM2TSFile(const char *filename, bool cached)
 	:m_lock(false), m_fd(-1), m_file(NULL), m_current_offset(0), m_length(0), m_cached(cached)
 {
-	eDebug("eM2TSFile %p %s", this, filename);
 	if (!m_cached)
 		m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
 	else
@@ -41,7 +179,6 @@ eM2TSFile::eM2TSFile(const char *filename, bool cached)
 
 eM2TSFile::~eM2TSFile()
 {
-	eDebug("~eM2TSFile %p", this);
 	if (m_cached)
 	{
 		if (m_file)
@@ -62,7 +199,7 @@ off_t eM2TSFile::lseek(off_t offset, int whence)
 {
 	eSingleLocker l(m_lock);
 
-	offset = offset * 192 / 188;
+	offset = (offset * 192) / 188;
 	ASSERT(!(offset % 192));
 
 	if (offset != m_current_offset)
@@ -83,7 +220,7 @@ off_t eM2TSFile::lseek_internal(off_t offset, int whence)
 			perror("fseeko");
 		ret = ::ftello(m_file);
 	}
-	return ret <= 0 ? ret : ret*188/192;
+	return ret <= 0 ? ret : (ret*188)/192;
 }
 
 ssize_t eM2TSFile::read(off_t offset, void *b, size_t count)
@@ -93,9 +230,8 @@ ssize_t eM2TSFile::read(off_t offset, void *b, size_t count)
 	unsigned char *buf = (unsigned char*)b;
 	size_t rd=0;
 
-	offset = offset * 192 / 188;
+	offset = (offset * 192) / 188;
 	ASSERT(!(offset % 192));
-
 	ASSERT(!(count % 188));
 
 	if (offset != m_current_offset)
@@ -111,12 +247,14 @@ ssize_t eM2TSFile::read(off_t offset, void *b, size_t count)
 			ret = ::read(m_fd, tmp, 192);
 		else
 			ret = ::fread(tmp, 1, 192, m_file);
-		if (ret > 0)
-			m_current_offset += ret;
 		if (ret < 0 || ret < 192)
 			return rd ? rd : ret;
 		memcpy(buf+rd, tmp+4, 188);
+
+		ASSERT(buf[rd] == 0x47);
+
 		rd += 188;
+		m_current_offset += 188;
 	}
 
 	return rd;
@@ -138,7 +276,6 @@ off_t eM2TSFile::length()
 eServiceFactoryM2TS::eServiceFactoryM2TS()
 {
 	ePtr<eServiceCenter> sc;
-	eDebug("!!!!!!!!!!!!!!!!!!!eServiceFactoryM2TS");
 	eServiceCenter::getPrivInstance(sc);
 	if (sc)
 	{
@@ -178,6 +315,7 @@ RESULT eServiceFactoryM2TS::list(const eServiceReference &ref, ePtr<iListableSer
 
 RESULT eServiceFactoryM2TS::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
+	ptr=new eStaticServiceM2TSInformation(ref);
 	return 0;
 }
 
@@ -190,18 +328,17 @@ RESULT eServiceFactoryM2TS::offlineOperations(const eServiceReference &ref, ePtr
 eServiceM2TS::eServiceM2TS(const eServiceReference &ref)
 	:eDVBServicePlay(ref, NULL)
 {
-	eDebug("eServiceM2TS %p", this);
 }
 
-eServiceM2TS::~eServiceM2TS()
-{
-	eDebug("~eServiceM2TS %p", this);
-}
-
-ePtr<iDataSource> eServiceM2TS::createDataSource(const eServiceReferenceDVB &ref)
+ePtr<iDataSource> eServiceM2TS::createDataSource(eServiceReferenceDVB &ref)
 {
 	ePtr<iDataSource> source = new eM2TSFile(ref.path.c_str());
 	return source;
+}
+
+RESULT eServiceM2TS::isCurrentlySeekable()
+{
+	return 1; // for fast winding we need index files... so only skip forward/backward yet
 }
 
 eAutoInitPtr<eServiceFactoryM2TS> init_eServiceFactoryM2TS(eAutoInitNumbers::service+1, "eServiceFactoryM2TS");
