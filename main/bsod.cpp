@@ -173,7 +173,6 @@ void bsodFatal(const char *component)
 		xml.string("contactemail", crash_emailaddr);
 		xml.comment("Please email this crashlog to above address");
 
-		xml.string("skin", getConfigString("config.skin.primary_skin", "Default Skin"));
 		xml.string("sourcedate", enigma2_date);
 		xml.string("branch", enigma2_branch);
 		xml.string("rev", enigma2_rev);
@@ -183,6 +182,7 @@ void bsodFatal(const char *component)
 		xml.open("image");
 		xml.stringFromFile("dreamboxmodel", "/proc/stb/info/model");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
+		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
 		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
 			xml.cDataFromFile("dreamboxca", "/proc/stb/info/ca");
 			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");
