@@ -710,7 +710,9 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 		{
 			eWarning("no .meta file found, trying to find PMT pid");
 			eDVBTSTools tstools;
-			if (tstools.openFile(ref.path.c_str()))
+			if (source)
+				tstools.setSource(source, streaminfo_file ? streaminfo_file : ref.path.c_str());
+			else if (tstools.openFile(ref.path.c_str()))
 				eWarning("failed to open file");
 			else
 			{
