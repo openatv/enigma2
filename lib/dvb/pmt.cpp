@@ -131,6 +131,8 @@ void eDVBServicePMTHandler::PATready(int)
 	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
+		int service_id_single = -1;
+		int pmtpid_single = -1;
 		int pmtpid = -1;
 		std::vector<ProgramAssociationSection*>::const_iterator i;
 		for (i = ptr->getSections().begin(); pmtpid == -1 && i != ptr->getSections().end(); ++i)
@@ -138,8 +140,22 @@ void eDVBServicePMTHandler::PATready(int)
 			const ProgramAssociationSection &pat = **i;
 			ProgramAssociationConstIterator program;
 			for (program = pat.getPrograms()->begin(); pmtpid == -1 && program != pat.getPrograms()->end(); ++program)
+			{
 				if (eServiceID((*program)->getProgramNumber()) == m_reference.getServiceID())
 					pmtpid = (*program)->getProgramMapPid();
+				if (pmtpid_single == -1 && pmtpid == -1)
+				{
+					pmtpid_single = (*program)->getProgramMapPid();
+					service_id_single = (*program)->getProgramNumber();
+				}
+				else
+					pmtpid_single = service_id_single = -1;
+			}
+		}
+		if (pmtpid_single != -1) // only one PAT entry .. so we use this one
+		{
+			m_reference.setServiceID(eServiceID(service_id_single));
+			pmtpid = pmtpid_single;
 		}
 		if (pmtpid == -1)
 			serviceEvent(eventNoPATEntry);
