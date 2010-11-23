@@ -1,3 +1,4 @@
+#define PNG_SKIP_SETJMP_CHECK
 #include <png.h>
 #include <stdio.h>
 #include <lib/gdi/epng.h>

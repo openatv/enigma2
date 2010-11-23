@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <lib/base/encoding.h>
 #include <lib/base/eerror.h>
+#include <lib/base/eenv.h>
 
 eDVBTextEncodingHandler encodingHandler;  // the one and only instance
 
@@ -17,8 +18,8 @@ inline char toupper(char c)
 
 eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 {
-	const char * file=DATADIR "/enigma2/encoding.conf";
-	FILE *f = fopen(file, "rt");
+	std::string file = eEnv::resolve("${datadir}/enigma2/encoding.conf");
+	FILE *f = fopen(file.c_str(), "rt");
 	if (f)
 	{
 		char *line = (char*) malloc(256);
@@ -61,7 +62,7 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 		free(line);
 	}
 	else
-		eDebug("[eDVBTextEncodingHandler] couldn't open %s !", file);
+		eDebug("[eDVBTextEncodingHandler] couldn't open %s !", file.c_str());
 }
 
 void eDVBTextEncodingHandler::getTransponderDefaultMapping(int tsidonid, int &table)

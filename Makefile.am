@@ -1,14 +1,18 @@
 SUBDIRS = include lib main data po tools
 
-installdir = $(pkglibdir)/python
+ACLOCAL_AMFLAGS = -I m4
 
+installdir = $(pkglibdir)/python
 install_PYTHON = \
 	Navigation.py NavigationInstance.py RecordTimer.py SleepTimer.py ServiceReference.py \
 	keyids.py keymapparser.py mytest.py skin.py timer.py tools.py GlobalActions.py \
 	e2reactor.py
 
-install-exec-hook:
-		$(PYTHON) $(srcdir)/tools/genmetaindex.py $(DESTDIR)$(datadir)/meta/plugin_*.xml > $(DESTDIR)$(datadir)/meta/index-enigma2.xml
+metadir = $(datadir)/meta
+meta_DATA = index-enigma2.xml
+CLEANFILES = index-enigma2.xml
 
-uninstall-hook:
-	$(RM) $(DESTDIR)$(datadir)/meta/index-enigma2.xml
+EXTRA_DIST = lamedb
+
+index-enigma2.xml: $(top_srcdir)/tools/genmetaindex.py $(top_srcdir)/lib/python/Plugins/*/*/meta/plugin_*.xml
+	$(AM_V_GEN)$(PYTHON) $^ > $@

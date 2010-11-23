@@ -4,8 +4,12 @@
 #include <fcntl.h>
 #include <sys/ioctl.h>
 
+#if defined(HAVE_DBOX_FP_H) && defined(HAVE_DBOX_LCD_KS0713_H)
 #include <dbox/fp.h>
 #include <dbox/lcd-ks0713.h>
+#else
+#define NO_LCD 1
+#endif
 
 #include <lib/gdi/esize.h>
 #include <lib/base/init.h>
@@ -70,10 +74,6 @@ eDBoxLCD::eDBoxLCD()
 		eDebug("found OLED display!");
 		is_oled = 1;
 	}
-#else
-	lcdfd = -1;
-#endif
-	instance=this;
 
 	if (lcdfd<0)
 		eDebug("couldn't open LCD - load lcd.o!");
@@ -106,6 +106,9 @@ eDBoxLCD::eDBoxLCD()
 			is_oled = 3;
 		}
 	}
+#endif
+	instance=this;
+
 	setSize(xres, yres, bpp);
 }
 
@@ -117,6 +120,7 @@ void eDBoxLCD::setInverted(unsigned char inv)
 
 int eDBoxLCD::setLCDContrast(int contrast)
 {
+#ifndef NO_LCD
 	int fp;
 	if((fp=open("/dev/dbox/fp0", O_RDWR))<=0)
 	{
@@ -129,11 +133,13 @@ int eDBoxLCD::setLCDContrast(int contrast)
 		eDebug("[LCD] can't set lcd contrast");
 	}
 	close(fp);
+#endif
 	return(0);
 }
 
 int eDBoxLCD::setLCDBrightness(int brightness)
 {
+#ifndef NO_LCD
 	eDebug("setLCDBrightness %d", brightness);
 	FILE *f=fopen("/proc/stb/lcd/oled_brightness", "w");
 	if (!f)
@@ -157,6 +163,7 @@ int eDBoxLCD::setLCDBrightness(int brightness)
 			eDebug("[LCD] can't set lcd brightness (%m)");
 		close(fp);
 	}
+#endif
 	return(0);
 }
 

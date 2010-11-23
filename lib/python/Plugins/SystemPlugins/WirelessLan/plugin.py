@@ -1,4 +1,4 @@
-from enigma import eTimer, eTPM
+from enigma import eTimer, eTPM, eEnv
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Pixmap import Pixmap,MultiPixmap
@@ -18,7 +18,7 @@ from Tools.HardwareInfo import HardwareInfo
 from Wlan import Wlan, wpaSupplicant, iStatus
 import sha
 
-plugin_path = "/usr/lib/enigma2/python/Plugins/SystemPlugins/WirelessLan"
+plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
 list = []
 list.append("WEP")

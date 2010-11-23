@@ -7,18 +7,8 @@
 
 #include <time.h>
 
-gFBDC *gFBDC::instance;
-
-ePtr<gFBDC> NewgFBDCPtr(void)
-{
-	ePtr<gFBDC> ptr;
-	gFBDC::getInstance(ptr);
-	return ptr;
-}
-
 gFBDC::gFBDC()
 {
-	instance=this;
 	fb=new fbClass;
 
 	if (!fb->Available())
@@ -34,7 +24,6 @@ gFBDC::~gFBDC()
 {
 	delete fb;
 	delete[] surface.clut.data;
-	instance=0;
 }
 
 void gFBDC::calcRamp()
@@ -91,7 +80,7 @@ void gFBDC::setPalette()
 	fb->PutCMAP();
 }
 
-void gFBDC::exec(gOpcode *o)
+void gFBDC::exec(const gOpcode *o)
 {
 	switch (o->opcode)
 	{
@@ -242,7 +231,4 @@ void gFBDC::reloadSettings()
 	setPalette();
 }
 
-// eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
-#ifndef WITH_SDL
 eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
-#endif

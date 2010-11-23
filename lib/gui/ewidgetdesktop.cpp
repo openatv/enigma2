@@ -381,7 +381,10 @@ void eWidgetDesktop::makeCompatiblePixmap(gPixmap &pm)
 	ePtr<gPixmap> target_pixmap;
 	m_screen.m_dc->getPixmap(target_pixmap);
 	
-	ASSERT(target_pixmap);
+	if (!target_pixmap) {
+		eDebug("no target pixmap! assuming bpp > 8 for accelerated graphics.");
+		return;
+	}
 	
 	if (target_pixmap->surface && target_pixmap->surface->bpp > 8)
 		return;

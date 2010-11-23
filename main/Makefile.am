@@ -1,43 +1,30 @@
-INCLUDES = \
-	-I$(top_srcdir)/include
+AM_CPPFLAGS = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/include \
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
+
+AM_CXXFLAGS = \
+	$(LIBSDL_CFLAGS)
 
 bin_PROGRAMS = enigma2
 
 enigma2_SOURCES = \
-	enigma.cpp bsod.cpp
+	bsod.cpp \
+	bsod.h \
+	enigma.cpp \
+	xmlgenerator.cpp \
+	xmlgenerator.h \
+	version_info.cpp \
+	version_info.h \
+	version.h
 
-CLEANFILES = version.h
-
-bsod.o: version.h
-
-enigma.o: version.h
-
-# when there is no ../CVS/Entries, don't worry.
-../CVS/Entries:
-
-../CVS/Root:
-
-.PHONY: .svn/entries
-
-entries: .svn/entries
-	@if [ ! -f entries ]; then touch entries; fi
-	@if [ -f .svn/entries ] && ! diff -q entries .svn/entries 2>/dev/null; then	\
-		cp --no-preserve=mode .svn/entries entries;				\
-	fi;
-
-version.h: entries
-	> version.h
-	@if [ -d .svn ]; then \
-		echo "#define ENIGMA2_LAST_CHANGE_DATE \"`LANG="en" svn info | grep 'Last Changed Date:' | cut -d' ' -f4`\"" >> version.h; \
-	elif [ -d ../.git ]; then \
-		if [ -f ../.git/last_commit_info ]; then \
-			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`cat ../.git/last_commit_info | grep 'Date:' | cut -d' ' -f4`\"" >> version.h; \
-			echo "#define ENIGMA2_BRANCH \"`cat ../.git/branch`\"" >> version.h; \
-		else \
-			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`LANG="en" git log --max-count=1 --date=short | grep 'Date:' | cut -d' ' -f4`\"" >> version.h; \
-			echo "#define ENIGMA2_BRANCH \"`LANG="en" git branch | grep '* ' | cut -d' ' -f2`\"" >> version.h; \
-		fi; \
-	fi;
+EXTRA_DIST = \
+	enigma-dvbtest.cpp \
+	enigma-gdi.cpp \
+	enigma-gui.cpp \
+	enigma-playlist.cpp \
+	enigma-scan.cpp
 
 enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/actions/libenigma_actions.a \
@@ -54,23 +41,41 @@ enigma2_LDADD_WHOLE = \
 	$(top_builddir)/lib/service/libenigma_service.a
 
 enigma2_LDADD = \
-	@FREETYPE_LIBS@ \
-	@ID3TAG_LIBS@ \
-	@MAD_LIBS@ \
-	@PNG_LIBS@ \
-	@SDL_LIBS@ \
-	@SIGC_LIBS@ \
-	@DVBSI_LIBS@ \
-	@FRIBIDI_LIBS@ \
-	@GSTREAMER_LIBS@ \
-	@GSTREAMERPBUTILS_LIBS@ \
-	@JPEG_LIBS@ \
-	@LIBUNGIF_LIBS@ \
-	@XML2_LIBS@ \
-	@XMLCCWRAP_LIBS@ \
-	-ldl -lpthread -lcrypt -lresolv -lrt
+	@BASE_LIBS@ \
+	@LIBGIF_LIBS@ \
+	@LIBJPEG_LIBS@ \
+	@LIBSDL_LIBS@ \
+	@LIBXINE_LIBS@ \
+	@LIBXMLCCWRAP_LIBS@ \
+	@PTHREAD_LIBS@ \
+	@PYTHON_LDFLAGS@
+
+enigma2_LDFLAGS = -Wl,--export-dynamic
+
+if HAVE_GIT_DIR
+GIT_DIR = $(top_srcdir)/.git
+GIT = git --git-dir=$(GIT_DIR)
+
+if HAVE_FAKE_GIT_DIR
+ENIGMA2_DATE = `cat $(GIT_DIR)/last_commit_info | grep 'Date:' | cut -d' ' -f4`
+ENIGMA2_BRANCH = `cat $(GIT_DIR)/branch`
+else
+ENIGMA2_DATE = `$(GIT) log --no-color -n 1 --pretty=format:%cd --date=short`
+ENIGMA2_BRANCH = `$(GIT) branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+ENIGMA2_REV = `$(GIT) describe --abbrev=7 --always --long --tags`
+endif
+
+BUILT_SOURCES = version-intermediate.h
+.INTERMEDIATE: version-intermediate.h
+.PHONY: version-intermediate.h
+version-intermediate.h:
+	$(AM_V_GEN)touch $@
+	$(AM_V_at)[ -n "$(ENIGMA2_DATE)" ] && echo "#define ENIGMA2_LAST_CHANGE_DATE \"$(ENIGMA2_DATE)\"" >> $@
+	$(AM_V_at)[ -n "$(ENIGMA2_BRANCH)" ] && echo "#define ENIGMA2_BRANCH \"$(ENIGMA2_BRANCH)\"" >> $@
+	-$(AM_V_at)[ -n "$(ENIGMA2_REV)" ] && echo "#define ENIGMA2_REV \"$(ENIGMA2_REV)\"" >> $@
+	$(AM_V_at)([ -f version.h ] && diff -q version.h $@ >/dev/null) || $(INSTALL_HEADER) $@ version.h
+endif
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
-#	@rm -f enigma2$(EXEEXT)
-	$(CXXLINK) $(enigma2_LDFLAGS) $(enigma2_OBJECTS) -Wl,--export-dynamic -Wl,--whole-archive $(enigma2_LDADD_WHOLE) -Wl,--no-whole-archive $(enigma2_LDADD) $(LIBS)
-#	g++ -o enigma2$(EXEEXT) $(enigma2_LDFLAGS) $(enigma2_OBJECTS) -Wl,--export-dynamic -Wl,--whole-archive $(enigma2_LDADD_WHOLE) -Wl,--no-whole-archive $(enigma2_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@ $(enigma2_LDFLAGS) $(enigma2_OBJECTS) \
+		-Wl,--whole-archive $(enigma2_LDADD_WHOLE) -Wl,--no-whole-archive $(enigma2_LDADD) $(LIBS)

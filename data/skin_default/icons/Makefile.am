@@ -45,10 +45,10 @@ dist_install_DATA = \
 	mp_buttons.png \
 	network_wired.png \
 	network_wired-active.png \
-	network_wired-inactive.png \	
+	network_wired-inactive.png \
 	network_wireless.png \
 	network_wireless-active.png \
-	network_wireless-inactive.png \	
+	network_wireless-inactive.png \
 	plugin.png \
 	rass_logo.png \
 	rass_page1.png \
