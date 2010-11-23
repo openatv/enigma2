@@ -1335,9 +1335,9 @@ class UpdatePlugin(Screen):
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
-		self.status = StaticText(_("Upgrading Dreambox... Please wait"))
+		self.status = StaticText(_("Please wait..."))
 		self["status"] = self.status
-		self.package = StaticText()
+		self.package = StaticText(_("Verifying your internet connection..."))
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
@@ -1348,20 +1348,35 @@ class UpdatePlugin(Screen):
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
-		self.activityTimer.start(100, False)
 
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
-		self.updating = True
-		self.package.setText(_("Package list update"))
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		self.updating = False
 
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.exit,
 			"back": self.exit
 		}, -1)
+		
+		iNetwork.checkNetworkState(self.checkNetworkCB)
+		self.onClose.append(self.cleanup)
+		
+	def cleanup(self):
+		iNetwork.stopPingConsole()
+
+	def checkNetworkCB(self,data):
+		if data is not None:
+			if data <= 2:
+				self.updating = True
+				self.activityTimer.start(100, False)
+				self.package.setText(_("Package list update"))
+				self.status.setText(_("Upgrading Dreambox... Please wait"))
+				self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+			else:
+				self.package.setText(_("Your network is not working. Please try again."))
+				self.status.setText(self.oktext)
 
 	def doActivityTimer(self):
 		self.activity += 1
@@ -1439,6 +1454,9 @@ class UpdatePlugin(Screen):
 			if self.packages != 0 and self.error == 0:
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Dreambox?"))
 			else:
+				self.close()
+		else:
+			if not self.updating:
 				self.close()
 
 	def exitAnswer(self, result):
