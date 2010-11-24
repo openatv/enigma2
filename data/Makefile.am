@@ -24,5 +24,5 @@ dist_pkgdata_DATA = \
 if HAVE_TEXTLCD
 dist_pkgdata_DATA += skin_text.xml
 else
-dist_pkgdata_DATA += skin_display.xml
+dist_pkgdata_DATA += skin_display.xml skin_display96.xml
 endif
