@@ -25,7 +25,7 @@ public:
 	void start(int sourcefd, int destfd);
 	int start(const char *filename, int destfd);
 
-	void start(ePtr<iDataSource> &source, int destfd);
+	void start(ePtr<iTsSource> &source, int destfd);
 
 	void pause();
 	void resume();
@@ -60,7 +60,7 @@ private:
 	int m_blocksize;
 	off_t m_current_position;
 
-	ePtr<iDataSource> m_source;
+	ePtr<iTsSource> m_source;
 
 	eFixedMessagePump<int> m_messagepump;
 

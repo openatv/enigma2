@@ -3,7 +3,7 @@
 
 #include <lib/base/object.h>
 
-class iDataSource: public iObject
+class iTsSource: public iObject
 {
 public:
 	 /* NOTE: should only be used to get current position or filelength */

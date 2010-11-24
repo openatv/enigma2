@@ -2,9 +2,9 @@
 #define __lib_base_rawfile_h
 
 #include <string>
-#include <lib/base/idatasource.h>
+#include <lib/base/itssource.h>
 
-class eRawFile: public iDataSource
+class eRawFile: public iTsSource
 {
 	DECLARE_REF(eRawFile);
 	eSingleLock m_lock;
@@ -15,7 +15,7 @@ public:
 	void setfd(int fd);
 	int close();
 
-	// iDataSource
+	// iTsSource
 	off_t lseek(off_t offset, int whence);
 	ssize_t read(off_t offset, void *buf, size_t count);
 	off_t length();
