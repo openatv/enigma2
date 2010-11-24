@@ -19,6 +19,7 @@ public:
 	off_t length();
 	int valid();
 private:
+	int m_sync_offset;
 	int m_fd;     /* for uncached */
 	FILE *m_file; /* for cached */
 	off_t m_current_offset, m_length;
@@ -167,7 +168,7 @@ RESULT eStaticServiceM2TSInformation::getEvent(const eServiceReference &ref, ePt
 DEFINE_REF(eM2TSFile);
 
 eM2TSFile::eM2TSFile(const char *filename, bool cached)
-	:m_lock(false), m_fd(-1), m_file(NULL), m_current_offset(0), m_length(0), m_cached(cached)
+	:m_lock(false), m_sync_offset(0), m_fd(-1), m_file(NULL), m_current_offset(0), m_length(0), m_cached(cached)
 {
 	if (!m_cached)
 		m_fd = ::open(filename, O_RDONLY | O_LARGEFILE);
@@ -199,8 +200,7 @@ off_t eM2TSFile::lseek(off_t offset, int whence)
 {
 	eSingleLocker l(m_lock);
 
-	offset = (offset * 192) / 188;
-	ASSERT(!(offset % 192));
+	offset = (offset % 188) + (offset * 192) / 188;
 
 	if (offset != m_current_offset)
 		m_current_offset = lseek_internal(offset, whence);
@@ -220,23 +220,23 @@ off_t eM2TSFile::lseek_internal(off_t offset, int whence)
 			perror("fseeko");
 		ret = ::ftello(m_file);
 	}
-	return ret <= 0 ? ret : (ret*188)/192;
+	return ret <= 0 ? ret : (ret % 192) + (ret*188) / 192;
 }
 
 ssize_t eM2TSFile::read(off_t offset, void *b, size_t count)
 {
 	eSingleLocker l(m_lock);
-	unsigned char tmp[192];
+	unsigned char tmp[192*3];
 	unsigned char *buf = (unsigned char*)b;
+
 	size_t rd=0;
+	offset = (offset % 188) + (offset * 192) / 188;
 
-	offset = (offset * 192) / 188;
-	ASSERT(!(offset % 192));
-	ASSERT(!(count % 188));
-
-	if (offset != m_current_offset)
+sync:
+	if ((offset+m_sync_offset) != m_current_offset)
 	{
-		m_current_offset = lseek_internal(offset, SEEK_SET);
+//		eDebug("seekTo %lld", offset+m_sync_offset);
+		m_current_offset = lseek_internal(offset+m_sync_offset, SEEK_SET);
 		if (m_current_offset < 0)
 			return m_current_offset;
 	}
@@ -249,13 +249,49 @@ ssize_t eM2TSFile::read(off_t offset, void *b, size_t count)
 			ret = ::fread(tmp, 1, 192, m_file);
 		if (ret < 0 || ret < 192)
 			return rd ? rd : ret;
-		memcpy(buf+rd, tmp+4, 188);
 
-		ASSERT(buf[rd] == 0x47);
+		if (tmp[4] != 0x47)
+		{
+			if (rd > 0) {
+				eDebug("short read at pos %lld async!!", m_current_offset);
+				return rd;
+			}
+			else {
+				int x=0;
+				if (!m_cached)
+					ret = ::read(m_fd, tmp+192, 384);
+				else
+					ret = ::fread(tmp+192, 1, 384, m_file);
+
+#if 0
+				eDebugNoNewLine("m2ts out of sync at pos %lld, real %lld:", offset + m_sync_offset, m_current_offset);
+				for (; x < 192; ++x)
+					eDebugNoNewLine(" %02x", tmp[x]);
+				eDebug("");
+				x=0;
+#else
+				eDebug("m2ts out of sync at pos %lld, real %lld", offset + m_sync_offset, m_current_offset);
+#endif
+				for (; x < 192; ++x)
+				{
+					if (tmp[x] == 0x47 && tmp[x+192] == 0x47)
+					{
+						int add_offs = (x - 4);
+						eDebug("sync found at pos %d, sync_offset is now %d, old was %d", x, add_offs + m_sync_offset, m_sync_offset);
+						m_sync_offset += add_offs;
+						goto sync;
+					}
+				}
+			}
+		}
+
+		memcpy(buf+rd, tmp+4, 188);
 
 		rd += 188;
 		m_current_offset += 188;
 	}
+
+	m_sync_offset %= 188;
 
 	return rd;
 }
