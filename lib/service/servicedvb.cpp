@@ -1094,7 +1094,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 
 			if (m_skipmode < 0)
 				m_cue->seekTo(0, -1000);
-			ePtr<iDataSource> source = createDataSource(r);
+			ePtr<iTsSource> source = createTsSource(r);
 			m_service_handler_timeshift.tuneExt(r, 1, source, r.path.c_str(), m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
 			m_event((iPlayableService*)this, evUser+1);
@@ -1124,7 +1124,7 @@ void eDVBServicePlay::serviceEventTimeshift(int event)
 				m_service_handler_timeshift.free();
 				resetTimeshift(1);
 
-				ePtr<iDataSource> source = createDataSource(r);
+				ePtr<iTsSource> source = createTsSource(r);
 				m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file_next.c_str(), m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
 				m_event((iPlayableService*)this, evUser+1);
@@ -1155,7 +1155,7 @@ RESULT eDVBServicePlay::start()
 		m_event(this, evStart);
 
 	m_first_program_info = 1;
-	ePtr<iDataSource> source = createDataSource(service);
+	ePtr<iTsSource> source = createTsSource(service);
 	m_service_handler.tuneExt(service, m_is_pvr, source, service.path.c_str(), m_cue, false, m_dvb_service);
 
 	if (m_is_pvr)
@@ -2360,11 +2360,11 @@ void eDVBServicePlay::resetTimeshift(int start)
 		m_timeshift_active = 0;
 }
 
-ePtr<iDataSource> eDVBServicePlay::createDataSource(eServiceReferenceDVB &ref)
+ePtr<iTsSource> eDVBServicePlay::createTsSource(eServiceReferenceDVB &ref)
 {
 	eRawFile *f = new eRawFile();
 	f->open(ref.path.c_str());
-	return ePtr<iDataSource>(f);
+	return ePtr<iTsSource>(f);
 }
 
 void eDVBServicePlay::switchToTimeshift()
@@ -2379,7 +2379,7 @@ void eDVBServicePlay::switchToTimeshift()
 
 	m_cue->seekTo(0, -1000);
 
-	ePtr<iDataSource> source = createDataSource(r);
+	ePtr<iTsSource> source = createTsSource(r);
 	m_service_handler_timeshift.tuneExt(r, 1, source, m_timeshift_file.c_str(), m_cue, 0, m_dvb_service); /* use the decoder demux for everything */
 
 	eDebug("eDVBServicePlay::switchToTimeshift, in pause mode now.");

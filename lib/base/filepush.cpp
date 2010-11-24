@@ -227,7 +227,7 @@ void eFilePushThread::thread()
 void eFilePushThread::start(int fd, int fd_dest)
 {
 	eRawFile *f = new eRawFile();
-	ePtr<iDataSource> source = f;
+	ePtr<iTsSource> source = f;
 	f->setfd(fd);
 	start(source, fd_dest);
 }
@@ -235,14 +235,14 @@ void eFilePushThread::start(int fd, int fd_dest)
 int eFilePushThread::start(const char *file, int fd_dest)
 {
 	eRawFile *f = new eRawFile();
-	ePtr<iDataSource> source = f;
+	ePtr<iTsSource> source = f;
 	if (f->open(file) < 0)
 		return -1;
 	start(source, fd_dest);
 	return 0;
 }
 
-void eFilePushThread::start(ePtr<iDataSource> &source, int fd_dest)
+void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
 {
 	m_source = source;
 	m_fd_dest = fd_dest;

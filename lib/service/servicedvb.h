@@ -290,7 +290,7 @@ protected:
 	ePtr<eConnection> m_video_event_connection;
 	void video_event(struct iTSMPEGDecoder::videoEvent);
 
-	virtual ePtr<iDataSource> createDataSource(eServiceReferenceDVB &ref);
+	virtual ePtr<iTsSource> createTsSource(eServiceReferenceDVB &ref);
 };
 
 class eStaticServiceDVBBouquetInformation: public iStaticServiceInformation
