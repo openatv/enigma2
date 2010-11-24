@@ -35,7 +35,7 @@ eDVBTSTools::~eDVBTSTools()
 int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 {
 	eRawFile *f = new eRawFile();
-	ePtr<iDataSource> src = f;
+	ePtr<iTsSource> src = f;
 
 	if (f->open(filename, 1) < 0)
 		return -1;
@@ -45,7 +45,7 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	return 0;
 }
 
-void eDVBTSTools::setSource(ePtr<iDataSource> &source, const char *stream_info_filename)
+void eDVBTSTools::setSource(ePtr<iTsSource> &source, const char *stream_info_filename)
 {
 	closeFile();
 
