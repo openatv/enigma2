@@ -305,6 +305,13 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							isaudio = 1;
 							audio.type = audioStream::atDTS;
 						}
+					case 0x86: // Blueray DTS-HD (dvb user private...)
+					case 0xA6: // Blueray secondary DTS-HD
+						if (!isvideo && !isaudio)
+						{
+							isaudio = 1;
+							audio.type = audioStream::atDTSHD;
+						}
 					case 0x06: // PES Private
 					case 0xEA: // TS_PSI_ST_SMPTE_VC1
 					{
