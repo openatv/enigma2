@@ -144,7 +144,7 @@ public:
 	{
 		int pid,
 		    rdsPid; // hack for some radio services which transmit radiotext on different pid (i.e. harmony fm, HIT RADIO FFH, ...)
-		enum { atMPEG, atAC3, atDTS, atAAC, atAACHE, atLPCM };
+		enum { atMPEG, atAC3, atDTS, atAAC, atAACHE, atLPCM, atDTSHD };
 		int type; // mpeg2, ac3, dts, ...
 		
 		int component_tag;
