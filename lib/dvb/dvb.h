@@ -260,7 +260,7 @@ public:
 	RESULT playFile(const char *file);
 	void stopFile();
 
-	RESULT playSource(ePtr<iDataSource>& source, const char *priv=NULL);
+	RESULT playSource(ePtr<iTsSource>& source, const char *priv=NULL);
 	void stopSource();
 
 	void setCueSheet(eCueSheet *cuesheet);
