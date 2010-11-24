@@ -24,7 +24,7 @@ class eServiceM2TS: public eDVBServicePlay
 	friend class eServiceFactoryM2TS;
 protected:
 	eServiceM2TS(const eServiceReference &ref);
-	ePtr<iDataSource> createDataSource(eServiceReferenceDVB &ref);
+	ePtr<iTsSource> createTsSource(eServiceReferenceDVB &ref);
 
 	// iSeekableService
 	RESULT isCurrentlySeekable();

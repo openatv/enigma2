@@ -5,7 +5,7 @@
 
 DEFINE_REF(eServiceFactoryM2TS)
 
-class eM2TSFile: public iDataSource
+class eM2TSFile: public iTsSource
 {
 	DECLARE_REF(eM2TSFile);
 	eSingleLock m_lock;
@@ -13,7 +13,7 @@ public:
 	eM2TSFile(const char *filename, bool cached=false);
 	~eM2TSFile();
 
-	// iDataSource
+	// iTsSource
 	off_t lseek(off_t offset, int whence);
 	ssize_t read(off_t offset, void *buf, size_t count);
 	off_t length();
@@ -75,7 +75,7 @@ int eStaticServiceM2TSInformation::getLength(const eServiceReference &ref)
 	stat(ref.path.c_str(), &s);
 
 	eM2TSFile *file = new eM2TSFile(ref.path.c_str());
-	ePtr<iDataSource> source = file;
+	ePtr<iTsSource> source = file;
 
 	if (!source->valid())
 		return 0;
@@ -330,9 +330,9 @@ eServiceM2TS::eServiceM2TS(const eServiceReference &ref)
 {
 }
 
-ePtr<iDataSource> eServiceM2TS::createDataSource(eServiceReferenceDVB &ref)
+ePtr<iTsSource> eServiceM2TS::createTsSource(eServiceReferenceDVB &ref)
 {
-	ePtr<iDataSource> source = new eM2TSFile(ref.path.c_str());
+	ePtr<iTsSource> source = new eM2TSFile(ref.path.c_str());
 	return source;
 }
 
