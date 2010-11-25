@@ -309,7 +309,9 @@ eStaticServiceDVBPVRInformation::eStaticServiceDVBPVRInformation(const eServiceR
 RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	ASSERT(ref == m_ref);
-	if (m_parser.m_name.size())
+	if (!ref.name.empty())
+		name = ref.name;
+	else if (!m_parser.m_name.empty())
 		name = m_parser.m_name;
 	else
 	{
