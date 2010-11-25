@@ -5,19 +5,23 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="90"/>
 	</fonts>
+	<colors>
+		<color name="fullred" value="#ff0000" />
+		<color name="lightyellow" value="#ffff7f" />
+	</colors>
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="96,64">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="0,21" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="#ffff7f">
+		<widget source="session.Event_Now" render="Label" position="0,21" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Progress" position="0,36" size="96,4" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" foregroundColor="#ff0000">
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" foregroundColor="fullred">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,40" size="40,12" font="FdLcD;12" halign="left" noWrap="1">
@@ -35,7 +39,7 @@
 		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="0,21" size="96,14" font="FdLcD;14" halign="left" noWrap="1">
+		<widget source="parent.ServiceEvent" render="Label" position="0,21" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow">
 			<convert type="EventName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Progress" position="0,36" size="96,4" borderWidth="1">
@@ -44,14 +48,14 @@
 		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1">
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" foregroundColor="fullred">
+			<convert type="ConditionalShowHide"></convert>
 		</widget>
 	</screen>
   
 <!-- menus-->
 	<screen name="MenuSummary" position="0,0" size="96,64">
-		<widget source="parent.title" render="Label" position="0,0" size="96,16" font="FdLcD;14" halign="center" valign="top" noWrap="1" />
+		<widget source="parent.title" render="Label" position="0,0" size="96,16" font="FdLcD;14" halign="center" valign="top" noWrap="1"  foregroundColor="lightyellow" />
 		<widget source="parent.menu" render="Label" position="0,16" size="96,48" font="FdLcD;16" halign="left" valign="top">
 			<convert type="StringListSelection" />
 		</widget>
@@ -68,8 +72,8 @@
 		<widget source="session.CurrentService" render="Label" position="0,40" size="40,12" font="FdLcD;12" halign="left" noWrap="1">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1">
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" foregroundColor="fullred">
+			<convert type="ConditionalShowHide"></convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
@@ -77,7 +81,7 @@
 	</screen>
 	
 	<screen name="MovieContextMenuSummary" position="0,0" size="96,64">
-		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
+		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;12" halign="left" valign="top" noWrap="1"  foregroundColor="lightyellow" />
 		<widget source="selected" render="Label" position="0,14" size="96,32" font="FdLcD;16" />
 		<widget source="global.CurrentTime" render="Label" position="40,46" size="56,18" halign="right" font="FdLcD;16" >
 			<convert type="ClockToText"></convert>
@@ -86,7 +90,7 @@
 
 	<screen name="MovieSelectionSummary" position="0,0" size="96,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;12" halign="left" valign="top" noWrap="1" />
-		<widget source="name" render="Label" position="0,14" size="96,32" font="FdLcD;16" halign="left" valign="top" />
+		<widget source="name" render="Label" position="0,14" size="96,32" font="FdLcD;16" halign="left" valign="top"  foregroundColor="lightyellow" />
 		<widget source="parent.Service" render="Label" position="0,46" size="48,18" font="FdLcD;14" halign="left" noWrap="1">
 			<convert type="MovieInfo">RecordServiceName</convert>
 		</widget>
@@ -97,16 +101,16 @@
 
 <!-- setup-->
 	<screen name="SetupSummary" position="0,0" size="96,64">
-		<widget source="SetupTitle" render="Label" position="0,0" size="96,12" font="FdLcD;12" halign="left" />
+		<widget source="SetupTitle" render="Label" position="0,0" size="96,12" font="FdLcD;12" halign="left" foregroundColor="lightyellow" />
 		<widget source="SetupEntry" render="Label" position="0,12" size="96,40" font="FdLcD;12" halign="left" />
-		<widget source="SetupValue" render="Label" position="0,52" size="96,12" font="FdLcD;12" halign="left" />
+		<widget source="SetupValue" render="Label" position="0,52" size="96,12" font="FdLcD;12" halign="left"  foregroundColor="lightyellow" />
 	</screen>
 
 <!-- misc-->
 	<screen name="SimpleSummary" position="0,0" size="96,64">
 		<widget source="parent.Title" render="Label" position="0,0" size="96,40" font="FdLcD;16" halign="center" valign="center" />
-	    	<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="36,12" font="FdLcD;12" zPosition="1">
-			<convert type="ConditionalShowHide">Blink</convert>
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" foregroundColor="fullred">
+			<convert type="ConditionalShowHide"></convert>
 		</widget>
 		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
@@ -115,10 +119,13 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="96,64">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="96,64" font="FdLcD;40" halign="center" valign="center" noWrap="1">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="96,12" font="FdLcD;12" halign="center" valign="center" noWrap="1">
+			<convert type="ClockToText">ShortDate</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="0,12" size="96,40" font="FdLcD;40" halign="center" valign="center" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,50" size="96,12" font="FdLcD;12" zPosition="2" valign="bottom" halign="left" noWrap="1">
+		<widget source="session.RecordState" render="FixedLabel" text="Recording" position="0,52" size="96,12" font="FdLcD;12" zPosition="2" valign="bottom" halign="left" noWrap="1" foregroundColor="fullred">
 			<convert type="ConditionalShowHide"></convert>
 		</widget>
 	</screen>
