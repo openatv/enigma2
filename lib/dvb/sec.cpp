@@ -551,6 +551,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 					if ( send_mask )
 					{
+						int diseqc_repeats = diseqc_mode > eDVBSatelliteDiseqcParameters::V1_0 ? di_param.m_repeats : 0;
 						int vlt = iDVBFrontend::voltageOff;
 						eSecCommand::pair compare;
 						compare.steps = +3;
@@ -623,7 +624,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							if ( send_mask & 2 )
 								++loops;
 
-							loops <<= di_param.m_repeats;
+							loops <<= diseqc_repeats;
 
 							for ( int i = 0; i < loops;)  // fill commands...
 							{
@@ -660,7 +661,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 									int tmp = m_params[DELAY_BETWEEN_DISEQC_REPEATS];
 									if (cmd)
 									{
-										int delay = di_param.m_repeats ? (tmp - 54) / 2 : tmp;  // standard says 100msek between two repeated commands
+										int delay = diseqc_repeats ? (tmp - 54) / 2 : tmp;  // standard says 100msek between two repeated commands
 										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
 										diseqc.data[2]=cmd;
 										diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
