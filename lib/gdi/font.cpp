@@ -37,8 +37,6 @@
 
 #include <map>
 
-#define RGB565
-
 fontRenderClass *fontRenderClass::instance;
 
 static pthread_mutex_t ftlock=PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
@@ -907,11 +905,15 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 
 	register int opcode = -1;
 
-	gColor *lookup8, lookup8_invert[16];
-	gColor *lookup8_normal=0;
-
-	__u16 lookup16_normal[16], lookup16_invert[16], *lookup16;
-	__u32 lookup32_normal[16], lookup32_invert[16], *lookup32;
+	__u32 lookup32_normal[16];
+	__u32 lookup32_invert[16];
+	__u16 *lookup16_normal = (__u16*)lookup32_normal; // shares the same memory
+	__u16 *lookup16_invert = (__u16*)lookup32_invert;
+	gColor *lookup8_normal = 0;
+	gColor *lookup8_invert = (gColor*)lookup32_invert;
+	__u32 *lookup32;
+	__u16 *lookup16;
+	gColor *lookup8;
 
 	gRegion sarea(eRect(0, 0, surface->x, surface->y));
 	gRegion clip = dc.getClip() & sarea;
@@ -967,7 +969,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				for (int i = 0; i != 16; ++i)
 				{
 #define BLEND(y, x, a) (y + (((x-y) * a)>>8))
-					unsigned char dr = background.r, dg = background.g, db = background.b;
+					unsigned char da = background.a, dr = background.r, dg = background.g, db = background.b;
 					int sa = i * 16;
 					if (sa < 256)
 					{
@@ -976,11 +978,12 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 						db = BLEND(background.b, foreground.b, sa) & 0xFF;
 					}
 #undef BLEND
-#ifdef RBG565
-					lookup16_normal[i] = ((dr >> 3) << 11) | ((db >> 2) << 5) | (dg >> 3);
+#if BYTE_ORDER == LITTLE_ENDIAN
+					lookup16_normal[i] = bswap_16(((db >> 3) << 11) | ((dg >> 2) << 5) | (dr >> 3));
 #else
-					lookup16_normal[i] = ((dr >> 3) << 11) | ((dg >> 2) << 5) | (db >> 3);
+					lookup16_normal[i] = ((db >> 3) << 11) | ((dg >> 2) << 5) | (dr >> 3);
 #endif
+					da ^= 0xFF;
 				}
 				for (int i=0; i<16; ++i)
 					lookup16_invert[i]=lookup16_normal[i^0xF];				
@@ -1090,9 +1093,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 						{
 							register int b=(*s++)>>4;
 							if(b)
-								*td++=lookup8[b];
-							else
-								td++;
+								*td=lookup8[b];
+							++td;
 						}
 						s += extra_source_stride;
 						td += extra_buffer_stride;
@@ -1146,9 +1148,8 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 						{
 							register int b=(*s++)>>4;
 							if(b)
-								*td++=lookup32[b];
-							else
-								td++;
+								*td=lookup32[b];
+							++td;
 						}
 						s += extra_source_stride;
 						td += extra_buffer_stride;
