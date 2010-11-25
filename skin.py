@@ -62,6 +62,7 @@ except (SkinError, IOError, AssertionError), err:
 
 # Only one of these two is present, compliments of AM_CONDITIONAL
 addSkin('skin_display.xml')
+addSkin('skin_display96.xml')
 addSkin('skin_text.xml')
 
 addSkin('skin_subtitles.xml')

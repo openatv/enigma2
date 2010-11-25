@@ -43,12 +43,21 @@ AC_ARG_WITH(textlcd,
 	[[withtextlcd=$withval]],
 	[[withtextlcd=no]]
 )
-
 if test x"$withtextlcd" != xno ; then
 	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
+AC_ARG_WITH(colorlcd,
+	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
+	[[withcolorlcd=$withval]],
+	[[withcolorlcd=no]]
+)
+if test x"$withcolorlcd" != xno ; then
+	AC_DEFINE(HAVE_COLORLCD, 1,[Define when using a 96x64 color display device])
+fi
+
+AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withcolorlcd" != xno)
 AC_CHECK_HEADER(dreamdvd/ddvdlib.h,have_ddvdlib="yes",have_ddvdlib="no")
 if test x"${have_ddvdlib}" = xyes ; then
 	AC_DEFINE(HAVE_DDVDLIB, 1,[Define if ddvdlib is available])
