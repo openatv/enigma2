@@ -39,7 +39,10 @@ class FileBrowser(Screen):
 				currDir = "/media/dvd/"
 			if not pathExists(currDir):
 				currDir = "/"
+			if lastpath == "":  # 'None' is magic to start at the list of mountpoints
+				currDir = None
 
+			inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var"]
 			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso)", useServiceRef = True)
 			self["filelist"] = self.filelist
 
@@ -78,6 +81,12 @@ class FileBrowser(Screen):
 					print "dvd structure found, trying to open..."
 					lastpath = (pathname.rstrip("/").rsplit("/",1))[0]
 					print "lastpath video_ts.ifo=", lastpath
+					self.close(pathname)
+				if fileExists(pathname+"VIDEO_TS/VIDEO_TS.IFO"):
+					print "dvd structure found, trying to open..."
+					lastpath = (pathname.rstrip("/").rsplit("/",1))[0]
+					print "lastpath video_ts.ifo=", lastpath
+					pathname += "VIDEO_TS"
 					self.close(pathname)
 			else:
 				lastpath = filename[0:filename.rfind("/")]
@@ -625,6 +634,14 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			newref = eServiceReference(4369, 0, val)
 			print "play", newref.toString()
 			if curref is None or curref != newref:
+				if newref.toString().endswith("/VIDEO_TS") or newref.toString().endswith("/"):
+					names = newref.toString().rsplit("/",3)
+					if names[2].startswith("Disk ") or names[2].startswith("DVD "):
+						name = str(names[1]) + " - " + str(names[2])
+					else:
+						name = names[2]
+					print "setting name to: ", self.service
+					newref.setName(str(name))
 				self.session.nav.playService(newref)
 				self.service = self.session.nav.getCurrentService()
 				print "self.service", self.service
