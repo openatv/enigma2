@@ -47,9 +47,9 @@ class ClockToText(Converter, object):
 		elif type == "Full":
 			self.type = self.FULL
 		elif type == "ShortDate":
-			self.type = self.FULL
+			self.type = self.SHORT_DATE
 		elif type == "LongDate":
-			self.type = self.FULL
+			self.type = self.LONG_DATE
 		elif "Format" in type:
 			self.type = self.FORMAT
 			self.fmt_string = type[7:]
