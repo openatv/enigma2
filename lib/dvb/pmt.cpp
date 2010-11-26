@@ -229,7 +229,25 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 			{
 				const ProgramMapSection &pmt = **i;
+				int is_hdmv = 0;
+
 				program.pcrPid = pmt.getPcrPid();
+
+				for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
+					desc != pmt.getDescriptors()->end(); ++desc)
+				{
+					if ((*desc)->getTag() == CA_DESCRIPTOR)
+					{
+						CaDescriptor *descr = (CaDescriptor*)(*desc);
+						program.caids.insert(descr->getCaSystemId());
+					}
+					else if ((*desc)->getTag() == REGISTRATION_DESCRIPTOR)
+					{
+						RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
+						if (d->getFormatIdentifier() == 0x48444d56) // HDMV
+							is_hdmv = 1;
+					}
+				}
 
 				ElementaryStreamInfoConstIterator es;
 				for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
@@ -286,28 +304,30 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							audio.type = audioStream::atAACHE;
 							forced_audio = 1;
 						}
-					case 0x80: // user private ... but blueray LPCM
-						if (!isvideo && !isaudio)
+					case 0x80: // user private ... but bluray LPCM
+					case 0xA0: // bluray secondary LPCM
+						if (!isvideo && !isaudio && is_hdmv)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atLPCM;
 						}
-					case 0x81: // user private ... but blueray AC3
-						if (!isvideo && !isaudio)
+					case 0x81: // user private ... but bluray AC3
+					case 0xA1: // bluray secondary AC3
+						if (!isvideo && !isaudio && is_hdmv)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atAC3;
 						}
-					case 0x82: // Blueray DTS (dvb user private...)
-					case 0xA2: // Blueray secondary DTS
-						if (!isvideo && !isaudio)
+					case 0x82: // bluray DTS (dvb user private...)
+					case 0xA2: // bluray secondary DTS
+						if (!isvideo && !isaudio && is_hdmv)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atDTS;
 						}
-					case 0x86: // Blueray DTS-HD (dvb user private...)
-					case 0xA6: // Blueray secondary DTS-HD
-						if (!isvideo && !isaudio)
+					case 0x86: // bluray DTS-HD (dvb user private...)
+					case 0xA6: // bluray secondary DTS-HD
+						if (!isvideo && !isaudio && is_hdmv)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atDTSHD;
@@ -500,9 +520,9 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					default:
 						break;
 					}
-					if (isteletext && (isaudio || isvideo)) 
+					if (isteletext && (isaudio || isvideo))
 					{
-						eDebug("ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());					
+						eDebug("ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());
 						continue; // continue with next PID
 					}
 					else if (issubtitle && (isaudio || isvideo))
@@ -539,15 +559,6 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					}
 					else
 						continue;
-				}
-				for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
-					desc != pmt.getDescriptors()->end(); ++desc)
-				{
-					if ((*desc)->getTag() == CA_DESCRIPTOR)
-					{
-						CaDescriptor *descr = (CaDescriptor*)(*desc);
-						program.caids.insert(descr->getCaSystemId());
-					}
 				}
 			}
 			ret = 0;
