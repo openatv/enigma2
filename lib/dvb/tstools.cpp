@@ -40,7 +40,7 @@ int eDVBTSTools::openFile(const char *filename, int nostreaminfo)
 	if (f->open(filename, 1) < 0)
 		return -1;
 
-	setSource(src, filename);
+	setSource(src, nostreaminfo ? NULL : filename);
 
 	return 0;
 }
