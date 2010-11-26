@@ -1076,7 +1076,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &background, cons
 				ry+=diff;
 				d+=diff*buffer_stride;
 			}
-			if (sx>0)
+			if ((sx>0) && (sy>0))
 			{
 				int extra_source_stride = pitch - sx;
 				switch (opcode)
