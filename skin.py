@@ -38,6 +38,8 @@ def addSkin(name, scope = SCOPE_SKIN):
 	if fileExists(filename):
 		mpath = os.path.dirname(filename) + "/"
 		dom_skins.append((mpath, xml.etree.cElementTree.parse(filename).getroot()))
+		return True
+	return False
 
 # we do our best to always select the "right" value
 # skins are loaded in order of priority: skin with
@@ -60,15 +62,19 @@ try:
 except (SkinError, IOError, AssertionError), err:
 	print "not loading user skin: ", err
 
-# Only one of these two is present, compliments of AM_CONDITIONAL
+# Only one of these is present, compliments of AM_CONDITIONAL
+display_skin_id = 1
 addSkin('skin_display.xml')
-addSkin('skin_display96.xml')
+if addSkin('skin_display96.xml'):
+	print "[SKIN] Color OLED"
+	display_skin_id = 2
 addSkin('skin_text.xml')
 
 addSkin('skin_subtitles.xml')
 
 try:
-	addSkin(config.skin.primary_skin.value)
+	if not addSkin(config.skin.primary_skin.value):
+		raise SkinError, "primary skin not found"
 except (SkinError, IOError, AssertionError), err:
 	print "SKIN ERROR:", err
 	skin = DEFAULT_SKIN
@@ -79,7 +85,6 @@ except (SkinError, IOError, AssertionError), err:
 	addSkin(skin)
 	del skin
 
-profile("LoadSkinDefault")
 addSkin('skin_default.xml')
 profile("LoadSkinDefaultDone")
 
@@ -346,9 +351,6 @@ def applyAllAttributes(guiObject, desktop, attributes, scale):
 def loadSingleSkinData(desktop, skin, path_prefix):
 	"""loads skin data like colors, windowstyle etc."""
 	assert skin.tag == "skin", "root element in skin must be 'skin'!"
-
-	#print "***SKIN: ", path_prefix
-
 	for c in skin.findall("output"):
 		id = c.attrib.get('id')
 		if id:
@@ -495,7 +497,7 @@ dom_screens = {}
 
 def loadSkin(name, scope = SCOPE_SKIN):
 	# Now a utility for plugins to add skin data to the screens
-	global dom_screens
+	global dom_screens, display_skin_id
 	filename = resolveFilename(scope, name)
 	if fileExists(filename):
 		path = os.path.dirname(filename) + "/"
@@ -503,6 +505,11 @@ def loadSkin(name, scope = SCOPE_SKIN):
 			if elem.tag == 'screen':
 				name = elem.attrib.get('name', None)
 				if name:
+					sid = elem.attrib.get('id', None)
+					if sid and (sid != display_skin_id):
+						# not for this display
+						elem.clear()
+						continue
 					if name in dom_screens:
 						print "loadSkin: Screen already defined elsewhere:", name
 						elem.clear()
@@ -524,6 +531,11 @@ def loadSkinData(desktop):
 			if elem.tag == 'screen':
 				name = elem.attrib.get('name', None)
 				if name:
+					sid = elem.attrib.get('id', None)
+					if sid and (sid != display_skin_id):
+						# not for this display
+						elem.clear()
+						continue
 					if name in dom_screens:
 						# Kill old versions, save memory
 						dom_screens[name][0].clear()
@@ -561,16 +573,26 @@ def readSkin(screen, skin, names, desktop):
 
 	# try uncompiled embedded skin
 	if myscreen is None and getattr(screen, "skin", None):
-		print "Looking for embedded skin"
+		print "[SKIN] Parsing embedded skin"
 		skin = screen.skin
 		if (isinstance(skin, tuple)):
-			# for now
-			skin = skin[0]
-		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(skin)
+			for s in skin:
+				candidate = xml.etree.cElementTree.fromstring(s)
+				if candidate.tag == 'screen':
+					sid = candidate.attrib.get('id', None)
+					if (not sid) or (int(sid) == display_skin_id):
+						myscreen = candidate 
+						break;
+			else:
+				print "[SKIN] Hey, no suitable screen!"
+		else:
+			myscreen = xml.etree.cElementTree.fromstring(skin)
+		if myscreen:
+			screen.parsedSkin = myscreen
 
 	#assert myscreen is not None, "no skin for screen '" + repr(names) + "' found!"
 	if myscreen is None:
-		print "No skin to read..."
+		print "[SKIN] No skin to read..."
 		emptySkin = "<screen></screen>"
 		myscreen = screen.parsedSkin = xml.etree.cElementTree.fromstring(emptySkin)
 
