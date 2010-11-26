@@ -147,7 +147,14 @@
 	</screen>
 
 	<screen name="ChoiceBox_summary" position="0,0" size="96,64">
-		<widget source="parent.summary_list" render="Label" position="0,0" size="96,64" font="FdLcD;11" />
+		<widget source="parent.Title" render="Label" position="0,0" size="96,14" font="FdLcD;14" halign="left" noWrap="1" foregroundColor="lightyellow" />
+		<widget source="parent.summary_selection" render="Label" position="0,14" size="96,21" font="FdLcD;20" halign="left" noWrap="1" />
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="0,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" foregroundColor="fullred">
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
+			<convert type="ClockToText"></convert>
+		</widget>
 	</screen>	
 
 	<screen name="MessageBox_summary" position="0,0" size="96,64">
