@@ -342,9 +342,10 @@ class PluginDownloadBrowser(Screen):
 				continue
 			if not self.plugins.has_key(split[0]):
 				self.plugins[split[0]] = []
-				
-			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
-			
+
+			if not x[3].endswith('-dev') and not x[3].endswith('-dbg'):
+				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
+
 		for x in self.plugins.keys():
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
