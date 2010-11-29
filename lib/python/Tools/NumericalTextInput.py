@@ -33,13 +33,13 @@ class NumericalTextInput:
 		if self.lang == 'de_DE':
 			self.mapping.append (u"0,?!&@=*'+\"()$~") # 0
 			self.mapping.append (u" 1.:/-_") # 1
-			self.mapping.append (u"aäbc2AÄBC") # 2
+			self.mapping.append (u"abcä2ABCÄ") # 2
 			self.mapping.append (u"def3DEF") # 3
 			self.mapping.append (u"ghi4GHI") # 4
 			self.mapping.append (u"jkl5JKL") # 5
 			self.mapping.append (u"mnoö6MNOÖ") # 6
 			self.mapping.append (u"pqrsß7PQRSß") # 7
-			self.mapping.append (u"tuüv8TUÜV") # 8
+			self.mapping.append (u"tuvü8TUVÜ") # 8
 			self.mapping.append (u"wxyz9WXYZ") # 9
 		elif self.lang == 'es_ES':
 			self.mapping.append (u"0,?!&@=*'+\"()$~") # 0
