@@ -297,7 +297,8 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		if (!pmthandler->getProgramInfo(p))
 		{
 			int cnt=0;
-			for (std::set<eDVBServicePMTHandler::program::capid_pair>::reverse_iterator x(p.caids.rbegin()); x != p.caids.rend(); ++x, ++cnt)
+			std::set<eDVBServicePMTHandler::program::capid_pair> set(p.caids.begin(), p.caids.end());
+			for (std::set<eDVBServicePMTHandler::program::capid_pair>::reverse_iterator x(set.rbegin()); x != set.rend(); ++x, ++cnt)
 				caids.push_front(x->caid);
 			if (service && cnt)
 				service->m_ca = caids;
