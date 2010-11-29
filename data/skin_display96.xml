@@ -12,6 +12,26 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="96,64">
+                <widget position="0,0" render="Picon" size="70,53" source="session.CurrentService" zPosition="0">
+                        <convert type="ServiceName">Reference</convert>
+                </widget>
+		<widget source="session.CurrentService" render="Label" position="0,53" size="96,11" font="FdLcD;11" halign="left" noWrap="1" zPosition="2" transparent="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="70,0" size="24,10" font="FdLcD;10" halign="right" valign="top" noWrap="1">
+			<convert type="ClockToText"></convert>
+		</widget>
+		<widget source="session.Event_Now" render="Label" position="70,15" size="24,10" font="FdLcD;10" halign="right" noWrap="1" foregroundColor="lightyellow">
+			<convert type="EventTime">Remaining</convert>
+			<convert type="RemainingToText">NoSeconds</convert>
+		</widget>
+		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="70,41" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1" backgroundColor="fullred" foregroundColor="black" halign="center" valign="center">
+			<convert type="ConditionalShowHide"></convert>
+		</widget>
+		<widget source="session.Event_Now" render="Progress" position="0,62" size="96,2" borderWidth="0" transparent="1" pixmap="skin_default/progress_small.png" backgroundColor="#800000" zPosition="1">
+			<convert type="EventTime">Progress</convert>
+		</widget>
+<!-- use the stuff below instead if you don't like PIcons on your display
 		<widget source="session.CurrentService" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -31,6 +51,7 @@
 		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
+-->
 	</screen>
     
   
