@@ -447,7 +447,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def saveLocalSettings(self):
 		try:
-			path = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
+			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
 			pickle.dump(self.settings, open(path, "wb"))
 		except Exception, e:
 			print "Failed to save settings:", e
@@ -459,15 +459,21 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
 		try:
+			oldpath = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
+			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
 			try:
-				path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
 				updates = pickle.load(open(path, "rb"))
 			except:
-				# load old settings file and rename it (this code should be removed in a week or so)
-				oldpath = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
-				updates = pickle.load(open(oldpath, "rb"))
+				# load old settings file and rename it (this code should be removed in a few weeks
+				if os.path.isfile(oldpath):
+					try:
+						updates = pickle.load(open(oldpath, "rb"))
+						os.rename(oldpath, path)
+					except:
+						pass
+			if os.path.isfile(oldpath):
 				try:
-					os.rename(oldpath, path)
+					os.unlink(oldpath)
 				except:
 					pass
 			needUpdateDesc = ("description" in updates) and (updates["description"] != self.settings["description"]) 
