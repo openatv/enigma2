@@ -1252,16 +1252,16 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				}	break;
 				case GST_STATE_CHANGE_READY_TO_PAUSED:
 				{
-// 					GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_subtitlebin), "subtitle_sink");
+ 					GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_subtitlebin), "subtitle_sink");
 // 					GstElement *appsink = gst_bin_get_by_name(GST_BIN(m_gst_playbin), "subtitle_sink");
-// 					if (appsink)
-// 					{
-// 						g_object_set (G_OBJECT (appsink), "max-buffers", 2, NULL);
-// 						g_object_set (G_OBJECT (appsink), "sync", FALSE, NULL);
-// 						g_object_set (G_OBJECT (appsink), "emit-signals", TRUE, NULL);
-// 						eDebug("eServiceMP3::appsink properties set!");
-// 						gst_object_unref(appsink);
-// 					}
+ 					if (appsink)
+ 					{
+ 						g_object_set (G_OBJECT (appsink), "max-buffers", 2, NULL);
+ 						g_object_set (G_OBJECT (appsink), "sync", FALSE, NULL);
+ 						g_object_set (G_OBJECT (appsink), "emit-signals", TRUE, NULL);
+ 						eDebug("eServiceMP3::appsink properties set!");
+ 						gst_object_unref(appsink);
+ 					}
 					setAC3Delay(ac3_delay);
 					setPCMDelay(pcm_delay);
 				}	break;
