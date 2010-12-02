@@ -23,6 +23,8 @@ from Screens.HelpMenu import HelpableScreen
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
 import Tools.Trashcan
+import NavigationInstance
+import RecordTimer
 
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize
 import os
@@ -760,7 +762,23 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
-	def delete(self):
+	def stopTimer(self, timer, confirmed):
+		if confirmed:
+			if timer.isRunning():
+				if timer.repeated:
+					print "[ML] Repeating timer?"
+					timer.enable()
+					timer.processRepeated(findRunningEvent = False)
+					self.session.nav.RecordTimer.doActivate(timer)
+				else:
+					timer.afterEvent = RecordTimer.AFTEREVENT.NONE
+					NavigationInstance.instance.RecordTimer.removeEntry(timer)
+				print "[ML] Timer stopped."
+
+	def delete(self, *args):
+		if args and (not args[0]):
+			# cancelled by user (passing any arg means it's a dialog return)
+			return
 		item = self.getCurrentSelection()
 		if not canDelete(item):
 			if item and isTrashFolder(item[0]):
@@ -770,11 +788,27 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		current = item[0]
 		info = item[1]
 		if current and (not current.flags & eServiceReference.mustDescent):
+			cur_path = os.path.realpath(current.getPath())
+			st = os.stat(cur_path)
+			name = info and info.getName(current) or _("this recording")
+			are_you_sure = _("Do you really want to delete %s?") % (name)
+			print "[ML] age: %ss" % (time.time() - st.st_mtime)
+			if not args:
+				rec_filename = os.path.split(current.getPath())[1]
+				if rec_filename.endswith(".ts"): rec_filename = rec_filename[:-3]
+				for timer in NavigationInstance.instance.RecordTimer.timer_list:
+					if timer.isRunning() and not timer.justplay and timer.Filename.find(rec_filename)>=0:
+						self.session.openWithCallback(lambda x: self.stopTimer(timer, x), MessageBox, _("Recording in progress.\nStop recording %s?") % name)
+						return
+				if time.time() - st.st_mtime < 10:
+					if not args:
+						self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
+						return
 			if config.usage.movielist_trashcan.value:
 				try:
 					trash = Tools.Trashcan.createTrashFolder()
 					# Also check whether we're INSIDE the trash, then it's a purge.
-					if os.path.realpath(current.getPath()).startswith(trash):
+					if cur_path.startswith(trash):
 						msg = _("Deleted items") + "\n"
 					else:
 						moveServiceFiles(self.getCurrent(), trash)
@@ -794,8 +828,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 					msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 			else:
 				msg = ''
-			name = info and info.getName(current) or _("this recording")
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + _("Do you really want to delete %s?") % (name))
+			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure)
 
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:

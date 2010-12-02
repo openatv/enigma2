@@ -27,12 +27,6 @@ class TimerEditList(Screen):
 		list = [ ]
 		self.list = list
 		self.fillTimerList()
-		
-		print "EMPTY:",self.EMPTY
-		print "ENABLE:",self.ENABLE
-		print "DISABLE:",self.DISABLE
-		print "CLEANUP:",self.CLEANUP
-		print "DELETE:",self.DELETE
 
 		self["timerlist"] = TimerList(list)
 		
