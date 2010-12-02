@@ -206,7 +206,28 @@ private:
 	GstElement *m_gst_playbin;
 	GstElement *m_gst_subtitlebin;
 	GstTagList *m_stream_tags;
-	eFixedMessagePump<int> m_pump;
+
+	struct Message
+	{
+		Message()
+			:type(-1)
+		{}
+		Message(int type)
+			:type(type)
+		{}
+		Message(int type, GstPad *pad)
+			:type(type)
+		{
+			d.pad=pad;
+		}
+
+		int type;
+		union {
+			GstPad *pad; // for msg type 3
+		} d;
+	};
+
+	eFixedMessagePump<Message> m_pump;
 	std::string m_error_message;
 
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
@@ -224,7 +245,9 @@ private:
 /*	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
 	static void gstCBsubtitleLink(subtype_t type, gpointer user_data);
 	static gboolean gstCBsubtitleDrop(GstPad *pad, GstBuffer *buffer, gpointer user_data);*/
-	void gstPoll(const int&);
+	void gstPoll(const Message&);
+	void gstGhostpadHasCAPS_synced(GstPad *pad);
+
 	GstPadBufferAllocFunction m_ghost_pad_buffer_alloc;
 	GstPadChainFunction m_ghost_pad_chain_function;
 	GstPadEventFunction m_ghost_pad_subtitle_sink_event;

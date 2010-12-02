@@ -1215,7 +1215,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 	source = GST_MESSAGE_SRC(msg);
 	sourceName = gst_object_get_name(source);
-#if 1
+#if 0
 	if (gst_message_get_structure(msg))
 	{
 		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
@@ -1402,7 +1402,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				gchar *g_codec = NULL, *g_lang = NULL;
 				g_signal_emit_by_name (m_gst_playbin, "get-text-tags", i, &tags);
 				subtitleStream subs;
-				int ret;
+//				int ret;
 
 				g_lang = g_strdup_printf ("und");
 				if ( tags && gst_is_tag_list(tags) )
@@ -1514,7 +1514,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	_this->m_pump.send(1);
+	_this->m_pump.send(Message(1));
 		/* wake */
 	return GST_BUS_PASS;
 }
@@ -1568,7 +1568,7 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 	return atUnknown;
 }
 
-void eServiceMP3::gstPoll(const int &msg)
+void eServiceMP3::gstPoll(const Message &msg)
 {
 		/* ok, we have a serious problem here. gstBusSyncHandler sends 
 		   us the wakup signal, but likely before it was posted.
@@ -1576,7 +1576,7 @@ void eServiceMP3::gstPoll(const int &msg)
 		   
 		   I need to understand the API a bit more to make this work 
 		   proplerly. */
-	if (msg == 1)
+	if (msg.type == 1)
 	{
 		GstBus *bus = gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin));
 		GstMessage *message;
@@ -1587,8 +1587,12 @@ void eServiceMP3::gstPoll(const int &msg)
 			gst_message_unref (message);
 		}
 	}
-	else
+	else if (msg.type == 2)
 		pullSubtitle();
+	else if (msg.type == 3)
+		gstGhostpadHasCAPS_synced(msg.d.pad);
+	else
+		eDebug("gstPoll unhandled Message %d\n", msg.type);
 }
 
 eAutoInitPtr<eServiceFactoryMP3> init_eServiceFactoryMP3(eAutoInitNumbers::service+1, "eServiceFactoryMP3");
@@ -1598,7 +1602,7 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *appsink, gpointer user_data)
 	eServiceMP3 *_this = (eServiceMP3*)user_data;	
 	eSingleLocker l(_this->m_subs_to_pull_lock);
 	++_this->m_subs_to_pull;
-	_this->m_pump.send(2);
+	_this->m_pump.send(Message(2));
 }
 
 gboolean eServiceMP3::gstGhostpadSinkEvent(GstPad * pad, GstEvent * event)
@@ -1606,7 +1610,7 @@ gboolean eServiceMP3::gstGhostpadSinkEvent(GstPad * pad, GstEvent * event)
 // 	eDebug("eServiceMP3::gstGhostpadSinkEvent %s", gst_structure_get_name (event->structure));
 
 // 	eServiceMP3 *_this = (eServiceMP3*) (gst_pad_get_parent (pad));
-	eServiceMP3 *_this = g_object_get_data (G_OBJECT (pad), "application-instance");
+	eServiceMP3 *_this = (eServiceMP3*) g_object_get_data (G_OBJECT (pad), "application-instance");
 	gboolean ret;
 	GstFormat format;
 
@@ -1755,7 +1759,7 @@ void eServiceMP3::gstGhostpadLink(gpointer user_data, GstCaps * caps)
 
 GstFlowReturn eServiceMP3::gstGhostpadBufferAlloc(GstPad *pad, guint64 offset, guint size, GstCaps *caps, GstBuffer **buf)
 {
-	eServiceMP3 *_this = g_object_get_data (G_OBJECT (pad), "application-instance");
+	eServiceMP3 *_this = (eServiceMP3*) g_object_get_data (G_OBJECT (pad), "application-instance");
 
 // 	eDebug("eServiceMP3::gstGhostpadBufferAlloc prevcaps=%s newcaps=%s", gst_caps_to_string(_this->m_gst_prev_subtitle_caps), gst_caps_to_string(caps));
 	if (!GST_PAD_CAPS (pad) || !gst_caps_is_equal (_this->m_gst_prev_subtitle_caps, caps))
@@ -1766,54 +1770,80 @@ GstFlowReturn eServiceMP3::gstGhostpadBufferAlloc(GstPad *pad, guint64 offset, g
 
 void eServiceMP3::gstGhostpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer user_data)
 {
-	GstCaps *caps;
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 
+	gst_object_ref (pad);
+
+	_this->m_pump.send(Message(3, pad));
+}
+
+// after messagepump
+void eServiceMP3::gstGhostpadHasCAPS_synced(GstPad *pad)
+{
+	GstCaps *caps;
+
 	g_object_get (G_OBJECT (pad), "caps", &caps, NULL);
+
 // 	eDebug("gstGhostpadHasCAPS:: signal::caps = %s", gst_caps_to_string(caps));
 
-	if (!caps)
-		return;
-
-	subtitleStream subs = _this->m_subtitleStreams[_this->m_currentSubtitleStream];
-	
-	if ( subs.type == stUnknown )
+	if (caps)
 	{
-		GstTagList *tags;
-// 		eDebug("gstGhostpadHasCAPS::m_subtitleStreams[%i].type == stUnknown...", _this->m_currentSubtitleStream);
-		
-		gchar *g_lang;
-		g_signal_emit_by_name (_this->m_gst_playbin, "get-text-tags", _this->m_currentSubtitleStream, &tags);
+		subtitleStream subs;
 
-		g_lang = g_strdup_printf ("und");
-		if ( tags && gst_is_tag_list(tags) )
-			gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang);
-		subs.language_code = std::string(g_lang);
-		GstPad *ghostpad = gst_element_get_static_pad(_this->m_gst_subtitlebin, "sink");
-		subs.type = getSubtitleType(ghostpad);
-		
-		_this->m_subtitleStreams[_this->m_currentSubtitleStream] = subs;
+//		eDebug("gstGhostpadHasCAPS_synced %p %d", pad, m_subtitleStreams.size());
 
-		g_free (g_lang);
+		if (!m_subtitleStreams.empty())
+			subs = m_subtitleStreams[m_currentSubtitleStream];
+		else {
+			subs.type = stUnknown;
+			subs.pad = pad;
+		}
+
+		if ( subs.type == stUnknown )
+		{
+			GstTagList *tags;
+//			eDebug("gstGhostpadHasCAPS::m_subtitleStreams[%i].type == stUnknown...", m_currentSubtitleStream);
+
+			gchar *g_lang;
+			g_signal_emit_by_name (m_gst_playbin, "get-text-tags", m_currentSubtitleStream, &tags);
+
+			g_lang = g_strdup_printf ("und");
+			if ( tags && gst_is_tag_list(tags) )
+				gst_tag_list_get_string(tags, GST_TAG_LANGUAGE_CODE, &g_lang);
+
+			subs.language_code = std::string(g_lang);
+			GstPad *ghostpad = gst_element_get_static_pad(m_gst_subtitlebin, "sink");
+			subs.type = getSubtitleType(ghostpad);
+
+			if (!m_subtitleStreams.empty())
+				m_subtitleStreams[m_currentSubtitleStream] = subs;
+			else
+				m_subtitleStreams.push_back(subs);
+
+			g_free (g_lang);
+		}
+
+//		eDebug("gstGhostpadHasCAPS:: m_gst_prev_subtitle_caps=%s equal=%i",gst_caps_to_string(m_gst_prev_subtitle_caps),gst_caps_is_equal(m_gst_prev_subtitle_caps, caps));
+
+		if (!GST_PAD_CAPS (pad) || !gst_caps_is_equal (m_gst_prev_subtitle_caps, caps))
+			gstGhostpadLink(this, caps);
+
+		m_gst_prev_subtitle_caps = gst_caps_copy(caps);
+
+		gst_caps_unref (caps);
 	}
 
-// 	eDebug("gstGhostpadHasCAPS:: _this->m_gst_prev_subtitle_caps=%s equal=%i",gst_caps_to_string(_this->m_gst_prev_subtitle_caps),gst_caps_is_equal(_this->m_gst_prev_subtitle_caps, caps));
-
-	if (!GST_PAD_CAPS (pad) || !gst_caps_is_equal (_this->m_gst_prev_subtitle_caps, caps))
-		gstGhostpadLink(_this, caps);
-	
-	_this->m_gst_prev_subtitle_caps = gst_caps_copy(caps);
-	gst_caps_unref (caps);
+	gst_object_unref (pad);
 }
 
 GstFlowReturn eServiceMP3::gstGhostpadChainFunction(GstPad * pad, GstBuffer * buffer)
 {
 	GstFlowReturn ret = GST_FLOW_OK;
 	
-	eServiceMP3 *_this = g_object_get_data (G_OBJECT (pad), "application-instance");
+	eServiceMP3 *_this = (eServiceMP3*)g_object_get_data (G_OBJECT (pad), "application-instance");
 
-	gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
-	gint64 duration_ns = GST_BUFFER_DURATION(buffer);
+//	gint64 buf_pos = GST_BUFFER_TIMESTAMP(buffer);
+//	gint64 duration_ns = GST_BUFFER_DURATION(buffer);
 	size_t len = GST_BUFFER_SIZE(buffer);
 
 	unsigned char line[len+1];
