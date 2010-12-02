@@ -100,6 +100,10 @@ class eAUTable: public eAUGTable
 	int first;
 	ePtr<iDVBDemux> m_demux;
 	eMainloop *ml;
+
+	/* needed to detect broken table version handling (seen on some m2ts files) */
+	struct timespec m_prev_table_update;
+	int m_table_cnt;
 public:
 
 	eAUTable()
@@ -119,6 +123,7 @@ public:
 	
 	int begin(eMainloop *m, const eDVBTableSpec &spec, ePtr<iDVBDemux> demux)
 	{
+		m_table_cnt = 0;
 		ml = m;
 		m_demux = demux;
 		first= 1;
@@ -197,6 +202,24 @@ public:
 
 		if (current && (!current->getSpec(spec)))
 		{
+			/* detect broken table version handling (seen on some m2ts files) */
+			if (m_table_cnt)
+			{
+				if (abs(timeout_usec(m_prev_table_update)) > 500000)
+					m_table_cnt = -1;
+				else if (m_table_cnt > 1) // two pmt update within one second
+				{
+					eDebug("Seen two consecutive table version changes within 500ms. "
+					    "This seems broken, so auto update for pid %04x, table %02x is now disabled!!",
+					    spec.pid, spec.tid);
+					m_table_cnt = 0;
+					return;
+				}
+			}
+
+			++m_table_cnt;
+			clock_gettime(CLOCK_MONOTONIC, &m_prev_table_update);
+
 			next = new Table();
 			CONNECT(next->tableReady, eAUTable::slotTableReady);
 			spec.flags &= ~(eDVBTableSpec::tfAnyVersion|eDVBTableSpec::tfThisVersion|eDVBTableSpec::tfHaveTimeout);
