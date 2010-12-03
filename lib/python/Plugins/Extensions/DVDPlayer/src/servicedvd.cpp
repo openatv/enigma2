@@ -32,6 +32,7 @@ eServiceFactoryDVD::eServiceFactoryDVD()
 	{
 		std::list<std::string> extensions;
 		extensions.push_back("iso");
+		extensions.push_back("img");
 		sc->addServiceFactory(eServiceFactoryDVD::id, this, extensions);
 	}
 }
