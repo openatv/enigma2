@@ -319,15 +319,20 @@ class PluginDownloadBrowser(Screen):
 
 		for x in lines:
 			plugin = x.split(" - ", 2)
-			if len(plugin) == 3:
-				if self.run == 1 and self.type == self.DOWNLOAD:
-					if plugin[0] not in self.installedplugins:
-						self.installedplugins.append(plugin[0])
-				else:
-					if plugin[0] not in self.installedplugins:
-						plugin.append(plugin[0][15:])
+			# 'opkg list_installed' only returns name + version, no description field
+			if len(plugin) >= 2:
+				if not plugin[0].endswith('-dev') and not plugin[0].endswith('-dbg'):
+					if self.run == 1 and self.type == self.DOWNLOAD:
+						if plugin[0] not in self.installedplugins:
+							self.installedplugins.append(plugin[0])
+					else:
+						if plugin[0] not in self.installedplugins:
+							if len(plugin) == 2:
+								# 'opkg list_installed' does not return descriptions, append empty description
+								plugin.append('')
+							plugin.append(plugin[0][15:])
 
-						self.pluginlist.append(plugin)
+							self.pluginlist.append(plugin)
 	
 	def updateList(self):
 		list = []
@@ -343,8 +348,7 @@ class PluginDownloadBrowser(Screen):
 			if not self.plugins.has_key(split[0]):
 				self.plugins[split[0]] = []
 
-			if not x[3].endswith('-dev') and not x[3].endswith('-dbg'):
-				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
+			self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
 		for x in self.plugins.keys():
 			if x in self.expanded:
