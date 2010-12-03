@@ -43,7 +43,7 @@ class FileBrowser(Screen):
 				currDir = None
 
 			inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/sbin", "/share", "/sys", "/tmp", "/usr", "/var"]
-			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso)", useServiceRef = True)
+			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso|img)", useServiceRef = True)
 			self["filelist"] = self.filelist
 
 		self["FilelistActions"] = ActionMap(["SetupActions"],
