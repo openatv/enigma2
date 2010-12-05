@@ -50,12 +50,6 @@ typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFL
 typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA } containertype_t;
 
-struct SubtitlePage
-{
-	ePangoSubtitlePage *pango_page;
-	eVobSubtitlePage *vob_page;
-};
-
 class eServiceMP3: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection, 
 	public iSubtitleOutput, public iStreamedService, public iAudioDelay, public Object
@@ -254,6 +248,13 @@ private:
 	GstCaps *m_gst_prev_subtitle_caps;
 	GstSegment m_gst_subtitle_segment;
 	GstPadEventFunction m_gst_sink_event;
+
+	struct SubtitlePage
+	{
+		enum { Unknown, Pango, Vob } type;
+		ePangoSubtitlePage pango_page;
+		eVobSubtitlePage vob_page;
+	};
 
 	std::list<SubtitlePage> m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
