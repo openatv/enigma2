@@ -1967,35 +1967,28 @@ void eServiceMP3::pullSubtitle()
 					if ( m_subtitleStreams[m_currentSubtitleStream].type < stVOB )
 					{
 						unsigned char line[len+1];
+						SubtitlePage page;
 						memcpy(line, GST_BUFFER_DATA(buffer), len);
 						line[len] = 0;
 						eDebug("got new text subtitle @ buf_pos = %lld ns (in pts=%lld): '%s' ", buf_pos, buf_pos/11111, line);
-						ePangoSubtitlePage* page = new ePangoSubtitlePage;
 						gRGB rgbcol(0xD0,0xD0,0xD0);
-						page->m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
-						page->show_pts = buf_pos / 11111L;
-						page->m_timeout = duration_ns / 1000000;
-						SubtitlePage subtitlepage;
-						subtitlepage.pango_page = page;
-						subtitlepage.vob_page = NULL;
-						m_subtitle_pages.push_back(subtitlepage);
+						page.type = SubtitlePage::Pango;
+						page.pango_page.m_elements.push_back(ePangoSubtitlePageElement(rgbcol, (const char*)line));
+						page.pango_page.m_show_pts = buf_pos / 11111L;
+						page.pango_page.m_timeout = duration_ns / 1000000;
+						m_subtitle_pages.push_back(page);
 						pushSubtitles();
 					}
 					else if ( m_subtitleStreams[m_currentSubtitleStream].type == stVOB )
 					{
+						SubtitlePage page;
 						eDebug("got new subpicture @ buf_pos = %lld ns (in pts=%lld), duration=%lld ns, len=%i bytes. ", buf_pos, buf_pos/11111, duration_ns, len);
-						eVobSubtitlePage* page = new eVobSubtitlePage;
-						eSize size = eSize(720, 576); 
-						page->m_pixmap = new gPixmap(size, 32, 0);
-	// 					ePtr<gPixmap> pixmap;
-	// 					pixmap = new gPixmap(size, 32, 1); /* allocate accel surface (if possible) */
-						memcpy(page->m_pixmap->surface->data, GST_BUFFER_DATA(buffer), len);
-						page->show_pts = buf_pos / 11111L;
-						page->m_timeout = duration_ns / 1000;
-						SubtitlePage subtitlepage;
-						subtitlepage.vob_page = page;
-						subtitlepage.pango_page = NULL;
-						m_subtitle_pages.push_back(subtitlepage);
+						page.type = SubtitlePage::Vob;
+						page.vob_page.m_pixmap = new gPixmap(eSize(720, 576), 32, 1);
+						memcpy(page.vob_page.m_pixmap->surface->data, GST_BUFFER_DATA(buffer), len);
+						page.vob_page.m_show_pts = buf_pos / 11111L;
+						page.vob_page.m_timeout = duration_ns / 1000;
+						m_subtitle_pages.push_back(page);
 						pushSubtitles();
 					}
 					else
@@ -2017,17 +2010,17 @@ void eServiceMP3::pushSubtitles()
 	pts_t running_pts;
 	while ( !m_subtitle_pages.empty() )
 	{
-		SubtitlePage frontpage = m_subtitle_pages.front();
+		SubtitlePage &frontpage = m_subtitle_pages.front();
 		gint64 diff_ms = 0;
-		gint64 show_pts = 0;
-		
+		gint64 show_pts;
+
+		if (frontpage.type == SubtitlePage::Pango)
+			show_pts = frontpage.pango_page.m_show_pts;
+		else
+			show_pts = frontpage.vob_page.m_show_pts;
+
 		getPlayPosition(running_pts);
-	
-		if ( frontpage.pango_page != 0 )
-			show_pts = frontpage.pango_page->show_pts;	
-		else if ( frontpage.vob_page != 0 )
-			show_pts = frontpage.vob_page->show_pts;
-		
+
 		diff_ms = ( show_pts - running_pts ) / 90;
 		GstFormat fmt = GST_FORMAT_TIME;
 		gint64 now;
@@ -2060,15 +2053,13 @@ void eServiceMP3::pushSubtitles()
 		{
 			if ( m_subtitle_widget )
 			{
-				if ( frontpage.pango_page != 0)
+				if ( frontpage.type == SubtitlePage::Pango)
+					m_subtitle_widget->setPage(frontpage.pango_page);
+				else
 				{
-					m_subtitle_widget->setPage(*(frontpage.pango_page));
-				}
-				else if ( frontpage.vob_page != 0)
-				{
-					m_subtitle_widget->setPixmap(frontpage.vob_page->m_pixmap, eRect(0, 0, 720, 576));
-					eDebug("blit vobsub pixmap... hide in %i ms", frontpage.vob_page->m_timeout);
-					m_subtitle_hide_timer->start(frontpage.vob_page->m_timeout, true);
+					m_subtitle_widget->setPixmap(frontpage.vob_page.m_pixmap, eRect(0, 0, 720, 576));
+					eDebug("blit vobsub pixmap... hide in %i ms", frontpage.vob_page.m_timeout);
+					m_subtitle_hide_timer->start(frontpage.vob_page.m_timeout, true);
 				}
 				m_subtitle_widget->show();
 			}
