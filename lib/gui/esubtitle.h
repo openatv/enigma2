@@ -24,7 +24,7 @@ struct ePangoSubtitlePageElement
 
 struct ePangoSubtitlePage
 {
-	pts_t show_pts;
+	pts_t m_show_pts;
 	int m_timeout; /* in milliseconds */
 	std::vector<ePangoSubtitlePageElement> m_elements;
 	void clear() { m_elements.clear(); }
@@ -32,15 +32,13 @@ struct ePangoSubtitlePage
 
 struct eVobSubtitlePage
 {
-	pts_t show_pts;
+	pts_t m_show_pts;
 	int m_timeout; /* in milliseconds */
 	ePtr<gPixmap> m_pixmap;
 };
 
 class eDVBTeletextSubtitlePage;
-class eDVBPangoSubtitlePage;
-class ePangoSubtitlePage;
-class eVobSubtitlePage;
+class eDVBSubtitlePage;
 
 class eSubtitleWidget: public eWidget, public Object
 {
