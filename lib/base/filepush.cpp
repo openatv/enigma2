@@ -321,22 +321,32 @@ void eFilePushThread::thread()
 				continue;
 
 #ifdef SHOW_WRITE_TIME
-			 struct timeval starttime;
-			 struct timeval now;
-			 gettimeofday(&starttime, NULL);
+			struct timeval starttime;
+			struct timeval now;
+			gettimeofday(&starttime, NULL);
 #endif
 			/* now write out data. it will be 'aligned' (according to filterRecordData). 
 			   absolutely forbidden is to return EINTR and consume a non-aligned number of bytes. 
 			*/
-			 int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
+			int w = write(m_fd_dest, m_buffer + m_buf_start, m_buf_end - m_buf_start);
+
+			if (w <= 0)
+			{
+				if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
+					continue;
+				eDebug("eFilePushThread WRITE ERROR");
+				sendEvent(evtWriteError);
+				break;
+				// ... we would stop the thread
+			}
 
 #ifdef SHOW_WRITE_TIME
-			 gettimeofday(&now, NULL);
-			 suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
-			 elapsed += now.tv_usec;
-			 elapsed -= starttime.tv_usec;
-			 if (elapsed > 30000)
-				    eDebug("[filepush] LONG WRITE (>30ms): %u us", elapsed);
+			gettimeofday(&now, NULL);
+			suseconds_t elapsed = (now.tv_sec - starttime.tv_sec) * 1000000;
+			elapsed += now.tv_usec;
+			elapsed -= starttime.tv_usec;
+			if (elapsed > 30000)
+				eDebug("[filepush] LONG WRITE (>30ms): %u us", elapsed);
 #endif
 			if (!m_send_pvr_commit && (flushSize != 0))
 			{
@@ -367,16 +377,6 @@ void eFilePushThread::thread()
 					offset_last_sync += written_since_last_sync;
 					written_since_last_sync = 0;
 				}
-			}
-
-			if (w <= 0)
-			{
-				if (errno == EINTR || errno == EAGAIN || errno == EBUSY)
-					continue;
-				eDebug("eFilePushThread WRITE ERROR");
-				sendEvent(evtWriteError);
-				break;
-				// ... we would stop the thread
 			}
 
 //			printf("FILEPUSH: wrote %d bytes\n", w);
