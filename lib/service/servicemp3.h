@@ -260,6 +260,9 @@ private:
 	ePtr<eTimer> m_subtitle_sync_timer;
 	ePtr<eTimer> m_subtitle_hide_timer;
 	ePtr<eTimer> m_streamingsrc_timeout;
+	pts_t m_prev_decoder_time;
+	int m_decoder_time_valid_state;
+
 	void pushSubtitles();
 	void pullSubtitle();
 	void hideSubtitles();

@@ -233,6 +233,9 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_currentTrickRatio = 0;
 	m_subs_to_pull = 0;
 	m_buffer_size = 1*1024*1024;
+	m_prev_decoder_time = -1;
+	m_decoder_time_valid_state = 0;
+
 	CONNECT(m_seekTimeout->timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_subtitle_hide_timer->timeout, eServiceMP3::hideSubtitles);
@@ -620,6 +623,8 @@ RESULT eServiceMP3::seekTo(pts_t to)
 		if (!(ret = seekToImpl(to)))
 		{
 			m_subtitle_pages.clear();
+			m_prev_decoder_time = -1;
+			m_decoder_time_valid_state = 0;
 			m_subs_to_pull = 0;
 		}
 	}
@@ -1570,18 +1575,11 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 
 void eServiceMP3::gstPoll(const Message &msg)
 {
-		/* ok, we have a serious problem here. gstBusSyncHandler sends 
-		   us the wakup signal, but likely before it was posted.
-		   the usleep, an EVIL HACK (DON'T DO THAT!!!) works around this.
-		   
-		   I need to understand the API a bit more to make this work 
-		   proplerly. */
 	if (msg.type == 1)
 	{
 		GstBus *bus = gst_pipeline_get_bus (GST_PIPELINE (m_gst_playbin));
 		GstMessage *message;
-		usleep(1);
-		while ((message = gst_bus_pop (bus)))
+		while (message = gst_bus_pop(bus))
 		{
 			gstBusCall(bus, message);
 			gst_message_unref (message);
@@ -1977,7 +1975,8 @@ void eServiceMP3::pullSubtitle()
 						page.pango_page.m_show_pts = buf_pos / 11111L;
 						page.pango_page.m_timeout = duration_ns / 1000000;
 						m_subtitle_pages.push_back(page);
-						pushSubtitles();
+						if (m_subtitle_pages.size()==1)
+							pushSubtitles();
 					}
 					else if ( m_subtitleStreams[m_currentSubtitleStream].type == stVOB )
 					{
@@ -1989,7 +1988,8 @@ void eServiceMP3::pullSubtitle()
 						page.vob_page.m_show_pts = buf_pos / 11111L;
 						page.vob_page.m_timeout = duration_ns / 1000;
 						m_subtitle_pages.push_back(page);
-						pushSubtitles();
+						if (m_subtitle_pages.size()==1)
+							pushSubtitles();
 					}
 					else
 					{
@@ -2007,52 +2007,54 @@ void eServiceMP3::pullSubtitle()
 
 void eServiceMP3::pushSubtitles()
 {
-	pts_t running_pts;
 	while ( !m_subtitle_pages.empty() )
 	{
 		SubtitlePage &frontpage = m_subtitle_pages.front();
+		pts_t running_pts;
 		gint64 diff_ms = 0;
 		gint64 show_pts;
+
+		getPlayPosition(running_pts);
+
+		if (m_decoder_time_valid_state < 4) {
+			++m_decoder_time_valid_state;
+			if (m_prev_decoder_time == running_pts)
+				m_decoder_time_valid_state = 0;
+			if (m_decoder_time_valid_state < 4) {
+//				if (m_decoder_time_valid_state)
+//					eDebug("%d: decoder time not valid! prev %lld, now %lld\n", m_decoder_time_valid_state, m_prev_decoder_time/90, running_pts/90);
+//				else
+//					eDebug("%d: decoder time not valid! now %lld\n", m_decoder_time_valid_state, running_pts/90);
+				m_subtitle_sync_timer->start(25, true);
+				m_prev_decoder_time = running_pts;
+				break;
+			}
+		}
 
 		if (frontpage.type == SubtitlePage::Pango)
 			show_pts = frontpage.pango_page.m_show_pts;
 		else
 			show_pts = frontpage.vob_page.m_show_pts;
 
-		getPlayPosition(running_pts);
-
 		diff_ms = ( show_pts - running_pts ) / 90;
-		GstFormat fmt = GST_FORMAT_TIME;
-		gint64 now;
-		if ( gst_element_query_position(m_gst_playbin, &fmt, &now) != -1 )
-			eDebug("check decoder/pipeline diff: decoder: %lld, pipeline: %lld, show_pts: %lld, diff: %lld ms", running_pts/90, now/1000000, show_pts/90, diff_ms);
-		else
-			eDebug("query position for decoder/pipeline check failed!");
+		eDebug("check subtitle: decoder: %lld, show_pts: %lld, diff: %lld ms", running_pts/90, show_pts/90, diff_ms);
 
 		if ( diff_ms < -100 )
 		{
-			now /= 11111;
-			diff_ms = abs((now - running_pts) / 90);
-			
-			if (diff_ms > 100000)
-			{
-				eDebug("high decoder/pipeline difference.. assume decoder has now started yet.. check again in 1sec");
-				m_subtitle_sync_timer->start(1000, true);
-				break;
-			}
 			eDebug("subtitle too late... drop");
 			m_subtitle_pages.pop_front();
 		}
 		else if ( diff_ms > 20 )
 		{
-			eDebug("start recheck timer");
-			m_subtitle_sync_timer->start(diff_ms > 1000 ? 1000 : diff_ms, true);
+			eDebug("start timer");
+			m_subtitle_sync_timer->start(diff_ms, true);
 			break;
 		}
 		else // immediate show
 		{
 			if ( m_subtitle_widget )
 			{
+				eDebug("show!\n");
 				if ( frontpage.type == SubtitlePage::Pango)
 					m_subtitle_widget->setPage(frontpage.pango_page);
 				else
@@ -2111,6 +2113,7 @@ RESULT eServiceMP3::enableSubtitles(eWidget *parent, ePyObject tuple)
 // 		eDebug ("eServiceMP3::enableSubtitles g_object_set current-text = %i", pid);
 		m_currentSubtitleStream = pid;
 		m_subs_to_pull = 0;
+		m_prev_decoder_time = -1;
 		m_subtitle_pages.clear();
 	}
 
