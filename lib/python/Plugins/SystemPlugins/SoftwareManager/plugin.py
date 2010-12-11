@@ -1854,7 +1854,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.list_updating = False
 				if not self.Console:
 					self.Console = Console()
-				cmd = "ipkg list"
+				cmd = self.ipkg.ipkg + " list"
 				self.Console.ePopen(cmd, self.IpkgList_Finished)
 		#print event, "-", param
 		pass
@@ -1877,7 +1877,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 		if not self.Console:
 			self.Console = Console()
-		cmd = "ipkg list_installed"
+		cmd = self.ipkg.ipkg + " list_installed"
 		self.Console.ePopen(cmd, self.IpkgListInstalled_Finished)
 
 	def IpkgListInstalled_Finished(self, result, retval, extra_args = None):
