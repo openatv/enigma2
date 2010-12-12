@@ -16,8 +16,16 @@ class Picon(Renderer):
 		Renderer.__init__(self)
 		if pathExists('/media/hdd/picon'):
 			self.searchPaths = self.searchPaths + ('/media/hdd/picon/',)
-		self.nameCache = { }
 		self.pngname = ""
+		self.lastPath = None
+		pngname = self.findPicon("picon_default")
+		if not pngname:
+			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
+			if fileExists(tmp):
+				pngname = tmp
+			else:
+				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
+		self.defaultpngname = pngname
 
 	def applySkin(self, desktop, parent):
 		attribs = [ ]
@@ -40,36 +48,28 @@ class Picon(Renderer):
 				pos = sname.rfind(':')
 				if pos != -1:
 					sname = sname[:pos].rstrip(':').replace(':','_')
-				pngname = self.nameCache.get(sname, "")
-				if pngname == "":
-					pngname = self.findPicon(sname)
-					if pngname == "":
-						fields = sname.split('_')
-						if len(fields) > 2 and fields[2] != '2':
-							#fallback to 1 for tv services with nonstandard servicetypes
-							fields[2] = '1'
-							pngname = self.findPicon('_'.join(fields))
-					if pngname != "":
-						self.nameCache[sname] = pngname
-			if pngname == "": # no picon for service found
-				pngname = self.nameCache.get("default", "")
-				if pngname == "": # no default yet in cache..
-					pngname = self.findPicon("picon_default")
-					if pngname == "":
-						tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
-						if fileExists(tmp):
-							pngname = tmp
-						else:
-							pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
-					self.nameCache["default"] = pngname
+				pngname = self.findPicon(sname)
+				if not pngname:
+					fields = sname.split('_', 3)
+					if len(fields) > 2 and fields[2] != '2':
+						#fallback to 1 for tv services with nonstandard servicetypes
+						fields[2] = '1'
+						pngname = self.findPicon('_'.join(fields))
+			if not pngname: # no picon for service found
+				pngname = self.defaultpngname
 			if self.pngname != pngname:
 				self.instance.setPixmapFromFile(pngname)
 				self.pngname = pngname
 
 	def findPicon(self, serviceName):
+		if self.lastPath:
+			pngname = self.lastPath + serviceName + ".png"
+			if fileExists(pngname):
+				return pngname
 		for path in self.searchPaths:
 			if pathExists(path):
 				pngname = path + serviceName + ".png"
 				if fileExists(pngname):
+					self.lastPath = path
 					return pngname
 		return ""
