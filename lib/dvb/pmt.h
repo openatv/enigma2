@@ -181,11 +181,17 @@ public:
 
 	struct program
 	{
+		struct capid_pair
+		{
+			uint16_t caid;
+			int capid;
+			bool operator< (const struct capid_pair &t) { return t.caid < caid; }
+		};
 		std::vector<videoStream> videoStreams;
 		std::vector<audioStream> audioStreams;
 		int defaultAudioStream;
 		std::vector<subtitleStream> subtitleStreams;
-		std::set<uint16_t> caids;
+		std::list<capid_pair> caids;
 		int pcrPid;
 		int pmtPid;
 		int textPid;
@@ -193,10 +199,10 @@ public:
 		PyObject *createPythonObject();
 	};
 
-	int getProgramInfo(struct program &program);
+	int getProgramInfo(program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);
 	int getDecodeDemux(ePtr<iDVBDemux> &demux);
-	PyObject *getCaIds();
+	PyObject *getCaIds(bool pair=false); // caid / ecmpid pair
 	
 	int getPVRChannel(ePtr<iDVBPVRChannel> &pvr_channel);
 	int getServiceReference(eServiceReferenceDVB &service) { service = m_reference; return 0; }
