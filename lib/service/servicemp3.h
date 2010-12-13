@@ -195,59 +195,43 @@ private:
 	enum
 	{
 		stIdle, stRunning, stStopped,
-	};
-	int m_state;
-	GstElement *m_gst_playbin;
-	GstElement *m_gst_subtitlebin;
-	GstTagList *m_stream_tags;
+        };
+        int m_state;
+        GstElement *m_gst_playbin;
+        GstTagList *m_stream_tags;
 
-	struct Message
-	{
-		Message()
-			:type(-1)
-		{}
-		Message(int type)
-			:type(type)
-		{}
-		Message(int type, GstPad *pad)
-			:type(type)
-		{
-			d.pad=pad;
-		}
+        struct Message
+        {
+                Message()
+                        :type(-1)
+                {}
+                Message(int type)
+                        :type(type)
+                {}
+                Message(int type, GstPad *pad)
+                        :type(type)
+                {
+                        d.pad=pad;
+                }
 
-		int type;
-		union {
-			GstPad *pad; // for msg type 3
-		} d;
-	};
+                int type;
+                union {
+                        GstPad *pad; // for msg type 3
+                } d;
+        };
 
-	eFixedMessagePump<Message> m_pump;
-	std::string m_error_message;
+        eFixedMessagePump<Message> m_pump;
+        std::string m_error_message;
 
-	audiotype_t gstCheckAudioPad(GstStructure* structure);
-	void gstBusCall(GstBus *bus, GstMessage *msg);
-	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
-	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
-	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
-	static GstCaps* gstGhostpadGetCAPS (GstPad * pad);
-	static gboolean gstGhostpadAcceptCAPS(GstPad * pad, GstCaps * caps);
-	static void gstGhostpadLink(gpointer user_data, GstCaps * caps);
-	static GstFlowReturn gstGhostpadBufferAlloc(GstPad *pad, guint64 offset, guint size, GstCaps *caps, GstBuffer **buf);
-	static void gstGhostpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer user_data);
-	static gboolean gstGhostpadSinkEvent(GstPad * pad, GstEvent * event);
-	static GstFlowReturn gstGhostpadChainFunction(GstPad * pad, GstBuffer * buffer);
-/*	static void gstCBsubtitleCAPS(GObject *obj, GParamSpec *pspec, gpointer user_data);
-	static void gstCBsubtitleLink(subtype_t type, gpointer user_data);
-	static gboolean gstCBsubtitleDrop(GstPad *pad, GstBuffer *buffer, gpointer user_data);*/
+        audiotype_t gstCheckAudioPad(GstStructure* structure);
+        void gstBusCall(GstBus *bus, GstMessage *msg);
+        static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
+	static void gstTextpadHasCAPS(GstPad *pad, GParamSpec * unused, gpointer user_data);
+	void gstTextpadHasCAPS_synced(GstPad *pad);
+        static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
+        GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
 	void gstPoll(const Message&);
-	void gstGhostpadHasCAPS_synced(GstPad *pad);
-
-	GstPadBufferAllocFunction m_ghost_pad_buffer_alloc;
-	GstPadChainFunction m_ghost_pad_chain_function;
-	GstPadEventFunction m_ghost_pad_subtitle_sink_event;
-	GstCaps *m_gst_prev_subtitle_caps;
-	GstSegment m_gst_subtitle_segment;
-	GstPadEventFunction m_gst_sink_event;
+        static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
 
 	struct SubtitlePage
 	{
@@ -256,19 +240,18 @@ private:
 		eVobSubtitlePage vob_page;
 	};
 
-	std::list<SubtitlePage> m_subtitle_pages;
-	ePtr<eTimer> m_subtitle_sync_timer;
-	ePtr<eTimer> m_subtitle_hide_timer;
-	ePtr<eTimer> m_streamingsrc_timeout;
-	pts_t m_prev_decoder_time;
-	int m_decoder_time_valid_state;
+        std::list<SubtitlePage> m_subtitle_pages;
+        ePtr<eTimer> m_subtitle_sync_timer;
+        
+        ePtr<eTimer> m_streamingsrc_timeout;
+        pts_t m_prev_decoder_time;
+        int m_decoder_time_valid_state;
 
-	void pushSubtitles();
-	void pullSubtitle();
-	void hideSubtitles();
-	void sourceTimeout();
-	int m_subs_to_pull;
-	sourceStream m_sourceinfo;
+        void pushSubtitles();
+        void pullSubtitle();
+        void sourceTimeout();
+        int m_subs_to_pull;
+        sourceStream m_sourceinfo;
 	eSingleLock m_subs_to_pull_lock;
 	gulong m_subs_to_pull_handler_id;
 
