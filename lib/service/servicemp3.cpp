@@ -1806,15 +1806,25 @@ PyObject *eServiceMP3::getSubtitleList()
 	for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
 	{
 		subtype_t type = IterSubtitleStream->type;
-		ePyObject tuple = PyTuple_New(5);
-// 		eDebug("eServiceMP3::getSubtitleList idx=%i type=%i, code=%s", stream_idx, int(type), (IterSubtitleStream->language_code).c_str());
-		PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
-		PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(stream_idx));
-		PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(int(type)));
-		PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(0));
-		PyTuple_SET_ITEM(tuple, 4, PyString_FromString((IterSubtitleStream->language_code).c_str()));
-		PyList_Append(l, tuple);
-		Py_DECREF(tuple);
+		switch(type)
+		{
+		case stUnknown:
+		case stVOB:
+		case stPGS:
+			break;
+		default:
+		{
+			ePyObject tuple = PyTuple_New(5);
+//			eDebug("eServiceMP3::getSubtitleList idx=%i type=%i, code=%s", stream_idx, int(type), (IterSubtitleStream->language_code).c_str());
+			PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(2));
+			PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong(stream_idx));
+			PyTuple_SET_ITEM(tuple, 2, PyInt_FromLong(int(type)));
+			PyTuple_SET_ITEM(tuple, 3, PyInt_FromLong(0));
+			PyTuple_SET_ITEM(tuple, 4, PyString_FromString((IterSubtitleStream->language_code).c_str()));
+			PyList_Append(l, tuple);
+			Py_DECREF(tuple);
+		}
+		}
 		stream_idx++;
 	}
 	eDebug("eServiceMP3::getSubtitleList finished");
