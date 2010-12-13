@@ -362,10 +362,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		{
 			eDebug("eServiceMP3::subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
 			g_object_set (G_OBJECT (m_gst_playbin), "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
-			subtitleStream subs;
-			subs.type = stSRT;
-			subs.language_code = std::string("und");
-			m_subtitleStreams.push_back(subs);
 		}
 	} else
 	{
@@ -1171,7 +1167,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 	source = GST_MESSAGE_SRC(msg);
 	sourceName = gst_object_get_name(source);
-#if 1
+#if 0
 	if (gst_message_get_structure(msg))
 	{
 		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
@@ -1374,8 +1370,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				g_signal_emit_by_name (m_gst_playbin, "get-text-pad", i, &pad);
 				if ( pad )
 					g_signal_connect (G_OBJECT (pad), "notify::caps", G_CALLBACK (gstTextpadHasCAPS), this);
-				if ( subs.type != stSRT )
-					subs.type = getSubtitleType(pad, g_codec);
+				subs.type = getSubtitleType(pad, g_codec);
 
 				m_subtitleStreams.push_back(subs);
 				g_free (g_lang);
