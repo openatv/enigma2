@@ -261,9 +261,6 @@ class UpdatePluginMenu(Screen):
 					for x in parts:
 						if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
 							parts.remove(x)
-					for x in parts:
-						if x[1].startswith('/autofs/'):
-							parts.remove(x)
 					if len(parts):
 						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title = _("Please select medium to use as backup location"), list = parts)
 				elif (currentEntry == "backupfiles"):
@@ -278,14 +275,20 @@ class UpdatePluginMenu(Screen):
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
-
+		config.plugins.configurationbackup.backupdirs.save()
+		config.plugins.configurationbackup.save()
+		config.save()
+		
 	def backuplocation_choosen(self, option):
+		oldpath = config.plugins.configurationbackup.backuplocation.getValue()
 		if option is not None:
 			config.plugins.configurationbackup.backuplocation.value = str(option[1])
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
 		config.save()
-		self.createBackupfolders()
+		newpath = config.plugins.configurationbackup.backuplocation.getValue()
+		if newpath != oldpath:
+			self.createBackupfolders()
 
 	def runUpgrade(self, result):
 		if result:
