@@ -58,9 +58,11 @@ GIT = git --git-dir=$(GIT_DIR)
 
 if HAVE_FAKE_GIT_DIR
 ENIGMA2_DATE = `cat $(GIT_DIR)/last_commit_info | grep 'Date:' | cut -d' ' -f4`
+ENIGMA2_COMMIT_DATE = `cat $(GIT_DIR)/last_commit_info | grep 'CommitDate:' | cut -d' ' -f2`
 ENIGMA2_BRANCH = `cat $(GIT_DIR)/branch`
 else
-ENIGMA2_DATE = `$(GIT) log --no-color -n 1 --pretty=format:%cd --date=short`
+ENIGMA2_DATE =
+ENIGMA2_COMMIT_DATE = `$(GIT) log --no-color -n 1 --pretty=format:%cd --date=short`
 ENIGMA2_BRANCH = `$(GIT) branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
 ENIGMA2_REV = `$(GIT) describe --abbrev=7 --always --long --tags`
 endif
@@ -70,7 +72,11 @@ BUILT_SOURCES = version-intermediate.h
 .PHONY: version-intermediate.h
 version-intermediate.h:
 	$(AM_V_GEN)touch $@
-	$(AM_V_at)[ -n "$(ENIGMA2_DATE)" ] && echo "#define ENIGMA2_LAST_CHANGE_DATE \"$(ENIGMA2_DATE)\"" >> $@
+	if [ -n "$(ENIGMA2_COMMIT_DATE)" ]; then \
+		$(AM_V_at)[ -n "$(ENIGMA2_COMMIT_DATE)" ] && echo "#define ENIGMA2_LAST_CHANGE_DATE \"$(ENIGMA2_COMMIT_DATE)\"" >> $@; \
+	else \
+		$(AM_V_at)[ -n "$(ENIGMA2_DATE)" ] && echo "#define ENIGMA2_LAST_CHANGE_DATE \"$(ENIGMA2_DATE)\"" >> $@; \
+	fi;
 	$(AM_V_at)[ -n "$(ENIGMA2_BRANCH)" ] && echo "#define ENIGMA2_BRANCH \"$(ENIGMA2_BRANCH)\"" >> $@
 	-$(AM_V_at)[ -n "$(ENIGMA2_REV)" ] && echo "#define ENIGMA2_REV \"$(ENIGMA2_REV)\"" >> $@
 	$(AM_V_at)([ -f version.h ] && diff -q version.h $@ >/dev/null) || $(INSTALL_HEADER) $@ version.h
