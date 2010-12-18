@@ -1,5 +1,7 @@
-INCLUDES = \
-	-I$(top_srcdir)/include
+AM_CPPFLAGS = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/include \
+	-include Python.h
 
 noinst_LTLIBRARIES = libenigma_network.la
 

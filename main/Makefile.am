@@ -48,4 +48,6 @@ enigma2_LDADD = \
 	@LIBXINE_LIBS@ \
 	@PTHREAD_LIBS@ \
 	@SDL_LIBS@ \
-	@LIBS@
+	@LIBS@ \
+	-ltuxtxt32bpp
+
