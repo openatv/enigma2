@@ -2,7 +2,7 @@ AC_DEFUN([TUXBOX_APPS],[
 
 INSTALL="$INSTALL -p"
 
-AC_GNU_SOURCE
+AC_USE_SYSTEM_EXTENSIONS
 AC_SYS_LARGEFILE
 
 AC_ARG_WITH(target,
@@ -270,18 +270,18 @@ AC_SUBST(USE_NLS)
 
 if test "$USE_NLS" = "yes"; then
 	AC_CACHE_CHECK([for GNU gettext in libc], gt_cv_func_gnugettext_libc,[
-		AC_TRY_LINK([
+		AC_LINK_IFELSE([AC_LANG_PROGRAM([[
 			#include <libintl.h>
 			#ifndef __GNU_GETTEXT_SUPPORTED_REVISION
 			#define __GNU_GETTEXT_SUPPORTED_REVISION(major) ((major) == 0 ? 0 : -1)
 			#endif
 			extern int _nl_msg_cat_cntr;
 			extern int *_nl_domain_bindings;
-			],[
+			]], [[
 			bindtextdomain ("", "");
 			return (int) gettext ("") + _nl_msg_cat_cntr + *_nl_domain_bindings;
-			], gt_cv_func_gnugettext_libc=yes, gt_cv_func_gnugettext_libc=no
-		)]
+			]])],[gt_cv_func_gnugettext_libc=yes],[gt_cv_func_gnugettext_libc=no
+		])]
 	)
 
 	if test "$gt_cv_func_gnugettext_libc" = "yes"; then
@@ -339,7 +339,7 @@ AC_SUBST(CATALOGS)
 ])
 
 dnl backward compatiblity
-AC_DEFUN([AC_GNU_SOURCE],
+AC_DEFUN([AC_USE_SYSTEM_EXTENSIONS],
 [AH_VERBATIM([_GNU_SOURCE],
 [/* Enable GNU extensions on systems that have them.  */
 #ifndef _GNU_SOURCE
