@@ -1,6 +1,8 @@
 AM_CPPFLAGS = \
-	-I$(top_srcdir)/include
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/include \
+	-include Python.h
 
-noinst_LIBRARIES = libenigma_components.a
+noinst_LTLIBRARIES = libenigma_components.la
 
-libenigma_components_a_SOURCES = scan.cpp file_eraser.cpp tuxtxtapp.cpp
+libenigma_components_la_SOURCES = scan.cpp file_eraser.cpp tuxtxtapp.cpp

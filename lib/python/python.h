@@ -4,7 +4,6 @@
 	#define __lib_python_python_class_h
 #endif
 
-#include <Python.h>
 #include <string>
 #include <lib/base/object.h>
 

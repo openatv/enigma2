@@ -1,6 +1,8 @@
 AM_CPPFLAGS = \
-	-I$(top_srcdir)/include
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/include \
+	-include Python.h
 
-noinst_LIBRARIES = libenigma_mmi.a
+noinst_LTLIBRARIES = libenigma_mmi.la
 
-libenigma_mmi_a_SOURCES = mmi_ui.cpp
+libenigma_mmi_la_SOURCES = mmi_ui.cpp
