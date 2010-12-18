@@ -89,7 +89,7 @@ def do_file(f, mode):
 
 						if mode == "include":
 							# hack hack hack!!
-							print "#include <lib" + f[2:] + ">"
+							print "#include <lib/" + '/'.join(f.split('/')[-2:]) + ">"
 						else:
 							print "\t// " + f
 

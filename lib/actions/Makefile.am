@@ -1,15 +1,21 @@
 AM_CPPFLAGS = \
-	-I$(top_srcdir)/include
+	-I$(top_builddir) \
+	-I$(top_srcdir)/include \
+	-include Python.h
 
-noinst_LIBRARIES = libenigma_actions.a
+EXTRA_DIST = parseactions.py
 
-libenigma_actions_a_SOURCES = \
-	action.cpp 
+noinst_LTLIBRARIES = libenigma_actions.la
 
+libenigma_actions_la_SOURCES = \
+	action.cpp \
+	action.h
+
+BUILT_SOURCES = actionids.h
 CLEANFILES = actionids.h
 
 action.cpp: actionids.h
 
-actionids.h:
-	 python ./parseactions.py include ../gui/*.h > actionids.h
-	 python ./parseactions.py parse ../gui/*.h >> actionids.h
+actionids.h: $(top_srcdir)/lib/gui/*.h
+	$(PYTHON) $(srcdir)/parseactions.py include $(top_srcdir)/lib/gui/*.h > $@
+	$(PYTHON) $(srcdir)/parseactions.py parse $(top_srcdir)/lib/gui/*.h >> $@
