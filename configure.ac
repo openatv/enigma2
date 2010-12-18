@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[2.4])
+AC_INIT([enigma2],[2.4],[enigma2-devel@lists.elitedvb.net])
 AM_INIT_AUTOMAKE(enigma2,2.4)
 
 TUXBOX_APPS
@@ -7,7 +7,7 @@ TUXBOX_APPS_PKGCONFIG
 
 AC_PROG_CC
 AC_PROG_CXX
-AC_PROG_RANLIB
+LT_INIT
 AC_CONFIG_MACRO_DIR([m4])
 
 AC_ARG_WITH(boxtype,
