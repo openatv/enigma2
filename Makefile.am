@@ -1,5 +1,7 @@
 SUBDIRS = include lib main data po tools
 
+ACLOCAL_AMFLAGS = -I m4
+
 installdir = $(pkglibdir)/python
 
 install_PYTHON = \
