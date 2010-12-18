@@ -1,4 +1,4 @@
-AC_INIT(enigma2,2.4)
+AC_INIT([enigma2],[2.4])
 AM_INIT_AUTOMAKE(enigma2,2.4)
 
 TUXBOX_APPS
@@ -22,7 +22,7 @@ if test x"$BOXTYPE" == "xdm8000" ; then
 fi
 
 AC_ARG_WITH(libsdl,
-	AC_HELP_STRING([--with-libsdl], [use sdl, yes or no]),
+	AS_HELP_STRING([--with-libsdl],[use sdl, yes or no]),
 	[[withsdl=$withval]],
 	[[withsdl=yes]]
 )
@@ -67,7 +67,7 @@ else
 fi
 AM_CONDITIONAL(HAVE_DDVDLIB, test "$have_ddvdlib" = "yes")
 
-AM_PATH_PYTHON()
+AM_PATH_PYTHON
 AX_PYTHON_DEVEL
 #AM_PATH_XINE(1.1.0,, AC_MSG_ERROR([*** Please install xine-lib (devel) first ***]))
 
@@ -138,7 +138,7 @@ LDFLAGS="$LDFLAGS -pthread $PYTHON_LDFLAGS $SDL_LDFLAGS $GSTREAMER_LDFLAGS $GSTR
 
 TUXBOX_APPS_GETTEXT
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
@@ -250,6 +250,7 @@ main/Makefile
 tools/Makefile
 enigma2.pc
 ])
+AC_OUTPUT
 
 #lib/python/Plugins/Extensions/SimpleRSS/Makefile
 #lib/python/Plugins/Extensions/FileManager/Makefile
