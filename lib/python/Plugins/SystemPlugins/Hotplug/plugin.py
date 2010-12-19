@@ -257,9 +257,12 @@ def autostart(reason, **kwargs):
 
 			netlink = Netlink()
 			bdpoll = BDPoll()
-			for blockdev, removable, is_cdrom, medium_found in harddiskmanager.devices_scanned_on_init:
-				if removable or is_cdrom:
-					bdpoll.addDevice(blockdev, is_cdrom, medium_found)
+			try:
+				for blockdev, removable, is_cdrom, medium_found in harddiskmanager.devices_scanned_on_init:
+					if removable or is_cdrom:
+						bdpoll.addDevice(blockdev, is_cdrom, medium_found)
+			except Exception, e:
+				print "[Hotplug]", e
 		else:
 			from twisted.internet.protocol import Protocol, Factory
 			from twisted.internet import reactor
