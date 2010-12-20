@@ -3,11 +3,11 @@
 	<settings
 		name="Dreambox DVD record"
 		authormode="menu_linked"
-		menutemplate="/usr/lib/enigma2/python/Plugins/Extensions/DVDBurn/Thumbs_menu_clouds.ddvdm.xml"
+		menutemplate="Thumbs_menu_clouds.ddvdm.xml"
 		titlesetmode="multi"
-		vmgm="/usr/lib/enigma2/python/Plugins/Extensions/DVDBurn/vmgmdream.mpg"
+		vmgm="vmgmdream.mpg"
 		output="dvd"
-		isopath="/media/hdd/movie/"
+		isopath="/hdd/movie/"
 		dataformat="iso9660_4"
 	/>
 	<titles> </titles>

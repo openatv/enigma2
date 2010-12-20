@@ -16,7 +16,7 @@ from Components.MultiContent import MultiContentEntryText
 from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Task import Task, Job, job_manager, Condition
-from Tools.Directories import fileExists, isMount
+from Tools.Directories import fileExists, isMount, resolveFilename, SCOPE_HDD, SCOPE_MEDIA
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
 from enigma import eConsoleAppContainer, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, eTimer
@@ -391,7 +391,7 @@ class NFIDownload(Screen):
 		
 		self.box = HardwareInfo().get_device_name()
 		self.feed_base = "http://www.dreamboxupdate.com/opendreambox" #/1.5/%s/images/" % self.box	
-		self.usbmountpoint = "/mnt/usb/"
+		self.usbmountpoint = resolveFilename(SCOPE_MEDIA)+"usb/"
 
 		self.menulist = []
 
@@ -570,7 +570,7 @@ class NFIDownload(Screen):
 
 	def ackedDestination(self):
 		print "[ackedDestination]", self.branch, self.target_dir
-		self.container.setCWD("/mnt")
+		self.container.setCWD(resolveFilename(SCOPE_MEDIA)+"usb/")
 		if self.target_dir[:8] == "/autofs/":
 			self.target_dir = "/dev/" + self.target_dir[8:-1]
 
@@ -792,13 +792,14 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.umountCallback()
 
 def main(session, **kwargs):
-	session.open(NFIDownload,"/home/root")
+	session.open(NFIDownload,resolveFilename(SCOPE_HDD))
 
 def filescan_open(list, session, **kwargs):
 	dev = "/dev/" + (list[0].path).rsplit('/',1)[0][7:]
-	print "mounting device " + dev + " to /mnt/usb..."
-	system("mount "+dev+" /mnt/usb/ -o rw,sync")
-	session.open(NFIDownload,"/mnt/usb/")
+	print "mounting device " + dev + " to /media/usb..."
+	usbmountpoint = resolveFilename(SCOPE_MEDIA)+"usb/"
+	system("mount %s %s -o rw,sync" % (dev, usbmountpoint))
+	session.open(NFIDownload,usbmountpoint)
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
