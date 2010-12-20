@@ -71,7 +71,7 @@ BUILT_SOURCES = version-intermediate.h
 .PHONY: version-intermediate.h
 version-intermediate.h:
 	$(AM_V_GEN)touch $@
-	-$(AM_V_at)[ -n "$(ENIGMA2_COMMIT_DATE)" ] && echo "#define ENIGMA2_COMMIT_DATE \"$(ENIGMA2_COMMIT_DATE)\"" >> $@; \
+	-$(AM_V_at)[ -n "$(ENIGMA2_COMMIT_DATE)" ] && echo "#define ENIGMA2_COMMIT_DATE \"$(ENIGMA2_COMMIT_DATE)\"" >> $@
 	-$(AM_V_at)[ -n "$(ENIGMA2_BRANCH)" ] && echo "#define ENIGMA2_BRANCH \"$(ENIGMA2_BRANCH)\"" >> $@
 	-$(AM_V_at)[ -n "$(ENIGMA2_REV)" ] && echo "#define ENIGMA2_REV \"$(ENIGMA2_REV)\"" >> $@
 	$(AM_V_at)([ -f version.h ] && diff -q version.h $@ >/dev/null) || $(INSTALL_HEADER) $@ version.h
