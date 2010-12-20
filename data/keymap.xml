@@ -174,10 +174,12 @@
 	
 	<map context="InfobarMenuActions">
 		<key id="KEY_MENU" mapto="mainMenu" flags="mr" />
+		<key id="KEY_SPACE" mapto="mainMenu" flags="mr" />
 	</map>
 	
 	<map context="MenuActions">
 		<key id="KEY_MENU" mapto="menu" flags="mr" />
+		<key id="KEY_SPACE" mapto="menu" flags="mr" />
 	</map>
 	
 	<map context="InfobarShowHideActions">
@@ -370,6 +372,7 @@
 
 	<map context="MovieSelectionActions">
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
+		<key id="KEY_SPACE" mapto="contextMenu" flags="m" />
 		<key id="KEY_INFO" mapto="showEventInfo" flags="m" />
 	</map>
 
@@ -463,6 +466,7 @@
 
 	<map context="ChannelSelectEditActions">
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
+		<key id="KEY_SPACE" mapto="contextMenu" flags="m" />
 	</map>
 
 	<map context="TvRadioActions">
@@ -643,6 +647,7 @@
 		</device>
 		
 		<key id="KEY_MENU" mapto="menu" flags="m" />
+		<key id="KEY_SPACE" mapto="menu" flags="m" />
 
 		<key id="KEY_2" mapto="skipListbegin" flags="m" />
 		<key id="KEY_8" mapto="skipListend" flags="m" />
