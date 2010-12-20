@@ -107,7 +107,7 @@ class TimerSanityCheck:
 							self.rep_eventlist.append((begin, idx))
 						begin += 86400
 						rflags >>= 1
-				else:
+				elif timer.state < TimerEntry.StateEnded:
 					self.nrep_eventlist.extend([(timer.begin,self.bflag,idx),(timer.end,self.eflag,idx)])
 			idx += 1
 
