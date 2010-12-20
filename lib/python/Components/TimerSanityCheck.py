@@ -2,6 +2,7 @@ import NavigationInstance
 from time import localtime, mktime, gmtime
 from ServiceReference import ServiceReference
 from enigma import iServiceInformation, eServiceCenter, eServiceReference
+from timer import TimerEntry
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
