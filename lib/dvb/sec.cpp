@@ -212,7 +212,7 @@ int eDVBSatelliteEquipmentControl::canTune(const eDVBFrontendParametersSatellite
 
 				eSecDebugNoSimulate("ret5 %d", ret);
 
-				if (ret && lnb_param.SatCR_idx == -1)
+				if (ret && !is_unicable)
 				{
 					int lof = sat.frequency > lnb_param.m_lof_threshold ?
 						lnb_param.m_lof_hi : lnb_param.m_lof_lo;
@@ -300,11 +300,6 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 		if ( sit != lnb_param.m_satellites.end())
 		{
 			eSecCommandList sec_sequence;
-
-			lnb_param.guard_offset = 0; //HACK
-
-			frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
-			
 			eDVBSatelliteSwitchParameters &sw_param = sit->second;
 			bool doSetFrontend = true;
 			bool doSetVoltageToneFrontend = true;
@@ -327,6 +322,11 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			eDVBSatelliteDiseqcParameters::t_diseqc_mode diseqc_mode = di_param.m_diseqc_mode;
 			eDVBSatelliteSwitchParameters::t_voltage_mode voltage_mode = sw_param.m_voltage_mode;
 			bool diseqc13V = voltage_mode == eDVBSatelliteSwitchParameters::HV_13;
+			bool is_unicable = lnb_param.SatCR_idx != -1;
+
+			lnb_param.guard_offset = 0; //HACK
+
+			frontend.setData(eDVBFrontend::SATCR, lnb_param.SatCR_idx);
 
 			if (diseqc13V)
 				voltage_mode = eDVBSatelliteSwitchParameters::HV;
@@ -371,13 +371,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			int lof = (band&1)?lnb_param.m_lof_hi:lnb_param.m_lof_lo;
 
-			int local=0;
-
-
-			if(lnb_param.SatCR_idx == -1)
+			if(!is_unicable)
 			{
-			// calc Frequency
-				local = abs(sat.frequency 
+				// calc Frequency
+				int local= abs(sat.frequency 
 					- lof);
 				parm.FREQUENCY = ((((local * 2) / 125) + 1) / 2) * 125;
 				frontend.setData(eDVBFrontend::FREQ_OFFSET, sat.frequency - parm.FREQUENCY);
@@ -551,6 +548,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 					if ( send_mask )
 					{
+						int diseqc_repeats = diseqc_mode > eDVBSatelliteDiseqcParameters::V1_0 ? di_param.m_repeats : 0;
 						int vlt = iDVBFrontend::voltageOff;
 						eSecCommand::pair compare;
 						compare.steps = +3;
@@ -623,7 +621,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							if ( send_mask & 2 )
 								++loops;
 
-							loops <<= di_param.m_repeats;
+							loops <<= diseqc_repeats;
 
 							for ( int i = 0; i < loops;)  // fill commands...
 							{
@@ -660,7 +658,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 									int tmp = m_params[DELAY_BETWEEN_DISEQC_REPEATS];
 									if (cmd)
 									{
-										int delay = di_param.m_repeats ? (tmp - 54) / 2 : tmp;  // standard says 100msek between two repeated commands
+										int delay = diseqc_repeats ? (tmp - 54) / 2 : tmp;  // standard says 100msek between two repeated commands
 										sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, delay) );
 										diseqc.data[2]=cmd;
 										diseqc.data[3]=(cmd==0x38) ? csw : ucsw;
@@ -693,7 +691,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 					if ( RotorCmd != -1 && RotorCmd != lastRotorCmd )
 					{
 						eSecCommand::pair compare;
-						if (!send_mask && lnb_param.SatCR_idx == -1)
+						if (!send_mask && !is_unicable)
 						{
 							compare.steps = +3;
 							compare.tone = iDVBFrontend::toneOff;
@@ -747,10 +745,10 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 							diseqc.data[3] = RotorCmd;
 							diseqc.data[4] = 0x00;
 						}
-//						if(lnb_param.SatCR_idx == -1)
+//						if(!is_unicable)
 						{
 							int mrt = m_params[MOTOR_RUNNING_TIMEOUT]; // in seconds!
-							if ( rotor_param.m_inputpower_parameters.m_use || lnb_param.SatCR_idx == -1)
+							if ( rotor_param.m_inputpower_parameters.m_use && !is_unicable)
 							{ // use measure rotor input power to detect rotor state
 								bool turn_fast = need_turn_fast(rotor_param.m_inputpower_parameters.m_turning_speed);
 								eSecCommand::rotor cmd;
@@ -882,7 +880,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 			sec_fe->setData(eDVBFrontend::NEW_UCSW, ucsw);
 			sec_fe->setData(eDVBFrontend::NEW_TONEBURST, di_param.m_toneburst_param);
 
-			if ((doSetVoltageToneFrontend) && (lnb_param.SatCR_idx == -1))
+			if (doSetVoltageToneFrontend && !is_unicable)
 			{
 				eSecCommand::pair compare;
 				compare.voltage = voltage;
@@ -898,7 +896,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, FRONTENDPA
 
 			sec_sequence.push_back( eSecCommand(eSecCommand::UPDATE_CURRENT_SWITCHPARMS) );
 
-			if(lnb_param.SatCR_idx != -1)
+			if(is_unicable)
 			{
 				// check if voltage is disabled
 				eSecCommand::pair compare;

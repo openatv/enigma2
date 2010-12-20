@@ -2,6 +2,7 @@ from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, getConfigListEntry, ConfigSequence, ConfigSubList
 import DVDTitle
 import xml.dom.minidom
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 
 class ConfigColor(ConfigSequence):
 	def __init__(self, default = [128,128,128]):
@@ -125,6 +126,14 @@ class DVDProject:
 			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):
+					if val[0] != "/":
+						if key.find("font") == 0:
+							val = resolveFilename(SCOPE_FONTS)+val
+						else:
+							val = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/"+val
+						if fileExists(val):
+							self.settings.dict()[key].setValue(val)
+							continue
 					self.error += "\n%s '%s' not found" % (key, val)
 		#except AttributeError:
 		  	#print "loadProject AttributeError", self.error

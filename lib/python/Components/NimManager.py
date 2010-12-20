@@ -390,6 +390,7 @@ class SecConfigure:
 
 					if currLnb.diseqcMode.value == "1_0":
 						currCO = currLnb.commandOrder1_0.value
+						sec.setRepeats(0)
 					else:
 						currCO = currLnb.commandOrder.value
 
