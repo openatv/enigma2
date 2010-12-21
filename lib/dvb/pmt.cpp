@@ -20,13 +20,14 @@
 #include <dvbsi++/registration_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
-	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
+	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF), m_no_pat_entry_delay(eTimer::create())
 {
 	m_use_decode_demux = 0;
 	m_pmt_pid = -1;
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
+	CONNECT(m_no_pat_entry_delay->timeout, eDVBServicePMTHandler::sendEventNoPatEntry);
 }
 
 eDVBServicePMTHandler::~eDVBServicePMTHandler()
@@ -126,14 +127,21 @@ void eDVBServicePMTHandler::PMTready(int error)
 	}
 }
 
+void eDVBServicePMTHandler::sendEventNoPatEntry()
+{
+	serviceEvent(eventNoPATEntry);
+}
+
 void eDVBServicePMTHandler::PATready(int)
 {
+	eDebug("PATready");
 	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
 		int service_id_single = -1;
 		int pmtpid_single = -1;
 		int pmtpid = -1;
+		int cnt=0;
 		std::vector<ProgramAssociationSection*>::const_iterator i;
 		for (i = ptr->getSections().begin(); pmtpid == -1 && i != ptr->getSections().end(); ++i)
 		{
@@ -141,9 +149,10 @@ void eDVBServicePMTHandler::PATready(int)
 			ProgramAssociationConstIterator program;
 			for (program = pat.getPrograms()->begin(); pmtpid == -1 && program != pat.getPrograms()->end(); ++program)
 			{
+				++cnt;
 				if (eServiceID((*program)->getProgramNumber()) == m_reference.getServiceID())
 					pmtpid = (*program)->getProgramMapPid();
-				if (pmtpid_single == -1 && pmtpid == -1)
+				if (++cnt == 1 && pmtpid_single == -1 && pmtpid == -1)
 				{
 					pmtpid_single = (*program)->getProgramMapPid();
 					service_id_single = (*program)->getProgramNumber();
@@ -152,15 +161,21 @@ void eDVBServicePMTHandler::PATready(int)
 					pmtpid_single = service_id_single = -1;
 			}
 		}
-		if (pmtpid_single != -1) // only one PAT entry .. so we use this one
+		if (pmtpid_single != -1) // only one PAT entry .. and not valid pmtpid found
 		{
+			eDebug("use single pat entry!");
 			m_reference.setServiceID(eServiceID(service_id_single));
 			pmtpid = pmtpid_single;
 		}
-		if (pmtpid == -1)
-			serviceEvent(eventNoPATEntry);
-		else
+		if (pmtpid == -1) {
+			eDebug("no PAT entry found.. start delay");
+			m_no_pat_entry_delay->start(1000, true);
+		}
+		else {
+			eDebug("use pmtpid %04x for service_id %04x", pmtpid, m_reference.getServiceID().get());
+			m_no_pat_entry_delay->stop();
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
+		}
 	} else
 		serviceEvent(eventNoPAT);
 }
@@ -717,8 +732,8 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 {
 	RESULT res=0;
 	m_reference = ref;
-	
 	m_use_decode_demux = use_decode_demux;
+	m_no_pat_entry_delay->stop();
 
 		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
