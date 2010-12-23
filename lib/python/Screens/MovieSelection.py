@@ -435,12 +435,30 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# Returns None or (serviceref, info, begin, len)
 		return self["list"].l.getCurrentSelection()
 
+	def playAsDVD(self, path):
+		try:
+			from Plugins.Extensions.DVDPlayer import plugin as dvdplugin
+			if path.endswith('/'):
+				# strip away VIDEO_TS/ part
+				path = os.path.split(path.rstrip('/'))[0]
+			self.session.open(dvdplugin.DVDPlayer, dvd_filelist=[path])
+			return True
+		except Exception, e:
+			print "[MS] DVD Player not installed:", e
+
 	def itemSelected(self):
 		current = self.getCurrent()
 		if current is not None:
+			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
-				self.gotFilename(current.getPath())
+				if path.endswith("VIDEO_TS/"):
+					if self.playAsDVD(path):
+						return
+				self.gotFilename(path)
 			else:
+				if os.path.splitext(path)[1] in ('.ISO', '.iso'):
+					if self.playAsDVD(path):
+						return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
