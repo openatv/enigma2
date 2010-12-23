@@ -29,7 +29,7 @@ class FileBrowser(Screen):
 		self.skinName = ["FileBrowser_DVDPlayer", "FileBrowser" ]
 
 		self.dvd_filelist = dvd_filelist
-		if len(dvd_filelist):	
+		if len(dvd_filelist):
 			self["filelist"] = MenuList(self.dvd_filelist)
 		else:
 			global lastpath
@@ -38,7 +38,7 @@ class FileBrowser(Screen):
 			else:
 				currDir = "/media/dvd/"
 			if not pathExists(currDir):
-				currDir = "/"
+				currDir = "/media/"
 
 			self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(iso)", useServiceRef = True)
 			self["filelist"] = self.filelist
