@@ -547,7 +547,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		eServiceReference ref = *m_cursor;
 		bool isMarker = ref.flags & eServiceReference::isMarker;
 		bool isPlayable = !(ref.flags & eServiceReference::isDirectory || isMarker);
-		bool paintProgress = false;
+#define PB_BorderWidth 2
+#define PB_Height 6
+		int paintProgress = 0; /* if non zero draw a progress this size and shorten event string width with it */
 		ePtr<eServiceEvent> evt;
 
 		bool serviceAvail = true;
@@ -583,8 +585,9 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					if (m_cursor->flags & eServiceReference::isMarker && !(m_cursor->flags & eServiceReference::isNumberedMarker))
 						continue;
+
 					char bla[10];
-				/* how we can do this better? :) */
+					/* how we can do this better? :) */
 					int markers_before=0;
 					{
 						list::iterator tmp=m_cursor;
@@ -623,9 +626,12 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							else
 								painter.setForegroundColor(gRGB(0xe7b53f));
 						}
+						if (paintProgress)
+					    		area.setWidth(area.width() - paintProgress - 2*PB_BorderWidth - 2 ); /* create space for the progress bar */
 					}
 					else
 						continue;
+
 					break;
 				}
 				}
@@ -637,16 +643,13 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				para->setFont(m_element_font[e]);
 				para->renderString(text.c_str());
 
-#define PB_BorderWidth 2
-#define PB_Width 50
-#define PB_Height 6
 				if (e == celServiceName)
 				{
 					eRect bbox = para->getBoundBox();
-					int name_width = bbox.width() + 8;
-					m_element_position[celServiceInfo].setLeft(area.left()+name_width+xoffs);
+					int new_left = area.left() + bbox.width() + 8 + xoffs;
+					m_element_position[celServiceInfo].setLeft(new_left);
 					m_element_position[celServiceInfo].setTop(area.top());
-					m_element_position[celServiceInfo].setWidth(area.width()-(name_width+xoffs));
+					m_element_position[celServiceInfo].setWidth(m_itemsize.width() - new_left);
 					m_element_position[celServiceInfo].setHeight(area.height());
 				}
 
@@ -665,32 +668,6 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				}
 
 				painter.renderPara(para, offset+ePoint(xoffs, yoffs));
-				if (e == celServiceInfo)
-				{
-					// show a event progressbar for this service at the right end the screen
-					ePtr<eServiceEvent> evt;
-					if ( isPlayable && service_info && !service_info->getEvent(*m_cursor, evt) )
-					{
-						time_t now = time(0);
-						int evt_done = PB_Width * (now - evt->getBeginTime()) / evt->getDuration();
-						int pb_xpos = offset.x() + m_itemsize.width() - PB_Width - 2*PB_BorderWidth;
-						int pb_ypos = offset.y() + (m_itemsize.height() - PB_Height - 2*PB_BorderWidth) / 2;
-
-						// the progress data...
-						painter.fill(eRect(pb_xpos + PB_BorderWidth, pb_ypos + PB_BorderWidth, evt_done,          PB_Height));
-						// the progressbar border
-						if (!selected && m_color_set[eventborderForeground])
-							painter.setForegroundColor(m_color[eventborderForeground]);
-						else if (selected && m_color_set[eventborderForegroundSelected])
-							painter.setForegroundColor(m_color[eventborderForegroundSelected]);
-						else
-							painter.setForegroundColor(gRGB(0xdfdfdf));
-						painter.fill(eRect(pb_xpos, pb_ypos,                              PB_Width + 2 * PB_BorderWidth,  PB_BorderWidth));
-						painter.fill(eRect(pb_xpos, pb_ypos + PB_BorderWidth + PB_Height, PB_Width + 2 * PB_BorderWidth,  PB_BorderWidth));
-						painter.fill(eRect(pb_xpos,                             pb_ypos + PB_BorderWidth, PB_BorderWidth,  PB_Height));
-						painter.fill(eRect(pb_xpos + PB_BorderWidth + PB_Width, pb_ypos + PB_BorderWidth, PB_BorderWidth,  PB_Height));
-					}
-				}
 			}
 			else if (e == celServiceTypePixmap || e == celFolderPixmap || e == celMarkerPixmap)
 			{
@@ -743,17 +720,62 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 			else if (e == celServiceEventProgressbar)
 			{
 				eRect area = m_element_position[celServiceEventProgressbar];
-				if (area.width() > 0 && (isPlayable || isMarker))
+				if (area.width() > 0 && isPlayable)
 				{
 					// we schedule it to paint it as last element.. so we dont need to reset fore/background color
-					paintProgress = isPlayable;
-					xoffset = area.width() + 10;
+					paintProgress = area.width();
+					// nopli xoffset = area.width() + 10;
 				}
 			}
 		}
 		if (selected && (!local_style || !local_style->m_selection))
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
 		if (paintProgress && evt)
+		{
+			// show a event progressbar for this service at the right end the screen
+			gRGB ProgressbarBorderColor = 0xdfdfdf;
+			time_t now = time(0);
+			int evt_done = paintProgress * (now - evt->getBeginTime()) / evt->getDuration();
+			int pb_xpos = offset.x() + m_itemsize.width() - paintProgress - 2*PB_BorderWidth;
+			int pb_ypos = offset.y() + (m_itemsize.height() - PB_Height - 2*PB_BorderWidth) / 2;
+
+			// the progress data...
+			eRect tmp = eRect(pb_xpos + PB_BorderWidth,   pb_ypos + PB_BorderWidth,   evt_done,   PB_Height);
+			ePtr<gPixmap> &pixmap = m_pixmaps[picServiceEventProgressbar];
+			if (pixmap) {
+				painter.clip(tmp);
+				painter.blit(pixmap, ePoint(pb_xpos + PB_BorderWidth, pb_ypos + PB_BorderWidth), tmp, gPainter::BT_ALPHATEST);
+				painter.clippop();
+			}
+			else {
+				if (!selected && m_color_set[serviceEventProgressbarColor])
+					painter.setForegroundColor(m_color[serviceEventProgressbarColor]);
+				else if (selected && m_color_set[serviceEventProgressbarColorSelected])
+					painter.setForegroundColor(m_color[serviceEventProgressbarColorSelected]);
+				painter.fill(tmp);
+			}
+
+			// the progressbar border
+			if (!selected)  {
+				if (m_color_set[serviceEventProgressbarBorderColor])
+					ProgressbarBorderColor = m_color[serviceEventProgressbarBorderColor];
+				else if (m_color_set[eventborderForeground])
+					ProgressbarBorderColor = m_color[eventborderForeground];
+			}
+			else { /* !selected */
+				if (m_color_set[serviceEventProgressbarBorderColorSelected])
+					ProgressbarBorderColor = m_color[serviceEventProgressbarBorderColorSelected];
+				else if (m_color_set[eventborderForegroundSelected])
+					ProgressbarBorderColor = m_color[eventborderForegroundSelected];
+			}
+			painter.setForegroundColor(ProgressbarBorderColor);
+
+			painter.fill(eRect(pb_xpos, pb_ypos,                              paintProgress + 2 * PB_BorderWidth,  PB_BorderWidth));
+			painter.fill(eRect(pb_xpos, pb_ypos + PB_BorderWidth + PB_Height, paintProgress + 2 * PB_BorderWidth,  PB_BorderWidth));
+			painter.fill(eRect(pb_xpos, pb_ypos + PB_BorderWidth,             PB_BorderWidth,                      PB_Height));
+			painter.fill(eRect(pb_xpos + PB_BorderWidth + paintProgress, pb_ypos + PB_BorderWidth, PB_BorderWidth, PB_Height));
+		}
+		if (false && paintProgress && evt)  // not in pli
 		{
 			eRect area = m_element_position[celServiceEventProgressbar];
 			if (!selected && m_color_set[serviceEventProgressbarBorderColor])
