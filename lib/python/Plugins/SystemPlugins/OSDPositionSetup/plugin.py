@@ -8,7 +8,7 @@ config.plugins.OSDPositionSetup.dst_width = ConfigInteger(default = 720)
 config.plugins.OSDPositionSetup.dst_top = ConfigInteger(default = 0)
 config.plugins.OSDPositionSetup.dst_height = ConfigInteger(default = 576)
 
-class ScreenPosition(Screen, ConfigListScreen):
+class OSDScreenPosition(Screen, ConfigListScreen):
 	skin = """
 	<screen position="0,0" size="e,e" title="OSD position setup" backgroundColor="blue">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="blue" />
@@ -19,7 +19,7 @@ class ScreenPosition(Screen, ConfigListScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		self.skin = ScreenPosition.skin
+		self.skin = OSDScreenPosition.skin
 		Screen.__init__(self, session)
 
 		from Components.ActionMap import ActionMap
@@ -124,7 +124,7 @@ def setConfiguredPosition():
 	setPosition(int(config.plugins.OSDPositionSetup.dst_left.value), int(config.plugins.OSDPositionSetup.dst_width.value), int(config.plugins.OSDPositionSetup.dst_top.value), int(config.plugins.OSDPositionSetup.dst_height.value))
 
 def main(session, **kwargs):
-	session.open(ScreenPosition)
+	session.open(OSDScreenPosition)
 
 def startup(reason, **kwargs):
 	setConfiguredPosition()
