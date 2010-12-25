@@ -40,30 +40,10 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		left = 0
-		width = 720
-		top = 0
-		height = 576
-
-		try:
-			file = open("/proc/stb/fb/dst_left", "r")
-			line = file.readline()
-			file.close()
-			left = int(line, 16)
-			file = open("/proc/stb/fb/dst_width", "r")
-			line = file.readline()
-			file.close()
-			width = int(line, 16)
-			file = open("/proc/stb/fb/dst_top", "r")
-			line = file.readline()
-			file.close()
-			top = int(line, 16)
-			file = open("/proc/stb/fb/dst_height", "r")
-			line = file.readline()
-			file.close()
-			height = int(line, 16)
-		except:
-			pass
+		left = config.plugins.OSDPositionSetup.dst_left.value
+		width = config.plugins.OSDPositionSetup.dst_width.value
+		top = config.plugins.OSDPositionSetup.dst_top.value
+		height = config.plugins.OSDPositionSetup.dst_height.value
 
 		self.dst_left = ConfigSlider(default = left, increment = 1, limits = (0, 720))
 		self.dst_width = ConfigSlider(default = width, increment = 1, limits = (0, 720))
