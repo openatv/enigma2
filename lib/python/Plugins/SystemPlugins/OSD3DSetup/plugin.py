@@ -5,7 +5,7 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSel
 modelist = {"0": _("Auto"), "1": _("Side by Side"), "2": _("Top and Bottom")}
 
 config.plugins.OSD3DSetup = ConfigSubsection()
-config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist)
+config.plugins.OSD3DSetup.mode = ConfigSelection(choices = modelist, default = "0")
 config.plugins.OSD3DSetup.znorm = ConfigInteger(default = 0)
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
@@ -40,22 +40,8 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session = self.session)
 
-		mode = "0"
-		znorm = 0
-
-		try:
-			file = open("/proc/stb/fb/3dmode", "r")
-			line = file.readline()
-			file.close()
-			mode = line
-			file = open("/proc/stb/fb/znorm", "r")
-			line = file.readline()
-			file.close()
-			znorm = int(line)
-		except:
-			mode = config.plugins.OSD3DSetup.mode.value
-			znorm = config.plugins.OSD3DSetup.znorm.value
-			pass
+		mode = config.plugins.OSD3DSetup.mode.value
+		znorm = config.plugins.OSD3DSetup.znorm.value
 
 		self.mode = ConfigSelection(choices = modelist, default = mode)
 		self.znorm = ConfigSlider(default = znorm + 50, increment = 1, limits = (0, 100))
