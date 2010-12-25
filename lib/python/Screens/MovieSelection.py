@@ -438,7 +438,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def playAsDVD(self, path):
 		try:
 			from Plugins.Extensions.DVDPlayer import plugin as dvdplugin
-			if path.endswith('/'):
+			if path.endswith('VIDEO_TS/'):
 				# strip away VIDEO_TS/ part
 				path = os.path.split(path.rstrip('/'))[0]
 			self.session.open(dvdplugin.DVDPlayer, dvd_filelist=[path])
@@ -451,12 +451,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		if current is not None:
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
-				if path.endswith("VIDEO_TS/"):
+				if path.endswith("VIDEO_TS/") or os.path.exists(os.path.join(path, 'VIDEO_TS.IFO')):
 					if self.playAsDVD(path):
 						return
 				self.gotFilename(path)
 			else:
-				if os.path.splitext(path)[1] in ('.ISO', '.iso'):
+				if os.path.splitext(path)[1] in ('.ISO', '.iso', '.IMG', '.img'):
 					if self.playAsDVD(path):
 						return
 				self.movieSelected()
