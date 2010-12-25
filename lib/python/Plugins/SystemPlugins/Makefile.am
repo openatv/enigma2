@@ -3,7 +3,7 @@ installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 SUBDIRS = SoftwareManager FrontprocessorUpgrade PositionerSetup Satfinder \
 	SkinSelector SatelliteEquipmentControl Videomode VideoTune Hotplug \
 	DefaultServicesScanner NFIFlash DiseqcTester CommonInterfaceAssignment \
-	SoftwareUpdate ConfigurationBackup CableScan FastScan \
+	SoftwareUpdate ConfigurationBackup CableScan FastScan OSDPositionSetup \
 	CrashlogAutoSubmit CleanupWizard VideoEnhancement WirelessLan NetworkWizard \
 	TempFanControl
 
