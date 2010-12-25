@@ -205,7 +205,20 @@ def InitUsageConfig():
 		("1540096", "Large 1.5MB"),
 		("1925120", "Huge 2 MB")])
 	config.misc.demux_size.addNotifier(updateDemuxSize, immediate_feedback = False)
-	
+
+	SystemInfo["ZapMode"] = os.path.exists("/proc/stb/video/zapmode")
+	if SystemInfo["ZapMode"]:
+		def setZapmode(el):
+			try:
+				file = open("/proc/stb/video/zapmode", "w")
+				file.write(el.value)
+				file.close()
+			except:
+				pass
+		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
+			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
+		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
+
 	config.subtitles = ConfigSubsection()
 	config.subtitles.ttx_subtitle_colors = ConfigYesNo(default = False)
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
