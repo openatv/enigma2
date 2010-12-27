@@ -585,6 +585,8 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				{
 					if (m_cursor->flags & eServiceReference::isMarker && !(m_cursor->flags & eServiceReference::isNumberedMarker))
 						continue;
+					if (area.width() <= 0)
+						continue; // no point in going on if we won't paint anything
 
 					char bla[10];
 					/* how we can do this better? :) */
