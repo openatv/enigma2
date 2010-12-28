@@ -70,7 +70,7 @@ RESULT eServiceFactoryFS::record(const eServiceReference &ref, ePtr<iRecordableS
 
 RESULT eServiceFactoryFS::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
 {
-	ptr = new eServiceFS(ref.path.c_str(), ref.getName().length() ? ref.getName().c_str() : 0);
+	ptr = new eServiceFS(ref.path.c_str(), ref.getName().empty() ? (const char*)0 : ref.getName().c_str());
 	return 0;
 }
 
@@ -164,6 +164,10 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 	DIR *d=opendir(path.c_str());
 	if (!d)
 		return -errno;
+
+	ePtr<eServiceCenter> sc;
+	eServiceCenter::getPrivInstance(sc);
+
 	while (dirent *e=readdir(d))
 	{
 		if (!(strcmp(e->d_name, ".") && strcmp(e->d_name, "..")))
@@ -179,10 +183,8 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 			continue;
 		
 		if (S_ISDIR(s.st_mode))
-			filename += "/";
-		
-		if (S_ISDIR(s.st_mode))
 		{
+			filename += "/";
 			eServiceReference service(eServiceFactoryFS::id, 
 				eServiceReference::isDirectory|
 				eServiceReference::canDescent|eServiceReference::mustDescent|
@@ -201,8 +203,6 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 
 				if (type == -1)
 				{
-					ePtr<eServiceCenter> sc;
-					eServiceCenter::getPrivInstance(sc);
 					type = sc->getServiceTypeForExtension(extension);
 				}
 			
@@ -368,7 +368,15 @@ int eServiceFS::getServiceTypeForExtension(const char *str)
 
 int eServiceFS::getServiceTypeForExtension(const std::string &str)
 {
-	return getServiceTypeForExtension(str.c_str());
+	for (std::map<int, std::list<std::string> >::iterator sit(m_additional_extensions.begin()); sit != m_additional_extensions.end(); ++sit)
+	{
+		for (std::list<std::string>::iterator eit(sit->second.begin()); eit != sit->second.end(); ++eit)
+		{
+			if (*eit == str)
+				return sit->first;
+		}
+	}
+	return -1;
 }
 
 eAutoInitPtr<eServiceFactoryFS> init_eServiceFactoryFS(eAutoInitNumbers::service+1, "eServiceFactoryFS");

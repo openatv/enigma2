@@ -392,11 +392,11 @@ class MovieList(GUIComponent):
 		# nice list
 		
 		self.list = [ ]
-		self.serviceHandler = eServiceCenter.getInstance()
+		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 		
 		self.root = root
-		reflist = self.serviceHandler.list(root)
+		reflist = serviceHandler.list(root)
 		if reflist is None:
 			print "listing of movies failed"
 			return
@@ -419,7 +419,7 @@ class MovieList(GUIComponent):
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
 				break
-			info = self.serviceHandler.info(serviceref)
+			info = serviceHandler.info(serviceref)
 			if info is None:
 				continue
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)

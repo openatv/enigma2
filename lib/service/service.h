@@ -15,7 +15,7 @@ class eServiceCenter: public iServiceHandler
 {
 	DECLARE_REF(eServiceCenter);
 	std::map<int,ePtr<iServiceHandler> > handler;
-	std::map<int,std::list<std::string> > extensions;
+	std::map<std::string, int> extensions_r;
 	static eServiceCenter *instance;
 #ifdef SWIG
 	eServiceCenter();
