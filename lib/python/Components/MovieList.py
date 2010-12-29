@@ -90,7 +90,7 @@ class MovieList(GUIComponent):
 		self.fontSizesCompact = (20,14)
 		self.fontSizesMinimal = (20,16)
 		self.itemHeights = (75,37,25)
-
+		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
 		
@@ -107,7 +107,6 @@ class MovieList(GUIComponent):
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
 		self.runningTimers = {}
-		self.reloadDelayTimer = None
 		self.updateRecordings()
 	
 	def updateRecordings(self, timer=None):
