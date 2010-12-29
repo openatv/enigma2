@@ -18,6 +18,28 @@ cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 class MovieListData:
 	pass
 
+# iStaticServiceInformation
+class StubInfo:
+	def getName(self, serviceref):
+		return os.path.split(serviceref.getPath())[1]
+	def getLength(self, serviceref):
+		return -1
+	def getEvent(self, serviceref, *args):
+		return None
+	def isPlayable(self):
+		return True
+	def getInfo(self, serviceref, w):
+		if w == iServiceInformation.sTimeCreate:
+			return os.stat(serviceref.getPath()).st_ctime
+		if w == iServiceInformation.sFileSize:
+			return os.stat(serviceref.getPath()).st_size
+		if w == iServiceInformation.sDescription:
+			return serviceref.getPath()
+		return 0
+	def getInfoString(self, serviceref, w):
+		return ''
+justStubInfo = StubInfo()
+
 def moviePlayState(cutsFileName):
 	'''Returns None, 0..4 for percentage'''
 	try:
@@ -420,14 +442,12 @@ class MovieList(GUIComponent):
 				break
 			info = serviceHandler.info(serviceref)
 			if info is None:
-				continue
+				info = justStubInfo 
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
 				self.list.append((serviceref, info, begin, -1))
 				numberOfDirs += 1
 				continue
-		
-		
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 			name = info.getName(serviceref)
