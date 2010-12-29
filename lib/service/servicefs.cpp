@@ -324,7 +324,7 @@ RESULT eServiceFS::getNext(eServiceReference &ptr)
 			return res;
 	}
 	
-	if (!m_list.size())
+	if (m_list.empty())
 	{
 		ptr = eServiceReference();
 		return -ERANGE;
