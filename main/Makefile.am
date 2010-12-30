@@ -1,53 +1,87 @@
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/include \
-	-include Python.h
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
+
+AM_CXXFLAGS = \
+	$(LIBSDL_CFLAGS)
 
 bin_PROGRAMS = enigma2
 
 enigma2_SOURCES = \
-	enigma.cpp bsod.cpp
+	bsod.cpp \
+	bsod.h \
+	enigma.cpp \
+	xmlgenerator.cpp \
+	xmlgenerator.h \
+	version_info.cpp \
+	version_info.h \
+	version.h
 
-CLEANFILES = version.h
+EXTRA_DIST = \
+	enigma-dvbtest.cpp \
+	enigma-gdi.cpp \
+	enigma-gui.cpp \
+	enigma-playlist.cpp \
+	enigma-scan.cpp
 
-bsod.o: version.h
-
-enigma.o: version.h
-
-# when there is no ../CVS/Entries, don't worry.
-../CVS/Entries:
-
-../CVS/Root:
-
-.PHONY: .svn/entries
-
-entries: .svn/entries
-	@if [ ! -f entries ]; then touch entries; fi
-	@if [ -f .svn/entries ] && ! diff -q entries .svn/entries 2>/dev/null; then	\
-		cp --no-preserve=mode .svn/entries entries;				\
-	fi;
-
-version.h: entries
-	> version.h
-	@if [ -d .svn ]; then \
-		echo "#define ENIGMA2_LAST_CHANGE_DATE \"`LANG="en" svn info | grep 'Last Changed Date:' | cut -d' ' -f4`\"" >> version.h; \
-	elif [ -d ../.git ]; then \
-		if [ -f ../.git/last_commit_info ]; then \
-			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`cat ../.git/last_commit_info | grep 'Date:' | cut -d' ' -f4`\"" >> version.h; \
-			echo "#define ENIGMA2_BRANCH \"`cat ../.git/branch`\"" >> version.h; \
-		else \
-			echo "#define ENIGMA2_LAST_CHANGE_DATE \"`LANG="en" git log --max-count=1 --date=short | grep 'Date:' | cut -d' ' -f4`\"" >> version.h; \
-			echo "#define ENIGMA2_BRANCH \"`LANG="en" git branch | grep '* ' | cut -d' ' -f2`\"" >> version.h; \
-		fi; \
-	fi;
+enigma2_LDADD_WHOLE = \
+	$(top_builddir)/lib/actions/libenigma_actions.a \
+	$(top_builddir)/lib/base/libenigma_base.a \
+	$(top_builddir)/lib/components/libenigma_components.a \
+	$(top_builddir)/lib/driver/libenigma_driver.a \
+	$(top_builddir)/lib/mmi/libenigma_mmi.a \
+	$(top_builddir)/lib/dvb/libenigma_dvb.a \
+	$(top_builddir)/lib/dvb_ci/libenigma_dvb_ci.a \
+	$(top_builddir)/lib/gdi/libenigma_gdi.a \
+	$(top_builddir)/lib/gui/libenigma_gui.a \
+	$(top_builddir)/lib/python/libenigma_python.a \
+	$(top_builddir)/lib/nav/libenigma_nav.a \
+	$(top_builddir)/lib/service/libenigma_service.a
 
 enigma2_LDADD = \
-	$(top_builddir)/lib/libenigma.la \
 	@BASE_LIBS@ \
-	@LIBUNGIF_LIBS@ \
+	@LIBGIF_LIBS@ \
+	@LIBJPEG_LIBS@ \
+	@LIBSDL_LIBS@ \
 	@LIBXINE_LIBS@ \
+	@LIBXMLCCWRAP_LIBS@ \
 	@PTHREAD_LIBS@ \
-	@SDL_LIBS@ \
-	@LIBS@ \
-	-ltuxtxt32bpp
+	@PYTHON_LDFLAGS@
 
+enigma2_LDFLAGS = -Wl,--export-dynamic
+
+if HAVE_GIT_DIR
+GIT_DIR = $(top_srcdir)/.git
+GIT = git --git-dir=$(GIT_DIR)
+
+if HAVE_FAKE_GIT_DIR
+ENIGMA2_DATE = `cat $(GIT_DIR)/last_commit_info | grep 'Date:' | cut -d' ' -f4`
+ENIGMA2_COMMIT_DATE = `cat $(GIT_DIR)/last_commit_info | grep 'CommitDate:' | cut -d' ' -f2`
+ENIGMA2_BRANCH = `cat $(GIT_DIR)/branch`
+else
+ENIGMA2_DATE =
+ENIGMA2_COMMIT_DATE = `$(GIT) log --no-color -n 1 --pretty=format:%cd --date=short`
+ENIGMA2_BRANCH = `$(GIT) branch --no-color 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+ENIGMA2_REV = `$(GIT) describe --abbrev=7 --always --long --tags`
+endif
+
+BUILT_SOURCES = version-intermediate.h
+.INTERMEDIATE: version-intermediate.h
+.PHONY: version-intermediate.h
+version-intermediate.h:
+	$(AM_V_GEN)touch $@
+	if [ -n "$(ENIGMA2_COMMIT_DATE)" ]; then \
+		$(AM_V_at)[ -n "$(ENIGMA2_COMMIT_DATE)" ] && echo "#define ENIGMA2_LAST_CHANGE_DATE \"$(ENIGMA2_COMMIT_DATE)\"" >> $@; \
+	else \
+		$(AM_V_at)[ -n "$(ENIGMA2_DATE)" ] && echo "#define ENIGMA2_LAST_CHANGE_DATE \"$(ENIGMA2_DATE)\"" >> $@; \
+	fi;
+	$(AM_V_at)[ -n "$(ENIGMA2_BRANCH)" ] && echo "#define ENIGMA2_BRANCH \"$(ENIGMA2_BRANCH)\"" >> $@
+	-$(AM_V_at)[ -n "$(ENIGMA2_REV)" ] && echo "#define ENIGMA2_REV \"$(ENIGMA2_REV)\"" >> $@
+	$(AM_V_at)([ -f version.h ] && diff -q version.h $@ >/dev/null) || $(INSTALL_HEADER) $@ version.h
+endif
+
+enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
+	$(AM_V_CXXLD)$(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@ $(enigma2_LDFLAGS) $(enigma2_OBJECTS) \
+		-Wl,--whole-archive $(enigma2_LDADD_WHOLE) -Wl,--no-whole-archive $(enigma2_LDADD) $(LIBS)

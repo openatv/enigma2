@@ -3,6 +3,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/frontend.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <xmlccwrap/xmlccwrap.h>
@@ -73,7 +74,7 @@ RESULT eBouquet::moveService(const eServiceReference &ref, unsigned int pos)
 
 RESULT eBouquet::flushChanges()
 {
-	FILE *f=fopen((CONFIGDIR"/enigma2/"+m_filename).c_str(), "w");
+	FILE *f=fopen(eEnv::resolve("${sysconfdir}/enigma2/" + m_filename).c_str(), "w");
 	if (!f)
 		return -1;
 	if ( fprintf(f, "#NAME %s\r\n", m_bouquet_name.c_str()) < 0 )
@@ -280,7 +281,7 @@ DEFINE_REF(eDVBDB);
 
 void eDVBDB::reloadServicelist()
 {
-	loadServicelist(CONFIGDIR"/enigma2/lamedb");
+	loadServicelist(eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
 }
 
 void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
@@ -324,14 +325,14 @@ void eDVBDB::loadServicelist(const char *file)
 {
 	eDebug("---- opening lame channel db");
 	FILE *f=fopen(file, "rt");
-	if (!f && strcmp(file, CONFIGDIR"/enigma2/lamedb") == 0)
+	if (!f && strcmp(file, eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str()) == 0)
 	{
 		struct stat s;
 		if ( !stat("lamedb", &s) )
 		{
-			if ( !stat(CONFIGDIR"/enigma2", &s) )
+			if ( !stat(eEnv::resolve("${sysconfdir}/enigma2").c_str(), &s) )
 			{
-				rename("lamedb", CONFIGDIR"/enigma2/lamedb" );
+				rename("lamedb", eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
 				reloadServicelist();
 			}
 		}
@@ -594,7 +595,7 @@ void eDVBDB::saveServicelist(const char *file)
 
 void eDVBDB::saveServicelist()
 {
-	saveServicelist(CONFIGDIR"/enigma2/lamedb");
+	saveServicelist(eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
 }
 
 void eDVBDB::loadBouquet(const char *path)
@@ -618,7 +619,7 @@ void eDVBDB::loadBouquet(const char *path)
 	std::list<eServiceReference> &list = bouquet.m_services;
 	list.clear();
 
-	std::string p = CONFIGDIR"/enigma2/";
+	std::string p = eEnv::resolve("${sysconfdir}/enigma2/");
 	p+=path;
 	eDebug("loading bouquet... %s", p.c_str());
 	FILE *fp=fopen(p.c_str(), "rt");

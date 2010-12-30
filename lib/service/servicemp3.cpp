@@ -1,5 +1,3 @@
-#ifdef HAVE_GSTREAMER
-
 	/* note: this requires gstreamer 0.10.x and a big list of plugins. */
 	/* it's currently hardcoded to use a big-endian alsasink as sink. */
 #include <lib/base/ebase.h>
@@ -1696,6 +1694,3 @@ void eServiceMP3::setPCMDelay(int delay)
 	}
 }
 
-#else
-#warning gstreamer not available, not building media player
-#endif

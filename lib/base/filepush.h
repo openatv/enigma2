@@ -18,13 +18,6 @@ public:
 class eFilePushThread: public eThread, public Object
 {
 	int prio_class, prio;
-	std::string streamUrl;
-	int streamFd;
-	int connectStream(std::string &url);
-	ssize_t socketRead(int fd, void *buf, size_t count);
-	ssize_t timedSocketRead(int fd, void *data, size_t size, int msinitial, int msinterbyte = 200);
-	ssize_t socketWrite(int fd, const void *buf, size_t count);
-
 public:
 	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024);
 	~eFilePushThread();
@@ -32,10 +25,10 @@ public:
 	void stop();
 	void start(int sourcefd, int destfd);
 	int start(const char *filename, int destfd);
-	int startUrl(const char *url, int destfd);
-	
+
+	void start(ePtr<iTsSource> &source, int destfd);
+
 	void pause();
-	void seek(int whence, off_t where);
 	void resume();
 	
 		/* flushes the internal readbuffer */ 
@@ -67,10 +60,12 @@ private:
 	int m_blocksize;
 	size_t m_buffersize;
 	unsigned char* m_buffer;
+	off_t m_current_position;
 
-	eRawFile m_raw_source;
+	ePtr<iTsSource> m_source;
+
 	eFixedMessagePump<int> m_messagepump;
-	
+
 	void recvEvent(const int &evt);
 };
 
