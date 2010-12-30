@@ -1,21 +1,15 @@
-CPPFLAGS += \
+AM_CPPFLAGS = \
 	-I$(top_srcdir) \
-	-include Python.h
+	-I$(top_srcdir)/include \
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
 
-OBJS = servicedvd.cpp
+plugindir = $(pkglibdir)/python/Plugins/Extensions/DVDPlayer
 
--include $(OBJS:.cpp=.d)
+plugin_LTLIBRARIES = servicedvd.la
 
-installdir = $(pkglibdir)/python/Plugins/Extensions/DVDPlayer
+servicedvd_la_SOURCES = \
+	servicedvd.cpp \
+	servicedvd.h
 
-install_PYTHON = \
-	servicedvd.so
-
-servicedvd.so:
-	$(CXX) $(CPPFLAGS) -MD $(CXXFLAGS) $(DEFS) -I$(top_srcdir)/include \
-	-Wall -W $(OBJS) -shared -fPIC -Wl,-soname,servicedvd.so -o servicedvd.so \
-	$(LDFLAGS) -ldreamdvd
-
-all: servicedvd.so
-
-CLEANFILES = servicedvd.so servicedvd.d
+servicedvd_la_LDFLAGS = -avoid-version -module

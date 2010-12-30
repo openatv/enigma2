@@ -10,7 +10,7 @@ from Components.ActionMap import NumberActionMap
 from Components.MenuList import MenuList
 from Components.ConfigList import ConfigList
 from Components.Sources.List import List
-from enigma import eTimer
+from enigma import eTimer, eEnv
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
@@ -178,7 +178,7 @@ class Wizard(Screen):
 		parser.setContentHandler(wizardHandler)
 		for xmlfile in self.xmlfile:
 			if xmlfile[0] != '/':
-				parser.parse('/usr/share/enigma2/' + xmlfile)
+				parser.parse(eEnv.resolve('${datadir}/enigma2/') + xmlfile)
 			else:
 				parser.parse(xmlfile)
 

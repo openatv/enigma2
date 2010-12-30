@@ -40,6 +40,8 @@ public:
 	static RESULT getPrivInstance(ePtr<eServiceCenter> &ptr) { ptr = instance; return 0; }
 	RESULT addServiceFactory(int id, iServiceHandler *hnd, std::list<std::string> &extensions);
 	RESULT removeServiceFactory(int id);
+	RESULT addFactoryExtension(int id, const char *extension);
+	RESULT removeFactoryExtension(int id, const char *extension);
 #endif
 	static SWIG_VOID(RESULT) getInstance(ePtr<iServiceHandler> &SWIG_NAMED_OUTPUT(ptr)) { ptr = instance; return 0; }
 };

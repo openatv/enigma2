@@ -12,12 +12,13 @@ from Plugins.Plugin import PluginDescriptor
 from Components.config import config
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path, walk
+from enigma import eEnv
 
 class SkinSelector(Screen):
 	# for i18n:
 	# _("Choose your Skin")
 	skinlist = []
-	root = "/usr/share/enigma2/"
+	root = eEnv.resolve("${datadir}/enigma2/")
 
 	def __init__(self, session, args = None):
 

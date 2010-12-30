@@ -11,7 +11,8 @@ from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
 from xml.etree.cElementTree import parse as ci_parse
-from enigma import eDVBCI_UI, eDVBCIInterfaces
+from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
+from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv
 
 from os import system, path as os_path
 
@@ -114,7 +115,7 @@ class CIconfigMenu(Screen):
 
 		Screen.__init__(self, session)
 		self.ci_slot=ci_slot
-		self.filename="/etc/enigma2/ci"+str(self.ci_slot)+".xml"
+		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
 
 		self["key_red"] = StaticText(_("Delete"))
 		self["key_green"] = StaticText(_("add Service"))
@@ -566,7 +567,7 @@ def activate_all(session):
 			return Len > 0 and definitions[Len-1].text or default	
 
 		for ci in range(NUM_CI):
-			filename="/etc/enigma2/ci"+str(ci)+".xml"
+			filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(ci) + ".xml"
 
 			if not os_path.exists(filename):
 				print "[CI_Activate_Config_CI%d] no config file found" %ci

@@ -1,6 +1,7 @@
 from Components.Console import Console
 from os import listdir as os_listdir, path as os_path
 from re import compile as re_compile
+from enigma import eEnv
 
 class Keyboard:
 	def __init__(self):
@@ -8,9 +9,9 @@ class Keyboard:
 		self.readKeyboardMapFiles()
 
 	def readKeyboardMapFiles(self):
-		for keymapfile in os_listdir('/usr/share/keymaps/'):
+		for keymapfile in os_listdir(eEnv.resolve('${datadir}/keymaps/')):
 			if (keymapfile.endswith(".info")):
-				f = open('/usr/share/keymaps/' + keymapfile)
+				f = open(eEnv.resolve('${datadir}/keymaps/') + keymapfile)
 				mapfile = None
 				mapname = None
 				for line in f:
@@ -32,7 +33,7 @@ class Keyboard:
 		try:
 			keymap = self.keyboardmaps[index]
 			print "Activating keymap:",keymap[1]
-			keymappath = '/usr/share/keymaps/' + keymap[0]
+			keymappath = eEnv.resolve('${datadir}/keymaps/') + keymap[0]
 			if os_path.exists(keymappath):
 				Console().ePopen(("loadkmap < " + str(keymappath)))
 		except:

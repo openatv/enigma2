@@ -3,17 +3,12 @@
 
 #include "fb.h"
 #include "gpixmap.h"
-#include "grc.h"
+#include "gmaindc.h"
 
-class gFBDC;
-
-SWIG_IGNORE(gFBDC);
-class gFBDC: public gDC
+class gFBDC: public gMainDC
 {
-#ifndef SWIG
 	fbClass *fb;
-	static gFBDC *instance;
-	void exec(gOpcode *opcode);
+	void exec(const gOpcode *opcode);
 	unsigned char ramp[256], rampalpha[256]; // RGB ramp 0..255
 	int brightness, gamma, alpha;
 	void calcRamp();
@@ -21,13 +16,8 @@ class gFBDC: public gDC
 	gSurface surface, surface_back;
 	int m_enable_double_buffering;
 	int m_xres, m_yres;
-#else
-	gFBDC();
-	virtual ~gFBDC();
-#endif
 public:
 	void setResolution(int xres, int yres);
-#ifndef SWIG
 	void reloadSettings();
 	void setAlpha(int alpha);
 	void setBrightness(int brightness);
@@ -43,17 +33,7 @@ public:
 
 	gFBDC();
 	virtual ~gFBDC();
-	static int getInstance(ePtr<gFBDC> &ptr) { if (!instance) return -1; ptr = instance; return 0; }
 	int islocked() { return fb->islocked(); }
-#endif
 };
-SWIG_TEMPLATE_TYPEDEF(ePtr<gFBDC>, gFBDC);
-SWIG_EXTEND(ePtr<gFBDC>,
-	static ePtr<gFBDC> getInstance()
-	{
-		extern ePtr<gFBDC> NewgFBDCPtr(void);
-		return NewgFBDCPtr();
-	}
-);
 
 #endif
