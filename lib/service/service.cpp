@@ -216,22 +216,18 @@ RESULT eServiceCenter::removeServiceFactory(int id)
 
 RESULT eServiceCenter::addFactoryExtension(int id, const char *extension)
 {
-	std::map<int, std::list<std::string> >::iterator it = extensions.find(id);
-	if (it == extensions.end())
-		return -1;
-	it->second.push_back(extension);
+	extensions_r[extension] = id;
 	return 0;
 }
 
 RESULT eServiceCenter::removeFactoryExtension(int id, const char *extension)
 {
-	std::map<int, std::list<std::string> >::iterator it = extensions.find(id);
-	if (it == extensions.end())
-		return -1;
-	it->second.remove(extension);
+	std::map<std::string,int>::iterator what = extensions_r.find(extension);
+	if (what == extensions_r.end())
+		return -1; // not found
+	extensions_r.erase(what);
 	return 0;
 }
-
 
 int eServiceCenter::getServiceTypeForExtension(const char *str)
 {

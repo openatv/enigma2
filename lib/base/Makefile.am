@@ -18,7 +18,6 @@ libenigma_base_a_SOURCES = \
 	estring.cpp \
 	etpm.cpp \
 	filepush.cpp \
-	freesatv2.cpp \
 	init.cpp \
 	ioprio.cpp \
 	message.cpp \
