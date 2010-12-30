@@ -1,6 +1,7 @@
 from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
+import os
 
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
@@ -887,16 +888,20 @@ class DVDJob(Job):
 		if self.menupreview:
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 		else:
+			hasProjectX = os.path.exists('/usr/bin/projectx')
+			print "[DVDJob] hasProjectX=", hasProjectX
 			for self.i in range(nr_titles):
 				self.title = self.project.titles[self.i]
 				link_name =  self.workspace + "/source_title_%d.ts" % (self.i+1)
 				title_filename = self.workspace + "/dvd_title_%d.mpg" % (self.i+1)
 				LinkTS(self, self.title.inputfile, link_name)
-				ReplexTask(self, outputfile=title_filename, inputfile=link_name).end = self.estimateddvdsize
-				#demux = DemuxTask(self, link_name)
-				#self.mplextask = MplexTask(self, outputfile=title_filename, demux_task=demux)
-				#self.mplextask.end = self.estimateddvdsize
-				#RemoveESFiles(self, demux)
+				if not hasProjectX:
+					ReplexTask(self, outputfile=title_filename, inputfile=link_name).end = self.estimateddvdsize
+				else:
+					demux = DemuxTask(self, link_name)
+					self.mplextask = MplexTask(self, outputfile=title_filename, demux_task=demux)
+					self.mplextask.end = self.estimateddvdsize
+					RemoveESFiles(self, demux)
 			WaitForResidentTasks(self)
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 			output = self.project.settings.output.getValue()

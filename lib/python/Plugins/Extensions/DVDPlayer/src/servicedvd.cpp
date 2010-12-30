@@ -32,6 +32,7 @@ eServiceFactoryDVD::eServiceFactoryDVD()
 	{
 		std::list<std::string> extensions;
 		extensions.push_back("iso");
+		extensions.push_back("img");
 		sc->addServiceFactory(eServiceFactoryDVD::id, this, extensions);
 	}
 }
@@ -480,7 +481,10 @@ RESULT eServiceDVD::getName(std::string &name)
 	if ( m_ddvd_titlestring[0] != '\0' )
 		name = m_ddvd_titlestring;
 	else
-		name = m_ref.path;
+		if ( !m_ref.name.empty() )
+			name = m_ref.name;
+		else
+			name = m_ref.path;
 	return 0;
 }
 

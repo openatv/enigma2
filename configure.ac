@@ -135,6 +135,8 @@ lib/python/Plugins/SystemPlugins/SoftwareUpdate/Makefile
 lib/python/Plugins/SystemPlugins/ConfigurationBackup/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
+lib/python/Plugins/SystemPlugins/OSDPositionSetup/Makefile
+lib/python/Plugins/SystemPlugins/OSD3DSetup/Makefile
 lib/python/Plugins/DemoPlugins/Makefile
 lib/python/Plugins/DemoPlugins/TPMDemo/Makefile
 lib/python/Plugins/DemoPlugins/TestPlugin/Makefile

@@ -190,33 +190,41 @@ RESULT eServiceCenter::offlineOperations(const eServiceReference &ref, ePtr<iSer
 RESULT eServiceCenter::addServiceFactory(int id, iServiceHandler *hnd, std::list<std::string> &extensions)
 {
 	handler.insert(std::pair<int,ePtr<iServiceHandler> >(id, hnd));
-	this->extensions[id]=extensions;
+	for (std::list<std::string>::const_iterator eit(extensions.begin()); eit != extensions.end(); ++eit)
+	{
+		extensions_r[*eit] = id;
+	}
 	return 0;
 }
 
 RESULT eServiceCenter::removeServiceFactory(int id)
 {
+	for (std::map<std::string, int>::iterator sit(extensions_r.begin()); sit != extensions_r.end(); )
+	{
+		if (sit->second == id)
+		{
+			extensions_r.erase(sit++);
+		}
+		else
+		{
+			++sit;
+		}
+	}
 	handler.erase(id);
-	extensions.erase(id);
 	return 0;
 }
 
 int eServiceCenter::getServiceTypeForExtension(const char *str)
 {
-	for (std::map<int, std::list<std::string> >::iterator sit(extensions.begin()); sit != extensions.end(); ++sit)
-	{
-		for (std::list<std::string>::iterator eit(sit->second.begin()); eit != sit->second.end(); ++eit)
-		{
-			if (*eit == str)
-				return sit->first;
-		}
-	}
-	return -1;
+	return getServiceTypeForExtension(std::string(str));
 }
 
 int eServiceCenter::getServiceTypeForExtension(const std::string &str)
 {
-	return getServiceTypeForExtension(str.c_str());
+	std::map<std::string,int>::const_iterator what = extensions_r.find(str);
+	if (what == extensions_r.end())
+		return -1; // not found
+	return what->second;
 }
 
 	/* default handlers */

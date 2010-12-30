@@ -535,6 +535,7 @@ eListboxPythonMultiContent::~eListboxPythonMultiContent()
 {
 	Py_XDECREF(m_buildFunc);
 	Py_XDECREF(m_selectableFunc);
+	Py_XDECREF(m_template);
 }
 
 void eListboxPythonMultiContent::setSelectionClip(eRect &rect, bool update)
@@ -1192,5 +1193,7 @@ void eListboxPythonMultiContent::entryRemoved(int idx)
 
 void eListboxPythonMultiContent::setTemplate(ePyObject tmplate)
 {
+	Py_XDECREF(m_template);
 	m_template = tmplate;
+	Py_XINCREF(m_template);
 }
