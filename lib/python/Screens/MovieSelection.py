@@ -10,7 +10,6 @@ from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
-from Components.UsageConfig import defaultMoviePath
 import Components.Harddisk
 
 from Plugins.Plugin import PluginDescriptor
@@ -42,6 +41,17 @@ config.movielist.last_selected_tags = ConfigSet([], default=[])
 last_selected_dest = []
 
 preferredTagEditor = None
+
+def defaultMoviePath():
+	result = config.usage.default_path.value
+	if not os.path.isdir(result):
+		for mount in Components.Harddisk.getProcMounts():
+			if mount[1].startswith('/media/'):
+				result = mount[1]
+				if not result.endswith('/'):
+					result += '/'
+				break
+	return result
 
 def setPreferredTagEditor(te):
 	global preferredTagEditor
