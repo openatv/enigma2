@@ -1,5 +1,6 @@
 #include <lib/base/eerror.h>
 #include <lib/base/filepush.h>
+#include <lib/dvb/cahandler.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
@@ -109,8 +110,6 @@ eDVBResourceManager::eDVBResourceManager()
 
 	eDebug("found %d adapter, %d frontends(%d sim) and %d demux, boxtype %d",
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
-
-	eDVBCAService::registerChannelCallback(this);
 
 	CONNECT(m_releaseCachedChannelTimer->timeout, eDVBResourceManager::releaseCachedChannel);
 }
