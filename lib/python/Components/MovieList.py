@@ -8,14 +8,37 @@ import struct
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_HDD, SCOPE_SKIN_IMAGE, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
+import NavigationInstance
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
-	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter
+	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter, eTimer
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 class MovieListData:
 	pass
+
+# iStaticServiceInformation
+class StubInfo:
+	def getName(self, serviceref):
+		return os.path.split(serviceref.getPath())[1]
+	def getLength(self, serviceref):
+		return -1
+	def getEvent(self, serviceref, *args):
+		return None
+	def isPlayable(self):
+		return True
+	def getInfo(self, serviceref, w):
+		if w == iServiceInformation.sTimeCreate:
+			return os.stat(serviceref.getPath()).st_ctime
+		if w == iServiceInformation.sFileSize:
+			return os.stat(serviceref.getPath()).st_size
+		if w == iServiceInformation.sDescription:
+			return serviceref.getPath()
+		return 0
+	def getInfoString(self, serviceref, w):
+		return ''
+justStubInfo = StubInfo()
 
 def moviePlayState(cutsFileName):
 	'''Returns None, 0..4 for percentage'''
@@ -89,7 +112,7 @@ class MovieList(GUIComponent):
 		self.fontSizesCompact = (20,14)
 		self.fontSizesMinimal = (20,16)
 		self.itemHeights = (75,37,25)
-
+		self.reloadDelayTimer = None
 		self.l = eListboxPythonMultiContent()
 		self.tags = set()
 		
@@ -105,6 +128,26 @@ class MovieList(GUIComponent):
 		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
+		self.runningTimers = {}
+		self.updateRecordings()
+	
+	def updateRecordings(self, timer=None):
+		if timer is not None:
+			if timer.justplay:
+				return
+		result = {}
+		for timer in NavigationInstance.instance.RecordTimer.timer_list:
+			if timer.isRunning() and not timer.justplay:
+				result[os.path.split(timer.Filename)[1]+'.ts'] = timer
+		if self.runningTimers == result:
+			return 
+		self.runningTimers = result
+		if timer is not None:
+			if self.reloadDelayTimer is not None:
+				self.reloadDelayTimer.stop()
+			self.reloadDelayTimer = eTimer()
+			self.reloadDelayTimer.callback.append(self.reload)
+			self.reloadDelayTimer.start(5000, 1)
 
 	def connectSelChanged(self, fnc):
 		if not fnc in self.onSelectionChanged:
@@ -213,7 +256,10 @@ class MovieList(GUIComponent):
 			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
 			data.txt = info.getName(serviceref) 
 			if config.usage.show_icons_in_movielist.value:
-				data.icon = self.iconMovieNew
+				if os.path.split(pathName)[1] in self.runningTimers:
+					data.icon = self.iconMovieNew
+				else:
+					data.icon = None
 				cutsPathName = pathName + '.cuts'
 				if os.path.exists(cutsPathName):
 					part = moviePlayState(cutsPathName)
@@ -344,6 +390,9 @@ class MovieList(GUIComponent):
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
 	def reload(self, root = None, filter_tags = None):
+		if self.reloadDelayTimer is not None:
+			self.reloadDelayTimer.stop()
+			self.reloadDelayTimer = None
 		if root is not None:
 			self.load(root, filter_tags)
 		else:
@@ -364,11 +413,11 @@ class MovieList(GUIComponent):
 		# nice list
 		
 		self.list = [ ]
-		self.serviceHandler = eServiceCenter.getInstance()
+		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
 		
 		self.root = root
-		reflist = self.serviceHandler.list(root)
+		reflist = serviceHandler.list(root)
 		if reflist is None:
 			print "listing of movies failed"
 			return
@@ -391,16 +440,14 @@ class MovieList(GUIComponent):
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
 				break
-			info = self.serviceHandler.info(serviceref)
+			info = serviceHandler.info(serviceref)
 			if info is None:
-				continue
+				info = justStubInfo 
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
 				self.list.append((serviceref, info, begin, -1))
 				numberOfDirs += 1
 				continue
-		
-		
 			# convert space-seperated list of tags into a set
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 			name = info.getName(serviceref)

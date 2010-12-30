@@ -265,15 +265,18 @@ class MovieSelectionSummary(Screen):
 	def selectionChanged(self):
 		item = self.parent.getCurrentSelection()
 		if item and item[0]:
-			if not item[1]:
+			data = item[3]
+			if (data is not None) and (data != -1):
+				name = data.txt
+			elif not item[1]:
 				# special case, one up
 				name = ".."
 			else:
 				name = item[1].getName(item[0])
-				if (item[0].flags & eServiceReference.mustDescent):
-					if len(name) > 12:
-						name = os.path.split(os.path.normpath(name))[1]
-					name = "> " + name
+			if (item[0].flags & eServiceReference.mustDescent):
+				if len(name) > 12:
+					name = os.path.split(os.path.normpath(name))[1]
+				name = "> " + name
 			self["name"].text = name
 		else:
 			self["name"].text = ""
@@ -364,6 +367,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
 		self.inited = False
+		self.onClose.append(self.__onClose)
+		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
+		
+	def __onClose(self):
+		try:
+			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
+		except Exception, e:
+			print "[ML] failed to unsubscribe:", e
+			pass	
 
 	def createSummary(self):
 		return MovieSelectionSummary
@@ -423,12 +435,30 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		# Returns None or (serviceref, info, begin, len)
 		return self["list"].l.getCurrentSelection()
 
+	def playAsDVD(self, path):
+		try:
+			from Plugins.Extensions.DVDPlayer import plugin as dvdplugin
+			if path.endswith('VIDEO_TS/'):
+				# strip away VIDEO_TS/ part
+				path = os.path.split(path.rstrip('/'))[0]
+			self.session.open(dvdplugin.DVDPlayer, dvd_filelist=[path])
+			return True
+		except Exception, e:
+			print "[MS] DVD Player not installed:", e
+
 	def itemSelected(self):
 		current = self.getCurrent()
 		if current is not None:
+			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
-				self.gotFilename(current.getPath())
+				if path.endswith("VIDEO_TS/") or os.path.exists(os.path.join(path, 'VIDEO_TS.IFO')):
+					if self.playAsDVD(path):
+						return
+				self.gotFilename(path)
 			else:
+				if os.path.splitext(path)[1] in ('.ISO', '.iso', '.IMG', '.img'):
+					if self.playAsDVD(path):
+						return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
@@ -467,12 +497,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				updates = pickle.load(open(path, "rb"))
 			except:
 				# load old settings file and rename it (this code should be removed in a few weeks
-				if os.path.isfile(oldpath):
-					try:
-						updates = pickle.load(open(oldpath, "rb"))
-						os.rename(oldpath, path)
-					except:
-						pass
+				updates = pickle.load(open(oldpath, "rb"))
+				try:
+					os.rename(oldpath, path)
+				except:
+					pass
 			if os.path.isfile(oldpath):
 				try:
 					os.unlink(oldpath)
@@ -762,18 +791,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
-	def stopTimer(self, timer, confirmed):
-		if confirmed:
-			if timer.isRunning():
-				if timer.repeated:
-					print "[ML] Repeating timer?"
-					timer.enable()
-					timer.processRepeated(findRunningEvent = False)
-					self.session.nav.RecordTimer.doActivate(timer)
-				else:
-					timer.afterEvent = RecordTimer.AFTEREVENT.NONE
-					NavigationInstance.instance.RecordTimer.removeEntry(timer)
-				print "[ML] Timer stopped."
+	def stopTimer(self, timer):
+		if timer.isRunning():
+			if timer.repeated:
+				timer.enable()
+				timer.processRepeated(findRunningEvent = False)
+				self.session.nav.RecordTimer.doActivate(timer)
+			else:
+				timer.afterEvent = RecordTimer.AFTEREVENT.NONE
+				NavigationInstance.instance.RecordTimer.removeEntry(timer)
+
+	def onTimerChoice(self, choice):
+		if isinstance(choice, tuple) and choice[1]:
+			choice, timer = choice[1]
+			if not choice:
+				# cancel
+				return
+			if "s" in choice:
+				self.stopTimer(timer)
+			if "d" in choice:
+				self.delete(True)
 
 	def delete(self, *args):
 		if args and (not args[0]):
@@ -792,15 +829,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			st = os.stat(cur_path)
 			name = info and info.getName(current) or _("this recording")
 			are_you_sure = _("Do you really want to delete %s?") % (name)
-			print "[ML] age: %ss" % (time.time() - st.st_mtime)
 			if not args:
 				rec_filename = os.path.split(current.getPath())[1]
 				if rec_filename.endswith(".ts"): rec_filename = rec_filename[:-3]
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and timer.Filename.find(rec_filename)>=0:
-						self.session.openWithCallback(lambda x: self.stopTimer(timer, x), MessageBox, _("Recording in progress.\nStop recording %s?") % name)
+						choices = [
+							(_("Cancel"), None),
+							(_("Stop recording"), ("s", timer)),
+							(_("Stop recording and delete"), ("sd", timer))] 
+						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title=_("Recording in progress") + ":\n%s" % name, list=choices)
 						return
-				if time.time() - st.st_mtime < 10:
+				if time.time() - st.st_mtime < 5:
 					if not args:
 						self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure)
 						return
