@@ -905,7 +905,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 		/* we are sure to have a ..DVB reference as the info() call was forwarded here according to it's ID. */
 		if ((err = db->getService((eServiceReferenceDVB&)ref, service)) != 0)
 		{
-			eDebug("getService failed!");
+//			eDebug("getService failed!");
 			return err;
 		}
 	}
