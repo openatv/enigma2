@@ -258,7 +258,6 @@ public:
 
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
-	RESULT playUrl(const char *url);
 	void stopFile();
 
 	RESULT playSource(ePtr<iTsSource>& source, const char *priv=NULL);
