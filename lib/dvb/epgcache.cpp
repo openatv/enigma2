@@ -258,7 +258,7 @@ void eEPGCache::timeUpdated()
 			{
 				if (it->second->state == -1) {
 					it->second->state=0;
-					messages.send(Message(Message::startChannel, it->second));
+					messages.send(Message(Message::startChannel, it->first));
 				}
 			}
 		} else
