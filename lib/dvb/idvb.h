@@ -604,7 +604,6 @@ public:
 		
 		   ok, it's going to get better. but still...*/
 	virtual RESULT playFile(const char *file) = 0;
-	virtual RESULT playUrl(const char *url) = 0;
 	virtual void stopFile() = 0;
 	
 	/* new interface */

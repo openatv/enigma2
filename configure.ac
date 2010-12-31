@@ -148,6 +148,7 @@ lib/gdi/Makefile
 lib/gui/Makefile
 lib/mmi/Makefile
 lib/nav/Makefile
+lib/network/Makefile
 lib/python/Makefile
 lib/python/Components/Makefile
 lib/python/Components/Converter/Makefile
