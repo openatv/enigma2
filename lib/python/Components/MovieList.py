@@ -424,9 +424,8 @@ class MovieList(GUIComponent):
 		realtags = set()
 		tags = {}
 		rootPath = os.path.normpath(root.getPath());
-		moviePath = os.path.normpath(resolveFilename(SCOPE_HDD))
-		# skip '/' and '/hdd/movie'
-		if len(rootPath) > 1 and (rootPath != moviePath):
+		# skip '/'
+		if len(rootPath) > 1:
 			parent = os.path.split(os.path.normpath(rootPath))[0]
 			if parent and (parent not in defaultInhibitDirs):
 				# enigma wants an extra '/' appended
