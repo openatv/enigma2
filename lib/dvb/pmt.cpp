@@ -1,6 +1,7 @@
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/cahandler.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/metaparser.h>
