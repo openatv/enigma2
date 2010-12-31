@@ -80,6 +80,10 @@ version-intermediate.h:
 	$(AM_V_at)[ -n "$(ENIGMA2_BRANCH)" ] && echo "#define ENIGMA2_BRANCH \"$(ENIGMA2_BRANCH)\"" >> $@
 	-$(AM_V_at)[ -n "$(ENIGMA2_REV)" ] && echo "#define ENIGMA2_REV \"$(ENIGMA2_REV)\"" >> $@
 	$(AM_V_at)([ -f version.h ] && diff -q version.h $@ >/dev/null) || $(INSTALL_HEADER) $@ version.h
+else
+BUILT_SOURCES = version.h
+version.h:
+	$(AM_V_GEN)touch $@
 endif
 
 enigma2$(EXEEXT): $(enigma2_OBJECTS) $(enigma2_DEPENDENCIES) $(enigma2_LDADD_WHOLE)
