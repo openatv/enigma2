@@ -12,6 +12,10 @@
 #define STOP    '\0' 
 #define ESCAPE  '\1' 
 
+#ifndef DATADIR
+#	define DATADIR "/usr/share"
+#endif
+
 #ifndef FREESAT_DATA_DIRECTORY
 #define FREESAT_DATA_DIRECTORY       DATADIR
 #endif

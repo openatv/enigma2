@@ -17,6 +17,7 @@ libenigma_base_a_SOURCES = \
 	encoding.cpp \
 	estring.cpp \
 	etpm.cpp \
+	freesatv2.cpp \
 	filepush.cpp \
 	init.cpp \
 	ioprio.cpp \
@@ -42,6 +43,7 @@ baseinclude_HEADERS = \
 	estring.h \
 	etpm.h \
 	filepush.h \
+	freesatv2.cpp \
 	i18n.h \
 	itssource.h \
 	init.h \
