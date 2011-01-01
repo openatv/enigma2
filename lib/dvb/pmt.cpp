@@ -556,11 +556,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 											{
 												if ( (*it).find(language) != -1 )
 												{
-													autoaudio_level = x;
-													if (audio.type == audioStream::atMPEG)
+													if (audio.type == audioStream::atMPEG && (autoaudio_level > x || autoaudio_mpeg == -1)) 
 														autoaudio_mpeg = program.audioStreams.size();
-													else
-														autoaudio_ac3 = program.audioStreams.size();
+													else if (audio.type != audioStream::atMPEG && (autoaudio_level > x || autoaudio_ac3 == -1)) 															autoaudio_ac3 = program.audioStreams.size();
+													autoaudio_level = x;
 													break;
 												}	
 											}
