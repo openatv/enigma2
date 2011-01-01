@@ -12,4 +12,4 @@ servicedvd_la_SOURCES = \
 	servicedvd.cpp \
 	servicedvd.h
 
-servicedvd_la_LDFLAGS = -avoid-version -module
+servicedvd_la_LDFLAGS = -avoid-version -module -ldreamdvd
