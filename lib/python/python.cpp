@@ -133,7 +133,8 @@ ePython::ePython()
 
 ePython::~ePython()
 {
-	Py_Finalize();
+// This appears to hang, sorry.
+//	Py_Finalize();
 }
 
 int ePython::execFile(const char *file)
