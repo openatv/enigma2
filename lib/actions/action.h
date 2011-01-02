@@ -3,10 +3,6 @@
 
 #include <lib/base/object.h>
 
-		/* avoid warnigs :) */
-#include <features.h>
-#undef _POSIX_C_SOURCE
-#define _POSIX_C_SOURCE 200112L
 #include <lib/python/python.h>
 #include <string>
 #include <map>

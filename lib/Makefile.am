@@ -1,4 +1,1 @@
-SUBDIRS = actions base components dvb dvb_ci gdi service driver nav gui python mmi
-
-#PLi changes:
-SUBDIRS += network
+SUBDIRS = actions base components dvb dvb_ci gdi service driver nav gui python mmi network

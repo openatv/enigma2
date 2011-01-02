@@ -2119,8 +2119,8 @@ RESULT eDVBFrontend::prepare_sat(const eDVBFrontendParametersSatellite &feparm, 
 					return -EINVAL;
 			}
 #if HAVE_DVB_API_VERSION < 5
-			parm_inversion |= (feparm.rolloff << 2); // Hack.. we use bit 2..3 of inversion param for rolloff
-			parm_inversion |= (feparm.pilot << 4); // Hack.. we use bit 4..5 of inversion param for pilot
+			parm_inversion = (fe_spectral_inversion_t)((feparm.rolloff << 2) | parm_inversion); // Hack.. we use bit 2..3 of inversion param for rolloff
+			parm_inversion = (fe_spectral_inversion_t)((feparm.pilot << 4) | parm_inversion); // Hack.. we use bit 4..5 of inversion param for pilot
 			if (feparm.modulation == eDVBFrontendParametersSatellite::Modulation_8PSK) 
 			{
 				parm_u_qpsk_fec_inner = (fe_code_rate_t)((int)parm_u_qpsk_fec_inner+9);

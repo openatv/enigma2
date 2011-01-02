@@ -54,7 +54,6 @@ config.misc.epgcache_filename = ConfigText(default = "/hdd/epg.dat")
 
 def setEPGCachePath(configElement):
 	enigma.eEPGCache.getInstance().setCacheFile(configElement.value)
-config.misc.epgcache_filename.addNotifier(setEPGCachePath)
 
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():
@@ -471,6 +470,8 @@ def runScreenTest():
 			session.openWithCallback(boundFunction(runNextScreen, session, screensToRun[1:]), screen, *args)
 		else:
 			session.open(screen, *args)
+
+	config.misc.epgcache_filename.addNotifier(setEPGCachePath)
 
 	runNextScreen(session, screensToRun)
 

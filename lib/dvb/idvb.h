@@ -15,6 +15,7 @@
 #include <lib/base/object.h>
 #include <lib/base/ebase.h>
 #include <lib/base/elock.h>
+#include <lib/base/itssource.h>
 #include <lib/service/service.h>
 #include <libsig_comp.h>
 #include <connection.h>
@@ -603,8 +604,11 @@ public:
 		
 		   ok, it's going to get better. but still...*/
 	virtual RESULT playFile(const char *file) = 0;
-	virtual RESULT playUrl(const char *url) = 0;
 	virtual void stopFile() = 0;
+	
+	/* new interface */
+	virtual RESULT playSource(ePtr<iTsSource> &source, const char *priv=NULL) = 0;
+	virtual void stopSource() = 0;
 	
 	virtual void setCueSheet(eCueSheet *cuesheet) = 0;
 	

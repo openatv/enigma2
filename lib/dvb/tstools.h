@@ -19,9 +19,12 @@ public:
 	eDVBTSTools();
 	~eDVBTSTools();
 
+	void setSource(ePtr<iTsSource> &source, const char *streaminfo_filename=NULL);
+	void closeSource();
+
 	int openFile(const char *filename, int nostreaminfo = 0);
 	void closeFile();
-	
+
 	void setSyncPID(int pid);
 	void setSearchRange(int maxrange);
 	
@@ -77,8 +80,7 @@ private:
 	int m_pid;
 	int m_maxrange;
 
-	eSingleLock m_file_lock;
-	eRawFile m_file;
+	ePtr<iTsSource> m_source;
 
 	int m_begin_valid, m_end_valid;
 	pts_t m_pts_begin, m_pts_end;

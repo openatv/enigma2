@@ -1,80 +1,83 @@
-#ifdef WITH_SDL
 #include <lib/gdi/sdl.h>
-
+#include <lib/actions/action.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
+#include <lib/driver/input_fake.h>
+#include <lib/driver/rcsdl.h>
 
 #include <SDL.h>
 
-gSDLDC *gSDLDC::m_instance;
-
-gSDLDC::gSDLDC()
+gSDLDC::gSDLDC() : m_pump(eApp, 1)
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
+	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		eWarning("Could not initialize SDL: %s", SDL_GetError());
 		return;
 	}
-	
-	m_screen = SDL_SetVideoMode(720, 576, 32, SDL_HWSURFACE);
-	if (!m_screen)
-	{
-		eWarning("Could not create SDL surface: %s", SDL_GetError());
-		return;
-	}
 
-	m_instance=this;
-	
+	setResolution(720, 576);
+
+	CONNECT(m_pump.recv_msg, gSDLDC::pumpEvent);
+
 	m_surface.type = 0;
-	m_surface.x = m_screen->w;
-	m_surface.y = m_screen->h;
-	m_surface.bpp = m_screen->format->BitsPerPixel;
-	m_surface.bypp = m_screen->format->BytesPerPixel;
-	m_surface.stride = m_screen->pitch;
-	m_surface.data = m_screen->pixels;
-	m_surface.clut.colors=256;
-	m_surface.clut.data=new gRGB[m_surface.clut.colors];
-	
+	m_surface.clut.colors = 256;
+	m_surface.clut.data = new gRGB[m_surface.clut.colors];
+
 	m_pixmap = new gPixmap(&m_surface);
-	
+
 	memset(m_surface.clut.data, 0, sizeof(*m_surface.clut.data)*m_surface.clut.colors);
+
+	run();
 }
 
 gSDLDC::~gSDLDC()
 {
+	pushEvent(EV_QUIT);
+	kill();
 	SDL_Quit();
-	m_instance=0;
 }
 
-void gSDLDC::setPalette()
+void gSDLDC::keyEvent(const SDL_Event &event)
 {
-	if (!m_surface.clut.data)
-		return;
-	
-/*	for (int i=0; i<256; ++i)
-	{
-		fb->CMAP()->red[i]=ramp[m_surface.clut.data[i].r]<<8;
-		fb->CMAP()->green[i]=ramp[m_surface.clut.data[i].g]<<8;
-		fb->CMAP()->blue[i]=ramp[m_surface.clut.data[i].b]<<8;
-		fb->CMAP()->transp[i]=rampalpha[m_surface.clut.data[i].a]<<8;
-		if (!fb->CMAP()->red[i])
-			fb->CMAP()->red[i]=0x100;
-	}
-	fb->PutCMAP(); */
+	eSDLInputDriver *driver = eSDLInputDriver::getInstance();
+
+	eDebug("SDL Key %s: key=%d", (event.type == SDL_KEYDOWN) ? "Down" : "Up", event.key.keysym.sym);
+
+	if (driver)
+		driver->keyPressed(&event.key);
 }
 
-void gSDLDC::exec(gOpcode *o)
+void gSDLDC::pumpEvent(const SDL_Event &event)
 {
-	switch (o->opcode)
-	{
-	case gOpcode::setPalette:
-	{
-		gDC::exec(o);
-		setPalette();
+	switch (event.type) {
+	case SDL_KEYDOWN:
+	case SDL_KEYUP:
+		keyEvent(event);
+		break;
+	case SDL_QUIT:
+		eDebug("SDL Quit");
+		extern void quitMainloop(int exit_code);
+		quitMainloop(0);
 		break;
 	}
+}
+
+void gSDLDC::pushEvent(enum event code, void *data1, void *data2)
+{
+	SDL_Event event;
+
+	event.type = SDL_USEREVENT;
+	event.user.code = code;
+	event.user.data1 = data1;
+	event.user.data2 = data2;
+
+	SDL_PushEvent(&event);
+}
+
+void gSDLDC::exec(const gOpcode *o)
+{
+	switch (o->opcode) {
 	case gOpcode::flush:
-		SDL_Flip(m_screen);
+		pushEvent(EV_FLIP);
 		eDebug("FLUSH");
 		break;
 	default:
@@ -83,6 +86,68 @@ void gSDLDC::exec(gOpcode *o)
 	}
 }
 
-eAutoInitPtr<gSDLDC> init_gSDLDC(eAutoInitNumbers::graphic-1, "gSDLDC");
+void gSDLDC::setResolution(int xres, int yres)
+{
+	pushEvent(EV_SET_VIDEO_MODE, (void *)xres, (void *)yres);
+}
 
-#endif
+/*
+ * SDL thread below...
+ */
+
+void gSDLDC::evSetVideoMode(unsigned long xres, unsigned long yres)
+{
+	m_screen = SDL_SetVideoMode(xres, yres, 32, SDL_HWSURFACE);
+	if (!m_screen) {
+		eFatal("Could not create SDL surface: %s", SDL_GetError());
+		return;
+	}
+
+	m_surface.x = m_screen->w;
+	m_surface.y = m_screen->h;
+	m_surface.bpp = m_screen->format->BitsPerPixel;
+	m_surface.bypp = m_screen->format->BytesPerPixel;
+	m_surface.stride = m_screen->pitch;
+	m_surface.data = m_screen->pixels;
+
+	SDL_EnableUNICODE(1);
+}
+
+void gSDLDC::evFlip()
+{
+	SDL_Flip(m_screen);
+}
+
+void gSDLDC::thread()
+{
+	hasStarted();
+
+	bool stop = false;
+	while (!stop) {
+		SDL_Event event;
+		if (SDL_WaitEvent(&event)) {
+			switch (event.type) {
+			case SDL_KEYDOWN:
+			case SDL_KEYUP:
+			case SDL_QUIT:
+				m_pump.send(event);
+				break;
+			case SDL_USEREVENT:
+				switch (event.user.code) {
+				case EV_SET_VIDEO_MODE:
+					evSetVideoMode((unsigned long)event.user.data1, (unsigned long)event.user.data2);
+					break;
+				case EV_FLIP:
+					evFlip();
+					break;
+				case EV_QUIT:
+					stop = true;
+					break;
+				}
+				break;
+			}
+		}
+	}
+}
+
+eAutoInitPtr<gSDLDC> init_gSDLDC(eAutoInitNumbers::graphic-1, "gSDLDC");

@@ -10,6 +10,7 @@ class eRCConsoleDriver: public eRCDriver
 protected:
 	int handle;
 	ePtr<eSocketNotifier> sn;
+	bool m_escape;
 	void keyPressed(int);
 public:
 	eRCConsoleDriver(const char *filename);

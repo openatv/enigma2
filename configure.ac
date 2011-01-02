@@ -1,42 +1,63 @@
-AC_INIT(enigma2,2.4)
-AM_INIT_AUTOMAKE(enigma2,2.4)
+AC_INIT([enigma2],[2.8.0],[enigma2-devel@lists.elitedvb.net])
+AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
+AC_CONFIG_HEADERS([enigma2_config.h])
 
-TUXBOX_APPS
-TUXBOX_APPS_DIRECTORY
-TUXBOX_APPS_PKGCONFIG
+# Silent rules are available since 1.11, but older versions
+# are still in use. So don't use them unconditionally.
+m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+
+AC_USE_SYSTEM_EXTENSIONS
+AC_SYS_LARGEFILE
 
 AC_PROG_CC
 AC_PROG_CXX
-AC_PROG_RANLIB
+m4_ifdef([LT_INIT], [LT_INIT], [AC_PROG_LIBTOOL])
+AC_CONFIG_MACRO_DIR([m4])
+
+AC_CHECK_HEADERS([dbox/fp.h dbox/lcd-ks0713.h])
+
+AC_PATH_PROG(MSGFMT,[msgfmt])
+AC_PATH_PROG(MSGINIT,[msginit])
+AC_PATH_PROG(MSGMERGE,[msgmerge])
+AC_PATH_PROG(MSGUNIQ,[msguniq])
+AC_PATH_PROG(XGETTEXT,[xgettext])
+if test -z "$MSGFMT" -o -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
+	AC_MSG_ERROR([Could not find required gettext tools])
+fi
+
+AM_PATH_PYTHON
+AX_PYTHON_DEVEL
+AX_PKG_SWIG
+AX_SWIG_ENABLE_CXX
+AX_SWIG_PYTHON
+AX_PTHREAD
+
+TUXBOX_APPS_DVB
+
+AM_CONDITIONAL(HAVE_GIT_DIR, test -d "$srcdir/.git")
+AM_CONDITIONAL(HAVE_FAKE_GIT_DIR, test -f "$srcdir/.git/last_commit_info")
+
+PKG_CHECK_MODULES(BASE, [freetype2 fribidi gstreamer-0.10 gstreamer-pbutils-0.10 libdvbsi++ libpng libxml-2.0 sigc++-1.2])
+PKG_CHECK_MODULES(LIBDDVD, libdreamdvd, HAVE_LIBDDVD="yes", HAVE_LIBDDVD="no")
+AM_CONDITIONAL(HAVE_LIBDDVD, test "$HAVE_LIBDDVD" = "yes")
+
+AC_CHECK_LIB([dl], [dlopen], [LIBDL_LIBS="-ldl"], [AC_MSG_ERROR([Could not find libdl])])
+AC_SUBST(LIBDL_LIBS)
+AC_CHECK_LIB([jpeg], [jpeg_set_defaults], [LIBJPEG_LIBS="-ljpeg"], [AC_MSG_ERROR([Could not find libjpeg])])
+AC_SUBST(LIBJPEG_LIBS)
+AC_CHECK_LIB([ungif], [DGifOpen], [LIBGIF_LIBS="-lungif"], [AC_CHECK_LIB([gif], [DGifOpen], [LIBGIF_LIBS="-lgif"], [AC_MSG_ERROR([Could not find libgif or libungif])])])
+AC_SUBST(LIBGIF_LIBS)
+
+AC_LANG_PUSH([C++])
+AC_CHECK_LIB([xmlccwrap], [exit], [LIBXMLCCWRAP_LIBS="-lxmlccwrap"], [AC_MSG_ERROR([Could not find libxmlccwrap])])
+AC_SUBST(LIBXMLCCWRAP_LIBS)
+AC_LANG_POP
 
 AC_ARG_WITH(boxtype,
 	[  --with-boxtype=NAME box type [[none,dm7025,dm800...]]],
 	[BOXTYPE="$withval"],[BOXTYPE="dm800"])
-
 AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
-
-if test x"$BOXTYPE" == "xdm8000" ; then
-	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
-fi
-
-AC_ARG_WITH(libsdl,
-	AC_HELP_STRING([--with-libsdl], [use sdl, yes or no]),
-	[[withsdl=$withval]],
-	[[withsdl=yes]]
-)
-
-AC_ARG_WITH(alsa,
-	AC_HELP_STRING([--with-alsa=mixername], [use alsa 'mixername' for volume control, e.g. Master]),
-	[[withalsa=$withval]],
-	[[withalsa=no]]
-)
-
-if test x"$withalsa" != xno ; then
-	_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(ALSA, alsa, HAVE_ALSA)
-	LDFLAGS="$LDFLAGS $ALSA_LIBS"
-	AC_DEFINE_UNQUOTED(ALSA_VOLUME_MIXER, "$withval",[Defines which alsa mixer to use for volume control])
-fi
 
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
@@ -58,86 +79,47 @@ if test x"$withcolorlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
 
-AC_CHECK_HEADER(dreamdvd/ddvdlib.h,have_ddvdlib="yes",have_ddvdlib="no")
-if test x"${have_ddvdlib}" = xyes ; then
-	AC_DEFINE(HAVE_DDVDLIB, 1,[Define if ddvdlib is available])
-else
-	AC_MSG_NOTICE([ddvdlib not found... dont build dvd plugin])
+AC_ARG_WITH(libsdl,
+	AS_HELP_STRING([--with-libsdl],[use libsdl, yes or no]),
+	[with_libsdl=$withval],[with_libsdl=no])
+if test "$with_libsdl" = "yes"; then
+	PKG_CHECK_MODULES(LIBSDL, sdl)
 fi
-AM_CONDITIONAL(HAVE_DDVDLIB, test "$have_ddvdlib" = "yes")
+AM_CONDITIONAL(HAVE_LIBSDL, test "$with_libsdl" = "yes")
 
-AM_PATH_PYTHON()
-AC_PYTHON_DEVEL
-#AM_PATH_XINE(1.1.0,, AC_MSG_ERROR([*** Please install xine-lib (devel) first ***]))
-
-TUXBOX_APPS_DVB
-
-_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(FREETYPE, freetype2, HAVE_FREETYPE2)
-if test "$HAVE_FREETYPE2" = "no" ; then
-	TUXBOX_APPS_LIB_CONFIG(FREETYPE, freetype-config)
+AC_ARG_WITH(libxine,
+	AS_HELP_STRING([--with-libxine],[use libxine, yes or no]),
+	[with_libxine=$withval],[with_libxine=no])
+if test "$with_libxine" = "yes"; then
+	PKG_CHECK_MODULES(LIBXINE, libxine)
+	AC_DEFINE([WITH_XINE],[1],[Define to 1 if you have libxine])
 fi
-TUXBOX_APPS_LIB_PKGCONFIG(FRIBIDI,fribidi)
-TUXBOX_APPS_LIB_PKGCONFIG(ID3TAG,id3tag)
-TUXBOX_APPS_LIB_PKGCONFIG(MAD,mad)
-#TUXBOX_APPS_LIB_PKGCONFIG(PLUGINS,tuxbox-plugins)
-TUXBOX_APPS_LIB_PKGCONFIG(PNG,libpng)
-TUXBOX_APPS_LIB_PKGCONFIG(SIGC,sigc++-1.2)
-TUXBOX_APPS_LIB_PKGCONFIG(DVBSI,libdvbsi++)
-_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(GSTREAMER,gstreamer,HAVE_GSTREAMER)
-_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(GSTREAMERPBUTILS,gstreamer-pbutils,HAVE_GSTSTREAMERPBUTILS)
-_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(LIBXINE,libxine,HAVE_LIBXINE)
-AC_CHECK_LIB(jpeg, jpeg_set_defaults, HAVE_JPEG="yes", HAVE_JPEG="no")
-JPEG_LIBS="-ljpeg"
-AC_SUBST(JPEG_LIBS)
+AM_CONDITIONAL(HAVE_LIBXINE, test "$with_libxine" = "yes")
 
-AC_SUBST(LIBUNGIF_LIBS,"")
-AC_CHECK_HEADERS(gif_lib.h,
-	AC_CHECK_LIB(ungif,DGifOpen,
-	[AC_DEFINE(HAVE_LIBUNGIF,1,[Define if you have libgif/libungif including devel headers])
-		LIBUNGIF_LIBS="-lungif"],
-		[AC_CHECK_LIB(gif,DGifOpen,
-			[AC_DEFINE(HAVE_LIUNBGIF,1)
-			LIBUNGIF_LIBS="-lgif"])]))
-
-TUXBOX_APPS_LIB_PKGCONFIG(XML2,libxml-2.0)
-
-# ok, we are in trouble: XMLCCWRAP only defines C++ symbols. So let's just check if linking works,
-# and assume everything will be ok. Then just check for the "exit" symbol, which should be always there.
-AC_LANG_SAVE
-AC_LANG_CPLUSPLUS
-TUXBOX_APPS_LIB_SYMBOL(XMLCCWRAP, xmlccwrap, exit)
-AC_LANG_RESTORE
-
-if test "$withsdl" = "yes" ; then
-	_TUXBOX_APPS_LIB_PKGCONFIG_OPTIONAL(SDL,sdl,WITH_SDL)
-	if test "$WITH_SDL" = "no" ; then
-		TUXBOX_APPS_LIB_CONFIG(SDL,sdl-config)
-		AC_DEFINE_UNQUOTED([WITH_SDL],[$withsdl],[With SDL])
-	fi
+AC_ARG_WITH(debug,
+	AS_HELP_STRING([--without-debug],[disable debugging code]),
+	[with_debug="$withval"],[with_debug="yes"])
+if test "$with_debug" = "yes"; then
+	DEBUG_CFLAGS="-ggdb3"
+	AC_DEFINE([DEBUG],[1],[Define to 1 to enable debugging code])
 fi
-# allow 'if WITH_SDL' conditionals in Makefile.am
-AM_CONDITIONAL(WITH_SDL, test "$WITH_SDL" = "yes")
 
-CPPFLAGS="$CPPFLAGS "'-I$(top_srcdir)'
-CPPFLAGS="$CPPFLAGS -D_REENTRANT $PYTHON_CPPFLAGS $MD5SUM_CFLAGS $FREETYPE_CFLAGS $FRIBIDI_CFLAGS $ID3TAG_CFLAGS $MAD_CFLAGS $PLUGINS_CFLAGS $PNG_CFLAGS $SDL_CFLAGS $SIGC_CFLAGS $XMLTREE_CFLAGS $DVBSI_CFLAGS $GSTREAMER_CFLAGS $GSTREAMERPBUTILS_CFLAGS $LIBXINE_CFLAGS $LIBUNGIF_CFLAGS"
-#CPPFLAGS="$CPPFLAGS -DMEMLEAK_CHECK"
-CXXFLAGS="$CXXFLAGS -fno-rtti -fno-exceptions -Wall"
+AC_ARG_WITH(memcheck,
+	AS_HELP_STRING([--with-memcheck],[enable memory leak checks]),
+	[with_memcheck="$withval"],[with_memcheck="no"])
+if test "$with_memcheck" = "yes"; then
+	AC_DEFINE([MEMLEAK_CHECK],[1],[Define to 1 to enable memory leak checks])
+fi
 
-#if test "$GCC" = "yes"
-#then
-#        gccmajor=`$CC -dumpversion | head -n 1 | awk '{print $NF;}' | cut -d. -f1`
-#        if test "$gccmajor" -gt "3"
-#        then
-#                CXXFLAGS="$CXXFLAGS -fvisibility=hidden -fvisibility-inlines-hidden -fno-threadsafe-statics"
-#        fi
-#fi
+AC_ARG_WITH(po,
+	AS_HELP_STRING([--without-po],[disable updating of po files]),
+	[with_po="$withval"],[with_po="yes"])
+AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
-LDFLAGS="$LDFLAGS -pthread $PYTHON_LDFLAGS $SDL_LDFLAGS $GSTREAMER_LDFLAGS $GSTREAMERPBUTILS_LDFLAGS $LIBXINE_LDFLAGS $LIBUNGIF_LDFLAGS"
-#LDFLAGS="-rdynamic $LDFLAGS"
+CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
+CXXFLAGS="$CXXFLAGS $BASE_CFLAGS $PTHREAD_CFLAGS $DEBUG_CFLAGS -fno-rtti -fno-exceptions -Wall"
 
-TUXBOX_APPS_GETTEXT
-
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/fonts/Makefile
@@ -147,6 +129,7 @@ data/defaults/Dream/Makefile
 data/defaults/Dream/hdbouquets/Makefile
 data/defaults/Dream/sdbouquets/Makefile
 data/extensions/Makefile
+data/keymaps/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
@@ -156,6 +139,7 @@ include/Makefile
 lib/Makefile
 lib/actions/Makefile
 lib/base/Makefile
+lib/base/eenv.cpp
 lib/driver/Makefile
 lib/dvb/Makefile
 lib/dvb/lowlevel/Makefile
@@ -249,8 +233,7 @@ lib/components/Makefile
 po/Makefile
 main/Makefile
 tools/Makefile
+tools/enigma2.sh
 enigma2.pc
 ])
-
-#lib/python/Plugins/Extensions/SimpleRSS/Makefile
-#lib/python/Plugins/Extensions/FileManager/Makefile
+AC_OUTPUT

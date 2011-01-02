@@ -1,17 +1,15 @@
-OBJS = socket_mmi.cpp
+AM_CPPFLAGS = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/include \
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
 
--include $(OBJS:.cpp=.d)
+plugindir = $(pkglibdir)/python/Plugins/Extensions/SocketMMI
 
-installdir = $(pkglibdir)/python/Plugins/Extensions/SocketMMI
+plugin_LTLIBRARIES = socketmmi.la
 
-install_PYTHON = \
-	socketmmi.so
+socketmmi_la_SOURCES = \
+	socket_mmi.cpp \
+	socket_mmi.h
 
-socketmmi.so: socket_mmi.cpp socket_mmi.h
-	$(CXX) $(CPPFLAGS) -MD $(CXXFLAGS) $(DEFS) -I$(top_srcdir)/include \
-	-Wall -W $(OBJS) -shared -fPIC -Wl,-soname,socketmmi.so -o socketmmi.so \
-	$(LDFLAGS)
-
-all: socketmmi.so
-
-CLEANFILES = socketmmi.so socketmmi.d
+socketmmi_la_LDFLAGS = -avoid-version -module

@@ -1,6 +1,7 @@
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/eerror.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/cahandler.h>
 #include <lib/dvb/specs.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/metaparser.h>
@@ -151,7 +152,7 @@ void eDVBServicePMTHandler::PATready(int)
 		serviceEvent(eventNoPAT);
 }
 
-PyObject *eDVBServicePMTHandler::getCaIds()
+PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
 {
 	ePyObject ret;
 
@@ -159,20 +160,37 @@ PyObject *eDVBServicePMTHandler::getCaIds()
 
 	if ( !getProgramInfo(prog) )
 	{
-		int cnt=prog.caids.size();
-		if (cnt)
+		if (pair)
 		{
+			int cnt=prog.caids.size();
+			if (cnt)
+			{
+				ret=PyList_New(cnt);
+				std::list<program::capid_pair>::iterator it(prog.caids.begin());
+				while(cnt--)
+				{
+					ePyObject tuple = PyTuple_New(2);
+					PyTuple_SET_ITEM(tuple, 0, PyInt_FromLong(it->caid));
+					PyTuple_SET_ITEM(tuple, 1, PyInt_FromLong((it++)->capid));
+					PyList_SET_ITEM(ret, cnt, tuple);
+				}
+			}
+		}
+		else
+		{
+			std::set<program::capid_pair> set(prog.caids.begin(), prog.caids.end());
+			std::set<program::capid_pair>::iterator it(set.begin());
+			int cnt=set.size();
 			ret=PyList_New(cnt);
-			std::set<uint16_t>::iterator it(prog.caids.begin());
 			while(cnt--)
-				PyList_SET_ITEM(ret, cnt, PyInt_FromLong(*it++));
+				PyList_SET_ITEM(ret, cnt, PyInt_FromLong((it++)->caid));
 		}
 	}
 
 	return ret ? (PyObject*)ret : (PyObject*)PyList_New(0);
 }
 
-int eDVBServicePMTHandler::getProgramInfo(struct program &program)
+int eDVBServicePMTHandler::getProgramInfo(program &program)
 {
 	ePtr<eTable<ProgramMapSection> > ptr;
 	int cached_apid_ac3 = -1;
@@ -576,7 +594,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 							case CA_DESCRIPTOR:
 							{
 								CaDescriptor *descr = (CaDescriptor*)(*desc);
-								program.caids.insert(descr->getCaSystemId());
+								program::capid_pair pair;
+								pair.caid = descr->getCaSystemId();
+								pair.capid = descr->getCaPid();
+								program.caids.push_back(pair);
 								break;
 							}
 							default:
@@ -639,7 +660,10 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 					if ((*desc)->getTag() == CA_DESCRIPTOR)
 					{
 						CaDescriptor *descr = (CaDescriptor*)(*desc);
-						program.caids.insert(descr->getCaSystemId());
+						program::capid_pair pair;
+						pair.caid = descr->getCaSystemId();
+						pair.capid = descr->getCaPid();
+						program.caids.push_back(pair);
 					}
 				}
 			}
@@ -766,8 +790,12 @@ int eDVBServicePMTHandler::getProgramInfo(struct program &program)
 			program.textPid = cached_tpid;
 		}
 		CAID_LIST &caids = m_service->m_ca;
-		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
-			program.caids.insert(*it);
+		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it) {
+			program::capid_pair pair;
+			pair.caid = *it;
+			pair.capid = -1; // not known yet
+			program.caids.push_back(pair);
+		}
 		if ( cnt )
 			ret = 0;
 	}
@@ -852,6 +880,12 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 
 int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux, eCueSheet *cue, bool simulate, eDVBService *service)
 {
+	ePtr<iTsSource> s;
+	return tuneExt(ref, use_decode_demux, s, NULL, cue, simulate, service);
+}
+
+int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_demux, ePtr<iTsSource> &source, const char *streaminfo_file, eCueSheet *cue, bool simulate, eDVBService *service)
+{
 	RESULT res=0;
 	m_reference = ref;
 	
@@ -881,7 +915,9 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		{
 			eWarning("no .meta file found, trying to find PMT pid");
 			eDVBTSTools tstools;
-			if (tstools.openFile(ref.path.c_str()))
+			if (source)
+				tstools.setSource(source, streaminfo_file ? streaminfo_file : ref.path.c_str());
+			else if (tstools.openFile(ref.path.c_str()))
 				eWarning("failed to open file");
 			else
 			{
@@ -939,14 +975,10 @@ int eDVBServicePMTHandler::tune(eServiceReferenceDVB &ref, int use_decode_demux,
 		if (m_pvr_channel)
 		{
 			m_pvr_channel->setCueSheet(cue);
-			if (!ref.path.compare(0, 7, "http://"))
-			{
-				m_pvr_channel->playUrl(ref.path.c_str());
-			}
+			if (source)
+				m_pvr_channel->playSource(source, streaminfo_file);
 			else
-			{
 				m_pvr_channel->playFile(ref.path.c_str());
-			}
 		}
 	}
 

@@ -1,5 +1,5 @@
 // #define DEBUG_HTTPD
-#include <lib/network/httpd.h>
+#include "httpd.h"
 
 #include <sys/socket.h>
 #include <lib/base/smartptr.h>
@@ -9,8 +9,8 @@
 #include <time.h>
 #include <ctype.h>
 
-#include <lib/network/http_dyn.h>
-#include <lib/network/http_file.h>
+#include "http_dyn.h"
+#include "http_file.h"
 
 eHTTPDataSource::eHTTPDataSource(eHTTPConnection *c): connection(c)
 {
