@@ -1,6 +1,6 @@
 #include <lib/base/init_num.h>
 #include <lib/base/init.h>
-#include <lib/network/http.h>
+#include "http.h"
 
 eHTTPServer *eHTTPServer::m_instance;
 

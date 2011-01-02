@@ -1,7 +1,6 @@
 #ifndef __servicemp3_h
 #define __servicemp3_h
 
-#ifdef HAVE_GSTREAMER
 #include <lib/base/message.h>
 #include <lib/service/iservice.h>
 #include <lib/dvb/pmt.h>
@@ -223,6 +222,5 @@ private:
 	std::string m_useragent;
 	RESULT trickSeek(gdouble ratio);
 };
-#endif
 
 #endif

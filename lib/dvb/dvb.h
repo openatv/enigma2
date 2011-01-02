@@ -258,9 +258,11 @@ public:
 
 		/* iDVBPVRChannel */
 	RESULT playFile(const char *file);
-	RESULT playUrl(const char *url);
 	void stopFile();
-	
+
+	RESULT playSource(ePtr<iTsSource>& source, const char *priv=NULL);
+	void stopSource();
+
 	void setCueSheet(eCueSheet *cuesheet);
 	
 	RESULT getLength(pts_t &len);
@@ -302,7 +304,7 @@ private:
 	std::list<std::pair<off_t, off_t> > m_source_span;
 	void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size);
 	void flushPVR(iDVBDemux *decoding_demux=0);
-	
+
 	eSingleLock m_cuesheet_lock;
 
 	friend class eUsePtr<eDVBChannel>;

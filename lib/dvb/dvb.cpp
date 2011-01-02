@@ -1,5 +1,6 @@
 #include <lib/base/eerror.h>
 #include <lib/base/filepush.h>
+#include <lib/dvb/cahandler.h>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
@@ -1050,6 +1051,7 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 	}
 #endif
 
+#if 0
 	if (!m_iframe_search)
 		return len;
 
@@ -1131,6 +1133,9 @@ int eDVBChannelFilePush::filterRecordData(const unsigned char *_data, int len, s
 		return len;
 	else
 		return 0; /* we need find an iframe first */
+#else
+	return len;
+#endif
 }
 
 DEFINE_REF(eDVBChannel);
@@ -1767,6 +1772,20 @@ RESULT eDVBChannel::getCurrentFrontendParameters(ePtr<iDVBFrontendParameters> &p
 
 RESULT eDVBChannel::playFile(const char *file)
 {
+	eRawFile *f = new eRawFile();
+	ePtr<iTsSource> source = f;
+
+	if (f->open(file) < 0)
+	{
+		eDebug("can't open PVR file %s (%m)", file);
+		return -ENOENT;
+	}
+
+	return playSource(source, file);
+}
+
+RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_file)
+{
 	ASSERT(!m_frontend);
 	if (m_pvr_thread)
 	{
@@ -1775,7 +1794,13 @@ RESULT eDVBChannel::playFile(const char *file)
 		m_pvr_thread = 0;
 	}
 
-	m_tstools.openFile(file);
+	if (!source->valid())
+	{
+		eDebug("PVR source is not valid!");
+		return -ENOENT;
+	}
+
+	m_tstools.setSource(source, streaminfo_file);
 
 		/* DON'T EVEN THINK ABOUT FIXING THIS. FIX THE ATI SOURCES FIRST,
 		   THEN DO A REAL FIX HERE! */
@@ -1802,15 +1827,7 @@ RESULT eDVBChannel::playFile(const char *file)
 
 	m_event(this, evtPreStart);
 
-	if (m_pvr_thread->start(file, m_pvr_fd_dst))
-	{
-		delete m_pvr_thread;
-		m_pvr_thread = 0;
-		::close(m_pvr_fd_dst);
-		m_pvr_fd_dst = -1;
-		eDebug("can't open PVR file %s (%m)", file);
-		return -ENOENT;
-	}
+	m_pvr_thread->start(source, m_pvr_fd_dst);
 	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
 
 	m_state = state_ok;
@@ -1819,56 +1836,7 @@ RESULT eDVBChannel::playFile(const char *file)
 	return 0;
 }
 
-RESULT eDVBChannel::playUrl(const char *url)
-{
-	ASSERT(!m_frontend);
-	if (m_pvr_thread)
-	{
-		m_pvr_thread->stop();
-		delete m_pvr_thread;
-		m_pvr_thread = 0;
-	}
-
-	m_tstools.closeFile();
-
-	if (m_pvr_fd_dst < 0)
-	{
-#if HAVE_DVB_API_VERSION < 3
-		m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
-#else
-		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
-#endif
-		if (m_pvr_fd_dst < 0)
-		{
-			eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
-			return -ENODEV;
-		}
-	}
-
-	m_pvr_thread = new eDVBChannelFilePush();
-	m_pvr_thread->enablePVRCommit(1);
-	m_pvr_thread->setStreamMode(1);
-
-	m_event(this, evtPreStart);
-
-	if (m_pvr_thread->startUrl(url, m_pvr_fd_dst))
-	{
-		delete m_pvr_thread;
-		m_pvr_thread = 0;
-		::close(m_pvr_fd_dst);
-		m_pvr_fd_dst = -1;
-		eDebug("can't start PVR url %s (%m)", url);
-		return -ENOENT;
-	}
-	CONNECT(m_pvr_thread->m_event, eDVBChannel::pvrEvent);
-
-	m_state = state_ok;
-	m_stateChanged(this);
-
-	return 0;
-}
-
-void eDVBChannel::stopFile()
+void eDVBChannel::stopSource()
 {
 	if (m_pvr_thread)
 	{
@@ -1878,6 +1846,13 @@ void eDVBChannel::stopFile()
 	}
 	if (m_pvr_fd_dst >= 0)
 		::close(m_pvr_fd_dst);
+	ePtr<iTsSource> d;
+	m_tstools.setSource(d);
+}
+
+void eDVBChannel::stopFile()
+{
+	stopSource();
 }
 
 void eDVBChannel::setCueSheet(eCueSheet *cuesheet)

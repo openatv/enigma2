@@ -9,7 +9,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.SystemInfo import SystemInfo
 profile("ChannelSelection.py 1")
 from EpgSelection import EPGSelection
-from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode
+from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv
 from Components.config import config, configfile, ConfigSubsection, ConfigText
 from Tools.NumericalTextInput import NumericalTextInput
 profile("ChannelSelection.py 2")
@@ -580,7 +580,7 @@ class ChannelSelectionEdit:
 			refstr = refstr[pos+14:]
 			pos = refstr.find('"')
 			if pos != -1:
-				filename = '/etc/enigma2/' + refstr[:pos] # FIXMEEE !!! HARDCODED /etc/enigma2
+				filename = eEnv.resolve('${sysconfdir}/enigma2/') + refstr[:pos]
 		self.removeCurrentService()
 		try:
 			if filename is not None:

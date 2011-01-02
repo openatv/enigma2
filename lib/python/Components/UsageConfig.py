@@ -2,6 +2,7 @@ from Components.Harddisk import harddiskmanager
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff;
+from enigma import Misc_Options, eEnv;
 from Components.NimManager import nimmanager
 from Components.Harddisk import harddiskmanager
 from SystemInfo import SystemInfo
@@ -149,7 +150,7 @@ def InitUsageConfig():
 
 	SystemInfo["12V_Output"] = enigma.Misc_Options.getInstance().detected_12V_output()
 
-	config.usage.keymap = ConfigText(default = "/usr/share/enigma2/keymap.xml")
+	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
 
 	config.seek = ConfigSubsection()
 	config.seek.selfdefined_13 = ConfigNumber(default=15)

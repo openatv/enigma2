@@ -11,7 +11,7 @@ from Components.config import config
 from Components.ConfigList import ConfigList,ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Plugins.Plugin import PluginDescriptor
-from enigma import eTimer
+from enigma import eTimer, eEnv
 from Tools.Directories import *
 from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from time import gmtime, strftime, localtime
@@ -20,7 +20,7 @@ from datetime import date
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=['/etc/enigma2/', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value

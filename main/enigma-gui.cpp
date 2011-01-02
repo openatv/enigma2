@@ -8,7 +8,7 @@
 #include <unistd.h>
 
 #include <lib/gdi/grc.h>
-#include <lib/gdi/gfbdc.h>
+#include <lib/gdi/gmaindc.h>
 #include <lib/gdi/font.h> 
 
 #include <lib/gui/ewidget.h>
@@ -52,8 +52,8 @@ int main()
 	eInit init;
 
 	init.setRunlevel(eAutoInitNumbers::main);
-	ePtr<gFBDC> my_dc;
-	gFBDC::getInstance(my_dc);
+	ePtr<gMainDC> my_dc;
+	gMainDC::getInstance(my_dc);
 
 	gPainter p(my_dc);
 	
@@ -67,7 +67,7 @@ int main()
 		pal[a | 0x10] = (0x111111 * a) | 0xFF;
 	p.setPalette(pal, 0, 256);
 
-	fontRenderClass::getInstance()->AddFont(FONTDIR "/arial.ttf", "Regular", 100);
+	fontRenderClass::getInstance()->AddFont(eEnv::resolve("${datadir}/fonts/arial.ttf"), "Regular", 100);
 
 	eWidgetDesktop dsk(eSize(720, 576));
 	dsk.setDC(my_dc);

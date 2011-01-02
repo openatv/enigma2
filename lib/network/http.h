@@ -1,9 +1,9 @@
 #ifndef __http_h
 #define __http_h
 
-#include <lib/network/httpd.h>
-#include <lib/network/http_file.h>
-#include <lib/network/http_dyn.h>
+#include "httpd.h"
+#include "http_file.h"
+#include "http_dyn.h"
 
 class eHTTPDynPathResolver;
 class eHTTPFilePathResolver;

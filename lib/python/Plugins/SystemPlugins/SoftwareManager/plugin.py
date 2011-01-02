@@ -28,7 +28,7 @@ from Components.Network import iNetwork
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
-from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode
+from enigma import eTimer, quitMainloop, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv
 from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
@@ -43,7 +43,7 @@ from SoftwareTools import iSoftwareTools
 
 config.plugins.configurationbackup = ConfigSubsection()
 config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
-config.plugins.configurationbackup.backupdirs = ConfigLocations(default=['/etc/enigma2/', '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
+config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[eEnv.resolve('${sysconfdir}/enigma2/'), '/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname'])
 
 config.plugins.SoftwareManager = ConfigSubsection()
 config.plugins.SoftwareManager.overwriteConfigFiles = ConfigSelection(
@@ -264,9 +264,6 @@ class UpdatePluginMenu(Screen):
 					for x in parts:
 						if not access(x[1], F_OK|R_OK|W_OK) or x[1] == '/':
 							parts.remove(x)
-					for x in parts:
-						if x[1].startswith('/autofs/'):
-							parts.remove(x)
 					if len(parts):
 						self.session.openWithCallback(self.backuplocation_choosen, ChoiceBox, title = _("Please select medium to use as backup location"), list = parts)
 				elif (currentEntry == "backupfiles"):
@@ -281,14 +278,20 @@ class UpdatePluginMenu(Screen):
 
 	def backupfiles_choosen(self, ret):
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
-
+		config.plugins.configurationbackup.backupdirs.save()
+		config.plugins.configurationbackup.save()
+		config.save()
+		
 	def backuplocation_choosen(self, option):
+		oldpath = config.plugins.configurationbackup.backuplocation.getValue()
 		if option is not None:
 			config.plugins.configurationbackup.backuplocation.value = str(option[1])
 		config.plugins.configurationbackup.backuplocation.save()
 		config.plugins.configurationbackup.save()
 		config.save()
-		self.createBackupfolders()
+		newpath = config.plugins.configurationbackup.backuplocation.getValue()
+		if newpath != oldpath:
+			self.createBackupfolders()
 
 	def runUpgrade(self, result):
 		if result:
@@ -1342,9 +1345,9 @@ class UpdatePlugin(Screen):
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
-		self.status = StaticText(_("Upgrading Dreambox... Please wait"))
+		self.status = StaticText(_("Please wait..."))
 		self["status"] = self.status
-		self.package = StaticText()
+		self.package = StaticText(_("Verifying your internet connection..."))
 		self["package"] = self.package
 		self.oktext = _("Press OK on your remote control to continue.")
 
@@ -1355,22 +1358,36 @@ class UpdatePlugin(Screen):
 		self.activity = 0
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
-		self.activityTimer.start(100, False)
 
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
 
 		self.offline = "offline" in args
-
-		self.updating = True
-		self.package.setText(_("Package list update"))
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		self.updating = False
 
 		self["actions"] = ActionMap(["WizardActions"], 
 		{
 			"ok": self.exit,
 			"back": self.exit
 		}, -1)
+		
+		iNetwork.checkNetworkState(self.checkNetworkCB)
+		self.onClose.append(self.cleanup)
+		
+	def cleanup(self):
+		iNetwork.stopPingConsole()
+
+	def checkNetworkCB(self,data):
+		if data is not None:
+			if data <= 2:
+				self.updating = True
+				self.activityTimer.start(100, False)
+				self.package.setText(_("Package list update"))
+				self.status.setText(_("Upgrading Dreambox... Please wait"))
+				self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+			else:
+				self.package.setText(_("Your network is not working. Please try again."))
+				self.status.setText(self.oktext)
 
 
 	def doActivityTimer(self):
@@ -1452,6 +1469,9 @@ class UpdatePlugin(Screen):
 			if self.packages != 0 and self.error == 0:
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Dreambox?"))
 			else:
+				self.close()
+		else:
+			if not self.updating:
 				self.close()
 
 	def exitAnswer(self, result):
@@ -1697,7 +1717,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.cmdList = []
 		self.cachelist = []
 		self.cache_ttl = 86400  #600 is default, 0 disables, Seconds cache is considered valid (24h should be ok for caching ipkgs)
-		self.cache_file = '/usr/lib/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache' #Path to cache directory	 
+		self.cache_file = eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache') #Path to cache directory
 		self.oktext = _("\nAfter pressing OK, please wait!")
 		self.unwanted_extensions = ('-dbg', '-dev', '-doc', 'busybox')
 		self.opkgAvail = fileExists('/usr/bin/opkg')

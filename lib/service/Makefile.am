@@ -1,9 +1,37 @@
-INCLUDES = \
-	-I$(top_srcdir)/include
+AM_CPPFLAGS = \
+	-I$(top_srcdir) \
+	-I$(top_srcdir)/include \
+	-include Python.h \
+	-include $(top_builddir)/enigma2_config.h
+
+AM_CXXFLAGS = \
+	$(LIBXINE_CFLAGS)
 
 noinst_LIBRARIES = libenigma_service.a
 
 libenigma_service_a_SOURCES = \
-	listboxservice.cpp service.cpp servicemp3.cpp servicedvb.cpp servicefs.cpp \
-	event.cpp servicedvbrecord.cpp
-	
+	event.cpp \
+	listboxservice.cpp \
+	service.cpp \
+	servicedvb.cpp \
+	servicedvbrecord.cpp \
+	servicefs.cpp \
+	servicemp3.cpp
+
+serviceincludedir = $(pkgincludedir)/lib/service
+serviceinclude_HEADERS = \
+	event.h \
+	iservice.h \
+	listboxservice.h \
+	service.h \
+	servicedvb.h \
+	servicedvbrecord.h \
+	servicefs.h \
+	servicemp3.h
+
+if HAVE_LIBXINE
+libenigma_service_a_SOURCES += \
+	servicexine.cpp
+serviceinclude_HEADERS += \
+	servicexine.h
+endif

@@ -137,7 +137,7 @@ def Plugins(**kwargs):
 file.close()
 
 makefile = open(pluginpath + "/Makefile.am", "w")
-makefile.write("""installdir = $(LIBDIR)/enigma2/python/Plugins/%s/%s
+makefile.write("""installdir = $(pkglibdir)/python/Plugins/%s/%s
 
 install_PYTHON = \\
 	__init__.py \\

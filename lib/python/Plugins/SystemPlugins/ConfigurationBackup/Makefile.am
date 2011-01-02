@@ -1,4 +1,4 @@
-installdir = $(LIBDIR)/enigma2/python/Plugins/SystemPlugins/ConfigurationBackup
+installdir = $(pkglibdir)/python/Plugins/SystemPlugins/ConfigurationBackup
 
 install_PYTHON =	\
 	__init__.py \
