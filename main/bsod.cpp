@@ -166,6 +166,8 @@ void bsodFatal(const char *component)
 		struct tm tm;
 		char tm_str[32];
 
+		bool detailedCrash = getConfigBool("config.crash.details", true);
+
 		localtime_r(&t, &tm);
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
@@ -204,15 +206,21 @@ void bsodFatal(const char *component)
 		xml.cDataFromFile("imageissue", "/etc/issue.net");
 		xml.close();
 
-		xml.open("software");
-		xml.cDataFromCmd("enigma2software", "ipkg list_installed | grep enigma2");
-		xml.cDataFromCmd("dreamboxsoftware", "ipkg list_installed | grep dream");
-		xml.cDataFromCmd("gstreamersoftware", "ipkg list_installed | grep gst");
-		xml.close();
+		if (detailedCrash)
+		{
+			xml.open("software");
+			xml.cDataFromCmd("enigma2software", "opkg list_installed 'enigma2*'");
+			xml.cDataFromCmd("dreamboxsoftware", "opkg list_installed 'dream*'");
+			xml.cDataFromCmd("gstreamersoftware", "opkg list_installed 'gst*'");
+			xml.close();
+		}
 
 		xml.open("crashlogs");
 		xml.cDataFromString("enigma2crashlog", getLogBuffer());
-		xml.cDataFromCmd("pythonMD5sum", "find " + eEnv::resolve("${libdir}/enigma2/python/") + " -name \"*.py\" | xargs md5sum");
+		if (detailedCrash)
+		{
+			xml.cDataFromCmd("pythonMD5sum", "find " + eEnv::resolve("${libdir}/enigma2/python/") + " -name \"*.py\" | xargs md5sum");
+		}
 		xml.close();
 
 		xml.close();
