@@ -37,6 +37,10 @@ case $ret in
 		/sbin/modprobe fp
 		/sbin/reboot
 		;;
+	42)
+		opkg upgrade 2>&1 > /home/root/ipkgupgrade.log
+		/sbin/reboot
+		;;
 	*)
 		;;
 esac
