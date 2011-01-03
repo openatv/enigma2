@@ -428,7 +428,7 @@ bool Cexif::ProcessExifDir(unsigned char * DirStart, unsigned char * OffsetBase,
 			case 6:		strcpy(m_exifinfo->Orientation,"Right-Top"); break;
 			case 7:		strcpy(m_exifinfo->Orientation,"Right-Bottom"); break;
 			case 8:		strcpy(m_exifinfo->Orientation,"Left-Bottom"); break;
-			default:	strcpy(m_exifinfo->Orientation,"Undefined rotation value");
+			default:	strcpy(m_exifinfo->Orientation,"Undefined"); break;
 			}
 			break;
 		case TAG_EXIF_IMAGELENGTH:
