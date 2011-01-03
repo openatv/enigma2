@@ -167,7 +167,7 @@ public:
 		int bufferPercent;
 		int avgInRate;
 		int avgOutRate;
-		long long bufferingLeft;
+		int64_t bufferingLeft;
 		bufferInfo()
 			:bufferPercent(0), avgInRate(0), avgOutRate(0), bufferingLeft(-1)
 		{
