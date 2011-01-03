@@ -63,7 +63,7 @@ protected:
 			else
 				TABLE_eDebugNoNewLine("-");
 				
-		TABLE_eDebug(" %d/%d TID %02x", avail.size(), max, data[0]);
+		TABLE_eDebug(" %zd/%d TID %02x", avail.size(), max, data[0]);
 
 		if (avail.size() == max)
 		{

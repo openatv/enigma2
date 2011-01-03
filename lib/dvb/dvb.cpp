@@ -108,7 +108,7 @@ eDVBResourceManager::eDVBResourceManager()
 			m_boxtype = DM8000;
 	}
 
-	eDebug("found %d adapter, %d frontends(%d sim) and %d demux, boxtype %d",
+	eDebug("found %zd adapter, %zd frontends(%zd sim) and %zd demux, boxtype %d",
 		m_adapter.size(), m_frontend.size(), m_simulate_frontend.size(), m_demux.size(), m_boxtype);
 
 	eDVBCAService::registerChannelCallback(this);
@@ -334,7 +334,7 @@ PyObject *eDVBResourceManager::setFrontendSlotInformations(ePyObject list)
 	}
 	if (assigned != m_frontend.size()) {
 		char blasel[256];
-		sprintf(blasel, "eDVBResourceManager::setFrontendSlotInformations .. assigned %d socket informations, but %d registered frontends!",
+		sprintf(blasel, "eDVBResourceManager::setFrontendSlotInformations .. assigned %zd socket informations, but %d registered frontends!",
 			m_frontend.size(), assigned);
 		PyErr_SetString(PyExc_StandardError, blasel);
 		return NULL;
@@ -1488,7 +1488,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 				size = max;
 			else
 				size = aligned_end - current_offset;
-			eDebug("HIT, %lld < %lld < %lld, size: %d", i->first, current_offset, i->second, size);
+			eDebug("HIT, %lld < %lld < %lld, size: %zd", i->first, current_offset, i->second, size);
 			return;
 		}
 		if (current_offset < aligned_start)
@@ -1529,10 +1529,10 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 					len = aligned_end - aligned_start;
 
 				start = aligned_end - len;
-				eDebug("skipping to %llx, %d", start, len);
+				eDebug("skipping to %llx, %zd", start, len);
 			}
 
-			eDebug("result: %llx, %x (%llx %llx)", start, size, aligned_start, aligned_end);
+			eDebug("result: %llx, %zx (%llx %llx)", start, size, aligned_start, aligned_end);
 			return;
 		}
 	}
@@ -1548,7 +1548,7 @@ void eDVBChannel::getNextSourceSpan(off_t current_offset, size_t bytes_read, off
 	{
 		start = current_offset;
 		size = max;
-		eDebug("NO CUESHEET. (%08llx, %d)", start, size);
+		eDebug("NO CUESHEET. (%08llx, %zd)", start, size);
 	} else
 	{
 		start = current_offset;
