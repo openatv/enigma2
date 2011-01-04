@@ -292,8 +292,7 @@ class MovieList(GUIComponent):
 
 		begin_string = ""
 		if begin > 0:
-			t = FuzzyTime(begin, inPast = True)
-			begin_string = t[0] + ", " + t[1]
+			begin_string = ', '.join(FuzzyTime(begin, inPast = True))
 
 		ih = self.itemHeight
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
@@ -314,7 +313,7 @@ class MovieList(GUIComponent):
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION:
 			ih1 = ((ih * 8) + 14) / 15 # 37 -> 20, round up
 			if len:
-			     lenSize = 58
+			     lenSize = 58 * ih / 37
 			else:
 			     lenSize = 0
 			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-140, ih1), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
@@ -327,10 +326,10 @@ class MovieList(GUIComponent):
 		elif self.list_type == MovieList.LISTTYPE_COMPACT:
 			ih1 = ((ih * 8) + 14) / 15 # 37 -> 20, round up
 			if len:
-			     lenSize = 75
+			     lenSize = 2 * ih
 			else:
 			     lenSize = 0
-			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-lenSize-22, ih1), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+			res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-lenSize-iconSize, ih1), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
 			if self.tags:
 				res.append(MultiContentEntryText(pos=(width-200, ih1), size=(200, ih-ih1), font = 1, flags = RT_HALIGN_RIGHT, text = info.getInfoString(serviceref, iServiceInformation.sTags)))
 				if data.serviceName:
@@ -343,11 +342,13 @@ class MovieList(GUIComponent):
 			     res.append(MultiContentEntryText(pos=(width-lenSize, 0), size=(lenSize, ih1), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		else:
 			if (self.descr_state == MovieList.SHOW_DESCRIPTION) or not len:
-				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-166, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-				res.append(MultiContentEntryText(pos=(width-145, 4), size=(145, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
+				dateSize = ih * 145 / 25   # 25 -> 145
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-iconSize-dateSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+				res.append(MultiContentEntryText(pos=(width-dateSize, 4), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT, text=begin_string))
 			else:
-				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-97, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
-				res.append(MultiContentEntryText(pos=(width-75, 0), size=(75, ih), font=0, flags=RT_HALIGN_RIGHT, text=len))
+				lenSize = ih * 3 # 25 -> 75
+				res.append(MultiContentEntryText(pos=(iconSize, 0), size=(width-lenSize-iconSize, ih), font = 0, flags = RT_HALIGN_LEFT, text = data.txt))
+				res.append(MultiContentEntryText(pos=(width-lenSize, 0), size=(lenSize, ih), font=0, flags=RT_HALIGN_RIGHT, text=len))
 		return res
 
 	def moveToFirstMovie(self):
