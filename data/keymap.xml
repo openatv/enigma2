@@ -79,6 +79,7 @@
 	<map context="InfobarEPGActions">
 		<key id="KEY_INFO" mapto="showEventInfo" flags="b" />
 		<key id="KEY_INFO" mapto="showEventInfoPlugin" flags="l" />
+		<key id="KEY_EPG" mapto="showEventInfo" flags="m" />
 	</map>
 	
 	<map context="InfobarInstantRecord">
@@ -185,6 +186,7 @@
 		<key id="KEY_VIDEO" mapto="showMovies" flags="m" />
 		<key id="KEY_RADIO" mapto="showRadio" flags="m" />
 		<key id="KEY_TV" mapto="showTv" flags="m" />
+		<key id="KEY_FILE" mapto="showMovies" flags="m" />
 	</map>
 
 	<map context="InfobarAudioSelectionActions">
@@ -200,6 +202,10 @@
 
 	<map context="InfobarSubserviceSelectionActions">
 		<key id="KEY_GREEN" mapto="subserviceSelection" flags="b" />
+	</map>
+
+	<map context="InfobarPiPActions">
+		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
@@ -329,6 +335,7 @@
 		<key id="KEY_PAUSE" mapto="timeshiftStart" flags="m" />
 		<key id="KEY_TV" mapto="timeshiftStop" flags="m" />
 		<key id="KEY_STOP" mapto="timeshiftStop" flags="m" />
+		<key id="KEY_TIME" mapto="timeshiftStart" flags="m" />
 	</map>
 
 	<map context="InfobarTimeshiftActivateActions">
@@ -355,6 +362,7 @@
 		<key id="KEY_UP" mapto="up" flags="m" />
 		<key id="KEY_DOWN" mapto="down" flags="m" />
 		<key id="KEY_VIDEO" mapto="movieList" flags="m" />
+		<key id="KEY_FILE" mapto="movieList" flags="m" />
 	</map>
 
 	<map context="MoviePlayerActions">
@@ -428,6 +436,7 @@
 
 	<map context="ChannelSelectEPGActions">
 		<key id="KEY_INFO" mapto="showEPGList" flags="m" />
+		<key id="KEY_EPG" mapto="showEPGList" flags="m" />
 	</map>
 
 	<map context="ChannelSelectEditActions">
@@ -454,6 +463,7 @@
 		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 		<key id="KEY_NEXT" mapto="nextService" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="prevService" flags="m" />
+		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m" />
 	</map>
 
 	<map context="EventViewActions">
@@ -465,11 +475,13 @@
 		<key id="KEY_GREEN" mapto="timerAdd" flags="m" />
 		<key id="KEY_INFO" mapto="contextMenu" flags="m" />
 		<key id="KEY_MENU" mapto="contextMenu" flags="m" />
+		<key id="KEY_PROGRAM" mapto="timerAdd" flags="m" />
 	</map>
 	
 	<map context="EventViewEPGActions">
 		<key id="KEY_YELLOW" mapto="openSingleServiceEPG" flags="m" />
 		<key id="KEY_BLUE" mapto="openMultiServiceEPG" flags="m" />
+		<key id="KEY_EPG" mapto="openSingleServiceEPG" flags="m" />
 	</map>
 
 	<map context="OkCancelActions">
@@ -616,5 +628,7 @@
 		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 		<key id="KEY_VIDEO" mapto="delete" flags="m" />
 		<key id="KEY_TEXT" mapto="subtitles" flags="m" />
+		<key id="KEY_FILE" mapto="nextBouquet" flags="m" />
+		<key id="KEY_LIST" mapto="prevBouquet" flags="m" />
 	</map>
 </keymap>
