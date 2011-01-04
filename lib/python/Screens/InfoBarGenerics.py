@@ -1400,6 +1400,10 @@ class InfoBarPiP:
 		except:
 			self.session.pipshown = False
 		if SystemInfo.get("NumVideoDecoders", 1) > 1:
+			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions",
+				{
+					"activatePiP": (self.showPiP, _("activate PiP")),
+				})
 			if (self.allowPiP):
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
