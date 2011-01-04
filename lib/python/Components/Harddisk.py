@@ -20,17 +20,17 @@ def getProcMounts():
 		return []
 	return [line.strip().split(' ') for line in mounts]
 
-class Harddisk:
-	DEVTYPE_UDEV = 0
-	DEVTYPE_DEVFS = 1
+DEVTYPE_UDEV = 0
+DEVTYPE_DEVFS = 1
 
+class Harddisk:
 	def __init__(self, device):
 		self.device = device
 
 		if access("/dev/.udev", 0):
-			self.type = self.DEVTYPE_UDEV
+			self.type = DEVTYPE_UDEV
 		elif access("/dev/.devfsd", 0):
-			self.type = self.DEVTYPE_DEVFS
+			self.type = DEVTYPE_DEVFS
 		else:
 			print "Unable to determine structure of /dev"
 
@@ -44,11 +44,11 @@ class Harddisk:
 		self.mount_device = None
 		self.phys_path = path.realpath(self.sysfsPath('device'))
 		
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			self.dev_path = '/dev/' + self.device
 			self.disk_path = self.dev_path
 
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			tmp = readFile(self.sysfsPath('dev')).split(':')
 			s_major = int(tmp[0])
 			s_minor = int(tmp[1])
@@ -71,9 +71,9 @@ class Harddisk:
 		return self.device < ob.device
 
 	def partitionPath(self, n):
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			return self.dev_path + n
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			return self.dev_path + '/part' + n
 
 	def sysfsPath(self, filename):
@@ -86,9 +86,9 @@ class Harddisk:
 
 	def bus(self):
 		# CF (7025 specific)
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			ide_cf = False	# FIXME
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			ide_cf = self.device[:2] == "hd" and "host0" not in self.dev_path
 
 		internal = "pci" in self.phys_path
@@ -138,7 +138,7 @@ class Harddisk:
 
 	def numPartitions(self):
 		numPart = -1
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			try:
 				devdir = listdir('/dev')
 			except OSError:
@@ -147,7 +147,7 @@ class Harddisk:
 				if filename.startswith(self.device):
 					numPart += 1
 
-		elif self.type == self.DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:
 			try:
 				idedir = listdir(self.dev_path)
 			except OSError:
@@ -221,7 +221,7 @@ class Harddisk:
 				return (res >> 8)
 		# device is not in fstab
 		res = -1
-		if self.type == self.DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
 			res = system('sfdisk -R ' + self.disk_path)
 			# give udev some time to make the mount, which it will do asynchronously
@@ -720,7 +720,7 @@ class MountTask(Task.LoggingTask):
 				self.postconditions.append(Task.ReturncodePostcondition())
 				return
 		# device is not in fstab
-		if self.hdd.type == self.hdd.DEVTYPE_UDEV:
+		if self.hdd.type == DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table, and give it some time to mount
 			self.setCmdline('sfdisk -R ' + self.hdd.disk_path + '; sleep 5')
 			self.postconditions.append(Task.ReturncodePostcondition())
