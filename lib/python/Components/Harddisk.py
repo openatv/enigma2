@@ -489,7 +489,7 @@ class HarddiskManager:
 		self.hdd = [ ]
 		self.cd = ""
 		self.partitions = [ ]
-
+		self.devices_scanned_on_init = [ ]
 		self.on_partition_list_change = CList()
 
 		self.enumerateBlockDevices()
@@ -559,25 +559,18 @@ class HarddiskManager:
 	def enumerateBlockDevices(self):
 		print "enumerating block devices..."
 		for blockdev in listdir("/sys/block"):
-			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(blockdev)
-			print "found block device '%s':" % blockdev, 
-			if error:
-				print "error querying properties"
-			elif blacklisted:
-				print "blacklisted"
-			elif not medium_found:
-				print "no medium"
-			else:
-				print "ok, removable=%s, cdrom=%s, partitions=%s, device=%s" % (removable, is_cdrom, partitions, blockdev)
-
-				self.addHotplugPartition(blockdev)
+			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(blockdev)
+			if not error and not blacklisted and medium_found:
 				for part in partitions:
 					self.addHotplugPartition(part)
+				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
 	def getAutofsMountpoint(self, device):
 		return "/autofs/%s/" % (device)
 
 	def addHotplugPartition(self, device, physdev = None):
+		# device is the device name, without /dev
+		# physdev is the physical device path, which we (might) use to determine the userfriendly name
 		if not physdev:
 			dev, part = self.splitDeviceName(device)
 			try:
@@ -585,23 +578,19 @@ class HarddiskManager:
 			except OSError:
 				physdev = dev
 				print "couldn't determine blockdev physdev for device", device
-
-		# device is the device name, without /dev
-		# physdev is the physical device path, which we (might) use to determine the userfriendly name
-		description = self.getUserfriendlyDeviceName(device, physdev)
-
-		p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True, device = device)
-		self.partitions.append(p)
-		self.on_partition_list_change("add", p)
-
-		# see if this is a harddrive
-		l = len(device)
-		if l and not device[l-1].isdigit():
-			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
-			if not blacklisted and not is_cdrom and medium_found:
+		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
+		if not blacklisted and not is_cdrom and medium_found:
+			description = self.getUserfriendlyDeviceName(device, physdev)
+			p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True, device = device)
+			self.partitions.append(p)
+			self.on_partition_list_change("add", p)
+			# see if this is a harddrive
+			l = len(device)
+			if l and not device[l-1].isdigit():
 				self.hdd.append(Harddisk(device))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = len(self.hdd) > 0
+		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):
 		mountpoint = self.getAutofsMountpoint(device)
