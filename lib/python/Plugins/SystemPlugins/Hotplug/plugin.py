@@ -53,7 +53,7 @@ def autostart(reason, **kwargs):
 	if reason == 0:
 		print "starting hotplug handler"
 
-		if fileExists('/dev/.udev'):
+		if fileExists('/dev/.udev') and not fileExists('/dev/mdev.seq'):
 			global netlink
 			global bdpoll
 			from enigma import eSocketNotifier, eTimer, ePythonMessagePump
