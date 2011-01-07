@@ -36,7 +36,7 @@ void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
 
 void ePixmap::setPixmapFromFile(const char *filename)
 {
-	loadPNG(m_pixmap, filename);
+	loadPNG(m_pixmap, filename, m_scale);
 	
 	if (!m_pixmap)
 	{

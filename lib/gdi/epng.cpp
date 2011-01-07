@@ -8,7 +8,7 @@ extern "C" {
 #include <jpeglib.h>
 }
 
-int loadPNG(ePtr<gPixmap> &result, const char *filename)
+int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 {
 	__u8 header[8];
 	FILE *fp=fopen(filename, "rb");
@@ -73,7 +73,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename)
 	
 	if (color_type == PNG_COLOR_TYPE_GRAY || color_type & PNG_COLOR_MASK_PALETTE)
 	{
-		result=new gPixmap(eSize(width, height), bit_depth);
+		result=new gPixmap(eSize(width, height), bit_depth, accel);
 		gSurface *surface = result->surface;
 	
 		png_bytep *rowptr=new png_bytep[height];
