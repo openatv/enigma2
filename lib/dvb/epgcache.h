@@ -4,6 +4,7 @@
 #define ENABLE_PRIVATE_EPG 1
 #define ENABLE_MHW_EPG 1
 #define ENABLE_FREESAT 1
+#define ENABLE_NETMED 1
 
 #ifndef SWIG
 
@@ -213,6 +214,10 @@ class eEPGCache: public eMainloop, private eThread, public Object
 		ePtr<eConnection> m_stateChangedConn, m_NowNextConn, m_ScheduleConn, m_ScheduleOtherConn, m_ViasatConn;
 		ePtr<iDVBSectionReader> m_NowNextReader, m_ScheduleReader, m_ScheduleOtherReader, m_ViasatReader;
 		tidMap seenSections[4], calcedSections[4];
+#ifdef ENABLE_NETMED
+		ePtr<eConnection> m_NetmedScheduleConn, m_NetmedScheduleOtherConn;
+		ePtr<iDVBSectionReader> m_NetmedScheduleReader, m_NetmedScheduleOtherReader;
+#endif
 #ifdef ENABLE_FREESAT
 		ePtr<eConnection> m_FreeSatScheduleOtherConn, m_FreeSatScheduleOtherConn2;
 		ePtr<iDVBSectionReader> m_FreeSatScheduleOtherReader, m_FreeSatScheduleOtherReader2;
@@ -259,6 +264,9 @@ class eEPGCache: public eMainloop, private eThread, public Object
 #endif
 		void readData(const __u8 *data);
 		void readDataViasat(const __u8 *data);
+#ifdef ENABLE_NETMED
+		void readDataNetmed(const __u8 *data);
+#endif
 		void startChannel();
 		void startEPG();
 		bool finishEPG();
@@ -422,6 +430,10 @@ public:
 	,FREESAT_SCHEDULE_OTHER=64
 #endif
 	,VIASAT=256
+#ifdef ENABLE_NETMED
+	,NETMED_SCHEDULE=512
+	,NETMED_SCHEDULE_OTHER=1024
+#endif
 	,EPG_IMPORT=0x80000000
 	};
 	void setEpgSources(unsigned int mask);
