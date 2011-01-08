@@ -113,6 +113,8 @@ void bcm_accel_blit(
 
 	C(0x6e); // set this rect as output rect
 
+	if (flags) P(0x80, flags); /* blend flags... We'd really like some blending support in the drivers, to avoid punching holes in the osd */
+
 	C(0x77);  // do it
 
 	exec_list();
