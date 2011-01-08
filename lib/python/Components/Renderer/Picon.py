@@ -58,6 +58,7 @@ class Picon(Renderer):
 			if not pngname: # no picon for service found
 				pngname = self.defaultpngname
 			if self.pngname != pngname:
+				self.instance.setScale(1)
 				self.instance.setPixmapFromFile(pngname)
 				self.pngname = pngname
 
