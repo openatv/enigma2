@@ -104,8 +104,6 @@ int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect
 #ifdef BCM_ACCEL
 	if (!m_bcm_accel_state)
 	{
-		if (flags & (gPixmap::blitAlphaTest|gPixmap::blitAlphaBlend)) /* unsupported flags */
-			return -1;
 		unsigned long pal_addr = 0;
 		int src_format = 0;
 		if (src->bpp == 32)
