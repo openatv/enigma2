@@ -66,6 +66,11 @@ static int exec_list(void)
 	return ret;
 }
 
+bool bcm_accel_has_alphablending()
+{
+	return supportblendingflags;
+}
+
 void bcm_accel_blit(
 		int src_addr, int src_width, int src_height, int src_stride, int src_format,
 		int dst_addr, int dst_width, int dst_height, int dst_stride,

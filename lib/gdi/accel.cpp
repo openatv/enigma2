@@ -37,6 +37,7 @@ extern void bcm_accel_fill(
 		int dst_addr, int dst_width, int dst_height, int dst_stride,
 		int x, int y, int width, int height,
 		unsigned long color);
+extern bool bcm_accel_has_alphablending();
 #endif
 
 gAccel::gAccel()
@@ -89,6 +90,15 @@ void gAccel::setAccelMemorySpace(void *addr, int phys_addr, int size)
 		m_accel_addr = addr;
 		m_accel_phys_addr = phys_addr;
 	}
+}
+
+bool gAccel::hasAlphaBlendingSupport()
+{
+#ifdef BCM_ACCEL
+	return bcm_accel_has_alphablending();
+#else
+	return false;
+#endif
 }
 
 int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect &area, int flags)

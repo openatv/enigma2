@@ -328,6 +328,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 //		clip.extends.x(), clip.extends.y(), clip.extends.width(), clip.extends.height(),
 //		flag);
 	eRect pos = _pos;
+	bool accel = (surface->data_phys && src.surface->data_phys && gAccel::getInstance());
 	
 //	eDebug("source size: %d %d", src.size().width(), src.size().height());
 	
@@ -370,7 +371,30 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 //		eDebug("srcarea after scale: %d %d %d %d",
 //			srcarea.x(), srcarea.y(), srcarea.width(), srcarea.height());
 
-		if ((surface->data_phys && src.surface->data_phys) && (gAccel::getInstance()))
+		if (accel)
+		{
+			/* we have hardware acceleration for this blit operation */
+			if (flag & (blitAlphaTest | blitAlphaBlend))
+			{
+				/* alpha blending is requested */
+				if (!gAccel::getInstance()->hasAlphaBlendingSupport())
+				{
+					/* our hardware does not support alphablending */
+					if (flag & blitScale)
+					{
+						/* we have to scale, we really need hardware for that. Strip the alpha blending flags, and continue */
+						flag &= ~(blitAlphaTest | blitAlphaBlend);
+					}
+					else
+					{
+						/* we do not have to scale, so we will perform software alphablending */
+						accel = false;
+					}
+				}
+			}
+		}
+
+		if (accel)
 			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag))
 				continue;
 
