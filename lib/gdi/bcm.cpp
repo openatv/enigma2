@@ -14,6 +14,7 @@
 
 static unsigned int displaylist[1024];
 static int ptr;
+static bool supportblendingflags = true;
 
 #define P(x, y) do { displaylist[ptr++] = x; displaylist[ptr++] = y; } while (0)
 #define C(x) P(x, 0)
@@ -34,6 +35,12 @@ int bcm_accel_init(void)
 		fprintf(stderr, "BCM accel interface not available - %m\n");
 		close(fb_fd);
 		return 1;
+	}
+	/* now test for blending flags support */
+	P(0x80, 0);
+	if (exec_list())
+	{
+		supportblendingflags = false;
 	}
 	return 0;
 }
@@ -113,7 +120,7 @@ void bcm_accel_blit(
 
 	C(0x6e); // set this rect as output rect
 
-	if (flags) P(0x80, flags); /* blend flags... We'd really like some blending support in the drivers, to avoid punching holes in the osd */
+	if (supportblendingflags && flags) P(0x80, flags); /* blend flags... We'd really like some blending support in the drivers, to avoid punching holes in the osd */
 
 	C(0x77);  // do it
 
