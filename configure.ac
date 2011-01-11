@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[2.8.0],[enigma2-devel@lists.elitedvb.net])
+AC_INIT([enigma2],[3.0.0],[enigma2-devel@lists.elitedvb.net])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
@@ -16,14 +16,7 @@ AC_CONFIG_MACRO_DIR([m4])
 
 AC_CHECK_HEADERS([dbox/fp.h dbox/lcd-ks0713.h])
 
-AC_PATH_PROG(MSGFMT,[msgfmt])
-AC_PATH_PROG(MSGINIT,[msginit])
-AC_PATH_PROG(MSGMERGE,[msgmerge])
-AC_PATH_PROG(MSGUNIQ,[msguniq])
-AC_PATH_PROG(XGETTEXT,[xgettext])
-if test -z "$MSGFMT" -o -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
-	AC_MSG_ERROR([Could not find required gettext tools])
-fi
+AC_PATH_PROG(MSGFMT, msgfmt, AC_MSG_ERROR(Could not find msgfmt))
 
 AM_PATH_PYTHON
 AX_PYTHON_DEVEL
@@ -86,12 +79,25 @@ if test "$with_memcheck" = "yes"; then
 fi
 
 AC_ARG_WITH(po,
-	AS_HELP_STRING([--without-po],[disable updating of po files]),
-	[with_po="$withval"],[with_po="yes"])
+	AS_HELP_STRING([--with-po],[enable updating of po files]),
+	[with_po="$withval"],[with_po="no"])
+if test "$with_po" = "yes"; then
+	AC_PATH_PROG(MSGINIT, msginit)
+	AC_PATH_PROG(MSGMERGE, msgmerge)
+	AC_PATH_PROG(MSGUNIQ, msguniq)
+	AC_PATH_PROG(XGETTEXT, xgettext)
+	if test -z "$MSGINIT" -o -z "$MSGMERGE" -o -z "$MSGUNIQ" -o -z "$XGETTEXT"; then
+		AC_MSG_ERROR([Could not find required gettext tools])
+	fi
+fi
 AM_CONDITIONAL(UPDATE_PO, test "$with_po" = "yes")
 
+ENIGMA2_CFLAGS="-fno-rtti -fno-exceptions"
+AC_SUBST(ENIGMA2_CFLAGS)
+
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
-CXXFLAGS="$CXXFLAGS $BASE_CFLAGS $PTHREAD_CFLAGS $DEBUG_CFLAGS -fno-rtti -fno-exceptions -Wall"
+CFLAGS="$CFLAGS $DEBUG_CFLAGS -Wall"
+CXXFLAGS="$CXXFLAGS $DEBUG_CFLAGS -Wall $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS"
 
 AC_CONFIG_FILES([
 Makefile
