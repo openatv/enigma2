@@ -185,7 +185,7 @@ public:
 		{
 			uint16_t caid;
 			int capid;
-			bool operator< (const struct capid_pair &t) { return t.caid < caid; }
+			bool operator< (const struct capid_pair &t) const { return t.caid < caid; }
 		};
 		std::vector<videoStream> videoStreams;
 		std::vector<audioStream> audioStreams;

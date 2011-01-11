@@ -8,6 +8,9 @@ install_PYTHON = \
 	keyids.py keymapparser.py mytest.py skin.py timer.py tools.py GlobalActions.py \
 	e2reactor.py
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = enigma2.pc
+
 metadir = $(datadir)/meta
 meta_DATA = index-enigma2.xml
 CLEANFILES = index-enigma2.xml
