@@ -38,7 +38,6 @@ class PluginBrowserSummary(Screen):
 		self.parent.onChangedEntry.remove(self.selectionChanged)
 
 	def selectionChanged(self, name, desc):
-		print "[***]", name, desc
 		self["entry"].text = name
 		self["desc"].text = desc
 
