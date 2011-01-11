@@ -182,7 +182,7 @@ class Harddisk:
 		return (res >> 8)
 
 	def createPartition(self):
-		cmd = 'printf "0,\n;\n;\n;\ny\n" | sfdisk -f ' + self.disk_path
+		cmd = 'printf "8,\n;0,0\n;0,0\n;0,0\ny\n" | sfdisk -f -uS ' + self.disk_path
 		res = system(cmd)
 		return (res >> 8)
 
