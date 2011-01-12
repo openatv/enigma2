@@ -33,6 +33,10 @@ void eSDLInputDevice::handleCode(long arg)
 	if (km == eRCInput::kmNone) {
 		code = translateKey(key->sym);
 	} else {
+		// ASCII keys should only generate key press events
+		if (flags == eRCKey::flagBreak)
+			return;
+
 		eDebug("unicode=%04x scancode=%02x", m_unicode, key->scancode);
 		if (m_unicode & 0xff80) {
 			eDebug("SDL: skipping unicode character");
