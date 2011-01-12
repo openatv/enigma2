@@ -126,7 +126,7 @@ int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect
 			pal_addr = src->stride * src->y;
 			unsigned long *pal = (unsigned long*)(((unsigned char*)src->data) + pal_addr);
 			pal_addr += src->data_phys;
-			for (i = 0; i < 256; ++i)
+			for (i = 0; i < src->clut.colors; ++i)
 				*pal++ = src->clut.data[i].argb() ^ 0xFF000000;
 		} else
 			return -1; /* unsupported source format */
