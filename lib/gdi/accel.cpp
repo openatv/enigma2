@@ -145,6 +145,9 @@ int gAccel::blit(gSurface *dst, const gSurface *src, const eRect &p, const eRect
 
 int gAccel::fill(gSurface *dst, const eRect &area, unsigned long col)
 {
+#ifdef FORCE_NO_FILL_ACCELERATION
+	return -1;
+#endif
 #ifdef ATI_ACCEL
 	ati_accel_fill(
 		dst->data_phys, dst->x, dst->y, dst->stride, 
