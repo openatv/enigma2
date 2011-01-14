@@ -260,12 +260,12 @@ class MovieList(GUIComponent):
 					data.icon = self.iconMovieNew
 				else:
 					data.icon = None
-				cutsPathName = pathName + '.cuts'
-				if os.path.exists(cutsPathName):
-					part = moviePlayState(cutsPathName)
-					if part is not None:
-						# There's a stop point in the movie, we're watching it
-						data.icon = self.iconPart[part]
+					cutsPathName = pathName + '.cuts'
+					if os.path.exists(cutsPathName):
+						part = moviePlayState(cutsPathName)
+						if part is not None:
+							# There's a stop point in the movie, we're watching it
+							data.icon = self.iconPart[part]
 			else:
 				data.icon = None
 			service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
