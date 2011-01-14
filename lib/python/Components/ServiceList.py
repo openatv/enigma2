@@ -244,6 +244,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 				self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
 			self.l.setElementFont(self.l.celServiceName, self.ServiceNameFont)
 			self.l.setElementPosition(self.l.celServiceName, eRect(0, 0, self.instance.size().width(), self.ItemHeight))
+			self.l.setElementFont(self.l.celServiceInfo, self.ServiceInfoFont)
 		else:
 			if config.usage.show_event_progress_in_servicelist.value:
 				self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(60, 0, 52, self.ItemHeight))
