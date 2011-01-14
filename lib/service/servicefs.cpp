@@ -182,7 +182,7 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 		if (::stat(filename.c_str(), &s) < 0)
 			continue;
 		
-		if (S_ISDIR(s.st_mode))
+		if (S_ISDIR(s.st_mode) || S_ISLNK(s.st_mode))
 		{
 			filename += "/";
 			eServiceReference service(eServiceFactoryFS::id, 
