@@ -1,4 +1,4 @@
-SUBDIRS = src meta
+SUBDIRS = meta
 
 installdir = $(pkglibdir)/python/Plugins/Extensions/DVDPlayer
 
