@@ -16,8 +16,6 @@ from Components.config import config
 from Tools.Directories import pathExists, fileExists
 from Components.Harddisk import harddiskmanager
 
-import servicedvd # load c++ part of dvd player plugin
-
 lastpath = ""
 
 class FileBrowser(Screen):
