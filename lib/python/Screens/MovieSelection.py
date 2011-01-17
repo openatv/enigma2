@@ -7,7 +7,8 @@ from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet
+from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry
+from Components.ConfigList import ConfigListScreen
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 import Components.Harddisk
@@ -165,6 +166,91 @@ def copyServiceFiles(serviceref, dest):
 	CopyFiles.copyFiles(moveList, os.path.split(moveList[-1][0])[1])
 	print "[MovieSelection] Copying in background..."
 
+class Config(ConfigListScreen,Screen):
+	skin = """
+<screen position="center,center" size="560,400" title="Movie Browser Configuration" >
+	<ePixmap name="red"    position="0,0"   zPosition="2" size="140,40" pixmap="skin_default/buttons/red.png" transparent="1" alphatest="on" />
+	<ePixmap name="green"  position="140,0" zPosition="2" size="140,40" pixmap="skin_default/buttons/green.png" transparent="1" alphatest="on" />
+
+	<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+	<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;20" transparent="1" shadowColor="background" shadowOffset="-2,-2" /> 
+
+	<widget name="config" position="10,40" size="540,340" scrollbarMode="showOnDemand" />
+
+	<ePixmap alphatest="on" pixmap="skin_default/icons/clock.png" position="480,383" size="14,14" zPosition="3"/>
+	<widget font="Regular;18" halign="left" position="505,380" render="Label" size="55,20" source="global.CurrentTime" transparent="1" valign="center" zPosition="3">
+		<convert type="ClockToText">Default</convert>
+	</widget>
+</screen>"""
+		
+	def __init__(self, session, args = 0):
+		self.session = session
+		self.setup_title = _("Movie List Configuration")
+		Screen.__init__(self, session)
+		cfg = ConfigSubsection()
+		self.cfg = cfg
+		# this kludge is needed because ConfigSelection only takes numbers
+		# and someone appears to be fascinated by 'enums'.
+		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = [
+			(str(MovieList.SORT_RECORDED), _("sort by date")),
+			(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort"))])
+		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = [
+			(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
+			(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),
+			(str(MovieList.LISTTYPE_COMPACT), _("list style compact")),
+			(str(MovieList.LISTTYPE_MINIMAL), _("list style single line"))])
+		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
+		configList = [
+			getConfigListEntry(_("Sort"), cfg.moviesort),
+			getConfigListEntry(_("show extended description"), cfg.description),
+			getConfigListEntry(_("Type"), cfg.listtype),
+			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
+			]
+		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
+		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = Button(_("Ok"))
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button("")
+		self["statusbar"] = Label()
+		self["status"] = Label()
+		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		{
+			"red": self.cancel,
+			"green": self.save,
+			"save": self.save,
+			"cancel": self.cancel,
+			"ok": self.save,
+		}, -2)
+		self.onChangedEntry = []
+	
+	# for summary:
+	def changedEntry(self):
+		for x in self.onChangedEntry:
+			x()
+	def getCurrentEntry(self):
+		return self["config"].getCurrent()[0]
+	def getCurrentValue(self):
+		return str(self["config"].getCurrent()[1].getText())
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+
+	def save(self):
+		self.saveAll()
+		cfg = self.cfg
+		config.movielist.moviesort.value = int(cfg.moviesort.value)
+		config.movielist.listtype.value = int(cfg.listtype.value)
+		if cfg.description.value:
+			config.movielist.description.value = MovieList.SHOW_DESCRIPTION
+		else:
+			config.movielist.description.value = MovieList.HIDE_DESCRIPTION 
+		self.close(True)
+
+	def cancel(self):
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close(False)
+
 class MovieContextMenuSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent = parent)
@@ -211,22 +297,7 @@ class MovieContextMenu(Screen):
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
-		if csel.settings["moviesort"] == MovieList.SORT_ALPHANUMERIC:
-			menu.append((_("sort by date"), boundFunction(csel.sortBy, MovieList.SORT_RECORDED)))
-		else:
-			menu.append((_("alphabetic sort"), boundFunction(csel.sortBy, MovieList.SORT_ALPHANUMERIC)))
-		
-		menu.extend((
-			(_("list style default"), boundFunction(csel.listType, MovieList.LISTTYPE_ORIGINAL)),
-			(_("list style compact with description"), boundFunction(csel.listType, MovieList.LISTTYPE_COMPACT_DESCRIPTION)),
-			(_("list style compact"), boundFunction(csel.listType, MovieList.LISTTYPE_COMPACT)),
-			(_("list style single line"), boundFunction(csel.listType, MovieList.LISTTYPE_MINIMAL))
-		))
-
-		if csel.settings["description"] == MovieList.SHOW_DESCRIPTION:
-			menu.append((_("hide extended description"), boundFunction(csel.showDescription, MovieList.HIDE_DESCRIPTION)))
-		else:
-			menu.append((_("show extended description"), boundFunction(csel.showDescription, MovieList.SHOW_DESCRIPTION)))
+		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
 
 	def createSummary(self):
@@ -501,32 +572,25 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 	def loadLocalSettings(self):
 		'Load settings, called when entering a directory'
 		try:
-			oldpath = os.path.join(config.movielist.last_videodir.value, "e2settings.pkl")
 			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
-			try:
-				updates = pickle.load(open(path, "rb"))
-			except:
-				# load old settings file and rename it (this code should be removed in a few weeks
-				updates = pickle.load(open(oldpath, "rb"))
-				try:
-					os.rename(oldpath, path)
-				except:
-					pass
-			if os.path.isfile(oldpath):
-				try:
-					os.unlink(oldpath)
-				except:
-					pass
-			needUpdateDesc = ("description" in updates) and (updates["description"] != self.settings["description"]) 
-			self.settings.update(updates)
-			if needUpdateDesc:
-				self["list"].setDescriptionState(self.settings["description"])
-				self.updateDescription()
-			self["list"].setListType(self.settings["listtype"])
-			self["list"].setSortType(self.settings["moviesort"])
+			updates = pickle.load(open(path, "rb"))
+			self.applyConfigSettings(updates)
 		except Exception, e:
 			print "Failed to load settings:", e
 
+	def applyConfigSettings(self, updates):
+		needUpdate = ("description" in updates) and (updates["description"] != self.settings["description"]) 
+		self.settings.update(updates)
+		if needUpdate:
+			self["list"].setDescriptionState(self.settings["description"])
+			self.updateDescription()
+		if self.settings["listtype"] != self["list"].list_type: 
+			self["list"].setListType(self.settings["listtype"])
+			needUpdate = True
+		if self.settings["moviesort"] != self["list"].sort_type:
+			self["list"].setSortType(self.settings["moviesort"])
+			needUpdate = True
+		return needUpdate
 
 	def sortBy(self, newType):
 		self.settings["moviesort"] = newType
@@ -551,6 +615,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 	def saveconfig(self):
 		config.movielist.last_selected_tags.value = self.selected_tags
+		
+	def configure(self):
+		self.session.openWithCallback(self.configureDone, Config)
+
+    	def configureDone(self, result):
+		if result:
+			self.applyConfigSettings({\
+				"listtype": config.movielist.listtype.value,
+				"moviesort": config.movielist.moviesort.value,
+				"description": config.movielist.description.value})
+			if self.saveLocalSettings():
+				print "reload movielist"
+				self.reloadList()
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
