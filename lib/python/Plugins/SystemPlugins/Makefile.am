@@ -1,11 +1,18 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 
-SUBDIRS = SoftwareManager FrontprocessorUpgrade PositionerSetup Satfinder \
+SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	SkinSelector SatelliteEquipmentControl Videomode VideoTune Hotplug \
-	DefaultServicesScanner NFIFlash DiseqcTester CommonInterfaceAssignment \
+	DefaultServicesScanner DiseqcTester CommonInterfaceAssignment \
 	CableScan FastScan OSDPositionSetup OSD3DSetup \
-	CrashlogAutoSubmit CleanupWizard VideoEnhancement WirelessLan NetworkWizard \
-	TempFanControl
+	VideoEnhancement WirelessLan NetworkWizard
+
+if DM8000
+SUBDIRS += TempFanControl
+endif
+
+if DREAMBOX
+SUBDIRS += FrontprocessorUpgrade NFIFlash
+endif
 
 install_PYTHON =	\
 	__init__.py
