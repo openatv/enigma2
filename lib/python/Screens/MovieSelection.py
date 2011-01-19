@@ -39,8 +39,11 @@ config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
+config.movielist.play_audio_internal = ConfigYesNo(default=True)
 last_selected_dest = []
 
+AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
+DVD_EXTENSIONS = ('.iso', '.img')
 preferredTagEditor = None
 
 def defaultMoviePath():
@@ -205,6 +208,7 @@ class Config(ConfigListScreen,Screen):
 			getConfigListEntry(_("show extended description"), cfg.description),
 			getConfigListEntry(_("Type"), cfg.listtype),
 			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
+			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			]
 		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
 		self["key_red"] = Button(_("Cancel"))
@@ -450,8 +454,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		self.inited = False
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
+		self.playInBackground = None
+		self.lastservice = session.nav.getCurrentlyPlayingServiceReference()
 		
 	def __onClose(self):
+		if self.playInBackground:
+			self.session.nav.playService(self.lastservice)
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception, e:
@@ -537,9 +545,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 						return
 				self.gotFilename(path)
 			else:
-				if os.path.splitext(path)[1] in ('.ISO', '.iso', '.IMG', '.img'):
+				ext = os.path.splitext(path)[1].lower() 
+				if ext in DVD_EXTENSIONS:
 					if self.playAsDVD(path):
 						return
+				#from Components.InfoBar import MoviePlayer
+				#self.session.open(MoviePlayer, current, slist = self.servicelist)
+				elif config.movielist.play_audio_internal.value and (ext in AUDIO_EXTENSIONS):
+					if self.playInBackground and (self.playInBackground == current):
+						self.playInBackground = None
+						self.session.nav.stopService()
+					else:
+						self.playInBackground = current
+						self.session.nav.playService(current)
+					return
+				if self.playInBackground:
+					# Stop playing MP3s, otherwise the InfoBar gets
+					# confused. Sorry, you have to start it twice now.
+					self.playInBackground = None
+					self.session.nav.playService(self.lastservice)
+					return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
