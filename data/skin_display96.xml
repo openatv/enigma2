@@ -12,6 +12,8 @@
 
 <!-- main-->
 	<screen name="InfoBarSummary" position="0,0" size="96,64">
+<!-- PIcon style skin, doesn't work with 100x60 Picons
+     if you like it, put this part in your skin_user.xml
                 <widget position="0,0" render="Picon" size="70,53" source="session.CurrentService" zPosition="0">
                         <convert type="ServiceName">Reference</convert>
                 </widget>
@@ -31,7 +33,7 @@
 		<widget source="session.Event_Now" render="Progress" position="0,62" size="96,2" borderWidth="0" transparent="1" pixmap="skin_default/progress_small.png" backgroundColor="#800000" zPosition="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-<!-- use the stuff below instead if you don't like PIcons on your display
+-->
 		<widget source="session.CurrentService" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
@@ -51,10 +53,8 @@
 		<widget source="global.CurrentTime" render="Label" position="40,40" size="56,24" font="FdLcD;24" halign="right" valign="top" noWrap="1">
 			<convert type="ClockToText"></convert>
 		</widget>
--->
 	</screen>
-    
-  
+ 
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="96,64">
 		<widget source="parent.ServiceEvent" render="Label" position="0,0" size="96,21" font="FdLcD;20" halign="left" noWrap="1" >
