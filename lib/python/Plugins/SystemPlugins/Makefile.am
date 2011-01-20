@@ -6,7 +6,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	CableScan FastScan OSDPositionSetup OSD3DSetup \
 	VideoEnhancement WirelessLan NetworkWizard
 
-if DM8000
+if HAVE_TEMPFANCONTROL
 SUBDIRS += TempFanControl
 endif
 
