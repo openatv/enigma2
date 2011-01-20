@@ -214,25 +214,13 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	std::string configvalue;
 	std::vector<std::string> autoaudio_languages;
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect1", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autoaudio_languages.push_back(configvalue);
-	}
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect2", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autoaudio_languages.push_back(configvalue);
-	}
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect3", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autoaudio_languages.push_back(configvalue);
-	}
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.audio_autoselect4", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autoaudio_languages.push_back(configvalue);
-	}
 
 	program.defaultAudioStream = 0;
 	audioStream *prev_audio = 0;
@@ -245,25 +233,13 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 	
 	std::vector<std::string> autosub_languages;
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect1", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autosub_languages.push_back(configvalue);
-	}
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect2", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autosub_languages.push_back(configvalue);
-	}
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect3", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autosub_languages.push_back(configvalue);
-	}
 	if (!ePythonConfigQuery::getConfigValue("config.autolanguage.subtitle_autoselect4", configvalue) && configvalue != "None")
-	{
-		std::transform(configvalue.begin(), configvalue.end(), configvalue.begin(), tolower);
 		autosub_languages.push_back(configvalue);
-	}
 
 	program.defaultSubtitleStream = -1;
 
@@ -420,7 +396,6 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 
 										if (!language.empty())
 										{
-											std::transform(language.begin(), language.end(), language.begin(), tolower);
 											int x = 1;
 											for (std::vector<std::string>::iterator it2 = autosub_languages.begin();x <= autosub_level && it2 != autosub_languages.end();x++,it2++)
 											{
@@ -463,7 +438,6 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 //												eDebug("add teletext subtitle %s PID %04x, page number %d, magazine number %d", s.language_code.c_str(), s.pid, s.teletext_page_number, s.teletext_magazine_number);
 												if (!language.empty())
 												{
-													std::transform(language.begin(), language.end(), language.begin(), tolower);
 													int x = 1;
 													for (std::vector<std::string>::iterator it2 = autosub_languages.begin();x <= autosub_level && it2 != autosub_languages.end();x++,it2++)
 													{
@@ -568,7 +542,6 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 											
 										if (!language.empty())
 										{
-											std::transform(language.begin(), language.end(), language.begin(), tolower);
 											int x = 1;
 											for (std::vector<std::string>::iterator it = autoaudio_languages.begin();x <= autoaudio_level && it != autoaudio_languages.end();x++,it++)
 											{
