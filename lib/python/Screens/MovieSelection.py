@@ -562,9 +562,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				if self.playInBackground:
 					# Stop playing MP3s, otherwise the InfoBar gets
 					# confused. Sorry, you have to start it twice now.
+					self.session.nav.stopService()
 					self.playInBackground = None
-					self.session.nav.playService(self.lastservice)
-					return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
