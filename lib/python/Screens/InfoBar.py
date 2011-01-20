@@ -116,11 +116,14 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.rds_display.show()  # in InfoBarRdsDecoder
 
 	def showMovies(self):
+		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection)
 
 	def movieSelected(self, service):
 		if service is not None:
-			self.session.open(MoviePlayer, service, slist = self.servicelist)
+			ref = self.lastservice
+			del self.lastservice
+			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 		InfoBarMenu, \
@@ -132,7 +135,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
 		
-	def __init__(self, session, service, slist = None):
+	def __init__(self, session, service, slist = None, lastservice = None):
 		Screen.__init__(self, session)
 		
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
@@ -158,7 +161,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			x.__init__(self)
 
 		self.servicelist = slist
-		self.lastservice = session.nav.getCurrentlyPlayingServiceReference()
+		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceReference()
 		session.nav.playService(service)
 		self.returning = False
 		self.onClose.append(self.__onClose)
