@@ -423,6 +423,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 
 		self["NumberActions"] =  HelpableActionMap(self, "NumberActions", 
 			{
+				"1": (self.preview, _("Preview")),
 				"2": (self.list.moveToFirst, _("Go to top of list")),
 				"5": (self.list.moveToFirstMovie, _("Go to first movie")),
 				"8": (self.list.moveToLast, _("Go to last item")),
@@ -534,6 +535,20 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 			return True
 		except Exception, e:
 			print "[MS] DVD Player not installed:", e
+
+	def preview(self):
+		current = self.getCurrent()
+		if current is not None:
+			path = current.getPath()
+			if current.flags & eServiceReference.mustDescent:
+				self.gotFilename(path)
+			else:
+				if self.playInBackground and (self.playInBackground == current):
+					self.playInBackground = None
+					self.session.nav.stopService()
+				else:
+					self.playInBackground = current
+					self.session.nav.playService(current)
 
 	def itemSelected(self):
 		current = self.getCurrent()
