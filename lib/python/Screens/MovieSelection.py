@@ -9,6 +9,7 @@ from Components.Label import Label
 from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 import Components.Harddisk
@@ -26,7 +27,7 @@ import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
 
-from enigma import eServiceReference, eServiceCenter, eTimer, eSize
+from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService
 import os
 import time
 import cPickle as pickle
@@ -367,10 +368,11 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = ""
 
 
-class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
+class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		InfoBarBase.__init__(self) # For ServiceEventTracker       
 
 		self.tags = {}
 		if selectedmovie:
@@ -457,6 +459,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
 		self.playInBackground = None
 		self.lastservice = session.nav.getCurrentlyPlayingServiceReference()
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				#iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
+				iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evEOF: self.__evEOF,
+				#iPlayableService.evSOF: self.__evSOF,
+			})
 		
 	def __onClose(self):
 		if self.playInBackground:
@@ -536,6 +545,51 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 		except Exception, e:
 			print "[MS] DVD Player not installed:", e
 
+	def __serviceStarted(self):
+		print "[ML] __serviceStarted"
+		if not self.playInBackground:
+			return
+		ref = self.session.nav.getCurrentService()
+		cue = ref.cueSheet()
+		if not cue:
+			return
+		cuts = cue.getCutList()
+		print "[ML] cuts:", cuts
+		if not cuts:
+			return
+		for (pts, what) in cuts:
+			if what == 3:
+				last = pts
+				break
+		else:
+			return
+		print "[ML] last playback:", what
+		# TODO: Set jump-to-what timer (just jumping will hang enigma here)
+
+
+	def __evEOF(self):
+		print "[ML] __evEOF"
+		playInBackground = self.playInBackground
+		if not playInBackground:
+			print "Not playing anything in background"
+			return
+		current = self.getCurrent()
+		self.session.nav.stopService()
+		self.playInBackground = None
+		if config.movielist.play_audio_internal.value:
+			if playInBackground == current:
+				print "Same file, selecting next"
+				self["list"].moveDown()
+				next = self.getCurrent()
+				if not next or (next == current):
+					print "End of list"
+					return # don't loop the last item
+				path = next.getPath()
+				ext = os.path.splitext(path)[1].lower()
+				print "Next up:", path
+				if ext in AUDIO_EXTENSIONS:
+					self.preview()
+
 	def preview(self):
 		current = self.getCurrent()
 		if current is not None:
@@ -564,19 +618,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo):
 				if ext in DVD_EXTENSIONS:
 					if self.playAsDVD(path):
 						return
-				#from Components.InfoBar import MoviePlayer
-				#self.session.open(MoviePlayer, current, slist = self.servicelist)
 				elif config.movielist.play_audio_internal.value and (ext in AUDIO_EXTENSIONS):
-					if self.playInBackground and (self.playInBackground == current):
-						self.playInBackground = None
-						self.session.nav.stopService()
-					else:
-						self.playInBackground = current
-						self.session.nav.playService(current)
+					self.preview()
 					return
 				if self.playInBackground:
 					# Stop playing MP3s, otherwise the InfoBar gets
-					# confused. Sorry, you have to start it twice now.
+					# confused.
 					self.session.nav.stopService()
 					self.playInBackground = None
 				self.movieSelected()
