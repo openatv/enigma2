@@ -473,6 +473,12 @@ class Status:
 					enc = line[line.index('Encryption key')+15 :line.index('   Security')]
 					if enc is not None:
 						enc = _("Enabled")
+				else:
+					# just the key, followed by a linefeed
+					enc = line[line.index('Encryption key')+15 :]
+					# check for not None and len()
+					if enc:
+						enc = _("Enabled")
 				if enc is not None:
 					data['encryption'] = enc
 			if 'Quality' in line:
