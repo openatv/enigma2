@@ -469,7 +469,7 @@ class Status:
 						enc = _("Unsupported")
 					else:
 						enc = _("Disabled")
-				else:
+				else if '   Security' in line:
 					enc = line[line.index('Encryption key')+15 :line.index('   Security')]
 					if enc is not None:
 						enc = _("Enabled")
