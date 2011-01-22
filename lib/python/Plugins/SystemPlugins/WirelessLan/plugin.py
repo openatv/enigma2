@@ -297,17 +297,18 @@ class WlanScan(Screen):
 				self.newAPList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ))
 	
 			currentListEntry = self["list"].getCurrent()
-			idx = 0
-			for entry in self.newAPList:
-				if entry[0] == currentListEntry[0]:
-					newListIndex = idx
-				idx +=1
-			self['list'].setList(self.newAPList)
-			self["list"].setIndex(newListIndex)
-			self["list"].updateList(self.newAPList)
-			self.listLength = len(self.newAPList)
-			self.buildWlanList()
-			self.setInfo()
+			if currentListEntry:
+				idx = 0
+				for entry in self.newAPList:
+					if entry[0] == currentListEntry[0]:
+						newListIndex = idx
+					idx +=1
+				self['list'].setList(self.newAPList)
+				self["list"].setIndex(newListIndex)
+				self["list"].updateList(self.newAPList)
+				self.listLength = len(self.newAPList)
+				self.buildWlanList()
+				self.setInfo()
 
 	def getAccessPoints(self, refresh = False):
 		self.APList = []
