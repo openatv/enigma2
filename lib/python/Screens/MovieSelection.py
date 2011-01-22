@@ -568,6 +568,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		print "[ML] last playback:", what
 		# TODO: Set jump-to-what timer (just jumping will hang enigma here)
 
+	def callLater(self, function):
+		self.previewTimer = eTimer()
+		self.previewTimer.callback.append(function)
+		self.previewTimer.start(10, True)
+		
 
 	def __evEOF(self):
 		print "[ML] __evEOF"
@@ -590,23 +595,31 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				ext = os.path.splitext(path)[1].lower()
 				print "Next up:", path
 				if ext in AUDIO_EXTENSIONS:
-					self.preview()
+					print "[ml] e calllater preview"
+					self.callLater(self.preview)
 
 	def preview(self):
+		print "[ml] preview"
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
 			if current.flags & eServiceReference.mustDescent:
 				self.gotFilename(path)
 			else:
-				if self.playInBackground and (self.playInBackground == current):
+				playInBackground = self.playInBackground
+				if playInBackground:
 					self.playInBackground = None
 					self.session.nav.stopService()
+					if playInBackground != current:
+						# come back to play the new one
+						print "[ml] p calllater preview"
+						self.callLater(self.preview)
 				else:
 					self.playInBackground = current
 					self.session.nav.playService(current)
 
 	def itemSelected(self):
+		print "[ml] itemSelected"
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
@@ -617,17 +630,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self.gotFilename(path)
 			else:
 				ext = os.path.splitext(path)[1].lower() 
-				if ext in DVD_EXTENSIONS:
-					if self.playAsDVD(path):
-						return
-				elif config.movielist.play_audio_internal.value and (ext in AUDIO_EXTENSIONS):
+				if config.movielist.play_audio_internal.value and (ext in AUDIO_EXTENSIONS):
 					self.preview()
 					return
 				if self.playInBackground:
-					# Stop playing MP3s, otherwise the InfoBar gets
-					# confused.
+					# Stop preview, come back later
 					self.session.nav.stopService()
 					self.playInBackground = None
+					print "[ml] i calllater itemSelected"
+					self.callLater(self.itemSelected)
+					return
+				if ext in DVD_EXTENSIONS:
+					if self.playAsDVD(path):
+						return
 				self.movieSelected()
 
 	# Note: DVDBurn overrides this method, hence the itemSelected indirection.
