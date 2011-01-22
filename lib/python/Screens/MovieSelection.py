@@ -553,6 +553,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		cue = ref.cueSheet()
 		if not cue:
 			return
+		# disable writing the stop position
+		cue.setCutListEnable(2)
 		cuts = cue.getCutList()
 		print "[ML] cuts:", cuts
 		if not cuts:

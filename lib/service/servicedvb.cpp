@@ -330,11 +330,11 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	
 	eDVBTSTools tstools;
 	
-	struct stat s;
-	stat(ref.path.c_str(), &s);
-
 	if (tstools.openFile(ref.path.c_str(), 1))
 		return 0;
+
+	struct stat s;
+	stat(ref.path.c_str(), &s);
 
 			/* check if cached data is still valid */
 	if (m_parser.m_data_ok && (s.st_size == m_parser.m_filesize) && (m_parser.m_length))
@@ -921,30 +921,29 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 }
 
 eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *service):
-	m_reference(ref), m_dvb_service(service), m_have_video_pid(0), m_is_paused(0)
+	m_reference(ref),
+	m_dvb_service(service),
+	m_is_primary(1),
+	m_have_video_pid(0),
+	m_tune_state(-1),
+	m_is_pvr(!ref.path.empty()),
+	m_timeshift_enabled(0),
+	m_timeshift_active(0),
+	m_timeshift_changed(0),
+	m_timeshift_fd(-1),
+	m_skipmode(0),
+	m_fastforward(0),
+	m_slowmotion(0),
+	m_cuesheet_changed(0),
+	m_cutlist_enabled(1),
+	m_subtitle_widget(0),
+	m_is_paused(0),
+	m_subtitle_sync_timer(eTimer::create(eApp)),
+	m_nownext_timer(eTimer::create(eApp))
 {
-	m_is_primary = 1;
-	m_is_pvr = !m_reference.path.empty();
-
-	m_timeshift_fd = -1;
-
-	m_timeshift_enabled = m_timeshift_active = 0, m_timeshift_changed = 0;
-	m_skipmode = m_fastforward = m_slowmotion = 0;
-	
 	CONNECT(m_service_handler.serviceEvent, eDVBServicePlay::serviceEvent);
 	CONNECT(m_service_handler_timeshift.serviceEvent, eDVBServicePlay::serviceEventTimeshift);
 	CONNECT(m_event_handler.m_eit_changed, eDVBServicePlay::gotNewEvent);
-
-	m_cuesheet_changed = 0;
-	m_cutlist_enabled = 1;
-	
-	m_subtitle_widget = 0;
-	
-	m_tune_state = -1;
-
-	m_subtitle_sync_timer = eTimer::create(eApp);
-	m_nownext_timer = eTimer::create(eApp);
-
 	CONNECT(m_subtitle_sync_timer->timeout, eDVBServicePlay::checkSubtitleTiming);
 	CONNECT(m_nownext_timer->timeout, eDVBServicePlay::updateEpgCacheNowNext);
 }
@@ -1249,7 +1248,8 @@ RESULT eDVBServicePlay::start()
 RESULT eDVBServicePlay::stop()
 {
 		/* add bookmark for last play position */
-	if (m_is_pvr)
+		/* m_cutlist_enabled bit 2 is the "don't remember bit" */
+	if (m_is_pvr && ((m_cutlist_enabled & 2) == 0))
 	{
 		pts_t play_position, length;
 		if (!getPlayPosition(play_position))
