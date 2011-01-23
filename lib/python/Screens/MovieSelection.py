@@ -555,8 +555,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		# disable writing the stop position
 		cue.setCutListEnable(2)
+		# find "resume" position
 		cuts = cue.getCutList()
-		print "[ML] cuts:", cuts
 		if not cuts:
 			return
 		for (pts, what) in cuts:
@@ -564,9 +564,29 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				last = pts
 				break
 		else:
+			# no resume, jump to start of program (first marker)
+			last = cuts[0][0]
+		print "[ML] last playback:", last
+		self.doSeekTo = last 
+		self.callLater(self.doSeek)
+
+	def doSeek(self, pts = None):
+		if pts is None:
+			pts = self.doSeekTo
+		print "[ML] seek to:", pts
+		seekable = self.getSeek()
+		if seekable is None:
 			return
-		print "[ML] last playback:", what
-		# TODO: Set jump-to-what timer (just jumping will hang enigma here)
+		seekable.seekTo(pts)
+
+	def getSeek(self):
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return None
+		seek = service.seek()
+		if seek is None or not seek.isCurrentlySeekable():
+			return None
+		return seek
 
 	def callLater(self, function):
 		self.previewTimer = eTimer()
