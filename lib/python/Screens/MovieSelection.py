@@ -468,7 +468,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			})
 		
 	def __onClose(self):
-		if self.playInBackground:
+		if not self.session.nav.getCurrentlyPlayingServiceReference():
 			self.session.nav.playService(self.lastservice)
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
@@ -713,6 +713,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.updateDescription()
 
 	def abort(self):
+		if self.playInBackground:
+			self.playInBackground = None
+			self.session.nav.stopService()
+			self.callLater(self.abort)
+			return
 		self.saveconfig()
 		self.close(None)
 
