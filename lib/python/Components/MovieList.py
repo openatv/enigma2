@@ -5,6 +5,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.config import config
 import os
 import struct
+import random
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_HDD, SCOPE_SKIN_IMAGE, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
@@ -92,6 +93,7 @@ def resetMoviePlayState(cutsFileName):
 class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
 	SORT_RECORDED = 2
+	SHUFFLE = 3
 
 	LISTTYPE_ORIGINAL = 1
 	LISTTYPE_COMPACT_DESCRIPTION = 2
@@ -478,6 +480,11 @@ class MovieList(GUIComponent):
 		else:
 			# sort: key is 'begin'
 			self.list.sort(key=self.buildBeginTimeSortKey)
+		if self.sort_type == MovieList.SHUFFLE:
+			dirlist=self.list[:numberOfDirs]
+			shufflelist=self.list[numberOfDirs:]
+			random.shuffle(shufflelist)
+			self.list=dirlist+shufflelist
 		
 		# finally, store a list of all tags which were found. these can be presented
 		# to the user to filter the list

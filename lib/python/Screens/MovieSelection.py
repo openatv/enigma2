@@ -197,7 +197,8 @@ class Config(ConfigListScreen,Screen):
 		# and someone appears to be fascinated by 'enums'.
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices = [
 			(str(MovieList.SORT_RECORDED), _("sort by date")),
-			(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort"))])
+			(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic sort")),
+			(str(MovieList.SHUFFLE), _("shuffle"))])
 		cfg.listtype = ConfigSelection(default=str(config.movielist.listtype.value), choices = [
 			(str(MovieList.LISTTYPE_ORIGINAL), _("list style default")),
 			(str(MovieList.LISTTYPE_COMPACT_DESCRIPTION), _("list style compact with description")),
@@ -753,9 +754,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"listtype": config.movielist.listtype.value,
 				"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value})
-			if self.saveLocalSettings():
-				print "reload movielist"
-				self.reloadList()
+			self.saveLocalSettings()
+			self.reloadList()
 
 	def getTagDescription(self, tag):
 		# TODO: access the tag database
