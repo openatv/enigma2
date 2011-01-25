@@ -329,6 +329,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 
 	def showMovies(self):
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.playingservice = ref # movie list may change the currently playing
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 
 	def movieSelected(self, service):
@@ -338,3 +339,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.returning = False
 		elif self.returning:
 			self.close()
+		else:
+			self.is_closing = False
+			ref = self.playingservice
+			del self.playingservice
+			# no selection? Continue where we left off
+			if ref and not self.session.nav.getCurrentlyPlayingServiceReference():
+				self.session.nav.playService(ref)
