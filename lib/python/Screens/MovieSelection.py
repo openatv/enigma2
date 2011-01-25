@@ -459,7 +459,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.onClose.append(self.__onClose)
 		NavigationInstance.instance.RecordTimer.on_state_change.append(self.list.updateRecordings)
 		self.playInBackground = None
-		self.lastservice = session.nav.getCurrentlyPlayingServiceReference()
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				#iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
@@ -469,8 +468,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			})
 		
 	def __onClose(self):
-		if not self.session.nav.getCurrentlyPlayingServiceReference():
-			self.session.nav.playService(self.lastservice)
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception, e:
@@ -547,7 +544,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			print "[MS] DVD Player not installed:", e
 
 	def __serviceStarted(self):
-		print "[ML] __serviceStarted"
 		if not self.playInBackground:
 			return
 		ref = self.session.nav.getCurrentService()
@@ -567,14 +563,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		else:
 			# no resume, jump to start of program (first marker)
 			last = cuts[0][0]
-		print "[ML] last playback:", last
 		self.doSeekTo = last 
 		self.callLater(self.doSeek)
 
 	def doSeek(self, pts = None):
 		if pts is None:
 			pts = self.doSeekTo
-		print "[ML] seek to:", pts
 		seekable = self.getSeek()
 		if seekable is None:
 			return
@@ -596,7 +590,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		
 
 	def __evEOF(self):
-		print "[ML] __evEOF"
 		playInBackground = self.playInBackground
 		if not playInBackground:
 			print "Not playing anything in background"
@@ -606,7 +599,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.playInBackground = None
 		if config.movielist.play_audio_internal.value:
 			if playInBackground == current:
-				print "Same file, selecting next"
 				self["list"].moveDown()
 				next = self.getCurrent()
 				if not next or (next == current):
@@ -620,7 +612,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.callLater(self.preview)
 
 	def preview(self):
-		print "[ml] preview"
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
@@ -633,14 +624,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					self.session.nav.stopService()
 					if playInBackground != current:
 						# come back to play the new one
-						print "[ml] p calllater preview"
 						self.callLater(self.preview)
 				else:
 					self.playInBackground = current
 					self.session.nav.playService(current)
 
 	def itemSelected(self):
-		print "[ml] itemSelected"
 		current = self.getCurrent()
 		if current is not None:
 			path = current.getPath()
@@ -658,7 +647,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					# Stop preview, come back later
 					self.session.nav.stopService()
 					self.playInBackground = None
-					print "[ml] i calllater itemSelected"
 					self.callLater(self.itemSelected)
 					return
 				if ext in DVD_EXTENSIONS:
