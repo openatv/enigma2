@@ -120,9 +120,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection)
 
 	def movieSelected(self, service):
-		if service is not None:
-			ref = self.lastservice
-			del self.lastservice
+		ref = self.lastservice
+		del self.lastservice
+		if service is None:
+			if ref and not self.session.nav.getCurrentlyPlayingServiceReference():
+				self.session.nav.playService(ref)
+		else:
 			self.session.open(MoviePlayer, service, slist = self.servicelist, lastservice = ref)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, \
