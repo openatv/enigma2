@@ -201,28 +201,28 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 		getStyle(style);
 		eWidget::event(event, data, data2);
 
-                std::string configvalue;
+		std::string configvalue;
 
-                int rt_halignment_flag;
-                if (ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_alignment", configvalue))
-                    configvalue = "center";
-                if (configvalue == "center")
-                    rt_halignment_flag = gPainter::RT_HALIGN_CENTER;
-                else if (configvalue == "left")
-                    rt_halignment_flag = gPainter::RT_HALIGN_LEFT;
-                else
-                    rt_halignment_flag = gPainter::RT_HALIGN_RIGHT;
-       
-                int borderwidth = 2;
+		int rt_halignment_flag;
+		if (ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_alignment", configvalue))
+			configvalue = "center";
+		if (configvalue == "center")
+			rt_halignment_flag = gPainter::RT_HALIGN_CENTER;
+		else if (configvalue == "left")
+			rt_halignment_flag = gPainter::RT_HALIGN_LEFT;
+		else
+			rt_halignment_flag = gPainter::RT_HALIGN_RIGHT;
+
+		int borderwidth = 2;
 		if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_borderwidth", configvalue))
 		{
-                    borderwidth = atoi(configvalue.c_str());
+			borderwidth = atoi(configvalue.c_str());
 		}
 
-                int fontsize = 34;
+		int fontsize = 34;
 		if (!ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_fontsize", configvalue))
 		{
-                    fontsize = atoi(configvalue.c_str());
+			fontsize = atoi(configvalue.c_str());
 		}
 
 		if (m_pixmap)
