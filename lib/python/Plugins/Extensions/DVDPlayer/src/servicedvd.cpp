@@ -397,6 +397,64 @@ RESULT eServiceDVD::subtitle(ePtr<iSubtitleOutput> &ptr)
 	return 0;
 }
 
+RESULT eServiceDVD::audioTracks(ePtr<iAudioTrackSelection> &ptr)
+{
+	ptr = this;
+	return 0;
+}
+
+int eServiceDVD::getNumberOfTracks()
+{
+	int i = 0;
+	ddvd_get_audio_count(m_ddvdconfig, &i);
+	eDebug("getNumberOfTracks returns %i", i);
+	return i;
+}
+
+int eServiceDVD::getCurrentTrack()
+{
+	int audio_id,audio_type;
+	uint16_t audio_lang;
+	ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
+	eDebug("getCurrentTrack returns %i", audio_id);
+	return audio_id;
+}
+
+RESULT eServiceDVD::selectTrack(unsigned int i)
+{
+	ddvd_set_audio(m_ddvdconfig, i);
+	eDebug("selectTrack %i", i);
+	return 0;
+}
+
+RESULT eServiceDVD::getTrackInfo(struct iAudioTrackInfo &info, unsigned int audio_id)
+{
+	int audio_type;
+	uint16_t audio_lang;
+	ddvd_get_audio_byid(m_ddvdconfig, audio_id, &audio_lang, &audio_type);
+	char audio_string[3]={audio_lang >> 8, audio_lang, 0};
+	info.m_pid = audio_id+1;
+	info.m_language = audio_string;
+	switch(audio_type)
+	{
+		case DDVD_MPEG:
+			info.m_description = "MPEG";
+			break;
+		case DDVD_AC3:
+			info.m_description = "AC3";
+			break;
+		case DDVD_DTS:
+			info.m_description = "DTS";
+			break;
+		case DDVD_LPCM:
+			info.m_description = "LPCM";
+			break;
+		default:
+			info.m_description = "und";
+	}
+	return 0;
+}
+
 RESULT eServiceDVD::keys(ePtr<iServiceKeys> &ptr)
 {
 	ptr=this;
@@ -659,8 +717,28 @@ RESULT eServiceDVD::disableSubtitles(eWidget */*parent*/)
 
 PyObject *eServiceDVD::getSubtitleList()
 {
-	eDebug("eServiceDVD::getSubtitleList nyi");
-	Py_RETURN_NONE;
+	eDebug("eServiceMP3::getSubtitleList");
+
+	ePyObject l = PyList_New(0);
+	unsigned int spu_count = 0;
+	ddvd_get_spu_count(m_ddvdconfig, &spu_count);
+
+	for ( unsigned int spu_id = 0; spu_id < spu_count; spu_id++ )
+	{
+		uint16_t spu_lang;
+		ddvd_get_spu_byid(m_ddvdconfig, spu_id, &spu_lang);
+		char spu_string[3]={spu_lang >> 8, spu_lang, 0};
+
+		ePyObject tuple = PyTuple_New(5);
+		PyTuple_SetItem(tuple, 0, PyInt_FromLong(2));
+		PyTuple_SetItem(tuple, 1, PyInt_FromLong(0));
+		PyTuple_SetItem(tuple, 2, PyInt_FromLong(3));
+		PyTuple_SetItem(tuple, 3, PyInt_FromLong(0));
+		PyTuple_SetItem(tuple, 4, PyString_FromString(spu_string));
+		PyList_Append(l, tuple);
+		Py_DECREF(tuple);
+	}
+	return l;
 }
 
 PyObject *eServiceDVD::getCachedSubtitle()
