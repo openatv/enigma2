@@ -262,6 +262,11 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				face = Subtitle_Regular;
 				ePangoSubtitlePageElement &element = m_pango_page.m_elements[i];
 				std::string text = element.m_pango_line;
+				text = replace_all(text, "&apos;", "'");
+				text = replace_all(text, "&quot;", "\"");
+				text = replace_all(text, "&amp;", "&");
+				text = replace_all(text, "&lt", "<");
+				text = replace_all(text, "&gt", ">");
 				std::string::size_type loc = text.find("<", 0 );
 				if ( loc != std::string::npos )
 				{
@@ -276,9 +281,6 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 					}
 					text = text.substr(3, text.length()-7);
 				}
-				text = replace_all(text, "&apos;", "'");
-				text = replace_all(text, "&quot;", "\"");
-				text = replace_all(text, "&amp;", "&");
 
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
