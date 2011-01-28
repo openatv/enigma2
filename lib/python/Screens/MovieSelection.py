@@ -431,7 +431,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"5": (self.list.moveToFirstMovie, _("Go to first movie")),
 				"8": (self.list.moveToLast, _("Go to last item")),
 			})
-
+		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions",
+			{
+				"leavePlayer": (self.playbackStop, _("Stop")),
+			})
 		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
 			{
 				"contextMenu": (self.doContext, _("menu")),
@@ -445,7 +448,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"yellow": (self.showBookmarks, _("select the movie path")),
 				"blue": (self.showTagsSelect, _("show tag menu")),
 			})
-
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 				"cancel": (self.abort, _("exit movielist")),
@@ -628,6 +630,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				else:
 					self.playInBackground = current
 					self.session.nav.playService(current)
+
+	def playbackStop(self):
+		if self.playInBackground:
+			self.playInBackground = None
+			self.session.nav.stopService()
 
 	def itemSelected(self):
 		current = self.getCurrent()
