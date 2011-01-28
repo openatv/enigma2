@@ -10,6 +10,7 @@
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
 #include <lib/gdi/gpixmap.h>
+#include <lib/base/nconfig.h>
 
 void bitstream_init(bitstream *bit, const void *buffer, int size)
 {
@@ -56,7 +57,9 @@ static int extract_pts(pts_t &pts, __u8 *pkt)
 
 void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, __u8 *data, int len)
 {
-	int x = object->object_horizontal_position;
+	std::string configvalue;
+	bool subcentered = (ePythonConfigQuery::getConfigValue("config.subtitles.dvb_subtitles_centered", configvalue) >= 0 && configvalue == "True");
+	int x = subcentered ? (region->width - len) /2 : object->object_horizontal_position;
 	int y = object->object_vertical_position + line;
 	if (x + len > region->width)
 	{
@@ -1173,6 +1176,14 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 			}
 
+			std::string configvalue;
+			int bcktrans = 0;
+			if (!ePythonConfigQuery::getConfigValue("config.subtitles.dvb_subtitles_backtrans", configvalue))
+			{
+				bcktrans = atoi(configvalue.c_str());
+			}
+			bool yellow = (ePythonConfigQuery::getConfigValue("config.subtitles.dvb_subtitles_yellow", configvalue) >= 0 && configvalue == "True");
+
 			for (int i=0; i<clut_size; ++i)
 			{
 				if (entries && entries[i].valid)
@@ -1187,8 +1198,16 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 						cb -= 128;
 						palette[i].r = MAX(MIN(((298 * y            + 460 * cr) / 256), 255), 0);
 						palette[i].g = MAX(MIN(((298 * y -  55 * cb - 137 * cr) / 256), 255), 0);
-						palette[i].b = MAX(MIN(((298 * y + 543 * cb           ) / 256), 255), 0);
-						palette[i].a = (entries[i].T) & 0xFF;
+						palette[i].b = yellow?0:MAX(MIN(((298 * y + 543 * cb  ) / 256), 255), 0);
+						if (bcktrans)
+						{
+							if (palette[i].r || palette[i].g || palette[i].b)
+								palette[i].a = (entries[i].T) & 0xFF;
+							else
+								palette[i].a = bcktrans;
+						}
+						else
+							palette[i].a = (entries[i].T) & 0xFF;
 //						eDebug("override clut entry %d RGBA %02x%02x%02x%02x", i,
 //							palette[i].r, palette[i].g, palette[i].b, palette[i].a);
 					}
