@@ -19,9 +19,8 @@ class IpkgComponent:
 	CMD_UPDATE = 3
 	CMD_UPGRADE = 4
 	
-	def __init__(self, ipkg = '/usr/bin/ipkg'):
+	def __init__(self, ipkg = 'opkg'):
 		self.ipkg = ipkg
-		self.opkgAvail = fileExists('/usr/bin/opkg')
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
 		self.callbackList = []
@@ -90,10 +89,7 @@ class IpkgComponent:
 			if data.find('Downloading') == 0:
 				self.callCallbacks(self.EVENT_DOWNLOAD, data.split(' ', 5)[1].strip())
 			elif data.find('Upgrading') == 0:
-				if self.opkgAvail:
-					self.callCallbacks(self.EVENT_UPGRADE, data.split(' ', 1)[1].split(' ')[0])
-				else:
-					self.callCallbacks(self.EVENT_UPGRADE, data.split('    ', 1)[1].split(' ')[0])
+				self.callCallbacks(self.EVENT_UPGRADE, data.split(' ', 1)[1].split(' ')[0])
 			elif data.find('Installing') == 0:
 				self.callCallbacks(self.EVENT_INSTALL, data.split(' ', 1)[1].split(' ')[0])
 			elif data.find('Removing') == 0:
