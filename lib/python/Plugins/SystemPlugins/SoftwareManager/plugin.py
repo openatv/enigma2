@@ -1517,7 +1517,7 @@ class IPKGMenu(Screen):
 
 	def fill_list(self):
 		self.flist = []
-		self.path = '/etc/ipkg/'
+		self.path = '/etc/opkg/'
 		if (os_path.exists(self.path) == False):
 			self.entry = False
 			return
@@ -1708,7 +1708,6 @@ class PacketManager(Screen, NumericalTextInput):
 		self.cache_file = eEnv.resolve('${libdir}/enigma2/python/Plugins/SystemPlugins/SoftwareManager/packetmanager.cache') #Path to cache directory
 		self.oktext = _("\nAfter pressing OK, please wait!")
 		self.unwanted_extensions = ('-dbg', '-dev', '-doc', 'busybox')
-		self.opkgAvail = fileExists('/usr/bin/opkg')
 
 		self.ipkg = IpkgComponent()
 		self.ipkg.addCallback(self.ipkgCallback)
@@ -1862,7 +1861,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.list_updating = False
 				if not self.Console:
 					self.Console = Console()
-				cmd = "ipkg list"
+				cmd = "opkg list"
 				self.Console.ePopen(cmd, self.IpkgList_Finished)
 		#print event, "-", param
 		pass
@@ -1885,7 +1884,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 		if not self.Console:
 			self.Console = Console()
-		cmd = "ipkg list_installed"
+		cmd = "opkg list_installed"
 		self.Console.ePopen(cmd, self.IpkgListInstalled_Finished)
 
 	def IpkgListInstalled_Finished(self, result, retval, extra_args = None):
@@ -1898,13 +1897,10 @@ class PacketManager(Screen, NumericalTextInput):
 					l = len(tokens)
 					version = l > 1 and tokens[1].strip() or ""
 					self.installed_packetlist[name] = version
-		if self.opkgAvail:
-			if not self.Console:
-				self.Console = Console()
-			cmd = "opkg list-upgradable"
-			self.Console.ePopen(cmd, self.OpkgListUpgradeable_Finished)
-		else:
-			self.buildPacketList()
+		if not self.Console:
+			self.Console = Console()
+		cmd = "opkg list-upgradable"
+		self.Console.ePopen(cmd, self.OpkgListUpgradeable_Finished)
 
 	def OpkgListUpgradeable_Finished(self, result, retval, extra_args = None):
 		if result:
@@ -1949,16 +1945,10 @@ class PacketManager(Screen, NumericalTextInput):
 			for x in self.packetlist:
 				status = ""
 				if self.installed_packetlist.has_key(x[0]):
-					if self.opkgAvail:
-						if self.upgradeable_packages.has_key(x[0]):
-							status = "upgradeable"
-						else:
-							status = "installed"
+					if self.upgradeable_packages.has_key(x[0]):
+						status = "upgradeable"
 					else:
-						if self.installed_packetlist[x[0]] == x[1]:
-							status = "installed"
-						else:
-							status = "upgradeable"
+						status = "installed"
 				else:
 					status = "installable"
 				self.list.append(self.buildEntryComponent(x[0], x[1], x[2], status))	

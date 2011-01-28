@@ -155,9 +155,9 @@ class PluginDownloadBrowser(Screen):
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["opkg install " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
 			elif self.type == self.REMOVE:
-				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["ipkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
+				self.session.openWithCallback(self.installFinished, Console, cmdlist = ["opkg remove " + "enigma2-plugin-" + self["list"].l.getCurrentSelection()[0].name])
 
 	def setWindowTitle(self):
 		if self.type == self.DOWNLOAD:
@@ -166,17 +166,17 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Remove plugins"))
 
 	def startIpkgListInstalled(self):
-		self.container.execute("ipkg list_installed enigma2-plugin-*")
+		self.container.execute("opkg list_installed enigma2-plugin-*")
 
 	def startIpkgListAvailable(self):
-		self.container.execute("ipkg list enigma2-plugin-*")
+		self.container.execute("opkg list enigma2-plugin-*")
 
 	def startRun(self):
 		self["list"].instance.hide()
 		if self.type == self.DOWNLOAD:
 			if not PluginDownloadBrowser.lastDownloadDate or (time() - PluginDownloadBrowser.lastDownloadDate) > 3600:
 				# Only update from internet once per hour
-				self.container.execute("ipkg update")
+				self.container.execute("opkg update")
 				PluginDownloadBrowser.lastDownloadDate = time()
 			else:
 				self.startIpkgListAvailable()
