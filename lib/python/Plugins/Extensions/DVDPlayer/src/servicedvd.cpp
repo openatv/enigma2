@@ -407,7 +407,6 @@ int eServiceDVD::getNumberOfTracks()
 {
 	int i = 0;
 	ddvd_get_audio_count(m_ddvdconfig, &i);
-	eDebug("getNumberOfTracks returns %i", i);
 	return i;
 }
 
@@ -416,14 +415,12 @@ int eServiceDVD::getCurrentTrack()
 	int audio_id,audio_type;
 	uint16_t audio_lang;
 	ddvd_get_last_audio(m_ddvdconfig, &audio_id, &audio_lang, &audio_type);
-	eDebug("getCurrentTrack returns %i", audio_id);
 	return audio_id;
 }
 
 RESULT eServiceDVD::selectTrack(unsigned int i)
 {
 	ddvd_set_audio(m_ddvdconfig, i);
-	eDebug("selectTrack %i", i);
 	return 0;
 }
 
@@ -681,14 +678,32 @@ PyObject *eServiceDVD::getInfoObject(int w)
 	Py_RETURN_NONE;
 }
 
-RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) /*entry*/)
+RESULT eServiceDVD::enableSubtitles(eWidget *parent, ePyObject tuple)
 {
 	delete m_subtitle_widget;
+	eSize size = eSize(720, 576);
 
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size());
+	
+	int pid = -1;
 
-	eSize size = eSize(720, 576);
+	if ( tuple != Py_None )
+	{		
+		ePyObject entry;
+		int tuplesize = PyTuple_Size(tuple);
+		if (!PyTuple_Check(tuple))
+			goto error_out;
+		if (tuplesize < 1)
+			goto error_out;
+		entry = PyTuple_GET_ITEM(tuple, 1);
+		if (!PyInt_Check(entry))
+			goto error_out;
+		pid = PyInt_AsLong(entry)-1;
+
+		ddvd_set_spu(m_ddvdconfig, pid);
+	}
+	eDebug("eServiceDVD::enableSubtitles %i", pid);
 
 	if (!m_pixmap)
 	{
@@ -706,6 +721,9 @@ RESULT eServiceDVD::enableSubtitles(eWidget *parent, SWIG_PYOBJECT(ePyObject) /*
 	m_subtitle_widget->show();
 
 	return 0;
+
+error_out:
+	return -1;
 }
 
 RESULT eServiceDVD::disableSubtitles(eWidget */*parent*/)
@@ -717,8 +735,6 @@ RESULT eServiceDVD::disableSubtitles(eWidget */*parent*/)
 
 PyObject *eServiceDVD::getSubtitleList()
 {
-	eDebug("eServiceMP3::getSubtitleList");
-
 	ePyObject l = PyList_New(0);
 	unsigned int spu_count = 0;
 	ddvd_get_spu_count(m_ddvdconfig, &spu_count);
@@ -731,7 +747,7 @@ PyObject *eServiceDVD::getSubtitleList()
 
 		ePyObject tuple = PyTuple_New(5);
 		PyTuple_SetItem(tuple, 0, PyInt_FromLong(2));
-		PyTuple_SetItem(tuple, 1, PyInt_FromLong(0));
+		PyTuple_SetItem(tuple, 1, PyInt_FromLong(spu_id+1));
 		PyTuple_SetItem(tuple, 2, PyInt_FromLong(3));
 		PyTuple_SetItem(tuple, 3, PyInt_FromLong(0));
 		PyTuple_SetItem(tuple, 4, PyString_FromString(spu_string));

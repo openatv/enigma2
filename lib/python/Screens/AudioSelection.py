@@ -84,7 +84,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					conflist.append(getConfigListEntry(_("Channel"), self.settings.channelmode))
 					self["key_green"].setBoolean(True)
 				else:
-					conflist.append(getConfigListEntry("", ConfigNothing()))
+					conflist.append(('',))
 					self["key_green"].setBoolean(False)
 				selectedAudio = self.audioTracks.getCurrentTrack()
 				for x in range(n):
@@ -141,7 +141,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					language = _("<unknown>")
 					selected = ""
 
-					if sel and x[:4] == sel[:4]:
+					if sel and x == sel:
 						selected = _("Running")
 						selectedidx = idx
 					
