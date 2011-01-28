@@ -356,6 +356,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"prevTitle": (self.prevTitle, _("jump back to the previous title")),
 				"tv": (self.askLeavePlayer, _("exit DVD player or return to file browser")),
 				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(show optional DVD audio menu)")),
+				"AudioSelection": (self.enterAudioSelection, _("Select audio track")),
 				"nextAudioTrack": (self.nextAudioTrack, _("switch to the next audio track")),
 				"nextSubtitleTrack": (self.nextSubtitleTrack, _("switch to the next subtitle language")),
 				"nextAngle": (self.nextAngle, _("switch to the next angle")),
@@ -548,6 +549,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			keys.keyPressed(key)
 		return keys
 
+	def enterAudioSelection(self):
+		self.audioSelection()
+
 	def nextAudioTrack(self):
 		self.sendKey(iServiceKeys.keyUser)
 
@@ -555,8 +559,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.sendKey(iServiceKeys.keyUser+1)
 
 	def enterDVDAudioMenu(self):
-		self.audioSelection()
-		#self.sendKey(iServiceKeys.keyUser+2)
+		self.sendKey(iServiceKeys.keyUser+2)
 
 	def nextChapter(self):
 		self.sendKey(iServiceKeys.keyUser+3)

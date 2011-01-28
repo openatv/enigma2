@@ -685,7 +685,7 @@ RESULT eServiceDVD::enableSubtitles(eWidget *parent, ePyObject tuple)
 
 	m_subtitle_widget = new eSubtitleWidget(parent);
 	m_subtitle_widget->resize(parent->size());
-	
+
 	int pid = -1;
 
 	if ( tuple != Py_None )
@@ -702,6 +702,7 @@ RESULT eServiceDVD::enableSubtitles(eWidget *parent, ePyObject tuple)
 		pid = PyInt_AsLong(entry)-1;
 
 		ddvd_set_spu(m_ddvdconfig, pid);
+		m_event(this, evUser+7);
 	}
 	eDebug("eServiceDVD::enableSubtitles %i", pid);
 
