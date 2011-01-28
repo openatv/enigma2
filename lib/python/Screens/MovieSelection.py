@@ -303,6 +303,7 @@ class MovieContextMenu(Screen):
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
+		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
 
@@ -1116,3 +1117,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if not confirmed:
 			return
 		Tools.Trashcan.cleanAll()
+
+	def showNetworkSetup(self):
+		import NetworkSetup
+		self.session.open(NetworkSetup.NetworkAdapterSelection)
