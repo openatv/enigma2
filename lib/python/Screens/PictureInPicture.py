@@ -1,7 +1,8 @@
 from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.VideoWindow import VideoWindow
-from Components.config import config, ConfigPosition
+from Components.config import config, ConfigPosition, ConfigYesNo
+from os import access, W_OK
 
 pip_config_initialized = False
 
@@ -17,10 +18,16 @@ class PictureInPicture(Screen):
 		self["video"] = VideoWindow()
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
 		self.currentService = None
+		self.has_external_pip = access("/proc/stb/vmpeg/1/external", W_OK)
 		if not pip_config_initialized:
 			config.av.pip = ConfigPosition(default=[-1, -1, -1, -1], args = (719, 567, 720, 568))
+			config.av.external_pip = ConfigYesNo(default = False)
 			pip_config_initialized = True
 		self.onLayoutFinish.append(self.LayoutFinished)
+
+	def __del__(self):
+		del self.pipservice
+		self.setExternalPiP(False)
 
 	def LayoutFinished(self):
 		self.onLayoutFinish.remove(self.LayoutFinished)
@@ -31,6 +38,7 @@ class PictureInPicture(Screen):
 		if x != -1 and y != -1 and w != -1 and h != -1:
 			self.move(x, y)
 			self.resize(w, h)
+		self.setExternalPiP(config.av.external_pip.value)
 
 	def move(self, x, y):
 		config.av.pip.value[0] = x
@@ -44,6 +52,19 @@ class PictureInPicture(Screen):
 		config.av.pip.save()
 		self.instance.resize(eSize(*(w, h)))
 		self["video"].instance.resize(eSize(*(w, h)))
+
+	def setExternalPiP(self, onoff):
+		if self.has_external_pip:
+			procentry = open("/proc/stb/vmpeg/1/external", "w")
+			if onoff:
+				procentry.write("on")
+			else:
+				procentry.write("off")
+
+	def toggleExternalPiP(self):
+		config.av.external_pip.value = not config.av.external_pip.value
+		config.av.external_pip.save()
+		self.setExternalPiP(config.av.external_pip.value)
 
 	def active(self):
 		self.pipActive.show()
