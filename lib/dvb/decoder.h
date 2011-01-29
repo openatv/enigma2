@@ -131,6 +131,7 @@ private:
 	int m_changed, m_decoder;
 	int m_state;
 	int m_ff_sm_ratio;
+	bool m_has_audio;
 	int setState();
 	ePtr<eConnection> m_demux_event_conn;
 	ePtr<eConnection> m_video_event_conn;
