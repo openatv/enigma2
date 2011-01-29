@@ -1922,7 +1922,7 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	m_current_audio_pid = apid;
 
-	if (m_is_primary && m_decoder->setAudioPID(apid, apidtype))
+	if (m_decoder->setAudioPID(apid, apidtype))
 	{
 		eDebug("set audio pid failed");
 		return -4;
@@ -2599,7 +2599,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 
 		selectAudioStream();
 
-		if (!(m_is_pvr || m_timeshift_active || !m_is_primary))
+		if (!(m_is_pvr || m_timeshift_active))
 			m_decoder->setSyncPCR(pcrpid);
 		else
 			m_decoder->setSyncPCR(-1);

@@ -1111,7 +1111,15 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 	demux->connectEvent(slot(*this, &eTSMPEGDecoder::demux_event), m_demux_event_conn);
 	CONNECT(m_showSinglePicTimer->timeout, eTSMPEGDecoder::finishShowSinglePic);
 	m_state = stateStop;
-	
+
+	char filename[128];
+#if HAVE_DVB_API_VERSION < 3
+	sprintf(filename, "/dev/dvb/card%d/audio%d", m_demux->adapter, m_decoder);
+#else
+	sprintf(filename, "/dev/dvb/adapter%d/audio%d", m_demux->adapter, m_decoder);
+#endif
+	m_has_audio = !access(filename, W_OK);
+
 	if ( m_decoder == 0 )	// Tuxtxt caching actions only on primary decoder
 		eTuxtxtApp::getInstance()->initCache();
 }
@@ -1140,6 +1148,9 @@ RESULT eTSMPEGDecoder::setVideoPID(int vpid, int type)
 
 RESULT eTSMPEGDecoder::setAudioPID(int apid, int type)
 {
+	/* do not set an audio pid on decoders without audio support */
+	if (!m_has_audio) apid = -1;
+
 	if ((m_apid != apid) || (m_atype != type))
 	{
 		m_changed |= changeAudio;
@@ -1175,6 +1186,9 @@ int eTSMPEGDecoder::getAudioChannel()
 
 RESULT eTSMPEGDecoder::setSyncPCR(int pcrpid)
 {
+	/* we do not need pcr on decoders without audio support */
+	if (!m_has_audio) pcrpid = -1;
+
 	if (m_pcrpid != pcrpid)
 	{
 		m_changed |= changePCR;
