@@ -203,8 +203,11 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def getSubtitleList(self):
-		s = self.infobar and self.infobar.getCurrentServiceSubtitle()
-		l = s and s.getSubtitleList() or [ ]
+		try:
+			s = self.infobar and self.infobar.getCurrentServiceSubtitle()
+			l = s and s.getSubtitleList() or [ ]
+		except AttributeError:
+			l = []
 		return l
 
 	def subtitlesEnabled(self):
