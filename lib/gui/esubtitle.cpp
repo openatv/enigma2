@@ -267,20 +267,10 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&amp;", "&");
 				text = replace_all(text, "&lt", "<");
 				text = replace_all(text, "&gt", ">");
-				std::string::size_type loc = text.find("<", 0 );
-				if ( loc != std::string::npos )
-				{
-					switch (char(text.at(1)))
-					{
-					case 'i':
-						face = Subtitle_Italic;
-						break;
-					case 'b':
-						face = Subtitle_Bold;
-						break;
-					}
-					text = text.substr(3, text.length()-7);
-				}
+				text = replace_all(text, "<i>", (std::string) gRGB(0,255,255));
+				text = replace_all(text, "<b>", (std::string) gRGB(255,255,0));
+				text = replace_all(text, "</i>", (std::string) gRGB(255,255,255));
+				text = replace_all(text, "</b>", (std::string) gRGB(255,255,255));
 
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
