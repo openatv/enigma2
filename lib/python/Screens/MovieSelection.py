@@ -41,6 +41,12 @@ config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
+
+config.movielist.btn_red = ConfigText(default='delete')
+config.movielist.btn_green = ConfigText(default='moveMovie')
+config.movielist.btn_yellow = ConfigText(default='showBookmarks')
+config.movielist.btn_blue = ConfigText(default='showTagSelect')
+
 last_selected_dest = []
 
 AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
@@ -444,10 +450,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
 			{
-				"red": (self.delete, _("delete...")),
-				"green": (self.moveMovie, _("Move to other directory")),
-				"yellow": (self.showBookmarks, _("select the movie path")),
-				"blue": (self.showTagsSelect, _("show tag menu")),
+				"red": (self.btn_red, _("delete...")),
+				"green": (self.btn_green, _("Move to other directory")),
+				"yellow": (self.btn_yellow, _("select the movie path")),
+				"blue": (self.btn_blue, _("show tag menu")),
 			})
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
@@ -469,6 +475,23 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				iPlayableService.evEOF: self.__evEOF,
 				#iPlayableService.evSOF: self.__evSOF,
 			})
+
+        def _callButton(self, name):
+		try:
+			a = getattr(self, name)
+		except Exception:
+			print "[MovieSelection] Undefined action:", name
+			return
+		a()
+			
+	def btn_red(self):
+		self._callButton(config.movielist.btn_red.value)
+	def btn_green(self):
+		self._callButton(config.movielist.btn_green.value)
+	def btn_yellow(self):
+		self._callButton(config.movielist.btn_yellow.value)
+	def btn_blue(self):
+		self._callButton(config.movielist.btn_blue.value)
 		
 	def __onClose(self):
 		try:
