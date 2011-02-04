@@ -98,6 +98,8 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM500HD;
 	else if (!strncmp(tmp, "dm800se\n", rd))
 		m_boxtype = DM800SE;
+	else if (!strncmp(tmp, "dm7020hd\n", rd))
+		m_boxtype = DM7020HD;
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
@@ -520,7 +522,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
-	else if (m_boxtype == DM8000)
+	else if (m_boxtype == DM8000 || m_boxtype == DM7020HD)
 	{
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
 		for (; i != m_demux.end(); ++i, ++n)
