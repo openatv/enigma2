@@ -88,7 +88,7 @@ class CleanupWizard(WizardLanguage, Rc):
 		if self.NextStep is not 'end':
 			if not self.Console:
 				self.Console = Console()
-			cmd = "ipkg list_installed | grep enigma2"
+			cmd = "opkg list_installed | grep enigma2"
 			self.Console.ePopen(cmd, self.buildListInstalled_Finished)
 			self.buildListRef = self.session.openWithCallback(self.buildListfinishedCB, MessageBox, _("Please wait while searching for removable packages..."), type = MessageBox.TYPE_INFO, enable_input = False)
 		else:

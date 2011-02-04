@@ -205,7 +205,7 @@ class SoftwareTools(DreamInfoHandler):
 		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
-			cmd = "ipkg list"
+			cmd = "opkg list"
 			self.UpdateConsole.ePopen(cmd, self.IpkgListAvailableCB, callback)
 
 	def IpkgListAvailableCB(self, result, retval, extra_args = None):
@@ -241,7 +241,7 @@ class SoftwareTools(DreamInfoHandler):
 			if self.NetworkConnectionAvailable == True:
 				if not self.UpdateConsole:
 					self.UpdateConsole = Console()
-				cmd = "ipkg install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
+				cmd = "opkg install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
 				self.UpdateConsole.ePopen(cmd, self.InstallMetaPackageCB, callback)
 			else:
 				self.InstallMetaPackageCB(True)
@@ -270,7 +270,7 @@ class SoftwareTools(DreamInfoHandler):
 		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
-			cmd = "ipkg list_installed"
+			cmd = "opkg list_installed"
 			self.UpdateConsole.ePopen(cmd, self.IpkgListInstalledCB, callback)
 
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
@@ -331,7 +331,7 @@ class SoftwareTools(DreamInfoHandler):
 	def startIpkgUpdate(self, callback = None):
 		if not self.Console:
 			self.Console = Console()
-		cmd = "ipkg update"
+		cmd = "opkg update"
 		self.Console.ePopen(cmd, self.IpkgUpdateCB, callback)
 
 	def IpkgUpdateCB(self, result, retval, extra_args = None):
