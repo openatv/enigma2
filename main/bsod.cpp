@@ -200,9 +200,9 @@ void bsodFatal(const char *component)
 		xml.close();
 
 		xml.open("software");
-		xml.cDataFromCmd("enigma2software", "ipkg list_installed | grep enigma2");
-		xml.cDataFromCmd("dreamboxsoftware", "ipkg list_installed | grep dream");
-		xml.cDataFromCmd("gstreamersoftware", "ipkg list_installed | grep gst");
+		xml.cDataFromCmd("enigma2software", "opkg list_installed | grep enigma2");
+		xml.cDataFromCmd("dreamboxsoftware", "opkg list_installed | grep dream");
+		xml.cDataFromCmd("gstreamersoftware", "opkg list_installed | grep gst");
 		xml.close();
 
 		xml.open("crashlogs");

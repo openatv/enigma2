@@ -397,7 +397,7 @@ class DreamInfoHandler:
 		
 	def installIPK(self, directory, name):
 		if self.blocking:
-			os.system("ipkg install " + directory + name)
+			os.system("opkg install " + directory + name)
 			self.installNext()
 		else:
 			self.ipkg = IpkgComponent()
