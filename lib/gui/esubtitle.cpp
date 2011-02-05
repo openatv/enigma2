@@ -31,11 +31,29 @@ void eSubtitleWidget::setPage(const eDVBTeletextSubtitlePage &p)
 	{
 		int width = size().width() - startX * 2;
 		std::string configvalue;
-		bool original_colors = (ePythonConfigQuery::getConfigValue("config.subtitles.ttx_subtitle_colors", configvalue) >= 0 && configvalue == "True");
 		bool original_position = (ePythonConfigQuery::getConfigValue("config.subtitles.ttx_subtitle_original_position", configvalue) >= 0 && configvalue == "True");
 		bool rewrap = (ePythonConfigQuery::getConfigValue("config.subtitles.subtitle_rewrap", configvalue) >= 0 && configvalue == "True");
-		
-		gRGB color = original_colors ? newpage.m_elements[0].m_color : gRGB(255, 255, 255);
+		int color_mode = 0;
+		if (!ePythonConfigQuery::getConfigValue("config.subtitles.ttx_subtitle_colors", configvalue))
+		{
+			color_mode = atoi(configvalue.c_str());
+		}
+		gRGB color;
+		bool original_colors = false;
+		switch (color_mode)
+		{
+			case 0: /* use original teletext colors */
+				color = newpage.m_elements[0].m_color;
+				original_colors = true;
+				break;
+			default:
+			case 1: /* white */
+				color = gRGB(255, 255, 255);
+			break;
+			case 2: /* yellow */
+				color = gRGB(255, 255, 0);
+			break;
+		}
 
 		if (!original_position)
 		{
@@ -267,10 +285,14 @@ int eSubtitleWidget::event(int event, void *data, void *data2)
 				text = replace_all(text, "&amp;", "&");
 				text = replace_all(text, "&lt", "<");
 				text = replace_all(text, "&gt", ">");
-				text = replace_all(text, "<i>", (std::string) gRGB(0,255,255));
-				text = replace_all(text, "<b>", (std::string) gRGB(255,255,0));
-				text = replace_all(text, "</i>", (std::string) gRGB(255,255,255));
-				text = replace_all(text, "</b>", (std::string) gRGB(255,255,255));
+
+				bool yellow_color = (ePythonConfigQuery::getConfigValue("config.subtitles.pango_subtitles_yellow", configvalue) >= 0 && configvalue == "True");
+				if (yellow_color)
+					text = (std::string) gRGB(255,255,0) + text;
+				text = replace_all(text, "<i>",  yellow_color ? "" : (std::string) gRGB(0,255,255));
+				text = replace_all(text, "<b>",  yellow_color ? "" : (std::string) gRGB(255,255,0));
+				text = replace_all(text, "</i>", yellow_color ? "" : (std::string) gRGB(255,255,255));
+				text = replace_all(text, "</b>", yellow_color ? "" : (std::string) gRGB(255,255,255));
 
 				subtitleStyles[face].font->pointSize=fontsize;
 				painter.setFont(subtitleStyles[face].font);
