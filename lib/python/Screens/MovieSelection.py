@@ -42,10 +42,26 @@ config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 
-config.movielist.btn_red = ConfigText(default='delete')
-config.movielist.btn_green = ConfigText(default='moveMovie')
-config.movielist.btn_yellow = ConfigText(default='showBookmarks')
-config.movielist.btn_blue = ConfigText(default='showTagSelect')
+userDefinedActions = {
+	'delete': "Delete",
+	'move': "Move",
+	'copy': "Copy",
+	'reset': "Reset",
+	'tags': "Tags",
+	'bookmarks': "Location",
+}
+userDefinedActionsTranslated = False
+config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
+config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
+config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
+config.movielist.btn_blue = ConfigSelection(default='tags', choices=userDefinedActions)
+
+userDefinedButtons ={
+	'red': config.movielist.btn_red,
+	'green': config.movielist.btn_green,
+	'yellow': config.movielist.btn_yellow,
+	'blue': config.movielist.btn_blue
+}
 
 last_selected_dest = []
 
@@ -82,12 +98,14 @@ def isTrashFolder(ref):
 		return False
 	return os.path.realpath(ref.getPath()).startswith(Tools.Trashcan.getTrashFolder())
 
-def canDelete(item):
+def isSimpleFile(item):
 	if not item:
 		return False
 	if not item[0] or not item[1]:
 		return False
 	return (item[0].flags & eServiceReference.mustDescent) == 0
+
+canDelete = isSimpleFile
 
 def canMove(item):
 	if not item:
@@ -218,6 +236,8 @@ class Config(ConfigListScreen,Screen):
 			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			]
+		for k,v in userDefinedButtons.items():
+			configList.append(getConfigListEntry(_(k), v))
 		ConfigListScreen.__init__(self, configList, session=session, on_change = self.changedEntry)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Ok"))
@@ -299,12 +319,12 @@ class MovieContextMenu(Screen):
 				if isTrashFolder(service):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
-					menu.append((_("Move"), csel.moveMovie))
+					menu.append((_("Move"), csel.do_move))
 			else:
-				menu = [(_("Delete"), csel.delete),
-					(_("Move"), csel.moveMovie),
-					(_("Copy"), csel.copyMovie),
-					(_("Reset playback position"), csel.resetMovie),
+				menu = [(_("Delete"), csel.do_delete),
+					(_("Move"), csel.do_move),
+					(_("Copy"), csel.do_copy),
+					(_("Reset playback position"), csel.do_reset),
 					]
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
@@ -375,13 +395,17 @@ class MovieSelectionSummary(Screen):
 		else:
 			self["name"].text = ""
 
-
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def __init__(self, session, selectedmovie = None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		InfoBarBase.__init__(self) # For ServiceEventTracker       
-
+		InfoBarBase.__init__(self) # For ServiceEventTracker
+		#translate items now, because language selection should have been ready now.
+		global userDefinedActionsTranslated
+		if not userDefinedActionsTranslated:
+			for k,v in userDefinedActions.items():
+				userDefinedActions[k] = _(v)
+			userDefinedActionsTranslated = True
 		self.tags = {}
 		if selectedmovie:
 			self.selected_tags = config.movielist.last_selected_tags.value
@@ -419,10 +443,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		# Need list for init
 		SelectionEventInfo.__init__(self)
 
-		self["key_red"] = Button(_("Delete"))
-		self["key_green"] = Button(_("Move"))
-		self["key_yellow"] = Button(_("Location"))
-		self["key_blue"] = Button(_("Tags"))
+		self["key_red"] = Button("")
+		self["key_green"] = Button("")
+		self["key_yellow"] = Button("")
+		self["key_blue"] = Button("")
+                self._updateButtonTexts()
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
@@ -478,7 +503,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 
         def _callButton(self, name):
 		try:
-			a = getattr(self, name)
+			a = getattr(self, 'do_' + name)
 		except Exception:
 			print "[MovieSelection] Undefined action:", name
 			return
@@ -511,17 +536,36 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self["Service"].newService(None)
 			self["DescriptionBorder"].hide()
 			self["list"].instance.resize(eSize(self.listWidth, self.listHeight))
-			
+
+	def can_delete(self, item):
+		return canDelete(item)
+	def can_move(self, item):
+		return canMove(item)
+	def can_default(self, item):
+		# returns whether item is a regular file
+		return isSimpleFile(item)
+
+	def _updateButtonTexts(self):
+		actionDict = dict(userDefinedActions)
+		for k in ('red', 'green', 'yellow', 'blue'):
+			btn = userDefinedButtons[k]
+			print "[ML] color=%s btn=%s name=%s" % (k, btn.value, userDefinedActions[btn.value])
+			self['key_' + k].setText(_(userDefinedActions[btn.value]))
+
 	def updateButtons(self):
 		item = self.getCurrentSelection()
-		if canDelete(item):
-			self["key_red"].show()
-		else:
-			self["key_red"].hide()
-		if canMove(item):
-			self["key_green"].show()
-		else:
-			self["key_green"].hide()
+		for name,cfg in userDefinedButtons.items():
+			action = cfg.value
+			try:
+				check = getattr(self, 'can_' + action)
+			except:
+				print '[ML] No explicit check for', action
+				check = self.can_default
+			gui = self["key_" + name]
+			if check(item):
+				gui.show()
+			else:
+				gui.hide()
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
@@ -774,6 +818,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value})
 			self.saveLocalSettings()
+			self._updateButtonTexts()
 			self.reloadList()
 
 	def getTagDescription(self, tag):
@@ -783,13 +828,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def updateTags(self):
 		# get a list of tags available in this list
 		self.tags = self["list"].tags
-
-		# the rest is presented in a list, available on the
-		# fourth ("blue") button
-		if self.tags:
-			self["key_blue"].text = _("Tags")+"..."
-		else:
-			self["key_blue"].text = ""
 
 	def setListType(self, type):
 		self["list"].setListType(type)
@@ -811,6 +849,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			sel = self.getCurrent()
 		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
+		self.updateTags()
 		title = _("Recorded files...")
 		if config.usage.setup_level.index >= 2: # expert+
 			title += "  " + config.movielist.last_videodir.value
@@ -820,7 +859,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
  		if not (sel and self["list"].moveTo(sel)):
 			if home:
 				self["list"].moveToFirstMovie()
-		self.updateTags()
 		self["freeDiskSpace"].update()
 
 	def doPathSelect(self):
@@ -873,7 +911,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def showTagsSecond(self):
 		self.showTagsN(config.movielist.second_tags)
 
-	def showTagsSelect(self):
+	def can_tags(self, item):
+		return self.tags
+	def do_tags(self):
 		self.showTagsN(None)
 
 	def tagChosen(self, tag):
@@ -945,16 +985,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			del last_selected_dest[-1]
 		print last_selected_dest
 
-	def showBookmarks(self):
+	def can_bookmarks(self, item):
+		return True
+	def do_bookmarks(self):
 		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.gotFilename)
 
-	def resetMovie(self):
+	def do_reset(self):
 		current = self.getCurrent()
 		if current:
 			resetMoviePlayState(current.getPath() + ".cuts")
 			self["list"].invalidateCurrentItem() # trigger repaint
 
-	def moveMovie(self):
+        def do_move(self):
 		item = self.getCurrentSelection() 
 		if canMove(item):
 			current = item[0]
@@ -1004,7 +1046,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
-	def copyMovie(self):
+        def can_copy(self, item):
+		return canCopy(item)
+	def do_copy(self):
 		item = self.getCurrentSelection() 
 		if canMove(item):
 			current = item[0]
@@ -1045,6 +1089,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				self.stopTimer(timer)
 			if "d" in choice:
 				self.delete(True)
+
+	def do_delete(self):
+		self.delete()
 
 	def delete(self, *args):
 		if args and (not args[0]):
