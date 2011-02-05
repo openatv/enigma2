@@ -225,7 +225,10 @@ def InitUsageConfig():
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
 
 	config.subtitles = ConfigSubsection()
-	config.subtitles.ttx_subtitle_colors = ConfigYesNo(default = False)
+	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
+		("0", _("original")),
+		("1", _("white")),
+		("2", _("yellow")) ])
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
 	config.subtitles.subtitle_position = ConfigSelection( choices = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default = "50")
 	config.subtitles.subtitle_alignment = ConfigSelection(choices = ["left", "center", "right"], default = "center")
@@ -269,6 +272,7 @@ def InitUsageConfig():
 		("200", "80%"),
 		("225", "90%"),
 		("255", _("full transparency"))])
+	config.subtitles.pango_subtitles_yellow = ConfigYesNo(default = False)
 
 	config.autolanguage = ConfigSubsection()
 	subtitle_language_choices = [
