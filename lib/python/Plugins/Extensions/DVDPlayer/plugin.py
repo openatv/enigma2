@@ -4,7 +4,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.HelpMenu import HelpableScreen
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarShowHide, InfoBarNotifications, InfoBarAudioSelection, InfoBarSubtitleSupport
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
@@ -195,7 +195,7 @@ class ChapterZap(Screen):
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
 
-class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport):
+class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport, InfoBarAudioSelection, InfoBarSubtitleSupport):
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES
 	ENABLE_RESUME_SUPPORT = True
 	
@@ -275,6 +275,8 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		InfoBarNotifications.__init__(self)
 		InfoBarCueSheetSupport.__init__(self, actionmap = "MediaPlayerCueSheetActions")
 		InfoBarShowHide.__init__(self)
+		InfoBarAudioSelection.__init__(self)
+		InfoBarSubtitleSupport.__init__(self)
 		HelpableScreen.__init__(self)
 		self.save_infobar_seek_config()
 		self.change_infobar_seek_config()
@@ -354,6 +356,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				"prevTitle": (self.prevTitle, _("jump back to the previous title")),
 				"tv": (self.askLeavePlayer, _("exit DVD player or return to file browser")),
 				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(show optional DVD audio menu)")),
+				"AudioSelection": (self.enterAudioSelection, _("Select audio track")),
 				"nextAudioTrack": (self.nextAudioTrack, _("switch to the next audio track")),
 				"nextSubtitleTrack": (self.nextSubtitleTrack, _("switch to the next subtitle language")),
 				"nextAngle": (self.nextAngle, _("switch to the next angle")),
@@ -545,6 +548,9 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if keys:
 			keys.keyPressed(key)
 		return keys
+
+	def enterAudioSelection(self):
+		self.audioSelection()
 
 	def nextAudioTrack(self):
 		self.sendKey(iServiceKeys.keyUser)
