@@ -21,21 +21,14 @@ class PluginComponent:
 		self.prefix = prefix
 
 	def addPlugin(self, plugin):
-		if self.firstRun:
+		if self.firstRun or plugin.needsRestart is False:
 			self.pluginList.append(plugin)
 			for x in plugin.where:
 				self.plugins.setdefault(x, []).append(plugin)
 				if x == PluginDescriptor.WHERE_AUTOSTART:
 					plugin(reason=0)
 		else:
-			if plugin.needsRestart is False:
-				self.pluginList.append(plugin)
-				for x in plugin.where:
-					self.plugins.setdefault(x, []).append(plugin)
-					if x == PluginDescriptor.WHERE_AUTOSTART:
-						plugin(reason=0)				
-			else:
-				self.restartRequired = True
+			self.restartRequired = True
 				
 	def removePlugin(self, plugin):
 		self.pluginList.remove(plugin)
