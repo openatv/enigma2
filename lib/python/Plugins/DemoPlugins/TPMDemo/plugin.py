@@ -82,6 +82,6 @@ def main(session, **kwargs):
 			# would start your plugin here
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "TPM Demo", description = _("A demo plugin for TPM usage."), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main),
-		PluginDescriptor(name = "TPM Demo", description = _("A demo plugin for TPM usage."), icon = "plugin.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = main)]
+	return [PluginDescriptor(name = "TPM Demo", description = _("A demo plugin for TPM usage."), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc = main),
+		PluginDescriptor(name = "TPM Demo", description = _("A demo plugin for TPM usage."), icon = "plugin.png", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc = main)]
 	

@@ -421,6 +421,6 @@ def selSetup(menuid, **kwargs):
 
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
-		PluginDescriptor(name=_("CrashlogAutoSubmit"), description=_("CrashlogAutoSubmit settings"),where=PluginDescriptor.WHERE_MENU, fnc=selSetup)]
+	return [PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], needsRestart = False, fnc = autostart),
+		PluginDescriptor(name=_("CrashlogAutoSubmit"), description=_("CrashlogAutoSubmit settings"),where=PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=selSetup)]
 
