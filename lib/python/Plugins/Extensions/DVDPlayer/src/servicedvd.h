@@ -26,7 +26,7 @@ public:
 	RESULT offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr);
 };
 
-class eServiceDVD: public iPlayableService, public iPauseableService, public iSeekableService,
+class eServiceDVD: public iPlayableService, public iPauseableService, public iSeekableService, public iAudioTrackSelection,
 	public iServiceInformation, public iSubtitleOutput, public iServiceKeys, public iCueSheet, public eThread, public Object
 {
 	friend class eServiceFactoryDVD;
@@ -35,7 +35,7 @@ public:
 	virtual ~eServiceDVD();
 		// not implemented (yet)
 	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr) { ptr = 0; return -1; }
-	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; }
+	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr);
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
@@ -89,8 +89,15 @@ public:
 	void setCutList(SWIG_PYOBJECT(ePyObject));
 	void setCutListEnable(int enable);
 
-		// iServiceKeys
+			// iAudioTrackSelection	
+	int getNumberOfTracks();
+	RESULT selectTrack(unsigned int i);
+	RESULT getTrackInfo(struct iAudioTrackInfo &, unsigned int n);
+	int getCurrentTrack();
+
+	// iServiceKeys
 	RESULT keyPressed(int key);
+
 private:
 	eServiceDVD(eServiceReference ref);
 
