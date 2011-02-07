@@ -8,6 +8,9 @@ from Plugins.Plugin import PluginDescriptor
 import keymapparser
 
 class PluginComponent:
+	firstRun = True
+	restartRequired = False
+	
 	def __init__(self):
 		self.plugins = {}
 		self.pluginList = [ ]
@@ -18,12 +21,22 @@ class PluginComponent:
 		self.prefix = prefix
 
 	def addPlugin(self, plugin):
-		self.pluginList.append(plugin)
-		for x in plugin.where:
-			self.plugins.setdefault(x, []).append(plugin)
-			if x == PluginDescriptor.WHERE_AUTOSTART:
-				plugin(reason=0)
-
+		if self.firstRun:
+			self.pluginList.append(plugin)
+			for x in plugin.where:
+				self.plugins.setdefault(x, []).append(plugin)
+				if x == PluginDescriptor.WHERE_AUTOSTART:
+					plugin(reason=0)
+		else:
+			if plugin.needsRestart is False:
+				self.pluginList.append(plugin)
+				for x in plugin.where:
+					self.plugins.setdefault(x, []).append(plugin)
+					if x == PluginDescriptor.WHERE_AUTOSTART:
+						plugin(reason=0)				
+			else:
+				self.restartRequired = True
+				
 	def removePlugin(self, plugin):
 		self.pluginList.remove(plugin)
 		for x in plugin.where:
@@ -81,12 +94,21 @@ class PluginComponent:
 		# internally, the "fnc" argument will be compared with __eq__
 		plugins_added = [p for p in new_plugins if p not in self.pluginList]
 		plugins_removed = [p for p in self.pluginList if not p.internal and p not in new_plugins]
+		
+		#ignore already installed but reloaded plugins
+		for p in plugins_removed: 
+			for pa in plugins_added:
+				if pa.name == p.name and pa.where == p.where:
+					pa.needsRestart = False
 
 		for p in plugins_removed:
 			self.removePlugin(p)
 
 		for p in plugins_added:
 			self.addPlugin(p)
+		
+		if self.firstRun:
+			self.firstRun = False
 
 	def getPlugins(self, where):
 		"""Get list of plugins in a specific category"""
