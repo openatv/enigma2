@@ -778,6 +778,11 @@ int eDVBFrontend::readFrontendData(int type)
 				return 0;
 			if (ioctl(m_fd, FE_READ_SNR, &snr) < 0 && errno != ERANGE)
 				eDebug("FE_READ_SNR failed (%m)");
+			else if (!strcmp(m_description, "AVL2108")) // ET9000
+			{
+				ret = (int)(snr / 40.5);
+				sat_max = 1618;
+			}
 			else if (!strcmp(m_description, "BCM4501 (internal)"))
 			{
 				float SDS_SNRE = snr << 16;
