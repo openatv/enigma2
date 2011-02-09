@@ -244,8 +244,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.saved_config_speeds_backward = config.seek.speeds_backward.value
 		self.saved_config_enter_forward = config.seek.enter_forward.value
 		self.saved_config_enter_backward = config.seek.enter_backward.value
-		self.saved_config_seek_stepwise_minspeed = config.seek.stepwise_minspeed.value
-		self.saved_config_seek_stepwise_repeat = config.seek.stepwise_repeat.value
 		self.saved_config_seek_on_pause = config.seek.on_pause.value
 		self.saved_config_seek_speeds_slowmotion = config.seek.speeds_slowmotion.value
 
@@ -255,8 +253,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.speeds_slowmotion.value = [ ]
 		config.seek.enter_forward.value = "2"
 		config.seek.enter_backward.value = "2"
-		config.seek.stepwise_minspeed.value = "Never"
-		config.seek.stepwise_repeat.value = "3"
 		config.seek.on_pause.value = "play"
 
 	def restore_infobar_seek_config(self):
@@ -265,8 +261,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		config.seek.speeds_slowmotion.value = self.saved_config_seek_speeds_slowmotion
 		config.seek.enter_forward.value = self.saved_config_enter_forward
 		config.seek.enter_backward.value = self.saved_config_enter_backward
-		config.seek.stepwise_minspeed.value = self.saved_config_seek_stepwise_minspeed
-		config.seek.stepwise_repeat.value = self.saved_config_seek_stepwise_repeat
 		config.seek.on_pause.value = self.saved_config_seek_on_pause
 
 	def __init__(self, session, dvd_device = None, dvd_filelist = [ ], args = None):
@@ -280,7 +274,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		HelpableScreen.__init__(self)
 		self.save_infobar_seek_config()
 		self.change_infobar_seek_config()
-		InfoBarSeek.__init__(self, useSeekBackHack=False)
+		InfoBarSeek.__init__(self)
 		InfoBarPVRState.__init__(self)
 		self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
 
