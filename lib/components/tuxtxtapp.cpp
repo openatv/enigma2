@@ -4,6 +4,8 @@
 #include <lib/driver/rc.h>
 #include <lib/gdi/lcd.h>
 #include <lib/gdi/fb.h>
+#include <lib/gui/ewidget.h>
+#include <lib/gui/ewidgetdesktop.h>
 
 extern "C" int tuxtxt_run_ui(int pid, int demux);
 extern "C" int tuxtxt_init();
@@ -56,6 +58,8 @@ void eTuxtxtApp::thread_finished()
 	eDBoxLCD::getInstance()->unlock();
 	eDBoxLCD::getInstance()->update();
 	fbClass::getInstance()->unlock();
+	/* force redraw */
+	getDesktop(0)->resize(getDesktop(0)->size());
 }
 
 void eTuxtxtApp::initCache()
