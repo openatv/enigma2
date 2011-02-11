@@ -775,5 +775,5 @@ def filescan(**kwargs):
 		)]		
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, fnc = menu),
-		 	PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
+	return [PluginDescriptor(name = "DVDPlayer", description = "Play DVDs", where = PluginDescriptor.WHERE_MENU, needsRestart = True, fnc = menu),
+		 	PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = True, fnc = filescan)]

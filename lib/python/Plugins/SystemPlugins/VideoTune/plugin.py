@@ -34,6 +34,6 @@ def startSetup(menuid):
 
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name=_("Video Fine-Tuning"), description=_("fine-tune your display"), where = PluginDescriptor.WHERE_MENU, fnc=startSetup),
-		PluginDescriptor(name=_("Video Fine-Tuning Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=(1, videoFinetuneWizard))
+		PluginDescriptor(name=_("Video Fine-Tuning"), description=_("fine-tune your display"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
+		PluginDescriptor(name=_("Video Fine-Tuning Wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(1, videoFinetuneWizard))
 	]

@@ -20,6 +20,7 @@ def Plugins(**kwargs):
 		description=_("Download .NFI-Files for USB-Flasher"),
 		icon = "flash.png",
 		where = PluginDescriptor.WHERE_SOFTWAREMANAGER,
+		needsRestart = False,
 		fnc={"SoftwareSupported": NFICallFnc, "menuEntryName": lambda x: _("NFI Image Flashing"),
 			"menuEntryDescription": lambda x: _("Download .NFI-Files for USB-Flasher")}),
-		PluginDescriptor(name="nfi", where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
+		PluginDescriptor(name="nfi", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
