@@ -80,4 +80,4 @@ def test(returnValue):
 	print "You entered", returnValue
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="Test", description="plugin to test some capabilities", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main)
+	return PluginDescriptor(name="Test", description="plugin to test some capabilities", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=main)

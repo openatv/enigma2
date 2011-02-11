@@ -679,5 +679,5 @@ def autostart(reason, **kwargs):
 	resourcemanager.addResource("DiseqcTester", DiseqcTesterMain)
 
 def Plugins(**kwargs):
-	return [ PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc=DiseqcTesterMain),
-			PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, fnc = autostart)]
+	return [ PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DiseqcTesterMain),
+			PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart)]

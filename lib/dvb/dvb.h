@@ -135,7 +135,7 @@ class eDVBResourceManager: public iObject, public Object
 	DECLARE_REF(eDVBResourceManager);
 	int avail, busy;
 
-	enum { DM7025, DM800, DM500HD, DM800SE, DM8000 };
+	enum { DM7025, DM800, DM500HD, DM800SE, DM8000, DM7020HD };
 
 	int m_boxtype;
 
