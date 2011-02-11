@@ -63,9 +63,10 @@ class PluginDescriptor:
 	WHERE_SOFTWAREMANAGER = 14
 
 
-	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, internal = False):
+	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, needsRestart = None, internal = False):
 		self.name = name
 		self.internal = internal
+		self.needsRestart = needsRestart
 		if isinstance(where, list):
 			self.where = where
 		else:

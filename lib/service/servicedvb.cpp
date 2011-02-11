@@ -2476,7 +2476,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		eDebug("getting program info failed.");
 	else
 	{
-		eDebugNoNewLine("have %d video stream(s)", program.videoStreams.size());
+		eDebugNoNewLine("have %zd video stream(s)", program.videoStreams.size());
 		if (!program.videoStreams.empty())
 		{
 			eDebugNoNewLine(" (");
@@ -2495,7 +2495,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			}
 			eDebugNoNewLine(")");
 		}
-		eDebugNoNewLine(", and %d audio stream(s)", program.audioStreams.size());
+		eDebugNoNewLine(", and %zd audio stream(s)", program.audioStreams.size());
 		if (!program.audioStreams.empty())
 		{
 			eDebugNoNewLine(" (");
@@ -2680,7 +2680,7 @@ void eDVBServicePlay::loadCuesheet()
 			m_cue_entries.insert(cueEntry(where, what));
 		}
 		fclose(f);
-		eDebug("%d entries", m_cue_entries.size());
+		eDebug("%zd entries", m_cue_entries.size());
 	} else
 		eDebug("cutfile not found!");
 	

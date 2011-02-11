@@ -17,6 +17,7 @@ autoconf
 automake
 build-essential
 gettext
+libdvdnav-dev
 libfreetype6-dev
 libfribidi-dev
 libgif-dev
@@ -48,7 +49,15 @@ dpkg-buildpackage -uc -us
 cd ..
 sudo dpkg -i libxmlccwrap*.deb
 
-4.) Build and install enigma2:
+4.) Build and install libdreamdvd:
+
+git clone git://schwerkraft.elitedvb.net/libdreamdvd/libdreamdvd.git
+cd libdreamdvd
+dpkg-buildpackage -uc -us
+cd ..
+sudo dpkg -i libdreamdvd*.deb
+
+5.) Build and install enigma2:
 
 git clone git://git.opendreambox.org/git/enigma2.git
 cd enigma2

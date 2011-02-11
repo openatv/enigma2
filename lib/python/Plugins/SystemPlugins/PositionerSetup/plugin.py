@@ -608,6 +608,6 @@ def PositionerSetupStart(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	if (nimmanager.hasNimType("DVB-S")):
-		return PluginDescriptor(name=_("Positioner setup"), description="Setup your positioner", where = PluginDescriptor.WHERE_MENU, fnc=PositionerSetupStart)
+		return PluginDescriptor(name=_("Positioner setup"), description="Setup your positioner", where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=PositionerSetupStart)
 	else:
 		return []

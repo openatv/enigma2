@@ -10,7 +10,7 @@ from os import popen
 
 class Upgrade(Screen):
 	skin = """
-		<screen position="100,100" size="550,400" title="IPKG upgrade..." >
+		<screen position="100,100" size="550,400" title="opkg upgrade..." >
 			<widget name="text" position="0,0" size="550,400" font="Regular;15" />
 		</screen>"""
 		
@@ -39,7 +39,7 @@ class Upgrade(Screen):
 			self.close()
 	
 	def doUpdateDelay(self):
-		lines = popen("ipkg update && ipkg upgrade -force-defaults -force-overwrite", "r").readlines()
+		lines = popen("opkg update && opkg upgrade -force-defaults -force-overwrite", "r").readlines()
 		string = ""
 		for x in lines:
 			string += x
@@ -87,7 +87,7 @@ class PacketList(GUIComponent):
 
 class Ipkg(Screen):
 	skin = """
-		<screen position="100,100" size="550,400" title="IPKG upgrade..." >
+		<screen position="100,100" size="550,400" title="opkg upgrade..." >
 			<widget name="list" position="0,0" size="550,400" scrollbarMode="showOnDemand" />
 		</screen>"""
 		
@@ -109,13 +109,13 @@ class Ipkg(Screen):
 		
 
 	def fillPacketList(self):
-		lines = popen("ipkg list", "r").readlines()
+		lines = popen("opkg list", "r").readlines()
 		packetlist = []
 		for x in lines:
 			split = x.split(' - ')
 			packetlist.append([split[0].strip(), split[1].strip()])
 		
-		lines = popen("ipkg list_installed", "r").readlines()
+		lines = popen("opkg list_installed", "r").readlines()
 		
 		installedlist = {}
 		for x in lines:
@@ -138,7 +138,7 @@ class Ipkg(Screen):
 			self.close()
 	
 	def doUpdateDelay(self):
-		lines = popen("ipkg update && ipkg upgrade", "r").readlines()
+		lines = popen("opkg update && opkg upgrade", "r").readlines()
 		string = ""
 		for x in lines:
 			string += x
@@ -161,4 +161,4 @@ def IpkgMain(session, **kwargs):
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="Old Softwareupdate", description="Updates your receiver's software", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=UpgradeMain),
-			PluginDescriptor(name="IPKG", description="IPKG frontend", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=IpkgMain)]
+			PluginDescriptor(name="opkg", description="opkg frontend", icon="update.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=IpkgMain)]

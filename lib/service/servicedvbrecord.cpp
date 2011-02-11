@@ -318,7 +318,7 @@ int eDVBServiceRecord::doRecord()
 
 			int timing_pid = -1, timing_pid_type = -1;
 
-			eDebugNoNewLine("RECORD: have %d video stream(s)", program.videoStreams.size());
+			eDebugNoNewLine("RECORD: have %zd video stream(s)", program.videoStreams.size());
 			if (!program.videoStreams.empty())
 			{
 				eDebugNoNewLine(" (");
@@ -340,7 +340,7 @@ int eDVBServiceRecord::doRecord()
 				}
 				eDebugNoNewLine(")");
 			}
-			eDebugNoNewLine(", and %d audio stream(s)", program.audioStreams.size());
+			eDebugNoNewLine(", and %zd audio stream(s)", program.audioStreams.size());
 			if (!program.audioStreams.empty())
 			{
 				eDebugNoNewLine(" (");

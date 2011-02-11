@@ -19,13 +19,8 @@ class IpkgComponent:
 	CMD_UPDATE = 3
 	CMD_UPGRADE = 4
 	
-	def __init__(self, ipkg = None):
-		if ipkg:
-			self.ipkg = ipkg
-		elif os.path.isfile('/usr/bin/opkg'):
-			self.ipkg = '/usr/bin/opkg'
-		else:
-			self.ipkg = '/usr/bin/ipkg'
+	def __init__(self, ipkg = 'opkg'):
+		self.ipkg = ipkg
 		self.cmd = eConsoleAppContainer()
 		self.cache = None
 		self.callbackList = []
