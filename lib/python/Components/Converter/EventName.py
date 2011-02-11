@@ -15,7 +15,7 @@ class EventName(Converter, object):
 		elif type == "ExtendedDescription":
 			self.type = self.EXTENDED_DESCRIPTION
 		elif type == "ShortAndExtendedDescription":
-			self.type = SHORT_AND_EXTENDED_DESCRIPTION:
+			self.type = self.SHORT_AND_EXTENDED_DESCRIPTION
 		elif type == "ID":
 			self.type = self.ID
 		else:
@@ -38,7 +38,7 @@ class EventName(Converter, object):
 			extended = event.getExtendedDescription()
 			if description and extended:
 				description += '\n\n'
-			return description + event.getExtendedDescription()
+			return description + extended
 		elif self.type == self.ID:
 			return str(event.getEventId())
 		
