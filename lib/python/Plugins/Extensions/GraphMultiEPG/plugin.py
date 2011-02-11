@@ -94,5 +94,5 @@ def main(session, servicelist, **kwargs):
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
 	descr = _("A graphical EPG for all services of an specific bouquet")
- 	return [ PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, fnc=main),
-	  PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main) ]
+	return [PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, needsRestart = False, fnc=main),
+		PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=main)]
