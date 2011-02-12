@@ -71,7 +71,7 @@
 					<item level="1" text="Device Setup..." entryID="device_setup"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
 					<item level="1" text="Nameserver Setup..." entryID="dns_setup"><screen module="NetworkSetup" screen="NameserverSetup"/></item>
 				</menu>-->
-				<item level="2" text="Recording paths" entryId="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
+				<item level="2" text="Recording paths" entryID="RecordPaths"><screen module="RecordPaths" screen="RecordPathsSettings" /></item>
 				<item level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
 				<item level="0" entryID="timezone_setup"><setup id="timezone"/></item>
 			</menu>
