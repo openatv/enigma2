@@ -84,10 +84,9 @@ def setPreferredTagEditor(te):
 	global preferredTagEditor
 	if preferredTagEditor is None:
 		preferredTagEditor = te
-		print "Preferred tag editor changed to ", preferredTagEditor
+		print "Preferred tag editor changed to", preferredTagEditor
 	else:
-		print "Preferred tag editor already set to ", preferredTagEditor
-		print "ignoring ", te
+		print "Preferred tag editor already set to", preferredTagEditor, "ignoring", te
 
 def getPreferredTagEditor():
 	global preferredTagEditor
@@ -154,7 +153,6 @@ def moveServiceFiles(serviceref, dest):
 	movedList = []
 	try:
 		for item in moveList:
-			print "[MOVE]", item[0], "->", item[1]
 			os.rename(item[0], item[1])
 			movedList.append(item)
 	except Exception, e:
@@ -169,13 +167,11 @@ def moveServiceFiles(serviceref, dest):
 
 def copyServiceFiles(serviceref, dest):
 	# current should be 'ref' type, dest a simple path string
-	print "[Movie] Copying to:", dest
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
 	movedList = []
 	try:
 		for item in moveList:
-			print "[LINK]", item[0], "->", item[1]
 			os.link(item[0], item[1])
 			movedList.append(item)
 		# this worked, we're done
@@ -611,7 +607,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.session.open(dvdplugin.DVDPlayer, dvd_filelist=[path])
 			return True
 		except Exception, e:
-			print "[MS] DVD Player not installed:", e
+			print "[ML] DVD Player not installed:", e
 
 	def __serviceStarted(self):
 		if not self.playInBackground:
@@ -678,7 +674,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				ext = os.path.splitext(path)[1].lower()
 				print "Next up:", path
 				if ext in AUDIO_EXTENSIONS:
-					print "[ml] e calllater preview"
 					self.callLater(self.preview)
 
 	def preview(self):
@@ -977,13 +972,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		del self.onMovieSelected
 
 	def rememberMovieLocation(self, where):
-		print "[--Movie--] rememberMovieLocation", where
 		if where in last_selected_dest:
 			last_selected_dest.remove(where)
 		last_selected_dest.insert(0, where)
 		if len(last_selected_dest) > 5:
 			del last_selected_dest[-1]
-		print last_selected_dest
 
 	def can_bookmarks(self, item):
 		return True
