@@ -137,8 +137,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 
 		self.seek_target = None
 
-		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-		hotplugNotifier.append(self.hotplugCB)
+		try:
+			from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+			hotplugNotifier.append(self.hotplugCB)
+		except Exception, ex:
+			print "[MediaPlayer] No hotplug support", ex
 
 		class MoviePlayerActionMap(NumberActionMap):
 			def __init__(self, player, contexts = [ ], actions = { }, prio=0):
@@ -248,8 +251,11 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarSeek, InfoBarAudioSelection, InfoB
 		if config.mediaplayer.saveDirOnExit.getValue():
 			config.mediaplayer.defaultDir.setValue(self.filelist.getCurrentDirectory())
 			config.mediaplayer.defaultDir.save()
-		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-		hotplugNotifier.remove(self.hotplugCB)
+		try:
+			from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+			hotplugNotifier.remove(self.hotplugCB)
+		except:
+			pass
 		del self["coverArt"].picload
 		self.close()
 
