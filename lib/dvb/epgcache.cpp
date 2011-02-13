@@ -3103,9 +3103,12 @@ PyObject *eEPGCache::search(ePyObject arg)
 			// check all events
 			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
 			{
-				int evid = evit->second->getEventID();
-				if ( evid == eventid)
-					continue;
+				if (querytype == 0)
+				{
+					/* ignore the current event, when looking for similar events */
+					if (evit->second->getEventID() == eventid)
+						continue;
+				}
 				__u8 *data = evit->second->EITdata;
 				int tmp = evit->second->ByteSize-10;
 				__u32 *p = (__u32*)(data+10);
@@ -3117,7 +3120,15 @@ PyObject *eEPGCache::search(ePyObject arg)
 					for ( int i=0; i <= descridx; ++i)
 					{
 						if (descr[i] == crc32)  // found...
+						{
 							++cnt;
+							if (querytype)
+							{
+								/* we need only one match, when we're not looking for similar broadcasting events */
+								tmp = 0;
+								break;
+							}
+						}
 					}
 					tmp-=4;
 				}
@@ -3134,7 +3145,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 						const eventData *ev_data=0;
 						if (needServiceEvent)
 						{
-							if (lookupEventId(ref, evid, ev_data))
+							if (lookupEventId(ref, evit->second->getEventID(), ev_data))
 								eDebug("event not found !!!!!!!!!!!");
 							else
 							{
