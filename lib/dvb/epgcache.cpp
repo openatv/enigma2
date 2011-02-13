@@ -3097,8 +3097,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 				++cit;
 				continue;
 			}
-			ePyObject service_name;
-			ePyObject service_reference;
 			timeMap &evmap = cit->second.second;
 			// check all events
 			for (timeMap::iterator evit(evmap.begin()); evit != evmap.end() && maxcount; ++evit)
@@ -3136,77 +3134,83 @@ PyObject *eEPGCache::search(ePyObject arg)
 					 ((querytype == 1 || querytype == 2) && cnt != -1) )
 				{
 					const uniqueEPGKey &service = cit->first;
-					eServiceReference ref =
-						eDVBDB::getInstance()->searchReference(service.tsid, service.onid, service.sid);
-					if (ref.valid())
+					std::vector<eServiceReference> refs;
+					eDVBDB::getInstance()->searchAllReferences(refs, service.tsid, service.onid, service.sid);
+					for (unsigned int i = 0; i < refs.size(); i++)
 					{
-					// create servive event
-						eServiceEvent ptr;
-						const eventData *ev_data=0;
-						if (needServiceEvent)
+						eServiceReference ref = refs[i];
+						if (ref.valid())
 						{
-							if (lookupEventId(ref, evit->second->getEventID(), ev_data))
-								eDebug("event not found !!!!!!!!!!!");
-							else
+							ePyObject service_name;
+							ePyObject service_reference;
+						// create servive event
+							eServiceEvent ptr;
+							const eventData *ev_data=0;
+							if (needServiceEvent)
 							{
-								const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
-								Event ev((uint8_t*)ev_data->get());
-								ptr.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
-							}
-						}
-					// create service name
-						if (must_get_service_name && !service_name)
-						{
-							ePtr<iStaticServiceInformation> sptr;
-							eServiceCenterPtr service_center;
-							eServiceCenter::getPrivInstance(service_center);
-							if (service_center)
-							{
-								service_center->info(ref, sptr);
-								if (sptr)
+								if (lookupEventId(ref, evit->second->getEventID(), ev_data))
+									eDebug("event not found !!!!!!!!!!!");
+								else
 								{
-									std::string name;
-									sptr->getName(ref, name);
-
-									if (must_get_service_name == 1)
-									{
-										size_t pos;
-										// filter short name brakets
-										while((pos = name.find("\xc2\x86")) != std::string::npos)
-											name.erase(pos,2);
-										while((pos = name.find("\xc2\x87")) != std::string::npos)
-											name.erase(pos,2);
-									}
-									else
-										name = buildShortName(name);
-
-									if (name.length())
-										service_name = PyString_FromString(name.c_str());
+									const eServiceReferenceDVB &dref = (const eServiceReferenceDVB&)ref;
+									Event ev((uint8_t*)ev_data->get());
+									ptr.parseFrom(&ev, (dref.getTransportStreamID().get()<<16)|dref.getOriginalNetworkID().get());
 								}
 							}
-							if (!service_name)
-								service_name = PyString_FromString("<n/a>");
+						// create service name
+							if (must_get_service_name && !service_name)
+							{
+								ePtr<iStaticServiceInformation> sptr;
+								eServiceCenterPtr service_center;
+								eServiceCenter::getPrivInstance(service_center);
+								if (service_center)
+								{
+									service_center->info(ref, sptr);
+									if (sptr)
+									{
+										std::string name;
+										sptr->getName(ref, name);
+
+										if (must_get_service_name == 1)
+										{
+											size_t pos;
+											// filter short name brakets
+											while((pos = name.find("\xc2\x86")) != std::string::npos)
+												name.erase(pos,2);
+											while((pos = name.find("\xc2\x87")) != std::string::npos)
+												name.erase(pos,2);
+										}
+										else
+											name = buildShortName(name);
+
+										if (name.length())
+											service_name = PyString_FromString(name.c_str());
+									}
+								}
+								if (!service_name)
+									service_name = PyString_FromString("<n/a>");
+							}
+						// create servicereference string
+							if (must_get_service_reference && !service_reference)
+								service_reference = PyString_FromString(ref.toString().c_str());
+						// create list
+							if (!ret)
+								ret = PyList_New(0);
+						// create tuple
+							ePyObject tuple = PyTuple_New(argcount);
+						// fill tuple
+							fillTuple2(tuple, argstring, argcount, evit->second, ev_data ? &ptr : 0, service_name, service_reference);
+							PyList_Append(ret, tuple);
+							Py_DECREF(tuple);
+							if (service_name)
+								Py_DECREF(service_name);
+							if (service_reference)
+								Py_DECREF(service_reference);
+							--maxcount;
 						}
-					// create servicereference string
-						if (must_get_service_reference && !service_reference)
-							service_reference = PyString_FromString(ref.toString().c_str());
-					// create list
-						if (!ret)
-							ret = PyList_New(0);
-					// create tuple
-						ePyObject tuple = PyTuple_New(argcount);
-					// fill tuple
-						fillTuple2(tuple, argstring, argcount, evit->second, ev_data ? &ptr : 0, service_name, service_reference);
-						PyList_Append(ret, tuple);
-						Py_DECREF(tuple);
-						--maxcount;
 					}
 				}
 			}
-			if (service_name)
-				Py_DECREF(service_name);
-			if (service_reference)
-				Py_DECREF(service_reference);
 			if (first)
 			{
 				// now start at first service in epgcache database ( only in SIMILAR BROADCASTING SEARCH )
