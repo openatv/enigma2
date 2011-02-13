@@ -3011,117 +3011,39 @@ PyObject *eEPGCache::search(ePyObject arg)
 						__u8 *data = it->second.second;
 						if ( data[0] == 0x4D ) // short event descriptor
 						{
-							if (data[6] >= 0x20)
+							std::string title;
+							const char *titleptr = (const char*)&data[6];
+							int title_len = data[5];
+							if (data[6] < 0x20)
 							{
-								int title_len = data[5];
-								if ( querytype == 1 )
-								{
-									int offs = 6;
-									// skip DVB-Text Encoding!
-									if (data[6] == 0x10)
-									{
-										offs+=3;
-										title_len-=3;
-									}
-									else if(data[6] > 0 && data[6] < 0x20)
-									{
-										offs+=1;
-										title_len-=1;
-									}
-									if (title_len != textlen)
-										continue;
-									if ( casetype )
-									{
-										if ( !strncasecmp((const char*)data+offs, str, title_len) )
-										{
-	//										std::string s((const char*)data+offs, title_len);
-	//										eDebug("match1 %s %s", str, s.c_str() );
-											descr[++descridx] = it->first;
-										}
-									}
-									else if ( !strncmp((const char*)data+offs, str, title_len) )
-									{
-	//									std::string s((const char*)data+offs, title_len);
-	//									eDebug("match2 %s %s", str, s.c_str() );
-										descr[++descridx] = it->first;
-									}
-								}
-								else
-								{
-									int idx=0;
-									while((title_len-idx) >= textlen)
-									{
-										if (casetype)
-										{
-											if (!strncasecmp((const char*)data+6+idx, str, textlen) )
-											{
-												descr[++descridx] = it->first;
-	//											std::string s((const char*)data+6, title_len);
-	//											eDebug("match 3 %s %s", str, s.c_str() );
-												break;
-											}
-										}
-										else if (!strncmp((const char*)data+6+idx, str, textlen) )
-										{
-											descr[++descridx] = it->first;
-	//										std::string s((const char*)data+6, title_len);
-	//										eDebug("match 4 %s %s", str, s.c_str() );
-											break;
-										}
-										++idx;
-									}
-								}
+								/* custom encoding */
+								title = convertDVBUTF8((unsigned char*)titleptr, title_len, 0x40, 0);
+								titleptr = title.c_str();
+								title_len = title.length();
 							}
-							else
+							if (querytype == 1)
 							{
-								std::string title = convertDVBUTF8(&data[6], data[5], 0x40, 0);
-								int title_len = title.length();
-								const char *titleptr = title.c_str();
-								if ( querytype == 1 )
+								/* require exact title match */
+								if (title_len != textlen)
+									continue;
+							}
+							while (title_len >= textlen)
+							{
+								if (casetype)
 								{
-									if (title_len != textlen)
-										continue;
-									if ( casetype )
+									if (!strncasecmp(titleptr, str, textlen))
 									{
-										if ( !strncasecmp(titleptr, str, title_len) )
-										{
-	//										std::string s((const char*)data+6, title_len);
-	//										eDebug("match1 %s %s", str, s.c_str() );
-											descr[++descridx] = it->first;
-										}
-									}
-									else if ( !strncmp(titleptr, str, title_len) )
-									{
-	//									std::string s((const char*)data+6, title_len);
-	//									eDebug("match2 %s %s", str, s.c_str() );
 										descr[++descridx] = it->first;
+										break;
 									}
 								}
-								else
+								else if (!strncmp(titleptr, str, textlen))
 								{
-									int idx=0;
-									while((title_len-idx) >= textlen)
-									{
-										if (casetype)
-										{
-											if (!strncasecmp(titleptr+idx, str, textlen) )
-											{
-												descr[++descridx] = it->first;
-	//											std::string s((const char*)data+6, title_len);
-	//											eDebug("match 3 %s %s", str, s.c_str() );
-												break;
-											}
-										}
-										else if (!strncmp(titleptr+idx, str, textlen) )
-										{
-											descr[++descridx] = it->first;
-	//										std::string s((const char*)data+6, title_len);
-	//										eDebug("match 4 %s %s", str, s.c_str() );
-											break;
-										}
-										++idx;
-									}
+									descr[++descridx] = it->first;
+									break;
 								}
+								title_len--;
+								titleptr++;
 							}
 						}
 					}
