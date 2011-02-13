@@ -1526,6 +1526,21 @@ eServiceReference eDVBDB::searchReference(int tsid, int onid, int sid)
 	return eServiceReference();
 }
 
+void eDVBDB::searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid)
+{
+	eServiceID Sid(sid);
+	eTransportStreamID Tsid(tsid);
+	eOriginalNetworkID Onid(onid);
+	for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit(m_services.begin());
+		sit != m_services.end(); ++sit)
+	{
+		if (sit->first.getTransportStreamID() == Tsid &&
+			sit->first.getOriginalNetworkID() == Onid &&
+			sit->first.getServiceID() == Sid)
+			result.push_back(sit->first);
+	}
+}
+
 DEFINE_REF(eDVBDBQueryBase);
 
 eDVBDBQueryBase::eDVBDBQueryBase(eDVBDB *db, const eServiceReference &source, eDVBChannelQuery *query)
