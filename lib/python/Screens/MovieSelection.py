@@ -42,26 +42,7 @@ config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
 
-userDefinedActions = {
-	'delete': "Delete",
-	'move': "Move",
-	'copy': "Copy",
-	'reset': "Reset",
-	'tags': "Tags",
-	'bookmarks': "Location",
-}
-userDefinedActionsTranslated = False
-config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
-config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
-config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
-config.movielist.btn_blue = ConfigSelection(default='tags', choices=userDefinedActions)
-
-userDefinedButtons ={
-	'red': config.movielist.btn_red,
-	'green': config.movielist.btn_green,
-	'yellow': config.movielist.btn_yellow,
-	'blue': config.movielist.btn_blue
-}
+userDefinedButtons = None
 
 last_selected_dest = []
 
@@ -396,12 +377,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		InfoBarBase.__init__(self) # For ServiceEventTracker
-		#translate items now, because language selection should have been ready now.
-		global userDefinedActionsTranslated
-		if not userDefinedActionsTranslated:
-			for k,v in userDefinedActions.items():
-				userDefinedActions[k] = _(v)
-			userDefinedActionsTranslated = True
+		self.initUserDefinedActions()
 		self.tags = {}
 		if selectedmovie:
 			self.selected_tags = config.movielist.last_selected_tags.value
@@ -497,11 +473,44 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				#iPlayableService.evSOF: self.__evSOF,
 			})
 
+	def initUserDefinedActions(self):
+		global userDefinedButtons, userDefinedActions, config
+		if userDefinedButtons is None:
+			userDefinedActions = {
+				'delete': _("Delete"),
+				'move': _("Move"),
+				'copy': _("Copy"),
+				'reset': _("Reset"),
+				'tags': _("Tags"),
+				'bookmarks': _("Location"),
+			}
+			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
+				print "Plugin:", p.description, p.name
+				userDefinedActions['@' + p.name] = p.description
+			config.movielist.btn_red = ConfigSelection(default='delete', choices=userDefinedActions)
+			config.movielist.btn_green = ConfigSelection(default='move', choices=userDefinedActions)
+			config.movielist.btn_yellow = ConfigSelection(default='bookmarks', choices=userDefinedActions)
+			config.movielist.btn_blue = ConfigSelection(default='tags', choices=userDefinedActions)
+			userDefinedButtons ={
+				'red': config.movielist.btn_red,
+				'green': config.movielist.btn_green,
+				'yellow': config.movielist.btn_yellow,
+				'blue': config.movielist.btn_blue
+			}
+		
         def _callButton(self, name):
+        	if name.startswith('@'):
+        		item = self.getCurrentSelection()
+        		if isSimpleFile(item):
+	        		name = name[1:]
+				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
+					if name == p.name:
+						p(self.session, item[0])
+			return
 		try:
 			a = getattr(self, 'do_' + name)
 		except Exception:
-			print "[MovieSelection] Undefined action:", name
+			# Undefined action
 			return
 		a()
 			
@@ -542,21 +551,23 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return isSimpleFile(item)
 
 	def _updateButtonTexts(self):
-		actionDict = dict(userDefinedActions)
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
 			print "[ML] color=%s btn=%s name=%s" % (k, btn.value, userDefinedActions[btn.value])
-			self['key_' + k].setText(_(userDefinedActions[btn.value]))
+			self['key_' + k].setText(userDefinedActions[btn.value])
 
 	def updateButtons(self):
 		item = self.getCurrentSelection()
 		for name,cfg in userDefinedButtons.items():
 			action = cfg.value
-			try:
-				check = getattr(self, 'can_' + action)
-			except:
-				print '[ML] No explicit check for', action
+			if action.startswith('@'):
 				check = self.can_default
+			else:
+				try:
+					check = getattr(self, 'can_' + action)
+				except:
+					print '[ML] No explicit check for', action
+					check = self.can_default
 			gui = self["key_" + name]
 			if check(item):
 				gui.show()
