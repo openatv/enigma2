@@ -26,7 +26,7 @@ public:
 	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
 	RESULT flush();
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
-	int openDVR(void);
+	int openDVR(int flags);
 
 	int getRefCount() { return ref; }
 private:
