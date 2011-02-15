@@ -198,6 +198,7 @@ private:
 
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstMessage *msg);
+	void handleMessage(GstMessage *msg);
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
