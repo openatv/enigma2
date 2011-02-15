@@ -1326,10 +1326,24 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 	g_free (sourceName);
 }
 
+void eServiceMP3::handleMessage(GstMessage *msg)
+{
+	if (GST_MESSAGE_TYPE(msg) == GST_MESSAGE_STATE_CHANGED && GST_MESSAGE_SRC(msg) != GST_OBJECT(m_gst_playbin))
+	{
+		/*
+		 * ignore verbose state change messages for all active elements;
+		 * we only need to handle state-change events for the playbin
+		 */
+		gst_message_unref(msg);
+		return;
+	}
+	m_pump.send(msg);
+}
+
 GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data)
 {
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
-	_this->m_pump.send(message);
+	if (_this) _this->handleMessage(message);
 	return GST_BUS_DROP;
 }
 
