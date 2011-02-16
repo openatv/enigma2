@@ -1341,7 +1341,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 			fstat(f, &s);
 			if (m_video_clip_fd == -1)
 				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY);
-			while (m_video_clip_fd >= 0)
+			if (m_video_clip_fd >= 0)
 			{
 				bool seq_end_avail = false;
 				size_t pos=0;
