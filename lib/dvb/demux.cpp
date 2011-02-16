@@ -85,6 +85,13 @@ int eDVBDemux::openDemux(void)
 	return ::open(filename, O_RDWR);
 }
 
+int eDVBDemux::openDVR(int flags)
+{
+	char filename[128];
+	snprintf(filename, 128, "/dev/dvb/adapter%d/dvr%d", adapter, demux);
+	return ::open(filename, flags);
+}
+
 DEFINE_REF(eDVBDemux)
 
 RESULT eDVBDemux::setSourceFrontend(int fenum)
