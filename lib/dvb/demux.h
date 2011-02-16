@@ -27,7 +27,8 @@ public:
 	RESULT getCAAdapterID(uint8_t &id) { id = adapter; return 0; }
 	RESULT flush();
 	RESULT connectEvent(const Slot1<void,int> &event, ePtr<eConnection> &conn);
-	
+	int openDVR(int flags);
+
 	int getRefCount() { return ref; }
 private:
 	int adapter, demux, source;
