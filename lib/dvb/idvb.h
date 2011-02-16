@@ -636,6 +636,7 @@ public:
 	virtual RESULT getSTC(pts_t &pts, int num=0)=0;
 	virtual RESULT getCADemuxID(uint8_t &id)=0;
 	virtual RESULT flush()=0;
+	virtual int openDVR(int flags)=0;
 };
 
 #if HAVE_DVB_API_VERSION < 3 && !defined(VIDEO_EVENT_SIZE_CHANGED)
