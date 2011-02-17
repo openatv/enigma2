@@ -371,8 +371,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 		self.onClose.append(self.__onClose)
 
-		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-		hotplugNotifier.append(self.hotplugCB)
+		try:
+			from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+			hotplugNotifier.append(self.hotplugCB)
+		except:
+			pass
 		
 		self.autoplay = dvd_device or dvd_filelist
 
@@ -670,8 +673,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def __onClose(self):
 		self.restore_infobar_seek_config()
 		self.session.nav.playService(self.oldService)
-		from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-		hotplugNotifier.remove(self.hotplugCB)
+		try:
+			from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
+			hotplugNotifier.remove(self.hotplugCB)
+		except:
+			pass
 
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print "playLastCB", answer, self.resume_point
