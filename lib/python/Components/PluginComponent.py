@@ -124,6 +124,8 @@ class PluginComponent:
 	def clearPluginList(self):
 		self.pluginList = []
 		self.plugins = {}
+		self.firstRun = True
+		self.restartRequired = False
 
 	def shutdown(self):
 		for p in self.pluginList[:]:
