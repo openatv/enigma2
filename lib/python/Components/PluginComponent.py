@@ -21,7 +21,7 @@ class PluginComponent:
 		self.prefix = prefix
 
 	def addPlugin(self, plugin):
-		if self.firstRun or plugin.needsRestart is False:
+		if self.firstRun or not plugin.needsRestart:
 			self.pluginList.append(plugin)
 			for x in plugin.where:
 				self.plugins.setdefault(x, []).append(plugin)
