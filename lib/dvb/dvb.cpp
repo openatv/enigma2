@@ -1818,6 +1818,14 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			return -ENODEV;
 		}
 #else
+#if HAVE_OLDPVR
+		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
+		if (m_pvr_fd_dst < 0)
+		{
+			eDebug("can't open /dev/misc/pvr - %m"); // or wait for the driver to be improved.
+			return -ENODEV;
+		}
+#else
 		ePtr<eDVBAllocatedDemux> &demux = m_demux ? m_demux : m_decoder_demux;
 		if (demux)
 		{
@@ -1833,6 +1841,7 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 			eDebug("no demux allocated yet.. so its not possible to open the dvr device!!");
 			return -ENODEV;
 		}
+#endif
 #endif
 	}
 
