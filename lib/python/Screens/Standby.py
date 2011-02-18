@@ -161,6 +161,8 @@ class TryQuitMainloop(MessageBox):
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
 			quitMainloop(self.retval)
+		else:
+			MessageBox.close(self, True)
 
 	def __onShow(self):
 		global inTryQuitMainloop
