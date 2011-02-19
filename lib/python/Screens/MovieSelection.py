@@ -7,11 +7,12 @@ from Components.DiskInfo import DiskInfo
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry, NoSave
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
+from shutil import move, copy2
 import Components.Harddisk
 
 from Plugins.Plugin import PluginDescriptor
@@ -41,6 +42,7 @@ config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
+config.movielist.copyinprogress = NoSave(ConfigInteger(default=0))
 
 userDefinedButtons = None
 
@@ -49,6 +51,116 @@ last_selected_dest = []
 AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
 DVD_EXTENSIONS = ('.iso', '.img')
 preferredTagEditor = None
+
+import thread
+import exceptions
+
+class InterruptedException(exceptions.Exception):
+    def __init__(self, args = None):
+        self.args = args
+
+class ThreadedJob:
+    def __init__(self):
+        # tell them ten seconds at first
+        self.secondsRemaining = 10.0
+        self.lastTick = 0
+
+        # not running yet
+        self.isPaused = False
+        self.isRunning = False
+        self.keepGoing = True
+
+    def Start(self):
+        self.keepGoing = self.isRunning = True
+        thread.start_new_thread(self.Run, ())
+        count = config.movielist.copyinprogress.value
+        count += 1
+        config.movielist.copyinprogress.value = count
+        print 'inprogress: ' + str(config.movielist.copyinprogress.value)
+        self.isPaused = False
+
+    def Stop(self):
+        self.keepGoing = False
+
+    def WaitUntilStopped(self):
+        while self.isRunning:
+            time.sleep(0.1)
+
+    def IsRunning(self):
+        return self.isRunning
+
+    def Run(self):
+        # this is overridden by the
+        # concrete ThreadedJob
+        print "Run was not overloaded"
+        self.JobFinished()
+        pass
+
+    def Pause(self):
+        self.isPaused = True
+        pass
+
+    def Continue(self):
+        self.isPaused = False
+        pass
+
+    def JobFinished(self):
+        self.isRunning = False
+        count = config.movielist.copyinprogress.value
+        count -= 1
+        config.movielist.copyinprogress.value = count
+
+class FileCopyJob(ThreadedJob):
+    """ A common file copy Job. """
+
+    def __init__(self, orig_filename, copy_filename, block_size=32*1024):
+        self.src = orig_filename
+        self.dest = copy_filename
+        self.block_size = block_size
+        ThreadedJob.__init__(self)
+
+    def Run(self):
+        """ This can either be run directly for synchronous use of the job,
+        or started as a thread when ThreadedJob.Start() is called.
+
+        It is responsible for calling JobBeginning, JobProgress, and JobFinished.
+        And as often as possible, calling PossibleStoppingPoint() which will 
+        sleep if the user pauses, and raise an exception if the user cancels.
+        """
+        self.time0 = time.clock()
+
+        try:
+            copy2(self.src,self.dest)
+        except InterruptedException:
+            print "canceled, dest deleted!"
+        self.JobFinished()
+
+class FileMoveJob(ThreadedJob):
+    """ A common file copy Job. """
+
+    def __init__(self, orig_filename, copy_filename, block_size=32*1024):
+        self.src = orig_filename
+        self.dest = copy_filename
+        self.block_size = block_size
+        ThreadedJob.__init__(self)
+
+    def Run(self):
+        """ This can either be run directly for synchronous use of the job,
+        or started as a thread when ThreadedJob.Start() is called.
+
+        It is responsible for calling JobBeginning, JobProgress, and JobFinished.
+        And as often as possible, calling PossibleStoppingPoint() which will 
+        sleep if the user pauses, and raise an exception if the user cancels.
+        """
+        self.time0 = time.clock()
+
+        try:
+            print "[MOVE by shutl]", self.src, "->", self.dest
+            move(self.src, self.dest)
+            os.rename(self.dest, self.dest)
+        except InterruptedException:
+            print "canceled, dest deleted!"
+        self.JobFinished()
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
@@ -79,6 +191,8 @@ def isTrashFolder(ref):
 	return os.path.realpath(ref.getPath()).startswith(Tools.Trashcan.getTrashFolder())
 
 def isSimpleFile(item):
+	if config.movielist.copyinprogress.value != 0:
+		return False
 	if not item:
 		return False
 	if not item[0] or not item[1]:
@@ -88,6 +202,8 @@ def isSimpleFile(item):
 canDelete = isSimpleFile
 
 def canMove(item):
+	if config.movielist.copyinprogress.value != 0:
+		return False
 	if not item:
 		return False
 	if not item[0] or not item[1]:
@@ -97,6 +213,8 @@ def canMove(item):
 	return True
 
 def canCopy(item):
+	if config.movielist.copyinprogress.value != 0:
+		return False
 	if not item:
 		return False
 	if not item[0] or not item[1]:
@@ -136,15 +254,14 @@ def moveServiceFiles(serviceref, dest):
 		for item in moveList:
 			os.rename(item[0], item[1])
 			movedList.append(item)
-	except Exception, e:
-		print "[MovieSelection] Failed move:", e
-		for item in movedList:
-			try:
-				os.rename(item[1], item[0])
-			except:
-				print "[MovieSelection] Failed to undo move:", item
-		# rethrow exception
-		raise
+	except:
+		for item in moveList:
+		    os.rename(item[0], item[0] + '.tmp')
+		    job = FileMoveJob(item[0] + '.tmp', item[1])
+		    job.Start()
+		    movedList.append(item)
+		# this worked, we're done
+		return
 
 def copyServiceFiles(serviceref, dest):
 	# current should be 'ref' type, dest a simple path string
@@ -153,23 +270,13 @@ def copyServiceFiles(serviceref, dest):
 	movedList = []
 	try:
 		for item in moveList:
-			os.link(item[0], item[1])
+			job = FileCopyJob(item[0], item[1])
+			job.Start()
 			movedList.append(item)
 		# this worked, we're done
 		return
 	except Exception, e:
-		print "[MovieSelection] Failed copy using link:", e
-		for item in movedList:
-			try:
-				os.unlink(item[1])
-			except:
-				print "[MovieSelection] Failed to undo copy:", item
-	#Link failed, really copy.
-	import CopyFiles
-	# start with the smaller files, do the big one later.
-	moveList.reverse()
-	CopyFiles.copyFiles(moveList, os.path.split(moveList[-1][0])[1])
-	print "[MovieSelection] Copying in background..."
+		print "[MovieSelection] Failed", e
 
 class Config(ConfigListScreen,Screen):
 	skin = """
@@ -388,8 +495,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self.movemode = False
 		self.bouquet_mark_edit = False
 
-		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.updateHDDData)
+		self.activityTimer = eTimer()
+		self.activityTimer.timeout.get().append(self.hidewaitingtext)
 
 		self["waitingtext"] = Label(_("Please wait... Loading list..."))
 
@@ -458,7 +565,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				"ok": (self.itemSelected, _("select movie")),
 			})
 
-		self.onShown.append(self.go)
+		self.onShown.append(self.updateHDDData)
 		self.onLayoutFinish.append(self.saveListsize)
 		self.list.connectSelChanged(self.updateButtons)
 		self.inited = False
@@ -581,13 +688,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if evt:
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
 
-	def go(self):
-		if not self.inited:
-		# ouch. this should redraw our "Please wait..."-text.
-		# this is of course not the right way to do this.
-			self.delayTimer.start(10, 1)
-			self.inited=True
-
 	def saveListsize(self):
 			listsize = self["list"].instance.size()
 			self.listWidth = listsize.width()
@@ -595,8 +695,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			self.updateDescription()
 
 	def updateHDDData(self):
- 		self.reloadList(self.selectedmovie, home=True)
-		self["waitingtext"].visible = False
+		if not self.inited:
+			self.reloadList(self.selectedmovie, home=True)
+			self.activityTimer.start(500)
+			self.inited=True
+
+	def hidewaitingtext(self):
+		self.activityTimer.stop()
+		self["waitingtext"].hide()
 
 	def moveTo(self):
 		self["list"].moveTo(self.selectedmovie)
@@ -1044,9 +1150,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		dest = os.path.normpath(choice)
 		try:
-			current = self.getCurrent()
+			item = self.getCurrentSelection() 
+			current = item[0]
 			moveServiceFiles(current, dest)
-			self["list"].removeService(current)
+			self.reloadList()
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
