@@ -4,18 +4,25 @@
 from Renderer import Renderer
 from enigma import ePixmap
 from Tools.Directories import pathExists, fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from os import listdir
 
 class Picon(Renderer):
-	searchPaths = ('/usr/share/enigma2/picon/',
-				'/picon/',
-				'/media/cf/picon/',
-				'/media/mmc1/picon/',
-				'/media/usb/picon/')
+	searchPaths = ['/usr/share/enigma2/picon/','/picon/']
+	if pathExists("/media"):
+		for f in listdir("/media"):
+			if pathExists('/media/' + f + '/picon'):
+				searchPaths.append('/media/' + f + '/picon/')
+	if pathExists("/media/net"):
+		for f in listdir("/media/net"):
+			if pathExists('/media/net/' + f + '/picon'):
+				searchPaths.append('/media/net/' + f + '/picon/')
+	if pathExists("/autofs"):
+		for f in listdir("/autofs"):
+			if pathExists('/autofs/' + f + '/picon'):
+				searchPaths.append('/autofs/' + f + '/picon/')
 
 	def __init__(self):
 		Renderer.__init__(self)
-		if pathExists('/media/hdd/picon'):
-			self.searchPaths = self.searchPaths + ('/media/hdd/picon/',)
 		self.pngname = ""
 		self.lastPath = None
 		pngname = self.findPicon("picon_default")
@@ -67,10 +74,18 @@ class Picon(Renderer):
 			pngname = self.lastPath + serviceName + ".png"
 			if fileExists(pngname):
 				return pngname
+			else:
+				pngname = self.lastPath + serviceName + "_0.png"
+				if fileExists(pngname):
+					return pngname
 		for path in self.searchPaths:
 			if pathExists(path):
 				pngname = path + serviceName + ".png"
 				if fileExists(pngname):
 					self.lastPath = path
 					return pngname
+				else:
+					pngname = path + serviceName + "_0.png"
+					if fileExists(pngname):
+						return pngname
 		return ""
