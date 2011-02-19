@@ -457,8 +457,6 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	eDebug("allocate demux");
 	eSmartPtrList<eDVBRegisteredDemux>::iterator i(m_demux.begin());
 
-	int n=0;
-
 	if (i == m_demux.end())
 		return -1;
 
@@ -467,6 +465,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	if (m_boxtype == DM7025) // ATI
 	{
 		/* FIXME: hardware demux policy */
+		int n=0;
 		if (!(cap & iDVBChannel::capDecode))
 		{
 			if (m_demux.size() > 2)  /* assumed to be true, otherwise we have lost anyway */
@@ -491,42 +490,21 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
-	else if (m_demux.size() >= 5 && (m_boxtype == DM8000 || m_boxtype == DM500HD || m_boxtype == DM800SE || m_boxtype == DM7020HD))
-	{
-		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-		for (; i != m_demux.end(); ++i, ++n)
-		{
-			if (fe)
-			{
-				if (i->m_adapter == fe->m_adapter)
-				{
-					if (!i->m_inuse)
-					{
-						if (!unused)
-							unused = i;
-					}
-					else if (i->m_demux->getSource() == fe->m_frontend->getDVBID())
-					{
-						demux = new eDVBAllocatedDemux(i);
-						return 0;
-					}
-				}
-			}
-			else if (n == 4) // always use demux4 for PVR (demux 4 can not descramble...)
-			{
-				if (i->m_inuse) {
-					demux = new eDVBAllocatedDemux(i);
-					return 0;
-				}
-				unused = i;
-			}
-		}
-	}
 	else
 	{
-		/* default policy, pick the first free demux */
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-		for (; i != m_demux.end(); ++i, ++n)
+		if (!fe)
+		{
+			/*
+			 * For pvr playback, start with the last demux.
+			 * On some hardware, we have less ca devices than demuxes,
+			 * so we should try to leave the first demuxes for live tv,
+			 * and start with the last for pvr playback
+			 */
+			i = m_demux.end();
+			--i;
+		}
+		while (i != m_demux.end())
 		{
 			if (!i->m_inuse)
 			{
@@ -547,14 +525,27 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 						return 0;
 					}
 				}
-				else if (i->m_demux->getSource() == -1) // PVR
+				else if (i->m_demux->getSource() == -1) /* memory source */
 				{
-					if (!fe || i->m_adapter == fe->m_adapter)
+					/*
+					 * TODO: even though this demux is using a memory source, we cannot share it.
+					 * We should probably always pick a free demux, to start a new pvr playback.
+					 * Each demux is fed by its own dvr device, so each has a different memory source
+					 */
+					if (i->m_adapter == fe->m_adapter)
 					{
 						demux = new eDVBAllocatedDemux(i);
 						return 0;
 					}
 				}
+			}
+			if (fe)
+			{
+				++i;
+			}
+			else
+			{
+				--i;
 			}
 		}
 	}
