@@ -582,7 +582,8 @@ class HarddiskManager:
 		if not blacklisted and not is_cdrom and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint = self.getAutofsMountpoint(device), description = description, force_mounted = True, device = device)
-			self.partitions.append(p)
+			if pathExists(self.getAutofsMountpoint(device)):
+				self.partitions.append(p)
 			self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
