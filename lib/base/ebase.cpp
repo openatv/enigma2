@@ -107,7 +107,7 @@ void eTimer::changeInterval(long msek)
 
 void eTimer::activate()   // Internal Funktion... called from eApplication
 {
-	context.removeTimer(this);
+	/* timer has already been removed from the context, when activate is called */
 
 	if (!bSingleShot)
 	{
@@ -182,20 +182,33 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 
 	long poll_timeout = -1; /* infinite in case of empty timer list */
 
-	if (!m_timer_list.empty())
 	{
-		/* process all timers which are ready. first remove them out of the list. */
-		while (!m_timer_list.empty() && (poll_timeout = timeout_usec( m_timer_list.begin()->getNextActivation() ) ) <= 0 )
+		ePtrList<eTimer>::iterator it = m_timer_list.begin();
+		if (it != m_timer_list.end())
 		{
-			eTimer *tmr = m_timer_list.begin();
-			tmr->AddRef();
-			tmr->activate();
-			tmr->Release();
+			eTimer *tmr = *it;
+			/* process all timers which are ready. first remove them out of the list. */
+			while ((poll_timeout = timeout_usec( tmr->getNextActivation() ) ) <= 0 )
+			{
+				m_timer_list.erase(it);
+				tmr->AddRef();
+				tmr->activate();
+				tmr->Release();
+				it = m_timer_list.begin();
+				if (it != m_timer_list.end())
+				{
+					tmr = *it;
+				}
+				else
+				{
+					break;
+				}
+			}
+			if (poll_timeout < 0)
+				poll_timeout = 0;
+			else /* convert us to ms */
+				poll_timeout /= 1000;
 		}
-		if (poll_timeout < 0)
-			poll_timeout = 0;
-		else /* convert us to ms */
-			poll_timeout /= 1000;
 	}
 
 	if ((twisted_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > twisted_timeout))
@@ -311,7 +324,8 @@ void eMainloop::addTimer(eTimer* e)
 
 void eMainloop::removeTimer(eTimer* e)
 {
-	m_timer_list.remove(e);
+	/* use singleremove, timers never occur in our list multiple times, and remove() is a lot more expensive */
+	m_timer_list.singleremove(e);
 }
 
 int eMainloop::iterate(unsigned int twisted_timeout, PyObject **res, ePyObject dict)
