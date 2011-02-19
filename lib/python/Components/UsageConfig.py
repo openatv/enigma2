@@ -13,6 +13,7 @@ def InitUsageConfig():
 	config.usage = ConfigSubsection();
 	config.usage.showdish = ConfigYesNo(default = True)
 	config.usage.multibouquet = ConfigYesNo(default = True)
+	config.usage.panicbutton = ConfigYesNo(default = True)
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
 	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = [
@@ -83,7 +84,9 @@ def InitUsageConfig():
 	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = nims)
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 
+	config.usage.show_servicelist = ConfigYesNo(default = True)
 	config.usage.show_event_progress_in_servicelist = ConfigYesNo(default = True)
+	config.usage.show_event_number_in_servicelist = ConfigYesNo(default = True)
 
 	config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
 
