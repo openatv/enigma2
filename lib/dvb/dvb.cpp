@@ -464,42 +464,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
-	if (m_boxtype == DM800) // dm800
-	{
-		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
-		for (; i != m_demux.end(); ++i, ++n)
-		{
-			if (!i->m_inuse)
-			{
-				if (!fe || i->m_adapter == fe->m_adapter)
-				{
-					if (!unused)
-						unused = i;
-				}
-			}
-			else
-			{
-				if (fe)
-				{
-					if (i->m_adapter == fe->m_adapter && 
-					    i->m_demux->getSource() == fe->m_frontend->getDVBID())
-					{
-						demux = new eDVBAllocatedDemux(i);
-						return 0;
-					}
-				}
-				else if (i->m_demux->getSource() == -1) // PVR
-				{
-					if (!fe || i->m_adapter == fe->m_adapter)
-					{
-						demux = new eDVBAllocatedDemux(i);
-						return 0;
-					}
-				}
-			}
-		}
-	}
-	else if (m_boxtype == DM7025) // ATI
+	if (m_boxtype == DM7025) // ATI
 	{
 		/* FIXME: hardware demux policy */
 		if (!(cap & iDVBChannel::capDecode))
@@ -526,7 +491,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
-	else if (m_boxtype == DM8000 || m_boxtype == DM500HD || m_boxtype == DM800SE || m_boxtype == DM7020HD)
+	else if (m_demux.size() >= 5 && (m_boxtype == DM8000 || m_boxtype == DM500HD || m_boxtype == DM800SE || m_boxtype == DM7020HD))
 	{
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
 		for (; i != m_demux.end(); ++i, ++n)
@@ -554,6 +519,42 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 					return 0;
 				}
 				unused = i;
+			}
+		}
+	}
+	else
+	{
+		/* default policy, pick the first free demux */
+		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
+		for (; i != m_demux.end(); ++i, ++n)
+		{
+			if (!i->m_inuse)
+			{
+				if (!fe || i->m_adapter == fe->m_adapter)
+				{
+					if (!unused)
+						unused = i;
+				}
+			}
+			else
+			{
+				if (fe)
+				{
+					if (i->m_adapter == fe->m_adapter &&
+					    i->m_demux->getSource() == fe->m_frontend->getDVBID())
+					{
+						demux = new eDVBAllocatedDemux(i);
+						return 0;
+					}
+				}
+				else if (i->m_demux->getSource() == -1) // PVR
+				{
+					if (!fe || i->m_adapter == fe->m_adapter)
+					{
+						demux = new eDVBAllocatedDemux(i);
+						return 0;
+					}
+				}
 			}
 		}
 	}
