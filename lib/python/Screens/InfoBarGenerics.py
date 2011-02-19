@@ -232,7 +232,12 @@ class InfoBarNumberZap:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
 			else:
-				self.servicelist.recallPrevService()
+				if config.usage.panicbutton.value:
+					self.servicelist.history = [ ]
+					self.servicelist.history_pos = 0
+					self.zapToNumber(1)
+				else:
+					self.servicelist.recallPrevService()
 		else:
 			if self.has_key("TimeshiftActions") and not self.timeshift_enabled:
 				self.session.openWithCallback(self.numberEntered, NumberZap, number)
@@ -307,11 +312,15 @@ class InfoBarChannelSelection:
 		self.servicelist.setModeTv()
 		if zap:
 			self.servicelist.zap()
+		if config.usage.show_servicelist.value:
+			self.session.execDialog(self.servicelist)
 
 	def showRadioChannelList(self, zap=False):
 		self.servicelist.setModeRadio()
 		if zap:
 			self.servicelist.zap()
+		if config.usage.show_servicelist.value:
+			self.session.execDialog(self.servicelist)
 
 	def firstRun(self):
 		self.onShown.remove(self.firstRun)

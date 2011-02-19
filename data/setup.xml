@@ -21,6 +21,7 @@
 		<setup key="usage" title="Customize">
 			<item level="0" text="Setup Mode">config.usage.setup_level</item>
 			<item level="1" text="Zap mode" requires="ZapMode">config.misc.zapmode</item>
+			<item level="2" text="Enable panic button">config.usage.panicbutton</item>
 			<item level="0" text="Show blinking clock in display during recording">config.usage.blinking_display_clock_during_recording</item>
 			<item level="0" text="Show animation while busy">config.usage.show_spinner</item>
 			<item level="1" text="Enable teletext caching">config.usage.enable_tt_caching</item>
@@ -32,7 +33,9 @@
 			<item level="1" text="Action on short powerbutton press">config.usage.on_short_powerpress</item>
 			<item level="0" text="Infobar timeout">config.usage.infobar_timeout</item>
 			<item level="1" text="12V output" requires="12V_Output">config.usage.output_12V</item>
+			<item level="0" text="Show channel selection in mode change">config.usage.show_servicelist</item>
 			<item level="0" text="Show event-progress in channel selection">config.usage.show_event_progress_in_servicelist</item>
+			<item level="0" text="Show event-number in channel selection">config.usage.show_event_number_in_servicelist</item>
 			<item level="2" text="Show infobar on channel change">config.usage.show_infobar_on_zap</item>
 			<item level="2" text="Show infobar on skip forward/backward">config.usage.show_infobar_on_skip</item>
 			<item level="2" text="Show infobar on event change">config.usage.show_infobar_on_event_change</item>
