@@ -28,6 +28,7 @@ from Screens.RdsDisplay import RdsInfoDisplay, RassInteractive
 from Screens.TimeDateInput import TimeDateInput
 from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference
+from skin import parseColor
 
 from Tools import Notifications
 from Tools.Directories import fileExists
@@ -43,6 +44,7 @@ from RecordTimer import RecordTimerEntry, RecordTimer
 
 # hack alert!
 from Menu import MainMenu, mdom
+SYSTEMS = ["irdeto", "seca", "nagra", "via", "conax", "betacrypt", "crypto", "dreamcrypt", "nds"]
 
 class InfoBarDish:
 	def __init__(self):
@@ -82,6 +84,30 @@ class InfoBarUnhandledKey:
 			self.unhandledKeyDialog.show()
 			self.hideUnhandledKeySymbolTimer.start(2000, True)
 
+############################################################
+# ECM Info
+############################################################
+
+class EcmInfoLabel(Label):
+	def __init__(self, text=""):
+		Label.__init__(self, text)
+		self.visible = config.usage.show_cryptoinfo.value
+
+	def notCrypted(self):
+		self.instance.setForegroundColor(parseColor("#595959")),
+		self.instance.setBackgroundColor(parseColor("#aeaeae"))
+		self.instance.setTransparent(1)
+
+	def crypted(self):
+		self.instance.setForegroundColor(parseColor("#aeaeae")),
+		self.instance.setBackgroundColor(parseColor("#868686"))
+		self.instance.setTransparent(0)
+
+	def encrypted(self):
+		self.instance.setForegroundColor(parseColor("#aeaeae")),
+		self.instance.setBackgroundColor(parseColor("#595959"))
+		self.instance.setTransparent(0)
+
 class InfoBarShowHide:
 	""" InfoBar show/hide control, accepts toggleShow and hide actions, might start
 	fancy animations. """
@@ -102,12 +128,30 @@ class InfoBarShowHide:
 				iPlayableService.evStart: self.serviceStarted,
 			})
 
+		self.systemCaids = {
+			"06" : "irdeto",
+			"01" : "seca",
+			"18" : "nagra",
+			"05" : "via",
+			"0B" : "conax",
+			"17" : "betacrypt",
+			"0D" : "crypto",
+			"4A" : "dreamcrypt",
+			"09" : "nds" }
+		
+		for x in SYSTEMS:
+			self[x] = EcmInfoLabel()
+		self["ecmInfo"] = Label()
+
 		self.__state = self.STATE_SHOWN
 		self.__locked = 0
 
 		self.hideTimer = eTimer()
 		self.hideTimer.callback.append(self.doTimerHide)
 		self.hideTimer.start(5000, True)
+
+		self.ecmTimer = eTimer()
+		self.ecmTimer.timeout.get().append(self.parseEcmInfo)
 
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
@@ -119,6 +163,7 @@ class InfoBarShowHide:
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
+		self.ecmTimer.start(1000, False)
 		self.startHideTimer()
 
 	def startHideTimer(self):
@@ -164,6 +209,107 @@ class InfoBarShowHide:
 #	def startHide(self):
 #		self.instance.m_animation.startMoveAnimation(ePoint(0, 380), ePoint(0, 600), 100)
 #		self.__state = self.STATE_HIDDEN
+
+	def int2hex(self, int):
+		return "%x" % int
+
+	def parseEcmInfoLine(self, line):
+		if line.__contains__(":"):
+			idx = line.index(":")
+			line = line[idx+1:]
+			line = line.replace("\n", "")
+			while line.startswith(" "):
+				line = line[1:]
+			while line.endswith(" "):
+				line = line[:-1]
+			return line
+		else:
+			return ""
+
+	def parseEcmInfo(self):
+		for x in SYSTEMS:
+			self[x].notCrypted()
+		self["ecmInfo"].setText("")
+
+		service = self.session.nav.getCurrentService()
+		if service:
+			info = service and service.info()
+			if info:
+				caids = info.getInfoObject(iServiceInformation.sCAIDs)
+				if caids:
+					if len(caids) > 0:
+						for caid in caids:
+							caid = self.int2hex(caid)
+							if len(caid) == 3:
+								caid = "0%s" % caid
+							caid = caid[:2]
+							caid = caid.upper()
+							
+							if self.systemCaids.has_key(caid):
+								system = self.systemCaids.get(caid)
+								self[system].crypted()
+
+		if self.shown:
+			ecmInfoString = ""
+			using = ""
+			address = ""
+			hops = ""
+			ecmTime = ""
+			provider = ""
+						
+			try:
+				f = open("/tmp/ecm.info", "r")
+				content = f.read()
+				f.close()
+			except:
+				content = ""
+			
+			contentInfo = content.split("\n")
+			for line in contentInfo:
+				if line.startswith("caid:"):
+					caid = self.parseEcmInfoLine(line)
+					if caid.__contains__("x"):
+						idx = caid.index("x")
+						caid = caid[idx+1:]
+						if len(caid) == 3:
+							caid = "0%s" % caid
+						caid = caid[:2]
+						caid = caid.upper()
+						if self.systemCaids.has_key(caid):
+							system = self.systemCaids.get(caid)
+							self[system].encrypted()
+				elif line.startswith("using:"):
+					using = self.parseEcmInfoLine(line)
+					if using == "fta":
+						using = _("Free to Air")
+				elif line.startswith("address:"):
+					address = self.parseEcmInfoLine(line)
+					if len(address) > config.plugins.CCcamInfo.serverNameLength.value:
+						address = "%s***" % address[:config.plugins.CCcamInfo.serverNameLength.value-3]
+				elif line.startswith("hops:"):
+					hops = "%s %s" % (_("\nHops:"), self.parseEcmInfoLine(line))
+				elif line.startswith("ecm time:"):
+					ecmTime = "%s %s" % (_("Ecm time:"), self.parseEcmInfoLine(line))
+				elif line.startswith("provider:"):
+					provider = "%s %s" % (_("\nProvider:"), self.parseEcmInfoLine(line))
+			
+			if using != "":
+				ecmInfoString = "%s " % using
+			if address != "":
+				ecmInfoString = "%s%s " % (ecmInfoString, address)
+			if hops != "":
+				ecmInfoString = "%s%s " % (ecmInfoString, hops)
+			if ecmTime != "":
+				if ecmTime != "Ecm time: nan" and ecmTime != "Ecm time: 0.000":
+					ecmInfoString = "%s%s " % (ecmInfoString, ecmTime)
+#			if provider != "":
+#				print 'ecm time: ' + provider
+#				if provider != "\nProvider: Unknown":
+#					ecmInfoString = "%s%s " % (ecmInfoString, provider)
+			
+			self["ecmInfo"].setText(ecmInfoString)
+			self["ecmInfo"].visible = config.usage.show_cryptoinfo.value
+
 
 class NumberZap(Screen):
 	def quit(self):
