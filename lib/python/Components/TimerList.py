@@ -18,8 +18,8 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		width = self.l.getItemSize().width()
 		res = [ None ]
 		x = (2*width) // 3
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 0, x-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 0, width-x, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, timer.service_ref.getServiceName()))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 2, x-24, 25, 1, RT_HALIGN_LEFT|RT_VALIGN_BOTTOM, timer.name))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, 6, width-x-2, 25, 0, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, timer.service_ref.getServiceName()))
 
 		days = ( _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun") )
 		begin = FuzzyTime(timer.begin)
@@ -32,14 +32,14 @@ class TimerList(HTMLComponent, GUIComponent, object):
 				flags = flags >> 1
 			repeatedtext = ", ".join(repeatedtext)
 			if self.iconRepeat:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 25, 20, 20, self.iconRepeat))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 25, 20, 20, self.iconRepeat))
 		else:
 			repeatedtext = begin[0] # date
 		if timer.justplay: 
 			text = repeatedtext + ((" %s "+ _("(ZAP)")) % (begin[1])) 
 		else:
 			text = repeatedtext + ((" %s ... %s (%d " + _("mins") + ")") % (begin[1], FuzzyTime(timer.end)[1], (timer.end - timer.begin) / 60))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 150, 25, width-150, 20, 1, RT_HALIGN_RIGHT|RT_VALIGN_TOP, text))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 148, 26, width-150, 25, 1, RT_HALIGN_RIGHT|RT_VALIGN_BOTTOM, text))
 		icon = None
 		if not processed:
 			if timer.state == TimerEntry.StateWaiting:
@@ -70,9 +70,9 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if timer.disabled:
 			state = _("disabled")
 
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, 24, 25, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, 26, 25, 126, 20, 1, RT_HALIGN_LEFT|RT_VALIGN_TOP, state))
 		if icon:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 0, 0, 20, 20, icon))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, 2, 2, 20, 20, icon))
 		return res
 
 	def __init__(self, list):
