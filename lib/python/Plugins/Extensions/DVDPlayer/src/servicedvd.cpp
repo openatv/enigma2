@@ -901,7 +901,7 @@ PyObject *eServiceDVD::getCutList()
 	ePyObject list = PyList_New(1);
 	ePyObject tuple = PyTuple_New(2);
 	PyTuple_SetItem(tuple, 0, PyLong_FromLongLong(m_cue_pts));
-	PyTuple_SetItem(tuple, 1, PyInt_FromLong(5));
+	PyTuple_SetItem(tuple, 1, PyInt_FromLong(3));
 	PyList_SetItem(list, 0, tuple);
 	return list;
 }
