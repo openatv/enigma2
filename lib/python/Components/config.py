@@ -203,7 +203,12 @@ class choicesList(object): # XXX: we might want a better name for this
 		return self.choices.keys()[index]
 
 	def index(self, value):
-		return self.__list__().index(value)
+		try:
+			return self.__list__().index(value)
+		except IndexError:
+			print "[config.py] Index Error"
+		except ValueError:
+			print "[config.py] Index Error"
 
 	def __setitem__(self, index, value):
 		if self.type == choicesList.LIST_TYPE_LIST:
@@ -325,13 +330,25 @@ class ConfigSelection(ConfigElement):
 		nchoices = len(self.choices)
 		i = self.choices.index(self.value)
 		if key == KEY_LEFT:
-			self.value = self.choices[(i + nchoices - 1) % nchoices]
+			try:
+				self.value = self.choices[(i + nchoices - 1) % nchoices]
+			except TypeError:
+				print "[config.py] Index Error"
 		elif key == KEY_RIGHT:
-			self.value = self.choices[(i + 1) % nchoices]
+			try:
+				self.value = self.choices[(i + 1) % nchoices]
+			except TypeError:
+				print "[config.py] Index Error"
 		elif key == KEY_HOME:
-			self.value = self.choices[0]
+			try:
+				self.value = self.choices[0]
+			except TypeError:
+				print "[config.py] Index Error"
 		elif key == KEY_END:
-			self.value = self.choices[nchoices - 1]
+			try:
+				self.value = self.choices[nchoices - 1]
+			except TypeError:
+				print "[config.py] Index Error"
 
 	def selectNext(self):
 		nchoices = len(self.choices)
