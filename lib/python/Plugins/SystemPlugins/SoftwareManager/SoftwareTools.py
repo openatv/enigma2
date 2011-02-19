@@ -9,7 +9,7 @@ from Components.Ipkg import IpkgComponent
 from Components.Network import iNetwork
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_METADIR
 from Tools.HardwareInfo import HardwareInfo
-import sha
+import hashlib
 from time import time
 
 def bin2long(s):
@@ -28,7 +28,7 @@ def decrypt_block(src, mod):
 	if len(src) != 128 and len(src) != 202:
 		return None
 	dest = rsa_pub1024(src[:128], mod)
-	hash = sha.new(dest[1:107])
+	hash = hashlib.new(dest[1:107])
 	if len(src) == 202:
 		hash.update(src[131:192])	
 	result = hash.digest()
