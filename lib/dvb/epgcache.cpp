@@ -4329,3 +4329,345 @@ abort:
 		finishEPG();
 }
 #endif
+
+typedef struct epgdb_title_s
+{
+	uint16_t	event_id;
+	uint16_t	mjd;
+	time_t		start_time;
+	uint16_t	length;
+	uint8_t		genre_id;
+	uint8_t		flags;
+	uint32_t	description_crc;
+	uint32_t	description_seek;
+	uint32_t	long_description_crc;
+	uint32_t	long_description_seek;
+	uint16_t	description_length;
+	uint16_t	long_description_length;
+	uint8_t		iso_639_1;
+	uint8_t		iso_639_2;
+	uint8_t		iso_639_3;
+	uint8_t		revision;
+} epgdb_title_t;
+
+typedef struct epgdb_channel_s
+{
+	uint16_t	nid;
+	uint16_t	tsid;
+	uint16_t	sid;
+} epgdb_channel_t;
+
+typedef struct epgdb_alasies_s
+{
+	uint16_t	nid[64];
+	uint16_t	tsid[64];
+	uint16_t	sid[64];
+} epgdb_aliases_t;
+
+#define IS_UTF8(x) (x & 0x01)
+
+void eEPGCache::crossepgImportEPGv21(std::string dbroot)
+{
+	static const int EIT_LENGTH = 4108;
+	FILE *headers = NULL;
+	FILE *descriptors = NULL;
+	FILE *aliases = NULL;
+	char tmp[256];
+	char headers_file[dbroot.length()+21];
+	char descriptors_file[dbroot.length()+25];
+	char aliases_file[dbroot.length()+21];
+	int channels_count, events_count = 0, aliases_groups_count;
+	unsigned char revision;
+
+	eDebug("[EPGC] start crossepg import");
+
+	sprintf(headers_file, "%s/crossepg.headers.db", dbroot.c_str());
+	headers = fopen(headers_file, "r");
+	if (!headers)
+	{
+		eDebug("[EPGC] cannot open crossepg headers db");
+		return;
+	}
+
+	sprintf(descriptors_file, "%s/crossepg.descriptors.db", dbroot.c_str());
+	descriptors = fopen (descriptors_file, "r");
+	if (!descriptors)
+	{
+		eDebug("[EPGC] cannot open crossepg descriptors db");
+		fclose(headers);
+		return;
+	}
+
+	sprintf(aliases_file, "%s/crossepg.aliases.db", dbroot.c_str());
+	aliases = fopen(aliases_file, "r");
+	if (!aliases)
+	{
+	eDebug("[EPGC] cannot open crossepg aliases db");
+		fclose(headers);
+		fclose(descriptors);
+		return;
+	}
+
+	/* read headers */
+	fread (tmp, 13, 1, headers);
+	if (memcmp (tmp, "_xEPG_HEADERS", 13) != 0)
+	{
+		eDebug("[EPGC] crossepg db invalid magic");
+		fclose(headers);
+		fclose(descriptors);
+		fclose(aliases);
+		return;
+	}
+
+	fread (&revision, sizeof (unsigned char), 1, headers);
+	if (revision != 0x07)
+	{
+		eDebug("[EPGC] crossepg db invalid revision");
+		fclose(headers);
+		fclose(descriptors);
+		fclose(aliases);
+		return;
+	}
+
+	/* read aliases */
+	fread (tmp, 13, 1, aliases);
+	if (memcmp (tmp, "_xEPG_ALIASES", 13) != 0)
+	{
+	eDebug("[EPGC] crossepg aliases db invalid magic");
+		fclose(headers);
+		fclose(descriptors);
+		fclose(aliases);
+		return;
+	}
+	fread (&revision, sizeof (unsigned char), 1, aliases);
+	if (revision != 0x07)
+	{
+		eDebug("[EPGC] crossepg aliases db invalid revision");
+		fclose(headers);
+		fclose(descriptors);
+	fclose(aliases);
+		return;
+	}
+
+	fread(&aliases_groups_count, sizeof (int), 1, aliases);
+	epgdb_aliases_t all_aliases[aliases_groups_count];
+	for (int i=0; i<aliases_groups_count; i++)
+	{
+		int j;
+		unsigned char aliases_count;
+		epgdb_channel_t channel;
+
+		fread(&channel, sizeof (epgdb_channel_t), 1, aliases);
+		all_aliases[i].nid[0] = channel.nid;
+		all_aliases[i].tsid[0] = channel.tsid;
+		all_aliases[i].sid[0] = channel.sid;
+
+		fread(&aliases_count, sizeof (unsigned char), 1, aliases);
+
+		for (j=0; j<aliases_count; j++)
+		{
+			epgdb_channel_t alias;
+			fread(&alias, sizeof (epgdb_channel_t), 1, aliases);
+
+			if (j < 63) // one lost from the channel
+			{
+				all_aliases[i].nid[j+1] = alias.nid;
+				all_aliases[i].tsid[j+1] = alias.tsid;
+				all_aliases[i].sid[j+1] = alias.sid;
+			}
+		}
+		for ( ;j<63; j++)
+		{
+			all_aliases[i].nid[j+1] = 0;
+			all_aliases[i].tsid[j+1] = 0;
+			all_aliases[i].sid[j+1] = 0;
+		}
+	}
+
+	eDebug("[EPGC] %d aliases groups in crossepg db", aliases_groups_count);
+
+	/* import data */
+	fseek(headers, sizeof(time_t)*2, SEEK_CUR);
+	fread (&channels_count, sizeof (int), 1, headers);
+
+	for (int i=0; i<channels_count; i++)
+	{
+		int titles_count;
+		epgdb_channel_t channel;
+
+		fread(&channel, sizeof(epgdb_channel_t), 1, headers);
+		fread(&titles_count, sizeof (int), 1, headers);
+		for (int j=0; j<titles_count; j++)
+		{
+			epgdb_title_t title;
+			__u8 data[EIT_LENGTH];
+
+			fread(&title, sizeof(epgdb_title_t), 1, headers);
+
+			eit_t *data_eit = (eit_t*)data;
+			data_eit->table_id = 0x50;
+			data_eit->section_syntax_indicator = 1;
+			data_eit->version_number = 0;
+			data_eit->current_next_indicator = 0;
+			data_eit->section_number = 0;
+			data_eit->last_section_number = 0;
+			data_eit->segment_last_section_number = 0;
+			data_eit->segment_last_table_id = 0x50;
+
+			eit_event_t *data_eit_event = (eit_event_t*)(data+EIT_SIZE);
+			data_eit_event->event_id_hi = title.event_id >> 8;
+			data_eit_event->event_id_lo = title.event_id & 0xff;
+
+			tm *time = gmtime(&title.start_time);
+			data_eit_event->start_time_1 = title.mjd >> 8;
+			data_eit_event->start_time_2 = title.mjd & 0xFF;
+			data_eit_event->start_time_3 = toBCD(time->tm_hour);
+			data_eit_event->start_time_4 = toBCD(time->tm_min);
+			data_eit_event->start_time_5 = toBCD(time->tm_sec);
+
+			data_eit_event->duration_1 = toBCD(title.length / 3600);
+			data_eit_event->duration_2 = toBCD((title.length % 3600) / 60);
+			data_eit_event->duration_3 = toBCD((title.length % 3600) % 60);
+
+			data_eit_event->running_status = 0;
+			data_eit_event->free_CA_mode = 0;
+
+			__u8 *data_tmp = (__u8*)data_eit_event;
+			data_tmp += EIT_LOOP_SIZE;
+
+			if (title.description_length > 245)
+				title.description_length = 245;
+
+			eit_short_event_descriptor_struct *data_eit_short_event = (eit_short_event_descriptor_struct*)data_tmp;
+
+			data_eit_short_event->descriptor_tag = SHORT_EVENT_DESCRIPTOR;
+			data_eit_short_event->descriptor_length = EIT_SHORT_EVENT_DESCRIPTOR_SIZE + title.description_length + 1 - 2;
+			data_eit_short_event->language_code_1 = title.iso_639_1;
+			data_eit_short_event->language_code_2 = title.iso_639_2;
+			data_eit_short_event->language_code_3 = title.iso_639_3;
+			data_eit_short_event->event_name_length = title.description_length;// ? title.description_length + 1 : 0;
+			data_tmp = (__u8*)data_eit_short_event;
+			data_tmp += EIT_SHORT_EVENT_DESCRIPTOR_SIZE;
+			if (IS_UTF8(title.flags))
+			{
+				data_eit_short_event->descriptor_length++;
+				data_eit_short_event->event_name_length++;
+				*data_tmp = 0x15;
+				data_tmp++;
+			}
+			fseek(descriptors, title.description_seek, SEEK_SET);
+			fread(data_tmp, title.description_length, 1, descriptors);
+			data_tmp += title.description_length;
+			*data_tmp = 0;
+			++data_tmp;
+
+			data_tmp[0] = 0x54;
+			data_tmp[1] = 2;
+			data_tmp[2] = title.genre_id;
+			data_tmp[3] = 0;
+			data_tmp += 4;
+
+			fread(data_tmp, title.description_length, 1, descriptors);
+
+			int current_loop_length = data_tmp - (__u8*)data_eit_short_event;
+			static const int overhead_per_descriptor = 9;
+			static const int MAX_LEN = 256 - overhead_per_descriptor;
+
+			if (title.long_description_length > 3952)	// 247 bytes for 16 blocks max
+				title.long_description_length = 3952;
+
+			char *ldescription = new char[title.long_description_length];
+			fseek(descriptors, title.long_description_seek, SEEK_SET);
+			fread(ldescription, title.long_description_length, 1, descriptors);
+
+			int last_descriptor_number = (title.long_description_length + MAX_LEN-1) / MAX_LEN - 1;
+			int remaining_text_length = title.long_description_length - last_descriptor_number * MAX_LEN;
+
+			while ((last_descriptor_number+1) * 256 + current_loop_length > EIT_LENGTH - EIT_LOOP_SIZE)
+			{
+				last_descriptor_number--;
+				remaining_text_length = MAX_LEN;
+			}
+
+			for (int descr_index = 0; descr_index <= last_descriptor_number; ++descr_index)
+			{
+				eit_extended_descriptor_struct *data_eit_short_event = (eit_extended_descriptor_struct*)data_tmp;
+				data_eit_short_event->descriptor_tag = EIT_EXTENDED_EVENT_DESCRIPOR;
+				int current_text_length = descr_index < last_descriptor_number ? MAX_LEN : remaining_text_length;
+				if (IS_UTF8(title.flags))
+					current_text_length++;
+				data_eit_short_event->descriptor_length = 6 + current_text_length;
+
+				data_eit_short_event->descriptor_number = descr_index;
+				data_eit_short_event->last_descriptor_number = last_descriptor_number;
+				data_eit_short_event->iso_639_2_language_code_1 = title.iso_639_1;
+				data_eit_short_event->iso_639_2_language_code_2 = title.iso_639_2;
+				data_eit_short_event->iso_639_2_language_code_3 = title.iso_639_3;
+
+				data_tmp[6] = 0;
+				data_tmp[7] = current_text_length;
+				if (IS_UTF8(title.flags))
+				{
+					data_tmp[8] = 0x15;
+					memcpy(data_tmp + 9, &ldescription[descr_index*MAX_LEN], current_text_length);
+				}
+				else
+					memcpy(data_tmp + 8, &ldescription[descr_index*MAX_LEN], current_text_length);
+
+				data_tmp += 2 + data_eit_short_event->descriptor_length;
+			}
+
+			delete ldescription;
+
+			int descriptors_length = data_tmp - ((__u8*)data_eit_event + EIT_LOOP_SIZE);
+			data_eit_event->descriptors_loop_length_hi = descriptors_length >> 8;
+			data_eit_event->descriptors_loop_length_lo = descriptors_length & 0xff;
+
+			int section_length = (data_tmp - data) - 3;
+			data_eit->section_length_hi = section_length >> 8;
+			data_eit->section_length_lo = section_length & 0xff;
+
+			data_eit->service_id_hi = channel.sid >> 8;
+			data_eit->service_id_lo = channel.sid & 0xff;
+			data_eit->transport_stream_id_hi = channel.tsid >> 8;
+			data_eit->transport_stream_id_lo = channel.tsid & 0xff;
+			data_eit->original_network_id_hi = channel.nid >> 8;
+			data_eit->original_network_id_lo = channel.nid & 0xff;
+
+			sectionRead(data, PRIVATE, NULL);
+
+			// insert aliases
+			for (int k=0; k<aliases_groups_count; k++)
+			{
+				if (all_aliases[k].sid[0] == channel.sid && all_aliases[k].tsid[0] == channel.tsid && all_aliases[k].nid[0] == channel.nid)
+				{
+					for (int z=1; z<64; z++)
+					{
+						if (all_aliases[k].sid[z] == 0 && all_aliases[k].tsid[z] == 0 && all_aliases[k].nid[z] == 0)
+							break;
+
+						data_eit->service_id_hi = all_aliases[k].sid[z] >> 8;
+						data_eit->service_id_lo = all_aliases[k].sid[z] & 0xff;
+						data_eit->transport_stream_id_hi = all_aliases[k].tsid[z] >> 8;
+						data_eit->transport_stream_id_lo = all_aliases[k].tsid[z] & 0xff;
+						data_eit->original_network_id_hi = all_aliases[k].nid[z] >> 8;
+						data_eit->original_network_id_lo = all_aliases[k].nid[z] & 0xff;
+
+						sectionRead(data, PRIVATE, NULL);
+					}
+
+					break;
+				}
+			}
+
+			events_count++;
+		}
+	}
+
+	fclose(headers);
+	fclose(descriptors);
+	fclose(aliases);
+
+	eDebug("[EPGC] imported %d events from crossepg db", events_count);
+	eDebug("[EPGC] %i bytes for cache used", eventData::CacheSize);
+}

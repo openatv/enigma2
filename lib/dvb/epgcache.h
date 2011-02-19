@@ -358,6 +358,7 @@ private:
 public:
 	static eEPGCache *getInstance() { return instance; }
 
+	void crossepgImportEPGv21(std::string dbroot);
 	void save();
 	void load();
 #ifndef SWIG
