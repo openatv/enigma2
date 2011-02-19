@@ -364,6 +364,8 @@ eServiceMP3::~eServiceMP3()
 
 DEFINE_REF(eServiceMP3);
 
+DEFINE_REF(eServiceMP3::GstMessageContainer);
+
 RESULT eServiceMP3::connectEvent(const Slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
@@ -1337,7 +1339,7 @@ void eServiceMP3::handleMessage(GstMessage *msg)
 		gst_message_unref(msg);
 		return;
 	}
-	m_pump.send(msg);
+	m_pump.send(new GstMessageContainer(msg));
 }
 
 GstBusSyncReply eServiceMP3::gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data)
@@ -1396,12 +1398,11 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 	return atUnknown;
 }
 
-void eServiceMP3::gstPoll(GstMessage * const &msg)
+void eServiceMP3::gstPoll(ePtr<GstMessageContainer> const &msg)
 {
 	if (msg)
 	{
-		gstBusCall(msg);
-		gst_message_unref(msg);
+		gstBusCall(*((GstMessageContainer*)msg));
 	}
 	else
 		pullSubtitle();
@@ -1414,7 +1415,7 @@ void eServiceMP3::gstCBsubtitleAvail(GstElement *appsink, gpointer user_data)
 	eServiceMP3 *_this = (eServiceMP3*)user_data;
 	eSingleLocker l(_this->m_subs_to_pull_lock);
 	++_this->m_subs_to_pull;
-	_this->m_pump.send(NULL);
+	_this->m_pump.send(new GstMessageContainer(NULL));
 }
 
 void eServiceMP3::pullSubtitle()
