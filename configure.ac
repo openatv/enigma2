@@ -75,6 +75,17 @@ if test x"$withcolorlcd" != xno ; then
 fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
 
+
+AC_ARG_WITH(oldpvr,
+	AC_HELP_STRING([--with-oldpvr], [use /dev/misc/pvr instead of /dev/dvb/adapterX/dvrX, yes or no]),
+	[[witholdpvr=$withval]],
+	[[witholdpvr=no]]
+)
+if test x"$witholdpvr" != xno ; then
+	AC_DEFINE(HAVE_OLDPVR, 1,[Define when using /dev/misc/pvr])
+fi
+AM_CONDITIONAL(HAVE_OLDPVR, test x"$witholdpvr" != xno)
+
 if test x"$BOXTYPE" == "xdm8000" ; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi

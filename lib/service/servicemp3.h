@@ -193,7 +193,24 @@ private:
 	int m_state;
 	GstElement *m_gst_playbin;
 	GstTagList *m_stream_tags;
-	eFixedMessagePump<GstMessage *> m_pump;
+
+	class GstMessageContainer: public iObject
+	{
+		DECLARE_REF(GstMessageContainer);
+		GstMessage *messagePointer;
+
+	public:
+		GstMessageContainer(GstMessage *msg)
+		{
+			messagePointer = msg;
+		}
+		~GstMessageContainer()
+		{
+			if (messagePointer) gst_message_unref(messagePointer);
+		}
+		operator GstMessage *() { return messagePointer; }
+	};
+	eFixedMessagePump<ePtr<GstMessageContainer> > m_pump;
 	std::string m_error_message;
 
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
@@ -202,7 +219,7 @@ private:
 	static GstBusSyncReply gstBusSyncHandler(GstBus *bus, GstMessage *message, gpointer user_data);
 	static void gstCBsubtitleAvail(GstElement *element, gpointer user_data);
 	GstPad* gstCreateSubtitleSink(eServiceMP3* _this, subtype_t type);
-	void gstPoll(GstMessage * const &);
+	void gstPoll(ePtr<GstMessageContainer> const &);
 	static void gstHTTPSourceSetAgent(GObject *source, GParamSpec *unused, gpointer user_data);
 
 	std::list<ePangoSubtitlePage> m_subtitle_pages;

@@ -93,13 +93,28 @@ eDVBDemux::~eDVBDemux()
 
 int eDVBDemux::openDemux(void)
 {
-	char filename[128];
+	char filename[32];
 #if HAVE_DVB_API_VERSION < 3
-	snprintf(filename, 128, "/dev/dvb/card%d/demux%d", adapter, demux);
+	snprintf(filename, sizeof(filename), "/dev/dvb/card%d/demux%d", adapter, demux);
 #else
-	snprintf(filename, 128, "/dev/dvb/adapter%d/demux%d", adapter, demux);
+	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux%d", adapter, demux);
 #endif
 	return ::open(filename, O_RDWR);
+}
+
+int eDVBDemux::openDVR(int flags)
+{
+#if HAVE_DVB_API_VERSION < 3
+	return ::open("/dev/pvr", flags);
+#else
+#ifdef HAVE_OLDPVR
+	return ::open("/dev/misc/pvr", flags);
+#else
+	char filename[32];
+	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/dvr%d", adapter, demux);
+	return ::open(filename, flags);
+#endif
+#endif
 }
 
 DEFINE_REF(eDVBDemux)

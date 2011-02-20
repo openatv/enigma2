@@ -36,6 +36,7 @@ public:
 
 // changed methods for autodelete and current implementation
 	inline void remove(T* t);
+	inline void singleremove(T* t);
 	inline void clear();
 	inline void pop_back();
 	inline void pop_front();
@@ -413,13 +414,31 @@ inline void ePtrList<T>::remove(T* t)
 		}
 		else
 			it++;
-	
+
 	while (it != std::list<T*>::end())
 		if (*it == t)
 			it = std::list<T*>::erase(it);  // remove all other items that equals to t (no delete is called..)
 		else
 			it++;
 			
+}
+
+/////////////////// ePtrList singleremove(T*) /////////////////////////
+template <class T>
+inline void ePtrList<T>::singleremove(T* t)
+{
+// 	Remove the first item equal to t, if auto-deletion is enabled, than the list call delete for the removed item
+//  If current is equal to the removed item, current is set to the next valid item
+	T_iterator it(std::list<T*>::begin());
+
+	while (it != std::list<T*>::end())
+		if (*it == t)
+		{
+			it=erase(it);
+			break;  // one item is complete removed an deleted
+		}
+		else
+			it++;
 }
 
 /////////////////// ePtrList clear() //////////////////
