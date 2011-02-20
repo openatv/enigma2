@@ -212,6 +212,8 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 							break;
 						case 0x71: // AC3 / DTS
 							break;
+						case 0x72: // DTS - HD
+							break;
 						default:
 							eDebug("skip unknwn stream_id_extension %02x\n", payload[9+offs]);
 							continue;

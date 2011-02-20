@@ -21,13 +21,14 @@
 #include <dvbsi++/registration_descriptor.h>
 
 eDVBServicePMTHandler::eDVBServicePMTHandler()
-	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF)
+	:m_ca_servicePtr(0), m_dvb_scan(0), m_decode_demux_num(0xFF), m_no_pat_entry_delay(eTimer::create())
 {
 	m_use_decode_demux = 0;
 	m_pmt_pid = -1;
 	eDVBResourceManager::getInstance(m_resourceManager);
 	CONNECT(m_PMT.tableReady, eDVBServicePMTHandler::PMTready);
 	CONNECT(m_PAT.tableReady, eDVBServicePMTHandler::PATready);
+	CONNECT(m_no_pat_entry_delay->timeout, eDVBServicePMTHandler::sendEventNoPatEntry);
 }
 
 eDVBServicePMTHandler::~eDVBServicePMTHandler()
@@ -44,8 +45,15 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 		&& (state == iDVBChannel::state_ok) && (!m_demux))
 	{
 		if (m_channel)
-			if (m_channel->getDemux(m_demux, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
+		{
+			if (m_pvr_demux_tmp)
+			{
+				m_demux = m_pvr_demux_tmp;
+				m_pvr_demux_tmp = NULL;
+			}
+			else if (m_channel->getDemux(m_demux, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
 				eDebug("Allocating %s-decoding a demux for now tuned-in channel failed.", m_use_decode_demux ? "" : "non-");
+		}
 		
 		serviceEvent(eventTuned);
 		
@@ -129,25 +137,55 @@ void eDVBServicePMTHandler::PMTready(int error)
 	}
 }
 
+void eDVBServicePMTHandler::sendEventNoPatEntry()
+{
+	serviceEvent(eventNoPATEntry);
+}
+
 void eDVBServicePMTHandler::PATready(int)
 {
+	eDebug("PATready");
 	ePtr<eTable<ProgramAssociationSection> > ptr;
 	if (!m_PAT.getCurrent(ptr))
 	{
+		int service_id_single = -1;
+		int pmtpid_single = -1;
 		int pmtpid = -1;
+		int cnt=0;
 		std::vector<ProgramAssociationSection*>::const_iterator i;
 		for (i = ptr->getSections().begin(); pmtpid == -1 && i != ptr->getSections().end(); ++i)
 		{
 			const ProgramAssociationSection &pat = **i;
 			ProgramAssociationConstIterator program;
 			for (program = pat.getPrograms()->begin(); pmtpid == -1 && program != pat.getPrograms()->end(); ++program)
+			{
+				++cnt;
 				if (eServiceID((*program)->getProgramNumber()) == m_reference.getServiceID())
 					pmtpid = (*program)->getProgramMapPid();
+				if (++cnt == 1 && pmtpid_single == -1 && pmtpid == -1)
+				{
+					pmtpid_single = (*program)->getProgramMapPid();
+					service_id_single = (*program)->getProgramNumber();
+				}
+				else
+					pmtpid_single = service_id_single = -1;
+			}
 		}
-		if (pmtpid == -1)
-			serviceEvent(eventNoPATEntry);
-		else
+		if (pmtpid_single != -1) // only one PAT entry .. and not valid pmtpid found
+		{
+			eDebug("use single pat entry!");
+			m_reference.setServiceID(eServiceID(service_id_single));
+			pmtpid = pmtpid_single;
+		}
+		if (pmtpid == -1) {
+			eDebug("no PAT entry found.. start delay");
+			m_no_pat_entry_delay->start(1000, true);
+		}
+		else {
+			eDebug("use pmtpid %04x for service_id %04x", pmtpid, m_reference.getServiceID().get());
+			m_no_pat_entry_delay->stop();
 			m_PMT.begin(eApp, eDVBPMTSpec(pmtpid, m_reference.getServiceID().get()), m_demux);
+		}
 	} else
 		serviceEvent(eventNoPAT);
 }
@@ -267,7 +305,28 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			for (i = ptr->getSections().begin(); i != ptr->getSections().end(); ++i)
 			{
 				const ProgramMapSection &pmt = **i;
+				int is_hdmv = 0;
+
 				program.pcrPid = pmt.getPcrPid();
+
+				for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
+					desc != pmt.getDescriptors()->end(); ++desc)
+				{
+					if ((*desc)->getTag() == CA_DESCRIPTOR)
+					{
+						CaDescriptor *descr = (CaDescriptor*)(*desc);
+						program::capid_pair pair;
+						pair.caid = descr->getCaSystemId();
+						pair.capid = descr->getCaPid();
+						program.caids.push_back(pair);
+					}
+					else if ((*desc)->getTag() == REGISTRATION_DESCRIPTOR)
+					{
+						RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
+						if (d->getFormatIdentifier() == 0x48444d56) // HDMV
+							is_hdmv = 1;
+					}
+				}
 
 				ElementaryStreamInfoConstIterator es;
 				for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
@@ -324,24 +383,33 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 							audio.type = audioStream::atAACHE;
 							forced_audio = 1;
 						}
-					case 0x80: // user private ... but blueray LPCM
-						if (!isvideo && !isaudio)
+					case 0x80: // user private ... but bluray LPCM
+					case 0xA0: // bluray secondary LPCM
+						if (!isvideo && !isaudio && is_hdmv)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atLPCM;
 						}
-					case 0x81: // user private ... but blueray AC3
-						if (!isvideo && !isaudio)
+					case 0x81: // user private ... but bluray AC3
+					case 0xA1: // bluray secondary AC3
+						if (!isvideo && !isaudio && is_hdmv)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atAC3;
 						}
-					case 0x82: // Blueray DTS (dvb user private...)
-					case 0xA2: // Blueray secondary DTS
-						if (!isvideo && !isaudio)
+					case 0x82: // bluray DTS (dvb user private...)
+					case 0xA2: // bluray secondary DTS
+						if (!isvideo && !isaudio && is_hdmv)
 						{
 							isaudio = 1;
 							audio.type = audioStream::atDTS;
+						}
+					case 0x86: // bluray DTS-HD (dvb user private...)
+					case 0xA6: // bluray secondary DTS-HD
+						if (!isvideo && !isaudio && is_hdmv)
+						{
+							isaudio = 1;
+							audio.type = audioStream::atDTSHD;
 						}
 					case 0x06: // PES Private
 					case 0xEA: // TS_PSI_ST_SMPTE_VC1
@@ -587,9 +655,9 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 					default:
 						break;
 					}
-					if (isteletext && (isaudio || isvideo)) 
+					if (isteletext && (isaudio || isvideo))
 					{
-						eDebug("ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());					
+						eDebug("ambiguous streamtype for PID %04x detected.. forced as teletext!", (*es)->getPid());
 						continue; // continue with next PID
 					}
 					else if (issubtitle && (isaudio || isvideo))
@@ -626,18 +694,6 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 					}
 					else
 						continue;
-				}
-				for (DescriptorConstIterator desc = pmt.getDescriptors()->begin();
-					desc != pmt.getDescriptors()->end(); ++desc)
-				{
-					if ((*desc)->getTag() == CA_DESCRIPTOR)
-					{
-						CaDescriptor *descr = (CaDescriptor*)(*desc);
-						program::capid_pair pair;
-						pair.caid = descr->getCaSystemId();
-						pair.capid = descr->getCaPid();
-						program.caids.push_back(pair);
-					}
 				}
 			}
 			ret = 0;
@@ -861,8 +917,8 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 {
 	RESULT res=0;
 	m_reference = ref;
-	
 	m_use_decode_demux = use_decode_demux;
+	m_no_pat_entry_delay->stop();
 
 		/* use given service as backup. This is used for timeshift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
@@ -953,7 +1009,10 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, int use_decode_dem
 		if (m_pvr_channel)
 		{
 			m_pvr_channel->setCueSheet(cue);
-			if (source)
+
+			if (m_pvr_channel->getDemux(m_pvr_demux_tmp, (!m_use_decode_demux) ? 0 : iDVBChannel::capDecode))
+				eDebug("Allocating %s-decoding a demux for PVR channel failed.", m_use_decode_demux ? "" : "non-");
+			else if (source)
 				m_pvr_channel->playSource(source, streaminfo_file);
 			else
 				m_pvr_channel->playFile(ref.path.c_str());
