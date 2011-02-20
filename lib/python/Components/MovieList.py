@@ -1,7 +1,7 @@
 from GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
 from Components.config import config
 import os
 import struct
@@ -10,6 +10,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_HDD, SCOPE_SKIN_IMAGE, resolveFilename
 from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
+import skin
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter, eTimer
@@ -41,12 +42,12 @@ class StubInfo:
 		return ''
 justStubInfo = StubInfo()
 
-def moviePlayState(cutsFileName):
-	'''Returns None, 0..4 for percentage'''
+def moviePlayState(cutsFileName, length=None):
+	'''Returns None, 0..100 for percentage'''
 	try:
+		f = open(cutsFileName, 'rb')
 		lastCut = None
 		cutPTS = None
-		f = open(cutsFileName, 'rb')
 		while 1:
 			data = f.read(cutsParser.size)
 			if len(data) < cutsParser.size:
@@ -61,14 +62,16 @@ def moviePlayState(cutsFileName):
 			# Was not played (or played till the end)
 			return None
 		if not lastCut:
-			# dunno, just say 50% then
-			return 2
+			if length:
+				lastCut = length * 90000
+			else:
+				# dunno
+				return 50
 		if cutPTS >= lastCut:
-			return 4
-		return (4 * cutPTS) // lastCut
+			return 100
+		return (100 * cutPTS) // lastCut
 	except:
-		import sys
-		print "Exception in moviePlayState: %s: %s" % sys.exc_info()[:2]
+		return None
 
 def resetMoviePlayState(cutsFileName):
 	try:
@@ -87,7 +90,7 @@ def resetMoviePlayState(cutsFileName):
 		f.close()
 	except:
 		import sys
-		print "Exception in moviePlayState: %s: %s" % sys.exc_info()[:2]
+		print "Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
 
         
 class MovieList(GUIComponent):
@@ -256,20 +259,19 @@ class MovieList(GUIComponent):
 			else:
 				data.len = 0 #dont recalc movielist to speedup loading the list
 			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
-			data.txt = info.getName(serviceref) 
-			if config.usage.show_icons_in_movielist.value:
-				if os.path.split(pathName)[1] in self.runningTimers:
-					data.icon = self.iconMovieNew
-				else:
-					data.icon = None
-					cutsPathName = pathName + '.cuts'
-					if os.path.exists(cutsPathName):
-						part = moviePlayState(cutsPathName)
-						if part is not None:
-							# There's a stop point in the movie, we're watching it
-							data.icon = self.iconPart[part]
+			data.txt = info.getName(serviceref)
+			data.icon = None
+			data.part = None
+			if os.path.split(pathName)[1] in self.runningTimers:
+				data.icon = self.iconMovieNew
 			else:
-				data.icon = None
+				switch = config.usage.show_icons_in_movielist.value 
+				data.part = moviePlayState(pathName + '.cuts', data.len)
+				if switch == 'i':
+					if data.part is not None:
+						data.icon = self.iconPart[part // 25]
+				elif switch == 'p':
+					data.partcol = 0xffff80
 			service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 			if service is None:
 				data.serviceName = None
@@ -282,13 +284,21 @@ class MovieList(GUIComponent):
 			len = "%d:%02d" % (len / 60, len % 60)
 		else:
 			len = ""
-		if config.usage.show_icons_in_movielist.value:
+
+		if data.icon is not None: 
 			iconSize = 22
 			if self.list_type in (MovieList.LISTTYPE_COMPACT_DESCRIPTION,MovieList.LISTTYPE_COMPACT):
 				pos = (0,0)
 			else:
-				pos = (0,1) 
+				pos = (0,1)
 			res.append(MultiContentEntryPixmapAlphaTest(pos=pos, size=(iconSize,20), png=data.icon))
+		switch = config.usage.show_icons_in_movielist.value
+		if switch == 'p':
+			iconSize = 48
+			if data.part is not None:
+				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize,16), percent=data.part, borderWidth=2, foreColor=data.partcol, backColor=data.partcol, backColorSelected=None))
+		elif switch == 'i':
+			iconSize = 22
 		else:
 			iconSize = 0		
 
