@@ -14,6 +14,7 @@ TYPE_VALUE_HEX = 1
 TYPE_VALUE_DEC = 2
 TYPE_VALUE_HEX_DEC = 3
 TYPE_SLIDER = 4
+TYPE_VALUE_ORBIT_DEC = 5
 
 def to_unsigned(x):
 	return x & 0xFFFFFFFF
@@ -27,6 +28,12 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 			b = str(b)
 		elif valueType == TYPE_VALUE_HEX_DEC:
 			b = ("0x%0" + str(param) + "x (%dd)") % (to_unsigned(b), b)
+		elif valueType == TYPE_VALUE_ORBIT_DEC:
+			direction = 'E'
+			if b > 1800:
+				b = 3600 - b
+				direction = 'W'
+			b = ("%d.%d%s") % (b // 10, b % 10, direction)
 		else:
 			b = str(b)
 
@@ -149,7 +156,7 @@ class ServiceInfo(Screen):
 						 "transmission_mode": _("Transmission Mode"),
 						 "guard_interval" 	: _("Guard Interval"),
 						 "hierarchy_information": _("Hierarchy Information") }
-				Labels = [(conv[i], tp_info[i], TYPE_VALUE_DEC) for i in tp_info.keys()]
+				Labels = [(conv[i], tp_info[i], i == "orbital_position" and TYPE_VALUE_ORBIT_DEC or TYPE_VALUE_DEC) for i in tp_info.keys()]
 				self.fillList(Labels)
 
 	def pids(self):
@@ -185,7 +192,7 @@ class ServiceInfo(Screen):
 				return ((_("NIM"), ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
 						(_("Type"), frontendData["system"], TYPE_TEXT),
 						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
-						(_("Orbital Position"), frontendData["orbital_position"], TYPE_VALUE_DEC),
+						(_("Orbital Position"), frontendData["orbital_position"], TYPE_VALUE_ORBIT_DEC),
 						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
 						(_("Symbolrate"), frontendData["symbol_rate"], TYPE_VALUE_DEC),
 						(_("Polarization"), frontendData["polarization"], TYPE_TEXT),
