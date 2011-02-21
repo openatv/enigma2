@@ -93,7 +93,11 @@ def InitUsageConfig():
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
-	config.usage.show_icons_in_movielist = ConfigYesNo(default = True)
+	config.usage.show_icons_in_movielist = ConfigSelection(default = 'p', choices = [
+		('o', _("Off")),
+		('p', _("Progress")),
+		('i', _("Icon")),
+	])
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
