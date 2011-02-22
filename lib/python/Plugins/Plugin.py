@@ -65,6 +65,7 @@ class PluginDescriptor:
 		self.name = name
 		self.internal = internal
 		self.needsRestart = needsRestart
+		self.path = None
 		if isinstance(where, list):
 			self.where = where
 		else:
