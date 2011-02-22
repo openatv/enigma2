@@ -271,7 +271,7 @@ class MovieList(GUIComponent):
 				data.part = moviePlayState(pathName + '.cuts', data.len)
 				if switch == 'i':
 					if data.part is not None:
-						data.icon = self.iconPart[part // 25]
+						data.icon = self.iconPart[data.part // 25]
 				elif switch == 'p':
 					data.partcol = 0xffff80
 			service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))

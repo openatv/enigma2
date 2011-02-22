@@ -1400,9 +1400,10 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 
 void eServiceMP3::gstPoll(ePtr<GstMessageContainer> const &msg)
 {
-	if (msg)
+	GstMessage *gstmessage = *((GstMessageContainer*)msg);
+	if (gstmessage)
 	{
-		gstBusCall(*((GstMessageContainer*)msg));
+		gstBusCall(gstmessage);
 	}
 	else
 		pullSubtitle();
