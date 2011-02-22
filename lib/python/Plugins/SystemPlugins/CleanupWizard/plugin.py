@@ -126,10 +126,10 @@ def selSetup(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	list = []
-	list.append(PluginDescriptor(name=_("CleanupWizard"), description=_("Cleanup Wizard settings"),where=PluginDescriptor.WHERE_MENU, fnc=selSetup))
+	list.append(PluginDescriptor(name=_("CleanupWizard"), description=_("Cleanup Wizard settings"),where=PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=selSetup))
 	if config.plugins.cleanupwizard.enable.value:
 		if not config.misc.firstrun.value:
 			if internalMemoryExceeded:
-				list.append(PluginDescriptor(name=_("Cleanup Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=(1, CleanupWizard)))
+				list.append(PluginDescriptor(name=_("Cleanup Wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(1, CleanupWizard)))
 	return list
 

@@ -183,6 +183,7 @@ void bsodFatal(const char *component)
 		xml.open("image");
 		xml.stringFromFile("dreamboxmodel", "/proc/stb/info/model");
 		xml.stringFromFile("kernelcmdline", "/proc/cmdline");
+		xml.stringFromFile("nimsockets", "/proc/bus/nim_sockets");
 		if (!getConfigBool("config.plugins.crashlogautosubmit.sendAnonCrashlog", true)) {
 			xml.cDataFromFile("dreamboxca", "/proc/stb/info/ca");
 			xml.cDataFromFile("enigma2settings", eEnv::resolve("${sysconfdir}/enigma2/settings"), ".password=");

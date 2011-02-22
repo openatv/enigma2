@@ -112,6 +112,7 @@ int ePositionGauge::event(int event, void *data, void *data2)
 //		painter.fill(eRect(0, 10, s.width(), s.height()-20));
 		
 		pts_t in = 0, out = 0;
+		int xm, xm_last = -1;
 		
 		std::multiset<cueEntry>::iterator i(m_cue_entries.begin());
 		
@@ -126,16 +127,21 @@ int ePositionGauge::event(int event, void *data, void *data2)
 					continue;
 				} else if (i->what == 1) /* out */
 					out = i++->where;
-				else if (i->what == 2) /* mark */
+				else /* mark or last */
 				{
-					int xm = scale(i->where);
-					painter.setForegroundColor(gRGB(0xFF8080));
-					painter.fill(eRect(xm - 2, 0, 4, s.height()));
+					xm = scale(i->where);
+					if (i->what == 2) {
+						painter.setForegroundColor(gRGB(0xFF8080));
+						if (xm - 2 < xm_last) /* Make sure last is not overdrawn */
+							painter.fill(eRect(xm_last, 0, 2 + xm - xm_last, s.height()));
+						else
+							painter.fill(eRect(xm - 2, 0, 4, s.height()));
+					} else if (i->what == 3) {
+						painter.setForegroundColor(gRGB(0x80FF80));
+						painter.fill(eRect(xm - 1, 0, 3, s.height()));
+						xm_last = xm + 2;
+					}
 					i++;
-					continue;
-				} else /* other marker, like last position */
-				{
-					++i;
 					continue;
 				}
 			}

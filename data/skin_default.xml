@@ -1307,15 +1307,15 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)/2, orgpos.y()))
 	</screen>
 	<!-- LCD screen (setup) -->
 	<screen name="SetupSummary" position="0,0" size="132,64" id="1">
-		<widget source="SetupTitle" render="Label" position="6,0" size="120,16" font="Display;12" />
-		<widget source="SetupEntry" render="Label" position="6,16" size="120,32" font="Display;12" />
-		<widget source="SetupValue" render="Label" position="6,48" size="120,16" font="Display;12" />
+		<widget source="SetupTitle" render="Label" position="6,0" size="120,24" halign="left" font="Display;12" />
+		<widget source="SetupEntry" render="Label" position="6,24" size="120,24" halign="center" font="Display;12" />
+		<widget source="SetupValue" render="Label" position="6,48" size="120,16" halign="right" font="Display;12" />
 	</screen>
 	<!-- Color OLED screen (setup) -->
 	<screen name="SetupSummary" position="0,0" size="96,64" id="2">
-		<widget source="SetupTitle" render="Label" position="0,0" size="96,16" font="Display;10" />
-		<widget source="SetupEntry" render="Label" position="0,16" size="96,32" font="Display;10" />
-		<widget source="SetupValue" render="Label" position="0,48" size="96,16" font="Display;10" />
+		<widget source="SetupTitle" render="Label" position="0,0" size="96,24" halign="left" font="Display;10" />
+		<widget source="SetupEntry" render="Label" position="0,24" size="96,24" halign="center" font="Display;10" />
+		<widget source="SetupValue" render="Label" position="0,48" size="96,16" halign="right" font="Display;10" />
 	</screen>
 	<!-- LCD screen (misc) -->
 	<screen name="SimpleSummary" position="0,0" size="132,64" id="1">

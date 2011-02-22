@@ -625,5 +625,5 @@ def filescan(**kwargs):
 
 def Plugins(**kwargs):
 	return \
-		[PluginDescriptor(name=_("PicturePlayer"), description=_("fileformats (BMP, PNG, JPG, GIF)"), icon="pictureplayer.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=main),
-		 PluginDescriptor(name=_("PicturePlayer"), where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan)]
+		[PluginDescriptor(name=_("PicturePlayer"), description=_("fileformats (BMP, PNG, JPG, GIF)"), icon="pictureplayer.png", where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=main),
+		 PluginDescriptor(name=_("PicturePlayer"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]

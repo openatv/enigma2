@@ -636,6 +636,7 @@ public:
 	virtual RESULT getSTC(pts_t &pts, int num=0)=0;
 	virtual RESULT getCADemuxID(uint8_t &id)=0;
 	virtual RESULT flush()=0;
+	virtual int openDVR(int flags)=0;
 };
 
 #if HAVE_DVB_API_VERSION < 3 && !defined(VIDEO_EVENT_SIZE_CHANGED)
@@ -650,7 +651,7 @@ public:
 		/** Set Displayed Video PID and type */
 	virtual RESULT setVideoPID(int vpid, int type)=0;
 
-	enum { af_MPEG, af_AC3, af_DTS, af_AAC };
+	enum { af_MPEG, af_AC3, af_DTS, af_AAC, af_DTSHD };
 		/** Set Displayed Audio PID and type */
 	virtual RESULT setAudioPID(int apid, int type)=0;
 
