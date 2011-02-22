@@ -905,7 +905,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 		/* we are sure to have a ..DVB reference as the info() call was forwarded here according to it's ID. */
 		if ((err = db->getService((eServiceReferenceDVB&)ref, service)) != 0)
 		{
-			eDebug("getService failed!");
+//			eDebug("getService failed!");
 			return err;
 		}
 	}
@@ -1801,6 +1801,8 @@ RESULT eDVBServicePlay::getTrackInfo(struct iAudioTrackInfo &info, unsigned int 
 		info.m_description = "AAC-HE";
 	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTS)
 		info.m_description = "DTS";
+	else  if (program.audioStreams[i].type == eDVBServicePMTHandler::audioStream::atDTSHD)
+		info.m_description = "DTS-HD";
 	else
 		info.m_description = "???";
 

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-01 13:01+0000\n"
-"PO-Revision-Date: 2010-11-07 22:38+0200\n"
+"POT-Creation-Date: 2011-01-27 12:42+0000\n"
+"PO-Revision-Date: 2011-01-28 21:11+0200\n"
 "Last-Translator: Audronis <audrgrin@takas.lt>\n"
 "Language-Team: Adga / enigma2 (c) <audrgrin@takas.lt>\n"
 "Language: lt\n"
@@ -18,13 +18,12 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-Country: LITHUANIA\n"
 
-#
 msgid ""
 "\n"
 "Advanced options and settings."
 msgstr ""
 "\n"
-"Išplėstiniai pasirinkimai ir nustatymai."
+"Išplėstinės funkcijos ir nustatymai."
 
 #
 msgid ""
@@ -187,10 +186,9 @@ msgstr "#ffffffff"
 msgid "%H:%M"
 msgstr "%H:%M"
 
-#
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr "%d darbas yra veikiantis fone!"
+msgstr "%d darbai, veikiantys fone!"
 
 #, python-format
 msgid "%d min"
@@ -275,7 +273,7 @@ msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
 
 msgid "16:10 PanScan"
-msgstr "16:10 PanScan"
+msgstr "16:10 Panoraminis Skanavimas"
 
 #
 msgid "16:9"
@@ -316,7 +314,7 @@ msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
 
 msgid "4:3 PanScan"
-msgstr "4:3 PanScan"
+msgstr "4:3 Panoraminis skanavimas"
 
 #
 msgid "5"
@@ -401,7 +399,6 @@ msgstr ""
 "Baigtas įrašymas pagal laikmatį nori nustatyti Jūsų\n"
 "imtuvą išjungimui. Padaryti tai dabar?"
 
-#
 msgid ""
 "A finished record timer wants to shut down\n"
 "your Dreambox. Shutdown now?"
@@ -619,23 +616,18 @@ msgstr "Pridėti žymeklį"
 msgid "Add a new NFS or CIFS mount point to your Dreambox."
 msgstr "Pridėti naują NFS arba CIFS pajungimo tašką jūsų Dreambox'ui."
 
-#
 msgid "Add a new title"
-msgstr "Pridėkite naują pavadinimą"
+msgstr "Pridėti naują pavadinimą"
 
-#
 msgid "Add network configuration?"
 msgstr "Pridėti tinklo konfigūraciją?"
 
-#
 msgid "Add new AutoTimer"
 msgstr "Pridėti naują Auto Laikmatį"
 
-#
 msgid "Add new network mount point"
 msgstr "Pridėti naują tinklo pajungimo tašką"
 
-#
 msgid "Add timer"
 msgstr "Laikmatis"
 
@@ -692,32 +684,26 @@ msgstr ""
 "bandomuosius ekranus."
 
 msgid "Adult streaming plugin"
-msgstr "Suaugusiųjų transliacijos priedas"
+msgstr "Transliacijos tik suaugusiems priedas"
 
 msgid "Adult streaming plugin."
-msgstr "Suaugusiųjų transliacijos priedas."
+msgstr "Transliacijos tik suaugusiems priedas."
 
-#
 msgid "Advanced Options"
-msgstr "Išplėstiniai nustatymai"
+msgstr "Išplėstinės funkcijos"
 
-#
 msgid "Advanced Software"
 msgstr "Išplėstinė programinė įranga"
 
-#
 msgid "Advanced Software Plugin"
 msgstr "Išplėstinė programinės įrangos papildoma programa"
 
-#
 msgid "Advanced Video Enhancement Setup"
-msgstr "Išplėstas vaizdo stiprinimo valdymas"
+msgstr "Išplėstinis vaizdo gerinimo valdymas"
 
-#
 msgid "Advanced Video Setup"
 msgstr "Išplėstiniai vaizdo nustatymai"
 
-#
 msgid "Advanced restore"
 msgstr "Išplėstinis atkūrimas"
 
@@ -725,12 +711,11 @@ msgid ""
 "After a reboot or power outage, StartupToStandby will bring your Dreambox to "
 "standby-mode."
 msgstr ""
-"Po perkrovimo ar elektros energijos nutraukimo, StartupToStandby nukels jūsų "
-"Dreambox į budėjimo režimą."
+"Po perkrovimo ar elektros energijos nutraukimo, StartupToStandby perkels "
+"jūsų Dreambox į budėjimo režimą."
 
-#
 msgid "After event"
-msgstr "Po įvykio"
+msgstr "Po užduoties"
 
 #
 msgid ""
@@ -1002,23 +987,18 @@ msgstr "Automatiškai atnaujinti EPG"
 msgid "Automatically send crashlogs to Dream Multimedia"
 msgstr "Automatiškai siųsti crashlogs į Dream Multimediją"
 
-#
 msgid "Autos & Vehicles"
-msgstr "Automobiliai ir Transporto priemonės"
+msgstr "Automobiliai ir transporto priemonės"
 
-#
 msgid "Autowrite timer"
 msgstr "Automatinis laikamačio perrašymas"
 
-#
 msgid "Available format variables"
-msgstr "Galimi formatai"
+msgstr "Galimi kintami formatai"
 
-#
 msgid "B"
 msgstr "B"
 
-#
 msgid "BA"
 msgstr "BA"
 
@@ -1028,11 +1008,9 @@ msgstr "BASIC-HD Tema nuo Ismail Demir"
 msgid "BASIC-HD Skin for Dreambox Images created from Ismail Demir"
 msgstr "BASIC-HD tema dėl Dreambox atvaizdų sukurta Ismail Demir"
 
-#
 msgid "BB"
 msgstr "BB"
 
-#
 msgid "BER"
 msgstr "BER"
 
@@ -4334,6 +4312,9 @@ msgstr "Liaudis ir Blogai"
 
 msgid "PermanentClock shows the clock permanently on the screen."
 msgstr "PermanentClock rodo laikrodį ilgam ant ekrano."
+
+msgid "Persian"
+msgstr "Persų"
 
 msgid "Pets & Animals"
 msgstr "Numylėtiniai ir Gyvūnai"

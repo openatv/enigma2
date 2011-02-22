@@ -98,6 +98,8 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = DM500HD;
 	else if (!strncmp(tmp, "dm800se\n", rd))
 		m_boxtype = DM800SE;
+	else if (!strncmp(tmp, "dm7020hd\n", rd))
+		m_boxtype = DM7020HD;
 	else {
 		eDebug("boxtype detection via /proc/stb/info not possible... use fallback via demux count!\n");
 		if (m_demux.size() == 3)
@@ -464,7 +466,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 
 	ePtr<eDVBRegisteredDemux> unused;
 
-	if (m_boxtype == DM800 || m_boxtype == DM500HD || m_boxtype == DM800SE) // dm800 / 500hd
+	if (m_boxtype == DM800) // dm800
 	{
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
 		for (; i != m_demux.end(); ++i, ++n)
@@ -520,7 +522,7 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 			}
 		}
 	}
-	else if (m_boxtype == DM8000)
+	else if (m_boxtype == DM8000 || m_boxtype == DM500HD || m_boxtype == DM800SE || m_boxtype == DM7020HD)
 	{
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
 		for (; i != m_demux.end(); ++i, ++n)
@@ -1790,14 +1792,28 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 		/* (this codepath needs to be improved anyway.) */
 #if HAVE_DVB_API_VERSION < 3
 		m_pvr_fd_dst = open("/dev/pvr", O_WRONLY);
-#else
-		m_pvr_fd_dst = open("/dev/misc/pvr", O_WRONLY);
-#endif
 		if (m_pvr_fd_dst < 0)
 		{
-			eDebug("can't open /dev/misc/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
+			eDebug("can't open /dev/pvr - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
 			return -ENODEV;
 		}
+#else
+		ePtr<eDVBAllocatedDemux> &demux = m_demux ? m_demux : m_decoder_demux;
+		if (demux)
+		{
+			m_pvr_fd_dst = demux->get().openDVR(O_WRONLY);
+			if (m_pvr_fd_dst < 0)
+			{
+				eDebug("can't open /dev/dvb/adapterX/dvrX - you need to buy the new(!) $$$ box! (%m)"); // or wait for the driver to be improved.
+				return -ENODEV;
+			}
+		}
+		else
+		{
+			eDebug("no demux allocated yet.. so its not possible to open the dvr device!!");
+			return -ENODEV;
+		}
+#endif
 	}
 
 	m_pvr_thread = new eDVBChannelFilePush();

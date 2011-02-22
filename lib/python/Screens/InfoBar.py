@@ -221,6 +221,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, \
 			self.session.nav.stopService()
 		elif answer == "restart":
 			self.doSeek(0)
+			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def doEofInternal(self, playing):
 		if not self.execing:

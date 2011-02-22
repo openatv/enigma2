@@ -203,6 +203,9 @@ int eDVBAudio::startPid(int pid, int type)
 	case aLPCM:
 		bypass = 6;
 		break;
+	case aDTSHD:
+		bypass = 0x10;
+		break;
 	}
 
 	eDebugNoNewLine("AUDIO_SET_BYPASS(%d) - ", bypass);
@@ -1299,9 +1302,10 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 		if (f >= 0)
 		{
 			struct stat s;
+			size_t written=0;
 			fstat(f, &s);
 			if (m_video_clip_fd == -1)
-				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY|O_NONBLOCK);
+				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY);
 			if (m_video_clip_fd >= 0)
 			{
 				bool seq_end_avail = false;

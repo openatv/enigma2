@@ -18,5 +18,5 @@ def NetworkWizard(*args, **kwargs):
 def Plugins(**kwargs):
 	list = []
 	if config.misc.firstrun.value:
-		list.append(PluginDescriptor(name=_("Network Wizard"), where = PluginDescriptor.WHERE_WIZARD, fnc=(25, NetworkWizard)))
+		list.append(PluginDescriptor(name=_("Network Wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(25, NetworkWizard)))
 	return list

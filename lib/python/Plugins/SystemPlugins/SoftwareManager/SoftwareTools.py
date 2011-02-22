@@ -264,13 +264,12 @@ class SoftwareTools(DreamInfoHandler):
 						callback(False)
 
 	def startIpkgListInstalled(self, callback = None):
-		print "STARTIPKGLISTINSTALLED"
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
-			cmd = "opkg list_installed"
+			cmd = "opkg list-installed"
 			self.UpdateConsole.ePopen(cmd, self.IpkgListInstalledCB, callback)
 
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
@@ -344,6 +343,7 @@ class SoftwareTools(DreamInfoHandler):
 						callback = None
 
 	def cleanupSoftwareTools(self):
+		self.list_updating = False
 		if self.NotifierCallback is not None:
 			self.NotifierCallback = None
 		self.ipkg.stop()
