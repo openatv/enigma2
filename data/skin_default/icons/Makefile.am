@@ -49,6 +49,7 @@ dist_install_DATA = \
 	part_3_4.png \
 	part_4_4.png \
 	part_new.png \
+	part_unwatched.png \
 	plilogo-fs8.png \
 	network_wired.png \
 	network_wired-active.png \
