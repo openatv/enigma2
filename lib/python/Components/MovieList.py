@@ -130,7 +130,7 @@ class MovieList(GUIComponent):
 		self.iconPart = []
 		for part in range(5):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_%d_4.png" % part)))
-		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
+		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
 		self.iconUnwatched = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_unwatched.png"))
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
@@ -264,15 +264,23 @@ class MovieList(GUIComponent):
 			data.icon = None
 			data.part = None
 			if os.path.split(pathName)[1] in self.runningTimers:
-				data.icon = self.iconMovieNew
+				data.icon = self.iconMovieRec
 			else:
 				switch = config.usage.show_icons_in_movielist.value 
 				data.part = moviePlayState(pathName + '.cuts', data.len)
 				if switch == 'i':
-					if data.part is not None:
+					if data.part is None:
+						if config.usage.movielist_unseen.value:
+							data.icon = self.iconUnwatched
+					else:
 						data.icon = self.iconPart[data.part // 25]
 				elif switch == 'p':
-					data.partcol = 0xffff80
+					if data.part is None:
+						if config.usage.movielist_unseen.value:
+							data.part = 0
+						data.partcol = 0x808080
+					else:
+						data.partcol = 0xf0f0f0
 			service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 			if service is None:
 				data.serviceName = None
@@ -297,7 +305,7 @@ class MovieList(GUIComponent):
 		if switch == 'p':
 			iconSize = 48
 			if data.part is not None:
-				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize,16), percent=data.part, borderWidth=2, foreColor=data.partcol, backColor=data.partcol, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, backColor=data.partcol, backColorSelected=None))
 		elif switch == 'i':
 			iconSize = 22
 		else:
