@@ -222,7 +222,6 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_stream_tags = 0;
 	m_currentAudioStream = -1;
 	m_currentSubtitleStream = 0;
-	m_audioStream_manually_changed = FALSE;
 	m_subtitle_widget = 0;
 	m_currentTrickRatio = 0;
 	m_subs_to_pull = 0;
@@ -1052,7 +1051,6 @@ RESULT eServiceMP3::selectTrack(unsigned int i)
 	if (ppos < 0)
 		ppos = 0;
 
-	m_audioStream_manually_changed = TRUE;
 	int ret = selectAudioStream(i);
 	if (!ret) {
 		/* flush */
@@ -1246,19 +1244,7 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 					if ( g_strrstr(sourceName, "videosink") )
 						m_event((iPlayableService*)this, evUser+11);
 					else if ( g_strrstr(sourceName, "audiosink") )
-					{
-					        if ( getNumberOfTracks() == 1 || m_audioStream_manually_changed == TRUE )
-						{
-							m_event((iPlayableService*)this, evUser+10);
-						}
-						else
-						{
-							int next_track = getCurrentTrack() + 1;
-							if ( next_track >= getNumberOfTracks() )
-								next_track = 0;
-							selectAudioStream(next_track);
-						}
-					}
+						m_event((iPlayableService*)this, evUser+10);
 				}
 			}
 			g_error_free(err);
@@ -1328,7 +1314,6 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 
 			m_audioStreams.clear();
 			m_subtitleStreams.clear();
-			m_audioStream_manually_changed = FALSE;
 
 			for (i = 0; i < n_audio; i++)
 			{
@@ -1395,7 +1380,6 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 			if ( gst_is_missing_plugin_message(msg) )
 			{
 				gchar *description = gst_missing_plugin_message_get_description(msg);
-				
 				if ( description )
 				{
 					m_error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
