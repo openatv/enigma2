@@ -177,7 +177,6 @@ private:
 	static int pcm_delay;
 	static int ac3_delay;
 	int m_currentAudioStream;
-	bool m_audioStream_manually_changed;
 	int m_currentSubtitleStream;
 	int selectAudioStream(int i);
 	std::vector<audioStream> m_audioStreams;
