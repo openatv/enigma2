@@ -263,17 +263,26 @@ class MovieList(GUIComponent):
 			data.txt = info.getName(serviceref)
 			data.icon = None
 			data.part = None
+			switch = config.usage.show_icons_in_movielist.value 
 			if os.path.split(pathName)[1] in self.runningTimers:
-				data.icon = self.iconMovieNew
-			else:
-				switch = config.usage.show_icons_in_movielist.value 
-				data.icon = self.iconUnwatched
-				data.part = moviePlayState(pathName + '.cuts', data.len)
 				if switch == 'i':
+					data.icon = self.iconMovieNew
+				elif switch == 'p':
+					data.part = 100
+					data.partcol = 0xff001d
+			else:
+				data.part = moviePlayState(pathName + '.cuts', data.len)
+				print 'data.part',data.part
+				if switch == 'i':
+					data.icon = self.iconUnwatched
 					if data.part is not None:
 						data.icon = self.iconPart[data.part // 25]
 				elif switch == 'p':
-					data.partcol = 0xffff80
+					if data.part is not None:
+						data.partcol = 0xffc71d
+					else:
+						data.part = 100
+						data.partcol = 0x206333
 			service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 			if service is None:
 				data.serviceName = None
