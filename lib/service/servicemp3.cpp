@@ -360,6 +360,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 			eDebug("eServiceMP3::subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
 			g_object_set (G_OBJECT (m_gst_playbin), "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
 		}
+		if ( m_sourceinfo.is_streaming )
+		{
+			g_signal_connect (G_OBJECT (m_gst_playbin), "notify::source", G_CALLBACK (gstHTTPSourceSetAgent), this);
+		}
 	} else
 	{
 		m_event((iPlayableService*)this, evUser+12);
