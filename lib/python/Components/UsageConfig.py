@@ -90,7 +90,7 @@ def InitUsageConfig():
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
-	config.usage.show_icons_in_movielist = ConfigSelection(default = 'p', choices = [
+	config.usage.show_icons_in_movielist = ConfigSelection(default = 'i', choices = [
 		('o', _("Off")),
 		('p', _("Progress")),
 		('s', _("Progress Small")),
