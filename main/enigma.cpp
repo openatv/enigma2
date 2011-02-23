@@ -251,8 +251,9 @@ int main(int argc, char **argv)
 
 	{
 		gPainter p(my_lcd_dc);
-		p.resetClip(eRect(0, 0, 132, 64));
+		p.resetClip(eRect(ePoint(0, 0), my_lcd_dc->size()));
 		p.clear();
+		p.flush();
 	}
 
 	return exit_code;
