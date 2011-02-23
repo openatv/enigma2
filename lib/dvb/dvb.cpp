@@ -492,6 +492,8 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 	}
 	else
 	{
+		int adapter = fe ? fe->m_adapter : 0; /* look for a demux on the same adapter as the frontend, or the first adapter for dvr playback */
+		int source = fe ? fe->m_frontend->getDVBID() : -1;
 		cap |= capHoldDecodeReference; // this is checked in eDVBChannel::getDemux
 		if (!fe)
 		{
@@ -506,34 +508,23 @@ RESULT eDVBResourceManager::allocateDemux(eDVBRegisteredFrontend *fe, ePtr<eDVBA
 		}
 		while (i != m_demux.end())
 		{
-			if (!i->m_inuse)
+			if (i->m_adapter == adapter)
 			{
-				if (!fe || i->m_adapter == fe->m_adapter)
+				if (!i->m_inuse)
 				{
-					if (!unused)
-						unused = i;
+					/* mark the first unused demux, we'll use that when we do not find a better match */
+					if (!unused) unused = i;
 				}
-			}
-			else
-			{
-				if (fe)
+				else
 				{
-					if (i->m_adapter == fe->m_adapter &&
-					    i->m_demux->getSource() == fe->m_frontend->getDVBID())
+					/* demux is in use, see if we can share it */
+					if (i->m_demux->getSource() == source)
 					{
-						demux = new eDVBAllocatedDemux(i);
-						return 0;
-					}
-				}
-				else if (i->m_demux->getSource() == -1) /* memory source */
-				{
-					/*
-					 * TODO: even though this demux is using a memory source, we cannot share it.
-					 * We should probably always pick a free demux, to start a new pvr playback.
-					 * Each demux is fed by its own dvr device, so each has a different memory source
-					 */
-					if (i->m_adapter == fe->m_adapter)
-					{
+						/*
+						 * TODO: when allocating a dvr demux, we cannot share a used demux.
+						 * We should probably always pick a free demux, to start a new pvr playback.
+						 * Each demux is fed by its own dvr device, so each has a different memory source
+						 */
 						demux = new eDVBAllocatedDemux(i);
 						return 0;
 					}
