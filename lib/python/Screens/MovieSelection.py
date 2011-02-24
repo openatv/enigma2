@@ -319,6 +319,7 @@ class Config(ConfigListScreen,Screen):
 			getConfigListEntry(_("Type"), cfg.listtype),
 			getConfigListEntry(_("Load Length of Movies in Movielist"), config.usage.load_length_of_movies_in_moviellist),
 			getConfigListEntry(_("Show status icons in Movielist"), config.usage.show_icons_in_movielist),
+			getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen),
 			getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal),
 			]
 		for k,v in userDefinedButtons.items():
