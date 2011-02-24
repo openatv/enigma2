@@ -26,11 +26,14 @@ class DiskInfo(VariableText, GUIComponent):
 			return -1
 		
 		if self.type == self.FREE:
-			free = (stat.f_bavail * stat.f_frsize) / 1024
-			total = (stat.f_blocks * stat.f_frsize) / 1024
-			percent = int((float(free) / float(total)) * 100)
-			percentfree = str(percent) + '%'
-#			self.setText(("%d MB " + _("free diskspace")) % (free))
-			self.setText(("%s " + _('(' + str(((free / 1024) / 1024)) + 'gb) free diskspace')) % (percentfree))
+			percent = '(' + str((100 * stat.f_bavail) // stat.f_blocks) + '%)'
+			free = stat.f_bfree * stat.f_bsize
+			if free < 10000000:
+				free = "%d kB" % (free >> 10)
+			elif free < 10000000000:
+				free = "%d MB" % (free >> 20)
+			else:
+				free = "%d GB" % (free >> 30)
+			self.setText(" ".join((free, percent, _("free diskspace"))))
 
 	GUI_WIDGET = eLabel
