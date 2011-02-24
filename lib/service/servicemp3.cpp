@@ -228,6 +228,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_buffer_size = 1*1024*1024;
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
+	m_errorInfo.missing_codec = "";
 
 	CONNECT(m_seekTimeout->timeout, eServiceMP3::seekTimeoutCB);
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
@@ -327,7 +328,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 
 	m_gst_playbin = gst_element_factory_make("playbin2", "playbin");
 	if (!m_gst_playbin)
-		m_error_message = "failed to create GStreamer pipeline!\n";
+		m_errorInfo.error_message = "failed to create GStreamer pipeline!\n";
 
 	g_object_set (G_OBJECT (m_gst_playbin), "uri", uri, NULL);
 
@@ -367,7 +368,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 		if (m_gst_playbin)
 			gst_object_unref(GST_OBJECT(m_gst_playbin));
 
-		eDebug("eServiceMP3::sorry, can't play: %s",m_error_message.c_str());
+		eDebug("eServiceMP3::sorry, can't play: %s",m_errorInfo.error_message.c_str());
 		m_gst_playbin = 0;
 	}
 
@@ -931,7 +932,7 @@ std::string eServiceMP3::getInfoString(int w)
 		tag = "channel-mode";
 		break;
 	case sUser+12:
-		return m_error_message;
+		return m_errorInfo.error_message;
 	default:
 		return "";
 	}
@@ -1161,18 +1162,18 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 		return;
 	gchar *sourceName;
 	GstObject *source;
-
 	source = GST_MESSAGE_SRC(msg);
+	if (!GST_IS_OBJECT(source))
+		return;
 	sourceName = gst_object_get_name(source);
 #if 0
+	gchar *string;
 	if (gst_message_get_structure(msg))
-	{
-		gchar *string = gst_structure_to_string(gst_message_get_structure(msg));
-		eDebug("eServiceMP3::gst_message from %s: %s", sourceName, string);
-		g_free(string);
-	}
+		string = gst_structure_to_string(gst_message_get_structure(msg));
 	else
-		eDebug("eServiceMP3::gst_message from %s: %s (without structure)", sourceName, GST_MESSAGE_TYPE_NAME(msg));
+		string = g_strdup(GST_MESSAGE_TYPE_NAME(msg));
+	eDebug("eTsRemoteSource::gst_message from %s: %s", sourceName, string);
+	g_free(string);
 #endif
 	switch (GST_MESSAGE_TYPE (msg))
 	{
@@ -1373,44 +1374,58 @@ void eServiceMP3::gstBusCall(GstBus *bus, GstMessage *msg)
 				g_free (g_lang);
 			}
 			m_event((iPlayableService*)this, evUpdatedEventInfo);
+
+			if ( m_errorInfo.missing_codec != "" )
+			{
+				if ( m_errorInfo.missing_codec.find("video/") == 0 || ( m_errorInfo.missing_codec.find("audio/") == 0 && getNumberOfTracks() == 0 ) )
+					m_event((iPlayableService*)this, evUser+12);
+			}
 			break;
 		}
 		case GST_MESSAGE_ELEMENT:
 		{
-			if ( gst_is_missing_plugin_message(msg) )
+			if (const GstStructure *msgstruct = gst_message_get_structure(msg))
 			{
-				gchar *description = gst_missing_plugin_message_get_description(msg);
-				if ( description )
+				if ( gst_is_missing_plugin_message(msg) )
 				{
-					m_error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
-					g_free(description);
-					m_event((iPlayableService*)this, evUser+12);
+					GstCaps *caps;
+					gst_structure_get (msgstruct, "detail", GST_TYPE_CAPS, &caps, NULL); 
+					std::string codec = (const char*) gst_caps_to_string(caps);
+					gchar *description = gst_missing_plugin_message_get_description(msg);
+					if ( description )
+					{
+						eDebug("eServiceMP3::m_errorInfo.missing_codec = %s", codec.c_str());
+						m_errorInfo.error_message = "GStreamer plugin " + (std::string)description + " not available!\n";
+						m_errorInfo.missing_codec = codec.substr(0,(codec.find_first_of(',')));
+						g_free(description);
+					}
+					gst_caps_unref(caps);
 				}
-			}
-			else if (const GstStructure *msgstruct = gst_message_get_structure(msg))
-			{
-				const gchar *eventname = gst_structure_get_name(msgstruct);
-				if ( eventname )
+				else
 				{
-					if (!strcmp(eventname, "eventSizeChanged") || !strcmp(eventname, "eventSizeAvail"))
+					const gchar *eventname = gst_structure_get_name(msgstruct);
+					if ( eventname )
 					{
-						gst_structure_get_int (msgstruct, "aspect_ratio", &m_aspect);
-						gst_structure_get_int (msgstruct, "width", &m_width);
-						gst_structure_get_int (msgstruct, "height", &m_height);
-						if (strstr(eventname, "Changed"))
-							m_event((iPlayableService*)this, evVideoSizeChanged);
-					}
-					else if (!strcmp(eventname, "eventFrameRateChanged") || !strcmp(eventname, "eventFrameRateAvail"))
-					{
-						gst_structure_get_int (msgstruct, "frame_rate", &m_framerate);
-						if (strstr(eventname, "Changed"))
-							m_event((iPlayableService*)this, evVideoFramerateChanged);
-					}
-					else if (!strcmp(eventname, "eventProgressiveChanged") || !strcmp(eventname, "eventProgressiveAvail"))
-					{
-						gst_structure_get_int (msgstruct, "progressive", &m_progressive);
-						if (strstr(eventname, "Changed"))
-							m_event((iPlayableService*)this, evVideoProgressiveChanged);
+						if (!strcmp(eventname, "eventSizeChanged") || !strcmp(eventname, "eventSizeAvail"))
+						{
+							gst_structure_get_int (msgstruct, "aspect_ratio", &m_aspect);
+							gst_structure_get_int (msgstruct, "width", &m_width);
+							gst_structure_get_int (msgstruct, "height", &m_height);
+							if (strstr(eventname, "Changed"))
+								m_event((iPlayableService*)this, evVideoSizeChanged);
+						}
+						else if (!strcmp(eventname, "eventFrameRateChanged") || !strcmp(eventname, "eventFrameRateAvail"))
+						{
+							gst_structure_get_int (msgstruct, "frame_rate", &m_framerate);
+							if (strstr(eventname, "Changed"))
+								m_event((iPlayableService*)this, evVideoFramerateChanged);
+						}
+						else if (!strcmp(eventname, "eventProgressiveChanged") || !strcmp(eventname, "eventProgressiveAvail"))
+						{
+							gst_structure_get_int (msgstruct, "progressive", &m_progressive);
+							if (strstr(eventname, "Changed"))
+								m_event((iPlayableService*)this, evVideoProgressiveChanged);
+						}
 					}
 				}
 			}
