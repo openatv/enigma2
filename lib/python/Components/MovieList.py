@@ -130,7 +130,7 @@ class MovieList(GUIComponent):
 		self.iconPart = []
 		for part in range(5):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_%d_4.png" % part)))
-		self.iconMovieNew = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
+		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_new.png"))
 		self.iconUnwatched = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/part_unwatched.png"))
 		self.iconFolder = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/folder.png"))
 		self.iconTrash = LoadPixmap(resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/icons/trashcan.png"))
@@ -266,23 +266,26 @@ class MovieList(GUIComponent):
 			switch = config.usage.show_icons_in_movielist.value 
 			if os.path.split(pathName)[1] in self.runningTimers:
 				if switch == 'i':
-					data.icon = self.iconMovieNew
+					data.icon = self.iconMovieRec
 				elif switch == 'p':
-					data.part = 100
+					data.part = 0
 					data.partcol = 0xff001d
 			else:
 				data.part = moviePlayState(pathName + '.cuts', data.len)
 				print 'data.part',data.part
 				if switch == 'i':
-					data.icon = self.iconUnwatched
 					if data.part is not None:
 						data.icon = self.iconPart[data.part // 25]
+					else:
+						if config.usage.movielist_unseen.value:
+							data.icon = self.iconUnwatched
 				elif switch == 'p':
 					if data.part is not None:
 						data.partcol = 0xffc71d
 					else:
-						data.part = 100
-						data.partcol = 0x206333
+						if config.usage.movielist_unseen.value:
+							data.part = 0
+							data.partcol = 0x206333
 			service = ServiceReference(info.getInfoString(serviceref, iServiceInformation.sServiceref))
 			if service is None:
 				data.serviceName = None
@@ -307,7 +310,7 @@ class MovieList(GUIComponent):
 		if switch == 'p':
 			iconSize = 48
 			if data.part is not None:
-				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize,16), percent=data.part, borderWidth=2, foreColor=data.partcol, backColor=data.partcol, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, backColor=data.partcol, backColorSelected=None))
 		elif switch == 'i':
 			iconSize = 22
 		else:

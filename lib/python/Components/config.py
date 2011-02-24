@@ -327,28 +327,17 @@ class ConfigSelection(ConfigElement):
 
 	# GUI
 	def handleKey(self, key):
-		nchoices = len(self.choices)
-		i = self.choices.index(self.value)
-		if key == KEY_LEFT:
-			try:
+		if self.value:
+			nchoices = len(self.choices)
+			i = self.choices.index(self.value)
+			if key == KEY_LEFT:
 				self.value = self.choices[(i + nchoices - 1) % nchoices]
-			except TypeError:
-				print "[config.py] Index Error"
-		elif key == KEY_RIGHT:
-			try:
+			elif key == KEY_RIGHT:
 				self.value = self.choices[(i + 1) % nchoices]
-			except TypeError:
-				print "[config.py] Index Error"
-		elif key == KEY_HOME:
-			try:
+			elif key == KEY_HOME:
 				self.value = self.choices[0]
-			except TypeError:
-				print "[config.py] Index Error"
-		elif key == KEY_END:
-			try:
+			elif key == KEY_END:
 				self.value = self.choices[nchoices - 1]
-			except TypeError:
-				print "[config.py] Index Error"
 
 	def selectNext(self):
 		nchoices = len(self.choices)

@@ -98,6 +98,7 @@ def InitUsageConfig():
 		('p', _("Progress")),
 		('i', _("Icon")),
 	])
+	config.usage.movielist_unseen = ConfigYesNo(default = False)
 
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
