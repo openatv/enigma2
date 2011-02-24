@@ -173,6 +173,12 @@ public:
 		{
 		}
 	};
+	struct errorInfo
+	{
+		std::string error_message;
+		std::string missing_codec;
+	};
+
 private:
 	static int pcm_delay;
 	static int ac3_delay;
@@ -189,6 +195,7 @@ private:
 	eServiceReference m_ref;
 	int m_buffer_size;
 	bufferInfo m_bufferInfo;
+	errorInfo m_errorInfo;
 	eServiceMP3(eServiceReference ref);
 	Signal2<void,iPlayableService*,int> m_event;
 	enum
@@ -220,7 +227,6 @@ private:
         };
 
         eFixedMessagePump<Message> m_pump;
-        std::string m_error_message;
 
         audiotype_t gstCheckAudioPad(GstStructure* structure);
         void gstBusCall(GstBus *bus, GstMessage *msg);
