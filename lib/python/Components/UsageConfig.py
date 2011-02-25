@@ -93,6 +93,7 @@ def InitUsageConfig():
 	config.usage.show_icons_in_movielist = ConfigSelection(default = 'p', choices = [
 		('o', _("Off")),
 		('p', _("Progress")),
+		('s', _("Progress Small")),
 		('i', _("Icon")),
 	])
 	config.usage.movielist_unseen = ConfigYesNo(default = False)
