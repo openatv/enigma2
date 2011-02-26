@@ -94,7 +94,7 @@ def InitUsageConfig():
 		('o', _("Off")),
 		('p', _("Progress")),
 		('s', _("Progress Small")),
-		('i', _("Icon")),
+		('i', _("Icons")),
 	])
 	config.usage.movielist_unseen = ConfigYesNo(default = False)
 
