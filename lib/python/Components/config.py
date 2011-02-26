@@ -322,8 +322,8 @@ class ConfigSelection(ConfigElement):
 
 	# GUI
 	def handleKey(self, key):
-		if self.value:
-			nchoices = len(self.choices)
+		nchoices = len(self.choices)
+		if nchoices > 1:
 			i = self.choices.index(self.value)
 			if key == KEY_LEFT:
 				self.value = self.choices[(i + nchoices - 1) % nchoices]
