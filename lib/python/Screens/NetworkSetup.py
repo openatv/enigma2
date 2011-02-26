@@ -1182,7 +1182,7 @@ class NetworkAdapterTest(Screen):
 
 	def doStep1(self):
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(300)
 		self["key_yellow"].setText(_("Stop test"))
 
 	def doStep2(self):
@@ -1192,7 +1192,7 @@ class NetworkAdapterTest(Screen):
 		self["AdapterInfo_Text"].setForegroundColorNum(1)
 		self["AdapterInfo_OK"].show()
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(300)
 
 	def doStep3(self):
 		self["Networktext"].setForegroundColorNum(1)
@@ -1200,7 +1200,7 @@ class NetworkAdapterTest(Screen):
 		self.getLinkState(self.iface)
 		self["NetworkInfo_Text"].setForegroundColorNum(1)
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(1000)
 
 	def doStep4(self):
 		self["Dhcptext"].setForegroundColorNum(1)
@@ -1215,7 +1215,7 @@ class NetworkAdapterTest(Screen):
 		self["DhcpInfo_Check"].show()
 		self["DhcpInfo_Text"].setForegroundColorNum(1)
 		self.steptimer = True
-		self.nextStepTimer.start(3000)
+		self.nextStepTimer.start(1000)
 
 	def doStep5(self):
 		self["IPtext"].setForegroundColorNum(1)
@@ -1376,17 +1376,18 @@ class NetworkAdapterTest(Screen):
 
 	def LinkStatedataAvail(self,data):
 		self.output = data.strip()
-		result = self.output.split('\n')
-		pattern = re_compile("Link detected: yes")
-		for item in result:
-			if re_search(pattern, item):
-				self["Network"].setForegroundColorNum(2)
-				self["Network"].setText(_("connected"))
-				self["NetworkInfo_Check"].setPixmapNum(0)
-			else:
-				self["Network"].setForegroundColorNum(1)
-				self["Network"].setText(_("disconnected"))
-				self["NetworkInfo_Check"].setPixmapNum(1)
+		if "Link detected: yes" in data:
+			self["Network"].setForegroundColorNum(2)
+			self["Network"].setText(_("connected"))
+			self["NetworkInfo_Check"].setPixmapNum(0)
+		elif "No data available" in data:
+			self["Network"].setForegroundColorNum(2)
+			self["Network"].setText(_("unknown"))
+			self["NetworkInfo_Check"].setPixmapNum(0)
+		else:
+			self["Network"].setForegroundColorNum(1)
+			self["Network"].setText(_("disconnected"))
+			self["NetworkInfo_Check"].setPixmapNum(1)
 		self["NetworkInfo_Check"].show()
 
 	def NetworkStatedataAvail(self,data):
@@ -1401,7 +1402,7 @@ class NetworkAdapterTest(Screen):
 		self["IPInfo_Check"].show()
 		self["IPInfo_Text"].setForegroundColorNum(1)		
 		self.steptimer = True
-		self.nextStepTimer.start(3000)		
+		self.nextStepTimer.start(300)		
 		
 	def DNSLookupdataAvail(self,data):
 		if data <= 2:
