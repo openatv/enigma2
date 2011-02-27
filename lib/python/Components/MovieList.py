@@ -272,14 +272,13 @@ class MovieList(GUIComponent):
 					data.partcol = 0xff001d
 			else:
 				data.part = moviePlayState(pathName + '.cuts', data.len)
-				print 'data.part',data.part
 				if switch == 'i':
 					if data.part is not None:
 						data.icon = self.iconPart[data.part // 25]
 					else:
 						if config.usage.movielist_unseen.value:
 							data.icon = self.iconUnwatched
-				elif switch == 'p':
+				elif switch == 'p' or switch == 's':
 					if data.part is not None:
 						data.partcol = 0xffc71d
 					else:
@@ -307,8 +306,11 @@ class MovieList(GUIComponent):
 				pos = (0,1)
 			res.append(MultiContentEntryPixmapAlphaTest(pos=pos, size=(iconSize,20), png=data.icon))
 		switch = config.usage.show_icons_in_movielist.value
-		if switch == 'p':
-			iconSize = 48
+		if switch == 'p' or switch == 's':
+			if switch == 'p':
+				iconSize = 48
+			else:
+				iconSize = 22
 			if data.part is not None:
 				res.append(MultiContentEntryProgress(pos=(0,5), size=(iconSize-2,16), percent=data.part, borderWidth=2, foreColor=data.partcol, backColor=data.partcol, backColorSelected=None))
 		elif switch == 'i':
