@@ -83,12 +83,12 @@ nolfb:
 
 int fbClass::showConsole(int state)
 {
-	int fd=open("/dev/vc/0", O_RDWR);
+	int fd=open("/dev/tty0", O_RDWR);
 	if(fd>=0)
 	{
 		if(ioctl(fd, KDSETMODE, state?KD_TEXT:KD_GRAPHICS)<0)
 		{
-			eDebug("setting /dev/vc/0 status failed.");
+			eDebug("setting /dev/tty0 status failed.");
 		}
 		close(fd);
 	}

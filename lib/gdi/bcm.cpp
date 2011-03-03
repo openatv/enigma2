@@ -23,10 +23,10 @@ static int exec_list(void);
 
 int bcm_accel_init(void)
 {
-	fb_fd = open("/dev/fb/0", O_RDWR);
+	fb_fd = open("/dev/fb0", O_RDWR);
 	if (fb_fd < 0)
 	{
-		perror("/dev/fb/0");
+		perror("/dev/fb0");
 		return 1;
 	}
 	if (exec_list())
