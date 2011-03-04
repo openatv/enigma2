@@ -119,7 +119,6 @@ class PluginComponent:
 		res = [ ]
 		for p in self.getPlugins(PluginDescriptor.WHERE_MENU):
 			res += p(menuid)
-		res.sort(key=lambda x:x.weight)
 		return res
 
 	def clearPluginList(self):
