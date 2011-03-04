@@ -16,7 +16,8 @@ libenigma_driver_a_SOURCES = \
 	rc.cpp \
 	rcconsole.cpp \
 	rcinput.cpp \
-	rfmod.cpp
+	rfmod.cpp \
+	hdmi_cec.cpp
 
 driverincludedir = $(pkgincludedir)/lib/driver
 driverinclude_HEADERS = \
@@ -29,7 +30,8 @@ driverinclude_HEADERS = \
 	rcdbox.h \
 	rcdreambox2.h \
 	rcinput.h \
-	rfmod.h
+	rfmod.h \
+	hdmi_cec.h
 
 if HAVE_LIBSDL
 libenigma_driver_a_SOURCES += \
