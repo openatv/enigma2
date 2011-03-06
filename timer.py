@@ -185,7 +185,7 @@ class Timer:
 	
 	def setNextActivation(self, when):
 		delay = int((when - time()) * 1000)
-		print "[timer.py] next activation: %d (in %d ms)" % (when, delay)
+		print "[timer.py] next activation: ", strftime("%c", localtime(when))," (in %d ms)" % (delay)
 		
 		self.timer.start(delay, 1)
 		self.next = when
