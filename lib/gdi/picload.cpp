@@ -339,7 +339,7 @@ void jpeg_cb_error_exit(j_common_ptr cinfo)
 	longjmp(mptr->envbuffer, 1);
 }
 
-static unsigned char *jpeg_load(const char *file, int *ox, int *oy)
+static unsigned char *jpeg_load(const char *file, int *ox, int *oy, unsigned int max_x, unsigned int max_y)
 {
 	struct jpeg_decompress_struct cinfo;
 	struct jpeg_decompress_struct *ciptr = &cinfo;
@@ -363,24 +363,35 @@ static unsigned char *jpeg_load(const char *file, int *ox, int *oy)
 	jpeg_stdio_src(ciptr, fh);
 	jpeg_read_header(ciptr, TRUE);
 	ciptr->out_color_space = JCS_RGB;
-	ciptr->scale_denom = 1;
+	int s = 8;
+	if (max_x == 0) max_x = 1280; // sensible default
+	if (max_y == 0) max_y = 720;
+	while (s != 1)
+	{
+		if ((ciptr->image_width >= (s * max_x)) ||
+		    (ciptr->image_height >= (s * max_y)))
+			break;
+		s /= 2;
+	}
+	ciptr->scale_num = 1;
+	ciptr->scale_denom = s;
 
 	jpeg_start_decompress(ciptr);
 	
 	*ox=ciptr->output_width;
 	*oy=ciptr->output_height;
+	// eDebug("jpeg_read ox=%d oy=%d w=%d (%d), h=%d (%d) scale=%d rec_outbuf_height=%d", ciptr->output_width, ciptr->output_height, ciptr->image_width, max_x, ciptr->image_height, max_y, ciptr->scale_denom, ciptr->rec_outbuf_height);
 
 	if(ciptr->output_components == 3)
 	{
-		JSAMPLE *lb = (JSAMPLE *)(*ciptr->mem->alloc_small)((j_common_ptr) ciptr, JPOOL_PERMANENT, ciptr->output_width * ciptr->output_components);
-		pic_buffer = new unsigned char[ciptr->output_height * ciptr->output_width * ciptr->output_components];
+		unsigned int stride = ciptr->output_width * ciptr->output_components;
+		pic_buffer = new unsigned char[ciptr->output_height * stride];
 		unsigned char *bp = pic_buffer;
 
 		while (ciptr->output_scanline < ciptr->output_height)
 		{
-			jpeg_read_scanlines(ciptr, &lb, 1);
-			memcpy(bp, lb, ciptr->output_width * ciptr->output_components);
-			bp += ciptr->output_width * ciptr->output_components;
+			JDIMENSION lines = jpeg_read_scanlines(ciptr, &bp, ciptr->rec_outbuf_height);
+			bp += stride * lines;
 		}
 	}
 	jpeg_finish_decompress(ciptr);
@@ -595,7 +606,7 @@ void ePicLoad::decodePic()
 	switch(m_filepara->id)
 	{
 		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
-		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);	break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_GIF:	m_filepara->pic_buffer = gif_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 	}
@@ -678,7 +689,7 @@ void ePicLoad::decodeThumb()
 	switch(m_filepara->id)
 	{
 		case F_PNG:	m_filepara->pic_buffer = png_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
-		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
+		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);	break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 		case F_GIF:	m_filepara->pic_buffer = gif_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);	break;
 	}

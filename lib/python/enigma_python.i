@@ -97,6 +97,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/components/file_eraser.h>
 #include <lib/components/tuxtxtapp.h>
 #include <lib/driver/avswitch.h>
+#include <lib/driver/hdmi_cec.h>
 #include <lib/driver/rfmod.h>
 #include <lib/driver/misc_options.h>
 #include <lib/driver/etimezone.h>
@@ -168,6 +169,7 @@ typedef long time_t;
 %immutable eSocket_UI::socketStateChanged;
 %immutable eDVBResourceManager::frontendUseMaskChanged;
 %immutable eAVSwitch::vcr_sb_notifier;
+%immutable eHdmiCEC::messageReceived;
 %immutable ePythonMessagePump::recv_msg;
 %immutable eDVBLocalTimeHandler::m_timeUpdated;
 %immutable iCryptoInfo::clientname;
@@ -231,6 +233,7 @@ typedef long time_t;
 %include <lib/components/file_eraser.h>
 %include <lib/components/tuxtxtapp.h>
 %include <lib/driver/avswitch.h>
+%include <lib/driver/hdmi_cec.h>
 %include <lib/driver/rfmod.h>
 %include <lib/driver/misc_options.h>
 %include <lib/driver/etimezone.h>
@@ -283,6 +286,12 @@ public:
 %template(PSignal2VoidIRecordableServiceInt) PSignal2<void,ePtr<iRecordableService>&,int>;
 
 %typemap(out) PSignal2VoidIRecordableServiceInt {
+	$1 = $input->get();
+}
+
+%template(PSignal2VII) PSignal2<void,int,int>;
+
+%typemap(out) PSignal2VII {
 	$1 = $input->get();
 }
 
