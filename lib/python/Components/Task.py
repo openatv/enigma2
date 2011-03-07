@@ -274,12 +274,14 @@ class LoggingTask(Task):
 
 class PythonTask(Task):
 	def _run(self):
-		from twisted.internet import threads, task
+		from twisted.internet import threads
+		from enigma import eTimer
 		self.aborted = False
 		self.pos = 0
 		threads.deferToThread(self.work).addBoth(self.onComplete)
-		self.timer = task.LoopingCall(self.onTimer)
-		self.timer.start(5, False)
+		self.timer = eTimer()
+		self.timer.callback.append(self.onTimer)
+		self.timer.start(5)
 	def work(self):
 		raise NotImplemented, "work"
 	def abort(self):
