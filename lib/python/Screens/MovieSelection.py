@@ -128,14 +128,27 @@ def createMoveList(serviceref, dest):
 				moveList.append((candidate, os.path.join(dest, baseName+ext)))
 	return moveList
 
-def moveServiceFiles(serviceref, dest):
+def moveServiceFiles(serviceref, dest, name=None):
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		for item in moveList:
-			os.rename(item[0], item[1])
-			movedList.append(item)
+		try:
+			for item in moveList:
+				os.rename(item[0], item[1])
+				movedList.append(item)
+		except OSError, e:
+			if e.errno == 18:
+				print "[MovieSelection] cannot rename across devices, trying slow move"
+				import CopyFiles
+				# start with the smaller files, do the big one later.
+				moveList.reverse()
+				if name is None:
+					name = os.path.split(moveList[-1][0])[1]
+				CopyFiles.moveFiles(moveList, name)
+				print "[MovieSelection] Moving in background..."
+			else:
+				raise
 	except Exception, e:
 		print "[MovieSelection] Failed move:", e
 		for item in movedList:
@@ -146,7 +159,7 @@ def moveServiceFiles(serviceref, dest):
 		# rethrow exception
 		raise
 
-def copyServiceFiles(serviceref, dest):
+def copyServiceFiles(serviceref, dest, name=None):
 	# current should be 'ref' type, dest a simple path string
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
@@ -168,7 +181,9 @@ def copyServiceFiles(serviceref, dest):
 	import CopyFiles
 	# start with the smaller files, do the big one later.
 	moveList.reverse()
-	CopyFiles.copyFiles(moveList, os.path.split(moveList[-1][0])[1])
+	if name is None:
+		name = os.path.split(moveList[-1][0])[1]
+	CopyFiles.copyFiles(moveList, name)
 	print "[MovieSelection] Copying in background..."
 
 class Config(ConfigListScreen,Screen):
@@ -1037,6 +1052,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				d = os.path.normpath(d)
 				bookmarks.append((d,d))
 				inlist.append(d)
+			for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
+				d = os.path.normpath(p.mountpoint)
+				if d not in inlist:
+					bookmarks.append((p.description, d))
+					inlist.append(d)
 			self.onMovieSelected = self.gotMoveMovieDest
 			self.movieSelectTitle = title
 			self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks)
@@ -1046,8 +1066,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		dest = os.path.normpath(choice)
 		try:
-			current = self.getCurrent()
-			moveServiceFiles(current, dest)
+			item = self.getCurrentSelection()
+			current = item[0]
+			if item[1] is None:
+				name = None
+			else:
+				name = item[1].getName(current)
+			moveServiceFiles(current, dest, name)
 			self["list"].removeService(current)
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
@@ -1070,8 +1095,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		dest = os.path.normpath(choice)
 		try:
-			current = self.getCurrent()
-			copyServiceFiles(current, dest)
+			item = self.getCurrentSelection()
+			current = item[0]
+			if item[1] is None:
+				name = None
+			else:
+				name = item[1].getName(current)
+			copyServiceFiles(current, dest, name)
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
