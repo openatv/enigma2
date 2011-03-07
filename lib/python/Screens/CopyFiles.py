@@ -53,6 +53,18 @@ class CopyFileTask(Components.Task.PythonTask):
 					pass
 			raise
 
+class MoveFileTask(CopyFileTask):
+	def work(self):
+		CopyFileTask.work(self)
+		print "[MoveFileTask]: delete source files"
+		errors = []
+		for s,d in self.fileList:
+			try:
+				os.unlink(s)
+			except Exception, e:
+				errors.append(e)
+		if errors:
+			 raise errors[0]
 
 def copyFiles(fileList, name):
 	name = _("Copy") + " " + name
@@ -61,3 +73,9 @@ def copyFiles(fileList, name):
 	task.openFiles(fileList)
 	Components.Task.job_manager.AddJob(job)
 
+def moveFiles(fileList, name):
+	name = _("Move") + " " + name
+	job = Components.Task.Job(name)
+	task = MoveFileTask(job, name)
+	task.openFiles(fileList)
+	Components.Task.job_manager.AddJob(job)
