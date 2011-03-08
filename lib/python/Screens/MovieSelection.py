@@ -246,24 +246,38 @@ def createMoveList(serviceref, dest):
 				moveList.append((candidate, os.path.join(dest, baseName+ext)))
 	return moveList
 
-def moveServiceFiles(serviceref, dest):
+def moveServiceFiles(serviceref, dest, name=None):
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
 	movedList = []
 	try:
-		for item in moveList:
-			os.rename(item[0], item[1])
-			movedList.append(item)
-	except:
-		for item in moveList:
-		    os.rename(item[0], item[0] + '.tmp')
-		    job = FileMoveJob(item[0] + '.tmp', item[1])
-		    job.Start()
-		    movedList.append(item)
-		# this worked, we're done
-		return
+		try:
+			for item in moveList:
+				os.rename(item[0], item[1])
+				movedList.append(item)
+		except OSError, e:
+			if e.errno == 18:
+				print "[MovieSelection] cannot rename across devices, trying slow move"
+				import CopyFiles
+				# start with the smaller files, do the big one later.
+				moveList.reverse()
+				if name is None:
+					name = os.path.split(moveList[-1][0])[1]
+				CopyFiles.moveFiles(moveList, name)
+				print "[MovieSelection] Moving in background..."
+			else:
+				raise
+	except Exception, e:
+		print "[MovieSelection] Failed move:", e
+		for item in movedList:
+			try:
+				os.rename(item[1], item[0])
+			except:
+				print "[MovieSelection] Failed to undo move:", item
+		# rethrow exception
+		raise
 
-def copyServiceFiles(serviceref, dest):
+def copyServiceFiles(serviceref, dest, name=None):
 	# current should be 'ref' type, dest a simple path string
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
@@ -276,7 +290,20 @@ def copyServiceFiles(serviceref, dest):
 		# this worked, we're done
 		return
 	except Exception, e:
-		print "[MovieSelection] Failed", e
+		print "[MovieSelection] Failed copy using link:", e
+		for item in movedList:
+			try:
+				os.unlink(item[1])
+			except:
+				print "[MovieSelection] Failed to undo copy:", item
+	#Link failed, really copy.
+	import CopyFiles
+	# start with the smaller files, do the big one later.
+	moveList.reverse()
+	if name is None:
+		name = os.path.split(moveList[-1][0])[1]
+	CopyFiles.copyFiles(moveList, name)
+	print "[MovieSelection] Copying in background..."
 
 class Config(ConfigListScreen,Screen):
 	skin = """
@@ -401,7 +428,7 @@ class MovieContextMenu(Screen):
 
 		menu = []
 		if service:
-		 	if (service.flags & eServiceReference.mustDescent):
+			if (service.flags & eServiceReference.mustDescent):
 				if isTrashFolder(service):
 					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
 				else:
@@ -528,7 +555,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("")
 		self["key_blue"] = Button("")
-                self._updateButtonTexts()
+		self._updateButtonTexts()
 
 		self["freeDiskSpace"] = self.diskinfo = DiskInfo(config.movielist.last_videodir.value, DiskInfo.FREE, update=False)
 
@@ -606,12 +633,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'yellow': config.movielist.btn_yellow,
 				'blue': config.movielist.btn_blue
 			}
-		
-        def _callButton(self, name):
-        	if name.startswith('@'):
-        		item = self.getCurrentSelection()
-        		if isSimpleFile(item):
-	        		name = name[1:]
+
+	def _callButton(self, name):
+		if name.startswith('@'):
+			item = self.getCurrentSelection()
+			if isSimpleFile(item):
+				name = name[1:]
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					if name == p.name:
 						p(self.session, item[0])
@@ -622,7 +649,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			# Undefined action
 			return
 		a()
-			
+
 	def btn_red(self):
 		self._callButton(config.movielist.btn_red.value)
 	def btn_green(self):
@@ -925,7 +952,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def configure(self):
 		self.session.openWithCallback(self.configureDone, Config)
 
-    	def configureDone(self, result):
+	def configureDone(self, result):
 		if result:
 			self.applyConfigSettings({\
 				"listtype": config.movielist.listtype.value,
@@ -970,7 +997,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		if self.selected_tags is not None:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
- 		if not (sel and self["list"].moveTo(sel)):
+		if not (sel and self["list"].moveTo(sel)):
 			if home:
 				self["list"].moveToFirstMovie()
 		self["freeDiskSpace"].update()
@@ -1108,7 +1135,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			resetMoviePlayState(current.getPath() + ".cuts")
 			self["list"].invalidateCurrentItem() # trigger repaint
 
-        def do_move(self):
+	def do_move(self):
 		item = self.getCurrentSelection() 
 		if canMove(item):
 			current = item[0]
@@ -1143,6 +1170,11 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				d = os.path.normpath(d)
 				bookmarks.append((d,d))
 				inlist.append(d)
+			for p in Components.Harddisk.harddiskmanager.getMountedPartitions():
+				d = os.path.normpath(p.mountpoint)
+				if d not in inlist:
+					bookmarks.append((p.description, d))
+					inlist.append(d)
 			self.onMovieSelected = self.gotMoveMovieDest
 			self.movieSelectTitle = title
 			self.session.openWithCallback(self.gotMovieLocation, ChoiceBox, title=title, list=bookmarks)
@@ -1152,14 +1184,18 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		dest = os.path.normpath(choice)
 		try:
-			item = self.getCurrentSelection() 
+			item = self.getCurrentSelection()
 			current = item[0]
-			moveServiceFiles(current, dest)
-			self.reloadList()
+			if item[1] is None:
+				name = None
+			else:
+				name = item[1].getName(current)
+			moveServiceFiles(current, dest, name)
+			self["list"].removeService(current)
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
-        def can_copy(self, item):
+	def can_copy(self, item):
 		return canCopy(item)
 	def do_copy(self):
 		item = self.getCurrentSelection() 
@@ -1177,8 +1213,13 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			return
 		dest = os.path.normpath(choice)
 		try:
-			current = self.getCurrent()
-			copyServiceFiles(current, dest)
+			item = self.getCurrentSelection()
+			current = item[0]
+			if item[1] is None:
+				name = None
+			else:
+				name = item[1].getName(current)
+			copyServiceFiles(current, dest, name)
 		except Exception, e:
 			self.session.open(MessageBox, str(e), MessageBox.TYPE_ERROR)
 
