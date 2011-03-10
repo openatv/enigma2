@@ -189,7 +189,7 @@ class pliExpertInfo(Poll, Converter, object):
 						color="\c00????00"
 						if (oneID == int(decCI, 16)):
 							color="\c0000??00"
-						break
+							break
 				res = res + color + IDlist[3] + " "
 		except:
 			pass
