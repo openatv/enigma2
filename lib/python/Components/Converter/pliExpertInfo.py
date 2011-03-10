@@ -45,7 +45,6 @@ class pliExpertInfo(Poll, Converter, object):
 		res = ""
 		dccmd = ""
 		searchIDs = []
-		foundIDs = []
 		xresol = info.getInfo(iServiceInformation.sVideoWidth)
 		yresol = info.getInfo(iServiceInformation.sVideoHeight)
 		feinfo = (service and service.frontendInfo())
@@ -182,18 +181,21 @@ class pliExpertInfo(Poll, Converter, object):
 
 		try:
 			searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
-			for oneID in searchIDs:
-				for idline in self.idnames:
-					IDlist = idline.split(",")
-					if (oneID >= int(IDlist[0], 16)) and (oneID <= int(IDlist[1], 16)) and not(oneID == int(decCI, 16)):
-						if not(IDlist[3] in foundIDs):
-							foundIDs.append(IDlist[3]) #+ "(" +hex(oneID).lstrip("0x") + ")")
-			res = " ".join(foundIDs)
+			for idline in self.idnames:
+				IDlist = idline.split(",")
+				color = "\c007?7?7?"
+				for oneID in searchIDs:
+					if (oneID >= int(IDlist[0], 16)) and (oneID <= int(IDlist[1], 16)):
+						color="\c00????00"
+						if (oneID == int(decCI, 16)):
+							color="\c0000??00"
+						break
+				res = res + color + IDlist[3] + " "
 		except:
 			pass
 
 		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
-			Ret_Text += "\n" + self.short(res) + sep + Sec_Text
+			Ret_Text += "\n" + res + "\c00??????" + sep + Sec_Text
 
 		return Ret_Text
 
