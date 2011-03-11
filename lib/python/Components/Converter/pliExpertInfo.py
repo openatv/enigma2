@@ -118,7 +118,7 @@ class pliExpertInfo(Poll, Converter, object):
 									decID = decID.strip(",;.:-*_<>()[]{}")
 									if (len(decID)<4):
 										decID = "0" + decID
-										decCI = decID
+									decCI = decID
 							break
 				elif ("using:" in cell) or ("source:" in cell):
 					for x in range(len(cellmembers)):
