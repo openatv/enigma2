@@ -519,7 +519,7 @@ eConsolePy_write(eConsolePy* self, PyObject *args)
 	int ret = -1;
 	Py_ssize_t argc = PyTuple_Size(args);
 	if (argc > 1)
-		ret = PyArg_ParseTuple(args, "si", &data, &len);
+		ret = !PyArg_ParseTuple(args, "si", &data, &len);
 	else if (argc == 1)
 	{
 		PyObject *ob;
