@@ -86,7 +86,7 @@ class DemuxTask(Task):
 		title = job.project.titles[job.i]
 		self.global_preconditions.append(DiskspacePrecondition(title.estimatedDiskspace))
 		self.setTool("projectx")
-		self.args += [inputfile, "-demux", "-out", self.job.workspace ]
+		self.args += [inputfile, "-demux", "-set", "ExportPanel.Streamtype.Subpicture=0", "-set", "ExportPanel.Streamtype.Teletext=0", "-out", self.job.workspace ]
 		self.end = 300
 		self.prog_state = 0
 		self.weighting = 1000

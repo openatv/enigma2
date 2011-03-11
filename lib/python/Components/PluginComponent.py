@@ -112,8 +112,8 @@ class PluginComponent:
 
 		for x in where:
 			res.extend(self.plugins.get(x, [ ]))
-
-		return  res
+		res.sort(key=lambda x:x.weight)
+		return res
 
 	def getPluginsForMenu(self, menuid):
 		res = [ ]
@@ -124,6 +124,8 @@ class PluginComponent:
 	def clearPluginList(self):
 		self.pluginList = []
 		self.plugins = {}
+		self.firstRun = True
+		self.restartRequired = False
 
 	def shutdown(self):
 		for p in self.pluginList[:]:

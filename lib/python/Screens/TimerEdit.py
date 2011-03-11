@@ -170,7 +170,7 @@ class TimerEditList(Screen):
 		del list[:]
 		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
 		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
-		list.sort(cmp = lambda x, y: x[0].begin < y[0].begin)
+		list.sort(key = lambda x: x[0].begin)
 
 	def showLog(self):
 		cur=self["timerlist"].getCurrent()
