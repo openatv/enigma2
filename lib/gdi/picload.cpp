@@ -932,7 +932,6 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	
 	result=new gPixmap(eSize(m_filepara->max_x, m_filepara->max_y), 32);
 	gSurface *surface = result->surface;
-	int a=0, b=0;
 	int nc=0, oc=0;
 	int o_y=0, u_y=0, v_x=0, h_x=0;
 
@@ -951,25 +950,26 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	
 	if(m_filepara->oy < m_filepara->max_y)
 	{
-		for(a=0; a<(o_y*m_filepara->ox); a++, nc+=4)
+		int ma = o_y * m_filepara->ox;
+		for(int a=0; a<ma; a++, nc+=4)
 		{
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
 			memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
 		}
 	}
 	
-	for(a=0; a<m_filepara->oy; a++)
+	for(int a=0; a<m_filepara->oy; a++)
 	{
 		if(m_filepara->ox < m_filepara->max_x)
 		{
-			for(b=0; b<v_x; b++, nc+=4)
+			for(int b=0; b<v_x; b++, nc+=4)
 			{
 				tmp_buffer=((unsigned char *)(surface->data)) + nc;
 				memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
 			}
 		}
 
-		for(b=0; b<(m_filepara->ox*4); b+=4, nc+=4)
+		for(int b=0; b < m_filepara->ox; ++b, nc+=4)
 		{
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
 			tmp_buffer[2] = m_filepara->pic_buffer[oc++];
@@ -980,7 +980,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 		
 		if(m_filepara->ox < m_filepara->max_x)
 		{
-			for(b=0; b<h_x; b++, nc+=4)
+			for(int b=0; b<h_x; b++, nc+=4)
 			{
 				tmp_buffer=((unsigned char *)(surface->data)) + nc;
 				memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
@@ -990,7 +990,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 	
 	if(m_filepara->oy < m_filepara->max_y)
 	{
-		for(a=0; a<(u_y*m_filepara->ox); a++, nc+=4)
+		for(int a=0; a<(u_y*m_filepara->ox); a++, nc+=4)
 		{
 			tmp_buffer=((unsigned char *)(surface->data)) + nc;
 			memcpy(tmp_buffer, m_conf.background, sizeof(m_conf.background));
