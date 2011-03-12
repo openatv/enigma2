@@ -248,10 +248,18 @@ class Harddisk:
 		res = system(cmd)
 		return (res >> 8)
 
+	def killPartitionTable(self):
+		zero = 512 * '\0'
+		h = open(self.dev_path, 'wb')
+		# delete first 9 sectors, which will likely kill the first partition too
+		for i in range(9):
+			h.write(zero)
+		h.close()
+
 	def killPartition(self, n):
+		zero = 512 * '\0'
 		part = self.partitionPath(n)
 		h = open(part, 'wb')
-		zero = 512 * '\0'
 		for i in range(3):
 			h.write(zero)
 		h.close()
@@ -261,10 +269,10 @@ class Harddisk:
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
 
-		task =  UnmountTask(job, self)
+		task = UnmountTask(job, self)
 
-		task = Task.PythonTask(job, _("Kill partition"))
-		task.work = lambda: self.killPartition("1")
+		task = Task.PythonTask(job, _("Kill partition table"))
+		task.work = self.killPartitionTable
 		task.weighting = 1
 
 		size = self.diskSize()
