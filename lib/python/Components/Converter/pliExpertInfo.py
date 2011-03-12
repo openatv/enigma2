@@ -111,9 +111,9 @@ class pliExpertInfo(Poll, Converter, object):
 				if using:
 					# CCcam
 					if using == 'fta':
-						self.textvalue = _("FTA")
+						Sec_Text = _("FTA")
 					elif using == 'emu':
-						self.textvalue = "EMU (%ss)" % (ecminfo.get('ecm time', '?'))
+						Sec_Text = "EMU (%ss)" % (ecminfo.get('ecm time', '?'))
 					else:
 						hops = ecminfo.get('hops', None)
 						if hops and hops != '0':
@@ -131,7 +131,7 @@ class pliExpertInfo(Poll, Converter, object):
 								share = open('/tmp/share.info', 'rb').readlines()
 								for line in share:
 									if cardid in line:
-										self.textvalue = line.strip()
+										Sec_Text = line.strip()
 										break
 								else:
 									Sec_Text = cardid
