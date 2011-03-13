@@ -785,6 +785,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 			path = os.path.join(config.movielist.last_videodir.value, ".e2settings.pkl")
 			updates = pickle.load(open(path, "rb"))
 			self.applyConfigSettings(updates)
+		except IOError, e:
+			pass # ignore fail to open errors
 		except Exception, e:
 			print "Failed to load settings:", e
 
