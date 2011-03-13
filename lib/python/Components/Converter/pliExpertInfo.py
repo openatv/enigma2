@@ -6,6 +6,7 @@ from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
+from Tools.Transponder import ConvertToHumanReadable
 from Poll import Poll
 
 ECM_INFO = '/tmp/ecm.info'
@@ -27,8 +28,6 @@ class pliExpertInfo(Poll, Converter, object):
 		except:
 			self.poll_interval = 30000
 		self.poll_enabled = True
-		self.ar_fec = ["Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "3/5", "4/5", "8/9", "9/10","None","None","None","None","None"]
-		self.ar_pol = ["H", "V", "CL", "CR", "na", "na", "na", "na", "na", "na", "na", "na"]
 		self.idnames = (
 			( "0x100", "0x1FF","Seca"   ,"S" ),
 			( "0x500", "0x5FF","Via"    ,"V" ),
@@ -64,31 +63,29 @@ class pliExpertInfo(Poll, Converter, object):
 		prvd = info.getInfoString(iServiceInformation.sProvider)
 		Ret_Text = self.short(prvd)
 
-		frontendData = (feinfo and feinfo.getAll(True))
-		if (frontendData is not None):
-			if ((frontendData.get("tuner_type") == "DVB-S") or (frontendData.get("tuner_type") == "DVB-C")):
-				frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-				symbolrate = (str((frontendData.get("symbol_rate") / 1000)) + " KS/s")
-				try:
-					if (frontendData.get("tuner_type") == "DVB-S"):
-						polarisation_i = frontendData.get("polarization")
-					else:
-						polarisation_i = 0
-					fec_i = frontendData.get("fec_inner")
-					Ret_Text += sep + frequency + " - " + self.ar_pol[polarisation_i] + sep2 + self.ar_fec[fec_i] + " - " + symbolrate 
-				except:
-					Ret_Text += sep + frequency + sep + symbolrate
-				orb_pos = ""
-				if (frontendData.get("tuner_type") == "DVB-S"):
+		frontendDataOrg = (feinfo and feinfo.getAll(True))
+		if (frontendDataOrg is not None):
+			frontendData = ConvertToHumanReadable(frontendDataOrg)
+			if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
+				frequency = (str((frontendData.get("frequency") / 1000)))
+				symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
+				fec_inner = frontendData.get("fec_inner")
+				if (frontendDataOrg.get("tuner_type") == "DVB-S"):
+					Ret_Text += sep + frontendData.get("system")
+					Ret_Text += sep + frequency + frontendData.get("polarization")[:1]
+					Ret_Text += sep + symbolrate
+					Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
 					orbital_pos = int(frontendData["orbital_position"])
 					if orbital_pos > 1800:
 						orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
 					elif orbital_pos > 0:
 						orb_pos = str((float(orbital_pos)) / 10.0) + "E"
-				Ret_Text += sep + "Pos: " + orb_pos
-			elif (frontendData.get("tuner_type") == "DVB-T"):
-				frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-				Ret_Text += sep + "Frequency:" + sep + frequency
+					Ret_Text += sep + orb_pos
+				else:
+					Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
+			elif (frontendDataOrg.get("tuner_type") == "DVB-T"):
+				frequency = (str((frontendData.get("frequency") / 1000)))
+				Ret_Text += sep + "DVB-T" + sep + "Frequency:" + sep + frequency + " MHz"
 
 		if (feinfo is not None) and (xresol > 0):
 			if (yresol > 580):
@@ -182,7 +179,7 @@ class pliExpertInfo(Poll, Converter, object):
 				if decCI != "":
 					for idline in self.idnames:
 						try:
-							if decCI >= idline[0] and decCI <= idline[1]:
+							if decCI.upper() >= idline[0].upper() and decCI.upper() <= idline[1].upper():
 								decCIfull = idline[2] + ":" + decCI
 								break
 						except:
