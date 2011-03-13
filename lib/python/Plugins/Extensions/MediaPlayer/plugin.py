@@ -998,9 +998,7 @@ def audioCD_open(list, session, **kwargs):
 	from enigma import eServiceReference
 
 	mp = session.open(MediaPlayer)
-	mp.cdAudioTrackFiles = []
-	for file in list:
-		mp.cdAudioTrackFiles.append(file.path)
+	mp.cdAudioTrackFiles = [f.path for f in list]
 	mp.playAudioCD()
 
 def filescan(**kwargs):
