@@ -115,9 +115,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def ChannelSelectionRadioClosed(self, *arg):
 		self.rds_display.show()  # in InfoBarRdsDecoder
 
-	def showMovies(self):
+	def showMovies(self, defaultRef=None):
 		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection)
+		self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, defaultRef)
 
 	def movieSelected(self, service):
 		ref = self.lastservice
