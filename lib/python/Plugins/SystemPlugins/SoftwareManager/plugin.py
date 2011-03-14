@@ -184,6 +184,23 @@ class UpdatePluginMenu(Screen):
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 		self.onShown.append(self.setWindowTitle)
+		self.onChangedEntry = []
+		self["menu"].onSelectionChanged.append(self.selectionChanged)
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["menu"].getCurrent()
+		if item:
+			name = item[1]
+			desc = item[2]
+		else:
+			name = "-"
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
 
 	def layoutFinished(self):
 		idx = 0
