@@ -319,16 +319,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.RecordTimer.timer_list, dummyentry)
 		if not timersanitycheck.check():
 			simulTimerList = timersanitycheck.getSimulTimerList()
-			new_end = simulTimerList[1].begin
-			del simulTimerList
-			new_end -= 30				# 30 Sekunden Prepare-Zeit lassen
-		del dummyentry
+			if simulTimerList is not None and len(simulTimerList) > 1:
+				new_end = simulTimerList[1].begin
+				new_end -= 30				# 30 Sekunden Prepare-Zeit lassen
 		if new_end <= time():
 			return False
 		self.end = new_end
 		return True
-	
-	
+
 	def sendStandbyNotification(self, answer):
 		if answer:
 			Notifications.AddNotification(Screens.Standby.Standby)
