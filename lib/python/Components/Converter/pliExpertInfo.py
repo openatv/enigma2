@@ -6,7 +6,10 @@ from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
+from Tools.Transponder import ConvertToHumanReadable
 from Poll import Poll
+
+ECM_INFO = '/tmp/ecm.info'
 
 class pliExpertInfo(Poll, Converter, object):
 	SMART_LABEL = 0
@@ -25,10 +28,15 @@ class pliExpertInfo(Poll, Converter, object):
 		except:
 			self.poll_interval = 30000
 		self.poll_enabled = True
-		self.ar_fec = ["Auto", "1/2", "2/3", "3/4", "5/6", "7/8", "3/5", "4/5", "8/9", "9/10","None","None","None","None","None"]
-		self.ar_pol = ["H", "V", "CL", "CR", "na", "na", "na", "na", "na", "na", "na", "na"]
-		self.idnames = ("0100,01FF,Seca,S","0500,05FF,Via,V","0600,06FF,Ideto,I","0900,09FF,NDS,Nd","0B00,0BFF,Conax,Co","0D00,0DFF,CryptoW,Cw","1700,17FF,BetaCr,B","1800,18FF,Nagra,N")
-
+		self.idnames = (
+			( "0x100", "0x1FF","Seca"   ,"S" ),
+			( "0x500", "0x5FF","Via"    ,"V" ),
+			( "0x600", "0x6FF","Ideto"  ,"I" ),
+			( "0x900", "0x9FF","NDS"    ,"Nd"),
+			( "0xB00", "0xBFF","Conax"  ,"Co"),
+			( "0xD00", "0xDFF","CryptoW","Cw"),
+			("0x1700","0x17FF","Beta"   ,"B" ),
+			("0x1800","0x18FF","Nagra"  ,"N" ))
 	@cached
 	
 	def getText(self):
@@ -36,15 +44,10 @@ class pliExpertInfo(Poll, Converter, object):
 		info = service and service.info()
 		if not info:
 			return ""	
+
 		Ret_Text = ""
 		Sec_Text = ""
-		decID = ""
-		decCI = "0x000"
-		decFrom = ""
-		eMasTime = ""
-		res = ""
-		dccmd = ""
-		searchIDs = []
+
 		xresol = info.getInfo(iServiceInformation.sVideoWidth)
 		yresol = info.getInfo(iServiceInformation.sVideoHeight)
 		feinfo = (service and service.frontendInfo())
@@ -60,31 +63,29 @@ class pliExpertInfo(Poll, Converter, object):
 		prvd = info.getInfoString(iServiceInformation.sProvider)
 		Ret_Text = self.short(prvd)
 
-		frontendData = (feinfo and feinfo.getAll(True))
-		if (frontendData is not None):
-			if ((frontendData.get("tuner_type") == "DVB-S") or (frontendData.get("tuner_type") == "DVB-C")):
-				frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-				symbolrate = (str((frontendData.get("symbol_rate") / 1000)) + " KS/s")
-				try:
-					if (frontendData.get("tuner_type") == "DVB-S"):
-						polarisation_i = frontendData.get("polarization")
-					else:
-						polarisation_i = 0
-					fec_i = frontendData.get("fec_inner")
-					Ret_Text += sep + frequency + " - " + self.ar_pol[polarisation_i] + sep2 + self.ar_fec[fec_i] + " - " + symbolrate 
-				except:
-					Ret_Text += sep + frequency + sep + symbolrate
-				orb_pos = ""
-				if (frontendData.get("tuner_type") == "DVB-S"):
+		frontendDataOrg = (feinfo and feinfo.getAll(True))
+		if (frontendDataOrg is not None):
+			frontendData = ConvertToHumanReadable(frontendDataOrg)
+			if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
+				frequency = (str((frontendData.get("frequency") / 1000)))
+				symbolrate = (str((frontendData.get("symbol_rate") / 1000)))
+				fec_inner = frontendData.get("fec_inner")
+				if (frontendDataOrg.get("tuner_type") == "DVB-S"):
+					Ret_Text += sep + frontendData.get("system")
+					Ret_Text += sep + frequency + frontendData.get("polarization")[:1]
+					Ret_Text += sep + symbolrate
+					Ret_Text += sep + frontendData.get("modulation") + "-" + fec_inner
 					orbital_pos = int(frontendData["orbital_position"])
 					if orbital_pos > 1800:
 						orb_pos = str((float(3600 - orbital_pos)) / 10.0) + "W"
 					elif orbital_pos > 0:
 						orb_pos = str((float(orbital_pos)) / 10.0) + "E"
-				Ret_Text += sep + "Pos: " + orb_pos
-			elif (frontendData.get("tuner_type") == "DVB-T"):
-				frequency = (str((frontendData.get("frequency") / 1000)) + " MHz")
-				Ret_Text += sep + "Frequency:" + sep + frequency
+					Ret_Text += sep + orb_pos
+				else:
+					Ret_Text += sep + "DVB-C " + frequency + " MHz" + sep + fec_inner + sep + symbolrate
+			elif (frontendDataOrg.get("tuner_type") == "DVB-T"):
+				frequency = (str((frontendData.get("frequency") / 1000)))
+				Ret_Text += sep + "DVB-T" + sep + "Frequency:" + sep + frequency + " MHz"
 
 		if (feinfo is not None) and (xresol > 0):
 			if (yresol > 580):
@@ -94,113 +95,119 @@ class pliExpertInfo(Poll, Converter, object):
 			Ret_Text += str(xresol) + "x" + str(yresol)
 
 		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
-
+			
 			try:
-				f = open("/tmp/ecm.info", "r")
-				flines = f.readlines()
-				f.close()
-			except:
-				Sec_Text = "secEmpty"
-				flines = None
-
-			if (flines is not None):
-				ePid = ""
-				decID = ""
-				decFrom = ""
-				eMasTime = ""
-				eHops = ""
-				for cell in flines:
-					icell = cell.lower()
-					cellmembers = cell.split()
-					if ("caid" in icell):
-						for x in range(len(cellmembers)):
-							if ("caid" in cellmembers[x].lower()):
-								if x<(len(cellmembers) - 1):
-									if cellmembers[x+1] != "0x000":
-										decID = cellmembers[x + 1]
-										decID = decID.lstrip("0x")
-										decID = decID.strip(",;.:-*_<>()[]{}")
-										if (len(decID)<4):
-											decID = "0" + decID
-										decCI = decID
-								break
-					elif ("using:" in cell) or ("source:" in cell):
-						for x in range(len(cellmembers)):
-							if ("using:" in cellmembers[x]) or ("source:" in cellmembers[x]):
-								if x < (len(cellmembers) - 1):
-									if cellmembers[x + 1] != "fta":
-										decFrom = cellmembers[x + 1]
-								break
-					elif ("ecm time:" in cell):
-						for x in range(len(cellmembers)):
-							if ("time:" in cellmembers[x]):
-								if x < (len(cellmembers) - 1):
-									eMasTime = str(cellmembers[x + 1])
-								break
-					elif ("address:" in cell):
-						for x in range(len(cellmembers)):
-							if ("address:" in cellmembers[x]):
-								if x < (len(cellmembers) - 1):
-									adrFrom = cellmembers[x + 1]
-									if ("sci0" in adrFrom):
-										decFrom = "Slot-1"
-									elif ("sci1" in adrFrom):
-										decFrom = "Slot-2"
-									elif ("sci2" in adrFrom):
-										decFrom = "Slot-3"
-									else:
-										decFrom = adrFrom
-								break
-					elif ("hops:" in cell):
-						for x in range(len(cellmembers)):
-							if ("hops:" in cellmembers[x]):
-								if x<(len(cellmembers) - 1):
-									eHops = str(cellmembers[x + 1])
-								break
-					elif ("pid:" in cell):
-						for x in range(len(cellmembers)):
-							if ("pid:" in cellmembers[x]):
-								if x<(len(cellmembers) - 1):
-									ePid = str(cellmembers[x + 1])
-									ePid = ePid.lstrip("0x")
-									if (len(ePid) == 3):
-										ePid = "0" + ePid
-									elif (len(ePid) == 2):
-										ePid = "00" + ePid
-									elif (len(ePid) == 1):
-										ePid = "000" + ePid
-									ePid = ePid.upper()
-								break
-				if decID != "":
+				ecm = open(ECM_INFO, 'rb').readlines()
+	                        ecminfo = {}
+				for line in ecm:
+					d = line.split(':', 1)
+					if len(d) > 1:
+						ecminfo[d[0].strip()] = d[1].strip()
+				
+				using = ecminfo.get('using', '')
+				if using:
+					# CCcam
+					if using == 'fta':
+						Sec_Text = _("FTA")
+					elif using == 'emu':
+						Sec_Text = "EMU (%ss)" % (ecminfo.get('ecm time', '?'))
+					else:
+						hops = ecminfo.get('hops', None)
+						if hops and hops != '0':
+							hops = ' @' + hops
+						else:
+							hops = ''
+						Sec_Text = ecminfo.get('address', '?') + hops + " (%ss)" % ecminfo.get('ecm time', '?')
+				else:
+					decode = ecminfo.get('decode', None)
+					if decode:
+						# gbox (untested)
+						if ecminfo['decode'] == 'Network':
+							cardid = 'id:' + ecminfo.get('prov', '')
+							try:
+								share = open('/tmp/share.info', 'rb').readlines()
+								for line in share:
+									if cardid in line:
+										Sec_Text = line.strip()
+										break
+								else:
+									Sec_Text = cardid
+							except:
+								Sec_Text = decode
+						else:
+							Sec_Text = decode
+					else:
+						source = ecminfo.get('source', '')
+						if source:
+							# MGcam
+							eEnc  = ""
+							eCaid = ""
+							eSrc = ""
+							eTime = ""
+							for line in ecm:
+								line = line.strip() 
+								if line.find('ECM') != -1:
+									line = line.split(' ')
+									eEnc = line[1]
+									eCaid = line[5][2:-1]
+									continue
+								if line.find('source') != -1:
+									line = line.split(' ')
+									eSrc = line[4][:-1]
+									continue
+								if line.find('msec') != -1:
+									line = line.split(' ')
+									eTime = line[0]
+									continue
+							Sec_Text = "(%s %s %.3f @ %s)" % (eEnc,eCaid,(float(eTime)/1000),eSrc)
+						else:
+							reader = ecminfo.get('reader', '')
+							if reader:
+								#Oscam
+								hops = ecminfo.get('hops', None)
+								if hops and hops != '0':
+									hops = ' @' + hops
+								else:
+									hops = ''
+								Sec_Text = reader + hops + " (%ss)" % ecminfo.get('ecm time', '?')
+							else:
+								Sec_Text = ""
+	
+				pid = ecminfo.get('pid', None)
+				decCI = ecminfo.get('caid', None)
+				decCIfull=""
+				if decCI != "":
 					for idline in self.idnames:
-						IDlist = idline.split(",")
 						try:
-							if (int(decID, 16) >= int(IDlist[0], 16)) and (int(decID, 16) <= int(IDlist[1], 16)):
-								decID = IDlist[2] + ":" + decID.upper()
+							if decCI.upper() >= idline[0].upper() and decCI.upper() <= idline[1].upper():
+								decCIfull = idline[2] + ":" + decCI
 								break
 						except:
 							pass
-				Sec_Text = decFrom + " @" + eHops + " (%ss) " % eMasTime + decID + " pid:" + ePid
+			
+				Sec_Text += sep + decCIfull + sep + "pid:" + pid
 	
-			try:
-				searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
-				for idline in self.idnames:
-					IDlist = idline.split(",")
-					color = "\c007?7?7?"
-					for oneID in searchIDs:
-						if (oneID >= int(IDlist[0], 16)) and (oneID <= int(IDlist[1], 16)):
-							color="\c00????00"
-							if (oneID == int(decCI, 16)):
-								color="\c0000??00"
-								break
-					res = res + color + IDlist[3] + " "
+				res = ""			
+				try:
+					searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
+					for idline in self.idnames:
+						color = "\c007?7?7?"
+						for oneID in searchIDs:
+							if (oneID >= int(idline[0], 16)) and (oneID <= int(idline[1], 16)):
+								color="\c00????00"
+								if oneID == int(decCI,16):
+									color="\c0000??00"
+									break
+						res += color + idline[3] + " "
+				except:
+					pass
+		
+				Ret_Text += "\n" + res + "\c00?????? " + Sec_Text
 			except:
+				Ret_Text += "\n\c007?7?7?S V I Nd Co Cw B N" + "\c00?????? No expert cryptinfo available" 
 				pass
-	
-			Ret_Text += "\n" + res + "\c00?????? " + Sec_Text
 		else:
-			Ret_Text += "\n\c007?7?7?S V I Nd Co Cw B N" + "\c00?????? FTA" 
-
+			Ret_Text += "\n\c007?7?7?S V I Nd Co Cw B N" + "\c00?????? FTA"
 
 		return Ret_Text
 
