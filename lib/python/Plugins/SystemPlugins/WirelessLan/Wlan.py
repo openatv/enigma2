@@ -265,7 +265,7 @@ class wpaSupplicant:
 				fp.write('\tssid="'+essid+'"\n')
 			fp.write('\tscan_ssid=0\n')			
 			if encrypted:
-				if encryption == 'WPA' or encryption == 'WPA2' or encryption == 'WPA/WPA2' :
+				if encryption in ('WPA', 'WPA2', 'WPA/WPA2'):
 					fp.write('\tkey_mgmt=WPA-PSK\n')
 					
 					if encryption == 'WPA':
@@ -273,15 +273,14 @@ class wpaSupplicant:
 						fp.write('\tpairwise=TKIP\n')
 						fp.write('\tgroup=TKIP\n')
 					elif encryption == 'WPA2':
+						fp.write('\tproto=RSN\n')
+						fp.write('\tpairwise=CCMP\n')
+						fp.write('\tgroup=CCMP\n')
+					else:
 						fp.write('\tproto=WPA RSN\n')
 						fp.write('\tpairwise=CCMP TKIP\n')
-						fp.write('\tgroup=CCMP TKIP\n')						
-					else:
-						fp.write('\tproto=WPA WPA2\n')
-						fp.write('\tpairwise=CCMP\n')
-						fp.write('\tgroup=TKIP\n')					
+						fp.write('\tgroup=CCMP TKIP\n')
 					fp.write('\tpsk="'+psk+'"\n')
-						
 				elif encryption == 'WEP':
 					fp.write('\tkey_mgmt=NONE\n')
 					if wepkeytype == 'ASCII':
