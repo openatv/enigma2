@@ -171,11 +171,11 @@ class Network:
 					if iface.has_key('gateway'):
 						fp.write("	gateway %d.%d.%d.%d\n" % tuple(iface['gateway']))
 			if iface.has_key("configStrings"):
-				fp.write("\n" + iface["configStrings"] + "\n")
+				fp.write(iface["configStrings"])
 			if iface["preup"] is not False and not iface.has_key("configStrings"):
 				fp.write(iface["preup"])
 				fp.write(iface["postdown"])
-			fp.write("\n")				
+			fp.write("\n")
 		fp.close()
 		self.writeNameserverConfig()
 
