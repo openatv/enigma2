@@ -408,6 +408,7 @@ class Status:
 	def stopWlanConsole(self):
 		if self.WlanConsole is not None:
 			print "killing self.WlanConsole"
+			self.WlanConsole.killAll()
 			self.WlanConsole = None
 			
 	def getDataForInterface(self, iface, callback = None):
