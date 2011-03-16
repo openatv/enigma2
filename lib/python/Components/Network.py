@@ -20,9 +20,8 @@ class Network:
 		self.Console = Console()
 		self.LinkConsole = Console()
 		self.restartConsole = Console()
-		self.deactivateConsole = Console()
 		self.deactivateInterfaceConsole = Console()
-		self.activateConsole = Console()
+		self.activateInterfaceConsole = Console()
 		self.resetNetworkConsole = Console()
 		self.DnsConsole = Console()
 		self.PingConsole = Console()
@@ -30,37 +29,27 @@ class Network:
 		self.friendlyNames = {}
 		self.lan_interfaces = []
 		self.wlan_interfaces = []
+		self.remoteRootFS = None
 		self.getInterfaces()
 
 	def onRemoteRootFS(self):
-		fp = file('/proc/mounts', 'r')
-		mounts = fp.readlines()
-		fp.close()
-		for line in mounts:
-			parts = line.strip().split(' ')
-			if parts[1] == '/' and (parts[2] == 'nfs' or parts[2] == 'smbfs'):
-				return True
-		return False
+		if self.remoteRootFS == None:
+			fp = file('/proc/mounts', 'r')
+			mounts = fp.readlines()
+			fp.close()
+			self.remoteRootFS = False
+			for line in mounts:
+				parts = line.strip().split()
+				if parts[1] == '/' and parts[2] == 'nfs':
+					self.remoteRootFS = True
+					break
+		return self.remoteRootFS
 
 	def getInterfaces(self, callback = None):
-		devicesPattern = re_compile('[a-z]+[0-9]+')
 		self.configuredInterfaces = []
-		fp = file('/proc/net/dev', 'r')
-		result = fp.readlines()
-		fp.close()
-		for line in result:
-			try:
-				device = devicesPattern.search(line).group()
-				if device in ('wifi0', 'wmaster0'):
-					continue
-				self.getDataForInterface(device, callback)
-			except AttributeError:
-				pass
-		#print "self.ifaces:", self.ifaces
-		#self.writeNetworkConfig()
-		#print ord(' ')
-		#for line in result:
-		#	print ord(line[0])
+		for device in listdir('/sys/class/net'):
+			if not device in ('lo','wifi0', 'wmaster0'):
+				self.getAddrInet(device, callback)
 
 	# helper function
 	def regExpMatch(self, pattern, string):
@@ -73,17 +62,12 @@ class Network:
 
 	# helper function to convert ips from a sring to a list of ints
 	def convertIP(self, ip):
-		strIP = ip.split('.')
-		ip = []
-		for x in strIP:
-			ip.append(int(x))
-		return ip
+		return [ int(n) for n in ip.split('.') ]
 
-	def getDataForInterface(self, iface,callback):
-		#get ip out of ip addr, as avahi sometimes overrides it in ifconfig.
+	def getAddrInet(self, iface, callback):
 		if not self.Console:
 			self.Console = Console()
-		cmd = "ip -o addr"
+		cmd = "ip -o addr show dev " + iface
 		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
 
 	def IPaddrFinished(self, result, retval, extra_args):
@@ -178,6 +162,7 @@ class Network:
 				fp.write(iface["predown"])
 			fp.write("\n")
 		fp.close()
+		self.configuredNetworkAdapters = self.configuredInterfaces
 		self.writeNameserverConfig()
 
 	def writeNameserverConfig(self):
@@ -268,45 +253,6 @@ class Network:
 
 		print "nameservers:", self.nameservers
 
-	def deactivateNetworkConfig(self, callback = None):
-		if self.onRemoteRootFS():
-			if callback is not None:
-				callback(True)
-			return
-		self.deactivateConsole = Console()
-		self.commands = []
-		self.commands.append("/etc/init.d/avahi-daemon stop")
-		for iface in self.ifaces.keys():
-			cmd = "ip addr flush " + iface
-			self.commands.append(cmd)		
-		self.commands.append("/etc/init.d/networking stop")
-		self.commands.append("killall -9 udhcpc")
-		self.commands.append("rm /var/run/udhcpc*")
-		self.deactivateConsole.eBatch(self.commands, self.deactivateNetworkFinished, callback, debug=True)
-		
-	def deactivateNetworkFinished(self,extra_args):
-		callback = extra_args
-		if len(self.deactivateConsole.appContainers) == 0:
-			if callback is not None:
-				callback(True)
-
-	def activateNetworkConfig(self, callback = None):
-		if self.onRemoteRootFS():
-			if callback is not None:
-				callback(True)
-			return
-		self.activateConsole = Console()
-		self.commands = []
-		self.commands.append("/etc/init.d/networking start")
-		self.commands.append("/etc/init.d/avahi-daemon start")
-		self.activateConsole.eBatch(self.commands, self.activateNetworkFinished, callback, debug=True)
-		
-	def activateNetworkFinished(self,extra_args):
-		callback = extra_args
-		if len(self.activateConsole.appContainers) == 0:
-			if callback is not None:
-				callback(True)
-
 	def getConfiguredAdapters(self):
 		return self.configuredNetworkAdapters
 
@@ -337,26 +283,28 @@ class Network:
 				return _("WLAN connection") + " " + str(len(self.wlan_interfaces))
 
 	def getFriendlyAdapterDescription(self, iface):
-		if iface == 'eth0':
-			return _("Internal LAN adapter.")
+		if not self.isWirelessInterface(iface):
+			return _('Ethernet network interface')
+
+		moduledir = self.sysfsPath(iface) + '/device/driver/module'
+		if not os_path.isdir(moduledir):
+			tmpfiles = listdir(self.sysfsPath(iface) + '/device')
+			for x in tmpfiles:
+				if x.startswith("1-"):
+					moduledir = self.sysfsPath(iface) + '/device/' + x + '/driver/module'
+
+		if os_path.isdir(moduledir):
+			name = os_path.basename(os_path.realpath(moduledir))
+			if name in ('ath_pci','ath5k'):
+				name = 'Atheros'
+			elif name in ('rt73','rt73usb','rt3070sta'):
+				name = 'Ralink'
+			elif name == 'zd1211b':
+				name = 'Zydas'
 		else:
-			classdir = "/sys/class/net/" + iface + "/device/"
-			driverdir = "/sys/class/net/" + iface + "/device/driver/"
-			if os_path.exists(classdir):
-				files = listdir(classdir)
-				if 'driver' in files:
-					if os_path.realpath(driverdir).endswith('ath_pci'):
-						return _("Atheros")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
-					elif os_path.realpath(driverdir).endswith('zd1211b'):
-						return _("Zydas")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
-					elif os_path.realpath(driverdir).endswith('rt73'):
-						return _("Ralink")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
-					elif os_path.realpath(driverdir).endswith('rt73usb'):
-						return _("Ralink")+ " " + str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
-					else:
-						return str(os_path.basename(os_path.realpath(driverdir))) + " " + _("WLAN adapter.") 
-				else:
-					return _("Unknown network adapter.")
+			name = _('Unknown')
+
+		return name + ' ' + _('wireless network interface')
 
 	def getAdapterName(self, iface):
 		return iface
@@ -404,16 +352,12 @@ class Network:
 					self.nameservers[i] = newnameserver
 
 	def resetNetworkConfig(self, mode='lan', callback = None):
-		if self.onRemoteRootFS():
-			if callback is not None:
-				callback(True)
-			return
 		self.resetNetworkConsole = Console()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
-			cmd = "ip addr flush " + iface
-			self.commands.append(cmd)		
+			if iface != 'eth0' or not self.onRemoteRootFS():
+				self.commands.append("ip addr flush dev " + iface)	
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -487,18 +431,15 @@ class Network:
 					statecallback(self.NetworkState)
 		
 	def restartNetwork(self,callback = None):
-		if self.onRemoteRootFS():
-			if callback is not None:
-				callback(True)
-			return
 		self.restartConsole = Console()
 		self.config_ready = False
 		self.msgPlugins()
 		self.commands = []
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
-			cmd = "ip addr flush " + iface
-			self.commands.append(cmd)		
+			if iface != 'eth0' or not self.onRemoteRootFS():
+				self.commands.append("ifdown " + iface)
+				self.commands.append("ip addr flush dev " + iface)
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -555,9 +496,13 @@ class Network:
 					
 	def stopDeactivateInterfaceConsole(self):
 		if self.deactivateInterfaceConsole is not None:
-			if len(self.deactivateInterfaceConsole.appContainers):
-				for name in self.deactivateInterfaceConsole.appContainers.keys():
-					self.deactivateInterfaceConsole.kill(name)
+			self.deactivateInterfaceConsole.killAll()
+			self.deactivateInterfaceConsole = None
+
+	def stopActivateInterfaceConsole(self):
+		if self.activateInterfaceConsole is not None:
+			self.activateInterfaceConsole.killAll()
+			self.activateInterfaceConsole = None
 					
 	def checkforInterface(self,iface):
 		if self.getAdapterAttribute(iface, 'up') is True:
@@ -590,18 +535,35 @@ class Network:
 				if len(self.DnsConsole.appContainers) == 0:
 					statecallback(self.DnsState)
 
-	def deactivateInterface(self,iface,callback = None):
-		if self.onRemoteRootFS():
-			if callback is not None:
-				callback(True)
-			return
-		self.deactivateInterfaceConsole = Console()
-		self.commands = []
-		cmd1 = "ip addr flush " + iface
-		cmd2 = "ifconfig " + iface + " down"
-		self.commands.append(cmd1)
-		self.commands.append(cmd2)
-		self.deactivateInterfaceConsole.eBatch(self.commands, self.deactivateInterfaceFinished, callback, debug=True)
+	def deactivateInterface(self,ifaces,callback = None):
+		self.config_ready = False
+		self.msgPlugins()
+		commands = []
+		if not self.deactivateInterfaceConsole:
+			self.deactivateInterfaceConsole = Console()
+		if isinstance(ifaces, (list, tuple)):
+			for iface in ifaces:
+				if iface != 'eth0' or not self.onRemoteRootFS():
+					commands.append("ifdown " + iface)
+					commands.append("ip addr flush dev " + iface)
+					# HACK: wpa_supplicant sometimes doesn't quit properly on SIGTERM
+					if os_path.exists('/var/run/wpa_supplicant/'+ iface):
+						commands.append("killall -9 wpa_supplicant")
+						commands.append("rm -rf /var/run/wpa_supplicant/" + iface)
+			self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, callback, debug=True)
+		else:
+			iface = ifaces
+			if iface == 'eth0' and self.onRemoteRootFS():
+				if callback is not None:
+					callback(True)
+				return
+			commands.append("ifdown " + iface)
+			commands.append("ip addr flush dev " + iface)
+			# HACK: wpa_supplicant sometimes doesn't quit properly on SIGTERM
+			if os_path.exists('/var/run/wpa_supplicant/'+ iface):
+				commands.append("killall -9 wpa_supplicant")
+				commands.append("rm -rf /var/run/wpa_supplicant/" + iface)
+			self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, callback, debug=True)
 
 	def deactivateInterfaceFinished(self,extra_args):
 		callback = extra_args
@@ -610,39 +572,56 @@ class Network:
 				if callback is not None:
 					callback(True)
 
-	def detectWlanModule(self, iface = None):
-		self.wlanmodule = None
-		classdir = "/sys/class/net/" + iface + "/device/"
-		driverdir = "/sys/class/net/" + iface + "/device/driver/"
-		if os_path.exists(classdir):
-			classfiles = listdir(classdir)
-			driver_found = False
-			nl80211_found = False
-			for x in classfiles:
-				if x == 'driver':
-					driver_found = True
-				if x.startswith('ieee80211:'):
-					nl80211_found = True
+	def activateInterface(self,iface,callback = None):
+		if iface == 'eth0' and self.onRemoteRootFS():
+			if callback is not None:
+				callback(True)
+			return
+		if not self.activateInterfaceConsole:
+			self.activateInterfaceConsole = Console()
+		commands = []
+		commands.append("ifup " + iface)
+		self.deactivateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
 
-			if driver_found and nl80211_found:
-				#print about.getKernelVersionString()
-				self.wlanmodule = "nl80211"
-			else:
-				if driver_found and not nl80211_found:
-					driverfiles = listdir(driverdir)
-					if os_path.realpath(driverdir).endswith('ath_pci'):
-						if len(driverfiles) >= 1:
-							self.wlanmodule = 'madwifi'
-					if os_path.realpath(driverdir).endswith('rt73'):
-						if len(driverfiles) == 2 or len(driverfiles) == 5:
-							self.wlanmodule = 'ralink'					
-					if os_path.realpath(driverdir).endswith('zd1211b'):
-						if len(driverfiles) == 1 or len(driverfiles) == 5:
-							self.wlanmodule = 'zydas'
-			if self.wlanmodule is None:
-				self.wlanmodule = "wext"
-			print 'Using "%s" as wpa-supplicant driver' % (self.wlanmodule)
-			return self.wlanmodule
+	def activateInterfaceFinished(self,extra_args):
+		callback = extra_args
+		if self.activateInterfaceConsole:
+			if len(self.activateInterfaceConsole.appContainers) == 0:
+				if callback is not None:
+					callback(True)
+
+	def sysfsPath(self, iface):
+		return '/sys/class/net/' + iface
+
+	def isWirelessInterface(self, iface):
+		return os_path.isdir(self.sysfsPath(iface) + '/wireless')
+
+	def detectWlanModule(self, iface = None):
+		if not self.isWirelessInterface(iface):
+			return None
+
+		devicedir = self.sysfsPath(iface) + '/device'
+		if os_path.isdir(devicedir + '/ieee80211'):
+			return 'nl80211'
+
+		moduledir = devicedir + "/driver/module"
+		if not os_path.isdir(moduledir):
+			tmpfiles = listdir(devicedir)
+			for x in tmpfiles:
+				if x.startswith("1-"):
+					moduledir = devicedir + "/" + x + "/driver/module"
+					
+		if os_path.isdir(moduledir):
+			module = os_path.basename(os_path.realpath(moduledir))
+			if module in ('ath_pci','ath5k'):
+				return 'madwifi'
+			if module in ('rt73','rt73'):
+				return 'ralink'
+			if module == 'zd1211b':
+				return 'zydas'
+			if module in ('rt3070sta'):
+				return 'wext'		
+		return 'wext'
 	
 	def calc_netmask(self,nmask):
 		from struct import pack, unpack
