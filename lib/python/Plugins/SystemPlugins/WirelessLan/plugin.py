@@ -8,7 +8,7 @@ from Components.Sources.List import List
 from Components.MenuList import MenuList
 from Components.config import config, getConfigListEntry, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.ConfigList import ConfigListScreen
-from Components.Network import Network, iNetwork
+from Components.Network import iNetwork
 from Components.Console import Console
 from Plugins.Plugin import PluginDescriptor
 from os import system, path as os_path, listdir
@@ -17,6 +17,8 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.HardwareInfo import HardwareInfo
 from Wlan import Wlan, wpaSupplicant, iStatus
 import sha
+from time import time
+from os import urandom
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
@@ -399,24 +401,25 @@ def decrypt_block(src, mod):
 		return dest
 	return None
 
-def validate_cert(cert, key):
+def validate_certificate(cert, key):
 	buf = decrypt_block(cert[8:], key) 
 	if buf is None:
 		return None
 	return buf[36:107] + cert[139:196]
 
-def read_random():
+def get_random():
 	try:
-		fd = open("/dev/urandom", "r")
-		buf = fd.read(8)
-		fd.close()
-		return buf
+		xor = lambda a,b: ''.join(chr(ord(c)^ord(d)) for c,d in zip(a,b*100))
+		random = urandom(8)
+		x = str(time())[-8:]
+		result = xor(random, x)
+				
+		return result
 	except:
 		return None
 
 def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
-
 
 def callFunction(iface):
 	w = Wlan(iface)
@@ -424,8 +427,12 @@ def callFunction(iface):
 	if i:
 		if iface in i:
 			return WlanStatusScreenMain
+		else:
+			if iNetwork.isWirelessInterface(iface):
+				return WlanStatusScreenMain
+			else:
+				return None
 	return None
-
 
 def configStrings(iface):
 	hardware_info = HardwareInfo()
@@ -435,17 +442,16 @@ def configStrings(iface):
 		l2cert = etpm.getCert(eTPM.TPMD_DT_LEVEL2_CERT)
 		if l2cert is None:
 			return
-		l2key = validate_cert(l2cert, rootkey)
+		l2key = validate_certificate(l2cert, rootkey)
 		if l2key is None:
 			return
 		l3cert = etpm.getCert(eTPM.TPMD_DT_LEVEL3_CERT)
 		if l3cert is None:
-			print "better run the genuine dreambox plugin"
 			return
-		l3key = validate_cert(l3cert, l2key)
+		l3key = validate_certificate(l3cert, l2key)
 		if l3key is None:
 			return
-		rnd = read_random()
+		rnd = get_random()
 		if rnd is None:
 			return
 		val = etpm.challenge(rnd)
@@ -454,10 +460,11 @@ def configStrings(iface):
 		driver = iNetwork.detectWlanModule(iface)
 	else:
 		driver = 'dreambox'
+	print 'Using "%s" as wpa-supplicant driver' % (driver)
 	ret = ""
-	if driver == 'madwifi' and config.plugins.wlan.essid.value == "hidden...":
+	if config.plugins.wlan.essid.value == "hidden...":
 		ret += "\tpre-up iwconfig " + iface + " essid \"" + config.plugins.wlan.hiddenessid.value + "\" || true\n"
-	ret += "\tpre-up wpa_supplicant -i" + iface + " -c/etc/wpa_supplicant.conf -B -dd -D" + driver + " || true\n"
+	ret += "\tpre-up wpa_supplicant -i" + iface + " -c/etc/" + iface + "_wpa_supplicant.conf -B -dd -D" + driver + " || true\n"
 	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
 
