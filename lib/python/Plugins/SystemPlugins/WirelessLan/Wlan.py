@@ -1,7 +1,7 @@
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Console import Console
 
-from os import system
+from os import system, path as os_path
 from string import maketrans, strip
 import sys
 import types
@@ -46,20 +46,18 @@ class Wlan:
 
 	def stopWlanConsole(self):
 		if self.WlanConsole is not None:
-			print "killing self.WlanConsole"
+			print "[Wlan] killing self.WlanConsole"
+			self.WlanConsole.killAll()
 			self.WlanConsole = None
 			del self.WlanConsole
 			
 	def getDataForInterface(self, callback = None):
-		#get ip out of ip addr, as avahi sometimes overrides it in ifconfig.
-		print "self.iface im getDataForInterface",self.iface
 		if len(self.WlanConsole.appContainers) == 0:
 			self.WlanConsole = Console()
 			cmd = "iwconfig " + self.iface
 			self.WlanConsole.ePopen(cmd, self.iwconfigFinished, callback)
 
 	def iwconfigFinished(self, result, retval, extra_args):
-		print "self.iface im iwconfigFinished",self.iface
 		callback = extra_args
 		data = { 'essid': False, 'frequency': False, 'acesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False }
 		
@@ -85,7 +83,6 @@ class Wlan:
 							ssid = _("Hidden networkname")
 						else:
 							ssid = tmpssid						
-
 				if ssid is not None:
 					data['essid'] = ssid
 			if 'Frequency' in line:
@@ -122,44 +119,29 @@ class Wlan:
 		self.wlaniface[self.iface] = data
 		
 		if len(self.WlanConsole.appContainers) == 0:
-			print "self.wlaniface after loading:", self.wlaniface
-			self.WlanConsole = None
+			print "[Wlan.py] self.wlaniface after loading:", self.wlaniface
 			if callback is not None:
 				callback(True,self.wlaniface)
 
 	def getAdapterAttribute(self, attribute):
 		if self.wlaniface.has_key(self.iface):
-			print "self.wlaniface.has_key",self.iface
+			print "[Wlan.py] self.wlaniface.has_key",self.iface
 			if self.wlaniface[self.iface].has_key(attribute):
 				return self.wlaniface[self.iface][attribute]
 		return None
 		
 	def asciify(self, str):
 		return str.translate(self.asciitrans)
-
 	
 	def getWirelessInterfaces(self):
-		device = re_compile('[a-z]{2,}[0-9]*:')
-		ifnames = []
+		return getWNICnames()
 
-		fp = open('/proc/net/wireless', 'r')
-		for line in fp:
-			try:
-				# append matching pattern, without the trailing colon
-				ifnames.append(device.search(line).group()[:-1])
-			except AttributeError:
-				pass
-		return ifnames
-
-	
 	def getNetworkList(self):
 		system("ifconfig "+self.iface+" up")
 		ifobj = Wireless(self.iface) # a Wireless NIC Object
-		
 		#Association mappings
 		#stats, quality, discard, missed_beacon = ifobj.getStatistics()
 		#snr = quality.signallevel - quality.noiselevel
-
 		try:
 			scanresults = ifobj.scan()
 		except:
@@ -210,7 +192,6 @@ class Wlan:
 				#print "GOT APS ENTRY:",aps[bssid]
 				index = index + 1
 			return aps
-
 		
 	def getStatus(self):
 		ifobj = Wireless(self.iface)
@@ -228,28 +209,25 @@ class Wlan:
 				  'channel': str(self.channel),
 				  #'channel': str(fq.getChannel(str(ifobj.getFrequency()[0:-3]))),
 		}
-		
 		for (key, item) in status.items():
 			if item is "None" or item is "":
 					status[key] = _("N/A")
-				
 		return status
 
 
 class wpaSupplicant:
-	def __init__(self):
+	def __init__(self, iface):
+		self.iface = iface
 		pass
-	
 		
 	def writeConfig(self):	
-			
 			essid = config.plugins.wlan.essid.value
 			hiddenessid = config.plugins.wlan.hiddenessid.value
 			encrypted = config.plugins.wlan.encryption.enabled.value
 			encryption = config.plugins.wlan.encryption.type.value
 			wepkeytype = config.plugins.wlan.encryption.wepkeytype.value
 			psk = config.plugins.wlan.encryption.psk.value
-			fp = file('/etc/wpa_supplicant.conf', 'w')
+			fp = file('/etc/' + self.iface + '_wpa_supplicant.conf', 'w')
 			fp.write('#WPA Supplicant Configuration by enigma2\n')
 			fp.write('ctrl_interface=/var/run/wpa_supplicant\n')
 			fp.write('eapol_version=1\n')
@@ -292,12 +270,16 @@ class wpaSupplicant:
 			fp.write('}')
 			fp.write('\n')
 			fp.close()
-			system("cat /etc/wpa_supplicant.conf")
+			system('cat /etc/' + self.iface + '_wpa_supplicant.conf')
 		
 	def loadConfig(self):
+		configfile = '/etc/wpa_supplicant.conf'
+		if os_path.isfile('/etc/' + self.iface + '_wpa_supplicant.conf'):
+			configfile = '/etc/' + self.iface + '_wpa_supplicant.conf'
+		print "[wpaSupplicant] using configfile:",configfile
 		try:
 			#parse the wpasupplicant configfile
-			fp = file('/etc/wpa_supplicant.conf', 'r')
+			fp = file(configfile, 'r')
 			supplicant = fp.readlines()
 			fp.close()
 			ap_scan = False
@@ -324,7 +306,6 @@ class wpaSupplicant:
 						mode = 'WPA2'
 					if split[1] in ('WPA RSN', 'WPA WPA2'):
 						mode = 'WPA/WPA2'
-
 					config.plugins.wlan.encryption.type.value = mode
 					print "[Wlan.py] Got Encryption: "+mode
 					
@@ -372,9 +353,8 @@ class wpaSupplicant:
 						wsconfig['encryption_wepkeytype'] = "ASCII"
 					if key == 'encryption':
 						wsconfig['key'] = "mysecurewlan"
-
 		except:
-			print "[Wlan.py] Error parsing /etc/wpa_supplicant.conf"
+			print "[Wlan.py] Error parsing ",configfile
 			wsconfig = {
 					'hiddenessid': "home",
 					'ssid': "home",
@@ -395,7 +375,7 @@ class Status:
 
 	def stopWlanConsole(self):
 		if self.WlanConsole is not None:
-			print "killing self.WlanConsole"
+			print "[iStatus] killing self.WlanConsole"
 			self.WlanConsole.killAll()
 			self.WlanConsole = None
 			
@@ -458,15 +438,18 @@ class Status:
 						enc = _("Unsupported")
 					else:
 						enc = _("Disabled")
-				else:
+				elif "Security" in line:
 					enc = line[line.index('Encryption key')+15 :line.index('   Security')]
 					if enc is not None:
 						enc = _("Enabled")
+				else:
+					enc = line[line.index('Encryption key')+15 :len(line)]
+					if enc is not None:
+						enc = _("Enabled")					
 				if enc is not None:
 					data['encryption'] = enc
 			if 'Quality' in line:
 				if "/100" in line:
-					#qual = line[line.index('Quality')+8:line.index('/100')]
 					qual = line[line.index('Quality')+8:line.index('  Signal')]
 				else:
 					qual = line[line.index('Quality')+8:line.index('Sig')]
@@ -494,7 +477,7 @@ class Status:
 		
 		if self.WlanConsole is not None:
 			if len(self.WlanConsole.appContainers) == 0:
-				print "self.wlaniface after loading:", self.wlaniface
+				print "[Wlan.py] self.wlaniface after loading:", self.wlaniface
 				if callback is not None:
 					callback(True,self.wlaniface)
 
