@@ -267,7 +267,7 @@ class wpaSupplicant:
 			if encrypted:
 				if encryption in ('WPA', 'WPA2', 'WPA/WPA2'):
 					fp.write('\tkey_mgmt=WPA-PSK\n')
-					
+		
 					if encryption == 'WPA':
 						fp.write('\tproto=WPA\n')
 						fp.write('\tpairwise=TKIP\n')
@@ -318,22 +318,15 @@ class wpaSupplicant:
 					
 				elif split[0] == 'proto':
 					config.plugins.wlan.encryption.enabled.value = True
-					if split[1] == "WPA" :
+					if split[1] == 'WPA' :
 						mode = 'WPA'
-					if split[1] == "WPA WPA2" :
-						mode = 'WPA/WPA2'
-					if split[1] == "WPA RSN" :
+					if split[1] == 'RSN':
 						mode = 'WPA2'
+					if split[1] in ('WPA RSN', 'WPA WPA2'):
+						mode = 'WPA/WPA2'
+
 					config.plugins.wlan.encryption.type.value = mode
 					print "[Wlan.py] Got Encryption: "+mode
-					
-				#currently unused !
-				#elif split[0] == 'key_mgmt':
-				#	print "split[1]",split[1]
-				#	if split[1] == "WPA-PSK" :
-				#		config.plugins.wlan.encryption.enabled.value = True
-				#		config.plugins.wlan.encryption.type.value = "WPA/WPA2"
-				#	print "[Wlan.py] Got Encryption: "+ config.plugins.wlan.encryption.type.value
 					
 				elif split[0] == 'wep_key0':
 					config.plugins.wlan.encryption.enabled.value = True
@@ -393,10 +386,6 @@ class wpaSupplicant:
 		print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
 
-	
-	def restart(self, iface):
-		system("start-stop-daemon -K -x /usr/sbin/wpa_supplicant")
-		system("start-stop-daemon -S -x /usr/sbin/wpa_supplicant -- -B -i"+iface+" -c/etc/wpa_supplicant.conf")
 
 class Status:
 	def __init__(self):
