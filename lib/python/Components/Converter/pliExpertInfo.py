@@ -192,13 +192,13 @@ class pliExpertInfo(Poll, Converter, object):
 				try:
 					searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
 					for idline in self.idnames:
-						color = "\c007?7?7?"
-						for oneID in searchIDs:
-							if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
-								color="\c00????00"
-							if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16): 
-								color="\c0000??00"
-								break
+						if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):                    
+							color="\c0000??00"
+						else:
+							color = "\c007?7?7?"
+							for oneID in searchIDs:
+								if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
+									color="\c00????00"
 						res += color + idline[3] + " "
 				except:
 					pass
