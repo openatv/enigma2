@@ -128,7 +128,7 @@ def createMoveList(serviceref, dest):
 				moveList.append((candidate, os.path.join(dest, baseName+ext)))
 	return moveList
 
-def moveServiceFiles(serviceref, dest, name=None):
+def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 	moveList = createMoveList(serviceref, dest)
 	# Try to "atomically" move these files
 	movedList = []
@@ -138,7 +138,7 @@ def moveServiceFiles(serviceref, dest, name=None):
 				os.rename(item[0], item[1])
 				movedList.append(item)
 		except OSError, e:
-			if e.errno == 18:
+			if e.errno == 18 and allowCopy:
 				print "[MovieSelection] cannot rename across devices, trying slow move"
 				import CopyFiles
 				# start with the smaller files, do the big one later.
@@ -1170,7 +1170,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 					if cur_path.startswith(trash):
 						msg = _("Deleted items") + "\n"
 					else:
-						moveServiceFiles(self.getCurrent(), trash)
+						moveServiceFiles(self.getCurrent(), trash, name, allowCopy=False)
 						self["list"].removeService(current)
 						# Files were moved to .Trash, ok.
 						return
