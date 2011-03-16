@@ -82,6 +82,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.originalAth0State = None
 		self.originalEth0State = None
 		self.originalWlan0State = None
+		self.originalRa0State = None
 		self.originalInterfaceStateChanged = False
 		self.Text = None
 		self.rescanTimer = eTimer()
@@ -110,6 +111,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.originalAth0State = iNetwork.getAdapterAttribute('ath0', 'up')
 		self.originalEth0State = iNetwork.getAdapterAttribute('eth0', 'up')
 		self.originalWlan0State = iNetwork.getAdapterAttribute('wlan0', 'up')
+		self.originalRa0State = iNetwork.getAdapterAttribute('ra0', 'up')
 
 	def selectInterface(self):
 		self.InterfaceState = None
@@ -151,7 +153,9 @@ class NetworkWizard(WizardLanguage, Rc):
 		if self.originalWlan0State is False and self.originalInterfaceStateChanged is False:
 			if iNetwork.checkforInterface('wlan0') is True:
 				iNetwork.deactivateInterface('wlan0')
-
+		if self.originalRa0State is False and self.originalInterfaceStateChanged is False:
+			if iNetwork.checkforInterface('ra0') is True:
+				iNetwork.deactivateInterface('ra0')
 	def listInterfaces(self):
 		self.rescanTimer.stop()
 		self.checkOldInterfaceState()
@@ -183,7 +187,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				#Reset Network to defaults if network broken
 				iNetwork.resetNetworkConfig('lan', self.resetNetworkConfigCB)
 				self.resetRef = self.session.openWithCallback(self.resetNetworkConfigFinished, MessageBox, _("Please wait while we prepare your network interfaces..."), type = MessageBox.TYPE_INFO, enable_input = False)
-			if iface in ('eth0', 'wlan0', 'ath0'):
+			if iface in ('eth0', 'wlan0', 'ath0', 'ra0'):
 				if iface in iNetwork.configuredNetworkAdapters and len(iNetwork.configuredNetworkAdapters) == 1:
 					if iNetwork.getAdapterAttribute(iface, 'up') is True:
 						self.isInterfaceUp = True
@@ -232,7 +236,7 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def AdapterSetupEndCB(self,data):
 		if data is True:
-			if self.selectedInterface in ('wlan0', 'ath0'):
+			if iNetwork.isWirelessInterface(self.selectedInterface):
 				if self.WlanPluginInstalled == True:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
@@ -275,7 +279,7 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def checkNetworkCB(self,data):
 		if data is True:
-			if self.selectedInterface in ('wlan0', 'ath0'):
+			if iNetwork.isWirelessInterface(self.selectedInterface):
 				if self.WlanPluginInstalled == True:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
