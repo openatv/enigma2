@@ -196,9 +196,9 @@ class pliExpertInfo(Poll, Converter, object):
 						for oneID in searchIDs:
 							if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
 								color="\c00????00"
-								if oneID == int(decCI, 16):
-									color="\c0000??00"
-									break
+							if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16): 
+								color="\c0000??00"
+								break
 						res += color + idline[3] + " "
 				except:
 					pass
