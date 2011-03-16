@@ -43,7 +43,6 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		self["introduction"] = StaticText(self.edittext)
 		
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
-		print "[NetworkAdapterSelection] self.adapters",self.adapters
 		
 		if not self.adapters:
 			self.onFirstExecBegin.append(self.NetworkFallback)
