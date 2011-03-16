@@ -31,7 +31,7 @@ class pliExpertInfo(Poll, Converter, object):
 		self.idnames = (
 			( "0x100", "0x1FF","Seca"   ,"S" ),
 			( "0x500", "0x5FF","Via"    ,"V" ),
-			( "0x600", "0x6FF","Ideto"  ,"I" ),
+			( "0x600", "0x6FF","Irdeto" ,"I" ),
 			( "0x900", "0x9FF","NDS"    ,"Nd"),
 			( "0xB00", "0xBFF","Conax"  ,"Co"),
 			( "0xD00", "0xDFF","CryptoW","Cw"),
@@ -63,7 +63,7 @@ class pliExpertInfo(Poll, Converter, object):
 		prvd = info.getInfoString(iServiceInformation.sProvider)
 		Ret_Text = self.short(prvd)
 
-		frontendDataOrg = (feinfo and feinfo.getAll(True))
+		frontendDataOrg = (feinfo and feinfo.getAll(False))
 		if (frontendDataOrg is not None):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
 			if ((frontendDataOrg.get("tuner_type") == "DVB-S") or (frontendDataOrg.get("tuner_type") == "DVB-C")):
@@ -175,11 +175,12 @@ class pliExpertInfo(Poll, Converter, object):
 	
 				pid = ecminfo.get('pid', None)
 				decCI = ecminfo.get('caid', None)
-				decCIfull=""
+				
+				decCIfull = ""
 				if decCI != "":
 					for idline in self.idnames:
 						try:
-							if decCI.upper() >= idline[0].upper() and decCI.upper() <= idline[1].upper():
+							if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
 								decCIfull = idline[2] + ":" + decCI
 								break
 						except:
@@ -193,9 +194,9 @@ class pliExpertInfo(Poll, Converter, object):
 					for idline in self.idnames:
 						color = "\c007?7?7?"
 						for oneID in searchIDs:
-							if (oneID >= int(idline[0], 16)) and (oneID <= int(idline[1], 16)):
+							if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
 								color="\c00????00"
-								if oneID == int(decCI,16):
+								if oneID == int(decCI, 16):
 									color="\c0000??00"
 									break
 						res += color + idline[3] + " "
