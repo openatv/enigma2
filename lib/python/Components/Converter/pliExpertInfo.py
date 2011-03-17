@@ -103,18 +103,17 @@ class pliExpertInfo(Poll, Converter, object):
 			provid = data[2]
 			pid = data[3]	
 
-			decCIfull = ''
 			if decCI != '0':
+				decCIfull = "%04x" % int(decCI, 16)
 				for idline in self.idnames:
-					try:
-						if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
-							decCIfull = idline[2] + ":" + decCI
-							break
-					except:
-						pass
-				Sec_Text += sep + decCIfull
-			if pid != '0':
-				Sec_Text += sep + "pid:" + pid
+					if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):
+						decCIfull = idline[2] + ":" + decCIfull
+						break
+				Sec_Text += "\n" + decCIfull
+				if provid != '0':
+					Sec_Text += ":%04x" % int(provid, 16)
+				if pid != '0':
+					Sec_Text += sep + "pid:%04x" % int(pid, 16)
 			
 		else:
 			Sec_Text = "FTA"
