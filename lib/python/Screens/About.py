@@ -54,6 +54,19 @@ class About(Screen):
 	def showTranslationInfo(self):
 		self.session.open(TranslationInfo)
 
+	def createSummary(self):
+		return AboutSummary
+
+class AboutSummary(Screen):
+	skin = """
+	<screen position="0,0" size="132,64">
+		<widget source="selected" render="Label" position="0,0" size="124,32" font="Regular;16" />
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent = parent)
+		self["selected"] = StaticText("Enigma: " + about.getEnigmaVersionString())
+
 class TranslationInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
