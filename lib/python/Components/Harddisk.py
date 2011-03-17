@@ -216,7 +216,7 @@ class Harddisk:
 			fspath = path.realpath(parts[0])
 			if path.realpath(fspath) == dev:
 				print "[Harddisk] mounting:", fspath
-				cmd = "mount -t ext3 " + fspath
+				cmd = "mount " + fspath
 				res = system(cmd)
 				return (res >> 8)
 		# device is not in fstab
@@ -721,7 +721,7 @@ class MountTask(Task.LoggingTask):
 			parts = line.strip().split(" ")
 			fspath = path.realpath(parts[0])
 			if path.realpath(fspath) == dev:
-				self.setCmdline("mount -t ext3 " + fspath)
+				self.setCmdline("mount " + fspath)
 				self.postconditions.append(Task.ReturncodePostcondition())
 				return
 		# device is not in fstab
