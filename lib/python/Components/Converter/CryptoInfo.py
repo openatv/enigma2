@@ -15,12 +15,12 @@ class CryptoInfo(Poll, Converter, object):
 		self.textvalue = ""
 		self.poll_interval = 1000
 		self.poll_enabled = True
+		self.ecmdata = GetEcmInfo()
 		
 	@cached
 	def getText(self):
 		if not self.visible:
 			return ''
-		ecmdata = GetEcmInfo()
-		data = ecmdata.getEcmData()
+		data = self.ecmdata.getEcmData()
 		return data[0]
 	text = property(getText)
