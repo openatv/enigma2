@@ -36,8 +36,9 @@ class pliExpertInfo(Poll, Converter, object):
 			( "0xD00", "0xDFF","CryptoW","Cw"),
 			("0x1700","0x17FF","Beta"   ,"B" ),
 			("0x1800","0x18FF","Nagra"  ,"N" ))
+		self.ecmdata = GetEcmInfo()
+
 	@cached
-	
 	def getText(self):
 		service = self.source.service
 		info = service and service.info()
@@ -96,8 +97,7 @@ class pliExpertInfo(Poll, Converter, object):
 		decCI = "0" 
 		Sec_Text = ""
 		if (info.getInfo(iServiceInformation.sIsCrypted) == 1):
-			ecmdata = GetEcmInfo() 
-			data = ecmdata.getEcmData()
+			data = self.ecmdata.getEcmData()
 			Sec_Text = data[0]	
 			decCI = data[1]
 			provid = data[2]
