@@ -42,7 +42,6 @@ config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
 config.movielist.last_selected_tags = ConfigSet([], default=[])
 config.movielist.play_audio_internal = ConfigYesNo(default=True)
-config.movielist.copyinprogress = NoSave(ConfigInteger(default=0))
 
 userDefinedButtons = None
 
@@ -51,116 +50,6 @@ last_selected_dest = []
 AUDIO_EXTENSIONS = frozenset((".mp3", ".wav", ".ogg", ".flac", ".m4a", ".mp2", ".m2a"))
 DVD_EXTENSIONS = ('.iso', '.img')
 preferredTagEditor = None
-
-import thread
-import exceptions
-
-class InterruptedException(exceptions.Exception):
-    def __init__(self, args = None):
-        self.args = args
-
-class ThreadedJob:
-    def __init__(self):
-        # tell them ten seconds at first
-        self.secondsRemaining = 10.0
-        self.lastTick = 0
-
-        # not running yet
-        self.isPaused = False
-        self.isRunning = False
-        self.keepGoing = True
-
-    def Start(self):
-        self.keepGoing = self.isRunning = True
-        thread.start_new_thread(self.Run, ())
-        count = config.movielist.copyinprogress.value
-        count += 1
-        config.movielist.copyinprogress.value = count
-        print 'inprogress: ' + str(config.movielist.copyinprogress.value)
-        self.isPaused = False
-
-    def Stop(self):
-        self.keepGoing = False
-
-    def WaitUntilStopped(self):
-        while self.isRunning:
-            time.sleep(0.1)
-
-    def IsRunning(self):
-        return self.isRunning
-
-    def Run(self):
-        # this is overridden by the
-        # concrete ThreadedJob
-        print "Run was not overloaded"
-        self.JobFinished()
-        pass
-
-    def Pause(self):
-        self.isPaused = True
-        pass
-
-    def Continue(self):
-        self.isPaused = False
-        pass
-
-    def JobFinished(self):
-        self.isRunning = False
-        count = config.movielist.copyinprogress.value
-        count -= 1
-        config.movielist.copyinprogress.value = count
-
-class FileCopyJob(ThreadedJob):
-    """ A common file copy Job. """
-
-    def __init__(self, orig_filename, copy_filename, block_size=32*1024):
-        self.src = orig_filename
-        self.dest = copy_filename
-        self.block_size = block_size
-        ThreadedJob.__init__(self)
-
-    def Run(self):
-        """ This can either be run directly for synchronous use of the job,
-        or started as a thread when ThreadedJob.Start() is called.
-
-        It is responsible for calling JobBeginning, JobProgress, and JobFinished.
-        And as often as possible, calling PossibleStoppingPoint() which will 
-        sleep if the user pauses, and raise an exception if the user cancels.
-        """
-        self.time0 = time.clock()
-
-        try:
-            copy2(self.src,self.dest)
-        except InterruptedException:
-            print "canceled, dest deleted!"
-        self.JobFinished()
-
-class FileMoveJob(ThreadedJob):
-    """ A common file copy Job. """
-
-    def __init__(self, orig_filename, copy_filename, block_size=32*1024):
-        self.src = orig_filename
-        self.dest = copy_filename
-        self.block_size = block_size
-        ThreadedJob.__init__(self)
-
-    def Run(self):
-        """ This can either be run directly for synchronous use of the job,
-        or started as a thread when ThreadedJob.Start() is called.
-
-        It is responsible for calling JobBeginning, JobProgress, and JobFinished.
-        And as often as possible, calling PossibleStoppingPoint() which will 
-        sleep if the user pauses, and raise an exception if the user cancels.
-        """
-        self.time0 = time.clock()
-
-        try:
-            print "[MOVE by shutl]", self.src, "->", self.dest
-            move(self.src, self.dest)
-            os.rename(self.dest, self.dest)
-        except InterruptedException:
-            print "canceled, dest deleted!"
-        self.JobFinished()
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
@@ -191,8 +80,6 @@ def isTrashFolder(ref):
 	return os.path.realpath(ref.getPath()).startswith(Tools.Trashcan.getTrashFolder())
 
 def isSimpleFile(item):
-	if config.movielist.copyinprogress.value != 0:
-		return False
 	if not item:
 		return False
 	if not item[0] or not item[1]:
@@ -202,8 +89,6 @@ def isSimpleFile(item):
 canDelete = isSimpleFile
 
 def canMove(item):
-	if config.movielist.copyinprogress.value != 0:
-		return False
 	if not item:
 		return False
 	if not item[0] or not item[1]:
@@ -213,8 +98,6 @@ def canMove(item):
 	return True
 
 def canCopy(item):
-	if config.movielist.copyinprogress.value != 0:
-		return False
 	if not item:
 		return False
 	if not item[0] or not item[1]:
