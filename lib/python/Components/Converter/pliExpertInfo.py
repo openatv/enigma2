@@ -119,18 +119,16 @@ class pliExpertInfo(Poll, Converter, object):
 			Sec_Text = "FTA"
 		res = ""			
 		searchIDs = (info.getInfoObject(iServiceInformation.sCAIDs))
-		try:
-			for idline in self.idnames:
-				if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):                    
-					color="\c0000??00"
-				else:
-					color = "\c007?7?7?"
+		for idline in self.idnames:
+			if int(decCI, 16) >= int(idline[0], 16) and int(decCI, 16) <= int(idline[1], 16):                    
+				color="\c0000??00"
+			else:
+				color = "\c007?7?7?"
+				if not searchIDs == None:
 					for oneID in searchIDs:
 						if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
 							color="\c00????00"
-				res += color + idline[3] + " "
-		except:
-			pass
+			res += color + idline[3] + " "
 
 		Ret_Text += "\n" + res + "\c00?????? " + Sec_Text
 
