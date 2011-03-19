@@ -124,10 +124,12 @@ class pliExpertInfo(Poll, Converter, object):
 				color="\c0000??00"
 			else:
 				color = "\c007?7?7?"
-				if not searchIDs == None:
+				try:
 					for oneID in searchIDs:
 						if oneID >= int(idline[0], 16) and oneID <= int(idline[1], 16):
 							color="\c00????00"
+				except:
+					pass
 			res += color + idline[3] + " "
 
 		Ret_Text += "\n" + res + "\c00?????? " + Sec_Text
