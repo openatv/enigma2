@@ -383,8 +383,8 @@ class Harddisk:
 			l = open("/sys/block/%s/stat" % self.device).read()
 		except IOError:
 			return -1,-1
-		(nr_read, _, _, _, nr_write) = l.split()[:5]
-		return int(nr_read), int(nr_write)
+		data = l.split(None,5)
+		return int(data[0], int(data[4])
 
 	def startIdle(self):
 		self.last_access = time.time()
