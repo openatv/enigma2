@@ -13,7 +13,7 @@ from ServiceReference import ServiceReference
 from TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from time import time
-from timer import TimerEntry
+from timer import TimerEntry as RealTimerEntry
 
 class TimerEditList(Screen):
 	EMPTY = 0
@@ -169,7 +169,7 @@ class TimerEditList(Screen):
 	def fillTimerList(self):
 		#helper function to move finished timers to end of list
 		def eol_compare(x, y):
-			if x[0].state != y[0].state and x[0].state == TimerEntry.StateEnded or y[0].state == TimerEntry.StateEnded:
+			if x[0].state != y[0].state and x[0].state == RealTimerEntry.StateEnded or y[0].state == RealTimerEntry.StateEnded:
 				return cmp(x[0].state, y[0].state)
 			return cmp(x[0].begin, x[1].begin)
 
