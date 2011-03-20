@@ -323,6 +323,7 @@ class MovieContextMenu(Screen):
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
+		menu.append((_("Add Bookmark"), csel.do_addbookmark))
 		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
@@ -499,6 +500,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'copy': _("Copy"),
 				'reset': _("Reset"),
 				'tags': _("Tags"),
+				'addbookmark': _("Add Bookmark"),
 				'bookmarks': _("Location"),
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
@@ -570,7 +572,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
-			print "[ML] color=%s btn=%s name=%s" % (k, btn.value, userDefinedActions[btn.value])
 			self['key_' + k].setText(userDefinedActions[btn.value])
 
 	def updateButtons(self):
@@ -583,7 +584,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				try:
 					check = getattr(self, 'can_' + action)
 				except:
-					print '[ML] No explicit check for', action
 					check = self.can_default
 			gui = self["key_" + name]
 			if check(item):
@@ -1012,6 +1012,26 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return True
 	def do_bookmarks(self):
 		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.gotFilename)
+
+	def can_addbookmark(self, item):
+		return True
+	def do_addbookmark(self):
+		path = config.movielist.last_videodir.value
+		if path in config.movielist.videodirs.value:
+			if len(path) > 40:
+				path = '...' + path[-40:]
+			self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark of %s?") % path)
+		else:
+			config.movielist.videodirs.value += [path]
+			config.movielist.videodirs.save()
+	def removeBookmark(self, yes):
+		if not yes:
+			return
+		path = config.movielist.last_videodir.value
+		bookmarks = config.movielist.videodirs.value
+		bookmarks.remove(path)
+		config.movielist.videodirs.value = bookmarks
+		config.movielist.videodirs.save()
 
 	def do_reset(self):
 		current = self.getCurrent()
