@@ -384,7 +384,7 @@ class Harddisk:
 		except IOError:
 			return -1,-1
 		data = l.split(None,5)
-		return int(data[0], int(data[4])
+		return (int(data[0]), int(data[4]))
 
 	def startIdle(self):
 		self.last_access = time.time()
