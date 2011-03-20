@@ -324,6 +324,7 @@ class MovieContextMenu(Screen):
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
 		menu.append((_("Add Bookmark"), csel.do_addbookmark))
+		menu.append((_("create directory"), csel.do_createdir))
 		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
@@ -1032,6 +1033,35 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		bookmarks.remove(path)
 		config.movielist.videodirs.value = bookmarks
 		config.movielist.videodirs.save()
+
+	def can_createdir(self, item):
+		return True
+	def do_createdir(self):
+		from Screens.InputBox import InputBox
+		self.session.openWithCallback(self.createDirCallback, InputBox,
+			title = _("Please enter name of the new directory"),
+			text = "")
+	def createDirCallback(self, name):
+		if not name:
+			return
+		msg = None
+		try:
+			path = os.path.join(config.movielist.last_videodir.value, name)
+			os.mkdir(path)
+			if not path.endswith('/'):
+				path += '/'
+			self.reloadList(sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path))		
+		except OSError, e:
+			print "Error %s:" % e.errno, e
+			if e.errno == 17:
+				msg = _("The path %s already exists.") % name
+			else:
+				msg = _("Error") + '\n' + str(e)
+		except Exception, e:
+			print "[ML] Unexpected error:", e
+			msg = _("Error") + '\n' + str(e)
+		if msg:
+			self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
 
 	def do_reset(self):
 		current = self.getCurrent()
