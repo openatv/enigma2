@@ -218,10 +218,6 @@ void bsodFatal(const char *component)
 
 		xml.open("crashlogs");
 		xml.cDataFromString("enigma2crashlog", getLogBuffer());
-		if (detailedCrash)
-		{
-			xml.cDataFromCmd("pythonMD5sum", "find " + eEnv::resolve("${libdir}/enigma2/python/") + " -name \"*.py\" | xargs md5sum");
-		}
 		xml.close();
 
 		xml.close();
