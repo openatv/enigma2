@@ -325,6 +325,8 @@ class MovieContextMenu(Screen):
 				# Plugins expect a valid selection, so only include them if we selected a non-dir 
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 
+		menu.append((_("Add Bookmark"), csel.do_addbookmark))
+		menu.append((_("create directory"), csel.do_createdir))
 		menu.append((_("Network") + "...", csel.showNetworkSetup))
 		menu.append((_("Settings") + "...", csel.configure))
 		self["menu"] = MenuList(menu)
@@ -501,6 +503,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				'copy': _("Copy"),
 				'reset': _("Reset"),
 				'tags': _("Tags"),
+				'addbookmark': _("Add Bookmark"),
 				'bookmarks': _("Location"),
 			}
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
@@ -572,7 +575,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 	def _updateButtonTexts(self):
 		for k in ('red', 'green', 'yellow', 'blue'):
 			btn = userDefinedButtons[k]
-			print "[ML] color=%s btn=%s name=%s" % (k, btn.value, userDefinedActions[btn.value])
 			self['key_' + k].setText(userDefinedActions[btn.value])
 
 	def updateButtons(self):
@@ -585,7 +587,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 				try:
 					check = getattr(self, 'can_' + action)
 				except:
-					print '[ML] No explicit check for', action
 					check = self.can_default
 			gui = self["key_" + name]
 			if check(item):
@@ -1013,6 +1014,55 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase):
 		return True
 	def do_bookmarks(self):
 		self.selectMovieLocation(title=_("Please select the movie path..."), callback=self.gotFilename)
+
+	def can_addbookmark(self, item):
+		return True
+	def do_addbookmark(self):
+		path = config.movielist.last_videodir.value
+		if path in config.movielist.videodirs.value:
+			if len(path) > 40:
+				path = '...' + path[-40:]
+			self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark of %s?") % path)
+		else:
+			config.movielist.videodirs.value += [path]
+			config.movielist.videodirs.save()
+	def removeBookmark(self, yes):
+		if not yes:
+			return
+		path = config.movielist.last_videodir.value
+		bookmarks = config.movielist.videodirs.value
+		bookmarks.remove(path)
+		config.movielist.videodirs.value = bookmarks
+		config.movielist.videodirs.save()
+
+	def can_createdir(self, item):
+		return True
+	def do_createdir(self):
+		from Screens.InputBox import InputBox
+		self.session.openWithCallback(self.createDirCallback, InputBox,
+			title = _("Please enter name of the new directory"),
+			text = "")
+	def createDirCallback(self, name):
+		if not name:
+			return
+		msg = None
+		try:
+			path = os.path.join(config.movielist.last_videodir.value, name)
+			os.mkdir(path)
+			if not path.endswith('/'):
+				path += '/'
+			self.reloadList(sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path))		
+		except OSError, e:
+			print "Error %s:" % e.errno, e
+			if e.errno == 17:
+				msg = _("The path %s already exists.") % name
+			else:
+				msg = _("Error") + '\n' + str(e)
+		except Exception, e:
+			print "[ML] Unexpected error:", e
+			msg = _("Error") + '\n' + str(e)
+		if msg:
+			self.session.open(MessageBox, msg, type = MessageBox.TYPE_ERROR, timeout = 5)
 
 	def do_reset(self):
 		current = self.getCurrent()
