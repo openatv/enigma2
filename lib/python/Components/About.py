@@ -28,30 +28,29 @@ class About:
 			lines = file.readlines()
 			for x in lines:
 				splitted = x.split('=')
-				if splitted[0] == "version":
-					#     YYYY MM DD hh mm
-					#0120 2005 11 29 01 16
-					#0123 4567 89 01 23 45
-					version = splitted[1]
-					image_type = version[0] # 0 = release, 1 = experimental
-					major = version[1]
-					minor = version[2]
-					revision = version[3]
-					year = version[4:8]
-					month = version[8:10]
-					day = version[10:12]
+				if splitted[0] == "build_type":
+					image_type = splitted[1].replace('\n','') # 0 = release, 1 = experimental
+				elif splitted[0] == "version":
+					version = splitted[1].replace('\n','')
+				elif splitted[0] == "date":
+					#YYYY MM DD hh mm
+					#2005 11 29 01 16
+					date = splitted[1].replace('\n','')
+					year = date[0:4]
+					month = date[4:6]
+					day = date[6:8]
 					date = '-'.join((year, month, day))
-					if image_type == '0':
-						image_type = "Release v"
-						version = '.'.join((major, minor, revision))
-						ver = ''.join((image_type, version))
-						return ' '.join((box_type, ver, ' - ', date))
-					else:
-						image_type = "Experimental"
-						return ' '.join((box_type, image_type, ' - ', date))
 			file.close()
 		except IOError:
 			pass
+
+		if image_type == '0':
+			image_type = "Release v"
+			ver = ''.join((image_type, version))
+			return ' '.join((box_type, ver, ' - ', date))
+		else:
+			image_type = "Experimental"
+			return ' '.join((box_type, image_type, ' - ', date))
 
 		return "unavailable"
 
