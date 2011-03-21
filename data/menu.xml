@@ -25,8 +25,8 @@
 
 		<menu level="0" text="Information" entryID="info_screen">
 			<id val="information" />
-			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 			<item level="0" text="About" entryID="about_screen"><screen module="About" /></item>
+			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 		</menu>
 
 		<item level="1" text="Plugins" entryID="plugin_selection"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
