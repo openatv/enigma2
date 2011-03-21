@@ -113,6 +113,8 @@ def InitUsageConfig():
 		("step", _("Singlestep (GOP)")),
 		("last", _("Last speed")) ])
 
+	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "beginning", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
+
 	def updateEnterForward(configElement):
 		if not configElement.value:
 			configElement.value = [2]
