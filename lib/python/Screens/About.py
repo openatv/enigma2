@@ -33,16 +33,37 @@ class About(Screen):
 
 		self["HDDHeader"] = StaticText(_("Detected HDD:"))
 		hddlist = harddiskmanager.HDDList()
-		hdd = hddlist and hddlist[0][1] or None
-		if hdd is not None and hdd.model() != "":
-			if int(hdd.free()) > 1024:
-				freespace = int(hdd.free()) / 1024
-				self["hddA"] = StaticText(_("%s\n(%s, %d GB free)") % (hdd.model(), hdd.capacity(),freespace))
-			else:
-				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
-	
-		else:
-			self["hddA"] = StaticText(_("none"))
+		hdd1 = "None"
+		hdd2 = ""
+		hdd3 = ""
+		for count in (0, 1, 2):
+			if count < len(hddlist):
+				if str(count) == '0':
+					hddlist0 = hddlist[0]
+					hdd = hddlist0[1]
+					if int(hdd.free()) > 1024:
+						freespace = int(hdd.free()) / 1024
+						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' GB free)'
+					else:
+						hdd1 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' MB free)'
+				elif str(count) == '1':
+					hddlist1 = hddlist[1]
+					hdd = hddlist1[1]
+					if int(hdd.free()) > 1024:
+						freespace = int(hdd.free()) / 1024
+						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' GB free)'
+					else:
+						hdd2 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' MB free)'
+				elif str(count) == '2':
+					hddlist1 = hddlist[2]
+					hdd = hddlist1[1]
+					if int(hdd.free()) > 1024:
+						freespace = int(hdd.free()) / 1024
+						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(freespace) + ' GB free)'
+					else:
+						hdd3 = str(hdd.model()) + ' ' + str(hdd.capacity()) + ', (' + str(hdd.free()) + ' MB free)'
+
+		self["hddA"] = StaticText(hdd1 + '\n' + hdd2 + '\n' + hdd3)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
 			{
