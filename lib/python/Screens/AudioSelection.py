@@ -171,7 +171,10 @@ class AudioSelection(Screen, ConfigListScreen):
 
 				elif x[0] == 2:
 					types = ("UTF-8 text","SSA / AAS",".SRT file")
-					description = types[x[2]]
+					try:
+						description = types[x[2]]
+					except:
+						description = _("unknown") + ": %s" % x[2]
 				streams.append((x, "", number, description, language, selected))
 				idx += 1
 
