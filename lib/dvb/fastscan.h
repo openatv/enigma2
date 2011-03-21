@@ -82,6 +82,7 @@ typedef FastScanServiceList::const_iterator FastScanServiceListConstIterator;
 class FastScanServicesSection : public LongCrcSection
 {
 protected:
+	unsigned versionNumber : 5;
 	FastScanServiceList services;
 
 public:
@@ -92,6 +93,7 @@ public:
 	static const int TID = 0xBD;
 	static const uint32_t TIMEOUT = 5000;
 
+	uint8_t getVersion(void) const;
 	const FastScanServiceList *getServices(void) const;
 };
 
@@ -132,18 +134,19 @@ typedef FastScanTransportStreamList::const_iterator FastScanTransportStreamListC
 class FastScanNetworkSection : public LongCrcSection, public NetworkNameDescriptor
 {
 protected:
-
+	unsigned versionNumber : 5;
 	FastScanTransportStreamList transportStreams;
 
 public:
 	FastScanNetworkSection(const uint8_t * const buffer);
 	~FastScanNetworkSection(void);
 
-	const FastScanTransportStreamList *getTransportStreams(void) const;
-
 	static const uint16_t LENGTH = 4096;
 	static const int TID = 0xBC;
 	static const uint32_t TIMEOUT = 5000;
+
+	uint8_t getVersion(void) const;
+	const FastScanTransportStreamList *getTransportStreams(void) const;
 };
 
 class eDVBFastScanServicesSpec
@@ -225,6 +228,7 @@ class eFastScan: public Object, public iObject
 	ePtr<iDVBDemux> m_demux;
 	bool originalNumbering;
 	bool useFixedServiceInfo;
+	int versionNumber;
 	std::string providerName, bouquetFilename;
 	int m_pid;
 	ePtr<eFastScanTable<FastScanServicesSection> > m_ServicesTable;
@@ -245,6 +249,7 @@ public:
 
 	void start(int frontendid = 0);
 	void startFile(const char *fnt, const char *fst);
+	int getVersion();
 
 	PSignal1<void, int> scanProgress;
 	PSignal1<void, int> scanCompleted;

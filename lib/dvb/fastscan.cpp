@@ -124,6 +124,8 @@ FastScanServicesSection::FastScanServicesSection(const uint8_t * const buffer) :
 	uint16_t bytesLeft = sectionLength > 8 ? sectionLength - 8 : 0;
 	uint16_t loopLength = 0;
 
+	versionNumber = (buffer[5] >> 2) & 0x1f;
+
 	while (bytesLeft > 17 && bytesLeft >= (loopLength = 18 + DVB_LENGTH(&buffer[pos+16])))
 	{
 		services.push_back(new FastScanService(&buffer[pos]));
@@ -136,6 +138,11 @@ FastScanServicesSection::~FastScanServicesSection(void)
 {
 	for (FastScanServiceListIterator i = services.begin(); i != services.end(); ++i)
 		delete *i;
+}
+
+uint8_t FastScanServicesSection::getVersion(void) const
+{
+	return versionNumber;
 }
 
 const FastScanServiceList *FastScanServicesSection::getServices(void) const
@@ -259,6 +266,8 @@ FastScanNetworkSection::FastScanNetworkSection(const uint8_t * const buffer)
 	pos += 2;
 	uint16_t loopLength = 0;
 
+	versionNumber = (buffer[5] >> 2) & 0x1f;
+
 	while (bytesLeft >= 6 && bytesLeft >= (loopLength = 6 + DVB_LENGTH(&buffer[pos + 4])))
 	{
 		transportStreams.push_back(new FastScanTransportStream(&buffer[pos]));
@@ -271,6 +280,11 @@ FastScanNetworkSection::~FastScanNetworkSection(void)
 {
 	for (FastScanTransportStreamListIterator i = transportStreams.begin(); i != transportStreams.end(); ++i)
 		delete *i;
+}
+
+uint8_t FastScanNetworkSection::getVersion(void) const
+{
+	return versionNumber;
 }
 
 const FastScanTransportStreamList *FastScanNetworkSection::getTransportStreams(void) const
@@ -287,6 +301,7 @@ eFastScan::eFastScan(int pid, const char *providername, bool originalnumbering, 
 	bouquetFilename = replace_all(providerName, " ", "");
 	originalNumbering = originalnumbering;
 	useFixedServiceInfo = fixedserviceinfo;
+	versionNumber = -1;
 }
 
 eFastScan::~eFastScan()
@@ -296,6 +311,9 @@ eFastScan::~eFastScan()
 void eFastScan::startFile(const char *fnt, const char *fst)
 {
 	FILE *file = fopen(fst, "rb");
+
+	versionNumber = -1;
+
 	if (file)
 	{
 		eFastScanFileTable<FastScanServicesSection> *table = new eFastScanFileTable<FastScanServicesSection>;
@@ -330,6 +348,8 @@ void eFastScan::start(int frontendid)
 	ePtr<eDVBResourceManager> res;
 	eDVBResourceManager::getInstance(res);
 	ePtr<iDVBFrontend> fe;
+
+	versionNumber = -1;
 
 	if (res->allocateRawChannel(m_channel, frontendid))
 	{
@@ -366,6 +386,11 @@ void eFastScan::start(int frontendid)
 	CONNECT(m_NetworkTable->tableReady, eFastScan::networkTableReady);
 
 	m_ServicesTable->start(m_demux, eDVBFastScanServicesSpec(m_pid));
+}
+
+int eFastScan::getVersion()
+{
+	return versionNumber;
 }
 
 void eFastScan::servicesTableProgress(int size, int max)
@@ -454,6 +479,8 @@ void eFastScan::parseResult()
 	std::map<int, int> service_orbital_position;
 	std::map<int, eServiceReferenceDVB> numbered_channels;
 	std::map<int, eServiceReferenceDVB> radio_channels;
+
+	if (!servicessections.empty()) versionNumber = servicessections[0]->getVersion();
 
 	for (unsigned int i = 0; i < networksections.size(); i++)
 	{
