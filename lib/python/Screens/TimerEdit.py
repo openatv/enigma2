@@ -171,7 +171,7 @@ class TimerEditList(Screen):
 		def eol_compare(x, y):
 			if x[0].state != y[0].state and x[0].state == RealTimerEntry.StateEnded or y[0].state == RealTimerEntry.StateEnded:
 				return cmp(x[0].state, y[0].state)
-			return cmp(x[0].begin, x[1].begin)
+			return cmp(x[0].begin, y[0].begin)
 
 		list = self.list
 		del list[:]
