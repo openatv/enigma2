@@ -103,7 +103,7 @@ class GetEcmInfo:
 			ecmpid = info.get('pid', '0')
 		except:
 			ecm = None
-			self.textvalue = "Cannot Decode"
+			self.textvalue = ""
 			decCI='0'
 			provid='0'
 			ecmpid='0'
