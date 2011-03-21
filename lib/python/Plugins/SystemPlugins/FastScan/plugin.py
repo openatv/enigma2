@@ -62,7 +62,7 @@ class FastScan:
 		if result < 0:
 			self.text.setText(_('Scanning failed!'))
 		else:
-			self.text.setText(_('Scanning completed, %d channels found') % (result))
+			self.text.setText(_('Scanning completed, version %d, %d channels found') % (self.scan.getVersion(), result))
 
 	def destroy(self):
 		pass
