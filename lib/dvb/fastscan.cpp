@@ -480,7 +480,7 @@ void eFastScan::parseResult()
 	std::map<int, eServiceReferenceDVB> numbered_channels;
 	std::map<int, eServiceReferenceDVB> radio_channels;
 
-	if (!servicessections.empty()) versionNumber = servicessections[0]->getVersion();
+	if (!networksections.empty()) versionNumber = networksections[0]->getVersion();
 
 	for (unsigned int i = 0; i < networksections.size(); i++)
 	{
