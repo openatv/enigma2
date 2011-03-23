@@ -1,17 +1,28 @@
 installdir = $(pkglibdir)/python/Plugins/SystemPlugins
 
 SUBDIRS = SoftwareManager PositionerSetup Satfinder \
-	SkinSelector SatelliteEquipmentControl Videomode VideoTune Hotplug \
-	DefaultServicesScanner DiseqcTester CommonInterfaceAssignment \
-	CableScan FastScan OSDPositionSetup OSD3DSetup \
-	VideoEnhancement WirelessLan NetworkWizard CrashlogAutoSubmit
+	SkinSelector Videomode VideoTune Hotplug \
+	DefaultServicesScanner CommonInterfaceAssignment \
+	VideoEnhancement WirelessLan NetworkWizard
+
+if CLARKETECH
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup
+endif
+
+if VUDUO
+SUBDIRS += FanSetupVuPlus
+endif
+
+if ET9000
+SUBDIRS += FanSetupClarkeTech VFDSetupClarkeTech
+endif
 
 if HAVE_TEMPFANCONTROL
 SUBDIRS += TempFanControl
 endif
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash
+SUBDIRS += FrontprocessorUpgrade NFIFlash SatelliteEquipmentControl DiseqcTester CableScan FastScan OSDPositionSetup OSD3DSetup CrashlogAutoSubmit
 endif
 
 install_PYTHON =	\
