@@ -53,13 +53,13 @@ AC_SUBST(BOXTYPE)
 AC_DEFINE_UNQUOTED(BOXTYPE,"$BOXTYPE",[box type])
 
 AM_CONDITIONAL(DREAMBOX, test `echo "$BOXTYPE" | cut -b 1-2` == "dm")
-AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
-AM_CONDITIONAL(VUPLUS, test "$BOXTYPE" == vusolo -o == vuduo)
-AM_CONDITIONAL(CLARKETECH, test "$BOXTYPE" == et5000 -o == et9000)
+AM_CONDITIONAL(VUPLUS, test `echo "$BOXTYPE" | cut -b 1-2` == "vu")
+AM_CONDITIONAL(CLARKETECH, test `echo "$BOXTYPE" | cut -b 1-2` == "et")
 AM_CONDITIONAL(VUSOLO, test "$BOXTYPE" == vusolo)
 AM_CONDITIONAL(VUDUO, test "$BOXTYPE" == vuduo)
 AM_CONDITIONAL(ET5000, test "$BOXTYPE" == et5000)
 AM_CONDITIONAL(ET9000, test "$BOXTYPE" == et9000)
+AM_CONDITIONAL(HAVE_TEMPFANCONTROL, test "$BOXTYPE" == dm8000 -o "$BOXTYPE" == dm800se -o "$BOXTYPE" == dm500hd)
 
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
