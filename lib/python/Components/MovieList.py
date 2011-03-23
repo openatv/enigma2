@@ -429,9 +429,10 @@ class MovieList(GUIComponent):
 		self.l.setList(self.list)
 
 	def removeService(self, service):
-		for l in self.list[:]:
+		for index, l in enumerate(self.list):
 			if l[0] == service:
-				self.list.remove(l)
+				del self.list[index]
+				break
 		self.l.setList(self.list)
 
 	def __len__(self):

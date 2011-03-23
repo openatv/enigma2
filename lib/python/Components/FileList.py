@@ -303,37 +303,22 @@ class MultiFileSelectList(FileList):
 
 	def changeSelectionState(self):
 		idx = self.l.getCurrentSelectionIndex()
-		count = 0
-		newList = []
-		for x in self.list:
-			if idx == count:
-				if x[0][3].startswith('<'):
-					newList.append(x)
-				else:
-					if x[0][1] is True:
-						realPathname = x[0][0]
-					else:
-						realPathname = self.current_directory + x[0][0]
-					if x[0][2] == True:
-						SelectState = False
-						for entry in self.selectedFiles:
-							if entry == realPathname:
-								self.selectedFiles.remove(entry)
-	
-					else:
-						SelectState = True
-						alreadyinList = False	
-						for entry in self.selectedFiles:
-							if entry == realPathname:
-								alreadyinList = True
-						if not alreadyinList:
-							self.selectedFiles.append(realPathname)
-					newList.append(MultiFileSelectEntryComponent(name = x[0][3], absolute = x[0][0], isDir = x[0][1], selected = SelectState ))
+		newList = self.list[:]
+		x = self.list[idx]
+		if not x[0][3].startswith('<'):
+			if x[0][1] is True:
+				realPathname = x[0][0]
 			else:
-				newList.append(x)
-			
-			count += 1
-		
+				realPathname = self.current_directory + x[0][0]
+			if x[0][2] == True:
+				SelectState = False
+				if realPathname in self.selectedFiles:
+					self.selectedFiles.remove(realPathname)
+			else:
+				SelectState = True
+				if realPathname not in self.selectedFiles:
+					self.selectedFiles.append(realPathname)
+			newList[idx] = MultiFileSelectEntryComponent(name = x[0][3], absolute = x[0][0], isDir = x[0][1], selected = SelectState)
 		self.list = newList
 		self.l.setList(self.list)
 	
