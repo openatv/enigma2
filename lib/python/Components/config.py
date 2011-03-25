@@ -1661,9 +1661,12 @@ class Config(ConfigSubsection):
 
 	def saveToFile(self, filename):
 		text = self.pickle()
-		f = open(filename, "w")
-		f.write(text)
-		f.close()
+		try:
+			f = open(filename, "w")
+			f.write(text)
+			f.close()
+		except IOError:
+			print "Config: Couldn't write %s" % filename
 
 	def loadFromFile(self, filename, base_file=False):
 		f = open(filename, "r")
