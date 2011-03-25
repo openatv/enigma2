@@ -618,13 +618,13 @@ void eDVBDB::loadBouquet(const char *path)
 	if (!fp)
 	{
 		eDebug("can't open %s: %m", p.c_str());
-		if ( strstr(path, "bouquets.tv") )
+		if (!strcmp(path, "bouquets.tv"))
 		{
 			eDebug("recreate bouquets.tv");
 			bouquet.m_bouquet_name="Bouquets (TV)";
 			bouquet.flushChanges();
 		}
-		else if ( strstr(path, "bouquets.radio") )
+		else if (!strcmp(path, "bouquets.radio"))
 		{
 			eDebug("recreate bouquets.radio");
 			bouquet.m_bouquet_name="Bouquets (Radio)";
