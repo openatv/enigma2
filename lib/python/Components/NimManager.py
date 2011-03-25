@@ -1361,25 +1361,32 @@ def InitNimManager(nimmgr):
 		slot_id = configElement.slot_id
 		if nimmgr.nim_slots[slot_id].description == 'Alps BSBE2':
 			open("/proc/stb/frontend/%d/tone_amplitude" %(fe_id), "w").write(configElement.value)
-			
+
 	def tunerTypeChanged(nimmgr, configElement):
 		fe_id = configElement.fe_id
-		print "tunerTypeChanged feid %d to mode %s" % (fe_id, configElement.value)
-		try:
-			oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-		frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
-		frontend.closeFrontend()
-		open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
-		frontend.reopenFrontend()
-		try:
-			open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
-		except:
-			print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
-		nimmgr.enumerateNIMs()
-	
+
+		cur_type = int(open("/proc/stb/frontend/%d/mode" % (fe_id), "r").read())
+		if cur_type != int(configElement.value):
+			print "tunerTypeChanged feid %d from %d to mode %d" % (fe_id, cur_type, int(configElement.value))
+
+			try:
+				oldvalue = open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "r").readline()
+				open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write("0")
+			except:
+				print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+
+			frontend = eDVBResourceManager.getInstance().allocateRawChannel(fe_id).getFrontend()
+			frontend.closeFrontend()
+			open("/proc/stb/frontend/%d/mode" % (fe_id), "w").write(configElement.value)
+			frontend.reopenFrontend()
+			try:
+				open("/sys/module/dvb_core/parameters/dvb_shutdown_timeout", "w").write(oldvalue)
+			except:
+				print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
+			nimmgr.enumerateNIMs()
+		else:
+			print "tuner type is already already %d" %cur_type
+
 	empty_slots = 0
 	for slot in nimmgr.nim_slots:
 		x = slot.slot
