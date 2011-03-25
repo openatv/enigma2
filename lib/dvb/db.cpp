@@ -615,7 +615,6 @@ void eDVBDB::loadBouquet(const char *path)
 	p+=path;
 	eDebug("loading bouquet... %s", p.c_str());
 	FILE *fp=fopen(p.c_str(), "rt");
-	int entries=0;
 	if (!fp)
 	{
 		eDebug("can't open %s: %m", p.c_str());
@@ -633,6 +632,7 @@ void eDVBDB::loadBouquet(const char *path)
 		}
 		return;
 	}
+	int entries=0;
 	char line[256];
 	bool read_descr=false;
 	eServiceReference *e = NULL;
