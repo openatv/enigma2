@@ -626,14 +626,7 @@ void eDVBDB::loadBouquet(const char *path)
 	int entries=0;
 	if (!fp)
 	{
-		struct stat s;
-		if ( !stat(path, &s) )
-		{
-			rename(path, p.c_str() );
-			loadBouquet(path);
-			return;
-		}
-		eDebug("failed to open.");
+		eDebug("can't open %s: %m", p.c_str());
 		if ( strstr(path, "bouquets.tv") )
 		{
 			eDebug("recreate bouquets.tv");
