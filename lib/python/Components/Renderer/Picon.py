@@ -1,9 +1,6 @@
-##
-## Picon renderer by Gruffy .. some speedups by Ghost
-##
 from Renderer import Renderer
 from enigma import ePixmap
-from Tools.Directories import pathExists, fileExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 
 class Picon(Renderer):
 	searchPaths = ('/usr/share/enigma2/picon/',
@@ -21,19 +18,25 @@ class Picon(Renderer):
 		pngname = self.findPicon("picon_default")
 		if not pngname:
 			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
-			if fileExists(tmp):
+			if pathExists(tmp):
 				pngname = tmp
 			else:
 				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
 		self.defaultpngname = pngname
 
+	def addPath(self, value):
+		if pathExists(value):
+			if not value.endswith('/'):
+				value += '/'
+			if value not in self.searchPaths:
+				self.searchPaths = self.searchPaths + (value,)
+
 	def applySkin(self, desktop, parent):
-		attribs = [ ]
+		attribs = self.skinAttributes[:]
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
-				self.path = value
-			else:
-				attribs.append((attrib,value))
+				self.addPath(value)
+				attribs.remove((attrib,value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
@@ -65,12 +68,12 @@ class Picon(Renderer):
 	def findPicon(self, serviceName):
 		if self.lastPath:
 			pngname = self.lastPath + serviceName + ".png"
-			if fileExists(pngname):
+			if pathExists(pngname):
 				return pngname
 		for path in self.searchPaths:
 			if pathExists(path):
 				pngname = path + serviceName + ".png"
-				if fileExists(pngname):
+				if pathExists(pngname):
 					self.lastPath = path
 					return pngname
 		return ""

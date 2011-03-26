@@ -147,11 +147,8 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	return path + base
 	# this is only the BASE - an extension must be added later.
 
-def pathExists(path):
-	return os_path.exists(path)
-
-def isMount(path):
-	return os_path.ismount(path)
+pathExists = os_path.exists
+isMount = os_path.ismount
 
 def createDir(path, makeParents = False):
 	try:
