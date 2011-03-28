@@ -182,6 +182,7 @@ def InitUsageConfig():
 
 	config.crash = ConfigSubsection()
 	config.crash.details = ConfigYesNo(default = False)
+	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "beginning", choices = [("beginning", _("at beginning")), ("end", _("at end"))])
 
 	def updateEnterForward(configElement):
 		if not configElement.value:
