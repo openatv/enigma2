@@ -75,11 +75,11 @@ class Picon(Renderer):
 	def findPicon(self, serviceName):
 		if self.lastPath:
 			pngname = self.lastPath + serviceName + ".png"
-			if fileExists(pngname):
+			if pathExists(pngname):
 				return pngname
 			else:
 				pngname = self.lastPath + serviceName + "_0.png"
-				if fileExists(pngname):
+				if pathExists(pngname):
 					return pngname
 		for path in self.searchPaths:
 			if pathExists(path):
