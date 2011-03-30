@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import os
 from os import path as os_path, mkdir, rmdir, system, walk, stat as os_stat, listdir, readlink, makedirs, error as os_error, symlink, access, F_OK, R_OK, W_OK
 from stat import S_IMODE
 from re import compile
@@ -73,28 +73,28 @@ fallbackPaths = {
 	}
 
 def resolveFilename(scope, base = "", path_prefix = None):
-	if base[0:2] == "~/":
+	if base.startswith("~/"):
 		# you can only use the ~/ if we have a prefix directory
 		assert path_prefix is not None
 		base = os_path.join(path_prefix, base[2:])
 
 	# don't resolve absolute paths
-	if base[0:1] == '/':
+	if base.startswith('/'):
 		return base
 
 	if scope == SCOPE_CURRENT_SKIN:
 		from Components.config import config
-		tmp = defaultPaths[SCOPE_SKIN]
+		tmp = defaultPaths[SCOPE_SKIN][0]
 		pos = config.skin.primary_skin.value.rfind('/')
 		if pos != -1:
 			#if basefile is not available use default skin path as fallback
-			tmpfile = tmp[0]+config.skin.primary_skin.value[:pos+1] + base
-			if fileExists(tmpfile):
-				path = tmp[0]+config.skin.primary_skin.value[:pos+1]
+			tmpfile = tmp+config.skin.primary_skin.value[:pos+1] + base
+			if pathExists(tmpfile):
+				path = tmp+config.skin.primary_skin.value[:pos+1]
 			else:
-				path = tmp[0]
+				path = tmp
 		else:
-			path = tmp[0]
+			path = tmp
 
 	elif scope == SCOPE_CURRENT_PLUGIN:
 		tmp = defaultPaths[SCOPE_PLUGINS]
@@ -124,34 +124,37 @@ def resolveFilename(scope, base = "", path_prefix = None):
 
 	if fallbackPath and not fileExists(path + base):
 		for x in fallbackPath:
-			if x[1] == FILE_COPY:
-				if fileExists(x[0] + base):
-					system("cp " + x[0] + base + " " + path + base)
-					break
-			elif x[1] == FILE_MOVE:
-				if fileExists(x[0] + base):
-					system("mv " + x[0] + base + " " + path + base)
-					break
-			elif x[1] == PATH_COPY:
-				if pathExists(x[0]):
-					if not pathExists(defaultPaths[scope][0]):
-						mkdir(path)
-					system("cp -a " + x[0] + "* " + path)
-					break
-			elif x[1] == PATH_MOVE:
-				if pathExists(x[0]):
-					system("mv " + x[0] + " " + path)
-					break
+			try:
+				if x[1] == FILE_COPY:
+					if fileExists(x[0] + base):
+						try:
+							os.link(x[0] + base, path + base)
+						except:
+							system("cp " + x[0] + base + " " + path + base)
+						break
+				elif x[1] == FILE_MOVE:
+					if fileExists(x[0] + base):
+						os.rename(x[0] + base, path + base)
+						break
+				elif x[1] == PATH_COPY:
+					if pathExists(x[0]):
+						if not pathExists(defaultPaths[scope][0]):
+							mkdir(path)
+						system("cp -a " + x[0] + "* " + path)
+						break
+				elif x[1] == PATH_MOVE:
+					if pathExists(x[0]):
+						os.rename(x[0], path + base)
+						break
+			except Exception, e:
+				print "[D] Failed to recover %s:" % (path+base), e
 
 	# FIXME: we also have to handle DATADIR etc. here.
 	return path + base
 	# this is only the BASE - an extension must be added later.
 
-def pathExists(path):
-	return os_path.exists(path)
-
-def isMount(path):
-	return os_path.ismount(path)
+pathExists = os_path.exists
+isMount = os_path.ismount
 
 def createDir(path, makeParents = False):
 	try:
@@ -160,19 +163,17 @@ def createDir(path, makeParents = False):
 		else:
 			mkdir(path)
 	except:
-		ret = 0
+		return 0
 	else:
-		ret = 1
-	return ret
+		return 1
 
 def removeDir(path):
 	try:
 		rmdir(path)
 	except:
-		ret = 0
+		return 0
 	else:
-		ret = 1
-	return ret
+		return 1
 
 def fileExists(f, mode='r'):
 	if mode == 'r':

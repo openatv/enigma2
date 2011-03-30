@@ -124,7 +124,7 @@ FastScanServicesSection::FastScanServicesSection(const uint8_t * const buffer) :
 	uint16_t bytesLeft = sectionLength > 8 ? sectionLength - 8 : 0;
 	uint16_t loopLength = 0;
 
-	versionNumber = (buffer[5] >> 2) & 0x1f;
+	versionNumber = (buffer[5] >> 1) & 0x1f;
 
 	while (bytesLeft > 17 && bytesLeft >= (loopLength = 18 + DVB_LENGTH(&buffer[pos+16])))
 	{
@@ -266,7 +266,7 @@ FastScanNetworkSection::FastScanNetworkSection(const uint8_t * const buffer)
 	pos += 2;
 	uint16_t loopLength = 0;
 
-	versionNumber = (buffer[5] >> 2) & 0x1f;
+	versionNumber = (buffer[5] >> 1) & 0x1f;
 
 	while (bytesLeft >= 6 && bytesLeft >= (loopLength = 6 + DVB_LENGTH(&buffer[pos + 4])))
 	{

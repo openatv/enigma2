@@ -306,6 +306,17 @@ eStaticServiceDVBPVRInformation::eStaticServiceDVBPVRInformation(const eServiceR
 	m_parser.parseFile(ref.path);
 }
 
+static bool looksLikeRecording(const std::string& n)
+{
+	return
+		(n.size() > 19) &&
+		(n[8] == ' ') &&
+		(n[13] == ' ') &&
+		(n[14] == '-') &&
+		(n[15] == ' ') &&
+		(isdigit(n[0]));
+}
+
 RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, std::string &name)
 {
 	ASSERT(ref == m_ref);
@@ -319,6 +330,24 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 		size_t n = name.rfind('/');
 		if (n != std::string::npos)
 			name = name.substr(n + 1);
+		if (looksLikeRecording(name))
+		{
+			// Parse recording names in 'YYYYMMDD HHMM - ... - name.ts' into name
+			std::size_t dash2 = name.find(" - ", 16, 3);
+			if (dash2 != std::string::npos)
+			{
+				struct tm stm = {0};
+				if (strptime(name.c_str(), "%Y%m%d %H%M", &stm) != NULL)
+				{
+					m_parser.m_time_create = mktime(&stm);
+				}
+				name.erase(0,dash2+3);
+			}
+			if (name[name.size()-3] == '.')
+			{
+				name.erase(name.size()-3);
+			}
+		}
 		m_parser.m_name = name;
 	}
 	return 0;
