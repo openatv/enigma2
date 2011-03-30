@@ -1749,11 +1749,9 @@ class PacketManager(Screen, NumericalTextInput):
 				self["list"].setIndex(idx)
 
 	def getNextIdx(self,char):
-		idx = 0
-		for i in self["list"].list:
-			if i[0][0] == char:
+		for idx, i in enumerate(self["list"].list):
+			if i[0] and (i[0][0] == char):
 				return idx
-			idx += 1
 
 	def exit(self):
 		self.ipkg.stop()
