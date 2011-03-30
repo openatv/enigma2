@@ -105,28 +105,28 @@ class ServiceInfo(Screen):
 				name = ServiceReference(self.session.nav.getCurrentlyPlayingServiceReference()).getServiceName()
 				refstr = self.session.nav.getCurrentlyPlayingServiceReference().toString()
 			else:
-				name = "N/A"
-				refstr = "N/A"
+				name = _("N/A")
+				refstr = _("N/A")
 			aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 			if aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
-				aspect = "4:3"
+				aspect = _("4:3")
 			else:
-				aspect = "16:9"
+				aspect = _("16:9")
 			width = self.info and self.info.getInfo(iServiceInformation.sVideoWidth) or -1
 			height = self.info and self.info.getInfo(iServiceInformation.sVideoHeight) or -1
 			if width != -1 and height != -1:
-				Labels = ( ("Name", name, TYPE_TEXT),
-						   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
-						   ("Videoformat", aspect, TYPE_TEXT),
-						   ("Videosize", "%dx%d" %(width, height), TYPE_TEXT),
-						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
-						   ("Service Reference", refstr, TYPE_TEXT))
+				Labels = ( (_("Name"), name, TYPE_TEXT),
+						   (_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
+						   (_("Aspect ratio"), aspect, TYPE_TEXT),
+						   (_("Resolution"), "%dx%d" %(width, height), TYPE_TEXT),
+						   (_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
+						   (_("Service reference"), refstr, TYPE_TEXT))
 			else:
-				Labels = ( ("Name", name, TYPE_TEXT),
-						   ("Provider", self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
-						   ("Videoformat", aspect, TYPE_TEXT),
-						   ("Namespace", self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
-						   ("Service Reference", refstr, TYPE_TEXT))
+				Labels = ( (_("Name"), name, TYPE_TEXT),
+						   (_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
+						   (_("Aspect ratio"), aspect, TYPE_TEXT),
+						   (_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
+						   (_("Service reference"), refstr, TYPE_TEXT))
 			self.fillList(Labels)
 		else:
 			if self.transponder_info:
@@ -154,14 +154,14 @@ class ServiceInfo(Screen):
 
 	def pids(self):
 		if self.type == TYPE_SERVICE_INFO:
-			Labels = ( ("VideoPID", self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
-					   ("AudioPID", self.getServiceInfoValue(iServiceInformation.sAudioPID), TYPE_VALUE_HEX_DEC, 4),
-					   ("PCRPID", self.getServiceInfoValue(iServiceInformation.sPCRPID), TYPE_VALUE_HEX_DEC, 4),
-					   ("PMTPID", self.getServiceInfoValue(iServiceInformation.sPMTPID), TYPE_VALUE_HEX_DEC, 4),
-					   ("TXTPID", self.getServiceInfoValue(iServiceInformation.sTXTPID), TYPE_VALUE_HEX_DEC, 4),
-					   ("TSID", self.getServiceInfoValue(iServiceInformation.sTSID), TYPE_VALUE_HEX_DEC, 4),
-					   ("ONID", self.getServiceInfoValue(iServiceInformation.sONID), TYPE_VALUE_HEX_DEC, 4),
-					   ("SID", self.getServiceInfoValue(iServiceInformation.sSID), TYPE_VALUE_HEX_DEC, 4))
+			Labels = ( (_("Video PID"), self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
+					   (_("Audio PID"), self.getServiceInfoValue(iServiceInformation.sAudioPID), TYPE_VALUE_HEX_DEC, 4),
+					   (_("PCR PID"), self.getServiceInfoValue(iServiceInformation.sPCRPID), TYPE_VALUE_HEX_DEC, 4),
+					   (_("PMT PID"), self.getServiceInfoValue(iServiceInformation.sPMTPID), TYPE_VALUE_HEX_DEC, 4),
+					   (_("TXT PID"), self.getServiceInfoValue(iServiceInformation.sTXTPID), TYPE_VALUE_HEX_DEC, 4),
+					   (_("TSID"), self.getServiceInfoValue(iServiceInformation.sTSID), TYPE_VALUE_HEX_DEC, 4),
+					   (_("ONID"), self.getServiceInfoValue(iServiceInformation.sONID), TYPE_VALUE_HEX_DEC, 4),
+					   (_("SID"), self.getServiceInfoValue(iServiceInformation.sSID), TYPE_VALUE_HEX_DEC, 4))
 			self.fillList(Labels)
 	
 	def showFrontendData(self, real):
@@ -182,37 +182,38 @@ class ServiceInfo(Screen):
 		if frontendDataOrg and len(frontendDataOrg):
 			frontendData = ConvertToHumanReadable(frontendDataOrg)
 			if frontendDataOrg["tuner_type"] == "DVB-S":
-				return (("NIM", ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
-							("Type", frontendData["system"], TYPE_TEXT),
-							("Modulation", frontendData["modulation"], TYPE_TEXT),
-							("Orbital position", frontendData["orbital_position"], TYPE_VALUE_DEC),
-							("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
-							("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
-							("Polarization", frontendData["polarization"], TYPE_TEXT),
-							("Inversion", frontendData["inversion"], TYPE_TEXT),
-							("FEC inner", frontendData["fec_inner"], TYPE_TEXT),
-							("Pilot", frontendData.get("pilot", None), TYPE_TEXT),
-							("Rolloff", frontendData.get("rolloff", None), TYPE_TEXT))
+				return ((_("NIM"), ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
+						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
+						(_("System"), frontendData["system"], TYPE_TEXT),
+						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
+						(_("Orbital position"), frontendData["orbital_position"], TYPE_VALUE_DEC),
+						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
+						(_("Symbol rate"), frontendData["symbol_rate"], TYPE_VALUE_DEC),
+						(_("Polarization"), frontendData["polarization"], TYPE_TEXT),
+						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
+						(_("FEC"), frontendData["fec_inner"], TYPE_TEXT),
+						(_("Pilot"), frontendData.get("pilot", None), TYPE_TEXT),
+						(_("Roll-off"), frontendData.get("rolloff", None), TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-C":
-				return (("NIM", ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
-						("Type", frontendData["tuner_type"], TYPE_TEXT),
-						("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
-						("Symbolrate", frontendData["symbol_rate"], TYPE_VALUE_DEC),
-						("Modulation", frontendData["modulation"], TYPE_TEXT),
-						("Inversion", frontendData["inversion"], TYPE_TEXT),
-						("FEC inner", frontendData["fec_inner"], TYPE_TEXT))
+				return ((_("NIM"), ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
+						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
+						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
+						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
+						(_("Symbol rate"), frontendData["symbol_rate"], TYPE_VALUE_DEC),
+						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
+						(_("FEC"), frontendData["fec_inner"], TYPE_TEXT))
 			elif frontendDataOrg["tuner_type"] == "DVB-T":
-				return (("NIM", ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
-						("Type", frontendData["tuner_type"], TYPE_TEXT),
-						("Frequency", frontendData["frequency"], TYPE_VALUE_DEC),
-						("Inversion", frontendData["inversion"], TYPE_TEXT),
-						("Bandwidth", frontendData["bandwidth"], TYPE_VALUE_DEC),
-						("CodeRateLP", frontendData["code_rate_lp"], TYPE_TEXT),
-						("CodeRateHP", frontendData["code_rate_hp"], TYPE_TEXT),
-						("Constellation", frontendData["constellation"], TYPE_TEXT),
-						("Transmission Mode", frontendData["transmission_mode"], TYPE_TEXT),
-						("Guard Interval", frontendData["guard_interval"], TYPE_TEXT),
-						("Hierarchy Inform.", frontendData["hierarchy_information"], TYPE_TEXT))
+				return ((_("NIM"), ('A', 'B', 'C', 'D')[frontendData["tuner_number"]], TYPE_TEXT),
+						(_("Type"), frontendData["tuner_type"], TYPE_TEXT),
+						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
+						(_("Inversion"), frontendData["inversion"], TYPE_TEXT),
+						(_("Bandwidth"), frontendData["bandwidth"], TYPE_VALUE_DEC),
+						(_("Code rate LP"), frontendData["code_rate_lp"], TYPE_TEXT),
+						(_("Code rate HP"), frontendData["code_rate_hp"], TYPE_TEXT),
+						(_("Constellation"), frontendData["constellation"], TYPE_TEXT),
+						(_("Transmission mode"), frontendData["transmission_mode"], TYPE_TEXT),
+						(_("Guard interval"), frontendData["guard_interval"], TYPE_TEXT),
+						(_("Hierarchy info"), frontendData["hierarchy_information"], TYPE_TEXT))
 		return [ ]
 
 	def fillList(self, Labels):
@@ -237,6 +238,6 @@ class ServiceInfo(Screen):
 		if v == -2:
 			v = self.info.getInfoString(what)
 		elif v == -1:
-			v = "N/A"
+			v = _("N/A")
 
 		return v
