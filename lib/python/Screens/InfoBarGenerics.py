@@ -253,6 +253,7 @@ class InfoBarShowHide:
 			ecmInfoString = ""
 			using = ""
 			address = ""
+			protocol = ""
 			hops = ""
 			ecmTime = ""
 			provider = ""
@@ -278,29 +279,29 @@ class InfoBarShowHide:
 						if self.systemCaids.has_key(caid):
 							system = self.systemCaids.get(caid)
 							self[system].encrypted()
-				elif line.startswith("using:"):
-					using = self.parseEcmInfoLine(line)
+				elif line.startswith("address:") or line.startswith("from:"):
+					address = "%s %s" % (_("Server:"), self.parseEcmInfoLine(line))
+					if len(address) > 34:
+						address = "%s***" % address[:config.plugins.CCcamInfo.serverNameLength.value-3]
+				elif line.startswith("using:") or line.startswith("protocol:"):
+					using = "%s %s" % (_("\nProtocol:"), self.parseEcmInfoLine(line))
 					if using == "fta":
 						using = _("Free to Air")
-				elif line.startswith("address:"):
-					address = self.parseEcmInfoLine(line)
-					if len(address) > config.plugins.CCcamInfo.serverNameLength.value:
-						address = "%s***" % address[:config.plugins.CCcamInfo.serverNameLength.value-3]
 				elif line.startswith("hops:"):
-					hops = "%s %s" % (_("\nHops:"), self.parseEcmInfoLine(line))
+					hops = "%s %s" % (_("Hops:"), self.parseEcmInfoLine(line))
 				elif line.startswith("ecm time:"):
-					ecmTime = "%s %s" % (_("Ecm time:"), self.parseEcmInfoLine(line))
+					ecmTime = "%s %s" % (_("Ecm:"), self.parseEcmInfoLine(line))
 				elif line.startswith("provider:"):
 					provider = "%s %s" % (_("\nProvider:"), self.parseEcmInfoLine(line))
 			
-			if using != "":
-				ecmInfoString = "%s " % using
 			if address != "":
-				ecmInfoString = "%s%s " % (ecmInfoString, address)
+				ecmInfoString = "%s " % address
+			if using != "":
+				ecmInfoString = "%s%s  " % (ecmInfoString, using)
 			if hops != "":
-				ecmInfoString = "%s%s " % (ecmInfoString, hops)
+				ecmInfoString = "%s%s  " % (ecmInfoString, hops)
 			if ecmTime != "":
-				if ecmTime != "Ecm time: nan" and ecmTime != "Ecm time: 0.000":
+				if ecmTime != "Ecm: nan" and ecmTime != "Ecm: 0.000":
 					ecmInfoString = "%s%s " % (ecmInfoString, ecmTime)
 #			if provider != "":
 #				print 'ecm time: ' + provider
