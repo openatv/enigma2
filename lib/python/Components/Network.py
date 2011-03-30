@@ -76,14 +76,14 @@ class Network:
 		globalIPpattern = re_compile("scope global")
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
 		netRegexp = '[0-9]{1,2}'
-		macRegexp = '[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}'
+		macRegexp = '[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}'
 		ipLinePattern = re_compile('inet ' + ipRegexp + '/')
 		ipPattern = re_compile(ipRegexp)
 		netmaskLinePattern = re_compile('/' + netRegexp)
 		netmaskPattern = re_compile(netRegexp)
 		bcastLinePattern = re_compile(' brd ' + ipRegexp)
 		upPattern = re_compile('UP')
-		macPattern = re_compile('[0-9]{2}\:[0-9]{2}\:[0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}\:[a-z0-9]{2}')
+		macPattern = re_compile(macRegexp)
 		macLinePattern = re_compile('link/ether ' + macRegexp)
 		
 		for line in result.splitlines():
@@ -160,7 +160,7 @@ class Network:
 				fp.write(iface["preup"])
 			if iface["predown"] is not False and not iface.has_key("configStrings"):
 				fp.write(iface["predown"])
-			fp.write("\n")
+			fp.write("\n")				
 		fp.close()
 		self.configuredNetworkAdapters = self.configuredInterfaces
 		self.writeNameserverConfig()
@@ -253,6 +253,9 @@ class Network:
 
 		print "nameservers:", self.nameservers
 
+	def getInstalledAdapters(self):
+		return [x for x in listdir('/sys/class/net') if not x in ('lo','wifi0', 'wmaster0')]
+
 	def getConfiguredAdapters(self):
 		return self.configuredNetworkAdapters
 
@@ -286,13 +289,7 @@ class Network:
 		if not self.isWirelessInterface(iface):
 			return _('Ethernet network interface')
 
-		moduledir = self.sysfsPath(iface) + '/device/driver/module'
-		if not os_path.isdir(moduledir):
-			tmpfiles = listdir(self.sysfsPath(iface) + '/device')
-			for x in tmpfiles:
-				if x.startswith("1-"):
-					moduledir = self.sysfsPath(iface) + '/device/' + x + '/driver/module'
-
+		moduledir = self.getWlanModuleDir(iface)
 		if os_path.isdir(moduledir):
 			name = os_path.basename(os_path.realpath(moduledir))
 			if name in ('ath_pci','ath5k'):
@@ -301,6 +298,8 @@ class Network:
 				name = 'Ralink'
 			elif name == 'zd1211b':
 				name = 'Zydas'
+			elif name == 'r871x_usb_drv':
+				name = 'Realtek'
 		else:
 			name = _('Unknown')
 
@@ -539,31 +538,27 @@ class Network:
 		self.config_ready = False
 		self.msgPlugins()
 		commands = []
-		if not self.deactivateInterfaceConsole:
-			self.deactivateInterfaceConsole = Console()
-		if isinstance(ifaces, (list, tuple)):
-			for iface in ifaces:
-				if iface != 'eth0' or not self.onRemoteRootFS():
-					commands.append("ifdown " + iface)
-					commands.append("ip addr flush dev " + iface)
-					# HACK: wpa_supplicant sometimes doesn't quit properly on SIGTERM
-					if os_path.exists('/var/run/wpa_supplicant/'+ iface):
-						commands.append("killall -9 wpa_supplicant")
-						commands.append("rm -rf /var/run/wpa_supplicant/" + iface)
-			self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, callback, debug=True)
-		else:
-			iface = ifaces
-			if iface == 'eth0' and self.onRemoteRootFS():
-				if callback is not None:
-					callback(True)
-				return
+		def buildCommands(iface):
 			commands.append("ifdown " + iface)
 			commands.append("ip addr flush dev " + iface)
 			# HACK: wpa_supplicant sometimes doesn't quit properly on SIGTERM
 			if os_path.exists('/var/run/wpa_supplicant/'+ iface):
-				commands.append("killall -9 wpa_supplicant")
-				commands.append("rm -rf /var/run/wpa_supplicant/" + iface)
-			self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, callback, debug=True)
+				commands.append("wpa_cli -i" + iface + " terminate")
+			
+		if not self.deactivateInterfaceConsole:
+			self.deactivateInterfaceConsole = Console()
+
+		if isinstance(ifaces, (list, tuple)):
+			for iface in ifaces:
+				if iface != 'eth0' or not self.onRemoteRootFS():
+					buildCommands(iface)
+		else:
+			if ifaces == 'eth0' and self.onRemoteRootFS():
+				if callback is not None:
+					callback(True)
+				return
+			buildCommands(ifaces)
+		self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, callback, debug=True)
 
 	def deactivateInterfaceFinished(self,extra_args):
 		callback = extra_args
@@ -594,7 +589,31 @@ class Network:
 		return '/sys/class/net/' + iface
 
 	def isWirelessInterface(self, iface):
-		return os_path.isdir(self.sysfsPath(iface) + '/wireless')
+		if os_path.isdir(self.sysfsPath(iface) + '/wireless'):
+			return True
+		else:
+			ifaces = file('/proc/net/wireless').read().strip()
+			if iface in ifaces:
+				return True
+			else:
+				return False
+
+	def getWlanModuleDir(self, iface = None):
+		devicedir = self.sysfsPath(iface) + '/device'
+		moduledir = devicedir + '/driver/module'
+		if not os_path.isdir(moduledir):
+			tmpfiles = listdir(devicedir)
+			moduledir_found = False
+			for x in tmpfiles:
+				if x.startswith("1-"):
+					moduledir_found = True
+					moduledir = devicedir + '/' + x + '/driver/module'
+			if not moduledir_found:
+				moduledir_found = True
+				if os_path.isdir(devicedir + '/driver'):
+					moduledir = devicedir + '/driver'
+		
+		return moduledir
 
 	def detectWlanModule(self, iface = None):
 		if not self.isWirelessInterface(iface):
@@ -604,13 +623,7 @@ class Network:
 		if os_path.isdir(devicedir + '/ieee80211'):
 			return 'nl80211'
 
-		moduledir = devicedir + "/driver/module"
-		if not os_path.isdir(moduledir):
-			tmpfiles = listdir(devicedir)
-			for x in tmpfiles:
-				if x.startswith("1-"):
-					moduledir = devicedir + "/" + x + "/driver/module"
-					
+		moduledir = self.getWlanModuleDir(iface)
 		if os_path.isdir(moduledir):
 			module = os_path.basename(os_path.realpath(moduledir))
 			if module in ('ath_pci','ath5k'):
@@ -619,8 +632,6 @@ class Network:
 				return 'ralink'
 			if module == 'zd1211b':
 				return 'zydas'
-			if module in ('rt3070sta'):
-				return 'wext'		
 		return 'wext'
 	
 	def calc_netmask(self,nmask):

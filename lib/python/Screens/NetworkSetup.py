@@ -42,11 +42,6 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
 		
-		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
-		
-		if not self.adapters:
-			self.onFirstExecBegin.append(self.NetworkFallback)
-			
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
 			"cancel": (self.close, _("exit network interface list")),
@@ -65,6 +60,14 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			"yellow": (self.setDefaultInterface, [_("Set interface as default Interface"),_("* Only available if more than one interface is active.")] ),
 			})
 
+		self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+
+		if not self.adapters:
+			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getConfiguredAdapters()]
+
+		if len(self.adapters) == 0:
+			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getInstalledAdapters()]
+
 		self.list = []
 		self["list"] = List(self.list)
 		self.updateList()
@@ -80,14 +83,14 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		description = None
 		interfacepng = None
 
-		if iface in iNetwork.lan_interfaces:
+		if not iNetwork.isWirelessInterface(iface):
 			if active is True:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wired-active.png"))
 			elif active is False:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wired-inactive.png"))
 			else:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wired.png"))
-		elif iface in iNetwork.wlan_interfaces:
+		elif iNetwork.isWirelessInterface(iface):
 			if active is True:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/network_wireless-active.png"))
 			elif active is False:
@@ -132,19 +135,16 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			fp.close()
 			default_gw = result
 					
-		if len(self.adapters) == 0: # no interface available => display only eth0
-			self.list.append(self.buildInterfaceList("eth0",iNetwork.getFriendlyAdapterName('eth0'),True,True ))
-		else:
-			for x in self.adapters:
-				if x[1] == default_gw:
-					default_int = True
-				else:
-					default_int = False
-				if iNetwork.getAdapterAttribute(x[1], 'up') is True:
-					active_int = True
-				else:
-					active_int = False
-				self.list.append(self.buildInterfaceList(x[1],_(x[0]),default_int,active_int ))
+		for x in self.adapters:
+			if x[1] == default_gw:
+				default_int = True
+			else:
+				default_int = False
+			if iNetwork.getAdapterAttribute(x[1], 'up') is True:
+				active_int = True
+			else:
+				active_int = False
+			self.list.append(self.buildInterfaceList(x[1],_(x[0]),default_int,active_int ))
 		
 		if os_path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("NetworkWizard"))
@@ -178,26 +178,6 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			self.close()
 		else:
 			self.updateList()
-
-	def NetworkFallback(self):
-		if iNetwork.configuredNetworkAdapters.has_key('wlan0') is True:
-			self.session.openWithCallback(self.ErrorMessageClosed, MessageBox, self.wlan_errortext, type = MessageBox.TYPE_INFO,timeout = 10)
-		if iNetwork.configuredNetworkAdapters.has_key('ath0') is True:
-			self.session.openWithCallback(self.ErrorMessageClosed, MessageBox, self.wlan_errortext, type = MessageBox.TYPE_INFO,timeout = 10)
-		if iNetwork.configuredNetworkAdapters.has_key('ra0') is True:
-			self.session.openWithCallback(self.ErrorMessageClosed, MessageBox, self.wlan_errortext, type = MessageBox.TYPE_INFO,timeout = 10)
-		else:
-			self.session.openWithCallback(self.ErrorMessageClosed, MessageBox, self.lan_errortext, type = MessageBox.TYPE_INFO,timeout = 10)
-
-	def ErrorMessageClosed(self, *ret):
-		if iNetwork.configuredNetworkAdapters.has_key('wlan0') is True:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, 'wlan0')
-		elif iNetwork.configuredNetworkAdapters.has_key('ath0') is True:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, 'ath0')
-		elif iNetwork.configuredNetworkAdapters.has_key('ra0') is True:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, 'ra0')
-		else:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, 'eth0')
 
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
@@ -427,10 +407,11 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.wsconfig = None
 		self.default = None
 
-		if self.iface in iNetwork.wlan_interfaces:
-			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant,Wlan
-			self.w = Wlan(self.iface)
-			self.ws = wpaSupplicant(self.iface)
+		if iNetwork.isWirelessInterface(self.iface):
+			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant, iWlan
+			iWlan.setInterface(self.iface)
+			self.w = iWlan.getInterface()
+			self.ws = wpaSupplicant()
 			self.encryptionlist = []
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
@@ -446,7 +427,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				self.nwlist = []
 				self.aps = None
 				try:
-					self.aps = self.w.getNetworkList()
+					self.aps = iWlan.getNetworkList()
 					if self.aps is not None:
 						for ap in self.aps:
 							a = self.aps[ap]
@@ -454,10 +435,11 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 								if a['essid'] != '':
 									self.nwlist.append((a['essid'],a['essid']))
 					self.nwlist.sort(key = lambda x: x[0])
+					iWlan.stopGetNetworkList()
 				except:
 					self.nwlist.append(("No Networks found",_("No Networks found")))
 
-			self.wsconfig = self.ws.loadConfig()
+			self.wsconfig = self.ws.loadConfig(self.iface)
 			if self.essid is not None: # ssid from wlan scan
 				self.default = self.essid
 			else:
@@ -550,7 +532,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 		if self["config"].getCurrent() == self.gatewayEntry:
 			self.createSetup()
-		if self.iface in iNetwork.wlan_interfaces:
+		if iNetwork.isWirelessInterface(self.iface):	
 			if self["config"].getCurrent() == self.wlanSSID:
 				self.createSetup()
 			if self["config"].getCurrent() == self.encryptionEnabled:
@@ -617,7 +599,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
 			if self.extended is not None and self.configStrings is not None:
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
-				self.ws.writeConfig()
+				self.ws.writeConfig(self.iface)
 
 			if self.activateInterfaceEntry.value is False:
 				iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
@@ -723,7 +705,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.reboottext = _("Your Dreambox will restart after pressing OK on your remote control.")
-		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")	
+		self.errortext = _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface.")
+		self.missingwlanplugintxt = _("The wireless LAN plugin is not installed!\nPlease install it.")
 		
 		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
 			{
@@ -759,31 +742,39 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
 
+
+	def queryWirelessDevice(self,iface):
+		try:
+			from pythonwifi.iwlibs import Wireless
+			import errno
+		except ImportError:
+			return False
+		else:
+			try:
+				ifobj = Wireless(iface) # a Wireless NIC Object
+				wlanresponse = ifobj.getAPaddr()
+			except IOError, (error_no, error_str):
+				if error_no in (errno.EOPNOTSUPP, errno.EINVAL, errno.ENODEV, errno.EPERM):
+					return False
+				else:
+					print "error: ",error_no,error_str
+					return True
+			else:
+				return True
+
 	def ok(self):
 		self.cleanup()
 		if self["menulist"].getCurrent()[1] == 'edit':
-			if self.iface in iNetwork.wlan_interfaces:
+			if iNetwork.isWirelessInterface(self.iface):
 				try:
 					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
-					from pythonwifi.iwlibs import Wireless
 				except ImportError:
-					self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+					self.session.open(MessageBox, self.missingwlanplugintxt, type = MessageBox.TYPE_INFO,timeout = 10 )
 				else:
-					ifobj = Wireless(self.iface) # a Wireless NIC Object
-					wlanresponse = None
-					try:
-						wlanresponse = ifobj.getAPaddr()
-					except IOError, (errno, strerror):
-						wlanresponse = (errno,strerror)
-					if wlanresponse:
-						if wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
-							self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
-						else:
-							# Display Wlan not available Message
-							self.showErrorMessage()
+					if self.queryWirelessDevice(self.iface):
+						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
 					else:
-						# Display Wlan not available Message
-						self.showErrorMessage()
+						self.showErrorMessage()	# Display Wlan not available Message
 			else:
 				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup,self.iface)
 		if self["menulist"].getCurrent()[1] == 'test':
@@ -793,47 +784,23 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
-				from pythonwifi.iwlibs import Wireless
 			except ImportError:
-				self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+				self.session.open(MessageBox, self.missingwlanplugintxt, type = MessageBox.TYPE_INFO,timeout = 10 )
 			else:
-				ifobj = Wireless(self.iface) # a Wireless NIC Object
-				wlanresponse = None
-				try:
-					wlanresponse = ifobj.getAPaddr()
-				except IOError, (errno, strerror):
-					wlanresponse = (errno,strerror)
-				if wlanresponse:
-					if wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
-						self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
-					else:
-						# Display Wlan not available Message
-						self.showErrorMessage()
+				if self.queryWirelessDevice(self.iface):
+					self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
 				else:
-					# Display Wlan not available Message
-					self.showErrorMessage()
+					self.showErrorMessage()	# Display Wlan not available Message
 		if self["menulist"].getCurrent()[1] == 'wlanstatus':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanStatus
-				from pythonwifi.iwlibs import Wireless
 			except ImportError:
-				self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			else:	
-				ifobj = Wireless(self.iface) # a Wireless NIC Object
-				wlanresponse = None
-				try:
-					wlanresponse = ifobj.getAPaddr()
-				except IOError, (errno, strerror):
-					wlanresponse = (errno,strerror)
-				if wlanresponse:
-					if wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
-						self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
-					else:
-						# Display Wlan not available Message
-						self.showErrorMessage()
+				self.session.open(MessageBox, self.missingwlanplugintxt, type = MessageBox.TYPE_INFO,timeout = 10 )
+			else:
+				if self.queryWirelessDevice(self.iface):
+					self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
 				else:
-					# Display Wlan not available Message
-					self.showErrorMessage()
+					self.showErrorMessage()	# Display Wlan not available Message
 		if self["menulist"].getCurrent()[1] == 'lanrestart':
 			self.session.openWithCallback(self.restartLan, MessageBox, (_("Are you sure you want to restart your network interfaces?\n\n") + self.oktext ) )
 		if self["menulist"].getCurrent()[1] == 'openwizard':
@@ -889,7 +856,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 		
-		if self.iface in iNetwork.wlan_interfaces:
+		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			except:
@@ -939,28 +906,16 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def AdapterSetupClosed(self, *ret):
 		if ret is not None and len(ret):
-			if ret[0] == 'ok' and (self.iface in iNetwork.wlan_interfaces) and iNetwork.getAdapterAttribute(self.iface, "up") is True:
+			if ret[0] == 'ok' and (iNetwork.isWirelessInterface(self.iface) and iNetwork.getAdapterAttribute(self.iface, "up") is True):
 				try:
 					from Plugins.SystemPlugins.WirelessLan.plugin import WlanStatus
-					from pythonwifi.iwlibs import Wireless
 				except ImportError:
-					self.session.open(MessageBox, _("The wireless LAN plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+					self.session.open(MessageBox, self.missingwlanplugintxt, type = MessageBox.TYPE_INFO,timeout = 10 )
 				else:	
-					ifobj = Wireless(self.iface) # a Wireless NIC Object
-					wlanresponse = None
-					try:
-						wlanresponse = ifobj.getAPaddr()
-					except IOError, (errno, strerror):
-						wlanresponse = (errno,strerror)
-					if wlanresponse:
-						if wlanresponse[0] not in (19,95): # 19 = 'No such device', 95 = 'Operation not supported'
-							self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
-						else:
-							# Display Wlan not available Message
-							self.showErrorMessage()
+					if self.queryWirelessDevice(self.iface):
+						self.session.openWithCallback(self.WlanStatusClosed, WlanStatus,self.iface)
 					else:
-						# Display Wlan not available Message
-						self.showErrorMessage()
+						self.showErrorMessage()	# Display Wlan not available Message
 			else:
 				self.updateStatusbar()
 		else:
