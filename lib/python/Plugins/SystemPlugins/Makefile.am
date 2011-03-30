@@ -6,7 +6,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	VideoEnhancement WirelessLan NetworkWizard
 
 if CLARKETECH
-SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup
+SUBDIRS += SatelliteEquipmentControl DiseqcTester FastScan OSD3DSetup OSDPositionSetup
 endif
 
 if VUDUO
