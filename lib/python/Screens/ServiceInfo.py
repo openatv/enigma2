@@ -81,9 +81,9 @@ class ServiceInfo(Screen):
 			self.feinfo = None
 		else:
 			self.type = TYPE_SERVICE_INFO
-			self["red"] = Label(_("Serviceinfo"))
+			self["red"] = Label(_("Service"))
 			self["green"] = Label(_("PIDs"))
-			self["yellow"] = Label(_("Transponder"))
+			self["yellow"] = Label(_("Multiplex"))
 			self["blue"] = Label(_("Tuner status"))
 			service = session.nav.getCurrentService()
 			if service is not None:
@@ -131,24 +131,24 @@ class ServiceInfo(Screen):
 		else:
 			if self.transponder_info:
 				tp_info = ConvertToHumanReadable(self.transponder_info)
-				conv = { "tuner_type" 		: _("Transponder Type"),
-						 "system"			: _("System"),
-						 "modulation"		: _("Modulation"),
-						 "orbital_position" : _("Orbital Position"),
-						 "frequency"		: _("Frequency"),
-						 "symbol_rate"		: _("Symbolrate"),
-						 "bandwidth"		: _("Bandwidth"),
-						 "polarization"		: _("Polarization"),
-						 "inversion"		: _("Inversion"),
-						 "pilot"			: _("Pilot"),
-						 "rolloff"			: _("Rolloff"),
-						 "fec_inner"		: _("FEC"),
-						 "code_rate_lp"		: _("Coderate LP"),
-						 "code_rate_hp"		: _("Coderate HP"),
-						 "constellation"	: _("Constellation"),
-						 "transmission_mode": _("Transmission Mode"),
-						 "guard_interval" 	: _("Guard Interval"),
-						 "hierarchy_information": _("Hierarchy Information") }
+				conv = { "tuner_type"			: _("Type"),
+					 "system"			: _("System"),
+					 "modulation"			: _("Modulation"),
+					 "orbital_position"		: _("Orbital position"),
+					 "frequency"			: _("Frequency"),
+					 "symbol_rate"			: _("Symbol rate"),
+					 "bandwidth"			: _("Bandwidth"),
+					 "polarization"			: _("Polarization"),
+					 "inversion"			: _("Inversion"),
+					 "pilot"			: _("Pilot"),
+					 "rolloff"			: _("Roll-off"),
+					 "fec_inner"			: _("FEC"),
+					 "code_rate_lp"			: _("Code rate LP"),
+					 "code_rate_hp"			: _("Code rate HP"),
+					 "constellation"		: _("Constellation"),
+					 "transmission_mode"		: _("Transmission mode"),
+					 "guard_interval" 		: _("Guard interval"),
+					 "hierarchy_information"	: _("Hierarchy info") }
 				Labels = [(conv[i], tp_info[i], TYPE_VALUE_DEC) for i in tp_info.keys()]
 				self.fillList(Labels)
 
