@@ -15,10 +15,10 @@ from os import system, path as os_path, listdir
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
 from Tools.HardwareInfo import HardwareInfo
-from Wlan import Wlan, wpaSupplicant, iStatus
-import sha
+from Wlan import iWlan, wpaSupplicant, iStatus, getWlanConfigName
+import hashlib
 from time import time
-from os import urandom
+from os import urandom, system
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
@@ -219,6 +219,8 @@ class WlanScan(Screen):
 			"red": self.cancel,
 			"green": self.select,
 		})
+		iWlan.setInterface(self.iface)
+		self.w = iWlan.getInterface()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.getAccessPoints(refresh = False)
 		
@@ -228,6 +230,7 @@ class WlanScan(Screen):
 	def select(self):
 		cur = self["list"].getCurrent()
 		if cur is not None:
+			iWlan.stopGetNetworkList()
 			self.rescanTimer.stop()
 			del self.rescanTimer
 			if cur[1] is not None:
@@ -239,31 +242,16 @@ class WlanScan(Screen):
 			else:
 				self.close(None,None)
 		else:
+			iWlan.stopGetNetworkList()
 			self.rescanTimer.stop()
 			del self.rescanTimer
 			self.close(None,None)
 	
-	def WlanSetupClosed(self, *ret):
-		if ret[0] == 2:
-			self.rescanTimer.stop()
-			del self.rescanTimer
-			self.close(None)
-	
 	def cancel(self):
-		if self.oldInterfaceState is False:
-			iNetwork.setAdapterAttribute(self.iface, "up", False)
-			iNetwork.deactivateInterface(self.iface,self.deactivateInterfaceCB)
-		else:
-			self.rescanTimer.stop()
-			del self.rescanTimer
-			self.close(None)
-
-	def deactivateInterfaceCB(self,data):
-		if data is not None:
-			if data is True:
-				self.rescanTimer.stop()
-				del self.rescanTimer
-				self.close(None)
+		iWlan.stopGetNetworkList()
+		self.rescanTimer.stop()
+		del self.rescanTimer
+		self.close(None)
 
 	def rescanTimerFired(self):
 		self.rescanTimer.stop()
@@ -314,8 +302,7 @@ class WlanScan(Screen):
 	def getAccessPoints(self, refresh = False):
 		self.APList = []
 		self.cleanList = []
-		self.w = Wlan(self.iface)
-		aps = self.w.getNetworkList()
+		aps = iWlan.getNetworkList()
 		if aps is not None:
 			print "[WirelessLan.py] got Accespoints!"
 			tmpList = []
@@ -364,7 +351,7 @@ class WlanScan(Screen):
 		self.WlanList = []
 		for entry in self['list'].list:
 			if entry[1] == "hidden...":
-				self.WlanList.append(( "hidden...",_("enter hidden network SSID") ))#continue
+				self.WlanList.append(( "hidden...",_("enter hidden network SSID") ))
 			else:
 				self.WlanList.append( (entry[0], entry[0]) )
 
@@ -393,7 +380,7 @@ def decrypt_block(src, mod):
 	if len(src) != 128 and len(src) != 202:
 		return None
 	dest = rsa_pub1024(src[:128], mod)
-	hash = sha.new(dest[1:107])
+	hash = hashlib.sha1(dest[1:107])
 	if len(src) == 202:
 		hash.update(src[131:192])	
 	result = hash.digest()
@@ -422,16 +409,12 @@ def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
 
 def callFunction(iface):
-	w = Wlan(iface)
-	i = w.getWirelessInterfaces()
+	iWlan.setInterface(iface)
+	i = iWlan.getWirelessInterfaces()
 	if i:
-		if iface in i:
+		if iface in i or iNetwork.isWirelessInterface(iface):
 			return WlanStatusScreenMain
-		else:
-			if iNetwork.isWirelessInterface(iface):
-				return WlanStatusScreenMain
-			else:
-				return None
+		return None
 	return None
 
 def configStrings(iface):
@@ -462,9 +445,9 @@ def configStrings(iface):
 		driver = 'dreambox'
 	print 'Using "%s" as wpa-supplicant driver' % (driver)
 	ret = ""
-	if config.plugins.wlan.essid.value == "hidden...":
+	if driver == 'madwifi' and config.plugins.wlan.essid.value == "hidden...":
 		ret += "\tpre-up iwconfig " + iface + " essid \"" + config.plugins.wlan.hiddenessid.value + "\" || true\n"
-	ret += "\tpre-up wpa_supplicant -i" + iface + " -c/etc/" + iface + "_wpa_supplicant.conf -B -dd -D" + driver + " || true\n"
+	ret += "\tpre-up wpa_supplicant -i" + iface + " -c" + getWlanConfigName(iface) + " -B -dd -D" + driver + " || true\n"
 	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
 
