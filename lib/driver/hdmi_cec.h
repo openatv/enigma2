@@ -14,7 +14,7 @@ struct cec_message
 {
 	unsigned char address;
 	unsigned char length;
-	unsigned char data[8];
+	unsigned char data[256];
 }__attribute__((packed));
 #endif
 protected:
