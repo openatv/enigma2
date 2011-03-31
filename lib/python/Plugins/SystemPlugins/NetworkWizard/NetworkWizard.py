@@ -4,32 +4,10 @@ from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.Sources.Boolean import Boolean
-from Components.config import config, ConfigBoolean, configfile, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, getConfigListEntry, ConfigSelection, ConfigPassword
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE
 from enigma import eTimer
 from os import system
-
-config.misc.firstrun = ConfigBoolean(default = True)
-list = []
-list.append("WEP")
-list.append("WPA")
-list.append("WPA2")
-list.append("WPA/WPA2")
-
-weplist = []
-weplist.append("ASCII")
-weplist.append("HEX")
-
-config.plugins.wlan = ConfigSubsection()
-config.plugins.wlan.essid = NoSave(ConfigText(default = "home", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigText(default = "home", fixed_size = False))
-
-config.plugins.wlan.encryption = ConfigSubsection()
-config.plugins.wlan.encryption.enabled = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption.type = NoSave(ConfigSelection(list, default = "WPA/WPA2" ))
-config.plugins.wlan.encryption.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
-config.plugins.wlan.encryption.psk = NoSave(ConfigPassword(default = "mysecurewlan", fixed_size = False))
 
 class NetworkWizard(WizardLanguage, Rc):
 	skin = """
@@ -306,13 +284,13 @@ class NetworkWizard(WizardLanguage, Rc):
 				newList.append(oldentry)
 				
 		for newentry in newList:
-			if newentry[1] == "hidden...":
+			if newentry[1] == "<hidden>":
 				continue
 			self.newAPlist.append(newentry)
 		
 		if len(self.newAPlist):
-			if "hidden..." not in self.newAPlist:
-				self.newAPlist.append(( _("enter hidden network SSID"), "hidden..." ))
+			if "<hidden>" not in self.newAPlist:
+				self.newAPlist.append(( _("enter hidden network SSID"), "<hidden>" ))
 
 			if (self.wizard[self.currStep].has_key("dynamiclist")):
 				currentListEntry = self["list"].getCurrent()
@@ -359,9 +337,9 @@ class NetworkWizard(WizardLanguage, Rc):
 								complist.remove(compentry)
 				for entry in complist:
 					self.APList.append( (entry[1], entry[1]) )
-	
-			if "hidden..." not in self.APList:
-				self.APList.append(( _("enter hidden network SSID"), "hidden..." ))
+
+			if "<hidden>" not in self.APList:
+				self.APList.append(( _("enter hidden network SSID"), "<hidden>" ))
 			
 			self.rescanTimer.start(5000)
 			return self.APList
@@ -369,10 +347,10 @@ class NetworkWizard(WizardLanguage, Rc):
 	def AccessPointsSelectionMade(self, index):
 		self.ap = index
 		self.WlanList = []
-		currList = []
 		if (self.wizard[self.currStep].has_key("dynamiclist")):
-			currList = self['list'].list
-			for entry in currList:
+			for entry in self['list'].list:
+				if entry[1] == "<hidden>":
+					continue
 				self.WlanList.append( (entry[1], entry[0]) )
 		self.AccessPointsSelect(index)
 
