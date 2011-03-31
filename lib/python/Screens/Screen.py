@@ -49,7 +49,7 @@ class Screen(dict, GUISkin):
 		# don't care about having or not having focus.
 		self.stand_alone = False
 
-		self.onShow.append(self.saveKeyboardMode);
+		self.onShow.append(self.saveKeyboardMode)
 		self.onHide.append(self.restoreKeyboardMode)
 		self.keyboardMode = None
 
